@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "mvg",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["werkzeuge/vorschau.mjs", "--port", "8301"],
+      "port": 8301
+    }
+  ]
+}

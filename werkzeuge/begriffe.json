@@ -1,0 +1,33 @@
+{
+  "_kommentar": [
+    "Verbotene Begriffe (docs/BEGRIFFE.md). Muster sind JavaScript-RegExp-Quellen, Flag 'u' immer, 'i' wenn gross/klein egal.",
+    "pfade: welche Dateien geprüft werden (Glob-artig, relativ zur Wurzel). ausnahmen: Dateien, die alte Begriffe absichtlich nennen.",
+    "Zeilenmarke '<!-- begriffe-erlaubt: Grund -->' bzw. '// begriffe-erlaubt: Grund' erlaubt eine einzelne Zeile, der Grund ist Pflicht."
+  ],
+  "pfade": ["inhalte/**/*.md", "inhalte/**/*.yaml", "src/**/*.ts", "src/**/*.css", "werkzeuge/huelle.html"],
+  "ausnahmen": ["inhalte/begriffs-kompass.md", "docs/KORREKTURLISTE-V1.3.md"],
+  "verboten": [
+    { "muster": "\\bG\\s?[0-9](\\s?[–-]\\s?G?\\s?[0-9])?\\b", "flags": "u", "statt": "Freigabe LPH n / LPH 0–9" },
+    { "muster": "\\bGates?\\b", "flags": "iu", "statt": "Freigabe" },
+    { "muster": "\\bNo[- ]?Go\\b|\\bGo[- ]with[- ]Conditions\\b|\\bGo\\s*/\\s*No", "flags": "iu", "statt": "Freigabe / keine Freigabe / Freigabe mit Auflagen" },
+    { "muster": "\\bDecision[- ]File\\b", "flags": "iu", "statt": "Entscheidungsvorlage" },
+    { "muster": "Entscheidungsakte", "flags": "iu", "statt": "Entscheidungsvorlage" },
+    { "muster": "\\bChange[- ]Board\\b", "flags": "iu", "statt": "Änderungsgremium" },
+    { "muster": "\\bOperating[- ]Model\\b", "flags": "iu", "statt": "Betriebshandbuch / Regelbetrieb" },
+    { "muster": "\\bReadout\\b", "flags": "iu", "statt": "Resümee / Managementbericht" },
+    { "muster": "\\bScope\\b", "flags": "u", "statt": "Projektumfang" },
+    { "muster": "\\bEvidence\\b", "flags": "iu", "statt": "Nachweis" },
+    { "muster": "\\bReadiness\\b", "flags": "iu", "statt": "Entscheidungsreife / Reifegrad" },
+    { "muster": "\\b(Governance-)?Reset\\b", "flags": "u", "statt": "MVG-Neuinitialisierung" },
+    { "muster": "\\bLong[- ]Lead\\b", "flags": "iu", "statt": "Komponente mit langer Lieferzeit" },
+    { "muster": "\\bImpact\\b", "flags": "u", "statt": "Auswirkung / Auswirkungsbewertung" },
+    { "muster": "\\bRisk\\b", "flags": "u", "statt": "Risiko" },
+    { "muster": "\\bMitigation\\b", "flags": "iu", "statt": "Risikominderung" },
+    { "muster": "\\bContingency\\b", "flags": "iu", "statt": "Risikoreserve" },
+    { "muster": "\\bHeatmap\\b", "flags": "iu", "statt": "Bewertungsmatrix / Risikomatrix" },
+    { "muster": "\\bStakeholder", "flags": "u", "statt": "Beteiligte" },
+    { "muster": "\\bMVG[- ]Design\\b", "flags": "iu", "statt": "MVG-Konzeption" },
+    { "muster": "gerichtsfest", "flags": "iu", "statt": "organisationsfest / nachweisfähig" },
+    { "muster": "\\bMinimal Viable Governance\\b", "flags": "iu", "statt": "Minimum Viable Governance" }
+  ]
+}

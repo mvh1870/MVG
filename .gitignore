@@ -1,0 +1,9 @@
+node_modules/
+tmp/
+src/generiert/
+test-results/
+playwright-report/
+*.log
+.claude/weiter-halt
+.claude/settings.local.json
+.claude/worktrees/

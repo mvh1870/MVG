@@ -1,0 +1,1275 @@
+/* BM Kern — BEDIENMUSTER.
+   Herkunft: MVG-Companion (`src/legacy/blocks/0001-basis.css` und Folge-Schichten), uebernommen
+   im harten Schnitt R3. Owner-Vorgabe: das AUSSEHEN wird uebernommen, die Architektur nicht.
+
+   ⚠ Was hier NICHT steht und bewusst fehlt: die rund 120 Nachbesserungs-Schichten des Monolithen
+   (`bm-v4xx-css` … `bm-v933-css`). Sie waren Korrekturen an einer gewachsenen Kaskade, nicht Teil
+   des Entwurfs. Die Muster stehen hier EINMAL und in der Fassung, die sie am Ende hatten. */
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--tt-sans);
+  font-size: 14px;
+  line-height: 1.55;
+  font-weight: 420;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--c-primary-soft); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+button { font-family: inherit; font-size: 13px; cursor: pointer; border: none; background: none; color: inherit; }
+input, select, textarea { font-family: inherit; font-size: 13px; color: var(--c-text); }
+/* ⚠⚠ R19 (Owner-Entscheidung 3, Hellmodus-Felder): die GRUNDFLAECHE aller Eingabefelder kommt aus
+   dem Token-Satz. Bis R19 setzte die Regel darueber nur `color` — die Flaeche kam vom Browser
+   (Meta `color-scheme: light dark`), und im Hellmodus auf dunklem OS standen alle klassenlosen
+   Felder (Kunden-, Katalog-, Beratungsfall-, Angebots- und Datenformulare) dunkel auf heller Seite:
+   Text und Flaeche aus zwei verschiedenen Quellen. Die Ausschluesse stehen in `:where(…)`
+   (Spezifitaet 0,0,1 wie ein nacktes `input`) — eine Fassung mit blossen `:not(…)` laege bei
+   (0,3,1) und schluege `.topbar select, .topbar input` (0,1,1): die Kopfleisten-Felder wuerden
+   weiss mit weisser Schrift (#fff auf #fff). Erst mit dieser Regel EXISTIERT das Feld-Farbpaar
+   fuer die A1-Messung; tests/barrierefreiheit.test.ts rechnet es hell UND dunkel nach. */
+input:where(:not([type=checkbox]):not([type=radio]):not([type=range])), select, textarea { background: var(--c-panel); }
+input, select, textarea { transition: border-color .15s, box-shadow .15s; }
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--c-primary-soft);
+  box-shadow: 0 0 0 3px rgba(29, 50, 88, .12);
+}
+::selection { background: var(--c-accent-soft); color: var(--c-accent-ink); }
+
+/* Sichtbarer Fokus fuer die Tastaturbedienung (Spec §15 Kriterium 21).
+   ⚠ `:focus-visible`, nicht `:focus` — sonst ringt jeder Mausklick mit. */
+:focus-visible {
+  /* S7-R2: EIGENER Ton statt `--c-accent` — der lag hell bei 2,94:1 gegen `--c-bg`
+     (WCAG 1.4.11 verlangt 3:1 fuer grafische Objekte, und ein Fokusring ist eines).
+     Die Begruendung, warum die Marke selbst nicht gedreht wird, steht in `tokens.css`. */
+  outline: 2px solid var(--c-akzent-kante);
+  outline-offset: 2px;
+}
+
+.nur-fuer-screenreader {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============================================================ Grundraster */
+
+.app {
+  display: grid;
+  grid-template-columns: var(--w-sidebar) 1fr;
+  grid-template-rows: var(--h-topbar) 1fr;
+  height: 100vh;
+  /* R13: Platz fuer die feste Statuszeile unten (Companion: `.app{padding-bottom:34px}`). */
+  padding-bottom: 34px;
+}
+.app.sidebar-schmal { grid-template-columns: var(--w-sidebar-schmal) 1fr; }
+/* Auf Schirmrouten gibt es keine Statuszeile — also auch keinen Platz dafuer. */
+body.schirmmodus .app { padding-bottom: 0; }
+
+/* ============================================================== Kopfleiste */
+
+.topbar {
+  grid-column: 1 / 3;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 20px;
+  background: var(--c-primary);
+  /* ⚠ R13, live gemessen: die Kopfleiste ist in BEIDEN Themen dunkel (Navy bzw. #06101e), aber
+     `--c-primary-ink` wird im Dunkelmodus selbst dunkel (#0a1220) — der Produktname stand als
+     rgb(10,18,32) auf rgb(6,16,30): unsichtbar. Die Schrift der Kopfleiste ist deshalb IMMER hell,
+     wie beim Companion. */
+  color: #fff;
+  border-bottom: 1px solid #050c17;
+  box-shadow: var(--shadow-sm);
+}
+body.dark .topbar { background: #06101e; }
+@media (prefers-color-scheme: dark) {
+  body:not(.theme-hell):not(.theme-dunkel) .topbar { background: #06101e; }
+}
+
+.topbar .brand { display: flex; align-items: center; gap: 14px; font-weight: 600; letter-spacing: .2px; }
+/* R21 (Entscheidung 19): das WEISSE Logo ersetzt den `.firm`-Schriftzug — die Kopfleiste ist in
+   beiden Themen dunkel (siehe oben), also genügt EIN Asset ohne Themen-Weiche. Der Trennstrich
+   des alten Schriftzugs wandert an das Bild. */
+.topbar .brand .brand-logo {
+  height: 40px; width: auto; display: block;
+  padding-right: 14px;
+  border-right: 1px solid rgba(255, 255, 255, .18);
+}
+.topbar .brand .firm {
+  font-family: var(--tt-serif);
+  font-size: 14px; font-weight: 600; letter-spacing: .3px;
+  color: #fff; line-height: 1.05;
+  padding-right: 14px;
+  border-right: 1px solid rgba(255, 255, 255, .18);
+  display: flex; align-items: baseline; gap: 6px; white-space: nowrap;
+}
+.topbar .brand .produkt { display: flex; flex-direction: column; }
+.topbar .brand .name { font-size: 14px; line-height: 1.15; font-weight: 600; }
+.topbar .brand .tag {
+  font-size: 11px; font-weight: 500; opacity: .7;
+  letter-spacing: 1px; text-transform: uppercase; margin-top: 1px;
+}
+.topbar .fueller { margin-left: auto; }
+.topbar .status { font-size: 12px; opacity: .75; letter-spacing: .2px; }
+/* R13: die Lage-Anzeige steht auf normalen Routen in der STATUSZEILE unten; oben nur dort, wo es
+   keine Statuszeile gibt (Schirmrouten — der Moderator sieht „Präsentationsmodus" in der Kopfleiste). */
+.topbar .status { display: none; }
+body.schirmmodus .topbar .status { display: inline; }
+.topbar .divider { width: 1px; height: 24px; background: rgba(255, 255, 255, .15); flex-shrink: 0; }
+.topbar .spacer { flex: 0 0 14px; }
+.topbar .ctl { display: flex; align-items: center; gap: 6px; font-size: 12px; opacity: .92; }
+.topbar .ctl .ctl-label { display: inline-flex; align-items: center; gap: 6px; color: rgba(255, 255, 255, .85); white-space: nowrap; }
+.topbar .ctl .ctl-leer { color: var(--c-accent-soft); font-size: 12px; }
+.topbar select, .topbar input {
+  background: rgba(255, 255, 255, .06); color: #fff;
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: var(--r-sm); padding: 5px 10px; font-size: 12px;
+  transition: border-color .15s, background .15s;
+}
+.topbar select:hover, .topbar input:hover { background: rgba(255, 255, 255, .1); border-color: rgba(255, 255, 255, .3); }
+.topbar select option { background: #0e1f3a; color: #fff; }
+/* Runder Symbolknopf (Companion `.help-icon-btn`) — Darstellung, Hilfe. */
+.help-icon-btn {
+  width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+  background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .18);
+  color: #fff; display: inline-flex; align-items: center; justify-content: center;
+  font-size: 14px; cursor: pointer; transition: background .15s;
+}
+.help-icon-btn:hover { background: rgba(255, 255, 255, .18); }
+/* Der ☰-Knopf fuer den Schmal-Modus der Seitenleiste. */
+.topbar .menue-knopf {
+  width: 34px; height: 34px; border-radius: var(--r-sm); flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 18px; line-height: 1;
+  border: 1px solid transparent; transition: background .15s, border-color .15s;
+}
+.topbar .menue-knopf:hover { background: rgba(255, 255, 255, .1); border-color: rgba(255, 255, 255, .18); }
+.topbar .menue-knopf[aria-pressed="true"] { background: rgba(255, 255, 255, .12); }
+.topbar .btn {
+  background: rgba(255, 255, 255, .08);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, .18);
+  padding: 6px 12px;
+  border-radius: var(--r-sm);
+  font-size: 12px;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: background .15s, border-color .15s;
+}
+.topbar .btn:hover { background: rgba(255, 255, 255, .15); border-color: rgba(255, 255, 255, .3); }
+.topbar .btn.gold { background: var(--c-accent); border-color: var(--c-akzent-kante); color: var(--c-accent-ink); }
+.topbar .btn.gold:hover { background: var(--c-accent-soft); }
+
+/* ============================================================== Seitenleiste */
+
+.sidebar {
+  background: linear-gradient(180deg, #101b2d 0%, #0a1422 100%);
+  color: #cfd6e4;
+  padding: 14px 0 30px;
+  overflow-y: auto;
+  border-right: 1px solid #050c17;
+}
+body.dark .sidebar { background: linear-gradient(180deg, #06101e 0%, #040912 100%); }
+@media (prefers-color-scheme: dark) {
+  body:not(.theme-hell):not(.theme-dunkel) .sidebar { background: linear-gradient(180deg, #06101e 0%, #040912 100%); }
+}
+.sidebar::-webkit-scrollbar { width: 6px; }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, .15); border-radius: 3px; }
+
+/* R13: die Gruppe ist ein KLAPPBARER Knopf (Companion `.group` + `.arrow`), die Eintraege liegen
+   im Geschwister `.group-items`. `.zu` = zugeklappt; der Zustand steht in localStorage. */
+.sidebar .gruppe {
+  width: calc(100% - 16px);
+  margin: 12px 8px 2px;
+  font-size: 10px; text-transform: uppercase; text-align: left;
+  font-family: inherit;
+  color: #7c8aa3; letter-spacing: 1.2px; font-weight: 600;
+  display: flex; align-items: center; gap: 6px;
+  padding: 6px 8px; border-radius: var(--r-sm);
+  cursor: pointer; user-select: none;
+  background: none; border: none;
+}
+.sidebar .gruppe:hover { background: #16243c; color: #a9b7d2; }
+/* ⚠⚠ R24/C4: DIE ZWEITE ZEILE IST KEIN SCHMUCK. Seit die Kundenuebersicht in einer KOPFLOSEN
+   Gruppe steht, ist das erste Kind der Leiste ein `div.group-items` — `:first-child` traf danach
+   keinen Gruppenkopf mehr, und der erste echte Kopf bekaeme 12 px statt 4 px Abstand. Beide Faelle
+   stehen deshalb da, und beide mit dem KIND-Kombinator: ohne ihn traefe `:first-child` auch einen
+   Kopf der zweiten Ebene, der zufaellig als erstes in seinem Behaelter steht. */
+.sidebar > .gruppe:first-child,
+.sidebar > .group-items:first-child + .gruppe { margin-top: 4px; }
+.sidebar .gruppe .gruppe-titel { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sidebar .gruppe .arrow {
+  display: inline-block; width: 7px; height: 7px; flex-shrink: 0;
+  border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+  transform: rotate(45deg); transition: transform .15s; margin: 0 4px 3px 0;
+}
+.sidebar .gruppe.zu .arrow { transform: rotate(-45deg); margin-bottom: 0; }
+.sidebar .group-items { overflow: hidden; }
+/* ⚠⚠ R24/C8 — DIE RECHNUNG, NICHT DIE BEHAUPTUNG: DIESE REGEL MUSS IM SCHMAL-MODUS VERLIEREN.
+   Spezifitaet (a,b,c) = (Ids, Klassen/Attribute/Pseudoklassen, Elemente/Pseudoelemente):
+     hier                                          `.sidebar`(1) + `.group-items`(1) + `[hidden]`(1)  = (0,3,0)
+     Zeile darunter im Schmal-Block                `.app`(1) + `.sidebar-schmal`(1) + `.sidebar`(1) + `.group-items`(1) = (0,4,0)
+   (0,4,0) > (0,3,0), und der Vergleich entscheidet VOR der Reihenfolge — im Schmal-Modus gilt also
+   `display: block`, auch fuer einen ZUGEKLAPPTEN Behaelter, und auch fuer den verschachtelten
+   `.group-items.unter` (der Selektor nennt `.unter` nicht und trifft jeden Nachfahren).
+   ⚠⚠ Das ist kein Detail, sondern die Bedingung dafuer, dass die zweite Ebene ueberhaupt erreichbar
+   bleibt: der Schmal-Block blendet mit `.app.sidebar-schmal .sidebar .gruppe { display: none; }`
+   BEIDE Gruppenkoepfe aus. Bliebe ein zugeklappter Katalog hier verborgen, gaebe es im Schmal-Modus
+   keinen Klick mehr, der ihn wieder aufklappt — er waere spurlos weg. `R24-C7` schleust genau die
+   Gegenregel ein und muss reissen. */
+.sidebar .group-items[hidden] { display: none; }
+/* ⚠⚠ R24/C8+C9 — DIE ZWEITE EBENE: DIESELBEN ZWEI KLASSEN, EIN MODIFIKATOR `unter`.
+   KEINE neue Farbe, KEIN eigener Hintergrund: der Kopf benutzt `#7c8aa3` und den Hover `#16243c`
+   von `.sidebar .gruppe` unveraendert (A1 misst die Seitenleiste seit R22 samt Verlaeufen — eine
+   neue Flaeche schuldete ihm eine Stuetzstellen-Messung oder eine datierte Luecke). Unterschieden
+   wird ueber die EINRUECKUNG und den vorhandenen Pfeil.
+
+   ⚠⚠ ES STEHT HIER BEWUSST KEINE REGEL `.sidebar .group-items.unter[hidden]`. Sie waere (0,4,0) —
+   GLEICHSTAND mit der Schmal-Regel `.app.sidebar-schmal .sidebar .group-items` (`.app.sidebar-schmal`
+   sind ZWEI Klassen an einem Element), und wer sie danach schriebe, gewaenne ueber die Reihenfolge:
+   ein zugeklappter Katalog waere im Schmal-Modus SPURLOS weg, weil sein Kopf dort `display: none`
+   traegt und ihn niemand wieder aufklappen kann. Die vorhandene Regel `.sidebar .group-items[hidden]`
+   (0,3,0) verliert gegen die Schmal-Regel und ist genau deshalb richtig. `R24-C7` dreht das um.
+
+   ⚠ Die Einrueckung des Blattes ist eine reine `padding-left`-Regel (0,3,1) und wird von
+   `.app.sidebar-schmal .sidebar a.nav-item` (0,4,1) mit der Kurzform `padding: 8px 12px`
+   zurueckgesetzt — im Schmal-Modus faellt die zweite Ebene also flach, und jeder Link behaelt sein
+   `aria-label` (schale.ts). */
+.sidebar .gruppe.unter { margin: 8px 8px 2px 22px; width: calc(100% - 30px); }
+/* Schmal-Modus: nur die Symbole, zentriert; Gruppentitel und Zaehler weg. */
+/* ⚠⚠ R24/C8: die erste Zeile trifft BEIDE Ebenen (`.gruppe` und `.gruppe.unter`) — im Schmal-Modus
+   gibt es also keinen Kopf mehr, der etwas aufklappen koennte. Die zweite Zeile ist deshalb der
+   Gegenhalt und muss gewinnen: (0,4,0) gegen die (0,3,0) von `.sidebar .group-items[hidden]`
+   (Rechnung oben an jener Regel). Ein zugeklappter Katalog wird beim Wechsel nach schmal wieder
+   SICHTBAR, sein `hidden` bleibt dabei stehen — deshalb ist er nach dem Wechsel zurueck auf breit
+   unveraendert zugeklappt, ohne dass irgendetwas den Merker anfasst. */
+.app.sidebar-schmal .sidebar .gruppe { display: none; }
+.app.sidebar-schmal .sidebar .group-items { display: block; }
+.app.sidebar-schmal .sidebar a.nav-item { padding: 8px 12px; justify-content: center; }
+.app.sidebar-schmal .sidebar a.nav-item .label,
+.app.sidebar-schmal .sidebar a.nav-item .zaehler { display: none; }
+.app.sidebar-schmal .sidebar a.nav-item .ico { margin: 0; }
+
+.sidebar a.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 7px 14px 7px 17px;
+  color: #cdd5e4;
+  border-left: 3px solid transparent;
+  font-size: 13px; font-weight: 400;
+  transition: background .12s, color .12s, border-color .12s;
+}
+/* ⚠ R24/C8: die EINRUECKUNG der zweiten Ebene — 17 px + 16 px. Sie steht HINTER der Grundregel,
+   obwohl (0,3,1) > (0,2,1) das nicht braeuchte: jsdom sortiert beim `getComputedStyle` NICHT nach
+   Spezifitaet, sondern wendet die Regeln in Blattreihenfolge an (selbst gemessen — davor lieferte
+   es 17 px). Hinter der Grundregel gilt die Einrueckung in BEIDEN Welten, und der Test kann sie
+   wirklich messen statt sie nur zu behaupten. ⚠ Gegen die Schmal-Regel (0,4,1) verliert sie im
+   BROWSER ueber die Spezifitaet — das ist als Rechnung gemessen, nicht am jsdom-Pixel. */
+.sidebar a.nav-item.unter { padding-left: 33px; }
+.sidebar a.nav-item:hover { background: #19273f; color: #fff; text-decoration: none; }
+.sidebar a.nav-item.aktiv {
+  background: #1b2c47;
+  /* ⚠⚠ S7-BEFUND R3 — DIESER STREIFEN HAELT, UND DAS IST GEMESSEN, NICHT ANGENOMMEN.
+     Er ist am 2026-09-05 zweimal als 1.4.11-Verstoss gemeldet worden, beide Male gegen die
+     FALSCHE Flaeche: `--c-accent` traegt gegen die hellen Grundtoene nur 2,94:1 — aber die
+     Sidebar hat ihren EIGENEN, immer dunklen Grund (`#1b2c47` als Literal, eine Zeile
+     hoeher), und dagegen liegt der Streifen bei 3,95:1. Er bleibt deshalb auf `--c-accent`
+     und NICHT auf `--c-akzent-kante`: der dunklere Ton wuerde ihn auf dem dunklen Grund
+     schwaecher machen, nicht staerker.
+     ⚠ Die Lehre gehoert hierher und nicht in eine Meldung: *eine Kontrastmessung, die die
+     Marken gegen die Token-Flaechen rechnet, sieht Literale nicht* — und wo ein Literal den
+     Grund stellt, misst sie eine Paarung, die es auf dem Schirm nie gibt. Wer diesen
+     Streifen das naechste Mal meldet, misst bitte gegen `#1b2c47`. */
+  border-left-color: var(--c-accent);
+  color: #fff; font-weight: 500;
+}
+/* R21 (Annahme 4, Vormerkung vom 2026-08-17): die Nav-Symbole GROESSER und FARBIG — additiv, mit
+   der vorhandenen Gold-Familie auf der dunklen Seitenleiste (Owner-Entscheid 6 bleibt: kein Token
+   ist bewegt). Das Label traegt die Information; das Symbol ist Akzent.
+   ⚠ R22: Gold ist seither der RUECKFALL — ein Eintrag ohne `data-weg` (die Schale setzt das Feld
+   nur, wenn es da ist) bleibt gold statt farblos. Die neun Weg-Farben stehen im Block darunter. */
+.sidebar a.nav-item .ico {
+  width: 20px; height: 20px; flex-shrink: 0; opacity: .95;
+  font-size: 15px; line-height: 1;
+  color: var(--c-accent-soft);
+  display: inline-flex; align-items: center; justify-content: center;
+}
+/* R22 (Owner-Entscheidung vom 2026-08-18): JE WEG-ART eine eigene helle Farbe — neun Rollen, neun
+   Farben. Gleiche Funktion = gleiche Farbe ueber alle Katalog-Gruppen hinweg (vier Kataloge ×
+   „Fragebogen" = viermal dasselbe Blau); der Master-Fragebogen teilt sie mit dem kundenbezogenen.
+
+   ⚠⚠ DER SELEKTOR GREIFT `data-weg`, NICHT `data-id`. Die Varianten-Akte eines selbst angelegten
+   Kunden traegt eine ZUFALLSkennung, die Nav-Kennung heisst dann `kunde-fragebogen:CAT-GOV-V7A3F91C2`
+   — ein Kennungs-Selektor traefe nur die sieben festen Kennungen und den ausgelieferten
+   Beispielkunden, und beim ERSTEN echten Kunden waere die halbe Leiste farblos. Die Zuordnung faellt
+   in `navFuer` (src/app/kontext.ts, `NAV_WEGARTEN`) und reist als Datenfeld hierher.
+
+   ⚠⚠ DIE SPEZIFITAETEN SIND GESTAFFELT UND DAMIT REIHENFOLGEUNABHAENGIG: Grundregel
+   `.sidebar a.nav-item .ico` (0,3,1) < Weg-Regel `.sidebar .nav-item[data-weg=…] .ico` (0,4,0)
+   < `.sidebar a.nav-item.aktiv .ico` (0,4,1). Der aktive Eintrag bleibt also WEISS, auch wenn
+   jemand die Bloecke spaeter umsortiert — die Farbe sagt „welche Funktion", Weiss sagt „du bist
+   hier" (Owner-Entscheidung 3). Deshalb steht in der Weg-Regel `.nav-item` OHNE das `a` davor.
+
+   ⚠ WCAG 1.4.1 (Farbe ist nie das einzige Merkmal): Traeger der Unterscheidung bleibt das SYMBOL —
+   im Schmal-Modus allein, breit zusaetzlich das Label; den zugaenglichen Namen traegt das
+   `aria-label` am Link (schale.ts). Die Farbe kommt additiv dazu. */
+.sidebar .nav-item[data-weg="fragebogen"] .ico { color: var(--nav-weg-fragebogen); }
+.sidebar .nav-item[data-weg="praesentation"] .ico { color: var(--nav-weg-praesentation); }
+.sidebar .nav-item[data-weg="auswertung"] .ico { color: var(--nav-weg-auswertung); }
+.sidebar .nav-item[data-weg="kunden"] .ico { color: var(--nav-weg-kunden); }
+.sidebar .nav-item[data-weg="kundenakte"] .ico { color: var(--nav-weg-kundenakte); }
+.sidebar .nav-item[data-weg="start"] .ico { color: var(--nav-weg-start); }
+.sidebar .nav-item[data-weg="katalog"] .ico { color: var(--nav-weg-katalog); }
+.sidebar .nav-item[data-weg="daten"] .ico { color: var(--nav-weg-daten); }
+.sidebar a.nav-item.aktiv .ico { opacity: 1; color: #fff; }
+.sidebar a.nav-item .zaehler {
+  margin-left: auto;
+  font-size: 11px; font-family: var(--tt-mono);
+  color: #7c8aa3;
+}
+
+/* ============================================================== Statuszeile */
+
+/* R13: die feste Statuszeile unten (Companion `.status-bar`): Lage links, Kennzahlen als
+   `.item` mit `.num`, `.sep` dazwischen, `.spacer`, rechts „Lokal gespeichert".
+   ⚠ Sie traegt INTERNE Texte (Kunde, Katalog, Fortschritt) — auf Schirmrouten und im Kundenfenster
+   ist sie AUS. Die Schale leert sie dort zusaetzlich (setzeLage), das CSS ist die zweite Sperre. */
+.status-bar {
+  position: fixed; bottom: 0; left: 0; right: 0; height: 34px;
+  background: linear-gradient(180deg, var(--brand-navy) 0%, #0a1422 100%);
+  color: #cfd6e4;
+  display: flex; align-items: center; gap: 18px;
+  padding: 0 18px; font-size: 12px;
+  border-top: 1px solid #050c17;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, .18);
+  z-index: 200;
+  overflow: hidden; white-space: nowrap;
+}
+body.dark .status-bar { background: linear-gradient(180deg, #06101e 0%, #040912 100%); }
+@media (prefers-color-scheme: dark) {
+  body:not(.theme-hell):not(.theme-dunkel) .status-bar { background: linear-gradient(180deg, #06101e 0%, #040912 100%); }
+}
+body.schirmmodus .status-bar { display: none; }
+.status-bar .item { display: inline-flex; align-items: center; gap: 6px; }
+.status-bar .item .num { font-weight: 700; color: #fff; font-size: 12px; }
+/* ⚠ Feste Hexwerte, KEINE Tokens: die Leiste ist in beiden Saetzen navy, ein Hell-Token
+   (#b08820) laege dort bei 4,4:1. Gemessen auf #0c1c33: #e0b860 9,1 · #e88a8a 6,9 · #9bd09f 9,7. */
+.status-bar .item.warn .num { color: #e0b860; }
+.status-bar .item.gefahr .num { color: #e88a8a; }
+.status-bar .item.ok .num { color: #9bd09f; }
+.status-bar .statusteile { display: inline-flex; align-items: center; gap: 18px; min-width: 0; overflow: hidden; }
+.status-bar .statusteile:empty { display: none; }
+.status-bar .item .item-label { opacity: .8; }
+.status-bar .item.lage { color: #fff; font-weight: 500; }
+.status-bar .item.lage:empty { display: none; }
+.status-bar .item.lage:empty + .sep { display: none; }
+.status-bar .sep { width: 1px; height: 18px; background: rgba(255, 255, 255, .15); flex-shrink: 0; }
+.status-bar .spacer { flex: 1; }
+.status-bar .item.speicherhinweis { opacity: .8; }
+
+/* ============================================================ Arbeitsflaeche */
+
+.main { overflow-y: auto; padding: 24px 28px 80px; }
+.main::-webkit-scrollbar { width: 10px; }
+.main::-webkit-scrollbar-thumb { background: #cfcabd; border-radius: 5px; }
+
+.page-header {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 20px;
+  margin-bottom: 18px; padding-bottom: 14px;
+  border-bottom: 1px solid var(--c-border);
+}
+.page-header h1 {
+  font-family: var(--tt-serif);
+  font-size: 24px; font-weight: 600; letter-spacing: -.2px;
+  margin: 0 0 4px;
+  color: var(--c-primary);
+  line-height: 1.2;
+}
+.page-header .sub { color: var(--c-text-soft); font-size: 14px; max-width: 760px; }
+.page-header .aktionen { display: flex; gap: 8px; flex-shrink: 0; }
+
+h2 {
+  font-family: var(--tt-serif);
+  font-size: 16px; margin: 24px 0 10px; font-weight: 600;
+  color: var(--c-primary); letter-spacing: -.1px;
+}
+h3 { font-size: 14px; margin: 14px 0 8px; font-weight: 600; color: var(--c-text); }
+h3.abschnitt {
+  text-transform: uppercase; letter-spacing: .8px;
+  font-size: 11px; color: var(--c-text-muted); font-weight: 600;
+  margin: 14px 0 8px;
+}
+p.hinweis { color: var(--c-text-soft); margin: 0 0 14px; font-size: 13px; }
+
+/* ⚠⚠ K149 (B90, gemessen von `npm run oberflaeche`, B92 a): die Folie ist von der goldenen Ueberschrift des dunklen
+   Themas AUSGENOMMEN. Diese Regel faerbt das ELEMENT und nicht eine Marke — die Umbindung in `.folie169` erreichte sie
+   deshalb nicht, und jeder Folientitel (ein h2) stand im Dunkeln gold auf dem hellen Beamergrund. */
+body.dark .page-header h1, body.dark h2:not(.folie169 *), body.dark .card-title h3 { color: var(--c-accent-soft); }
+@media (prefers-color-scheme: dark) {
+  body:not(.theme-hell):not(.theme-dunkel) .page-header h1,
+  body:not(.theme-hell):not(.theme-dunkel) h2:not(.folie169 *),
+  body:not(.theme-hell):not(.theme-dunkel) .card-title h3 { color: var(--c-accent-soft); }
+}
+
+/* ==================================================================== Raster */
+
+.grid { display: grid; gap: 16px; }
+.grid.cols-2 { grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); }
+.grid.cols-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.grid.cols-4 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.grid.cols-5 { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.grid.cols-6 { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+
+/* ==================================================================== Karte */
+
+.card {
+  background: var(--c-panel);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r);
+  padding: 18px 20px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow .2s;
+}
+.card:hover { box-shadow: var(--shadow); }
+.card.flach { box-shadow: none; }
+.card h3 { margin-top: 0; }
+.card-title {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; margin-bottom: 10px;
+}
+.card-title h3 { margin: 0; font-size: 14px; font-weight: 600; }
+.card-title .meta { font-size: 12px; color: var(--c-text-muted); }
+
+/* ================================================================ Kennzahl */
+
+.kpi {
+  background: var(--c-panel);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r);
+  padding: 16px 18px;
+  display: flex; flex-direction: column; gap: 6px;
+  box-shadow: var(--shadow-sm);
+  position: relative; overflow: hidden;
+  transition: box-shadow .15s;
+}
+.kpi:hover { box-shadow: var(--shadow); }
+.kpi .label {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 1px;
+  color: var(--c-text-muted); font-weight: 600;
+}
+.kpi .wert {
+  font-family: var(--tt-serif);
+  font-size: 28px; font-weight: 600; color: var(--c-primary);
+  line-height: 1.1; letter-spacing: -.4px;
+  display: flex; align-items: baseline; gap: 8px;
+}
+.kpi .wert .einheit { font-size: 14px; color: var(--c-text-soft); font-weight: 400; font-family: inherit; }
+.kpi .sub { font-size: 12px; color: var(--c-text-soft); }
+.kpi .akzent {
+  position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--c-border-strong);
+}
+.kpi.gruen .akzent { background: var(--c-green); }
+.kpi.gelb .akzent { background: var(--c-yellow); }
+.kpi.rot .akzent { background: var(--c-red); }
+.kpi.gold .akzent { background: var(--c-accent); }
+.kpi.grau .akzent { background: var(--c-text-soft); }
+/* R13: weitere Akzente — Info, Violett und die Bereichsfamilie. */
+.kpi.info .akzent { background: var(--info); }
+.kpi.violett .akzent { background: var(--violett); }
+.kpi.bereich-0 .akzent { background: var(--bereich-0); }
+.kpi.bereich-a .akzent { background: var(--bereich-a); }
+.kpi.bereich-b .akzent { background: var(--bereich-b); }
+.kpi.bereich-c .akzent { background: var(--bereich-c); }
+.kpi.bereich-d .akzent { background: var(--bereich-d); }
+body.dark .kpi .wert { color: var(--c-accent-soft); }
+@media (prefers-color-scheme: dark) {
+  body:not(.theme-hell):not(.theme-dunkel) .kpi .wert { color: var(--c-accent-soft); }
+}
+
+/* ================================================================= Plakette */
+
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px 8px; border-radius: 11px;
+  font-size: 11px; font-weight: 600; letter-spacing: .3px;
+  text-transform: uppercase; line-height: 1.5;
+}
+/* ⚠ R12-Review (Runde C, minor 11): dieselbe Paarung wie `.notice.gruen` vor B6 — hell 4,20:1; jetzt #2b5c33 = 6,33:1, dunkel bleibt `--c-green`. */
+.badge.gruen { background: var(--c-green-soft); color: #2b5c33; }
+.badge.gelb { background: var(--c-yellow-soft); color: #7a5d10; }
+.badge.rot { background: var(--c-red-soft); color: var(--c-red); }
+.badge.blau { background: var(--c-blue-soft); color: var(--c-primary-soft); }
+.badge.grau { background: #ebe9e2; color: var(--c-text-soft); }
+.badge.gold { background: #f3e9d2; color: var(--c-accent-ink); }
+/* F5: die Abweichungs-Marke der Perspektiven (§9.4). ⚠ `--violett`/`--violett-soft` sind ein
+   TOKEN-PAAR mit eigenem dunklen Satz — kein fester Hexwert, deshalb ohne body.dark-Nachzug. */
+.badge.violett { background: var(--violett-soft); color: var(--violett); }
+/* R13: `.badge.info` (Token-Paar wie violett — hell #3866a8 auf #dfe6f0 = 4,60:1, dunkel 5,34:1). */
+.badge.info { background: var(--info-soft); color: var(--info); }
+/* R19 (Entscheidung 10): hier standen die Zustands-Plaketten `.badge.zustand-*` (R13, §9.3 alt) —
+   mit den Antwortzustaenden ersatzlos entfallen. */
+.badge .punkt { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+body.dark .badge.gelb { color: var(--c-yellow); }
+body.dark .badge.grau { background: var(--c-panel-alt); }
+body.dark .badge.gold { background: #3a2e16; color: var(--c-accent-soft); }
+body.dark .badge.gruen { color: var(--c-green); }
+
+/* ⚠⚠ NACHZUG AUS DER LIVE-VERIFIKATION ZU R5. Diese drei Regeln hatten bis dahin KEINE
+   Entsprechung fuer die SYSTEMVORGABE — und „System" ist die Voreinstellung, also der haeufigste
+   Fall. `.badge.grau` und `.badge.gold` setzen ihren Grund als festen Hellwert (`#ebe9e2`,
+   `#f3e9d2`) statt ueber ein Token; ohne diesen Block standen sie im dunklen Satz als helle
+   Flecken auf dunklem Grund. Das betrifft ausgerechnet die Marke „nicht fuer den Kunden"
+   (`badge.grau`) und den Katalogcode (`badge.gold`). Die Regel dahinter steht in CLAUDE.md §6:
+   ein Token, das es GIBT, kann die falsche FAMILIE sein — und ein fester Hexwert ist immer die
+   falsche Familie fuer genau einen der beiden Saetze. */
+@media (prefers-color-scheme: dark) {
+  body:not(.theme-hell):not(.theme-dunkel) .badge.gelb { color: var(--c-yellow); }
+  body:not(.theme-hell):not(.theme-dunkel) .badge.grau { background: var(--c-panel-alt); }
+  body:not(.theme-hell):not(.theme-dunkel) .badge.gold { background: #3a2e16; color: var(--c-accent-soft); }
+  body:not(.theme-hell):not(.theme-dunkel) .badge.gruen { color: var(--c-green); }
+}
+
+.tag {
+  display: inline-block; padding: 1px 7px; border-radius: 3px;
+  background: #eeece4; color: var(--c-text-soft); font-size: 11px;
+  margin-right: 4px; letter-spacing: .2px;
+}
+body.dark .tag { background: var(--c-panel-alt); }
+@media (prefers-color-scheme: dark) {
+  body:not(.theme-hell):not(.theme-dunkel) .tag { background: var(--c-panel-alt); }
+}
+
+/* ===================================================== R13: Bereichsfamilie */
+
+/* `.bereich-farbe-<0|a|b|c|d>` faerbt ein Element (Chip, Plakette, Karte, Kopf) mit seiner
+   Familie: Flaeche `-soft`, Text `-ink` (gemessen >= 4,5:1), linker Rand Akzent. Wer nur den
+   Akzent will (Rand einer Karte, Punkt), setzt `--bereich-akzent` selbst — die Klassen legen ihn
+   als lokale Variable an, damit Folgeregeln ohne Wiederholung darauf zugreifen koennen. */
+.bereich-farbe-0 { --bereich-akzent: var(--bereich-0); --bereich-ink: var(--bereich-0-ink); --bereich-flaeche: var(--bereich-0-soft); }
+.bereich-farbe-a { --bereich-akzent: var(--bereich-a); --bereich-ink: var(--bereich-a-ink); --bereich-flaeche: var(--bereich-a-soft); }
+.bereich-farbe-b { --bereich-akzent: var(--bereich-b); --bereich-ink: var(--bereich-b-ink); --bereich-flaeche: var(--bereich-b-soft); }
+.bereich-farbe-c { --bereich-akzent: var(--bereich-c); --bereich-ink: var(--bereich-c-ink); --bereich-flaeche: var(--bereich-c-soft); }
+.bereich-farbe-d { --bereich-akzent: var(--bereich-d); --bereich-ink: var(--bereich-d-ink); --bereich-flaeche: var(--bereich-d-soft); }
+[class*="bereich-farbe-"] { background: var(--bereich-flaeche); color: var(--bereich-ink); border-color: var(--bereich-akzent); }
+.badge[class*="bereich-farbe-"] { background: var(--bereich-flaeche); color: var(--bereich-ink); }
+.card[class*="bereich-farbe-"] { background: var(--c-panel); color: var(--c-text); border-left: 4px solid var(--bereich-akzent); }
+.card[class*="bereich-farbe-"] > h2:first-child,
+.card[class*="bereich-farbe-"] > h3:first-child,
+.card[class*="bereich-farbe-"] > .card-title:first-child h3 { color: var(--bereich-ink); }
+.bereich-punkt { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--bereich-akzent, var(--c-border-strong)); flex-shrink: 0; }
+
+/* Ampelpunkt (Companion `.traffic`). */
+.traffic { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 4px; background: var(--c-border-strong); vertical-align: middle; }
+.traffic.gruen { background: var(--c-green); }
+.traffic.gelb { background: var(--c-yellow); }
+.traffic.rot { background: var(--c-red); }
+.traffic.grau { background: var(--c-text-muted); }
+
+/* Schnellfilter-Chips (Companion `.quick-chip`). */
+.quick-filters { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.quick-chip {
+  padding: 5px 11px; border-radius: 14px; font-size: 12px;
+  background: var(--c-panel); border: 1px solid var(--c-border);
+  color: var(--c-text-soft); cursor: pointer;
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: inherit;
+  transition: border-color .12s, color .12s, background .12s;
+}
+.quick-chip:hover { border-color: var(--c-primary-soft); color: var(--c-primary); }
+.quick-chip.aktiv { background: var(--c-primary); color: var(--c-primary-ink); border-color: var(--c-primary); }
+.quick-chip .count { background: rgba(0, 0, 0, .1); padding: 0 6px; border-radius: 8px; font-size: 10px; font-weight: 700; }
+.quick-chip.aktiv .count { background: rgba(255, 255, 255, .2); }
+.quick-chip[class*="bereich-farbe-"] { background: var(--bereich-flaeche); color: var(--bereich-ink); border-color: transparent; }
+.quick-chip[class*="bereich-farbe-"].aktiv { background: var(--bereich-akzent); color: #fff; }
+/* ⚠ Gold auf Weiss laege bei 3,55:1 — der aktive Gold-Chip nimmt deshalb die Tinte der Marke. */
+.quick-chip.bereich-farbe-c.aktiv { color: var(--c-accent-ink); }
+
+/* Brotkrumen (Companion `.breadcrumbs`). */
+.breadcrumbs { display: flex; align-items: center; gap: 6px; margin-bottom: 14px; font-size: 12px; color: var(--c-text-soft); flex-wrap: wrap; }
+.breadcrumbs a { color: var(--c-primary-soft); }
+.breadcrumbs .sep { color: var(--c-text-muted); }
+.breadcrumbs .aktuell { color: var(--c-text); font-weight: 500; }
+
+/* Hero-Karte der Startseite (Companion `.start-choice .hero`). */
+.hero {
+  background: linear-gradient(135deg, var(--brand-navy) 0%, var(--brand-navy-soft) 100%);
+  color: #fff; border-radius: var(--r-lg);
+  padding: 28px 32px; margin-bottom: 16px;
+  box-shadow: var(--shadow-lg);
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+}
+.hero h1 { font-family: var(--tt-serif); font-size: 30px; font-weight: 600; margin: 0 0 8px; color: #fff; letter-spacing: -.2px; line-height: 1.15; }
+.hero p { max-width: 780px; margin: 0; color: rgba(255, 255, 255, .78); font-size: 14px; }
+.hero .hero-aktionen { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.hero .btn { background: rgba(255, 255, 255, .08); color: #fff; border-color: rgba(255, 255, 255, .25); box-shadow: none; }
+.hero .btn:hover { background: rgba(255, 255, 255, .16); border-color: rgba(255, 255, 255, .4); }
+.hero .btn.gold { background: var(--c-accent); color: var(--c-accent-ink); border-color: var(--c-akzent-kante); }
+.hero .btn.gold:hover { background: var(--c-accent-soft); }
+/* ⚠ Im dunklen Satz sind `--brand-navy`/`-soft` HELLE Werte (#cfd6e4/#a9b7d2) — Weiss darauf waere
+   unlesbar. Deshalb ein fester dunkler Verlauf, wie beim Companion (`body.dark .start-choice .hero`). */
+body.dark .hero { background: linear-gradient(135deg, #06101e 0%, #19273f 100%); }
+@media (prefers-color-scheme: dark) {
+  body:not(.theme-hell):not(.theme-dunkel) .hero { background: linear-gradient(135deg, #06101e 0%, #19273f 100%); }
+}
+/* ⚠ Und derselbe Fall fuer die Kopf-Akzentleiste eines Bereichs: `-ink` ist im dunklen Satz das
+   Akzentlicht selbst; die Regeln oben brauchen deshalb keinen Nachzug — Token-Paare schalten mit. */
+
+/* ================================================================ Werkzeuge */
+
+.toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0 0 16px; }
+.btn {
+  background: var(--c-panel);
+  border: 1px solid var(--c-border-strong);
+  color: var(--c-text);
+  padding: 7px 12px;
+  border-radius: var(--r-sm);
+  font-size: 12px; font-weight: 500;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: background .15s, border-color .15s, box-shadow .15s;
+  box-shadow: var(--shadow-sm);
+}
+/* ⚠ `display: inline-flex` schlaegt die UA-Regel `[hidden] { display: none }` — die Ausnahme
+   gehoert zu JEDER Klasse, auf der der Code `hidden` setzt (R7-Befund; gemessen in
+   tests/schale.test.ts). Seit F5 betrifft das den Quelle-Loesen-Knopf im Follow-up-Formular
+   und die Abweichungs-Plakette der Perspektiven. */
+.btn[hidden] { display: none; }
+.badge[hidden] { display: none; }
+.btn:hover { background: var(--c-panel-alt); border-color: var(--c-primary-soft); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn:disabled:hover { background: var(--c-panel); border-color: var(--c-border-strong); }
+.btn.primaer { background: var(--c-primary); color: var(--c-primary-ink); border-color: var(--c-primary); }
+.btn.primaer:hover { background: var(--c-primary-soft); }
+/* S7-R2b: die KANTE traegt den dunkleren Ton, der GRUND bleibt Gold — so haelt die
+   Komponentengrenze 1.4.11 (3,44:1) und der Text darauf 1.4.3 (4,73:1). */
+.btn.gold { background: var(--c-accent); color: var(--c-accent-ink); border-color: var(--c-akzent-kante); }
+.btn.gold:hover { background: var(--c-accent-soft); }
+.btn.geist { background: transparent; border-color: transparent; box-shadow: none; }
+.btn.geist:hover { background: var(--c-panel-alt); }
+.btn.gefahr { color: var(--c-red); border-color: #dfb8b8; }
+.btn.gefahr:hover { background: var(--c-red-soft); }
+.toolbar .trenner { width: 1px; height: 24px; background: var(--c-border); }
+.toolbar .label { font-size: 12px; color: var(--c-text-soft); }
+
+/* ==================================================================== Feld */
+
+.field { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+.field label {
+  font-size: 11px; color: var(--c-text-muted);
+  text-transform: uppercase; letter-spacing: .7px; font-weight: 600;
+}
+.field input, .field select, .field textarea {
+  padding: 7px 10px;
+  border: 1px solid var(--c-border-strong);
+  border-radius: var(--r-sm);
+  background: var(--c-panel);
+  color: var(--c-text);
+}
+.field textarea { min-height: 64px; resize: vertical; line-height: 1.5; }
+
+body.dark input:not([type=checkbox]):not([type=radio]),
+body.dark select,
+body.dark textarea {
+  background: var(--c-panel-alt);
+  color: var(--c-text);
+  border-color: var(--c-border-strong);
+  color-scheme: dark;
+}
+body.dark ::placeholder { color: var(--c-text-muted); }
+
+/* R19 (Owner-Entscheidung 3): die ausdrueckliche HELL-Wahl gilt auch fuer die UA-Flaechen. Das
+   Meta `color-scheme: light dark` (index.html/BM-Track.html) laesst Aufklappliste, Datumswaehler
+   und die Grundflaeche klassenloser Felder der OS-Vorgabe folgen — unter `body.theme-hell`
+   blieben sie auf dunklem OS dunkel, waehrend die Tokens hell standen. `color-scheme: light`
+   dreht das fuer den ganzen Baum in einem Zug — auch fuer die Teile, die kein CSS erreicht
+   (die aufgeklappte Liste eines `<select>`, der Datumswaehler). */
+body.theme-hell { color-scheme: light; }
+
+/* ⚠⚠ NACHZUG (R19, Owner-Entscheidung 3) — dieselbe Bauform wie die beiden R5-Nachzuege dieser
+   Datei (Plaketten, Hinweise): der `body.dark`-Block darueber galt nur fuer die AUSDRUECKLICHE
+   Wahl, nicht fuer die Systemvorgabe — und „System" ist die Voreinstellung, also der haeufigste
+   Fall. Im Systemmodus mit dunklem OS wirkten die Felder nur zufaellig lesbar (UA-Grau + heller
+   `--c-text`), standen aber nicht im Palettenton. */
+@media (prefers-color-scheme: dark) {
+  body:not(.theme-hell):not(.theme-dunkel) input:not([type=checkbox]):not([type=radio]),
+  body:not(.theme-hell):not(.theme-dunkel) select,
+  body:not(.theme-hell):not(.theme-dunkel) textarea {
+    background: var(--c-panel-alt);
+    color: var(--c-text);
+    border-color: var(--c-border-strong);
+    color-scheme: dark;
+  }
+  body:not(.theme-hell):not(.theme-dunkel) ::placeholder { color: var(--c-text-muted); }
+}
+
+/* ================================================================== Hinweis */
+
+.notice {
+  padding: 11px 14px;
+  border-radius: var(--r);
+  font-size: 12px;
+  margin-bottom: 14px;
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.notice.info { background: #eaf0fa; border: 1px solid #c3d2ec; color: var(--brand-navy-soft); }
+.notice.warn { background: #f6ecc7; border: 1px solid #dec486; color: #7a5d10; }
+.notice.gefahr { background: #f4dada; border: 1px solid #d8a8a8; color: var(--c-red); }
+.notice.gold { background: #f5ead0; border: 1px solid #d9b97c; color: var(--c-accent-ink); }
+/* ⚠⚠ R12-REVIEW-BEFUND (Runde B, MAJOR 6): die erste Fassung (`--c-green` auf `--c-green-soft`) lag im
+   Hellmodus bei 4,20:1 — unter AA, und die einzige Notice unter dem Hausstandard (info 11,1 · warn 5,2 ·
+   gefahr 5,6 · gold 11,0). GEMESSEN (WCAG-2-Formel gegen #dfeadf): #2b5c33 = 6,33:1; dunkel bleibt
+   `--c-green` auf `--c-green-soft` bei 6,11:1. Kontraste gehoeren gemessen, nicht behauptet (R6).
+   ⚠ Seit R14 MISST A1 (tests/barrierefreiheit.test.ts) dieses Ein-Regel-Paar in beiden Themen (hell 6,33 ·
+   dunkel 6,11) — ein Rueckfall auf `--c-green` (4,20:1) reisst A1 (von Hand geprueft, R14-G4).
+   Umkehrung: R14-G4 */
+.notice.gruen { background: var(--c-green-soft); border: 1px solid var(--c-green); color: #2b5c33; }
+body.dark .notice.info { background: var(--info-soft); border-color: #2c4468; color: #b9cbe8; }
+body.dark .notice.warn { background: var(--c-yellow-soft); border-color: #5a4720; color: var(--c-yellow); }
+body.dark .notice.gefahr { background: var(--c-red-soft); border-color: #5e2c2c; color: var(--c-red); }
+body.dark .notice.gold { background: #3a2e16; border-color: #5a4a28; color: var(--c-accent-soft); }
+body.dark .notice.gruen { color: var(--c-green); }
+
+/* ⚠⚠ NACHZUG AUS DER LIVE-VERIFIKATION ZU R5, dieselbe Klasse wie bei den Plaketten. Die vier
+   Grundregeln oben setzen feste HELLWERTE (`#eaf0fa`, `#f6ecc7`, `#f4dada`, `#f5ead0`). Die
+   Umkehrung gab es nur fuer die ausdrueckliche Wahl `body.dark` — NICHT fuer die Systemvorgabe,
+   und die ist die Voreinstellung. Gemessen im laufenden Bau: die Hinweiskarte des Katalogs stand
+   als cremefarbener Kasten (#f6ecc7) auf dunklem Grund (#0a1220). Lesbar (5,2:1 in sich), aber
+   sichtbar falsch — und mit R5 traegt genau diese Karte den neuen Warn-Kanal, steht also
+   dauerhaft auf der Seite statt nur in einer Meldung. */
+@media (prefers-color-scheme: dark) {
+  body:not(.theme-hell):not(.theme-dunkel) .notice.info { background: var(--info-soft); border-color: #2c4468; color: #b9cbe8; }
+  body:not(.theme-hell):not(.theme-dunkel) .notice.warn { background: var(--c-yellow-soft); border-color: #5a4720; color: var(--c-yellow); }
+  body:not(.theme-hell):not(.theme-dunkel) .notice.gefahr { background: var(--c-red-soft); border-color: #5e2c2c; color: var(--c-red); }
+  body:not(.theme-hell):not(.theme-dunkel) .notice.gold { background: #3a2e16; border-color: #5a4a28; color: var(--c-accent-soft); }
+  body:not(.theme-hell):not(.theme-dunkel) .notice.gruen { color: var(--c-green); }
+}
+
+.empty {
+  padding: 36px 24px;
+  background: var(--c-panel);
+  border: 1px dashed var(--c-border-strong);
+  border-radius: var(--r);
+  color: var(--c-text-soft);
+  text-align: center;
+  font-size: 13px;
+}
+.empty .titel { font-size: 14px; font-weight: 600; color: var(--c-text); margin-bottom: 4px; }
+
+/* ================================================================ Tabellen */
+
+.table-wrap {
+  background: var(--c-panel);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+table.data { width: 100%; border-collapse: collapse; background: var(--c-panel); font-size: 12px; }
+table.data th {
+  text-align: left; padding: 9px 12px;
+  background: var(--c-panel-alt);
+  border-bottom: 1px solid var(--c-border);
+  font-size: 11px; text-transform: uppercase; letter-spacing: .6px;
+  color: var(--c-text-muted); font-weight: 600;
+  position: sticky; top: 0; z-index: 2;
+}
+table.data td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--c-border);
+  color: var(--c-text);
+  vertical-align: top;
+}
+table.data tr:last-child td { border-bottom: none; }
+table.data tr:hover td { background: var(--c-panel-alt); }
+table.data .zelle-id { font-family: var(--tt-mono); font-size: 11px; color: var(--c-text-soft); }
+
+/* ================================================================ Meldungen */
+
+.toast-container {
+  position: fixed; top: 72px; right: 20px; z-index: 9000;
+  display: flex; flex-direction: column; gap: 10px;
+  pointer-events: none;
+}
+.toast {
+  pointer-events: auto;
+  min-width: 280px; max-width: 380px;
+  background: var(--c-panel);
+  color: var(--c-text);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r);
+  padding: 12px 14px;
+  box-shadow: var(--shadow-lg);
+  display: flex; gap: 10px; align-items: flex-start;
+  animation: toastRein .25s ease-out;
+  border-left: 3px solid var(--c-text-soft);
+}
+/* ⚠⚠ S7-BEFUND R4 — DIESE VIER STATUSKANTEN HALTEN, UND DER GEGENBEWEIS IST EINE MESSUNG
+   UEBER DIE FLAECHE, NICHT UEBER DIE FARBE. Am 2026-09-05 wurde `.toast.warn` als
+   1.4.11-Verstoss gemeldet: `--c-yellow` traegt gegen `--c-bg` nur 2,93:1. Nachgemessen
+   gegen den Grund, auf dem die Kante WIRKLICH liegt — der Toast bringt seinen eigenen mit
+   (`background: var(--c-panel)`, sechs Zeilen hoeher) — sind es 3,29:1, und alle vier
+   Geschwister halten in beiden Saetzen (hell 3,29–12,73 · dunkel 5,41–8,49).
+   ⚠⚠ UND DIE AUSSENSEITE IST KEIN GEGENARGUMENT, SONDERN EINE UNDEFINIERTE MESSUNG: die
+   3px-Kante ersetzt den Rahmen auf ihrer Seite und beruehrt aussen die Seite — aber der
+   Toast liegt in `.toast-container` mit `position: fixed; z-index: 9000` und schwebt damit
+   ueber BELIEBIGEM Inhalt. Es gibt dort keine feste Nachbarflaeche; wer gegen `--c-bg`
+   rechnet, misst eine Paarung, die zufaellig zustande kommt. Die einzige DEFINIERTE
+   Nachbarflaeche ist der eigene Grund, und gegen den halten alle vier.
+   ⚠ Die Lehre, zum zweiten Mal an diesem Tag und eine Stufe schaerfer als am
+   Sidebar-Streifen (`S7-BEFUND R3`): dort stellte ein LITERAL den Grund, hier stellt ihn ein
+   ANDERES TOKEN — und bei einer schwebenden Schicht gibt es aussen ueberhaupt keinen.
+   *Eine Kontrastmessung, die jede Marke gegen jede Token-Flaeche rechnet, misst Paarungen,
+   die es auf dem Schirm nicht gibt.* Der naechste Schritt einer solchen Messung ist nicht,
+   die Marken abzuleiten, sondern die FLAECHE aus der Regel zu nehmen, in der die Marke
+   steht.
+   ⚠ `--c-yellow` wird deshalb NICHT abgedunkelt. Es traegt im hellen Satz Flaechen
+   (`.kpi.gelb .akzent`, `.traffic.gelb`) — eine Ampel, deren Ton Teil ihrer Bedeutung ist;
+   das waere eine Produktentscheidung in zwei fremden Apps und kein Kontrastfehler. */
+.toast.erfolg { border-left-color: var(--c-green); }
+.toast.info { border-left-color: var(--c-primary-soft); }
+.toast.warn { border-left-color: var(--c-yellow); }
+.toast.fehler { border-left-color: var(--c-red); }
+.toast .body { flex: 1; font-size: 13px; line-height: 1.4; }
+.toast .titel { font-weight: 600; margin-bottom: 2px; }
+.toast .schliessen { margin-left: 6px; color: var(--c-text-muted); padding: 2px 6px; font-size: 14px; border-radius: 3px; }
+.toast .schliessen:hover { background: var(--c-panel-alt); color: var(--c-text); }
+.toast.geht { animation: toastRaus .2s forwards; }
+@keyframes toastRein { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes toastRaus { to { opacity: 0; transform: translateX(20px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+/* ================================================================== Zielgroessen */
+
+/* ⚠ F9 (R14, Kriterium 5/21 — WCAG 2.5.8): jedes Bedienelement ist mindestens 24 px hoch. Mit echtem
+   Chrome auf 768×1024 gemessen: Perspektiv-Namensfeld 23 px, Toast-Schliessknopf 23×23, kleine Knoepfe
+   23 px. Radio/Checkbox bleiben 15 px — ihr Ziel ist die `.option`-Zeile (min-height 24 px, fragebogen.css). */
+/* ⚠ Runde C (minor 2): auch als Knopf gestylte ANKER (`a.btn`, z. B. „Bearbeiten"/„Kundenakte") — `.btn` ist inline-flex, min-height wirkt. */
+button, .btn, input:not([type=radio]):not([type=checkbox]):not([type=range]), select { min-height: 24px; }
+.toast .schliessen { min-width: 24px; }
+
+/* ================================================================== Mobil */
+
+@media (max-width: 900px) {
+  .app { grid-template-columns: 1fr; grid-template-rows: var(--h-topbar) auto 1fr; }
+  .app.sidebar-schmal { grid-template-columns: 1fr; }
+  .topbar { grid-column: 1; }
+  .sidebar { max-height: 40vh; }
+  .main { padding: 16px 14px 60px; }
+  .page-header { flex-direction: column; gap: 10px; }
+}
+
+/* ================================================================== Druck */
+
+/* R21 (Entscheidung 19): der DRUCK-Kopf — am Schirm nie sichtbar; auf Papier steht die Marke ueber
+   der Flaeche (bis R21 waren die Druckausgaben markenlos: der Print-Block darunter blendet die
+   Kopfleiste aus, und mit ihr verschwand das einzige Markenstueck). */
+.druck-marke { display: none; }
+
+/* R13: gedruckt wird die ARBEITSFLAECHE — Kopfleiste, Seitenleiste, Statuszeile und Meldungen
+   sind Bedienung, kein Inhalt. Die Flaeche bekommt die volle Breite und darf umbrechen. */
+@media print {
+  .topbar, .sidebar, .status-bar, .toast-container { display: none !important; }
+  .app { display: block; height: auto; padding-bottom: 0; }
+  .main { overflow: visible; padding: 0; grid-column: 1 / -1; }
+  .card, .kpi { box-shadow: none; break-inside: avoid; }
+  a { color: inherit; }
+  /* ⚠⚠ R21-REVIEW-BEFUND (Runde C): PAPIER HAT KEIN THEMA. Der Kopf waehlte sein BILD fest
+     (immer das schwarze Logo, schale.ts), nahm seine FARBEN aber aus den Themen-Tokens — und kein
+     Druckblock der Anwendung setzt die Flaeche auf Schwarz zurueck. Im Dunkelmodus gedruckt stand
+     die Wortmarke in `--c-text-soft` (#aab4c5 = 2,09:1 auf Weiss) ueber einer Trennlinie in
+     `--c-primary` (rund 1,3:1, praktisch unsichtbar): vom Marken-Kopf blieb das Bild allein.
+     Dieselbe Klasse wie die Deckblatt-Marke eine Datei weiter, in derselben Etappe gebaut.
+     Feste Druckwerte, keine Tokens.
+     Umkehrung: R21-M14 */
+  .druck-marke {
+    display: flex; align-items: center; gap: 10px;
+    padding-bottom: 8px; margin-bottom: 12px;
+    border-bottom: 2px solid #10243f;
+    font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: #33415c;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .druck-marke img { height: 36px; width: auto; }
+}
+
+/* Der noscript-Hinweis (J5, 2026-08-31 — aus Trainings `app/schale.css` hierher, weil beide
+   Schalen ihn brauchen). ⚠ Er steht in `index.html` und braucht deshalb eine KLASSE: ein
+   Inline-`style` waere in Trainings Einzeldatei genau das, was deren CSP verbietet — und
+   Tracks `index.html` sagt selbst „kein Inline-Stil". */
+.noscript-hinweis { padding: 24px; font-family: var(--tt-sans); color: var(--c-text); }
+.noscript-hinweis h1 { font-family: var(--tt-serif); margin: 0 0 8px; }
+
+/* ============================================================ Das Beamerthema (K149) ====
+   ⚠⚠ DIE FOLIE HAT EIN FESTES HELLES THEMA (Pflichtenheft B90) — in Leinwand, Regie, Editor, Navigator, Selbstlernen
+   und Folienansicht, unabhaengig davon, ob App oder Betriebssystem dunkel stehen. Jede Farbmarke wird auf ihren Anker
+   aus tokens.css zurueckgebunden; dazu die Logo-Weiche, die drei Schatten, Grund, Schrift und Gewicht. Um die Folie
+   herum gilt das App-Thema; das Mitmachbild am Telefon ist keine Folie und folgt dem Geraet.
+   ⚠ Diese Regel greift nur innerhalb von .folie169 (B.G9): die Kursansichten bleiben, wie sie sind. */
+.folie169 {
+  --c-bg: var(--hell-c-bg);
+  --c-bg-alt: var(--hell-c-bg-alt);
+  --c-panel: var(--hell-c-panel);
+  --c-panel-alt: var(--hell-c-panel-alt);
+  --c-border: var(--hell-c-border);
+  --c-border-strong: var(--hell-c-border-strong);
+  --c-text: var(--hell-c-text);
+  --c-text-soft: var(--hell-c-text-soft);
+  --c-text-muted: var(--hell-c-text-muted);
+  --c-primary: var(--hell-c-primary);
+  --c-primary-soft: var(--hell-c-primary-soft);
+  --c-primary-ink: var(--hell-c-primary-ink);
+  --c-accent: var(--hell-c-accent);
+  --c-accent-soft: var(--hell-c-accent-soft);
+  --c-accent-ink: var(--hell-c-accent-ink);
+  --c-akzent-kante: var(--hell-c-akzent-kante);
+  --c-warn-kante: var(--hell-c-warn-kante);
+  --c-warn-ink: var(--hell-c-warn-ink);
+  --c-symbol-an: var(--hell-c-symbol-an);
+  --c-symbol-gelb: var(--hell-c-symbol-gelb);
+  --c-green: var(--hell-c-green);
+  --c-green-soft: var(--hell-c-green-soft);
+  --c-yellow: var(--hell-c-yellow);
+  --c-yellow-soft: var(--hell-c-yellow-soft);
+  --c-red: var(--hell-c-red);
+  --c-red-soft: var(--hell-c-red-soft);
+  --c-blue-soft: var(--hell-c-blue-soft);
+  --brand-navy: var(--hell-brand-navy);
+  --brand-navy-soft: var(--hell-brand-navy-soft);
+  --brand-gold: var(--hell-brand-gold);
+  --brand-gold-soft: var(--hell-brand-gold-soft);
+  --status-rot: var(--hell-status-rot);
+  --status-rot-soft: var(--hell-status-rot-soft);
+  --status-gelb: var(--hell-status-gelb);
+  --status-gelb-soft: var(--hell-status-gelb-soft);
+  --status-gruen: var(--hell-status-gruen);
+  --status-gruen-soft: var(--hell-status-gruen-soft);
+  --status-neutral: var(--hell-status-neutral);
+  --status-neutral-soft: var(--hell-status-neutral-soft);
+  --info: var(--hell-info);
+  --info-soft: var(--hell-info-soft);
+  --violett: var(--hell-violett);
+  --violett-soft: var(--hell-violett-soft);
+  --bereich-0: var(--hell-bereich-0);
+  --bereich-0-ink: var(--hell-bereich-0-ink);
+  --bereich-0-soft: var(--hell-bereich-0-soft);
+  --bereich-a: var(--hell-bereich-a);
+  --bereich-a-ink: var(--hell-bereich-a-ink);
+  --bereich-a-soft: var(--hell-bereich-a-soft);
+  --bereich-b: var(--hell-bereich-b);
+  --bereich-b-ink: var(--hell-bereich-b-ink);
+  --bereich-b-soft: var(--hell-bereich-b-soft);
+  --bereich-c: var(--hell-bereich-c);
+  --bereich-c-ink: var(--hell-bereich-c-ink);
+  --bereich-c-soft: var(--hell-bereich-c-soft);
+  --bereich-d: var(--hell-bereich-d);
+  --bereich-d-ink: var(--hell-bereich-d-ink);
+  --bereich-d-soft: var(--hell-bereich-d-soft);
+  --nav-weg-fragebogen: var(--hell-nav-weg-fragebogen);
+  --nav-weg-praesentation: var(--hell-nav-weg-praesentation);
+  --nav-weg-auswertung: var(--hell-nav-weg-auswertung);
+  --nav-weg-kunden: var(--hell-nav-weg-kunden);
+  --nav-weg-kundenakte: var(--hell-nav-weg-kundenakte);
+  --nav-weg-start: var(--hell-nav-weg-start);
+  --nav-weg-katalog: var(--hell-nav-weg-katalog);
+  --nav-weg-daten: var(--hell-nav-weg-daten);
+  --marke-hellflaeche-anzeige: inline;
+  --marke-dunkelflaeche-anzeige: none;
+  --shadow-sm: var(--folie-schatten-flach);
+  --shadow: var(--folie-schatten-normal);
+  --shadow-lg: var(--folie-schatten-hoch);
+  --schatten: var(--folie-schatten-normal);
+  --schatten-hoch: var(--folie-schatten-hoch);
+  color-scheme: light;
+  background: var(--c-panel);
+  color: var(--c-text);
+  font-family: var(--tt-sans);
+  font-weight: 400;
+}
+
+/* ============================================================ Die Rollenstile (K149) ====
+   ⚠⚠ PFLICHTENHEFT B60: DIE REGELN DER ROLLENSTILE STEHEN HIER UND GREIFEN NUR INNERHALB VON .folie169. Der Zeichner
+   (`zeichneBaustein`) setzt an jeden Textknoten `data-rolle`; die Kursansichten zeichnen mit derselben Funktion, und
+   weil dort keine Regel das Attribut liest, sehen sie aus wie vorher.
+   ⚠⚠ DIE WERTE KOMMEN AUS DEM MASTER, NICHT VON HIER. Der Zeichner schreibt je Rolle vier Marken an den Rahmen
+   (`--rolle-<rolle>-schrift` usw., gerechnet in `pakete/kern/src/domain/folien/folienstil.ts` aus dem wirksamen
+   Master); diese Regeln lesen sie nur. Eine Vorgabe HIER waere die zweite Stelle neben den Hausvorgaben — darum gibt
+   es keinen Rueckfallwert, und `tests/k138-rollen.test.ts` misst, dass jede Rolle ihre Regel hat.
+   ⚠ Groessen stehen in Referenzpixeln der 1280 × 720 grossen Flaeche (der Rahmen skaliert sie als Ganzes).
+   ⚠ Die drei Toene (B73) sind Folienmarken ueber hellen Kernmarken: eine gefuellte Flaeche (Schnitt C4) setzt sie neu. */
+/* ⇒ K149 E (B73, B91): die Vorgabe ist der Tonsatz der HELLEN Flaeche (`TOENE.hell` in kastenstil.ts, die Probe
+   `tests/k138-folienkontrast.test.ts` haelt beide gleich) — samt Kennzahltoenen, Beispielfarbe und Akzent. Eine
+   gefuellte Flaeche setzt ALLE neu; hier standen bis Schnitt E nur die drei Texttoene. */
+.folie169 {
+  --ton-haupt: var(--c-primary); --ton-text: var(--c-text); --ton-leise: var(--c-text-soft);
+  --ton-gut: var(--bereich-b-ink); --ton-warnung: var(--c-warn-ink); --ton-gefahr: var(--c-red); --ton-beispiel: var(--bereich-a-ink);
+  --akzent-zeichen: var(--akzent-zeichen-grund); --akzent-kante: var(--akzent-kante-grund);
+}
+/* B88: je Akzent eine Kante und ein Zeichen — als GRUNDmarken: eine helle Flaeche in einer Markeflaeche holt sie
+   zurueck (⇒ K149 E; vorher setzte diese Regel `--akzent-kante`/`--akzent-zeichen` selbst). Tafel: `AKZENTFARBEN`. */
+.folie169[data-akzent='gold'] { --akzent-kante-grund: var(--c-akzent-kante); --akzent-zeichen-grund: var(--c-symbol-an); }
+.folie169[data-akzent='marke'] { --akzent-kante-grund: var(--c-primary); --akzent-zeichen-grund: var(--c-primary); }
+.folie169[data-akzent='info'] { --akzent-kante-grund: var(--info); --akzent-zeichen-grund: var(--bereich-a-ink); }
+.folie169[data-akzent='gruen'] { --akzent-kante-grund: var(--bereich-b); --akzent-zeichen-grund: var(--bereich-b-ink); }
+.folie169[data-akzent='violett'] { --akzent-kante-grund: var(--bereich-d); --akzent-zeichen-grund: var(--bereich-d-ink); }
+
+/* ⇒ K150 (K138 Stufe 11; B87) — VOR dem Rollenblock: von dessen erster Regel an greift jede Regel nur in .folie169
+   (Probe B60; ⚠ die Proben schneiden den Block an ihrem Selektor ab, darum steht er hier nicht woertlich).
+   ⚠⚠ UMKEHRUNG IM SELBEN ZUG: die Regeln standen zuerst OHNE `.folie169`, damit auch Kursweg und Handout sie haetten —
+   die Probe B60 fing es: jede `.bs-`-Regel greift nur in der Folie, die Kursansichten sehen aus wie vorher (B60,
+   ANTWORT bm-2026-09-21-17 a). Dort tragen `strong`, `em` und `mark` die Vorgaben des Browsers. Die vier Hervorhebungen im Fliesstext und der
+   Verweis darin. Unterstrichen ist NUR der Verweis (B87: „Unterstreichen ist Verweisen vorbehalten“); `mark` bringt den hellen Grund und darum seinen eigenen
+   Ton mit — sonst stuende auf einer Markeflaeche weisser Text auf Gelb.
+   ⚠ AUSLEGUNG, gebucht in K150: B87 will „akzent“ auf marke und gold „fett im Ton haupt“. Gebaut ist die Zeichenfarbe
+   des Akzents der FLAECHE (`--akzent-zeichen`), die K149 E1 je Flaechenart lesbar gesetzt und im Kontrastkreuz
+   gemessen hat; fett steht sie zusaetzlich, damit sie auch ohne Farbe unterscheidbar bleibt. */
+.folie169 .bs-fett { font-weight: var(--folie-gewicht-fett, 700); }
+.folie169 .bs-kursiv { font-style: italic; }
+.folie169 .bs-markiert { --ton-haupt: var(--c-primary); background: var(--bereich-c-soft); color: var(--ton-haupt); padding: 0 0.15em; border-radius: 2px; }
+.folie169 .bs-akzent { color: var(--akzent-zeichen); font-weight: var(--folie-gewicht-halbfett, 600); }
+.folie169 .bs-textverweis { text-decoration: underline; text-underline-offset: 0.15em; }
+.folie169 .bs-kurzinfo { text-decoration: underline dotted; text-underline-offset: 0.2em; cursor: help; }
+
+/* ⇒ K150: die Rasterarten. Die Uhrzeile steht in Ziffern gleicher Breite — sonst springt die Zeile jede Sekunde. */
+.folie169 .bs-uhr { font-variant-numeric: tabular-nums; margin: 0; }
+.folie169 .bs-uhr[data-rolle] { --r-schrift: var(--satz-kennzahl); --r-laufweite: var(--folie-laufweite-eng); --r-zeilenhoehe: var(--folie-zeilenhoehe-eng); }
+.folie169 .bs-fortschritt-balken { height: 0.5em; border-radius: 999px; background: var(--c-border); overflow: hidden; }
+.folie169 .bs-fortschritt-stand { display: block; height: 100%; width: calc(var(--anteil, 0) * 100%); background: var(--akzent-kante, var(--c-primary)); }
+.folie169 .bs-fortschritt-text { margin: 0.25em 0 0; }
+.folie169 .bs-ablauf-liste > li[data-stand='jetzt'] { font-weight: var(--folie-gewicht-halbfett, 600); }
+.folie169 .bs-ablauf-liste > li[data-stand='erledigt'][data-rolle] { --r-ton: var(--ton-leise); }
+.folie169 .bs-sprungknopf-flaeche {
+  display: inline-block; padding: 0.35em 0.9em; border: 2px solid var(--akzent-kante, var(--c-primary));
+  border-radius: 999px;
+}
+/* ⇒ K161 Schnitt F (A58): das Klickbild — die Bereichsfläche liegt genau über dem Bild (Rahmen `inline-block`, SVG absolut); die
+   Bereiche sind hier UNSICHTBAR (Leinwand „ohne Markierung“). Die Regie zeigt sie beim Zeigen (`deck.css`, `[data-bedienbar]`). */
+.folie169 .bs-klickbild { margin: 0; }
+.folie169 .bs-klickbild-rahmen { position: relative; display: inline-block; max-width: 100%; }
+.folie169 .bs-klickbild-rahmen > img { display: block; max-width: 100%; height: auto; }
+.folie169 .bs-klickflaeche { position: absolute; inset: 0; width: 100%; height: 100%; }
+.folie169 .bs-klickbereich { fill: transparent; stroke: none; }
+/* ⇒ K161 Schnitt F3 (A58): die gezeigte Kurzinfo unter dem Bild — an Leinwand und Vorschau gleich (`setzeKurzinfoEin`). */
+.folie169 .bs-kurzinfo { margin: 0.4em 0 0; padding: 0.35em 0.7em; border-left: 3px solid var(--akzent-kante, var(--c-primary)); background: var(--c-panel); }
+/* ⚠⚠ A75: der QR-Code in der GROESSE DER ZONE. Hier stand `height: 100%` am Bild — die Browsermessung fand Folie 5.2 des
+   Schaufensters 96 px uebergelaufen: das Bild nahm die ganze Zone und die Beschriftung kam darunter. Jetzt nimmt das Bild
+   die RESThoehe (Spalte, `flex` mit Grundmass 0), und das Budget zaehlt nur die Beschriftung (`satzstuecke`). */
+.folie169 .bs-qr { margin: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 0.25em; }
+.folie169 .bs.bs-qr { height: 100%; box-sizing: border-box; }
+.folie169 .bs-qr-bild { flex: 1 1 0; min-height: 0; width: auto; height: auto; max-height: 12em; max-width: 100%; aspect-ratio: 1; }
+.folie169 .bs-verweis-adresse { overflow-wrap: anywhere; }
+/* ⇒ K153 (K138 Stufe 13; A72, A73): Video und Audio. Der Film fuellt die RESThoehe der Zone (wie der QR-Code:
+   Spalte, `flex` mit Grundmass 0) und wird EINGEPASST, nie beschnitten — ein abgeschnittener Kopf am Beamer ist
+   schlimmer als ein schwarzer Rand.
+   ⚠⚠ `[data-gesperrt]` ist der Fall, in dem die Huelle das Abspielen verweigert (Autoplay-Sperre). Er bekommt
+   einen sichtbaren Rand und KEINEN Satz: ein Text im Stilblatt waere an der Textprobe vorbei (dieselbe Regel wie bei
+   der Kennzeichnung). Der Referent sieht so, dass sein Befehl nicht angekommen ist, statt einen stehenden Film zu
+   deuten. */
+.folie169 .bs.bs-video { height: 100%; box-sizing: border-box; margin: 0; display: flex; flex-direction: column; gap: 0.25em; }
+.folie169 .bs-video-film { flex: 1 1 0; min-height: 0; width: 100%; object-fit: contain; background: var(--c-ink); }
+.folie169 .bs-audio-ton { width: 100%; }
+.folie169 .bs-video-film[data-gesperrt='ja'], .folie169 .bs-audio-ton[data-gesperrt='ja'] { outline: 3px solid var(--c-warn-kante); }
+.folie169 .bs-kopieren { font: inherit; font-size: 0.7em; margin-left: 0.5em; }
+.folie169 .bs-tabelle td[data-typ='zahl'], .folie169 .bs-tabelle th[data-typ='zahl'] { text-align: right; font-variant-numeric: tabular-nums; }
+.folie169 .bs-tabelle-titel { text-align: left; }
+.blatt-tabelle td[data-typ='zahl'] { text-align: right; }
+.blatt-qr-bild { width: 6em; height: 6em; }
+/* ⇒ K151 (K138 Stufe 12; C1, C2, C4): das Diagramm. Die Zeichnung ist in den Einheiten ihrer ZONE gerechnet und
+   waechst mit ihr (viewBox, `meet`); was darin nicht passt, meldet sie selbst mit der Marke „passt nicht“. */
+/* ⚠ `position: relative` und oben links: die Wertetabelle fuer Vorleseprogramme (`.nur-fuer-screenreader`, absolut)
+   bleibt so IN der Figur und damit ueber der hellen Folie — ohne `top`/`left` stand sie an ihrem statischen Platz UNTER
+   der Zeichnung und damit unter dem Rand der Folie. Ohne den Anker lag sie ueber dem dunklen Seitengrund, und die Browsermessung
+   las 1,04:1 an Text, den niemand sieht (erster Kettenlauf K151 Schnitt A). */
+.folie169 .bs.bs-diagramm, .folie169 .bs.bs-grafik { margin: 0; position: relative; }
+.folie169 .bs-diagramm .nur-fuer-screenreader, .folie169 .bs-grafik .nur-fuer-screenreader { top: 0; left: 0; }
+/* ⇒ K151 Schnitt I (C31): die Zeichnungsrollen der Marke — Wurzel des Organigramms, Kopf der Ursache-Wirkung. Sie
+   stehen HIER und nicht in der Rollendatei der App (`apps/bm/src/ui/zeichnung.css`): die Marke ist die Hausfarbe auf
+   Folieninhalt wie `data-akzent='marke'` oben, und die Hausfarbe gehoert dem Kern (CLAUDE.md Regel 7). In der App
+   waere sie eine Hausfarbe auf einer Fachflaeche, die der Waechter K81 verbietet — er riss dort in Schnitt H. In
+   `.folie169` binden --c-primary und --c-primary-ink auf ihre hellen Anker; ausserhalb (Blatt, Typkachel) folgen sie
+   dem Thema. Gemessen in `tests/k151-baum.test.ts` (Ton auf Marke 4,5:1, hell und dunkel). */
+.zr-f-marke { fill: var(--c-primary); }
+.zr-s-marke { stroke: var(--c-primary); }
+.zr-f-auf-marke { fill: var(--c-primary-ink); }
+.zr-s-auf-marke { stroke: var(--c-primary-ink); }
+.zr-t-auf-marke { fill: var(--c-primary-ink); }
+/* ⇒ K152 Schnitt B (B73): Gold und sein Ton fuer die Fuellung freier Formen — aus demselben Grund hier wie die Marke. */
+.zr-f-gold { fill: var(--c-accent); }
+.zr-s-gold { stroke: var(--c-accent); }
+.zr-f-auf-gold { fill: var(--c-accent-ink); }
+.zr-s-auf-gold { stroke: var(--c-accent-ink); }
+.zr-t-auf-gold { fill: var(--c-accent-ink); }
+.folie169 .bs-passt-nicht { display: inline-block; margin: 0; padding: 0 0.4em; border: 2px solid var(--c-warn-kante); border-radius: 4px; }
+
+/* ⇒ C4 (B72): die Textwerte eines Elements (`--e-*`, gesetzt an seinem Kasten) schlagen den Rollenstil — hier, an
+   EINER Stelle, statt in jeder Rollenregel. Ein fehlender Wert faellt auf die Rolle zurueck. */
+.folie169 [data-rolle] {
+  margin: 0;
+  font-size: calc(var(--e-schrift, var(--r-schrift)) * 1px);
+  font-weight: var(--e-gewicht, var(--r-gewicht));
+  letter-spacing: calc(var(--e-laufweite, var(--r-laufweite)) * 1em);
+  line-height: var(--e-zeilenhoehe, var(--r-zeilenhoehe));
+  font-family: var(--e-familie, var(--tt-sans));
+  color: var(--r-ton);
+}
+.folie169 [data-rolle='folientitel'] {
+  --r-schrift: var(--rolle-folientitel-schrift); --r-gewicht: var(--rolle-folientitel-gewicht);
+  --r-laufweite: var(--rolle-folientitel-laufweite); --r-zeilenhoehe: var(--rolle-folientitel-zeilenhoehe);
+  --r-ton: var(--ton-haupt);
+}
+.folie169 [data-rolle='untertitel'] {
+  --r-schrift: var(--rolle-untertitel-schrift); --r-gewicht: var(--rolle-untertitel-gewicht);
+  --r-laufweite: var(--rolle-untertitel-laufweite); --r-zeilenhoehe: var(--rolle-untertitel-zeilenhoehe);
+  --r-ton: var(--ton-leise);
+}
+.folie169 [data-rolle='kernaussage'] {
+  --r-schrift: var(--rolle-kernaussage-schrift); --r-gewicht: var(--rolle-kernaussage-gewicht);
+  --r-laufweite: var(--rolle-kernaussage-laufweite); --r-zeilenhoehe: var(--rolle-kernaussage-zeilenhoehe);
+  --r-ton: var(--ton-haupt);
+}
+.folie169 [data-rolle='erklaerung'] {
+  --r-schrift: var(--rolle-erklaerung-schrift); --r-gewicht: var(--rolle-erklaerung-gewicht);
+  --r-laufweite: var(--rolle-erklaerung-laufweite); --r-zeilenhoehe: var(--rolle-erklaerung-zeilenhoehe);
+  --r-ton: var(--ton-text);
+}
+.folie169 [data-rolle='beispiel'] {
+  --r-schrift: var(--rolle-beispiel-schrift); --r-gewicht: var(--rolle-beispiel-gewicht);
+  --r-laufweite: var(--rolle-beispiel-laufweite); --r-zeilenhoehe: var(--rolle-beispiel-zeilenhoehe);
+  --r-ton: var(--ton-text);
+}
+.folie169 [data-rolle='hinweis'] {
+  --r-schrift: var(--rolle-hinweis-schrift); --r-gewicht: var(--rolle-hinweis-gewicht);
+  --r-laufweite: var(--rolle-hinweis-laufweite); --r-zeilenhoehe: var(--rolle-hinweis-zeilenhoehe);
+  --r-ton: var(--ton-text);
+}
+.folie169 [data-rolle='frage'] {
+  --r-schrift: var(--rolle-frage-schrift); --r-gewicht: var(--rolle-frage-gewicht);
+  --r-laufweite: var(--rolle-frage-laufweite); --r-zeilenhoehe: var(--rolle-frage-zeilenhoehe);
+  --r-ton: var(--ton-haupt);
+}
+.folie169 [data-rolle='quelle'] {
+  --r-schrift: var(--rolle-quelle-schrift); --r-gewicht: var(--rolle-quelle-gewicht);
+  --r-laufweite: var(--rolle-quelle-laufweite); --r-zeilenhoehe: var(--rolle-quelle-zeilenhoehe);
+  --r-ton: var(--ton-leise);
+}
+.folie169 [data-rolle='fussnote'] {
+  --r-schrift: var(--rolle-fussnote-schrift); --r-gewicht: var(--rolle-fussnote-gewicht);
+  --r-laufweite: var(--rolle-fussnote-laufweite); --r-zeilenhoehe: var(--rolle-fussnote-zeilenhoehe);
+  --r-ton: var(--ton-leise);
+}
+/* B63: die Zwischenueberschrift (h3) nimmt den Untertitel mit Gewicht halbfett und Ton haupt. */
+.folie169 [data-rolle='zwischenueberschrift'] {
+  --r-schrift: var(--rolle-untertitel-schrift); --r-gewicht: var(--folie-gewicht-halbfett);
+  --r-laufweite: var(--rolle-untertitel-laufweite); --r-zeilenhoehe: var(--rolle-untertitel-zeilenhoehe);
+  --r-ton: var(--ton-haupt);
+}
+/* B59: die Prozessnummer ist ein Akzentzeichen in Stufe mittel. */
+.folie169 [data-rolle='akzentzeichen'] {
+  --r-schrift: var(--satz-akzentzeichen); --r-gewicht: var(--folie-gewicht-halbfett);
+  --r-laufweite: var(--rolle-erklaerung-laufweite); --r-zeilenhoehe: var(--rolle-erklaerung-zeilenhoehe);
+  --r-ton: var(--akzent-zeichen);
+}
+/* B59: „Erklaerung halbfett“ fuer Schritt- und Merkmaltitel; Systemsaetze im Ton leise. */
+.folie169 .bs-schritt-titel[data-rolle], .folie169 .bs-vergleich-merkmal[data-rolle] { --r-gewicht: var(--folie-gewicht-halbfett); }
+.folie169 .bs-wartet[data-rolle], .folie169 .bs-uebung-stand[data-rolle] { --r-ton: var(--ton-leise); }
+/* B64: das Zitat steht kursiv und ohne Kante; B70: seine Quelle mit vorangestelltem Gedankenstrich. */
+.folie169 .bs-zitat-text[data-rolle] { font-style: italic; }
+.folie169 .bs-zitat-quelle[data-rolle]::before { content: '\2013\00a0'; }
+/* B59, B89: der Kennzahlwert ist eine Kernaussage in Stufe kennzahl, im Ton seiner Kennzahl. */
+.folie169 .bs-kennzahl-wert[data-rolle] {
+  display: block;
+  --r-schrift: var(--satz-kennzahl); --r-laufweite: var(--folie-laufweite-eng); --r-zeilenhoehe: var(--folie-zeilenhoehe-eng);
+}
+/* ⇒ K149 E: die Kennzahltoene sind Toene der Flaeche (`--ton-gut` usw.), nicht mehr feste Marken. */
+.folie169 .bs-kennzahl[data-ton='gut'] .bs-kennzahl-wert[data-rolle] { --r-ton: var(--ton-gut); }
+.folie169 .bs-kennzahl[data-ton='warnung'] .bs-kennzahl-wert[data-rolle] { --r-ton: var(--ton-warnung); }
+.folie169 .bs-kennzahl[data-ton='gefahr'] .bs-kennzahl-wert[data-rolle] { --r-ton: var(--ton-gefahr); }
+/* B65: Aufzaehlungszeichen und Nummern in der Zeichenfarbe des Akzents. */
+.folie169 .bs-liste > li::marker { color: var(--akzent-zeichen); }
+/* ⇒ K149 E2 (B92 c, B93): die Liste der Folie traegt KEINE Raender des Browsers (1 em oben und unten, 40 px Einzug) —
+   die Messung fand drei Schaufensterfolien, deren Listen das Budget fuer passend hielt und die bis 84 px ueberliefen.
+   Der Einzug ist `LISTENEINZUG_EM` (master.ts), mit dem das Budget die Zeile kuerzt; die Probe haelt beide gleich. */
+.folie169 .bs-liste { margin: 0; padding-left: 1.5em; }
+
+
+/* B64, B66, B67: Kante bzw. Flaeche um das GANZE Element mit gewaehlter Rolle (`data-elementrolle`, deckflaeche.ts). */
+.folie169 .bs[data-elementrolle='kernaussage'] {
+  border-left: 4px solid var(--akzent-kante);
+  padding-left: calc(var(--folie-abstand-weit) * 1px);
+}
+/* ⇒ K149 E: die beiden Rollenflaechen sind HELL und bringen darum den hellen Tonsatz mit — in einer Markezone stand
+   sonst weisser Text auf ihrem hellen Grund. */
+.folie169 .bs[data-elementrolle='beispiel'] {
+  --ton-haupt: var(--c-primary); --ton-text: var(--c-text); --ton-leise: var(--c-text-soft);
+  --ton-gut: var(--bereich-b-ink); --ton-warnung: var(--c-warn-ink); --ton-gefahr: var(--c-red); --ton-beispiel: var(--bereich-a-ink);
+  --akzent-zeichen: var(--akzent-zeichen-grund); --akzent-kante: var(--akzent-kante-grund);
+  background: var(--info-soft);
+  border-left: 4px solid var(--info);
+  border-radius: calc(var(--folie-radius-klein) * 1px);
+  padding: calc(var(--folie-abstand-normal) * 1px);
+}
+.folie169 .bs[data-elementrolle='hinweis'] {
+  --ton-haupt: var(--c-primary); --ton-text: var(--c-text); --ton-leise: var(--c-text-soft);
+  --ton-gut: var(--bereich-b-ink); --ton-warnung: var(--c-warn-ink); --ton-gefahr: var(--c-red); --ton-beispiel: var(--bereich-a-ink);
+  --akzent-zeichen: var(--akzent-zeichen-grund); --akzent-kante: var(--akzent-kante-grund);
+  background: var(--bereich-c-soft);
+  border-left: 4px solid var(--c-warn-kante);
+  border-radius: calc(var(--folie-radius-klein) * 1px);
+  padding: calc(var(--folie-abstand-normal) * 1px);
+}
+/* B66, B67, B110: die Kennzeichnung ueber dem Text — Stufe klein, halbfett, Laufweite weit. */
+.folie169 .bs-kennzeichnung {
+  display: block;
+  margin-bottom: calc(var(--folie-abstand-hauch) * 1px);
+  font-size: calc(var(--folie-schrift-klein) * 1px);
+  font-weight: var(--folie-gewicht-halbfett);
+  letter-spacing: calc(var(--folie-laufweite-weit) * 1em);
+  line-height: var(--folie-zeilenhoehe-normal);
+}
+.folie169 .bs-kennzeichnung[data-kennzeichnung='beispiel'] { color: var(--ton-beispiel); }
+.folie169 .bs-kennzeichnung[data-kennzeichnung='hinweis'] { color: var(--ton-warnung); }
+.folie169 .bs-kennzeichnung[data-kennzeichnung='definition'] { color: var(--akzent-zeichen); }
+
+/* ============================================================ Die Baender (K149 C3) ====
+   B2, B48: Kopf- und Fussband liegen im Rand ueber bzw. unter dem Satzspiegel, NIE in einer Zone. Hoehen und Rand
+   setzt der Zeichner als Marken aus dem Kern (`KOPFBAND_HOEHE`, `FUSSBAND_HOEHE`, Randstufe des Masters).
+   ⚠ Ein zu langer Bandtext endet mit Auslassungspunkten: ein Band hat eine Zeile, und ein Umbruch wuerde in den
+   Satzspiegel laufen. Der ganze Text steht im Master, nicht auf der Folie. */
+.folie169 .folienband {
+  position: absolute;
+  left: calc(var(--band-rand) * 1px);
+  right: calc(var(--band-rand) * 1px);
+  display: flex;
+  align-items: center;
+  gap: calc(var(--folie-abstand-normal) * 1px);
+  font-size: calc(var(--folie-schrift-klein) * 1px);
+  line-height: var(--folie-zeilenhoehe-normal);
+  color: var(--ton-leise);
+}
+.folie169 .folienband-kopf { top: calc(var(--band-rand) * 1px); height: calc(var(--kopfband-hoehe) * 1px); }
+.folie169 .folienband-fuss { bottom: calc(var(--band-rand) * 1px); height: calc(var(--fussband-hoehe) * 1px); }
+.folie169 .folienband-text { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.folie169 .folienband-kopf .folienband-text { text-align: center; }
+/* B85, B88: die Abschnittskennzeichnung in Versalien, gesperrt, in der Zeichenfarbe des Akzents. */
+.folie169 .folienband-kennzeichnung {
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: calc(var(--folie-laufweite-gesperrt) * 1em);
+  font-weight: var(--folie-gewicht-halbfett);
+  color: var(--akzent-zeichen);
+}
+.folie169 .folienband-logo { height: calc(var(--logo-hoehe) * 1px); width: auto; }
+.folie169 .folienband-nummer { white-space: nowrap; }

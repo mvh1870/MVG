@@ -1,0 +1,41 @@
+{
+  "name": "mvg-story",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Minimum Viable Governance – interaktives Whitepaper von Bauherr Mentoren (Story · Theorie · Explore), gebaut als eine HTML-Datei",
+  "type": "module",
+  "engines": {
+    "node": ">=24.15.0"
+  },
+  "scripts": {
+    "bau": "node werkzeuge/bau.mjs",
+    "bau:pruefe": "node werkzeuge/bau.mjs --pruefe",
+    "pruefe": "node werkzeuge/kette.mjs",
+    "typen": "tsc --noEmit -p tsconfig.json",
+    "test": "node --test --test-reporter=dot \"tests/**/*.test.ts\"",
+    "inhalte": "node werkzeuge/inhalte.mjs --pruefe",
+    "begriffe": "node werkzeuge/begriffe.mjs",
+    "oberflaeche": "node werkzeuge/oberflaeche.mjs",
+    "whitepaper:import": "node werkzeuge/whitepaper-import.mjs",
+    "vorschau": "node werkzeuge/vorschau.mjs"
+  },
+  "devDependencies": {
+    "@fontsource/barlow-condensed": "5.3.0",
+    "@fontsource/big-shoulders-display": "5.3.0",
+    "@fontsource/caveat": "5.3.0",
+    "@fontsource/ibm-plex-mono": "5.3.0",
+    "@fontsource/ibm-plex-sans": "5.3.0",
+    "@types/node": "^24.0.0",
+    "esbuild": "0.28.2",
+    "jsdom": "30.1.1",
+    "mammoth": "1.12.3",
+    "marked": "18.0.14",
+    "playwright": "1.63.0",
+    "potrace": "2.1.8",
+    "typescript": "7.0.2",
+    "yaml": "2.9.1"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}

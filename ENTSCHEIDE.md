@@ -1,0 +1,45 @@
+# Entscheidungslog
+
+Zwei Arten von Einträgen, nur anhängen, nie umschreiben (eine Korrektur ist ein neuer Eintrag, der den alten nennt):
+- **O-n** · Owner-Entscheid (Heinz-Marc, Bauherr Mentoren). Nur der Owner ändert ihn.
+- **L-n** · Lauf-Entscheid (eine Sitzung hat selbst entschieden, weil der Plan es offen ließ). Form: `L-n · JJJJ-MM-TT · Posten · Entscheid · Grund`.
+
+Rangfolge bei Widerspruch: O-Einträge > docs/BAUPLAN.md > L-Einträge > alles andere.
+
+## Owner-Entscheide (Fragerunden 2026-09-26, Plan freigegeben 2026-09-26)
+
+- **O-1** · Zweck: Akquise und Befähigung gleichgewichtig. Das Ende ist **neutral, ohne Vertrieb**: kein Kontakt-/Angebotsteil, keine Aufforderung; nur Resümee und Bibliothek.
+- **O-2** · Dramaturgie „Zwei Welten“: Welt A (ohne MVG) erleben bis zur Eskalation → Wendepunkt Ursachenanalyse → Rückspulen → Welt B (mit MVG) mit denselben Stationen; ab dann Schieberegler A↔B an jeder Station; Entscheidungen aus Welt A werden in Welt B zitiert.
+- **O-3** · Fall: öffentlicher Hochbau, **Schulcampus** (~58 Mio. €). Bauherr = Stadt (Eigentümerin, Rückkopplung Stadtrat/Bauausschuss), vertreten durch eine **städtische Gebäudemanagement-GmbH**. Immer als fiktiv gekennzeichnet.
+- **O-4** · **Rolle bestimmt alles:** 6 spielbare Rollen – Geschäftsführung (GmbH) · Bauherr (Dezernentin der Stadt) · Bauherren-PL · Projektsteuerung (extern) · Planung (Generalplanung) · Controlling. Gemeinsames Rückgrat (~60 %) + rollenspezifische Entscheidungsszenen (~40 %) + „Standpunkt wechseln“.
+- **O-5** · Hauptpfad der Story 25–35 Minuten.
+- **O-6** · Illustrierte Besetzung: flache SVG-Figuren mit Namen, Sprechblasen, Mails/Chats als Requisiten; leichter, trockener Humor; fachlich immer korrekt.
+- **O-7** · 3 Enden + Zielbild + Rückbezug + persönliches Resümee.
+- **O-8** · Selbstdiagnose qualitativ, **ohne Punktzahl**; Ergebnis als Profil in Worten; Hinweis, dass die echte MVG-Reifegradanalyse (10 Domänen, 49 Fragen) eine Methode von BM ist.
+- **O-9** · Präsentator-Modus = **Regie + Leinwand** (zwei Fenster, ein Rechner, offline über BroadcastChannel mit Rückfall); Ein-Fenster-Regie als Ausweg. Extras: Notizen & Leitfragen · Gesprächsprotokoll · Regie-Eingriffe. **Keine** Raum-Werkzeuge (Zeigestift, Abstimmung, Timer).
+- **O-10** · Geräte: Desktop/Laptop (Chrome, Edge, Safari, Firefox), Beamer 16:9, iPad quer; Smartphone lesbar und bedienbar, nicht optimiert.
+- **O-11** · Farben: BM-Navy #0C1C33 / Gold #A8823C als Rahmen, Petrol #146878 / Grün #349068 als Grundton, Welt A Koralle #E4572E + Haftnotiz-Pastelle, Welt B Türkis #12A4A0 / Frischgrün #3FB57A, je Rolle eine Farbe; Ampelfarben nur für Status.
+- **O-12** · Eingebettete Webfonts (OFL) statt Systemschrift.
+- **O-13** · Whitepaper-Diagramme werden **nativ als animierte, klickbare SVG** neu gebaut. Originalbilder ins Archiv (`quellen/whitepaper/v1.2/bilder/`); in der Story höchstens als atmosphärische Öffner, wo kein falscher Begriff sichtbar ist. Dazu eine **Korrekturliste** mit Bild-Prompts für V1.3.
+- **O-14** · **Freigaben = LPH 0–9.** „G0–G5“ (Gates) ist veraltet und kommt nirgends vor. Widerspricht eine Grafik dem Text, gilt der Text.
+- **O-15** · Begriffe: **Whitepaper-Text V1.2 gilt**, auch gegenüber dem MVG-Companion (Änderungsgremium statt Change-Board; Freigabe / keine Freigabe / Freigabe mit Auflagen; Entscheidungsvorlage statt Decision File/Entscheidungsakte; Status wie Kap. 6.4.4; Mandatsleiter 100 TEUR / 5 Mio. €). Nur wo das Whitepaper schweigt, gilt die Companion-Terminologie (z. B. ID-Kürzel ENT-, RIS-, FRW-, AEN-, MAS-).
+- **O-16** · Produktbegriff „**Minimum** Viable Governance“ (wie im Whitepaper).
+- **O-17** · Text: Story frei, knapp, erzählerisch, fachlich treu, **ohne neue Fachaussagen**; Originaltext V1.2 **wortgetreu** in Ebene 4 und im Theorie-Teil; Leistungsgrenzen und rechtlicher Hinweis wortgetreu.
+- **O-18** · Sprache Deutsch. Inhalte als **Markdown-Dateien** je Station/Rolle/Kapitel, ohne Programmierung änderbar; technisch mehrsprachfähig angelegt.
+- **O-19** · Umfang: **alle 20 Punkte** des Owner-Konzepts + eigene Ideen **E1–E14** (Bauplan Abschnitt 5; keine gestrichen).
+- **O-20** · **Theorie-Teil**: eigene Sektion, die die **gesamte MVG-Theorie** vermittelt, in der **Gliederung des Whitepapers** (13 Kapitel) als interaktive Lernseiten; jeder Absatz des Whitepapers ist abgedeckt; Originaltext wortgetreu; Querverweise in die Story.
+- **O-21** · **Ruhiger Einstieg:** Startseite mit genau zwei Wegen – „Erklärt – Kapitel für Kapitel“ (Theorie) und „Erlebt – als Geschichte“ (Story). Nichts Überladenes; Bedienelemente erst bei Bedarf. Explore und Präsentator nur dezent bzw. aus dem Inneren erreichbar.
+- **O-22** · Stil = Prototyp **Variante B „Leitstand“** (`prototyp/variante-b-leitstand.html`), zusammen mit O-21 (siehe L-4).
+- **O-23** · Whitepaper **V1.2 ist maßgeblich**; Re-Import-Werkzeug für künftige Fassungen; Versionsnummer und Änderungsstand im Produkt.
+- **O-24** · Fachliche Absicherung: unabhängige **Prüf-Agenten, gründlich** (je Kapitel 2–3: Fachtreue, Begriffe, Dramaturgie/Verständlichkeit; Browser-Tests je Phase; Vollständigkeitsprüfung am Ende). Alles trägt den Vermerk **„fachlich ungeprüft“** bis zur Abnahme durch den Owner.
+- **O-25** · Cloud: GitHub **mvh1870/MVG** (privat). Owners **Routinen-Paket unverändert** (`cloud/`), Arbeitszweig **`claude/haus`**, der Owner führt nach `main` zusammen.
+- **O-26** · Einmal in der Cloud angestoßen, läuft der Bau **ohne Anhalten bis zum Ende**. Offene Detailfragen entscheidet der Lauf selbst (L-Eintrag) und arbeitet weiter.
+
+## Lauf-Entscheide
+
+- **L-1** · 2026-09-26 · P0 · Technik: TypeScript streng (Node 24 Type-Stripping für Werkzeuge/Tests), esbuild 0.28.2 → **eine HTML-Datei** (IIFE, CSS/JS/Schriften/Bilder eingebettet, CSP über Hashes, kein Netz). Keine Laufzeit-Bibliothek; eigene kleine Story-Engine; SVG + Web Animations. Grund: offline, einbettbar, deterministisch, BM-erprobt (bm-track).
+- **L-2** · 2026-09-26 · P0 · Schriften (aus Variante B, alle OFL, über @fontsource eingebettet, nur latin + latin-ext): Big Shoulders Display (Zahlen, Instrumente), Barlow Condensed (Labels), IBM Plex Sans (Text), IBM Plex Mono (IDs, Dateinamen), Caveat (nur Haftnotizen).
+- **L-3** · 2026-09-26 · P0 · Dateinamen für das Cloud-Paket: Planblatt = `PLAN.md`, Übergabe = `UEBERGABE.md` (Kopf ≤ 100 Zeilen), Fragen = `OWNER-FRAGEN.md`, Ampel = `.claude/ampel`.
+- **L-4** · 2026-09-26 · P0 · Leitstand + Ruhe (O-21/O-22): Startseite ruhig mit zwei Wegen. Der Leitstand baut sich in der Story schrittweise auf: Statusinstrumente erscheinen mit der ersten Entscheidung, die Story-Karte nach der ersten Station, die rechte Seitenleiste (Rollen-Linse, Ebenen, Glossar) ist eingeklappt und öffnet auf Klick. Im Theorie-Teil kein Leitstand-Rahmen, sondern ruhige Lernseiten im selben Stil.
+- **L-5** · 2026-09-26 · P0 · Fiktiver Fall (Prototyp übernommen): Stadt **Lindenhall**, **Gebäudemanagement Lindenhall GmbH (GML)**, **Schulcampus Lindenhall-Süd** (Gesamtschule, Grundschule, Dreifeldsporthalle, Holzhybrid), Projektbasis 58,4 Mio. € brutto. Figuren: Dr. Miriam Olbers (Dezernentin, Bauherr), Frank Deppe (Geschäftsführung GML), Bauherren-PL (Spielerrolle, Name frei wählbar, Vorgabe „Sie“), Jonas Brenner (Projektsteuerung, extern), Lena Hoffmeister (Generalplanung), Aylin Kaya (Controlling GML). Weitere Figuren legt P1 fest.
+- **L-6** · 2026-09-26 · P0 · Git-Autor wie in BM: `Heinz-Marc <heinz-marc@gmx.de>`; Commit-Betreff `MVG <Posten>: <Satz>`.

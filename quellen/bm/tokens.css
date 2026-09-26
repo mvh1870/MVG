@@ -1,0 +1,507 @@
+/* BM Kern — DESIGN-TOKENS.
+   Herkunft: MVG-Companion, `src/legacy/blocks/0001-basis.css` (Theme „Premium Consulting"),
+   uebernommen im harten Schnitt R3 (Owner-Entscheid 6).
+
+   ⚠⚠ DIESE WERTE SIND UEBERNOMMEN, NICHT NEU ERFUNDEN. Der Owner-Entscheid lautet ausdruecklich:
+   „von Grund auf" meint Architektur und Funktionsflaechen — NICHT das Aussehen. Design-Tokens,
+   Farben, Typografie und Bedienmuster werden vom Companion uebernommen. Wer hier Werte „aufraeumt",
+   dreht einen Owner-Entscheid, nicht einen Geschmack.
+
+   ⚠ Drei Werte tragen eine Begruendung aus dem Bestand und duerfen nicht zurueckgedreht werden:
+   · `--c-text-muted` ist hue-treu abgedunkelt (#8a8275 lag bei 3,15–3,80:1 und damit unter
+     WCAG-AA 4,5:1; der jetzige Wert haelt >=4,5:1 auf Karte, panel-alt UND bg).
+   · `--c-accent-ink` (hell) ist hue-treu abgedunkelt: #3d2e10 lag AUF dem Gold-Knopf (`.btn.gold`,
+     `--c-accent` #a8823c) bei 3,71:1 — unter WCAG-AA fuer normalen Text; #261c0a haelt 4,73:1 dort und
+     hebt jede andere Verwendung (auf `-soft`, auf Karte) nur weiter an. GEMESSEN in F9 (R14) durch
+     `tests/barrierefreiheit.test.ts`, das die ECHTEN Farbpaare der Stilblaetter nachrechnet — der
+     Wert selbst ist eine Behauptung, die Zahl daraus eine Messung.
+   · Die semantischen Tokens (`--brand-*`, `--status-*`, `--info`, `--violett`) sind LITERAL
+     gesetzt, nicht als `var(--c-*)`. Eine var()-Kette wuerde am Deklarationsort eingefroren und
+     schaltete beim Themenwechsel NICHT um.
+
+   ⚠ Dunkelmodus haengt an `body.dark` (Bestands-Bedienmuster, bewusst beibehalten) UND folgt
+   zusaetzlich `prefers-color-scheme`, solange der Nutzer nicht selbst gewaehlt hat
+   (`body.theme-hell` / `body.theme-dunkel` setzen die Wahl hart). */
+
+:root {
+  /* ---------------------------------------------------------------- Flaechen */
+  --c-bg: #e8eaed;
+  --c-bg-alt: #f1f2f4;
+  --c-panel: #ffffff;
+  --c-panel-alt: #fafaf6;
+  /* ⚠⚠ S7-BEFUND R1 — DIE RAHMEN-MARKEN HIELTEN WCAG 1.4.11 NICHT (3:1 fuer Bedienelemente
+     und grafische Objekte). Von bm-training gemessen (ihr `S7`, 2026-09-05), hier
+     nachgerechnet statt abgeschrieben: 21 von 40 Paarungen unter der Grenze, hell wie
+     dunkel. `--c-border` lag gegen ALLE vier Flaechen zwischen 1,07 und 1,28 — die
+     schlechteste Paarung des ganzen Satzes; die als „strong" BENANNTE lag bei 1,47–1,78.
+     ⚠ Eine Marke, deren Name „stark" sagt und die 1,5:1 traegt, ist die teuerste Sorte:
+     der Leser prueft sie nicht nach, weil ihr Name schon eine Aussage macht.
+     Die neuen Werte sind hue-treu und gegen die SCHLECHTESTE Flaeche des Satzes gerechnet
+     (`--c-bg` hell, `--c-panel-alt` dunkel), damit keine Paarung darunter liegt.
+     ⚠ Gegenrichtung gemessen und ausgeschlossen: beide Marken tragen in `komponenten.css`
+     ausschliesslich `border-color` und nirgends `color` — es gibt hier keinen Text, dem die
+     Heilung seinen Kontrast naehme (die `BR1-A24`-Klasse geprueft).
+     ⚠⚠ KEINE Umkehrung in diesem Haus, und das ist eine Aufteilung, kein Vergessen: die
+     MESSUNG fuehrt bm-training (ihr `S7`, ihre Kuerzel, ihre Kontrastprobe). Diese App
+     laedt `tokens.css` gar nicht — gemessen: sie importiert aus dem Kern nur
+     `#kern/ui/dom.ts` und faehrt eigene Marken in `src/app/stile.css`. Ein zweiter Waechter
+     von hier waere der zweite Kanon ueber einer Datei, die uns nicht traegt. */
+  --c-border: #8b867a;         /* min 3,01:1 gegen --c-bg (vorher #e6e3d9, 1,07:1) */
+  --c-border-strong: #6d6960;  /* min 4,54:1 gegen --c-bg (vorher #c8c2b3, 1,47:1) */
+
+  /* ------------------------------------------------------------------ Schrift */
+  --c-text: #0f1722;
+  --c-text-soft: #4b5563;
+  --c-text-muted: #6c665c;
+
+  /* -------------------------------------------------------------------- Marke */
+  --c-primary: #0c1c33;
+  --c-primary-soft: #1d3258;
+  --c-primary-ink: #ffffff;
+  --c-accent: #a8823c;
+  --c-accent-soft: #c69d52;
+  --c-accent-ink: #261c0a;
+
+  /* ⚠⚠ S7-BEFUND R2 — DER FOKUSRING BRAUCHT EINEN EIGENEN TON, UND DAS IST DIESELBE
+     ENTSCHEIDUNG WIE R29.1-B5 EINE HANDBREIT WEITER OBEN. Gemessen (bm-trainings `S7`, hier
+     nachgerechnet): `:focus-visible { outline: 2px solid var(--c-accent) }` trug im HELLEN
+     Satz 2,94:1 gegen `--c-bg` — unter WCAG 1.4.11, und zwar an der Stelle, die der Norm
+     ihren Namen gibt: ein Fokusring IST ein grafisches Objekt.
+     ⚠⚠ WARUM NICHT EINFACH `--c-accent` ABDUNKELN — GEMESSEN, NICHT VERMUTET. Die Marke
+     traegt zugleich den Gold-Knopf, auf dem `--c-accent-ink` als TEXT liegt (1.4.3, 4,5:1).
+     Die Zange: `#a8823c` haelt den Text (4,73) und die Flaeche nicht (2,94); jeder dunklere
+     Ton dreht es um — `#a07c39` gibt Flaeche 3,20 und Text 4,34. Es gaebe ein Fenster (Gold
+     `#a07c39` mit Ink `#201708`, 4,58), aber es kostet den Ton des Knopfes in zwei fremden
+     Apps und `--c-accent` haengt zusaetzlich an `::selection`, `.ctl-leer`, den dunklen
+     Ueberschriften und den KPI-Werten. Der Dateikopf hat diese Abwaegung schon einmal
+     gefuehrt und dieselbe Antwort gegeben: *eigene Token statt ueber `--c-accent`, die in
+     der ganzen Anwendung haengen.*
+     ⚠⚠ NACHTRAG AM SELBEN TAG, UND ER IST EINE KORREKTUR AN DIESEM ABSATZ: die erste
+     Fassung hat NUR den Fokusring gezogen und die drei `.btn.gold`-Rahmen stillschweigend
+     als „Rahmen gleich Grund, also kein eigenes Objekt" abgetan — ohne das auszusprechen und
+     ohne es zu messen. bm-trainings Waechter hat die Stellen zurueckgemeldet (mit der
+     falschen MARKE, aber der richtigen ZEILE), und nachgemessen ist die KANTE des
+     Gold-Knopfes gegen die Flaeche genau das, was 1.4.11 „boundary of a component" nennt:
+     2,94:1. Deshalb heisst das Token jetzt nach seiner ROLLE und nicht nach einem einzigen
+     Rufer — ein Name, der schon eine Aussage macht, wird nicht nachgeprueft (dieselbe Lehre
+     wie an `--c-border-strong` eine Handbreit weiter oben).
+     ⚠⚠ UND DAMIT IST DIE ZANGE AUFGELOEST, OHNE KOMPROMISS: der Knopf behaelt seinen
+     Goldgrund (`--c-accent-ink` darauf 4,73:1, WCAG 1.4.3 gehalten), und nur sein RAHMEN
+     nimmt den dunkleren Ton (3,44:1 gegen die schlechteste Flaeche, 1.4.11 gehalten). Genau
+     dafuer gibt es `border-color` getrennt vom `background`. Der von bm-training gerechnete
+     Weg — den GRUND auf `#9c7935` abdunkeln — haette die Flaeche geheilt (3,35) und den Text
+     darauf gebrochen (4,15 statt 4,5); nachgemessen und zurueckgemeldet.
+     ⚠ Der DUNKLE Satz braucht die Heilung nicht (`--c-accent` liegt dort bei 7,81–10,04);
+     das Token steht trotzdem in beiden Saetzen, damit die Kante EINE Adresse hat und nicht
+     je Satz eine andere Marke.
+     Umkehrung: keine — die Messung fuehrt bm-training (`S7`), nicht dieses Haus. */
+  --c-akzent-kante: #9a7736;   /* min 3,44:1 gegen --c-bg (--c-accent lag bei 2,94:1) */
+
+  /* ⚠⚠ S17-BEFUND W1 — DIE WARNKANTE, und sie ist der letzte der drei Faelle, die seit `S11`
+     als „gehoert in einen eigenen, angesagten Zug" im Kontrast-Waechter standen. `--c-yellow`
+     traegt als RAHMEN einer Kennzahl nur 2,73:1 gegen `--c-bg` und 2,93:1 gegen `--c-bg-alt`;
+     WCAG 1.4.11 verlangt 3:1 fuer ein Bedienelement und seinen Zustand.
+     ⚠ Gewaehlt ist der HELLSTE Ton, der 3:1 mit Puffer haelt (93 % von `--c-yellow`), nicht
+     der bequemste: *die Warnfarbe traegt Bedeutung, nicht Dekoration* — eine Warnung, die
+     nach dem Kontrastfix nicht mehr wie eine Warnung aussieht, hat den Fehler verschoben
+     statt geheilt. Der Farbton ist derselbe, nur abgedunkelt.
+     ⚠ Wie bei `--c-akzent-kante` steht das Token in BEIDEN Saetzen, damit die Kante EINE
+     Adresse hat; im Dunkelmodus haelt `--c-yellow` selbst (9,99:1 / 9,29:1), dort ist der
+     Wert deshalb der Ton selbst und keine zweite Farbe.
+     Umkehrung: keine — die Messung fuehrt bm-training (`S17`), nicht dieses Haus. */
+  --c-warn-kante: #a47e1e;   /* min 3,12:1 gegen --c-bg (bg-alt 3,36 · panel 3,76 · panel-alt 3,60) */
+
+  /* ⚠⚠ TEXTSICHERER WARNTON — DIESE LUECKE HAT bm-workshop GEFUNDEN, NICHT DIESE STELLE
+     (`V68`, Eingang 2026-09-18 02:25, beim Bau von `AUFTRAG 2026-09-17-17`). Der Kern fuehrte
+     fuer Warnung nur Kanten- und Symboltoene. `--c-warn-kante` (3,12:1) traegt Raender, nicht
+     Text; `--c-symbol-gelb` erreicht auf dem EIGENEN Hintergrund nur **4,20:1** und liegt damit
+     unter AA (4,5:1) — nachgerechnet 2026-09-18 07:3x, nicht uebernommen.
+     Das Haus hat sich darum eine eigene Marke abgedunkelt und das sauber dokumentiert. Eine
+     eigene Marke, die eine KERN-LUECKE fuellt, ist aber genau der Fall, den VORGABE 2026-09-17-2
+     nicht will: *eine Farbe, die zweimal definiert ist, laeuft auseinander.* Also gehoert der
+     Ton hierher.
+     ⚠ Der Wert ist DER GEMESSENE DES HAUSES (#7f620f), nicht ein neu erfundener — 4,77:1 gegen
+     `--c-bg`, 5,74:1 gegen `--c-panel`, hier nachgerechnet. Wer ihn aendert, rechnet neu.
+     ⚠ ADDITIV: eine NEUE Marke, keine geaenderte. Kein bestehender Aufrufer sieht etwas anderes
+     als vorher — geprueft, dass kein Haus die ZAHL der Kern-Marken pinnt. */
+  --c-warn-ink: #7f620f;     /* min 4,77:1 gegen --c-bg (panel 5,74) — fuer WARNTEXT, nicht Rand */
+
+  /* R29.1-REVIEW-BEFUND (Runde B, B5 — MAJOR): DIE SYMBOLREIHEN BRAUCHEN EIGENE TOENE.
+     Nachgerechnet gegen `--c-panel` (#ffffff) traegt `--c-accent` im HELLMODUS nur 3,55:1 und
+     `--c-yellow` 3,29:1 — beide unter WCAG-AA 4,5:1 bei 19 px (kein „large text“, das beginnt bei
+     24 px bzw. 18,66 px fett). Ein gefuelltes Symbol ist TEXT, kein Zierrahmen.
+     Die Palette bleibt dabei unberuehrt (Owner-Entscheid 6 aus R13): geheilt wird ueber ZWEI
+     eigene Token statt ueber `--c-accent`/`--c-yellow`, die in der ganzen Anwendung haengen.
+     Gemessen: #7a5c1e = 6,22:1 und #8a6a10 = 5,06:1 gegen #ffffff. Rot (7,40:1) und Gruen
+     (5,19:1) reichen schon und behalten ihre Status-Token.
+     Im DUNKELmodus tragen die Gegenstuecke 8,53:1 bzw. 8,49:1 gegen #152238 — dort sind es
+     dieselben Werte wie `--c-accent`/`--c-yellow`, und genau deshalb stehen sie als EIGENES
+     Token da: sonst faende der naechste Leser keinen Grund, warum hell etwas anderes gilt. */
+  --c-symbol-an: #7a5c1e;
+  --c-symbol-gelb: #8a6a10;
+
+  /* -------------------------------------------------------------------- Status */
+  --c-green: #3a7a43;
+  --c-green-soft: #dfeadf;
+  --c-yellow: #b08820;
+  --c-yellow-soft: #f3e9c8;
+  --c-red: #9a3030;
+  --c-red-soft: #f1d8d8;
+  --c-blue-soft: #dfe6f0;
+
+  /* --------------------------------------------- Semantische Zweitbenennung */
+  --brand-navy: #0c1c33;
+  --brand-navy-soft: #1d3258;
+  --brand-gold: #a8823c;
+  --brand-gold-soft: #c69d52;
+  --status-rot: #9a3030;
+  --status-rot-soft: #f1d8d8;
+  --status-gelb: #b08820;
+  --status-gelb-soft: #f3e9c8;
+  --status-gruen: #3a7a43;
+  --status-gruen-soft: #dfeadf;
+  --status-neutral: #5a6b82;
+  --status-neutral-soft: #e8edf6;
+  --info: #3866a8;
+  --info-soft: #dfe6f0;
+  --violett: #6a4ca5;
+  --violett-soft: #ece5f6;
+
+  /* ---------------------------------------- R13: die Bereichsfamilie (ADDITIV) */
+  /* Fuenf Farbfamilien fuer Bereiche, Chips und Akzentleisten — ABGELEITET aus den Status-,
+     Info- und Violett-Tokens oben, nicht neu erfunden (Owner-Entscheid 6: bestehende Werte bleiben).
+     Je Familie drei Werte: `--bereich-X` (Akzent/Rand), `--bereich-X-ink` (Text AUF der Flaeche,
+     gemessen >= 4,5:1 — tests/schale.test.ts rechnet die WCAG-Kontraste nach) und `--bereich-X-soft`
+     (die Flaeche). ⚠ Der Akzentwert selbst ist NICHT als Text auf `-soft` freigegeben: gruen (4,20)
+     und gold (2,92) liegen darunter — deshalb der eigene `-ink`. Der Gold-AKZENT ist hue-treu
+     abgedunkelt (#a8823c laege als Rand auf der Gold-Flaeche bei 2,92:1, unter den 3:1 fuer
+     grafische Objekte; #8f6d2e = 3,94:1) — dieselbe Bewegung wie bei `--c-text-muted`. */
+  --bereich-0: #5a6b82;      --bereich-0-ink: #46566b;  --bereich-0-soft: #e8edf6;
+  --bereich-a: #3866a8;      --bereich-a-ink: #2c5390;  --bereich-a-soft: #dfe6f0;
+  --bereich-b: #3a7a43;      --bereich-b-ink: #2b5c33;  --bereich-b-soft: #dfeadf;
+  --bereich-c: #8f6d2e;      --bereich-c-ink: #7a5d10;  --bereich-c-soft: #f3e9c8;
+  --bereich-d: #6a4ca5;      --bereich-d-ink: #5b3f93;  --bereich-d-soft: #ece5f6;
+
+  /* ------------------------------------- R22: die neun NAV-WEGFARBEN (ADDITIV, THEMAFREI) */
+  /* Owner-Entscheidung vom 2026-08-18: „fuer jedes Icon in der linken Nav eine unterschiedliche
+     helle Farbe". Neun WEG-ARTEN, neun Farben — gleiche Funktion = gleiche Farbe ueber alle
+     Katalog-Gruppen hinweg (der Kanon der Rollen steht in `src/app/kontext.ts`, `NAV_WEGARTEN`).
+
+     ⚠⚠ SIE STEHEN NUR HIER IM `:root`-BLOCK — UND DAS IST ABSICHT, KEIN VERGESSENER DUNKLER SATZ.
+     Die Seitenleiste ist in BEIDEN Themen navy (feste Hexwerte in `komponenten.css`: hell
+     #101b2d→#0a1422, dunkel #06101e→#040912). Ein Token, das nur an EINER Stelle steht, kann
+     zwischen den Themenbloecken gar nicht driften — es braucht deshalb weder einen zweiten Satz
+     noch einen Drift-Waechter. Wer sie in `body.dark` wiederholt, baut die Driftmoeglichkeit
+     erst ein.
+
+     ⚠ Die Werte sind gegen ALLE fuenf realen Flaechen der Leiste gerechnet (Verlauf hell oben/unten,
+     Verlauf dunkel oben/unten, Hover #19273f, aktiv #1b2c47) — `tests/navfarben.test.ts` rechnet
+     jede Paarung nach; die schwaechste liegt bei 5,74:1, alle ueber WCAG-AA 4,5:1.
+     ⚠⚠ SEIT R24 SIND ES ACHT, NICHT NEUN (Owner-Entscheidung 7 vom 2026-08-22): mit dem Nav-Eintrag
+     „Chancen" ist `--nav-weg-chancen` (#d98cff) ERSATZLOS gefallen. `tests/navfarben.test.ts` misst
+     die Bindung Kanon ↔ Token ↔ Regel in BEIDE Richtungen — ein stehengebliebenes Token waere eine
+     Farbe ohne Rolle und risse dort.
+     ⚠ Sie sind ADDITIV: kein Bestandstoken ist bewegt (Owner-Entscheid 6). Der AKTIVE Eintrag
+     bleibt weiss — die Farbe sagt „welche Funktion", Weiss sagt „du bist hier". */
+  --nav-weg-fragebogen: #6fa8f5;
+  --nav-weg-praesentation: #4fd894;
+  --nav-weg-auswertung: #ffcc4d;
+  --nav-weg-kunden: #8fa8ff;
+  --nav-weg-kundenakte: #4fd0e8;
+  --nav-weg-start: #ff9b8a;
+  --nav-weg-katalog: #b8c4d4;
+  --nav-weg-daten: #c8e04d;
+
+  /* R21 (Entscheidung 19): WELCHES Logo eine themafolgende Flaeche zeigt (Deckblatt) — die
+     Themenwahl faellt HIER, in allen drei Bloecken, nicht in einer Komponenten-Regel (der dunkle
+     Satz steht doppelt, siehe Kopf dieser Datei). `display:none` nimmt das andere Bild auch aus
+     dem Accessibility-Baum. Die Kopfleiste braucht die Weiche nicht (immer dunkel, ein Asset). */
+  --marke-hellflaeche-anzeige: inline;
+  --marke-dunkelflaeche-anzeige: none;
+
+  /* ------------------------------------------------------- Tiefe und Radien */
+  --shadow-sm: 0 1px 2px rgba(15, 25, 40, .05);
+  --shadow: 0 2px 6px rgba(15, 25, 40, .07), 0 1px 2px rgba(15, 25, 40, .04);
+  --shadow-lg: 0 12px 28px rgba(15, 25, 40, .14), 0 4px 10px rgba(15, 25, 40, .06);
+  --r-sm: 4px;
+  --r: 6px;
+  --r-lg: 10px;
+
+  /* ------------------------------------------------------------- Typografie */
+  --tt-serif: 'Iowan Old Style', 'Georgia', serif;
+  --tt-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --tt-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* ------------------------------------------------------------------ Raster */
+  --h-topbar: 56px;
+  --w-sidebar: 248px;
+  --w-sidebar-schmal: 60px;
+
+  /* ------------------------------ Folienmarken (K138, ADDITIV, themafrei) — K141, Pflichtenheft B5 */
+  /* ⚠⚠ DIE ZAHLEN DER STUFENTAFEL, NICHT IHRE QUELLE. Jede Stufe steht einmal in
+     `pakete/kern/src/domain/folien/stufen.ts` (Name → Referenzpixel der 1280 × 720 grossen Folie);
+     hier stehen dieselben Namen und Werte als Zahl OHNE Einheit, weil das CSS der Folie sie braucht
+     (Stufe 10 schreibt die Regeln, nur innerhalb von .folie169). `tests/k138-schichten.test.ts` misst
+     beide Richtungen: kein Name hier ohne Tafel, keiner in der Tafel ohne diesen Block.
+     ⚠ NUR IM :root, wie die Nav-Wegfarben (R22): die Folie hat ein festes helles Thema (B90), und
+     eine Marke, die nur an einer Stelle steht, kann zwischen den Themenbloecken nicht driften.
+     ⚠ Der Faktor 1,25 zu den Zeichnungseinheiten steht hier NICHT — er steht genau einmal in der Tafel (D8). */
+  --folie-schrift-klein: 16;
+  --folie-schrift-normal: 22;
+  --folie-schrift-mittel: 28;
+  --folie-schrift-gross: 36;
+  --folie-schrift-titel: 44;
+  --folie-schrift-riesig: 60;
+  --folie-schrift-kennzahl: 88;
+  --folie-abstand-null: 0;
+  --folie-abstand-hauch: 4;
+  --folie-abstand-eng: 8;
+  --folie-abstand-knapp: 12;
+  --folie-abstand-normal: 16;
+  --folie-abstand-weit: 24;
+  --folie-abstand-breit: 32;
+  --folie-abstand-sehr-breit: 48;
+  --folie-radius-keiner: 0;
+  --folie-radius-klein: 8;
+  --folie-radius-mittel: 12;
+  --folie-radius-gross: 16;
+  --folie-gewicht-normal: 400;
+  --folie-gewicht-halbfett: 600;
+  --folie-gewicht-fett: 700;
+  --folie-laufweite-eng: -0.01;
+  --folie-laufweite-normal: 0;
+  --folie-laufweite-weit: 0.02;
+  --folie-laufweite-gesperrt: 0.08;
+  --folie-zeilenhoehe-eng: 1.15;
+  --folie-zeilenhoehe-mittel: 1.3;
+  --folie-zeilenhoehe-normal: 1.45;
+  --folie-zeilenhoehe-weit: 1.65;
+  --folie-rahmen-keiner: 0;
+  --folie-rahmen-fein: 1;
+  --folie-rahmen-kraeftig: 2;
+  --folie-rahmen-akzent: 3;
+  --folie-rahmen-warnung: 3;
+  --folie-rahmen-marke: 2;
+  --folie-rahmen-info: 2;
+
+  /* ------------------------------ Beamer-Anker (K149, ADDITIV) — Pflichtenheft B90, B79
+     ⚠⚠ JEDE FARBMARKE DES HELLEN SATZES BEKOMMT HIER IHREN ANKER `--hell-NAME: var(--NAME)`. Der Dateikopf warnt
+     davor, eine semantische Marke als var()-Kette zu setzen, weil sie am Deklarationsort EINFRIERT — genau diese Wirkung
+     ist hier gewollt: im :root friert der Anker den HELLEN Wert ein, denn die dunklen Werte setzt diese Datei nur auf
+     `body`. `.folie169` (komponenten.css) bindet jede Marke auf ihren Anker zurueck, und die Folie bleibt im festen
+     hellen Beamerthema, auch wenn App oder Betriebssystem dunkel stehen.
+     ⚠ Die Menge wird aus diesem Block abgeleitet und in beide Richtungen geprueft (`tests/k138-beamer.test.ts`):
+     eine neue Farbmarke ohne Anker waere auf der Folie dunkel.
+     ⚠ Die drei Folienschatten stehen mit ihren HELLEN Werten da (B79), weil gestalt.css `--schatten` und
+     `--schatten-hoch` im Dunkeln umschaltet; die Probe vergleicht sie mit den hellen Quellen. */
+  --hell-c-bg: var(--c-bg);
+  --hell-c-bg-alt: var(--c-bg-alt);
+  --hell-c-panel: var(--c-panel);
+  --hell-c-panel-alt: var(--c-panel-alt);
+  --hell-c-border: var(--c-border);
+  --hell-c-border-strong: var(--c-border-strong);
+  --hell-c-text: var(--c-text);
+  --hell-c-text-soft: var(--c-text-soft);
+  --hell-c-text-muted: var(--c-text-muted);
+  --hell-c-primary: var(--c-primary);
+  --hell-c-primary-soft: var(--c-primary-soft);
+  --hell-c-primary-ink: var(--c-primary-ink);
+  --hell-c-accent: var(--c-accent);
+  --hell-c-accent-soft: var(--c-accent-soft);
+  --hell-c-accent-ink: var(--c-accent-ink);
+  --hell-c-akzent-kante: var(--c-akzent-kante);
+  --hell-c-warn-kante: var(--c-warn-kante);
+  --hell-c-warn-ink: var(--c-warn-ink);
+  --hell-c-symbol-an: var(--c-symbol-an);
+  --hell-c-symbol-gelb: var(--c-symbol-gelb);
+  --hell-c-green: var(--c-green);
+  --hell-c-green-soft: var(--c-green-soft);
+  --hell-c-yellow: var(--c-yellow);
+  --hell-c-yellow-soft: var(--c-yellow-soft);
+  --hell-c-red: var(--c-red);
+  --hell-c-red-soft: var(--c-red-soft);
+  --hell-c-blue-soft: var(--c-blue-soft);
+  --hell-brand-navy: var(--brand-navy);
+  --hell-brand-navy-soft: var(--brand-navy-soft);
+  --hell-brand-gold: var(--brand-gold);
+  --hell-brand-gold-soft: var(--brand-gold-soft);
+  --hell-status-rot: var(--status-rot);
+  --hell-status-rot-soft: var(--status-rot-soft);
+  --hell-status-gelb: var(--status-gelb);
+  --hell-status-gelb-soft: var(--status-gelb-soft);
+  --hell-status-gruen: var(--status-gruen);
+  --hell-status-gruen-soft: var(--status-gruen-soft);
+  --hell-status-neutral: var(--status-neutral);
+  --hell-status-neutral-soft: var(--status-neutral-soft);
+  --hell-info: var(--info);
+  --hell-info-soft: var(--info-soft);
+  --hell-violett: var(--violett);
+  --hell-violett-soft: var(--violett-soft);
+  --hell-bereich-0: var(--bereich-0);
+  --hell-bereich-0-ink: var(--bereich-0-ink);
+  --hell-bereich-0-soft: var(--bereich-0-soft);
+  --hell-bereich-a: var(--bereich-a);
+  --hell-bereich-a-ink: var(--bereich-a-ink);
+  --hell-bereich-a-soft: var(--bereich-a-soft);
+  --hell-bereich-b: var(--bereich-b);
+  --hell-bereich-b-ink: var(--bereich-b-ink);
+  --hell-bereich-b-soft: var(--bereich-b-soft);
+  --hell-bereich-c: var(--bereich-c);
+  --hell-bereich-c-ink: var(--bereich-c-ink);
+  --hell-bereich-c-soft: var(--bereich-c-soft);
+  --hell-bereich-d: var(--bereich-d);
+  --hell-bereich-d-ink: var(--bereich-d-ink);
+  --hell-bereich-d-soft: var(--bereich-d-soft);
+  --hell-nav-weg-fragebogen: var(--nav-weg-fragebogen);
+  --hell-nav-weg-praesentation: var(--nav-weg-praesentation);
+  --hell-nav-weg-auswertung: var(--nav-weg-auswertung);
+  --hell-nav-weg-kunden: var(--nav-weg-kunden);
+  --hell-nav-weg-kundenakte: var(--nav-weg-kundenakte);
+  --hell-nav-weg-start: var(--nav-weg-start);
+  --hell-nav-weg-katalog: var(--nav-weg-katalog);
+  --hell-nav-weg-daten: var(--nav-weg-daten);
+  --folie-schatten-flach: 0 1px 2px rgba(15, 25, 40, .05);
+  --folie-schatten-normal: 0 1px 2px rgba(15, 25, 40, .06), 0 4px 16px rgba(15, 25, 40, .06);
+  --folie-schatten-hoch: 0 2px 4px rgba(15, 25, 40, .08), 0 12px 32px rgba(15, 25, 40, .12);
+  /* ⇒ K152 (C8): DIESELBEN drei Folienschatten als Filter fuer die Formen der Grafikebene — ein SVG-Pfad hat keinen
+     box-shadow, und eine Liste zweier Schatten laesst sich in drop-shadow() nicht aus einer Marke zerlegen. Lage fuer Lage
+     gleich; die Probe `k152-schatten` vergleicht sie mit den drei Zeilen darueber. */
+  --folie-schlagschatten-flach: drop-shadow(0 1px 2px rgba(15, 25, 40, .05));
+  --folie-schlagschatten-normal: drop-shadow(0 1px 2px rgba(15, 25, 40, .06)) drop-shadow(0 4px 16px rgba(15, 25, 40, .06));
+  --folie-schlagschatten-hoch: drop-shadow(0 2px 4px rgba(15, 25, 40, .08)) drop-shadow(0 12px 32px rgba(15, 25, 40, .12));
+}
+
+/* Die Dunkel-Tokens stehen EINMAL und werden von beiden Ausloesern geteilt.
+   ⚠ Sie liegen auf `body`, nicht auf `:root` — der Bestand tut das, damit auch der
+   body-Hintergrund greift; das Bedienmuster wird uebernommen. */
+body.dark {
+  --c-bg: #0a1220;
+  --c-bg-alt: #0f1a2c;
+  --c-panel: #152238;
+  --c-panel-alt: #1a2942;
+  --c-border: #667289;         /* S7-R1: min 3,01:1 gegen --c-panel-alt (vorher #26344c, 1,17:1) */
+  --c-border-strong: #8190ae;  /* S7-R1: min 4,54:1 gegen --c-panel-alt (vorher #3a4860, 1,58:1) */
+
+  --c-text: #e8edf6;
+  --c-text-soft: #aab4c5;
+  --c-text-muted: #8590a3;
+
+  --c-primary: #cfd6e4;
+  --c-primary-soft: #a9b7d2;
+  --c-primary-ink: #0a1220;
+  --c-accent: #dab982;
+  --c-accent-soft: #e8cf9b;
+  --c-accent-ink: #0a1220;
+  --c-akzent-kante: #dab982;   /* S7-R2: dunkel haelt der Akzent selbst (min 7,81:1) */
+  --c-warn-kante: #e0b860;     /* S17: dunkel haelt der Warnton selbst (min 7,78:1) */
+  --c-warn-ink: #e0b860;       /* dunkel: derselbe Ton traegt auch Text (8,49:1 gegen --c-panel) */
+  --c-symbol-an: #dab982;
+  --c-symbol-gelb: #e0b860;
+
+  --c-green: #6fbf7a;
+  --c-green-soft: #1f3225;
+  --c-yellow: #e0b860;
+  --c-yellow-soft: #3a2d12;
+  --c-red: #e07878;
+  --c-red-soft: #3b1d1d;
+  --c-blue-soft: #1d2a45;
+
+  --brand-navy: #cfd6e4;
+  --brand-navy-soft: #a9b7d2;
+  --brand-gold: #dab982;
+  --brand-gold-soft: #e8cf9b;
+  --status-rot: #e07878;
+  --status-rot-soft: #3b1d1d;
+  --status-gelb: #e0b860;
+  --status-gelb-soft: #3a2d12;
+  --status-gruen: #6fbf7a;
+  --status-gruen-soft: #1f3225;
+  --status-neutral: #8590a3;
+  --status-neutral-soft: #1a2942;
+  --info: #7aa0d8;
+  --info-soft: #1d2a45;
+  --violett: #a98fd6;
+  --violett-soft: #241a3a;
+
+  /* R13: Bereichsfamilie, dunkler Satz (Text = Akzent, gemessen >= 4,5:1 auf -soft). */
+  --bereich-0: #8590a3;      --bereich-0-ink: #aab4c5;  --bereich-0-soft: #1a2942;
+  --bereich-a: #7aa0d8;      --bereich-a-ink: #7aa0d8;  --bereich-a-soft: #1d2a45;
+  --bereich-b: #6fbf7a;      --bereich-b-ink: #6fbf7a;  --bereich-b-soft: #1f3225;
+  --bereich-c: #e0b860;      --bereich-c-ink: #e0b860;  --bereich-c-soft: #3a2d12;
+  --bereich-d: #a98fd6;      --bereich-d-ink: #a98fd6;  --bereich-d-soft: #241a3a;
+  /* R21: im Dunkelmodus das weisse Logo. */
+  --marke-hellflaeche-anzeige: none;
+  --marke-dunkelflaeche-anzeige: inline;
+
+  background: var(--c-bg);
+  color: var(--c-text);
+  /* Bestands-Lesbarkeitskorrektur: im Dunkeln etwas kraeftiger. */
+  font-weight: 440;
+}
+
+/* Systemwahl — greift NUR, solange der Nutzer nicht selbst entschieden hat.
+   `body.theme-hell` gewinnt, weil es spezifischer ist als `body` allein. */
+@media (prefers-color-scheme: dark) {
+  body:not(.theme-hell):not(.theme-dunkel) {
+    --c-bg: #0a1220;
+    --c-bg-alt: #0f1a2c;
+    --c-panel: #152238;
+    --c-panel-alt: #1a2942;
+    --c-border: #667289;         /* S7-R1: min 3,01:1 gegen --c-panel-alt (vorher #26344c, 1,17:1) */
+    --c-border-strong: #8190ae;  /* S7-R1: min 4,54:1 gegen --c-panel-alt (vorher #3a4860, 1,58:1) */
+
+    --c-text: #e8edf6;
+    --c-text-soft: #aab4c5;
+    --c-text-muted: #8590a3;
+
+    --c-primary: #cfd6e4;
+    --c-primary-soft: #a9b7d2;
+    --c-primary-ink: #0a1220;
+    --c-accent: #dab982;
+    --c-accent-soft: #e8cf9b;
+    --c-accent-ink: #0a1220;
+    --c-akzent-kante: #dab982;   /* S7-R2: dunkel haelt der Akzent selbst (min 7,81:1) */
+  --c-warn-kante: #e0b860;     /* S17: dunkel haelt der Warnton selbst (min 7,78:1) */
+  --c-warn-ink: #e0b860;       /* dunkel: derselbe Ton traegt auch Text (8,49:1 gegen --c-panel) */
+  --c-symbol-an: #dab982;
+  --c-symbol-gelb: #e0b860;
+
+    --c-green: #6fbf7a;
+    --c-green-soft: #1f3225;
+    --c-yellow: #e0b860;
+    --c-yellow-soft: #3a2d12;
+    --c-red: #e07878;
+    --c-red-soft: #3b1d1d;
+    --c-blue-soft: #1d2a45;
+
+    --brand-navy: #cfd6e4;
+    --brand-navy-soft: #a9b7d2;
+    --brand-gold: #dab982;
+    --brand-gold-soft: #e8cf9b;
+    --status-rot: #e07878;
+    --status-rot-soft: #3b1d1d;
+    --status-gelb: #e0b860;
+    --status-gelb-soft: #3a2d12;
+    --status-gruen: #6fbf7a;
+    --status-gruen-soft: #1f3225;
+    --status-neutral: #8590a3;
+    --status-neutral-soft: #1a2942;
+    --info: #7aa0d8;
+    --info-soft: #1d2a45;
+    --violett: #a98fd6;
+    --violett-soft: #241a3a;
+
+    --bereich-0: #8590a3;      --bereich-0-ink: #aab4c5;  --bereich-0-soft: #1a2942;
+    --bereich-a: #7aa0d8;      --bereich-a-ink: #7aa0d8;  --bereich-a-soft: #1d2a45;
+    --bereich-b: #6fbf7a;      --bereich-b-ink: #6fbf7a;  --bereich-b-soft: #1f3225;
+    --bereich-c: #e0b860;      --bereich-c-ink: #e0b860;  --bereich-c-soft: #3a2d12;
+    --bereich-d: #a98fd6;      --bereich-d-ink: #a98fd6;  --bereich-d-soft: #241a3a;
+    /* R21: Systemmodus-Spiegel der Marken-Weiche. */
+    --marke-hellflaeche-anzeige: none;
+    --marke-dunkelflaeche-anzeige: inline;
+
+    background: var(--c-bg);
+    color: var(--c-text);
+    font-weight: 440;
+  }
+}

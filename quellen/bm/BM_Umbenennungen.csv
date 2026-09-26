@@ -1,0 +1,952 @@
+﻿Alt;Neu
+Das Readout;Der Managementbericht
+das Readout;den Managementbericht
+ins Readout;in den Managementbericht
+Ins Readout;In den Managementbericht
+eines Readouts;eines Managementberichts
+des Readouts;des Managementberichts
+Readouts;Managementberichte
+Im Decision File;In der Entscheidungsvorlage
+im Decision File;in der Entscheidungsvorlage
+Decision Gates;Freigabe
+Das Decision File;Die Entscheidungsvorlage
+das Decision File;die Entscheidungsvorlage
+des Decision Files;der Entscheidungsvorlage
+des Decision File;der Entscheidungsvorlage
+dem Decision File;der Entscheidungsvorlage
+den Decision File;die Entscheidungsvorlage
+Ein Decision File;Eine Entscheidungsvorlage
+ein Decision File;eine Entscheidungsvorlage
+Dieses Decision File;Diese Entscheidungsvorlage
+dieses Decision File;diese Entscheidungsvorlage
+Ins Decision File;In die Entscheidungsvorlage
+ins Decision File;in die Entscheidungsvorlage
+zum Decision File;zur Entscheidungsvorlage
+ihr Decision File;ihre Entscheidungsvorlage
+sein Decision File;seine Entscheidungsvorlage
+kein Decision File;keine Entscheidungsvorlage
+Der Gate-Katalog;Die Leistungsphase
+Gate-Kriterien;Freigabekriterien
+der Gate-Katalog;die Leistungsphase
+den Gate-Katalog;die Leistungsphase
+des Gate-Katalogs;der Leistungsphase
+dem Gate-Katalog;der Leistungsphase
+Decision Backlogs;Entscheidungsregister
+Decision Backlog;Entscheidungsregister
+Risk Register;Risikoregister
+Early Warning;Frühwarnung
+Early Warning Logs;Frühwarnungsregister
+Early Warning Log;Frühwarnungsregister
+Issue Logs;Problemregister
+Issue Log;Problemregister
+Action Logs;Maßnahmenregister
+Action Log;Maßnahmenregister
+Change Log;Änderungsregister
+Change Logs;Änderungsregister
+Change Log;Änderungsregister
+Gate-Katalogs;Leistungsphase
+Gate-Kataloge;Leistungsphasen
+Gate-Katalog;Leistungsphase
+Decision Files;Entscheidungsvorlagen
+Decision File;Entscheidungsvorlage
+Decision-File;Entscheidungsvorlage
+Risk_Register;Risikoregister
+Decision_File;Entscheidungsvorlage
+Decision_Backlog;Entscheidungsregister
+Action_Log;Maßnahmenregister
+Change_Log;Änderungsregister
+Early_Warning_Log;Frühwarnungsregister
+Issue_Log;Problemregister
+Action-Übersicht;Maßnahmen-Übersicht
+Action-Plan;Maßnahmenplan
+Action-Pläne;Maßnahmenpläne
+Gegenmaßnahme;Risikominderung
+Gegenmaßnahmen;Risikominderungen
+Management-Readouts;Managementberichte
+Management-Readout;Managementbericht
+Readouts;Managementberichte
+Readout;Managementbericht
+Phasenregisters;Leistungsphase
+Phasenregister;Leistungsphase
+eines Gates;einer Freigabe
+keines Gates;keiner Freigabe
+dieses Gates;dieser Freigabe
+jedes Gates;jeder Freigabe
+des Gates;der Freigabe
+Des Gates;Der Freigabe
+Das Gate;Die Freigabe
+das Gate;die Freigabe
+Dem Gate;Der Freigabe
+dem Gate;der Freigabe
+Im Gate;In der Freigabe
+im Gate;in der Freigabe
+Am Gate;An der Freigabe
+am Gate;an der Freigabe
+Zum Gate;Zur Freigabe
+zum Gate;zur Freigabe
+Vom Gate;Von der Freigabe
+vom Gate;von der Freigabe
+Beim Gate;Bei der Freigabe
+beim Gate;bei der Freigabe
+Jedem Gate;Jeder Freigabe
+jedem Gate;jeder Freigabe
+JEDES Gate;JEDE Freigabe
+Jedes Gate;Jede Freigabe
+jedes Gate;jede Freigabe
+Einem Gate;Einer Freigabe
+einem Gate;einer Freigabe
+Ein Gate;Eine Freigabe
+ein Gate;eine Freigabe
+Keinem Gate;Keiner Freigabe
+keinem Gate;keiner Freigabe
+Kein Gate;Keine Freigabe
+kein Gate;keine Freigabe
+Dieses Gate;Diese Freigabe
+dieses Gate;diese Freigabe
+Diesem Gate;Dieser Freigabe
+diesem Gate;dieser Freigabe
+Welches Gate;Welche Freigabe
+welches Gate;welche Freigabe
+Naechstes Gate;Naechste Freigabe
+nächstes Gate;nächste Freigabe
+Nächstes Gate;Nächste Freigabe
+nächstem Gate;nächster Freigabe
+gleiches Gate;gleiche Freigabe
+eigenes Gate;eigene Freigabe
+Eigenes Gate;Eigene Freigabe
+betroffenes Gate;betroffene Freigabe
+zugehöriges Gate;zugehörige Freigabe
+unbekanntes Gate;unbekannte Freigabe
+offenes Gate;offene Freigabe
+kommendes Gate;kommende Freigabe
+Verknüpftes Gate;Verknüpfte Freigabe
+verknüpftes Gate;verknüpfte Freigabe
+Zugeordnetes Gate;Zugeordnete Freigabe
+zugeordnetes Gate;zugeordnete Freigabe
+maschinenlesbares Gate;maschinenlesbare Freigabe
+erfolgreichem Gate;erfolgreicher Freigabe
+Gate-Freigabeprozess;Freigabeprozess
+Gate-Freigaberechte;Freigaberechte
+Gate-Freigabe-Bühne;Freigabe-Bühne
+Gate-Freigaben;Freigaben
+Gate-Freigabe;Freigabe
+Gate-Checklisten-Fortschritt;Freigabechecklisten-Fortschritt
+Gate-Checklisten-Standards;Freigabechecklisten-Standards
+Gate-Checklisten-Vorlagen;Freigabechecklisten-Vorlagen
+Gate-Checklisten-Vorlage;Freigabechecklisten-Vorlage
+Gate-Managementbericht-Entwurf;Freigabe-Managementbericht-Entwurf
+Gate-Abnahmeprotokoll;Freigabe-Abnahmeprotokoll
+Gate-Abnahmedokument;Freigabe-Abnahmedokument
+Gate-Status-Wechsel;Freigabestatus-Wechsel
+Gate-Fallbewertung;Freigabefallbewertung
+Gate-Entscheidungen;Freigabeentscheidungen
+Gate-Wiederholungen;Freigabewiederholungen
+Gate-Unsicherheit;Freigabeunsicherheit
+Gate-Vorbereitung;Freigabevorbereitung
+Gate-Wiederholung;Freigabewiederholung
+Gate-Entscheidung;Freigabeentscheidung
+Gate-Vorbelegung;Freigabevorbelegung
+Gate-Meilensteine;Freigabemeilensteine
+Gate-Checklisten;Freigabechecklisten
+Gate-Fortschritt;Freigabefortschritt
+Gate-Druckdialog;Freigabe-Druckdialog
+Gate-Pass-Rate;Freigabe-Pass-Rate
+Gate-Prüfpunkte;Freigabeprüfpunkte
+Gate-Beschlüsse;Freigabebeschlüsse
+Gate-Rangfolge;Freigaberangfolge
+Gate-Unterlagen;Freigabeunterlagen
+Gate-Zuordnung;Freigabezuordnung
+Gate-Landkarte;Freigabelandkarte
+Gate-Zeitachse;Freigabezeitachse
+Gate-Readiness;Freigabe-Readiness
+Gate-Checkliste;Freigabecheckliste
+Gate-Kriterien;Freigabekriterien
+Gate-Disziplin;Freigabedisziplin
+Gate-Protokolle;Freigabeprotokolle
+Gate-Countdown;Freigabe-Countdown
+Gate-Unterlage;Freigabeunterlage
+Gate-Beschluss;Freigabebeschluss
+Gate-Timeline;Freigabe-Timeline
+Gate-Übergang;Freigabeübergang
+Gate-Vorschau;Freigabevorschau
+Gate-Terminen;Freigabeterminen
+Gate-Override;Freigabe-Override
+Gate-Skelette;Freigabeskelette
+Gate-Qualität;Freigabequalität
+Gate-Gremium;Freigabegremium
+Gate-Historie;Freigabehistorie
+Gate-Ergebnis;Freigabeergebnis
+Gate-Sektion;Freigabesektion
+Gate-Standard;Freigabestandard
+Gate-Nachweis;Freigabenachweis
+Gate-Skelett;Freigabeskelett
+Gate-Termine;Freigabetermine
+Gate-Auflage;Freigabeauflage
+Gate-Agenda;Freigabeagenda
+Gate-Mandat;Freigabemandat
+Gate-Vorlage;Freigabevorlage
+Gate-Praxis;Freigabepraxis
+Gate-Termin;Freigabetermin
+Gate-Fenster;Freigabefenster
+Gate-Anlage;Freigabeanlage
+Gate-Anzahl;Freigabeanzahl
+Gate-Nummer;Freigabenummer
+Gate-Rauten;Freigaberauten
+Gate-Marker;Freigabemarker
+Gate-Modell;Freigabemodell
+Gate-Detail;Freigabedetail
+Gate-Dichte;Freigabedichte
+Gate-Status;Freigabestatus
+Gate-Phasen;Freigabephasen
+Gate-Karte;Freigabekarte
+Gate-Namen;Freigabenamen
+Gate-Liste;Freigabeliste
+Gate-Daten;Freigabedaten
+Gate-Datum;Freigabedatum
+Gate-Beleg;Freigabebeleg
+Gate-Bezug;Freigabebezug
+Gate-Ebene;Freigabeebene
+Gate-Raute;Freigaberaute
+Gate-Reife;Freigabereife
+Gate-Zweck;Freigabezweck
+Gate-Logik;Freigabelogik
+Gate-No-Go;Nicht freigeben
+Gate-Name;Freigabename
+Gate-Sets;Freigabe-Sets
+Gate-Satz;Freigabesatz
+Gate-Set;Freigabe-Set
+Gate-Ziel;Freigabeziel
+Gate-IDs;Freigabe-IDs
+Gate-ID;Freigabe-ID
+Gate-Art;Freigabeart
+Gate-getakteter;Freigabegetakteter
+Gate-loses;Freigabeloses
+Phasenabschluss-Gates;Phasenabschluss-Freigaben
+Governance-Gates;Governance-Freigaben
+Standard-Gates;Standard-Freigaben
+Kunden-Gates;Kunden-Freigaben
+Demo-Gates;Demo-Freigaben
+Folge-Gates;Folge-Freigaben
+Gates-Ansicht;Freigaben-Ansicht
+Meilenstein-Gate;Meilenstein-Freigabe
+Initialisierungs-Gate;Initialisierungs-Freigabe
+Übergabe-Gate;Übergabe-Freigabe
+Gates;Freigaben
+Gate;Freigabe
+Gate- und;Freigabe- und
+Gate- &;Freigabe- &
+Gate-/;Freigabe-/
+Gate-,;Freigabe-,
+Gate-Gre…;Freigabe…
+Gate-Umbenennungen;Freigabe-Umbenennungen
+Gate-Adherence;Freigabe-Adherence
+Export-Gate;Export-Freigabe
+Sitzungs-Artefaktzuordnungen;Sitzungs-Registerdokument-Zuordnungen
+Artefaktzuordnungen;Registerdokument-Zuordnungen
+Beratungsartefakte;Beratungs-Registerdokumente
+Mindestartefakte;Mindest-Registerdokumente
+Artefaktlandkarte;Registerdokument-Landkarte
+artefaktübergreifend;registerdokumentübergreifend
+Artefaktprüfung;Registerdokument-Prüfung
+Artefaktquellen;Registerdokument-Quellen
+Folgeartefakt;Folge-Registerdokument
+Kernartefakte;Kern-Registerdokumente
+Kernartefakt;Kern-Registerdokument
+Artefaktlogik;Registerdokument-Logik
+Artefaktreife;Registerdokument-Reife
+Artefakttyps;Registerdokument-Typs
+Artefakttyp;Registerdokument-Typ
+Artefakt;Registerdokument
+im Handover;in der Übergabe
+Im Handover;In der Übergabe
+kein Handover;keine Übergabe
+Kein Handover;Keine Übergabe
+der Handover;die Übergabe
+Der Handover;Die Übergabe
+zum Handover;zur Übergabe
+Zum Handover;Zur Übergabe
+das Handover;die Übergabe
+Das Handover;Die Übergabe
+dem Handover;der Übergabe
+ein Handover;eine Übergabe
+des Handovers;der Übergabe
+Runbook;Betriebshandbuch
+Handover;Übergabe
+Handover-Runbook;Übergabe-Betriebshandbuch
+Handover-Readiness-Karte;Übergabereife-Karte
+Handover-Managementbericht;Übergabe-Managementbericht
+Projekt-Handover-Daten;Projekt-Übergabe-Daten
+Handover-Bestätigung;Übergabebestätigung
+Handover-Vorbereitung;Übergabevorbereitung
+Handover-Readiness;Übergabereife
+Handover-Checkliste;Übergabe-Checkliste
+Handover-Kriterien;Übergabekriterien
+Handover-Fähigkeit;Übergabefähigkeit
+Handover-Relevanz;Übergaberelevanz
+Handover-Freigabe;Übergabefreigabe
+Handover-Backlog;Übergabe-Backlog
+Handover-Angaben;Übergabeangaben
+Handover-Anlass;Übergabeanlass
+Handover-Lücken;Übergabelücken
+Handover-Status;Übergabestatus
+Handover-Ansatz;Übergabeansatz
+Handover-Paket;Übergabepaket
+Handover-Logik;Übergabelogik
+Handover-Stand;Übergabestand
+Handover-Owner;Übergabe-Owner
+Handover-Plan;Übergabeplan
+Handover-Kern;Übergabekern
+Handover-fähige;übergabefähige
+MVG-Handover;MVG-Übergabe
+Handover-/Follow-up-Punkte;Übergabe-/Follow-up-Punkte
+Runbook-Projektblöcke;Betriebshandbuch-Projektblöcke
+Runbook-Grundgeruest;Betriebshandbuch-Grundgeruest
+Offboarding-Runbook;Offboarding-Betriebshandbuch
+Bauherren-Runbook;Bauherren-Betriebshandbuch
+Runbook-Schritte;Betriebshandbuch-Schritte
+Runbook-Entwurf;Betriebshandbuch-Entwurf
+Runbook-Ansicht;Betriebshandbuch-Ansicht
+Runbook-Inhalte;Betriebshandbuch-Inhalte
+Runbooks;Betriebshandbücher
+Handover;Übergabe
+Runbook;Betriebshandbuch
+im Audit-Trail;in der Nachweiskette
+Im Audit-Trail;In der Nachweiskette
+am Audit-Trail;an der Nachweiskette
+vom Audit-Trail;von der Nachweiskette
+zum Audit-Trail;zur Nachweiskette
+Zum Audit-Trail;Zur Nachweiskette
+den Audit-Trail;die Nachweiskette
+Den Audit-Trail;Die Nachweiskette
+der Audit-Trail;die Nachweiskette
+Der Audit-Trail;Die Nachweiskette
+dem Audit-Trail;der Nachweiskette
+Dem Audit-Trail;Der Nachweiskette
+des Audit-Trails;der Nachweiskette
+des Audit-Trail;der Nachweiskette
+einen Audit-Trail;eine Nachweiskette
+einem Audit-Trail;einer Nachweiskette
+eines Audit-Trails;einer Nachweiskette
+ein Audit-Trail;eine Nachweiskette
+Ein Audit-Trail;Eine Nachweiskette
+keinen Audit-Trail;keine Nachweiskette
+kein Audit-Trail;keine Nachweiskette
+Kein Audit-Trail;Keine Nachweiskette
+im Audit Trail;in der Nachweiskette
+Im Audit Trail;In der Nachweiskette
+den Audit Trail;die Nachweiskette
+der Audit Trail;die Nachweiskette
+Der Audit Trail;Die Nachweiskette
+dem Audit Trail;der Nachweiskette
+des Audit Trails;der Nachweiskette
+ein Audit Trail;eine Nachweiskette
+Audit-Trail-Sprungknopf;Nachweisketten-Sprungknopf
+Audit-Trail-Eintrag;Nachweisketten-Eintrag
+Audit-Trail-Export;Nachweisketten-Export
+Audit-Trail-Limit;Nachweisketten-Limit
+RACI-Heatmap-Kopf-Clipping;RACI-Matrix-Kopf-Clipping
+RACI-Heatmap-Größenregler;RACI-Matrix-Größenregler
+RACI-Matrix-Heatmap;RACI-Matrix
+RACI-Heatmap-Achsen;RACI-Matrix-Achsen
+RACI-Heatmap-Grafik;RACI-Matrix-Grafik
+RACI-Heatmap-Größe;RACI-Matrix-Größe
+RACI-Heatmap;RACI-Matrix
+Risk-Heatmaps;Risiko-Bewertungsmatrizen
+Risk-Heatmap;Risiko-Bewertungsmatrix
+Risiko-Heatmap;Risiko-Bewertungsmatrix
+Heatmap-Klassifikation;Bewertungsmatrix-Klassifikation
+RAG-Verlaufs-Heatmap;RAG-Verlaufs-Bewertungsmatrix
+Aktivitäts-Heatmap;Aktivitäts-Bewertungsmatrix
+Domaenen-Heatmap;Domaenen-Bewertungsmatrix
+Domänen-Heatmap;Domänen-Bewertungsmatrix
+Workload-Heatmap;Workload-Bewertungsmatrix
+Heatmap-Drilldown;Bewertungsmatrix-Drilldown
+Heatmap-Quadrant;Bewertungsmatrix-Quadrant
+Heatmap-Position;Bewertungsmatrix-Position
+Mandate-Heatmap;Mandate-Bewertungsmatrix
+Par-15-Heatmap;Par-15-Bewertungsmatrix
+Inline-Heatmap;Inline-Bewertungsmatrix
+Heatmap-Ansicht;Bewertungsmatrix-Ansicht
+Heatmap-Bereich;Bewertungsmatrix-Bereich
+Heatmap-Export;Bewertungsmatrix-Export
+Heatmap-Review;Bewertungsmatrix-Review
+Heatmap-Zeilen;Bewertungsmatrix-Zeilen
+Heatmap-Größe;Bewertungsmatrix-Größe
+Heatmap-Zeile;Bewertungsmatrix-Zeile
+Heatmap-Zelle;Bewertungsmatrix-Zelle
+Heatmap-Blatt;Bewertungsmatrix-Blatt
+Heatmap-Kopf;Bewertungsmatrix-Kopf
+5×5-Heatmap;5×5-Bewertungsmatrix
+5x5-Heatmap;5x5-Bewertungsmatrix
+Protokoll-Agenda-Vorlagen;Protokoll-Tagesordnungs-Vorlagen
+Kunden-Agenda-Vorlage;Kunden-Tagesordnungs-Vorlage
+Lenkungskreis-Agenda;Lenkungskreis-Tagesordnung
+Agenda-Assistenten;Tagesordnungs-Assistenten
+Agenda-Timeboxen;Tagesordnungs-Timeboxen
+Jour-fixe-Agenda;Jour-fixe-Tagesordnung
+Protokoll-Agenda;Protokoll-Tagesordnung
+Agenda-Assistent;Tagesordnungs-Assistent
+Agenda-Generator;Tagesordnungs-Generator
+Agenda-Vorschlag;Tagesordnungs-Vorschlag
+Steering-Agenda;Lenkungskreis-Tagesordnung
+Freitext-Agenda;Freitext-Tagesordnung
+Sitzungs-Agenda;Sitzungs-Tagesordnung
+Standard-Agenda;Standard-Tagesordnung
+Agenda-Vorlagen;Tagesordnungs-Vorlagen
+Agenda-Einfügen;Tagesordnungs-Einfügen
+Agenda-Vorlage;Tagesordnungs-Vorlage
+Review-Agenda;Review-Tagesordnung
+Kunden-Agenda;Kunden-Tagesordnung
+Agenda-Zeilen;Tagesordnungs-Zeilen
+Agenda-Punkte;Tagesordnungspunkte
+Agenda-Gerüst;Tagesordnungs-Gerüst
+Agenda-Punkt;Tagesordnungspunkt
+Agenda-Liste;Tagesordnungs-Liste
+7-TOP-Agenda;7-TOP-Tagesordnung
+Agendapunkte;Tagesordnungspunkte
+Agendapunkt;Tagesordnungspunkt
+LK-Agenda;LK-Tagesordnung
+CTC-Variance-Schwelle;CTC-Abweichungs-Schwelle
+Variance-Auswertungen;Abweichungs-Auswertungen
+Variance-Eskalation;Abweichungs-Eskalation
+Variance-Analyse;Abweichungs-Analyse
+Variance-Drift;Abweichungs-Drift
+EAC-Variance;EAC-Abweichung
+CTC-Variance;CTC-Abweichung
+Variances;Abweichungen
+Audit-Trails;Nachweisketten
+Audit Trails;Nachweisketten
+Audit-Trail;Nachweiskette
+Audit Trail;Nachweiskette
+Heatmaps;Bewertungsmatrizen
+Heatmap;Bewertungsmatrix
+Agenden;Tagesordnungen
+Agenda;Tagesordnung
+Variance;Abweichung
+Die Severity;Der Schweregrad
+die Severity;der Schweregrad
+Der Severity;Dem Schweregrad
+der Severity;dem Schweregrad
+eine Severity;ein Schweregrad
+Eine Severity;Ein Schweregrad
+einer Severity;einem Schweregrad
+keine Severity;kein Schweregrad
+jede Severity;jeder Schweregrad
+diese Severity;dieser Schweregrad
+die hoechste Severity;der hoechste Schweregrad
+die höchste Severity;der höchste Schweregrad
+die hoechste Severity;der hoechste Schweregrad
+der hoechsten Severity;dem hoechsten Schweregrad
+der höchsten Severity;dem höchsten Schweregrad
+die fremde Severity;der fremde Schweregrad
+Das Sponsorship;Die Traegerschaft
+das Sponsorship;die Trägerschaft
+des Sponsorships;der Trägerschaft
+dem Sponsorship;der Trägerschaft
+ein Sponsorship;eine Trägerschaft
+kein Sponsorship;keine Trägerschaft
+Projekt-Sponsorenrolle;Rolle des Projektauftraggebers
+Sponsor-Unterschrift;Unterschrift des Projektauftraggebers
+Sponsor-Commitment;Zusage des Projektauftraggebers
+Sponsor-Interviews;Interviews mit dem Projektauftraggeber
+Sponsor-Interview;Interview mit dem Projektauftraggeber
+Sponsorwechsel;Wechsel des Projektauftraggebers
+Sponsor-/Bauherrenklärung;Projektauftraggeber-/Bauherrenklärung
+Sponsorship;Trägerschaft
+Sponsors;Projektauftraggebers
+Mitigationsoptionen;Optionen zur Risikominderung
+Mitigation-Wirksamkeit;Wirksamkeit der Risikominderung
+Mitigations-Actions;Maßnahmen zur Risikominderung
+Mitigations-Action;Maßnahme zur Risikominderung
+Mitigation-Action;Maßnahme zur Risikominderung
+Mitigation-Tracking;Verfolgung der Risikominderung
+Mitigationsplan;Risikominderungsplan
+Mitigation-Plan;Risikominderungsplan
+Risk-Mitigation;Risikominderung
+fremde-Severity-Zaehlform;fremde-Schweregrad-Zaehlform
+Quadrant-Severity;Quadranten-Schweregrad
+Severity-Stufen;Schweregrad-Stufen
+Severity-Filter;Schweregrad-Filter
+Severity-Regexe;Schweregrad-Regexe
+Best Practices;Praxistipps
+Decision Readiness;Entscheidungsreife
+Best Practice;Praxistipp
+Mitigations;Risikominderungen
+Mitigation;Risikominderung
+Severity;Schweregrad
+Sponsoren;Projektauftraggeber
+Sponsor;Projektauftraggeber
+Actuals;Ist-Kosten
+Decision-Backlog-Startsatz;Entscheidungsregister-Startsatz
+Decision-Backlog-Assistent;Entscheidungsregister-Assistent
+Decision-Backlog-Pflege;Entscheidungsregister-Pflege
+Decision-Backlog;Entscheidungsregister
+Verbesserungsbacklog;Verbesserungs-Arbeitsvorrat
+Follow-up-Backlog;Follow-up-Arbeitsvorrat
+Übergabe-Backlog;Übergabe-Arbeitsvorrat
+Backlog-Eintrag;Arbeitsvorrats-Eintrag
+Action-Backlog;Action-Arbeitsvorrat
+Reset-Backlog;Reset-Arbeitsvorrat
+aktualisiertes Backlog;aktualisierter Arbeitsvorrat
+Freigabe-Timeline;Freigabe-Zeitachse
+Timeline-Zeitfenster;Zeitachsen-Zeitfenster
+Timeline-Übersicht;Zeitachsen-Übersicht
+Timeline-Legende;Zeitachsen-Legende
+Timeline-Marker;Zeitachsen-Marker
+Traceability-Features;Nachverfolgbarkeits-Features
+Traceability-Fehler;Nachverfolgbarkeits-Fehler
+Contingency-Budget;Risikoreserve-Budget
+Contingency-Einsatz;Risikoreserve-Einsatz
+Bewertungsmatrix-Drilldown;Bewertungsmatrix-Detailansicht
+Drilldown-Triggerwoerter;Detailansicht-Triggerwoerter
+Auslastungs-Drilldown;Auslastungs-Detailansicht
+Drilldown-Fixture;Detailansicht-Fixture
+Drilldown-Faenger;Detailansicht-Faenger
+KPI-Drilldown;KPI-Detailansicht
+KG-Drilldown;KG-Detailansicht
+Action-Burndown;Action-Abarbeitungsverlauf
+Risiko-Burndown;Risiko-Abarbeitungsverlauf
+Tagesordnungs-Timeboxen;Tagesordnungs-Zeitrahmen
+beziehungsweise Estimate at Completion und;beziehungsweise die erwarteten Gesamtkosten und
+Estimate at Completion = Ist-Kosten;Erwartete Gesamtkosten = Ist-Kosten
+als Single Source of Truth;als zentrale Datenquelle
+(Single Source of Truth);(zentrale Datenquelle)
+Single Source of Truth;Zentrale Datenquelle
+Decision Principles;Entscheidungsgrundsätze
+Readiness-Check;Reifegradanalyse
+Readiness Check;Reifegradanalyse
+Lessons Learned;Erkenntnisse
+Change Control;Änderungssteuerung
+Residual Risk;Restrisiko
+Traceability;Nachverfolgbarkeit
+Contingency;Risikoreserve
+Deliverables;Arbeitsergebnisse
+Guardrails;Rahmenbedingungen
+Decision-Principles;Entscheidungsgrundsätze
+Guardrail;Rahmenbedingung
+Timeboxen;Zeitrahmen
+Drilldowns;Detailansichten
+Drilldown;Detailansicht
+Burndown;Abarbeitungsverlauf
+Timeline;Zeitachse
+Backlogs;Arbeitsvorräte
+Backlog;Arbeitsvorrat
+Coaching der Owner;Coaching der verantwortlichen Rollen
+Rückmeldung der Owner;Rückmeldung der verantwortlichen Rollen
+verantwortliche Rolle</b> (Owner);verantwortliche Rolle</b>
+<th>Owner (verantwortliche Rolle)</th>;<th>Verantwortlich</th>
+"Titel	Owner	";"Titel	Verantwortlich	"
+Titel\tOwner\t;Titel\tVerantwortlich\t
+Register-Owner-Kanon;Register-Verantwortlichen-Kanon
+Owner-Doppelbelegungen;Verantwortlichkeits-Doppelbelegungen
+Owner-Seed-Kanon;Verantwortlichkeits-Seed-Kanon
+Owner-Zuweisung;Verantwortlichkeits-Zuweisung
+Owner-Vorschlag;Verantwortlichkeits-Vorschlag
+Eintrags-Owner;Eintrags-Verantwortliche
+Owner-Übergabe;Verantwortlichkeits-Übergabe
+Übergabe-Owner;Übergabe-Verantwortliche
+Register-Owner;Register-Verantwortliche
+Default-Owner;Default-Verantwortliche
+Kunden-Owner;Kunden-Verantwortliche
+Risiko-Owner;Risiko-Verantwortliche
+Action-Owner;Action-Verantwortliche
+Risk-Owner;Risk-Verantwortliche
+PMO-Owner;PMO-Verantwortliche
+Owner-Klärung;Verantwortlichkeits-Klärung
+Owner-Register;Verantwortlichkeits-Register
+Owner-Verweis;Verantwortlichkeits-Verweis
+Owner-Blöcke;Verantwortlichkeits-Blöcke
+Owner-Felder;Verantwortlichkeits-Felder
+Owner-Lücken;Verantwortlichkeits-Lücken
+Owner-Kanon;Verantwortlichkeits-Kanon
+Owner-Logik;Verantwortlichkeits-Logik
+Owner-Gaps;Verantwortlichkeits-Gaps
+Owner-Feld;Verantwortlichkeits-Feld
+Ownerliste;Verantwortlichenliste
+Owner-/Mandats-Felder;Verantwortlichkeits-/Mandats-Felder
+Owner-, Accountable-;Verantwortlichkeits-, Accountable-
+Owner-/RACI-Last;Verantwortlichkeits-/RACI-Last
+verbindlichem Owner;verbindlicher verantwortlicher Rolle
+gesetztem Owner;gesetzter verantwortlicher Rolle
+benannten Owner;benannte verantwortliche Rolle
+gleichen Owner;gleiche verantwortliche Rolle
+gleicher Owner;gleiche verantwortliche Rolle
+Fehlende Owner;Fehlende verantwortliche Rollen
+fehlende Owner;fehlende verantwortliche Rollen
+keinen Owner;keine verantwortliche Rolle
+klaren Owner;klare verantwortliche Rolle
+neuem Owner;neuer verantwortlicher Rolle
+neuen Owner;neue verantwortliche Rolle
+deren Owner;deren verantwortliche Rolle
+einen Owner;eine verantwortliche Rolle
+einem Owner;einer verantwortlichen Rolle
+Alle Owner;Alle verantwortlichen Rollen
+Kein Owner;Keine verantwortliche Rolle
+kein Owner;keine verantwortliche Rolle
+sein Owner;seine verantwortliche Rolle
+Ein Owner;Eine verantwortliche Rolle
+ein Owner;eine verantwortliche Rolle
+Der Owner;Die verantwortliche Rolle
+der Owner;die verantwortliche Rolle
+den Owner;die verantwortliche Rolle
+vom Owner;von der verantwortlichen Rolle
+mit Owner;mit verantwortlicher Rolle
+nach Owner;nach verantwortlicher Rolle
+je Owner;je verantwortlicher Rolle
+mit Ownern;mit verantwortlichen Rollen
+den Ownern;den verantwortlichen Rollen
+klaren Ownern;klaren verantwortlichen Rollen
+benannten Ownern;benannten verantwortlichen Rollen
+Ownern;verantwortlichen Rollen
+Owner;verantwortliche Rolle
+"Ist-Kosten"",""Commitments";"Ist-Kosten"",""Gebundene Kosten"
+Forecast-to-Complete-Schätzung;Restkostenprognose
+Worst-Forecast-Szenarien;Worst-Prognose-Szenarien
+Forecast-Projektion-Button;Prognose-Projektion-Button
+Forecast-Aktualisierung;Prognose-Aktualisierung
+Forecast-Kommentierung;Prognose-Kommentierung
+Forecast-to-Complete;Restkostenprognose
+Forecast-Abweichungen;Prognose-Abweichungen
+Forecast-Verknüpfung;Prognose-Verknüpfung
+Forecast-Projektion;Prognose-Projektion
+Forecast-Rebaseline;Prognose-Rebaseline
+Forecast-Szenarien;Prognose-Szenarien
+Forecast-Auswirkung;Prognose-Auswirkung
+Forecast-Kommentar;Prognose-Kommentar
+Forecast-Disziplin;Prognose-Disziplin
+Quartals-Forecast;Quartals-Prognose
+Forecast-Ansicht;Prognose-Ansicht
+Forecast-Eintrag;Prognose-Eintrag
+Forecast-Bericht;Prognose-Bericht
+Forecast-Signal;Prognose-Signal
+Forecast-Review;Prognose-Review
+Forecast-Zyklus;Prognose-Zyklus
+Forecast-Daten;Prognose-Daten
+Forecast-Drift;Prognose-Drift
+Forecast-Link;Prognose-Link
+Forecast-/CTC-Drift;Prognose-/CTC-Drift
+Forecast Accuracy;Prognosegüte
+Forecasts;Prognosen
+Reporting-Overhead;Berichtsaufwand
+Reporting-Perioden;Berichtsperioden
+Reporting-Periode;Berichtsperiode
+Reporting-Sichten;Berichtssichten
+Reporting-Bühne;Berichts-Bühne
+Reporting-Stand;Berichtsstand
+Standard-Reporting;Standard-Berichterstattung
+Reporting '+;Berichtsperiode '+
+Stakeholder-Veränderungen;Beteiligten-Veränderungen
+Stakeholder-Widerstand;Widerstand von Beteiligten
+Stakeholder-Management;Beteiligten-Management
+Stakeholder-Interessen;Interessen der Beteiligten
+Stakeholder-Register;Beteiligten-Register
+Stakeholder-Position;Beteiligten-Position
+Stakeholder-Kurzinfo;Beteiligten-Kurzinfo
+Stakeholder-Mapping;Beteiligten-Mapping
+Stakeholder-Pflege;Beteiligten-Pflege
+Stakeholder-Matrix;Beteiligten-Matrix
+Stakeholder-Liste;Beteiligten-Liste
+Stakeholder-Grid;Beteiligten-Grid
+Stakeholdergruppe;Beteiligtengruppe
+Stakeholdern;Beteiligten
+Onboarding-Checkliste;Einführungs-Checkliste
+Onboarding-Dokument;Einführungsdokument
+Rollen-Onboarding;Rolleneinführung
+Kunden-Rollout;Kunden-Einführung
+Den Kunden-Rollout;Die Kunden-Einführung
+den Kunden-Rollout;die Kunden-Einführung
+den Forecast-to-Complete;die Restkostenprognose
+für den <b>Kunden-Rollout</b>;für die <b>Kunden-Einführung</b>
+Der Forecast liegt nach der Sitzung, in der er gebraucht würde;Die Prognose liegt nach der Sitzung, in der sie gebraucht würde
+ein statischer Forecast;eine statische Prognose
+Erstellt Forecast;Erstellt Prognosen
+Der Forecast;Die Prognose
+der Forecast;die Prognose
+den Forecast;die Prognose
+dem Forecast;der Prognose
+des Forecast;der Prognose
+kein Forecast;keine Prognose
+im Forecast;in der Prognose
+statt blossem Reporting;statt bloßer Berichterstattung
+statt bloßem Reporting;statt bloßer Berichterstattung
+kein Reporting;keine Berichterstattung
+den späteren Rollout;die spätere Einführung
+Beim Onboarding;Bei der Einführung
+Bei Onboarding;Bei der Einführung
+für Onboarding;für die Einführung
+die ersten Stakeholder;die ersten Beteiligten
+ersten Stakeholder;ersten Beteiligten
+aller Stakeholder;aller Beteiligten
+je Stakeholder;je Beteiligtem
+(in Trend-Analytics);(in der Trendanalyse)
+in <b>Trend-Analytics</b> integriert;in die <b>Trendanalyse</b> integriert
+nach Trend-Analytics um;zur Trendanalyse um
+Verwaltung in Trend-Analytics;Verwaltung in der Trendanalyse
+mit Domänen-Scores;mit Domänen-Punktwerten
+Forecast to Complete;Restkostenprognose
+Preflight Check;Vorprüfung
+Role Onboarding;Rolleneinführung
+Trend-Analytics;Trendanalyse
+Trend Analytics;Trendanalyse
+Domänen-Scores;Domänen-Punktwerte
+Domaenen-Scores;Domaenen-Punktwerte
+Stakeholder;Beteiligte
+Commitments;gebundene Kosten
+Onboarding;Einführung
+Reporting;Berichterstattung
+Forecast;Prognose
+Rollout;Einführung
+Quartals-Portfolio-Review;Quartals-Portfolio-Prüfung
+Bewertungsmatrix-Review;Bewertungsmatrix-Prüfung
+dem wöchentlichen Datenqualitäts-Review;der wöchentlichen Datenqualitäts-Prüfung
+Datenqualitäts-Review;Datenqualitäts-Prüfung
+Regelbetriebs-Review;Regelbetriebs-Prüfung
+Review-Tagesordnung;Tagesordnung der Prüfung
+Terminplan-Review;Terminplan-Prüfung
+Portfolio-Review;Portfolio-Prüfung
+Review-Ergebnisse;Prüfergebnisse
+Security-Review;Sicherheitsprüfung
+Lenkungs-Review;Lenkungs-Prüfung
+Audit-Reviewen;Audit-Prüfungen
+Charter-Review;Charter-Prüfung
+Kosten-Review;Kosten-Prüfung
+Review-Zyklen;Prüfzyklen
+Review-Frist;Prüffrist
+Q2-Review;Q2-Prüfung
+Prognose-Review;Prognose-Prüfung
+Review & Abstimmung;Prüfung & Abstimmung
+Quartalsweise strukturierter Review;Quartalsweise strukturierte Prüfung
+dem quartalsweisen Review;der quartalsweisen Prüfung
+vom adversarialen Review;von der adversarialen Prüfung
+dem adversarialen Review;der adversarialen Prüfung
+der adversariale Review;die adversariale Prüfung
+beim nächsten Review;bei der nächsten Prüfung
+im nächsten Review;in der nächsten Prüfung
+die derselbe Review;die dieselbe Prüfung
+zu diesem Review;zu dieser Prüfung
+aus dem Review;aus der Prüfung
+seit dem Review;seit der Prüfung
+bis zum Review;bis zur Prüfung
+für ein Review;für eine Prüfung
+für das Review;für die Prüfung
+aus Review;aus der Prüfung
+im Review;in der Prüfung
+Ein Aging-Review;Eine Alterungsprüfung
+Reviews;Prüfungen
+Review;Prüfung
+Auto-Snapshot-Einstellung;Einstellung der automatischen Momentaufnahme
+Auto-Snapshot-Karte;Karte der automatischen Momentaufnahme
+Snapshot-Datenpunkte;Datenpunkte der Momentaufnahmen
+Snapshot-Historie;Momentaufnahme-Historie
+Snapshot-Vergleich;Momentaufnahme-Vergleich
+Snapshot-Rhythmus;Momentaufnahme-Rhythmus
+Snapshot-Bestand;Momentaufnahme-Bestand
+Snapshot-Anlage;Anlage einer Momentaufnahme
+Snapshot-Limits;Momentaufnahme-Limits
+Snapshot-Limit;Momentaufnahme-Limit
+Baseline-Snapshot;Baseline-Momentaufnahme
+JSON-Snapshot;JSON-Momentaufnahme
+KG-Snapshots;KG-Momentaufnahmen
+KG-Snapshot;KG-Momentaufnahme
+Auto-Snapshot;Auto-Momentaufnahme
+gegenüber dem letzten Snapshot;gegenüber der letzten Momentaufnahme
+seit letztem Snapshot;seit der letzten Momentaufnahme
+dem ersten Snapshot;der ersten Momentaufnahme
+den ERSTEN Snapshot;die ERSTE Momentaufnahme
+jeder neue Snapshot;jede neue Momentaufnahme
+jeder Snapshot;jede Momentaufnahme
+ist ein Snapshot;ist eine Momentaufnahme
+Einen Snapshot;Eine Momentaufnahme
+einen Snapshot;eine Momentaufnahme
+Dieser Snapshot;Diese Momentaufnahme
+Manueller Snapshot;Manuelle Momentaufnahme
+Initialer Snapshot;Initiale Momentaufnahme
+Letzter Snapshot;Letzte Momentaufnahme
+lokaler Snapshot;lokale Momentaufnahme
+KEIN Snapshot;KEINE Momentaufnahme
+gegen Snapshot vom;gegen die Momentaufnahme vom
+einen JSON-Snapshot;eine JSON-Momentaufnahme
+kein Auto-Snapshot;keine Auto-Momentaufnahme
+den eingebauten Auto-Snapshot;die eingebaute Auto-Momentaufnahme
+Kein Vergleichs-Snapshot;Keine Vergleichs-Momentaufnahme
+dem Monats-Snapshot;der Monats-Momentaufnahme
+Snapshots;Momentaufnahmen
+Snapshot;Momentaufnahme
+Detail-Drawer;Detailbereich
+Rollen-Drawer;Rollen-Detailbereich
+Projekt-Drawer;Projekt-Detailbereich
+Knoten-Drawer;Knoten-Detailbereich
+Datensatz-Drawer;Datensatz-Detailbereich
+Struktur-Drawer;Struktur-Detailbereich
+Chart-Drawer;Chart-Detailbereich
+Drawer-Breite;Detailbereich-Breite
+Drawer-Kopf;Detailbereich-Kopf
+Drawer-Fehler;Detailbereich-Fehler
+Drawer-Editor;Detailbereich-Editor
+Drawer-Sprüngen;Detailbereich-Sprüngen
+Drawer-Graph-Tab;Detailbereich-Graph-Tab
+Drawer-Graphen;Detailbereich-Graphen
+Drawer-Graph;Detailbereich-Graph
+und Drawer treffen;und Detailbereiche treffen
+Drawer;Detailbereich
+Scope-Drift;Umfangs-Drift
+Scope-Changes;Umfangs-Changes
+Scope-Change;Umfangs-Change
+Scope-Anpassungen;Umfangsanpassungen
+Scope-Erweiterung;Umfangserweiterung
+Scope-Wirkung;Umfangswirkung
+Scope-Creep;Umfangsausweitung
+Struktur-Scope;Struktur-Umfang
+Scope-, Termin-;Umfangs-, Termin-
+Termin-, Scope- und;Termin-, Umfangs- und
+Scope-/Budget-Drift;Umfangs-/Budget-Drift
+Out-of-Scope;Nicht im Leistungsumfang
+Scopes, Profil;Bereiche, Profil
+Scope;Umfang
+Decision-Readiness-Checklisten;Entscheidungsreife-Checklisten
+Decision-Readiness-Checkliste;Entscheidungsreife-Checkliste
+Decision-Readiness-Kriterien;Entscheidungsreife-Kriterien
+Decision-Readiness-Check;Entscheidungsreife-Check
+Decision-Readiness;Entscheidungsreife
+Governance-Readiness;Governance-Reifegrad
+Governance Readiness;Governance-Reifegrad
+Freigabe-Readiness;Freigabe-Reifegrad
+Gesamt-Readiness;Gesamt-Reifegrad
+Reset-Readiness;Reset-Reifegrad
+MVG-Readiness;MVG-Reifegrad
+G2-Readiness;G2-Reifegrad
+Readiness-Proben-Entscheidung;Reifegrad-Proben-Entscheidung
+Readiness-Checkliste;Reifegrad-Checkliste
+Readiness-Assessment;Reifegrad-Assessment
+Readiness-Schwellen;Reifegrad-Schwellen
+Readiness-Bewertung;Reifegrad-Bewertung
+Readiness-Kriterien;Reifegrad-Kriterien
+Readiness-Anzeige;Reifegrad-Anzeige
+Readiness-Bericht;Reifegrad-Bericht
+Readiness-Prüfung;Reifegrad-Prüfung
+Readiness-Befund;Reifegrad-Befund
+Readiness-Panel;Reifegrad-Panel
+Readiness-Trend;Reifegrad-Trend
+Readiness-Brief;Reifegrad-Brief
+Readiness-Karte;Reifegrad-Karte
+Readiness-Kanon;Reifegrad-Kanon
+Readiness-Bühne;Reifegrad-Bühne
+Readiness-Check;Reifegradanalyse
+Readiness-Satz;Reifegrad-Satz
+Readiness-Zahl;Reifegrad-Zahl
+Readiness-Wrap;Reifegrad-Wrap
+Readiness-Score;Reifegrad-Punktwert
+Reifegrad-Score;Reifegrad-Punktwert
+Datenqualitäts-Score;Datenqualitäts-Punktwert
+Governance-Score;Governance-Punktwert
+Assessment-Score;Assessment-Punktwert
+Optionen-Scores;Optionen-Punktwerte
+Exposure-Score;Exposure-Punktwert
+Antwort-Score;Antwort-Punktwert
+Gesamt-Score;Gesamt-Punktwert
+MCDA-Score;MCDA-Punktwert
+Domaenen-Score;Domaenen-Punktwert
+Risiko-Score;Risiko-Punktwert
+Risk-Score;Risiko-Punktwert
+Score-Verlauf;Punktwert-Verlauf
+Score-Bereich;Punktwert-Bereich
+Score-Klassen;Punktwert-Klassen
+Score-Regel;Punktwert-Regel
+Gesamtscore;Gesamtpunktwert
+Scorelogik;Punktwertlogik
+Scorekarte;Punktwertkarte
+Scores;Punktwerte
+Score;Punktwert
+Readiness;Reifegrad
+High-Priority Decisions ohne Evidence;High-Priority-Entscheidungen ohne Nachweis
+Decision Log;Entscheidungsregister
+Decision Need;Entscheidungsbedarf
+Decision Pack;Entscheidungspaket
+Decision-Pack;Entscheidungspaket
+Decision Input;Entscheidungsgrundlage
+Hängt ab von (Decisions);Hängt ab von (Entscheidungs-IDs)
+Entscheidungsreife Decisions;Beschlussreife Entscheidungen
+entscheidungsreife Decisions;beschlussreife Entscheidungen
+entscheidungsreife Decision;beschlussreife Entscheidung
+High-Priority Decisions;High-Priority-Entscheidungen
+High-Priority Decision;High-Priority-Entscheidung
+Decision-ID-Spalten;Entscheidungs-ID-Spalten
+Decision-ID-System;Entscheidungs-ID-System
+Decision-IDs;Entscheidungs-IDs
+Decision IDs;Entscheidungs-IDs
+Decision-ID;Entscheidungs-ID
+Decision-Nachweis;Entscheidungsnachweis
+Decision-Unterlagen;Entscheidungsunterlagen
+Decision-Wertgrenze;Entscheidungs-Wertgrenze
+Decision-Lifecycle;Entscheidungs-Lebenszyklus
+Decision Lifecycle;Entscheidungs-Lebenszyklus
+Decision-Lebenszyklus;Entscheidungs-Lebenszyklus
+Decision-Stau;Entscheidungsstau
+Decision-Velocity;Entscheidungsgeschwindigkeit
+Decision-Bedarfe;Entscheidungsbedarfe
+Decision-Bedarf;Entscheidungsbedarf
+Decision-Fälligkeiten;Entscheidungs-Fälligkeiten
+Decision-Fälligkeit;Entscheidungs-Fälligkeit
+Decision-Fällig;Entscheidung fällig
+Decision-Update;Entscheidungs-Update
+Decision-Liste;Entscheidungsliste
+Decision-Listenrand;Entscheidungslisten-Rand
+Decision-Prozesse;Entscheidungsprozesse
+Decision-Spalte;Entscheidungsspalte
+Decision-Status;Entscheidungsstatus
+Decision-Übersicht;Entscheidungsübersicht
+Decision-Vorlage;Entscheidungsvorlage
+Decision-Accountable;Entscheidungs-Accountable
+Decision-Eintrag;Entscheidungseintrag
+Decision-Titel;Entscheidungs-Titel
+Decision-Link;Entscheidungs-Link
+Decision Link;Entscheidungs-Link
+Decision-Workflow;Entscheidungs-Workflow
+Decision-Bezug;Entscheidungsbezug
+Decision-Reife;Entscheidungsreife
+Decision-Navigator;Entscheidungs-Navigator
+Decision- und;Entscheidungs- und
+Decision-,;Entscheidungs-,
+Decision-/;Entscheidungs-/
+High-Priority-Decisions;High-Priority-Entscheidungen
+Vergabestrategie-Decision;Vergabestrategie-Entscheidung
+Architektur-Decisions;Architektur-Entscheidungen
+Compliance-Decisions;Compliance-Entscheidungen
+Sonderformat-Decisions;Sonderformat-Entscheidungen
+Vergabe-Decisions;Vergabe-Entscheidungen
+Vergabe-Decision;Vergabe-Entscheidung
+Top-5-Decisions;Top-5-Entscheidungen
+Seed-Decisions;Seed-Entscheidungen
+Freigabe-Decision;Freigabeentscheidung
+High-Prio-Decision;High-Prio-Entscheidung
+Ketten-Decision;Ketten-Entscheidung
+Import-Decision;Import-Entscheidung
+Demo-Decision;Demo-Entscheidung
+Decision-Frist;Entscheidungs-Frist
+Decision-Limit;Entscheidungs-Limit
+Decision-Versionen;Entscheidungs-Versionen
+Decision-Objekt;Entscheidungs-Objekt
+Decision-Verdikt;Entscheidungs-Verdikt
+Decision-Flow;Entscheidungs-Flow
+Decision-Tabelle;Entscheidungstabelle
+Decision-Fixture;Entscheidungs-Fixture
+Decision-Karte;Entscheidungskarte
+zu den Top-Decisions;zu den wichtigsten Entscheidungen
+Top-Decisions/-Risiken/-Frühwarnungen;wichtigste Entscheidungen, Top-Risiken und Top-Frühwarnungen
+Top-Decisions;wichtigste Entscheidungen
+Top Decisions/Risks/EWs auswählen;Wichtigste Entscheidungen/Risks/EWs auswählen
+Top Decisions/Risks/EWs;wichtigste Entscheidungen/Risks/EWs
+>Top Decisions</h2>;>Wichtigste Entscheidungen</h2>
+Top Decisions (IDs);Wichtigste Entscheidungen (IDs)
+Top Decisions;Wichtigste Entscheidungen
+Decisions;Entscheidungen
+Decision;Entscheidung
+Trade-Off;Kompromiss
+Trade-Offs;Kompromisse
+Trade-off;Kompromiss
+Trade-offs;Kompromisse
+Re-Baseline;Bewertung
+Change;Änderung
+Issue;Problem
+Changes;Änderungen
+Action;Maßnahme

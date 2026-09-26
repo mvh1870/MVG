@@ -1,0 +1,11 @@
+{
+  "_kommentar": ["Mini-Liste für tests/begriffe.test.ts (CLI-Lauf); gleiche Form wie werkzeuge/begriffe.json."],
+  "pfade": ["inhalte/**/*.md", "src/**/*.ts"],
+  "ausnahmen": ["inhalte/kompass.md"],
+  "verboten": [
+    { "muster": "\\bG\\s?[0-9](\\s?[–-]\\s?G?\\s?[0-9])?\\b", "flags": "u", "statt": "Freigabe LPH n / LPH 0–9" },
+    { "muster": "\\bGates?\\b", "flags": "iu", "statt": "Freigabe" },
+    { "muster": "\\bScope\\b", "flags": "u", "statt": "Projektumfang" },
+    { "muster": "\\bRisk\\b", "flags": "u", "statt": "Risiko" }
+  ]
+}

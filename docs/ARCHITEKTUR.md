@@ -54,8 +54,9 @@ quellen/ + inhalte/  ──werkzeuge (Node)──►  src/generiert/ (ignoriert)
 - Budget < 4 MB; `npm run bau:pruefe` baut zweimal und verlangt Byte-Gleichheit.
 
 ## Prüfkette `npm run pruefe`
-`typen` → `test` → `inhalte --pruefe` → `begriffe` → `bau --pruefe` (zweimal, identisch, Größe) → `oberflaeche` (Browser).
-Findet `oberflaeche` keinen Browser, versucht es in der Cloud einmal `npx playwright install chromium`; gelingt das nicht, meldet es „übersprungen“ (gelb, nicht rot) und nennt den Grund – der Befund gehört dann in die Übergabe.
+`inhalte --pruefe` → `typen` → `test` → `begriffe` → `bau --pruefe` (zweimal, identisch, Größe) → `oberflaeche` (Browser).
+`inhalte` läuft zuerst, weil `src/generiert/inhalte.json` (ignoriert) auf einem frischen Klon erst erzeugt werden muss, bevor Typen und Tests sie lesen. `inhalte --pruefe` prüft die fertige JSON auch auf verbotene Begriffe (samt Whitepaper-Text und Glossar).
+Findet `oberflaeche` keinen Browser, versucht es in der Cloud (`CLAUDE_CODE_REMOTE=true`) einmal `npx playwright install chromium`; gelingt das nicht, meldet es „übersprungen“ (Exitcode 3 = gelb, nicht rot) und nennt den Grund – der Befund gehört dann in die Übergabe. In GitHub Actions (`GITHUB_ACTIONS=true`) oder mit `MVG_BROWSER_PFLICHT=1` ist ein fehlender Browser rot.
 
 ## Namen
 Deutsche Bezeichner in ASCII-Umschrift (`waehleOption`, `oeffentlich`, `schritt`), Typen in PascalCase (`Zustand`, `Station`), Dateien klein mit Bindestrich. Kommentare erklären das Warum.

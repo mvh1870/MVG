@@ -1,0 +1,56 @@
+# Prüfkette in GitHub Actions (P0.4): dieselbe Kette wie lokal, `npm run pruefe`.
+# Bilder der Oberflächenprüfung und der Mitschnitt der Kette werden als Artefakte abgelegt.
+name: pruefe
+
+on:
+  push:
+    branches: [claude/haus, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pruefe-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  kette:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Abhängigkeiten
+        run: npm ci
+
+      - name: Browser für die Oberflächenprüfung
+        run: npx playwright install --with-deps chromium
+
+      - name: Kette
+        env:
+          MVG_BROWSER_PFLICHT: '1'
+        run: npm run pruefe
+
+      - name: Bilder der Oberflächenprüfung
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oberflaeche
+          path: tmp/oberflaeche
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Mitschnitt der Kette
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kette
+          path: tmp/kette
+          if-no-files-found: ignore
+          retention-days: 14

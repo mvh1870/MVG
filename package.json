@@ -5,7 +5,7 @@
   "description": "Minimum Viable Governance – interaktives Whitepaper von Bauherr Mentoren (Story · Theorie · Explore), gebaut als eine HTML-Datei",
   "type": "module",
   "engines": {
-    "node": ">=24.15.0"
+    "node": ">=22.18.0"
   },
   "scripts": {
     "bau": "node werkzeuge/bau.mjs",

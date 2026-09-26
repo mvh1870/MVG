@@ -55,6 +55,8 @@ Maßgeblich ist der Text des Whitepapers V1.2 (O-15), danach die Companion-Termi
 | gerichtsfest | organisationsfest, nachweisfähig |
 | Minimal Viable Governance | Minimum Viable Governance |
 
+Hinweis zu Zitaten: Das Whitepaper schreibt im kanonischen Fluss (k6.4.3) „EW (unbewertetes Signal) → …“ und beim Mandatsleiter „5 Mio. EUR“. In **wortgleichen Zitaten** bleibt das so; im eigenen Text heißt es „Frühwarnung“ und „5 Mio. €“. Kommentare in Code und CSS werden mitgeprüft.
+
 Ausnahmen: der Begriffs-Kompass (E7) und die Korrekturliste V1.3 (E13) nennen alte Begriffe absichtlich. Sie stehen in eigenen Dateien, die in `werkzeuge/begriffe.json` als Ausnahme geführt werden. Eine Zeile darf außerdem mit `<!-- begriffe-erlaubt: Grund -->` markiert werden; jede solche Markierung braucht einen Grund.
 
 ## Schreibweisen

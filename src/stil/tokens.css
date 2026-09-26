@@ -1,0 +1,284 @@
+/* =============================================================================================
+   MVG · Design-Tokens (Stil „Leitstand“, O-22)
+   ---------------------------------------------------------------------------------------------
+   Quellen:
+   · prototyp/variante-b-leitstand.html – `:root` und alle Farbwerte der Stilregeln (Variante B,
+     vom Owner gewählt). Die Namen sind hier deutsch; die Prototyp-Namen stehen im Kommentar.
+   · quellen/bm/tokens.css – BM-Kern: Marke (Navy/Gold), Status-Ampel, textsichere Töne
+     (`--c-warn-ink` #7F620F, `--bereich-b-ink` #2B5C33). Werte übernommen, nicht neu erfunden.
+   · ENTSCHEIDE.md O-11 (Farben), L-2 (Schriften), L-4 (schrittweiser Aufbau).
+   Regeln:
+   · Farben stehen NUR hier. Komponenten-CSS nutzt ausschließlich var(--…) (Test: tests/stil-tokens.test.ts).
+   · Erlaubte Text/Grund-Paare stehen in src/stil/paare.json und docs/STIL.md; der Kontrast wird
+     gemessen (tests/stil-kontrast.test.ts, ≥ 4,5:1, große Schrift ≥ 3:1).
+   · Kein Dunkelmodus: der Leitstand hat einen festen Navy-Rahmen mit hellen Tafeln.
+   ============================================================================================= */
+
+:root {
+  color-scheme: light;
+
+  /* ------------------------------------------------------------------ Marke (O-11, BM-Kern) */
+  --navy: #0C1C33;            /* --navy · BM --c-primary */
+  --navy-soft: #1D3258;       /* --navy-soft · BM --c-primary-soft */
+  --navy-2: #13274A;          /* --navy-2 · Flächen im Rahmen (Knöpfe, Fortschritt) */
+  --navy-linie: #2A4068;      /* --navy-line · Linien im Rahmen */
+  --gold: #A8823C;            /* --gold · BM --c-accent */
+  --gold-hell: #C69D52;       /* --gold-l · BM --c-accent-soft; Text/Fokus auf Navy */
+  --gold-kante: #9A7736;      /* --gold-e · BM --c-akzent-kante */
+  --gold-hover: #D6AE66;      /* Hover des Gold-Knopfs (Prototyp .nb-next:hover) */
+  --gold-text: #7A5C1E;       /* textsicheres Gold auf hellen Flächen · BM --c-symbol-an */
+  --petrol: #146878;          /* O-11 Grundton */
+  --gruen: #349068;           /* O-11 Grundton (nur Grafik, als Text zu hell) */
+
+  /* ------------------------------------------------------------------ Flächen und Text */
+  --grund: #EEF1F5;           /* --bg · Lagetafel, Startseite */
+  --weiss: #FFFFFF;
+  --tinte: #0F1722;           /* --ink · BM --c-text */
+  --tinte-2: #4B5563;         /* --muted · BM --c-text-soft */
+  --tinte-leise: #5A6B82;     /* für „noch nicht erreicht“ (Prototyp #8391A5 lag bei 3,2:1) */
+  --tinte-instrument: #34435A;/* Instrument-Beschriftung */
+  --linie: #D5DCE6;           /* --line */
+  --linie-2: #C3CDD9;         /* --line-2 */
+  --linie-3: #AEB9C8;         /* gestrichelte Ränder, Kästchen */
+  --auf-navy: #E8EDF6;        /* --c-ink · Text auf Navy */
+  --auf-navy-2: #A9B8CE;      /* --c-mut · leiser Text auf Navy */
+  --flaeche-1: #F6F8FB;       /* Tabellenkopf */
+  --flaeche-2: #F3F5F8;       /* Versionen, Rollenleiste */
+  --flaeche-3: #F4F7FB;       /* Ebene 2 */
+  --flaeche-4: #E9EFF6;       /* Ebene 3 */
+  --flaeche-4-kante: #D0DAE6;
+  --instrument-oben: #FCFDFE; /* Verlauf der Instrumente */
+  --instrument-unten: #EDF1F6;
+  --punktraster: #C9D2DE;     /* Punktraster der Lagetafel */
+  --gitter: #E3E8EF;          /* Diagrammgitter */
+  --spur: #DCE3EB;            /* leere Spur (Fortschritt, Fluss) */
+  --knopf-sockel: #CDD5E0;    /* 3D-Sockel der Entscheidungsknöpfe */
+  --knopf-sockel-navy: #050D19;
+  --gesperrt: #CBD3DE;        /* gesperrter Knopf */
+  --gesperrt-text: #3C4A5E;
+  --tipp-punkte: #9AA7B8;     /* „tippt …“ */
+
+  /* ------------------------------------------------------------------ Welt A (ohne MVG) */
+  --koralle: #E4572E;         /* --coral · O-11 */
+  --koralle-text: #B23E1A;    /* --coral-t · textsicher */
+  --koralle-soft: #FDEBE5;    /* Welt-Badge A */
+  --koralle-soft-2: #FDE1D7;  /* Warnchip */
+  --koralle-hauch: #FFF4F0;   /* ungelöst, Gegenüberstellung */
+  --koralle-kante: #F4C3B2;
+  --koralle-nadel: #F58A6A;   /* Glanz der Pinnadel */
+  --pinnwand: #F5EEE4;
+  --pinnwand-kante: #E6D8C6;
+  --welt-a-grund: #F6EFE6;
+  --welt-a-licht: #FFF6EC;
+  --notiz-gelb: #FEF29C;      /* --ny · Haftnotiz-Pastelle (O-11) */
+  --notiz-rosa: #FDC5C4;      /* --np */
+  --notiz-lila: #E0D4F8;      /* --nl */
+  --notiz-gruen: #D8F8A0;     /* --ng */
+  --notiz-tinte: #2A2A2A;
+  --notiz-lila-text: #4B3A78; /* Feld „Was fehlte“ */
+  --notiz-rosa-text: #8A2A1C; /* Feld „Risiko“ */
+
+  /* ------------------------------------------------------------------ Welt B (mit MVG) */
+  --tuerkis: #12A4A0;         /* --tq · O-11 */
+  --tuerkis-text: #0B7A77;    /* --tq-t · textsicher */
+  --tuerkis-soft: #E6F5F4;    /* Welt-Badge B */
+  --tuerkis-hauch: #F4FBFA;
+  --frischgruen: #3FB57A;     /* --fr · O-11 */
+  --frischgruen-text: #237A4E;/* --fr-t */
+  --regler-a: #F1A68E;        /* Mittelstufen der Reglerschiene A → B */
+  --regler-b: #94D6D3;
+
+  /* ------------------------------------------------------------------ Rollen (O-4, O-11) */
+  /* `--rolle-X` Figur- und Akzentfarbe; `-text` textsicher auf Weiß UND Weiß darauf;
+     `-soft` Grundfläche (Text darauf: `-text`); `-kante` Rand auf `-soft`. */
+  --rolle-gf: #6A4CA5;        --rolle-gf-text: #6A4CA5;   --rolle-gf-soft: #EDEAF4;   --rolle-gf-kante: #BCAED7;   /* Geschäftsführung */
+  --rolle-bh: #1D3258;        --rolle-bh-text: #1D3258;   --rolle-bh-soft: #E4E6EB;   --rolle-bh-kante: #99A3B4;   /* Bauherr */
+  --rolle-pl: #3866A8;        --rolle-pl-text: #3866A8;   --rolle-pl-soft: #E7EDF5;   --rolle-pl-kante: #A5BAD8;   /* Bauherren-PL */
+  --rolle-ps: #146878;        --rolle-ps-text: #146878;   --rolle-ps-soft: #E3EDEF;   --rolle-ps-kante: #95BBC2;   /* Projektsteuerung */
+  --rolle-plan: #D9822B;      --rolle-plan-text: #9A5412; --rolle-plan-soft: #FAF0E6; --rolle-plan-kante: #EEC7A0; /* Planung */
+  --rolle-ctl: #A8823C;       --rolle-ctl-text: #7A5C22;  --rolle-ctl-soft: #F5F0E8;  --rolle-ctl-kante: #D8C7A7;  /* Controlling */
+
+  /* ------------------------------------------------------------------ Status (BM-Ampel; nur für Status, O-11) */
+  --status-rot: #9A3030;      --status-rot-soft: #F1D8D8;
+  --status-gelb: #B08820;     --status-gelb-soft: #F3E9C8;    --status-gelb-text: #7F620F;  /* BM --c-warn-ink */
+  --status-gelb-symbol: #A47E1E; /* BM --c-warn-kante: Symbole/Balken (#B08820 läge auf dem Instrument bei 2,9:1) */
+  --status-gruen: #3A7A43;    --status-gruen-soft: #DFEADF;   --status-gruen-text: #2B5C33; /* BM --bereich-b-ink */
+  --status-neutral: #5A6B82;  --status-neutral-soft: #E8EDF6;
+  --status-gelb-kante: #D9C27A;
+  --status-gruen-kante: #A9C8AD;
+
+  /* ------------------------------------------------------------------ Gold-Flächen */
+  --gold-soft: #FFF7E3;       /* gewählte Option, Lehre, erleuchtete Etage */
+  --gold-soft-kante: #E8CF97;
+  --neu-grund: #FFF9D6;       /* „neu“-Hinweis */
+  --neu-kante: #E7D66A;
+
+  /* ------------------------------------------------------------------ Requisiten */
+  --tabelle-grund: #F4F8F5;   /* Excel-Stand */
+  --tabelle-kante: #B8D5C2;
+  --tabelle-symbol: #1F7A45;
+  --tabelle-text: #1D5B33;
+  --anhang-grund: #EAF5EE;
+
+  /* ID-Marken (Kürzel nach Companion §3, O-15) */
+  --id-ent-grund: #E8EDF6;    --id-ent-text: #1D3258;
+  --id-ris-grund: #E6F5F4;    --id-ris-text: #0B7A77;
+  --id-frw-grund: #FFF3C4;    --id-frw-text: #6A5208;
+  --id-aen-grund: #FFF7E3;    --id-aen-text: #7A5C22;
+  --id-mas-grund: #EAF5EE;    --id-mas-text: #1D5B33;
+  --id-nac-grund: #EDEAF4;    --id-nac-text: #5B3F93;
+
+  /* ------------------------------------------------------------------ Figuren (P3.1, flache SVG) */
+  /* Hauttöne und Haarfarben der Besetzung (aus dem Prototyp); Kleidung = Rollenfarbe. */
+  --figur-haut-1: #EDC3A0;  --figur-haut-2: #F0C8A6;  --figur-haut-3: #C98E62;
+  --figur-haut-4: #F3D0B5;  --figur-haut-5: #DDA682;  --figur-haut-6: #EDC09B;
+  --figur-haar-1: #3A2A22;  --figur-haar-2: #6B4A2E;  --figur-haar-3: #241A15;
+  --figur-haar-4: #A4492A;  --figur-haar-5: #9AA0A8;  --figur-haar-6: #6F7279;
+  --figur-linie: #1B2430;   /* Augen, Mund */
+  --figur-brille: #2A3345;
+  --figur-lippe-hell: #F4DCC8;
+
+  /* ------------------------------------------------------------------ Transparente Töne */
+  --gold-hell-a18: rgba(198, 157, 82, .18);
+  --gold-hell-a28: rgba(198, 157, 82, .28);
+  --gold-hell-a45: rgba(198, 157, 82, .45);
+  --gold-hell-a60: rgba(198, 157, 82, .6);
+  --gold-hell-a75: rgba(198, 157, 82, .75);
+  --koralle-a25: rgba(228, 87, 46, .25);
+  --koralle-a60: rgba(228, 87, 46, .6);
+  --koralle-text-a16: rgba(178, 62, 26, .16);
+  --tuerkis-a08: rgba(18, 164, 160, .08);
+  --tuerkis-a25: rgba(18, 164, 160, .25);
+  --tuerkis-a75: rgba(18, 164, 160, .75);
+  --navy-a42: rgba(12, 28, 51, .42);
+  --navy-a93: rgba(12, 28, 51, .93);
+  --weiss-a05: rgba(255, 255, 255, .05);
+  --weiss-a70: rgba(255, 255, 255, .7);
+  --weiss-a85: rgba(255, 255, 255, .85);
+  --schwarz-a35: rgba(0, 0, 0, .35);
+  --maske: #000;              /* nur für mask-image (Deckung), nie sichtbare Farbe */
+
+  /* ------------------------------------------------------------------ Fokus */
+  /* Auf hellen Flächen Navy-Ring + Gold-Hof (Prototyp `.board :focus-visible`), auf Navy der
+     Gold-Ring (Gold-hell auf Grund läge bei 2,2:1, unter WCAG 1.4.11). Kontexte setzen --fokus. */
+  --fokus: var(--navy);
+  --fokus-hof: var(--gold-hell-a60);
+
+  /* ------------------------------------------------------------------ Schriften (L-2) */
+  --schrift-text: "IBM Plex Sans", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --schrift-anzeige: "Big Shoulders Display", "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --schrift-label: "Barlow Condensed", "Roboto Condensed", "Arial Narrow", "Segoe UI", sans-serif;
+  --schrift-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Consolas, "Courier New", monospace;
+  --schrift-hand: "Caveat", "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
+
+  /* Größenskala in px wie im Prototyp (der Leitstand ist ein festes Instrumentenbrett; die
+     Beamer-Vergrößerung E10 ist offen, siehe docs/STIL.md). */
+  --gr-xs: 12px;
+  --gr-s: 13px;
+  --gr-m: 14px;
+  --gr-text: 15px;
+  --gr-l: 16px;
+  --gr-xl: 18px;
+  --gr-2xl: 21px;
+  --gr-3xl: 24px;
+  --gr-4xl: 28px;
+  --gr-5xl: 34px;
+  --gr-6xl: 44px;
+  --gr-7xl: 64px;
+  --gr-8xl: 92px;
+  --gr-lese: 17px;            /* Lesetext der Theorie */
+
+  /* Typorollen als font-Kurzform (mit `font: var(--typo-…)`); Sperrung und Versalien setzt die Klasse. */
+  --typo-text: 400 var(--gr-text)/1.45 var(--schrift-text);
+  --typo-lese: 400 var(--gr-lese)/1.6 var(--schrift-text);
+  --typo-klein: 400 var(--gr-s)/1.4 var(--schrift-text);
+  --typo-tafeltitel: 700 var(--gr-2xl)/1.2 var(--schrift-text);
+  --typo-titel: 800 var(--gr-3xl)/1.02 var(--schrift-anzeige);
+  --typo-anzeige: 800 var(--gr-5xl)/.95 var(--schrift-anzeige);
+  --typo-kennzahl: 800 31px/.9 var(--schrift-anzeige);
+  --typo-label: 600 var(--gr-xs)/1.2 var(--schrift-label);
+  --typo-kicker: 600 var(--gr-s)/1.2 var(--schrift-label);
+  --typo-reiter: 700 var(--gr-m)/1.2 var(--schrift-label);
+  --typo-mono: 500 .92em/1.3 var(--schrift-mono);
+  --typo-hand: 700 var(--gr-2xl)/1.12 var(--schrift-hand);
+  --sperrung-label: .1em;
+  --sperrung-kicker: .12em;
+  --sperrung-titel: .02em;
+
+  /* ------------------------------------------------------------------ Abstände (4er-Raster) */
+  --a-1: 4px;
+  --a-2: 8px;
+  --a-3: 12px;
+  --a-4: 16px;
+  --a-5: 20px;
+  --a-6: 24px;
+  --a-8: 32px;
+  --a-10: 40px;
+  --a-12: 48px;
+  --a-16: 64px;
+  --a-24: 96px;
+
+  /* ------------------------------------------------------------------ Radien */
+  --radius-xs: 3px;           /* Tags, Kürzel */
+  --radius-s: 6px;            /* Chips eckig, kleine Knöpfe */
+  --radius-m: 8px;            /* Knöpfe, Felder */
+  --radius-l: 10px;           /* Karten, Lagetafel */
+  --radius-xl: 12px;          /* Entscheidungsknöpfe, Szenen */
+  --radius-xxl: 18px;         /* Türen der Startseite */
+  --radius-rund: 999px;       /* Pillen */
+
+  /* ------------------------------------------------------------------ Schatten */
+  --schatten-weich: 0 4px 14px rgba(12, 28, 51, .06);
+  --schatten-karte: 0 1px 0 var(--linie), var(--schatten-weich);
+  --schatten-karte-hoch: 0 1px 0 var(--linie), 0 8px 22px rgba(12, 28, 51, .08);
+  --schatten-knopf: 0 1px 0 var(--linie), 0 4px 0 var(--knopf-sockel), 0 10px 20px rgba(12, 28, 51, .07);
+  --schatten-knopf-hover: 0 1px 0 var(--linie), 0 6px 0 var(--knopf-sockel), 0 14px 24px rgba(12, 28, 51, .1);
+  --schatten-knopf-druck: 0 1px 0 var(--linie), 0 1px 0 var(--knopf-sockel);
+  --schatten-notiz: 0 8px 14px -6px rgba(12, 28, 51, .35), 0 1px 0 rgba(0, 0, 0, .06);
+  --schatten-schwebend: 0 10px 30px rgba(12, 28, 51, .35);
+  --schatten-schublade: -12px 0 30px rgba(12, 28, 51, .25);
+  --schatten-rahmen: 0 0 0 1px var(--gold-hell-a45);
+  --schatten-instrument: inset 0 0 0 1px var(--gold-hell-a75), 0 2px 0 rgba(0, 0, 0, .28);
+  --schatten-taste: inset 0 -4px 0 var(--schwarz-a35), inset 0 0 0 1px var(--gold-kante);
+  --schatten-welt-b: inset 0 0 0 2px var(--tuerkis), 0 8px 22px rgba(11, 122, 119, .12);
+  --schatten-rille: inset 0 1px 3px rgba(0, 0, 0, .25);
+  --schatten-griff: 0 4px 10px rgba(12, 28, 51, .3);
+  --schatten-lot: 0 0 0 3px var(--weiss), 0 2px 6px rgba(0, 0, 0, .3);
+  --schatten-tuer: 0 2px 4px rgba(15, 25, 40, .08), 0 16px 36px rgba(15, 25, 40, .12);
+
+  /* ------------------------------------------------------------------ Bewegung */
+  --dauer-sofort: 150ms;      /* Hover, Druck */
+  --dauer-kurz: 300ms;        /* Einblenden kleiner Teile, Linse */
+  --dauer-mittel: 500ms;      /* Szene, Karte, Feld */
+  --dauer-lang: 800ms;        /* Zähler, Zeiger-Stufen, Aufbau des Leitstands */
+  --dauer-zeiger: 1100ms;     /* Instrumentnadel, Blitz */
+  --dauer-sprung: 2300ms;     /* Zeitsprung */
+  --dauer-puls: 1800ms;       /* Ping der aktuellen Station (Schleife) */
+  --dauer-led: 2400ms;        /* LED der Welt-Anzeige (Schleife) */
+  --kurve-aus: cubic-bezier(.2, .8, .3, 1);       /* sceneIn */
+  --kurve-pop: cubic-bezier(.2, .9, .3, 1.15);    /* popIn */
+  --kurve-feder: cubic-bezier(.2, 1.6, .4, 1);    /* trendIn, Siegel */
+  --kurve-zeiger: cubic-bezier(.3, 1.45, .45, 1); /* Nadel */
+  --kurve-gleich: cubic-bezier(.4, 0, .2, 1);     /* Fortschritt */
+
+  /* ------------------------------------------------------------------ Raster des Leitstands */
+  --breite-karte: 214px;      /* --railW */
+  --breite-seitenleiste: 292px; /* --panelW */
+  --breite-schiene: 52px;     /* eingeklappte Seitenleiste (L-4) */
+  --breite-lesen: 72ch;       /* Theorie */
+  --breite-start: 1120px;     /* Startseite */
+}
+
+@media (max-width: 1199px) {
+  :root {
+    --breite-karte: 186px;
+    --breite-seitenleiste: 248px;
+  }
+}
+
+@media (max-width: 1100px) and (min-width: 981px) {
+  :root {
+    --breite-karte: 176px;
+    --breite-seitenleiste: 236px;
+  }
+}

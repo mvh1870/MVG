@@ -1,0 +1,585 @@
+/*
+ * Inhaltswerkzeug (werkzeuge/inhalte.mjs, P0.5): Beispiel → erwartetes JSON, kaputtes Beispiel →
+ * die richtigen Fehler, Mutanten-Probe (verfälschtes Zitat wird erkannt), echte Inhalte fehlerfrei.
+ * Fixturen entstehen zur Laufzeit unter tmp/ und werden danach gelöscht.
+ */
+import { test, after } from 'node:test';
+import assert from 'node:assert/strict';
+import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+import { feldName, kompiliere, stabilesJson } from '../werkzeuge/inhalte.mjs';
+import type { Inhalte } from '../src/inhalte/typen.ts';
+
+const WURZEL = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const TMP = path.join(WURZEL, 'tmp');
+mkdirSync(TMP, { recursive: true });
+const ORDNER: string[] = [];
+after(() => { for (const o of ORDNER) rmSync(o, { recursive: true, force: true }); });
+
+function neueWurzel(dateien: Record<string, string>, whitepaper: unknown = WHITEPAPER): string {
+  const w = mkdtempSync(path.join(TMP, 'test-inhalte-'));
+  ORDNER.push(w);
+  for (const [rel, text] of Object.entries(dateien)) {
+    const voll = path.join(w, rel);
+    mkdirSync(path.dirname(voll), { recursive: true });
+    writeFileSync(voll, text, 'utf8');
+  }
+  if (whitepaper !== null) {
+    const wp = path.join(w, 'quellen', 'whitepaper', 'v1.2', 'whitepaper.json');
+    mkdirSync(path.dirname(wp), { recursive: true });
+    writeFileSync(wp, JSON.stringify(whitepaper), 'utf8');
+  }
+  return w;
+}
+
+const WHITEPAPER = {
+  fassung: 'V1.2',
+  titel: 'Test',
+  untertitel: '',
+  kapitel: [{
+    id: 'k2', nr: '2', titel: 'Ausgangslage',
+    bloecke: [{ id: 'k2-p1', art: 'absatz', text: 'Einleitung zum Kapitel.' }],
+    abschnitte: [{
+      id: 'k2.4', nr: '2.4', titel: 'Warum Berichterstattung nicht reicht', abschnitte: [],
+      bloecke: [
+        { id: 'k2.4-p1', art: 'absatz', text: 'Mehr Berichte helfen manchmal.' },
+        { id: 'k2.4-p2', art: 'absatz', text: 'Berichterstattung erzeugt Information. Führung entsteht erst, wenn Information mit Mandat verbunden wird. Ein Ampelbericht ohne Entscheidungsfrage bleibt Beobachtung.' },
+        { id: 'k2.4-l1', art: 'liste', text: 'eins\nzwei', punkte: ['eins', 'zwei'] },
+      ],
+    }],
+  }],
+  glossar: [
+    { id: 'g-mandat', begriff: 'Mandat', definition: 'Klar zugewiesene Entscheidungsbefugnis.' },
+    { id: 'g-entscheidungsreife', begriff: 'Entscheidungs­reife', definition: 'Ausreichend vorbereitet.' },
+    { id: 'g-mvg', begriff: 'Minimum Viable Governance (MVG)', definition: 'Kleinster Standard.' },
+  ],
+  abbildungen: [],
+};
+
+const ROLLE = (titel: string, farbe: string): string => `---\ntitel: ${titel}\nfarbe: "${farbe}"\n---\nText.\n\n### Linse\nWorauf die Rolle schaut.\n`;
+
+/** Das Beispiel: vollständige Mini-Story (Prolog → X1 → Vergleich V → Y1). */
+const BEISPIEL: Record<string, string> = {
+  'inhalte/fall.md': `---
+stadt: Musterstadt
+bauherr: Stadt Musterstadt
+vertretung: Muster GmbH
+projekt: Musterschule
+projektbasis: 10 Mio. €
+projektbasis-mio: 10,5
+hinweis: Fiktiver Fall.
+---
+Ein Beispiel.
+
+::: figur brenner
+---
+name: Jonas Brenner
+rolle: ps
+funktion: Projektsteuerung
+farbe: "#146878"
+---
+### Kurzbeschreibung
+Gründlich.
+:::
+`,
+  'inhalte/rollen/gf.md': ROLLE('Geschäftsführung', '#6A4CA5'),
+  'inhalte/rollen/bauherr.md': ROLLE('Bauherr', '#1D3258'),
+  'inhalte/rollen/pl.md': ROLLE('Bauherren-PL', '#3866A8'),
+  'inhalte/rollen/ps.md': ROLLE('Projektsteuerung', '#146878'),
+  'inhalte/rollen/planung.md': ROLLE('Planung', '#D9822B'),
+  'inhalte/rollen/controlling.md': ROLLE('Controlling', '#A8823C'),
+  'inhalte/story/prolog/station.md': `---
+id: prolog
+art: prolog
+titel: Übernahme
+weiter: X1
+---
+::: schritt rolle
+---
+art: rollenwahl
+titel: Rolle?
+folgt: [gf, bauherr, ps, planung, controlling]
+---
+:::
+
+::: schritt interessen
+---
+art: interessenwahl
+titel: Interessen?
+---
+::: interesse kosten
+---
+titel: Kosten
+---
+:::
+:::
+`,
+  'inhalte/story/X1/station.md': `---
+id: X1
+welt: A
+monat: 5
+titel: Kosten +8 %
+lph: 5
+whitepaper-bezug: [k2.4-p2]
+status-start:
+  entscheidungsfaehigkeit: 2
+  kostenunsicherheit: hoch
+  offene-risiken: 7
+  ungeklaerte-entscheidungen: 3
+  terminrisiko: mittel
+weiter:
+  - ziel: V
+    wenn: [wahl X1 = A|B, rolle = pl]
+  - V
+partner: Y1
+---
+
+::: schritt einstieg
+---
+titel: Montag, 08:30 Uhr.
+kurz: Einstieg
+---
+::: mail
+---
+von: brenner
+betreff: Kostenprognose
+zeit: "08:12"
+---
+„+8 %, Ursache unklar.“ <b>fett?</b>
+:::
+
+::: notiz
+---
+farbe: gelb
+---
+v3 oder v4??
+:::
+:::
+
+::: schritt lage
+---
+art: lage
+titel: Was Sie wissen
+---
+::: bekannt
+- Zwei [[Mandat|Mandate]].
+:::
+
+::: unbekannt
+- Ursache {#ursache}
+:::
+
+::: zeitsprung info
+---
+knopf: Anfordern
+status:
+  terminrisiko: hoch
+loest:
+  ursache: jetzt bekannt
+---
+Zwei Wochen später.
+:::
+:::
+
+::: schritt entscheidung
+---
+art: entscheidung
+titel: Was tun Sie?
+---
+:::
+
+::: schritt konsequenz
+---
+art: konsequenz
+titel: Folgen
+---
+:::
+
+::: ebenen
+::: ebene 1
+---
+titel: Kernaussage
+---
+Kurz.
+:::
+::: ebene 4
+---
+titel: Nachweis
+---
+::: zitat k2.4-p2
+Berichterstattung erzeugt Information. Führung entsteht erst, wenn Information mit Mandat verbunden wird.
+:::
+:::
+:::
+`,
+  'inhalte/story/X1/pl.md': `---
+station: X1
+rolle: pl
+frage: Was tun Sie?
+---
+::: option B
+---
+titel: Vorlage verlangen
+kurz: Vorlage
+status:
+  terminrisiko: "+1"
+---
+### Konsequenz
+Ein Bericht.
+### Was fehlt
+Ein Standard.
+### Neues Risiko
+Vertagung.
+### Governance-Frage
+[[Entscheidungsreife]]: Was gehört hinein?
+:::
+
+::: option A
+---
+titel: Weiterarbeiten
+kurz: Weiterarbeiten
+status: keine
+---
+### Konsequenz
+Es läuft weiter.
+### Was fehlt
+Ein Mandat.
+### Neues Risiko
+Schleichend.
+### Governance-Frage
+[[MVG]]? [[zitat:k2.4-p1|Mehr Berichte helfen manchmal.]]
+:::
+
+::: nachsatz
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Nicht bewerten.
+### Leitfragen
+- Welche Zahl gilt?
+- Wer entscheidet?
+:::
+`,
+  'inhalte/story/V/station.md': `---
+id: V
+art: vergleich
+titel: A gegen B
+vergleich: {a: X1, b: Y1}
+schaltet-frei: [welt-b]
+weiter: Y1
+---
+::: schritt regler
+---
+art: vergleich
+titel: Regler
+---
+::: kennzahl
+---
+a: 2
+b: 1
+---
+Datenstände
+:::
+:::
+`,
+  'inhalte/story/Y1/station.md': `---
+id: Y1
+welt: B
+titel: Kosten +8 %
+status-start:
+  entscheidungsfaehigkeit: 4
+  kostenunsicherheit: mittel
+  offene-risiken: 7 (1 neu bewertet)
+  ungeklaerte-entscheidungen: 1
+  terminrisiko: mittel
+partner: X1
+ende: ja
+---
+::: schritt signal
+---
+titel: Signal
+---
+Das Signal hat eine Nummer.
+:::
+
+::: schritt rueckbezug
+---
+art: rueckbezug
+titel: Rückbezug
+---
+:::
+`,
+  'inhalte/story/Y1/pl.md': `---
+station: Y1
+rolle: pl
+rueckbezug-auf: X1
+---
+::: rueckbezug A
+Damals: ‚Weiterarbeiten‘.
+:::
+::: rueckbezug B
+Damals: ‚Vorlage‘.
+:::
+::: rueckbezug ohne
+Ohne Wahl.
+:::
+`,
+  'inhalte/theorie/k02-ausgangslage.md': `---
+kapitel: 2
+titel: Ausgangslage
+story: [X1]
+deckt: [k2-p1]
+---
+::: kernaussage
+Berichte sind nicht Führung.
+:::
+
+::: original k2.4-p1..k2.4-p2
+:::
+`,
+  'inhalte/einwaende.md': `::: einwand berichte
+---
+stationen: [X1]
+---
+### Einwand
+Wir berichten doch schon.
+### Antwort
+Das reicht nicht.
+
+::: zitat k2.4-p1
+Mehr Berichte helfen manchmal.
+:::
+:::
+`,
+  'inhalte/abdeckung.yaml': 'k2.4-l1:\n  story: X1\n',
+};
+
+test('feldName: Überschriften und Schlüssel werden zu camelCase in ASCII-Umschrift', () => {
+  assert.equal(feldName('Was fehlt'), 'wasFehlt');
+  assert.equal(feldName('Governance-Frage'), 'governanceFrage');
+  assert.equal(feldName('Rückmeldung'), 'rueckmeldung');
+  assert.equal(feldName('status-start'), 'statusStart');
+  assert.equal(feldName('Nicht delegierbar'), 'nichtDelegierbar');
+});
+
+test('Beispiel → erwartetes JSON (Auszüge exakt), fehlerfrei, deterministisch, Schlüssel sortiert', async () => {
+  const w = neueWurzel(BEISPIEL);
+  const ziel = path.join(w, 'aus', 'inhalte.json');
+  const erg = await kompiliere({ pruefe: true, wurzel: w, ziel });
+  assert.deepEqual(erg.fehler, []);
+  assert.deepEqual(erg.warnungen, ['abdeckung: Theorie-Abdeckung 3 von 4 Absätzen (75,0 %) – ab P6.15 Pflicht 100 %']);
+  const i = erg.inhalte as Inhalte;
+
+  assert.deepEqual(i.stationsFolge, ['prolog', 'X1', 'V', 'Y1']);
+  assert.equal(i.start, 'prolog');
+  assert.deepEqual(i.rollenFolge, ['gf', 'bauherr', 'pl', 'ps', 'planung', 'controlling']);
+  assert.deepEqual(Object.values(i.rollen).filter((r) => r.spielbar).map((r) => r.id), ['pl']);
+  assert.deepEqual(i.interessen, [{ id: 'kosten', titel: 'Kosten', html: '' }]);
+  assert.equal(i.fall?.projektbasisMio, 10.5);
+
+  const x1 = i.stationen['X1'];
+  assert.ok(x1 !== undefined);
+  assert.deepEqual(x1.weiter, [
+    { ziel: 'V', wenn: { art: 'alle', nicht: false, bedingungen: [
+      { art: 'wahl', entscheidung: 'X1', optionen: ['A', 'B'], nicht: false },
+      { art: 'rolle', rollen: ['pl'], nicht: false },
+    ] } },
+    { ziel: 'V', wenn: null },
+  ]);
+  assert.deepEqual(x1.statusStart?.[2], { schluessel: 'offeneRisiken', art: 'setze', wert: 7, hinweis: null });
+  assert.deepEqual(x1.schritte[0], {
+    id: 'einstieg', art: 'text', titel: 'Montag, 08:30 Uhr.', kurz: 'Einstieg', gruppe: null, uhr: null, kopf: {}, felder: {},
+    bloecke: [
+      { art: 'mail', kennungen: [], id: null, kopf: { von: 'brenner', betreff: 'Kostenprognose', zeit: '08:12' }, liste: null, kinder: [],
+        felder: { text: '<p>„+8 %, Ursache unklar.“ &lt;b&gt;fett?&lt;/b&gt;</p>' } },
+      { art: 'notiz', kennungen: [], id: null, kopf: { farbe: 'gelb' }, liste: null, kinder: [], felder: { text: '<p>v3 oder v4??</p>' } },
+    ],
+  });
+  assert.deepEqual(x1.schritte[1]?.bloecke[0]?.liste, [
+    { id: null, stand: null, html: 'Zwei <span class="mvg-glossar" data-glossar="g-mandat" data-begriff="Mandat">Mandate</span>.' },
+  ]);
+  assert.deepEqual(x1.infos, [{ id: 'info', schritt: 'lage', wirkung: [{ schluessel: 'terminrisiko', art: 'setze', wert: 'hoch', hinweis: null }] }]);
+
+  assert.deepEqual(x1.szenen['pl']?.entscheidung, {
+    id: 'X1/pl',
+    frage: 'Was tun Sie?',
+    nachsatz: '<p>Die Geschichte merkt sich Ihre Wahl.</p>',
+    optionen: [
+      { id: 'A', titel: 'Weiterarbeiten', kurz: 'Weiterarbeiten', symbol: null, wirkung: [], felder: {
+        konsequenz: '<p>Es läuft weiter.</p>', wasFehlt: '<p>Ein Mandat.</p>', neuesRisiko: '<p>Schleichend.</p>',
+        governanceFrage: '<p><span class="mvg-glossar" data-glossar="g-mvg" data-begriff="Minimum Viable Governance (MVG)">MVG</span>? <q class="mvg-zitat" data-absatz="k2.4-p1">Mehr Berichte helfen manchmal.</q></p>',
+      } },
+      { id: 'B', titel: 'Vorlage verlangen', kurz: 'Vorlage', symbol: null, wirkung: [{ schluessel: 'terminrisiko', art: 'aendere', wert: 1, hinweis: null }], felder: {
+        konsequenz: '<p>Ein Bericht.</p>', wasFehlt: '<p>Ein Standard.</p>', neuesRisiko: '<p>Vertagung.</p>',
+        governanceFrage: '<p><span class="mvg-glossar" data-glossar="g-entscheidungsreife" data-begriff="Entscheidungs­reife">Entscheidungsreife</span>: Was gehört hinein?</p>',
+      } },
+    ],
+  });
+  const zitat = x1.ebenen?.[1]?.bloecke[0];
+  assert.deepEqual(zitat?.kopf, { quelle: 'Whitepaper V1.2, Kap. 2.4', vollstaendig: false });
+  assert.equal(zitat?.felder['text'], '<blockquote class="mvg-zitat" data-absatz="k2.4-p2"><p>Berichterstattung erzeugt Information. Führung entsteht erst, wenn Information mit Mandat verbunden wird.</p></blockquote>');
+
+  assert.deepEqual(i.stationen['Y1']?.szenen['pl']?.rueckbezug, {
+    auf: 'X1/pl', texte: { A: '<p>Damals: ‚Weiterarbeiten‘.</p>', B: '<p>Damals: ‚Vorlage‘.</p>' }, ohne: '<p>Ohne Wahl.</p>',
+  });
+  assert.deepEqual(i.stationen['Y1']?.statusStart?.[2], { schluessel: 'offeneRisiken', art: 'setze', wert: 7, hinweis: '1 neu bewertet' });
+  assert.deepEqual(i.stationen['V']?.schaltetFrei, ['weltB']);
+
+  // Regie-Material steht getrennt, nicht in der Station
+  assert.deepEqual(i.regie, { 'X1/pl': { notiz: '<p>Nicht bewerten.</p>', leitfragen: ['Welche Zahl gilt?', 'Wer entscheidet?'] } });
+  assert.equal(JSON.stringify(i.stationen).includes('Nicht bewerten'), false);
+
+  const k02 = i.theorie['k02'];
+  assert.equal(k02?.bloecke[1]?.felder['text'], '<p class="mvg-original" data-absatz="k2.4-p1">Mehr Berichte helfen manchmal.</p>\n'
+    + '<p class="mvg-original" data-absatz="k2.4-p2">Berichterstattung erzeugt Information. Führung entsteht erst, wenn Information mit Mandat verbunden wird. Ein Ampelbericht ohne Entscheidungsfrage bleibt Beobachtung.</p>');
+  assert.deepEqual(k02?.bloecke[1]?.kopf['absaetze'], ['k2.4-p1', 'k2.4-p2']);
+  assert.deepEqual(k02?.deckt, ['k2-p1']);
+  assert.deepEqual(i.abdeckung, {
+    gesamt: 4, zugeordnet: 3, anteil: 0.75,
+    ziele: {
+      'k2-p1': { theorie: ['k02'], story: [] },
+      'k2.4-l1': { theorie: [], story: ['X1'] },
+      'k2.4-p1': { theorie: ['k02'], story: [] },
+      'k2.4-p2': { theorie: ['k02'], story: [] },
+    },
+  });
+  assert.deepEqual(i.glossar['g-mandat'], { id: 'g-mandat', begriff: 'Mandat', definition: 'Klar zugewiesene Entscheidungsbefugnis.' });
+  assert.equal(i.einwaende[0]?.id, 'berichte');
+
+  // Datei = stabiles JSON; zweiter Lauf byteweise gleich; Schlüssel sortiert
+  const text1 = readFileSync(ziel, 'utf8');
+  assert.equal(text1, stabilesJson(i));
+  await kompiliere({ pruefe: true, wurzel: w, ziel });
+  assert.equal(readFileSync(ziel, 'utf8'), text1);
+  const oben = Object.keys(JSON.parse(text1) as Record<string, unknown>);
+  assert.deepEqual(oben, [...oben].sort());
+  assert.ok(text1.indexOf('"felder"') < text1.indexOf('"id": "X1/pl"'), 'auch verschachtelte Schlüssel sortiert');
+});
+
+/** Ersetzt in einer Beispieldatei genau eine Stelle (bricht laut, wenn sie fehlt). */
+function veraendere(dateien: Record<string, string>, rel: string, alt: string, neu: string): Record<string, string> {
+  const text = dateien[rel];
+  if (text === undefined || !text.includes(alt)) throw new Error(`${rel}: „${alt}“ nicht gefunden`);
+  return { ...dateien, [rel]: text.replace(alt, neu) };
+}
+
+test('Kaputtes Beispiel: jede Verletzung wird mit Ort gemeldet', async () => {
+  let d = { ...BEISPIEL };
+  d = veraendere(d, 'inhalte/story/X1/pl.md', '### Neues Risiko\nVertagung.\n', '');
+  d = veraendere(d, 'inhalte/story/X1/pl.md', 'terminrisiko: "+1"', 'terminrisiko: kritisch');
+  d = veraendere(d, 'inhalte/story/X1/station.md', 'von: brenner', 'von: niemand');
+  d = veraendere(d, 'inhalte/story/X1/station.md', '::: notiz', '::: memo');
+  d = veraendere(d, 'inhalte/story/X1/station.md', 'Zwei [[Mandat|Mandate]].', 'Zwei [[Gibtsnicht]].');
+  d = veraendere(d, 'inhalte/story/Y1/pl.md', "::: rueckbezug B\nDamals: ‚Vorlage‘.\n:::\n", '');
+  d = veraendere(d, 'inhalte/rollen/pl.md', 'farbe: "#3866A8"', 'farbe: #3866A8');
+  d = veraendere(d, 'inhalte/story/V/station.md', 'schaltet-frei: [welt-b]\n', '');
+  d = veraendere(d, 'inhalte/story/Y1/station.md', '  ungeklaerte-entscheidungen: 1\n', '');
+  d['inhalte/story/Z9/station.md'] = '---\nid: Z9\ntitel: Insel\nende: ja\n---\n::: schritt a\n---\ntitel: A\n---\n:::\n';
+  d['inhalte/story/Z8/station.md'] = '---\nid: Z8\ntitel: Sackgasse\n---\n::: schritt a\n---\ntitel: A\n---\n:::\n';
+  const w = neueWurzel(d);
+  const { fehler } = await kompiliere({ pruefe: true, wurzel: w, ziel: null });
+  const erwartet: RegExp[] = [
+    /^inhalte\/story\/X1\/pl\.md:\d+: „option B“: Feld „neuesRisiko“ fehlt/u,
+    /^inhalte\/story\/X1\/pl\.md:\d+: „status“: terminrisiko: „kritisch“ ist keine Stufe/u,
+    /^inhalte\/story\/X1\/station\.md:\d+: Figur „niemand“ steht nicht in inhalte\/fall\.md/u,
+    /^inhalte\/story\/X1\/station\.md:\d+: unbekannter Container „memo“/u,
+    /^inhalte\/story\/X1\/station\.md:\d+: Glossarbegriff „Gibtsnicht“ steht nicht im Glossar/u,
+    /^graph: Station Y1\/pl: Rückbezug für Option B von X1\/pl fehlt/u,
+    /^inhalte\/rollen\/pl\.md:1: „farbe“ ist leer – Farben in Anführungszeichen setzen/u,
+    /^graph: Station Y1 \(Welt B\) ist erreichbar, bevor Welt B freigeschaltet wird/u,
+    /^inhalte\/story\/Y1\/station\.md:1: „status-start“ muss alle fünf Werte setzen/u,
+    /^graph: Station Z9 ist vom Start \(prolog\) nicht erreichbar/u,
+    /^inhalte\/story\/Z8\/station\.md:1: weder „weiter“ noch „ende: ja“/u,
+    /^graph: Station Z8 ist eine Sackgasse/u,
+  ];
+  for (const e of erwartet) assert.ok(fehler.some((f) => e.test(f)), `erwartet ${e}\nbekommen:\n${fehler.join('\n')}`);
+});
+
+test('Formfehler brechen auch ohne --pruefe (Bau), Prüffehler nur mit --pruefe', async () => {
+  const offen = veraendere(BEISPIEL, 'inhalte/story/V/station.md', 'Datenstände\n:::\n:::\n', 'Datenstände\n:::\n');
+  const w1 = neueWurzel(offen);
+  const ohne = await kompiliere({ pruefe: false, wurzel: w1, ziel: null });
+  assert.ok(ohne.fehler.some((f) => /V\/station\.md:\d+: Container „schritt“ wird nicht mit „:::“ geschlossen/u.test(f)), ohne.fehler.join('\n'));
+  const yaml = veraendere(BEISPIEL, 'inhalte/story/X1/station.md', 'lph: 5', 'lph: [5');
+  const w2 = neueWurzel(yaml);
+  assert.ok((await kompiliere({ pruefe: false, wurzel: w2, ziel: null })).fehler.some((f) => /X1\/station\.md:\d+: Kopfdaten \(YAML\) unlesbar/u.test(f)));
+  const pruef = veraendere(BEISPIEL, 'inhalte/story/X1/station.md', 'von: brenner', 'von: niemand');
+  const w3 = neueWurzel(pruef);
+  assert.deepEqual((await kompiliere({ pruefe: false, wurzel: w3, ziel: null })).fehler, []);
+  assert.equal((await kompiliere({ pruefe: true, wurzel: w3, ziel: null })).fehler.length, 1);
+});
+
+test('Mutanten-Probe (Beispiel): ein verfälschtes Zitat, eine erfundene ID und ein Platzhalter werden erkannt', async () => {
+  const faelle: [string, string, RegExp][] = [
+    ['Berichterstattung erzeugt Information. Führung', 'Berichterstattung erzeugt Informationen. Führung', /Zitat nicht wortgleich mit k2\.4-p2: weicht nach 37 Zeichen ab/u],
+    ['::: zitat k2.4-p2', '::: zitat k2.4-p9', /Zitat: Absatz-ID k2\.4-p9 gibt es im Whitepaper nicht/u],
+    ['::: zitat k2.4-p2', '::: zitat k2.4-p?', /Zitat: „k2\.4-p\?“ ist keine Absatz-ID/u],
+  ];
+  for (const [alt, neu, erwartet] of faelle) {
+    const w = neueWurzel(veraendere(BEISPIEL, 'inhalte/story/X1/station.md', alt, neu));
+    const { fehler } = await kompiliere({ pruefe: true, wurzel: w, ziel: null });
+    assert.ok(fehler.some((f) => erwartet.test(f)), `${neu}: ${fehler.join('\n')}`);
+  }
+  const inline = neueWurzel(veraendere(BEISPIEL, 'inhalte/story/X1/pl.md', '|Mehr Berichte helfen manchmal.]]', '|Mehr Berichte helfen immer.]]'));
+  assert.ok((await kompiliere({ pruefe: true, wurzel: inline, ziel: null })).fehler.some((f) => /X1\/pl\.md:\d+: Zitat nicht wortgleich/u.test(f)));
+  // Auslassung und geschütztes Leerzeichen sind erlaubt, vertauschte Reihenfolge nicht
+  const auslassung = neueWurzel(veraendere(BEISPIEL, 'inhalte/story/X1/station.md',
+    'Berichterstattung erzeugt Information. Führung entsteht erst, wenn Information mit Mandat verbunden wird.',
+    'Berichterstattung erzeugt Information. […] Ein Ampelbericht ohne Entscheidungsfrage bleibt Beobachtung.'));
+  assert.deepEqual((await kompiliere({ pruefe: true, wurzel: auslassung, ziel: null })).fehler, []);
+  const vertauscht = neueWurzel(veraendere(BEISPIEL, 'inhalte/story/X1/station.md',
+    'Berichterstattung erzeugt Information. Führung entsteht erst, wenn Information mit Mandat verbunden wird.',
+    'Ein Ampelbericht ohne Entscheidungsfrage bleibt Beobachtung. […] Berichterstattung erzeugt Information.'));
+  assert.ok((await kompiliere({ pruefe: true, wurzel: vertauscht, ziel: null })).fehler.some((f) => /nicht wortgleich/u.test(f)));
+});
+
+test('Startseite (inhalte/start.md): Leitsatz wörtlich mit Absatz-ID geprüft, These als Inline-HTML', async () => {
+  const start = (titel: string) => `---\nkicker: Minimum Viable Governance\ntitel: ${titel}\ntitel-quelle: k2.4-p2\n---\n\nEine **These**.\n`;
+  const gut = await kompiliere({ pruefe: true, wurzel: neueWurzel({ ...BEISPIEL, 'inhalte/start.md': start('Berichterstattung erzeugt Information.') }), ziel: null });
+  assert.deepEqual(gut.fehler, []);
+  assert.deepEqual((gut.inhalte as Inhalte).startseite, { kicker: 'Minimum Viable Governance', titel: 'Berichterstattung erzeugt Information.', titelQuelle: 'k2.4-p2', these: 'Eine <strong>These</strong>.' });
+  const falsch = await kompiliere({ pruefe: true, wurzel: neueWurzel({ ...BEISPIEL, 'inhalte/start.md': start('Berichte erzeugen Information.') }), ziel: null });
+  assert.ok(falsch.fehler.some((f) => /^inhalte\/start\.md:1: Zitat nicht wortgleich/u.test(f)), falsch.fehler.join('\n'));
+  assert.equal(((await kompiliere({ pruefe: true, wurzel: neueWurzel(BEISPIEL), ziel: null })).inhalte as Inhalte).startseite, null);
+});
+
+test('Begriffe im fertigen Ergebnis: auch Whitepaper-Texte (Glossar) werden geprüft, nur mit --pruefe', async () => {
+  const alt = structuredClone(WHITEPAPER);
+  alt.glossar.push({ id: 'g-alt', begriff: 'Quality Gate', definition: 'Ein Change Board entscheidet über den Scope.' });
+  const w = neueWurzel(BEISPIEL, alt);
+  const { fehler } = await kompiliere({ pruefe: true, wurzel: w, ziel: null });
+  const begriffe = fehler.filter((f) => f.startsWith('begriffe: src/generiert/inhalte.json:'));
+  assert.deepEqual(begriffe.map((f) => /„([^“]+)“/u.exec(f)?.[1]).sort(), ['Change Board', 'Gate', 'Scope']);
+  assert.deepEqual((await kompiliere({ pruefe: false, wurzel: w, ziel: null })).fehler, [], 'der Bau bricht daran nicht');
+});
+
+test('Ohne whitepaper.json: Zitate und Glossar nur Warnung, kein Fehler', async () => {
+  const w = neueWurzel(BEISPIEL, null);
+  const { fehler, warnungen, inhalte } = await kompiliere({ pruefe: true, wurzel: w, ziel: null });
+  assert.deepEqual(fehler, []);
+  assert.ok(warnungen.some((x) => /whitepaper\.json fehlt – Zitate nicht auf Wortgleichheit geprüft/u.test(x)));
+  assert.ok(warnungen.some((x) => /Glossarbezüge \(\[\[…\]\]\) ungeprüft/u.test(x)));
+  assert.equal((inhalte as Inhalte).whitepaper.fassung, null);
+  const platzhalter = neueWurzel(veraendere(BEISPIEL, 'inhalte/story/X1/station.md', '::: zitat k2.4-p2', '::: zitat k2.4-p?'), null);
+  assert.ok((await kompiliere({ pruefe: true, wurzel: platzhalter, ziel: null })).fehler.some((f) => /keine Absatz-ID/u.test(f)), 'ein Platzhalter fällt auch ohne Quelle auf');
+});
+
+const ECHT_WP = path.join(WURZEL, 'quellen', 'whitepaper', 'v1.2', 'whitepaper.json');
+
+test('Echte Inhalte: fehlerfrei; Mutanten-Probe am Zitat in B3 (Ebene 4, Kap. 2.4)', { skip: existsSync(ECHT_WP) ? false : 'whitepaper.json fehlt' }, async () => {
+  const echt = await kompiliere({ pruefe: true, ziel: null });
+  assert.deepEqual(echt.fehler, []);
+  const w = mkdtempSync(path.join(TMP, 'test-inhalte-echt-'));
+  ORDNER.push(w);
+  cpSync(path.join(WURZEL, 'inhalte'), path.join(w, 'inhalte'), { recursive: true });
+  const b3 = path.join(w, 'inhalte', 'story', 'B3', 'station.md');
+  const text = readFileSync(b3, 'utf8');
+  assert.ok(text.includes('bleibt Beobachtung.'));
+  writeFileSync(b3, text.replace('bleibt Beobachtung.', 'bleibt reine Beobachtung.'), 'utf8');
+  const { fehler } = await kompiliere({ pruefe: true, wurzel: w, whitepaperPfad: ECHT_WP, ziel: null });
+  assert.ok(fehler.some((f) => /^inhalte\/story\/B3\/station\.md:\d+: Zitat nicht wortgleich mit k2\.4-p2/u.test(f)), fehler.join('\n'));
+});

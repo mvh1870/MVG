@@ -8,6 +8,9 @@ Aus dem Whitepaper V1.2 entsteht eine einzige HTML-Datei mit drei Bereichen: **S
 - `docs/ARCHITEKTUR.md` · `docs/INHALTSFORMAT.md` · `docs/STIL.md` · `docs/BEGRIFFE.md` · `docs/PRUEFAGENTEN.md` · `docs/recherche/` (Analysen vom 2026-09-26).
 - Quelle der Wahrheit für den Inhalt: `quellen/whitepaper/v1.2/whitepaper.json` (Absatz-IDs) bzw. die DOCX daneben.
 
+## Frischer Rechner (jeder Cloud-Block beginnt auf einem)
+`node --version` muss ≥ 22.18 sein (Type-Stripping; lokal läuft 24). Sonst zuerst `nvm install 24 && nvm use 24`, falls vorhanden, und das Ergebnis in die Übergabe. Dann `npm ci`. Browser für `npm run oberflaeche`: `npx playwright install chromium`; scheitert der Download an der Netzfreigabe, meldet die Kette „übersprungen“ (gelb). Die GitHub-Aktion `.github/workflows/pruefe.yml` prüft jeden Push trotzdem mit Browser: ihr Ergebnis gehört in die Übergabe, sobald sie gelaufen ist.
+
 ## Arbeitsweise (gilt lokal und in der Cloud)
 1. **In der Cloud gilt zuerst `cloud/CLOUD-REGELN.md`** (Arbeitszweig `claude/haus`, jeder Zug gepusht, Ampel, Schlussblock). Diese Datei ergänzt sie.
 2. **Ohne Anhalten (O-26):** Der Owner will, dass der Bau bis zum Ende durchläuft. Was Plan und Entscheide offenlassen, **entscheidest du selbst**, schreibst einen L-Eintrag (Grund in einem Satz) und arbeitest weiter. Eine Frage an den Owner nur, wenn ein O-Entscheid geändert werden müsste – immer mit Vorgabe, die dem Plan folgt, und nie wartend.

@@ -1,0 +1,52 @@
+CLOUD-PAKET - ein Projekt in Arbeitsbloecken in der Cloud laufen lassen
+=========================================================================
+
+Was es ist
+  Eine Routine auf claude.ai startet alle drei Stunden eine frische Cloud-Sitzung auf dem
+  Projekt. Die liest cloud/CLOUD-REGELN.md, arbeitet auf dem Zweig claude/haus und pusht
+  jeden Zug. Ein Haken (fortsetzer.py) traegt sie ueber mehrere Zuege, bis ihr Block um ist
+  (Vorgabe 120 Minuten oder 25 Zuege). Fragen gehen in OWNER-FRAGEN.md UND in den Chat.
+  Den Zweig claude/haus fuehrst du in den Standardzweig zusammen, wann du willst - die
+  Sitzung tut das nie.
+
+Einmal einrichten
+  1. Den ganzen Ordner "cloud" aus der Ablage in das Projekt kopieren:
+       robocopy "<Ablage>\cloud" "<Projekt>\cloud" /MIR
+  2. Im Projekt den Standardzweig auschecken, dann cloud\CLOUD-EINRICHTEN.cmd doppelklicken.
+     Es traegt die Haken ein, legt .claude\cloud.json an und fragt, ob es committen und
+     pushen soll (ja - die Cloud kennt nur, was auf GitHub liegt).
+  3. cloud\ROUTINE-ANLEGEN.cmd doppelklicken. Es prueft, dass die Einrichtung auf GitHub
+     liegt, fragt nach dem Modell, zeigt alles und legt die Routine nach deinem Ja an
+     (alle drei Stunden, sieben nach), auf Wunsch mit einem ersten Lauf. Eine zweite
+     Routine desselben Namens legt es nie an.
+     Es benutzt das Claude Code dieses Rechners. Ist das nicht angemeldet (die Desktop-App
+     meldet nur ihre eigenen Sitzungen an), bietet es die Anmeldung im Browser an - einmal.
+     Braucht das Projekt beim Bauen Adressen ausserhalb der Standardliste (eigene Server,
+     seltene Paketquellen), die Netzfreigabe der Umgebung erweitern.
+  4. Den ersten Lauf im Browser mitlesen (der Link steht am Ende von ROUTINE-ANLEGEN).
+     Nach dem ersten Zug muss auf claude/haus ein Commit mit .claude/ampel liegen.
+
+Nachsehen
+  cloud\CLOUD-STAND.cmd   Ampel, Commits der letzten 24 h, offene Fragen - aus GitHub,
+                          ohne die Cloud zu oeffnen. Ist die Ampel aelter als sechs
+                          Stunden, laeuft keine Routine mehr.
+
+Antworten
+  Im Chat des Laufs (claude.ai/code -> den Lauf oeffnen), je Frage mit Kennung und Weg,
+  z. B. "2026-09-26-1: b". Die Sitzung traegt die ANTWORT-Zeile ein und pusht sie. Wer nicht
+  antwortet, bekommt nach zwoelf Stunden die Vorgabe.
+
+Neue Fassung oder neue Werkzeuge
+  Schritt 1 und 2 wiederholen. Die Routine selbst bleibt, wie sie ist: ihr Auftrag nennt nur
+  die Regeldatei, und die kommt mit dem Paket.
+
+Zuruecknehmen
+  cloud\CLOUD-EINRICHTEN.cmd "<Projekt>" --zurueck   nimmt Haken und Auftrag heraus.
+  Die Routine haeltst du selbst an: claude.ai/code/routines -> pausieren oder loeschen.
+
+Was hier NICHT geht
+  - Zwei Produktionen auf einem Projekt: laeuft es auch lokal als Solo- oder Ego-Haus,
+    vorher dort ZURUECKNEHMEN.cmd.
+  - Laeufe, die laenger als ein Block brauchen: die Cloud raeumt den Rechner nach dem Block
+    ab. Die Sitzung soll so etwas als Frage melden.
+  - Wecken zwischen den Bloecken: es gibt keine Uhr. Der naechste Block kommt nach Plan.

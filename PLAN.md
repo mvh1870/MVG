@@ -6,13 +6,13 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 ## Offen
 
 ### P0 · Einrichtung (lokal, mit dem Owner)
-- [~] P0.1 · Repo, Quellen, Regelwerk (CLAUDE.md, PLAN.md, ENTSCHEIDE.md, UEBERGABE.md, OWNER-FRAGEN.md, docs/) — Abnahme: Dateien vorhanden, erster Commit.
-- [ ] P0.2 · Whitepaper-Quelle strukturiert: `quellen/whitepaper/v1.2/whitepaper.json` + `.md` mit stabilen Absatz-IDs, Tabellen, Abbildungspositionen; Import-Werkzeug (auch für V1.3) — Abnahme: alle 13 Kapitel, jede Tabelle, jede Abbildung; Tests grün.
-- [ ] P0.3 · Marke & Stil: Logo als SVG (aus Original-PNG vektorisiert), Schriften eingebettet, Tokens (`src/stil/`), `docs/STIL.md` aus Variante B inkl. L-4 — Abnahme: Stil-Referenzseite im Bau, Kontrast ≥ 4,5:1.
-- [ ] P0.4 · Bau & Prüfkette: `npm run bau` (Einzeldatei `dist/mvg.html`, CSP, deterministisch), `npm run pruefe` (Typen, Tests, Inhalte, Begriffe, Bau ×2, Größe, Oberfläche) — Abnahme: Kette grün lokal; Oberfläche findet einen Browser oder meldet sauber „übersprungen“.
-- [ ] P0.5 · Engine + Inhaltsformat + Regie-Kanal (`src/engine/`, `werkzeuge/inhalte.mjs`, `docs/INHALTSFORMAT.md`, `src/regie/kanal.ts`) — Abnahme: Reducer-, Parser-, Kanal-Tests grün.
-- [ ] P0.6 · Durchstich: Startseite (2 Wege), Story Prolog-Minimum → A3 → (Schieberegler) → B3 für Rolle Bauherren-PL, Theorie-Probe (Kap. 1 + Kapitelliste), Regie/Leinwand-Sync — Abnahme: Klickpfad im Browser ohne Konsolenfehler bei 1280×720, 1024×768, 400 px; Leinwand zeigt nie Regie-Notizen.
-- [ ] P0.7 · Prüf-Agenten P0 (Architektur, Fachtreue A3/B3, Stil) + Korrekturen — Abnahme: keine offenen Befunde.
+- [x] P0.1 · Repo, Quellen, Regelwerk (CLAUDE.md, PLAN.md, ENTSCHEIDE.md, UEBERGABE.md, OWNER-FRAGEN.md, docs/) — Abnahme: Dateien vorhanden, erster Commit.
+- [x] P0.2 · Whitepaper-Quelle strukturiert: `quellen/whitepaper/v1.2/whitepaper.json` + `.md` mit stabilen Absatz-IDs, Tabellen, Abbildungspositionen; Import-Werkzeug (auch für V1.3) — Abnahme: alle 13 Kapitel, jede Tabelle, jede Abbildung; Tests grün.
+- [x] P0.3 · Marke & Stil: Logo als SVG (aus Original-PNG vektorisiert), Schriften eingebettet, Tokens (`src/stil/`), `docs/STIL.md` aus Variante B inkl. L-4 — Abnahme: Stil-Referenzseite im Bau, Kontrast ≥ 4,5:1.
+- [x] P0.4 · Bau & Prüfkette: `npm run bau` (Einzeldatei `dist/mvg.html`, CSP, deterministisch), `npm run pruefe` (Typen, Tests, Inhalte, Begriffe, Bau ×2, Größe, Oberfläche) — Abnahme: Kette grün lokal; Oberfläche findet einen Browser oder meldet sauber „übersprungen“.
+- [x] P0.5 · Engine + Inhaltsformat + Regie-Kanal (`src/engine/`, `werkzeuge/inhalte.mjs`, `docs/INHALTSFORMAT.md`, `src/regie/kanal.ts`) — Abnahme: Reducer-, Parser-, Kanal-Tests grün.
+- [x] P0.6 · Durchstich: Startseite (2 Wege), Story Prolog-Minimum → A3 → (Schieberegler) → B3 für Rolle Bauherren-PL, Theorie-Probe (Kap. 1 + Kapitelliste), Regie/Leinwand-Sync — Abnahme: Klickpfad im Browser ohne Konsolenfehler bei 1280×720, 1024×768, 400 px; Leinwand zeigt nie Regie-Notizen.
+- [x] P0.7 · Prüf-Agenten P0 (Architektur, Fachtreue A3/B3, Stil) + Korrekturen — Abnahme: keine offenen Befunde.
 - [ ] P0.8 · GitHub-Remote mvh1870/MVG (Owner-OK für Push), `cloud/` einrichten (Owner führt CLOUD-EINRICHTEN und ROUTINE-ANLEGEN aus), erster Cloud-Block beobachtet — Abnahme: Ampel des ersten Blocks auf `claude/haus`.
 
 ### P1 · Drehbuch & Theorie-Gliederung (Cloud)
@@ -107,6 +107,7 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [ ] P10.4 · Korrekturliste V1.3 (E13): alle Grafik↔Text-Widersprüche mit Bild-Prompts (`docs/KORREKTURLISTE-V1.3.md`)
 - [ ] P10.5 · Begriffs-Kompass (E7)
 - [ ] P10.6 · Einbett-Schnittstelle (E12): iframe-sicher, postMessage; dezente Klänge (E14, standardmäßig aus)
+- [ ] P10.8 · Kundenfassung ohne Regie-Material (L-7): `npm run bau -- --kundenfassung` → `dist/mvg-kunde.html`; Test, dass kein Regie-Text enthalten ist
 - [ ] P10.7 · Größenbudget < 4 MB, Determinismus, Anleitungen (Selbstlernen, Präsentator), Abnahme-Checkliste für den Owner (`docs/ABNAHME.md`)
 
 ### P11 · Gesamtprüfung

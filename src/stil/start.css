@@ -1,0 +1,190 @@
+/* =============================================================================================
+   MVG · Startseite: ruhiger Einstieg mit genau zwei Wegen (O-21, L-4)
+   Quelle: prototyp/startseite-entwurf.html (Aufbau: Kopf · These · zwei Türen · leiser Fuß),
+   gestaltet mit den Schriften und Marken der Variante B. Viel Weißraum, keine Instrumente.
+   Nur Tokens aus tokens.css, keine Farbwerte.
+   ============================================================================================= */
+
+.startseite {
+  --fokus: var(--navy);
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  /* Senkrechte Abstände wachsen mit der Höhe: bei 1280×720 (Beamer) und 1024×768 stehen beide Türen
+     samt „Öffnen/Beginnen“ im ersten Bild (O-21), auf hohen Bildschirmen bleibt viel Weißraum. */
+  gap: clamp(16px, 3.4vh, 32px);
+  padding: clamp(14px, 3vh, 24px) max(var(--a-4), 5vw) clamp(12px, 2.4vh, 20px);
+  background: var(--grund);
+  color: var(--tinte);
+}
+.startseite :focus-visible { box-shadow: 0 0 0 6px var(--fokus-hof); }
+
+/* Kopf: Marke, Absender */
+.start-kopf {
+  display: flex;
+  align-items: center;
+  gap: var(--a-3);
+  width: 100%;
+  max-width: var(--breite-start);
+  margin-inline: auto;
+}
+/* Bildmarke mit dem Absender als Text (docs/STIL.md, Grundsatz 8 und Katalog „Startseite“) */
+.start-kopf .marke-logo { height: 44px; color: var(--navy); }
+.start-absender { display: flex; flex-direction: column; gap: 2px; line-height: 1.2; }
+.start-absender b { font: 800 var(--gr-xl)/1 var(--schrift-anzeige); letter-spacing: .08em; text-transform: uppercase; color: var(--navy); }
+.start-absender span { font-size: var(--gr-s); color: var(--tinte-2); }
+
+/* Mitte: These und zwei Türen */
+.start-haupt {
+  display: grid;
+  align-content: center;
+  gap: clamp(20px, 4.4vh, 72px);
+  width: 100%;
+  max-width: var(--breite-start);
+  margin-inline: auto;
+}
+.start-kicker {
+  font: 600 var(--gr-m)/1.2 var(--schrift-label);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold-text);
+}
+.start-titel {
+  max-width: 26ch;
+  margin-top: var(--a-2);
+  font: 800 clamp(34px, min(5.2vw, 7.2vh), 76px)/.98 var(--schrift-anzeige);
+  letter-spacing: .01em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+.start-these {
+  max-width: 46ch;
+  margin-top: clamp(10px, 2.2vh, 20px);
+  font-size: clamp(17px, 1.6vw, 20px);
+  line-height: 1.5;
+  color: var(--tinte-2);
+}
+.start-these strong { color: var(--tinte); font-weight: 600; }
+
+.tueren { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 32px); }
+.tuer {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: clamp(6px, 1.4vh, 12px);
+  padding: clamp(18px, 3.8vh, 32px) var(--a-8) clamp(16px, 3.2vh, 24px);
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-xl);
+  background: var(--weiss);
+  box-shadow: var(--schatten-rahmen);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--dauer-sofort) ease, box-shadow var(--dauer-sofort) ease;
+}
+.tuer:hover { transform: translateY(-3px); box-shadow: var(--schatten-rahmen), var(--schatten-tuer); color: inherit; }
+/* Leiste unten wie die Fortschrittsschritte des Leitstands: Theorie Petrol, Story A → B */
+.tuer::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--petrol); }
+.tuer[data-weg="story"]::after { background: linear-gradient(90deg, var(--koralle), var(--gold-hell), var(--tuerkis)); }
+.tuer-bild { width: auto; max-width: 100%; height: 92px; }
+.tuer-titel { font: 800 clamp(30px, 3vw, 40px)/1 var(--schrift-anzeige); letter-spacing: .01em; text-transform: uppercase; color: var(--navy); }
+.tuer-kicker {
+  display: block;
+  margin-bottom: var(--a-2);
+  font: 700 var(--gr-s)/1.2 var(--schrift-label);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--petrol);
+}
+.tuer[data-weg="story"] .tuer-kicker { color: var(--koralle-text); }
+.tuer-text { max-width: 44ch; font-size: var(--gr-l); line-height: 1.5; color: var(--tinte-2); }
+.tuer-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--a-2) var(--a-3);
+  padding-top: var(--a-3);
+  border-top: 1px solid var(--linie);
+  font-size: var(--gr-m);
+  color: var(--tinte-2);
+}
+.tuer-los { display: inline-flex; align-items: center; gap: var(--a-2); font: 700 var(--gr-l)/1 var(--schrift-label); letter-spacing: .08em; text-transform: uppercase; color: var(--navy); }
+.tuer-los .symbol { font-size: 18px; transition: transform var(--dauer-sofort) ease; }
+.tuer:hover .tuer-los .symbol { transform: translateX(4px); }
+
+/* Bild der Theorie-Tür: 13 Kapitelstriche (Petrol) */
+.kapitel-striche rect { fill: var(--petrol); opacity: .18; }
+.kapitel-striche rect.ist-an { opacity: 1; }
+.tuer:hover .kapitel-striche rect,
+.tuer:focus-visible .kapitel-striche rect { animation: strich-an .3s ease forwards; animation-delay: var(--verzug, 0ms); }
+@keyframes strich-an { to { opacity: 1; } }
+
+/* Bild der Story-Tür: zwei Wege, A verschlungen (Koralle), B gerade (Türkis) */
+.weg-a, .weg-b { fill: none; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 360; stroke-dashoffset: 360; }
+.weg-a { stroke: var(--koralle); animation: zeichnen 2.4s ease forwards .3s; }
+.weg-b { stroke: var(--tuerkis); animation: zeichnen 1.8s ease forwards 1.2s; }
+.weg-start { fill: var(--navy); }
+.weg-text { font: 700 var(--gr-xs) var(--schrift-label); letter-spacing: .06em; text-transform: uppercase; }
+.weg-text[data-welt] { fill: var(--welt-text); }
+
+/* Fuß: leise, nur „Präsentieren“ (O-21); „Glossar“ kommt mit der Glossar-Fläche dazu (docs/STIL.md, Grundsatz 1) */
+.start-fuss {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--a-2) var(--a-5);
+  width: 100%;
+  max-width: var(--breite-start);
+  margin-inline: auto;
+  font-size: var(--gr-s);
+  color: var(--tinte-2);
+}
+.leise-links { display: flex; flex-wrap: wrap; gap: 18px; }
+.leise-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--tinte-2);
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.leise-link:hover { color: var(--navy); }
+a.leise-link { display: inline-flex; align-items: center; min-height: 36px; }
+.start-vermerk {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px var(--a-2);
+  border-radius: var(--radius-xs);
+  background: var(--gold-soft);
+  color: var(--gold-text);
+  font: 600 var(--gr-xs)/1.4 var(--schrift-label);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+/* Sanftes Erscheinen der Startseite (einmal, ruhig) */
+/* Startet sichtbar (O-21: die Seite ist schon im ersten Bild vollständig), nur ein leichtes Aufsetzen. */
+@keyframes start-ein { from { opacity: .45; transform: translateY(8px); } }
+.start-haupt > * { animation: start-ein var(--dauer-lang) var(--kurve-aus) both; }
+.start-haupt > *:nth-child(2) { animation-delay: 150ms; }
+
+@media (max-width: 760px) {
+  .startseite { gap: var(--a-6); padding: var(--a-4) var(--a-4) var(--a-4); }
+  .tueren { grid-template-columns: minmax(0, 1fr); }
+  .tuer { min-height: 0; padding: var(--a-6) var(--a-5) var(--a-5); }
+  .start-kopf .marke-logo { height: 36px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .weg-a, .weg-b { animation: none; stroke-dashoffset: 0; }
+  .tuer:hover .kapitel-striche rect { animation: none; }
+}

@@ -1,0 +1,296 @@
+/* =============================================================================================
+   MVG · Theorie: ruhige Lernseiten im Leitstand-Stil, ohne Leitstand-Rahmen (L-4, O-20)
+   Kapitelkopf · Kernaussage · Lesetext · Lernkarten · Originaltext mit Absatz-ID · Querverweis
+   Nur Tokens aus tokens.css, keine Farbwerte.
+   ============================================================================================= */
+
+.lernseite {
+  --fokus: var(--navy);
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--grund);
+  color: var(--tinte);
+}
+.lernseite :focus-visible { box-shadow: 0 0 0 6px var(--fokus-hof); }
+
+/* Kopfleiste: Marke, Bereich, Rückweg zur Startseite */
+.lern-kopf {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: var(--a-3);
+  padding: 10px max(var(--a-4), 3vw);
+  border-bottom: 1px solid var(--linie);
+  background: var(--weiss);
+}
+.lern-kopf .marke-logo { height: 30px; color: var(--navy); }
+.lern-bereich { flex: 1; min-width: 0; font: 700 var(--gr-m)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-kicker); text-transform: uppercase; color: var(--petrol); }
+.lern-bereich span { color: var(--tinte-2); font-weight: 600; }
+.lern-kopf-link { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; font: 600 var(--gr-m)/1.2 var(--schrift-label); letter-spacing: .06em; text-transform: uppercase; color: var(--navy); text-decoration: none; }
+.lern-kopf-link:hover { text-decoration: underline; }
+
+/* Rahmen: Kapitelverzeichnis links (ab 1100 px), Inhalt als Lesespalte */
+.lern-rahmen {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--a-10);
+  max-width: 1180px;
+  margin-inline: auto;
+  padding: var(--a-10) max(var(--a-4), 3vw) var(--a-16);
+}
+@media (min-width: 1100px) {
+  .lern-rahmen { grid-template-columns: 240px minmax(0, 1fr); }
+}
+.lern-inhalt { display: flex; flex-direction: column; gap: var(--a-8); min-width: 0; max-width: var(--breite-lesen); }
+
+/* Kapitelverzeichnis (13 Kapitel) */
+.kapitel-verzeichnis { align-self: start; position: sticky; top: 72px; }
+.kapitel-verzeichnis .t-label { display: block; margin-bottom: var(--a-3); }
+.kapitel-verzeichnis > summary.t-label { display: flex; align-items: center; justify-content: space-between; gap: var(--a-2); min-height: 36px; margin-bottom: var(--a-1); list-style: none; cursor: pointer; }
+.kapitel-verzeichnis > summary::-webkit-details-marker { display: none; }
+.kapitel-verzeichnis > summary::after { content: "+"; font: 800 var(--gr-xl)/1 var(--schrift-anzeige); color: var(--tinte-2); }
+.kapitel-verzeichnis[open] > summary::after { content: "–"; }
+.kapitel-liste { display: flex; flex-direction: column; gap: 2px; }
+.kapitel-liste a {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: var(--a-2);
+  padding: 6px var(--a-2);
+  border-radius: var(--radius-s);
+  color: var(--tinte-2);
+  font-size: var(--gr-m);
+  line-height: 1.3;
+  text-decoration: none;
+}
+.kapitel-liste a b { font: 800 var(--gr-l)/1.1 var(--schrift-anzeige); color: var(--navy-soft); }
+.kapitel-liste a:hover { background: var(--weiss); color: var(--tinte); }
+.kapitel-liste a[aria-current="page"] { background: var(--weiss); color: var(--tinte); font-weight: 600; box-shadow: inset 3px 0 0 var(--petrol); }
+.kapitel-liste a.ist-gelesen b { color: var(--petrol); }
+@media (max-width: 1099px) {
+  .kapitel-verzeichnis { position: static; }
+  .kapitel-verzeichnis:not([open]) .kapitel-liste { display: none; }
+}
+
+/* Kapitelkopf */
+.kapitel-kopf { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: end; gap: var(--a-1) var(--a-5); padding-bottom: var(--a-6); border-bottom: 1px solid var(--linie-2); }
+.kapitel-nr { grid-row: span 2; font: 800 var(--gr-8xl)/.8 var(--schrift-anzeige); color: var(--petrol); }
+.kapitel-kicker { font: var(--typo-kicker); letter-spacing: var(--sperrung-kicker); text-transform: uppercase; color: var(--tinte-2); }
+.kapitel-titel { font: 800 clamp(30px, 3.6vw, 44px)/1.02 var(--schrift-anzeige); letter-spacing: .01em; color: var(--navy); }
+.kapitel-einstieg { grid-column: 1 / -1; max-width: 60ch; margin-top: var(--a-3); font-size: var(--gr-xl); line-height: 1.5; color: var(--tinte-2); }
+
+/* Kernaussage (entspricht Ebene 1) */
+.kernaussage {
+  position: relative;
+  padding: var(--a-6) var(--a-6) var(--a-6) var(--a-8);
+  border-radius: var(--radius-xl);
+  background: var(--weiss);
+  box-shadow: var(--schatten-karte-hoch);
+}
+.kernaussage::before { content: ""; position: absolute; left: 0; top: var(--a-4); bottom: var(--a-4); width: 4px; border-radius: 0 2px 2px 0; background: var(--gold-hell); }
+.kernaussage .t-label { display: block; margin-bottom: var(--a-2); color: var(--gold-text); }
+.kernaussage p { font-size: 22px; line-height: 1.4; font-weight: 600; letter-spacing: -.005em; }
+.kernaussage em { background: linear-gradient(transparent 62%, var(--gold-hell-a45) 62%); }
+
+/* Lesetext (aus Markdown: Listen behalten Aufzählungszeichen, siehe basis.css) */
+.lesetext { font: var(--typo-lese); }
+.lesetext > * + * { margin-top: var(--a-4); }
+.lesetext h2 { margin-top: var(--a-10); font: 700 var(--gr-3xl)/1.25 var(--schrift-text); color: var(--navy); }
+.lesetext h3 { margin-top: var(--a-8); font: 700 var(--gr-2xl)/1.3 var(--schrift-text); }
+.lesetext h4 { margin-top: var(--a-6); font: 700 var(--gr-s)/1.3 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
+.lesetext ul, .lesetext ol { padding-left: 1.3em; }
+.lesetext li + li { margin-top: var(--a-1); }
+.lesetext li::marker { color: var(--petrol); }
+.lesetext strong { font-weight: 600; }
+
+/* Lernkarten */
+.lernkarten { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--a-4); }
+.lernkarte {
+  position: relative;
+  min-width: 0;
+  padding: var(--a-5) var(--a-5) var(--a-4);
+  overflow: hidden;
+  border-radius: var(--radius-l);
+  background: var(--weiss);
+  box-shadow: var(--schatten-karte);
+}
+.lernkarte::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--welt-farbe, var(--rollen-farbe, var(--petrol))); }
+.lernkarte-titel { display: flex; align-items: center; gap: var(--a-2); margin-bottom: var(--a-2); font: 700 var(--gr-text)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy); }
+.lernkarte-titel .symbol { font-size: 18px; color: var(--petrol); }
+.lernkarte-nr { font: 800 var(--gr-4xl)/1 var(--schrift-anzeige); color: var(--petrol); }
+.lernkarte p { font-size: var(--gr-text); line-height: 1.5; color: var(--tinte); }
+button.lernkarte { border: 0; font: inherit; text-align: left; cursor: pointer; transition: transform var(--dauer-sofort), box-shadow var(--dauer-sofort); }
+button.lernkarte:hover { transform: translateY(-2px); box-shadow: var(--schatten-karte-hoch); }
+button.lernkarte[aria-expanded="true"] { box-shadow: 0 0 0 2px var(--gold-hell), var(--schatten-karte-hoch); }
+
+/* Grafik (native SVG aus src/grafik/) */
+.lern-grafik { padding: var(--a-5); border-radius: var(--radius-l); background: var(--weiss); box-shadow: var(--schatten-karte); }
+.lern-grafik figcaption { margin-top: var(--a-3); font-size: var(--gr-s); color: var(--tinte-2); }
+
+/* Originaltext V1.2, wörtlich (O-17) – jeder Absatz mit seiner ID */
+.originaltext {
+  padding: var(--a-5) var(--a-6) var(--a-6);
+  border-radius: var(--radius-l);
+  background: var(--flaeche-3);
+  box-shadow: inset 0 0 0 1px var(--linie), inset 4px 0 0 var(--navy-soft);
+}
+.originaltext-kopf { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--a-1) var(--a-4); margin-bottom: var(--a-4); padding-bottom: var(--a-3); border-bottom: 1px solid var(--linie); }
+.originaltext-kopf .t-label { color: var(--navy-soft); }
+.originaltext-quelle { font-size: var(--gr-s); color: var(--tinte-2); }
+.absatz { display: grid; grid-template-columns: 5.5em minmax(0, 1fr); gap: var(--a-3); font: var(--typo-lese); }
+.absatz + .absatz { margin-top: var(--a-4); }
+.original-abschnitt { margin: var(--a-6) 0 var(--a-3); color: var(--navy); font: 700 var(--gr-l)/1.25 var(--schrift-text); }
+.originaltext-kopf + .original-abschnitt { margin-top: var(--a-4); }
+.absatz-id {
+  justify-self: start;
+  align-self: start;
+  margin-top: .2em;
+  padding: 2px 6px;
+  border-radius: var(--radius-xs);
+  background: var(--id-ent-grund);
+  color: var(--id-ent-text);
+  font: 500 var(--gr-xs)/1.3 var(--schrift-mono);
+  text-decoration: none;
+  white-space: nowrap;
+}
+a.absatz-id:hover { background: var(--weiss); box-shadow: inset 0 0 0 1px var(--navy-soft); }
+.absatz:target { border-radius: var(--radius-s); background: var(--gold-soft); box-shadow: 0 0 0 var(--a-2) var(--gold-soft); }
+.originaltext ul.absatz-liste { padding-left: 1.3em; list-style: disc; }
+
+/* Querverweis in die Story (Chip) */
+.querverweis {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--a-2);
+  padding: 5px var(--a-3) 5px 6px;
+  border-radius: var(--radius-rund);
+  background: var(--weiss);
+  box-shadow: inset 0 0 0 1.5px var(--welt-farbe, var(--navy-soft));
+  color: var(--welt-text, var(--navy-soft));
+  font-size: var(--gr-m);
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+}
+.querverweis:hover { background: var(--welt-soft, var(--flaeche-2)); color: var(--welt-text, var(--navy)); }
+.querverweis-symbol { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--welt-text, var(--navy-soft)); color: var(--weiss); }
+.querverweis-symbol .symbol { font-size: var(--gr-m); }
+.querverweis small { font-weight: 400; color: var(--tinte-2); }
+.querverweise { display: flex; flex-wrap: wrap; gap: var(--a-2); }
+
+/* Vermerk „fachlich ungeprüft“ (O-24) */
+.vermerk-hell {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px var(--a-2);
+  border-radius: var(--radius-xs);
+  background: var(--gold-soft);
+  box-shadow: inset 0 0 0 1px var(--gold-soft-kante);
+  color: var(--gold-text);
+  font: 600 var(--gr-xs)/1.4 var(--schrift-label);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+/* Kapitel vor / zurück */
+.kapitel-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--a-4); padding-top: var(--a-6); border-top: 1px solid var(--linie-2); }
+.kapitel-nav a {
+  display: flex;
+  flex-direction: column;
+  gap: var(--a-1);
+  padding: var(--a-4) var(--a-5);
+  border-radius: var(--radius-l);
+  background: var(--weiss);
+  box-shadow: var(--schatten-rahmen);
+  color: var(--navy);
+  text-decoration: none;
+}
+.kapitel-nav a:hover { box-shadow: var(--schatten-rahmen), var(--schatten-karte-hoch); }
+.kapitel-nav a[rel="next"] { grid-column: 2; text-align: right; }
+.kapitel-nav .t-label { color: var(--tinte-2); }
+.kapitel-nav b { font: 800 var(--gr-2xl)/1.1 var(--schrift-anzeige); }
+
+@media (max-width: 700px) {
+  .lern-rahmen { padding-top: var(--a-6); gap: var(--a-6); }
+  .kapitel-kopf { grid-template-columns: minmax(0, 1fr); }
+  .kapitel-nr { grid-row: auto; font-size: var(--gr-7xl); }
+  .kernaussage { padding: var(--a-5) var(--a-4) var(--a-5) var(--a-6); }
+  .kernaussage p { font-size: 19px; }
+  .originaltext { padding: var(--a-4); }
+  .absatz { grid-template-columns: minmax(0, 1fr); gap: var(--a-1); }
+  .kapitel-nav { grid-template-columns: minmax(0, 1fr); }
+  .kapitel-nav a[rel="next"] { grid-column: auto; }
+}
+
+/* =============================================================================================
+   Durchstich P0.6: Kapitelliste, Abschnitte, Zitate, Originaltext als Blöcke, Fuß
+   ============================================================================================= */
+.lern-rahmen.ist-einspaltig { grid-template-columns: minmax(0, 1fr); max-width: calc(var(--breite-lesen) + 2 * max(var(--a-4), 3vw)); }
+.lern-inhalt > .lernkarten + *, .lern-abschnitt > * + * { margin-top: var(--a-4); }
+.kapitel-titel:focus { outline: none; }
+.kapitel-liste a.ist-folgt { color: var(--tinte-2); }
+.kapitel-liste a.ist-folgt b { color: var(--tinte-2); font-weight: 600; }
+.kapitel-liste span.ist-folgt, .kapitel-liste span.ist-gelesen { display: grid; grid-template-columns: 28px 1fr; gap: var(--a-2); padding: 6px var(--a-2); font-size: var(--gr-m); line-height: 1.3; color: var(--tinte-2); }
+
+/* Kapitelliste (#theorie) */
+.kapitel-karten { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--a-3); }
+.kapitel-karte {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: 1fr auto;
+  align-items: start;
+  gap: var(--a-1) var(--a-3);
+  height: 100%;
+  min-height: 108px;
+  padding: var(--a-4) var(--a-5);
+  border-radius: var(--radius-l);
+  background: var(--weiss);
+  box-shadow: var(--schatten-karte);
+  color: var(--tinte);
+  text-decoration: none;
+}
+a.kapitel-karte { box-shadow: inset 0 3px 0 var(--petrol), var(--schatten-karte); transition: transform var(--dauer-sofort), box-shadow var(--dauer-sofort); }
+a.kapitel-karte:hover { color: var(--tinte); transform: translateY(-2px); box-shadow: inset 0 3px 0 var(--petrol), var(--schatten-karte-hoch); }
+.kapitel-karte.ist-folgt { background: var(--flaeche-1); box-shadow: inset 0 0 0 1px var(--linie); color: var(--tinte-2); }
+.kapitel-karte-nr { grid-row: span 2; font: 800 var(--gr-5xl)/.9 var(--schrift-anzeige); color: var(--petrol); }
+.kapitel-karte.ist-folgt .kapitel-karte-nr { color: var(--tinte-2); }
+.kapitel-karte-titel { font-size: var(--gr-l); font-weight: 600; line-height: 1.3; }
+.kapitel-karte-los { display: inline-flex; align-items: center; gap: var(--a-1); font: 700 var(--gr-s)/1.2 var(--schrift-label); letter-spacing: .08em; text-transform: uppercase; color: var(--navy); }
+.kapitel-karte .badge { justify-self: start; }
+
+/* Abschnitte, Zitate, Karten */
+.lern-abschnitt { display: flex; flex-direction: column; gap: var(--a-4); }
+.abschnitt-titel { display: flex; align-items: baseline; gap: var(--a-3); font: 700 var(--gr-3xl)/1.25 var(--schrift-text); color: var(--navy); }
+.abschnitt-nr { font: 800 var(--gr-2xl)/1 var(--schrift-anzeige); color: var(--petrol); }
+.lern-zitat-rahmen { padding: var(--a-5) var(--a-6); border-radius: var(--radius-l); background: var(--weiss); box-shadow: var(--schatten-karte); }
+.lern-zitat { position: relative; padding-left: 30px; font: var(--typo-lese); }
+.lern-zitat::before { content: "„"; position: absolute; left: -2px; top: -14px; font: 800 var(--gr-7xl)/1 var(--schrift-anzeige); color: var(--gold-hell); }
+.lern-zitat-rahmen figcaption { margin-top: var(--a-3); padding-top: var(--a-2); border-top: 1px solid var(--linie); font-size: var(--gr-s); color: var(--tinte-2); }
+.lernkarte-zahl { display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding: 0 5px; border-radius: 50%; background: var(--petrol); color: var(--weiss); font: 800 var(--gr-m)/1 var(--schrift-anzeige); }
+.lernkarte-text { font-size: var(--gr-text); line-height: 1.5; }
+.lernkarte-text p + p { margin-top: var(--a-2); }
+q.mvg-zitat { font-weight: 500; }
+
+/* Originaltext: Listen und Tabellen als eigene Absätze */
+.absatz-block { min-width: 0; overflow-x: auto; }
+.absatz-block .register-tabelle { font-size: var(--gr-m); }
+.absatz-block .absatz-liste li + li { margin-top: var(--a-1); }
+
+/* Querverweis in die Story */
+.querverweis-block { display: flex; flex-direction: column; gap: var(--a-2); }
+.querverweis-text { display: flex; flex-direction: column; gap: 2px; }
+.querverweis-text small { font-size: var(--gr-s); line-height: 1.35; }
+.querverweise .querverweis { align-items: flex-start; padding: var(--a-2) var(--a-4) var(--a-2) var(--a-2); border-radius: var(--radius-l); }
+.kernaussage.ist-folgt { background: var(--flaeche-1); box-shadow: inset 0 0 0 1px var(--linie); }
+.kernaussage.ist-folgt p { font-size: var(--gr-xl); font-weight: 500; }
+
+/* Fuß der Lernseiten: Version und Vermerk */
+.lern-fuss { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--a-2) var(--a-4); padding-top: var(--a-4); border-top: 1px solid var(--linie); font-size: var(--gr-s); color: var(--tinte-2); }
+
+@media (max-width: 700px) {
+  .abschnitt-titel { font-size: var(--gr-2xl); }
+  .lern-zitat-rahmen { padding: var(--a-4); }
+  .kapitel-karten { grid-template-columns: minmax(0, 1fr); }
+}

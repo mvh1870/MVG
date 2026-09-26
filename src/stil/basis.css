@@ -1,0 +1,247 @@
+/* =============================================================================================
+   MVG · Basis: Grundstellung, Typografie, Fokus, Bewegung, Hilfsklassen
+   Quelle: prototyp/variante-b-leitstand.html (Grundregeln bis „App-Raster“), bereinigt.
+   Nur Tokens aus tokens.css, keine Farbwerte.
+   ============================================================================================= */
+
+/* ------------------------------------------------------------------ Grundstellung */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+[hidden] { display: none !important; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  background: var(--grund);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--grund);
+  color: var(--tinte);
+  font: var(--typo-text);
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  overflow-wrap: break-word;
+}
+
+/* Fläche am <body> (main.ts setzt sie): die Story läuft im Navy-Rahmen. */
+body[data-flaeche="story"],
+body[data-flaeche="leinwand"],
+body[data-flaeche="regie"] { background: var(--navy); }
+
+h1, h2, h3, h4, h5, h6, p, ol, ul, dl, dd, figure, blockquote { margin: 0; }
+h1, h2, h3, h4, h5, h6 { font-size: inherit; font-weight: 700; text-wrap: balance; }
+
+/* Listen mit Klasse sind Bausteine (ohne Aufzählungszeichen); Listen aus Markdown behalten sie. */
+ul[class], ol[class] { padding: 0; list-style: none; }
+
+img, svg, video { display: block; max-width: 100%; }
+svg { overflow: visible; }
+
+button, input, select, textarea { font: inherit; color: inherit; }
+button {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+button:disabled { cursor: default; }
+
+a { color: var(--navy-soft); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { color: var(--navy); text-decoration-thickness: 2px; }
+
+table { border-collapse: collapse; }
+
+/* Kursiv kommt nicht vor (kein Kursivschnitt eingebettet, L-2): Hervorhebung über Gewicht. */
+em { font-style: normal; font-weight: 600; }
+strong, b { font-weight: 700; }
+
+::selection { background: var(--gold-hell); color: var(--navy); }
+
+/* ------------------------------------------------------------------ Silbentrennung (lang="de") */
+:lang(de) p,
+:lang(de) li,
+:lang(de) dd,
+:lang(de) blockquote,
+:lang(de) td {
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+/* Labels, Titel, Kürzel und IDs werden nie getrennt. */
+:lang(de) h1, :lang(de) h2, :lang(de) h3, :lang(de) h4,
+.t-label, .t-kicker, .t-anzeige, .mono, .id-marke, .badge, kbd {
+  -webkit-hyphens: manual;
+  hyphens: manual;
+}
+
+/* ------------------------------------------------------------------ Fokus (immer sichtbar) */
+:focus:not(:focus-visible) { outline: none; }
+:focus-visible {
+  outline: 3px solid var(--fokus);
+  outline-offset: 2px;
+}
+/* Auf Navy trägt Gold den Ring; auf hellen Tafeln Navy mit Gold-Hof (wie Prototyp). */
+.auf-navy { --fokus: var(--gold-hell); }
+.flaeche-hell :focus-visible { box-shadow: 0 0 0 6px var(--fokus-hof); }
+
+/* Sprunglink */
+.sprunglink {
+  position: absolute;
+  left: var(--a-4);
+  top: -80px;
+  z-index: 200;
+  padding: var(--a-2) 14px;
+  border-radius: var(--radius-s);
+  background: var(--gold-hell);
+  color: var(--navy);
+  font-weight: 600;
+  text-decoration: none;
+}
+.sprunglink:focus { top: var(--a-2); }
+
+/* ------------------------------------------------------------------ Hilfsklassen */
+.nur-sr {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Typorollen */
+.t-anzeige { font: var(--typo-anzeige); letter-spacing: .01em; }
+.t-titel { font: var(--typo-titel); letter-spacing: var(--sperrung-titel); text-transform: uppercase; }
+.t-label {
+  font: var(--typo-label);
+  letter-spacing: var(--sperrung-label);
+  text-transform: uppercase;
+  color: var(--tinte-2);
+}
+.t-kicker {
+  font: var(--typo-kicker);
+  letter-spacing: var(--sperrung-kicker);
+  text-transform: uppercase;
+  color: var(--tinte-2);
+}
+.t-hand { font: var(--typo-hand); }
+.t-klein { font: var(--typo-klein); }
+.t-leise { color: var(--tinte-2); }
+
+/* IDs, Dateinamen, Zeitstempel */
+.mono {
+  font-family: var(--schrift-mono);
+  font-weight: 500;
+  letter-spacing: -.01em;
+  font-variant-numeric: tabular-nums;
+}
+span.mono { white-space: nowrap; }
+
+/* Markierung wie Ebene 1 im Prototyp (`.e-big em`) */
+.markiert {
+  font-style: normal;
+  background: linear-gradient(transparent 62%, var(--gold-hell-a45) 62%);
+}
+
+/* Ikonen: Inline-SVG im 24er-Raster, Strich 1,8, currentColor (docs/STIL.md → Ikonen) */
+.symbol {
+  width: 1em;
+  height: 1em;
+  flex: none;
+  display: inline-block;
+  vertical-align: -.14em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.symbol.gefuellt { fill: currentColor; stroke: none; }
+
+/* Tastenkappe (Hinweise „A–D wählen“) */
+kbd,
+.taste {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 var(--a-1);
+  border-radius: 4px;
+  background: var(--navy);
+  color: var(--gold-hell);
+  font: 800 var(--gr-m)/1 var(--schrift-anzeige);
+}
+
+/* Stapel und Reihen (Abstand über --luecke) */
+.stapel { display: flex; flex-direction: column; gap: var(--luecke, var(--a-3)); min-width: 0; }
+.reihe { display: flex; flex-wrap: wrap; align-items: center; gap: var(--luecke, var(--a-2)); min-width: 0; }
+
+/* ------------------------------------------------------------------ Semantik über Attribute */
+/* Status (Ampel nur für Status, O-11). Ein Status erscheint nie nur als Farbe: immer mit Symbol
+   (Kreis/Raute/Dreieck) oder Text – siehe docs/STIL.md. */
+[data-status="ok"] { --status-farbe: var(--status-gruen); --status-soft: var(--status-gruen-soft); --status-text: var(--status-gruen-text); }
+[data-status="mittel"] { --status-farbe: var(--status-gelb-symbol); --status-soft: var(--status-gelb-soft); --status-text: var(--status-gelb-text); }
+[data-status="kritisch"] { --status-farbe: var(--status-rot); --status-soft: var(--status-rot-soft); --status-text: var(--status-rot); }
+[data-status="neutral"] { --status-farbe: var(--status-neutral); --status-soft: var(--status-neutral-soft); --status-text: var(--status-neutral); }
+
+/* Welten (O-2): A Koralle, B Türkis, AB = Vergleich */
+[data-welt="a"] { --welt-farbe: var(--koralle); --welt-text: var(--koralle-text); --welt-soft: var(--koralle-soft); }
+[data-welt="b"] { --welt-farbe: var(--tuerkis); --welt-text: var(--tuerkis-text); --welt-soft: var(--tuerkis-soft); }
+[data-welt="ab"] { --welt-farbe: var(--gold-hell); --welt-text: var(--navy-soft); --welt-soft: var(--flaeche-2); }
+
+/* Rollen (O-4): Farbe, textsichere Farbe, Fläche, Kante */
+[data-rolle="gf"] { --rollen-farbe: var(--rolle-gf); --rollen-text: var(--rolle-gf-text); --rollen-soft: var(--rolle-gf-soft); --rollen-kante: var(--rolle-gf-kante); }
+[data-rolle="bh"] { --rollen-farbe: var(--rolle-bh); --rollen-text: var(--rolle-bh-text); --rollen-soft: var(--rolle-bh-soft); --rollen-kante: var(--rolle-bh-kante); }
+[data-rolle="pl"] { --rollen-farbe: var(--rolle-pl); --rollen-text: var(--rolle-pl-text); --rollen-soft: var(--rolle-pl-soft); --rollen-kante: var(--rolle-pl-kante); }
+[data-rolle="ps"] { --rollen-farbe: var(--rolle-ps); --rollen-text: var(--rolle-ps-text); --rollen-soft: var(--rolle-ps-soft); --rollen-kante: var(--rolle-ps-kante); }
+[data-rolle="plan"] { --rollen-farbe: var(--rolle-plan); --rollen-text: var(--rolle-plan-text); --rollen-soft: var(--rolle-plan-soft); --rollen-kante: var(--rolle-plan-kante); }
+[data-rolle="ctl"] { --rollen-farbe: var(--rolle-ctl); --rollen-text: var(--rolle-ctl-text); --rollen-soft: var(--rolle-ctl-soft); --rollen-kante: var(--rolle-ctl-kante); }
+
+/* ------------------------------------------------------------------ Bewegung: gemeinsame Keyframes */
+/* Verzögerung je Element über --verzug (Prototyp: --d). */
+@keyframes einblenden { from { opacity: 0; } }
+@keyframes auftauchen { from { opacity: 0; transform: translateY(14px) scale(.97); } }
+@keyframes szene-ein { from { opacity: 0; transform: translateY(10px); } }
+@keyframes von-rechts { from { opacity: 0; transform: translateX(40px); } }
+@keyframes von-oben { from { opacity: 0; transform: translateY(-12px); } }
+@keyframes feder-ein { from { opacity: 0; transform: scale(.3); } }
+@keyframes ping { 0% { transform: scale(.6); opacity: 1; } 100% { transform: scale(1.9); opacity: 0; } }
+@keyframes zeichnen { to { stroke-dashoffset: 0; } }
+@keyframes wackeln { 50% { transform: scale(1.18) rotate(-6deg); } }
+@keyframes led-puls { 50% { opacity: .55; } }
+@keyframes blitz {
+  0% { opacity: 1; box-shadow: inset 0 0 0 3px var(--gold-hell); background: var(--gold-hell-a28); }
+  100% { opacity: 0; box-shadow: inset 0 0 0 3px var(--gold-hell); background: transparent; }
+}
+@keyframes schubsen { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+@keyframes waehlen { 30% { transform: scale(1.03); } 100% { transform: scale(1); } }
+
+.anim-einblenden { animation: einblenden var(--dauer-mittel) ease both; animation-delay: var(--verzug, 0ms); }
+.anim-auftauchen { animation: auftauchen var(--dauer-mittel) var(--kurve-pop) both; animation-delay: var(--verzug, 0ms); }
+.anim-szene { animation: szene-ein 450ms var(--kurve-aus) both; animation-delay: var(--verzug, 0ms); }
+.anim-feder { animation: feder-ein var(--dauer-mittel) var(--kurve-feder) both; animation-delay: var(--verzug, 0ms); }
+
+/* ------------------------------------------------------------------ Reduzierte Bewegung */
+/* Wie im Prototyp: Endzustände sofort, Schleifen aus. Zustände hängen nie an Animationen. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+  .schleife { animation: none !important; }
+}

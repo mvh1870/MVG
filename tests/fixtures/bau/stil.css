@@ -1,0 +1,4 @@
+/* Mini-Stil für tests/bau.test.ts: @import wird gebündelt, "</style" muss entschärft werden. */
+@import "./teil.css";
+body { margin: 0; font-family: system-ui, sans-serif; }
+.fixtur-hinweis::after { content: "</style>"; }

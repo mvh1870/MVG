@@ -40,12 +40,14 @@ k2.2-p1:
   story: A1
 k2.2-p2:
   theorie: k02
+  story: A1
 # ── 2.3 Wissensverlust und Schlüsselrollen
 k2.3-p1:
   theorie: k02
   story: [A1, A6]
 k2.3-p2:
   theorie: k02
+  story: A1
 # ── 2.4 Warum Berichterstattung das Kernproblem nicht löst
 k2.4-p1:
   theorie: k02
@@ -99,12 +101,14 @@ k4.1-p1:
   story: A2
 k4.1-p2:
   theorie: k04
+  story: A2
 # ── 4.2 Mandat
 k4.2-p1:
   theorie: k04
   story: A2
 k4.2-p2:
   theorie: k04
+  story: A2
 k4.2-p3:
   theorie: k04
   story: [B1, B2, B3, wendepunkt]

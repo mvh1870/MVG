@@ -187,7 +187,7 @@ Leise, genau, spricht in Zellbezügen.
 ::: figur petersen
 ---
 name: Nora Petersen
-funktion: Projektassistenz der GML, in Welt B PMO
+funktion: Projektassistenz der GML
 farbe: "#7A5C3E"
 ---
 ### Kurzbeschreibung

@@ -39,7 +39,7 @@ function dateienUnter(ordner) {
 }
 
 /**
- * @param {{ wurzel?: string }} [optionen]
+ * @param {{ wurzel?: string, json?: string }} [optionen]  json: kompilierte Inhalte zusätzlich dorthin schreiben (absolut)
  * @returns {Promise<{ fehler: string[], warnungen: string[], inhalte: any, ueberlagert: string[] }>}
  */
 export async function pruefeEntwurf(optionen = {}) {
@@ -64,7 +64,7 @@ export async function pruefeEntwurf(optionen = {}) {
     mkdirSync(path.dirname(nach), { recursive: true });
     cpSync(path.join(wurzel, 'entwurf', d), nach);
   }
-  const erg = await kompiliere({ pruefe: true, wurzel: ziel, whitepaperPfad: path.join(wurzel, STANDARD_WHITEPAPER), ziel: null });
+  const erg = await kompiliere({ pruefe: true, wurzel: ziel, whitepaperPfad: path.join(wurzel, STANDARD_WHITEPAPER), ziel: optionen.json ?? null });
   rmSync(ziel, { recursive: true, force: true });
   // Abdeckungskarte (entwurf/abdeckung.yaml) trägt jeden „whitepaper-bezug“ einer Station als Story-Bezug
   const ziele = erg.inhalte?.abdeckung?.ziele ?? {};
@@ -76,8 +76,30 @@ export async function pruefeEntwurf(optionen = {}) {
   return { fehler: [...fehler, ...erg.fehler], warnungen: erg.warnungen, inhalte: erg.inhalte, ueberlagert };
 }
 
+/** Pfad der Entwurfs-Vorschau (relativ zur Wurzel). */
+export const VORSCHAU = 'tmp/mvg-entwurf.html';
+
+/**
+ * Baut die Vorschau mit dem ganzen Entscheidungsgraph (L-29). Die Schriften müssen schon erzeugt sein
+ * (normaler Bau vorher). Wirft, wenn der Entwurf Fehler hat.
+ */
+export async function baueVorschau() {
+  const json = path.join(WURZEL, 'tmp', 'entwurf-inhalte.json');
+  const erg = await pruefeEntwurf({ json });
+  if (erg.fehler.length > 0) throw new Error(`entwurf: ${erg.fehler.length} Fehler – keine Vorschau\n  ${erg.fehler.join('\n  ')}`);
+  const { baue } = await import('./bau.mjs');
+  await baue({ ziel: VORSCHAU, inhalte: json, mitVorstufen: false });
+  return erg;
+}
+
 if (istHauptmodul(import.meta.url)) {
+  // --bau: zusätzlich die Vorschau tmp/mvg-entwurf.html
+  const bau = process.argv.includes('--bau');
   const { fehler, warnungen, inhalte, ueberlagert } = await pruefeEntwurf();
+  if (bau && fehler.length === 0) {
+    await baueVorschau();
+    console.log(`entwurf: Vorschau ${VORSCHAU} gebaut`);
+  }
   for (const w of warnungen) console.log(`Warnung  ${w}`);
   for (const f of fehler) console.log(`FEHLER   ${f}`);
   const st = Object.keys(inhalte?.stationen ?? {}).length;

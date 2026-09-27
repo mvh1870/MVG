@@ -62,12 +62,36 @@ export function erreichbar(modell: StoryModell, start: string = modell.start, ha
 }
 
 /**
- * Reihenfolge der Stationen für die Story-Karte: Breitensuche ab Start entlang der Kanten
- * (Kanten in der Reihenfolge, in der sie im Inhalt stehen); Unerreichbares hinten, alphabetisch.
+ * Reihenfolge der Stationen für die Story-Karte: zuerst der Hauptweg ab Start (je Station die Kante
+ * ohne Bedingung, sonst die erste), dann jede weitere erreichbare Station direkt hinter ihrem
+ * Vorgänger (Abzweige wie Express oder die Enden); Unerreichbares hinten, alphabetisch.
  */
 export function stationsFolge(modell: StoryModell): string[] {
-  const reihe = erreichbar(modell);
-  const rest = Object.keys(modell.stationen).filter((id) => !reihe.includes(id)).sort();
+  const reihe: string[] = [];
+  let id: string | undefined = modell.start;
+  while (id !== undefined && !reihe.includes(id)) {
+    const st: ModellStation | undefined = modell.stationen[id];
+    if (st === undefined) break;
+    reihe.push(id);
+    if (st.ende) break;
+    id = (st.weiter.find((k) => k.wenn === null) ?? st.weiter[0])?.ziel ?? st.vergleich?.b;
+  }
+  for (const z of erreichbar(modell)) {
+    if (reihe.includes(z)) continue;
+    const vor = reihe.findIndex((v) => {
+      const st = modell.stationen[v];
+      return st !== undefined && (st.weiter.some((k) => k.ziel === z) || st.vergleich?.b === z);
+    });
+    if (vor < 0) reihe.push(z);
+    else {
+      // hinter den Vorgänger und hinter schon eingefügte Abzweige desselben Vorgängers
+      let i = vor + 1;
+      const vst = modell.stationen[reihe[vor] ?? ''];
+      while (i < reihe.length && vst !== undefined && vst.weiter.some((k) => k.ziel === reihe[i] && k.wenn !== null)) i += 1;
+      reihe.splice(i, 0, z);
+    }
+  }
+  const rest = Object.keys(modell.stationen).filter((x) => !reihe.includes(x)).sort();
   return [...reihe, ...rest];
 }
 

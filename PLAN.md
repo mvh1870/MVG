@@ -32,8 +32,8 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 
 ### P3 · Welt A
 - [x] P3.1 · Figuren- und Requisiten-Baukasten (SVG): alle Figuren (Rollenfarben, Mimik neutral/besorgt/erleichtert), Mail, Chat, Excel-Stand, Haftnotiz, Protokoll, Aktenstapel — Abnahme: Galerie-Seite im Bau.
-- [ ] P3.2 · Station A1 (alle 6 Rollen)
-- [ ] P3.3 · Station A2 (alle 6 Rollen)
+- [~] P3.2 (2026-09-27, Rahmen gebaut, Prüfbefunde offen) · Station A1 (alle 6 Rollen)
+- [~] P3.3 (2026-09-27, Rahmen gebaut, Prüfbefunde offen) · Station A2 (alle 6 Rollen)
 - [ ] P3.4 · Station A3 (alle 6 Rollen; PL aus dem Durchstich übernehmen)
 - [ ] P3.5 · Station A4 (alle 6 Rollen)
 - [ ] P3.6 · Station A5 (alle 6 Rollen)

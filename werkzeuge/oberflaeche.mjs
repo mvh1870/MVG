@@ -134,7 +134,7 @@ export async function starteBrowser(optionen = {}) {
 
 /**
  * @typedef {{ breite: number, hoehe: number }} Viewport
- * @typedef {{ name: string, datei: string, viewports: Viewport[], hash: string, lauf: (seite: import('playwright').Page, h: Helfer) => Promise<void> }} Szenario
+ * @typedef {{ name: string, datei: string, viewports: Viewport[], hash: string, seite?: string, lauf: (seite: import('playwright').Page, h: Helfer) => Promise<void> }} Szenario  seite: andere HTML-Datei (relativ zur Wurzel), z. B. die Entwurfs-Vorschau
  * @typedef {object} Helfer
  * @property {import('playwright').Page} seite
  * @property {string} url
@@ -173,6 +173,7 @@ export async function ladeSzenarien(verzeichnis) {
       datei,
       viewports,
       hash: typeof s.hash === 'string' ? s.hash : '',
+      ...(typeof s.seite === 'string' ? { seite: s.seite } : {}),
       lauf: s.lauf,
     });
   }
@@ -421,6 +422,11 @@ async function hauptprogramm() {
   await rm(BILDER, { recursive: true, force: true });
   await mkdir(BILDER, { recursive: true });
   const url = pathToFileURL(a.datei).href;
+  // Szenarien auf der Entwurfs-Vorschau (L-29): Vorschau frisch bauen
+  if (szenarien.some((s) => s.seite !== undefined)) {
+    const { baueVorschau } = await import('./entwurf.mjs');
+    await baueVorschau();
+  }
   console.log(`oberflaeche: ${start.name} ${browser.version()} · ${anzeige} · ${szenarien.length} Szenario${szenarien.length === 1 ? '' : 's'}`);
 
   let laeufe = 0;
@@ -430,7 +436,7 @@ async function hauptprogramm() {
     for (const s of szenarien) {
       for (const v of a.nurDesktop ? nurDesktop(s.viewports) : s.viewports) {
         laeufe += 1;
-        const befunde = await fuehreAus(browser, s, v, url);
+        const befunde = await fuehreAus(browser, s, v, s.seite !== undefined ? pathToFileURL(path.join(WURZEL, s.seite)).href : url);
         const etikett = `${s.name} @ ${v.breite}×${v.hoehe}`;
         if (befunde.length === 0) console.log(`  ✓ ${etikett}`);
         else {

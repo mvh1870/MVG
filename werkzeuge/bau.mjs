@@ -183,7 +183,7 @@ function esbuildWarnungen(liste, was) {
  * @param {string} eintrag
  * @param {string} version
  */
-async function baueSkript(wurzel, eintrag, version) {
+async function baueSkript(wurzel, eintrag, version, inhalte = null) {
   if (!existsSync(path.resolve(wurzel, eintrag))) throw new BauFehler(`Einstieg ${eintrag} fehlt`);
   try {
     const erg = await esbuild.build({
@@ -201,6 +201,13 @@ async function baueSkript(wurzel, eintrag, version) {
       sourcemap: false,
       loader: { '.svg': 'text' },
       define: { __MVG_VERSION__: JSON.stringify(version) },
+      // Andere Inhalte (Entwurfs-Vorschau, L-29): die generierte inhalte.json wird umgeleitet
+      plugins: inhalte === null ? [] : [{
+        name: 'mvg-inhalte',
+        setup(b) {
+          b.onResolve({ filter: /generiert\/inhalte\.json$/ }, () => ({ path: inhalte }));
+        },
+      }],
       logLevel: 'silent',
     });
     return { text: erg.outputFiles[0]?.text ?? '', warnungen: esbuildWarnungen(erg.warnings, 'Skript') };
@@ -292,6 +299,7 @@ export function formatiereGroesse(bytes) {
  * @property {number} [budget]    Größenbudget in Bytes, Vorgabe BUDGET
  * @property {string} [version]   Wert für __MVG_VERSION__, Vorgabe aus package.json
  * @property {string} [zwischen]  Arbeitsverzeichnis für --pruefe, Vorgabe tmp/bau-pruefe
+ * @property {string} [inhalte]   andere inhalte.json statt src/generiert/inhalte.json (Entwurfs-Vorschau)
  */
 
 /**
@@ -309,6 +317,7 @@ function vollOptionen(optionen) {
     budget: optionen.budget ?? BUDGET,
     version: optionen.version,
     zwischen: path.resolve(wurzel, optionen.zwischen ?? path.join(WURZEL, 'tmp', 'bau-pruefe')),
+    inhalte: optionen.inhalte !== undefined ? path.resolve(wurzel, optionen.inhalte) : null,
   };
 }
 
@@ -322,7 +331,7 @@ export async function baueText(optionen = {}) {
   const version = o.version ?? String(JSON.parse(await readFile(path.join(WURZEL, 'package.json'), 'utf8')).version);
   if (!existsSync(o.huelle)) throw new BauFehler(`Hülle ${path.relative(o.wurzel, o.huelle).split(path.sep).join('/')} fehlt`);
   const huelle = await readFile(o.huelle, 'utf8');
-  const [skript, stil] = await Promise.all([baueSkript(o.wurzel, o.eintrag, version), baueStil(o.wurzel, o.stil)]);
+  const [skript, stil] = await Promise.all([baueSkript(o.wurzel, o.eintrag, version, o.inhalte), baueStil(o.wurzel, o.stil)]);
   warnungen.push(...skript.warnungen, ...stil.warnungen);
   const { html, skript: skriptText } = setzeZusammen(huelle, stil.text, skript.text);
   const bytes = Buffer.byteLength(html, 'utf8');

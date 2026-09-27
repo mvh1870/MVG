@@ -144,7 +144,8 @@ export function erzeugeStory(o: StoryOptionen): StoryFlaeche {
   const uhrZeit = h('span', { class: 'uhr-zeit' });
   const uhr = h('div', { class: 'uhr', 'aria-hidden': 'true' }, uhrTag, uhrZeit);
   const badge = h('span', { class: 'welt-badge', 'data-pruef': 'welt-badge' });
-  const tafelInhalt = h('div', { class: 'tafel-inhalt' });
+  // Scrollbereich: per Tastatur erreichbar und benannt (WCAG 2.1.1, axe „scrollable-region-focusable“)
+  const tafelInhalt = h('div', { class: 'tafel-inhalt', tabindex: 0, role: 'region', 'aria-labelledby': titelId });
   const sprungZahl = h('span', null, '0');
   const sprungStreifen = h('div', { class: 'lineal-streifen' },
     Array.from({ length: 36 }, (_, i) => h('div', { class: `tag${i % 7 === 0 ? ' ist-montag' : ''}` }, h('i'), h('span', null, ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'][i % 7] ?? ''))));

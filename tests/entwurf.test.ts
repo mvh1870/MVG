@@ -101,3 +101,8 @@ test('Express-Pfad (E8, L-26): Interesse „express“ führt über A3, A6, Wend
     assert.deepEqual(besucht, ['prolog', 'A3', 'A6', 'wendepunkt', 'rueckspulen', 'B3', 'B6', 'wirklichkeit', 'ende-steuerbar', 'epilog'], r);
   }
 });
+
+test('Story-Karte (stationsFolge): Hauptweg in Reihenfolge, Enden hinter der Wirklichkeit, Epilog zuletzt', () => {
+  assert.deepEqual(erg.inhalte.stationsFolge, ['prolog', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'wendepunkt', 'rueckspulen',
+    'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'wirklichkeit', 'ende-steuerbar', 'ende-neufestlegung', 'ende-auflagen', 'epilog']);
+});

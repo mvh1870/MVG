@@ -75,7 +75,7 @@ form: schwelle
 titel: Wer hätte über welchen Betrag entschieden?
 kurz: Schwellen
 ---
-In Welt A lagen Beträge auf dem Tisch – 0,6 Mio. € für die größere Mensa, grob 0,4 Mio. € für die Brandschutzauflagen, rund 4,7 Mio. € Kostenabweichung –, aber für keinen war festgelegt, wer entscheidet. Das Whitepaper nennt als Muster eine Mandatsleiter mit Wertschwellen (Kap. 4.2); wie der Schulcampus damit arbeitet, zeigt Welt B.
+In Welt A lagen Beträge auf dem Tisch – 0,6 Mio. € für die größere Mensa, grob 0,4 Mio. € für die Brandschutzauflagen, rund 4,7 Mio. € Kostenabweichung nach der Prognose der Projektsteuerung –, aber für keinen war festgelegt, wer entscheidet. Das Whitepaper nennt als Muster eine Mandatsleiter mit Wertschwellen (Kap. 4.2); wie der Schulcampus damit arbeitet, zeigt Welt B.
 
 ::: zitat k4.2-p3
 Als Muster-Mandatsleiter gilt: Die Bauherren-PL gibt bis einschließlich 100 TEUR eigenständig frei; oberhalb von 100 TEUR bis einschließlich 5 Mio. EUR entscheidet das Änderungsgremium; darüber erfolgt die Beschlussfassung durch den Bauherrn im Lenkungskreis.

@@ -11,3 +11,8 @@ Ein Prüf-Agent in allen Rollen (Fachtreue, Begriffe, Dramaturgie, Stil/Barriere
 - [x] B13 aria-labelledby, Statuszeile beim Felder-Schalter; [-] radiogroup statt aria-pressed: Umschaltknöpfe sind ein zulässiges Muster.
 - [x] B14 DOM-Test für Radar (Express-Spur) und Schwelle (gegen die Tabellenspalte). B15 Compiler: genau ein Zitat je Vertiefung, keine `vertiefung express`. B16 unregelmäßige feste Mischung.
 - [x] B17 Mandatsleiter (k4.2-p3) als eigener Schritt „Schwellen“ mit den Beträgen aus Welt A; k3.1-p1 im Einstieg. B18 P4.6 committet.
+
+## Runde 2 (Nachprüfung, derselbe Agent)
+Alle 18 bestätigt behoben; 2 neue:
+- [x] N1 (leicht) „4,7 Mio. € Kostenabweichung“ als feste Tatsache → „nach der Prognose der Projektsteuerung“.
+- [x] N2 (mittel) Quellenzeile unter Zitaten auf hellem Grund unlesbar (1,13:1; axe misst auf gepunktetem Grund nicht) → Zitat-Block als Navy-Karte; Szenario misst den Kontrast der Quellenzeilen selbst (Gegenprobe ohne Korrektur: rot).

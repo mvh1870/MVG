@@ -33,6 +33,29 @@ function pruefeLayout() {
   return funde;
 }
 
+/** Läuft im Browser: Kontrast der Quellenzeilen unter Zitaten gegen den ersten deckenden Hintergrund. */
+function kontrastQuellen() {
+  const rgb = (s) => (s.match(/[\d.]+/gu) ?? []).map(Number);
+  const lum = ([r, g, b]) => {
+    const k = (c) => { const x = c / 255; return x <= 0.03928 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; };
+    return 0.2126 * k(r) + 0.7152 * k(g) + 0.0722 * k(b);
+  };
+  const funde = [];
+  for (const el of document.querySelectorAll('.zitat-block .quelle b')) {
+    if (!(el instanceof HTMLElement) || el.offsetParent === null) continue;
+    let grund = null;
+    for (let a = el; a !== null; a = a.parentElement) {
+      const f = rgb(getComputedStyle(a).backgroundColor);
+      if (f.length >= 3 && (f[3] ?? 1) > 0.9) { grund = f; break; }
+    }
+    if (grund === null) grund = [255, 255, 255];
+    const [l1, l2] = [lum(rgb(getComputedStyle(el).color)), lum(grund)].sort((a, b) => b - a);
+    const verh = (l1 + 0.05) / (l2 + 0.05);
+    if (verh < 4.5) funde.push(`Quellenzeile „${el.textContent?.slice(0, 30)}“ Kontrast ${verh.toFixed(2)}:1`);
+  }
+  return funde;
+}
+
 /**
  * @param {import('playwright').Page} seite
  * @param {import('../../werkzeuge/oberflaeche.mjs').Helfer} h
@@ -110,6 +133,8 @@ export async function lauf(seite, h) {
  */
 async function wendepunkt(seite, h, station) {
   const pruefe = async (name) => {
+    // axe greift auf gepunktetem Grund nicht (unvollständig): Quellenzeilen der Zitate selbst messen (P4.7)
+    for (const fund of await seite.evaluate(kontrastQuellen)) h.befund(`${name}: ${fund}`);
     // ans Seitenende: dort steht die klebende Fußleiste an ihrem Platz und überdeckt keinen Knopf halb
     // (axe target-size würde sonst eine Momentaufnahme des Scrollstands melden)
     await seite.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));

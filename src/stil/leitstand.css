@@ -1137,6 +1137,8 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .quelle { display: flex; align-items: center; gap: 10px; margin-top: 14px; padding-top: var(--a-3); border-top: 1px solid var(--navy-linie); font-size: 13.5px; color: var(--auf-navy-2); }
 .quelle .marke-logo { height: 26px; color: var(--weiss); }
 .quelle b { font-weight: 600; color: var(--weiss); }
+/* Zitat als eigener Block auf hellem Grund (Story-Schritte ohne eigene Szene): Navy-Karte wie Ebene 4 (P4.7) */
+.stapel > .zitat-block { padding: 22px 26px 18px; border-radius: var(--radius-xl); background: var(--navy); color: var(--weiss); }
 
 /* =============================================================================================
    18 · Entscheidungsvorlage mit Prüfliste (.ent, .chk, .ck) – Checkliste Kap. 9.4

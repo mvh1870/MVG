@@ -95,7 +95,13 @@ export function tabellenstand(b: Block, i: number): HTMLElement {
   return h('div', { class: 'tabellenstand', style: `--dreh:${i % 2 === 0 ? -1 : 1.2}deg` },
     h('span', { class: 'tabellenstand-quelle' }, sym('tabelle'), kopfText(b.kopf, 'quelle') ?? ''),
     h('b', { class: 'tabellenstand-zahl' }, kopfText(b.kopf, 'wert') ?? ''),
-    h('span', { class: 'tabellenstand-datei mono' }, kopfText(b.kopf, 'name') ?? ''));
+    h('span', { class: 'tabellenstand-datei mono' }, dateinameMitUmbruch(kopfText(b.kopf, 'name') ?? '')));
+}
+
+/** Lange Dateinamen brechen nach „_“ und vor „.“ um, nicht mitten im Wort (Schönheitsfehler aus P0.6). */
+export function dateinameMitUmbruch(name: string): Node[] {
+  const teile = name.split(/(?<=_)|(?=\.)/u);
+  return teile.flatMap((t, i) => (i === 0 ? [document.createTextNode(t)] : [document.createElement('wbr'), document.createTextNode(t)]));
 }
 
 export function hinweis(b: Block): HTMLElement {

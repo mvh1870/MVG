@@ -217,6 +217,14 @@ test('Story: Prolog → A3 → Option B → Konsequenz, schrittweiser Aufbau am 
     assert.equal(el.hasAttribute('data-karte'), false, 'Einstieg ohne Karte');
     klick('[data-pruef="weiter"]');
     assert.equal(el.hasAttribute('data-karte'), true, 'nach dem Einstieg mit Karte');
+    // LPH-Band (O-14, P2.2): zehn Phasen aus k9.3-t1, A3 steht in LPH 5, davor abgeschlossen
+    const band = el.querySelector('[data-pruef="lph-band"]');
+    assert.ok(band !== null && !(band as HTMLElement).hidden, 'LPH-Band sichtbar');
+    assert.equal(band.querySelectorAll('.lph').length, 10);
+    assert.equal(band.querySelector('[aria-current="step"]')?.getAttribute('data-lph'), '5');
+    assert.equal(band.querySelectorAll('.lph.ist-erledigt').length, 5);
+    assert.match(band.querySelector('[data-lph="5"]')?.textContent ?? '', /LPH 5 Ausführungsplanung \(aktuell\)/);
+    assert.doesNotMatch(band.textContent ?? '', /G\d/, 'nie G0–G5');
     klick('[data-pruef="info-anfordern"]');
     assert.ok(el.querySelector('.ungeklaert .ist-geloest'));
     klick('[data-pruef="weiter"]');

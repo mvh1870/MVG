@@ -36,12 +36,24 @@ export function spuren(folge: readonly Station[]): { a: Spur; b: Spur }[] {
   return folge.map((_, i) => ({ a: a[i] ?? 'keine', b: b[i] ?? 'keine' }));
 }
 
-export function erzeugeKarte(inhalte: OeffentlicheInhalte, beiSchritt: ((index: number) => void) | null, woerter: { karte: string; station: string; monat: string; rolle: string }): Karte {
+/** LPH-Stand für das Band: die aktuelle Station, sonst die zuletzt besuchte Station mit LPH. */
+export function lphStand(z: Pick<OeffentlicherZustand, 'station' | 'verlauf'>, inhalte: Pick<OeffentlicheInhalte, 'stationen'>): number | null {
+  const ids = [...z.verlauf];
+  if (z.station !== null && ids[ids.length - 1] !== z.station) ids.push(z.station);
+  for (let i = ids.length - 1; i >= 0; i--) {
+    const lph = inhalte.stationen[ids[i] ?? '']?.lph ?? null;
+    if (lph !== null) return lph;
+  }
+  return null;
+}
+
+export function erzeugeKarte(inhalte: OeffentlicheInhalte, beiSchritt: ((index: number) => void) | null, woerter: { karte: string; station: string; monat: string; rolle: string; lphBand: string; lphJetzt: string; lphAbgeschlossen: string }): Karte {
   const jetzt = h('div', { class: 'karte-jetzt' });
   const meta = h('div', { class: 'karte-meta' });
   const liste = h('ol', { class: 'zeitleiste' });
+  const band = h('ol', { class: 'lph-band', 'aria-label': woerter.lphBand, 'data-pruef': 'lph-band' });
   const element = h('nav', { class: 'story-karte', 'aria-label': woerter.karte, 'data-pruef': 'story-karte' },
-    h('div', { class: 'karte-kopf' }, h('div', { class: 'karte-kicker' }, woerter.karte), jetzt, meta),
+    h('div', { class: 'karte-kopf' }, h('div', { class: 'karte-kicker' }, woerter.karte), jetzt, meta, band),
     liste);
   const folge = inhalte.stationsFolge.map((id) => inhalte.stationen[id]).filter((st): st is Station => st !== undefined);
   const lauf = spuren(folge);
@@ -58,6 +70,17 @@ export function erzeugeKarte(inhalte: OeffentlicheInhalte, beiSchritt: ((index: 
       ersetze(meta,
         [nr !== undefined ? `${woerter.station} ${nr}` : st?.kurztitel ?? '', st?.monat !== null && st?.monat !== undefined ? ` · ${woerter.monat} ${st.monat}` : ''].join(''),
         rolle !== null ? [h('br'), `${woerter.rolle}: ${rolle}`] : null);
+
+      // LPH-Band: Stand der aktuellen Station, sonst der letzten besuchten mit LPH (Wendepunkt, Enden)
+      const lph = lphStand(z, inhalte);
+      band.hidden = lph === null || inhalte.whitepaper.lph.length === 0;
+      band.replaceChildren(...inhalte.whitepaper.lph.map((p) => {
+        const zustand = lph === null ? '' : p.nr < lph ? ' ist-erledigt' : '';
+        const jetztHier = p.nr === lph;
+        return h('li', { class: `lph${zustand}`, 'aria-current': jetztHier ? 'step' : null, title: `LPH ${p.nr} · ${p.name}`, 'data-lph': String(p.nr) },
+          h('b', { 'aria-hidden': 'true' }, String(p.nr)),
+          h('span', { class: 'nur-sr' }, `LPH ${p.nr} ${p.name}${jetztHier ? ` (${woerter.lphJetzt})` : lph !== null && p.nr < lph ? ` (${woerter.lphAbgeschlossen})` : ''}`));
+      }));
 
       const besucht = new Set(z.verlauf);
       const zeilen: HTMLElement[] = [];

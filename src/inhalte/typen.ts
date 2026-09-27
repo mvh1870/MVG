@@ -234,6 +234,13 @@ export interface WhitepaperKapitel {
   abschnitte: { id: string; nr: string; titel: string }[];
 }
 
+/** Eine Leistungsphase aus dem Freigabemodell (Tabelle k9.3-t1, wörtlich), für das LPH-Band. */
+export interface LphPhase {
+  nr: number;
+  name: string;
+  freigabefrage: string;
+}
+
 /** Startseite (inhalte/start.md, O-21) */
 export interface Startseite {
   kicker: string;
@@ -246,7 +253,7 @@ export interface Startseite {
 
 export interface Inhalte extends StoryModell {
   version: 1;
-  whitepaper: { fassung: string | null; titel: string | null; kapitel: WhitepaperKapitel[] };
+  whitepaper: { fassung: string | null; titel: string | null; kapitel: WhitepaperKapitel[]; lph: LphPhase[] };
   fall: Fall | null;
   startseite: Startseite | null;
   rollen: Record<string, Rolle>;

@@ -330,11 +330,15 @@ function konsequenz(k: SzenenKontext): Szene {
       saetze.length > 0
         ? saetze.map((x) => h('span', { class: 'status-satz' }, elementAus(statusSymbol(x.richtung === 'gut' ? 'ok' : 'kritisch')), x.text))
         : h('span', { class: 'status-satz' }, elementAus(statusSymbol('neutral')), W.statusUnveraendert)),
+    // H15 (P1.5): Konsequenz und Governance-Frage stehen offen; „Was fehlt“ und „Neues Risiko“ klappt man auf
     h('div', { class: 'felder' },
       feld('konsequenz', 'blitz', W.konsequenz, o.felder.konsequenz, 120),
-      feld('fehlt', 'puzzle', W.wasFehlt, o.felder.wasFehlt, 260),
-      feld('risiko', 'warnung', W.neuesRisiko, o.felder.neuesRisiko, 400),
-      feld('governance', 'kompass', W.governanceFrage, o.felder.governanceFrage, 540)),
+      feld('governance', 'kompass', W.governanceFrage, o.felder.governanceFrage, 260)),
+    h('details', { class: 'felder-mehr anim-einblenden', style: '--verzug:400ms', 'data-pruef': 'felder-mehr' },
+      h('summary', null, B.sym('puzzle'), `${W.wasFehlt} · ${W.neuesRisiko}`),
+      h('div', { class: 'felder' },
+        feld('fehlt', 'puzzle', W.wasFehlt, o.felder.wasFehlt, 0),
+        feld('risiko', 'warnung', W.neuesRisiko, o.felder.neuesRisiko, 0))),
     fuss));
 }
 

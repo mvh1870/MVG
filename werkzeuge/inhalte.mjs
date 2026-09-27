@@ -1591,7 +1591,7 @@ export async function kompiliere(optionen = {}) {
 
   const inhalte = {
     version: 1,
-    whitepaper: { fassung: quelle?.fassung ?? null, titel: quelle?.titel ?? null, kapitel: quelle?.gliederung ?? [] },
+    whitepaper: { fassung: quelle?.fassung ?? null, titel: quelle?.titel ?? null, kapitel: quelle?.gliederung ?? [], lph: lphPhasen(quelle) },
     fall,
     startseite,
     rollen,
@@ -1633,6 +1633,24 @@ export async function kompiliere(optionen = {}) {
  * @param {Record<string, any>} theorie
  * @param {boolean} pruefe
  */
+/**
+ * Leistungsphasen LPH 0–9 aus der Tabelle k9.3-t1 (wörtlich: Name und Freigabefrage) für das LPH-Band.
+ * @param {any} quelle
+ * @returns {{ nr: number, name: string, freigabefrage: string }[]}
+ */
+function lphPhasen(quelle) {
+  const t = quelle?.nachId.get('k9.3-t1');
+  if (t === undefined) return [];
+  /** @type {{ nr: number, name: string, freigabefrage: string }[]} */
+  const aus = [];
+  for (const zeile of String(t.text).split('\n').slice(1)) {
+    const [lph = '', name = '', frage = ''] = zeile.split('|').map((x) => x.trim());
+    const m = /^LPH (\d)$/u.exec(lph);
+    if (m !== null) aus.push({ nr: Number(m[1]), name, freigabefrage: frage });
+  }
+  return aus;
+}
+
 function baueAbdeckung(c, quelle, roh, stationen, theorie, pruefe) {
   const rel = 'inhalte/abdeckung.yaml';
   /** @type {Record<string, { theorie: string[], story: string[] }>} */

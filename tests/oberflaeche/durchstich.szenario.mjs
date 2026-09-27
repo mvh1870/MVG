@@ -105,7 +105,11 @@ export async function lauf(seite, h) {
 
   /* ----------------------------------------------------------- A3 · Lagebild -- */
   await h.erwarte('[data-pruef="info-anfordern"]');
-  if (h.viewport.breite >= 981) await h.erwarte('[data-pruef="story-karte"]');
+  if (h.viewport.breite >= 981) {
+    await h.erwarte('[data-pruef="story-karte"]');
+    // LPH-Band (P2.2): A3 steht in LPH 5
+    await h.erwarte('[data-pruef="lph-band"] [aria-current="step"][data-lph="5"]');
+  }
   await h.klick('[data-pruef="info-anfordern"]');
   await h.warte(2600);
   if ((await seite.locator('.ungeklaert li.ist-geloest').count()) === 0) h.befund('Zeitsprung: kein Punkt als geklärt markiert');
@@ -130,7 +134,11 @@ export async function lauf(seite, h) {
 
   /* --------------------------------------------------------- A3 · Konsequenz -- */
   await h.erwarte('[data-pruef="konsequenz"]');
-  for (const f of ['konsequenz', 'fehlt', 'risiko', 'governance']) await h.erwarte(`[data-pruef="feld-${f}"]`);
+  for (const f of ['konsequenz', 'governance']) await h.erwarte(`[data-pruef="feld-${f}"]`);
+  // „Was fehlt“ und „Neues Risiko“ zum Aufklappen (H15)
+  await h.erwarteNicht('[data-pruef="feld-fehlt"]');
+  await h.klick('[data-pruef="felder-mehr"] > summary');
+  for (const f of ['fehlt', 'risiko']) await h.erwarte(`[data-pruef="feld-${f}"]`);
   await stand('a3-konsequenz');
   // Standpunkt wechseln: Seitenleiste öffnen, Rollen-Linse zeigt andere Blickwinkel, Esc schließt
   await h.klick('[data-pruef="seitenleiste-raum"]');

@@ -47,6 +47,10 @@ export const W = {
   vorschau: 'Vorschau',
   weltVergleich: 'Welt A ⟷ Welt B',
   karte: 'Story-Karte',
+  /** LPH-Band (O-14): Beschriftung für Screenreader */
+  lphBand: 'Leistungsphasen LPH 0–9',
+  lphJetzt: 'aktuell',
+  lphAbgeschlossen: 'abgeschlossen',
   station: 'Station',
   monat: 'Monat',
   rolle: 'Rolle',

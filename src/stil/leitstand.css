@@ -274,6 +274,10 @@
 }
 .station.ist-aktuell .station-meta,
 .station[aria-current="step"] .station-meta { color: var(--gold-hell); }
+/* Monat der aktuellen Station steht schon im Kartenkopf; so passt „Kosten +8 %“ in eine Zeile (P0.6). */
+@media (max-width: 1200px) {
+  li.station.ist-aktuell .station-meta { display: none; }
+}
 .station.ist-wendepunkt .station-titel { color: var(--gold-hell); }
 
 /* Schritte einer Station (.tl-sc, button.tl-row) */
@@ -725,6 +729,14 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .status-leiste .status-symbol { width: 15px; height: 15px; }
 
 .felder { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.felder-mehr { border-radius: var(--radius-l); }
+.felder-mehr > summary { display: flex; align-items: center; gap: var(--a-2); width: max-content; max-width: 100%; min-height: 36px; padding: 6px 12px; border-radius: var(--radius-m, 8px); font: 700 var(--gr-text)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); cursor: pointer; list-style: none; }
+.felder-mehr > summary::-webkit-details-marker { display: none; }
+.felder-mehr > summary::after { content: "▸"; margin-left: 4px; transition: transform var(--dauer-kurz, .15s); }
+.felder-mehr[open] > summary::after { transform: rotate(90deg); }
+.felder-mehr > summary:hover { background: var(--flaeche-1); }
+.felder-mehr > summary:focus-visible { outline: 2px solid var(--gold-kante); outline-offset: 2px; }
+.felder-mehr > .felder { margin-top: 6px; }
 .feld { position: relative; min-width: 0; padding: var(--a-3) 14px 14px; border-radius: var(--radius-l); animation: auftauchen var(--dauer-mittel) var(--kurve-pop) both; animation-delay: var(--verzug, 0ms); }
 .feld h3 { display: flex; align-items: center; gap: var(--a-2); margin-bottom: 6px; font: 700 var(--gr-text)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; }
 .feld h3 .symbol { font-size: 17px; }
@@ -1173,6 +1185,14 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .lph .lph-freigabe .symbol { stroke-width: 3; }
 .auf-navy .lph:not(.ist-erledigt):not(.ist-aktuell):not([aria-current="step"]) { background: var(--navy-2); box-shadow: inset 0 0 0 1px var(--navy-linie); color: var(--auf-navy-2); }
 .auf-navy .lph:not(.ist-erledigt):not(.ist-aktuell):not([aria-current="step"]) b { color: var(--auf-navy); }
+/* In der Story-Karte (schmal, auf Navy): nur Ziffern, Namen für Screenreader und im Titel */
+.story-karte .lph-band { margin-top: var(--a-2); gap: 2px; }
+.story-karte .lph { padding: 3px 0 6px; background: var(--navy-2); box-shadow: inset 0 0 0 1px var(--navy-linie); color: var(--auf-navy-2); }
+.story-karte .lph b { font-size: 12.5px; color: var(--auf-navy); }
+.story-karte .lph.ist-erledigt { background: var(--navy-soft); }
+.story-karte .lph.ist-erledigt b { color: var(--weiss); }
+.story-karte .lph[aria-current="step"] { background: var(--gold-soft); box-shadow: inset 0 0 0 2px var(--gold-kante); }
+.story-karte .lph[aria-current="step"] b { color: var(--navy); }
 .auf-navy .lph::after { background: var(--navy-linie); }
 
 /* =============================================================================================

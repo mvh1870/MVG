@@ -16,6 +16,10 @@ partner: A3
 ende: ja   # Durchstich P0: vorläufiges Ende; ab P5: weiter: B4
 ---
 
+::: express
+Im Januar war das Zielsystem angelegt, die Mandatsleiter stand, und die Generalplanung meldete mit einer Marktnotiz steigende Holzpreise. Im März wurde die längere Lieferzeit der Holzbauelemente als Frühwarnung `FRW-002` erfasst und die größere Mensa als Änderung `AEN-012` beantragt; darüber entscheidet laut Mandatsleiter das Änderungsgremium.
+:::
+
 ::: schritt signal
 ---
 titel: Signal
@@ -267,7 +271,7 @@ Das Controlling führt CTC und Prognose (die Zahl der Version 3 rechnet die Proj
 ---
 titel: Ein Risiko mit Entscheidungsbedarf
 ---
-Die Projektsteuerung hat `FRW-003` bestätigt und bewertet; daraus wurde `RIS-014` „Preissteigerung Holzbauelemente“. In `ENT-017` fehlen zu Option 2, dem Einsatz der Risikoreserve, noch Termin und Risiko. Kap. 4.4: [[zitat:k4.4-p2|Ein Risiko wird nicht nur als Eintrag geführt, sondern mit einer verantwortlichen Rolle, Frist, Wirkung, Risikominderung, Restrisiko, Entscheidungsbedarf und Eskalationsschwelle verbunden.]]
+Ein Preissignal gab es schon im Januar, mit der Marktnotiz der Generalplanung; `FRW-003` ist ein neues Signal, ausgelöst von der CTC. Die Projektsteuerung hat es bestätigt und bewertet: `RIS-014` „Preissteigerung Holzbauelemente“. In `ENT-017` fehlen zu Option 2 noch Termin und Risiko. Kap. 4.4: [[zitat:k4.4-p2|Ein Risiko wird nicht nur als Eintrag geführt, sondern mit einer verantwortlichen Rolle, Frist, Wirkung, Risikominderung, Restrisiko, Entscheidungsbedarf und Eskalationsschwelle verbunden.]]
 :::
 
 ::: vertiefung freigaben

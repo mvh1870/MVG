@@ -167,6 +167,7 @@ weiter:
 | `ebenen` | oben | – | – | enthält `ebene 1` … `ebene 4` |
 | `ebene` | in `ebenen` | `1`–`4` | `titel` | `text`; Ebene 4 enthält ein `zitat` |
 | `standpunkt` | oben | Rolle (`controlling`) | `figur` (Pflicht) | `text` = was diese Figur im selben Moment denkt („Standpunkt wechseln“) |
+| `express` | oben | – | – | `text` (Pflicht) – Karte „Was dazwischen geschah“ über dem ersten Schritt der Station, nur für Leser mit Interesse `express` (L-43) |
 | `vertiefung` | oben | Interesse (`kosten`) | `titel` (Pflicht) | `text` (Pflicht) – Zusatzkarte unter den Ebenen, nur sichtbar, wenn der Leser im Prolog dieses Interesse gewählt hat (P3.9); braucht einen Schritt `ebenen`; Zitate wortgleich mit Absatz-ID |
 | `regie` | oben | – | – | `notiz`, `leitfragen` (Liste) – **nur Regie**, landet nie in den Leinwand-Daten |
 

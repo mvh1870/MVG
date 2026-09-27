@@ -202,10 +202,10 @@ Die Tabelle beantwortet für den Schulcampus die Kernfrage aus Kap. 9.2: [[zitat
 
 ::: schritt rhythmus
 ---
-titel: Wann was auf den Tisch kommt
-kurz: Rhythmus
+titel: Wann was auf den Tisch kommt – und wo
+kurz: Rhythmus und Register
 ---
-Der Jour fixe am Dienstag ist der Ort der wöchentlichen Risikosichtung; das Änderungsgremium tagt monatlich, zzgl. anlassbezogener Sondersitzungen, und jede Freigabe erteilt der Bauherr selbst.
+Der Jour fixe am Dienstag ist der Ort der wöchentlichen Risikosichtung, das Änderungsgremium tagt monatlich, zzgl. anlassbezogener Sondersitzungen, jede Freigabe erteilt der Bauherr selbst – und jedes Register hat eine verantwortliche Rolle und einen Turnus, sodass die Marktnotiz eine Adresse hat, bevor jemand rechnet.
 
 ::: tafel k6.4.5-t1
 ---
@@ -213,14 +213,6 @@ form: rhythmus
 hervor: [2]
 ---
 :::
-:::
-
-::: schritt register
----
-titel: Register mit Rolle und Turnus
-kurz: Register
----
-Jedes Register hat eine verantwortliche Rolle und einen Turnus – die Marktnotiz hat damit eine Adresse, bevor jemand rechnet.
 
 ::: tafel k6.4.2-t1
 ---

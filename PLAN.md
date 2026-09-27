@@ -59,7 +59,7 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P5.6 (Commit „MVG P5.6“; Prüfung 12 + 1 Befunde behoben, L-38) · Station B5
 - [x] P5.7 (Commit „MVG P5.7“; Prüfung 13 + 4 Befunde behoben, L-39/L-40) · Station B6
 - [x] P5.8 (Commit „MVG P5.8“, L-41) · Ihre Spur (E1): Entscheidungskette über beide Welten
-- [ ] P5.9 · Prüf-Agenten Welt B + Korrekturen (Browser: alle Rollen durch B1–B6 in drei Größen mit axe, Express-Pfad, je Station Ebene 1–4; P2-Befund V3/V7/V9)
+- [x] P5.9 (Commit „MVG P5.9“ + Reste; `docs/P5-BEFUNDE.md`, L-42–L-44) · Prüf-Agenten Welt B + Korrekturen (Browser: alle Rollen durch B1–B6 in drei Größen mit axe, Express-Pfad, je Station Ebene 1–4; P2-Befund V3/V7/V9)
 
 ### P6 · Theorie-Teil (O-20)
 - [ ] P6.1 · Lernseiten-Rahmen: Kernaussage, Grafik, Karten, Ebenen, Originaltext wortgetreu, Querverweise „In der Story erlebt“, Kapitelnavigation
@@ -84,7 +84,7 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [ ] P7.3 · Zielbild (Kap. 9, 12), Rückbezug, Nachweiskette zum Anfassen (E2)
 - [ ] P7.4 · Selbstdiagnose qualitativ (O-8)
 - [ ] P7.5 · Bauherrentypen (Kap. 10): „Wie sähe das bei Ihnen aus?“
-- [ ] P7.6 · Persönliches Resümee: Themen, 3 Prinzipien, 2 Vertiefungen, 1 Checkliste
+- [ ] P7.6 · Persönliches Resümee: Themen, 3 Prinzipien, 2 Vertiefungen, 1 Checkliste; Epilog: A-Spur gegen B-Spur (`spurZeilen`, E1-Rest aus L-41)
 - [ ] P7.7 · Prüf-Agenten P7 + Korrekturen
 
 ### P8 · Explore

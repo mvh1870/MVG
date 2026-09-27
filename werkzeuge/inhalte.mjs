@@ -69,6 +69,8 @@ const ARTEN = {
   ebenen: { in: ['@station', '@theorie', 'abschnitt'], kennung: 'keine', felder: [] },
   ebene: { in: ['ebenen'], kennung: 'pflicht', muster: /^[1-4]$/u, kopf: { titel: { typ: 'text' } }, felder: ['text'] },
   standpunkt: { in: ['@station'], kennung: 'pflicht', kopf: { figur: { typ: 'kennung', pflicht: true } }, felder: ['text'], pflichtFelder: ['text'] },
+  // Express-Karte „Was dazwischen geschah“ (P5.9, L-43): nur für Leser auf dem Express-Pfad, über dem ersten Schritt
+  express: { in: ['@station'], kennung: 'keine', felder: ['text'], pflichtFelder: ['text'] },
   // Vertiefung je Interesse (P3.9, O-19): Zusatzkarte im Ebenen-Schritt, nur für Leser mit diesem Interesse
   vertiefung: { in: ['@station'], kennung: 'pflicht', kopf: { titel: { typ: 'text', pflicht: true } }, felder: ['text'], pflichtFelder: ['text'] },
   regie: { in: ['@station', '@szene'], kennung: 'keine', felder: ['notiz', 'leitfragen'] },
@@ -1250,6 +1252,8 @@ function baueStation(c, rel, ordner, text, regie) {
   let ebenen = null;
   const standpunkte = [];
   const vertiefungen = [];
+  /** @type {string | null} */
+  let express = null;
   /** @type {Set<string>} */
   const schrittIds = new Set();
   for (const k of wurzel.kinder) {
@@ -1268,6 +1272,11 @@ function baueStation(c, rel, ordner, text, regie) {
     if (bl.art === 'standpunkt') {
       standpunkte.push({ rolle: bl.id ?? '', figur: bl.kopf.figur ?? '', html: bl.felder.text ?? '' });
       if (bl.id) c.verweise.push({ art: 'rolle', wert: bl.id, ort: `${rel}:${k.zeile}` });
+      continue;
+    }
+    if (bl.art === 'express') {
+      if (express !== null) c.fehler(`${rel}:${k.zeile}`, '„express“ doppelt');
+      express = bl.felder.text ?? '';
       continue;
     }
     if (bl.art === 'vertiefung') {
@@ -1342,6 +1351,7 @@ function baueStation(c, rel, ordner, text, regie) {
     ebenen,
     standpunkte,
     vertiefungen,
+    express,
     szenen: {},
     quelle: rel,
   };

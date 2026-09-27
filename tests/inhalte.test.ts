@@ -593,6 +593,23 @@ test('RACI mit Mandat (P5.1): Zuordnung je Rolle, unbekannte Rolle und doppelte 
   assert.ok(doppelt.fehler.some((f) => /zwei Buchstaben/u.test(f)), doppelt.fehler.join('\n'));
 });
 
+test('P5.9 (T9): Tafel „hervor“ außerhalb der Zeilen ist ein Fehler; Vorlage ohne Kennung und Gliedart „problem“ sind erlaubt', async () => {
+  const mit = (bloecke: string) => veraendere(BEISPIEL, 'inhalte/story/X1/station.md', '„+8 %, Ursache unklar.“ <b>fett?</b>\n:::\n', `„+8 %, Ursache unklar.“ <b>fett?</b>\n:::\n${bloecke}`);
+  // eigene Whitepaper-Kopie mit einer Tabelle (die Vorgabe hat keine)
+  const wp = JSON.parse(JSON.stringify(WHITEPAPER));
+  wp.kapitel[0].abschnitte[0].bloecke.push({ id: 'k2.4-t1', art: 'tabelle', text: 'A | B\nx | y', kopf: ['A', 'B'], zeilen: [['x', 'y'], ['u', 'v']] });
+  const tafel = (hervor: string) => mit(`::: tafel k2.4-t1\n---\nform: karten\nhervor: [${hervor}]\n---\n:::\n`);
+  const gut = await kompiliere({ pruefe: false, wurzel: neueWurzel(tafel('2'), wp), ziel: null });
+  assert.deepEqual(gut.fehler, []);
+  assert.deepEqual((gut.inhalte as Inhalte).stationen['X1']?.schritte[0]?.bloecke.find((b) => b.art === 'tafel')?.kopf['hervor'], [2]);
+  const daneben = await kompiliere({ pruefe: true, wurzel: neueWurzel(tafel('3'), wp), ziel: null });
+  assert.ok(daneben.fehler.some((f) => /hervor: 3/u.test(f)), daneben.fehler.join('\n'));
+  const vorlage = await kompiliere({ pruefe: false, wurzel: neueWurzel(mit('::: vorlage\n---\ntitel: Vorlage zur Freigabe\n---\n### Frage\nFreigeben?\n\n### Checkliste\n- [ ] Punkt\n:::\n')), ziel: null });
+  assert.deepEqual(vorlage.fehler, [], 'Vorlage ohne Kennung (L-40)');
+  const problem = await kompiliere({ pruefe: false, wurzel: neueWurzel(mit('::: kette\n::: glied PRB-004\n---\nart: problem\n---\n### Titel\nProblem\n:::\n:::\n')), ziel: null });
+  assert.deepEqual(problem.fehler, [], 'Gliedart problem (L-38)');
+});
+
 test('Startseite (inhalte/start.md): Leitsatz wörtlich mit Absatz-ID geprüft, These als Inline-HTML', async () => {
   const start = (titel: string) => `---\nkicker: Minimum Viable Governance\ntitel: ${titel}\ntitel-quelle: k2.4-p2\n---\n\nEine **These**.\n`;
   const gut = await kompiliere({ pruefe: true, wurzel: neueWurzel({ ...BEISPIEL, 'inhalte/start.md': start('Berichterstattung erzeugt Information.') }), ziel: null });

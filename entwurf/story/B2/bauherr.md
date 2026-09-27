@@ -14,7 +14,7 @@ In Welt A haben Sie ‚An die GML verweisen‘ gewählt. In Welt B hängt die Fr
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Erst Kosten klären lassen‘ gewählt. In Welt B geht die Lieferzeit darüber nicht unter: Sie steht als Frühwarnung `FRW-001` im Register und wird nach Bestätigung Risiko `RIS-009`.
+In Welt A haben Sie ‚Erst Kosten klären lassen‘ gewählt. In Welt B geht die Lieferzeit darüber nicht unter: Sie steht als Frühwarnung `FRW-002` im Register und wird nach Bestätigung Risiko `RIS-009`.
 :::
 
 ::: rueckbezug ohne

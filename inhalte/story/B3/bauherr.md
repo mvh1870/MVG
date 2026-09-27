@@ -4,6 +4,33 @@ rolle: bauherr
 rueckbezug-auf: A3
 ---
 
+::: frage mandat-reserve
+---
+schritt: mandat
+---
+### Frage
+Bei welcher Option von `ENT-017` landet die Entscheidung bei Ihnen?
+
+### Rückmeldung
+Bei Option 2: Die Freigabe des Einsatzes der Risikoreserve ist nicht delegierbar; sie bleibt beim Bauherrn. Über Option 1, die Fassadenänderung `AEN-022`, entscheidet nach der Mandatsleiter das Änderungsgremium – 4,7 Mio. € liegen über 100 TEUR und bis einschließlich 5 Mio. €.
+
+::: antwort eins
+---
+titel: Bei Option 1 – Projektumfang anpassen
+praefix: "Nicht ganz:"
+symbol: weiterarbeiten
+---
+:::
+
+::: antwort zwei
+---
+titel: Bei Option 2 – Risikoreserve einsetzen
+praefix: "Genau:"
+symbol: schild
+---
+:::
+:::
+
 ::: rueckbezug A
 In Welt A haben Sie ‚Eine Zahl verlangen‘ gewählt. In Welt B stünde keine Zahl gegen die andere: Hier gilt der benannte Datenstand „Kostenprognose 2026-05 · Version 3“; wer abweicht, legt eine neue Version vor.
 :::

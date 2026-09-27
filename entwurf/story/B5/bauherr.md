@@ -1,7 +1,7 @@
 ---
 station: B5
 rolle: bauherr
-frage: Die Vorlage zum Einsatz der Risikoreserve für PRB-004 liegt auf Ihrem Tisch. Wie entscheiden Sie?
+frage: Die Vorlage zum Einsatz der Risikoreserve für PRB-004 ist in Vorbereitung; Berechtigung und Höhe des Nachtrags sind nicht abschließend geprüft. Der Lenkungskreis berät am 15. September. Wie entscheiden Sie?
 rueckbezug-auf: A5
 ---
 
@@ -32,7 +32,7 @@ status:
 Sie geben den Einsatz der Risikoreserve frei. Die Freigabe steht mit Nachweis im Entscheidungsregister, die verbleibende Reserve ist ausgewiesen.
 
 ### Was fehlt
-Nichts in der Struktur; die Maßnahme wird im Rhythmus nachverfolgt.
+Die abschließende Prüfung von Berechtigung und Höhe – Sie geben auf einer Vorlage frei, deren Grundlagen noch nicht vollständig sind.
 
 ### Neues Risiko
 Die Reserve ist kleiner geworden; das Restrisiko muss neu bewertet werden.

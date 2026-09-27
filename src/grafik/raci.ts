@@ -45,7 +45,9 @@ export function istRaciBuchstabe(x: string): x is RaciBuchstabe {
 }
 
 /** Matrix mit Zeilenwahl: Klick auf eine Entscheidung zeigt sie ausgeschrieben (wer was tut, welches Mandat). */
-export function raci(d: RaciDaten): HTMLElement {
+export function raci(d0: RaciDaten): HTMLElement {
+  // Die Spalte der gespielten Rolle steht direkt hinter der Entscheidung (auch bei 400 px ohne Seitwärtsscrollen sichtbar)
+  const d: RaciDaten = { ...d0, rollen: [...d0.rollen.filter((r) => r.id === d0.ich), ...d0.rollen.filter((r) => r.id !== d0.ich)] };
   const detail = h('div', { class: 'raci-detail', 'aria-live': 'polite', 'data-pruef': 'raci-detail' });
   const knoepfe: HTMLButtonElement[] = [];
   const zeige = (i: number): void => {

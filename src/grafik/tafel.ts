@@ -250,7 +250,7 @@ function leisteMitDetail(d: TafelDaten, klasse: string, beschrift: (z: string[],
   const knoepfe = d.zeilen.map((z, i) => h('button', {
     type: 'button', class: `leiste-knopf${hervor.includes(i + 1) ? ' ist-hervor' : ''}`, 'aria-pressed': 'false', 'data-pruef': `${klasse}-${i + 1}`,
     onclick: () => waehle(i),
-  }, beschrift(z, i)));
+  }, beschrift(z, i), hervor.includes(i + 1) ? h('span', { class: 'nur-sr' }, ` (${WORT.hier})`) : null));
   const waehle = (i: number): void => {
     knoepfe.forEach((b, j) => attr(b, 'aria-pressed', i === j ? 'true' : 'false'));
     const z = d.zeilen[i] ?? [];

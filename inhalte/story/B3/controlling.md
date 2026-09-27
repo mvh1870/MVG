@@ -4,6 +4,33 @@ rolle: controlling
 rueckbezug-auf: A3
 ---
 
+::: frage mandat-zahl
+---
+schritt: mandat
+---
+### Frage
+Auf welcher Zahl entscheidet die zuständige Stufe über `ENT-017` – gleich, welche Option?
+
+### Rückmeldung
+Auf der „Kostenprognose 2026-05 · Version 3“: +8 %, rund +4,7 Mio. €. Beide Optionen werden auf diesem Datenstand bewertet. Ihre CTC hat die Frühwarnung `FRW-003` ausgelöst; was an Ihrer Rechnung abweicht, gehört als offene Annahme in den Datenstand oder in eine neue Version, nicht als zweite Zahl in die Vorlage.
+
+::: antwort version
+---
+titel: "Auf Version 3: +8 %"
+praefix: "Genau:"
+symbol: haken
+---
+:::
+
+::: antwort ctc
+---
+titel: "Auf meiner CTC: +5,9 %"
+praefix: "Nicht ganz:"
+symbol: aktualisieren
+---
+:::
+:::
+
 ::: rueckbezug A
 In Welt A haben Sie ‚Eigene Zahl vertreten‘ gewählt. In Welt B steht Ihre CTC nicht gegen die Prognose der Projektsteuerung: Es gilt der benannte Datenstand „Kostenprognose 2026-05 · Version 3“, und offene Annahmen stehen darin, nicht in zwei Dateien.
 :::

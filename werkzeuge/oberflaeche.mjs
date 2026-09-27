@@ -139,6 +139,7 @@ export async function starteBrowser(optionen = {}) {
  * @property {import('playwright').Page} seite
  * @property {string} url
  * @property {Viewport} viewport
+ * @property {boolean} voll  alle Rollen und Größen (MVG_VOLL=1 bzw. `kette --voll`); sonst der schnelle Satz (L-44)
  * @property {(selektor: string, fenster?: import('playwright').Page) => Promise<void>} klick
  * @property {(selektor: string, fenster?: import('playwright').Page) => Promise<import('playwright').Locator>} erwarte
  * @property {(selektor: string, fenster?: import('playwright').Page) => Promise<void>} erwarteNicht
@@ -271,6 +272,7 @@ export async function fuehreAus(browser, szenario, viewport, url, bilder = BILDE
       seite,
       url,
       viewport,
+      voll: process.env['MVG_VOLL'] === '1',
       async klick(selektor, f) {
         await auf(f).locator(selektor).first().click({ timeout: SCHRITT_MS });
       },
@@ -284,6 +286,8 @@ export async function fuehreAus(browser, szenario, viewport, url, bilder = BILDE
         return l;
       },
       async erwarteNicht(selektor, f) {
+        // kurz Ruhe abwarten: unter Last (parallele Läufe) erscheint ein Element sonst womöglich erst nach der Zählung
+        await auf(f).waitForTimeout(150);
         const sichtbar = await auf(f).locator(selektor).filter({ visible: true }).count();
         if (sichtbar > 0) befunde.push(`darf nicht sichtbar sein: ${selektor} (${sichtbar}×)`);
       },
@@ -431,7 +435,7 @@ async function hauptprogramm() {
     const { baueVorschau } = await import('./entwurf.mjs');
     await baueVorschau();
   }
-  console.log(`oberflaeche: ${start.name} ${browser.version()} · ${anzeige} · ${szenarien.length} Szenario${szenarien.length === 1 ? '' : 's'}`);
+  console.log(`oberflaeche: ${start.name} ${browser.version()} · ${anzeige} · ${szenarien.length} Szenario${szenarien.length === 1 ? '' : 's'} · ${process.env['MVG_VOLL'] === '1' ? 'voll' : 'schnell (voll: MVG_VOLL=1)'}`);
 
   let laeufe = 0;
   let roteLaeufe = 0;
@@ -472,6 +476,10 @@ async function hauptprogramm() {
     await Promise.all(Array.from({ length: Math.max(1, Math.min(a.parallel, auftraege.length)) }, () => arbeiter()));
   } finally {
     await browser.close();
+  }
+  if (laeufe !== auftraege.length) {
+    console.log(`oberflaeche: nur ${laeufe} von ${auftraege.length} Läufen ausgewertet`);
+    return 1;
   }
   const bilder = path.relative(WURZEL, BILDER).split(path.sep).join('/');
   const hinweise = [...new Set(axeHinweise.map((z) => z.replace(/^[^:]*: /u, '')))];

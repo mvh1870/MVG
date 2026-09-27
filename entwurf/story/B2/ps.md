@@ -1,13 +1,13 @@
 ---
 station: B2
 rolle: ps
-frage: FRW-001 und AEN-012 liegen vor. Womit fangen Sie an?
+frage: FRW-002 und AEN-012 liegen vor. Womit fangen Sie an?
 rueckbezug-auf: A2
 ---
 
 ::: option A
 ---
-titel: FRW-001 in der Risikosichtung bestätigen lassen und als RIS-009 bewerten
+titel: FRW-002 in der Risikosichtung bestätigen lassen und als RIS-009 bewerten
 kurz: Risiko bewerten
 status:
   offene-risiken: +1
@@ -36,7 +36,7 @@ status:
 `AEN-012` hat eine Auswirkung auf Kosten und Termin. Rund 0,6 Mio. € liegen über 100 TEUR – das Änderungsgremium entscheidet, nicht der Flur.
 
 ### Was fehlt
-Die Bestätigung von `FRW-001` in der wöchentlichen Risikosichtung.
+Die Bestätigung von `FRW-002` in der wöchentlichen Risikosichtung.
 
 ### Neues Risiko
 Die Frühwarnung wartet eine Woche länger auf ihre Bewertung.
@@ -47,13 +47,13 @@ Die Frühwarnung wartet eine Woche länger auf ihre Bewertung.
 
 ::: option C
 ---
-titel: FRW-001 im Risikobericht führen – AEN-012 steht über das Änderungsregister im Managementbericht
+titel: FRW-002 im Risikobericht führen – AEN-012 steht über das Änderungsregister im Managementbericht
 kurz: Im Risikobericht führen
 status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Ihr monatlicher Risikobericht führt `FRW-001` mit Kennung und Status; `AEN-012` kommt über das Änderungsregister der Bauherren-PL in den Managementbericht. Dort sieht der Lenkungskreis beides auf einer Seite.
+Ihr monatlicher Risikobericht führt `FRW-002` mit Kennung und Status; `AEN-012` kommt über das Änderungsregister der Bauherren-PL in den Managementbericht. Dort sieht der Lenkungskreis beides auf einer Seite.
 
 ### Was fehlt
 Die Bewertung selbst – Berichten ersetzt nicht Bestätigen und Bewerten.
@@ -62,11 +62,11 @@ Die Bewertung selbst – Berichten ersetzt nicht Bestätigen und Bewerten.
 Ein sauber berichteter, aber noch unbewerteter Eintrag.
 
 ### Governance-Frage
-[[Frühwarnung]]: Bis wann wird `FRW-001` bestätigt?
+[[Frühwarnung]]: Bis wann wird `FRW-002` bestätigt?
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Im Statusbericht melden‘ gewählt. In Welt B steht die Lieferzeit nicht als Ampel auf Seite 23, sondern als `FRW-001` im Frühwarnungsregister – mit Rolle und nächstem Schritt.
+In Welt A haben Sie ‚Im Statusbericht melden‘ gewählt. In Welt B steht die Lieferzeit nicht als Ampel auf Seite 23, sondern als `FRW-002` im Frühwarnungsregister – mit Rolle und nächstem Schritt.
 :::
 
 ::: rueckbezug B

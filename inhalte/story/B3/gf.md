@@ -4,6 +4,33 @@ rolle: gf
 rueckbezug-auf: A3
 ---
 
+::: frage mandat-gremium
+---
+schritt: mandat
+---
+### Frage
+Liegt Option 1 von `ENT-017` im Änderungsgremium?
+
+### Rückmeldung
+Ja: 4,7 Mio. € liegen über 100 TEUR und bis einschließlich 5 Mio. € – über die Fassadenänderung `AEN-022` entscheidet das Änderungsgremium unter Ihrem Vorsitz. Bei Option 2, dem Einsatz der Risikoreserve, liegt die Freigabe beim Bauherrn; sie ist nicht delegierbar.
+
+::: antwort ja
+---
+titel: Ja, im Änderungsgremium
+praefix: "Genau:"
+symbol: haken
+---
+:::
+
+::: antwort nein
+---
+titel: Nein, beim Bauherrn im Lenkungskreis
+praefix: "Nicht ganz:"
+symbol: eskalation
+---
+:::
+:::
+
 ::: rueckbezug A
 In Welt A haben Sie ‚Controlling-Zahl übernehmen‘ gewählt. In Welt B stünde keine Zahl gegen die andere: Hier gilt der benannte Datenstand „Kostenprognose 2026-05 · Version 3“; wer abweicht, legt eine neue Version vor.
 :::

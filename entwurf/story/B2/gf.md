@@ -74,7 +74,7 @@ In Welt A haben Sie ‚Prüfen lassen‘ gewählt. In Welt B hat die Prüfung ei
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚In den Lenkungskreis‘ gewählt. In Welt B landet die Lieferzeit als Frühwarnung `FRW-001` und nach Bestätigung als Risiko `RIS-009` im Register, die Mensa im Änderungsgremium – nicht unter „Verschiedenes“.
+In Welt A haben Sie ‚In den Lenkungskreis‘ gewählt. In Welt B landet die Lieferzeit als Frühwarnung `FRW-002` und nach Bestätigung als Risiko `RIS-009` im Register, die Mensa im Änderungsgremium – nicht unter „Verschiedenes“.
 :::
 
 ::: rueckbezug ohne

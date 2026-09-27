@@ -13,7 +13,7 @@ status:
   offene-risiken: -1
 ---
 ### Konsequenz
-Die Vorlage der Bauherren-PL beruht auf einem Stand mit Version und Datum; Ihre CTC und die Prognose der Projektsteuerung sind darin abgeglichen. Dr. Olbers entscheidet auf dieser Grundlage selbst.
+Die Vorlage der Bauherren-PL beruht auf der „Kostenprognose 2026-10 · Version 4“; Ihre CTC und die Prognose der Projektsteuerung sind darin abgeglichen. Dr. Olbers entscheidet auf dieser Grundlage selbst.
 
 ### Was fehlt
 Die Zusage, dass Holger Steins Stellvertretung die Prognose bis zu seiner Rückkehr weiterführt.
@@ -70,7 +70,7 @@ In Welt A haben Sie ‚Eigene CTC liefern‘ gewählt. In Welt B beantwortet der
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Steins Dateien rekonstruieren‘ gewählt. In Welt B muss niemand Zellbezüge rekonstruieren: Die Annahmen stehen im Datenstand, und die Stellvertretung ist geregelt.
+In Welt A haben Sie ‚Steins Dateien rekonstruieren‘ gewählt. In Welt B muss niemand Zellbezüge rekonstruieren: Die Annahmen stehen im Datenstand, und die Stellvertretung ist benannt.
 :::
 
 ::: rueckbezug C

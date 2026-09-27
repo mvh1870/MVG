@@ -21,7 +21,7 @@ weiter: B6
 titel: Mittwoch, 14:00 Uhr. Monat 9.
 kurz: Einstieg
 ---
-Mittwoch, 9. September. Der Nachtrag der TGA-Fachplanung, im Mai angekündigt, ist eingegangen. Nora Petersen hat ihn als Problem `PRB-004` ins Problemregister eingetragen, mit Maßnahme: Die Projektsteuerung prüft Berechtigung und Höhe; eine Frist ist noch nicht gesetzt. Der Nachtrag berührt die Risikoreserve – daraus entsteht Entscheidungsbedarf, und den Einsatz der Reserve gibt nur der Bauherr frei. Der Lenkungskreis tagt am Dienstag, 15. September.
+Mittwoch, 9. September. Der Nachtrag der TGA-Fachplanung, im Mai angekündigt und seither im Risikoregister als „beobachtet“ geführt, ist eingegangen. Nora Petersen, die als PMO Probleme und Maßnahmen pflegt, hat ihn als Problem `PRB-004` ins Problemregister eingetragen, mit Maßnahme: Die Projektsteuerung prüft Berechtigung und Höhe; eine Frist ist noch nicht gesetzt. Der Nachtrag berührt die Risikoreserve – daraus entsteht Entscheidungsbedarf, und den Einsatz der Reserve gibt nur der Bauherr frei. Der Lenkungskreis tagt am Dienstag, 15. September.
 
 ::: datei
 ---
@@ -41,7 +41,7 @@ von: petersen
 - `PRB-004` Nachtrag der TGA-Fachplanung · Problemregister · Maßnahme: Prüfung auf Berechtigung und Höhe, Projektsteuerung; eine Frist ist noch nicht gesetzt.
 - Entscheidungsbedarf: Der Nachtrag berührt die Risikoreserve; die Freigabe ihres Einsatzes liegt beim Bauherrn.
 - `AEN-012` Mensa für den Ganztag · Beschlossen · Kosten in der Auswirkung der Änderung.
-- `AEN-031` Brandschutzauflagen: Über eine Deckung aus der Risikoreserve ist nicht entschieden.
+- `AEN-031` Brandschutzauflagen · Ob die Deckung aus der Risikoreserve kommt, ist offen; die Frage gehört in dieselbe Betrachtung des Reservestands wie `PRB-004`.
 - Termine: Lenkungskreis 15.09., Bauausschuss 17.09.
 :::
 
@@ -141,7 +141,7 @@ Nachträge mit Kennung und Maßnahme
 a: 3
 b: 0
 ---
-lose Notizen
+Posten gegen die Reserve ohne Freigabe
 :::
 
 ### Welt A
@@ -206,7 +206,7 @@ Dr. Miriam Olbers entscheidet auf Vorlage der Bauherren-PL
 :::
 
 ::: merksatz
-**Kein Gegenrechnen im Chat:** Der Nachtrag hat eine Kennung und eine Maßnahme – und die Reserve eine Frage an den Bauherrn.
+**Erst die Frage, dann das Geld:** Der Einsatz der Reserve wird freigegeben, bevor gegen sie gerechnet wird.
 :::
 :::
 
@@ -226,7 +226,7 @@ datenstand: Kostenprognose 2026-05 · Version 3 (verbindlich) · Nachtrag der TG
 ### Checkliste
 - [ ] eindeutige [[Entscheidungs-ID]] · im Entscheidungsregister noch nicht vergeben; die Vorlage bezieht sich auf `PRB-004`
 - [x] Entscheidungsfrage
-- [x] betroffene Freigabe · Freigabe des Einsatzes der Risikoreserve; im November steht die Freigabe zum Abschluss von LPH 5 an
+- [x] betroffene Freigabe · Freigabe zum Abschluss von LPH 5 (November); Gegenstand der Vorlage ist die Freigabe des Einsatzes der Risikoreserve
 - [x] Verantwortungsfeld · Risikoannahme und Freigabe
 - [x] Mandat und letztverantwortliche Rolle · Bauherr, nicht delegierbar
 - [ ] Datenstand und zentrale Annahmen · Datenstand benannt; Berechtigung und Höhe des Nachtrags sind nicht abschließend geprüft
@@ -258,8 +258,8 @@ wert: eingetretenes Problem · Maßnahme · Entscheidungsbedarf
 ::: bekannt
 - Der Nachtrag der TGA-Fachplanung ist eingetreten und steht als `PRB-004` im Problemregister, mit Maßnahme: Die Projektsteuerung prüft Berechtigung und Höhe; eine Frist ist noch nicht gesetzt.
 - Der Nachtrag berührt die Risikoreserve von 2,9 Mio. €. Den Einsatz der Reserve gibt nur der Bauherr frei – nicht delegierbar.
-- Verbindlicher Datenstand ist weiterhin die „Kostenprognose 2026-05 · Version 3“ (Mai: +8 %, rund +4,7 Mio. € gegen die Projektbasis von 58,4 Mio. €); `AEN-022` ist seither beschlossen, die Risikoreserve ist nicht eingesetzt.
-- Die Mensa ist als `AEN-012` beschlossen, ihre Kosten stehen in der Auswirkung der Änderung. Über eine Deckung von `AEN-031` aus der Reserve ist nicht entschieden.
+- Verbindlicher Datenstand ist weiterhin die „Kostenprognose 2026-05 · Version 3“ (Mai: +8 %, rund +4,7 Mio. € gegen die Projektbasis von 58,4 Mio. €); die seither beschlossenen Änderungen, darunter `AEN-022`, sind darin noch nicht enthalten, Version 4 ist in Arbeit. Die Risikoreserve ist nicht eingesetzt.
+- Die Mensa ist als `AEN-012` beschlossen, ihre Kosten stehen in der Auswirkung der Änderung. Ob die Deckung von `AEN-031` aus der Reserve kommt, ist offen; die Frage gehört in dieselbe Betrachtung des Reservestands wie `PRB-004`.
 - Der Lenkungskreis tagt am Dienstag, 15. September, der Bauausschuss am Donnerstag, 17. September.
 :::
 
@@ -269,6 +269,7 @@ wert: eingetretenes Problem · Maßnahme · Entscheidungsbedarf
 - Welche Restrisiken die Reserve nach einem Einsatz noch tragen muss {#restrisiko}
 - Wie sich der Nachtrag auf den Termin auswirkt {#terminwirkung}
 - Was der Nachtrag fachlich für die Ausführungsplanung bedeutet {#auswirkung}
+- Ob die Deckung von `AEN-031` in dieselbe Vorlage gehört {#aen031}
 :::
 :::
 
@@ -316,7 +317,7 @@ Ein eingetretenes Problem gehört ins Problemregister; sein nächster Schritt is
 ---
 titel: Warum relevant
 ---
-In Monat 9 trifft Welt B dasselbe Ereignis wie Welt A: derselbe Nachtrag, dieselbe Reserve. Der Unterschied liegt im Weg. Der Nachtrag ist `PRB-004`, mit Maßnahme; die Mensa steht mit ihren Kosten in `AEN-012`; und die Reserve ist kein Topf, gegen den gerechnet wird, sondern eine Frage an den Bauherrn. Kap. 4.5 sagt, was vorher klar sein muss: [[zitat:k4.5-p2|Vor einer Freigabe muss klar sein, welche Entscheidung getroffen wird, welches Mandat gilt, welche Mindestgrundlagen vorliegen, welche Risiken angenommen werden und welcher Datenstand referenziert wird.]] Die Vorlage zeigt, was davon steht und was offen ist.
+Derselbe Nachtrag, dieselbe Reserve – nur wird in Welt B nicht gegengerechnet, sondern gefragt. Der Nachtrag ist `PRB-004`, mit Maßnahme; die Mensa steht mit ihren Kosten in `AEN-012`; und die Reserve ist kein Topf, gegen den gerechnet wird, sondern eine Frage an den Bauherrn. Kap. 4.5 sagt, was vorher klar sein muss: [[zitat:k4.5-p2|Vor einer Freigabe muss klar sein, welche Entscheidung getroffen wird, welches Mandat gilt, welche Mindestgrundlagen vorliegen, welche Risiken angenommen werden und welcher Datenstand referenziert wird.]] Die Vorlage zeigt, was davon steht und was offen ist.
 :::
 
 ::: ebene 3
@@ -328,7 +329,7 @@ titel: Vertiefung
 | Register-Abgrenzung | 6.4.4 | `PRB-004` im Problemregister: eingetretenes Problem, nächster Schritt Maßnahme, ggf. Entscheidung |
 | Nicht delegierbar | 3.2 | Freigabe des Einsatzes der Risikoreserve beim Bauherrn |
 | Risikoannahme | 4.4 | Welche Restrisiken die Reserve nach einem Einsatz trägt, ist noch nicht bewertet |
-| Freigabe | 4.5 | Verbindlicher Datenstand weiterhin „Kostenprognose 2026-05 · Version 3“, in der Vorlage benannt; die Risikoreserve ist nicht eingesetzt |
+| Freigabe | 4.5 | Verbindlicher Datenstand weiterhin „Kostenprognose 2026-05 · Version 3“, in der Vorlage benannt; die seither beschlossenen Änderungen sind darin noch nicht enthalten, Version 4 ist in Arbeit; die Risikoreserve ist nicht eingesetzt |
 | [[Entscheidungsvorlage]] | 9.4 | Checkliste unter der Kennung `PRB-004`: was erfüllt ist und was offen |
 | Rhythmus | 6.4.5 | Maßnahmen, Probleme und Fristen im Takt von PMO und verantwortlichen Rollen |
 
@@ -421,7 +422,7 @@ figur: kaya
 
 ::: regie
 ### Notiz
-B5 zeigt dasselbe Ereignis wie A5 – dieselben Folgekosten, dieselbe Reserve. In Welt B steht der Nachtrag der TGA-Fachplanung als Problem `PRB-004` im Problemregister, mit Maßnahme und Entscheidungsbedarf; die Mensa-Kosten stehen in der Auswirkung von `AEN-012`. Die Vorlage trägt die Kennung des Problems als Bezug; eine eigene Entscheidungs-ID ist nicht vergeben – deshalb ist der Punkt offen. Offen bleiben mit Absicht: die Prüfung des Nachtrags, der Stand der Reserve je Posten, Restrisiken, Terminwirkung und fachliche Auswirkung – das lösen erst die Optionen aus. Über eine Deckung von `AEN-031` aus der Reserve ist nicht entschieden. „Freigabe“ meint hier den Einsatz der Risikoreserve, nicht die Freigabe zum Abschluss einer LPH. Zuerst den Regler zeigen, dann Kette und Vorlage.
+B5 zeigt dasselbe Ereignis wie A5 – dieselben Folgekosten, dieselbe Reserve. In Welt B steht der Nachtrag der TGA-Fachplanung als Problem `PRB-004` im Problemregister, mit Maßnahme und Entscheidungsbedarf; die Mensa-Kosten stehen in der Auswirkung von `AEN-012`. Die Vorlage trägt die Kennung des Problems als Bezug; eine eigene Entscheidungs-ID ist nicht vergeben – deshalb ist der Punkt offen. Offen bleiben mit Absicht: die Prüfung des Nachtrags, der Stand der Reserve je Posten, Restrisiken, Terminwirkung und fachliche Auswirkung – das lösen erst die Optionen aus. Ob die Deckung von `AEN-031` aus der Reserve kommt, ist offen; deshalb steht bei den ungeklärten Entscheidungen 1 – eine Vorlage zur Reserve, in deren Betrachtung auch `AEN-031` gehört. „Freigabe“ meint hier den Einsatz der Risikoreserve, nicht die Freigabe zum Abschluss einer LPH. Zuerst den Regler zeigen, dann Kette und Vorlage.
 
 ### Leitfragen
 - Wo steht bei Ihnen ein eingetretenes Problem – und wer führt es?

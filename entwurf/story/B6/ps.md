@@ -39,7 +39,7 @@ Offene Risiken, ihre Bewertung und die nächsten Schritte liegen der Vorlage bei
 Die Antwort an die Fraktion ist noch nicht formuliert.
 
 ### Neues Risiko
-Die Stadtratsanfrage wartet auf die Freigabe.
+Die Antwort an die Fraktion bis Freitag, 13. November, arbeitet noch niemand zu.
 
 ### Governance-Frage
 [[Freigabe]]: Freigabe, keine Freigabe oder Freigabe mit Auflagen – auf welcher Grundlage?
@@ -66,7 +66,7 @@ Die Freigabevorlage kommt eine Woche später.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Steins Dateien rekonstruieren‘ gewählt. In Welt B muss niemand rekonstruieren: Die Annahmen stehen im Datenstand, und die Stellvertretung ist geregelt.
+In Welt A haben Sie ‚Steins Dateien rekonstruieren‘ gewählt. In Welt B muss niemand rekonstruieren: Die Annahmen stehen im Datenstand, und die Stellvertretung ist benannt.
 :::
 
 ::: rueckbezug B
@@ -74,7 +74,7 @@ In Welt A haben Sie ‚Bandbreite nennen‘ gewählt. In Welt B gibt es eine gel
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Freigabe zurückstellen empfehlen‘ gewählt. In Welt B fehlen die Mindestgrundlagen nicht: Kernfrage, Mandat und Datenstand liegen vor, und der Bauherr kann über den Abschluss von LPH 5 entscheiden.
+In Welt A haben Sie ‚Freigabe zurückstellen empfehlen‘ gewählt. In Welt B ist sichtbar, was fehlt: Kernfrage und Mandat stehen in der Vorlage, Datenstandsbestätigung und Empfehlung haben einen Termin vor dem 17. November.
 :::
 
 ::: rueckbezug ohne

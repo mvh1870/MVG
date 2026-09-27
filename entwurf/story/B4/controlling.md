@@ -74,7 +74,7 @@ In Welt A haben Sie ‚CTC einarbeiten lassen‘ gewählt. In Welt B gibt es kei
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Schwellenwert vorschlagen‘ gewählt. In Welt B stehen Schwellenwerte je Kostengruppe im Controlling-Register; wird einer verletzt, entsteht eine neue Frühwarnung. Und die Mandatsleiter weist `AEN-031` mit rund 0,4 Mio. € dem Änderungsgremium zu.
+In Welt A haben Sie ‚Schwellenwert vorschlagen‘ gewählt. In Welt B gehören Schwellenwerte je Kostengruppe zu den Registern des Controllings; wird einer verletzt, entsteht eine neue Frühwarnung. Und die Mandatsleiter weist `AEN-031` mit rund 0,4 Mio. € dem Änderungsgremium zu.
 :::
 
 ::: rueckbezug ohne

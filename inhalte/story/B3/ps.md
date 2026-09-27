@@ -4,6 +4,33 @@ rolle: ps
 rueckbezug-auf: A3
 ---
 
+::: frage mandat-zulieferung
+---
+schritt: mandat
+---
+### Frage
+Was liefern Sie zu `ENT-017` zu, damit die zuständige Stufe entscheiden kann?
+
+### Rückmeldung
+Die Vorlage braucht zu Option 2 noch die Wirkung auf Termin und Risiko – das ergänzt die Projektsteuerung, die die Vorlage vorbereitet. Welche Stufe entscheidet, legt nicht die Projektsteuerung fest, sondern die Mandatsleiter: Es hängt an der Option.
+
+::: antwort wirkung
+---
+titel: Termin und Risiko zu Option 2
+praefix: "Genau:"
+symbol: vorlage
+---
+:::
+
+::: antwort stufe
+---
+titel: Einen Vorschlag, welche Stufe entscheidet
+praefix: "Nicht ganz:"
+symbol: person
+---
+:::
+:::
+
 ::: rueckbezug A
 In Welt A haben Sie ‚Eigene Zahl vertreten‘ gewählt. In Welt B steht Ihre Zahl nicht gegen eine andere: Es gilt der benannte Datenstand „Kostenprognose 2026-05 · Version 3“, und `ENT-017` baut auf ihm auf.
 :::

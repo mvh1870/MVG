@@ -1,7 +1,7 @@
 ---
 station: B2
 rolle: pl
-frage: Wie bringen Sie AEN-012 und RIS-009 voran?
+frage: Wie bringen Sie AEN-012 und FRW-002 voran?
 rueckbezug-auf: A2
 ---
 
@@ -16,7 +16,7 @@ status:
 Rund 0,6 Mio. € liegen über Ihrer Schwelle von 100 TEUR; das Änderungsgremium entscheidet in seiner nächsten monatlichen Sitzung auf Vorlage. Sabine Roth weiß, wann.
 
 ### Was fehlt
-Die Terminwirkung der Mensa hängt an der Bewertung von `RIS-009`.
+Die Terminwirkung der Mensa hängt an der Lieferzeit – `FRW-002` ist noch nicht bestätigt, bewertet wird sie erst als `RIS-009`.
 
 ### Neues Risiko
 Zwei verknüpfte Einträge mit zwei Zeitplänen.
@@ -79,7 +79,7 @@ In Welt A haben Sie ‚An den Bauherrn geben‘ gewählt. In Welt B muss Dr. Olb
 :::
 
 ::: rueckbezug ohne
-In Welt A kamen dieselbe Marktabfrage und dieselbe Mail – und wurden zu einer Flurzusage und einer Notiz. In Welt B werden sie zu `FRW-001` und `AEN-012`.
+In Welt A kamen dieselbe Marktabfrage und dieselbe Mail – und wurden zu einer Flurzusage und einer Notiz. In Welt B werden sie zu `FRW-002` und `AEN-012`.
 :::
 
 ::: regie

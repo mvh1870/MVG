@@ -4,6 +4,33 @@ rolle: planung
 rueckbezug-auf: A3
 ---
 
+::: frage mandat-variante
+---
+schritt: mandat
+---
+### Frage
+Was liefern Sie zu Option 1 zu – und wer entscheidet dann?
+
+### Rückmeldung
+Sie liefern die Auswirkung der Fassadenänderung `AEN-022` zu; die Analyse von Varianten ist delegierbar. Entscheiden wird nach der Mandatsleiter das Änderungsgremium, denn 4,7 Mio. € liegen über 100 TEUR und bis einschließlich 5 Mio. €.
+
+::: antwort auswirkung
+---
+titel: Die Auswirkung von AEN-022 – entscheiden wird das Änderungsgremium
+praefix: "Genau:"
+symbol: vorlage
+---
+:::
+
+::: antwort selbst
+---
+titel: Die fertige Variante – sie gilt, sobald sie gerechnet ist
+praefix: "Vorsicht:"
+symbol: weiterarbeiten
+---
+:::
+:::
+
 ::: rueckbezug A
 In Welt A haben Sie ‚Einsparvariante durchrechnen‘ gewählt. In Welt B wird die günstigere Fassade keine Schubladenrechnung: Sie steht als `AEN-022` im Änderungsregister, mit Auswirkung und Freigabeweg.
 :::

@@ -819,6 +819,10 @@ function rueckspulen(k: SzenenKontext): Szene {
 export function baueSzene(k: SzenenKontext): Szene {
   const innen = inhaltsSzene(k);
   const teile = teileLeiste(k);
-  const element = h('div', { class: 'szene', 'data-schritt': k.schritt.id }, teile, innen.element);
+  // Express (E8, L-43): über dem ersten Schritt einer Station, was der Leser übersprungen hat
+  const express = k.index === 0 && k.station.express !== null && k.z.interessen.includes('express')
+    ? h('aside', { class: 'express-karte', 'data-pruef': 'express-karte', 'aria-label': W.wasDazwischen }, h('span', { class: 't-label' }, W.wasDazwischen), inhalt(k.station.express))
+    : null;
+  const element = h('div', { class: 'szene', 'data-schritt': k.schritt.id }, express, teile, innen.element);
   return { element, aktualisiere: innen.aktualisiere, beimEintritt: innen.beimEintritt };
 }

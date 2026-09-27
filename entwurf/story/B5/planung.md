@@ -16,7 +16,7 @@ status:
 Die fachliche Auswirkung steht in `PRB-004`; Berechtigung und Höhe des Nachtrags prüft die Projektsteuerung. Die Bauherren-PL kann die Vorlage an Dr. Olbers geben; sie entscheidet über den Einsatz der Reserve.
 
 ### Was fehlt
-Nichts für die Vorlage – die Entscheidung liegt beim Bauherrn.
+Berechtigung und Höhe des Nachtrags sowie der Reservestand; die Entscheidung liegt beim Bauherrn.
 
 ### Neues Risiko
 Keines; die Auswirkung ist bewertet.

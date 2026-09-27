@@ -1,0 +1,120 @@
+// Browser-Szenario Welt B (P5.9, P2-Befunde V3/V7/V9): auf der Entwurfs-Vorschau spielt jede Rolle
+// B1–B6 – Einstieg, Vergleich, Werkzeuge, Entscheidung, Ebenen 1–4, am Ende „Ihre Spur“; Layout, axe
+// und Quellen-Kontrast an jedem Werkzeug. Damit nicht jede Rolle Welt A erneut durchspielt, erzeugt
+// die Engine selbst den Stand direkt vor B1 (Option A an jeder Station) und legt ihn in den Speicher
+// der Seite – derselbe Weg, auf dem ein Leser nach einem Neuladen weiterliest.
+// Größen: 1280×720 alle sechs Rollen – aufgeteilt auf dieses Szenario (gf, bauherr, pl) und
+// „welt-b-2“ (ps, planung, controlling + Express-Pfad E8), damit der parallele Pool beide zugleich
+// fährt; 1024×768 und 400×800 je drei Rollen, zusammen jede Rolle einmal außerhalb des Desktops.
+
+import { pruefeEntwurf } from '../../werkzeuge/entwurf.mjs';
+import { anfangszustand } from '../../src/engine/zustand.ts';
+import { wende } from '../../src/engine/aktionen.ts';
+import { aktuellerSchritt } from '../../src/engine/graph.ts';
+import { speichere, SPEICHER_SCHLUESSEL } from '../../src/engine/speicher.ts';
+import { pruefer, weltB } from './hilfen.mjs';
+
+export const name = 'welt-b';
+export const seite = 'tmp/mvg-entwurf.html';
+export const hash = '#story';
+
+const ROLLEN_JE_GROESSE = {
+  1280: ['gf', 'bauherr', 'pl'],
+  1024: ['bauherr', 'ps', 'planung'],
+  400: ['gf', 'pl', 'controlling'],
+};
+const EXPRESS = ['A3', 'A6', 'wendepunkt', 'rueckspulen', 'B3', 'B6', 'wirklichkeit'];
+
+const entwurf = await pruefeEntwurf();
+if (entwurf.fehler.length > 0) throw new Error(`welt-b: Entwurf mit Fehlern – zuerst \`npm run entwurf\`:\n${entwurf.fehler.join('\n')}`);
+const modell = entwurf.inhalte;
+/** Die PL liest mit Interessen (Vertiefungen in Welt B, L-31); die anderen ohne. */
+const INTERESSEN = { pl: ['kosten', 'risiko'] };
+/** Kurzform der Option A einer Station für eine Rolle (für die Spur-Prüfung). */
+const kurzA = (st, rolle) => modell.stationen[st]?.szenen[rolle]?.entscheidung?.optionen.find((o) => o.id === 'A')?.kurz ?? '';
+
+/** Spielt mit dem Reducer bis zur Zielstation (Option A an jeder Entscheidung) und liefert den gespeicherten Stand. */
+function standVor(rolle, ziel) {
+  let z = anfangszustand();
+  const tu = (a) => { z = wende(z, a, modell); };
+  tu({ art: 'starteStory' });
+  tu({ art: 'waehleRolle', rolle });
+  if (INTERESSEN[rolle]) tu({ art: 'setzeInteressen', interessen: INTERESSEN[rolle] });
+  for (let i = 0; i < 2000 && z.station !== ziel; i++) {
+    const s = aktuellerSchritt(z, modell);
+    const ent = z.station !== null ? modell.stationen[z.station]?.szenen[rolle]?.entscheidung : null;
+    if (s?.art === 'entscheidung' && ent && z.entscheidungen[ent.id] === undefined) tu({ art: 'waehle', option: 'A' });
+    const vorher = z;
+    tu({ art: 'weiter' });
+    if (z === vorher) break;
+  }
+  if (z.station !== ziel) throw new Error(`welt-b: ${rolle} erreicht ${ziel} nicht (steht in ${z.station})`);
+  let text = '';
+  speichere(z, { setItem: (_k, v) => { text = v; }, getItem: () => null, removeItem: () => {} });
+  return text;
+}
+
+/**
+ * @param {import('playwright').Page} seite
+ * @param {import('../../werkzeuge/oberflaeche.mjs').Helfer} h
+ */
+export async function lauf(seite, h) {
+  // schnell (vor jedem Commit, L-44): je Größe eine Rolle – die PL (mit Interessen), bei 1024 der Bauherr
+  const schnell = h.viewport.breite === 1024 ? ['bauherr'] : ['pl'];
+  await spiele(seite, h, h.voll ? ROLLEN_JE_GROESSE[h.viewport.breite] ?? ['pl'] : schnell, false);
+}
+
+/**
+ * Spielt die Rollen durch B1–B6 und auf Wunsch den Express-Pfad.
+ * @param {import('playwright').Page} seite
+ * @param {import('../../werkzeuge/oberflaeche.mjs').Helfer} h
+ * @param {string[]} rollen
+ * @param {boolean} express
+ */
+export async function spiele(seite, h, rollen, express) {
+  const station = async () => (await seite.evaluate(() => location.hash)).replace(/^#story\//u, '');
+  const pruefe = pruefer(seite, h);
+  for (const rolle of rollen) {
+    const stand = standVor(rolle, 'B1');
+    await seite.evaluate(([k, v]) => { localStorage.setItem(k, v); }, [SPEICHER_SCHLUESSEL, stand]);
+    await seite.reload({ waitUntil: 'load' });
+    await seite.evaluate(() => { location.hash = '#story/B1'; });
+    await h.warte(600);
+    if ((await station()) !== 'B1') { h.befund(`${rolle}: geladener Stand steht nicht in B1 (${await station()})`); continue; }
+    await weltB(seite, h, station, async (n) => pruefe(`${rolle}-${n}`), { vertiefungen: INTERESSEN[rolle] ?? [], spur: { a: kurzA('A1', rolle), b: kurzA('B1', rolle) } });
+    await seite.evaluate(() => localStorage.clear());
+  }
+  if (!express) return;
+
+  // Express (E8, P2-Befund V3): Interesse „express“ im Prolog → nur die Schlüsselmomente
+  await seite.evaluate(() => localStorage.clear());
+  await seite.reload({ waitUntil: 'load' });
+  await seite.evaluate(() => { location.hash = '#story'; });
+  await h.erwarte('[data-pruef="weiter"]');
+  if (await seite.locator('[data-pruef="rolle-bauherr"]').filter({ visible: true }).count() === 0) await h.klick('[data-pruef="weiter"]');
+  await h.klick('[data-pruef="rolle-bauherr"]');
+  await h.klick('[data-pruef="interesse-express"]');
+  await h.klick('[data-pruef="weiter"]');
+  const weg = [];
+  for (let i = 0; i < 200 && (await station()) !== 'wirklichkeit'; i++) {
+    const st = await station();
+    if (weg[weg.length - 1] !== st) {
+      weg.push(st);
+      // Express (T6): an jeder Station einmal prüfen; vor B3 und B6 steht die Karte „Was dazwischen geschah“ (L-43)
+      if (st !== '' && st !== 'prolog') {
+        await h.warte(700);
+        if ((st === 'B3' || st === 'B6') && await seite.locator('[data-pruef="express-karte"]').filter({ visible: true }).count() === 0) h.befund(`Express ${st}: Karte „Was dazwischen geschah“ fehlt`);
+        await pruefe(`express-${st}`);
+      }
+    }
+    const optionA = seite.locator('[data-pruef="option-A"]').filter({ visible: true });
+    if (await optionA.count() > 0 && (await optionA.first().getAttribute('aria-pressed')) !== 'true') await optionA.first().click();
+    if (await seite.locator('[data-pruef="szene-weiter"]').filter({ visible: true }).count() > 0) await h.klick('[data-pruef="szene-weiter"]');
+    else await h.klick('[data-pruef="weiter"]');
+    await h.warte(120);
+  }
+  weg.push(await station());
+  const stationen = weg.filter((x) => x !== '' && x !== 'prolog');
+  if (stationen.join(' → ') !== EXPRESS.join(' → ')) h.befund(`Express: Weg ${stationen.join(' → ')} statt ${EXPRESS.join(' → ')}`);
+  await pruefe('express-wirklichkeit');
+}

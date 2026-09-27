@@ -21,7 +21,7 @@ weiter: B5
 titel: Donnerstag, 10:00 Uhr. Monat 7.
 kurz: Einstieg
 ---
-Donnerstag, 9. Juli. Das Änderungsgremium tagt, Vorsitz Frank Deppe. Seit Juni liegt die Baugenehmigung vor, mit Brandschutzauflagen zum Holzbau. Die nötige Planänderung steht als `AEN-031` im Änderungsregister, grob 0,4 Mio. €, Status „In Prüfung“; die Vorlage liegt auf dem Tisch. Eine Woche später tagt der Bauausschuss. Er bekommt den Managementbericht – mit der Beschlusslage dieser Sitzung.
+Donnerstag, 9. Juli. Das Änderungsgremium tagt, Vorsitz Frank Deppe. Im Juni hat es `ENT-017` entschieden: Die Fassade wird als Änderung `AEN-022` angepasst – auf der ergänzten Vorlage und nachdem Dr. Olbers die Zielpriorität für diesen Konflikt festgelegt hatte; die Risikoreserve blieb unberührt. Seit Juni liegt die Baugenehmigung vor, mit Brandschutzauflagen zum Holzbau. Die nötige Planänderung steht als `AEN-031` im Änderungsregister, grob 0,4 Mio. €, Status „In Prüfung“; die Vorlage liegt auf dem Tisch. Eine Woche später tagt der Bauausschuss. Er bekommt den Managementbericht – mit der Beschlusslage dieser Sitzung.
 
 ::: protokoll
 ---
@@ -137,10 +137,10 @@ Entscheidungsfragen auf dem Tisch
 
 ::: kennzahl
 ---
-a: 3
+a: 1
 b: 0
 ---
-lose Notizen
+Vertagungen ohne Frage und Frist
 :::
 
 ### Welt A
@@ -208,7 +208,7 @@ datenstand: Kostenprognose 2026-05 · Version 3 · Schätzung der Generalplanung
 :::
 
 ::: merksatz
-**Kein Stapel, keine Tischvorlage:** Die Auflage hat eine Kennung, ihr Betrag eine Stufe – und das Gremium eine Frage.
+**Die Auflage steht fest, die Umsetzung wird entschieden:** mit Kennung, Stufe und Frage.
 :::
 :::
 
@@ -260,7 +260,7 @@ wert: In Prüfung · Vorlage liegt vor
 - Seit Juni liegt die Baugenehmigung vor, mit Brandschutzauflagen zum Holzbau. Die nötige Planänderung steht als `AEN-031` im Änderungsregister, Status „In Prüfung“; die Generalplanung schätzt grob 0,4 Mio. €.
 - Mandatsleiter: Grob 0,4 Mio. € liegen über 100 TEUR und bis einschließlich 5 Mio. € – zuständig ist das Änderungsgremium unter Vorsitz von Frank Deppe. Soll die Deckung aus der Risikoreserve kommen, gibt diesen Einsatz nur der Bauherr frei.
 - Die Vorlage nennt Entscheidungsfrage, Datenstand, Mandat, betroffene Freigabe und eine Empfehlung; Kosten und Terminwirkung sind bisher grob geschätzt.
-- Beschlusslage: `ENT-017` ist entschieden; `AEN-012` (Mensa) und `AEN-022` (Fassade) sind beschlossen.
+- Beschlusslage: `ENT-017` ist im Juni über `AEN-022` entschieden; `AEN-012` (Mensa) und `AEN-022` (Fassade) sind beschlossen.
 - Der Bauausschuss tagt am Donnerstag, 16. Juli; er bekommt den Managementbericht mit Beschlusslage und Beschlussvorbereitung.
 :::
 
@@ -316,7 +316,7 @@ titel: Kernaussage
 ---
 titel: Warum relevant
 ---
-In Monat 7 trifft Welt B dasselbe Ereignis wie Welt A: dieselben Auflagen, derselbe Ausschusstermin. Der Unterschied liegt im Weg. Die Planänderung hat eine Kennung, ihr Betrag eine Stufe auf der Mandatsleiter, die Vorlage eine Frage. Kap. 4.3 sagt, wozu das dient: [[zitat:k4.3-p2|Das System der Entscheidungs-IDs verhindert, dass kritische Entscheidungen in Protokollen, E-Mails, Fachrunden oder informellen Abstimmungen verschwinden.]] Offen ist auch hier etwas – die Terminwirkung ist grob geschätzt, die Deckung nicht geklärt. Aber beides steht in der Vorlage.
+Dieselben Auflagen, derselbe Ausschusstermin – aber bevor der Bauausschuss tagt, liegt die Frage schon bei der Stelle mit dem Mandat. Die Planänderung hat eine Kennung, ihr Betrag eine Stufe auf der Mandatsleiter, die Vorlage eine Frage. Kap. 4.3 sagt, wozu das dient: [[zitat:k4.3-p2|Das System der Entscheidungs-IDs verhindert, dass kritische Entscheidungen in Protokollen, E-Mails, Fachrunden oder informellen Abstimmungen verschwinden.]] Offen ist auch hier etwas – die Terminwirkung ist grob geschätzt, die Deckung nicht geklärt. Aber beides steht in der Vorlage.
 :::
 
 ::: ebene 3

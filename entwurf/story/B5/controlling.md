@@ -74,7 +74,7 @@ In Welt A haben Sie ‚Reserve weiterführen‘ gewählt. In Welt B steht der Re
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Überschreitung ausweisen‘ gewählt. In Welt B gibt es keine zweite Rechnung: Die Folgekosten stehen in `AEN-012`, `AEN-031` und `PRB-004`, alle auf demselben Datenstand.
+In Welt A haben Sie ‚Überschreitung ausweisen‘ gewählt. In Welt B gibt es keine zweite Rechnung: Die Folgekosten stehen mit Kennung in `AEN-012`, `AEN-031` und `PRB-004`, und welcher Datenstand gilt, ist benannt.
 :::
 
 ::: rueckbezug ohne

@@ -27,13 +27,13 @@ Die Kostenseite ist klar, die Terminseite offen.
 
 ::: option B
 ---
-titel: Die Kostenwirkung von RIS-009 in der Prognose getrennt ausweisen
-kurz: Risiko ausweisen
+titel: Die mögliche Kostenwirkung der Lieferzeit (FRW-002) in der Prognose getrennt ausweisen
+kurz: Lieferzeit ausweisen
 status:
   kostenunsicherheit: -1
 ---
 ### Konsequenz
-Die Prognose zeigt `RIS-009` als bewertetes Risiko mit Kostenspanne, getrennt von der CTC. Wer den Managementbericht liest, sieht beides.
+Die Prognose zeigt die Lieferzeit als noch unbewertetes Signal mit möglicher Kostenspanne, getrennt von der CTC; bewertet wird sie erst als `RIS-009`. Wer den Managementbericht liest, sieht beides.
 
 ### Was fehlt
 Ihre Zahl zur Mensa: `AEN-012` wartet noch auf die bezifferte Auswirkung.
@@ -78,7 +78,7 @@ In Welt A haben Sie ‚Zusage klären lassen‘ gewählt. In Welt B braucht es d
 :::
 
 ::: rueckbezug ohne
-In Welt A kamen Marktabfrage und Mail am selben Tag – und gingen in keine Liste. In Welt B sind sie `FRW-001` und `AEN-012`, jede mit Rolle und nächstem Schritt.
+In Welt A kamen Marktabfrage und Mail am selben Tag – und gingen in keine Liste. In Welt B sind sie `FRW-002` und `AEN-012`, jede mit Rolle und nächstem Schritt.
 :::
 
 ::: regie

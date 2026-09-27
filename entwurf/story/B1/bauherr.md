@@ -29,7 +29,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Sie bestätigen die Schwellen: Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium bis einschließlich 5 Mio. €, darüber Sie im Lenkungskreis. Jede Rolle kennt ihre Stellvertretung.
+Sie bestätigen die Schwellen: Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium bis einschließlich 5 Mio. €, darüber Sie im Lenkungskreis. Die Stellvertretungen je Rolle werden abgefragt; für Holger Stein ist noch keine benannt.
 
 ### Was fehlt
 Die Probe: Ob die Schwellen tragen, zeigt erst die erste Änderung.

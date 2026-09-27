@@ -53,7 +53,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Nora Petersen fällt es im Register auf: `AEN-031` steht auf „In Prüfung“, die Planung ist schon weiter. Die Bauherren-PL hält die Arbeit bis zum Beschluss an.
+Im Änderungsregister fällt es auf: `AEN-031` steht auf „In Prüfung“, die Planung ist schon weiter. Die Bauherren-PL, die das Register führt, hält die Arbeit bis zum Beschluss an.
 
 ### Was fehlt
 Der Beschluss – die Auflage gilt, aber wie sie umgesetzt wird, ist eine Entscheidung.

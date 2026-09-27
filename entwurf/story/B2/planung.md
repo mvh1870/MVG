@@ -1,7 +1,7 @@
 ---
 station: B2
 rolle: planung
-frage: FRW-001 und AEN-012 sind erfasst. Was liefern Sie zu?
+frage: FRW-002 und AEN-012 sind erfasst. Was liefern Sie zu?
 rueckbezug-auf: A2
 ---
 
@@ -13,7 +13,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Die Auswirkung der Mensa steht in `AEN-012`, verknüpft mit `RIS-009`. Das Änderungsgremium kann in seiner nächsten Sitzung auf Vorlage entscheiden.
+Die Auswirkung der Mensa steht in `AEN-012`, mit Verweis auf die Lieferzeit `FRW-002`. Das Änderungsgremium kann in seiner nächsten Sitzung auf Vorlage entscheiden.
 
 ### Was fehlt
 Die Bestätigung der Lieferzeit, damit die Terminwirkung belastbar ist.
@@ -22,18 +22,18 @@ Die Bestätigung der Lieferzeit, damit die Terminwirkung belastbar ist.
 Zwei verknüpfte Einträge, die zusammen fertig werden müssen.
 
 ### Governance-Frage
-[[Entscheidungsreife]]: Ist die Vorlage reif, solange `RIS-009` nicht bewertet ist?
+[[Entscheidungsreife]]: Ist die Vorlage reif, solange `FRW-002` nicht bestätigt ist?
 :::
 
 ::: option B
 ---
-titel: Die Bestätigung der Lieferzeit und die Terminwirkung für RIS-009 zuliefern
+titel: Die Bestätigung der Lieferzeit und ihre Terminwirkung zuliefern
 kurz: Bestätigung zuliefern
 status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Sie liefern die Bestätigung der Lieferzeit und die Terminwirkung zu; die Projektsteuerung, die das Frühwarnungsregister führt, macht aus `FRW-001` das Risiko `RIS-009` mit bewerteter Terminwirkung. Die Mensa wartet eine Woche auf ihre Bewertung.
+Sie liefern die Bestätigung der Lieferzeit und die Terminwirkung zu; die Projektsteuerung, die das Frühwarnungsregister führt, macht aus `FRW-002` das Risiko `RIS-009` mit bewerteter Terminwirkung. Die Mensa wartet eine Woche auf ihre Bewertung.
 
 ### Was fehlt
 Die Auswirkung von `AEN-012`.
@@ -74,11 +74,11 @@ In Welt A haben Sie ‚Auftrag abwarten‘ gewählt. In Welt B wartet niemand in
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Lieferzeit bewerten‘ gewählt. In Welt B bleibt die Bewertung nicht in einer Mail: Sie fließt ein, wenn aus `FRW-001` das Risiko `RIS-009` wird.
+In Welt A haben Sie ‚Lieferzeit bewerten‘ gewählt. In Welt B bleibt die Bewertung nicht in einer Mail: Sie fließt ein, wenn aus `FRW-002` das Risiko `RIS-009` wird.
 :::
 
 ::: rueckbezug ohne
-In Welt A wurden Marktabfrage und Mail zu einer Flurzusage und einer Terminmail. In Welt B werden sie zu `FRW-001` und `AEN-012`.
+In Welt A wurden Marktabfrage und Mail zu einer Flurzusage und einer Terminmail. In Welt B werden sie zu `FRW-002` und `AEN-012`.
 :::
 
 ::: regie

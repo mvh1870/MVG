@@ -137,6 +137,8 @@ export interface Station extends ModellStation {
   ebenen: Ebene[] | null;
   standpunkte: Standpunkt[];
   vertiefungen: Vertiefung[];
+  /** Express-Karte „Was dazwischen geschah“ (HTML) oder null (L-43) */
+  express: string | null;
   szenen: Record<string, Szene>;
   quelle: string;
 }

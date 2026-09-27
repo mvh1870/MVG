@@ -13,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: -1
 ---
 ### Konsequenz
-Liegen Kernfrage, Mindestgrundlagen, Mandat und bestätigter Datenstand zum 17. November vor, berät der Lenkungskreis, und Dr. Miriam Olbers erteilt die Freigabe selbst auf Vorlage der Bauherren-PL.
+Liegen Kernfrage, Mindestgrundlagen, Mandat und bestätigter Datenstand zum 17. November vor, berät der Lenkungskreis, und Dr. Miriam Olbers entscheidet auf Vorlage der Bauherren-PL selbst über die Freigabe.
 
 ### Was fehlt
 Für die Freigabe nichts, sofern Datenstand und Risikolage bis zum 17. November vorliegen; das Ergebnis wird dokumentiert.
@@ -70,7 +70,7 @@ In Welt A haben Sie ‚Aus dem Statusbericht antworten‘ gewählt. In Welt B wi
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Freigabe verschieben‘ gewählt. In Welt B muss niemand auf Holger Stein warten: Register, Datenstand und eine geregelte Stellvertretung tragen.
+In Welt A haben Sie ‚Freigabe verschieben‘ gewählt. In Welt B muss niemand auf Holger Stein warten: Register, Datenstand und eine benannte Stellvertretung tragen.
 :::
 
 ::: rueckbezug C

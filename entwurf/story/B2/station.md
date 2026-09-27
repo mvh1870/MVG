@@ -21,7 +21,7 @@ weiter: B3
 titel: Dienstag, 11:15 Uhr. Monat 3.
 kurz: Einstieg
 ---
-Dienstag, 10. März. Seit Februar steht das Projekt in LPH 5. Dieselbe Marktabfrage, dieselbe Mail, derselbe Satz im Flur. Diesmal hat jedes Stück eine Kennung: Die Lieferzeit steht als Frühwarnung `FRW-001` im Register, bestätigt ist sie noch nicht. Der Mensa-Wunsch steht als Änderung `AEN-012` im Änderungsregister – Status „Beantragt“, die Auswirkung noch nicht bewertet. Aus der Flurzusage ist ein Antrag geworden.
+Dienstag, 10. März. Seit Februar steht das Projekt in LPH 5. Dieselbe Marktabfrage, dieselbe Mail, derselbe Satz im Flur. Diesmal hat jedes Stück eine Kennung: Die Lieferzeit steht als Frühwarnung `FRW-002` im Register, bestätigt ist sie noch nicht. Der Mensa-Wunsch steht als Änderung `AEN-012` im Änderungsregister – Status „Beantragt“, die Auswirkung noch nicht bewertet. Aus der Flurzusage ist ein Antrag geworden.
 
 ::: protokoll
 ---
@@ -38,7 +38,7 @@ datum: 10. März 2026
 von: brenner
 zeit: "10:48"
 ---
-Marktabfrage Holzbau kam nach dem Jour fixe – ist jetzt als `FRW-001` im Frühwarnungsregister erfasst. Unbewertet, bestätigt ist noch nichts. Nächste Risikosichtung: Dienstag, 17. März.
+Marktabfrage Holzbau kam nach dem Jour fixe – ist jetzt als `FRW-002` im Frühwarnungsregister erfasst. Unbewertet, bestätigt ist noch nichts. Nächste Risikosichtung: Dienstag, 17. März.
 :::
 
 ::: mail
@@ -76,7 +76,7 @@ Derselbe Vormittag, dieselben Stücke – in Welt B hat jedes eine Kennung und e
 a: notiz
 farbe: gelb
 b: register
-kennung: FRW-001
+kennung: FRW-002
 fluss: fruehwarnung
 ---
 ### Welt A
@@ -152,7 +152,7 @@ hervor: [1, 4]
 :::
 
 ::: kette
-::: glied FRW-001
+::: glied FRW-002
 ---
 art: fruehwarnung
 ---
@@ -241,7 +241,7 @@ wert: Beantragt · Auswirkung offen
 :::
 
 ::: bekannt
-- Lieferzeit Holzbauelemente: von rund 16 auf 26 Wochen (Marktabfrage der Generalplanung); als Frühwarnung `FRW-001` im Frühwarnungsregister der Projektsteuerung erfasst, noch nicht bestätigt.
+- Lieferzeit Holzbauelemente: von rund 16 auf 26 Wochen (Marktabfrage der Generalplanung); als Frühwarnung `FRW-002` im Frühwarnungsregister der Projektsteuerung erfasst, noch nicht bestätigt.
 - Nutzerwunsch: Mensa für rund 450 statt 300 Essen, grob 0,6 Mio. € (Schätzung der Generalplanung); als Änderung `AEN-012` im Änderungsregister, Status „Beantragt“.
 - Laut Sabine Roth ist im Flur gesagt worden: „Wir kriegen das hin.“ Im Register steht der Wunsch als beantragt, nicht als beschlossen.
 - Mandatsleiter: Rund 0,6 Mio. € liegen über 100 TEUR und bis einschließlich 5 Mio. € – zuständig ist das Änderungsgremium.
@@ -299,18 +299,18 @@ Eine Frühwarnung ist ein unbewertetes Signal; wird sie bestätigt, wird daraus 
 ---
 titel: Warum relevant
 ---
-In Monat 3 trifft Welt B dasselbe Ereignis wie Welt A: dasselbe Terminsignal, derselbe Wunsch. Der Unterschied liegt im Umgang. Die Lieferzeit wird kein Satz im Statusbericht, sondern `FRW-001`; die Flurzusage wird keine stille Einplanung, sondern `AEN-012` mit Status. Beide Einträge haben eine Adresse; Kap. 6.4.1 legt fest: [[zitat:k6.4.1-p1|Jedes Register hat eine verantwortliche Rolle, einen Pflegezyklus und einen definierten nächsten Schritt.]] Bewertet ist damit noch nichts – aber jeder weiß, wer als Nächstes dran ist.
+In Monat 3 trifft Welt B dasselbe Ereignis wie Welt A: dasselbe Terminsignal, derselbe Wunsch. Der Unterschied liegt im Umgang. Die Lieferzeit wird kein Satz im Statusbericht, sondern `FRW-002`; die Flurzusage wird keine stille Einplanung, sondern `AEN-012` mit Status. Beide Einträge haben eine Adresse; Kap. 6.4.1 legt fest: [[zitat:k6.4.1-p1|Jedes Register hat eine verantwortliche Rolle, einen Pflegezyklus und einen definierten nächsten Schritt.]] Bewertet ist damit noch nichts – aber jeder weiß, wer als Nächstes dran ist.
 :::
 
 ::: ebene 3
 ---
 titel: Vertiefung
 ---
-Die beiden Einträge dieser Station in der Register-Abgrenzung (Kap. 6.4.2, 6.4.4) – und der Eintrag, der aus `FRW-001` erst mit der Bestätigung wird:
+Die beiden Einträge dieser Station in der Register-Abgrenzung (Kap. 6.4.2, 6.4.4) – und der Eintrag, der aus `FRW-002` erst mit der Bestätigung wird:
 
 | Eintrag | Register | Verantwortliche Rolle | Stand | Nächster Schritt |
 |---|---|---|---|---|
-| `FRW-001` | Frühwarnungsregister | Projektsteuerung | erfasst, nicht bestätigt | bestätigen; bei Bestätigung Risiko |
+| `FRW-002` | Frühwarnungsregister | Projektsteuerung | erfasst, nicht bestätigt | bestätigen; bei Bestätigung Risiko |
 | `RIS-009` | Risikoregister | Projektsteuerung | noch nicht angelegt – erst nach Bestätigung | Risikominderung oder Entscheidung |
 | `AEN-012` | Änderungsregister | Bauherren-PL | Beantragt | Auswirkung, Freigabeweg |
 
@@ -349,7 +349,7 @@ Rund 0,6 Mio. € liegen nach der Mandatsleiter beim Änderungsgremium; den Vors
 ---
 titel: Zehn Wochen mehr, jetzt mit Nummer
 ---
-Die Lieferzeit der Holzbauelemente steigt von rund 16 auf 26 Wochen. Als `FRW-001` ist sie erfasst; ein bewertetes Risiko wird sie erst mit der Bestätigung. Kap. 4.4 sagt, wo die Bewertung endet: [[zitat:k4.4-p1|Risiken können analysiert, bewertet und gemindert werden. Die Annahme wesentlicher Risikoexposition bleibt jedoch eine Bauherrenentscheidung.]]
+Die Lieferzeit der Holzbauelemente steigt von rund 16 auf 26 Wochen. Als `FRW-002` ist sie erfasst; ein bewertetes Risiko wird sie erst mit der Bestätigung. Kap. 4.4 sagt, wo die Bewertung endet: [[zitat:k4.4-p1|Risiken können analysiert, bewertet und gemindert werden. Die Annahme wesentlicher Risikoexposition bleibt jedoch eine Bauherrenentscheidung.]]
 :::
 
 ::: vertiefung freigaben
@@ -377,14 +377,14 @@ figur: olbers
 ---
 figur: sie
 ---
-„`FRW-001` und `AEN-012` stehen im Register. Bewertet ist noch keins von beiden – und beide hängen am Termin.“
+„`FRW-002` und `AEN-012` stehen im Register. Bewertet ist noch keins von beiden – und beide hängen am Termin.“
 :::
 
 ::: standpunkt ps
 ---
 figur: brenner
 ---
-„`FRW-001` ist erfasst, bestätigt noch nicht. Und die Mensa will auch aufbereitet werden – beides in einer Woche.“
+„`FRW-002` ist erfasst, bestätigt noch nicht. Und die Mensa will auch aufbereitet werden – beides in einer Woche.“
 :::
 
 ::: standpunkt planung
@@ -403,7 +403,7 @@ figur: kaya
 
 ::: regie
 ### Notiz
-B2 zeigt dasselbe Ereignis wie A2 – dieselbe Lieferzeit, derselbe Wunsch. Welt B ist nicht schneller, sondern geordneter: `FRW-001` ist erfasst, aber noch nicht bestätigt; `AEN-012` ist beantragt, aber weder bewertet noch auf der Tagesordnung. Diese Schritte lösen erst die Optionen aus – nicht vorwegnehmen. Die Flurzusage nicht verurteilen: Sie ist jetzt ein Antrag. Zuerst den Regler zeigen, dann die Mandatsleiter.
+B2 zeigt dasselbe Ereignis wie A2 – dieselbe Lieferzeit, derselbe Wunsch. Welt B ist nicht schneller, sondern geordneter: `FRW-002` ist erfasst, aber noch nicht bestätigt; `AEN-012` ist beantragt, aber weder bewertet noch auf der Tagesordnung. Diese Schritte lösen erst die Optionen aus – nicht vorwegnehmen. Die Flurzusage nicht verurteilen: Sie ist jetzt ein Antrag. Zuerst den Regler zeigen, dann die Mandatsleiter.
 
 ### Leitfragen
 - Wo landet bei Ihnen ein Signal, bevor jemand es bewertet – und wer bestätigt es?

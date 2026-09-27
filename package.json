@@ -11,6 +11,7 @@
     "bau": "node werkzeuge/bau.mjs",
     "bau:pruefe": "node werkzeuge/bau.mjs --pruefe",
     "pruefe": "node werkzeuge/kette.mjs",
+    "pruefe:voll": "node werkzeuge/kette.mjs --voll",
     "typen": "tsc --noEmit -p tsconfig.json",
     "test": "node --test --test-reporter=dot \"tests/**/*.test.ts\"",
     "inhalte": "node werkzeuge/inhalte.mjs --pruefe",

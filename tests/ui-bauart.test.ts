@@ -532,3 +532,54 @@ test('Tafel-Formen Welt B und RACI (P5.1): Phase hervorgehoben und vorgewählt, 
   assert.equal(m.querySelector('td.ist-ich .raci-marke')?.textContent, 'R');
   assert.match(m.querySelector('[data-pruef="raci-detail"]')?.textContent ?? '', /Bauherren-PL \(Sie\)/u);
 });
+
+test('Ihre Spur (L-41): der Reiter „Spur“ zeichnet neu, wenn sich die Wahl ändert', async () => {
+  document.body.replaceChildren();
+  const sitzung = erzeugeSitzung(anfangszustand(), inhalte, { speicher: null });
+  const story = erzeugeStory({ inhalte, tue: (a) => sitzung.tue(a) });
+  sitzung.abonniere((neu, _alt, aktion) => story.setze(oeffentlich(neu), aktion));
+  document.body.append(story.element);
+  const el = story.element;
+  try {
+    for (const a of [{ art: 'starteStory' }, { art: 'weiter' }, { art: 'waehleRolle', rolle: 'pl' }, { art: 'weiter' }, { art: 'weiter' }, { art: 'weiter' }] as const) sitzung.tue(a);
+    assert.equal(sitzung.zustand().station, 'A3');
+    el.querySelector<HTMLElement>('[data-pruef="seitenleiste-spur"]')?.click();
+    assert.ok(el.querySelector('[data-pruef="spur-leer"]'), 'vor der ersten Wahl: leer');
+    for (let i = 0; i < 5 && el.querySelector('[data-pruef="option-B"]') === null; i++) sitzung.tue({ art: 'weiter' });
+    sitzung.tue({ art: 'waehle', option: 'B' });
+    await pause(20);
+    assert.match(el.querySelector('[data-pruef="spur-A3"] [data-welt="a"]')?.textContent ?? '', /B/u);
+    sitzung.tue({ art: 'waehle', option: 'C' });
+    await pause(20);
+    const zelle = el.querySelector('[data-pruef="spur-A3"] [data-welt="a"]')?.textContent ?? '';
+    assert.match(zelle, /C/u, 'die neue Wahl erscheint ohne Neuladen');
+    assert.match(zelle, /umentschieden/u);
+  } finally {
+    story.entferne?.();
+    document.body.replaceChildren();
+  }
+});
+
+test('Tafeln Welt B (T9): Phasen-Wahl wandert, Screenreader-Hinweis am hervorgehobenen Knopf; Rhythmus, Karten; RACI-Zeilenwahl und eigene Spalte zuerst', async () => {
+  const { tafel } = await import('../src/grafik/tafel.ts');
+  const { raci } = await import('../src/grafik/raci.ts');
+  const kopf = ['LPH', 'Leistungsphase', 'Freigabefrage'];
+  const zeilen = [['LPH 4', 'Genehmigungsplanung', 'Frage 4?'], ['LPH 5', 'Ausführungsplanung', 'Frage 5?']];
+  const ph = tafel({ form: 'phasen', absatz: 'k9.3-t1', quelle: 'Q', kopf, zeilen, erlebt: {}, hervor: [2] });
+  assert.match(ph.querySelector('[data-pruef="phase-2"] .nur-sr')?.textContent ?? '', /hier steht der Fall/u);
+  assert.equal(ph.querySelector('[data-pruef="phase-1"] .nur-sr'), null);
+  ph.querySelector<HTMLElement>('[data-pruef="phase-1"]')?.click();
+  assert.equal(ph.querySelector('[aria-pressed="true"]')?.getAttribute('data-pruef'), 'phase-1');
+  assert.match(ph.querySelector('.tafel-auswahl')?.textContent ?? '', /Frage 4\?/u);
+  const rh = tafel({ form: 'rhythmus', absatz: 'k6.4.5-t1', quelle: 'Q', kopf: ['Rhythmus', 'Beteiligte', 'Fokus'], zeilen: [['täglich', 'PMO', 'Fristen'], ['wöchentlich', 'PS', 'Risiken']], erlebt: {}, hervor: [2] });
+  assert.equal(rh.querySelector('[aria-pressed="true"]')?.getAttribute('data-pruef'), 'rhythmus-2');
+  assert.match(rh.querySelector('.tafel-auswahl')?.textContent ?? '', /Risiken/u);
+  const ka = tafel({ form: 'karten', absatz: 'k6.4.2-t1', quelle: 'Q', kopf: ['Gruppe', 'Rolle', 'Turnus'], zeilen: [['Register', 'PL', 'laufend']], erlebt: {} });
+  assert.equal(ka.querySelectorAll('.tafel-karte').length, 1);
+  assert.match(ka.querySelector('.tafel-karte')?.textContent ?? '', /Rolle.*PL.*Turnus.*laufend/u);
+  const m = raci({ rollen: [{ id: 'bauherr', titel: 'Bauherr' }, { id: 'pl', titel: 'Bauherren-PL' }], zeilen: [{ id: 'x', titel: 'Reserve', zuordnung: { bauherr: 'A', pl: 'R' }, mandat: 'Bauherr' }, { id: 'y', titel: 'Zweite', zuordnung: { bauherr: 'I', pl: 'A' }, mandat: 'PL' }], ich: 'pl', beschriftung: { entscheidung: 'E', mandat: 'M', legende: 'L', sie: 'Sie' } });
+  const kopfzellen = [...m.querySelectorAll('thead th')];
+  assert.equal(kopfzellen.findIndex((t) => t.classList.contains('ist-ich')), 1, 'eigene Spalte direkt hinter der Entscheidung');
+  m.querySelector<HTMLElement>('[data-pruef="raci-y"]')?.click();
+  assert.match(m.querySelector('[data-pruef="raci-detail"]')?.textContent ?? '', /Zweite.*A · entscheidet.*Bauherren-PL \(Sie\)/su);
+});

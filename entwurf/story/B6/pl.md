@@ -13,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: -1
 ---
 ### Konsequenz
-Ihre Vorlage nennt Kernfrage, Mindestgrundlagen, Mandat und Datenstand. Der Lenkungskreis berät, Dr. Olbers erteilt die Freigabe selbst; das Ergebnis ist dokumentiert. Die Stellvertretung von Holger Stein rechnet auf dem benannten Datenstand.
+Ihre Vorlage nennt Kernfrage, Mindestgrundlagen, Mandat und Datenstand. Der Lenkungskreis berät am 17. November; ob Dr. Olbers die Freigabe erteilt, entscheidet sie selbst – das Ergebnis wird dokumentiert. Die Stellvertretung von Holger Stein rechnet auf dem benannten Datenstand.
 
 ### Was fehlt
 Offene Punkte wie `RIS-009` gehen in die nächste Leistungsphase mit.
@@ -33,7 +33,7 @@ status:
   offene-risiken: -1
 ---
 ### Konsequenz
-Dr. Olbers erteilt die Freigabe mit Auflagen, etwa zur Terminwirkung der Lieferzeit. Jede Auflage hat eine Frist und eine verantwortliche Rolle.
+Sie schlagen Auflagen vor, etwa zur Terminwirkung der Lieferzeit, jede mit Frist und verantwortlicher Rolle; ob Dr. Olbers mit Auflagen freigibt, entscheidet sie.
 
 ### Was fehlt
 Die Nachverfolgung der Auflagen im Register.
@@ -53,7 +53,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Die Stellvertretung soll die Kostenprognose erst nachvollziehbar aktualisieren. Dr. Olbers folgt: keine Freigabe – mit Begründung, Frist und nächstem Termin. Der Stadtrat bekommt seine Antwort aus dem Managementbericht.
+Die Stellvertretung soll die Kostenprognose erst nachvollziehbar aktualisieren. Ihre Empfehlung lautet: keine Freigabe – mit Begründung, Frist und nächstem Termin. Dr. Olbers entscheidet nach der Beratung. Der Stadtrat bekommt seine Antwort aus dem Managementbericht.
 
 ### Was fehlt
 Ein aktualisierter Datenstand als Grundlage.
@@ -66,11 +66,11 @@ Die nächste Leistungsphase beginnt später.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Freigabe beantragen‘ gewählt. In Welt B hat der Antrag, was Dr. Olbers in Welt A vermisste: Kernfrage, Mindestgrundlagen, Mandat und Datenstand.
+In Welt A haben Sie ‚Freigabe beantragen‘ gewählt. In Welt B hat die Vorlage, was Dr. Olbers in Welt A vermisste: eine Kernfrage, ein Mandat, einen benannten Datenstand – und eine Liste dessen, was noch fehlt.
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Vorlage zurückstellen‘ gewählt. In Welt B muss niemand auf Holger Stein warten: Die Stellvertretung ist geregelt, das Wissen steht in Registern und Datenstand.
+In Welt A haben Sie ‚Vorlage zurückstellen‘ gewählt. In Welt B muss niemand auf Holger Stein warten: Die Stellvertretung ist benannt, das Wissen steht in Registern und Datenstand.
 :::
 
 ::: rueckbezug C

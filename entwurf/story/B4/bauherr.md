@@ -43,13 +43,13 @@ Welche Frage beantwortet der Ausschuss heute – und welche nicht?
 
 ::: option B
 ---
-titel: Die Deckung von `AEN-031` aus der Reserve gleich ankündigen
+titel: Die Deckung von AEN-031 aus der Reserve gleich ankündigen
 kurz: Deckung vorwegnehmen
 status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Sie kündigen im Ausschuss an, die Brandschutzauflagen aus der Risikoreserve zu decken. Nora Petersen merkt an: Eine Vorlage dazu gibt es noch nicht.
+Sie kündigen im Ausschuss an, die Brandschutzauflagen aus der Risikoreserve zu decken. Die Bauherren-PL merkt an: Eine Vorlage dazu gibt es noch nicht.
 
 ### Was fehlt
 Eine Vorlage zur Freigabe des Einsatzes der Risikoreserve – mit Datenstand und Restrisiko.

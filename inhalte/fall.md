@@ -40,6 +40,7 @@ Die Geschichte beginnt mit Ihrer Übernahme der Projektleitung auf Bauherrenseit
 | Projektbasis | 58,4 Mio. € brutto | Kostenberechnung aus LPH 3, vom Stadtrat vor Monat 0 beschlossen |
 | darin Risikoreserve | 2,9 Mio. € (rund 5 %) | Freigabe des Einsatzes nur durch den Bauherrn (nicht delegierbar, k3.2-t1) |
 | Abweichung Monat 5, Projektsteuerung | +8 %, rund +4,7 Mio. € | Prognose Mai, Datei „v3_final_NEU“; in Welt B der verbindliche Datenstand „Kostenprognose 2026-05 · Version 3“ |
+| Datenstand ab Oktober (nur Welt B) | „Kostenprognose 2026-10 · Version 4“ | ersetzt Version 3; enthält die beschlossenen Änderungen `AEN-012`, `AEN-022`, `AEN-031` (L-42); in B5 (September) ist sie in Arbeit |
 | aktualisierte Prognose (nur Welt A) | +9,1 %, rund +5,3 Mio. € | A3, Option „Prognose aktualisieren lassen“; läge über 5 Mio. € und damit auf der Stufe des Bauherrn im Lenkungskreis |
 | Abweichung Monat 5, Controlling | +5,9 %, rund +3,4 Mio. € | eigene CTC-Rechnung der GML |
 | Abweichung und Reserve | Abweichungen gegen die Projektbasis gerechnet, Risikoreserve darin noch nicht eingesetzt | ganz eingesetzt, blieben nach Projektsteuerung rund 1,8 Mio. €, nach Controlling rund 0,5 Mio. € Überschreitung |
@@ -80,7 +81,7 @@ Monat 0 ist Dezember 2025; Monat 5 ist Mai 2026 („Kostenprognose 2026-05“). 
 
 Welt A: Die Projektsteuerung schreibt einen monatlichen Statusbericht mit Ampeln; das Controlling rechnet seine CTC getrennt; Excel-Stände wandern per Mail. Welt B: Register mit verantwortlicher Rolle und Turnus nach k6.4.2-t1, ein Managementbericht als Sammelpunkt für die Gremien, benannte Datenstände mit Version.
 
-Kennungen in Welt B (docs/BEGRIFFE.md): `ENT-` Entscheidung, `AEN-` Änderung, `RIS-` Risiko, `FRW-` Frühwarnung, `PRB-` Problem, `MAS-` Maßnahme, `NAC-` Nachweis. Freigaben tragen kein Kürzel, sondern heißen „Freigabe LPH 5“. Bekannt aus B3: `ENT-017`, `AEN-022`, `RIS-014`, `FRW-003`; Datenstand „Kostenprognose 2026-05 · Version 3“. Vergeben im Drehbuch: `FRW-001` und `RIS-009` (Lieferzeit Holzbau, B2), `AEN-012` (Mensa, B2), `AEN-031` (Brandschutzauflagen, B4), `PRB-004` (Nachtrag der TGA-Fachplanung, B5); in den Rollenszenen der Planung zusätzlich `AEN-036` (B5) und `AEN-041` (B6).
+Kennungen in Welt B (docs/BEGRIFFE.md): `ENT-` Entscheidung, `AEN-` Änderung, `RIS-` Risiko, `FRW-` Frühwarnung, `PRB-` Problem, `MAS-` Maßnahme, `NAC-` Nachweis. Freigaben tragen kein Kürzel, sondern heißen „Freigabe LPH 5“. Bekannt aus B3: `ENT-017`, `AEN-022`, `RIS-014`, `FRW-003`; Datenstand „Kostenprognose 2026-05 · Version 3“, ab Oktober „Kostenprognose 2026-10 · Version 4“ (L-42). Vergeben im Drehbuch: `FRW-002` und `RIS-009` (Lieferzeit Holzbau, B2; `FRW-001` bleibt frei für die Marktnotiz aus B1, je nach Wahl), `AEN-012` (Mensa, B2), `AEN-031` (Brandschutzauflagen, B4), `PRB-004` (Nachtrag der TGA-Fachplanung, B5); in den Rollenszenen der Planung zusätzlich `AEN-036` (B5) und `AEN-041` (B6).
 
 ## Figuren
 

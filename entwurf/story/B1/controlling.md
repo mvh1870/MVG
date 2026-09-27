@@ -16,7 +16,7 @@ status:
 Die erste CTC hat Version und Datum. Im monatlichen Termin mit Bauherren-PL und PMO geht sie in den Managementbericht.
 
 ### Was fehlt
-Schwellenwerte, ab denen eine Abweichung als Signal gilt.
+Schwellenwerte je Kostengruppe – bis sie festgehalten sind, bleibt eine Abweichung eine Zahl ohne Auslöser.
 
 ### Neues Risiko
 Abweichungen werden gesehen, aber nichts wird ausgelöst.
@@ -56,7 +56,7 @@ status:
 Die Annahmen stehen im Datenstand, nicht in Steins Zellbezügen. Ihre CTC und seine Prognose beruhen auf derselben Grundlage.
 
 ### Was fehlt
-Schwellenwerte sind noch nicht festgehalten.
+Schwellenwerte je Kostengruppe – bis sie festgehalten sind, löst eine Abweichung kein Signal aus.
 
 ### Neues Risiko
 Eine gemeinsame Zahl – aber noch kein Auslöser, wenn sie kippt.

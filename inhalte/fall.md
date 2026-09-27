@@ -45,7 +45,7 @@ Die Geschichte beginnt mit Ihrer Übernahme der Projektleitung auf Bauherrenseit
 | Ursache (nach Klärung) | überwiegend Preissteigerung Holzbauelemente laut Marktabfrage; Nachtrag der TGA-Fachplanung angekündigt | A3; Bauverträge gibt es erst nach LPH 7 |
 | Nutzerwunsch Mensa (Monat 3) | Ganztag: Mensa für rund 450 statt 300 Essen, grob 0,6 Mio. € | Schätzung der Generalplanung, noch ohne Termin- und Risikowirkung |
 | Lieferzeit Holzbauelemente (Monat 3) | von rund 16 auf 26 Wochen | Marktabfrage der Generalplanung |
-| Brandschutzauflagen (Monat 6) | Auflagen der Baugenehmigung zum Holzbau, grob 0,4 Mio. € | wirken in A5 als Folgekosten |
+| Brandschutzauflagen (Monat 6) | Auflagen der Baugenehmigung zum Holzbau, grob 0,4 Mio. € | Welt A: Folgekosten in A5; Welt B: Änderung `AEN-031` im Änderungsgremium (B4) |
 
 Mandatsleiter in Welt B: der Muster-Mandatsleiter des Whitepapers (k4.2-p3) – Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium über 100 TEUR bis einschließlich 5 Mio. €, darüber Beschlussfassung durch den Bauherrn im Lenkungskreis. In Welt A gibt es keine festgelegten Schwellen.
 
@@ -79,7 +79,7 @@ Monat 0 ist Dezember 2025; Monat 5 ist Mai 2026 („Kostenprognose 2026-05“). 
 
 Welt A: Die Projektsteuerung schreibt einen monatlichen Statusbericht mit Ampeln; das Controlling rechnet seine CTC getrennt; Excel-Stände wandern per Mail. Welt B: Register mit verantwortlicher Rolle und Turnus nach k6.4.2-t1, ein Managementbericht als Sammelpunkt für die Gremien, benannte Datenstände mit Version.
 
-Kennungen in Welt B (docs/BEGRIFFE.md): `ENT-` Entscheidung, `AEN-` Änderung, `RIS-` Risiko, `FRW-` Frühwarnung, `PRB-` Problem, `MAS-` Maßnahme, `NAC-` Nachweis. Freigaben tragen kein Kürzel, sondern heißen „Freigabe LPH 5“. Bekannt aus B3: `ENT-017`, `AEN-022`, `RIS-014`, `FRW-003`; Datenstand „Kostenprognose 2026-05 · Version 3“.
+Kennungen in Welt B (docs/BEGRIFFE.md): `ENT-` Entscheidung, `AEN-` Änderung, `RIS-` Risiko, `FRW-` Frühwarnung, `PRB-` Problem, `MAS-` Maßnahme, `NAC-` Nachweis. Freigaben tragen kein Kürzel, sondern heißen „Freigabe LPH 5“. Bekannt aus B3: `ENT-017`, `AEN-022`, `RIS-014`, `FRW-003`; Datenstand „Kostenprognose 2026-05 · Version 3“. Vergeben im Drehbuch: `FRW-001` und `RIS-009` (Lieferzeit Holzbau, B2), `AEN-012` (Mensa, B2), `AEN-031` (Brandschutzauflagen, B4), `PRB-004` (Nachtrag der TGA-Fachplanung, B5).
 
 ## Figuren
 

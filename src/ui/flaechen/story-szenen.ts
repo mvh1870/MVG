@@ -781,7 +781,34 @@ function inhaltsSzene(k: SzenenKontext): Szene {
   if (arten.has('vorlage')) return vorlageTeil(k);
   if (arten.has('fluss')) return flussTeil(k);
   if (k.station.art === 'prolog') return prolog(k);
+  if (k.station.art === 'rueckspulen' && k.index === 0) return rueckspulen(k);
   return generisch(k);
+}
+
+/* --------------------------------------------------------------- Rückspulen -- */
+
+/** P4.6: Die Zeitleiste der Welt A läuft von der letzten Station zurück auf Monat 0. */
+function rueckspulen(k: SzenenKontext): Szene {
+  const stationen = Object.values(k.inhalte.stationen)
+    .filter((st) => st.welt === 'A' && st.monat !== null && st.art === 'station')
+    .sort((a, b) => (a.monat ?? 0) - (b.monat ?? 0));
+  const ende = Math.max(1, ...stationen.map((st) => st.monat ?? 0));
+  const links = (m: number): string => `${(m / ende) * 100}%`;
+  const zeiger = h('span', { class: 'spule-zeiger', style: `left:${links(ende)}` });
+  const monat = h('b', { class: 'spule-monat', 'aria-hidden': 'true' }, `${W.monat} ${ende}`);
+  const punkte = stationen.map((st, i) => h('li', { class: 'spule-punkt', style: `left:${links(st.monat ?? 0)};--i:${stationen.length - 1 - i}` },
+    h('span', { class: 'spule-marke' }), h('span', { class: 'spule-name' }, st.kurztitel)));
+  const leiste = h('div', { class: 'spule', role: 'img', 'aria-label': W.spuleZurueck(ende) },
+    h('div', { class: 'spule-bahn' }), h('ol', { class: 'spule-punkte' }, punkte), zeiger,
+    h('span', { class: 'spule-null', style: 'left:0' }, `${W.monat} 0`));
+  const text = k.schritt.felder['text'] ? h('div', { class: 'karte' }, inhalt(k.schritt.felder['text'])) : null;
+  return szene(h('div', { class: 'stapel rueckspulen' }, h('div', { class: 'spule-rahmen' }, monat, leiste), text), () => {}, () => {
+    naechsterFrame(() => {
+      leiste.classList.add('ist-zurueck');
+      zeiger.style.left = '0%';
+      zaehle(monat, ende, 0, 2400, (v) => `${W.monat} ${Math.round(v)}`);
+    });
+  });
 }
 
 /** Baut die Szene des aktuellen Schritts (mit Teile-Leiste bei Gruppen). */

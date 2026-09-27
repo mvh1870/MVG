@@ -1883,3 +1883,18 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
   .tafel-radar, .tafel-pyramide, .wirkungskette, .schwelle-karten, .felder-karten, .tafel-bausteine, .radar-liste { grid-template-columns: minmax(0, 1fr); }
   .radar-links { max-width: 260px; justify-self: center; width: 100%; }
 }
+
+/* Rückspulen (P4.6): Zeitleiste der Welt A läuft zurück auf Monat 0 */
+.spule-rahmen { display: grid; gap: var(--a-3); padding: 18px 28px 34px; border-radius: var(--radius-xl); background: var(--navy); color: var(--weiss); }
+.spule-monat { font: 700 34px/1 var(--schrift-anzeige); color: var(--gold-hell); }
+.spule { position: relative; height: 64px; margin: 0 8px; }
+.spule-bahn { position: absolute; left: 0; right: 0; top: 18px; height: 4px; border-radius: 2px; background: var(--koralle); transform-origin: left center; transition: background-color 2400ms var(--kurve-gleich); }
+.spule.ist-zurueck .spule-bahn { background: var(--tuerkis); }
+.spule-punkte { position: absolute; inset: 0; margin: 0; padding: 0; list-style: none; }
+.spule-punkt { position: absolute; top: 10px; display: grid; justify-items: center; gap: 6px; transform: translateX(-50%); transition: opacity 400ms var(--kurve-aus); transition-delay: calc(var(--i, 0) * 380ms + 200ms); }
+.spule-marke { width: 20px; height: 20px; border-radius: 50%; background: var(--koralle); box-shadow: 0 0 0 3px var(--navy); }
+.spule-name { font: 600 12px/1.2 var(--schrift-label); white-space: nowrap; color: var(--auf-navy); }
+.spule.ist-zurueck .spule-punkt { opacity: .35; }
+.spule-zeiger { position: absolute; top: 4px; width: 4px; height: 32px; margin-left: -2px; border-radius: 2px; background: var(--gold-hell); box-shadow: 0 0 12px var(--gold-hell-a60); transition: left 2400ms var(--kurve-gleich); }
+.spule-null { position: absolute; top: 44px; transform: translateX(-10%); font: 700 12px var(--schrift-label); color: var(--gold-hell); }
+@media (max-width: 760px) { .spule-name { display: none; } .spule-rahmen { padding: 14px 18px 30px; } }

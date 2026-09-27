@@ -111,6 +111,7 @@ export const W = {
   nachWahl: (w: string) => `nach Wahl ${w}`,
   ebene: 'Ebene',
   fuerSieVertieft: 'Für Sie vertieft',
+  spuleZurueck: (m: number) => `Zeitleiste der Welt A läuft von Monat ${m} zurück auf Monat 0`,
   ebenen: 'Ebenen',
   originalWoertlich: 'Originaltext, wörtlich',
   projektUebernehmen: 'Projekt übernehmen',

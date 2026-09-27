@@ -47,8 +47,8 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P4.3 (Commit „MVG P3.9/P4“) · Mandatsschwellen-Spiel: Aufgaben über die Schwelle ziehen (delegierbar / nicht delegierbar, Kap. 3.2)
 - [x] P4.4 (Commit „MVG P3.9/P4“) · Verantwortungspyramide (Kap. 3.3), Ebenen klickbar
 - [x] P4.5 (Commit „MVG P3.9/P4“) · Sechs Verantwortungsfelder: Chaos → Ordnung (Kap. 4, Tabelle als Karten)
-- [~] P4.6 (2026-09-27, Bausteine + LPH 0 stehen; Zeitleiste-zurück-Animation fehlt noch) · Rückspulen-Sequenz + 8 MVG-Bausteine (Kap. 5), LPH 0 als früher Hebel (5.4)
-- [ ] P4.7 · Prüf-Agenten P4 + Korrekturen
+- [x] P4.6 (Commit „MVG P4.6“) · Rückspulen-Sequenz + 8 MVG-Bausteine (Kap. 5), LPH 0 als früher Hebel (5.4)
+- [~] P4.7 (2026-09-27, 18 Befunde, Korrektur läuft) · Prüf-Agenten P4 + Korrekturen
 
 ### P5 · Welt B
 - [ ] P5.1 · MVG-Werkzeug-Bausteine: Mandatsleiter, Governance-Fluss (animiert, Status je Register), Entscheidungsvorlage mit Checkliste (Kap. 9.4), Datenstand-Anzeige, Register-Karten (6.4.4), LPH-0–9-Freigabemodell (9.3), Governance-Kalender/Rhythmus (6.4.5), RACI + Mandat (9.2)

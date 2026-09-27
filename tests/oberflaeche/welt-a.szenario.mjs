@@ -151,6 +151,12 @@ async function wendepunkt(seite, h, station) {
   await pruefe('wendepunkt-felder');
   await weiter();
   if ((await station()) !== 'rueckspulen') h.befund(`Rückspulen nicht erreicht (steht in ${await station()})`);
+  // Zeitleiste läuft zurück auf Monat 0 (P4.6)
+  await h.erwarte('.spule.ist-zurueck');
+  await h.warte(3200);
+  const monat = (await seite.locator('.spule-monat').innerText()).trim();
+  if (monat !== 'Monat 0') h.befund(`Rückspulen: Zähler steht auf „${monat}“ statt „Monat 0“`);
+  await pruefe('rueckspulen-zeitleiste');
   await weiter();
   await h.erwarte('[data-pruef="tafel-bausteine"]');
   if ((await seite.locator('.baustein-karte').count()) !== 8) h.befund('Rückspulen: nicht acht Bausteine');

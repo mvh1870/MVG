@@ -12,11 +12,23 @@ import { W } from '../woerter.ts';
 import type { OeffentlicheInhalte } from '../../inhalte/typen.ts';
 import { MIMIKEN } from '../../figuren/figur.ts';
 import { inhalt, personFigur } from '../bausteine/inhalt.ts';
+import { simulator } from './explore-simulator.ts';
 
 export interface ExploreOptionen {
   inhalte: OeffentlicheInhalte;
   freigeschaltet: boolean;
   version: string;
+}
+
+/** Werkzeuge, die schon stehen (P8): Kennung → Anker der Fläche. */
+const FERTIG: Record<string, string> = { simulator: 'werkzeug-simulator-flaeche' };
+
+function springe(id: string): void {
+  const ziel = document.getElementById(FERTIG[id] ?? '');
+  if (ziel === null) return;
+  ziel.scrollIntoView({ block: 'start' });
+  const titel = ziel.querySelector<HTMLElement>('h2');
+  if (titel !== null) { titel.tabIndex = -1; titel.focus({ preventScroll: true }); }
 }
 
 export function baueExplore(o: ExploreOptionen): HTMLElement {
@@ -32,10 +44,15 @@ export function baueExplore(o: ExploreOptionen): HTMLElement {
           h('p', { class: 'kapitel-kicker' }, o.freigeschaltet ? E.freigeschaltet : E.gesperrt),
           h('h1', { class: 'kapitel-titel', tabindex: -1 }, E.titel),
           h('p', { class: 'kapitel-einstieg' }, E.einstieg)),
-        h('ul', { class: 'explore-karten', 'data-pruef': 'explore-werkzeuge' }, E.werkzeuge.map((w) => h('li', { class: 'explore-karte', 'data-pruef': `werkzeug-${w.id}` },
-          h('span', { class: 'badge ist-folgt' }, E.inVorbereitung),
-          h('h2', { class: 'explore-karte-titel' }, w.titel),
-          h('p', null, w.text)))),
+        h('ul', { class: 'explore-karten', 'data-pruef': 'explore-werkzeuge' }, E.werkzeuge.map((w) => {
+          const bereit = FERTIG[w.id] !== undefined;
+          return h('li', { class: 'explore-karte', 'data-pruef': `werkzeug-${w.id}` },
+            h('span', { class: `badge${bereit ? ' ist-bereit' : ' ist-folgt'}` }, bereit ? E.bereit : E.inVorbereitung),
+            h('h2', { class: 'explore-karte-titel' }, w.titel),
+            h('p', null, w.text),
+            bereit ? h('button', { type: 'button', class: 'querverweis', 'data-pruef': `werkzeug-oeffnen-${w.id}`, onclick: () => springe(w.id) }, h('span', { class: 'querverweis-symbol' }, sym('pfeilRechts')), E.oeffnen) : null);
+        })),
+        simulator(o.inhalte),
         besetzung(o.inhalte),
         h('p', null,
           h('a', { class: 'querverweis', href: '#story', 'data-pruef': 'explore-zur-story' }, h('span', { class: 'querverweis-symbol' }, sym('pfeilRechts')), W.story),

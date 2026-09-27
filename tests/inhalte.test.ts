@@ -580,6 +580,19 @@ test('Requisiten Protokoll und Aktenstapel (P3.1): Form, Pflichtfelder, Figurver
   assert.ok(fremd.fehler.some((f) => /Figur „niemand“/u.test(f)), fremd.fehler.join('\n'));
 });
 
+test('RACI mit Mandat (P5.1): Zuordnung je Rolle, unbekannte Rolle und doppelte Buchstaben sind Fehler', async () => {
+  const mit = (bloecke: string) => veraendere(BEISPIEL, 'inhalte/story/X1/station.md', '„+8 %, Ursache unklar.“ <b>fett?</b>\n:::\n', `„+8 %, Ursache unklar.“ <b>fett?</b>\n:::\n${bloecke}`);
+  const zeile = (r: string) => `::: raci\n---\nzeilen:\n  - id: mensa\n    titel: Mensa\n    A: bauherr\n    R: [${r}]\n    C: [planung]\n    mandat: Änderungsgremium\n---\n:::\n`;
+  const gut = await kompiliere({ pruefe: true, wurzel: neueWurzel(mit(zeile('pl, controlling'))), ziel: null });
+  assert.deepEqual(gut.fehler, []);
+  const b = (gut.inhalte as Inhalte).stationen['X1']?.schritte[0]?.bloecke.find((x) => x.art === 'raci');
+  assert.deepEqual(b?.kopf['zeilen'], [{ id: 'mensa', titel: 'Mensa', zuordnung: { bauherr: 'A', pl: 'R', controlling: 'R', planung: 'C' }, mandat: 'Änderungsgremium' }]);
+  const fremd = await kompiliere({ pruefe: true, wurzel: neueWurzel(mit(zeile('pmo'))), ziel: null });
+  assert.ok(fremd.fehler.some((f) => /Rolle „pmo“ gibt es nicht/u.test(f)), fremd.fehler.join('\n'));
+  const doppelt = await kompiliere({ pruefe: true, wurzel: neueWurzel(mit(zeile('bauherr'))), ziel: null });
+  assert.ok(doppelt.fehler.some((f) => /zwei Buchstaben/u.test(f)), doppelt.fehler.join('\n'));
+});
+
 test('Startseite (inhalte/start.md): Leitsatz wörtlich mit Absatz-ID geprüft, These als Inline-HTML', async () => {
   const start = (titel: string) => `---\nkicker: Minimum Viable Governance\ntitel: ${titel}\ntitel-quelle: k2.4-p2\n---\n\nEine **These**.\n`;
   const gut = await kompiliere({ pruefe: true, wurzel: neueWurzel({ ...BEISPIEL, 'inhalte/start.md': start('Berichterstattung erzeugt Information.') }), ziel: null });

@@ -11,6 +11,7 @@ import { kopfListe, kopfText, istKarte } from '../anzeige.ts';
 import { inhalt, inhaltInline, personFigur, personFunktion, personName } from './inhalt.ts';
 import { idArt } from '../../grafik/checkliste.ts';
 import { tafel as tafelGrafik, istTafelForm } from '../../grafik/tafel.ts';
+import { raci as raciGrafik, istRaciBuchstabe, RACI_BESCHRIFTUNG, type RaciBuchstabe, type RaciZeile } from '../../grafik/raci.ts';
 import { bildmarke } from '../marke.ts';
 
 export function sym(name: SymbolName, klasse = ''): Element {
@@ -217,14 +218,34 @@ export function tafel(b: Block, besucht: readonly string[] = [], inhalte: Oeffen
   if (istKarte(roh)) for (const [nr, liste] of Object.entries(roh)) erlebt[nr] = Array.isArray(liste) ? liste.map(String) : [];
   const namen: Record<string, string> = {};
   for (const st of Object.values(inhalte?.stationen ?? {})) namen[st.id] = st.kurztitel;
-  const el = tafelGrafik({ form, absatz: b.id, quelle: kopfText(b.kopf, 'quelle') ?? '', kopf, zeilen, erlebt, namen }, besucht);
+  const h0 = b.kopf['hervor'];
+  const hervor = Array.isArray(h0) ? h0.map(Number) : [];
+  const el = tafelGrafik({ form, absatz: b.id, quelle: kopfText(b.kopf, 'quelle') ?? '', kopf, zeilen, erlebt, namen, hervor }, besucht);
+  const text = b.felder['text'] ?? '';
+  return text !== '' ? h('div', { class: 'stapel' }, h('div', { class: 'tafel-einleitung' }, inhalt(text)), el) : el;
+}
+
+/** RACI mit Mandat (P5.1, Kap. 9.2); `ich` = gespielte Rolle (Spalte hervorgehoben). */
+export function raci(b: Block, inhalte: OeffentlicheInhalte, ich: string | null = null): HTMLElement | null {
+  const roh = b.kopf['zeilen'];
+  if (!Array.isArray(roh)) return null;
+  const zeilen: RaciZeile[] = roh.filter(istKarte).map((z) => {
+    const zuordnung: Record<string, RaciBuchstabe> = {};
+    const zu = z['zuordnung'];
+    if (istKarte(zu)) for (const [r, bu] of Object.entries(zu)) if (typeof bu === 'string' && istRaciBuchstabe(bu)) zuordnung[r] = bu;
+    return { id: String(z['id'] ?? ''), titel: String(z['titel'] ?? ''), zuordnung, mandat: String(z['mandat'] ?? '') };
+  });
+  const rollen = inhalte.rollenFolge.map((id) => ({ id, titel: inhalte.rollen[id]?.kurztitel ?? id }));
+  const el = raciGrafik({ rollen, zeilen, ich, beschriftung: RACI_BESCHRIFTUNG });
   const text = b.felder['text'] ?? '';
   return text !== '' ? h('div', { class: 'stapel' }, h('div', { class: 'tafel-einleitung' }, inhalt(text)), el) : el;
 }
 
 /** Generischer Block (Rückfall für Arten ohne eigene Szene). */
-export function block(b: Block, inhalte: OeffentlicheInhalte, zitatWort: string, besucht: readonly string[] = []): Node | null {
+export function block(b: Block, inhalte: OeffentlicheInhalte, zitatWort: string, besucht: readonly string[] = [], ich: string | null = null): Node | null {
   switch (b.art) {
+    case 'raci':
+      return raci(b, inhalte, ich);
     case 'tafel':
       return tafel(b, besucht, inhalte);
     case 'hinweis':

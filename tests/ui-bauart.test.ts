@@ -514,3 +514,19 @@ test('Tafeln (P4, L-32): Radar schneidet „erlebt“ mit der eigenen Spur; Schw
   });
   assert.match(el.querySelector('[data-pruef="schwelle-stand"]')?.textContent ?? '', new RegExp(`^${spalte.size} von ${spalte.size} richtig`, 'u'));
 });
+
+test('Tafel-Formen Welt B und RACI (P5.1): Phase hervorgehoben und vorgewählt, Register als Karten, RACI mit eigener Spalte', async () => {
+  const { tafel } = await import('../src/grafik/tafel.ts');
+  const { raci } = await import('../src/grafik/raci.ts');
+  const kopf = ['LPH', 'Leistungsphase', 'Freigabefrage'];
+  const zeilen = [['LPH 4', 'Genehmigungsplanung', 'Frage 4?'], ['LPH 5', 'Ausführungsplanung', 'Frage 5?']];
+  const ph = tafel({ form: 'phasen', absatz: 'k9.3-t1', quelle: 'Q', kopf, zeilen, erlebt: {}, hervor: [2] });
+  assert.equal(ph.querySelector('[aria-pressed="true"]')?.getAttribute('data-pruef'), 'phase-2');
+  assert.match(ph.querySelector('.tafel-auswahl')?.textContent ?? '', /Frage 5\?/u);
+  const rg = tafel({ form: 'register', absatz: 'k6.4.4-t1', quelle: 'Q', kopf: ['Register', 'Bedeutung', 'Nächster Schritt'], zeilen: [['Frühwarnung', 'unbewertetes Signal', 'bestätigen']], erlebt: {} });
+  assert.equal(rg.querySelectorAll('.register-karte').length, 1);
+  const m = raci({ rollen: [{ id: 'bauherr', titel: 'Bauherr' }, { id: 'pl', titel: 'Bauherren-PL' }], zeilen: [{ id: 'x', titel: 'Reserve', zuordnung: { bauherr: 'A', pl: 'R' }, mandat: 'Bauherr' }], ich: 'pl', beschriftung: { entscheidung: 'E', mandat: 'M', legende: 'L', sie: 'Sie' } });
+  assert.equal(m.querySelectorAll('td.ist-ich').length, 1);
+  assert.equal(m.querySelector('td.ist-ich .raci-marke')?.textContent, 'R');
+  assert.match(m.querySelector('[data-pruef="raci-detail"]')?.textContent ?? '', /Bauherren-PL \(Sie\)/u);
+});

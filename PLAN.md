@@ -51,7 +51,7 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P4.7 (6021a35 + Commit „MVG P4.7: Runde 2“, `docs/P4-BEFUNDE.md`) · Prüf-Agenten P4 + Korrekturen
 
 ### P5 · Welt B
-- [ ] P5.1 · MVG-Werkzeug-Bausteine: Mandatsleiter, Governance-Fluss (animiert, Status je Register), Entscheidungsvorlage mit Checkliste (Kap. 9.4), Datenstand-Anzeige, Register-Karten (6.4.4), LPH-0–9-Freigabemodell (9.3), Governance-Kalender/Rhythmus (6.4.5), RACI + Mandat (9.2)
+- [x] P5.1 (Commit „MVG P5.1“, L-34) · MVG-Werkzeug-Bausteine: Mandatsleiter, Governance-Fluss (animiert, Status je Register), Entscheidungsvorlage mit Checkliste (Kap. 9.4), Datenstand-Anzeige, Register-Karten (6.4.4), LPH-0–9-Freigabemodell (9.3), Governance-Kalender/Rhythmus (6.4.5), RACI + Mandat (9.2)
 - [ ] P5.2 · Station B1 (alle Rollen) + Schieberegler A↔B + Rückbezüge — je Station B1–B6 auch die vier Vertiefungen je Interesse (L-31)
 - [ ] P5.3 · Station B2
 - [ ] P5.4 · Station B3 (PL aus dem Durchstich übernehmen)

@@ -11,12 +11,16 @@
  * - pyramide  Verantwortungspyramide (Kap. 3.3), Ebenen klickbar
  * - felder    Verantwortungsfelder: Chaos (typische Fehlstelle) → Ordnung (MVG-Antwort) (Kap. 4)
  * - bausteine Die MVG-Bausteine setzen sich zusammen (Kap. 5.2)
+ * - phasen    LPH-0–9-Freigabemodell (Kap. 9.3): Phasen als Leiste, Auswahl zeigt die Freigabefrage
+ * - register   Register-Karten (Kap. 6.4.4): Bedeutung → nächster Schritt
+ * - rhythmus  Governance-Rhythmus (Kap. 6.4.5): vom täglichen bis zum seltenen Termin
+ * - karten    allgemeine Karten: erste Spalte als Titel, die übrigen als Angaben (z. B. Kap. 6.4.2)
  */
 
 import { h, s, attr, ersetze, elementAus } from '../ui/h.ts';
 import { symbol } from '../stil/symbole.ts';
 
-export const TAFEL_FORMEN = ['radar', 'ketten', 'schwelle', 'pyramide', 'felder', 'bausteine'] as const;
+export const TAFEL_FORMEN = ['radar', 'ketten', 'schwelle', 'pyramide', 'felder', 'bausteine', 'phasen', 'register', 'rhythmus', 'karten'] as const;
 export type TafelForm = (typeof TAFEL_FORMEN)[number];
 
 export function istTafelForm(x: string): x is TafelForm {
@@ -35,6 +39,8 @@ export interface TafelDaten {
   erlebt: Record<string, string[]>;
   /** Station → Kurztitel, für „erlebt in …“ (sonst die Kennung) */
   namen?: Record<string, string>;
+  /** hervorgehobene Zeilen (1-basiert), z. B. die aktuelle LPH */
+  hervor?: number[];
 }
 
 export const WORT = {
@@ -55,6 +61,7 @@ export const WORT = {
   grenze: 'Grenze',
   legende: 'Ausschlag: in wie vielen Stationen Ihrer Spur das Symptom auftrat (bis drei)',
   ansicht: (w: string, spalte: string) => `Ansicht: ${w} – ${spalte}`,
+  hier: 'hier steht der Fall',
   chaos: 'Chaos',
   ordnung: 'Ordnung',
   mehr: 'Mehr zum Feld',
@@ -235,6 +242,44 @@ function bausteine(d: TafelDaten): HTMLElement {
     h('details', null, h('summary', null, h('i', null, String(i + 1)), h('b', null, z[0] ?? '')), detailListe(d.kopf, z, 1)))));
 }
 
+/** Auswahlleiste mit Detail: gemeinsamer Aufbau für Phasen und Rhythmus. */
+function leisteMitDetail(d: TafelDaten, klasse: string, beschrift: (z: string[], i: number) => Node[], ab: number): HTMLElement {
+  const detail = h('div', { class: 'tafel-auswahl', 'aria-live': 'polite' });
+  const hervor = d.hervor ?? [];
+  const knoepfe = d.zeilen.map((z, i) => h('button', {
+    type: 'button', class: `leiste-knopf${hervor.includes(i + 1) ? ' ist-hervor' : ''}`, 'aria-pressed': 'false', 'data-pruef': `${klasse}-${i + 1}`,
+    onclick: () => waehle(i),
+  }, beschrift(z, i)));
+  const waehle = (i: number): void => {
+    knoepfe.forEach((b, j) => attr(b, 'aria-pressed', i === j ? 'true' : 'false'));
+    const z = d.zeilen[i] ?? [];
+    ersetze(detail, h('h4', { class: 'tafel-titel' }, z.slice(0, ab).join(' · ')), hervor.includes(i + 1) ? h('p', { class: 'tafel-spur' }, elementAus(symbol('haken')), WORT.hier) : null, detailListe(d.kopf, z, ab));
+  };
+  waehle(Math.max(0, (hervor[0] ?? 1) - 1));
+  return h('div', { class: `tafel-leiste tafel-${klasse}` }, h('div', { class: 'leiste', role: 'group', 'aria-label': d.kopf[0] ?? '' }, knoepfe), detail);
+}
+
+function phasen(d: TafelDaten): HTMLElement {
+  return leisteMitDetail(d, 'phase', (z) => [h('b', null, z[0] ?? ''), h('small', null, z[1] ?? '')], 2);
+}
+
+function rhythmus(d: TafelDaten): HTMLElement {
+  return leisteMitDetail(d, 'rhythmus', (z) => [h('b', null, z[0] ?? '')], 1);
+}
+
+/** Register-Karten: Name, Bedeutung, Pfeil, nächster Schritt. */
+function register(d: TafelDaten): HTMLElement {
+  return h('ol', { class: 'tafel-register' }, d.zeilen.map((z, i) => h('li', { class: 'register-karte', style: `--i:${i}`, 'data-pruef': `register-${i + 1}` },
+    h('b', { class: 'register-name' }, z[0] ?? ''),
+    h('p', null, h('span', { class: 't-label' }, d.kopf[1] ?? ''), h('span', null, z[1] ?? '')),
+    h('p', { class: 'register-weiter' }, h('span', { class: 't-label' }, d.kopf[2] ?? ''), h('span', null, z[2] ?? '')))));
+}
+
+function karten(d: TafelDaten): HTMLElement {
+  return h('ol', { class: 'tafel-karten' }, d.zeilen.map((z, i) => h('li', { class: 'tafel-karte', 'data-pruef': `karte-${i + 1}` },
+    h('h4', { class: 'tafel-titel' }, z[0] ?? ''), detailListe(d.kopf, z, 1))));
+}
+
 /** Zeichnet eine Tafel; `besucht` = Stationen der eigenen Spur (für das Radar). */
 export function tafel(d: TafelDaten, besucht: readonly string[] = []): HTMLElement {
   let bild: HTMLElement;
@@ -245,6 +290,10 @@ export function tafel(d: TafelDaten, besucht: readonly string[] = []): HTMLEleme
     case 'pyramide': bild = pyramide(d); break;
     case 'felder': bild = felder(d); break;
     case 'bausteine': bild = bausteine(d); break;
+    case 'phasen': bild = phasen(d); break;
+    case 'register': bild = register(d); break;
+    case 'rhythmus': bild = rhythmus(d); break;
+    case 'karten': bild = karten(d); break;
   }
   return h('figure', { class: 'tafel', 'data-form': d.form, 'data-absatz': d.absatz, 'data-pruef': `tafel-${d.form}` }, bild, h('figcaption', null, quellZeile(d)));
 }

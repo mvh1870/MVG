@@ -755,7 +755,7 @@ function vertiefungenFuer(k: SzenenKontext): HTMLElement | null {
 function generisch(k: SzenenKontext): Szene {
   return szene(h('div', { class: 'stapel' },
     k.schritt.felder['text'] ? h('div', { class: 'karte' }, inhalt(k.schritt.felder['text'])) : null,
-    k.schritt.bloecke.map((b) => B.block(b, k.inhalte, W.originalWoertlich, k.z.verlauf))));
+    k.schritt.bloecke.map((b) => B.block(b, k.inhalte, W.originalWoertlich, k.z.verlauf, k.z.rolle))));
 }
 
 /* ------------------------------------------------------------------ Auswahl -- */

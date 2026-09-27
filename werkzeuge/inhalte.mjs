@@ -39,14 +39,14 @@ const FARBE = /^#[0-9A-Fa-f]{6}$/u;
 const SCHRITT_ARTEN = ['text', 'lage', 'entscheidung', 'konsequenz', 'rueckbezug', 'vergleich', 'rollenwahl', 'interessenwahl', 'ebenen'];
 const STATION_ARTEN = ['prolog', 'station', 'vergleich', 'wendepunkt', 'rueckspulen', 'wirklichkeit', 'ende', 'epilog'];
 const FLUSS = ['fruehwarnung', 'bestaetigt', 'risiko', 'entscheidung', 'freigabe', 'massnahme', 'managementbericht'];
-const TAFEL_FORMEN = ['radar', 'ketten', 'schwelle', 'pyramide', 'felder', 'bausteine'];
+const TAFEL_FORMEN = ['radar', 'ketten', 'schwelle', 'pyramide', 'felder', 'bausteine', 'phasen', 'register', 'rhythmus', 'karten'];
 const GLIED_ARTEN = ['fruehwarnung', 'bestaetigung', 'risiko', 'aenderung', 'entscheidung', 'freigabe', 'massnahme', 'bericht'];
 
 /* ============================================================== Schema == */
 
 /**
  * Kopfdaten-Typen: text, zahl (ganz), dezimal, bool, liste, karte (Text → Text), farbe, kennung,
- * wahl (werte), status (Statuswirkung), kanten (weiter), paar ({a, b}), stufen, versionen, ids.
+ * wahl (werte), raci (RACI-Zeilen), status (Statuswirkung), kanten (weiter), paar ({a, b}), stufen, versionen, ids.
  * @typedef {{ typ: string, pflicht?: boolean, werte?: string[], min?: number, max?: number }} KopfDef
  * @typedef {{ in: string[], kennung: 'pflicht' | 'optional' | 'keine' | 'mehrere', muster?: RegExp,
  *   kopf?: Record<string, KopfDef>, felder?: string[], pflichtFelder?: string[] }} ArtDef
@@ -90,8 +90,10 @@ const ARTEN = {
   },
   grafik: { in: ['schritt', '@theorie', 'abschnitt', 'ebene'], kennung: 'pflicht', kopf: { titel: { typ: 'text' }, untertitel: { typ: 'text' } }, felder: ['text'] },
   kette: { in: ['schritt'], kennung: 'keine', felder: [] },
+  // RACI mit Mandat (P5.1, Kap. 9.2), Zuordnungen des fiktiven Falls
+  raci: { in: ['schritt', '@theorie', 'abschnitt', 'ebene'], kennung: 'keine', kopf: { zeilen: { typ: 'raci', pflicht: true } }, felder: ['text'] },
   // Whitepaper-Tabelle als Grafik (P4, L-32): Zellen wörtlich aus whitepaper.json, Form aus src/grafik/tafel.ts
-  tafel: { in: ['schritt', '@theorie', 'abschnitt', 'ebene'], kennung: 'pflicht', muster: /^k\d+(?:\.\d+)*-t\d+$/u, kopf: { form: { typ: 'wahl', werte: TAFEL_FORMEN, pflicht: true }, erlebt: { typ: 'karte' } }, felder: ['text'] },
+  tafel: { in: ['schritt', '@theorie', 'abschnitt', 'ebene'], kennung: 'pflicht', muster: /^k\d+(?:\.\d+)*-t\d+$/u, kopf: { form: { typ: 'wahl', werte: TAFEL_FORMEN, pflicht: true }, erlebt: { typ: 'karte' }, hervor: { typ: 'liste' } }, felder: ['text'] },
   glied: { in: ['kette'], kennung: 'optional', kopf: { art: { typ: 'wahl', werte: GLIED_ARTEN, pflicht: true }, von: { typ: 'kennung' } }, felder: ['titel', 'text'] },
   datenstand: {
     in: ['schritt'], kennung: 'keine',
@@ -864,6 +866,31 @@ class Kompilierer {
         }
         return aus;
       }
+      case 'raci': {
+        // RACI mit Mandat (P5.1, Kap. 9.2): je Zeile genau eine Rolle „A“, jede Rolle höchstens ein Buchstabe
+        if (!Array.isArray(wert)) { this.fehler(ort, `„${k}“ muss eine Liste sein`); return undefined; }
+        const aus = [];
+        for (const x of wert) {
+          if (typeof x !== 'object' || x === null || Array.isArray(x)) { this.fehler(ort, `„${k}“: Zeile unlesbar`); continue; }
+          const z = this.kopf(/** @type {Record<string, unknown>} */ (x), {
+            id: { typ: 'kennung', pflicht: true }, titel: { typ: 'text', pflicht: true }, R: { typ: 'liste' }, A: { typ: 'kennung', pflicht: true }, C: { typ: 'liste' }, I: { typ: 'liste' }, mandat: { typ: 'text', pflicht: true },
+          }, `${ort} (${k})`);
+          /** @type {Record<string, string>} */
+          const zuordnung = {};
+          for (const b of ['A', 'R', 'C', 'I']) {
+            // this.kopf() legt Schlüssel in camelCase ab („A“ → „a“)
+            const w = z[b.toLowerCase()];
+            const rollen = b === 'A' ? (w ? [w] : []) : (w ?? []);
+            for (const r of rollen) {
+              if (!ROLLEN.includes(r)) this.fehler(`${ort} (${k})`, `RACI „${z.id}“: Rolle „${r}“ gibt es nicht`);
+              if (zuordnung[r] !== undefined) this.fehler(`${ort} (${k})`, `RACI „${z.id}“: Rolle „${r}“ hat zwei Buchstaben`);
+              zuordnung[r] = b;
+            }
+          }
+          aus.push({ id: z.id ?? '', titel: z.titel ?? '', zuordnung, mandat: z.mandat ?? '' });
+        }
+        return aus;
+      }
       case 'versionen': {
         const liste = Array.isArray(wert) ? wert : [wert];
         const aus = [];
@@ -986,6 +1013,9 @@ class Kompilierer {
         for (const st of erlebt[nr]) this.verweise.push({ art: 'station', wert: st, ort: r.ort });
       }
       kopf['erlebt'] = erlebt;
+      const hervor = (kopf['hervor'] ?? []).map(Number);
+      for (const n of hervor) if (!Number.isInteger(n) || n < 1 || n > (t?.zeilen?.length ?? 0)) this.fehler(r.ort, `Tafel ${r.id}: „hervor: ${n}“ – die Tabelle hat ${t?.zeilen?.length ?? 0} Zeilen`);
+      kopf['hervor'] = hervor;
       if (kopf['form'] === 'schwelle' && (t?.kopf?.length ?? 0) !== 2) this.fehler(r.ort, `Tafel ${r.id}: Form „schwelle“ braucht eine Tabelle mit zwei Spalten`);
       if (kopf['form'] === 'felder' && (t?.kopf?.length ?? 0) < 5) this.fehler(r.ort, `Tafel ${r.id}: Form „felder“ braucht fünf Spalten (Feld, Kern, Vorbereitung, Fehlstelle, Antwort)`);
       if (kopf['form'] === 'ketten' && (t?.kopf?.length ?? 0) < 4) this.fehler(r.ort, `Tafel ${r.id}: Form „ketten“ braucht vier Spalten`);

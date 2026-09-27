@@ -37,7 +37,7 @@ Die 30/60/90-Tage-Logik ist ein Orientierungsrahmen nach der MVG-Reifegradanalys
 
 ::: tafel k8.2-t1
 ---
-form: phasen
+form: zeitachse
 ---
 :::
 :::

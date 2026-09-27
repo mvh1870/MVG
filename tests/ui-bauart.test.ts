@@ -582,6 +582,16 @@ test('Tafeln Welt B (T9): Phasen-Wahl wandert, Screenreader-Hinweis am hervorgeh
   const rh = tafel({ form: 'rhythmus', absatz: 'k6.4.5-t1', quelle: 'Q', kopf: ['Rhythmus', 'Beteiligte', 'Fokus'], zeilen: [['täglich', 'PMO', 'Fristen'], ['wöchentlich', 'PS', 'Risiken']], erlebt: {}, hervor: [2] });
   assert.equal(rh.querySelector('[aria-pressed="true"]')?.getAttribute('data-pruef'), 'rhythmus-2');
   assert.match(rh.querySelector('.tafel-auswahl')?.textContent ?? '', /Risiken/u);
+  const za = tafel({ form: 'zeitachse', absatz: 'k8.2-t1', quelle: 'Q', kopf: ['Zeitraum', 'Fokus'], zeilen: [['0–30 Tage', 'Diagnose'], ['31–60 Tage', 'Konzeption'], ['61–90 Tage', 'Anwendung']], erlebt: {} });
+  const regler = za.querySelector<HTMLInputElement>('[data-pruef="zeitachse-regler"]');
+  assert.equal(regler?.max, '90');
+  assert.equal(za.querySelector('[aria-pressed="true"]')?.getAttribute('data-pruef'), 'zeitachse-1');
+  if (regler) { regler.value = '45'; regler.dispatchEvent(new Event('input')); }
+  assert.equal(za.querySelector('[aria-pressed="true"]')?.getAttribute('data-pruef'), 'zeitachse-2');
+  assert.match(za.querySelector('.tafel-auswahl')?.textContent ?? '', /Tag 45 · 31–60 Tage.*Konzeption/u);
+  assert.equal(regler?.getAttribute('aria-valuetext'), 'Tag 45 · 31–60 Tage');
+  za.querySelector<HTMLElement>('[data-pruef="zeitachse-3"]')?.click();
+  assert.equal(regler?.value, '61');
   const ka = tafel({ form: 'karten', absatz: 'k6.4.2-t1', quelle: 'Q', kopf: ['Gruppe', 'Rolle', 'Turnus'], zeilen: [['Register', 'PL', 'laufend']], erlebt: {} });
   assert.equal(ka.querySelectorAll('.tafel-karte').length, 1);
   assert.match(ka.querySelector('.tafel-karte')?.textContent ?? '', /Rolle.*PL.*Turnus.*laufend/u);

@@ -15,12 +15,13 @@
  * - register   Register-Karten (Kap. 6.4.4): Bedeutung → nächster Schritt
  * - rhythmus  Governance-Rhythmus (Kap. 6.4.5): vom täglichen bis zum seltenen Termin
  * - karten    allgemeine Karten: erste Spalte als Titel, die übrigen als Angaben (z. B. Kap. 6.4.2)
+ * - zeitachse schiebbare Zeitachse (Kap. 8.2, 30/60/90): der Regler wählt den Tag, die Tafel zeigt den Zeitraum
  */
 
 import { h, s, attr, ersetze, elementAus } from '../ui/h.ts';
 import { symbol } from '../stil/symbole.ts';
 
-export const TAFEL_FORMEN = ['radar', 'ketten', 'schwelle', 'pyramide', 'felder', 'bausteine', 'phasen', 'register', 'rhythmus', 'karten'] as const;
+export const TAFEL_FORMEN = ['radar', 'ketten', 'schwelle', 'pyramide', 'felder', 'bausteine', 'phasen', 'register', 'rhythmus', 'karten', 'zeitachse'] as const;
 export type TafelForm = (typeof TAFEL_FORMEN)[number];
 
 export function istTafelForm(x: string): x is TafelForm {
@@ -66,6 +67,8 @@ export const WORT = {
   chaos: 'Chaos',
   ordnung: 'Ordnung',
   mehr: 'Mehr zum Feld',
+  tag: (n: number) => `Tag ${n}`,
+  schieben: 'Tag wählen',
 } as const;
 
 /** Feste, unregelmäßige Mischung (deterministisch: Fisher-Yates mit festem Startwert), damit Abwechseln nicht hilft. */
@@ -283,6 +286,39 @@ function karten(d: TafelDaten): HTMLElement {
     h('h4', { class: 'tafel-titel' }, z[0] ?? ''), detailListe(d.kopf, z, 1))));
 }
 
+/** Zeitraum „0–30 Tage“ → [0, 30]; ohne Zahlenpaar null. */
+export function zeitraum(zelle: string): [number, number] | null {
+  const m = /(\d+)\s*[–-]\s*(\d+)/u.exec(zelle);
+  return m === null ? null : [Number(m[1] ?? 0), Number(m[2] ?? 0)];
+}
+
+/**
+ * Schiebbare Zeitachse (Kap. 8.2): ein Regler über alle Zeiträume der ersten Spalte; der gewählte
+ * Tag hebt seinen Zeitraum hervor und zeigt dessen Zeile. Die Zeiträume sind zugleich Knöpfe.
+ */
+function zeitachse(d: TafelDaten): HTMLElement {
+  const raeume: [number, number][] = d.zeilen.map((z) => zeitraum(z[0] ?? '') ?? [0, 0]);
+  const bis = Math.max(1, ...raeume.map((r) => r[1]));
+  const detail = h('div', { class: 'tafel-auswahl', 'aria-live': 'polite' });
+  const regler = h('input', { type: 'range', class: 'zeitachse-regler', min: 0, max: bis, step: 1, value: 0, 'aria-label': WORT.schieben, 'data-pruef': 'zeitachse-regler' }) as HTMLInputElement;
+  const zeile = (tag: number): number => Math.max(0, raeume.findIndex((r) => tag >= r[0] && tag <= r[1]));
+  const knoepfe = d.zeilen.map((z, i) => h('button', {
+    type: 'button', class: 'zeitachse-abschnitt', style: `--von:${(raeume[i]?.[0] ?? 0) / bis};--bis:${(raeume[i]?.[1] ?? 0) / bis}`, 'aria-pressed': 'false', 'data-pruef': `zeitachse-${i + 1}`,
+    onclick: () => { regler.value = String(raeume[i]?.[0] ?? 0); zeige(); },
+  }, h('b', null, z[0] ?? ''), h('small', null, z[1] ?? '')));
+  const zeige = (): void => {
+    const tag = Number(regler.value);
+    const i = zeile(tag);
+    const z = d.zeilen[i] ?? [];
+    attr(regler, 'aria-valuetext', `${WORT.tag(tag)} · ${z[0] ?? ''}`);
+    knoepfe.forEach((b, j) => attr(b, 'aria-pressed', i === j ? 'true' : 'false'));
+    ersetze(detail, h('h4', { class: 'tafel-titel' }, h('span', { class: 'zeitachse-tag', 'data-pruef': 'zeitachse-tag' }, WORT.tag(tag)), ` · ${z[0] ?? ''}`), detailListe(d.kopf, z, 1));
+  };
+  regler.addEventListener('input', zeige);
+  zeige();
+  return h('div', { class: 'tafel-zeitachse' }, h('div', { class: 'zeitachse-leiste', role: 'group', 'aria-label': d.kopf[0] ?? '' }, knoepfe), regler, detail);
+}
+
 /** Zeichnet eine Tafel; `besucht` = Stationen der eigenen Spur (für das Radar). */
 export function tafel(d: TafelDaten, besucht: readonly string[] = []): HTMLElement {
   let bild: HTMLElement;
@@ -297,6 +333,7 @@ export function tafel(d: TafelDaten, besucht: readonly string[] = []): HTMLEleme
     case 'register': bild = register(d); break;
     case 'rhythmus': bild = rhythmus(d); break;
     case 'karten': bild = karten(d); break;
+    case 'zeitachse': bild = zeitachse(d); break;
   }
   return h('figure', { class: 'tafel', 'data-form': d.form, 'data-absatz': d.absatz, 'data-pruef': `tafel-${d.form}` }, bild, h('figcaption', null, quellZeile(d)));
 }

@@ -64,11 +64,11 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 
 ### P6 · Theorie-Teil (O-20)
 - [x] P6.1 (Commit „MVG P6.1“) · Lernseiten-Rahmen: Kernaussage, Grafik, Karten, Ebenen, Originaltext wortgetreu, Querverweise „In der Story erlebt“, Kapitelnavigation
-- [ ] P6.2 · Kap. 1 Kurzfassung
-- [ ] P6.3 · Kap. 2 Ausgangslage und Kernproblem
-- [ ] P6.4 · Kap. 3 Begriffsrahmen
-- [ ] P6.5 · Kap. 4 Verantwortungsfelder
-- [ ] P6.6 · Kap. 5 MVG als Bauherren-Führungsmodell
+- [x] P6.2 (Commit „MVG P6.2–P6.6“; Prüfung 32 Befunde + Runde 2) · Kap. 1 Kurzfassung
+- [x] P6.3 (Commit „MVG P6.2–P6.6“; Prüfung 32 Befunde + Runde 2) · Kap. 2 Ausgangslage und Kernproblem
+- [x] P6.4 (Commit „MVG P6.2–P6.6“; Prüfung 32 Befunde + Runde 2) · Kap. 3 Begriffsrahmen
+- [x] P6.5 (Commit „MVG P6.2–P6.6“; Prüfung 32 Befunde + Runde 2) · Kap. 4 Verantwortungsfelder
+- [x] P6.6 (Commit „MVG P6.2–P6.6“; Prüfung 32 Befunde + Runde 2) · Kap. 5 MVG als Bauherren-Führungsmodell
 - [ ] P6.7 · Kap. 6 MVG Companion (inkl. 6.4 Zusammenarbeit, Governance-Fluss)
 - [ ] P6.8 · Kap. 7 Leistungsarchitektur
 - [ ] P6.9 · Kap. 8 Implementierung

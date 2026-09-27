@@ -18,8 +18,8 @@ export async function lauf(seite, h) {
   if (fokus !== 'k1.2') h.befund(`#theorie/k1/1.2: Fokus auf ${fokus ?? 'nichts'} statt Abschnitt k1.2`);
 
   // Querverweis führt auf den Permalink der Station
-  const ziel = await seite.locator('[data-pruef="querverweis-A3"]').first().getAttribute('href');
-  if (ziel !== '#story/A3') h.befund(`Querverweis A3 zeigt auf ${ziel}`);
+  const ziel = await seite.locator('[data-pruef="querverweis-prolog"]').first().getAttribute('href');
+  if (ziel !== '#story/prolog') h.befund(`Querverweis Prolog zeigt auf ${ziel}`);
 
   // Explore aus der Theorie heraus
   await h.klick('[data-pruef="zu-explore"]');

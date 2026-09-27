@@ -1,12 +1,12 @@
 ---
-# Lernseite Kapitel 1 (P0.6 Durchstich: Theorie-Probe). Zitate wortgleich mit Absatz-ID (O-17),
+# Lernseite Kapitel 1 (P6, O-20). Zitate wortgleich mit Absatz-ID (O-17),
 # der vollständige Originaltext kommt über „::: original k1“ aus whitepaper.json (wortgetreu durch Bauart).
 kapitel: 1
 titel: Kurzfassung
 kurztitel: Kurzfassung
-story: [A3, B3]
+story: [prolog]
 ---
-Das erste Kapitel fasst das Whitepaper auf einer Seite zusammen: die Leitthese, fünf Managementaussagen und das Ergebnisbild. Die Karten zeigen die Aussagen einzeln, darunter steht der Originaltext.
+Das erste Kapitel fasst das Whitepaper zu Minimum Viable Governance (MVG) auf einer Seite zusammen: die Leitthese, fünf Managementaussagen und das Ergebnisbild. Die Karten zeigen die Aussagen einzeln, darunter steht der Originaltext.
 
 ::: kernaussage
 [[zitat:k1-p1|Arbeit kann delegiert werden; bauherrenseitige Legitimation nicht.]]
@@ -74,6 +74,10 @@ symbol: flagge
 ---
 titel: Ergebnisbild
 ---
+::: zitat k1.3-p1
+Nach Umsetzung eines MVG-Ansatzes verfügt der Bauherr nicht über eine lose Sammlung einzelner Methoden, sondern über ein belastbares Führungs- und Entscheidungsmodell.
+:::
+
 Sechs Elemente und ihr Ergebnis, wörtlich aus der Tabelle des Kapitels.
 
 ::: karten
@@ -121,19 +125,50 @@ titel: Befähigung
 :::
 :::
 
+::: ebenen
+::: ebene 1
+---
+titel: Kernaussage
+---
+Der Bauherr kann Arbeit abgeben, die Legitimation von Ziel, Mandat, wesentlicher Entscheidung, Risikoannahme, Freigabe und Nachweis nicht – MVG macht diese Verantwortung praktisch handhabbar.
+:::
+
+::: ebene 2
+---
+titel: Warum relevant
+---
+Minimum Viable Governance (MVG) bildet den kleinsten funktionsfähigen Governance-Standard. [[zitat:k1-p2|Der Nutzen liegt nicht in mehr Bürokratie, sondern in weniger Entscheidungsstau, klareren Eskalationswegen, belastbarer Gremienfähigkeit und einer nachvollziehbaren Nachweiskette.]]
+:::
+
+::: ebene 3
+---
+titel: Vertiefung
+---
+Die Linie aus dem ersten Absatz des Kapitels:
+
+| Können Dritte übernehmen | Bleibt beim Bauherrn |
+|---|---|
+| analysieren, vorbereiten, koordinieren, dokumentieren – Planer, Projektsteuerer, Gutachter, PMO und Berater | Zielpriorisierung, Mandat, wesentliche Freigabe, Risikoannahme und Nachweisfähigkeit |
+
+Das gilt auch für Bauherr Mentoren selbst: [[zitat:k1-p3|Bauherr Mentoren übernimmt dabei keine Bauherrenrolle. BM stellt Struktur, Entscheidungsreife, Mandatsklarheit und Befähigung her, damit die Bauherrenorganisation ihre Verantwortung selbst wirksam ausüben kann.]]
+:::
+
+::: ebene 4
+---
+titel: Nachweis
+---
+::: zitat k1-p1
+Arbeit kann delegiert werden; bauherrenseitige Legitimation nicht. Planer, Projektsteuerer, Gutachter, Projektmanagementbüro (PMO) und Berater können analysieren, vorbereiten, koordinieren und dokumentieren. Zielpriorisierung, Mandat, wesentliche Freigabe, Risikoannahme und Nachweisfähigkeit bleiben jedoch beim Bauherrn.
+:::
+:::
+:::
+
 ::: original k1
 :::
 
-::: querverweis A3
+::: querverweis prolog
 ---
-text: "In der Story erlebt: A3"
+text: "In der Story erlebt: Prolog"
 ---
-Welt A, Monat 5: Kosten +8 % – zwei Zahlen, vier Randnotizen, keine Entscheidung.
-:::
-
-::: querverweis B3
----
-text: "In der Story erlebt: B3"
----
-Welt B, derselbe Montag: ein Datenstand, ein Mandat, eine Entscheidungsvorlage.
+Sie übernehmen eine Rolle im Schulcampus Lindenhall-Süd und erleben dasselbe Projekt zuerst in Welt A ohne MVG, dann in Welt B mit MVG.
 :::

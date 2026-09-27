@@ -151,7 +151,7 @@ test('Startseite: genau zwei Wege, leiser Fuß mit Version und Vermerk, keine In
   assert.equal(anzeige.querySelectorAll('a').length, 0, 'auf der Leinwand keine Verweise');
 });
 
-test('Theorie: 13 Kapitel mit Titeln; Kapitel 1 mit Kernaussage, Karten, Originaltext und Querverweisen', () => {
+test('Theorie: 13 Kapitel mit Titeln; Kapitel 1 mit Kernaussage, Karten, Originaltext, Querverweis (Kap. 2: A3, B3)', () => {
   const kap = kapitelListe(inhalte);
   assert.equal(kap.length, 13);
   assert.ok(kap.every((k) => k.titel.length > 0));
@@ -181,9 +181,14 @@ test('Theorie: 13 Kapitel mit Titeln; Kapitel 1 mit Kernaussage, Karten, Origina
   const reihe = [...k1.querySelectorAll('[data-pruef="originaltext"] > .original-abschnitt, [data-pruef="originaltext"] > .absatz')]
     .map((x) => x.getAttribute('data-abschnitt') ?? x.getAttribute('data-absatz'));
   assert.equal(reihe[reihe.indexOf('k1.1') + 1], 'k1.1-p1', 'Überschrift direkt vor ihrem ersten Absatz');
-  assert.ok(k1.querySelector('[data-pruef="querverweis-A3"]'));
-  assert.ok(k1.querySelector('[data-pruef="querverweis-B3"]'));
-  const k5 = baueTheorie({ inhalte, kapitel: 5, version: VERSION, bedienbar: true });
+  // Kap. 1 verweist auf den Prolog (DREHBUCH §5); A3/B3 stehen bei Kap. 2
+  assert.ok(k1.querySelector('[data-pruef="querverweis-prolog"]'));
+  const k2 = baueTheorie({ inhalte, kapitel: 2, version: VERSION, bedienbar: true });
+  assert.ok(k2.querySelector('[data-pruef="querverweis-A3"]'));
+  assert.ok(k2.querySelector('[data-pruef="querverweis-B3"]'));
+  // Ein Kapitel ohne Lernseite zeigt „folgt“ – geprüft an einer Kopie ohne die Seite von Kapitel 5
+  const ohneK5 = { ...inhalte, theorie: Object.fromEntries(Object.entries(inhalte.theorie).filter(([, t]) => t.kapitel !== 5)) } as typeof inhalte;
+  const k5 = baueTheorie({ inhalte: ohneK5, kapitel: 5, version: VERSION, bedienbar: true });
   assert.ok(k5.querySelector('[data-pruef="folgt"]'));
 });
 

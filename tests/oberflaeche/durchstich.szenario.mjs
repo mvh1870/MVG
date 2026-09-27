@@ -222,17 +222,22 @@ export async function lauf(seite, h) {
   await h.erwarte('[data-pruef="kapitel-liste"]');
   const kapitel = await seite.locator('[data-pruef="kapitel-liste"] > li').count();
   if (kapitel !== 13) h.befund(`Theorie: erwartet 13 Kapitel, gefunden ${kapitel}`);
-  if ((await seite.locator('[data-pruef="kapitel-liste"] .badge.ist-folgt').count()) !== 12) h.befund('Theorie: unfertige Kapitel nicht als „folgt“ markiert');
+  const fertig = Object.keys(inhalte.theorie ?? {}).length;
+  const folgtZahl = await seite.locator('[data-pruef="kapitel-liste"] .badge.ist-folgt').count();
+  if (folgtZahl !== 13 - fertig) h.befund(`Theorie: ${folgtZahl} Kapitel als „folgt“ markiert, erwartet ${13 - fertig} (13 minus ${fertig} Lernseiten)`);
   await stand('theorie-liste');
   await h.klick('[data-pruef="kapitel-1"]');
   await h.erwarte('[data-pruef="originaltext"]');
   await h.erwarte('[data-pruef="kernaussage"]');
   if ((await seite.locator('[data-pruef="lernkarte"]').count()) < 5) h.befund('Kapitel 1: weniger als fünf Karten');
   if ((await seite.locator('[data-pruef="originaltext"] [data-absatz="k1-p1"]').count()) !== 1) h.befund('Kapitel 1: Absatz k1-p1 fehlt im Originaltext');
-  await h.erwarte('[data-pruef="querverweis-A3"]');
-  await h.erwarte('[data-pruef="querverweis-B3"]');
+  await h.erwarte('[data-pruef="querverweis-prolog"]');
   await h.erwarteNicht('[data-pruef="leitstand"]');
   await stand('theorie-k1');
+  // Kapitel 2 verweist auf A3 und B3 (DREHBUCH §5); über den Permalink
+  await seite.evaluate(() => { location.hash = '#theorie/k2'; });
+  await h.erwarte('[data-pruef="querverweis-A3"]');
+  await h.erwarte('[data-pruef="querverweis-B3"]');
 
   /* --------------------------------------------------------- Regie + Leinwand -- */
   const regie = await h.zweitesFenster('#regie');

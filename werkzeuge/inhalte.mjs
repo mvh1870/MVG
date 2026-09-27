@@ -52,7 +52,7 @@ const GLIED_ARTEN = ['fruehwarnung', 'bestaetigung', 'risiko', 'aenderung', 'ent
  *   kopf?: Record<string, KopfDef>, felder?: string[], pflichtFelder?: string[] }} ArtDef
  */
 
-const ZITAT_ORTE = ['schritt', 'ebene', '@theorie', 'abschnitt', 'karte', 'einwand', '@station', 'resuemee'];
+const ZITAT_ORTE = ['schritt', 'ebene', '@theorie', 'abschnitt', 'karte', 'einwand', '@station', 'resuemee', 'welt'];
 const TEXT_ORTE = ['schritt', 'ebene', '@theorie', 'abschnitt', 'resuemee'];
 
 /** @type {Record<string, ArtDef>} */
@@ -158,6 +158,8 @@ const ARTEN = {
   karte: { in: ['karten'], kennung: 'optional', kopf: { titel: { typ: 'text', pflicht: true }, symbol: { typ: 'text' } }, felder: ['text', 'rueckseite'] },
   querverweis: { in: ['@theorie', 'abschnitt', 'ebene'], kennung: 'pflicht', kopf: { text: { typ: 'text' } }, felder: ['text'] },
   // Einwände
+  // Vorher/Nachher-Welten (P8.2): je Aspekt Welt A und Welt B nebeneinander, mit Beleg aus dem Whitepaper
+  welt: { in: ['@welten'], kennung: 'pflicht', kopf: { titel: { typ: 'text', pflicht: true }, stationen: { typ: 'liste' } }, felder: ['weltA', 'weltB'], pflichtFelder: ['weltA', 'weltB'] },
   einwand: { in: ['@einwaende'], kennung: 'pflicht', kopf: { stationen: { typ: 'liste' }, kapitel: { typ: 'liste' } }, felder: ['einwand', 'antwort'], pflichtFelder: ['einwand', 'antwort'] },
 };
 
@@ -203,6 +205,7 @@ const DATEI_ARTEN = {
     felder: ['text'],
   },
   '@einwaende': { kopf: {}, felder: ['text'] },
+  '@welten': { kopf: {}, felder: ['text'] },
   '@start': {
     kopf: { kicker: { typ: 'text', pflicht: true }, titel: { typ: 'text', pflicht: true }, 'titel-quelle': { typ: 'text' } },
     felder: ['text'],
@@ -463,6 +466,8 @@ async function ladeQuelle(pfad) {
     fassung: typeof wp.fassung === 'string' ? wp.fassung : 'V1.2',
     titel: typeof wp.titel === 'string' ? wp.titel : null,
     gliederung,
+    // Abbildungsverzeichnis (P8.5): nur Kennung, Kapitel und Ort – die Rasterbilder selbst werden nicht übernommen (L-51)
+    abbildungen: (Array.isArray(wp.abbildungen) ? wp.abbildungen : []).map((/** @type {any} */ a) => ({ id: String(a.id), kapitel: String(a.kapitel ?? ''), ort: String(a.ort ?? '') })),
     bloecke,
     nachId: new Map(bloecke.map((bl) => [bl.id, bl])),
     glossar: Array.isArray(wp.glossar) ? wp.glossar : [],
@@ -1570,6 +1575,28 @@ function baueEinwaende(c, rel, text) {
   return aus;
 }
 
+/**
+ * Vorher/Nachher-Welten (P8.2).
+ * @param {Kompilierer} c
+ * @param {string} rel
+ * @param {string} text
+ */
+function baueWelten(c, rel, text) {
+  const { wurzel } = leseDateiKopf(c, rel, '@welten', text);
+  const aus = [];
+  for (const k of wurzel.kinder) {
+    const bl = c.block(k, '@welten', rel);
+    if (bl === null || bl.art !== 'welt') continue;
+    if (!bl.kinder.some((/** @type {any} */ x) => x.art === 'zitat' || x.art === 'original')) {
+      c.fehler(`${rel}:${k.zeile}`, `Welt ${bl.id}: Beleg fehlt (ein „zitat“ oder „original“ aus dem Whitepaper)`);
+    }
+    if (aus.some((e) => e.id === bl.id)) c.fehler(`${rel}:${k.zeile}`, `Welt ${bl.id} doppelt`);
+    for (const s of bl.kopf.stationen ?? []) c.verweise.push({ art: 'station', wert: s, ort: `${rel}:${k.zeile}` });
+    aus.push({ id: bl.id ?? '', titel: bl.kopf.titel ?? '', stationen: bl.kopf.stationen ?? [], weltA: bl.felder.weltA ?? '', weltB: bl.felder.weltB ?? '', bloecke: bl.kinder });
+  }
+  return aus;
+}
+
 /* ====================================================== Hauptlauf == */
 
 /** @param {string} ordner @returns {string[]} relative Pfade (mit /), sortiert */
@@ -1630,6 +1657,8 @@ export async function kompiliere(optionen = {}) {
   const theorie = {};
   /** @type {any[]} */
   let einwaende = [];
+  /** @type {any[]} */
+  let welten = [];
   /** @type {Record<string, any>} */
   const regie = {};
   /** @type {Record<string, unknown> | null} */
@@ -1648,6 +1677,7 @@ export async function kompiliere(optionen = {}) {
       if (theorie[id] !== undefined) c.fehler(rel, `zweite Lernseite für ${id}`);
       theorie[id] = baueTheorie(c, rel, id, lies(r));
     } else if (r === 'einwaende.md') einwaende = baueEinwaende(c, rel, lies(r));
+    else if (r === 'welten.md') welten = baueWelten(c, rel, lies(r));
     else if (r === 'abdeckung.yaml') abdeckungRoh = leseYaml(lies(r), rel, 1, b);
     else if (r.endsWith('.md') || r.endsWith('.yaml')) c.warnung(rel, 'Datei gehört zu keiner bekannten Art (docs/INHALTSFORMAT.md Abschnitt 1) – ignoriert');
   }
@@ -1719,7 +1749,7 @@ export async function kompiliere(optionen = {}) {
 
   const inhalte = {
     version: 1,
-    whitepaper: { fassung: quelle?.fassung ?? null, titel: quelle?.titel ?? null, kapitel: quelle?.gliederung ?? [], lph: lphPhasen(quelle) },
+    whitepaper: { fassung: quelle?.fassung ?? null, titel: quelle?.titel ?? null, kapitel: quelle?.gliederung ?? [], lph: lphPhasen(quelle), abbildungen: quelle?.abbildungen ?? [] },
     fall,
     startseite,
     rollen,
@@ -1731,6 +1761,7 @@ export async function kompiliere(optionen = {}) {
     glossar,
     theorie,
     einwaende,
+    welten,
     abdeckung,
     quellen: baueQuellen(c, quelle, stationen),
     regie,

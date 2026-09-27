@@ -137,7 +137,7 @@ function starteApp(wurzel: HTMLElement): void {
       case 'explore': {
         tue({ art: 'wechsleBereich', bereich: 'explore' });
         raeume();
-        const seite = baueExplore({ inhalte, freigeschaltet: sitzung.zustand().freigeschaltet.explore, version: VERSION });
+        const seite = baueExplore({ inhalte, freigeschaltet: sitzung.zustand().freigeschaltet.explore, weltB: sitzung.zustand().freigeschaltet.weltB, version: VERSION });
         ersetze(wurzel, seite);
         window.scrollTo(0, 0);
         (seite.querySelector('.kapitel-titel') as HTMLElement | null)?.focus({ preventScroll: true });

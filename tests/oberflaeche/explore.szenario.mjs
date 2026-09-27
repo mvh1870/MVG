@@ -54,6 +54,21 @@ export async function lauf(seite, h) {
   await h.warte(200);
   await pruefe('zeitmaschine');
 
+  // P8.5 Galerie: jede Tafel wählbar; Abbildungsverzeichnis; Story-Karte mit Sprung
+  await h.klick('[data-pruef="werkzeug-oeffnen-galerie"]');
+  const tafeln = seite.locator('[data-pruef^="galerie-k"]');
+  const n = await tafeln.count();
+  if (n < 20) h.befund(`Galerie: nur ${n} Tafeln`);
+  for (let i = 0; i < n; i++) {
+    await tafeln.nth(i).click();
+    if (await seite.locator('[data-pruef="galerie-buehne"] .tafel').count() !== 1) h.befund(`Galerie: Tafel ${i + 1} zeichnet nicht`);
+  }
+  await h.warte(300);
+  await pruefe('galerie');
+  if (await seite.locator('[data-pruef="abbildungsverzeichnis"] tbody tr').count() < 1) h.befund('Galerie: Abbildungsverzeichnis leer');
+  await h.klick('[data-pruef="werkzeug-oeffnen-figuren"]');
+  if (await seite.locator('[data-pruef="sprung-A3"]').count() !== 1) h.befund('Story-Karte: kein Sprung nach A3');
+
   // P8.3 Sandbox: Frühwarnung einwerfen und per Tastatur bis zur Maßnahme führen (Fokus bleibt am Eintrag)
   await h.klick('[data-pruef="werkzeug-oeffnen-sandbox"]');
   await h.klick('[data-pruef="einwurf-fruehwarnung"]');

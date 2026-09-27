@@ -93,7 +93,7 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P8.2 (2026-09-27) · Vorher/Nachher-Welten (Informationswege, Rollen, Entscheidungen, Eskalationen, Register, Reporting, Gremien)
 - [x] P8.3 (2026-09-27) · Governance-Fluss-Sandbox (E5)
 - [x] P8.4 (2026-09-27) · Zeitmaschine (E4)
-- [ ] P8.5 · Grafik-Galerie + Abbildungsverzeichnis, Figurenübersicht, Story-Karte mit Sprung
+- [x] P8.5 (2026-09-27, L-51) · Grafik-Galerie + Abbildungsverzeichnis, Figurenübersicht, Story-Karte mit Sprung
 - [ ] P8.6 · Prüf-Agenten P8 + Korrekturen
 
 ### P9 · Präsentator (O-9)

@@ -774,3 +774,23 @@ test('Zeitmaschine (P8.4, E4): Punkte aus dem Startstand der Stationen, Regler s
   assert.match(el.querySelector('[data-pruef="zm-ablesen"]')?.textContent ?? '', /Monat 5.*A3.*B3/su);
   assert.equal(el.querySelectorAll('.zm-tabelle tbody tr').length, 6, 'Tabellenansicht');
 });
+
+test('Galerie (P8.5): jede Tafel der Lernseiten einmal; Abbildungsverzeichnis; Story-Karte sperrt Welt B', async () => {
+  const { galerieTafeln, galerie, stationsKarte } = await import('../src/ui/flaechen/explore-galerie.ts');
+  const t = galerieTafeln(inhalte);
+  const ids = t.map((x) => x.block.id);
+  assert.equal(new Set(ids).size, ids.length, 'jede Tabelle einmal');
+  assert.ok(ids.includes('k2.5-t1') && ids.includes('k8.2-t1') && ids.includes('k12-t1'));
+  assert.deepEqual(t.map((x) => x.kapitel), [...t.map((x) => x.kapitel)].sort((a, b) => a - b));
+  const g = galerie(inhalte);
+  assert.ok(g);
+  assert.equal(g.querySelectorAll('[data-pruef="abbildungsverzeichnis"] tbody tr').length, inhalte.whitepaper.abbildungen.length);
+  assert.ok(inhalte.whitepaper.abbildungen.length > 0);
+  assert.equal(g.querySelector('img'), null, 'keine Rasterbilder (L-51)');
+  g.querySelector<HTMLElement>('[data-pruef="galerie-k8.2-t1"]')?.click();
+  assert.ok(g.querySelector('[data-pruef="galerie-buehne"] [data-pruef="tafel-zeitachse"]'));
+  const zu = stationsKarte(inhalte, false);
+  assert.equal(zu.querySelector('[data-pruef="sprung-B1"]'), null);
+  assert.ok(zu.querySelector('[data-pruef="sprung-A1"]'));
+  assert.ok(stationsKarte(inhalte, true).querySelector('[data-pruef="sprung-B1"]'));
+});

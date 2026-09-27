@@ -270,6 +270,14 @@ export interface WhitepaperKapitel {
 }
 
 /** Ein Absatz des Whitepapers für das Quellenfenster (wörtlich, HTML aus whitepaper.json). */
+/** Abbildung des Whitepapers (P8.5): nur Verzeichnisdaten, kein Bild (L-51) */
+export interface Abbildung {
+  id: string;
+  kapitel: string;
+  /** Absatz- oder Abschnitts-ID, bei der die Abbildung steht */
+  ort: string;
+}
+
 export interface QuellAbsatz {
   id: string;
   /** `2.4` */
@@ -297,7 +305,7 @@ export interface Startseite {
 
 export interface Inhalte extends StoryModell {
   version: 1;
-  whitepaper: { fassung: string | null; titel: string | null; kapitel: WhitepaperKapitel[]; lph: LphPhase[] };
+  whitepaper: { fassung: string | null; titel: string | null; kapitel: WhitepaperKapitel[]; lph: LphPhase[]; abbildungen: Abbildung[] };
   fall: Fall | null;
   startseite: Startseite | null;
   rollen: Record<string, Rolle>;

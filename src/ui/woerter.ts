@@ -230,6 +230,23 @@ export const W = {
       { id: 'figuren', titel: 'Figuren und Story-Karte', text: 'Die Besetzung des Falls und jede Station der Geschichte zum direkten Sprung.' },
     ],
   },
+  // Explore · Grafik-Galerie, Abbildungsverzeichnis, Story-Karte (P8.5)
+  galerie: {
+    name: 'Grafik-Galerie',
+    einstieg: (n: number) => `${n} Tabellen des Whitepapers als interaktive Grafik – die Zellen stehen wortgleich wie im Whitepaper. Wählen Sie eine Tafel.`,
+    wahl: 'Tafel wählen',
+    zurLernseite: 'zur Lernseite',
+    verzeichnis: 'Abbildungsverzeichnis des Whitepapers',
+    verzeichnisText: 'Die Abbildungen des Whitepapers sind hier nicht als Bild übernommen: Wo eine Grafik vom Text abweicht, gilt der Text V1.2. Die Tabellen der Kapitel stehen als interaktive Grafik auf den Lernseiten.',
+    abb: 'Abbildung',
+    kapitel: 'Kapitel',
+    stelle: 'Stelle im Text',
+    abbNr: (id: string) => `Abb. ${id.replace(/^abb-/u, '')}`,
+    karte: 'Story-Karte',
+    karteText: 'Jede Station der Geschichte zum direkten Sprung.',
+    karteGesperrt: 'Jede Station der Geschichte zum direkten Sprung. Welt B öffnet sich im Rückspulen – bis dahin stehen ihre Stationen ohne Link.',
+    gesperrt: 'noch nicht freigeschaltet',
+  },
   // Explore · Zeitmaschine (P8.4)
   zeitmaschine: {
     name: 'Zeitmaschine',

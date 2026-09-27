@@ -16,15 +16,18 @@ import { simulator } from './explore-simulator.ts';
 import { welten } from './explore-welten.ts';
 import { sandbox } from './explore-sandbox.ts';
 import { zeitmaschine } from './explore-zeitmaschine.ts';
+import { galerie, stationsKarte } from './explore-galerie.ts';
 
 export interface ExploreOptionen {
   inhalte: OeffentlicheInhalte;
   freigeschaltet: boolean;
+  /** Welt B freigeschaltet (Story-Karte mit Sprung) */
+  weltB: boolean;
   version: string;
 }
 
 /** Werkzeuge, die schon stehen (P8): Kennung → Anker der Fläche. */
-const FERTIG: Record<string, string> = { simulator: 'werkzeug-simulator-flaeche', welten: 'werkzeug-welten-flaeche', sandbox: 'werkzeug-sandbox-flaeche', zeitmaschine: 'werkzeug-zeitmaschine-flaeche' };
+const FERTIG: Record<string, string> = { simulator: 'werkzeug-simulator-flaeche', welten: 'werkzeug-welten-flaeche', sandbox: 'werkzeug-sandbox-flaeche', zeitmaschine: 'werkzeug-zeitmaschine-flaeche', galerie: 'werkzeug-galerie-flaeche', figuren: 'werkzeug-figuren-flaeche' };
 
 function springe(id: string): void {
   const ziel = document.getElementById(FERTIG[id] ?? '');
@@ -59,6 +62,8 @@ export function baueExplore(o: ExploreOptionen): HTMLElement {
         welten(o.inhalte),
         sandbox(),
         zeitmaschine(o.inhalte),
+        galerie(o.inhalte),
+        stationsKarte(o.inhalte, o.weltB),
         besetzung(o.inhalte),
         h('p', null,
           h('a', { class: 'querverweis', href: '#story', 'data-pruef': 'explore-zur-story' }, h('span', { class: 'querverweis-symbol' }, sym('pfeilRechts')), W.story),

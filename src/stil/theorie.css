@@ -433,3 +433,13 @@ a.glossar-ort:hover { text-decoration: underline; }
 .zm-regler { width: 100%; min-height: 32px; accent-color: var(--navy); }
 .zm-ablesen { display: grid; gap: 4px; font-size: var(--gr-text); color: var(--tinte); }
 .zm-tabelle summary { min-height: 32px; font-size: var(--gr-s); color: var(--navy); cursor: pointer; }
+
+/* Explore · Galerie und Story-Karte (P8.5) */
+.galerie-buehne { display: grid; gap: var(--a-3); min-width: 0; }
+.galerie-quelle { font-size: var(--gr-s); color: var(--tinte-2); }
+.galerie-quelle a, .galerie-verzeichnis a { color: var(--navy); font-weight: 600; }
+.galerie-verzeichnis { display: grid; gap: var(--a-2); margin-top: var(--a-4); overflow-x: auto; }
+.explore-stationen { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 6px; margin: 0; padding: 0; list-style: none; }
+.explore-station { display: flex; align-items: center; min-height: 40px; padding: 6px 12px; border-radius: var(--radius-m); background: var(--weiss); color: var(--tinte); font-size: var(--gr-text); text-decoration: none; box-shadow: inset 3px 0 0 var(--welt-farbe, var(--linie)), inset 0 0 0 1px var(--linie); }
+a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
+.explore-station.ist-gesperrt { color: var(--tinte-2); background: var(--flaeche-2); }

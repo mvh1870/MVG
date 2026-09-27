@@ -33,6 +33,7 @@ export const inhalte: OeffentlicheInhalte = {
   glossar: alle.glossar,
   theorie: alle.theorie,
   einwaende: alle.einwaende,
+  welten: alle.welten,
   abdeckung: alle.abdeckung,
   quellen: alle.quellen,
 };

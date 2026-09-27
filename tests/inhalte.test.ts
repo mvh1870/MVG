@@ -671,3 +671,12 @@ test('Nachweis (E2, P7.3): nur an Stationen der Welt B, höchstens einmal je Sta
   const doppelt = await kompiliere({ pruefe: true, wurzel: neueWurzel(mit('A', nw + nw)), ziel: null });
   assert.ok(doppelt.fehler.some((f) => /„nachweis“ doppelt/u.test(f)), doppelt.fehler.join('\n'));
 });
+
+test('Vorher/Nachher-Welten (P8.2): Beleg Pflicht, Welt A und Welt B Pflicht', async () => {
+  const mit = (text: string) => ({ ...BEISPIEL, 'inhalte/welten.md': text });
+  const gut = await kompiliere({ pruefe: true, wurzel: neueWurzel(mit('::: welt rollen\n---\ntitel: Rollen\nstationen: [X1]\n---\n### Welt A\nOhne Mandat.\n\n### Welt B\nMit Mandat.\n\n::: zitat k2.4-p1\nMehr Berichte helfen manchmal.\n:::\n:::\n')), ziel: null });
+  assert.deepEqual(gut.fehler, []);
+  assert.deepEqual((gut.inhalte as Inhalte).welten.map((w) => [w.id, w.titel, w.stationen]), [['rollen', 'Rollen', ['X1']]]);
+  const ohne = await kompiliere({ pruefe: true, wurzel: neueWurzel(mit('::: welt rollen\n---\ntitel: Rollen\n---\n### Welt A\nA.\n\n### Welt B\nB.\n:::\n')), ziel: null });
+  assert.ok(ohne.fehler.some((f) => /Welt rollen: Beleg fehlt/u.test(f)), ohne.fehler.join('\n'));
+});

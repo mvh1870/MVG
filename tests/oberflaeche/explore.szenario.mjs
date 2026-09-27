@@ -37,4 +37,31 @@ export async function lauf(seite, h) {
   if ((await seite.locator('[data-pruef="sim-bauherr"] .sim-zitat').first().innerText()).trim() === '') h.befund('Simulator: Quelle ohne Wortlaut');
   await h.warte(200);
   await pruefe('simulator');
+
+  // P8.2 Vorher/Nachher-Welten: ein Aspekt, dann alle nebeneinander
+  await h.klick('[data-pruef="werkzeug-oeffnen-welten"]');
+  if (await seite.locator('.welten-aspekt').count() !== 1) h.befund('Welten: zu Beginn nicht genau ein Aspekt');
+  await h.klick('[data-pruef="welten-knopf-alle"]');
+  if (await seite.locator('.welten-aspekt').count() !== 7) h.befund(`Welten: ${await seite.locator('.welten-aspekt').count()} Aspekte statt 7`);
+  await h.warte(200);
+  await pruefe('welten');
+
+  // P8.3 Sandbox: Frühwarnung einwerfen und per Tastatur bis zur Maßnahme führen (Fokus bleibt am Eintrag)
+  await h.klick('[data-pruef="werkzeug-oeffnen-sandbox"]');
+  await h.klick('[data-pruef="einwurf-fruehwarnung"]');
+  await h.klick('[data-pruef="schritt-FRW-001-bestaetigen"]');
+  await h.klick('[data-pruef="schritt-RIS-001-entscheidungsbedarf"]');
+  for (const s of ['bearbeiten', 'vorlegen']) {
+    await seite.locator(`[data-pruef="schritt-ENT-001-${s}"]`).focus();
+    await seite.keyboard.press('Enter');
+  }
+  const fokusNach = await seite.evaluate(() => document.activeElement?.getAttribute('data-pruef') ?? '');
+  if (!fokusNach.startsWith('schritt-ENT-001-')) h.befund(`Sandbox: Fokus nach „Vorlage fertig“ auf ${fokusNach || 'nichts'}`);
+  await h.klick('[data-pruef="schritt-ENT-001-entscheiden"]');
+  if (await seite.locator('[data-pruef="eintrag-MAS-001"]').count() !== 1) h.befund('Sandbox: nach „entscheiden“ keine Maßnahme MAS-001');
+  const summe = await seite.locator('[data-pruef="sandbox-bericht"]').innerText();
+  if (!/Entscheidungsregister[\s\S]*1 Entschieden/u.test(summe)) h.befund(`Sandbox: Managementbericht ohne Entscheidung („${summe.slice(0, 80)}“)`);
+  if (!/ENT-001: Entschieden/u.test(await seite.locator('[data-pruef="sandbox-meldung"]').innerText())) h.befund('Sandbox: Meldung für Screenreader fehlt');
+  await h.warte(400);
+  await pruefe('sandbox');
 }

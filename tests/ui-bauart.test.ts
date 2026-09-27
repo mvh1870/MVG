@@ -97,7 +97,7 @@ test('Datenebene: `inhalte` enthält kein Regie-Material, die Schlüssel stehen 
   const { inhalte, regieFuer } = await import('../src/inhalte/index.ts');
   assert.equal('regie' in inhalte, false);
   assert.deepEqual(Object.keys(inhalte).sort(), [
-    'abdeckung', 'einwaende', 'fall', 'glossar', 'interessen', 'quellen', 'rollen', 'rollenFolge', 'start', 'startseite', 'stationen', 'stationsFolge', 'theorie', 'version', 'whitepaper',
+    'abdeckung', 'einwaende', 'fall', 'glossar', 'interessen', 'quellen', 'rollen', 'rollenFolge', 'start', 'startseite', 'stationen', 'stationsFolge', 'theorie', 'version', 'welten', 'whitepaper',
   ]);
   // Kein Regie-Text steckt irgendwo sonst in den öffentlichen Inhalten.
   const oeffentlichText = JSON.stringify(inhalte);

@@ -13,6 +13,8 @@ import type { OeffentlicheInhalte } from '../../inhalte/typen.ts';
 import { MIMIKEN } from '../../figuren/figur.ts';
 import { inhalt, personFigur } from '../bausteine/inhalt.ts';
 import { simulator } from './explore-simulator.ts';
+import { welten } from './explore-welten.ts';
+import { sandbox } from './explore-sandbox.ts';
 
 export interface ExploreOptionen {
   inhalte: OeffentlicheInhalte;
@@ -21,7 +23,7 @@ export interface ExploreOptionen {
 }
 
 /** Werkzeuge, die schon stehen (P8): Kennung → Anker der Fläche. */
-const FERTIG: Record<string, string> = { simulator: 'werkzeug-simulator-flaeche' };
+const FERTIG: Record<string, string> = { simulator: 'werkzeug-simulator-flaeche', welten: 'werkzeug-welten-flaeche', sandbox: 'werkzeug-sandbox-flaeche' };
 
 function springe(id: string): void {
   const ziel = document.getElementById(FERTIG[id] ?? '');
@@ -53,6 +55,8 @@ export function baueExplore(o: ExploreOptionen): HTMLElement {
             bereit ? h('button', { type: 'button', class: 'querverweis', 'data-pruef': `werkzeug-oeffnen-${w.id}`, onclick: () => springe(w.id) }, h('span', { class: 'querverweis-symbol' }, sym('pfeilRechts')), E.oeffnen) : null);
         })),
         simulator(o.inhalte),
+        welten(o.inhalte),
+        sandbox(),
         besetzung(o.inhalte),
         h('p', null,
           h('a', { class: 'querverweis', href: '#story', 'data-pruef': 'explore-zur-story' }, h('span', { class: 'querverweis-symbol' }, sym('pfeilRechts')), W.story),

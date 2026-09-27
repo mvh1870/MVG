@@ -230,6 +230,35 @@ export const W = {
       { id: 'figuren', titel: 'Figuren und Story-Karte', text: 'Die Besetzung des Falls und jede Station der Geschichte zum direkten Sprung.' },
     ],
   },
+  // Explore · Governance-Fluss-Sandbox (P8.3)
+  sandbox: {
+    name: 'Governance-Fluss-Sandbox',
+    einstieg: 'Werfen Sie Ereignisse ein und führen Sie sie durch die Register – mit den Statusbegriffen und nächsten Schritten aus Kap. 6.4.',
+    einwerfen: 'Ereignis einwerfen',
+    einwurf: { fruehwarnung: 'Frühwarnung einwerfen', problem: 'Problem melden', aenderung: 'Änderung beantragen', schwelle: 'CTC- oder Schwellenwertverletzung' },
+    neu: 'Neu beginnen',
+    weiter: 'Nächster Schritt',
+    leer: 'noch leer',
+    schritte: {
+      bestaetigen: 'bestätigen', mindern: 'mindern', beobachten: 'beobachten', schliessen: 'schließen',
+      pruefen: 'prüfen', beschliessen: 'beschließen', ablehnen: 'ablehnen', umsetzen: 'umsetzen',
+      bearbeiten: 'bearbeiten', vorlegen: 'Vorlage fertig', entscheiden: 'entscheiden', verwerfen: 'verwerfen',
+      massnahme: 'Maßnahme', entscheidungsbedarf: 'Entscheidungsbedarf',
+    },
+    bericht: 'Managementbericht',
+    berichtText: 'aggregierter Gremienbericht – Information und Beschlussvorbereitung',
+    grenze: 'Die Sandbox kennt nur die Register, Statusbegriffe und nächsten Schritte aus Kap. 6.4.3 und 6.4.4. Wer im Projekt was bearbeitet, legt die Rollenverteilung fest (Kap. 6.4.2).',
+  },
+  // Explore · Vorher/Nachher-Welten (P8.2)
+  welten: {
+    name: 'Vorher/Nachher-Welten',
+    einstieg: 'Derselbe Fall, zwei Arten zu führen: Welt A ohne, Welt B mit Minimum Viable Governance (MVG). Wählen Sie einen Aspekt – oder alle nebeneinander.',
+    wahl: 'Aspekt wählen',
+    alle: 'Alle nebeneinander',
+    weltA: 'Welt A · ohne MVG',
+    weltB: 'Welt B · mit MVG',
+    inDerStory: 'In der Story',
+  },
   // Explore · Szenario-Simulator (P8.1)
   simulator: {
     name: 'Szenario-Simulator',

@@ -234,6 +234,16 @@ export interface Einwand {
   bloecke: Block[];
 }
 
+/** Vorher/Nachher-Welten (P8.2): ein Aspekt in Welt A und Welt B, mit Beleg (zitat) als Block */
+export interface WeltAspekt {
+  id: string;
+  titel: string;
+  stationen: string[];
+  weltA: string;
+  weltB: string;
+  bloecke: Block[];
+}
+
 export interface Abdeckung {
   /** Blöcke im Whitepaper */
   gesamt: number;
@@ -299,6 +309,7 @@ export interface Inhalte extends StoryModell {
   glossar: Record<string, GlossarEintrag>;
   theorie: Record<string, TheorieSeite>;
   einwaende: Einwand[];
+  welten: WeltAspekt[];
   abdeckung: Abdeckung;
   /** Quellenfenster (P2.3): Originaltext der Absätze, auf die Stationen verweisen */
   quellen: Record<string, QuellAbsatz>;

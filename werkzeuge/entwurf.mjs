@@ -66,6 +66,13 @@ export async function pruefeEntwurf(optionen = {}) {
   }
   const erg = await kompiliere({ pruefe: true, wurzel: ziel, whitepaperPfad: path.join(wurzel, STANDARD_WHITEPAPER), ziel: null });
   rmSync(ziel, { recursive: true, force: true });
+  // Abdeckungskarte (entwurf/abdeckung.yaml) trägt jeden „whitepaper-bezug“ einer Station als Story-Bezug
+  const ziele = erg.inhalte?.abdeckung?.ziele ?? {};
+  for (const st of Object.values(erg.inhalte?.stationen ?? {})) {
+    for (const id of /** @type {any} */ (st).whitepaper ?? []) {
+      if (!(ziele[id]?.story ?? []).includes(/** @type {any} */ (st).id)) fehler.push(`entwurf: abdeckung.yaml – ${id} ohne Story-Bezug auf ${/** @type {any} */ (st).id} (steht in dessen whitepaper-bezug)`);
+    }
+  }
   return { fehler: [...fehler, ...erg.fehler], warnungen: erg.warnungen, inhalte: erg.inhalte, ueberlagert };
 }
 

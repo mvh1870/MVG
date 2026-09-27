@@ -108,6 +108,7 @@ k4.4-p1:
   theorie: k04
 k4.4-p2:
   theorie: k04
+  story: B3
 # ── 4.5 Freigabe
 k4.5-p1:
   theorie: k04
@@ -194,6 +195,7 @@ k6.4.1-p2:
   theorie: k06
 k6.4.1-p3:
   theorie: k06
+  story: B3
 k6.4.1-p4:
   theorie: k06
 # ── 6.4.2 Registerpflege und Takt
@@ -329,6 +331,7 @@ k9.3-t1:
 # ── 9.4 Standard für Entscheidungsvorlagen als Nachweislogik
 k9.4-p1:
   theorie: k09
+  story: B3
 k9.4-p2:
   theorie: k09
 k9.4-l1:

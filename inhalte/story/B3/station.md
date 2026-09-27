@@ -5,7 +5,7 @@ monat: 5
 titel: Kosten +8 %   # geschütztes Leerzeichen vor „%“: der Titel bricht dort nie um
 lph: 5
 uhr: derselbe Montag
-whitepaper-bezug: [k2.4-p2, k4.2-p3, k6.4.3-p1, k6.4.3-p2, k6.4.4-t1, k9.4-l1]
+whitepaper-bezug: [k2.4-p2, k4.2-p3, k6.4.3-p1, k6.4.3-p2, k6.4.4-t1, k9.4-l1, k6.4.1-p3, k4.4-p2, k9.4-p1]
 status-start:
   entscheidungsfaehigkeit: 4
   kostenunsicherheit: mittel
@@ -247,4 +247,84 @@ titel: Nachweis
 Berichterstattung erzeugt Information. Führung entsteht erst, wenn Information mit Mandat, Entscheidung, Schwelle, Risikoannahme, Datenstand, Freigabe und Nachweis verbunden wird. Ein Ampelbericht ohne Entscheidungsfrage bleibt Beobachtung. Ein Änderungsregister ohne Schwellenlogik bleibt Verwaltung.
 :::
 :::
+:::
+
+::: vertiefung kosten
+---
+titel: Eine Zahl, die gilt
+---
+Es gilt die „Kostenprognose 2026-05 · Version 3“: +8 %, rund +4,7 Mio. € gegen die Projektbasis von 58,4 Mio. €, die Risikoreserve von 2,9 Mio. € darin noch nicht eingesetzt. Den Weg ausgelöst hat die Restkostenprognose des Controllings: Sie lag über dem Schwellenwert, daraus wurde `FRW-003`. Kap. 6.4.3: [[zitat:k6.4.3-p2|CTC- oder Schwellenwertverletzungen erzeugen neue Frühwarnungen als neue Signale, nicht als Rückrichtung aus einem bestehenden Risiko.]]
+:::
+
+::: vertiefung organisation
+---
+titel: Jedes Register hat eine Rolle
+---
+Das Controlling führt CTC und Prognose (die Zahl der Version 3 rechnet die Projektsteuerung zu), die Projektsteuerung Frühwarnungs- und Risikoregister, die Bauherren-PL Entscheidungs- und Änderungsregister. So kommt `FRW-003` über `RIS-014` bei `ENT-017` an – mit Frage und Frist. Kap. 6.4.1: [[zitat:k6.4.1-p3|Entscheidungsbedürftige Themen werden nicht nur berichtet, sondern über das Entscheidungsregister und eine Entscheidungsvorlage entscheidungsreif gemacht.]]
+:::
+
+::: vertiefung risiko
+---
+titel: Ein Risiko mit Entscheidungsbedarf
+---
+Die Projektsteuerung hat `FRW-003` bestätigt und bewertet; daraus wurde `RIS-014` „Preissteigerung Holzbauelemente“. In `ENT-017` fehlen zu Option 2, dem Einsatz der Risikoreserve, noch Termin und Risiko. Kap. 4.4: [[zitat:k4.4-p2|Ein Risiko wird nicht nur als Eintrag geführt, sondern mit einer verantwortlichen Rolle, Frist, Wirkung, Risikominderung, Restrisiko, Entscheidungsbedarf und Eskalationsschwelle verbunden.]]
+:::
+
+::: vertiefung freigaben
+---
+titel: Die betroffene Freigabe steht in der Vorlage
+---
+`ENT-017` nennt die betroffene Freigabe: LPH 5. Die Freigabe zum Abschluss von LPH 5 erteilt der Bauherr selbst auf Vorlage der Bauherren-PL. Der Freigabe- oder Eskalationsweg ist in der Vorlage noch offen – er hängt von der Option ab. Kap. 9.4 nennt das Ziel der Vorlage: [[zitat:k9.4-p1|Ziel ist, dass spätere Dritte nachvollziehen können, welche Frage entschieden wurde, auf welchem Datenstand, mit welchen Optionen, Annahmen, Risiken, Empfehlungen und Freigaben.]]
+:::
+
+::: standpunkt gf
+---
+figur: deppe
+---
+„4,7 Mio. € – das liegt beim Änderungsgremium, wenn es um die Fassade geht. Da habe ich den Vorsitz. Bei der Risikoreserve nicht.“
+:::
+
+::: standpunkt bauherr
+---
+figur: olbers
+---
+„Am 21. tagt der Bauausschuss. Ich weiß, welche Zahl gilt. Ob die Frage bei mir landet, hängt an der Option.“
+:::
+
+::: standpunkt pl
+---
+figur: sie
+---
+„`ENT-017` liegt vor mir: eine Frage, zwei Optionen, eine Zahl mit Version. Eine Woche bis zum Lenkungskreis – kann die zuständige Stufe darauf entscheiden?“
+:::
+
+::: standpunkt ps
+---
+figur: brenner
+---
+„`FRW-003` ist bestätigt, `RIS-014` bewertet, `ENT-017` in Arbeit. Wer entscheidet, hängt an der Option – nicht an mir.“
+:::
+
+::: standpunkt planung
+---
+figur: hoffmeister
+---
+„Eine günstigere Fassade hätte ich. Als `AEN-022` ist sie jetzt eine Option in der Vorlage – entscheiden werde nicht ich.“
+:::
+
+::: standpunkt controlling
+---
+figur: kaya
+---
+„Meine CTC hat den Schwellenwert gerissen, daraus ist `FRW-003` geworden. Und es gilt eine Prognose: Version 3.“
+:::
+
+::: regie
+### Notiz
+B3 zeigt denselben Montag wie A3 – dieselbe Abweichung, dieselben Gremientermine. Welt B ist nicht frei von offenen Punkten: `ENT-017` ist noch nicht vollständig, und welche Stufe der Mandatsleiter entscheidet, hängt von der Option ab. Nicht beschönigen und nicht vorwegnehmen. Die sechs Teile der Reihe nach zeigen; Signal und Datenstand zügig, das Gewicht liegt auf Mandat und `ENT-017`.
+
+### Leitfragen
+- Welche Zahl wäre bei Ihnen an diesem Montag die geltende – und wer hätte das festgelegt?
+- Löst bei Ihnen ein Schwellenwert ein Signal aus, oder landet eine Zahl in einer Mail?
+- Wo hätte bei Ihnen eine Abweichung von 4,7 Mio. € ihre Entscheidungsfrage bekommen?
 :::

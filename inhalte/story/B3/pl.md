@@ -53,7 +53,7 @@ In Welt A lag an diesem Montag dieselbe Prognose auf dem Tisch – mit zwei Zahl
 
 ::: regie
 ### Notiz
-Die sechs Teile in Ruhe durchgehen. Beim Mandat beide Optionen zeigen: Das Mandat hängt von der Option ab. Bei `ENT-017` das Gegenüber selbst urteilen lassen, erst dann die Rückmeldung zeigen. Zum Schluss den Rückbezug auf die eigene Wahl in Welt A vorlesen.
+Die sechs Teile der Reihe nach durchgehen, bei Mandat und `ENT-017` verweilen. Beim Mandat beide Optionen zeigen: Das Mandat hängt von der Option ab. Bei `ENT-017` das Gegenüber selbst urteilen lassen, erst dann die Rückmeldung zeigen. Zum Schluss den Rückbezug auf die eigene Wahl in Welt A vorlesen.
 
 ### Leitfragen
 - Gibt es bei Ihnen eine Schwelle, ab der eine Änderung in ein Gremium muss?

@@ -1,7 +1,7 @@
 ---
 station: A1
 rolle: planung
-frage: Der Bauantrag ist draußen, die Holzpreise steigen. Worauf richten Sie die Generalplanung in den ersten Wochen aus?
+frage: Der Bauantrag geht diese Woche raus, die Holzpreise steigen. Worauf richten Sie die Generalplanung in den ersten Wochen aus?
 ---
 
 ::: option A
@@ -46,8 +46,8 @@ Welche Zielkonflikte darf die Planung selbst auflösen – und welche nicht?
 
 ::: option C
 ---
-titel: Bei der Genehmigungsplanung bleiben und die Marktnotiz per Mail verteilen
-kurz: Marktnotiz verteilen
+titel: Den Bauantrag abschließen und die Marktnotiz per Mail verteilen
+kurz: Bauantrag zuerst, Notiz per Mail
 status:
   offene-risiken: +1
 ---

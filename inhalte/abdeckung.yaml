@@ -116,6 +116,7 @@ k4.5-p2:
 # ── 4.6 Datenstand und Nachweis
 k4.6-p1:
   theorie: k04
+  story: A3
 k4.6-p2:
   theorie: k04
   story: A3

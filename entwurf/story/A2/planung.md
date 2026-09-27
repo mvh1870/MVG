@@ -13,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Frank Deppe hat es ja zugesagt. Die Planung arbeitet die Mensa für rund 450 Essen ein; die grob 0,6 Mio. € stehen in keiner Prognose.
+Die Schulseite geht von einer Zusage aus. Sie arbeiten die Mensa für rund 450 Essen ein; die grob 0,6 Mio. € stehen in keiner Prognose.
 
 ### Was fehlt
 Eine Entscheidung über die Änderung – und wer sie treffen darf.

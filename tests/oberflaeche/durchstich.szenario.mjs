@@ -154,6 +154,16 @@ export async function lauf(seite, h) {
   await stand('a3-quellen', seite, 400);
   await h.taste('Escape');
   if ((await seite.locator('[data-pruef="leitstand"]').getAttribute('data-seitenleiste')) !== 'zu') h.befund('Seitenleiste schließt nicht mit Esc');
+
+  /* ------------------------------------------------------ A3 · Ebenen 1 → 4 -- */
+  await weiter();
+  await h.erwarte('[data-pruef="ebene-1"]');
+  for (let i = 0; i < 3; i += 1) {
+    await h.taste('ArrowRight');
+    await h.warte(150);
+  }
+  await h.erwarte('[data-pruef="ebene-4"] [data-pruef="zitat"]');
+  await stand('a3-ebene4');
   await weiter();
 
   /* --------------------------------------------------- Vergleich Welt A ⟷ B -- */

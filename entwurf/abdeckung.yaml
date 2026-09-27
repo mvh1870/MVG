@@ -77,7 +77,7 @@ k3.1-p2:
 # ── 3.2 Delegierbar und nicht delegierbar
 k3.2-t1:
   theorie: k03
-  story: [B5, wendepunkt, ende-neufestlegung]
+  story: [A5, B5, wendepunkt, ende-neufestlegung]
 k3.2-p1:
   theorie: k03
 # ── 3.3 Die Verantwortungspyramide – Arbeitsebene, Mandatsebene und Letztverantwortung
@@ -133,6 +133,7 @@ k4.5-p2:
 # ── 4.6 Datenstand und Nachweis
 k4.6-p1:
   theorie: k04
+  story: A3
 k4.6-p2:
   theorie: k04
   story: A3
@@ -353,7 +354,7 @@ k9.3-p2:
   story: ende-steuerbar
 k9.3-p3:
   theorie: k09
-  story: [B6, ende-auflagen]
+  story: [A6, B6, ende-auflagen]
 k9.3-t1:
   theorie: k09
   story: B6

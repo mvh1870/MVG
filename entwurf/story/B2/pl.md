@@ -79,7 +79,7 @@ In Welt A haben Sie ‚An den Bauherrn geben‘ gewählt. In Welt B muss Dr. Olb
 :::
 
 ::: rueckbezug ohne
-In Welt A kamen derselbe Anruf und dieselbe Mail – und wurden zu einer Flurzusage und einer Notiz. In Welt B werden sie zu `FRW-001` und `AEN-012`.
+In Welt A kamen dieselbe Marktabfrage und dieselbe Mail – und wurden zu einer Flurzusage und einer Notiz. In Welt B werden sie zu `FRW-001` und `AEN-012`.
 :::
 
 ::: regie

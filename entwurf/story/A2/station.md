@@ -4,7 +4,7 @@ welt: A
 monat: 3
 titel: Erstes Signal
 lph: 5
-uhr: Dienstag, 11:15 Uhr
+uhr: Dienstag, 10. März, 11:15 Uhr
 whitepaper-bezug: [k4.1-p1, k4.1-p2, k4.2-p1, k4.2-p2]
 status-start:
   entscheidungsfaehigkeit: 3
@@ -18,10 +18,10 @@ weiter: A3
 
 ::: schritt einstieg
 ---
-titel: Dienstag, 11:15 Uhr. Monat 3.
+titel: Dienstag, 10. März, 11:15 Uhr. Monat 3.
 kurz: Einstieg
 ---
-Seit Februar steht das Projekt in LPH 5. An diesem Vormittag kommen innerhalb einer halben Stunde zwei Nachrichten.
+Seit Februar steht das Projekt in LPH 5. An diesem Vormittag kommen zwei neue Unterlagen dazu.
 
 ::: protokoll
 ---
@@ -35,12 +35,14 @@ von: petersen
 - Verschiedenes: –
 :::
 
-::: anruf
+::: protokoll
 ---
-von: hoffmeister
-zeit: "10:48"
+titel: Marktabfrage Holzbau (Generalplanung)
+datum: 10. März 2026
 ---
-„Die Marktabfrage für die Holzbauelemente ist zurück: Lieferzeit jetzt rund 26 Wochen statt 16. Ich rechne schon Varianten durch.“
+- Holzbauelemente: Lieferzeit jetzt rund 26 Wochen statt 16.
+- Varianten werden durchgerechnet.
+- Terminwirkung: nicht bewertet.
 :::
 
 ::: mail
@@ -55,9 +57,8 @@ Der Ganztag wird größer als geplant. Die Kinder brauchen eine Mensa für rund 
 ::: notiz
 ---
 farbe: gelb
-symbol: anruf
 ---
-Hoffmeister: 26 statt 16 Wochen – was heißt das für den Termin?
+Lieferzeit Holz: 26 statt 16 Wochen – was heißt das für den Termin?
 :::
 
 ::: notiz
@@ -92,7 +93,7 @@ knopf: Jetzt entscheiden
 ::: bekannt
 - Lieferzeit Holzbauelemente: von rund 16 auf 26 Wochen (Marktabfrage der Generalplanung).
 - Nutzerwunsch: Mensa für rund 450 statt 300 Essen, grob 0,6 Mio. € (Schätzung der Generalplanung).
-- Frank Deppe hat mündlich zugesagt; schriftlich gibt es nichts.
+- Laut Sabine Roth hat Frank Deppe im Flur gesagt: „Wir kriegen das hin.“ Schriftlich gibt es nichts.
 - Für Änderungen am Projektumfang sind keine Schwellen festgelegt.
 :::
 
@@ -120,7 +121,7 @@ bleibt:
 Terminrisiko steigt.
 
 ### Neu bekannt
-Frank Deppe versteht seinen Satz im Flur als Absichtserklärung, Sabine Roth als Zusage. Die Schulseite plant bereits mit der größeren Mensa.
+Frank Deppe versteht seinen Satz im Flur als Absichtserklärung, Sabine Roth als Zusage. Die Schulseite plant bereits mit der größeren Mensa. Im Lenkungskreis am 17. März kommen beide Themen ohne Vorlage zur Sprache; entschieden wird nichts.
 :::
 :::
 
@@ -160,7 +161,7 @@ Was gebaut wird und welcher Zielkonflikt wie aufgelöst wird, entscheidet der Ba
 ---
 titel: Warum relevant
 ---
-Varianten, Kostenmodelle und Nutzeranalysen können vorbereitet werden; die Priorisierung bleibt Bauherrenaufgabe. Ohne explizite Zielverantwortung optimiert jede Rolle aus ihrer fachlichen Perspektive, aber niemand hält den Zielkonflikt zusammen. Eine Zusage im Flur ändert den Projektumfang, bevor jemand Nutzerbedarf, Kosten und Termin gegeneinander abgewogen hat.
+Varianten, Kostenmodelle und Nutzeranalysen können vorbereitet werden; die Priorisierung bleibt Bauherrenaufgabe. Ohne explizite Zielverantwortung optimiert jede Rolle aus ihrer fachlichen Perspektive, aber niemand hält den Zielkonflikt zusammen. Ein Satz im Flur wird als Zusage gelesen, bevor jemand Nutzerbedarf, Kosten und Termin gegeneinander abgewogen hat.
 :::
 
 ::: ebene 3
@@ -173,7 +174,7 @@ Die Fragen eines wirksamen [[Mandat|Mandatsmodells]] (Kap. 4.2) – und wo sie a
 |---|---|
 | Welche Entscheidung darf auf Projektebene getroffen werden? | Ob die Bauherren-PL die Mensa beauftragen darf, weiß niemand. |
 | Welche Schwelle erfordert eine Entscheidung des Bauherrn oder die Beschlussfassung durch den Bauherrn im Lenkungskreis? | Für rund 0,6 Mio. € ist keine Schwelle festgelegt. |
-| Wer darf Kosten, Projektumfang, Termin, Risiko oder Vergabe beeinflussen? | Die Flurzusage berührt den Projektumfang, die Lieferzeit den Termin. |
+| Wer darf Kosten, Projektumfang, Termin, Risiko oder Vergabe beeinflussen? | Der Satz im Flur berührt den Projektumfang, die Lieferzeit den Termin. |
 | Welche Unterlagen müssen vorliegen? | Eine grobe Schätzung, noch ohne Termin- und Risikowirkung. |
 | Welche Rolle ist letztverantwortlich? | Offen. |
 :::
@@ -232,7 +233,7 @@ figur: kaya
 
 ::: regie
 ### Notiz
-Zwei Signale an einem Vormittag: ein Terminsignal und eine gewollte Änderung. Die Flurzusage nicht verurteilen – sie ist gut gemeint. Die Station zeigt, dass es für beides keinen festgelegten Weg gibt (Kap. 4.1 Ziel, 4.2 Mandat). Die stille Freigabe zum Abschluss von LPH 4 im Protokoll nur erwähnen, wenn jemand danach fragt.
+Zwei Signale an einem Vormittag: ein Terminsignal und eine gewollte Änderung. Die Flurzusage nicht verurteilen – sie ist gut gemeint. Die Station zeigt, dass es für beides keinen festgelegten Weg gibt (Kap. 4.1 Ziel, 4.2 Mandat). Die stille Freigabe zum Abschluss von LPH 4 im Jour-fixe-Protokoll nur erwähnen, wenn jemand danach fragt.
 
 ### Leitfragen
 - Wer priorisiert bei Ihnen, wenn Nutzerbedarf, Kosten und Termin auseinandergehen?

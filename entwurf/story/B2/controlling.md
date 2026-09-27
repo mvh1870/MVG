@@ -78,7 +78,7 @@ In Welt A haben Sie ‚Zusage klären lassen‘ gewählt. In Welt B braucht es d
 :::
 
 ::: rueckbezug ohne
-In Welt A kamen Anruf und Mail am selben Tag – und gingen in keine Liste. In Welt B sind sie `FRW-001` und `AEN-012`, jede mit Rolle und nächstem Schritt.
+In Welt A kamen Marktabfrage und Mail am selben Tag – und gingen in keine Liste. In Welt B sind sie `FRW-001` und `AEN-012`, jede mit Rolle und nächstem Schritt.
 :::
 
 ::: regie

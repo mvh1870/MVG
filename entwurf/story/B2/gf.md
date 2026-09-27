@@ -78,7 +78,7 @@ In Welt A haben Sie ‚In den Lenkungskreis‘ gewählt. In Welt B landet die Li
 :::
 
 ::: rueckbezug ohne
-In Welt A kamen an diesem Tag derselbe Anruf und dieselbe Mail. In Welt B haben beide eine Kennung und einen Weg.
+In Welt A kamen an diesem Tag dieselbe Marktabfrage und dieselbe Mail. In Welt B haben beide eine Kennung und einen Weg.
 :::
 
 ::: regie

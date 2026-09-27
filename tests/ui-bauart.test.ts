@@ -368,6 +368,20 @@ test('Leitstand: Sprunglink, Reiter nach dem Tabs-Muster, modale Rollen-Linse, G
   }
 });
 
+test('H13: Absender ist die Figur der gespielten Rolle → „Sie“ statt Name in der dritten Person', async () => {
+  const B = await import('../src/ui/bausteine/bloecke.ts');
+  const mailBlock = inhalte.stationen['A3']?.schritte[0]?.bloecke.find((b) => b.art === 'mail');
+  const chatBlock = inhalte.stationen['A3']?.schritte[0]?.bloecke.find((b) => b.art === 'chat');
+  assert.ok(mailBlock !== undefined && chatBlock !== undefined);
+  const woerter = { eingang: 'Posteingang', neu: 'neu', betreff: 'Betreff', anhang: 'Anhang', sie: 'Sie' };
+  const fremd = B.mail(mailBlock, inhalte, woerter, 'kaya');
+  assert.match(fremd.querySelector('.absender b')?.textContent ?? '', /Jonas Brenner/);
+  const selbst = B.mail(mailBlock, inhalte, woerter, 'brenner');
+  assert.equal(selbst.querySelector('.absender b')?.textContent, 'Sie');
+  assert.equal(selbst.getAttribute('aria-label'), 'E-Mail von Ihnen');
+  assert.equal(B.chat(chatBlock, inhalte, 0, 'kaya', 'Sie').querySelector('.blase-kopf b')?.textContent, 'Sie');
+});
+
 test('Leinwand-Anzeige: nicht bedienbar, derselbe Stand, keine Regie-Notiz', () => {
   let z = anfangszustand();
   const sitzung = erzeugeSitzung(z, inhalte, { speicher: null });

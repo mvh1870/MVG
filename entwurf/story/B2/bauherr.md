@@ -83,7 +83,7 @@ Der Bauherr umgeht die Leiter, die er selbst festgelegt hat.
 
 ::: regie
 ### Notiz
-Derselbe Anruf wie in Welt A. Zeigen, dass der Bauherr hier nicht weniger Einfluss hat, sondern einen klaren Ort dafür.
+Dieselbe Lage wie in Welt A. Zeigen, dass der Bauherr hier nicht weniger Einfluss hat, sondern einen klaren Ort dafür.
 
 ### Leitfragen
 - Wie kommen Nutzerwünsche bei Ihnen ins Änderungsregister?

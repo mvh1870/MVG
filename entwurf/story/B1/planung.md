@@ -74,7 +74,7 @@ In Welt A haben Sie ‚Zielpriorität erfragen‘ gewählt. In Welt B müssen Si
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Marktnotiz verteilen‘ gewählt. In Welt B landet die Notiz nicht in drei Postfächern, sondern als Frühwarnung in einem Register mit verantwortlicher Rolle.
+In Welt A haben Sie ‚Bauantrag zuerst, Notiz per Mail‘ gewählt. In Welt B landet die Notiz nicht in drei Postfächern, sondern als Frühwarnung in einem Register mit verantwortlicher Rolle.
 :::
 
 ::: rueckbezug ohne

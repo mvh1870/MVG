@@ -54,27 +54,36 @@ export function notizFarbe(farbe: string | null): string | null {
   return null;
 }
 
-export function mail(b: Block, inhalte: OeffentlicheInhalte, beschriftung: { eingang: string; neu: string; betreff: string; anhang: string }): HTMLElement {
+/**
+ * Name des Absenders – oder „Sie“, wenn die Figur die der gespielten Rolle ist (H13: niemand liest
+ * über sich in der dritten Person). `ich` = Figur der gespielten Rolle.
+ */
+function absenderName(von: string, inhalte: OeffentlicheInhalte, ich: string | null, sieWort: string): string {
+  return ich !== null && von === ich ? sieWort : personName(von, inhalte);
+}
+
+export function mail(b: Block, inhalte: OeffentlicheInhalte, beschriftung: { eingang: string; neu: string; betreff: string; anhang: string; sie?: string; vonIhnen?: string }, ich: string | null = null): HTMLElement {
   const von = kopfText(b.kopf, 'von') ?? '';
   const anhang = kopfText(b.kopf, 'anhang');
-  return h('article', { class: 'mail', 'aria-label': `E-Mail von ${personName(von, inhalte)}` },
+  const name = absenderName(von, inhalte, ich, beschriftung.sie ?? 'Sie');
+  return h('article', { class: 'mail', 'aria-label': ich !== null && von === ich ? (beschriftung.vonIhnen ?? 'E-Mail von Ihnen') : `E-Mail von ${name}` },
     h('div', { class: 'mail-leiste' }, sym('mail'), h('span', null, beschriftung.eingang), h('span', { class: 'mail-neu' }, beschriftung.neu),
       kopfText(b.kopf, 'zeit') !== null ? h('span', { class: 'mail-zeit' }, kopfText(b.kopf, 'zeit')) : null),
     h('div', { class: 'mail-inhalt' },
-      h('div', { class: 'absender' }, personFigur(von, 46, inhalte), h('div', null, h('b', null, personName(von, inhalte)), h('span', null, personFunktion(von, inhalte)))),
+      h('div', { class: 'absender' }, personFigur(von, 46, inhalte), h('div', null, h('b', null, name), h('span', null, personFunktion(von, inhalte)))),
       h('h3', { class: 'mail-betreff' }, h('span', { class: 't-label' }, beschriftung.betreff), kopfText(b.kopf, 'betreff') ?? ''),
       h('div', { class: 'mail-text' }, inhalt(b.felder['text'] ?? '')),
       anhang !== null ? h('span', { class: 'anhang' }, sym('tabelle'), h('span', { class: 'nur-sr' }, `${beschriftung.anhang}: `), h('span', { class: 'mono' }, anhang)) : null));
 }
 
-export function chat(b: Block, inhalte: OeffentlicheInhalte, verzug: number): HTMLElement {
+export function chat(b: Block, inhalte: OeffentlicheInhalte, verzug: number, ich: string | null = null, sieWort = 'Sie'): HTMLElement {
   const von = kopfText(b.kopf, 'von') ?? '';
   const f = inhalte.fall?.figuren[von];
   const kurz = f !== undefined ? (inhalte.rollen[f.rolle ?? '']?.kurztitel ?? f.funktion) : '';
   return h('div', { class: 'chat anim-auftauchen', style: `--verzug:${verzug}ms` },
     personFigur(von, 42, inhalte),
     h('div', { class: 'sprechblase' },
-      h('div', { class: 'blase-kopf' }, h('b', null, personName(von, inhalte)), h('span', null, kurz),
+      h('div', { class: 'blase-kopf' }, h('b', null, absenderName(von, inhalte, ich, sieWort)), h('span', null, kurz),
         kopfText(b.kopf, 'zeit') !== null ? h('span', { class: 'blase-zeit' }, kopfText(b.kopf, 'zeit')) : null),
       h('div', { class: 'blase-text', style: `--verzug:${verzug}ms` },
         h('div', { class: 'tippt', 'aria-hidden': 'true' }, h('i'), h('i'), h('i')),

@@ -187,14 +187,14 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Ein Projekt wird verwundbar, bevor eine Zahl kippt: wenn Preisannahmen wanken, Ziele ohne Abwägungsregel nebeneinanderstehen und Wissen bei wenigen Personen liegt statt in Artefakten und Routinen.
+Die organisatorische Verletzlichkeit steigt, wenn Preisannahmen kippen, ESG und LCC nicht früh in Zielsystem und Abwägungsregeln integriert sind und Wissen nicht in Artefakte und Routinen übersetzt ist.
 :::
 
 ::: ebene 2
 ---
 titel: Warum relevant
 ---
-In Monat 1 ist noch nichts passiert – das ist der Punkt. Die Marktnotiz betrifft eine Preisannahme; solche Annahmen kippen schnell, während Entscheidungsprozesse oft noch auf stabilere Umfelder ausgelegt sind (Kap. 2.1). Werden [[ESG]] und [[LCC]] nicht früh in Zielsystem und Abwägungsregeln integriert, werden Zielkonflikte erst sichtbar, wenn die Planung weit fortgeschritten ist und Änderungen teuer werden (Kap. 2.2). Und wenn eine Kostendatei nur von einer Person verstanden wird, liegt der Engpass in der fehlenden Wiederholbarkeit von Entscheidungen (Kap. 2.3).
+In Monat 1 ist noch nichts passiert – das ist der Punkt. Die Marktnotiz betrifft eine Preisannahme. Volatile Märkte treffen Bauprojekte über Preisannahmen und Lieferzeiten; im Zeitraum von Ausschreibung, Vergabe und Beschaffung von Komponenten mit langer Lieferzeit kippen Annahmen schnell, während Entscheidungsprozesse oft noch auf stabilere Umfelder ausgelegt sind (Kap. 2.1). In diesem Projekt steht die Vergabe der Holzbauelemente noch bevor. Werden [[ESG]] und [[LCC]] nicht früh in Zielsystem und Abwägungsregeln integriert, werden Zielkonflikte erst sichtbar, wenn die Planung weit fortgeschritten ist und Änderungen teuer werden (Kap. 2.2). Und wenn eine Kostendatei nur von einer Person verstanden wird, liegt der Engpass in der fehlenden Wiederholbarkeit von Entscheidungen (Kap. 2.3).
 :::
 
 ::: ebene 3
@@ -203,7 +203,7 @@ titel: Vertiefung
 ---
 | Kapitel | Treiber laut Whitepaper | In A1 sichtbar |
 |---|---|---|
-| 2.1 Volatile Märkte | Preisannahmen, Lieferzeiten, Komponenten mit langer Lieferzeit | Marktnotiz zu Holzpreisen, ohne Empfänger |
+| 2.1 Volatile Märkte | Preisannahmen, Lieferzeiten, Komponenten mit langer Lieferzeit | Marktnotiz zu Holzpreisen, nur an den alten Verteiler, von niemandem bewertet |
 | 2.2 ESG, LCC und Nachweislogik | höhere Anforderungen an Zieldefinition, Variantenvergleich und Nachweisführung | Kosten, Termin, ESG und LCC ohne Rangfolge |
 | 2.3 Wissensverlust und Schlüsselrollen | Abhängigkeit von wenigen erfahrenen Personen; Wissen nicht in Artefakte und Routinen übersetzt | Kostendatei, die nur Holger Stein versteht |
 
@@ -263,7 +263,7 @@ figur: hoffmeister
 ---
 figur: kaya
 ---
-„Die Kostendatei liegt bei der Projektsteuerung, die Annahmen im Kopf von Holger Stein. Mit welcher Zahl rechnet eigentlich die GML?“
+„Die Kostendatei liegt bei der Projektsteuerung, die Annahmen im Kopf von Holger Stein. Mit welcher Zahl rechne ich eigentlich dagegen?“
 :::
 
 ::: regie

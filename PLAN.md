@@ -34,11 +34,11 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P3.1 · Figuren- und Requisiten-Baukasten (SVG): alle Figuren (Rollenfarben, Mimik neutral/besorgt/erleichtert), Mail, Chat, Excel-Stand, Haftnotiz, Protokoll, Aktenstapel — Abnahme: Galerie-Seite im Bau.
 - [~] P3.2 (2026-09-27, Rahmen gebaut, Prüfbefunde offen) · Station A1 (alle 6 Rollen)
 - [~] P3.3 (2026-09-27, Rahmen gebaut, Prüfbefunde offen) · Station A2 (alle 6 Rollen)
-- [ ] P3.4 · Station A3 (alle 6 Rollen; PL aus dem Durchstich übernehmen)
-- [ ] P3.5 · Station A4 (alle 6 Rollen)
-- [ ] P3.6 · Station A5 (alle 6 Rollen)
-- [ ] P3.7 · Station A6 (alle 6 Rollen)
-- [ ] P3.8 · Prüf-Agenten Welt A + Korrekturen — Abnahme: keine offenen Befunde; jede Rolle in Browser-Tests bis zum Wendepunkt spielbar (drei Größen, mit axe); je Station Ebene 1–4; LPH-Band auch bei 400 px geprüft (P2-Befund V7/V9).
+- [~] P3.4 (2026-09-27, Ebenen 1–4 ergänzt; Prüfbefunde offen) · Station A3 (alle 6 Rollen; PL aus dem Durchstich übernehmen)
+- [~] P3.5 (2026-09-27, Rahmen gebaut, Prüfbefunde offen) · Station A4 (alle 6 Rollen)
+- [~] P3.6 (2026-09-27, Rahmen gebaut, Prüfbefunde offen) · Station A5 (alle 6 Rollen)
+- [~] P3.7 (2026-09-27, Rahmen gebaut, Prüfbefunde offen) · Station A6 (alle 6 Rollen)
+- [~] P3.8 (2026-09-27, Prüfung läuft) · Prüf-Agenten Welt A + Korrekturen — Abnahme: keine offenen Befunde; jede Rolle in Browser-Tests bis zum Wendepunkt spielbar (drei Größen, mit axe); je Station Ebene 1–4; LPH-Band auch bei 400 px geprüft (P2-Befund V7/V9).
 - [ ] P3.9 · Vertiefungsangebote je Interesse (O-19 „intelligente Vertiefung“, P2-Befund V1): bedingte Zusatzkarten `wenn: [interesse …]` an den Stationen A1–A6 und B1–B6; Prolog-Satz wieder zusagen — Abnahme: Test „Interesse gewählt → Angebot sichtbar, sonst nicht“.
 
 ### P4 · Wendepunkt & Diagramm-Baukasten

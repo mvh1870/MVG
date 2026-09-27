@@ -47,6 +47,8 @@ export const W = {
   vorschau: 'Vorschau',
   weltVergleich: 'Welt A ⟷ Welt B',
   karte: 'Story-Karte',
+  /** Absender = Figur der gespielten Rolle (H13) */
+  sieSelbst: 'Sie',
   /** LPH-Band (O-14): Beschriftung für Screenreader */
   lphBand: 'Leistungsphasen LPH 0–9',
   lphJetzt: 'aktuell',

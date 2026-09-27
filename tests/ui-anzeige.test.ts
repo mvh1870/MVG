@@ -69,6 +69,9 @@ test('Weiter wartet auf die Entscheidung; danach Konsequenz, Vergleich, Welt B b
   z = weiter(z);
   assert.equal(art(z), 'konsequenz');
   z = weiter(z);
+  assert.equal(art(z), 'ebenen', 'A3 hat seit P3.4 Ebenen 1–4 nach der Konsequenz');
+  for (let e = 2; e <= 4; e += 1) z = tue(z, weiterAktion(o(z), inhalte) ?? { art: 'weiter' });
+  z = weiter(z);
   const vergleich = inhalte.stationen[z.station ?? ''];
   assert.ok(vergleich?.vergleich, 'nach A3 folgt der Vergleich');
   assert.equal(tafelWelt(vergleich ?? null), 'ab');
@@ -105,6 +108,9 @@ test('Regie-Eingriffe: Kundenwahl A–D an der Entscheidung, Welt A/B am Verglei
   z = tue(z, { art: 'waehle', option: 'C', zeit: 2 });
   assert.equal(eingriffe(o(z), inhalte).find((x) => x.pruef === 'regie-wahl-C')?.gedrueckt, true);
   z = weiter(weiter(z));
+  // A3 hat Ebenen 1–4 (P3.4): die Regie kann sie direkt öffnen
+  assert.deepEqual(eingriffe(o(z), inhalte).map((x) => x.pruef), ['regie-ebene-1', 'regie-ebene-2', 'regie-ebene-3', 'regie-ebene-4']);
+  while (z.station === 'A3') z = weiter(z);
   const v = eingriffe(o(z), inhalte).map((x) => x.pruef);
   assert.deepEqual(v, ['regie-welt-a', 'regie-welt-b']);
   // außerhalb der Story nichts

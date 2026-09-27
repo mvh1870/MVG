@@ -5,7 +5,7 @@ monat: 5
 titel: Kosten +8 %   # geschütztes Leerzeichen vor „%“: der Titel bricht dort nie um
 lph: 5
 uhr: Montag, 08:30 Uhr
-whitepaper-bezug: [k2.4-p1, k2.4-p2, k4.6-p2]
+whitepaper-bezug: [k2.4-p1, k2.4-p2, k4.6-p1, k4.6-p2]
 status-start:
   entscheidungsfaehigkeit: 2
   kostenunsicherheit: hoch
@@ -136,6 +136,53 @@ art: konsequenz
 titel: Was Ihre Wahl auslöst
 kurz: Konsequenz
 ---
+:::
+
+::: schritt ebenen
+---
+art: ebenen
+titel: Vier Ebenen – vom Satz zum Nachweis
+kurz: Tiefer gehen
+---
+:::
+
+::: ebenen
+::: ebene 1
+---
+titel: Kernaussage
+---
+Zwei Zahlen sind keine Entscheidungsgrundlage. Eine Entscheidung braucht einen benannten Datenstand – sonst ist sie später nicht nachvollziehbar (Kap. 4.6).
+:::
+
+::: ebene 2
+---
+titel: Warum relevant
+---
+Die naheliegende Reaktion ist mehr Bericht, mehr Abstimmung, mehr Gremium. [[zitat:k2.4-p1|Es löst aber nicht automatisch die Frage, wer was auf welcher Grundlage entscheiden darf und muss.]]
+:::
+
+::: ebene 3
+---
+titel: Vertiefung
+---
+Die Fragen der Datenstandslogik (Kap. 4.6) – an diesem Montag:
+
+| Frage | An diesem Montag |
+|---|---|
+| Welche Version gilt? | „v3_final_NEU“ gegen die CTC des Controllings |
+| Welche Annahmen sind offen? | Ursache, Terminwirkung, Nachtragsrisiko |
+| Welche Beschlusslage besteht? | keine zur Abweichung |
+| Wo wird die Nachweiskette geführt? | in Mails und Excel-Dateien |
+:::
+
+::: ebene 4
+---
+titel: Nachweis
+---
+::: zitat k4.6-p1
+Datenstand und Nachweis sind kein administratives Nebenprodukt. Sie sind ein eigenes Verantwortungsfeld. Eine formal richtige Entscheidung kann praktisch unbrauchbar werden, wenn unklar ist, welche Zahlen, Planstände, Annahmen, Risiken oder Protokolle zugrunde lagen.
+:::
+:::
 :::
 
 ::: standpunkt controlling

@@ -52,7 +52,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Die Generalplanung rechnet; nach sechs Wochen kommt eine Schätzung ohne Termin- und Risikowirkung. Die Lieferzeit der Holzbauelemente geht in der Mensa-Debatte unter.
+Die Generalplanung rechnet; nach sechs Wochen kommt eine genauere Kostenaussage – weiterhin ohne Termin- und Risikowirkung. Die Lieferzeit der Holzbauelemente geht in der Mensa-Debatte unter.
 
 ### Was fehlt
 Ein Ort, an dem Signale wie die Lieferzeit festgehalten werden, bevor jemand sie bewertet.

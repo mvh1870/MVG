@@ -10,6 +10,7 @@ import type { Block, OeffentlicheInhalte } from '../../inhalte/typen.ts';
 import { kopfListe, kopfText, istKarte } from '../anzeige.ts';
 import { inhalt, inhaltInline, personFigur, personFunktion, personName } from './inhalt.ts';
 import { idArt } from '../../grafik/checkliste.ts';
+import { tafel as tafelGrafik, istTafelForm } from '../../grafik/tafel.ts';
 import { bildmarke } from '../marke.ts';
 
 export function sym(name: SymbolName, klasse = ''): Element {
@@ -204,9 +205,26 @@ export function datenstand(b: Block, beschriftung: { titel: string; siegel: stri
   return { element, zahlen };
 }
 
+/** Whitepaper-Tabelle als Grafik (P4, L-32); `besucht` = Stationen der eigenen Spur. */
+export function tafel(b: Block, besucht: readonly string[] = []): HTMLElement | null {
+  const form = kopfText(b.kopf, 'form') ?? '';
+  const t = b.kopf['tabelle'];
+  if (!istTafelForm(form) || b.id === null || !istKarte(t)) return null;
+  const zeilen = Array.isArray(t['zeilen']) ? t['zeilen'].map((z) => (Array.isArray(z) ? z.map(String) : [])) : [];
+  const kopf = Array.isArray(t['kopf']) ? t['kopf'].map(String) : [];
+  const roh = b.kopf['erlebt'];
+  const erlebt: Record<string, string[]> = {};
+  if (istKarte(roh)) for (const [nr, liste] of Object.entries(roh)) erlebt[nr] = Array.isArray(liste) ? liste.map(String) : [];
+  const el = tafelGrafik({ form, absatz: b.id, quelle: kopfText(b.kopf, 'quelle') ?? '', kopf, zeilen, erlebt }, besucht);
+  const text = b.felder['text'] ?? '';
+  return text !== '' ? h('div', { class: 'stapel' }, h('div', { class: 'tafel-einleitung' }, inhalt(text)), el) : el;
+}
+
 /** Generischer Block (Rückfall für Arten ohne eigene Szene). */
-export function block(b: Block, inhalte: OeffentlicheInhalte, zitatWort: string): Node | null {
+export function block(b: Block, inhalte: OeffentlicheInhalte, zitatWort: string, besucht: readonly string[] = []): Node | null {
   switch (b.art) {
+    case 'tafel':
+      return tafel(b, besucht);
     case 'hinweis':
       return hinweis(b);
     case 'merksatz':

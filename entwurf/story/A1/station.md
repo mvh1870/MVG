@@ -195,6 +195,34 @@ Komplexe Bauherrenorganisationen hängen in kritischen Momenten oft von wenigen 
 :::
 :::
 
+::: vertiefung kosten
+---
+titel: Eine Kostendatei, offene Annahmen
+---
+Die Projektbasis von 58,4 Mio. € enthält 2,9 Mio. € Risikoreserve. Die Kostendatei steht auf dem Stand der Kostenberechnung und wird allein von Holger Stein gepflegt; die Marktnotiz zum Holzpreis nennt keinen Betrag. Eine Frage der Datenstandslogik ist damit schon im ersten Monat offen: [[zitat:k4.6-p2|Welche Annahmen sind offen?]]
+:::
+
+::: vertiefung organisation
+---
+titel: Eine Liste, keine Linien
+---
+Es gibt eine Liste der Beteiligten, aber wer wem was vorlegt und wer was freigibt, steht nirgends. Was hier fehlt, ordnet Kap. 3.3 der Mandatsebene zu: [[zitat:k3.3-t1|Befugnisse, Freigabegrenzen, Zeichnungsrechte, Stellvertretungen, Eskalationsschwellen und Gremienbezug.]] Für den Schulcampus ist davon im ersten Monat nichts festgelegt.
+:::
+
+::: vertiefung risiko
+---
+titel: Ein Signal im alten Verteiler
+---
+Die Marktnotiz der Generalplanung kam kurz vor Weihnachten nur an den alten Verteiler: steigende Holzpreise, noch ohne Betrag, von niemandem bewertet. Kap. 6.4.3 beschreibt, was ein solcher Hinweis ist: [[zitat:k6.4.3-p2|Eine Frühwarnung (EW) ist ein unbewertetes Signal. Wird sie bestätigt, wird daraus ein bewertetes Risiko.]] In Welt A landet sie in keinem Register – nur in der Frage, in welche Ablage sie gehört.
+:::
+
+::: vertiefung freigaben
+---
+titel: Die Freigabefrage zu LPH 4
+---
+Der Bauantrag geht diese Woche raus; im Februar steht die Freigabe zum Abschluss von LPH 4 an. Die Freigabefrage dazu lautet im Whitepaper: [[zitat:k9.3-t1|Sind die Genehmigungsunterlagen eingereicht beziehungsweise die Genehmigungslage gesichert – und sind Auflagen und Risiken bewertet?]] Wer diese [[Freigabe]] erteilt, steht in keiner der drei Ablagen.
+:::
+
 ::: standpunkt gf
 ---
 figur: deppe

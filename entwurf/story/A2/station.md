@@ -183,6 +183,34 @@ Zielverantwortung bedeutet, dass der Bauherr entscheidet, was gebaut werden soll
 :::
 :::
 
+::: vertiefung kosten
+---
+titel: Eine Schätzung, kein Beschluss
+---
+Die größere Mensa ist grob auf 0,6 Mio. € geschätzt, noch ohne Termin- und Risikowirkung. Ob sie in die Prognose gehört, kann das Controlling nicht sagen, denn beschlossen ist nichts. Die Datenstandslogik in Kap. 4.6 fragt genau danach: [[zitat:k4.6-p2|Welche Änderungen wurden seit der letzten Freigabe aufgenommen?]]
+:::
+
+::: vertiefung organisation
+---
+titel: Keine Schwelle für die Mensa
+---
+Für Änderungen am Projektumfang sind keine Schwellen festgelegt; ob über rund 0,6 Mio. € die Bauherren-PL entscheidet oder der Bauherr – allein oder im Lenkungskreis –, weiß niemand. Die Tabelle in Kap. 3.2 zählt zur [[Nichtdelegierbare Bauherrenverantwortung|nichtdelegierbaren Bauherrenverantwortung]] die [[zitat:k3.2-t1|Festlegung von Mandaten, Freigabeschwellen, Eskalationswegen und verbindlichen Entscheidungsrechten.]]
+:::
+
+::: vertiefung risiko
+---
+titel: Zehn Wochen mehr, unbewertet
+---
+Die Lieferzeit der Holzbauelemente steigt von rund 16 auf 26 Wochen. Die Marktabfrage der Generalplanung meldet sie; die Terminwirkung ist nicht bewertet. Kap. 4.4 beschreibt, was zu einem Risiko gehört: [[zitat:k4.4-p2|Ein Risiko wird nicht nur als Eintrag geführt, sondern mit einer verantwortlichen Rolle, Frist, Wirkung, Risikominderung, Restrisiko, Entscheidungsbedarf und Eskalationsschwelle verbunden.]]
+:::
+
+::: vertiefung freigaben
+---
+titel: „Weiter wie besprochen“
+---
+Im Jour-fixe-Protokoll vom 3. März steht zur Freigabe zum Abschluss von LPH 4: kein eigener Termin, weiter wie besprochen. LPH 5 läuft seit Februar, ein Beschluss dazu ist nirgends dokumentiert. Kap. 4.5 beschreibt, was eine Freigabe ausmacht: [[zitat:k4.5-p1|Freigabe bedeutet bauherrenseitige Legitimation eines nächsten Schritts auf einem benannten Datenstand.]]
+:::
+
 ::: standpunkt gf
 ---
 figur: deppe

@@ -192,6 +192,34 @@ Datenstand und Nachweis sind kein administratives Nebenprodukt. Sie sind ein eig
 :::
 :::
 
+::: vertiefung kosten
+---
+titel: Zwei Zahlen, eine Projektbasis
+---
++8 % bei der Projektsteuerung, +5,9 % beim Controlling – beide gegen die Projektbasis von 58,4 Mio. € gerechnet, die Risikoreserve von 2,9 Mio. € darin noch nicht eingesetzt. Welche Zahl gilt, ist nirgends festgehalten. Kap. 4.6: [[zitat:k4.6-p2|Der Bauherr muss nicht alle Daten selbst pflegen, aber er muss sicherstellen, dass Entscheidungen auf belastbaren, benannten und reproduzierbaren Grundlagen beruhen.]]
+:::
+
+::: vertiefung organisation
+---
+titel: Rechnen ist delegierbar
+---
+Projektsteuerung und Controlling rechnen jeweils eine eigene Prognose. Die Tabelle in Kap. 3.2 führt diese Arbeit als delegierbar: [[zitat:k3.2-t1|Berichterstattung, Prognoseerstellung, CTC-Berechnung, Terminbewertung und Datenaufbereitung.]] Wer festlegt, welche Zahl in den Lenkungskreis am 19. Mai geht, und wer über die Risikoreserve entscheiden darf, ist an diesem Montag offen.
+:::
+
+::: vertiefung risiko
+---
+titel: Seit März liegen geblieben
+---
+Die längere Lieferzeit der Holzbauelemente ist seit März bekannt und nicht bewertet, die Mensa gewünscht und nicht beschlossen; die Ursache der Abweichung ist ungeklärt, das Nachtragsrisiko offen. Kap. 2.5 beschreibt dieses Muster: [[zitat:k2.5-t1|Risiken und Änderungen laufen parallel, ohne gemeinsame Priorisierung, Auswirkungsbewertung und Freigabeschwelle.]]
+:::
+
+::: vertiefung freigaben
+---
+titel: Fünf Fragen vor einer Freigabe
+---
+Lenkungskreis und Bauausschuss tagen nächste Woche; auf dem Zettel steht „Risikoreserve – wer darf?“. Gemeint ist eine Freigabe des Einsatzes der Risikoreserve. Vor jeder Freigabe muss nach Kap. 4.5 klar sein, [[zitat:k4.5-p2|welche Entscheidung getroffen wird, welches Mandat gilt, welche Mindestgrundlagen vorliegen, welche Risiken angenommen werden und welcher Datenstand referenziert wird.]] An diesem Montag ist keiner der fünf Punkte beantwortet.
+:::
+
 ::: standpunkt gf
 ---
 figur: deppe

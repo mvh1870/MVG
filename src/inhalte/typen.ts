@@ -111,6 +111,13 @@ export interface Standpunkt {
   html: string;
 }
 
+/** Vertiefung je Interesse (P3.9): erscheint im Ebenen-Schritt, wenn der Leser das Interesse gewählt hat. */
+export interface Vertiefung {
+  interesse: string;
+  titel: string;
+  html: string;
+}
+
 export interface Station extends ModellStation {
   art: StationArt;
   welt: Welt | null;
@@ -129,6 +136,7 @@ export interface Station extends ModellStation {
   infos: Info[];
   ebenen: Ebene[] | null;
   standpunkte: Standpunkt[];
+  vertiefungen: Vertiefung[];
   szenen: Record<string, Szene>;
   quelle: string;
 }

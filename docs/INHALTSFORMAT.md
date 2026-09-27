@@ -167,11 +167,14 @@ weiter:
 | `ebenen` | oben | – | – | enthält `ebene 1` … `ebene 4` |
 | `ebene` | in `ebenen` | `1`–`4` | `titel` | `text`; Ebene 4 enthält ein `zitat` |
 | `standpunkt` | oben | Rolle (`controlling`) | `figur` (Pflicht) | `text` = was diese Figur im selben Moment denkt („Standpunkt wechseln“) |
+| `vertiefung` | oben | Interesse (`kosten`) | `titel` (Pflicht) | `text` (Pflicht) – Zusatzkarte unter den Ebenen, nur sichtbar, wenn der Leser im Prolog dieses Interesse gewählt hat (P3.9); braucht einen Schritt `ebenen`; Zitate wortgleich mit Absatz-ID |
 | `regie` | oben | – | – | `notiz`, `leitfragen` (Liste) – **nur Regie**, landet nie in den Leinwand-Daten |
 
 Schrittarten (`art` im `schritt`): `text` (Vorgabe) · `lage` (Bekannt/Unbekannt) · `entscheidung` · `konsequenz` · `rueckbezug` · `vergleich` (Schieberegler) · `rollenwahl` · `interessenwahl` · `ebenen`. Schritte mit gleicher `gruppe` zeigt die Oberfläche als Teile eines Schritts (z. B. die sechs Teile von B3).
 
 Bausteine in einem `schritt`:
+
+- `tafel <Tabellen-ID>` (auch in Theorie-Seiten, Abschnitten, Ebenen): Whitepaper-Tabelle als Grafik, `form` Pflicht (`radar` · `ketten` · `schwelle` · `pyramide` · `felder` · `bausteine`), bei `radar` optional `erlebt` (Zeilennummer → Stationen, kommagetrennt); Zellen kommen wortgleich aus whitepaper.json (L-32).
 
 | Art | Kennung | Kopfdaten | Felder / Inhalt |
 |---|---|---|---|
@@ -472,7 +475,7 @@ Regie-Material (`regie`) steht im JSON **getrennt** von den Stationen: die Leinw
 | Schlüssel | Inhalt |
 |---|---|
 | `start`, `stationsFolge` | Startstation (`prolog`) und Reihenfolge für die Story-Karte (Breitensuche entlang `weiter`) |
-| `stationen.<id>` | Kopfdaten (camelCase), `schritte[]` (`id`, `art`, `titel`, `kurz`, `gruppe`, `uhr`, `kopf`, `felder`, `bloecke`), `infos[]` (Zeitsprünge mit `wirkung`), `ebenen[]`, `standpunkte[]`, `szenen.<rolle>` |
+| `stationen.<id>` | Kopfdaten (camelCase), `schritte[]` (`id`, `art`, `titel`, `kurz`, `gruppe`, `uhr`, `kopf`, `felder`, `bloecke`), `infos[]` (Zeitsprünge mit `wirkung`), `ebenen[]`, `standpunkte[]`, `vertiefungen[]` (`interesse`, `titel`, `html`), `szenen.<rolle>` |
 | `stationen.<id>.szenen.<rolle>` | `entscheidung` (`id`, `frage`, `optionen[]` mit `titel`, `kurz`, `symbol`, `felder`, `wirkung`; `nachsatz`), `fragen[]`, `rueckbezug` (`auf` = aufgelöste Entscheidungs-ID, `texte`, `ohne`) |
 | Block (`bloecke[]`, `kinder[]`) | `art`, `kennungen`, `id`, `kopf` (umgewandelte Kopfdaten), `felder` (HTML), `liste` (bei `bekannt`/`unbekannt`/`vorlage`: `{id, stand, html}`), `kinder`. `zitat`: `kopf.quelle`, `kopf.vollstaendig`; `original`: `kopf.absaetze`, `kopf.quelle` |
 | `rollen.<id>` | `titel`, `kurztitel`, `farbe`, `textfarbe`, `figur`, `whitepaper`, `felder`, `spielbar` (aus `folgt` im Prolog); `rollenFolge` = Anzeige-Reihenfolge |

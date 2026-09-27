@@ -189,6 +189,34 @@ Risiken können analysiert, bewertet und gemindert werden. Die Annahme wesentlic
 :::
 :::
 
+::: vertiefung kosten
+---
+titel: Eine Reserve, zwei Lesarten
+---
+Die Risikoreserve von 2,9 Mio. € reicht schon für die Abweichung aus dem Mai nicht: ganz eingesetzt, blieben nach Projektsteuerung rund 1,8 Mio. € oder mehr, nach Controlling rund 0,5 Mio. € über der Projektbasis. Trotzdem laufen Brandschutz, Mensa und TGA gegen sie. Kap. 2.5 nennt das Muster: [[zitat:k2.5-t1|Kostenprognosen, Restkosten, Risikoreserve und Risiken werden unterschiedlich gelesen.]]
+:::
+
+::: vertiefung organisation
+---
+titel: Gerechnet, nicht entschieden
+---
+Aylin Kaya hat die Posten gegen die Reserve gerechnet; wer sie ihr zugeordnet hat, ist offen. Schwellen und Entscheidungsrechte sind in Welt A nicht festgelegt. Die Tabelle in Kap. 3.2 führt als nicht delegierbar: [[zitat:k3.2-t1|Festlegung von Mandaten, Freigabeschwellen, Eskalationswegen und verbindlichen Entscheidungsrechten.]]
+:::
+
+::: vertiefung risiko
+---
+titel: Was die Reserve noch tragen soll
+---
+Brandschutzauflagen, Mensa-Umplanung und der Nachtrag der TGA-Fachplanung sind eingetreten oder angekündigt; welche Risiken die Reserve danach noch tragen soll, ist unbekannt. Kap. 6.4.3: [[zitat:k6.4.3-p2|Aus Risiken, Änderungen oder Problemen kann Entscheidungsbedarf entstehen]]. In Welt A ist daraus keine Frage an den Bauherrn geworden.
+:::
+
+::: vertiefung freigaben
+---
+titel: Im Protokoll, nicht im Beschluss
+---
+Im Jour-fixe-Protokoll stehen die Posten; wer ihre Deckung beschlossen hat, steht nirgends, eine Freigabe des Einsatzes der Reserve gibt es nicht. Vor Lenkungskreis (15.) und Bauausschuss (17. September) bleiben zwei Fragen der Datenstandslogik offen: [[zitat:k4.6-p2|Welche Beschlusslage besteht? Wo wird die Nachweiskette geführt?]]
+:::
+
 ::: standpunkt gf
 ---
 figur: deppe

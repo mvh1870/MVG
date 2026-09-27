@@ -106,3 +106,11 @@ test('Story-Karte (stationsFolge): Hauptweg in Reihenfolge, Enden hinter der Wir
   assert.deepEqual(erg.inhalte.stationsFolge, ['prolog', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'wendepunkt', 'rueckspulen',
     'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'wirklichkeit', 'ende-steuerbar', 'ende-neufestlegung', 'ende-auflagen', 'epilog']);
 });
+
+test('Vertiefung je Interesse (P3.9): A1–A6 haben je eine Karte für Kosten, Mandate, Risiko und Freigaben, jede mit Zitat', () => {
+  for (const id of ['A1', 'A2', 'A3', 'A4', 'A5', 'A6']) {
+    const v = erg.inhalte.stationen[id]?.vertiefungen ?? [];
+    assert.deepEqual(v.map((x: any) => x.interesse).sort(), ['freigaben', 'kosten', 'organisation', 'risiko'], id);
+    for (const x of v) assert.match(x.html, /class="mvg-zitat" data-absatz="k/u, `${id}/${x.interesse}: ohne Zitat`);
+  }
+});

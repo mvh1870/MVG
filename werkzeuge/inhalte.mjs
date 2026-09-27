@@ -39,6 +39,7 @@ const FARBE = /^#[0-9A-Fa-f]{6}$/u;
 const SCHRITT_ARTEN = ['text', 'lage', 'entscheidung', 'konsequenz', 'rueckbezug', 'vergleich', 'rollenwahl', 'interessenwahl', 'ebenen'];
 const STATION_ARTEN = ['prolog', 'station', 'vergleich', 'wendepunkt', 'rueckspulen', 'wirklichkeit', 'ende', 'epilog'];
 const FLUSS = ['fruehwarnung', 'bestaetigt', 'risiko', 'entscheidung', 'freigabe', 'massnahme', 'managementbericht'];
+const TAFEL_FORMEN = ['radar', 'ketten', 'schwelle', 'pyramide', 'felder', 'bausteine'];
 const GLIED_ARTEN = ['fruehwarnung', 'bestaetigung', 'risiko', 'aenderung', 'entscheidung', 'freigabe', 'massnahme', 'bericht'];
 
 /* ============================================================== Schema == */
@@ -68,6 +69,8 @@ const ARTEN = {
   ebenen: { in: ['@station', '@theorie', 'abschnitt'], kennung: 'keine', felder: [] },
   ebene: { in: ['ebenen'], kennung: 'pflicht', muster: /^[1-4]$/u, kopf: { titel: { typ: 'text' } }, felder: ['text'] },
   standpunkt: { in: ['@station'], kennung: 'pflicht', kopf: { figur: { typ: 'kennung', pflicht: true } }, felder: ['text'], pflichtFelder: ['text'] },
+  // Vertiefung je Interesse (P3.9, O-19): Zusatzkarte im Ebenen-Schritt, nur für Leser mit diesem Interesse
+  vertiefung: { in: ['@station'], kennung: 'pflicht', kopf: { titel: { typ: 'text', pflicht: true } }, felder: ['text'], pflichtFelder: ['text'] },
   regie: { in: ['@station', '@szene'], kennung: 'keine', felder: ['notiz', 'leitfragen'] },
   // Bausteine in Schritten
   mail: { in: ['schritt'], kennung: 'keine', kopf: { von: { typ: 'kennung', pflicht: true }, betreff: { typ: 'text', pflicht: true }, zeit: { typ: 'text' }, anhang: { typ: 'text' } }, felder: ['text'], pflichtFelder: ['text'] },
@@ -87,6 +90,8 @@ const ARTEN = {
   },
   grafik: { in: ['schritt', '@theorie', 'abschnitt', 'ebene'], kennung: 'pflicht', kopf: { titel: { typ: 'text' }, untertitel: { typ: 'text' } }, felder: ['text'] },
   kette: { in: ['schritt'], kennung: 'keine', felder: [] },
+  // Whitepaper-Tabelle als Grafik (P4, L-32): Zellen wörtlich aus whitepaper.json, Form aus src/grafik/tafel.ts
+  tafel: { in: ['schritt', '@theorie', 'abschnitt', 'ebene'], kennung: 'pflicht', muster: /^k\d+(?:\.\d+)*-t\d+$/u, kopf: { form: { typ: 'wahl', werte: TAFEL_FORMEN, pflicht: true }, erlebt: { typ: 'karte' } }, felder: ['text'] },
   glied: { in: ['kette'], kennung: 'optional', kopf: { art: { typ: 'wahl', werte: GLIED_ARTEN, pflicht: true }, von: { typ: 'kennung' } }, felder: ['titel', 'text'] },
   datenstand: {
     in: ['schritt'], kennung: 'keine',
@@ -967,6 +972,25 @@ class Kompilierer {
       }
       this.merkeDeckung(eltern, ids, rel);
     }
+    if (r.art === 'tafel' && r.id !== null) {
+      const t = this.quelle?.nachId.get(r.id);
+      if (this.quelle !== null && (t === undefined || t.art !== 'tabelle')) this.fehler(r.ort, `Tafel: „${r.id}“ ist keine Tabelle im Whitepaper`);
+      kopf['quelle'] = this.quellenangabe([r.id]);
+      kopf['tabelle'] = { kopf: t?.kopf ?? [], zeilen: t?.zeilen ?? [] };
+      /** @type {Record<string, string[]>} */
+      const erlebt = {};
+      for (const [nr, liste] of Object.entries(kopf['erlebt'] ?? {})) {
+        const n = Number(nr);
+        if (!Number.isInteger(n) || n < 1 || n > (t?.zeilen?.length ?? 0)) this.fehler(r.ort, `Tafel ${r.id}: „erlebt.${nr}“ – die Tabelle hat ${t?.zeilen?.length ?? 0} Zeilen`);
+        erlebt[nr] = String(liste).split(',').map((x) => x.trim()).filter(Boolean);
+        for (const st of erlebt[nr]) this.verweise.push({ art: 'station', wert: st, ort: r.ort });
+      }
+      kopf['erlebt'] = erlebt;
+      if (kopf['form'] === 'schwelle' && (t?.kopf?.length ?? 0) !== 2) this.fehler(r.ort, `Tafel ${r.id}: Form „schwelle“ braucht eine Tabelle mit zwei Spalten`);
+      if (kopf['form'] === 'felder' && (t?.kopf?.length ?? 0) < 5) this.fehler(r.ort, `Tafel ${r.id}: Form „felder“ braucht fünf Spalten (Feld, Kern, Vorbereitung, Fehlstelle, Antwort)`);
+      if (kopf['form'] === 'ketten' && (t?.kopf?.length ?? 0) < 4) this.fehler(r.ort, `Tafel ${r.id}: Form „ketten“ braucht vier Spalten`);
+      this.merkeDeckung(eltern, [r.id], rel);
+    }
     const kinder = k.kinder.map((kind) => this.block(kind, r.art, rel)).filter((x) => x !== null);
     // Verweise für die spätere Prüfung
     for (const s of ['von', 'figur']) if (typeof kopf[s] === 'string') this.verweise.push({ art: 'figur', wert: kopf[s], ort: r.ort });
@@ -1194,6 +1218,7 @@ function baueStation(c, rel, ordner, text, regie) {
   /** @type {any[] | null} */
   let ebenen = null;
   const standpunkte = [];
+  const vertiefungen = [];
   /** @type {Set<string>} */
   const schrittIds = new Set();
   for (const k of wurzel.kinder) {
@@ -1212,6 +1237,12 @@ function baueStation(c, rel, ordner, text, regie) {
     if (bl.art === 'standpunkt') {
       standpunkte.push({ rolle: bl.id ?? '', figur: bl.kopf.figur ?? '', html: bl.felder.text ?? '' });
       if (bl.id) c.verweise.push({ art: 'rolle', wert: bl.id, ort: `${rel}:${k.zeile}` });
+      continue;
+    }
+    if (bl.art === 'vertiefung') {
+      if (vertiefungen.some((v) => v.interesse === bl.id)) c.fehler(`${rel}:${k.zeile}`, `Vertiefung „${bl.id}“ doppelt`);
+      vertiefungen.push({ interesse: bl.id ?? '', titel: bl.kopf.titel ?? '', html: bl.felder.text ?? '' });
+      if (bl.id) c.verweise.push({ art: 'interesse', wert: bl.id, ort: `${rel}:${k.zeile}` });
       continue;
     }
     if (bl.art !== 'schritt' || bl.id === null) continue;
@@ -1253,6 +1284,7 @@ function baueStation(c, rel, ordner, text, regie) {
     if (s.art === 'ebenen' && ebenen === null) c.fehler(ort, `Schritt „${s.id}“ zeigt Ebenen, aber die Station hat keine „ebenen“`);
   }
   if (schritte.length === 0) c.fehler(ort, 'Station ohne Schritte');
+  if (vertiefungen.length > 0 && !schritte.some((s) => s.art === 'ebenen')) c.fehler(ort, 'Vertiefungen brauchen einen Schritt „ebenen“ (dort erscheinen sie)');
 
   return {
     id: ordner,
@@ -1275,6 +1307,7 @@ function baueStation(c, rel, ordner, text, regie) {
     infos,
     ebenen,
     standpunkte,
+    vertiefungen,
     szenen: {},
     quelle: rel,
   };

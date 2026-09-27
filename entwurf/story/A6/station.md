@@ -196,6 +196,34 @@ Komplexe Bauherrenorganisationen hängen in kritischen Momenten oft von wenigen 
 :::
 :::
 
+::: vertiefung kosten
+---
+titel: Version fünf – und dahinter?
+---
+Holger Steins letzter Stand heißt „Prognose_Nov_v5“, daneben rechnet das Controlling seine CTC; eine geltende Kostenzahl hat seit Mai niemand dokumentiert. Die Fraktion will bis 13. November wissen, womit gerechnet wird. Kap. 4.6: [[zitat:k4.6-p1|Eine formal richtige Entscheidung kann praktisch unbrauchbar werden, wenn unklar ist, welche Zahlen, Planstände, Annahmen, Risiken oder Protokolle zugrunde lagen.]]
+:::
+
+::: vertiefung organisation
+---
+titel: Keine Stellvertretung benannt
+---
+Holger Stein fällt für Wochen aus, eine Stellvertretung ist nicht benannt; offen ist auch, wer die Freigabe zum Abschluss von LPH 5 erteilt. Den Baustein „Rollen und Mandate“ beschreibt Kap. 5.2 so: [[zitat:k5.2-t1|Übersetzt Rollen in Befugnisse, Schwellen, Stellvertretungen, Freigaben und Eskalationswege.]]
+:::
+
+::: vertiefung risiko
+---
+titel: Seit März kein Umgang
+---
+Die Lieferzeit der Holzbauelemente, 26 statt 16 Wochen, ist seit März bekannt; über den Umgang damit hat niemand entschieden. Jetzt fragt die Fraktion nach dem Termin. Den Jour fixe gibt es jede Woche, in Welt A als Themenliste ohne Register. Kap. 6.4.5 sieht für diesen Takt vor: [[zitat:k6.4.5-t1|wöchentliche Risikosichtung im regelmäßigen Abstimmungstermin; offene Entscheidungen und Maßnahmen]].
+:::
+
+::: vertiefung freigaben
+---
+titel: Die Freigabefrage zu LPH 5
+---
+Die Freigabe zum Abschluss von LPH 5 steht an; die Generalplanung führt eine Liste offener Punkte, eine geltende Kostenzahl fehlt. Die Freigabefrage dazu lautet im Whitepaper: [[zitat:k9.3-t1|Ist die Ausführungsplanung so vollständig und koordiniert, dass Vergabe und Ausführung ohne Planungsvorbehalte starten können?]]
+:::
+
 ::: standpunkt gf
 ---
 figur: deppe

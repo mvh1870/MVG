@@ -163,6 +163,8 @@ export async function lauf(seite, h) {
     await h.warte(150);
   }
   await h.erwarte('[data-pruef="ebene-4"] [data-pruef="zitat"]');
+  // ohne gewähltes Interesse keine Vertiefung (P3.9)
+  await h.erwarteNicht('[data-pruef="vertiefungen"]');
   await stand('a3-ebene4');
   await weiter();
 

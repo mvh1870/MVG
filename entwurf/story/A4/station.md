@@ -189,6 +189,34 @@ Nicht jede operative Entscheidung ist bauherrenseitig wesentlich. Wesentlich sin
 :::
 :::
 
+::: vertiefung kosten
+---
+titel: Die Auflagen – in welcher Zahl?
+---
+Seit Juni kommen Brandschutzauflagen von grob 0,4 Mio. € hinzu. Ob sie in den Kostenprognosen stehen, weiß niemand; seit Mai stehen mehrere Zahlen nebeneinander. Als Wirkung der Datenstands- und Nachweislogik nennt Kap. 5.2: [[zitat:k5.2-t1|Reduziert parallele Wahrheiten und stärkt die Nachweiskette, Gremienfähigkeit und Nachvollziehbarkeit.]]
+:::
+
+::: vertiefung organisation
+---
+titel: Wer entscheidet über 0,4 Mio. €?
+---
+Wer über die Mehrkosten der Auflagen entscheidet, ist offen; der Bauausschuss hat vertagt, der Lenkungskreis tagt am 21. Juli. Festgelegte Schwellen gibt es in Welt A nicht. Ein wirksames [[Mandat|Mandatsmodell]] beantwortet nach Kap. 4.2 unter anderem: [[zitat:k4.2-p2|Welche Schwelle erfordert eine Entscheidung des Bauherrn oder die Beschlussfassung durch den Bauherrn im Lenkungskreis?]]
+:::
+
+::: vertiefung risiko
+---
+titel: Ampeln ohne Entscheidungsfrage
+---
+Der Statusbericht zeigt Ampeln auf Gelb und Rot, aber keine Entscheidungsfrage. Mit der Vertagung auf den 17. September bleibt offen, was die Pause für den Termin bedeutet. Kap. 4.4: [[zitat:k4.4-p2|MVG verknüpft Risiken mit Entscheidungen.]] Im Bericht vom Juni ist keine Ampel mit einer Entscheidung verbunden.
+:::
+
+::: vertiefung freigaben
+---
+titel: Vertagt, und nichts nachzuweisen
+---
+Der Tagesordnungspunkt ist vertagt; einen Beschluss gibt es nicht und auch keine Unterlage, die ihn vorbereitet hätte. Über die [[Entscheidungsvorlage]] sagt Kap. 9.4: [[zitat:k9.4-p1|Ziel ist, dass spätere Dritte nachvollziehen können, welche Frage entschieden wurde, auf welchem Datenstand, mit welchen Optionen, Annahmen, Risiken, Empfehlungen und Freigaben.]]
+:::
+
 ::: standpunkt gf
 ---
 figur: deppe

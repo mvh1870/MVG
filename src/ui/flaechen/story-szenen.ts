@@ -731,7 +731,23 @@ function ebenenSzene(k: SzenenKontext): Szene {
     });
   };
   setze(k.z);
-  return szene(h('div', { class: 'ebenen' }, h('nav', { class: 'ebenen-wahl', 'aria-label': W.ebenen }, h('div', { class: 'ebenen-linie' }), lot, knoepfe), ort), setze);
+  const el = h('div', { class: 'ebenen' }, h('nav', { class: 'ebenen-wahl', 'aria-label': W.ebenen }, h('div', { class: 'ebenen-linie' }), lot, knoepfe), ort);
+  const vertiefungen = vertiefungenFuer(k);
+  if (vertiefungen === null) return szene(el, setze);
+  return szene(h('div', { class: 'stapel' }, el, vertiefungen), setze);
+}
+
+/** Vertiefungen der Station zu den im Prolog gewählten Interessen (P3.9, O-19); null, wenn keine passt. */
+function vertiefungenFuer(k: SzenenKontext): HTMLElement | null {
+  const passend = k.station.vertiefungen.filter((v) => k.z.interessen.includes(v.interesse));
+  if (passend.length === 0) return null;
+  return h('div', { class: 'vertiefungen', 'data-pruef': 'vertiefungen' }, passend.map((v) => {
+    const interesse = k.inhalte.interessen.find((i) => i.id === v.interesse);
+    return h('section', { class: 'vertiefung', 'data-pruef': `vertiefung-${v.interesse}`, 'aria-label': `${W.fuerSieVertieft}: ${v.titel}` },
+      h('span', { class: 't-label' }, `${W.fuerSieVertieft} · ${interesse?.titel ?? v.interesse}`),
+      h('h3', { class: 'vertiefung-titel' }, v.titel),
+      h('div', { class: 'ebene-text' }, inhalt(v.html)));
+  }));
 }
 
 /* ------------------------------------------------------------------- Rückfall -- */
@@ -739,7 +755,7 @@ function ebenenSzene(k: SzenenKontext): Szene {
 function generisch(k: SzenenKontext): Szene {
   return szene(h('div', { class: 'stapel' },
     k.schritt.felder['text'] ? h('div', { class: 'karte' }, inhalt(k.schritt.felder['text'])) : null,
-    k.schritt.bloecke.map((b) => B.block(b, k.inhalte, W.originalWoertlich))));
+    k.schritt.bloecke.map((b) => B.block(b, k.inhalte, W.originalWoertlich, k.z.verlauf))));
 }
 
 /* ------------------------------------------------------------------ Auswahl -- */

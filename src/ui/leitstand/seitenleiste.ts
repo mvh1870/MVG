@@ -58,7 +58,7 @@ export function figurenDerStation(st: Station): string[] {
 
 /** Glossar-Kennungen, auf die eine Station (samt Rollenszene) verweist. */
 export function glossarDerStation(st: Station, rolle: string | null): string[] {
-  const text = JSON.stringify([st.schritte, st.ebenen, st.standpunkte, rolle !== null ? st.szenen[rolle] ?? null : null]);
+  const text = JSON.stringify([st.schritte, st.ebenen, st.standpunkte, st.vertiefungen, rolle !== null ? st.szenen[rolle] ?? null : null]);
   const ids: string[] = [];
   for (const m of text.matchAll(/data-glossar=\\"([^"\\]+)\\"/g)) if (m[1] !== undefined && !ids.includes(m[1])) ids.push(m[1]);
   return ids;

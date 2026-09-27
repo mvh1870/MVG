@@ -110,6 +110,7 @@ export const W = {
   derselbeMoment: 'derselbe Moment',
   nachWahl: (w: string) => `nach Wahl ${w}`,
   ebene: 'Ebene',
+  fuerSieVertieft: 'Für Sie vertieft',
   ebenen: 'Ebenen',
   originalWoertlich: 'Originaltext, wörtlich',
   projektUebernehmen: 'Projekt übernehmen',

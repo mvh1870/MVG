@@ -1116,6 +1116,13 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .kernsatz { font-size: 25px; line-height: 1.3; font-weight: 600; letter-spacing: -.005em; }
 .kernsatz em { font-weight: 600; background: linear-gradient(transparent 62%, var(--gold-hell-a45) 62%); }
 .ebene-text { font-size: var(--gr-xl); line-height: 1.5; }
+/* Vertiefung je Interesse (P3.9) unter den Ebenen */
+.stapel > .ebenen { min-height: 0; }
+.vertiefungen { display: grid; gap: var(--a-3); }
+.vertiefung { padding: 14px 20px; border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 4px 0 0 var(--gold), inset 0 0 0 1px var(--linie); animation: szene-ein 450ms var(--kurve-aus) both; }
+.vertiefung > .t-label { display: block; margin-bottom: 4px; }
+.vertiefung-titel { margin: 0 0 6px; font-size: 18px; line-height: 1.3; }
+.vertiefung .ebene-text { font-size: 16px; }
 .dreier { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
 .dreier > div { min-width: 0; padding: 9px var(--a-3); border-radius: 9px; background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
 .dreier .t-label { display: block; margin-bottom: 3px; }
@@ -1778,3 +1785,101 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .akten-stapel i:nth-child(3n) { background: var(--notiz-gelb, var(--flaeche-2)); }
 .akten figcaption { display: grid; gap: 2px; font-size: 14px; line-height: 1.35; color: var(--tinte-2); }
 .akten figcaption b { font: 700 var(--gr-text)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte); }
+
+/* ===================================================== Tafeln (P4, L-32) ==
+ * Whitepaper-Tabellen als klickbare Grafiken (src/grafik/tafel.ts). Zustände stehen immer als Wort
+ * oder Symbol da, nie nur als Farbe; Knöpfe ≥ 44 px. */
+.tafel { display: grid; gap: var(--a-3); margin: 0; min-width: 0; }
+.tafel > figcaption { order: 9; }
+.tafel-quelle { margin: 0; font-size: 12.5px; color: var(--tinte-leise); }
+.tafel-hinweis { margin: 0; color: var(--tinte-2); }
+.tafel-einleitung { font-size: var(--gr-l); line-height: 1.5; }
+.tafel-titel { margin: 0 0 6px; font-size: 18px; line-height: 1.3; }
+.tafel-auswahl { min-width: 0; padding: 14px 18px; border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
+.tafel-detail { display: grid; gap: 8px; margin: 0; }
+.tafel-detail dt { font: 700 12px/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-leise); }
+.tafel-detail dd { margin: 2px 0 0; font-size: 15.5px; line-height: 1.45; }
+.tafel-spur { display: flex; align-items: center; gap: 6px; margin: 0 0 8px; font-weight: 600; color: var(--tuerkis-text); }
+.tafel-spur .symbol { width: 18px; height: 18px; }
+.tafel button { font: inherit; cursor: pointer; }
+
+/* Radar */
+.tafel-radar { display: grid; grid-template-columns: minmax(200px, 300px) minmax(0, 1fr); gap: var(--a-4); align-items: start; }
+.radar-bild { width: 100%; height: auto; }
+.radar-ring { fill: none; stroke: var(--linie); stroke-width: 1; }
+.radar-achse { stroke: var(--linie); stroke-width: 1; }
+.radar-flaeche { fill: var(--koralle-a25); stroke: var(--koralle); stroke-width: 2; stroke-linejoin: round; }
+.radar-nr { font: 700 13px var(--schrift-label); fill: var(--tinte-2); }
+.radar-nr.ist-gewaehlt { fill: var(--koralle-text); font-size: 16px; }
+.radar-rechts { display: grid; gap: var(--a-3); min-width: 0; }
+.radar-liste { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+.radar-knopf { display: flex; align-items: center; gap: 8px; min-height: 48px; padding: 6px 10px; border: 0; border-radius: var(--radius-m); background: var(--weiss); color: var(--tinte); text-align: left; box-shadow: inset 0 0 0 1px var(--linie); }
+.radar-knopf i { flex: none; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--flaeche-3); font: 700 12px var(--schrift-label); font-style: normal; }
+.radar-knopf.ist-erlebt i { background: var(--koralle); color: var(--weiss); }
+.radar-knopf span { display: grid; min-width: 0; }
+.radar-knopf b { font-size: 14px; line-height: 1.25; }
+.radar-knopf small { font-size: 12px; color: var(--tinte-leise); }
+.radar-knopf[aria-pressed="true"] { box-shadow: inset 0 0 0 2px var(--navy); background: var(--flaeche-2); }
+
+/* Wirkungsketten */
+.tafel-ketten { display: grid; gap: var(--a-3); }
+.ausloeser-wahl { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.ausloeser-wahl > .t-label { flex-basis: 100%; }
+.ausloeser { min-height: 44px; padding: 6px 12px; border: 0; border-radius: var(--radius-rund); background: var(--weiss); color: var(--tinte); box-shadow: inset 0 0 0 1px var(--linie-2); font-size: 14px; }
+.ausloeser[aria-pressed="true"] { background: var(--navy); color: var(--weiss); box-shadow: none; }
+.wirkungskette { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+.wirkungskette li { position: relative; min-width: 0; padding: 12px 14px; border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); animation: szene-ein 420ms var(--kurve-aus) both; animation-delay: calc(var(--i, 0) * 260ms); }
+.wirkungskette li p { margin: 4px 0 0; font-size: 15px; line-height: 1.45; }
+.wirkungskette .glied-1 { box-shadow: inset 4px 0 0 var(--status-gelb), inset 0 0 0 1px var(--linie); }
+.wirkungskette .glied-2 { box-shadow: inset 4px 0 0 var(--koralle), inset 0 0 0 1px var(--linie); }
+.wirkungskette .glied-3 { box-shadow: inset 4px 0 0 var(--tuerkis), inset 0 0 0 1px var(--linie); }
+
+/* Mandatsschwelle */
+.tafel-schwelle { display: grid; gap: var(--a-3); }
+.schwelle-kopf { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px; font-weight: 700; }
+.schwelle-seite[data-seite="1"] { text-align: right; }
+.schwelle-linie { padding: 2px 10px; border-radius: var(--radius-rund); background: var(--gold-soft); color: var(--gold-text); font: 700 12px var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; }
+.schwelle-stand { margin: 0; font-weight: 600; }
+.schwelle-karten { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 0; padding: 0; list-style: none; }
+.schwelle-karte { display: grid; gap: 6px; min-width: 0; padding: 10px 12px; border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
+.schwelle-karte p { margin: 0; font-size: 14.5px; line-height: 1.4; }
+.schwelle-knoepfe { display: flex; flex-wrap: wrap; gap: 6px; }
+.schwelle-knopf { min-height: 44px; padding: 4px 10px; border: 0; border-radius: var(--radius-m); background: var(--flaeche-2); color: var(--tinte); box-shadow: inset 0 0 0 1px var(--linie-2); font-size: 13.5px; font-weight: 600; }
+.schwelle-knopf[aria-pressed="true"] { background: var(--navy); color: var(--weiss); box-shadow: none; }
+.schwelle-rueck { display: flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 600; }
+.schwelle-rueck .symbol { width: 16px; height: 16px; }
+.schwelle-karte[data-ergebnis="richtig"] { box-shadow: inset 0 0 0 2px var(--status-gruen-kante); }
+.schwelle-karte[data-ergebnis="richtig"] .schwelle-rueck { color: var(--frischgruen-text); }
+.schwelle-karte[data-ergebnis="falsch"] { box-shadow: inset 0 0 0 2px var(--koralle-kante); }
+.schwelle-karte[data-ergebnis="falsch"] .schwelle-rueck { color: var(--koralle-text); }
+
+/* Pyramide */
+.tafel-pyramide { display: grid; grid-template-columns: minmax(220px, 340px) minmax(0, 1fr); gap: var(--a-4); align-items: start; }
+.pyramide { display: grid; gap: 6px; justify-items: center; }
+.pyramide-stufe { width: calc(100% - (var(--stufen, 3) - 1 - var(--stufe, 0)) * 22%); min-height: 60px; padding: 8px 12px; border: 0; border-radius: var(--radius-m); background: var(--flaeche-3); color: var(--tinte); font-weight: 700; box-shadow: inset 0 0 0 1px var(--linie); }
+.pyramide-stufe:first-child { background: var(--navy); color: var(--weiss); }
+.pyramide-stufe[aria-pressed="true"] { box-shadow: inset 0 0 0 3px var(--gold); }
+
+/* Verantwortungsfelder */
+.tafel-felder { display: grid; gap: var(--a-3); }
+.felder-schalter { display: inline-flex; justify-self: start; padding: 3px; border-radius: var(--radius-rund); background: var(--flaeche-3); }
+.felder-schalter-knopf { min-height: 44px; min-width: 110px; padding: 4px 16px; border: 0; border-radius: var(--radius-rund); background: transparent; color: var(--tinte); font-weight: 700; }
+.felder-schalter-knopf[aria-pressed="true"] { background: var(--weiss); box-shadow: var(--schatten-knopf); }
+.felder-karten { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+.feld-karte { display: grid; align-content: start; gap: 4px; min-width: 0; padding: 12px 14px; border-radius: var(--radius-l); background: var(--weiss); transition: box-shadow var(--dauer-mittel) var(--kurve-aus); }
+.feld-karte[data-zustand="chaos"] { box-shadow: inset 0 0 0 1.5px var(--koralle-kante); transform: rotate(calc((var(--i, 0) - 2.5) * .5deg)); }
+.feld-karte[data-zustand="ordnung"] { box-shadow: inset 0 0 0 1.5px var(--tuerkis); }
+.feld-zustand { margin: 0; font-size: 14.5px; line-height: 1.4; }
+.feld-karte details summary { min-height: 32px; font-size: 13px; font-weight: 600; cursor: pointer; }
+
+/* Bausteine */
+.tafel-bausteine { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 0; padding: 0; list-style: none; }
+.baustein-karte { min-width: 0; border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); animation: szene-ein 420ms var(--kurve-aus) both; animation-delay: calc(var(--i, 0) * 180ms); }
+.baustein-karte summary { display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 8px 12px; cursor: pointer; }
+.baustein-karte summary i { flex: none; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--gold); color: var(--weiss); font: 700 12px var(--schrift-label); font-style: normal; }
+.baustein-karte .tafel-detail { padding: 0 12px 12px; }
+
+@media (max-width: 760px) {
+  .tafel-radar, .tafel-pyramide, .wirkungskette, .schwelle-karten, .felder-karten, .tafel-bausteine, .radar-liste { grid-template-columns: minmax(0, 1fr); }
+  .radar-links { max-width: 260px; justify-self: center; width: 100%; }
+}

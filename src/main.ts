@@ -25,6 +25,7 @@ import { installiereTooltips, type Tooltips } from './ui/bausteine/tooltip.ts';
 import { erzeugeStory, type StoryFlaeche } from './ui/flaechen/story.ts';
 import { baueStart } from './ui/flaechen/start.ts';
 import { baueTheorie, kapitelListe } from './ui/flaechen/theorie.ts';
+import { baueExplore } from './ui/flaechen/explore.ts';
 import { erzeugeRegie } from './regie/regie.ts';
 import { starteLeinwand } from './regie/leinwand.ts';
 import { W } from './ui/woerter.ts';
@@ -100,6 +101,11 @@ function starteApp(wurzel: HTMLElement): void {
           story.setze(oeffentlich(sitzung.zustand()), null);
           window.scrollTo(0, 0);
         }
+        // Permalink #story/A3 (P2.4): springt zur Station, sobald eine Rolle gewählt ist; Welt B nur nach Freischaltung (Engine)
+        if (r.station !== null && sitzung.zustand().rolle !== null) {
+          const ziel = Object.keys(inhalte.stationen).find((id) => id.toLowerCase() === r.station);
+          if (ziel !== undefined && ziel !== sitzung.zustand().station) tue({ art: 'geheZu', station: ziel });
+        }
         flaeche = 'story';
         document.body.dataset['flaeche'] = 'story';
         document.title = `${W.story} · ${TITEL}`;
@@ -113,10 +119,28 @@ function starteApp(wurzel: HTMLElement): void {
         ersetze(wurzel, seite);
         tipps = installiereTooltips(seite, inhalte, W.glossarQuelle(inhalte.whitepaper.fassung ?? ''));
         window.scrollTo(0, 0);
-        (seite.querySelector('.kapitel-titel') as HTMLElement | null)?.focus({ preventScroll: true });
+        const abschnitt = r.abschnitt !== null ? seite.querySelector<HTMLElement>(`[data-abschnitt="k${r.abschnitt}"]`) : null;
+        if (abschnitt !== null) {
+          // Permalink auf einen Abschnitt (P2.4): dorthin, Fokus für Screenreader
+          abschnitt.tabIndex = -1;
+          abschnitt.scrollIntoView({ block: 'start' });
+          abschnitt.focus({ preventScroll: true });
+        } else (seite.querySelector('.kapitel-titel') as HTMLElement | null)?.focus({ preventScroll: true });
         flaeche = `theorie-${r.kapitel ?? 0}`;
         document.body.dataset['flaeche'] = 'theorie';
         document.title = `${W.theorie.bereich} ${W.theorie.bereichZusatz} · ${TITEL}`;
+        break;
+      }
+      case 'explore': {
+        tue({ art: 'wechsleBereich', bereich: 'explore' });
+        raeume();
+        const seite = baueExplore({ freigeschaltet: sitzung.zustand().freigeschaltet.explore, version: VERSION });
+        ersetze(wurzel, seite);
+        window.scrollTo(0, 0);
+        (seite.querySelector('.kapitel-titel') as HTMLElement | null)?.focus({ preventScroll: true });
+        flaeche = 'explore';
+        document.body.dataset['flaeche'] = 'explore';
+        document.title = `${W.explore.bereich} ${W.explore.bereichZusatz} · ${TITEL}`;
         break;
       }
       default: {
@@ -145,8 +169,12 @@ function starteApp(wurzel: HTMLElement): void {
     else zeige(r);
   };
 
-  sitzung.abonniere((neu, _alt, aktion) => {
-    if (story !== null && flaeche === 'story') story.setze(oeffentlich(neu), aktion);
+  sitzung.abonniere((neu, alt, aktion) => {
+    if (story !== null && flaeche === 'story') {
+      story.setze(oeffentlich(neu), aktion);
+      // Adresszeile zeigt den Permalink der Station (ohne hashchange: replaceState)
+      if (neu.station !== null && neu.station !== alt.station) history.replaceState(null, '', routeHash({ flaeche: 'story', station: neu.station }));
+    }
   });
 
   window.addEventListener('hashchange', () => {

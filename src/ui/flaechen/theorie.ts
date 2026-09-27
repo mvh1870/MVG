@@ -69,6 +69,7 @@ function sprunglink(o: TheorieOptionen): HTMLElement | null {
 
 function fuss(o: TheorieOptionen): HTMLElement {
   return h('footer', { class: 'lern-fuss' },
+    verweis(o, '#explore', { class: 'lern-kopf-link', 'data-pruef': 'zu-explore' }, sym('pfeilRechts'), W.explore.selbstAusprobieren),
     h('span', null, `${W.start.fuss} · `, h('span', { 'data-pruef': 'version' }, o.version)),
     h('span', { class: 'vermerk-hell', 'data-pruef': 'ungeprueft' }, sym('info'), W.ungeprueft));
 }
@@ -180,7 +181,7 @@ function querverweise(o: TheorieOptionen, bloecke: readonly Block[]): HTMLElemen
     h('div', { class: 'querverweise' }, qv.map((b) => {
       const st = b.id !== null ? o.inhalte.stationen[b.id] ?? null : null;
       const welt = st?.welt === 'B' ? 'b' : st?.welt === 'A' ? 'a' : null;
-      return verweis(o, '#story', { class: 'querverweis', 'data-pruef': `querverweis-${b.id ?? ''}`, ...(welt !== null ? { 'data-welt': welt } : {}) },
+      return verweis(o, `#story/${b.id ?? ''}`, { class: 'querverweis', 'data-pruef': `querverweis-${b.id ?? ''}`, ...(welt !== null ? { 'data-welt': welt } : {}) },
         h('span', { class: 'querverweis-symbol' }, sym('pfeilRechts')),
         h('span', { class: 'querverweis-text' }, kopfText(b.kopf, 'text') ?? b.id ?? '', h('small', null, inhaltInline(b.felder['text'] ?? ''))));
     })));

@@ -177,6 +177,25 @@ export const W = {
     inDerStory: 'In der Story erlebt',
     zumInhalt: 'Zum Inhalt springen',
   },
+  // Explore (P2.4 Rahmen; die Werkzeuge baut P8)
+  explore: {
+    bereich: 'Explore',
+    bereichZusatz: '· selbst ausprobieren',
+    titel: 'Werkzeuge zum Ausprobieren',
+    einstieg: 'Hier probieren Sie die Logik der Geschichte an eigenen Werten aus. Die Werkzeuge entstehen Schritt für Schritt; freigeschaltet wird Explore mit dem Ende der Geschichte.',
+    freigeschaltet: 'Freigeschaltet',
+    gesperrt: 'Nach dem Ende der Geschichte',
+    inVorbereitung: 'in Vorbereitung',
+    selbstAusprobieren: 'Selbst ausprobieren',
+    werkzeuge: [
+      { id: 'simulator', titel: 'Szenario-Simulator', text: 'Kostenabweichung, Terminabweichung, Risiken und Entscheidungsstatus eingeben – Eskalationsstufe, Informationsbedarf und Freigabeweg ablesen.' },
+      { id: 'welten', titel: 'Vorher/Nachher-Welten', text: 'Informationswege, Rollen, Entscheidungen, Eskalationen, Register, Reporting und Gremien in Welt A und Welt B nebeneinander.' },
+      { id: 'sandbox', titel: 'Governance-Fluss-Sandbox', text: 'Ereignisse einwerfen – Frühwarnung, Problem, Änderung – und durch Register, Status und Rollen laufen sehen.' },
+      { id: 'zeitmaschine', titel: 'Zeitmaschine', text: 'Die Zeitachse schieben und sehen, wie sich Kostenunsicherheit und Entscheidungsstau in beiden Welten entwickeln.' },
+      { id: 'galerie', titel: 'Grafik-Galerie', text: 'Alle Diagramme des Whitepapers, interaktiv, mit Abbildungsverzeichnis.' },
+      { id: 'figuren', titel: 'Figuren und Story-Karte', text: 'Die Besetzung des Falls und jede Station der Geschichte zum direkten Sprung.' },
+    ],
+  },
   // Regie
   regie: {
     titel: 'Regie',

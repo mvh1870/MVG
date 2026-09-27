@@ -294,3 +294,12 @@ q.mvg-zitat { font-weight: 500; }
   .lern-zitat-rahmen { padding: var(--a-4); }
   .kapitel-karten { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* =============================================================================================
+   Explore (P2.4): Rahmen für die Werkzeuge; gleiche Lernseiten-Hülle, eigene Karten
+   ============================================================================================= */
+.explore-kopf { display: grid; gap: var(--a-2); margin-bottom: var(--a-5); padding-bottom: var(--a-4); border-bottom: 1px solid var(--linie); }
+.explore-karten { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--a-3); margin: 0 0 var(--a-5); padding: 0; list-style: none; }
+.explore-karte { display: flex; flex-direction: column; align-items: flex-start; gap: var(--a-2); min-width: 0; padding: var(--a-4); border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
+.explore-karte-titel { font: 700 var(--gr-l)/1.2 var(--schrift-label); letter-spacing: .02em; color: var(--tinte); }
+.explore-karte p { font-size: var(--gr-text); line-height: 1.45; color: var(--tinte-2); }

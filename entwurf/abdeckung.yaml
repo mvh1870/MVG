@@ -44,10 +44,10 @@ k2.2-p2:
 # ── 2.3 Wissensverlust und Schlüsselrollen
 k2.3-p1:
   theorie: k02
-  story: [A1, A6]
+  story: [A1, A6, B6]
 k2.3-p2:
   theorie: k02
-  story: A1
+  story: [A1, B6]
 # ── 2.4 Warum Berichterstattung das Kernproblem nicht löst
 k2.4-p1:
   theorie: k02
@@ -107,7 +107,7 @@ k4.1-p2:
 # ── 4.2 Mandat
 k4.2-p1:
   theorie: k04
-  story: [A2, B1]
+  story: [A2, B1, B6]
 k4.2-p2:
   theorie: k04
   story: A2
@@ -134,7 +134,7 @@ k4.5-p1:
   story: [A5, B1, B5]
 k4.5-p2:
   theorie: k04
-  story: B5
+  story: [B5, B6]
 # ── 4.6 Datenstand und Nachweis
 k4.6-p1:
   theorie: k04
@@ -226,7 +226,7 @@ k6.4.1-p3:
   story: B3
 k6.4.1-p4:
   theorie: k06
-  story: B4
+  story: [B4, B6]
 # ── 6.4.2 Registerpflege und Takt
 k6.4.2-t1:
   theorie: k06
@@ -241,14 +241,14 @@ k6.4.3-p2:
 # ── 6.4.4 Register-Abgrenzung
 k6.4.4-t1:
   theorie: k06
-  story: [B2, B3, B5]
+  story: [B2, B3, B5, B6]
 k6.4.4-p1:
   theorie: k06
-  story: [ende-auflagen, B2, B4, B5]
+  story: [ende-auflagen, B2, B4, B5, B6]
 # ── 6.4.5 Rhythmus, Rollen und Eskalation
 k6.4.5-t1:
   theorie: k06
-  story: [B1, B4, B2, B5]
+  story: [B1, B4, B2, B5, B6]
 k6.4.5-p1:
   theorie: k06
   story: B2
@@ -365,7 +365,7 @@ k9.3-p1:
   story: B6
 k9.3-p2:
   theorie: k09
-  story: ende-steuerbar
+  story: [ende-steuerbar, B6]
 k9.3-p3:
   theorie: k09
   story: [A6, B6, ende-auflagen]
@@ -380,7 +380,7 @@ k9.4-p2:
   theorie: k09
 k9.4-l1:
   theorie: k09
-  story: [B3, B4, B5]
+  story: [B3, B4, B5, B6]
 k9.4-p3:
   theorie: k09
   story: B4
@@ -391,6 +391,7 @@ k9.5-p2:
   theorie: k09
 k9.5-l1:
   theorie: k09
+  story: B6
 k9.5-p3:
   theorie: k09
 

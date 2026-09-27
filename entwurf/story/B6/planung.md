@@ -53,13 +53,13 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Die Optimierung wird als `AEN-041` beantragt. Sie geht nicht in den Datenstand der Freigabe ein; freigegeben wird der benannte Stand ohne sie.
+Die Optimierung wird als `AEN-041` beantragt. Sie geht nicht in den Datenstand der Freigabe ein; Grundlage der Freigabe bleibt der benannte Stand ohne sie.
 
 ### Was fehlt
 Eine Auswirkungsbewertung für `AEN-041`.
 
 ### Neues Risiko
-Eine Änderung direkt nach der Freigabe.
+Eine Änderung, die gleich nach der Entscheidung über die Freigabe ansteht.
 
 ### Governance-Frage
 [[Datenstand]]: Auf welchem Stand wird freigegeben – und was kommt danach?
@@ -70,7 +70,7 @@ In Welt A haben Sie ‚Abschluss melden‘ gewählt. In Welt B reicht keine List
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Abschluss zurückhalten‘ gewählt. In Welt B hängt der Abschluss nicht an unbeauftragten Änderungen: `AEN-012` und `AEN-031` sind beschlossen und dokumentiert.
+In Welt A haben Sie ‚Abschluss zurückhalten‘ gewählt. In Welt B hängt der Abschluss nicht an unbeauftragten Änderungen: Jede Änderung – auch `AEN-012` und `AEN-031` – steht mit Status und Beschlusslage im Änderungsregister.
 :::
 
 ::: rueckbezug C

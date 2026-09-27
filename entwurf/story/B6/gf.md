@@ -1,7 +1,7 @@
 ---
 station: B6
 rolle: gf
-frage: Die Vorlage zur Freigabe zum Abschluss von LPH 5 liegt im Lenkungskreis. Was empfehlen Sie dem Bauherrn?
+frage: Die Vorlage zur Freigabe zum Abschluss von LPH 5 kommt am 17. November in den Lenkungskreis. Was empfehlen Sie dem Bauherrn?
 rueckbezug-auf: A6
 ---
 
@@ -16,7 +16,7 @@ status:
 Kernfrage, Mindestgrundlagen, Mandat und Datenstand liegen vor. Der Lenkungskreis berät, Dr. Miriam Olbers erteilt die Freigabe selbst auf Vorlage der Bauherren-PL.
 
 ### Was fehlt
-Nichts für die Freigabe; das Ergebnis wird dokumentiert.
+Für die Freigabe nichts, sofern Datenstand und Risikolage bis zum 17. November vorliegen; das Ergebnis wird dokumentiert.
 
 ### Neues Risiko
 Offene Punkte, die nicht als Auflage festgehalten sind, geraten aus dem Blick.
@@ -33,7 +33,7 @@ status:
   offene-risiken: -1
 ---
 ### Konsequenz
-Sie empfehlen, als Auflage mit Frist festzuhalten: Annahmen der Kostenprognose im Datenstand dokumentieren und Stellvertretung bestätigen. Dr. Miriam Olbers erteilt die Freigabe mit Auflagen.
+Sie empfehlen, als Auflagen mit Frist festzuhalten: die Stellvertretung führt die Kostenprognose bis zu Holger Steins Rückkehr weiter, und die offenen Punkte der Generalplanung werden nachgewiesen geschlossen. Dr. Miriam Olbers entscheidet, ob sie die Freigabe mit Auflagen erteilt.
 
 ### Was fehlt
 Eine verantwortliche Rolle und eine Frist für jede Auflage.
@@ -53,10 +53,10 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Die Bauherren-PL zeigt: Datenstand und Register tragen, die Stellvertretung ist geregelt. Dr. Miriam Olbers fragt, welche Mindestgrundlage fehlt – keine. Warten verzögert ohne Grund.
+Die Bauherren-PL zeigt: Datenstand und Register tragen, die Stellvertretung ist benannt. Dr. Miriam Olbers fragt, welche Mindestgrundlage nur Holger Stein liefern kann – keine. Was noch offen ist, liefern Controlling, Projektsteuerung und Generalplanung auch ohne ihn.
 
 ### Was fehlt
-Nichts in den Grundlagen – nur das Vertrauen, dass sie ohne eine Person tragen.
+Keine Grundlage, die an Holger Stein hängt – nur das Vertrauen, dass die Grundlagen ohne ihn tragen.
 
 ### Neues Risiko
 Die Freigabe hängt wieder an einem Kopf statt an Grundlagen.

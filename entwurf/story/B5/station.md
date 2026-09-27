@@ -156,7 +156,7 @@ Welt B: derselbe Nachtrag als Problem mit Kennung und Maßnahme, die Mensa als b
 titel: Vom Problem zur Frage an den Bauherrn
 kurz: Problem
 ---
-Aus dem Problem folgen zwei Schritte nebeneinander: die Maßnahme – und, weil die Reserve berührt ist, eine Entscheidung.
+Aus dem Problem folgen zwei Schritte nebeneinander: die Maßnahme – und, weil die Reserve berührt ist, Entscheidungsbedarf.
 
 ::: kette
 ::: glied PRB-004
@@ -189,7 +189,7 @@ art: entscheidung
 ggf. Entscheidung · die Reserve ist berührt
 
 ### Text
-Entscheidungsbedarf im Entscheidungsregister → Vorlage · Freigabe des Einsatzes der Risikoreserve, nicht delegierbar
+Entscheidungsbedarf · Weg über das Entscheidungsregister zur Vorlage · Freigabe des Einsatzes der Risikoreserve, nicht delegierbar
 :::
 
 ::: glied

@@ -52,9 +52,11 @@ export function vorlage(o: VorlageOptionen): VorlageGrafik {
     h('ol', { class: 'pruefliste' }, punkte.slice(0, haelfte)),
     h('ol', { class: 'pruefliste', start: haelfte + 1 }, punkte.slice(haelfte)),
   ];
-  const element = h('article', { class: 'vorlage', 'aria-label': `${o.titel} ${o.id}`, 'data-pruef': 'vorlage' },
+  // ID-Marke nur für echte Kürzel (ENT, RIS, … PRB); eine Freigabe hat keins (L-40)
+  const marke = idArt(o.id) !== null;
+  const element = h('article', { class: 'vorlage', 'aria-label': marke ? `${o.titel} ${o.id}` : o.titel, 'data-pruef': 'vorlage' },
     h('header', { class: 'vorlage-kopf' },
-      h('span', { class: 'id-marke', 'data-art': idArt(o.id) }, o.id),
+      marke ? h('span', { class: 'id-marke', 'data-art': idArt(o.id) }, o.id) : null,
       h('span', { class: 't-label' }, o.titel),
       o.meta !== null ? h('span', { class: 'vorlage-meta' }, o.meta) : null),
     h('div', { class: 'vorlage-frage' }, o.frage),

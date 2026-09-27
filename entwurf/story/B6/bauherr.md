@@ -1,7 +1,7 @@
 ---
 station: B6
 rolle: bauherr
-frage: Die Vorlage der Bauherren-PL zur Freigabe zum Abschluss von LPH 5 liegt vor, der Lenkungskreis hat beraten. Wie entscheiden Sie?
+frage: Die Vorlage der Bauherren-PL zur Freigabe zum Abschluss von LPH 5 ist in Vorbereitung; der Lenkungskreis berät am 17. November, die Freigabe erteilen Sie selbst. Wie entscheiden Sie?
 rueckbezug-auf: A6
 ---
 
@@ -29,10 +29,10 @@ status:
   ungeklaerte-entscheidungen: -1
 ---
 ### Konsequenz
-Sie erteilen die Freigabe zum Abschluss von LPH 5 auf dem benannten Datenstand; das Ergebnis ist dokumentiert. Die Fraktion bekommt ihre Antwort aus dem Managementbericht.
+Nach der Beratung im Lenkungskreis am 17. November erteilen Sie die Freigabe zum Abschluss von LPH 5 auf dem benannten Datenstand; das Ergebnis ist dokumentiert. Die Fraktion bekommt ihre Antwort aus dem Managementbericht.
 
 ### Was fehlt
-Nichts in der Struktur; LPH 6 beginnt mit einem klaren Stand.
+Nichts in der Struktur, sofern das Controlling den Datenstand bestätigt und die Empfehlung vorliegt; LPH 6 beginnt mit einem klaren Stand.
 
 ### Neues Risiko
 Offene Risiken gehen in die nächste Phase mit – benannt, aber nicht verschwunden.
@@ -49,7 +49,7 @@ status:
   ungeklaerte-entscheidungen: "-1 (Auflagen mit Frist)"
 ---
 ### Konsequenz
-Sie erteilen die Freigabe mit Auflagen, etwa zur Stellvertretung für die Kostenprognose. Die Auflagen stehen mit Frist und verantwortlicher Rolle im Register.
+Nach der Beratung im Lenkungskreis am 17. November erteilen Sie die Freigabe mit Auflagen, etwa zur Stellvertretung für die Kostenprognose. Die Auflagen stehen mit Frist und verantwortlicher Rolle im Register.
 
 ### Was fehlt
 Die Erfüllung der Auflagen; sie wird im Rhythmus nachgehalten.
@@ -69,7 +69,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Sie erteilen keine Freigabe und benennen, was fehlt. Die Vorlage geht mit Frist zurück an die Bauherren-PL; der Stadtrat erfährt den Grund aus dem Managementbericht.
+Nach der Beratung im Lenkungskreis am 17. November erteilen Sie keine Freigabe und benennen, was fehlt. Die Vorlage geht mit Frist zurück an die Bauherren-PL; der Stadtrat erfährt den Grund aus dem Managementbericht.
 
 ### Was fehlt
 Die Mindestgrundlagen, die Sie benannt haben.
@@ -83,7 +83,7 @@ LPH 6 beginnt später; der Termin rückt.
 
 ::: regie
 ### Notiz
-Der Bauherr erteilt die Freigabe selbst, auf Vorlage der Bauherren-PL; der Lenkungskreis hat beraten. Alle drei Ergebnisse sind in Welt B tragfähig – den Unterschied macht die Grundlage, nicht das Ergebnis.
+Der Bauherr erteilt die Freigabe selbst, auf Vorlage der Bauherren-PL; der Lenkungskreis berät am 17. November. Alle drei Ergebnisse sind in Welt B tragfähig – den Unterschied macht die Grundlage, nicht das Ergebnis.
 
 ### Leitfragen
 - Wer erteilt bei Ihnen die Freigabe am Abschluss einer Leistungsphase?

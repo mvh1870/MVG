@@ -102,7 +102,8 @@ const ARTEN = {
   },
   mandatsleiter: { in: ['schritt'], kennung: 'keine', kopf: { betrag: { typ: 'text' }, 'betrag-teur': { typ: 'zahl', min: 0 }, stufen: { typ: 'stufen', pflicht: true } }, felder: ['text'] },
   mandatsoption: { in: ['schritt'], kennung: 'pflicht', muster: /^\d+$/u, kopf: { titel: { typ: 'text', pflicht: true }, detail: { typ: 'text' }, zustaendig: { typ: 'text', pflicht: true }, stufe: { typ: 'zahl', min: 1 } }, felder: ['text'], pflichtFelder: ['text'] },
-  vorlage: { in: ['schritt'], kennung: 'pflicht', kopf: { titel: { typ: 'text' }, datenstand: { typ: 'text' } }, felder: ['frage', 'checkliste'], pflichtFelder: ['frage', 'checkliste'] },
+  // Kennung optional (L-40): Freigaben führen kein Kürzel („Freigabe LPH 5“)
+  vorlage: { in: ['schritt'], kennung: 'optional', kopf: { titel: { typ: 'text' }, datenstand: { typ: 'text' } }, felder: ['frage', 'checkliste'], pflichtFelder: ['frage', 'checkliste'] },
   fluss: { in: ['schritt'], kennung: 'keine', kopf: { position: { typ: 'wahl', werte: FLUSS, pflicht: true } }, felder: ['text'] },
   paar: {
     in: ['schritt'], kennung: 'keine',

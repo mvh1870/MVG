@@ -13,6 +13,7 @@ export function pruefeLayout() {
     if (el.closest('[data-pruef-erlaubt~="abschneiden"]')) continue;
     const r = el.getBoundingClientRect();
     if (r.width <= 2 || r.height <= 2) continue;
+    if (st.clip && st.clip !== 'auto') continue;
     const text = (el.textContent ?? '').trim();
     if (text === '') continue;
     const eigenerText = [...el.childNodes].some((n) => n.nodeType === Node.TEXT_NODE && (n.textContent ?? '').trim() !== '');
@@ -23,15 +24,19 @@ export function pruefeLayout() {
   return funde;
 }
 
-/** Läuft im Browser: Kontrast der Quellenzeilen unter Zitaten gegen den ersten deckenden Hintergrund. */
-export function kontrastQuellen() {
+/**
+ * Läuft im Browser: Kontrast von Text gegen den ersten deckenden Hintergrund – Standard die Quellenzeilen
+ * unter Zitaten; axe greift dort nicht (gepunkteter Grund, Anführungszeichen per ::before).
+ * @param {string} [selektor]
+ */
+export function kontrastQuellen(selektor = '.zitat-block .quelle b') {
   const rgb = (s) => (s.match(/[\d.]+/gu) ?? []).map(Number);
   const lum = ([r, g, b]) => {
     const k = (c) => { const x = c / 255; return x <= 0.03928 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; };
     return 0.2126 * k(r) + 0.7152 * k(g) + 0.0722 * k(b);
   };
   const funde = [];
-  for (const el of document.querySelectorAll('.zitat-block .quelle b')) {
+  for (const el of document.querySelectorAll(selektor)) {
     if (!(el instanceof HTMLElement) || el.offsetParent === null) continue;
     let grund = null;
     for (let a = el; a !== null; a = a.parentElement) {
@@ -41,7 +46,7 @@ export function kontrastQuellen() {
     if (grund === null) grund = [255, 255, 255];
     const [l1, l2] = [lum(rgb(getComputedStyle(el).color)), lum(grund)].sort((a, b) => b - a);
     const verh = (l1 + 0.05) / (l2 + 0.05);
-    if (verh < 4.5) funde.push(`Quellenzeile „${el.textContent?.slice(0, 30)}“ Kontrast ${verh.toFixed(2)}:1`);
+    if (verh < 4.5) funde.push(`Text „${el.textContent?.slice(0, 30)}“ Kontrast ${verh.toFixed(2)}:1`);
   }
   return funde;
 }

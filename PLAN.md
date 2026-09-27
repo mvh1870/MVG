@@ -77,7 +77,7 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P6.12 (2026-09-27, zwei Prüfrunden, Befunde eingearbeitet) · Kap. 11 MVG-Neuinitialisierung
 - [x] P6.13 (2026-09-27, zwei Prüfrunden, Befunde eingearbeitet) · Kap. 12 Was Bauherren gewinnen
 - [x] P6.14 (2026-09-27, L-47) · Kap. 13 Glossar (eigene Seite + Mouseover-Quelle)
-- [ ] P6.15 · Abdeckung 100 %, Zitate wortgleich, Prüf-Agenten je Kapitel + Korrekturen
+- [x] P6.15 (2026-09-27, docs/P6-BEFUNDE.md, 21 Befunde erledigt) · Abdeckung 100 %, Zitate wortgleich, Prüf-Agenten je Kapitel + Korrekturen
 
 ### P7 · Wirklichkeit & Ende
 - [ ] P7.1 · Zurück in Welt A: MVG-Neuinitialisierung (Kap. 11), 30/60/90 als schiebbare Zeitachse (8.2), Leistungsweg Diagnose → Regelbetrieb (Kap. 7), Mitwirkung/Abnahme (8.3/8.4)

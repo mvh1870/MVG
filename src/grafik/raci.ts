@@ -38,6 +38,8 @@ export interface RaciDaten {
   /** gespielte Rolle (Spalte hervorheben) */
   ich: string | null;
   beschriftung: { entscheidung: string; mandat: string; legende: string; sie: string };
+  /** Überschriftenstufe des Detailtitels (Standard h4) */
+  stufe?: 'h2' | 'h3' | 'h4';
 }
 
 export function istRaciBuchstabe(x: string): x is RaciBuchstabe {
@@ -54,7 +56,7 @@ export function raci(d0: RaciDaten): HTMLElement {
     knoepfe.forEach((b, j) => attr(b, 'aria-pressed', i === j ? 'true' : 'false'));
     const z = d.zeilen[i];
     if (z === undefined) return;
-    ersetze(detail, h('h4', { class: 'tafel-titel' }, z.titel),
+    ersetze(detail, h(d.stufe ?? 'h4', { class: 'tafel-titel' }, z.titel),
       h('dl', { class: 'tafel-detail' },
         RACI_BUCHSTABEN.map((b) => {
           const wer = d.rollen.filter((r) => z.zuordnung[r.id] === b).map((r) => (r.id === d.ich ? `${r.titel} (${d.beschriftung.sie})` : r.titel));

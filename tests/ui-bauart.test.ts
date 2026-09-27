@@ -608,9 +608,12 @@ test('Lernseite (P6.1): Tafel, RACI, Merksatz und Ebenen 1–4 werden auf Seiten
   const tafel = { art: 'tafel', kennungen: ['k2.5-t1'], id: 'k2.5-t1', kopf: { form: 'ketten', quelle: 'Q', tabelle: { kopf: ['S', 'M', 'K', 'R'], zeilen: [['s', 'm', 'k', 'r']] }, erlebt: {}, hervor: [] }, felder: {}, liste: null, kinder: [] };
   const ebenen = { art: 'ebenen', kennungen: [], id: null, kopf: {}, felder: {}, liste: null, kinder: [], ebenen: [1, 2, 3, 4].map((nr) => ({ nr, titel: `E${nr}`, felder: { text: `<p>Text ${nr}</p>` }, bloecke: [] })) };
   const abschnitt = { art: 'abschnitt', kennungen: ['k1.1'], id: 'k1.1', kopf: { titel: 'Probe' }, felder: {}, liste: null, kinder: [{ art: 'merksatz', kennungen: [], id: null, kopf: {}, felder: { text: '<p>Merke</p>' }, liste: null, kinder: [] }] };
-  const probe = { ...inhalte, theorie: { ...inhalte.theorie, [eintrag[0]]: { ...eintrag[1], bloecke: [tafel, abschnitt, ebenen] } } } as unknown as typeof inhalte;
+  const raciB = { art: 'raci', kennungen: [], id: null, kopf: { zeilen: [{ id: 'r1', titel: 'Reserve', zuordnung: { bauherr: 'A', pl: 'R' }, mandat: 'Bauherr' }] }, felder: {}, liste: null, kinder: [] };
+  const probe = { ...inhalte, theorie: { ...inhalte.theorie, [eintrag[0]]: { ...eintrag[1], bloecke: [tafel, abschnitt, ebenen, raciB] } } } as unknown as typeof inhalte;
   const el = baueTheorie({ inhalte: probe, kapitel: 1, version: VERSION, bedienbar: true });
   assert.ok(el.querySelector('[data-pruef="tafel-ketten"]'), 'Tafel auf Seitenebene');
+  assert.ok(el.querySelector('[data-pruef="raci-detail"]'), 'RACI auf der Lernseite');
+  assert.equal(el.querySelector('.tafel-titel')?.tagName, 'H2', 'Tafeltitel auf Seitenebene folgt der Gliederung (h1 → h2)');
   assert.match(el.querySelector('.lern-abschnitt .lehre')?.textContent ?? '', /Merke/u, 'Merksatz im Abschnitt');
   const e = [...el.querySelectorAll('[data-pruef^="lern-ebene-"]')];
   assert.equal(e.length, 4);
@@ -640,8 +643,9 @@ test('Glossar (P6.14): alle Begriffe wortgleich, Suche filtert, „Kommt vor in�
   assert.ok(sichtbar.length > 0 && sichtbar.length < alle.length);
   assert.ok(sichtbar.every((z) => (z.textContent ?? '').toLowerCase().includes('freigabe')));
   assert.match(el.querySelector('[data-pruef="glossar-zahl"]')?.textContent ?? '', new RegExp(`^${sichtbar.length} von ${alle.length}`, 'u'));
-  // Leinwand: keine Suche, keine Links
-  const anzeige = baueTheorie({ inhalte, kapitel: 13, version: VERSION, bedienbar: false });
-  assert.equal(anzeige.querySelector('[data-pruef="glossar-suche"]'), null);
-  assert.equal(anzeige.querySelector('a'), null);
+  // Leinwand: keine Suche, keine Links – auf jeder Lernseite und in der Kapitelliste
+  for (const kapitel of [null, ...Array.from({ length: 13 }, (_, i) => i + 1)]) {
+    const anzeige = baueTheorie({ inhalte, kapitel, version: VERSION, bedienbar: false });
+    assert.equal(anzeige.querySelector('a, .glossar-feld'), null, `Leinwand Kapitel ${kapitel ?? 'Liste'} ohne Links und Suche`);
+  }
 });

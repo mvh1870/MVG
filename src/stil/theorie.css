@@ -317,6 +317,11 @@ q.mvg-zitat { font-weight: 500; }
 
 /* Ebenen 1–4 auf Lernseiten (P6.1) */
 .lern-ebenen { display: grid; gap: 8px; margin: var(--a-4) 0; }
+.lern-ebenen { grid-template-columns: minmax(0, 1fr); }
+.lern-ebene { min-width: 0; }
+.lern-ebene .lesetext { overflow-wrap: anywhere; }
+/* Zitat in Ebene 4 (navy): der Rahmen ist hell, also dunkle Schrift (P6-Phasenend-Befund T1) */
+.lern-zitat-rahmen { color: var(--tinte); }
 .lern-ebene { border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
 .lern-ebene[data-ebene="4"] { background: var(--navy); color: var(--weiss); --fokus: var(--gold-hell); }
 .lern-ebene > summary { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 8px 16px; cursor: pointer; font-weight: 600; }

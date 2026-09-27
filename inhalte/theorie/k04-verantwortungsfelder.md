@@ -33,7 +33,7 @@ MVG verlangt deshalb ein Zielsystem mit Muss-Kriterien, verhandelbaren Kriterien
 ---
 titel: Mandat
 ---
-Der Bauherr legt fest, wer eine Entscheidung vorbereiten, treffen, freigeben oder eskalieren darf. Eine [[RACI]]-Zuordnung allein reicht dafür nicht; es braucht Freigabeschwellen, Stellvertretungen und Eskalationswege. Das Whitepaper nennt dazu eine Muster-Mandatsleiter mit drei Stufen.
+Mit dem [[Mandat]] legt der Bauherr fest, wer eine Entscheidung vorbereiten, treffen, freigeben oder eskalieren darf. Eine [[RACI]]-Zuordnung allein reicht dafür nicht; es braucht Freigabeschwellen, Stellvertretungen und Eskalationswege. Das Whitepaper nennt dazu eine Muster-Mandatsleiter mit drei Stufen.
 
 ::: zitat k4.2-p1
 RACI unterscheidet dabei ausführungsverantwortliche, letztverantwortliche, konsultierte und informierte Rollen. Diese Zuordnung reicht allein nicht aus, wenn Freigabeschwellen, Stellvertretungen und Eskalationswege fehlen.
@@ -92,7 +92,7 @@ Ein Risiko wird nicht nur als Eintrag geführt, sondern mit einer verantwortlich
 ---
 titel: Freigabe
 ---
-Eine [[Freigabe]] legitimiert den nächsten Schritt auf einem benannten Datenstand – etwa bei Planung, Vergabe, Budget, Änderung, Übergabe des Vorhabens oder Regelbetrieb. Bevor sie erteilt wird, klärt die Freigabelogik von MVG fünf Punkte: Entscheidung, Mandat, Mindestgrundlagen, angenommene Risiken und referenzierter Datenstand.
+Eine Freigabe legitimiert den nächsten Schritt auf einem benannten Datenstand – etwa bei Planung, Vergabe, Budget, Änderung, Übergabe des Vorhabens oder Regelbetrieb. Im Leistungsphasen- und Freigabemodell (Kap. 9.3) ist die [[Freigabe]] die Entscheidung des Bauherrn am Abschluss einer Leistungsphase. Bevor sie erteilt wird, klärt die Freigabelogik von MVG fünf Punkte: Entscheidung, Mandat, Mindestgrundlagen, angenommene Risiken und referenzierter Datenstand.
 
 ::: zitat k4.5-p1
 Freigabe ist mehr als Unterschrift. Freigabe bedeutet bauherrenseitige Legitimation eines nächsten Schritts auf einem benannten Datenstand.
@@ -103,7 +103,7 @@ Freigabe ist mehr als Unterschrift. Freigabe bedeutet bauherrenseitige Legitimat
 ---
 titel: Datenstand und Nachweis
 ---
-Datenstand und Nachweis sind ein eigenes Verantwortungsfeld: Eine formal richtige Entscheidung nützt wenig, wenn niemand weiß, auf welchen Zahlen und Annahmen sie beruht.
+[[Datenstand]] und Nachweis sind ein eigenes Verantwortungsfeld: Eine formal richtige Entscheidung nützt wenig, wenn niemand weiß, auf welchen Zahlen und Annahmen sie beruht.
 
 ::: zitat k4.6-p2
 MVG verlangt deshalb eine klare Datenstandslogik: Welche Version gilt? Welche Annahmen sind offen? Welche Änderungen wurden seit der letzten Freigabe aufgenommen? Welche Beschlusslage besteht? Wo wird die Nachweiskette geführt?

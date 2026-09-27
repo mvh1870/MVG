@@ -90,7 +90,7 @@ const ARTEN = {
     kopf: { knopf: { typ: 'text', pflicht: true }, kosten: { typ: 'text' }, dauer: { typ: 'text' }, status: { typ: 'status' }, loest: { typ: 'karte' }, bleibt: { typ: 'karte' } },
     felder: ['text', 'neuBekannt'],
   },
-  grafik: { in: ['schritt', '@theorie', 'abschnitt', 'ebene'], kennung: 'pflicht', kopf: { titel: { typ: 'text' }, untertitel: { typ: 'text' } }, felder: ['text'] },
+  grafik: { in: ['schritt'], kennung: 'pflicht', kopf: { titel: { typ: 'text' }, untertitel: { typ: 'text' } }, felder: ['text'] },
   kette: { in: ['schritt'], kennung: 'keine', felder: [] },
   // Glossarseite (P6.14): alle Begriffe aus whitepaper.json, durchsuchbar, mit „Kommt vor in“
   glossar: { in: ['@theorie'], kennung: 'keine', felder: ['text'] },
@@ -182,7 +182,7 @@ const DATEI_ARTEN = {
   '@theorie': {
     kopf: {
       kapitel: { typ: 'zahl', pflicht: true, min: 1, max: 13 }, titel: { typ: 'text', pflicht: true }, kurztitel: { typ: 'text' },
-      grafik: { typ: 'kennung' }, story: { typ: 'liste' }, deckt: { typ: 'liste' },
+      story: { typ: 'liste' }, deckt: { typ: 'liste' },
     },
     felder: ['text'],
   },
@@ -1505,12 +1505,12 @@ function baueTheorie(c, rel, id, text) {
     deckt.push(...ids);
     c.merkeDeckung('@theorie', ids, rel);
   }
+  if (kopf.kapitel === undefined) c.fehler(ort, 'kapitel fehlt (Lernseite wäre unerreichbar)');
   return {
     id,
     kapitel: kopf.kapitel ?? 0,
     titel: kopf.titel ?? '',
     kurztitel: kopf.kurztitel ?? kopf.titel ?? '',
-    grafik: kopf.grafik ?? null,
     story: kopf.story ?? [],
     deckt,
     einleitung: c.html(rohFelder['text']?.text ?? '', ort),

@@ -205,7 +205,6 @@ export interface TheorieSeite {
   kapitel: number;
   titel: string;
   kurztitel: string;
-  grafik: string | null;
   story: string[];
   deckt: string[];
   einleitung: string;

@@ -8,6 +8,7 @@
  * Absatz-IDs (O-17) · Querverweis in die Story · Kapitel blättern.
  */
 
+import type { TitelStufe } from '../../grafik/tafel.ts';
 import type { Block, Ebene, OeffentlicheInhalte, TheorieSeite, WhitepaperKapitel } from '../../inhalte/typen.ts';
 import { h } from '../h.ts';
 import { bildmarke } from '../marke.ts';
@@ -133,14 +134,15 @@ function karten(b: Block): HTMLElement {
 }
 
 /** Ebenen 1–4 auf einer Lernseite (P6.1): aufklappbar, Ebene 1 offen; Ebene 4 trägt den Nachweis (Zitat). */
-function ebenenBlock(ebenen: readonly Ebene[], inhalte: OeffentlicheInhalte): HTMLElement {
+function ebenenBlock(ebenen: readonly Ebene[], inhalte: OeffentlicheInhalte, stufe: TitelStufe): HTMLElement {
   return h('div', { class: 'lern-ebenen', 'data-pruef': 'lern-ebenen' }, ebenen.map((e) => h('details', { class: 'lern-ebene', 'data-ebene': e.nr, 'data-pruef': `lern-ebene-${e.nr}`, open: e.nr === 1 },
     h('summary', null, h('span', { class: 'lern-ebene-nr' }, String(e.nr)), h('span', null, h('small', null, `${W.ebene} ${e.nr}`), e.titel)),
     e.felder['text'] ? h('div', { class: 'lesetext' }, inhalt(e.felder['text'])) : null,
-    bloeckeIn(e.bloecke, inhalte))));
+    bloeckeIn(e.bloecke, inhalte, stufe))));
 }
 
-function bloeckeIn(bloecke: readonly Block[], inhalte: OeffentlicheInhalte): Node[] {
+/** Blöcke einer Lernseite; `stufe` = Überschriftenstufe für Tafeltitel (h2 auf Seitenebene, h3 in Abschnitten). */
+function bloeckeIn(bloecke: readonly Block[], inhalte: OeffentlicheInhalte, stufe: TitelStufe = 'h3'): Node[] {
   const aus: Node[] = [];
   for (const b of bloecke) {
     switch (b.art) {
@@ -152,12 +154,12 @@ function bloeckeIn(bloecke: readonly Block[], inhalte: OeffentlicheInhalte): Nod
         aus.push(karten(b));
         break;
       case 'tafel': {
-        const t = tafelBlock(b, [], inhalte);
+        const t = tafelBlock(b, [], inhalte, stufe);
         if (t !== null) aus.push(t);
         break;
       }
       case 'raci': {
-        const r = raciBlock(b, inhalte, null);
+        const r = raciBlock(b, inhalte, null, stufe);
         if (r !== null) aus.push(r);
         break;
       }
@@ -168,11 +170,11 @@ function bloeckeIn(bloecke: readonly Block[], inhalte: OeffentlicheInhalte): Nod
         aus.push(hinweis(b));
         break;
       case 'ebenen':
-        if (b.ebenen !== undefined && b.ebenen.length > 0) aus.push(ebenenBlock(b.ebenen, inhalte));
+        if (b.ebenen !== undefined && b.ebenen.length > 0) aus.push(ebenenBlock(b.ebenen, inhalte, 'h3'));
         break;
       default:
         if (b.felder['text']) aus.push(h('div', { class: 'lesetext' }, inhalt(b.felder['text'])));
-        aus.push(...bloeckeIn(b.kinder, inhalte));
+        aus.push(...bloeckeIn(b.kinder, inhalte, stufe));
     }
   }
   return aus;
@@ -193,7 +195,10 @@ function originaltext(b: Block, fassung: string): HTMLElement {
     if (el.tagName === 'TABLE') el.classList.add('register-tabelle');
     absaetze.push(h('div', { class: 'absatz', 'data-absatz': id },
       h('span', { class: 'absatz-id' }, id),
-      el.tagName === 'P' ? h('span', null, ...el.childNodes) : h('div', { class: 'absatz-block' }, el)));
+      el.tagName === 'P' ? h('span', null, ...el.childNodes)
+        // breite Tabellen scrollen waagrecht: der Bereich muss per Tastatur erreichbar sein (WCAG 2.1.1)
+        : el.tagName === 'TABLE' ? h('div', { class: 'absatz-block', tabindex: 0, role: 'region', 'aria-label': W.theorie.tabelle(id) }, el)
+        : h('div', { class: 'absatz-block' }, el)));
   }
   return h('section', { class: 'originaltext', 'aria-label': W.theorie.originaltext(fassung), 'data-pruef': 'originaltext' },
     h('header', { class: 'originaltext-kopf' },
@@ -206,7 +211,7 @@ function querverweise(o: TheorieOptionen, bloecke: readonly Block[]): HTMLElemen
   const qv = bloecke.filter((b) => b.art === 'querverweis');
   if (qv.length === 0) return null;
   return h('section', { class: 'querverweis-block', 'aria-label': W.theorie.inDerStory },
-    h('span', { class: 't-label' }, W.theorie.inDerStory),
+    h('span', { class: 't-label' }, W.theorie.inDerStory, h('span', { class: 'querverweis-fiktiv' }, ` · ${W.fiktiv}`)),
     h('div', { class: 'querverweise' }, qv.map((b) => {
       const st = b.id !== null ? o.inhalte.stationen[b.id] ?? null : null;
       const welt = st?.welt === 'B' ? 'b' : st?.welt === 'A' ? 'a' : null;
@@ -305,7 +310,7 @@ function lernseite(o: TheorieOptionen, nr: number): HTMLElement {
         teile.push(glossarListe(o));
       } else if (b.art !== 'querverweis') {
         // Grafik, Ebenen, Merksatz … auch auf Seitenebene (P6.1)
-        teile.push(...bloeckeIn([b], o.inhalte));
+        teile.push(...bloeckeIn([b], o.inhalte, 'h2'));
       }
     }
     const qv = querverweise(o, seite.bloecke);

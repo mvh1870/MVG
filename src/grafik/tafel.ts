@@ -28,6 +28,8 @@ export function istTafelForm(x: string): x is TafelForm {
   return (TAFEL_FORMEN as readonly string[]).includes(x);
 }
 
+export type TitelStufe = 'h2' | 'h3' | 'h4';
+
 export interface TafelDaten {
   form: TafelForm;
   /** Absatz-ID der Tabelle, z. B. k2.5-t1 */
@@ -42,6 +44,8 @@ export interface TafelDaten {
   namen?: Record<string, string>;
   /** hervorgehobene Zeilen (1-basiert), z. B. die aktuelle LPH */
   hervor?: number[];
+  /** Überschriftenstufe der Tafeltitel (Gliederung der umgebenden Seite; Standard h4) */
+  stufe?: TitelStufe;
 }
 
 export const WORT = {
@@ -126,7 +130,7 @@ function radar(d: TafelDaten, besucht: readonly string[]): HTMLElement {
     for (const t of svg.querySelectorAll('.radar-nr')) t.classList.toggle('ist-gewaehlt', t.getAttribute('data-nr') === String(i + 1));
     const z = d.zeilen[i] ?? [];
     const e = eigene[i] ?? [];
-    ersetze(detail, h('h4', { class: 'tafel-titel' }, z[0] ?? ''), e.length > 0 ? h('p', { class: 'tafel-spur' }, elementAus(symbol('haken')), `${WORT.ihreSpur}: ${e.join(', ')}`) : null, detailListe(d.kopf, z, 1));
+    ersetze(detail, h(d.stufe ?? 'h4', { class: 'tafel-titel' }, z[0] ?? ''), e.length > 0 ? h('p', { class: 'tafel-spur' }, elementAus(symbol('haken')), `${WORT.ihreSpur}: ${e.join(', ')}`) : null, detailListe(d.kopf, z, 1));
   };
   return h('div', { class: 'tafel-radar' }, h('div', { class: 'radar-links' }, svg, h('p', { class: 'radar-legende' }, WORT.legende)), h('div', { class: 'radar-rechts' }, h('div', { class: 'radar-liste', role: 'group', 'aria-label': d.kopf[0] ?? '' }, knoepfe), detail));
 }
@@ -201,7 +205,7 @@ function pyramide(d: TafelDaten): HTMLElement {
   const waehle = (i: number): void => {
     stufen.forEach((b, j) => attr(b, 'aria-pressed', i === j ? 'true' : 'false'));
     const z = d.zeilen[i] ?? [];
-    ersetze(detail, h('h4', { class: 'tafel-titel' }, z[0] ?? ''), detailListe(d.kopf, z, 1));
+    ersetze(detail, h(d.stufe ?? 'h4', { class: 'tafel-titel' }, z[0] ?? ''), detailListe(d.kopf, z, 1));
   };
   waehle(n - 1);
   return h('div', { class: 'tafel-pyramide' }, h('div', { class: 'pyramide', role: 'group', 'aria-label': d.kopf[0] ?? '' }, [...stufen].reverse()), detail);
@@ -214,7 +218,7 @@ function felder(d: TafelDaten): HTMLElement {
   const karten = d.zeilen.map((z, i) => {
     const text = h('p', { class: 'feld-zustand' }, z[iChaos] ?? '');
     const el = h('li', { class: 'feld-karte', 'data-pruef': `feld-${i + 1}`, 'data-zustand': 'chaos', style: `--i:${i}` },
-      h('h4', { class: 'tafel-titel' }, z[0] ?? ''), h('span', { class: 't-label feld-marke' }, d.kopf[iChaos] ?? ''), text,
+      h(d.stufe ?? 'h4', { class: 'tafel-titel' }, z[0] ?? ''), h('span', { class: 't-label feld-marke' }, d.kopf[iChaos] ?? ''), text,
       h('details', null, h('summary', null, WORT.mehr), detailListe(d.kopf.slice(0, 3), z.slice(0, 3), 1)));
     return { el, text, z };
   });
@@ -257,7 +261,7 @@ function leisteMitDetail(d: TafelDaten, klasse: string, beschrift: (z: string[],
   const waehle = (i: number): void => {
     knoepfe.forEach((b, j) => attr(b, 'aria-pressed', i === j ? 'true' : 'false'));
     const z = d.zeilen[i] ?? [];
-    ersetze(detail, h('h4', { class: 'tafel-titel' }, z.slice(0, ab).join(' · ')), hervor.includes(i + 1) ? h('p', { class: 'tafel-spur' }, elementAus(symbol('haken')), WORT.hier) : null, detailListe(d.kopf, z, ab));
+    ersetze(detail, h(d.stufe ?? 'h4', { class: 'tafel-titel' }, z.slice(0, ab).join(' · ')), hervor.includes(i + 1) ? h('p', { class: 'tafel-spur' }, elementAus(symbol('haken')), WORT.hier) : null, detailListe(d.kopf, z, ab));
   };
   waehle(Math.max(0, (hervor[0] ?? 1) - 1));
   return h('div', { class: `tafel-leiste tafel-${klasse}` }, h('div', { class: 'leiste', role: 'group', 'aria-label': d.kopf[0] ?? '' }, knoepfe), detail);
@@ -283,7 +287,7 @@ function register(d: TafelDaten): HTMLElement {
 
 function karten(d: TafelDaten): HTMLElement {
   return h('ol', { class: 'tafel-karten' }, d.zeilen.map((z, i) => h('li', { class: 'tafel-karte', 'data-pruef': `karte-${i + 1}` },
-    h('h4', { class: 'tafel-titel' }, z[0] ?? ''), detailListe(d.kopf, z, 1))));
+    h(d.stufe ?? 'h4', { class: 'tafel-titel' }, z[0] ?? ''), detailListe(d.kopf, z, 1))));
 }
 
 /** Zeitraum „0–30 Tage“ → [0, 30]; ohne Zahlenpaar null. */
@@ -312,7 +316,7 @@ function zeitachse(d: TafelDaten): HTMLElement {
     const z = d.zeilen[i] ?? [];
     attr(regler, 'aria-valuetext', `${WORT.tag(tag)} · ${z[0] ?? ''}`);
     knoepfe.forEach((b, j) => attr(b, 'aria-pressed', i === j ? 'true' : 'false'));
-    ersetze(detail, h('h4', { class: 'tafel-titel' }, h('span', { class: 'zeitachse-tag', 'data-pruef': 'zeitachse-tag' }, WORT.tag(tag)), ` · ${z[0] ?? ''}`), detailListe(d.kopf, z, 1));
+    ersetze(detail, h(d.stufe ?? 'h4', { class: 'tafel-titel' }, h('span', { class: 'zeitachse-tag', 'data-pruef': 'zeitachse-tag' }, WORT.tag(tag)), ` · ${z[0] ?? ''}`), detailListe(d.kopf, z, 1));
   };
   regler.addEventListener('input', zeige);
   zeige();

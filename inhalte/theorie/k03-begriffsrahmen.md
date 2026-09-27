@@ -3,9 +3,9 @@
 kapitel: 3
 titel: Begriffsrahmen – delegierbare Arbeit, Mandat und nichtdelegierbare Verantwortung
 kurztitel: Begriffsrahmen
-story: [wendepunkt, B5]
+story: [wendepunkt, B5, ende-neufestlegung]
 ---
-Das dritte Kapitel zieht die Linie, auf der das ganze Modell steht: Was kann der Bauherr abgeben, und was muss er selbst legitimieren? Auf dieser Unterscheidung baut Minimum Viable Governance (MVG) auf. Das Kapitel endet mit drei Ebenen – Arbeitsebene, Mandatsebene und Letztverantwortung.
+Kapitel 3 zieht die Linie, auf der das ganze Modell steht: Was kann der Bauherr abgeben, und was muss er selbst legitimieren? Auf dieser Unterscheidung baut Minimum Viable Governance (MVG) auf. Das Kapitel endet mit drei Ebenen – Arbeitsebene, Mandatsebene und Letztverantwortung.
 
 ::: kernaussage
 [[zitat:k3-p2|Arbeit kann delegiert werden, Verantwortung muss ausübbar bleiben.]]
@@ -121,4 +121,11 @@ Welt A steht still: Sie ordnen Aufgaben aus Kap. 3.2 als delegierbar oder nicht 
 text: "In der Story erlebt: B5 · Folgekosten – mit MVG"
 ---
 Welt B, Monat 9: Der Nachtrag der TGA-Fachplanung berührt die Risikoreserve – deren Einsatz gibt nur der Bauherr frei.
+:::
+
+::: querverweis ende-neufestlegung
+---
+text: "In der Story erlebt: Neufestlegung der Projektbasis"
+---
+Ein mögliches Ende: Die Projektbasis wird neu festgelegt – vorbereitet über eine Entscheidungsvorlage, beschlossen vom Bauherrn im Lenkungskreis; die Vorlage ist delegierbar, die Entscheidung nicht.
 :::

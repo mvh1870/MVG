@@ -5,7 +5,7 @@ titel: Ausgangslage und Kernproblem
 kurztitel: Ausgangslage
 story: [A1, A3, A4, A6, wendepunkt, B3, B6]
 ---
-Das zweite Kapitel beschreibt, unter welchem Druck komplexe Bauvorhaben heute stehen, und benennt das Kernproblem, auf das Minimum Viable Governance (MVG) antwortet. Es endet mit acht Symptomen, an denen sich fehlende Ausübungsfähigkeit erkennen lässt.
+Kapitel 2 beschreibt, unter welchem Druck komplexe Bauvorhaben heute stehen, und benennt das Kernproblem, auf das Minimum Viable Governance (MVG) antwortet. Es endet mit acht Symptomen, an denen sich fehlende Ausübungsfähigkeit erkennen lässt.
 
 ::: kernaussage
 [[zitat:k2-p2|Entscheidend ist, ob der Bauherr eine klare Führungs- und Entscheidungsarchitektur besitzt.]]
@@ -223,7 +223,7 @@ Welt A, Monat 7: 40 Seiten Statusbericht, Ampeln auf Gelb und Rot, keine Entsche
 ---
 text: "In der Story erlebt: A6 · Eskalation"
 ---
-Welt A, Monat 11: Die Freigabe zum Abschluss von LPH 5 steht an, Holger Stein fällt aus, und seine Excel-Stände versteht niemand vollständig.
+Welt A, Monat 11: Die Freigabe zum Abschluss von LPH 5 steht an, Holger Stein, Kostenplaner der Projektsteuerung, fällt aus, und seine Excel-Stände versteht niemand vollständig.
 :::
 
 ::: querverweis wendepunkt
@@ -237,7 +237,7 @@ Welt A steht still: Symptom-Radar und Wirkungsketten aus Kap. 2.5, bezogen auf I
 ---
 text: "In der Story erlebt: B3 · Kosten +8 %"
 ---
-Welt B, derselbe Montag: ein Datenstand, ein Mandat, eine Entscheidungsvorlage.
+Welt B, Monat 5, derselbe Montag: ein Datenstand, ein Mandat, eine Entscheidungsvorlage.
 :::
 
 ::: querverweis B6

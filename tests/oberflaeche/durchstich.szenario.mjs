@@ -13,6 +13,7 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { pruefeLayout } from './hilfen.mjs';
 
 export const name = 'durchstich';
 
@@ -23,31 +24,6 @@ const ladeInhalte = () => JSON.parse(readFileSync(path.join(WURZEL, 'src', 'gene
 /** Text ohne Tags, Leerraum zusammengezogen. @param {string} html */
 function klartext(html) {
   return html.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
-}
-
-/** Läuft im Browser: horizontales Scrollen und waagrecht abgeschnittener Text (wie oberflaeche.mjs). */
-function pruefeLayout() {
-  /** @type {string[]} */
-  const funde = [];
-  const d = document.documentElement;
-  if (d.scrollWidth > d.clientWidth) funde.push(`horizontales Scrollen: ${d.scrollWidth} > ${d.clientWidth}`);
-  for (const el of document.body.querySelectorAll('*')) {
-    if (!(el instanceof HTMLElement)) continue;
-    const st = getComputedStyle(el);
-    if (st.overflowX !== 'hidden' && st.overflowX !== 'clip') continue;
-    if (st.display === 'none' || st.visibility !== 'visible') continue;
-    if (el.closest('[data-pruef-erlaubt~="abschneiden"]')) continue;
-    const r = el.getBoundingClientRect();
-    if (r.width <= 2 || r.height <= 2) continue;
-    if (st.clip && st.clip !== 'auto') continue;
-    const text = (el.textContent ?? '').trim();
-    if (text === '') continue;
-    const eigenerText = [...el.childNodes].some((n) => n.nodeType === Node.TEXT_NODE && (n.textContent ?? '').trim() !== '');
-    const nurInline = [...el.children].every((k) => getComputedStyle(k).display.startsWith('inline'));
-    if (!eigenerText && !nurInline) continue;
-    if (el.scrollWidth > el.clientWidth + 1) funde.push(`abgeschnitten: ${el.tagName.toLowerCase()}.${[...el.classList].slice(0, 2).join('.')} „${text.slice(0, 40)}“`);
-  }
-  return funde;
 }
 
 /**

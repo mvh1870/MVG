@@ -7,7 +7,7 @@ titel: Anwendungssituationen und Praxislogik
 kurztitel: Anwendungssituationen
 story: [epilog, ende-neufestlegung]
 ---
-Kapitel 10 zeigt, wo Minimum Viable Governance (MVG) in der Praxis ansetzt: bei drei Bauherrentypen, bei Projekten mit schleichendem Steuerungsverlust und bei typischen Entscheidungsproblemen. Für typische Entscheidungsprobleme nennt das Whitepaper, warum sie kritisch sind und welches Artefakt bzw. welche Routine hilft.
+Kapitel 10 zeigt, wo Minimum Viable Governance (MVG) in der Praxis ansetzt: bei drei Bauherrentypen, bei Projekten mit schleichendem Steuerungsverlust und bei typischen Entscheidungsproblemen. Für jedes nennt das Whitepaper, warum es kritisch ist und welches Artefakt bzw. welche Routine hilft.
 
 ::: kernaussage
 MVG setzt dort an, wo die jeweilige Bauherrensituation Entscheidungen kritisch macht – bei Nachweis und Gremien, bei Zielkonflikten, bei Freigabereife und Prognose oder bei schleichendem Steuerungsverlust.
@@ -160,5 +160,5 @@ Und bei Ihnen? Eine Selbstdiagnose ohne Punktzahl, die Anwendungssituationen aus
 ---
 text: "In der Story erlebt: Neufestlegung der Projektbasis"
 ---
-Die Projektbasis trägt nicht mehr: Über eine Entscheidungsvorlage vorbereitet, beschließt der Bauherr im Lenkungskreis eine Neufestlegung der Projektbasis – außerhalb der regulären Freigabereihe.
+Die Projektbasis trägt nicht mehr: Über eine Entscheidungsvorlage vorbereitet, beschließt der Bauherr im Lenkungskreis eine [[Neufestlegung der Projektbasis]] – außerhalb der regulären Freigabereihe.
 :::

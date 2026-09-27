@@ -63,8 +63,8 @@ Die fünf Gewinne stehen oben als Karten. Laut Schlussbild macht die Kombination
 ---
 titel: Nachweis
 ---
-::: zitat k12-p1
-Für Bauherren zählt am Ende nicht die Zahl der Governance-Artefakte, sondern ihre Führungswirkung. MVG und der MVG Companion schaffen eine pragmatische Architektur, die Entscheidungen schneller vorbereitet, Mandate klarer macht, die Gremienfähigkeit erhöht und Nachweise belastbarer führt.
+::: zitat k12.1-p1
+Der Einstieg ist kein Governance-Großprojekt. Er beginnt mit einer kompakten MVG-Reifegradanalyse, die in kurzer Zeit sichtbar macht, welche Entscheidungen, Mandate, Datenstände und Nachweise kritisch sind. Auf dieser Grundlage kann der Bauherr priorisieren, welche MVG-Bausteine sofort wirksam werden und wo der Companion die Einführung beschleunigt.
 :::
 :::
 :::

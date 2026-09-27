@@ -5,9 +5,9 @@
 kapitel: 6
 titel: MVG Companion als Umsetzungsbeschleuniger
 kurztitel: MVG Companion
-story: [B1, B2, B3, B4, B5, B6]
+story: [B1, B2, B3, B4, B5, B6, ende-auflagen]
 ---
-Kapitel 6 stellt den [[MVG Companion]] vor, eine Arbeitsumgebung, in der die Logik von Minimum Viable Governance (MVG) im Alltag angewendet wird. Er ist ein optionales Arbeitsmittel; das Bauherren-Führungsmodell funktioniert auch mit vorhandenen Büro- und Projektwerkzeugen. Der zweite Teil beschreibt, wie Register, Rollen und Taktung zusammenarbeiten – vom ersten Signal bis zum Managementbericht.
+Kapitel 6 stellt eine Arbeitsumgebung vor, in der die Logik von Minimum Viable Governance (MVG) im Alltag angewendet wird: den [[MVG Companion]]. Der zweite Teil beschreibt, wie Register, Rollen und Taktung zusammenarbeiten – vom ersten Signal bis zum Managementbericht.
 
 ::: kernaussage
 [[zitat:k6.1-p1|Der Companion erfindet keine neue Governance, er macht die vereinbarte Governance im Alltag anwendbar.]]
@@ -183,14 +183,16 @@ Ohne Zusammenspiel keine Wirkung: [[zitat:k6.4-p1|Governance wirkt nur, wenn Reg
 ---
 titel: Vertiefung
 ---
-Die Statusbegriffe je Register bleiben vom Freigabeprozess getrennt (Kap. 6.4.4):
+Eskaliert wird entlang der Mandatsleiter, wenn Wert-, Risiko-, Frist- oder Mandatsschwellen überschritten sind (Kap. 6.4.5):
 
-| Gegenstand | Status |
+| Stufe | Wer entscheidet |
 |---|---|
-| Entscheidungen | Offen · In Bearbeitung · Entscheidungsreif · Entschieden · Verworfen |
-| Risiken | aktiv · beobachtet · gemindert · geschlossen |
-| Änderungen | Beantragt · In Prüfung · Beschlossen · Abgelehnt · Umgesetzt |
-| Freigaben | Status offen → in Vorbereitung → abgeschlossen; Ergebnis Freigabe / keine Freigabe / Freigabe mit Auflagen |
+| im Mandat | die verantwortliche Rolle und die Bauherren-PL, im definierten Rahmen und dokumentiert im Register |
+| Eskalation | die Bauherren-PL |
+| Eskalation | das Änderungsgremium |
+| Eskalation | Beschlussfassung durch den Bauherrn im Lenkungskreis |
+
+[[zitat:k6.4.5-p1|Eskalation ist kein Fehlerbild, sondern Teil der Steuerungslogik.]]
 :::
 
 ::: ebene 4
@@ -246,4 +248,11 @@ Welt B, Monat 9: Der Nachtrag wird das Problem `PRB-004` im Problemregister des 
 text: "In der Story erlebt: B6 · Freigabe LPH 5"
 ---
 Welt B, Monat 11: Die Freigabe zum Abschluss von LPH 5 steht im Freigaberegister mit dem Status „in Vorbereitung“; Kosten und Termin für die Anfrage aus dem Stadtrat stehen im Managementbericht Oktober.
+:::
+
+::: querverweis ende-auflagen
+---
+text: "In der Story erlebt: Freigabe mit Auflagen"
+---
+Ein mögliches Ende: Der Bauherr erteilt die Freigabe zum Abschluss von LPH 5 mit Auflagen – neben Freigabe und keiner Freigabe eines der drei Ergebnisse, die Kap. 6.4.4 für Freigaben unterscheidet.
 :::

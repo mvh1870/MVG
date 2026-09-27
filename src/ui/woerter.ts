@@ -200,6 +200,7 @@ export const W = {
     glossarLeer: 'Kein Begriff passt zur Suche.',
     kommtVor: 'Kommt vor in',
     kapitelKurz: (nr: string) => `Kap. ${nr}`,
+    tabelle: (id: string) => `Tabelle ${id}`,
   },
   // Explore (P2.4 Rahmen; die Werkzeuge baut P8)
   explore: {

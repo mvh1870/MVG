@@ -13,7 +13,7 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P0.5 · Engine + Inhaltsformat + Regie-Kanal (`src/engine/`, `werkzeuge/inhalte.mjs`, `docs/INHALTSFORMAT.md`, `src/regie/kanal.ts`) — Abnahme: Reducer-, Parser-, Kanal-Tests grün.
 - [x] P0.6 · Durchstich: Startseite (2 Wege), Story Prolog-Minimum → A3 → (Schieberegler) → B3 für Rolle Bauherren-PL, Theorie-Probe (Kap. 1 + Kapitelliste), Regie/Leinwand-Sync — Abnahme: Klickpfad im Browser ohne Konsolenfehler bei 1280×720, 1024×768, 400 px; Leinwand zeigt nie Regie-Notizen.
 - [x] P0.7 · Prüf-Agenten P0 (Architektur, Fachtreue A3/B3, Stil) + Korrekturen — Abnahme: keine offenen Befunde.
-- [ ] P0.8 · GitHub-Remote mvh1870/MVG (Owner-OK für Push), `cloud/` einrichten (Owner führt CLOUD-EINRICHTEN und ROUTINE-ANLEGEN aus), erster Cloud-Block beobachtet — Abnahme: Ampel des ersten Blocks auf `claude/haus`.
+- [~] P0.8 · GitHub-Remote mvh1870/MVG (gepusht 2026-09-27), `cloud/` einrichten (Owner führt CLOUD-EINRICHTEN und ROUTINE-ANLEGEN aus), erster Cloud-Block beobachtet — Abnahme: Ampel des ersten Blocks auf `claude/haus`. **Erster Cloud-Block:** Du bist der Beweis – setze diesen Posten auf `[x]` (mit deinem ersten Commit), trage in die Übergabe ein, was der frische Rechner hatte (Node-Version, ob `npx playwright install chromium` ging, Dauer von `npm ci` und der Kette), und fahre mit P1.1 fort.
 
 ### P1 · Drehbuch & Theorie-Gliederung (Cloud)
 - [ ] P1.1 · Abdeckungskarte: jeder Whitepaper-Absatz (ID aus P0.2) → Theorie-Seite (+ Story-Station, wo passend) in `inhalte/abdeckung.yaml`; Prüfer im `inhalte`-Werkzeug — Abnahme: 100 % der Absätze zugeordnet.

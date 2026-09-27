@@ -40,4 +40,35 @@ export async function lauf(seite, h) {
   await seite.evaluate(() => { location.hash = '#story/A3'; });
   await h.erwarte('[data-pruef="leitstand"]');
   await h.erwarte('[data-pruef^="rolle-"], [data-pruef="weiter"]');
+
+  await jedeRolle(seite, h);
+}
+
+/** Jede der sechs Rollen ist startbar (P2.5): Prolog → Rolle → A3 → Wahl A → Konsequenz. */
+export async function jedeRolle(seite, h) {
+  for (const rolle of ['gf', 'bauherr', 'pl', 'ps', 'planung', 'controlling']) {
+    if (rolle === 'gf') {
+      await seite.evaluate(() => { location.hash = '#start'; });
+      await h.klick('[data-pruef="weg-story"]');
+    } else {
+      // Neu beginnen über die Seitenleiste (setzt Rolle und Verlauf zurück)
+      await h.klick('[data-pruef="seitenleiste-raum"]');
+      await h.klick('[data-pruef="neustart"]');
+      await h.taste('Escape');
+    }
+    await h.erwarte('[data-pruef="weiter"]');
+    if (await seite.locator(`[data-pruef="rolle-${rolle}"]`).filter({ visible: true }).count() === 0) await h.klick('[data-pruef="weiter"]');
+    await h.klick(`[data-pruef="rolle-${rolle}"]`);
+    await h.erwarte('[data-pruef^="interesse-"]');
+    await h.klick('[data-pruef="weiter"]');
+    for (let i = 0; i < 6; i++) {
+      if (await seite.locator('[data-pruef="option-A"]').filter({ visible: true }).count() > 0) break;
+      await h.klick('[data-pruef="weiter"]');
+      await h.warte(150);
+    }
+    await h.klick('[data-pruef="option-A"]');
+    await h.erwarte('[data-pruef="konsequenz"]');
+    const titel = await seite.locator('.wahl b').first().innerText();
+    if (titel.trim() === '') h.befund(`Rolle ${rolle}: Konsequenz ohne Titel der Wahl`);
+  }
 }

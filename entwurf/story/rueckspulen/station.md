@@ -7,7 +7,10 @@ titel: Zurück auf Monat 0
 kurztitel: Rückspulen
 whitepaper-bezug: [k5.2-t1, k5.4-p2]
 schaltet-frei: [welt-b]
-weiter: B1
+weiter:
+  - ziel: B3
+    wenn: [interesse express]
+  - ziel: B1
 ---
 
 ::: schritt einstieg

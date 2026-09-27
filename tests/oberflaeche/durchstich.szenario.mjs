@@ -91,7 +91,7 @@ export async function lauf(seite, h) {
   await h.erwarte('[data-pruef="rolle-pl"]');
   const rollen = await seite.locator('.rollen-karte').count();
   const folgt = await seite.locator('.rollen-karte:disabled').count();
-  if (rollen !== 6 || folgt !== 5) h.befund(`Rollenwahl: erwartet 6 Rollen, 5 mit „folgt“ – gefunden ${rollen}/${folgt}`);
+  if (rollen !== 6 || folgt !== 0) h.befund(`Rollenwahl: erwartet 6 spielbare Rollen (P2.5) – gefunden ${rollen}, davon ${folgt} gesperrt`);
   await stand('rollenwahl');
   await h.klick('[data-pruef="rolle-pl"]');
   await h.erwarte('[data-pruef^="interesse-"]');

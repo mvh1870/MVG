@@ -76,3 +76,28 @@ test('Entwurf mit dem Reducer durchgespielt: jede Rolle vom Prolog bis zum Epilo
     }
   }
 });
+
+test('Express-Pfad (E8, L-26): Interesse „express“ führt über A3, A6, Wendepunkt, B3, B6 zur Wirklichkeit – für jede Rolle', () => {
+  const m = erg.inhalte as StoryModell;
+  for (const r of ROLLEN) {
+    let z = anfangszustand();
+    const tu = (a: Aktion): void => { z = wende(z, a, m); };
+    tu({ art: 'starteStory' });
+    tu({ art: 'waehleRolle', rolle: r });
+    tu({ art: 'setzeInteressen', interessen: ['express'] });
+    const besucht: string[] = [];
+    for (let i = 0; i < 1000; i++) {
+      const st = z.station;
+      if (st !== null && besucht[besucht.length - 1] !== st) besucht.push(st);
+      const s = aktuellerSchritt(z, m);
+      if (s?.art === 'entscheidung' && st !== null) {
+        const ent = m.stationen[st]?.szenen[r]?.entscheidung;
+        if (ent !== undefined && ent !== null && z.entscheidungen[ent.id] === undefined) tu({ art: 'waehle', option: 'A' });
+      }
+      const vorher = z;
+      tu({ art: 'weiter' });
+      if (z === vorher) break;
+    }
+    assert.deepEqual(besucht, ['prolog', 'A3', 'A6', 'wendepunkt', 'rueckspulen', 'B3', 'B6', 'wirklichkeit', 'ende-steuerbar', 'epilog'], r);
+  }
+});

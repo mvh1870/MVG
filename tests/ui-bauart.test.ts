@@ -207,7 +207,7 @@ test('Story: Prolog → A3 → Option B → Konsequenz, schrittweiser Aufbau am 
     assert.equal(el.getAttribute('data-seitenleiste'), 'zu');
     klick('[data-pruef="weiter"]');
     assert.equal(el.querySelectorAll('.rollen-karte').length, 6);
-    assert.equal(el.querySelectorAll('.rollen-karte:disabled').length, 5);
+    assert.equal(el.querySelectorAll('.rollen-karte:disabled').length, 0, 'alle sechs Rollen spielbar (P2.5)');
     klick('[data-pruef="rolle-pl"]');
     await pause(600);
     assert.ok(el.querySelector('[data-pruef^="interesse-"]'), 'nach der Rollenwahl die Interessen');

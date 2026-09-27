@@ -5,7 +5,7 @@
  *
  * Baut unter tmp/entwurf-<pid>/ eine Wurzel aus `inhalte/` plus allen Dateien unter `entwurf/`
  * (gleicher Pfad = ersetzt, z. B. `entwurf/story/A1/pl.md` → `inhalte/story/A1/pl.md`), stellt
- * den Hauptpfad her (Prolog → A1, A3 → A4, B3 → B4, alle sechs Rollen spielbar, ohne die
+ * den Hauptpfad her (Prolog → A1, A3 → A4, B3 → B4, dazu der Express-Pfad; ohne die
  * Vergleichsstation des Durchstichs) und kompiliert mit `--pruefe` (Graph, Zitate, Begriffe …).
  *
  *   node werkzeuge/entwurf.mjs     Exitcode 1 bei Fehlern
@@ -19,10 +19,10 @@ import { WURZEL, STANDARD_WHITEPAPER, kompiliere } from './inhalte.mjs';
 
 /** Anpassungen am Durchstich: [Datei relativ zu inhalte/, alt, neu]. Jede muss genau greifen. */
 export const ANPASSUNGEN = [
-  ['story/prolog/station.md', 'weiter: A3   # Durchstich P0; ab P1: A1', 'weiter: A1'],
-  ['story/prolog/station.md', 'folgt: [gf, bauherr, ps, planung, controlling]\n', ''],
-  ['story/A3/station.md', 'weiter: A3-B3-vergleich   # Durchstich P0; ab P3: A4', 'weiter: A4'],
-  ['story/B3/station.md', 'ende: ja   # Durchstich P0: vorläufiges Ende; ab P5: weiter: B4', 'weiter: B4'],
+  // Express-Pfad (E8, L-26): Interesse „express“ überspringt A1, A2, A4, A5, B1, B2, B4, B5
+  ['story/prolog/station.md', 'weiter: A3   # Durchstich P0; ab P1: A1', 'weiter:\n  - ziel: A3\n    wenn: [interesse express]\n  - ziel: A1'],
+  ['story/A3/station.md', 'weiter: A3-B3-vergleich   # Durchstich P0; ab P3: A4', 'weiter:\n  - ziel: A6\n    wenn: [interesse express]\n  - ziel: A4'],
+  ['story/B3/station.md', 'ende: ja   # Durchstich P0: vorläufiges Ende; ab P5: weiter: B4', 'weiter:\n  - ziel: B6\n    wenn: [interesse express]\n  - ziel: B4'],
 ];
 
 /** @param {string} ordner @returns {string[]} */

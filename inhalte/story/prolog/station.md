@@ -26,11 +26,8 @@ Fiktiver Fall. Stadt, Gesellschaft, Projekt und Personen sind erfunden.
 art: rollenwahl
 titel: Welche Rolle übernehmen Sie?
 kurz: Rolle
-folgt: [gf, bauherr, ps, planung, controlling]
 ---
 Sechs Rollen, ein Projekt. Jede Rolle sieht dieselbe Lage anders – und entscheidet anderes.
-
-Spielbar ist derzeit die Bauherren-PL; die übrigen fünf Rollen folgen.
 :::
 
 ::: schritt interessen
@@ -64,5 +61,12 @@ titel: Risiken und Frühwarnungen
 ---
 titel: Freigaben und Nachweise
 ---
+:::
+
+::: interesse express
+---
+titel: Express – die Kurzfassung in rund zwölf Minuten
+---
+Nur die Schlüsselmomente: Kosten +8 %, die Eskalation, der Wendepunkt und dieselben Momente mit MVG.
 :::
 :::

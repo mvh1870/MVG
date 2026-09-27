@@ -68,7 +68,7 @@ Eine neue Projektbasis auf der alten Steuerungslogik.
 :::
 
 ::: nachsatz
-Was davon jetzt noch möglich ist, hängt davon ab, was der Bauherr selbst beiträgt.
+Was aus Welt B jetzt noch möglich ist, hängt davon ab, was der Bauherr selbst beiträgt.
 :::
 
 ::: regie

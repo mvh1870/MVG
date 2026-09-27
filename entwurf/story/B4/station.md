@@ -21,7 +21,7 @@ weiter: B5
 titel: Donnerstag, 10:00 Uhr. Monat 7.
 kurz: Einstieg
 ---
-Im Juni hat das Änderungsgremium auf ergänzter Vorlage entschieden; die Fassadenänderung `AEN-022` ist beschlossen. Die Brandschutzauflagen aus der Baugenehmigung stehen als Änderung `AEN-031` im Änderungsregister, grob 0,4 Mio. €. Das Änderungsgremium tagt; die Vorlage liegt vor. Der Bauausschuss bekommt den Managementbericht mit einer klaren Beschlussvorbereitung.
+Im Juni hat das Änderungsgremium `ENT-017` auf ergänzter Vorlage entschieden; die Fassadenänderung `AEN-022` ist beschlossen. Die Brandschutzauflagen aus der Baugenehmigung stehen als Änderung `AEN-031` im Änderungsregister, grob 0,4 Mio. €. Das Änderungsgremium tagt; die Vorlage liegt vor. Der Bauausschuss bekommt den Managementbericht mit einer klaren Beschlussvorbereitung.
 :::
 
 ::: schritt rueckbezug

@@ -68,7 +68,7 @@ Auf welchem Datenstand wird die neue Projektbasis legitimiert?
 :::
 
 ::: nachsatz
-Was davon jetzt noch möglich ist, hängt davon ab, was der Bauherr selbst beiträgt.
+Was aus Welt B jetzt noch möglich ist, hängt davon ab, was der Bauherr selbst beiträgt.
 :::
 
 ::: regie

@@ -68,7 +68,7 @@ Die neue Basis erbt die alte Unsicherheit, wenn die Frage der verplanten Reserve
 :::
 
 ::: nachsatz
-Was davon jetzt noch möglich ist, hängt davon ab, was der Bauherr selbst beiträgt.
+Was aus Welt B jetzt noch möglich ist, hängt davon ab, was der Bauherr selbst beiträgt.
 :::
 
 ::: regie

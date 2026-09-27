@@ -70,7 +70,7 @@ In Welt A haben Sie ‚Unterlagen ordnen‘ gewählt. In Welt B gibt es die drei
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Varianten erarbeiten lassen‘ gewählt. In Welt B ist die Zielpriorität schon festgelegt – vom Bauherrn, nicht von der Planung; Varianten werden an ihr gemessen.
+In Welt A haben Sie ‚Varianten erarbeiten lassen‘ gewählt. In Welt B legt die Zielpriorität der Bauherr fest, nicht die Planung; sobald sie gilt, werden Varianten an ihr gemessen.
 :::
 
 ::: rueckbezug C

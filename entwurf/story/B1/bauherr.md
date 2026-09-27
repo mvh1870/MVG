@@ -10,15 +10,15 @@ In Welt A haben Sie ‚Berichten lassen‘ gewählt. In Welt B wartet der Zielko
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Priorität per Mail setzen‘ gewählt. In Welt B steht die Zielpriorität nicht in einer Mail, sondern im Zielsystem mit Abwägungsregeln, das alle Beteiligten kennen.
+In Welt A haben Sie ‚Priorität per Mail setzen‘ gewählt. In Welt B gehört die Zielpriorität nicht in eine Mail, sondern ins Zielsystem mit Abwägungsregeln, das alle Beteiligten kennen – festlegen müssen Sie sie selbst.
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Zuständigkeiten klären lassen‘ gewählt. In Welt B gibt es statt eines Organigramms eine Mandatsleiter mit Schwellen, Stellvertretungen und Eskalationswegen.
+In Welt A haben Sie ‚Zuständigkeiten klären lassen‘ gewählt. In Welt B gibt es statt eines Organigramms eine Mandatsleiter mit Schwellen und Eskalationswegen; offen ist noch, wer Holger Stein vertritt.
 :::
 
 ::: rueckbezug ohne
-In Welt A war die erste Woche unauffällig – und niemand hat den Zielkonflikt priorisiert. In Welt B liegt die Priorität fest, bevor die erste Abweichung kommt.
+In Welt A war die erste Woche unauffällig – und niemand hat den Zielkonflikt priorisiert. In Welt B ist das Zielsystem angelegt, und die Frage nach der Priorität liegt bei Ihnen, bevor die erste Abweichung kommt.
 :::
 
 ::: option A
@@ -43,13 +43,13 @@ Gering – solange die Leiter gelebt und nicht umgangen wird.
 
 ::: option B
 ---
-titel: Die Zielpriorität im Lenkungskreis bekräftigen
-kurz: Zielpriorität bekräftigen
+titel: Die Zielpriorität im Lenkungskreis festlegen
+kurz: Zielpriorität festlegen
 status:
   ungeklaerte-entscheidungen: -1
 ---
 ### Konsequenz
-Sie bekräftigen die Abwägungsregeln zwischen Kosten, Termin, [[ESG]] und [[LCC]]. Die Planung kann Varianten daran messen, bevor sie sie vorlegt.
+Sie legen fest, welche Zielpriorität gilt, und bestätigen die Abwägungsregeln zwischen Kosten, Termin, [[ESG]] und [[LCC]]. Die Planung kann Varianten daran messen, bevor sie sie vorlegt.
 
 ### Was fehlt
 Nichts Wesentliches; neue Zielkonflikte kommen als Entscheidungsfrage zu Ihnen.

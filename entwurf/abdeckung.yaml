@@ -78,7 +78,7 @@ k3.1-p2:
 # ── 3.2 Delegierbar und nicht delegierbar
 k3.2-t1:
   theorie: k03
-  story: [A5, B5, wendepunkt, ende-neufestlegung]
+  story: [A5, B5, wendepunkt, ende-neufestlegung, B1]
 k3.2-p1:
   theorie: k03
   story: [wendepunkt]
@@ -107,7 +107,7 @@ k4.1-p2:
 # ── 4.2 Mandat
 k4.2-p1:
   theorie: k04
-  story: A2
+  story: [A2, B1]
 k4.2-p2:
   theorie: k04
   story: A2
@@ -129,7 +129,7 @@ k4.4-p2:
 # ── 4.5 Freigabe
 k4.5-p1:
   theorie: k04
-  story: A5
+  story: [A5, B1]
 k4.5-p2:
   theorie: k04
 # ── 4.6 Datenstand und Nachweis
@@ -138,7 +138,7 @@ k4.6-p1:
   story: A3
 k4.6-p2:
   theorie: k04
-  story: A3
+  story: [A3, B1]
 
 # ── 5 Minimum Viable Governance als Bauherren-Führungsmodell
 k5-p1:
@@ -202,16 +202,20 @@ k6.3-p1:
   theorie: k06
 k6.3-p2:
   theorie: k06
+  story: B1
 k6.3-p3:
   theorie: k06
+  story: B1
 k6.3-p4:
   theorie: k06
 # ── 6.4 Zusammenarbeit im MVG Companion
 k6.4-p1:
   theorie: k06
+  story: B1
 # ── 6.4.1 Grundlogik der Zusammenarbeit
 k6.4.1-p1:
   theorie: k06
+  story: B1
 k6.4.1-p2:
   theorie: k06
 k6.4.1-p3:
@@ -229,7 +233,7 @@ k6.4.3-p1:
   story: B3
 k6.4.3-p2:
   theorie: k06
-  story: B3
+  story: [B3, B1]
 # ── 6.4.4 Register-Abgrenzung
 k6.4.4-t1:
   theorie: k06
@@ -334,6 +338,7 @@ k9-p1:
 # ── 9.1 Bauherren-Mandats- und Verantwortungsmodell
 k9.1-p1:
   theorie: k09
+  story: B1
 k9.1-p2:
   theorie: k09
 k9.1-l1:
@@ -341,10 +346,12 @@ k9.1-l1:
 # ── 9.2 RACI-Prozess
 k9.2-p1:
   theorie: k09
+  story: B1
 k9.2-p2:
   theorie: k09
 k9.2-p3:
   theorie: k09
+  story: B1
 k9.2-p4:
   theorie: k09
 # ── 9.3 Leistungsphasen- und Freigabemodell LPH 0–9

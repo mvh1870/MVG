@@ -33,7 +33,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Die Zielpriorität ist festgelegt; die Planung weiß, was bei einem Zielkonflikt vorgeht. Varianten werden gegen diese Priorität bewertet, nicht gegen vier Ziele zugleich.
+Die Planung richtet sich am Zielsystem und seinen Abwägungsregeln aus; welche Zielpriorität gilt, legt der Bauherr fest. Varianten werden daran bewertet, nicht gegen vier Ziele zugleich.
 
 ### Was fehlt
 Die Abwägung im Einzelfall bleibt Arbeit – aber sie hat eine Regel.

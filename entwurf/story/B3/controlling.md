@@ -1,0 +1,29 @@
+---
+station: B3
+rolle: controlling
+rueckbezug-auf: A3
+---
+
+::: rueckbezug A
+In Welt A haben Sie ‚Eigene Zahl vertreten‘ gewählt. In Welt B steht Ihre CTC nicht gegen die Prognose der Projektsteuerung: Es gilt der benannte Datenstand „Kostenprognose 2026-05 · Version 3“, und offene Annahmen stehen darin, nicht in zwei Dateien.
+:::
+
+::: rueckbezug B
+In Welt A haben Sie ‚Differenz aufschlüsseln‘ gewählt. In Welt B kostet das nicht die Gremientermine: Es gilt Version 3, und die Ergänzung von `ENT-017` hat eine Frist.
+:::
+
+::: rueckbezug C
+In Welt A haben Sie ‚Überschreitung melden‘ gewählt. In Welt B geht die Überschreitung nicht als Meldung an eine Person: Die Schwellenwertverletzung erzeugt die Frühwarnung `FRW-003`, und welche Stufe der Mandatsleiter entscheidet, hängt von der Option ab.
+:::
+
+::: rueckbezug ohne
+In Welt A lag an diesem Montag Ihre Zahl neben der der Projektsteuerung. In Welt B kommt das Signal aus dem Controlling, hat eine Nummer und einen Weg.
+:::
+
+::: regie
+### Notiz
+Das Controlling trifft an B3 keine eigene Entscheidung. Zeigen, wo es sitzt: Seine CTC löst `FRW-003` aus, und es arbeitet am Datenstand mit, auf dem `ENT-017` beruht.
+
+### Leitfragen
+- Gibt es bei Ihnen einen Schwellenwert, der ein Signal auslöst – oder nur eine Zahl?
+:::

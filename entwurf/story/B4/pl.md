@@ -1,0 +1,82 @@
+---
+station: B4
+rolle: pl
+frage: Wie stimmen Sie im Änderungsgremium zu `AEN-031`?
+rueckbezug-auf: A4
+---
+
+::: option A
+---
+titel: AEN-031 wie vorgelegt beschließen
+kurz: Wie vorgelegt beschließen
+status:
+  ungeklaerte-entscheidungen: -1
+---
+### Konsequenz
+Das Gremium beschließt `AEN-031`; die Beschlusslage steht im Änderungsregister. Der Bauausschuss liest im Managementbericht, was beschlossen ist und worüber er selbst befinden soll.
+
+### Was fehlt
+Die Deckung: Soll sie aus der Risikoreserve kommen, gibt diesen Einsatz nur der Bauherr frei.
+
+### Neues Risiko
+Die Deckungsfrage bleibt bis zur Freigabe offen.
+
+### Governance-Frage
+Risikoannahme: Wer gibt den Einsatz der Risikoreserve frei?
+:::
+
+::: option B
+---
+titel: AEN-031 mit Auftrag zur Terminwirkung beschließen
+kurz: Mit Auftrag beschließen
+status:
+  offene-risiken: -1
+---
+### Konsequenz
+Beschlossen – mit dem Auftrag an die Planung, die Wirkung auf die Lieferzeit der Holzbauelemente bis zur nächsten Sitzung darzulegen. Der Auftrag hat eine Frist und eine verantwortliche Rolle.
+
+### Was fehlt
+Die Verknüpfung mit `RIS-009` im Register.
+
+### Neues Risiko
+Ein Auftrag, der neben dem Register herläuft, wird zur Nebenliste.
+
+### Governance-Frage
+[[Nachweiskette]]: Wo steht, was aus dem Auftrag geworden ist?
+:::
+
+::: option C
+---
+titel: Die Entscheidung auf eine Sondersitzung vertagen
+kurz: Vertagen mit Frist
+status:
+  terminrisiko: +1
+---
+### Konsequenz
+Die Kostenschätzung ist nur grob; das Gremium vertagt um zwei Wochen – mit Frage, Frist und verantwortlicher Rolle. Der Bauausschuss liest das im Managementbericht.
+
+### Was fehlt
+Eine belastbare Kostenschätzung der Planung.
+
+### Neues Risiko
+Die Planänderung wartet; die Ausführungsplanung auch.
+
+### Governance-Frage
+[[Entscheidungsreife]]: Was fehlt der Vorlage noch?
+:::
+
+::: rueckbezug A
+In Welt A haben Sie ‚Bericht kürzen lassen‘ gewählt. In Welt B wird nicht gekürzt, sondern getrennt: Der Managementbericht ist der Sammelpunkt für die Gremien, das Entscheidungsregister die Warteschlange für echte Entscheidungen.
+:::
+
+::: rueckbezug B
+In Welt A haben Sie ‚Beschlussvorlage schreiben‘ gewählt. In Welt B beruht die Vorlage auf einem benannten Datenstand; Projektsteuerung und Controlling liefern nicht zwei Zahlen dazu.
+:::
+
+::: rueckbezug C
+In Welt A haben Sie ‚In den Lenkungskreis geben‘ gewählt. In Welt B landet `AEN-031` nicht im Lenkungskreis: Bei rund 0,4 Mio. € entscheidet das Änderungsgremium, das dafür monatlich tagt.
+:::
+
+::: rueckbezug ohne
+In Welt A lag im Juli ein 40-seitiger Statusbericht ohne Entscheidungsfrage auf dem Tisch. In Welt B liegt eine Vorlage im Änderungsgremium und ein Managementbericht beim Bauausschuss.
+:::

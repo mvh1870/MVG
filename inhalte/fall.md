@@ -79,7 +79,7 @@ Monat 0 ist Dezember 2025; Monat 5 ist Mai 2026 („Kostenprognose 2026-05“). 
 
 Welt A: Die Projektsteuerung schreibt einen monatlichen Statusbericht mit Ampeln; das Controlling rechnet seine CTC getrennt; Excel-Stände wandern per Mail. Welt B: Register mit verantwortlicher Rolle und Turnus nach k6.4.2-t1, ein Managementbericht als Sammelpunkt für die Gremien, benannte Datenstände mit Version.
 
-Kennungen in Welt B (docs/BEGRIFFE.md): `ENT-` Entscheidung, `AEN-` Änderung, `RIS-` Risiko, `FRW-` Frühwarnung, `PRB-` Problem, `MAS-` Maßnahme, `NAC-` Nachweis. Freigaben tragen kein Kürzel, sondern heißen „Freigabe LPH 5“. Bekannt aus B3: `ENT-017`, `AEN-022`, `RIS-014`, `FRW-003`; Datenstand „Kostenprognose 2026-05 · Version 3“. Vergeben im Drehbuch: `FRW-001` und `RIS-009` (Lieferzeit Holzbau, B2), `AEN-012` (Mensa, B2), `AEN-031` (Brandschutzauflagen, B4), `PRB-004` (Nachtrag der TGA-Fachplanung, B5).
+Kennungen in Welt B (docs/BEGRIFFE.md): `ENT-` Entscheidung, `AEN-` Änderung, `RIS-` Risiko, `FRW-` Frühwarnung, `PRB-` Problem, `MAS-` Maßnahme, `NAC-` Nachweis. Freigaben tragen kein Kürzel, sondern heißen „Freigabe LPH 5“. Bekannt aus B3: `ENT-017`, `AEN-022`, `RIS-014`, `FRW-003`; Datenstand „Kostenprognose 2026-05 · Version 3“. Vergeben im Drehbuch: `FRW-001` und `RIS-009` (Lieferzeit Holzbau, B2), `AEN-012` (Mensa, B2), `AEN-031` (Brandschutzauflagen, B4), `PRB-004` (Nachtrag der TGA-Fachplanung, B5); in den Rollenszenen der Planung zusätzlich `AEN-036` (B5) und `AEN-041` (B6).
 
 ## Figuren
 

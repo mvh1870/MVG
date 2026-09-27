@@ -1,0 +1,80 @@
+---
+station: A2
+rolle: bauherr
+frage: Sabine Roth ruft Sie an – die größere Mensa sei doch zugesagt. Was tun Sie?
+---
+
+::: option A
+---
+titel: Die Zusage bestätigen – der Ganztag braucht die Mensa
+kurz: Zusage bestätigen
+status:
+  kostenunsicherheit: +1
+---
+### Konsequenz
+Die Mensa ist politisch gesetzt, bevor jemand ihre Wirkung auf Kosten, Termin und Risiko kennt. Die Generalplanung beginnt umzuplanen – ohne schriftlichen Auftrag.
+
+### Was fehlt
+Eine bewertete Änderung: Auswirkung, Deckung, Freigabeweg.
+
+### Neues Risiko
+Eine Änderung am Projektumfang ohne Deckung; der Nachtrag kommt später.
+
+### Governance-Frage
+[[Mandat]]: Wer darf eine Änderung zusagen – und ab welcher Summe?
+:::
+
+::: option B
+---
+titel: Sabine Roth an Frank Deppe verweisen
+kurz: An die GML verweisen
+status:
+  ungeklaerte-entscheidungen: +1
+---
+### Konsequenz
+Frank Deppe hält seine Flurzusage für eine Absichtserklärung, Sabine Roth hält sie für verbindlich. Die Frage hängt zwischen Stadt und GML.
+
+### Was fehlt
+Ein Eskalationsweg, der sagt, wo diese Frage entschieden wird.
+
+### Neues Risiko
+Die Nutzervertretung fühlt sich hingehalten und sucht den Weg über den Stadtrat.
+
+### Governance-Frage
+Wer entscheidet über Änderungen am Projektumfang – die GML oder der Bauherr?
+:::
+
+::: option C
+---
+titel: Vor jeder Zusage eine Kostenaussage verlangen
+kurz: Erst Kosten klären lassen
+status:
+  terminrisiko: +1
+---
+### Konsequenz
+Die Generalplanung rechnet; nach sechs Wochen kommt eine Schätzung ohne Termin- und Risikowirkung. Die Lieferzeit der Holzbauelemente geht in der Mensa-Debatte unter.
+
+### Was fehlt
+Ein Ort, an dem Signale wie die Lieferzeit festgehalten werden, bevor jemand sie bewertet.
+
+### Neues Risiko
+Die Lieferzeit steht in keiner Liste; niemand ist für sie zuständig.
+
+### Governance-Frage
+[[Frühwarnung]]: Wer hält das Signal fest, und wer bestätigt es?
+:::
+
+::: nachsatz
+Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Nutzervertretung wendet sich direkt an die Stadt. Zeigen, wie schnell eine Zusage entsteht, wenn es keinen Freigabeweg gibt.
+
+### Leitfragen
+- Auf welchem Weg erreichen Nutzerwünsche bei Ihnen den Bauherrn?
+- Wer darf bei Ihnen eine Änderung zusagen?
+:::

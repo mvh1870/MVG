@@ -76,7 +76,7 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [ ] P6.11 · Kap. 10 Anwendungssituationen
 - [ ] P6.12 · Kap. 11 MVG-Neuinitialisierung
 - [ ] P6.13 · Kap. 12 Was Bauherren gewinnen
-- [ ] P6.14 · Kap. 13 Glossar (eigene Seite + Mouseover-Quelle)
+- [x] P6.14 (2026-09-27, L-47) · Kap. 13 Glossar (eigene Seite + Mouseover-Quelle)
 - [ ] P6.15 · Abdeckung 100 %, Zitate wortgleich, Prüf-Agenten je Kapitel + Korrekturen
 
 ### P7 · Wirklichkeit & Ende

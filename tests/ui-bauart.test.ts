@@ -607,3 +607,31 @@ test('Lernseite (P6.1): Tafel, RACI, Merksatz und Ebenen 1–4 werden auf Seiten
   assert.equal(e[0]?.hasAttribute('open'), true);
   assert.equal(e[3]?.hasAttribute('open'), false);
 });
+
+test('Glossar (P6.14): alle Begriffe wortgleich, Suche filtert, „Kommt vor in“ verlinkt Stationen und Kapitel', () => {
+  const el = baueTheorie({ inhalte, kapitel: 13, version: VERSION, bedienbar: true });
+  const eintraege = [...el.querySelectorAll<HTMLElement>('[data-pruef="glossar-eintrag"]')];
+  const alle = Object.values(inhalte.glossar);
+  assert.equal(eintraege.length, alle.length);
+  assert.ok(alle.length >= 30, 'Glossar des Whitepapers vollständig');
+  for (const g of alle) {
+    const z = el.querySelector(`#${g.id}`);
+    assert.equal(z?.querySelector('dt')?.textContent, g.begriff);
+    assert.equal(z?.querySelector('dd > p')?.textContent, g.definition, `Definition ${g.begriff} wortgleich`);
+    const ziele = [...(z?.querySelectorAll('a.glossar-ort') ?? [])].map((a) => a.getAttribute('href'));
+    assert.deepEqual(ziele, [...g.vorkommen.stationen.map((s) => `#story/${s}`), ...g.vorkommen.kapitel.map((k) => `#theorie/k${k}`)]);
+  }
+  assert.ok(alle.some((g) => g.vorkommen.stationen.length > 0 && g.vorkommen.kapitel.length > 0), 'Vorkommen gesammelt');
+  const feld = el.querySelector<HTMLInputElement>('[data-pruef="glossar-suche"]');
+  assert.ok(feld);
+  feld.value = 'freigabe';
+  feld.dispatchEvent(new Event('input'));
+  const sichtbar = eintraege.filter((z) => !z.hidden);
+  assert.ok(sichtbar.length > 0 && sichtbar.length < alle.length);
+  assert.ok(sichtbar.every((z) => (z.textContent ?? '').toLowerCase().includes('freigabe')));
+  assert.match(el.querySelector('[data-pruef="glossar-zahl"]')?.textContent ?? '', new RegExp(`^${sichtbar.length} von ${alle.length}`, 'u'));
+  // Leinwand: keine Suche, keine Links
+  const anzeige = baueTheorie({ inhalte, kapitel: 13, version: VERSION, bedienbar: false });
+  assert.equal(anzeige.querySelector('[data-pruef="glossar-suche"]'), null);
+  assert.equal(anzeige.querySelector('a'), null);
+});

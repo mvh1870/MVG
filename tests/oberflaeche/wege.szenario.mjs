@@ -1,5 +1,5 @@
-// Browser-Szenario Wege (P2.4): Permalinks (#theorie/k1/1.2, #story/A3), Explore-Fläche aus der
-// Theorie heraus, Querverweis Theorie → Station, Barrierefreiheit (axe) auf Explore.
+// Browser-Szenario Wege (P2.4): Permalinks (#theorie/k1/1.2, #story/A3), Glossar-Suche (P6.14),
+// Explore-Fläche aus der Theorie heraus, Querverweis Theorie → Station, Barrierefreiheit (axe) auf Explore.
 // Ein Viewport genügt: die Flächen selbst prüfen die anderen Szenarien in drei Größen.
 
 export const name = 'wege';
@@ -20,6 +20,21 @@ export async function lauf(seite, h) {
   // Querverweis führt auf den Permalink der Station
   const ziel = await seite.locator('[data-pruef="querverweis-prolog"]').first().getAttribute('href');
   if (ziel !== '#story/prolog') h.befund(`Querverweis Prolog zeigt auf ${ziel}`);
+
+  // Glossar (P6.14): Suche filtert, Zahl im Status, Seite barrierefrei
+  await seite.evaluate(() => { location.hash = '#theorie/k13'; });
+  await h.erwarte('[data-pruef="glossar-suche"]');
+  const alle = await seite.locator('[data-pruef="glossar-eintrag"]').count();
+  await seite.locator('[data-pruef="glossar-suche"]').fill('mandat');
+  await h.warte(150);
+  const sichtbar = await seite.locator('[data-pruef="glossar-eintrag"]').filter({ visible: true }).count();
+  if (!(sichtbar > 0 && sichtbar < alle)) h.befund(`Glossar-Suche „mandat“: ${sichtbar} von ${alle} sichtbar`);
+  const zahl = await seite.locator('[data-pruef="glossar-zahl"]').innerText();
+  if (!zahl.startsWith(`${sichtbar} von ${alle}`)) h.befund(`Glossar-Zahl „${zahl}“ bei ${sichtbar} von ${alle}`);
+  await h.bild('glossar');
+  await h.axe('glossar');
+  await seite.evaluate(() => { location.hash = '#theorie/k1/1.2'; });
+  await h.erwarte('[data-pruef="zu-explore"]');
 
   // Explore aus der Theorie heraus
   await h.klick('[data-pruef="zu-explore"]');

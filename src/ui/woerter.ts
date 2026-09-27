@@ -194,6 +194,12 @@ export const W = {
     aufklappen: 'Aufklappen',
     inDerStory: 'In der Story erlebt',
     zumInhalt: 'Zum Inhalt springen',
+    glossar: 'Glossar',
+    glossarSuche: 'Begriff oder Wort suchen',
+    glossarZahl: (n: number, gesamt: number) => n === gesamt ? `${gesamt} Begriffe` : `${n} von ${gesamt} Begriffen`,
+    glossarLeer: 'Kein Begriff passt zur Suche.',
+    kommtVor: 'Kommt vor in',
+    kapitelKurz: (nr: string) => `Kap. ${nr}`,
   },
   // Explore (P2.4 Rahmen; die Werkzeuge baut P8)
   explore: {

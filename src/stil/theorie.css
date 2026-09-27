@@ -325,3 +325,19 @@ q.mvg-zitat { font-weight: 500; }
 .lern-ebene-nr { flex: none; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--flaeche-3); color: var(--tinte); font: 700 13px var(--schrift-label); }
 .lern-ebene > :not(summary) { padding: 0 16px 14px; }
 .lern-inhalt .tafel, .lern-inhalt .raci { margin: var(--a-4) 0; }
+
+/* Glossar (P6.14): Suchfeld, Begriffe wortgleich, „Kommt vor in“ */
+.glossar-suche { display: grid; gap: var(--a-2); margin-bottom: var(--a-5); }
+.glossar-feld { width: 100%; max-width: 480px; min-height: 44px; padding: var(--a-2) var(--a-3); border: 1px solid var(--tinte-2); border-radius: var(--radius-m); background: var(--weiss); font: inherit; color: var(--tinte); }
+.glossar-zahl { font-size: var(--gr-s); color: var(--tinte-2); }
+.glossar-eintraege { display: grid; gap: var(--a-3); }
+.glossar-eintrag { padding: var(--a-4) var(--a-5); border-radius: var(--radius-l); background: var(--weiss); box-shadow: var(--schatten-karte); scroll-margin-top: var(--a-10); }
+.glossar-eintrag:target { box-shadow: 0 0 0 2px var(--gold-hell), var(--schatten-karte); }
+.glossar-eintrag dt { font: 700 var(--gr-m)/1.3 var(--schrift-text); color: var(--navy); }
+.glossar-eintrag dd p { margin-top: var(--a-2); font-size: var(--gr-text); line-height: 1.55; color: var(--tinte); }
+.glossar-orte { display: flex; flex-wrap: wrap; align-items: center; gap: var(--a-2); }
+.glossar-orte .t-label { color: var(--tinte-2); }
+.glossar-ort { display: inline-flex; align-items: center; min-height: 28px; padding: 2px var(--a-3); border-radius: 999px; background: var(--flaeche-2); font-size: var(--gr-s); color: var(--navy); text-decoration: none; }
+.glossar-ort[data-welt="a"], .glossar-ort[data-welt="b"] { background: var(--welt-soft); color: var(--welt-text); }
+a.glossar-ort:hover { text-decoration: underline; }
+.glossar-leer, .glossar-quelle { margin-top: var(--a-4); font-size: var(--gr-s); color: var(--tinte-2); }

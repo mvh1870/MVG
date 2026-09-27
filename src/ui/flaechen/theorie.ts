@@ -216,6 +216,53 @@ function querverweise(o: TheorieOptionen, bloecke: readonly Block[]): HTMLElemen
     })));
 }
 
+/** Stations-Beschriftung für „Kommt vor in“: ID · Kurztitel (A1–B6), sonst der Kurztitel (L-46). */
+function stationsName(o: TheorieOptionen, id: string): string {
+  const st = o.inhalte.stationen[id];
+  if (st === undefined) return id;
+  return /^[AB]\d$/u.test(id) ? `${id} · ${st.kurztitel}` : st.kurztitel;
+}
+
+/**
+ * Glossar (P6.14): alle Begriffe des Whitepapers wortgleich, alphabetisch, mit Suchfeld und
+ * „Kommt vor in“ (Stationen und Kapitel mit Glossarbezug, vom Compiler gesammelt).
+ */
+function glossarListe(o: TheorieOptionen): HTMLElement {
+  const eintraege = Object.values(o.inhalte.glossar).sort((a, b) => a.begriff.localeCompare(b.begriff, 'de'));
+  const gesamt = eintraege.length;
+  const zahl = h('p', { class: 'glossar-zahl', role: 'status', 'aria-live': 'polite', 'data-pruef': 'glossar-zahl' }, W.theorie.glossarZahl(gesamt, gesamt));
+  const leer = h('p', { class: 'glossar-leer', hidden: true }, W.theorie.glossarLeer);
+  const zeilen = eintraege.map((g) => {
+    const orte: HTMLElement[] = [
+      ...g.vorkommen.stationen.map((id) => {
+        const welt = o.inhalte.stationen[id]?.welt;
+        return verweis(o, `#story/${id}`, { class: 'glossar-ort', ...(welt === 'A' || welt === 'B' ? { 'data-welt': welt.toLowerCase() } : {}) }, stationsName(o, id));
+      }),
+      ...g.vorkommen.kapitel.map((k) => verweis(o, `#theorie/k${k}`, { class: 'glossar-ort' }, W.theorie.kapitelKurz(String(k)))),
+    ];
+    return h('div', { class: 'glossar-eintrag', id: g.id, 'data-pruef': 'glossar-eintrag', 'data-suche': `${g.begriff} ${g.definition}`.toLocaleLowerCase('de') },
+      h('dt', null, g.begriff),
+      h('dd', null, h('p', null, g.definition),
+        orte.length > 0 ? h('p', { class: 'glossar-orte' }, h('span', { class: 't-label' }, W.theorie.kommtVor), ...orte) : null));
+  });
+  const feld = h('input', { type: 'search', class: 'glossar-feld', id: 'glossar-suche', 'data-pruef': 'glossar-suche', autocomplete: 'off', spellcheck: 'false' }) as HTMLInputElement;
+  feld.addEventListener('input', () => {
+    const q = feld.value.trim().toLocaleLowerCase('de');
+    let sichtbar = 0;
+    for (const z of zeilen) {
+      const treffer = q === '' || (z.getAttribute('data-suche') ?? '').includes(q);
+      z.hidden = !treffer;
+      if (treffer) sichtbar++;
+    }
+    zahl.textContent = W.theorie.glossarZahl(sichtbar, gesamt);
+    leer.hidden = sichtbar > 0;
+  });
+  return h('section', { class: 'glossar', 'aria-label': W.theorie.glossar, 'data-pruef': 'glossar' },
+    o.bedienbar ? h('div', { class: 'glossar-suche' }, h('label', { for: 'glossar-suche', class: 't-label' }, W.theorie.glossarSuche), feld, zahl) : null,
+    h('dl', { class: 'glossar-eintraege' }, zeilen), leer,
+    h('p', { class: 'glossar-quelle' }, W.glossarQuelle(o.inhalte.whitepaper.fassung ?? '')));
+}
+
 function kapitelNav(o: TheorieOptionen, nr: number): HTMLElement {
   const kap = kapitelListe(o.inhalte);
   const vor = kap.find((k) => k.nr === nr - 1) ?? null;
@@ -254,6 +301,8 @@ function lernseite(o: TheorieOptionen, nr: number): HTMLElement {
           bloeckeIn(b.kinder, o.inhalte)));
       } else if (b.art === 'original') {
         teile.push(originaltext(b, fassung));
+      } else if (b.art === 'glossar') {
+        teile.push(glossarListe(o));
       } else if (b.art !== 'querverweis') {
         // Grafik, Ebenen, Merksatz … auch auf Seitenebene (P6.1)
         teile.push(...bloeckeIn([b], o.inhalte));

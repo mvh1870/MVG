@@ -210,7 +210,7 @@ export const W = {
     bereich: 'Explore',
     bereichZusatz: '· selbst ausprobieren',
     titel: 'Werkzeuge zum Ausprobieren',
-    einstieg: 'Hier probieren Sie die Logik der Geschichte an eigenen Werten aus. Die Werkzeuge entstehen Schritt für Schritt; freigeschaltet wird Explore mit dem Ende der Geschichte.',
+    einstieg: 'Hier probieren Sie die Logik der Geschichte an eigenen Werten aus – jede Regel mit ihrer Stelle im Whitepaper. Freigeschaltet wird Explore mit dem Ende der Geschichte.',
     freigeschaltet: 'Freigeschaltet',
     gesperrt: 'Nach dem Ende der Geschichte',
     inVorbereitung: 'in Vorbereitung',
@@ -226,7 +226,7 @@ export const W = {
       { id: 'welten', titel: 'Vorher/Nachher-Welten', text: 'Informationswege, Rollen, Entscheidungen, Eskalationen, Register, Reporting und Gremien in Welt A und Welt B nebeneinander.' },
       { id: 'sandbox', titel: 'Governance-Fluss-Sandbox', text: 'Ereignisse einwerfen – Frühwarnung, Problem, Änderung – und durch Register, Status und Rollen laufen sehen.' },
       { id: 'zeitmaschine', titel: 'Zeitmaschine', text: 'Die Zeitachse schieben und sehen, wie sich Kostenunsicherheit und Entscheidungsstau in beiden Welten entwickeln.' },
-      { id: 'galerie', titel: 'Grafik-Galerie', text: 'Alle Diagramme des Whitepapers, interaktiv, mit Abbildungsverzeichnis.' },
+      { id: 'galerie', titel: 'Grafik-Galerie', text: 'Die Tabellen des Whitepapers als interaktive Tafeln, die Diagramme der Geschichte mit ihrer Station, dazu das Abbildungsverzeichnis mit Kapitel und Stelle.' },
       { id: 'figuren', titel: 'Figuren und Story-Karte', text: 'Die Besetzung des Falls und jede Station der Geschichte zum direkten Sprung.' },
     ],
   },
@@ -236,6 +236,9 @@ export const W = {
     einstieg: (n: number) => `${n} Tabellen des Whitepapers als interaktive Grafik – die Zellen stehen wortgleich wie im Whitepaper. Wählen Sie eine Tafel.`,
     wahl: 'Tafel wählen',
     zurLernseite: 'zur Lernseite',
+    diagramme: 'Diagramme der Geschichte',
+    diagrammeText: 'Diese Grafiken leben in den Stationen, wo sie mit dem Fall arbeiten – ein Klick führt zur Station.',
+    diagrammName: (art: string) => ({ mandatsleiter: 'Mandatsleiter', kette: 'Governance-Fluss als Kette', raci: 'RACI mit Mandat', datenstand: 'Datenstand mit Versionen', 'grafik:ctc-verlauf': 'CTC-Verlauf', vorlage: 'Entscheidungsvorlage mit Prüfliste', nachweiskette: 'Nachweiskette' } as Record<string, string>)[art] ?? art,
     verzeichnis: 'Abbildungsverzeichnis des Whitepapers',
     verzeichnisText: 'Die Abbildungen des Whitepapers sind hier nicht als Bild übernommen: Wo eine Grafik vom Text abweicht, gilt der Text V1.2. Die Tabellen der Kapitel stehen als interaktive Grafik auf den Lernseiten.',
     abb: 'Abbildung',
@@ -277,7 +280,8 @@ export const W = {
     },
     bericht: 'Managementbericht',
     berichtText: 'aggregierter Gremienbericht – Information und Beschlussvorbereitung',
-    grenze: 'Die Sandbox kennt nur die Register, Statusbegriffe und nächsten Schritte aus Kap. 6.4.3 und 6.4.4. Wer im Projekt was bearbeitet, legt die Rollenverteilung fest (Kap. 6.4.2).',
+    grenze: 'Die Sandbox kennt nur die Register, Statusbegriffe und nächsten Schritte aus Kap. 6.4.3 und 6.4.4; die verantwortliche Rolle je Register steht in Kap. 6.4.2, die Zuordnung ist ein Muster. Die Freigabe zum Abschluss einer Leistungsphase ist nicht Teil der Sandbox – der Bauherr erteilt sie selbst (Kap. 9.3).',
+    rolle: 'Verantwortlich',
   },
   // Explore · Vorher/Nachher-Welten (P8.2)
   welten: {
@@ -318,7 +322,7 @@ export const W = {
     titel: { eskalation: 'Mandat und Eskalation', bauherr: 'Bleibt beim Bauherrn', information: 'Informationsbedarf', freigabeweg: 'Freigabeweg', naechster: 'Nächster Schritt' },
     quelle: 'Whitepaper',
     meldung: (wer: string, wesentlich: boolean) => `Es entscheidet: ${wer}. ${wesentlich ? 'Wesentliche Entscheidung.' : 'Keine wesentliche Entscheidung.'}`,
-    grenze: 'Der Simulator rechnet nur mit Regeln, die das Whitepaper nennt. Beträge der Mandatsleiter sind ein Muster; im Projekt gilt das projektspezifische Mandat.',
+    grenze: 'Der Simulator rechnet nur mit Regeln, die das Whitepaper nennt. Beträge der Mandatsleiter sind ein Muster; im Projekt gilt das projektspezifische Mandat. Eine Risikobewertung nimmt der Simulator nicht vor – das Whitepaper nennt dafür keine Schwelle; er zeigt, ob die Risikoannahme beim Bauherrn liegt.',
   },
   // Regie
   regie: {

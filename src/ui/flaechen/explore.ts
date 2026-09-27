@@ -1,8 +1,8 @@
 /*
  * Fläche „Explore“ (P2.4, BAUPLAN Abschnitt 6): Rahmen für die Werkzeuge (Szenario-Simulator,
  * Vorher/Nachher, Sandbox, Zeitmaschine, Galerie, Figuren). Nicht auf der Startseite angeboten
- * (O-21), erreichbar aus Story und Theorie; freigeschaltet mit dem Ende der Geschichte. Die
- * Werkzeuge selbst entstehen in P8 – bis dahin stehen sie als „in Vorbereitung“.
+ * (O-21), erreichbar aus Story und Theorie; freigeschaltet mit dem Ende der Geschichte. Jedes
+ * Werkzeug rechnet nur mit Regeln aus dem Whitepaper (L-51).
  */
 
 import { h } from '../h.ts';
@@ -62,7 +62,7 @@ export function baueExplore(o: ExploreOptionen): HTMLElement {
         welten(o.inhalte),
         sandbox(),
         zeitmaschine(o.inhalte),
-        galerie(o.inhalte),
+        galerie(o.inhalte, o.weltB),
         stationsKarte(o.inhalte, o.weltB),
         besetzung(o.inhalte),
         h('p', null,

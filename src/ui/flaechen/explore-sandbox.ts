@@ -29,7 +29,7 @@ export function sandbox(): HTMLElement {
       const eintraege = z.eintraege.filter((e) => e.register === r);
       return h('section', { class: 'sandbox-spalte', 'data-register': r, 'aria-labelledby': `sandbox-${r}`, 'data-pruef': `sandbox-${r}` },
         h('h3', { class: 'sandbox-spalte-titel', id: `sandbox-${r}` }, REGISTER[r].name),
-        h('p', { class: 'sandbox-bedeutung' }, REGISTER[r].bedeutung, h('small', null, `${S.weiter}: ${REGISTER[r].weiter}`)),
+        h('p', { class: 'sandbox-bedeutung' }, REGISTER[r].bedeutung, h('small', null, `${S.weiter}: ${REGISTER[r].weiter}`), h('small', null, `${S.rolle}: ${REGISTER[r].rolle}`)),
         eintraege.length === 0 ? h('p', { class: 'sandbox-leer' }, S.leer) : h('ul', { class: 'sandbox-liste' }, eintraege.map((e) => h('li', { class: 'sandbox-eintrag', 'data-pruef': `eintrag-${e.kennung}` },
           h('span', { class: 'id-marke' }, e.kennung),
           h('span', { class: 'sandbox-status' }, e.status),

@@ -787,6 +787,8 @@ test('Galerie (P8.5): jede Tafel der Lernseiten einmal; Abbildungsverzeichnis; S
   assert.equal(g.querySelectorAll('[data-pruef="abbildungsverzeichnis"] tbody tr').length, inhalte.whitepaper.abbildungen.length);
   assert.ok(inhalte.whitepaper.abbildungen.length > 0);
   assert.equal(g.querySelector('img'), null, 'keine Rasterbilder (L-51)');
+  const dia = [...g.querySelectorAll('[data-pruef="story-diagramme"] li')].map((li) => li.textContent ?? '');
+  assert.ok(dia.some((t) => /Mandatsleiter: B2/u.test(t)) && dia.some((t) => /Nachweiskette/u.test(t)), dia.join(' | '));
   g.querySelector<HTMLElement>('[data-pruef="galerie-k8.2-t1"]')?.click();
   assert.ok(g.querySelector('[data-pruef="galerie-buehne"] [data-pruef="tafel-zeitachse"]'));
   const zu = stationsKarte(inhalte, false);

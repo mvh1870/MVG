@@ -34,6 +34,11 @@ test('Nicht delegierbar (k3.2-t1): Risikoreserve, Projektbasis, Zielpriorität h
   const s = simuliere({ ...basis, schwelleUeberschritten: true });
   assert.equal(s.wer, 'Eskalation nach dem projektspezifischen Mandat');
   assert.ok(!s.freigabeweg.some((h) => /Innerhalb des Mandats/u.test(h.text)));
+  assert.equal(s.stufeOffen, true);
+  const g = simuliere({ ...basis, betragTeur: 400, schwelleUeberschritten: true });
+  assert.equal(g.wer, 'Eskalation nach dem projektspezifischen Mandat', 'auch auf Gremiumsstufe');
+  assert.ok(g.eskalation.some((h) => h.quelle === 'k3.2-t1'));
+  assert.equal(simuliere({ ...basis, schwelleUeberschritten: true, deckung: 'reserve' }).stufeOffen, false, 'nicht delegierbar entscheidet der Bauherr');
 });
 
 test('Wesentlich (k4.3): Kennung und Vorlage, sonst der Hinweis, dass nicht jede Entscheidung wesentlich ist', () => {

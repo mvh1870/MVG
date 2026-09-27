@@ -54,14 +54,14 @@ export function simulator(inhalte: OeffentlicheInhalte): HTMLElement {
   const liste = (titel: string, hinweise: SimHinweis[], pruef: string): HTMLElement | null => hinweise.length === 0 ? null
     : h('section', { class: 'sim-teil', 'data-pruef': pruef }, h('h3', { class: 'sim-teil-titel' }, titel),
       h('ul', { class: 'sim-liste' }, hinweise.map((x) => h('li', null, h('p', null, x.text), quelle(x.quelle)))));
-  const leiter = (stufe: Stufe): HTMLElement => h('ol', { class: 'sim-leiter', 'aria-label': S.leiter }, (['pl', 'gremium', 'bauherr'] as Stufe[]).map((s) =>
+  const leiter = (stufe: Stufe | null): HTMLElement => h('ol', { class: 'sim-leiter', 'aria-label': S.leiter }, (['pl', 'gremium', 'bauherr'] as Stufe[]).map((s) =>
     h('li', { class: `sim-stufe${s === stufe ? ' ist-aktiv' : ''}`, 'aria-current': s === stufe ? 'true' : null, 'data-pruef': `sim-stufe-${s}` }, S.stufen[s])));
 
   const zeichne = (): void => {
     const r = simuliere(e);
     kurz.textContent = S.meldung(r.wer, r.wesentlich);
     ersetze(ergebnis,
-      h('section', { class: 'sim-teil sim-wer', 'data-pruef': 'sim-wer' }, h('h3', { class: 'sim-teil-titel' }, S.wer), h('p', { class: 'sim-wer-name' }, r.wer), leiter(r.stufe),
+      h('section', { class: 'sim-teil sim-wer', 'data-pruef': 'sim-wer' }, h('h3', { class: 'sim-teil-titel' }, S.wer), h('p', { class: 'sim-wer-name' }, r.wer), leiter(r.stufeOffen ? null : r.stufe),
         h('p', { class: 'sim-wesentlich' }, r.wesentlich ? S.wesentlich : S.nichtWesentlich)),
       liste(S.titel.eskalation, r.eskalation, 'sim-eskalation'),
       liste(S.titel.bauherr, r.bauherr, 'sim-bauherr'),

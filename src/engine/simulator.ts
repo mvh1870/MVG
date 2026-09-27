@@ -42,6 +42,8 @@ export interface SimHinweis {
 
 export interface SimErgebnis {
   stufe: Stufe;
+  /** Schwelle überschritten, Stufe nach dem Mandat offen – keine Stufe der Leiter gilt als aktiv */
+  stufeOffen: boolean;
   /** Wer entscheidet (Mandatsleiter bzw. nicht delegierbar) */
   wer: string;
   eskalation: SimHinweis[];
@@ -72,6 +74,8 @@ export function simuliere(e: SimEingabe): SimErgebnis {
   const naechsterSchritt: SimHinweis[] = [];
 
   let stufe = stufeNachBetrag(Math.max(0, e.betragTeur));
+  /** Stufe offen: das projektspezifische Mandat bestimmt sie (keine Stufe der Leiter markiert) */
+  let eskaliert = false;
   let wer = stufe === 'pl' ? 'Bauherren-PL' : stufe === 'gremium' ? 'Änderungsgremium' : 'Bauherr im Lenkungskreis';
   eskalation.push({
     quelle: 'k4.2-p3',
@@ -83,16 +87,20 @@ export function simuliere(e: SimEingabe): SimErgebnis {
     eskalation.push({
       quelle: 'k6.4.5-p1',
       text: e.schwelleUeberschritten
-        ? 'Eine Wert-, Risiko-, Frist- oder Mandatsschwelle ist überschritten: Es wird entlang der Mandatsleiter eskaliert. Welche Stufe zuständig ist, legt das projektspezifische Mandat fest.'
+        ? 'Eine Wert-, Risiko-, Frist- oder Mandatsschwelle ist überschritten: Es wird entlang der Mandatsleiter eskaliert.'
         : 'Für Terminwirkungen nennt das Whitepaper keine allgemeine Schwelle; ob eine Fristschwelle überschritten ist, legt das projektspezifische Mandat fest.',
     });
   }
 
-  if (e.schwelleUeberschritten && stufe === 'pl') wer = 'Eskalation nach dem projektspezifischen Mandat';
+  if (e.schwelleUeberschritten) {
+    eskalation.push({ quelle: 'k3.2-t1', text: 'Mandate, Freigabeschwellen und Eskalationswege legt der Bauherr fest – nicht delegierbar; welche Stufe zuständig ist, bestimmt dieses Mandat.' });
+    if (stufe !== 'bauherr') { wer = 'Eskalation nach dem projektspezifischen Mandat'; eskaliert = true; }
+  }
   const hebe = (neu: Stufe, neuWer: string): void => {
-    if (RANG[neu] >= RANG[stufe]) {
+    if (RANG[neu] >= RANG[stufe] || eskaliert) {
       stufe = neu;
       wer = neuWer;
+      eskaliert = false;
     }
   };
   if (e.deckung === 'reserve') {
@@ -150,5 +158,5 @@ export function simuliere(e: SimEingabe): SimErgebnis {
       : { quelle: 'k4.6-p2', text: 'Ohne benannten Datenstand fehlt der Entscheidung ihre belastbare Grundlage.' });
   }
 
-  return { stufe, wer, eskalation, wesentlich, bauherr, information, freigabeweg, naechsterSchritt };
+  return { stufe, stufeOffen: eskaliert, wer, eskalation, wesentlich, bauherr, information, freigabeweg, naechsterSchritt };
 }

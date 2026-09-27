@@ -34,6 +34,8 @@ test('Änderung: Beantragt → In Prüfung → Beschlossen → Umgesetzt; Proble
   assert.deepEqual(erlaubt(z.eintraege[1]!), ['massnahme', 'entscheidungsbedarf']);
   z = schritt(z, 'PRB-001', 'massnahme');
   assert.equal(z.eintraege[2]?.kennung, 'MAS-001');
+  assert.equal(z.eintraege[1]?.status, 'eingetreten', 'kein erfundener Problemstatus');
+  assert.ok(erlaubt(z.eintraege[1]!).includes('entscheidungsbedarf'), 'ggf. Entscheidung bleibt möglich');
   assert.equal(schritt(z, 'AEN-001', 'pruefen'), z, 'nicht erlaubter Schritt ändert nichts');
 });
 
@@ -42,6 +44,8 @@ test('Statusbegriffe stehen wortgleich in k6.4.4-p1, Register in k6.4.4-t1; Mana
   for (const s of ['Offen', 'In Bearbeitung', 'Entscheidungsreif', 'Entschieden', 'Verworfen', 'aktiv', 'beobachtet', 'gemindert', 'geschlossen', 'Beantragt', 'In Prüfung', 'Beschlossen', 'Abgelehnt', 'Umgesetzt']) assert.ok(p1.includes(s), s);
   const t1 = (inhalte.quellen['k6.4.4-t1']?.html ?? '').replace(/<[^>]+>/g, ' ');
   for (const r of Object.values(REGISTER).filter((x) => x.quelle === 'k6.4.4-t1')) for (const teil of [r.name, r.bedeutung, r.weiter]) assert.ok(t1.includes(teil), teil);
+  const rollen = (inhalte.quellen['k6.4.2-t1']?.html ?? '').replace(/<[^>]+>/g, ' ');
+  for (const r of Object.values(REGISTER)) assert.ok(rollen.includes(r.rolle), r.rolle);
   let z = wirf(wirf(anfang(), 'fruehwarnung'), 'fruehwarnung');
   z = schritt(z, 'FRW-001', 'bestaetigen');
   assert.deepEqual(bericht(z), [{ register: 'fruehwarnung', status: { bestätigt: 1, unbewertet: 1 } }, { register: 'risiko', status: { aktiv: 1 } }]);

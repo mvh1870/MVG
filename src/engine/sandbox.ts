@@ -39,13 +39,14 @@ export interface SandboxZustand {
 export const KUERZEL: Record<Register, string> = { fruehwarnung: 'FRW', risiko: 'RIS', problem: 'PRB', aenderung: 'AEN', entscheidung: 'ENT', massnahme: 'MAS' };
 
 /** Register und Bedeutung wortgleich aus k6.4.4-t1 (Maßnahme: k6.4.3-p2). */
-export const REGISTER: Record<Register, { name: string; bedeutung: string; weiter: string; quelle: string }> = {
-  fruehwarnung: { name: 'Frühwarnung', bedeutung: 'unbewertetes Signal', weiter: 'bestätigen; bei Bestätigung Risiko', quelle: 'k6.4.4-t1' },
-  risiko: { name: 'Risikoregister', bedeutung: 'bewertetes mögliches Ereignis', weiter: 'Risikominderung oder Entscheidung', quelle: 'k6.4.4-t1' },
-  problem: { name: 'Problemregister', bedeutung: 'eingetretenes Problem', weiter: 'Maßnahme, ggf. Entscheidung', quelle: 'k6.4.4-t1' },
-  aenderung: { name: 'Änderungsregister', bedeutung: 'gewollte Änderung', weiter: 'Auswirkung, Freigabeweg', quelle: 'k6.4.4-t1' },
-  entscheidung: { name: 'Entscheidungsregister', bedeutung: 'offener Entscheidungsbedarf', weiter: 'Entscheidungsvorlage', quelle: 'k6.4.4-t1' },
-  massnahme: { name: 'Maßnahmen', bedeutung: 'Beschlüsse werden als Maßnahmen mit einer verantwortlichen Rolle und einer Frist nachverfolgt', weiter: 'nachverfolgen', quelle: 'k6.4.3-p2' },
+/** Register mit Bedeutung und nächstem Schritt (k6.4.4-t1) und verantwortlicher Rolle der Registergruppe (k6.4.2-t1, Muster). */
+export const REGISTER: Record<Register, { name: string; bedeutung: string; weiter: string; rolle: string; quelle: string }> = {
+  fruehwarnung: { name: 'Frühwarnung', bedeutung: 'unbewertetes Signal', weiter: 'bestätigen; bei Bestätigung Risiko', rolle: 'Projektsteuerung', quelle: 'k6.4.4-t1' },
+  risiko: { name: 'Risikoregister', bedeutung: 'bewertetes mögliches Ereignis', weiter: 'Risikominderung oder Entscheidung', rolle: 'Projektsteuerung', quelle: 'k6.4.4-t1' },
+  problem: { name: 'Problemregister', bedeutung: 'eingetretenes Problem', weiter: 'Maßnahme, ggf. Entscheidung', rolle: 'PMO', quelle: 'k6.4.4-t1' },
+  aenderung: { name: 'Änderungsregister', bedeutung: 'gewollte Änderung', weiter: 'Auswirkung, Freigabeweg', rolle: 'Bauherren-PL', quelle: 'k6.4.4-t1' },
+  entscheidung: { name: 'Entscheidungsregister', bedeutung: 'offener Entscheidungsbedarf', weiter: 'Entscheidungsvorlage', rolle: 'Bauherren-PL', quelle: 'k6.4.4-t1' },
+  massnahme: { name: 'Maßnahmen', bedeutung: 'Beschlüsse werden als Maßnahmen mit einer verantwortlichen Rolle und einer Frist nachverfolgt', weiter: 'nachverfolgen', rolle: 'PMO', quelle: 'k6.4.3-p2' },
 };
 
 export function anfang(): SandboxZustand {
@@ -60,7 +61,8 @@ export function erlaubt(e: Eintrag): Schritt[] {
       if (e.status === 'aktiv') return ['mindern', 'beobachten', 'entscheidungsbedarf'];
       if (e.status === 'gemindert' || e.status === 'beobachtet') return ['schliessen', 'entscheidungsbedarf'];
       return [];
-    case 'problem': return e.status === 'eingetreten' ? ['massnahme', 'entscheidungsbedarf'] : [];
+    // Probleme haben im Whitepaper keinen Statusbegriff: sie bleiben „eingetreten“, Maßnahme und ggf. Entscheidung jederzeit
+    case 'problem': return ['massnahme', 'entscheidungsbedarf'];
     case 'aenderung':
       if (e.status === 'Beantragt') return ['pruefen'];
       if (e.status === 'In Prüfung') return ['beschliessen', 'ablehnen', 'entscheidungsbedarf'];
@@ -118,7 +120,7 @@ export function schritt(z: SandboxZustand, kennung: string, s: Schritt): Sandbox
       return { ...r.z, meldung: `${kennung}: Entschieden – Maßnahme ${r.eintrag.kennung} mit verantwortlicher Rolle und Frist` };
     }
     case 'massnahme': {
-      const r = neu(setze('Maßnahme eingeleitet'), 'massnahme', 'nachverfolgt', `aus ${kennung}`);
+      const r = neu(z, 'massnahme', 'nachverfolgt', `aus ${kennung}`);
       return { ...r.z, meldung: `${kennung}: Maßnahme ${r.eintrag.kennung}` };
     }
     case 'entscheidungsbedarf': {

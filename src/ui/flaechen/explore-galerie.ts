@@ -30,7 +30,25 @@ export function galerieTafeln(inhalte: OeffentlicheInhalte): TafelEintrag[] {
   return aus;
 }
 
-export function galerie(inhalte: OeffentlicheInhalte): HTMLElement | null {
+/** Diagramme der Geschichte (native SVG/HTML-Grafiken der Story): Art → Stationen, in der Reihenfolge der Geschichte. */
+export const STORY_DIAGRAMME = ['mandatsleiter', 'kette', 'raci', 'datenstand', 'grafik', 'vorlage', 'nachweiskette'] as const;
+export function storyDiagramme(inhalte: OeffentlicheInhalte): { art: string; stationen: string[] }[] {
+  const nach = new Map<string, string[]>();
+  const gehe = (bloecke: readonly Block[], st: string): void => {
+    for (const b of bloecke) {
+      if ((STORY_DIAGRAMME as readonly string[]).includes(b.art)) {
+        const art = b.art === 'grafik' ? `grafik:${b.id ?? ''}` : b.art;
+        const liste = nach.get(art) ?? [];
+        if (!liste.includes(st)) nach.set(art, [...liste, st]);
+      }
+      gehe(b.kinder, st);
+    }
+  };
+  for (const id of inhalte.stationsFolge) for (const s of inhalte.stationen[id]?.schritte ?? []) gehe(s.bloecke, id);
+  return [...nach.entries()].map(([art, stationen]) => ({ art, stationen }));
+}
+
+export function galerie(inhalte: OeffentlicheInhalte, weltB = true): HTMLElement | null {
   const G = W.galerie;
   const tafeln = galerieTafeln(inhalte);
   if (tafeln.length === 0) return null;
@@ -47,11 +65,22 @@ export function galerie(inhalte: OeffentlicheInhalte): HTMLElement | null {
   zeige(0);
 
   const abb = inhalte.whitepaper.abbildungen;
+  const diagramme = storyDiagramme(inhalte);
+  const stationsLink = (id: string): Node => {
+    const st = inhalte.stationen[id];
+    const name = st === undefined ? id : /^[AB]\d$/u.test(id) ? id : st.titel;
+    return st?.welt === 'B' && !weltB ? h('span', null, name) : h('a', { href: `#story/${id}` }, name);
+  };
   return h('section', { class: 'werkzeug', id: 'werkzeug-galerie-flaeche', 'aria-labelledby': 'galerie-titel', 'data-pruef': 'galerie' },
     h('h2', { class: 'lern-abschnitt-titel', id: 'galerie-titel' }, G.name),
     h('p', { class: 'kapitel-einstieg' }, G.einstieg(tafeln.length)),
     h('div', { class: 'welten-wahl', role: 'group', 'aria-label': G.wahl }, knoepfe),
     buehne,
+    diagramme.length > 0 ? h('section', { class: 'galerie-verzeichnis', 'aria-labelledby': 'dia-titel', 'data-pruef': 'story-diagramme' },
+      h('h3', { class: 'sim-teil-titel', id: 'dia-titel' }, G.diagramme),
+      h('p', { class: 'sim-hinweis' }, G.diagrammeText),
+      h('ul', { class: 'resuemee-liste' }, diagramme.map((d) => h('li', null, h('b', null, G.diagrammName(d.art)), ': ',
+        d.stationen.flatMap((id, i) => (i === 0 ? [stationsLink(id)] : [', ', stationsLink(id)])))))) : null,
     abb.length > 0 ? h('section', { class: 'galerie-verzeichnis', 'aria-labelledby': 'abb-titel', 'data-pruef': 'abbildungsverzeichnis' },
       h('h3', { class: 'sim-teil-titel', id: 'abb-titel' }, G.verzeichnis),
       h('p', { class: 'sim-hinweis' }, G.verzeichnisText),

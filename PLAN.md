@@ -60,6 +60,7 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P5.7 (Commit „MVG P5.7“; Prüfung 13 + 4 Befunde behoben, L-39/L-40) · Station B6
 - [x] P5.8 (Commit „MVG P5.8“, L-41) · Ihre Spur (E1): Entscheidungskette über beide Welten
 - [x] P5.9 (Commit „MVG P5.9“ + Reste; `docs/P5-BEFUNDE.md`, L-42–L-44) · Prüf-Agenten Welt B + Korrekturen (Browser: alle Rollen durch B1–B6 in drei Größen mit axe, Express-Pfad, je Station Ebene 1–4; P2-Befund V3/V7/V9)
+- [x] P5.10 (Commit „MVG P5.10“, L-45; volle Kette grün 802 s, dist 1,47 MB) · Umzug `entwurf/` → `inhalte/` (L-30, L-45): der ganze Entscheidungsgraph wird das spielbare Produkt `dist/mvg.html`; Durchstich-Abkürzung (Prolog → A3 → Vergleich → B3) entfällt; Tests und Szenarien auf den Hauptweg — Abnahme: `entwurf/` leer (Werkzeug bleibt), volle Kette grün.
 
 ### P6 · Theorie-Teil (O-20)
 - [ ] P6.1 · Lernseiten-Rahmen: Kernaussage, Grafik, Karten, Ebenen, Originaltext wortgetreu, Querverweise „In der Story erlebt“, Kapitelnavigation

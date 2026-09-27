@@ -15,7 +15,7 @@ import { fileURLToPath } from 'node:url';
 import { istHauptmodul } from './haupt.mjs';
 
 const WURZEL = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const TESTS = ['tests/engine.test.ts', 'tests/engine-graph.test.ts', 'tests/engine-spur.test.ts', 'tests/entwurf.test.ts'];
+const TESTS = ['tests/engine.test.ts', 'tests/engine-graph.test.ts', 'tests/engine-spur.test.ts', 'tests/story-graph.test.ts'];
 
 /** [Datei, alt, neu, was] – `alt` muss genau einmal vorkommen. */
 export const MUTANTEN = [

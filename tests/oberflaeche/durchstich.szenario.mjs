@@ -1,12 +1,14 @@
-// Browser-Szenario Durchstich P0.6: Start → Story (Prolog, A3 ganz, Option B, Konsequenz, Vergleich
-// auf Welt B, B3 bis zum Rückbezug, Ebene 4 mit Zitat) → Theorie Kapitel 1 mit Originaltext →
-// zweites Fenster Regie + Leinwand (Regie „weiter“ → Leinwand folgt; keine Regie-Notiz auf der
-// Leinwand). Ausgeführt von werkzeuge/oberflaeche.mjs in allen Standard-Viewports.
+// Browser-Szenario Durchstich (P0.6; seit P5.10 auf dem Express-Pfad des ganzen Graphen): Start → Story
+// (Prolog mit Interesse „express“, A3 ganz, Option B, Konsequenz, durch A6, Wendepunkt und Rückspulen
+// geklickt, B3 bis zum Rückbezug, Ebene 4 mit Zitat) → Theorie Kapitel 1 mit Originaltext → zweites
+// Fenster Regie + Leinwand (Regie „weiter“ → Leinwand folgt; keine Regie-Notiz auf der Leinwand).
+// Der Schieberegler A ⟷ B wird in welt-b an den Vergleichsschritten der B-Stationen geprüft.
+// Ausgeführt von werkzeuge/oberflaeche.mjs in allen Standard-Viewports.
 //
 // Test-Haken-Vertrag: data-pruef = weg-story, weg-theorie, leitstand, fiktiv, status, story-karte,
-// weiter, zurueck, rolle-<id>, interesse-<id>, info-anfordern, option-A…D, konsequenz, feld-<art>,
-// vergleich, vergleich-a/b, teil-<n>, rueckbezug, ebene-<n>, zitat, kapitel-liste, kapitel-<n>,
-// originaltext, querverweis-<station>, regie, regie-notiz, regie-weiter, regie-rolle-<id>,
+// weiter, zurueck, szene-weiter, rolle-<id>, interesse-<id>, info-anfordern, option-A…D, konsequenz,
+// feld-<art>, teil-<n>, rueckbezug, ebene-<n>, zitat, kapitel-liste, kapitel-<n>, originaltext,
+// querverweis-<station>, regie, regie-notiz, regie-weiter, regie-rolle-<id>, regie-interesse-<id>,
 // leinwand-oeffnen, leinwand-status, leinwand, version, ungeprueft.
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
@@ -70,6 +72,7 @@ export async function lauf(seite, h) {
     await h.klick('[data-pruef="weiter"]');
     await h.warte(150);
   };
+  const station = async () => (await seite.evaluate(() => location.hash)).replace(/^#story\/?/u, '');
 
   /* ------------------------------------------------------------ Start → Story -- */
   await h.erwarte('[data-pruef="weg-story"]');
@@ -95,7 +98,11 @@ export async function lauf(seite, h) {
   await stand('rollenwahl');
   await h.klick('[data-pruef="rolle-pl"]');
   await h.erwarte('[data-pruef^="interesse-"]');
+  // Express-Pfad (E8, L-26): Prolog → A3 → A6 → Wendepunkt → Rückspulen → B3 → B6 → Wirklichkeit
+  await h.klick('[data-pruef="interesse-express"]');
+  if ((await seite.locator('[data-pruef="interesse-express"]').getAttribute('aria-pressed')) !== 'true') h.befund('Interesse „express“ nicht gewählt');
   await weiter();
+  if ((await station()) !== 'A3') h.befund(`Express: nach dem Prolog ${await station()} statt A3`);
 
   /* ---------------------------------------------------------- A3 · Einstieg -- */
   await h.erwarte('.mail');
@@ -168,18 +175,19 @@ export async function lauf(seite, h) {
   await stand('a3-ebene4');
   await weiter();
 
-  /* --------------------------------------------------- Vergleich Welt A ⟷ B -- */
-  const regler = await h.erwarte('[data-pruef="vergleich"]');
-  await regler.focus();
-  await h.taste('End');
-  try {
-    await seite.locator('[data-pruef="vergleich"][aria-valuenow="100"]').waitFor({ timeout: 5000 });
-  } catch {
-    h.befund('Vergleich: Regler erreicht Welt B nicht');
+  /* ------------------------------ A6 → Wendepunkt → Rückspulen: durchklicken -- */
+  // Option A an der Entscheidung in A6; Szenen mit eigenem Knopf („szene-weiter“) über diesen
+  const weg = [];
+  for (let i = 0; i < 120 && (await station()) !== 'B3'; i += 1) {
+    const st = await station();
+    if (weg[weg.length - 1] !== st) weg.push(st);
+    const optionA = seite.locator('[data-pruef="option-A"]').filter({ visible: true });
+    if (await optionA.count() > 0 && (await optionA.first().getAttribute('aria-pressed')) !== 'true') await optionA.first().click();
+    if (await seite.locator('[data-pruef="szene-weiter"]').filter({ visible: true }).count() > 0) await h.klick('[data-pruef="szene-weiter"]');
+    else await weiter();
+    await h.warte(120);
   }
-  await h.warte(400);
-  await stand('vergleich-b');
-  await weiter();
+  if (weg.join(' → ') !== 'A6 → wendepunkt → rueckspulen') h.befund(`Express: nach A3 ${weg.join(' → ')} → ${await station()} statt A6 → wendepunkt → rueckspulen → B3`);
 
   /* ------------------------------------------------ B3 · sechs Teile → Rückbezug -- */
   await h.erwarte('[data-pruef="teil-1"]');
@@ -251,8 +259,12 @@ export async function lauf(seite, h) {
   if (kicker1 === kicker2) h.befund(`Leinwand folgt der Regie nicht („${kicker1}“)`);
   await h.klick('[data-pruef="regie-rolle-pl"]', regie);
   await h.klick('[data-pruef="regie-weiter"]', regie);
+  // Express-Pfad auch in der Regie: Prolog → A3
+  const expressKnopf = await h.erwarte('[data-pruef="regie-interesse-express"]', regie);
+  if ((await expressKnopf.getAttribute('aria-pressed')) !== 'true') await h.klick('[data-pruef="regie-interesse-express"]', regie);
   await h.klick('[data-pruef="regie-weiter"]', regie);
   await h.erwarte('.mail', leinwand);
+  // dass die Regie in A3 steht, zeigt die Regie-Notiz zu A3 (unten)
   const notiz = await text('[data-pruef="regie-notiz"]', regie);
   if (!notiz.includes(klartext(inhalte.regie['A3/pl'].notiz).slice(0, 30))) h.befund('Regie-Notiz zu A3 fehlt in der Regie');
   if ((await leinwand.locator('[data-pruef="regie-notiz"]').count()) !== 0) h.befund('Leinwand enthält [data-pruef="regie-notiz"]');

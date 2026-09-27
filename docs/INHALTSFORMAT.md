@@ -18,13 +18,13 @@ node werkzeuge/inhalte.mjs --pruefe   # kompilieren und alles prüfen; Exitcode 
 | `inhalte/start.md` | Startseite: Kicker, Leitsatz (wörtlich, mit Absatz-ID), These | – |
 | `inhalte/fall.md` | Fall-Bibel: Stadt, GML, Projekt, Zahlen, Gremien, Figuren | – |
 | `inhalte/rollen/<id>.md` | eine der sechs spielbaren Rollen | Dateiname: `gf`, `bauherr`, `pl`, `ps`, `planung`, `controlling` |
-| `inhalte/story/<station>/station.md` | gemeinsames Rückgrat einer Station (alle Rollen) | Ordnername, z. B. `A3`, `B3`, `prolog`, `A3-B3-vergleich` |
+| `inhalte/story/<station>/station.md` | gemeinsames Rückgrat einer Station (alle Rollen) | Ordnername, z. B. `A3`, `B3`, `prolog`, `wendepunkt`, `ende-steuerbar` |
 | `inhalte/story/<station>/<rolle>.md` | Rollenszene dieser Station (Entscheidung, Optionen, Rückbezug, Regie) | Ordner + Rolle, z. B. `A3/pl` |
 | `inhalte/theorie/kNN-<name>.md` | Lernseite zu Kapitel NN (01–13) | `kNN`, z. B. `k02` |
 | `inhalte/einwaende.md` | Einwand-Karten (E6) | je Karte eine ID |
 | `inhalte/abdeckung.yaml` | Absatz-ID → Theorie-Seite / Story-Station | Absatz-ID |
 
-Kennungen (Stationen, Schritte, Optionen, Figuren …) bestehen aus Buchstaben, Ziffern und Bindestrich, **ohne Umlaute** (`A3-B3-vergleich`, `ueberblick`). Sichtbarer Text darf alles.
+Kennungen (Stationen, Schritte, Optionen, Figuren …) bestehen aus Buchstaben, Ziffern und Bindestrich, **ohne Umlaute** (`ende-neufestlegung`, `ueberblick`). Sichtbarer Text darf alles.
 
 Zeichensatz UTF-8, Zeilenenden egal (werden zu LF). Dateien, die mit `_` beginnen, werden ignoriert (Entwürfe).
 
@@ -131,7 +131,7 @@ Für `weiter` (Abschnitt 3.3). Eine Bedingung je Zeile; eine Liste unter `wenn` 
 ### 3.1 Aufbau
 Die Story ist ein Graph aus **Stationen** (Knoten) mit Kanten `weiter`. Jede Station hat eine Folge von **Schritten** (Klicks). Das **Rückgrat** (`station.md`) gilt für alle Rollen; die **Rollenszene** (`<rolle>.md`) liefert Entscheidung, Optionen, Fragen, Rückbezüge und Regie-Material für genau eine Rolle. Schritte der Arten `entscheidung`, `konsequenz` und `rueckbezug` werden nur gezeigt, wenn die gespielte Rolle dafür eine Szene hat.
 
-Welt B ist gesperrt, bis eine Station mit `schaltet-frei: [welt-b]` betreten wurde (im fertigen Produkt der Wendepunkt/Rückspulen; im Durchstich die Vergleichsstation). Der Prüfer verlangt, dass keine Welt-B-Station ohne diese Freischaltung erreichbar ist.
+Welt B ist gesperrt, bis eine Station mit `schaltet-frei: [welt-b]` betreten wurde (in den Inhalten das Rückspulen, `schaltet-frei: [welt-b]`; bis P5.10 schaltete die Vergleichsstation des Durchstichs frei). Der Prüfer verlangt, dass keine Welt-B-Station ohne diese Freischaltung erreichbar ist.
 
 ### 3.2 `station.md` – Kopfdaten
 | Schlüssel | Pflicht | Wert |
@@ -220,7 +220,7 @@ Kopfdaten: `station` (Pflicht, = Ordner), `rolle` (Pflicht, = Dateiname), `frage
 Der Prüfer verlangt: jede Option hat alle vier Konsequenz-Felder und eine Statuswirkung; zu jeder Option der Entscheidung, auf die `rueckbezug-auf` zeigt, gibt es einen `rueckbezug`.
 
 ### 3.5 Vergleichsstation (Welt A ↔ B)
-Eine Station mit `art: vergleich`, `vergleich: {a: A3, b: B3}` und einem Schritt `art: vergleich`. Ihre `paar`-Container beschreiben, welches Welt-A-Stück an welche Stelle des Governance-Flusses „fliegt“, die `kennzahl`-Container die Zähler unter dem Regler (Welt A → Welt B). Nach dem Wendepunkt tragen alle Stationen einer Welt ihren `partner`; der Schieberegler steht dann an jeder Station bereit.
+Eine Station mit `art: vergleich`, `vergleich: {a: A3, b: B3}` und einem Schritt `art: vergleich`. (Die Form bleibt erlaubt; die Inhalte nutzen sie seit P5.10 nicht mehr – die Durchstich-Station `A3-B3-vergleich` ist entfallen, der Regler steht in den Vergleichsschritten `art: vergleich` der B-Stationen, L-45.) Ihre `paar`-Container beschreiben, welches Welt-A-Stück an welche Stelle des Governance-Flusses „fliegt“, die `kennzahl`-Container die Zähler unter dem Regler (Welt A → Welt B). Nach dem Wendepunkt tragen alle Stationen einer Welt ihren `partner`; der Schieberegler steht dann an jeder Station bereit.
 
 ### 3.6 Ebenen 1–4 (progressive Information)
 `ebene 1` Kernaussage · `ebene 2` Warum relevant · `ebene 3` Vertiefung (Tabellen als GFM-Tabelle) · `ebene 4` Nachweis = `zitat` mit Absatz-ID (wortgleich). Stationen und Theorie-Seiten nutzen dieselbe Form.
@@ -297,7 +297,7 @@ Fehlt `whitepaper.json` noch, sind Zitat-, Glossar- und Abdeckungsprüfung **War
 
 ## 6 Vollständiges Beispiel
 
-(Ein lauffähiges Gesamtbeispiel mit Prolog, Vergleichsstation, Welt B, Theorie-Seite und Einwand steht als `BEISPIEL` in `tests/inhalte.test.ts`; die echten Dateien des Durchstichs liegen unter `inhalte/story/`.)
+(Ein lauffähiges Gesamtbeispiel mit Prolog, Vergleichsstation, Welt B, Theorie-Seite und Einwand steht als `BEISPIEL` in `tests/inhalte.test.ts`; der ganze Entscheidungsgraph liegt seit P5.10 unter `inhalte/story/`; `entwurf/` nimmt nur noch künftige Entwürfe auf, siehe `entwurf/LIESMICH.md`.)
 
 `inhalte/story/X1/station.md`
 ```markdown

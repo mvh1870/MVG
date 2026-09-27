@@ -1,6 +1,6 @@
 // Gemeinsame Hilfen der Browser-Szenarien (kein Szenario: Dateiname ohne .szenario.mjs).
 
-/** Läuft im Browser: horizontales Scrollen und abgeschnittener Text (wie im Durchstich-Szenario). */
+/** Läuft im Browser: horizontales Scrollen und abgeschnittener Text (wie im Szenario „durchstich“). */
 export function pruefeLayout() {
   const funde = [];
   const d = document.documentElement;
@@ -139,7 +139,7 @@ export async function weltB(seite, h, station, pruefe, optionen = {}) {
       await h.klick('[data-pruef="weiter"]');
       await h.warte(200);
     }
-    // B3 ist anders gebaut (sechs Teile, kein eigener Einstieg, keine Entscheidung; Durchstich P0)
+    // B3 ist anders gebaut (sechs Teile, kein eigener Einstieg, keine Entscheidung; seit dem Durchstich P0)
     const pflicht = st === 'B3' ? ['werkzeug', 'ebenen'] : ['einstieg', 'vergleich', 'werkzeug', 'entscheidung', 'ebenen'];
     // B2: die Register-Tafel steht neben der Kette (Signal-Szene zeigt weitere Blöcke, P5.6)
     if (st === 'B2') pflicht.push('register');

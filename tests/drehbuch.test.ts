@@ -62,7 +62,7 @@ test('Drehbuch: Monat und LPH passen zur Zeitachse der Fall-Bibel', () => {
   }
 });
 
-test('Drehbuch: Statuswerte vollständig und im Wertebereich; A3/B3 wie im Durchstich', () => {
+test('Drehbuch: Statuswerte vollständig und im Wertebereich; Startstand jeder Station A1–A6/B1–B6 wie in inhalte/', () => {
   const stufe = ['niedrig', 'mittel', 'hoch', 'sehr hoch'];
   const pruefe = (id: string, s: string): void => {
     if (s === '–') return;
@@ -77,13 +77,18 @@ test('Drehbuch: Statuswerte vollständig und im Wertebereich; A3/B3 wie im Durch
     if (s.id.startsWith('A')) assert.notEqual(s.statusA, '–', `${s.id}: Status A fehlt`);
     if (s.id.startsWith('B')) assert.notEqual(s.statusB, '–', `${s.id}: Status B fehlt`);
   }
-  const a3 = readFileSync(path.join(WURZEL, 'inhalte', 'story', 'A3', 'station.md'), 'utf8');
-  const b3 = readFileSync(path.join(WURZEL, 'inhalte', 'story', 'B3', 'station.md'), 'utf8');
   const start = (datei: string): string => {
     const k = (parse(datei.split('---')[1] ?? '') as { 'status-start': Record<string, string | number> })['status-start'];
     return ['entscheidungsfaehigkeit', 'kostenunsicherheit', 'offene-risiken', 'ungeklaerte-entscheidungen', 'terminrisiko']
       .map((x) => String(k[x]).replace(/\s*\(.*\)$/u, '')).join(' · ');
   };
-  assert.equal(stationen.find((s) => s.id === 'A3')?.statusA, start(a3));
-  assert.equal(stationen.find((s) => s.id === 'B3')?.statusB, start(b3));
+  // seit P5.10 liegen alle Stationen in inhalte/ (vorher nur A3/B3 des Durchstichs)
+  for (const w of ['A', 'B'] as const) {
+    for (let nr = 1; nr <= 6; nr += 1) {
+      const id = `${w}${nr}`;
+      const datei = readFileSync(path.join(WURZEL, 'inhalte', 'story', id, 'station.md'), 'utf8');
+      const s = stationen.find((x) => x.id === id);
+      assert.equal(w === 'A' ? s?.statusA : s?.statusB, start(datei), id);
+    }
+  }
 });

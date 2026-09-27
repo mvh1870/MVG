@@ -355,7 +355,7 @@ Mehr Berichte helfen manchmal.
 :::
 :::
 `,
-  'inhalte/abdeckung.yaml': 'k2.4-l1:\n  theorie: k02\n  story: X1\n',
+  'inhalte/abdeckung.yaml': 'k2.4-l1:\n  theorie: k02\n  story: X1\nk2.4-p2:\n  story: X1\n',
 };
 
 test('feldName: Überschriften und Schlüssel werden zu camelCase in ASCII-Umschrift', () => {
@@ -444,7 +444,7 @@ test('Beispiel → erwartetes JSON (Auszüge exakt), fehlerfrei, deterministisch
       'k2-p1': { theorie: ['k02'], story: [] },
       'k2.4-l1': { theorie: ['k02'], story: ['X1'] },
       'k2.4-p1': { theorie: ['k02'], story: [] },
-      'k2.4-p2': { theorie: ['k02'], story: [] },
+      'k2.4-p2': { theorie: ['k02'], story: ['X1'] },
     },
   });
   assert.deepEqual(i.glossar['g-mandat'], { id: 'g-mandat', begriff: 'Mandat', definition: 'Klar zugewiesene Entscheidungsbefugnis.' });
@@ -545,11 +545,14 @@ test('Abdeckung (P1.1): Lücke, fremdes Kapitel und unbekannte Seite sind Fehler
   const fremd = neueWurzel({ ...BEISPIEL, 'inhalte/theorie/k05-test.md': '---\nkapitel: 5\ntitel: Test\n---\nText.\n', 'inhalte/abdeckung.yaml': 'k2.4-l1:\n  theorie: k05\n' });
   assert.ok((await kompiliere({ pruefe: true, wurzel: fremd, ziel: null })).fehler.some((f) => /k2\.4-l1: steht nicht auf der Seite seines Kapitels \(k02\)/u.test(f)));
   // geplante Kapitelseite: k02 ohne Lernseite
-  const ohneSeite: Record<string, string> = { ...BEISPIEL, 'inhalte/abdeckung.yaml': 'k2-p1:\n  theorie: k02\nk2.4-p1:\n  theorie: k02\nk2.4-p2:\n  theorie: k02\nk2.4-l1:\n  theorie: k02\n' };
+  const ohneSeite: Record<string, string> = { ...BEISPIEL, 'inhalte/abdeckung.yaml': 'k2-p1:\n  theorie: k02\nk2.4-p1:\n  theorie: k02\nk2.4-p2:\n  theorie: k02\n  story: X1\nk2.4-l1:\n  theorie: k02\n' };
   for (const k of Object.keys(ohneSeite)) if (k.startsWith('inhalte/theorie/')) delete ohneSeite[k];
   const geplant = await kompiliere({ pruefe: true, wurzel: neueWurzel(ohneSeite), ziel: null });
   assert.deepEqual(geplant.fehler.filter((f) => /abdeckung/u.test(f)), []);
   assert.equal((geplant.inhalte as Inhalte).abdeckung.anteil, 1);
+  // jeder „whitepaper-bezug“ einer Station steht als Story-Bezug in der Karte (L-20; bis P5.10 im Entwurfswerkzeug geprüft)
+  const ohneBezug = await pruefe('k2.4-l1:\n  theorie: k02\n  story: X1\n');
+  assert.ok(ohneBezug.some((f) => /^inhalte\/abdeckung\.yaml: k2\.4-p2 ohne Story-Bezug auf X1 \(steht in dessen whitepaper-bezug\)$/u.test(f)), ohneBezug.join('\n'));
 });
 
 test('Fall-Bibel (P1.2): Zeitachse Monat → LPH wird gegen die Stationen geprüft', async () => {

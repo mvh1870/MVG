@@ -1,29 +1,27 @@
 #!/usr/bin/env node
 /**
- * Story-Entwurf (P1.4, L-20): prüft den vollständigen Entscheidungsgraph, ohne den spielbaren
- * Durchstich in `inhalte/` umzubauen.
+ * Story-Entwurf (P1.4, L-20, L-45): prüft Entwürfe gegen den spielbaren Stand, ohne `inhalte/` zu ändern.
  *
  * Baut unter tmp/entwurf-<pid>/ eine Wurzel aus `inhalte/` plus allen Dateien unter `entwurf/`
- * (gleicher Pfad = ersetzt, z. B. `entwurf/story/A1/pl.md` → `inhalte/story/A1/pl.md`), stellt
- * den Hauptpfad her (Prolog → A1, A3 → A4, B3 → B4, dazu der Express-Pfad; ohne die
- * Vergleichsstation des Durchstichs) und kompiliert mit `--pruefe` (Graph, Zitate, Begriffe …).
+ * (gleicher Pfad = ersetzt, z. B. `entwurf/story/A1/pl.md` → `inhalte/story/A1/pl.md`), wendet die
+ * ANPASSUNGEN an (derzeit keine) und kompiliert mit `--pruefe` (Graph, Zitate, Begriffe, Abdeckung …).
  *
- *   node werkzeuge/entwurf.mjs     Exitcode 1 bei Fehlern
+ *   node werkzeuge/entwurf.mjs         Exitcode 1 bei Fehlern
+ *   node werkzeuge/entwurf.mjs --bau   zusätzlich die Vorschau tmp/mvg-entwurf.html
  *
- * Mit P3/P5 wandern die Dateien aus `entwurf/` nach `inhalte/`; dann entfallen die Anpassungen.
+ * Seit P5.10 liegt der ganze Entscheidungsgraph in `inhalte/`; `entwurf/` ist leer bis auf LIESMICH.md.
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { istHauptmodul } from './haupt.mjs';
 import { WURZEL, STANDARD_WHITEPAPER, kompiliere } from './inhalte.mjs';
 
-/** Anpassungen am Durchstich: [Datei relativ zu inhalte/, alt, neu]. Jede muss genau greifen. */
-export const ANPASSUNGEN = [
-  // Express-Pfad (E8, L-26): Interesse „express“ überspringt A1, A2, A4, A5, B1, B2, B4, B5
-  ['story/prolog/station.md', 'weiter: A3   # Durchstich P0; ab P1: A1', 'weiter:\n  - ziel: A3\n    wenn: [interesse express]\n  - ziel: A1'],
-  ['story/A3/station.md', 'weiter: A3-B3-vergleich   # Durchstich P0; ab P3: A4', 'weiter:\n  - ziel: A6\n    wenn: [interesse express]\n  - ziel: A4'],
-  ['story/B3/station.md', 'ende: ja   # Durchstich P0: vorläufiges Ende; ab P5: weiter: B4', 'weiter:\n  - ziel: B6\n    wenn: [interesse express]\n  - ziel: B4'],
-];
+/**
+ * Anpassungen an `inhalte/` für einen Entwurf: [Datei relativ zu inhalte/, alt, neu]. Jede muss genau greifen.
+ * Seit P5.10 leer: die Express-Kanten an Prolog, A3 und B3 stehen fest in inhalte/ (L-45).
+ * @type {Array<[string, string, string]>}
+ */
+export const ANPASSUNGEN = [];
 
 /** @param {string} ordner @returns {string[]} */
 function dateienUnter(ordner) {
@@ -49,7 +47,6 @@ export async function pruefeEntwurf(optionen = {}) {
   rmSync(ziel, { recursive: true, force: true });
   mkdirSync(ziel, { recursive: true });
   cpSync(path.join(wurzel, 'inhalte'), path.join(ziel, 'inhalte'), { recursive: true });
-  rmSync(path.join(ziel, 'inhalte', 'story', 'A3-B3-vergleich'), { recursive: true, force: true });
   /** @type {string[]} */
   const fehler = [];
   for (const [datei, alt, neu] of ANPASSUNGEN) {
@@ -58,7 +55,8 @@ export async function pruefeEntwurf(optionen = {}) {
     if (!text.includes(alt)) { fehler.push(`entwurf: Anpassung greift nicht in inhalte/${datei}: „${alt.trim()}“`); continue; }
     writeFileSync(voll, text.replace(alt, neu), 'utf8');
   }
-  const ueberlagert = dateienUnter(path.join(wurzel, 'entwurf')).map((d) => d.replace(/\\/gu, '/'));
+  // LIESMICH.md beschreibt nur den Ordner und wird nicht überlagert
+  const ueberlagert = dateienUnter(path.join(wurzel, 'entwurf')).map((d) => d.replace(/\\/gu, '/')).filter((d) => d !== 'LIESMICH.md');
   for (const d of ueberlagert) {
     const nach = path.join(ziel, 'inhalte', d);
     mkdirSync(path.dirname(nach), { recursive: true });
@@ -66,13 +64,7 @@ export async function pruefeEntwurf(optionen = {}) {
   }
   const erg = await kompiliere({ pruefe: true, wurzel: ziel, whitepaperPfad: path.join(wurzel, STANDARD_WHITEPAPER), ziel: optionen.json ?? null });
   rmSync(ziel, { recursive: true, force: true });
-  // Abdeckungskarte (entwurf/abdeckung.yaml) trägt jeden „whitepaper-bezug“ einer Station als Story-Bezug
-  const ziele = erg.inhalte?.abdeckung?.ziele ?? {};
-  for (const st of Object.values(erg.inhalte?.stationen ?? {})) {
-    for (const id of /** @type {any} */ (st).whitepaper ?? []) {
-      if (!(ziele[id]?.story ?? []).includes(/** @type {any} */ (st).id)) fehler.push(`entwurf: abdeckung.yaml – ${id} ohne Story-Bezug auf ${/** @type {any} */ (st).id} (steht in dessen whitepaper-bezug)`);
-    }
-  }
+  // Story-Bezüge der Abdeckungskarte prüft seit P5.10 der Kompilierer selbst (baueAbdeckung)
   return { fehler: [...fehler, ...erg.fehler], warnungen: erg.warnungen, inhalte: erg.inhalte, ueberlagert };
 }
 

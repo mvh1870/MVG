@@ -64,7 +64,7 @@ export async function lauf(seite, h) {
   if ((await hashJetzt()) !== '#story/A3') h.befund(`Permalink #story/A3 mit Rolle: ${await hashJetzt()}`);
 }
 
-/** Jede der sechs Rollen ist startbar (P2.5): Prolog → Rolle → A3 → Wahl A → Konsequenz. */
+/** Jede der sechs Rollen ist startbar (P2.5): Prolog → Rolle → Express → A3 → Wahl A → Konsequenz. */
 export async function jedeRolle(seite, h) {
   for (const rolle of ['gf', 'bauherr', 'pl', 'ps', 'planung', 'controlling']) {
     if (rolle === 'gf') {
@@ -80,7 +80,12 @@ export async function jedeRolle(seite, h) {
     if (await seite.locator(`[data-pruef="rolle-${rolle}"]`).filter({ visible: true }).count() === 0) await h.klick('[data-pruef="weiter"]');
     await h.klick(`[data-pruef="rolle-${rolle}"]`);
     await h.erwarte('[data-pruef^="interesse-"]');
+    // Express-Pfad (E8, L-26): der Prolog führt direkt nach A3 (ohne Express nach A1)
+    if ((await seite.locator('[data-pruef="interesse-express"]').getAttribute('aria-pressed')) !== 'true') await h.klick('[data-pruef="interesse-express"]');
     await h.klick('[data-pruef="weiter"]');
+    await h.warte(200);
+    const hier = (await seite.evaluate(() => location.hash)).replace(/^#story\//u, '');
+    if (hier !== 'A3') h.befund(`Rolle ${rolle}: Express führt nach ${hier} statt A3`);
     for (let i = 0; i < 6; i++) {
       if (await seite.locator('[data-pruef="option-A"]').filter({ visible: true }).count() > 0) break;
       await h.klick('[data-pruef="weiter"]');

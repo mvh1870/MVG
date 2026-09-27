@@ -1,4 +1,4 @@
-// Browser-Szenario Welt B (P5.9, P2-Befunde V3/V7/V9): auf der Entwurfs-Vorschau spielt jede Rolle
+// Browser-Szenario Welt B (P5.9, P2-Befunde V3/V7/V9): in dist/mvg.html (seit P5.10) spielt jede Rolle
 // B1–B6 – Einstieg, Vergleich, Werkzeuge, Entscheidung, Ebenen 1–4, am Ende „Ihre Spur“; Layout, axe
 // und Quellen-Kontrast an jedem Werkzeug. Damit nicht jede Rolle Welt A erneut durchspielt, erzeugt
 // die Engine selbst den Stand direkt vor B1 (Option A an jeder Station) und legt ihn in den Speicher
@@ -7,7 +7,7 @@
 // „welt-b-2“ (ps, planung, controlling + Express-Pfad E8), damit der parallele Pool beide zugleich
 // fährt; 1024×768 und 400×800 je drei Rollen, zusammen jede Rolle einmal außerhalb des Desktops.
 
-import { pruefeEntwurf } from '../../werkzeuge/entwurf.mjs';
+import { inhalte as modell } from '../../src/inhalte/index.ts';
 import { anfangszustand } from '../../src/engine/zustand.ts';
 import { wende } from '../../src/engine/aktionen.ts';
 import { aktuellerSchritt } from '../../src/engine/graph.ts';
@@ -15,7 +15,6 @@ import { speichere, SPEICHER_SCHLUESSEL } from '../../src/engine/speicher.ts';
 import { pruefer, weltB } from './hilfen.mjs';
 
 export const name = 'welt-b';
-export const seite = 'tmp/mvg-entwurf.html';
 export const hash = '#story';
 
 const ROLLEN_JE_GROESSE = {
@@ -25,9 +24,7 @@ const ROLLEN_JE_GROESSE = {
 };
 const EXPRESS = ['A3', 'A6', 'wendepunkt', 'rueckspulen', 'B3', 'B6', 'wirklichkeit'];
 
-const entwurf = await pruefeEntwurf();
-if (entwurf.fehler.length > 0) throw new Error(`welt-b: Entwurf mit Fehlern – zuerst \`npm run entwurf\`:\n${entwurf.fehler.join('\n')}`);
-const modell = entwurf.inhalte;
+// Der Stand entsteht aus denselben kompilierten Inhalten, die in dist/mvg.html stecken (src/generiert/inhalte.json)
 /** Die PL liest mit Interessen (Vertiefungen in Welt B, L-31); die anderen ohne. */
 const INTERESSEN = { pl: ['kosten', 'risiko'] };
 /** Kurzform der Option A einer Station für eine Rolle (für die Spur-Prüfung). */

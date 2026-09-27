@@ -1776,6 +1776,14 @@ function baueAbdeckung(c, quelle, roh, stationen, theorie, pruefe) {
     }
   }
   for (const [id, seiten] of c.theorieDeckt) for (const s of seiten) if (!ziel(id).theorie.includes(s)) ziel(id).theorie.push(s);
+  // Die Karte trägt jeden „whitepaper-bezug“ einer Station als Story-Bezug (L-20; seit P5.10 im Prüfer statt im Entwurfswerkzeug)
+  if (pruefe && roh !== null) {
+    for (const st of Object.values(stationen)) {
+      for (const id of st.whitepaper ?? []) {
+        if (!(ziele[id]?.story ?? []).includes(st.id)) c.fehler(rel, `${id} ohne Story-Bezug auf ${st.id} (steht in dessen whitepaper-bezug)`);
+      }
+    }
+  }
   for (const z of Object.values(ziele)) { z.theorie.sort(); z.story.sort(); }
   const gesamt = quelle?.bloecke.length ?? 0;
   const zugeordnet = quelle === null ? 0 : quelle.bloecke.filter((bl) => (ziele[bl.id]?.theorie.length ?? 0) > 0).length;

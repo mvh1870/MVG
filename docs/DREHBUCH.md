@@ -33,7 +33,7 @@ Maschinenlesbar: Der Test `tests/drehbuch.test.ts` liest diese Tabelle. Er prüf
 
 Summe Hauptpfad 32,5 Min (Bandbreite 25–35), Express 12 Min. Der Test rechnet beides nach.
 
-Der Vergleich `A3-B3-vergleich` aus dem Durchstich (P0.6) entfällt mit dem Schieberegler je Station (P5.2); bis dahin bleibt er als Brücke A3 → B3 stehen.
+Der Vergleich `A3-B3-vergleich` aus dem Durchstich (P0.6) ist mit dem Umzug P5.10 entfallen (L-45); den Schieberegler tragen die Vergleichsschritte der B-Stationen (P5.2).
 
 ## 2 Pfade
 

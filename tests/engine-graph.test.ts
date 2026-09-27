@@ -1,6 +1,6 @@
 /*
  * Graph, Bedingungen und Entscheidungsgedächtnis (P0.5) – am Testmodell und an den echten Inhalten
- * des Durchstichs (A3 → Vergleich → B3, Rolle Bauherren-PL).
+ * (Express-Pfad A3 → A6 → Wendepunkt → Rückspulen → B3, Rolle Bauherren-PL).
  */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -130,7 +130,7 @@ const WP = new URL('../quellen/whitepaper/v1.2/whitepaper.json', import.meta.url
 
 test('Gedächtnis (echte Inhalte A3 → B3, Bauherren-PL): jede Wahl A–D wird in Welt B passend zitiert', { skip: existsSync(WP) ? false : 'whitepaper.json fehlt' }, async () => {
   const { fehler, inhalte } = await kompiliere({ pruefe: true, ziel: null });
-  assert.deepEqual(fehler, [], 'die Inhalte des Durchstichs sind fehlerfrei');
+  assert.deepEqual(fehler, [], 'die Inhalte sind fehlerfrei');
   const m = inhalte as Inhalte;
   const a3 = m.stationen['A3'];
   assert.ok(a3 !== undefined);
@@ -141,18 +141,27 @@ test('Gedächtnis (echte Inhalte A3 → B3, Bauherren-PL): jede Wahl A–D wird 
     const schritt = (a: Aktion): void => { z = wende(z, a, m); };
     schritt({ art: 'starteStory' });
     schritt({ art: 'waehleRolle', rolle: 'pl' });
+    // Express-Pfad (E8, L-26): Prolog → A3 → A6 → Wendepunkt → Rückspulen → B3
+    schritt({ art: 'setzeInteressen', interessen: ['express'] });
     for (let i = 0; i < 50 && z.station !== 'A3'; i++) schritt({ art: 'weiter' });
-    assert.equal(z.station, 'A3', 'der Prolog führt nach A3');
+    assert.equal(z.station, 'A3', 'der Prolog führt im Express nach A3');
     for (let i = 0; i < 10 && m.stationen['A3']?.schritte[z.schritt]?.art !== 'entscheidung'; i++) schritt({ art: 'weiter' });
     schritt({ art: 'waehle', option: o.id });
     const ort = (): string | null => z.station; // z ändert sich im Abschluss – nicht verengen lassen
-    for (let i = 0; i < 50 && !(ort() === 'B3' && m.stationen['B3']?.schritte[z.schritt]?.art === 'rueckbezug'); i++) schritt({ art: 'weiter' });
+    for (let i = 0; i < 200 && !(ort() === 'B3' && m.stationen['B3']?.schritte[z.schritt]?.art === 'rueckbezug'); i++) {
+      // an der nächsten Entscheidung (A6) wählt die PL „A“ – sie darf den Rückbezug in B3 nicht verändern
+      const hier = ort();
+      const ent = hier !== null && hier !== 'A3' && m.stationen[hier]?.schritte[z.schritt]?.art === 'entscheidung' ? m.stationen[hier]?.szenen['pl']?.entscheidung : undefined;
+      if (ent && z.entscheidungen[ent.id] === undefined) schritt({ art: 'waehle', option: 'A' });
+      schritt({ art: 'weiter' });
+    }
     assert.equal(ort(), 'B3');
     const rb = rueckbezug(z, m);
     assert.equal(rb?.option, o.id);
     assert.equal(rb?.html, m.stationen['B3']?.szenen['pl']?.rueckbezug?.texte[o.id]);
     assert.ok(rb?.html.includes(`‚${o.kurz}‘`), `Rückbezug zu ${o.id} nennt die Wahl „${o.kurz}“`);
-    assert.equal(z.spur.length, 1);
-    assert.equal(z.spur[0]?.option, o.id);
+    const inA3 = z.spur.filter((e) => e.station === 'A3');
+    assert.equal(inA3.length, 1, 'genau eine Wahl in A3 auf der Spur');
+    assert.equal(inA3[0]?.option, o.id);
   }
 });

@@ -4,7 +4,10 @@ art: prolog
 monat: 0
 titel: Übernahme
 kurztitel: Prolog
-weiter: A3   # Durchstich P0; ab P1: A1
+weiter:
+  - ziel: A3
+    wenn: [interesse express]
+  - ziel: A1
 ---
 
 ::: schritt uebernahme

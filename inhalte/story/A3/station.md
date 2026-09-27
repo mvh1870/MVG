@@ -13,7 +13,10 @@ status-start:
   ungeklaerte-entscheidungen: 3
   terminrisiko: mittel
 partner: B3
-weiter: A3-B3-vergleich   # Durchstich P0; ab P3: A4
+weiter:
+  - ziel: A6
+    wenn: [interesse express]
+  - ziel: A4
 ---
 
 ::: schritt einstieg

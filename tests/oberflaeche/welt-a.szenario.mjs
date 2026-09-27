@@ -1,4 +1,4 @@
-// Browser-Szenario Welt A (P3.8-Abnahme, L-29): auf der Entwurfs-Vorschau (ganzer Entscheidungsgraph)
+// Browser-Szenario Welt A (P3.8-Abnahme, L-29): in dist/mvg.html (seit P5.10 der ganze Entscheidungsgraph)
 // spielt jede Rolle vom Prolog bis zum Wendepunkt; an jeder Station Layout-Prüfung und axe.
 // Bei 1280×720 alle sechs Rollen, in den anderen Größen die Bauherren-PL (Laufzeit der Kette).
 // Vertiefung je Interesse (P3.9): die PL wählt „Kosten“ und „Risiko“ und sieht an jedem Ebenen-Schritt
@@ -7,7 +7,6 @@
 import { pruefeLayout, pruefer } from './hilfen.mjs';
 
 export const name = 'welt-a';
-export const seite = 'tmp/mvg-entwurf.html';
 export const hash = '#story';
 
 const STATIONEN = ['A1', 'A2', 'A3', 'A4', 'A5', 'A6'];

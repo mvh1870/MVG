@@ -16,7 +16,8 @@ quellen/ + inhalte/  ──werkzeuge (Node)──►  src/generiert/ (ignoriert)
 | `quellen/whitepaper/v1.2/` | DOCX (Original), `bilder/` (Originalbilder), `whitepaper.json` + `whitepaper.md` (strukturiert, Absatz-IDs), `pandoc-rohfassung.md` (nur Referenz) |
 | `quellen/marke/` | Logo (Original-PNG, vektorisierte SVGs) |
 | `quellen/bm/`, `quellen/companion/` | Referenzen aus Schwesterprojekten (Tokens, Kanal-Vorlage, Begriffslisten); nicht eingebunden, nur Vorlage |
-| `inhalte/` | Alle Texte als Markdown (siehe `docs/INHALTSFORMAT.md`) |
+| `inhalte/` | Alle Texte als Markdown (siehe `docs/INHALTSFORMAT.md`), seit P5.10 der ganze Entscheidungsgraph (L-45) |
+| `entwurf/` | Ort für künftige Entwürfe in der Form von `inhalte/`; `npm run entwurf` überlagert `inhalte/` damit und prüft (Vorschau mit `--bau` → `tmp/mvg-entwurf.html`); derzeit leer bis auf `LIESMICH.md` |
 | `src/main.ts` | Einstieg: liest den Hash (`#regie`, `#leinwand`, Permalinks), startet die passende Fläche |
 | `src/engine/` | Reine Logik ohne DOM: Typen, Anfangszustand, Aktionen (Reducer), Graph, Bedingungen, Gedächtnis |
 | `src/inhalte/` | Typisierter Laufzeitzugriff auf `src/generiert/inhalte.json` |
@@ -25,7 +26,7 @@ quellen/ + inhalte/  ──werkzeuge (Node)──►  src/generiert/ (ignoriert)
 | `src/figuren/` | SVG-Figuren- und Requisiten-Baukasten |
 | `src/regie/` | `kanal.ts` (BroadcastChannel + storage-Rückfall), Regie, Leinwand, Protokoll |
 | `src/stil/` | `tokens.css`, `basis.css`, Komponenten-CSS; `src/generiert/schriften.css` wird erzeugt |
-| `werkzeuge/` | `bau.mjs`, `kette.mjs`, `inhalte.mjs`, `begriffe.mjs` + `begriffe.json`, `oberflaeche.mjs`, `whitepaper-import.mjs`, `schriften.mjs`, `logo.mjs`, `vorschau.mjs`, `huelle.html` |
+| `werkzeuge/` | `bau.mjs`, `kette.mjs`, `inhalte.mjs`, `begriffe.mjs` + `begriffe.json`, `oberflaeche.mjs`, `whitepaper-import.mjs`, `schriften.mjs`, `logo.mjs`, `vorschau.mjs`, `entwurf.mjs`, `huelle.html` |
 | `tests/` | `*.test.ts` (node:test, jsdom wo nötig); Browser-Szenarien unter `tests/oberflaeche/` |
 | `dist/mvg.html` | die ausgelieferte Einzeldatei (committet) |
 | `prototyp/` | Stilreferenz und Szenen-Spezifikation (nicht eingebunden) |

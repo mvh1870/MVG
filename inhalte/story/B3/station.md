@@ -13,7 +13,10 @@ status-start:
   ungeklaerte-entscheidungen: 1 (ENT-017, mit Frist)
   terminrisiko: mittel
 partner: A3
-ende: ja   # Durchstich P0: vorläufiges Ende; ab P5: weiter: B4
+weiter:
+  - ziel: B6
+    wenn: [interesse express]
+  - ziel: B4
 ---
 
 ::: express

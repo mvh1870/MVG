@@ -26,15 +26,33 @@ const o = (z: Zustand): OeffentlicherZustand => oeffentlich(z);
 const weiter = (z: Zustand): Zustand => tue(z, weiterAktion(o(z), inhalte));
 const art = (z: Zustand): string | undefined => aktuellerSchritt(o(z), inhalte)?.art;
 
-/** Bis zur Entscheidung in A3 (Rolle PL, Information angefordert). */
-function bisEntscheidung(): Zustand {
+/** Bis zum Einstieg in A3 (Rolle PL, Interesse „express“: Prolog → A3, E8/L-26). */
+function bisA3(): Zustand {
   let z = weiter(anfangszustand());
   assert.equal(z.station, inhalte.start);
   while (art(z) !== 'rollenwahl') z = weiter(z);
   z = tue(z, { art: 'waehleRolle', rolle: 'pl' });
+  while (art(z) !== 'interessenwahl') z = weiter(z);
+  z = tue(z, { art: 'setzeInteressen', interessen: ['express'] });
   while (z.station === inhalte.start) z = weiter(z);
   assert.equal(z.station, 'A3');
+  return z;
+}
+
+/** Bis zur Entscheidung in A3 (Rolle PL, Express-Pfad). */
+function bisEntscheidung(): Zustand {
+  let z = bisA3();
   while (art(z) !== 'entscheidung') z = weiter(z);
+  return z;
+}
+
+/** „weiter“, bis `ziel` erfüllt ist; an offenen Entscheidungen unterwegs wählt die PL „A“. */
+function laufeBis(z: Zustand, ziel: (z: Zustand) => boolean): Zustand {
+  for (let i = 0; i < 500 && !ziel(z); i++) {
+    const a = weiterAktion(o(z), inhalte);
+    z = a === null && art(z) === 'entscheidung' ? tue(z, { art: 'waehle', option: 'A', zeit: 3 }) : tue(z, a);
+  }
+  assert.ok(ziel(z), `Ziel nicht erreicht (steht in ${z.station}, Schritt ${z.schritt})`);
   return z;
 }
 
@@ -60,7 +78,7 @@ test('L-4: Prolog und Einstieg ohne Instrumente und Karte; Karte nach dem Einsti
   assert.equal(karteSichtbar(o(start), inhalte), false);
 });
 
-test('Weiter wartet auf die Entscheidung; danach Konsequenz, Vergleich, Welt B bis zum Ende mit Ebenen 1–4', () => {
+test('Weiter wartet auf die Entscheidung; danach Konsequenz, Ebenen, Welt B (B3) mit Ebenen 1–4', () => {
   let z = bisEntscheidung();
   assert.equal(weiterAktion(o(z), inhalte), null);
   const ent = inhalte.stationen['A3']?.szenen['pl']?.entscheidung;
@@ -72,20 +90,23 @@ test('Weiter wartet auf die Entscheidung; danach Konsequenz, Vergleich, Welt B b
   assert.equal(art(z), 'ebenen', 'A3 hat seit P3.4 Ebenen 1–4 nach der Konsequenz');
   for (let e = 2; e <= 4; e += 1) z = tue(z, weiterAktion(o(z), inhalte) ?? { art: 'weiter' });
   z = weiter(z);
-  const vergleich = inhalte.stationen[z.station ?? ''];
-  assert.ok(vergleich?.vergleich, 'nach A3 folgt der Vergleich');
-  assert.equal(tafelWelt(vergleich ?? null), 'ab');
-  z = weiter(z);
-  assert.equal(z.station, 'B3');
+  assert.equal(z.station, 'A6', 'Express: nach A3 folgt A6');
+  assert.equal(tafelWelt(inhalte.stationen['A3'] ?? null), 'a');
+  z = laufeBis(z, (x) => x.station === 'B3');
   assert.equal(tafelWelt(inhalte.stationen['B3'] ?? null), 'b');
+  // eine Station mit „vergleich:“ (A ⟷ B) zeigt beide Welten – die echten Inhalte haben seit P5.10 keine mehr
+  const b3 = inhalte.stationen['B3'];
+  assert.ok(b3);
+  assert.equal(tafelWelt({ ...b3, welt: null, vergleich: { a: 'A3', b: 'B3' } }), 'ab');
   while (art(z) !== 'ebenen') z = weiter(z);
   for (let e = 2; e <= 4; e += 1) {
     const a = weiterAktion(o(z), inhalte);
     assert.deepEqual(a, { art: 'setzeEbene', ebene: e });
     z = tue(z, a);
   }
-  assert.equal(weiterAktion(o(z), inhalte), null, 'Ende der Probe');
+  assert.deepEqual(weiterAktion(o(z), inhalte), { art: 'weiter' }, 'nach Ebene 4 geht es zur nächsten Station');
   assert.deepEqual(zurueckAktion(o(z), inhalte), { art: 'setzeEbene', ebene: 3 });
+  assert.equal(weiter(z).station, 'B6', 'Express: nach B3 folgt B6');
 });
 
 test('Gruppen: die sechs Teile von B3 sind ein Fortschrittsschritt mit Takten', () => {
@@ -101,7 +122,7 @@ test('Gruppen: die sechs Teile von B3 sind ein Fortschrittsschritt mit Takten', 
   assert.equal(kicker(schritte, 6), `Schritt 2 · ${schritte[6]?.kurz || schritte[6]?.titel}`);
 });
 
-test('Regie-Eingriffe: Kundenwahl A–D an der Entscheidung, Welt A/B am Vergleich', () => {
+test('Regie-Eingriffe: Kundenwahl A–D an der Entscheidung, Welt A/B am Vergleichsschritt einer B-Station', () => {
   let z = bisEntscheidung();
   const e = eingriffe(o(z), inhalte);
   assert.deepEqual(e.filter((x) => x.aktion.art === 'waehle').map((x) => x.pruef), ['regie-wahl-A', 'regie-wahl-B', 'regie-wahl-C', 'regie-wahl-D']);
@@ -110,18 +131,18 @@ test('Regie-Eingriffe: Kundenwahl A–D an der Entscheidung, Welt A/B am Verglei
   z = weiter(weiter(z));
   // A3 hat Ebenen 1–4 (P3.4): die Regie kann sie direkt öffnen
   assert.deepEqual(eingriffe(o(z), inhalte).map((x) => x.pruef), ['regie-ebene-1', 'regie-ebene-2', 'regie-ebene-3', 'regie-ebene-4']);
-  while (z.station === 'A3') z = weiter(z);
+  // der Schieberegler A ⟷ B lebt seit P5.10 in den Vergleichsschritten der B-Stationen (Express: B6)
+  z = laufeBis(z, (x) => x.station === 'B6' && art(x) === 'vergleich');
   const v = eingriffe(o(z), inhalte).map((x) => x.pruef);
   assert.deepEqual(v, ['regie-welt-a', 'regie-welt-b']);
+  z = tue(z, { art: 'setzeVergleich', wert: 0 });
+  assert.equal(eingriffe(o(z), inhalte).find((x) => x.pruef === 'regie-welt-a')?.gedrueckt, true);
   // außerhalb der Story nichts
   assert.deepEqual(eingriffe(o(tue(z, { art: 'wechsleBereich', bereich: 'theorie' })), inhalte), []);
 });
 
 test('Uhr und Zeitsprung: angeforderte Information verschiebt die Uhr', () => {
-  let z = weiter(anfangszustand());
-  while (art(z) !== 'rollenwahl') z = weiter(z);
-  z = tue(z, { art: 'waehleRolle', rolle: 'pl' });
-  while (z.station === inhalte.start) z = weiter(z);
+  let z = bisA3();
   const a3 = inhalte.stationen['A3'];
   assert.ok(a3);
   const vorher = uhrAnzeige(a3, o(z), inhalte);
@@ -202,11 +223,21 @@ test('Vorlage (L-40): ohne Kürzel keine ID-Marke, aria-label nur der Titel; mit
   assert.ok(!istFlussPosition('irgendwo'));
 });
 
-test('Story-Karte: Welt A endet am Vergleich, Welt B beginnt mit der Partnerstation', () => {
+test('Story-Karte: Welt A vom Prolog bis zur Wirklichkeit, Welt B beginnt mit der ersten Partnerstation und endet in B6', () => {
   const folge = inhalte.stationsFolge.map((id) => inhalte.stationen[id]).filter((s) => s !== undefined);
   const lauf = spuren(folge);
   assert.equal(lauf.length, folge.length);
-  assert.equal(lauf[0]?.a, 'start');
-  assert.equal(lauf[0]?.b, 'keine');
-  assert.ok(lauf.some((s) => s.b === 'start'));
+  const bei = (id: string) => lauf[inhalte.stationsFolge.indexOf(id)];
+  assert.deepEqual(bei('prolog'), { a: 'start', b: 'keine' });
+  assert.deepEqual(bei('A1'), { a: 'linie', b: 'start' }, 'Welt B beginnt an der ersten Station mit Partner');
+  assert.deepEqual(bei('B6'), { a: 'linie', b: 'ende' });
+  assert.deepEqual(bei('wirklichkeit'), { a: 'ende', b: 'keine' });
+  assert.deepEqual(bei('epilog'), { a: 'keine', b: 'keine' });
+  // eine Vergleichsstation (A ⟷ B) liegt auf beiden Spuren
+  const b3 = inhalte.stationen['B3'];
+  assert.ok(b3);
+  const v = { ...b3, id: 'V', welt: null, partner: null, vergleich: { a: 'A3', b: 'B3' } };
+  const nurAV = spuren([folge[0]!, inhalte.stationen['A3']!, v, b3]);
+  assert.deepEqual(nurAV.map((s) => s.a), ['start', 'linie', 'ende', 'keine']);
+  assert.deepEqual(nurAV.map((s) => s.b), ['keine', 'start', 'linie', 'ende']);
 });

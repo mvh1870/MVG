@@ -1,9 +1,11 @@
-// Entscheidungsgraph (P1.4, L-20): der Entwurf unter entwurf/ ist mit dem vollen Graph-Prüfer fehlerfrei,
-// jede Rolle kann an jeder Entscheidungsstation wählen, und jedes der drei Enden ist über eine Wahl in der
-// Wirklichkeit erreichbar.
+// Entscheidungsgraph (P1.4, L-20; seit P5.10 in inhalte/, L-45): die Inhalte sind mit dem vollen Graph-Prüfer
+// fehlerfrei, jede Rolle kann an jeder Entscheidungsstation wählen, und jedes der drei Enden ist über eine Wahl
+// in der Wirklichkeit erreichbar. Bis P5.10 prüfte diese Datei (damals entwurf.test.ts) den Entwurf unter entwurf/.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { pruefeEntwurf } from '../werkzeuge/entwurf.mjs';
+import { readFileSync } from 'node:fs';
+import { kompiliere } from '../werkzeuge/inhalte.mjs';
+import { ANPASSUNGEN, pruefeEntwurf } from '../werkzeuge/entwurf.mjs';
 import { wendeWirkung } from '../src/engine/status.ts';
 import type { Aktion, Status, StoryModell } from '../src/engine/typen.ts';
 import { wende } from '../src/engine/aktionen.ts';
@@ -12,13 +14,23 @@ import { aktuellerSchritt } from '../src/engine/graph.ts';
 import { rueckbezug } from '../src/engine/gedaechtnis.ts';
 
 const ROLLEN = ['gf', 'bauherr', 'pl', 'ps', 'planung', 'controlling'];
-const erg = await pruefeEntwurf();
+const erg = await kompiliere({ pruefe: true, ziel: null });
 
-test('Entwurf: Graph, Form, Zitate, Begriffe und Abdeckung ohne Fehler', () => {
+test('Inhalte: Graph, Form, Zitate, Begriffe und Abdeckung ohne Fehler und ohne Warnung', () => {
   assert.deepEqual(erg.fehler, []);
+  assert.deepEqual(erg.warnungen, []);
 });
 
-test('Entwurf: alle sechs Rollen spielbar, drei Enden, Epilog als Schluss', () => {
+test('Entwurfswerkzeug (L-45): ohne Entwürfe keine Anpassung, nichts überlagert, dasselbe Ergebnis wie inhalte/', async () => {
+  assert.deepEqual(ANPASSUNGEN, [], 'die Express-Kanten stehen seit P5.10 fest in inhalte/');
+  const e = await pruefeEntwurf();
+  assert.deepEqual(e.fehler, []);
+  assert.deepEqual(e.ueberlagert, [], 'entwurf/ enthält nur LIESMICH.md, die nicht überlagert wird');
+  assert.deepEqual(Object.keys(e.inhalte.stationen).sort(), Object.keys(erg.inhalte.stationen).sort());
+  assert.deepEqual(e.inhalte.stationsFolge, erg.inhalte.stationsFolge);
+});
+
+test('Graph: alle sechs Rollen spielbar, drei Enden, Epilog als Schluss, keine Vergleichsstation mehr', () => {
   const st = erg.inhalte.stationen;
   assert.deepEqual(Object.values(erg.inhalte.rollen).filter((r: any) => r.spielbar).map((r: any) => r.id).sort(), [...ROLLEN].sort());
   for (const e of ['ende-steuerbar', 'ende-auflagen', 'ende-neufestlegung']) {
@@ -27,9 +39,14 @@ test('Entwurf: alle sechs Rollen spielbar, drei Enden, Epilog als Schluss', () =
   }
   assert.equal(st.epilog?.ende, true);
   assert.deepEqual(st.wirklichkeit?.weiter.map((k: any) => k.ziel), ['ende-steuerbar', 'ende-neufestlegung', 'ende-auflagen']);
+  assert.equal(st['A3-B3-vergleich'], undefined, 'die Durchstich-Station ist entfallen (L-45)');
+  assert.deepEqual(Object.values(st).filter((s: any) => s.art === 'vergleich'), []);
+  // Welt B öffnet sich am Wendepunkt/Rückspulen (nicht mehr am Vergleich)
+  const frei = Object.values(st).filter((s: any) => (s.schaltetFrei ?? []).includes('weltB')).map((s: any) => s.id).sort();
+  assert.ok(frei.length > 0 && frei.every((id: string) => id === 'wendepunkt' || id === 'rueckspulen'), `schaltet frei: ${frei.join(', ')}`);
 });
 
-test('Entwurf: jede Rolle erreicht über die Wirklichkeit jedes Ende (A → steuerbar, B → Auflagen, C → Neufestlegung)', () => {
+test('Graph: jede Rolle erreicht über die Wirklichkeit jedes Ende (A → steuerbar, B → Auflagen, C → Neufestlegung)', () => {
   const szenen = erg.inhalte.stationen.wirklichkeit.szenen;
   // Kanten der Wirklichkeit (L-20): EF ≥ 3 → steuerbar; Kostenunsicherheit sehr hoch → Neufestlegung; sonst Auflagen
   const ende = (s: Status): string => (s.entscheidungsfaehigkeit >= 3 ? 'ende-steuerbar' : s.kostenunsicherheit === 'sehr hoch' ? 'ende-neufestlegung' : 'ende-auflagen');
@@ -44,7 +61,7 @@ test('Entwurf: jede Rolle erreicht über die Wirklichkeit jedes Ende (A → steu
   }
 });
 
-test('Entwurf mit dem Reducer durchgespielt: jede Rolle vom Prolog bis zum Epilog, jedes Ende, Rückbezüge in Welt B', () => {
+test('Graph mit dem Reducer durchgespielt: jede Rolle vom Prolog bis zum Epilog, jedes Ende, Rückbezüge in Welt B', () => {
   const m = erg.inhalte as StoryModell;
   const soll: Record<string, string> = { A: 'ende-steuerbar', B: 'ende-auflagen', C: 'ende-neufestlegung' };
   for (const r of ROLLEN) {
@@ -116,14 +133,13 @@ test('Vertiefung je Interesse (P3.9): A1–A6 haben je eine Karte für Kosten, M
 });
 
 test('Wendepunkt-Radar (P4.7): jedes Symptom, das eine Station A1–A6 in ihrer Tabelle nennt, ist dort als erlebt eingetragen', async () => {
-  const { readFileSync } = await import('node:fs');
   const schritt = erg.inhalte.stationen.wendepunkt?.schritte.find((s: any) => s.id === 'symptome');
   const tafel = schritt?.bloecke.find((b: any) => b.art === 'tafel');
   assert.ok(tafel, 'Tafel im Schritt „symptome“');
   const zeilen: string[][] = tafel.kopf.tabelle.zeilen;
   const glatt = (t: string): string => t.replace(/\[\[(?:[^|\]]*\|)?([^\]]*)\]\]/gu, '$1').replace(/-(?=[a-zäöü])/gu, '').toLowerCase();
   for (const id of ['A1', 'A2', 'A3', 'A4', 'A5', 'A6']) {
-    const pfad = id === 'A3' ? 'inhalte/story/A3/station.md' : `entwurf/story/${id}/station.md`;
+    const pfad = `inhalte/story/${id}/station.md`;
     const text = glatt(readFileSync(pfad, 'utf8'));
     zeilen.forEach((z, i) => {
       if (text.includes(`| ${glatt(z[0] ?? '')} |`)) assert.ok((tafel.kopf.erlebt[String(i + 1)] ?? []).includes(id), `${id} nennt „${z[0]}“, fehlt in erlebt.${i + 1}`);

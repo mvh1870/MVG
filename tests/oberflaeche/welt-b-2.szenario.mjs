@@ -4,7 +4,6 @@
 import { spiele } from './welt-b.szenario.mjs';
 
 export const name = 'welt-b-2';
-export const seite = 'tmp/mvg-entwurf.html';
 export const hash = '#story';
 export const viewports = [{ breite: 1280, hoehe: 720 }];
 

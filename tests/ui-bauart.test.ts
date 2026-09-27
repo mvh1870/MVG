@@ -4,7 +4,7 @@
 //    oder die Inhalte-Datei selbst; der transitive Importgraph der Leinwand (auch dynamische Importe)
 //    erreicht beides nicht; `inhalte` trägt auf Datenebene kein Regie-Material (Positivliste).
 // 2. DOM: Startseite (genau zwei Wege, keine Instrumente), Theorie (13 Kapitel, Kapitel 1 mit
-//    Originaltext und Absatz-IDs), Story (Prolog → A3 → Option B → Konsequenz, L-4-Attribute),
+//    Originaltext und Absatz-IDs), Story (Prolog → A3 über den Express-Pfad → Option B → Konsequenz, L-4-Attribute),
 //    Leinwand-Anzeige (nicht bedienbar, ohne Notiz), Regie (Notiz, Kanal sendet nur Öffentliches).
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
@@ -211,6 +211,8 @@ test('Story: Prolog → A3 → Option B → Konsequenz, schrittweiser Aufbau am 
     klick('[data-pruef="rolle-pl"]');
     await pause(600);
     assert.ok(el.querySelector('[data-pruef^="interesse-"]'), 'nach der Rollenwahl die Interessen');
+    // Express-Pfad (E8, L-26): Prolog → A3
+    klick('[data-pruef="interesse-express"]');
     klick('[data-pruef="weiter"]');
     assert.equal(sitzung.zustand().station, 'A3');
     assert.ok(el.querySelector('.mail'));
@@ -257,7 +259,7 @@ test('Leitstand: Sprunglink, Reiter nach dem Tabs-Muster, modale Rollen-Linse, G
   document.body.append(story.element);
   const el = story.element;
   try {
-    for (const a of [{ art: 'starteStory' }, { art: 'weiter' }, { art: 'waehleRolle', rolle: 'pl' }, { art: 'weiter' }, { art: 'weiter' }, { art: 'weiter' }] as const) sitzung.tue(a);
+    for (const a of [{ art: 'starteStory' }, { art: 'weiter' }, { art: 'waehleRolle', rolle: 'pl' }, { art: 'setzeInteressen', interessen: ['express'] as string[] }, { art: 'weiter' }, { art: 'weiter' }, { art: 'weiter' }] as const) sitzung.tue(a);
     assert.equal(sitzung.zustand().station, 'A3');
 
     // Sprunglink: erstes Element, setzt den Fokus auf den Tafeltitel, ohne den Hash (Router) zu ändern
@@ -385,7 +387,7 @@ test('H13: Absender ist die Figur der gespielten Rolle → „Sie“ statt Name 
 test('Leinwand-Anzeige: nicht bedienbar, derselbe Stand, keine Regie-Notiz', () => {
   let z = anfangszustand();
   const sitzung = erzeugeSitzung(z, inhalte, { speicher: null });
-  for (const a of [{ art: 'starteStory' }, { art: 'weiter' }, { art: 'waehleRolle', rolle: 'pl' }, { art: 'weiter' }, { art: 'weiter' }] as const) sitzung.tue(a);
+  for (const a of [{ art: 'starteStory' }, { art: 'weiter' }, { art: 'waehleRolle', rolle: 'pl' }, { art: 'setzeInteressen', interessen: ['express'] as string[] }, { art: 'weiter' }, { art: 'weiter' }] as const) sitzung.tue(a);
   z = sitzung.zustand();
   assert.equal(z.station, 'A3');
   const anzeige = erzeugeAnzeige(inhalte, VERSION, false);
@@ -445,10 +447,11 @@ test('Regie: Notiz und Leitfragen; „weiter“ sendet den öffentlichen Zustand
     klick('[data-pruef="regie-weiter"]');
     klick('[data-pruef="regie-rolle-pl"]');
     klick('[data-pruef="regie-weiter"]');
+    klick('[data-pruef="regie-interesse-express"]'); // Express-Pfad: Prolog → A3
     klick('[data-pruef="regie-weiter"]');
     assert.equal(sitzung.zustand().station, 'A3');
     const zustaende = gesendet.slice(vorher).filter((n): n is Extract<KanalNachricht, { art: 'zustand' }> => n.art === 'zustand');
-    assert.equal(zustaende.length, 5);
+    assert.equal(zustaende.length, 6);
     for (const n of zustaende) assert.equal('regie' in n.zustand, false, 'das Protokoll geht nie über den Kanal');
     assert.equal(zustaende.at(-1)?.zustand.station, 'A3');
     const notiz = el.querySelector('[data-pruef="regie-notiz"]')?.textContent ?? '';
@@ -541,7 +544,7 @@ test('Ihre Spur (L-41): der Reiter „Spur“ zeichnet neu, wenn sich die Wahl �
   document.body.append(story.element);
   const el = story.element;
   try {
-    for (const a of [{ art: 'starteStory' }, { art: 'weiter' }, { art: 'waehleRolle', rolle: 'pl' }, { art: 'weiter' }, { art: 'weiter' }, { art: 'weiter' }] as const) sitzung.tue(a);
+    for (const a of [{ art: 'starteStory' }, { art: 'weiter' }, { art: 'waehleRolle', rolle: 'pl' }, { art: 'setzeInteressen', interessen: ['express'] as string[] }, { art: 'weiter' }, { art: 'weiter' }, { art: 'weiter' }] as const) sitzung.tue(a);
     assert.equal(sitzung.zustand().station, 'A3');
     el.querySelector<HTMLElement>('[data-pruef="seitenleiste-spur"]')?.click();
     assert.ok(el.querySelector('[data-pruef="spur-leer"]'), 'vor der ersten Wahl: leer');

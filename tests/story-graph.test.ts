@@ -74,7 +74,7 @@ test('Enden-Logik (H10): die Wahl in der Wirklichkeit gibt die Richtung, die Spu
 
 test('Graph mit dem Reducer durchgespielt: jede Rolle vom Prolog bis zum Epilog, jedes Ende, Rückbezüge in Welt B', () => {
   const m = erg.inhalte as StoryModell;
-  // Wahl in A6 = C (Lage offenlegen bzw. Freigabe zurückstellen) hebt die Entscheidungsfähigkeit: dann trägt A bis „steuerbar“
+  // Wahl in A6 = C (je nach Rolle Lage offenlegen, Bandbreite melden, beim Abgleich helfen, Freigabe noch nicht vorlegen) hebt die Entscheidungsfähigkeit: dann trägt A bis „steuerbar“
   const soll: Record<string, string> = { A: 'ende-steuerbar', B: 'ende-auflagen', C: 'ende-neufestlegung' };
   for (const r of ROLLEN) {
     for (const [wahl, ende] of Object.entries(soll)) {

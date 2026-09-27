@@ -798,7 +798,8 @@ export function kapitelDerSpur(verlauf: readonly string[], inhalte: Oeffentliche
 function resuemee(b: Block, k: SzenenKontext, text: Node | null): HTMLElement {
   const R = W.resuemee;
   const titel = (nr: number): string => k.inhalte.whitepaper.kapitel.find((x) => Number(x.nr) === nr)?.titel ?? '';
-  const kapitel = kapitelDerSpur(k.z.verlauf, k.inhalte).slice(0, 3);
+  // nur die Stationen davor: der Epilog selbst verweist auf viele Kapitel und würde die Themen verschieben
+  const kapitel = kapitelDerSpur(k.z.verlauf.filter((id) => id !== k.station.id), k.inhalte).slice(0, 3);
   const interessen = k.z.interessen.filter((i) => i !== 'express').map((i) => k.inhalte.interessen.find((x) => x.id === i)?.titel ?? i);
   return h('div', { class: 'stapel resuemee', 'data-pruef': 'resuemee' }, text,
     h('section', { class: 'resuemee-teil', 'data-pruef': 'resuemee-themen' },

@@ -81,11 +81,11 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 
 ### P7 · Wirklichkeit & Ende
 - [x] P7.1 (2026-09-27, zwei Prüfrunden, 16 + 2 Befunde eingearbeitet) · Zurück in Welt A: MVG-Neuinitialisierung (Kap. 11), 30/60/90 als schiebbare Zeitachse (8.2), Leistungsweg Diagnose → Regelbetrieb (Kap. 7), Mitwirkung/Abnahme (8.3/8.4)
-- [ ] P7.2 · 3 Enden + Enden-Logik (Hinweis H10; Explore mit dem Ende freischalten und aus der Story verlinken, Test; Express-Umschalter auch in der Story-Karte, E8 – P2-Befund V3/V8)
-- [ ] P7.3 · Zielbild (Kap. 9, 12), Rückbezug, Nachweiskette zum Anfassen (E2)
-- [ ] P7.4 · Selbstdiagnose qualitativ (O-8)
-- [ ] P7.5 · Bauherrentypen (Kap. 10): „Wie sähe das bei Ihnen aus?“
-- [ ] P7.6 · Persönliches Resümee: Themen, 3 Prinzipien, 2 Vertiefungen, 1 Checkliste; Epilog: A-Spur gegen B-Spur (`spurZeilen`, E1-Rest aus L-41)
+- [x] P7.2 (2026-09-27, geprüft; Epilog-Runde 2 in P7.7) · 3 Enden + Enden-Logik (Hinweis H10; Explore mit dem Ende freischalten und aus der Story verlinken, Test; Express-Umschalter auch in der Story-Karte, E8 – P2-Befund V3/V8)
+- [x] P7.3 (2026-09-27, geprüft; Epilog-Runde 2 in P7.7) · Zielbild (Kap. 9, 12), Rückbezug, Nachweiskette zum Anfassen (E2)
+- [x] P7.4 (2026-09-27, geprüft; Epilog-Runde 2 in P7.7) · Selbstdiagnose qualitativ (O-8)
+- [x] P7.5 (2026-09-27, geprüft; Epilog-Runde 2 in P7.7) · Bauherrentypen (Kap. 10): „Wie sähe das bei Ihnen aus?“
+- [x] P7.6 (2026-09-27, geprüft; Epilog-Runde 2 in P7.7) · Persönliches Resümee: Themen, 3 Prinzipien, 2 Vertiefungen, 1 Checkliste; Epilog: A-Spur gegen B-Spur (`spurZeilen`, E1-Rest aus L-41)
 - [ ] P7.7 · Prüf-Agenten P7 + Korrekturen
 
 ### P8 · Explore

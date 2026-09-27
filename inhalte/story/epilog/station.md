@@ -14,7 +14,7 @@ kurz: Epilog
 ---
 Lindenhall ist erfunden. Die Stadt, die GML, der Schulcampus, Dr. Olbers und Holger Stein gibt es nicht. Die Muster, die Sie in Welt A erlebt haben, beschreibt das Whitepaper dagegen als typisch.
 
-Deshalb verlässt diese letzte Station den Fall. Sie fragt nach einem Projekt, das Sie selbst kennen: ob sich die Symptome dort zeigen, in welcher Lage Ihr Bauherr steht, was Ihre Spur durch beide Welten zeigt und was Sie mitnehmen. Am Ende steht die Bibliothek.
+Deshalb verlässt diese letzte Station den Fall. Sie fragt nach einem Projekt, das Sie selbst kennen: ob sich die Symptome dort zeigen, in welcher Situation Ihr Projekt steht, was Ihre Spur durch beide Welten zeigt und was Sie mitnehmen. Am Ende steht die Bibliothek.
 :::
 
 ::: schritt diagnose
@@ -34,15 +34,11 @@ form: diagnose
 :::
 
 ::: hinweis
-**Was diese Selbstdiagnose nicht ist.** Sie ersetzt keine MVG-Reifegradanalyse. Die Reifegradanalyse ist eine Methode von Bauherr Mentoren; Kap. 2.5 ordnet die Symptome ihr zu: [[zitat:k2.5-p1|Diese Symptome sind zugleich der Prüfgegenstand der MVG-Reifegradanalyse (Abschnitt 7.1): Dort werden sie systematisch erhoben, bewertet und priorisiert.]]
-:::
-
-::: zitat k7.1-p1
-Im Mittelpunkt steht nicht die Frage, ob Projektunterlagen vollständig wirken, sondern ob die Bauherrenorganisation ihre wesentlichen Entscheidungen, Mandate, Risikoannahmen, Freigaben, Datenstände und Nachweise ausreichend beherrscht.
+**Was diese Selbstdiagnose nicht ist.** Sie ist keine MVG-Reifegradanalyse. Die Reifegradanalyse ist eine Methode von Bauherr Mentoren; Kap. 2.5 ordnet die Symptome ihr zu: [[zitat:k2.5-p1|Diese Symptome sind zugleich der Prüfgegenstand der MVG-Reifegradanalyse (Abschnitt 7.1): Dort werden sie systematisch erhoben, bewertet und priorisiert.]]
 :::
 
 ::: zitat k7.1-p2
-Die Reifegradbewertung der MVG-Reifegradanalyse bewertet die 10 MVG-Domänen mit 49 Fragen […] Die zehn Domänen sind mitsamt ihren Prüffragen im Erhebungsinstrument der MVG-Reifegradanalyse dokumentiert.
+Die Reifegradbewertung der MVG-Reifegradanalyse bewertet die 10 MVG-Domänen mit 49 Fragen […]. Die zehn Domänen sind mitsamt ihren Prüffragen im Erhebungsinstrument der MVG-Reifegradanalyse dokumentiert.
 :::
 :::
 
@@ -52,7 +48,7 @@ titel: Wie sähe das bei Ihnen aus?
 kurz: Anwendungssituationen
 gruppe: Ihr Projekt
 ---
-Kap. 10 zeigt, wie dieselbe Logik je nach Bauherr anders wirkt. Welche Lage ist Ihre?
+Kap. 10 zeigt, wie dieselbe Logik je nach Bauherr anders wirkt. Welche Situation trifft Ihr Projekt?
 
 **Öffentliche Bauherren.** Lindenhall gehört hierher: eine Stadt als Eigentümerin, Stadtrat und Bauausschuss, eine Gesellschaft, die sie vertritt. [[zitat:k10.1-p1|Entscheidungen müssen nicht nur sachlich plausibel, sondern auch nachvollziehbar, prüfbar und beschlussfähig sein.]]
 
@@ -60,9 +56,9 @@ Kap. 10 zeigt, wie dieselbe Logik je nach Bauherr anders wirkt. Welche Lage ist 
 
 **Energieversorger und Infrastrukturträger.** [[zitat:k10.3-p1|Bei Energieversorgern und Infrastrukturträgern verschieben sich Projektrisiken häufig in Freigaben, Priorisierung, Beschaffung, Entscheidungen zu Komponenten mit langer Lieferzeit und die Disziplin bei der Restkostenprognose.]] Auch in Lindenhall hing viel an einer Komponente mit langer Lieferzeit: den Holzbauelementen.
 
-**Ein Projekt mit schleichendem Steuerungsverlust.** Das ist kein vierter Bauherrentyp, sondern eine Lage. Welt A war eine. [[zitat:k10.4-p1|Projekte mit schleichendem Steuerungsverlust erkennt man selten an einem einzelnen Fehler. Typisch sind unterschiedliche Lagebilder, schleichende Prognoseabweichungen, informelle Eskalationen, ungeordnete Änderungen, unklare Entscheidungsmandate und eine fehlende Wirksamkeit von Maßnahmen.]]
+**Ein Projekt mit schleichendem Steuerungsverlust.** Das ist kein vierter Bauherrentyp, sondern eine Situation. Welt A war eine. [[zitat:k10.4-p1|Projekte mit schleichendem Steuerungsverlust erkennt man selten an einem einzelnen Fehler. Typisch sind unterschiedliche Lagebilder, schleichende Prognoseabweichungen, informelle Eskalationen, ungeordnete Änderungen, unklare Entscheidungsmandate und eine fehlende Wirksamkeit von Maßnahmen.]]
 
-Quer zu allen vier Lagen nennt Kap. 10.5 fünf typische Entscheidungsprobleme. Welches liegt bei Ihnen gerade auf dem Tisch?
+Dazu nennt Kap. 10.5 fünf typische Entscheidungsprobleme. Welches liegt bei Ihnen gerade auf dem Tisch?
 
 ::: tafel k10.5-t1
 ---
@@ -87,10 +83,10 @@ titel: Ihr Resümee
 kurz: Resümee
 ---
 ::: resuemee
-Was Sie mitnehmen, ergibt sich aus Ihrem Weg: Ihre Themen und zwei Vertiefungen folgen aus den Interessen, die Sie im Prolog gewählt haben, und aus den Stationen, die Sie besucht haben. Darunter stehen drei Prinzipien aus dem Whitepaper und eine Checkliste.
+Was Sie mitnehmen, ergibt sich aus Ihrem Weg: Ihre Themen folgen aus den Interessen, die Sie im Prolog gewählt haben, und aus den Stationen, die Sie besucht haben; die zwei Vertiefungen sind die Kapitel, die Ihr Weg am häufigsten berührt hat. Darunter stehen drei Prinzipien aus dem Whitepaper und eine Checkliste.
 
 ::: hinweis
-**Drei Prinzipien.** Wortgleich aus dem Whitepaper: die Leitthese, ein Satz zur Entscheidung, ein Satz zum Nachweis.
+**Drei Prinzipien.** Wortgleich aus dem Whitepaper: die Leitthese, eine Stelle zu Information und Führung, eine zu Datenstand und Nachweis.
 :::
 
 ::: zitat k1-p1
@@ -106,7 +102,7 @@ Datenstand und Nachweis sind kein administratives Nebenprodukt. Sie sind ein eig
 :::
 
 ::: hinweis
-**Eine Checkliste.** Die acht Abnahmekriterien aus Kap. 8.4, jedes mit seiner Prüffrage. Wählen Sie eine Karte und lesen Sie die Frage mit Ihrem Projekt im Kopf.
+**Eine Checkliste.** Die acht Abnahmekriterien, an denen Kap. 8.4 prüft, ob MVG in einer Bauherrenorganisation trägt, jedes mit seiner Prüffrage. Wählen Sie eine Karte und lesen Sie die Frage mit Ihrem Projekt im Kopf.
 :::
 
 ::: tafel k8.4-t1
@@ -124,9 +120,9 @@ kurz: Bibliothek
 ---
 Die Geschichte ist zu Ende; das Whitepaper bleibt offen. Im Bereich **Theorie** stehen alle 13 Kapitel, jedes mit dem Originaltext V1.2 und mit Verweisen auf die Stationen der Story.
 
-Kap. 13 ist das **Glossar**: alle Begriffe des Whitepapers mit ihrer Definition, wortgleich, durchsuchbar und mit dem Hinweis, wo sie in Story und Theorie vorkommen. Dieselben Definitionen erscheinen an jeder Station als Hinweis an den markierten Begriffen, etwa [[Datenstand]], [[Mandat]] oder [[Freigabe]].
+Kap. 13 ist das **Glossar**: die Begriffe des Whitepapers mit ihrer Definition, wortgleich, durchsuchbar und mit dem Hinweis, wo sie in Story und Theorie vorkommen. Dieselben Definitionen erscheinen an jeder Station als Hinweis an den markierten Begriffen, etwa [[Datenstand]], [[Mandat]] oder [[Freigabe]].
 
-Mit dem Ende Ihrer Geschichte ist auch **Explore** freigeschaltet, der Bereich mit den Werkzeugen zum Selbst-Ausprobieren. Der Weg dorthin steht unter der Story-Karte.
+Mit dem Ende Ihrer Geschichte ist auch **Explore** freigeschaltet, der Bereich mit den Werkzeugen zum Selbst-Ausprobieren. Der Link „Selbst ausprobieren · Explore“ steht unter der Story-Karte.
 :::
 
 ::: schritt ebenen
@@ -149,16 +145,16 @@ Was in Lindenhall geschah, beschreibt das Whitepaper als Muster: acht Symptome f
 ---
 titel: Warum relevant
 ---
-Die Selbstdiagnose gibt Ihnen ein Profil in Worten, kein Urteil. Sie erhebt nichts und bewertet nichts. Das leistet die MVG-Reifegradanalyse, eine Methode von Bauherr Mentoren; bei ihr werden die Symptome [[zitat:k2.5-p1|systematisch erhoben, bewertet und priorisiert]]. Das Profil hilft, die eigene Lage zu benennen: welche Symptome sich zeigen und welche Reaktion das Whitepaper jeweils vorsieht.
+Die Selbstdiagnose gibt Ihnen ein Profil in Worten, kein Urteil. Sie zählt nichts und bewertet nichts. Das leistet erst die MVG-Reifegradanalyse; bei ihr werden die Symptome [[zitat:k2.5-p1|systematisch erhoben, bewertet und priorisiert]]. Das Profil hilft, die eigene Situation zu benennen: welche Symptome sich zeigen und welche Reaktion das Whitepaper jeweils vorsieht.
 :::
 
 ::: ebene 3
 ---
 titel: Vertiefung
 ---
-Kap. 10 legt je nach Lage einen anderen Schwerpunkt:
+Kap. 10 legt je nach Situation einen anderen Schwerpunkt:
 
-| Lage (Kap. 10) | Schwerpunkt |
+| Situation (Kap. 10) | Schwerpunkt |
 |---|---|
 | Öffentliche Bauherren (10.1) | Nutzen in [[zitat:k10.1-p1|klaren Mandaten, Entscheidungsvorlagen, Freigabelogik, Protokollstandard, Vergabeanbindung und belastbar dokumentierten Eskalationen]] |
 | Private und institutionelle Bauherren (10.2) | hilft, [[zitat:k10.2-p1|Zielkonflikte früh zu klären und operative Geschwindigkeit nicht gegen Entscheidungssicherheit auszuspielen]] |
@@ -172,6 +168,10 @@ Das Schlussbild in Kap. 12 kehrt an den Anfang zurück: [[zitat:k12-p2|Damit sch
 ---
 titel: Nachweis
 ---
+::: zitat k7.1-p1
+Im Mittelpunkt steht nicht die Frage, ob Projektunterlagen vollständig wirken, sondern ob die Bauherrenorganisation ihre wesentlichen Entscheidungen, Mandate, Risikoannahmen, Freigaben, Datenstände und Nachweise ausreichend beherrscht.
+:::
+
 ::: zitat k1.1-p1
 Bauherren können Arbeit, Analyse, Koordination und Dokumentation delegieren. Nicht delegierbar bleibt die Legitimation von Ziel, Mandat, wesentlicher Entscheidung, Risikoannahme, Freigabe und Nachweis. MVG macht diese Verantwortung praktisch handhabbar.
 :::
@@ -188,7 +188,7 @@ Der Epilog verlässt den fiktiven Fall und wendet sich an das eigene Projekt des
 
 ### Leitfragen
 - Welche der acht Symptome zeigen sich in einem Ihrer Projekte – und wo nur teilweise?
-- Welche der vier Lagen aus Kap. 10 trifft Ihren Bauherrn am ehesten?
+- Welche der vier Situationen aus Kap. 10 trifft Ihr Projekt am ehesten?
 - An welcher Stelle haben Sie in Welt A und Welt B verschieden entschieden – und warum?
 - Welche Prüffrage aus Kap. 8.4 könnten Sie für Ihr Projekt heute nicht beantworten?
 :::

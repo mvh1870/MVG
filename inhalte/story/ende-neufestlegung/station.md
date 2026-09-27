@@ -101,7 +101,7 @@ Trägt die Projektbasis nicht mehr, wird sie neu legitimiert – in einem Sonder
 ---
 titel: Warum relevant
 ---
-Solange zwei Kostenzahlen nebeneinanderliegen und die Reserve keine entschiedenen Posten hat, fehlt jeder Freigabe der Datenstand, auf dem sie beruhen soll. Kap. 11.1 nennt diese Lage als Signal dafür, dass ein Projekt [[zitat:k11.1-p1|im bisherigen Modus nicht mehr ausreichend führbar ist]]: [[zitat:k11.1-l1|Neufestlegung der Projektbasis, Fortführung oder Stopp, Moratorium oder Beschleunigung stehen im Raum, ohne klare Entscheidungslogik.]] Kap. 10.4 beschreibt, wie es dazu kommt: [[zitat:k10.4-p1|Projekte mit schleichendem Steuerungsverlust erkennt man selten an einem einzelnen Fehler.]]
+Solange zwei Kostenzahlen nebeneinanderliegen und die Reserve keine entschiedenen Posten hat, fehlt jeder Freigabe der Datenstand, auf dem sie beruhen soll. Kap. 11.1 nennt solche Lagen als Signale dafür, dass ein Projekt [[zitat:k11.1-p1|im bisherigen Modus nicht mehr ausreichend führbar ist]]: [[zitat:k11.1-l1|Datenstände, Annahmen und Beschlusslagen sind nicht mehr konsistent.]] Und: [[zitat:k11.1-l1|Neufestlegung der Projektbasis, Fortführung oder Stopp, Moratorium oder Beschleunigung stehen im Raum, ohne klare Entscheidungslogik.]] Kap. 10.4 ergänzt: [[zitat:k10.4-p1|Projekte mit schleichendem Steuerungsverlust erkennt man selten an einem einzelnen Fehler.]]
 :::
 
 ::: ebene 3

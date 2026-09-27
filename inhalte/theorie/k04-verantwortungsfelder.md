@@ -103,10 +103,14 @@ Freigabe ist mehr als Unterschrift. Freigabe bedeutet bauherrenseitige Legitimat
 ---
 titel: Datenstand und Nachweis
 ---
-Datenstand und Nachweis sind ein eigenes Verantwortungsfeld: Eine formal richtige Entscheidung nützt wenig, wenn niemand weiß, auf welchen Zahlen und Annahmen sie beruht. [[zitat:k4.6-p2|Der Bauherr muss nicht alle Daten selbst pflegen, aber er muss sicherstellen, dass Entscheidungen auf belastbaren, benannten und reproduzierbaren Grundlagen beruhen.]]
+Datenstand und Nachweis sind ein eigenes Verantwortungsfeld: Eine formal richtige Entscheidung nützt wenig, wenn niemand weiß, auf welchen Zahlen und Annahmen sie beruht.
 
 ::: zitat k4.6-p2
 MVG verlangt deshalb eine klare Datenstandslogik: Welche Version gilt? Welche Annahmen sind offen? Welche Änderungen wurden seit der letzten Freigabe aufgenommen? Welche Beschlusslage besteht? Wo wird die Nachweiskette geführt?
+:::
+
+::: merksatz
+[[zitat:k4.6-p2|Der Bauherr muss nicht alle Daten selbst pflegen, aber er muss sicherstellen, dass Entscheidungen auf belastbaren, benannten und reproduzierbaren Grundlagen beruhen.]]
 :::
 :::
 
@@ -163,7 +167,7 @@ Welt A, Monat 3: Die Lieferzeit der Holzbauelemente steigt, die größere Mensa 
 
 ::: querverweis A3
 ---
-text: "In der Story erlebt: A3 · Kosten +8 %"
+text: "In der Story erlebt: A3 · Kosten +8 %"
 ---
 Welt A, Monat 5: zwei Kostenzahlen, kein benannter Datenstand, keine Entscheidung.
 :::
@@ -205,7 +209,7 @@ Welt B, Monat 3: Die Lieferzeit wird Frühwarnung `FRW-002`, der Mensa-Wunsch wi
 
 ::: querverweis B3
 ---
-text: "In der Story erlebt: B3 · Kosten +8 %"
+text: "In der Story erlebt: B3 · Kosten +8 %"
 ---
 Welt B, Monat 5, derselbe Montag: ein Datenstand, eine Mandatsprüfung, eine Entscheidungsvorlage.
 :::

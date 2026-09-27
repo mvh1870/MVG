@@ -1,0 +1,149 @@
+---
+# Lernseite Kapitel 8 (P6, O-20). Zitate wortgleich mit Absatz-ID (O-17); der vollständige
+# Originaltext kommt über „::: original k8“ aus whitepaper.json (wortgetreu durch Bauart).
+kapitel: 8
+titel: Implementierung – von Diagnose zu Regelbetrieb
+kurztitel: Implementierung
+story: [wirklichkeit]
+---
+Kapitel 8 beschreibt, wie Minimum Viable Governance (MVG) eingeführt wird: in sechs Schritten von der Einrichtung bis zur Übergabe in den Regelbetrieb. Es ordnet die 30/60/90-Tage-Logik ein, nennt die Mitwirkung, die der Bauherr selbst leisten muss, und die Kriterien, an denen sich die Abnahme bemisst.
+
+::: kernaussage
+[[zitat:k8-p1|MVG wird sequenziert eingeführt. Der Ansatz ist bewusst pragmatisch. Er beginnt mit einem Lagebild, übersetzt dieses in ein funktionsfähiges Mindestmodell, testet das Modell an echten Entscheidungen und übergibt es anschließend in den Regelbetrieb.]]
+:::
+
+::: abschnitt k8.1
+---
+titel: Sequenziertes Vorgehen
+---
+Sechs Schritte führen von der Einrichtung über Diagnose, Konzeption, Pilotierung und Kalibrierung sowie Befähigung bis zur Übergabe. Die Tabelle nennt je Schritt Zweck, Kernaktivitäten, Ergebnisse, Mitwirkung und Abnahme. Die Spalte Mitwirkung zeigt, dass die Bauherrenseite in jedem Schritt selbst etwas beiträgt – von der Benennung einer verantwortlichen Rolle bis zur Freigabe des Regelbetriebs.
+
+::: tafel k8.1-t1
+---
+form: rhythmus
+---
+:::
+:::
+
+::: abschnitt k8.2
+---
+titel: 30/60/90-Tage-Logik
+---
+Die 30/60/90-Tage-Logik ordnet die ersten Wirkungen nach der MVG-Reifegradanalyse und bei einer [[MVG-Neuinitialisierung]]: zuerst Sichtbarkeit, bis Tag 60 das Mindestmodell, bis Tag 90 seine Anwendung an realen Entscheidungen. Verbindlich bleibt das Vorgehensmodell aus 8.1.
+
+::: zitat k8.2-p1
+Die 30/60/90-Tage-Logik ist ein Orientierungsrahmen nach der MVG-Reifegradanalyse und im Rahmen einer MVG-Neuinitialisierung; sie ist kein allgemeiner Einführungsrhythmus und kein starrer Projektplan.
+:::
+
+::: tafel k8.2-t1
+---
+form: phasen
+---
+:::
+:::
+
+::: abschnitt k8.3
+---
+titel: Mitwirkung des Bauherrn
+---
+Weil die zentrale Verantwortung beim Bauherrn bleibt, lässt sich MVG nicht ohne die Bauherrenorganisation einführen. Das Whitepaper rechnet die Mitwirkung deshalb zur Leistungslogik, nicht zum Verwaltungsaufwand. Die Karten fassen zusammen, was erforderlich ist.
+
+::: karten
+---
+titel: Was die Bauherrenseite beiträgt
+---
+::: karte 1
+---
+titel: Rolle und Zugang
+---
+[[zitat:k8.3-l1|eine verbindliche verantwortliche Rolle auf Bauherrenseite]]
+
+[[zitat:k8.3-l1|Zugang zu Kernunterlagen, Projektauftrag, Zielsystem, Rollen, Kosten-/Terminstand sowie Risiko- und Änderungsinformationen]]
+:::
+
+::: karte 2
+---
+titel: Gespräche und Entscheidungen
+---
+[[zitat:k8.3-l1|Gespräche mit Bauherren-Projektleitung, Auftraggeberlogik, PMO, Projektsteuerung und Fachrollen]]
+
+[[zitat:k8.3-l1|Entscheidungen zu Zielprioritäten, Mandaten, Schwellen und Freigaben]]
+:::
+
+::: karte 3
+---
+titel: Teilnahme und Übernahme
+---
+[[zitat:k8.3-l1|Teilnahme an Managementberichten, Pilotentscheidungen und Befähigungsmaßnahmen]]
+
+[[zitat:k8.3-l1|Übernahme des Regelbetriebs nach Übergabe]]
+:::
+:::
+:::
+
+::: abschnitt k8.4
+---
+titel: Abnahmelogik
+---
+Abnahmefähig ist MVG, wenn die Bauherrenorganisation einen funktionsfähigen Mindeststandard hat und praktisch anwenden kann – nicht erst, wenn alle künftigen Entscheidungen risikofrei sind. BM strukturiert, moderiert, entwirft, erprobt und befähigt; Entscheidung, Freigabe und Risikoannahme legitimieren die zuständigen Bauherrenrollen. Acht Kriterien mit je einer Prüffrage.
+
+::: zitat k8.4-p1
+Abnahme bedeutet, dass die Organisation weiß, wie wesentliche Entscheidungen vorbereitet, mandatiert, freigegeben, dokumentiert und nachverfolgt werden.
+:::
+
+::: tafel k8.4-t1
+---
+form: karten
+---
+:::
+:::
+
+::: ebenen
+::: ebene 1
+---
+titel: Kernaussage
+---
+MVG wird in Schritten eingeführt – von der Einrichtung bis zur Übergabe in den Regelbetrieb – und ist abnahmefähig, wenn die Bauherrenorganisation das Mindestmodell selbst anwenden kann.
+:::
+
+::: ebene 2
+---
+titel: Warum relevant
+---
+Die Einführung hängt an der Bauherrenorganisation selbst: [[zitat:k8.3-p1|MVG kann nicht ohne die Bauherrenorganisation eingeführt werden, weil die zentrale Verantwortung beim Bauherrn bleibt.]]
+:::
+
+::: ebene 3
+---
+titel: Vertiefung
+---
+Was die 30/60/90-Tage-Logik je Zeitraum in den Mittelpunkt stellt, laut Abschnitt 8.2:
+
+| Bis | Im Mittelpunkt |
+|---|---|
+| Tag 30 | Sichtbarkeit: kritische Entscheidungen, fehlende Mandate, widersprüchliche Datenstände, Risiken und Änderungen mit Entscheidungsbedarf beim Bauherrn |
+| Tag 60 | Mindestmodell: Zielsystem, Mandatslogik, Leistungsphasen- und Freigabemodell, System der Entscheidungs-IDs, Datenstandslogik und Eskalation – verbunden mit realen Entscheidungspunkten |
+| Tag 90 | Anwendung: erprobt an realen Entscheidungen und, sofern anstehend, an Freigaben zum Abschluss von LPH 0–9; Schwellen kalibriert, Rollen befähigt, Entwurf des Betriebshandbuchs liegt vor |
+
+Der verbindliche Projektverlauf folgt dem Vorgehensmodell: Einrichtung → Diagnose → Konzeption → Pilotierung → Befähigung → Regelbetrieb.
+:::
+
+::: ebene 4
+---
+titel: Nachweis
+---
+::: zitat k8.4-p1
+MVG ist abnahmefähig, wenn die Bauherrenorganisation über einen funktionsfähigen Mindeststandard verfügt und diesen praktisch anwenden kann.
+:::
+:::
+:::
+
+::: original k8
+:::
+
+::: querverweis wirklichkeit
+---
+text: "In der Story erlebt: Zurück in Welt A"
+---
+Welt A, Monat 12, weiter in LPH 5: Eine MVG-Neuinitialisierung steht zur Wahl, mit der 30/60/90-Tage-Logik als Orientierungsrahmen – und mit der Frage, was der Bauherr dafür selbst beitragen muss.
+:::

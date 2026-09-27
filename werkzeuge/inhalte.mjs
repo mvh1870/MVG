@@ -427,13 +427,19 @@ async function ladeQuelle(pfad) {
     for (const u of a.abschnitte ?? []) sammle(u);
   };
   for (const k of wp.kapitel ?? []) sammle(k);
+  /** @param {any[]} liste @returns {{ id: string, nr: string, titel: string }[]} */
+  const flacheAbschnitte = (liste) => liste.flatMap((/** @type {any} */ a) => [
+    { id: typeof a.id === 'string' ? a.id : `k${a.nr}`, nr: String(a.nr), titel: String(a.titel ?? '') },
+    ...flacheAbschnitte(a.abschnitte ?? []),
+  ]);
   // Gliederung (Kapitel und Abschnitte mit Titel) für die Kapitelliste der Theorie (P0.6).
   /** @type {GliederungsKapitel[]} */
   const gliederung = (wp.kapitel ?? []).map((/** @type {any} */ k) => ({
     id: typeof k.id === 'string' ? k.id : `k${k.nr}`,
     nr: String(k.nr),
     titel: String(k.titel ?? ''),
-    abschnitte: (k.abschnitte ?? []).map((/** @type {any} */ a) => ({ id: typeof a.id === 'string' ? a.id : `k${a.nr}`, nr: String(a.nr), titel: String(a.titel ?? '') })),
+    // alle Abschnittsebenen (6.4 und 6.4.1 …), in Lesereihenfolge; die Kapitelliste zählt nur die erste Ebene
+    abschnitte: flacheAbschnitte(k.abschnitte ?? []),
   }));
   return {
     fassung: typeof wp.fassung === 'string' ? wp.fassung : 'V1.2',

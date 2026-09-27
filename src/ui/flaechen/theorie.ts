@@ -36,7 +36,8 @@ export function kapitelListe(inhalte: OeffentlicheInhalte): { nr: number; titel:
   if (gl.length > 0) {
     return gl.map((k) => {
       const nr = Number(k.nr);
-      return { nr, titel: k.titel, abschnitte: k.abschnitte.length, seite: lernseiteFuer(inhalte, nr) !== null };
+      // nur die erste Ebene (6.1–6.4), nicht 6.4.1 …
+      return { nr, titel: k.titel, abschnitte: k.abschnitte.filter((a) => a.nr.split('.').length === 2).length, seite: lernseiteFuer(inhalte, nr) !== null };
     }).filter((k) => Number.isInteger(k.nr));
   }
   return Object.values(inhalte.theorie).map((t) => ({ nr: t.kapitel, titel: t.titel, abschnitte: 0, seite: true })).sort((a, b) => a.nr - b.nr);

@@ -5,7 +5,7 @@ titel: Begriffsrahmen – delegierbare Arbeit, Mandat und nichtdelegierbare Vera
 kurztitel: Begriffsrahmen
 story: [wendepunkt, B5]
 ---
-Das dritte Kapitel zieht die Linie, auf der das ganze Modell steht: Was kann der Bauherr abgeben, und was muss er selbst legitimieren? Auf dieser Unterscheidung baut Minimum Viable Governance (MVG) auf. Es endet mit drei Ebenen – Arbeitsebene, Mandatsebene und Letztverantwortung.
+Das dritte Kapitel zieht die Linie, auf der das ganze Modell steht: Was kann der Bauherr abgeben, und was muss er selbst legitimieren? Auf dieser Unterscheidung baut Minimum Viable Governance (MVG) auf. Das Kapitel endet mit drei Ebenen – Arbeitsebene, Mandatsebene und Letztverantwortung.
 
 ::: kernaussage
 [[zitat:k3-p2|Arbeit kann delegiert werden, Verantwortung muss ausübbar bleiben.]]

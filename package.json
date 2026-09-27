@@ -17,7 +17,8 @@
     "begriffe": "node werkzeuge/begriffe.mjs",
     "oberflaeche": "node werkzeuge/oberflaeche.mjs",
     "whitepaper:import": "node werkzeuge/whitepaper-import.mjs",
-    "vorschau": "node werkzeuge/vorschau.mjs"
+    "vorschau": "node werkzeuge/vorschau.mjs",
+    "entwurf": "node werkzeuge/entwurf.mjs"
   },
   "devDependencies": {
     "@fontsource/barlow-condensed": "5.3.0",

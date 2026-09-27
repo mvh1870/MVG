@@ -864,6 +864,7 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .id-marke[data-art="aen"] { --id-grund: var(--id-aen-grund); --id-text: var(--id-aen-text); }
 .id-marke[data-art="mas"] { --id-grund: var(--id-mas-grund); --id-text: var(--id-mas-text); }
 .id-marke[data-art="nac"] { --id-grund: var(--id-nac-grund); --id-text: var(--id-nac-text); }
+.id-marke[data-art="prb"] { --id-grund: var(--id-prb-grund); --id-text: var(--id-prb-text); }
 
 .siegel { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: var(--radius-rund); background: var(--tuerkis-text); color: var(--weiss); font: 700 var(--gr-s)/1.2 var(--schrift-label); letter-spacing: .08em; text-transform: uppercase; animation: siegel-ein .6s var(--kurve-feder) both .9s; }
 @keyframes siegel-ein { from { opacity: 0; transform: scale(1.8) rotate(-10deg); } }

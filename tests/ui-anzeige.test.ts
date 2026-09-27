@@ -176,6 +176,7 @@ test('Vergleichsszene, Prüfliste, Fluss: Ziele und Kennungen', () => {
   assert.ok(erstes.schmal[0] + erstes.schmal[2] / 2 <= zweites.schmal[0] - zweites.schmal[2] / 2, 'schmal nebeneinander ohne Überlappung');
   assert.equal(idArt('ENT-017'), 'ent');
   assert.equal(idArt('RIS-014'), 'ris');
+  assert.equal(idArt('PRB-004'), 'prb');
   assert.equal(idArt('X-1'), null);
   assert.equal(FLUSS_POSITIONEN.length, 7);
   assert.ok(istFlussPosition('entscheidung'));

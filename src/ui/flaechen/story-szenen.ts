@@ -489,10 +489,14 @@ function signal(k: SzenenKontext): Szene {
   const grafik = bl.find((b) => b.art === 'grafik');
   const kette = bl.find((b) => b.art === 'kette');
   const merksatz = bl.find((b) => b.art === 'merksatz');
-  return szene(h('div', { class: 'signal-raster' },
+  // Schritttext und weitere Blöcke (z. B. eine Register-Tafel) nicht verschlucken (P5.6)
+  const text = k.schritt.felder['text'] ? h('div', { class: 'karte' }, inhalt(k.schritt.felder['text'])) : null;
+  const weitere = bl.filter((b) => b !== grafik && b !== kette && b !== merksatz).map((b) => B.block(b, k.inhalte, W.originalWoertlich, k.z.verlauf, k.z.rolle));
+  const raster = h('div', { class: 'signal-raster' },
     grafik !== undefined ? grafikBlock(grafik) : null,
     kette !== undefined ? B.kette(kette, k.inhalte, 1500) : null,
-    merksatz !== undefined ? h('div', { class: 'signal-merksatz' }, B.merksatz(merksatz, 3000)) : null));
+    merksatz !== undefined ? h('div', { class: 'signal-merksatz' }, B.merksatz(merksatz, 3000)) : null);
+  return szene(text === null && weitere.every((x) => x === null) ? raster : h('div', { class: 'stapel' }, text, raster, weitere));
 }
 
 function grafikBlock(b: Block): HTMLElement {

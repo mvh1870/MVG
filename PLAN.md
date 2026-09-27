@@ -56,7 +56,7 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P5.3 (Commit „MVG P5.3“; Prüfung 10 + 2 Befunde behoben, L-36) · Station B2
 - [x] P5.4 (Commit „MVG P5.4“; Prüfung 3 Befunde behoben) · Station B3 (PL aus dem Durchstich übernehmen)
 - [x] P5.5 (Commit „MVG P5.5“; Prüfung 11 Befunde behoben, Runde 2 ohne Befund, L-37) · Station B4 + Gremium-Szene (E3)
-- [ ] P5.6 · Station B5
+- [x] P5.6 (Commit „MVG P5.6“; Prüfung 12 + 1 Befunde behoben, L-38) · Station B5
 - [ ] P5.7 · Station B6
 - [ ] P5.8 · Ihre Spur (E1): Entscheidungskette über beide Welten
 - [ ] P5.9 · Prüf-Agenten Welt B + Korrekturen (Browser: alle Rollen durch B1–B6 in drei Größen mit axe, Express-Pfad, je Station Ebene 1–4; P2-Befund V3/V7/V9)

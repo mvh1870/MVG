@@ -155,6 +155,7 @@ const GLIED_ART: Readonly<Record<string, string>> = {
   aenderung: 'aen',
   entscheidung: 'ent',
   massnahme: 'mas',
+  problem: 'prb',
 };
 
 /** Verknüpfungskette FRW → bestätigt → RIS (Welt B). */

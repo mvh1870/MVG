@@ -191,7 +191,7 @@ Bausteine in einem `schritt`:
 | `zeitsprung` | Pflicht (`info`) | `knopf`, `kosten`, `dauer`, `status` (2.7), `loest` (Kennung → Hinweis), `bleibt` (Kennung → Hinweis) | `text`, `neuBekannt` |
 | `grafik` | Pflicht (Name im Grafik-Baukasten) | `titel`, `untertitel` | `text` = Beschreibung für Screenreader |
 | `kette` | – | – | enthält `glied` |
-| `glied` | optional (`FRW-003`) | `art`: `fruehwarnung` · `bestaetigung` · `risiko` · `aenderung` · `entscheidung` · `freigabe` · `massnahme` · `bericht`; `von` | `titel`, `text` |
+| `glied` | optional (`FRW-003`) | `art`: `fruehwarnung` · `bestaetigung` · `risiko` · `aenderung` · `entscheidung` · `freigabe` · `massnahme` · `problem` · `bericht`; `von` | `titel`, `text` |
 | `datenstand` | – | `name` (Pflicht), `abweichung`, `betrag`, `basis`, `versionen` (Liste `- Version 3: gilt` → `{name, stand}`) | `text`, `vergleich` |
 | `mandatsleiter` | – | `betrag`, `betrag-teur` (Zahl), `stufen` (Liste von `{wer, bereich, bis-teur, hinweis}`) | `text` (Frage zur Leiter) |
 | `mandatsoption` | Pflicht (`1`) | `titel` (Pflicht), `detail`, `zustaendig` (Pflicht), `stufe` (Zahl) | `text` = Begründung |

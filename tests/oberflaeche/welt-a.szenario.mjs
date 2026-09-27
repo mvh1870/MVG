@@ -203,7 +203,7 @@ async function wendepunkt(seite, h, station) {
 }
 
 /** Ausgebaute Stationen der Welt B (P5.2 ff.); weitere kommen mit ihren Posten dazu. */
-const WELT_B = ['B1', 'B2', 'B4'];
+const WELT_B = ['B1', 'B2', 'B4', 'B5'];
 
 /**
  * Welt B (P5.2 ff.): die ausgebauten Stationen einmal durchspielen – Einstieg, Vergleich, Werkzeuge,

@@ -36,9 +36,9 @@ export interface VorlageGrafik {
 export const STAND_WORT: Readonly<Record<PruefStand, string>> = { erfuellt: 'erfüllt', fehlt: 'fehlt', offen: 'noch offen' };
 const STAND_SYMBOL = { erfuellt: 'haken', fehlt: 'kreuz', offen: 'ring' } as const;
 
-/** Präfix der ID-Marke → Art (Companion §3): ENT, RIS, FRW, AEN, MAS, NAC. */
+/** Präfix der ID-Marke → Art (Companion §3): ENT, RIS, FRW, AEN, MAS, NAC, PRB (L-18). */
 export function idArt(id: string): string | null {
-  const m = /^(ENT|RIS|FRW|AEN|MAS|NAC)-/i.exec(id);
+  const m = /^(ENT|RIS|FRW|AEN|MAS|NAC|PRB)-/i.exec(id);
   return m ? (m[1] ?? '').toLowerCase() : null;
 }
 

@@ -1,0 +1,7 @@
+{
+  "auftrag": "Mach ohne Rückfrage mit dem nächsten Posten deines Planblatts weiter, der keine Owner-Antwort braucht.",
+  "zweig": "claude/haus",
+  "aktiv": true,
+  "grenze": 25,
+  "blockMinuten": 120
+}

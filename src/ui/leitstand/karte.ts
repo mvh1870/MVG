@@ -6,7 +6,8 @@
 
 import type { OeffentlicherZustand } from '../../engine/typen.ts';
 import type { OeffentlicheInhalte, Station } from '../../inhalte/typen.ts';
-import { h, ersetze } from '../h.ts';
+import { h, attr, ersetze } from '../h.ts';
+import { sym } from '../bausteine/bloecke.ts';
 import { gruppiere, schrittPosition, sichtbareSchritte, tafelWelt } from '../anzeige.ts';
 
 export interface Karte {
@@ -47,21 +48,39 @@ export function lphStand(z: Pick<OeffentlicherZustand, 'station' | 'verlauf'>, i
   return null;
 }
 
-export function erzeugeKarte(inhalte: OeffentlicheInhalte, beiSchritt: ((index: number) => void) | null, woerter: { karte: string; station: string; monat: string; rolle: string; lphBand: string; lphJetzt: string; lphAbgeschlossen: string }): Karte {
+/** Umschalter und Wege unter der Karte (P7.2, E8): Express-Pfad an/aus, Explore nach dem Ende. */
+export interface KartenWege {
+  /** null = nur Anzeige (Leinwand) */
+  beiExpress: ((an: boolean) => void) | null;
+  woerter: { express: string; expressHinweis: string; explore: string };
+}
+
+export function erzeugeKarte(inhalte: OeffentlicheInhalte, beiSchritt: ((index: number) => void) | null, woerter: { karte: string; station: string; monat: string; rolle: string; lphBand: string; lphJetzt: string; lphAbgeschlossen: string }, wege: KartenWege | null = null): Karte {
   const jetzt = h('div', { class: 'karte-jetzt' });
   const meta = h('div', { class: 'karte-meta' });
   const liste = h('ol', { class: 'zeitleiste' });
   const band = h('ol', { class: 'lph-band', 'aria-label': woerter.lphBand, 'data-pruef': 'lph-band' });
   const lphJetzt = h('p', { class: 'lph-jetzt', 'aria-hidden': 'true', 'data-pruef': 'lph-jetzt' });
+  const expressKnopf = wege?.beiExpress != null ? h('button', {
+    type: 'button', class: 'karte-express', 'aria-pressed': 'false', 'data-pruef': 'karte-express', title: wege.woerter.expressHinweis,
+    onclick: () => wege.beiExpress?.(expressKnopf?.getAttribute('aria-pressed') !== 'true'),
+  }, h('span', { class: 'karte-express-schalter', 'aria-hidden': 'true' }), wege.woerter.express) : null;
+  const exploreWeg = wege?.beiExpress != null ? h('a', { class: 'karte-explore', href: '#explore', hidden: true, 'data-pruef': 'karte-explore' }, sym('pfeilRechts'), wege.woerter.explore) : null;
   const element = h('nav', { class: 'story-karte', 'aria-label': woerter.karte, 'data-pruef': 'story-karte' },
     h('div', { class: 'karte-kopf' }, h('div', { class: 'karte-kicker' }, woerter.karte), jetzt, meta, band, lphJetzt),
-    liste);
+    liste,
+    expressKnopf !== null || exploreWeg !== null ? h('div', { class: 'karte-wege' }, expressKnopf, exploreWeg) : null);
   const folge = inhalte.stationsFolge.map((id) => inhalte.stationen[id]).filter((st): st is Station => st !== undefined);
   const lauf = spuren(folge);
 
   return {
     element,
     setze(z) {
+      if (expressKnopf !== null) {
+        expressKnopf.hidden = z.rolle === null;
+        attr(expressKnopf, 'aria-pressed', z.interessen.includes('express') ? 'true' : 'false');
+      }
+      if (exploreWeg !== null) exploreWeg.hidden = !z.freigeschaltet.explore;
       const st = z.station !== null ? inhalte.stationen[z.station] ?? null : null;
       const welt = st?.vergleich !== null && st !== null ? (z.vergleich >= 0.5 ? 'b' : 'ab') : tafelWelt(st) ?? 'a';
       jetzt.setAttribute('data-welt', welt);

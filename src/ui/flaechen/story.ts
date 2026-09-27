@@ -97,7 +97,13 @@ export function erzeugeStory(o: StoryOptionen): StoryFlaeche {
   const instrumente = erzeugeInstrumente();
   const karte = erzeugeKarte(inhalte, bedienbar ? (i) => {
     if (z?.station) tue({ art: 'geheZu', station: z.station, schritt: i });
-  } : null, { karte: W.karte, station: W.station, monat: W.monat, rolle: W.rolle, lphBand: W.lphBand, lphJetzt: W.lphJetzt, lphAbgeschlossen: W.lphAbgeschlossen });
+  } : null, { karte: W.karte, station: W.station, monat: W.monat, rolle: W.rolle, lphBand: W.lphBand, lphJetzt: W.lphJetzt, lphAbgeschlossen: W.lphAbgeschlossen }, {
+    beiExpress: bedienbar ? (an) => {
+      const jetzt = z?.interessen ?? [];
+      tue({ art: 'setzeInteressen', interessen: an ? [...jetzt, 'express'] : jetzt.filter((i) => i !== 'express') });
+    } : null,
+    woerter: W.kartenWege,
+  });
   const fuss = erzeugeFussleiste({
     inhalte,
     zurueck: bedienbar ? () => schritt(-1) : null,

@@ -1,25 +1,42 @@
 ---
 station: wirklichkeit
 rolle: controlling
-frage: Was empfehlen Sie der Bauherrenseite jetzt?
+frage: Zwei Zahlen liegen nebeneinander, und Dr. Olbers will bis zum 15. Dezember einen Vorschlag. Was empfehlen Sie der Bauherrenseite?
+rueckbezug-auf: A6
 ---
+
+::: rueckbezug A
+Im November haben Sie ‚Eigene CTC liefern‘ gewählt. Die Antwort an den Stadtrat trug Ihre Zahl – eine Zahl, die niemand als gültig festgelegt hat. Holger Stein hat inzwischen seine eigene erklärt.
+:::
+
+::: rueckbezug B
+Im November haben Sie ‚Steins Dateien rekonstruieren‘ gewählt. Sie verstehen jetzt die Struktur von „Prognose_Nov_v5“. Welche Annahmen gelten, legt das Verstehen nicht fest.
+:::
+
+::: rueckbezug C
+Im November haben Sie ‚Bandbreite melden‘ gewählt, mit den offenen Annahmen. Das war ehrlich. Die Spanne ist seither nicht kleiner geworden, weil niemand über die Annahmen entschieden hat.
+:::
+
+::: rueckbezug ohne
+Im November gab es fünf Versionen der Prognose und Ihre CTC. Im Dezember gibt es immer noch zwei Zahlen und keine, die gilt.
+:::
 
 ::: option A
 ---
 titel: Der Bauherrenseite eine MVG-Neuinitialisierung empfehlen und den Kostenstand zuliefern
 kurz: MVG-Neuinitialisierung empfehlen
 status:
-  entscheidungsfaehigkeit: 3
-  kostenunsicherheit: hoch
+  entscheidungsfaehigkeit: +2
+  kostenunsicherheit: -1
 ---
 ### Konsequenz
-Sie legen offen, dass es mehrere Zahlen und keinen geltenden Stand gibt. Die Bauherrenseite leitet eine [[MVG-Neuinitialisierung]] ein; Ihre CTC geht in das erste Lagebild ein.
+Sie legen offen, dass es zwei Zahlen und keinen geltenden Stand gibt, und empfehlen eine [[MVG-Neuinitialisierung]]. Ihre CTC und die Posten, die gegen die Risikoreserve laufen, gehen in das erste Lagebild ein; welcher Stand für die nächsten Entscheidungen gilt, würde die Datenstandsbereinigung klären. Den Auftrag erteilt Dr. Olbers.
 
 ### Was fehlt
 Die Mitwirkung des Bauherrn – Mandate, Schwellen und Freigaben legt nicht das Controlling fest.
 
 ### Neues Risiko
-Die Neuordnung läuft neben dem Tagesgeschäft; die Freigabe zum Abschluss von LPH 5 ist weiter offen.
+Die Neuordnung läuft neben dem Tagesgeschäft; ob die Freigabe zum Abschluss von LPH 5 vorher mit Auflagen erteilt wird, ist offen.
 
 ### Governance-Frage
 [[Datenstand]]: Welche Zahl gilt ab jetzt – und wer legt das fest?
@@ -27,55 +44,54 @@ Die Neuordnung läuft neben dem Tagesgeschäft; die Freigabe zum Abschluss von L
 
 ::: option B
 ---
-titel: Die Kostenseite für eine Freigabe mit Auflagen zuarbeiten
-kurz: Freigabe mit Auflagen anstreben
+titel: Die Kostenseite für eine Freigabe mit Auflagen zuarbeiten und Kostenauflagen empfehlen
+kurz: Freigabe mit Auflagen empfehlen
 status:
-  entscheidungsfaehigkeit: 2
-  kostenunsicherheit: hoch
+  entscheidungsfaehigkeit: +1
+  kostenunsicherheit: -1
 ---
 ### Konsequenz
-Sie liefern CTC, Stand der Risikoreserve und Vorschläge für Kostenauflagen. Die Bauherren-PL legt vor, der Lenkungskreis berät, Dr. Olbers entscheidet selbst.
+Sie liefern CTC, den Stand der Risikoreserve und Vorschläge für Kostenauflagen. Die Bauherren-PL legt vor, der Lenkungskreis berät, Dr. Olbers entscheidet selbst.
 
 ### Was fehlt
-Die nachträgliche Freigabe der verplanten Reserve und ein geltender Datenstand.
+Eine Entscheidung des Bauherrn darüber, welche Posten die Reserve trägt, und ein geltender Datenstand.
 
 ### Neues Risiko
 Auflagen ohne eine Struktur, die sie nachhält.
 
 ### Governance-Frage
-[[Freigabe]]: Auf welchem Datenstand wird mit Auflagen freigegeben?
+[[Freigabe]]: Auf welchem Datenstand würde mit Auflagen freigegeben?
 :::
 
 ::: option C
 ---
-titel: Die Kostengrundlagen für eine Neufestlegung der Projektbasis rechnen
-kurz: Neufestlegung vorbereiten
+titel: Vorschlagen, die Kostengrundlagen für eine Neufestlegung der Projektbasis zu rechnen
+kurz: Neufestlegung vorschlagen
 status:
-  entscheidungsfaehigkeit: 1
-  kostenunsicherheit: sehr hoch
+  entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Mit der Projektsteuerung rechnen Sie die Grundlagen für eine Entscheidungsvorlage zur [[Neufestlegung der Projektbasis]]. Beschließen wird der Bauherr im Lenkungskreis; bis dahin sind alle Zahlen vorläufig.
+Sie schlagen vor, mit der Projektsteuerung die Grundlagen für eine Entscheidungsvorlage zur [[Neufestlegung der Projektbasis]] zu rechnen. Beschließen würde der Bauherr im Lenkungskreis, außerhalb der regulären Freigabereihe; bis dahin sind alle Zahlen vorläufig.
 
 ### Was fehlt
-Ein Stand, auf dem die neue Basis beruhen soll – noch gibt es mehrere Zahlen.
+Ein Stand, auf dem die neue Basis beruhen soll – noch gibt es zwei Zahlen.
 
 ### Neues Risiko
-Die neue Basis erbt die alte Unsicherheit, wenn die Frage der verplanten Reserve offen bleibt.
+Die neue Basis erbt die alte Unsicherheit, wenn offen bleibt, welche Posten die Reserve trägt.
 
 ### Governance-Frage
 [[Nichtdelegierbare Bauherrenverantwortung]]: Wer legitimiert die neuen Kosten-, Termin- und Risikogrundlagen?
 :::
 
 ::: nachsatz
-Was aus Welt B jetzt noch möglich ist, hängt davon ab, was der Bauherr selbst beiträgt.
+Sie empfehlen, Dr. Olbers entscheidet. Wohin das führt, hängt auch davon ab, was bis hierher geschehen ist.
 :::
 
 ::: regie
 ### Notiz
-Das Controlling kann liefern und empfehlen, aber nicht einleiten. Bei jeder Option klarmachen, was beim Bauherrn bleibt.
+Das Controlling kann liefern und empfehlen, aber nicht einleiten und nicht festlegen, welche Zahl gilt. Bei jeder Option klarmachen, was beim Bauherrn bleibt.
 
 ### Leitfragen
-- Welche Zahl würde bei Ihnen heute gelten?
+- Welche Zahl würde bei Ihnen heute gelten – und wer hat das festgelegt?
 - Was müsste Ihr Bauherr selbst beitragen?
 :::

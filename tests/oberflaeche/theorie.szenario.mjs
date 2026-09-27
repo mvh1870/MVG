@@ -32,8 +32,11 @@ export async function lauf(seite, h) {
     // alle Ebenen und aufklappbaren Tafeln öffnen
     await seite.evaluate(() => { for (const d of document.querySelectorAll('.lernseite details')) d.setAttribute('open', ''); });
     await h.warte(100);
-    const laufend = await seite.evaluate(() => document.getAnimations().filter((a) => a.playState === 'running').length);
-    if (laufend > 0) h.befund(`k${nr}: ${laufend} Animationen laufen trotz reduzierter Bewegung`);
+    // reduzierte Bewegung: keine Animation und kein Übergang dauert länger als 1 ms (basis.css)
+    const lang = await seite.evaluate(() => document.getAnimations()
+      .filter((a) => Number(a.effect?.getComputedTiming().duration ?? 0) > 1)
+      .map((a) => `${/** @type {any} */ (a).animationName ?? /** @type {any} */ (a).transitionProperty ?? ''}@${/** @type {any} */ (a.effect)?.target?.className ?? ''}`));
+    if (lang.length > 0) h.befund(`k${nr}: ${lang.length} Animationen trotz reduzierter Bewegung länger als 1 ms (${lang.slice(0, 3).join(', ')})`);
     for (const fund of await seite.evaluate(kontrastQuellen, '.lern-zitat p, .lern-zitat-rahmen figcaption')) h.befund(`k${nr}: ${fund}`);
     for (const fund of await seite.evaluate(pruefeLayout)) h.befund(`k${nr}: ${fund}`);
     // breite Tabellen im Originaltext: scrollbarer Bereich per Tastatur erreichbar

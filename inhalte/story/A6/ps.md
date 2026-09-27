@@ -50,6 +50,7 @@ Die obere Zahl wird zur politischen Zahl.
 titel: Der Bauherren-PL empfehlen, die Freigabe zum Abschluss von LPH 5 noch nicht vorzulegen
 kurz: Freigabe zurückstellen empfehlen
 status:
+  entscheidungsfaehigkeit: +1
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz

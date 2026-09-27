@@ -5,6 +5,7 @@ titel: Steuerbar übergeben
 kurztitel: Ende
 whitepaper-bezug: [k9.3-p2, k11.2-p2, k12-p1]
 weiter: epilog
+schaltet-frei: [explore]
 ---
 
 ::: schritt einstieg

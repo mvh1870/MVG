@@ -210,6 +210,15 @@
 .karte-meta { margin-top: 3px; font-size: 12.5px; line-height: 1.3; color: var(--auf-navy-2); }
 
 .zeitleiste { position: relative; }
+/* Wege unter der Story-Karte (P7.2, E8): Express an/aus, Explore nach dem Ende */
+.karte-wege { display: grid; gap: 6px; margin-top: var(--a-3); padding-top: var(--a-3); border-top: 1px solid var(--navy-linie); }
+.karte-express, .karte-explore { display: flex; align-items: center; gap: 8px; min-height: 36px; padding: 6px 8px; border: 0; border-radius: var(--radius-m); background: var(--navy-2); color: var(--auf-navy); font: 600 13px/1.2 var(--schrift-text); text-align: left; text-decoration: none; box-shadow: inset 0 0 0 1px var(--navy-linie); }
+.karte-express-schalter { position: relative; flex: none; width: 28px; height: 16px; border-radius: 8px; background: var(--navy-linie); }
+.karte-express-schalter::after { content: ""; position: absolute; top: 2px; left: 2px; width: 12px; height: 12px; border-radius: 50%; background: var(--auf-navy); transition: transform var(--dauer-sofort); }
+.karte-express[aria-pressed="true"] .karte-express-schalter { background: var(--gold); }
+.karte-express[aria-pressed="true"] .karte-express-schalter::after { transform: translateX(12px); background: var(--navy); }
+.karte-explore:hover, .karte-express:hover { background: var(--navy-soft); }
+
 .station {
   position: relative;
   display: flex;

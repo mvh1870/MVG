@@ -38,7 +38,7 @@ test('Graph: alle sechs Rollen spielbar, drei Enden, Epilog als Schluss, keine V
     assert.deepEqual(st[e]?.weiter.map((k: any) => k.ziel), ['epilog'], e);
   }
   assert.equal(st.epilog?.ende, true);
-  assert.deepEqual(st.wirklichkeit?.weiter.map((k: any) => k.ziel), ['ende-steuerbar', 'ende-neufestlegung', 'ende-auflagen']);
+  assert.deepEqual(st.wirklichkeit?.weiter.map((k: any) => k.ziel), ['ende-steuerbar', 'ende-neufestlegung', 'ende-neufestlegung', 'ende-auflagen']);
   assert.equal(st['A3-B3-vergleich'], undefined, 'die Durchstich-Station ist entfallen (L-45)');
   assert.deepEqual(Object.values(st).filter((s: any) => s.art === 'vergleich'), []);
   // Welt B öffnet sich am Wendepunkt/Rückspulen (nicht mehr am Vergleich)
@@ -46,23 +46,35 @@ test('Graph: alle sechs Rollen spielbar, drei Enden, Epilog als Schluss, keine V
   assert.ok(frei.length > 0 && frei.every((id: string) => id === 'wendepunkt' || id === 'rueckspulen'), `schaltet frei: ${frei.join(', ')}`);
 });
 
-test('Graph: jede Rolle erreicht über die Wirklichkeit jedes Ende (A → steuerbar, B → Auflagen, C → Neufestlegung)', () => {
+test('Enden-Logik (H10): die Wahl in der Wirklichkeit gibt die Richtung, die Spur entscheidet', () => {
   const szenen = erg.inhalte.stationen.wirklichkeit.szenen;
-  // Kanten der Wirklichkeit (L-20): EF ≥ 3 → steuerbar; Kostenunsicherheit sehr hoch → Neufestlegung; sonst Auflagen
-  const ende = (s: Status): string => (s.entscheidungsfaehigkeit >= 3 ? 'ende-steuerbar' : s.kostenunsicherheit === 'sehr hoch' ? 'ende-neufestlegung' : 'ende-auflagen');
+  // Kanten der Wirklichkeit (L-48): Wahl A und EF ≥ 3 → steuerbar; Kostenunsicherheit sehr hoch oder Wahl B mit EF ≤ 1 → Neufestlegung; sonst Auflagen
+  const ende = (wahl: string, s: Status): string => (wahl === 'A' && s.entscheidungsfaehigkeit >= 3 ? 'ende-steuerbar'
+    : s.kostenunsicherheit === 'sehr hoch' || (wahl === 'B' && s.entscheidungsfaehigkeit <= 1) ? 'ende-neufestlegung' : 'ende-auflagen');
   const a6 = wendeWirkung(null, erg.inhalte.stationen.A6.statusStart);
-  const soll: Record<string, string> = { A: 'ende-steuerbar', B: 'ende-auflagen', C: 'ende-neufestlegung' };
   for (const r of ROLLEN) {
     const opt = szenen[r]?.entscheidung?.optionen ?? [];
     assert.deepEqual(opt.map((o: any) => o.id), ['A', 'B', 'C'], r);
+    const a6opt = erg.inhalte.stationen.A6.szenen[r]?.entscheidung?.optionen ?? [];
+    const erreicht = new Map<string, Set<string>>();
     for (const o of opt) {
-      for (const vorher of [a6, wendeWirkung(null, [])]) assert.equal(ende(wendeWirkung(vorher, o.wirkung)), soll[o.id], `${r}/${o.id}`);
+      const enden = new Set<string>();
+      for (const v of a6opt) enden.add(ende(o.id, wendeWirkung(wendeWirkung(a6, v.wirkung), o.wirkung)));
+      erreicht.set(o.id, enden);
     }
+    // A führt je nach Spur (Wahl in A6) zu „steuerbar“ oder nicht – die Wahl allein legt es nicht fest
+    assert.ok(erreicht.get('A')?.has('ende-steuerbar'), `${r}: A kann steuerbar enden`);
+    assert.ok((erreicht.get('A')?.size ?? 0) >= 2, `${r}: A hängt von der Spur ab (${[...(erreicht.get('A') ?? [])].join(', ')})`);
+    assert.ok(!erreicht.get('B')?.has('ende-steuerbar') && !erreicht.get('C')?.has('ende-steuerbar'), `${r}: nur A führt zu steuerbar`);
+    assert.ok(erreicht.get('C')?.has('ende-neufestlegung'), `${r}: C kann zur Neufestlegung führen`);
+    assert.ok(erreicht.get('B')?.has('ende-auflagen'), `${r}: B kann mit Auflagen enden`);
+    assert.ok((erreicht.get('B')?.size ?? 0) >= 2, `${r}: B hängt von der Spur ab (${[...(erreicht.get('B') ?? [])].join(', ')})`);
   }
 });
 
 test('Graph mit dem Reducer durchgespielt: jede Rolle vom Prolog bis zum Epilog, jedes Ende, Rückbezüge in Welt B', () => {
   const m = erg.inhalte as StoryModell;
+  // Wahl in A6 = C (Lage offenlegen bzw. Freigabe zurückstellen) hebt die Entscheidungsfähigkeit: dann trägt A bis „steuerbar“
   const soll: Record<string, string> = { A: 'ende-steuerbar', B: 'ende-auflagen', C: 'ende-neufestlegung' };
   for (const r of ROLLEN) {
     for (const [wahl, ende] of Object.entries(soll)) {
@@ -78,7 +90,7 @@ test('Graph mit dem Reducer durchgespielt: jede Rolle vom Prolog bis zum Epilog,
         const s = aktuellerSchritt(z, m);
         if (s?.art === 'entscheidung' && st !== null) {
           const ent = m.stationen[st]?.szenen[r]?.entscheidung;
-          if (ent !== undefined && ent !== null && z.entscheidungen[ent.id] === undefined) tu({ art: 'waehle', option: st === 'wirklichkeit' ? wahl : 'A' });
+          if (ent !== undefined && ent !== null && z.entscheidungen[ent.id] === undefined) tu({ art: 'waehle', option: st === 'wirklichkeit' ? wahl : st === 'A6' ? 'C' : 'A' });
         }
         if (s?.art === 'rueckbezug' && rueckbezug(z, m)?.option !== undefined) rueckbezuege += 1;
         const vorher = z;
@@ -90,11 +102,12 @@ test('Graph mit dem Reducer durchgespielt: jede Rolle vom Prolog bis zum Epilog,
       for (const n of ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'wendepunkt', 'rueckspulen', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'wirklichkeit']) assert.ok(besucht.includes(n), `${r}/${wahl}: ${n} besucht`);
       assert.ok(rueckbezuege >= 6, `${r}/${wahl}: Rückbezüge in Welt B greifen (${rueckbezuege})`);
       assert.ok(z.status.A !== null && z.status.B !== null);
+      assert.equal(z.freigeschaltet.explore, true, `${r}/${wahl}: Explore ist mit dem Ende freigeschaltet`);
     }
   }
 });
 
-test('Express-Pfad (E8, L-26): Interesse „express“ führt über A3, A6, Wendepunkt, B3, B6 zur Wirklichkeit – für jede Rolle', () => {
+test('Express-Pfad (E8, L-26): Interesse „express“ führt über A3, A6, Wendepunkt, B3, B6 zur Wirklichkeit – für jede Rolle (überall A: die Spur trägt nicht bis „steuerbar“)', () => {
   const m = erg.inhalte as StoryModell;
   for (const r of ROLLEN) {
     let z = anfangszustand();
@@ -115,7 +128,7 @@ test('Express-Pfad (E8, L-26): Interesse „express“ führt über A3, A6, Wend
       tu({ art: 'weiter' });
       if (z === vorher) break;
     }
-    assert.deepEqual(besucht, ['prolog', 'A3', 'A6', 'wendepunkt', 'rueckspulen', 'B3', 'B6', 'wirklichkeit', 'ende-steuerbar', 'epilog'], r);
+    assert.deepEqual(besucht, ['prolog', 'A3', 'A6', 'wendepunkt', 'rueckspulen', 'B3', 'B6', 'wirklichkeit', 'ende-auflagen', 'epilog'], r);
   }
 });
 

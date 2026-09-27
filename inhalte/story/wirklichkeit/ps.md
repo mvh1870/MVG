@@ -1,25 +1,42 @@
 ---
 station: wirklichkeit
 rolle: ps
-frage: Was empfehlen Sie der Bauherrenseite jetzt?
+frage: Holger Stein ist zurück, Dr. Olbers will bis zum 15. Dezember einen Vorschlag. Was empfehlen Sie der Bauherrenseite als Projektsteuerung?
+rueckbezug-auf: A6
 ---
+
+::: rueckbezug A
+Im November haben Sie ‚Steins Dateien rekonstruieren‘ gewählt. Am Freitag gab es eine Zahl; welche Annahmen darin stecken, konnten Sie nur zum Teil sagen. Holger Stein kann es jetzt – aber nur er.
+:::
+
+::: rueckbezug B
+Im November haben Sie ‚Bandbreite nennen‘ gewählt. Die Fraktion hat eine Spanne bekommen; die Frage, wer sie eingrenzt, ist seither offen.
+:::
+
+::: rueckbezug C
+Im November haben Sie ‚Freigabe zurückstellen empfehlen‘ gewählt – mit drei Gründen: kein geltender Datenstand, unbewertete Folgekosten, keine Stellvertretung. Alle drei gelten noch.
+:::
+
+::: rueckbezug ohne
+Im November fiel Holger Stein aus, und die Prognose konnte niemand vollständig erklären. Im Dezember ist er zurück; eine Stellvertretung gibt es immer noch nicht.
+:::
 
 ::: option A
 ---
-titel: Der Bauherren-PL eine MVG-Neuinitialisierung empfehlen
+titel: Der Bauherrenseite eine MVG-Neuinitialisierung empfehlen
 kurz: MVG-Neuinitialisierung empfehlen
 status:
-  entscheidungsfaehigkeit: 3
-  kostenunsicherheit: hoch
+  entscheidungsfaehigkeit: +2
+  kostenunsicherheit: -1
 ---
 ### Konsequenz
-Sie schreiben es offen: Die Projektsteuerung liefert mehr Information, aber der Bauherr gewinnt dadurch keine Führungsfähigkeit. Die Bauherrenseite leitet eine [[MVG-Neuinitialisierung]] ein; Sie bringen Risikolage und Prognose in das erste Lagebild ein.
+Sie schreiben es offen: Die Projektsteuerung liefert jeden Monat mehr Information, aber der Bauherr gewinnt dadurch keine zusätzliche Führungsfähigkeit. Sie empfehlen der Bauherren-PL und Dr. Olbers eine [[MVG-Neuinitialisierung]] und bieten an, Risikolage und Prognose mit Holger Stein in das erste Lagebild einzubringen. Den Auftrag erteilt Dr. Olbers.
 
 ### Was fehlt
 Die Mitwirkung des Bauherrn – Entscheidungen zu Mandaten, Schwellen und Freigaben kann die Projektsteuerung nicht treffen.
 
 ### Neues Risiko
-Die Neuordnung läuft neben dem Tagesgeschäft; die Freigabe zum Abschluss von LPH 5 ist weiter offen.
+Die Neuordnung läuft neben dem Tagesgeschäft; ob die Freigabe zum Abschluss von LPH 5 vorher mit Auflagen erteilt wird, ist offen.
 
 ### Governance-Frage
 Welche Entscheidungen müssen jetzt neu legitimiert werden, damit das Projekt wieder führbar wird?
@@ -27,35 +44,34 @@ Welche Entscheidungen müssen jetzt neu legitimiert werden, damit das Projekt wi
 
 ::: option B
 ---
-titel: Die Freigabevorlage mit Auflagen zuarbeiten
-kurz: Freigabe mit Auflagen anstreben
+titel: Die Vorlage zur Freigabe mit Auflagen zuarbeiten und die Auflagen empfehlen
+kurz: Freigabe mit Auflagen empfehlen
 status:
-  entscheidungsfaehigkeit: 2
-  kostenunsicherheit: hoch
+  entscheidungsfaehigkeit: +1
+  kostenunsicherheit: -1
 ---
 ### Konsequenz
-Sie liefern Prognose, Risikolage und Vorschläge für Auflagen zu. Die Bauherren-PL legt vor, der Lenkungskreis berät, Dr. Olbers entscheidet selbst.
+Mit Holger Stein liefern Sie Prognose, Risikolage und Vorschläge für Auflagen zu. Die Bauherren-PL legt vor, der Lenkungskreis berät, Dr. Olbers entscheidet selbst.
 
 ### Was fehlt
-Die Ursachen: Mandate, Register und ein geltender Datenstand fehlen weiter.
+Die Ursachen: Mandate, Register und ein geltender Datenstand fehlen weiter. Und eine Stellvertretung für Holger Stein, bevor er wieder ausfällt.
 
 ### Neues Risiko
 Auflagen ohne eine Struktur, die sie nachhält.
 
 ### Governance-Frage
-[[Freigabe]]: Auf welchem Datenstand wird mit Auflagen freigegeben?
+[[Freigabe]]: Auf welchem Datenstand würde mit Auflagen freigegeben?
 :::
 
 ::: option C
 ---
-titel: Zahlen für eine Neufestlegung der Projektbasis vorbereiten
-kurz: Neufestlegung vorbereiten
+titel: Kosten-, Termin- und Risikogrundlagen für eine Neufestlegung der Projektbasis vorschlagen
+kurz: Neufestlegung vorschlagen
 status:
-  entscheidungsfaehigkeit: 1
-  kostenunsicherheit: sehr hoch
+  entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Mit dem Controlling bereiten Sie Kosten-, Termin- und Risikogrundlagen für eine Entscheidungsvorlage zur [[Neufestlegung der Projektbasis]] vor. Beschließen wird der Bauherr im Lenkungskreis; bis dahin sind alle Zahlen vorläufig.
+Sie schlagen vor, mit dem Controlling die Grundlagen für eine Entscheidungsvorlage zur [[Neufestlegung der Projektbasis]] zu rechnen. Beschließen würde der Bauherr im Lenkungskreis, außerhalb der regulären Freigabereihe; bis dahin sind alle Zahlen vorläufig.
 
 ### Was fehlt
 Ein Stand, auf dem die neue Basis beruhen soll – noch gibt es mehrere Zahlen.
@@ -64,16 +80,16 @@ Ein Stand, auf dem die neue Basis beruhen soll – noch gibt es mehrere Zahlen.
 Eine neue Projektbasis auf der alten Steuerungslogik.
 
 ### Governance-Frage
-[[Datenstand]]: Auf welcher Grundlage wird die Projektbasis neu festgelegt?
+[[Datenstand]]: Auf welcher Grundlage würde die Projektbasis neu festgelegt?
 :::
 
 ::: nachsatz
-Was aus Welt B jetzt noch möglich ist, hängt davon ab, was der Bauherr selbst beiträgt.
+Sie empfehlen, Dr. Olbers entscheidet. Wohin das führt, hängt auch davon ab, was bis hierher geschehen ist.
 :::
 
 ::: regie
 ### Notiz
-Die Projektsteuerung kann empfehlen und zuarbeiten. Bei jeder Option klarmachen, dass Mandate, Schwellen und Freigaben beim Bauherrn liegen.
+Die Projektsteuerung kann empfehlen und zuarbeiten. Der Satz aus Option A ist ein Signal aus Kap. 11.1 – mehr Information, keine zusätzliche Führungsfähigkeit. Bei jeder Option klarmachen, dass Mandate, Schwellen und Freigaben beim Bauherrn liegen.
 
 ### Leitfragen
 - Was würde Ihre Projektsteuerung heute empfehlen?

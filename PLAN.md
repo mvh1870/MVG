@@ -80,7 +80,7 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P6.15 (2026-09-27, docs/P6-BEFUNDE.md, 21 Befunde erledigt) · Abdeckung 100 %, Zitate wortgleich, Prüf-Agenten je Kapitel + Korrekturen
 
 ### P7 · Wirklichkeit & Ende
-- [ ] P7.1 · Zurück in Welt A: MVG-Neuinitialisierung (Kap. 11), 30/60/90 als schiebbare Zeitachse (8.2), Leistungsweg Diagnose → Regelbetrieb (Kap. 7), Mitwirkung/Abnahme (8.3/8.4)
+- [x] P7.1 (2026-09-27, zwei Prüfrunden, 16 + 2 Befunde eingearbeitet) · Zurück in Welt A: MVG-Neuinitialisierung (Kap. 11), 30/60/90 als schiebbare Zeitachse (8.2), Leistungsweg Diagnose → Regelbetrieb (Kap. 7), Mitwirkung/Abnahme (8.3/8.4)
 - [ ] P7.2 · 3 Enden + Enden-Logik (Hinweis H10; Explore mit dem Ende freischalten und aus der Story verlinken, Test; Express-Umschalter auch in der Story-Karte, E8 – P2-Befund V3/V8)
 - [ ] P7.3 · Zielbild (Kap. 9, 12), Rückbezug, Nachweiskette zum Anfassen (E2)
 - [ ] P7.4 · Selbstdiagnose qualitativ (O-8)

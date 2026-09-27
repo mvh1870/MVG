@@ -724,7 +724,14 @@ function ebenenSzene(k: SzenenKontext): Szene {
           for (const t of f.querySelectorAll('table')) t.classList.add('register-tabelle');
           teile.push(h('div', { class: 'ebene-text' }, f));
         }
-        for (const b of e.bloecke) if (b.art === 'zitat' || b.art === 'original') teile.push(B.zitat(b, 'zitat', W.originalWoertlich));
+        for (const b of e.bloecke) {
+          if (b.art === 'zitat' || b.art === 'original') teile.push(B.zitat(b, 'zitat', W.originalWoertlich));
+          // Tafeln und RACI auch in Ebenen (P7.1: Weg Diagnose → Regelbetrieb, Abnahmekriterien in der Wirklichkeit)
+          else if (b.art === 'tafel' || b.art === 'raci') {
+            const t = B.block(b, k.inhalte, W.originalWoertlich, z.verlauf, z.rolle);
+            if (t !== null) teile.push(t);
+          }
+        }
         ort.replaceChildren(h('section', { class: 'ebene', 'data-ebene': e.nr, 'data-pruef': `ebene-${e.nr}`, 'aria-label': `${W.ebene} ${e.nr}: ${e.titel}` },
           h('span', { class: 't-label' }, `${W.ebene} ${e.nr} · ${e.titel}`), teile));
       }

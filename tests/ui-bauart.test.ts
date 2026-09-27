@@ -649,3 +649,30 @@ test('Glossar (P6.14): alle Begriffe wortgleich, Suche filtert, „Kommt vor in�
     assert.equal(anzeige.querySelector('a, .glossar-feld'), null, `Leinwand Kapitel ${kapitel ?? 'Liste'} ohne Links und Suche`);
   }
 });
+
+test('Story-Karte (P7.2, E8): Express-Umschalter setzt das Interesse, Explore erscheint erst nach der Freischaltung', async () => {
+  document.body.replaceChildren();
+  const sitzung = erzeugeSitzung(anfangszustand(), inhalte, { speicher: null });
+  const story = erzeugeStory({ inhalte, tue: (a) => sitzung.tue(a) });
+  sitzung.abonniere((neu, _alt, aktion) => story.setze(oeffentlich(neu), aktion));
+  document.body.append(story.element);
+  const el = story.element;
+  try {
+    for (const a of [{ art: 'starteStory' }, { art: 'weiter' }, { art: 'waehleRolle', rolle: 'pl' }] as const) sitzung.tue(a);
+    await pause(20);
+    const knopf = el.querySelector<HTMLElement>('[data-pruef="karte-express"]');
+    assert.ok(knopf && !knopf.hidden, 'Umschalter sichtbar, sobald eine Rolle gewählt ist');
+    assert.equal(knopf.getAttribute('aria-pressed'), 'false');
+    knopf.click();
+    await pause(20);
+    assert.deepEqual(sitzung.zustand().interessen, ['express']);
+    assert.equal(knopf.getAttribute('aria-pressed'), 'true');
+    knopf.click();
+    await pause(20);
+    assert.deepEqual(sitzung.zustand().interessen, []);
+    assert.equal(el.querySelector<HTMLElement>('[data-pruef="karte-explore"]')?.hidden, true, 'Explore vor dem Ende verborgen');
+  } finally {
+    story.entferne?.();
+    document.body.replaceChildren();
+  }
+});

@@ -53,6 +53,7 @@ export const W = {
   lphBand: 'Leistungsphasen LPH 0–9',
   lphJetzt: 'aktuell',
   lphAbgeschlossen: 'zurückliegend',
+  kartenWege: { express: 'Express · Kurzfassung', expressHinweis: 'Der Express-Pfad überspringt Stationen; was dort geschah, steht jeweils als Karte am Anfang der nächsten Station.', explore: 'Selbst ausprobieren · Explore' },
   station: 'Station',
   monat: 'Monat',
   rolle: 'Rolle',

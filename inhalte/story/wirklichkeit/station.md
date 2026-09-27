@@ -7,27 +7,200 @@ lph: 5
 titel: Zurück in Welt A
 kurztitel: Wirklichkeit
 uhr: Montag, 08:00 Uhr
-whitepaper-bezug: [k11.1-p1, k8.2-p1, k8.3-p1, k8.4-p1]
+whitepaper-bezug: [k11-p1, k11.1-p1, k11.1-l1, k11.2-p1, k11.2-l1, k11.2-p2, k11.3-p1, k11.3-t1, k7-p2, k7.5-p1, k7.5-t1, k8-p1, k8.1-t1, k8.2-p1, k8.2-p2, k8.2-t1, k8.3-p1, k8.3-l1, k8.4-p1, k8.4-t1, k13-t1, k3.2-t1, k10.4-p1]
 weiter:
   - ziel: ende-steuerbar
-    wenn: [status A entscheidungsfaehigkeit >= 3]
+    wenn: [wahl wirklichkeit = A, status A entscheidungsfaehigkeit >= 3]
   - ziel: ende-neufestlegung
     wenn: [status A kostenunsicherheit = sehr hoch]
+  - ziel: ende-neufestlegung
+    wenn: [wahl wirklichkeit = B, status A entscheidungsfaehigkeit <= 1]
   - ziel: ende-auflagen
 ---
+
+::: express
+Was Sie im Express in Welt A übersprungen haben, liegt hier mit auf dem Tisch: Im Juli vertagte der Bauausschuss, weil ein 40-Seiten-Statusbericht keine Entscheidungsfrage enthielt. Im September zeigte sich, dass ein guter Teil der Risikoreserve verplant war – für Brandschutzauflagen, die umgeplante Mensa und den Nachtrag der TGA-Fachplanung, ohne dass jemand den Einsatz freigegeben hatte.
+:::
 
 ::: schritt einstieg
 ---
 titel: Montag, 08:00 Uhr. Monat 12.
 kurz: Einstieg
 ---
-Welt B war ein Gedankenexperiment. Das Projekt steht in Welt A, Monat 12, weiter in LPH 5. Was jetzt? Eine MVG-Neuinitialisierung, die 30/60/90-Tage-Logik als Orientierungsrahmen, der Weg von der Diagnose in den Regelbetrieb – und was der Bauherr dafür selbst beitragen muss.
+Welt B war ein Gedankenexperiment. Montag, 7. Dezember, in Welt A: Das Projekt steht weiter in LPH 5, die Freigabe zu ihrem Abschluss ist nicht erteilt. Der Lenkungskreis hat am 17. November beraten; entschieden ist nichts. Holger Stein ist wieder im Büro. Am Dienstag, 15. Dezember, tagt der Lenkungskreis erneut. Was jetzt?
+
+::: mail
+---
+von: olbers
+betreff: Schulcampus – wie geht es weiter?
+zeit: "07:52"
+---
+Bis zum Lenkungskreis am 15. Dezember brauche ich einen Vorschlag, wie wir weitermachen. Nicht noch einen Statusbericht, sondern eine Frage, über die ich entscheiden kann.
+
+Und bitte eine Liste der Entscheidungen, die seit dem Frühjahr offen sind. Ich habe aufgehört zu zählen.
+:::
+
+::: chat
+---
+von: kaya
+zeit: "07:58"
+---
+Herr Stein ist zurück. Ich habe ihn gefragt, welche Version gilt. Seine Antwort: „Für welche Frage?“
+:::
+
+::: protokoll
+---
+titel: Lenkungskreis – Auszug
+datum: Di, 17.11.2026
+von: petersen
+---
+- Freigabe zum Abschluss von LPH 5: offen; eine Vorlage, auf die alle sich beziehen, gibt es nicht.
+- Kosten: „Prognose_Nov_v5“ der Projektsteuerung und die CTC des Controllings liegen nebeneinander; Abgleich offen.
+- Frage der Kämmerei: Braucht es eine neue Projektbasis? – Wer das entscheidet, blieb offen.
+- Stellvertretung für die Kostenprognose: nicht geregelt.
+- Nächster Termin: 15.12.
+:::
+
+::: akten
+---
+beschriftung: Schulcampus · Stand Dezember
+anzahl: 9
+---
+Statusberichte, Prognoseversionen, Mensa-Fassungen. Eine Liste der offenen Entscheidungen ist nicht dabei.
+:::
+
+::: notiz
+---
+farbe: gelb
+---
+Welt B hatte Register. Wir haben Ordner.
+:::
+:::
+
+::: schritt anzeichen
+---
+titel: Woran man es erkennt
+kurz: Anzeichen
+gruppe: Was jetzt? · MVG-Neuinitialisierung
+---
+Kap. 11.1 nennt die Lage beim Namen: [[zitat:k11.1-p1|Eine MVG-Neuinitialisierung wird erforderlich, wenn ein Projekt im bisherigen Modus nicht mehr ausreichend führbar ist.]] Die typischen Signale – in Welt A haben Sie jedes erlebt:
+
+| Typisches Signal (Kap. 11.1) | In Welt A erlebt |
+|---|---|
+| [[zitat:k11.1-l1|Kosten, Termine und Projektumfang entwickeln sich auseinander.]] | +8 % gegen +5,9 %, Lieferzeit 26 statt 16 Wochen, größere Mensa |
+| [[zitat:k11.1-l1|Bauherr, Projektleitung, Projektsteuerung, Planung und Gremien nutzen unterschiedliche Lagebilder.]] | „Prognose_Nov_v5“ neben der CTC des Controllings |
+| [[zitat:k11.1-l1|Änderungen werden operativ bearbeitet, aber nicht strategisch freigegeben.]] | Die Mensa wurde umgeplant, nachdem ein Satz im Flur als Zusage verstanden worden war – einen Auftrag dazu gibt es nicht |
+| [[zitat:k11.1-l1|Risiken sind bekannt, aber nicht mit Risikoannahme, Risikominderung und Entscheidung verbunden.]] | Lieferzeit seit März bekannt, Umgang nie entschieden |
+| [[zitat:k11.1-l1|Gremien erhalten Statusberichte, aber keine entscheidungsfähigen Optionen.]] | Bauausschuss vertagt über 40 Seiten ohne Entscheidungsfrage |
+| [[zitat:k11.1-l1|Neufestlegung der Projektbasis, Fortführung oder Stopp, Moratorium oder Beschleunigung stehen im Raum, ohne klare Entscheidungslogik.]] | Die Kämmerei fragt nach einer neuen Projektbasis; wer entscheidet, ist offen |
+| [[zitat:k11.1-l1|Datenstände, Annahmen und Beschlusslagen sind nicht mehr konsistent.]] | Welche Posten die Risikoreserve trägt, ist auf keinem benannten Datenstand entschieden; fünf Versionen der Prognose |
+| [[zitat:k11.1-l1|Projektsteuerung liefert mehr Information, aber der Bauherr gewinnt keine zusätzliche Führungsfähigkeit.]] | Jeden Monat ein Statusbericht mit Ampeln |
+
+::: merksatz
+**Kein Neustart:** [[zitat:k7.5-p1|Sie bedeutet keinen vollständigen Projektneustart, sondern eine gezielte Neuordnung der Steuerungs- und Entscheidungslogik.]]
+:::
+:::
+
+::: schritt neuordnung
+---
+titel: Was neu geordnet wird – und was dabei herauskommt
+kurz: Neuordnung
+gruppe: Was jetzt? · MVG-Neuinitialisierung
+---
+[[zitat:k11.2-p1|Die MVG-Neuinitialisierung ordnet nicht das gesamte Projekt fachlich neu. Sie ordnet die Führungs- und Entscheidungslogik.]] Was am Ende einer [[MVG-Neuinitialisierung]] vorliegt, zeigt Kap. 11.3 – wählen Sie eine Karte:
+
+::: tafel k11.3-t1
+---
+form: karten
+---
+:::
+
+::: hinweis
+**Keine Freigabe.** [[zitat:k11-p1|Eine MVG-Neuinitialisierung ist keine Freigabe; ihr Ergebnis kann die Nachholung oder Wiederholung einzelner Freigaben sein, ohne die Abfolge LPH 0–9 zu verändern.]] Die Freigabe zum Abschluss von LPH 5 erteilt weiter Dr. Olbers selbst.
+:::
+:::
+
+::: schritt zeitachse
+---
+titel: 30/60/90 – ein Orientierungsrahmen
+kurz: 30/60/90
+gruppe: Was jetzt? · MVG-Neuinitialisierung
+---
+Kap. 8.2 legt fest, wofür die Logik gilt: [[zitat:k8.2-p1|Die 30/60/90-Tage-Logik ist ein Orientierungsrahmen nach der MVG-Reifegradanalyse und im Rahmen einer MVG-Neuinitialisierung; sie ist kein allgemeiner Einführungsrhythmus und kein starrer Projektplan.]]
+
+Die ersten 30 Tage gelten der Sichtbarkeit – in Lindenhall:
+
+| Frage (Kap. 8.2) | In Welt A, Monat 12 |
+|---|---|
+| [[zitat:k8.2-p2|Welche Entscheidungen sind kritisch?]] | Freigabe LPH 5, Lieferzeit, Risikoreserve |
+| [[zitat:k8.2-p2|Wo fehlen Mandate?]] | keine Schwellen, keine Stellvertretung für die Kostenprognose |
+| [[zitat:k8.2-p2|Welche Datenstände sind widersprüchlich?]] | „Prognose_Nov_v5“ gegen die CTC des Controllings |
+| [[zitat:k8.2-p2|Welche Risiken und Änderungen brauchen bauherrenseitige Entscheidung?]] | Lieferzeit, Mensa, Brandschutzauflagen, Nachtrag der TGA-Fachplanung |
+
+Was bis Tag 60 und 90 folgt – schieben Sie den Regler:
+
+::: tafel k8.2-t1
+---
+form: zeitachse
+---
+:::
+
+:::
+
+::: schritt mitwirkung
+---
+titel: Ohne den Bauherrn geht es nicht
+kurz: Mitwirkung
+gruppe: Was jetzt? · MVG-Neuinitialisierung
+---
+[[zitat:k8.3-p1|MVG kann nicht ohne die Bauherrenorganisation eingeführt werden, weil die zentrale Verantwortung beim Bauherrn bleibt.]] Was Kap. 8.3 verlangt – in Lindenhall:
+
+| Erforderlich (Kap. 8.3) | In Lindenhall |
+|---|---|
+| [[zitat:k8.3-l1|eine verbindliche verantwortliche Rolle auf Bauherrenseite]] | nicht benannt |
+| [[zitat:k8.3-l1|Zugang zu Kernunterlagen, Projektauftrag, Zielsystem, Rollen, Kosten-/Terminstand sowie Risiko- und Änderungsinformationen]] | neun Ordner, zwei Zahlen |
+| [[zitat:k8.3-l1|Gespräche mit Bauherren-Projektleitung, Auftraggeberlogik, PMO, Projektsteuerung und Fachrollen]] | Bauherren-PL, Dr. Olbers und die GML, Jonas Brenner mit Holger Stein, Lena Hoffmeister, Aylin Kaya – ein PMO gibt es in Welt A nicht; Protokolle schreibt Nora Petersen |
+| [[zitat:k8.3-l1|Entscheidungen zu Zielprioritäten, Mandaten, Schwellen und Freigaben]] | Dr. Olbers selbst |
+| [[zitat:k8.3-l1|Teilnahme an Managementberichten, Pilotentscheidungen und Befähigungsmaßnahmen]] | Zeit im Kalender von Dr. Olbers und Frank Deppe |
+| [[zitat:k8.3-l1|Übernahme des Regelbetriebs nach Übergabe]] | Stadt und GML selbst |
+:::
+
+::: schritt lage
+---
+art: lage
+titel: Was Sie wissen, und was nicht
+kurz: Was Sie wissen
+knopf: Jetzt entscheiden
+---
+::: bekannt
+- Das Projekt steht in Monat 12 weiter in LPH 5; die Freigabe zu ihrem Abschluss ist nicht erteilt.
+- Dr. Olbers will bis zum 15. Dezember einen Vorschlag und eine Liste der offenen Entscheidungen.
+- Zwei Kostenzahlen liegen nebeneinander: „Prognose_Nov_v5“ und die CTC des Controllings. Holger Stein ist zurück; eine Stellvertretung für ihn ist nicht geregelt.
+- Wie die Folgekosten aus dem September gedeckt werden, ist auf keinem benannten Datenstand entschieden; die Reserve reicht schon für die Mai-Abweichung nicht. Die Kämmerei fragt nach einer neuen Projektbasis.
+- Drei Wege liegen auf dem Tisch: eine [[MVG-Neuinitialisierung]], die Freigabe zum Abschluss von LPH 5 mit Auflagen, eine [[Neufestlegung der Projektbasis]]. Die Freigabe erteilt der Bauherr, die Neufestlegung beschließt er im Lenkungskreis; auch den Auftrag zur Neuinitialisierung erteilt er.
+:::
+
+::: unbekannt
+- Welche Entscheidungen neu legitimiert werden müssen {#neu-legitimieren}
+- Welcher Datenstand für die nächsten Entscheidungen gilt {#datenstand}
+- Ob die Projektbasis neu festgelegt werden muss {#projektbasis}
+- Wie viel eigene Zeit Dr. Olbers und Frank Deppe geben {#mitwirkung}
+- Wann die Freigabe zum Abschluss von LPH 5 kommt – und mit welchem Ergebnis {#freigabe}
+:::
+:::
+
+::: schritt rueckbezug
+---
+art: rueckbezug
+titel: Was von Ihrer Wahl im November bleibt
+kurz: Rückbezug
+---
 :::
 
 ::: schritt entscheidung
 ---
 art: entscheidung
-titel: Was tun Sie jetzt?
+titel: Was jetzt?
 kurz: Entscheidung
 ---
 :::
@@ -38,4 +211,149 @@ art: konsequenz
 titel: Was Ihre Wahl auslöst
 kurz: Konsequenz
 ---
+:::
+
+::: schritt ebenen
+---
+art: ebenen
+titel: Vier Ebenen – vom Satz zum Nachweis
+kurz: Tiefer gehen
+---
+:::
+
+::: ebenen
+::: ebene 1
+---
+titel: Kernaussage
+---
+Wird ein laufendes Projekt im bisherigen Modus nicht mehr führbar, ordnet eine MVG-Neuinitialisierung die Führungs- und Entscheidungslogik neu – kein Neustart, keine Freigabe. Sie beginnt mit einem Lagebild und endet mit einer stabilisierten Entscheidungsarchitektur. Ohne die Mitwirkung des Bauherrn geht das nicht, weil die zentrale Verantwortung bei ihm bleibt.
+:::
+
+::: ebene 2
+---
+titel: Warum relevant
+---
+Welt A hat im Dezember kein Informationsproblem, sondern ein Legitimationsproblem: zwei Zahlen, eine Reserve ohne entschiedene Posten, offene Änderungen, eine offene Freigabe. Kap. 11.2 bringt es auf eine Frage: [[zitat:k11.2-p2|Welche Entscheidungen müssen jetzt neu legitimiert werden, damit das Projekt wieder führbar wird?]] Vorbereiten können die Antwort Bauherren-PL, Projektsteuerung, Planung und Controlling. Die Entscheidung über den Auftrag, über Prioritäten, über eine Neufestlegung der Projektbasis und über Freigaben bleibt bei Dr. Olbers (Kap. 7.5).
+:::
+
+::: ebene 3
+---
+titel: Vertiefung
+---
+**Von der Diagnose in den Regelbetrieb.** Kap. 8 beschreibt die Einführung: [[zitat:k8-p1|MVG wird sequenziert eingeführt. Der Ansatz ist bewusst pragmatisch. Er beginnt mit einem Lagebild, übersetzt dieses in ein funktionsfähiges Mindestmodell, testet das Modell an echten Entscheidungen und übergibt es anschließend in den Regelbetrieb.]] Für ein Projekt wie Lindenhall nennt Kap. 7 einen eigenen Einstieg: [[zitat:k7-p2|Für laufende Projekte mit eingeschränkter Steuerbarkeit kommt die MVG-Neuinitialisierung als gezieltes Sonderformat hinzu.]] Die Tafel zeigt die sechs Vorgehensschritte; die Spalten „Mitwirkung“ und „Abnahme“ sagen, was an jedem Schritt beim Bauherrn liegt.
+
+**Woran man merkt, dass es trägt.** [[zitat:k8.4-p1|Abnahme bedeutet nicht, dass alle künftigen Entscheidungen risikofrei sind. Abnahme bedeutet, dass die Organisation weiß, wie wesentliche Entscheidungen vorbereitet, mandatiert, freigegeben, dokumentiert und nachverfolgt werden.]] Die zweite Tafel zeigt die acht Abnahmekriterien mit ihrer Prüffrage. In Welt B stand bei Ihrer Übernahme das meiste davon schon – Zielsystem (B1), Mandatsleiter (B1, B3), `ENT-017` (B3), ein benannter Datenstand (B3, B6); das Betriebshandbuch war erst auf dem Weg (B6). In Welt A müsste all das erst entstehen.
+
+Die MVG-Neuinitialisierung beschreibt Kap. 7.5 als Sonderformat der Leistungsarchitektur. Für den Bauherrn nennt die Tabelle dort: [[zitat:k7.5-t1|Entscheidung über den Auftrag zur MVG-Neuinitialisierung, Prioritäten, Neufestlegung der Projektbasis, Freigaben und eine neue Mandatslogik.]]
+
+::: tafel k8.1-t1
+---
+form: phasen
+hervor: [1]
+---
+:::
+
+::: tafel k8.4-t1
+---
+form: karten
+---
+:::
+:::
+
+::: ebene 4
+---
+titel: Nachweis
+---
+::: zitat k11-p1
+Eine MVG-Neuinitialisierung ist keine Freigabe; ihr Ergebnis kann die Nachholung oder Wiederholung einzelner Freigaben sein, ohne die Abfolge LPH 0–9 zu verändern.
+:::
+
+::: zitat k8.3-p1
+MVG kann nicht ohne die Bauherrenorganisation eingeführt werden, weil die zentrale Verantwortung beim Bauherrn bleibt. Die Mitwirkung ist daher kein administrativer Aufwand, sondern Teil der Leistungslogik.
+:::
+
+::: zitat k11.3-p1
+Eine wirksame MVG-Neuinitialisierung liefert einen geordneten Führungszustand.
+:::
+:::
+:::
+
+::: vertiefung kosten
+---
+titel: Welcher Stand gilt ab jetzt?
+---
+Zwei Zahlen liegen nebeneinander, Holger Stein ist zurück und fragt: „Für welche Frage?“ Das ist keine Ausrede, sondern der Kern: Ein Datenstand gilt für eine Entscheidung. Unter den Ergebnissen einer MVG-Neuinitialisierung steht deshalb die Datenstandsbereinigung – sie [[zitat:k11.3-t1|Definiert, welcher Stand für die nächsten Entscheidungen gilt.]]
+:::
+
+::: vertiefung organisation
+---
+titel: Wer ist die verantwortliche Rolle?
+---
+Olbers will einen Vorschlag, Deppe hat viele Projekte, die Bauherren-PL bereitet vor. Wer auf Bauherrenseite verbindlich für die Neuordnung steht, ist nicht benannt. Kap. 8.3 setzt genau dort an; zuerst erforderlich ist [[zitat:k8.3-l1|eine verbindliche verantwortliche Rolle auf Bauherrenseite]].
+:::
+
+::: vertiefung risiko
+---
+titel: Bekannt ist nicht entschieden
+---
+Die Lieferzeit der Holzbauelemente kennt seit März jeder im Projekt, über den Umgang damit hat niemand entschieden. Kap. 11.1 führt genau das als Signal für eine MVG-Neuinitialisierung: [[zitat:k11.1-l1|Risiken sind bekannt, aber nicht mit Risikoannahme, Risikominderung und Entscheidung verbunden.]]
+:::
+
+::: vertiefung freigaben
+---
+titel: Nachholen, ohne die Reihe zu ändern
+---
+Die Freigabe zum Abschluss von LPH 5 ist offen; zur Freigabe zum Abschluss von LPH 4 ist in Welt A kein Beschluss dokumentiert – im Jour fixe hieß es im März nur „weiter wie besprochen“. Eine Neuinitialisierung kann ordnen, welche Freigaben nachzuholen sind – erteilen muss die Freigaben der Bauherr. Kap. 11.3 nennt als Ergebnis die Nachholung und Wiederholung von Freigaben: [[zitat:k11.3-t1|Ordnet, welche Freigaben als Ergebnis der MVG-Neuinitialisierung nachgeholt oder wiederholt werden; die Abfolge LPH 0–9 bleibt unverändert.]]
+:::
+
+::: standpunkt gf
+---
+figur: deppe
+---
+„Ich kann Leute abstellen und im Lenkungskreis den Weg vorschlagen. Entscheiden muss Dr. Olbers – und sie wird fragen, wie viel von ihrer Zeit das kostet.“
+:::
+
+::: standpunkt bauherr
+---
+figur: olbers
+---
+„Ich will keinen Neustart und keinen weiteren Bericht. Ich will wissen, welche Entscheidungen ich jetzt treffen muss – und in welcher Reihenfolge.“
+:::
+
+::: standpunkt pl
+---
+figur: sie
+---
+„Welt B hat gezeigt, wie es gehen kann. Hier fange ich mit zwei Zahlen, neun Ordnern und einer offenen Freigabe an. Was schlage ich Dr. Olbers vor?“
+:::
+
+::: standpunkt ps
+---
+figur: brenner
+---
+„Wir liefern jeden Monat mehr Information. Führbarer ist das Projekt davon nicht geworden – das muss ich so sagen.“
+:::
+
+::: standpunkt planung
+---
+figur: hoffmeister
+---
+„Die Ausführungsplanung läuft weiter. Aber in ihr stecken Änderungen, die nie jemand beauftragt hat.“
+:::
+
+::: standpunkt controlling
+---
+figur: kaya
+---
+„Eine Zahl, die gilt, und jemand, der das festlegt. Mehr will ich gar nicht. Das ist offenbar schon viel.“
+:::
+
+::: regie
+### Notiz
+Die Wirklichkeit holt aus dem Gedankenexperiment zurück: Welt A, Monat 12, weiter in LPH 5, nichts davon ist ungeschehen. Die Station erklärt, was jetzt möglich ist – MVG-Neuinitialisierung (Kap. 11), 30/60/90 als Orientierungsrahmen (Kap. 8.2, nur nach der Reifegradanalyse und im Rahmen einer Neuinitialisierung, kein allgemeiner Einführungsrhythmus), die Mitwirkung des Bauherrn (Kap. 8.3); der Weg von der Diagnose in den Regelbetrieb und die Abnahme (Kap. 8.1, 8.4) stehen in Ebene 3. Zwei Sätze festhalten: Die Neuinitialisierung ist keine Freigabe, und eine Neufestlegung der Projektbasis beschließt der Bauherr im Lenkungskreis, außerhalb der regulären Freigabereihe. Die Leistungsarchitektur erklären, nicht anbieten – wer die Neuinitialisierung begleitet, ist nicht Thema der Station. Die Wahl gibt eine Richtung vor; welches Ende folgt, hängt auch von der Spur bis hierher ab.
+
+### Leitfragen
+- Welche der acht Signale aus Kap. 11.1 sehen Sie in einem Ihrer Projekte?
+- Welche Entscheidungen müssten bei Ihnen heute neu legitimiert werden?
+- Wer wäre bei Ihnen die verantwortliche Rolle auf Bauherrenseite – und wie viel Zeit bekäme sie?
 :::

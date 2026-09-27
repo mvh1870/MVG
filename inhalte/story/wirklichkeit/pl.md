@@ -1,25 +1,42 @@
 ---
 station: wirklichkeit
 rolle: pl
-frage: Was schlagen Sie Dr. Olbers jetzt vor?
+frage: Dr. Olbers will bis zum 15. Dezember einen Vorschlag, wie es weitergeht, und eine Liste der offenen Entscheidungen. Was schlagen Sie ihr vor?
+rueckbezug-auf: A6
 ---
+
+::: rueckbezug A
+Im November haben Sie ‚Freigabe beantragen‘ gewählt. Dr. Olbers fragte nach Kernfrage und Datenstand und erteilte keine Freigabe. Die belastbare Grundlage, die sie verlangt hat, gibt es noch nicht.
+:::
+
+::: rueckbezug B
+Im November haben Sie ‚Vorlage zurückstellen‘ gewählt, bis Holger Stein zurück ist. Er ist zurück. Planung und Projektsteuerung haben inzwischen mit eigenen Annahmen weitergearbeitet – jetzt gibt es davon mehr, nicht weniger.
+:::
+
+::: rueckbezug C
+Im November haben Sie ‚Lage offen auf den Tisch legen‘ gewählt. Ihre zwei Seiten liegen noch bei Dr. Olbers, und im Lenkungskreis fiel der Satz: „So können wir nicht weiterführen.“ Jetzt fragt sie, wie dann.
+:::
+
+::: rueckbezug ohne
+Im November stand die Freigabe zum Abschluss von LPH 5 an, und niemand konnte den Stand erklären. Im Dezember steht sie immer noch an.
+:::
 
 ::: option A
 ---
-titel: Eine MVG-Neuinitialisierung vorschlagen
+titel: Dr. Olbers eine MVG-Neuinitialisierung vorschlagen
 kurz: MVG-Neuinitialisierung vorschlagen
 status:
-  entscheidungsfaehigkeit: 3
-  kostenunsicherheit: hoch
+  entscheidungsfaehigkeit: +2
+  kostenunsicherheit: -1
 ---
 ### Konsequenz
-Sie schlagen Dr. Olbers und Frank Deppe eine [[MVG-Neuinitialisierung]] vor: kein Neustart des Projekts, sondern eine Neuordnung von Mandaten, Datenstand und offenen Entscheidungen. Die ersten 30 Tage gelten der Sichtbarkeit: kritische Entscheidungen, fehlende Mandate, widersprüchliche Datenstände.
+Sie schlagen Dr. Olbers und Frank Deppe eine [[MVG-Neuinitialisierung]] vor: kein Neustart des Projekts, sondern eine Neuordnung von Mandaten, Datenstand, offenen Entscheidungen und Freigaben. Die Liste, die Dr. Olbers verlangt, wird der Anfang des Entscheidungsinventars. Die ersten 30 Tage gelten der Sichtbarkeit; den Auftrag erteilt Dr. Olbers.
 
 ### Was fehlt
 Die Mitwirkung des Bauherrn – Zeit von Dr. Olbers und Frank Deppe, nicht nur Ihre.
 
 ### Neues Risiko
-Die Neuordnung läuft neben dem Tagesgeschäft; die Freigabe zum Abschluss von LPH 5 ist weiter offen.
+Die Neuordnung läuft neben dem Tagesgeschäft; ob die Freigabe zum Abschluss von LPH 5 vorher mit Auflagen erteilt wird, ist offen.
 
 ### Governance-Frage
 Welche Entscheidungen müssen jetzt neu legitimiert werden, damit das Projekt wieder führbar wird?
@@ -27,14 +44,14 @@ Welche Entscheidungen müssen jetzt neu legitimiert werden, damit das Projekt wi
 
 ::: option B
 ---
-titel: Eine Vorlage für die Freigabe mit Auflagen vorbereiten
-kurz: Freigabe mit Auflagen anstreben
+titel: Eine Vorlage zur Freigabe zum Abschluss von LPH 5 mit Auflagen vorschlagen
+kurz: Freigabe mit Auflagen vorschlagen
 status:
-  entscheidungsfaehigkeit: 2
-  kostenunsicherheit: hoch
+  entscheidungsfaehigkeit: +1
+  kostenunsicherheit: -1
 ---
 ### Konsequenz
-Sie bereiten die Vorlage vor, der Lenkungskreis berät, Dr. Olbers entscheidet selbst. Die Auflagen zu Datenstand, Kostenprognose und Stellvertretung tragen jetzt die Last, die das Projekt bisher nicht tragen konnte.
+Sie bereiten die Vorlage vor und empfehlen die Freigabe mit Auflagen – zu Datenstand, Kostenprognose und Stellvertretung für Holger Stein. Der Lenkungskreis berät, Dr. Olbers entscheidet selbst. Die Auflagen tragen jetzt die Last, die das Projekt bisher nicht tragen konnte.
 
 ### Was fehlt
 Die Ursachen: Mandate, Register und ein geltender Datenstand fehlen weiter.
@@ -43,19 +60,18 @@ Die Ursachen: Mandate, Register und ein geltender Datenstand fehlen weiter.
 Auflagen ohne eine Struktur, die sie nachhält.
 
 ### Governance-Frage
-[[Freigabe]]: Auf welchem Datenstand wird mit Auflagen freigegeben?
+[[Freigabe]]: Auf welchem Datenstand würde mit Auflagen freigegeben?
 :::
 
 ::: option C
 ---
-titel: Eine Neufestlegung der Projektbasis vorbereiten
-kurz: Neufestlegung vorbereiten
+titel: Eine Entscheidungsvorlage zur Neufestlegung der Projektbasis vorschlagen
+kurz: Neufestlegung vorschlagen
 status:
-  entscheidungsfaehigkeit: 1
-  kostenunsicherheit: sehr hoch
+  entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Mit Projektsteuerung und Controlling bereiten Sie eine Entscheidungsvorlage zur [[Neufestlegung der Projektbasis]] vor; beschließen wird der Bauherr im Lenkungskreis. Bis dahin sind alle Zahlen vorläufig.
+Sie schlagen vor, mit Projektsteuerung und Controlling eine Entscheidungsvorlage zur [[Neufestlegung der Projektbasis]] vorzubereiten. Beschließen würde der Bauherr im Lenkungskreis, außerhalb der regulären Freigabereihe. Bis dahin sind alle Zahlen vorläufig.
 
 ### Was fehlt
 Ein Stand, auf dem die neue Basis beruhen soll – noch gibt es zwei Zahlen.
@@ -64,16 +80,16 @@ Ein Stand, auf dem die neue Basis beruhen soll – noch gibt es zwei Zahlen.
 Eine neue Projektbasis auf der alten Steuerungslogik.
 
 ### Governance-Frage
-[[Datenstand]]: Auf welcher Grundlage wird die Projektbasis neu festgelegt?
+[[Datenstand]]: Auf welcher Grundlage würde die Projektbasis neu festgelegt?
 :::
 
 ::: nachsatz
-Was aus Welt B jetzt noch möglich ist, hängt davon ab, was der Bauherr selbst beiträgt.
+Sie schlagen vor, Dr. Olbers entscheidet. Wohin das führt, hängt auch davon ab, was bis hierher geschehen ist.
 :::
 
 ::: regie
 ### Notiz
-Die Bauherren-PL schlägt vor und bereitet vor; entscheiden muss der Bauherr. Die Leistungsarchitektur erklären, nicht anbieten.
+Die Bauherren-PL schlägt vor und bereitet vor; entscheiden muss der Bauherr. Die Liste der offenen Entscheidungen, die Dr. Olbers verlangt, ist in jeder Option nötig – mit Option A wird sie zum Entscheidungsinventar (Kap. 11.3). Die Leistungsarchitektur erklären, nicht anbieten.
 
 ### Leitfragen
 - Welche Entscheidungen in Ihrem Projekt müssten heute neu legitimiert werden?

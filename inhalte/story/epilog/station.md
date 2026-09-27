@@ -4,7 +4,6 @@ art: epilog
 titel: Ihr Projekt
 kurztitel: Epilog
 whitepaper-bezug: [k10.1-p1, k10.2-p1, k10.3-p1, k10.4-p1, k7.1-p1]
-schaltet-frei: [explore]
 ende: ja
 ---
 

@@ -78,7 +78,7 @@ k3.1-p2:
 # ── 3.2 Delegierbar und nicht delegierbar
 k3.2-t1:
   theorie: k03
-  story: [A5, B5, wendepunkt, ende-neufestlegung, B1, B4]
+  story: [A5, B5, wendepunkt, ende-neufestlegung, B1, B4, wirklichkeit]
 k3.2-p1:
   theorie: k03
   story: [wendepunkt, B5]
@@ -258,6 +258,7 @@ k7-p1:
   theorie: k07
 k7-p2:
   theorie: k07
+  story: wirklichkeit
 k7-l1:
   theorie: k07
 # ── 7.1 MVG-Reifegradanalyse
@@ -288,8 +289,10 @@ k7.4-t1:
 # ── 7.5 MVG-Neuinitialisierung
 k7.5-p1:
   theorie: k07
+  story: wirklichkeit
 k7.5-t1:
   theorie: k07
+  story: wirklichkeit
 # ── 7.6 Leistungsgrenzen
 k7.6-p1:
   theorie: k07
@@ -301,15 +304,18 @@ k7.6-p2:
 # ── 8 Implementierung – von Diagnose zu Regelbetrieb
 k8-p1:
   theorie: k08
+  story: wirklichkeit
 # ── 8.1 Sequenziertes Vorgehen
 k8.1-t1:
   theorie: k08
+  story: wirklichkeit
 # ── 8.2 30/60/90-Tage-Logik
 k8.2-p1:
   theorie: k08
   story: wirklichkeit
 k8.2-p2:
   theorie: k08
+  story: wirklichkeit
 k8.2-p3:
   theorie: k08
 k8.2-p4:
@@ -318,6 +324,7 @@ k8.2-p5:
   theorie: k08
 k8.2-t1:
   theorie: k08
+  story: wirklichkeit
 # ── 8.3 Mitwirkung des Bauherrn
 k8.3-p1:
   theorie: k08
@@ -326,6 +333,7 @@ k8.3-p2:
   theorie: k08
 k8.3-l1:
   theorie: k08
+  story: wirklichkeit
 # ── 8.4 Abnahmelogik
 k8.4-p1:
   theorie: k08
@@ -334,6 +342,7 @@ k8.4-p2:
   theorie: k08
 k8.4-t1:
   theorie: k08
+  story: wirklichkeit
 k8.4-p3:
   theorie: k08
 
@@ -411,7 +420,7 @@ k10.3-p1:
 # ── 10.4 Projekte mit schleichendem Steuerungsverlust und MVG-Neuinitialisierung
 k10.4-p1:
   theorie: k10
-  story: [ende-neufestlegung, epilog]
+  story: [ende-neufestlegung, epilog, wirklichkeit]
 # ── 10.5 Typische Entscheidungsprobleme
 k10.5-t1:
   theorie: k10
@@ -419,25 +428,31 @@ k10.5-t1:
 # ── 11 MVG-Neuinitialisierung als Vertiefungsformat
 k11-p1:
   theorie: k11
+  story: wirklichkeit
 # ── 11.1 Wann eine MVG-Neuinitialisierung erforderlich wird
 k11.1-p1:
   theorie: k11
   story: [ende-neufestlegung, wirklichkeit]
 k11.1-l1:
   theorie: k11
+  story: wirklichkeit
 # ── 11.2 Was bei der MVG-Neuinitialisierung neu geordnet wird
 k11.2-p1:
   theorie: k11
+  story: wirklichkeit
 k11.2-l1:
   theorie: k11
+  story: wirklichkeit
 k11.2-p2:
   theorie: k11
-  story: ende-steuerbar
+  story: [ende-steuerbar, wirklichkeit]
 # ── 11.3 Ergebnisbild einer MVG-Neuinitialisierung
 k11.3-p1:
   theorie: k11
+  story: wirklichkeit
 k11.3-t1:
   theorie: k11
+  story: wirklichkeit
 k11.3-p2:
   theorie: k11
 
@@ -458,4 +473,4 @@ k12.1-t1:
 # ── 13 Anhang: Glossar
 k13-t1:
   theorie: k13
-  story: ende-neufestlegung
+  story: [ende-neufestlegung, wirklichkeit]

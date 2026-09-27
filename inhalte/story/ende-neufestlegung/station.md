@@ -5,6 +5,7 @@ titel: Neufestlegung der Projektbasis
 kurztitel: Ende
 whitepaper-bezug: [k10.4-p1, k11.1-p1, k3.2-t1, k13-t1]
 weiter: epilog
+schaltet-frei: [explore]
 ---
 
 ::: schritt einstieg

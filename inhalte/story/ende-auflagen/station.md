@@ -5,6 +5,7 @@ titel: Freigabe mit Auflagen
 kurztitel: Ende
 whitepaper-bezug: [k6.4.4-p1, k9.3-p3]
 weiter: epilog
+schaltet-frei: [explore]
 ---
 
 ::: schritt einstieg

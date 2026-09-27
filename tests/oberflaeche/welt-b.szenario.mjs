@@ -114,4 +114,33 @@ export async function spiele(seite, h, rollen, express) {
   const stationen = weg.filter((x) => x !== '' && x !== 'prolog');
   if (stationen.join(' → ') !== EXPRESS.join(' → ')) h.befund(`Express: Weg ${stationen.join(' → ')} statt ${EXPRESS.join(' → ')}`);
   await pruefe('express-wirklichkeit');
+
+  // Wirklichkeit (P7.1) Schritt für Schritt: Tafeln (Zeitachse), Ebenen 1–4 mit den Tafeln in Ebene 3,
+  // Wahl A → ein Ende; Explore ist danach freigeschaltet (L-49)
+  let ebene3 = false;
+  for (let i = 0; i < 30 && (await station()) === 'wirklichkeit'; i++) {
+    const schritt = await seite.evaluate(() => document.querySelector('[aria-current="step"] .fs-titel')?.textContent ?? '');
+    if (await seite.locator('[data-pruef="zeitachse-regler"]').filter({ visible: true }).count() > 0) {
+      await seite.locator('[data-pruef="zeitachse-regler"]').first().fill('45');
+      const tag = await seite.locator('[data-pruef="zeitachse-tag"]').first().innerText();
+      if (tag !== 'Tag 45') h.befund(`Wirklichkeit: Zeitachse zeigt „${tag}“ statt „Tag 45“`);
+    }
+    if (!ebene3 && await seite.locator('[data-pruef="ebene-knopf-3"]').filter({ visible: true }).count() > 0) {
+      ebene3 = true;
+      await h.klick('[data-pruef="ebene-knopf-3"]');
+      await h.warte(300);
+      if (await seite.locator('[data-pruef="ebene-3"] .tafel').count() < 2) h.befund('Wirklichkeit: Ebene 3 zeigt die Tafeln k8.1-t1 und k8.4-t1 nicht');
+      await pruefe('wirklichkeit-ebene3');
+    } else if (!ebene3) await pruefe(`wirklichkeit-${schritt.toLowerCase().replace(/[^a-z0-9]+/gu, '-')}`);
+    const optionA = seite.locator('[data-pruef="option-A"]').filter({ visible: true });
+    if (await optionA.count() > 0 && (await optionA.first().getAttribute('aria-pressed')) !== 'true') await optionA.first().click();
+    if (await seite.locator('[data-pruef="szene-weiter"]').filter({ visible: true }).count() > 0) await h.klick('[data-pruef="szene-weiter"]');
+    else await h.klick('[data-pruef="weiter"]');
+    await h.warte(200);
+  }
+  const ende = await station();
+  if (!ende.startsWith('ende-')) h.befund(`nach der Wirklichkeit: ${ende} statt eines Endes`);
+  await h.warte(500);
+  await pruefe(`express-${ende}`);
+  if ((await seite.locator('[data-pruef="karte-explore"]').getAttribute('hidden')) !== null) h.befund('nach dem Ende: Weg „Selbst ausprobieren · Explore“ fehlt an der Story-Karte');
 }

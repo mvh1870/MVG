@@ -259,6 +259,9 @@ Kopfdaten: `kapitel` (Pflicht, 1–13), `titel` (Pflicht, wie im Whitepaper), `k
 | `ebenen`/`ebene` | oben, `abschnitt` | wie 3.3 | | |
 | `querverweis` | überall | Station (`A3`) | `text` (Knopfbeschriftung) | `text` |
 | `merksatz`, `hinweis` | überall | – | – | `text` |
+| `tafel`, `raci` | oben, `abschnitt`, `ebene` | wie 3.3 (L-32, L-34) | | Whitepaper-Tabelle als Grafik bzw. RACI mit Mandat; auf der Lernseite ohne Spur und ohne gespielte Rolle |
+
+Darstellung (P6.1): Ebenen erscheinen auf der Lernseite als vier aufklappbare Stufen (Ebene 1 offen, Ebene 4 als Nachweis); Tafeln, RACI, Merksätze und Hinweise stehen auch auf Seitenebene zwischen den Abschnitten.
 
 Jeder Absatz des Whitepapers soll einer Seite zugeordnet sein (O-20): über `original`, `zitat`, `deckt` oder `abdeckung.yaml`.
 

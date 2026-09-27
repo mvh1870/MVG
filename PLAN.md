@@ -63,7 +63,7 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P5.10 (Commit „MVG P5.10“, L-45; volle Kette grün 802 s, dist 1,47 MB) · Umzug `entwurf/` → `inhalte/` (L-30, L-45): der ganze Entscheidungsgraph wird das spielbare Produkt `dist/mvg.html`; Durchstich-Abkürzung (Prolog → A3 → Vergleich → B3) entfällt; Tests und Szenarien auf den Hauptweg — Abnahme: `entwurf/` leer (Werkzeug bleibt), volle Kette grün.
 
 ### P6 · Theorie-Teil (O-20)
-- [ ] P6.1 · Lernseiten-Rahmen: Kernaussage, Grafik, Karten, Ebenen, Originaltext wortgetreu, Querverweise „In der Story erlebt“, Kapitelnavigation
+- [x] P6.1 (Commit „MVG P6.1“) · Lernseiten-Rahmen: Kernaussage, Grafik, Karten, Ebenen, Originaltext wortgetreu, Querverweise „In der Story erlebt“, Kapitelnavigation
 - [ ] P6.2 · Kap. 1 Kurzfassung
 - [ ] P6.3 · Kap. 2 Ausgangslage und Kernproblem
 - [ ] P6.4 · Kap. 3 Begriffsrahmen

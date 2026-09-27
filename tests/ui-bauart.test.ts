@@ -586,3 +586,19 @@ test('Tafeln Welt B (T9): Phasen-Wahl wandert, Screenreader-Hinweis am hervorgeh
   m.querySelector<HTMLElement>('[data-pruef="raci-y"]')?.click();
   assert.match(m.querySelector('[data-pruef="raci-detail"]')?.textContent ?? '', /Zweite.*A · entscheidet.*Bauherren-PL \(Sie\)/su);
 });
+
+test('Lernseite (P6.1): Tafel, RACI, Merksatz und Ebenen 1–4 werden auf Seiten- und Abschnittsebene gezeichnet', () => {
+  const eintrag = Object.entries(inhalte.theorie).find(([, s]) => s.kapitel === 1);
+  assert.ok(eintrag);
+  const tafel = { art: 'tafel', kennungen: ['k2.5-t1'], id: 'k2.5-t1', kopf: { form: 'ketten', quelle: 'Q', tabelle: { kopf: ['S', 'M', 'K', 'R'], zeilen: [['s', 'm', 'k', 'r']] }, erlebt: {}, hervor: [] }, felder: {}, liste: null, kinder: [] };
+  const ebenen = { art: 'ebenen', kennungen: [], id: null, kopf: {}, felder: {}, liste: null, kinder: [], ebenen: [1, 2, 3, 4].map((nr) => ({ nr, titel: `E${nr}`, felder: { text: `<p>Text ${nr}</p>` }, bloecke: [] })) };
+  const abschnitt = { art: 'abschnitt', kennungen: ['k1.1'], id: 'k1.1', kopf: { titel: 'Probe' }, felder: {}, liste: null, kinder: [{ art: 'merksatz', kennungen: [], id: null, kopf: {}, felder: { text: '<p>Merke</p>' }, liste: null, kinder: [] }] };
+  const probe = { ...inhalte, theorie: { ...inhalte.theorie, [eintrag[0]]: { ...eintrag[1], bloecke: [tafel, abschnitt, ebenen] } } } as unknown as typeof inhalte;
+  const el = baueTheorie({ inhalte: probe, kapitel: 1, version: VERSION, bedienbar: true });
+  assert.ok(el.querySelector('[data-pruef="tafel-ketten"]'), 'Tafel auf Seitenebene');
+  assert.match(el.querySelector('.lern-abschnitt .lehre')?.textContent ?? '', /Merke/u, 'Merksatz im Abschnitt');
+  const e = [...el.querySelectorAll('[data-pruef^="lern-ebene-"]')];
+  assert.equal(e.length, 4);
+  assert.equal(e[0]?.hasAttribute('open'), true);
+  assert.equal(e[3]?.hasAttribute('open'), false);
+});

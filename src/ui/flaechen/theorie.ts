@@ -8,10 +8,10 @@
  * Absatz-IDs (O-17) · Querverweis in die Story · Kapitel blättern.
  */
 
-import type { Block, OeffentlicheInhalte, TheorieSeite, WhitepaperKapitel } from '../../inhalte/typen.ts';
+import type { Block, Ebene, OeffentlicheInhalte, TheorieSeite, WhitepaperKapitel } from '../../inhalte/typen.ts';
 import { h } from '../h.ts';
 import { bildmarke } from '../marke.ts';
-import { sym, symbolAusInhalt } from '../bausteine/bloecke.ts';
+import { sym, symbolAusInhalt, tafel as tafelBlock, raci as raciBlock, merksatz, hinweis } from '../bausteine/bloecke.ts';
 import { inhalt, inhaltInline } from '../bausteine/inhalt.ts';
 import { kopfText } from '../anzeige.ts';
 import { W } from '../woerter.ts';
@@ -131,19 +131,47 @@ function karten(b: Block): HTMLElement {
   }));
 }
 
-function bloeckeIn(bloecke: readonly Block[]): Node[] {
+/** Ebenen 1–4 auf einer Lernseite (P6.1): aufklappbar, Ebene 1 offen; Ebene 4 trägt den Nachweis (Zitat). */
+function ebenenBlock(ebenen: readonly Ebene[], inhalte: OeffentlicheInhalte): HTMLElement {
+  return h('div', { class: 'lern-ebenen', 'data-pruef': 'lern-ebenen' }, ebenen.map((e) => h('details', { class: 'lern-ebene', 'data-ebene': e.nr, 'data-pruef': `lern-ebene-${e.nr}`, open: e.nr === 1 },
+    h('summary', null, h('span', { class: 'lern-ebene-nr' }, String(e.nr)), h('span', null, h('small', null, `${W.ebene} ${e.nr}`), e.titel)),
+    e.felder['text'] ? h('div', { class: 'lesetext' }, inhalt(e.felder['text'])) : null,
+    bloeckeIn(e.bloecke, inhalte))));
+}
+
+function bloeckeIn(bloecke: readonly Block[], inhalte: OeffentlicheInhalte): Node[] {
   const aus: Node[] = [];
   for (const b of bloecke) {
     switch (b.art) {
       case 'zitat':
+      case 'original':
         aus.push(zitatBlock(b));
         break;
       case 'karten':
         aus.push(karten(b));
         break;
+      case 'tafel': {
+        const t = tafelBlock(b, [], inhalte);
+        if (t !== null) aus.push(t);
+        break;
+      }
+      case 'raci': {
+        const r = raciBlock(b, inhalte, null);
+        if (r !== null) aus.push(r);
+        break;
+      }
+      case 'merksatz':
+        aus.push(merksatz(b));
+        break;
+      case 'hinweis':
+        aus.push(hinweis(b));
+        break;
+      case 'ebenen':
+        if (b.ebenen !== undefined && b.ebenen.length > 0) aus.push(ebenenBlock(b.ebenen, inhalte));
+        break;
       default:
         if (b.felder['text']) aus.push(h('div', { class: 'lesetext' }, inhalt(b.felder['text'])));
-        aus.push(...bloeckeIn(b.kinder));
+        aus.push(...bloeckeIn(b.kinder, inhalte));
     }
   }
   return aus;
@@ -222,9 +250,12 @@ function lernseite(o: TheorieOptionen, nr: number): HTMLElement {
         teile.push(h('section', { class: 'lern-abschnitt', 'data-abschnitt': b.id ?? '' },
           h('h2', { class: 'abschnitt-titel' }, a !== undefined ? h('span', { class: 'abschnitt-nr' }, a.nr) : null, t),
           b.felder['text'] ? h('div', { class: 'lesetext' }, inhalt(b.felder['text'])) : null,
-          bloeckeIn(b.kinder)));
+          bloeckeIn(b.kinder, o.inhalte)));
       } else if (b.art === 'original') {
         teile.push(originaltext(b, fassung));
+      } else if (b.art !== 'querverweis') {
+        // Grafik, Ebenen, Merksatz … auch auf Seitenebene (P6.1)
+        teile.push(...bloeckeIn([b], o.inhalte));
       }
     }
     const qv = querverweise(o, seite.bloecke);

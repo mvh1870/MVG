@@ -34,6 +34,7 @@ Rangfolge bei Widerspruch: O-Einträge > docs/BAUPLAN.md > L-Einträge > alles a
 - **O-24** · Fachliche Absicherung: unabhängige **Prüf-Agenten, gründlich** (je Kapitel 2–3: Fachtreue, Begriffe, Dramaturgie/Verständlichkeit; Browser-Tests je Phase; Vollständigkeitsprüfung am Ende). Alles trägt den Vermerk **„fachlich ungeprüft“** bis zur Abnahme durch den Owner.
 - **O-25** · Cloud: GitHub **mvh1870/MVG** (privat). Owners **Routinen-Paket unverändert** (`cloud/`), Arbeitszweig **`claude/haus`**, der Owner führt nach `main` zusammen.
 - **O-26** · Einmal in der Cloud angestoßen, läuft der Bau **ohne Anhalten bis zum Ende**. Offene Detailfragen entscheidet der Lauf selbst (L-Eintrag) und arbeitet weiter.
+- **O-27** · 2026-09-27 09:57 UTC (Owner im Chat): „höre erst auf zu arbeiten, wenn der Plan komplett leer ist“ – ein Block legt sich nicht wegen Zeit oder Zugzahl hin, solange das Planblatt offene Posten ohne Owner-Antwort hat; er arbeitet Posten für Posten weiter (jeder gepusht, Ampel mit „Block bis“ laufend vorgezogen). Sparsam mit Agenten (Owner-Frage nach Guthaben): Prüf-Agenten nach O-24, Autoren-Agenten nur einzeln.
 
 ## Lauf-Entscheide
 

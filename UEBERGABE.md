@@ -3,6 +3,7 @@
 Kopf ≤ 100 Zeilen. Oben JETZT (überschreiben), darunter FRÜHER (anhängen, knapp).
 
 ## JETZT
+- **O-27 (Owner, 2026-09-27):** weiterarbeiten, bis das Planblatt leer ist; nicht wegen Zeit/Zugzahl hinlegen. Sparsam mit Agenten.
 - Stand 2026-09-27 09:42 UTC (+00:00), Ende des ersten Cloud-Blocks auf `claude/haus`: **Phase P1 fertig (P1.1–P1.5).** Nächster Posten **P2.1 Engine vollständig** – dabei L-19 (Station ohne `status-start` übernimmt den Stand ihrer Welt) und Hinweis H9 aus `docs/P1.5-BEFUNDE.md` (Spur-Delta statt Rücksetzen) umsetzen; die übrigen Hinweise H10–H20 in P3/P5/P7. Entscheidungsgraph als Entwurf unter `entwurf/` (L-20), `npm run entwurf` 0 Fehler. Owner fragte im Chat, ob die Sitzung sein Guthaben (250 €) verbraucht – beantwortet: nicht einsehbar, läuft über das Konto; dieser Block war agentenintensiv (Workflow mit sechs Autoren-Agenten ohne ausdrückliche Owner-Anforderung, dazu ~11 Prüf- und Korrektur-Agenten) – künftig sparsamer.
 - Frischer Cloud-Rechner (gemessen 2026-09-27 07:48–07:53 UTC): Node v22.22.2 (≥ 22.18, reicht; kein nvm nötig) · `npm ci` 8 s · `npx playwright install chromium` scheitert (403, cdn.playwright.dev nicht freigegeben) · vorinstalliertes Chromium 141 unter `/opt/pw-browsers/chromium` läuft → `oberflaeche` nimmt es jetzt (L-15) · Kette grün mit Browser, 193 s (davon Oberfläche 179 s; ohne Browser 19 s).
 - GitHub-Aktion `pruefe`: Ergebnis noch nicht nachgesehen (kein Zugriff geprüft) – nachholen.

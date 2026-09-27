@@ -1620,6 +1620,9 @@ function baueAbdeckung(c, quelle, roh, stationen, theorie, pruefe) {
   /** @type {Record<string, { theorie: string[], story: string[] }>} */
   const ziele = {};
   const ziel = (/** @type {string} */ id) => (ziele[id] ??= { theorie: [], story: [] });
+  // Je Kapitel gibt es eine Lernseite kNN (O-20); bis sie gebaut ist (P6), gilt sie als geplant.
+  const kapitelSeite = (/** @type {string} */ nr) => `k${nr.padStart(2, '0')}`;
+  const kapitelSeiten = new Set((quelle?.bloecke ?? []).map((bl) => kapitelSeite(bl.kapitel)));
   for (const [id, wert] of Object.entries(roh ?? {})) {
     if (!BLOCK_ID.test(id)) { c.fehler(rel, `„${id}“ ist keine Absatz-ID`); continue; }
     if (quelle !== null && !quelle.nachId.has(id)) c.fehler(rel, `Absatz-ID „${id}“ gibt es im Whitepaper nicht`);
@@ -1628,7 +1631,7 @@ function baueAbdeckung(c, quelle, roh, stationen, theorie, pruefe) {
     for (const k of Object.keys(o)) if (k !== 'theorie' && k !== 'story') c.fehler(rel, `${id}: unbekannter Schlüssel „${k}“`);
     const liste = (/** @type {unknown} */ x) => (Array.isArray(x) ? x : x === undefined || x === '' ? [] : [x]).map(String);
     for (const t of liste(o['theorie'])) {
-      if (theorie[t] === undefined) c.fehler(rel, `${id}: Theorie-Seite „${t}“ gibt es nicht`);
+      if (theorie[t] === undefined && !kapitelSeiten.has(t)) c.fehler(rel, `${id}: Theorie-Seite „${t}“ gibt es nicht (weder Lernseite noch Kapitel des Whitepapers)`);
       ziel(id).theorie.push(t);
     }
     for (const s of liste(o['story'])) {
@@ -1642,7 +1645,15 @@ function baueAbdeckung(c, quelle, roh, stationen, theorie, pruefe) {
   const zugeordnet = quelle === null ? 0 : quelle.bloecke.filter((bl) => (ziele[bl.id]?.theorie.length ?? 0) > 0).length;
   const anteil = gesamt === 0 ? 0 : Math.round((zugeordnet / gesamt) * 10000) / 10000;
   if (pruefe && quelle !== null && zugeordnet < gesamt) {
-    c.warnung('abdeckung', `Theorie-Abdeckung ${zugeordnet} von ${gesamt} Absätzen (${(anteil * 100).toFixed(1).replace('.', ',')} %) – ab P6.15 Pflicht 100 %`);
+    const fehlen = quelle.bloecke.filter((bl) => (ziele[bl.id]?.theorie.length ?? 0) === 0).map((bl) => bl.id);
+    c.fehler(rel, `Theorie-Abdeckung ${zugeordnet} von ${gesamt} Absätzen (${(anteil * 100).toFixed(1).replace('.', ',')} %) – Pflicht 100 % (P1.1); ohne Seite: ${fehlen.slice(0, 8).join(', ')}${fehlen.length > 8 ? ' …' : ''}`);
+  }
+  if (pruefe && quelle !== null) {
+    for (const bl of quelle.bloecke) {
+      const eigene = kapitelSeite(bl.kapitel);
+      const z = ziele[bl.id];
+      if (z !== undefined && z.theorie.length > 0 && !z.theorie.includes(eigene)) c.fehler(rel, `${bl.id}: steht nicht auf der Seite seines Kapitels (${eigene})`);
+    }
   }
   return { gesamt, zugeordnet, anteil, ziele };
 }

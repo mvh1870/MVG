@@ -5,7 +5,7 @@ monat: 5
 titel: Kosten +8 %   # geschütztes Leerzeichen vor „%“: der Titel bricht dort nie um
 lph: 5
 uhr: Montag, 08:30 Uhr
-whitepaper-bezug: [k2.4-p2, k4.6-p2]
+whitepaper-bezug: [k2.4-p1, k2.4-p2, k4.6-p2]
 status-start:
   entscheidungsfaehigkeit: 2
   kostenunsicherheit: hoch

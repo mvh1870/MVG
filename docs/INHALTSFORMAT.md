@@ -263,9 +263,10 @@ k2.4-p2:
   theorie: k02
   story: [A3, B3]
 k4.2-p3:
+  theorie: k04
   story: B3
 ```
-`theorie` und `story` sind eine Kennung oder eine Liste. Der Prüfer rechnet die Abdeckung aus dieser Datei **und** aus den Theorie-Seiten (`original`, `zitat`, `deckt`) zusammen. In P0 ist eine unvollständige Abdeckung nur eine Warnung, ab P1.1/P6.15 ein Fehler.
+`theorie` und `story` sind eine Kennung oder eine Liste. `theorie` darf auch eine **geplante** Kapitelseite `kNN` nennen, die es noch nicht als Datei gibt (ein Kapitel = eine Lernseite, O-20; L-16). Der Prüfer rechnet die Abdeckung aus dieser Datei **und** aus den Theorie-Seiten (`original`, `zitat`, `deckt`) zusammen. Seit P1.1 ist eine Theorie-Abdeckung unter 100 % ein **Fehler** (mit den ersten Absätzen ohne Seite), ebenso ein Absatz, der nicht (auch) auf der Seite seines eigenen Kapitels steht.
 
 ---
 
@@ -279,7 +280,7 @@ k4.2-p3:
 | Graph | Station vom Prolog nicht erreichbar · Sackgasse (keine Kante, kein Ende) · Welt B ohne Freischaltung erreichbar · spielbare Rolle ohne Szene an einer Station mit Entscheidung · Rückbezug fehlt für eine Option |
 | Zitate | Absatz-ID unbekannt oder Text nicht wortgleich |
 | Glossar | `[[Begriff]]` nicht im Glossar |
-| Abdeckung | Anteil zugeordneter Absätze (P0: Warnung) |
+| Abdeckung | Theorie-Abdeckung < 100 % · Absatz nicht auf der Seite seines Kapitels · Seite/Station unbekannt |
 
 Fehlt `whitepaper.json` noch, sind Zitat-, Glossar- und Abdeckungsprüfung **Warnungen** (sonst Fehler). Ohne `--pruefe` meldet das Werkzeug nur Formfehler, die das Kompilieren verhindern.
 

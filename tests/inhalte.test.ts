@@ -355,7 +355,7 @@ Mehr Berichte helfen manchmal.
 :::
 :::
 `,
-  'inhalte/abdeckung.yaml': 'k2.4-l1:\n  story: X1\n',
+  'inhalte/abdeckung.yaml': 'k2.4-l1:\n  theorie: k02\n  story: X1\n',
 };
 
 test('feldName: Überschriften und Schlüssel werden zu camelCase in ASCII-Umschrift', () => {
@@ -371,7 +371,7 @@ test('Beispiel → erwartetes JSON (Auszüge exakt), fehlerfrei, deterministisch
   const ziel = path.join(w, 'aus', 'inhalte.json');
   const erg = await kompiliere({ pruefe: true, wurzel: w, ziel });
   assert.deepEqual(erg.fehler, []);
-  assert.deepEqual(erg.warnungen, ['abdeckung: Theorie-Abdeckung 3 von 4 Absätzen (75,0 %) – ab P6.15 Pflicht 100 %']);
+  assert.deepEqual(erg.warnungen, []);
   const i = erg.inhalte as Inhalte;
 
   assert.deepEqual(i.stationsFolge, ['prolog', 'X1', 'V', 'Y1']);
@@ -439,10 +439,10 @@ test('Beispiel → erwartetes JSON (Auszüge exakt), fehlerfrei, deterministisch
   assert.deepEqual(k02?.bloecke[1]?.kopf['absaetze'], ['k2.4-p1', 'k2.4-p2']);
   assert.deepEqual(k02?.deckt, ['k2-p1']);
   assert.deepEqual(i.abdeckung, {
-    gesamt: 4, zugeordnet: 3, anteil: 0.75,
+    gesamt: 4, zugeordnet: 4, anteil: 1,
     ziele: {
       'k2-p1': { theorie: ['k02'], story: [] },
-      'k2.4-l1': { theorie: [], story: ['X1'] },
+      'k2.4-l1': { theorie: ['k02'], story: ['X1'] },
       'k2.4-p1': { theorie: ['k02'], story: [] },
       'k2.4-p2': { theorie: ['k02'], story: [] },
     },
@@ -535,6 +535,21 @@ test('Mutanten-Probe (Beispiel): ein verfälschtes Zitat, eine erfundene ID und 
     'Berichterstattung erzeugt Information. Führung entsteht erst, wenn Information mit Mandat verbunden wird.',
     'Ein Ampelbericht ohne Entscheidungsfrage bleibt Beobachtung. […] Berichterstattung erzeugt Information.'));
   assert.ok((await kompiliere({ pruefe: true, wurzel: vertauscht, ziel: null })).fehler.some((f) => /nicht wortgleich/u.test(f)));
+});
+
+test('Abdeckung (P1.1): Lücke, fremdes Kapitel und unbekannte Seite sind Fehler; geplante Kapitelseite gilt', async () => {
+  const pruefe = async (yaml: string) => (await kompiliere({ pruefe: true, wurzel: neueWurzel({ ...BEISPIEL, 'inhalte/abdeckung.yaml': yaml }), ziel: null })).fehler;
+  assert.ok((await pruefe('k2.4-l1:\n  story: X1\n')).some((f) => /abdeckung\.yaml: Theorie-Abdeckung 3 von 4 Absätzen \(75,0 %\) – Pflicht 100 % \(P1\.1\); ohne Seite: k2\.4-l1$/u.test(f)));
+  // k03 ist keine Lernseite, aber als Kapitel des Beispiels auch nicht geplant (das Beispiel hat nur Kapitel 2)
+  assert.ok((await pruefe('k2.4-l1:\n  theorie: k03\n')).some((f) => /k2\.4-l1: Theorie-Seite „k03“ gibt es nicht/u.test(f)));
+  const fremd = neueWurzel({ ...BEISPIEL, 'inhalte/theorie/k05-test.md': '---\nkapitel: 5\ntitel: Test\n---\nText.\n', 'inhalte/abdeckung.yaml': 'k2.4-l1:\n  theorie: k05\n' });
+  assert.ok((await kompiliere({ pruefe: true, wurzel: fremd, ziel: null })).fehler.some((f) => /k2\.4-l1: steht nicht auf der Seite seines Kapitels \(k02\)/u.test(f)));
+  // geplante Kapitelseite: k02 ohne Lernseite
+  const ohneSeite: Record<string, string> = { ...BEISPIEL, 'inhalte/abdeckung.yaml': 'k2-p1:\n  theorie: k02\nk2.4-p1:\n  theorie: k02\nk2.4-p2:\n  theorie: k02\nk2.4-l1:\n  theorie: k02\n' };
+  for (const k of Object.keys(ohneSeite)) if (k.startsWith('inhalte/theorie/')) delete ohneSeite[k];
+  const geplant = await kompiliere({ pruefe: true, wurzel: neueWurzel(ohneSeite), ziel: null });
+  assert.deepEqual(geplant.fehler.filter((f) => /abdeckung/u.test(f)), []);
+  assert.equal((geplant.inhalte as Inhalte).abdeckung.anteil, 1);
 });
 
 test('Startseite (inhalte/start.md): Leitsatz wörtlich mit Absatz-ID geprüft, These als Inline-HTML', async () => {

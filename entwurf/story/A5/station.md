@@ -200,7 +200,7 @@ Die Risikoreserve von 2,9 Mio. € reicht schon für die Abweichung aus dem Mai 
 ---
 titel: Gerechnet, nicht entschieden
 ---
-Aylin Kaya hat die Posten gegen die Reserve gerechnet; wer sie ihr zugeordnet hat, ist offen. Schwellen und Entscheidungsrechte sind in Welt A nicht festgelegt. Die Tabelle in Kap. 3.2 führt als nicht delegierbar: [[zitat:k3.2-t1|Festlegung von Mandaten, Freigabeschwellen, Eskalationswegen und verbindlichen Entscheidungsrechten.]]
+Aylin Kaya hat die Posten gegen die Reserve gerechnet; wer die Posten der Reserve zugeordnet hat, ist offen. Schwellen und Entscheidungsrechte sind in Welt A nicht festgelegt. Die Tabelle in Kap. 3.2 führt als nicht delegierbar: [[zitat:k3.2-t1|Festlegung von Mandaten, Freigabeschwellen, Eskalationswegen und verbindlichen Entscheidungsrechten.]]
 :::
 
 ::: vertiefung risiko

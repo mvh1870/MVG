@@ -114,3 +114,28 @@ test('Vertiefung je Interesse (P3.9): A1–A6 haben je eine Karte für Kosten, M
     for (const x of v) assert.match(x.html, /class="mvg-zitat" data-absatz="k/u, `${id}/${x.interesse}: ohne Zitat`);
   }
 });
+
+test('Wendepunkt-Radar (P4.7): jedes Symptom, das eine Station A1–A6 in ihrer Tabelle nennt, ist dort als erlebt eingetragen', async () => {
+  const { readFileSync } = await import('node:fs');
+  const schritt = erg.inhalte.stationen.wendepunkt?.schritte.find((s: any) => s.id === 'symptome');
+  const tafel = schritt?.bloecke.find((b: any) => b.art === 'tafel');
+  assert.ok(tafel, 'Tafel im Schritt „symptome“');
+  const zeilen: string[][] = tafel.kopf.tabelle.zeilen;
+  const glatt = (t: string): string => t.replace(/\[\[(?:[^|\]]*\|)?([^\]]*)\]\]/gu, '$1').replace(/-(?=[a-zäöü])/gu, '').toLowerCase();
+  for (const id of ['A1', 'A2', 'A3', 'A4', 'A5', 'A6']) {
+    const pfad = id === 'A3' ? 'inhalte/story/A3/station.md' : `entwurf/story/${id}/station.md`;
+    const text = glatt(readFileSync(pfad, 'utf8'));
+    zeilen.forEach((z, i) => {
+      if (text.includes(`| ${glatt(z[0] ?? '')} |`)) assert.ok((tafel.kopf.erlebt[String(i + 1)] ?? []).includes(id), `${id} nennt „${z[0]}“, fehlt in erlebt.${i + 1}`);
+    });
+  }
+});
+
+test('Wendepunkt und Rückspulen zeigen keine Statusinstrumente (DREHBUCH: kein Status)', async () => {
+  const { instrumenteSichtbar } = await import('../src/ui/anzeige.ts');
+  const { oeffentlich } = await import('../src/engine/zustand.ts');
+  for (const station of ['wendepunkt', 'rueckspulen']) {
+    const z = { ...anfangszustand(), bereich: 'story' as const, rolle: 'pl', station, schritt: 1, spur: [{ station: 'A6', schritt: 0, text: 'x', zeit: 0 }] };
+    assert.equal(instrumenteSichtbar(oeffentlich(z as any), erg.inhalte), false, station);
+  }
+});

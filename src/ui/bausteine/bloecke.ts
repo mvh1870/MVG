@@ -206,7 +206,7 @@ export function datenstand(b: Block, beschriftung: { titel: string; siegel: stri
 }
 
 /** Whitepaper-Tabelle als Grafik (P4, L-32); `besucht` = Stationen der eigenen Spur. */
-export function tafel(b: Block, besucht: readonly string[] = []): HTMLElement | null {
+export function tafel(b: Block, besucht: readonly string[] = [], inhalte: OeffentlicheInhalte | null = null): HTMLElement | null {
   const form = kopfText(b.kopf, 'form') ?? '';
   const t = b.kopf['tabelle'];
   if (!istTafelForm(form) || b.id === null || !istKarte(t)) return null;
@@ -215,7 +215,9 @@ export function tafel(b: Block, besucht: readonly string[] = []): HTMLElement | 
   const roh = b.kopf['erlebt'];
   const erlebt: Record<string, string[]> = {};
   if (istKarte(roh)) for (const [nr, liste] of Object.entries(roh)) erlebt[nr] = Array.isArray(liste) ? liste.map(String) : [];
-  const el = tafelGrafik({ form, absatz: b.id, quelle: kopfText(b.kopf, 'quelle') ?? '', kopf, zeilen, erlebt }, besucht);
+  const namen: Record<string, string> = {};
+  for (const st of Object.values(inhalte?.stationen ?? {})) namen[st.id] = st.kurztitel;
+  const el = tafelGrafik({ form, absatz: b.id, quelle: kopfText(b.kopf, 'quelle') ?? '', kopf, zeilen, erlebt, namen }, besucht);
   const text = b.felder['text'] ?? '';
   return text !== '' ? h('div', { class: 'stapel' }, h('div', { class: 'tafel-einleitung' }, inhalt(text)), el) : el;
 }
@@ -224,7 +226,7 @@ export function tafel(b: Block, besucht: readonly string[] = []): HTMLElement | 
 export function block(b: Block, inhalte: OeffentlicheInhalte, zitatWort: string, besucht: readonly string[] = []): Node | null {
   switch (b.art) {
     case 'tafel':
-      return tafel(b, besucht);
+      return tafel(b, besucht, inhalte);
     case 'hinweis':
       return hinweis(b);
     case 'merksatz':

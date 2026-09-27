@@ -479,3 +479,38 @@ test('Regie: Notiz und Leitfragen; „weiter“ sendet den öffentlichen Zustand
     regie.entferne();
   }
 });
+
+test('Tafeln (P4, L-32): Radar schneidet „erlebt“ mit der eigenen Spur; Schwellen-Spiel prüft gegen die Spalte der Tabelle', async () => {
+  const { tafel } = await import('../src/grafik/tafel.ts');
+  const wp = JSON.parse(readFileSync(join(WURZEL, 'quellen/whitepaper/v1.2/whitepaper.json'), 'utf8')) as unknown;
+  const finde = (o: unknown, id: string): { kopf: string[]; zeilen: string[][] } | null => {
+    if (o === null || typeof o !== 'object') return null;
+    if ((o as { id?: string }).id === id) return o as { kopf: string[]; zeilen: string[][] };
+    for (const v of Object.values(o)) { const f = finde(v, id); if (f !== null) return f; }
+    return null;
+  };
+  const sym = finde(wp, 'k2.5-t1');
+  assert.ok(sym);
+  // Express-Spur A3, A6: nur Symptome dieser beiden Stationen gelten als erlebt
+  const radar = tafel({ form: 'radar', absatz: 'k2.5-t1', quelle: 'Q', kopf: sym.kopf, zeilen: sym.zeilen, erlebt: { 1: ['A1', 'A2'], 4: ['A3', 'A4'], 7: ['A6'] } }, ['prolog', 'A3', 'A6']);
+  assert.deepEqual([...radar.querySelectorAll('.radar-knopf.ist-erlebt')].map((b) => b.getAttribute('data-pruef')), ['symptom-4', 'symptom-7']);
+  // Schwelle: Spalte 0 = delegierbar, Spalte 1 = nicht delegierbar
+  const t = finde(wp, 'k3.2-t1');
+  assert.ok(t);
+  const spalte = new Map<string, number>();
+  for (const z of t.zeilen) z.forEach((zelle, i) => { if (zelle !== '') spalte.set(zelle, i); });
+  const el = tafel({ form: 'schwelle', absatz: 'k3.2-t1', quelle: 'Q', kopf: t.kopf, zeilen: t.zeilen, erlebt: {} });
+  const karten = [...el.querySelectorAll<HTMLElement>('.schwelle-karte')];
+  assert.equal(karten.length, spalte.size);
+  const folge = karten.map((k) => spalte.get(k.querySelector('p')?.textContent ?? ''));
+  assert.ok(folge.every((x) => x !== undefined), 'jede Karte ist eine Zelle der Tabelle');
+  assert.ok(folge.some((x, i) => i > 0 && x === folge[i - 1]), 'gemischt, nicht streng abwechselnd');
+  karten.forEach((k, i) => {
+    const soll = folge[i] as number;
+    (k.querySelectorAll<HTMLButtonElement>('.schwelle-knopf')[1 - soll] as HTMLButtonElement).click();
+    assert.equal(k.getAttribute('data-ergebnis'), 'falsch');
+    (k.querySelectorAll<HTMLButtonElement>('.schwelle-knopf')[soll] as HTMLButtonElement).click();
+    assert.equal(k.getAttribute('data-ergebnis'), 'richtig');
+  });
+  assert.match(el.querySelector('[data-pruef="schwelle-stand"]')?.textContent ?? '', new RegExp(`^${spalte.size} von ${spalte.size} richtig`, 'u'));
+});

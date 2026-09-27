@@ -1815,7 +1815,9 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .radar-liste { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
 .radar-knopf { display: flex; align-items: center; gap: 8px; min-height: 48px; padding: 6px 10px; border: 0; border-radius: var(--radius-m); background: var(--weiss); color: var(--tinte); text-align: left; box-shadow: inset 0 0 0 1px var(--linie); }
 .radar-knopf i { flex: none; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--flaeche-3); font: 700 12px var(--schrift-label); font-style: normal; }
-.radar-knopf.ist-erlebt i { background: var(--koralle); color: var(--weiss); }
+.radar-knopf.ist-erlebt i { background: var(--koralle-text); color: var(--weiss); }
+.radar-legende { margin: 4px 0 0; font-size: 12.5px; color: var(--tinte-leise); text-align: center; }
+.felder-ansicht { margin: 0; font-weight: 600; }
 .radar-knopf span { display: grid; min-width: 0; }
 .radar-knopf b { font-size: 14px; line-height: 1.25; }
 .radar-knopf small { font-size: 12px; color: var(--tinte-leise); }
@@ -1830,7 +1832,7 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .wirkungskette { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
 .wirkungskette li { position: relative; min-width: 0; padding: 12px 14px; border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); animation: szene-ein 420ms var(--kurve-aus) both; animation-delay: calc(var(--i, 0) * 260ms); }
 .wirkungskette li p { margin: 4px 0 0; font-size: 15px; line-height: 1.45; }
-.wirkungskette .glied-1 { box-shadow: inset 4px 0 0 var(--status-gelb), inset 0 0 0 1px var(--linie); }
+.wirkungskette .glied-1 { box-shadow: inset 4px 0 0 var(--gold), inset 0 0 0 1px var(--linie); }
 .wirkungskette .glied-2 { box-shadow: inset 4px 0 0 var(--koralle), inset 0 0 0 1px var(--linie); }
 .wirkungskette .glied-3 { box-shadow: inset 4px 0 0 var(--tuerkis), inset 0 0 0 1px var(--linie); }
 
@@ -1856,7 +1858,7 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 /* Pyramide */
 .tafel-pyramide { display: grid; grid-template-columns: minmax(220px, 340px) minmax(0, 1fr); gap: var(--a-4); align-items: start; }
 .pyramide { display: grid; gap: 6px; justify-items: center; }
-.pyramide-stufe { width: calc(100% - (var(--stufen, 3) - 1 - var(--stufe, 0)) * 22%); min-height: 60px; padding: 8px 12px; border: 0; border-radius: var(--radius-m); background: var(--flaeche-3); color: var(--tinte); font-weight: 700; box-shadow: inset 0 0 0 1px var(--linie); }
+.pyramide-stufe { width: calc(100% - var(--stufe, 0) * 22%); min-height: 60px; padding: 8px 12px; border: 0; border-radius: var(--radius-m); background: var(--flaeche-3); color: var(--tinte); font-weight: 700; box-shadow: inset 0 0 0 1px var(--linie); }
 .pyramide-stufe:first-child { background: var(--navy); color: var(--weiss); }
 .pyramide-stufe[aria-pressed="true"] { box-shadow: inset 0 0 0 3px var(--gold); }
 
@@ -1876,7 +1878,7 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .tafel-bausteine { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 0; padding: 0; list-style: none; }
 .baustein-karte { min-width: 0; border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); animation: szene-ein 420ms var(--kurve-aus) both; animation-delay: calc(var(--i, 0) * 180ms); }
 .baustein-karte summary { display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 8px 12px; cursor: pointer; }
-.baustein-karte summary i { flex: none; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--gold); color: var(--weiss); font: 700 12px var(--schrift-label); font-style: normal; }
+.baustein-karte summary i { flex: none; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--gold-text); color: var(--weiss); font: 700 12px var(--schrift-label); font-style: normal; }
 .baustein-karte .tafel-detail { padding: 0 12px 12px; }
 
 @media (max-width: 760px) {
@@ -1891,10 +1893,11 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .spule-bahn { position: absolute; left: 0; right: 0; top: 18px; height: 4px; border-radius: 2px; background: var(--koralle); transform-origin: left center; transition: background-color 2400ms var(--kurve-gleich); }
 .spule.ist-zurueck .spule-bahn { background: var(--tuerkis); }
 .spule-punkte { position: absolute; inset: 0; margin: 0; padding: 0; list-style: none; }
-.spule-punkt { position: absolute; top: 10px; display: grid; justify-items: center; gap: 6px; transform: translateX(-50%); transition: opacity 400ms var(--kurve-aus); transition-delay: calc(var(--i, 0) * 380ms + 200ms); }
+.spule-punkt { position: absolute; top: 10px; display: grid; justify-items: center; gap: 6px; transform: translateX(-50%); }
+.spule-marke { transition: opacity 400ms var(--kurve-aus); transition-delay: calc(var(--i, 0) * 380ms + 200ms); }
 .spule-marke { width: 20px; height: 20px; border-radius: 50%; background: var(--koralle); box-shadow: 0 0 0 3px var(--navy); }
 .spule-name { font: 600 12px/1.2 var(--schrift-label); white-space: nowrap; color: var(--auf-navy); }
-.spule.ist-zurueck .spule-punkt { opacity: .35; }
+.spule.ist-zurueck .spule-marke { opacity: .35; }
 .spule-zeiger { position: absolute; top: 4px; width: 4px; height: 32px; margin-left: -2px; border-radius: 2px; background: var(--gold-hell); box-shadow: 0 0 12px var(--gold-hell-a60); transition: left 2400ms var(--kurve-gleich); }
 .spule-null { position: absolute; top: 44px; transform: translateX(-10%); font: 700 12px var(--schrift-label); color: var(--gold-hell); }
 @media (max-width: 760px) { .spule-name { display: none; } .spule-rahmen { padding: 14px 18px 30px; } }

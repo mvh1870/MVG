@@ -167,10 +167,14 @@ export function anzeigeStatus(z: Pick<OeffentlicherZustand, 'welt' | 'status'>):
 
 /* ------------------------------------------------ Schrittweiser Aufbau (L-4) -- */
 
-/** Statusinstrumente: ab dem ersten Entscheidungsschritt (und danach in jeder Welt-B- oder Vergleichsstation). */
+/**
+ * Statusinstrumente: ab dem ersten Entscheidungsschritt (und danach in jeder Welt-B- oder Vergleichsstation);
+ * nie an Wendepunkt und Rückspulen (DREHBUCH: kein Status).
+ */
 export function instrumenteSichtbar(z: OeffentlicherZustand, inhalte: OeffentlicheInhalte): boolean {
   const st = aktuelleStation(z, inhalte);
   if (st === null || z.bereich !== 'story') return false;
+  if (st.art === 'wendepunkt' || st.art === 'rueckspulen') return false;
   if (z.spur.length > 0) return true;
   if (st.welt === 'B' || st.vergleich !== null) return true;
   const s = aktuellerSchritt(z, inhalte);

@@ -72,6 +72,7 @@ k3-p2:
 # ── 3.1 Arbeitsdefinition
 k3.1-p1:
   theorie: k03
+  story: [wendepunkt]
 k3.1-p2:
   theorie: k03
 # ── 3.2 Delegierbar und nicht delegierbar
@@ -80,6 +81,7 @@ k3.2-t1:
   story: [A5, B5, wendepunkt, ende-neufestlegung]
 k3.2-p1:
   theorie: k03
+  story: [wendepunkt]
 # ── 3.3 Die Verantwortungspyramide – Arbeitsebene, Mandatsebene und Letztverantwortung
 k3.3-p1:
   theorie: k03

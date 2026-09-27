@@ -33,6 +33,8 @@ export interface TafelDaten {
   zeilen: string[][];
   /** Zeilennummer (1-basiert) → Stationen, in denen das Muster erlebt wurde (nur `radar`) */
   erlebt: Record<string, string[]>;
+  /** Station → Kurztitel, für „erlebt in …“ (sonst die Kennung) */
+  namen?: Record<string, string>;
 }
 
 export const WORT = {
@@ -45,27 +47,30 @@ export const WORT = {
   wennPassiert: 'Was passiert, wenn …',
   wenn: 'Wenn',
   dann: 'dann',
-  mvg: 'MVG',
-  zuordnen: 'Ordnen Sie jede Aufgabe zu: Wo liegt sie – unter oder über der Schwelle?',
+  zuordnen: 'Ordnen Sie jede Aufgabe zu: delegierbar oder nicht delegierbar?',
   richtig: 'richtig',
   falsch: 'gehört auf die andere Seite',
   stand: (r: number, n: number, g: number) => `${r} von ${g} richtig · ${n} zugeordnet`,
   aufloesen: 'Alle zeigen',
-  schwelle: 'Schwelle',
+  grenze: 'Grenze',
+  legende: 'Ausschlag: in wie vielen Stationen Ihrer Spur das Symptom auftrat (bis drei)',
+  ansicht: (w: string, spalte: string) => `Ansicht: ${w} – ${spalte}`,
   chaos: 'Chaos',
   ordnung: 'Ordnung',
   mehr: 'Mehr zum Feld',
 } as const;
 
-/** Kleine, feste Mischung (deterministisch): verschränkt zwei Listen und dreht jede dritte Karte. */
+/** Feste, unregelmäßige Mischung (deterministisch: Fisher-Yates mit festem Startwert), damit Abwechseln nicht hilft. */
 export function mische<T>(a: readonly T[], b: readonly T[]): T[] {
-  const aus: T[] = [];
-  const n = Math.max(a.length, b.length);
-  for (let i = 0; i < n; i++) {
-    const x = a[i];
-    const y = b[i];
-    const paar = i % 3 === 1 ? [y, x] : [x, y];
-    for (const p of paar) if (p !== undefined) aus.push(p);
+  const aus = [...a, ...b];
+  let wert = 20260927;
+  const zufall = (): number => {
+    wert = (wert * 1103515245 + 12345) % 2147483648;
+    return wert / 2147483648;
+  };
+  for (let i = aus.length - 1; i > 0; i--) {
+    const j = Math.floor(zufall() * (i + 1));
+    [aus[i], aus[j]] = [aus[j] as T, aus[i] as T];
   }
   return aus;
 }
@@ -87,7 +92,7 @@ function radar(d: TafelDaten, besucht: readonly string[]): HTMLElement {
     const w = (Math.PI * 2 * i) / n - Math.PI / 2;
     return [mitte + Math.cos(w) * r * f, mitte + Math.sin(w) * r * f];
   };
-  const eigene = d.zeilen.map((_, i) => (d.erlebt[String(i + 1)] ?? []).filter((st) => besucht.includes(st)));
+  const eigene = d.zeilen.map((_, i) => (d.erlebt[String(i + 1)] ?? []).filter((st) => besucht.includes(st)).map((st) => d.namen?.[st] ?? st));
   const wert = (i: number): number => Math.min(3, eigene[i]?.length ?? 0) / 3;
   const ringe = [1 / 3, 2 / 3, 1].map((f) => s('polygon', { class: 'radar-ring', points: d.zeilen.map((_, i) => punkt(i, f).join(',')).join(' ') }));
   const achsen = d.zeilen.map((_, i) => s('line', { class: 'radar-achse', x1: mitte, y1: mitte, x2: punkt(i, 1)[0], y2: punkt(i, 1)[1] }));
@@ -112,7 +117,7 @@ function radar(d: TafelDaten, besucht: readonly string[]): HTMLElement {
     const e = eigene[i] ?? [];
     ersetze(detail, h('h4', { class: 'tafel-titel' }, z[0] ?? ''), e.length > 0 ? h('p', { class: 'tafel-spur' }, elementAus(symbol('haken')), `${WORT.ihreSpur}: ${e.join(', ')}`) : null, detailListe(d.kopf, z, 1));
   };
-  return h('div', { class: 'tafel-radar' }, h('div', { class: 'radar-links' }, svg), h('div', { class: 'radar-rechts' }, h('div', { class: 'radar-liste', role: 'group', 'aria-label': d.kopf[0] ?? '' }, knoepfe), detail));
+  return h('div', { class: 'tafel-radar' }, h('div', { class: 'radar-links' }, svg, h('p', { class: 'radar-legende' }, WORT.legende)), h('div', { class: 'radar-rechts' }, h('div', { class: 'radar-liste', role: 'group', 'aria-label': d.kopf[0] ?? '' }, knoepfe), detail));
 }
 
 /** „Was passiert, wenn …?“: Auslöser wählen, die Kette baut sich auf. */
@@ -124,9 +129,9 @@ function ketten(d: TafelDaten): HTMLElement {
   const waehle = (i: number): void => {
     knoepfe.forEach((b, j) => attr(b, 'aria-pressed', i === j ? 'true' : 'false'));
     const z = d.zeilen[i] ?? [];
-    const teile: [string, string, string][] = [[WORT.wenn, d.kopf[1] ?? '', z[1] ?? ''], [WORT.dann, d.kopf[2] ?? '', z[2] ?? ''], [WORT.mvg, d.kopf[3] ?? '', z[3] ?? '']];
-    ersetze(glieder, teile.map(([wort, kopf, text], j) => h('li', { class: `glied-${j + 1}`, style: `--i:${j}` },
-      h('span', { class: 't-label' }, `${wort} · ${kopf}`), h('p', null, text))));
+    const teile: [string, string][] = [[`${WORT.wenn} · ${d.kopf[1] ?? ''}`, z[1] ?? ''], [`${WORT.dann} · ${d.kopf[2] ?? ''}`, z[2] ?? ''], [d.kopf[3] ?? '', z[3] ?? '']];
+    ersetze(glieder, teile.map(([label, text], j) => h('li', { class: `glied-${j + 1}`, style: `--i:${j}` },
+      h('span', { class: 't-label' }, label), h('p', null, text))));
   };
   waehle(0);
   return h('div', { class: 'tafel-ketten' },
@@ -152,7 +157,8 @@ function schwelle(d: TafelDaten): HTMLElement {
       type: 'button', class: 'schwelle-knopf', 'aria-pressed': 'false', 'data-seite': seite,
       onclick: () => setze(seite),
     }, d.kopf[seite] ?? ''));
-    const el = h('li', { class: 'schwelle-karte', 'data-pruef': `aufgabe-${i + 1}` }, h('p', null, k.text), h('div', { class: 'schwelle-knoepfe', role: 'group', 'aria-label': k.text.slice(0, 60) }, knoepfe), rueck);
+    const textId = `${d.absatz}-aufgabe-${i + 1}`;
+    const el = h('li', { class: 'schwelle-karte', 'data-pruef': `aufgabe-${i + 1}` }, h('p', { id: textId }, k.text), h('div', { class: 'schwelle-knoepfe', role: 'group', 'aria-labelledby': textId }, knoepfe), rueck);
     const setze = (seite: number): void => {
       wahl[i] = seite;
       knoepfe.forEach((b, j) => attr(b, 'aria-pressed', j === seite ? 'true' : 'false'));
@@ -167,7 +173,7 @@ function schwelle(d: TafelDaten): HTMLElement {
   zeigeStand();
   return h('div', { class: 'tafel-schwelle' },
     h('p', { class: 'tafel-hinweis' }, WORT.zuordnen),
-    h('div', { class: 'schwelle-kopf' }, h('span', { class: 'schwelle-seite', 'data-seite': 0 }, d.kopf[0] ?? ''), h('span', { class: 'schwelle-linie' }, WORT.schwelle), h('span', { class: 'schwelle-seite', 'data-seite': 1 }, d.kopf[1] ?? '')),
+    h('div', { class: 'schwelle-kopf' }, h('span', { class: 'schwelle-seite', 'data-seite': 0 }, d.kopf[0] ?? ''), h('span', { class: 'schwelle-linie' }, WORT.grenze), h('span', { class: 'schwelle-seite', 'data-seite': 1 }, d.kopf[1] ?? '')),
     stand,
     h('ol', { class: 'schwelle-karten' }, elemente.map((e) => e.el)),
     h('button', { type: 'button', class: 'knopf knopf-still', 'data-pruef': 'schwelle-aufloesen', onclick: () => elemente.forEach((e) => e.setze()) }, WORT.aufloesen));
@@ -205,7 +211,9 @@ function felder(d: TafelDaten): HTMLElement {
     type: 'button', class: 'felder-schalter-knopf', 'aria-pressed': zustand === 'chaos' ? 'true' : 'false', 'data-pruef': `felder-${zustand}`,
     onclick: () => setze(zustand),
   }, zustand === 'chaos' ? WORT.chaos : WORT.ordnung));
+  const ansicht = h('p', { class: 'felder-ansicht', 'aria-live': 'polite', 'data-pruef': 'felder-ansicht' }, WORT.ansicht(WORT.chaos, d.kopf[iChaos] ?? ''));
   const setze = (zustand: 'chaos' | 'ordnung'): void => {
+    ansicht.textContent = WORT.ansicht(zustand === 'chaos' ? WORT.chaos : WORT.ordnung, d.kopf[zustand === 'chaos' ? iChaos : iOrdnung] ?? '');
     knoepfe.forEach((b) => attr(b, 'aria-pressed', b.getAttribute('data-pruef') === `felder-${zustand}` ? 'true' : 'false'));
     const spalte = zustand === 'chaos' ? iChaos : iOrdnung;
     for (const k of karten) {
@@ -217,6 +225,7 @@ function felder(d: TafelDaten): HTMLElement {
   };
   return h('div', { class: 'tafel-felder' },
     h('div', { class: 'felder-schalter', role: 'group', 'aria-label': `${WORT.chaos} / ${WORT.ordnung}` }, knoepfe),
+    ansicht,
     h('ol', { class: 'felder-karten' }, karten.map((k) => k.el)));
 }
 

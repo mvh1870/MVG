@@ -1241,6 +1241,9 @@ function baueStation(c, rel, ordner, text, regie) {
     }
     if (bl.art === 'vertiefung') {
       if (vertiefungen.some((v) => v.interesse === bl.id)) c.fehler(`${rel}:${k.zeile}`, `Vertiefung „${bl.id}“ doppelt`);
+      if (bl.id === 'express') c.fehler(`${rel}:${k.zeile}`, 'Vertiefung „express“ gibt es nicht (Express ist ein Weg, kein Thema, L-26)');
+      const zitate = (bl.felder.text ?? '').split('class="mvg-zitat"').length - 1;
+      if (zitate !== 1) c.fehler(`${rel}:${k.zeile}`, `Vertiefung „${bl.id}“: genau ein wortgleiches Zitat erwartet, gefunden ${zitate} (L-31)`);
       vertiefungen.push({ interesse: bl.id ?? '', titel: bl.kopf.titel ?? '', html: bl.felder.text ?? '' });
       if (bl.id) c.verweise.push({ art: 'interesse', wert: bl.id, ort: `${rel}:${k.zeile}` });
       continue;

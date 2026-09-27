@@ -110,8 +110,10 @@ export async function lauf(seite, h) {
  */
 async function wendepunkt(seite, h, station) {
   const pruefe = async (name) => {
-    // wie beim Betreten des Schritts: oben (sonst liegt der zuletzt geklickte Knopf halb unter der Fußleiste)
-    await seite.evaluate(() => window.scrollTo(0, 0));
+    // ans Seitenende: dort steht die klebende Fußleiste an ihrem Platz und überdeckt keinen Knopf halb
+    // (axe target-size würde sonst eine Momentaufnahme des Scrollstands melden)
+    await seite.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+    await h.warte(150);
     for (const fund of await seite.evaluate(pruefeLayout)) h.befund(`${name}: ${fund}`);
     await h.axe(name);
     await h.bild(name);
@@ -120,6 +122,7 @@ async function wendepunkt(seite, h, station) {
   await weiter();
   // Radar: die PL hat A1–A6 gespielt → alle acht Symptome erlebt
   await h.erwarte('[data-pruef="tafel-radar"]');
+  if (await seite.locator('[data-pruef="status"]').filter({ visible: true }).count() > 0) h.befund('Wendepunkt zeigt Statusinstrumente (DREHBUCH: kein Status)');
   const erlebt = await seite.locator('.radar-knopf.ist-erlebt').count();
   if (erlebt !== 8) h.befund(`Radar: ${erlebt} von 8 Symptomen als erlebt markiert (erwartet 8 nach A1–A6)`);
   await h.klick('[data-pruef="symptom-4"]');
@@ -140,6 +143,10 @@ async function wendepunkt(seite, h, station) {
   const [r, , g] = (stand.match(/\d+/gu) ?? []).map(Number);
   if (r === undefined || r !== g) h.befund(`Schwelle: nach „Alle zeigen“ nicht alles richtig („${stand}“)`);
   await pruefe('wendepunkt-schwelle');
+  await weiter();
+  // Mandatsleiter als Muster (k4.2-p3), Beträge aus Welt A
+  await h.erwarte('[data-pruef="zitat"]');
+  await pruefe('wendepunkt-mandat');
   await weiter();
   await h.erwarte('[data-pruef="tafel-pyramide"]');
   await h.klick('[data-pruef="stufe-1"]');

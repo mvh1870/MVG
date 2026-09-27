@@ -547,6 +547,10 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
   color: var(--tinte-2);
   white-space: nowrap;
 }
+/* Vier Reiter in schmaler Seitenleiste (P2.3): kleiner und enger gesperrt, damit nichts überläuft */
+@media (max-width: 1199px) {
+  .reiter { padding-inline: 2px; font-size: 13px; letter-spacing: .02em; }
+}
 .reiter:hover { color: var(--navy); }
 .reiter[aria-selected="true"],
 .reiter[aria-pressed="true"] { border-bottom-color: var(--gold-kante); color: var(--navy); }
@@ -735,7 +739,6 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .felder-mehr > summary::after { content: "▸"; margin-left: 4px; transition: transform var(--dauer-kurz, .15s); }
 .felder-mehr[open] > summary::after { transform: rotate(90deg); }
 .felder-mehr > summary:hover { background: var(--flaeche-1); }
-.felder-mehr > summary:focus-visible { outline: 2px solid var(--gold-kante); outline-offset: 2px; }
 .felder-mehr > .felder { margin-top: 6px; }
 .feld { position: relative; min-width: 0; padding: var(--a-3) 14px 14px; border-radius: var(--radius-l); animation: auftauchen var(--dauer-mittel) var(--kurve-pop) both; animation-delay: var(--verzug, 0ms); }
 .feld h3 { display: flex; align-items: center; gap: var(--a-2); margin-bottom: 6px; font: 700 var(--gr-text)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; }
@@ -978,6 +981,7 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .figur .figur-haar { fill: var(--figur-haar, var(--figur-haar-1)); }
 .figur .figur-auge { fill: var(--figur-linie); }
 .figur .figur-mund { fill: none; stroke: var(--figur-linie); stroke-width: 1.4; stroke-linecap: round; }
+.figur .figur-braue { fill: none; stroke: var(--figur-haar, var(--figur-linie)); stroke-width: 1.3; stroke-linecap: round; }
 .figur .figur-brille { fill: none; stroke: var(--figur-brille); stroke-width: 1.2; }
 .figur[data-figur="pl"] { --figur-haut: var(--figur-haut-1); --figur-haar: var(--figur-haar-1); }
 .figur[data-figur="brenner"] { --figur-haut: var(--figur-haut-2); --figur-haar: var(--figur-haar-2); }
@@ -1175,7 +1179,7 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .lph::after { content: ""; position: absolute; left: 3px; right: 3px; bottom: 2px; height: 3px; border-radius: 2px; background: var(--spur); }
 .lph.ist-erledigt { background: var(--navy-soft); box-shadow: none; color: var(--auf-navy); }
 .lph.ist-erledigt b { color: var(--weiss); }
-.lph.ist-erledigt::after { background: var(--welt-farbe, var(--tuerkis)); }
+.lph.ist-erledigt::after { background: var(--welt-farbe, var(--gold-hell)); }
 .lph.ist-aktuell,
 .lph[aria-current="step"] { background: var(--gold-soft); box-shadow: inset 0 0 0 2px var(--gold-kante); color: var(--navy); }
 .lph.ist-aktuell::after,
@@ -1183,9 +1187,10 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 /* Freigabe erteilt (Symbol + Text in der Beschriftung, nicht nur Farbe) */
 .lph .lph-freigabe { position: absolute; top: -5px; right: -3px; display: grid; place-items: center; width: 15px; height: 15px; border-radius: 50%; background: var(--status-gruen); color: var(--weiss); font-size: 10px; box-shadow: 0 0 0 2px var(--weiss); }
 .lph .lph-freigabe .symbol { stroke-width: 3; }
-.auf-navy .lph:not(.ist-erledigt):not(.ist-aktuell):not([aria-current="step"]) { background: var(--navy-2); box-shadow: inset 0 0 0 1px var(--navy-linie); color: var(--auf-navy-2); }
-.auf-navy .lph:not(.ist-erledigt):not(.ist-aktuell):not([aria-current="step"]) b { color: var(--auf-navy); }
-/* In der Story-Karte (schmal, auf Navy): nur Ziffern, Namen für Screenreader und im Titel */
+/* In der Story-Karte (schmal, auf Navy): Ziffern; die aktuelle Phase steht darunter ausgeschrieben */
+.story-karte[data-welt="a"] .lph.ist-erledigt::after { background: var(--koralle); }
+.story-karte[data-welt="b"] .lph.ist-erledigt::after { background: var(--tuerkis); }
+.lph-jetzt { margin-top: 4px; font-size: 12.5px; line-height: 1.3; color: var(--auf-navy-2); }
 .story-karte .lph-band { margin-top: var(--a-2); gap: 2px; }
 .story-karte .lph { padding: 3px 0 6px; background: var(--navy-2); box-shadow: inset 0 0 0 1px var(--navy-linie); color: var(--auf-navy-2); }
 .story-karte .lph b { font-size: 12.5px; color: var(--auf-navy); }
@@ -1193,7 +1198,6 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .story-karte .lph.ist-erledigt b { color: var(--weiss); }
 .story-karte .lph[aria-current="step"] { background: var(--gold-soft); box-shadow: inset 0 0 0 2px var(--gold-kante); }
 .story-karte .lph[aria-current="step"] b { color: var(--navy); }
-.auf-navy .lph::after { background: var(--navy-linie); }
 
 /* =============================================================================================
    20 · Zeitsprung (.jump)
@@ -1757,3 +1761,20 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .quell-absatz table.mvg-original { width: 100%; border-collapse: collapse; font-size: 13px; }
 .quell-absatz table.mvg-original th, .quell-absatz table.mvg-original td { padding: 4px 6px; border-bottom: 1px solid var(--linie); text-align: left; vertical-align: top; }
 .quell-absatz ul.mvg-original { padding-left: 1.1em; list-style: disc; }
+
+/* =============================================================================================
+   Requisiten der Welt A (P3.1): Protokoll und Aktenstapel
+   ============================================================================================= */
+.protokoll { position: relative; margin: 0; padding: 12px 14px 14px 18px; border-radius: var(--radius-s); background: var(--weiss); box-shadow: var(--schatten-karte); transform: rotate(var(--dreh, -.6deg)); }
+.protokoll::before { content: ""; position: absolute; left: 8px; top: 10px; bottom: 10px; width: 2px; background: var(--linie); }
+.protokoll-kopf { display: flex; align-items: baseline; gap: var(--a-2); margin-bottom: 6px; padding-bottom: 6px; border-bottom: 1px dashed var(--linie); }
+.protokoll-kopf b { font: 700 var(--gr-text)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte); }
+.protokoll-kopf small { margin-left: auto; font: 500 12px/1.2 var(--schrift-mono); color: var(--tinte-2); }
+.protokoll-text { font-size: 14.5px; line-height: 1.5; color: var(--tinte); }
+.protokoll-text ul, .protokoll-text ol { padding-left: 1.1em; }
+.akten { display: flex; align-items: flex-end; gap: var(--a-3); margin: 0; }
+.akten-stapel { display: flex; align-items: flex-end; gap: 2px; height: 72px; }
+.akten-stapel i { display: block; width: 14px; height: calc(58px + var(--i, 0) * 1px); border-radius: 2px 2px 1px 1px; background: var(--flaeche-2, var(--linie)); box-shadow: inset 0 -12px 0 var(--linie), inset 0 0 0 1px var(--linie); }
+.akten-stapel i:nth-child(3n) { background: var(--notiz-gelb, var(--flaeche-2)); }
+.akten figcaption { display: grid; gap: 2px; font-size: 14px; line-height: 1.35; color: var(--tinte-2); }
+.akten figcaption b { font: 700 var(--gr-text)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte); }

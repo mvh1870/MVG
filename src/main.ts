@@ -106,6 +106,9 @@ function starteApp(wurzel: HTMLElement): void {
           const ziel = Object.keys(inhalte.stationen).find((id) => id.toLowerCase() === r.station);
           if (ziel !== undefined && ziel !== sitzung.zustand().station) tue({ art: 'geheZu', station: ziel });
         }
+        // Adresszeile auf die tatsächliche Station (auch bei „Weiterlesen“ oder gesperrtem Permalink)
+        const jetzt = sitzung.zustand().station;
+        if (jetzt !== null) history.replaceState(null, '', routeHash({ flaeche: 'story', station: jetzt }));
         flaeche = 'story';
         document.body.dataset['flaeche'] = 'story';
         document.title = `${W.story} · ${TITEL}`;
@@ -134,7 +137,7 @@ function starteApp(wurzel: HTMLElement): void {
       case 'explore': {
         tue({ art: 'wechsleBereich', bereich: 'explore' });
         raeume();
-        const seite = baueExplore({ freigeschaltet: sitzung.zustand().freigeschaltet.explore, version: VERSION });
+        const seite = baueExplore({ inhalte, freigeschaltet: sitzung.zustand().freigeschaltet.explore, version: VERSION });
         ersetze(wurzel, seite);
         window.scrollTo(0, 0);
         (seite.querySelector('.kapitel-titel') as HTMLElement | null)?.focus({ preventScroll: true });

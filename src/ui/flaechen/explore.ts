@@ -9,8 +9,12 @@ import { h } from '../h.ts';
 import { bildmarke } from '../marke.ts';
 import { sym } from '../bausteine/bloecke.ts';
 import { W } from '../woerter.ts';
+import type { OeffentlicheInhalte } from '../../inhalte/typen.ts';
+import { MIMIKEN } from '../../figuren/figur.ts';
+import { inhalt, personFigur } from '../bausteine/inhalt.ts';
 
 export interface ExploreOptionen {
+  inhalte: OeffentlicheInhalte;
   freigeschaltet: boolean;
   version: string;
 }
@@ -32,6 +36,7 @@ export function baueExplore(o: ExploreOptionen): HTMLElement {
           h('span', { class: 'badge ist-folgt' }, E.inVorbereitung),
           h('h2', { class: 'explore-karte-titel' }, w.titel),
           h('p', null, w.text)))),
+        besetzung(o.inhalte),
         h('p', null,
           h('a', { class: 'querverweis', href: '#story', 'data-pruef': 'explore-zur-story' }, h('span', { class: 'querverweis-symbol' }, sym('pfeilRechts')), W.story),
           ' ',
@@ -39,4 +44,20 @@ export function baueExplore(o: ExploreOptionen): HTMLElement {
         h('footer', { class: 'lern-fuss' },
           h('span', null, `${W.start.fuss} · `, h('span', { 'data-pruef': 'version' }, o.version)),
           h('span', { class: 'vermerk-hell', 'data-pruef': 'ungeprueft' }, sym('info'), W.ungeprueft)))));
+}
+
+/** Figurengalerie (P3.1): jede Figur der Fall-Bibel in drei Mimiken, mit Funktion und Stimme. */
+function besetzung(inhalte: OeffentlicheInhalte): HTMLElement | null {
+  const E = W.explore;
+  const figuren = Object.values(inhalte.fall?.figuren ?? {});
+  if (figuren.length === 0) return null;
+  return h('section', { class: 'besetzung-galerie', 'aria-labelledby': 'explore-besetzung', 'data-pruef': 'besetzung' },
+    h('h2', { class: 'lern-abschnitt-titel', id: 'explore-besetzung' }, E.besetzung),
+    h('p', { class: 'kapitel-einstieg' }, E.besetzungText),
+    h('ul', { class: 'besetzung-karten' }, figuren.map((f) => h('li', { class: 'besetzung-karte', 'data-pruef': `figur-${f.id}` },
+      h('div', { class: 'besetzung-gesichter', role: 'group', 'aria-label': f.name },
+        MIMIKEN.map((m) => h('figure', null, personFigur(f.id, 56, inhalte, m), h('figcaption', null, E.mimik[m])))),
+      h('h3', null, f.name),
+      h('p', { class: 'besetzung-funktion' }, f.funktion),
+      f.felder['stimme'] ? h('div', { class: 'besetzung-stimme' }, h('span', { class: 't-label' }, E.stimme), inhalt(f.felder['stimme'])) : null))));
 }

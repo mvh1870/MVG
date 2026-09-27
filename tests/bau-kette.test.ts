@@ -342,7 +342,9 @@ describe('oberflaeche: jedes Fenster wird beobachtet (auch Popups)', () => {
     const ordner = await mkdtemp(path.join(ablage, 'popup-'));
     await writeFile(
       path.join(ordner, 'popup.html'),
-      '<!doctype html><meta charset="utf-8"><title>p</title><script>console.error("Popup-Fehler"); throw new Error("Popup-Wurf");</script>',
+      // Fehler erst auf Klick: wirft das Popup schon beim Laden, kann der Wurf vor dem Anhängen des Beobachters
+      // liegen (gemessen: in der GitHub-Aktion 2026-09-27 einmal verloren) – dann prüfte der Test den Zufall.
+      '<!doctype html><meta charset="utf-8"><title>p</title><button onclick="console.error(\'Popup-Fehler\'); setTimeout(() => { throw new Error(\'Popup-Wurf\'); })">los</button>',
       'utf8',
     );
     await writeFile(
@@ -360,7 +362,8 @@ describe('oberflaeche: jedes Fenster wird beobachtet (auch Popups)', () => {
         async lauf(seite) {
           const [popup] = await Promise.all([seite.waitForEvent('popup'), seite.click('button')]);
           await popup.waitForLoadState('load');
-          await popup.waitForTimeout(200);
+          await popup.click('button');
+          await popup.waitForTimeout(300);
         },
       },
       { breite: 800, hoehe: 600 },

@@ -42,6 +42,26 @@ export async function lauf(seite, h) {
   await h.erwarte('[data-pruef^="rolle-"], [data-pruef="weiter"]');
 
   await jedeRolle(seite, h);
+
+  // Adresszeile zeigt den Stations-Permalink (L-25); Welt B bleibt vor der Freischaltung gesperrt
+  const hashJetzt = () => seite.evaluate(() => location.hash);
+  if ((await hashJetzt()) !== '#story/A3') h.befund(`Adresszeile in A3: ${await hashJetzt()}`);
+  await seite.evaluate(() => { location.hash = '#story/B3'; });
+  await h.warte(400);
+  if ((await hashJetzt()) !== '#story/A3') h.befund(`#story/B3 vor der Freischaltung: Adresse ${await hashJetzt()} statt #story/A3`);
+  await h.erwarte('[data-pruef="konsequenz"]');
+
+  // Weiterlesen (E9) nach Neuladen: dieselbe Station, derselbe Schritt
+  await seite.reload({ waitUntil: 'load' });
+  await h.erwarte('[data-pruef="konsequenz"]');
+  if ((await hashJetzt()) !== '#story/A3') h.befund(`nach dem Neuladen: ${await hashJetzt()}`);
+
+  // Permalink mit gewählter Rolle springt zur Station: über die Startseite zurück zur Story, dann #story/A3
+  await seite.evaluate(() => { location.hash = '#theorie'; });
+  await h.erwarte('[data-pruef="kapitel-liste"]');
+  await seite.evaluate(() => { location.hash = '#story/A3'; });
+  await h.erwarte('[data-pruef="leitstand"]');
+  if ((await hashJetzt()) !== '#story/A3') h.befund(`Permalink #story/A3 mit Rolle: ${await hashJetzt()}`);
 }
 
 /** Jede der sechs Rollen ist startbar (P2.5): Prolog → Rolle → A3 → Wahl A → Konsequenz. */

@@ -33,6 +33,11 @@ export const AUSSEHEN: Readonly<Record<string, Aussehen>> = {
   hoffmeister: { frisur: 'dutt', haut: 4, haar: 4 },
   olbers: { frisur: 'bob', haut: 5, haar: 5, brille: true },
   deppe: { frisur: 'seite', haut: 6, haar: 6 },
+  // weitere Figuren der Fall-Bibel (P1.2, L-17)
+  stein: { frisur: 'kurz', haut: 4, haar: 6, brille: true },
+  petersen: { frisur: 'lang', haut: 1, haar: 4 },
+  roth: { frisur: 'dutt', haut: 6, haar: 3 },
+  kowalski: { frisur: 'seite', haut: 2, haar: 5, brille: true },
 };
 
 const NEUTRAL: Aussehen = { frisur: 'kurz', haut: 1, haar: 6 };
@@ -53,15 +58,30 @@ const BRILLE = '<g class="figur-brille"><circle cx="28" cy="28" r="3.3"/><circle
 
 let zaehler = 0;
 
+/** Mimik (P3.1, docs/STIL.md): Mund und Brauen im selben Klassenvertrag. */
+export type Mimik = 'neutral' | 'besorgt' | 'erleichtert';
+
+export const MIMIKEN: readonly Mimik[] = ['neutral', 'besorgt', 'erleichtert'];
+
+/** Mund-Pfad und Brauen je Mimik (Brauen nur, wo sie etwas sagen). */
+const GESICHT: Readonly<Record<Mimik, { mund: string; brauen: string }>> = {
+  neutral: { mund: 'M28.6 33.2Q32 35.8 35.4 33.2', brauen: '' },
+  besorgt: { mund: 'M28.8 34.8Q32 32.6 35.2 34.8', brauen: '<path class="figur-braue" d="M25.6 24.6 29.6 23.4"/><path class="figur-braue" d="M38.4 24.6 34.4 23.4"/>' },
+  erleichtert: { mund: 'M28 32.6Q32 37.2 36 32.6', brauen: '<path class="figur-braue" d="M25.8 23.2Q27.8 22 29.8 23.2"/><path class="figur-braue" d="M34.2 23.2Q36.2 22 38.2 23.2"/>' },
+};
+
 export interface FigurOptionen {
   /** Rollen-Attribut des Stils (gf, bh, pl, ps, plan, ctl) oder null (neutral) */
   rolle: string | null;
   groesse: number;
+  /** Vorgabe: neutral */
+  mimik?: Mimik;
 }
 
 /** Figur als SVG-Zeichenkette (für Vorlagen, die als HTML entstehen). */
 export function figurSvg(id: string, o: FigurOptionen): string {
   const a = AUSSEHEN[id] ?? NEUTRAL;
+  const g = GESICHT[o.mimik ?? 'neutral'];
   const [hinten, vorn, zusatz] = FRISUREN[a.frisur];
   zaehler += 1;
   const clip = `figur-clip-${zaehler}`;
@@ -71,6 +91,7 @@ export function figurSvg(id: string, o: FigurOptionen): string {
     `data-figur="${id.replace(/[^a-z0-9-]/gi, '')}"`,
     `data-haut="${a.haut}"`,
     `data-haar="${a.haar}"`,
+    `data-mimik="${o.mimik ?? 'neutral'}"`,
     a.mundHell ? 'data-mund="hell"' : '',
     `width="${o.groesse}"`,
     `height="${o.groesse}"`,
@@ -86,7 +107,7 @@ export function figurSvg(id: string, o: FigurOptionen): string {
     + '<rect class="figur-hals" x="28" y="35" width="8" height="10" rx="3"/>'
     + `<ellipse class="figur-haut" cx="32" cy="27" rx="10.6" ry="12"/>${vorn}`
     + '<circle class="figur-auge" cx="28" cy="28" r="1.35"/><circle class="figur-auge" cx="36" cy="28" r="1.35"/>'
-    + `<path class="figur-mund" d="M28.6 33.2Q32 35.8 35.4 33.2"/>${zusatz}${a.brille ? BRILLE : ''}`
+    + `<path class="figur-mund" d="${g.mund}"/>${g.brauen}${zusatz}${a.brille ? BRILLE : ''}`
     + '<rect class="figur-schild" x="38.5" y="51" width="11" height="6.5" rx="1.3"/>'
     + '<rect class="figur-schild-linie" x="40.3" y="53.4" width="7.4" height="1.7" rx=".85"/>'
     + '</g></svg>';

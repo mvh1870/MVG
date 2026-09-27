@@ -77,6 +77,8 @@ test('Graph: Schrittfolge je Rolle, nächste Station mit Bedingung, Reihenfolge'
   assert.equal(naechsteStation(a1, basis(), m), 'v');
   assert.equal(naechsteStation(a1, { ...basis(), entscheidungen: { 'a1/pl': 'D' } }, m), 'b1');
   assert.equal(naechsteStation(b1, basis(), m), null, 'Ende');
+  b1.weiter = [{ ziel: 'a1', wenn: null }];
+  assert.equal(naechsteStation(b1, basis(), m), null, 'ein Ende hält an, auch wenn es Kanten hat');
   assert.deepEqual(stationsFolge(testModell()), ['p', 'a1', 'v', 'b1']);
 });
 

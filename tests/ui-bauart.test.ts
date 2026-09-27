@@ -313,10 +313,14 @@ test('Leitstand: Sprunglink, Reiter nach dem Tabs-Muster, modale Rollen-Linse, G
     assert.equal(el.getAttribute('data-seitenleiste'), 'offen');
 
     // Touch (P2.3): Antippen öffnet, erneutes Antippen schließt; ein Tipp daneben schließt auch
+    // Echte Ereignisfolge beim Antippen: pointerdown (touch) → mouseover → focusin → click
     const tippe = (ziel: Element): void => {
-      const ev = new dom.window.MouseEvent('click', { bubbles: true, cancelable: true });
-      Object.defineProperty(ev, 'pointerType', { value: 'touch' });
-      ziel.dispatchEvent(ev);
+      const druck = new dom.window.MouseEvent('pointerdown', { bubbles: true });
+      Object.defineProperty(druck, 'pointerType', { value: 'touch' });
+      ziel.dispatchEvent(druck);
+      ziel.dispatchEvent(new dom.window.MouseEvent('mouseover', { bubbles: true }));
+      if (ziel instanceof dom.window.HTMLElement && ziel.matches('[data-pruef="glossar-begriff"]')) ziel.dispatchEvent(new dom.window.FocusEvent('focusin', { bubbles: true }));
+      ziel.dispatchEvent(new dom.window.MouseEvent('click', { bubbles: true, cancelable: true }));
     };
     tippe(begriff);
     assert.equal(tipp.hidden, false, 'Antippen öffnet');
@@ -327,6 +331,17 @@ test('Leitstand: Sprunglink, Reiter nach dem Tabs-Muster, modale Rollen-Linse, G
     tippe(begriff);
     tippe(el.querySelector('.tafel-kopf') ?? el);
     assert.equal(tipp.hidden, true, 'Tipp daneben schließt');
+
+    // Tastatur: Fokus öffnet; die Definition ist wörtlich die des Glossars (V1.2)
+    begriff.dispatchEvent(new dom.window.FocusEvent('focusin', { bubbles: true }));
+    assert.equal(tipp.hidden, false, 'Fokus öffnet den Hinweis');
+    const { inhalte: alle } = await import('../src/inhalte/index.ts');
+    const g = alle.glossar[begriff.getAttribute('data-glossar') ?? ''];
+    assert.ok(g !== undefined);
+    assert.ok((tipp.textContent ?? '').includes(g.definition), 'Definition wörtlich aus dem Glossar');
+    const wp = JSON.parse(readFileSync(join(WURZEL, 'quellen/whitepaper/v1.2/whitepaper.json'), 'utf8')) as { glossar: { id: string; definition: string }[] };
+    assert.equal(wp.glossar.find((x) => x.id === g.id)?.definition, g.definition, 'Glossar in inhalte.json = whitepaper.json');
+    tipp.hidden = true;
 
     // Quellenfenster (P2.3): Reiter „Quellen“ zeigt die Absätze der Station wörtlich, mit Kapitel und Absatz-ID
     reiter[3]?.click();

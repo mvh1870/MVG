@@ -196,6 +196,18 @@ function wendeStation(
 }
 
 /**
+ * Der Weg, über den der Status gerechnet wird: jede Station einmal (erster Besuch), bis zur aktuellen
+ * Station. Sprünge (`geheZu`, Regie, Permalink) hängen eine Station erneut an den Verlauf; ohne diese
+ * Bereinigung zählte das Spur-Delta ihre Wahl doppelt, und der Stand hinge vom Sprungweg ab.
+ */
+export function wegBis(verlauf: readonly string[]): string[] {
+  const weg: string[] = [];
+  for (const id of verlauf) if (!weg.includes(id)) weg.push(id);
+  const jetzt = verlauf[verlauf.length - 1];
+  return jetzt === undefined ? weg : weg.slice(0, weg.indexOf(jetzt) + 1);
+}
+
+/**
  * Status beider Welten aus dem Verlauf: je Station `status-start` (plus Nachwirkung der bisherigen
  * Wahlen dieser Welt, je Wert höchstens ±1, L-21), dann angeforderte Informationen, dann die Wahl der
  * gespielten Rolle. Eine Station ohne `status-start` rechnet mit dem Stand ihrer Welt weiter (L-19).
@@ -204,7 +216,7 @@ function wendeStation(
 export function berechneStatus(z: StatusQuelle, modell: StoryModell): { A: Status | null; B: Status | null } {
   const erg: { A: Status | null; B: Status | null } = { A: null, B: null };
   const delta: { A: Delta; B: Delta } = { A: {}, B: {} };
-  for (const id of z.verlauf) {
+  for (const id of wegBis(z.verlauf)) {
     const st = modell.stationen[id];
     if (st === undefined) continue;
     if (st.vergleich !== null) {

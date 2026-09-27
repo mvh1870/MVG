@@ -50,7 +50,7 @@ export const W = {
   /** LPH-Band (O-14): Beschriftung für Screenreader */
   lphBand: 'Leistungsphasen LPH 0–9',
   lphJetzt: 'aktuell',
-  lphAbgeschlossen: 'abgeschlossen',
+  lphAbgeschlossen: 'zurückliegend',
   station: 'Station',
   monat: 'Monat',
   rolle: 'Rolle',
@@ -140,7 +140,7 @@ export const W = {
     tasten: 'Tasten: ← → blättern · A–D wählen · Esc schließt',
     einklappen: 'Einklappen',
     neu: 'Neu',
-    glossarHinweis: 'Unterstrichene Begriffe auf der Lagetafel zeigen ihre Definition bei Mausberührung oder Tastaturfokus.',
+    glossarHinweis: 'Unterstrichene Begriffe auf der Lagetafel zeigen ihre Definition bei Mausberührung, Antippen oder Tastaturfokus.',
     ebenenHinweis: 'Schritt für Schritt tiefer – von der Kernaussage bis zum Originaltext.',
     keineEbenen: 'An dieser Station gibt es noch keine Ebenen.',
     quelle: 'Definitionen wörtlich aus dem Glossar des Whitepapers.',
@@ -187,6 +187,10 @@ export const W = {
     gesperrt: 'Nach dem Ende der Geschichte',
     inVorbereitung: 'in Vorbereitung',
     selbstAusprobieren: 'Selbst ausprobieren',
+    besetzung: 'Die Besetzung des Falls',
+    besetzungText: 'Zehn Figuren, drei Gesichter: gelassen, besorgt, erleichtert. Die Stimmen stehen in der Fall-Bibel.',
+    mimik: { neutral: 'gelassen', besorgt: 'besorgt', erleichtert: 'erleichtert' },
+    stimme: 'Stimme',
     werkzeuge: [
       { id: 'simulator', titel: 'Szenario-Simulator', text: 'Kostenabweichung, Terminabweichung, Risiken und Entscheidungsstatus eingeben – Eskalationsstufe, Informationsbedarf und Freigabeweg ablesen.' },
       { id: 'welten', titel: 'Vorher/Nachher-Welten', text: 'Informationswege, Rollen, Entscheidungen, Eskalationen, Register, Reporting und Gremien in Welt A und Welt B nebeneinander.' },

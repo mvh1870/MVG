@@ -82,12 +82,22 @@ export function installiereTooltips(wurzel: HTMLElement, inhalte: OeffentlicheIn
   };
   // Touch (P2.3): Antippen zeigt den Hinweis, erneutes Antippen desselben Begriffs oder ein Tipp
   // daneben schließt ihn. Ein Tipp in den Hinweis selbst lässt ihn offen.
+  // Auf echten Geräten kommen vor dem click Ersatz-Ereignisse (mouseover, focusin), die den Hinweis
+  // schon öffnen. Deshalb merkt sich pointerdown, ob er beim Antippen bereits für diesen Begriff offen war.
+  let tippenBeiOffen: HTMLElement | null = null;
+  let letzterZeiger = '';
+  const beiDruck = (e: PointerEvent): void => {
+    letzterZeiger = e.pointerType;
+    tippenBeiOffen = !tipp.hidden ? fuer : null;
+  };
   const beiKlick = (e: Event): void => {
     const b = begriffVon(e.target);
+    const touch = letzterZeiger === 'touch' || (e as PointerEvent).pointerType === 'touch';
     if (b !== null) {
-      if (b === fuer && !tipp.hidden && (e as PointerEvent).pointerType === 'touch') schliesse();
+      if (touch && tippenBeiOffen === b) schliesse();
       else zeige(b);
     } else if (fuer !== null && !(e.target instanceof Node && tipp.contains(e.target))) schliesse();
+    tippenBeiOffen = null;
   };
   const beiTaste = (e: KeyboardEvent): void => {
     if ((e.key === 'Escape' || e.key === 'Esc') && fuer !== null && !tipp.hidden) {
@@ -104,6 +114,7 @@ export function installiereTooltips(wurzel: HTMLElement, inhalte: OeffentlicheIn
   wurzel.addEventListener('mouseover', beiMaus);
   wurzel.addEventListener('mouseleave', schliesseGleich);
   wurzel.addEventListener('focusin', beiFokus);
+  wurzel.addEventListener('pointerdown', beiDruck);
   wurzel.addEventListener('click', beiKlick);
   tipp.addEventListener('mouseenter', abbrechen);
   tipp.addEventListener('mouseleave', schliesseGleich);
@@ -117,6 +128,7 @@ export function installiereTooltips(wurzel: HTMLElement, inhalte: OeffentlicheIn
       wurzel.removeEventListener('mouseover', beiMaus);
       wurzel.removeEventListener('mouseleave', schliesseGleich);
       wurzel.removeEventListener('focusin', beiFokus);
+      wurzel.removeEventListener('pointerdown', beiDruck);
       wurzel.removeEventListener('click', beiKlick);
       document.removeEventListener('keydown', beiTaste, true);
       document.removeEventListener('scroll', beiRollen, true);

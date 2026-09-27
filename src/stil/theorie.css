@@ -303,3 +303,14 @@ q.mvg-zitat { font-weight: 500; }
 .explore-karte { display: flex; flex-direction: column; align-items: flex-start; gap: var(--a-2); min-width: 0; padding: var(--a-4); border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
 .explore-karte-titel { font: 700 var(--gr-l)/1.2 var(--schrift-label); letter-spacing: .02em; color: var(--tinte); }
 .explore-karte p { font-size: var(--gr-text); line-height: 1.45; color: var(--tinte-2); }
+
+/* Besetzung (P3.1): Figurengalerie auf der Explore-Seite */
+.besetzung-galerie { margin: 0 0 var(--a-5); }
+.besetzung-karten { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--a-3); margin-top: var(--a-3); padding: 0; list-style: none; }
+.besetzung-karte { display: grid; gap: 6px; align-content: start; min-width: 0; padding: var(--a-4); border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
+.besetzung-gesichter { display: flex; gap: var(--a-2); }
+.besetzung-gesichter figure { display: grid; justify-items: center; gap: 2px; margin: 0; }
+.besetzung-gesichter figcaption { font: 600 12px/1.2 var(--schrift-label); letter-spacing: .04em; text-transform: uppercase; color: var(--tinte-2); }
+.besetzung-karte h3 { font: 700 var(--gr-l)/1.2 var(--schrift-label); color: var(--tinte); }
+.besetzung-funktion { font-size: var(--gr-text); color: var(--tinte-2); }
+.besetzung-stimme { font-size: 14.5px; line-height: 1.45; color: var(--tinte); }

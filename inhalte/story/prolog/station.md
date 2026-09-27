@@ -37,7 +37,7 @@ titel: Was interessiert Sie besonders?
 kurz: Interessen
 knopf: Projekt übernehmen
 ---
-Ihre Auswahl bestimmt, welche Vertiefungen die Geschichte zusätzlich anbietet. Sie können den Schritt auch überspringen.
+Die Geschichte merkt sich Ihre Auswahl; die Vertiefungen dazu entstehen mit den weiteren Stationen. Sie können den Schritt auch überspringen.
 
 ::: interesse kosten
 ---

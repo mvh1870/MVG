@@ -74,6 +74,9 @@ const ARTEN = {
   chat: { in: ['schritt'], kennung: 'keine', kopf: { von: { typ: 'kennung', pflicht: true }, zeit: { typ: 'text' } }, felder: ['text'], pflichtFelder: ['text'] },
   anruf: { in: ['schritt'], kennung: 'keine', kopf: { von: { typ: 'kennung', pflicht: true }, zeit: { typ: 'text' } }, felder: ['text'] },
   notiz: { in: ['schritt'], kennung: 'keine', kopf: { farbe: { typ: 'wahl', werte: ['gelb', 'rosa', 'lila', 'limette'] }, symbol: { typ: 'text' } }, felder: ['text'], pflichtFelder: ['text'] },
+  // Requisiten der Welt A (P3.1): Protokoll (Blatt mit Punkten) und Aktenstapel (Ordner mit Beschriftung)
+  protokoll: { in: ['schritt'], kennung: 'keine', kopf: { titel: { typ: 'text', pflicht: true }, datum: { typ: 'text' }, von: { typ: 'kennung' } }, felder: ['text'], pflichtFelder: ['text'] },
+  akten: { in: ['schritt'], kennung: 'keine', kopf: { beschriftung: { typ: 'text', pflicht: true }, anzahl: { typ: 'zahl', min: 1, max: 12 } }, felder: ['text'] },
   datei: { in: ['schritt'], kennung: 'keine', kopf: { name: { typ: 'text', pflicht: true }, quelle: { typ: 'text' }, wert: { typ: 'text' } }, felder: ['text'] },
   bekannt: { in: ['schritt'], kennung: 'keine', felder: ['text'], pflichtFelder: ['text'] },
   unbekannt: { in: ['schritt'], kennung: 'keine', felder: ['text'], pflichtFelder: ['text'] },
@@ -1627,14 +1630,6 @@ export async function kompiliere(optionen = {}) {
 }
 
 /**
- * @param {Kompilierer} c
- * @param {Quelle | null} quelle
- * @param {Record<string, unknown> | null} roh
- * @param {Record<string, any>} stationen
- * @param {Record<string, any>} theorie
- * @param {boolean} pruefe
- */
-/**
  * Quellenfenster (P2.3): der Originaltext jedes Absatzes, auf den eine Station verweist
  * („whitepaper-bezug“), wörtlich aus whitepaper.json, mit Abschnitt für die Zitierangabe.
  * @param {Kompilierer} c @param {any} quelle @param {Record<string, any>} stationen
@@ -1671,6 +1666,14 @@ function lphPhasen(quelle) {
   return aus;
 }
 
+/**
+ * @param {Kompilierer} c
+ * @param {Quelle | null} quelle
+ * @param {Record<string, unknown> | null} roh
+ * @param {Record<string, any>} stationen
+ * @param {Record<string, any>} theorie
+ * @param {boolean} pruefe
+ */
 function baueAbdeckung(c, quelle, roh, stationen, theorie, pruefe) {
   const rel = 'inhalte/abdeckung.yaml';
   /** @type {Record<string, { theorie: string[], story: string[] }>} */

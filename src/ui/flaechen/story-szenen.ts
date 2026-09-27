@@ -150,6 +150,7 @@ function einstieg(k: SzenenKontext): Szene {
   const mails = k.schritt.bloecke.filter((b) => b.art === 'mail');
   const chats = k.schritt.bloecke.filter((b) => b.art === 'chat' || b.art === 'anruf');
   const notizen = k.schritt.bloecke.filter((b) => b.art === 'notiz');
+  const requisiten = k.schritt.bloecke.filter((b) => b.art === 'protokoll' || b.art === 'akten');
   const woerter = { eingang: W.posteingang, neu: W.neu, betreff: W.betreff, anhang: W.anhang };
   const faeden = [
     'M25 22 C 50 42, 50 58, 75 72', 'M75 28 C 43 45, 57 52, 25 68', 'M25 22 C 37 2, 67 0, 75 28',
@@ -158,7 +159,8 @@ function einstieg(k: SzenenKontext): Szene {
   return szene(h('div', { class: 'einstieg' },
     h('div', { class: 'einstieg-feed' },
       mails.map((b, i) => h('div', { class: 'anim-auftauchen', style: `--verzug:${80 + i * 200}ms` }, B.mail(b, k.inhalte, woerter))),
-      chats.map((b, i) => B.chat(b, k.inhalte, 700 + i * 300))),
+      chats.map((b, i) => B.chat(b, k.inhalte, 700 + i * 300)),
+      requisiten.map((b, i) => (b.art === 'protokoll' ? B.protokoll(b, 900 + i * 200) : B.akten(b, 900 + i * 200)))),
     notizen.length > 0 ? h('div', { class: 'pinnwand', role: 'group', 'aria-label': W.randnotizen },
       h('span', { class: 'pinnwand-label t-label', 'aria-hidden': 'true' }, W.randnotizen),
       s('svg', { class: 'faeden', viewBox: '0 0 100 100', preserveAspectRatio: 'none', 'aria-hidden': 'true' },
@@ -753,7 +755,7 @@ function inhaltsSzene(k: SzenenKontext): Szene {
     default:
       break;
   }
-  if (arten.has('mail') || arten.has('chat') || arten.has('notiz')) return einstieg(k);
+  if (arten.has('mail') || arten.has('chat') || arten.has('notiz') || arten.has('protokoll') || arten.has('akten')) return einstieg(k);
   if (arten.has('kette')) return signal(k);
   if (arten.has('datenstand')) return datenstandTeil(k);
   if (arten.has('mandatsleiter')) return mandatTeil(k);

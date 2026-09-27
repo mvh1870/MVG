@@ -9,7 +9,7 @@
  */
 
 import { vonHtml } from '../h.ts';
-import { figur } from '../../figuren/figur.ts';
+import { figur, type Mimik } from '../../figuren/figur.ts';
 import { rollenAttr } from '../anzeige.ts';
 import type { OeffentlicheInhalte } from '../../inhalte/typen.ts';
 
@@ -53,9 +53,9 @@ export function inhaltInline(html: string): DocumentFragment {
 }
 
 /** Figur einer Kennung aus fall.md in ihrer Rollenfarbe. */
-export function personFigur(id: string, groesse: number, inhalte: OeffentlicheInhalte): SVGSVGElement {
+export function personFigur(id: string, groesse: number, inhalte: OeffentlicheInhalte, mimik: Mimik = 'neutral'): SVGSVGElement {
   const f = inhalte.fall?.figuren[id] ?? null;
-  return figur(id, { rolle: rollenAttr(f?.rolle ?? null), groesse });
+  return figur(id, { rolle: rollenAttr(f?.rolle ?? null), groesse, mimik });
 }
 
 /** Name einer Figur (oder die Kennung, wenn es sie nicht gibt). */

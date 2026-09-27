@@ -52,8 +52,9 @@ export function erzeugeKarte(inhalte: OeffentlicheInhalte, beiSchritt: ((index: 
   const meta = h('div', { class: 'karte-meta' });
   const liste = h('ol', { class: 'zeitleiste' });
   const band = h('ol', { class: 'lph-band', 'aria-label': woerter.lphBand, 'data-pruef': 'lph-band' });
+  const lphJetzt = h('p', { class: 'lph-jetzt', 'aria-hidden': 'true', 'data-pruef': 'lph-jetzt' });
   const element = h('nav', { class: 'story-karte', 'aria-label': woerter.karte, 'data-pruef': 'story-karte' },
-    h('div', { class: 'karte-kopf' }, h('div', { class: 'karte-kicker' }, woerter.karte), jetzt, meta, band),
+    h('div', { class: 'karte-kopf' }, h('div', { class: 'karte-kicker' }, woerter.karte), jetzt, meta, band, lphJetzt),
     liste);
   const folge = inhalte.stationsFolge.map((id) => inhalte.stationen[id]).filter((st): st is Station => st !== undefined);
   const lauf = spuren(folge);
@@ -64,6 +65,7 @@ export function erzeugeKarte(inhalte: OeffentlicheInhalte, beiSchritt: ((index: 
       const st = z.station !== null ? inhalte.stationen[z.station] ?? null : null;
       const welt = st?.vergleich !== null && st !== null ? (z.vergleich >= 0.5 ? 'b' : 'ab') : tafelWelt(st) ?? 'a';
       jetzt.setAttribute('data-welt', welt);
+      element.setAttribute('data-welt', welt);
       ersetze(jetzt, h('span', { class: 'led schleife' }), h('span', null, h('b', null, welt === 'b' ? 'Welt B' : welt === 'ab' ? 'Welt A ⟷ B' : 'Welt A')));
       const rolle = z.rolle !== null ? inhalte.rollen[z.rolle]?.kurztitel ?? z.rolle : null;
       const nr = /(\d+)$/.exec(st?.id ?? '')?.[1];
@@ -74,6 +76,9 @@ export function erzeugeKarte(inhalte: OeffentlicheInhalte, beiSchritt: ((index: 
       // LPH-Band: Stand der aktuellen Station, sonst der letzten besuchten mit LPH (Wendepunkt, Enden)
       const lph = lphStand(z, inhalte);
       band.hidden = lph === null || inhalte.whitepaper.lph.length === 0;
+      lphJetzt.hidden = band.hidden;
+      const phase = inhalte.whitepaper.lph.find((p) => p.nr === lph);
+      lphJetzt.textContent = phase !== undefined ? `LPH ${phase.nr} · ${phase.name}` : '';
       band.replaceChildren(...inhalte.whitepaper.lph.map((p) => {
         const zustand = lph === null ? '' : p.nr < lph ? ' ist-erledigt' : '';
         const jetztHier = p.nr === lph;

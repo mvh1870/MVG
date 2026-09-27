@@ -6,7 +6,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
 import type { ModellStation, StoryModell, WirkEintrag } from '../src/engine/typen.ts';
-import { SPUR_GRENZE, berechneStatus } from '../src/engine/status.ts';
+import { SPUR_GRENZE, berechneStatus, wegBis } from '../src/engine/status.ts';
 
 const setze = (schluessel: WirkEintrag['schluessel'], wert: WirkEintrag['wert']): WirkEintrag => ({ schluessel, art: 'setze', wert, hinweis: null });
 const aendere = (schluessel: WirkEintrag['schluessel'], wert: number): WirkEintrag => ({ schluessel, art: 'aendere', wert, hinweis: null });
@@ -35,6 +35,7 @@ const modell: StoryModell = {
     }),
     a2: station('a2', start(1, 'hoch', 6, 3, 'hoch'), { x: [], mehr: [aendere('ungeklaerteEntscheidungen', 1)] }),
     w: station('w', null, { a: [setze('entscheidungsfaehigkeit', 3)], b: [aendere('offeneRisiken', -2)] }),
+    a3: station('a3', start(1, 'hoch', 6, 3, 'hoch'), { schlecht: [aendere('offeneRisiken', 3)] }),
   },
 };
 
@@ -78,13 +79,23 @@ test('L-19: eine Station ohne status-start rechnet mit dem Stand ihrer Welt weit
   assert.equal(b?.offeneRisiken, 4, 'w setzt nicht zurück, sondern ändert den laufenden Stand (6 − 2)');
 });
 
-test('Mutanten-Probe: ohne Kappung, ohne Nachwirkung oder mit Rücksetzen in w fiele ein Test', () => {
-  // Die erwarteten Zahlen oben unterscheiden alle drei Mutanten:
-  //  – ohne Kappung: EF nach „gut“ wäre 3 statt 2, Risiken nach „schlecht“ 9 statt 7;
-  //  – ohne Nachwirkung: EF nach „gut“ wäre 1 (= Start);
-  //  – Rücksetzen in w: ohne Startstand gäbe es keinen Stand oder den neutralen (EF 3, Risiken 0).
-  const gut = lauf({ 'a1/pl': 'gut' });
-  assert.notEqual(gut?.entscheidungsfaehigkeit, 3);
-  assert.notEqual(gut?.entscheidungsfaehigkeit, 1);
-  assert.notEqual(lauf({ 'a1/pl': 'neutral' }, ['a1', 'a2', 'w'])?.offeneRisiken, 0);
+test('Spur-Delta: zwei gleichgerichtete Wahlen hintereinander wirken zusammen höchstens ±1 nach', () => {
+  // a1 schlecht (+3 Risiken) → a2 Start 6 +1 = 7; Wahl in a2 bewegt Risiken nicht; a3 schlecht: Start 6 + gekappt 1 = 7, dann +3 = 10
+  const s = lauf({ 'a1/pl': 'schlecht', 'a2/pl': 'x', 'a3/pl': 'schlecht' }, ['a1', 'a2', 'a3']);
+  assert.equal(s?.offeneRisiken, 10);
+  // Eine vierte Station mit Startstand sähe nur +1, nicht +2 oder +4 – die innere Kappung
+  const vier = berechneStatus({ verlauf: ['a1', 'a2', 'a3', 'a2'], rolle: 'pl', entscheidungen: { 'a1/pl': 'schlecht', 'a2/pl': 'x', 'a3/pl': 'schlecht' }, info: [] }, modell).A;
+  assert.equal(vier?.offeneRisiken, 7, 'Rücksprung auf a2 zeigt den Stand von a2, nicht einen aufgelaufenen');
+});
+
+test('Sprünge (geheZu, Regie, Permalink): eine Station zweimal im Verlauf zählt einmal', () => {
+  assert.deepEqual(wegBis(['a1', 'a2', 'a1']), ['a1']);
+  assert.deepEqual(wegBis(['a1', 'a2', 'a3', 'a2']), ['a1', 'a2']);
+  assert.deepEqual(wegBis(['a1', 'a2']), ['a1', 'a2']);
+  assert.deepEqual(wegBis([]), []);
+  const einmal = lauf({ 'a1/pl': 'gut' }, ['a1']);
+  const zurueck = lauf({ 'a1/pl': 'gut' }, ['a1', 'a2', 'a1']);
+  assert.deepEqual(zurueck, einmal, 'derselbe Stand, egal über welchen Sprungweg');
+  const hin = lauf({ 'a1/pl': 'gut' }, ['a1', 'a2']);
+  assert.deepEqual(lauf({ 'a1/pl': 'gut' }, ['a1', 'a2', 'a1', 'a2']), hin);
 });

@@ -20,24 +20,26 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P1.2 (e4a3e6c) · Fall-Bibel `inhalte/fall.md`: Stadt, GML, Projekt, Zahlen, Zeitachse Monat 0–12 mit LPH-Stand, Gremien und Takte, alle Figuren mit Stimme — Abnahme: widerspruchsfrei zu O-3, L-5, Whitepaper (Mandatsleiter, Rhythmus, Register).
 - [x] P1.3 (a58be26) · Stationsgerüst `docs/DREHBUCH.md`: Prolog, A1–A6, Wendepunkt, Rückspulen, B1–B6, Wirklichkeit, 3 Enden, Epilog – je Ereignis, Kapitelbezug, Statusverlauf A/B, Dauer — Abnahme: Hauptpfad 25–35 Min, Express ~12 Min, alle 13 Kapitel berührt.
 - [x] P1.4 (45e5da6) · Entscheidungsgraph: je Station × Rolle Entscheidung, Optionen, Konsequenz (4 Felder), Statuswirkung, Gedächtnis-Bezüge; Enden-Logik — als Inhaltsdateien nach `docs/INHALTSFORMAT.md` (Texte dürfen hier noch Rohfassung sein) — Abnahme: Graph-Prüfer grün (erreichbar, keine Sackgassen, alle Rollen, alle Enden).
-- [x] P1.5 · Prüf-Agenten Drehbuch (Fachtreue, Begriffe, Dramaturgie) + Korrekturen — Abnahme: keine offenen Befunde.
+- [x] P1.5 (93890fd) · Prüf-Agenten Drehbuch (Fachtreue, Begriffe, Dramaturgie) + Korrekturen — Abnahme: keine offenen Befunde.
 
 ### P2 · Engine & Rahmen
-- [x] P2.1 · Engine vollständig: Graph, Bedingungen, Gedächtnis, Enden, Weiterlesen (E9), Zustands-Version, Station ohne `status-start` übernimmt den Stand ihrer Welt (L-19) — Abnahme: Einheitentests inkl. Mutanten-Probe.
-- [x] P2.2 · Leitstand-Rahmen mit schrittweiser Einblendung (L-4): Statusinstrumente, Story-Karte, LPH-Band 0–9, Rollen-Linse, „Standpunkt wechseln“, Seitenleiste — Abnahme: Browser-Tests.
-- [x] P2.3 · Ebenen 1–4, Glossar-Mouseover (Tastatur + Touch), Quellenfenster — Abnahme: jede Ebene erreichbar; Glossar wortgleich aus V1.2.
-- [x] P2.4 · Bereiche Start/Story/Theorie/Explore, Freischaltungen, Permalinks, Tastatur, Barrierefreiheit — Abnahme: axe ohne ernste Befunde.
-- [x] P2.5 · Prolog: Rollenwahl (6), Interessenwahl (intelligente Vertiefung), Express-Pfad (E8) — Abnahme: jede Rolle startbar.
+- [x] P2.1 (3b59c8a) · Engine vollständig: Graph, Bedingungen, Gedächtnis, Enden, Weiterlesen (E9), Zustands-Version, Station ohne `status-start` übernimmt den Stand ihrer Welt (L-19) — Abnahme: Einheitentests inkl. Mutanten-Probe.
+- [x] P2.2 (06b0977) · Leitstand-Rahmen mit schrittweiser Einblendung (L-4): Statusinstrumente, Story-Karte, LPH-Band 0–9, Rollen-Linse, „Standpunkt wechseln“, Seitenleiste — Abnahme: Browser-Tests.
+- [x] P2.3 (f961dc5) · Ebenen 1–4, Glossar-Mouseover (Tastatur + Touch), Quellenfenster — Abnahme: jede Ebene erreichbar; Glossar wortgleich aus V1.2.
+- [x] P2.4 (f8f9d29, a3f1eaf) · Bereiche Start/Story/Theorie/Explore, Freischaltungen, Permalinks, Tastatur, Barrierefreiheit — Abnahme: axe ohne ernste Befunde.
+- [x] P2.5 (cb82295) · Prolog: Rollenwahl (6), Interessenwahl (intelligente Vertiefung), Express-Pfad (E8) — Abnahme: jede Rolle startbar.
+- [x] P2.6 · Prüf-Agenten P2 (Architektur, Stil/Barrierefreiheit, Vollständigkeit) + Korrekturen (L-27, `docs/P2-BEFUNDE.md`) — Abnahme: keine offenen Befunde; `node werkzeuge/mutanten.mjs` 10/10 rot.
 
 ### P3 · Welt A
-- [ ] P3.1 · Figuren- und Requisiten-Baukasten (SVG): alle Figuren (Rollenfarben, Mimik neutral/besorgt/erleichtert), Mail, Chat, Excel-Stand, Haftnotiz, Protokoll, Aktenstapel — Abnahme: Galerie-Seite im Bau.
+- [~] P3.1 (2026-09-27; Mimik, 4 neue Figuren, Protokoll, Aktenstapel, Besetzungsgalerie in Explore) · Figuren- und Requisiten-Baukasten (SVG): alle Figuren (Rollenfarben, Mimik neutral/besorgt/erleichtert), Mail, Chat, Excel-Stand, Haftnotiz, Protokoll, Aktenstapel — Abnahme: Galerie-Seite im Bau.
 - [ ] P3.2 · Station A1 (alle 6 Rollen)
 - [ ] P3.3 · Station A2 (alle 6 Rollen)
 - [ ] P3.4 · Station A3 (alle 6 Rollen; PL aus dem Durchstich übernehmen)
 - [ ] P3.5 · Station A4 (alle 6 Rollen)
 - [ ] P3.6 · Station A5 (alle 6 Rollen)
 - [ ] P3.7 · Station A6 (alle 6 Rollen)
-- [ ] P3.8 · Prüf-Agenten Welt A + Korrekturen — Abnahme: keine offenen Befunde; jede Rolle in Browser-Tests bis zum Wendepunkt spielbar.
+- [ ] P3.8 · Prüf-Agenten Welt A + Korrekturen — Abnahme: keine offenen Befunde; jede Rolle in Browser-Tests bis zum Wendepunkt spielbar (drei Größen, mit axe); je Station Ebene 1–4; LPH-Band auch bei 400 px geprüft (P2-Befund V7/V9).
+- [ ] P3.9 · Vertiefungsangebote je Interesse (O-19 „intelligente Vertiefung“, P2-Befund V1): bedingte Zusatzkarten `wenn: [interesse …]` an den Stationen A1–A6 und B1–B6; Prolog-Satz wieder zusagen — Abnahme: Test „Interesse gewählt → Angebot sichtbar, sonst nicht“.
 
 ### P4 · Wendepunkt & Diagramm-Baukasten
 - [ ] P4.1 · Symptom-Radar (8 Symptome, Kap. 2.5) mit den in Welt A erlebten Symptomen
@@ -57,7 +59,7 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [ ] P5.6 · Station B5
 - [ ] P5.7 · Station B6
 - [ ] P5.8 · Ihre Spur (E1): Entscheidungskette über beide Welten
-- [ ] P5.9 · Prüf-Agenten Welt B + Korrekturen
+- [ ] P5.9 · Prüf-Agenten Welt B + Korrekturen (Browser: alle Rollen durch B1–B6 in drei Größen mit axe, Express-Pfad, je Station Ebene 1–4; P2-Befund V3/V7/V9)
 
 ### P6 · Theorie-Teil (O-20)
 - [ ] P6.1 · Lernseiten-Rahmen: Kernaussage, Grafik, Karten, Ebenen, Originaltext wortgetreu, Querverweise „In der Story erlebt“, Kapitelnavigation
@@ -78,7 +80,7 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 
 ### P7 · Wirklichkeit & Ende
 - [ ] P7.1 · Zurück in Welt A: MVG-Neuinitialisierung (Kap. 11), 30/60/90 als schiebbare Zeitachse (8.2), Leistungsweg Diagnose → Regelbetrieb (Kap. 7), Mitwirkung/Abnahme (8.3/8.4)
-- [ ] P7.2 · 3 Enden + Enden-Logik
+- [ ] P7.2 · 3 Enden + Enden-Logik (Hinweis H10; Explore mit dem Ende freischalten und aus der Story verlinken, Test; Express-Umschalter auch in der Story-Karte, E8 – P2-Befund V3/V8)
 - [ ] P7.3 · Zielbild (Kap. 9, 12), Rückbezug, Nachweiskette zum Anfassen (E2)
 - [ ] P7.4 · Selbstdiagnose qualitativ (O-8)
 - [ ] P7.5 · Bauherrentypen (Kap. 10): „Wie sähe das bei Ihnen aus?“
@@ -112,7 +114,7 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 
 ### P11 · Gesamtprüfung
 - [ ] P11.1 · Vollständigkeitsprüfer: Bauplan, 20 Owner-Punkte, E1–E14, O-Entscheide, Abdeckung
-- [ ] P11.2 · Alle Pfade × Rollen × Größen im Browser; Barrierefreiheit
+- [ ] P11.2 · Alle Pfade × Rollen × Größen im Browser; Barrierefreiheit (auch Lauf mit `prefers-reduced-motion: reduce`, P2-Befund V6)
 - [ ] P11.3 · Korrekturschleife, bis zwei Runden nichts Neues finden
 - [ ] P11.4 · Abschluss: UEBERGABE mit Abnahmeanleitung; Ampel rot „fertig – Routine anhalten, claude/haus nach main zusammenführen“
 

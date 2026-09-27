@@ -91,6 +91,23 @@ export function haftnotiz(b: Block, i: number, verzug: number): HTMLElement {
   }, symbolAusInhalt(kopfText(b.kopf, 'symbol')), inhaltInline(b.felder['text'] ?? ''));
 }
 
+/** Protokoll (P3.1): ein Blatt mit Kopf (Titel, Datum) und Punkten; Welt A. */
+export function protokoll(b: Block, verzug = 0): HTMLElement {
+  const datum = kopfText(b.kopf, 'datum');
+  return h('figure', { class: 'protokoll anim-auftauchen', style: `--verzug:${verzug}ms`, 'data-pruef': 'protokoll' },
+    h('figcaption', { class: 'protokoll-kopf' }, sym('dokument'), h('b', null, kopfText(b.kopf, 'titel') ?? ''), datum !== null ? h('small', null, datum) : null),
+    h('div', { class: 'protokoll-text' }, inhalt(b.felder['text'] ?? '')));
+}
+
+/** Aktenstapel (P3.1): n Ordnerrücken mit Beschriftung; dekorativ bis auf die Beschriftung. */
+export function akten(b: Block, verzug = 0): HTMLElement {
+  const n = Math.max(1, Math.min(12, Number(kopfText(b.kopf, 'anzahl') ?? '4') || 4));
+  const text = b.felder['text'] ?? '';
+  return h('figure', { class: 'akten anim-auftauchen', style: `--verzug:${verzug}ms`, 'data-pruef': 'akten' },
+    h('div', { class: 'akten-stapel', 'aria-hidden': 'true' }, Array.from({ length: n }, (_, i) => h('i', { style: `--i:${i}` }))),
+    h('figcaption', null, h('b', null, kopfText(b.kopf, 'beschriftung') ?? ''), text !== '' ? inhaltInline(text) : null));
+}
+
 export function tabellenstand(b: Block, i: number): HTMLElement {
   return h('div', { class: 'tabellenstand', style: `--dreh:${i % 2 === 0 ? -1 : 1.2}deg` },
     h('span', { class: 'tabellenstand-quelle' }, sym('tabelle'), kopfText(b.kopf, 'quelle') ?? ''),
@@ -190,6 +207,10 @@ export function block(b: Block, inhalte: OeffentlicheInhalte, zitatWort: string)
       return zitat(b, 'zitat', zitatWort);
     case 'kette':
       return kette(b, inhalte, 0);
+    case 'protokoll':
+      return protokoll(b);
+    case 'akten':
+      return akten(b);
     default: {
       const texte = Object.values(b.felder).filter((t) => t !== '');
       return texte.length > 0 ? h('div', { class: 'karte' }, texte.map((t) => inhalt(t))) : null;

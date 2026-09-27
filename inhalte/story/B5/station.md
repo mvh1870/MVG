@@ -420,6 +420,17 @@ figur: kaya
 „2,9 Mio. € Reserve. Bevor der Nachtrag gegen sie läuft, will ich wissen, ob und was schon beansprucht ist – und Dr. Olbers soll es auf dieser Zahl freigeben.“
 :::
 
+::: nachweis
+---
+mandat: Bauherr – den Einsatz der Risikoreserve gibt nur er frei, nicht delegierbar.
+freigabe: Freigabe des Einsatzes der Risikoreserve – steht aus; Dr. Olbers entscheidet auf Vorlage.
+kennung: PRB-004 · Nachtrag der TGA-Fachplanung; eine Entscheidungs-ID ist noch nicht vergeben.
+datenstand: Kostenprognose 2026-05 · Version 3 (verbindlich); Version 4 ist in Arbeit.
+nachweis: Vorlage zum Einsatz der Risikoreserve in Vorbereitung; Berechtigung und Höhe noch nicht abschließend geprüft.
+beschlusslage: Wird mit der Entscheidung des Bauherrn dokumentiert; der Lenkungskreis berät am 15. September.
+---
+:::
+
 ::: regie
 ### Notiz
 B5 zeigt dasselbe Ereignis wie A5 – dieselben Folgekosten, dieselbe Reserve. In Welt B steht der Nachtrag der TGA-Fachplanung als Problem `PRB-004` im Problemregister, mit Maßnahme und Entscheidungsbedarf; die Mensa-Kosten stehen in der Auswirkung von `AEN-012`. Die Vorlage trägt die Kennung des Problems als Bezug; eine eigene Entscheidungs-ID ist nicht vergeben – deshalb ist der Punkt offen. Offen bleiben mit Absicht: die Prüfung des Nachtrags, der Stand der Reserve je Posten, Restrisiken, Terminwirkung und fachliche Auswirkung – das lösen erst die Optionen aus. Ob die Deckung von `AEN-031` aus der Reserve kommt und ob sie in dieselbe Vorlage gehört, ist offen; bei den ungeklärten Entscheidungen steht 1, weil zur Reserve eine Entscheidung ansteht, die Dr. Olbers selbst trifft. „Freigabe“ meint hier den Einsatz der Risikoreserve, nicht die Freigabe zum Abschluss einer LPH. Zuerst den Regler zeigen, dann Kette und Vorlage.

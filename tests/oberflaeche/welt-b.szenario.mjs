@@ -143,4 +143,34 @@ export async function spiele(seite, h, rollen, express) {
   await h.warte(500);
   await pruefe(`express-${ende}`);
   if ((await seite.locator('[data-pruef="karte-explore"]').getAttribute('hidden')) !== null) h.befund('nach dem Ende: Weg „Selbst ausprobieren · Explore“ fehlt an der Story-Karte');
+
+  // Ende und Epilog (P7.2–P7.6): Nachweiskette (E2), Selbstdiagnose ohne Punktzahl, Spurvergleich, Resümee
+  const gesehen = new Set();
+  for (let i = 0; i < 40; i++) {
+    const st = await station();
+    for (const [haken, name] of [['nachweiskette', 'nachweiskette'], ['tafel-diagnose', 'diagnose'], ['spurvergleich', 'spurvergleich'], ['resuemee', 'resuemee']]) {
+      if (gesehen.has(name) || await seite.locator(`[data-pruef="${haken}"]`).filter({ visible: true }).count() === 0) continue;
+      gesehen.add(name);
+      if (name === 'nachweiskette') {
+        const knoepfe = seite.locator('.nachweis-station').filter({ visible: true });
+        if (await knoepfe.count() < 2) h.befund(`${st}: Nachweiskette zeigt ${await knoepfe.count()} Stationen`);
+        await knoepfe.first().click();
+        await h.warte(1200);
+        if (await seite.locator('.nachweis-glied').count() !== 6) h.befund(`${st}: Nachweiskette ohne sechs Glieder`);
+      }
+      if (name === 'diagnose') {
+        await h.klick('[data-pruef="diagnose-1-0"]');
+        if (!/Zeigt sich bei Ihnen/u.test(await seite.locator('[data-pruef="diagnose-profil"]').innerText())) h.befund('Epilog: Profil der Selbstdiagnose leer');
+      }
+      if (name === 'resuemee' && await seite.locator('[data-pruef="resuemee-vertiefungen"] a').count() !== 2) h.befund('Epilog: Resümee ohne zwei Vertiefungen');
+      await h.warte(300);
+      await pruefe(`${st}-${name}`);
+    }
+    if (st === 'epilog' && await seite.locator('[data-pruef="weiter"]').isDisabled()) break;
+    if (await seite.locator('[data-pruef="szene-weiter"]').filter({ visible: true }).count() > 0) await h.klick('[data-pruef="szene-weiter"]');
+    else if (!(await seite.locator('[data-pruef="weiter"]').isDisabled())) await h.klick('[data-pruef="weiter"]');
+    else break;
+    await h.warte(200);
+  }
+  for (const name of ['nachweiskette', 'diagnose', 'spurvergleich', 'resuemee']) if (!gesehen.has(name)) h.befund(`Ende/Epilog: Baustein ${name} nicht gesehen`);
 }

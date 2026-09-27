@@ -7,6 +7,7 @@
 # ── 1 Kurzfassung
 k1-p1:
   theorie: k01
+  story: epilog
 k1-p2:
   theorie: k01
 k1-p3:
@@ -14,6 +15,7 @@ k1-p3:
 # ── 1.1 Leitthese
 k1.1-p1:
   theorie: k01
+  story: epilog
 # ── 1.2 Managementaussagen
 k1.2-l1:
   theorie: k01
@@ -54,15 +56,16 @@ k2.4-p1:
   story: A3
 k2.4-p2:
   theorie: k02
-  story: [A3, B3]
+  story: [A3, B3, epilog]
 k2.4-p3:
   theorie: k02
 # ── 2.5 Symptome fehlender Ausübungsfähigkeit
 k2.5-t1:
   theorie: k02
-  story: [A4, A6, wendepunkt]
+  story: [A4, A6, wendepunkt, epilog]
 k2.5-p1:
   theorie: k02
+  story: epilog
 
 # ── 3 Begriffsrahmen – delegierbare Arbeit, Mandat und nichtdelegierbare Verantwortung
 k3-p1:
@@ -138,7 +141,7 @@ k4.5-p2:
 # ── 4.6 Datenstand und Nachweis
 k4.6-p1:
   theorie: k04
-  story: A3
+  story: [A3, epilog]
 k4.6-p2:
   theorie: k04
   story: [A3, B1, B2, B4]
@@ -237,7 +240,7 @@ k6.4.3-p1:
   story: B3
 k6.4.3-p2:
   theorie: k06
-  story: [B3, B1, B2, B4]
+  story: [B3, B1, B2, B4, ende-auflagen]
 # ── 6.4.4 Register-Abgrenzung
 k6.4.4-t1:
   theorie: k06
@@ -267,6 +270,7 @@ k7.1-p1:
   story: epilog
 k7.1-p2:
   theorie: k07
+  story: epilog
 k7.1-t1:
   theorie: k07
 # ── 7.2 MVG-Konzeption
@@ -292,7 +296,7 @@ k7.5-p1:
   story: wirklichkeit
 k7.5-t1:
   theorie: k07
-  story: wirklichkeit
+  story: [wirklichkeit, ende-steuerbar]
 # ── 7.6 Leistungsgrenzen
 k7.6-p1:
   theorie: k07
@@ -320,6 +324,7 @@ k8.2-p3:
   theorie: k08
 k8.2-p4:
   theorie: k08
+  story: ende-steuerbar
 k8.2-p5:
   theorie: k08
 k8.2-t1:
@@ -337,18 +342,19 @@ k8.3-l1:
 # ── 8.4 Abnahmelogik
 k8.4-p1:
   theorie: k08
-  story: wirklichkeit
+  story: [wirklichkeit, ende-steuerbar]
 k8.4-p2:
   theorie: k08
 k8.4-t1:
   theorie: k08
-  story: wirklichkeit
+  story: [wirklichkeit, epilog]
 k8.4-p3:
   theorie: k08
 
 # ── 9 Ergebnisbild und Ergebnisse
 k9-p1:
   theorie: k09
+  story: [ende-steuerbar, ende-auflagen, ende-neufestlegung]
 # ── 9.1 Bauherren-Mandats- und Verantwortungsmodell
 k9.1-p1:
   theorie: k09
@@ -371,10 +377,10 @@ k9.2-p4:
 # ── 9.3 Leistungsphasen- und Freigabemodell LPH 0–9
 k9.3-p1:
   theorie: k09
-  story: B6
+  story: [B6, ende-auflagen]
 k9.3-p2:
   theorie: k09
-  story: [ende-steuerbar, B6]
+  story: [ende-steuerbar, B6, ende-auflagen]
 k9.3-p3:
   theorie: k09
   story: [A6, B6, ende-auflagen]
@@ -396,6 +402,7 @@ k9.4-p3:
 # ── 9.5 Betriebshandbuch
 k9.5-p1:
   theorie: k09
+  story: ende-steuerbar
 k9.5-p2:
   theorie: k09
 k9.5-l1:
@@ -424,6 +431,7 @@ k10.4-p1:
 # ── 10.5 Typische Entscheidungsprobleme
 k10.5-t1:
   theorie: k10
+  story: epilog
 
 # ── 11 MVG-Neuinitialisierung als Vertiefungsformat
 k11-p1:
@@ -435,7 +443,7 @@ k11.1-p1:
   story: [ende-neufestlegung, wirklichkeit]
 k11.1-l1:
   theorie: k11
-  story: wirklichkeit
+  story: [wirklichkeit, ende-neufestlegung]
 # ── 11.2 Was bei der MVG-Neuinitialisierung neu geordnet wird
 k11.2-p1:
   theorie: k11
@@ -452,18 +460,20 @@ k11.3-p1:
   story: wirklichkeit
 k11.3-t1:
   theorie: k11
-  story: wirklichkeit
+  story: [wirklichkeit, ende-steuerbar]
 k11.3-p2:
   theorie: k11
 
 # ── 12 Was Bauherren mit MVG und MVG Companion gewinnen
 k12-p1:
   theorie: k12
-  story: ende-steuerbar
+  story: [ende-steuerbar, ende-auflagen, ende-neufestlegung]
 k12-t1:
   theorie: k12
+  story: [ende-steuerbar, ende-auflagen, ende-neufestlegung]
 k12-p2:
   theorie: k12
+  story: epilog
 # ── 12.1 Pragmatischer Einstieg
 k12.1-p1:
   theorie: k12
@@ -473,4 +483,4 @@ k12.1-t1:
 # ── 13 Anhang: Glossar
 k13-t1:
   theorie: k13
-  story: [ende-neufestlegung, wirklichkeit]
+  story: [ende-neufestlegung, wirklichkeit, ende-steuerbar, ende-auflagen, epilog]

@@ -194,7 +194,7 @@ Bausteine in einem `schritt`:
 | `grafik` | Pflicht (Name im Grafik-Baukasten) | `titel`, `untertitel` | `text` = Beschreibung für Screenreader |
 | `nachweiskette` | – | – | `text` (Einleitung, optional) – Nachweiskette zum Anfassen (E2): Knöpfe je besuchter Welt-B-Station mit `nachweis`, Klick legt die sechs Glieder aus; in Schritt oder Ebene |
 | `spurvergleich` | – | – | `text` (Einleitung, optional) – A-Spur gegen B-Spur des Lesers (E1, Epilog), gleiche Darstellung wie der Reiter „Spur“ |
-| `resuemee` | – | – | `text` (optional); Kinder `zitat`, `merksatz`, `tafel` – persönliches Resümee (P7.6): „Ihre Themen“ und „Zwei Vertiefungen“ berechnet der Code aus Interessen und besuchten Stationen, die Kinder liefern Prinzipien und Checkliste |
+| `resuemee` | – | – | `text` (optional); Kinder `zitat`, `merksatz`, `tafel`, `hinweis` (= Zwischenüberschrift) – persönliches Resümee (P7.6): „Ihre Themen“ und „Zwei Vertiefungen“ berechnet der Code aus Interessen und besuchten Stationen, die Kinder liefern Prinzipien und Checkliste |
 | `kette` | – | – | enthält `glied` |
 | `glied` | optional (`FRW-003`) | `art`: `fruehwarnung` · `bestaetigung` · `risiko` · `aenderung` · `entscheidung` · `freigabe` · `massnahme` · `problem` · `bericht`; `von` | `titel`, `text` |
 | `datenstand` | – | `name` (Pflicht), `abweichung`, `betrag`, `basis`, `versionen` (Liste `- Version 3: gilt` → `{name, stand}`) | `text`, `vergleich` |

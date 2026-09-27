@@ -398,6 +398,17 @@ figur: kaya
 „Eine Kostenprognose mit Namen und Version – ich weiß endlich, womit ich rechne.“
 :::
 
+::: nachweis
+---
+mandat: Der Bauherr legt die Zielpriorität fest – nicht delegierbar; der Lenkungskreis berät.
+freigabe: Keine berührt – die Zielpriorität ist keine Freigabe; im Februar steht die Freigabe zum Abschluss von LPH 4 an.
+kennung: Noch keine – die Zielpriorität steht als offene Frage beim Bauherrn.
+datenstand: Kostenprognose 2026-01 · Version 1, auf dem Stand der Kostenberechnung.
+nachweis: Kick-off-Protokoll vom 16.12.2025 – Zielsystem angelegt, Mandatsleiter vom Bauherrn festgelegt.
+beschlusslage: Mandatsleiter festgelegt; welche Zielpriorität gilt, steht noch aus.
+---
+:::
+
 ::: regie
 ### Notiz
 B1 zeigt dieselbe Woche ohne neues Ereignis. Welt B ist nicht ruhiger, weil weniger passiert, sondern weil jedes Stück einen Ort hat. Nicht beschönigen: Auch hier ist die Marktnotiz vor der Entscheidung noch nicht erfasst, und die Stellvertretung für Holger Stein ist offen. Zuerst den Regler zeigen, dann die RACI mit der Spalte der gespielten Rolle.

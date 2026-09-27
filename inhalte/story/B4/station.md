@@ -419,6 +419,17 @@ figur: kaya
 „0,4 Mio. € in der Vorlage. Auf welche Kostengruppen – und woher kommt das Geld?“
 :::
 
+::: nachweis
+---
+mandat: Änderungsgremium unter Vorsitz von Frank Deppe – grob 0,4 Mio. € liegen über 100 TEUR und bis einschließlich 5 Mio. €.
+freigabe: Betroffen ist die Freigabe LPH 5; eine Deckung aus der Risikoreserve gibt nur der Bauherr frei.
+kennung: AEN-031 · Brandschutzauflagen Holzbau, Status „In Prüfung“.
+datenstand: Kostenprognose 2026-05 · Version 3 mit Schätzung der Generalplanung zu AEN-031, Stand Juli.
+nachweis: Vorlage mit Frage, Mandat und Empfehlung; die Terminwirkung ist nur grob geschätzt.
+beschlusslage: Beschlussprotokoll der Sitzung vom 9. Juli (Entwurf) – ob beschlossen oder mit Frist zurückgestellt, trägt das Gremium ein; es geht in den Managementbericht an den Bauausschuss (16. Juli).
+---
+:::
+
 ::: regie
 ### Notiz
 B4 zeigt dasselbe Ereignis wie A4 – dieselben Auflagen, derselbe Ausschusstermin. Der Leser sitzt im Änderungsgremium (Rollen gf, pl, controlling stimmen mit; ps und planung bereiten vor; der Bauherr sitzt nicht darin und bekommt die Beschlusslage). Das Beschlussprotokoll bleibt ein Entwurf: Ob das Gremium beschließt, mit Auftrag beschließt oder mit Frist zurückstellt, entscheidet die Rolle. Beschluss und Deckung trennen – die Freigabe des Einsatzes der Risikoreserve ist Thema von B5. Zuerst den Regler zeigen, dann Mandatsleiter und Vorlage.

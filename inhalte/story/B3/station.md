@@ -326,6 +326,17 @@ figur: kaya
 „Meine CTC hat den Schwellenwert gerissen, daraus ist `FRW-003` geworden. Und es gilt eine Prognose: Version 3.“
 :::
 
+::: nachweis
+---
+mandat: Hängt von der Option ab – Änderungsgremium bei AEN-022, Bauherr beim Einsatz der Risikoreserve.
+freigabe: Betroffen ist die Freigabe LPH 5; der Freigabeweg ist in der Vorlage noch offen.
+kennung: ENT-017 · „Wie wird die Kostenabweichung aufgefangen?“
+datenstand: Kostenprognose 2026-05 · Version 3 – +8 %, rund +4,7 Mio. €.
+nachweis: Entscheidungsvorlage mit Checkliste; zu Option 2 fehlen noch Termin und Risiko.
+beschlusslage: Noch keine – sie wird mit der Entscheidung zu ENT-017 dokumentiert.
+---
+:::
+
 ::: regie
 ### Notiz
 B3 zeigt denselben Montag wie A3 – dieselbe Abweichung, dieselben Gremientermine. Welt B ist nicht frei von offenen Punkten: `ENT-017` ist noch nicht vollständig, und welche Stufe der Mandatsleiter entscheidet, hängt von der Option ab. Nicht beschönigen und nicht vorwegnehmen. Die sechs Teile der Reihe nach zeigen; Signal und Datenstand zügig, das Gewicht liegt auf Mandat und `ENT-017`.

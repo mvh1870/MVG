@@ -352,7 +352,7 @@ Die offenen Risiken stehen im Risikoregister, jedes mit verantwortlicher Rolle; 
 ---
 titel: Mehr als ein Abschluss
 ---
-Die Freigabe LPH 5 steht auf „in Vorbereitung“; welches Ergebnis sie bekommt, ist offen. Mit ihr endet nicht nur die Ausführungsplanung. Kap. 9.3: [[zitat:k9.3-p2|Die Freigabe am Abschluss einer Leistungsphase gibt die nächste frei.]] Nach LPH 5 ist das LPH 6, die Vorbereitung der Vergabe.
+Die Freigabe LPH 5 steht auf „in Vorbereitung“; welches Ergebnis sie bekommt, ist offen. Mit ihr endet nicht nur die Ausführungsplanung. Kap. 9.3: [[zitat:k9.3-p2|Die Freigabe am Abschluss einer Leistungsphase gibt die nächste frei.]] Nach LPH 5 ist das LPH 6, Vorbereitung Vergabe.
 :::
 
 ::: standpunkt gf
@@ -395,6 +395,17 @@ figur: hoffmeister
 figur: kaya
 ---
 „Bevor die Vorlage auf diesem Datenstand steht, will ich ihn abgeglichen sehen. Und die Zahl für den Stadtrat muss dieselbe sein wie in der Vorlage.“
+:::
+
+::: nachweis
+---
+mandat: Bauherr – Dr. Olbers erteilt die Freigabe selbst; der Lenkungskreis berät.
+freigabe: Freigabe zum Abschluss von LPH 5, Status „in Vorbereitung“; sie gibt LPH 6 frei.
+kennung: Freigabe LPH 5 im Freigaberegister – Freigaben führen kein eigenes Kürzel.
+datenstand: Kostenprognose 2026-10 · Version 4; die Bestätigung des Controllings für die Vorlage steht aus.
+nachweis: Vorlage der Bauherren-PL mit der Freigabefrage zu LPH 5; die Annahmen stehen im Datenstand.
+beschlusslage: Wird mit der Entscheidung des Bauherrn dokumentiert; der Lenkungskreis berät am 17. November.
+---
 :::
 
 ::: regie

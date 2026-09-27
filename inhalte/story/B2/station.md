@@ -401,6 +401,17 @@ figur: kaya
 „0,6 Mio. € mit Status ‚Beantragt‘. Wenigstens weiß ich, welchen Status die Zahl hat.“
 :::
 
+::: nachweis
+---
+mandat: Änderungsgremium unter Vorsitz von Frank Deppe – rund 0,6 Mio. € liegen über 100 TEUR und bis einschließlich 5 Mio. €.
+freigabe: Berührt die Freigabe zum Abschluss von LPH 5 – dort muss AEN-012 sichtbar sein; für die Änderung selbst sind Auswirkung und Freigabeweg der nächste Schritt.
+kennung: AEN-012 · Mensa für den Ganztag, Status „Beantragt“.
+datenstand: Grobe Schätzung der Generalplanung, rund 0,6 Mio. € – Auswirkung noch nicht bewertet.
+nachweis: Eintrag im Änderungsregister nach der Mail von Sabine Roth – aus der Flurzusage wird ein Antrag.
+beschlusslage: Offen – das Änderungsgremium tagt monatlich, zzgl. anlassbezogener Sondersitzungen.
+---
+:::
+
 ::: regie
 ### Notiz
 B2 zeigt dasselbe Ereignis wie A2 – dieselbe Lieferzeit, derselbe Wunsch. Welt B ist nicht schneller, sondern geordneter: `FRW-002` ist erfasst, aber noch nicht bestätigt; `AEN-012` ist beantragt, aber weder bewertet noch auf der Tagesordnung. Diese Schritte lösen erst die Optionen aus – nicht vorwegnehmen. Die Flurzusage nicht verurteilen: Sie ist jetzt ein Antrag. Zuerst den Regler zeigen, dann die Mandatsleiter.

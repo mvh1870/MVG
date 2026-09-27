@@ -793,7 +793,7 @@ export function kapitelDerSpur(verlauf: readonly string[], inhalte: Oeffentliche
 /**
  * Persönliches Resümee (P7.6): Themen = gewählte Interessen und die drei Kapitel, die Ihre Stationen am
  * häufigsten berührt haben; zwei Vertiefungen = die beiden ersten davon als Lernseiten. Prinzipien und
- * Checkliste kommen als Kinder aus den Inhalten (wortgleiche Zitate, Tafel).
+ * Checkliste kommen als Kinder aus den Inhalten (wortgleiche Zitate, Tafel; `hinweis` = Zwischenüberschrift).
  */
 function resuemee(b: Block, k: SzenenKontext, text: Node | null): HTMLElement {
   const R = W.resuemee;
@@ -809,7 +809,10 @@ function resuemee(b: Block, k: SzenenKontext, text: Node | null): HTMLElement {
       h('h4', { class: 'tafel-titel' }, R.vertiefungen),
       h('ul', { class: 'resuemee-liste' }, kapitel.slice(0, 2).map((nr) => h('li', null,
         k.tue !== null ? h('a', { href: `#theorie/k${nr}`, 'data-pruef': `resuemee-k${nr}` }, R.kapitel(nr, titel(nr))) : R.kapitel(nr, titel(nr)))))),
-    b.kinder.map((kind) => B.block(kind, k.inhalte, W.originalWoertlich, k.z.verlauf, k.z.rolle)));
+    // Ein `hinweis` im Resümee ist Zwischenüberschrift („Drei Prinzipien“, „Eine Checkliste“)
+    b.kinder.map((kind) => kind.art === 'hinweis'
+      ? h('h4', { class: 'tafel-titel resuemee-titel' }, inhaltInline(kind.felder['text'] ?? ''))
+      : B.block(kind, k.inhalte, W.originalWoertlich, k.z.verlauf, k.z.rolle)));
 }
 
 /* ------------------------------------------------------------------ Auswahl -- */

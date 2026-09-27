@@ -21,16 +21,16 @@ weiter: A5
 titel: Donnerstag, 17:45 Uhr. Monat 7.
 kurz: Einstieg
 ---
-Donnerstag, 16. Juli, Sitzungssaal im Rathaus. Seit Mai ist wenig geklärt: Der Lenkungskreis am 19. Mai hat keine der Kostenzahlen verbindlich festgelegt, der Bauausschuss am 21. Mai hat nichts beschlossen. Im Juni kam die Baugenehmigung – mit Brandschutzauflagen zum Holzbau, grob 0,4 Mio. €.
+Donnerstag, 16. Juli, Sitzungssaal im Rathaus. Dem Bauausschuss liegt der monatliche Statusbericht der Projektsteuerung vor: 40 Seiten, Ampeln auf Gelb und Rot, keine Entscheidungsfrage. Bernd Kowalski fragt, worüber der Ausschuss heute entscheiden soll. Zwanzig Minuten später fragt er noch einmal. Dann ist der Tagesordnungspunkt vertagt – auf den 17. September, im August ist Sommerpause.
 
-Heute liegt dem Bauausschuss der monatliche Statusbericht der Projektsteuerung vor: 40 Seiten, Ampeln auf Gelb und Rot, keine Entscheidungsfrage. Bernd Kowalski fragt, worüber der Ausschuss heute entscheiden soll. Zwanzig Minuten später fragt er noch einmal. Dann ist der Tagesordnungspunkt vertagt – auf September, im August ist Sommerpause.
+Seit Juni liegt die Baugenehmigung vor, mit Brandschutzauflagen zum Holzbau: grob 0,4 Mio. €.
 
 ::: akten
 ---
 beschriftung: Statusberichte Januar bis Juni
 anzahl: 6
 ---
-Jeder um die 40 Seiten, die Ampeln vorn. Eine Entscheidungsfrage steht in keinem.
+Jeder umfangreich, die Ampeln vorn. Eine Entscheidungsfrage steht in keinem.
 :::
 
 ::: protokoll
@@ -38,7 +38,7 @@ Jeder um die 40 Seiten, die Ampeln vorn. Eine Entscheidungsfrage steht in keinem
 titel: Niederschrift Bauausschuss – Auszug TOP 4
 datum: Do, 16.07.2026
 ---
-- TOP 4 Schulcampus Lindenhall-Süd: Sachstand, Statusbericht der Projektsteuerung (Stand Juni, 40 Seiten).
+- TOP 4 Schulcampus Lindenhall-Süd: Sachstand, Statusbericht der Projektsteuerung (Stand Juni).
 - Frage des Vorsitzenden: Worüber soll der Ausschuss heute entscheiden? Eine Beschlussvorlage liegt nicht vor.
 - Erneute Frage des Vorsitzenden: Welche Entscheidung wird bis wann vom Ausschuss erwartet? Die Verwaltung sagt Klärung zu.
 - Der Ausschuss nimmt den Bericht zur Kenntnis. Die Beratung wird auf die Sitzung am 17.09. vertagt.
@@ -68,17 +68,18 @@ Welche Frage stellen wir dem Ausschuss?
 
 ::: notiz
 ---
-farbe: lila
----
-40 Seiten Ampeln – und dann?
-:::
-
-::: notiz
----
 farbe: limette
 ---
 Lenkungskreis 21.07. · Bauausschuss erst 17.09.
 :::
+:::
+
+::: schritt rueckbezug
+---
+art: rueckbezug
+titel: Was von Ihrer früheren Wahl bleibt
+kurz: Rückbezug
+---
 :::
 
 ::: schritt lage
@@ -89,11 +90,11 @@ kurz: Was Sie wissen
 knopf: Jetzt entscheiden
 ---
 ::: bekannt
-- Der Bauausschuss hat vertagt; die nächste Sitzung ist am 17. September, der Lenkungskreis tagt am 21. Juli.
+- Der Bauausschuss hat auf den 17. September vertagt; der Lenkungskreis tagt am 21. Juli.
 - Brandschutzauflagen aus der Baugenehmigung: grob 0,4 Mio. €; wie die Mehrkosten gedeckt werden, ist nicht entschieden.
-- Seit Mai stehen mehrere Kostenprognosen nebeneinander – die der Projektsteuerung und die des Controllings.
-- Die Schulseite plant mit der größeren Mensa; beschlossen ist dazu nichts.
-- Der Statusbericht hat 40 Seiten und keine Entscheidungsfrage.
+- Seit Mai stehen die Kostenprognosen der Projektsteuerung und des Controllings nebeneinander; eine geltende Zahl hat niemand dokumentiert.
+- Die Schulseite plant mit der größeren Mensa; einen Auftrag dafür gibt es nicht.
+- Der Statusbericht (Stand Juni) enthält keine Entscheidungsfrage.
 :::
 
 ::: unbekannt
@@ -155,7 +156,7 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Umfangreiche Unterlagen machen ein Gremium nicht entscheidungsfähig. Fehlen Entscheidungsfrage, Optionen, Datenstand und Risiken, vertagt es – auch wenn wesentliche Entscheidungen anstehen.
+Umfangreiche Unterlagen machen ein Gremium nicht entscheidungsfähig. Fehlen Entscheidungsfrage, Optionen, Datenstand und Risiken, vertagt es, entscheidet unter Unsicherheit oder delegiert Verantwortung zurück – auch wenn wesentliche Entscheidungen anstehen.
 :::
 
 ::: ebene 2
@@ -173,9 +174,9 @@ Drei Symptome aus Kap. 2.5 – und wo sie an dieser Station zu sehen sind:
 
 | Symptom | Typisches Muster | Konsequenz für den Bauherrn | In A4 sichtbar |
 |---|---|---|---|
-| Gremien ohne [[Entscheidungsreife]] | Unterlagen sind umfangreich, aber Entscheidungsfrage, Optionen, Datenstand und Risiken sind nicht präzise genug. | Gremien vertagen, entscheiden unter Unsicherheit oder delegieren Verantwortung zurück. | 40 Seiten Statusbericht, zweimal die Frage nach der Entscheidung, vertagt |
+| Gremien ohne [[Entscheidungsreife]] | Unterlagen sind umfangreich, aber Entscheidungsfrage, Optionen, Datenstand und Risiken sind nicht präzise genug. | Gremien vertagen, entscheiden unter Unsicherheit oder delegieren Verantwortung zurück. | Ein umfangreicher Statusbericht, zweimal die Frage nach der Entscheidung, vertagt |
 | Parallele Datenstände | Kosten, Termin, Projektumfang, Risiken und Annahmen werden in unterschiedlichen Fassungen geführt. | Entscheidungen beruhen auf widersprüchlichen Grundlagen. | Mehrere Kostenprognosen seit Mai; die Auflagen stehen nicht in allen |
-| Eskalation ohne Entscheidung | Themen werden nach oben gegeben, aber ohne klare Entscheidungsoptionen, Empfehlung oder Konsequenzen. | Eskalation erzeugt Verzögerung statt Führung. | Der Bericht geht in den Ausschuss, eine [[Entscheidungsvorlage]] nicht |
+| Eskalation ohne Entscheidung | Themen werden nach oben gegeben, aber ohne klare Entscheidungsoptionen, Empfehlung oder Konsequenzen. | Eskalation erzeugt Verzögerung statt Führung. | Der Stand geht nach oben in den Ausschuss – ohne Optionen, Empfehlung oder Konsequenzen; eine [[Entscheidungsvorlage]] fehlt |
 :::
 
 ::: ebene 4
@@ -206,7 +207,7 @@ figur: olbers
 ---
 figur: sie
 ---
-„Vierzig Seiten, und nirgends steht, was entschieden werden muss. Die Brandschutzauflagen warten nicht bis September.“
+„Ein dicker Bericht, und nirgends steht, was entschieden werden muss. Die Brandschutzauflagen warten nicht bis September.“
 :::
 
 ::: standpunkt ps
@@ -227,7 +228,7 @@ figur: hoffmeister
 ---
 figur: kaya
 ---
-„Vierzig Seiten und mehr als eine Kostenzahl im Umlauf. Auf welcher hätte der Ausschuss überhaupt beschließen sollen?“
+„Mehr als eine Kostenzahl im Umlauf. Auf welcher hätte der Ausschuss überhaupt beschließen sollen?“
 :::
 
 ::: regie

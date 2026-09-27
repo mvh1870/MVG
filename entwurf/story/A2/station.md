@@ -4,7 +4,7 @@ welt: A
 monat: 3
 titel: Erstes Signal
 lph: 5
-uhr: Dienstag, 10. März, 11:15 Uhr
+uhr: Dienstag, 11:15 Uhr
 whitepaper-bezug: [k4.1-p1, k4.1-p2, k4.2-p1, k4.2-p2]
 status-start:
   entscheidungsfaehigkeit: 3
@@ -18,10 +18,10 @@ weiter: A3
 
 ::: schritt einstieg
 ---
-titel: Dienstag, 10. März, 11:15 Uhr. Monat 3.
+titel: Dienstag, 11:15 Uhr. Monat 3.
 kurz: Einstieg
 ---
-Seit Februar steht das Projekt in LPH 5. An diesem Vormittag kommen zwei neue Unterlagen dazu.
+Dienstag, 10. März. Seit Februar steht das Projekt in LPH 5. An diesem Vormittag kommen zwei neue Unterlagen dazu.
 
 ::: protokoll
 ---
@@ -75,12 +75,6 @@ farbe: lila
 0,6 Mio. € – wer darf das?
 :::
 
-::: notiz
----
-farbe: limette
----
-Lenkungskreis am 17.?
-:::
 :::
 
 ::: schritt lage
@@ -93,7 +87,7 @@ knopf: Jetzt entscheiden
 ::: bekannt
 - Lieferzeit Holzbauelemente: von rund 16 auf 26 Wochen (Marktabfrage der Generalplanung).
 - Nutzerwunsch: Mensa für rund 450 statt 300 Essen, grob 0,6 Mio. € (Schätzung der Generalplanung).
-- Laut Sabine Roth hat Frank Deppe im Flur gesagt: „Wir kriegen das hin.“ Schriftlich gibt es nichts.
+- Laut Sabine Roth ist im Flur gesagt worden: „Wir kriegen das hin.“ Schriftlich gibt es nichts.
 - Für Änderungen am Projektumfang sind keine Schwellen festgelegt.
 :::
 
@@ -121,7 +115,7 @@ bleibt:
 Terminrisiko steigt.
 
 ### Neu bekannt
-Frank Deppe versteht seinen Satz im Flur als Absichtserklärung, Sabine Roth als Zusage. Die Schulseite plant bereits mit der größeren Mensa. Im Lenkungskreis am 17. März kommen beide Themen ohne Vorlage zur Sprache; entschieden wird nichts.
+Der Satz im Flur war als Absichtserklärung gemeint; Sabine Roth versteht ihn als Zusage. Die Schulseite plant bereits mit der größeren Mensa. Im Lenkungskreis am 17. März kommen beide Themen ohne Vorlage zur Sprache; entschieden wird nichts.
 :::
 :::
 

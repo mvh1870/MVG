@@ -28,17 +28,17 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P2.3 (f961dc5) · Ebenen 1–4, Glossar-Mouseover (Tastatur + Touch), Quellenfenster — Abnahme: jede Ebene erreichbar; Glossar wortgleich aus V1.2.
 - [x] P2.4 (f8f9d29, a3f1eaf) · Bereiche Start/Story/Theorie/Explore, Freischaltungen, Permalinks, Tastatur, Barrierefreiheit — Abnahme: axe ohne ernste Befunde.
 - [x] P2.5 (cb82295) · Prolog: Rollenwahl (6), Interessenwahl (intelligente Vertiefung), Express-Pfad (E8) — Abnahme: jede Rolle startbar.
-- [x] P2.6 · Prüf-Agenten P2 (Architektur, Stil/Barrierefreiheit, Vollständigkeit) + Korrekturen (L-27, `docs/P2-BEFUNDE.md`) — Abnahme: keine offenen Befunde; `node werkzeuge/mutanten.mjs` 10/10 rot.
+- [x] P2.6 (933dbb0) · Prüf-Agenten P2 (Architektur, Stil/Barrierefreiheit, Vollständigkeit) + Korrekturen (L-27, `docs/P2-BEFUNDE.md`) — Abnahme: keine offenen Befunde; `node werkzeuge/mutanten.mjs` 10/10 rot.
 
 ### P3 · Welt A
-- [x] P3.1 · Figuren- und Requisiten-Baukasten (SVG): alle Figuren (Rollenfarben, Mimik neutral/besorgt/erleichtert), Mail, Chat, Excel-Stand, Haftnotiz, Protokoll, Aktenstapel — Abnahme: Galerie-Seite im Bau.
-- [~] P3.2 (2026-09-27, Rahmen gebaut, Prüfbefunde offen) · Station A1 (alle 6 Rollen)
-- [~] P3.3 (2026-09-27, Rahmen gebaut, Prüfbefunde offen) · Station A2 (alle 6 Rollen)
-- [~] P3.4 (2026-09-27, Ebenen 1–4 ergänzt; Prüfbefunde offen) · Station A3 (alle 6 Rollen; PL aus dem Durchstich übernehmen)
-- [~] P3.5 (2026-09-27, Rahmen gebaut, Prüfbefunde offen) · Station A4 (alle 6 Rollen)
-- [~] P3.6 (2026-09-27, Rahmen gebaut, Prüfbefunde offen) · Station A5 (alle 6 Rollen)
-- [~] P3.7 (2026-09-27, Rahmen gebaut, Prüfbefunde offen) · Station A6 (alle 6 Rollen)
-- [~] P3.8 (2026-09-27, Prüfung läuft) · Prüf-Agenten Welt A + Korrekturen — Abnahme: keine offenen Befunde; jede Rolle in Browser-Tests bis zum Wendepunkt spielbar (drei Größen, mit axe); je Station Ebene 1–4; LPH-Band auch bei 400 px geprüft (P2-Befund V7/V9).
+- [x] P3.1 (dec2c58) · Figuren- und Requisiten-Baukasten (SVG): alle Figuren (Rollenfarben, Mimik neutral/besorgt/erleichtert), Mail, Chat, Excel-Stand, Haftnotiz, Protokoll, Aktenstapel — Abnahme: Galerie-Seite im Bau.
+- [x] P3.2 (Commit „MVG P3.8“) · Station A1 (alle 6 Rollen)
+- [x] P3.3 (Commit „MVG P3.8“) · Station A2 (alle 6 Rollen)
+- [x] P3.4 (Commit „MVG P3.8“) · Station A3 (alle 6 Rollen; PL aus dem Durchstich übernehmen)
+- [x] P3.5 (Commit „MVG P3.8“) · Station A4 (alle 6 Rollen)
+- [x] P3.6 (Commit „MVG P3.8“) · Station A5 (alle 6 Rollen)
+- [x] P3.7 (Commit „MVG P3.8“) · Station A6 (alle 6 Rollen)
+- [x] P3.8 (Commit „MVG P3.8“, Befunde `docs/P3-BEFUNDE.md`) · Prüf-Agenten Welt A + Korrekturen — Abnahme: keine offenen Befunde; jede Rolle in Browser-Tests bis zum Wendepunkt spielbar (drei Größen, mit axe); je Station Ebene 1–4; LPH-Band auch bei 400 px geprüft (P2-Befund V7/V9).
 - [ ] P3.9 · Vertiefungsangebote je Interesse (O-19 „intelligente Vertiefung“, P2-Befund V1): bedingte Zusatzkarten `wenn: [interesse …]` an den Stationen A1–A6 und B1–B6; Prolog-Satz wieder zusagen — Abnahme: Test „Interesse gewählt → Angebot sichtbar, sonst nicht“.
 
 ### P4 · Wendepunkt & Diagramm-Baukasten

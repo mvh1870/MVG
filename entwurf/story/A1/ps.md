@@ -12,7 +12,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Der erste Bericht hat 30 Seiten und 14 Ampeln. Die Marktnotiz zum Holzpreis steht auf Seite 17 als gelbe Ampel; niemand fragt nach.
+Der erste Bericht, Stand Januar, hat rund 40 Seiten und 14 Ampeln. Die Marktnotiz zum Holzpreis steht auf Seite 17 als gelbe Ampel; niemand fragt nach.
 
 ### Was fehlt
 Eine Frage, mit der der Bericht gelesen wird – und jemand, der daraus eine Entscheidung macht.

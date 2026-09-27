@@ -2,6 +2,7 @@
 station: A6
 rolle: controlling
 frage: Welche Zahl geben Sie Dr. Olbers bis Freitag?
+rueckbezug-auf: A3
 ---
 
 ::: option A
@@ -66,6 +67,22 @@ Die Freigabe wird vertagt, ohne dass jemand sagt, bis wann.
 
 ::: nachsatz
 Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+:::
+
+::: rueckbezug A
+Im Mai haben Sie ‚Eigene Zahl vertreten‘ gewählt. Seither rechnen Sie Ihre CTC, die Projektsteuerung ihre Prognose. Jetzt soll bis Freitag eine Zahl stehen – und die andere Seite hat niemanden, der ihre erklärt.
+:::
+
+::: rueckbezug B
+Im Mai haben Sie ‚Differenz aufschlüsseln‘ gewählt. Mit Holger Stein sind Sie damals Zeile für Zeile durchgegangen. Was Sie dabei über seine Annahmen erfahren haben, steht in Ihren Notizen, nicht in seinen Dateien.
+:::
+
+::: rueckbezug C
+Im Mai haben Sie ‚Überschreitung melden‘ gewählt. Ihre Meldung lag im Lenkungskreis neben dem Statusbericht. Im November fragt der Stadtrat nach der Zahl – und es gibt immer noch zwei.
+:::
+
+::: rueckbezug ohne
+Im Mai standen zwei Kostenzahlen nebeneinander. Im November stehen sie noch immer nebeneinander – und die eine kann ohne Holger Stein niemand erklären.
 :::
 
 ::: regie

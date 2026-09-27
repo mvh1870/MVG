@@ -18,9 +18,11 @@ weiter: A3-B3-vergleich   # Durchstich P0; ab P3: A4
 
 ::: schritt einstieg
 ---
-titel: Montag, 08:30 Uhr. Monat 5 nach Ihrer Übernahme.
+titel: Montag, 08:30 Uhr. Monat 5.
 kurz: Einstieg
 ---
+Montag, 11. Mai. Nächste Woche tagen der Lenkungskreis (19. Mai) und der Bauausschuss (21. Mai). Um 08:12 kommt die Kostenprognose der Projektsteuerung, eine Viertelstunde später die Zahl des Controllings – und sie passen nicht zusammen. Aus dem März liegt noch mehr offen: Die größere Mensa ist gewünscht, beschlossen ist sie nicht; die längere Lieferzeit der Holzbauelemente hat niemand bewertet.
+
 ::: mail
 ---
 von: brenner
@@ -44,7 +46,7 @@ Bei mir stehen +5,9 %. Welche Zahl nehmen wir für den Ausschuss?
 farbe: gelb
 symbol: anruf
 ---
-Anruf Hoffmeister: Fassade evtl. günstiger?
+Anruf: Fassade evtl. günstiger?
 :::
 
 ::: notiz
@@ -94,6 +96,10 @@ wert: +5,9 %
 
 ::: bekannt
 - Kostenabweichung +8 % (Projektsteuerung) bzw. +5,9 % (Controlling) – zwei Zahlen, kein geltender [[Datenstand]].
+- Beide Zahlen sind gegen die Projektbasis gerechnet; die Risikoreserve von 2,9 Mio. € ist darin noch nicht eingesetzt.
+- Mensa für rund 450 statt 300 Essen, grob 0,6 Mio. €: seit März gewünscht, ohne Beschluss.
+- Lieferzeit Holzbauelemente rund 26 statt 16 Wochen: seit März bekannt, nicht bewertet.
+- Lenkungskreis am 19. Mai, Bauausschuss am 21. Mai.
 :::
 
 ::: unbekannt
@@ -171,6 +177,7 @@ Die Fragen der Datenstandslogik (Kap. 4.6) – an diesem Montag:
 |---|---|
 | Welche Version gilt? | „v3_final_NEU“ gegen die CTC des Controllings |
 | Welche Annahmen sind offen? | Ursache, Terminwirkung, Nachtragsrisiko |
+| Welche Änderungen wurden seit der letzten Freigabe aufgenommen? | Mensa und Lieferzeit Holz – ob sie in einer der beiden Zahlen stecken, weiß niemand |
 | Welche Beschlusslage besteht? | keine zur Abweichung |
 | Wo wird die Nachweiskette geführt? | in Mails und Excel-Dateien |
 :::
@@ -185,16 +192,44 @@ Datenstand und Nachweis sind kein administratives Nebenprodukt. Sie sind ein eig
 :::
 :::
 
-::: standpunkt controlling
+::: standpunkt gf
 ---
-figur: kaya
+figur: deppe
 ---
-„Welche Prognose gilt – meine +5,9 % oder die +8 % der Projektsteuerung?“
+„Zwei Zahlen, und am 19. ist Lenkungskreis. Welche davon trage ich dort vor – und wer sagt mir das?“
+:::
+
+::: standpunkt bauherr
+---
+figur: olbers
+---
+„Am 21. fragt mich der Bauausschuss, was los ist. Welche Zahl nenne ich dort – und was soll ich eigentlich entscheiden?“
+:::
+
+::: standpunkt pl
+---
+figur: sie
+---
+„Zwei Zahlen eine Woche vor den Gremien, dazu Mensa und Lieferzeit offen. Womit gehe ich in den Lenkungskreis?“
+:::
+
+::: standpunkt ps
+---
+figur: brenner
+---
+„Die +8 % sind gerechnet, nur die Ursache fehlt noch. Warum rechnet das Controlling eigentlich eine eigene Zahl?“
 :::
 
 ::: standpunkt planung
 ---
 figur: hoffmeister
 ---
-„Soll ich die Fassade schon mal günstiger umplanen? Kostet ja nichts.“
+„Soll ich die Fassade schon mal günstiger umplanen? Ich hätte da schon eine Variante.“
+:::
+
+::: standpunkt controlling
+---
+figur: kaya
+---
+„Welche Prognose gilt – meine +5,9 % oder die +8 % der Projektsteuerung?“
 :::

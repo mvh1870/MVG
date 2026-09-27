@@ -78,7 +78,7 @@ In Welt A haben Sie ‚Lage offenlegen‘ gewählt. In Welt B muss nichts eigens
 :::
 
 ::: rueckbezug ohne
-In Welt A war die Risikoreserve zu einem guten Teil verplant, ohne dass jemand sie freigegeben hatte. In Welt B gibt der Bauherr ihren Einsatz frei – vorher, auf Vorlage.
+In Welt A liefen Posten gegen die Risikoreserve, ohne dass jemand ihren Einsatz freigegeben hatte. In Welt B gibt der Bauherr ihren Einsatz frei – vorher, auf Vorlage.
 :::
 
 ::: regie

@@ -2,6 +2,7 @@
 station: A6
 rolle: pl
 frage: Was tun Sie mit der anstehenden Freigabe zum Abschluss von LPH 5?
+rueckbezug-auf: A3
 ---
 
 ::: option A
@@ -12,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Dr. Olbers fragt nach Kernfrage und Datenstand. Holger Steins letzten Stand „Prognose_Nov_v5“ kann niemand erklären. Dr. Olbers erteilt keine Freigabe und verlangt eine belastbare Grundlage.
+Dr. Olbers fragt nach Kernfrage und Datenstand. Holger Steins letzten Stand „Prognose_Nov_v5“ kann niemand erklären. Sie erteilt keine Freigabe und verlangt eine belastbare Grundlage.
 
 ### Was fehlt
 Kernfrage, Mindestgrundlagen, Mandat und ein benannter Datenstand.
@@ -67,6 +68,26 @@ Vertrauensverlust im Stadtrat.
 
 ::: nachsatz
 Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+:::
+
+::: rueckbezug A
+Im Mai haben Sie ‚Weiterarbeiten‘ gewählt. Seither ist vieles weitergelaufen – entschieden wurde auf keinem benannten Stand. Jetzt soll darauf eine Freigabe beruhen.
+:::
+
+::: rueckbezug B
+Im Mai haben Sie ‚Entscheidungsvorlage verlangen‘ gewählt. Gekommen ist damals ein Statusbericht ohne Entscheidungsfrage. Jetzt sollen Sie selbst die Vorlage zur Freigabe vorbereiten – und keinen Stand kann jemand erklären.
+:::
+
+::: rueckbezug C
+Im Mai haben Sie ‚Eskalation auslösen‘ gewählt. Die Frage ging ohne Optionen nach oben und kam als „Bitte erst die Ursachen klären“ zurück. Im November ist die Kostenfrage noch offen.
+:::
+
+::: rueckbezug D
+Im Mai haben Sie ‚Prognose aktualisieren lassen‘ gewählt. Holger Stein hat damals neu gerechnet. Aus dieser Rechnung wurde „Prognose_Nov_v5“ – und die kann ohne ihn niemand erklären.
+:::
+
+::: rueckbezug ohne
+Im Mai standen zwei Kostenzahlen nebeneinander. Im November stehen sie noch immer nebeneinander – und die eine kann ohne Holger Stein niemand erklären.
 :::
 
 ::: regie

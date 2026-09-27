@@ -21,28 +21,12 @@ weiter: A2
 titel: Montag, 09:00 Uhr. Monat 1.
 kurz: Einstieg
 ---
-Montag, 5. Januar. Die erste volle Arbeitswoche des Jahres; seit Dezember hat der Schulcampus Lindenhall-Süd eine neue Projektleitung auf Bauherrenseite. Die Unterlagen liegen in drei Ablagen: bei der GML, bei der Projektsteuerung und bei der Generalplanung. Es gibt eine Liste der Beteiligten – Stadt, GML, Projektsteuerung, Generalplanung, Controlling, Nutzervertretung –, aber keine Linien dazwischen: Wer wem was vorlegt und wer was freigibt, steht nirgends.
-
-Kosten, Termin, ESG und LCC stehen gleichrangig nebeneinander; eine Rangfolge hat niemand festgelegt. Die Genehmigungsplanung ist fertig, der Bauantrag geht diese Woche raus.
+Montag, 5. Januar, die erste volle Arbeitswoche des Jahres. Die Unterlagen zum Schulcampus Lindenhall-Süd liegen in drei Ablagen: bei der GML, bei der Projektsteuerung und bei der Generalplanung. Es gibt eine Liste der Beteiligten, aber keine Linien dazwischen: Wer wem was vorlegt und wer was freigibt, steht nirgends. Kosten, Termin, ESG und LCC stehen gleichrangig nebeneinander. Die Genehmigungsplanung ist fertig, der Bauantrag geht diese Woche raus.
 
 ::: akten
 ---
-beschriftung: Ablage GML
-anzahl: 4
----
-:::
-
-::: akten
----
-beschriftung: Ablage Projektsteuerung
-anzahl: 6
----
-:::
-
-::: akten
----
-beschriftung: Ablage Generalplanung
-anzahl: 3
+beschriftung: Ablagen GML, Projektsteuerung, Generalplanung
+anzahl: 12
 ---
 Drei Ablagen, drei Ordnungssysteme.
 :::
@@ -80,13 +64,6 @@ von: petersen
 
 ::: notiz
 ---
-farbe: gelb
----
-Bauantrag raus – Donnerstag?
-:::
-
-::: notiz
----
 farbe: rosa
 ---
 Wer gibt hier was frei?
@@ -99,12 +76,6 @@ farbe: lila
 Kosten, Termin, ESG, LCC – was geht vor?
 :::
 
-::: notiz
----
-farbe: limette
----
-Lenkungskreis 20.01. – was legen wir vor?
-:::
 :::
 
 ::: schritt lage

@@ -58,6 +58,13 @@ export async function lauf(seite, h) {
       if (STATIONEN.includes(st) && !gesehen.has(st)) {
         gesehen.add(st);
         await h.warte(900);
+        // Der erzählende Einstieg ist sichtbar (P3.8, D1) und knapp (≤ 80 Wörter, D8)
+        const einstieg = seite.locator('[data-pruef="einstieg-text"]').filter({ visible: true });
+        if (await einstieg.count() === 0) h.befund(`${rolle}/${st}: Einstiegstext nicht sichtbar`);
+        else {
+          const woerter = (await einstieg.first().innerText()).split(/\s+/u).filter(Boolean).length;
+          if (woerter > 90) h.befund(`${rolle}/${st}: Einstiegstext ${woerter} Wörter (Richtwert ≤ 80)`);
+        }
         for (const fund of await seite.evaluate(pruefeLayout)) h.befund(`${rolle}/${st}: ${fund}`);
         await h.axe(`${rolle}/${st}`);
         if (rolle === 'pl') await h.bild(`${st}-einstieg`);

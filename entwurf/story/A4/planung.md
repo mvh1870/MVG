@@ -2,6 +2,7 @@
 station: A4
 rolle: planung
 frage: Die Baugenehmigung bringt Brandschutzauflagen zum Holzbau, der Ausschuss hat vertagt. Was tun Sie?
+rueckbezug-auf: A3
 ---
 
 ::: option A
@@ -64,8 +65,20 @@ Zwei Monate Stillstand an einem genehmigungsrelevanten Punkt.
 [[Mandat]]: Welche Stufe entscheidet über eine Änderung dieser Größe?
 :::
 
-::: nachsatz
-Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+::: rueckbezug A
+Im Mai haben Sie ‚Einsparvariante durchrechnen‘ gewählt. Die günstigere Fassade liegt seither vor; entschieden hat darüber niemand. Jetzt kommen die Brandschutzauflagen dazu.
+:::
+
+::: rueckbezug B
+Im Mai haben Sie ‚Marktabfrage liefern‘ gewählt. Die Preissteigerung der Holzbauelemente ist seither belegt; eine Entscheidung daraus hat niemand vorbereitet. Jetzt kommen die Brandschutzauflagen dazu.
+:::
+
+::: rueckbezug C
+Im Mai haben Sie ‚Weiterplanen wie beauftragt‘ gewählt. Jetzt ändern die Brandschutzauflagen, was geplant werden muss – und wer das beauftragt, sagt niemand.
+:::
+
+::: rueckbezug ohne
+Im Mai stieg die Prognose vor allem wegen der Holzbauelemente; entschieden wurde darüber nichts. Jetzt kommen die Brandschutzauflagen dazu.
 :::
 
 ::: regie

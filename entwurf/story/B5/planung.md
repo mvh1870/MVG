@@ -78,7 +78,7 @@ In Welt A haben Sie ‚Mehrkosten offenlegen‘ gewählt. In Welt B ist die Offe
 :::
 
 ::: rueckbezug ohne
-In Welt A war die Reserve zu einem guten Teil verplant, ohne dass jemand sie freigegeben hatte. In Welt B steht `PRB-004` im Problemregister, und über die Reserve entscheidet der Bauherr.
+In Welt A liefen Posten gegen die Reserve, ohne dass jemand ihren Einsatz freigegeben hatte. In Welt B steht `PRB-004` im Problemregister, und über die Reserve entscheidet der Bauherr.
 :::
 
 ::: regie

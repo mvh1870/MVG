@@ -1,7 +1,8 @@
 ---
 station: A5
 rolle: bauherr
-frage: Die Risikoreserve ist zu einem guten Teil verplant – freigegeben haben Sie nichts. Was tun Sie?
+frage: Gegen die Risikoreserve laufen Posten, deren Einsatz Sie nicht freigegeben haben. Was tun Sie?
+rueckbezug-auf: A2
 ---
 
 ::: option A
@@ -64,8 +65,20 @@ Vertrauensverlust im Ausschuss; die nächste Zahl wird doppelt geprüft.
 [[Nichtdelegierbare Bauherrenverantwortung]]: Wie stellen Sie sicher, dass die Reserve nur mit Ihrer Freigabe eingesetzt wird?
 :::
 
-::: nachsatz
-Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+::: rueckbezug A
+Im März haben Sie ‚Zusage bestätigen‘ gewählt. Die Generalplanung hat ohne schriftlichen Auftrag umgeplant. Jetzt kündigt sie den Nachtrag dazu an – und er läuft gegen die Reserve.
+:::
+
+::: rueckbezug B
+Im März haben Sie ‚An die GML verweisen‘ gewählt. Ob die Mensa zugesagt ist, hing seither zwischen Stadt und GML. Jetzt kommt ein Nachtrag, und beauftragt hat die Umplanung niemand.
+:::
+
+::: rueckbezug C
+Im März haben Sie ‚Erst Kosten klären lassen‘ gewählt. Die Kostenaussage kam nach sechs Wochen, ohne Termin- und Risikowirkung; entschieden wurde auf ihr nichts. Jetzt steht die Mensa in der Rechnung gegen die Reserve.
+:::
+
+::: rueckbezug ohne
+Im März kam die größere Mensa als Zusage aus dem Flur. Im September steht sie als angekündigter Nachtrag in der Rechnung gegen die Reserve.
 :::
 
 ::: regie

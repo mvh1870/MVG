@@ -21,9 +21,9 @@ weiter: A6
 titel: Mittwoch, 14:00 Uhr. Monat 9.
 kurz: Einstieg
 ---
-Mittwoch, 9. September. Die Sommerpause ist vorbei; am 15. tagt der Lenkungskreis, am 17. der Bauausschuss – mit dem Tagesordnungspunkt, der im Juli vertagt wurde.
+Mittwoch, 9. September. Die Sommerpause ist vorbei. Der Lenkungskreis am 21. Juli hat die Punkte aus dem Ausschuss beraten; eine Grundlage, auf die sich alle beziehen, ist daraus nicht entstanden.
 
-Seit Juni ist einiges dazugekommen, jedes für sich: die Brandschutzauflagen aus der Baugenehmigung, grob 0,4 Mio. €. Die Mensa, inzwischen informell umgeplant; die Generalplanung kündigt dafür einen Nachtrag an. Der Nachtrag der TGA-Fachplanung liegt vor. Aylin Kaya hat die Posten zusammengezählt und gegen die Risikoreserve von 2,9 Mio. € gehalten: Ein guter Teil ist schon verplant. Freigegeben hat das niemand.
+Seit Juni ist dazugekommen: der Nachtrag der TGA-Fachplanung, ein angekündigter Nachtrag zur Mensa-Umplanung, die Brandschutzauflagen. Aylin Kaya hat die Posten gegen die Risikoreserve von 2,9 Mio. € gehalten. Die reicht schon für die Abweichung aus dem Mai nicht – und ihren Einsatz hat niemand freigegeben.
 
 ::: akten
 ---
@@ -39,8 +39,8 @@ titel: Jour fixe – Auszug
 datum: Di, 08.09.2026
 von: petersen
 ---
-- Brandschutzauflagen aus der Baugenehmigung (Juni): Die Planung arbeitet sie ein; Mehrkosten grob 0,4 Mio. €.
-- Mensa: Die Planung arbeitet mit der größeren Variante. Die Generalplanung kündigt einen Nachtrag zur Umplanung an; eine Beauftragung ist nicht vermerkt.
+- Brandschutzauflagen aus der Baugenehmigung (Juni): Mehrkosten grob 0,4 Mio. €; Stand der Einarbeitung offen.
+- Mensa: Die Schulseite plant mit der größeren Variante. Die Generalplanung kündigt einen Nachtrag zur Umplanung an; eine Beauftragung ist nicht vermerkt.
 - Nachtrag der TGA-Fachplanung liegt vor; die Projektsteuerung prüft.
 - Deckung der Mehrkosten: nicht besprochen.
 :::
@@ -50,14 +50,7 @@ von: petersen
 von: kaya
 zeit: "13:48"
 ---
-Ich habe die Reserve gegengerechnet. Brandschutz, Mensa, TGA – ein guter Teil der 2,9 Mio. € ist schon verplant. Wer hat das freigegeben?
-:::
-
-::: notiz
----
-farbe: gelb
----
-Reserve 2,9 Mio. € – wie viel ist noch frei?
+Ich habe die Reserve gegengerechnet. Brandschutz, Mensa, TGA laufen gegen die 2,9 Mio. € – und die reichen schon für die Mai-Abweichung nicht. Wer hat das freigegeben?
 :::
 
 ::: notiz
@@ -82,6 +75,14 @@ Lenkungskreis 15.09. · Bauausschuss 17.09.
 :::
 :::
 
+::: schritt rueckbezug
+---
+art: rueckbezug
+titel: Was von Ihrer früheren Wahl bleibt
+kurz: Rückbezug
+---
+:::
+
 ::: schritt lage
 ---
 art: lage
@@ -90,17 +91,16 @@ kurz: Was Sie wissen
 knopf: Jetzt entscheiden
 ---
 ::: bekannt
-- Die Projektbasis enthält eine Risikoreserve von 2,9 Mio. €; ein guter Teil davon ist verplant, eine Freigabe des Einsatzes gibt es nicht.
-- Schon die Abweichung aus dem Mai deckt die Reserve nicht: ganz eingesetzt, blieben nach Projektsteuerung rund 1,8 Mio. €, nach Controlling rund 0,5 Mio. € über der Projektbasis.
-- Brandschutzauflagen aus der Baugenehmigung: grob 0,4 Mio. €.
-- Die Mensa ist informell umgeplant; die Generalplanung kündigt einen Nachtrag an, eine Beauftragung fehlt.
-- Der Nachtrag der TGA-Fachplanung liegt vor.
+- Die Projektbasis enthält eine Risikoreserve von 2,9 Mio. €. Brandschutz, Mensa und TGA laufen gegen sie; eine Freigabe des Einsatzes gibt es nicht.
+- Die Reserve reicht schon für die Abweichung aus dem Mai nicht: ganz eingesetzt, blieben nach Projektsteuerung rund 1,8 Mio. € oder mehr, nach Controlling rund 0,5 Mio. € über der Projektbasis.
+- Brandschutzauflagen aus der Baugenehmigung: grob 0,4 Mio. €; der Nachtrag der TGA-Fachplanung liegt vor.
+- Die Schulseite plant mit der größeren Mensa; die Generalplanung kündigt einen Nachtrag zur Umplanung an, eine Beauftragung fehlt.
 - Der Lenkungskreis tagt am 15. September, der Bauausschuss am 17. September.
 :::
 
 ::: unbekannt
-- Wie viel der Reserve noch frei ist {#rest}
-- Wer die Verplanung veranlasst hat {#veranlasst}
+- Welche Abweichung gilt – und was dann von der Reserve bleibt {#rest}
+- Wer die Posten der Reserve zugeordnet hat {#veranlasst}
 - Wie hoch der Nachtrag zur Mensa-Umplanung wird {#mensa}
 - Welche Risiken die Reserve noch tragen soll {#restrisiko}
 - Wer über den Einsatz der Reserve entscheidet {#zustaendigkeit}
@@ -114,17 +114,17 @@ dauer: Eine Woche später
 status:
   terminrisiko: +1 (Lenkungskreis ohne Vorlage verstrichen)
 loest:
-  veranlasst: verteilt auf Jour fixe, Mails und eine Zusage – freigegeben von niemandem
+  veranlasst: verteilt auf Jour fixe, Mails und eine Zusage – eine Freigabe ist nicht darunter
   mensa: Nachtrag liegt vor, in keiner Prognose
 bleibt:
-  rest: zwei Rechnungen, zwei Reste
+  rest: zwei Rechnungen, zwei Antworten
   restrisiko: bleibt unbewertet
   zustaendigkeit: bleibt ungeklärt
 ---
 Terminrisiko steigt.
 
 ### Neu bekannt
-Der Nachtrag der Generalplanung zur Mensa-Umplanung liegt vor; in keiner Prognose steht er schon. Die Verplanung der Reserve lässt sich zurückverfolgen – auf Jour-fixe-Punkte, Mails und die Zusage zur Mensa; eine Freigabe ist nicht darunter. Der Lenkungskreis am 15. September ist vorbei; die Reserve stand nicht auf der Tagesordnung.
+Der Nachtrag der Generalplanung zur Mensa-Umplanung liegt vor; in keiner Prognose steht er schon. Die Zuordnung der Posten zur Reserve lässt sich zurückverfolgen – auf Jour-fixe-Punkte, Mails und die Zusage zur Mensa; eine Freigabe ist nicht darunter. Der Lenkungskreis am 15. September ist vorbei; die Reserve stand nicht auf der Tagesordnung.
 :::
 :::
 
@@ -164,7 +164,7 @@ Wird die Risikoreserve ohne Freigabe verplant, trifft niemand die Entscheidung, 
 ---
 titel: Warum relevant
 ---
-Kap. 4.4: [[zitat:k4.4-p1|Die Annahme wesentlicher Risikoexposition bleibt jedoch eine Bauherrenentscheidung.]] Die Tabelle in Kap. 3.2 zählt die [[zitat:k3.2-t1|Freigabe des Einsatzes der Risikoreserve]] zur [[Nichtdelegierbare Bauherrenverantwortung|nichtdelegierbaren Bauherrenverantwortung]]. In A5 sind Brandschutzauflagen, Mensa-Umplanung und der Nachtrag der TGA-Fachplanung in die Reserve gewandert, ohne dass Dr. Olbers eine davon angenommen hat. Wer jetzt nachträglich unterschreiben lässt, trifft auf den ersten Satz von Kap. 4.5: [[zitat:k4.5-p1|Freigabe ist mehr als Unterschrift.]] Sie bezieht sich auf einen benannten [[Datenstand]] – und den gibt es für die verplanten Posten nicht.
+Kap. 4.4: [[zitat:k4.4-p1|Die Annahme wesentlicher Risikoexposition bleibt jedoch eine Bauherrenentscheidung.]] Die Tabelle in Kap. 3.2 zählt die [[zitat:k3.2-t1|Freigabe des Einsatzes der Risikoreserve]] zur [[Nichtdelegierbare Bauherrenverantwortung|nichtdelegierbaren Bauherrenverantwortung]]. In A5 sind Brandschutzauflagen, Mensa-Umplanung und der Nachtrag der TGA-Fachplanung in die Reserve gewandert, ohne dass Dr. Olbers den Einsatz der Reserve dafür freigegeben hat. Wer jetzt nachträglich unterschreiben lässt, trifft auf den ersten Satz von Kap. 4.5: [[zitat:k4.5-p1|Freigabe ist mehr als Unterschrift.]] Sie bezieht sich auf einen benannten [[Datenstand]] – und den gibt es für die verplanten Posten nicht.
 :::
 
 ::: ebene 3
@@ -193,14 +193,14 @@ Risiken können analysiert, bewertet und gemindert werden. Die Annahme wesentlic
 ---
 figur: deppe
 ---
-„Die Auflagen sind Pflicht, die Mensa war zugesagt. Dass das aus der Reserve kommt, lag nahe. Hätte das jemand anders entscheiden müssen?“
+„Die Auflagen sind Pflicht, und die Schulseite rechnet mit der größeren Mensa. Dass das aus der Reserve kommt, lag nahe. Hätte das jemand anders entscheiden müssen?“
 :::
 
 ::: standpunkt bauherr
 ---
 figur: olbers
 ---
-„2,9 Mio. € Reserve, und ich erfahre aus einer Rechnung des Controllings, wie viel davon noch da ist. Wofür ist der Rest verplant – und wer hat das angenommen?“
+„Worüber soll ich hier entscheiden? 2,9 Mio. € Reserve, und aus einer Rechnung des Controllings erfahre ich, was schon gegen sie läuft – und wer hat das angenommen?“
 :::
 
 ::: standpunkt pl
@@ -214,29 +214,29 @@ figur: sie
 ---
 figur: brenner
 ---
-„Die Posten stehen alle in unserer Prognose. Ob gegen die Reserve oder daneben – das hat mir niemand vorgegeben.“
+„Brandschutz und TGA stehen in unserer Prognose, die Mensa kommt mit dem Nachtrag. Ob gegen die Reserve oder daneben – das hat mir niemand vorgegeben.“
 :::
 
 ::: standpunkt planung
 ---
 figur: hoffmeister
 ---
-„Die Auflagen musste ich einarbeiten, die Mensa war zugesagt. Einen Auftrag für die Umplanung habe ich trotzdem nicht.“
+„Die Auflagen gelten, und die Schulseite rechnet mit der größeren Mensa. Einen Auftrag für die Umplanung habe ich trotzdem nicht.“
 :::
 
 ::: standpunkt controlling
 ---
 figur: kaya
 ---
-„Ich habe nur zusammengezählt. Ein guter Teil der Reserve ist weg – und niemand hat ihn freigegeben.“
+„Ich habe nur zusammengezählt. Die Reserve reicht schon für die Mai-Abweichung nicht, und trotzdem laufen neue Posten gegen sie.“
 :::
 
 ::: regie
 ### Notiz
-A5 zeigt Risikoannahme und Freigabe (Kap. 4.4, 4.5) von der Seite, auf der sie fehlen: Die Reserve wird verplant, ohne dass der Bauherr eine Risikoexposition angenommen oder den Einsatz freigegeben hat (Kap. 3.2, nicht delegierbar). Keine Figur handelt leichtfertig; jeder Posten hat einen Grund. Die Abweichung aus dem Mai deckt die Reserve ohnehin nicht. „Freigabe“ meint hier den Einsatz der Risikoreserve, nicht die Freigabe am Abschluss einer LPH. Partner B5: Dort steht der Nachtrag der TGA-Fachplanung als Problem im Register, und Dr. Olbers entscheidet auf Vorlage.
+A5 zeigt Risikoannahme und Freigabe (Kap. 4.4, 4.5) von der Seite, auf der sie fehlen: Die Reserve wird verplant, ohne dass der Bauherr eine Risikoexposition angenommen oder den Einsatz freigegeben hat (Kap. 3.2, nicht delegierbar). Keine Figur handelt leichtfertig; jeder Posten hat einen Grund. Die Reserve deckt schon die Abweichung aus dem Mai nicht. „Freigabe“ meint hier den Einsatz der Risikoreserve, nicht die Freigabe zum Abschluss einer LPH. Partner B5: Dort steht der Nachtrag der TGA-Fachplanung als Problem im Register, und Dr. Olbers entscheidet auf Vorlage.
 
 ### Leitfragen
-- Wie viel Ihrer Risikoreserve ist heute schon verplant – und wer weiß das?
+- Was läuft bei Ihnen heute schon gegen die Risikoreserve – und wer weiß das?
 - Wer gibt bei Ihnen den Einsatz der Reserve frei, und wo ist das nachgewiesen?
 - Welche Kosten stehen bei Ihnen auf einer Zusage statt auf einem Auftrag?
 :::

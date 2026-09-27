@@ -104,6 +104,8 @@ export const W = {
   erinnert: 'Die Geschichte erinnert sich',
   ihreWahlA: 'Ihre Wahl in Welt A',
   weltBErinnert: 'Welt B erinnert sich',
+  ihreFruehereWahl: 'Ihre frühere Wahl',
+  weltAErinnert: 'Was davon bleibt',
   ohneWahlA: 'Ohne Wahl in Welt A',
   derselbeMoment: 'derselbe Moment',
   nachWahl: (w: string) => `nach Wahl ${w}`,

@@ -2,6 +2,7 @@
 station: A4
 rolle: pl
 frage: Was legen Sie dem Bauausschuss beim nächsten Mal vor?
+rueckbezug-auf: A3
 ---
 
 ::: option A
@@ -12,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Jonas Brenner kürzt auf zehn Seiten. Im September sind die Ampeln weiter gelb und rot, eine Entscheidungsfrage gibt es weiter nicht. Bernd Kowalski fragt wieder.
+Jonas Brenner sagt für September zehn Seiten zu. Die Ampeln bleiben gelb und rot; eine Entscheidungsfrage ist auch in der kurzen Fassung nicht vorgesehen.
 
 ### Was fehlt
 Die Trennung von Bericht und Entscheidung: Welche Punkte brauchen einen Beschluss?
@@ -53,7 +54,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Frank Deppe nimmt die Liste mit. Der Lenkungskreis sammelt, beschließt nichts und bittet um Klärung. Die Liste hat jetzt sieben Punkte und keine Frist.
+Frank Deppe nimmt die Liste mit. Der Lenkungskreis am 21. Juli sammelt, beschließt nichts und bittet um Klärung. Die Liste hat fünf Punkte und keine Frist.
 
 ### Was fehlt
 Wer in welchem Gremium was entscheiden darf.
@@ -65,8 +66,24 @@ Der Entscheidungsstau wandert nur in ein anderes Gremium.
 [[Mandat]]: Welches Gremium entscheidet welche Frage?
 :::
 
-::: nachsatz
-Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+::: rueckbezug A
+Im Mai haben Sie ‚Weiterarbeiten‘ gewählt. Die günstigere Fassade der Generalplanung ist seither durchgerechnet; eine Entscheidung dazu hat niemand vorbereitet.
+:::
+
+::: rueckbezug B
+Im Mai haben Sie ‚Entscheidungsvorlage verlangen‘ gewählt. Gekommen ist ein 40-seitiger Statusbericht ohne Entscheidungsfrage – genau diese Art Bericht liegt heute vor dem Ausschuss.
+:::
+
+::: rueckbezug C
+Im Mai haben Sie ‚Eskalation auslösen‘ gewählt. Der Lenkungskreis bat darum, erst die Ursachen zu klären. Die Ursachen stehen heute im Bericht, eine Frage an den Ausschuss nicht.
+:::
+
+::: rueckbezug D
+Im Mai haben Sie ‚Prognose aktualisieren lassen‘ gewählt. Seither stehen +9,1 % und die CTC des Controllings nebeneinander. Welche Zahl gilt, sagt auch der Bericht vom Juli nicht.
+:::
+
+::: rueckbezug ohne
+Im Mai standen zwei Kostenzahlen nebeneinander, und der Bauausschuss hat nichts beschlossen. Im Juli liegt ihm wieder keine Entscheidungsfrage vor.
 :::
 
 ::: regie

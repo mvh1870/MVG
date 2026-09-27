@@ -157,7 +157,8 @@ function einstieg(k: SzenenKontext): Szene {
     'M25 22 C 50 42, 50 58, 75 72', 'M75 28 C 43 45, 57 52, 25 68', 'M25 22 C 37 2, 67 0, 75 28',
     'M25 68 C 13 99, 87 99, 75 72', 'M75 28 C 104 57, 3 42, 25 68',
   ];
-  return szene(h('div', { class: 'einstieg' },
+  const einleitung = k.schritt.felder['text'] ? h('div', { class: 'szene-einleitung', 'data-pruef': 'einstieg-text' }, inhalt(k.schritt.felder['text'])) : null;
+  return szene(h('div', { class: 'stapel' }, einleitung, h('div', { class: 'einstieg' },
     h('div', { class: 'einstieg-feed' },
       mails.map((b, i) => h('div', { class: 'anim-auftauchen', style: `--verzug:${80 + i * 200}ms` }, B.mail(b, k.inhalte, woerter, ich))),
       chats.map((b, i) => B.chat(b, k.inhalte, 700 + i * 300, ich, W.sieSelbst)),
@@ -166,7 +167,7 @@ function einstieg(k: SzenenKontext): Szene {
       h('span', { class: 'pinnwand-label t-label', 'aria-hidden': 'true' }, W.randnotizen),
       s('svg', { class: 'faeden', viewBox: '0 0 100 100', preserveAspectRatio: 'none', 'aria-hidden': 'true' },
         faeden.slice(0, Math.max(0, notizen.length + 1)).map((d, i) => s('path', { d, style: `--verzug:${1.8 + i * 0.2}s` }))),
-      notizen.map((b, i) => B.haftnotiz(b, i, 1300 + i * 150))) : null));
+      notizen.map((b, i) => B.haftnotiz(b, i, 1300 + i * 150))) : null)));
 }
 
 /* ----------------------------------------------------------- Welt A: Lagebild -- */
@@ -671,14 +672,15 @@ function statusZeilen(a: Status | null, b: Status | null): HTMLElement[] {
 
 function rueckbezugTeil(k: SzenenKontext): Szene {
   const rb = rueckbezug(k.z, k.inhalte);
+  const inB = k.station.welt === 'B';
   let oben: Node;
   if (rb !== null && rb.option !== null) {
     const ent = Object.values(k.inhalte.stationen).flatMap((st) => Object.values(st.szenen)).map((sz) => sz.entscheidung).find((e) => e !== null && e.id === rb.entscheidung) ?? null;
     const opt = ent?.optionen.find((o) => o.id === rb.option) ?? null;
     oben = h('div', { class: 'erinnerung' },
-      h('div', { class: 'erinnerung-a' }, h('span', { class: 't-label' }, W.ihreWahlA), h('div', { class: 'wahl' }, h('kbd', { class: 'option-taste', 'aria-hidden': 'true' }, rb.option), h('b', null, opt?.titel ?? rb.kurz ?? ''))),
+      h('div', { class: 'erinnerung-a' }, h('span', { class: 't-label' }, inB ? W.ihreWahlA : W.ihreFruehereWahl), h('div', { class: 'wahl' }, h('kbd', { class: 'option-taste', 'aria-hidden': 'true' }, rb.option), h('b', null, opt?.titel ?? rb.kurz ?? ''))),
       h('div', { class: 'erinnerung-pfeil', 'aria-hidden': 'true' }, B.sym('pfeilRechts')),
-      h('div', { class: 'erinnerung-b' }, h('span', { class: 't-label' }, W.weltBErinnert), h('div', null, inhalt(rb.html))));
+      h('div', { class: 'erinnerung-b' }, h('span', { class: 't-label' }, inB ? W.weltBErinnert : W.weltAErinnert), h('div', null, inhalt(rb.html))));
   } else {
     oben = h('div', { class: 'erinnerung ist-ohne' }, h('div', { class: 'erinnerung-b' }, h('span', { class: 't-label' }, W.ohneWahlA), h('div', null, inhalt(rb?.html ?? ''))));
   }

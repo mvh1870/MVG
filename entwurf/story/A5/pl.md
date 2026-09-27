@@ -2,6 +2,7 @@
 station: A5
 rolle: pl
 frage: Was tun Sie mit der verplanten Risikoreserve?
+rueckbezug-auf: A2
 ---
 
 ::: option A
@@ -13,7 +14,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Sie legen Dr. Olbers die Einsätze gesammelt vor. Dr. Olbers unterschreibt und fragt, auf welcher Zahl: drei Positionen, zwei Stände, keine Einzelbewertung.
+Sie legen Dr. Olbers die Einsätze gesammelt vor. Sie fragt zuerst, worüber sie entscheiden soll, dann nach der Zahl: drei Positionen, zwei Stände, keine Einzelbewertung. Sie unterschreibt.
 
 ### Was fehlt
 Eine Freigabe auf benanntem Stand, bevor die Reserve eingesetzt wird – nicht danach.
@@ -67,8 +68,20 @@ Transparenz ohne Entscheidung; die Zeit läuft weiter.
 [[Entscheidungsvorlage]]: Was wird dem Bauherrn zur Entscheidung vorgelegt?
 :::
 
-::: nachsatz
-Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+::: rueckbezug A
+Im März haben Sie ‚Zusage mittragen‘ gewählt. Umgeplant wurde, bevor jemand entschieden hat. Jetzt fragt Aylin Kaya, wer den Einsatz der Reserve dafür freigegeben hat.
+:::
+
+::: rueckbezug B
+Im März haben Sie ‚Prüfen lassen‘ gewählt. Nach drei Wochen lagen Zahlen vor, aber keine Entscheidungsfrage. Jetzt stehen dieselben Zahlen als Posten gegen die Reserve.
+:::
+
+::: rueckbezug C
+Im März haben Sie ‚An den Bauherrn geben‘ gewählt. Dr. Olbers fragte, was sie entscheiden soll; die Mensa wartete auf den Lenkungskreis. Jetzt kommt sie als Nachtrag zurück – wieder ohne Frage.
+:::
+
+::: rueckbezug ohne
+Im März kam die größere Mensa als Zusage aus dem Flur. Im September steht sie als angekündigter Nachtrag in der Rechnung gegen die Reserve.
 :::
 
 ::: regie

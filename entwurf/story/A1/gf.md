@@ -33,7 +33,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Ab Februar legt Ihnen Jonas Brenner seinen Statusbericht mit Ampeln jeden Monat vor. Sie wissen jetzt mehr über das Projekt; entschieden ist dadurch nichts.
+Noch im Januar legt Ihnen Jonas Brenner den ersten Statusbericht mit Ampeln vor, danach jeden Monat. Sie wissen jetzt mehr über das Projekt; entschieden ist dadurch nichts.
 
 ### Was fehlt
 Die Verbindung der Information mit Mandat, Entscheidung und Schwelle.

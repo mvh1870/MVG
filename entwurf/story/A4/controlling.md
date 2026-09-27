@@ -2,6 +2,7 @@
 station: A4
 rolle: controlling
 frage: Was liefern Sie für die nächste Sitzung des Bauausschusses zu?
+rueckbezug-auf: A3
 ---
 
 ::: option A
@@ -12,7 +13,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Bernd Kowalski bekommt eine Seite mit der CTC nach Kostengruppen. Sie ist klarer als 40 Seiten – eine Frage stellt sie auch nicht. Bis zur Sitzung im September vergehen zwei Monate.
+Bernd Kowalski bekommt eine Seite mit der CTC nach Kostengruppen. Sie ist klarer als der ganze Bericht – eine Frage stellt sie auch nicht. Bis zur Sitzung im September vergehen zwei Monate.
 
 ### Was fehlt
 Die Entscheidungsfrage: Worüber soll der Ausschuss beschließen?
@@ -64,8 +65,20 @@ Ein Vorschlag ohne Beschluss gilt irgendwann als Praxis.
 [[Mandat]]: Wer legt Freigabeschwellen fest?
 :::
 
-::: nachsatz
-Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+::: rueckbezug A
+Im Mai haben Sie ‚Eigene Zahl vertreten‘ gewählt. Seither stehen Ihre +5,9 % und die Prognose der Projektsteuerung nebeneinander. Im Statusbericht vom Juli kommt Ihre Zahl nicht vor.
+:::
+
+::: rueckbezug B
+Im Mai haben Sie ‚Differenz aufschlüsseln‘ gewählt. Seit Ende Mai ist klar, dass der Unterschied vor allem an den Holzbauelementen und am angekündigten Nachtrag der TGA-Fachplanung liegt. Entschieden hat darüber niemand; im Ausschuss lag die Aufschlüsselung nicht.
+:::
+
+::: rueckbezug C
+Im Mai haben Sie ‚Überschreitung melden‘ gewählt. Frank Deppe nahm Ihre Meldung in den Lenkungskreis mit, dort lag sie neben dem Statusbericht. Dem Ausschuss liegt heute nur der Bericht vor.
+:::
+
+::: rueckbezug ohne
+Im Mai standen zwei Kostenzahlen nebeneinander, und der Bauausschuss hat nichts beschlossen. Im Juli liegt ihm wieder keine Entscheidungsfrage vor.
 :::
 
 ::: regie

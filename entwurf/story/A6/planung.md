@@ -2,6 +2,7 @@
 station: A6
 rolle: planung
 frage: Die Freigabe zum Abschluss von LPH 5 steht an. Was liefert die Generalplanung?
+rueckbezug-auf: A5
 ---
 
 ::: option A
@@ -52,7 +53,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Zwei Tage Arbeit mit Brenners Team. Die Mengen passen zu Holger Steins letztem Stand „Prognose_Nov_v5“; Dr. Olbers bekommt bis Freitag eine Zahl, unter Vorbehalt.
+Zwei Tage Arbeit mit dem Team von Jonas Brenner. Die Mengen passen zu Holger Steins letztem Stand „Prognose_Nov_v5“; Dr. Olbers bekommt bis Freitag eine Zahl, unter Vorbehalt.
 
 ### Was fehlt
 Ein benannter [[Datenstand]] und eine Stellvertretung, die ihn ohne Holger Stein führen kann.
@@ -66,6 +67,22 @@ Wie wird Wissen aus Schlüsselrollen in Artefakte und Routinen übersetzt?
 
 ::: nachsatz
 Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+:::
+
+::: rueckbezug A
+Im September haben Sie ‚Nachtrag auf Zusage stützen‘ gewählt. Der Nachtrag ist gestellt; beauftragt ist die Umplanung bis heute nicht. Jetzt steht sie auf der Liste offener Punkte zum Abschluss.
+:::
+
+::: rueckbezug B
+Im September haben Sie ‚Nachtrag zurückstellen‘ gewählt. Der Nachtrag liegt noch bei Ihnen. Zum Abschluss von LPH 5 fehlt damit eine Zahl, die alle ungefähr kennen.
+:::
+
+::: rueckbezug C
+Im September haben Sie ‚Mehrkosten offenlegen‘ gewählt. Ihre Übersicht liegt seither bei Bauherren-PL und Controlling; entschieden hat darüber niemand. Jetzt steht der Abschluss an.
+:::
+
+::: rueckbezug ohne
+Im September standen Auflagen und Mensa-Umplanung ohne Auftrag und ohne Deckung da. Jetzt steht der Abschluss von LPH 5 an.
 :::
 
 ::: regie

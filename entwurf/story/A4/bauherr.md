@@ -2,6 +2,7 @@
 station: A4
 rolle: bauherr
 frage: Bernd Kowalski hat zweimal gefragt, worüber der Ausschuss entscheiden soll. Vertagt. Was nehmen Sie aus der Sitzung mit?
+rueckbezug-auf: A3
 ---
 
 ::: option A
@@ -12,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Im September liegen zwölf Seiten statt vierzig auf dem Tisch. Die Ampeln sind dieselben; eine Entscheidungsfrage steht wieder nicht darin.
+Für September sind zwölf Seiten statt vierzig angekündigt. Die Ampeln bleiben dieselben; eine Entscheidungsfrage ist nicht vorgesehen.
 
 ### Was fehlt
 Eine [[Entscheidungsvorlage]] mit Frage, Optionen und Empfehlung – nicht ein kürzerer Statusbericht.
@@ -46,13 +47,13 @@ Der Engpass wandert zu Ihnen; alles wartet auf Ihren Kalender.
 
 ::: option C
 ---
-titel: Alle offenen Punkte in den Lenkungskreis im August geben
+titel: Alle offenen Punkte in den Lenkungskreis am 21. Juli geben
 kurz: Lenkungskreis befassen
 status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Im August tagt der Lenkungskreis mit einer Liste offener Punkte. Keiner hat Optionen; zwei werden erneut vertagt, bis Unterlagen vorliegen.
+Am 21. Juli tagt der Lenkungskreis mit einer Liste offener Punkte. Keiner hat Optionen; zwei werden erneut vertagt, bis Unterlagen vorliegen.
 
 ### Was fehlt
 Vorlagen mit Frage, Optionen und Empfehlung; eine Liste ist keine Entscheidungsgrundlage.
@@ -64,8 +65,20 @@ Mehr Sitzungen, gleich viele Entscheidungen.
 [[Entscheidungsreife]]: Was muss vorliegen, bevor ein Punkt in den Lenkungskreis geht?
 :::
 
-::: nachsatz
-Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+::: rueckbezug A
+Im Mai haben Sie ‚Eine Zahl verlangen‘ gewählt. In den Bauausschuss ging die Zahl der GML; die Projektsteuerung rechnet weiter mit ihrer eigenen. Im Juli stehen wieder beide nebeneinander.
+:::
+
+::: rueckbezug B
+Im Mai haben Sie ‚Mündlich informieren‘ gewählt. Im Protokoll vom Mai steht keine Zahl. Heute fragt Bernd Kowalski, worüber der Ausschuss entscheiden soll – und die Antwort steht wieder nirgends.
+:::
+
+::: rueckbezug C
+Im Mai haben Sie ‚Punkt vertagen‘ gewählt. Die Sitzung im Juli hat das Thema geerbt, mit zwei Monaten mehr Abweichung und ohne Vorlage. Jetzt ist es ein zweites Mal vertagt.
+:::
+
+::: rueckbezug ohne
+Im Mai standen zwei Kostenzahlen nebeneinander, und der Bauausschuss hat nichts beschlossen. Im Juli liegt ihm wieder keine Entscheidungsfrage vor.
 :::
 
 ::: regie

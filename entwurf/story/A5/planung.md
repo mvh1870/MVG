@@ -1,7 +1,8 @@
 ---
 station: A5
 rolle: planung
-frage: Die Mensa ist umgeplant, ein Auftrag dafür fehlt. Wie gehen Sie mit Ihrem Nachtrag zur Mensa-Umplanung um? Der Nachtrag der TGA-Fachplanung liegt schon vor.
+frage: Für die Mensa-Umplanung gibt es keinen Auftrag. Wie gehen Sie mit Ihrem Nachtrag dazu um?
+rueckbezug-auf: A4
 ---
 
 ::: option A
@@ -12,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Der Nachtrag geht raus. Aylin Kaya bucht ihn gegen die Risikoreserve, weil es kein anderes Budget gibt; freigegeben hat das niemand.
+Der Nachtrag geht raus. Aylin Kaya bucht ihn gegen die Risikoreserve, weil es kein anderes Budget gibt; eine Freigabe dafür gibt es nicht.
 
 ### Was fehlt
 Eine Beauftragung der Änderung – und die Freigabe des Einsatzes der Risikoreserve.
@@ -64,8 +65,20 @@ Offenlegung ohne Entscheidung verlagert den Druck auf die Bauherren-PL.
 Welche dieser Kosten muss der Bauherr selbst akzeptieren?
 :::
 
-::: nachsatz
-Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+::: rueckbezug A
+Im Juli haben Sie ‚Auflagen einarbeiten‘ gewählt. Die Auflagen stehen in der Ausführungsplanung; ihre Mehrkosten laufen jetzt gegen die Reserve – und der Mensa-Nachtrag soll folgen.
+:::
+
+::: rueckbezug B
+Im Juli haben Sie ‚Varianten für den Ausschuss‘ gewählt. Ihre Übersicht hing als Anlage am Statusbericht; eine Entscheidung ist daraus nicht geworden. Jetzt kommt der Mensa-Nachtrag dazu.
+:::
+
+::: rueckbezug C
+Im Juli haben Sie ‚Entscheidung anmahnen‘ gewählt. Über die Deckung der Auflagen hat bis heute niemand entschieden. Jetzt kommt der Mensa-Nachtrag auf dieselbe offene Liste.
+:::
+
+::: rueckbezug ohne
+Im Juli kamen die Brandschutzauflagen, und über ihre Deckung hat niemand entschieden. Jetzt kommt der Mensa-Nachtrag dazu.
 :::
 
 ::: regie

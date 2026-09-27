@@ -1,7 +1,8 @@
 ---
 station: A5
 rolle: gf
-frage: Die Risikoreserve ist zu einem guten Teil verplant, freigegeben hat das niemand. Was tun Sie?
+frage: Gegen die Risikoreserve laufen Posten ohne Freigabe – und sie reicht schon für die Mai-Abweichung nicht. Was tun Sie?
+rueckbezug-auf: A2
 ---
 
 ::: option A
@@ -54,7 +55,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Sie rufen Dr. Miriam Olbers an. Dr. Olbers will eine Aufstellung bis nächste Woche; Projektsteuerung und Controlling liefern zwei. Das Problem ist jetzt oben – mit zwei Zahlen.
+Sie rufen Dr. Miriam Olbers an. Sie will eine Aufstellung bis nächste Woche; Projektsteuerung und Controlling liefern zwei. Das Problem ist jetzt oben – mit zwei Zahlen.
 
 ### Was fehlt
 Ein [[Datenstand]], der für die Freigabe gilt.
@@ -66,8 +67,20 @@ Offenlegen ohne Grundlage erzeugt eine neue Entscheidung, die niemand vorbereite
 Welche Mindestgrundlagen braucht der Bauherr, um den Einsatz der Reserve freizugeben?
 :::
 
-::: nachsatz
-Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+::: rueckbezug A
+Im März haben Sie ‚Zusage stehen lassen‘ gewählt. Grob 0,6 Mio. € sind seither in der Planung – jetzt als angekündigter Nachtrag, gerechnet gegen die Reserve.
+:::
+
+::: rueckbezug B
+Im März haben Sie ‚Prüfen lassen‘ gewählt. Die Prüfung hatte keine Frist und keine Stelle, die danach entscheidet. Die Schulseite hat mit der großen Mensa weitergeplant; jetzt kommt der Nachtrag.
+:::
+
+::: rueckbezug C
+Im März haben Sie ‚In den Lenkungskreis‘ gewählt. Dort wurde die Mensa zur Kenntnis genommen, nicht entschieden. Jetzt steht sie als Nachtrag in der Rechnung gegen die Reserve.
+:::
+
+::: rueckbezug ohne
+Im März kam die größere Mensa als Zusage aus dem Flur. Im September steht sie als angekündigter Nachtrag in der Rechnung gegen die Reserve.
 :::
 
 ::: regie

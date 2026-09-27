@@ -4,7 +4,7 @@ welt: A
 monat: 11
 titel: Eskalation
 lph: 5
-uhr: Montag, 9. November, 07:45 Uhr
+uhr: Montag, 07:45 Uhr
 whitepaper-bezug: [k2.3-p1, k2.5-t1, k9.3-p3]
 status-start:
   entscheidungsfaehigkeit: 0
@@ -21,9 +21,9 @@ weiter: wendepunkt
 titel: Montag, 07:45 Uhr. Monat 11.
 kurz: Einstieg
 ---
-Montag, 9. November. Die Freigabe zum Abschluss von LPH 5 steht an: Die Generalplanung bereitet den Abschluss der Ausführungsplanung vor, danach soll LPH 6 beginnen. Wer die Freigabe erteilt und auf welcher Grundlage, hat in diesem Projekt niemand festgehalten.
+Montag, 9. November. Am 17. September hat der Bauausschuss den vertagten Punkt beraten; eine Kostenzahl hat er nicht festgelegt. Jetzt steht die Freigabe zum Abschluss von LPH 5 an. Wer sie erteilt und auf welcher Grundlage, hat niemand festgehalten.
 
-Seit dem Wochenende ist klar: Holger Stein fällt für Wochen aus. Seine Excel-Stände liegen im Projektlaufwerk, der letzte heißt „Prognose_Nov_v5“. Vollständig versteht sie niemand. Und seit heute früh liegt eine Anfrage aus dem Stadtrat vor.
+Seit dem Wochenende ist klar: Holger Stein fällt für Wochen aus. Seine Excel-Stände versteht niemand vollständig. Und seit heute früh liegt eine Anfrage aus dem Stadtrat vor.
 
 ::: mail
 ---
@@ -65,13 +65,6 @@ Wer vertritt Herrn Stein?
 
 ::: notiz
 ---
-farbe: rosa
----
-Fraktion: Antwort bis Fr, 13.11.
-:::
-
-::: notiz
----
 farbe: lila
 ---
 Freigabe LPH 5 – wer gibt frei? Worauf?
@@ -85,6 +78,14 @@ Lenkungskreis 17.11. · Bauausschuss 19.11. – beide nach Freitag
 :::
 :::
 
+::: schritt rueckbezug
+---
+art: rueckbezug
+titel: Was von Ihrer früheren Wahl bleibt
+kurz: Rückbezug
+---
+:::
+
 ::: schritt lage
 ---
 art: lage
@@ -94,11 +95,10 @@ knopf: Jetzt entscheiden
 ---
 ::: bekannt
 - Die Freigabe zum Abschluss von LPH 5 steht an; die Generalplanung führt eine Liste offener Punkte.
-- Holger Stein fällt für Wochen aus; eine Vertretung ist nicht benannt.
-- Sein letzter Stand heißt „Prognose_Nov_v5“; daneben rechnet das Controlling seine eigene CTC.
-- Seit Mai ist nicht festgelegt, welche Kostenzahl gilt. Die Risikoreserve ist zu einem guten Teil verplant; welche Posten darin stecken, steht in Holger Steins Dateien.
-- Die Fraktion erwartet bis Freitag, 13. November, eine Antwort zu Kosten und Termin.
-- Der Lenkungskreis tagt am 17., der Bauausschuss am 19. November – beide erst nach der Frist.
+- Holger Stein fällt für Wochen aus; eine Stellvertretung ist nicht benannt. Sein letzter Stand heißt „Prognose_Nov_v5“, daneben rechnet das Controlling seine CTC.
+- Eine geltende Kostenzahl hat seit Mai niemand dokumentiert. Wie „Prognose_Nov_v5“ die Posten gegen die Risikoreserve rechnet, weiß nur Holger Stein.
+- Die Lieferzeit der Holzbauelemente (26 statt 16 Wochen) ist seit März bekannt; über den Umgang damit hat niemand entschieden.
+- Die Fraktion erwartet bis Freitag, 13. November, eine Antwort zu Kosten und Termin; Lenkungskreis (17.) und Bauausschuss (19. November) tagen erst danach.
 :::
 
 ::: unbekannt
@@ -181,9 +181,9 @@ Vier Symptome aus Kap. 2.5 – und wo sie an dieser Station zu sehen sind:
 | Symptom | Typisches Muster | Konsequenz für den Bauherrn | In A6 sichtbar |
 |---|---|---|---|
 | Wissensabhängigkeit | Kritisches Wissen liegt bei wenigen Personen und ist nicht in Routinen übersetzt. | Organisation wird verletzlich, sobald Rollen wechseln oder ausfallen. | Holger Stein fällt aus; „Prognose_Nov_v5“ kann niemand vollständig erklären |
-| Rollen ohne Mandat | RACI (Rollen- und Zuständigkeitsmatrix) oder Organigramm existieren, aber Freigabeschwellen, Stellvertretungen und Eskalationswege fehlen. | Entscheidungen werden informell getroffen oder zu spät eskaliert. | Keine Vertretung für Holger Stein; offen, wer die Freigabe erteilt |
+| Rollen ohne Mandat | RACI (Rollen- und Zuständigkeitsmatrix) oder Organigramm existieren, aber Freigabeschwellen, Stellvertretungen und Eskalationswege fehlen. | Entscheidungen werden informell getroffen oder zu spät eskaliert. | Keine Stellvertretung für Holger Stein; offen, wer die Freigabe erteilt |
 | Parallele Datenstände | Kosten, Termin, Projektumfang, Risiken und Annahmen werden in unterschiedlichen Fassungen geführt. | Entscheidungen beruhen auf widersprüchlichen Grundlagen. | Fünf Versionen der Prognose, daneben die CTC des Controllings |
-| Eskalation ohne Entscheidung | Themen werden nach oben gegeben, aber ohne klare Entscheidungsoptionen, Empfehlung oder Konsequenzen. | Eskalation erzeugt Verzögerung statt Führung. | Die Anfrage des Stadtrats erreicht ein Projekt, in dem seit Mai nichts entschieden ist |
+| Eskalation ohne Entscheidung | Themen werden nach oben gegeben, aber ohne klare Entscheidungsoptionen, Empfehlung oder Konsequenzen. | Eskalation erzeugt Verzögerung statt Führung. | Die Anfrage des Stadtrats erreicht ein Projekt, in dem seit Mai nichts auf benanntem Stand entschieden ist |
 :::
 
 ::: ebene 4
@@ -244,6 +244,6 @@ A6 bündelt, was seit Monat 3 liegen geblieben ist, und macht es an einem Ausfal
 
 ### Leitfragen
 - Welche Person ist bei Ihnen gerade unersetzlich – und wo steht ihr Wissen außerhalb ihres Kopfes?
-- Wer erteilt bei Ihnen die Freigabe am Ende einer Leistungsphase, und auf welcher Grundlage?
+- Wer erteilt bei Ihnen die Freigabe zum Abschluss einer Leistungsphase, und auf welcher Grundlage?
 - Was ist hier eigentlich passiert?
 :::

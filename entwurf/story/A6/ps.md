@@ -2,6 +2,7 @@
 station: A6
 rolle: ps
 frage: Holger Stein fällt aus, Dr. Olbers braucht bis Freitag eine Antwort. Was tun Sie?
+rueckbezug-auf: A3
 ---
 
 ::: option A
@@ -52,7 +53,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Ihre Mail nennt drei Gründe: kein geltender Datenstand, unbewertete Folgekosten, keine Vertretung für Holger Stein. Die Freigabe bleibt offen; die Antwort an den Stadtrat auch.
+Ihre Mail nennt drei Gründe: kein geltender Datenstand, unbewertete Folgekosten, keine Stellvertretung für Holger Stein. Die Freigabe bleibt offen; die Antwort an den Stadtrat auch.
 
 ### Was fehlt
 Die Mindestgrundlagen, auf denen eine Freigabe beruhen müsste.
@@ -66,6 +67,22 @@ LPH 5 läuft weiter, ohne dass jemand über ihren Abschluss entscheidet.
 
 ::: nachsatz
 Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+:::
+
+::: rueckbezug A
+Im Mai haben Sie ‚Eigene Zahl vertreten‘ gewählt. Gebaut hat die Zahl Holger Stein, vertreten haben Sie sie. Jetzt fehlt er – und mit ihm die Annahmen dahinter.
+:::
+
+::: rueckbezug B
+Im Mai haben Sie ‚Zahlen abgleichen‘ gewählt. Ein Teil der Differenz erklärte sich aus den Annahmen zum Holzpreis; welche gilt, hat niemand festgelegt. Diese Annahmen stecken heute in Holger Steins Zellen.
+:::
+
+::: rueckbezug C
+Im Mai haben Sie ‚Prognose aktualisieren‘ gewählt. Aus der Aktualisierung sind fünf Novemberfassungen geworden. Die letzte, „Prognose_Nov_v5“, kann ohne Holger Stein niemand erklären.
+:::
+
+::: rueckbezug ohne
+Im Mai standen zwei Kostenzahlen nebeneinander. Im November stehen sie noch immer nebeneinander – und die eine kann ohne Holger Stein niemand erklären.
 :::
 
 ::: regie

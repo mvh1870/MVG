@@ -2,6 +2,7 @@
 station: A6
 rolle: gf
 frage: Dr. Olbers braucht bis Freitag eine Antwort für den Stadtrat, die Freigabe zum Abschluss von LPH 5 steht an. Was tun Sie?
+rueckbezug-auf: A5
 ---
 
 ::: option A
@@ -26,7 +27,7 @@ Auf welchem Datenstand antwortet der Bauherr dem Stadtrat?
 
 ::: option B
 ---
-titel: Empfehlen, die Freigabe zu verschieben, bis Stein zurück ist
+titel: Empfehlen, die Freigabe zu verschieben, bis Holger Stein zurück ist
 kurz: Freigabe verschieben
 status:
   ungeklaerte-entscheidungen: +1
@@ -68,6 +69,22 @@ Welche Entscheidungen müssen jetzt neu legitimiert werden, damit das Projekt wi
 
 ::: nachsatz
 Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+:::
+
+::: rueckbezug A
+Im September haben Sie ‚Nachträglich bestätigen‘ gewählt. Der Lenkungskreis hat die Verwendung zur Kenntnis genommen; eine Freigabe ist daraus nicht geworden. Die Fassungen der Liste sind bis heute nicht abgestimmt.
+:::
+
+::: rueckbezug B
+Im September haben Sie ‚Kosten verschieben‘ gewählt. Brandschutz, Mensa und TGA laufen seither als „später bei der Vergabe“. In der Antwort an den Stadtrat müssen sie irgendwo stehen – nur wo?
+:::
+
+::: rueckbezug C
+Im September haben Sie ‚Offenlegen‘ gewählt. Dr. Olbers hat damals zwei Aufstellungen bekommen. Jetzt fragt der Stadtrat nach einer Zahl, und es gibt immer noch zwei.
+:::
+
+::: rueckbezug ohne
+Im September liefen Posten gegen die Risikoreserve, deren Einsatz niemand freigegeben hatte. Im November fragt eine Fraktion, womit die Stadt rechnen muss.
 :::
 
 ::: regie

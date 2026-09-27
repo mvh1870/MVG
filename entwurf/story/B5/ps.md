@@ -78,7 +78,7 @@ In Welt A haben Sie ‚Mehrkosten getrennt ausweisen‘ gewählt. In Welt B gibt
 :::
 
 ::: rueckbezug ohne
-In Welt A war die Reserve im September zu einem guten Teil verplant, ohne Freigabe. In Welt B entscheidet der Bauherr, bevor sie eingesetzt wird.
+In Welt A liefen im September Posten gegen die Reserve, ohne Freigabe. In Welt B entscheidet der Bauherr, bevor sie eingesetzt wird.
 :::
 
 ::: regie

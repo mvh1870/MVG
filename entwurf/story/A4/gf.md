@@ -2,6 +2,7 @@
 station: A4
 rolle: gf
 frage: Der Bauausschuss hat vertagt. Was nehmen Sie als Geschäftsführung aus der Sitzung mit?
+rueckbezug-auf: A3
 ---
 
 ::: option A
@@ -12,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Die Projektsteuerung kürzt auf zwölf Seiten. Die Ampeln bleiben, die Entscheidungsfrage fehlt weiter. Nach der Sommerpause fragt Bernd Kowalski ein drittes Mal.
+Die Projektsteuerung sagt eine Kurzfassung für September zu. Die Ampeln bleiben; die Frage, die Bernd Kowalski zweimal gestellt hat, beantwortet auch sie nicht.
 
 ### Was fehlt
 Eine Entscheidungsfrage mit Optionen und Empfehlung.
@@ -33,7 +34,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Der Lenkungskreis im Juli beschließt die offenen Änderungen „vorbehaltlich“. Dr. Miriam Olbers fragt, auf welcher Grundlage; das Protokoll nennt keinen Datenstand.
+Der Lenkungskreis am 21. Juli beschließt die offenen Änderungen „vorbehaltlich“. Dr. Miriam Olbers fragt, auf welcher Grundlage; das Protokoll nennt keinen Datenstand.
 
 ### Was fehlt
 Mandat, Datenstand und Nachweis zu jedem Beschluss.
@@ -65,8 +66,20 @@ Ein gutes Gespräch ersetzt die Vorlage nicht; die Sommerpause kostet zwei Monat
 Welche Entscheidung ist wesentlich – und wer muss sie treffen?
 :::
 
-::: nachsatz
-Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+::: rueckbezug A
+Im Mai haben Sie ‚Controlling-Zahl übernehmen‘ gewählt. Die Differenz von rund 1,3 Mio. € ist seither nicht geklärt; im Statusbericht steht die Zahl der Projektsteuerung.
+:::
+
+::: rueckbezug B
+Im Mai haben Sie ‚Vorlage verlangen‘ gewählt. Gekommen ist eine Präsentation mit beiden Zahlen, ohne Optionen. Heute liegt dem Ausschuss ein Statusbericht vor – wieder ohne Entscheidungsfrage.
+:::
+
+::: rueckbezug C
+Im Mai haben Sie ‚Ohne Zahl berichten‘ gewählt. Der Ausschuss war beruhigt. Im Juli fragt er, worüber er entscheiden soll.
+:::
+
+::: rueckbezug ohne
+Im Mai standen zwei Kostenzahlen nebeneinander, und der Bauausschuss hat nichts beschlossen. Im Juli liegt ihm wieder keine Entscheidungsfrage vor.
 :::
 
 ::: regie

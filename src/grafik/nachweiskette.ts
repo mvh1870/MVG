@@ -7,6 +7,7 @@
 
 import { h, attr, ersetze } from '../ui/h.ts';
 import type { Nachweis } from '../inhalte/typen.ts';
+import type { TitelStufe } from './tafel.ts';
 
 export const GLIEDER = ['mandat', 'freigabe', 'kennung', 'datenstand', 'nachweis', 'beschlusslage'] as const;
 export type Glied = (typeof GLIEDER)[number];
@@ -20,6 +21,8 @@ export interface NachweisStation {
 
 export interface NachweisketteDaten {
   stationen: NachweisStation[];
+  /** Überschriftenstufe des Stationstitels (Standard h4) */
+  stufe?: TitelStufe;
   beschriftung: Record<Glied, string> & { waehlen: string; leer: string };
   /** HTML-Zusatz der Station (bereits geprüft vom Compiler) als Knoten */
   zusatz: (html: string) => Node | null;
@@ -37,7 +40,7 @@ export function nachweiskette(d: NachweisketteDaten): HTMLElement {
     const st = d.stationen[i];
     if (st === undefined) return;
     ersetze(kette,
-      h('h4', { class: 'tafel-titel' }, st.name),
+      h(d.stufe ?? 'h4', { class: 'tafel-titel' }, st.name),
       h('ol', { class: 'nachweis-glieder', 'data-pruef': 'nachweis-glieder' }, GLIEDER.map((g, n) => h('li', { class: 'nachweis-glied', style: `--i:${n}`, 'data-glied': g },
         h('span', { class: 'nachweis-nr', 'aria-hidden': 'true' }, String(n + 1)),
         h('span', { class: 't-label' }, d.beschriftung[g]),

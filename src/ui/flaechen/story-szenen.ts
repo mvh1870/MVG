@@ -30,6 +30,7 @@ import { vergleichSzene, type VergleichsStueck } from '../../grafik/vergleich-sz
 import { dezimal, naechsterFrame, sanftBeide, zaehle, type Takt } from '../bewegung.ts';
 import { W } from '../woerter.ts';
 import { spurTafel } from '../leitstand/spur.ts';
+import { findeEntscheidung } from '../../engine/graph.ts';
 
 export interface SzenenKontext {
   inhalte: OeffentlicheInhalte;
@@ -795,25 +796,33 @@ export function kapitelDerSpur(verlauf: readonly string[], inhalte: Oeffentliche
  * häufigsten berührt haben; zwei Vertiefungen = die beiden ersten davon als Lernseiten. Prinzipien und
  * Checkliste kommen als Kinder aus den Inhalten (wortgleiche Zitate, Tafel; `hinweis` = Zwischenüberschrift).
  */
-function resuemee(b: Block, k: SzenenKontext, text: Node | null): HTMLElement {
+export function resuemee(b: Block, k: SzenenKontext, text: Node | null): HTMLElement {
   const R = W.resuemee;
   const titel = (nr: number): string => k.inhalte.whitepaper.kapitel.find((x) => Number(x.nr) === nr)?.titel ?? '';
-  // nur die Stationen davor: der Epilog selbst verweist auf viele Kapitel und würde die Themen verschieben
   const kapitel = kapitelDerSpur(k.z.verlauf.filter((id) => id !== k.station.id), k.inhalte).slice(0, 3);
   const interessen = k.z.interessen.filter((i) => i !== 'express').map((i) => k.inhalte.interessen.find((x) => x.id === i)?.titel ?? i);
+  // Das erreichte Ende und die Richtung aus der Wirklichkeit spiegeln die Spur (P7.7)
+  const ende = [...k.z.verlauf].reverse().map((id) => k.inhalte.stationen[id]).find((st) => st?.art === 'ende') ?? null;
+  const richtung = [...k.z.spur].reverse().find((e) => e.station === 'wirklichkeit') ?? null;
+  const richtungKurz = richtung !== null ? findeEntscheidung(k.inhalte, richtung.entscheidung)?.entscheidung.optionen.find((o) => o.id === richtung.option)?.kurz ?? null : null;
+  const vertiefungen = [...new Set([...(ende?.vertiefung != null ? [ende.vertiefung] : []), ...kapitel])].slice(0, 2);
+  const link = (nr: number): Node => k.tue !== null ? h('a', { href: `#theorie/k${nr}`, 'data-pruef': `resuemee-k${nr}` }, R.kapitel(nr, titel(nr))) : document.createTextNode(R.kapitel(nr, titel(nr)));
   return h('div', { class: 'stapel resuemee', 'data-pruef': 'resuemee' }, text,
+    ende !== null ? h('section', { class: 'resuemee-teil', 'data-pruef': 'resuemee-weg' },
+      h('h3', { class: 'tafel-titel' }, R.ihrWeg),
+      h('p', null, h('span', { class: 't-label' }, `${R.ende}: `), ende.titel),
+      richtungKurz !== null ? h('p', null, h('span', { class: 't-label' }, `${R.richtung}: `), richtungKurz) : null) : null,
     h('section', { class: 'resuemee-teil', 'data-pruef': 'resuemee-themen' },
-      h('h4', { class: 'tafel-titel' }, R.themen),
+      h('h3', { class: 'tafel-titel' }, R.themen),
       interessen.length > 0 ? h('p', null, h('span', { class: 't-label' }, `${R.interessen}: `), interessen.join(' · ')) : null,
       h('ul', { class: 'resuemee-liste' }, kapitel.map((nr) => h('li', null, R.kapitel(nr, titel(nr)))))),
     h('section', { class: 'resuemee-teil', 'data-pruef': 'resuemee-vertiefungen' },
-      h('h4', { class: 'tafel-titel' }, R.vertiefungen),
-      h('ul', { class: 'resuemee-liste' }, kapitel.slice(0, 2).map((nr) => h('li', null,
-        k.tue !== null ? h('a', { href: `#theorie/k${nr}`, 'data-pruef': `resuemee-k${nr}` }, R.kapitel(nr, titel(nr))) : R.kapitel(nr, titel(nr)))))),
+      h('h3', { class: 'tafel-titel' }, R.vertiefungen),
+      h('ul', { class: 'resuemee-liste' }, vertiefungen.map((nr) => h('li', null, link(nr))))),
     // Ein `hinweis` im Resümee ist Zwischenüberschrift („Drei Prinzipien“, „Eine Checkliste“)
     b.kinder.map((kind) => kind.art === 'hinweis'
-      ? h('h4', { class: 'tafel-titel resuemee-titel' }, inhaltInline(kind.felder['text'] ?? ''))
-      : B.block(kind, k.inhalte, W.originalWoertlich, k.z.verlauf, k.z.rolle)));
+      ? h('h3', { class: 'tafel-titel resuemee-titel' }, inhaltInline(kind.felder['text'] ?? ''))
+      : B.block(kind, k.inhalte, W.originalWoertlich, k.z.verlauf, k.z.rolle, 'h4')));
 }
 
 /* ------------------------------------------------------------------ Auswahl -- */

@@ -192,7 +192,7 @@ Bausteine in einem `schritt`:
 | `unbekannt` | – | – | `text` = Liste mit Kennungen `{#id}` |
 | `zeitsprung` | Pflicht (`info`) | `knopf`, `kosten`, `dauer`, `status` (2.7), `loest` (Kennung → Hinweis), `bleibt` (Kennung → Hinweis) | `text`, `neuBekannt` |
 | `grafik` | Pflicht (Name im Grafik-Baukasten) | `titel`, `untertitel` | `text` = Beschreibung für Screenreader |
-| `nachweiskette` | – | – | `text` (Einleitung, optional) – Nachweiskette zum Anfassen (E2): Knöpfe je besuchter Welt-B-Station mit `nachweis`, Klick legt die sechs Glieder aus; in Schritt oder Ebene |
+| `nachweiskette` | – | – | `text` (Einleitung, optional) – Nachweiskette zum Anfassen (E2): Knöpfe je besuchter Welt-B-Station mit `nachweis`, Klick legt die sechs Glieder aus; nur im Schritt |
 | `spurvergleich` | – | – | `text` (Einleitung, optional) – A-Spur gegen B-Spur des Lesers (E1, Epilog), gleiche Darstellung wie der Reiter „Spur“ |
 | `resuemee` | – | – | `text` (optional); Kinder `zitat`, `merksatz`, `tafel`, `hinweis` (= Zwischenüberschrift) – persönliches Resümee (P7.6): „Ihre Themen“ und „Zwei Vertiefungen“ berechnet der Code aus Interessen und besuchten Stationen, die Kinder liefern Prinzipien und Checkliste |
 | `kette` | – | – | enthält `glied` |

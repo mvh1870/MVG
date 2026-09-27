@@ -5,6 +5,7 @@ titel: Neufestlegung der Projektbasis
 kurztitel: Ende
 whitepaper-bezug: [k10.4-p1, k11.1-p1, k11.1-l1, k3.2-t1, k13-t1, k9-p1, k12-p1, k12-t1]
 weiter: epilog
+vertiefung: 11
 schaltet-frei: [explore]
 ---
 
@@ -13,7 +14,7 @@ schaltet-frei: [explore]
 titel: Dienstag, 16. März 2027. Monat 15.
 kurz: Einstieg
 ---
-Heute beschließt Dr. Olbers im Lenkungskreis eine [[Neufestlegung der Projektbasis]]. Die Entscheidungsvorlage haben Bauherren-PL, Projektsteuerung und Controlling seit Januar vorbereitet: eine Kostenzahl statt zwei, die umgeplante Mensa im Projektumfang, die längere Lieferzeit im Termin, die Risikoreserve mit Posten, über die entschieden wird. Beschließen kann das nur der Bauherr; vorbereiten konnten es andere.
+Heute beschließt Dr. Olbers im Lenkungskreis eine [[Neufestlegung der Projektbasis]]. Die Entscheidungsvorlage haben Bauherren-PL, Projektsteuerung und Controlling seit Januar vorbereitet, mit Varianten der Generalplanung: eine Kostenzahl statt zwei, die umgeplante Mensa im Projektumfang, die längere Lieferzeit im Termin, die Risikoreserve mit Posten, über die entschieden wird. Beschließen kann das nur der Bauherr; vorbereiten konnten es andere.
 
 Eine Freigabe ist das nicht. Die Neufestlegung steht außerhalb der regulären Freigabereihe. Der Stadtrat, der die bisherige Projektbasis beschlossen hat, und der Bauausschuss werden rückgekoppelt; der Bauausschuss tagt am Donnerstag, 18. März.
 
@@ -37,7 +38,7 @@ von: petersen
 von: kowalski
 zeit: "08:20"
 ---
-Die Unterlage für Donnerstag ist da. Diesmal steht vorn, was beschlossen wird und warum. Ich lese sie trotzdem zweimal – aus Gewohnheit.
+Die Unterlage für Donnerstag ist da. Diesmal steht vorn, was Dr. Olbers heute im Lenkungskreis beschließt und warum. Ich lese sie trotzdem zweimal – aus Gewohnheit.
 :::
 :::
 

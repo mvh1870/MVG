@@ -713,3 +713,45 @@ test('Resümee (P7.6): Kapitel der Spur nach Häufigkeit', async () => {
   assert.deepEqual(kapitelDerSpur(['X', 'Y', 'X'], probe), [9, 4, 2]);
   assert.deepEqual(kapitelDerSpur([], probe), []);
 });
+
+test('Resümee (P7.7): Ende, Richtung und erste Vertiefung aus der Spur; Zwischenüberschriften; ohne Links auf der Leinwand', async () => {
+  const { resuemee } = await import('../src/ui/flaechen/story-szenen.ts');
+  const { wende } = await import('../src/engine/aktionen.ts');
+  const { aktuellerSchritt } = await import('../src/engine/graph.ts');
+  let z = anfangszustand();
+  const tu = (a: Parameters<typeof wende>[1]): void => { z = wende(z, a, inhalte); };
+  tu({ art: 'starteStory' });
+  tu({ art: 'waehleRolle', rolle: 'pl' });
+  tu({ art: 'setzeInteressen', interessen: ['kosten', 'express'] });
+  for (let i = 0; i < 3000 && z.station !== 'epilog'; i++) {
+    const ent = z.station !== null ? inhalte.stationen[z.station]?.szenen['pl']?.entscheidung : null;
+    if (aktuellerSchritt(z, inhalte)?.art === 'entscheidung' && ent && z.entscheidungen[ent.id] === undefined) tu({ art: 'waehle', option: z.station === 'A6' ? 'C' : 'A' });
+    const vorher = z;
+    tu({ art: 'weiter' });
+    if (z === vorher) break;
+  }
+  assert.equal(z.station, 'epilog');
+  assert.ok(z.verlauf.includes('ende-steuerbar'));
+  const station = inhalte.stationen['epilog'];
+  assert.ok(station);
+  const block = { art: 'resuemee', kennungen: [], id: null, kopf: {}, felder: {}, liste: null, kinder: [
+    { art: 'hinweis', kennungen: [], id: null, kopf: {}, felder: { text: '<p>Drei Prinzipien</p>' }, liste: null, kinder: [] },
+  ] } as never;
+  const k = (tue: null | (() => void)) => ({ inhalte, station, schritte: station.schritte, index: 0, schritt: station.schritte[0], z: oeffentlich(z), tue, takt: null }) as never;
+  const el = resuemee(block, k(() => undefined), null);
+  const weg = el.querySelector('[data-pruef="resuemee-weg"]')?.textContent ?? '';
+  assert.match(weg, /Ihr Ende.*Steuerbar übergeben/su);
+  assert.match(weg, /Ihre Richtung im Dezember.*Neuinitialisierung/su);
+  const links = [...el.querySelectorAll('[data-pruef="resuemee-vertiefungen"] a')].map((a) => a.getAttribute('href'));
+  assert.equal(links[0], `#theorie/k${inhalte.stationen['ende-steuerbar']?.vertiefung}`, 'erste Vertiefung aus dem Ende');
+  assert.equal(links.length, 2);
+  assert.doesNotMatch(el.querySelector('[data-pruef="resuemee-themen"]')?.textContent ?? '', /Express/u, 'Express ist kein Thema');
+  assert.equal(el.querySelector('.resuemee-titel')?.tagName, 'H3');
+  assert.equal(resuemee(block, k(null), null).querySelector('a'), null, 'Leinwand: keine Links');
+});
+
+test('Story-Karte auf der Leinwand (L-49): kein Express-Umschalter, kein Explore-Weg', () => {
+  const story = erzeugeStory({ inhalte, tue: null });
+  assert.equal(story.element.querySelector('[data-pruef="karte-express"]'), null);
+  assert.equal(story.element.querySelector('[data-pruef="karte-explore"]'), null);
+});

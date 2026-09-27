@@ -83,7 +83,7 @@ titel: Ihr Resümee
 kurz: Resümee
 ---
 ::: resuemee
-Was Sie mitnehmen, ergibt sich aus Ihrem Weg: Ihre Themen folgen aus den Interessen, die Sie im Prolog gewählt haben, und aus den Stationen, die Sie besucht haben; die zwei Vertiefungen sind die Kapitel, die Ihr Weg am häufigsten berührt hat. Darunter stehen drei Prinzipien aus dem Whitepaper und eine Checkliste.
+Was Sie mitnehmen, ergibt sich aus Ihrem Weg: Es nennt Ihr Ende und Ihre Richtung im Dezember; Ihre Themen folgen aus den Interessen, die Sie im Prolog gewählt haben, und aus den Stationen, die Sie besucht haben; die zwei Vertiefungen folgen aus Ihrem Ende und aus den Kapiteln, die Ihre Stationen am häufigsten berührt haben. Darunter stehen drei Prinzipien aus dem Whitepaper und eine Checkliste.
 
 ::: hinweis
 **Drei Prinzipien.** Wortgleich aus dem Whitepaper: die Leitthese, eine Stelle zu Information und Führung, eine zu Datenstand und Nachweis.
@@ -122,7 +122,7 @@ Die Geschichte ist zu Ende; das Whitepaper bleibt offen. Im Bereich **Theorie** 
 
 Kap. 13 ist das **Glossar**: die Begriffe des Whitepapers mit ihrer Definition, wortgleich, durchsuchbar und mit dem Hinweis, wo sie in Story und Theorie vorkommen. Dieselben Definitionen erscheinen an jeder Station als Hinweis an den markierten Begriffen, etwa [[Datenstand]], [[Mandat]] oder [[Freigabe]].
 
-Mit dem Ende Ihrer Geschichte ist auch **Explore** freigeschaltet, der Bereich mit den Werkzeugen zum Selbst-Ausprobieren. Der Link „Selbst ausprobieren · Explore“ steht unter der Story-Karte.
+Mit dem Ende Ihrer Geschichte ist auch **Explore** freigeschaltet, der Bereich mit den Werkzeugen zum Selbst-Ausprobieren. Explore erreichen Sie über den Link „Selbst ausprobieren · Explore“ unter der Story-Karte.
 :::
 
 ::: schritt ebenen

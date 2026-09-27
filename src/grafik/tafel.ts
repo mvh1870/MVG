@@ -79,6 +79,7 @@ export const WORT = {
   deutlich: 'Zeigt sich bei Ihnen',
   teils: 'Zeigt sich teilweise',
   dazu: 'Dazu nennt das Whitepaper',
+  keineWahl: 'keine Markierung',
   schieben: 'Tag wählen',
 } as const;
 
@@ -336,11 +337,13 @@ function zeitachse(d: TafelDaten): HTMLElement {
  */
 function diagnose(d: TafelDaten): HTMLElement {
   const wahl = new Map<number, number>();
-  const profil = h('div', { class: 'diagnose-profil', 'aria-live': 'polite', 'data-pruef': 'diagnose-profil' });
+  const profil = h('div', { class: 'diagnose-profil', 'data-pruef': 'diagnose-profil' });
+  // kurze Rückmeldung je Markierung statt des ganzen, wachsenden Profils (Screenreader)
+  const meldung = h('p', { class: 'nur-sr', 'aria-live': 'polite', 'data-pruef': 'diagnose-meldung' });
   const letzte = d.kopf.length - 1;
   const zeichne = (): void => {
     const gruppe = (a: number): string[][] => d.zeilen.filter((_, i) => wahl.get(i) === a);
-    const teil = (titel: string, zeilen: string[][]): HTMLElement | null => zeilen.length === 0 ? null : h('section', null, h('h4', { class: 'tafel-titel' }, titel),
+    const teil = (titel: string, zeilen: string[][]): HTMLElement | null => zeilen.length === 0 ? null : h('section', null, h(d.stufe ?? 'h4', { class: 'tafel-titel' }, titel),
       h('dl', { class: 'tafel-detail' }, zeilen.map((z) => h('div', null, h('dt', null, z[0] ?? ''), h('dd', null, h('span', { class: 't-label' }, `${WORT.dazu} (${d.kopf[letzte] ?? ''}): `), z[letzte] ?? '')))));
     const a = teil(WORT.deutlich, gruppe(0));
     const b = teil(WORT.teils, gruppe(1));
@@ -352,6 +355,8 @@ function diagnose(d: TafelDaten): HTMLElement {
       onclick: () => {
         if (wahl.get(i) === a) wahl.delete(i); else wahl.set(i, a);
         knoepfe.forEach((k, j) => attr(k, 'aria-pressed', wahl.get(i) === j ? 'true' : 'false'));
+        const jetzt = wahl.get(i);
+        meldung.textContent = `${z[0] ?? ''}: ${jetzt !== undefined ? WORT.antworten[jetzt] ?? '' : WORT.keineWahl}`;
         zeichne();
       },
     }, w));
@@ -359,7 +364,7 @@ function diagnose(d: TafelDaten): HTMLElement {
       h('span', { class: 'diagnose-wahl', role: 'group', 'aria-label': z[0] ?? '' }, knoepfe));
   });
   zeichne();
-  return h('div', { class: 'tafel-diagnose' }, h('ol', { class: 'diagnose-liste' }, zeilen), profil);
+  return h('div', { class: 'tafel-diagnose' }, h('ol', { class: 'diagnose-liste' }, zeilen), meldung, profil);
 }
 
 /** Zeichnet eine Tafel; `besucht` = Stationen der eigenen Spur (für das Radar). */

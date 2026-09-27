@@ -174,7 +174,7 @@ knopf: Jetzt entscheiden
 ---
 ::: bekannt
 - Das Projekt steht in Monat 12 weiter in LPH 5; die Freigabe zu ihrem Abschluss ist nicht erteilt.
-- Dr. Olbers will bis zum 15. Dezember einen Vorschlag und eine Liste der offenen Entscheidungen.
+- Bis zum Lenkungskreis am 15. Dezember wird ein Vorschlag erwartet, dazu eine Liste der offenen Entscheidungen.
 - Zwei Kostenzahlen liegen nebeneinander: „Prognose_Nov_v5“ und die CTC des Controllings. Holger Stein ist zurück; eine Stellvertretung für ihn ist nicht geregelt.
 - Wie die Folgekosten aus dem September gedeckt werden, ist auf keinem benannten Datenstand entschieden; die Reserve reicht schon für die Mai-Abweichung nicht. Die Kämmerei fragt nach einer neuen Projektbasis.
 - Drei Wege liegen auf dem Tisch: eine [[MVG-Neuinitialisierung]], die Freigabe zum Abschluss von LPH 5 mit Auflagen, eine [[Neufestlegung der Projektbasis]]. Die Freigabe erteilt der Bauherr, die Neufestlegung beschließt er im Lenkungskreis; auch den Auftrag zur Neuinitialisierung erteilt er.
@@ -184,7 +184,7 @@ knopf: Jetzt entscheiden
 - Welche Entscheidungen neu legitimiert werden müssen {#neu-legitimieren}
 - Welcher Datenstand für die nächsten Entscheidungen gilt {#datenstand}
 - Ob die Projektbasis neu festgelegt werden muss {#projektbasis}
-- Wie viel eigene Zeit Dr. Olbers und Frank Deppe geben {#mitwirkung}
+- Wie viel eigene Zeit Bauherr und Geschäftsführung geben {#mitwirkung}
 - Wann die Freigabe zum Abschluss von LPH 5 kommt – und mit welchem Ergebnis {#freigabe}
 :::
 :::

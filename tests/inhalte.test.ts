@@ -659,3 +659,15 @@ test('Echte Inhalte: fehlerfrei; Mutanten-Probe am Zitat in B3 (Ebene 4, Kap. 2.
   const { fehler } = await kompiliere({ pruefe: true, wurzel: w, whitepaperPfad: ECHT_WP, ziel: null });
   assert.ok(fehler.some((f) => /^inhalte\/story\/B3\/station\.md:\d+: Zitat nicht wortgleich mit k2\.4-p2/u.test(f)), fehler.join('\n'));
 });
+
+test('Nachweis (E2, P7.3): nur an Stationen der Welt B, höchstens einmal je Station', async () => {
+  const nw = '::: nachweis\n---\nmandat: M\nfreigabe: F\nkennung: ENT-001\ndatenstand: D\nnachweis: N\nbeschlusslage: B\n---\n:::\n';
+  const mit = (welt: string, bloecke: string) => {
+    const d = veraendere(BEISPIEL, 'inhalte/story/X1/station.md', 'welt: A\n', `welt: ${welt}\n`);
+    return { ...d, 'inhalte/story/X1/station.md': `${d['inhalte/story/X1/station.md'] ?? ''}\n${bloecke}` };
+  };
+  const inA = await kompiliere({ pruefe: true, wurzel: neueWurzel(mit('A', nw)), ziel: null });
+  assert.ok(inA.fehler.some((f) => /„nachweis“ nur an Stationen der Welt B/u.test(f)), inA.fehler.join('\n'));
+  const doppelt = await kompiliere({ pruefe: true, wurzel: neueWurzel(mit('A', nw + nw)), ziel: null });
+  assert.ok(doppelt.fehler.some((f) => /„nachweis“ doppelt/u.test(f)), doppelt.fehler.join('\n'));
+});

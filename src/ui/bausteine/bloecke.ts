@@ -223,9 +223,7 @@ export function tafel(b: Block, besucht: readonly string[] = [], inhalte: Oeffen
   for (const st of Object.values(inhalte?.stationen ?? {})) namen[st.id] = st.kurztitel;
   const h0 = b.kopf['hervor'];
   const hervor = Array.isArray(h0) ? h0.map(Number) : [];
-  const el = tafelGrafik({ form, absatz: b.id, quelle: kopfText(b.kopf, 'quelle') ?? '', kopf, zeilen, erlebt, namen, hervor, stufe }, besucht);
-  const text = b.felder['text'] ?? '';
-  return text !== '' ? h('div', { class: 'stapel' }, h('div', { class: 'tafel-einleitung' }, inhalt(text)), el) : el;
+  return mitEinleitung(b, tafelGrafik({ form, absatz: b.id, quelle: kopfText(b.kopf, 'quelle') ?? '', kopf, zeilen, erlebt, namen, hervor, stufe }, besucht));
 }
 
 /** RACI mit Mandat (P5.1, Kap. 9.2); `ich` = gespielte Rolle (Spalte hervorgehoben). */
@@ -239,29 +237,33 @@ export function raci(b: Block, inhalte: OeffentlicheInhalte, ich: string | null 
     return { id: String(z['id'] ?? ''), titel: String(z['titel'] ?? ''), zuordnung, mandat: String(z['mandat'] ?? '') };
   });
   const rollen = inhalte.rollenFolge.map((id) => ({ id, titel: inhalte.rollen[id]?.kurztitel ?? id }));
-  const el = raciGrafik({ rollen, zeilen, ich, beschriftung: RACI_BESCHRIFTUNG, stufe });
-  const text = b.felder['text'] ?? '';
-  return text !== '' ? h('div', { class: 'stapel' }, h('div', { class: 'tafel-einleitung' }, inhalt(text)), el) : el;
+  return mitEinleitung(b, raciGrafik({ rollen, zeilen, ich, beschriftung: RACI_BESCHRIFTUNG, stufe }));
 }
 
 /** Nachweiskette zum Anfassen (E2): die besuchten Welt-B-Stationen mit `nachweis`, in der Reihenfolge der Geschichte. */
-export function nachweiskette(b: Block, inhalte: OeffentlicheInhalte, besucht: readonly string[]): HTMLElement {
-  const stationen = inhalte.stationsFolge.map((id) => inhalte.stationen[id]).filter((st): st is Station => st !== undefined && st.nachweis !== null && besucht.includes(st.id))
-    .map((st) => ({ id: st.id, name: `${st.id} · ${st.kurztitel}`, nachweis: st.nachweis as Nachweis }));
-  const el = nachweisketteGrafik({ stationen, beschriftung: W.nachweiskette, zusatz: (html) => h('div', { class: 'nachweis-zusatz' }, inhalt(html)) });
+export function nachweiskette(b: Block, inhalte: OeffentlicheInhalte, besucht: readonly string[], stufe: TitelStufe = 'h3'): HTMLElement {
+  const stationen = inhalte.stationsFolge.map((id) => inhalte.stationen[id])
+    .filter((st): st is Station & { nachweis: Nachweis } => st !== undefined && st.nachweis !== null && besucht.includes(st.id))
+    .map((st) => ({ id: st.id, name: `${st.id} · ${st.kurztitel}`, nachweis: st.nachweis }));
+  return mitEinleitung(b, nachweisketteGrafik({ stationen, stufe, beschriftung: W.nachweiskette, zusatz: (html) => h('div', { class: 'nachweis-zusatz' }, inhalt(html)) }));
+}
+
+/** Einleitungstext eines Blocks (falls vorhanden) über seiner Grafik. */
+export function mitEinleitung(b: Block, el: HTMLElement): HTMLElement {
   const text = b.felder['text'] ?? '';
   return text !== '' ? h('div', { class: 'stapel' }, h('div', { class: 'tafel-einleitung' }, inhalt(text)), el) : el;
 }
 
 /** Generischer Block (Rückfall für Arten ohne eigene Szene). */
-export function block(b: Block, inhalte: OeffentlicheInhalte, zitatWort: string, besucht: readonly string[] = [], ich: string | null = null): Node | null {
+/** `stufe`: Überschriftenstufe für Tafeltitel (Story: h3 unter dem Schritttitel h2). */
+export function block(b: Block, inhalte: OeffentlicheInhalte, zitatWort: string, besucht: readonly string[] = [], ich: string | null = null, stufe: TitelStufe = 'h3'): Node | null {
   switch (b.art) {
     case 'raci':
-      return raci(b, inhalte, ich);
+      return raci(b, inhalte, ich, stufe);
     case 'tafel':
-      return tafel(b, besucht, inhalte);
+      return tafel(b, besucht, inhalte, stufe);
     case 'nachweiskette':
-      return nachweiskette(b, inhalte, besucht);
+      return nachweiskette(b, inhalte, besucht, stufe);
     case 'hinweis':
       return hinweis(b);
     case 'merksatz':

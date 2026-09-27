@@ -81,7 +81,7 @@ const ARTEN = {
     felder: ['text'],
   },
   // Nachweiskette zum Anfassen (E2): zeigt die Nachweise der besuchten Welt-B-Stationen, Klick legt die Kette aus
-  nachweiskette: { in: ['schritt', 'ebene'], kennung: 'keine', felder: ['text'] },
+  nachweiskette: { in: ['schritt'], kennung: 'keine', felder: ['text'] },
   // Epilog (P7.6): A-Spur gegen B-Spur; persönliches Resümee (Themen und Vertiefungen aus der Spur, Prinzipien und Checkliste als Kinder)
   spurvergleich: { in: ['schritt'], kennung: 'keine', felder: ['text'] },
   resuemee: { in: ['schritt'], kennung: 'keine', felder: ['text'] },
@@ -186,6 +186,8 @@ const DATEI_ARTEN = {
       monat: { typ: 'zahl', min: 0, max: 12 }, titel: { typ: 'text', pflicht: true }, kurztitel: { typ: 'text' }, lph: { typ: 'zahl', min: 0, max: 9 },
       uhr: { typ: 'text' }, 'whitepaper-bezug': { typ: 'ids' }, 'status-start': { typ: 'status' }, weiter: { typ: 'kanten' },
       ende: { typ: 'bool' }, 'schaltet-frei': { typ: 'liste' }, partner: { typ: 'kennung' }, vergleich: { typ: 'paar' },
+      // Enden (P7.7): Kapitel, das das Resümee als erste Vertiefung nennt
+      vertiefung: { typ: 'zahl', min: 1, max: 13 },
     },
     felder: ['text'],
   },
@@ -1387,6 +1389,7 @@ function baueStation(c, rel, ordner, text, regie) {
     vertiefungen,
     express,
     nachweis,
+    vertiefung: kopf.vertiefung ?? null,
     szenen: {},
     quelle: rel,
   };

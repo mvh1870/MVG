@@ -5,6 +5,7 @@ titel: Steuerbar übergeben
 kurztitel: Ende
 whitepaper-bezug: [k9.3-p2, k11.2-p2, k12-p1, k9-p1, k9.5-p1, k12-t1, k11.3-t1, k13-t1, k8.4-p1, k7.5-t1, k8.2-p4]
 weiter: epilog
+vertiefung: 8
 schaltet-frei: [explore]
 ---
 
@@ -135,7 +136,7 @@ Die MVG-Neuinitialisierung beginnt mit einem Lagebild und endet mit einer stabil
 
 ::: regie
 ### Notiz
-Eines von drei Enden, gleichwertig mit den anderen – nicht das „richtige“. Hierher führt nur die Richtung MVG-Neuinitialisierung, und nur, wenn die Spur durch Welt A wieder Entscheidungsfähigkeit aufgebaut hat – etwa mit Option C in A6 (je nach Rolle: die Lage offenlegen, eine Bandbreite melden, beim Abgleich helfen oder empfehlen, die Freigabe noch nicht vorzulegen); bei GF, Bauherren-PL und Planung genügt auch die Offenlegung in A5 (Option C). Die Freigabe in A6 nur zu verschieben oder zurückzustellen, trägt nicht bis hierher. Übergeben wird nach 90 Tagen noch nicht: Der Entwurf des Betriebshandbuchs liegt vor, die Übergabe schließt an (k8.2-p4). Zwei Sätze festhalten: Die Übergabe des Bauherren-Führungsmodells ist ein Befähigungsschritt und keine Freigabe (k9.3-p2); das Projekt steht weiter in LPH 5, die Freigabe zu ihrem Abschluss erteilt Dr. Olbers selbst. Steuerbar heißt nicht gelöst: Lieferzeit und Mehrkosten sind weiter da. Die Nachweiskette zeigt die Stationen der Welt B, die der Leser besucht hat.
+Eines von drei Enden, gleichwertig mit den anderen – nicht das „richtige“. Hierher führt nur die Richtung MVG-Neuinitialisierung, und nur, wenn die Spur bis Monat 12 wieder Entscheidungsfähigkeit aufgebaut hat. Mit Option C in A6 gelingt das immer (je nach Rolle: die Lage offenlegen, eine Bandbreite melden, beim Abgleich helfen oder empfehlen, die Freigabe noch nicht vorzulegen). Ohne sie nur, wenn eine frühere Wahl nachwirkt – etwa die Offenlegung in A5 (Option C bei GF, Bauherren-PL, Planung) oder die Entscheidungsvorlage in A4 (Bauherren-PL, B) –, solange keine andere Wahl sie aufgehoben hat. Übergeben wird nach 90 Tagen noch nicht: Der Entwurf des Betriebshandbuchs liegt vor, die Übergabe schließt an (k8.2-p4). Zwei Sätze festhalten: Die Übergabe des Bauherren-Führungsmodells ist ein Befähigungsschritt und keine Freigabe (k9.3-p2); das Projekt steht weiter in LPH 5, die Freigabe zu ihrem Abschluss erteilt Dr. Olbers selbst. Steuerbar heißt nicht gelöst: Lieferzeit und Mehrkosten sind weiter da. Die Nachweiskette zeigt die Stationen der Welt B, die der Leser besucht hat.
 
 ### Leitfragen
 - Welche Entscheidungen stünden bei Ihnen auf der Liste, die Dr. Olbers verlangt hat?

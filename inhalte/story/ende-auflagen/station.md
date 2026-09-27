@@ -5,6 +5,7 @@ titel: Freigabe mit Auflagen
 kurztitel: Ende
 whitepaper-bezug: [k6.4.4-p1, k9.3-p3, k9.3-p1, k9.3-p2, k9-p1, k12-p1, k12-t1, k13-t1, k6.4.3-p2]
 weiter: epilog
+vertiefung: 9
 schaltet-frei: [explore]
 ---
 

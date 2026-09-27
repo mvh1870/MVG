@@ -38,7 +38,7 @@ Der Vergleich `A3-B3-vergleich` aus dem Durchstich (P0.6) ist mit dem Umzug P5.1
 ## 2 Pfade
 
 - **Hauptpfad:** prolog → A1 → … → A6 → wendepunkt → rueckspulen → B1 → … → B6 → wirklichkeit → ausgang → epilog. Welt B wird erst im Rückspulen freigeschaltet (Graph-Prüfer, `docs/INHALTSFORMAT.md`). Ab B1 steht an jeder B-Station der Schieberegler A↔B; die Rückbezüge („Damals haben Sie …“) greifen auf die Wahl der Partnerstation in Welt A zu.
-- **Express (E8, ~12 Min, für die Geschäftsführung; umgesetzt als Interesse „express“ im Prolog mit bedingten Kanten, L-26):** prolog → A3 → A6 → wendepunkt (kurz) → rueckspulen → B3 → B6 → wirklichkeit (kurz) → ausgang. Was an A1, A2, A4, A5, B1, B2, B4 und B5 geschieht, steht als Karte „Was dazwischen geschah“ (ein bis zwei Sätze, ohne Entscheidung) am Anfang der nächsten Express-Station und ist in deren Minuten eingerechnet; der Epilog entfällt. Über die Story-Karte kann man jederzeit abzweigen.
+- **Express (E8, ~12 Min, für die Geschäftsführung; umgesetzt als Interesse „express“ im Prolog mit bedingten Kanten, L-26):** prolog → A3 → A6 → wendepunkt (kurz) → rueckspulen → B3 → B6 → wirklichkeit (kurz) → ausgang. Was an A1, A2, A4, A5, B1, B2, B4 und B5 geschieht, steht als Karte „Was dazwischen geschah“ (ein bis zwei Sätze, ohne Entscheidung) am Anfang der nächsten Express-Station und ist in deren Minuten eingerechnet; der Epilog ist im Express optional (0 Min; Explore ist mit dem Ende frei, L-49). Über die Story-Karte kann man jederzeit abzweigen.
 - **Standpunkt wechseln:** an jeder Station mit Entscheidung; die Station bleibt, die Rolle wechselt (P2.2).
 
 ## 3 Stationen

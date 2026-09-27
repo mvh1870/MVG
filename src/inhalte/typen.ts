@@ -141,6 +141,8 @@ export interface Station extends ModellStation {
   express: string | null;
   /** Nachweiskette einer Welt-B-Station (E2): Texte je Glied, `text` = HTML-Zusatz */
   nachweis: Nachweis | null;
+  /** Enden: Kapitel für die erste Vertiefung im Resümee (P7.7) */
+  vertiefung: number | null;
   szenen: Record<string, Szene>;
   quelle: string;
 }

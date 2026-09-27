@@ -53,6 +53,7 @@ export const W = {
   lphBand: 'Leistungsphasen LPH 0–9',
   lphJetzt: 'aktuell',
   lphAbgeschlossen: 'zurückliegend',
+  nachweiskette: { mandat: 'Mandat', freigabe: 'Freigabe', kennung: 'Entscheidungs-ID', datenstand: 'Datenstand', nachweis: 'Nachweis', beschlusslage: 'Beschlusslage', waehlen: 'Entscheidung wählen', leer: 'Die Nachweiskette zeigt die Stationen der Welt B, die Sie gespielt haben – hier waren es noch keine.' },
   kartenWege: { express: 'Express · Kurzfassung', expressHinweis: 'Der Express-Pfad überspringt Stationen; was dort geschah, steht jeweils als Karte am Anfang der nächsten Station.', explore: 'Selbst ausprobieren · Explore' },
   station: 'Station',
   monat: 'Monat',

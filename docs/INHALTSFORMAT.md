@@ -168,6 +168,7 @@ weiter:
 | `ebene` | in `ebenen` | `1`–`4` | `titel` | `text`; Ebene 4 enthält ein `zitat` |
 | `standpunkt` | oben | Rolle (`controlling`) | `figur` (Pflicht) | `text` = was diese Figur im selben Moment denkt („Standpunkt wechseln“) |
 | `express` | oben | – | – | `text` (Pflicht) – Karte „Was dazwischen geschah“ über dem ersten Schritt der Station, nur für Leser mit Interesse `express` (L-43) |
+| `nachweis` | oben (nur Welt B) | – | `mandat`, `freigabe`, `kennung`, `datenstand`, `nachweis`, `beschlusslage` (alle Pflicht, Klartext) | `text` (optional, Zusatz) – die Nachweiskette dieser Station für E2: Mandat → Freigabe → Entscheidungs-ID → Datenstand → Nachweis → Beschlusslage (Kap. 9); nur Fakten, die die Station selbst erzählt |
 | `vertiefung` | oben | Interesse (`kosten`) | `titel` (Pflicht) | `text` (Pflicht) – Zusatzkarte unter den Ebenen, nur sichtbar, wenn der Leser im Prolog dieses Interesse gewählt hat (P3.9); braucht einen Schritt `ebenen`; Zitate wortgleich mit Absatz-ID |
 | `regie` | oben | – | – | `notiz`, `leitfragen` (Liste) – **nur Regie**, landet nie in den Leinwand-Daten |
 
@@ -191,6 +192,7 @@ Bausteine in einem `schritt`:
 | `unbekannt` | – | – | `text` = Liste mit Kennungen `{#id}` |
 | `zeitsprung` | Pflicht (`info`) | `knopf`, `kosten`, `dauer`, `status` (2.7), `loest` (Kennung → Hinweis), `bleibt` (Kennung → Hinweis) | `text`, `neuBekannt` |
 | `grafik` | Pflicht (Name im Grafik-Baukasten) | `titel`, `untertitel` | `text` = Beschreibung für Screenreader |
+| `nachweiskette` | – | – | `text` (Einleitung, optional) – Nachweiskette zum Anfassen (E2): Knöpfe je besuchter Welt-B-Station mit `nachweis`, Klick legt die sechs Glieder aus; in Schritt oder Ebene |
 | `kette` | – | – | enthält `glied` |
 | `glied` | optional (`FRW-003`) | `art`: `fruehwarnung` · `bestaetigung` · `risiko` · `aenderung` · `entscheidung` · `freigabe` · `massnahme` · `problem` · `bericht`; `von` | `titel`, `text` |
 | `datenstand` | – | `name` (Pflicht), `abweichung`, `betrag`, `basis`, `versionen` (Liste `- Version 3: gilt` → `{name, stand}`) | `text`, `vergleich` |

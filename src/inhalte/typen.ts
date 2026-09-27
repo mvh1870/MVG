@@ -139,8 +139,20 @@ export interface Station extends ModellStation {
   vertiefungen: Vertiefung[];
   /** Express-Karte „Was dazwischen geschah“ (HTML) oder null (L-43) */
   express: string | null;
+  /** Nachweiskette einer Welt-B-Station (E2): Texte je Glied, `text` = HTML-Zusatz */
+  nachweis: Nachweis | null;
   szenen: Record<string, Szene>;
   quelle: string;
+}
+
+export interface Nachweis {
+  mandat: string;
+  freigabe: string;
+  kennung: string;
+  datenstand: string;
+  nachweis: string;
+  beschlusslage: string;
+  text: string;
 }
 
 export interface Figur {

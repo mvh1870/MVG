@@ -676,3 +676,20 @@ test('Story-Karte (P7.2, E8): Express-Umschalter setzt das Interesse, Explore er
     document.body.replaceChildren();
   }
 });
+
+test('Nachweiskette (E2, P7.3): besuchte Welt-B-Stationen als Knöpfe, Klick legt sechs Glieder aus', async () => {
+  const { nachweiskette } = await import('../src/ui/bausteine/bloecke.ts');
+  const nw = (k: string) => ({ mandat: `M-${k}`, freigabe: `F-${k}`, kennung: `ENT-${k}`, datenstand: `D-${k}`, nachweis: `N-${k}`, beschlusslage: `B-${k}`, text: '' });
+  const probe = { ...inhalte, stationen: { ...inhalte.stationen, B1: { ...inhalte.stationen['B1'], nachweis: nw('1') }, B3: { ...inhalte.stationen['B3'], nachweis: nw('3') } } } as unknown as typeof inhalte;
+  const block = { art: 'nachweiskette', kennungen: [], id: null, kopf: {}, felder: {}, liste: null, kinder: [] } as never;
+  const leer = nachweiskette(block, probe, ['A1']);
+  assert.equal(leer.getAttribute('data-pruef'), 'nachweiskette-leer', 'ohne Welt B: Hinweis statt Kette');
+  const el = nachweiskette(block, probe, ['B1', 'B3']);
+  const knoepfe = [...el.querySelectorAll('.nachweis-station')].map((b) => b.getAttribute('data-pruef'));
+  assert.deepEqual(knoepfe, ['nachweis-B1', 'nachweis-B3'], 'Reihenfolge der Geschichte');
+  assert.match(el.querySelector('[data-pruef="nachweis-glieder"]')?.textContent ?? '', /M-3.*F-3.*ENT-3.*D-3.*N-3.*B-3/su, 'zuletzt besuchte vorgewählt');
+  el.querySelector<HTMLElement>('[data-pruef="nachweis-B1"]')?.click();
+  const glieder = [...el.querySelectorAll('.nachweis-glied')].map((g) => g.getAttribute('data-glied'));
+  assert.deepEqual(glieder, ['mandat', 'freigabe', 'kennung', 'datenstand', 'nachweis', 'beschlusslage']);
+  assert.match(el.querySelector('[data-pruef="nachweis-glieder"]')?.textContent ?? '', /Mandat.*M-1.*Beschlusslage.*B-1/su);
+});

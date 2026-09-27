@@ -6,13 +6,15 @@
 
 import { h, elementAus } from '../h.ts';
 import { symbol, type SymbolName } from '../../stil/symbole.ts';
-import type { Block, OeffentlicheInhalte } from '../../inhalte/typen.ts';
+import type { Block, Nachweis, OeffentlicheInhalte, Station } from '../../inhalte/typen.ts';
 import { kopfListe, kopfText, istKarte } from '../anzeige.ts';
 import { inhalt, inhaltInline, personFigur, personFunktion, personName } from './inhalt.ts';
 import { idArt } from '../../grafik/checkliste.ts';
 import { tafel as tafelGrafik, istTafelForm, type TitelStufe } from '../../grafik/tafel.ts';
+import { nachweiskette as nachweisketteGrafik } from '../../grafik/nachweiskette.ts';
 import { raci as raciGrafik, istRaciBuchstabe, RACI_BESCHRIFTUNG, type RaciBuchstabe, type RaciZeile } from '../../grafik/raci.ts';
 import { bildmarke } from '../marke.ts';
+import { W } from '../woerter.ts';
 
 export function sym(name: SymbolName, klasse = ''): Element {
   return elementAus(symbol(name, klasse));
@@ -242,6 +244,15 @@ export function raci(b: Block, inhalte: OeffentlicheInhalte, ich: string | null 
   return text !== '' ? h('div', { class: 'stapel' }, h('div', { class: 'tafel-einleitung' }, inhalt(text)), el) : el;
 }
 
+/** Nachweiskette zum Anfassen (E2): die besuchten Welt-B-Stationen mit `nachweis`, in der Reihenfolge der Geschichte. */
+export function nachweiskette(b: Block, inhalte: OeffentlicheInhalte, besucht: readonly string[]): HTMLElement {
+  const stationen = inhalte.stationsFolge.map((id) => inhalte.stationen[id]).filter((st): st is Station => st !== undefined && st.nachweis !== null && besucht.includes(st.id))
+    .map((st) => ({ id: st.id, name: `${st.id} · ${st.kurztitel}`, nachweis: st.nachweis as Nachweis }));
+  const el = nachweisketteGrafik({ stationen, beschriftung: W.nachweiskette, zusatz: (html) => h('div', { class: 'nachweis-zusatz' }, inhalt(html)) });
+  const text = b.felder['text'] ?? '';
+  return text !== '' ? h('div', { class: 'stapel' }, h('div', { class: 'tafel-einleitung' }, inhalt(text)), el) : el;
+}
+
 /** Generischer Block (Rückfall für Arten ohne eigene Szene). */
 export function block(b: Block, inhalte: OeffentlicheInhalte, zitatWort: string, besucht: readonly string[] = [], ich: string | null = null): Node | null {
   switch (b.art) {
@@ -249,6 +260,8 @@ export function block(b: Block, inhalte: OeffentlicheInhalte, zitatWort: string,
       return raci(b, inhalte, ich);
     case 'tafel':
       return tafel(b, besucht, inhalte);
+    case 'nachweiskette':
+      return nachweiskette(b, inhalte, besucht);
     case 'hinweis':
       return hinweis(b);
     case 'merksatz':

@@ -71,6 +71,17 @@ const ARTEN = {
   standpunkt: { in: ['@station'], kennung: 'pflicht', kopf: { figur: { typ: 'kennung', pflicht: true } }, felder: ['text'], pflichtFelder: ['text'] },
   // Express-Karte „Was dazwischen geschah“ (P5.9, L-43): nur für Leser auf dem Express-Pfad, über dem ersten Schritt
   express: { in: ['@station'], kennung: 'keine', felder: ['text'], pflichtFelder: ['text'] },
+  // Nachweis einer Welt-B-Station (P7.3, E2): die Kette Mandat → Freigabe → Entscheidungs-ID → Datenstand → Nachweis → Beschlusslage (Kap. 9)
+  nachweis: {
+    in: ['@station'], kennung: 'keine',
+    kopf: {
+      mandat: { typ: 'text', pflicht: true }, freigabe: { typ: 'text', pflicht: true }, kennung: { typ: 'text', pflicht: true },
+      datenstand: { typ: 'text', pflicht: true }, nachweis: { typ: 'text', pflicht: true }, beschlusslage: { typ: 'text', pflicht: true },
+    },
+    felder: ['text'],
+  },
+  // Nachweiskette zum Anfassen (E2): zeigt die Nachweise der besuchten Welt-B-Stationen, Klick legt die Kette aus
+  nachweiskette: { in: ['schritt', 'ebene'], kennung: 'keine', felder: ['text'] },
   // Vertiefung je Interesse (P3.9, O-19): Zusatzkarte im Ebenen-Schritt, nur für Leser mit diesem Interesse
   vertiefung: { in: ['@station'], kennung: 'pflicht', kopf: { titel: { typ: 'text', pflicht: true } }, felder: ['text'], pflichtFelder: ['text'] },
   regie: { in: ['@station', '@szene'], kennung: 'keine', felder: ['notiz', 'leitfragen'] },
@@ -1262,6 +1273,8 @@ function baueStation(c, rel, ordner, text, regie) {
   const vertiefungen = [];
   /** @type {string | null} */
   let express = null;
+  /** @type {Record<string, string> | null} */
+  let nachweis = null;
   /** @type {Set<string>} */
   const schrittIds = new Set();
   for (const k of wurzel.kinder) {
@@ -1285,6 +1298,16 @@ function baueStation(c, rel, ordner, text, regie) {
     if (bl.art === 'express') {
       if (express !== null) c.fehler(`${rel}:${k.zeile}`, '„express“ doppelt');
       express = bl.felder.text ?? '';
+      continue;
+    }
+    if (bl.art === 'nachweis') {
+      if (nachweis !== null) c.fehler(`${rel}:${k.zeile}`, '„nachweis“ doppelt');
+      if (kopf.welt !== 'B') c.fehler(`${rel}:${k.zeile}`, '„nachweis“ nur an Stationen der Welt B (E2)');
+      nachweis = {
+        mandat: String(bl.kopf.mandat ?? ''), freigabe: String(bl.kopf.freigabe ?? ''), kennung: String(bl.kopf.kennung ?? ''),
+        datenstand: String(bl.kopf.datenstand ?? ''), nachweis: String(bl.kopf.nachweis ?? ''), beschlusslage: String(bl.kopf.beschlusslage ?? ''),
+        text: bl.felder.text ?? '',
+      };
       continue;
     }
     if (bl.art === 'vertiefung') {
@@ -1360,6 +1383,7 @@ function baueStation(c, rel, ordner, text, regie) {
     standpunkte,
     vertiefungen,
     express,
+    nachweis,
     szenen: {},
     quelle: rel,
   };

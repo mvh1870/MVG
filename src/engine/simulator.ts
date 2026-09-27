@@ -57,7 +57,7 @@ export const SIM_QUELLEN = ['k4.2-p3', 'k6.4.5-p1', 'k3.2-t1', 'k13-t1', 'k4.3-p
 
 const RANG: Record<Stufe, number> = { pl: 0, gremium: 1, bauherr: 2 };
 
-/** Muster-Mandatsleiter (k4.2-p3): bis einschließlich 100 TEUR PL, bis einschließlich 5 Mio. EUR Änderungsgremium, darüber Bauherr im Lenkungskreis. */
+/** Muster-Mandatsleiter (k4.2-p3): bis einschließlich 100 TEUR PL, bis einschließlich 5 Mio. € Änderungsgremium, darüber Bauherr im Lenkungskreis. */
 export function stufeNachBetrag(betragTeur: number): Stufe {
   if (betragTeur <= 100) return 'pl';
   if (betragTeur <= 5000) return 'gremium';
@@ -76,8 +76,8 @@ export function simuliere(e: SimEingabe): SimErgebnis {
   eskalation.push({
     quelle: 'k4.2-p3',
     text: stufe === 'pl' ? 'Bis einschließlich 100 TEUR gibt die Bauherren-PL eigenständig frei.'
-      : stufe === 'gremium' ? 'Oberhalb von 100 TEUR bis einschließlich 5 Mio. EUR entscheidet das Änderungsgremium.'
-        : 'Oberhalb von 5 Mio. EUR erfolgt die Beschlussfassung durch den Bauherrn im Lenkungskreis.',
+      : stufe === 'gremium' ? 'Oberhalb von 100 TEUR bis einschließlich 5 Mio. € entscheidet das Änderungsgremium.'
+        : 'Oberhalb von 5 Mio. € erfolgt die Beschlussfassung durch den Bauherrn im Lenkungskreis.',
   });
   if (e.schwelleUeberschritten || e.terminWochen > 0) {
     eskalation.push({
@@ -88,6 +88,7 @@ export function simuliere(e: SimEingabe): SimErgebnis {
     });
   }
 
+  if (e.schwelleUeberschritten && stufe === 'pl') wer = 'Eskalation nach dem projektspezifischen Mandat';
   const hebe = (neu: Stufe, neuWer: string): void => {
     if (RANG[neu] >= RANG[stufe]) {
       stufe = neu;
@@ -96,10 +97,10 @@ export function simuliere(e: SimEingabe): SimErgebnis {
   };
   if (e.deckung === 'reserve') {
     bauherr.push({ quelle: 'k3.2-t1', text: 'Die Freigabe des Einsatzes der Risikoreserve ist nicht delegierbar – sie bleibt beim Bauherrn.' });
-    hebe('bauherr', 'Bauherr');
+    hebe('bauherr', stufe === 'bauherr' ? wer : 'Bauherr');
   }
   if (e.deckung === 'ueber-basis') {
-    bauherr.push({ quelle: 'k3.2-t1', text: 'Kosten über die Projektbasis hinaus berühren die Neufestlegung der Projektbasis – eine nicht delegierbare Entscheidung des Bauherrn.' });
+    bauherr.push({ quelle: 'k3.2-t1', text: 'Die Akzeptanz von Auswirkungen auf Kosten ist nicht delegierbar, ebenso die Entscheidung über eine Neufestlegung der Projektbasis – beides bleibt beim Bauherrn.' });
     bauherr.push({ quelle: 'k13-t1', text: 'Die Neufestlegung der Projektbasis liegt außerhalb der regulären Freigabereihe; sie wird über eine Entscheidungsvorlage vorbereitet und vom Bauherrn im Lenkungskreis beschlossen.' });
     hebe('bauherr', 'Bauherr im Lenkungskreis');
   }
@@ -116,35 +117,37 @@ export function simuliere(e: SimEingabe): SimErgebnis {
   if (wesentlich) {
     information.push({ quelle: 'k4.3-p2', text: 'Als wesentliche Entscheidung braucht sie eine eindeutige Kennung, einen Datenstand, eine verantwortliche Rolle, eine Entscheidungsfrage und einen Nachverfolgungsstatus.' });
   } else {
-    information.push({ quelle: 'k4.3-p1', text: 'Nicht jede operative Entscheidung ist bauherrenseitig wesentlich; wesentlich ist sie, wenn sie Kosten, Termin, Qualität, Projektumfang, Risiko oder ESG/LCC substanziell beeinflusst.' });
+    information.push({ quelle: 'k4.3-p1', text: 'Nicht jede operative Entscheidung ist bauherrenseitig wesentlich; wesentlich ist sie, wenn sie Projektzweck, Zielsystem oder Kosten, Termin, Qualität, Projektumfang, Risiko oder ESG/LCC substanziell beeinflusst.' });
   }
   if (!e.datenstandBenannt) {
     information.push({ quelle: 'k4.6-p2', text: 'Zuerst den Datenstand klären: Welche Version gilt? Welche Annahmen sind offen? Welche Änderungen wurden seit der letzten Freigabe aufgenommen? Welche Beschlusslage besteht?' });
   }
 
   if (e.freigabeBeruehrt) {
-    freigabeweg.push({ quelle: 'k9.3-p3', text: 'Die Freigabe zum Abschluss der Leistungsphase erteilt der Bauherr selbst auf Vorlage der Bauherren-PL – nicht die Projektsteuerung und nicht der Lenkungskreis; der Lenkungskreis berät.' });
+    freigabeweg.push({ quelle: 'k9.3-p3', text: 'Die Freigabe zum Abschluss der Leistungsphase erteilt der Bauherr selbst auf Vorlage der Bauherren-PL – nicht die Projektsteuerung und nicht der Lenkungskreis; der Lenkungskreis berät und bereitet vor.' });
     freigabeweg.push({ quelle: 'k4.5-p1', text: 'Eine Freigabe legitimiert den nächsten Schritt auf einem benannten Datenstand.' });
-  } else {
+  } else if (!e.schwelleUeberschritten && stufe !== 'bauherr') {
     freigabeweg.push({ quelle: 'k6.4.5-p1', text: 'Innerhalb des Mandats entscheiden die verantwortliche Rolle und die Bauherren-PL im definierten Rahmen und dokumentiert im Register.' });
   }
 
   switch (e.status) {
     case 'offen':
-      naechsterSchritt.push({ quelle: 'k4.3-p2', text: 'Status „Offen“: Entscheidungsfrage und verantwortliche Rolle festlegen, Kennung vergeben.' });
+      naechsterSchritt.push({ quelle: 'k4.3-p2', text: wesentlich ? 'Status „Offen“: Entscheidungsfrage und verantwortliche Rolle festlegen, Kennung vergeben.' : 'Status „Offen“: Entscheidungsfrage und verantwortliche Rolle festlegen.' });
       break;
     case 'in-bearbeitung':
       naechsterSchritt.push({ quelle: 'k9.4-l1', text: 'Status „In Bearbeitung“: die Entscheidungsvorlage vervollständigen – Frage, betroffene Freigabe, Mandat, Datenstand, Optionen, Wirkung, Empfehlung, Freigabe- oder Eskalationsweg.' });
       break;
     case 'entscheidungsreif':
-      naechsterSchritt.push({ quelle: 'k6.4.4-p1', text: `Status „Entscheidungsreif“: Es entscheidet die zuständige Stelle – hier ${wer}.` });
+      naechsterSchritt.push({ quelle: 'k13-t1', text: `Status „Entscheidungsreif“: ausreichend vorbereitet, um auf der zuständigen Mandatsebene getroffen zu werden – hier ${wer}.` });
       break;
     case 'entschieden':
       naechsterSchritt.push({ quelle: 'k9.4-l1', text: 'Status „Entschieden“: Beschlusslage dokumentieren und die Nachverfolgung führen.' });
       break;
   }
   if (!e.datenstandBenannt && e.status === 'entscheidungsreif') {
-    naechsterSchritt.push({ quelle: 'k4.5-p1', text: 'Ohne benannten Datenstand fehlt der Freigabe ihre Grundlage.' });
+    naechsterSchritt.push(e.freigabeBeruehrt
+      ? { quelle: 'k4.5-p1', text: 'Ohne benannten Datenstand fehlt der Freigabe ihre Grundlage.' }
+      : { quelle: 'k4.6-p2', text: 'Ohne benannten Datenstand fehlt der Entscheidung ihre belastbare Grundlage.' });
   }
 
   return { stufe, wer, eskalation, wesentlich, bauherr, information, freigabeweg, naechsterSchritt };

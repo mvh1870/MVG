@@ -29,7 +29,11 @@ test('Nicht delegierbar (k3.2-t1): Risikoreserve, Projektbasis, Zielpriorität h
   assert.equal(simuliere({ ...basis, zielkonflikt: true }).stufe, 'bauherr');
   assert.equal(simuliere({ ...basis, risikoAnnahme: true }).bauherr[0]?.quelle, 'k4.4-p1');
   // Bauherr im Lenkungskreis bleibt, wenn zusätzlich die Reserve berührt ist
-  assert.equal(simuliere({ ...basis, betragTeur: 7000, deckung: 'reserve' }).stufe, 'bauherr');
+  assert.equal(simuliere({ ...basis, betragTeur: 7000, deckung: 'reserve' }).wer, 'Bauherr im Lenkungskreis');
+  // überschrittene Schwelle: nicht mehr „innerhalb des Mandats“ (k6.4.5-p1)
+  const s = simuliere({ ...basis, schwelleUeberschritten: true });
+  assert.equal(s.wer, 'Eskalation nach dem projektspezifischen Mandat');
+  assert.ok(!s.freigabeweg.some((h) => /Innerhalb des Mandats/u.test(h.text)));
 });
 
 test('Wesentlich (k4.3): Kennung und Vorlage, sonst der Hinweis, dass nicht jede Entscheidung wesentlich ist', () => {
@@ -48,7 +52,7 @@ test('Datenstand, Freigabeweg, Termin ohne erfundene Schwelle', () => {
   const t = simuliere({ ...basis, terminWochen: 6 });
   assert.equal(t.stufe, 'pl', 'Terminwirkung allein hebt die Stufe nicht');
   assert.ok(t.eskalation.some((h) => h.quelle === 'k6.4.5-p1' && /keine allgemeine Schwelle/u.test(h.text)));
-  assert.equal(simuliere({ ...basis, status: 'entscheidungsreif', betragTeur: 300 }).naechsterSchritt[0]?.text, 'Status „Entscheidungsreif“: Es entscheidet die zuständige Stelle – hier Änderungsgremium.');
+  assert.equal(simuliere({ ...basis, status: 'entscheidungsreif', betragTeur: 300 }).naechsterSchritt[0]?.text, 'Status „Entscheidungsreif“: ausreichend vorbereitet, um auf der zuständigen Mandatsebene getroffen zu werden – hier Änderungsgremium.');
 });
 
 test('Jede Regel zitiert einen Absatz aus dem Quellenfenster', () => {

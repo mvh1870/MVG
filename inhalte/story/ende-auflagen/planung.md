@@ -5,7 +5,7 @@ rueckbezug-auf: wirklichkeit
 ---
 
 ::: rueckbezug A
-Im Dezember haben Sie ‚MVG-Neuinitialisierung anregen‘ gewählt. Die Neuordnung hat bis zum Frühjahr nicht getragen; nach der Freigabe mit Auflagen im Januar steht das Projekt in LPH 6, Vorbereitung Vergabe.
+Im Dezember haben Sie ‚MVG-Neuinitialisierung anregen‘ gewählt. Die Spur hatte zu wenig Entscheidungsfähigkeit übrig gelassen, als dass eine Neuordnung bis zum Frühjahr hätte tragen können; nach der Freigabe mit Auflagen im Januar steht das Projekt in LPH 6, Vorbereitung Vergabe.
 :::
 
 ::: rueckbezug B

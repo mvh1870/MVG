@@ -242,7 +242,7 @@ export const W = {
       schwelleUeberschritten: 'Eine Wert-, Risiko-, Frist- oder Mandatsschwelle des Projekts ist überschritten',
       zielkonflikt: 'Zielprioritäten stehen gegeneinander',
       risikoAnnahme: 'Eine wesentliche Risikoexposition wird angenommen',
-      substanziell: 'Kosten, Termin, Qualität, Projektumfang, Risiko oder ESG/LCC werden substanziell beeinflusst',
+      substanziell: 'Projektzweck, Zielsystem oder Kosten, Termin, Qualität, Projektumfang, Risiko oder ESG/LCC werden substanziell beeinflusst',
       freigabeBeruehrt: 'Die Freigabe zum Abschluss einer Leistungsphase ist berührt',
       datenstandBenannt: 'Der Datenstand ist benannt',
       status: 'Status der Entscheidung',

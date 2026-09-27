@@ -5,7 +5,7 @@ rueckbezug-auf: wirklichkeit
 ---
 
 ::: rueckbezug A
-Im Dezember haben Sie ‚MVG-Neuinitialisierung empfehlen‘ gewählt. Die Neuordnung hat bis zum Frühjahr nicht getragen; nach der Freigabe mit Auflagen im Januar verlangt Auflage 1 einen verbindlichen Datenstand – welcher es ist, steht nicht dabei.
+Im Dezember haben Sie ‚MVG-Neuinitialisierung empfehlen‘ gewählt. Die Spur hatte zu wenig Entscheidungsfähigkeit übrig gelassen, als dass eine Neuordnung bis zum Frühjahr hätte tragen können; nach der Freigabe mit Auflagen im Januar verlangt Auflage 1 einen verbindlichen Datenstand – welcher es ist, steht nicht dabei.
 :::
 
 ::: rueckbezug B

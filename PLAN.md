@@ -89,7 +89,7 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [ ] P7.7 · Prüf-Agenten P7 + Korrekturen
 
 ### P8 · Explore
-- [ ] P8.1 · Szenario-Simulator (Kostenabweichung, Terminabweichung, Risiken, Entscheidungsstatus → Risikoeinschätzung, erforderliche Entscheidung, Eskalationsstufe, Informationsbedarf, Freigabeweg, Handlungsmöglichkeiten); Regeln aus Whitepaper, getestet
+- [x] P8.1 (2026-09-27, Prüfung: 7 Befunde eingearbeitet) · Szenario-Simulator (Kostenabweichung, Terminabweichung, Risiken, Entscheidungsstatus → Risikoeinschätzung, erforderliche Entscheidung, Eskalationsstufe, Informationsbedarf, Freigabeweg, Handlungsmöglichkeiten); Regeln aus Whitepaper, getestet
 - [ ] P8.2 · Vorher/Nachher-Welten (Informationswege, Rollen, Entscheidungen, Eskalationen, Register, Reporting, Gremien)
 - [ ] P8.3 · Governance-Fluss-Sandbox (E5)
 - [ ] P8.4 · Zeitmaschine (E4)

@@ -5,7 +5,7 @@ rueckbezug-auf: wirklichkeit
 ---
 
 ::: rueckbezug A
-Im Dezember haben Sie ‚MVG-Neuinitialisierung vorschlagen‘ gewählt. Die Neuordnung hat bis zum Frühjahr nicht getragen; Dr. Olbers hat im Januar zuerst die Freigabe zum Abschluss von LPH 5 erteilt, mit Auflagen.
+Im Dezember haben Sie ‚MVG-Neuinitialisierung vorschlagen‘ gewählt. Die Spur hatte zu wenig Entscheidungsfähigkeit übrig gelassen, als dass eine Neuordnung bis zum Frühjahr hätte tragen können; Dr. Olbers hat im Januar zuerst die Freigabe zum Abschluss von LPH 5 erteilt, mit Auflagen.
 :::
 
 ::: rueckbezug B

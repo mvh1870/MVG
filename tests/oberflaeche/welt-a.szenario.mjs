@@ -203,7 +203,7 @@ async function wendepunkt(seite, h, station) {
 }
 
 /** Ausgebaute Stationen der Welt B (P5.2 ff.); weitere kommen mit ihren Posten dazu. */
-const WELT_B = ['B1', 'B2'];
+const WELT_B = ['B1', 'B2', 'B4'];
 
 /**
  * Welt B (P5.2 ff.): die ausgebauten Stationen einmal durchspielen – Einstieg, Vergleich, Werkzeuge,
@@ -222,6 +222,15 @@ async function weltB(seite, h, station, pruefe) {
     phasen: '[data-pruef="tafel-phasen"]', kette: '.kette', mandatsleiter: '.mandat-raster', vorlage: '[data-pruef="vorlage"]', fluss: '[data-pruef="fluss"]', datenstand: '[data-pruef="datenstand"]',
   });
   for (const st of WELT_B) {
+    // Stationen dazwischen (noch nicht ausgebaut oder anders gebaut, z. B. B3) nur durchklicken
+    for (let i = 0; i < 40 && (await station()) !== st; i++) {
+      const optionA = seite.locator('[data-pruef="option-A"]').filter({ visible: true });
+      if (await optionA.count() > 0 && (await optionA.first().getAttribute('aria-pressed')) !== 'true') await optionA.first().click();
+      if (await sichtbar('[data-pruef="szene-weiter"]')) await h.klick('[data-pruef="szene-weiter"]');
+      else await h.klick('[data-pruef="weiter"]');
+      await h.warte(250);
+    }
+    if ((await station()) !== st) h.befund(`${st} nicht erreicht (steht in ${await station()})`);
     const gesehen = new Set();
     for (let i = 0; i < 40 && (await station()) === st; i++) {
       await h.warte(700);

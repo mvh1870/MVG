@@ -2,7 +2,7 @@
 /**
  * Browser-Prüfung der Einzeldatei (P0.4; docs/ARCHITEKTUR.md „Prüfkette“).
  *
- *   node werkzeuge/oberflaeche.mjs [--szenario <name>] [--nur-desktop] [--datei <html>] [--szenarien <verzeichnis>]
+ *   node werkzeuge/oberflaeche.mjs [--szenario <name>] [--nur-desktop] [--datei <html>] [--szenarien <verzeichnis>] [--parallel <n>]
  *
  * Lädt dist/mvg.html als file://-URL in Chromium (Playwright) und führt alle
  * tests/oberflaeche/*.szenario.mjs aus. Ein Szenario-Modul exportiert
@@ -348,9 +348,11 @@ export async function fuehreAus(browser, szenario, viewport, url, bilder = BILDE
  * @param {string[]} argv
  */
 function leseArgumente(argv) {
-  /** @type {{ szenario?: string, nurDesktop: boolean, datei: string, szenarien: string }} */
+  /** @type {{ szenario?: string, nurDesktop: boolean, datei: string, szenarien: string, parallel: number }} */
   const a = {
     nurDesktop: false,
+    // parallele Browser-Kontexte: Vorgabe 3 (4 Kerne im Cloud-Rechner und im GitHub-Läufer), 1 = nacheinander
+    parallel: Number(process.env['MVG_PARALLEL'] ?? 3),
     datei: path.join(WURZEL, 'dist', 'mvg.html'),
     szenarien: path.join(WURZEL, 'tests', 'oberflaeche'),
   };
@@ -366,8 +368,10 @@ function leseArgumente(argv) {
     else if (arg === '--szenario') a.szenario = wert();
     else if (arg === '--datei') a.datei = path.resolve(wert());
     else if (arg === '--szenarien') a.szenarien = path.resolve(wert());
-    else throw new Error(`unbekannte Option ${arg} (erlaubt: --szenario <name>, --nur-desktop, --datei <html>, --szenarien <verzeichnis>)`);
+    else if (arg === '--parallel') a.parallel = Number(wert());
+    else throw new Error(`unbekannte Option ${arg} (erlaubt: --szenario <name>, --nur-desktop, --datei <html>, --szenarien <verzeichnis>, --parallel <n>)`);
   }
+  if (!Number.isInteger(a.parallel) || a.parallel < 1) throw new Error(`--parallel/MVG_PARALLEL: ganze Zahl ≥ 1 erwartet, nicht „${a.parallel}“`);
   return a;
 }
 
@@ -432,21 +436,40 @@ async function hauptprogramm() {
   let laeufe = 0;
   let roteLaeufe = 0;
   let befundZahl = 0;
-  try {
-    for (const s of szenarien) {
-      for (const v of a.nurDesktop ? nurDesktop(s.viewports) : s.viewports) {
-        laeufe += 1;
-        const befunde = await fuehreAus(browser, s, v, s.seite !== undefined ? pathToFileURL(path.join(WURZEL, s.seite)).href : url);
-        const etikett = `${s.name} @ ${v.breite}×${v.hoehe}`;
-        if (befunde.length === 0) console.log(`  ✓ ${etikett}`);
-        else {
-          roteLaeufe += 1;
-          befundZahl += befunde.length;
-          console.log(`  ✗ ${etikett}`);
-          for (const b of befunde) console.log(`      - ${b}`);
-        }
+  // Läufe (Szenario × Viewport) in einem kleinen Pool paralleler Browser-Kontexte; jeder Kontext ist
+  // eigenständig (eigene Seite, eigener Speicher). Ausgabe in fester Reihenfolge, sobald ein Lauf und
+  // alle vor ihm fertig sind – das Ergebnis hängt nicht von der Reihenfolge des Fertigwerdens ab.
+  const auftraege = szenarien.flatMap((s) => (a.nurDesktop ? nurDesktop(s.viewports) : s.viewports).map((v) => ({ s, v })));
+  /** @type {(string[] | undefined)[]} */
+  const ergebnisse = [];
+  let naechster = 0;
+  let gedruckt = 0;
+  const drucke = () => {
+    while (gedruckt < auftraege.length && ergebnisse[gedruckt] !== undefined) {
+      const { s, v } = /** @type {{ s: Szenario, v: Viewport }} */ (auftraege[gedruckt]);
+      const befunde = /** @type {string[]} */ (ergebnisse[gedruckt]);
+      laeufe += 1;
+      const etikett = `${s.name} @ ${v.breite}×${v.hoehe}`;
+      if (befunde.length === 0) console.log(`  ✓ ${etikett}`);
+      else {
+        roteLaeufe += 1;
+        befundZahl += befunde.length;
+        console.log(`  ✗ ${etikett}`);
+        for (const b of befunde) console.log(`      - ${b}`);
       }
+      gedruckt += 1;
     }
+  };
+  const arbeiter = async () => {
+    while (naechster < auftraege.length) {
+      const i = naechster++;
+      const { s, v } = /** @type {{ s: Szenario, v: Viewport }} */ (auftraege[i]);
+      ergebnisse[i] = await fuehreAus(browser, s, v, s.seite !== undefined ? pathToFileURL(path.join(WURZEL, s.seite)).href : url);
+      drucke();
+    }
+  };
+  try {
+    await Promise.all(Array.from({ length: Math.max(1, Math.min(a.parallel, auftraege.length)) }, () => arbeiter()));
   } finally {
     await browser.close();
   }

@@ -5,7 +5,7 @@ monat: 7
 titel: Gremium-Szene
 lph: 5
 uhr: Donnerstag, 10:00 Uhr
-whitepaper-bezug: [k6.4.1-p4, k6.4.5-t1, k4.3-p1]
+whitepaper-bezug: [k6.4.1-p4, k6.4.5-t1, k4.3-p1, k4.3-p2, k4.2-p3, k9.4-l1, k9.4-p3, k6.4.4-p1, k3.2-t1, k6.4.3-p2, k4.6-p2]
 status-start:
   entscheidungsfaehigkeit: 4
   kostenunsicherheit: mittel
@@ -21,7 +21,255 @@ weiter: B5
 titel: Donnerstag, 10:00 Uhr. Monat 7.
 kurz: Einstieg
 ---
-Im Juni hat das Änderungsgremium `ENT-017` auf ergänzter Vorlage entschieden; die Fassadenänderung `AEN-022` ist beschlossen. Die Brandschutzauflagen aus der Baugenehmigung stehen als Änderung `AEN-031` im Änderungsregister, grob 0,4 Mio. €. Das Änderungsgremium tagt; die Vorlage liegt vor. Der Bauausschuss bekommt den Managementbericht mit einer klaren Beschlussvorbereitung.
+Donnerstag, 9. Juli. Das Änderungsgremium tagt, Vorsitz Frank Deppe. Seit Juni liegt die Baugenehmigung vor, mit Brandschutzauflagen zum Holzbau. Die nötige Planänderung steht als `AEN-031` im Änderungsregister, grob 0,4 Mio. €, Status „In Prüfung“; die Vorlage liegt auf dem Tisch. Eine Woche später tagt der Bauausschuss. Er bekommt den Managementbericht – mit der Beschlusslage dieser Sitzung.
+
+::: protokoll
+---
+titel: Änderungsgremium – Tagesordnung Juli
+datum: Do, 09.07.2026
+von: petersen
+---
+- Beschlusslage: `AEN-012` Mensa für den Ganztag · Beschlossen; `AEN-022` Fassade · Beschlossen.
+- `AEN-031` Brandschutzauflagen Holzbau: Vorlage von Projektsteuerung und Planung, grob 0,4 Mio. €.
+- Teilnahme: Frank Deppe (Vorsitz), Bauherren-PL, Aylin Kaya.
+- Die Beschlusslage geht in den Managementbericht an den Bauausschuss (16.07.).
+:::
+
+::: datei
+---
+name: Änderungsregister · AEN-031 · Brandschutzauflagen Holzbau
+quelle: Bauherren-PL
+wert: In Prüfung · Vorlage liegt vor
+---
+Planänderung aufgrund der Auflagen aus der Baugenehmigung; Kosten nach grober Schätzung der Generalplanung.
+:::
+
+::: chat
+---
+von: brenner
+zeit: "09:41"
+---
+Die Vorlage zu `AEN-031` ist verteilt: Frage, Datenstand, Kosten grob 0,4 Mio. €. Die Terminwirkung haben wir nur grob geschätzt – so steht es auch drin.
+:::
+
+::: datei
+---
+name: Managementbericht Juli · Entwurf
+quelle: Bauherren-PL mit Controlling und PMO
+wert: für den Bauausschuss am 16.07. · Beschlusslage folgt
+---
+Ein Bericht für die Gremien, mit Kennungen, Status und Beschlussvorbereitung.
+:::
+:::
+
+::: schritt vergleich
+---
+art: vergleich
+titel: Welt A ⟷ Welt B
+kurz: Welt A ⟷ B
+knopf: Welt B ansehen
+---
+::: hinweis
+Dieselben Auflagen, derselbe Ausschusstermin – in Welt B liegen sie vorher im Gremium, das dafür das Mandat hat.
+:::
+
+::: paar
+---
+a: datei
+b: bericht
+fluss: managementbericht
+---
+### Welt A
+**40 Seiten** · Statusbericht Juni, Ampeln ohne Frage
+
+### Welt B
+Managementbericht · Beschlusslage und Beschlussvorbereitung
+:::
+
+::: paar
+---
+a: chat
+von: petersen
+b: register
+kennung: AEN-031
+fluss: entscheidung
+---
+### Welt A
+Tischvorlage Brandschutz – mit zum Statusbericht ablegen?
+
+### Welt B
+Brandschutzauflagen Holzbau · In Prüfung
+:::
+
+::: paar
+---
+a: notiz
+farbe: gelb
+b: mandat
+---
+### Welt A
+Brandschutz 0,4 Mio. € – wer entscheidet bis September?
+
+### Welt B
+Mandatsleiter · über 100 TEUR · Änderungsgremium
+:::
+
+::: paar
+---
+a: notiz
+farbe: rosa
+b: vorlage
+---
+### Welt A
+Welche Frage stellen wir dem Ausschuss?
+
+### Welt B
+Vorlage zu `AEN-031` · Entscheidungsfrage vorn
+:::
+
+::: kennzahl
+---
+a: 0
+b: 1
+---
+Entscheidungsfragen auf dem Tisch
+:::
+
+::: kennzahl
+---
+a: 3
+b: 0
+---
+lose Notizen
+:::
+
+### Welt A
+Welt A: ein Bericht ohne Frage, eine Tischvorlage ohne Ort und die Frage nach der Zuständigkeit auf einer Haftnotiz.
+
+### Welt B
+Welt B: dieselben Auflagen als Änderung mit Kennung, ein Gremium mit Mandat, eine Vorlage mit Frage – und ein Managementbericht, der die Beschlusslage trägt.
+:::
+
+::: schritt gremium
+---
+titel: Im Änderungsgremium – AEN-031
+kurz: Gremium
+---
+::: mandatsleiter
+---
+betrag: grob 0,4 Mio. €
+betrag-teur: 400
+stufen:
+  - wer: Bauherren-PL
+    bereich: bis einschließlich 100 TEUR
+    bis-teur: 100
+  - wer: Änderungsgremium
+    bereich: über 100 TEUR bis einschließlich 5 Mio. €
+    bis-teur: 5000
+  - wer: Bauherr
+    bereich: über 5 Mio. € – Beschluss im Lenkungskreis
+    hinweis: "Risikoreserve: nur Bauherr"
+---
+`AEN-031` · Auf welcher Stufe liegt die Planänderung?
+:::
+
+::: mandatsoption 1
+---
+titel: Planänderung Brandschutz
+detail: "Änderung AEN-031 · Status In Prüfung"
+zustaendig: Änderungsgremium
+stufe: 2
+---
+Grob 0,4 Mio. € liegen über 100 TEUR und bis einschließlich 5 Mio. € – über `AEN-031` entscheidet das Änderungsgremium: Vorsitz Frank Deppe, dazu die Bauherren-PL und Aylin Kaya, bei Nutzerthemen auch Sabine Roth; Projektsteuerung und Planung bereiten vor. Soll die Deckung aus der Risikoreserve kommen, gibt diesen Einsatz nur der Bauherr frei.
+:::
+
+::: vorlage AEN-031
+---
+titel: Vorlage zur Änderung
+datenstand: Kostenprognose 2026-05 · Version 3 · Schätzung der Generalplanung zu AEN-031, Stand Juli
+---
+### Frage
+„Wie werden die Brandschutzauflagen aus der Baugenehmigung in der Ausführungsplanung umgesetzt?“
+
+### Checkliste
+- [x] eindeutige [[Entscheidungs-ID]] · `AEN-031`, die Kennung der Änderung im Änderungsregister
+- [x] Entscheidungsfrage
+- [x] betroffene Freigabe · Freigabe zum Abschluss von LPH 5
+- [x] Verantwortungsfeld · Freigabe (Änderung)
+- [x] Mandat und letztverantwortliche Rolle · Änderungsgremium, Vorsitz Geschäftsführung
+- [x] Datenstand und zentrale Annahmen · grobe Schätzung der Generalplanung, Stand Juli
+- [ ] Optionen und Konsequenzen · bisher eine Ausführung, von der Generalplanung ausgearbeitet; Varianten nicht vorgelegt
+- [ ] Wirkung auf Kosten, Termin, Qualität, Projektumfang, Risiko und ESG/LCC · Kosten und Termin grob geschätzt, die übrigen noch nicht bewertet
+- [x] Empfehlung · Projektsteuerung und Planung
+- [x] Freigabe- oder Eskalationsweg · Änderungsgremium; eine Deckung aus der Risikoreserve gibt nur der Bauherr frei
+- [ ] Freigabeprozess (sechsstufig, jede Stufe wird signiert): offen → in Prüfung → vorbereitet → freigegeben → beschlossen | abgelehnt · Stand der Vorlage: freigegeben zur Sitzung; „beschlossen | abgelehnt“ steht aus
+- [ ] Beschlusslage · wird in der Sitzung dokumentiert
+- [ ] Nachverfolgung
+:::
+
+::: merksatz
+**Kein Stapel, keine Tischvorlage:** Die Auflage hat eine Kennung, ihr Betrag eine Stufe – und das Gremium eine Frage.
+:::
+:::
+
+::: schritt bericht
+---
+titel: Vom Gremium in den Managementbericht
+kurz: Beschlusslage
+---
+Was das Gremium beschließt – oder mit Frage und Frist zurückstellt –, steht im Protokoll und im Änderungsregister. Der Managementbericht sammelt es für den Bauausschuss.
+
+::: protokoll
+---
+titel: Änderungsgremium – Beschlussprotokoll Juli (Entwurf)
+datum: Do, 09.07.2026
+von: petersen
+---
+- `AEN-012` Mensa für den Ganztag · Beschlossen · unverändert.
+- `AEN-022` Fassade · Beschlossen · unverändert.
+- `AEN-031` Brandschutzauflagen Holzbau · Grundlage: Vorlage mit Datenstand · Beschluss: wird in der Sitzung eingetragen
+- Bei Zurückstellung: Frage · Frist · verantwortliche Rolle
+- Aufträge und Maßnahmen: verantwortliche Rolle · Frist
+- Weiter an: Managementbericht an den Bauausschuss, 16.07.
+:::
+
+::: tafel k6.4.5-t1
+---
+form: rhythmus
+hervor: [3, 4, 5]
+---
+:::
+:::
+
+::: schritt lage
+---
+art: lage
+titel: Was Sie wissen, und was nicht
+kurz: Was Sie wissen
+knopf: Jetzt entscheiden
+---
+::: datei
+---
+name: Änderungsregister · AEN-031 · Brandschutzauflagen Holzbau
+quelle: Bauherren-PL
+wert: In Prüfung · Vorlage liegt vor
+---
+:::
+
+::: bekannt
+- Seit Juni liegt die Baugenehmigung vor, mit Brandschutzauflagen zum Holzbau. Die nötige Planänderung steht als `AEN-031` im Änderungsregister, Status „In Prüfung“; die Generalplanung schätzt grob 0,4 Mio. €.
+- Mandatsleiter: Grob 0,4 Mio. € liegen über 100 TEUR und bis einschließlich 5 Mio. € – zuständig ist das Änderungsgremium unter Vorsitz von Frank Deppe. Soll die Deckung aus der Risikoreserve kommen, gibt diesen Einsatz nur der Bauherr frei.
+- Die Vorlage nennt Entscheidungsfrage, Datenstand, Mandat, betroffene Freigabe und eine Empfehlung; Kosten und Terminwirkung sind bisher grob geschätzt.
+- Beschlusslage: `ENT-017` ist entschieden; `AEN-012` (Mensa) und `AEN-022` (Fassade) sind beschlossen.
+- Der Bauausschuss tagt am Donnerstag, 16. Juli; er bekommt den Managementbericht mit Beschlusslage und Beschlussvorbereitung.
+:::
+
+::: unbekannt
+- Wie sich die Planänderung auf den Termin auswirkt {#terminwirkung}
+- Wie belastbar die grobe Kostenschätzung ist {#kosten}
+- Ob es eine günstigere Ausführung der Auflagen gibt {#variante}
+- Woher die Deckung kommt {#deckung}
+:::
 :::
 
 ::: schritt rueckbezug
@@ -46,4 +294,137 @@ art: konsequenz
 titel: Was Ihre Wahl auslöst
 kurz: Konsequenz
 ---
+:::
+
+::: schritt ebenen
+---
+art: ebenen
+titel: Vier Ebenen – vom Satz zum Nachweis
+kurz: Tiefer gehen
+---
+:::
+
+::: ebenen
+::: ebene 1
+---
+titel: Kernaussage
+---
+Über eine Änderung entscheidet die Stelle, die nach der Mandatsleiter das Mandat hat – bei `AEN-031` das Änderungsgremium, auf einer Vorlage mit Frage, Datenstand und dokumentierter Beschlusslage. Der Managementbericht ist der gemeinsame Sammelpunkt für die Gremien.
+:::
+
+::: ebene 2
+---
+titel: Warum relevant
+---
+In Monat 7 trifft Welt B dasselbe Ereignis wie Welt A: dieselben Auflagen, derselbe Ausschusstermin. Der Unterschied liegt im Weg. Die Planänderung hat eine Kennung, ihr Betrag eine Stufe auf der Mandatsleiter, die Vorlage eine Frage. Kap. 4.3 sagt, wozu das dient: [[zitat:k4.3-p2|Das System der Entscheidungs-IDs verhindert, dass kritische Entscheidungen in Protokollen, E-Mails, Fachrunden oder informellen Abstimmungen verschwinden.]] Offen ist auch hier etwas – die Terminwirkung ist grob geschätzt, die Deckung nicht geklärt. Aber beides steht in der Vorlage.
+:::
+
+::: ebene 3
+---
+titel: Vertiefung
+---
+| Baustein | Kapitel | In B4 sichtbar |
+|---|---|---|
+| Mandatsleiter | 4.2 | Grob 0,4 Mio. € liegen über 100 TEUR und bis einschließlich 5 Mio. € – Änderungsgremium |
+| Kennung mit Datenstand, Rolle, Frage und Status | 4.3 | `AEN-031` im Änderungsregister, Status „In Prüfung“ |
+| Managementbericht als Sammelpunkt | 6.4.1 | Bericht an den Bauausschuss mit Beschlusslage und Beschlussvorbereitung |
+| Rhythmus | 6.4.5 | Änderungsgremium monatlich, zzgl. anlassbezogener Sondersitzungen |
+| [[Entscheidungsvorlage]] | 9.4 | Checkliste zu `AEN-031`: was erfüllt ist und was offen |
+| Nicht delegierbar | 3.2 | Festlegung der Mandatsleiter und Freigabe des Einsatzes der Risikoreserve – beide beim Bauherrn |
+
+Die Statusbegriffe der Änderung (Kap. 6.4.4) – Beantragt, In Prüfung, Beschlossen, Abgelehnt, Umgesetzt – bleiben vom Freigabeprozess getrennt.
+:::
+
+::: ebene 4
+---
+titel: Nachweis
+---
+::: zitat k6.4.1-p4
+Der Managementbericht – der aggregierte Gremienbericht – ist der gemeinsame Sammelpunkt für Gremien; das Entscheidungsregister ist nur die Warteschlange für echte Entscheidungen.
+:::
+
+::: zitat k9.4-p3
+Damit wird die Entscheidung nicht schwerer, sondern belastbarer. Ein guter Standard für Entscheidungsvorlagen reduziert Unklarheit, weil er früh festlegt, welche Informationen wirklich entscheidungsrelevant sind.
+:::
+:::
+:::
+
+::: vertiefung kosten
+---
+titel: Zwei Fragen, zwei Stufen
+---
+Grob 0,4 Mio. € schätzt die Generalplanung für die Planänderung. Über die Änderung entscheidet das Änderungsgremium; woher die Deckung kommt, ist eine eigene Frage. Kommt sie aus der Risikoreserve, liegt sie beim Bauherrn: Kap. 3.2 zählt zur nicht delegierbaren Verantwortung die [[zitat:k3.2-t1|Freigabe des Einsatzes der Risikoreserve]].
+:::
+
+::: vertiefung organisation
+---
+titel: Wer am Tisch sitzt
+---
+Im Änderungsgremium sitzen Frank Deppe (Vorsitz), die Bauherren-PL und Aylin Kaya, bei Nutzerthemen auch Sabine Roth; Projektsteuerung und Planung bereiten vor. Das Mandat folgt der Mandatsleiter aus Kap. 4.2: [[zitat:k4.2-p3|oberhalb von 100 TEUR bis einschließlich 5 Mio. EUR entscheidet das Änderungsgremium]]. Die Stufen hat der Bauherr festgelegt; das Gremium entscheidet in seinem Mandat.
+:::
+
+::: vertiefung risiko
+---
+titel: Die Auflage gilt, die Umsetzung ist offen
+---
+Die Vorlage beziffert die Terminwirkung bisher grob – ob die Planänderung die ohnehin lange Lieferzeit der Holzbauelemente berührt, weiß noch niemand. Kap. 6.4.3 sagt, was eine Vorlage leisten soll: [[zitat:k6.4.3-p2|Die Entscheidungsvorlage bündelt Frage, Datenstand, Optionen, Bewertung und Empfehlung.]] Die Bewertung der Terminwirkung ist der offene Teil.
+:::
+
+::: vertiefung freigaben
+---
+titel: Beschluss heute, Freigabe LPH 5 im November
+---
+Über `AEN-031` entscheidet das Änderungsgremium. Die Freigabe zum Abschluss von LPH 5 steht im November an; dann zählt, welche Änderungen seit der letzten Freigabe aufgenommen wurden. Kap. 4.6 fragt danach, und das Beschlussprotokoll dieser Sitzung liefert die Antwort: [[zitat:k4.6-p2|Welche Beschlusslage besteht?]]
+:::
+
+::: standpunkt gf
+---
+figur: deppe
+---
+„Grob 0,4 Mio. € – das liegt in unserem Mandat. Heute will ich einen Beschluss oder eine Frage mit Frist, nichts dazwischen.“
+:::
+
+::: standpunkt bauherr
+---
+figur: olbers
+---
+„Im Änderungsgremium sitze ich nicht. Am 16. will der Ausschuss wissen, was beschlossen ist – und was bei mir landet.“
+:::
+
+::: standpunkt pl
+---
+figur: sie
+---
+„Die Vorlage hat eine Frage und einen Datenstand. Die Terminwirkung ist grob geschätzt – reicht das für einen Beschluss?“
+:::
+
+::: standpunkt ps
+---
+figur: brenner
+---
+„Kosten grob, Termin grob, beides steht in der Vorlage. Bis zum Managementbericht brauche ich die Beschlusslage.“
+:::
+
+::: standpunkt planung
+---
+figur: hoffmeister
+---
+„Die Auflage gilt, daran ändert keiner etwas. Wie wir sie umsetzen, entscheidet das Gremium – eine Idee für eine günstigere Ausführung hätte ich.“
+:::
+
+::: standpunkt controlling
+---
+figur: kaya
+---
+„0,4 Mio. € in der Vorlage. Auf welche Kostengruppen – und woher kommt das Geld?“
+:::
+
+::: regie
+### Notiz
+B4 zeigt dasselbe Ereignis wie A4 – dieselben Auflagen, derselbe Ausschusstermin. Der Leser sitzt im Änderungsgremium (Rollen gf, pl, controlling stimmen mit; ps und planung bereiten vor; der Bauherr sitzt nicht darin und bekommt die Beschlusslage). Das Beschlussprotokoll bleibt ein Entwurf: Ob das Gremium beschließt, mit Auftrag beschließt oder mit Frist zurückstellt, entscheidet die Rolle. Beschluss und Deckung trennen – die Freigabe des Einsatzes der Risikoreserve ist Thema von B5. Zuerst den Regler zeigen, dann Mandatsleiter und Vorlage.
+
+### Leitfragen
+- Was liegt Ihrem Gremium vor: eine Vorlage mit Frage oder ein Bericht?
+- Wie stellt Ihr Gremium zurück – mit Frage, Frist und verantwortlicher Rolle?
+- Wo trennen Sie bei Ihnen den Beschluss über eine Änderung von der Freigabe ihrer Deckung?
 :::

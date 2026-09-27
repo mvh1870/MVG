@@ -78,7 +78,7 @@ k3.1-p2:
 # ── 3.2 Delegierbar und nicht delegierbar
 k3.2-t1:
   theorie: k03
-  story: [A5, B5, wendepunkt, ende-neufestlegung, B1]
+  story: [A5, B5, wendepunkt, ende-neufestlegung, B1, B4]
 k3.2-p1:
   theorie: k03
   story: [wendepunkt]
@@ -113,13 +113,14 @@ k4.2-p2:
   story: A2
 k4.2-p3:
   theorie: k04
-  story: [B1, B2, B3, wendepunkt]
+  story: [B1, B2, B3, wendepunkt, B4]
 # ── 4.3 Wesentliche Entscheidung
 k4.3-p1:
   theorie: k04
   story: [A4, B4]
 k4.3-p2:
   theorie: k04
+  story: B4
 # ── 4.4 Risikoannahme
 k4.4-p1:
   theorie: k04
@@ -139,7 +140,7 @@ k4.6-p1:
   story: A3
 k4.6-p2:
   theorie: k04
-  story: [A3, B1, B2]
+  story: [A3, B1, B2, B4]
 
 # ── 5 Minimum Viable Governance als Bauherren-Führungsmodell
 k5-p1:
@@ -235,14 +236,14 @@ k6.4.3-p1:
   story: B3
 k6.4.3-p2:
   theorie: k06
-  story: [B3, B1, B2]
+  story: [B3, B1, B2, B4]
 # ── 6.4.4 Register-Abgrenzung
 k6.4.4-t1:
   theorie: k06
   story: [B2, B3, B5]
 k6.4.4-p1:
   theorie: k06
-  story: [ende-auflagen, B2]
+  story: [ende-auflagen, B2, B4]
 # ── 6.4.5 Rhythmus, Rollen und Eskalation
 k6.4.5-t1:
   theorie: k06
@@ -378,9 +379,10 @@ k9.4-p2:
   theorie: k09
 k9.4-l1:
   theorie: k09
-  story: B3
+  story: [B3, B4]
 k9.4-p3:
   theorie: k09
+  story: B4
 # ── 9.5 Betriebshandbuch
 k9.5-p1:
   theorie: k09

@@ -83,7 +83,7 @@ Zwei Monate ohne Entscheidung zur Deckung, bei laufender Planung.
 
 ::: regie
 ### Notiz
-Der Bauherr sitzt nicht im Änderungsgremium. Für den Bauherrn gilt: das Gremium hat `AEN-031` beschlossen, auch wenn das Gremium in anderen Rollenszenen zurückstellen kann. Zeigen, was er vom Gremium bekommt: eine Beschlusslage, die er vor dem Ausschuss vertreten kann.
+Der Bauherr sitzt nicht im Änderungsgremium; seine Szene spielt nach der Sitzung am 9. Juli, vor dem Bauausschuss am 16. Juli. Für den Bauherrn gilt: das Gremium hat `AEN-031` beschlossen, auch wenn das Gremium in anderen Rollenszenen zurückstellen kann. Zeigen, was er vom Gremium bekommt: eine Beschlusslage, die er vor dem Ausschuss vertreten kann.
 
 ### Leitfragen
 - Was bekommt Ihr Ausschuss: Ampeln oder eine Beschlusslage?

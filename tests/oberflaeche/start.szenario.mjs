@@ -35,4 +35,5 @@ export async function lauf(seite, h) {
 
   await h.warte(1200); // Einblendung abwarten, damit das Bild den Ruhezustand zeigt
   await h.bild('start');
+  await h.axe('start');
 }

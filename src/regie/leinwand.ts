@@ -90,7 +90,7 @@ export function starteLeinwand(wurzel: HTMLElement, o: LeinwandOptionen): () => 
     bildmarke('marke-logo'),
     h('p', { class: 'leinwand-warten-titel' }, W.leinwand.warten),
     h('p', null, W.leinwand.wartenHinweis));
-  const element = h('div', { class: 'leinwand', 'data-pruef': 'leinwand', 'aria-label': W.leinwand.titel }, warten);
+  const element = h('section', { class: 'leinwand', 'data-pruef': 'leinwand', 'aria-label': W.leinwand.titel }, warten);
   ersetze(wurzel, element);
   let empfangen = false;
   let nr = 0;

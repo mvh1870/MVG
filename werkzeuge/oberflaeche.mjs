@@ -28,12 +28,22 @@
  * Exitcodes: 0 = alles grün, 1 = Befunde, 3 = übersprungen (kein Browser).
  */
 import { spawnSync } from 'node:child_process';
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { mkdir, readdir, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { chromium } from 'playwright';
 import { istHauptmodul } from './haupt.mjs';
+import { createRequire } from 'node:module';
+
+/** Quelltext von axe-core (Entwicklungsabhängigkeit, L-24), einmal gelesen. */
+let axeText = '';
+function axeQuelle() {
+  if (axeText === '') axeText = readFileSync(createRequire(import.meta.url).resolve('axe-core/axe.min.js'), 'utf8');
+  return axeText;
+}
+/** Leichte axe-Hinweise (moderate/minor) – im Protokoll, kein Befund. */
+const axeHinweise = [];
 
 export const WURZEL = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 export const STANDARD_VIEWPORTS = Object.freeze([
@@ -134,6 +144,7 @@ export async function starteBrowser(optionen = {}) {
  * @property {(selektor: string, fenster?: import('playwright').Page) => Promise<void>} erwarteNicht
  * @property {(taste: string, fenster?: import('playwright').Page) => Promise<void>} taste
  * @property {(name: string, fenster?: import('playwright').Page) => Promise<string>} bild
+ * @property {(name: string, fenster?: import('playwright').Page) => Promise<void>} axe  Barrierefreiheit (axe-core, WCAG 2.x A/AA): ernste und kritische Verstöße sind Befunde
  * @property {(ms: number) => Promise<void>} warte
  * @property {(hash?: string) => Promise<import('playwright').Page>} zweitesFenster
  * @property {(text: string) => void} befund
@@ -283,6 +294,21 @@ export async function fuehreAus(browser, szenario, viewport, url, bilder = BILDE
         await auf(f).screenshot({ path: ziel, fullPage: true });
         return ziel;
       },
+      async axe(name, f) {
+        const p = auf(f);
+        // Über evaluate statt Skript-Tag: die strenge CSP der Datei bleibt unangetastet.
+        if (!(await p.evaluate(() => 'axe' in window))) await p.evaluate(axeQuelle());
+        /** @type {{ id: string, impact: string | null, help: string, ziele: string[] }[]} */
+        const verstoesse = await p.evaluate(async () => {
+          const erg = await /** @type {any} */ (window).axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] }, resultTypes: ['violations'] });
+          return erg.violations.map((/** @type {any} */ v) => ({ id: v.id, impact: v.impact, help: v.help, ziele: v.nodes.slice(0, 3).map((/** @type {any} */ n) => String(n.target)) }));
+        });
+        for (const v of verstoesse) {
+          const zeile = `${name}: axe ${v.impact ?? '?'} ${v.id} – ${v.help} (${v.ziele.join(' | ')})`;
+          if (v.impact === 'serious' || v.impact === 'critical') befunde.push(zeile);
+          else axeHinweise.push(zeile);
+        }
+      },
       async warte(ms) {
         await seite.waitForTimeout(ms);
       },
@@ -419,6 +445,8 @@ async function hauptprogramm() {
     await browser.close();
   }
   const bilder = path.relative(WURZEL, BILDER).split(path.sep).join('/');
+  const hinweise = [...new Set(axeHinweise.map((z) => z.replace(/^[^:]*: /u, '')))];
+  if (hinweise.length > 0) console.log(`oberflaeche: axe-Hinweise (moderat/gering, kein Befund):\n${hinweise.map((z) => `  · ${z}`).join('\n')}`);
   if (befundZahl > 0) {
     console.log(`oberflaeche: ${befundZahl} Befund${befundZahl === 1 ? '' : 'e'} in ${roteLaeufe} von ${laeufe} Läufen · Bilder in ${bilder}/`);
     return 1;

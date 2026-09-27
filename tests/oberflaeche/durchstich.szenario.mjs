@@ -62,6 +62,7 @@ export async function lauf(seite, h) {
     await h.warte(ms);
     for (const fund of await f.evaluate(pruefeLayout)) h.befund(`${name}: ${fund}`);
     await h.bild(name, f);
+    await h.axe(name, f);
   };
   /** @param {string} selektor @param {import('playwright').Page} [f] */
   const text = async (selektor, f = seite) => (await f.locator(selektor).first().innerText()).replace(/\s+/g, ' ').trim();

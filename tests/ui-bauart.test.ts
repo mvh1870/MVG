@@ -97,7 +97,7 @@ test('Datenebene: `inhalte` enthält kein Regie-Material, die Schlüssel stehen 
   const { inhalte, regieFuer } = await import('../src/inhalte/index.ts');
   assert.equal('regie' in inhalte, false);
   assert.deepEqual(Object.keys(inhalte).sort(), [
-    'abdeckung', 'einwaende', 'fall', 'glossar', 'interessen', 'rollen', 'rollenFolge', 'start', 'startseite', 'stationen', 'stationsFolge', 'theorie', 'version', 'whitepaper',
+    'abdeckung', 'einwaende', 'fall', 'glossar', 'interessen', 'quellen', 'rollen', 'rollenFolge', 'start', 'startseite', 'stationen', 'stationsFolge', 'theorie', 'version', 'whitepaper',
   ]);
   // Kein Regie-Text steckt irgendwo sonst in den öffentlichen Inhalten.
   const oeffentlichText = JSON.stringify(inhalte);
@@ -272,17 +272,17 @@ test('Leitstand: Sprunglink, Reiter nach dem Tabs-Muster, modale Rollen-Linse, G
     el.querySelector<HTMLElement>('[data-pruef="seitenleiste-raum"]')?.click();
     const reiter = [...el.querySelectorAll<HTMLElement>('[role="tab"]')];
     const panel = el.querySelector('[role="tabpanel"]');
-    assert.equal(reiter.length, 3);
+    assert.equal(reiter.length, 4);
     assert.ok(panel?.id);
     for (const r of reiter) assert.equal(r.getAttribute('aria-controls'), panel.id);
-    assert.deepEqual(reiter.map((r) => r.tabIndex), [0, -1, -1]);
+    assert.deepEqual(reiter.map((r) => r.tabIndex), [0, -1, -1, -1]);
     assert.equal(panel.getAttribute('aria-labelledby'), reiter[0]?.id);
     const schritt = sitzung.zustand().schritt;
     const rechts = new dom.window.KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true, cancelable: true });
     reiter[0]?.dispatchEvent(rechts);
     assert.equal(rechts.defaultPrevented, true, 'der Pfeil gehört dem Reiter, nicht der Story');
-    assert.deepEqual(reiter.map((r) => r.getAttribute('aria-selected')), ['false', 'true', 'false']);
-    assert.deepEqual(reiter.map((r) => r.tabIndex), [-1, 0, -1]);
+    assert.deepEqual(reiter.map((r) => r.getAttribute('aria-selected')), ['false', 'true', 'false', 'false']);
+    assert.deepEqual(reiter.map((r) => r.tabIndex), [-1, 0, -1, -1]);
     assert.equal(panel.getAttribute('aria-labelledby'), reiter[1]?.id);
     assert.equal(sitzung.zustand().schritt, schritt);
 
@@ -311,6 +311,32 @@ test('Leitstand: Sprunglink, Reiter nach dem Tabs-Muster, modale Rollen-Linse, G
     assert.equal(tipp.hidden, true);
     assert.equal(esc.defaultPrevented, true, 'main.ts reicht eine verbrauchte Taste nicht an die Story weiter');
     assert.equal(el.getAttribute('data-seitenleiste'), 'offen');
+
+    // Touch (P2.3): Antippen öffnet, erneutes Antippen schließt; ein Tipp daneben schließt auch
+    const tippe = (ziel: Element): void => {
+      const ev = new dom.window.MouseEvent('click', { bubbles: true, cancelable: true });
+      Object.defineProperty(ev, 'pointerType', { value: 'touch' });
+      ziel.dispatchEvent(ev);
+    };
+    tippe(begriff);
+    assert.equal(tipp.hidden, false, 'Antippen öffnet');
+    tippe(tipp);
+    assert.equal(tipp.hidden, false, 'Tipp in den Hinweis lässt ihn offen');
+    tippe(begriff);
+    assert.equal(tipp.hidden, true, 'erneutes Antippen schließt');
+    tippe(begriff);
+    tippe(el.querySelector('.tafel-kopf') ?? el);
+    assert.equal(tipp.hidden, true, 'Tipp daneben schließt');
+
+    // Quellenfenster (P2.3): Reiter „Quellen“ zeigt die Absätze der Station wörtlich, mit Kapitel und Absatz-ID
+    reiter[3]?.click();
+    const quellen = [...el.querySelectorAll<HTMLElement>('[role="tabpanel"] .quell-absatz')];
+    const st = sitzung.zustand().station ?? '';
+    const bezug = (await import('../src/inhalte/index.ts')).inhalte.stationen[st]?.whitepaper ?? [];
+    assert.ok(bezug.length > 0);
+    assert.deepEqual(quellen.map((q) => q.getAttribute('data-absatz')), bezug);
+    assert.match(quellen[0]?.querySelector('figcaption')?.textContent ?? '', /Whitepaper V?1\.2.*Kap\. \d/);
+    assert.ok(quellen[0]?.querySelector('.mvg-original'), 'Originaltext eingebettet');
 
     // Rollen-Linse: modal (übriger Leitstand inert), schließt beim Szenenwechsel
     reiter[0]?.click();

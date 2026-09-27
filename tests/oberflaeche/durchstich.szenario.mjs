@@ -147,6 +147,10 @@ export async function lauf(seite, h) {
   await stand('a3-linse', seite, 900);
   await h.taste('Escape');
   await h.erwarteNicht('[data-pruef="linse"]');
+  // Quellenfenster (P2.3): Reiter „Quellen“ zeigt die Absätze der Station wörtlich
+  await h.klick('[data-pruef="reiter-quellen"]');
+  await h.erwarte('[data-pruef="quelle-k2.4-p2"] .mvg-original');
+  await stand('a3-quellen', seite, 400);
   await h.taste('Escape');
   if ((await seite.locator('[data-pruef="leitstand"]').getAttribute('data-seitenleiste')) !== 'zu') h.befund('Seitenleiste schließt nicht mit Esc');
   await weiter();

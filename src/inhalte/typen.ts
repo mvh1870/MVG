@@ -234,6 +234,15 @@ export interface WhitepaperKapitel {
   abschnitte: { id: string; nr: string; titel: string }[];
 }
 
+/** Ein Absatz des Whitepapers für das Quellenfenster (wörtlich, HTML aus whitepaper.json). */
+export interface QuellAbsatz {
+  id: string;
+  /** `2.4` */
+  abschnitt: string;
+  abschnittTitel: string;
+  html: string;
+}
+
 /** Eine Leistungsphase aus dem Freigabemodell (Tabelle k9.3-t1, wörtlich), für das LPH-Band. */
 export interface LphPhase {
   nr: number;
@@ -266,6 +275,8 @@ export interface Inhalte extends StoryModell {
   theorie: Record<string, TheorieSeite>;
   einwaende: Einwand[];
   abdeckung: Abdeckung;
+  /** Quellenfenster (P2.3): Originaltext der Absätze, auf die Stationen verweisen */
+  quellen: Record<string, QuellAbsatz>;
   /** Schlüssel `A3` (Station) oder `A3/pl` (Rollenszene) */
   regie: Record<string, RegieEintrag>;
 }

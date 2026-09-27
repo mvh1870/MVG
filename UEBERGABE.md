@@ -4,7 +4,7 @@ Kopf ≤ 100 Zeilen. Oben JETZT (überschreiben), darunter FRÜHER (anhängen, k
 
 ## JETZT
 - **O-27 (Owner, 2026-09-27):** weiterarbeiten, bis das Planblatt leer ist; nicht wegen Zeit/Zugzahl hinlegen. Sparsam mit Agenten.
-- Stand 2026-09-27 10:17 UTC (+00:00), Cloud-Block 1 läuft nach O-27 weiter: **P1 fertig, P2.1 und P2.2 erledigt** (LPH-Band, aufklappbare Felder, Schönheitsfehler P0.6 behoben – L-22). Nächster Posten **P2.3 Ebenen 1–4, Glossar-Mouseover (Tastatur + Touch), Quellenfenster**. Hinweise H10–H20 in `docs/P1.5-BEFUNDE.md` für P3/P5/P7.
+- Stand 2026-09-27 10:33 UTC (+00:00), Cloud-Block 1 läuft nach O-27 weiter: **P1 fertig, P2.1–P2.3 erledigt** (Spur-Delta L-21, LPH-Band L-22, Quellenfenster + Touch-Glossar L-23). Nächster Posten **P2.4 Bereiche Start/Story/Theorie/Explore, Freischaltungen, Permalinks, Tastatur, Barrierefreiheit (axe)**. Hinweise H10–H20 in `docs/P1.5-BEFUNDE.md` für P3/P5/P7.
 - Frischer Cloud-Rechner (gemessen 2026-09-27 07:48–07:53 UTC): Node v22.22.2 (≥ 22.18, reicht; kein nvm nötig) · `npm ci` 8 s · `npx playwright install chromium` scheitert (403, cdn.playwright.dev nicht freigegeben) · vorinstalliertes Chromium 141 unter `/opt/pw-browsers/chromium` läuft → `oberflaeche` nimmt es jetzt (L-15) · Kette grün mit Browser, 193 s (davon Oberfläche 179 s; ohne Browser 19 s).
 - GitHub-Aktion `pruefe`: Ergebnis noch nicht nachgesehen (kein Zugriff geprüft) – nachholen.
 - Was steht: Startseite (zwei Wege), Story Prolog → A3 → Weltregler → B3 nur für Rolle Bauherren-PL (die übrigen 5 Rollen „folgt“), Theorie-Liste + Kap. 1, Regie + Leinwand (zwei Fenster, BroadcastChannel), Whitepaper-Quelle mit Absatz-IDs, Stil aus Variante B, Prüfkette mit Browser.

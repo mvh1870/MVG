@@ -1,6 +1,6 @@
 /*
  * Seitenleiste (docs/STIL.md „Seitenleiste“, L-4): eingeklappt eine Schiene mit drei Knöpfen, offen
- * Rollen-Linse, Reiter „Im Raum · Ebenen · Glossar“. Dazu die Rollen-Linse „Standpunkt wechseln“ als
+ * Rollen-Linse, Reiter „Im Raum · Ebenen · Glossar · Quellen“ (Quellenfenster, P2.3). Dazu die Rollen-Linse „Standpunkt wechseln“ als
  * Schublade über der Lagetafel (hält den Fokus, Esc schließt, Fokus kehrt zurück).
  */
 
@@ -12,7 +12,7 @@ import { inhalt, personFigur, personName, personFunktion } from '../bausteine/in
 import { sym, zitat } from '../bausteine/bloecke.ts';
 import { bildmarke } from '../marke.ts';
 
-export type Reiter = 'raum' | 'ebenen' | 'glossar';
+export type Reiter = 'raum' | 'ebenen' | 'glossar' | 'quellen';
 
 export interface SeitenWoerter {
   kontext: string;
@@ -22,6 +22,10 @@ export interface SeitenWoerter {
   raum: string;
   ebenen: string;
   glossar: string;
+  quellen: string;
+  quellenHinweis: string;
+  keineQuellen: string;
+  quellAngabe: (fassung: string, abschnitt: string, id: string) => string;
   imRaum: string;
   monat: string;
   fall: string;
@@ -94,7 +98,7 @@ export function erzeugeSeitenleiste(o: SeitenOptionen): Seitenleiste {
   let letzterZ: OeffentlicherZustand | null = null;
   let schluessel = '';
 
-  const schienenKnopf = (r: Reiter, symbol: 'person' | 'ebenen' | 'buch', text: string): HTMLButtonElement => h('button', {
+  const schienenKnopf = (r: Reiter, symbol: 'person' | 'ebenen' | 'buch' | 'dokument', text: string): HTMLButtonElement => h('button', {
     type: 'button',
     class: 'schienen-knopf',
     'aria-label': text,
@@ -104,16 +108,17 @@ export function erzeugeSeitenleiste(o: SeitenOptionen): Seitenleiste {
     onclick: () => oeffne(r),
   }, sym(symbol));
   const schiene = h('div', { class: 'seitenleiste-schiene' },
-    schienenKnopf('raum', 'person', `${w.rollenLinse} · ${w.raum}`), schienenKnopf('ebenen', 'ebenen', w.ebenen), schienenKnopf('glossar', 'buch', w.glossar));
+    schienenKnopf('raum', 'person', `${w.rollenLinse} · ${w.raum}`), schienenKnopf('ebenen', 'ebenen', w.ebenen), schienenKnopf('glossar', 'buch', w.glossar), schienenKnopf('quellen', 'dokument', w.quellen));
   const rollenBox = h('section', { class: 'rollen-box', 'aria-label': w.rollenLinse });
   leistenZaehler += 1;
   const vorsatz = `seite-${leistenZaehler}`;
-  const REITER = ['raum', 'ebenen', 'glossar'] as const;
+  const REITER = ['raum', 'ebenen', 'glossar', 'quellen'] as const;
   const reiterKnoepfe = REITER.map((r) => h('button', {
     type: 'button',
     class: 'reiter',
     role: 'tab',
     id: `${vorsatz}-reiter-${r}`,
+    'data-pruef': `reiter-${r}`,
     'aria-controls': `${vorsatz}-panel`,
     'aria-selected': 'false',
     tabindex: -1,
@@ -121,7 +126,7 @@ export function erzeugeSeitenleiste(o: SeitenOptionen): Seitenleiste {
       reiter = r;
       zeichne(true);
     },
-  }, r === 'raum' ? w.raum : r === 'ebenen' ? w.ebenen : w.glossar));
+  }, r === 'raum' ? w.raum : r === 'ebenen' ? w.ebenen : r === 'glossar' ? w.glossar : w.quellen));
   const inhaltEl = h('div', { class: 'seitenleiste-inhalt', role: 'tabpanel', id: `${vorsatz}-panel`, 'aria-labelledby': `${vorsatz}-reiter-raum`, tabindex: 0 });
   const reiterTaste = (ereignis: Event): void => {
     const e = ereignis as KeyboardEvent;
@@ -196,6 +201,17 @@ export function erzeugeSeitenleiste(o: SeitenOptionen): Seitenleiste {
           const d = h('details', { class: 'klapp', open: i === 0 }, h('summary', null, h('span', { class: 'klapp-nr' }, String(e.nr)), `${w.ebene} ${e.nr} · ${e.titel}`), h('div', { class: 'klapp-inhalt' }, ebenenInhalt(e, w, o.inhalte)));
           teile.push(d);
         });
+      }
+    } else if (st !== null && reiter === 'quellen') {
+      const absaetze = st.whitepaper.map((id) => o.inhalte.quellen[id]).filter((q) => q !== undefined);
+      if (absaetze.length === 0) teile.push(h('p', { class: 'leiste-hinweis' }, w.keineQuellen));
+      else {
+        teile.push(h('p', { class: 'leiste-hinweis' }, w.quellenHinweis));
+        for (const q of absaetze) {
+          teile.push(h('figure', { class: 'quell-absatz', 'data-absatz': q.id, 'data-pruef': `quelle-${q.id}` },
+            h('figcaption', null, h('b', null, `${q.abschnitt} ${q.abschnittTitel}`), h('small', null, w.quellAngabe(o.inhalte.whitepaper.fassung ?? '', q.abschnitt, q.id))),
+            inhalt(q.html)));
+        }
       }
     } else if (st !== null) {
       const ids = glossarDerStation(st, z.rolle);

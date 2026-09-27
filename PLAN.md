@@ -25,7 +25,7 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 ### P2 · Engine & Rahmen
 - [x] P2.1 · Engine vollständig: Graph, Bedingungen, Gedächtnis, Enden, Weiterlesen (E9), Zustands-Version, Station ohne `status-start` übernimmt den Stand ihrer Welt (L-19) — Abnahme: Einheitentests inkl. Mutanten-Probe.
 - [x] P2.2 · Leitstand-Rahmen mit schrittweiser Einblendung (L-4): Statusinstrumente, Story-Karte, LPH-Band 0–9, Rollen-Linse, „Standpunkt wechseln“, Seitenleiste — Abnahme: Browser-Tests.
-- [ ] P2.3 · Ebenen 1–4, Glossar-Mouseover (Tastatur + Touch), Quellenfenster — Abnahme: jede Ebene erreichbar; Glossar wortgleich aus V1.2.
+- [x] P2.3 · Ebenen 1–4, Glossar-Mouseover (Tastatur + Touch), Quellenfenster — Abnahme: jede Ebene erreichbar; Glossar wortgleich aus V1.2.
 - [ ] P2.4 · Bereiche Start/Story/Theorie/Explore, Freischaltungen, Permalinks, Tastatur, Barrierefreiheit — Abnahme: axe ohne ernste Befunde.
 - [ ] P2.5 · Prolog: Rollenwahl (6), Interessenwahl (intelligente Vertiefung), Express-Pfad (E8) — Abnahme: jede Rolle startbar.
 

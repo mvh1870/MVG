@@ -34,6 +34,7 @@ export const inhalte: OeffentlicheInhalte = {
   theorie: alle.theorie,
   einwaende: alle.einwaende,
   abdeckung: alle.abdeckung,
+  quellen: alle.quellen,
 };
 
 /** Nur für die Regie: Notiz und Leitfragen je Station (`A3`) bzw. Rollenszene (`A3/pl`). */

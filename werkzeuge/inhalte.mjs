@@ -1604,6 +1604,7 @@ export async function kompiliere(optionen = {}) {
     theorie,
     einwaende,
     abdeckung,
+    quellen: baueQuellen(c, quelle, stationen),
     regie,
   };
 
@@ -1633,6 +1634,25 @@ export async function kompiliere(optionen = {}) {
  * @param {Record<string, any>} theorie
  * @param {boolean} pruefe
  */
+/**
+ * Quellenfenster (P2.3): der Originaltext jedes Absatzes, auf den eine Station verweist
+ * („whitepaper-bezug“), wörtlich aus whitepaper.json, mit Abschnitt für die Zitierangabe.
+ * @param {Kompilierer} c @param {any} quelle @param {Record<string, any>} stationen
+ * @returns {Record<string, { id: string, abschnitt: string, abschnittTitel: string, html: string }>}
+ */
+function baueQuellen(c, quelle, stationen) {
+  /** @type {Record<string, { id: string, abschnitt: string, abschnittTitel: string, html: string }>} */
+  const aus = {};
+  if (quelle === null) return aus;
+  const ids = [...new Set(Object.values(stationen).flatMap((st) => st.whitepaper ?? []))].sort();
+  for (const id of ids) {
+    const bl = quelle.nachId.get(id);
+    if (bl === undefined) continue;
+    aus[id] = { id, abschnitt: bl.abschnitt, abschnittTitel: bl.abschnittTitel, html: c.originalHtml(bl) };
+  }
+  return aus;
+}
+
 /**
  * Leistungsphasen LPH 0–9 aus der Tabelle k9.3-t1 (wörtlich: Name und Freigabefrage) für das LPH-Band.
  * @param {any} quelle

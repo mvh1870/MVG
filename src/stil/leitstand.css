@@ -1745,3 +1745,15 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 @media (prefers-reduced-motion: reduce) {
   .vergleich.ist-angekommen .morph-puls, .fluss.ist-lebendig .fluss-puls { animation: none !important; opacity: 0; }
 }
+
+/* =============================================================================================
+   Quellenfenster (P2.3): Originalabsätze der Station in der Seitenleiste
+   ============================================================================================= */
+.quell-absatz { margin: 0 0 var(--a-3); padding: 10px 12px; border-left: 3px solid var(--gold-kante); border-radius: var(--radius-s); background: var(--flaeche-1); }
+.quell-absatz figcaption { display: flex; flex-direction: column; gap: 2px; margin-bottom: 6px; }
+.quell-absatz figcaption b { font: 700 var(--gr-xs)/1.25 var(--schrift-label); letter-spacing: .04em; text-transform: uppercase; color: var(--tinte); }
+.quell-absatz figcaption small { font: 500 12px/1.3 var(--schrift-mono); color: var(--tinte-2); }
+.quell-absatz .mvg-original { font-size: 14.5px; line-height: 1.45; color: var(--tinte); }
+.quell-absatz table.mvg-original { width: 100%; border-collapse: collapse; font-size: 13px; }
+.quell-absatz table.mvg-original th, .quell-absatz table.mvg-original td { padding: 4px 6px; border-bottom: 1px solid var(--linie); text-align: left; vertical-align: top; }
+.quell-absatz ul.mvg-original { padding-left: 1.1em; list-style: disc; }

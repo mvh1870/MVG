@@ -1,6 +1,6 @@
 /*
  * Glossar-Hinweis (docs/STIL.md „Glossar-Begriff und Tooltip“): erscheint bei Maus UND Tastaturfokus,
- * Esc schließt, `aria-describedby` am Begriff. Die Definition kommt wörtlich aus dem Glossar des
+ * Esc schließt, `aria-describedby` am Begriff. Touch: Antippen öffnet, Tipp daneben schließt. Die Definition kommt wörtlich aus dem Glossar des
  * Whitepapers (inhalte.json → glossar).
  *
  * WCAG 1.4.13: Der Hinweis bleibt offen, solange der Zeiger auf dem Begriff ODER auf dem Hinweis
@@ -80,9 +80,14 @@ export function installiereTooltips(wurzel: HTMLElement, inhalte: OeffentlicheIn
     if (b !== null) zeige(b);
     else if (fuer !== null) schliesse();
   };
+  // Touch (P2.3): Antippen zeigt den Hinweis, erneutes Antippen desselben Begriffs oder ein Tipp
+  // daneben schließt ihn. Ein Tipp in den Hinweis selbst lässt ihn offen.
   const beiKlick = (e: Event): void => {
     const b = begriffVon(e.target);
-    if (b !== null) zeige(b);
+    if (b !== null) {
+      if (b === fuer && !tipp.hidden && (e as PointerEvent).pointerType === 'touch') schliesse();
+      else zeige(b);
+    } else if (fuer !== null && !(e.target instanceof Node && tipp.contains(e.target))) schliesse();
   };
   const beiTaste = (e: KeyboardEvent): void => {
     if ((e.key === 'Escape' || e.key === 'Esc') && fuer !== null && !tipp.hidden) {

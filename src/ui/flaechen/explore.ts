@@ -15,6 +15,7 @@ import { inhalt, personFigur } from '../bausteine/inhalt.ts';
 import { simulator } from './explore-simulator.ts';
 import { welten } from './explore-welten.ts';
 import { sandbox } from './explore-sandbox.ts';
+import { zeitmaschine } from './explore-zeitmaschine.ts';
 
 export interface ExploreOptionen {
   inhalte: OeffentlicheInhalte;
@@ -23,7 +24,7 @@ export interface ExploreOptionen {
 }
 
 /** Werkzeuge, die schon stehen (P8): Kennung → Anker der Fläche. */
-const FERTIG: Record<string, string> = { simulator: 'werkzeug-simulator-flaeche', welten: 'werkzeug-welten-flaeche', sandbox: 'werkzeug-sandbox-flaeche' };
+const FERTIG: Record<string, string> = { simulator: 'werkzeug-simulator-flaeche', welten: 'werkzeug-welten-flaeche', sandbox: 'werkzeug-sandbox-flaeche', zeitmaschine: 'werkzeug-zeitmaschine-flaeche' };
 
 function springe(id: string): void {
   const ziel = document.getElementById(FERTIG[id] ?? '');
@@ -57,6 +58,7 @@ export function baueExplore(o: ExploreOptionen): HTMLElement {
         simulator(o.inhalte),
         welten(o.inhalte),
         sandbox(),
+        zeitmaschine(o.inhalte),
         besetzung(o.inhalte),
         h('p', null,
           h('a', { class: 'querverweis', href: '#story', 'data-pruef': 'explore-zur-story' }, h('span', { class: 'querverweis-symbol' }, sym('pfeilRechts')), W.story),

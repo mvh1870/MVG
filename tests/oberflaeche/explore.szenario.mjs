@@ -46,6 +46,14 @@ export async function lauf(seite, h) {
   await h.warte(200);
   await pruefe('welten');
 
+  // P8.4 Zeitmaschine: Regler per Tastatur, Ablesung folgt
+  await h.klick('[data-pruef="werkzeug-oeffnen-zeitmaschine"]');
+  await seite.locator('[data-pruef="zm-regler"]').focus();
+  await seite.keyboard.press('End');
+  if (!/Monat 11/u.test(await seite.locator('[data-pruef="zm-ablesen"]').innerText())) h.befund('Zeitmaschine: Ablesung folgt dem Regler nicht');
+  await h.warte(200);
+  await pruefe('zeitmaschine');
+
   // P8.3 Sandbox: Frühwarnung einwerfen und per Tastatur bis zur Maßnahme führen (Fokus bleibt am Eintrag)
   await h.klick('[data-pruef="werkzeug-oeffnen-sandbox"]');
   await h.klick('[data-pruef="einwurf-fruehwarnung"]');

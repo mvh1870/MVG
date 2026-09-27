@@ -230,6 +230,19 @@ export const W = {
       { id: 'figuren', titel: 'Figuren und Story-Karte', text: 'Die Besetzung des Falls und jede Station der Geschichte zum direkten Sprung.' },
     ],
   },
+  // Explore · Zeitmaschine (P8.4)
+  zeitmaschine: {
+    name: 'Zeitmaschine',
+    einstieg: 'Schieben Sie die Zeitachse: Wie entwickeln sich Kostenunsicherheit und Entscheidungsstau im fiktiven Fall – in Welt A und Welt B, Monat für Monat?',
+    kosten: 'Kostenunsicherheit',
+    offen: 'ungeklärte Entscheidungen',
+    weltA: 'Welt A',
+    weltB: 'Welt B',
+    monat: (n: number) => `Monat ${n}`,
+    regler: 'Monat wählen',
+    tabelle: 'Als Tabelle',
+    quelle: 'Werte: Stand zu Beginn jeder Station im fiktiven Fall Lindenhall-Süd – eine Erzählung, keine Messung.',
+  },
   // Explore · Governance-Fluss-Sandbox (P8.3)
   sandbox: {
     name: 'Governance-Fluss-Sandbox',
@@ -252,7 +265,7 @@ export const W = {
   // Explore · Vorher/Nachher-Welten (P8.2)
   welten: {
     name: 'Vorher/Nachher-Welten',
-    einstieg: 'Derselbe Fall, zwei Arten zu führen: Welt A ohne, Welt B mit Minimum Viable Governance (MVG). Wählen Sie einen Aspekt – oder alle nebeneinander.',
+    einstieg: 'Derselbe fiktive Fall – der Schulcampus Lindenhall-Süd –, zwei Arten zu führen: Welt A ohne, Welt B mit Minimum Viable Governance (MVG). Wählen Sie einen Aspekt – oder alle nebeneinander.',
     wahl: 'Aspekt wählen',
     alle: 'Alle nebeneinander',
     weltA: 'Welt A · ohne MVG',

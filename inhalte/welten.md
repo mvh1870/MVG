@@ -32,7 +32,7 @@ Es gibt eine Liste der Beteiligten, aber wer wem was vorlegt und wer was freigib
 Eine RACI-Tabelle hält fest, wer vorbereitet, wer entscheidet, wer konsultiert und wer informiert wird; die Mandatsleiter dazu hat der Bauherr festgelegt. Als Holger Stein im November ausfällt, ist eine Stellvertretung im Team der Projektsteuerung benannt.
 
 ::: zitat k9.2-p1
-Entscheidend ist die Kopplung an Mandate, Freigabeschwellen, Stellvertretungen und Eskalationspfade.
+RACI übersetzt komplexe Rollenbilder in eine transparente Verantwortungslogik. Im BM-Modell reicht dies jedoch nicht aus. Entscheidend ist die Kopplung an Mandate, Freigabeschwellen, Stellvertretungen und Eskalationspfade. Nur dann wird RACI von einer Kommunikationsmatrix zu einem Führungsinstrument.
 :::
 :::
 
@@ -77,7 +77,7 @@ stationen: [A5, B5]
 Brandschutzauflagen, Mensa-Umplanung und der Nachtrag der TGA-Fachplanung stehen in drei Ablagen, im Jour-fixe-Protokoll und in Mails. Sie laufen gegen die Risikoreserve; wer ihre Deckung beschlossen hat, steht nirgends.
 
 ### Welt B
-Der Nachtrag der TGA-Fachplanung steht als Problem `PRB-004` im Problemregister, das das PMO pflegt, mit einer Maßnahme der Projektsteuerung; die Mensa ist als `AEN-012` beschlossen. Weil der Nachtrag die Risikoreserve berührt, entsteht Entscheidungsbedarf beim Bauherrn.
+Der Nachtrag der TGA-Fachplanung steht als Problem `PRB-004` im Problemregister, das das PMO pflegt, mit einer Maßnahme der Projektsteuerung; die Mensa ist als `AEN-012` beschlossen, und ob die Brandschutzauflagen `AEN-031` aus der Risikoreserve gedeckt werden, ist als offene Frage benannt. Weil der Nachtrag die Risikoreserve berührt, entsteht Entscheidungsbedarf beim Bauherrn.
 
 ::: zitat k6.4.1-p1
 Jedes Register hat eine verantwortliche Rolle, einen Pflegezyklus und einen definierten nächsten Schritt.
@@ -90,7 +90,7 @@ titel: Reporting
 stationen: [A4, B4, A6, B6]
 ---
 ### Welt A
-Der Bauausschuss bekommt im Juli den monatlichen Statusbericht: 40 Seiten, Ampeln auf Gelb und Rot, keine Entscheidungsfrage. Als im November eine Fraktion nach Kosten und Termin fragt, ist offen, welche Unterlagen in welcher Version gelten.
+Der Bauausschuss bekommt im Juli den monatlichen Statusbericht: 40 Seiten, Ampeln auf Gelb und Rot, keine Entscheidungsfrage; Bernd Kowalski fragt zweimal, worüber der Ausschuss entscheiden soll. Als im November eine Fraktion nach Kosten und Termin fragt, ist offen, welche Unterlagen in welcher Version gelten.
 
 ### Welt B
 Der Bauausschuss bekommt den Managementbericht mit Beschlusslage und Beschlussvorbereitung. Die Anfrage der Fraktion wird aus dem Managementbericht Oktober beantwortet – Kosten und Termin auf benanntem Datenstand.
@@ -106,7 +106,7 @@ titel: Gremien
 stationen: [A4, B4, A6, B6]
 ---
 ### Welt A
-Im Juli fragt Bernd Kowalski zweimal, worüber der Bauausschuss entscheiden soll; eine Vorlage liegt nicht vor, der Punkt wird vertagt – mit der Sommerpause bis September. Wer die Freigabe zum Abschluss von LPH 5 erteilt, soll im November der Lenkungskreis klären.
+Im Juli liegen die Brandschutzauflagen vor, grob 0,4 Mio. €; welches Gremium über sie entscheidet, ist offen. Der Bauausschuss bekommt keine Vorlage und vertagt – mit der Sommerpause bis September. Wer die Freigabe zum Abschluss von LPH 5 erteilt, soll im November der Lenkungskreis klären.
 
 ### Welt B
 Über die Brandschutzauflagen `AEN-031` entscheidet das Änderungsgremium auf Vorlage, im Rahmen seines Mandats. Die Freigabe zum Abschluss von LPH 5 erteilt Dr. Olbers selbst auf Vorlage der Bauherren-PL; der Lenkungskreis berät am 17. November.

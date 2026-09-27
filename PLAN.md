@@ -86,13 +86,13 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P7.4 (2026-09-27, geprüft; Epilog-Runde 2 in P7.7) · Selbstdiagnose qualitativ (O-8)
 - [x] P7.5 (2026-09-27, geprüft; Epilog-Runde 2 in P7.7) · Bauherrentypen (Kap. 10): „Wie sähe das bei Ihnen aus?“
 - [x] P7.6 (2026-09-27, geprüft; Epilog-Runde 2 in P7.7) · Persönliches Resümee: Themen, 3 Prinzipien, 2 Vertiefungen, 1 Checkliste; Epilog: A-Spur gegen B-Spur (`spurZeilen`, E1-Rest aus L-41)
-- [ ] P7.7 · Prüf-Agenten P7 + Korrekturen
+- [x] P7.7 (2026-09-27, docs/P7-BEFUNDE.md; pruefe:voll grün) · Prüf-Agenten P7 + Korrekturen
 
 ### P8 · Explore
 - [x] P8.1 (2026-09-27, Prüfung: 7 Befunde eingearbeitet) · Szenario-Simulator (Kostenabweichung, Terminabweichung, Risiken, Entscheidungsstatus → Risikoeinschätzung, erforderliche Entscheidung, Eskalationsstufe, Informationsbedarf, Freigabeweg, Handlungsmöglichkeiten); Regeln aus Whitepaper, getestet
-- [ ] P8.2 · Vorher/Nachher-Welten (Informationswege, Rollen, Entscheidungen, Eskalationen, Register, Reporting, Gremien)
-- [ ] P8.3 · Governance-Fluss-Sandbox (E5)
-- [ ] P8.4 · Zeitmaschine (E4)
+- [x] P8.2 (2026-09-27) · Vorher/Nachher-Welten (Informationswege, Rollen, Entscheidungen, Eskalationen, Register, Reporting, Gremien)
+- [x] P8.3 (2026-09-27) · Governance-Fluss-Sandbox (E5)
+- [x] P8.4 (2026-09-27) · Zeitmaschine (E4)
 - [ ] P8.5 · Grafik-Galerie + Abbildungsverzeichnis, Figurenübersicht, Story-Karte mit Sprung
 - [ ] P8.6 · Prüf-Agenten P8 + Korrekturen
 

@@ -755,3 +755,22 @@ test('Story-Karte auf der Leinwand (L-49): kein Express-Umschalter, kein Explore
   assert.equal(story.element.querySelector('[data-pruef="karte-express"]'), null);
   assert.equal(story.element.querySelector('[data-pruef="karte-explore"]'), null);
 });
+
+test('Zeitmaschine (P8.4, E4): Punkte aus dem Startstand der Stationen, Regler setzt Monat und Ablesung', async () => {
+  const { zeitPunkte, zeitmaschine } = await import('../src/ui/flaechen/explore-zeitmaschine.ts');
+  const p = zeitPunkte(inhalte);
+  assert.deepEqual(p.filter((x) => x.welt === 'A').map((x) => x.monat), [1, 3, 5, 7, 9, 11]);
+  assert.deepEqual(p.filter((x) => x.welt === 'B').map((x) => x.monat), [1, 3, 5, 7, 9, 11]);
+  const a3 = p.find((x) => x.station.startsWith('A3'));
+  const start = inhalte.stationen['A3']?.statusStart ?? [];
+  assert.equal(a3?.offen, start.find((e) => e.schluessel === 'ungeklaerteEntscheidungen')?.wert);
+  assert.equal(['niedrig', 'mittel', 'hoch', 'sehr hoch'][(a3?.kosten ?? 0) - 1], start.find((e) => e.schluessel === 'kostenunsicherheit')?.wert);
+  const el = zeitmaschine(inhalte);
+  assert.ok(el);
+  const regler = el.querySelector<HTMLInputElement>('[data-pruef="zm-regler"]');
+  assert.ok(regler);
+  regler.value = '2';
+  regler.dispatchEvent(new Event('input'));
+  assert.match(el.querySelector('[data-pruef="zm-ablesen"]')?.textContent ?? '', /Monat 5.*A3.*B3/su);
+  assert.equal(el.querySelectorAll('.zm-tabelle tbody tr').length, 6, 'Tabellenansicht');
+});

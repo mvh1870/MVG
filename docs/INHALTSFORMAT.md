@@ -176,7 +176,7 @@ Schrittarten (`art` im `schritt`): `text` (Vorgabe) · `lage` (Bekannt/Unbekannt
 
 Bausteine in einem `schritt`:
 
-- `tafel <Tabellen-ID>` (auch in Theorie-Seiten, Abschnitten, Ebenen): Whitepaper-Tabelle als Grafik, `form` Pflicht (`radar` · `ketten` · `schwelle` · `pyramide` · `felder` · `bausteine` · `phasen` · `register` · `rhythmus` · `karten` · `zeitachse` – Regler über die Zeiträume der ersten Spalte, z. B. 30/60/90 in Kap. 8.2), bei `radar` optional `erlebt` (Zeilennummer → Stationen, kommagetrennt), optional `hervor` (Liste von Zeilennummern, z. B. die aktuelle LPH; bei `phasen`/`rhythmus` vorgewählt); Zellen kommen wortgleich aus whitepaper.json (L-32).
+- `tafel <Tabellen-ID>` (auch in Theorie-Seiten, Abschnitten, Ebenen): Whitepaper-Tabelle als Grafik, `form` Pflicht (`radar` · `ketten` · `schwelle` · `pyramide` · `felder` · `bausteine` · `phasen` · `register` · `rhythmus` · `karten` · `zeitachse` – Regler über die Zeiträume der ersten Spalte, z. B. 30/60/90 in Kap. 8.2 · `diagnose` – qualitative Selbstdiagnose ohne Punktzahl, erste Spalte Muster, letzte Spalte Antwort des Whitepapers, O-8), bei `radar` optional `erlebt` (Zeilennummer → Stationen, kommagetrennt), optional `hervor` (Liste von Zeilennummern, z. B. die aktuelle LPH; bei `phasen`/`rhythmus` vorgewählt); Zellen kommen wortgleich aus whitepaper.json (L-32).
 - `raci` (P5.1, Kap. 9.2): Kopfdaten `zeilen` = Liste mit `id`, `titel`, `A` (genau eine Rolle), `R`/`C`/`I` (Listen von Rollen), `mandat` (Text: Schwelle, Gremium); jede Rolle höchstens ein Buchstabe; optional `text` als Einleitung. Die Spalte der gespielten Rolle ist hervorgehoben. Zuordnungen sind Fall-Inhalt und müssen zu Kap. 3.2 passen (z. B. Freigabe des Einsatzes der Risikoreserve: A beim Bauherrn).
 
 | Art | Kennung | Kopfdaten | Felder / Inhalt |
@@ -193,6 +193,8 @@ Bausteine in einem `schritt`:
 | `zeitsprung` | Pflicht (`info`) | `knopf`, `kosten`, `dauer`, `status` (2.7), `loest` (Kennung → Hinweis), `bleibt` (Kennung → Hinweis) | `text`, `neuBekannt` |
 | `grafik` | Pflicht (Name im Grafik-Baukasten) | `titel`, `untertitel` | `text` = Beschreibung für Screenreader |
 | `nachweiskette` | – | – | `text` (Einleitung, optional) – Nachweiskette zum Anfassen (E2): Knöpfe je besuchter Welt-B-Station mit `nachweis`, Klick legt die sechs Glieder aus; in Schritt oder Ebene |
+| `spurvergleich` | – | – | `text` (Einleitung, optional) – A-Spur gegen B-Spur des Lesers (E1, Epilog), gleiche Darstellung wie der Reiter „Spur“ |
+| `resuemee` | – | – | `text` (optional); Kinder `zitat`, `merksatz`, `tafel` – persönliches Resümee (P7.6): „Ihre Themen“ und „Zwei Vertiefungen“ berechnet der Code aus Interessen und besuchten Stationen, die Kinder liefern Prinzipien und Checkliste |
 | `kette` | – | – | enthält `glied` |
 | `glied` | optional (`FRW-003`) | `art`: `fruehwarnung` · `bestaetigung` · `risiko` · `aenderung` · `entscheidung` · `freigabe` · `massnahme` · `problem` · `bericht`; `von` | `titel`, `text` |
 | `datenstand` | – | `name` (Pflicht), `abweichung`, `betrag`, `basis`, `versionen` (Liste `- Version 3: gilt` → `{name, stand}`) | `text`, `vergleich` |

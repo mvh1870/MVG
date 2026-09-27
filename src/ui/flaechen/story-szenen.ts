@@ -29,6 +29,7 @@ import { ctcVerlauf } from '../../grafik/ctc-verlauf.ts';
 import { vergleichSzene, type VergleichsStueck } from '../../grafik/vergleich-szene.ts';
 import { dezimal, naechsterFrame, sanftBeide, zaehle, type Takt } from '../bewegung.ts';
 import { W } from '../woerter.ts';
+import { spurTafel } from '../leitstand/spur.ts';
 
 export interface SzenenKontext {
   inhalte: OeffentlicheInhalte;
@@ -766,7 +767,49 @@ function vertiefungenFuer(k: SzenenKontext): HTMLElement | null {
 function generisch(k: SzenenKontext): Szene {
   return szene(h('div', { class: 'stapel' },
     k.schritt.felder['text'] ? h('div', { class: 'karte' }, inhalt(k.schritt.felder['text'])) : null,
-    k.schritt.bloecke.map((b) => B.block(b, k.inhalte, W.originalWoertlich, k.z.verlauf, k.z.rolle))));
+    k.schritt.bloecke.map((b) => zustandsBlock(b, k))));
+}
+
+/** Blöcke, die den Zustand des Lesers brauchen (Epilog, P7.6); alle anderen zeichnet der Baukasten. */
+function zustandsBlock(b: Block, k: SzenenKontext): Node | null {
+  const text = b.felder['text'] ? h('div', { class: 'tafel-einleitung' }, inhalt(b.felder['text'])) : null;
+  if (b.art === 'spurvergleich') return h('div', { class: 'stapel spur-epilog', 'data-pruef': 'spurvergleich' }, text, spurTafel(k.z, k.inhalte, W.seite.spur));
+  if (b.art === 'resuemee') return resuemee(b, k, text);
+  return B.block(b, k.inhalte, W.originalWoertlich, k.z.verlauf, k.z.rolle);
+}
+
+/** Kapitelnummern der Whitepaper-Bezüge der besuchten Stationen, nach Häufigkeit (bei Gleichstand nach Nummer). */
+export function kapitelDerSpur(verlauf: readonly string[], inhalte: OeffentlicheInhalte): number[] {
+  const zahl = new Map<number, number>();
+  for (const id of new Set(verlauf)) {
+    for (const a of inhalte.stationen[id]?.whitepaper ?? []) {
+      const nr = Number(/^k(\d+)/u.exec(a)?.[1] ?? NaN);
+      if (Number.isInteger(nr) && nr >= 1 && nr <= 13) zahl.set(nr, (zahl.get(nr) ?? 0) + 1);
+    }
+  }
+  return [...zahl.entries()].sort((x, y) => y[1] - x[1] || x[0] - y[0]).map(([nr]) => nr);
+}
+
+/**
+ * Persönliches Resümee (P7.6): Themen = gewählte Interessen und die drei Kapitel, die Ihre Stationen am
+ * häufigsten berührt haben; zwei Vertiefungen = die beiden ersten davon als Lernseiten. Prinzipien und
+ * Checkliste kommen als Kinder aus den Inhalten (wortgleiche Zitate, Tafel).
+ */
+function resuemee(b: Block, k: SzenenKontext, text: Node | null): HTMLElement {
+  const R = W.resuemee;
+  const titel = (nr: number): string => k.inhalte.whitepaper.kapitel.find((x) => Number(x.nr) === nr)?.titel ?? '';
+  const kapitel = kapitelDerSpur(k.z.verlauf, k.inhalte).slice(0, 3);
+  const interessen = k.z.interessen.filter((i) => i !== 'express').map((i) => k.inhalte.interessen.find((x) => x.id === i)?.titel ?? i);
+  return h('div', { class: 'stapel resuemee', 'data-pruef': 'resuemee' }, text,
+    h('section', { class: 'resuemee-teil', 'data-pruef': 'resuemee-themen' },
+      h('h4', { class: 'tafel-titel' }, R.themen),
+      interessen.length > 0 ? h('p', null, h('span', { class: 't-label' }, `${R.interessen}: `), interessen.join(' · ')) : null,
+      h('ul', { class: 'resuemee-liste' }, kapitel.map((nr) => h('li', null, R.kapitel(nr, titel(nr)))))),
+    h('section', { class: 'resuemee-teil', 'data-pruef': 'resuemee-vertiefungen' },
+      h('h4', { class: 'tafel-titel' }, R.vertiefungen),
+      h('ul', { class: 'resuemee-liste' }, kapitel.slice(0, 2).map((nr) => h('li', null,
+        k.tue !== null ? h('a', { href: `#theorie/k${nr}`, 'data-pruef': `resuemee-k${nr}` }, R.kapitel(nr, titel(nr))) : R.kapitel(nr, titel(nr)))))),
+    b.kinder.map((kind) => B.block(kind, k.inhalte, W.originalWoertlich, k.z.verlauf, k.z.rolle)));
 }
 
 /* ------------------------------------------------------------------ Auswahl -- */

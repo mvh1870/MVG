@@ -39,7 +39,7 @@ const FARBE = /^#[0-9A-Fa-f]{6}$/u;
 const SCHRITT_ARTEN = ['text', 'lage', 'entscheidung', 'konsequenz', 'rueckbezug', 'vergleich', 'rollenwahl', 'interessenwahl', 'ebenen'];
 const STATION_ARTEN = ['prolog', 'station', 'vergleich', 'wendepunkt', 'rueckspulen', 'wirklichkeit', 'ende', 'epilog'];
 const FLUSS = ['fruehwarnung', 'bestaetigt', 'risiko', 'entscheidung', 'freigabe', 'massnahme', 'managementbericht'];
-const TAFEL_FORMEN = ['radar', 'ketten', 'schwelle', 'pyramide', 'felder', 'bausteine', 'phasen', 'register', 'rhythmus', 'karten', 'zeitachse'];
+const TAFEL_FORMEN = ['radar', 'ketten', 'schwelle', 'pyramide', 'felder', 'bausteine', 'phasen', 'register', 'rhythmus', 'karten', 'zeitachse', 'diagnose'];
 const GLIED_ARTEN = ['fruehwarnung', 'bestaetigung', 'risiko', 'aenderung', 'entscheidung', 'freigabe', 'massnahme', 'problem', 'bericht'];
 
 /* ============================================================== Schema == */
@@ -52,8 +52,8 @@ const GLIED_ARTEN = ['fruehwarnung', 'bestaetigung', 'risiko', 'aenderung', 'ent
  *   kopf?: Record<string, KopfDef>, felder?: string[], pflichtFelder?: string[] }} ArtDef
  */
 
-const ZITAT_ORTE = ['schritt', 'ebene', '@theorie', 'abschnitt', 'karte', 'einwand', '@station'];
-const TEXT_ORTE = ['schritt', 'ebene', '@theorie', 'abschnitt'];
+const ZITAT_ORTE = ['schritt', 'ebene', '@theorie', 'abschnitt', 'karte', 'einwand', '@station', 'resuemee'];
+const TEXT_ORTE = ['schritt', 'ebene', '@theorie', 'abschnitt', 'resuemee'];
 
 /** @type {Record<string, ArtDef>} */
 const ARTEN = {
@@ -82,6 +82,9 @@ const ARTEN = {
   },
   // Nachweiskette zum Anfassen (E2): zeigt die Nachweise der besuchten Welt-B-Stationen, Klick legt die Kette aus
   nachweiskette: { in: ['schritt', 'ebene'], kennung: 'keine', felder: ['text'] },
+  // Epilog (P7.6): A-Spur gegen B-Spur; persönliches Resümee (Themen und Vertiefungen aus der Spur, Prinzipien und Checkliste als Kinder)
+  spurvergleich: { in: ['schritt'], kennung: 'keine', felder: ['text'] },
+  resuemee: { in: ['schritt'], kennung: 'keine', felder: ['text'] },
   // Vertiefung je Interesse (P3.9, O-19): Zusatzkarte im Ebenen-Schritt, nur für Leser mit diesem Interesse
   vertiefung: { in: ['@station'], kennung: 'pflicht', kopf: { titel: { typ: 'text', pflicht: true } }, felder: ['text'], pflichtFelder: ['text'] },
   regie: { in: ['@station', '@szene'], kennung: 'keine', felder: ['notiz', 'leitfragen'] },
@@ -108,7 +111,7 @@ const ARTEN = {
   // RACI mit Mandat (P5.1, Kap. 9.2), Zuordnungen des fiktiven Falls
   raci: { in: ['schritt', '@theorie', 'abschnitt', 'ebene'], kennung: 'keine', kopf: { zeilen: { typ: 'raci', pflicht: true } }, felder: ['text'] },
   // Whitepaper-Tabelle als Grafik (P4, L-32): Zellen wörtlich aus whitepaper.json, Form aus src/grafik/tafel.ts
-  tafel: { in: ['schritt', '@theorie', 'abschnitt', 'ebene'], kennung: 'pflicht', muster: /^k\d+(?:\.\d+)*-t\d+$/u, kopf: { form: { typ: 'wahl', werte: TAFEL_FORMEN, pflicht: true }, erlebt: { typ: 'karte' }, hervor: { typ: 'liste' } }, felder: ['text'] },
+  tafel: { in: ['schritt', '@theorie', 'abschnitt', 'ebene', 'resuemee'], kennung: 'pflicht', muster: /^k\d+(?:\.\d+)*-t\d+$/u, kopf: { form: { typ: 'wahl', werte: TAFEL_FORMEN, pflicht: true }, erlebt: { typ: 'karte' }, hervor: { typ: 'liste' } }, felder: ['text'] },
   glied: { in: ['kette'], kennung: 'optional', kopf: { art: { typ: 'wahl', werte: GLIED_ARTEN, pflicht: true }, von: { typ: 'kennung' } }, felder: ['titel', 'text'] },
   datenstand: {
     in: ['schritt'], kennung: 'keine',

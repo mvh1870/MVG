@@ -1982,6 +1982,20 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .nachweis-leer { font-size: 14px; color: var(--tinte-2); }
 @media (max-width: 599px) { .nachweis-glied { grid-template-columns: 28px minmax(0, 1fr); } .nachweis-text { grid-column: 2; } }
 
+/* Epilog (P7.4–P7.6): Selbstdiagnose ohne Punktzahl, Resümee, Spur im Epilog */
+.tafel-diagnose { display: grid; gap: var(--a-3); }
+.diagnose-liste { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.diagnose-zeile { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 12px; padding: 8px 12px; border-radius: var(--radius-m); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
+.diagnose-muster { flex: 1 1 14em; min-width: 0; font-weight: 600; font-size: 14.5px; }
+.diagnose-wahl { display: flex; gap: 4px; }
+.diagnose-knopf { min-height: 36px; padding: 4px 10px; border: 0; border-radius: var(--radius-m); background: var(--flaeche-2); color: var(--tinte); font: 600 13px/1.2 var(--schrift-text); box-shadow: inset 0 0 0 1px var(--linie); }
+.diagnose-knopf[aria-pressed="true"] { background: var(--navy); color: var(--weiss); box-shadow: none; }
+.diagnose-profil { display: grid; gap: var(--a-2); padding: 12px 14px; border-radius: var(--radius-l); background: var(--flaeche-3); box-shadow: inset 0 0 0 1px var(--linie); }
+.resuemee-teil { display: grid; gap: 6px; padding: 12px 14px; border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
+.resuemee-liste { margin: 0; padding-left: 1.2em; }
+.resuemee-liste a { color: var(--navy); font-weight: 600; }
+.spur-epilog .spur-kette { max-width: 720px; }
+
 /* Ihre Spur (E1, P5.8): A-Spur gegen B-Spur in der Seitenleiste (Klasse „spur-kette“: „.spur“ gehört der Story-Karte) */
 .spur-kette { display: grid; gap: var(--a-2); }
 .spur-kopf, .spur-seiten { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }

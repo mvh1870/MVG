@@ -16,12 +16,13 @@
  * - rhythmus  Governance-Rhythmus (Kap. 6.4.5): vom täglichen bis zum seltenen Termin
  * - karten    allgemeine Karten: erste Spalte als Titel, die übrigen als Angaben (z. B. Kap. 6.4.2)
  * - zeitachse schiebbare Zeitachse (Kap. 8.2, 30/60/90): der Regler wählt den Tag, die Tafel zeigt den Zeitraum
+ * - diagnose  qualitative Selbstdiagnose (Epilog, O-8): je Zeile „zeigt sich / teilweise / nicht“, Profil in Worten, keine Punktzahl
  */
 
 import { h, s, attr, ersetze, elementAus } from '../ui/h.ts';
 import { symbol } from '../stil/symbole.ts';
 
-export const TAFEL_FORMEN = ['radar', 'ketten', 'schwelle', 'pyramide', 'felder', 'bausteine', 'phasen', 'register', 'rhythmus', 'karten', 'zeitachse'] as const;
+export const TAFEL_FORMEN = ['radar', 'ketten', 'schwelle', 'pyramide', 'felder', 'bausteine', 'phasen', 'register', 'rhythmus', 'karten', 'zeitachse', 'diagnose'] as const;
 export type TafelForm = (typeof TAFEL_FORMEN)[number];
 
 export function istTafelForm(x: string): x is TafelForm {
@@ -72,6 +73,12 @@ export const WORT = {
   ordnung: 'Ordnung',
   mehr: 'Mehr zum Feld',
   tag: (n: number) => `Tag ${n}`,
+  antworten: ['zeigt sich', 'teilweise', 'nicht'] as const,
+  profil: 'Ihr Profil in Worten',
+  profilLeer: 'Wählen Sie bei jeder Zeile, ob sich das Muster bei Ihnen zeigt. Es gibt keine Punkte.',
+  deutlich: 'Zeigt sich bei Ihnen',
+  teils: 'Zeigt sich teilweise',
+  dazu: 'Dazu nennt das Whitepaper',
   schieben: 'Tag wählen',
 } as const;
 
@@ -323,6 +330,38 @@ function zeitachse(d: TafelDaten): HTMLElement {
   return h('div', { class: 'tafel-zeitachse' }, h('div', { class: 'zeitachse-leiste', role: 'group', 'aria-label': d.kopf[0] ?? '' }, knoepfe), regler, detail);
 }
 
+/**
+ * Qualitative Selbstdiagnose (O-8): erste Spalte = Muster, letzte Spalte = Antwort des Whitepapers.
+ * Keine Punktzahl, keine Summe: das Profil nennt nur die Muster in Worten und die Zellen dazu.
+ */
+function diagnose(d: TafelDaten): HTMLElement {
+  const wahl = new Map<number, number>();
+  const profil = h('div', { class: 'diagnose-profil', 'aria-live': 'polite', 'data-pruef': 'diagnose-profil' });
+  const letzte = d.kopf.length - 1;
+  const zeichne = (): void => {
+    const gruppe = (a: number): string[][] => d.zeilen.filter((_, i) => wahl.get(i) === a);
+    const teil = (titel: string, zeilen: string[][]): HTMLElement | null => zeilen.length === 0 ? null : h('section', null, h('h4', { class: 'tafel-titel' }, titel),
+      h('dl', { class: 'tafel-detail' }, zeilen.map((z) => h('div', null, h('dt', null, z[0] ?? ''), h('dd', null, h('span', { class: 't-label' }, `${WORT.dazu} (${d.kopf[letzte] ?? ''}): `), z[letzte] ?? '')))));
+    const a = teil(WORT.deutlich, gruppe(0));
+    const b = teil(WORT.teils, gruppe(1));
+    ersetze(profil, h('p', { class: 't-label' }, WORT.profil), a === null && b === null ? h('p', null, WORT.profilLeer) : null, a, b);
+  };
+  const zeilen = d.zeilen.map((z, i) => {
+    const knoepfe = WORT.antworten.map((w, a) => h('button', {
+      type: 'button', class: 'diagnose-knopf', 'aria-pressed': 'false', 'data-pruef': `diagnose-${i + 1}-${a}`,
+      onclick: () => {
+        if (wahl.get(i) === a) wahl.delete(i); else wahl.set(i, a);
+        knoepfe.forEach((k, j) => attr(k, 'aria-pressed', wahl.get(i) === j ? 'true' : 'false'));
+        zeichne();
+      },
+    }, w));
+    return h('li', { class: 'diagnose-zeile' }, h('span', { class: 'diagnose-muster' }, z[0] ?? ''),
+      h('span', { class: 'diagnose-wahl', role: 'group', 'aria-label': z[0] ?? '' }, knoepfe));
+  });
+  zeichne();
+  return h('div', { class: 'tafel-diagnose' }, h('ol', { class: 'diagnose-liste' }, zeilen), profil);
+}
+
 /** Zeichnet eine Tafel; `besucht` = Stationen der eigenen Spur (für das Radar). */
 export function tafel(d: TafelDaten, besucht: readonly string[] = []): HTMLElement {
   let bild: HTMLElement;
@@ -338,6 +377,7 @@ export function tafel(d: TafelDaten, besucht: readonly string[] = []): HTMLEleme
     case 'rhythmus': bild = rhythmus(d); break;
     case 'karten': bild = karten(d); break;
     case 'zeitachse': bild = zeitachse(d); break;
+    case 'diagnose': bild = diagnose(d); break;
   }
   return h('figure', { class: 'tafel', 'data-form': d.form, 'data-absatz': d.absatz, 'data-pruef': `tafel-${d.form}` }, bild, h('figcaption', null, quellZeile(d)));
 }

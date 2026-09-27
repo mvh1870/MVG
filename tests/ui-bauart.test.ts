@@ -693,3 +693,23 @@ test('Nachweiskette (E2, P7.3): besuchte Welt-B-Stationen als Knöpfe, Klick leg
   assert.deepEqual(glieder, ['mandat', 'freigabe', 'kennung', 'datenstand', 'nachweis', 'beschlusslage']);
   assert.match(el.querySelector('[data-pruef="nachweis-glieder"]')?.textContent ?? '', /Mandat.*M-1.*Beschlusslage.*B-1/su);
 });
+
+test('Selbstdiagnose (O-8): Profil in Worten aus der letzten Spalte, keine Punktzahl', async () => {
+  const { tafel } = await import('../src/grafik/tafel.ts');
+  const d = tafel({ form: 'diagnose', absatz: 'k2.5-t1', quelle: 'Q', kopf: ['Symptom', 'Muster', 'MVG-Reaktion'], zeilen: [['Unklare Ziele', 'm1', 'Zielsystem festlegen.'], ['Rollen ohne Mandat', 'm2', 'Mandate klären.']], erlebt: {} });
+  assert.match(d.querySelector('[data-pruef="diagnose-profil"]')?.textContent ?? '', /keine Punkte/u);
+  d.querySelector<HTMLElement>('[data-pruef="diagnose-1-0"]')?.click();
+  d.querySelector<HTMLElement>('[data-pruef="diagnose-2-1"]')?.click();
+  const profil = d.querySelector('[data-pruef="diagnose-profil"]')?.textContent ?? '';
+  assert.match(profil, /Zeigt sich bei Ihnen.*Unklare Ziele.*Zielsystem festlegen\..*Zeigt sich teilweise.*Rollen ohne Mandat.*Mandate klären\./su);
+  assert.doesNotMatch(profil, /\d+ ?(von|%|Punkte)/u, 'keine Zahl, keine Wertung');
+  d.querySelector<HTMLElement>('[data-pruef="diagnose-1-0"]')?.click();
+  assert.doesNotMatch(d.querySelector('[data-pruef="diagnose-profil"]')?.textContent ?? '', /Unklare Ziele/u, 'zweiter Klick nimmt die Wahl zurück');
+});
+
+test('Resümee (P7.6): Kapitel der Spur nach Häufigkeit', async () => {
+  const { kapitelDerSpur } = await import('../src/ui/flaechen/story-szenen.ts');
+  const probe = { ...inhalte, stationen: { X: { whitepaper: ['k4.2-p3', 'k4.5-p1', 'k9.3-p1'] }, Y: { whitepaper: ['k9.3-p2', 'k9.4-l1', 'k2.1-p1'] } } } as unknown as typeof inhalte;
+  assert.deepEqual(kapitelDerSpur(['X', 'Y', 'X'], probe), [9, 4, 2]);
+  assert.deepEqual(kapitelDerSpur([], probe), []);
+});

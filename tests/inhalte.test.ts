@@ -566,6 +566,20 @@ test('Fall-Bibel (P1.2): Zeitachse Monat → LPH wird gegen die Stationen geprü
   assert.ok(kaputt.fehler.some((f) => /„lph-stand“: „13: 5“ – erwartet Monat 0–12 und LPH 0–9/u.test(f)), kaputt.fehler.join('\n'));
 });
 
+test('Requisiten Protokoll und Aktenstapel (P3.1): Form, Pflichtfelder, Figurverweis', async () => {
+  const mit = (bloecke: string) => veraendere(BEISPIEL, 'inhalte/story/X1/station.md', '„+8 %, Ursache unklar.“ <b>fett?</b>\n:::\n', `„+8 %, Ursache unklar.“ <b>fett?</b>\n:::\n${bloecke}`);
+  const gut = await kompiliere({ pruefe: true, wurzel: neueWurzel(mit('::: protokoll\n---\ntitel: Protokoll Jour fixe\ndatum: Di, 12.05.\nvon: brenner\n---\n- Kosten: wird geklärt\n:::\n::: akten\n---\nbeschriftung: Statusberichte\nanzahl: 7\n---\n:::\n')), ziel: null });
+  assert.deepEqual(gut.fehler, []);
+  const bl = (gut.inhalte as Inhalte).stationen['X1']?.schritte[0]?.bloecke ?? [];
+  assert.deepEqual(bl.map((b) => b.art).slice(0, 3), ['mail', 'protokoll', 'akten']);
+  const ohneTitel = await kompiliere({ pruefe: true, wurzel: neueWurzel(mit('::: protokoll\n---\ndatum: Di\n---\n- x\n:::\n')), ziel: null });
+  assert.ok(ohneTitel.fehler.some((f) => /titel/u.test(f)), ohneTitel.fehler.join('\n'));
+  const zuViele = await kompiliere({ pruefe: true, wurzel: neueWurzel(mit('::: akten\n---\nbeschriftung: A\nanzahl: 13\n---\n:::\n')), ziel: null });
+  assert.ok(zuViele.fehler.some((f) => /anzahl/u.test(f)), zuViele.fehler.join('\n'));
+  const fremd = await kompiliere({ pruefe: true, wurzel: neueWurzel(mit('::: protokoll\n---\ntitel: P\nvon: niemand\n---\n- x\n:::\n')), ziel: null });
+  assert.ok(fremd.fehler.some((f) => /Figur „niemand“/u.test(f)), fremd.fehler.join('\n'));
+});
+
 test('Startseite (inhalte/start.md): Leitsatz wörtlich mit Absatz-ID geprüft, These als Inline-HTML', async () => {
   const start = (titel: string) => `---\nkicker: Minimum Viable Governance\ntitel: ${titel}\ntitel-quelle: k2.4-p2\n---\n\nEine **These**.\n`;
   const gut = await kompiliere({ pruefe: true, wurzel: neueWurzel({ ...BEISPIEL, 'inhalte/start.md': start('Berichterstattung erzeugt Information.') }), ziel: null });

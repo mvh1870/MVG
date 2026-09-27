@@ -14,6 +14,7 @@ import { erzeugeSchriften } from './schriften.mjs';
 import { istHauptmodul } from './haupt.mjs';
 import { kontrast, liesTokens, loese } from '../src/stil/farben.ts';
 import { statusSymbol, symbol, trendPfeil } from '../src/stil/symbole.ts';
+import { MIMIKEN, figurSvg } from '../src/figuren/figur.ts';
 
 const WURZEL = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const ZIEL = resolve(WURZEL, 'tmp/stilreferenz.html');
@@ -311,6 +312,13 @@ async function seite() {
       <div class="reihe"><div class="tabellenstand" style="--dreh:-1deg"><span class="tabellenstand-quelle">${sym('tabelle')}Controlling</span><span class="tabellenstand-zahl">+5,9 %</span><span class="tabellenstand-datei mono">KP_Controlling_final2.xlsx</span></div><span class="ungleich">≠</span><div class="tabellenstand" style="--dreh:1.2deg"><span class="tabellenstand-quelle">${sym('tabelle')}Projektsteuerung</span><span class="tabellenstand-zahl">+8,0 %</span><span class="tabellenstand-datei mono">Prognose_PS_Mai.xlsx</span></div></div>
     </div>
   </div></section>
+
+  <section class="ref-abschnitt"><h2 class="ref-h2">Requisiten: Protokoll und Aktenstapel (P3.1)</h2><div class="ref-tafel ref-raster">
+    <figure class="protokoll"><figcaption class="protokoll-kopf">${sym('dokument')}<b>Protokoll Jour fixe</b><small>Di, 12.05.</small></figcaption><div class="protokoll-text"><ul><li>Kostenprognose: wird geklärt</li><li>Mensa: Gespräch mit Schulseite</li><li>Nächster Termin: nächste Woche</li></ul></div></figure>
+    <figure class="akten"><div class="akten-stapel" aria-hidden="true">${Array.from({ length: 7 }, (_, i) => `<i style="--i:${i}"></i>`).join('')}</div><figcaption><b>Statusberichte Jan–Jul</b>40 Seiten je Monat, Ampeln inklusive</figcaption></figure>
+  </div></section>
+
+  <section class="ref-abschnitt"><h2 class="ref-h2">Mimik: neutral · besorgt · erleichtert (P3.1)</h2><div class="ref-tafel reihe" style="--luecke:24px">${['sie', 'brenner', 'kaya', 'hoffmeister', 'olbers', 'deppe', 'stein', 'petersen', 'roth', 'kowalski'].map((id) => `<div class="reihe" style="--luecke:6px">${MIMIKEN.map((m) => figurSvg(id, { rolle: null, groesse: 48, mimik: m })).join('')}</div>`).join('')}</div></section>
 
   <section class="ref-abschnitt"><h2 class="ref-h2">Figuren (Rollenfarbe, Namensschild)</h2><div class="ref-tafel reihe" style="--luecke:24px">${Object.entries(BESETZUNG).map(([k, [, , n, r]]) => `<div class="absender">${person(/** @type {any} */ (k), 64)}<div><b>${n}</b><span>${r}</span></div></div>`).join('')}</div></section>
 

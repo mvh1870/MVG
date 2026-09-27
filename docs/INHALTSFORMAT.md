@@ -179,6 +179,8 @@ Bausteine in einem `schritt`:
 | `chat` | – | `von` (Pflicht), `zeit` | `text` |
 | `anruf` | – | `von` (Pflicht), `zeit` | `text` |
 | `notiz` | – | `farbe`: `gelb` · `rosa` · `lila` · `limette`; `symbol` | `text` (Haftnotiz, Welt A) |
+| `protokoll` | – | `titel` (Pflicht), `datum`, `von` (Figur) | `text` (Punkte als Liste; Welt A, P3.1) |
+| `akten` | – | `beschriftung` (Pflicht), `anzahl` (1–12, Ordnerrücken) | `text` (Zusatz, optional; Welt A, P3.1) |
 | `datei` | – | `name` (Pflicht), `quelle`, `wert` | `text` (z. B. Excel-Stand) |
 | `bekannt` | – | – | `text` = Liste |
 | `unbekannt` | – | – | `text` = Liste mit Kennungen `{#id}` |

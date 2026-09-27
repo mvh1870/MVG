@@ -31,7 +31,7 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P2.6 · Prüf-Agenten P2 (Architektur, Stil/Barrierefreiheit, Vollständigkeit) + Korrekturen (L-27, `docs/P2-BEFUNDE.md`) — Abnahme: keine offenen Befunde; `node werkzeuge/mutanten.mjs` 10/10 rot.
 
 ### P3 · Welt A
-- [~] P3.1 (2026-09-27; Mimik, 4 neue Figuren, Protokoll, Aktenstapel, Besetzungsgalerie in Explore) · Figuren- und Requisiten-Baukasten (SVG): alle Figuren (Rollenfarben, Mimik neutral/besorgt/erleichtert), Mail, Chat, Excel-Stand, Haftnotiz, Protokoll, Aktenstapel — Abnahme: Galerie-Seite im Bau.
+- [x] P3.1 · Figuren- und Requisiten-Baukasten (SVG): alle Figuren (Rollenfarben, Mimik neutral/besorgt/erleichtert), Mail, Chat, Excel-Stand, Haftnotiz, Protokoll, Aktenstapel — Abnahme: Galerie-Seite im Bau.
 - [ ] P3.2 · Station A1 (alle 6 Rollen)
 - [ ] P3.3 · Station A2 (alle 6 Rollen)
 - [ ] P3.4 · Station A3 (alle 6 Rollen; PL aus dem Durchstich übernehmen)

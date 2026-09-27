@@ -1,7 +1,7 @@
 ---
 station: B2
 rolle: bauherr
-frage: Sabine Roth ruft an – die Mensa sei doch zugesagt. `AEN-012` steht beantragt im Änderungsregister. Was tun Sie?
+frage: Sabine Roth ruft an – die Mensa sei doch zugesagt. AEN-012 steht beantragt im Änderungsregister. Was tun Sie?
 rueckbezug-auf: A2
 ---
 
@@ -79,12 +79,6 @@ Der Bauherr umgeht die Leiter, die er selbst festgelegt hat.
 
 ### Governance-Frage
 [[Mandat]]: Wenn die Schwelle nicht passt – ändern Sie die Leiter oder den Einzelfall?
-:::
-
-::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
-Die Geschichte merkt sich Ihre Wahl.
 :::
 
 ::: regie

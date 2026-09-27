@@ -18,7 +18,7 @@ weiter: wirklichkeit
 
 ::: schritt einstieg
 ---
-titel: Montag, 07:45 Uhr Monat 11.
+titel: Montag, 07:45 Uhr. Monat 11.
 kurz: Einstieg
 ---
 Die Freigabe zum Abschluss von LPH 5 steht an – mit Kernfrage, Mindestgrundlagen, Mandat und Datenstand. Holger Stein fällt auch hier aus; Register, Datenstand und die geregelte Stellvertretung tragen. Die Stadtratsanfrage wird aus dem Managementbericht beantwortet.

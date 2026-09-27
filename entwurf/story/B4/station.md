@@ -18,10 +18,10 @@ weiter: B5
 
 ::: schritt einstieg
 ---
-titel: Donnerstag, 10:00 Uhr Monat 7.
+titel: Donnerstag, 10:00 Uhr. Monat 7.
 kurz: Einstieg
 ---
-Die Brandschutzauflagen aus der Baugenehmigung stehen als Änderung `AEN-031` im Änderungsregister, grob 0,4 Mio. €. Sie sitzen im Änderungsgremium; die Vorlage liegt vor. Der Bauausschuss bekommt den Managementbericht mit einer klaren Beschlussvorbereitung.
+Im Juni hat das Änderungsgremium auf ergänzter Vorlage entschieden; die Fassadenänderung `AEN-022` ist beschlossen. Die Brandschutzauflagen aus der Baugenehmigung stehen als Änderung `AEN-031` im Änderungsregister, grob 0,4 Mio. €. Das Änderungsgremium tagt; die Vorlage liegt vor. Der Bauausschuss bekommt den Managementbericht mit einer klaren Beschlussvorbereitung.
 :::
 
 ::: schritt rueckbezug

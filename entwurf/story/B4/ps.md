@@ -22,7 +22,7 @@ Die Frage der Deckung: Kommt sie aus der Risikoreserve, entscheidet darüber der
 Eine beschlossene Änderung mit noch offener Deckung.
 
 ### Governance-Frage
-Risikoannahme: Wer gibt den Einsatz der Risikoreserve frei?
+[[Nichtdelegierbare Bauherrenverantwortung]]: Wer gibt den Einsatz der Risikoreserve frei?
 :::
 
 ::: option B
@@ -79,12 +79,6 @@ In Welt A haben Sie ‚Bericht kürzen‘ gewählt. In Welt B verschwindet kein 
 
 ::: rueckbezug ohne
 In Welt A lag im Juli ein 40-Seiten-Bericht ohne Frage auf dem Tisch. In Welt B hat die Vorlage eine Frage, und das Gremium weiß, worüber es entscheidet.
-:::
-
-::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
-Die Geschichte merkt sich Ihre Wahl.
 :::
 
 ::: regie

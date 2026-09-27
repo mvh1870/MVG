@@ -65,7 +65,7 @@ Risikoannahme: Wer akzeptiert auf Bauherrenseite, was auf dieser Liste steht?
 :::
 
 ::: nachsatz
-Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
 
 Die Geschichte merkt sich Ihre Wahl.
 :::

@@ -68,7 +68,7 @@ Eine neue Projektbasis auf der alten Steuerungslogik.
 :::
 
 ::: nachsatz
-Welt B war ein Gedankenexperiment. Was davon jetzt noch möglich ist, hängt davon ab, was der Bauherr selbst beiträgt.
+Was davon jetzt noch möglich ist, hängt davon ab, was der Bauherr selbst beiträgt.
 :::
 
 ::: regie

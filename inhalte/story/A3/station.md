@@ -93,7 +93,7 @@ wert: +5,9 %
 :::
 
 ::: bekannt
-- Kostenabweichung +8 % (Projektsteuerung) bzw. +5,9 % (Controlling) – zwei [[Datenstand|Datenstände]].
+- Kostenabweichung +8 % (Projektsteuerung) bzw. +5,9 % (Controlling) – zwei Zahlen, kein geltender [[Datenstand]].
 :::
 
 ::: unbekannt

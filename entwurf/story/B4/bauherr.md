@@ -1,7 +1,7 @@
 ---
 station: B4
 rolle: bauherr
-frage: Das Änderungsgremium hat `AEN-031` beschlossen, der Managementbericht für den Bauausschuss liegt vor. Was legen Sie dem Ausschuss vor?
+frage: Das Änderungsgremium hat AEN-031 beschlossen, der Managementbericht für den Bauausschuss liegt vor. Was legen Sie dem Ausschuss vor?
 rueckbezug-auf: A4
 ---
 
@@ -58,7 +58,7 @@ Eine Vorlage zur Freigabe des Einsatzes der Risikoreserve – mit Datenstand und
 Eine Zusage im Ausschuss, die die eigene Freigabe vorwegnimmt.
 
 ### Governance-Frage
-[[Freigabe]]: Auf welcher Vorlage geben Sie den Einsatz der Reserve frei?
+[[Nichtdelegierbare Bauherrenverantwortung]]: Auf welcher Vorlage geben Sie den Einsatz der Reserve frei?
 :::
 
 ::: option C
@@ -79,12 +79,6 @@ Zwei Monate ohne Entscheidung zur Deckung, bei laufender Planung.
 
 ### Governance-Frage
 [[Entscheidungsreife]]: Was muss die Vorlage im September enthalten?
-:::
-
-::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
-Die Geschichte merkt sich Ihre Wahl.
 :::
 
 ::: regie

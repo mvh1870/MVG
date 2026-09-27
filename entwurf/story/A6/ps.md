@@ -65,9 +65,7 @@ LPH 5 läuft weiter, ohne dass jemand über ihren Abschluss entscheidet.
 :::
 
 ::: nachsatz
-Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
-
-Die Geschichte merkt sich Ihre Wahl.
+Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
 :::
 
 ::: regie

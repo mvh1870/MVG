@@ -41,7 +41,7 @@ Sie verlangen eine Entscheidungsvorlage. Die Projektsteuerung fragt zurück: ‚
 Ein Standard für Entscheidungsvorlagen: Frage, Optionen, Empfehlung.
 
 ### Neues Risiko
-Die Entscheidung wird vertagt, der Termin im Bauausschuss rückt näher.
+Die Entscheidung wird vertagt. Der Bauausschuss am 21. Mai bekommt einen Sachstand.
 
 ### Governance-Frage
 [[Entscheidungsreife]]: Was muss eine Vorlage enthalten?
@@ -90,9 +90,7 @@ Parallele Datenstände – Entscheidungen beruhen auf widersprüchlichen Grundla
 :::
 
 ::: nachsatz
-Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
-
-Die Geschichte merkt sich Ihre Wahl.
+Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
 :::
 
 ::: regie

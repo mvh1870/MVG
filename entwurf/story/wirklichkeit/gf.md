@@ -13,7 +13,7 @@ status:
   kostenunsicherheit: hoch
 ---
 ### Konsequenz
-Sie schlagen Dr. Miriam Olbers eine [[MVG-Neuinitialisierung]] vor und stellen Leute aus der GML dafür ab. Sie beginnt mit einem Lagebild und ordnet die Führungs- und Entscheidungslogik, nicht das ganze Projekt.
+Sie schlagen Dr. Miriam Olbers eine [[MVG-Neuinitialisierung]] vor und stellen Leute aus der GML dafür ab. Die Neuinitialisierung beginnt mit einem Lagebild und ordnet die Führungs- und Entscheidungslogik, nicht das ganze Projekt.
 
 ### Was fehlt
 Ein Entscheidungsinventar und ein bereinigter Datenstand – beides entsteht erst.
@@ -68,7 +68,7 @@ Auf welchem Datenstand wird die neue Projektbasis legitimiert?
 :::
 
 ::: nachsatz
-Welt B war ein Gedankenexperiment. Was davon jetzt noch möglich ist, hängt davon ab, was der Bauherr selbst beiträgt.
+Was davon jetzt noch möglich ist, hängt davon ab, was der Bauherr selbst beiträgt.
 :::
 
 ::: regie

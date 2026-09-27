@@ -12,5 +12,5 @@ weiter: epilog
 titel: Steuerbar übergeben
 kurz: Ende
 ---
-Nach der MVG-Neuinitialisierung ist das Projekt wieder steuerbar: Sie endet mit einer stabilisierten Entscheidungsarchitektur. Das Bauherren-Führungsmodell wird übergeben – ein Befähigungsschritt, keine Freigabe; das Projekt läuft steuerbar in LPH 5 weiter.
+Nach der MVG-Neuinitialisierung ist das Projekt wieder steuerbar: Die Neuinitialisierung endet mit einer stabilisierten Entscheidungsarchitektur. Das Bauherren-Führungsmodell wird übergeben – ein Befähigungsschritt, keine Freigabe; das Projekt läuft steuerbar in LPH 5 weiter.
 :::

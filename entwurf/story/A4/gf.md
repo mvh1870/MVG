@@ -66,9 +66,7 @@ Welche Entscheidung ist wesentlich – und wer muss sie treffen?
 :::
 
 ::: nachsatz
-Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
-
-Die Geschichte merkt sich Ihre Wahl.
+Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
 :::
 
 ::: regie

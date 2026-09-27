@@ -12,7 +12,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Dr. Olbers fragt nach Kernfrage und Datenstand. Holger Steins letzten Stand „Prognose_Nov_v5“ kann niemand erklären. Sie erteilt keine Freigabe und verlangt eine belastbare Grundlage.
+Dr. Olbers fragt nach Kernfrage und Datenstand. Holger Steins letzten Stand „Prognose_Nov_v5“ kann niemand erklären. Dr. Olbers erteilt keine Freigabe und verlangt eine belastbare Grundlage.
 
 ### Was fehlt
 Kernfrage, Mindestgrundlagen, Mandat und ein benannter Datenstand.
@@ -66,9 +66,7 @@ Vertrauensverlust im Stadtrat.
 :::
 
 ::: nachsatz
-Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
-
-Die Geschichte merkt sich Ihre Wahl.
+Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
 :::
 
 ::: regie

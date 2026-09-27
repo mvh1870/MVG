@@ -1,7 +1,7 @@
 ---
 station: B5
 rolle: pl
-frage: Wie bringen Sie `PRB-004` zur Entscheidung?
+frage: Wie bringen Sie PRB-004 zur Entscheidung?
 rueckbezug-auf: A5
 ---
 
@@ -13,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: -1
 ---
 ### Konsequenz
-Die Projektsteuerung bereitet die Vorlage vor, Sie legen sie Dr. Olbers vor. Sie gibt den Einsatz frei; Datum, Betrag und Datenstand stehen im Register.
+Die Projektsteuerung bereitet die Vorlage vor, Sie legen sie Dr. Olbers vor. Dr. Olbers gibt den Einsatz frei; Datum, Betrag und Datenstand stehen im Entscheidungsregister.
 
 ### Was fehlt
 Ein Blick darauf, wie viel Reserve danach bleibt.
@@ -79,12 +79,6 @@ In Welt A haben Sie ‚Lage offenlegen‘ gewählt. In Welt B muss nichts eigens
 
 ::: rueckbezug ohne
 In Welt A war die Risikoreserve zu einem guten Teil verplant, ohne dass jemand sie freigegeben hatte. In Welt B gibt der Bauherr ihren Einsatz frei – vorher, auf Vorlage.
-:::
-
-::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
-Die Geschichte merkt sich Ihre Wahl.
 :::
 
 ::: regie

@@ -1,7 +1,7 @@
 ---
 station: B5
 rolle: planung
-frage: "`PRB-004` berührt die Risikoreserve. Was liefern Sie zur Vorlage?"
+frage: PRB-004 berührt die Risikoreserve. Was liefern Sie zur Vorlage?
 rueckbezug-auf: A5
 ---
 
@@ -62,7 +62,7 @@ Die Vorlage – ein Anruf ersetzt sie nicht.
 Ein kurzer Umweg, kein Schaden.
 
 ### Governance-Frage
-[[Freigabe]]: Auf welchem Datenstand entscheidet der Bauherr?
+[[Nichtdelegierbare Bauherrenverantwortung]]: Auf welchem Datenstand entscheidet der Bauherr?
 :::
 
 ::: rueckbezug A
@@ -79,12 +79,6 @@ In Welt A haben Sie ‚Mehrkosten offenlegen‘ gewählt. In Welt B ist die Offe
 
 ::: rueckbezug ohne
 In Welt A war die Reserve zu einem guten Teil verplant, ohne dass jemand sie freigegeben hatte. In Welt B steht `PRB-004` im Problemregister, und über die Reserve entscheidet der Bauherr.
-:::
-
-::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
-Die Geschichte merkt sich Ihre Wahl.
 :::
 
 ::: regie

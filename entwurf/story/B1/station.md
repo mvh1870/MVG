@@ -18,10 +18,10 @@ weiter: B2
 
 ::: schritt einstieg
 ---
-titel: Montag, 09:00 Uhr Monat 1.
+titel: Montag, 09:00 Uhr. Monat 1.
 kurz: Einstieg
 ---
-Dieselbe erste Woche. Diesmal gibt es ein priorisiertes Zielsystem, eine Mandatsleiter, einen Rhythmus und Register mit verantwortlicher Rolle. Die Kostendatei ist ein benannter Datenstand, nicht Holger Steins Privatsache.
+Dieselbe erste Woche. Diesmal gibt es ein angelegtes Zielsystem, dessen Priorität der Bauherr festlegt, eine Mandatsleiter, einen Rhythmus und Register mit verantwortlicher Rolle. Die Kostendatei ist ein benannter Datenstand, nicht Holger Steins Privatsache.
 :::
 
 ::: schritt rueckbezug

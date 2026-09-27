@@ -1,7 +1,7 @@
 ---
 station: B4
 rolle: pl
-frage: Wie stimmen Sie im Änderungsgremium zu `AEN-031`?
+frage: Wie stimmen Sie im Änderungsgremium zu AEN-031?
 rueckbezug-auf: A4
 ---
 
@@ -22,7 +22,7 @@ Die Deckung: Soll sie aus der Risikoreserve kommen, gibt diesen Einsatz nur der 
 Die Deckungsfrage bleibt bis zur Freigabe offen.
 
 ### Governance-Frage
-Risikoannahme: Wer gibt den Einsatz der Risikoreserve frei?
+[[Nichtdelegierbare Bauherrenverantwortung]]: Wer gibt den Einsatz der Risikoreserve frei?
 :::
 
 ::: option B
@@ -79,12 +79,6 @@ In Welt A haben Sie ‚In den Lenkungskreis geben‘ gewählt. In Welt B landet 
 
 ::: rueckbezug ohne
 In Welt A lag im Juli ein 40-seitiger Statusbericht ohne Entscheidungsfrage auf dem Tisch. In Welt B liegt eine Vorlage im Änderungsgremium und ein Managementbericht beim Bauausschuss.
-:::
-
-::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
-Die Geschichte merkt sich Ihre Wahl.
 :::
 
 ::: regie

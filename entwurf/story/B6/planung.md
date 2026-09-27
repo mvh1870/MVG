@@ -19,7 +19,7 @@ Die Bauherren-PL übernimmt die Unterlagen in ihre Vorlage. Dr. Olbers kann ents
 Nichts für die Vorlage; die Entscheidung trifft der Bauherr selbst.
 
 ### Neues Risiko
-Auflagen brauchen einen Verantwortlichen und eine Frist.
+Auflagen brauchen eine verantwortliche Rolle und eine Frist.
 
 ### Governance-Frage
 [[Freigabe]]: Welche Mindestgrundlagen braucht die Freigabe zum Abschluss von LPH 5?
@@ -81,17 +81,11 @@ In Welt A haben Sie ‚Kostenstand mit abgleichen‘ gewählt. In Welt B trägt 
 In Welt A hing die Freigabe an Holger Steins Excel-Ständen. In Welt B tragen Register, Datenstand und Stellvertretung.
 :::
 
-::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
-Die Geschichte merkt sich Ihre Wahl.
-:::
-
 ::: regie
 ### Notiz
 Die Generalplanung liefert die Planungsgrundlagen. Zeigen, dass eine späte Optimierung eine eigene Änderung wird und nicht in den Freigabestand rutscht.
 
 ### Leitfragen
-- Was liefert Ihre Planung zur Freigabe am Ende einer Leistungsphase?
+- Was liefert Ihre Planung zur Freigabe am Abschluss einer Leistungsphase?
 - Wie gehen Sie mit Änderungen kurz vor einer Freigabe um?
 :::

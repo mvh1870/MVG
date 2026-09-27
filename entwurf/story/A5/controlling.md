@@ -12,7 +12,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Dr. Olbers erfährt, dass von 2,9 Mio. € ein guter Teil verplant ist, ohne dass sie ihn freigegeben hat. Sie verlangt eine Aufstellung – welche Posten, auf welcher Grundlage. Auf einem Stand gibt es die nicht.
+Dr. Olbers erfährt, dass von 2,9 Mio. € ein guter Teil verplant ist, ohne dass sie ihn freigegeben hat. Dr. Olbers verlangt eine Aufstellung – welche Posten, auf welcher Grundlage. Auf einem Stand gibt es die nicht.
 
 ### Was fehlt
 Eine nachvollziehbare Grundlage je Posten.
@@ -65,9 +65,7 @@ Die Planung wartet, ob die Mensa-Umplanung weiterlaufen darf.
 :::
 
 ::: nachsatz
-Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
-
-Die Geschichte merkt sich Ihre Wahl.
+Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
 :::
 
 ::: regie

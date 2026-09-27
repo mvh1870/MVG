@@ -44,7 +44,7 @@ b: datenstand
 **+8 %** · Prognose_Mai_v3_final_NEU.xlsx
 
 ### Welt B
-Datenstand: Kostenprognose 2026-05 · V3 · verbindlich
+Datenstand: Kostenprognose 2026-05 · Version 3 · verbindlich
 :::
 
 ::: paar
@@ -73,7 +73,7 @@ fluss: managementbericht
 Bauausschuss am 21.?
 
 ### Welt B
-Bericht Bauausschuss
+Managementbericht an den Bauausschuss
 :::
 
 ::: paar
@@ -162,5 +162,5 @@ Stationen im Fluss
 Welt A: vier Haftnotizen, zwei Excel-Stände, verknotete Fäden.
 
 ### Welt B
-Welt B: ein Datenstand, Version 3 verbindlich. Die Notizen haben ihren Platz im Governance-Fluss: FRW-003, RIS-014, AEN-022, Risikoreserve beim Bauherrn, Bericht an den Bauausschuss.
+Welt B: ein Datenstand, Version 3 verbindlich. Die Notizen haben ihren Platz im Governance-Fluss: FRW-003, RIS-014, AEN-022, Risikoreserve beim Bauherrn, Managementbericht an den Bauausschuss.
 :::

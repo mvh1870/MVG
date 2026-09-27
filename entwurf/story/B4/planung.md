@@ -1,7 +1,7 @@
 ---
 station: B4
 rolle: planung
-frage: Das Änderungsgremium berät `AEN-031`. Was bringen Sie in die Vorlage ein?
+frage: Das Änderungsgremium berät AEN-031. Was bringen Sie in die Vorlage ein?
 rueckbezug-auf: A4
 ---
 
@@ -79,12 +79,6 @@ In Welt A haben Sie ‚Entscheidung anmahnen‘ gewählt. In Welt B müssen Sie 
 
 ::: rueckbezug ohne
 In Welt A lag im Ausschuss ein Statusbericht ohne Frage. In Welt B liegt im Änderungsgremium eine Vorlage zu `AEN-031`.
-:::
-
-::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
-Die Geschichte merkt sich Ihre Wahl.
 :::
 
 ::: regie

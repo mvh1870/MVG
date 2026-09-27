@@ -18,7 +18,7 @@ weiter: B6
 
 ::: schritt einstieg
 ---
-titel: Mittwoch, 14:00 Uhr Monat 9.
+titel: Mittwoch, 14:00 Uhr. Monat 9.
 kurz: Einstieg
 ---
 Der Nachtrag der TGA-Fachplanung ist eingetreten und steht als Problem `PRB-004` im Problemregister, mit Maßnahme. Er berührt die Risikoreserve – und deren Einsatz gibt nur der Bauherr frei. Soll auch die Deckung von `AEN-031` aus der Reserve kommen, fließt sie in dieselbe Vorlage ein.

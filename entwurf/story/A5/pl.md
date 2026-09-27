@@ -13,7 +13,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Sie legen Dr. Olbers die Einsätze gesammelt vor. Sie unterschreibt und fragt, auf welcher Zahl: drei Positionen, zwei Stände, keine Einzelbewertung.
+Sie legen Dr. Olbers die Einsätze gesammelt vor. Dr. Olbers unterschreibt und fragt, auf welcher Zahl: drei Positionen, zwei Stände, keine Einzelbewertung.
 
 ### Was fehlt
 Eine Freigabe auf benanntem Stand, bevor die Reserve eingesetzt wird – nicht danach.
@@ -68,9 +68,7 @@ Transparenz ohne Entscheidung; die Zeit läuft weiter.
 :::
 
 ::: nachsatz
-Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
-
-Die Geschichte merkt sich Ihre Wahl.
+Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
 :::
 
 ::: regie

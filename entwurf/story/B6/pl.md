@@ -81,12 +81,6 @@ In Welt A haben Sie ‚Lage offen auf den Tisch legen‘ gewählt. In Welt B ist
 In Welt A stand dieselbe Freigabe an – ohne Kernfrage, mit einem Datenstand, den nur einer verstand. In Welt B trägt die Struktur, auch wenn eine Person ausfällt.
 :::
 
-::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
-Die Geschichte merkt sich Ihre Wahl.
-:::
-
 ::: regie
 ### Notiz
 Die Bauherren-PL legt vor und empfiehlt; Dr. Olbers erteilt. Jede der drei Empfehlungen ist tragfähig, wenn die Grundlage stimmt.

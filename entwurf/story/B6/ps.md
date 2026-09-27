@@ -7,19 +7,19 @@ rueckbezug-auf: A6
 
 ::: option A
 ---
-titel: Die Vertretung die Prognose aus dem Datenstand fortschreiben lassen
-kurz: Vertretung einsetzen
+titel: Die Stellvertretung die Prognose aus dem Datenstand fortschreiben lassen
+kurz: Stellvertretung einsetzen
 status:
   offene-risiken: -1
 ---
 ### Konsequenz
-Die Vertretung arbeitet mit dem benannten Datenstand und seinen dokumentierten Annahmen weiter. Der Ausfall kostet Tage, nicht die Freigabe.
+Die Stellvertretung arbeitet mit dem benannten Datenstand und seinen dokumentierten Annahmen weiter. Der Ausfall kostet Tage, nicht die Freigabe.
 
 ### Was fehlt
 Was sich an Routinen bewährt hat, steht noch nicht im [[Betriebshandbuch]].
 
 ### Neues Risiko
-Die Vertretung trägt – solange sie selbst nicht ausfällt.
+Die Stellvertretung trägt – solange sie selbst nicht ausfällt.
 
 ### Governance-Frage
 [[Mandat]]: Ist die Stellvertretung für alle Schlüsselrollen geregelt?
@@ -78,18 +78,12 @@ In Welt A haben Sie ‚Freigabe zurückstellen empfehlen‘ gewählt. In Welt B 
 :::
 
 ::: rueckbezug ohne
-In Welt A war im November alles offen: Zahl, Vertretung, Freigabe. In Welt B tragen Register, Datenstand und Stellvertretung auch dann, wenn ein Kopf fehlt.
-:::
-
-::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
-Die Geschichte merkt sich Ihre Wahl.
+In Welt A war im November alles offen: Zahl, Stellvertretung, Freigabe. In Welt B tragen Register, Datenstand und Stellvertretung auch dann, wenn ein Kopf fehlt.
 :::
 
 ::: regie
 ### Notiz
-Holger Stein fällt auch hier aus. Zeigen, dass die Vertretung auf dem Datenstand weiterarbeitet – der Ausfall kostet Tage, nicht die Freigabe.
+Holger Stein fällt auch hier aus. Zeigen, dass die Stellvertretung auf dem Datenstand weiterarbeitet – der Ausfall kostet Tage, nicht die Freigabe.
 
 ### Leitfragen
 - Wer vertritt bei Ihnen die Kostenprognose?

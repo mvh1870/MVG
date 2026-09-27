@@ -33,7 +33,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Sie schreibt der Bauherren-PL: ohne Auftrag keine Umplanung. Eine Antwort kommt nicht, weil niemand weiß, wer entscheidet. Sabine Roth ruft zweimal an.
+Sie schreiben der Bauherren-PL: ohne Auftrag keine Umplanung. Eine Antwort kommt nicht, weil niemand weiß, wer entscheidet. Sabine Roth ruft zweimal an.
 
 ### Was fehlt
 Ein Freigabeweg für Änderungen.
@@ -66,9 +66,7 @@ Die Lieferzeit wirkt auf den Termin, ohne dass jemand darüber entscheidet.
 :::
 
 ::: nachsatz
-Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
-
-Die Geschichte merkt sich Ihre Wahl.
+Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
 :::
 
 ::: regie

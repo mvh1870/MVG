@@ -12,7 +12,7 @@ status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Lena Hoffmeister rechnet eine Variante mit anderen Holzbauelementen durch. Bestellt hat sie niemand; sie liegt als zweiter Kostenstand neben der Kostenberechnung.
+Sie rechnen eine Variante mit anderen Holzbauelementen durch. Bestellt hat sie niemand; sie liegt als zweiter Kostenstand neben der Kostenberechnung.
 
 ### Was fehlt
 Ein Auftrag – und eine Zielpriorität, die sagt, ob Kosten, ESG oder LCC vorgehen.
@@ -32,7 +32,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Sie fragt, was vorgeht: Kosten, Termin, ESG oder LCC. Die Antwort lautet: „Alles ist wichtig.“ Die Generalplanung plant weiter gegen vier Ziele zugleich.
+Sie fragen, was vorgeht: Kosten, Termin, ESG oder LCC. Die Antwort lautet: „Alles ist wichtig.“ Die Generalplanung plant weiter gegen vier Ziele zugleich.
 
 ### Was fehlt
 Ein priorisiertes Zielsystem mit Abwägungsregeln.
@@ -65,7 +65,7 @@ Die Preissteigerung beim Holz bleibt ein unbewertetes Signal.
 :::
 
 ::: nachsatz
-Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
 
 Die Geschichte merkt sich Ihre Wahl.
 :::

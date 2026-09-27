@@ -1,7 +1,7 @@
 ---
 station: B2
 rolle: pl
-frage: Wie bringen Sie `AEN-012` und `RIS-009` voran?
+frage: Wie bringen Sie AEN-012 und RIS-009 voran?
 rueckbezug-auf: A2
 ---
 
@@ -75,17 +75,11 @@ In Welt A haben Sie ‚Prüfen lassen‘ gewählt. In Welt B hat die Prüfung ei
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚An den Bauherrn geben‘ gewählt. In Welt B muss Dr. Olbers darüber nicht entscheiden: Die Mandatsleiter weist rund 0,6 Mio. € dem Änderungsgremium zu; der Bauherr beschließt erst über 5 Mio. €.
+In Welt A haben Sie ‚An den Bauherrn geben‘ gewählt. In Welt B muss Dr. Olbers darüber nicht entscheiden: Die Mandatsleiter weist rund 0,6 Mio. € dem Änderungsgremium zu; über Änderungen beschließt der Bauherr im Lenkungskreis erst oberhalb von 5 Mio. €.
 :::
 
 ::: rueckbezug ohne
 In Welt A kamen derselbe Anruf und dieselbe Mail – und wurden zu einer Flurzusage und einer Notiz. In Welt B werden sie zu `FRW-001` und `AEN-012`.
-:::
-
-::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
-Die Geschichte merkt sich Ihre Wahl.
 :::
 
 ::: regie

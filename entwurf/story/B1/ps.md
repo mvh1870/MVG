@@ -47,13 +47,13 @@ Abhängigkeit von einer Schlüsselperson im eigenen Team.
 
 ::: option C
 ---
-titel: Eine Vertretung für Holger Stein benennen und der Bauherren-PL melden
-kurz: Vertretung benennen
+titel: Eine Stellvertretung für Holger Stein benennen und der Bauherren-PL melden
+kurz: Stellvertretung benennen
 status:
   offene-risiken: -1
 ---
 ### Konsequenz
-Eine Kollegin arbeitet sich in die Kostenprognose ein; die Annahmen stehen im Datenstand, nicht nur in Steins Dateien. Die Bauherren-PL trägt die Vertretung ein.
+Eine Kollegin arbeitet sich in die Kostenprognose ein; die Annahmen stehen im Datenstand, nicht nur in Steins Dateien. Die Bauherren-PL trägt die Stellvertretung ein.
 
 ### Was fehlt
 Die Marktnotiz zum Holzpreis ist noch nicht erfasst.

@@ -1,7 +1,7 @@
 ---
 station: B5
 rolle: bauherr
-frage: Die Vorlage zum Einsatz der Risikoreserve für `PRB-004` liegt auf Ihrem Tisch. Wie entscheiden Sie?
+frage: Die Vorlage zum Einsatz der Risikoreserve für PRB-004 liegt auf Ihrem Tisch. Wie entscheiden Sie?
 rueckbezug-auf: A5
 ---
 
@@ -29,7 +29,7 @@ status:
   ungeklaerte-entscheidungen: -1
 ---
 ### Konsequenz
-Sie geben den Einsatz der Risikoreserve frei. Die Freigabe steht mit Nachweis im Register, die verbleibende Reserve ist ausgewiesen.
+Sie geben den Einsatz der Risikoreserve frei. Die Freigabe steht mit Nachweis im Entscheidungsregister, die verbleibende Reserve ist ausgewiesen.
 
 ### Was fehlt
 Nichts in der Struktur; die Maßnahme wird im Rhythmus nachverfolgt.
@@ -58,7 +58,7 @@ Die Prüfung des Nachtrags durch die Projektsteuerung und eine zweite Vorlage.
 Zwei Freigaben für ein Problem; die Nachverfolgung muss beide zusammenhalten.
 
 ### Governance-Frage
-[[Freigabe]]: Welcher Teil ist heute entscheidungsreif – und welcher nicht?
+[[Entscheidungsreife]]: Welcher Teil ist heute entscheidungsreif – und welcher nicht?
 :::
 
 ::: option C
@@ -79,12 +79,6 @@ Die Reserve bleibt unberührt, aber die Lücke wandert in andere Posten.
 
 ### Governance-Frage
 [[Mandat]]: Ist die Umschichtung selbst eine Entscheidung – und wessen?
-:::
-
-::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
-Die Geschichte merkt sich Ihre Wahl.
 :::
 
 ::: regie

@@ -13,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: -1
 ---
 ### Konsequenz
-Der Lenkungskreis berät die Vorlage; Dr. Miriam Olbers gibt den Einsatz der Risikoreserve auf dem benannten Datenstand frei. Die Freigabe steht mit Nachweis im Register.
+Der Lenkungskreis berät die Vorlage; Dr. Miriam Olbers gibt den Einsatz der Risikoreserve auf dem benannten Datenstand frei. Die Freigabe steht mit Nachweis im Entscheidungsregister.
 
 ### Was fehlt
 Nichts – die Nachverfolgung der Maßnahme läuft im Rhythmus.
@@ -79,12 +79,6 @@ In Welt A haben Sie ‚Offenlegen‘ gewählt. In Welt B muss niemand erst offen
 
 ::: rueckbezug ohne
 In Welt A war die Reserve in diesem Monat schon verplant, ohne Freigabe. In Welt B entscheidet der Bauherr auf Vorlage, bevor sie eingesetzt wird.
-:::
-
-::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
-Die Geschichte merkt sich Ihre Wahl.
 :::
 
 ::: regie

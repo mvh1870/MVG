@@ -81,17 +81,11 @@ LPH 6 beginnt später; der Termin rückt.
 [[Freigabe]]: Welche Mindestgrundlage fehlt – und wer liefert sie bis wann?
 :::
 
-::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
-Die Geschichte merkt sich Ihre Wahl.
-:::
-
 ::: regie
 ### Notiz
 Der Bauherr erteilt die Freigabe selbst, auf Vorlage der Bauherren-PL; der Lenkungskreis hat beraten. Alle drei Ergebnisse sind in Welt B tragfähig – den Unterschied macht die Grundlage, nicht das Ergebnis.
 
 ### Leitfragen
-- Wer erteilt bei Ihnen die Freigabe am Ende einer Leistungsphase?
+- Wer erteilt bei Ihnen die Freigabe am Abschluss einer Leistungsphase?
 - Auf welchem Datenstand?
 :::

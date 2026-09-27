@@ -156,7 +156,7 @@ gruppe: Welt B · Monat 5 · derselbe Montag
 ::: vorlage ENT-017
 ---
 titel: Entscheidungsvorlage
-datenstand: Kostenprognose 2026-05 · V3
+datenstand: Kostenprognose 2026-05 · Version 3
 ---
 ### Frage
 „Wie wird die Kostenabweichung aufgefangen?“

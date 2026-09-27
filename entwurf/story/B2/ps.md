@@ -62,7 +62,7 @@ Die Bewertung selbst – Berichten ersetzt nicht Bestätigen und Bewerten.
 Ein sauber berichteter, aber noch unbewerteter Eintrag.
 
 ### Governance-Frage
-[[Frühwarnung]]: Bis wann ist `FRW-001` bestätigt oder verworfen?
+[[Frühwarnung]]: Bis wann wird `FRW-001` bestätigt?
 :::
 
 ::: rueckbezug A
@@ -79,12 +79,6 @@ In Welt A haben Sie ‚Mensa einplanen‘ gewählt. In Welt B wird aus der Flurz
 
 ::: rueckbezug ohne
 In Welt A kamen Anruf und Mail am selben Tag – und blieben im Postfach. In Welt B haben beide eine Kennung und einen Weg.
-:::
-
-::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
-Die Geschichte merkt sich Ihre Wahl.
 :::
 
 ::: regie

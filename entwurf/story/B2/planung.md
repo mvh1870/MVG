@@ -1,7 +1,7 @@
 ---
 station: B2
 rolle: planung
-frage: "`FRW-001` und `AEN-012` sind erfasst. Was liefern Sie zu?"
+frage: FRW-001 und AEN-012 sind erfasst. Was liefern Sie zu?
 rueckbezug-auf: A2
 ---
 
@@ -79,12 +79,6 @@ In Welt A haben Sie ‚Lieferzeit bewerten‘ gewählt. In Welt B bleibt die Bew
 
 ::: rueckbezug ohne
 In Welt A wurden Anruf und Mail zu einer Flurzusage und einer Terminmail. In Welt B werden sie zu `FRW-001` und `AEN-012`.
-:::
-
-::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
-Die Geschichte merkt sich Ihre Wahl.
 :::
 
 ::: regie

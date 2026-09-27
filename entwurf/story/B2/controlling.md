@@ -81,12 +81,6 @@ In Welt A haben Sie ‚Zusage klären lassen‘ gewählt. In Welt B braucht es d
 In Welt A kamen Anruf und Mail am selben Tag – und gingen in keine Liste. In Welt B sind sie `FRW-001` und `AEN-012`, jede mit Rolle und nächstem Schritt.
 :::
 
-::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
-Die Geschichte merkt sich Ihre Wahl.
-:::
-
 ::: regie
 ### Notiz
 Das Controlling sitzt im Änderungsgremium und liefert die Kostenseite. Zeigen, dass eine vorweggenommene Zahl (Option C) Zahl und Beschlusslage auseinanderlaufen lässt.

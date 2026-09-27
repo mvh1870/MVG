@@ -27,7 +27,7 @@ Ein Risiko mehr im Blick, keines mehr im Dunkeln.
 
 ::: option B
 ---
-titel: Die Planung am priorisierten Zielsystem ausrichten
+titel: Die Planung am Zielsystem und seiner Priorität ausrichten
 kurz: Am Zielsystem ausrichten
 status:
   entscheidungsfaehigkeit: +1
@@ -70,7 +70,7 @@ In Welt A haben Sie ‚Variante vorrechnen‘ gewählt. In Welt B wird aus der R
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Zielpriorität erfragen‘ gewählt. In Welt B müssen Sie nicht fragen: Das Zielsystem ist priorisiert, die Abwägungsregeln stehen fest.
+In Welt A haben Sie ‚Zielpriorität erfragen‘ gewählt. In Welt B müssen Sie nicht fragen: Das Zielsystem ist angelegt, seine Priorität legt der Bauherr fest.
 :::
 
 ::: rueckbezug C

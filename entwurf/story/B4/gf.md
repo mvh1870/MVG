@@ -16,13 +16,13 @@ status:
 Das Gremium beschließt `AEN-031`; grob 0,4 Mio. € liegen in seinem Mandat. Soll die Deckung aus der Risikoreserve kommen, geht eine Vorlage an Dr. Miriam Olbers – deren Freigabe bleibt beim Bauherrn.
 
 ### Was fehlt
-Die [[Freigabe]] des Einsatzes der Risikoreserve durch den Bauherrn.
+Die Freigabe des Einsatzes der Risikoreserve durch den Bauherrn ([[Nichtdelegierbare Bauherrenverantwortung]]).
 
 ### Neues Risiko
 Gering: Zwischen Beschluss und Freigabe liegt eine offene Entscheidung, mit Frist.
 
 ### Governance-Frage
-Wer gibt den Einsatz der Risikoreserve frei – und auf welcher Vorlage?
+[[Nichtdelegierbare Bauherrenverantwortung]]: Wer gibt den Einsatz der Risikoreserve frei – und auf welcher Vorlage?
 :::
 
 ::: option B
@@ -79,12 +79,6 @@ In Welt A haben Sie ‚Vorab mit dem Vorsitz reden‘ gewählt. In Welt B liegt 
 
 ::: rueckbezug ohne
 In Welt A vertagte der Bauausschuss in diesem Monat. In Welt B entscheidet das Änderungsgremium, und der Ausschuss bekommt den Managementbericht.
-:::
-
-::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
-Die Geschichte merkt sich Ihre Wahl.
 :::
 
 ::: regie

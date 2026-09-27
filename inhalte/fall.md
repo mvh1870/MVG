@@ -64,7 +64,7 @@ Monat 0 ist Dezember 2025; Monat 5 ist Mai 2026 („Kostenprognose 2026-05“). 
 | 6 | Jun 2026 | LPH 5 | Baugenehmigung mit Brandschutzauflagen zum Holzbau. | – |
 | 7 | Jul 2026 | LPH 5 | Bauausschuss vertagt (Welt A: 40-Seiten-Bericht ohne Entscheidungsfrage). | A4/B4 |
 | 8 | Aug 2026 | LPH 5 | Sommerpause von Stadtrat und Bauausschuss. | – |
-| 9 | Sep 2026 | LPH 5 | Folgekosten: Auflagen, Mensa-Umplanung, Nachtrag der Generalplanung; Frage nach der Risikoreserve. | A5/B5 |
+| 9 | Sep 2026 | LPH 5 | Folgekosten: Auflagen, Mensa-Umplanung mit Nachtrag der Generalplanung, Nachtrag der TGA-Fachplanung; Frage nach der Risikoreserve. | A5/B5 |
 | 11 | Nov 2026 | LPH 5 | Die Freigabe zum Abschluss von LPH 5 steht an; Holger Stein fällt für Wochen aus; eine Fraktion im Stadtrat fragt nach Kosten und Termin. | A6/B6 |
 | 12 | Dez 2026 | LPH 5 | Zurück in Welt A: Wirklichkeit, drei mögliche Ausgänge. | Wirklichkeit |
 

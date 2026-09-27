@@ -21,7 +21,7 @@ weiter: A6
 titel: Mittwoch, 14:00 Uhr. Monat 9.
 kurz: Einstieg
 ---
-Die Baugenehmigung aus dem Juni brachte Brandschutzauflagen zum Holzbau, grob 0,4 Mio. €. Die Mensa wurde informell umgeplant; die Generalplanung kündigt einen Nachtrag zur Mensa-Umplanung an, der Nachtrag der TGA-Fachplanung liegt vor. Aylin Kaya stellt fest: Die Risikoreserve ist zu einem guten Teil schon verplant – freigegeben hat das niemand.
+Die Brandschutzauflagen aus dem Juni schlagen mit grob 0,4 Mio. € zu Buche. Die Mensa wurde informell umgeplant; die Generalplanung kündigt einen Nachtrag zur Mensa-Umplanung an, der Nachtrag der TGA-Fachplanung liegt vor. Aylin Kaya stellt fest: Die Risikoreserve ist zu einem guten Teil schon verplant – freigegeben hat das niemand.
 :::
 
 ::: schritt entscheidung

@@ -16,7 +16,7 @@ status:
 Die Vorlage der Bauherren-PL beruht auf einem Stand mit Version und Datum; Ihre CTC und die Prognose der Projektsteuerung sind darin abgeglichen. Dr. Olbers entscheidet auf dieser Grundlage selbst.
 
 ### Was fehlt
-Die Zusage, dass Holger Steins Vertretung die Prognose bis zu seiner Rückkehr weiterführt.
+Die Zusage, dass Holger Steins Stellvertretung die Prognose bis zu seiner Rückkehr weiterführt.
 
 ### Neues Risiko
 Gering – solange der Turnus auch ohne Stein gehalten wird.
@@ -79,12 +79,6 @@ In Welt A haben Sie ‚Bandbreite melden‘ gewählt. In Welt B gibt es statt ei
 
 ::: rueckbezug ohne
 In Welt A fiel mit Holger Stein das Kostenwissen aus. In Welt B fällt nur eine Person aus – der Datenstand bleibt.
-:::
-
-::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
-Die Geschichte merkt sich Ihre Wahl.
 :::
 
 ::: regie

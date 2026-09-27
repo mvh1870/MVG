@@ -21,7 +21,7 @@ Eine Beauftragung der Änderung – und die Freigabe des Einsatzes der Risikores
 Die Reserve schmilzt, ohne dass der Bauherr es entschieden hat.
 
 ### Governance-Frage
-Wer gibt den Einsatz der Risikoreserve frei?
+[[Nichtdelegierbare Bauherrenverantwortung]]: Wer gibt den Einsatz der Risikoreserve frei?
 :::
 
 ::: option B
@@ -65,9 +65,7 @@ Welche dieser Kosten muss der Bauherr selbst akzeptieren?
 :::
 
 ::: nachsatz
-Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
-
-Die Geschichte merkt sich Ihre Wahl.
+Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
 :::
 
 ::: regie

@@ -21,7 +21,7 @@ Eine Freigabe des Einsatzes der Risikoreserve durch den Bauherrn, auf einem bena
 Kenntnisnahme wird später als Freigabe gelesen – ohne Nachweis, wer was angenommen hat.
 
 ### Governance-Frage
-Wer gibt den Einsatz der Risikoreserve frei – und ist das delegierbar?
+[[Nichtdelegierbare Bauherrenverantwortung]]: Wer gibt den Einsatz der Risikoreserve frei – und ist das delegierbar?
 :::
 
 ::: option B
@@ -54,7 +54,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Sie rufen Dr. Miriam Olbers an. Sie will eine Aufstellung bis nächste Woche; Projektsteuerung und Controlling liefern zwei. Das Problem ist jetzt oben – mit zwei Zahlen.
+Sie rufen Dr. Miriam Olbers an. Dr. Olbers will eine Aufstellung bis nächste Woche; Projektsteuerung und Controlling liefern zwei. Das Problem ist jetzt oben – mit zwei Zahlen.
 
 ### Was fehlt
 Ein [[Datenstand]], der für die Freigabe gilt.
@@ -67,9 +67,7 @@ Welche Mindestgrundlagen braucht der Bauherr, um den Einsatz der Reserve freizug
 :::
 
 ::: nachsatz
-Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
-
-Die Geschichte merkt sich Ihre Wahl.
+Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
 :::
 
 ::: regie

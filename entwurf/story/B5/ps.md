@@ -62,7 +62,7 @@ Der Reservestand für die Vorlage an den Bauherrn.
 Die Freigabe der Reserve verzögert sich um einen Monat.
 
 ### Governance-Frage
-[[Freigabe]]: Bis wann braucht der Bauherr die Vorlage zur Reserve?
+[[Nichtdelegierbare Bauherrenverantwortung]]: Bis wann braucht der Bauherr die Vorlage zur Reserve?
 :::
 
 ::: rueckbezug A
@@ -79,12 +79,6 @@ In Welt A haben Sie ‚Mehrkosten getrennt ausweisen‘ gewählt. In Welt B gibt
 
 ::: rueckbezug ohne
 In Welt A war die Reserve im September zu einem guten Teil verplant, ohne Freigabe. In Welt B entscheidet der Bauherr, bevor sie eingesetzt wird.
-:::
-
-::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
-Die Geschichte merkt sich Ihre Wahl.
 :::
 
 ::: regie

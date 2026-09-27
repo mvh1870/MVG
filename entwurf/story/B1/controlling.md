@@ -22,7 +22,7 @@ Schwellenwerte, ab denen eine Abweichung als Signal gilt.
 Abweichungen werden gesehen, aber nichts wird ausgelöst.
 
 ### Governance-Frage
-[[CTC]]: Ab welcher Abweichung wird aus einer Zahl ein Signal?
+[[Frühwarnung]]: Ab welcher Abweichung wird aus einer Zahl ein Signal?
 :::
 
 ::: option B

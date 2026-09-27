@@ -6,7 +6,7 @@ rueckbezug-auf: A1
 ---
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Berichten lassen‘ gewählt. In Welt B wartet der Zielkonflikt nicht auf einen Sachstand: Das Zielsystem ist priorisiert, und was davon abweicht, kommt als Entscheidungsfrage zu Ihnen.
+In Welt A haben Sie ‚Berichten lassen‘ gewählt. In Welt B wartet der Zielkonflikt nicht auf einen Sachstand: Das Zielsystem ist angelegt, seine Priorität legen Sie fest, und was davon abweicht, kommt als Entscheidungsfrage zu Ihnen.
 :::
 
 ::: rueckbezug B

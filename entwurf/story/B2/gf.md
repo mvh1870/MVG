@@ -13,7 +13,7 @@ status:
   offene-risiken: -1
 ---
 ### Konsequenz
-Sie rufen Sabine Roth an: Der Wunsch ist beantragt, entschieden wird im Änderungsgremium. Sie ist nicht begeistert, weiß aber, wann und wo.
+Sie rufen Sabine Roth an: Der Wunsch ist beantragt, entschieden wird im Änderungsgremium. Sabine Roth ist nicht begeistert, weiß aber, wann und wo.
 
 ### Was fehlt
 Die bewertete Auswirkung von `AEN-012` auf Kosten, Termin und Risiko.
@@ -79,12 +79,6 @@ In Welt A haben Sie ‚In den Lenkungskreis‘ gewählt. In Welt B landet die Li
 
 ::: rueckbezug ohne
 In Welt A kamen an diesem Tag derselbe Anruf und dieselbe Mail. In Welt B haben beide eine Kennung und einen Weg.
-:::
-
-::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
-Die Geschichte merkt sich Ihre Wahl.
 :::
 
 ::: regie

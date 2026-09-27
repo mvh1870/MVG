@@ -81,12 +81,6 @@ In Welt A haben Sie ‚Schwellenwert vorschlagen‘ gewählt. In Welt B stehen S
 In Welt A lagen 40 Seiten ohne Frage auf dem Tisch. In Welt B liegt eine Vorlage im Änderungsgremium, und Sie stimmen mit ab.
 :::
 
-::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
-Die Geschichte merkt sich Ihre Wahl.
-:::
-
 ::: regie
 ### Notiz
 Das Controlling stimmt im Änderungsgremium mit. Zeigen, dass der Beschluss über die Änderung und die Freigabe der Reserve zwei Entscheidungen sind.

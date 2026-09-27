@@ -21,7 +21,7 @@ weiter: A5
 titel: Donnerstag, 17:00 Uhr. Monat 7.
 kurz: Einstieg
 ---
-Bauausschuss im Juli. Auf dem Tisch liegt der monatliche Statusbericht: 40 Seiten, Ampeln auf Gelb und Rot, keine Entscheidungsfrage. Bernd Kowalski fragt zweimal, worüber der Ausschuss eigentlich entscheiden soll. Vertagt.
+Seit Juni liegt die Baugenehmigung vor – mit Brandschutzauflagen zum Holzbau, grob 0,4 Mio. €. Bauausschuss im Juli. Auf dem Tisch liegt der monatliche Statusbericht: 40 Seiten, Ampeln auf Gelb und Rot, keine Entscheidungsfrage. Bernd Kowalski fragt zweimal, worüber der Ausschuss eigentlich entscheiden soll. Vertagt.
 :::
 
 ::: schritt entscheidung

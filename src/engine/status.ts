@@ -138,13 +138,44 @@ export function istVollstaendigerStart(wirkung: readonly WirkEintrag[]): boolean
 /** Der Teil des Zustands, den die Neuberechnung liest. */
 export type StatusQuelle = Pick<Zustand, 'verlauf' | 'rolle' | 'entscheidungen' | 'info'>;
 
+/** Zahlenwert eines Statuswerts (Stufen als Index 0–3), für das Spur-Delta. */
+function zahl(s: Readonly<Status>, k: StatusSchluessel): number {
+  const w = s[k];
+  return typeof w === 'number' ? w : STUFEN.indexOf(w);
+}
+
+/** Spur-Delta je Welt: was die bisherigen Wahlen gegenüber den Startständen verschoben haben. */
+type Delta = Partial<Record<StatusSchluessel, number>>;
+
+/** Größte Nachwirkung früherer Wahlen je Wert und Station (L-21): der Trend der Welt bleibt erzählt. */
+export const SPUR_GRENZE = 1;
+
+function kappe(x: number): number {
+  return Math.max(-SPUR_GRENZE, Math.min(SPUR_GRENZE, x));
+}
+
+/** Startstand plus gekapptes Spur-Delta. */
+function mitDelta(start: Status, delta: Delta): Status {
+  const w: WirkEintrag[] = [];
+  for (const k of STATUS_SCHLUESSEL) {
+    const d = kappe(delta[k] ?? 0);
+    if (d !== 0) w.push({ schluessel: k, art: 'aendere', wert: d, hinweis: start.hinweise[k] ?? null });
+  }
+  return wendeWirkung(start, w);
+}
+
 function wendeStation(
   st: ModellStation,
   z: StatusQuelle,
   vorher: Status | null,
-): Status | null {
+  delta: Delta,
+): { status: Status | null; delta: Delta } {
   let s = vorher;
-  if (st.statusStart !== null) s = wendeWirkung(null, st.statusStart);
+  let basis: Status | null = null;
+  if (st.statusStart !== null) {
+    basis = mitDelta(wendeWirkung(null, st.statusStart), delta);
+    s = basis;
+  }
   for (const info of st.infos) {
     if (z.info.includes(`${st.id}/${info.id}`)) s = wendeWirkung(s, info.wirkung);
   }
@@ -154,25 +185,36 @@ function wendeStation(
     const option = ent.optionen.find((o) => o.id === wahl);
     if (option !== undefined) s = wendeWirkung(s, option.wirkung);
   }
-  return s;
+  // Delta nachführen: Was diese Station (Informationen, Wahl) gegenüber ihrem Stand bewegt hat,
+  // wirkt in der nächsten Station derselben Welt gekappt nach. Ohne Startstand zählt der Stand davor.
+  const bezug = basis ?? vorher;
+  const neu: Delta = { ...delta };
+  if (s !== null && bezug !== null) {
+    for (const k of STATUS_SCHLUESSEL) neu[k] = kappe((basis !== null ? kappe(delta[k] ?? 0) : (delta[k] ?? 0)) + zahl(s, k) - zahl(bezug, k));
+  }
+  return { status: s, delta: neu };
 }
 
 /**
- * Status beider Welten aus dem Verlauf: je Station `status-start`, dann angeforderte
- * Informationen, dann die Wahl der gespielten Rolle. Eine Vergleichsstation zeigt vorab den
- * Startstand ihrer Welt-B-Station (der Regler blendet ihn ein).
+ * Status beider Welten aus dem Verlauf: je Station `status-start` (plus Nachwirkung der bisherigen
+ * Wahlen dieser Welt, je Wert höchstens ±1, L-21), dann angeforderte Informationen, dann die Wahl der
+ * gespielten Rolle. Eine Station ohne `status-start` rechnet mit dem Stand ihrer Welt weiter (L-19).
+ * Eine Vergleichsstation zeigt vorab den Startstand ihrer Welt-B-Station (der Regler blendet ihn ein).
  */
 export function berechneStatus(z: StatusQuelle, modell: StoryModell): { A: Status | null; B: Status | null } {
   const erg: { A: Status | null; B: Status | null } = { A: null, B: null };
+  const delta: { A: Delta; B: Delta } = { A: {}, B: {} };
   for (const id of z.verlauf) {
     const st = modell.stationen[id];
     if (st === undefined) continue;
     if (st.vergleich !== null) {
       const b = modell.stationen[st.vergleich.b];
-      if (b !== undefined && b.welt !== null && b.statusStart !== null) erg[b.welt] = wendeWirkung(null, b.statusStart);
+      if (b !== undefined && b.welt !== null && b.statusStart !== null) erg[b.welt] = mitDelta(wendeWirkung(null, b.statusStart), delta[b.welt]);
     }
     if (st.welt === null) continue;
-    erg[st.welt] = wendeStation(st, z, erg[st.welt]);
+    const r = wendeStation(st, z, erg[st.welt], delta[st.welt]);
+    erg[st.welt] = r.status;
+    delta[st.welt] = r.delta;
   }
   return erg;
 }

@@ -106,6 +106,8 @@ Schreibweise eines Werts: `4` (setzen) · `+1` / `-1` (ändern um; bei Stufen um
 
 Die Engine rechnet den Status jedes Mal aus dem Verlauf neu (Stationen in Reihenfolge: `status-start`, dann angeforderte Informationen, dann die Wahl). Eine geänderte Wahl verschiebt den Status also sauber zurück.
 
+Nachwirkung (L-21): Was Informationen und Wahl an einer Station gegenüber ihrem Stand bewegt haben, wirkt in der nächsten Station **derselben Welt** nach – auf deren `status-start` wird je Wert höchstens ±1 aufgeschlagen (Stufen um eine Stufe). So bleibt der erzählte Trend der Welt erhalten, und die Spur zählt trotzdem. Eine Station **ohne** `status-start` (z. B. die Wirklichkeit) rechnet mit dem laufenden Stand ihrer Welt weiter (L-19).
+
 ### 2.8 Bedingungen
 Für `weiter` (Abschnitt 3.3). Eine Bedingung je Zeile; eine Liste unter `wenn` heißt „alle“, unter `wenn-eine` heißt „mindestens eine“.
 

@@ -5,7 +5,11 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { pruefeEntwurf } from '../werkzeuge/entwurf.mjs';
 import { wendeWirkung } from '../src/engine/status.ts';
-import type { Status } from '../src/engine/typen.ts';
+import type { Aktion, Status, StoryModell } from '../src/engine/typen.ts';
+import { wende } from '../src/engine/aktionen.ts';
+import { anfangszustand } from '../src/engine/zustand.ts';
+import { aktuellerSchritt } from '../src/engine/graph.ts';
+import { rueckbezug } from '../src/engine/gedaechtnis.ts';
 
 const ROLLEN = ['gf', 'bauherr', 'pl', 'ps', 'planung', 'controlling'];
 const erg = await pruefeEntwurf();
@@ -36,6 +40,39 @@ test('Entwurf: jede Rolle erreicht über die Wirklichkeit jedes Ende (A → steu
     assert.deepEqual(opt.map((o: any) => o.id), ['A', 'B', 'C'], r);
     for (const o of opt) {
       for (const vorher of [a6, wendeWirkung(null, [])]) assert.equal(ende(wendeWirkung(vorher, o.wirkung)), soll[o.id], `${r}/${o.id}`);
+    }
+  }
+});
+
+test('Entwurf mit dem Reducer durchgespielt: jede Rolle vom Prolog bis zum Epilog, jedes Ende, Rückbezüge in Welt B', () => {
+  const m = erg.inhalte as StoryModell;
+  const soll: Record<string, string> = { A: 'ende-steuerbar', B: 'ende-auflagen', C: 'ende-neufestlegung' };
+  for (const r of ROLLEN) {
+    for (const [wahl, ende] of Object.entries(soll)) {
+      let z = anfangszustand();
+      const tu = (a: Aktion): void => { z = wende(z, a, m); };
+      tu({ art: 'starteStory' });
+      tu({ art: 'waehleRolle', rolle: r });
+      const besucht: string[] = [];
+      let rueckbezuege = 0;
+      for (let i = 0; i < 2000; i++) {
+        const st = z.station;
+        if (st !== null && besucht[besucht.length - 1] !== st) besucht.push(st);
+        const s = aktuellerSchritt(z, m);
+        if (s?.art === 'entscheidung' && st !== null) {
+          const ent = m.stationen[st]?.szenen[r]?.entscheidung;
+          if (ent !== undefined && ent !== null && z.entscheidungen[ent.id] === undefined) tu({ art: 'waehle', option: st === 'wirklichkeit' ? wahl : 'A' });
+        }
+        if (s?.art === 'rueckbezug' && rueckbezug(z, m)?.option !== undefined) rueckbezuege += 1;
+        const vorher = z;
+        tu({ art: 'weiter' });
+        if (z === vorher) break; // Ende erreicht (oder festgefahren – die Prüfung unten sagt, welches)
+      }
+      assert.equal(besucht[besucht.length - 1], 'epilog', `${r}/${wahl}: endet im Epilog, nicht in ${besucht[besucht.length - 1]}`);
+      assert.ok(besucht.includes(ende), `${r}/${wahl}: Ende ${ende} (Weg: ${besucht.join(' → ')})`);
+      for (const n of ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'wendepunkt', 'rueckspulen', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'wirklichkeit']) assert.ok(besucht.includes(n), `${r}/${wahl}: ${n} besucht`);
+      assert.ok(rueckbezuege >= 6, `${r}/${wahl}: Rückbezüge in Welt B greifen (${rueckbezuege})`);
+      assert.ok(z.status.A !== null && z.status.B !== null);
     }
   }
 });

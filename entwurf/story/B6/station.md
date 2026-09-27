@@ -17,7 +17,7 @@ weiter: wirklichkeit
 ---
 
 ::: express
-Im Sommer entschied das Änderungsgremium auf Vorlage über die Brandschutzauflagen (`AEN-031`); der Bauausschuss bekam im Juli den Managementbericht mit der Beschlusslage. Im September kam der Nachtrag der TGA-Fachplanung als Problem `PRB-004`; über den Einsatz der Risikoreserve entscheidet Dr. Olbers auf Vorlage. Seit Oktober gilt die „Kostenprognose 2026-10 · Version 4“.
+Im Juni entschied das Änderungsgremium `ENT-017`: Die Fassade wird als Änderung `AEN-022` angepasst, die Risikoreserve blieb unberührt. Im Sommer entschied es auf Vorlage über die Brandschutzauflagen (`AEN-031`); der Bauausschuss bekam im Juli den Managementbericht mit der Beschlusslage. Im September kam der Nachtrag der TGA-Fachplanung als Problem `PRB-004`; über den Einsatz der Risikoreserve entscheidet Dr. Olbers auf Vorlage. Seit Oktober gilt die „Kostenprognose 2026-10 · Version 4“.
 :::
 
 ::: schritt einstieg
@@ -232,7 +232,7 @@ wert: Status in Vorbereitung · Ergebnis offen
 ::: bekannt
 - Die Freigabe zum Abschluss von LPH 5 steht an, Status „in Vorbereitung“. Die Kernfrage lautet, ob Vergabe und Ausführung ohne Planungsvorbehalte starten können.
 - Die Bauherren-PL legt die Vorlage vor, der Lenkungskreis berät am Dienstag, 17. November; die Freigabe erteilt Dr. Olbers selbst.
-- Holger Stein fällt für Wochen aus; eine Stellvertretung im Team der Projektsteuerung ist benannt. Verbindlicher Datenstand ist die „Kostenprognose 2026-10 · Version 4“; sie ersetzt Version 3 und enthält die seit Mai beschlossenen Änderungen, die Annahmen stehen darin. `PRB-004` ist nicht enthalten.
+- Holger Stein fällt für Wochen aus; eine Stellvertretung im Team der Projektsteuerung ist benannt. Verbindlicher Datenstand ist die „Kostenprognose 2026-10 · Version 4“; sie ersetzt Version 3 und enthält die beschlossenen Änderungen `AEN-012`, `AEN-022` und `AEN-031`, die Annahmen stehen darin. `PRB-004` ist nicht enthalten.
 - Die Generalplanung führt eine Liste offener Punkte zur Ausführungsplanung.
 - Die Fraktion erwartet bis Freitag, 13. November, eine Antwort zu Kosten und Termin; beides steht im Managementbericht Oktober. Der Bauausschuss tagt am Donnerstag, 19. November.
 :::

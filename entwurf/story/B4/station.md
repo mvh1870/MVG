@@ -140,7 +140,7 @@ Entscheidungsfragen auf dem Tisch
 a: 1
 b: 0
 ---
-Vertagungen ohne Frage und Frist
+Vertagungen ohne Entscheidungsfrage
 :::
 
 ### Welt A

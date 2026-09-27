@@ -20,7 +20,8 @@
  * Popup (z. B. die Leinwand über `window.open`), Etikett „[Fenster n]“.
  *
  * Browser: Playwright-Chromium → Chrome (channel) → Edge (channel) → in der Cloud
- * (CLAUDE_CODE_REMOTE=true) einmal `npx playwright install chromium` und erneut → sonst
+ * (CLAUDE_CODE_REMOTE=true) das vorinstallierte Chromium unter PLAYWRIGHT_BROWSERS_PATH/chromium, danach
+ * einmal `npx playwright install chromium` und erneut → sonst
  * „ÜBERSPRUNGEN: kein Browser – <Grund>“. Wo der Browser Pflicht ist (MVG_BROWSER_PFLICHT=1 oder
  * in der GitHub-Aktion, GITHUB_ACTIONS=true), ist „kein Browser“ ein Befund (Exitcode 1), kein Übersprung.
  *
@@ -96,6 +97,16 @@ export async function starteBrowser(optionen = {}) {
     }
   }
   if (umgebung['CLAUDE_CODE_REMOTE'] === 'true') {
+    // Die Cloud bringt oft ein vorinstalliertes Chromium mit (PLAYWRIGHT_BROWSERS_PATH/chromium);
+    // es passt nicht immer zur Playwright-Version, trägt die Oberflächenprüfung aber ohne Download.
+    const vorhanden = umgebung['PLAYWRIGHT_BROWSERS_PATH'] ? path.join(umgebung['PLAYWRIGHT_BROWSERS_PATH'], 'chromium') : null;
+    if (vorhanden !== null && existsSync(vorhanden)) {
+      try {
+        return { browser: await chromium.launch({ headless: true, timeout: LADEN_MS, executablePath: vorhanden }), name: `Chromium (vorinstalliert, ${vorhanden})` };
+      } catch (fehler) {
+        gruende.push(`vorinstalliert: ${kurz(fehler).slice(0, 200)}`);
+      }
+    }
     console.log('oberflaeche: kein Browser gefunden – Cloud: einmal „npx playwright install chromium“');
     const install = installiere();
     if (install.status === 0 && install.fehler === null) {

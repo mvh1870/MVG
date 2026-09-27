@@ -247,6 +247,29 @@ describe('oberflaeche: Cloud-Zweig (einmal installieren)', () => {
     assert.ok('name' in erg);
     assert.equal(erg.name, 'Playwright-Chromium (frisch installiert)');
   });
+
+  test('Cloud mit vorinstalliertem Chromium → Start über executablePath, keine Installation', async (t) => {
+    const ordner = await mkdtemp(path.join(ablage, 'pw-'));
+    await writeFile(path.join(ordner, 'chromium'), '');
+    const attrappe = { version: () => 'Attrappe' };
+    const pfade: Array<string | undefined> = [];
+    t.mock.method(chromium, 'launch', async (optionen?: { executablePath?: string }) => {
+      pfade.push(optionen?.executablePath);
+      if (optionen?.executablePath === undefined) throw new Error('Attrappe: kein Browser');
+      return attrappe;
+    });
+    let installiert = 0;
+    const erg = await starteBrowser({
+      umgebung: { CLAUDE_CODE_REMOTE: 'true', PLAYWRIGHT_BROWSERS_PATH: ordner },
+      installiere: () => {
+        installiert += 1;
+        return { status: 0, fehler: null };
+      },
+    });
+    assert.equal(erg.browser, attrappe);
+    assert.equal(installiert, 0);
+    assert.deepEqual(pfade, [undefined, undefined, undefined, path.join(ordner, 'chromium')]);
+  });
 });
 
 describe('Werkzeuge laufen auch über einen Link', () => {

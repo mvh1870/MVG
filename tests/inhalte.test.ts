@@ -447,7 +447,7 @@ test('Beispiel → erwartetes JSON (Auszüge exakt), fehlerfrei, deterministisch
       'k2.4-p2': { theorie: ['k02'], story: ['X1'] },
     },
   });
-  assert.deepEqual(i.glossar['g-mandat'], { id: 'g-mandat', begriff: 'Mandat', definition: 'Klar zugewiesene Entscheidungsbefugnis.' });
+  assert.deepEqual(i.glossar['g-mandat'], { id: 'g-mandat', begriff: 'Mandat', definition: 'Klar zugewiesene Entscheidungsbefugnis.', vorkommen: { stationen: ['X1'], kapitel: [] } });
   assert.equal(i.einwaende[0]?.id, 'berichte');
 
   // Datei = stabiles JSON; zweiter Lauf byteweise gleich; Schlüssel sortiert

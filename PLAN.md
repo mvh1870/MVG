@@ -69,10 +69,10 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P6.4 (Commit „MVG P6.2–P6.6“; Prüfung 32 Befunde + Runde 2) · Kap. 3 Begriffsrahmen
 - [x] P6.5 (Commit „MVG P6.2–P6.6“; Prüfung 32 Befunde + Runde 2) · Kap. 4 Verantwortungsfelder
 - [x] P6.6 (Commit „MVG P6.2–P6.6“; Prüfung 32 Befunde + Runde 2) · Kap. 5 MVG als Bauherren-Führungsmodell
-- [~] P6.7 (2026-09-27, geschrieben, Prüfbefunde in Arbeit) · Kap. 6 MVG Companion (inkl. 6.4 Zusammenarbeit, Governance-Fluss)
-- [~] P6.8 (2026-09-27, geschrieben, Prüfbefunde in Arbeit) · Kap. 7 Leistungsarchitektur
-- [~] P6.9 (2026-09-27, geschrieben, Prüfbefunde in Arbeit) · Kap. 8 Implementierung
-- [~] P6.10 (2026-09-27, geschrieben, Prüfbefunde in Arbeit) · Kap. 9 Ergebnisbild und Ergebnisse
+- [x] P6.7 (2026-09-27, zwei Prüfrunden, ohne Befund) · Kap. 6 MVG Companion (inkl. 6.4 Zusammenarbeit, Governance-Fluss)
+- [x] P6.8 (2026-09-27, zwei Prüfrunden, ohne Befund) · Kap. 7 Leistungsarchitektur
+- [x] P6.9 (2026-09-27, zwei Prüfrunden, ohne Befund) · Kap. 8 Implementierung
+- [x] P6.10 (2026-09-27, zwei Prüfrunden, ohne Befund) · Kap. 9 Ergebnisbild und Ergebnisse
 - [ ] P6.11 · Kap. 10 Anwendungssituationen
 - [ ] P6.12 · Kap. 11 MVG-Neuinitialisierung
 - [ ] P6.13 · Kap. 12 Was Bauherren gewinnen

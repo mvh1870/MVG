@@ -8,7 +8,7 @@ titel: Leistungsarchitektur von Bauherr Mentoren
 kurztitel: Leistungsarchitektur
 story: [wirklichkeit, epilog]
 ---
-Kapitel 7 beschreibt, wie Bauherr Mentoren den Weg von der Diagnose zur Anwendung von Minimum Viable Governance (MVG) gliedert: vier aufeinander folgende Leistungspakete und die MVG-Neuinitialisierung als Sonderformat. Jedes Paket nennt, was der Bauherr selbst beiträgt und entscheidet; zum Schluss zieht das Kapitel die Grenzen der Leistungen.
+Kapitel 7 beschreibt den Weg von der Diagnose zur Anwendung von Minimum Viable Governance (MVG): wie die Bauherrenorganisation ihre nichtdelegierbaren Verantwortungen sichtbar, entscheidungsfähig, nachweisbar und dauerhaft ausübbar macht. Bauherr Mentoren gliedert ihn in vier Leistungspakete entlang des Umsetzungspfads und die MVG-Neuinitialisierung als Sonderformat. Jedes Paket nennt, was der Bauherr selbst beiträgt und entscheidet; zum Schluss zieht das Kapitel die Grenzen der Leistungen.
 
 ::: kernaussage
 [[zitat:k7-p2|Der Umsetzungspfad folgt einer einfachen Logik: Diagnose, Konzeption, Pilotierung, Befähigung und Übergang in den Regelbetrieb.]]
@@ -18,11 +18,11 @@ Kapitel 7 beschreibt, wie Bauherr Mentoren den Weg von der Diagnose zur Anwendun
 ---
 titel: MVG-Reifegradanalyse
 ---
-Die MVG-Reifegradanalyse ist der Einstieg: ein evidenzbasiertes Lagebild dazu, ob der Bauherr seine Verantwortung ausüben kann. Gefragt wird nicht, ob Unterlagen vollständig wirken, sondern ob die Bauherrenorganisation ihre wesentlichen Entscheidungen, Mandate, Risikoannahmen, Freigaben, Datenstände und Nachweise beherrscht. Sie ist eine Methode von Bauherr Mentoren mit 10 Domänen und 49 Fragen; die sechs Verantwortungsfelder bleiben das Kernmodell.
+Die MVG-Reifegradanalyse ist der Einstieg: ein evidenzbasiertes Lagebild dazu, ob der Bauherr seine Verantwortung ausüben kann. Gefragt wird nicht, ob Unterlagen vollständig wirken, sondern ob die Bauherrenorganisation ihre wesentlichen Entscheidungen, Mandate, Risikoannahmen, Freigaben, Datenstände und Nachweise ausreichend beherrscht. Sie ist eine Methode von Bauherr Mentoren mit 10 Domänen und 49 Fragen; die sechs Verantwortungsfelder strukturieren als Kernmodell die Bauherrenverantwortung, gemessen wird über die Domänen.
 
 ::: tafel k7.1-t1
 ---
-form: rhythmus
+form: karten
 ---
 :::
 :::
@@ -35,7 +35,7 @@ Die Konzeption übersetzt den Befund in ein konkretes Bauherren-Führungsmodell:
 
 ::: tafel k7.2-t1
 ---
-form: rhythmus
+form: karten
 ---
 :::
 :::
@@ -48,7 +48,7 @@ Das Modell wird an realen Entscheidungen, Freigaben, Risiken oder Änderungen er
 
 ::: tafel k7.3-t1
 ---
-form: rhythmus
+form: karten
 ---
 :::
 :::
@@ -57,11 +57,11 @@ form: rhythmus
 ---
 titel: Befähigung und Übergabe
 ---
-Befähigung und Übergabe gehören zu jedem vollständigen MVG-Mandat. Sie richten sich an Bauherren-Projektleitung, Auftraggeberlogik, PMO, Projektsteuerung, Gremienrollen und ausgewählte Fachrollen: Diese sollen nicht nur wissen, welche Dokumente es gibt, sondern Entscheidungen vorbereiten, Schwellen anwenden, Datenstände referenzieren, Risiken eskalieren und Freigaben nachhalten können.
+Befähigung und Übergabe gehören zu jedem vollständigen MVG-Mandat. Die Befähigung richtet sich an Bauherren-Projektleitung, Auftraggeberlogik, PMO, Projektsteuerung, Gremienrollen und ausgewählte Fachrollen: Diese sollen nicht nur wissen, welche Dokumente es gibt, sondern Entscheidungen vorbereiten, Schwellen anwenden, Datenstände referenzieren, Risiken eskalieren und Freigaben nachhalten können.
 
 ::: tafel k7.4-t1
 ---
-form: rhythmus
+form: karten
 ---
 :::
 :::
@@ -74,7 +74,7 @@ Für laufende Projekte mit eingeschränkter Steuerbarkeit beschreibt das Whitepa
 
 ::: tafel k7.5-t1
 ---
-form: rhythmus
+form: karten
 ---
 :::
 :::
@@ -130,8 +130,8 @@ Was in jedem Paket beim Bauherrn liegt (Zeile „Rolle des Bauherrn“ der Tabel
 ---
 titel: Nachweis
 ---
-::: zitat k7.4-p1
-Befähigung und Übergabe sind Pflichtbestandteile eines vollständigen MVG-Mandats, weil das Bauherren-Führungsmodell nach Abschluss des Mandats in der Bauherrenorganisation tragfähig weiterlaufen muss.
+::: zitat k7-p2
+Der Umsetzungspfad folgt einer einfachen Logik: Diagnose, Konzeption, Pilotierung, Befähigung und Übergang in den Regelbetrieb. Für laufende Projekte mit eingeschränkter Steuerbarkeit kommt die MVG-Neuinitialisierung als gezieltes Sonderformat hinzu.
 :::
 :::
 :::

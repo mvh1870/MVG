@@ -92,6 +92,8 @@ const ARTEN = {
   },
   grafik: { in: ['schritt', '@theorie', 'abschnitt', 'ebene'], kennung: 'pflicht', kopf: { titel: { typ: 'text' }, untertitel: { typ: 'text' } }, felder: ['text'] },
   kette: { in: ['schritt'], kennung: 'keine', felder: [] },
+  // Glossarseite (P6.14): alle Begriffe aus whitepaper.json, durchsuchbar, mit „Kommt vor in“
+  glossar: { in: ['@theorie'], kennung: 'keine', felder: ['text'] },
   // RACI mit Mandat (P5.1, Kap. 9.2), Zuordnungen des fiktiven Falls
   raci: { in: ['schritt', '@theorie', 'abschnitt', 'ebene'], kennung: 'keine', kopf: { zeilen: { typ: 'raci', pflicht: true } }, felder: ['text'] },
   // Whitepaper-Tabelle als Grafik (P4, L-32): Zellen wörtlich aus whitepaper.json, Form aus src/grafik/tafel.ts
@@ -1668,7 +1670,17 @@ export async function kompiliere(optionen = {}) {
   // Glossar (alle Einträge, für Mouseover)
   /** @type {Record<string, any>} */
   const glossar = {};
-  for (const g of quelle?.glossar ?? []) glossar[g.id] = { id: g.id, begriff: g.begriff, definition: g.definition };
+  for (const g of quelle?.glossar ?? []) glossar[g.id] = { id: g.id, begriff: g.begriff, definition: g.definition, vorkommen: { stationen: [], kapitel: [] } };
+  // Wo ein Begriff vorkommt (P6.14, Glossarseite „Kommt vor in“): Stationen in Story-Reihenfolge, Kapitel aufsteigend
+  const inText = (/** @type {unknown} */ x) => new Set([...JSON.stringify(x).matchAll(/data-glossar=\\"([^"\\]+)\\"/gu)].map((m) => m[1]));
+  for (const id of stationsFolge(/** @type {any} */ (modell))) {
+    const st = stationen[id];
+    if (st === undefined) continue;
+    for (const g of inText(st)) if (glossar[g] !== undefined) glossar[g].vorkommen.stationen.push(id);
+  }
+  for (const t of Object.values(theorie).sort((a, b) => /** @type {any} */ (a).kapitel - /** @type {any} */ (b).kapitel)) {
+    for (const g of inText(t)) if (glossar[g] !== undefined && !glossar[g].vorkommen.kapitel.includes(/** @type {any} */ (t).kapitel)) glossar[g].vorkommen.kapitel.push(/** @type {any} */ (t).kapitel);
+  }
 
   // Abdeckung
   const abdeckung = baueAbdeckung(c, quelle, abdeckungRoh, stationen, theorie, pruefe);

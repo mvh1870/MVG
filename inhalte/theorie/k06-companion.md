@@ -21,7 +21,7 @@ Sieben Funktionslogiken spiegeln die Bausteine aus Kapitel 5.2. Jede nennt ihren
 
 ::: tafel k6.1-t1
 ---
-form: bausteine
+form: karten
 ---
 :::
 :::
@@ -43,7 +43,7 @@ form: rhythmus
 ---
 titel: Rahmenbedingungen und Datenstand
 ---
-Der Companion ist ein lokal lauffähiges, browserbasiertes Governance-Arbeitsbuch. Er kann vorhandene Register, RACI und Mandate, den Governance-Kalender und Managementberichte abbilden oder referenzieren; führend bleiben die vom Bauherrn freigegebenen Datenquellen und Dokumentenstände. Er arbeitet mit benannten, versionierten Informationen, und seine Ergebnisse prüfen die zuständigen Rollen, bevor sie in Freigaben oder Gremien verwendet werden.
+Der Companion ist ein lokal lauffähiges, browserbasiertes Governance-Arbeitsbuch. Er kann vorhandene Register, [[RACI]] und Mandate, den Governance-Kalender und Managementberichte abbilden oder referenzieren; führend bleiben die vom Bauherrn freigegebenen Datenquellen und Dokumentenstände. Er arbeitet mit benannten, versionierten Informationen, und seine Ergebnisse prüfen die zuständigen Rollen, bevor sie in Freigaben oder Gremien verwendet werden.
 
 ::: zitat k6.3-b1
 Der MVG Companion ersetzt keine Bauherrenentscheidung, keine Gremienfreigabe, keine Rechtsberatung, keine Fachplanung und keine Projektsteuerung.
@@ -119,7 +119,7 @@ form: karten
 ---
 titel: Kanonischer Governance-Fluss
 ---
-Ein Thema durchläuft eine feste Reihenfolge. Eine [[Frühwarnung]] ist zunächst ein unbewertetes Signal; erst bestätigt wird sie zum bewerteten Risiko. Überschreitungen von CTC oder Schwellenwerten laufen nicht zurück, sondern erzeugen neue Frühwarnungen. Beschlüsse werden als Maßnahmen mit verantwortlicher Rolle und Frist nachverfolgt.
+Der kanonische Governance-Fluss zeigt, wie ein Thema vom ersten Signal bis zum Managementbericht läuft. Eine [[Frühwarnung]] (EW) ist zunächst ein unbewertetes Signal; erst bestätigt wird sie zum bewerteten Risiko. Aus Risiken, Änderungen oder Problemen kann Entscheidungsbedarf entstehen. CTC- oder Schwellenwertverletzungen erzeugen neue Frühwarnungen, nicht eine Rückrichtung aus einem bestehenden Risiko. Beschlüsse werden als Maßnahmen mit verantwortlicher Rolle und Frist nachverfolgt.
 
 ::: zitat k6.4.3-p1
 EW (unbewertetes Signal) → bestätigt → Risiko → Entscheidung → Freigabe → Maßnahme → Managementbericht
@@ -143,7 +143,7 @@ form: register
 :::
 
 ::: zitat k6.4.4-p1
-Die Statusbegriffe bleiben vom Freigabeprozess getrennt: […] Freigaben – Status offen → in Vorbereitung → abgeschlossen und Ergebnis Freigabe / keine Freigabe / Freigabe mit Auflagen.
+Die Statusbegriffe bleiben vom Freigabeprozess getrennt: Entscheidungen – Offen · In Bearbeitung · Entscheidungsreif · Entschieden · Verworfen; Risiken – aktiv · beobachtet · gemindert · geschlossen; Änderungen – Beantragt · In Prüfung · Beschlossen · Abgelehnt · Umgesetzt; Freigaben – Status offen → in Vorbereitung → abgeschlossen und Ergebnis Freigabe / keine Freigabe / Freigabe mit Auflagen.
 :::
 :::
 
@@ -176,7 +176,7 @@ Der MVG Companion macht die vereinbarte MVG-Logik im Alltag anwendbar, ohne Ents
 ---
 titel: Warum relevant
 ---
-Die Zusammenarbeit beginnt bei der Zuständigkeit: [[zitat:k6.4.1-p1|Jedes Register hat eine verantwortliche Rolle, einen Pflegezyklus und einen definierten nächsten Schritt.]]
+Ohne Zusammenspiel keine Wirkung: [[zitat:k6.4-p1|Governance wirkt nur, wenn Register, Rollen und Taktung eindeutig zusammenarbeiten.]]
 :::
 
 ::: ebene 3
@@ -217,7 +217,7 @@ Welt B, Monat 1: Der Jour fixe ist der Ort der wöchentlichen Risikosichtung, da
 ---
 text: "In der Story erlebt: B2 · Erstes Signal – mit MVG"
 ---
-Welt B, Monat 3: Die Register-Abgrenzung gibt beiden Einträgen ihren Weg – die Lieferzeit wird Frühwarnung `FRW-002`, der Mensa-Wunsch wird Änderung `AEN-012` mit Freigabeweg.
+Welt B, Monat 3: Die Register-Abgrenzung gibt beiden Einträgen ihren Weg – die Lieferzeit wird Frühwarnung `FRW-002`, der Mensa-Wunsch wird Änderung `AEN-012` – nächster Schritt: Auswirkung und Freigabeweg.
 :::
 
 ::: querverweis B3

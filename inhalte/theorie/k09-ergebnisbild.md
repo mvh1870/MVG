@@ -8,7 +8,7 @@ titel: Ergebnisbild und Ergebnisse
 kurztitel: Ergebnisbild
 story: [B1, B3, B4, B6, ende-steuerbar, ende-auflagen]
 ---
-Kapitel 9 beschreibt, was am Ende eines Mandats für Minimum Viable Governance (MVG) vorliegt. Die fünf Abschnitte führen vom Mandats- und Verantwortungsmodell über RACI, das Leistungsphasen- und Freigabemodell LPH 0–9 und die Entscheidungsvorlage bis zum Betriebshandbuch – Objekte, die aufeinander verweisen.
+Kapitel 9 beschreibt, was am Ende eines Mandats zur Einführung von Minimum Viable Governance (MVG) vorliegt – die Ergebnisobjekte. Die fünf Abschnitte führen vom Mandats- und Verantwortungsmodell über RACI, das Leistungsphasen- und Freigabemodell LPH 0–9 und die Entscheidungsvorlage bis zum Betriebshandbuch – Objekte, die aufeinander verweisen.
 
 ::: kernaussage
 [[zitat:k9-p1|Die Ergebnisse eines MVG-Mandats sind Führungs- und Entscheidungsobjekte. Sie sind keine isolierten Vorlagen und keine methodische Sammlung. Ihr Wert entsteht durch den Zusammenhang: Das Mandat verweist auf eine Freigabe, die Freigabe auf eine Entscheidungs-ID, die Entscheidungs-ID auf den Datenstand, der Datenstand auf den Nachweis und der Nachweis auf die Beschlusslage.]]
@@ -18,7 +18,7 @@ Kapitel 9 beschreibt, was am Ende eines Mandats für Minimum Viable Governance (
 ---
 titel: Bauherren-Mandats- und Verantwortungsmodell
 ---
-Das Mandats- und Verantwortungsmodell ist das zentrale Ergebnisobjekt für die Frage, was beim Bauherrn verbleibt und was vorbereitet werden kann. Es verbindet Verantwortungsfelder, Rollen, Mandate, Schwellen, Freigaben und Eskalation und beantwortet acht Fragen – hier paarweise geordnet.
+Das Mandats- und Verantwortungsmodell ist das zentrale Ergebnisobjekt für die Frage, was beim Bauherrn verbleibt und was vorbereitet werden kann. Es verbindet Verantwortungsfelder, Rollen, Mandate, Schwellen, Freigaben und Eskalation und beantwortet insbesondere acht Fragen – hier paarweise geordnet.
 
 ::: karten
 ---
@@ -26,7 +26,7 @@ titel: Was das Modell beantwortet
 ---
 ::: karte 1
 ---
-titel: Verantwortung
+titel: Verantwortung und Vorbereitung
 ---
 [[zitat:k9.1-l1|Welche Bauherrenverantwortung ist betroffen?]]
 
@@ -98,7 +98,7 @@ form: phasen
 ---
 titel: Standard für Entscheidungsvorlagen als Nachweislogik
 ---
-Die [[Entscheidungsvorlage]] legt fest, welche Nachweislogik eine wesentliche Bauherrenentscheidung braucht, damit spätere Dritte sie nachvollziehen können. Ein guter Standard legt früh fest, welche Informationen wirklich entscheidungsrelevant sind – die Entscheidung wird dadurch nicht schwerer, sondern belastbarer. Die Karten ordnen die dreizehn Punkte der Checkliste; der Freigabeprozess steht darunter im Wortlaut.
+Die [[Entscheidungsvorlage]] beschreibt, welche Nachweislogik eine wesentliche Bauherrenentscheidung braucht, damit spätere Dritte sie nachvollziehen können. Das macht die Entscheidung nicht schwerer, sondern belastbarer; ein guter Standard legt früh fest, welche Informationen wirklich entscheidungsrelevant sind. Die Karten ordnen zwölf der dreizehn Punkte; der dreizehnte, der Freigabeprozess, steht darunter im Wortlaut.
 
 ::: karten
 ---
@@ -177,7 +177,7 @@ titel: Rollen und Takt
 
 ::: karte 2
 ---
-titel: Freigaben, Datenstand, Eskalation
+titel: Freigabevorbereitung, Nachweis, Eskalation, Risiken
 ---
 [[zitat:k9.5-l1|Freigabevorbereitung und Managementbericht zur Freigabe]]
 
@@ -190,7 +190,7 @@ titel: Freigaben, Datenstand, Eskalation
 
 ::: karte 3
 ---
-titel: Prüfen und Weiterentwickeln
+titel: Prüfen, Verbessern, Übergeben
 ---
 [[zitat:k9.5-l1|Prüfroutinen]]
 
@@ -234,7 +234,7 @@ Die Ergebnisobjekte laut den Abschnitten 9.1 bis 9.5:
 | Standard für Entscheidungsvorlagen (9.4) | Nachweislogik für wesentliche Bauherrenentscheidungen |
 | Betriebshandbuch (9.5) | wie MVG nach Abschluss des Mandats im Regelbetrieb weiterläuft |
 
-Verbunden sind sie über die Kette aus der Einleitung des Kapitels: Mandat → Freigabe → Entscheidungs-ID → Datenstand → Nachweis → Beschlusslage.
+Ihr Wert entsteht durch den Zusammenhang, wie ihn die Einleitung des Kapitels beschreibt: Mandat → Freigabe → Entscheidungs-ID → Datenstand → Nachweis → Beschlusslage.
 :::
 
 ::: ebene 4

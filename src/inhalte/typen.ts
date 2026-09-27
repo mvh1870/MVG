@@ -196,6 +196,8 @@ export interface GlossarEintrag {
   id: string;
   begriff: string;
   definition: string;
+  /** wo der Begriff markiert ist (P6.14): Stationen in Story-Reihenfolge, Kapitelnummern */
+  vorkommen: { stationen: string[]; kapitel: number[] };
 }
 
 export interface TheorieSeite {

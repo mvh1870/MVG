@@ -178,6 +178,25 @@ test('Vergleichsszene, Prüfliste, Fluss: Ziele und Kennungen', () => {
   assert.equal(idArt('RIS-014'), 'ris');
   assert.equal(idArt('PRB-004'), 'prb');
   assert.equal(idArt('X-1'), null);
+});
+
+test('Vorlage (L-40): ohne Kürzel keine ID-Marke, aria-label nur der Titel; mit Kürzel die Marke', async () => {
+  const { JSDOM } = (await import(String('jsdom'))) as { JSDOM: new (html: string) => { window: Window & typeof globalThis } };
+  const w = new JSDOM('<!doctype html><body></body>').window;
+  const g = globalThis as unknown as Record<string, unknown>;
+  const alt = { document: g['document'], Node: g['Node'] };
+  g['document'] = w.document; g['Node'] = w.Node;
+  try {
+    const { vorlage } = await import('../src/grafik/checkliste.ts');
+    const ohne = vorlage({ id: '', titel: 'Vorlage zur Freigabe zum Abschluss von LPH 5', meta: null, frage: w.document.createTextNode('?'), punkte: [] });
+    assert.equal(ohne.element.querySelector('.id-marke'), null);
+    assert.equal(ohne.element.getAttribute('aria-label'), 'Vorlage zur Freigabe zum Abschluss von LPH 5');
+    const mit = vorlage({ id: 'AEN-031', titel: 'Vorlage', meta: null, frage: w.document.createTextNode('?'), punkte: [] });
+    assert.equal(mit.element.querySelector('.id-marke')?.getAttribute('data-art'), 'aen');
+  } finally {
+    g['document'] = alt.document; g['Node'] = alt.Node;
+    w.close();
+  }
   assert.equal(FLUSS_POSITIONEN.length, 7);
   assert.ok(istFlussPosition('entscheidung'));
   assert.ok(!istFlussPosition('irgendwo'));

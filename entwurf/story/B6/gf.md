@@ -13,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: -1
 ---
 ### Konsequenz
-Kernfrage, Mindestgrundlagen, Mandat und Datenstand liegen vor. Der Lenkungskreis berät, Dr. Miriam Olbers erteilt die Freigabe selbst auf Vorlage der Bauherren-PL.
+Liegen Kernfrage, Mindestgrundlagen, Mandat und bestätigter Datenstand zum 17. November vor, berät der Lenkungskreis, und Dr. Miriam Olbers erteilt die Freigabe selbst auf Vorlage der Bauherren-PL.
 
 ### Was fehlt
 Für die Freigabe nichts, sofern Datenstand und Risikolage bis zum 17. November vorliegen; das Ergebnis wird dokumentiert.

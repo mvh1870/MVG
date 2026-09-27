@@ -139,3 +139,11 @@ test('Wendepunkt und Rückspulen zeigen keine Statusinstrumente (DREHBUCH: kein 
     assert.equal(instrumenteSichtbar(oeffentlich(z as any), erg.inhalte), false, station);
   }
 });
+
+test('Ihre Spur (E1, P5.8): Partner werden zu einer Zeile zusammengefasst, A links, B rechts, in Story-Reihenfolge', async () => {
+  const { spurZeilen } = await import('../src/ui/leitstand/spur.ts');
+  const e = (station: string, welt: 'A' | 'B', option: string, nr: number) => ({ nr, entscheidung: `${station}/pl`, station, welt, rolle: 'pl', option, wechsel: 0, zeit: null });
+  const spur = [e('A1', 'A', 'A', 1), e('A3', 'A', 'B', 2), e('A3', 'A', 'C', 3), e('B1', 'B', 'B', 4), e('B4', 'B', 'A', 5)];
+  const zeilen = spurZeilen(spur, erg.inhalte);
+  assert.deepEqual(zeilen.map((z: any) => [z.station, z.a?.option ?? null, z.b?.option ?? null]), [['A1', 'A', 'B'], ['A3', 'C', null], ['A4', null, 'A']]);
+});

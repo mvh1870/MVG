@@ -272,17 +272,17 @@ test('Leitstand: Sprunglink, Reiter nach dem Tabs-Muster, modale Rollen-Linse, G
     el.querySelector<HTMLElement>('[data-pruef="seitenleiste-raum"]')?.click();
     const reiter = [...el.querySelectorAll<HTMLElement>('[role="tab"]')];
     const panel = el.querySelector('[role="tabpanel"]');
-    assert.equal(reiter.length, 4);
+    assert.equal(reiter.length, 5, 'Raum, Ebenen, Glossar, Quellen, Spur (L-41)');
     assert.ok(panel?.id);
     for (const r of reiter) assert.equal(r.getAttribute('aria-controls'), panel.id);
-    assert.deepEqual(reiter.map((r) => r.tabIndex), [0, -1, -1, -1]);
+    assert.deepEqual(reiter.map((r) => r.tabIndex), [0, -1, -1, -1, -1]);
     assert.equal(panel.getAttribute('aria-labelledby'), reiter[0]?.id);
     const schritt = sitzung.zustand().schritt;
     const rechts = new dom.window.KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true, cancelable: true });
     reiter[0]?.dispatchEvent(rechts);
     assert.equal(rechts.defaultPrevented, true, 'der Pfeil gehört dem Reiter, nicht der Story');
-    assert.deepEqual(reiter.map((r) => r.getAttribute('aria-selected')), ['false', 'true', 'false', 'false']);
-    assert.deepEqual(reiter.map((r) => r.tabIndex), [-1, 0, -1, -1]);
+    assert.deepEqual(reiter.map((r) => r.getAttribute('aria-selected')), ['false', 'true', 'false', 'false', 'false']);
+    assert.deepEqual(reiter.map((r) => r.tabIndex), [-1, 0, -1, -1, -1]);
     assert.equal(panel.getAttribute('aria-labelledby'), reiter[1]?.id);
     assert.equal(sitzung.zustand().schritt, schritt);
 

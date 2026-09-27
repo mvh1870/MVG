@@ -547,10 +547,9 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
   color: var(--tinte-2);
   white-space: nowrap;
 }
-/* Vier Reiter in schmaler Seitenleiste (P2.3): kleiner und enger gesperrt, damit nichts überläuft */
-@media (max-width: 1199px) {
-  .reiter { padding-inline: 2px; font-size: 13px; letter-spacing: .02em; }
-}
+/* Fünf Reiter (P5.8): eng gesperrt und etwas kleiner, damit nichts überläuft oder aneinanderstößt */
+.reiter { padding-inline: 3px; font-size: 12.5px; letter-spacing: .03em; }
+@media (max-width: 1199px) { .reiter { padding-inline: 1px; font-size: 11px; letter-spacing: 0; } }
 .reiter:hover { color: var(--navy); }
 .reiter[aria-selected="true"],
 .reiter[aria-pressed="true"] { border-bottom-color: var(--gold-kante); color: var(--navy); }
@@ -1945,3 +1944,20 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .register-karte.ist-hervor { box-shadow: inset 0 0 0 2px var(--gold); }
 .register-marke { display: inline-flex; align-items: center; gap: 4px; font-size: 12.5px; font-weight: 600; color: var(--gold-text); }
 .register-marke .symbol { width: 14px; height: 14px; }
+
+/* Ihre Spur (E1, P5.8): A-Spur gegen B-Spur in der Seitenleiste (Klasse „spur-kette“: „.spur“ gehört der Story-Karte) */
+.spur-kette { display: grid; gap: var(--a-2); }
+.spur-kopf, .spur-seiten { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }
+.spur-kopf span { padding-bottom: 3px; font: 700 11.5px/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; }
+.spur-kopf [data-welt="a"] { box-shadow: inset 0 -3px 0 var(--koralle); }
+.spur-kopf [data-welt="b"] { box-shadow: inset 0 -3px 0 var(--tuerkis); }
+.spur-liste { display: grid; margin: 0; padding: 0; list-style: none; }
+.spur-paar { display: grid; gap: 3px; padding: 7px 0; border-bottom: 1px solid var(--linie); font-size: 13.5px; }
+.spur-station { font-weight: 600; }
+.spur-station small { font-weight: 400; color: var(--tinte-leise); }
+.spur-zelle { min-width: 0; line-height: 1.3; overflow-wrap: break-word; hyphens: auto; }
+.spur-wahl { display: inline-flex; align-items: baseline; gap: 5px; }
+.spur-wahl .option-taste { flex: none; display: inline-grid; place-items: center; width: 20px; height: 20px; min-width: 0; padding: 0; border-radius: 5px; font-size: 12px; line-height: 1; box-shadow: none; }
+.spur-wechsel { display: block; color: var(--tinte-leise); font-size: 12px; }
+.spur-offen { color: var(--tinte-leise); }
+.spur-summe { margin: 0; font-size: 13px; color: var(--tinte-2); }

@@ -264,4 +264,13 @@ async function weltB(seite, h, station, pruefe) {
     }
     for (const t of ['einstieg', 'vergleich', 'werkzeug', 'entscheidung', 'ebenen']) if (!gesehen.has(t)) h.befund(`${st}: Teil „${t}“ nicht gesehen`);
   }
+  // Ihre Spur (E1, P5.8): nach B6 stehen A1–A6 mit ihren Partnern in der Seitenleiste, A links, B rechts
+  await h.klick('[data-pruef="seitenleiste-spur"]');
+  await h.erwarte('[data-pruef="spur"]');
+  await h.warte(900); // die Seitenleiste fährt herein (von rechts) – erst danach messen
+  const zeilen = await seite.locator('[data-pruef="spur"] .spur-paar').count();
+  const beide = await seite.locator('[data-pruef="spur"] .spur-paar:not(:has(.spur-offen))').count();
+  if (zeilen < 6 || beide < 5) h.befund(`Spur: ${zeilen} Zeilen, ${beide} mit Wahl in beiden Welten (erwartet ≥ 6 bzw. ≥ 5)`);
+  await pruefe('spur');
+  await h.taste('Escape');
 }

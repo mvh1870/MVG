@@ -395,7 +395,7 @@ figur: kaya
 
 ::: regie
 ### Notiz
-B6 zeigt denselben Montag wie A6 – dieselbe Freigabe, denselben Ausfall, dieselbe Anfrage. In Welt B steht die Freigabe zum Abschluss von LPH 5 mit Status im Register, die Vorlage hat Kernfrage, Mandat und Weg; die Stellvertretung für Holger Stein ist benannt, und die Annahmen der Kostenprognose stehen im Datenstand. Offen bleiben mit Absicht: die Bestätigung des Datenstands, die Bewertung der offenen Punkte, die Risikolage, die Empfehlung – und das Ergebnis. Freigabe, keine Freigabe oder Freigabe mit Auflagen entscheidet die Rolle; alle drei sind in Welt B tragfähig, wenn die Grundlage stimmt. Die Vorlage führt keine Entscheidungs-ID: Freigaben tragen kein Kürzel. Zuerst den Regler zeigen, dann die Phasenleiste mit LPH 5 und die Vorlage.
+B6 zeigt denselben Montag wie A6 – dieselbe Freigabe, denselben Ausfall, dieselbe Anfrage. In Welt B steht die Freigabe zum Abschluss von LPH 5 mit Status im Register, die Vorlage hat Kernfrage, Mandat und Weg; die Stellvertretung für Holger Stein ist benannt, und die Annahmen der Kostenprognose stehen im Datenstand. Offen bleiben mit Absicht: die Bestätigung des Datenstands, die Bewertung der offenen Punkte, die Risikolage, die Empfehlung – und das Ergebnis. Freigabe, keine Freigabe oder Freigabe mit Auflagen entscheidet die Rolle; alle drei sind in Welt B tragfähig, wenn die Grundlage stimmt. Die Vorlage führt kein Kürzel: Die Freigabe heißt „Freigabe LPH 5“ (BEGRIFFE.md). Zuerst den Regler zeigen, dann die Phasenleiste mit LPH 5 und die Vorlage.
 
 ### Leitfragen
 - Wer erteilt bei Ihnen die Freigabe am Abschluss einer Leistungsphase – und wer berät nur?

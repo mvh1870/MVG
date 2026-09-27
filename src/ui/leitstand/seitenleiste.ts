@@ -4,6 +4,7 @@
  * Schublade über der Lagetafel (hält den Fokus, Esc schließt, Fokus kehrt zurück).
  */
 
+import { spurTafel, type SpurWoerter } from './spur.ts';
 import type { OeffentlicherZustand } from '../../engine/typen.ts';
 import type { Block, Ebene, OeffentlicheInhalte, Station } from '../../inhalte/typen.ts';
 import { h, attr, ersetze } from '../h.ts';
@@ -12,10 +13,11 @@ import { inhalt, personFigur, personName, personFunktion } from '../bausteine/in
 import { sym, zitat } from '../bausteine/bloecke.ts';
 import { bildmarke } from '../marke.ts';
 
-export type Reiter = 'raum' | 'ebenen' | 'glossar' | 'quellen';
+export type Reiter = 'raum' | 'ebenen' | 'glossar' | 'quellen' | 'spur';
 
 export interface SeitenWoerter {
   kontext: string;
+  spur: SpurWoerter & { reiter: string };
   rollenLinse: string;
   siespielen: string;
   standpunkt: string;
@@ -98,7 +100,7 @@ export function erzeugeSeitenleiste(o: SeitenOptionen): Seitenleiste {
   let letzterZ: OeffentlicherZustand | null = null;
   let schluessel = '';
 
-  const schienenKnopf = (r: Reiter, symbol: 'person' | 'ebenen' | 'buch' | 'dokument', text: string): HTMLButtonElement => h('button', {
+  const schienenKnopf = (r: Reiter, symbol: 'person' | 'ebenen' | 'buch' | 'dokument' | 'flagge', text: string): HTMLButtonElement => h('button', {
     type: 'button',
     class: 'schienen-knopf',
     'aria-label': text,
@@ -108,11 +110,11 @@ export function erzeugeSeitenleiste(o: SeitenOptionen): Seitenleiste {
     onclick: () => oeffne(r),
   }, sym(symbol));
   const schiene = h('div', { class: 'seitenleiste-schiene' },
-    schienenKnopf('raum', 'person', `${w.rollenLinse} · ${w.raum}`), schienenKnopf('ebenen', 'ebenen', w.ebenen), schienenKnopf('glossar', 'buch', w.glossar), schienenKnopf('quellen', 'dokument', w.quellen));
+    schienenKnopf('raum', 'person', `${w.rollenLinse} · ${w.raum}`), schienenKnopf('ebenen', 'ebenen', w.ebenen), schienenKnopf('glossar', 'buch', w.glossar), schienenKnopf('quellen', 'dokument', w.quellen), schienenKnopf('spur', 'flagge', w.spur.titel));
   const rollenBox = h('section', { class: 'rollen-box', 'aria-label': w.rollenLinse });
   leistenZaehler += 1;
   const vorsatz = `seite-${leistenZaehler}`;
-  const REITER = ['raum', 'ebenen', 'glossar', 'quellen'] as const;
+  const REITER = ['raum', 'ebenen', 'glossar', 'quellen', 'spur'] as const;
   const reiterKnoepfe = REITER.map((r) => h('button', {
     type: 'button',
     class: 'reiter',
@@ -126,7 +128,7 @@ export function erzeugeSeitenleiste(o: SeitenOptionen): Seitenleiste {
       reiter = r;
       zeichne(true);
     },
-  }, r === 'raum' ? w.raum : r === 'ebenen' ? w.ebenen : r === 'glossar' ? w.glossar : w.quellen));
+  }, r === 'raum' ? w.raum : r === 'ebenen' ? w.ebenen : r === 'glossar' ? w.glossar : r === 'quellen' ? w.quellen : w.spur.reiter));
   const inhaltEl = h('div', { class: 'seitenleiste-inhalt', role: 'tabpanel', id: `${vorsatz}-panel`, 'aria-labelledby': `${vorsatz}-reiter-raum`, tabindex: 0 });
   const reiterTaste = (ereignis: Event): void => {
     const e = ereignis as KeyboardEvent;
@@ -160,7 +162,7 @@ export function erzeugeSeitenleiste(o: SeitenOptionen): Seitenleiste {
     });
     attr(inhaltEl, 'aria-labelledby', `${vorsatz}-reiter-${reiter}`);
     const st = aktuelleStation(z, o.inhalte);
-    const neu = `${z.station}|${z.rolle}|${reiter}|${offen}`;
+    const neu = `${z.station}|${z.rolle}|${reiter}|${offen}|${reiter === 'spur' ? z.spur.map((e) => `${e.station}:${e.option}:${e.wechsel}`).join(',') : ''}`;
     if (!erzwingen && neu === schluessel) return;
     schluessel = neu;
     // Rollen-Box
@@ -202,6 +204,8 @@ export function erzeugeSeitenleiste(o: SeitenOptionen): Seitenleiste {
           teile.push(d);
         });
       }
+    } else if (reiter === 'spur') {
+      teile.push(spurTafel(z, o.inhalte, w.spur));
     } else if (st !== null && reiter === 'quellen') {
       const absaetze = st.whitepaper.map((id) => o.inhalte.quellen[id]).filter((q) => q !== undefined);
       if (absaetze.length === 0) teile.push(h('p', { class: 'leiste-hinweis' }, w.keineQuellen));

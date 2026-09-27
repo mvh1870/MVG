@@ -1,7 +1,7 @@
 ---
 station: B6
 rolle: bauherr
-frage: Die Vorlage der Bauherren-PL zur Freigabe zum Abschluss von LPH 5 ist in Vorbereitung; der Lenkungskreis berät am 17. November, die Freigabe erteilen Sie selbst. Wie entscheiden Sie?
+frage: Die Freigabe zum Abschluss von LPH 5 ist in Vorbereitung; die Bauherren-PL legt Ihnen die Vorlage vor, der Lenkungskreis berät am 17. November, die Freigabe erteilen Sie selbst. Wie entscheiden Sie?
 rueckbezug-auf: A6
 ---
 

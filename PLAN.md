@@ -73,9 +73,9 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P6.8 (2026-09-27, zwei Prüfrunden, ohne Befund) · Kap. 7 Leistungsarchitektur
 - [x] P6.9 (2026-09-27, zwei Prüfrunden, ohne Befund) · Kap. 8 Implementierung
 - [x] P6.10 (2026-09-27, zwei Prüfrunden, ohne Befund) · Kap. 9 Ergebnisbild und Ergebnisse
-- [ ] P6.11 · Kap. 10 Anwendungssituationen
-- [ ] P6.12 · Kap. 11 MVG-Neuinitialisierung
-- [ ] P6.13 · Kap. 12 Was Bauherren gewinnen
+- [x] P6.11 (2026-09-27, zwei Prüfrunden, Befunde eingearbeitet) · Kap. 10 Anwendungssituationen
+- [x] P6.12 (2026-09-27, zwei Prüfrunden, Befunde eingearbeitet) · Kap. 11 MVG-Neuinitialisierung
+- [x] P6.13 (2026-09-27, zwei Prüfrunden, Befunde eingearbeitet) · Kap. 12 Was Bauherren gewinnen
 - [x] P6.14 (2026-09-27, L-47) · Kap. 13 Glossar (eigene Seite + Mouseover-Quelle)
 - [ ] P6.15 · Abdeckung 100 %, Zitate wortgleich, Prüf-Agenten je Kapitel + Korrekturen
 

@@ -19,8 +19,8 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P1.1 (793a4f2) · Abdeckungskarte: jeder Whitepaper-Absatz (ID aus P0.2) → Theorie-Seite (+ Story-Station, wo passend) in `inhalte/abdeckung.yaml`; Prüfer im `inhalte`-Werkzeug — Abnahme: 100 % der Absätze zugeordnet.
 - [x] P1.2 (e4a3e6c) · Fall-Bibel `inhalte/fall.md`: Stadt, GML, Projekt, Zahlen, Zeitachse Monat 0–12 mit LPH-Stand, Gremien und Takte, alle Figuren mit Stimme — Abnahme: widerspruchsfrei zu O-3, L-5, Whitepaper (Mandatsleiter, Rhythmus, Register).
 - [x] P1.3 (a58be26) · Stationsgerüst `docs/DREHBUCH.md`: Prolog, A1–A6, Wendepunkt, Rückspulen, B1–B6, Wirklichkeit, 3 Enden, Epilog – je Ereignis, Kapitelbezug, Statusverlauf A/B, Dauer — Abnahme: Hauptpfad 25–35 Min, Express ~12 Min, alle 13 Kapitel berührt.
-- [x] P1.4 · Entscheidungsgraph: je Station × Rolle Entscheidung, Optionen, Konsequenz (4 Felder), Statuswirkung, Gedächtnis-Bezüge; Enden-Logik — als Inhaltsdateien nach `docs/INHALTSFORMAT.md` (Texte dürfen hier noch Rohfassung sein) — Abnahme: Graph-Prüfer grün (erreichbar, keine Sackgassen, alle Rollen, alle Enden).
-- [ ] P1.5 · Prüf-Agenten Drehbuch (Fachtreue, Begriffe, Dramaturgie) + Korrekturen — Abnahme: keine offenen Befunde.
+- [x] P1.4 (45e5da6) · Entscheidungsgraph: je Station × Rolle Entscheidung, Optionen, Konsequenz (4 Felder), Statuswirkung, Gedächtnis-Bezüge; Enden-Logik — als Inhaltsdateien nach `docs/INHALTSFORMAT.md` (Texte dürfen hier noch Rohfassung sein) — Abnahme: Graph-Prüfer grün (erreichbar, keine Sackgassen, alle Rollen, alle Enden).
+- [~] P1.5 (2026-09-27) · Prüf-Agenten Drehbuch (Fachtreue, Begriffe, Dramaturgie) + Korrekturen — Abnahme: keine offenen Befunde.
 
 ### P2 · Engine & Rahmen
 - [ ] P2.1 · Engine vollständig: Graph, Bedingungen, Gedächtnis, Enden, Weiterlesen (E9), Zustands-Version, Station ohne `status-start` übernimmt den Stand ihrer Welt (L-19) — Abnahme: Einheitentests inkl. Mutanten-Probe.

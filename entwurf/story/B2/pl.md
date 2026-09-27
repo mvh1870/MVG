@@ -67,7 +67,7 @@ Verstimmung auf der Nutzerseite.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Zusage mittragen‘ gewählt. In Welt B wird aus der Flurzusage eine beantragte Änderung: `AEN-012` steht mit Auswirkung im Änderungsregister, und bei rund 0,6 Mio. € entscheidet das Änderungsgremium.
+In Welt A haben Sie ‚Zusage mittragen‘ gewählt. In Welt B wird aus der Flurzusage eine beantragte Änderung: `AEN-012` steht beantragt im Änderungsregister, nächster Schritt Auswirkung und Freigabeweg, und bei rund 0,6 Mio. € entscheidet das Änderungsgremium.
 :::
 
 ::: rueckbezug B

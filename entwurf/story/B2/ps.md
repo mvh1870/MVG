@@ -74,7 +74,7 @@ In Welt A haben Sie ‚Terminfolge bewerten‘ gewählt. In Welt B endet die Bew
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Mensa einplanen‘ gewählt. In Welt B wird aus der Flurzusage keine Planzahl, sondern die Änderung `AEN-012` mit Auswirkung und Freigabeweg.
+In Welt A haben Sie ‚Mensa einplanen‘ gewählt. In Welt B wird aus der Flurzusage keine Planzahl, sondern die beantragte Änderung `AEN-012` – nächster Schritt Auswirkung und Freigabeweg.
 :::
 
 ::: rueckbezug ohne

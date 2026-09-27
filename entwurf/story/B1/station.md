@@ -30,7 +30,7 @@ datum: Di, 16.12.2025
 von: petersen
 ---
 - Zielsystem angelegt: Kosten, Termin, ESG und LCC mit Abwägungsregeln. Welche Zielpriorität gilt, legt Dr. Olbers fest – das steht noch aus.
-- Mandatsleiter, von Dr. Olbers festgelegt: Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium bis einschließlich 5 Mio. €, darüber der Bauherr im Lenkungskreis.
+- Mandatsleiter, von Dr. Olbers festgelegt: Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium über 100 TEUR bis einschließlich 5 Mio. €, darüber der Bauherr im Lenkungskreis.
 - Register mit verantwortlicher Rolle und Turnus; Jour fixe dienstags mit Risikosichtung.
 - Bauantrag: Einreichung Anfang Januar (Generalplanung).
 - Nächster Jour fixe: 06.01.
@@ -248,7 +248,7 @@ wert: Stand Kostenberechnung · gilt
 - Projektbasis 58,4 Mio. € brutto, vom Stadtrat beschlossen; darin 2,9 Mio. € Risikoreserve – ihren Einsatz gibt nur der Bauherr frei.
 - LPH 4: Die Genehmigungsplanung ist fertig, der Bauantrag geht diese Woche raus.
 - Das Zielsystem ist mit Abwägungsregeln angelegt; welche Zielpriorität gilt, legt der Bauherr fest – das steht noch aus.
-- Mandatsleiter, vom Bauherrn festgelegt: Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium bis einschließlich 5 Mio. €, darüber der Bauherr im Lenkungskreis.
+- Mandatsleiter, vom Bauherrn festgelegt: Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium über 100 TEUR bis einschließlich 5 Mio. €, darüber der Bauherr im Lenkungskreis.
 - Die Marktnotiz ist bei der Projektsteuerung angekommen; in einem Register steht sie noch nicht.
 :::
 
@@ -313,7 +313,7 @@ titel: Vertiefung
 ---
 | Baustein | Kapitel | In B1 sichtbar |
 |---|---|---|
-| Mandatsleiter | 4.2 | Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium bis einschließlich 5 Mio. €, darüber der Bauherr im Lenkungskreis |
+| Mandatsleiter | 4.2 | Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium über 100 TEUR bis einschließlich 5 Mio. €, darüber der Bauherr im Lenkungskreis |
 | Register mit verantwortlicher Rolle | 6.4.1, 6.4.2 | Frühwarnungsregister bei der Projektsteuerung, Änderungsregister bei der Bauherren-PL, CTC und Prognose beim Controlling |
 | Rhythmus | 6.4.5 | wöchentliche Risikosichtung im Jour fixe, Änderungsgremium monatlich, zzgl. anlassbezogener Sondersitzungen |
 | Mandats- und Verantwortungsmodell | 9.1 | Rollen, Mandate, Schwellen, Freigaben und Eskalation in einem Modell |

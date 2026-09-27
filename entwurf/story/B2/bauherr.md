@@ -6,7 +6,7 @@ rueckbezug-auf: A2
 ---
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Zusage bestätigen‘ gewählt. In Welt B wäre die Mensa nicht am Telefon gesetzt worden: `AEN-012` steht mit Auswirkung und Freigabeweg im Register, und bei rund 0,6 Mio. € entscheidet das Änderungsgremium.
+In Welt A haben Sie ‚Zusage bestätigen‘ gewählt. In Welt B wäre die Mensa nicht am Telefon gesetzt worden: `AEN-012` steht beantragt im Änderungsregister, nächster Schritt Auswirkung und Freigabeweg, und bei rund 0,6 Mio. € entscheidet das Änderungsgremium.
 :::
 
 ::: rueckbezug B
@@ -18,7 +18,7 @@ In Welt A haben Sie ‚Erst Kosten klären lassen‘ gewählt. In Welt B geht di
 :::
 
 ::: rueckbezug ohne
-In Welt A wurde die Mensa im Flur zugesagt. In Welt B wird sie eine beantragte Änderung mit Nummer, Auswirkung und Freigabeweg.
+In Welt A wurde die Mensa im Flur zugesagt. In Welt B wird sie eine beantragte Änderung mit Nummer – nächster Schritt Auswirkung und Freigabeweg.
 :::
 
 ::: option A

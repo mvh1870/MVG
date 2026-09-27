@@ -27,13 +27,13 @@ Ein Signal außerhalb des Registers bleibt unbewertet.
 
 ::: option B
 ---
-titel: Die Zielpriorität von Dr. Olbers bestätigen lassen
-kurz: Zielpriorität bestätigen lassen
+titel: Eine Zielpriorität vorschlagen und von Dr. Olbers festlegen lassen
+kurz: Zielpriorität festlegen lassen
 status:
   ungeklaerte-entscheidungen: -1
 ---
 ### Konsequenz
-Dr. Olbers bestätigt die Rangfolge im Zielsystem. Varianten der Planung werden ab jetzt an diesem Maßstab gemessen.
+Sie legen einen Vorschlag vor; Dr. Olbers legt die Rangfolge im Zielsystem fest. Varianten der Planung werden ab jetzt an diesem Maßstab gemessen.
 
 ### Was fehlt
 Die Marktnotiz zum Holzpreis ist noch nicht bewertet.

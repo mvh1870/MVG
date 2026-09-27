@@ -70,7 +70,7 @@ In Welt A haben Sie ‚Mensa einrechnen‘ gewählt. In Welt B nimmt Ihre Zahl k
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Mensa herauslassen‘ gewählt. In Welt B bleibt die Zusage nicht außerhalb der Zahlen: Sie hat als `AEN-012` einen Ort, eine Auswirkung und einen Freigabeweg.
+In Welt A haben Sie ‚Mensa herauslassen‘ gewählt. In Welt B bleibt die Zusage nicht außerhalb der Zahlen: Sie hat als `AEN-012` einen Ort und einen Status; nächster Schritt sind Auswirkung und Freigabeweg.
 :::
 
 ::: rueckbezug C

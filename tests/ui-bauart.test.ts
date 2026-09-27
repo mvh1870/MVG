@@ -525,6 +525,8 @@ test('Tafel-Formen Welt B und RACI (P5.1): Phase hervorgehoben und vorgewählt, 
   assert.match(ph.querySelector('.tafel-auswahl')?.textContent ?? '', /Frage 5\?/u);
   const rg = tafel({ form: 'register', absatz: 'k6.4.4-t1', quelle: 'Q', kopf: ['Register', 'Bedeutung', 'Nächster Schritt'], zeilen: [['Frühwarnung', 'unbewertetes Signal', 'bestätigen']], erlebt: {} });
   assert.equal(rg.querySelectorAll('.register-karte').length, 1);
+  const rh = tafel({ form: 'register', absatz: 'k6.4.4-t1', quelle: 'Q', kopf: ['Register', 'Bedeutung', 'Nächster Schritt'], zeilen: [['A', 'a', 'x'], ['B', 'b', 'y']], erlebt: {}, hervor: [2] });
+  assert.deepEqual([...rh.querySelectorAll('.register-karte.ist-hervor')].map((k) => k.getAttribute('data-pruef')), ['register-2']);
   const m = raci({ rollen: [{ id: 'bauherr', titel: 'Bauherr' }, { id: 'pl', titel: 'Bauherren-PL' }], zeilen: [{ id: 'x', titel: 'Reserve', zuordnung: { bauherr: 'A', pl: 'R' }, mandat: 'Bauherr' }], ich: 'pl', beschriftung: { entscheidung: 'E', mandat: 'M', legende: 'L', sie: 'Sie' } });
   assert.equal(m.querySelectorAll('td.ist-ich').length, 1);
   assert.equal(m.querySelector('td.ist-ich .raci-marke')?.textContent, 'R');

@@ -62,6 +62,7 @@ export const WORT = {
   legende: 'Ausschlag: in wie vielen Stationen Ihrer Spur das Symptom auftrat (bis drei)',
   ansicht: (w: string, spalte: string) => `Ansicht: ${w} – ${spalte}`,
   hier: 'hier steht der Fall',
+  imFall: 'kommt hier vor',
   chaos: 'Chaos',
   ordnung: 'Ordnung',
   mehr: 'Mehr zum Feld',
@@ -269,8 +270,10 @@ function rhythmus(d: TafelDaten): HTMLElement {
 
 /** Register-Karten: Name, Bedeutung, Pfeil, nächster Schritt. */
 function register(d: TafelDaten): HTMLElement {
-  return h('ol', { class: 'tafel-register' }, d.zeilen.map((z, i) => h('li', { class: 'register-karte', style: `--i:${i}`, 'data-pruef': `register-${i + 1}` },
+  const hervor = d.hervor ?? [];
+  return h('ol', { class: 'tafel-register' }, d.zeilen.map((z, i) => h('li', { class: `register-karte${hervor.includes(i + 1) ? ' ist-hervor' : ''}`, style: `--i:${i}`, 'data-pruef': `register-${i + 1}` },
     h('b', { class: 'register-name' }, z[0] ?? ''),
+    hervor.includes(i + 1) ? h('span', { class: 'register-marke' }, elementAus(symbol('haken')), WORT.imFall) : null,
     h('p', null, h('span', { class: 't-label' }, d.kopf[1] ?? ''), h('span', null, z[1] ?? '')),
     h('p', { class: 'register-weiter' }, h('span', { class: 't-label' }, d.kopf[2] ?? ''), h('span', null, z[2] ?? '')))));
 }

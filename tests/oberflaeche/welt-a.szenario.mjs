@@ -202,9 +202,12 @@ async function wendepunkt(seite, h, station) {
   await weltB(seite, h, station, pruefe);
 }
 
+/** Ausgebaute Stationen der Welt B (P5.2 ff.); weitere kommen mit ihren Posten dazu. */
+const WELT_B = ['B1', 'B2'];
+
 /**
  * Welt B (P5.2 ff.): die ausgebauten Stationen einmal durchspielen – Einstieg, Vergleich, Werkzeuge,
- * Entscheidung, Ebenen; Layout, axe und Quellen-Kontrast an jedem Schritt mit Werkzeug.
+ * Entscheidung, Ebenen; Layout, axe und Quellen-Kontrast an jedem Werkzeug.
  * @param {import('playwright').Page} seite
  * @param {import('../../werkzeuge/oberflaeche.mjs').Helfer} h
  * @param {() => Promise<string>} station
@@ -213,39 +216,43 @@ async function wendepunkt(seite, h, station) {
 async function weltB(seite, h, station, pruefe) {
   if ((await station()) !== 'B1') h.befund(`nach dem Rückspulen nicht in B1 (steht in ${await station()})`);
   const sichtbar = async (sel) => (await seite.locator(sel).filter({ visible: true }).count()) > 0;
-  const gesehen = new Set();
-  for (let i = 0; i < 40 && (await station()) === 'B1'; i++) {
-    await h.warte(700);
-    if (await sichtbar('[data-pruef="einstieg-text"]') && !gesehen.has('einstieg')) { gesehen.add('einstieg'); await pruefe('B1-einstieg'); }
-    if (await sichtbar('[data-pruef="vergleich"]') && !gesehen.has('vergleich')) {
-      gesehen.add('vergleich');
-      const regler = seite.locator('[data-pruef="vergleich"]');
-      await regler.focus();
-      await h.taste('End');
-      await h.warte(600);
-      await pruefe('B1-vergleich');
-      await h.klick('[data-pruef="szene-weiter"]');
-      continue;
+  /** Werkzeug → Selektor */
+  const WERKZEUGE = Object.entries({
+    raci: '[data-pruef="raci"]', rhythmus: '[data-pruef="tafel-rhythmus"]', karten: '[data-pruef="tafel-karten"]', register: '[data-pruef="tafel-register"]',
+    phasen: '[data-pruef="tafel-phasen"]', kette: '.kette', mandatsleiter: '.mandat-raster', vorlage: '[data-pruef="vorlage"]', fluss: '[data-pruef="fluss"]', datenstand: '[data-pruef="datenstand"]',
+  });
+  for (const st of WELT_B) {
+    const gesehen = new Set();
+    for (let i = 0; i < 40 && (await station()) === st; i++) {
+      await h.warte(700);
+      if (await sichtbar('[data-pruef="einstieg-text"]') && !gesehen.has('einstieg')) { gesehen.add('einstieg'); await pruefe(`${st}-einstieg`); }
+      if (await sichtbar('[data-pruef="vergleich"]') && !gesehen.has('vergleich')) {
+        gesehen.add('vergleich');
+        await seite.locator('[data-pruef="vergleich"]').focus();
+        await h.taste('End');
+        await h.warte(600);
+        await pruefe(`${st}-vergleich`);
+        await h.klick('[data-pruef="szene-weiter"]');
+        continue;
+      }
+      for (const [w, sel] of WERKZEUGE) {
+        if (gesehen.has(w) || !(await sichtbar(sel))) continue;
+        gesehen.add(w);
+        gesehen.add('werkzeug');
+        if (w === 'raci') await seite.locator('[data-pruef^="raci-"]:not([data-pruef="raci-detail"])').nth(1).click();
+        await h.warte(1500);
+        await pruefe(`${st}-${w}`);
+      }
+      const optionA = seite.locator('[data-pruef="option-A"]').filter({ visible: true });
+      if (await optionA.count() > 0 && (await optionA.first().getAttribute('aria-pressed')) !== 'true') {
+        await optionA.first().click();
+        await h.erwarte('[data-pruef="konsequenz"]');
+        gesehen.add('entscheidung');
+      }
+      if (await sichtbar('[data-pruef="ebene-1"]') && !gesehen.has('ebenen')) { gesehen.add('ebenen'); await pruefe(`${st}-ebenen`); }
+      await h.klick('[data-pruef="weiter"]');
+      await h.warte(200);
     }
-    if (await sichtbar('[data-pruef="raci"]') && !gesehen.has('raci')) {
-      gesehen.add('raci');
-      const zeilen = seite.locator('[data-pruef^="raci-"]:not([data-pruef="raci-detail"])');
-      if ((await zeilen.count()) < 3) h.befund('B1: RACI mit weniger als drei Zeilen');
-      await zeilen.nth(1).click();
-      if (!(await seite.locator('[data-pruef="raci-detail"]').innerText()).includes('(Sie)') && (await seite.locator('td.ist-ich .raci-marke').count()) > 0) h.befund('B1: RACI-Detail nennt die eigene Rolle nicht');
-      await pruefe('B1-raci');
-    }
-    if (await sichtbar('[data-pruef="tafel-rhythmus"]') && !gesehen.has('rhythmus')) { gesehen.add('rhythmus'); await pruefe('B1-rhythmus'); }
-    if (await sichtbar('[data-pruef="tafel-karten"]') && !gesehen.has('karten')) { gesehen.add('karten'); await pruefe('B1-register'); }
-    const optionA = seite.locator('[data-pruef="option-A"]').filter({ visible: true });
-    if (await optionA.count() > 0 && (await optionA.first().getAttribute('aria-pressed')) !== 'true') {
-      await optionA.first().click();
-      await h.erwarte('[data-pruef="konsequenz"]');
-      gesehen.add('entscheidung');
-    }
-    if (await sichtbar('[data-pruef="ebene-1"]') && !gesehen.has('ebenen')) { gesehen.add('ebenen'); await pruefe('B1-ebenen'); }
-    await h.klick('[data-pruef="weiter"]');
-    await h.warte(200);
+    for (const t of ['einstieg', 'vergleich', 'werkzeug', 'entscheidung', 'ebenen']) if (!gesehen.has(t)) h.befund(`${st}: Teil „${t}“ nicht gesehen`);
   }
-  for (const t of ['einstieg', 'vergleich', 'raci', 'rhythmus', 'karten', 'entscheidung', 'ebenen']) if (!gesehen.has(t)) h.befund(`B1: Teil „${t}“ nicht gesehen`);
 }

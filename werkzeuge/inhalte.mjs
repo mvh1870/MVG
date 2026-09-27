@@ -139,6 +139,7 @@ const DATEI_ARTEN = {
       stadt: { typ: 'text', pflicht: true }, bauherr: { typ: 'text', pflicht: true }, vertretung: { typ: 'text', pflicht: true },
       'vertretung-kurz': { typ: 'text' }, projekt: { typ: 'text', pflicht: true }, bauteile: { typ: 'liste' }, bauweise: { typ: 'text' },
       projektbasis: { typ: 'text', pflicht: true }, 'projektbasis-mio': { typ: 'dezimal' }, gremien: { typ: 'liste' }, hinweis: { typ: 'text', pflicht: true },
+      'monat-0': { typ: 'text' }, 'lph-stand': { typ: 'karte' },
     },
     felder: ['text'],
   },
@@ -1059,6 +1060,21 @@ function leseDateiKopf(c, rel, art, text) {
  * @param {string} rel
  * @param {string} text
  */
+/**
+ * Zeitachse der Fall-Bibel: Monat (0–12) → LPH (0–9).
+ * @param {Kompilierer} c @param {string} rel @param {Record<string, string> | undefined} roh
+ * @returns {Record<string, number>}
+ */
+function lphStand(c, rel, roh) {
+  /** @type {Record<string, number>} */
+  const aus = {};
+  for (const [m, l] of Object.entries(roh ?? {})) {
+    if (!/^(?:\d|1[0-2])$/u.test(m) || !/^\d$/u.test(l)) { c.fehler(`${rel}:1`, `„lph-stand“: „${m}: ${l}“ – erwartet Monat 0–12 und LPH 0–9`); continue; }
+    aus[m] = Number(l);
+  }
+  return aus;
+}
+
 function baueFall(c, rel, text) {
   const { kopf, wurzel, rohFelder } = leseDateiKopf(c, rel, '@fall', text);
   /** @type {Record<string, any>} */
@@ -1091,6 +1107,8 @@ function baueFall(c, rel, text) {
     projektbasis: kopf.projektbasis ?? '',
     projektbasisMio: kopf.projektbasisMio ?? null,
     gremien: kopf.gremien ?? [],
+    monat0: kopf.monat0 ?? null,
+    lphStand: lphStand(c, rel, kopf.lphStand),
     einleitung: c.html(rohFelder['text']?.text ?? '', `${rel}:1`),
     figuren,
   };
@@ -1696,6 +1714,14 @@ function pruefeAlles(c, x) {
       }
       default: break;
     }
+  }
+  // Stationen ↔ Zeitachse der Fall-Bibel (P1.2): Monat und LPH müssen zusammenpassen
+  const stand = x.fall?.lphStand ?? {};
+  for (const st of Object.values(x.stationen)) {
+    if (st.monat === null || st.lph === null || Object.keys(stand).length === 0) continue;
+    const soll = stand[String(st.monat)];
+    if (soll === undefined) c.fehler(st.quelle ?? `inhalte/story/${st.id}/station.md`, `Monat ${st.monat} fehlt in der Zeitachse (inhalte/fall.md, lph-stand)`);
+    else if (soll !== st.lph) c.fehler(st.quelle ?? `inhalte/story/${st.id}/station.md`, `LPH ${st.lph} passt nicht zu Monat ${st.monat} – laut Fall-Bibel LPH ${soll}`);
   }
   // Rollen ↔ Figuren
   for (const r of Object.values(x.rollen)) if (r.figur !== null && figuren[r.figur] === undefined) c.fehler(r.quelle, `Figur „${r.figur}“ steht nicht in inhalte/fall.md`);

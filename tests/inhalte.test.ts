@@ -552,6 +552,20 @@ test('Abdeckung (P1.1): Lücke, fremdes Kapitel und unbekannte Seite sind Fehler
   assert.equal((geplant.inhalte as Inhalte).abdeckung.anteil, 1);
 });
 
+test('Fall-Bibel (P1.2): Zeitachse Monat → LPH wird gegen die Stationen geprüft', async () => {
+  const mitAchse = (achse: string) => veraendere(BEISPIEL, 'inhalte/fall.md', 'hinweis: Fiktiver Fall.\n', `hinweis: Fiktiver Fall.\nmonat-0: 2025-12\nlph-stand:\n${achse}`);
+  const gut = await kompiliere({ pruefe: true, wurzel: neueWurzel(mitAchse('  "5": "5"\n')), ziel: null });
+  assert.deepEqual(gut.fehler, []);
+  assert.deepEqual((gut.inhalte as Inhalte).fall?.lphStand, { '5': 5 });
+  assert.equal((gut.inhalte as Inhalte).fall?.monat0, '2025-12');
+  const falsch = await kompiliere({ pruefe: true, wurzel: neueWurzel(mitAchse('  "5": "4"\n')), ziel: null });
+  assert.ok(falsch.fehler.some((f) => /X1\/station\.md: LPH 5 passt nicht zu Monat 5 – laut Fall-Bibel LPH 4/u.test(f)), falsch.fehler.join('\n'));
+  const luecke = await kompiliere({ pruefe: true, wurzel: neueWurzel(mitAchse('  "4": "5"\n')), ziel: null });
+  assert.ok(luecke.fehler.some((f) => /X1\/station\.md: Monat 5 fehlt in der Zeitachse/u.test(f)), luecke.fehler.join('\n'));
+  const kaputt = await kompiliere({ pruefe: true, wurzel: neueWurzel(mitAchse('  "13": "5"\n')), ziel: null });
+  assert.ok(kaputt.fehler.some((f) => /„lph-stand“: „13: 5“ – erwartet Monat 0–12 und LPH 0–9/u.test(f)), kaputt.fehler.join('\n'));
+});
+
 test('Startseite (inhalte/start.md): Leitsatz wörtlich mit Absatz-ID geprüft, These als Inline-HTML', async () => {
   const start = (titel: string) => `---\nkicker: Minimum Viable Governance\ntitel: ${titel}\ntitel-quelle: k2.4-p2\n---\n\nEine **These**.\n`;
   const gut = await kompiliere({ pruefe: true, wurzel: neueWurzel({ ...BEISPIEL, 'inhalte/start.md': start('Berichterstattung erzeugt Information.') }), ziel: null });

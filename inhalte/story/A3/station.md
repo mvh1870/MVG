@@ -51,7 +51,7 @@ Anruf Hoffmeister: Fassade evtl. günstiger?
 ---
 farbe: rosa
 ---
-Bauausschuss am 14.?
+Bauausschuss am 21.?
 :::
 
 ::: notiz

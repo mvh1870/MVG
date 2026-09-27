@@ -156,6 +156,10 @@ export interface Fall {
   projektbasis: string;
   projektbasisMio: number | null;
   gremien: string[];
+  /** Kalendermonat von Monat 0, z. B. „2025-12“. */
+  monat0: string | null;
+  /** Zeitachse: Monat (0–12) → LPH-Stand. */
+  lphStand: Record<string, number>;
   einleitung: string;
   figuren: Record<string, Figur>;
 }

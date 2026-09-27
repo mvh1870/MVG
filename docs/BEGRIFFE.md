@@ -29,7 +29,7 @@ Maßgeblich ist der Text des Whitepapers V1.2 (O-15), danach die Companion-Termi
 | MVG-Reifegradanalyse | 10 Domänen, 49 Fragen, 0–100; < 55 kritisch, 55–79 mit Lücken, ≥ 80 steuerbar (nur als Methode erwähnen, O-8) | Kap. 7.1 |
 | 30/60/90-Tage-Logik | Orientierungsrahmen nach Reifegradanalyse und bei Neuinitialisierung, **kein** allgemeiner Einführungsrhythmus | Kap. 8.2 |
 | Rollen (Standardmodell) | 13 Arbeitsrollen + Sonderrolle BM-Mentor (Kap. 9.2); in der Story „Bauherren-PL“ für Bauherren-Projektleitung | Kap. 9.2 |
-| ID-Kürzel in der Story | ENT- (Entscheidung), RIS- (Risiko), FRW- (Frühwarnung), AEN- (Änderung), MAS- (Maßnahme), NAC- (Nachweis); Form in der Story kurz: `ENT-017` | Companion §3 (Whitepaper schweigt) |
+| ID-Kürzel in der Story | ENT- (Entscheidung), RIS- (Risiko), FRW- (Frühwarnung), AEN- (Änderung), MAS- (Maßnahme), NAC- (Nachweis), PRB- (Problem, L-18); Freigaben ohne Kürzel („Freigabe LPH 5“); Form in der Story kurz: `ENT-017` | Companion §3 (Whitepaper schweigt) |
 
 ## Verbotene Begriffe (geprüft von `npm run begriffe`, Liste in `werkzeuge/begriffe.json`)
 | Nicht | Sondern |

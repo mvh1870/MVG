@@ -224,7 +224,7 @@ Eine Station mit `art: vergleich`, `vergleich: {a: A3, b: B3}` und einem Schritt
 Kopfdaten: `kicker` (Pflicht), `titel` (Pflicht: Leitsatz der Startseite), `titel-quelle` (Absatz-ID; dann muss der Leitsatz wortgleich in diesem Absatz stehen, O-17). Text der Datei (Pflicht) = These unter dem Leitsatz, Inline-Markdown (`**…**` hebt hervor). Ausgabe: `startseite` (`kicker`, `titel`, `titelQuelle`, `these`); fehlt die Datei, ist `startseite` null. Fachliche Sätze der Startseite stehen hier, nicht im Code (O-18).
 
 ### 4.1 `inhalte/fall.md`
-Kopfdaten: `stadt`, `bauherr`, `vertretung`, `vertretung-kurz`, `projekt`, `bauteile` (Liste), `bauweise`, `projektbasis` (Text, z. B. `58,4 Mio. € brutto`), `projektbasis-mio` (Zahl), `gremien` (Liste), `hinweis` (Pflicht: Kennzeichnung als fiktiv, O-3). Text der Datei = Beschreibung des Falls.
+Kopfdaten: `stadt`, `bauherr`, `vertretung`, `vertretung-kurz`, `projekt`, `bauteile` (Liste), `bauweise`, `projektbasis` (Text, z. B. `58,4 Mio. € brutto`), `projektbasis-mio` (Zahl), `gremien` (Liste), `monat-0` (Kalendermonat von Monat 0, `JJJJ-MM`), `lph-stand` (Zeitachse: `"Monat": "LPH"` für Monat 0–12; der Prüfer verlangt, dass `monat`/`lph` jeder Station dazu passen), `hinweis` (Pflicht: Kennzeichnung als fiktiv, O-3). Text der Datei = Fall-Bibel (Zahlen, Zeitachse, Gremien und Takte), Markdown mit `##`-Überschriften und Tabellen.
 
 | Art | Kennung | Kopfdaten | Felder |
 |---|---|---|---|

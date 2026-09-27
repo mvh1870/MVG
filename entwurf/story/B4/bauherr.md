@@ -14,7 +14,7 @@ In Welt A haben Sie ‚Alles an sich ziehen‘ gewählt. In Welt B landet bei Ih
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Sondersitzung ansetzen‘ gewählt. In Welt B braucht es dafür keine Liste: Offene Entscheidungen stehen im Entscheidungsregister, jede mit Vorlage und Frist.
+In Welt A haben Sie ‚Lenkungskreis befassen‘ gewählt. In Welt B braucht es dafür keine Liste: Offene Entscheidungen stehen im Entscheidungsregister, jede mit Vorlage und Frist.
 :::
 
 ::: rueckbezug ohne
@@ -63,13 +63,13 @@ Eine Zusage im Ausschuss, die die eigene Freigabe vorwegnimmt.
 
 ::: option C
 ---
-titel: Einen offenen Punkt mit Frist und Frage vertagen lassen
-kurz: Mit Frist vertagen
+titel: Die Deckungsfrage mit Frist auf September legen und den Ausschuss darüber informieren
+kurz: Deckung mit Frist legen
 status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Sie bitten den Ausschuss, die Deckungsfrage bis September zu vertagen – mit benannter Frage und benannter Vorlage. Die Vertagung ist ein Termin, kein Stau.
+Sie legen die Deckungsfrage mit Frist auf September – die Entscheidung liegt bei Ihnen. Der Ausschuss erfährt Frage und Termin aus dem Managementbericht. Die Frist ist ein Termin, kein Stau.
 
 ### Was fehlt
 Nichts in der Struktur; die Vorlage entsteht im Rhythmus.
@@ -81,9 +81,15 @@ Zwei Monate ohne Entscheidung zur Deckung, bei laufender Planung.
 [[Entscheidungsreife]]: Was muss die Vorlage im September enthalten?
 :::
 
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
 ::: regie
 ### Notiz
-Der Bauherr sitzt nicht im Änderungsgremium. Zeigen, was er vom Gremium bekommt: eine Beschlusslage, die er vor dem Ausschuss vertreten kann.
+Der Bauherr sitzt nicht im Änderungsgremium. Für den Bauherrn gilt: das Gremium hat `AEN-031` beschlossen, auch wenn das Gremium in anderen Rollenszenen zurückstellen kann. Zeigen, was er vom Gremium bekommt: eine Beschlusslage, die er vor dem Ausschuss vertreten kann.
 
 ### Leitfragen
 - Was bekommt Ihr Ausschuss: Ampeln oder eine Beschlusslage?

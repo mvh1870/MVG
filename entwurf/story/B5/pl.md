@@ -27,13 +27,13 @@ Risikoannahme: Wie viel Reserve will der Bauherr für die nächsten Leistungspha
 
 ::: option B
 ---
-titel: Den Nachtrag zuerst auf Berechtigung und Höhe prüfen lassen
+titel: Den Nachtrag zuerst von der Projektsteuerung auf Berechtigung und Höhe prüfen lassen
 kurz: Nachtrag erst prüfen lassen
 status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Zwei Wochen später ist die Summe belegt und kleiner. Die Vorlage an Dr. Olbers kommt eine Sitzung später.
+Die Projektsteuerung prüft, die Planung liefert die fachliche Auswirkung zu. Zwei Wochen später ist die Summe belegt und kleiner. Die Vorlage an Dr. Olbers kommt eine Sitzung später.
 
 ### Was fehlt
 Eine Frist für die Prüfung in der Maßnahme zu `PRB-004`.
@@ -79,4 +79,19 @@ In Welt A haben Sie ‚Lage offenlegen‘ gewählt. In Welt B muss nichts eigens
 
 ::: rueckbezug ohne
 In Welt A war die Risikoreserve zu einem guten Teil verplant, ohne dass jemand sie freigegeben hatte. In Welt B gibt der Bauherr ihren Einsatz frei – vorher, auf Vorlage.
+:::
+
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Bauherren-PL bringt `PRB-004` zur Entscheidung: Die Projektsteuerung prüft den Nachtrag, die Planung liefert die fachliche Auswirkung zu, der Bauherr gibt die Reserve frei.
+
+### Leitfragen
+- Wer prüft bei Ihnen Nachträge auf Berechtigung und Höhe?
+- Wie viel Reserve wollen Sie für die nächsten Leistungsphasen halten?
 :::

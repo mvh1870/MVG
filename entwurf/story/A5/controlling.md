@@ -32,7 +32,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Brandschutzauflagen, Mensa und Nachtrag stehen in Ihrer CTC gegen die Reserve; rechnerisch bleibt die Projektbasis eingehalten. Für den nächsten Kostenfall ist kaum etwas übrig.
+Brandschutzauflagen, der Nachtrag der Generalplanung zur Mensa-Umplanung und der Nachtrag der TGA-Fachplanung stehen in Ihrer CTC gegen die Reserve; die Abweichung wächst rechnerisch nicht weiter. Für den nächsten Kostenfall ist kaum etwas übrig.
 
 ### Was fehlt
 Die Freigabe des Einsatzes der Reserve – sie liegt beim Bauherrn.
@@ -52,7 +52,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Sie rechnen ohne Reserve; Ihre Prognose zeigt eine Überschreitung der Projektbasis. Die Projektsteuerung rechnet mit Reserve. Wieder zwei Zahlen – der Streit darüber bindet die nächsten Wochen.
+Sie rechnen ohne Reserve: Die Überschreitung der Projektbasis wächst. Die Projektsteuerung rechnet mit Reserve. Wieder zwei Zahlen – der Streit darüber bindet die nächsten Wochen.
 
 ### Was fehlt
 Ein Datenstand, auf den sich beide beziehen.
@@ -62,4 +62,19 @@ Die Planung wartet, ob die Mensa-Umplanung weiterlaufen darf.
 
 ### Governance-Frage
 [[Datenstand]]: Welche Änderungen sind in welcher Zahl enthalten?
+:::
+
+::: nachsatz
+Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Das Controlling entdeckt die verplante Reserve. Zeigen, dass jede Rechenweise eine Entscheidung vorwegnimmt, die beim Bauherrn liegt.
+
+### Leitfragen
+- Wie rechnen Sie die Risikoreserve – mit oder ohne?
+- Wer hat bei Ihnen den Einsatz der Reserve freigegeben?
 :::

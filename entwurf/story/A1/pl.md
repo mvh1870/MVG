@@ -63,3 +63,18 @@ Abhängigkeit von einer Schlüsselperson.
 ### Governance-Frage
 [[Frühwarnung]]: Wer bewertet ein Signal – und wo steht es danach?
 :::
+
+::: nachsatz
+Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Bauherren-PL übernimmt ein Projekt ohne Ordnung. Jede Option ist fleißig; keine klärt, wer die Zielpriorität festlegt.
+
+### Leitfragen
+- Womit haben Sie Ihre letzte Projektübernahme begonnen?
+- Wer hat Ihnen damals gesagt, welches Ziel Vorrang hat?
+:::

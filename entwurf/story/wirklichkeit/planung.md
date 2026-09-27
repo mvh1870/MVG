@@ -7,7 +7,7 @@ frage: Monat 12, Welt A. Was schlagen Sie der Bauherren-PL jetzt vor?
 ::: option A
 ---
 titel: Eine MVG-Neuinitialisierung anregen und die offenen Planungsänderungen offenlegen
-kurz: MVG-Neuinitialisierung einleiten
+kurz: MVG-Neuinitialisierung vorschlagen
 status:
   entscheidungsfaehigkeit: 3
   kostenunsicherheit: hoch
@@ -65,4 +65,17 @@ Eine neue Projektbasis auf der alten Steuerungslogik.
 
 ### Governance-Frage
 [[Datenstand]]: Auf welcher Grundlage wird die Projektbasis neu festgelegt?
+:::
+
+::: nachsatz
+Welt B war ein Gedankenexperiment. Was davon jetzt noch möglich ist, hängt davon ab, was der Bauherr selbst beiträgt.
+:::
+
+::: regie
+### Notiz
+Die Planung kann offenlegen und zuliefern. Bei jeder Option klarmachen, dass sie die Neuordnung nicht allein trägt.
+
+### Leitfragen
+- Welche Änderungen stecken bei Ihnen ohne Beschluss in der Planung?
+- Wer bringt sie zur Entscheidung?
 :::

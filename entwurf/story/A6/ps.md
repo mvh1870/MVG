@@ -12,7 +12,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Bis Donnerstagnacht sitzen Sie in „v3_final_NEU“ und zwei Nachfolgern. Am Freitag gibt es eine Zahl; welche Annahmen darin stecken, können Sie nur zum Teil sagen.
+Bis Donnerstagnacht sitzen Sie in „Prognose_Nov_v5“ und ihren Vorgängern. Am Freitag gibt es eine Zahl; welche Annahmen darin stecken, können Sie nur zum Teil sagen.
 
 ### Was fehlt
 Wissen in Artefakten statt in einem Kopf; eine geregelte Stellvertretung.
@@ -32,7 +32,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Ihre Antwort: zwischen +8 % und +12 %, Annahmen offen. Dr. Olbers gibt sie so an die Fraktion weiter; die nächste Frage lautet, wer die Bandbreite eingrenzt.
+Ihre Antwort: eine Bandbreite zwischen der CTC des Controllings und der letzten Prognose der Projektsteuerung, Annahmen offen. Dr. Olbers gibt sie so an die Fraktion weiter; die nächste Frage lautet, wer die Bandbreite eingrenzt.
 
 ### Was fehlt
 Ein geltender Datenstand und eine Risikolage, die die Bandbreite erklärt.
@@ -62,4 +62,19 @@ LPH 5 läuft weiter, ohne dass jemand über ihren Abschluss entscheidet.
 
 ### Governance-Frage
 [[Freigabe]]: Welche Grundlagen braucht der Bauherr, um über den Abschluss von LPH 5 zu entscheiden?
+:::
+
+::: nachsatz
+Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Holger Stein fehlt, und mit ihm das Wissen. Zeigen, dass die Projektsteuerung ohne Stellvertretung nur rekonstruieren oder schätzen kann.
+
+### Leitfragen
+- Welche Person ist bei Ihnen gerade unersetzlich?
+- Wie schnell könnten Sie dem Stadtrat eine belastbare Zahl nennen?
 :::

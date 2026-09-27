@@ -21,7 +21,7 @@ Ein benannter [[Datenstand]] und eine Bewertung, welches Risiko die kleinere Res
 Die Unterschrift legitimiert Posten, deren Grundlage niemand geprüft hat.
 
 ### Governance-Frage
-[[Freigabe]]: Auf welchem Datenstand geben Sie den Einsatz der Reserve frei?
+[[Nichtdelegierbare Bauherrenverantwortung]]: Auf welchem Datenstand geben Sie den Einsatz der Reserve frei?
 :::
 
 ::: option B
@@ -32,7 +32,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Die Verplanung stoppt. Brandschutzauflagen und Nachtrag stehen ohne Deckung da; die Planung wartet auf eine Entscheidung, die niemand vorbereitet.
+Die Verplanung stoppt. Brandschutzauflagen, der Nachtrag der Generalplanung zur Mensa-Umplanung und der Nachtrag der TGA-Fachplanung stehen ohne Deckung da; die Planung wartet auf eine Entscheidung, die niemand vorbereitet.
 
 ### Was fehlt
 Eine Vorlage, die sagt, was aus der Reserve gedeckt werden soll und was nicht.

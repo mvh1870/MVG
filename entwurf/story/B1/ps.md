@@ -33,7 +33,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Das Signal hat eine Kennung und einen Ort; bewertet wird es in der wöchentlichen Risikosichtung. Die Zahl der offenen Punkte steigt – sichtbar.
+Die Notiz geht ins Frühwarnungsregister und wird in der wöchentlichen Risikosichtung angesehen; ob sie für sich steht oder mit einem späteren Signal zusammengehört, zeigt sich dort. Die Zahl der offenen Punkte steigt – sichtbar.
 
 ### Was fehlt
 Das Detailwissen zur Kostendatei liegt noch vor allem bei Holger Stein.
@@ -70,7 +70,7 @@ In Welt A haben Sie ‚Statusbericht aufsetzen‘ gewählt. In Welt B steht die 
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Kostendatei nachrechnen‘ gewählt. In Welt B ist die Kostenprognose ein benannter Datenstand mit Version; ein Signal wird zuerst als Frühwarnung erfasst und bewertet, dann gerechnet.
+In Welt A haben Sie ‚Kostendatei nachrechnen‘ gewählt. In Welt B ist die Kostenprognose ein benannter Datenstand mit Version; ein Signal wird zuerst als Frühwarnung erfasst und gesichtet, dann gerechnet.
 :::
 
 ::: rueckbezug C
@@ -79,4 +79,19 @@ In Welt A haben Sie ‚Risikoliste anlegen‘ gewählt. In Welt B ist daraus ein
 
 ::: rueckbezug ohne
 In Welt A war dieselbe erste Woche: ein Bericht, eine Datei, ein Kopf. In Welt B haben Signale, Risiken und Zahlen einen festen Ort.
+:::
+
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Projektsteuerung führt Risiko- und Frühwarnungsregister. Zeigen, dass eine Frühwarnung ein unbewertetes Signal ist, das in der wöchentlichen Sichtung angesehen wird.
+
+### Leitfragen
+- Wie oft sichten Sie Ihre Risiken?
+- Wer vertritt bei Ihnen die Person, die die Kostenprognose führt?
 :::

@@ -26,8 +26,8 @@ Wesentliche Entscheidung: Was muss der Bauherr entscheiden – und was nur zur K
 
 ::: option B
 ---
-titel: Selbst eine Beschlussvorlage mit zwei Optionen schreiben
-kurz: Beschlussvorlage schreiben
+titel: Selbst eine Entscheidungsvorlage mit zwei Optionen schreiben
+kurz: Entscheidungsvorlage schreiben
 status:
   entscheidungsfaehigkeit: +1
   kostenunsicherheit: +1
@@ -63,4 +63,19 @@ Der Entscheidungsstau wandert nur in ein anderes Gremium.
 
 ### Governance-Frage
 [[Mandat]]: Welches Gremium entscheidet welche Frage?
+:::
+
+::: nachsatz
+Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Bauherren-PL muss aus einem Bericht eine Frage machen. Zeigen, dass auch die beste Vorlage an zwei Zahlen scheitert.
+
+### Leitfragen
+- Was legen Sie Ihrem Ausschuss vor – einen Bericht oder eine Frage?
+- Auf welchem Stand beruht Ihre letzte Vorlage?
 :::

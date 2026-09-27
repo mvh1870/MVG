@@ -1,7 +1,7 @@
 ---
 station: A5
 rolle: planung
-frage: Die Mensa ist umgeplant, ein Auftrag dafür fehlt. Wie gehen Sie mit Ihrem Nachtrag um?
+frage: Die Mensa ist umgeplant, ein Auftrag dafür fehlt. Wie gehen Sie mit Ihrem Nachtrag zur Mensa-Umplanung um? Der Nachtrag der TGA-Fachplanung liegt schon vor.
 ---
 
 ::: option A
@@ -62,4 +62,19 @@ Offenlegung ohne Entscheidung verlagert den Druck auf die Bauherren-PL.
 
 ### Governance-Frage
 Welche dieser Kosten muss der Bauherr selbst akzeptieren?
+:::
+
+::: nachsatz
+Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Planung hat umgeplant, ohne Auftrag. Zeigen, dass jeder Umgang mit dem Nachtrag die Frage nach der Freigabe nur weiterreicht.
+
+### Leitfragen
+- Welche Nachträge stehen bei Ihnen auf einer Zusage statt auf einem Auftrag?
+- Wer entscheidet bei Ihnen über Mehrkosten der Planung?
 :::

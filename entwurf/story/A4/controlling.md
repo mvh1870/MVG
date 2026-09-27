@@ -52,14 +52,29 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Die Bauherren-PL findet den Vorschlag gut. Festgelegt wird er nicht; wer Schwellen beschließt, ist nirgends geregelt.
+Die Bauherren-PL findet den Vorschlag gut. Festgelegt wird er nicht: Ein Schwellenwert für Kostenabweichungen löst ein Signal aus – wer danach ab welcher Summe entscheidet, ist damit noch nicht geregelt.
 
 ### Was fehlt
-Eine Festlegung von Mandaten und Schwellen – die bleibt beim Bauherrn.
+Zweierlei: Schwellenwerte, deren Überschreitung ein Signal auslöst, und eine Festlegung von Mandaten und Freigabeschwellen – die bleibt beim Bauherrn.
 
 ### Neues Risiko
 Ein Vorschlag ohne Beschluss gilt irgendwann als Praxis.
 
 ### Governance-Frage
 [[Mandat]]: Wer legt Freigabeschwellen fest?
+:::
+
+::: nachsatz
+Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Das Controlling kann eine klare Zahl liefern, aber keine Frage stellen. Zeigen, dass die Vorlage fehlt, nicht die Zahl.
+
+### Leitfragen
+- Wer formuliert bei Ihnen die Frage an das Gremium?
+- Wie viele Prognosen stehen in Ihrem letzten Bericht?
 :::

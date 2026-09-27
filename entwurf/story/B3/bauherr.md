@@ -22,7 +22,7 @@ In Welt A lagen an diesem Montag zwei Zahlen und ein Ausschuss vor Ihnen. In Wel
 
 ::: regie
 ### Notiz
-Der Bauherr trifft an B3 keine eigene Entscheidung. Zeigen, wann die Frage bei ihm ankommt: wenn die Option über 5 Mio. € führt, im Lenkungskreis.
+Der Bauherr trifft an B3 keine eigene Entscheidung. Zeigen, wann die Frage bei ihm ankommt: wenn die Risikoreserve eingesetzt werden soll (nicht delegierbar) oder eine Option über 5 Mio. € führt – dann im Lenkungskreis.
 
 ### Leitfragen
 - Ab welcher Summe landet eine Kostenfrage bei Ihnen?

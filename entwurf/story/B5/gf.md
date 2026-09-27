@@ -7,7 +7,7 @@ rueckbezug-auf: A5
 
 ::: option A
 ---
-titel: Die Vorlage im Lenkungskreis beraten und Dr. Olbers zur Freigabe vorlegen
+titel: Die Vorlage der Bauherren-PL im Lenkungskreis beraten
 kurz: Im Lenkungskreis beraten
 status:
   ungeklaerte-entscheidungen: -1
@@ -79,6 +79,12 @@ In Welt A haben Sie ‚Offenlegen‘ gewählt. In Welt B muss niemand erst offen
 
 ::: rueckbezug ohne
 In Welt A war die Reserve in diesem Monat schon verplant, ohne Freigabe. In Welt B entscheidet der Bauherr auf Vorlage, bevor sie eingesetzt wird.
+:::
+
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
 :::
 
 ::: regie

@@ -81,6 +81,12 @@ In Welt A haben Sie ‚Vorab mit dem Vorsitz reden‘ gewählt. In Welt B liegt 
 In Welt A vertagte der Bauausschuss in diesem Monat. In Welt B entscheidet das Änderungsgremium, und der Ausschuss bekommt den Managementbericht.
 :::
 
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
 ::: regie
 ### Notiz
 Die Geschäftsführung sitzt hier selbst am Tisch. Zeigen, dass auch das Zurückstellen eine saubere Entscheidung ist, wenn es Frage und Frist hat.

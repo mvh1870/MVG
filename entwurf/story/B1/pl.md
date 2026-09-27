@@ -53,7 +53,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Das Signal hat einen Ort und eine verantwortliche Rolle; bewertet wird es in der wöchentlichen Risikosichtung. Die Zahl der offenen Punkte steigt – sichtbar.
+Die Notiz geht ins Frühwarnungsregister der Projektsteuerung und wird in der wöchentlichen Risikosichtung angesehen; ob sie für sich steht oder mit einem späteren Signal zusammengehört, zeigt sich dort. Die Zahl der offenen Punkte steigt – sichtbar.
 
 ### Was fehlt
 Das Detailwissen zur Kostendatei liegt noch vor allem bei Holger Stein.
@@ -74,9 +74,24 @@ In Welt A haben Sie ‚Varianten erarbeiten lassen‘ gewählt. In Welt B ist di
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Kosten neu rechnen lassen‘ gewählt. In Welt B ist die Kostendatei ein benannter Datenstand mit Version, und ein Signal wie die Marktnotiz wird zuerst als Frühwarnung erfasst und bewertet.
+In Welt A haben Sie ‚Kosten neu rechnen lassen‘ gewählt. In Welt B ist die Kostendatei ein benannter Datenstand mit Version, und ein Signal wie die Marktnotiz geht zuerst als Frühwarnung ins Register und wird in der Risikosichtung angesehen.
 :::
 
 ::: rueckbezug ohne
 In Welt A war dieselbe erste Woche: drei Ablagen, ein Zielkonflikt ohne Priorität. In Welt B haben Ziele, Mandate und Unterlagen einen festen Ort.
+:::
+
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Bauherren-PL hält die Register zusammen. Zeigen, dass die Marktnotiz zuerst ein unbewertetes Signal ist – sichtbar, bevor jemand rechnet.
+
+### Leitfragen
+- Wo landet bei Ihnen eine Marktnotiz?
+- Wer vertritt bei Ihnen die Person, die die Kostendatei führt?
 :::

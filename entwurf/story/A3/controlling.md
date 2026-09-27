@@ -12,7 +12,7 @@ status:
   kostenunsicherheit: sehr hoch
 ---
 ### Konsequenz
-Im Lenkungskreis liegen zwei Zahlen. Frank Deppe fragt, welche stimmt; beide Seiten erklären ihre Annahmen. Entschieden wird nichts.
+Die Bauherren-PL legt dem Lenkungskreis zwei Zahlen vor; Sie und die Projektsteuerung sind als Gäste dabei. Frank Deppe fragt, welche stimmt; beide Seiten erklären ihre Annahmen. Entschieden wird nichts.
 
 ### Was fehlt
 Ein verbindlicher Datenstand: Welche Version gilt?
@@ -62,4 +62,19 @@ Eine Meldung ohne Empfänger mit Mandat.
 
 ### Governance-Frage
 [[Mandat]]: Ab welcher Abweichung muss wer entscheiden?
+:::
+
+::: nachsatz
+Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Das Controlling hat die kleinere Zahl. Zeigen, dass Recht haben nicht festlegt, welche Zahl gilt.
+
+### Leitfragen
+- Welche Zahl hätte bei Ihnen im Lenkungskreis gelegen?
+- Wer legt bei Ihnen offene Annahmen fest?
 :::

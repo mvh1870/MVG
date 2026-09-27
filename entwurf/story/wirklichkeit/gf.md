@@ -7,7 +7,7 @@ frage: Monat 12, Welt A, weiter in LPH 5. Was schlagen Sie dem Bauherrn jetzt vo
 ::: option A
 ---
 titel: Eine MVG-Neuinitialisierung vorschlagen und die Mitwirkung der GML zusagen
-kurz: MVG-Neuinitialisierung einleiten
+kurz: MVG-Neuinitialisierung vorschlagen
 status:
   entscheidungsfaehigkeit: 3
   kostenunsicherheit: hoch

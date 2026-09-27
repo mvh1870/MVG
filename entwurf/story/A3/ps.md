@@ -12,7 +12,7 @@ status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Sie tragen +8 % vor, Aylin Kaya widerspricht mit +5,9 %. Frank Deppe fragt, welche Zahl gilt; die Antwort vertagt der Lenkungskreis.
+Über die Bauherren-PL gehen Ihre +8 % in den Lenkungskreis; Aylin Kaya, als Gast geladen, widerspricht mit +5,9 %. Frank Deppe fragt, welche Zahl gilt; die Antwort vertagt der Lenkungskreis.
 
 ### Was fehlt
 Ein verbindlicher [[Datenstand]]: Welche Version gilt?
@@ -62,4 +62,19 @@ Die Zahl liegt über 5 Mio. € – in Welt A ohne Folge, weil keine Schwelle fe
 
 ### Governance-Frage
 [[Mandat]]: Ab welcher Summe muss der Bauherr selbst entscheiden?
+:::
+
+::: nachsatz
+Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Projektsteuerung hat die größere Zahl. Zeigen, dass Abgleichen und Aktualisieren Zeit kosten, solange niemand festlegt, welche Zahl gilt.
+
+### Leitfragen
+- Welche Prognose gilt bei Ihnen – und seit wann?
+- Wer legt bei Ihnen fest, welche Annahme gilt?
 :::

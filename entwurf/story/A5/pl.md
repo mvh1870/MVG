@@ -22,7 +22,7 @@ Eine Freigabe auf benanntem Stand, bevor die Reserve eingesetzt wird – nicht d
 Die Unterschrift legitimiert Zahlen, die niemand geprüft hat.
 
 ### Governance-Frage
-[[Freigabe]]: Auf welchem Datenstand wird freigegeben?
+[[Nichtdelegierbare Bauherrenverantwortung]]: Auf welchem Datenstand gibt der Bauherr den Einsatz der Reserve frei?
 :::
 
 ::: option B
@@ -65,4 +65,19 @@ Transparenz ohne Entscheidung; die Zeit läuft weiter.
 
 ### Governance-Frage
 [[Entscheidungsvorlage]]: Was wird dem Bauherrn zur Entscheidung vorgelegt?
+:::
+
+::: nachsatz
+Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Bauherren-PL hat nichts freigegeben und steht trotzdem in der Verantwortung. Zeigen, dass nachträgliche Legitimation eine Unterschrift ohne Grundlage bleibt.
+
+### Leitfragen
+- Wer hat bei Ihnen zuletzt die Risikoreserve angefasst?
+- Was legen Sie dem Bauherrn vor, bevor die Reserve eingesetzt wird?
 :::

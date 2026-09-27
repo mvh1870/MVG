@@ -55,7 +55,7 @@ status:
   kostenunsicherheit: sehr hoch
 ---
 ### Konsequenz
-Sie lassen eine Entscheidungsvorlage zur [[Neufestlegung der Projektbasis]] vorbereiten; beschließen werden Sie im Lenkungskreis. Stadtrat und Bauausschuss erfahren, dass die beschlossene Projektbasis nicht mehr trägt. Bis dahin sind alle Zahlen vorläufig.
+Sie lassen eine Entscheidungsvorlage zur [[Neufestlegung der Projektbasis]] vorbereiten; beschließen werden Sie im Lenkungskreis. Weil der Stadtrat die bisherige Projektbasis beschlossen hat, koppeln Sie die Neufestlegung über Stadtrat und Bauausschuss zurück. Bis dahin sind alle Zahlen vorläufig.
 
 ### Was fehlt
 Ein Stand, auf dem die neue Basis beruhen soll – noch gibt es zwei Zahlen.
@@ -65,6 +65,10 @@ Eine neue Projektbasis auf der alten Steuerungslogik.
 
 ### Governance-Frage
 [[Datenstand]]: Auf welcher Grundlage legen Sie die Projektbasis neu fest?
+:::
+
+::: nachsatz
+Welt B war ein Gedankenexperiment. Was davon jetzt noch möglich ist, hängt davon ab, was der Bauherr selbst beiträgt.
 :::
 
 ::: regie

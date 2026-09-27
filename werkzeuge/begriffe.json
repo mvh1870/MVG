@@ -9,9 +9,9 @@
     "Die kompilierten Inhalte (src/generiert/inhalte.json, samt Whitepaper-Texten, Glossar und Kapiteltiteln) prüft werkzeuge/inhalte.mjs --pruefe mit dieser Liste (sie stehen deshalb nicht in pfade); src/generiert/schriften.css ist nur Schriftdaten. base64-Nutzlast in data:-URIs wird nicht geprüft.",
     "Muster ohne Wortgrenze vorn fangen auch Zusammensetzungen (Qualitätsgate, Projektscope, Risikoheatmap); Ausschlüsse (navigate, riskant, Preset …) stehen im Muster, Gegenproben in tests/begriffe.test.ts."
   ],
-  "pfade": ["inhalte/**/*.md", "inhalte/**/*.yaml", "src/**/*.ts", "src/**/*.css", "werkzeuge/huelle.html"],
+  "pfade": ["inhalte/**/*.md", "inhalte/**/*.yaml", "entwurf/**/*.md", "entwurf/**/*.yaml", "src/**/*.ts", "src/**/*.css", "werkzeuge/huelle.html"],
   "ausnahmen": ["inhalte/begriffs-kompass.md", "docs/KORREKTURLISTE-V1.3.md", "src/generiert/schriften.css"],
-  "grossKleinEgal": ["inhalte/**", "werkzeuge/huelle.html", "src/generiert/inhalte.json"],
+  "grossKleinEgal": ["inhalte/**", "entwurf/**", "werkzeuge/huelle.html", "src/generiert/inhalte.json"],
   "verboten": [
     { "muster": "(?<![\\p{L}\\p{N}])G-?0?[0-9](?:\\s?-\\s?G?\\s?[0-9])?(?![\\p{L}\\p{N}])|(?<![\\p{L}\\p{N}])G\\s[0-9]\\s?(?:-|…|\\.\\.\\.?|bis)\\s?G?\\s?[0-9](?![\\p{L}\\p{N}])", "flags": "u", "statt": "Freigabe LPH n / LPH 0–9" },
     { "muster": "(?<!navi|dele|aggre|propa|investi|miti|irri|obli|segre|rele|interro|surro|insti|liti|conju|subju|fri|casti|fumi)gates?(?![\\p{L}\\p{N}])", "flags": "iu", "statt": "Freigabe" },

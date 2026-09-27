@@ -3,7 +3,7 @@ id: wendepunkt
 art: wendepunkt
 titel: Was ist hier eigentlich passiert?
 kurztitel: Wendepunkt
-whitepaper-bezug: [k2.5-t1, k3.2-t1, k3.3-t1, k4-t1]
+whitepaper-bezug: [k2.5-t1, k3.2-t1, k3.3-t1, k4-t1, k4.2-p3]
 weiter: rueckspulen
 ---
 

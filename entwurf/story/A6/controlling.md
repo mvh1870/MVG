@@ -32,7 +32,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Sie arbeiten sich durch „Prognose_HS_v7_final2“. Bis Freitag verstehen Sie die Struktur, nicht alle Annahmen.
+Sie arbeiten sich durch „Prognose_Nov_v5“. Bis Freitag verstehen Sie die Struktur, nicht alle Annahmen.
 
 ### Was fehlt
 Dokumentierte Annahmen und eine geregelte Stellvertretung.
@@ -62,4 +62,19 @@ Die Freigabe wird vertagt, ohne dass jemand sagt, bis wann.
 
 ### Governance-Frage
 [[Freigabe]]: Auf welchem benannten Datenstand kann der Bauherr freigeben?
+:::
+
+::: nachsatz
+Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Das Controlling hat eine Zahl und soll sie bis Freitag liefern. Zeigen, dass Tempo keinen geltenden Datenstand ersetzt.
+
+### Leitfragen
+- Auf welchem Stand würden Sie dem Stadtrat antworten?
+- Wer vertritt bei Ihnen die Person, die die Prognose führt?
 :::

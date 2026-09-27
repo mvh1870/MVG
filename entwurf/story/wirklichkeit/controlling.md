@@ -7,7 +7,7 @@ frage: Was empfehlen Sie der Bauherrenseite jetzt?
 ::: option A
 ---
 titel: Der Bauherrenseite eine MVG-Neuinitialisierung empfehlen und den Kostenstand zuliefern
-kurz: MVG-Neuinitialisierung einleiten
+kurz: MVG-Neuinitialisierung empfehlen
 status:
   entscheidungsfaehigkeit: 3
   kostenunsicherheit: hoch
@@ -65,4 +65,17 @@ Die neue Basis erbt die alte Unsicherheit, wenn die Frage der verplanten Reserve
 
 ### Governance-Frage
 [[Nichtdelegierbare Bauherrenverantwortung]]: Wer legitimiert die neuen Kosten-, Termin- und Risikogrundlagen?
+:::
+
+::: nachsatz
+Welt B war ein Gedankenexperiment. Was davon jetzt noch möglich ist, hängt davon ab, was der Bauherr selbst beiträgt.
+:::
+
+::: regie
+### Notiz
+Das Controlling kann liefern und empfehlen, aber nicht einleiten. Bei jeder Option klarmachen, was beim Bauherrn bleibt.
+
+### Leitfragen
+- Welche Zahl würde bei Ihnen heute gelten?
+- Was müsste Ihr Bauherr selbst beitragen?
 :::

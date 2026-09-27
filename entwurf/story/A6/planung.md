@@ -52,7 +52,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Zwei Tage Arbeit mit Brenners Team. Die Mengen passen zu einer der drei Dateien; Dr. Olbers bekommt bis Freitag eine Zahl, unter Vorbehalt.
+Zwei Tage Arbeit mit Brenners Team. Die Mengen passen zu Holger Steins letztem Stand „Prognose_Nov_v5“; Dr. Olbers bekommt bis Freitag eine Zahl, unter Vorbehalt.
 
 ### Was fehlt
 Ein benannter [[Datenstand]] und eine Stellvertretung, die ihn ohne Holger Stein führen kann.
@@ -62,4 +62,19 @@ Die Zahl hängt jetzt an zwei Köpfen statt an einem.
 
 ### Governance-Frage
 Wie wird Wissen aus Schlüsselrollen in Artefakte und Routinen übersetzt?
+:::
+
+::: nachsatz
+Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Planung soll den Abschluss melden, während vieles offen ist. Zeigen, dass niemand festlegt, welche offenen Punkte den Abschluss hindern.
+
+### Leitfragen
+- Wie viele offene Punkte hatte Ihr letzter Abschluss einer Leistungsphase?
+- Wer entscheidet bei Ihnen, ob ein offener Punkt den Abschluss hindert?
 :::

@@ -12,5 +12,5 @@ weiter: epilog
 titel: Freigabe mit Auflagen
 kurz: Ende
 ---
-Der Bauherr erteilt die Freigabe zum Abschluss von LPH 5 mit Auflagen. Was offen ist, hat jetzt einen Namen, eine Frist und eine verantwortliche Rolle.
+Der Bauherr erteilt die Freigabe zum Abschluss von LPH 5 mit Auflagen. Die Auflagen benennen, was offen ist. Ob sie nachgehalten werden, hängt an einer Struktur, die erst entstehen muss.
 :::

@@ -64,3 +64,18 @@ Der Bauherr bekommt Einzelthemen ohne Vorlage; das Terminsignal bleibt unbewerte
 ### Governance-Frage
 [[Mandat]]: Welche Stufe ist zuständig – und auf welchem Weg wird eskaliert?
 :::
+
+::: nachsatz
+Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Bauherren-PL steht zwischen Geschäftsführung, Nutzern und Planung. Zeigen, dass sie ohne Freigabeweg nur weiterreichen kann.
+
+### Leitfragen
+- Wer darf bei Ihnen eine Änderung zusagen – und ab welcher Summe?
+- Wo landet bei Ihnen ein Terminsignal der Planung?
+:::

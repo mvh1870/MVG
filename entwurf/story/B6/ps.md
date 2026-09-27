@@ -80,3 +80,18 @@ In Welt A haben Sie ‚Freigabe zurückstellen empfehlen‘ gewählt. In Welt B 
 ::: rueckbezug ohne
 In Welt A war im November alles offen: Zahl, Vertretung, Freigabe. In Welt B tragen Register, Datenstand und Stellvertretung auch dann, wenn ein Kopf fehlt.
 :::
+
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Holger Stein fällt auch hier aus. Zeigen, dass die Vertretung auf dem Datenstand weiterarbeitet – der Ausfall kostet Tage, nicht die Freigabe.
+
+### Leitfragen
+- Wer vertritt bei Ihnen die Kostenprognose?
+- Lässt sich jede Zahl Ihrer letzten Gremienantwort auf einen Datenstand zurückführen?
+:::

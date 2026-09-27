@@ -27,13 +27,13 @@ Zwei verknüpfte Einträge, die zusammen fertig werden müssen.
 
 ::: option B
 ---
-titel: Die Lieferzeit bestätigen und die Terminwirkung für RIS-009 liefern
-kurz: Lieferzeit bestätigen
+titel: Die Bestätigung der Lieferzeit und die Terminwirkung für RIS-009 zuliefern
+kurz: Bestätigung zuliefern
 status:
   offene-risiken: +1
 ---
 ### Konsequenz
-`FRW-001` wird bestätigt und zu `RIS-009` mit bewerteter Terminwirkung. Die Mensa wartet eine Woche auf ihre Bewertung.
+Sie liefern die Bestätigung der Lieferzeit und die Terminwirkung zu; die Projektsteuerung, die das Frühwarnungsregister führt, macht aus `FRW-001` das Risiko `RIS-009` mit bewerteter Terminwirkung. Die Mensa wartet eine Woche auf ihre Bewertung.
 
 ### Was fehlt
 Die Auswirkung von `AEN-012`.
@@ -74,9 +74,24 @@ In Welt A haben Sie ‚Auftrag abwarten‘ gewählt. In Welt B wartet niemand in
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Lieferzeit bewerten‘ gewählt. In Welt B bleibt die Bewertung nicht in einer Mail: Sie macht aus `FRW-001` das Risiko `RIS-009`.
+In Welt A haben Sie ‚Lieferzeit bewerten‘ gewählt. In Welt B bleibt die Bewertung nicht in einer Mail: Sie fließt ein, wenn aus `FRW-001` das Risiko `RIS-009` wird.
 :::
 
 ::: rueckbezug ohne
 In Welt A wurden Anruf und Mail zu einer Flurzusage und einer Terminmail. In Welt B werden sie zu `FRW-001` und `AEN-012`.
+:::
+
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Generalplanung liefert zu: die Auswirkung der Mensa und die Bestätigung der Lieferzeit. Die Register führen andere Rollen.
+
+### Leitfragen
+- Beginnt Ihre Planung manchmal vor dem Beschluss mit einer Änderung?
+- Wer macht bei Ihnen aus einem Signal ein bewertetes Risiko?
 :::

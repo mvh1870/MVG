@@ -33,7 +33,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Der Lenkungskreis im Juli beschließt Mensa und Fassade „vorbehaltlich“. Dr. Miriam Olbers fragt, auf welcher Grundlage; das Protokoll nennt keinen Datenstand.
+Der Lenkungskreis im Juli beschließt die offenen Änderungen „vorbehaltlich“. Dr. Miriam Olbers fragt, auf welcher Grundlage; das Protokoll nennt keinen Datenstand.
 
 ### Was fehlt
 Mandat, Datenstand und Nachweis zu jedem Beschluss.
@@ -67,6 +67,8 @@ Welche Entscheidung ist wesentlich – und wer muss sie treffen?
 
 ::: nachsatz
 Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
 :::
 
 ::: regie

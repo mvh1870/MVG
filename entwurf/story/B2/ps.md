@@ -47,16 +47,16 @@ Die Frühwarnung wartet eine Woche länger auf ihre Bewertung.
 
 ::: option C
 ---
-titel: Beide Einträge im Bericht an den Managementbericht zusammenführen
-kurz: Im Bericht bündeln
+titel: FRW-001 im Risikobericht führen – AEN-012 steht über das Änderungsregister im Managementbericht
+kurz: Im Risikobericht führen
 status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Ihr monatlicher Risikobericht nennt `FRW-001` und `AEN-012` mit Kennung und Status. Im Managementbericht sieht der Lenkungskreis beides auf einer Seite.
+Ihr monatlicher Risikobericht führt `FRW-001` mit Kennung und Status; `AEN-012` kommt über das Änderungsregister der Bauherren-PL in den Managementbericht. Dort sieht der Lenkungskreis beides auf einer Seite.
 
 ### Was fehlt
-Die Bewertung selbst – Bündeln ersetzt nicht Bestätigen und Bewerten.
+Die Bewertung selbst – Berichten ersetzt nicht Bestätigen und Bewerten.
 
 ### Neues Risiko
 Ein sauber berichteter, aber noch unbewerteter Eintrag.
@@ -79,4 +79,19 @@ In Welt A haben Sie ‚Mensa einplanen‘ gewählt. In Welt B wird aus der Flurz
 
 ::: rueckbezug ohne
 In Welt A kamen Anruf und Mail am selben Tag – und blieben im Postfach. In Welt B haben beide eine Kennung und einen Weg.
+:::
+
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Projektsteuerung hat zwei Einträge und eine Woche. Zeigen, dass bei jeder Reihenfolge etwas wartet – aber sichtbar.
+
+### Leitfragen
+- Was bearbeiten Sie zuerst: das Signal oder die Änderung?
+- Wer nimmt bei Ihnen ein Terminrisiko an, das sich nicht mindern lässt?
 :::

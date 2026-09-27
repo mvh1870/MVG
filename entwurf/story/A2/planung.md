@@ -64,3 +64,18 @@ Die Lieferzeit wirkt auf den Termin, ohne dass jemand darüber entscheidet.
 ### Governance-Frage
 [[Frühwarnung]]: Wer bestätigt das Signal – und wer entscheidet über die Folgen?
 :::
+
+::: nachsatz
+Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Planung hört „Wir kriegen das hin“ und muss handeln. Zeigen, dass sie zwischen Auftrag und Zusage allein bleibt.
+
+### Leitfragen
+- Wann gilt bei Ihnen eine Zusage als Auftrag?
+- Wer bestätigt ein Terminsignal der Planung?
+:::

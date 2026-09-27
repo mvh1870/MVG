@@ -63,3 +63,18 @@ Ein kritisches Risiko verschwindet in der Zusammenfassung.
 ### Governance-Frage
 Wesentliche Entscheidung: Welche Themen muss der Ausschuss überhaupt entscheiden?
 :::
+
+::: nachsatz
+Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Der Bericht der Projektsteuerung war vollständig und hat trotzdem nichts bewirkt. Zeigen, dass Länge und Kürze dasselbe Problem haben.
+
+### Leitfragen
+- Welche Frage steht auf Seite 1 Ihres letzten Berichts?
+- Wer entscheidet bei Ihnen, was in den Ausschuss geht?
+:::

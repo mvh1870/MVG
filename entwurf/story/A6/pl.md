@@ -12,7 +12,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Dr. Olbers fragt nach Kernfrage und Datenstand. Holger Steins letzte Datei ist sechs Wochen alt, erklären kann sie niemand. Sie erteilt keine Freigabe und verlangt eine belastbare Grundlage.
+Dr. Olbers fragt nach Kernfrage und Datenstand. Holger Steins letzten Stand „Prognose_Nov_v5“ kann niemand erklären. Sie erteilt keine Freigabe und verlangt eine belastbare Grundlage.
 
 ### Was fehlt
 Kernfrage, Mindestgrundlagen, Mandat und ein benannter Datenstand.
@@ -26,8 +26,8 @@ Die Anfrage des Stadtrats wird mit einer Zahl beantwortet, die niemand verantwor
 
 ::: option B
 ---
-titel: Die Freigabe verschieben, bis Holger Stein zurück ist
-kurz: Freigabe verschieben
+titel: Die Vorlage zur Freigabe zurückstellen, bis Holger Stein zurück ist
+kurz: Vorlage zurückstellen
 status:
   ungeklaerte-entscheidungen: +1
   offene-risiken: +1
@@ -63,4 +63,19 @@ Vertrauensverlust im Stadtrat.
 
 ### Governance-Frage
 [[Nachweiskette]]: Welche Entscheidung beruht auf welchem Stand?
+:::
+
+::: nachsatz
+Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Bauherren-PL soll die Freigabe vorlegen und hat keine Grundlage. Zeigen, dass die Freigabe beim Bauherrn liegt, die Vorlage bei ihr.
+
+### Leitfragen
+- Was müsste bei Ihnen vorliegen, bevor Sie eine Freigabe beantragen?
+- Wer vertritt bei Ihnen die Person, die alles weiß?
 :::

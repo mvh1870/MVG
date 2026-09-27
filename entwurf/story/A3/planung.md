@@ -63,3 +63,18 @@ Geplant wird, was möglicherweise nicht gebaut wird.
 ### Governance-Frage
 [[Entscheidungsreife]]: Wer sorgt dafür, dass die Abweichung überhaupt zur Entscheidung kommt?
 :::
+
+::: nachsatz
+Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Planung kennt die Ursache und hat schon eine Einsparidee. Zeigen, wie leicht aus Hilfsbereitschaft eine Änderung ohne Auftrag wird.
+
+### Leitfragen
+- Wie viele Varianten ohne Auftrag liegen bei Ihnen in der Schublade?
+- Wo steht bei Ihnen ein angekündigter Nachtrag?
+:::

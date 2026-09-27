@@ -15,7 +15,7 @@ status:
 Der Lenkungskreis nimmt die Verwendung „zur Kenntnis“. Dr. Miriam Olbers fragt nach der Liste der Posten; Aylin Kaya hat drei Fassungen, keine davon ist abgestimmt.
 
 ### Was fehlt
-Eine [[Freigabe]] des Einsatzes der Risikoreserve durch den Bauherrn, auf einem benannten Datenstand.
+Eine Freigabe des Einsatzes der Risikoreserve durch den Bauherrn, auf einem benannten Datenstand.
 
 ### Neues Risiko
 Kenntnisnahme wird später als Freigabe gelesen – ohne Nachweis, wer was angenommen hat.
@@ -33,7 +33,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Brandschutz und Mensa-Umplanung werden als „später bei der Vergabe“ geführt. Die Prognose sieht besser aus; Aylin Kaya führt die Posten in ihrer CTC trotzdem weiter.
+Brandschutz, der Nachtrag der Generalplanung zur Mensa-Umplanung und der Nachtrag der TGA-Fachplanung werden als „später bei der Vergabe“ geführt. Die Prognose sieht besser aus; Aylin Kaya führt die Posten in ihrer CTC trotzdem weiter.
 
 ### Was fehlt
 Eine Risikoannahme durch den Bauherrn – mit Wirkung, Frist und verantwortlicher Rolle.
@@ -68,6 +68,8 @@ Welche Mindestgrundlagen braucht der Bauherr, um den Einsatz der Reserve freizug
 
 ::: nachsatz
 Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
 :::
 
 ::: regie

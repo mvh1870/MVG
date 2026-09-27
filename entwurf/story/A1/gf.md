@@ -27,13 +27,13 @@ Wer legt fest, welche Zielpriorität gilt – und wer darf sie nicht festlegen?
 
 ::: option B
 ---
-titel: Monatlichen Statusbericht mit Ampeln bestellen
-kurz: Statusbericht bestellen
+titel: Sich den monatlichen Statusbericht vorlegen lassen
+kurz: Statusbericht vorlegen lassen
 status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Jonas Brenner liefert ab Februar einen Statusbericht mit Ampeln. Sie wissen jetzt mehr über das Projekt; entschieden ist dadurch nichts.
+Ab Februar legt Ihnen Jonas Brenner seinen Statusbericht mit Ampeln jeden Monat vor. Sie wissen jetzt mehr über das Projekt; entschieden ist dadurch nichts.
 
 ### Was fehlt
 Die Verbindung der Information mit Mandat, Entscheidung und Schwelle.
@@ -68,6 +68,8 @@ Mit welcher Entscheidungsfrage geht ein Zielkonflikt in den Lenkungskreis?
 
 ::: nachsatz
 Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
 :::
 
 ::: regie

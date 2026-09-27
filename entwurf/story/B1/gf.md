@@ -70,7 +70,7 @@ In Welt A haben Sie ‚Laufen lassen‘ gewählt. In Welt B läuft das Projekt n
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Statusbericht bestellen‘ gewählt. In Welt B ist der Managementbericht der Sammelpunkt für die Gremien; offene Entscheidungen stehen im Entscheidungsregister, nicht zwischen Ampeln.
+In Welt A haben Sie ‚Statusbericht vorlegen lassen‘ gewählt. In Welt B ist der Managementbericht der Sammelpunkt für die Gremien; offene Entscheidungen stehen im Entscheidungsregister, nicht zwischen Ampeln.
 :::
 
 ::: rueckbezug C
@@ -79,6 +79,12 @@ In Welt A haben Sie ‚In den Lenkungskreis‘ gewählt. In Welt B geht der Ziel
 
 ::: rueckbezug ohne
 In Welt A lag in dieser Woche derselbe Zielkonflikt auf dem Tisch – ohne Priorität. In Welt B steht er im Zielsystem oder als offene Entscheidung im Register.
+:::
+
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
 :::
 
 ::: regie

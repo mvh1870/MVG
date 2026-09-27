@@ -46,8 +46,8 @@ Der Engpass wandert zu Ihnen; alles wartet auf Ihren Kalender.
 
 ::: option C
 ---
-titel: Eine Sondersitzung des Lenkungskreises ansetzen
-kurz: Sondersitzung ansetzen
+titel: Alle offenen Punkte in den Lenkungskreis im August geben
+kurz: Lenkungskreis befassen
 status:
   terminrisiko: +1
 ---

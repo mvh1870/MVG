@@ -81,6 +81,12 @@ In Welt A haben Sie ‚In den Lenkungskreis‘ gewählt. In Welt B landet die Li
 In Welt A kamen an diesem Tag derselbe Anruf und dieselbe Mail. In Welt B haben beide eine Kennung und einen Weg.
 :::
 
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
 ::: regie
 ### Notiz
 Option C nicht als Fehler vorführen: Sie zeigt, dass die Mandatsleiter auch nach oben bindet.

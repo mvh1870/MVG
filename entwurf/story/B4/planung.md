@@ -80,3 +80,18 @@ In Welt A haben Sie ‚Entscheidung anmahnen‘ gewählt. In Welt B müssen Sie 
 ::: rueckbezug ohne
 In Welt A lag im Ausschuss ein Statusbericht ohne Frage. In Welt B liegt im Änderungsgremium eine Vorlage zu `AEN-031`.
 :::
+
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Generalplanung bringt Auswirkung und Varianten in die Vorlage. Zeigen: Die Auflage gilt, wie sie umgesetzt wird, entscheidet das Gremium.
+
+### Leitfragen
+- Beginnt Ihre Planung vor dem Beschluss mit der Umsetzung?
+- Wie werden Ihre Varianten zu Optionen einer Vorlage?
+:::

@@ -5,7 +5,7 @@ monat: 11
 titel: Eskalation
 lph: 5
 uhr: Montag, 07:45 Uhr
-whitepaper-bezug: [k2.3-p1, k2.5-p1]
+whitepaper-bezug: [k2.3-p1, k2.5-t1]
 status-start:
   entscheidungsfaehigkeit: 0
   kostenunsicherheit: sehr hoch
@@ -18,7 +18,7 @@ weiter: wendepunkt
 
 ::: schritt einstieg
 ---
-titel: Montag, 07:45 Uhr Monat 11.
+titel: Montag, 07:45 Uhr. Monat 11.
 kurz: Einstieg
 ---
 Die Freigabe zum Abschluss von LPH 5 steht an. Holger Stein fällt für Wochen aus; seine Excel-Stände versteht niemand vollständig. Eine Fraktion im Stadtrat fragt nach Kosten und Termin, Dr. Miriam Olbers braucht bis Freitag eine Antwort.

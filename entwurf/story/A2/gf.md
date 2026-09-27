@@ -67,6 +67,8 @@ Wann wird aus einem Signal ein Risiko – und wer bestätigt das?
 
 ::: nachsatz
 Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
 :::
 
 ::: regie

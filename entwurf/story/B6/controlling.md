@@ -80,3 +80,18 @@ In Welt A haben Sie ‚Bandbreite melden‘ gewählt. In Welt B gibt es statt ei
 ::: rueckbezug ohne
 In Welt A fiel mit Holger Stein das Kostenwissen aus. In Welt B fällt nur eine Person aus – der Datenstand bleibt.
 :::
+
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Das Controlling bestätigt den Datenstand, auf dem freigegeben wird. Zeigen, dass die Zahl für den Stadtrat dieselbe ist wie in der Vorlage.
+
+### Leitfragen
+- Stimmt bei Ihnen die Zahl im Gremium mit der in der Freigabevorlage überein?
+- Wer führt die Prognose, wenn die Schlüsselperson fehlt?
+:::

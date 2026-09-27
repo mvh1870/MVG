@@ -63,3 +63,18 @@ Ein Kostensignal ohne Empfänger – es steht in einer Zelle, nicht auf einer Ta
 ### Governance-Frage
 [[Frühwarnung]]: Ist die Marktnotiz ein Signal – und wer bewertet es?
 :::
+
+::: nachsatz
+Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Das Controlling rechnet von Anfang an neben der Projektsteuerung. Zeigen, wie früh die zweite Zahl entsteht – noch ohne Streit.
+
+### Leitfragen
+- Wie viele Kostenstände gibt es bei Ihnen – und welcher gilt?
+- Wer kennt bei Ihnen die Annahmen hinter der Prognose?
+:::

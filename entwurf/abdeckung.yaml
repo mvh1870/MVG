@@ -58,10 +58,9 @@ k2.4-p3:
 # ── 2.5 Symptome fehlender Ausübungsfähigkeit
 k2.5-t1:
   theorie: k02
-  story: [A4, wendepunkt]
+  story: [A4, A6, wendepunkt]
 k2.5-p1:
   theorie: k02
-  story: A6
 
 # ── 3 Begriffsrahmen – delegierbare Arbeit, Mandat und nichtdelegierbare Verantwortung
 k3-p1:
@@ -76,7 +75,7 @@ k3.1-p2:
 # ── 3.2 Delegierbar und nicht delegierbar
 k3.2-t1:
   theorie: k03
-  story: [B5, wendepunkt]
+  story: [B5, wendepunkt, ende-neufestlegung]
 k3.2-p1:
   theorie: k03
 # ── 3.3 Die Verantwortungspyramide – Arbeitsebene, Mandatsebene und Letztverantwortung
@@ -108,7 +107,7 @@ k4.2-p2:
   theorie: k04
 k4.2-p3:
   theorie: k04
-  story: [B1, B2, B3]
+  story: [B1, B2, B3, wendepunkt]
 # ── 4.3 Wesentliche Entscheidung
 k4.3-p1:
   theorie: k04
@@ -378,20 +377,22 @@ k9.5-p3:
 # ── 10.1 Öffentliche Bauherren
 k10.1-p1:
   theorie: k10
+  story: epilog
 # ── 10.2 Private und institutionelle Bauherren
 k10.2-p1:
   theorie: k10
+  story: epilog
 # ── 10.3 Energieversorger und Infrastrukturträger
 k10.3-p1:
   theorie: k10
+  story: epilog
 # ── 10.4 Projekte mit schleichendem Steuerungsverlust und MVG-Neuinitialisierung
 k10.4-p1:
   theorie: k10
-  story: ende-neufestlegung
+  story: [ende-neufestlegung, epilog]
 # ── 10.5 Typische Entscheidungsprobleme
 k10.5-t1:
   theorie: k10
-  story: epilog
 
 # ── 11 MVG-Neuinitialisierung als Vertiefungsformat
 k11-p1:
@@ -409,6 +410,7 @@ k11.2-l1:
   theorie: k11
 k11.2-p2:
   theorie: k11
+  story: ende-steuerbar
 # ── 11.3 Ergebnisbild einer MVG-Neuinitialisierung
 k11.3-p1:
   theorie: k11
@@ -434,3 +436,4 @@ k12.1-t1:
 # ── 13 Anhang: Glossar
 k13-t1:
   theorie: k13
+  story: ende-neufestlegung

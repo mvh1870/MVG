@@ -18,7 +18,7 @@ weiter: A3
 
 ::: schritt einstieg
 ---
-titel: Dienstag, 11:15 Uhr Monat 3.
+titel: Dienstag, 11:15 Uhr. Monat 3.
 kurz: Einstieg
 ---
 Lena Hoffmeister ruft an: Die Lieferzeit für die Holzbauelemente steigt von rund 16 auf 26 Wochen. Am selben Tag schreibt Sabine Roth: Der Ganztag braucht eine Mensa für rund 450 statt 300 Essen, grob 0,6 Mio. €. Frank Deppe hat ihr im Flur schon gesagt: „Wir kriegen das hin.“

@@ -70,7 +70,7 @@ In Welt A haben Sie ‚Bericht kürzen lassen‘ gewählt. In Welt B wird nicht 
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Beschlussvorlage schreiben‘ gewählt. In Welt B beruht die Vorlage auf einem benannten Datenstand; Projektsteuerung und Controlling liefern nicht zwei Zahlen dazu.
+In Welt A haben Sie ‚Entscheidungsvorlage schreiben‘ gewählt. In Welt B beruht die Vorlage auf einem benannten Datenstand; Projektsteuerung und Controlling liefern nicht zwei Zahlen dazu.
 :::
 
 ::: rueckbezug C
@@ -79,4 +79,19 @@ In Welt A haben Sie ‚In den Lenkungskreis geben‘ gewählt. In Welt B landet 
 
 ::: rueckbezug ohne
 In Welt A lag im Juli ein 40-seitiger Statusbericht ohne Entscheidungsfrage auf dem Tisch. In Welt B liegt eine Vorlage im Änderungsgremium und ein Managementbericht beim Bauausschuss.
+:::
+
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Bauherren-PL stimmt mit und führt die Beschlusslage im Änderungsregister. Zeigen, dass auch ein Auftrag des Gremiums mit Frist nachverfolgt wird.
+
+### Leitfragen
+- Wo steht bei Ihnen, was aus einem Auftrag des Gremiums geworden ist?
+- Wer gibt bei Ihnen den Einsatz der Risikoreserve frei?
 :::

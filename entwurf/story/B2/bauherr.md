@@ -69,7 +69,7 @@ status:
   entscheidungsfaehigkeit: -1
 ---
 ### Konsequenz
-Nora Petersen fragt nach: Nach der Mandatsleiter liegt `AEN-012` beim Änderungsgremium. Ihre Zusage bindet es nicht – sie erzeugt Erwartungen, die das Gremium jetzt mitentscheiden muss.
+Nora Petersen fragt nach: Nach der Mandatsleiter, die Sie selbst festgelegt haben, liegt `AEN-012` beim Änderungsgremium; Ihre Zusage greift dem vor und erzeugt Erwartungen, die das Gremium jetzt mitentscheiden muss.
 
 ### Was fehlt
 Eine Entscheidung auf der zuständigen Mandatsebene.
@@ -79,6 +79,12 @@ Der Bauherr umgeht die Leiter, die er selbst festgelegt hat.
 
 ### Governance-Frage
 [[Mandat]]: Wenn die Schwelle nicht passt – ändern Sie die Leiter oder den Einzelfall?
+:::
+
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
 :::
 
 ::: regie

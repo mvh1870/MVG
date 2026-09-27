@@ -55,11 +55,26 @@ status:
 Die Bauherren-PL verweist auf die nächste Sitzung im September; im August ist Sommerpause. Die Planung hält den Brandschutz an.
 
 ### Was fehlt
-Ein Gremium, das zwischen den Ausschusssitzungen über Änderungen entscheiden darf.
+Ein Gremium mit Mandat für Änderungen – in Welt A gibt es keines, also wartet alles auf den Ausschuss.
 
 ### Neues Risiko
 Zwei Monate Stillstand an einem genehmigungsrelevanten Punkt.
 
 ### Governance-Frage
 [[Mandat]]: Welche Stufe entscheidet über eine Änderung dieser Größe?
+:::
+
+::: nachsatz
+Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Auflagen gelten sofort, die nächste Sitzung ist im September. Zeigen, dass die Planung zwischen Einarbeiten und Warten wählen muss.
+
+### Leitfragen
+- Wer entscheidet bei Ihnen zwischen zwei Ausschusssitzungen?
+- Wie lange darf bei Ihnen eine Änderung auf eine Entscheidung warten?
 :::

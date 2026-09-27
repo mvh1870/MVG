@@ -80,3 +80,18 @@ In Welt A haben Sie ‚Überschreitung ausweisen‘ gewählt. In Welt B gibt es 
 ::: rueckbezug ohne
 In Welt A war die Reserve verplant, bevor jemand gefragt hatte. In Welt B fragt die Vorlage zuerst – und der Bauherr antwortet.
 :::
+
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Das Controlling zeigt den Stand der Reserve, entscheidet aber nicht über ihren Einsatz. Zeigen, dass auch eine Deckung ohne Reserve über das Änderungsregister ginge.
+
+### Leitfragen
+- Wer kennt bei Ihnen den Stand der Risikoreserve je Posten?
+- Wo würde eine Umschichtung bei Ihnen entschieden?
+:::

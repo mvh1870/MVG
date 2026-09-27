@@ -7,7 +7,7 @@ frage: Was empfehlen Sie der Bauherrenseite jetzt?
 ::: option A
 ---
 titel: Der Bauherren-PL eine MVG-Neuinitialisierung empfehlen
-kurz: MVG-Neuinitialisierung einleiten
+kurz: MVG-Neuinitialisierung empfehlen
 status:
   entscheidungsfaehigkeit: 3
   kostenunsicherheit: hoch
@@ -65,4 +65,17 @@ Eine neue Projektbasis auf der alten Steuerungslogik.
 
 ### Governance-Frage
 [[Datenstand]]: Auf welcher Grundlage wird die Projektbasis neu festgelegt?
+:::
+
+::: nachsatz
+Welt B war ein Gedankenexperiment. Was davon jetzt noch möglich ist, hängt davon ab, was der Bauherr selbst beiträgt.
+:::
+
+::: regie
+### Notiz
+Die Projektsteuerung kann empfehlen und zuarbeiten. Bei jeder Option klarmachen, dass Mandate, Schwellen und Freigaben beim Bauherrn liegen.
+
+### Leitfragen
+- Was würde Ihre Projektsteuerung heute empfehlen?
+- Was müsste Ihr Bauherr selbst beitragen?
 :::

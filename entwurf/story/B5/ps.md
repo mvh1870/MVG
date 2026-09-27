@@ -80,3 +80,18 @@ In Welt A haben Sie ‚Mehrkosten getrennt ausweisen‘ gewählt. In Welt B gibt
 ::: rueckbezug ohne
 In Welt A war die Reserve im September zu einem guten Teil verplant, ohne Freigabe. In Welt B entscheidet der Bauherr, bevor sie eingesetzt wird.
 :::
+
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Projektsteuerung prüft den Nachtrag auf Berechtigung und Höhe. Die Wahl hier: was sie außerdem beiträgt – Risikolage, Reservestand oder Terminwirkung.
+
+### Leitfragen
+- Wer bewertet bei Ihnen die Restrisiken nach einem Einsatz der Reserve?
+- Wie schnell kommt eine Terminwirkung bei Ihnen ins Register?
+:::

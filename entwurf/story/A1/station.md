@@ -18,10 +18,10 @@ weiter: A2
 
 ::: schritt einstieg
 ---
-titel: Montag, 09:00 Uhr Monat 1.
+titel: Montag, 09:00 Uhr. Monat 1.
 kurz: Einstieg
 ---
-Erste Woche nach Ihrer Übernahme. Unterlagen aus drei Ablagen, ein Beteiligtennetz ohne Linien, ein Zielkonflikt zwischen Kosten, Termin, ESG und LCC, den niemand priorisiert hat. Eine Marktnotiz der Generalplanung warnt vor steigenden Holzpreisen; die Kostendatei versteht im Detail nur Holger Stein. Der Bauantrag geht raus.
+Die ersten Wochen nach Ihrer Übernahme. Unterlagen aus drei Ablagen, ein Beteiligtennetz ohne Linien, ein Zielkonflikt zwischen Kosten, Termin, ESG und LCC, den niemand priorisiert hat. Eine Marktnotiz der Generalplanung warnt vor steigenden Holzpreisen; die Kostendatei versteht im Detail nur Holger Stein. Der Bauantrag geht raus.
 :::
 
 ::: schritt entscheidung

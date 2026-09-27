@@ -50,7 +50,7 @@ Der Termin rutscht für Punkte, die auch Auflagen sein könnten.
 titel: Eine letzte Optimierung noch vor der Freigabe einbringen
 kurz: Letzte Optimierung einbringen
 status:
-  offene-risiken: +1
+  ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
 Die Optimierung wird als `AEN-041` beantragt. Sie geht nicht in den Datenstand der Freigabe ein; freigegeben wird der benannte Stand ohne sie.
@@ -79,4 +79,19 @@ In Welt A haben Sie ‚Kostenstand mit abgleichen‘ gewählt. In Welt B trägt 
 
 ::: rueckbezug ohne
 In Welt A hing die Freigabe an Holger Steins Excel-Ständen. In Welt B tragen Register, Datenstand und Stellvertretung.
+:::
+
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Generalplanung liefert die Planungsgrundlagen. Zeigen, dass eine späte Optimierung eine eigene Änderung wird und nicht in den Freigabestand rutscht.
+
+### Leitfragen
+- Was liefert Ihre Planung zur Freigabe am Ende einer Leistungsphase?
+- Wie gehen Sie mit Änderungen kurz vor einer Freigabe um?
 :::

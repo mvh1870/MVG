@@ -7,7 +7,7 @@ frage: Was schlagen Sie Dr. Olbers jetzt vor?
 ::: option A
 ---
 titel: Eine MVG-Neuinitialisierung vorschlagen
-kurz: MVG-Neuinitialisierung einleiten
+kurz: MVG-Neuinitialisierung vorschlagen
 status:
   entscheidungsfaehigkeit: 3
   kostenunsicherheit: hoch
@@ -65,4 +65,17 @@ Eine neue Projektbasis auf der alten Steuerungslogik.
 
 ### Governance-Frage
 [[Datenstand]]: Auf welcher Grundlage wird die Projektbasis neu festgelegt?
+:::
+
+::: nachsatz
+Welt B war ein Gedankenexperiment. Was davon jetzt noch möglich ist, hängt davon ab, was der Bauherr selbst beiträgt.
+:::
+
+::: regie
+### Notiz
+Die Bauherren-PL schlägt vor und bereitet vor; entscheiden muss der Bauherr. Die Leistungsarchitektur erklären, nicht anbieten.
+
+### Leitfragen
+- Welche Entscheidungen in Ihrem Projekt müssten heute neu legitimiert werden?
+- Wie viel Zeit bekäme eine Neuordnung bei Ihnen?
 :::

@@ -74,9 +74,24 @@ In Welt A haben Sie ‚CTC einarbeiten lassen‘ gewählt. In Welt B gibt es kei
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Schwellenwert vorschlagen‘ gewählt. In Welt B ist die Schwelle festgelegt: Nach der Mandatsleiter gehört `AEN-031` mit rund 0,4 Mio. € ins Änderungsgremium.
+In Welt A haben Sie ‚Schwellenwert vorschlagen‘ gewählt. In Welt B stehen Schwellenwerte je Kostengruppe im Controlling-Register; wird einer verletzt, entsteht eine neue Frühwarnung. Und die Mandatsleiter weist `AEN-031` mit rund 0,4 Mio. € dem Änderungsgremium zu.
 :::
 
 ::: rueckbezug ohne
 In Welt A lagen 40 Seiten ohne Frage auf dem Tisch. In Welt B liegt eine Vorlage im Änderungsgremium, und Sie stimmen mit ab.
+:::
+
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Das Controlling stimmt im Änderungsgremium mit. Zeigen, dass der Beschluss über die Änderung und die Freigabe der Reserve zwei Entscheidungen sind.
+
+### Leitfragen
+- Was muss eine Änderungsvorlage für Ihr Controlling enthalten?
+- Wer stößt bei Ihnen den Entscheidungsbedarf zur Reserve an?
 :::

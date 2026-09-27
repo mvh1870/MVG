@@ -80,3 +80,18 @@ In Welt A haben Sie ‚Bericht kürzen‘ gewählt. In Welt B verschwindet kein 
 ::: rueckbezug ohne
 In Welt A lag im Juli ein 40-Seiten-Bericht ohne Frage auf dem Tisch. In Welt B hat die Vorlage eine Frage, und das Gremium weiß, worüber es entscheidet.
 :::
+
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Projektsteuerung liefert Terminwirkung und Risikolage zu. Zeigen, dass der Managementbericht verdichtet und die Deckungsfrage beim Bauherrn landet.
+
+### Leitfragen
+- Was bekommt Ihr Ausschuss: Ampeln oder eine Beschlussvorbereitung?
+- Wie viel Reserve halten Sie für Risiken, die noch nicht eingetreten sind?
+:::

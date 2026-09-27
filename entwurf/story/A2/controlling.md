@@ -63,3 +63,18 @@ Ein Terminsignal liegt unbewertet, während alle über die Mensa reden.
 ### Governance-Frage
 [[Entscheidungsvorlage]]: Was müsste vorliegen, bevor jemand 0,6 Mio. € zusagt?
 :::
+
+::: nachsatz
+Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Das Controlling muss entscheiden, ob eine Flurzusage in die Zahl gehört. Zeigen, dass beide Antworten etwas verdecken.
+
+### Leitfragen
+- Welche Zusagen stecken bei Ihnen schon in der Prognose?
+- Wer entscheidet, ob eine Änderung eingerechnet wird?
+:::

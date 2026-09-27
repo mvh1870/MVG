@@ -81,3 +81,18 @@ In Welt A haben Sie ‚An den Bauherrn geben‘ gewählt. In Welt B muss Dr. Olb
 ::: rueckbezug ohne
 In Welt A kamen derselbe Anruf und dieselbe Mail – und wurden zu einer Flurzusage und einer Notiz. In Welt B werden sie zu `FRW-001` und `AEN-012`.
 :::
+
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Bauherren-PL führt das Änderungsregister und bringt `AEN-012` ins Gremium. Zeigen, dass Tempo und Entscheidungsreife gegeneinander stehen können.
+
+### Leitfragen
+- Wann beantragen Sie eine Sondersitzung?
+- Wie erfährt die Nutzerseite, dass ein Wunsch beantragt, aber nicht beschlossen ist?
+:::

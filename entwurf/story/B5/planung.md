@@ -7,13 +7,13 @@ rueckbezug-auf: A5
 
 ::: option A
 ---
-titel: Den Nachtrag der TGA-Fachplanung fachlich prüfen und die Auswirkung eintragen
-kurz: Nachtrag prüfen
+titel: Die Auswirkung des Nachtrags fachlich bewerten und zuliefern
+kurz: Auswirkung zuliefern
 status:
   offene-risiken: -1
 ---
 ### Konsequenz
-Die geprüfte Auswirkung steht in `PRB-004`, mit Maßnahme. Die Bauherren-PL kann die Vorlage an Dr. Olbers geben; sie entscheidet über den Einsatz der Reserve.
+Die fachliche Auswirkung steht in `PRB-004`; Berechtigung und Höhe des Nachtrags prüft die Projektsteuerung. Die Bauherren-PL kann die Vorlage an Dr. Olbers geben; sie entscheidet über den Einsatz der Reserve.
 
 ### Was fehlt
 Nichts für die Vorlage – die Entscheidung liegt beim Bauherrn.
@@ -79,4 +79,19 @@ In Welt A haben Sie ‚Mehrkosten offenlegen‘ gewählt. In Welt B ist die Offe
 
 ::: rueckbezug ohne
 In Welt A war die Reserve zu einem guten Teil verplant, ohne dass jemand sie freigegeben hatte. In Welt B steht `PRB-004` im Problemregister, und über die Reserve entscheidet der Bauherr.
+:::
+
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Generalplanung liefert die fachliche Auswirkung zu; der Weg zum Bauherrn führt über die Vorlage der Bauherren-PL. Option C ist ein kurzer Umweg, kein Schaden.
+
+### Leitfragen
+- Wie oft ruft bei Ihnen die Planung den Bauherrn direkt an?
+- Wer trennt bei Ihnen Einsparung und Reserve?
 :::

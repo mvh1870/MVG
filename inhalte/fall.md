@@ -42,12 +42,13 @@ Die Geschichte beginnt mit Ihrer Übernahme der Projektleitung auf Bauherrenseit
 | Abweichung Monat 5, Projektsteuerung | +8 %, rund +4,7 Mio. € | Prognose Mai, Datei „v3_final_NEU“; in Welt B der verbindliche Datenstand „Kostenprognose 2026-05 · Version 3“ |
 | aktualisierte Prognose (nur Welt A) | +9,1 %, rund +5,3 Mio. € | A3, Option „Prognose aktualisieren lassen“; läge über 5 Mio. € und damit auf der Stufe des Bauherrn im Lenkungskreis |
 | Abweichung Monat 5, Controlling | +5,9 %, rund +3,4 Mio. € | eigene CTC-Rechnung der GML |
+| Abweichung und Reserve | Abweichungen gegen die Projektbasis gerechnet, Risikoreserve darin noch nicht eingesetzt | ganz eingesetzt, blieben nach Projektsteuerung rund 1,8 Mio. €, nach Controlling rund 0,5 Mio. € Überschreitung |
 | Ursache (nach Klärung) | überwiegend Preissteigerung Holzbauelemente laut Marktabfrage; Nachtrag der TGA-Fachplanung angekündigt | A3; Bauverträge gibt es erst nach LPH 7 |
 | Nutzerwunsch Mensa (Monat 3) | Ganztag: Mensa für rund 450 statt 300 Essen, grob 0,6 Mio. € | Schätzung der Generalplanung, noch ohne Termin- und Risikowirkung |
 | Lieferzeit Holzbauelemente (Monat 3) | von rund 16 auf 26 Wochen | Marktabfrage der Generalplanung |
 | Brandschutzauflagen (Monat 6) | Auflagen der Baugenehmigung zum Holzbau, grob 0,4 Mio. € | Welt A: Folgekosten in A5; Welt B: Änderung `AEN-031` im Änderungsgremium (B4) |
 
-Mandatsleiter in Welt B: der Muster-Mandatsleiter des Whitepapers (k4.2-p3) – Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium über 100 TEUR bis einschließlich 5 Mio. €, darüber Beschlussfassung durch den Bauherrn im Lenkungskreis. In Welt A gibt es keine festgelegten Schwellen.
+Mandatsleiter in Welt B: die Muster-Mandatsleiter des Whitepapers (k4.2-p3) – Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium über 100 TEUR bis einschließlich 5 Mio. €, darüber Beschlussfassung durch den Bauherrn im Lenkungskreis. In Welt A gibt es keine festgelegten Schwellen.
 
 ## Zeitachse
 

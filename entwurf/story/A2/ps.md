@@ -63,3 +63,18 @@ Schleichende Änderung des Projektumfangs, legitimiert durch eine Tabellenzeile.
 ### Governance-Frage
 [[Mandat]]: Wer darf eine Änderung von 0,6 Mio. € zusagen?
 :::
+
+::: nachsatz
+Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Projektsteuerung hat zwei Themen und einen Bericht. Zeigen, dass Melden und Bewerten noch keine Entscheidung sind.
+
+### Leitfragen
+- Was passiert bei Ihnen mit einer roten Ampel?
+- Wer entscheidet bei Ihnen über ein Terminrisiko?
+:::

@@ -41,7 +41,7 @@ Eine Vorlage mit Frage, Optionen und Empfehlung statt einer Tabelle im Anhang.
 Transparenz ohne Entscheidung.
 
 ### Governance-Frage
-[[Freigabe]]: Wer muss den Einsatz der Reserve nachträglich legitimieren?
+[[Nichtdelegierbare Bauherrenverantwortung]]: Wer muss den Einsatz der Reserve nachträglich legitimieren?
 :::
 
 ::: option C
@@ -62,4 +62,19 @@ Der Streit um die Zahl verdeckt die Frage nach der Freigabe.
 
 ### Governance-Frage
 [[Datenstand]]: Welche Annahmen zur Reserve gelten?
+:::
+
+::: nachsatz
+Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Projektsteuerung muss die verplante Reserve abbilden. Zeigen, dass jede Darstellung die Freigabe nicht ersetzt.
+
+### Leitfragen
+- Wie viel Ihrer Risikoreserve ist heute schon verplant?
+- Wer hat das angenommen – und wo steht es?
 :::

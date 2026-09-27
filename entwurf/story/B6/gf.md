@@ -81,6 +81,12 @@ In Welt A haben Sie ‚Lage offenlegen‘ gewählt. In Welt B ist die Lage schon
 In Welt A stand in diesem Monat dieselbe Freigabe an, und niemand konnte die Zahlen nachrechnen. In Welt B beruht sie auf Kernfrage, Mindestgrundlagen, Mandat und Datenstand.
 :::
 
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
 ::: regie
 ### Notiz
 Die Geschäftsführung empfiehlt, der Bauherr erteilt. Das ausdrücklich sagen, wenn jemand „die GML gibt frei“ formuliert.

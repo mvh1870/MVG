@@ -49,10 +49,10 @@ status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Sie geben frei, was belegt ist; den Rest erst, wenn die Projektsteuerung den Nachtrag geprüft hat. `PRB-004` bleibt mit Frist offen.
+Sie geben frei, was belegt ist; den Rest erst, wenn die Projektsteuerung den Nachtrag auf Berechtigung und Höhe geprüft hat. `PRB-004` bleibt mit Frist offen.
 
 ### Was fehlt
-Die Prüfung des Nachtrags und eine zweite Vorlage.
+Die Prüfung des Nachtrags durch die Projektsteuerung und eine zweite Vorlage.
 
 ### Neues Risiko
 Zwei Freigaben für ein Problem; die Nachverfolgung muss beide zusammenhalten.
@@ -79,6 +79,12 @@ Die Reserve bleibt unberührt, aber die Lücke wandert in andere Posten.
 
 ### Governance-Frage
 [[Mandat]]: Ist die Umschichtung selbst eine Entscheidung – und wessen?
+:::
+
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
 :::
 
 ::: regie

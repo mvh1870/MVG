@@ -12,7 +12,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Die Fraktion bekommt einen Sachstand ohne Zahl. Die Freigabe zum Abschluss von LPH 5 wird verschoben; die Planung arbeitet ohne Legitimation weiter.
+Die Fraktion bekommt einen Sachstand ohne Zahl. Die Freigabe zum Abschluss von LPH 5 wird verschoben; LPH 6 kann nicht beginnen, und welche offenen Punkte den Abschluss hindern, entscheidet niemand.
 
 ### Was fehlt
 Eine Vorlage, die sagt, was für die Freigabe fehlt und bis wann.

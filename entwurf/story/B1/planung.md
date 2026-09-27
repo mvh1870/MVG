@@ -13,7 +13,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Die Marktnotiz wird als [[Frühwarnung]] erfasst, mit verantwortlicher Rolle. Im wöchentlichen Jour fixe wird sie gesichtet; ob sie ein Risiko wird, entscheidet die Bestätigung.
+Die Marktnotiz geht als [[Frühwarnung]] an die Projektsteuerung, die das Frühwarnungsregister führt, und wird in der wöchentlichen Risikosichtung angesehen. Ob sie für sich steht oder mit einem späteren Signal zusammengehört und ob daraus ein Risiko wird, zeigt die Bestätigung.
 
 ### Was fehlt
 Noch nichts – das Signal ist erfasst, aber unbewertet.
@@ -79,4 +79,19 @@ In Welt A haben Sie ‚Marktnotiz verteilen‘ gewählt. In Welt B landet die No
 
 ::: rueckbezug ohne
 In Welt A gab es in dieser ersten Woche eine Marktnotiz und vier gleichrangige Ziele. In Welt B gibt es ein Register für das Signal und eine Regel für den Zielkonflikt.
+:::
+
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Generalplanung hat in Welt B zwei klare Wege: Signale gehen als Frühwarnung an die Projektsteuerung, Varianten als beantragte Änderung ins Änderungsregister.
+
+### Leitfragen
+- Wie erfährt bei Ihnen die Projektsteuerung von einem Marktsignal der Planung?
+- Woran misst Ihre Planung Varianten?
 :::

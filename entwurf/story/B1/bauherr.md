@@ -81,6 +81,12 @@ Ein Bauherr, der nur liest, wird zum Empfänger statt zum Entscheider.
 [[Nichtdelegierbare Bauherrenverantwortung]]: Was davon lässt sich nicht aus einem Bericht heraus erledigen?
 :::
 
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
 ::: regie
 ### Notiz
 Welt B verlangt vom Bauherrn wenig Zeit, aber eigene Entscheidungen. Den Rückbezug vorlesen, dann die Mandatsleiter zeigen.

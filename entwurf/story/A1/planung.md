@@ -63,3 +63,18 @@ Die Preissteigerung beim Holz bleibt ein unbewertetes Signal.
 ### Governance-Frage
 [[Frühwarnung]]: Wer bestätigt ein Signal – und was folgt daraus?
 :::
+
+::: nachsatz
+Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Generalplanung spürt den Zielkonflikt zuerst. Zeigen, dass sie ihn ohne Priorität des Bauherrn nur selbst auflösen kann.
+
+### Leitfragen
+- Welche Zielkonflikte löst bei Ihnen die Planung, ohne dass jemand es merkt?
+- Wie erfährt Ihre Planung, was Vorrang hat?
+:::

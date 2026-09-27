@@ -74,9 +74,24 @@ In Welt A haben Sie ‚Kostendatei nachvollziehen‘ gewählt. In Welt B ist die
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Holzpreis einrechnen‘ gewählt. In Welt B hat die Marktnotiz einen Ort: Sie wird als Frühwarnung erfasst und bewertet, nicht still in eine Zelle gerechnet.
+In Welt A haben Sie ‚Holzpreis einrechnen‘ gewählt. In Welt B hat die Marktnotiz einen Ort: Sie geht als Frühwarnung ins Register und wird in der Risikosichtung angesehen, nicht still in eine Zelle gerechnet.
 :::
 
 ::: rueckbezug ohne
 In Welt A war dieselbe erste Woche: zwei Rechnungen, eine Datei, ein Kopf. In Welt B haben CTC, Prognose und Schwellenwerte eine verantwortliche Rolle und einen Turnus.
+:::
+
+::: nachsatz
+In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Das Controlling bekommt in Welt B einen Turnus und Schwellenwerte statt einer Nebenrechnung. Zeigen, dass ein Schwellenwert ein Signal auslöst, aber nicht entscheidet.
+
+### Leitfragen
+- Ab welcher Abweichung wird bei Ihnen aus einer Zahl ein Signal?
+- Wer gleicht bei Ihnen die Annahmen von Prognose und CTC ab?
 :::

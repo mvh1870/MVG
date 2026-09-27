@@ -63,3 +63,18 @@ Bekannte Risiken, die niemand annimmt oder mindert.
 ### Governance-Frage
 Risikoannahme: Wer akzeptiert auf Bauherrenseite, was auf dieser Liste steht?
 :::
+
+::: nachsatz
+Keine dieser Entscheidungen ist falsch. In Welt A fehlt die Struktur, in der sie wirken könnten.
+
+Die Geschichte merkt sich Ihre Wahl.
+:::
+
+::: regie
+### Notiz
+Die Projektsteuerung liefert, was man von ihr kennt: Bericht, Rechnung, Liste. Zeigen, dass jedes davon ein Signal aufnimmt, aber keines es zur Entscheidung bringt.
+
+### Leitfragen
+- Wo wäre die Marktnotiz bei Ihnen gelandet?
+- Wer liest bei Ihnen Seite 17 des Statusberichts?
+:::

@@ -16,7 +16,7 @@ story: [wirklichkeit, ende-steuerbar, ende-neufestlegung]
 Nicht jedes Projekt startet mit einer sauberen Führungsstruktur – und manches verliert sie unterwegs. Für laufende Projekte, deren Steuerungs- und Entscheidungslogik nicht mehr ausreichend trägt, sieht Minimum Viable Governance (MVG) ein eigenes Format vor: die MVG-Neuinitialisierung. Dieses Kapitel erklärt, woran Sie erkennen, dass sie nötig wird, was sie neu ordnet und was am Ende vorliegt.
 
 ::: kernaussage
-Die MVG-Neuinitialisierung bringt ein laufendes Projekt wieder in einen führbaren Zustand. Sie ordnet nicht das Projekt fachlich neu, sondern die Führungs- und Entscheidungslogik – vom ersten Lagebild bis zu einer stabilisierten Entscheidungsarchitektur.
+Die MVG-Neuinitialisierung soll ein laufendes Projekt wieder führbar machen. Sie ordnet nicht das Projekt fachlich neu, sondern die Führungs- und Entscheidungslogik – vom ersten Lagebild bis zu einer stabilisierten Entscheidungsarchitektur.
 :::
 
 ::: abschnitt k11
@@ -27,7 +27,7 @@ Im regulären Verlauf eines Projekts folgen die Freigaben der Abfolge der Leistu
 
 Das hat eine wichtige Folge: Eine MVG-Neuinitialisierung ist selbst **keine** [[Freigabe]]. Sie kann aber dazu führen, dass einzelne Freigaben nachgeholt oder wiederholt werden. Die Abfolge LPH 0–9 ändert sich dadurch nicht. Ein Beispiel: Stellt sich heraus, dass eine frühere Freigabe auf einem überholten Datenstand beruhte, kann ihre Wiederholung ein Ergebnis der MVG-Neuinitialisierung sein – die Leistungsphasen selbst werden dabei nicht neu sortiert.
 
-Das Kapitel bündelt drei Dinge: die wichtigsten Auslöser, die Felder, die neu geordnet werden, und die Ergebnisse. Wo die MVG-Neuinitialisierung nach Branche und Projektstand ansetzt, zeigt Kapitel 10.
+Das Kapitel bündelt drei Dinge: die wichtigsten Auslöser, die Felder, die neu geordnet werden, und die Ergebnisse. Anwendungssituationen nach Branche und Projektstand zeigt Kapitel 10.
 
 ::: zitat k11-p1
 Eine MVG-Neuinitialisierung ist keine Freigabe; ihr Ergebnis kann die Nachholung oder Wiederholung einzelner Freigaben sein, ohne die Abfolge LPH 0–9 zu verändern.
@@ -263,7 +263,7 @@ titel: Ergebnisbild einer MVG-Neuinitialisierung
 ---
 Woran erkennt man, dass eine MVG-Neuinitialisierung gewirkt hat? Sie liefert einen **geordneten Führungszustand**. Der besteht aus sieben Ergebnissen, jedes mit einem klaren Zweck.
 
-Das **Governance-Lagebild** zeigt, wo die Steuerbarkeit verloren gegangen ist. Das **Entscheidungsinventar** macht sichtbar, welche wesentlichen Entscheidungen offen, überfällig oder unklar sind. Die **Logik zur Neufestlegung der Projektbasis** klärt, ob und wie Kosten, Termine, Projektumfang, Risiko oder Mandat neu legitimiert werden müssen. Die **Datenstandsbereinigung** legt fest, welcher Stand für die nächsten Entscheidungen gilt. Dann wird geordnet, welche **Freigaben nachgeholt oder wiederholt** werden – die Abfolge LPH 0–9 bleibt dabei unverändert. Der **Eskalationsplan** bestimmt, welche Entscheidungen auf welcher Ebene getroffen werden müssen. Und das **stabilisierte Betriebshandbuch** führt das Projekt zurück in einen handhabbaren Regelbetrieb.
+Das **Governance-Lagebild** zeigt, wo die Steuerbarkeit verloren gegangen ist. Das **Entscheidungsinventar** macht sichtbar, welche wesentlichen Entscheidungen offen, überfällig oder unklar sind. Die **Logik zur Neufestlegung der Projektbasis** klärt, ob und wie Kosten, Termine, Projektumfang, Risiko oder Mandat neu legitimiert werden müssen. Die **Datenstandsbereinigung** legt fest, welcher Stand für die nächsten Entscheidungen gilt. Außerdem wird geordnet, welche **Freigaben nachgeholt oder wiederholt** werden – die Abfolge LPH 0–9 bleibt dabei unverändert. Der **Eskalationsplan** bestimmt, welche Entscheidungen auf welcher Ebene getroffen werden müssen. Und das **stabilisierte Betriebshandbuch** führt das Projekt zurück in einen handhabbaren Regelbetrieb.
 
 Die Tafel zeigt alle sieben Ergebnisse mit ihrem Zweck. Darunter sehen Sie, wie sich die MVG-Neuinitialisierung zum frühen Einstieg verhält.
 

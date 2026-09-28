@@ -32,7 +32,7 @@ Ein solches Führungsmodell muss sechs Fragen beantworten:
 1. Welche Ziele gelten?
 2. Wer darf was vorbereiten, entscheiden, freigeben oder eskalieren?
 3. Welche Entscheidungen sind wesentlich?
-4. Welche Risiken und Änderungen muss der Bauherr annehmen oder freigeben?
+4. Welche Risiken und Änderungen brauchen eine Annahme oder Freigabe auf Bauherrenseite?
 5. Welcher Datenstand gilt?
 6. Wie lässt sich eine Entscheidung später nachvollziehen?
 
@@ -62,14 +62,16 @@ Der Zweck von MVG ist nicht möglichst viel Governance. Der Zweck ist **ausreich
 
 Für den Bauherrn heißt das: Er muss nicht warten, bis seine Organisation reif, vollständig standardisiert oder technisch integriert ist. MVG beginnt bei den Entscheidungen, die für ihn kritisch sind, und schafft dafür einen belastbaren Mindeststandard.
 
-Das Ziel ist **Entscheidungssicherheit**. Das Wort führt leicht in die Irre: Es bedeutet nicht, dass keine Risiken mehr bleiben. Es bedeutet, dass eine Entscheidung auf einem benannten Datenstand getroffen wird, mit klarer Entscheidungsfrage, bekannten Optionen und transparenten Annahmen, mit nachvollziehbarer Risikoannahme, definiertem Mandat und dokumentierter Beschlusslage. Eine riskante Entscheidung kann also entscheidungssicher sein – wenn klar ist, wer welches Risiko auf welcher Grundlage angenommen hat.
+Das Ziel ist **Entscheidungssicherheit**. Das Wort führt leicht in die Irre: Es bedeutet nicht, dass keine Risiken mehr bleiben. Es bedeutet, dass eine Entscheidung auf einem benannten Datenstand getroffen wird, mit klarer Entscheidungsfrage, bekannten Optionen und transparenten Annahmen, mit nachvollziehbarer Risikoannahme, definiertem Mandat und dokumentierter Beschlusslage. Auch eine riskante Entscheidung kann also entscheidungssicher sein – wenn alle diese Merkmale erfüllt sind, darunter eine nachvollziehbare Risikoannahme.
 
 ::: sortieren
 ---
-titel: Was gehört zur Entscheidungssicherheit?
-links: Gehört dazu
-rechts: Gehört nicht dazu
+titel: Was verlangt MVG – und was nicht?
+links: Gehört zur Entscheidungssicherheit
+rechts: Verlangt MVG nicht
 ---
+Ordnen Sie zu: Was macht eine Entscheidung entscheidungssicher, und was verlangt MVG ausdrücklich nicht?
+
 ::: posten 1
 ---
 seite: links
@@ -87,7 +89,7 @@ seite: rechts
 Risikofreiheit
 
 ### Erklärung
-Entscheidungssicherheit bedeutet ausdrücklich nicht Risikofreiheit.
+MVG verlangt keine Risikofreiheit: Entscheidungssicherheit bedeutet ausdrücklich nicht Risikofreiheit.
 :::
 
 ::: posten 3
@@ -131,7 +133,7 @@ seite: rechts
 Möglichst viel Governance
 
 ### Erklärung
-Der Zweck ist ausreichende Steuerbarkeit mit dem kleinstmöglichen funktionsfähigen Standard.
+MVG verlangt nicht möglichst viel Governance. Der Zweck ist ausreichende Steuerbarkeit mit dem kleinstmöglichen funktionsfähigen Standard.
 :::
 :::
 :::
@@ -278,7 +280,7 @@ Zielprioritäten bleiben unklar, Mandate sind nicht definiert, Gremien- und Proj
 ---
 titel: Abgrenzung und rechtlicher Hinweis
 ---
-MVG deckt nicht alle Pflichten ab, die ein Bauherr hat. Es konzentriert sich auf das, was die vorigen Abschnitte beschreiben: dass der Bauherr führen, entscheiden und seine Entscheidungen nachweisen kann. Andere Fachgebiete – Bauordnungsrecht, Arbeitsschutz, Vergaberecht, technische Betreiberberatung – liegen außerhalb dieses Rahmens. MVG steckt damit seinen Rahmen selbst ab. Weil es um eine Leistungsgrenze geht, steht der Hinweis hier im Wortlaut. Mit der Übung darunter können Sie prüfen, was in den Rahmen fällt. Wie MVG im Alltag der beteiligten Rollen ankommt, zeigt das folgende Kapitel zum MVG Companion.
+MVG deckt nicht alle Pflichten ab, die ein Bauherr hat. Es konzentriert sich auf das, was die vorigen Abschnitte beschreiben: dass der Bauherr führen, entscheiden und seine Entscheidungen nachweisen kann. Eine bauordnungsrechtliche Pflichtenmatrix, eine arbeitsschutzrechtliche Vertiefung, eine Vergaberechtsprüfung oder eine technische Betreiberberatung leistet MVG nicht. MVG steckt damit seinen Rahmen selbst ab. Weil es um eine Leistungsgrenze geht, steht der Hinweis hier im Wortlaut. Mit der Übung darunter können Sie prüfen, was in den Rahmen fällt. Wie MVG im Alltag der beteiligten Rollen ankommt, zeigt das folgende Kapitel zum MVG Companion.
 
 ::: zitat k5.5-p1
 MVG behandelt nicht alle denkbaren Bauherrenpflichten. Es ist keine bauordnungsrechtliche Pflichtenmatrix, keine arbeitsschutzrechtliche Vertiefung, keine Vergaberechtsprüfung und keine technische Betreiberberatung. Der Fokus liegt auf Führungs-, Entscheidungs- und Nachweisfähigkeit.
@@ -294,7 +296,7 @@ rechts: Nicht Gegenstand von MVG
 ---
 seite: links
 ---
-Führungsfähigkeit des Bauherrn
+Führungsfähigkeit
 :::
 
 ::: posten 2

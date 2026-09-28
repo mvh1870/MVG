@@ -62,17 +62,15 @@ links: MVG
 rechts: MVG Companion
 ---
 ::: ansicht links
-**Ein schlankes Bauherren-Führungsmodell.**
-
-Einer der fünf Gewinne ist eine geringere Zusatzlast: Der Mindeststandard bleibt auf führungsrelevante Entscheidungen konzentriert.
+**Ein schlankes Bauherren-Führungsmodell.** So ordnet das Schlussbild MVG ein.
 :::
 
 ::: ansicht rechts
-**Ein anwendungsnaher Beschleuniger.**
+**Ein anwendungsnaher Beschleuniger.** So ordnet das Schlussbild den MVG Companion ein. Beim Einstieg kann er die Einführung beschleunigen.
+:::
+:::
 
-Er setzt in der Anwendung an: Betriebshandbuch, Routinen und seine Unterstützung erleichtern den Regelbetrieb, und beim Einstieg kann er die Einführung beschleunigen.
-:::
-:::
+Die fünf Gewinne der Tafel nennt MVG für die Kombination aus beiden.
 
 ::: zitat k12-p2
 Arbeit kann delegiert werden – bauherrenseitige Legitimation nicht.
@@ -113,7 +111,7 @@ titel: Pragmatischer Einstieg
 ---
 Wer an Governance denkt, denkt schnell an ein großes Einführungsprojekt. So ist der Einstieg in MVG nicht angelegt. Er beginnt mit einer kompakten **MVG-Reifegradanalyse**. Sie macht in kurzer Zeit sichtbar, welche Entscheidungen, Mandate, Datenstände und Nachweise im Projekt kritisch sind.
 
-Auf dieser Grundlage priorisiert der Bauherr: Welche MVG-Bausteine sollen sofort wirken? Und wo kann der MVG Companion die Einführung beschleunigen? Der Bauherr muss also nicht alles auf einmal einführen, sondern kann beim Kritischen beginnen.
+Auf dieser Grundlage priorisiert der Bauherr: Welche MVG-Bausteine sollen sofort wirken? Und wo kann der MVG Companion die Einführung beschleunigen? Die Reihenfolge ergibt sich also aus dem, was die Analyse als kritisch zeigt.
 
 MVG nennt drei Einstiegspunkte. Die **Reifegradanalyse** klärt, welche Entscheidungen, Mandate, Freigaben und Datenstände im 30/60/90-Orientierungsrahmen relevant sind, und liefert ein Lagebild, eine Entscheidungsliste und priorisierte Umsetzungsschritte. Die **Companion-Kalibrierung** klärt, welche Rollen, Entscheidungsroutinen und Teile des Betriebshandbuchs mit Unterstützung des Companion verfügbar sein sollen. Bei der **Entscheidung für die Pilotierung** wird eine echte Entscheidung gesucht, an der sich das MVG-Modell kalibrieren lässt – ein Praxistest mit Freigabefrage, [[Entscheidungs-ID]], Datenstand und Nachweislogik.
 

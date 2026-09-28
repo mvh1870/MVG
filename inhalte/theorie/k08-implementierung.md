@@ -23,7 +23,7 @@ MVG wird in Schritten eingeführt: Lagebild, funktionsfähiges Mindestmodell, Te
 ---
 titel: Sequenziertes Vorgehen
 ---
-Die Einführung folgt sechs Schritten: Einrichtung, Diagnose, Konzeption, Pilotierung und Kalibrierung, Befähigung und Übergabe. Jeder Schritt hat einen eigenen Zweck, eigene Ergebnisse und ein eigenes Kriterium, an dem er als abgeschlossen gilt. Das Modell entsteht so schrittweise und wird an echten Entscheidungen geprüft, bevor es in den Regelbetrieb übergeht.
+Die Einführung folgt sechs Schritten: Einrichtung, Diagnose, Konzeption, Pilotierung und Kalibrierung, Befähigung sowie Übergabe. Jeder Schritt hat einen eigenen Zweck, eigene Ergebnisse und ein eigenes Kriterium, an dem er als abgeschlossen gilt. Das Modell entsteht so schrittweise und wird an echten Entscheidungen geprüft, bevor es in den Regelbetrieb übergeht.
 
 Auffällig ist die Spalte „Mitwirkung“ der Tafel: In keinem Schritt läuft die Einführung ohne die Bauherrenseite. Am Anfang benennt sie eine verantwortliche Rolle und sichert den Zugang zu den Unterlagen. In der Konzeption trifft sie Entscheidungen zu Mandaten, Schwellen, Freigaben und Rollen. In der Pilotierung wendet sie das Modell im realen Projekt an. Und am Ende erteilt sie selbst die Abnahme, benennt die verantwortliche Rolle für den Regelbetrieb und bestätigt den Prüfzyklus.
 
@@ -147,7 +147,7 @@ links: Vorgehensmodell
 rechts: 30/60/90-Tage-Logik
 ---
 ::: ansicht links
-**Der verbindliche Projektverlauf.** Einrichtung → Diagnose → Konzeption → Pilotierung → Befähigung → Regelbetrieb. Jeder Schritt hat sein eigenes Abnahmekriterium.
+**Der verbindliche Projektverlauf.** Einrichtung → Diagnose → Konzeption → Pilotierung → Befähigung → Regelbetrieb. Jeder Schritt bis zur Übergabe hat seine eigene Abnahme.
 :::
 
 ::: ansicht rechts
@@ -204,7 +204,7 @@ titel: Mitwirkung des Bauherrn
 ---
 MVG lässt sich nicht an die Bauherrenorganisation vorbei einführen. Der Grund liegt im Gegenstand selbst: Es geht um Verantwortung, die beim Bauherrn bleibt. Wer ein Modell für Mandate, Schwellen und Freigaben einführt, braucht deshalb die Menschen, die diese Mandate tragen und diese Freigaben erteilen. Die Mitwirkung ist darum kein Verwaltungsaufwand neben der eigentlichen Arbeit, sondern Teil der Leistung.
 
-Konkret heißt das: Auf Bauherrenseite gibt es eine verbindliche verantwortliche Rolle. Sie sorgt für Zugang zu den Kernunterlagen – Projektauftrag, Zielsystem, Rollen, Kosten- und Terminstand, Risiko- und Änderungsinformationen. Die Bauherren-Projektleitung, die Auftraggeberlogik, das [[PMO]], die Projektsteuerung und Fachrollen stehen für Gespräche zur Verfügung. Der Bauherr trifft Entscheidungen zu Zielprioritäten, Mandaten, Schwellen und Freigaben, nimmt an Managementberichten, Pilotentscheidungen und Befähigungsmaßnahmen teil und übernimmt nach der Übergabe den Regelbetrieb.
+Konkret heißt das: Auf Bauherrenseite gibt es eine verbindliche verantwortliche Rolle, und es besteht Zugang zu den Kernunterlagen – Projektauftrag, Zielsystem, Rollen, Kosten- und Terminstand, Risiko- und Änderungsinformationen. Die Bauherren-Projektleitung, die Auftraggeberlogik, das [[PMO]], die Projektsteuerung und Fachrollen stehen für Gespräche zur Verfügung. Der Bauherr trifft Entscheidungen zu Zielprioritäten, Mandaten, Schwellen und Freigaben, nimmt an Managementberichten, Pilotentscheidungen und Befähigungsmaßnahmen teil und übernimmt nach der Übergabe den Regelbetrieb.
 
 Bauherr Mentoren strukturiert, moderiert, entwirft, erprobt und befähigt. Die Übung zeigt, wie sich beides trennt.
 

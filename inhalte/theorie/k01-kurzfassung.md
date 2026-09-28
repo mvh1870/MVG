@@ -24,7 +24,7 @@ Große Bauvorhaben kommen ohne Fachleute nicht aus. Planer rechnen Varianten dur
 
 Etwas anderes ist die Legitimation. Wenn ein Ziel Vorrang bekommt, ein Risiko bewusst in Kauf genommen oder eine [[Freigabe]] erteilt wird, braucht es jemanden, der dafür einsteht. Das kann nur der Bauherr sein. Die beste Vorlage der Projektsteuerung ändert daran nichts: Sie bereitet die Entscheidung vor, sie ersetzt sie nicht.
 
-Woran erkennen Sie die Grenze im Projekt? Fragen Sie bei jeder Aufgabe: Wird hier etwas erarbeitet – oder wird etwas verbindlich festgelegt? Erarbeiten ist Arbeit. Festlegen, annehmen, freigeben und dafür geradestehen ist Legitimation. Auch die Nachweisfähigkeit gehört dazu: Das Protokoll darf ein Dritter schreiben, dass die Beschlusslage belastbar bleibt, verantwortet der Bauherr. MVG soll diese Verantwortung praktisch handhabbar machen.
+Woran erkennen Sie die Grenze im Projekt? Analyse, Vorbereitung, Koordination und Dokumentation können andere übernehmen. Ziel, Mandat, wesentliche Entscheidung, Risikoannahme, Freigabe und Nachweis muss der Bauherr selbst legitimieren. Auch die Nachweisfähigkeit gehört dazu: Das Protokoll darf ein Dritter schreiben, dass die Beschlusslage belastbar bleibt, verantwortet der Bauherr. MVG soll diese Verantwortung praktisch handhabbar machen.
 
 ::: zitat k1.1-p1
 Bauherren können Arbeit, Analyse, Koordination und Dokumentation delegieren. Nicht delegierbar bleibt die Legitimation von Ziel, Mandat, wesentlicher Entscheidung, Risikoannahme, Freigabe und Nachweis. MVG macht diese Verantwortung praktisch handhabbar.
@@ -118,7 +118,7 @@ Das Kapitel verdichtet MVG in fünf Aussagen für die Leitungsebene. Sie beschre
 
 Die dritte Aussage trägt das Modell: Entscheidungssicherheit entsteht nicht aus einem einzelnen guten Dokument. Sie entsteht, wenn Ziel, Mandat, Datenstand, Risiko, Freigabe und Nachweis verbindlich zusammenhängen. Fehlt ein Glied, fehlt dieser Zusammenhang – etwa wenn niemand sagen kann, auf welchem Datenstand eine Entscheidung beruht. Gehen Sie die Kette unten Glied für Glied durch.
 
-Die fünfte Aussage schützt vor einem Missverständnis: LPH 0 ist ein wichtiger früher Hebel. Maßgeblich ist aber, dass der Bauherr über den gesamten kritischen Projektverlauf entscheiden und nachweisen kann – bis LPH 9.
+Die fünfte Aussage schützt vor einem Missverständnis: LPH 0 ist ein wichtiger früher Hebel. Maßgeblich ist aber, dass der Bauherr über den gesamten kritischen Projektverlauf entscheiden und nachweisen kann.
 
 ::: karten
 ---
@@ -169,7 +169,7 @@ Ein wichtiger früher Hebel – entscheidend ist aber die Entscheidungs- und Nac
 ---
 titel: Die Kette der Entscheidungssicherheit
 ---
-Sechs Glieder, die zusammengehören. Klicken Sie sich durch.
+Sechs Glieder, die zusammengehören – die Reihenfolge folgt der Aufzählung im Kapitel und ist kein Ablauf. Klicken Sie sich durch.
 
 ::: etappe 1
 ---
@@ -223,7 +223,7 @@ Was hat die Bauherrenorganisation in der Hand, wenn MVG umgesetzt ist? Keine los
 
 Das Kapitel nennt sechs Elemente dieses Modells, jedes mit seinem Ergebnis. Die Karten unten zeigen sie im Wortlaut der Tabelle. Mehrere davon werden in späteren Kapiteln ausführlich behandelt.
 
-Wichtig ist das letzte Element, die [[Befähigung]]. Der Bauherr muss das Modell nach der Übergabe selbst anwenden können. Bauherr Mentoren übernimmt dabei keine Bauherrenrolle: Es stellt Struktur, [[Entscheidungsreife]], Mandatsklarheit und Befähigung her, damit die Bauherrenorganisation ihre Verantwortung selbst wirksam ausüben kann. Das [[Betriebshandbuch]] übergibt Routinen und Rollen in den Regelbetrieb.
+Wichtig ist das letzte Element, die [[Befähigung]]. Der Bauherr muss das Modell nach der Übergabe selbst anwenden können. Bauherr Mentoren übernimmt dabei keine Bauherrenrolle, sondern stellt Struktur, [[Entscheidungsreife]], Mandatsklarheit und Befähigung her, damit die Bauherrenorganisation ihre Verantwortung selbst wirksam ausüben kann. Das [[Betriebshandbuch]] übergibt Routinen und Rollen in den Regelbetrieb.
 
 ::: tafel k1.3-t1
 ---
@@ -233,9 +233,9 @@ form: karten
 
 ::: umschalter
 ---
-titel: Wer trägt das Modell?
+titel: Wer macht was – vor und nach der Übergabe des Modells?
 links: Während der Begleitung
-rechts: Nach der Übergabe
+rechts: Nach der Übergabe des Modells
 ---
 Befähigung ist Pflichtbestandteil – der Blick auf beide Zeitpunkte zeigt, warum.
 
@@ -248,7 +248,7 @@ Befähigung ist Pflichtbestandteil – der Blick auf beide Zeitpunkte zeigt, war
 ::: ansicht rechts
 - Das Betriebshandbuch hat Routinen, Rollen, Taktung, Fristen, Eskalationswege und Betriebslogik in den Regelbetrieb übergeben.
 - Bauherren-Projektleitung, Auftraggeber-Logik, PMO, Gremienrollen und Fachrollen wenden das Modell selbst an.
-- Der Bauherr kann das Modell selbst anwenden.
+- Die Übergabe des Modells ist ein Befähigungsschritt – nicht die Übergabe des Vorhabens in LPH 9.
 :::
 :::
 :::

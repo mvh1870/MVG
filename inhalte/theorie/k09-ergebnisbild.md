@@ -67,7 +67,7 @@ Wo die Entscheidung belegt ist. Wo der Nachweis geführt wird, gehört zu den Fr
 ---
 titel: Beschlusslage
 ---
-Was tatsächlich beschlossen ist. Die Entscheidungsvorlage hält sie fest – und danach die Nachverfolgung.
+Was tatsächlich beschlossen ist. Die Entscheidungsvorlage hält die Beschlusslage fest; danach folgt die Nachverfolgung.
 :::
 :::
 
@@ -79,7 +79,7 @@ Das Mandats- und Verantwortungsmodell ist das zentrale Ergebnisobjekt. Es beantw
 
 Praktisch wird das Modell an konkreten Fragen. Steht eine Entscheidung an, lässt sich mit ihm klären, welche Bauherrenverantwortung betroffen ist, welche Vorbereitung delegiert werden kann und wer letztverantwortlich ist. Es zeigt, wer ausführt, wer konsultiert und wer informiert wird, welche Schwelle eine Eskalation auslöst und welche Grundlagen vorliegen müssen. Schließlich verbindet es die Entscheidung mit ihrer Entscheidungs-ID, der betroffenen Freigabe und dem Ort, an dem der Nachweis geführt wird.
 
-Ein Beispiel: Die Projektsteuerung kann eine Entscheidung gründlich vorbereiten. Ob sie dann auch entscheiden darf oder ob die Entscheidung an die letztverantwortliche Bauherrenrolle zurückfällt, legt das Modell fest.
+Ein Beispiel: Die Projektsteuerung bereitet eine Entscheidung gründlich vor. Wann ihre Unterstützung endet und die Entscheidung an die letztverantwortliche Bauherrenrolle zurückfallen muss, macht das Modell sichtbar.
 
 ::: etappen
 ---
@@ -210,7 +210,7 @@ Das Leistungsphasen- und Freigabemodell verbindet den Projektfortschritt mit der
 
 Eine Freigabe hat feste Grundlagen. Sie beruht auf einer Kernfrage, auf Mindestgrundlagen, einem Mandat, einem Datenstand und einem dokumentierten Ergebnis. Letztverantwortlich ist der Bauherr: Er erteilt jede Freigabe selbst, auf Vorlage der Bauherren-PL. Weder die Projektsteuerung noch der Lenkungskreis erteilen sie; der Lenkungskreis berät und bereitet vor.
 
-Zwei Abgrenzungen helfen beim Lesen. Die Freigaben sind keine Meilensteine der MVG-Einführung – sie gehören zum Projektverlauf LPH 0–9, nicht zur Einführung von MVG. Und die Übergabe des Bauherren-Führungsmodells ist ein Befähigungsschritt, keine Freigabe in diesem Modell. Welche Inhalte welcher Leistungsphase zugeordnet sind, kann projektspezifisch angepasst werden.
+Zwei Abgrenzungen helfen beim Lesen. Die Freigaben sind keine Meilensteine der MVG-Einführung – sie gehören zum Projektverlauf LPH 0–9, nicht zur Einführung von MVG. Und die Übergabe des Bauherren-Führungsmodells ist ein Befähigungsschritt, keine Freigabe in diesem Modell. Welche Freigabe inhaltlich welcher Leistungsphase zugeordnet ist, kann projektspezifisch angepasst werden.
 
 ::: etappen
 ---
@@ -220,7 +220,7 @@ titel: Der Weg einer Freigabe
 ---
 titel: Vorbereiten
 ---
-Die Bauherren-PL legt die Freigabe vor; der Lenkungskreis berät und bereitet vor. Grundlage sind die Kernfrage der Phase, die Mindestgrundlagen, das Mandat, der Datenstand und ein dokumentiertes Ergebnis.
+Die Bauherren-PL legt die Freigabe zur Entscheidung vor; der Lenkungskreis berät und bereitet vor. Die Freigabe beruht auf der Kernfrage der Phase, den Mindestgrundlagen, dem Mandat, dem Datenstand und einem dokumentierten Ergebnis.
 :::
 
 ::: etappe 2
@@ -240,7 +240,7 @@ Die Freigabe am Abschluss einer Leistungsphase gibt die nächste frei. Nach der 
 
 ::: regler
 ---
-titel: Worauf die Freigabe am Ende jeder Leistungsphase schaut
+titel: Welche Frage die Freigabe am Ende jeder Leistungsphase stellt
 ---
 Die Freigabefragen in Kurzform; den Wortlaut zeigt die Tafel darunter. Die Zuordnung kann projektspezifisch angepasst werden.
 
@@ -249,7 +249,7 @@ Die Freigabefragen in Kurzform; den Wortlaut zeigt die Tafel darunter. Die Zuord
 titel: LPH 0
 marke: Bedarfsplanung
 ---
-Bedarf, Zielbild und Auftrag sind geklärt – es gibt eine legitimierte Grundlage, um mit der Planung zu beginnen.
+Sind Bedarf, Zielbild und Auftrag geklärt – gibt es eine legitimierte Grundlage für den Planungsstart?
 :::
 
 ::: stufe lph1
@@ -257,7 +257,7 @@ Bedarf, Zielbild und Auftrag sind geklärt – es gibt eine legitimierte Grundla
 titel: LPH 1
 marke: Grundlagenermittlung
 ---
-Aufgabenstellung, Standort- und Rahmenbedingungen sind so weit geklärt, dass die Vorplanung mit klarem Auftrag beginnen kann.
+Sind Aufgabenstellung, Standort- und Rahmenbedingungen so geklärt, dass die Vorplanung mit klarem Auftrag starten kann?
 :::
 
 ::: stufe lph2
@@ -265,7 +265,7 @@ Aufgabenstellung, Standort- und Rahmenbedingungen sind so weit geklärt, dass di
 titel: LPH 2
 marke: Vorplanung
 ---
-Auf Basis der Kostenschätzung ist eine Vorzugsvariante gewählt, und der [[Business Case]] trägt die Weiterplanung.
+Ist auf Basis der Kostenschätzung eine Vorzugsvariante gewählt, und trägt der [[Business Case]] die Weiterplanung?
 :::
 
 ::: stufe lph3
@@ -273,7 +273,7 @@ Auf Basis der Kostenschätzung ist eine Vorzugsvariante gewählt, und der [[Busi
 titel: LPH 3
 marke: Entwurfsplanung
 ---
-Entwurf und Kostenberechnung tragen eine belastbare Investitionsentscheidung ([[Finale Investitionsentscheidung (FID)|FID]]) – einschließlich Risiken, Terminen und Finanzierung.
+Tragen Entwurf und Kostenberechnung eine belastbare Investitionsentscheidung ([[Finale Investitionsentscheidung (FID)|FID]]) – einschließlich Risiken, Terminen und Finanzierung?
 :::
 
 ::: stufe lph4
@@ -281,7 +281,7 @@ Entwurf und Kostenberechnung tragen eine belastbare Investitionsentscheidung ([[
 titel: LPH 4
 marke: Genehmigungsplanung
 ---
-Die Genehmigungsunterlagen sind eingereicht oder die Genehmigungslage ist gesichert; Auflagen und Risiken sind bewertet.
+Sind die Genehmigungsunterlagen eingereicht oder ist die Genehmigungslage gesichert – und sind Auflagen und Risiken bewertet?
 :::
 
 ::: stufe lph5
@@ -289,7 +289,7 @@ Die Genehmigungsunterlagen sind eingereicht oder die Genehmigungslage ist gesich
 titel: LPH 5
 marke: Ausführungsplanung
 ---
-Die Ausführungsplanung ist so vollständig und koordiniert, dass Vergabe und Ausführung ohne Planungsvorbehalte beginnen können.
+Ist die Ausführungsplanung so vollständig und koordiniert, dass Vergabe und Ausführung ohne Planungsvorbehalte starten können?
 :::
 
 ::: stufe lph6
@@ -297,7 +297,7 @@ Die Ausführungsplanung ist so vollständig und koordiniert, dass Vergabe und Au
 titel: LPH 6
 marke: Vorbereitung Vergabe
 ---
-Leistungsverzeichnisse und Vergabeunterlagen sind vollständig; die Vergabestrategie mit Losen, Verfahren und Terminen ist beschlossen.
+Sind Leistungsverzeichnisse und Vergabeunterlagen vollständig, und ist die Vergabestrategie mit Losen, Verfahren und Terminen beschlossen?
 :::
 
 ::: stufe lph7
@@ -305,7 +305,7 @@ Leistungsverzeichnisse und Vergabeunterlagen sind vollständig; die Vergabestrat
 titel: LPH 7
 marke: Vergabe
 ---
-Das Vergabeergebnis ist geprüft und liegt im Budgetrahmen – Bauverträge können geschlossen und Komponenten mit langer Lieferzeit gebunden werden.
+Ist das Vergabeergebnis geprüft und im Budgetrahmen? Dann können Bauverträge geschlossen und Komponenten mit langer Lieferzeit gebunden werden.
 :::
 
 ::: stufe lph8
@@ -313,7 +313,7 @@ Das Vergabeergebnis ist geprüft und liegt im Budgetrahmen – Bauverträge kön
 titel: LPH 8
 marke: Ausführung
 ---
-Das Vorhaben ist vertragsgerecht fertiggestellt und abgenommen; Mängel, Dokumentation und Restleistungen sind sauber geführt.
+Ist das Vorhaben vertragsgerecht fertiggestellt und abgenommen – sind Mängel, Dokumentation und Restleistungen sauber geführt?
 :::
 
 ::: stufe lph9
@@ -321,7 +321,7 @@ Das Vorhaben ist vertragsgerecht fertiggestellt und abgenommen; Mängel, Dokumen
 titel: LPH 9
 marke: Übergabe
 ---
-Das Vorhaben kann geordnet in Betrieb und Verantwortung des Bauherrn übergehen – mit vollständiger Nachweislage und geklärten Betriebsverantwortungen. Danach folgt der Regelbetrieb.
+Kann das Vorhaben geordnet in Betrieb und Verantwortung des Bauherrn übergehen – mit vollständiger Nachweislage und geklärten Betriebsverantwortungen? Danach folgt der Regelbetrieb.
 :::
 :::
 

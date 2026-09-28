@@ -51,7 +51,7 @@ titel: Energieversorger und Infrastrukturträger
 ---
 **Engpass:** Risiken wandern in Freigaben, Priorisierung, Beschaffung, Komponenten mit langer Lieferzeit und die Restkostenprognose.
 
-**Worauf es ankommt:** Portfoliologik, Frühwarnung, Prognose und Freigabereife.
+**Worauf es ankommt:** Projektklassenlogik, Neupriorisierung im Portfolio, Frühwarnung, Prognose und Freigabereife.
 :::
 :::
 
@@ -59,7 +59,7 @@ titel: Energieversorger und Infrastrukturträger
 ---
 titel: Öffentliche Bauherren
 ---
-Ein öffentlicher Bauherr entscheidet selten allein und selten nur für sich. Er steht häufig unter hoher Komplexität bei Nachweis, Gremien und Vergabe. Für ihn reicht es nicht, dass eine Entscheidung sachlich plausibel ist. Sie muss zusätzlich **nachvollziehbar** sein (Wie kam sie zustande?), **prüfbar** (Lässt sich der Weg später kontrollieren?) und **beschlussfähig** (Kann das zuständige Gremium darüber tatsächlich beschließen?).
+Ein öffentlicher Bauherr steht häufig unter hoher Komplexität bei Nachweis, Gremien und Vergabe. Für ihn reicht es nicht, dass eine Entscheidung sachlich plausibel ist. Sie muss zusätzlich **nachvollziehbar** sein (Wie kam sie zustande?), **prüfbar** (Lässt sich der Weg später kontrollieren?) und **beschlussfähig** (Kann das zuständige Gremium darüber tatsächlich beschließen?).
 
 Ein Beispiel: Ein Ausschuss soll über zusätzliche Mittel für ein Schulgebäude beschließen. Dass die Mehrkosten fachlich begründet sind, genügt nicht. Der Ausschuss braucht eine Vorlage, die zeigt, wer was vorbereitet hat, auf welchem Stand die Zahlen beruhen und worüber genau er entscheidet.
 
@@ -74,9 +74,9 @@ rechts: Der Nutzen von MVG
 ::: ansicht links
 Öffentliche Bauherren stehen häufig unter hoher Komplexität in drei Richtungen:
 
-- **Nachweis:** Entscheidungen müssen später belegt werden können.
-- **Gremien:** Wesentliche Entscheidungen laufen über Gremien.
-- **Vergabe:** Vergabeentscheidungen folgen eigenen Regeln.
+- **Nachweis:** Entscheidungen müssen nachvollziehbar und prüfbar sein.
+- **Gremien:** Entscheidungen müssen beschlussfähig sein.
+- **Vergabe:** Die Vergabe muss an die Entscheidungen angebunden sein.
 
 Entscheidungen müssen nicht nur sachlich plausibel, sondern auch nachvollziehbar, prüfbar und beschlussfähig sein.
 :::
@@ -143,7 +143,7 @@ Besonders wichtig sind hier deshalb:
 - eine **Projektklassenlogik** und Entscheidungen über **Fortführung oder Stopp**,
 - die **Neupriorisierung** im Projektportfolio,
 - **Frühwarnungen**, eine geordnete **Änderungssteuerung**, CTC und Prognose,
-- und die **Freigabereife** an drei Stellen des Projekts.
+- und die **Freigabereife**, besonders an drei Stellen des Projekts.
 
 Diese drei Stellen zeigt der Regler. Zum Abschluss von LPH 2 geht es um die Wahl der Variante und den [[Business Case]], zum Abschluss von LPH 3 um die [[Finale Investitionsentscheidung (FID)|finale Investitionsentscheidung (FID)]] und zum Abschluss von LPH 7 um die Vergabe oder die Bindung einer Komponente mit langer Lieferzeit.
 
@@ -262,7 +262,7 @@ titel: Typische Entscheidungsprobleme
 ---
 Fünf Entscheidungsprobleme kommen in Bauprojekten immer wieder vor – von der Variantenfreigabe ohne vollständige Abwägung bis zur MVG-Neuinitialisierung ohne eindeutigen Datenstand. Bei der Vergabe unter Preis- und Lieferkettenunsicherheit werden Angebotsgültigkeit, Risiken bei Komponenten mit langer Lieferzeit und Terminfolgen nicht zusammengeführt. Beim Änderungsantrag werden Kosten, Termin, Qualität, Projektumfang, Risiko und ESG/LCC nicht einheitlich bewertet und entschieden. Beim Gremienbeschluss fehlt die Klarheit über das Mandat.
 
-Die Folgen sind ernst. Folgekosten werden spät sichtbar, Beschlüsse werden angreifbar oder müssen nachträglich geheilt werden, und im schlimmsten Fall arbeitet das Projekt mit mehreren Wahrheiten und verliert seine Fähigkeit, wieder anzulaufen.
+Die Folgen sind ernst. Folgekosten werden spät sichtbar, Beschlüsse werden angreifbar oder müssen nachträglich geheilt werden, oder das Projekt arbeitet mit mehreren Wahrheiten und verliert seine Wiederanlauffähigkeit.
 
 Für jedes Problem nennt MVG ein Artefakt oder eine Routine, die dagegen hilft – etwa die Entscheidungsvorlage, das Änderungsregister mit verbindlicher Auswirkungsbewertung und dem monatlichen Änderungsgremium oder die Festschreibung des Datenstands. Die Tafel zeigt alle fünf; in der Übung darunter ordnen Sie Werkzeuge ihrem Problem zu.
 
@@ -317,7 +317,7 @@ seite: rechts
 Mandatsmatrix
 
 ### Erklärung
-Sie gehört zur Antwort auf Gremienbeschlüsse ohne Mandatsklarheit; ohne sie werden Beschlüsse angreifbar oder müssen nachträglich geheilt werden.
+Sie gehört – mit RACI und Entscheidungsvorlage – zur Antwort auf Gremienbeschlüsse ohne Mandatsklarheit; solche Beschlüsse werden angreifbar oder müssen nachträglich geheilt werden.
 :::
 
 ::: posten 5

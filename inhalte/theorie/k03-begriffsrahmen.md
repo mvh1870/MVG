@@ -2,8 +2,8 @@
 # Lernseite Kapitel 3 (P6, O-20; neu aufbereitet P12.3, O-30). Lesetext in eigenen Worten, keine neuen
 # Fachaussagen (O-17); der vollständige Originaltext kommt zugeklappt über „::: original k3“.
 # Belege Einleitung/Kernaussage: k3-p1, k3-p2, k3.2-p1
-# Belege k3.1: k3-p1, k3-p2, k3.1-p1, k3.1-p2 (Umschalter: was der Begriff fragt / nicht fragt); Karten der sechs Felder: k3.1-p2, k3.2-t1
-# Belege k3.2: k3.2-t1, k3.2-p1 (Beispiel CTC/Risikoreserve aus Zeile 4 der Tabelle)
+# Belege k3.1: k3-p1, k3-p2, k3.1-p1, k3.1-p2 (Umschalter: was der Begriff fragt / nicht fragt); Karten der sechs Felder: k3.1-p2, k3.2-t1 (Karte 3 mit Neufestlegung der Projektbasis nach Zeile 2)
+# Belege k3.2: k3.2-t1, k3.2-p1 (Beispiel CTC/Risikoreserve aus Zeile 4 der Tabelle), k6.4.2-t1 (CTC und Prognose beim Controlling)
 # Belege k3.3: k3.3-p1, k3.3-t1, k3.3-p2
 kapitel: 3
 titel: Begriffsrahmen – delegierbare Arbeit, Mandat und nichtdelegierbare Verantwortung
@@ -24,7 +24,7 @@ Der Begriff „nichtdelegierbare Bauherrenverantwortung“ ist in MVG ein Govern
 
 Wichtig ist, was der Begriff nicht ist: kein abschließender juristischer Pflichtenkatalog. Er fragt nicht, welche Rechtsnorm in welcher Projektkonstellation gilt. Er fragt, an welchen Stellen die Bauherrenorganisation selbst entscheidungsfähig bleiben muss – und welche Führungsleistung beim Bauherrn verbleibt, damit Entscheidungen tragfähig, mandatiert, nachvollziehbar und organisationsfest werden.
 
-Die Definition nennt, was der Bauherr selbst legitimieren muss. Daraus ergeben sich die sechs Verantwortungsfelder, die Kapitel 4 im Einzelnen entfaltet. Die Karten zeigen, woran man jedes Feld in der Tabelle von Abschnitt 3.2 wiedererkennt.
+Die Definition nennt, was der Bauherr selbst legitimieren muss. Daraus ergeben sich die sechs Verantwortungsfelder, die Kapitel 4 im Einzelnen entfaltet. Die Karten ordnen jedem Feld die passende nicht delegierbare Aufgabe aus der Tabelle in Abschnitt 3.2 zu – als Vorschau; Kapitel 4 beschreibt jedes Feld vollständig.
 
 ::: zitat k3.1-p1
 Nichtdelegierbare Bauherrenverantwortungen sind jene Verantwortungen, bei denen der Bauherr Zweck, Ziel, Mandat, wesentliche Entscheidung, Risikoannahme, Freigabe, Datenstand und Nachweis selbst legitimieren muss, auch wenn Analyse, Vorbereitung, Koordination und Dokumentation durch Dritte erfolgen.
@@ -72,7 +72,7 @@ Mandate, Freigabeschwellen, Eskalationswege und verbindliche Entscheidungsrechte
 ---
 titel: Wesentliche Entscheidung
 ---
-Über Projektstart, Fortführung oder Stopp, wesentliche Änderung oder Abbruch entscheiden.
+Über Projektstart, Neufestlegung der Projektbasis, Fortführung oder Stopp, wesentliche Änderung oder Abbruch entscheiden.
 :::
 
 ::: karte 4
@@ -104,7 +104,7 @@ titel: Delegierbar und nicht delegierbar
 ---
 Die Tabelle dieses Abschnitts stellt sechs Paare gegenüber. Links steht jeweils, was Fachrollen für den Bauherrn leisten können, rechts, was er selbst verantworten muss. Die Paare gehören zusammen: Die Analyse von Varianten, Kosten, Risiken, [[ESG]] und [[LCC]] ist delegierbar – die Festlegung, welche Zielpriorität gilt, nicht. Die Vorbereitung einer [[Entscheidungsvorlage]] ist delegierbar – die Entscheidung über Projektstart, Fortführung oder Stopp nicht.
 
-Ein Beispiel: Die Projektsteuerung erstellt Prognosen und berechnet die Restkostenprognose ([[CTC]]). Ob der Einsatz der Risikoreserve freigegeben wird, entscheidet der Bauherr. Ähnlich bei der Dokumentation: Protokolle und Datenstände darf ein Dritter führen; dass die Organisation auf belastbarer Grundlage entscheidet und die Beschlusslage nachweisbar bleibt, stellt der Bauherr sicher.
+Ein Beispiel: Controlling oder Projektsteuerung erstellen Prognosen und berechnet die Restkostenprognose ([[CTC]]). Ob der Einsatz der Risikoreserve freigegeben wird, entscheidet der Bauherr. Ähnlich bei der Dokumentation: Protokolle und Datenstände darf ein Dritter führen; dass die Organisation auf belastbarer Grundlage entscheidet und die Beschlusslage nachweisbar bleibt, stellt der Bauherr sicher.
 
 Das heißt nicht, dass der Bauherr möglichst viel selbst tun sollte – im Gegenteil. Professionelle Projekte brauchen Vorbereitung durch Fachrollen. Der Bauherr muss aber wissen, wo diese Vorbereitung endet und seine eigene Entscheidung beginnt. Probieren Sie es in der Grafik aus: Wo verläuft die Grenze?
 

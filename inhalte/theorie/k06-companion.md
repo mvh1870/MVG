@@ -59,7 +59,7 @@ Der Companion ist nach sieben Funktionslogiken gegliedert. Sie spiegeln die Baus
 
 Einige Beispiele: Der **Entscheidungsassistent** führt durch Entscheidungsfrage, Mandat, Freigabe, Datenstand und Nachweis; das soll die Entscheidungsvorbereitung schneller und einheitlicher machen. Der **Leitfaden für Freigaben** erklärt Zweck, Mindestgrundlagen und typische Entscheidungs-IDs einer Freigabe. Die **Verantwortungszuordnung** verbindet Verantwortungsfeld, Rolle, Schwelle und Eskalation. Die **Daten- und Nachweisabfrage** fragt Datenstand, Annahmen, Versionen und Nachweise ab.
 
-Drei Funktionslogiken zielen auf die Zeit nach dem Aufbau: der **Betriebshandbuch-Assistent** für den Regelbetrieb, die **Rolleneinführung** für Schulungen und Rollenwechsel und der **MVG-Übergabeassistent**, der offene Punkte, Betriebslogik und Prüfzyklen für den Übergang aus dem Beratungsmandat in den Eigenbetrieb zusammenführt.
+Drei Funktionslogiken zielen auf Befähigung und Übergang: der **Betriebshandbuch-Assistent** für den Regelbetrieb, die **Rolleneinführung** für Schulungen und Rollenwechsel und der **MVG-Übergabeassistent**, der offene Punkte, Betriebslogik und Prüfzyklen für den Übergang aus dem Beratungsmandat in den Eigenbetrieb zusammenführt.
 
 Die Karten zeigen alle sieben mit Beitrag und Nutzen für den Bauherrn.
 
@@ -205,7 +205,7 @@ titel: Der Aufbau von 6.4
 ---
 titel: Grundlogik (6.4.1)
 ---
-Vier Regeln, die für jedes Register gelten – von der verantwortlichen Rolle bis zur Rolle des Managementberichts.
+Vier Grundregeln der Zusammenarbeit – von der verantwortlichen Rolle je Register bis zur Rolle des Managementberichts.
 :::
 
 ::: etappe 2
@@ -246,7 +246,7 @@ Vier einfache Regeln tragen die Zusammenarbeit.
 
 Erstens hat **jedes Register** eine verantwortliche Rolle, einen Pflegezyklus und einen definierten nächsten Schritt. So hat jeder Eintrag eine Zuständigkeit und einen Weg. Zweitens klärt die [[RACI]]-Logik je Prozess, wer ausführungsverantwortlich, letztverantwortlich, konsultiert und informiert ist.
 
-Drittens werden Themen, die eine Entscheidung brauchen, **nicht nur berichtet**. Sie werden über das Entscheidungsregister und eine [[Entscheidungsvorlage]] entscheidungsreif gemacht. Viertens gibt es eine klare Arbeitsteilung zwischen zwei Instrumenten, die leicht verwechselt werden: Der **Managementbericht** – der aggregierte Gremienbericht – ist der gemeinsame Sammelpunkt für Gremien. Das **Entscheidungsregister** dagegen ist nur die Warteschlange für echte Entscheidungen. Was nur zur Information dient, gehört nicht ins Entscheidungsregister.
+Drittens werden Themen, die eine Entscheidung brauchen, **nicht nur berichtet**. Sie werden über das Entscheidungsregister und eine [[Entscheidungsvorlage]] entscheidungsreif gemacht. Viertens gibt es eine klare Arbeitsteilung zwischen zwei Instrumenten, die leicht verwechselt werden: Der **Managementbericht** – der aggregierte Gremienbericht – ist der gemeinsame Sammelpunkt für Gremien. Das **Entscheidungsregister** dagegen ist nur die Warteschlange für echte Entscheidungen; Information und Beschlussvorbereitung laufen im Managementbericht zusammen.
 
 ::: umschalter
 ---
@@ -338,7 +338,7 @@ Der kanonische Governance-Fluss beschreibt, wie ein Thema vom ersten Signal bis 
 
 Entscheidungsbedarf kann aus einem Risiko entstehen, aber auch aus einer Änderung oder einem Problem. Die Entscheidungsvorlage bündelt dann Frage, Datenstand, Optionen, Bewertung und Empfehlung. Was beschlossen wird, verfolgt das Projekt als Maßnahme weiter – mit verantwortlicher Rolle und Frist.
 
-Eine Regel ist leicht zu übersehen: Der Fluss läuft nicht rückwärts. Verletzt die Restkostenprognose ([[CTC]]) eine Schwelle, wird ein bestehendes Risiko nicht zur Frühwarnung zurückgestuft. Die Verletzung erzeugt eine **neue** Frühwarnung – ein neues Signal, das wieder am Anfang des Flusses steht.
+Eine Regel ist leicht zu übersehen: Verletzungen der Restkostenprognose ([[CTC]]) oder eines Schwellenwerts erzeugen eine **neue** Frühwarnung – ein neues Signal, das wieder am Anfang des Flusses steht. Ein bestehendes Risiko wird dadurch nicht zur Frühwarnung zurückgestuft.
 
 ::: governancefluss
 Derselbe Fluss begleitet in der Story die Station B3.
@@ -400,7 +400,7 @@ Der aggregierte Gremienbericht – zur Information und Beschlussvorbereitung.
 
 ::: wissenscheck neue-fruehwarnung
 ### Frage
-Die Restkostenprognose (CTC) verletzt eine Schwelle, zum Thema wird bereits ein Risiko geführt – was entsteht daraus?
+Die Restkostenprognose (CTC) wird verletzt, zum Thema wird bereits ein Risiko geführt – was entsteht daraus?
 
 ### Erklärung
 Die Verletzung ist ein neues, unbewertetes Signal – keine Rückstufung des bestehenden Risikos.
@@ -441,7 +441,7 @@ Jedes Register hat eine eigene Bedeutung und einen eigenen nächsten Schritt. Di
 - Die **Freigabe** ist die Entscheidung des Bauherrn am Abschluss der Leistungsphase; Status und Freigabeentscheidung werden dokumentiert.
 - Der **Managementbericht** ist der aggregierte Gremienbericht für Information und Beschlussvorbereitung.
 
-Jedes Register hat eigene Statusbegriffe, und diese bleiben vom Freigabeprozess getrennt. Die Leiste zeigt den Weg einer Freigabe, die Karten die Status der übrigen Register.
+Entscheidungen, Risiken, Änderungen und Freigaben haben eigene Statusbegriffe, und diese bleiben vom Freigabeprozess getrennt. Die Leiste zeigt den Weg einer Freigabe, die Karten die Status der drei anderen.
 
 ::: sortieren
 ---
@@ -465,7 +465,7 @@ Ein bewertetes mögliches Ereignis gehört ins Risikoregister.
 ---
 seite: rechts
 ---
-Beispiel: Ein Nachtrag liegt bereits vor.
+Beispiel: Ein zugesagter Liefertermin ist verstrichen, das Bauteil fehlt auf der Baustelle.
 
 ### Erklärung
 Das Problem ist eingetreten – nächster Schritt ist eine Maßnahme, ggf. eine Entscheidung.
@@ -526,7 +526,7 @@ Zum Status kommt das Ergebnis: **Freigabe**, **keine Freigabe** oder **Freigabe 
 
 ::: karten
 ---
-titel: Statusbegriffe der übrigen Register
+titel: Statusbegriffe für Entscheidungen, Risiken und Änderungen
 ---
 ::: karte entscheidungen
 ---
@@ -555,7 +555,7 @@ Beantragt · In Prüfung · Beschlossen · Abgelehnt · Umgesetzt
 ---
 titel: Rhythmus, Rollen und Eskalation
 ---
-Zur Zusammenarbeit gehören feste Takte. Jeder Termin hat seine Beteiligten und seinen Fokus – vom täglichen Blick auf Fristen bis zur einzelnen Freigabe. Ziehen Sie den Regler vom kürzesten zum längsten Takt.
+Zur Zusammenarbeit gehören feste Takte. Jeder Termin hat seine Beteiligten und seinen Fokus – vom täglichen Blick auf Fristen bis zur einzelnen Freigabe. Ziehen Sie den Regler vom täglichen Takt bis zur einzelnen Freigabe.
 
 Was geschieht, wenn eine Schwelle berührt wird? **Innerhalb des Mandats** entscheiden die verantwortliche Rolle und die Bauherren-PL selbst, im definierten Rahmen, und dokumentieren das im Register. Wird eine Wert-, Risiko-, Frist- oder Mandatsschwelle **überschritten**, geht das Thema entlang der Mandatsleiter weiter: an die Bauherren-PL, an das Änderungsgremium oder zur Beschlussfassung durch den Bauherrn im Lenkungskreis (die Muster-Mandatsleiter steht in Kapitel 4.2).
 
@@ -584,7 +584,7 @@ Wöchentliche Risikosichtung im regelmäßigen Abstimmungstermin; offene Entsche
 ::: stufe 3
 ---
 titel: monatlich
-marke: Projektsteuerung · Änderungsgremium · Controlling und PMO
+marke: Projektsteuerung · Bauherren-PL mit Änderungsgremium · Bauherren-PL, Controlling und PMO
 ---
 Die Projektsteuerung prüft die Risiken formal und berichtet in den Managementbericht. Die Bauherren-PL und das Änderungsgremium bewerten und entscheiden Änderungen – monatlich, dazu anlassbezogene Sondersitzungen. Bauherren-PL, Controlling und PMO bearbeiten CTC und Prognose sowie den Managementbericht.
 :::
@@ -602,6 +602,8 @@ Der Bauherr erteilt jede Freigabe selbst auf Vorlage der Bauherren-PL; der Lenku
 ---
 titel: Eskalation entlang der Mandatsleiter
 ---
+Je nach überschrittener Schwelle geht das Thema an die Stufe, die das Mandat hat:
+
 ::: etappe 1
 ---
 titel: Im Mandat
@@ -613,21 +615,21 @@ Die verantwortliche Rolle und die Bauherren-PL entscheiden im definierten Rahmen
 ---
 titel: Bauherren-PL
 ---
-Eine Wert-, Risiko-, Frist- oder Mandatsschwelle ist überschritten: Das Thema geht an die Bauherren-PL.
+Eine Wert-, Risiko-, Frist- oder Mandatsschwelle ist überschritten. Liegt die Schwelle im Mandat der Bauherren-PL, geht das Thema an sie.
 :::
 
 ::: etappe 3
 ---
 titel: Änderungsgremium
 ---
-Reicht deren Mandat nicht, entscheidet das Änderungsgremium.
+Das Änderungsgremium entscheidet, wenn die Schwelle in seinem Mandat liegt.
 :::
 
 ::: etappe 4
 ---
 titel: Bauherr im Lenkungskreis
 ---
-Oberhalb des Gremiums folgt die Beschlussfassung durch den Bauherrn im Lenkungskreis.
+Darüber folgt die Beschlussfassung durch den Bauherrn im Lenkungskreis.
 :::
 :::
 :::

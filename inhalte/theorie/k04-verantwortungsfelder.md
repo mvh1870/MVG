@@ -7,7 +7,7 @@
 # Belege k4 (Überblick, Sortierübung): k4-p1, k4-t1
 # Belege k4.1: k4.1-p1, k4.1-p2, k4-t1 (Zeile Ziel)
 # Belege k4.2: k4.2-p1, k4.2-p2, k4.2-p3, k4-t1 (Zeile Mandat)
-# Belege k4.3: k4.3-p1, k4.3-p2, k4-t1 (Zeile Wesentliche Entscheidung)
+# Belege k4.3: k4.3-p1, k4.3-p2, k4-t1 (Zeile Wesentliche Entscheidung), k13-t1 (FID am Abschluss von LPH 3, Neufestlegung der Projektbasis), k2.5-t1 (Neufestlegung außerhalb der regulären Freigabereihe)
 # Belege k4.4: k4.4-p1, k4.4-p2, k4-t1 (Zeile Risikoannahme)
 # Belege k4.5: k4.5-p1, k4.5-p2, k4-t1 (Zeile Freigabe)
 # Belege k4.6: k4.6-p1, k4.6-p2, k4-t1 (Zeile Datenstand und Nachweis)
@@ -258,7 +258,7 @@ Nicht jede operative Entscheidung ist für den Bauherrn wesentlich. Wesentlich i
 
 Die typische Fehlstelle: Solche Entscheidungen werden vertagt, informell getroffen oder ohne klare Entscheidungsfrage vorbereitet. Sie verschwinden dann in Protokollen, E-Mails, Fachrunden oder Abstimmungen am Rande – und niemand kann später sagen, wann und auf welcher Grundlage entschieden wurde.
 
-MVG macht wesentliche Entscheidungen deshalb sichtbar. Jede erhält eine [[Entscheidungs-ID]] mit fünf Merkmalen: eindeutige Kennung, Datenstand, verantwortliche Rolle, Entscheidungsfrage und Nachverfolgungsstatus. Vorbereiten dürfen andere – Entscheidungsvorlagen, Auswirkungsanalysen, Optionen, Empfehlungen und Fachbewertungen sind delegierbar.
+MVG macht wesentliche Entscheidungen deshalb sichtbar. Jede erhält eine eindeutige Kennung – die [[Entscheidungs-ID]] –, einen Datenstand, eine verantwortliche Rolle, eine Entscheidungsfrage und einen Nachverfolgungsstatus. Vorbereiten dürfen andere – Entscheidungsvorlagen, Auswirkungsanalysen, Optionen, Empfehlungen und Fachbewertungen sind delegierbar.
 
 Die Leiste zeigt, an welchen Punkten im Projektverlauf solche Entscheidungen typischerweise anstehen.
 
@@ -331,7 +331,7 @@ Das Risiko steht mit einer Bewertung im Register. Wer es verantwortet, bis wann 
 :::
 
 ::: ansicht rechts
-Das Risiko hat eine verantwortliche Rolle, eine Frist, eine Wirkung, eine Risikominderung und ein Restrisiko. Der Entscheidungsbedarf ist benannt, und eine Eskalationsschwelle sagt, wann es beim Bauherrn landet – der das Restrisiko annimmt oder nicht.
+Das Risiko hat eine verantwortliche Rolle, eine Frist, eine Wirkung, eine Risikominderung und ein Restrisiko. Der Entscheidungsbedarf ist benannt, und eine Eskalationsschwelle sagt, wann es eskaliert wird. Wesentliche Risikoexposition nimmt der Bauherr an – oder nicht.
 :::
 :::
 :::

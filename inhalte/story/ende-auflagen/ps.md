@@ -5,7 +5,7 @@ rueckbezug-auf: wirklichkeit
 ---
 
 ::: rueckbezug A
-Im Dezember haben Sie ‚MVG-Neuinitialisierung empfehlen‘ gewählt. Auf dieser Spur hätte sie noch nicht getragen; im März steht die Stellvertretung für Holger Stein als Auflage auf der Tagesordnung.
+Im Dezember haben Sie ‚MVG-Neuinitialisierung empfehlen‘ gewählt. Getragen hat sie noch nicht; im März steht die Stellvertretung für Holger Stein als Auflage auf der Tagesordnung.
 :::
 
 ::: rueckbezug B

@@ -90,7 +90,7 @@ kurz: Was Sie wissen
 knopf: Jetzt entscheiden
 ---
 ::: bekannt
-- „Prognose_Nov_v5“ steht neben der CTC des Controllings; die Holz-Lieferzeit ist seit März unentschieden.
+- „Prognose_Nov_v5“ steht neben der CTC des Controllings; die Holz-Lieferzeit ist seit März offen.
 :::
 
 ::: unbekannt

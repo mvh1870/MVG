@@ -20,7 +20,7 @@ weiter:
 ---
 
 ::: express
-Im Januar standen Zielsystem und Mandatsleiter; eine Marktnotiz meldete steigende Holzpreise. Im März kamen die längere Lieferzeit der Holzbauelemente als Frühwarnung `FRW-002` und die größere Mensa als Änderung `AEN-012`; darüber entscheidet das Änderungsgremium.
+Im Januar standen Zielsystem und Mandatsleiter; eine Marktnotiz meldete steigende Holzpreise. Im März kamen die längere Lieferzeit der Holzbauelemente als Frühwarnung `FRW-002` und die größere Mensa als Änderung `AEN-012` fürs Änderungsgremium.
 :::
 
 ::: schritt signal

@@ -95,7 +95,7 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Arbeits- und Mandatsebene lassen sich gestalten und delegieren – die Letztverantwortung nicht (Kap. 3.3).
+Arbeit und die Ausübung von Mandaten lassen sich übertragen – die Festlegung des Mandats und die Letztverantwortung nicht (Kap. 3.3).
 :::
 
 ::: ebene 2

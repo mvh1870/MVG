@@ -48,3 +48,11 @@ Inhalt (Rollen GF und Projektsteuerung, Haupt- und Express-Pfad, alle vier am En
 - [x] T4/T5 Lesezeit zählt sichtbaren Text unter `aria-hidden` und prüft das Ende streng (L-65); danach Express-Karten und drei Kernsätze gekürzt: alle Rollen Hauptpfad 33,9–34,3 min, Express 14,7–15,0 min.
 - [x] T6 Regie-Vorschau-Test verlangt beim ersten Schritt eine Vorschau und mindestens zwei Vergleiche.
 - [x] T7 Szenario `theorie`: 120 Tabulatorschritte vor und zurück auf Kap. 8, kein Fokus unter der Kopfleiste (Gegenprobe ohne `scroll-padding` rot).
+
+## P11.3 Korrekturschleife – Runde 3 (R3)
+Inhalt (bauherr Express, planung Hauptpfad, controlling Express, wechselnde Optionen, alle am Ende, 0 Konsolenfehler): 7 Befunde (0 schwer, 2 mittel). Technik: Bericht folgt.
+- [x] B3 Express-Karte: `AEN-012` „fürs Änderungsgremium“ (nicht die Frühwarnung).
+- [x] ende-auflagen (alle Rollen): „Getragen hat sie noch nicht;“.
+- [x] A6 „seit März offen“; A1 „Annahmen kippen schnell“ (k2.1-p1); Wirklichkeit „Entscheidungslogik“ (k11.2-p1), „ein 40-Seiten-Statusbericht“; B6-Chat „seine benannte Stellvertretung“.
+- [x] Wendepunkt Ebene 1 nach k3.3-p2 berichtigt: übertragbar sind Arbeit und Ausübung von Mandaten, nicht Festlegung des Mandats und Letztverantwortung.
+- [x] CI-Lauf 80 rot: Lesezeit-Szenario brach unter Last bei „#story“ ab – wartet jetzt bis 5 s auf die nächste bedienbare Szene (101fc2e).

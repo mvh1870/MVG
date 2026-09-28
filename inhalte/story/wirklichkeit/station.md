@@ -19,7 +19,7 @@ weiter:
 ---
 
 ::: express
-Im Express übersprungen, aber mit auf dem Tisch: Im Juli vertagte der Bauausschuss, weil der 40-Seiten-Statusbericht keine Entscheidungsfrage enthielt. Im September war ein guter Teil der Risikoreserve verplant – für Brandschutzauflagen, Mensa und TGA-Nachtrag, ohne dass jemand den Einsatz freigegeben hatte.
+Im Express übersprungen, aber mit auf dem Tisch: Im Juli vertagte der Bauausschuss, weil ein 40-Seiten-Statusbericht keine Entscheidungsfrage enthielt. Im September war ein guter Teil der Risikoreserve verplant – für Brandschutzauflagen, Mensa und TGA-Nachtrag, ohne dass jemand den Einsatz freigegeben hatte.
 :::
 
 ::: schritt einstieg
@@ -197,7 +197,7 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Die MVG-Neuinitialisierung ordnet die Führungslogik neu – kein Neustart, keine Freigabe, nicht ohne den Bauherrn.
+Die MVG-Neuinitialisierung ordnet die Entscheidungslogik neu – kein Neustart, keine Freigabe, nicht ohne den Bauherrn.
 :::
 
 ::: ebene 2

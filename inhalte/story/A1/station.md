@@ -155,7 +155,7 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Preisannahmen kippen (Kap. 2.1), ESG und LCC gehören früh ins Zielsystem (Kap. 2.2), und Wissen in einem Kopf macht verletzlich (Kap. 2.3).
+Annahmen kippen schnell (Kap. 2.1), ESG und LCC gehören früh ins Zielsystem (Kap. 2.2), und Wissen in einem Kopf macht verletzlich (Kap. 2.3).
 :::
 
 ::: ebene 2

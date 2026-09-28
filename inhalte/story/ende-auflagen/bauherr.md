@@ -5,7 +5,7 @@ rueckbezug-auf: wirklichkeit
 ---
 
 ::: rueckbezug A
-Im Dezember haben Sie ‚MVG-Neuinitialisierung beauftragen‘ gewählt. Auf dieser Spur hätte sie noch nicht getragen; im Januar haben Sie zuerst mit Auflagen freigegeben.
+Im Dezember haben Sie ‚MVG-Neuinitialisierung beauftragen‘ gewählt. Getragen hat sie noch nicht; im Januar haben Sie zuerst mit Auflagen freigegeben.
 :::
 
 ::: rueckbezug B

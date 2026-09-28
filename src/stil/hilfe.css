@@ -101,6 +101,10 @@
   color: var(--navy);
   text-transform: none;
   letter-spacing: 0;
+  /* Marken brechen nie um: Zellen trennen mit hyphens:auto – ein Browser mit deutscher Silbentrennung
+     (Chrome 153 in der GitHub-Aktion) machte aus „Registerdokument“ sonst zwei Zeilen */
+  white-space: nowrap;
+  hyphens: manual;
 }
 .hilfe-inhalt :is(.h-tag, .h-badge, .h-pill).h-green { background: var(--tuerkis-soft); color: var(--tuerkis-text); }
 .hilfe-inhalt :is(.h-tag, .h-badge, .h-pill).h-gold { background: var(--gold-soft); color: var(--gold-text); }

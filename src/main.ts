@@ -12,13 +12,16 @@
 
 import logoSvg from '../quellen/marke/logo-bm.svg';
 import bildmarkeSvg from '../quellen/marke/logo-bm-bildmarke.svg';
+// Abbildungen der DOCX als data:-URL (P14, O-32): getrennt von inhalte.json, nur hier geladen
+import abbildungsBilder from './generiert/abbildungen.json' with { type: 'json' };
 import type { Aktion, Zustand } from './engine/typen.ts';
 import { inhalte, regieFuer, regieKapitel } from './inhalte/index.ts';
 import { anfangszustand, oeffentlich } from './engine/zustand.ts';
 import { lade, type SpeicherGriff } from './engine/speicher.ts';
 import { erzeugeKanal } from './regie/kanal.ts';
 import { setzeMarke } from './ui/marke.ts';
-import { IMPRESSUM, istAbsatzId, leseRoute, routeHash, type Route } from './ui/route.ts';
+import { setzeAbbildungsBilder } from './ui/bausteine/abbildung.ts';
+import { IMPRESSUM, istAbbildungsId, istAbsatzId, leseRoute, routeHash, type Route } from './ui/route.ts';
 import { erzeugeSitzung, type Sitzung } from './ui/sitzung.ts';
 import { ersetze } from './ui/h.ts';
 import { installiereTooltips, type Tooltips } from './ui/bausteine/tooltip.ts';
@@ -142,6 +145,8 @@ function starteApp(wurzel: HTMLElement): void {
         // Abschnitt (k2.4), Absatz (k4.2-p3, Zitierfunktion P10.1) oder das Impressum der Kapitelliste
         const ziel = r.abschnitt === null ? null
           : istAbsatzId(r.abschnitt) ? `.originaltext .absatz[data-absatz="${r.abschnitt}"]`
+          // Abbildung (P14): zuerst die auf der Lernseite, sonst die im Originaltext
+          : istAbbildungsId(r.abschnitt) ? `figure.abbildung[data-abbildung="${r.abschnitt}"]`
           : r.abschnitt === IMPRESSUM ? `[data-abschnitt="${IMPRESSUM}"]`
           : `[data-abschnitt="k${r.abschnitt}"]`;
         const abschnitt = ziel !== null ? seite.querySelector<HTMLElement>(ziel) : null;
@@ -315,6 +320,7 @@ function starteLeinwandFenster(wurzel: HTMLElement): void {
 setzeMarke(logoSvg, bildmarkeSvg);
 // Jede Seite beginnt oben, auch nach „Zurück“ im Browser: dort sitzt der Fokus (Titel), WCAG 2.4.3 (P12.5 R9)
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+setzeAbbildungsBilder(abbildungsBilder as Record<string, string>);
 const wurzel = document.getElementById('mvg') ?? document.body;
 // Im iframe (P10.6) gibt es weder Regie noch Leinwand: eine fremde Seite soll keine Regie einbetten
 if (istEingebettet(window) && betriebsart(leseRoute(location.hash)) !== 'app') history.replaceState(null, '', '#start');

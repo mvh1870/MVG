@@ -2,7 +2,8 @@
  * Hash-Router (rein, ohne DOM): welche Fläche ein Adress-Anker meint.
  *
  *   #start · #story · #story/A3 (Permalink auf eine Station) · #theorie · #theorie/k1 (auch k01)
- *   · #theorie/k2/2.4 (Abschnitt) · #theorie/k4/k4.2-p3 (Absatz, P10.1) · #theorie/impressum
+ *   · #theorie/k2/2.4 (Abschnitt) · #theorie/k4/k4.2-p3 (Absatz, P10.1) · #theorie/k4/abb-6 (Abbildung, P14)
+ *   · #theorie/impressum
  *   · #explore · #regie · #leinwand · #hilfe · #hilfe/<seite> (P13, O-31: Kapitel oder Unterkapitel der Hilfe)
  *
  * Alles andere – auch ein leerer Anker oder ein Kapitel außerhalb 1–13 – führt zur Startseite
@@ -26,6 +27,9 @@ export const IMPRESSUM = 'impressum';
 
 /** Ist die Abschnitt-Angabe einer Theorie-Route eine Absatz-ID (k4.2-p3)? */
 export const istAbsatzId = (a: string): boolean => /^k\d{1,2}(?:\.\d{1,2}){0,3}-[pltb]\d{1,3}$/u.test(a);
+
+/** Ist die Abschnitt-Angabe einer Theorie-Route eine Abbildung (abb-6, P14)? */
+export const istAbbildungsId = (a: string): boolean => /^abb-\d{1,2}$/u.test(a);
 
 const STATION = /^[a-z0-9][a-z0-9-]*$/u;
 
@@ -62,6 +66,8 @@ export function leseRoute(hash: string): Route {
       if (drittes === undefined) return { flaeche: 'theorie', kapitel: nr, abschnitt: null };
       // Absatz „k4.2-p3“ (Permalink der Zitierfunktion) muss zum Kapitel gehören
       if (new RegExp(`^k${nr}(?:\\.\\d{1,2}){0,3}-[pltb]\\d{1,3}$`, 'u').test(drittes)) return { flaeche: 'theorie', kapitel: nr, abschnitt: drittes };
+      // Abbildung „abb-6“ (P14): auf der Lernseite, sonst im Originaltext
+      if (istAbbildungsId(drittes)) return { flaeche: 'theorie', kapitel: nr, abschnitt: drittes };
       // Abschnitt „2.4“ (auch „k2.4“) muss zum Kapitel gehören
       const a = drittes.replace(/^k/u, '');
       return new RegExp(`^${nr}(?:\\.\\d{1,2}){1,3}$`, 'u').test(a) ? { flaeche: 'theorie', kapitel: nr, abschnitt: a } : START;

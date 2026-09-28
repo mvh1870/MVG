@@ -323,6 +323,17 @@ export const W = {
       { id: 'figuren', titel: 'Figuren und Story-Karte', text: 'Die Besetzung des Falls und jede Station der Geschichte zum direkten Sprung.' },
     ],
   },
+  // Abbildungen der DOCX V1.2 im Fachtext (P14, O-32, L-77)
+  abbildung: {
+    marke: (nr: number, kapitel: string) => `Abbildung ${nr} · Kapitel ${kapitel}`,
+    vorrang: 'Abbildung aus dem Originaltext. Wo sie vom Text abweicht, gilt der Text.',
+    angeglichen: 'Im Bild an die Begriffe des Texts angeglichen:',
+    abweichungen: (n: number) => `Abweichungen vom Text (${n})`,
+    gross: 'Vergrößern',
+    grossName: (titel: string) => `Abbildung vergrößern: ${titel}`,
+    schliessen: 'Schließen',
+    fehlt: 'Bild nicht eingebettet',
+  },
   // Explore · Grafik-Galerie, Abbildungsverzeichnis, Story-Karte (P8.5)
   galerie: {
     name: 'Grafik-Galerie',
@@ -335,6 +346,7 @@ export const W = {
     diagrammName: (art: string) => ({ mandatsleiter: 'Mandatsleiter', kette: 'Governance-Fluss als Kette', raci: 'RACI mit Mandat', datenstand: 'Datenstand mit Versionen', 'grafik:ctc-verlauf': 'CTC-Verlauf', vorlage: 'Entscheidungsvorlage mit Prüfliste', nachweiskette: 'Nachweiskette' } as Record<string, string>)[art] ?? art,
     verzeichnis: 'Abbildungsverzeichnis',
     verzeichnisText: 'Die Abbildungen des Originaltexts in der Reihenfolge des Textes (der Originaltext nummeriert sie nicht). Sie sind hier nicht als Bild übernommen: Wo eine Grafik vom Text abweicht, gilt der Text V1.2. Die Tabellen der Kapitel stehen als interaktive Grafik auf den Lernseiten.',
+    bild: 'Bild',
     abb: 'Abbildung',
     kapitel: 'Kapitel',
     stelle: 'Stelle im Text',

@@ -1335,3 +1335,55 @@ test('Lernwerkzeuge aufgelöst (P12.5 R5): Leinwand und Druck zeigen den ganzen 
   assert.ok(k7.querySelectorAll('.lernwerkzeug').length > 0);
   assert.equal(k7.querySelectorAll('.lernwerkzeug:not(.ist-aufgeloest)').length, 0);
 });
+
+test('Abbildungen (P14, O-32): Lernseite und Originaltext zeigen das Bild mit Vorrang des Texts; Leinwand ohne Bedienung; Verzeichnis mit Sprung', async () => {
+  const { setzeAbbildungsBilder } = await import('../src/ui/bausteine/abbildung.ts');
+  const { galerie } = await import('../src/ui/flaechen/explore-galerie.ts');
+  // jsdom kennt <dialog>; nur für diesen Test als Global setzen (die Hilfe-Tests prüfen den Fall ohne)
+  const vorher = g['HTMLDialogElement'];
+  g['HTMLDialogElement'] = (dom.window as unknown as Record<string, unknown>)['HTMLDialogElement'];
+  try {
+    setzeAbbildungsBilder({ 'abb-2': 'data:image/webp;base64,UklGRg==' });
+    const eintrag = Object.entries(inhalte.theorie).find(([, s]) => s.kapitel === 1);
+    assert.ok(eintrag);
+    const abb = { id: 'abb-2', nr: 1, kapitel: '1', ort: 'k1', bild: { titel: 'Probe-Titel', alt: 'Probe-Alternativtext', breite: 1200, hoehe: 800, angeglichen: [{ text: 'Neuer Begriff', beleg: 'k1-p2' }], abweichungen: [{ html: 'Probe-Abweichung', belege: ['k1-p1'] }] } };
+    const block = { art: 'abbildung', kennungen: ['abb-2'], id: 'abb-2', kopf: {}, felder: {}, liste: null, kinder: [] };
+    const original = { art: 'original', kennungen: ['k1'], id: null, kopf: { quelle: 'Q' }, felder: { text: '<figure class="mvg-abbildung" data-abbildung="abb-2"></figure>\n<p class="mvg-original" data-absatz="k1-p1">Absatz</p>' }, liste: null, kinder: [] };
+    const probe = { ...inhalte, whitepaper: { ...inhalte.whitepaper, abbildungen: [abb] }, theorie: { ...inhalte.theorie, [eintrag[0]]: { ...eintrag[1], bloecke: [block, original] } } } as unknown as typeof inhalte;
+
+    const el = baueTheorie({ inhalte: probe, kapitel: 1, version: VERSION, bedienbar: true });
+    const figuren = [...el.querySelectorAll('figure.abbildung')];
+    assert.equal(figuren.length, 2, 'einmal auf der Lernseite, einmal im Originaltext');
+    const [lern, orig] = figuren;
+    assert.equal(lern?.closest('details.originaltext'), null);
+    assert.ok(orig?.closest('details.originaltext'), 'die zweite steht im zugeklappten Originaltext');
+    const img = lern?.querySelector('img');
+    assert.equal(img?.getAttribute('alt'), 'Probe-Alternativtext');
+    assert.match(img?.getAttribute('src') ?? '', /^data:image\/webp;base64,/u);
+    const unter = lern?.querySelector('figcaption')?.textContent ?? '';
+    assert.match(unter, /Abbildung 1 · Kapitel 1/u);
+    assert.match(unter, /Wo sie vom Text abweicht, gilt der Text\./u);
+    assert.match(unter, /„Neuer Begriff“/u);
+    assert.equal(lern?.querySelector('[data-pruef="abbildung-abweichungen"] summary')?.textContent, 'Abweichungen vom Text (1)');
+    assert.equal(lern?.querySelector('a.abbildung-beleg')?.getAttribute('href'), '#theorie/k1/k1-p1');
+    const knopf = lern?.querySelector('[data-pruef="abbildung-gross"]');
+    assert.equal(knopf?.getAttribute('aria-label'), 'Abbildung vergrößern: Probe-Titel');
+    assert.ok(lern?.querySelector('dialog.abbildung-dialog img'), 'Dialog mit dem Bild in voller Größe');
+
+    // Leinwand: dieselbe Zeichnung ohne Knopf, Dialog und Links
+    const lw = baueTheorie({ inhalte: probe, kapitel: 1, version: VERSION, bedienbar: false });
+    assert.equal(lw.querySelectorAll('figure.abbildung').length, 2);
+    assert.equal(lw.querySelector('[data-pruef="abbildung-gross"], dialog'), null);
+    assert.equal(lw.querySelector('a.abbildung-beleg'), null);
+
+    // Abbildungsverzeichnis: Vorschaubild (schmückend) und Titel mit Sprung zur Abbildung
+    const gal = galerie(probe);
+    const zeile = gal?.querySelector('[data-pruef="galerie-abbildung-abb-2"]');
+    assert.equal(zeile?.getAttribute('href'), '#theorie/k1/abb-2');
+    assert.equal(zeile?.querySelector('img')?.getAttribute('alt'), '');
+    assert.match(zeile?.textContent ?? '', /Probe-Titel/u);
+  } finally {
+    g['HTMLDialogElement'] = vorher;
+    setzeAbbildungsBilder({});
+  }
+});

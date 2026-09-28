@@ -21,6 +21,8 @@ import YAML from 'yaml';
 import { Marked } from 'marked';
 import { istHauptmodul } from './haupt.mjs';
 import { formatiereFund, pruefeText } from './begriffe.mjs';
+import { ORDNER as ABB_ORDNER, STAND as ABB_STAND, WERKZEUG_VERSION as ABB_VERSION, eingabeSumme, leseBeschreibungen, pruefeBeschreibung } from './abbildungen.mjs';
+import { createHash } from 'node:crypto';
 import { istVollstaendigerStart, leseWirkEintrag } from '../src/engine/status.ts';
 import { leseBedingungen, verweiseIn } from '../src/engine/bedingungen.ts';
 import { findeEntscheidung, loeseEntscheidung, pruefeGraph, stationsFolge } from '../src/engine/graph.ts';
@@ -171,6 +173,8 @@ const ARTEN = {
   regler: { in: ['@theorie', 'abschnitt'], kennung: 'keine', kopf: { titel: { typ: 'text' } }, felder: ['text'] },
   stufe: { in: ['regler'], kennung: 'pflicht', kopf: { titel: { typ: 'text', pflicht: true }, marke: { typ: 'text' } }, felder: ['text'], pflichtFelder: ['text'] },
   querverweis: { in: ['@theorie', 'abschnitt', 'ebene'], kennung: 'pflicht', kopf: { text: { typ: 'text' } }, felder: ['text'] },
+  // Abbildung aus der DOCX V1.2 auf der Lernseite (P14, O-32): Beschreibung in inhalte/abbildungen/abb-N.yaml
+  abbildung: { in: ['@theorie', 'abschnitt'], kennung: 'pflicht', muster: /^abb-\d+$/u, felder: [] },
   // Einwände
   // Vorher/Nachher-Welten (P8.2): je Aspekt Welt A und Welt B nebeneinander, mit Beleg aus dem Whitepaper
   welt: { in: ['@welten'], kennung: 'pflicht', kopf: { titel: { typ: 'text', pflicht: true }, stationen: { typ: 'liste' } }, felder: ['weltA', 'weltB'], pflichtFelder: ['weltA', 'weltB'] },
@@ -484,8 +488,8 @@ async function ladeQuelle(pfad) {
     fassung: typeof wp.fassung === 'string' ? wp.fassung : 'V1.2',
     titel: typeof wp.titel === 'string' ? wp.titel : null,
     gliederung,
-    // Abbildungsverzeichnis (P8.5): nur Kennung, Kapitel und Ort – die Rasterbilder selbst werden nicht übernommen (L-51)
-    abbildungen: (Array.isArray(wp.abbildungen) ? wp.abbildungen : []).map((/** @type {any} */ a) => ({ id: String(a.id), kapitel: String(a.kapitel ?? ''), ort: String(a.ort ?? '') })),
+    // Abbildungen (P8.5, P14): Kennung, Kapitel, Ort; Datei und Prüfsumme nur für werkzeuge/abbildungen.mjs (O-32, L-77)
+    abbildungen: (Array.isArray(wp.abbildungen) ? wp.abbildungen : []).map((/** @type {any} */ a) => ({ id: String(a.id), kapitel: String(a.kapitel ?? ''), ort: String(a.ort ?? ''), datei: String(a.datei ?? ''), sha256: String(a.sha256 ?? '') })),
     bloecke,
     nachId: new Map(bloecke.map((bl) => [bl.id, bl])),
     glossar: Array.isArray(wp.glossar) ? wp.glossar : [],
@@ -525,6 +529,7 @@ class Kompilierer {
     /** Absatz-IDs, die Theorie-Seiten abdecken */
     /** @type {Map<string, Set<string>>} */ this.theorieDeckt = new Map();
     this.glossarFehltGemeldet = false;
+    /** Abbildungen, die ein Originaltext einer Lernseite schon einsetzt (P14) @type {Set<string>} */ this.abbImOriginal = new Set();
     this.zitatUngeprueftGemeldet = false;
     /** @type {Map<string, { id: string, begriff: string, definition: string }>} */
     this.glossarNachBegriff = new Map();
@@ -719,19 +724,37 @@ class Kompilierer {
    * kommt dessen Überschrift „1.1 Leitthese“ (die Kapitelüberschrift trägt die Seite selbst).
    * @param {string[]} ids
    */
-  originalMitGliederung(ids) {
+  originalMitGliederung(ids, mitAbbildungen = false) {
     /** @type {string[]} */
     const teile = [];
     let abschnitt = '';
     // Nur wenn der Auszug mehrere Abschnitte umfasst; sonst nennt die Quellenangabe den Abschnitt schon.
     const mehrere = new Set(ids.map((id) => this.quelle?.nachId.get(id)?.abschnitt)).size > 1;
+    // Abbildungen (P14, O-32) stehen, wo sie in der DOCX stehen: nach der Kapitel- oder Abschnittsüberschrift
+    // (Ort „k3“, „k3.3“) bzw. nach einem Absatz (Ort „k7.1-p1“). Die Oberfläche setzt das Bild ein.
+    /** @type {Map<string, string[]>} */
+    const abbNach = new Map();
+    if (mitAbbildungen) for (const a of this.quelle?.abbildungen ?? []) abbNach.set(a.ort, [...(abbNach.get(a.ort) ?? []), a.id]);
+    /** @type {Set<string>} */
+    const betreten = new Set();
+    const abbildungen = (/** @type {string} */ ort) => {
+      for (const id of abbNach.get(ort) ?? []) {
+        teile.push(`<figure class="mvg-abbildung" data-abbildung="${esc(id)}"></figure>`);
+        this.abbImOriginal.add(id);
+      }
+    };
     for (const id of ids) {
       const bl = /** @type {FlacherBlock} */ (this.quelle?.nachId.get(id));
       if (bl.abschnitt !== abschnitt) {
         abschnitt = bl.abschnitt;
+        // übergeordnete Anfänge (Kapitel „6“, Abschnitt „6.4“ vor „6.4.1“) zuerst
+        const stufen = abschnitt.split('.').map((_, i, a) => a.slice(0, i + 1).join('.'));
+        for (const p of stufen.slice(0, -1)) if (!betreten.has(p)) { betreten.add(p); abbildungen(`k${p}`); }
         if (mehrere && abschnitt.includes('.')) teile.push(`<h4 class="mvg-original-titel" data-abschnitt="k${esc(abschnitt)}">${esc(`${abschnitt} ${bl.abschnittTitel}`)}</h4>`);
+        if (!betreten.has(abschnitt)) { betreten.add(abschnitt); abbildungen(`k${abschnitt}`); }
       }
       teile.push(this.originalHtml(bl));
+      abbildungen(bl.id);
     }
     return teile.join('\n');
   }
@@ -1045,7 +1068,8 @@ class Kompilierer {
         felder['text'] = '';
         this.warnung(r.ort, 'Originaltext nicht eingesetzt: whitepaper.json fehlt');
       } else {
-        felder['text'] = this.originalMitGliederung(ids);
+        // Abbildungen nur im Originaltext einer Lernseite (ganzes Kapitel), an ihrer Stelle in der DOCX
+        felder['text'] = this.originalMitGliederung(ids, eltern === '@theorie');
       }
       this.merkeDeckung(eltern, ids, rel);
     }
@@ -1762,6 +1786,7 @@ export async function kompiliere(optionen = {}) {
     else if (r === 'welten.md') welten = baueWelten(c, rel, lies(r));
     else if (r === 'begriffs-kompass.md') kompass = baueKompass(c, rel, lies(r));
     else if (r === 'abdeckung.yaml') abdeckungRoh = leseYaml(lies(r), rel, 1, b);
+    else if (/^abbildungen\/abb-\d+\.yaml$/u.test(r)) { /* baueAbbildungen (P14) */ }
     else if (r.endsWith('.md') || r.endsWith('.yaml')) c.warnung(rel, 'Datei gehört zu keiner bekannten Art (docs/INHALTSFORMAT.md Abschnitt 1) – ignoriert');
   }
 
@@ -1830,9 +1855,11 @@ export async function kompiliere(optionen = {}) {
 
   if (pruefe) pruefeAlles(c, { fall, rollen, stationen, theorie, interessen, modell });
 
+  const abb = baueAbbildungen(c, quelle, wurzel, theorie, pruefe);
+
   const inhalte = {
     version: 1,
-    whitepaper: { fassung: quelle?.fassung ?? null, titel: quelle?.titel ?? null, kapitel: quelle?.gliederung ?? [], lph: lphPhasen(quelle), abbildungen: quelle?.abbildungen ?? [] },
+    whitepaper: { fassung: quelle?.fassung ?? null, titel: quelle?.titel ?? null, kapitel: quelle?.gliederung ?? [], lph: lphPhasen(quelle), abbildungen: abb.liste },
     fall,
     startseite,
     rollen,
@@ -1864,11 +1891,96 @@ export async function kompiliere(optionen = {}) {
   if (ziel !== null) {
     mkdirSync(path.dirname(ziel), { recursive: true });
     writeFileSync(ziel, json, 'utf8');
+    // Bilddaten getrennt (nur src/main.ts lädt sie; Tests und Werkzeuge bleiben klein)
+    writeFileSync(path.join(path.dirname(ziel), 'abbildungen.json'), stabilesJson(abb.daten), 'utf8');
   }
 
   const fehler = b.fehlerListe.filter((f) => pruefe || f.hart).map((f) => f.text);
   const warnungen = b.warnListe.filter((w) => pruefe || w.hart).map((w) => w.text);
   return { fehler, warnungen, inhalte };
+}
+
+/**
+ * Abbildungen der DOCX V1.2 (P14, O-32, L-77): Beschreibung aus inhalte/abbildungen/abb-N.yaml, Bild als WebP
+ * (erzeugt von werkzeuge/abbildungen.mjs, Stand in stand.json). Eine Abbildung ohne Beschreibung bleibt reiner
+ * Verzeichniseintrag (`bild: null`). Veraltete oder fehlende Bilder sind harte Fehler – der Bau hielte sonst an
+ * einem alten Bild fest. Rückgabe: Verzeichnis für inhalte.json und die Bilder als data:-URL (abbildungen.json).
+ * @param {Kompilierer} c @param {any} quelle @param {string} wurzel @param {Record<string, any>} theorie @param {boolean} pruefe
+ */
+function baueAbbildungen(c, quelle, wurzel, theorie, pruefe) {
+  /** @type {any[]} */
+  const liste = quelle?.abbildungen ?? [];
+  const kontext = { ids: new Set(/** @type {Map<string, any>} */ (quelle?.nachId ?? new Map()).keys()), abbildungen: new Map(liste.map((a) => [a.id, a])) };
+  /** @type {{ datei: string, roh: any }[]} */
+  let beschreibungen = [];
+  try {
+    beschreibungen = leseBeschreibungen(wurzel);
+  } catch (e) {
+    c.b.fehler(ABB_ORDNER, `Beschreibung unlesbar: ${String(e)}`, true);
+  }
+  /** @type {Map<string, { datei: string, roh: any }>} */
+  const nachId = new Map();
+  for (const e of beschreibungen) {
+    const f = quelle === null ? [] : pruefeBeschreibung(e.roh, e.datei, kontext);
+    for (const x of f) c.b.fehler(e.datei, x.slice(e.datei.length + 2), true);
+    if (f.length === 0) nachId.set(e.roh.id, e);
+  }
+  const standPfad = path.join(wurzel, ABB_STAND);
+  /** @type {any} */
+  let stand = { werkzeug: null, abbildungen: {} };
+  if (existsSync(standPfad)) stand = JSON.parse(readFileSync(standPfad, 'utf8'));
+  /** @type {Record<string, string>} */
+  const daten = {};
+  const aus = liste.map((a, i) => {
+    const basis = { id: a.id, nr: i + 1, kapitel: a.kapitel, ort: a.ort };
+    const e = nachId.get(a.id);
+    if (e === undefined) return { ...basis, bild: null };
+    const st = stand.abbildungen?.[a.id];
+    const webpPfad = path.join(wurzel, ABB_ORDNER, `${a.id}.webp`);
+    if (stand.werkzeug !== ABB_VERSION || st === undefined || st.eingabe !== eingabeSumme(e.roh, a.sha256)) {
+      c.b.fehler(e.datei, `Bild veraltet – node werkzeuge/abbildungen.mjs ${a.id}`, true);
+      return { ...basis, bild: null };
+    }
+    const webp = existsSync(webpPfad) ? readFileSync(webpPfad) : null;
+    if (webp === null || createHash('sha256').update(webp).digest('hex') !== st.webp) {
+      c.b.fehler(e.datei, `${a.id}.webp fehlt oder passt nicht zu stand.json – node werkzeuge/abbildungen.mjs ${a.id}`, true);
+      return { ...basis, bild: null };
+    }
+    daten[a.id] = `data:image/webp;base64,${webp.toString('base64')}`;
+    const ort = `${e.datei}:1`;
+    return {
+      ...basis,
+      bild: {
+        titel: String(e.roh.titel).trim(),
+        alt: String(e.roh.alt).trim(),
+        breite: st.breite,
+        hoehe: st.hoehe,
+        angeglichen: (e.roh.angeglichen ?? []).map((/** @type {any} */ u) => ({ text: String(u.text).replace(/\s*\n\s*/gu, ' '), beleg: u.beleg })),
+        abweichungen: (e.roh.abweichungen ?? []).map((/** @type {any} */ x) => ({ html: c.inline(String(x.text), ort), belege: String(x.beleg).split(/\s+/u) })),
+      },
+    };
+  });
+  // Lernseiten: `::: abbildung abb-N` nur mit Beschreibung, im eigenen Kapitel, je Abbildung höchstens einmal
+  /** @type {Map<string, string>} */
+  const benutzt = new Map();
+  /** @param {any[]} bloecke @param {any} seite */
+  const gehe = (bloecke, seite) => {
+    for (const b of bloecke) {
+      if (b.art === 'abbildung' && b.id !== null) {
+        const a = aus.find((x) => x.id === b.id);
+        if (a === undefined) c.fehler(seite.quelle, `Abbildung „${b.id}“ gibt es nicht (whitepaper.json)`);
+        else if (a.bild === null) c.fehler(seite.quelle, `Abbildung „${b.id}“ hat keine Beschreibung in ${ABB_ORDNER}/${b.id}.yaml`);
+        else if (Number(a.kapitel) !== seite.kapitel) c.fehler(seite.quelle, `Abbildung „${b.id}“ gehört zu Kapitel ${a.kapitel}, nicht ${seite.kapitel}`);
+        if (benutzt.has(b.id)) c.fehler(seite.quelle, `Abbildung „${b.id}“ steht schon auf ${benutzt.get(b.id)}`);
+        else benutzt.set(b.id, seite.quelle);
+      }
+      gehe(b.kinder ?? [], seite);
+    }
+  };
+  for (const t of Object.values(theorie)) gehe(t.bloecke ?? [], t);
+  // Jede Abbildung mit Bild steht im Originaltext ihres Kapitels (an ihrer DOCX-Stelle)
+  if (pruefe) for (const a of aus) if (a.bild !== null && !c.abbImOriginal.has(a.id)) c.fehler(ABB_ORDNER, `${a.id} (Ort ${a.ort}) steht in keinem Originaltext einer Lernseite`);
+  return { liste: aus, daten };
 }
 
 /**

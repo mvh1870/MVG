@@ -284,12 +284,27 @@ export interface WhitepaperKapitel {
 }
 
 /** Ein Absatz des Whitepapers für das Quellenfenster (wörtlich, HTML aus whitepaper.json). */
-/** Abbildung des Whitepapers (P8.5): nur Verzeichnisdaten, kein Bild (L-51) */
+/** Abbildung der DOCX V1.2 (P8.5; Bild seit P14, O-32, L-77) */
 export interface Abbildung {
   id: string;
+  /** laufende Nummer in der Reihenfolge des Texts (1 = erste Inhaltsabbildung) */
+  nr: number;
   kapitel: string;
   /** Absatz- oder Abschnitts-ID, bei der die Abbildung steht */
   ort: string;
+  /** Bild mit Beschreibung (inhalte/abbildungen/abb-N.yaml); null = nur Verzeichniseintrag */
+  bild: AbbildungsBild | null;
+}
+
+export interface AbbildungsBild {
+  titel: string;
+  alt: string;
+  breite: number;
+  hoehe: number;
+  /** im Bild überdeckte Beschriftungen: neuer Text (Begriff des Texts) und Beleg */
+  angeglichen: { text: string; beleg: string }[];
+  /** was nach der Angleichung noch vom Text abweicht (HTML inline) mit Belegen */
+  abweichungen: { html: string; belege: string[] }[];
 }
 
 export interface QuellAbsatz {

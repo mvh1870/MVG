@@ -2,15 +2,16 @@
  * Explore · Grafik-Galerie mit Abbildungsverzeichnis und Story-Karte mit Sprung (P8.5).
  *
  * Galerie: alle Whitepaper-Tabellen, die die Lernseiten als interaktive Tafel zeigen (Zellen wortgleich,
- * L-32), nach Kapitel geordnet; eine Tafel ist offen. Abbildungsverzeichnis: die Abbildungen des
- * Whitepapers mit Kapitel und Stelle – als Rasterbilder nicht übernommen (L-51), der Text V1.2 gilt
- * (O-14, O-15). Story-Karte: jede Station als Sprungziel; Welt B erst nach der Freischaltung.
+ * L-32), nach Kapitel geordnet; eine Tafel ist offen. Abbildungsverzeichnis: die Abbildungen der DOCX
+ * mit Vorschaubild, Titel (Sprung zur Abbildung), Kapitel und Stelle (P14, O-32; der Text V1.2 gilt, O-14,
+ * O-15). Story-Karte: jede Station als Sprungziel; Welt B erst nach der Freischaltung.
  */
 
 import { h, ersetze } from '../h.ts';
 import { wahlleiste } from '../bausteine/wahlleiste.ts';
 import type { Block, OeffentlicheInhalte } from '../../inhalte/typen.ts';
 import * as B from '../bausteine/bloecke.ts';
+import { abbildungsBild } from '../bausteine/abbildung.ts';
 import { kopfText, stationsName } from '../anzeige.ts';
 import { W } from '../woerter.ts';
 
@@ -50,6 +51,15 @@ export function storyDiagramme(inhalte: OeffentlicheInhalte): { art: string; sta
 }
 
 /** Stelle im Text als Permalink: `k3.3` → Abschnitt 3.3, `k7.1-p1` → Abschnitt 7.1, `k1` → Kapitel 1. */
+/** Vorschaubild (schmückend, der Titel daneben benennt es) und Titel mit Sprung zur Abbildung (P14). */
+function abbildungsZelle(a: OeffentlicheInhalte['whitepaper']['abbildungen'][number]): Node | null {
+  if (a.bild === null) return null;
+  const daten = abbildungsBild(a.id);
+  return h('a', { class: 'galerie-abbildung', href: `#theorie/k${a.kapitel}/${a.id}`, 'data-pruef': `galerie-abbildung-${a.id}` },
+    daten !== null ? h('img', { src: daten, alt: '', width: 96, height: Math.round(96 * a.bild.hoehe / a.bild.breite), decoding: 'async', loading: 'lazy' }) : null,
+    h('span', null, a.bild.titel));
+}
+
 function stelle(ort: string, kapitel: string): Node {
   const abschnitt = /^k(\d+(?:\.\d+)+)/u.exec(ort)?.[1] ?? null;
   const ziel = abschnitt !== null ? `#theorie/k${kapitel}/${abschnitt}` : `#theorie/k${kapitel}`;
@@ -96,9 +106,10 @@ export function galerie(inhalte: OeffentlicheInhalte, weltB = true): HTMLElement
       h('h3', { class: 'sim-teil-titel', id: 'abb-titel' }, G.verzeichnis),
       h('p', { class: 'sim-hinweis' }, G.verzeichnisText),
       h('table', { class: 'register-tabelle' },
-        h('thead', null, h('tr', null, h('th', null, G.abb), h('th', null, G.kapitel), h('th', null, G.stelle))),
+        h('thead', null, h('tr', null, h('th', null, G.abb), h('th', null, G.bild), h('th', null, G.kapitel), h('th', null, G.stelle))),
         h('tbody', null, abb.map((a, i) => h('tr', null,
           h('td', null, G.abbNr(i + 1)),
+          h('td', null, abbildungsZelle(a)),
           h('td', null, h('a', { href: `#theorie/k${a.kapitel}` }, W.theorie.kapitelVon(a.kapitel))),
           h('td', null, stelle(a.ort, a.kapitel))))))) : null);
 }

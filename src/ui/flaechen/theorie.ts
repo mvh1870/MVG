@@ -15,6 +15,7 @@ import { bildmarke } from '../marke.ts';
 import { sym, symbolAusInhalt, tafel as tafelBlock, raci as raciBlock, merksatz, hinweis } from '../bausteine/bloecke.ts';
 import { inhalt, inhaltInline } from '../bausteine/inhalt.ts';
 import { etappen, regler, sortieren, umschalter } from '../bausteine/lernwerkzeuge.ts';
+import { abbildung } from '../bausteine/abbildung.ts';
 import { kopfText, stationsName } from '../anzeige.ts';
 import { W } from '../woerter.ts';
 import { AENDERUNGEN } from '../impressum.ts';
@@ -223,6 +224,11 @@ function ebenenBlock(ebenen: readonly Ebene[], inhalte: OeffentlicheInhalte, stu
     bloeckeIn(e.bloecke, inhalte, stufe))));
 }
 
+/** Permalink eines Absatzes (P10.1): `k4-t1` → `#theorie/k4/k4-t1` */
+function belegLink(id: string): string {
+  return `#theorie/k${/^k(\d{1,2})/u.exec(id)?.[1] ?? ''}/${id}`;
+}
+
 /** Blöcke einer Lernseite; `stufe` = Überschriftenstufe für Tafeltitel (h2 auf Seitenebene, h3 in Abschnitten). */
 function bloeckeIn(bloecke: readonly Block[], inhalte: OeffentlicheInhalte, stufe: TitelStufe = 'h3'): Node[] {
   const aus: Node[] = [];
@@ -278,6 +284,12 @@ function bloeckeIn(bloecke: readonly Block[], inhalte: OeffentlicheInhalte, stuf
       case 'hinweis':
         aus.push(hinweis(b));
         break;
+      case 'abbildung': {
+        const a = inhalte.whitepaper.abbildungen.find((x) => x.id === b.id);
+        const f = a !== undefined ? abbildung(a, { bedienbar: lwBedienbar, belegLink }) : null;
+        if (f !== null) aus.push(f);
+        break;
+      }
       case 'ebenen':
         if (b.ebenen !== undefined && b.ebenen.length > 0) aus.push(ebenenBlock(b.ebenen, inhalte, 'h3'));
         break;
@@ -333,10 +345,17 @@ function zitierKnopf(id: string, kapitel: number, fassung: string, absatz: () =>
   return knopf;
 }
 
-function originaltext(b: Block, fassung: string, kapitel: number, bedienbar: boolean): HTMLElement {
+function originaltext(b: Block, fassung: string, kapitel: number, bedienbar: boolean, inhalte: OeffentlicheInhalte): HTMLElement {
   const f = inhalt(b.felder['text'] ?? '');
   const absaetze: HTMLElement[] = [];
   for (const el of [...f.children]) {
+    // Abbildung an ihrer Stelle in der DOCX (P14, O-32)
+    if (el.tagName === 'FIGURE') {
+      const a = inhalte.whitepaper.abbildungen.find((x) => x.id === el.getAttribute('data-abbildung'));
+      const fig = a !== undefined ? abbildung(a, { bedienbar, belegLink }) : null;
+      if (fig !== null) absaetze.push(h('div', { class: 'original-abbildung' }, fig));
+      continue;
+    }
     // Überschrift eines Unterabschnitts (Gliederung des Whitepapers, O-20)
     if (el.tagName === 'H4') {
       absaetze.push(h('h2', { class: 'original-abschnitt', 'data-abschnitt': el.getAttribute('data-abschnitt') ?? '' }, el.textContent ?? ''));
@@ -504,7 +523,7 @@ function lernseite(o: TheorieOptionen, nr: number): HTMLElement {
           b.felder['text'] ? h('div', { class: 'lesetext' }, inhalt(b.felder['text'])) : null,
           bloeckeIn(b.kinder, o.inhalte)));
       } else if (b.art === 'original') {
-        unten.push(originaltext(b, fassung, nr, o.bedienbar));
+        unten.push(originaltext(b, fassung, nr, o.bedienbar, o.inhalte));
       } else if (b.art === 'glossar') {
         teile.push(glossarListe(o));
       } else if (b.art !== 'querverweis') {
@@ -534,7 +553,7 @@ export function kapitelFuerDruck(inhalte: OeffentlicheInhalte, nr: number, versi
   const seite = baueTheorie({ inhalte, kapitel: nr, version, bedienbar: false });
   for (const weg of seite.querySelectorAll('.lern-kopf, .kapitel-verzeichnis, .kapitel-nav, .sprunglink, .lern-fuss')) weg.remove();
   // im Druck mit dem Originaltext (aufgeklappt)
-  for (const d of seite.querySelectorAll<HTMLDetailsElement>('details.originaltext')) d.open = true;
+  for (const d of seite.querySelectorAll<HTMLDetailsElement>('details.originaltext, details.abbildung-abweichungen')) d.open = true;
   seite.classList.add('druck-kapitel');
   return seite;
 }

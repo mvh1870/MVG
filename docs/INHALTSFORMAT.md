@@ -23,6 +23,7 @@ node werkzeuge/inhalte.mjs --pruefe   # kompilieren und alles prüfen; Exitcode 
 | `inhalte/theorie/kNN-<name>.md` | Lernseite zu Kapitel NN (01–13) | `kNN`, z. B. `k02` |
 | `inhalte/einwaende.md` | Einwand-Karten (E6) | je Karte eine ID |
 | `inhalte/abdeckung.yaml` | Absatz-ID → Theorie-Seite / Story-Station | Absatz-ID |
+| `inhalte/abbildungen/abb-N.yaml` | Beschreibung einer Abbildung der DOCX (Titel, Alternativtext, im Bild angeglichene Beschriftungen, Abweichungen); daneben `abb-N.webp` und `stand.json` von `werkzeuge/abbildungen.mjs` (4.6) | `abb-N` wie in `whitepaper.json` |
 
 Kennungen (Stationen, Schritte, Optionen, Figuren …) bestehen aus Buchstaben, Ziffern und Bindestrich, **ohne Umlaute** (`ende-neufestlegung`, `ueberblick`). Sichtbarer Text darf alles.
 
@@ -262,6 +263,7 @@ Kopfdaten: `kapitel` (Pflicht, 1–13), `titel` (Pflicht, wie im Whitepaper), `k
 | `zitat` | überall | Absatz-ID(s) | – | `text` (2.6) |
 | `ebenen`/`ebene` | oben, `abschnitt` | wie 3.3 | | |
 | `querverweis` | überall | Station (`A3`) | `text` (Knopfbeschriftung) | `text` |
+| `abbildung` | oben, `abschnitt` | `abb-N` (Pflicht) | – | – – Abbildung der DOCX mit Bildunterschrift (4.6); nur im eigenen Kapitel, je Abbildung höchstens eine Lernseite |
 | `merksatz`, `hinweis` | überall | – | – | `text` |
 | `tafel`, `raci` | oben, `abschnitt`, `ebene` | wie 3.3 (L-32, L-34) | | Whitepaper-Tabelle als Grafik bzw. RACI mit Mandat; auf der Lernseite ohne Spur und ohne gespielte Rolle |
 | `etappen`/`etappe` | oben, `abschnitt` | – / Pflicht (`1`, `2` …) | `titel` / `titel` (Pflicht) | `text` – Abfolge zum Durchklicken (P12.3) |
@@ -288,6 +290,22 @@ k4.2-p3:
   story: B3
 ```
 `theorie` und `story` sind eine Kennung oder eine Liste. `theorie` darf auch eine **geplante** Kapitelseite `kNN` nennen, die es noch nicht als Datei gibt (ein Kapitel = eine Lernseite, O-20; L-16). Der Prüfer rechnet die Abdeckung aus dieser Datei **und** aus den Theorie-Seiten (`original`, `zitat`, `deckt`) zusammen. Seit P1.1 ist eine Theorie-Abdeckung unter 100 % ein **Fehler** (mit den ersten Absätzen ohne Seite), ebenso ein Absatz, der nicht (auch) auf der Seite seines eigenen Kapitels steht.
+
+### 4.6 `inhalte/abbildungen/abb-N.yaml` (P14, O-32, L-77)
+Die 13 Inhaltsabbildungen der DOCX V1.2 (`abb-2` … `abb-14`, Ort und Prüfsumme in `whitepaper.json`) erscheinen im Originaltext jeder Lernseite **an ihrer Stelle** (nach der Kapitel- oder Abschnittsüberschrift bzw. nach dem Absatz, den `ort` nennt – der Compiler setzt die Marke selbst) und, wo die Lernseite es sagt, mit `::: abbildung abb-N` beim passenden Abschnitt.
+```yaml
+id: abb-6
+quelle: bilder/image6.png          # wie „datei“ in whitepaper.json
+titel: Sechs Verantwortungsfelder um den MVG-Kern
+alt: Sechs Karten um einen Kreis „MVG-Kern“ …   # höchstens 600 Zeichen; beschreibt das Bild nach der Angleichung
+angeglichen:                       # Beschriftungen mit verbotenem Begriff (docs/BEGRIFFE.md) oder „Whitepaper“, im Bild überdeckt
+  - { x: 360, y: 259, b: 174, h: 34, text: Freigabelogik für LPH 0–2, beleg: k4-t1, schrift: barlow }
+abweichungen:                      # was danach noch vom Text abweicht – steht aufklappbar in der Bildunterschrift
+  - text: Im Kern steht „ausübbar“; der Text nennt sichtbar, prüfbar und gestaltbar.
+    beleg: k4-p1
+```
+Überdeckung: Rechteck in Pixeln des Originals, mit der Hintergrundfarbe gefüllt (Median des Rands oder `hintergrund`), Text in IBM Plex Sans (`schrift: plex`, Vorgabe) oder Barlow Condensed (`barlow`), `gewicht` 400–700, `groesse` (sonst passend gerechnet), `ausrichtung` links/mitte/rechts, `farbe`; `\n` im Text trennt Zeilen. Der neue Text ist ein Begriff des Texts, wortgleich im Absatz `beleg`. Alte Beschriftungen mit verbotenem Begriff stehen nie in der Datei (sie wird von `npm run begriffe` geprüft).
+Bilder erzeugen: `node werkzeuge/abbildungen.mjs [abb-N …]` (Chromium; schreibt `abb-N.webp` und `stand.json`, deterministisch). Vermessen: `--raster abb-N x y b h [--nach]` (Ausschnitt mit Koordinatenraster), Sichtprüfung: `--vorschau abb-N` (nur `tmp/abbildungen/`). `inhalte` meldet ein Bild als **veraltet** (harter Fehler, auch im Bau), wenn Quelle oder Überdeckungen nicht mehr zu `stand.json` passen; Titel, Alternativtext und Abweichungen ändern kein Bild. Die Bilder gehen als data:-URL nach `src/generiert/abbildungen.json` (nur `src/main.ts` lädt sie).
 
 ---
 

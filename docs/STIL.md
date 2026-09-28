@@ -399,6 +399,22 @@ Tastatur am Griff: Der Regler ist ein **Umschalter mit Überblendung** zwischen 
 ```
 `.vermerk-hell` trägt „fachlich ungeprüft“. Ein angesprungener Absatz (`:target`) wird gold hinterlegt.
 
+**Abbildung der DOCX (`.abbildung`, P14, O-32).** Auf der Lernseite beim Abschnitt und im Originaltext an ihrer Stelle (`.original-abbildung`):
+```html
+<figure class="abbildung" data-abbildung="abb-6">
+  <div class="abbildung-rahmen"><img class="abbildung-bild ist-vergroesserbar" alt="…" width="1400" height="1034"></div>
+  <figcaption class="abbildung-unterschrift">
+    <span class="t-label abbildung-marke">Abbildung 5 · Kapitel 4</span><span class="abbildung-titel">…</span>
+    <span class="abbildung-vorrang">Abbildung aus dem Originaltext. Wo sie vom Text abweicht, gilt der Text.</span>
+    <span class="abbildung-angeglichen">Im Bild an die Begriffe des Texts angeglichen: „…“</span>
+    <details class="abbildung-abweichungen"><summary>Abweichungen vom Text (n)</summary><ul><li>… (<a class="abbildung-beleg">k4-p1</a>)</li></ul></details>
+    <button class="knopf knopf-still abbildung-gross">Vergrößern</button>
+  </figcaption>
+  <dialog class="abbildung-dialog">Kopf (Titel, Schließen) + Bild in voller Breite, mindestens 900 px (schmale Fenster rollen waagrecht)</dialog>
+</figure>
+```
+Weiße Karte wie `.lern-grafik`, Bild auf ganzer Spaltenbreite; Klick aufs Bild öffnet ebenfalls den Dialog (Tastatur: der Knopf). Auf der Leinwand und im Druck ohne Knopf und Dialog, im Druck mit aufgeklappten Abweichungen.
+
 ## Barrierefreiheit
 
 - **Kontrast** nur über die erlaubten Paare oben (≥ 4,5:1; Grafik ≥ 3:1), gemessen im Test.

@@ -36,6 +36,13 @@ test('Permalinks (P10.1): Absatz und Impressum', () => {
   for (const hash of ['#theorie/k4/k5.1-p1', '#theorie/k4/k4.2-x1', '#theorie/k4/k4.2-p', '#theorie/impressum/x']) assert.deepEqual(leseRoute(hash), START, hash);
 });
 
+test('Permalinks (P14): Abbildung auf der Lernseite', () => {
+  assert.deepEqual(leseRoute('#theorie/k4/abb-6'), { flaeche: 'theorie', kapitel: 4, abschnitt: 'abb-6' });
+  assert.deepEqual(leseRoute('#theorie/k10/ABB-14'), { flaeche: 'theorie', kapitel: 10, abschnitt: 'abb-14' });
+  assert.equal(routeHash({ flaeche: 'theorie', kapitel: 4, abschnitt: 'abb-6' }), '#theorie/k4/abb-6');
+  for (const hash of ['#theorie/k4/abb-', '#theorie/k4/abb-123', '#theorie/k4/abb-6/x', '#theorie/abb-6']) assert.deepEqual(leseRoute(hash), START, hash);
+});
+
 test('Kapitel mit führender Null, Großschreibung und Schrägstrich am Ende', () => {
   assert.deepEqual(leseRoute('#theorie/k01'), { flaeche: 'theorie', kapitel: 1, abschnitt: null });
   assert.deepEqual(leseRoute('#Theorie/K13'), { flaeche: 'theorie', kapitel: 13, abschnitt: null });

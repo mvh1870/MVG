@@ -26,7 +26,7 @@ quellen/ + inhalte/  ──werkzeuge (Node)──►  src/generiert/ (ignoriert)
 | `src/figuren/` | SVG-Figuren- und Requisiten-Baukasten |
 | `src/regie/` | `kanal.ts` (BroadcastChannel + storage-Rückfall), Regie, Leinwand, Protokoll |
 | `src/stil/` | `tokens.css`, `basis.css`, Komponenten-CSS; `src/generiert/schriften.css` wird erzeugt |
-| `werkzeuge/` | `bau.mjs`, `kette.mjs`, `inhalte.mjs`, `hilfe.mjs`, `begriffe.mjs` + `begriffe.json`, `oberflaeche.mjs`, `whitepaper-import.mjs`, `schriften.mjs`, `logo.mjs`, `vorschau.mjs`, `entwurf.mjs`, `huelle.html` |
+| `werkzeuge/` | `bau.mjs`, `kette.mjs`, `inhalte.mjs`, `hilfe.mjs`, `abbildungen.mjs`, `begriffe.mjs` + `begriffe.json`, `oberflaeche.mjs`, `whitepaper-import.mjs`, `schriften.mjs`, `logo.mjs`, `vorschau.mjs`, `entwurf.mjs`, `huelle.html` |
 | `tests/` | `*.test.ts` (node:test, jsdom wo nötig); Browser-Szenarien unter `tests/oberflaeche/` |
 | `dist/mvg.html` | die ausgelieferte Einzeldatei (committet) |
 | `prototyp/` | Stilreferenz und Szenen-Spezifikation (nicht eingebunden) |
@@ -49,6 +49,7 @@ quellen/ + inhalte/  ──werkzeuge (Node)──►  src/generiert/ (ignoriert)
 
 ## Inhalte
 - `werkzeuge/inhalte.mjs` liest `inhalte/**/*.md` (Kopfdaten YAML über `yaml`, Text Markdown über `marked` → HTML zur Bauzeit, Strukturblöcke nach `docs/INHALTSFORMAT.md`), prüft Schema, Graph, Begriffe, Zitate und Abdeckung und schreibt `src/generiert/inhalte.json`.
+- `werkzeuge/abbildungen.mjs` (P14, O-32, L-77) macht aus den 13 Inhaltsabbildungen der DOCX (`quellen/whitepaper/v1.2/bilder/`) WebP-Dateien unter `inhalte/abbildungen/` – Beschriftungen mit verbotenen Begriffen im Bild durch Begriffe des Texts überdeckt, Beschreibung je Bild in `abb-N.yaml`. Es braucht Chromium und läuft nur bei Änderungen (nicht in der Kette); `inhalte` prüft über `stand.json`, dass kein Bild veraltet ist, und schreibt die Bilder als data:-URL nach `src/generiert/abbildungen.json`. Nur `src/main.ts` lädt diese Datei und reicht sie an `src/ui/bausteine/abbildung.ts` (Figur mit Bildunterschrift und Vergrößern-Dialog) – Leinwand-Graph und Tests bleiben ohne Bilddaten.
 - `werkzeuge/hilfe.mjs` übernimmt die Hilfe des MVG Companion aus `quellen/hilfe/` (bereinigt, Begriffe nach MVG, L-69) nach `src/generiert/hilfe.json`; läuft mit `inhalte` und als Vorstufe von `bau`. Die Fläche `src/ui/flaechen/hilfe.ts` zeigt sie unter `#hilfe` und `#hilfe/<seite>`.
 - **Zitate** tragen eine Absatz-ID aus `whitepaper.json`; der Prüfer verlangt Wortgleichheit (Normalisierung nur von Leerraum und Silbentrennzeichen).
 

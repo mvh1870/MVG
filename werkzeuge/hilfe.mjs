@@ -52,6 +52,7 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/einen strukturierten Re-Start/gu, 'eine strukturierte MVG-Neuinitialisierung'],
   [/Re-Start/gu, 'MVG-Neuinitialisierung'],
   [/Wie wir arbeiten\. /gu, ''],
+  [/Reifegradmodell des MVG-Standards/gu, 'Reifegradmodell der Anwendung'],
   [/Freigabe-Adherence/gu, 'Freigabetreue'],
   [/\s*Berater bleibt als Sparringspartner verfügbar, ist aber nicht mehr operativ nötig\./gu, ''],
   [/ — jetzt für /gu, ' — für '],
@@ -440,6 +441,11 @@ function bereinige(wurzel, anker, titel = '') {
     const eltern = m.parentElement;
     m.remove();
     if (eltern !== null && eltern.children.length === 0 && (eltern.textContent ?? '').trim() === '') eltern.remove();
+  }
+  // Nebeneinanderstehende Marken (frühere Knöpfe, Pillen, Plaketten) beim Vorlesen und Kopieren trennen
+  for (const m of [...wurzel.querySelectorAll('.hilfe-marke, .pill, .badge, .tag')]) {
+    const n = m.nextSibling;
+    if (n !== null && n.nodeType === 1 && /** @type {Element} */ (n).matches('.hilfe-marke, .pill, .badge, .tag')) m.after(dok.createTextNode(' '));
   }
   // Hinweise auf den Druckknopf der Anwendung (hier gibt es ihn nicht)
   for (const li of [...wurzel.querySelectorAll('li')]) if (/Drucken\/PDF.*klappt alle Kapitel/u.test(li.textContent ?? '')) li.remove();

@@ -34,6 +34,17 @@ import { fassungText } from './ui/fassung.ts';
 import { erzeugeKlang } from './ui/klang.ts';
 import { istEingebettet, leseHintergrund, starteEinbettung, type Einbettung } from './ui/einbettung.ts';
 
+/** Kapitelverzeichnis (klebend, rollt in sich): den aktuellen Eintrag sichtbar machen, ohne die Seite zu rollen */
+function zeigeAktuellenEintrag(seite: HTMLElement): void {
+  requestAnimationFrame(() => {
+    const v = seite.querySelector<HTMLElement>('.kapitel-verzeichnis');
+    const a = v?.querySelector<HTMLElement>('[aria-current="page"]');
+    if (!v || !a || v.scrollHeight <= v.clientHeight + 1) return;
+    const oben = a.getBoundingClientRect().top - v.getBoundingClientRect().top + v.scrollTop;
+    v.scrollTop = Math.max(0, oben - v.clientHeight / 2);
+  });
+}
+
 const TITEL = 'MVG interaktiv';
 const VERSION = fassungText(inhalte.whitepaper.fassung ?? '');
 const KANAL = 'regie';
@@ -134,6 +145,7 @@ function starteApp(wurzel: HTMLElement): void {
         raeume();
         const seite = baueTheorie({ inhalte, kapitel: r.kapitel, version: VERSION, bedienbar: true });
         ersetze(wurzel, seite);
+        zeigeAktuellenEintrag(seite);
         tipps = installiereTooltips(seite, inhalte, W.glossarQuelle(inhalte.whitepaper.fassung ?? ''));
         window.scrollTo(0, 0);
         // Abschnitt (k2.4), Absatz (k4.2-p3, Zitierfunktion P10.1) oder das Impressum der Kapitelliste
@@ -182,6 +194,7 @@ function starteApp(wurzel: HTMLElement): void {
         raeume();
         const seite = baueHilfe({ seite: r.seite, version: VERSION });
         ersetze(wurzel, seite);
+        zeigeAktuellenEintrag(seite);
         window.scrollTo(0, 0);
         (seite.querySelector('.kapitel-titel') as HTMLElement | null)?.focus({ preventScroll: true });
         flaeche = `hilfe-${r.seite ?? ''}`;

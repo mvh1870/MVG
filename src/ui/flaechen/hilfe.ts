@@ -108,7 +108,12 @@ function karten(eintraege: { id: string; nr: string; titel: string; zusatz: stri
 
 /** Kurzer Auszug um die erste Fundstelle, der Suchbegriff hervorgehoben */
 function auszug(text: string, i: number, laenge: number): HTMLElement {
-  const von = Math.max(0, i - 60);
+  // Anfang auf eine Wortgrenze, nicht mitten im Wort
+  let von = Math.max(0, i - 60);
+  if (von > 0) {
+    const leer = text.indexOf(' ', von);
+    von = leer >= 0 && leer < i ? leer + 1 : von;
+  }
   const bis = Math.min(text.length, i + laenge + 90);
   return h('p', null, `${von > 0 ? '… ' : ''}${text.slice(von, i).trimStart()}`, h('mark', null, text.slice(i, i + laenge)), `${text.slice(i + laenge, bis).trimEnd()}${bis < text.length ? ' …' : ''}`);
 }

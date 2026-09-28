@@ -80,7 +80,7 @@
 .hilfe-inhalt :is(.h-card, .h-feature-card) > h3:first-child, .hilfe-inhalt .h-card-title { margin-top: 0; font: 700 var(--gr-xl)/1.3 var(--schrift-text); color: var(--navy); }
 .hilfe-inhalt :is(.h-feature-grid, .h-grid, .h-cols-2, .h-cols-3) { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: var(--a-4); }
 .hilfe-inhalt :is(.h-feature-grid, .h-grid, .h-cols-2, .h-cols-3) > * + * { margin-top: 0; }
-.hilfe-inhalt h2.h-section-divider { font: 700 var(--gr-2xl)/1.3 var(--schrift-text); color: var(--navy); }
+.hilfe-inhalt h2.h-section-divider { font: 700 var(--gr-3xl)/1.25 var(--schrift-text); color: var(--navy); }
 .hilfe-inhalt .h-section-divider { margin-top: var(--a-6); padding-top: var(--a-4); border-top: 1px solid var(--linie-2); }
 .hilfe-inhalt .h-prose { max-width: 70ch; }
 

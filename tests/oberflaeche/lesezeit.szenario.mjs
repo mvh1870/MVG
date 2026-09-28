@@ -1,6 +1,6 @@
 // Lesezeit (P11.5, O-5): spielt den Hauptpfad einer Rolle mit „Weiter“ und der ersten Option durch und
 // zählt die sichtbaren Wörter (ohne Knöpfe, Tabellen, Grafiken, Screenreader-Texte, zugeklappte Teile)
-// und die Klicks. Lesezeit = Wörter / 200 je Minute + 2 s je Klick (L-61). Ergebnis nach
+// und die Klicks (Express ohne den optionalen Epilog, L-49). Lesezeit = Wörter / 200 je Minute + 2 s je Klick (L-61). Ergebnis nach
 // tmp/lesezeit.json; über dem Ziel (Hauptpfad 35 min, Express 15 min) ist es ein Befund, sobald
 // MVG_LESEZEIT_PFLICHT=1 gesetzt ist (bis P11.5c abgeschlossen ist, nur Bericht).
 import { mkdirSync, writeFileSync } from 'node:fs';
@@ -17,28 +17,60 @@ const WPM = 200;
 const SEK_JE_KLICK = 2;
 
 /**
+ * @param {import('playwright').Page} start
+ * @param {string} rolle
+ * @param {boolean} express
+ */
+async function spiele(start, rolle, express) {
+  // je Lauf ein eigener Browser-Kontext: kein gespeicherter Stand aus dem vorigen Lauf (Weiterlesen, E9)
+  const browser = start.context().browser();
+  if (browser === null) throw new Error('kein Browser');
+  const kontext = await browser.newContext({ viewport: { width: 1280, height: 800 }, locale: 'de-DE', reducedMotion: 'reduce' });
+  const seite = await kontext.newPage();
+  try {
+    await seite.goto(start.url().replace(/#.*$/u, '#start'));
+    return await spieleIn(seite, rolle, express);
+  } finally {
+    await kontext.close();
+  }
+}
+
+/**
  * @param {import('playwright').Page} seite
  * @param {string} rolle
  * @param {boolean} express
  */
-async function spiele(seite, rolle, express) {
-  // frischer Stand: Hash auf Start, laden, Speicher leeren (die App speichert beim Wechsel), erneut laden
-  await seite.evaluate(() => { location.hash = '#start'; });
-  await seite.reload();
-  await seite.evaluate(() => { localStorage.clear(); });
-  await seite.reload();
+async function spieleIn(seite, rolle, express) {
   await seite.locator('[data-pruef="weg-story"]').click();
   const sichtbar = async (/** @type {string} */ s) => (await seite.locator(s).filter({ visible: true }).count()) > 0;
   const gesehen = new Set();
   /** @type {Record<string, number>} */
   const jeStation = {};
   let klicks = 0;
+  let expressGewaehlt = false;
+  let rolleGewaehlt = false;
   for (let i = 0; i < 900; i++) {
-    if (await sichtbar(`[data-pruef="rolle-${rolle}"]`)) { await seite.locator(`[data-pruef="rolle-${rolle}"]`).click(); klicks++; }
-    if (express && await sichtbar('[data-pruef="interesse-express"]') && (await seite.locator('[data-pruef="interesse-express"]').getAttribute('aria-pressed')) !== 'true') {
-      await seite.locator('[data-pruef="interesse-express"]').click(); klicks++;
+    // Rolle genau einmal wählen (eine erneute Wahl setzt die Interessen zurück)
+    if (!rolleGewaehlt && await sichtbar(`[data-pruef="rolle-${rolle}"]`)) {
+      await seite.locator(`[data-pruef="rolle-${rolle}"]`).click(); klicks++; rolleGewaehlt = true;
+      // die Rollenwahl führt selbst weiter: erst den nächsten Schritt abwarten, sonst überspringt ein
+      // sofortiges „Weiter“ die Interessenwahl (Express)
+      await seite.waitForTimeout(400);
+      continue;
+    }
+    // Express genau einmal wählen (im Prolog); der Zustand steht danach in der Sitzung
+    if (express && !expressGewaehlt && await sichtbar('[data-pruef="interesse-express"]')) {
+      const knopf = seite.locator('[data-pruef="interesse-express"]').filter({ visible: true }).first();
+      for (let versuch = 0; versuch < 3 && (await knopf.getAttribute('aria-pressed')) !== 'true'; versuch++) {
+        await knopf.click(); klicks++;
+        await seite.waitForTimeout(150);
+      }
+      expressGewaehlt = (await knopf.getAttribute('aria-pressed')) === 'true';
+      if (!expressGewaehlt) throw new Error(`Express für ${rolle} nicht wählbar`);
     }
     const station = (await seite.evaluate(() => location.hash)).replace('#story/', '') || 'start';
+    // Express lässt den Epilog aus (L-49): gemessen wird bis zum Ende der Geschichte
+    if (express && station === 'epilog') break;
     const teile = await seite.evaluate(() => {
       const wurzel = document.querySelector('main') ?? document.body;
       /** @type {string[]} */

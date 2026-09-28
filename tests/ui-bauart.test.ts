@@ -64,6 +64,8 @@ test('Regie-Material erreicht nur die Regie (Konstruktion, O-9): kein Modul auß
     const ziele = modulAngaben(text).angaben.filter((a) => a.startsWith('.')).map((a) => rel(resolve(dirname(p), a)));
     assert.ok(!ziele.includes('src/inhalte/index.ts'), `${rel(p)} importiert die Inhalte direkt`);
     assert.ok(!ziele.includes('src/generiert/inhalte.json'), `${rel(p)} importiert die Inhalte-Datei`);
+    // Bilddaten der Abbildungen (P14): nur main.ts lädt sie und reicht sie mit setzeAbbildungsBilder herein
+    assert.ok(!ziele.includes('src/generiert/abbildungen.json'), `${rel(p)} importiert die Bilddaten der Abbildungen`);
     assert.doesNotMatch(text, /regieInhalte/, `${rel(p)} nennt regieInhalte`);
     // Die Regie bekommt regieFuer als Parameter von main.ts – nur dort darf der Name stehen.
     if (rel(p) !== 'src/regie/regie.ts') assert.doesNotMatch(text, /regieFuer|regieKapitel/, `${rel(p)} nennt regieFuer/regieKapitel`);
@@ -79,7 +81,7 @@ test('Leinwand: der ganze Importgraph (transitiv, auch dynamisch) enthält weder
   for (const erwartet of ['src/ui/flaechen/story.ts', 'src/engine/zustand.ts', 'src/regie/kanal.ts', 'src/stil/symbole.ts']) {
     assert.ok(erreicht.includes(erwartet), `Graph erreicht ${erwartet} nicht: ${erreicht.join(', ')}`);
   }
-  for (const verboten of ['src/inhalte/index.ts', 'src/generiert/inhalte.json', 'src/regie/regie.ts', 'src/main.ts']) {
+  for (const verboten of ['src/inhalte/index.ts', 'src/generiert/inhalte.json', 'src/generiert/abbildungen.json', 'src/regie/regie.ts', 'src/main.ts']) {
     assert.ok(!erreicht.includes(verboten), `die Leinwand erreicht ${verboten}`);
   }
   for (const datei of graph.keys()) {

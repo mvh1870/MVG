@@ -10,6 +10,8 @@ Zum Abhaken beim Durchsehen von `dist/mvg.html` (Anleitung: `docs/ANLEITUNGEN.md
 - [ ] Selbstdiagnose ohne Punktzahl, Hinweis auf die Reifegradanalyse als BM-Methode (O-8).
 - [ ] Fall fiktiv und überall so gekennzeichnet (O-3).
 - [ ] Korrekturliste V1.3 (`docs/KORREKTURLISTE-V1.3.md`) gesichtet.
+- [ ] Abbildungen (O-32, L-77): alle 13 in Explore › Grafik-Galerie › Abbildungsverzeichnis geöffnet; jede im Bild angeglichene Beschriftung („Im Bild an die Begriffe des Texts angeglichen …“) und jede aufgeführte Abweichung vom Text gesichtet – die Überdeckungen sind Änderungen an den eigenen Grafiken. Stimmen die Plätze auf den Lernseiten, und soll abb-12 (Reifegradanalyse, weicht in der Sache ab) nur im Originaltext stehen?
+- [ ] Hilfe (O-31): Aufteilung wie im Companion, Begriffe nach MVG, Korrekturen in `docs/KORREKTURLISTE-COMPANION.md` gesichtet.
 - [ ] **Danach:** Vermerk „fachlich ungeprüft“ entfernen lassen (Owner-Entscheid; der Lauf nimmt ihn nicht selbst weg, O-24).
 
 ## B. Erlebnis
@@ -18,7 +20,7 @@ Zum Abhaken beim Durchsehen von `dist/mvg.html` (Anleitung: `docs/ANLEITUNGEN.md
 - [ ] Dramaturgie: Welt A bis zur Eskalation → Wendepunkt → Rückspulen → Welt B → Wirklichkeit → drei Enden → Epilog mit Resümee (O-2, O-7).
 - [ ] Rolle bestimmt Perspektive (Mails, Optionen, Linse) in allen sechs Rollen (O-4).
 - [ ] Figuren, Humor, Requisiten angemessen (O-6); Farben (O-11); Schriften (O-12).
-- [ ] Diagramme nativ und klickbar statt Rasterbilder (O-13); Grafik-Galerie in Explore.
+- [ ] Diagramme nativ und klickbar (O-13); dazu die Originalabbildungen als Bild mit Bildunterschrift, vergrößerbar (O-32); Grafik-Galerie in Explore.
 - [ ] Explore nach dem Ende freigeschaltet; Werkzeuge nennen je Regel die Absatz-ID (L-51).
 
 ## C. Termin mit Regie und Leinwand (O-9)

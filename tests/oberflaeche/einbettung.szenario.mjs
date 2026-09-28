@@ -88,12 +88,50 @@ export async function lauf(seite, h) {
   await geheUndWarte('#start');
   if (Math.abs((await letzteHoehe()) - (start ?? 0)) > 3) h.befund(`Einbettung: Startseite ändert ihre Höhe je nach Herkunft (${start} → ${await letzteHoehe()})`);
   // Absatz-Link: die Hostseite rollt zum Absatz (Meldung „ziel“)
+  const zieleVorher = (await seite.evaluate(() => /** @type {any} */ (window).nachrichten)).filter((/** @type {any} */ n) => n?.art === 'ziel').length;
   await geheUndWarte('#theorie/k4/k4.2-p3');
-  // Lage des Absatzes im Fenster der Hostseite: Rahmenoberkante (Host) + Lage im Rahmen (Rahmen)
-  const innenY = await seite.frames()[1]?.evaluate(() => document.querySelector('[data-absatz="k4.2-p3"]')?.getBoundingClientRect().top ?? null);
-  const rahmenY = await seite.evaluate(() => document.getElementById('mvg')?.getBoundingClientRect().top ?? 0);
-  const lage = innenY === null || innenY === undefined ? null : rahmenY + innenY;
+  // Lage des Absatzes im Fenster der Hostseite: Rahmenoberkante (Host) + Lage im Rahmen (Rahmen).
+  // Die Hostseite rollt sanft (behavior: smooth): erst die Meldung „ziel“ abwarten, dann bis die Lage steht
+  for (let i = 0; i < 30; i++) {
+    const n = (await seite.evaluate(() => /** @type {any} */ (window).nachrichten)).filter((/** @type {any} */ x) => x?.art === 'ziel').length;
+    if (n > zieleVorher) break;
+    await h.warte(100);
+  }
+  const lageJetzt = async () => {
+    const innenY = await seite.frames()[1]?.evaluate(() => document.querySelector('[data-absatz="k4.2-p3"]')?.getBoundingClientRect().top ?? null);
+    const rahmenY = await seite.evaluate(() => document.getElementById('mvg')?.getBoundingClientRect().top ?? 0);
+    return innenY === null || innenY === undefined ? null : rahmenY + innenY;
+  };
+  let lage = await lageJetzt();
+  for (let i = 0; i < 30; i++) {
+    await h.warte(100);
+    const neu = await lageJetzt();
+    if (neu === lage) break;
+    lage = neu;
+  }
   if (lage === null || lage < -20 || lage > 400) h.befund(`Einbettung: Absatz k4.2-p3 nicht im Bild (Lage ${lage})`);
+  // Vergrößern eingebettet (P12.5 R11): der Dialog öffnet an seiner Figur, die Hostseite rollt dorthin
+  await geheUndWarte('#theorie/k4');
+  const gross = rahmen.locator('.lern-inhalt [data-pruef="abbildung-gross"]').first();
+  if (await gross.count() === 0) h.befund('Einbettung: keine Abbildung auf der Lernseite k4');
+  else {
+    await gross.click();
+    await rahmen.locator('dialog.abbildung-dialog[open]').waitFor({ timeout: 3000 }).catch(() => h.befund('Einbettung: Abbildungs-Dialog öffnet nicht'));
+    const lageDialog = async () => {
+      const innen = await seite.frames()[1]?.evaluate(() => document.querySelector('dialog.abbildung-dialog[open]')?.getBoundingClientRect().top ?? null);
+      const oben = await seite.evaluate(() => document.getElementById('mvg')?.getBoundingClientRect().top ?? 0);
+      return innen === null || innen === undefined ? null : oben + innen;
+    };
+    let lageD = await lageDialog();
+    for (let i = 0; i < 30; i++) {
+      await h.warte(100);
+      const neu = await lageDialog();
+      if (neu === lageD) break;
+      lageD = neu;
+    }
+    if (lageD === null || lageD < -20 || lageD > 400) h.befund(`Einbettung: Abbildungs-Dialog außerhalb des sichtbaren Bereichs (Lage ${lageD})`);
+    await rahmen.locator('dialog.abbildung-dialog[open] [data-pruef="abbildung-schliessen"]').click().catch(() => h.befund('Einbettung: „Schließen“ nicht erreichbar'));
+  }
   await geheUndWarte('#story');
   const grund = await seite.frames()[1]?.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--grund').trim());
   if (grund !== '#ffffff') h.befund(`Einbettung: Hintergrund der Hostseite nicht übernommen (${grund})`);

@@ -66,6 +66,18 @@ export async function lauf(seite, h) {
   await h.warte(300);
   await pruefe('galerie');
   if (await seite.locator('[data-pruef="abbildungsverzeichnis"] tbody tr').count() < 1) h.befund('Galerie: Abbildungsverzeichnis leer');
+  // Abbildungen (P14): Vorschaubild geladen und schmückend, Titel springt zur Abbildung; Zellen nicht buchstabenweise gebrochen (R11)
+  const vz = await seite.evaluate(() => [...document.querySelectorAll('[data-pruef^="galerie-abbildung-"]')].map((a) => ({
+    href: a.getAttribute('href') ?? '', ok: (a.querySelector('img')?.naturalWidth ?? 0) > 0, alt: a.querySelector('img')?.getAttribute('alt'),
+    id: (a.getAttribute('data-pruef') ?? '').replace('galerie-abbildung-', '') })));
+  if (vz.length < 13) h.befund(`Galerie: ${vz.length} Abbildungen mit Bild statt 13`);
+  for (const v of vz) {
+    if (!/^#theorie\/k\d{1,2}\/abb-\d+$/u.test(v.href) || !v.href.endsWith(v.id)) h.befund(`Galerie: ${v.id} verlinkt „${v.href}“`);
+    if (!v.ok || v.alt !== '') h.befund(`Galerie: ${v.id} Vorschaubild nicht geladen oder nicht schmückend`);
+  }
+  const eng = await seite.evaluate(() => [...document.querySelectorAll('[data-pruef="abbildungsverzeichnis"] th, [data-pruef="abbildungsverzeichnis"] td')]
+    .filter((z) => !z.classList.contains('galerie-nr') && z.getBoundingClientRect().width < 44).length);
+  if (eng > 0) h.befund(`Galerie: ${eng} Zellen des Abbildungsverzeichnisses schmaler als 44 px`);
   await h.klick('[data-pruef="werkzeug-oeffnen-figuren"]');
   if (await seite.locator('[data-pruef="sprung-A3"]').count() !== 1) h.befund('Story-Karte: kein Sprung nach A3');
 

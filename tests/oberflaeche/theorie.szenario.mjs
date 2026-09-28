@@ -89,6 +89,51 @@ export async function lauf(seite, h) {
     await h.warte(100);
     if ((await seite.locator('dialog[open]').count()) !== 0) h.befund('Abbildungs-Dialog schließt nicht mit Esc');
     if (!(await gross.evaluate((el) => el === document.activeElement))) h.befund('Abbildungs-Dialog: Fokus kehrt nicht zum Knopf zurück');
+    // „Schließen“, Klick auf den Innenrand (bleibt offen) und auf den Hintergrund (schließt) – P12.5 R11
+    await gross.click();
+    await h.erwarte('dialog.abbildung-dialog[open]');
+    await seite.locator('dialog.abbildung-dialog[open] [data-pruef="abbildung-schliessen"]').click();
+    await h.warte(100);
+    if ((await seite.locator('dialog[open]').count()) !== 0) h.befund('Abbildungs-Dialog: „Schließen“ schließt nicht');
+    await gross.click();
+    await h.erwarte('dialog.abbildung-dialog[open]');
+    const rahmenD = await seite.locator('dialog.abbildung-dialog[open]').boundingBox();
+    if (rahmenD !== null) {
+      await seite.mouse.click(rahmenD.x + 4, rahmenD.y + Math.min(rahmenD.height - 4, 60));
+      await h.warte(100);
+      if ((await seite.locator('dialog[open]').count()) !== 1) h.befund('Abbildungs-Dialog: Klick auf den Innenrand schließt');
+      const fenster = seite.viewportSize() ?? { width: 1280, height: 720 };
+      const aussen = rahmenD.y > 6 ? { x: fenster.width / 2, y: 3 } : { x: 3, y: fenster.height / 2 };
+      await seite.mouse.click(aussen.x, aussen.y);
+      await h.warte(100);
+      if ((await seite.locator('dialog[open]').count()) !== 0) h.befund('Abbildungs-Dialog: Klick auf den Hintergrund schließt nicht');
+    }
+    // Beleg einer Abweichung: springt zum Absatz im aufgeklappten Originaltext
+    const abw = fig.locator('[data-pruef="abbildung-abweichungen"]');
+    if (await abw.count() > 0) {
+      await abw.locator('summary').click();
+      const link = abw.locator('a.abbildung-beleg').first();
+      const ziel = await link.textContent();
+      await link.click();
+      await h.warte(400);
+      const offen = await seite.evaluate((id) => {
+        const a = document.querySelector(`.originaltext .absatz[data-absatz="${id}"]`);
+        return { offen: a?.closest('details')?.open ?? false, ziel: a?.classList.contains('ist-ziel') ?? false };
+      }, ziel ?? '');
+      if (!offen.offen || !offen.ziel) h.befund(`Beleg-Link ${ziel}: Originaltext nicht aufgeklappt oder Absatz nicht markiert (${JSON.stringify(offen)})`);
+    }
+  }
+  // Abbildung nur im Originaltext (abb-12, L-77): Permalink klappt ihn auf
+  const nurOriginal = inhalte.whitepaper.abbildungen.find((/** @type {any} */ a) => a.bild !== null
+    && !JSON.stringify(Object.values(inhalte.theorie).find((/** @type {any} */ t) => t.kapitel === Number(a.kapitel))?.bloecke ?? []).includes(`"id":"${a.id}"`));
+  if (nurOriginal !== undefined) {
+    await seite.evaluate((a) => { location.hash = `#theorie/k${a.kapitel}/${a.id}`; }, nurOriginal);
+    const f = seite.locator(`.originaltext figure.abbildung[data-abbildung="${nurOriginal.id}"]`);
+    await f.waitFor({ timeout: 3000 });
+    await h.warte(300);
+    const lage = await f.boundingBox();
+    const offen = await f.evaluate((el) => el.closest('details')?.open ?? false);
+    if (!offen || lage === null || lage.y > (seite.viewportSize()?.height ?? 800)) h.befund(`Permalink ${nurOriginal.id}: Originaltext zu oder Abbildung nicht sichtbar (${JSON.stringify(lage)})`);
   }
 
   // Zitierfunktion (P10.1): Absatz-Permalink springt zum Absatz, „Zitieren“ zeigt die Angabe

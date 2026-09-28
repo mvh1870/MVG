@@ -52,6 +52,9 @@ export function druckeBogen(titel: string, teile: Node[]): HTMLElement {
     window.removeEventListener('afterprint', ende);
   };
   window.addEventListener('afterprint', ende);
-  window.print();
+  // Abbildungen (P14) erst dekodieren lassen, sonst kann der Dialog leere Bildflächen drucken (P12.5 R11)
+  const bilder = [...bogen.querySelectorAll('img')];
+  if (bilder.length === 0) window.print();
+  else void Promise.all(bilder.map((b) => (typeof b.decode === 'function' ? b.decode().catch(() => undefined) : undefined))).then(() => window.print());
   return bogen;
 }

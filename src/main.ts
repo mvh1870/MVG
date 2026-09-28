@@ -21,6 +21,7 @@ import { lade, type SpeicherGriff } from './engine/speicher.ts';
 import { erzeugeKanal } from './regie/kanal.ts';
 import { setzeMarke } from './ui/marke.ts';
 import { setzeAbbildungsBilder } from './ui/bausteine/abbildung.ts';
+import { setzeZielMelder } from './ui/dialog.ts';
 import { IMPRESSUM, istAbbildungsId, istAbsatzId, leseRoute, routeHash, type Route } from './ui/route.ts';
 import { erzeugeSitzung, type Sitzung } from './ui/sitzung.ts';
 import { ersetze } from './ui/h.ts';
@@ -264,6 +265,8 @@ function starteApp(wurzel: HTMLElement): void {
     // Story: fester Leitstand erst ab 981 px; darunter fließt sie wie die übrigen Flächen (P12.5 R3)
     hoehe: () => (document.body.dataset['flaeche'] === 'story' && window.matchMedia('(min-width: 981px)').matches ? null : document.body.getBoundingClientRect().height),
   }) : null;
+  // Dialoge (Abbildung, Grafik der Hilfe) öffnen eingebettet an ihrer Figur; die Hostseite rollt dorthin (P12.5 R11)
+  if (einbettung !== null) setzeZielMelder((y) => einbettung?.meldeZiel(y));
   window.addEventListener('hashchange', () => einbettung?.meldeOrt());
 
   zeige(leseRoute(location.hash));

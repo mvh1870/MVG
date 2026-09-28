@@ -48,3 +48,7 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 10 (P12.5)
 - **Fachtreue, Begriffe, Dramaturgie, O-1** (alle 20 Stationen je Rolle, 237 Rückbezüge, alle 209 Zitate wortgleich, Termine und Zahlen gegen die Fall-Bibel, Lernseiten Kap. 1–13, O-1/O-29 in beiden Dateien): 17 Befunde (0 schwer, 4 mittel) – alle eingearbeitet (L-79): Lagebild A1/A3/A5/A6 nach dem gemeinsamen Stand, „neu hinzugekommen“ ohne Handlungen anderer Rollen, Zeitsprünge vor dem nächsten Gremium, „Steht fest“ ohne Offenes, Einzelformulierungen (Wirklichkeit, B1, B2, B3, Welten, Kap. 1, Regie-Zeile).
+
+## Runde 11 (P12.5, zugleich P14.3)
+- **Stil, Barrierefreiheit, Architektur, Vollständigkeit** (13 Abbildungen in drei Größen, beide Dateien, Dialog, Permalinks, Leinwand/Vorschau, Druck, Galerie, Einbettung; Änderungen seit R9; Rundgang): 13 Befunde (0 schwer, 4 mittel) – alle eingearbeitet (L-80): Dialog eingebettet an der Figur, Abbildungsverzeichnis bei 400 px, Tests der Compiler-Prüfungen, Abnahme-Checkliste; dazu Dialog-Layout, Innenrand, Leinwand/Druck, Belege Kap. 13, Druck wartet auf Bilder, Doku, Szenarien, Übergabe.
+- **Abbildungen je Bild** (Workflow: 13 Autoren, unabhängige Prüfung, Nachbesserung): abb-2, -3, -8, -10, -11 in zwei Runden, danach bei allen 13 nur leichte Befunde; Feinschliff der leichten Befunde je Bild.

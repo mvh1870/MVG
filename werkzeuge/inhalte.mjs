@@ -1919,7 +1919,7 @@ export function einzeilig(text) {
     .replace(/\s*\n\s*/gu, ' ');
 }
 
-function baueAbbildungen(c, quelle, wurzel, theorie, pruefe) {
+export function baueAbbildungen(c, quelle, wurzel, theorie, pruefe) {
   /** @type {any[]} */
   const liste = quelle?.abbildungen ?? [];
   const kontext = { ids: new Set(/** @type {Map<string, any>} */ (quelle?.nachId ?? new Map()).keys()), abbildungen: new Map(liste.map((a) => [a.id, a])) };

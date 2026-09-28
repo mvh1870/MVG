@@ -50,16 +50,16 @@ export function storyDiagramme(inhalte: OeffentlicheInhalte): { art: string; sta
   return [...nach.entries()].map(([art, stationen]) => ({ art, stationen }));
 }
 
-/** Stelle im Text als Permalink: `k3.3` → Abschnitt 3.3, `k7.1-p1` → Abschnitt 7.1, `k1` → Kapitel 1. */
 /** Vorschaubild (schmückend, der Titel daneben benennt es) und Titel mit Sprung zur Abbildung (P14). */
 function abbildungsZelle(a: OeffentlicheInhalte['whitepaper']['abbildungen'][number]): Node | null {
   if (a.bild === null) return null;
   const daten = abbildungsBild(a.id);
   return h('a', { class: 'galerie-abbildung', href: `#theorie/k${a.kapitel}/${a.id}`, 'data-pruef': `galerie-abbildung-${a.id}` },
-    daten !== null ? h('img', { src: daten, alt: '', width: 96, height: Math.round(96 * a.bild.hoehe / a.bild.breite), decoding: 'async', loading: 'lazy' }) : null,
+    daten !== null ? h('img', { src: daten, alt: '', width: 96, height: Math.round(96 * a.bild.hoehe / a.bild.breite), decoding: 'async' }) : null,
     h('span', null, a.bild.titel));
 }
 
+/** Stelle im Text als Permalink: `k3.3` → Abschnitt 3.3, `k7.1-p1` → Abschnitt 7.1, `k1` → Kapitel 1. */
 function stelle(ort: string, kapitel: string): Node {
   const abschnitt = /^k(\d+(?:\.\d+)+)/u.exec(ort)?.[1] ?? null;
   const ziel = abschnitt !== null ? `#theorie/k${kapitel}/${abschnitt}` : `#theorie/k${kapitel}`;
@@ -106,11 +106,11 @@ export function galerie(inhalte: OeffentlicheInhalte, weltB = true): HTMLElement
       h('h3', { class: 'sim-teil-titel', id: 'abb-titel' }, G.verzeichnis),
       h('p', { class: 'sim-hinweis' }, G.verzeichnisText),
       h('table', { class: 'register-tabelle' },
-        h('thead', null, h('tr', null, h('th', null, G.abb), h('th', null, G.bild), h('th', null, G.kapitel), h('th', null, G.stelle))),
+        // drei Spalten (P12.5 R11): die Stelle nennt das Kapitel schon; bei 400 px bleibt Platz für Bild und Titel
+        h('thead', null, h('tr', null, h('th', { class: 'galerie-nr' }, G.nr), h('th', null, G.abb), h('th', null, G.stelle))),
         h('tbody', null, abb.map((a, i) => h('tr', null,
-          h('td', null, G.abbNr(i + 1)),
-          h('td', null, abbildungsZelle(a)),
-          h('td', null, h('a', { href: `#theorie/k${a.kapitel}` }, W.theorie.kapitelVon(a.kapitel))),
+          h('td', { class: 'galerie-nr' }, String(i + 1)),
+          h('td', null, abbildungsZelle(a) ?? G.abbNr(i + 1)),
           h('td', null, stelle(a.ort, a.kapitel))))))) : null);
 }
 

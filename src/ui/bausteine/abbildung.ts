@@ -13,6 +13,7 @@ import { h } from '../h.ts';
 import type { Abbildung } from '../../inhalte/typen.ts';
 import { inhaltInline } from './inhalt.ts';
 import { sym } from './bloecke.ts';
+import { oeffneDialog, schliesseBeiKlickDaneben } from '../dialog.ts';
 import { W } from '../woerter.ts';
 
 let bilder: Readonly<Record<string, string>> = {};
@@ -28,8 +29,8 @@ export function abbildungsBild(id: string): string | null {
 export interface AbbildungsOptionen {
   /** false auf der Leinwand und im Druck: kein Knopf, kein Dialog, Belege ohne Link */
   bedienbar: boolean;
-  /** Permalink eines Absatzes (Beleg); ohne: nur die ID */
-  belegLink?: (absatz: string) => string;
+  /** Permalink eines Absatzes (Beleg); null bzw. ohne: nur die ID */
+  belegLink?: (absatz: string) => string | null;
 }
 
 /** Figur mit Bild und Bildunterschrift; null, wenn die Abbildung keine Beschreibung hat. */
@@ -41,14 +42,15 @@ export function abbildung(a: Abbildung, o: AbbildungsOptionen): HTMLElement | nu
   const img = (): HTMLElement => (daten !== null
     ? h('img', { class: 'abbildung-bild', src: daten, alt: bild.alt, width: bild.breite, height: bild.hoehe, decoding: 'async' })
     : h('div', { class: 'abbildung-fehlt', role: 'img', 'aria-label': bild.alt }, A.fehlt));
-  const beleg = (id: string): Node => (o.bedienbar && o.belegLink !== undefined
-    ? h('a', { class: 'abbildung-beleg', href: o.belegLink(id) }, id)
-    : h('span', { class: 'abbildung-beleg' }, id));
+  const beleg = (id: string): Node => {
+    const ziel = o.bedienbar && o.belegLink !== undefined ? o.belegLink(id) : null;
+    return ziel !== null ? h('a', { class: 'abbildung-beleg', href: ziel }, id) : h('span', { class: 'abbildung-beleg' }, id);
+  };
 
   let dialog: HTMLDialogElement | null = null;
+  let figur: HTMLElement | null = null;
   const oeffne = (): void => {
-    if (dialog === null) return;
-    dialog.showModal();
+    if (dialog !== null && figur !== null) oeffneDialog(dialog, figur);
   };
   const bildEl = img();
   if (o.bedienbar && daten !== null && typeof HTMLDialogElement === 'function') {
@@ -57,9 +59,8 @@ export function abbildung(a: Abbildung, o: AbbildungsOptionen): HTMLElement | nu
         h('p', { class: 't-label' }, bild.titel),
         h('button', { type: 'button', class: 'knopf knopf-still', 'data-pruef': 'abbildung-schliessen', onclick: () => dialog?.close() }, A.schliessen)),
       img()) as HTMLDialogElement;
-    // Klick neben das Bild (auf den Hintergrund) schließt ebenfalls
-    const d = dialog;
-    d.addEventListener('click', (e) => { if (e.target === d) d.close(); });
+    // Klick neben den Dialog (auf den Hintergrund) schließt ebenfalls, der Innenrand nicht
+    schliesseBeiKlickDaneben(dialog);
     bildEl.addEventListener('click', oeffne);
     bildEl.classList.add('ist-vergroesserbar');
   }
@@ -72,7 +73,8 @@ export function abbildung(a: Abbildung, o: AbbildungsOptionen): HTMLElement | nu
       ? h('span', { class: 'abbildung-angeglichen' }, `${A.angeglichen} `, bild.angeglichen.map((x, i) => [i > 0 ? ', ' : null, `„${x.text}“`]).flat())
       : null,
     bild.abweichungen.length > 0
-      ? h('details', { class: 'abbildung-abweichungen', 'data-pruef': 'abbildung-abweichungen' },
+      // auf Leinwand und im Druck offen: dort kann niemand aufklappen (P12.5 R11, wie L-68)
+      ? h('details', { class: 'abbildung-abweichungen', 'data-pruef': 'abbildung-abweichungen', open: !o.bedienbar },
         h('summary', null, A.abweichungen(bild.abweichungen.length)),
         h('ul', null, bild.abweichungen.map((x) => h('li', null, inhaltInline(x.html), ' ',
           h('span', { class: 'abbildung-belege' }, '(', x.belege.map((id, i) => [i > 0 ? ', ' : null, beleg(id)]).flat(), ')')))))
@@ -81,8 +83,9 @@ export function abbildung(a: Abbildung, o: AbbildungsOptionen): HTMLElement | nu
       ? h('button', { type: 'button', class: 'knopf knopf-still abbildung-gross', 'data-pruef': 'abbildung-gross', 'aria-label': A.grossName(bild.titel), onclick: oeffne }, sym('pfeilRechts'), A.gross)
       : null);
 
-  return h('figure', { class: 'abbildung', 'data-pruef': 'abbildung', 'data-abbildung': a.id },
+  figur = h('figure', { class: 'abbildung', 'data-pruef': 'abbildung', 'data-abbildung': a.id },
     h('div', { class: 'abbildung-rahmen' }, bildEl),
     unterschrift,
     dialog);
+  return figur;
 }

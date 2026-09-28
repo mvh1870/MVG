@@ -320,6 +320,7 @@ Bilder erzeugen: `node werkzeuge/abbildungen.mjs [abb-N …]` (Chromium; schreib
 | Zitate | Absatz-ID unbekannt oder Text nicht wortgleich |
 | Glossar | `[[Begriff]]` nicht im Glossar |
 | Abdeckung | Theorie-Abdeckung < 100 % · Absatz nicht auf der Seite seines Kapitels · Seite/Station unbekannt |
+| Abbildungen (4.6) | Beschreibung verletzt das Schema (Felder, Rechteck, Beleg keine Absatz-ID, `alt` > 600 Zeichen) · Bild veraltet gegenüber `stand.json` oder WebP passt nicht (auch ohne `--pruefe`, harter Fehler) · `::: abbildung` ohne Beschreibung, im fremden Kapitel oder auf zwei Lernseiten · Abbildung mit Bild steht in keinem Originaltext |
 
 Fehlt `whitepaper.json` noch, sind Zitat-, Glossar- und Abdeckungsprüfung **Warnungen** (sonst Fehler). Ohne `--pruefe` meldet das Werkzeug nur Formfehler, die das Kompilieren verhindern.
 
@@ -516,6 +517,8 @@ Regie-Material (`regie`) steht im JSON **getrennt** von den Stationen: die Leinw
 | `startseite` | `kicker`, `titel`, `titelQuelle`, `these` (Inline-HTML) aus `inhalte/start.md`, sonst null |
 | `glossar.<id>` | alle Glossareinträge des Whitepapers (`begriff`, `definition`) |
 | `theorie.<kNN>`, `einwaende[]`, `abdeckung` | Lernseiten, Einwand-Karten, Abdeckung (`gesamt`, `zugeordnet`, `anteil`, `ziele`) |
+| `whitepaper.abbildungen[]` | je Abbildung der DOCX `id`, `nr` (Reihenfolge im Text), `kapitel`, `ort`, `bild` (`titel`, `alt`, `breite`, `hoehe`, `angeglichen[]` mit `text`/`beleg`, `abweichungen[]` mit `html`/`belege`) oder `null`; im Originaltext einer Lernseite steht an der Stelle eine Marke `<figure class="mvg-abbildung" data-abbildung="abb-N">` |
+| `src/generiert/abbildungen.json` (eigene Datei) | `abb-N` → Bild als `data:image/webp;base64,…`; nur `src/main.ts` lädt sie (P14, L-77) |
 | `regie` | **nur Regie**: `<station>` bzw. `<station>/<rolle>` → `notiz` (HTML), `leitfragen` (Inline-HTML). `src/inhalte/index.ts` gibt es nur über `regieInhalte()`/`regieFuer()` heraus; `inhalte` enthält es nicht. |
 
 Statuswirkungen stehen überall als Liste `{schluessel, art: 'setze' | 'aendere', wert, hinweis}`; Bedingungen als Datenform (`src/engine/typen.ts`, Typ `Bedingung`).

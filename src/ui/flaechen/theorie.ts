@@ -224,9 +224,13 @@ function ebenenBlock(ebenen: readonly Ebene[], inhalte: OeffentlicheInhalte, stu
     bloeckeIn(e.bloecke, inhalte, stufe))));
 }
 
-/** Permalink eines Absatzes (P10.1): `k4-t1` → `#theorie/k4/k4-t1` */
-function belegLink(id: string): string {
-  return `#theorie/k${/^k(\d{1,2})/u.exec(id)?.[1] ?? ''}/${id}`;
+/**
+ * Permalink eines Absatzes (P10.1): `k4-t1` → `#theorie/k4/k4-t1`. Kap. 13 hat keinen Originaltext (Glossar,
+ * L-47): dort gäbe es kein Sprungziel – der Beleg bleibt Text (P12.5 R11).
+ */
+function belegLink(id: string): string | null {
+  const kapitel = /^k(\d{1,2})/u.exec(id)?.[1] ?? '';
+  return kapitel === '13' ? null : `#theorie/k${kapitel}/${id}`;
 }
 
 /** Blöcke einer Lernseite; `stufe` = Überschriftenstufe für Tafeltitel (h2 auf Seitenebene, h3 in Abschnitten). */

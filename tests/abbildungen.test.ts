@@ -3,11 +3,12 @@
 // `node werkzeuge/abbildungen.mjs` (zweimal ausgeführt byte-gleich, siehe Abnahme P14.1).
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { eingabeSumme, erzeugeAbbildungen, ladeKontext, leseBeschreibungen, pruefeBeschreibung } from '../werkzeuge/abbildungen.mjs';
-import { einzeilig } from '../werkzeuge/inhalte.mjs';
+import { baueAbbildungen, einzeilig } from '../werkzeuge/inhalte.mjs';
 
 const WURZEL = join(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -79,10 +80,57 @@ test('Originaltext: jede Abbildung steht an ihrer Stelle der DOCX (nach Übersch
     if (/^k\d+$/u.test(a.ort)) assert.ok(i === 0 || !folge.slice(0, i).some((x) => x.startsWith(`${a.ort}-`) || x.startsWith(`${a.ort}.`)), `${a.id}: nicht am Kapitelanfang`);
     else assert.equal(folge[i - 1], a.ort, `${a.id} steht nicht nach ${a.ort}`);
   }
-  // Lernseiten: jede Abbildung höchstens einmal
-  const text = JSON.stringify(inhalte.theorie);
-  for (const a of inhalte.whitepaper.abbildungen as { id: string }[]) {
-    const n = [...text.matchAll(new RegExp(`"art":"abbildung"[^}]*?"id":"${a.id}"`, 'gu'))].length;
-    assert.ok(n <= 1, `${a.id} ${n}× auf Lernseiten`);
-  }
+  // Lernseiten: jede Abbildung höchstens einmal (strukturell über die Blöcke gezählt)
+  const zahl = new Map<string, number>();
+  const gehe = (bloecke: { art: string; id: string | null; kinder?: unknown[] }[]): void => {
+    for (const b of bloecke) {
+      if (b.art === 'abbildung' && b.id !== null) zahl.set(b.id, (zahl.get(b.id) ?? 0) + 1);
+      gehe((b.kinder ?? []) as typeof bloecke);
+    }
+  };
+  for (const t of Object.values(inhalte.theorie) as { bloecke: { art: string; id: string | null; kinder?: unknown[] }[] }[]) gehe(t.bloecke);
+  assert.equal(zahl.size, 12, 'zwölf Abbildungen auf Lernseiten (abb-12 nur im Originaltext, L-77)');
+  for (const [id, n] of zahl) assert.equal(n, 1, `${id} ${n}× auf Lernseiten`);
+});
+
+test('Compiler (baueAbbildungen): veraltetes Bild, fremdes WebP, fremdes Kapitel, doppelt, ohne Originaltext → Fehler (Prüfagent R11)', () => {
+  const sha = (x: string | Buffer): string => createHash('sha256').update(x).digest('hex');
+  const quelle = {
+    abbildungen: [{ id: 'abb-6', kapitel: '4', ort: 'k4', datei: 'bilder/image6.png', sha256: 'q' }],
+    nachId: new Map([['k4-t1', {}], ['k4-p1', {}]]),
+  };
+  /** Testwurzel mit Beschreibung, WebP und passendem stand.json; `aendere` verfälscht danach einen Teil */
+  const wurzel = (aendere: (w: string) => void = () => {}): string => {
+    const w = mkdtempSync(join(WURZEL, 'tmp', 'test-abb-'));
+    mkdirSync(join(w, 'inhalte', 'abbildungen'), { recursive: true });
+    writeFileSync(join(w, 'inhalte', 'abbildungen', 'abb-6.yaml'), 'id: abb-6\nquelle: bilder/image6.png\ntitel: T\nalt: A\nangeglichen:\n  - { x: 1, y: 2, b: 30, h: 12, text: LPH 0–2, beleg: k4-t1 }\nabweichungen:\n  - { text: Satz, beleg: k4-p1 }\n');
+    const webp = Buffer.from('RIFF-probe');
+    writeFileSync(join(w, 'inhalte', 'abbildungen', 'abb-6.webp'), webp);
+    const roh = { id: 'abb-6', quelle: 'bilder/image6.png', angeglichen: [{ x: 1, y: 2, b: 30, h: 12, text: 'LPH 0–2', beleg: 'k4-t1' }] };
+    writeFileSync(join(w, 'inhalte', 'abbildungen', 'stand.json'), JSON.stringify({ werkzeug: 1, abbildungen: { 'abb-6': { eingabe: eingabeSumme(roh, 'q'), webp: sha(webp), breite: 30, hoehe: 20 } } }));
+    aendere(w);
+    return w;
+  };
+  const lauf = (w: string, theorie: Record<string, unknown>, imOriginal = true): { fehler: string[]; erg: { liste: { bild: unknown }[]; daten: Record<string, string> } } => {
+    const fehler: string[] = [];
+    const c = {
+      b: { fehler: (ort: string, text: string) => fehler.push(`${ort}: ${text}`) },
+      fehler: (ort: string, text: string) => fehler.push(`${ort}: ${text}`),
+      inline: (t: string) => t,
+      abbImOriginal: new Set(imOriginal ? ['abb-6'] : []),
+    };
+    return { fehler, erg: baueAbbildungen(c, quelle, w, theorie, true) };
+  };
+  const seite = (kapitel: number, quelleName: string) => ({ kapitel, quelle: quelleName, bloecke: [{ art: 'abbildung', id: 'abb-6', kinder: [] }] });
+  const gut = lauf(wurzel(), { k04: seite(4, 'k04.md') });
+  assert.deepEqual(gut.fehler, []);
+  assert.ok(gut.erg.liste[0]?.bild !== null);
+  assert.match(gut.erg.daten['abb-6'] ?? '', /^data:image\/webp;base64,/u);
+  const alt = (w: string): void => writeFileSync(join(w, 'inhalte', 'abbildungen', 'abb-6.yaml'), readFileSync(join(w, 'inhalte', 'abbildungen', 'abb-6.yaml'), 'utf8').replace('x: 1', 'x: 2'));
+  assert.match(lauf(wurzel(alt), { k04: seite(4, 'k04.md') }).fehler.join('\n'), /Bild veraltet/u);
+  const fremd = (w: string): void => writeFileSync(join(w, 'inhalte', 'abbildungen', 'abb-6.webp'), 'anders');
+  assert.match(lauf(wurzel(fremd), { k04: seite(4, 'k04.md') }).fehler.join('\n'), /passt nicht zu stand\.json/u);
+  assert.match(lauf(wurzel(), { k05: seite(5, 'k05.md') }).fehler.join('\n'), /gehört zu Kapitel 4, nicht 5/u);
+  assert.match(lauf(wurzel(), { k04: seite(4, 'k04.md'), k04b: seite(4, 'k04b.md') }).fehler.join('\n'), /steht schon auf k04\.md/u);
+  assert.match(lauf(wurzel(), { k04: seite(4, 'k04.md') }, false).fehler.join('\n'), /steht in keinem Originaltext/u);
 });

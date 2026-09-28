@@ -1,7 +1,7 @@
 ---
 station: A1
 rolle: bauherr
-frage: Die neue Bauherren-PL hat übernommen, der Bauantrag geht raus. Worauf richten Sie als Bauherr die ersten Wochen aus?
+frage: Die Kämmerei will eine Zahl; welche der Stadtrat zuletzt gehört hat, wissen Sie nicht. Was tun Sie?
 ---
 
 ::: option A
@@ -12,7 +12,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Sie hören einen Sachstand: Bauantrag raus, Kosten im Rahmen. Den Zielkonflikt legt Ihnen niemand vor.
+Sie hören einen Sachstand: Bauantrag raus, Kosten im Rahmen. Welche Zahl gilt, legt Ihnen niemand vor.
 
 ### Was fehlt
 Eine Entscheidungsfrage. Ein Sachstand verlangt von Ihnen nichts.
@@ -32,7 +32,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Sie schreiben Frank Deppe: Der Kostenrahmen hat Vorrang. Die Generalplanung erfährt es aus zweiter Hand; zu ESG und LCC steht nichts darin.
+Sie schreiben Frank Deppe: Die Kostenobergrenze hat Vorrang. Die Generalplanung erfährt es aus zweiter Hand; zum Holzbau steht nichts darin.
 
 ### Was fehlt
 Ein dokumentiertes Zielsystem mit Abwägungsregeln, das alle Beteiligten kennen.
@@ -58,7 +58,7 @@ Nach drei Wochen gibt es ein Organigramm mit Namen, ohne Schwellen, Stellvertret
 Freigabeschwellen, Stellvertretungen und Eskalationswege; Namen allein reichen nicht.
 
 ### Neues Risiko
-Die Kostendatei bleibt bei Holger Stein; niemand ist für den Fall benannt, dass er fehlt.
+Die nächste Übernahme beginnt wieder ohne Übergabe.
 
 ### Governance-Frage
 [[Mandat]]: Wer darf welche Entscheidung vorbereiten, treffen, freigeben oder eskalieren?
@@ -72,9 +72,9 @@ Die Geschichte merkt sich Ihre Wahl.
 
 ::: regie
 ### Notiz
-Der Bauherr ist in A1 weit weg vom Tagesgeschäft. Zeigen, dass die Zielpriorität trotzdem bei ihm liegt – und dass sie in Welt A niemand abholt.
+Der Bauherr soll eine Zahl vertreten, die er nicht belegen kann. Zeigen, dass die Zielpriorität trotzdem bei ihm liegt – und dass sie in Welt A niemand abholt.
 
 ### Leitfragen
+- Welche Zahl hat Ihr Rat zuletzt gehört – und wo steht sie?
 - Wo steht bei Ihnen, welches Ziel im Konfliktfall Vorrang hat?
-- Wer hat diese Priorität zuletzt bestätigt?
 :::

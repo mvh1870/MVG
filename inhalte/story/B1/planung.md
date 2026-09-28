@@ -1,22 +1,22 @@
 ---
 station: B1
 rolle: planung
-frage: Zielsystem, Mandatsleiter und Register stehen. Womit beginnt die Generalplanung?
+frage: Die Bauherren-PL fragt nach Ihrer Preisannahme. Was tun Sie?
 rueckbezug-auf: A1
 ---
 
 ::: option A
 ---
-titel: Die Marktnotiz zum Holzpreis als Frühwarnung melden
+titel: Die fehlende Preisfortschreibung als Frühwarnung melden
 kurz: Frühwarnung melden
 status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Die Marktnotiz geht als [[Frühwarnung]] in die Risikosichtung der Projektsteuerung. Ob sie ein Risiko wird, zeigt die Bestätigung.
+Keine Preissteigerung in der Kostenberechnung: Sie melden das als [[Frühwarnung]]. Ob daraus ein Risiko wird, zeigt die Bestätigung.
 
 ### Was fehlt
-Noch nichts – das Signal ist erfasst, aber unbewertet.
+Nichts – das Signal ist erfasst, aber unbewertet.
 
 ### Neues Risiko
 Ein Signal mehr im Blick, keines mehr im Dunkeln.
@@ -66,7 +66,7 @@ Eine offene Änderung mehr, aber mit Weg.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Variante vorrechnen‘ gewählt. In Welt B wird eine Variante zur beantragten Änderung.
+In Welt A haben Sie ‚Aufschlag schätzen‘ gewählt. In Welt B wird daraus keine dritte Zahl, sondern ein Signal.
 :::
 
 ::: rueckbezug B
@@ -74,11 +74,11 @@ In Welt A haben Sie ‚Zielpriorität erfragen‘ gewählt. In Welt B hat die Fr
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Bauantrag zuerst, Notiz per Mail‘ gewählt. In Welt B hat die Notiz eine Adresse: das Frühwarnungsregister der Projektsteuerung.
+In Welt A haben Sie ‚Bauantrag zuerst‘ gewählt. In Welt B wartet die Kämmerei nicht auf Sie: Sie bekommt Version 1.
 :::
 
 ::: rueckbezug ohne
-In Welt A: eine Marktnotiz, vier gleichrangige Ziele. In Welt B: ein Register für das Signal, eine Regel für den Zielkonflikt.
+In Welt A: eine offene Preisfrage, vier gleichrangige Ziele. In Welt B: ein Register für das Signal, eine Regel für den Zielkonflikt.
 :::
 
 ::: nachsatz
@@ -90,6 +90,6 @@ Die Geschichte merkt sich Ihre Wahl.
 Die Generalplanung hat in Welt B zwei klare Wege: Signale gehen als Frühwarnung an die Projektsteuerung, Varianten als beantragte Änderung ins Änderungsregister.
 
 ### Leitfragen
-- Wie erfährt bei Ihnen die Projektsteuerung von einem Marktsignal der Planung?
+- Wie erfährt bei Ihnen die Projektsteuerung von einer offenen Annahme der Planung?
 - Woran misst Ihre Planung Varianten?
 :::

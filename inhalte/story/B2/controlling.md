@@ -78,7 +78,7 @@ In Welt A haben Sie ‚Zusage klären lassen‘ gewählt. In Welt B braucht es k
 :::
 
 ::: rueckbezug ohne
-In Welt A gingen Marktabfrage und Mail in keine Liste. In Welt B sind sie `FRW-002` und `AEN-012`.
+In Welt A gingen Lieferzeit und Mensa in keine Liste. In Welt B sind sie `FRW-002` und `AEN-012`.
 :::
 
 ::: regie

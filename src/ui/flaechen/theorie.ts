@@ -14,6 +14,7 @@ import { h, ersetze } from '../h.ts';
 import { bildmarke } from '../marke.ts';
 import { sym, symbolAusInhalt, tafel as tafelBlock, raci as raciBlock, merksatz, hinweis } from '../bausteine/bloecke.ts';
 import { inhalt, inhaltInline } from '../bausteine/inhalt.ts';
+import { etappen, regler, sortieren, umschalter } from '../bausteine/lernwerkzeuge.ts';
 import { kopfText, stationsName } from '../anzeige.ts';
 import { W } from '../woerter.ts';
 import { AENDERUNGEN } from '../impressum.ts';
@@ -232,6 +233,18 @@ function bloeckeIn(bloecke: readonly Block[], inhalte: OeffentlicheInhalte, stuf
         break;
       case 'karten':
         aus.push(karten(b));
+        break;
+      case 'etappen':
+        aus.push(etappen(b, stufe));
+        break;
+      case 'umschalter':
+        aus.push(umschalter(b, stufe));
+        break;
+      case 'sortieren':
+        aus.push(sortieren(b, stufe));
+        break;
+      case 'regler':
+        aus.push(regler(b, stufe));
         break;
       case 'tafel': {
         const t = tafelBlock(b, [], inhalte, stufe);

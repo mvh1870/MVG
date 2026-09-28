@@ -36,7 +36,7 @@ status:
 Wird ein Schwellenwert verletzt, entsteht eine Frühwarnung; wer entscheidet, sagt die Mandatsleiter.
 
 ### Was fehlt
-Die Marktnotiz zum Holzpreis berührt noch keine Schwelle.
+Die offene Preisannahme berührt noch keine Schwelle.
 
 ### Neues Risiko
 Ein Signal von außen bleibt unter dem Radar der Zahlen.
@@ -66,7 +66,7 @@ Eine gemeinsame Zahl – aber noch kein Auslöser, wenn sie kippt.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Eigene CTC aufsetzen‘ gewählt. In Welt B läuft die CTC monatlich, mit Version, neben der Prognose.
+In Welt A haben Sie ‚Eigene Zahl melden‘ gewählt. In Welt B bekommt die Kämmerei den Datenstand, den Sie monatlich mit Version führen.
 :::
 
 ::: rueckbezug B
@@ -74,7 +74,7 @@ In Welt A haben Sie ‚Kostendatei nachvollziehen‘ gewählt. In Welt B muss ni
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Holzpreis einrechnen‘ gewählt. In Welt B geht die Marktnotiz als Frühwarnung ins Register, nicht still in eine Zelle.
+In Welt A haben Sie ‚Preissteigerung einrechnen‘ gewählt. In Welt B steht die Preisannahme offen im Datenstand, nicht still in einer Zelle.
 :::
 
 ::: rueckbezug ohne

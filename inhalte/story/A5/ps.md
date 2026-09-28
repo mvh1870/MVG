@@ -1,7 +1,7 @@
 ---
 station: A5
 rolle: ps
-frage: Posten laufen gegen die Risikoreserve, ohne dass jemand ihren Einsatz freigegeben hat. Wie bilden Sie das ab?
+frage: Der Bauherr muss der Kämmerei erklären, was gegen die Reserve läuft; freigegeben hat er nichts. Was liefern Sie?
 rueckbezug-auf: A2
 ---
 
@@ -19,7 +19,7 @@ Die Prognose bleibt fast stabil, weil die Reserve die Folgekosten trägt, auf de
 Die Freigabe des Einsatzes der Risikoreserve durch den Bauherrn.
 
 ### Neues Risiko
-Eine Reserve, die auf dem Papier existiert und in der Sache verbraucht ist.
+Eine Reserve nur auf dem Papier.
 
 ### Governance-Frage
 Risikoannahme: Wer hat entschieden, die Reserve einzusetzen?
@@ -83,7 +83,7 @@ Im März kam die Mensa als Flurzusage. Im September steht sie als angekündigter
 
 ::: regie
 ### Notiz
-Die Projektsteuerung muss die verplante Reserve abbilden. Zeigen, dass jede Darstellung die Freigabe nicht ersetzt.
+Die Projektsteuerung hat verrechnet, der Bauherr muss antworten. Zeigen, dass keine Darstellung die Freigabe ersetzt.
 
 ### Leitfragen
 - Wie viel Ihrer Risikoreserve ist heute schon verplant?

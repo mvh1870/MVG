@@ -527,3 +527,100 @@ a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
 .wc-rueckmeldung p, .wc-erklaerung p { margin: 0; }
 /* Fokus nicht unter der klebenden Kopfleiste der Lernseiten (WCAG 2.4.11, P11.3) */
 html:has(.lernseite) { scroll-padding-top: 72px; }
+
+/* ===================================================================
+ * Kleine interaktive Grafiken der Lernseiten (P12.3, O-30)
+ * src/ui/bausteine/lernwerkzeuge.ts – Etappen, Umschalter, Sortieren, Regler
+ * =================================================================== */
+.lernwerkzeug { display: grid; gap: var(--a-4); padding: var(--a-5); border-radius: var(--radius-l); background: var(--weiss); box-shadow: var(--schatten-karte); }
+.lw-kopf { display: grid; gap: var(--a-2); }
+.lw-titel { margin: 0; font: 700 var(--gr-xl)/1.3 var(--schrift-text); color: var(--navy); }
+.lw-einleitung { font-size: var(--gr-text); line-height: 1.5; color: var(--tinte-2); }
+.lw-einleitung p { margin: 0; }
+.lw-blaetter-reihe { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--a-2); }
+@keyframes lw-auftauchen { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.lernwerkzeug .ist-neu { animation: lw-auftauchen var(--dauer-kurz) ease-out; }
+
+/* Etappen: Punkte auf einer Linie, die Linie füllt sich bis zur gewählten Etappe */
+.lw-etappen-leiste { position: relative; display: grid; grid-template-columns: repeat(var(--anzahl, 3), minmax(0, 1fr)); gap: var(--a-2); }
+.lw-etappen-linie { position: absolute; left: calc(50% / var(--anzahl, 3)); right: calc(50% / var(--anzahl, 3)); top: 19px; height: 3px; border-radius: 2px; background: var(--linie); }
+.lw-etappen-fuellung { position: absolute; inset: 0; transform-origin: left center; transform: scaleX(var(--anteil, 0)); background: var(--petrol); transition: transform var(--dauer-mittel) ease-out; }
+.lw-etappe { position: relative; z-index: 1; display: grid; justify-items: center; gap: var(--a-2); min-height: 44px; padding: 0 2px; border: 0; background: none; font: inherit; color: var(--tinte-2); cursor: pointer; }
+.lw-etappe-nr { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--weiss); box-shadow: inset 0 0 0 2px var(--linie-2); font: 800 var(--gr-l)/1 var(--schrift-anzeige); color: var(--tinte-2); transition: background var(--dauer-kurz), box-shadow var(--dauer-kurz), color var(--dauer-kurz), transform var(--dauer-sofort); }
+.lw-etappe-name { font: 600 var(--gr-s)/1.25 var(--schrift-label); text-align: center; overflow-wrap: anywhere; hyphens: auto; }
+.lw-etappe.ist-erreicht .lw-etappe-nr { background: var(--petrol); box-shadow: none; color: var(--weiss); }
+.lw-etappe[aria-pressed="true"] .lw-etappe-nr { background: var(--gold-soft); box-shadow: inset 0 0 0 2px var(--gold), 0 0 0 5px var(--gold-hell-a28); color: var(--navy); transform: scale(1.08); }
+.lw-etappe[aria-pressed="true"] { color: var(--navy); }
+.lw-etappe:hover .lw-etappe-nr { transform: scale(1.06); }
+.lw-etappe-detail { display: grid; gap: var(--a-2); min-height: 6em; padding: var(--a-4); border-radius: var(--radius-m, 8px); background: var(--flaeche-3); box-shadow: inset 4px 0 0 var(--petrol); }
+.lw-etappe-titel { font: 700 var(--gr-l)/1.3 var(--schrift-text); color: var(--navy); }
+.lw-etappe-text { font-size: var(--gr-text); line-height: 1.55; }
+.lw-etappe-text p + p, .lw-ansicht-inhalt p + p, .lw-stufe-text p + p { margin-top: var(--a-2); }
+
+/* Umschalter: zwei Ansichten, der Schieber wandert mit */
+.lw-schalter { position: relative; display: grid; grid-template-columns: 1fr 1fr; width: min(100%, 520px); padding: 4px; border-radius: 999px; background: var(--flaeche-2); box-shadow: inset 0 0 0 1px var(--linie); }
+.lw-schalter-marke { position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc(50% - 4px); border-radius: 999px; background: var(--koralle-soft); box-shadow: inset 0 0 0 1.5px var(--koralle-kante); transition: transform var(--dauer-mittel) cubic-bezier(.2, .8, .2, 1), background var(--dauer-mittel), box-shadow var(--dauer-mittel); }
+.lw-schalter[data-seite="rechts"] .lw-schalter-marke { transform: translateX(100%); background: var(--tuerkis-soft); box-shadow: inset 0 0 0 1.5px var(--tuerkis); }
+.lw-schalter-seite { position: relative; z-index: 1; min-height: 44px; padding: var(--a-2) var(--a-3); border: 0; border-radius: 999px; background: none; font: 700 var(--gr-m)/1.2 var(--schrift-label); color: var(--tinte-2); cursor: pointer; }
+.lw-schalter-seite[aria-pressed="true"].lw-seite-links { color: var(--koralle-text); }
+.lw-schalter-seite[aria-pressed="true"].lw-seite-rechts { color: var(--tuerkis-text); }
+.lw-ansicht { padding: var(--a-4); border-radius: var(--radius-m, 8px); font-size: var(--gr-text); line-height: 1.55; transition: background var(--dauer-mittel), box-shadow var(--dauer-mittel); }
+.lw-ansicht[data-seite="links"] { background: var(--koralle-hauch); box-shadow: inset 4px 0 0 var(--koralle); }
+.lw-ansicht[data-seite="rechts"] { background: var(--tuerkis-hauch); box-shadow: inset 4px 0 0 var(--tuerkis); }
+.lw-ansicht ul { padding-left: 1.2em; list-style: disc; }
+.lw-ansicht li + li { margin-top: var(--a-1); }
+
+/* Sortieren: je Posten zwei Körbe, Rückmeldung mit Erklärung */
+.lw-koerbe { display: grid; grid-template-columns: 1fr 1fr; gap: var(--a-2); }
+.lw-korb { padding: var(--a-2) var(--a-3); border-radius: var(--radius-m, 8px); font: 700 var(--gr-s)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; text-align: center; }
+.lw-korb.lw-seite-links, .lw-korb-knopf.lw-seite-links[aria-pressed="true"] { background: var(--flaeche-4); color: var(--navy); }
+.lw-korb.lw-seite-rechts, .lw-korb-knopf.lw-seite-rechts[aria-pressed="true"] { background: var(--gold-soft); color: var(--gold-text); box-shadow: inset 0 0 0 1px var(--gold-soft-kante); }
+.lw-posten-liste { display: grid; gap: var(--a-2); counter-reset: posten; }
+.lw-posten { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--a-2) var(--a-3); padding: var(--a-3); border-radius: var(--radius-m, 8px); box-shadow: inset 0 0 0 1px var(--linie); transition: box-shadow var(--dauer-kurz), background var(--dauer-kurz); }
+.lw-posten-text { font-size: var(--gr-text); line-height: 1.45; }
+.lw-posten-text p { margin: 0; }
+.lw-posten-wahl { display: flex; gap: var(--a-1); max-width: 100%; }
+.lw-korb-knopf { min-height: 40px; min-width: 0; white-space: normal; overflow-wrap: anywhere; hyphens: auto; text-align: center; }
+.lw-posten-rueck { grid-column: 1 / -1; font-size: var(--gr-m); line-height: 1.45; color: var(--tinte-2); }
+.lw-posten-rueck:empty { display: none; }
+.lw-posten-rueck p { display: inline; margin: 0; }
+.lw-posten.ist-zugeordnet { background: var(--tuerkis-hauch); box-shadow: inset 4px 0 0 var(--tuerkis), inset 0 0 0 1px var(--linie); }
+.lw-posten.ist-zugeordnet.ist-daneben { background: var(--gold-soft); box-shadow: inset 4px 0 0 var(--gold), inset 0 0 0 1px var(--gold-soft-kante); }
+.lw-posten.ist-zugeordnet .lw-posten-rueck b { color: var(--tuerkis-text); }
+.lw-posten.ist-daneben .lw-posten-rueck b { color: var(--gold-text); }
+.lw-sortier-stand { margin: 0; font-size: var(--gr-s); color: var(--tinte-2); }
+
+/* Regler: Stufen auf einer Bahn, die Karte zeigt die gewählte Stufe */
+.lw-regler-bahn { display: grid; gap: var(--a-2); }
+.lw-regler-eingabe { width: 100%; min-height: 44px; accent-color: var(--petrol); cursor: pointer; }
+.lw-regler-marken { display: grid; grid-template-columns: repeat(var(--anzahl, 3), minmax(0, 1fr)); gap: var(--a-1); }
+.lw-regler-marke { font: 600 var(--gr-xs)/1.25 var(--schrift-label); color: var(--tinte-2); text-align: center; overflow-wrap: anywhere; hyphens: auto; transition: color var(--dauer-kurz); }
+.lw-regler-marke:first-child { text-align: left; }
+.lw-regler-marke:last-child { text-align: right; }
+.lw-regler-marke.ist-aktiv { color: var(--navy); font-weight: 800; }
+.lw-stufe-karte { position: relative; display: grid; gap: var(--a-2); padding: var(--a-4); overflow: hidden; border-radius: var(--radius-m, 8px); background: var(--flaeche-3); box-shadow: inset 0 0 0 1px var(--linie); }
+.lw-stufe-karte::before { content: ""; position: absolute; left: 0; top: 0; height: 4px; width: calc(20% + 80% * var(--anteil, 0)); background: linear-gradient(90deg, var(--petrol), var(--gold)); transition: width var(--dauer-mittel) ease-out; }
+.lw-stufe-marke { font: 800 var(--gr-2xl)/1.15 var(--schrift-anzeige); color: var(--navy); }
+.lw-stufe-text { font-size: var(--gr-text); line-height: 1.55; }
+
+@media (max-width: 700px) {
+  .lernwerkzeug { padding: var(--a-4); }
+  .lw-etappen-leiste { grid-template-columns: repeat(var(--anzahl, 3), minmax(0, 1fr)); }
+  /* Name nur für Screenreader: die Knöpfe behalten ihren Namen (WCAG 4.1.2), sichtbar steht er im Detail */
+  .lw-etappe-name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .lw-etappen-leiste { grid-template-columns: repeat(auto-fit, minmax(34px, 1fr)); row-gap: var(--a-2); }
+  .lw-etappen-linie { display: none; }
+  .lw-etappe-nr { width: 34px; height: 34px; }
+  .lw-posten { grid-template-columns: minmax(0, 1fr); }
+  .lw-posten-wahl > * { flex: 1 1 0; }
+  .lw-posten-wahl { min-width: 0; }
+  .lw-regler-marke { display: none; }
+  .lw-regler-marke.ist-aktiv { display: block; grid-column: 1 / -1; text-align: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lernwerkzeug .ist-neu { animation: none; }
+  .lw-etappen-fuellung, .lw-schalter-marke, .lw-stufe-karte::before, .lw-etappe-nr { transition: none; }
+}
+@media print {
+  .lw-blaetter-reihe, .lw-posten-wahl, .lw-regler-eingabe { display: none; }
+}

@@ -1,7 +1,7 @@
 ---
 station: A3
 rolle: planung
-frage: Die Prognose steigt um +8 %, vor allem wegen der Holzbauelemente. Was tun Sie?
+frage: Der Bauherr braucht für den Ausschuss eine belastbare Zahl; die Abweichung liegt vor allem beim Holzbau. Was liefern Sie?
 ---
 
 ::: option A
@@ -52,7 +52,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Die Ausführungsplanung läuft auf alter Basis weiter. Jede Woche ohne Entscheidung macht eine spätere Umplanung aufwendiger.
+Die Ausführungsplanung läuft auf alter Basis weiter. Jede Woche ohne Entscheidung macht eine Umplanung teurer.
 
 ### Was fehlt
 Eine Frist, bis zu der über die Abweichung entschieden wird.
@@ -70,9 +70,9 @@ Jede Wahl ist nachvollziehbar; es fehlt die Struktur, in der sie wirkt.
 
 ::: regie
 ### Notiz
-Die Planung kennt die Ursache und hat schon eine Einsparidee. Zeigen, wie leicht aus Hilfsbereitschaft eine Änderung ohne Auftrag wird.
+Der Bauherr fragt nach einer Zahl, die Planung antwortet mit einer Idee: einer Änderung ohne Auftrag.
 
 ### Leitfragen
-- Wie viele Varianten ohne Auftrag liegen bei Ihnen in der Schublade?
+- Wie viele Varianten ohne Auftrag liegen bei Ihnen?
 - Wo steht bei Ihnen ein angekündigter Nachtrag?
 :::

@@ -1,38 +1,38 @@
 ---
 station: A1
 rolle: ps
-frage: Worauf richten Sie die Projektsteuerung in den ersten Wochen aus?
+frage: Die Bauherren-PL braucht bis Freitag eine Zahl für die Kämmerei. Was liefern Sie?
 ---
 
 ::: option A
 ---
-titel: Den monatlichen Statusbericht mit Ampeln aufsetzen
-kurz: Statusbericht aufsetzen
+titel: Den aktuellen Statusbericht mit Ampeln schicken
+kurz: Statusbericht schicken
 status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Der erste Bericht hat rund 40 Seiten und 14 Ampeln. Die Marktnotiz steht auf Seite 17 als gelbe Ampel; niemand fragt nach.
+Rund 40 Seiten, 14 Ampeln. Die Kosten stehen auf Seite 12, ohne Mittelabfluss und ohne Preisannahme; niemand fragt nach.
 
 ### Was fehlt
 Eine Frage an den Bericht und jemand, der daraus eine Entscheidung macht.
 
 ### Neues Risiko
-Signale gehen in der Seitenzahl unter.
+Die Antwort geht in der Seitenzahl unter.
 
 ### Governance-Frage
-[[Frühwarnung]]: Wo wird ein Signal erfasst, bevor es in einem Bericht verschwindet?
+[[Datenstand]]: Welche Zahl in diesem Bericht gilt?
 :::
 
 ::: option B
 ---
-titel: Holger Stein die Kostendatei auf die Marktnotiz hin nachrechnen lassen
+titel: Holger Stein einen Preisaufschlag einrechnen lassen
 kurz: Kostendatei nachrechnen
 status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Holger Stein legt „v2_Holz“ an. Die Marktnotiz ist jetzt eine Zahl, aber kein bewertetes Risiko; die Rechnung versteht nur er.
+Holger Stein legt „v2_Preise“ an. Eine neue Zahl, aber kein bewertetes Risiko; die Rechnung versteht nur er.
 
 ### Was fehlt
 Eine Festlegung, welche Fassung gilt; Wissen in Artefakten statt in einem Kopf.
@@ -52,7 +52,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Zwölf Punkte, zur Kenntnis genommen im Jour fixe; keinem ist eine Rolle oder ein nächster Schritt zugeordnet.
+Zwölf Punkte, darunter „Baupreise“; zur Kenntnis genommen, keinem eine Rolle zugeordnet. Die Kämmerei wartet.
 
 ### Was fehlt
 Verantwortliche Rolle, Turnus und ein Weg vom Risiko zur Entscheidung.
@@ -72,9 +72,9 @@ Die Geschichte merkt sich Ihre Wahl.
 
 ::: regie
 ### Notiz
-Die Projektsteuerung liefert, was man von ihr kennt: Bericht, Rechnung, Liste. Zeigen, dass jedes davon ein Signal aufnimmt, aber keines es zur Entscheidung bringt.
+Die Projektsteuerung liefert, was man von ihr kennt: Bericht, Rechnung, Liste. Zeigen, dass jedes davon Material liefert, aber keines die Frage der Kämmerei beantwortet.
 
 ### Leitfragen
-- Wo wäre die Marktnotiz bei Ihnen gelandet?
-- Wer liest bei Ihnen Seite 17 des Statusberichts?
+- Woraus beantworten Sie eine Frage Ihrer Kämmerei?
+- Wer liest bei Ihnen Seite 12 des Statusberichts?
 :::

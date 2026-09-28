@@ -1,7 +1,7 @@
 ---
 station: A1
 rolle: pl
-frage: Worauf richten Sie die ersten Wochen aus?
+frage: Keine Übergabe, eine Frist bis Freitag. Womit fangen Sie an?
 ---
 
 ::: option A
@@ -12,7 +12,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Nach drei Wochen gibt es eine Ablage statt drei. Welche Fassung der Kostendatei gilt, weiß weiter nur Holger Stein.
+Nach drei Wochen gibt es eine Ablage statt drei. Die Frist ist verstrichen; die Kämmerei hat die Projektbasis angesetzt.
 
 ### Was fehlt
 Eine Festlegung, welcher Stand gilt – und eine Zielpriorität.
@@ -21,47 +21,47 @@ Eine Festlegung, welcher Stand gilt – und eine Zielpriorität.
 Ordnung ohne Priorität: Der Zielkonflikt bricht später auf.
 
 ### Governance-Frage
-[[Datenstand]]: Welche Version gilt – und wer legt das fest?
+Ziel: Wer legt fest, welche Zielpriorität gilt?
 :::
 
 ::: option B
 ---
-titel: Varianten zum Zielkonflikt erarbeiten lassen
-kurz: Varianten erarbeiten lassen
+titel: Der Kämmerei Holger Steins Zahl melden
+kurz: Steins Zahl melden
 status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Lena Hoffmeister liefert vier Varianten. Welche gilt, entscheidet niemand; die Unterlage landet in einer vierten Ablage.
+Die Kämmerei bekommt den Stand der Kostenberechnung, ohne Preisannahme. Aylin Kaya fragt, warum nicht ihre Zahl.
 
 ### Was fehlt
-Die Priorisierung der Ziele durch den Bauherrn. Die Analyse ist delegierbar, die Festlegung der Zielpriorität nicht.
+Ein benannter Datenstand, der sagt, welche Annahmen offen sind.
 
 ### Neues Risiko
-Die Planung arbeitet mit ihrer eigenen Rangfolge weiter.
+Eine Preissteigerung, die im Haushalt fehlt.
 
 ### Governance-Frage
-Ziel: Wer legt fest, welche Zielpriorität gilt?
+[[Datenstand]]: Welche Version gilt – und wer legt das fest?
 :::
 
 ::: option C
 ---
-titel: Die Kosten wegen der Marktnotiz neu rechnen lassen
-kurz: Kosten neu rechnen lassen
+titel: Holger Stein eine Preissteigerung einrechnen lassen
+kurz: Preissteigerung einrechnen lassen
 status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Holger Stein rechnet eine neue Fassung. Die Marktnotiz ist jetzt eine Zahl, aber kein bewertetes Risiko; die Rechnung versteht nur er.
+Holger Stein rechnet bis Donnerstag einen Aufschlag ein. Die Kämmerei hat eine neue Zahl, der Stadtrat die alte; die Rechnung versteht nur er.
 
 ### Was fehlt
-Ein Weg, auf dem ein Signal bewertet wird; Wissen in Artefakten statt in einem Kopf.
+Ein Weg, auf dem eine Annahme bewertet wird; Wissen in Artefakten statt in einem Kopf.
 
 ### Neues Risiko
 Abhängigkeit von einer Schlüsselperson.
 
 ### Governance-Frage
-[[Frühwarnung]]: Wer bewertet ein Signal – und wo steht es danach?
+Wer kennt die Annahmen hinter der neuen Zahl – außer Holger Stein?
 :::
 
 ::: nachsatz
@@ -72,9 +72,9 @@ Die Geschichte merkt sich Ihre Wahl.
 
 ::: regie
 ### Notiz
-Die Bauherren-PL übernimmt ein Projekt ohne Ordnung. Jede Option ist fleißig; keine klärt, wer die Zielpriorität festlegt.
+Die Bauherren-PL übernimmt ohne Übergabe und mit Frist. Jede Option ist fleißig; keine klärt, welche Zahl gilt und wer die Zielpriorität festlegt.
 
 ### Leitfragen
 - Womit haben Sie Ihre letzte Projektübernahme begonnen?
-- Wer hat Ihnen damals gesagt, welches Ziel Vorrang hat?
+- Wer hat Ihnen damals gesagt, welche Zahl gilt?
 :::

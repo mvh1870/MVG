@@ -161,6 +161,15 @@ const ARTEN = {
   abschnitt: { in: ['@theorie'], kennung: 'pflicht', muster: ABSCHNITT_ID, kopf: { titel: { typ: 'text' } }, felder: ['text'] },
   karten: { in: ['@theorie', 'abschnitt'], kennung: 'keine', kopf: { titel: { typ: 'text' } }, felder: ['text'] },
   karte: { in: ['karten'], kennung: 'optional', kopf: { titel: { typ: 'text', pflicht: true }, symbol: { typ: 'text' } }, felder: ['text', 'rueckseite'] },
+  // Kleine interaktive Grafiken der Lernseiten (P12.3, O-30; src/ui/bausteine/lernwerkzeuge.ts)
+  etappen: { in: ['@theorie', 'abschnitt'], kennung: 'keine', kopf: { titel: { typ: 'text' } }, felder: ['text'] },
+  etappe: { in: ['etappen'], kennung: 'pflicht', kopf: { titel: { typ: 'text', pflicht: true } }, felder: ['text'], pflichtFelder: ['text'] },
+  umschalter: { in: ['@theorie', 'abschnitt'], kennung: 'keine', kopf: { titel: { typ: 'text' }, links: { typ: 'text', pflicht: true }, rechts: { typ: 'text', pflicht: true } }, felder: ['text'] },
+  ansicht: { in: ['umschalter'], kennung: 'pflicht', muster: /^(?:links|rechts)$/u, felder: ['text'], pflichtFelder: ['text'] },
+  sortieren: { in: ['@theorie', 'abschnitt'], kennung: 'keine', kopf: { titel: { typ: 'text' }, links: { typ: 'text', pflicht: true }, rechts: { typ: 'text', pflicht: true } }, felder: ['text'] },
+  posten: { in: ['sortieren'], kennung: 'pflicht', kopf: { seite: { typ: 'wahl', werte: ['links', 'rechts'], pflicht: true } }, felder: ['text', 'erklaerung'], pflichtFelder: ['text'] },
+  regler: { in: ['@theorie', 'abschnitt'], kennung: 'keine', kopf: { titel: { typ: 'text' } }, felder: ['text'] },
+  stufe: { in: ['regler'], kennung: 'pflicht', kopf: { titel: { typ: 'text', pflicht: true }, marke: { typ: 'text' } }, felder: ['text'], pflichtFelder: ['text'] },
   querverweis: { in: ['@theorie', 'abschnitt', 'ebene'], kennung: 'pflicht', kopf: { text: { typ: 'text' } }, felder: ['text'] },
   // Einwände
   // Vorher/Nachher-Welten (P8.2): je Aspekt Welt A und Welt B nebeneinander, mit Beleg aus dem Whitepaper

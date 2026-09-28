@@ -53,7 +53,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Beide Themen landen unter „Verschiedenes“ und werden ohne Vorlage zur Kenntnis genommen; die Terminwirkung der Lieferzeit bewertet niemand.
+Beide Themen landen unter „Verschiedenes“ und werden ohne Vorlage zur Kenntnis genommen; ob die Förderfrist hält, bewertet niemand.
 
 ### Was fehlt
 Eine bewertete Auswirkung auf Kosten, Termin und Risiko – und eine Entscheidungsfrage.

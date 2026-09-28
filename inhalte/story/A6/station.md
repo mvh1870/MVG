@@ -21,17 +21,17 @@ weiter: wendepunkt
 titel: Montag, 07:45 Uhr. Monat 11.
 kurz: Einstieg
 ---
-Montag, 9. November. Die Freigabe zum Abschluss von LPH 5 steht an; Holger Stein fällt für Wochen aus.
+Montag, 9. November. Die Freigabe LPH 5 steht an; Ihre Kostenzahl kennt nur Holger Stein, und er fällt für Wochen aus.
 
 ::: mail
 ---
-von: petersen
-betreff: "Anfrage einer Fraktion: Kosten und Termin"
+von: olbers
+betreff: "WG: Anfrage einer Fraktion"
 zeit: "07:38"
 ---
-Eine Fraktion fragt über das Dezernat nach Kosten und Termin. Antwort bis Freitag, 13. November.
+Eine Fraktion fragt mich nach Kosten und Termin. Antwort bis Freitag, 13. November.
 
-Welche Unterlagen, in welcher Version?
+Welche Zahl kann ich vertreten?
 :::
 
 ::: protokoll
@@ -157,7 +157,7 @@ Liegt kritisches Wissen bei einer Person statt in Artefakten und Routinen, wird 
 ---
 titel: Warum relevant
 ---
-In Monat 11 treffen drei Dinge zusammen: eine anstehende Freigabe, eine Anfrage des Stadtrats und der Ausfall der Person, die die Kostenprognose gebaut hat. Keines davon ist ungewöhnlich. Verletzlich wird das Projekt, weil die Kostenzahl nur in Holger Steins Dateien steckt und keine Stellvertretung geregelt ist.
+In Monat 11 treffen drei Dinge zusammen: eine anstehende Freigabe, eine Anfrage des Stadtrats und der Ausfall der Person, die die Kostenprognose gebaut hat. Verletzlich wird das Projekt, weil die Kostenzahl nur in Holger Steins Dateien steckt und keine Stellvertretung geregelt ist.
 
 Auch die Freigabe hat keinen festgelegten Weg. Kap. 9.3 ordnet sie eindeutig zu: Der Bauherr [[zitat:k9.3-p3|erteilt jede Freigabe selbst auf Vorlage der Bauherren-PL – nicht die Projektsteuerung und nicht der Lenkungskreis]]. In Welt A steht das nirgends; im Jour fixe wird die Frage in den Lenkungskreis vertagt.
 :::
@@ -239,14 +239,14 @@ figur: sie
 ---
 figur: brenner
 ---
-„Herr Stein hat die Prognose gebaut. Die Ergebnisse kenne ich, nicht jede Annahme dahinter.“
+„Die Fraktion will eine Zahl bis Freitag. Die Ergebnisse kenne ich, die Annahmen Herr Stein.“
 :::
 
 ::: standpunkt planung
 ---
 figur: hoffmeister
 ---
-„Die Ausführungsplanung ist weit. Welche offenen Punkte den Abschluss hindern, muss mir jemand sagen.“
+„Für die Freigabe liefere ich die offenen Punkte. Welche den Abschluss hindern, muss der Bauherr sagen.“
 :::
 
 ::: standpunkt controlling

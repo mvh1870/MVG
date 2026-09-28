@@ -21,7 +21,7 @@ weiter: A5
 titel: Donnerstag, 17:45 Uhr. Monat 7.
 kurz: Einstieg
 ---
-Donnerstag, 16. Juli, Bauausschuss. 40 Seiten Statusbericht der Projektsteuerung, Ampeln auf Gelb und Rot, keine Entscheidungsfrage.
+Donnerstag, 16. Juli, Bauausschuss. Ihre Vorlage: 40 Seiten Statusbericht der Projektsteuerung, Ampeln auf Gelb und Rot, keine Entscheidungsfrage.
 
 ::: akten
 ---
@@ -51,16 +51,16 @@ Tischvorlage Brandschutz ablegen? Im Juni-Bericht fehlt sie.
 
 ::: notiz
 ---
-farbe: gelb
+farbe: rosa
 ---
-Brandschutz 0,4 Mio. € – wer entscheidet bis September?
+Welche Frage stellen wir dem Ausschuss?
 :::
 
 ::: notiz
 ---
-farbe: rosa
+farbe: gelb
 ---
-Welche Frage stellen wir dem Ausschuss?
+Brandschutz 0,4 Mio. € – wer entscheidet bis September?
 :::
 
 ::: notiz
@@ -87,9 +87,9 @@ kurz: Was Sie wissen
 knopf: Jetzt entscheiden
 ---
 ::: bekannt
-- Seit Juni: Baugenehmigung mit Brandschutzauflagen zum Holzbau, grob 0,4 Mio. €; Deckung nicht entschieden.
+- Seit Juni: Ihre Baugenehmigung trägt Brandschutzauflagen zum Holzbau, grob 0,4 Mio. €; Deckung offen.
 - Seit Mai zwei Kostenprognosen, keine als geltend dokumentiert.
-- Die Schulseite plant mit der größeren Mensa, ohne Auftrag.
+- Die Schulseite plant mit der größeren Mensa, ohne Beschluss.
 :::
 
 ::: unbekannt
@@ -228,7 +228,7 @@ figur: olbers
 ---
 figur: sie
 ---
-„Ein dicker Bericht, und nirgends steht, was entschieden werden muss. Die Brandschutzauflagen warten nicht bis September.“
+„Unsere Vorlage war ein dicker Bericht ohne Frage. Und die Auflagen unserer Genehmigung warten nicht bis September.“
 :::
 
 ::: standpunkt ps
@@ -242,7 +242,7 @@ figur: brenner
 ---
 figur: hoffmeister
 ---
-„Die Auflagen gelten ab jetzt. Ich kann sie einplanen oder warten – für beides fehlt mir eine Entscheidung.“
+„Die Auflagen hat der Bauherr bekommen, die Kosten schätze ich. Einplanen oder warten muss er entscheiden.“
 :::
 
 ::: standpunkt controlling
@@ -254,7 +254,7 @@ figur: kaya
 
 ::: regie
 ### Notiz
-A4 zeigt das Symptom „Gremien ohne Entscheidungsreife“ (Kap. 2.5): viel Unterlage, keine Frage – das Gremium vertagt. Bernd Kowalski nicht als Bremser zeigen; seine Frage ist berechtigt. Die Brandschutzauflagen sind dasselbe Ereignis wie in B4, wo sie als Änderung im Änderungsgremium liegen. Die Sommerpause macht aus der Vertagung zwei Monate.
+A4 zeigt das Symptom „Gremien ohne Entscheidungsreife“ (Kap. 2.5): viel Unterlage, keine Frage – das Gremium vertagt. Bernd Kowalski nicht als Bremser zeigen; seine Frage ist berechtigt. Dieselben Auflagen liegen in B4 als Änderung im Änderungsgremium. Die Sommerpause macht aus der Vertagung zwei Monate.
 
 ### Leitfragen
 - Was lag Ihrem Gremium zuletzt vor – ein Bericht oder eine Frage?

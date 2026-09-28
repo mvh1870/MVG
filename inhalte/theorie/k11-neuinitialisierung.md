@@ -1,67 +1,116 @@
 ---
-# Lernseite Kapitel 11 (P6, O-20). Zitate wortgleich mit Absatz-ID (O-17); der vollständige
-# Originaltext kommt über „::: original k11“ aus whitepaper.json (wortgetreu durch Bauart).
+# Lernseite Kapitel 11 (P6, O-20; neu aufbereitet P12.3, O-30). Lesetext in eigenen Worten, ohne neue
+# Fachaussagen (O-17); der vollständige Originaltext kommt über „::: original k11“ (zugeklappt am Ende).
 # Story: DREHBUCH §5 nennt die Wirklichkeit; dazu die Enden, deren whitepaper-bezug Kap. 11 nennt:
 # ende-steuerbar (k11.2-p2) und ende-neufestlegung (k11.1-p1) (L-46).
+# Belege Einleitung/Kernaussage: k11-p1, k11.2-p1, k11.2-p2
+# Belege k11 (Sonderformat): k11-p1
+# Belege k11.1: k11.1-p1, k11.1-l1
+# Belege k11.2: k11.2-p1, k11.2-l1, k11.2-p2, k11-p1 (Abfolge LPH 0–9 bleibt)
+# Belege k11.3: k11.3-p1, k11.3-t1, k11.3-p2
 kapitel: 11
 titel: MVG-Neuinitialisierung als Vertiefungsformat
 kurztitel: MVG-Neuinitialisierung
 story: [wirklichkeit, ende-steuerbar, ende-neufestlegung]
 ---
-Kapitel 11 vertieft ein Sonderformat in der Leistungsarchitektur von Minimum Viable Governance (MVG): die MVG-Neuinitialisierung für laufende Projekte, deren Steuerungs- und Entscheidungslogik nicht mehr ausreichend trägt. Es beschreibt die Signale, die sie erforderlich machen, was dabei neu geordnet wird und welche Ergebnisse vorliegen, wenn sie wirkt.
+Nicht jedes Projekt startet mit einer sauberen Führungsstruktur – und manches verliert sie unterwegs. Für laufende Projekte, deren Steuerungs- und Entscheidungslogik nicht mehr ausreichend trägt, sieht Minimum Viable Governance (MVG) ein eigenes Format vor: die MVG-Neuinitialisierung. Dieses Kapitel erklärt, woran Sie erkennen, dass sie nötig wird, was sie neu ordnet und was am Ende vorliegt.
 
 ::: kernaussage
-[[zitat:k11.2-p2|Die MVG-Neuinitialisierung beginnt mit einem Lagebild und endet mit einer stabilisierten Entscheidungsarchitektur.]]
+Die MVG-Neuinitialisierung bringt ein laufendes Projekt wieder in einen führbaren Zustand. Sie ordnet nicht das Projekt fachlich neu, sondern die Führungs- und Entscheidungslogik – vom ersten Lagebild bis zu einer stabilisierten Entscheidungsarchitektur.
 :::
+
+::: abschnitt k11
+---
+titel: Ein Sonderformat – keine Freigabe
+---
+Im regulären Verlauf eines Projekts folgen die Freigaben der Abfolge der Leistungsphasen LPH 0–9. Die [[MVG-Neuinitialisierung]] gehört nicht in diese Reihe. Sie ist ein **Sonderformat außerhalb der regulären Freigabereihe** innerhalb der MVG-Leistungsarchitektur.
+
+Das hat eine wichtige Folge: Eine MVG-Neuinitialisierung ist selbst **keine** [[Freigabe]]. Sie kann aber dazu führen, dass einzelne Freigaben nachgeholt oder wiederholt werden. Die Abfolge LPH 0–9 ändert sich dadurch nicht. Ein Beispiel: Stellt sich heraus, dass eine frühere Freigabe auf einem überholten Datenstand beruhte, kann ihre Wiederholung ein Ergebnis der MVG-Neuinitialisierung sein – die Leistungsphasen selbst werden dabei nicht neu sortiert.
+
+Das Kapitel bündelt drei Dinge: die wichtigsten Auslöser, die Felder, die neu geordnet werden, und die Ergebnisse. Wo die MVG-Neuinitialisierung nach Branche und Projektstand ansetzt, zeigt Kapitel 10.
 
 ::: zitat k11-p1
 Eine MVG-Neuinitialisierung ist keine Freigabe; ihr Ergebnis kann die Nachholung oder Wiederholung einzelner Freigaben sein, ohne die Abfolge LPH 0–9 zu verändern.
+:::
+
+::: umschalter
+---
+titel: Freigabereihe und Sonderformat
+links: Reguläre Freigabereihe
+rechts: MVG-Neuinitialisierung
+---
+::: ansicht links
+- die **reguläre Freigabereihe**
+- Freigaben in der Abfolge der Leistungsphasen **LPH 0–9**
+:::
+
+::: ansicht rechts
+- ein **Sonderformat außerhalb** der regulären Freigabereihe
+- **keine** Freigabe
+- Ergebnis kann sein: einzelne Freigaben werden **nachgeholt oder wiederholt**
+- die Abfolge LPH 0–9 **bleibt unverändert**
+:::
+:::
 :::
 
 ::: abschnitt k11.1
 ---
 titel: Wann eine MVG-Neuinitialisierung erforderlich wird
 ---
-Eine [[MVG-Neuinitialisierung]] wird erforderlich, wenn ein Projekt im bisherigen Modus nicht mehr ausreichend führbar ist. MVG nennt acht typische Signale; die Karten fassen sie paarweise zusammen.
+Eine MVG-Neuinitialisierung wird erforderlich, wenn ein Projekt im bisherigen Modus nicht mehr ausreichend führbar ist. Das kündigt sich an – MVG nennt acht typische Signale.
+
+Fünf davon haben dieselbe Form: **Es passiert etwas, aber das Entscheidende fehlt.** Änderungen werden bearbeitet, aber nicht strategisch freigegeben. Risiken sind bekannt, aber nicht mit Risikoannahme, Risikominderung und Entscheidung verbunden. Gremien bekommen Statusberichte, aber keine Optionen, zwischen denen sie entscheiden könnten. Grundsatzfragen wie Fortführung oder Stopp stehen im Raum, aber ohne klare Entscheidungslogik. Und die Projektsteuerung liefert immer mehr Information, ohne dass der Bauherr dadurch besser führen kann. Auf den ersten Blick wirkt das Projekt geschäftig; erst beim zweiten Blick zeigt sich, was fehlt.
+
+Die übrigen drei Signale betreffen die **Grundlagen**: Kosten, Termine und Projektumfang laufen auseinander; die Beteiligten arbeiten mit unterschiedlichen Lagebildern; Datenstände, Annahmen und Beschlusslagen passen nicht mehr zusammen.
+
+Für den Bauherrn heißt das: Viel Aktivität ist noch kein Zeichen von Führung. Prüfen Sie mit dem Umschalter, was man sieht und was fehlt.
+
+::: umschalter
+---
+titel: Viel Betrieb, wenig Führung
+links: Was man sieht
+rechts: Was fehlt
+---
+::: ansicht links
+- Änderungen werden **operativ bearbeitet**.
+- Risiken sind **bekannt**.
+- Gremien erhalten **Statusberichte**.
+- Neufestlegung der Projektbasis, Fortführung oder Stopp, Moratorium oder Beschleunigung **stehen im Raum**.
+- Die Projektsteuerung liefert **mehr Information**.
+:::
+
+::: ansicht rechts
+- Die Änderungen werden **nicht strategisch freigegeben**.
+- Die Risiken sind **nicht** mit Risikoannahme, Risikominderung und Entscheidung **verbunden**.
+- Die Gremien erhalten **keine entscheidungsfähigen Optionen**.
+- Für diese Grundsatzfragen gibt es **keine klare Entscheidungslogik**.
+- Der Bauherr gewinnt **keine zusätzliche Führungsfähigkeit**.
+:::
+:::
 
 ::: karten
 ---
-titel: Typische Signale
+titel: Wenn die Grundlagen auseinanderlaufen
 ---
 ::: karte 1
 ---
-titel: Lage und Lagebild
+titel: Kosten, Termine, Projektumfang
 ---
-[[zitat:k11.1-l1|Kosten, Termine und Projektumfang entwickeln sich auseinander.]]
-
-[[zitat:k11.1-l1|Bauherr, Projektleitung, Projektsteuerung, Planung und Gremien nutzen unterschiedliche Lagebilder.]]
+Die drei Größen entwickeln sich auseinander.
 :::
 
 ::: karte 2
 ---
-titel: Änderungen und Risiken
+titel: Lagebilder
 ---
-[[zitat:k11.1-l1|Änderungen werden operativ bearbeitet, aber nicht strategisch freigegeben.]]
-
-[[zitat:k11.1-l1|Risiken sind bekannt, aber nicht mit Risikoannahme, Risikominderung und Entscheidung verbunden.]]
+Bauherr, Projektleitung, Projektsteuerung, Planung und Gremien arbeiten mit unterschiedlichen Lagebildern.
 :::
 
 ::: karte 3
 ---
-titel: Gremien und Grundsatzfragen
+titel: Datenstände und Beschlusslagen
 ---
-[[zitat:k11.1-l1|Gremien erhalten Statusberichte, aber keine entscheidungsfähigen Optionen.]]
-
-[[zitat:k11.1-l1|Neufestlegung der Projektbasis, Fortführung oder Stopp, Moratorium oder Beschleunigung stehen im Raum, ohne klare Entscheidungslogik.]]
-:::
-
-::: karte 4
----
-titel: Datenstand und Führungsfähigkeit
----
-[[zitat:k11.1-l1|Datenstände, Annahmen und Beschlusslagen sind nicht mehr konsistent.]]
-
-[[zitat:k11.1-l1|Projektsteuerung liefert mehr Information, aber der Bauherr gewinnt keine zusätzliche Führungsfähigkeit.]]
+Datenstände, Annahmen und Beschlusslagen sind nicht mehr in sich stimmig.
 :::
 :::
 :::
@@ -70,55 +119,105 @@ titel: Datenstand und Führungsfähigkeit
 ---
 titel: Was bei der MVG-Neuinitialisierung neu geordnet wird
 ---
-Die MVG-Neuinitialisierung ordnet nicht das gesamte Projekt fachlich neu, sondern die Führungs- und Entscheidungslogik. Zehn Punkte stehen im Mittelpunkt, vom Zielbild bis zum Betriebshandbuch; die Karten ordnen sie.
+Der Name könnte an einen Neustart denken lassen. Das trifft es nicht. Die MVG-Neuinitialisierung ordnet **nicht das gesamte Projekt fachlich neu** – das Projekt wird also nicht fachlich von vorn aufgerollt. Neu geordnet wird die **Führungs- und Entscheidungslogik**: wie im Projekt geführt und entschieden wird.
 
-::: karten
----
-titel: Was im Mittelpunkt steht
----
-::: karte 1
----
-titel: Ziel und Mandat
----
-[[zitat:k11.2-l1|Zielbild und aktuelle Zielkonflikte]]
+Im Mittelpunkt stehen zehn Felder. Sie beginnen beim **Zielbild** und den aktuellen Zielkonflikten, gehen über **Mandate und Schwellen**, die offenen wesentlichen Entscheidungen und den **Status der Freigaben** – einschließlich der Freigaben, die nachgeholt oder wiederholt werden müssen. Dazu kommen **Datenstand und Annahmen**, die Risiko- und Änderungslage und die Auswirkungen auf Budget, Termin und Projektumfang. Schließlich gehören die **Logik zur Neufestlegung der Projektbasis**, die Eskalations- und Gremienlogik und ein [[Betriebshandbuch]] für einen stabilisierten Regelbetrieb dazu.
 
-[[zitat:k11.2-l1|Mandate und Schwellen]]
+Der Bogen ist klar: Die MVG-Neuinitialisierung beginnt mit einem Lagebild und endet mit einer stabilisierten Entscheidungsarchitektur. Dazwischen steht die zentrale Frage an den Bauherrn: Welche Entscheidungen müssen jetzt neu legitimiert werden, damit das Projekt wieder führbar wird? Klicken Sie sich durch die drei Etappen und prüfen Sie danach in der Übung, was neu geordnet wird.
+
+::: etappen
+---
+titel: Der Bogen einer MVG-Neuinitialisierung
+---
+::: etappe 1
+---
+titel: Lagebild
+---
+Die MVG-Neuinitialisierung beginnt mit einem Lagebild. Zu ihren Ergebnissen gehört das Governance-Lagebild: Es zeigt, wo die Steuerbarkeit verloren gegangen ist.
 :::
 
-::: karte 2
+::: etappe 2
 ---
-titel: Entscheidungen und Freigaben
+titel: Die zentrale Bauherrenfrage
 ---
-[[zitat:k11.2-l1|offene wesentliche Entscheidungen]]
-
-[[zitat:k11.2-l1|Status der Freigaben sowie erforderliche Nachholungen oder Wiederholungen einzelner Freigaben]]
+Welche Entscheidungen müssen jetzt neu legitimiert werden, damit das Projekt wieder führbar wird? Diese Frage steht zwischen Anfang und Ende – und sie richtet sich an den Bauherrn.
 :::
 
-::: karte 3
+::: etappe 3
 ---
-titel: Datenstand, Risiken, Auswirkungen
+titel: Stabilisierte Entscheidungsarchitektur
 ---
-[[zitat:k11.2-l1|Datenstand und Annahmen]]
-
-[[zitat:k11.2-l1|Risiko- und Änderungslage]]
-
-[[zitat:k11.2-l1|Auswirkungen auf Budget, Termin und Projektumfang]]
-:::
-
-::: karte 4
----
-titel: Projektbasis, Eskalation, Regelbetrieb
----
-[[zitat:k11.2-l1|Logik zur Neufestlegung der Projektbasis]]
-
-[[zitat:k11.2-l1|Eskalations- und Gremienlogik]]
-
-[[zitat:k11.2-l1|Betriebshandbuch für einen stabilisierten Regelbetrieb]]
+Am Ende steht eine stabilisierte Entscheidungsarchitektur. Was dazu vorliegt, zeigt das Ergebnisbild im nächsten Abschnitt.
 :::
 :::
 
-::: merksatz
-Zwischen Lagebild und stabilisierter Entscheidungsarchitektur liegt die zentrale Bauherrenfrage: [[zitat:k11.2-p2|Welche Entscheidungen müssen jetzt neu legitimiert werden, damit das Projekt wieder führbar wird?]]
+::: sortieren
+---
+titel: Neu geordnet oder nicht?
+links: Wird neu geordnet
+rechts: Wird nicht neu geordnet
+---
+Ordnen Sie jeden Punkt zu.
+
+::: posten 1
+---
+seite: links
+---
+Mandate und Schwellen
+
+### Erklärung
+Sie gehören zu den zehn Feldern, die im Mittelpunkt stehen.
+:::
+
+::: posten 2
+---
+seite: rechts
+---
+Das gesamte Projekt, fachlich
+
+### Erklärung
+Die MVG-Neuinitialisierung ordnet nicht das gesamte Projekt fachlich neu, sondern die Führungs- und Entscheidungslogik.
+:::
+
+::: posten 3
+---
+seite: links
+---
+Offene wesentliche Entscheidungen
+
+### Erklärung
+Sie stehen im Mittelpunkt – ebenso wie der Status der Freigaben.
+:::
+
+::: posten 4
+---
+seite: links
+---
+Datenstand und Annahmen
+
+### Erklärung
+Auch sie werden neu geordnet.
+:::
+
+::: posten 5
+---
+seite: rechts
+---
+Die Abfolge LPH 0–9
+
+### Erklärung
+Einzelne Freigaben können nachgeholt oder wiederholt werden; die Abfolge LPH 0–9 bleibt unverändert.
+:::
+
+::: posten 6
+---
+seite: links
+---
+Eskalations- und Gremienlogik
+
+### Erklärung
+Sie gehört zu den zehn Feldern – ebenso wie die Logik zur Neufestlegung der Projektbasis.
+:::
 :::
 
 ::: wissenscheck neuordnung
@@ -155,10 +254,6 @@ Einzelne Freigaben können nachgeholt oder wiederholt werden; die Abfolge LPH 0�
 ::: zitat k11.2-p1
 Die MVG-Neuinitialisierung ordnet nicht das gesamte Projekt fachlich neu. Sie ordnet die Führungs- und Entscheidungslogik.
 :::
-
-::: zitat k11-p1
-Eine MVG-Neuinitialisierung ist keine Freigabe; ihr Ergebnis kann die Nachholung oder Wiederholung einzelner Freigaben sein, ohne die Abfolge LPH 0–9 zu verändern.
-:::
 :::
 :::
 
@@ -166,50 +261,34 @@ Eine MVG-Neuinitialisierung ist keine Freigabe; ihr Ergebnis kann die Nachholung
 ---
 titel: Ergebnisbild einer MVG-Neuinitialisierung
 ---
-Eine wirksame MVG-Neuinitialisierung liefert einen geordneten Führungszustand. Sieben Ergebnisse gehören dazu, jedes mit seinem Zweck – vom Governance-Lagebild bis zum stabilisierten [[Betriebshandbuch]]. Als Ergebnis können einzelne Freigaben nachgeholt oder wiederholt werden; die Abfolge LPH 0–9 bleibt unverändert.
+Woran erkennt man, dass eine MVG-Neuinitialisierung gewirkt hat? Sie liefert einen **geordneten Führungszustand**. Der besteht aus sieben Ergebnissen, jedes mit einem klaren Zweck.
+
+Das **Governance-Lagebild** zeigt, wo die Steuerbarkeit verloren gegangen ist. Das **Entscheidungsinventar** macht sichtbar, welche wesentlichen Entscheidungen offen, überfällig oder unklar sind. Die **Logik zur Neufestlegung der Projektbasis** klärt, ob und wie Kosten, Termine, Projektumfang, Risiko oder Mandat neu legitimiert werden müssen. Die **Datenstandsbereinigung** legt fest, welcher Stand für die nächsten Entscheidungen gilt. Dann wird geordnet, welche **Freigaben nachgeholt oder wiederholt** werden – die Abfolge LPH 0–9 bleibt dabei unverändert. Der **Eskalationsplan** bestimmt, welche Entscheidungen auf welcher Ebene getroffen werden müssen. Und das **stabilisierte Betriebshandbuch** führt das Projekt zurück in einen handhabbaren Regelbetrieb.
+
+Die Tafel zeigt alle sieben Ergebnisse mit ihrem Zweck. Darunter sehen Sie, wie sich die MVG-Neuinitialisierung zum frühen Einstieg verhält.
 
 ::: tafel k11.3-t1
 ---
 form: karten
 ---
 :::
+
+::: umschalter
+---
+titel: Zwei Wege, ein Maßstab
+links: Früher Einstieg
+rechts: Im laufenden Projekt
+---
+::: ansicht links
+**Über die MVG-Reifegradanalyse.** Der Bauherr steigt früh ein.
+
+Am Ende zählt, was er an Führungsfähigkeit gewinnt.
 :::
 
-::: ebenen
-::: ebene 1
----
-titel: Kernaussage
----
-Die MVG-Neuinitialisierung ordnet in einem laufenden Projekt die Führungs- und Entscheidungslogik neu – vom Lagebild bis zu einer stabilisierten Entscheidungsarchitektur –, ohne selbst eine Freigabe zu sein.
-:::
+::: ansicht rechts
+**Über eine MVG-Neuinitialisierung.** Das Projekt läuft bereits und ist im bisherigen Modus nicht mehr ausreichend führbar.
 
-::: ebene 2
----
-titel: Warum relevant
----
-Sie setzt an, wenn die Steuerungs- und Entscheidungslogik nicht mehr ausreichend trägt: [[zitat:k11.1-p1|Eine MVG-Neuinitialisierung wird erforderlich, wenn ein Projekt im bisherigen Modus nicht mehr ausreichend führbar ist.]]
-:::
-
-::: ebene 3
----
-titel: Vertiefung
----
-Der Bogen einer MVG-Neuinitialisierung laut Abschnitt 11.2 und 11.3:
-
-| Schritt | Was MVG nennt |
-|---|---|
-| Beginn | ein Lagebild |
-| Dazwischen | die zentrale Bauherrenfrage, welche Entscheidungen jetzt neu legitimiert werden müssen, damit das Projekt wieder führbar wird |
-| Ende | eine stabilisierte Entscheidungsarchitektur |
-| Ergebnisbild (11.3) | sieben Ergebnisse, vom Governance-Lagebild bis zum stabilisierten Betriebshandbuch |
-:::
-
-::: ebene 4
----
-titel: Nachweis
----
-::: zitat k11.2-p1
-Die MVG-Neuinitialisierung ordnet nicht das gesamte Projekt fachlich neu. Sie ordnet die Führungs- und Entscheidungslogik.
+Am Ende zählt, was der Bauherr an Führungsfähigkeit gewinnt.
 :::
 :::
 :::
@@ -240,7 +319,7 @@ Die Projektbasis trägt nicht mehr: Über eine Entscheidungsvorlage vorbereitet,
 
 ::: regie
 ### Notiz
-Kapitel 11 vertieft die MVG-Neuinitialisierung: kein vollständiger Projektneustart und keine Freigabe; die Abfolge LPH 0–9 bleibt unverändert. Es tragen die Signale (11.1) und die zentrale Bauherrenfrage aus 11.2: Welche Entscheidungen müssen jetzt neu legitimiert werden? Nicht behaupten, ein Projekt des Kunden brauche eine Neuinitialisierung – der Kunde gleicht die Signale selbst ab.
+Kapitel 11 vertieft die MVG-Neuinitialisierung: kein vollständiger Projektneustart und keine Freigabe; die Abfolge LPH 0–9 bleibt unverändert. Es tragen der Umschalter „Viel Betrieb, wenig Führung“ (11.1) und die zentrale Bauherrenfrage in den Etappen (11.2): Welche Entscheidungen müssen jetzt neu legitimiert werden? Nicht behaupten, ein Projekt des Kunden brauche eine Neuinitialisierung – der Kunde gleicht die Signale selbst ab.
 
 ### Leitfragen
 - Welche der Signale aus 11.1 sehen Sie in einem Ihrer laufenden Projekte?

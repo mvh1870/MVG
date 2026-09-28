@@ -20,7 +20,7 @@ weiter:
 ---
 
 ::: express
-Im Januar standen Zielsystem und Mandatsleiter; eine Marktnotiz meldete steigende Holzpreise. Im März kamen die längere Lieferzeit der Holzbauelemente als Frühwarnung `FRW-002` und die größere Mensa als Änderung `AEN-012` fürs Änderungsgremium.
+Im Januar standen Zielsystem und Mandatsleiter. Im März kamen die Mensa-Zusage als Änderung `AEN-012` ins Änderungsgremium und die längere Lieferzeit der Holzbauelemente als Frühwarnung `FRW-002`.
 :::
 
 ::: schritt signal
@@ -100,7 +100,7 @@ versionen:
 ### Vergleich
 ~~+8 %~~ · ~~+5,9 %~~
 
-Zwei Zahlen, keine gilt. In Welt B gibt es genau eine – mit Namen, Version und Status.
+Zwei Zahlen, keine gilt. In Welt B geht genau eine in die Gremien – mit Namen, Version und Status.
 :::
 :::
 
@@ -272,7 +272,7 @@ Das Controlling führt CTC und Prognose (die Zahl der Version 3 rechnet die Proj
 ---
 titel: Ein Risiko mit Entscheidungsbedarf
 ---
-Ein Preissignal gab es schon im Januar, mit der Marktnotiz der Generalplanung; `FRW-003` ist ein neues Signal, ausgelöst von der CTC. Die Projektsteuerung hat es bestätigt und bewertet: `RIS-014` „Preissteigerung Holzbauelemente“. In `ENT-017` fehlen zu Option 2 noch Termin und Risiko. Kap. 4.4: [[zitat:k4.4-p2|Ein Risiko wird nicht nur als Eintrag geführt, sondern mit einer verantwortlichen Rolle, Frist, Wirkung, Risikominderung, Restrisiko, Entscheidungsbedarf und Eskalationsschwelle verbunden.]]
+Die Lieferzeit steht seit März als `FRW-002` im Register; `FRW-003` ist ein neues Signal, ausgelöst von der CTC. Die Projektsteuerung hat es bestätigt und bewertet: `RIS-014` „Preissteigerung Holzbauelemente“. In `ENT-017` fehlen zu Option 2 noch Termin und Risiko. Kap. 4.4: [[zitat:k4.4-p2|Ein Risiko wird nicht nur als Eintrag geführt, sondern mit einer verantwortlichen Rolle, Frist, Wirkung, Risikominderung, Restrisiko, Entscheidungsbedarf und Eskalationsschwelle verbunden.]]
 :::
 
 ::: vertiefung freigaben

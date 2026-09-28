@@ -1,7 +1,7 @@
 ---
 station: A4
 rolle: planung
-frage: Die Baugenehmigung bringt Brandschutzauflagen zum Holzbau, der Ausschuss hat vertagt. Was tun Sie?
+frage: Die Baugenehmigung kam mit Brandschutzauflagen an den Bauherrn; sein Ausschuss hat vertagt. Was tun Sie?
 rueckbezug-auf: A3
 ---
 
@@ -83,7 +83,7 @@ Im Mai stieg die Prognose vor allem wegen der Holzbauelemente; entschieden wurde
 
 ::: regie
 ### Notiz
-Die Auflagen gelten sofort, die nächste Sitzung ist im September. Zeigen, dass die Planung zwischen Einarbeiten und Warten wählen muss.
+Die Auflagen gelten sofort, der Bauherr kann erst im September beschließen lassen. Zeigen, was die Planung ihm liefert.
 
 ### Leitfragen
 - Wer entscheidet bei Ihnen zwischen zwei Ausschusssitzungen?

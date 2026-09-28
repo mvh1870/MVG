@@ -197,6 +197,21 @@ export const W = {
   },
   glossarQuelle: (fassung: string) => `Glossar · MVG ${fassung}`,
   // Theorie
+  // Kleine interaktive Grafiken der Lernseiten (P12.3, O-30)
+  lernwerkzeug: {
+    etappen: 'Etappen',
+    etappeVon: (i: number, n: number) => `Etappe ${i} von ${n}`,
+    etappeAnsage: (i: number, n: number, titel: string) => `Etappe ${i} von ${n}: ${titel}`,
+    zurueck: 'Zurück',
+    weiter: 'Weiter',
+    umschalter: 'Ansicht wählen',
+    zuordnen: 'Zuordnen',
+    passt: 'Passt.',
+    gehoertZu: (korb: string) => `Gehört zu: ${korb}.`,
+    sortierStand: (i: number, n: number) => `${i} von ${n} zugeordnet`,
+    aufloesen: 'Alle auflösen',
+    regler: 'Stufe wählen',
+  },
   theorie: {
     bereich: 'Erklärt',
     bereichZusatz: '· Kapitel für Kapitel',

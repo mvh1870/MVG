@@ -1,71 +1,86 @@
 ---
-# Lernseite Kapitel 2 (P6, O-20). Zitate wortgleich mit Absatz-ID (O-17); der Originaltext kommt über „original k2“.
+# Lernseite Kapitel 2 (P6, O-20; neu aufbereitet P12.3, O-30). Lesetext in eigenen Worten, keine neuen
+# Fachaussagen (O-17); der vollständige Originaltext kommt zugeklappt über „::: original k2“.
+# Belege Einleitung/Kernaussage: k2-p1, k2-p2, k2.4-p2
+# Belege Grauzonen (Seitenebene): k2-p1, k2-p2
+# Belege k2.1: k2.1-p1, k2.1-p2
+# Belege k2.2: k2.2-p1, k2.2-p2, k2-p1 (Kosten, Termine, Qualität als weitere Ziele)
+# Belege k2.3: k2.3-p1, k2.3-p2
+# Belege k2.4: k2.4-p1, k2.4-p2, k2.4-p3
+# Belege k2.5: k2.5-t1, k2.5-p1
 kapitel: 2
 titel: Ausgangslage und Kernproblem
 kurztitel: Ausgangslage
 story: [A1, A3, A4, A6, wendepunkt, B3, B6]
 ---
-Kapitel 2 beschreibt, unter welchem Druck komplexe Bauvorhaben heute stehen, und benennt das Kernproblem, auf das Minimum Viable Governance (MVG) antwortet. Es endet mit acht Symptomen, an denen sich fehlende Ausübungsfähigkeit erkennen lässt.
+Kapitel 2 beschreibt, unter welchem Druck komplexe Bauvorhaben heute stehen, und benennt das Kernproblem, auf das [[Minimum Viable Governance (MVG)]] antwortet. Kosten, Termine, Qualität, Risiken, [[ESG]], [[LCC]], Nutzerbedarfe und Gremien wirken nicht jeder für sich – sie treffen in konkreten Entscheidungen zusammen. Für den [[Bauherr|Bauherrn]] heißt das: Nicht die Menge an Information entscheidet, sondern ob klar ist, wer auf welcher Grundlage entscheiden darf und muss.
 
 ::: kernaussage
-[[zitat:k2-p2|Entscheidend ist, ob der Bauherr eine klare Führungs- und Entscheidungsarchitektur besitzt.]]
+Mehr Berichte lösen das Kernproblem nicht. Entscheidend ist, ob der Bauherr eine klare Führungs- und Entscheidungsarchitektur hat – sonst bleibt die Verantwortung formal bei ihm, wird praktisch aber diffus.
 :::
 
-::: karten
+::: umschalter
 ---
-titel: Grauzonen ohne Führungs- und Entscheidungsarchitektur
+titel: Wie Verantwortung diffus wird
+links: Auf dem Papier
+rechts: In der Praxis
 ---
-::: karte 1
----
-titel: Rollen
-symbol: person
----
-[[zitat:k2-p2|Rollen sind beschrieben, aber nicht mandatiert.]]
+Ohne Führungs- und Entscheidungsarchitektur entstehen Grauzonen. Auf dem Papier scheint alles geregelt – schalten Sie um und sehen Sie, was fehlt.
+
+::: ansicht links
+- Rollen sind beschrieben.
+- Risiken sind bekannt.
+- Änderungen werden bearbeitet.
+- Daten liegen vor.
+- Gremien erhalten Statusinformationen.
 :::
 
-::: karte 2
----
-titel: Risiken
-symbol: schild
----
-[[zitat:k2-p2|Risiken sind bekannt, aber nicht entscheidungsreif.]]
-:::
+::: ansicht rechts
+- Die Rollen haben kein [[Mandat]].
+- Die Risiken sind nicht entscheidungsreif.
+- Die Änderungen sind nicht mit Freigabeschwellen verbunden.
+- Mehrere [[Datenstand|Datenstände]] existieren parallel.
+- Die Gremien bekommen keine klare Entscheidungsfrage.
 
-::: karte 3
----
-titel: Änderungen
-symbol: wechsel
----
-[[zitat:k2-p2|Änderungen werden bearbeitet, aber nicht mit Freigabeschwellen verbunden.]]
+Die Verantwortung liegt formal weiter beim Bauherrn – praktisch wird sie diffus.
 :::
-
-::: karte 4
----
-titel: Datenstände
----
-[[zitat:k2-p2|Datenstände existieren parallel.]]
-:::
-
-::: karte 5
----
-titel: Gremien
----
-[[zitat:k2-p2|Gremien erhalten Statusinformationen, aber keine klaren Entscheidungsfragen.]]
-:::
-:::
-
-::: zitat k2-p2
-Damit bleibt die Verantwortung formal beim Bauherrn – praktisch wird sie aber diffus.
 :::
 
 ::: abschnitt k2.1
 ---
 titel: Volatile Märkte und Infrastrukturprogramme
 ---
-Volatile Märkte treffen Bauprojekte über Preisannahmen, Lieferzeiten, Angebotsgültigkeiten und Komponenten mit langer Lieferzeit. Für Infrastrukturträger leitet MVG daraus einen eigenen Governance-Bedarf ab, von der Freigabereife bis zu klaren Eskalationsroutinen.
+Wenn Märkte schwanken, trifft das ein Bauprojekt nicht an einer Stelle, sondern über viele Kanäle zugleich: Preisannahmen, Lieferzeiten, Angebotsgültigkeiten und Komponenten mit langer Lieferzeit geraten gleichzeitig in Bewegung. Dazu kommen Finanzierungspuffer, die Vergabestrategie und die Frage, welches Vorhaben im Portfolio Vorrang hat.
 
-::: zitat k2.1-p1
-Besonders exponiert sind Vorhaben vor der finalen Investitionsentscheidung (FID) sowie im Zeitraum von Ausschreibung, Vergabe und Beschaffung von Komponenten mit langer Lieferzeit. Dort kippen Annahmen schnell, während Entscheidungsprozesse oft noch auf stabilere Umfelder ausgelegt sind.
+Besonders verwundbar sind zwei Zeiträume: die Zeit vor der [[Finale Investitionsentscheidung (FID)|finalen Investitionsentscheidung (FID)]] und die Zeit von Ausschreibung, Vergabe und Beschaffung der Komponenten mit langer Lieferzeit. Dort kippen Annahmen schnell. Die Entscheidungsprozesse sind aber oft noch auf stabilere Umfelder ausgelegt.
+
+Für Energieversorger, Netzbetreiber, Stadtwerkegruppen und andere Infrastrukturträger entsteht daraus ein eigener Governance-Bedarf. Er reicht von der Freigabereife über Regeln für Priorisierung und für Fortführung oder Stopp bis zu klaren Eskalationsroutinen. Diese Elemente gehören zum Kern des Modells. Schalten Sie in der Grafik zwischen den Kanälen des Drucks und den Antworten der Governance um.
+
+::: umschalter
+---
+titel: Druck von außen – Antwort von innen
+links: Was der Markt bewegt
+rechts: Was die Governance braucht
+---
+::: ansicht links
+- Preisannahmen
+- Lieferzeiten
+- Angebotsgültigkeiten
+- Komponenten mit langer Lieferzeit
+- Finanzierungspuffer
+- Vergabestrategie
+- Priorisierung im Projektportfolio
+:::
+
+::: ansicht rechts
+- Freigabereife
+- Priorisierungsregeln
+- eine Logik für Fortführung oder Stopp
+- [[Frühwarnung|Frühwarnungen]]
+- eine konsequente Restkostenprognose ([[CTC]])
+- Nachtrags- und Änderungssteuerung
+- klare Eskalationsroutinen
+:::
 :::
 :::
 
@@ -73,10 +88,34 @@ Besonders exponiert sind Vorhaben vor der finalen Investitionsentscheidung (FID)
 ---
 titel: Steigende Komplexität durch ESG, LCC und Nachweislogik
 ---
-Nachhaltigkeits-, Energie- und Klimaziele werden zu Entscheidungsparametern; Lebenszykluskosten und das regulatorische Umfeld erhöhen die Anforderungen an Ziele, Variantenvergleich und Nachweis. Das Kapitel folgert: [[ESG]] und [[LCC]] gehören früh in Zielsystem, Abwägungsregeln, Varianten und Freigaben.
+Nachhaltigkeits-, Energie- und Klimaziele werden für Bauherren zunehmend zu Entscheidungsparametern. Lebenszykluskosten ([[LCC]]), Zertifizierungen und das regulatorische Umfeld aus EU-Taxonomie, CSRD und EPBD erhöhen die Anforderungen: an die Definition der Ziele, an den Vergleich von Varianten und an die Nachweise.
 
-::: zitat k2.2-p2
-Andernfalls werden Zielkonflikte erst sichtbar, wenn Planungsstände bereits weit fortgeschritten sind und Änderungen teuer werden.
+Was folgt daraus für die Steuerung? [[ESG]] und LCC dürfen nicht erst als späte Nachweise auftauchen. Sie gehören früh in das Zielsystem, in die Abwägungsregeln, in die Variantenentscheidungen und in die Freigaben – die verbindlichen Entscheidungspunkte des Projekts.
+
+Geschieht das nicht, zeigen sich Zielkonflikte erst spät. Ein allgemeines Beispiel: Erst bei fortgeschrittener Planung stellt sich heraus, dass die gewählte Variante ein Nachhaltigkeitsziel verfehlt. Dann sind Änderungen teuer. Vergleichen Sie beide Wege in der Grafik.
+
+::: umschalter
+---
+titel: ESG und LCC – spät oder früh?
+links: Als später Nachweis
+rechts: Früh eingebunden
+---
+::: ansicht links
+ESG und LCC werden erst geprüft, wenn es um Nachweise geht.
+
+Zielkonflikte werden sichtbar, wenn die Planungsstände schon weit fortgeschritten sind – und jede Änderung teuer wird.
+:::
+
+::: ansicht rechts
+ESG und LCC sind von Anfang an Teil von
+
+1. Zielsystem,
+2. Abwägungsregeln,
+3. Variantenentscheidungen,
+4. Freigaben.
+
+So werden Zielkonflikte nicht erst sichtbar, wenn die Planungsstände schon weit fortgeschritten sind.
+:::
 :::
 :::
 
@@ -84,16 +123,37 @@ Andernfalls werden Zielkonflikte erst sichtbar, wenn Planungsstände bereits wei
 ---
 titel: Wissensverlust und Schlüsselrollen
 ---
-In kritischen Momenten hängt vieles an wenigen erfahrenen Personen. Fehlen sie, oder ist ihr Wissen nicht in Artefakte und Routinen übersetzt, wird die Organisation verletzlich.
+In vielen Bauherrenorganisationen hängt in kritischen Momenten viel an wenigen erfahrenen Personen. Das geht gut, solange diese Personen da sind. Riskant wird es, wenn sie ausfallen, wenn Rollen nicht sauber delegiert wurden oder wenn ihr Wissen nie in Unterlagen und Routinen übersetzt wurde. Dann steigt die Verletzlichkeit der Organisation. Der Engpass liegt dann darin, dass Entscheidungen nicht wiederholbar sind.
 
-::: zitat k2.3-p1
-Der Engpass liegt dann in der fehlenden Wiederholbarkeit von Entscheidungen.
+Ein belastbares [[Bauherren-Führungsmodell]] verringert diese Abhängigkeit. Es macht nicht jede Organisation automatisch leistungsfähig. Aber es schafft einen gemeinsamen Standard, der fünf Fragen beantwortet. So wird Erfahrung nicht ersetzt, sondern in wiederholbare Führungslogik überführt.
+
+Ein Beispiel (allgemein): Vor einer wichtigen Freigabe fällt die Person aus, die die Kostenstände als Einzige vollständig kennt. Mit einem gemeinsamen Standard findet die Vertretung vor, wer entscheidet, welche Unterlagen erforderlich sind und welche Annahmen gelten.
+
+::: umschalter
+---
+titel: Wissen in Köpfen – oder in der Führungslogik?
+links: Abhängig von Personen
+rechts: Gemeinsamer Standard
+---
+::: ansicht links
+- Kritisches Wissen liegt bei wenigen erfahrenen Personen.
+- Rollen sind nicht sauber delegiert.
+- Wissen ist nicht in Unterlagen und Routinen übersetzt.
+
+Fällt jemand aus, fehlt die Wiederholbarkeit der Entscheidungen.
 :::
 
-Ein belastbares [[Bauherren-Führungsmodell]] ersetzt Erfahrung nicht, schafft aber einen gemeinsamen Standard.
+::: ansicht rechts
+Der gemeinsame Standard beantwortet:
 
-::: zitat k2.3-p2
-So wird Erfahrung nicht ersetzt, aber in wiederholbare Führungslogik überführt.
+1. Wer entscheidet?
+2. Welche Unterlagen sind erforderlich?
+3. Welche Annahmen gelten?
+4. Welche Schwellen lösen eine Eskalation aus?
+5. Welche Entscheidungen müssen dokumentiert werden?
+
+Erfahrung wird nicht ersetzt, aber in wiederholbare Führungslogik überführt.
+:::
 :::
 :::
 
@@ -101,40 +161,69 @@ So wird Erfahrung nicht ersetzt, aber in wiederholbare Führungslogik überführ
 ---
 titel: Warum Berichterstattung das Kernproblem nicht löst
 ---
-Mehr Berichte, mehr Abstimmung und mehr Gremienvorlagen können in einzelnen Situationen helfen – sie klären aber nicht automatisch, wer was auf welcher Grundlage entscheiden darf und muss. Information wird erst zu Führung, wenn sie mit Mandat, Entscheidung und Nachweis verbunden ist. Vier Beispiele, wörtlich aus MVG:
+Wenn ein Projekt ins Rutschen kommt, liegt eine Reaktion nahe: mehr Berichte, mehr Abstimmung, mehr Gremienvorlagen, mehr Eskalationsrunden. Das kann im Einzelfall helfen. Die eigentliche Frage beantwortet es aber nicht: Wer darf und muss was auf welcher Grundlage entscheiden?
+
+Der Grund ist einfach. Berichte erzeugen Information. Führung entsteht erst, wenn Information mit Mandat, Entscheidung, Schwelle, Risikoannahme, [[Datenstand]], [[Freigabe]] und Nachweis verbunden wird. Die vier Karten zeigen, was ohne diese Verbindung übrig bleibt.
+
+MVG setzt deshalb eine Stufe früher an. Die erste Frage lautet nicht: Welche Berichte fehlen? Sondern: Welche nichtdelegierbaren Bauherrenentscheidungen stehen an? Daraus ergeben sich sechs weitere Fragen. Schalten Sie in der Grafik zwischen beiden Blickwinkeln um.
 
 ::: karten
+---
+titel: Was ohne Verbindung übrig bleibt
+---
 ::: karte 1
 ---
-titel: Ampelbericht
+titel: Ampelbericht ohne Entscheidungsfrage
 ---
-[[zitat:k2.4-p2|Ein Ampelbericht ohne Entscheidungsfrage bleibt Beobachtung.]]
+bleibt Beobachtung.
 :::
 
 ::: karte 2
 ---
-titel: Änderungsregister
+titel: Änderungsregister ohne Schwellenlogik
 ---
-[[zitat:k2.4-p2|Ein Änderungsregister ohne Schwellenlogik bleibt Verwaltung.]]
+bleibt Verwaltung.
 :::
 
 ::: karte 3
 ---
-titel: Risikoübersicht
+titel: Risikoübersicht ohne Risikoannahme
 ---
-[[zitat:k2.4-p2|Eine Risikoübersicht ohne Risikoannahme bleibt Warnsignal.]]
+bleibt Warnsignal.
 :::
 
 ::: karte 4
 ---
-titel: Gremienvorlage
+titel: Gremienvorlage ohne klare Entscheidungssituation
 ---
-[[zitat:k2.4-p2|Eine Gremienvorlage ohne klare Entscheidungssituation bleibt Beschlussformalismus.]]
+bleibt Beschlussformalismus.
 :::
 :::
 
-::: zitat k2.4-p3
-MVG setzt deshalb eine Stufe früher an. Es fragt nicht zuerst: Welche Berichte fehlen? Sondern: Welche nichtdelegierbaren Bauherrenentscheidungen müssen getroffen werden?
+::: umschalter
+---
+titel: Zwei Arten, auf Probleme zu reagieren
+links: Die Berichtsfrage
+rechts: Die MVG-Frage
+---
+::: ansicht links
+**Welche Berichte fehlen?**
+
+Die Antwort sind mehr Berichte, mehr Abstimmung, mehr Gremienvorlagen, mehr Eskalationsrunden. Das erzeugt Information – aber noch keine Führung.
+:::
+
+::: ansicht rechts
+**Welche nichtdelegierbaren Bauherrenentscheidungen müssen getroffen werden?**
+
+Daraus folgen:
+
+1. Wer ist dafür letztverantwortlich?
+2. Welche Vorbereitung kann delegiert werden?
+3. Welche Mindestgrundlagen sind erforderlich?
+4. Welche Schwellen lösen Eskalation aus?
+5. Welcher Datenstand gilt?
+6. Wie wird der Beschluss später nachvollzogen?
+:::
 :::
 
 ::: wissenscheck bericht-fuehrung
@@ -142,7 +231,7 @@ MVG setzt deshalb eine Stufe früher an. Es fragt nicht zuerst: Welche Berichte 
 Ihr Gremium erhält jeden Monat einen ausführlichen Ampelbericht, aber keine Entscheidungsfrage – wird damit schon geführt?
 
 ### Erklärung
-Berichterstattung erzeugt Information; Führung entsteht erst, wenn Information mit Mandat, Entscheidung, Schwelle, Risikoannahme, Datenstand, Freigabe und Nachweis verbunden wird. Ein Ampelbericht ohne Entscheidungsfrage bleibt Beobachtung.
+Berichte erzeugen Information. Führung entsteht erst, wenn diese Information mit Mandat, Entscheidung, Schwelle, Risikoannahme, Datenstand, Freigabe und Nachweis verbunden wird. Ohne Entscheidungsfrage bleibt ein Ampelbericht Beobachtung.
 
 ::: antwort a
 ---
@@ -157,15 +246,11 @@ Ohne Entscheidungsfrage liefert der Ampelbericht Information, aber noch keine F�
 titel: Ja, wenn der Bericht ausführlich genug ist
 praefix: "Nicht ganz:"
 ---
-Mehr Berichterstattung löst nicht automatisch die Frage, wer was auf welcher Grundlage entscheiden darf und muss.
+Mehr Berichterstattung beantwortet nicht automatisch die Frage, wer was auf welcher Grundlage entscheiden darf und muss.
 :::
 
 ::: zitat k2.4-p2
 Berichterstattung erzeugt Information. Führung entsteht erst, wenn Information mit Mandat, Entscheidung, Schwelle, Risikoannahme, Datenstand, Freigabe und Nachweis verbunden wird. Ein Ampelbericht ohne Entscheidungsfrage bleibt Beobachtung.
-:::
-
-::: zitat k2.4-p1
-Die naheliegende Reaktion auf Projektprobleme lautet oft: mehr Berichterstattung, mehr Abstimmung, mehr Gremienvorlagen, mehr Eskalationsrunden. Das kann in einzelnen Situationen helfen. Es löst aber nicht automatisch die Frage, wer was auf welcher Grundlage entscheiden darf und muss.
 :::
 :::
 :::
@@ -174,74 +259,33 @@ Die naheliegende Reaktion auf Projektprobleme lautet oft: mehr Berichterstattung
 ---
 titel: Symptome fehlender Ausübungsfähigkeit
 ---
-Acht Symptome, jeweils mit typischem Muster, der Folge für den Bauherrn und der Antwort des MVG-Modells. Wählen Sie ein Symptom.
+Woran erkennt man, dass ein Bauherr seine Verantwortung nicht mehr wirksam ausüben kann? Das Kapitel nennt acht Symptome – von unklaren Zielprioritäten über parallele Datenstände bis zur Eskalation, die nur Verzögerung erzeugt.
+
+Jedes Symptom folgt demselben Muster: Es zeigt sich in einer typischen Situation im Projekt, hat eine Konsequenz für den Bauherrn und hat eine Antwort im MVG-Modell. Ein Beispiel ist die Eskalation ohne Entscheidung: Themen werden nach oben gegeben, aber ohne klare Optionen, Empfehlung oder Konsequenzen. Die Folge ist Verzögerung statt Führung. Die Antwort ist ein verbindlicher Standard für [[Entscheidungsvorlage|Entscheidungsvorlagen]] mit einer Entscheidungsfrage je Eskalation.
+
+Wählen Sie in der Grafik ein Symptom und verfolgen Sie die Kette von Muster über Konsequenz bis zur Reaktion. Fragen Sie sich dabei, welche Symptome Sie aus eigenen Projekten kennen.
+
+Die acht Symptome sind zugleich das, was die MVG-Reifegradanalyse (Kapitel 7.1) systematisch erhebt, bewertet und priorisiert. Bevor daraus ein [[Bauherren-Führungsmodell]] werden kann, braucht es aber begriffliche Klarheit: Was ist delegierbar – und was nicht? Diese Linie zieht Kapitel 3.
 
 ::: tafel k2.5-t1
 ---
 form: ketten
 ---
 :::
-
-::: zitat k2.5-p1
-Diese Symptome sind zugleich der Prüfgegenstand der MVG-Reifegradanalyse (Abschnitt 7.1): Dort werden sie systematisch erhoben, bewertet und priorisiert. Bevor daraus ein Bauherren-Führungsmodell werden kann, braucht es allerdings begriffliche Klarheit: Was ist delegierbar – und was nicht?
-:::
-:::
-
-::: ebenen
-::: ebene 1
----
-titel: Kernaussage
----
-Mehr Berichte lösen das Kernproblem nicht: Führung entsteht erst, wenn Information mit Mandat, Entscheidung, Datenstand, Freigabe und Nachweis verbunden ist.
-:::
-
-::: ebene 2
----
-titel: Warum relevant
----
-Unter Druck liegt es nahe, mehr zu berichten, abzustimmen und zu eskalieren. [[zitat:k2.4-p1|Das kann in einzelnen Situationen helfen. Es löst aber nicht automatisch die Frage, wer was auf welcher Grundlage entscheiden darf und muss.]]
-:::
-
-::: ebene 3
----
-titel: Vertiefung
----
-Statt zuerst nach fehlenden Berichten fragt MVG nach Kap. 2.4:
-
-- Welche nichtdelegierbaren Bauherrenentscheidungen müssen getroffen werden?
-- Wer ist dafür letztverantwortlich?
-- Welche Vorbereitung kann delegiert werden?
-- Welche Mindestgrundlagen sind erforderlich?
-- Welche Schwellen lösen Eskalation aus?
-- Welcher Datenstand gilt?
-- Wie wird der Beschluss später nachvollzogen?
-:::
-
-::: ebene 4
----
-titel: Nachweis
----
-::: zitat k2.4-p2
-Berichterstattung erzeugt Information. Führung entsteht erst, wenn Information mit Mandat, Entscheidung, Schwelle, Risikoannahme, Datenstand, Freigabe und Nachweis verbunden wird.
-:::
-:::
-:::
-
-::: original k2
 :::
 
 ::: querverweis A1
 ---
-text: "In der Story erlebt: A1 · Lage verstehen"
+text: "In der Story erlebt: A1 · Übernahme ohne Übergabe"
 ---
-Welt A, Monat 1: Unterlagen in drei Ablagen, eine Liste der Beteiligten ohne Linien, Kosten, Termin, ESG und LCC gleichrangig nebeneinander.
+Welt A, Monat 1: keine Übergabe, Unterlagen in drei Ablagen, eine Frage der Kämmerei ohne Antwort; Kosten, Termin, ESG und LCC gleichrangig nebeneinander.
 :::
 
 ::: querverweis A3
 ---
-text: "In der Story erlebt: A3 · Kosten +8 %"
+text: "In der Story erlebt: A3 · Kosten +8 %"
 ---
-Welt A, Monat 5: +8 % bei der Projektsteuerung, +5,9 % beim Controlling – zwei Zahlen, kein geltender Datenstand.
+Welt A, Monat 5: +8 % bei der Projektsteuerung, +5,9 % beim Controlling – zwei Zahlen, kein geltender Datenstand.
 :::
 
 ::: querverweis A4
@@ -267,7 +311,7 @@ Welt A steht still: Symptom-Radar und Wirkungsketten aus Kap. 2.5, bezogen auf I
 
 ::: querverweis B3
 ---
-text: "In der Story erlebt: B3 · Kosten +8 %"
+text: "In der Story erlebt: B3 · Kosten +8 %"
 ---
 Welt B, Monat 5, derselbe Montag: ein Datenstand, ein Mandat, eine Entscheidungsvorlage.
 :::
@@ -279,9 +323,12 @@ text: "In der Story erlebt: B6 · Freigabe LPH 5"
 Welt B, Monat 11: Holger Stein fällt auch hier aus – für ihn ist eine Stellvertretung benannt, die Freigabe zum Abschluss von LPH 5 steht an.
 :::
 
+::: original k2
+:::
+
 ::: regie
 ### Notiz
-Kapitel 2 holt den Kunden bei seinen eigenen Erfahrungen ab. Es trägt die Tafel der acht Symptome (2.5): den Kunden selbst wählen lassen, was er kennt – ohne Punktzahl und ohne Urteil über seine Organisation. Der Kern steht in 2.4: Berichterstattung erzeugt Information, Führung entsteht erst, wenn Information unter anderem mit Mandat, Entscheidung, Schwelle, Datenstand, Freigabe und Nachweis verbunden wird. Nicht behaupten, mehr Berichte schadeten – laut 2.4 können sie in einzelnen Situationen helfen.
+Kapitel 2 holt den Kunden bei seinen eigenen Erfahrungen ab. Einstieg über den Umschalter „Auf dem Papier / In der Praxis“ (Grauzonen). Es trägt die Tafel der acht Symptome (2.5): den Kunden selbst wählen lassen, was er kennt – ohne Punktzahl und ohne Urteil über seine Organisation. Der Kern steht in 2.4: Berichterstattung erzeugt Information, Führung entsteht erst, wenn Information unter anderem mit Mandat, Entscheidung, Schwelle, Datenstand, Freigabe und Nachweis verbunden wird. Nicht behaupten, mehr Berichte schadeten – laut 2.4 können sie in einzelnen Situationen helfen.
 
 ### Leitfragen
 - Welche der acht Symptome erkennen Sie in einem Ihrer laufenden Projekte wieder?

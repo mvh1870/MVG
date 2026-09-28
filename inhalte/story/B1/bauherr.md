@@ -1,7 +1,7 @@
 ---
 station: B1
 rolle: bauherr
-frage: Zielsystem, Mandatsleiter und Rhythmus liegen vor. Was tun Sie als Bauherr in der ersten Woche?
+frage: Die Kämmerei bekommt Version 1. Was tun Sie als Bauherr in der ersten Woche?
 rueckbezug-auf: A1
 ---
 
@@ -18,7 +18,7 @@ In Welt A haben Sie ‚Zuständigkeiten klären lassen‘ gewählt. In Welt B gi
 :::
 
 ::: rueckbezug ohne
-In Welt A hat niemand den Zielkonflikt priorisiert. In Welt B liegt die Frage bei Ihnen, bevor die erste Abweichung kommt.
+In Welt A wussten Sie nicht, welche Zahl gilt. In Welt B liegt die Frage bei Ihnen, bevor die erste Abweichung kommt.
 :::
 
 ::: option A

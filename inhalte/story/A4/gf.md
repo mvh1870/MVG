@@ -1,7 +1,7 @@
 ---
 station: A4
 rolle: gf
-frage: Der Bauausschuss hat vertagt. Was nehmen Sie als Geschäftsführung aus der Sitzung mit?
+frage: Der Bauausschuss hat die Vorlage der GML vertagt. Was nehmen Sie aus der Sitzung mit?
 rueckbezug-auf: A3
 ---
 
@@ -19,7 +19,7 @@ Für September ist eine Kurzfassung zugesagt. Die Ampeln bleiben; Bernd Kowalski
 Eine Entscheidungsfrage mit Optionen und Empfehlung.
 
 ### Neues Risiko
-Ein kürzerer Bericht ohne Entscheidungsfrage bleibt Beobachtung.
+Ein kürzerer Bericht bleibt Beobachtung.
 
 ### Governance-Frage
 [[Entscheidungsvorlage]]: Worüber soll das Gremium eigentlich befinden?

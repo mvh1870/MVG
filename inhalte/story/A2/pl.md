@@ -1,7 +1,7 @@
 ---
 station: A2
 rolle: pl
-frage: Wie gehen Sie mit Lieferzeit und Mensa-Zusage um?
+frage: Wie gehen Sie mit Mensa-Zusage, Lieferzeit und Förderfrist um?
 ---
 
 ::: option A
@@ -53,7 +53,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Dr. Olbers fragt, was genau sie entscheiden soll. Die Mensa wartet auf den Lenkungskreis; die Lieferzeit rutscht aus dem Blick.
+Dr. Olbers fragt, was genau sie entscheiden soll. Die Mensa wartet auf den Lenkungskreis; die Förderfrist rutscht aus dem Blick.
 
 ### Was fehlt
 Eine Entscheidungsfrage mit Optionen und festgelegte Stufen, wer was entscheidet.
@@ -71,7 +71,7 @@ Jede Wahl ist nachvollziehbar; es fehlt die Struktur, in der sie wirkt.
 
 ::: regie
 ### Notiz
-Die Bauherren-PL steht zwischen Geschäftsführung, Nutzern und Planung. Zeigen, dass sie ohne Freigabeweg nur weiterreichen kann.
+Die Bauherren-PL steht zwischen Geschäftsführung, Nutzern und Förderfrist. Ohne Freigabeweg kann sie nur weiterreichen.
 
 ### Leitfragen
 - Wer darf bei Ihnen eine Änderung zusagen – und ab welcher Summe?

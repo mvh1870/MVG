@@ -29,13 +29,13 @@ Montag, 9. November. Die Freigabe LPH 5 ist in Vorbereitung; Holger Stein fällt
 
 ::: mail
 ---
-von: petersen
-betreff: "Anfrage einer Fraktion: Kosten und Termin"
+von: olbers
+betreff: "WG: Anfrage einer Fraktion"
 zeit: "07:38"
 ---
-Eine Fraktion fragt über das Dezernat nach Kosten und Termin. Antwort bis Freitag, 13. November.
+Eine Fraktion fragt mich nach Kosten und Termin. Antwort bis Freitag, 13. November.
 
-Beides steht im Managementbericht Oktober. Wer arbeitet zu?
+Ich antworte aus dem Managementbericht Oktober. Wer arbeitet zu?
 :::
 
 ::: chat
@@ -128,12 +128,12 @@ Vorlage mit Kernfrage · der Bauherr erteilt
 ::: paar
 ---
 a: mail
-von: petersen
+von: olbers
 b: bericht
 fluss: managementbericht
 ---
 ### Welt A
-Welche Unterlagen, in welcher Version?
+Welche Zahl kann ich vertreten?
 
 ### Welt B
 Managementbericht Oktober · benannter Datenstand
@@ -156,7 +156,7 @@ benannte Stellvertretungen für die Kostenprognose
 :::
 
 ### Welt A
-Welt A: fünf Prognoseversionen, die nur einer erklären kann, zwei Fragen auf Haftnotizen und eine Mail, die nach der Version fragt.
+Welt A: fünf Prognoseversionen, die nur einer erklären kann, zwei Fragen auf Haftnotizen und eine Dezernentin ohne vertretbare Zahl.
 
 ### Welt B
 Welt B: ein benannter Datenstand, eine benannte Stellvertretung, eine Vorlage mit Kernfrage – und ein Managementbericht, aus dem die Antwort an die Fraktion kommt.
@@ -380,7 +380,7 @@ figur: brenner
 ---
 figur: hoffmeister
 ---
-„Die Ausführungsplanung ist weit. Welche offenen Punkte den Abschluss hindern und welche nicht, kann ich begründen.“
+„Für die Vorlage liefere ich die offenen Punkte – und begründe, welche den Abschluss hindern und welche nicht.“
 :::
 
 ::: standpunkt controlling

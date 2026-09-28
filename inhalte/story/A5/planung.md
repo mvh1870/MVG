@@ -1,7 +1,7 @@
 ---
 station: A5
 rolle: planung
-frage: Für die Mensa-Umplanung gibt es keinen Auftrag. Wie gehen Sie mit Ihrem Nachtrag dazu um?
+frage: Der Bauherr muss klären, was gegen die Reserve läuft; Ihre Mensa-Umplanung hat keinen Auftrag. Was melden Sie?
 rueckbezug-auf: A4
 ---
 
@@ -39,7 +39,7 @@ Die Mehrkosten sind geplant, aber in keiner Zahl. Die Prognose ist zu niedrig, u
 Ein vollständiger [[Datenstand]], der auch bekannte, noch nicht gestellte Forderungen enthält.
 
 ### Neues Risiko
-Der Nachtrag kommt später – zu einem schlechteren Zeitpunkt.
+Der Nachtrag kommt später, zur Unzeit.
 
 ### Governance-Frage
 [[Datenstand]]: Welche Änderungen sind seit der letzten Freigabe aufgenommen worden?

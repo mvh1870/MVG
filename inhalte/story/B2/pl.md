@@ -79,7 +79,7 @@ In Welt A haben Sie ‚An den Bauherrn geben‘ gewählt. In Welt B weist die Ma
 :::
 
 ::: rueckbezug ohne
-In Welt A wurden Marktabfrage und Mail zu Flurzusage und Notiz. In Welt B werden sie zu `FRW-002` und `AEN-012`.
+In Welt A wurden Lieferzeit und Mensa zu Notiz und Flurzusage. In Welt B werden sie zu `FRW-002` und `AEN-012`.
 :::
 
 ::: regie

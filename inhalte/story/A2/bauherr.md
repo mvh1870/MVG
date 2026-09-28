@@ -52,7 +52,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Nach sechs Wochen kommt eine genauere Kostenaussage, weiter ohne Termin- und Risikowirkung. Die Lieferzeit geht in der Mensa-Debatte unter.
+Nach sechs Wochen kommt eine genauere Kostenaussage, ohne Terminwirkung. Lieferzeit und Förderfrist gehen in der Mensa-Debatte unter.
 
 ### Was fehlt
 Ein Ort, an dem Signale wie die Lieferzeit festgehalten werden.

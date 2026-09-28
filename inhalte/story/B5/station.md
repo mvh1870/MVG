@@ -21,7 +21,7 @@ weiter: B6
 titel: Mittwoch, 14:00 Uhr. Monat 9.
 kurz: Einstieg
 ---
-Mittwoch, 9. September. Der Nachtrag der TGA-Fachplanung ist da; Nora Petersen (PMO) hat ihn als Problem `PRB-004` eingetragen.
+Mittwoch, 9. September. Die Kämmerei fragt, was gegen die Risikoreserve läuft. Die Antwort: nichts ohne Freigabe des Bauherrn. Neu ist der Nachtrag der TGA-Fachplanung; das PMO führt ihn als Problem `PRB-004`.
 
 ::: datei
 ---
@@ -80,7 +80,7 @@ b: register
 kennung: PRB-004
 ---
 ### Welt A
-Brandschutz, Mensa, TGA laufen gegen die Reserve. Wer hat das freigegeben?
+Brandschutz, Mensa, TGA laufen gegen die Reserve. Gefragt wurde der Bauherr nie.
 
 ### Welt B
 Nachtrag der TGA-Fachplanung · eingetretenes Problem · mit Maßnahme
@@ -102,12 +102,12 @@ Mensa für den Ganztag · Beschlossen · Kosten in der Auswirkung
 
 ::: paar
 ---
-a: notiz
-farbe: lila
+a: mail
+von: olbers
 b: mandat
 ---
 ### Welt A
-Wer gibt die Reserve frei?
+Ich habe nichts freigegeben.
 
 ### Welt B
 Einsatz der Risikoreserve · nur der Bauherr, nicht delegierbar
@@ -144,7 +144,7 @@ Posten gegen die Reserve ohne Freigabe
 :::
 
 ### Welt A
-Welt A: drei Posten gegen die Reserve, eine Frage im Chat und die Zuständigkeit auf einer Haftnotiz.
+Welt A: drei Posten gegen die Reserve, eine Anfrage der Kämmerei und ein Bauherr, der nichts freigegeben hat.
 
 ### Welt B
 Welt B: derselbe Nachtrag als Problem mit Kennung und Maßnahme, die Mensa als beschlossene Änderung – und die Reserve als Entscheidungsbedarf beim Bauherrn.
@@ -329,7 +329,7 @@ titel: Vertiefung
 | [[Entscheidungsvorlage]] | 9.4 | Checkliste unter der Kennung `PRB-004`: was erfüllt ist und was offen |
 | Rhythmus | 6.4.5 | Maßnahmen, Probleme und Fristen im Takt von PMO und verantwortlichen Rollen |
 
-Die Mensa steht nicht in dieser Kette: Ihre Kosten stehen in der Auswirkung von `AEN-012`. Der verbindliche Datenstand „Kostenprognose 2026-05 · Version 3“ zeigt im Mai +8 %, rund +4,7 Mio. € gegen die Projektbasis von 58,4 Mio. €; die seither beschlossenen Änderungen, darunter `AEN-022`, sind darin noch nicht enthalten. Offen ist auch, ob die Deckung von `AEN-031` aus der Reserve kommt; sie gehört in dieselbe Betrachtung des Reservestands wie `PRB-004` – ob in dieselbe Vorlage, ist offen.
+Die Mensa steht nicht in dieser Kette: Ihre Kosten stehen in der Auswirkung von `AEN-012`. Offen ist auch, ob die Deckung von `AEN-031` aus der Reserve kommt; sie gehört in dieselbe Betrachtung des Reservestands wie `PRB-004` – ob in dieselbe Vorlage, ist offen.
 :::
 
 ::: ebene 4
@@ -378,7 +378,7 @@ Jetzt geht es um die Freigabe des Einsatzes der Risikoreserve für `PRB-004`; im
 ---
 figur: deppe
 ---
-„Die TGA-Fachplanung will eine Antwort. Mir wäre lieb, das ginge schnell.“
+„Die Kämmerei will eine Antwort, die TGA-Fachplanung auch. Schnell wäre mir lieb – freigeben muss Dr. Olbers.“
 :::
 
 ::: standpunkt bauherr

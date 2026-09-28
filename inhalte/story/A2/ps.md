@@ -1,7 +1,7 @@
 ---
 station: A2
 rolle: ps
-frage: Lieferzeit 26 Wochen, eine Mensa per Flurzusage. Was tun Sie?
+frage: Lieferzeit 26 Wochen, eine Förderfrist, eine Mensa per Flurzusage. Was tun Sie?
 ---
 
 ::: option A
@@ -12,10 +12,10 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Die Lieferzeit steht als rote Ampel auf Seite 23. Nach der Terminfolge fragt niemand; die Mensa fehlt im Bericht.
+Die Lieferzeit steht als rote Ampel auf Seite 23. Nach der Förderfrist fragt niemand; die Mensa fehlt.
 
 ### Was fehlt
-Eine Bewertung: Was bedeuten zehn Wochen mehr für den Termin?
+Eine Bewertung: Was bedeuten zehn Wochen mehr für die Förderfrist?
 
 ### Neues Risiko
 Ein bekanntes Risiko ohne nächsten Schritt.

@@ -78,7 +78,7 @@ In Welt A haben Sie ‚Mensa einplanen‘ gewählt. In Welt B wird aus der Flurz
 :::
 
 ::: rueckbezug ohne
-In Welt A kamen Marktabfrage und Mail am selben Tag – und blieben im Postfach. In Welt B haben beide eine Kennung und einen Weg.
+In Welt A kamen Lieferzeit und Mensa-Mail am selben Tag – und blieben im Postfach. In Welt B haben beide eine Kennung und einen Weg.
 :::
 
 ::: regie

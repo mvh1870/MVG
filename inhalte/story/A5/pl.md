@@ -1,7 +1,7 @@
 ---
 station: A5
 rolle: pl
-frage: Was tun Sie mit der verplanten Risikoreserve?
+frage: Die Kämmerei fragt, wer die Reserve freigegeben hat. Was tun Sie?
 rueckbezug-auf: A2
 ---
 
@@ -56,7 +56,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Erstmals liegt eine Liste vor: was verplant ist, wofür, von wem veranlasst. Der Lenkungskreis vertagt, bis die Prognose vollständig ist, und die rechnet Holger Stein.
+Erstmals liegt eine Liste vor: was verplant ist, wofür, von wem veranlasst. Der Lenkungskreis vertagt, bis Holger Stein die Prognose vervollständigt.
 
 ### Was fehlt
 Ein Weg von der Offenlegung zur Entscheidung: Frage, Optionen, Empfehlung, Frist.
@@ -69,7 +69,7 @@ Transparenz ohne Entscheidung; die Zeit läuft weiter.
 :::
 
 ::: rueckbezug A
-Im März haben Sie ‚Zusage mittragen‘ gewählt; umgeplant wurde ohne Entscheidung. Jetzt fragt Aylin Kaya, wer die Reserve dafür freigegeben hat.
+Im März haben Sie ‚Zusage mittragen‘ gewählt; umgeplant wurde ohne Entscheidung. Jetzt fragt die Kämmerei, wer die Reserve dafür freigegeben hat.
 :::
 
 ::: rueckbezug B

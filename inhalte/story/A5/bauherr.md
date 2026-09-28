@@ -1,7 +1,7 @@
 ---
 station: A5
 rolle: bauherr
-frage: Gegen die Risikoreserve laufen Posten, deren Einsatz Sie nicht freigegeben haben. Was tun Sie?
+frage: Die Kämmerei fragt, wer die Reserve freigegeben hat. Sie waren es nicht. Was tun Sie?
 rueckbezug-auf: A2
 ---
 
@@ -13,7 +13,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Sie unterschreiben eine Liste der Posten aus Holger Steins Excel-Stand. Was darin steckt und was noch kommt, kann niemand sonst erklären.
+Sie unterschreiben eine Liste der Posten aus Holger Steins Excel-Stand. Was darin steckt, kann niemand sonst erklären.
 
 ### Was fehlt
 Ein benannter [[Datenstand]] und eine Bewertung, welches Risiko die kleinere Reserve noch trägt.

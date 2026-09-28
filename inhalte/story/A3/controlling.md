@@ -1,7 +1,7 @@
 ---
 station: A3
 rolle: controlling
-frage: Welche Zahl bringen Sie in die Woche vor Lenkungskreis und Bauausschuss?
+frage: Der Bauherr braucht eine Zahl für die Gremien. Welche liefern Sie?
 ---
 
 ::: option A
@@ -18,7 +18,7 @@ Der Lenkungskreis bekommt zwei Zahlen. Frank Deppe fragt, welche stimmt; Sie und
 Ein verbindlicher Datenstand: Welche Version gilt?
 
 ### Neues Risiko
-Im Bauausschuss setzt sich die angenehmere Zahl durch, nicht die belastbarere.
+Im Ausschuss setzt sich die angenehmere Zahl durch, nicht die belastbarere.
 
 ### Governance-Frage
 [[Datenstand]]: Wer legt fest, welche Zahl gilt?

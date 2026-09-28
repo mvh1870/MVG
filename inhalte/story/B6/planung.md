@@ -1,7 +1,7 @@
 ---
 station: B6
 rolle: planung
-frage: Die Freigabe zum Abschluss von LPH 5 wird vorbereitet. Was liefert die Generalplanung?
+frage: Der Bauherr entscheidet über den Abschluss von LPH 5. Was liefern Sie ihm?
 rueckbezug-auf: A6
 ---
 

@@ -44,7 +44,7 @@ In Welt A haben Sie ‚Weiterplanen wie beauftragt‘ gewählt. Das tun Sie auch
 :::
 
 ::: rueckbezug ohne
-In Welt A lag die Preissteigerung in einer Marktabfrage. In Welt B hat das Signal eine Nummer, der Datenstand einen Namen, die Entscheidung ein Mandat.
+In Welt A hatte die Preissteigerung einen Beleg, aber keinen Weg. In Welt B hat das Signal eine Nummer, der Datenstand einen Namen, die Entscheidung ein Mandat.
 :::
 
 ::: regie
@@ -52,5 +52,5 @@ In Welt A lag die Preissteigerung in einer Marktabfrage. In Welt B hat das Signa
 Die Generalplanung trifft an B3 keine eigene Entscheidung. Zeigen, wo sie sitzt: Sie liefert Analyse und Varianten zu, die Entscheidung liegt auf der zuständigen Mandatsebene.
 
 ### Leitfragen
-- Wie wird bei Ihnen aus einer Einsparidee der Planung eine beantragte Änderung?
+- Wie wird bei Ihnen aus einer Einsparidee eine beantragte Änderung?
 :::

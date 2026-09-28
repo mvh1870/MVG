@@ -10,10 +10,10 @@ titel: Informationswege
 stationen: [A1, B1, A2, B2]
 ---
 ### Welt A
-Die Marktnotiz der Generalplanung kommt nur an den alten Verteiler; bewertet wird sie nicht, offen ist nur, in welche Ablage sie gehört. Im März kommen die längere Lieferzeit der Holzbauelemente und der Wunsch nach einer größeren Mensa dazu – als Marktabfrage der Generalplanung, als Mail der Schulseite und als Satz im Flur.
+Die Kämmerei fragt nach dem Haushaltsansatz; die Antwort liegt verteilt in drei Ablagen, keine Zahl hat einen Namen. Im März kommen die längere Lieferzeit der Holzbauelemente und der Wunsch nach einer größeren Mensa dazu – als Antwort der Generalplanung, als Mail der Schulseite und als Satz im Flur.
 
 ### Welt B
-Dieselbe Marktnotiz kommt über den Projektverteiler an die Projektsteuerung und die Bauherren-PL. Die Lieferzeit steht als Frühwarnung `FRW-002` im Frühwarnungsregister, bis die Risikosichtung im Jour fixe sie bestätigt oder nicht; der Mensa-Wunsch steht als beantragte Änderung `AEN-012` im Änderungsregister.
+Dieselbe Frage der Kämmerei wird aus einem benannten Datenstand beantwortet, die offene Preisannahme steht darin. Die Lieferzeit steht als Frühwarnung `FRW-002` im Frühwarnungsregister, bis die Risikosichtung im Jour fixe sie bestätigt oder nicht; der Mensa-Wunsch steht als beantragte Änderung `AEN-012` im Änderungsregister.
 
 ::: zitat k6.4.3-p2
 Eine Frühwarnung (EW) ist ein unbewertetes Signal. Wird sie bestätigt, wird daraus ein bewertetes Risiko.

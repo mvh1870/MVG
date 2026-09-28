@@ -264,6 +264,10 @@ Kopfdaten: `kapitel` (Pflicht, 1–13), `titel` (Pflicht, wie im Whitepaper), `k
 | `querverweis` | überall | Station (`A3`) | `text` (Knopfbeschriftung) | `text` |
 | `merksatz`, `hinweis` | überall | – | – | `text` |
 | `tafel`, `raci` | oben, `abschnitt`, `ebene` | wie 3.3 (L-32, L-34) | | Whitepaper-Tabelle als Grafik bzw. RACI mit Mandat; auf der Lernseite ohne Spur und ohne gespielte Rolle |
+| `etappen`/`etappe` | oben, `abschnitt` | – / Pflicht (`1`, `2` …) | `titel` / `titel` (Pflicht) | `text` – Abfolge zum Durchklicken (P12.3) |
+| `umschalter`/`ansicht` | oben, `abschnitt` | – / `links` oder `rechts` | `titel`, `links`, `rechts` (Pflicht) | `text` – zwei Ansichten, z. B. „Ohne MVG“ / „Mit MVG“ |
+| `sortieren`/`posten` | oben, `abschnitt` | – / Pflicht | `titel`, `links`, `rechts` (Pflicht) / `seite` (`links`/`rechts`, Pflicht) | `text`, `erklaerung` – Zuordnungsübung ohne Punkte |
+| `regler`/`stufe` | oben, `abschnitt` | – / Pflicht | `titel` / `titel` (Pflicht), `marke` | `text` – Schieberegler über geordnete Stufen |
 | `glossar` | oben | – | – | leer – durchsuchbare Liste aller Glossarbegriffe des Whitepapers, wortgleich, mit „Kommt vor in“ (Stationen und Kapitel mit Glossarbezug, vom Compiler gesammelt); nur Kap. 13 (L-47) |
 
 Darstellung (P6.1): Ebenen erscheinen auf der Lernseite als vier aufklappbare Stufen (Ebene 1 offen, Ebene 4 als Nachweis); Tafeln, RACI, Merksätze und Hinweise stehen auch auf Seitenebene zwischen den Abschnitten.

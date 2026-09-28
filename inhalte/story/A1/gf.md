@@ -1,25 +1,25 @@
 ---
 station: A1
 rolle: gf
-frage: Das Projekt ist eines von vielen auf Ihrem Tisch. Worauf richten Sie die ersten Wochen aus?
+frage: Die Kämmerei will bis Freitag eine Zahl, die Bauherren-PL ist neu. Was tun Sie?
 ---
 
 ::: option A
 ---
-titel: Laufen lassen – die neue Bauherren-PL soll ankommen
+titel: Laufen lassen – die Kämmerei bekommt die Projektbasis
 kurz: Laufen lassen
 status:
   entscheidungsfaehigkeit: -1
   offene-risiken: +1
 ---
 ### Konsequenz
-Die Bauherren-PL arbeitet sich ein. Den Zielkonflikt priorisiert niemand; die Marktnotiz liegt in einer der drei Ablagen.
+Die Kämmerei setzt 58,4 Mio. € an, ohne Preisannahme. Den Zielkonflikt priorisiert niemand.
 
 ### Was fehlt
-Eine Festlegung, welche Zielpriorität gilt und wie Zielkonflikte aufgelöst werden.
+Eine Zahl mit benannten Annahmen – und eine Festlegung, welche Zielpriorität gilt.
 
 ### Neues Risiko
-Den Zielkonflikt entscheidet später die Planung, Variante für Variante.
+Die Preissteigerung fehlt im Haushalt.
 
 ### Governance-Frage
 Wer legt fest, welche Zielpriorität gilt – und wer darf sie nicht festlegen?
@@ -33,7 +33,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Jonas Brenner legt Ihnen ab Januar monatlich einen Statusbericht mit Ampeln vor. Sie wissen mehr; entschieden ist nichts.
+Jonas Brenner schickt 40 Seiten mit 14 Ampeln. Sie wissen mehr; die Frage der Kämmerei beantwortet keine Ampel.
 
 ### Was fehlt
 Die Verbindung der Information mit Mandat, Entscheidung und Schwelle.
@@ -47,14 +47,14 @@ Welche Entscheidungen muss der [[Bauherr]] in diesem Projekt selbst treffen?
 
 ::: option C
 ---
-titel: Den Zielkonflikt in den Lenkungskreis mitnehmen
+titel: Die Frage der Kämmerei in den Lenkungskreis mitnehmen
 kurz: In den Lenkungskreis
 status:
   ungeklaerte-entscheidungen: +1
   terminrisiko: +1
 ---
 ### Konsequenz
-Der Lenkungskreis diskutiert Kosten gegen ESG und LCC. Ohne Vorlage steht im Protokoll: „Alle Ziele bleiben gleich wichtig.“
+Der Lenkungskreis tagt nach der Frist. Ohne Vorlage steht im Protokoll: „Ansatz wie Projektbasis. Alle Ziele bleiben gleich wichtig.“
 
 ### Was fehlt
 Eine [[Entscheidungsvorlage]] mit Frage, Optionen und Empfehlung.
@@ -78,5 +78,5 @@ Die Geschäftsführung sieht das Projekt aus der Distanz. Die Wahl nicht bewerte
 
 ### Leitfragen
 - Wer hat bei Ihnen den Zielkonflikt zuletzt priorisiert – und wo steht das?
-- Woran merken Sie als Geschäftsführung, dass ein Projekt steuerbar ist?
+- Was bekommt Ihre Kämmerei, wenn eine Projektleitung wechselt?
 :::

@@ -2,7 +2,8 @@
 id: A2
 welt: A
 monat: 3
-titel: Erstes Signal
+titel: Zusage im Flur, Frist im Förderbescheid
+kurztitel: Zusage im Flur
 lph: 5
 uhr: Dienstag, 11:15 Uhr
 whitepaper-bezug: [k4.1-p1, k4.1-p2, k4.2-p1, k4.2-p2]
@@ -33,13 +34,21 @@ von: petersen
 - Freigabe zum Abschluss von LPH 4: kein eigener Termin.
 :::
 
-::: protokoll
+::: datei
 ---
-titel: Marktabfrage Holzbau (Generalplanung)
-datum: 10. März 2026
+name: Förderbescheid_Ganztag.pdf
+quelle: Kämmerei
+wert: Inbetriebnahme zum Schuljahr 2028/29
 ---
-- Holzbauelemente: Lieferzeit jetzt rund 26 Wochen statt 16.
-- Terminwirkung: nicht bewertet.
+:::
+
+::: mail
+---
+von: hoffmeister
+betreff: "AW: Ihre Nachfrage Holzbauelemente"
+zeit: "10:31"
+---
+Lieferzeit rund 26 statt 16 Wochen. Terminwirkung nicht bewertet.
 :::
 
 ::: mail
@@ -48,14 +57,14 @@ von: roth
 betreff: Mensa für den Ganztag
 zeit: "11:09"
 ---
-Der Ganztag wächst: Wir brauchen eine Mensa für rund 450 statt 300 Essen, laut Generalplanung grob 0,6 Mio. €. Herr Deppe sagte im Flur: „Wir kriegen das hin.“ Ich nehme ihn beim Wort.
+Schulamt und Schulleitung: Der Ganztag braucht eine Mensa für rund 450 statt 300 Essen, laut Generalplanung grob 0,6 Mio. €. Herr Deppe sagte im Flur: „Machen wir.“ Ich nehme ihn beim Wort.
 :::
 
 ::: notiz
 ---
 farbe: gelb
 ---
-Holz 26 statt 16 Wochen – und der Termin?
+Holz 26 statt 16 Wochen – und die Förderfrist?
 :::
 
 ::: notiz
@@ -83,12 +92,13 @@ knopf: Jetzt entscheiden
 ---
 ::: bekannt
 - Lieferzeit Holz 26 statt 16 Wochen; Mensa grob 0,6 Mio. €.
-- Die Zusage fiel im Flur, nicht schriftlich.
+- Förderbescheid Ganztag: Inbetriebnahme zum Schuljahr 2028/29.
+- Die Zusage fiel im Flur.
 - Für Änderungen gibt es keine Schwellen.
 :::
 
 ::: unbekannt
-- Terminwirkung der Lieferzeit {#terminwirkung}
+- Ob die Förderfrist hält {#terminwirkung}
 - Wirkung der Mensa {#mensa-wirkung}
 - Ob die Zusage gilt {#zusage}
 - Wer über die Mensa entscheidet {#zustaendigkeit}
@@ -111,7 +121,7 @@ bleibt:
 Terminrisiko steigt.
 
 ### Neu bekannt
-Der Satz im Flur war als Absichtserklärung gemeint, Sabine Roth versteht ihn als Zusage; die Schulseite plant schon mit der größeren Mensa. Der Lenkungskreis am 17. März bespricht beides ohne Vorlage und entscheidet nichts.
+Der Satz im Flur war als Absichtserklärung gemeint, Sabine Roth versteht ihn als Zusage. Der Lenkungskreis am 17. März bespricht beides ohne Vorlage; die Förderfrist steht in keinem Terminplan.
 :::
 :::
 
@@ -151,7 +161,7 @@ Was gebaut wird und welcher Zielkonflikt wie aufgelöst wird, entscheidet der Ba
 ---
 titel: Warum relevant
 ---
-Varianten, Kostenmodelle und Nutzeranalysen können vorbereitet werden; die Priorisierung bleibt Bauherrenaufgabe. Ohne explizite Zielverantwortung optimiert jede Rolle aus ihrer fachlichen Perspektive, aber niemand hält den Zielkonflikt zusammen. Ein Satz im Flur wird als Zusage gelesen, bevor jemand Nutzerbedarf, Kosten und Termin gegeneinander abgewogen hat.
+Varianten, Kostenmodelle und Nutzeranalysen können vorbereitet werden; die Priorisierung bleibt Bauherrenaufgabe. Ohne explizite Zielverantwortung optimiert jede Rolle aus ihrer fachlichen Perspektive, aber niemand hält den Zielkonflikt zusammen. Ein Satz im Flur wird als Zusage gelesen, bevor jemand Nutzerbedarf, Kosten und Förderfrist gegeneinander abgewogen hat.
 :::
 
 ::: ebene 3
@@ -164,7 +174,7 @@ Die Fragen eines wirksamen [[Mandat|Mandatsmodells]] (Kap. 4.2) – und wo sie a
 |---|---|
 | Welche Entscheidung darf auf Projektebene getroffen werden? | Ob die Bauherren-PL die Mensa beauftragen darf, weiß niemand. |
 | Welche Schwelle erfordert eine Entscheidung des Bauherrn oder die Beschlussfassung durch den Bauherrn im Lenkungskreis? | Für rund 0,6 Mio. € ist keine Schwelle festgelegt. |
-| Wer darf Kosten, Projektumfang, Termin, Risiko oder Vergabe beeinflussen? | Der Satz im Flur berührt den Projektumfang, die Lieferzeit den Termin. |
+| Wer darf Kosten, Projektumfang, Termin, Risiko oder Vergabe beeinflussen? | Der Satz im Flur berührt den Projektumfang, die Lieferzeit den Termin und die Förderfrist. |
 | Welche Unterlagen müssen vorliegen? | Eine grobe Schätzung, noch ohne Termin- und Risikowirkung. |
 | Welche Rolle ist letztverantwortlich? | Offen. |
 :::
@@ -183,21 +193,21 @@ Zielverantwortung bedeutet, dass der Bauherr entscheidet, was gebaut werden soll
 ---
 titel: Eine Schätzung, kein Beschluss
 ---
-Die größere Mensa ist grob auf 0,6 Mio. € geschätzt, noch ohne Termin- und Risikowirkung. Ob sie in die Prognose gehört, kann das Controlling nicht sagen, denn beschlossen ist nichts. Die Datenstandslogik in Kap. 4.6 fragt genau danach: [[zitat:k4.6-p2|Welche Änderungen wurden seit der letzten Freigabe aufgenommen?]]
+Die größere Mensa ist grob auf 0,6 Mio. € geschätzt, noch ohne Termin- und Risikowirkung. Ob sie in die Prognose gehört, weiß das Controlling nicht: Beschlossen ist nichts. Die Datenstandslogik in Kap. 4.6 fragt genau danach: [[zitat:k4.6-p2|Welche Änderungen wurden seit der letzten Freigabe aufgenommen?]]
 :::
 
 ::: vertiefung organisation
 ---
 titel: Keine Schwelle für die Mensa
 ---
-Für Änderungen am Projektumfang sind keine Schwellen festgelegt; ob über rund 0,6 Mio. € die Bauherren-PL entscheidet oder der Bauherr – allein oder im Lenkungskreis –, weiß niemand. Die Tabelle in Kap. 3.2 zählt zur [[Nichtdelegierbare Bauherrenverantwortung|nichtdelegierbaren Bauherrenverantwortung]] die [[zitat:k3.2-t1|Festlegung von Mandaten, Freigabeschwellen, Eskalationswegen und verbindlichen Entscheidungsrechten.]]
+Für Änderungen am Projektumfang sind keine Schwellen festgelegt; ob über rund 0,6 Mio. € die Bauherren-PL entscheidet oder der Bauherr, weiß niemand. Die Tabelle in Kap. 3.2 zählt zur [[Nichtdelegierbare Bauherrenverantwortung|nichtdelegierbaren Bauherrenverantwortung]] die [[zitat:k3.2-t1|Festlegung von Mandaten, Freigabeschwellen, Eskalationswegen und verbindlichen Entscheidungsrechten.]]
 :::
 
 ::: vertiefung risiko
 ---
 titel: Zehn Wochen mehr, unbewertet
 ---
-Die Lieferzeit der Holzbauelemente steigt von rund 16 auf 26 Wochen. Die Marktabfrage der Generalplanung meldet sie; die Terminwirkung ist nicht bewertet. Kap. 4.4 beschreibt, was zu einem Risiko gehört: [[zitat:k4.4-p2|Ein Risiko wird nicht nur als Eintrag geführt, sondern mit einer verantwortlichen Rolle, Frist, Wirkung, Risikominderung, Restrisiko, Entscheidungsbedarf und Eskalationsschwelle verbunden.]]
+Die Lieferzeit der Holzbauelemente steigt von rund 16 auf 26 Wochen; die Generalplanung meldet es auf Ihre Nachfrage. Ob die Förderfrist hält, bewertet niemand. Kap. 4.4 beschreibt, was zu einem Risiko gehört: [[zitat:k4.4-p2|Ein Risiko wird nicht nur als Eintrag geführt, sondern mit einer verantwortlichen Rolle, Frist, Wirkung, Risikominderung, Restrisiko, Entscheidungsbedarf und Eskalationsschwelle verbunden.]]
 :::
 
 ::: vertiefung freigaben
@@ -211,21 +221,21 @@ Im Jour-fixe-Protokoll vom 3. März steht zur Freigabe zum Abschluss von LPH 4: 
 ---
 figur: deppe
 ---
-„Der Ganztag braucht die Mensa, da hat Frau Roth recht. Die Einzelheiten klären wir im Lenkungskreis.“
+„Der Ganztag braucht die Mensa, da hat Frau Roth recht. Einzelheiten klären wir im Lenkungskreis.“
 :::
 
 ::: standpunkt bauherr
 ---
 figur: olbers
 ---
-„Wenn die Mensa zugesagt ist: von wem? Und was genau soll ich dazu entscheiden?“
+„Wenn die Mensa zugesagt ist: von wem? Und wer sagt dem Rat, wenn die Förderfrist reißt?“
 :::
 
 ::: standpunkt pl
 ---
 figur: sie
 ---
-„Eine längere Lieferzeit und eine Zusage aus dem Flur – und für keins von beiden ist klar, wer entscheidet.“
+„Eine Zusage aus dem Flur, eine Förderfrist, die an der Lieferzeit hängt – und niemand, der entscheidet.“
 :::
 
 ::: standpunkt ps
@@ -239,7 +249,7 @@ figur: brenner
 ---
 figur: hoffmeister
 ---
-„Eine Skizze für 450 Essen habe ich schon. Ich muss nur wissen, ob ich sie einplanen soll.“
+„Die Lieferzeit stand in unserem Protokoll. Gefragt hat erst die Bauherren-PL.“
 :::
 
 ::: standpunkt controlling
@@ -251,10 +261,10 @@ figur: kaya
 
 ::: regie
 ### Notiz
-Zwei Signale an einem Vormittag: ein Terminsignal und eine gewollte Änderung. Die Flurzusage nicht verurteilen – sie ist gut gemeint. Die Station zeigt, dass es für beides keinen festgelegten Weg gibt (Kap. 4.1 Ziel, 4.2 Mandat). Die stille Freigabe zum Abschluss von LPH 4 im Jour-fixe-Protokoll nur erwähnen, wenn jemand danach fragt.
+Zwei Bauherrenprobleme an einem Vormittag: eine gewollte Änderung und eine gefährdete Förderfrist. Die Flurzusage nicht verurteilen – sie ist gut gemeint. Die Station zeigt, dass es für beides keinen festgelegten Weg gibt (Kap. 4.1 Ziel, 4.2 Mandat). Die stille Freigabe zu LPH 4 im Protokoll nur erwähnen, wenn jemand fragt.
 
 ### Leitfragen
 - Wer priorisiert bei Ihnen, wenn Nutzerbedarf, Kosten und Termin auseinandergehen?
-- Wer darf bei Ihnen eine Entscheidung vorbereiten, treffen, freigeben oder eskalieren – und steht das irgendwo?
-- Wo landet bei Ihnen ein Signal, bevor jemand es bewertet?
+- Wer darf bei Ihnen eine Änderung zusagen – und steht das irgendwo?
+- Wer führt bei Ihnen die Förderfristen?
 :::

@@ -1,27 +1,27 @@
 ---
 station: A1
 rolle: controlling
-frage: Worauf richten Sie das Controlling in den ersten Wochen aus?
+frage: Die Kämmerei will einen Haushaltsansatz; Ihre Zahl ist nicht die von Holger Stein. Was tun Sie?
 ---
 
 ::: option A
 ---
-titel: Eine eigene CTC-Rechnung aufsetzen
-kurz: Eigene CTC aufsetzen
+titel: Ihre eigene Zahl an die Kämmerei geben
+kurz: Eigene Zahl melden
 status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Sie bauen Ihre Restkostenprognose neben Holger Steins Kostendatei auf. Zwei Rechnungen, zwei Stände, vorerst nah beieinander.
+Die Kämmerei hat Ihre Zahl, der Stadtrat die Projektbasis, die Projektsteuerung ihre. Drei Stände.
 
 ### Was fehlt
-Eine Festlegung, welche Zahl gilt, wenn beide auseinanderlaufen.
+Eine Festlegung, welche Zahl gilt, wenn sie auseinanderlaufen.
 
 ### Neues Risiko
 Parallele Datenstände, die erst im Gremium aufeinandertreffen.
 
 ### Governance-Frage
-[[Datenstand]]: Wer legt fest, welche Prognose gilt?
+Wer legt fest, welche Zahl die Kämmerei bekommt?
 :::
 
 ::: option B
@@ -32,7 +32,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Holger Stein erklärt Ihnen zwei Stunden lang seine Zellbezüge. Sie verstehen die Struktur; die Annahmen kennt weiter nur er.
+Holger Stein erklärt zwei Stunden lang seine Zellbezüge. Die Annahmen kennt weiter nur er. Die Frist ist Freitag.
 
 ### Was fehlt
 Annahmen, die irgendwo stehen und nicht nur in einem Kopf.
@@ -46,22 +46,22 @@ Wer hält fest, auf welchen Annahmen die Prognose beruht?
 
 ::: option C
 ---
-titel: Die Marktnotiz zum Holzpreis in die Prognose einrechnen
-kurz: Holzpreis einrechnen
+titel: Einen Aufschlag für Baupreissteigerungen ansetzen
+kurz: Preissteigerung einrechnen
 status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Sie setzen einen Aufschlag für die Holzbauelemente an. Ihre Zahl steigt; ob sie damit gilt, hat niemand entschieden.
+Ihre Zahl steigt, die Kämmerei staunt. Ob sie damit gilt, hat niemand entschieden.
 
 ### Was fehlt
-Ein Ort, an dem ein Signal bewertet wird, bevor es in eine Zahl wandert.
+Ein Ort, an dem eine Annahme bewertet wird, bevor sie in eine Zahl wandert.
 
 ### Neues Risiko
-Das Signal steht in einer Zelle, nicht auf einer Tagesordnung.
+Die Annahme steht in einer Zelle, nicht auf einer Tagesordnung.
 
 ### Governance-Frage
-[[Frühwarnung]]: Ist die Marktnotiz ein Signal – und wer bewertet es?
+[[Datenstand]]: Welche Annahme gilt – und wer legt sie fest?
 :::
 
 ::: nachsatz
@@ -75,6 +75,6 @@ Die Geschichte merkt sich Ihre Wahl.
 Das Controlling rechnet von Anfang an neben der Projektsteuerung. Zeigen, wie früh die zweite Zahl entsteht – noch ohne Streit.
 
 ### Leitfragen
-- Wie viele Kostenstände gibt es bei Ihnen – und welcher gilt?
+- Wie viele Kostenstände gibt es bei Ihnen – und welchen kennt die Kämmerei?
 - Wer kennt bei Ihnen die Annahmen hinter der Prognose?
 :::

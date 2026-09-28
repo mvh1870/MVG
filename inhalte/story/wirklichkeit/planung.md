@@ -1,7 +1,7 @@
 ---
 station: wirklichkeit
 rolle: planung
-frage: Die Freigabe zum Abschluss von LPH 5 ist offen. Was schlagen Sie der Bauherren-PL vor?
+frage: Dr. Olbers will bis 15. Dezember einen Vorschlag. Was liefern Sie der Bauherren-PL?
 rueckbezug-auf: A6
 ---
 

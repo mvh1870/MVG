@@ -13,16 +13,16 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Zwei Einträge ohne Rolle werden zugeordnet. Wer eine Zahl braucht, weiß, wo sie steht.
+Zwei Einträge ohne Rolle werden zugeordnet. Die Kämmerei bekommt Version 1.
 
 ### Was fehlt
-Die Marktnotiz zum Holzpreis steht noch in keinem Register.
+Die offene Preisannahme steht noch in keinem Register.
 
 ### Neues Risiko
 Ein Signal außerhalb des Registers bleibt unbewertet.
 
 ### Governance-Frage
-[[Frühwarnung]]: Wird die Marktnotiz als unbewertetes Signal erfasst?
+[[Frühwarnung]]: Wird die offene Preisannahme als Signal erfasst?
 :::
 
 ::: option B
@@ -36,7 +36,7 @@ status:
 Dr. Olbers legt die Rangfolge auf Ihren Vorschlag fest. Varianten werden ab jetzt daran gemessen.
 
 ### Was fehlt
-Die Marktnotiz zum Holzpreis ist noch nicht bewertet.
+Die offene Preisannahme ist noch nicht bewertet.
 
 ### Neues Risiko
 Klare Ziele, aber ein offenes Kostensignal.
@@ -47,13 +47,13 @@ Ziel: Welche Abwägungsregel gilt, wenn Kosten und Termin gegeneinander stehen?
 
 ::: option C
 ---
-titel: Die Marktnotiz als Frühwarnung erfassen lassen
+titel: Die offene Preisannahme als Frühwarnung erfassen lassen
 kurz: Frühwarnung erfassen
 status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Die Notiz geht ins Frühwarnungsregister und in die wöchentliche Risikosichtung. Die Zahl der offenen Punkte steigt – sichtbar.
+Das Signal geht ins Frühwarnungsregister und in die Risikosichtung. Die offenen Punkte steigen – sichtbar.
 
 ### Was fehlt
 Das Detailwissen zur Kostendatei liegt noch vor allem bei Holger Stein.
@@ -70,15 +70,15 @@ In Welt A haben Sie ‚Unterlagen ordnen‘ gewählt. In Welt B gibt es keine dr
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Varianten erarbeiten lassen‘ gewählt. In Welt B legt der Bauherr die Zielpriorität fest; Varianten werden an ihr gemessen.
+In Welt A haben Sie ‚Steins Zahl melden‘ gewählt. In Welt B geht an die Kämmerei ein benannter Datenstand, mit offener Preisannahme.
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Kosten neu rechnen lassen‘ gewählt. In Welt B geht ein Signal wie die Marktnotiz zuerst als Frühwarnung ins Register.
+In Welt A haben Sie ‚Preissteigerung einrechnen lassen‘ gewählt. In Welt B wird eine offene Annahme zuerst als Frühwarnung erfasst, dann gerechnet.
 :::
 
 ::: rueckbezug ohne
-In Welt A: drei Ablagen, ein Zielkonflikt ohne Priorität. In Welt B hat alles einen festen Ort.
+In Welt A: drei Ablagen, eine Frist, keine Zahl mit Namen. In Welt B hat alles einen festen Ort.
 :::
 
 ::: nachsatz
@@ -87,9 +87,9 @@ Die Geschichte merkt sich Ihre Wahl.
 
 ::: regie
 ### Notiz
-Die Bauherren-PL hält die Register zusammen. Zeigen, dass die Marktnotiz zuerst ein unbewertetes Signal ist – sichtbar, bevor jemand rechnet.
+Die Bauherren-PL hält die Register zusammen. Zeigen, dass die offene Preisannahme zuerst ein unbewertetes Signal ist – sichtbar, bevor jemand rechnet.
 
 ### Leitfragen
-- Wo landet bei Ihnen eine Marktnotiz?
+- Woher bekommt bei Ihnen die Kämmerei ihre Zahl?
 - Wer vertritt bei Ihnen die Person, die die Kostendatei führt?
 :::

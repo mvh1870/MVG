@@ -16,24 +16,24 @@ status:
 Beide Register liegen bei Ihnen: monatlich Prüfung, wöchentlich Sichtung. Jeder Eintrag hat einen nächsten Schritt.
 
 ### Was fehlt
-Die Marktnotiz zum Holzpreis steht noch in keinem Register.
+Die offene Preisannahme steht noch in keinem Register.
 
 ### Neues Risiko
 Ein Signal außerhalb des Registers bleibt unbewertet.
 
 ### Governance-Frage
-[[Frühwarnung]]: Wer erfasst die Marktnotiz – und bis wann?
+[[Frühwarnung]]: Wer erfasst die offene Preisannahme – und bis wann?
 :::
 
 ::: option B
 ---
-titel: Die Marktnotiz als Frühwarnung erfassen
+titel: Die offene Preisannahme als Frühwarnung erfassen
 kurz: Frühwarnung erfassen
 status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Die Notiz geht ins Frühwarnungsregister und in die wöchentliche Risikosichtung. Die Zahl der offenen Punkte steigt – sichtbar.
+Das Signal geht ins Frühwarnungsregister und in die wöchentliche Risikosichtung. Die Zahl der offenen Punkte steigt – sichtbar.
 
 ### Was fehlt
 Das Detailwissen zur Kostendatei liegt noch vor allem bei Holger Stein.
@@ -56,21 +56,21 @@ status:
 Eine Kollegin arbeitet sich in die Kostenprognose ein; die Annahmen stehen im Datenstand, nicht nur bei Stein.
 
 ### Was fehlt
-Die Marktnotiz zum Holzpreis ist noch nicht erfasst.
+Die offene Preisannahme ist noch nicht erfasst.
 
 ### Neues Risiko
 Ein offenes Kostensignal, während das Team mit sich selbst beschäftigt ist.
 
 ### Governance-Frage
-[[Frühwarnung]]: Wann wird die Marktnotiz zum erfassten Signal?
+[[Frühwarnung]]: Wann wird die Preisannahme erfasst?
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Statusbericht aufsetzen‘ gewählt. In Welt B steht die Marktnotiz nicht auf Seite 17, sondern im Frühwarnungsregister.
+In Welt A haben Sie ‚Statusbericht schicken‘ gewählt. In Welt B beantwortet die Frage der Kämmerei ein Datenstand, nicht Seite 12.
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Kostendatei nachrechnen‘ gewählt. In Welt B wird ein Signal zuerst als Frühwarnung erfasst, dann gerechnet.
+In Welt A haben Sie ‚Kostendatei nachrechnen‘ gewählt. In Welt B wird eine offene Annahme zuerst als Frühwarnung erfasst, dann gerechnet.
 :::
 
 ::: rueckbezug C

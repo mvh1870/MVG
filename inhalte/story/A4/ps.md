@@ -1,7 +1,7 @@
 ---
 station: A4
 rolle: ps
-frage: Ihr Bericht lag auf dem Tisch, der Ausschuss hat vertagt. Was legen Sie beim nächsten Mal vor?
+frage: Ihr Bericht war die Vorlage des Bauherrn, der Ausschuss hat vertagt. Was liefern Sie beim nächsten Mal?
 rueckbezug-auf: A3
 ---
 
@@ -83,7 +83,7 @@ Im Mai standen zwei Kostenzahlen nebeneinander, beschlossen wurde nichts. Im Jul
 
 ::: regie
 ### Notiz
-Der Bericht der Projektsteuerung war vollständig und hat trotzdem nichts bewirkt. Zeigen, dass Länge und Kürze dasselbe Problem haben.
+Der Bericht war vollständig und hat dem Bauherrn trotzdem nicht geholfen. Zeigen, dass Länge und Kürze dasselbe Problem haben.
 
 ### Leitfragen
 - Welche Frage steht auf Seite 1 Ihres letzten Berichts?

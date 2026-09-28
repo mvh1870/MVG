@@ -24,7 +24,7 @@ weiter:
 titel: Montag, 08:30 Uhr. Monat 5.
 kurz: Einstieg
 ---
-Montag, 11. Mai. Nächste Woche tagen Lenkungskreis und Bauausschuss. Zwei Kostenzahlen passen nicht zusammen.
+Montag, 11. Mai. Nächste Woche tagen Lenkungskreis und Bauausschuss; Dr. Olbers braucht eine Kostenzahl. Es gibt zwei.
 
 ::: mail
 ---
@@ -49,7 +49,7 @@ Bei mir: +5,9 %. Welche Zahl gilt?
 farbe: gelb
 symbol: anruf
 ---
-Anruf: Fassade günstiger?
+Kämmerei: Haushalt 2027 anpassen?
 :::
 
 ::: notiz
@@ -171,7 +171,7 @@ Die Fragen der Datenstandslogik (Kap. 4.6) – an diesem Montag:
 |---|---|
 | Welche Version gilt? | „v3_final_NEU“ gegen die CTC des Controllings |
 | Welche Annahmen sind offen? | Ursache, Terminwirkung, Nachtragsrisiko |
-| Welche Änderungen wurden seit der letzten Freigabe aufgenommen? | Mensa und Lieferzeit Holz – ob sie in einer der beiden Zahlen stecken, weiß niemand |
+| Welche Änderungen wurden seit der letzten Freigabe aufgenommen? | Mensa und Lieferzeit Holz – ob sie drinstecken, weiß niemand |
 | Welche Beschlusslage besteht? | keine zur Abweichung |
 | Wo wird die Nachweiskette geführt? | in Mails und Excel-Dateien |
 :::
@@ -204,7 +204,7 @@ Projektsteuerung und Controlling rechnen jeweils eine eigene Prognose. Die Tabel
 ---
 titel: Seit März liegen geblieben
 ---
-Die längere Lieferzeit der Holzbauelemente ist seit März bekannt und nicht bewertet, die Mensa gewünscht und nicht beschlossen; die Ursache der Abweichung ist ungeklärt, das Nachtragsrisiko offen. Kap. 2.5 beschreibt dieses Muster: [[zitat:k2.5-t1|Risiken und Änderungen laufen parallel, ohne gemeinsame Priorisierung, Auswirkungsbewertung und Freigabeschwelle.]]
+Die längere Lieferzeit der Holzbauelemente ist seit März bekannt und nicht bewertet, die Mensa im Flur zugesagt, nicht beschlossen; die Ursache der Abweichung ist ungeklärt, das Nachtragsrisiko offen. Kap. 2.5 beschreibt dieses Muster: [[zitat:k2.5-t1|Risiken und Änderungen laufen parallel, ohne gemeinsame Priorisierung, Auswirkungsbewertung und Freigabeschwelle.]]
 :::
 
 ::: vertiefung freigaben
@@ -239,14 +239,14 @@ figur: sie
 ---
 figur: brenner
 ---
-„Die +8 % sind gerechnet, nur die Ursache fehlt noch. Warum rechnet das Controlling eigentlich eine eigene Zahl?“
+„Die +8 % sind gerechnet, die Ursache fehlt noch. Welche Zahl in die Vorlage geht, sagt mir niemand.“
 :::
 
 ::: standpunkt planung
 ---
 figur: hoffmeister
 ---
-„Soll ich die Fassade schon mal günstiger umplanen? Ich hätte da schon eine Variante.“
+„Wenn die Politik sparen will: Eine günstigere Fassade hätte ich. Nur fragt mich keiner.“
 :::
 
 ::: standpunkt controlling

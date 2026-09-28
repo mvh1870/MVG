@@ -21,7 +21,7 @@ weiter: B5
 titel: Donnerstag, 10:00 Uhr. Monat 7.
 kurz: Einstieg
 ---
-Donnerstag, 9. Juli. Das Änderungsgremium tagt. Seit Juni liegt die Baugenehmigung vor – mit Brandschutzauflagen zum Holzbau. Die Planänderung `AEN-031`, grob 0,4 Mio. €, liegt als Vorlage auf dem Tisch.
+Donnerstag, 9. Juli. Ihre Baugenehmigung kam im Juni mit Brandschutzauflagen zum Holzbau; am 16. will der Bauausschuss wissen, was daraus folgt. Heute tagt das Änderungsgremium: Die Planänderung `AEN-031`, grob 0,4 Mio. €, liegt als Vorlage auf dem Tisch.
 
 ::: protokoll
 ---
@@ -312,7 +312,7 @@ titel: Kernaussage
 ---
 titel: Warum relevant
 ---
-Im Juni hat das Gremium `ENT-017` entschieden: Die Fassade wird als Änderung `AEN-022` angepasst – auf der ergänzten Vorlage und nachdem Dr. Olbers die Zielpriorität für diesen Konflikt festgelegt hatte; die Risikoreserve blieb unberührt. Nun die nächste Änderung: Dieselben Auflagen wie in Welt A, derselbe Ausschusstermin – aber bevor der Bauausschuss tagt, liegt die Frage schon bei der Stelle mit dem Mandat. Die Planänderung hat eine Kennung, ihr Betrag eine Stufe auf der Mandatsleiter, die Vorlage eine Frage. Kap. 4.3 sagt, wozu das dient: [[zitat:k4.3-p2|Das System der Entscheidungs-IDs verhindert, dass kritische Entscheidungen in Protokollen, E-Mails, Fachrunden oder informellen Abstimmungen verschwinden.]] Offen ist auch hier etwas – die Terminwirkung ist grob geschätzt, die Deckung nicht geklärt. Aber beides steht in der Vorlage.
+Im Juni hat das Gremium `ENT-017` entschieden: Die Fassade wird als Änderung `AEN-022` angepasst – auf der ergänzten Vorlage und nachdem Dr. Olbers die Zielpriorität für diesen Konflikt festgelegt hatte; die Risikoreserve blieb unberührt. Nun die nächste Änderung: Dieselben Auflagen wie in Welt A, derselbe Ausschusstermin – aber bevor der Bauausschuss tagt, liegt die Frage schon bei der Stelle mit dem Mandat. Kap. 4.3 sagt, wozu das dient: [[zitat:k4.3-p2|Das System der Entscheidungs-IDs verhindert, dass kritische Entscheidungen in Protokollen, E-Mails, Fachrunden oder informellen Abstimmungen verschwinden.]] Offen ist auch hier etwas – die Terminwirkung ist grob geschätzt, die Deckung nicht geklärt. Aber beides steht in der Vorlage.
 :::
 
 ::: ebene 3

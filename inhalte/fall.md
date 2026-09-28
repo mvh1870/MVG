@@ -46,7 +46,8 @@ Die Geschichte beginnt mit Ihrer Übernahme der Projektleitung auf Bauherrenseit
 | Abweichung und Reserve | Abweichungen gegen die Projektbasis gerechnet, Risikoreserve darin noch nicht eingesetzt | ganz eingesetzt, blieben nach Projektsteuerung rund 1,8 Mio. €, nach Controlling rund 0,5 Mio. € Überschreitung |
 | Ursache (nach Klärung) | überwiegend Preissteigerung Holzbauelemente laut Marktabfrage; Nachtrag der TGA-Fachplanung angekündigt | A3; Bauverträge gibt es erst nach LPH 7 |
 | Nutzerwunsch Mensa (Monat 3) | Ganztag: Mensa für rund 450 statt 300 Essen, grob 0,6 Mio. € | Schätzung der Generalplanung, noch ohne Termin- und Risikowirkung |
-| Lieferzeit Holzbauelemente (Monat 3) | von rund 16 auf 26 Wochen | Marktabfrage der Generalplanung |
+| Förderfrist (Monat 3) | Förderbescheid Ganztag: Inbetriebnahme zum Schuljahr 2028/29 | fiktiv wie der ganze Fall; kein reales Förderprogramm |
+| Lieferzeit Holzbauelemente (Monat 3) | von rund 16 auf 26 Wochen | Auskunft der Generalplanung auf Nachfrage der Bauherren-PL |
 | Brandschutzauflagen (Monat 6) | Auflagen der Baugenehmigung zum Holzbau, grob 0,4 Mio. € | Welt A: Folgekosten in A5; Welt B: Änderung `AEN-031` im Änderungsgremium (B4) |
 
 Mandatsleiter in Welt B: die Muster-Mandatsleiter von MVG (k4.2-p3) – Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium über 100 TEUR bis einschließlich 5 Mio. €, darüber Beschlussfassung durch den Bauherrn im Lenkungskreis. In Welt A gibt es keine festgelegten Schwellen.
@@ -58,9 +59,9 @@ Monat 0 ist Dezember 2025; Monat 5 ist Mai 2026 („Kostenprognose 2026-05“). 
 | Monat | Kalender | LPH-Stand | Ereignis | Station |
 |---|---|---|---|---|
 | 0 | Dez 2025 | LPH 4 Genehmigungsplanung | Sie übernehmen die Projektleitung auf Bauherrenseite. Kostenberechnung und Projektbasis liegen vor. | Prolog |
-| 1 | Jan 2026 | LPH 4 | Lage verstehen: Zielkonflikt Kosten, Termin, ESG und LCC; viele Beteiligte, verteilte Unterlagen. Der Bauantrag wird eingereicht. | A1/B1 |
+| 1 | Jan 2026 | LPH 4 | Übernahme ohne Übergabe: Die Vorgängerin ist weg; die Kämmerei braucht bis Freitag den Haushaltsansatz 2027 (Mittelabfluss, Kostenobergrenze) und fragt, ob Baupreissteigerungen eingepreist sind; Dr. Olbers fragt, welche Zahl der Stadtrat zuletzt gehört hat. Unterlagen in drei Ablagen; Zielkonflikt Kosten, Schuljahresbeginn 2028, Holzbau (Klimaziel des Rats) und Betriebskosten (LCC) nie priorisiert. Der Bauantrag wird eingereicht. | A1/B1 |
 | 2 | Feb 2026 | LPH 4 → LPH 5 | Freigabe zum Abschluss von LPH 4 (Genehmigungsunterlagen eingereicht, vgl. Freigabefrage LPH 4 in k9.3-t1); LPH 5 beginnt. Welt A: stillschweigend „weiter so“. | – |
-| 3 | Mär 2026 | LPH 5 Ausführungsplanung | Erstes Signal: Lieferzeit Holzbauelemente verlängert sich; die Schulseite wünscht eine größere Mensa. | A2/B2 |
+| 3 | Mär 2026 | LPH 5 Ausführungsplanung | Zusage im Flur, Frist im Förderbescheid: Schulleitung und Schulamt wollen eine größere Mensa, Frank Deppe hat im Flur zugesagt; der Förderbescheid Ganztag verlangt die Inbetriebnahme zum Schuljahr 2028/29, und auf Nachfrage der Bauherren-PL meldet die Generalplanung 26 statt 16 Wochen Lieferzeit für die Holzbauelemente. | A2/B2 |
 | 5 | Mai 2026 | LPH 5 | Montag, 11. Mai: Kostenprognose +8 % gegen +5,9 %; Lenkungskreis am 19. Mai, Bauausschuss am 21. Mai. | A3/B3 |
 | 6 | Jun 2026 | LPH 5 | Baugenehmigung mit Brandschutzauflagen zum Holzbau. | – |
 | 7 | Jul 2026 | LPH 5 | Bauausschuss vertagt (Welt A: 40-Seiten-Bericht ohne Entscheidungsfrage). | A4/B4 |
@@ -81,7 +82,7 @@ Monat 0 ist Dezember 2025; Monat 5 ist Mai 2026 („Kostenprognose 2026-05“). 
 
 Welt A: Die Projektsteuerung schreibt einen monatlichen Statusbericht mit Ampeln; das Controlling rechnet seine CTC getrennt; Excel-Stände wandern per Mail. Welt B: Register mit verantwortlicher Rolle und Turnus nach k6.4.2-t1, ein Managementbericht als Sammelpunkt für die Gremien, benannte Datenstände mit Version.
 
-Kennungen in Welt B (docs/BEGRIFFE.md): `ENT-` Entscheidung, `AEN-` Änderung, `RIS-` Risiko, `FRW-` Frühwarnung, `PRB-` Problem, `MAS-` Maßnahme, `NAC-` Nachweis. Freigaben tragen kein Kürzel, sondern heißen „Freigabe LPH 5“. Bekannt aus B3: `ENT-017`, `AEN-022`, `RIS-014`, `FRW-003`; Datenstand „Kostenprognose 2026-05 · Version 3“, ab Oktober „Kostenprognose 2026-10 · Version 4“ (L-42). Vergeben im Drehbuch: `FRW-002` und `RIS-009` (Lieferzeit Holzbau, B2; `FRW-001` bleibt frei für die Marktnotiz aus B1, je nach Wahl), `AEN-012` (Mensa, B2), `AEN-031` (Brandschutzauflagen, B4), `PRB-004` (Nachtrag der TGA-Fachplanung, B5); in den Rollenszenen der Planung zusätzlich `AEN-036` (B5) und `AEN-041` (B6).
+Kennungen in Welt B (docs/BEGRIFFE.md): `ENT-` Entscheidung, `AEN-` Änderung, `RIS-` Risiko, `FRW-` Frühwarnung, `PRB-` Problem, `MAS-` Maßnahme, `NAC-` Nachweis. Freigaben tragen kein Kürzel, sondern heißen „Freigabe LPH 5“. Bekannt aus B3: `ENT-017`, `AEN-022`, `RIS-014`, `FRW-003`; Datenstand „Kostenprognose 2026-05 · Version 3“, ab Oktober „Kostenprognose 2026-10 · Version 4“ (L-42). Vergeben im Drehbuch: `FRW-002` und `RIS-009` (Lieferzeit Holzbau, B2; `FRW-001` bleibt frei für die offene Preisannahme aus B1, je nach Wahl), `AEN-012` (Mensa, B2), `AEN-031` (Brandschutzauflagen, B4), `PRB-004` (Nachtrag der TGA-Fachplanung, B5); in den Rollenszenen der Planung zusätzlich `AEN-036` (B5) und `AEN-041` (B6).
 
 ## Figuren
 
@@ -205,7 +206,7 @@ funktion: Nutzervertretung, künftige Schulleiterin der Gesamtschule
 farbe: "#B04A5A"
 ---
 ### Kurzbeschreibung
-Spricht für die künftigen Nutzer. Ihr Anliegen in Monat 3: eine größere Mensa für den Ganztag.
+Spricht für Nutzer und Schulamt. Ihr Anliegen in Monat 3: eine größere Mensa für den Ganztag.
 
 ### Stimme
 Herzlich und hartnäckig; sagt „die Kinder“, wenn sie „der Bedarf“ meint.

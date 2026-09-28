@@ -1,7 +1,7 @@
 ---
 station: A5
 rolle: gf
-frage: Gegen die Risikoreserve laufen Posten ohne Freigabe – und sie reicht schon für die Mai-Abweichung nicht. Was tun Sie?
+frage: Die Kämmerei fragt, wer die Reserve freigegeben hat – und sie reicht schon für die Mai-Abweichung nicht. Was tun Sie?
 rueckbezug-auf: A2
 ---
 
@@ -85,7 +85,7 @@ Im März kam die Mensa als Flurzusage. Im September steht sie als angekündigter
 
 ::: regie
 ### Notiz
-Die verbrauchte Reserve ist der Punkt, an dem die Geschäftsführung persönlich betroffen ist. Die Freigabe des Einsatzes der Risikoreserve ist nicht delegierbar (Kap. 3.2) – erst nach der Wahl darauf hinweisen.
+Hier ist die Geschäftsführung persönlich betroffen. Die Freigabe des Einsatzes der Risikoreserve ist nicht delegierbar (Kap. 3.2) – erst nach der Wahl darauf hinweisen.
 
 ### Leitfragen
 - Wer gibt bei Ihnen die Risikoreserve frei – und wo steht das?

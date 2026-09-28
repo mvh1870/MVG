@@ -1,38 +1,38 @@
 ---
 station: A1
 rolle: planung
-frage: Der Bauantrag geht diese Woche raus, die Holzpreise steigen. Worauf richten Sie die Generalplanung in den ersten Wochen aus?
+frage: Die Bauherren-PL fragt, ob Baupreissteigerungen in Ihrer Kostenberechnung stecken. Was antworten Sie?
 ---
 
 ::: option A
 ---
-titel: Eine günstigere Holzbauvariante schon einmal durchrechnen
-kurz: Variante vorrechnen
+titel: Einen Aufschlag nach Baupreisindex schätzen und schicken
+kurz: Aufschlag schätzen
 status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Sie rechnen eine Variante mit anderen Holzbauelementen. Bestellt hat sie niemand; sie liegt als zweiter Kostenstand daneben.
+Ihre Schätzung liegt als dritte Zahl neben Holger Steins und Aylin Kayas. Bestellt hat sie niemand.
 
 ### Was fehlt
-Ein Auftrag – und eine Zielpriorität, die sagt, ob Kosten, ESG oder LCC vorgehen.
+Ein Auftrag – und ein Datenstand, in den die Annahme gehört.
 
 ### Neues Risiko
-Eine Variante ohne Auftrag wird später als Plan gelesen.
+Eine Schätzung ohne Auftrag wird später als Plan gelesen.
 
 ### Governance-Frage
-Wer legt fest, welche Zielpriorität gilt und wie Zielkonflikte aufgelöst werden?
+[[Datenstand]]: Wer entscheidet, welche Preisannahme gilt?
 :::
 
 ::: option B
 ---
-titel: Die Bauherren-PL um eine Zielpriorität bitten
+titel: Auf die Kostenberechnung verweisen und nach der Zielpriorität fragen
 kurz: Zielpriorität erfragen
 status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Sie fragen, was vorgeht. Die Antwort: „Alles ist wichtig.“ Die Generalplanung plant weiter gegen vier Ziele zugleich.
+Sie antworten: Stand LPH 3, ohne Preissteigerung – und fragen, was vorgeht: Kosten, Termin, Holzbau oder Betriebskosten. Die Antwort: „Alles ist wichtig.“
 
 ### Was fehlt
 Ein priorisiertes Zielsystem mit Abwägungsregeln.
@@ -46,22 +46,22 @@ Welche Zielkonflikte darf die Planung selbst auflösen – und welche nicht?
 
 ::: option C
 ---
-titel: Den Bauantrag abschließen und die Marktnotiz per Mail verteilen
-kurz: Bauantrag zuerst, Notiz per Mail
+titel: Den Bauantrag zuerst abschließen und später antworten
+kurz: Bauantrag zuerst
 status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Die Marktnotiz geht an drei Verteiler. Niemand bestätigt oder bewertet sie; sie liegt in drei Postfächern.
+Sie antworten in der Woche darauf. Bis dahin hat die Kämmerei die Projektbasis angesetzt, ohne Preisannahme.
 
 ### Was fehlt
-Ein Ort, an dem ein Signal aufgenommen und bestätigt wird.
+Ein Weg, auf dem eine offene Annahme festgehalten und bewertet wird.
 
 ### Neues Risiko
-Die Preissteigerung beim Holz bleibt ein unbewertetes Signal.
+Die Preissteigerung bleibt eine Frage, die niemand bewertet.
 
 ### Governance-Frage
-[[Frühwarnung]]: Wer bestätigt ein Signal – und was folgt daraus?
+Risikoannahme: Wer trägt auf Bauherrenseite, dass eine Preisannahme im Haushalt fehlt?
 :::
 
 ::: nachsatz
@@ -72,9 +72,9 @@ Die Geschichte merkt sich Ihre Wahl.
 
 ::: regie
 ### Notiz
-Die Generalplanung spürt den Zielkonflikt zuerst. Zeigen, dass sie ihn ohne Priorität des Bauherrn nur selbst auflösen kann.
+Die Generalplanung wird gefragt, nicht gehört. Zeigen, dass sie ohne Auftrag und Priorität des Bauherrn nur schätzen, verweisen oder vertagen kann.
 
 ### Leitfragen
-- Welche Zielkonflikte löst bei Ihnen die Planung, ohne dass jemand es merkt?
+- Wer fragt bei Ihnen die Planung nach Preisannahmen – und wann?
 - Wie erfährt Ihre Planung, was Vorrang hat?
 :::

@@ -1,7 +1,7 @@
 ---
 station: A3
 rolle: ps
-frage: Ihre Prognose sagt +8 %, das Controlling +5,9 %. Was tun Sie?
+frage: Der Bauherr braucht eine Zahl. Ihre sagt +8 %, das Controlling +5,9 %. Was liefern Sie?
 ---
 
 ::: option A
@@ -18,7 +18,7 @@ Ihre +8 % gehen in den Lenkungskreis; Aylin Kaya widerspricht mit +5,9 %. Frank 
 Ein verbindlicher [[Datenstand]]: Welche Version gilt?
 
 ### Neues Risiko
-Zwei Zahlen im Umlauf – der Bauausschuss hört beide.
+Der Bauausschuss hört zwei Zahlen.
 
 ### Governance-Frage
 [[Datenstand]]: Wer legt fest, welche Zahl gilt?
@@ -38,7 +38,7 @@ Zwei Wochen Abstimmung: Ein Teil der Differenz von rund 1,3 Mio. € liegt an ve
 Eine Stelle, die offene Annahmen festlegt.
 
 ### Neues Risiko
-Klärung kostet die Gremientermine.
+Die Gremientermine verstreichen.
 
 ### Governance-Frage
 [[Datenstand]]: Welche Annahmen sind offen – und wer schließt sie?
@@ -70,7 +70,7 @@ Jede Wahl ist nachvollziehbar; es fehlt die Struktur, in der sie wirkt.
 
 ::: regie
 ### Notiz
-Die Projektsteuerung hat die größere Zahl. Zeigen, dass Abgleichen und Aktualisieren Zeit kosten, solange niemand festlegt, welche Zahl gilt.
+Die Projektsteuerung liefert die größere Zahl. Zeigen: Abgleichen und Aktualisieren kosten Zeit, solange niemand festlegt, welche Zahl gilt.
 
 ### Leitfragen
 - Welche Prognose gilt bei Ihnen – und seit wann?

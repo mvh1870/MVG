@@ -45,6 +45,8 @@ export async function lauf(seite, h) {
     if (ohneFokus > 0) h.befund(`k${nr}: ${ohneFokus} scrollbare Tabellen nicht per Tastatur erreichbar`);
     await h.axe(`k${nr}`);
     if (nr === 4 || nr === 8) await h.bild(`k${nr}`);
+    // Lernwerkzeuge (P12.3, O-30): Kap. 1–12 erklären mit kleinen interaktiven Grafiken; jede Art per Tastatur bedienen
+    if (nr <= 12) await lernwerkzeuge(seite, h, nr);
   }
 
   // Zitierfunktion (P10.1): Absatz-Permalink springt zum Absatz, „Zitieren“ zeigt die Angabe
@@ -123,4 +125,41 @@ export async function lauf(seite, h) {
   const kopf3 = await seite.evaluate(() => document.querySelector('.lern-kopf')?.getBoundingClientRect().bottom ?? 0);
   if (imp === null || imp.y > hoehe || imp.y < kopf3 - 1) h.befund(`Impressum-Permalink: Überschrift nicht frei sichtbar (${JSON.stringify(imp)}, Kopfleiste bis ${kopf3})`);
   await h.axe('impressum');
+}
+
+/**
+ * Je Art die erste Grafik der Seite per Tastatur bedienen und die Wirkung prüfen (P12.3).
+ * @param {import('playwright').Page} seite
+ * @param {import('../../werkzeuge/oberflaeche.mjs').Helfer} h
+ * @param {number} nr
+ */
+async function lernwerkzeuge(seite, h, nr) {
+  const zahl = await seite.locator('.lernwerkzeug').count();
+  if (zahl < 2) h.befund(`k${nr}: nur ${zahl} interaktive Grafik(en) (O-30 verlangt Erklärung mit kleinen Grafiken)`);
+  const etappen = seite.locator('[data-pruef="etappen"]').first();
+  if (await etappen.count() > 0) {
+    await etappen.locator('[data-pruef="etappe-1"]').focus();
+    await seite.keyboard.press('ArrowRight');
+    if ((await etappen.locator('[data-pruef="etappe-2"]').getAttribute('aria-pressed')) !== 'true') h.befund(`k${nr}: Etappen folgen der Pfeiltaste nicht`);
+  }
+  const um = seite.locator('[data-pruef="umschalter"]').first();
+  if (await um.count() > 0) {
+    const vorher = await um.locator('[data-pruef="umschalter-ansicht"]').innerText();
+    await um.locator('[data-pruef="umschalter-rechts"]').focus();
+    await seite.keyboard.press('Enter');
+    if ((await um.locator('[data-pruef="umschalter-ansicht"]').innerText()) === vorher) h.befund(`k${nr}: Umschalter wechselt die Ansicht nicht`);
+  }
+  const so = seite.locator('[data-pruef="sortieren"]').first();
+  if (await so.count() > 0) {
+    await so.locator('[data-pruef="posten-1-links"]').focus();
+    await seite.keyboard.press('Enter');
+    if ((await so.locator('[data-pruef="posten-rueck-1"]').innerText()).trim() === '') h.befund(`k${nr}: Sortieren gibt keine Rückmeldung`);
+  }
+  const re = seite.locator('[data-pruef="regler-block"]').first();
+  if (await re.count() > 0) {
+    const vorher = await re.locator('[data-pruef="regler-karte"]').innerText();
+    await re.locator('[data-pruef="regler"]').focus();
+    await seite.keyboard.press('ArrowRight');
+    if ((await re.locator('[data-pruef="regler-karte"]').innerText()) === vorher) h.befund(`k${nr}: Regler reagiert nicht auf die Pfeiltaste`);
+  }
 }

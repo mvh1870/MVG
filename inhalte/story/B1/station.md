@@ -2,7 +2,7 @@
 id: B1
 welt: B
 monat: 1
-titel: Lage verstehen – mit MVG
+titel: Übernahme ohne Übergabe – mit MVG
 lph: 4
 uhr: Montag, 09:00 Uhr
 whitepaper-bezug: [k4.2-p3, k5.3-p1, k6.4.2-t1, k6.4.5-t1, k3.2-t1, k4.2-p1, k4.5-p1, k4.6-p2, k6.3-p2, k6.3-p3, k6.4-p1, k6.4.1-p1, k6.4.3-p2, k9.1-p1, k9.2-p1, k9.2-p3]
@@ -21,7 +21,7 @@ weiter: B2
 titel: Montag, 09:00 Uhr. Monat 1.
 kurz: Einstieg
 ---
-Montag, 5. Januar. Dieselbe Woche, dieselbe Marktnotiz.
+Montag, 5. Januar. Dieselbe Frist der Kämmerei. Die Vorgängerin ist auch hier weg – übergeben hat sie Register.
 
 ::: protokoll
 ---
@@ -37,11 +37,10 @@ von: petersen
 ::: mail
 ---
 von: petersen
-betreff: Marktnotiz Holzbau
+betreff: "WG: Haushaltsansatz 2027 – bis Freitag"
 zeit: "08:47"
-anhang: Marktnotiz_Holzbau_GP_Dez.pdf
 ---
-Marktnotiz der Generalplanung über den Projektverteiler: Holzbauelemente werden teurer, ein Betrag fehlt. Noch in keinem Register.
+Die Kämmerei braucht bis Freitag Mittelabfluss und Kostenobergrenze – und fragt, ob Baupreissteigerungen eingepreist sind.
 :::
 
 ::: datei
@@ -50,15 +49,15 @@ name: Kostenprognose 2026-01 · Version 1
 quelle: Projektsteuerung
 wert: Stand Kostenberechnung · gilt
 ---
-Benannter Datenstand mit Version und Status.
+Benannter Datenstand mit Version, Status und offenen Annahmen.
 :::
 
 ::: chat
 ---
-von: stein
+von: kaya
 zeit: "09:02"
 ---
-Prognose steht als Version 1. Nicht alle Holzannahmen sind aufgeschrieben.
+Version 1 enthält den Mittelabfluss je Jahr. Baupreissteigerung: nicht eingepreist, als offene Annahme vermerkt.
 :::
 :::
 
@@ -78,13 +77,13 @@ In Welt B hat jedes Stück seinen Ort.
 a: mail
 von: petersen
 b: register
-fluss: fruehwarnung
+fluss: managementbericht
 ---
 ### Welt A
-Marktnotiz Holzbau – welche Ablage?
+Haushaltsansatz 2027 – bis Freitag
 
 ### Welt B
-Marktnotiz bei der Projektsteuerung · noch in keinem Register
+Ansatz aus Version 1 · Preisannahme als offen benannt
 :::
 
 ::: paar
@@ -121,7 +120,7 @@ b: zielsystem
 fluss: entscheidung
 ---
 ### Welt A
-Kosten, Termin, ESG, LCC – was geht vor?
+Kosten, 2028, Holzbau, Betriebskosten – was geht vor?
 
 ### Welt B
 Zielpriorität · legt der Bauherr fest
@@ -144,10 +143,10 @@ lose Notizen
 :::
 
 ### Welt A
-Welt A: drei Ablagen, zwei Haftnotizen und eine Kostendatei, die nur einer lesen kann.
+Welt A: drei Ablagen, zwei Haftnotizen, eine Frage der Kämmerei ohne Antwort.
 
 ### Welt B
-Welt B: ein benannter Datenstand, eine Mandatsleiter, eine Zielpriorität, die der Bauherr festlegt – und die Marktnotiz bei der Rolle, die das Frühwarnungsregister führt.
+Welt B: ein benannter Datenstand für die Kämmerei, eine Mandatsleiter, eine Zielpriorität beim Bauherrn.
 :::
 
 ::: schritt werkzeuge
@@ -203,12 +202,12 @@ Kap. 9.2 fragt: [[zitat:k9.2-p3|Wer bereitet vor, wer entscheidet, wer liefert b
 titel: Rhythmus und Register
 kurz: Rhythmus und Register
 ---
-Dienstags Risikosichtung, monatlich Änderungsgremium: Die Marktnotiz hat eine Adresse, bevor jemand rechnet.
+Monatlich CTC und Prognose, dazu der Managementbericht: Die Frage der Kämmerei hat eine Adresse, bevor jemand rechnet.
 
 ::: tafel k6.4.5-t1
 ---
 form: rhythmus
-hervor: [2]
+hervor: [5]
 ---
 :::
 
@@ -235,14 +234,14 @@ wert: Stand Kostenberechnung · gilt
 :::
 
 ::: bekannt
-- Projektbasis 58,4 Mio. € brutto, darin 2,9 Mio. € Risikoreserve; den Einsatz gibt nur der Bauherr frei.
-- LPH 4: Bauantrag geht diese Woche raus.
+- Projektbasis 58,4 Mio. € brutto, vom Stadtrat beschlossen; darin 2,9 Mio. € Risikoreserve, deren Einsatz nur der Bauherr freigibt.
+- Version 1: Mittelabfluss je Jahr, Preissteigerung als offene Annahme.
 - Die Zielpriorität ist noch offen.
 :::
 
 ::: unbekannt
-- Wie stark der Holzpreis trifft {#holzpreis}
-- Ob aus der Marktnotiz ein Risiko wird {#signal}
+- Wie stark Baupreissteigerungen treffen {#preise}
+- Ob daraus ein Risiko wird {#signal}
 - Welche Annahmen nur Holger Stein kennt {#annahmen}
 - Wer Holger Stein vertritt {#stellvertretung}
 :::
@@ -292,7 +291,7 @@ MVG wirkt erst, wenn Zielsystem, RACI und Freigabekalender miteinander verbunden
 ---
 titel: Warum relevant
 ---
-In Monat 1 ist in Welt B so wenig passiert wie in Welt A. Der Unterschied liegt im Zusammenhang: Die Marktnotiz geht an die Rolle, die das Frühwarnungsregister führt; die Zielpriorität liegt als Frage beim Bauherrn; die Kostenprognose hat einen Namen und eine Version. Eine [[RACI]] allein leistet das nicht. [[zitat:k9.2-p1|Entscheidend ist die Kopplung an Mandate, Freigabeschwellen, Stellvertretungen und Eskalationspfade.]] Eine Stellvertretung für Holger Stein ist in dieser Woche noch nicht geregelt – auch Welt B hat offene Punkte, aber sie haben einen Ort. Die Projektbasis hat der Stadtrat beschlossen; jede Freigabe am Abschluss einer Leistungsphase erteilt der Bauherr selbst, auf Vorlage der Bauherren-PL.
+In Monat 1 ist in Welt B so wenig passiert wie in Welt A. Der Unterschied: Die Frage der Kämmerei ist beantwortbar. Der Ansatz kommt aus einem benannten Datenstand, die fehlende Preissteigerung steht darin als offene Annahme; die Zielpriorität liegt als Frage beim Bauherrn. Eine [[RACI]] allein leistet das nicht. [[zitat:k9.2-p1|Entscheidend ist die Kopplung an Mandate, Freigabeschwellen, Stellvertretungen und Eskalationspfade.]] Eine Stellvertretung für Holger Stein ist noch nicht geregelt – auch Welt B hat offene Punkte, aber sie haben einen Ort. Jede Freigabe am Abschluss einer Leistungsphase erteilt der Bauherr selbst, auf Vorlage der Bauherren-PL.
 :::
 
 ::: ebene 3
@@ -303,7 +302,7 @@ titel: Vertiefung
 |---|---|---|
 | Mandatsleiter | 4.2 | Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium über 100 TEUR bis einschließlich 5 Mio. €, darüber der Bauherr im Lenkungskreis |
 | Register mit verantwortlicher Rolle | 6.4.1, 6.4.2 | Frühwarnungsregister bei der Projektsteuerung, Änderungsregister bei der Bauherren-PL, CTC und Prognose beim Controlling |
-| Rhythmus | 6.4.5 | wöchentliche Risikosichtung im Jour fixe, Änderungsgremium monatlich, zzgl. anlassbezogener Sondersitzungen |
+| Rhythmus | 6.4.5 | CTC und Prognose monatlich, wöchentliche Risikosichtung, Änderungsgremium monatlich, zzgl. anlassbezogener Sondersitzungen |
 | Mandats- und Verantwortungsmodell | 9.1 | Rollen, Mandate, Schwellen, Freigaben und Eskalation in einem Modell |
 | RACI mit Mandat | 9.2 | Kopplung an Mandate, Freigabeschwellen, Stellvertretungen und Eskalationspfade |
 
@@ -328,7 +327,7 @@ Jedes Register hat eine verantwortliche Rolle, einen Pflegezyklus und einen defi
 ---
 titel: Ein Datenstand mit Namen
 ---
-Die Projektbasis von 58,4 Mio. € enthält 2,9 Mio. € Risikoreserve. Die Kostenprognose steht als „Kostenprognose 2026-01 · Version 1“ im Datenstand, auf dem Stand der Kostenberechnung; einige Annahmen zum Holz kennt bisher nur Holger Stein. Kap. 4.6 verlangt vom Bauherrn keine eigene Datenpflege: [[zitat:k4.6-p2|Der Bauherr muss nicht alle Daten selbst pflegen, aber er muss sicherstellen, dass Entscheidungen auf belastbaren, benannten und reproduzierbaren Grundlagen beruhen.]]
+Die Projektbasis von 58,4 Mio. € enthält 2,9 Mio. € Risikoreserve. Die Kämmerei bekommt ihren Ansatz aus „Kostenprognose 2026-01 · Version 1“: Mittelabfluss je Jahr, Stand Kostenberechnung, Baupreissteigerung als offene Annahme. Kap. 4.6 verlangt vom Bauherrn keine eigene Datenpflege: [[zitat:k4.6-p2|Der Bauherr muss nicht alle Daten selbst pflegen, aber er muss sicherstellen, dass Entscheidungen auf belastbaren, benannten und reproduzierbaren Grundlagen beruhen.]]
 :::
 
 ::: vertiefung organisation
@@ -340,9 +339,9 @@ Statt einer Liste der Beteiligten gibt es eine RACI mit Mandatsspalte und eine M
 
 ::: vertiefung risiko
 ---
-titel: Ein Signal mit Adresse
+titel: Eine offene Annahme mit Adresse
 ---
-Die Marktnotiz kam über den Projektverteiler bei der Projektsteuerung an, die das Frühwarnungsregister führt; erfasst ist sie noch nicht. Kap. 6.4.3 beschreibt den Weg: [[zitat:k6.4.3-p2|Eine Frühwarnung (EW) ist ein unbewertetes Signal. Wird sie bestätigt, wird daraus ein bewertetes Risiko.]]
+Die fehlende Preissteigerung steht im Datenstand, als Signal im Frühwarnungsregister noch nicht. Kap. 6.4.3 beschreibt den Weg: [[zitat:k6.4.3-p2|Eine Frühwarnung (EW) ist ein unbewertetes Signal. Wird sie bestätigt, wird daraus ein bewertetes Risiko.]]
 :::
 
 ::: vertiefung freigaben
@@ -356,42 +355,42 @@ Im Februar steht die Freigabe zum Abschluss von LPH 4 an. Sie steht im Freigaber
 ---
 figur: deppe
 ---
-„Mandatsleiter steht, Register laufen. Die Zielpriorität lege nicht ich fest – aber festgelegt werden muss sie.“
+„Die Kämmerei bekommt Version 1, mit offener Preisannahme. Die Zielpriorität lege nicht ich fest – aber festgelegt werden muss sie.“
 :::
 
 ::: standpunkt bauherr
 ---
 figur: olbers
 ---
-„Diesmal liegt eine Frage bei mir, bevor etwas passiert ist: Welche Zielpriorität gilt?“
+„Die Zahl des Stadtrats steht im Beschluss, die der Kämmerei im Datenstand. Bei mir liegt, was vorgeht.“
 :::
 
 ::: standpunkt pl
 ---
 figur: sie
 ---
-„Zielsystem, Mandatsleiter, Register – alles hat seinen Ort. Nur die Marktnotiz steht noch in keinem Register, und wer Holger Stein vertritt, weiß ich nicht.“
+„Keine Übergabe, aber Register: Die Kämmerei bekommt Freitag eine Zahl mit Namen. Wer Holger Stein vertritt, weiß ich noch nicht.“
 :::
 
 ::: standpunkt ps
 ---
 figur: brenner
 ---
-„Die Marktnotiz ist bei uns angekommen. Dienstag ist Risikosichtung.“
+„Version 1 geht mit dem Managementbericht raus; die Preisannahme kommt Dienstag in die Risikosichtung.“
 :::
 
 ::: standpunkt planung
 ---
 figur: hoffmeister
 ---
-„Wenn das Holz teurer wird, braucht es eine Variante. Diesmal gibt es Register – mal sehen, ob sie schneller sind als mein Telefon.“
+„Die Kostenberechnung steht in Version 1. Ob Holzbau oder Kosten vorgehen, sagt mir das Zielsystem – sobald es jemand festlegt.“
 :::
 
 ::: standpunkt controlling
 ---
 figur: kaya
 ---
-„Eine Kostenprognose mit Namen und Version – ich weiß endlich, womit ich rechne.“
+„Zahl mit Namen, Version und offener Annahme – die kann die Kämmerei haben.“
 :::
 
 ::: nachweis
@@ -399,18 +398,18 @@ figur: kaya
 mandat: Der Bauherr legt die Zielpriorität fest – nicht delegierbar; der Lenkungskreis berät.
 freigabe: Keine berührt – die Zielpriorität ist keine Freigabe; im Februar steht die Freigabe zum Abschluss von LPH 4 an.
 kennung: Noch keine – die Zielpriorität steht als offene Frage beim Bauherrn.
-datenstand: Kostenprognose 2026-01 · Version 1, auf dem Stand der Kostenberechnung.
+datenstand: Kostenprognose 2026-01 · Version 1, Stand Kostenberechnung; Baupreissteigerung als offene Annahme.
 nachweis: Kick-off-Protokoll vom 16.12.2025 – Zielsystem angelegt, Mandatsleiter vom Bauherrn festgelegt.
-beschlusslage: Mandatsleiter festgelegt; welche Zielpriorität gilt, steht noch aus.
+beschlusslage: Projektbasis vom Stadtrat beschlossen, Mandatsleiter festgelegt; die Zielpriorität steht aus.
 ---
 :::
 
 ::: regie
 ### Notiz
-B1 zeigt dieselbe Woche ohne neues Ereignis. Welt B ist nicht ruhiger, weil weniger passiert, sondern weil jedes Stück einen Ort hat. Nicht beschönigen: Auch hier ist die Marktnotiz vor der Entscheidung noch nicht erfasst, und die Stellvertretung für Holger Stein ist offen. Zuerst den Regler zeigen, dann die RACI mit der Spalte der gespielten Rolle.
+B1 zeigt dieselbe Woche mit derselben Frist. Welt B ist nicht ruhiger, weil weniger passiert, sondern weil jedes Stück einen Ort hat. Nicht beschönigen: Auch hier ist die Preisannahme offen, und die Stellvertretung für Holger Stein ist ungeregelt. Zuerst den Regler zeigen, dann die RACI mit der Spalte der gespielten Rolle.
 
 ### Leitfragen
 - Wo steht bei Ihnen, wer vorbereitet, wer entscheidet und wer freigibt – mit Schwelle?
-- Wie oft sichten Sie Signale, die noch keine Risiken sind?
+- Aus welchem Datenstand beantworten Sie eine Frage Ihrer Kämmerei?
 - Welcher Ihrer Datenstände hat einen Namen und eine Version?
 :::

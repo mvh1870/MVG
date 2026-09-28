@@ -78,7 +78,7 @@ In Welt A haben Sie ‚Lieferzeit bewerten‘ gewählt. In Welt B fließt die Be
 :::
 
 ::: rueckbezug ohne
-In Welt A wurden Marktabfrage und Mail zu einer Flurzusage und einer Terminmail. In Welt B werden sie zu `FRW-002` und `AEN-012`.
+In Welt A wurden Lieferzeit und Mensa zu einer Terminmail und einer Flurzusage. In Welt B werden sie zu `FRW-002` und `AEN-012`.
 :::
 
 ::: regie

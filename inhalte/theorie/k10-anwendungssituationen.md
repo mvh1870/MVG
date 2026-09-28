@@ -1,26 +1,96 @@
 ---
-# Lernseite Kapitel 10 (P6, O-20). Zitate wortgleich mit Absatz-ID (O-17); der vollständige
-# Originaltext kommt über „::: original k10“ aus whitepaper.json (wortgetreu durch Bauart).
+# Lernseite Kapitel 10 (P6, O-20; neu aufbereitet P12.3, O-30). Lesetext in eigenen Worten, ohne neue
+# Fachaussagen (O-17); der vollständige Originaltext kommt über „::: original k10“ (zugeklappt am Ende).
+# Nur wiedergeben, was das Kapitel sagt – keine Aufforderung, keine Referenzen, keine Wirkungszahlen (O-1).
 # Story: DREHBUCH §5 nennt den Epilog; dazu ende-neufestlegung, dessen whitepaper-bezug k10.4-p1 nennt (L-46).
+# Belege Einleitung/Kernaussage: k10.1-p1, k10.2-p1, k10.3-p1, k10.4-p1, k10.5-t1
+# Belege Überblick-Karten: k10.1-p1, k10.2-p1, k10.3-p1
+# Belege k10.1: k10.1-p1
+# Belege k10.2: k10.2-p1
+# Belege k10.3: k10.3-p1
+# Belege k10.4: k10.4-p1
+# Belege k10.5: k10.5-t1
 kapitel: 10
 titel: Anwendungssituationen und Praxislogik
 kurztitel: Anwendungssituationen
 story: [epilog, ende-neufestlegung]
 ---
-Kapitel 10 zeigt, wo Minimum Viable Governance (MVG) in der Praxis ansetzt: bei drei Bauherrentypen, bei Projekten mit schleichendem Steuerungsverlust und bei typischen Entscheidungsproblemen. Für jedes dieser Entscheidungsprobleme nennt MVG, warum es kritisch ist und welches Artefakt bzw. welche Routine hilft.
+Nicht jeder Bauherr hat dieselben Schwierigkeiten. Kapitel 10 zeigt, wo Minimum Viable Governance (MVG) in der Praxis ansetzt: bei öffentlichen Bauherren, bei privaten und institutionellen Bauherren, bei Energieversorgern und Infrastrukturträgern und bei Projekten, die schleichend an Steuerbarkeit verlieren. Zum Schluss stehen fünf typische Entscheidungsprobleme – jeweils mit dem Grund, warum sie kritisch sind, und mit dem Werkzeug, das MVG dafür vorsieht. So können Sie Ihre eigene Lage wiederfinden.
 
 ::: kernaussage
-MVG setzt dort an, wo die jeweilige Bauherrensituation Entscheidungen kritisch macht – bei Nachweis und Gremien, bei Zielkonflikten, bei Freigabereife und Prognose oder bei schleichendem Steuerungsverlust.
+Wo Entscheidungen kritisch werden, hängt von der Lage des Bauherrn ab: bei Nachweis und Gremien, bei Zielkonflikten, bei Freigabereife und Prognose oder bei einem Projekt, das schleichend die Steuerung verliert. MVG setzt jeweils an dieser Stelle an.
+:::
+
+::: karten
+---
+titel: Drei Bauherrentypen im Überblick
+---
+Jeder Typ hat seinen eigenen Engpass. Die Abschnitte unten erklären ihn genauer.
+
+::: karte oeffentlich
+---
+titel: Öffentliche Bauherren
+---
+**Engpass:** viel Nachweis, viele Gremien, komplexe Vergabe.
+
+**Worauf es ankommt:** Entscheidungen, die nachvollziehbar, prüfbar und beschlussfähig sind.
+:::
+
+::: karte privat
+---
+titel: Private und institutionelle Bauherren
+---
+**Engpass:** Tempo, Rendite, Nutzerinteressen, Finanzierung, ESG/LCC und Technik treffen aufeinander.
+
+**Worauf es ankommt:** Zielkonflikte früh klären – ohne Tempo gegen Entscheidungssicherheit auszuspielen.
+:::
+
+::: karte infrastruktur
+---
+titel: Energieversorger und Infrastrukturträger
+---
+**Engpass:** Risiken wandern in Freigaben, Priorisierung, Beschaffung, Komponenten mit langer Lieferzeit und die Restkostenprognose.
+
+**Worauf es ankommt:** Portfoliologik, Frühwarnung, Prognose und Freigabereife.
+:::
 :::
 
 ::: abschnitt k10.1
 ---
 titel: Öffentliche Bauherren
 ---
-Öffentliche Bauherren stehen häufig unter hoher Nachweis-, Gremien- und Vergabekomplexität. Der Nutzen des MVG-Ansatzes liegt hier in klaren Mandaten, Entscheidungsvorlagen, Freigabelogik, Protokollstandard, Vergabeanbindung und belastbar dokumentierten Eskalationen.
+Ein öffentlicher Bauherr entscheidet selten allein und selten nur für sich. Er steht häufig unter hoher Komplexität bei Nachweis, Gremien und Vergabe. Für ihn reicht es nicht, dass eine Entscheidung sachlich plausibel ist. Sie muss zusätzlich **nachvollziehbar** sein (Wie kam sie zustande?), **prüfbar** (Lässt sich der Weg später kontrollieren?) und **beschlussfähig** (Kann das zuständige Gremium darüber tatsächlich beschließen?).
 
-::: zitat k10.1-p1
+Ein Beispiel: Ein Ausschuss soll über zusätzliche Mittel für ein Schulgebäude beschließen. Dass die Mehrkosten fachlich begründet sind, genügt nicht. Der Ausschuss braucht eine Vorlage, die zeigt, wer was vorbereitet hat, auf welchem Stand die Zahlen beruhen und worüber genau er entscheidet.
+
+Genau hier liegt der Nutzen des MVG-Ansatzes für öffentliche Bauherren: in klaren [[Mandat|Mandaten]], in [[Entscheidungsvorlage|Entscheidungsvorlagen]], in einer Freigabelogik, in einem Protokollstandard, in der Anbindung an die Vergabe und in Eskalationen, die belastbar dokumentiert sind. Schalten Sie um: Links sehen Sie die Anforderungen, rechts die Antwort.
+
+::: umschalter
+---
+titel: Was verlangt wird – was hilft
+links: Die Anforderung
+rechts: Der Nutzen von MVG
+---
+::: ansicht links
+Öffentliche Bauherren stehen häufig unter hoher Komplexität in drei Richtungen:
+
+- **Nachweis:** Entscheidungen müssen später belegt werden können.
+- **Gremien:** Wesentliche Entscheidungen laufen über Gremien.
+- **Vergabe:** Vergabeentscheidungen folgen eigenen Regeln.
+
 Entscheidungen müssen nicht nur sachlich plausibel, sondern auch nachvollziehbar, prüfbar und beschlussfähig sein.
+:::
+
+::: ansicht rechts
+Der Nutzen des MVG-Ansatzes liegt hier in sechs Dingen:
+
+- klare Mandate
+- Entscheidungsvorlagen
+- Freigabelogik
+- Protokollstandard
+- Anbindung an die Vergabe
+- belastbar dokumentierte Eskalationen
+:::
 :::
 :::
 
@@ -28,10 +98,37 @@ Entscheidungen müssen nicht nur sachlich plausibel, sondern auch nachvollziehba
 ---
 titel: Private und institutionelle Bauherren
 ---
-Private und institutionelle Bauherren brauchen Steuerbarkeit vor allem dort, wo Geschwindigkeit, Renditeanforderungen, Nutzerinteressen, Finanzierung, [[ESG]]/[[LCC]] und technische Komplexität zusammentreffen. Dazu MVG über den MVG-Ansatz:
+Private und institutionelle Bauherren stehen oft unter anderem Druck: Das Projekt soll schnell vorankommen, eine Rendite erwirtschaften, die Interessen der Nutzer treffen, finanzierbar bleiben, Anforderungen an [[ESG]] und [[LCC]] (Lebenszykluskosten) erfüllen und technisch beherrschbar sein. Wo all das zusammentrifft, braucht der Bauherr Steuerbarkeit.
 
-::: zitat k10.2-p1
-Der Ansatz hilft, Zielkonflikte früh zu klären und operative Geschwindigkeit nicht gegen Entscheidungssicherheit auszuspielen.
+Das Problem liegt selten in einem einzelnen Ziel, sondern darin, dass die Ziele sich widersprechen. Ein Beispiel: Ein schnellerer Bauablauf kann die Finanzierung entlasten, aber eine Entscheidung über die Haustechnik vorziehen, bevor ihre Lebenszykluskosten geklärt sind.
+
+Der MVG-Ansatz hilft, solche Zielkonflikte **früh** zu klären – und operative Geschwindigkeit nicht gegen Entscheidungssicherheit auszuspielen. Beides soll nebeneinander bestehen können. Der Umschalter zeigt beide Seiten.
+
+::: umschalter
+---
+titel: Tempo gegen Sicherheit?
+links: Wo es eng wird
+rechts: Was MVG beiträgt
+---
+::: ansicht links
+Steuerbarkeit wird dort gebraucht, wo mehrere Anforderungen zusammentreffen:
+
+- Geschwindigkeit
+- Renditeanforderungen
+- Nutzerinteressen
+- Finanzierung
+- ESG/LCC
+- technische Komplexität
+
+Jede dieser Anforderungen ist berechtigt. Zusammen erzeugen sie Zielkonflikte.
+:::
+
+::: ansicht rechts
+Der Ansatz hilft,
+
+- Zielkonflikte **früh** zu klären und
+- operative Geschwindigkeit **nicht** gegen Entscheidungssicherheit auszuspielen.
+:::
 :::
 :::
 
@@ -39,31 +136,45 @@ Der Ansatz hilft, Zielkonflikte früh zu klären und operative Geschwindigkeit n
 ---
 titel: Energieversorger und Infrastrukturträger
 ---
-Bei Energieversorgern und Infrastrukturträgern verschieben sich Projektrisiken häufig in Freigaben, Priorisierung, Beschaffung, Entscheidungen zu Komponenten mit langer Lieferzeit und die Disziplin bei der Restkostenprognose. Die Karten ordnen, was MVG hier als besonders relevant nennt – darunter die Freigabereife zum Abschluss von LPH 2, LPH 3 und LPH 7.
+Bei Energieversorgern und Infrastrukturträgern entstehen Risiken oft nicht dort, wo man sie zuerst sucht. Sie verschieben sich in Freigaben, in die Priorisierung zwischen Projekten, in die Beschaffung, in Entscheidungen über Komponenten mit langer Lieferzeit – etwa große Transformatoren oder Turbinen – und in die Disziplin bei der Restkostenprognose ([[CTC]]).
 
-::: karten
+Besonders wichtig sind hier deshalb:
+
+- eine **Projektklassenlogik** und Entscheidungen über **Fortführung oder Stopp**,
+- die **Neupriorisierung** im Projektportfolio,
+- **Frühwarnungen**, eine geordnete **Änderungssteuerung**, CTC und Prognose,
+- und die **Freigabereife** an drei Stellen des Projekts.
+
+Diese drei Stellen zeigt der Regler. Zum Abschluss von LPH 2 geht es um die Wahl der Variante und den [[Business Case]], zum Abschluss von LPH 3 um die [[Finale Investitionsentscheidung (FID)|finale Investitionsentscheidung (FID)]] und zum Abschluss von LPH 7 um die Vergabe oder die Bindung einer Komponente mit langer Lieferzeit.
+
+::: regler
 ---
-titel: Was besonders relevant ist
+titel: Freigabereife an drei Stellen
 ---
-::: karte 1
+Schieben Sie den Regler durch die Leistungsphasen.
+
+::: stufe lph2
 ---
-titel: Portfolio und Fortführung
+titel: Abschluss LPH 2
+marke: Variantenwahl und Business Case
 ---
-[[zitat:k10.3-p1|Projektklassenlogik, Entscheidungen über Fortführung oder Stopp, Neu Priorisierung im Projektportfolio]]
+Zum Abschluss von LPH 2 geht es um die Wahl der Variante und um den Business Case.
 :::
 
-::: karte 2
+::: stufe lph3
 ---
-titel: Frühwarnung, Änderung, Prognose
+titel: Abschluss LPH 3
+marke: FID
 ---
-[[zitat:k10.3-p1|Frühwarnungen, Änderungssteuerung, CTC und Prognose]]
+Nach Entwurfsplanung und Kostenberechnung steht die finale Investitionsentscheidung (FID).
 :::
 
-::: karte 3
+::: stufe lph7
 ---
-titel: Freigabereife
+titel: Abschluss LPH 7
+marke: Vergabe oder Komponente mit langer Lieferzeit
 ---
-[[zitat:k10.3-p1|die Freigabereife zum Abschluss von LPH 2 für Variantenwahl und Business Case, von LPH 3 für die FID nach Entwurfsplanung und Kostenberechnung und von LPH 7 für Vergabe oder die Bindung einer Komponente mit langer Lieferzeit]]
+Hier geht es um die Vergabe oder darum, eine Komponente mit langer Lieferzeit verbindlich zu binden.
 :::
 :::
 
@@ -108,24 +219,39 @@ Besonders relevant sind […] die Freigabereife zum Abschluss von LPH 2 für Var
 ---
 titel: Projekte mit schleichendem Steuerungsverlust und MVG-Neuinitialisierung
 ---
-Schleichender Steuerungsverlust zeigt sich selten an einem einzelnen Fehler; typisch ist ein Bündel von Anzeichen. Dann braucht es oft keine vollständige Neuaufsetzung; eine gezielte [[MVG-Neuinitialisierung]] genügt. Wie sie im Einzelnen abläuft, vertieft Kapitel 11.
+Manche Projekte geraten nicht durch einen großen Fehler aus der Spur, sondern langsam. Einen einzelnen Fehler, an dem man den Steuerungsverlust festmachen könnte, gibt es meist nicht. Erkennbar wird er an einem **Bündel von Anzeichen**: Die Beteiligten arbeiten mit unterschiedlichen Lagebildern, die Prognose weicht Monat für Monat ein Stück weiter ab, Eskalationen laufen über den Flur statt über das Gremium, Änderungen werden ungeordnet bearbeitet, niemand weiß genau, wer was entscheiden darf – und Maßnahmen zeigen keine Wirkung.
 
-::: karten
+Aussagekräftig ist also das Muster, nicht der einzelne Ausreißer. Und wenn das Muster da ist, braucht es oft keine vollständige Neuaufsetzung des Projekts, sondern eine gezielte [[MVG-Neuinitialisierung]]. Sie sichert den Datenstand, ordnet die Entscheidungslandschaft, klärt die Mandate, holt erforderliche Freigaben nach oder wiederholt sie und nutzt den 30/60/90-Orientierungsrahmen für die Neuordnung.
+
+Schalten Sie zwischen Muster und Antwort um. Wie eine MVG-Neuinitialisierung im Einzelnen abläuft, zeigt Kapitel 11.
+
+::: umschalter
 ---
 titel: Muster und Antwort
+links: Woran man es erkennt
+rechts: Was die MVG-Neuinitialisierung tut
 ---
-::: karte 1
----
-titel: Typische Anzeichen
----
-[[zitat:k10.4-p1|Typisch sind unterschiedliche Lagebilder, schleichende Prognoseabweichungen, informelle Eskalationen, ungeordnete Änderungen, unklare Entscheidungsmandate und eine fehlende Wirksamkeit von Maßnahmen.]]
+::: ansicht links
+Typische Anzeichen eines schleichenden Steuerungsverlusts:
+
+- unterschiedliche Lagebilder
+- schleichende Prognoseabweichungen
+- informelle Eskalationen
+- ungeordnete Änderungen
+- unklare Entscheidungsmandate
+- Maßnahmen ohne Wirkung
+
+Selten ist es ein einzelner Fehler – meist ist es das Bündel.
 :::
 
-::: karte 2
----
-titel: Gezielte MVG-Neuinitialisierung
----
-[[zitat:k10.4-p1|Datenstand sichern, Entscheidungslandschaft ordnen, Mandate klären, erforderliche Freigaben nachholen oder wiederholen und den 30/60/90-Orientierungsrahmen für die Neuordnung nutzen.]]
+::: ansicht rechts
+Eine gezielte MVG-Neuinitialisierung statt einer vollständigen Neuaufsetzung:
+
+- Datenstand sichern
+- Entscheidungslandschaft ordnen
+- Mandate klären
+- erforderliche Freigaben nachholen oder wiederholen
+- den 30/60/90-Orientierungsrahmen für die Neuordnung nutzen
 :::
 :::
 :::
@@ -134,50 +260,74 @@ titel: Gezielte MVG-Neuinitialisierung
 ---
 titel: Typische Entscheidungsprobleme
 ---
-Fünf typische Entscheidungsprobleme – von der Variantenfreigabe bis zur MVG-Neuinitialisierung ohne eindeutigen Datenstand. Jede Karte nennt, warum das Problem kritisch ist, und darunter das Artefakt oder die Routine von Bauherr Mentoren, die MVG dafür vorsieht.
+Fünf Entscheidungsprobleme kommen in Bauprojekten immer wieder vor – von der Variantenfreigabe ohne vollständige Abwägung bis zur MVG-Neuinitialisierung ohne eindeutigen Datenstand. Bei der Vergabe unter Preis- und Lieferkettenunsicherheit werden Angebotsgültigkeit, Risiken bei Komponenten mit langer Lieferzeit und Terminfolgen nicht zusammengeführt. Beim Änderungsantrag werden Kosten, Termin, Qualität, Projektumfang, Risiko und ESG/LCC nicht einheitlich bewertet und entschieden. Beim Gremienbeschluss fehlt die Klarheit über das Mandat.
+
+Die Folgen sind ernst. Folgekosten werden spät sichtbar, Beschlüsse werden angreifbar oder müssen nachträglich geheilt werden, und im schlimmsten Fall arbeitet das Projekt mit mehreren Wahrheiten und verliert seine Fähigkeit, wieder anzulaufen.
+
+Für jedes Problem nennt MVG ein Artefakt oder eine Routine, die dagegen hilft – etwa die Entscheidungsvorlage, das Änderungsregister mit verbindlicher Auswirkungsbewertung und dem monatlichen Änderungsgremium oder die Festschreibung des Datenstands. Die Tafel zeigt alle fünf; in der Übung darunter ordnen Sie Werkzeuge ihrem Problem zu.
 
 ::: tafel k10.5-t1
 ---
 form: register
 ---
 :::
+
+::: sortieren
+---
+titel: Welches Werkzeug gehört zu welchem Problem?
+links: Änderungsantrag mit unvollständiger Auswirkungsbewertung
+rechts: Gremienbeschluss ohne Mandatsklarheit
+---
+Ordnen Sie jedes Werkzeug einem der beiden Probleme zu.
+
+::: posten 1
+---
+seite: links
+---
+Änderungsregister
+
+### Erklärung
+Es gehört zur Antwort auf Änderungsanträge mit unvollständiger Auswirkungsbewertung.
 :::
 
-::: ebenen
-::: ebene 1
+::: posten 2
 ---
-titel: Kernaussage
+seite: rechts
 ---
-Kritisch wird es je nach Bauherr an anderer Stelle – Kapitel 10 ordnet die Situationen, Kapitel 11 vertieft die MVG-Neuinitialisierung.
+RACI
+
+### Erklärung
+RACI gehört – mit Mandatsmatrix und Entscheidungsvorlage – zur Antwort auf Gremienbeschlüsse ohne Mandatsklarheit.
 :::
 
-::: ebene 2
+::: posten 3
 ---
-titel: Warum relevant
+seite: links
 ---
-Steuerungsverlust zeigt sich selten an einer einzigen Stelle: [[zitat:k10.4-p1|Projekte mit schleichendem Steuerungsverlust erkennt man selten an einem einzelnen Fehler.]]
+Verbindliche Auswirkungsbewertung
+
+### Erklärung
+Sie setzt dort an, wo Kosten, Termin, Qualität, Projektumfang, Risiko und ESG/LCC sonst nicht einheitlich bewertet werden.
 :::
 
-::: ebene 3
+::: posten 4
 ---
-titel: Vertiefung
+seite: rechts
 ---
-Die Anwendungssituationen laut den Abschnitten 10.1 bis 10.4:
+Mandatsmatrix
 
-| Situation | Worauf es ankommt |
-|---|---|
-| Öffentliche Bauherren (10.1) | klare Mandate, Entscheidungsvorlagen, Freigabelogik, Protokollstandard, Vergabeanbindung und belastbar dokumentierte Eskalationen |
-| Private und institutionelle Bauherren (10.2) | Zielkonflikte früh klären, operative Geschwindigkeit nicht gegen Entscheidungssicherheit ausspielen |
-| Energieversorger und Infrastrukturträger (10.3) | Projektklassenlogik, Fortführung oder Stopp, Frühwarnungen, Änderungssteuerung, CTC und Prognose, Freigabereife zum Abschluss von LPH 2, LPH 3 und LPH 7 |
-| Projekte mit schleichendem Steuerungsverlust (10.4) | oft genügt eine gezielte MVG-Neuinitialisierung statt einer vollständigen Neuaufsetzung |
+### Erklärung
+Sie gehört zur Antwort auf Gremienbeschlüsse ohne Mandatsklarheit; ohne sie werden Beschlüsse angreifbar oder müssen nachträglich geheilt werden.
 :::
 
-::: ebene 4
+::: posten 5
 ---
-titel: Nachweis
+seite: links
 ---
-::: zitat k10.4-p1
-Oft reicht dann keine vollständige Neuaufsetzung, sondern eine gezielte MVG-Neuinitialisierung: Datenstand sichern, Entscheidungslandschaft ordnen, Mandate klären, erforderliche Freigaben nachholen oder wiederholen und den 30/60/90-Orientierungsrahmen für die Neuordnung nutzen.
+Änderungsgremium (monatlich, zuzüglich anlassbezogener Sondersitzungen)
+
+### Erklärung
+Es gehört – mit Änderungsregister und verbindlicher Auswirkungsbewertung – zur Antwort auf Änderungsanträge mit unvollständiger Auswirkungsbewertung.
 :::
 :::
 :::
@@ -201,7 +351,7 @@ Die Projektbasis trägt nicht mehr: Über eine Entscheidungsvorlage vorbereitet,
 
 ::: regie
 ### Notiz
-Kapitel 10 ordnet MVG nach Bauherrentypen und Situationen. Den Abschnitt wählen, der zum Kunden passt (10.1 öffentliche, 10.2 private und institutionelle Bauherren, 10.3 Energieversorger und Infrastrukturträger), die anderen überspringen. Es trägt die Tafel der typischen Entscheidungsprobleme (10.5): Der Kunde wählt ein Problem, das er kennt. Keine Erfahrungen, Referenzen oder Kundenbeispiele von BM behaupten.
+Kapitel 10 ordnet MVG nach Bauherrentypen und Situationen. Mit den Überblick-Karten beginnen, dann nur den Abschnitt öffnen, der zum Kunden passt (10.1 öffentliche, 10.2 private und institutionelle Bauherren, 10.3 Energieversorger und Infrastrukturträger). Es trägt die Tafel der typischen Entscheidungsprobleme (10.5): Der Kunde wählt ein Problem, das er kennt. Keine Erfahrungen, Referenzen oder Kundenbeispiele von BM behaupten; die Beispiele im Lesetext sind allgemein.
 
 ### Leitfragen
 - Welches der typischen Entscheidungsprobleme aus 10.5 kennen Sie aus Ihren Projekten?

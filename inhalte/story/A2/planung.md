@@ -1,7 +1,7 @@
 ---
 station: A2
 rolle: planung
-frage: Die Lieferzeit steigt, die Schulseite will eine größere Mensa. Was tun Sie?
+frage: Die Bauherren-PL fragt nach der Lieferzeit, die Schulseite will eine größere Mensa. Was tun Sie?
 ---
 
 ::: option A
@@ -53,7 +53,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Ihre Terminbewertung geht per Mail an Projektsteuerung und Bauherren-PL: gelesen, nirgends erfasst. Die Mensa läuft als Flurzusage weiter.
+Ihre Terminbewertung geht per Mail an Projektsteuerung und Bauherren-PL: gelesen, nirgends erfasst. Die Förderfrist wackelt, die Mensa läuft als Flurzusage weiter.
 
 ### Was fehlt
 Ein Register, in dem aus dem Signal ein bewertetes Risiko wird.
@@ -71,7 +71,7 @@ Jede Wahl ist nachvollziehbar; es fehlt die Struktur, in der sie wirkt.
 
 ::: regie
 ### Notiz
-Die Planung hört „Wir kriegen das hin“ und muss handeln. Zeigen, dass sie zwischen Auftrag und Zusage allein bleibt.
+Die Planung hört „Machen wir“ und muss handeln – zwischen Auftrag und Zusage allein.
 
 ### Leitfragen
 - Wann gilt bei Ihnen eine Zusage als Auftrag?

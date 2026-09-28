@@ -1,7 +1,7 @@
 ---
 station: A6
 rolle: planung
-frage: Die Freigabe zum Abschluss von LPH 5 steht an. Was liefert die Generalplanung?
+frage: Der Bauherr soll über den Abschluss von LPH 5 entscheiden und der Fraktion antworten. Was liefern Sie?
 rueckbezug-auf: A5
 ---
 
@@ -39,7 +39,7 @@ Die Freigabe verschiebt sich. Dr. Olbers nennt dem Stadtrat einen offenen Termin
 Eine Übersicht, welche Änderungen offen und welche beschlossen sind.
 
 ### Neues Risiko
-Die Planung hält das Projekt an einer Frage fest, die niemand beantwortet.
+Das Projekt hängt an einer unbeantworteten Frage.
 
 ### Governance-Frage
 [[Mandat]]: Wer entscheidet, ob offene Änderungen den Abschluss hindern?
@@ -87,7 +87,7 @@ Im September standen Auflagen und Mensa-Umplanung ohne Auftrag und ohne Deckung 
 
 ::: regie
 ### Notiz
-Die Planung soll den Abschluss melden, während vieles offen ist. Zeigen, dass niemand festlegt, welche offenen Punkte den Abschluss hindern.
+Die Planung soll liefern, während vieles offen ist. Zeigen, dass niemand festlegt, welche Punkte den Abschluss hindern.
 
 ### Leitfragen
 - Wie viele offene Punkte hatte Ihr letzter Abschluss einer Leistungsphase?

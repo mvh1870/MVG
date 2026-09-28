@@ -21,7 +21,7 @@ weiter: A6
 titel: Mittwoch, 14:00 Uhr. Monat 9.
 kurz: Einstieg
 ---
-Mittwoch, 9. September, nach der Sommerpause. Der Lenkungskreis im Juli brachte keine gemeinsame Grundlage. Seit Juni kamen Brandschutzauflagen, ein Nachtrag der TGA-Fachplanung und ein angekündigter Mensa-Nachtrag dazu.
+Mittwoch, 9. September, nach der Sommerpause. Im Dezernat liegt eine Anfrage der Kämmerei: Wer hat den Einsatz der Risikoreserve freigegeben?
 
 ::: akten
 ---
@@ -42,12 +42,21 @@ von: petersen
 - Deckung der Mehrkosten: nicht besprochen.
 :::
 
+::: mail
+---
+von: olbers
+betreff: "WG: Anfrage Kämmerei – Risikoreserve"
+zeit: "13:31"
+---
+„Ich habe nichts freigegeben. Bis Freitag: Was läuft gegen die Reserve, und wer hat es veranlasst?“
+:::
+
 ::: chat
 ---
 von: kaya
 zeit: "13:48"
 ---
-Brandschutz, Mensa, TGA laufen gegen die Reserve. Wer hat das freigegeben?
+Brandschutz, Mensa, TGA laufen gegen die Reserve. Gefragt wurde der Bauherr nie.
 :::
 
 ::: notiz
@@ -55,13 +64,6 @@ Brandschutz, Mensa, TGA laufen gegen die Reserve. Wer hat das freigegeben?
 farbe: rosa
 ---
 Mensa: Auftrag? Oder nur Zusage?
-:::
-
-::: notiz
----
-farbe: lila
----
-Wer gibt die Reserve frei?
 :::
 
 ::: notiz
@@ -213,21 +215,21 @@ Im Jour-fixe-Protokoll stehen die Posten; wer ihre Deckung beschlossen hat, steh
 ---
 figur: deppe
 ---
-„Die Auflagen sind Pflicht, und die Schulseite rechnet mit der größeren Mensa. Dass das aus der Reserve kommt, lag nahe. Hätte das jemand anders entscheiden müssen?“
+„Die Auflagen sind Pflicht, die Mensa habe ich zugesagt. Dass das aus der Reserve kommt, lag nahe. Hätte das der Bauherr entscheiden müssen?“
 :::
 
 ::: standpunkt bauherr
 ---
 figur: olbers
 ---
-„Worüber soll ich hier entscheiden? 2,9 Mio. € Reserve, und aus einer Rechnung des Controllings erfahre ich, was schon gegen sie läuft – und wer hat das angenommen?“
+„Die Kämmerei fragt mich, wer die Reserve freigegeben hat. Ich war es nicht. Wer hat dieses Risiko angenommen?“
 :::
 
 ::: standpunkt pl
 ---
 figur: sie
 ---
-„Freigegeben habe ich nichts. Trotzdem wird man mich fragen, wo die Reserve geblieben ist.“
+„Freigegeben habe ich nichts. Die Antwort an die Kämmerei muss trotzdem von uns kommen.“
 :::
 
 ::: standpunkt ps
@@ -241,7 +243,7 @@ figur: brenner
 ---
 figur: hoffmeister
 ---
-„Die Auflagen gelten, und die Schulseite rechnet mit der größeren Mensa. Einen Auftrag für die Umplanung habe ich trotzdem nicht.“
+„Auflagen und Mensa habe ich als Nachtrag gemeldet. Dass die Reserve sie deckt, hat der Bauherr nie beschlossen.“
 :::
 
 ::: standpunkt controlling

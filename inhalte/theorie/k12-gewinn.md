@@ -1,17 +1,52 @@
 ---
-# Lernseite Kapitel 12 (P6, O-20). Zitate wortgleich mit Absatz-ID (O-17); der vollständige
-# Originaltext kommt über „::: original k12“ aus whitepaper.json (wortgetreu durch Bauart).
-# Beschreiben, was das Whitepaper sagt – kein Vertrieb, keine Aufforderung (O-1).
+# Lernseite Kapitel 12 (P6, O-20; neu aufbereitet P12.3, O-30). Lesetext in eigenen Worten, ohne neue
+# Fachaussagen (O-17); der vollständige Originaltext kommt über „::: original k12“ (zugeklappt am Ende).
+# Beschreiben, was das Kapitel sagt – kein Vertrieb, keine Aufforderung, keine Wirkungszahlen (O-1).
 # Story: DREHBUCH §5 nennt „ausgang“; Kap. 12 berührt davon ende-steuerbar (k12-p1), laut whitepaper-bezug.
+# Belege Einleitung/Kernaussage: k12-p1, k12.1-p1
+# Belege k12 (Bilanz): k12-p1, k12-t1, k12-p2
+# Belege k12.1: k12.1-p1, k12.1-t1
 kapitel: 12
 titel: Was Bauherren mit MVG und MVG Companion gewinnen
 kurztitel: Was Bauherren gewinnen
 story: [ende-steuerbar]
 ---
-Kapitel 12 zieht Bilanz: was Minimum Viable Governance (MVG) und der MVG Companion für Bauherren bewirken – die Karten nennen fünf Gewinne mit ihrer Wirkung – und wie der Einstieg aussieht. Es schließt den Bogen zur Leitthese vom Anfang.
+Kapitel 12 zieht Bilanz. Es fragt, was Minimum Viable Governance (MVG) und der MVG Companion für Bauherren bewirken sollen, und beschreibt, wie ein Einstieg aussieht. Damit schließt sich der Bogen zur Leitthese vom Anfang: Arbeit lässt sich delegieren, die Legitimation des Bauherrn nicht.
 
 ::: kernaussage
-[[zitat:k12-p1|Für Bauherren zählt am Ende nicht die Zahl der Governance-Artefakte, sondern ihre Führungswirkung.]]
+Am Ende zählt nicht, wie viele Governance-Artefakte es gibt, sondern ob der Bauherr damit besser führen kann. Der Einstieg dazu ist klein angelegt: Er beginnt mit einer kompakten MVG-Reifegradanalyse.
+:::
+
+::: abschnitt k12
+---
+titel: Führungswirkung statt Artefakte
+---
+Man könnte den Nutzen von Governance an der Menge messen: an Registern, Vorlagen und Berichten. MVG legt einen anderen Maßstab an. Entscheidend ist nicht die **Zahl** der Governance-Artefakte, sondern ihre **Führungswirkung** – also die Frage, ob der Bauherr durch sie besser führen kann.
+
+MVG und der [[MVG Companion]] sollen dafür eine pragmatische Architektur schaffen. Sie bereitet Entscheidungen schneller vor, macht Mandate klarer, erhöht die Fähigkeit der Gremien, zu entscheiden, und führt Nachweise belastbarer. Die Tafel nennt fünf Gewinne und ihre Wirkung – von klareren Entscheidungen bis zu einer geringeren Zusatzlast, weil der Mindeststandard auf führungsrelevante Entscheidungen konzentriert bleibt.
+
+Das Schlussbild ordnet die Rollen: MVG ist als schlankes [[Bauherren-Führungsmodell]] gedacht, der MVG Companion als anwendungsnaher Beschleuniger. Zusammen sollen sie Bauherrenverantwortung nicht abstrakter machen, sondern praktischer – vorbereitet, mandatiert, nachvollziehbar und im Regelbetrieb nutzbar. Schalten Sie zwischen den beiden Rollen um.
+
+::: umschalter
+---
+titel: Woran MVG gemessen wird
+links: Nicht maßgeblich
+rechts: Maßgeblich
+---
+::: ansicht links
+**Die Zahl der Governance-Artefakte.**
+
+Wie viele Register, Vorlagen oder Berichte es gibt, sagt allein noch nichts darüber, ob der Bauherr führen kann.
+:::
+
+::: ansicht rechts
+**Die Führungswirkung.** Die Architektur aus MVG und MVG Companion
+
+- bereitet Entscheidungen schneller vor,
+- macht Mandate klarer,
+- erhöht die Gremienfähigkeit,
+- führt Nachweise belastbarer.
+:::
 :::
 
 ::: tafel k12-t1
@@ -20,53 +55,27 @@ form: karten
 ---
 :::
 
-::: abschnitt k12.1
+::: umschalter
 ---
-titel: Pragmatischer Einstieg
+titel: Zwei Rollen im Schlussbild
+links: MVG
+rechts: MVG Companion
 ---
-Laut MVG beginnt der Einstieg mit einer kompakten MVG-Reifegradanalyse; sie macht sichtbar, welche Entscheidungen, Mandate, Datenstände und Nachweise kritisch sind. Auf dieser Grundlage kann der Bauherr priorisieren, welche MVG-Bausteine sofort wirksam werden und wo der [[MVG Companion]] die Einführung beschleunigt. Die Karten zeigen drei Einstiegspunkte mit Kernfrage und Ergebnis.
+::: ansicht links
+**Ein schlankes Bauherren-Führungsmodell.**
 
-::: zitat k12.1-p1
-Der Einstieg ist kein Governance-Großprojekt.
-:::
-
-::: tafel k12.1-t1
----
-form: karten
----
-:::
+Einer der fünf Gewinne ist eine geringere Zusatzlast: Der Mindeststandard bleibt auf führungsrelevante Entscheidungen konzentriert.
 :::
 
-::: ebenen
-::: ebene 1
----
-titel: Kernaussage
----
-Maßstab ist die Führungswirkung, nicht die Zahl der Artefakte: MVG und der MVG Companion bereiten Entscheidungen schneller vor, machen Mandate klarer, erhöhen die Gremienfähigkeit und führen Nachweise belastbarer.
+::: ansicht rechts
+**Ein anwendungsnaher Beschleuniger.**
+
+Er setzt in der Anwendung an: Betriebshandbuch, Routinen und seine Unterstützung erleichtern den Regelbetrieb, und beim Einstieg kann er die Einführung beschleunigen.
+:::
 :::
 
-::: ebene 2
----
-titel: Warum relevant
----
-Die Bilanz führt zur Leitthese zurück: [[zitat:k12-p2|Arbeit kann delegiert werden – bauherrenseitige Legitimation nicht.]]
-:::
-
-::: ebene 3
----
-titel: Vertiefung
----
-Die fünf Gewinne stehen oben als Karten. Laut Schlussbild macht die Kombination aus MVG und MVG Companion Bauherrenverantwortung nicht abstrakter, sondern praktischer: [[zitat:k12-p2|vorbereitet, mandatiert, nachvollziehbar und im Regelbetrieb nutzbar]].
-:::
-
-::: ebene 4
----
-titel: Nachweis
----
-::: zitat k12.1-p1
-Der Einstieg ist kein Governance-Großprojekt. Er beginnt mit einer kompakten MVG-Reifegradanalyse, die in kurzer Zeit sichtbar macht, welche Entscheidungen, Mandate, Datenstände und Nachweise kritisch sind. Auf dieser Grundlage kann der Bauherr priorisieren, welche MVG-Bausteine sofort wirksam werden und wo der Companion die Einführung beschleunigt.
-:::
-:::
+::: zitat k12-p2
+Arbeit kann delegiert werden – bauherrenseitige Legitimation nicht.
 :::
 
 ::: wissenscheck fuehrungswirkung
@@ -96,6 +105,52 @@ Die Zahl der Artefakte zählt am Ende gerade nicht.
 Für Bauherren zählt am Ende nicht die Zahl der Governance-Artefakte, sondern ihre Führungswirkung. MVG und der MVG Companion schaffen eine pragmatische Architektur, die Entscheidungen schneller vorbereitet, Mandate klarer macht, die Gremienfähigkeit erhöht und Nachweise belastbarer führt.
 :::
 :::
+:::
+
+::: abschnitt k12.1
+---
+titel: Pragmatischer Einstieg
+---
+Wer an Governance denkt, denkt schnell an ein großes Einführungsprojekt. So ist der Einstieg in MVG nicht angelegt. Er beginnt mit einer kompakten **MVG-Reifegradanalyse**. Sie macht in kurzer Zeit sichtbar, welche Entscheidungen, Mandate, Datenstände und Nachweise im Projekt kritisch sind.
+
+Auf dieser Grundlage priorisiert der Bauherr: Welche MVG-Bausteine sollen sofort wirken? Und wo kann der MVG Companion die Einführung beschleunigen? Der Bauherr muss also nicht alles auf einmal einführen, sondern kann beim Kritischen beginnen.
+
+MVG nennt drei Einstiegspunkte. Die **Reifegradanalyse** klärt, welche Entscheidungen, Mandate, Freigaben und Datenstände im 30/60/90-Orientierungsrahmen relevant sind, und liefert ein Lagebild, eine Entscheidungsliste und priorisierte Umsetzungsschritte. Die **Companion-Kalibrierung** klärt, welche Rollen, Entscheidungsroutinen und Teile des Betriebshandbuchs mit Unterstützung des Companion verfügbar sein sollen. Bei der **Entscheidung für die Pilotierung** wird eine echte Entscheidung gesucht, an der sich das MVG-Modell kalibrieren lässt – ein Praxistest mit Freigabefrage, [[Entscheidungs-ID]], Datenstand und Nachweislogik.
+
+Klicken Sie sich durch den Ablauf; die Tafel darunter zeigt die drei Einstiegspunkte mit Kernfrage und Ergebnis.
+
+::: etappen
+---
+titel: Vom Einstieg zur Priorisierung
+---
+::: etappe 1
+---
+titel: Kompakte MVG-Reifegradanalyse
+---
+Am Anfang steht kein großes Governance-Projekt, sondern eine kompakte MVG-Reifegradanalyse.
+:::
+
+::: etappe 2
+---
+titel: Sichtbar machen, was kritisch ist
+---
+Die Analyse zeigt in kurzer Zeit, welche Entscheidungen, Mandate, Datenstände und Nachweise kritisch sind.
+:::
+
+::: etappe 3
+---
+titel: Priorisieren
+---
+Auf dieser Grundlage entscheidet der Bauherr, welche MVG-Bausteine sofort wirksam werden und wo der MVG Companion die Einführung beschleunigt.
+:::
+:::
+
+::: tafel k12.1-t1
+---
+form: karten
+---
+:::
+:::
 
 ::: original k12
 :::
@@ -109,7 +164,7 @@ Nach der MVG-Neuinitialisierung ist das Projekt wieder steuerbar: Das Bauherren-
 
 ::: regie
 ### Notiz
-Kapitel 12 zieht Bilanz; hier ist die Nähe zum Vertrieb am größten – nur wiedergeben, was MVG sagt, keine Aufforderung, kein Angebot, keine Wirkungszahlen. Es tragen die fünf Gewinne in der Tafel, besonders „Geringere Zusatzlast“: Der Mindeststandard bleibt auf führungsrelevante Entscheidungen konzentriert. Mit der Leitthese schließen.
+Kapitel 12 zieht Bilanz; hier ist die Nähe zum Vertrieb am größten – nur wiedergeben, was MVG sagt, keine Aufforderung, kein Angebot, keine Wirkungszahlen. Es tragen der Umschalter „Woran MVG gemessen wird“ und die fünf Gewinne in der Tafel, besonders „Geringere Zusatzlast“: Der Mindeststandard bleibt auf führungsrelevante Entscheidungen konzentriert. Mit der Leitthese schließen.
 
 ### Leitfragen
 - Welcher der fünf Gewinne wäre in Ihrem Projekt am ehesten spürbar?

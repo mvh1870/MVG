@@ -1,24 +1,99 @@
 ---
-# Lernseite Kapitel 7 (P6, O-20). Zitate wortgleich mit Absatz-ID (O-17); der vollständige
-# Originaltext kommt über „::: original k7“ aus whitepaper.json (wortgetreu durch Bauart).
-# Beschreiben, was das Whitepaper sagt – kein Vertrieb, keine Aufforderung (O-1);
-# Reifegradanalyse nur als Methode (O-8); Leistungsgrenzen wortgetreu (O-17).
+# Lernseite Kapitel 7 (P12.3, O-30): erklärend in eigenen Worten, kleine interaktive Grafiken,
+# der vollständige Originaltext kommt über „::: original k7“ zugeklappt ans Seitenende.
+# Beschreiben, nicht anbieten (O-1); Reifegradanalyse nur als Methode, ohne Punkteskala (O-8, L-50);
+# Leistungsgrenzen wortgetreu (O-17). Keine neuen Fachaussagen – Belege je Abschnitt:
+# Belege Einleitung/Kernaussage: k7-p1, k7-p2, k7-l1, k7.1-t1 … k7.5-t1 (Zeile „Rolle des Bauherrn“), k7.6-p1
+# Belege Umsetzungspfad: k7-p2, k7-l1, k7.1-t1, k7.2-t1, k7.3-t1, k7.4-t1 (Zeile „Zweck“), k7.4-p1
+# Belege k7.1: k7.1-p1, k7.1-p2, k7.1-t1
+# Belege k7.2: k7.2-p1, k7.2-t1
+# Belege k7.3: k7.3-p1, k7.3-t1
+# Belege k7.4: k7.4-p1, k7.4-p2, k7.4-t1
+# Belege k7.5: k7.5-p1, k7.5-t1
+# Belege k7.6: k7.6-p1, k7.6-t1, k7.6-p2
 kapitel: 7
 titel: Leistungsarchitektur von Bauherr Mentoren
 kurztitel: Leistungsarchitektur
 story: [wirklichkeit, epilog]
 ---
-Kapitel 7 beschreibt den Weg von der Diagnose zur Anwendung von Minimum Viable Governance (MVG): wie die Bauherrenorganisation ihre nichtdelegierbaren Verantwortungen sichtbar, entscheidungsfähig, nachweisbar und dauerhaft ausübbar macht. Bauherr Mentoren gliedert ihn in vier Leistungspakete entlang des Umsetzungspfads und die MVG-Neuinitialisierung als Sonderformat. Jedes Paket nennt, was der Bauherr selbst beiträgt und entscheidet; zum Schluss zieht das Kapitel die Grenzen der Leistungen.
+Kapitel 7 beschreibt, wie Bauherr Mentoren die Arbeit mit Minimum Viable Governance (MVG) gliedert: als Weg von der Diagnose zur Anwendung. Dieser Weg ist kein Baukasten einzelner Spezialleistungen. Er zeigt, wie eine Bauherrenorganisation ihre nichtdelegierbaren Verantwortungen sichtbar, entscheidungsfähig, nachweisbar und dauerhaft ausübbar macht. Für den Bauherrn ist das Kapitel vor allem deshalb lesenswert, weil es in jedem Schritt festhält, was er selbst beiträgt und entscheidet – und wo die Leistungen von Bauherr Mentoren enden.
 
 ::: kernaussage
-[[zitat:k7-p2|Der Umsetzungspfad folgt einer einfachen Logik: Diagnose, Konzeption, Pilotierung, Befähigung und Übergang in den Regelbetrieb.]]
+Der Umsetzungspfad führt von der Diagnose über Konzeption, Pilotierung und Befähigung in den Regelbetrieb; für laufende Projekte mit eingeschränkter Steuerbarkeit kommt die MVG-Neuinitialisierung als Sonderformat hinzu. In jedem Schritt bleiben die Entscheidungen beim Bauherrn.
+:::
+
+::: etappen
+---
+titel: Der Umsetzungspfad auf einen Blick
+---
+Vier Leistungspakete bauen aufeinander auf und münden in den Regelbetrieb. Die MVG-Neuinitialisierung steht als Sonderformat daneben (Abschnitt 7.5). Klicken Sie sich durch die Stationen.
+
+::: etappe 1
+---
+titel: Diagnose
+---
+Die **MVG-Reifegradanalyse** liefert ein schnelles Lagebild: Kann die Bauherrenorganisation ihre Entscheidungen, Mandate und Nachweise heute ausreichend beherrschen?
+:::
+
+::: etappe 2
+---
+titel: Konzeption
+---
+Die **MVG-Konzeption** entwirft daraus ein belastbares Mandats-, Rollen-, Freigabe- und Entscheidungsmodell – das Bauherren-Führungsmodell.
+:::
+
+::: etappe 3
+---
+titel: Pilotierung
+---
+**Pilotierung und Kalibrierung** testen das Modell an realen Entscheidungs- und Freigabesituationen und justieren es nach.
+:::
+
+::: etappe 4
+---
+titel: Befähigung
+---
+**Befähigung und Übergabe** verankern das Modell in den Schlüsselrollen und übergeben es in den Regelbetrieb.
+:::
+
+::: etappe 5
+---
+titel: Regelbetrieb
+---
+Das Bauherren-Führungsmodell läuft nach Abschluss des Mandats in der Bauherrenorganisation weiter – getragen von den eigenen Rollen.
+:::
 :::
 
 ::: abschnitt k7.1
 ---
 titel: MVG-Reifegradanalyse
 ---
-Die MVG-Reifegradanalyse ist der Einstieg: ein evidenzbasiertes Lagebild dazu, ob der Bauherr seine Verantwortung ausüben kann. Gefragt wird nicht, ob Unterlagen vollständig wirken, sondern ob die Bauherrenorganisation ihre wesentlichen Entscheidungen, Mandate, Risikoannahmen, Freigaben, Datenstände und Nachweise ausreichend beherrscht. Sie ist eine Methode von Bauherr Mentoren mit 10 Domänen und 49 Fragen; die sechs Verantwortungsfelder strukturieren als Kernmodell die Bauherrenverantwortung, gemessen wird über die Domänen.
+Die MVG-Reifegradanalyse ist der Einstieg. Sie erzeugt typischerweise in zwei bis vier Wochen ein evidenzbasiertes Lagebild dazu, ob der Bauherr seine Verantwortung tatsächlich ausüben kann. Die entscheidende Frage ist dabei nicht, ob die Projektunterlagen vollständig wirken. Gefragt wird, ob die Bauherrenorganisation ihre wesentlichen Entscheidungen, Mandate, Risikoannahmen, Freigaben, Datenstände und Nachweise ausreichend beherrscht.
+
+Typischer Anlass sind unklare Mandate, ein Entscheidungsstau, auseinanderlaufende Datenstände, Brüche bei Freigaben oder Risiken und Änderungen, die sich schleichend entwickeln. Am Ende stehen eine Bewertungsmatrix, die wichtigsten Risiken und Verantwortungslücken, eine Entscheidungsliste und ein [[30/60/90-Tage-Plan]].
+
+Methodisch ist die Analyse ein Instrument von Bauherr Mentoren: Sie misst über zehn MVG-Domänen mit 49 Fragen. Die sechs Verantwortungsfelder geben dabei die Struktur der Bauherrenverantwortung vor, gemessen wird aber ausschließlich über die Domänen. Der Bauherr benennt eine verantwortliche Rolle, stellt die Kernunterlagen bereit, nimmt an Gesprächen und am Managementbericht teil und entscheidet über die Prioritäten.
+
+::: umschalter
+---
+titel: Worauf die Analyse schaut
+links: Nicht im Mittelpunkt
+rechts: Im Mittelpunkt
+---
+::: ansicht links
+**Ob die Unterlagen vollständig wirken.** Ein gut gefüllter Projektordner sagt noch nicht, ob jemand die wesentlichen Entscheidungen im Griff hat.
+:::
+
+::: ansicht rechts
+**Ob der Bauherr seine Verantwortung beherrscht.** Typische Arbeitsfragen:
+
+- Welche Entscheidungen sind kritisch?
+- Welche Verantwortung bleibt beim Bauherrn?
+- Welche Mandate fehlen?
+- Welche Datenstände widersprechen sich?
+- Welche Entscheidungen sind noch nicht entscheidungsreif?
+:::
+:::
 
 ::: tafel k7.1-t1
 ---
@@ -31,7 +106,80 @@ form: karten
 ---
 titel: MVG-Konzeption
 ---
-Die Konzeption übersetzt den Befund in ein konkretes Bauherren-Führungsmodell: Zielsystem, Mandatsmodell, Leistungsphasen- und Freigabemodell, System der Entscheidungs-IDs, Datenstandslogik, Eskalation, die Verknüpfung von Risiken, Änderungen und Maßnahmen und die Logik des [[Betriebshandbuch|Betriebshandbuchs]]. Über Zielprioritäten, Mandate und Schwellen entscheidet der Bauherr.
+Die Konzeption übersetzt den Befund der Diagnose in ein konkretes [[Bauherren-Führungsmodell]]. Die Organisation braucht jetzt ein funktionsfähiges Mindestmodell. Dazu gehören acht Teile: Zielsystem, Mandatsmodell, Leistungsphasen- und Freigabemodell, das System der Entscheidungs-IDs, die Datenstandslogik, die Eskalation, die Verknüpfung von Risiken, Änderungen und Maßnahmen sowie die Logik des [[Betriebshandbuch|Betriebshandbuchs]].
+
+Die Arbeitsfragen sind handfest: Welche Freigaben sind für dieses Projekt verbindlich? Welche Entscheidungen sind wesentlich? Welche Schwellen gelten? Und welcher Datenstand muss bei welcher Entscheidung genannt werden?
+
+Wichtig ist die Rollenverteilung. Bauherr Mentoren konzipiert, strukturiert, moderiert die Entscheidungen, konsolidiert und macht das Modell anwendbar. Die Festlegungen selbst trifft der Bauherr: über Zielprioritäten, Mandate, Schwellen, das Leistungsphasen- und Freigabemodell und die Logik des Regelbetriebs. Ein Beispiel: Ab welchem Betrag eine Änderung nicht mehr von der Projektleitung entschieden werden darf, ist eine Schwelle – und über Schwellen entscheidet der Bauherr.
+
+::: sortieren
+---
+titel: Wer tut was in der Konzeption?
+links: Entscheidet der Bauherr
+rechts: Leistet Bauherr Mentoren
+---
+Ordnen Sie jede Tätigkeit zu.
+
+::: posten zielprioritaeten
+---
+seite: links
+---
+Über die Zielprioritäten entscheiden
+
+### Erklärung
+Zielprioritäten legt der Bauherr fest.
+:::
+
+::: posten moderation
+---
+seite: rechts
+---
+Die Entscheidungen moderieren
+
+### Erklärung
+Entscheidungsmoderation gehört zur Rolle von Bauherr Mentoren – die Entscheidung selbst nicht.
+:::
+
+::: posten schwellen
+---
+seite: links
+---
+Mandate und Schwellen festlegen
+
+### Erklärung
+Über Mandate und Schwellen entscheidet der Bauherr.
+:::
+
+::: posten konsolidieren
+---
+seite: rechts
+---
+Das Modell strukturieren und konsolidieren
+
+### Erklärung
+Strukturierung und Konsolidierung leistet Bauherr Mentoren.
+:::
+
+::: posten freigabemodell
+---
+seite: links
+---
+Das Leistungsphasen- und Freigabemodell beschließen
+
+### Erklärung
+Auch über das Leistungsphasen- und Freigabemodell entscheidet der Bauherr.
+:::
+
+::: posten operationalisieren
+---
+seite: rechts
+---
+Das Modell anwendbar machen (operationalisieren)
+
+### Erklärung
+Die Operationalisierung gehört zur Rolle von Bauherr Mentoren.
+:::
+:::
 
 ::: tafel k7.2-t1
 ---
@@ -44,7 +192,31 @@ form: karten
 ---
 titel: Pilotierung und Kalibrierung
 ---
-Das Modell wird an realen Entscheidungen, Freigaben, Risiken oder Änderungen erprobt. Erst im echten Entscheidungsfall zeigt sich, ob Schwellen praktikabel, Datenstände belastbar, Mandate klar und Gremienunterlagen entscheidungsfähig sind. Der Bauherr wendet das Modell an, gibt Rückmeldung und gibt Anpassungen frei.
+Ein Modell, das nur auf Papier überzeugt, reicht nicht. Deshalb wird der Entwurf an realen Entscheidungen, Freigaben, Risiken oder Änderungen erprobt. Erst im echten Entscheidungsfall zeigt sich, ob die Schwellen praktikabel sind, ob die Datenstände tragen, ob die Mandate klar sind und ob Gremien mit ihren Unterlagen tatsächlich entscheiden können.
+
+Im Projekt heißt das zum Beispiel: Die nächste anstehende Änderung läuft bereits über die neue Entscheidungs-ID, die neue Schwelle und die neue Vorlage. Dabei wird sichtbar, wo es hakt – etwa weil eine Schwelle missverständlich formuliert ist oder eine Vorlage die Frage nicht klar stellt.
+
+Der Bauherr wendet das Modell im echten Entscheidungsfall an, gibt Rückmeldung und gibt die Anpassungen frei. Bauherr Mentoren begleitet, beobachtet, kalibriert, moderiert und fasst zusammen, was gelernt wurde. Am Ende stehen Berichte zur Pilotierung, kalibrierte Schwellen, angepasste Routinen, festgehaltene Erkenntnisse und ein Abnahmevorschlag.
+
+::: umschalter
+---
+titel: Vom Entwurf zum erprobten Modell
+links: Auf Papier
+rechts: Im echten Entscheidungsfall
+---
+::: ansicht links
+**Der Entwurf liegt vor.** Schwellen, Mandate, Datenstandslogik und Vorlagen sind beschrieben. Ob sie im Alltag funktionieren, ist noch offen.
+:::
+
+::: ansicht rechts
+**Das Modell wird geprüft.** An realen Fällen zeigt sich:
+
+- Funktionieren die Entscheidungs-IDs?
+- Sind die Anforderungen an Freigaben angemessen?
+- Sind die Schwellen verständlich und praktikabel?
+- Können die Gremien auf Basis ihrer Unterlagen entscheiden?
+:::
+:::
 
 ::: tafel k7.3-t1
 ---
@@ -57,7 +229,32 @@ form: karten
 ---
 titel: Befähigung und Übergabe
 ---
-Befähigung und Übergabe gehören zu jedem vollständigen MVG-Mandat. Die Befähigung richtet sich an Bauherren-Projektleitung, Auftraggeberlogik, PMO, Projektsteuerung, Gremienrollen und ausgewählte Fachrollen: Diese sollen nicht nur wissen, welche Dokumente es gibt, sondern Entscheidungen vorbereiten, Schwellen anwenden, Datenstände referenzieren, Risiken eskalieren und Freigaben nachhalten können.
+Befähigung und Übergabe sind feste Bestandteile jedes vollständigen MVG-Mandats. Der Grund ist einfach: Das Bauherren-Führungsmodell muss weiterlaufen, wenn das Mandat endet – und zwar in der Bauherrenorganisation selbst.
+
+[[Befähigung]] richtet sich an die Bauherren-Projektleitung, die Auftraggeberlogik, das [[PMO]], die Projektsteuerung, die Gremienrollen und ausgewählte Fachrollen. Es genügt nicht, dass diese Rollen wissen, welche Dokumente es gibt. Sie sollen die Arbeit selbst tun können: Entscheidungen vorbereiten, Schwellen anwenden, Datenstände nennen, Risiken eskalieren und Freigaben nachhalten.
+
+Die Arbeitsfragen dieses Pakets lauten: Wer betreibt das Modell? Wer pflegt welche Routine? Wie werden neue Entscheidungen aufgenommen, und wie wird nachjustiert? Ergebnisse sind Schulungen, Rollenkarten, das Betriebshandbuch, ein Verbesserungsvorrat, ein Übergabebericht und Abnahmekriterien. Der Bauherr übernimmt die Betriebsverantwortung, benennt die Rollen und nimmt an Befähigungsmaßnahmen und Prüfungen teil.
+
+::: umschalter
+---
+titel: Was Befähigung bedeutet
+links: Wissen, was es gibt
+rechts: Können, was es braucht
+---
+::: ansicht links
+Die Rollen kennen die Dokumente: Betriebshandbuch, Register, Vorlagen. **Das reicht nicht:** Das Modell muss nach dem Mandat in der Bauherrenorganisation weiterlaufen, und dafür müssen die Rollen es anwenden können.
+:::
+
+::: ansicht rechts
+Die Rollen können selbst:
+
+- Entscheidungen vorbereiten
+- Schwellen anwenden
+- Datenstände referenzieren
+- Risiken eskalieren
+- Freigaben nachhalten
+:::
+:::
 
 ::: tafel k7.4-t1
 ---
@@ -70,7 +267,32 @@ form: karten
 ---
 titel: MVG-Neuinitialisierung
 ---
-Für laufende Projekte mit eingeschränkter Steuerbarkeit beschreibt MVG die [[MVG-Neuinitialisierung]] als Sonderformat. Sie ist kein vollständiger Projektneustart, sondern ordnet die Steuerungs- und Entscheidungslogik gezielt neu. Über den Auftrag dazu, die Prioritäten und die Neufestlegung der Projektbasis entscheidet der Bauherr; Kapitel 11 vertieft Auslöser und Ergebnisbild.
+Nicht jedes Projekt beginnt auf der grünen Wiese. Für laufende Projekte, deren Steuerbarkeit eingeschränkt ist, beschreibt MVG die [[MVG-Neuinitialisierung]] als Sonderformat. Sie ist ausdrücklich kein vollständiger Neustart des Projekts. Das Projekt läuft weiter; neu geordnet wird gezielt die Steuerungs- und Entscheidungslogik.
+
+Die typische Ausgangslage: Das Projekt läuft, aber Entscheidungslogik, Datenstände, Prioritäten oder Mandate tragen nicht mehr. Dann stellen sich Fragen wie: Welche Entscheidungen müssen neu legitimiert werden? Welche Datenstände gelten? Welche Freigaben müssen in der Folge nachgeholt oder wiederholt werden? Welche Prioritäten sind neu zu setzen?
+
+Auch hier liegt das Entscheidende beim Bauherrn: Er entscheidet über den Auftrag zur Neuinitialisierung, über die Prioritäten, die [[Neufestlegung der Projektbasis]], die Freigaben und eine neue Mandatslogik. Kapitel 11 vertieft Auslöser, die neu zu ordnenden Felder und das Ergebnisbild.
+
+::: umschalter
+---
+titel: Vorher und nachher
+links: Ausgangslage
+rechts: Typische Ergebnisse
+---
+::: ansicht links
+**Das Projekt läuft – aber die Steuerung trägt nicht mehr.** Entscheidungslogik, Datenstände, Prioritäten oder Mandate sind nicht mehr tragfähig. Steuerungs-, Entscheidungs- und Nachweisfähigkeit sind eingeschränkt.
+:::
+
+::: ansicht rechts
+**Belastbare Steuerung ist wiederhergestellt.** Typisch sind:
+
+- ein Governance-Lagebild
+- neu geordnete offene Entscheidungen
+- eine Logik zur Neufestlegung der Projektbasis
+- ein Eskalationsplan
+- ein stabilisierter Regelbetrieb
+:::
+:::
 
 ::: tafel k7.5-t1
 ---
@@ -83,10 +305,93 @@ form: karten
 ---
 titel: Leistungsgrenzen
 ---
-MVG zieht die Grenzen der Leistungen ausdrücklich – der Absatz steht hier im Wortlaut. Die Tabelle ordnet jeder Rolle zu, was sie leisten kann und was sie nicht ersetzen darf.
+Das Kapitel zieht die Grenzen der Leistungen ausdrücklich, und der Wortlaut zählt – deshalb steht der Absatz hier vollständig. Für den Bauherrn ist das keine Formalie: Es geht in MVG gerade um seine nichtdelegierbaren Verantwortungen. Deshalb liefert die Begleitung Struktur, Entscheidungsreife und Befähigung, trifft aber keine Bauherrenentscheidung.
+
+Die Tafel darunter überträgt dieselbe Logik auf alle Beteiligten. Jede Rolle kann etwas Bestimmtes leisten – und darf etwas Bestimmtes nicht ersetzen. Die Bauherren-PL bereitet vor, koordiniert, führt das Entscheidungsregister, eskaliert und verfolgt nach; oberhalb ihrer eigenen Schwelle entscheidet sie nicht an Stelle des Bauherrn. PMO und Projektsteuerung liefern Daten, Takt, Register und Managementberichte, aber keine Zielpriorisierung, keine Risikoannahme und keine wesentliche Freigabe ohne Mandat. Planung, Fachberatung sowie Recht und Vergabe liefern Grundlagen und Einschätzungen; die bauherrenseitige Abwägung bleibt beim Bauherrn.
+
+Wie die Leistungspakete zeitlich ineinandergreifen und woran ihr Erfolg gemessen wird, zeigt Kapitel 8.
 
 ::: zitat k7.6-p1
 Bauherr Mentoren übernimmt keine operative Dauer-Projektsteuerung und keine Linienfunktion. BM ersetzt keine Bauherrenentscheidung, keine Gremienentscheidung, keine Fachplanung, keine Bauleitung, keine Objektüberwachung und keine Rechtsberatung. BM übernimmt keine Einführung von Drittsoftware und erbringt keine SaaS-Leistungen; die Bereitstellung des MVG Companions ist ein methodisches Arbeitsmittel innerhalb der Beratung. BM liefert Struktur, Entscheidungsreife, Mandatsklarheit, Nachweislogik, Befähigung und Übergang in den Regelbetrieb.
+:::
+
+::: sortieren
+---
+titel: Leistung oder Grenze?
+links: Kann Bauherr Mentoren leisten
+rechts: Ersetzt Bauherr Mentoren nicht
+---
+Ordnen Sie zu, was innerhalb und was außerhalb der Leistungen liegt.
+
+::: posten diagnose
+---
+seite: links
+---
+Diagnose und Konzeption
+
+### Erklärung
+Beides gehört zu dem, was Bauherr Mentoren leisten kann.
+:::
+
+::: posten bauherrenentscheidung
+---
+seite: rechts
+---
+Die Bauherrenentscheidung
+
+### Erklärung
+Sie bleibt beim Bauherrn; Bauherr Mentoren ersetzt sie nicht.
+:::
+
+::: posten moderation
+---
+seite: links
+---
+Moderation und Strukturierung
+
+### Erklärung
+Moderation und Strukturierung liegen innerhalb der Leistungen.
+:::
+
+::: posten projektsteuerung
+---
+seite: rechts
+---
+Die Projektsteuerung im Regelbetrieb
+
+### Erklärung
+Eine operative Dauer-Projektsteuerung übernimmt Bauherr Mentoren nicht.
+:::
+
+::: posten rechtsberatung
+---
+seite: rechts
+---
+Rechtsberatung
+
+### Erklärung
+Rechtsberatung gehört ausdrücklich nicht zu den Leistungen.
+:::
+
+::: posten befaehigung
+---
+seite: links
+---
+Pilotierung, Befähigung und Übergabe
+
+### Erklärung
+Diese Schritte liegen innerhalb der Leistungen.
+:::
+
+::: posten bauleitung
+---
+seite: rechts
+---
+Fachplanung, Bauleitung und Objektüberwachung
+
+### Erklärung
+Keine davon ersetzt Bauherr Mentoren.
+:::
 :::
 
 ::: tafel k7.6-t1
@@ -124,49 +429,6 @@ Bauherr Mentoren übernimmt keine operative Dauer-Projektsteuerung und keine Lin
 :::
 :::
 
-::: ebenen
-::: ebene 1
----
-titel: Kernaussage
----
-Die Leistungsarchitektur führt von der Diagnose über Konzeption, Pilotierung und Befähigung in den Regelbetrieb; die Entscheidungen bleiben in jedem Schritt beim Bauherrn.
-:::
-
-::: ebene 2
----
-titel: Warum relevant
----
-Ein Modell auf Papier reicht nicht: [[zitat:k7.3-p1|Die Pilotierung ist notwendig, weil Governance nicht nur auf Papier funktionieren darf.]]
-:::
-
-::: ebene 3
----
-titel: Vertiefung
----
-Was in jedem Paket beim Bauherrn liegt (Zeile „Rolle des Bauherrn“ der Tabellen in Kap. 7.1–7.5, verkürzt):
-
-| Paket | Der Bauherr … |
-|---|---|
-| MVG-Reifegradanalyse | benennt eine verantwortliche Rolle, stellt die Kernunterlagen bereit und entscheidet über Prioritäten |
-| MVG-Konzeption | entscheidet über Zielprioritäten, Mandate, Schwellen, das Leistungsphasen- und Freigabemodell und die Regelbetriebslogik |
-| Pilotierung und Kalibrierung | wendet das Modell im echten Entscheidungsfall an, gibt Rückmeldung und gibt Anpassungen frei |
-| Befähigung und Übergabe | übernimmt die Betriebsverantwortung und benennt die Rollen |
-| MVG-Neuinitialisierung | entscheidet über den Auftrag, Prioritäten, die Neufestlegung der Projektbasis, Freigaben und eine neue Mandatslogik |
-:::
-
-::: ebene 4
----
-titel: Nachweis
----
-::: zitat k7-p2
-Der Umsetzungspfad folgt einer einfachen Logik: Diagnose, Konzeption, Pilotierung, Befähigung und Übergang in den Regelbetrieb. Für laufende Projekte mit eingeschränkter Steuerbarkeit kommt die MVG-Neuinitialisierung als gezieltes Sonderformat hinzu.
-:::
-:::
-:::
-
-::: original k7
-:::
-
 ::: querverweis wirklichkeit
 ---
 text: "In der Story erlebt: Wirklichkeit"
@@ -183,9 +445,13 @@ Und bei Ihnen? Eine Selbstdiagnose ohne Punktzahl, die Anwendungssituationen aus
 
 ::: regie
 ### Notiz
-Kapitel 7 beschreibt die Leistungspakete von Bauherr Mentoren – im Termin besonders zurückhaltend: beschreiben, nicht anbieten, keine Aufforderung, nichts über Aufwand oder Dauer über MVG hinaus. Die Reifegradanalyse nur als Methode nennen und keine Punktzahl für den Kunden schätzen. Es tragen die Zeile „Rolle des Bauherrn“ in jeder Paket-Tafel und die Leistungsgrenzen (7.6): BM ersetzt keine Bauherrenentscheidung.
+Kapitel 7 beschreibt die Leistungspakete von Bauherr Mentoren – im Termin besonders zurückhaltend: beschreiben, nicht anbieten, keine Aufforderung, nichts über Aufwand oder Dauer über MVG hinaus. Die Reifegradanalyse nur als Methode nennen und keine Punktzahl für den Kunden schätzen. Es tragen der Umsetzungspfad (Etappen oben), die Zuordnung „Wer tut was in der Konzeption?“ und die Leistungsgrenzen (7.6, wortgetreu): BM ersetzt keine Bauherrenentscheidung. Die Sortierübungen gemeinsam lösen, nicht abfragen.
 
 ### Leitfragen
-- Welche der zentralen Arbeitsfragen aus den Tafeln könnten Sie für Ihr Projekt heute beantworten?
+- Welche der Arbeitsfragen aus der Reifegradanalyse könnten Sie für Ihr Projekt heute beantworten?
+- Welche Festlegungen aus der Konzeption – Zielprioritäten, Mandate, Schwellen – liegen bei Ihnen heute faktisch bei externen Rollen?
 - Welche Entscheidungen, die bei Ihnen heute bei externen Rollen liegen, ordnet Tafel 7.6 dem Bauherrn zu?
+:::
+
+::: original k7
 :::

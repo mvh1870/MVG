@@ -2,7 +2,8 @@
 id: B2
 welt: B
 monat: 3
-titel: Erstes Signal – mit MVG
+titel: Zusage im Flur, Frist im Förderbescheid – mit MVG
+kurztitel: Zusage im Flur – mit MVG
 lph: 5
 uhr: Dienstag, 11:15 Uhr
 whitepaper-bezug: [k6.4.4-t1, k4.2-p3, k6.4.2-t1, k6.4.3-p2, k6.4.4-p1, k6.4.1-p1, k6.4.5-p1, k6.4.5-t1, k4.4-p1, k4.6-p2]
@@ -21,15 +22,15 @@ weiter: B3
 titel: Dienstag, 11:15 Uhr. Monat 3.
 kurz: Einstieg
 ---
-Dienstag, 10. März, LPH 5. Dieselbe Lieferzeit, derselbe Wunsch.
+Dienstag, 10. März. Dieselbe Flurzusage, dieselbe Förderfrist.
 
-::: protokoll
+::: mail
 ---
-titel: Marktabfrage Holzbau (Generalplanung)
-datum: 10. März 2026
+von: hoffmeister
+betreff: "AW: Ihre Nachfrage Holzbauelemente"
+zeit: "10:31"
 ---
-- Holzbauelemente: Lieferzeit jetzt rund 26 Wochen statt 16.
-- Terminwirkung: nicht bewertet.
+Lieferzeit rund 26 statt 16 Wochen. Terminwirkung nicht bewertet.
 :::
 
 ::: chat
@@ -37,7 +38,7 @@ datum: 10. März 2026
 von: brenner
 zeit: "10:48"
 ---
-Marktabfrage Holzbau ist als `FRW-002` erfasst, unbewertet. Risikosichtung: Dienstag, 17. März.
+Lieferzeit als `FRW-002` erfasst, unbewertet, Bezug Förderfrist. Risikosichtung: Dienstag, 17. März.
 :::
 
 ::: mail
@@ -46,7 +47,7 @@ von: roth
 betreff: Mensa für den Ganztag
 zeit: "11:09"
 ---
-Der Ganztag wächst: Wir brauchen eine Mensa für rund 450 statt 300 Essen, laut Generalplanung grob 0,6 Mio. €. Herr Deppe sagte im Flur: „Wir kriegen das hin.“ Ich nehme ihn beim Wort.
+Schulamt und Schulleitung: Der Ganztag braucht eine Mensa für rund 450 statt 300 Essen, laut Generalplanung grob 0,6 Mio. €. Herr Deppe sagte im Flur: „Machen wir.“ Ich nehme ihn beim Wort.
 :::
 
 ::: datei
@@ -79,7 +80,7 @@ kennung: FRW-002
 fluss: fruehwarnung
 ---
 ### Welt A
-Holz 26 statt 16 Wochen – und der Termin?
+Holz 26 statt 16 Wochen – und die Förderfrist?
 
 ### Welt B
 Lieferzeit Holzbauelemente · unbewertetes Signal
@@ -94,7 +95,7 @@ kennung: AEN-012
 fluss: entscheidung
 ---
 ### Welt A
-Mensa für den Ganztag – „Wir kriegen das hin.“
+Mensa für den Ganztag – „Machen wir.“
 
 ### Welt B
 Mensa für den Ganztag · Beantragt
@@ -130,7 +131,7 @@ Einträge mit Kennung
 :::
 
 ### Welt A
-Welt A: eine Terminfrage auf einer Haftnotiz, eine Zusage aus dem Flur und niemand, der weiß, wer über 0,6 Mio. € entscheidet.
+Welt A: eine Förderfrist auf einer Haftnotiz, eine Zusage aus dem Flur und niemand, der weiß, wer über 0,6 Mio. € entscheidet.
 
 ### Welt B
 Welt B: dasselbe Terminsignal, derselbe Wunsch – aber als Frühwarnung und als beantragte Änderung, jede mit Register, Rolle und nächstem Schritt.
@@ -159,7 +160,7 @@ art: fruehwarnung
 [[Frühwarnung]] · erfasst
 
 ### Text
-unbewertetes Signal aus der Marktabfrage
+unbewertetes Signal zur Lieferzeit
 :::
 
 ::: glied
@@ -182,7 +183,7 @@ art: risiko
 Risiko · erst nach Bestätigung
 
 ### Text
-„Lieferzeit Holzbauelemente“ · Terminwirkung nicht bewertet
+„Lieferzeit Holzbauelemente“ · Förderfrist nicht bewertet
 :::
 :::
 :::
@@ -241,11 +242,12 @@ wert: Beantragt · Auswirkung offen
 
 ::: bekannt
 - Lieferzeit Holzbauelemente: rund 26 statt 16 Wochen; `FRW-002`, nicht bestätigt.
+- Förderbescheid Ganztag: Inbetriebnahme zum Schuljahr 2028/29.
 - Mensa für rund 450 statt 300 Essen, grob 0,6 Mio. €; `AEN-012`, beantragt, nicht beschlossen.
 :::
 
 ::: unbekannt
-- Terminwirkung der Lieferzeit {#terminwirkung}
+- Ob die Förderfrist hält {#terminwirkung}
 - Termin- und Risikowirkung der Mensa {#mensa-wirkung}
 - Wann das Gremium über `AEN-012` entscheidet {#gremium}
 - Ob Sabine Roth weiß, dass nichts beschlossen ist {#nutzerseite}
@@ -296,7 +298,7 @@ Eine Frühwarnung ist ein unbewertetes Signal; erst bestätigt wird sie ein bewe
 ---
 titel: Warum relevant
 ---
-In Monat 3 trifft Welt B dasselbe Ereignis wie Welt A: dasselbe Terminsignal, derselbe Wunsch. Der Unterschied liegt im Umgang. Die Lieferzeit wird kein Satz im Statusbericht, sondern `FRW-002`; die Flurzusage wird keine stille Einplanung, sondern `AEN-012` mit Status. Beide Einträge haben eine Adresse; Kap. 6.4.1 legt fest: [[zitat:k6.4.1-p1|Jedes Register hat eine verantwortliche Rolle, einen Pflegezyklus und einen definierten nächsten Schritt.]] Bewertet ist damit noch nichts – aber jeder weiß, wer als Nächstes dran ist. Über `AEN-012` entscheidet das Änderungsgremium; es tagt monatlich, zzgl. anlassbezogener Sondersitzungen.
+In Monat 3 trifft Welt B dasselbe wie Welt A: dieselbe Förderfrist, derselbe Wunsch. Der Unterschied liegt im Umgang. Die Lieferzeit wird kein Satz im Statusbericht, sondern `FRW-002`; die Flurzusage wird keine stille Einplanung, sondern `AEN-012` mit Status. Beide Einträge haben eine Adresse; Kap. 6.4.1 legt fest: [[zitat:k6.4.1-p1|Jedes Register hat eine verantwortliche Rolle, einen Pflegezyklus und einen definierten nächsten Schritt.]] Bewertet ist noch nichts – aber jeder weiß, wer als Nächstes dran ist. Über `AEN-012` entscheidet das Änderungsgremium; es tagt monatlich, zzgl. anlassbezogener Sondersitzungen.
 :::
 
 ::: ebene 3
@@ -367,14 +369,14 @@ figur: deppe
 ---
 figur: olbers
 ---
-„Die Mandatsleiter habe ich selbst festgelegt. Ich weiß, wo die Mensa entschieden wird – was ich Frau Roth sage, wenn sie anruft, noch nicht.“
+„Ich weiß, wo die Mensa entschieden wird. Ob wir das Terminrisiko für die Förderfrist tragen, entscheide am Ende ich.“
 :::
 
 ::: standpunkt pl
 ---
 figur: sie
 ---
-„`FRW-002` und `AEN-012` stehen im Register. Bewertet ist noch keins von beiden – und beide hängen am Termin.“
+„`FRW-002` und `AEN-012` stehen im Register. Bewertet ist keins – und beide hängen an der Förderfrist.“
 :::
 
 ::: standpunkt ps
@@ -388,7 +390,7 @@ figur: brenner
 ---
 figur: hoffmeister
 ---
-„Eine Skizze für 450 Essen habe ich schon, dazu eine Lieferzeit, die jemand bestätigen muss. Womit fange ich an?“
+„Eine Skizze für 450 Essen habe ich, dazu eine Lieferzeit, die jemand bestätigen muss. Womit fange ich an?“
 :::
 
 ::: standpunkt controlling
@@ -411,10 +413,10 @@ beschlusslage: Offen – das Änderungsgremium tagt monatlich, zzgl. anlassbezog
 
 ::: regie
 ### Notiz
-B2 zeigt dasselbe Ereignis wie A2 – dieselbe Lieferzeit, derselbe Wunsch. Welt B ist nicht schneller, sondern geordneter: `FRW-002` ist erfasst, aber noch nicht bestätigt; `AEN-012` ist beantragt, aber weder bewertet noch auf der Tagesordnung. Diese Schritte lösen erst die Optionen aus – nicht vorwegnehmen. Die Flurzusage nicht verurteilen: Sie ist jetzt ein Antrag. Zuerst den Regler zeigen, dann die Mandatsleiter.
+B2 zeigt dasselbe Ereignis wie A2 – dieselbe Förderfrist, derselbe Wunsch. Welt B ist nicht schneller, sondern geordneter: `FRW-002` ist erfasst, aber noch nicht bestätigt; `AEN-012` ist beantragt, aber weder bewertet noch auf der Tagesordnung. Diese Schritte lösen erst die Optionen aus – nicht vorwegnehmen. Die Flurzusage nicht verurteilen: Sie ist jetzt ein Antrag. Zuerst den Regler zeigen, dann die Mandatsleiter.
 
 ### Leitfragen
-- Wo landet bei Ihnen ein Signal, bevor jemand es bewertet – und wer bestätigt es?
+- Wo landet bei Ihnen ein Signal zu einer Förderfrist – und wer bestätigt es?
 - Wie wird bei Ihnen aus einem Nutzerwunsch eine beantragte Änderung mit Auswirkung und Freigabeweg?
 - Wer entscheidet bei Ihnen über 0,6 Mio. € – und steht das vorher fest?
 :::

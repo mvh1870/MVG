@@ -1,61 +1,56 @@
 ---
-# Lernseite Kapitel 5 (P6, O-20). Zitate wortgleich mit Absatz-ID (O-17); der vollständige
-# Originaltext kommt über „::: original k5“ aus whitepaper.json (wortgetreu durch Bauart).
+# Lernseite Kapitel 5 (P6, O-20; neu aufbereitet P12.3, O-30): erklärender Lesetext mit kleinen
+# interaktiven Grafiken, kaum Zitate. Der vollständige Originaltext kommt über „::: original k5“
+# aus whitepaper.json (wortgetreu durch Bauart, zugeklappt am Seitenende).
+# Belege (O-17, jede MVG-Regel im Lesetext und in den Grafiken):
+# Belege Einleitung/Kernaussage: k5-p1, k5-p3
+# Belege k5 (Sechs Kernfragen, Umschalter): k5-p1, k5-p2, k5-l1, k5-p3
+# Belege k5.1: k5.1-p1, k5.1-p2
+# Belege k5.2: k5.2-t1, k5.2-p1
+# Belege k5.3: k5.3-p1, k5.3-p2, k5.3-p3, k5.3-l1
+# Belege k5.4: k5.4-p1, k5.4-p2
+# Belege k5.5: k5.5-p1 (rechtlicher Hinweis wortgleich als Zitat)
 kapitel: 5
 titel: Minimum Viable Governance als Bauherren-Führungsmodell
 kurztitel: Führungsmodell
 story: [rueckspulen, B1]
 ---
-Kapitel 5 beschreibt Minimum Viable Governance (MVG) als Führungsmodell: sechs Kernfragen, acht Bausteine und die Kopplung, durch die sie wirken. Es zeigt LPH 0 als frühen Hebel und zieht die Grenzen des Modells.
+Nach den sechs Verantwortungsfeldern stellt sich die Frage: Wie wird daraus etwas, womit ein Bauherr ein Projekt tatsächlich führen kann? Kapitel 5 beschreibt Minimum Viable Governance (MVG) als ein solches [[Bauherren-Führungsmodell]] – mit sechs Kernfragen, acht Bausteinen und einer einfachen Wirklogik: Die Bausteine wirken erst, wenn sie miteinander verbunden sind. Am Ende steht, was MVG ausdrücklich nicht ist.
 
 ::: kernaussage
-[[zitat:k5-p1|MVG ist weder Bürokratieprogramm noch Berichtsoffensive. Es ist ein Bauherren-Führungsmodell, das Verantwortung in entscheidbare, mandatsfähige und nachweisbare Strukturen übersetzt.]]
+MVG ist kein Bürokratieprogramm und keine Berichtsoffensive, sondern der kleinste funktionsfähige Standard, mit dem ein Bauherr ein komplexes Projekt wirksam führen kann. Es übersetzt Verantwortung in Strukturen, in denen entschieden, mandatiert und nachgewiesen werden kann.
 :::
 
-::: karten
+::: abschnitt k5
 ---
-titel: Sechs Kernfragen eines Bauherren-Führungsmodells
+titel: Sechs Kernfragen
 ---
-::: karte 1
+MVG versteht sich als kleinster funktionsfähiger Governance-Standard. Gemeint ist kein Programm, das zusätzliche Berichte erzeugt, sondern ein Führungsmodell: Es übersetzt die Verantwortung des Bauherrn in Strukturen, in denen entschieden, mandatiert und nachgewiesen werden kann.
+
+Ein solches Führungsmodell muss sechs Fragen beantworten:
+
+1. Welche Ziele gelten?
+2. Wer darf was vorbereiten, entscheiden, freigeben oder eskalieren?
+3. Welche Entscheidungen sind wesentlich?
+4. Welche Risiken und Änderungen muss der Bauherr annehmen oder freigeben?
+5. Welcher Datenstand gilt?
+6. Wie lässt sich eine Entscheidung später nachvollziehen?
+
+Die Antworten allein genügen noch nicht. Wirksam wird MVG erst, wenn sie im Projektalltag ankommen – in Routinen, Freigaben, Entscheidungs-IDs, Datenstandslogik, Eskalationswegen, Betriebshandbuch und Befähigung. Erst dann wird aus Verantwortung eine Führungslogik, die man tatsächlich benutzen kann. Der Umschalter zeigt den Unterschied.
+
+::: umschalter
 ---
-titel: Ziele
+titel: Die sechs Fragen sind beantwortet – und dann?
+links: Nur auf dem Papier
+rechts: In den Alltag übersetzt
 ---
-[[zitat:k5-l1|Welche Ziele gelten?]]
+::: ansicht links
+Die Antworten stehen in einem Konzept, kommen im Projektalltag aber nicht an: Schwellen und Datenstände sind nachzulesen, werden aber nicht angewendet.
 :::
 
-::: karte 2
----
-titel: Mandat
----
-[[zitat:k5-l1|Wer darf was vorbereiten, entscheiden, freigeben oder eskalieren?]]
+::: ansicht rechts
+Die Antworten stecken in Routinen, Freigaben, Entscheidungs-IDs, Datenstandslogik, Eskalationswegen und im Betriebshandbuch. Die Schlüsselrollen sind befähigt, sie anzuwenden. So wird aus Verantwortung eine praktisch nutzbare Führungslogik.
 :::
-
-::: karte 3
----
-titel: Wesentliche Entscheidungen
----
-[[zitat:k5-l1|Welche Entscheidungen sind wesentlich?]]
-:::
-
-::: karte 4
----
-titel: Risiken und Änderungen
----
-[[zitat:k5-l1|Welche Risiken und Änderungen brauchen bauherrenseitige Annahme oder Freigabe?]]
-:::
-
-::: karte 5
----
-titel: Datenstand
----
-[[zitat:k5-l1|Welcher Datenstand gilt?]]
-:::
-
-::: karte 6
----
-titel: Nachvollzug
----
-[[zitat:k5-l1|Wie wird die Entscheidung später nachvollzogen?]]
 :::
 :::
 
@@ -63,10 +58,81 @@ titel: Nachvollzug
 ---
 titel: Zweck von MVG
 ---
-MVG will nicht möglichst viel Governance, sondern ausreichende Steuerbarkeit mit dem kleinsten funktionsfähigen Standard. Es setzt keine reife oder vollständig standardisierte Organisation voraus und beginnt bei den Entscheidungen, die für den Bauherrn kritisch sind. Ziel ist Entscheidungssicherheit – was ausdrücklich nicht Risikofreiheit heißt.
+Der Zweck von MVG ist nicht möglichst viel Governance. Der Zweck ist **ausreichende Steuerbarkeit** mit dem kleinsten Standard, der noch funktioniert. Darin unterscheidet sich MVG von schweren Governance-Programmen.
 
-::: zitat k5.1-p2
-Entscheidungssicherheit bedeutet nicht Risikofreiheit. Sie bedeutet, dass Entscheidungen auf einem benannten Datenstand, mit klarer Entscheidungsfrage, bekannten Optionen, transparenten Annahmen, nachvollziehbarer Risikoannahme, definiertem Mandat und dokumentierter Beschlusslage getroffen werden.
+Für den Bauherrn heißt das: Er muss nicht warten, bis seine Organisation reif, vollständig standardisiert oder technisch integriert ist. MVG beginnt bei den Entscheidungen, die für ihn kritisch sind, und schafft dafür einen belastbaren Mindeststandard.
+
+Das Ziel ist **Entscheidungssicherheit**. Das Wort führt leicht in die Irre: Es bedeutet nicht, dass keine Risiken mehr bleiben. Es bedeutet, dass eine Entscheidung auf einem benannten Datenstand getroffen wird, mit klarer Entscheidungsfrage, bekannten Optionen und transparenten Annahmen, mit nachvollziehbarer Risikoannahme, definiertem Mandat und dokumentierter Beschlusslage. Eine riskante Entscheidung kann also entscheidungssicher sein – wenn klar ist, wer welches Risiko auf welcher Grundlage angenommen hat.
+
+::: sortieren
+---
+titel: Was gehört zur Entscheidungssicherheit?
+links: Gehört dazu
+rechts: Gehört nicht dazu
+---
+::: posten 1
+---
+seite: links
+---
+Ein benannter Datenstand
+
+### Erklärung
+Jede Entscheidung braucht den Datenstand, auf dem sie beruht.
+:::
+
+::: posten 2
+---
+seite: rechts
+---
+Risikofreiheit
+
+### Erklärung
+Entscheidungssicherheit bedeutet ausdrücklich nicht Risikofreiheit.
+:::
+
+::: posten 3
+---
+seite: links
+---
+Eine klare Entscheidungsfrage und bekannte Optionen
+:::
+
+::: posten 4
+---
+seite: links
+---
+Eine nachvollziehbare Risikoannahme
+
+### Erklärung
+Risiken bleiben – aber es ist klar, wer sie angenommen hat.
+:::
+
+::: posten 5
+---
+seite: rechts
+---
+Eine vollständig standardisierte Organisation als Voraussetzung
+
+### Erklärung
+MVG setzt keine reife, vollständig standardisierte oder systemseitig integrierte Organisation voraus.
+:::
+
+::: posten 6
+---
+seite: links
+---
+Ein definiertes Mandat und eine dokumentierte Beschlusslage
+:::
+
+::: posten 7
+---
+seite: rechts
+---
+Möglichst viel Governance
+
+### Erklärung
+Der Zweck ist ausreichende Steuerbarkeit mit dem kleinstmöglichen funktionsfähigen Standard.
+:::
 :::
 :::
 
@@ -74,7 +140,13 @@ Entscheidungssicherheit bedeutet nicht Risikofreiheit. Sie bedeutet, dass Entsch
 ---
 titel: Bausteine des Bauherren-Führungsmodells
 ---
-Acht Bausteine, jeweils mit Funktion und minimaler Wirkung für den Bauherrn. Sie kehren später zweimal wieder: im [[MVG Companion]] (Kapitel 6) und als Ergebnisse eines MVG-Mandats (Kapitel 9).
+MVG besteht aus acht Bausteinen. Jeder hat eine Funktion und eine minimale Wirkung für den Bauherrn. Zur Orientierung lassen sie sich in drei Gruppen lesen (die Gruppen sind eine Lesehilfe dieser Seite):
+
+- **Was gilt und wer darf:** Das *Zielsystem mit Abwägungsregeln* legt fest, was Vorrang hat, wenn Kosten, Termine, Qualität, ESG, LCC, Risiko und Nutzwert kollidieren. *Rollen und Mandate* machen aus Rollenbeschreibungen Befugnisse mit Schwellen, Stellvertretungen und Eskalationswegen.
+- **Wie entschieden und nachgewiesen wird:** Die *Freigabelogik* koppelt den Projektfortschritt an Entscheidungsvorbereitung und Freigabereife. Das *System der Entscheidungs-IDs* gibt wesentlichen Entscheidungen eine Kennung und macht sichtbar, was offen, vorbereitet, getroffen oder nachzuhalten ist. Die *Datenstands- und Nachweislogik* bestimmt, welche Versionen, Annahmen und Beschlussgrundlagen gelten. Die *Risiko-/Änderungs-/Maßnahmenverknüpfung* verbindet Risiken, Änderungen und Maßnahmen mit Entscheidungen.
+- **Wie es dauerhaft trägt:** Das *Betriebshandbuch* beschreibt den Regelbetrieb, die *Befähigung* macht die Schlüsselrollen der Bauherrenorganisation handlungsfähig.
+
+Die Bausteine kehren zweimal wieder: als Funktionslogiken des [[MVG Companion]] in Kapitel 6 und als Ergebnisse eines MVG-Mandats in Kapitel 9. Die Tafel zeigt alle acht mit Funktion und Wirkung.
 
 ::: tafel k5.2-t1
 ---
@@ -87,53 +159,63 @@ form: bausteine
 ---
 titel: "Wirklogik: Verantwortung wird entscheidungsfähig"
 ---
-Ein Zielsystem, eine RACI-Matrix, ein Freigabekalender oder eine einzelne Entscheidungsvorlage reichen für sich allein nicht. Die Wirkung entsteht erst, wenn die Elemente verbunden werden – am Beispiel einer wesentlichen Änderung: Sie braucht Kennung, Datenstand, Auswirkungsbewertung, Mandatsprüfung, Empfehlung, Freigabe- oder Eskalationslogik und Nachweis. Die Karten zeigen, wie diese Kopplung das Projekt verändert.
+Die Wirkung von MVG entsteht durch **Kopplung**. Ein Zielsystem allein reicht nicht, eine RACI-Matrix, ein Freigabekalender oder eine einzelne Entscheidungsvorlage auch nicht. MVG wirkt erst, wenn diese Elemente miteinander verbunden sind.
 
-::: zitat k5.3-p1
-Die Wirkung von MVG entsteht durch Kopplung.
+Ein Beispiel ist eine wesentliche Änderung. Als bloßer technischer Änderungsvorschlag ist sie für den Bauherrn nicht führbar. Führbar wird sie erst, wenn alle Elemente zusammenkommen – klicken Sie sie in der Leiste durch.
+
+Diese Kopplung verändert das Verhalten im Projekt: Zielkonflikte werden sichtbar, bevor entschieden wird. Mandate werden ausdrücklich vergeben, statt aus Hierarchie oder Gewohnheit angenommen zu werden. Freigaben hängen an einer definierten Entscheidungsreife. Risiken und Änderungen werden entscheidungsfähig. Gremien erhalten Entscheidungsunterlagen statt bloßer Statusberichte. Und die Bauherren-PL bekommt eine handhabbare Logik für Vorbereitung, Nachverfolgung und Eskalation.
+
+::: etappen
+---
+titel: Was eine wesentliche Änderung führbar macht
+---
+::: etappe 1
+---
+titel: Entscheidungs-ID
+---
+Die Änderung bekommt eine Entscheidungs-ID.
 :::
 
-::: karten
-::: karte 1
+::: etappe 2
 ---
-titel: Zielkonflikte
+titel: Gültiger Datenstand
 ---
-[[zitat:k5.3-l1|Zielkonflikte werden vor Entscheidungen sichtbar.]]
+Es ist benannt, auf welchem Datenstand bewertet wird.
 :::
 
-::: karte 2
+::: etappe 3
 ---
-titel: Mandate
+titel: Auswirkungsbewertung
 ---
-[[zitat:k5.3-l1|Mandate werden explizit, statt aus Hierarchie oder Gewohnheit angenommen.]]
+Die Auswirkung auf Kosten, Termin, Qualität, Projektumfang, Risiko und ESG/LCC ist bewertet.
 :::
 
-::: karte 3
+::: etappe 4
 ---
-titel: Freigaben
+titel: Mandatsprüfung
 ---
-[[zitat:k5.3-l1|Freigaben werden an definierte Entscheidungsreife gebunden.]]
+Geprüft ist, wer über diese Änderung entscheiden darf.
 :::
 
-::: karte 4
+::: etappe 5
 ---
-titel: Risiken und Änderungen
+titel: Empfehlung
 ---
-[[zitat:k5.3-l1|Risiken und Änderungen werden entscheidungsfähig gemacht.]]
+Die Vorlage enthält eine Empfehlung.
 :::
 
-::: karte 5
+::: etappe 6
 ---
-titel: Gremien
+titel: Freigabe oder Eskalation
 ---
-[[zitat:k5.3-l1|Gremien erhalten Entscheidungsunterlagen statt reiner Statusberichte.]]
+Es ist geregelt, ob freigegeben oder eskaliert wird.
 :::
 
-::: karte 6
+::: etappe 7
 ---
-titel: Bauherren-Projektleitung
+titel: Nachweis der Beschlusslage
 ---
-[[zitat:k5.3-l1|Die Bauherren-Projektleitung erhält eine handhabbare Logik für Vorbereitung, Nachverfolgung und Eskalation.]]
+Die Beschlusslage ist nachgewiesen. Erst jetzt ist die Änderung ein führbares Bauherrenthema.
 :::
 :::
 
@@ -170,10 +252,25 @@ Die Wirkung von MVG entsteht durch Kopplung. Ein Zielsystem allein reicht nicht 
 ---
 titel: LPH 0 als früher Wirkungsraum
 ---
-In LPH 0, der Bedarfsplanung vor den HOAI-Leistungsphasen, lassen sich Zielsystem, Mandatslogik, Freigabemodell und Datenstandslogik früh anlegen. Bleibt dort etwas offen, zeigt es sich später als Kosten-, Termin-, Qualitäts- und Freigaberisiko. MVG stellt LPH 0 dennoch nicht in den Mittelpunkt – wichtiger ist, ob der Bauherr seine nichtdelegierbare Verantwortung ausüben kann.
+LPH 0 ist die Bedarfsplanung nach DIN 18205 – sie liegt vor den HOAI-Leistungsphasen 1–9. Hier lassen sich früh die Grundlagen legen: Zielsystem, Mandatslogik, das Leistungsphasen- und Freigabemodell, die Datenstandslogik und erste Entscheidungsstandards. LPH 0 ist damit der Zeitpunkt, an dem spätere Steuerbarkeit vorbereitet wird.
 
-::: zitat k5.4-p2
-MVG nutzt LPH 0 deshalb als frühen Hebel, bleibt aber nicht auf LPH 0 beschränkt. Auch in laufenden Projekten, vor wesentlichen Freigaben, bei Neufestlegungen der Projektbasis, bei schleichenden Änderungen oder im Rahmen einer MVG-Neuinitialisierung kann MVG die Entscheidungs- und Nachweisfähigkeit wiederherstellen.
+Was hier offen bleibt, kommt später zurück: Bleiben Zielprioritäten unklar, sind Mandate nicht definiert, laufen Gremien- und Projektlogik auseinander oder werden Datenstände nicht referenziert, entstehen spätere Kosten-, Termin-, Qualitäts- und Freigaberisiken.
+
+Trotzdem stellt MVG LPH 0 nicht in den Mittelpunkt. Wichtiger ist, ob der Bauherr seine nichtdelegierbare Verantwortung ausüben kann. MVG nutzt LPH 0 als frühen Hebel, ist aber nicht darauf beschränkt: Auch in laufenden Projekten, vor wesentlichen Freigaben, bei einer Neufestlegung der Projektbasis, bei schleichenden Änderungen oder im Rahmen einer [[MVG-Neuinitialisierung]] kann MVG die Entscheidungs- und Nachweisfähigkeit wiederherstellen.
+
+::: umschalter
+---
+titel: Was in LPH 0 geschieht
+links: Früh angelegt
+rechts: Offen geblieben
+---
+::: ansicht links
+Zielsystem, Mandatslogik, Leistungsphasen- und Freigabemodell, Datenstandslogik und erste Entscheidungsstandards sind angelegt. Die spätere Steuerbarkeit ist vorbereitet.
+:::
+
+::: ansicht rechts
+Zielprioritäten bleiben unklar, Mandate sind nicht definiert, Gremien- und Projektlogik laufen auseinander, Datenstände werden nicht referenziert. Daraus entstehen später Kosten-, Termin-, Qualitäts- und Freigaberisiken.
+:::
 :::
 :::
 
@@ -181,54 +278,67 @@ MVG nutzt LPH 0 deshalb als frühen Hebel, bleibt aber nicht auf LPH 0 beschrän
 ---
 titel: Abgrenzung und rechtlicher Hinweis
 ---
-MVG steckt den Rahmen des Modells ausdrücklich ab – der Hinweis steht hier im Wortlaut.
+MVG deckt nicht alle Pflichten ab, die ein Bauherr hat. Es konzentriert sich auf das, was die vorigen Abschnitte beschreiben: dass der Bauherr führen, entscheiden und seine Entscheidungen nachweisen kann. Andere Fachgebiete – Bauordnungsrecht, Arbeitsschutz, Vergaberecht, technische Betreiberberatung – liegen außerhalb dieses Rahmens. MVG steckt damit seinen Rahmen selbst ab. Weil es um eine Leistungsgrenze geht, steht der Hinweis hier im Wortlaut. Mit der Übung darunter können Sie prüfen, was in den Rahmen fällt. Wie MVG im Alltag der beteiligten Rollen ankommt, zeigt das folgende Kapitel zum MVG Companion.
 
 ::: zitat k5.5-p1
 MVG behandelt nicht alle denkbaren Bauherrenpflichten. Es ist keine bauordnungsrechtliche Pflichtenmatrix, keine arbeitsschutzrechtliche Vertiefung, keine Vergaberechtsprüfung und keine technische Betreiberberatung. Der Fokus liegt auf Führungs-, Entscheidungs- und Nachweisfähigkeit.
 :::
+
+::: sortieren
+---
+titel: Im Rahmen von MVG?
+links: Fokus von MVG
+rechts: Nicht Gegenstand von MVG
+---
+::: posten 1
+---
+seite: links
+---
+Führungsfähigkeit des Bauherrn
 :::
 
-::: ebenen
-::: ebene 1
+::: posten 2
 ---
-titel: Kernaussage
+seite: rechts
 ---
-MVG ist kein Bürokratieprogramm, sondern der kleinste funktionsfähige Standard, mit dem ein Bauherr ein komplexes Projekt führen kann – acht Bausteine, die erst gekoppelt wirken.
+Eine bauordnungsrechtliche Pflichtenmatrix
 :::
 
-::: ebene 2
+::: posten 3
 ---
-titel: Warum relevant
+seite: links
 ---
-Einzelne Instrumente – ein Zielsystem, eine RACI-Matrix, ein Freigabekalender – reichen für sich nicht aus: [[zitat:k5.3-p1|MVG wirkt erst, wenn diese Elemente miteinander verbunden werden.]]
+Entscheidungsfähigkeit
 :::
 
-::: ebene 3
+::: posten 4
 ---
-titel: Vertiefung
+seite: rechts
 ---
-Wirksam wird MVG erst, wenn die sechs Kernfragen nicht nur abstrakt beantwortet, sondern übersetzt werden (Kap. 5, Einleitung) – in:
-
-- Routinen
-- Freigaben
-- Entscheidungs-IDs
-- Datenstandslogik
-- Eskalationswege
-- Betriebshandbuch
-- Befähigung
+Eine Vergaberechtsprüfung
 :::
 
-::: ebene 4
+::: posten 5
 ---
-titel: Nachweis
+seite: rechts
 ---
-::: zitat k5.1-p1
-Der Zweck von MVG ist nicht maximale Governance. Der Zweck ist ausreichende Steuerbarkeit mit dem kleinstmöglichen funktionsfähigen Standard.
-:::
-:::
+Eine arbeitsschutzrechtliche Vertiefung
 :::
 
-::: original k5
+::: posten 6
+---
+seite: links
+---
+Nachweisfähigkeit
+:::
+
+::: posten 7
+---
+seite: rechts
+---
+Technische Betreiberberatung
+:::
+:::
 :::
 
 ::: querverweis rueckspulen
@@ -240,16 +350,19 @@ Zurück auf Monat 0: Die acht Bausteine setzen sich zusammen, LPH 0 zeigt sich a
 
 ::: querverweis B1
 ---
-text: "In der Story erlebt: B1 · Lage verstehen – mit MVG"
+text: "In der Story erlebt: B1 · Übernahme ohne Übergabe – mit MVG"
 ---
 Welt B, Monat 1: Zielsystem, Mandatsleiter, Rhythmus und Register mit verantwortlicher Rolle sind angelegt und greifen ineinander; die Zielpriorität legt der Bauherr fest.
 :::
 
 ::: regie
 ### Notiz
-Kapitel 5 beschreibt MVG als Führungsmodell: sechs Kernfragen, acht Bausteine (Tafel in 5.2), Wirkung durch Kopplung (5.3). Im Termin trägt 5.3: Ein Zielsystem, eine RACI-Matrix oder eine Entscheidungsvorlage allein reicht nicht. LPH 0 ist ein früher Hebel, aber nicht das Hauptnarrativ (5.4). Die Grenzen aus 5.5 offen nennen – MVG ist zum Beispiel keine Vergaberechtsprüfung und keine technische Betreiberberatung.
+Kapitel 5 beschreibt MVG als Führungsmodell: sechs Kernfragen, acht Bausteine (Tafel in 5.2), Wirkung durch Kopplung (5.3, Leiste „Was eine wesentliche Änderung führbar macht“). Im Termin trägt 5.3: Ein Zielsystem, eine RACI-Matrix oder eine Entscheidungsvorlage allein reicht nicht. Entscheidungssicherheit (5.1) heißt nicht Risikofreiheit – die Sortierübung eignet sich zum gemeinsamen Durchgehen. LPH 0 ist ein früher Hebel, aber nicht das Hauptnarrativ (5.4). Die Grenzen aus 5.5 offen nennen – MVG ist zum Beispiel keine Vergaberechtsprüfung und keine technische Betreiberberatung.
 
 ### Leitfragen
 - Welche der sechs Kernfragen könnten Sie für Ihr Projekt heute schriftlich beantworten?
 - Welche der acht Bausteine gibt es bei Ihnen schon – und wo sind sie miteinander verbunden?
+:::
+
+::: original k5
 :::

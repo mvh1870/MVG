@@ -1,7 +1,7 @@
 ---
 station: A5
 rolle: controlling
-frage: Was tun Sie mit Ihrer Feststellung zur Risikoreserve?
+frage: Die Kämmerei fragt, wer die Reserve freigegeben hat. Nach Ihrer Rechnung niemand. Was tun Sie?
 rueckbezug-auf: A2
 ---
 
@@ -13,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Dr. Olbers erfährt, dass Posten ohne ihre Freigabe gegen die 2,9 Mio. € laufen. Sie fragt, was sie entscheiden soll, und will eine Aufstellung; auf einem Stand gibt es die nicht.
+Dr. Olbers erfährt, dass Posten ohne ihre Freigabe gegen die 2,9 Mio. € laufen. Sie will eine Aufstellung auf einem Stand; die gibt es nicht.
 
 ### Was fehlt
 Eine nachvollziehbare Grundlage je Posten.
@@ -59,7 +59,7 @@ Sie rechnen ohne Reserve, die Projektsteuerung mit. Wieder zwei Zahlen; der Stre
 Ein Datenstand, auf den sich beide beziehen.
 
 ### Neues Risiko
-Die Planung wartet, ob die Mensa-Umplanung weiterlaufen darf.
+Die Planung wartet auf die Mensa-Entscheidung.
 
 ### Governance-Frage
 [[Datenstand]]: Welche Änderungen sind in welcher Zahl enthalten?

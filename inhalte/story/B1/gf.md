@@ -1,7 +1,7 @@
 ---
 station: B1
 rolle: gf
-frage: Mandatsleiter, Rhythmus und Register stehen. Worauf richten Sie die ersten Wochen aus?
+frage: Register stehen, die Kämmerei bekommt Version 1. Worauf richten Sie die ersten Wochen aus?
 rueckbezug-auf: A1
 ---
 
@@ -66,11 +66,11 @@ Welche Frist hat die offene Entscheidung – und wer bereitet sie vor?
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Laufen lassen‘ gewählt. In Welt B zeigen Rhythmus und Register, was offen ist und wer es klärt.
+In Welt A haben Sie ‚Laufen lassen‘ gewählt. In Welt B bekommt die Kämmerei einen benannten Datenstand.
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Statusbericht vorlegen lassen‘ gewählt. In Welt B stehen offene Entscheidungen im Entscheidungsregister, nicht zwischen Ampeln.
+In Welt A haben Sie ‚Statusbericht vorlegen lassen‘ gewählt. In Welt B stehen offene Entscheidungen im Register, nicht zwischen Ampeln.
 :::
 
 ::: rueckbezug C
@@ -78,7 +78,7 @@ In Welt A haben Sie ‚In den Lenkungskreis‘ gewählt. In Welt B geht der Ziel
 :::
 
 ::: rueckbezug ohne
-In Welt A lag derselbe Zielkonflikt ohne Priorität auf dem Tisch. In Welt B steht er im Zielsystem oder im Register.
+In Welt A lagen Frist und Zielkonflikt ohne Antwort auf dem Tisch. In Welt B haben beide einen Ort.
 :::
 
 ::: nachsatz

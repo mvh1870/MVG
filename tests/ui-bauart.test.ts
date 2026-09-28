@@ -166,7 +166,7 @@ test('Theorie: 13 Kapitel mit Titeln; Kapitel 1 mit Kernaussage, Karten, Origina
 
   const k1 = baueTheorie({ inhalte, kapitel: 1, version: VERSION, bedienbar: true });
   assert.ok(k1.querySelector('[data-pruef="kernaussage"]'));
-  assert.ok(k1.querySelectorAll('[data-pruef="lernkarte"]').length >= 5 + 6);
+  assert.ok(k1.querySelectorAll('[data-pruef="lernkarte"]').length >= 5, 'fünf Managementaussagen als Lernkarten (P12.3)');
   const original = inhalte.theorie['k01']?.bloecke.find((b) => b.art === 'original');
   assert.ok(original);
   const ids = [...k1.querySelectorAll('[data-pruef="originaltext"] .absatz')].map((a) => a.getAttribute('data-absatz'));
@@ -1163,4 +1163,60 @@ test('Lernseiten (O-30): Originaltext am Seitenende, zugeklappt; ein Absatz-Perm
     const nachher = kinder.slice(pos + 1).map((k) => k.className);
     assert.ok(nachher.every((c) => /kapitel-nav|lern-fuss|originaltext/u.test(c)), `Kap. ${nr}: nach dem Originaltext steht noch ${nachher.join(', ')}`);
   }
+});
+
+const lw = await import('../src/ui/bausteine/lernwerkzeuge.ts');
+interface ProbeBlock { art: string, kennungen: string[], id: string | null, kopf: Record<string, string>, felder: Record<string, string>, liste: null, kinder: ProbeBlock[] }
+const blk = (art: string, id: string | null, kopf: Record<string, string>, felder: Record<string, string>, kinder: ProbeBlock[] = []): ProbeBlock =>
+  ({ art, kennungen: id === null ? [] : [id], id, kopf, felder, liste: null, kinder });
+
+test('Lernwerkzeuge (P12.3): Etappen blättern per Klick und Pfeiltaste, Anfang ohne Ansage', () => {
+  const b = blk('etappen', null, { titel: 'Weg' }, {}, [1, 2, 3].map((i) => blk('etappe', String(i), { titel: `T${i}` }, { text: `<p>Text ${i}</p>` })));
+  const el = lw.etappen(b as never);
+  document.body.replaceChildren(el);
+  const detail = el.querySelector('[data-pruef="etappe-detail"]');
+  assert.match(detail?.textContent ?? '', /Etappe 1 von 3.*T1.*Text 1/su);
+  assert.equal(el.querySelector('.nur-sr')?.textContent, '');
+  assert.ok(el.querySelector<HTMLButtonElement>('[data-pruef="etappe-zurueck"]')?.disabled);
+  el.querySelector<HTMLButtonElement>('[data-pruef="etappe-weiter"]')?.click();
+  assert.match(detail?.textContent ?? '', /Text 2/u);
+  const dritte = el.querySelector<HTMLButtonElement>('[data-pruef="etappe-2"]');
+  dritte?.dispatchEvent(new dom.window.KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+  assert.match(detail?.textContent ?? '', /Text 3/u);
+  assert.equal(el.querySelector('[data-pruef="etappe-3"]')?.getAttribute('aria-pressed'), 'true');
+  assert.equal(el.querySelectorAll('.lw-etappe.ist-erreicht').length, 3);
+  assert.ok(el.querySelector<HTMLButtonElement>('[data-pruef="etappe-weiter"]')?.disabled);
+  assert.match(el.querySelector('.nur-sr')?.textContent ?? '', /Etappe 3 von 3: T3/u);
+});
+
+test('Lernwerkzeuge (P12.3): Umschalter wechselt die Ansicht, Sortieren gibt Rückmeldung ohne Punkte, Regler zeigt die Stufe', () => {
+  const u = lw.umschalter(blk('umschalter', null, { links: 'Ohne MVG', rechts: 'Mit MVG' }, {}, [blk('ansicht', 'links', {}, { text: '<p>A</p>' }), blk('ansicht', 'rechts', {}, { text: '<p>B</p>' })]) as never);
+  document.body.replaceChildren(u);
+  assert.equal(u.querySelector('[data-pruef="umschalter-ansicht"]')?.textContent, 'A');
+  u.querySelector<HTMLButtonElement>('[data-pruef="umschalter-rechts"]')?.click();
+  assert.equal(u.querySelector('[data-pruef="umschalter-ansicht"]')?.textContent, 'B');
+  assert.equal(u.querySelector('[data-pruef="umschalter-rechts"]')?.getAttribute('aria-pressed'), 'true');
+
+  const s = lw.sortieren(blk('sortieren', null, { links: 'Delegierbar', rechts: 'Beim Bauherrn' }, {}, [
+    blk('posten', '1', { seite: 'links' }, { text: '<p>Berichte</p>' }),
+    blk('posten', '2', { seite: 'rechts' }, { text: '<p>Risikoannahme</p>', erklaerung: '<p>Weil.</p>' }),
+  ]) as never);
+  document.body.replaceChildren(s);
+  s.querySelector<HTMLButtonElement>('[data-pruef="posten-2-links"]')?.click();
+  assert.match(s.querySelector('[data-pruef="posten-rueck-2"]')?.textContent ?? '', /Gehört zu: Beim Bauherrn\. Weil\./u);
+  assert.match(s.querySelector('[data-pruef="sortieren-stand"]')?.textContent ?? '', /1 von 2/u);
+  s.querySelector<HTMLButtonElement>('[data-pruef="sortieren-aufloesen"]')?.click();
+  assert.match(s.querySelector('[data-pruef="posten-rueck-1"]')?.textContent ?? '', /Passt\./u);
+  assert.doesNotMatch(s.textContent ?? '', /Punkt|richtig von/u);
+
+  const r = lw.regler(blk('regler', null, { titel: 'Wer entscheidet?' }, {}, [
+    blk('stufe', '1', { titel: 'bis 100 TEUR', marke: 'Bauherren-PL' }, { text: '<p>eins</p>' }),
+    blk('stufe', '2', { titel: 'bis 5 Mio. €', marke: 'Änderungsgremium' }, { text: '<p>zwei</p>' }),
+  ]) as never);
+  document.body.replaceChildren(r);
+  const ein = r.querySelector<HTMLInputElement>('[data-pruef="regler"]');
+  assert.match(r.querySelector('[data-pruef="regler-karte"]')?.textContent ?? '', /Bauherren-PL/u);
+  if (ein) { ein.value = '2'; ein.dispatchEvent(new dom.window.Event('input')); }
+  assert.match(r.querySelector('[data-pruef="regler-karte"]')?.textContent ?? '', /Änderungsgremium.*zwei/su);
+  assert.equal(ein?.getAttribute('aria-valuetext'), 'bis 5 Mio. €');
 });

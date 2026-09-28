@@ -62,6 +62,8 @@ Technik R3 (Architektur, Barrierefreiheit, Tests): 5 Befunde (0 schwer, 2 mittel
 - [x] Unit-Tests: Ebenen-Ansage (leer beim Aufbau, „Ebene 2: …“ beim Wechsel, kein `aria-live` am Ort); B3-Antwort durch den Reducer.
 
 ## P11.3 Korrekturschleife – Runde 4 (R4)
-Inhalt (Diff R3, alle Ebene-1-Kernsätze gegen die Quelle, gf Hauptpfad zweimal, pl Express dreimal; alle am Ende, 0 Konsolenfehler): 2 Befunde (0 schwer, 0 mittel). Technik: Bericht folgt.
+Inhalt (Diff R3, alle Ebene-1-Kernsätze gegen die Quelle, gf Hauptpfad zweimal, pl Express dreimal; alle am Ende, 0 Konsolenfehler): 2 Befunde (0 schwer, 0 mittel). Technik (main.ts-Sprung, Lesezeit-Szenario, neue Tests; Gegenprobe alter Bau rot): 3 Befunde (0 schwer, 0 mittel). Erste Runde ohne schwere oder mittlere Befunde; Runde 5 entscheidet (L-64).
 - [x] Wendepunkt Ebene 1: „Mandatsausübung in Schwellen“ (k3.3-p2).
 - [x] B6-Chat: „ob Steins Stellvertretung weiterführt“.
+- [x] Einbettung: Fläche und Titel vor dem Permalink-Sprung gesetzt – keine kurzlebige Ortsmeldung „theorie“ mehr.
+- [x] Lesezeit: erst zählen, wenn der Takt der Szene angelaufen ist (zwei Bilder + 150 ms), dann Übergänge abwarten; Glossarbegriffe und Prüf-Statuswörter zählen mit (L-65). Danach alle Rollen Hauptpfad 33,8–34,2 min, Express 14,8–15,0 min; Express-Karten B6/Wirklichkeit leicht gestrafft.

@@ -17,7 +17,7 @@ weiter: wirklichkeit
 ---
 
 ::: express
-Im Juni entschied das Änderungsgremium `ENT-017` (Fassade als `AEN-022`), im Juli die Brandschutzauflagen (`AEN-031`). Im September kam der TGA-Nachtrag als Problem `PRB-004`; über die Risikoreserve entscheidet Dr. Olbers. Seit Oktober gilt die „Kostenprognose 2026-10 · Version 4“.
+Im Juni entschied das Änderungsgremium `ENT-017` (Fassade, `AEN-022`), im Juli `AEN-031` (Brandschutzauflagen). Im September kam der TGA-Nachtrag als `PRB-004`; über die Risikoreserve entscheidet Dr. Olbers. Seit Oktober gilt die „Kostenprognose 2026-10 · Version 4“.
 :::
 
 ::: schritt einstieg
@@ -83,7 +83,7 @@ kurz: Welt A ⟷ B
 knopf: Welt B ansehen
 ---
 ::: hinweis
-Derselbe Ausfall – doch die Prognose steht nicht nur in einem Kopf.
+Derselbe Ausfall – die Prognose steht nicht nur in einem Kopf.
 :::
 
 ::: paar

@@ -85,6 +85,9 @@ async function spieleIn(seite, rolle, express) {
     // zugeklappte Teile, Rahmen (Seitenleiste, Karte, Instrumente, Fußleiste)
     // erst zählen, wenn Ein- und Ausblendungen fertig sind (die Deckkraft entscheidet mit, R3); endlose
     // Animationen (Puls) ausgenommen, höchstens 1,5 s
+    // zuerst den Takt der Szene anlaufen lassen (zwei Bilder, 150 ms: z. B. `ist-bereit` der Einschätzung in
+    // B3), dann auf die laufenden Übergänge warten (R4)
+    await seite.evaluate(() => new Promise((r) => { requestAnimationFrame(() => requestAnimationFrame(() => { setTimeout(r, 150); })); }));
     await seite.evaluate(() => Promise.race([
       Promise.all(document.getAnimations().filter((a) => a.effect?.getTiming().iterations !== Infinity).map((a) => a.finished.catch(() => null))),
       new Promise((r) => { setTimeout(r, 1500); }),
@@ -93,8 +96,8 @@ async function spieleIn(seite, rolle, express) {
       const wurzel = document.querySelector('main') ?? document.body;
       const aus = new Map();
       // sichtbarer Text unter aria-hidden (Vergleichskarten Welt A/B, Tagesmarken) zählt mit (P11.3 R2)
-      // dekorative Zeichen unter aria-hidden (Tastenkürzel, Marken, Nummern) zählen nicht
-      const ohne = 'aside,nav,.seitenleiste,[data-pruef=story-karte],[data-pruef=status],table,.instrumente,.fussleiste,button,details:not([open]) > :not(summary),[role=img],svg,.nur-sr,.kopf,.option-taste,.fragezeichen,.pruef-status,.nachweis-nr,.raci-marke';
+      // dekorative Zeichen unter aria-hidden (Tastenkürzel, Marken, Nummern) zählen nicht; Glossarbegriffe im Text schon
+      const ohne = 'aside,nav,.seitenleiste,[data-pruef=story-karte],[data-pruef=status],table,.instrumente,.fussleiste,button:not(.begriff),details:not([open]) > :not(summary),[role=img],svg,.nur-sr,.kopf,.option-taste,.fragezeichen,.nachweis-nr,.raci-marke';
       // unsichtbar über die Deckkraft (z. B. die ausgeblendete Welt A im Vergleich, R3): Produkt entlang der Vorfahren
       const deckkraft = (/** @type {Element} */ e) => {
         let d = 1;

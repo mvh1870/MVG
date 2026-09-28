@@ -9,7 +9,7 @@ Im Dezember haben Sie ‚MVG-Neuinitialisierung vorschlagen‘ gewählt. Im Mär
 :::
 
 ::: rueckbezug B
-Im Dezember haben Sie ‚Freigabe mit Auflagen vorschlagen‘ gewählt. Auf dieser Spur hätte sie nicht getragen; im März liegt stattdessen Ihre Vorlage zur Neufestlegung.
+Im Dezember haben Sie ‚Freigabe mit Auflagen vorschlagen‘ gewählt. Auflagen hätten auf Ihrer Spur nicht gereicht; im März liegt stattdessen Ihre Vorlage zur Neufestlegung.
 :::
 
 ::: rueckbezug C

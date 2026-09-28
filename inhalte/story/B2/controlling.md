@@ -74,7 +74,7 @@ In Welt A haben Sie ‚Mensa herauslassen‘ gewählt. In Welt B hat die Zusage 
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Zusage klären lassen‘ gewählt. In Welt B braucht es keine Mail: Die Mandatsleiter sagt, wer entscheidet.
+In Welt A haben Sie ‚Zusage klären lassen‘ gewählt. In Welt B braucht es keine Nachfrage: Die Mandatsleiter sagt, wer entscheidet.
 :::
 
 ::: rueckbezug ohne

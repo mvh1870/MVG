@@ -19,7 +19,7 @@ Die Marktnotiz geht als [[Frühwarnung]] in die Risikosichtung der Projektsteuer
 Noch nichts – das Signal ist erfasst, aber unbewertet.
 
 ### Neues Risiko
-Ein Risiko mehr im Blick, keines mehr im Dunkeln.
+Ein Signal mehr im Blick, keines mehr im Dunkeln.
 
 ### Governance-Frage
 [[Frühwarnung]]: Wer bestätigt das Signal – und bis wann?

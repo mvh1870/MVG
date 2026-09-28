@@ -9,7 +9,7 @@ Im Dezember haben Sie ‚MVG-Neuinitialisierung beauftragen‘ gewählt. Im Mär
 :::
 
 ::: rueckbezug B
-Im Dezember haben Sie ‚Freigabe mit Auflagen anstreben‘ gewählt. Auf dieser Spur hätte sie nicht getragen; im März beschließen Sie eine Neufestlegung der Projektbasis.
+Im Dezember haben Sie ‚Freigabe mit Auflagen anstreben‘ gewählt. Auflagen hätten auf Ihrer Spur nicht gereicht; im März beschließen Sie eine Neufestlegung der Projektbasis.
 :::
 
 ::: rueckbezug C

@@ -218,6 +218,9 @@ test('Hilfe (P13, O-31): gleiche Aufteilung wie die Companion-Hilfe, leiser Zuga
   // Prüfrunde 12: Zeitpunkt „vor Freigabe LPH n“, kein Leitprinzip als MVG-Aussage, Genus
   assert.doesNotMatch(text, /vor LPH \d|nach LPH \d|MVG-Leitprinzip|Erstes Managementbericht|ins <b>Managementbericht/u);
   assert.match(text, /vor Freigabe LPH 0/u);
+  // Prüfrunde 13: Freigabe-Zeitpunkte auch in Vorbereitung, Meilenstein und Zeitachse
+  assert.doesNotMatch(text, /Vorbereitung LPH \d|LPH \d Freigabe|Freigabe-Zeitachse: LPH|fließen aus/u);
+  assert.match(text, /Vorbereitung Freigabe LPH 2/u);
   assert.equal(baueHilfe({ seite: 'gibt-es-nicht', version: VERSION }).querySelector('[data-pruef="hilfe-uebersicht"]') !== null, true);
 });
 

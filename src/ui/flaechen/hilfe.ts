@@ -141,7 +141,7 @@ function grafikenVergroesserbar(wurzel: HTMLElement): void {
         h('p', { class: 't-label' }, name),
         h('button', { type: 'button', class: 'knopf knopf-still', onclick: () => dialog.close() }, W.hilfe.schliessen)),
       svg.cloneNode(true));
-    const knopf = h('button', { type: 'button', class: 'knopf knopf-still hilfe-grafik-knopf', 'data-pruef': 'grafik-gross', onclick: () => dialog.showModal() }, sym('pfeilRechts'), W.hilfe.grafikGross);
+    const knopf = h('button', { type: 'button', class: 'knopf knopf-still hilfe-grafik-knopf', 'data-pruef': 'grafik-gross', 'aria-label': `${W.hilfe.grafikGross}: ${name}`, onclick: () => dialog.showModal() }, sym('pfeilRechts'), W.hilfe.grafikGross);
     huelle.after(knopf, dialog);
   }
 }

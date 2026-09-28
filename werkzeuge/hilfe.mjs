@@ -29,11 +29,14 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   // Zeitpunkt der Freigabe am Ende der Phase, nicht ihr Beginn (BEGRIFFE: „Freigabe LPH n“)
   [/post-G(\d)\b/gu, 'nach Freigabe LPH $1'],
   [/\bvor G(\d)\b/gu, 'vor Freigabe LPH $1'],
+  [/\bVorbereitung G(\d)\b/gu, 'Vorbereitung Freigabe LPH $1'],
+  [/\bG(\d) Freigabe\b/gu, 'Freigabe LPH $1'],
+  [/Freigabe-Zeitachse: G0–G9/gu, 'Freigabe-Zeitachse: Freigaben LPH 0–9'],
   [/— MVG-Leitprinzip/gu, '— Leitprinzip der Anwendung'],
   [/Erstes Managementbericht/gu, 'Erster Managementbericht'],
   [/Gremientaugliches Managementbericht/gu, 'Gremientauglicher Managementbericht'],
   [/Das fertige, entscheidungsorientierte Managementbericht/gu, 'Der fertige, entscheidungsorientierte Managementbericht'],
-  [/Externe Berater fließt/gu, 'Externe Berater fließen'],
+  [/Externe Berater fließt schrittweise aus/gu, 'Externe Berater ziehen sich schrittweise zurück'],
   // im Quelltext steht „<b>Freigabebesprechung</b> – G0 bis G4“: das Muster muss im eigenen Textknoten greifen
   [/– G0 bis G4/gu, '– Freigabestufe 0 bis 4'],
   [/Standardisierter Einfuehrungs-\/Reset-Rhythmus/gu, 'Orientierungsrahmen für Einführung und Neuinitialisierung'],

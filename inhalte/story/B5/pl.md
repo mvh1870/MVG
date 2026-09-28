@@ -13,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: -1
 ---
 ### Konsequenz
-Die Projektsteuerung bereitet vor, Sie legen Dr. Olbers die Vorlage vor; über den Einsatz entscheidet sie. Datum, Betrag und Datenstand stehen im Entscheidungsregister.
+Sie legen Dr. Olbers die Vorlage vor; über den Einsatz entscheidet sie. Datum, Betrag und Datenstand stehen im Entscheidungsregister.
 
 ### Was fehlt
 Ein Blick darauf, wie viel Reserve danach bleibt.

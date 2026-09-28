@@ -102,7 +102,7 @@ test('Weiter wartet auf die Entscheidung; danach Konsequenz, Ebenen, Welt B (B3)
   assert.deepEqual(weiterAktion(o(z), inhalte), { art: 'weiter' }, 'Ebene 1 ist Hauptpfad, Weiter führt zur nächsten Station');
   z = tue(z, { art: 'setzeEbene', ebene: 4 });
   assert.deepEqual(weiterAktion(o(z), inhalte), { art: 'weiter' }, 'nach Ebene 4 geht es zur nächsten Station');
-  assert.deepEqual(zurueckAktion(o(z), inhalte), { art: 'setzeEbene', ebene: 3 });
+  assert.deepEqual(zurueckAktion(o(z), inhalte), { art: 'zurueck' }, 'Zurück ist die Umkehr von Weiter (L-61)');
   assert.equal(weiter(z).station, 'B6', 'Express: nach B3 folgt B6');
 });
 

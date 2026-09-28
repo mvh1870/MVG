@@ -12,7 +12,7 @@ ende: ja
 titel: Und bei Ihnen?
 kurz: Epilog
 ---
-Lindenhall ist erfunden – die Stadt, die GML, Dr. Olbers und Holger Stein gibt es nicht. Die Muster aus Welt A beschreibt das Whitepaper dagegen als typisch. Deshalb fragt diese letzte Station nach einem Projekt, das Sie selbst kennen.
+Lindenhall ist erfunden, die Muster aus Welt A beschreibt das Whitepaper dagegen als typisch. Deshalb fragt diese Station nach Ihrem eigenen Projekt.
 :::
 
 ::: schritt diagnose
@@ -21,7 +21,7 @@ titel: Eine Selbstdiagnose ohne Punktzahl
 kurz: Selbstdiagnose
 gruppe: Ihr Projekt
 ---
-Die acht Symptome aus Kap. 2.5 kennen Sie vom Wendepunkt. Zeigen sie sich in Ihrem Projekt? Darunter entsteht ein Profil in Worten – ohne Punkte, Summe oder Urteil. Nichts wird gespeichert oder übertragen.
+Zeigen sich die acht Symptome aus Kap. 2.5 in Ihrem Projekt? Sie erhalten ein Profil in Worten, kein Urteil. Nichts wird gespeichert oder übertragen.
 
 ::: tafel k2.5-t1
 ---
@@ -30,7 +30,7 @@ form: diagnose
 :::
 
 ::: hinweis
-**Was diese Selbstdiagnose nicht ist:** eine MVG-Reifegradanalyse – eine Methode von Bauherr Mentoren (Kap. 7.1).
+**Das ist keine MVG-Reifegradanalyse** – diese ist eine Methode von Bauherr Mentoren (Kap. 7.1).
 :::
 
 ::: zitat k7.1-p2
@@ -44,7 +44,7 @@ titel: Wie sähe das bei Ihnen aus?
 kurz: Anwendungssituationen
 gruppe: Ihr Projekt
 ---
-Kap. 10 zeigt, wie dieselbe Logik je nach Bauherr anders wirkt. Welche Situation trifft Ihr Projekt?
+Welche Situation aus Kap. 10 trifft Ihr Projekt?
 
 **Öffentliche Bauherren** – wie Lindenhall: [[zitat:k10.1-p1|Entscheidungen müssen nicht nur sachlich plausibel, sondern auch nachvollziehbar, prüfbar und beschlussfähig sein.]]
 
@@ -52,7 +52,7 @@ Kap. 10 zeigt, wie dieselbe Logik je nach Bauherr anders wirkt. Welche Situation
 
 **Energieversorger und Infrastrukturträger:** Risiken verschieben sich [[zitat:k10.3-p1|häufig in Freigaben, Priorisierung, Beschaffung, Entscheidungen zu Komponenten mit langer Lieferzeit und die Disziplin bei der Restkostenprognose]] – in Lindenhall bei den Holzbauelementen.
 
-**Schleichender Steuerungsverlust** ist kein Bauherrentyp, sondern eine Situation; Welt A war eine.
+**Schleichender Steuerungsverlust** – wie in Welt A.
 :::
 
 ::: schritt spur
@@ -61,7 +61,7 @@ titel: Ihre Spur – Welt A neben Welt B
 kurz: Ihre Spur
 ---
 ::: spurvergleich
-Die Gegenüberstellung wertet nicht. Sie zeigt, was Sie mit welchem Wissen und welcher Struktur gewählt haben.
+Ohne Wertung: was Sie mit welchem Wissen und welcher Struktur gewählt haben.
 :::
 :::
 
@@ -71,10 +71,10 @@ titel: Ihr Resümee
 kurz: Resümee
 ---
 ::: resuemee
-Was Sie mitnehmen, folgt aus Ihrem Weg: Ende, Richtung, Interessen und besuchte Stationen.
+Was Sie mitnehmen, folgt aus Ihrem Weg.
 
 ::: hinweis
-**Drei Prinzipien**, wortgleich aus dem Whitepaper.
+**Drei Prinzipien**
 :::
 
 ::: zitat k1-p1
@@ -90,7 +90,7 @@ Datenstand und Nachweis sind kein administratives Nebenprodukt. Sie sind ein eig
 :::
 
 ::: hinweis
-**Eine Checkliste:** die acht Abnahmekriterien aus Kap. 8.4. Lesen Sie die Prüffragen mit Ihrem Projekt im Kopf.
+**Checkliste:** die Abnahmekriterien aus Kap. 8.4, gelesen mit Ihrem Projekt im Kopf.
 :::
 
 ::: tafel k8.4-t1
@@ -106,9 +106,9 @@ form: karten
 titel: Die Bibliothek
 kurz: Bibliothek
 ---
-Die Geschichte ist zu Ende; das Whitepaper bleibt offen. **Theorie** enthält alle 13 Kapitel im Originaltext V1.2, Kap. 13 das durchsuchbare **Glossar** – dieselben Definitionen wie an markierten Begriffen, etwa [[Datenstand]].
+Das Whitepaper bleibt offen: **Theorie** zeigt alle 13 Kapitel im Originaltext V1.2, Kap. 13 das **Glossar** mit den Definitionen der markierten Begriffe, etwa [[Datenstand]].
 
-**Explore** mit den Werkzeugen ist jetzt freigeschaltet: über „Selbst ausprobieren · Explore“ unter der Story-Karte.
+**Explore** ist jetzt freigeschaltet: „Selbst ausprobieren · Explore“ unter der Story-Karte.
 :::
 
 ::: schritt ebenen
@@ -124,7 +124,7 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Lindenhall folgt einem Muster, das das Whitepaper beschreibt (Kap. 2.5, Kap. 10). Über allem steht die Leitthese: Arbeit kann delegiert werden, bauherrenseitige Legitimation nicht.
+Lindenhall folgt einem Muster aus Kap. 2.5 und Kap. 10. Leitthese: Arbeit kann delegiert werden, bauherrenseitige Legitimation nicht.
 :::
 
 ::: ebene 2

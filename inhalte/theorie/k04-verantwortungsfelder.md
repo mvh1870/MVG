@@ -106,7 +106,7 @@ Als Muster-Mandatsleiter gilt: Die Bauherren-PL gibt bis einschließlich 100 TEU
 ---
 titel: Wesentliche Entscheidung
 ---
-Nicht jede operative Entscheidung ist wesentlich – wohl aber die, die Projektzweck, Zielsystem oder Kosten, Termin, Qualität, Projektumfang, Risiko und ESG/LCC substanziell beeinflussen. Damit sie nicht in Protokollen und E-Mails verschwinden, gibt MVG jeder dieser Entscheidungen eine [[Entscheidungs-ID]].
+Nicht jede operative Entscheidung ist bauherrenseitig wesentlich – wohl aber die, die Projektzweck, Zielsystem oder Kosten, Termin, Qualität, Projektumfang, Risiko und ESG/LCC substanziell beeinflussen. Damit sie nicht in Protokollen und E-Mails verschwinden, gibt MVG jeder dieser Entscheidungen eine [[Entscheidungs-ID]].
 
 ::: zitat k4.3-p2
 Jede wesentliche Entscheidung erhält eine eindeutige Kennung, einen Datenstand, eine verantwortliche Rolle, eine Entscheidungsfrage und einen Nachverfolgungsstatus.

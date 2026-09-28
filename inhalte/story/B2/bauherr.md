@@ -6,7 +6,7 @@ rueckbezug-auf: A2
 ---
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Zusage bestätigen‘ gewählt. In Welt B wird die Mensa nicht am Telefon gesetzt: `AEN-012` ist beantragt, entscheiden wird das Änderungsgremium.
+In Welt A haben Sie ‚Zusage bestätigen‘ gewählt. In Welt B wird die Mensa nicht am Telefon zugesagt: `AEN-012` ist beantragt.
 :::
 
 ::: rueckbezug B
@@ -29,7 +29,7 @@ status:
   offene-risiken: -1
 ---
 ### Konsequenz
-Sie sagen Sabine Roth: Das Änderungsgremium entscheidet – und sie sitzt bei Nutzerthemen mit am Tisch. Aus der Flurzusage wird ein Antrag.
+Sie sagen Sabine Roth: Das Änderungsgremium entscheidet, bei Nutzerthemen sitzt sie mit am Tisch.
 
 ### Was fehlt
 Nichts in der Struktur; die Bewertung von Kosten, Termin und Risiko läuft.

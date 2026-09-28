@@ -15,9 +15,9 @@ weiter:
 titel: Zwei Welten. Ein Schulcampus.
 kurz: Übernahme
 ---
-Die Stadt Lindenhall baut den Schulcampus Lindenhall-Süd – Gesamtschule, Grundschule, Dreifeldsporthalle – als Holzhybridbau, Projektbasis 58,4 Mio. € brutto. Als Bauherr wird sie von der Gebäudemanagement Lindenhall GmbH (GML) vertreten.
+Die Stadt Lindenhall baut den Schulcampus Lindenhall-Süd als Holzhybridbau, Projektbasis 58,4 Mio. € brutto. Als Bauherr wird sie von der Gebäudemanagement Lindenhall GmbH (GML) vertreten.
 
-Sie übernehmen eine Rolle. Zuerst erleben Sie das Projekt in **Welt A**, ohne [[Minimum Viable Governance]], danach dieselben Momente in **Welt B**, mit MVG.
+Sie übernehmen eine Rolle: erst **Welt A**, ohne [[Minimum Viable Governance]], dann dieselben Momente in **Welt B**, mit MVG.
 
 ::: hinweis
 Fiktiver Fall. Stadt, Gesellschaft, Projekt und Personen sind erfunden.
@@ -40,7 +40,7 @@ titel: Was interessiert Sie besonders?
 kurz: Interessen
 knopf: Projekt übernehmen
 ---
-Jede Station zeigt dazu eine Vertiefung. Überspringen möglich.
+Jede Station vertieft das. Überspringen möglich.
 
 ::: interesse kosten
 ---

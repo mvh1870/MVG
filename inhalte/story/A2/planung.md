@@ -33,7 +33,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Sie schreiben der Bauherren-PL: ohne Auftrag keine Umplanung. Es antwortet niemand, weil niemand weiß, wer entscheidet.
+Sie schreiben der Bauherren-PL: ohne Auftrag keine Umplanung. Niemand antwortet; die Schulseite drängt, Ihr Team plant die Mensa vorsorglich mit.
 
 ### Was fehlt
 Ein Freigabeweg für Änderungen.
@@ -66,7 +66,7 @@ Die Lieferzeit wirkt auf den Termin, ohne dass jemand darüber entscheidet.
 :::
 
 ::: nachsatz
-Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+Jede Wahl ist nachvollziehbar; es fehlt die Struktur, in der sie wirkt.
 :::
 
 ::: regie

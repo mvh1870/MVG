@@ -66,7 +66,7 @@ Ein sauber berichteter, aber noch unbewerteter Eintrag.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Im Statusbericht melden‘ gewählt. In Welt B steht die Lieferzeit nicht als Ampel auf Seite 23, sondern als `FRW-002` im Register.
+In Welt A haben Sie ‚Im Statusbericht melden‘ gewählt. In Welt B steht die Lieferzeit als `FRW-002` im Register, nicht als Ampel auf Seite 23.
 :::
 
 ::: rueckbezug B

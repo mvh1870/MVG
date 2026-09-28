@@ -21,7 +21,7 @@ weiter: B5
 titel: Donnerstag, 10:00 Uhr. Monat 7.
 kurz: Einstieg
 ---
-Donnerstag, 9. Juli. Das Änderungsgremium tagt. Seit Juni liegt die Baugenehmigung vor – mit Brandschutzauflagen zum Holzbau. Die Planänderung steht als `AEN-031` im Änderungsregister, grob 0,4 Mio. €, „In Prüfung“; die Vorlage liegt auf dem Tisch. Eine Woche später bekommt der Bauausschuss den Managementbericht mit der Beschlusslage dieser Sitzung.
+Donnerstag, 9. Juli. Das Änderungsgremium tagt. Seit Juni liegt die Baugenehmigung vor – mit Brandschutzauflagen zum Holzbau. Die Planänderung `AEN-031`, grob 0,4 Mio. €, liegt als Vorlage auf dem Tisch.
 
 ::: protokoll
 ---
@@ -48,7 +48,7 @@ Planänderung aufgrund der Auflagen aus der Baugenehmigung; Kosten nach grober S
 von: brenner
 zeit: "09:41"
 ---
-Vorlage zu `AEN-031` ist verteilt: Frage, Datenstand, Kosten. Die Terminwirkung ist nur grob geschätzt – so steht es auch drin.
+Vorlage zu `AEN-031` ist verteilt. Die Terminwirkung ist nur grob geschätzt – so steht es auch drin.
 :::
 
 ::: datei
@@ -69,7 +69,7 @@ kurz: Welt A ⟷ B
 knopf: Welt B ansehen
 ---
 ::: hinweis
-Dieselben Auflagen, derselbe Ausschusstermin – in Welt B liegen sie vorher im Gremium mit Mandat.
+Dieselben Auflagen – in Welt B liegen sie vorher beim Gremium mit Mandat.
 :::
 
 ::: paar
@@ -179,29 +179,29 @@ detail: "Änderung AEN-031 · Status In Prüfung"
 zustaendig: Änderungsgremium
 stufe: 2
 ---
-Grob 0,4 Mio. € liegen über 100 TEUR und bis einschließlich 5 Mio. € – über `AEN-031` entscheidet das Änderungsgremium. Einen Einsatz der Risikoreserve gibt nur der Bauherr frei.
+Über 100 TEUR bis einschließlich 5 Mio. €: Änderungsgremium. Den Einsatz der Risikoreserve gibt nur der Bauherr frei.
 :::
 
 ::: vorlage AEN-031
 ---
 titel: Vorlage zur Änderung
-datenstand: Kostenprognose 2026-05 · Version 3 · Schätzung der Generalplanung zu AEN-031, Stand Juli
+datenstand: Kostenprognose 2026-05 · Version 3 · Schätzung der Generalplanung, Stand Juli
 ---
 ### Frage
 „Wie werden die Brandschutzauflagen aus der Baugenehmigung in der Ausführungsplanung umgesetzt?“
 
 ### Checkliste
-- [x] eindeutige [[Entscheidungs-ID]] · `AEN-031`, die Kennung der Änderung im Änderungsregister
+- [x] eindeutige [[Entscheidungs-ID]] · `AEN-031`
 - [x] Entscheidungsfrage
 - [x] betroffene Freigabe · Freigabe zum Abschluss von LPH 5
 - [x] Verantwortungsfeld · Freigabe (Änderung)
-- [x] Mandat und letztverantwortliche Rolle · Änderungsgremium, Vorsitz Geschäftsführung
-- [x] Datenstand und zentrale Annahmen · grobe Schätzung der Generalplanung, Stand Juli
-- [ ] Optionen und Konsequenzen · bisher eine Ausführung, von der Generalplanung ausgearbeitet; Varianten nicht vorgelegt
-- [ ] Wirkung auf Kosten, Termin, Qualität, Projektumfang, Risiko und ESG/LCC · Kosten und Termin grob geschätzt, die übrigen noch nicht bewertet
+- [x] Mandat und letztverantwortliche Rolle · Änderungsgremium
+- [x] Datenstand und zentrale Annahmen · Schätzung der Generalplanung
+- [ ] Optionen und Konsequenzen · nur eine Ausführung, keine Varianten
+- [ ] Wirkung auf Kosten, Termin, Qualität, Projektumfang, Risiko und ESG/LCC · Kosten und Termin grob, Rest offen
 - [x] Empfehlung · Projektsteuerung und Planung
-- [x] Freigabe- oder Eskalationsweg · Änderungsgremium; eine Deckung aus der Risikoreserve gibt nur der Bauherr frei
-- [ ] Freigabeprozess (sechsstufig, jede Stufe wird signiert): offen → in Prüfung → vorbereitet → freigegeben → beschlossen | abgelehnt · Stand der Vorlage: freigegeben zur Sitzung; „beschlossen | abgelehnt“ steht aus
+- [x] Freigabe- oder Eskalationsweg · Änderungsgremium; Deckung aus der Risikoreserve: Bauherr
+- [ ] Freigabeprozess (sechsstufig, jede Stufe wird signiert): offen → in Prüfung → vorbereitet → freigegeben → beschlossen | abgelehnt · Stand der Vorlage: freigegeben zur Sitzung
 - [ ] Beschlusslage · wird in der Sitzung dokumentiert
 - [ ] Nachverfolgung
 :::
@@ -216,7 +216,7 @@ datenstand: Kostenprognose 2026-05 · Version 3 · Schätzung der Generalplanung
 titel: Vom Gremium in den Managementbericht
 kurz: Beschlusslage
 ---
-Beschluss oder Zurückstellung stehen in Protokoll und Änderungsregister; der Managementbericht sammelt sie für den Bauausschuss.
+Beschluss oder Zurückstellung stehen im Protokoll; der Managementbericht sammelt sie für den Bauausschuss.
 
 ::: protokoll
 ---
@@ -254,10 +254,10 @@ wert: In Prüfung · Vorlage liegt vor
 :::
 
 ::: bekannt
-- `AEN-031` setzt die Brandschutzauflagen um: „In Prüfung“, grob 0,4 Mio. € nach Schätzung der Generalplanung.
-- Zuständig ist das Änderungsgremium; den Einsatz der Risikoreserve gibt nur der Bauherr frei.
-- Die Vorlage nennt Frage, Datenstand, Mandat, Freigabe und Empfehlung; Kosten und Termin sind grob geschätzt.
-- `ENT-017` (Fassade) ist im Juni entschieden: Änderung `AEN-022`, Risikoreserve unberührt. Der Bauausschuss bekommt am 16. Juli den Managementbericht.
+- `AEN-031`: „In Prüfung“, grob 0,4 Mio. € nach Schätzung der Generalplanung.
+- Zuständig ist das Änderungsgremium.
+- In der Vorlage sind Kosten und Termin nur grob geschätzt.
+- `ENT-017` (Fassade) ist im Juni entschieden: Änderung `AEN-022`, Risikoreserve unberührt.
 :::
 
 ::: unbekannt
@@ -305,7 +305,7 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Über `AEN-031` entscheidet, wer nach der Mandatsleiter das Mandat hat: das Änderungsgremium, auf einer Vorlage mit Frage und Datenstand. Der Managementbericht ist der Sammelpunkt für die Gremien.
+Über `AEN-031` entscheidet, wer das Mandat hat: das Änderungsgremium, auf einer Vorlage mit Frage und Datenstand. Der Managementbericht sammelt für die Gremien.
 :::
 
 ::: ebene 2

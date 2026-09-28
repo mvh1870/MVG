@@ -21,7 +21,7 @@ weiter: B6
 titel: Mittwoch, 14:00 Uhr. Monat 9.
 kurz: Einstieg
 ---
-Mittwoch, 9. September. Der Nachtrag der TGA-Fachplanung, seit Mai im Risikoregister „beobachtet“, ist eingegangen. Nora Petersen (PMO) hat ihn als Problem `PRB-004` eingetragen. Er berührt die Risikoreserve – deren Einsatz gibt nur der Bauherr frei. Am 15. September tagt der Lenkungskreis.
+Mittwoch, 9. September. Der Nachtrag der TGA-Fachplanung ist da; Nora Petersen (PMO) hat ihn als Problem `PRB-004` eingetragen.
 
 ::: datei
 ---
@@ -49,7 +49,7 @@ von: petersen
 von: kaya
 zeit: "13:52"
 ---
-Der Nachtrag steht noch nicht in meiner CTC – und gegen die 2,9 Mio. € buche ich nichts ohne Freigabe von Dr. Olbers.
+Der Nachtrag steht noch nicht in meiner CTC. Gegen die 2,9 Mio. € buche ich nichts ohne Freigabe.
 :::
 
 ::: chat
@@ -69,7 +69,7 @@ kurz: Welt A ⟷ B
 knopf: Welt B ansehen
 ---
 ::: hinweis
-Dieselben Folgekosten – in Welt B hat der Nachtrag eine Kennung, und die Reserve ist eine Frage an den Bauherrn, bevor sie fließt.
+Dieselben Folgekosten – in Welt B ist die Reserve eine Frage an den Bauherrn, bevor sie fließt.
 :::
 
 ::: paar
@@ -155,7 +155,7 @@ Welt B: derselbe Nachtrag als Problem mit Kennung und Maßnahme, die Mensa als b
 titel: Vom Problem zur Frage an den Bauherrn
 kurz: Problem
 ---
-Aus dem Problem folgen eine Maßnahme – und, weil die Reserve berührt ist, Entscheidungsbedarf.
+Problem, Maßnahme – und Entscheidungsbedarf, weil die Reserve berührt ist.
 
 ::: kette
 ::: glied PRB-004
@@ -166,7 +166,7 @@ art: problem
 Eingetretenes Problem · Problemregister
 
 ### Text
-Nachtrag der TGA-Fachplanung · Problemregister, gepflegt vom PMO
+Nachtrag der TGA-Fachplanung · gepflegt vom PMO
 :::
 
 ::: glied
@@ -188,7 +188,7 @@ art: entscheidung
 ggf. Entscheidung · die Reserve ist berührt
 
 ### Text
-Entscheidungsbedarf · Weg über das Entscheidungsregister zur Vorlage · Freigabe des Einsatzes der Risikoreserve, nicht delegierbar
+Entscheidungsbedarf · über das Entscheidungsregister zur Vorlage · nicht delegierbar
 :::
 
 ::: glied
@@ -205,7 +205,7 @@ Dr. Miriam Olbers entscheidet auf Vorlage der Bauherren-PL
 :::
 
 ::: merksatz
-**Erst die Frage, dann das Geld:** Der Einsatz der Reserve wird freigegeben, bevor gegen sie gerechnet wird.
+**Erst die Frage, dann das Geld:** Die Reserve wird freigegeben, bevor gegen sie gerechnet wird.
 :::
 :::
 
@@ -217,7 +217,7 @@ kurz: Vorlage
 ::: vorlage PRB-004
 ---
 titel: Vorlage zum Einsatz der Risikoreserve
-datenstand: Kostenprognose 2026-05 · Version 3 (verbindlich) · Nachtrag der TGA-Fachplanung zu PRB-004, Stand September
+datenstand: Kostenprognose 2026-05 · Version 3 (verbindlich) · Nachtrag zu PRB-004, Stand September
 ---
 ### Frage
 „Wird für den Nachtrag der TGA-Fachplanung der Einsatz der Risikoreserve freigegeben?“
@@ -225,10 +225,10 @@ datenstand: Kostenprognose 2026-05 · Version 3 (verbindlich) · Nachtrag der TG
 ### Checkliste
 - [ ] eindeutige [[Entscheidungs-ID]] · noch nicht vergeben; Bezug `PRB-004`
 - [x] Entscheidungsfrage
-- [x] betroffene Freigabe · Freigabe zum Abschluss von LPH 5 (November); Gegenstand der Vorlage: Einsatz der Risikoreserve
+- [x] betroffene Freigabe · Freigabe zum Abschluss von LPH 5 (November)
 - [x] Verantwortungsfeld · Risikoannahme und Freigabe
 - [x] Mandat und letztverantwortliche Rolle · Bauherr, nicht delegierbar
-- [ ] Datenstand und zentrale Annahmen · benannt; Nachtrag nicht abschließend geprüft
+- [ ] Datenstand und zentrale Annahmen · benannt; Nachtrag in Prüfung
 - [ ] Optionen und Konsequenzen · unvollständig
 - [ ] Wirkung auf Kosten, Termin, Qualität, Projektumfang, Risiko und ESG/LCC · nur Kosten laut Nachtrag
 - [ ] Empfehlung
@@ -255,10 +255,10 @@ wert: eingetretenes Problem · Maßnahme · Entscheidungsbedarf
 :::
 
 ::: bekannt
-- `PRB-004` steht im Problemregister; die Projektsteuerung prüft Berechtigung und Höhe, eine Frist fehlt.
-- Der Nachtrag berührt die Risikoreserve von 2,9 Mio. € – noch nicht eingesetzt. Ihren Einsatz gibt nur der Bauherr frei.
-- Verbindlich ist die „Kostenprognose 2026-05 · Version 3“; Version 4 mit den beschlossenen Änderungen ist in Arbeit.
-- Die Mensa steht in `AEN-012`; die Deckung von `AEN-031` ist offen.
+- `PRB-004`: Die Projektsteuerung prüft Berechtigung und Höhe; eine Frist fehlt.
+- Risikoreserve 2,9 Mio. €, noch nicht eingesetzt; ihren Einsatz gibt nur der Bauherr frei.
+- Verbindlich: „Kostenprognose 2026-05 · Version 3“; Version 4 ist in Arbeit.
+- Die Deckung von `AEN-031` ist offen.
 :::
 
 ::: unbekannt
@@ -306,14 +306,14 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Ein eingetretenes Problem gehört ins Problemregister; es folgt eine Maßnahme, ggf. eine Entscheidung. Den Einsatz der Risikoreserve gibt der Bauherr frei – nicht delegierbar, auf einem benannten Datenstand.
+Ein eingetretenes Problem führt zu Maßnahme und ggf. Entscheidung. Den Einsatz der Risikoreserve gibt der Bauherr frei – nicht delegierbar, auf benanntem Datenstand.
 :::
 
 ::: ebene 2
 ---
 titel: Warum relevant
 ---
-Derselbe Nachtrag, dieselbe Reserve – nur wird in Welt B nicht gegengerechnet, sondern gefragt. Der Nachtrag ist `PRB-004`, mit Maßnahme; die Mensa steht mit ihren Kosten in `AEN-012`; und die Reserve ist kein Topf, gegen den gerechnet wird, sondern eine Frage an den Bauherrn. Kap. 4.5 sagt, was vorher klar sein muss: [[zitat:k4.5-p2|Vor einer Freigabe muss klar sein, welche Entscheidung getroffen wird, welches Mandat gilt, welche Mindestgrundlagen vorliegen, welche Risiken angenommen werden und welcher Datenstand referenziert wird.]] Die Vorlage zeigt, was davon steht und was offen ist.
+Derselbe Nachtrag, dieselbe Reserve – nur wird in Welt B nicht gegengerechnet, sondern gefragt. Der Nachtrag stand seit Mai im Risikoregister als „beobachtet“; jetzt ist er `PRB-004`, mit Maßnahme; die Mensa steht mit ihren Kosten in `AEN-012`; und die Reserve ist kein Topf, gegen den gerechnet wird, sondern eine Frage an den Bauherrn. Kap. 4.5 sagt, was vorher klar sein muss: [[zitat:k4.5-p2|Vor einer Freigabe muss klar sein, welche Entscheidung getroffen wird, welches Mandat gilt, welche Mindestgrundlagen vorliegen, welche Risiken angenommen werden und welcher Datenstand referenziert wird.]] Die Vorlage zeigt, was davon steht und was offen ist.
 :::
 
 ::: ebene 3

@@ -216,12 +216,11 @@ export function weiterAktion(z: OeffentlicherZustand, inhalte: OeffentlicheInhal
   return { art: 'weiter' };
 }
 
-/** Die Aktion hinter „Zurück“; im Ebenen-Schritt zuerst eine Ebene zurück. */
+/** Die Aktion hinter „Zurück“ (Umkehr von „Weiter“). */
 export function zurueckAktion(z: OeffentlicherZustand, inhalte: OeffentlicheInhalte): Aktion | null {
   const st = aktuelleStation(z, inhalte);
   if (st === null) return null;
-  const s = sichtbareSchritte(st, z.rolle)[z.schritt];
-  if (s?.art === 'ebenen' && z.ebene > 1) return { art: 'setzeEbene', ebene: z.ebene - 1 };
+  // L-61: auch „Zurück“ blättert nicht durch die Ebenen (Umkehr von „Weiter“); Ebenen über ihre Reiter
   if (z.schritt > 0 || z.verlauf.length >= 2) return { art: 'zurueck' };
   return null;
 }

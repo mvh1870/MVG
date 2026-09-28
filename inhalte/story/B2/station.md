@@ -21,7 +21,7 @@ weiter: B3
 titel: Dienstag, 11:15 Uhr. Monat 3.
 kurz: Einstieg
 ---
-Dienstag, 10. März, LPH 5. Diesmal hat jedes Stück eine Kennung – aus der Flurzusage ist ein Antrag geworden.
+Dienstag, 10. März, LPH 5. Dieselbe Lieferzeit, derselbe Wunsch.
 
 ::: protokoll
 ---
@@ -38,7 +38,7 @@ datum: 10. März 2026
 von: brenner
 zeit: "10:48"
 ---
-Marktabfrage Holzbau ist als `FRW-002` erfasst – unbewertet. Nächste Risikosichtung: Dienstag, 17. März.
+Marktabfrage Holzbau ist als `FRW-002` erfasst, unbewertet. Risikosichtung: Dienstag, 17. März.
 :::
 
 ::: mail
@@ -47,7 +47,7 @@ von: roth
 betreff: Mensa für den Ganztag
 zeit: "11:09"
 ---
-Der Ganztag wächst: Die Kinder brauchen eine Mensa für rund 450 statt 300 Essen, laut Generalplanung grob 0,6 Mio. €. Herr Deppe sagte im Flur: „Wir kriegen das hin.“ Ich gehe davon aus, dass das gilt.
+Der Ganztag wächst: Wir brauchen eine Mensa für rund 450 statt 300 Essen, laut Generalplanung grob 0,6 Mio. €. Herr Deppe sagte im Flur: „Wir kriegen das hin.“ Ich nehme ihn beim Wort.
 :::
 
 ::: datei
@@ -68,7 +68,7 @@ kurz: Welt A ⟷ B
 knopf: Welt B ansehen
 ---
 ::: hinweis
-In Welt B hat jedes Stück eine Kennung und einen nächsten Schritt.
+Jedes Stück hat eine Kennung und einen nächsten Schritt.
 :::
 
 ::: paar
@@ -160,7 +160,7 @@ art: fruehwarnung
 [[Frühwarnung]] · erfasst
 
 ### Text
-unbewertetes Signal · Quelle: Marktabfrage der Generalplanung
+unbewertetes Signal aus der Marktabfrage
 :::
 
 ::: glied
@@ -172,7 +172,7 @@ von: brenner
 Bestätigung · steht aus
 
 ### Text
-nächste Risikosichtung im Jour fixe, Dienstag, 17. März · Projektsteuerung
+Risikosichtung, Dienstag, 17. März · Projektsteuerung
 :::
 
 ::: glied RIS-009
@@ -183,7 +183,7 @@ art: risiko
 Risiko · erst nach Bestätigung
 
 ### Text
-„Lieferzeit Holzbauelemente“ · Terminwirkung noch nicht bewertet
+„Lieferzeit Holzbauelemente“ · Terminwirkung nicht bewertet
 :::
 :::
 :::
@@ -217,7 +217,7 @@ detail: "Änderung AEN-012 · Status Beantragt"
 zustaendig: Änderungsgremium
 stufe: 2
 ---
-Über 100 TEUR, bis einschließlich 5 Mio. €: Es entscheidet das Änderungsgremium unter Vorsitz von Frank Deppe.
+Über 100 TEUR bis einschließlich 5 Mio. €: Änderungsgremium, Vorsitz Frank Deppe.
 :::
 
 ::: merksatz
@@ -241,8 +241,8 @@ wert: Beantragt · Auswirkung offen
 :::
 
 ::: bekannt
-- Lieferzeit Holzbauelemente: rund 26 statt 16 Wochen; als `FRW-002` erfasst, nicht bestätigt.
-- Mensa für rund 450 statt 300 Essen, grob 0,6 Mio. €; als `AEN-012` beantragt, nicht beschlossen.
+- Lieferzeit Holzbauelemente: rund 26 statt 16 Wochen; `FRW-002`, nicht bestätigt.
+- Mensa für rund 450 statt 300 Essen, grob 0,6 Mio. €; `AEN-012`, beantragt, nicht beschlossen.
 :::
 
 ::: unbekannt
@@ -290,7 +290,7 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Eine Frühwarnung ist ein unbewertetes Signal; bestätigt, wird daraus ein bewertetes Risiko. Eine gewollte Änderung gehört ins Änderungsregister – nächster Schritt: Auswirkung und Freigabeweg.
+Eine Frühwarnung ist ein unbewertetes Signal; erst bestätigt wird sie ein bewertetes Risiko. Eine gewollte Änderung braucht Auswirkung und Freigabeweg.
 :::
 
 ::: ebene 2

@@ -66,7 +66,7 @@ Woher kommt die Deckung – und wer entscheidet darüber?
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Eine Seite nachreichen‘ gewählt. In Welt B ist die eine Seite der Managementbericht: aggregiert, mit Beschlussvorbereitung, die Frage steht vorn.
+In Welt A haben Sie ‚Eine Seite nachreichen‘ gewählt. In Welt B ist die eine Seite der Managementbericht – mit der Frage vorn.
 :::
 
 ::: rueckbezug B

@@ -13,7 +13,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Die Marktnotiz geht als [[Frühwarnung]] an die Projektsteuerung und in die wöchentliche Risikosichtung. Ob daraus ein Risiko wird, zeigt die Bestätigung.
+Die Marktnotiz geht als [[Frühwarnung]] in die Risikosichtung der Projektsteuerung. Ob sie ein Risiko wird, zeigt die Bestätigung.
 
 ### Was fehlt
 Noch nichts – das Signal ist erfasst, aber unbewertet.
@@ -66,7 +66,7 @@ Eine offene Änderung mehr, aber mit Weg.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Variante vorrechnen‘ gewählt. In Welt B geht eine Variante als beantragte Änderung ins Änderungsregister.
+In Welt A haben Sie ‚Variante vorrechnen‘ gewählt. In Welt B wird eine Variante zur beantragten Änderung.
 :::
 
 ::: rueckbezug B
@@ -74,7 +74,7 @@ In Welt A haben Sie ‚Zielpriorität erfragen‘ gewählt. In Welt B hat die Fr
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Bauantrag zuerst, Notiz per Mail‘ gewählt. In Welt B landet die Notiz als Frühwarnung im Register.
+In Welt A haben Sie ‚Bauantrag zuerst, Notiz per Mail‘ gewählt. In Welt B hat die Notiz eine Adresse: das Frühwarnungsregister der Projektsteuerung.
 :::
 
 ::: rueckbezug ohne

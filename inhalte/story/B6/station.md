@@ -25,15 +25,15 @@ Im Juni entschied das Änderungsgremium `ENT-017` (Fassade als `AEN-022`), im Ju
 titel: Montag, 07:45 Uhr. Monat 11.
 kurz: Einstieg
 ---
-Montag, 9. November. Die Freigabe zum Abschluss von LPH 5 ist „in Vorbereitung“. Holger Stein fällt für Wochen aus, eine Stellvertretung ist benannt.
+Montag, 9. November. Die Freigabe zum Abschluss von LPH 5 ist in Vorbereitung. Holger Stein fällt aus; eine Stellvertretung ist benannt.
 
 ::: mail
 ---
 von: petersen
-betreff: Anfrage einer Fraktion – Kosten und Termin
+betreff: "Anfrage einer Fraktion: Kosten und Termin"
 zeit: "07:38"
 ---
-Eine Fraktion fragt über das Büro von Dr. Olbers nach Kosten und Termin. Antwort bis Freitag, 13. November.
+Eine Fraktion fragt über das Dezernat nach Kosten und Termin. Antwort bis Freitag, 13. November.
 
 Beides steht im Managementbericht Oktober. Wer arbeitet zu?
 :::
@@ -83,7 +83,7 @@ kurz: Welt A ⟷ B
 knopf: Welt B ansehen
 ---
 ::: hinweis
-Derselbe Ausfall – doch die Freigabe hat eine Kernfrage, und die Prognose steht nicht nur in einem Kopf.
+Derselbe Ausfall – doch die Prognose steht nicht nur in einem Kopf.
 :::
 
 ::: paar
@@ -185,13 +185,13 @@ kurz: Vorlage
 ::: vorlage
 ---
 titel: Vorlage zur Freigabe zum Abschluss von LPH 5
-datenstand: Kostenprognose 2026-10 · Version 4 (verbindlich) · Kosten, Termin und Beschlusslage laut Managementbericht Oktober
+datenstand: Kostenprognose 2026-10 · Version 4 (verbindlich)
 ---
 ### Frage
 [[zitat:k9.3-t1|Ist die Ausführungsplanung so vollständig und koordiniert, dass Vergabe und Ausführung ohne Planungsvorbehalte starten können?]]
 
 ### Checkliste
-- [x] eindeutige [[Entscheidungs-ID]] · „Freigabe LPH 5“ im Freigaberegister
+- [x] eindeutige [[Entscheidungs-ID]] · im Freigaberegister
 - [x] Entscheidungsfrage
 - [x] betroffene Freigabe · Abschluss LPH 5
 - [x] Verantwortungsfeld · Freigabe
@@ -228,14 +228,14 @@ wert: Status in Vorbereitung · Ergebnis offen
 
 ::: bekannt
 - Die Bauherren-PL legt vor, der Lenkungskreis berät am 17. November; Dr. Olbers gibt selbst frei.
-- Verbindlich ist die „Kostenprognose 2026-10 · Version 4“ mit den beschlossenen Änderungen, ohne `PRB-004`.
+- Verbindlich: „Kostenprognose 2026-10 · Version 4“, ohne `PRB-004`.
 :::
 
 ::: unbekannt
 - Ob offene Punkte der Generalplanung den Abschluss hindern {#offene-punkte}
 - Ob das Controlling den Datenstand bestätigt {#datenstand}
 - Ob die Stellvertretung die Prognose weiterführt {#stellvertretung}
-- Welche Risiken mit der Freigabe angenommen würden {#risiken}
+- Welche Risiken der Bauherr mit der Freigabe annimmt {#risiken}
 :::
 :::
 
@@ -392,10 +392,10 @@ figur: kaya
 
 ::: nachweis
 ---
-mandat: Bauherr – Dr. Olbers gibt selbst frei; der Lenkungskreis berät.
+mandat: Bauherr – Dr. Olbers gibt selbst frei.
 freigabe: Abschluss LPH 5, Status „in Vorbereitung“.
-kennung: „Freigabe LPH 5“ im Freigaberegister, ohne Kürzel.
-datenstand: Kostenprognose 2026-10 · Version 4; Bestätigung des Controllings steht aus.
+kennung: „Freigabe LPH 5“ im Freigaberegister.
+datenstand: Kostenprognose 2026-10 · Version 4; Controlling-Bestätigung steht aus.
 nachweis: Vorlage der Bauherren-PL mit Freigabefrage; Annahmen im Datenstand.
 beschlusslage: Wird mit der Entscheidung des Bauherrn dokumentiert.
 ---

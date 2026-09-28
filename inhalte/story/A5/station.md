@@ -21,7 +21,7 @@ weiter: A6
 titel: Mittwoch, 14:00 Uhr. Monat 9.
 kurz: Einstieg
 ---
-Mittwoch, 9. September, nach der Sommerpause. Der Lenkungskreis am 21. Juli hat beraten; eine gemeinsame Grundlage ist nicht entstanden. Seit Juni sind Brandschutzauflagen, ein Nachtrag der TGA-Fachplanung und ein angekündigter Nachtrag zur Mensa dazugekommen.
+Mittwoch, 9. September, nach der Sommerpause. Der Lenkungskreis im Juli brachte keine gemeinsame Grundlage. Seit Juni kamen Brandschutzauflagen, ein Nachtrag der TGA-Fachplanung und ein angekündigter Mensa-Nachtrag dazu.
 
 ::: akten
 ---
@@ -37,7 +37,7 @@ datum: Di, 08.09.2026
 von: petersen
 ---
 - Brandschutzauflagen (Juni): grob 0,4 Mio. €; Einarbeitung offen.
-- Mensa: Nachtrag zur Umplanung angekündigt, Beauftragung nicht vermerkt.
+- Mensa: Nachtrag angekündigt, Beauftragung nicht vermerkt.
 - Nachtrag TGA-Fachplanung liegt vor; Projektsteuerung prüft.
 - Deckung der Mehrkosten: nicht besprochen.
 :::
@@ -47,7 +47,7 @@ von: petersen
 von: kaya
 zeit: "13:48"
 ---
-Brandschutz, Mensa, TGA laufen gegen die Reserve von 2,9 Mio. €, und die reicht schon für die Mai-Abweichung nicht. Wer hat das freigegeben?
+Brandschutz, Mensa, TGA laufen gegen die Reserve. Wer hat das freigegeben?
 :::
 
 ::: notiz
@@ -90,14 +90,12 @@ knopf: Jetzt entscheiden
 ::: bekannt
 - Brandschutz, Mensa und TGA laufen gegen die Risikoreserve (2,9 Mio. €); eine Freigabe des Einsatzes gibt es nicht.
 - Die Reserve reicht schon für die Mai-Abweichung nicht: Ganz eingesetzt, blieben rund 1,8 Mio. € oder mehr (Projektsteuerung) bzw. rund 0,5 Mio. € (Controlling) über der Projektbasis.
-- Lenkungskreis am 15., Bauausschuss am 17. September.
 :::
 
 ::: unbekannt
 - Was von der Reserve bleibt {#rest}
 - Wer die Posten zugeordnet hat {#veranlasst}
 - Wie hoch der Mensa-Nachtrag wird {#mensa}
-- Welche Risiken die Reserve noch trägt {#restrisiko}
 - Wer über die Reserve entscheidet {#zustaendigkeit}
 :::
 
@@ -113,7 +111,6 @@ loest:
   mensa: Nachtrag liegt vor, in keiner Prognose
 bleibt:
   rest: zwei Rechnungen, zwei Antworten
-  restrisiko: bleibt unbewertet
   zustaendigkeit: bleibt ungeklärt
 ---
 Terminrisiko steigt.

@@ -13,7 +13,7 @@ status:
   offene-risiken: -1
 ---
 ### Konsequenz
-Die fachliche Auswirkung steht in `PRB-004`; Berechtigung und Höhe prüft die Projektsteuerung. Über den Einsatz der Reserve entscheidet Dr. Olbers auf Vorlage der Bauherren-PL.
+Die fachliche Auswirkung steht in `PRB-004`; die Projektsteuerung prüft Berechtigung und Höhe. Über den Einsatz der Reserve entscheidet Dr. Olbers.
 
 ### Was fehlt
 Berechtigung und Höhe des Nachtrags sowie der Reservestand; die Entscheidung liegt beim Bauherrn.
@@ -66,7 +66,7 @@ Ein kurzer Umweg, kein Schaden.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Nachtrag auf Zusage stützen‘ gewählt. In Welt B steht die Mensa mit ihren Kosten in `AEN-012`, und den Einsatz der Risikoreserve gibt nur der Bauherr frei.
+In Welt A haben Sie ‚Nachtrag auf Zusage stützen‘ gewählt. In Welt B steht die Mensa in `AEN-012`; den Einsatz der Risikoreserve gibt nur der Bauherr frei.
 :::
 
 ::: rueckbezug B

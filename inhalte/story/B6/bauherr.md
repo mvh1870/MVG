@@ -6,7 +6,7 @@ rueckbezug-auf: A6
 ---
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Freigabe verschieben‘ gewählt. In Welt B zeigt Ihnen die Vorlage, was für die Freigabe vorliegt und was fehlt.
+In Welt A haben Sie ‚Freigabe verschieben‘ gewählt. Hier zeigt die Vorlage, was vorliegt und was fehlt.
 :::
 
 ::: rueckbezug B

@@ -24,16 +24,16 @@ weiter:
 titel: Montag, 08:30 Uhr. Monat 5.
 kurz: Einstieg
 ---
-Montag, 11. Mai. Nächste Woche tagen Lenkungskreis und Bauausschuss. Zwei Kostenzahlen kommen herein, die nicht zusammenpassen.
+Montag, 11. Mai. Nächste Woche tagen Lenkungskreis und Bauausschuss. Zwei Kostenzahlen passen nicht zusammen.
 
 ::: mail
 ---
 von: brenner
-betreff: Kostenprognose Mai – bitte kurzfristig ansehen
+betreff: Kostenprognose Mai
 zeit: "08:12"
 anhang: Prognose_Mai_v3_final_NEU.xlsx
 ---
-„Die Kostenprognose liegt 8 % über der Projektbasis, rund +4,7 Mio. €. Ursache offen, vermutlich Holzbauelemente und TGA.“
+„Prognose: 8 % über Projektbasis, rund +4,7 Mio. €. Ursache offen.“
 :::
 
 ::: chat
@@ -41,7 +41,7 @@ anhang: Prognose_Mai_v3_final_NEU.xlsx
 von: kaya
 zeit: "08:27"
 ---
-Bei mir: +5,9 %. Welche Zahl geht in den Ausschuss?
+Bei mir: +5,9 %. Welche Zahl gilt?
 :::
 
 ::: notiz
@@ -49,14 +49,7 @@ Bei mir: +5,9 %. Welche Zahl geht in den Ausschuss?
 farbe: gelb
 symbol: anruf
 ---
-Anruf: Fassade evtl. günstiger?
-:::
-
-::: notiz
----
-farbe: rosa
----
-Bauausschuss am 21.?
+Anruf: Fassade günstiger?
 :::
 
 ::: notiz
@@ -70,7 +63,7 @@ Risikoreserve – wer darf?
 ---
 farbe: limette
 ---
-v3 oder v4??
+v3_final oder v3_final_NEU??
 :::
 :::
 
@@ -99,8 +92,8 @@ wert: +5,9 %
 
 ::: bekannt
 - Zwei Zahlen, kein geltender [[Datenstand]].
-- Beide gegen die Projektbasis, ohne Einsatz der Risikoreserve (2,9 Mio. €).
-- Seit März offen: Mensa (grob 0,6 Mio. €) und Lieferzeit Holz (26 statt 16 Wochen).
+- Beide ohne Einsatz der Risikoreserve (2,9 Mio. €).
+- Seit März offen: Mensa (grob 0,6 Mio. €), Holz-Lieferzeit 26 statt 16 Wochen.
 :::
 
 ::: unbekannt

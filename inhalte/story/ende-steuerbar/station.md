@@ -14,7 +14,7 @@ schaltet-frei: [explore]
 titel: Dienstag, 16. März 2027. Monat 15.
 kurz: Einstieg
 ---
-Dr. Olbers hat im Dezember den Auftrag zur [[MVG-Neuinitialisierung]] erteilt und eigene Zeit dazugegeben. Das Projekt steht in LPH 5. Heute beginnt die Übergabe des [[Bauherren-Führungsmodell]]s – nicht die [[Übergabe]] des Vorhabens in LPH 9.
+Dr. Olbers hat im Dezember die [[MVG-Neuinitialisierung]] beauftragt und eigene Zeit gegeben. Das Projekt steht in LPH 5. Heute beginnt die Übergabe des [[Bauherren-Führungsmodell]]s – nicht die [[Übergabe]] des Vorhabens in LPH 9.
 
 ::: protokoll
 ---
@@ -32,7 +32,7 @@ von: petersen
 von: kaya
 zeit: "08:14"
 ---
-Eine Zahl, mit Namen und Version – und diesmal steht dabei, für welche Frage.
+Eine Zahl mit Namen und Version – und dabei steht, für welche Frage.
 :::
 :::
 
@@ -49,7 +49,7 @@ kurz: Ihre Spur
 titel: Wie Sie hierher kamen
 kurz: Ihr Weg
 ---
-Die MVG-Neuinitialisierung trug, weil Ihre Spur bis Monat 12 wieder genug Entscheidungsfähigkeit aufgebaut hatte. Steuerbar heißt nicht gelöst: Lieferzeit und Mehrkosten bleiben – jetzt mit Rolle, Datenstand und Weg.
+Die MVG-Neuinitialisierung trug, weil Ihre Spur wieder genug Entscheidungsfähigkeit aufgebaut hatte. Steuerbar heißt nicht gelöst: Lieferzeit und Mehrkosten bleiben – jetzt mit Rolle, Datenstand und Weg.
 :::
 
 ::: schritt nachweiskette

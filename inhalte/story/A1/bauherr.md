@@ -12,7 +12,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Sie hören einen Sachstand: Bauantrag eingereicht, Kosten im Rahmen. Den Zielkonflikt legt Ihnen niemand als Frage vor.
+Sie hören einen Sachstand: Bauantrag raus, Kosten im Rahmen. Den Zielkonflikt legt Ihnen niemand vor.
 
 ### Was fehlt
 Eine Entscheidungsfrage. Ein Sachstand verlangt von Ihnen nichts.
@@ -65,7 +65,7 @@ Die Kostendatei bleibt bei Holger Stein; niemand ist für den Fall benannt, dass
 :::
 
 ::: nachsatz
-Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+Jede Wahl ist nachvollziehbar; es fehlt die Struktur, in der sie wirkt.
 
 Die Geschichte merkt sich Ihre Wahl.
 :::

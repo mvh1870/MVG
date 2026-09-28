@@ -6,11 +6,11 @@ rueckbezug-auf: A4
 ---
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Kürzeren Bericht verlangen‘ gewählt. In Welt B zählt nicht die Seitenzahl: Der Managementbericht trägt die Beschlussvorbereitung mit einer Frage.
+In Welt A haben Sie ‚Kürzeren Bericht verlangen‘ gewählt. In Welt B zählt nicht die Seitenzahl, sondern die Frage im Managementbericht.
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Alles an sich ziehen‘ gewählt. In Welt B landet bei Ihnen nur, was oberhalb der Schwellen liegt oder nicht delegierbar ist; `AEN-031` hat das Änderungsgremium entschieden.
+In Welt A haben Sie ‚Alles an sich ziehen‘ gewählt. In Welt B landet bei Ihnen nur, was oberhalb der Schwellen liegt oder nicht delegierbar ist; über `AEN-031` entscheidet das Änderungsgremium.
 :::
 
 ::: rueckbezug C

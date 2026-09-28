@@ -522,8 +522,17 @@ test('Regie (P9.5): Start sendet den Beamer-Stand, Sprung erst mit Rolle, Einwä
     q('[data-pruef="regie-rolle-pl"]').click();
     assert.equal(sprung.disabled, false);
     assert.equal(rolle.value, 'pl');
-    // Als Nächstes (Bauplan 7): Vorschau auf den Weiter-Schritt
-    assert.match(q('[data-pruef="regie-naechstes"]').textContent ?? '', /^Als Nächstes: /u);
+    // Als Nächstes (Bauplan 7): die Vorschau nennt, wo „Weiter“ hinführt – über mehrere Schritte verglichen
+    for (let i = 0; i < 12; i++) {
+      const vorschau = (q('[data-pruef="regie-naechstes"]').textContent ?? '').replace(/^Als Nächstes: /u, '');
+      if (vorschau === '') break;
+      const [stationTitel, ...rest] = vorschau.split(' · ');
+      q('[data-pruef="regie-weiter"]').click();
+      const ortText = q('[data-pruef="regie-ort"]').textContent ?? '';
+      assert.ok(ortText.startsWith(stationTitel ?? '') && ortText.endsWith(rest.join(' · ')), `Vorschau „${vorschau}“ ≠ Ort „${ortText}“`);
+      const opt = el.querySelector<HTMLElement>('[data-pruef^="regie-option-"]');
+      if (opt !== null && sitzung.zustand().station !== null) opt.click();
+    }
     // L2: Pfeiltaste im Auswahlfeld blättert nicht
     const schrittVorher = sitzung.zustand().schritt;
     const ereignis = new dom.window.KeyboardEvent('keydown', { key: 'ArrowRight' });
@@ -1088,5 +1097,23 @@ test('B4 Gremium (P11.5, Fund der Kürzung): die Vorlage AEN-031 steht unter der
   assert.ok(vorlage, 'Vorlage fehlt im Gremium-Schritt');
   assert.match(vorlage.getAttribute('aria-label') ?? '', /AEN-031/u);
   assert.ok(story.element.querySelector('.mandat-raster'), 'Mandatsleiter bleibt');
+  story.entferne();
+});
+
+test('B3 Mandat (P11.3): die Rollenfrage am Schritt „mandat“ wird gezeigt und beantwortet', () => {
+  const b3 = inhalte.stationen['B3'];
+  assert.ok(b3);
+  const idx = b3.schritte.findIndex((s) => s.id === 'mandat');
+  assert.ok(idx >= 0);
+  const a = anfangszustand();
+  const aktionen: unknown[] = [];
+  const z = { ...a, bereich: 'story' as const, station: 'B3', schritt: idx, rolle: 'bauherr', verlauf: ['prolog', 'B3'], freigeschaltet: { ...a.freigeschaltet, weltB: true } };
+  const story = erzeugeStory({ inhalte, tue: (x) => { aktionen.push(x); } });
+  document.body.replaceChildren(story.element);
+  story.setze(oeffentlich(z), null);
+  const knoepfe = story.element.querySelectorAll<HTMLButtonElement>('[data-pruef^="reife-"]');
+  assert.ok(knoepfe.length >= 2, 'Antwortknöpfe fehlen');
+  knoepfe[0]?.click();
+  assert.equal((aktionen.at(-1) as { art: string }).art, 'antworte');
   story.entferne();
 });

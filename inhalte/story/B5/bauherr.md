@@ -6,7 +6,7 @@ rueckbezug-auf: A5
 ---
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Nachträglich freigeben‘ gewählt. In Welt B geben Sie nicht nachträglich frei, sondern vorher – auf einer Vorlage mit benanntem Datenstand.
+In Welt A haben Sie ‚Nachträglich freigeben‘ gewählt. In Welt B geben Sie vorher frei – auf einer Vorlage mit benanntem Datenstand.
 :::
 
 ::: rueckbezug B
@@ -29,7 +29,7 @@ status:
   ungeklaerte-entscheidungen: -1
 ---
 ### Konsequenz
-Sie geben den Einsatz der Risikoreserve frei. Die Freigabe steht mit Nachweis im Entscheidungsregister, die verbleibende Reserve ist ausgewiesen.
+Sie geben den Einsatz der Risikoreserve frei; Nachweis im Entscheidungsregister, die verbleibende Reserve ist ausgewiesen.
 
 ### Was fehlt
 Die abschließende Prüfung von Berechtigung und Höhe – die Grundlagen der Vorlage sind unvollständig.

@@ -21,7 +21,7 @@ weiter: wendepunkt
 titel: Montag, 07:45 Uhr. Monat 11.
 kurz: Einstieg
 ---
-Montag, 9. November. Die Freigabe zum Abschluss von LPH 5 steht an, und Holger Stein fällt für Wochen aus.
+Montag, 9. November. Die Freigabe zum Abschluss von LPH 5 steht an; Holger Stein fällt für Wochen aus.
 
 ::: mail
 ---
@@ -29,7 +29,7 @@ von: petersen
 betreff: "Anfrage einer Fraktion: Kosten und Termin"
 zeit: "07:38"
 ---
-Eine Fraktion fragt über das Büro von Dr. Olbers nach Kosten und Termin. Antwort bis Freitag, 13. November.
+Eine Fraktion fragt über das Dezernat nach Kosten und Termin. Antwort bis Freitag, 13. November.
 
 Welche Unterlagen, in welcher Version?
 :::
@@ -40,7 +40,7 @@ titel: Jour fixe – Ergebnisprotokoll
 datum: 3. November 2026
 von: petersen
 ---
-- Freigabe LPH 5: Vorlage an wen? Klärung im Lenkungskreis.
+- Freigabe LPH 5: Vorlage an wen? Offen.
 - Kosten: Stand „Prognose_Nov_v5“ (H. Stein), Erläuterung folgt.
 :::
 
@@ -49,7 +49,7 @@ von: petersen
 beschriftung: Kostenstände H. Stein
 anzahl: 5
 ---
-Prognose_Nov_v1 bis v5; Annahmen nur in Zellen und Kommentaren.
+Prognose_Nov_v1 bis v5, Annahmen in Kommentaren.
 :::
 
 ::: notiz
@@ -70,7 +70,7 @@ Freigabe LPH 5 – wer gibt frei? Worauf?
 ---
 farbe: limette
 ---
-Lenkungskreis 17.11. · Bauausschuss 19.11. – beide nach Freitag
+Lenkungskreis und Ausschuss erst nach Freitag
 :::
 :::
 
@@ -90,8 +90,7 @@ kurz: Was Sie wissen
 knopf: Jetzt entscheiden
 ---
 ::: bekannt
-- „Prognose_Nov_v5“ steht neben der CTC des Controllings; eine geltende Kostenzahl ist seit Mai nicht dokumentiert.
-- Lieferzeit Holz (26 statt 16 Wochen): seit März bekannt, nicht entschieden.
+- „Prognose_Nov_v5“ steht neben der CTC des Controllings, seit Mai ohne geltende Zahl.
 :::
 
 ::: unbekannt
@@ -99,7 +98,6 @@ knopf: Jetzt entscheiden
 - Geltende Kostenzahl {#kostenzahl}
 - Wer freigibt, worauf {#freigabe}
 - Wer Holger Stein vertritt {#vertretung}
-- Haltbarer Termin {#termin}
 :::
 
 ::: zeitsprung info
@@ -115,7 +113,6 @@ bleibt:
   kostenzahl: bleibt offen
   freigabe: bleibt ungeklärt
   vertretung: bleibt ungeklärt
-  termin: bleibt unbewertet
 ---
 Offene Risiken steigen.
 

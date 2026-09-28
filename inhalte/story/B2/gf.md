@@ -66,7 +66,7 @@ Wer Abkürzungen nimmt, schwächt die Mandatsleiter für alle.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Zusage stehen lassen‘ gewählt. In Welt B wird aus der Flurzusage die beantragte Änderung `AEN-012` statt stiller Einplanung.
+In Welt A haben Sie ‚Zusage stehen lassen‘ gewählt. In Welt B wird aus der Flurzusage die beantragte Änderung `AEN-012`.
 :::
 
 ::: rueckbezug B

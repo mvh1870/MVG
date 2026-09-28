@@ -66,7 +66,7 @@ Eine gemeinsame Zahl – aber noch kein Auslöser, wenn sie kippt.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Eigene CTC aufsetzen‘ gewählt. In Welt B ist die CTC kein Nebenstrang: monatlich, mit Version, neben der Prognose.
+In Welt A haben Sie ‚Eigene CTC aufsetzen‘ gewählt. In Welt B läuft die CTC monatlich, mit Version, neben der Prognose.
 :::
 
 ::: rueckbezug B

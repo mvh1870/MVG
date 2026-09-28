@@ -6,7 +6,7 @@ rueckbezug-auf: A1
 ---
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Berichten lassen‘ gewählt. In Welt B ist das Zielsystem angelegt; seine Priorität legen Sie fest.
+In Welt A haben Sie ‚Berichten lassen‘ gewählt. In Welt B legen Sie die Priorität im Zielsystem selbst fest.
 :::
 
 ::: rueckbezug B
@@ -29,7 +29,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Sie bestätigen die Schwellen: Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium bis einschließlich 5 Mio. €, darüber Sie im Lenkungskreis. Für Holger Stein ist noch keine Stellvertretung benannt.
+Sie bestätigen die Schwellen der Mandatsleiter. Für Holger Stein ist noch keine Stellvertretung benannt.
 
 ### Was fehlt
 Die Probe: Ob die Schwellen tragen, zeigt erst die erste Änderung.

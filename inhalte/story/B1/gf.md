@@ -66,7 +66,7 @@ Welche Frist hat die offene Entscheidung – und wer bereitet sie vor?
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Laufen lassen‘ gewählt. In Welt B zeigen Rhythmus und Register jeden Monat, was offen ist und wer es klärt.
+In Welt A haben Sie ‚Laufen lassen‘ gewählt. In Welt B zeigen Rhythmus und Register, was offen ist und wer es klärt.
 :::
 
 ::: rueckbezug B

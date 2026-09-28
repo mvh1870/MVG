@@ -13,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: -1
 ---
 ### Konsequenz
-Die Vorlage hat Frage, Optionen und Auswirkung; das Gremium beschließt. Ob die Deckung aus der Risikoreserve kommt, geht als Frage an den Bauherrn.
+Die Vorlage hat Frage, Optionen und Auswirkung; das Gremium beschließt. Die Deckung aus der Risikoreserve geht als Frage an den Bauherrn.
 
 ### Was fehlt
 Die Freigabe des Einsatzes der Risikoreserve – sie liegt nicht beim Gremium.
@@ -66,7 +66,7 @@ Vorarbeit auf einer Lösung, die das Gremium vielleicht nicht wählt.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Auflagen einarbeiten‘ gewählt. In Welt B wird daraus kein stiller Nachtrag: `AEN-031` steht im Änderungsregister, das Gremium entscheidet auf Vorlage.
+In Welt A haben Sie ‚Auflagen einarbeiten‘ gewählt. In Welt B wird daraus kein stiller Nachtrag, sondern `AEN-031` mit Vorlage.
 :::
 
 ::: rueckbezug B

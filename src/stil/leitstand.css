@@ -2070,6 +2070,6 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .klang-knopf + .vermerk { margin-left: var(--a-3); }
 .regie-naechstes { margin: 6px 0 0; font-size: 13px; color: var(--tinte-2); min-height: 1.3em; }
 /* Governance-Fluss als Übersicht auf der Lernseite (Kap. 6.4.3) */
-.fluss.ist-uebersicht .fluss-marke { display: none; }
+.fluss.ist-uebersicht .fluss-marke, .fluss.ist-uebersicht .fluss-hier-marke, .fluss.ist-uebersicht .fluss-puls { display: none; }
 .lern-fluss { margin: 0; }
 .lern-fluss figcaption { margin-top: 6px; font-size: var(--gr-s); color: var(--tinte-2); }

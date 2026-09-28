@@ -138,7 +138,7 @@ Die Entscheidungsvorlage bündelt Frage, Datenstand, Optionen, Bewertung und Emp
 Die Restkostenprognose (CTC) verletzt eine Schwelle, zum Thema wird bereits ein Risiko geführt – was entsteht daraus?
 
 ### Erklärung
-CTC- oder Schwellenwertverletzungen erzeugen neue Frühwarnungen als neue Signale, nicht als Rückrichtung aus einem bestehenden Risiko. Eine Frühwarnung ist ein unbewertetes Signal; erst wenn sie bestätigt wird, wird daraus ein bewertetes Risiko.
+Die Verletzung ist ein neues, unbewertetes Signal – keine Rückstufung des bestehenden Risikos.
 
 ::: antwort a
 ---

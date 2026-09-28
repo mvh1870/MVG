@@ -12,7 +12,7 @@ status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Im Lenkungskreis setzt sich die Zahl der GML durch; die Projektsteuerung bleibt bei ihrer. Sie gehen mit +5,9 % und einem Widerspruch in den Bauausschuss.
+Im Lenkungskreis setzt sich die GML-Zahl durch; die Projektsteuerung bleibt bei ihrer. Im Ausschuss: +5,9 % und ein Widerspruch.
 
 ### Was fehlt
 Ein benannter [[Datenstand]]: Welche Version gilt, und warum?

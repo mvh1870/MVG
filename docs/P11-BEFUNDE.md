@@ -20,3 +20,16 @@ P11.1 Vollständigkeitsprüfer (Bauplan, 20 Owner-Punkte, E1–E14, O-Entscheide
 Teil 1 (Prolog, A1, A2, A4, A5, B1, B2, B4, B5, Rückspulen, Epilog): 18 Befunde (1 schwer: „jede Freigabe erteilt der Bauherr selbst“ ohne Bezug auf die LPH-Freigabe) – alle mit den vorgeschlagenen Wortlauten eingearbeitet.
 Teil 2 (A3, A6, Wendepunkt, B3, B6, Wirklichkeit, drei Enden, Wissenschecks Kap. 2–12): 16 Befunde (keiner schwer; u. a. Statusmodell der Vorlage vs. Freigabe in B6, Zeitanker B3, Anwendung des Musters im Wendepunkt, Wissenschecks k07/k12 näher an O-1) – alle eingearbeitet; danach die Lesezeit mit kleinen Kürzungen wieder unter das Ziel gebracht (alle Rollen Hauptpfad ≤ 34,8 min, Express ≤ 14,9 min).
 - [x] F1–F18 (Teil 1), F19–F34 (Teil 2) erledigt.
+
+## P11.3 Korrekturschleife – Runde 1 (R1)
+Inhalt (Rolle Bauherr und Planung, Haupt- und Express-Pfad, Stichprobe Fachtreue 15/15 gedeckt): 14 Befunde (0 schwer, 3 mittel). Technik (Architektur, Stil, Barrierefreiheit): 7 Befunde (0 schwer, 3 mittel). Alle erledigt (L-64):
+- [x] Lesezeit-Messung zählt alle Textknoten (vorher fehlten ~1 100 Wörter) und prüft das Ende des Pfads; danach Kürzungsrunde 3 (zwei Redaktionsläufe): alle Rollen Hauptpfad 33,0–33,3 min, Express 14,5–14,8 min.
+- [x] Wendepunkt kurz: Pyramide und Felder in Ebene 2/3 des Schritts „Tiefer gehen“ (DREHBUCH, H18).
+- [x] B3-Rollenfrage am Schritt „mandat“ wird gezeigt; Test.
+- [x] Rückbezug-Tabelle „Welt A · Stand am Ende“ / „Welt B · Stand jetzt“.
+- [x] Planung A2 Option B: plant vorsorglich mit (Spur zu A5 und Wirklichkeit).
+- [x] B3 Status ohne feste Klammer; B1/B4/A6/Wirklichkeit/A3/k04/k06/Kompass-Beleg (k2.5-t1) sprachlich und fachlich nachgeschärft; ende-auflagen ohne Spielmechanik-Satz.
+- [x] Lernseiten: `scroll-padding-top` gegen verdeckten Fokus; Governance-Fluss-Übersicht ohne „aktuelle“ Station und ohne Puls.
+- [x] „Zurück“ = Umkehr von „Weiter“ im Ebenen-Schritt; Ebenen-Ort mit `aria-live`; Szenario bedient die Reiter per Tastatur.
+- [x] Test „Als Nächstes“ vergleicht Vorschau und tatsächlichen Ort über zwölf Schritte.
+- [-] Wirklichkeit „Mail von Dr. Olbers“ beim Spielen der Rolle Bauherr: bleibt – die Oberfläche zeigt dann „Sie“ als Absender (H13).

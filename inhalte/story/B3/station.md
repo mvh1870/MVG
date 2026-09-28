@@ -10,7 +10,7 @@ status-start:
   entscheidungsfaehigkeit: 4
   kostenunsicherheit: mittel
   offene-risiken: 7 (1 neu bewertet)
-  ungeklaerte-entscheidungen: 1 (ENT-017, mit Frist)
+  ungeklaerte-entscheidungen: 1
   terminrisiko: mittel
 partner: A3
 weiter:
@@ -46,7 +46,7 @@ art: fruehwarnung
 Neue [[Frühwarnung]]
 
 ### Text
-unbewertetes Signal · Quelle: CTC über Schwellenwert
+unbewertet · Quelle: CTC über Schwellenwert
 :::
 
 ::: glied
@@ -74,7 +74,7 @@ Risiko
 :::
 
 ::: merksatz
-**Kein Anruf:** ein nummeriertes Signal aus dem Controlling.
+**Kein Anruf:** ein nummeriertes Signal.
 :::
 :::
 
@@ -86,7 +86,7 @@ gruppe: Welt B · Monat 5 · derselbe Montag
 ---
 ::: datenstand
 ---
-name: Kostenprognose 2026-05 · Version 3 · verbindlich
+name: Kostenprognose 2026-05 · Version 3
 abweichung: +8,0 %
 betrag: +4,7 Mio. €
 basis: bei 58,4 Mio. € brutto
@@ -125,7 +125,7 @@ stufen:
     bereich: über 5 Mio. € – Beschluss im Lenkungskreis
     hinweis: "Risikoreserve: nur Bauherr"
 ---
-`ENT-017` · Welche Option liegt auf dem Tisch?
+`ENT-017` · Welche Option?
 :::
 
 ::: mandatsoption 1
@@ -170,7 +170,7 @@ datenstand: Kostenprognose 2026-05 · Version 3
 ### Checkliste
 - [x] eindeutige [[Entscheidungs-ID]]
 - [x] Entscheidungsfrage
-- [x] betroffene Freigabe · hier LPH 5
+- [x] betroffene Freigabe · LPH 5
 - [x] Verantwortungsfeld
 - [ ] Mandat und letztverantwortliche Rolle · je nach Option
 - [x] Datenstand und zentrale Annahmen

@@ -253,7 +253,10 @@ function bloeckeIn(bloecke: readonly Block[], inhalte: OeffentlicheInhalte, stuf
         // derselbe Baustein wie in der Story (B3), hier als Übersicht ohne „Sie sind hier“
         const g = governanceFluss({ position: 'managementbericht', marken: {}, hier: '' });
         g.setze();
+        // Übersicht: alle Stationen gleich (keine „aktuelle“ Station, kein Puls)
         g.element.classList.add('ist-uebersicht');
+        g.element.classList.remove('ist-lebendig');
+        for (const li of g.element.querySelectorAll('.ist-hier')) { li.classList.remove('ist-hier'); li.classList.add('ist-passiert'); }
         g.element.setAttribute('aria-label', W.theorie.flussUebersicht(FLUSS_POSITIONEN.map((p) => FLUSS_BESCHRIFTUNG[p].replace('\u00ad', '')).join(' → ')));
         aus.push(h('figure', { class: 'lern-fluss' }, g.element, b.felder['text'] ? h('figcaption', null, inhalt(b.felder['text'])) : null));
         break;

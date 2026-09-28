@@ -518,4 +518,5 @@ a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
 .wc-ergebnis:empty { display: none; }
 .wc-ergebnis { display: grid; gap: var(--a-3); padding-top: var(--a-3); border-top: 1px solid var(--linie); }
 .wc-rueckmeldung p, .wc-erklaerung p { margin: 0; }
-
+/* Fokus nicht unter der klebenden Kopfleiste der Lernseiten (WCAG 2.4.11, P11.3) */
+html:has(.lernseite) { scroll-padding-top: 72px; }

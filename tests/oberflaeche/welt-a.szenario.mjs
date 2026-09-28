@@ -119,10 +119,13 @@ async function wendepunkt(seite, h, station) {
   await h.erwarte('[data-pruef="zitat"]');
   await pruefe('wendepunkt-mandat');
   await weiter();
+  // Pyramide und Felder liegen seit P11.3 in den Ebenen 2 und 3 des Schritts „Tiefer gehen“ (DREHBUCH: Wendepunkt kurz)
+  await h.erwarte('[data-pruef="ebene-1"]');
+  await h.klick('[data-pruef="ebene-knopf-2"]');
   await h.erwarte('[data-pruef="tafel-pyramide"]');
   await h.klick('[data-pruef="stufe-1"]');
   await pruefe('wendepunkt-pyramide');
-  await weiter();
+  await h.klick('[data-pruef="ebene-knopf-3"]');
   await h.erwarte('[data-pruef="tafel-felder"]');
   await h.klick('[data-pruef="felder-ordnung"]');
   if ((await seite.locator('.feld-karte[data-zustand="ordnung"]').count()) !== 6) h.befund('Felder: nicht alle sechs auf „Ordnung“');

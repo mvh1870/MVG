@@ -13,7 +13,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Die Auswirkung der Mensa steht in `AEN-012`, mit Verweis auf die Lieferzeit `FRW-002`. Das Änderungsgremium kann in seiner nächsten Sitzung auf Vorlage entscheiden.
+Die Auswirkung der Mensa steht in `AEN-012`, verknüpft mit `FRW-002`; das Gremium kann entscheiden.
 
 ### Was fehlt
 Die Bestätigung der Lieferzeit, damit die Terminwirkung belastbar ist.
@@ -66,7 +66,7 @@ Vorarbeit, die bei einer Ablehnung verloren ist.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Mensa einplanen‘ gewählt. In Welt B ist das kein stiller Auftrag: Die Mensa ist `AEN-012`, das Änderungsgremium entscheidet.
+In Welt A haben Sie ‚Mensa einplanen‘ gewählt. In Welt B ist die Mensa `AEN-012`, kein stiller Auftrag.
 :::
 
 ::: rueckbezug B

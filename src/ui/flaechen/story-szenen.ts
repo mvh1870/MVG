@@ -527,6 +527,43 @@ function datenstandTeil(k: SzenenKontext): Szene {
   });
 }
 
+/**
+ * Rollenfrage an einem Schritt ohne Vorlage (B3: `schritt: mandat`, P11.3): Frage, Antwortknöpfe und die
+ * Rückmeldung wie im Vorlage-Schritt, ohne Checkliste. null, wenn die Rolle hier keine Frage hat.
+ */
+function rollenFrage(k: SzenenKontext): { element: HTMLElement; setze: (z: OeffentlicherZustand) => void } | null {
+  const szeneRolle = k.z.rolle !== null ? k.station.szenen[k.z.rolle] ?? null : null;
+  const frage = szeneRolle?.fragen.find((f) => f.schritt === k.schritt.id) ?? null;
+  if (frage === null) return null;
+  const schluessel = `${k.station.id}/${k.z.rolle ?? ''}/${frage.id}`;
+  const rueck = h('div', { class: 'reife-rueckmeldung', 'aria-live': 'polite', 'data-pruef': 'rueckmeldung' });
+  const knoepfe = frage.antworten.map((a) => h('button', {
+    type: 'button', class: 'knopf knopf-still', 'data-antwort': a.id, 'data-pruef': `reife-${a.id}`, 'aria-pressed': 'false',
+    onclick: () => tu(k, { art: 'antworte', frage: frage.id, antwort: a.id }),
+  }, B.symbolAusInhalt(a.symbol), a.titel));
+  const element = h('div', { class: 'reife' },
+    h('div', { class: 'reife-frage' }, h('div', { class: 'reife-titel' }, inhalt(frage.felder.frage)), h('div', { class: 'reife-knoepfe', role: 'group', 'aria-label': W.ihreEinschaetzung }, knoepfe)),
+    rueck);
+  let letzte: string | null | undefined;
+  const setze = (z: OeffentlicherZustand): void => {
+    const antwort = z.antworten[schluessel] ?? null;
+    for (const kn of knoepfe) attr(kn, 'aria-pressed', kn.dataset['antwort'] === antwort ? 'true' : 'false');
+    if (antwort === letzte) return;
+    letzte = antwort;
+    const a = frage.antworten.find((x) => x.id === antwort) ?? null;
+    if (a === null) {
+      rueck.replaceChildren(h('p', { class: 'reife-warten' }, W.rueckmeldungWarten));
+      return;
+    }
+    element.classList.add('ist-bereit');
+    rueck.replaceChildren(h('div', { class: 'rueckmeldung', 'data-status': 'neutral' },
+      a.praefix !== null ? h('b', null, elementAus(statusSymbol('neutral')), a.praefix) : null, ' ',
+      inhaltInline(frage.felder.rueckmeldung ?? ''), a.html !== '' ? inhalt(a.html) : null));
+  };
+  setze(k.z);
+  return { element, setze };
+}
+
 function mandatTeil(k: SzenenKontext): Szene {
   const leiterBlock = k.schritt.bloecke.find((b) => b.art === 'mandatsleiter');
   if (leiterBlock === undefined) return generisch(k);
@@ -586,8 +623,9 @@ function mandatTeil(k: SzenenKontext): Szene {
       h('div', { class: 'mandat-optionen', role: 'group', 'aria-label': W.mandatFrage }, knoepfe),
       urteil,
       merksatz !== undefined ? B.merksatz(merksatz) : null));
-  const el = vorlageG !== null ? h('div', { class: 'stapel' }, raster, vorlageG.element) : raster;
-  return szene(el, (z) => setze(z, false), () => leiter.klettere(k.takt));
+  const frageTeil = rollenFrage(k);
+  const el = vorlageG !== null || frageTeil !== null ? h('div', { class: 'stapel' }, raster, vorlageG?.element ?? null, frageTeil?.element ?? null) : raster;
+  return szene(el, (z) => { setze(z, false); frageTeil?.setze(z); }, () => leiter.klettere(k.takt));
 }
 
 function vorlageTeil(k: SzenenKontext): Szene {
@@ -705,10 +743,9 @@ function rueckbezugTeil(k: SzenenKontext): Szene {
   } else {
     oben = h('div', { class: 'erinnerung ist-ohne' }, h('div', { class: 'erinnerung-b' }, h('span', { class: 't-label' }, W.ohneWahlA), h('div', null, inhalt(rb?.html ?? ''))));
   }
-  const ent = Object.values(k.inhalte.stationen).flatMap((st) => Object.values(st.szenen)).map((sz) => sz.entscheidung).find((e) => e !== null && e.id === rb?.entscheidung) ?? null;
-  const wahl = ent !== null ? k.z.entscheidungen[ent.id] ?? null : null;
   const tabelle = h('div', { class: 'vergleichstabelle anim-einblenden', style: '--verzug:900ms' }, h('table', null,
-    h('thead', null, h('tr', null, h('th', { scope: 'col' }, W.status), h('th', { scope: 'col', 'data-welt': 'a' }, `${W.weltA}${wahl !== null ? ` · ${W.nachWahl(wahl)}` : ''}`), h('th', { scope: 'col', 'data-welt': 'b' }, `${W.weltB} · ${W.derselbeMoment}`))),
+    // Welt A zeigt den Endstand von Welt A (P11.3: nicht „nach Wahl X“), Welt B den Stand jetzt
+    h('thead', null, h('tr', null, h('th', { scope: 'col' }, W.status), h('th', { scope: 'col', 'data-welt': 'a' }, `${W.weltA} · ${W.standEndeA}`), h('th', { scope: 'col', 'data-welt': 'b' }, `${W.weltB} · ${W.standJetzt}`))),
     h('tbody', null, statusZeilen(k.z.status.A, k.z.status.B))));
   return szene(h('div', { class: 'stapel rueckbezug', 'data-pruef': 'rueckbezug' },
     h('p', { class: 'rueckbezug-kopf' }, B.sym('lesezeichen'), W.erinnert), oben, k.z.status.A !== null && k.z.status.B !== null ? tabelle : null));
@@ -724,7 +761,7 @@ function ebenenSzene(k: SzenenKontext): Szene {
     type: 'button', class: 'ebene-knopf', 'aria-current': 'false', 'data-pruef': `ebene-knopf-${e.nr}`,
     onclick: () => tu(k, { art: 'setzeEbene', ebene: e.nr }),
   }, h('i', null, String(e.nr)), h('span', null, h('small', null, `${W.ebene} ${e.nr}`), e.titel)));
-  const ort = h('div', { class: 'ebene-ort' });
+  const ort = h('div', { class: 'ebene-ort', 'aria-live': 'polite' });
   let letzte = -1;
   const setze = (z: OeffentlicherZustand): void => {
     const nr = Math.max(1, z.ebene);

@@ -22,7 +22,7 @@ Eine Vorlage, die sagt, was für die Freigabe fehlt und bis wann.
 Die Fraktion fragt nach; die Verschiebung wird zur Nachricht.
 
 ### Governance-Frage
-[[Freigabe]]: Welche Mindestgrundlagen fehlen für die Freigabe – und wer liefert sie?
+[[Freigabe]]: Welche Mindestgrundlagen fehlen – und wer liefert sie?
 :::
 
 ::: option B

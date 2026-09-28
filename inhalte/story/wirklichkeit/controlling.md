@@ -6,7 +6,7 @@ rueckbezug-auf: A6
 ---
 
 ::: rueckbezug A
-Im November haben Sie ‚Eigene CTC liefern‘ gewählt. Die Antwort an den Stadtrat trug Ihre Zahl – als gültig festgelegt hat sie niemand. Holger Stein hat inzwischen seine eigene erklärt.
+Im November haben Sie ‚Eigene CTC liefern‘ gewählt. Die Antwort an den Stadtrat trug Ihre Zahl; als gültig festgelegt hat sie niemand. Holger Stein hat inzwischen seine erklärt.
 :::
 
 ::: rueckbezug B

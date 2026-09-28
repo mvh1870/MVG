@@ -65,7 +65,7 @@ Das Signal steht in einer Zelle, nicht auf einer Tagesordnung.
 :::
 
 ::: nachsatz
-Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+Jede Wahl ist nachvollziehbar; es fehlt die Struktur, in der sie wirkt.
 
 Die Geschichte merkt sich Ihre Wahl.
 :::

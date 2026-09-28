@@ -14,7 +14,7 @@ schaltet-frei: [explore]
 titel: Dienstag, 16. März 2027. Monat 15.
 kurz: Einstieg
 ---
-Heute beschließt Dr. Olbers im Lenkungskreis eine [[Neufestlegung der Projektbasis]], außerhalb der regulären Freigabereihe. Die Vorlage bringt eine Kostenzahl statt zwei, die Mensa im Projektumfang, die Lieferzeit im Termin und die Risikoreserve mit Posten, über die entschieden wird. Das Projekt bleibt in LPH 5.
+Heute beschließt Dr. Olbers im Lenkungskreis eine [[Neufestlegung der Projektbasis]], außerhalb der regulären Freigabereihe. Die Vorlage bringt eine Kostenzahl statt zwei, die Mensa im Projektumfang, die Lieferzeit im Termin, die Reserve mit Posten zur Entscheidung. Das Projekt bleibt in LPH 5.
 
 ::: protokoll
 ---
@@ -48,7 +48,7 @@ kurz: Ihre Spur
 titel: Wie Sie hierher kamen
 kurz: Ihr Weg
 ---
-Dieses Ende folgt aus der Wahl im Dezember und Ihrer Spur. Eine neue Projektbasis ist kein Neustart; sie legitimiert neu, was sich verändert hat.
+Eine neue Projektbasis ist kein Neustart; sie legitimiert neu, was sich verändert hat.
 :::
 
 ::: schritt nachweiskette

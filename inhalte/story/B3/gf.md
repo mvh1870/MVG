@@ -32,7 +32,7 @@ symbol: eskalation
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Controlling-Zahl übernehmen‘ gewählt. In Welt B gilt Version 3; wer abweicht, legt eine neue Version vor.
+In Welt A haben Sie ‚Controlling-Zahl übernehmen‘ gewählt. Hier gilt Version 3; wer abweicht, legt eine neue vor.
 :::
 
 ::: rueckbezug B

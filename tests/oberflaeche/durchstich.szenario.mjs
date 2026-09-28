@@ -141,9 +141,10 @@ export async function lauf(seite, h) {
   /* ------------------------------------------------------ A3 · Ebenen 1 → 4 -- */
   await weiter();
   await h.erwarte('[data-pruef="ebene-1"]');
-  // Ebenen 2–4 auf Wunsch über ihre Reiter (L-61); „Weiter“ geht zur nächsten Station
+  // Ebenen 2–4 auf Wunsch über ihre Reiter (L-61), per Tastatur (Fokus + Enter); „Weiter“ geht zur nächsten Station
   for (let e = 2; e <= 4; e += 1) {
-    await h.klick(`[data-pruef="ebene-knopf-${e}"]`);
+    await seite.locator(`[data-pruef="ebene-knopf-${e}"]`).focus();
+    await h.taste('Enter');
     await h.warte(150);
   }
   await h.erwarte('[data-pruef="ebene-4"] [data-pruef="zitat"]');

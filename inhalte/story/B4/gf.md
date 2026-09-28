@@ -13,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Das Gremium beschließt `AEN-031` in seinem Mandat. Für eine Deckung aus der Risikoreserve geht eine Vorlage an Dr. Miriam Olbers – die Freigabe bleibt beim Bauherrn.
+Das Gremium beschließt `AEN-031` in seinem Mandat. Für eine Deckung aus der Risikoreserve geht eine Vorlage an Dr. Miriam Olbers.
 
 ### Was fehlt
 Die Freigabe des Einsatzes der Risikoreserve durch den Bauherrn ([[Nichtdelegierbare Bauherrenverantwortung]]).

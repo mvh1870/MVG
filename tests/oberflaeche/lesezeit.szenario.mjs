@@ -1,5 +1,5 @@
 // Lesezeit (P11.5, O-5): spielt den Hauptpfad einer Rolle mit „Weiter“ und der ersten Option durch und
-// zählt die sichtbaren Wörter (ohne Knöpfe, Tabellen, Grafiken, Screenreader-Texte, zugeklappte Teile)
+// zählt die sichtbaren Wörter aller Textknoten (ohne Knöpfe, Tabellen, Grafiken, Screenreader-Texte, zugeklappte Teile)
 // und die Klicks (Express ohne den optionalen Epilog, L-49). Lesezeit = Wörter / 200 je Minute + 2 s je Klick (L-61). Ergebnis nach
 // tmp/lesezeit.json; über dem Ziel (Hauptpfad 35 min, Express 15 min) ist es ein Befund (seit P11.5c;
 // MVG_LESEZEIT_PFLICHT=0 macht daraus nur einen Bericht).
@@ -49,6 +49,8 @@ async function spieleIn(seite, rolle, express) {
   let klicks = 0;
   let expressGewaehlt = false;
   let rolleGewaehlt = false;
+  /** @type {{ station: string, n: number, t: string }[]} */
+  const dump = [];
   for (let i = 0; i < 900; i++) {
     // Rolle genau einmal wählen (eine erneute Wahl setzt die Interessen zurück)
     if (!rolleGewaehlt && await sichtbar(`[data-pruef="rolle-${rolle}"]`)) {
@@ -71,22 +73,32 @@ async function spieleIn(seite, rolle, express) {
     const station = (await seite.evaluate(() => location.hash)).replace('#story/', '') || 'start';
     // Express lässt den Epilog aus (L-49): gemessen wird bis zum Ende der Geschichte
     if (express && station === 'epilog') break;
+    // Textknoten statt Elementliste (P11.3): jeder sichtbare Text zählt, gebündelt je Block (nächster
+    // nicht-inline Vorfahr); ausgenommen wie in L-61: Knöpfe, Tabellen, Grafiken, Screenreader-Texte,
+    // zugeklappte Teile, Rahmen (Seitenleiste, Karte, Instrumente, Fußleiste)
     const teile = await seite.evaluate(() => {
       const wurzel = document.querySelector('main') ?? document.body;
-      /** @type {string[]} */
-      const aus = [];
-      for (const el of wurzel.querySelectorAll('p,li,h1,h2,h3,h4,blockquote,figcaption')) {
-        if (!(el instanceof HTMLElement) || el.offsetParent === null) continue;
-        if (el.closest('aside,nav,.seitenleiste,[data-pruef=story-karte],[data-pruef=status],table,.instrumente,.fussleiste,button,details:not([open]),[role=img],svg,.nur-sr')) continue;
-        if (el.querySelector('p,li,td')) continue;
-        const t = el.innerText.trim();
-        if (t) aus.push(t);
+      const aus = new Map();
+      const ohne = 'aside,nav,.seitenleiste,[data-pruef=story-karte],[data-pruef=status],table,.instrumente,.fussleiste,button,details:not([open]) > :not(summary),[role=img],svg,.nur-sr,[aria-hidden=true],.kopf';
+      const gang = document.createTreeWalker(wurzel, NodeFilter.SHOW_TEXT);
+      for (let n = gang.nextNode(); n !== null; n = gang.nextNode()) {
+        const text = (n.textContent ?? '').replace(/\s+/gu, ' ').trim();
+        const el = n.parentElement;
+        if (text === '' || el === null || el.closest(ohne) !== null) continue;
+        const stil = getComputedStyle(el);
+        if (el.offsetParent === null && stil.position !== 'fixed') continue;
+        if (stil.visibility === 'hidden' || stil.display === 'none') continue;
+        let block = el;
+        while (block !== wurzel && block.parentElement !== null && getComputedStyle(block).display.startsWith('inline')) block = block.parentElement;
+        if (!aus.has(block)) aus.set(block, []);
+        aus.get(block).push(text);
       }
-      return aus;
+      return [...aus.values()].map((x) => x.join(' '));
     });
     for (const t of teile) {
       if (gesehen.has(t)) continue;
       gesehen.add(t);
+      if (process.env['MVG_LESEZEIT_DUMP']) dump.push({ station, n: t.split(/\s+/u).length, t });
       jeStation[station] = (jeStation[station] ?? 0) + t.split(/\s+/u).length;
     }
     const optionen = seite.locator('[data-pruef^="option-"]').filter({ visible: true });
@@ -96,8 +108,12 @@ async function spieleIn(seite, rolle, express) {
     if (await weiter.count() > 0 && await weiter.isEnabled()) { await weiter.click(); klicks++; await seite.waitForTimeout(60); continue; }
     break;
   }
+  // der Pfad muss wirklich am Ende angekommen sein (sonst wäre eine hängende Story „kurz“)
+  const letzte = Object.keys(jeStation).at(-1) ?? '';
+  const amEnde = express ? letzte.startsWith('ende-') : letzte === 'epilog';
   const woerter = Object.values(jeStation).reduce((a, b) => a + b, 0);
-  return { rolle, express, woerter, klicks, minuten: Math.round((woerter / WPM + (klicks * SEK_JE_KLICK) / 60) * 10) / 10, jeStation };
+  if (process.env['MVG_LESEZEIT_DUMP']) writeFileSync(`${process.env['MVG_LESEZEIT_DUMP']}-${rolle}${express ? '-express' : ''}.json`, JSON.stringify(dump));
+  return { rolle, express, amEnde, letzte, woerter, klicks, minuten: Math.round((woerter / WPM + (klicks * SEK_JE_KLICK) / 60) * 10) / 10, jeStation };
 }
 
 /**
@@ -122,5 +138,6 @@ export async function lauf(seite, h) {
     const zeile = `Lesezeit ${e.rolle}${e.express ? ' Express' : ''}: ${e.minuten} min (${e.woerter} Wörter, ${e.klicks} Klicks; Ziel ≤ ${ziel} min)`;
     console.log(`      ${zeile}`);
     if (pflicht && e.minuten > ziel) h.befund(zeile);
+    if (!e.amEnde) h.befund(`Lesezeit ${e.rolle}${e.express ? ' Express' : ''}: Pfad endet bei „${e.letzte}“ statt am Ende der Geschichte`);
   }
 }

@@ -24,7 +24,7 @@ Nichtdelegierbare Bauherrenverantwortungen sind jene Verantwortungen, bei denen 
 titel: Welche Symptome haben Sie erlebt?
 kurz: Symptome
 ---
-Markiert sind die Symptome aus Kap. 2.5, die auf Ihrer Spur auftraten. Wählen Sie eines.
+Markiert: die Symptome (Kap. 2.5) Ihrer Spur. Wählen Sie eines.
 
 ::: tafel k2.5-t1
 ---
@@ -47,7 +47,7 @@ erlebt:
 titel: Was passiert, wenn …?
 kurz: Wirkungsketten
 ---
-Muster, Folge und MVG-Antwort je Symptom (Kap. 2.5). Wählen Sie einen Auslöser.
+Wählen Sie einen Auslöser: Muster, Folge, MVG-Antwort (Kap. 2.5).
 
 ::: tafel k2.5-t1
 ---
@@ -61,7 +61,7 @@ form: ketten
 titel: Delegierbar oder nicht?
 kurz: Delegierbar?
 ---
-Kap. 3.2 im Kern: [[zitat:k3.2-p1|Der Bauherr muss aber wissen, wo Vorbereitung endet und eigene Entscheidung beginnt.]]
+Kap. 3.2: [[zitat:k3.2-p1|Der Bauherr muss aber wissen, wo Vorbereitung endet und eigene Entscheidung beginnt.]]
 
 ::: tafel k3.2-t1
 ---
@@ -72,20 +72,35 @@ form: schwelle
 
 ::: schritt mandat
 ---
-titel: Wer hätte über welchen Betrag entschieden?
+titel: Wer hätte entschieden?
 kurz: Schwellen
 ---
-Für keinen Betrag war festgelegt, wer entscheidet: Mensa (grob 0,6 Mio. €), Brandschutz (grob 0,4 Mio. €), Kostenabweichung (rund 4,7 Mio. €). Muster aus Kap. 4.2:
+Für keinen Betrag war festgelegt, wer entscheidet: Mensa grob 0,6, Brandschutz grob 0,4, Abweichung rund 4,7 Mio. €. Muster aus Kap. 4.2:
 
 ::: zitat k4.2-p3
 Als Muster-Mandatsleiter gilt: Die Bauherren-PL gibt bis einschließlich 100 TEUR eigenständig frei; oberhalb von 100 TEUR bis einschließlich 5 Mio. EUR entscheidet das Änderungsgremium; darüber erfolgt die Beschlussfassung durch den Bauherrn im Lenkungskreis.
 :::
 :::
 
-::: schritt pyramide
+::: schritt ebenen
 ---
-titel: Drei Ebenen der Verantwortung
-kurz: Pyramide
+art: ebenen
+titel: Ebenen und Felder der Verantwortung
+kurz: Tiefer gehen
+---
+:::
+
+::: ebenen
+::: ebene 1
+---
+titel: Kernaussage
+---
+Verantwortung in drei Ebenen (Kap. 3.3) und sechs Feldern (Kap. 4).
+:::
+
+::: ebene 2
+---
+titel: Drei Ebenen
 ---
 Wählen Sie eine Ebene (Kap. 3.3).
 
@@ -96,10 +111,9 @@ form: pyramide
 :::
 :::
 
-::: schritt felder
+::: ebene 3
 ---
-titel: Sechs Verantwortungsfelder
-kurz: Sechs Felder
+titel: Sechs Felder
 ---
 Je Feld Fehlstelle und MVG-Antwort (Kap. 4). Schalten Sie um.
 
@@ -107,5 +121,15 @@ Je Feld Fehlstelle und MVG-Antwort (Kap. 4). Schalten Sie um.
 ---
 form: felder
 ---
+:::
+:::
+
+::: ebene 4
+---
+titel: Nachweis
+---
+::: zitat k4-p1
+Für MVG lassen sich sechs Felder unterscheiden.
+:::
 :::
 :::

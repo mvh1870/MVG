@@ -21,7 +21,7 @@ weiter: A3
 titel: Dienstag, 11:15 Uhr. Monat 3.
 kurz: Einstieg
 ---
-Dienstag, 10. März. Zwei neue Unterlagen kommen dazu.
+Dienstag, 10. März. Neue Unterlagen.
 
 ::: protokoll
 ---
@@ -31,7 +31,6 @@ von: petersen
 ---
 - Ausführungsplanung LPH 5 läuft.
 - Freigabe zum Abschluss von LPH 4: kein eigener Termin.
-- Marktlage Holz: Generalplanung fragt Hersteller an.
 :::
 
 ::: protokoll
@@ -40,7 +39,6 @@ titel: Marktabfrage Holzbau (Generalplanung)
 datum: 10. März 2026
 ---
 - Holzbauelemente: Lieferzeit jetzt rund 26 Wochen statt 16.
-- Varianten werden durchgerechnet.
 - Terminwirkung: nicht bewertet.
 :::
 
@@ -50,14 +48,14 @@ von: roth
 betreff: Mensa für den Ganztag
 zeit: "11:09"
 ---
-Der Ganztag wächst: Die Kinder brauchen eine Mensa für rund 450 statt 300 Essen, laut Generalplanung grob 0,6 Mio. €. Herr Deppe sagte im Flur: „Wir kriegen das hin.“ Ich gehe davon aus, dass das gilt.
+Der Ganztag wächst: Wir brauchen eine Mensa für rund 450 statt 300 Essen, laut Generalplanung grob 0,6 Mio. €. Herr Deppe sagte im Flur: „Wir kriegen das hin.“ Ich nehme ihn beim Wort.
 :::
 
 ::: notiz
 ---
 farbe: gelb
 ---
-Lieferzeit Holz: 26 statt 16 Wochen – was heißt das für den Termin?
+Holz 26 statt 16 Wochen – und der Termin?
 :::
 
 ::: notiz
@@ -85,7 +83,7 @@ knopf: Jetzt entscheiden
 ---
 ::: bekannt
 - Lieferzeit Holz 26 statt 16 Wochen; Mensa grob 0,6 Mio. €.
-- Die Zusage fiel im Flur; schriftlich gibt es nichts.
+- Die Zusage fiel im Flur, nicht schriftlich.
 - Für Änderungen gibt es keine Schwellen.
 :::
 

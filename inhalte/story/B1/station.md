@@ -21,7 +21,7 @@ weiter: B2
 titel: Montag, 09:00 Uhr. Monat 1.
 kurz: Einstieg
 ---
-Montag, 5. Januar. Dieselbe Woche, dieselbe Marktnotiz. Diesmal hat alles einen Ort – auch die Kostenprognose: ein benannter Datenstand mit Version.
+Montag, 5. Januar. Dieselbe Woche, dieselbe Marktnotiz.
 
 ::: protokoll
 ---
@@ -30,18 +30,18 @@ datum: Di, 16.12.2025
 von: petersen
 ---
 - Zielsystem mit Abwägungsregeln angelegt; die Zielpriorität legt Dr. Olbers noch fest.
-- Mandatsleiter, von Dr. Olbers festgelegt: Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium bis einschließlich 5 Mio. €, darüber der Bauherr im Lenkungskreis.
-- Register mit Rolle und Turnus; dienstags Jour fixe mit Risikosichtung.
+- Mandatsleiter (festgelegt von Dr. Olbers): Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium bis einschließlich 5 Mio. €, darüber Bauherr im Lenkungskreis.
+- Register mit Rolle und Turnus; dienstags Risikosichtung.
 :::
 
 ::: mail
 ---
 von: petersen
-betreff: Marktnotiz Holzbau – über den Projektverteiler
+betreff: Marktnotiz Holzbau
 zeit: "08:47"
 anhang: Marktnotiz_Holzbau_GP_Dez.pdf
 ---
-Guten Morgen, die Marktnotiz der Generalplanung kam über den Projektverteiler: Holzbauelemente werden teurer, ein Betrag fehlt. In einem Register steht sie noch nicht.
+Marktnotiz der Generalplanung über den Projektverteiler: Holzbauelemente werden teurer, ein Betrag fehlt. Noch in keinem Register.
 :::
 
 ::: datei
@@ -58,7 +58,7 @@ Benannter Datenstand mit Version und Status.
 von: stein
 zeit: "09:02"
 ---
-Prognose steht als Version 1. Die Holzannahmen erkläre ich gern – aufgeschrieben sind nicht alle.
+Prognose steht als Version 1. Nicht alle Holzannahmen sind aufgeschrieben.
 :::
 :::
 
@@ -203,7 +203,7 @@ Kap. 9.2 fragt: [[zitat:k9.2-p3|Wer bereitet vor, wer entscheidet, wer liefert b
 titel: Rhythmus und Register
 kurz: Rhythmus und Register
 ---
-Risikosichtung dienstags, Änderungsgremium monatlich, jedes Register mit Rolle und Turnus: Die Marktnotiz hat eine Adresse, bevor jemand rechnet.
+Dienstags Risikosichtung, monatlich Änderungsgremium: Die Marktnotiz hat eine Adresse, bevor jemand rechnet.
 
 ::: tafel k6.4.5-t1
 ---
@@ -235,9 +235,9 @@ wert: Stand Kostenberechnung · gilt
 :::
 
 ::: bekannt
-- Projektbasis 58,4 Mio. € brutto, darin 2,9 Mio. € Risikoreserve – ihren Einsatz gibt nur der Bauherr frei.
-- LPH 4: Der Bauantrag geht diese Woche raus.
-- Die Zielpriorität legt der Bauherr fest – noch offen.
+- Projektbasis 58,4 Mio. € brutto, darin 2,9 Mio. € Risikoreserve; den Einsatz gibt nur der Bauherr frei.
+- LPH 4: Bauantrag geht diese Woche raus.
+- Die Zielpriorität ist noch offen.
 :::
 
 ::: unbekannt

@@ -5,7 +5,7 @@ rueckbezug-auf: wirklichkeit
 ---
 
 ::: rueckbezug A
-Im Dezember haben Sie ‚MVG-Neuinitialisierung vorschlagen‘ gewählt. Für die Neuordnung fehlte Ihrer Spur die Entscheidungsfähigkeit; im Januar kam auf Ihre Vorlage zuerst die Freigabe mit Auflagen.
+Im Dezember haben Sie ‚MVG-Neuinitialisierung vorschlagen‘ gewählt. Bis sie greift, brauchte LPH 5 einen Abschluss; im Januar kam auf Ihre Vorlage zuerst die Freigabe mit Auflagen.
 :::
 
 ::: rueckbezug B

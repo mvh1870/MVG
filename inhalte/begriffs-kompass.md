@@ -60,7 +60,7 @@ beleg: k6.4.1-p3
 ---
 begriff: Entscheidungsreife
 andere: [Readiness]
-beleg: k1-p3
+beleg: k2.5-t1
 ---
 :::
 

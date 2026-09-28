@@ -6,7 +6,7 @@ rueckbezug-auf: A6
 ---
 
 ::: rueckbezug A
-Im November haben Sie ‚Freigabe verschieben‘ gewählt. Die Fraktion hat einen Sachstand bekommen, die Freigabe ist weiter offen – und was ihr fehlt, hat seither niemand aufgeschrieben.
+Im November haben Sie ‚Freigabe verschieben‘ gewählt. Die Fraktion bekam einen Sachstand; was der Freigabe fehlt, hat niemand aufgeschrieben.
 :::
 
 ::: rueckbezug B
@@ -30,7 +30,7 @@ status:
   kostenunsicherheit: -1
 ---
 ### Konsequenz
-Sie erteilen den Auftrag zu einer [[MVG-Neuinitialisierung]], benennen die verantwortliche Rolle auf Bauherrenseite und sagen zu, was nur Sie können: Entscheidungen zu Zielprioritäten, Mandaten, Schwellen und Freigaben.
+Sie beauftragen eine [[MVG-Neuinitialisierung]], benennen die verantwortliche Rolle auf Bauherrenseite und sagen zu, was nur Sie können: Entscheidungen zu Zielprioritäten, Mandaten, Schwellen und Freigaben.
 
 ### Was fehlt
 Lagebild, Entscheidungsinventar, bereinigter Datenstand – und regelmäßig Ihre Zeit.
@@ -84,7 +84,7 @@ Eine neue Projektbasis auf der alten Steuerungslogik.
 :::
 
 ::: nachsatz
-Ihre Wahl gibt die Richtung vor. Wohin sie führt, hängt auch vom bisherigen Weg ab.
+Wohin Ihre Wahl führt, hängt auch vom bisherigen Weg ab.
 :::
 
 ::: regie

@@ -6,7 +6,7 @@ rueckbezug-auf: A6
 ---
 
 ::: rueckbezug A
-Im November haben Sie ‚Steins Dateien rekonstruieren‘ gewählt. Am Freitag gab es eine Zahl; welche Annahmen darin stecken, konnten Sie nur zum Teil sagen. Holger Stein kann es jetzt – aber nur er.
+Im November haben Sie ‚Steins Dateien rekonstruieren‘ gewählt. Am Freitag gab es eine Zahl; welche Annahmen darin stecken, konnten Sie nur zum Teil sagen. Jetzt kann es Holger Stein – nur er.
 :::
 
 ::: rueckbezug B

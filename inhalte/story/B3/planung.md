@@ -32,7 +32,7 @@ symbol: weiterarbeiten
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Einsparvariante durchrechnen‘ gewählt. In Welt B steht die günstigere Fassade als `AEN-022` im Änderungsregister – keine Schubladenrechnung.
+In Welt A haben Sie ‚Einsparvariante durchrechnen‘ gewählt. Hier steht die günstigere Fassade als `AEN-022` im Änderungsregister.
 :::
 
 ::: rueckbezug B

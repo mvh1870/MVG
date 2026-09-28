@@ -66,7 +66,7 @@ Eine Woche Verzögerung und ein Präzedenzfall, der hätte entstehen können.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Nachträglich bestätigen‘ gewählt. In Welt B wird nicht nachträglich zur Kenntnis genommen: Der Einsatz der Reserve wird vorher beim Bauherrn freigegeben.
+In Welt A haben Sie ‚Nachträglich bestätigen‘ gewählt. In Welt B wird der Einsatz der Reserve vorher beim Bauherrn freigegeben.
 :::
 
 ::: rueckbezug B

@@ -21,11 +21,11 @@ weiter: A2
 titel: Montag, 09:00 Uhr. Monat 1.
 kurz: Einstieg
 ---
-Montag, 5. Januar. Die Unterlagen liegen in drei Ablagen: GML, Projektsteuerung, Generalplanung. Wer wem was vorlegt und wer was freigibt, steht nirgends.
+Montag, 5. Januar. Drei Ablagen: GML, Projektsteuerung, Generalplanung. Wer was vorlegt oder freigibt, steht nirgends.
 
 ::: akten
 ---
-beschriftung: Ablagen GML, Projektsteuerung, Generalplanung
+beschriftung: Drei Ablagen
 anzahl: 12
 ---
 :::
@@ -37,7 +37,7 @@ betreff: "WG: Marktnotiz Holzbau – Preisentwicklung"
 zeit: "08:47"
 anhang: Marktnotiz_Holzbau_GP_Dez.pdf
 ---
-Marktnotiz der Generalplanung, vor Weihnachten nur an den alten Verteiler: Holzbauelemente werden teurer, Betrag offen. In welche Ablage damit?
+Marktnotiz der Generalplanung, nur an den alten Verteiler: Holzbauelemente werden teurer, Betrag offen. Welche Ablage?
 :::
 
 ::: chat
@@ -45,7 +45,7 @@ Marktnotiz der Generalplanung, vor Weihnachten nur an den alten Verteiler: Holzb
 von: stein
 zeit: "09:02"
 ---
-Kostendatei liegt bei der Projektsteuerung, Stand Kostenberechnung. Blatt „Holz“ nicht sortieren, Spalte K hängt an Blatt 4.
+Kostendatei: Blatt „Holz“ nicht sortieren, Spalte K hängt an Blatt 4.
 :::
 
 ::: protokoll
@@ -56,7 +56,7 @@ von: petersen
 ---
 - Bauantrag: Einreichung Anfang Januar.
 - Kosten: im Rahmen; Details bei H. Stein.
-- ESG und LCC: wie beschlossen; Abgleich mit Kosten folgt.
+- ESG und LCC: wie beschlossen.
 - Holzpreise: Generalplanung beobachtet.
 :::
 
@@ -93,7 +93,7 @@ wert: Stand Kostenberechnung
 
 ::: bekannt
 - Projektbasis 58,4 Mio. € brutto, darin 2,9 Mio. € Risikoreserve.
-- LPH 4: Der Bauantrag geht diese Woche raus.
+- LPH 4: Bauantrag geht diese Woche raus.
 - Vier Ziele (Kosten, Termin, ESG, LCC), keine Rangfolge.
 - Die Kostendatei pflegt Holger Stein allein.
 :::
@@ -101,7 +101,7 @@ wert: Stand Kostenberechnung
 ::: unbekannt
 - Welches Ziel vorgeht {#zielprioritaet}
 - Was der Holzpreis kostet {#holzpreis}
-- Welche Annahmen in der Kostendatei stecken {#annahmen}
+- Annahmen der Kostendatei {#annahmen}
 - Wer entscheidet, freigibt, eskaliert {#zustaendigkeit}
 :::
 
@@ -155,7 +155,7 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Die organisatorische Verletzlichkeit steigt, wenn Preisannahmen kippen, ESG und LCC nicht früh in Zielsystem und Abwägungsregeln integriert sind und Wissen nicht in Artefakte und Routinen übersetzt ist.
+Die organisatorische Verletzlichkeit steigt, wenn Preisannahmen kippen, ESG und LCC nicht früh integriert sind und Wissen nicht in Artefakte und Routinen übersetzt ist.
 :::
 
 ::: ebene 2

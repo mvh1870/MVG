@@ -19,7 +19,7 @@ weiter:
 ---
 
 ::: express
-Was Sie im Express in Welt A übersprungen haben, liegt hier mit auf dem Tisch: Im Juli vertagte der Bauausschuss, weil ein 40-Seiten-Statusbericht keine Entscheidungsfrage enthielt. Im September zeigte sich, dass ein guter Teil der Risikoreserve verplant war – für Brandschutzauflagen, die umgeplante Mensa und den Nachtrag der TGA-Fachplanung, ohne dass jemand den Einsatz freigegeben hatte.
+Was Sie im Express in Welt A übersprungen haben, liegt hier mit auf dem Tisch: Im Juli vertagte der Bauausschuss, weil ein 40-Seiten-Statusbericht keine Entscheidungsfrage enthielt. Im September zeigte sich, dass ein guter Teil der Risikoreserve verplant war – für Brandschutzauflagen, die auf eine Flurzusage hin umgeplante Mensa und den Nachtrag der TGA-Fachplanung, ohne dass jemand den Einsatz freigegeben hatte.
 :::
 
 ::: schritt einstieg
@@ -27,7 +27,7 @@ Was Sie im Express in Welt A übersprungen haben, liegt hier mit auf dem Tisch: 
 titel: Montag, 08:00 Uhr. Monat 12.
 kurz: Einstieg
 ---
-Welt B war ein Gedankenexperiment. Montag, 7. Dezember, in Welt A: LPH 5 ist nicht abgeschlossen, der Lenkungskreis hat im November nichts entschieden.
+Welt B war ein Gedankenexperiment. Montag, 7. Dezember: LPH 5 ist nicht abgeschlossen, entschieden ist nichts.
 
 ::: mail
 ---
@@ -35,7 +35,7 @@ von: olbers
 betreff: Schulcampus – wie geht es weiter?
 zeit: "07:52"
 ---
-Bis zum Lenkungskreis am 15. Dezember brauche ich eine Frage, über die ich entscheiden kann, und eine Liste der offenen Entscheidungen. Keinen Statusbericht.
+Bis zum Lenkungskreis am 15. Dezember brauche ich eine Entscheidungsfrage und die Liste der offenen Entscheidungen. Keinen Statusbericht.
 :::
 
 ::: chat
@@ -43,13 +43,13 @@ Bis zum Lenkungskreis am 15. Dezember brauche ich eine Frage, über die ich ents
 von: kaya
 zeit: "07:58"
 ---
-Herr Stein ist zurück. Ich habe ihn gefragt, welche Version gilt. Seine Antwort: „Für welche Frage?“
+Herr Stein ist zurück. Welche Version gilt? Seine Antwort: „Für welche Frage?“
 :::
 
 
 ::: akten
 ---
-beschriftung: Schulcampus · Stand Dezember
+beschriftung: Stand Dezember
 anzahl: 9
 ---
 :::
@@ -68,7 +68,7 @@ titel: Woran man es erkennt
 kurz: Anzeichen
 gruppe: Was jetzt? · MVG-Neuinitialisierung
 ---
-[[zitat:k11.1-p1|Eine MVG-Neuinitialisierung wird erforderlich, wenn ein Projekt im bisherigen Modus nicht mehr ausreichend führbar ist.]] Jedes Signal haben Sie in Welt A erlebt:
+[[zitat:k11.1-p1|Eine MVG-Neuinitialisierung wird erforderlich, wenn ein Projekt im bisherigen Modus nicht mehr ausreichend führbar ist.]] In Welt A erlebt:
 
 | Typisches Signal (Kap. 11.1) | In Welt A erlebt |
 |---|---|
@@ -103,7 +103,7 @@ gruppe: Was jetzt? · MVG-Neuinitialisierung
 ---
 [[zitat:k8.2-p1|Die 30/60/90-Tage-Logik ist ein Orientierungsrahmen nach der MVG-Reifegradanalyse und im Rahmen einer MVG-Neuinitialisierung; sie ist kein allgemeiner Einführungsrhythmus und kein starrer Projektplan.]]
 
-Die ersten 30 Tage in Lindenhall:
+Die ersten 30 Tage:
 
 | Frage (Kap. 8.2) | In Welt A, Monat 12 |
 |---|---|
@@ -112,7 +112,7 @@ Die ersten 30 Tage in Lindenhall:
 | [[zitat:k8.2-p2|Welche Datenstände sind widersprüchlich?]] | „Prognose_Nov_v5“ gegen die CTC des Controllings |
 | [[zitat:k8.2-p2|Welche Risiken und Änderungen brauchen bauherrenseitige Entscheidung?]] | Lieferzeit, Mensa, Brandschutzauflagen, Nachtrag der TGA-Fachplanung |
 
-Bis Tag 90 – am Regler:
+Bis Tag 90:
 
 ::: tafel k8.2-t1
 ---
@@ -148,15 +148,15 @@ kurz: Was Sie wissen
 knopf: Jetzt entscheiden
 ---
 ::: bekannt
-- Zwei Kostenstände liegen nebeneinander; eine Stellvertretung ist nicht geregelt.
-- Die Reserve reicht schon für die Mai-Abweichung nicht; die Kämmerei fragt nach einer neuen Projektbasis.
+- Zwei Kostenstände, keine geregelte Stellvertretung.
+- Die Reserve reicht nicht; im Lenkungskreis fragt die Kämmerei nach einer neuen Projektbasis.
 - Drei Wege: [[MVG-Neuinitialisierung]], Freigabe mit Auflagen, [[Neufestlegung der Projektbasis]]. Über jeden entscheidet der Bauherr.
 :::
 
 ::: unbekannt
 - Welche Entscheidungen neu legitimiert werden müssen {#neu-legitimieren}
 - Ob die Projektbasis neu festgelegt werden muss {#projektbasis}
-- Wie viel eigene Zeit Bauherr und Geschäftsführung geben {#mitwirkung}
+- Wie viel Zeit Bauherr und Geschäftsführung geben {#mitwirkung}
 :::
 :::
 
@@ -197,7 +197,7 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Ist ein Projekt im bisherigen Modus nicht mehr führbar, ordnet eine MVG-Neuinitialisierung die Führungs- und Entscheidungslogik neu – kein Neustart, keine Freigabe, nicht ohne den Bauherrn.
+Ist ein Projekt nicht mehr führbar, ordnet eine MVG-Neuinitialisierung die Führungs- und Entscheidungslogik neu – kein Neustart, keine Freigabe, nicht ohne den Bauherrn.
 :::
 
 ::: ebene 2

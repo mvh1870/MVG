@@ -14,7 +14,7 @@ schaltet-frei: [explore]
 titel: Dienstag, 16. März 2027. Monat 15.
 kurz: Einstieg
 ---
-Im Januar hat Dr. Olbers die Freigabe zum Abschluss von LPH 5 mit Auflagen erteilt. Seitdem steht das Projekt in LPH 6.
+Im Januar hat Dr. Olbers die Freigabe zum Abschluss von LPH 5 mit Auflagen erteilt; seitdem läuft LPH 6.
 
 ::: protokoll
 ---
@@ -49,7 +49,7 @@ kurz: Ihre Spur
 titel: Wie Sie hierher kamen
 kurz: Ihr Weg
 ---
-Dieses Ende folgt aus der Wahl im Dezember und Ihrer Spur. Eine Freigabe mit Auflagen ist kein halbes Ergebnis; sie verlagert Arbeit in die Zeit danach.
+Eine Freigabe mit Auflagen ist kein halbes Ergebnis; sie verlagert Arbeit in die Zeit danach.
 :::
 
 ::: schritt nachweiskette

@@ -66,7 +66,7 @@ Die Planänderung wartet; die Ausführungsplanung auch.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Bericht kürzen lassen‘ gewählt. In Welt B wird getrennt statt gekürzt: Der Managementbericht sammelt für die Gremien, das Entscheidungsregister ist die Warteschlange für echte Entscheidungen.
+In Welt A haben Sie ‚Bericht kürzen lassen‘ gewählt. In Welt B wird getrennt statt gekürzt: Der Managementbericht sammelt, das Entscheidungsregister hält die echten Entscheidungen.
 :::
 
 ::: rueckbezug B

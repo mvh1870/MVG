@@ -66,7 +66,7 @@ Abhängigkeit von einer Schlüsselperson.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Unterlagen ordnen‘ gewählt. In Welt B gibt es keine drei Ablagen: Unterlagen gelten im Register und im benannten Datenstand.
+In Welt A haben Sie ‚Unterlagen ordnen‘ gewählt. In Welt B gibt es keine drei Ablagen, sondern Register und einen benannten Datenstand.
 :::
 
 ::: rueckbezug B

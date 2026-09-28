@@ -121,8 +121,8 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [-] P11.5b · Lange Listen kompakt – verworfen: Lage- und Prüflisten sind Kern der Mechanik; stattdessen in P11.5c redaktionell gekürzt (Listen auf 3–4 Punkte)
 - [x] P11.5c · Texte je Station gekürzt: alle Rollen Hauptpfad 34,4–34,6 min, Express 14,7–14,8 min (vorher 51,9 / 24,2); Messung jetzt Pflicht; Fachtreue Teil 1 (18 Befunde) eingearbeitet, Teil 2 folgt; B4-Vorlage AEN-031 wird jetzt gezeigt
 - [x] P11.6 · Wissenschecks „Fragen mit Erklärung statt Punkten“ über B3 hinaus: je Lernseite (Kap. 2–12) eine Frage mit Erklärung und Beleg (L-60)
-- [ ] P11.3 · Korrekturschleife, bis zwei Runden nichts Neues finden
-- [ ] P11.4 · Abschluss: UEBERGABE mit Abnahmeanleitung; Ampel rot „fertig – Routine anhalten, claude/haus nach main zusammenführen“
+- [x] P11.3 (4402ba6) · Korrekturschleife, bis zwei Runden nichts Neues finden – fünf Runden, R4 und R5 ohne schwere/mittlere Befunde (L-64)
+- [x] P11.4 · Abschluss: UEBERGABE mit Abnahmeanleitung; Ampel rot „fertig – Routine anhalten, claude/haus nach main zusammenführen“
 
 ## Erledigt
 (noch nichts)

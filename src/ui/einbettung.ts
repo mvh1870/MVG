@@ -4,6 +4,7 @@
  *
  *   an den Host:  bereit { version } · ort { hash, flaeche, titel }  (nach jedem Flächenwechsel)
  *                 hoehe { px }  (Inhaltshöhe, sobald sie sich ändert; null = feste Höhe, z. B. die Story)
+ *                 ziel { y }  (Sprungziel im Rahmen, z. B. ein Absatz-Permalink – der Host rollt dorthin)
  *   vom Host:     gehe { ziel: '#theorie/k4' } · frage  (antwortet mit „ort“)
  *
  * Sicher: angenommen wird nur, was vom direkten Elternfenster kommt und – wenn die Hostseite ihre
@@ -19,7 +20,8 @@ export const EINBETTUNG = 'einbettung';
 export type AnHost =
   | { mvg: typeof EINBETTUNG; art: 'bereit'; version: string }
   | { mvg: typeof EINBETTUNG; art: 'ort'; hash: string; flaeche: string; titel: string }
-  | { mvg: typeof EINBETTUNG; art: 'hoehe'; px: number | null };
+  | { mvg: typeof EINBETTUNG; art: 'hoehe'; px: number | null }
+  | { mvg: typeof EINBETTUNG; art: 'ziel'; y: number };
 
 export type VomHost =
   | { art: 'gehe'; ziel: string }
@@ -48,7 +50,7 @@ export function leseHostNachricht(daten: unknown): VomHost | null {
   return null;
 }
 
-/** Hintergrund der Hostseite aus `?einbettung-hintergrund=ffffff` – nur helle Farben (Kontrast der Texte bleibt, O-11). */
+/** Hintergrund der Hostseite aus `?einbettung-hintergrund=ffffff` – nur helle Farben (Leuchtdichte ≥ 0,82: auch --tinte-leise hält 4,5:1). */
 export function leseHintergrund(suche: string): string | null {
   const wert = new URLSearchParams(suche).get('einbettung-hintergrund') ?? '';
   if (!/^[0-9a-f]{6}$/iu.test(wert)) return null;
@@ -57,12 +59,14 @@ export function leseHintergrund(suche: string): string | null {
     return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
   };
   const leuchtdichte = 0.2126 * kanal(0) + 0.7152 * kanal(2) + 0.0722 * kanal(4);
-  return leuchtdichte >= 0.8 ? `#${wert.toLowerCase()}` : null;
+  return leuchtdichte >= 0.82 ? `#${wert.toLowerCase()}` : null;
 }
 
 export interface Einbettung {
   /** meldet den Ort; eine gleiche Meldung wie zuletzt nur mit `immer` (Antwort auf „frage“) */
   meldeOrt(immer?: boolean): void;
+  /** Sprungziel (y im Rahmen) melden, damit die Hostseite dorthin rollt */
+  meldeZiel(y: number): void;
   entferne(): void;
 }
 
@@ -135,6 +139,8 @@ export function starteEinbettung(o: {
   if (o.hoehe !== undefined) plane();
   return {
     meldeOrt: (immer = false) => { meldeOrt(immer); if (o.hoehe !== undefined) plane(); },
+    // erst die (neue) Höhe, dann das Ziel: sonst könnte die Hostseite noch nicht so weit rollen
+    meldeZiel: (y) => { fenster.requestAnimationFrame(() => { meldeHoehe(); sende({ mvg: EINBETTUNG, art: 'ziel', y: Math.max(0, Math.round(y)) }); }); },
     entferne: () => { fenster.removeEventListener('message', bei); beobachter?.disconnect(); },
   };
 }

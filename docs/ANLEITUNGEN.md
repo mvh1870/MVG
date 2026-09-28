@@ -63,7 +63,7 @@ Den Vermerk „fachlich ungeprüft“ zeigen beide Dateien, bis der Owner die Fa
 
 ## 3. Einbetten in eine Webseite (E12, P12)
 
-Diesen Schnipsel an die Stelle der eigenen Seite kopieren, an der MVG interaktiv erscheinen soll. Er lässt den Rahmen **mit dem Inhalt mitwachsen** (keine zweite Scrollleiste, weiche Höhenänderung), gibt der Story eine feste Höhe (90 % des Fensters, 640–900 px) und rollt beim Wechsel zwischen Start, Story und Lernseiten sanft an den Anfang des Rahmens zurück, falls er aus dem Bild gescrollt ist.
+Diesen Schnipsel an die Stelle der eigenen Seite kopieren, an der MVG interaktiv erscheinen soll. Er lässt den Rahmen **mit dem Inhalt mitwachsen** (keine zweite Scrollleiste, weiche Höhenänderung), gibt der Story eine feste Höhe (90 % des Fensters, 640–900 px) rollt beim Wechsel zwischen Start, Story, Lernseiten und Kapiteln sanft an den Anfang des Rahmens zurück, falls er aus dem Bild gescrollt ist, und springt bei Absatz-Links an die richtige Stelle. Bei reduzierter Bewegung (Systemeinstellung) geschieht all das ohne Animation.
 
 ```html
 <iframe id="mvg" title="MVG interaktiv"
@@ -72,16 +72,28 @@ Diesen Schnipsel an die Stelle der eigenen Seite kopieren, an der MVG interaktiv
 <script>
 (function () {
   var rahmen = document.getElementById('mvg');
+  var ruhig = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (ruhig) rahmen.style.transition = 'none';
   var fest = function () { return Math.round(Math.max(640, Math.min(900, window.innerHeight * 0.9))); };
-  var flaeche = '';
+  var ort = '';
   window.addEventListener('message', function (e) {
     if (e.source !== rahmen.contentWindow) return;
     var d = e.data;
     if (!d || d.mvg !== 'einbettung') return;
     if (d.art === 'hoehe') rahmen.style.height = (d.px === null ? fest() : Math.max(320, d.px)) + 'px';
     if (d.art === 'ort') {
-      if (flaeche !== '' && d.flaeche !== flaeche && rahmen.getBoundingClientRect().top < 0) rahmen.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      flaeche = d.flaeche;
+      // neue Seite (Fläche oder Kapitel): an den Anfang des Rahmens, falls er aus dem Bild ist
+      var neu = String(d.hash).split('/').slice(0, 2).join('/');
+      if (ort !== '' && neu !== ort && rahmen.getBoundingClientRect().top < 0) rahmen.scrollIntoView({ behavior: ruhig ? 'auto' : 'smooth', block: 'start' });
+      ort = neu;
+    }
+    // Sprungziel im Rahmen (z. B. ein Absatz): die Hostseite rollt dorthin
+    if (d.art === 'ziel') {
+      // die Höhe sofort (ohne Übergang) setzen, sonst reicht die Seite noch nicht bis zum Ziel
+      rahmen.style.transition = 'none';
+      void rahmen.offsetHeight;
+      window.scrollTo({ top: rahmen.getBoundingClientRect().top + window.scrollY + d.y - 16, behavior: ruhig ? 'auto' : 'smooth' });
+      if (!ruhig) window.requestAnimationFrame(function () { rahmen.style.transition = 'height .35s ease'; });
     }
   });
 })();
@@ -89,8 +101,8 @@ Diesen Schnipsel an die Stelle der eigenen Seite kopieren, an der MVG interaktiv
 ```
 
 - `einbettung-herkunft`: die Adresse der eigenen Website (URL-kodiert). Dann hört und antwortet MVG interaktiv nur dieser Herkunft.
-- `einbettung-hintergrund`: Hintergrundfarbe der eigenen Seite als Hex ohne `#` (z. B. `ffffff`). Nur helle Farben werden übernommen, damit die Texte lesbar bleiben; sonst bleibt das eigene Grau.
-- Die Anwendung meldet dem Host `{ mvg: 'einbettung', art: 'bereit', version }`, nach jedem Wechsel `{ …, art: 'ort', hash, flaeche, titel }` und bei jeder Größenänderung `{ …, art: 'hoehe', px }` (`px: null` = feste Höhe, z. B. die Story).
+- `einbettung-hintergrund`: Hintergrundfarbe der eigenen Seite als Hex ohne `#` (z. B. `ffffff`). Nur helle Farben (etwa ab #ececec) werden übernommen, damit die Texte lesbar bleiben; sonst bleibt das eigene Grau.
+- Die Anwendung meldet dem Host `{ mvg: 'einbettung', art: 'bereit', version }`, nach jedem Wechsel `{ …, art: 'ort', hash, flaeche, titel }` und bei jeder Größenänderung `{ …, art: 'hoehe', px }` (`px: null` = feste Höhe, z. B. die Story am großen Bildschirm) sowie bei Sprüngen auf einen Absatz `{ …, art: 'ziel', y }`.
 - Der Host kann schicken:
   - `{ mvg: 'einbettung', art: 'gehe', ziel: '#theorie/k4' }`
   - `{ mvg: 'einbettung', art: 'frage' }`

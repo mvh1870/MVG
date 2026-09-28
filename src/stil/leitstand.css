@@ -196,6 +196,7 @@
    ============================================================================================= */
 .story-karte {
   grid-area: karte;
+  position: relative;
   min-height: 0;
   overflow: hidden auto;
   padding: var(--a-1) 10px 14px var(--a-4);

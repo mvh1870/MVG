@@ -106,7 +106,7 @@ form: karten
 titel: Die Bibliothek
 kurz: Bibliothek
 ---
-Zum Nachlesen: **Theorie** zeigt alle 13 Kapitel im Originaltext V1.2, Kap. 13 das **Glossar** mit den Definitionen der markierten Begriffe, etwa [[Datenstand]].
+Zum Nachlesen: **Theorie** erklärt alle 13 Kapitel, samt Originaltext V1.2; Kap. 13 das **Glossar** mit den Definitionen der markierten Begriffe, etwa [[Datenstand]].
 
 **Explore** ist jetzt freigeschaltet: „Selbst ausprobieren · Explore“ unter der Story-Karte.
 :::

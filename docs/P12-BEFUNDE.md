@@ -11,3 +11,11 @@
 ## Runde 2 (P12.5)
 - **Story** (gf und controlling Hauptpfad, bauherr Express bis zum Epilog, 0 Konsolenfehler; 237 Rückbezüge, 19 `paar`-Texte geprüft): 9 Befunde (0 schwer, 1 mittel) – alle eingearbeitet: Schritt heißt „Entscheidung“ statt „Was tun Sie?“ (keine doppelte Frage), Rollenfragen in B1/B2/B5/B6/A6 passend zu Optionen und Freigabelogik, keine dritte Person in der Rolle Bauherr, „WG:“ bei weitergeleiteter Mail, Kap.-9-Satz in ende-auflagen wieder mit Aussage.
 - **Lernseiten** (104 Sortier-Posten, alle Regler/Etappen gegen den Originaltext; Browser 1280/400 px je Kapitel): 12 Befunde (0 schwer, 1 mittel) – alle eingearbeitet: Sortierknöpfe bei 400 px untereinander, Silbentrennung statt Bruch an beliebiger Stelle, kürzere Spalten in Kap. 10; Freigabefragen in Kap. 9 als Fragen; Grammatik und Bezüge in Kap. 1, 3, 6, 7, 8, 12.
+
+## Runde 3 (P12.5)
+Gesamtprüfung (Diff R2 + Einbettung, Stichprobe Fachtreue Kap. 4/6/9/11 und A2/B2/A5/B5, pl Hauptpfad bis zum Epilog, Einbettung 400/1280 px, Tastatur der Lernwerkzeuge): 10 Befunde (0 schwer, 4 mittel) – alle eingearbeitet:
+- Startseite eingebettet ohne vh-Rückkopplung (`--vh` fest im Rahmen), Höhe unabhängig von der Herkunft.
+- Story-Karte: absolute Screenreader-Texte verlängerten das Dokument (leeres Band unter dem Leitstand, auch ohne Einbettung) → `position: relative`.
+- Story eingebettet unter 981 px fließt mit dem Inhalt (keine doppelte Scrollleiste am Telefon).
+- Sprünge innerhalb der Theorie: Schnipsel rollt je Kapitel an den Rahmenanfang; Absatz-Links melden `ziel`, die Hostseite rollt dorthin (erst Höhe, dann Ziel).
+- Schnipsel ohne Animation bei reduzierter Bewegung; Hintergrund nur ab Leuchtdichte 0,82; B2/ps-Frage passend zu den Optionen; Kap. 6 „CTC- oder Schwellenwertverletzungen“; Regie-Notiz Kap. 9; Epilog „Theorie erklärt alle 13 Kapitel“.

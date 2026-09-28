@@ -81,8 +81,22 @@ export async function lauf(seite, h) {
   const start = await letzteHoehe();
   if (typeof start !== 'number' || start >= (k4 ?? 0)) h.befund(`Einbettung: Rahmen schrumpft nach der Lernseite nicht (Start ${start}, Kap. 4 ${k4})`);
   if ((await innenScroll()) > 2) h.befund(`Einbettung: Startseite scrollt im Rahmen (${await innenScroll()} px)`);
+  // Startseite: gleiche Höhe, egal von wo man kommt (keine Rückkopplung über vh, P12.5 R3)
+  const startHoehen = (await seite.evaluate(() => /** @type {any} */ (window).nachrichten)).filter((/** @type {any} */ n) => n?.art === 'hoehe' && typeof n.px === 'number').map((/** @type {any} */ n) => n.px);
   await geheUndWarte('#story');
   if ((await letzteHoehe()) !== null) h.befund(`Einbettung: Story meldet keine feste Höhe (${await letzteHoehe()})`);
+  if ((await innenScroll()) > 2) h.befund(`Einbettung: Story scrollt im Rahmen (${await innenScroll()} px)`);
+  await geheUndWarte('#start');
+  if (Math.abs((await letzteHoehe()) - (start ?? 0)) > 3) h.befund(`Einbettung: Startseite ändert ihre Höhe je nach Herkunft (${start} → ${await letzteHoehe()})`);
+  void startHoehen;
+  // Absatz-Link: die Hostseite rollt zum Absatz (Meldung „ziel“)
+  await geheUndWarte('#theorie/k4/k4.2-p3');
+  // Lage des Absatzes im Fenster der Hostseite: Rahmenoberkante (Host) + Lage im Rahmen (Rahmen)
+  const innenY = await seite.frames()[1]?.evaluate(() => document.querySelector('[data-absatz="k4.2-p3"]')?.getBoundingClientRect().top ?? null);
+  const rahmenY = await seite.evaluate(() => document.getElementById('mvg')?.getBoundingClientRect().top ?? 0);
+  const lage = innenY === null || innenY === undefined ? null : rahmenY + innenY;
+  if (lage === null || lage < -20 || lage > 400) h.befund(`Einbettung: Absatz k4.2-p3 nicht im Bild (Lage ${lage})`);
+  await geheUndWarte('#story');
   const grund = await seite.frames()[1]?.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--grund').trim());
   if (grund !== '#ffffff') h.befund(`Einbettung: Hintergrund der Hostseite nicht übernommen (${grund})`);
   await h.axe('einbettung-hoehe');

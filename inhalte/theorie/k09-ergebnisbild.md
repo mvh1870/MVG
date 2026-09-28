@@ -3,7 +3,7 @@
 # der vollständige Originaltext kommt über „::: original k9“ zugeklappt ans Seitenende.
 # Story: DREHBUCH §5 nennt „ausgang“ (die drei Enden); Kap. 9 berühren davon ende-steuerbar
 # (k9.3-p2) und ende-auflagen (k9.3-p3), laut whitepaper-bezug der Stationen.
-# Tafel k9.3-t1 bleibt: Freigabefragen im Wortlaut (der Regler fasst sie nur kurz).
+# Tafel k9.3-t1 bleibt: Freigabefragen im Wortlaut (der Regler zeigt sie einzeln je Leistungsphase).
 # Keine neuen Fachaussagen – Belege je Abschnitt:
 # Belege Einleitung/Kernaussage/Nachweiskette: k9-p1, k9.1-p1, k9.1-l1, k9.3-p1, k9.4-p1, k9.4-l1
 # Belege k9.1: k9.1-p1, k9.1-p2, k9.1-l1, k9.2-p2
@@ -552,7 +552,7 @@ Der Bauherr erteilt die Freigabe zum Abschluss von LPH 5 mit Auflagen; ob sie na
 
 ::: regie
 ### Notiz
-Kapitel 9 zeigt die Ergebnisobjekte; ihr Wert liegt im Zusammenhang – die Etappen „Nachweiskette“ oben führen Mandat, Freigabe, Entscheidungs-ID, Datenstand, Nachweis und Beschlusslage der Reihe nach vor. Im Termin tragen in 9.3 der Weg einer Freigabe und der Regler über LPH 0–9: Der Bauherr erteilt jede Freigabe selbst auf Vorlage der Bauherren-PL, der Lenkungskreis berät und bereitet vor. Der Regler fasst die Freigabefragen nur kurz – bei Rückfragen die Tafel darunter zeigen. RACI (9.2) nicht als Werkzeug erklären, sondern die Kopplung an Mandate und Schwellen zeigen (Umschalter). Die Zuordnung der Freigaben zu den Leistungsphasen kann projektspezifisch angepasst werden – nicht als starr darstellen.
+Kapitel 9 zeigt die Ergebnisobjekte; ihr Wert liegt im Zusammenhang – die Etappen „Nachweiskette“ oben führen Mandat, Freigabe, Entscheidungs-ID, Datenstand, Nachweis und Beschlusslage der Reihe nach vor. Im Termin tragen in 9.3 der Weg einer Freigabe und der Regler über LPH 0–9: Der Bauherr erteilt jede Freigabe selbst auf Vorlage der Bauherren-PL, der Lenkungskreis berät und bereitet vor. Der Regler zeigt die Freigabefrage je Leistungsphase, die Tafel darunter alle zehn im Zusammenhang. RACI (9.2) nicht als Werkzeug erklären, sondern die Kopplung an Mandate und Schwellen zeigen (Umschalter). Die Zuordnung der Freigaben zu den Leistungsphasen kann projektspezifisch angepasst werden – nicht als starr darstellen.
 
 ### Leitfragen
 - Welche Kernfrage stand bei Ihrer letzten Freigabe zum Abschluss einer Leistungsphase im Raum?

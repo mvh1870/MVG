@@ -13,8 +13,8 @@
   grid-template-rows: auto 1fr auto;
   /* Senkrechte Abstände wachsen mit der Höhe: bei 1280×720 (Beamer) und 1024×768 stehen beide Türen
      samt „Öffnen/Beginnen“ im ersten Bild (O-21), auf hohen Bildschirmen bleibt viel Weißraum. */
-  gap: clamp(16px, 3.4vh, 32px);
-  padding: clamp(14px, 3vh, 24px) max(var(--a-4), 5vw) clamp(12px, 2.4vh, 20px);
+  gap: clamp(16px, calc(3.4 * var(--vh, 1vh)), 32px);
+  padding: clamp(14px, calc(3 * var(--vh, 1vh)), 24px) max(var(--a-4), 5vw) clamp(12px, calc(2.4 * var(--vh, 1vh)), 20px);
   background: var(--grund);
   color: var(--tinte);
 }
@@ -39,7 +39,7 @@
 .start-haupt {
   display: grid;
   align-content: center;
-  gap: clamp(20px, 4.4vh, 72px);
+  gap: clamp(20px, calc(4.4 * var(--vh, 1vh)), 72px);
   width: 100%;
   max-width: var(--breite-start);
   margin-inline: auto;
@@ -53,14 +53,14 @@
 .start-titel {
   max-width: 26ch;
   margin-top: var(--a-2);
-  font: 800 clamp(34px, min(5.2vw, 7.2vh), 76px)/.98 var(--schrift-anzeige);
+  font: 800 clamp(34px, min(5.2vw, calc(7.2 * var(--vh, 1vh))), 76px)/.98 var(--schrift-anzeige);
   letter-spacing: .01em;
   text-transform: uppercase;
   color: var(--navy);
 }
 .start-these {
   max-width: 46ch;
-  margin-top: clamp(10px, 2.2vh, 20px);
+  margin-top: clamp(10px, calc(2.2 * var(--vh, 1vh)), 20px);
   font-size: clamp(17px, 1.6vw, 20px);
   line-height: 1.5;
   color: var(--tinte-2);
@@ -72,8 +72,8 @@
   position: relative;
   display: grid;
   grid-template-rows: auto auto 1fr auto;
-  gap: clamp(6px, 1.4vh, 12px);
-  padding: clamp(18px, 3.8vh, 32px) var(--a-8) clamp(16px, 3.2vh, 24px);
+  gap: clamp(6px, calc(1.4 * var(--vh, 1vh)), 12px);
+  padding: clamp(18px, calc(3.8 * var(--vh, 1vh)), 32px) var(--a-8) clamp(16px, calc(3.2 * var(--vh, 1vh)), 24px);
   overflow: hidden;
   border: 0;
   border-radius: var(--radius-xl);

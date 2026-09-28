@@ -338,7 +338,7 @@ Der kanonische Governance-Fluss beschreibt, wie ein Thema vom ersten Signal bis 
 
 Entscheidungsbedarf kann aus einem Risiko entstehen, aber auch aus einer Änderung oder einem Problem. Die Entscheidungsvorlage bündelt dann Frage, Datenstand, Optionen, Bewertung und Empfehlung. Was beschlossen wird, verfolgt das Projekt als Maßnahme weiter – mit verantwortlicher Rolle und Frist.
 
-Eine Regel ist leicht zu übersehen: Verletzungen der Restkostenprognose ([[CTC]]) oder eines Schwellenwerts erzeugen eine **neue** Frühwarnung – ein neues Signal, das wieder am Anfang des Flusses steht. Ein bestehendes Risiko wird dadurch nicht zur Frühwarnung zurückgestuft.
+Eine Regel ist leicht zu übersehen: [[CTC]]- oder Schwellenwertverletzungen erzeugen eine **neue** Frühwarnung – ein neues Signal, das wieder am Anfang des Flusses steht. Ein bestehendes Risiko wird dadurch nicht zur Frühwarnung zurückgestuft.
 
 ::: governancefluss
 Derselbe Fluss begleitet in der Story die Station B3.

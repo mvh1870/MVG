@@ -1,7 +1,7 @@
 ---
 station: B2
 rolle: ps
-frage: "Lieferzeit gegen Förderfrist: Was liefern Sie dem Bauherrn?"
+frage: "FRW-002 und AEN-012 liegen vor: Was liefern Sie zuerst?"
 rueckbezug-auf: A2
 ---
 

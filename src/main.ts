@@ -150,6 +150,8 @@ function starteApp(wurzel: HTMLElement): void {
           abschnitt.tabIndex = -1;
           abschnitt.scrollIntoView({ block: 'start' });
           abschnitt.focus({ preventScroll: true });
+          // eingebettet scrollt nicht der Rahmen, sondern die Hostseite: ihr die Lage des Ziels melden
+          einbettung?.meldeZiel(abschnitt.getBoundingClientRect().top + window.scrollY);
           // Schriften verschieben das Layout nach dem ersten Zeichnen: danach noch einmal ausrichten
           const hash = location.hash;
           void document.fonts?.ready.then(() => { if (location.hash === hash && abschnitt.isConnected) abschnitt.scrollIntoView({ block: 'start' }); });
@@ -232,7 +234,8 @@ function starteApp(wurzel: HTMLElement): void {
     ort: () => ({ hash: location.hash || '#start', flaeche: document.body.dataset['flaeche'] ?? '', titel: document.title }),
     // Story (Leitstand) braucht eine feste Höhe; alle anderen Flächen fließen mit ihrem Inhalt
     // gemessen am Körper, nicht am Dokument: scrollHeight wird nie kleiner als der Rahmen, der Rahmen schrumpfte nie
-    hoehe: () => (document.body.dataset['flaeche'] === 'story' ? null : document.body.getBoundingClientRect().height),
+    // Story: fester Leitstand erst ab 981 px; darunter fließt sie wie die übrigen Flächen (P12.5 R3)
+    hoehe: () => (document.body.dataset['flaeche'] === 'story' && window.matchMedia('(min-width: 981px)').matches ? null : document.body.getBoundingClientRect().height),
   }) : null;
   window.addEventListener('hashchange', () => einbettung?.meldeOrt());
 

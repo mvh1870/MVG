@@ -40,3 +40,5 @@ Gefunden bei der Übernahme der Hilfe (P13, O-31, L-69). Die Hilfe in MVG intera
 | Vorgehensmodell | Detail „Etappe 1“ ist ein ausgewählter Zustand des Zeitstrahls der Anwendung | – | – |
 | FAQ & Glossar, Registerdokument-Katalog | Alt-Dubletten: „Evidence-Belege“ neben „Nachweis-Belege“, „Go / No-Go / Go with Conditions“ neben „Freigeben / Nicht freigeben / Freigabe mit Auflagen“ (in der Hilfe nach Ersetzung gleichlautend) | je ein Eintrag | docs/BEGRIFFE.md |
 | Vorgehensmodell · „Vier Säulen des Zusammenspiels“ | „Die Stärke des MVG-Standards liegt … vier strukturelle Säulen“ | acht MVG-Bausteine, keine Säulen | Kap. 5 |
+| Handbuch · Leistungsphase (gates) | „G0–G9 entlang der Leistungsphasen (LPH 0–8)“ (in der Hilfe als LPH 0–9 wiedergegeben) | LPH 0–9 | Kap. 9.3 |
+| Kundenanpassung | „Quality Gate“, „Release-Gate“ (in der Hilfe „Qualitätstor“, „Prüftor vor der Auslieferung“) | Freigabe nur für MVG-Freigaben | docs/BEGRIFFE.md |

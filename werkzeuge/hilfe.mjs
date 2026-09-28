@@ -93,7 +93,8 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/No-Go/gu, 'keine Freigabe'],
   [/Go ohne Bedingungen/gu, 'Freigabe ohne Auflagen'],
   [/Go with Conditions/gu, 'Freigabe mit Auflagen'],
-  [/Quality Gate/gu, 'Qualitätsfreigabe'],
+  // Beispiel für eine fremde Kundenbezeichnung: bleibt erkennbar anders als „Freigabe“
+  [/Quality Gate/gu, 'Qualitätstor'],
   [/Long-Lead-Komponenten/gu, 'Komponenten mit langer Lieferzeit'],
   [/Long-Lead/gu, 'Komponenten mit langer Lieferzeit'],
   [/Operating-Model/gu, 'Führungsmodell'],
@@ -123,7 +124,8 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/Leistungsphase \(gates\)/gu, 'Leistungsphase (Freigaben)'],
   [/Standardgates/gu, 'Standardfreigaben'],
   [/Gate-Review/gu, 'Freigabeprüfung'],
-  [/Release-Gate/gu, 'Freigabeprüfung'],
+  [/als Release-Gate nutzt/gu, 'als Prüftor vor der Auslieferung nutzt'],
+  [/Release-Gate/gu, 'Prüftor vor der Auslieferung'],
   [/Decision Gates/gu, 'Entscheidungspunkte'],
   [/Stage Gates/gu, 'Phasenfreigaben'],
   [/Sichtbarkeits-Gates/gu, 'Sichtbarkeitsregeln'],
@@ -198,6 +200,14 @@ function bereinige(wurzel, anker, titel = '') {
   }
   for (const b of [...wurzel.querySelectorAll('.role-pick-card .badge')]) if (/^(?:Auto|Meine Rolle)$/u.test((b.textContent ?? '').trim())) b.remove();
   for (const h of [...wurzel.querySelectorAll('.card h3')]) if ((h.textContent ?? '').trim() === 'Loslegen') h.closest('.card')?.remove();
+  // Trenner mit Abschnittstitel („Werkzeugübersicht“): als Überschrift, damit die Gliederung stimmt
+  for (const t of [...wurzel.querySelectorAll('div.section-divider')]) {
+    if ((t.textContent ?? '').trim() === '' || t.children.length > 0) continue;
+    const h = dok.createElement('h2');
+    h.className = 'section-divider';
+    h.textContent = t.textContent;
+    t.replaceWith(h);
+  }
   // Seitenkopf der Anwendung: der Titel steht schon in der Kopfzeile der Hilfe; weitere Titel eine Ebene tiefer
   for (const h of [...wurzel.querySelectorAll('.page-header h1')]) h.remove();
   for (const h of [...wurzel.querySelectorAll('h1')]) {

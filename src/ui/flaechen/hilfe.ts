@@ -126,6 +126,20 @@ function rollbereiche(wurzel: ParentNode): void {
   }
 }
 
+/** IDs im Klon eindeutig machen (Pfeilspitzen, Verläufe) und ihre url(#…)-Bezüge mitziehen. */
+function eindeutig(svg: SVGSVGElement, anhang: string): SVGSVGElement {
+  const ids = new Set([...svg.querySelectorAll('[id]')].map((el) => el.id));
+  if (ids.size === 0) return svg;
+  for (const el of svg.querySelectorAll('[id]')) el.id += anhang;
+  for (const el of [svg, ...svg.querySelectorAll('*')]) {
+    for (const at of [...el.attributes]) {
+      const neu = at.value.replace(/url\(#([^)]+)\)/gu, (m, id: string) => (ids.has(id) ? `url(#${id}${anhang})` : m));
+      if (neu !== at.value) el.setAttribute(at.name, neu);
+    }
+  }
+  return svg;
+}
+
 /**
  * Breite Grafiken der Anwendung (viewBox ab 900) sind in der Lesespalte klein beschriftet: ein Knopf
  * zeigt sie in einem Dialog über die ganze Fensterbreite (Esc oder „Schließen“ kehrt zurück).
@@ -140,7 +154,7 @@ function grafikenVergroesserbar(wurzel: HTMLElement): void {
       h('div', { class: 'hilfe-grafik-dialog-kopf' },
         h('p', { class: 't-label' }, name),
         h('button', { type: 'button', class: 'knopf knopf-still', onclick: () => dialog.close() }, W.hilfe.schliessen)),
-      svg.cloneNode(true));
+      eindeutig(svg.cloneNode(true) as SVGSVGElement, '-gross'));
     const knopf = h('button', { type: 'button', class: 'knopf knopf-still hilfe-grafik-knopf', 'data-pruef': 'grafik-gross', 'aria-label': `${W.hilfe.grafikGross}: ${name}`, onclick: () => dialog.showModal() }, sym('pfeilRechts'), W.hilfe.grafikGross);
     huelle.after(knopf, dialog);
   }

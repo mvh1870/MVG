@@ -223,6 +223,12 @@ test('Hilfe (P13, O-31): gleiche Aufteilung wie die Companion-Hilfe, leiser Zuga
   assert.match(text, /Vorbereitung Freigabe LPH 2/u);
   assert.match(text, /Freigaben LPH 0–9 als Stationen/u);
   assert.doesNotMatch(text, /LPH-0-Vorlage/u);
+  // Prüfrunde 15: Kundenbeispiel nicht tautologisch, Trenner als Überschrift, keine doppelten IDs im Dialog
+  assert.match(text, /Freigabe → Qualitätstor/u);
+  assert.match(HILFE.kapitel[0]?.html ?? '', /<h2 class="h-section-divider">Werkzeugübersicht<\/h2>/u);
+  const vorgehen = baueHilfe({ seite: 'mvg-vorgehensmodell', version: VERSION });
+  const idListe = [...vorgehen.querySelectorAll('[id]')].map((el) => el.id);
+  assert.equal(new Set(idListe).size, idListe.length, idListe.join(' '));
   assert.equal(baueHilfe({ seite: 'gibt-es-nicht', version: VERSION }).querySelector('[data-pruef="hilfe-uebersicht"]') !== null, true);
 });
 

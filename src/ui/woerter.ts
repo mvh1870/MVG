@@ -282,7 +282,7 @@ export const W = {
     link: 'Hilfe',
     inhalt: 'Inhalt',
     ueberblick: 'Hilfe',
-    ueberblickText: 'Hilfe und Vorgehensmodell des MVG Companion: Konzepte, Handbuch, Standards, Anleitungen je Rolle, FAQ und Glossar – in derselben Aufteilung wie in der Anwendung.',
+    ueberblickText: 'Hilfe und Vorgehensmodell des MVG Companion, der Anwendung zu Minimum Viable Governance (MVG): Konzepte, Handbuch, Standards, Anleitungen je Rolle, FAQ und Glossar – in derselben Aufteilung wie in der Anwendung.',
     kicker: (quelle: string) => quelle,
     stand: (stand: string) => `Stand ${stand}`,
     kapitelVon: (nr: number) => `Hilfe · Teil ${nr}`,

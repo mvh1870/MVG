@@ -23,3 +23,7 @@ Gefunden bei der Übernahme der Hilfe (P13, O-31, L-69). Die Hilfe in MVG intera
 | Registerdokument-Katalog | „G3 (Ausführungsplanung)“ – in sich widersprüchlich (G3 wäre LPH 3) | in der Hilfe als LPH 5 (Ausführungsplanung) wiedergegeben | Kap. 9.3 |
 | Hilfe-Hub · Einführung in MVG | „Werkzeugkasten“, „Betriebssystem“, „Was MVG nicht ist“ (Vergabeverfahren, Buchhaltung, Cloud) | nicht in V1.2 (kein Widerspruch) | – |
 | verstreut | Change, EW, Baseline, Issue, P×I | Änderung, Frühwarnung, Projektbasis, Problem, P×A | docs/BEGRIFFE.md |
+| Vorgehensmodell · Einführungs-Roadmap; Handbuch · Phasenlogik | „MVG-Einrichtung in 30/60/90 Tagen“, MVG-Phasenlogik (Vorbereitung … Regelbetrieb), fünfphasiges Vorgehensmodell (Initialisierung … Übergabe) | 30/60/90 als Orientierungsrahmen nach der Reifegradanalyse; Einführung Einrichtung → Diagnose → Konzeption → Pilotierung → Befähigung → Regelbetrieb | k8.1-t1, k8.2-p1, k8.2-p5 |
+| Handbuch · Lesart Reifegrad | „Punktwert < 55: MVG-Neuinitialisierung nötig“ | Band „kritisch“ ohne feste Folge | k7.1-p2 |
+| Standards · Kap. 7, Compliance-Zuordnung | „MVG ist kompatibel mit …“, PMBOK-Wissensgebiete = MVG-Domänen, PRINCE2-Phasenfreigaben ≈ LPH 0–9 | nicht in V1.2 (kein Widerspruch) | – |
+| Datenmanagement | interne Entwicklervermerke (R465, bm-v841, „Kanon-Träger-Doktrin“) | – | – |

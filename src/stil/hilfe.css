@@ -9,7 +9,8 @@
 .hilfe-unterliste a { grid-template-columns: 1fr; padding: 4px var(--a-2); font-size: var(--gr-s); }
 .hilfe-verzeichnis .kapitel-liste a b .symbol { font-size: 18px; }
 .hilfe-zusatz { font-size: var(--gr-s); font-weight: 400; color: var(--tinte-2); }
-.hilfe-hinweis { font-size: var(--gr-s); line-height: 1.5; color: var(--tinte-2); }
+.hilfe-hinweis { max-width: 78ch; font-size: var(--gr-s); line-height: 1.5; color: var(--tinte-2); }
+.hilfe .kapitel-karte-titel { hyphens: auto; overflow-wrap: break-word; }
 
 /* Die Hilfe ist Nachschlagewerk mit Tabellen und Grafiken: Lesespalte über die ganze Breite des Rahmens */
 .hilfe .lern-inhalt { max-width: none; }
@@ -158,3 +159,7 @@
 .hilfe-grafik-dialog { overflow: auto; }
 .hilfe-grafik-dialog svg { min-width: 1200px; }
 @media print { .hilfe-grafik-knopf { display: none; } }
+
+/* Kartenüberschriften (nach der Angleichung h2–h4): Kartengröße, gleich auf jeder Ebene */
+.hilfe-inhalt :is(.h-role-pick-card, .h-feature-card) > :is(h2, h3, h4) { margin-top: 0; font: 700 var(--gr-l)/1.3 var(--schrift-text); letter-spacing: 0; text-transform: none; color: var(--navy); hyphens: auto; }
+.hilfe-inhalt .h-role-pick-card a { text-decoration-thickness: 1px; }

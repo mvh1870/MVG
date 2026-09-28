@@ -192,6 +192,10 @@ test('Hilfe (P13, O-31): gleiche Aufteilung wie die Companion-Hilfe, leiser Zuga
   // Prüfrunde 5: keine MVG-Aussage über die Namen der Anwendung, Kennungen wörtlich, keine Umschrift im Fließtext
   assert.doesNotMatch(text, /Der MVG-Standard beschreibt den Companion|GCT-LPH 3|Zulaessige|Gedaechtnis|<span>1 - Über das Programm/u);
   assert.match(text, /GCT-LPH3/u);
+  // Prüfrunde 6: gleichrangige Überschriften der Quelle bleiben gleichrangig (alle Rollenkarten auf einer Ebene)
+  const ebenen = [...(rollen?.html.matchAll(/<div class="h-role-pick-card"><(h\d)>/gu) ?? [])].map((m) => m[1]);
+  assert.equal(ebenen.length, 14, "13 Rollen mit Unterseite und die Rolle BM-Mentor");
+  assert.equal(new Set(ebenen).size, 1, ebenen.join(' '));
   assert.equal(baueHilfe({ seite: 'gibt-es-nicht', version: VERSION }).querySelector('[data-pruef="hilfe-uebersicht"]') !== null, true);
 });
 

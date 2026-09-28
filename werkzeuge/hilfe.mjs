@@ -31,6 +31,10 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/– G0 bis G4/gu, '– Stufe 0 bis Stufe 4'],
   [/Standardisierter Einfuehrungs-\/Reset-Rhythmus/gu, 'Orientierungsrahmen für Einführung und Neuinitialisierung'],
   [/MVG-Reifegrad-Modell \(5 Stufen\)/gu, 'Reifegrad-Modell der Anwendung (5 Stufen)'],
+  [/Die MVG-Reife einer Organisation entwickelt sich entlang fünf Stufen/gu, 'Im Modell der Anwendung entwickelt sich die Reife einer Organisation entlang fünf Stufen'],
+  [/Eine bewährte Einführungs-Roadmap für neue MVG-Projekte/gu, 'Die Einführungs-Roadmap der Anwendung für neue Projekte'],
+  [/Decision Management/gu, 'Entscheidungsmanagement'],
+  [/Change Management/gu, 'Änderungsmanagement'],
   [/\s*Druckbar als PDF\./gu, ''],
   [/Mio\. EUR/gu, 'Mio. €'],
   [/(?<![-\w])LPH(\d)/gu, 'LPH $1'],
@@ -290,11 +294,20 @@ function bereinige(wurzel, anker) {
     else el.removeAttribute('style');
   }
   // Überschriften lückenlos ab h2 (die Seite trägt das h1)
-  // in Dokumentreihenfolge: höchstens eine Ebene tiefer als die vorige, die erste auf h2
-  let vorige = 1;
+  // in Dokumentreihenfolge verschieben, nicht deckeln: gleiche Quellebene → gleiche Zielebene,
+  // eine tiefere Quellebene → eine Ebene unter der vorigen (Stapel Quelle → Ziel), die oberste auf h2
+  /** @type {{ quelle: number, ziel: number }[]} */
+  const stapel = [];
   for (const x of [...wurzel.querySelectorAll('h2, h3, h4, h5, h6')]) {
-    const soll = Math.min(Number(x.tagName[1]), vorige + 1, 6);
-    vorige = soll;
+    const ebene = Number(x.tagName[1]);
+    while (stapel.length > 0 && (stapel[stapel.length - 1]?.quelle ?? 0) > ebene) stapel.pop();
+    const oben = stapel[stapel.length - 1];
+    let soll;
+    if (oben !== undefined && oben.quelle === ebene) soll = oben.ziel;
+    else {
+      soll = Math.min(6, (oben?.ziel ?? 1) + 1);
+      stapel.push({ quelle: ebene, ziel: soll });
+    }
     if (soll === Number(x.tagName[1])) continue;
     const neu = dok.createElement(`h${soll}`);
     for (const at of [...x.attributes]) neu.setAttribute(at.name, at.value);

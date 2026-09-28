@@ -46,6 +46,8 @@ export async function lauf(seite, h) {
     const aktuell = await seite.locator('[data-pruef="hilfe-verzeichnis"] a[aria-current="page"]').count();
     if (aktuell !== 1) h.befund(`${s.id}: ${aktuell} aktuelle Einträge im Verzeichnis`);
     await seite.evaluate(() => { for (const d of document.querySelectorAll('.hilfe-inhalt details')) d.setAttribute('open', ''); });
+    // aufgeklappte Tabellen misst der ResizeObserver im nächsten Bild
+    await h.warte(150);
     for (const fund of await seite.evaluate(pruefeLayout)) h.befund(`${s.id}: ${fund}`);
     const wort = await seite.evaluate(() => /white\s*-?\s*paper/iu.test(document.body.innerText));
     if (wort) h.befund(`${s.id}: „Whitepaper“ im Text (O-29)`);

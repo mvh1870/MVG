@@ -115,7 +115,7 @@ function auszug(text: string, i: number, laenge: number): HTMLElement {
 
 /** Lesetext einer Seite: an Blockgrenzen ein Leerzeichen, damit Wörter nicht zusammenkleben */
 function lesetext(html: string): string {
-  return textAus(html.replace(/<\/(?:p|li|td|th|h\d|div|summary|dt|dd|tr)>|<br\s*\/?>/gu, '$& '));
+  return textAus(html.replace(/<\/(?:p|li|td|th|h\d|div|summary|dt|dd|tr|span)>|<br\s*\/?>/gu, '$& ').replace(/\s+([.,;:!?)])/gu, '$1'));
 }
 
 /** Scrollbare Tabellen und Grafiken per Tastatur erreichbar – nur wenn sie wirklich überlaufen */

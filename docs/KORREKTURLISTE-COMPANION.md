@@ -17,3 +17,9 @@ Gefunden bei der Übernahme der Hilfe (P13, O-31, L-69). Die Hilfe in MVG intera
 | Handbuch · Termintypen | Änderungsgremium anlassbezogen | monatlich zuzüglich Sondersitzungen | k6.4.2 |
 | Handbuch · Termintypen; Glossar | Risikobesprechung quartalsweise | wöchentliche Sichtung, monatliche formale Prüfung | k6.4.5 |
 | Leistungsphasen-Liste | Abnahme in LPH 9 | Abnahme in LPH 8 | k9.3-t1 |
+| Hilfe-Hub · sieben Funktionslogiken | Entscheidung Navigator, Gate Guide, Responsibility Mapper, Data & Evidence Prompt, Betriebshandbuch Navigator, MVG-Übergabe Assistant | Entscheidungsassistent, Leitfaden für Freigaben, Verantwortungszuordnung, Daten- und Nachweisabfrage, Betriebshandbuch-Assistent, MVG-Übergabeassistent | k6.1-t1 |
+| Reifegradanalyse | 11 Domänen, 70 Fragen | 10 Domänen, 49 Fragen | k7.1 |
+| Standards · Status-Werte | Risiken offen/in Bearbeitung/Beobachtung/geschlossen; Änderungen „genehmigt“; Freigabe-Ergebnis als Status; Maßnahmen mit Status | Risiken aktiv/beobachtet/gemindert/geschlossen; Änderungen „beschlossen“; Freigabe-Status offen → in Vorbereitung → abgeschlossen, Ergebnis getrennt | Kap. 6.4 |
+| Registerdokument-Katalog | „G3 (Ausführungsplanung)“ – in sich widersprüchlich (G3 wäre LPH 3) | in der Hilfe als LPH 5 (Ausführungsplanung) wiedergegeben | Kap. 9.3 |
+| Hilfe-Hub · Einführung in MVG | „Werkzeugkasten“, „Betriebssystem“, „Was MVG nicht ist“ (Vergabeverfahren, Buchhaltung, Cloud) | nicht in V1.2 (kein Widerspruch) | – |
+| verstreut | Change, EW, Baseline, Issue, P×I | Änderung, Frühwarnung, Projektbasis, Problem, P×A | docs/BEGRIFFE.md |

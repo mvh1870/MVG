@@ -189,6 +189,9 @@ test('Hilfe (P13, O-31): gleiche Aufteilung wie die Companion-Hilfe, leiser Zuga
   // Prüfrunde 4: Termintypen im Fünf-Stufen-Modell, doppelte Maskierung, Kontrast der Grafikfarben
   assert.match(text, /Freigabebesprechung<\/b> – Stufe 0 bis Stufe 4/u);
   assert.doesNotMatch(text, /&amp;amp;|finales Managementbericht|fill:var\(--gold\)/u);
+  // Prüfrunde 5: keine MVG-Aussage über die Namen der Anwendung, Kennungen wörtlich, keine Umschrift im Fließtext
+  assert.doesNotMatch(text, /Der MVG-Standard beschreibt den Companion|GCT-LPH 3|Zulaessige|Gedaechtnis|<span>1 - Über das Programm/u);
+  assert.match(text, /GCT-LPH3/u);
   assert.equal(baueHilfe({ seite: 'gibt-es-nicht', version: VERSION }).querySelector('[data-pruef="hilfe-uebersicht"]') !== null, true);
 });
 

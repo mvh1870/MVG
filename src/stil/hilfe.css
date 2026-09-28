@@ -50,7 +50,7 @@
 .hilfe-inhalt li::marker { color: var(--petrol); }
 .hilfe-inhalt b, .hilfe-inhalt strong { font-weight: 600; }
 .hilfe-inhalt a { color: var(--navy); text-decoration: underline; text-underline-offset: 3px; }
-.hilfe-inhalt code { padding: 1px 5px; border-radius: var(--radius-xs); background: var(--flaeche-2); font: .88em/1.4 var(--schrift-mono); color: var(--tinte); overflow-wrap: anywhere; }
+.hilfe-inhalt code { padding: 1px 5px; border-radius: var(--radius-xs); background: var(--flaeche-2); font: max(12px, .88em)/1.4 var(--schrift-mono); text-transform: none; letter-spacing: 0; color: var(--tinte); overflow-wrap: anywhere; }
 .hilfe-inhalt blockquote { padding: var(--a-2) var(--a-4); border-left: 3px solid var(--gold-hell); color: var(--tinte-2); }
 .hilfe-inhalt svg { max-width: 100%; height: auto; }
 .hilfe-inhalt svg text { font-family: var(--schrift-label); }

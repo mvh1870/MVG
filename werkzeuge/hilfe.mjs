@@ -33,7 +33,11 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/MVG-Reifegrad-Modell \(5 Stufen\)/gu, 'Reifegrad-Modell der Anwendung (5 Stufen)'],
   [/\s*Druckbar als PDF\./gu, ''],
   [/Mio\. EUR/gu, 'Mio. €'],
-  [/\bLPH(\d)/gu, 'LPH $1'],
+  [/(?<![-\w])LPH(\d)/gu, 'LPH $1'],
+  [/\s*„?Drucken\/PDF“?( dieser Seite)? klappt alle Kapitel automatisch auf\.?/gu, ''],
+  [/Durchsuchbar über die Hilfe-Volltextsuche im Hilfe-Hub/gu, 'Durchsuchbar über die Suche auf der Übersicht der Hilfe'],
+  [/\bZulaessige/gu, 'Zulässige'], [/\bOeffentlich/gu, 'Öffentlich'], [/\bAusfuehrbares/gu, 'Ausführbares'],
+  [/\bGedaechtnis/gu, 'Gedächtnis'], [/\bverfaellt/gu, 'verfällt'], [/\bgehoert/gu, 'gehört'], [/\blaedt\b/gu, 'lädt'], [/\bTraeger/gu, 'Träger'],
   [/G0–G9 entlang der Leistungsphasen \(LPH 0–9\)/gu, 'Freigaben entlang der Leistungsphasen LPH 0–9'],
   [/Leistungsphase 0 \(Bedarfsplanung\) nach HOAI/gu, 'Leistungsphase 0 (Bedarfsplanung), den HOAI-Leistungsphasen vorgelagert'],
   [/Ausfuehrungsplanung/gu, 'Ausführungsplanung'],
@@ -101,7 +105,9 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/Change-Impact-Analyse/gu, 'Auswirkungsanalyse der Änderung'],
   [/Impact-5er-Set/gu, 'Auswirkungs-5er-Set'],
   [/Whitepaper-Inhalte/gu, 'MVG-Inhalte'],
-  [/Das Whitepaper beschreibt/gu, 'Der MVG-Standard beschreibt'],
+  // als Aussage der Anwendung, nicht als MVG-Aussage (die Namen weichen von MVG Kap. 6.1 ab, Korrekturliste)
+  [/Das Whitepaper beschreibt den Companion über sieben Funktionslogiken\./gu, 'Die Anwendung bildet die sieben Funktionslogiken aus MVG (Kap. 6.1) mit eigenen Namen ab.'],
+  [/Das Whitepaper beschreibt/gu, 'MVG beschreibt'],
   [/Das Whitepaper/gu, 'MVG'],
   [/das Whitepaper/gu, 'MVG'],
   [/Whitepaper/gu, 'MVG-Originaltext'],
@@ -295,6 +301,12 @@ function bereinige(wurzel, anker) {
     while (x.firstChild) neu.appendChild(x.firstChild);
     x.replaceWith(neu);
   }
+  // Inhaltsverzeichnis: die Liste zählt selbst, die Nummer im Text („1 - …“) fällt weg
+  for (const sp of [...wurzel.querySelectorAll('nav ol > li > span')]) {
+    if (sp.firstChild !== null && sp.firstChild.nodeType === 3) sp.firstChild.textContent = (sp.firstChild.textContent ?? '').replace(/^\s*\d+\s*-\s*/u, '');
+  }
+  // Hinweise auf den Druckknopf der Anwendung (hier gibt es ihn nicht)
+  for (const li of [...wurzel.querySelectorAll('li')]) if (/Drucken\/PDF.*klappt alle Kapitel/u.test(li.textContent ?? '')) li.remove();
   // Text: Begriffe nach O-14/O-15/O-29
   const gang = dok.createTreeWalker(wurzel, 4);
   for (let n = gang.nextNode(); n !== null; n = gang.nextNode()) {

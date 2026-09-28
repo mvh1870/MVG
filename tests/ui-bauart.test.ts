@@ -129,6 +129,7 @@ const { baueTheorie, kapitelListe } = theorieModul;
 const { erzeugeAnzeige } = await import('../src/regie/leinwand.ts');
 const { erzeugeRegie } = await import('../src/regie/regie.ts');
 const { W } = await import('../src/ui/woerter.ts');
+const { leseRoute } = await import('../src/ui/route.ts');
 type KanalNachricht = import('../src/regie/kanal.ts').KanalNachricht;
 
 const VERSION = 'Whitepaper V1.2 · Story 0.1';
@@ -550,7 +551,10 @@ test('Regie (P9.5): Start sendet den Beamer-Stand, Sprung erst mit Rolle, Einwä
     q('[data-pruef="regie-drucken"]').click();
     (dom.window as unknown as { print: unknown }).print = druckfn;
     const druck = q('[data-pruef="regie-druck"]');
-    assert.equal(druck.querySelectorAll('ol li').length, 8);
+    assert.equal(druck.querySelectorAll(':scope > ol > li').length, 8);
+    // Dossier (E11): Kapitel zum Nachlesen als Text (höchstens zwei Lernseiten)
+    const kapitelImDruck = druck.querySelectorAll('.druck-kapitel').length;
+    assert.ok(kapitelImDruck >= 1 && kapitelImDruck <= 2, `Kapitel im Regie-Druck: ${kapitelImDruck}`);
     assert.match(druck.textContent ?? '', new RegExp(`${W.fiktiv}.*${W.ungeprueft}`, 'u'));
     assert.match(druck.textContent ?? '', /A3/u);
     assert.equal(document.body.classList.contains('druck-protokoll'), false);
@@ -740,6 +744,7 @@ test('Zitierfunktion und Impressum (P10.1): Absatz-Permalink, Zitierangabe, nich
   assert.equal(zitierAngabe('k1-p2', 'V1.2'), 'Bauherr Mentoren, Whitepaper V1.2, Kap. 1, Abs. 2');
   assert.equal(zitierAngabe('k6.4.2-t1', 'V1.2'), 'Bauherr Mentoren, Whitepaper V1.2, Kap. 6.4.2, Tabelle 1');
   assert.equal(zitierAngabe('k5.3-l1', 'V1.2'), 'Bauherr Mentoren, Whitepaper V1.2, Kap. 5.3, Aufzählung 1');
+  assert.equal(zitierAngabe('k6.3-b1', 'V1.2'), 'Bauherr Mentoren, Whitepaper V1.2, Kap. 6.3, Kasten 1');
   assert.equal(zitierAngabe('kaputt', 'V1.2'), null);
   const seite = baueTheorie({ inhalte, kapitel: 4, version: VERSION, bedienbar: true });
   document.body.replaceChildren(seite);
@@ -940,6 +945,43 @@ test('Druck (P10.2): Kapitel und alle Kapitel als Bogen – ohne Kopfleiste, Ver
   assert.equal(alle.length, 1, 'ein neuer Bogen ersetzt den alten');
   assert.deepEqual([...alle[0]?.querySelectorAll('.druck-kapitel') ?? []].map((x) => Number(x.getAttribute('data-kapitel'))), Array.from({ length: 13 }, (_, i) => i + 1));
   assert.equal(baueTheorie({ inhalte, kapitel: 6, version: VERSION, bedienbar: false }).querySelector('[data-pruef="kapitel-drucken"]'), null, 'Leinwand: kein Druckknopf');
+  // Mit Druckdialog: Klasse und Titel während des Drucks, danach (afterprint) alles zurück; keine doppelten IDs
+  const kap13 = baueTheorie({ inhalte, kapitel: 13, version: VERSION, bedienbar: true });
+  document.body.replaceChildren(kap13);
+  document.title = 'Vorher';
+  const vorher = dom.window.print;
+  (dom.window as unknown as { print: () => void }).print = () => undefined;
+  try {
+    kap13.querySelector<HTMLButtonElement>('[data-pruef="kapitel-drucken"]')?.click();
+    assert.ok(document.body.classList.contains('druckt-bogen'));
+    assert.match(document.title, /^Kapitel 13 · /u);
+    const ids = [...document.querySelectorAll('[id]')].map((x) => x.id);
+    assert.deepEqual(ids.filter((x, i) => ids.indexOf(x) !== i), [], 'doppelte IDs neben dem Bogen');
+    const region = document.querySelector('.druck-bogen [data-pruef="kompass"] [role="region"]');
+    assert.ok(region && document.getElementById(region.getAttribute('aria-labelledby') ?? '')?.closest('.druck-bogen'), 'Bezug zeigt in den Bogen');
+    dom.window.dispatchEvent(new dom.window.Event('afterprint'));
+    assert.equal(document.body.classList.contains('druckt-bogen'), false);
+    assert.equal(document.title, 'Vorher');
+    assert.equal(document.querySelector('.druck-bogen'), null);
+  } finally {
+    (dom.window as unknown as { print: unknown }).print = vorher;
+  }
+});
+
+test('Permalink-Rundlauf (P10.1): jeder Absatz aller Lernseiten – Link führt zurück auf ihn, Zitierangabe vorhanden', () => {
+  let zahl = 0;
+  for (const k of kapitelListe(inhalte).filter((x) => x.seite)) {
+    const seite = baueTheorie({ inhalte, kapitel: k.nr, version: VERSION, bedienbar: true });
+    for (const absatz of seite.querySelectorAll<HTMLElement>('.originaltext .absatz[data-absatz]')) {
+      const id = absatz.getAttribute('data-absatz') ?? '';
+      if (id === '') continue;
+      const href = absatz.querySelector('a.absatz-id')?.getAttribute('href') ?? '';
+      assert.deepEqual(leseRoute(href), { flaeche: 'theorie', kapitel: k.nr, abschnitt: id }, href);
+      assert.ok(theorieModul.zitierAngabe(id, 'V1.2'), id);
+      zahl++;
+    }
+  }
+  assert.ok(zahl > 100, `nur ${zahl} Absätze`);
 });
 
 test('Story-Karte auf der Leinwand (L-49): kein Express-Umschalter, kein Explore-Weg', () => {

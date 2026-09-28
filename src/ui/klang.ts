@@ -23,6 +23,8 @@ const SCHLUESSEL = 'mvg.klang';
 
 interface TonGeber {
   currentTime: number;
+  state?: string;
+  resume?: () => Promise<void>;
   destination: AudioNode;
   createOscillator(): OscillatorNode;
   createGain(): GainNode;
@@ -54,6 +56,8 @@ export function erzeugeKlang(
       if (!an || fabrik === null) return;
       try {
         geber ??= fabrik();
+        // Autoplay-Sperre: ohne Nutzergeste entstanden, bleibt der Kontext angehalten – beim nächsten Ton wecken
+        if (geber.state === 'suspended') void geber.resume?.().catch(() => undefined);
         const t0 = geber.currentTime;
         TOENE[art].forEach((f, i) => {
           const g = geber?.createGain();

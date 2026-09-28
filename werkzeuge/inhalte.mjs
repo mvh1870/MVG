@@ -1615,7 +1615,9 @@ function baueKompass(c, rel, text) {
     const ids = c.expandiere(beleg, ort);
     if (ids.length > 1) c.fehler(ort, `Kompass ${bl.id}: genau eine Absatz-ID als Beleg`);
     const block = c.quelle?.nachId.get(ids[0] ?? '');
-    if (block !== undefined && !c.quelle.normalisiere(block.text).toLowerCase().includes(c.quelle.normalisiere(begriff).toLowerCase())) {
+    // als eigenes Wort (Wortanfang und -ende, Plural-/Fugen-s und -n zugelassen), nicht nur als Teilstring
+    const wort = new RegExp(`(?<![\\p{L}\\p{N}])${c.quelle?.normalisiere(begriff).replace(/[.*+?^${}()|[\]\\]/gu, '\\$&') ?? ''}(?:e?n|e?s)?(?![\\p{L}\\p{N}])`, 'iu');
+    if (block !== undefined && c.quelle !== null && !wort.test(c.quelle.normalisiere(block.text))) {
       c.fehler(ort, `Kompass ${bl.id}: „${begriff}“ steht nicht in ${beleg}`);
     }
     const andere = /** @type {string[]} */ (bl.kopf.andere ?? []);
@@ -1828,7 +1830,7 @@ export async function kompiliere(optionen = {}) {
   // Begriffen fiele sonst niemandem auf.
   if (pruefe) {
     // Der Begriffs-Kompass nennt die anderen Wörter absichtlich (Ausnahme in werkzeuge/begriffe.json)
-    const ohneKompass = stabilesJson({ ...inhalte, kompass: inhalte.kompass.map((/** @type {any} */ e) => ({ ...e, andere: [], hinweis: null })) });
+    const ohneKompass = stabilesJson({ ...inhalte, kompass: inhalte.kompass.map((/** @type {any} */ e) => ({ ...e, andere: [] })) });
     for (const fund of pruefeText(ohneKompass, STANDARD_ZIEL.replace(/\\/gu, '/'))) b.fehler('begriffe', formatiereFund(fund));
   }
 

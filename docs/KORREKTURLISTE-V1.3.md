@@ -159,7 +159,7 @@ Aufbau: ruhiger Kreis in der Mitte, Titel „Sechs Verantwortungsfelder“, dari
 „Ziel“: „Zielsystem“, „Muss-/Kann-Kriterien“, „Abwägungsregeln“, „Freigabelogik für LPH 0–2“.
 „Mandat“: „Mandatsmodell“, „Schwellen“, „Stellvertretungen“, „Eskalationswege“.
 „Wesentliche Entscheidung“: „Entscheidungs-IDs“, „Entscheidungsreife“, „verantwortliche Rolle“, „Entscheidungsfrage“.
-„Risikoannahme“: „Risiko-/Änderungs-/Maßnahmenverknüpfung“, „Restrisiko“, „Risikominderung“, „Schwellenlogik“.
+„Risikoannahme“: „Risiko-/Änderungs-/Maßnahmenverknüpfung“, „Restrisiko“, „Risikoreserve“, „Schwellenlogik“.
 „Freigabe“: „Leistungsphasen- und Freigabemodell LPH 0–9“, „Mindestgrundlagen“, „Datenstandsreferenz“, „Freigabeschwellen“.
 „Datenstand und Nachweis“: „Version“, „Beschlusslage“, „Nachweiskette“, „Betriebshandbuch“.
 Am äußeren Rand, schräg und deutlich kleiner, vier Haftnotizen, die zu den Karten hin ausgerichtet sind:
@@ -307,12 +307,13 @@ keine englischen Begriffe, keine Tore. Format 16:9 (1920 × 1080).
 
 ```text
 Bild-Prompt V1.3 – abb-11 „Leistungsarchitektur von Bauherr Mentoren“
-Aufbau: obere Spur mit fünf Stationen von links nach rechts, durch Pfeile verbunden, je Station Titel und drei Zeilen:
+Aufbau: obere Spur mit vier Stationen von links nach rechts, durch Pfeile verbunden, je Station Titel und drei Zeilen:
 „MVG-Reifegradanalyse“: „Bewertungsmatrix“, „Entscheidungsliste“, „30/60/90-Tage-Plan“.
 „MVG-Konzeption“: „Zielsystem“, „Leistungsphasen- und Freigabemodell“, „System der Entscheidungs-IDs“.
 „Pilotierung und Kalibrierung“: „echter Entscheidungsfall“, „kalibrierte Schwellen“, „Bericht zur Pilotierung“.
 „Befähigung und Übergabe“: „Schulungen“, „Rollenkarten“, „Betriebshandbuch“.
-„Regelbetrieb“: „Übernahme der Betriebsverantwortung“.
+Rechts davon, abgesetzt und nicht als Station von Bauherr Mentoren gezeichnet, der Zielpunkt
+„Regelbetrieb (Bauherr)“: „Übernahme der Betriebsverantwortung“ (k7.4-t1).
 Untere Spur, deutlich abgesetzt und mit eigenem Einstieg links „laufendes Projekt mit eingeschränkter Steuerbarkeit“,
 Titel „MVG-Neuinitialisierung – Sonderformat“: drei Stationen „Governance-Lagebild“ → „Neuordnung offener Entscheidungen“
 → „stabilisierter Regelbetrieb“, gestrichelter Pfeil nach oben in „Regelbetrieb“.

@@ -24,7 +24,7 @@ export const START: Route = { flaeche: 'start' };
 export const IMPRESSUM = 'impressum';
 
 /** Ist die Abschnitt-Angabe einer Theorie-Route eine Absatz-ID (k4.2-p3)? */
-export const istAbsatzId = (a: string): boolean => /^k\d{1,2}(?:\.\d{1,2}){0,3}-[plt]\d{1,3}$/u.test(a);
+export const istAbsatzId = (a: string): boolean => /^k\d{1,2}(?:\.\d{1,2}){0,3}-[pltb]\d{1,3}$/u.test(a);
 
 const STATION = /^[a-z0-9][a-z0-9-]*$/u;
 
@@ -56,7 +56,7 @@ export function leseRoute(hash: string): Route {
       if (!(Number.isInteger(nr) && nr >= 1 && nr <= 13)) return START;
       if (drittes === undefined) return { flaeche: 'theorie', kapitel: nr, abschnitt: null };
       // Absatz „k4.2-p3“ (Permalink der Zitierfunktion) muss zum Kapitel gehören
-      if (new RegExp(`^k${nr}(?:\\.\\d{1,2}){0,3}-[plt]\\d{1,3}$`, 'u').test(drittes)) return { flaeche: 'theorie', kapitel: nr, abschnitt: drittes };
+      if (new RegExp(`^k${nr}(?:\\.\\d{1,2}){0,3}-[pltb]\\d{1,3}$`, 'u').test(drittes)) return { flaeche: 'theorie', kapitel: nr, abschnitt: drittes };
       // Abschnitt „2.4“ (auch „k2.4“) muss zum Kapitel gehören
       const a = drittes.replace(/^k/u, '');
       return new RegExp(`^${nr}(?:\\.\\d{1,2}){1,3}$`, 'u').test(a) ? { flaeche: 'theorie', kapitel: nr, abschnitt: a } : START;

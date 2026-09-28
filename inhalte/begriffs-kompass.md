@@ -9,7 +9,7 @@
 ::: kompass freigabe
 ---
 begriff: Freigabe
-andere: [Gate, Stage-Gate, Meilensteinfreigabe, Go/No-Go]
+andere: [Gate, Stage-Gate, Go/No-Go]
 beleg: k4.5-p1
 ---
 :::
@@ -28,6 +28,8 @@ begriff: Lenkungskreis
 andere: [Steering Committee, Lenkungsausschuss, Steuerungskreis]
 beleg: k4.2-p3
 ---
+### Hinweis
+Im Muster-Mandatsleiter erfolgt die Beschlussfassung durch den Bauherrn im Lenkungskreis (k4.2-p3).
 :::
 
 ::: kompass entscheidungsvorlage
@@ -41,15 +43,23 @@ beleg: k9.4-p1
 ::: kompass entscheidungs-id
 ---
 begriff: Entscheidungs-ID
-andere: [Decision Log, Entscheidungsnummer]
+andere: [Entscheidungsnummer, Entscheidungskennung]
 beleg: k4.3-p2
+---
+:::
+
+::: kompass entscheidungsregister
+---
+begriff: Entscheidungsregister
+andere: [Decision Log, Entscheidungsliste]
+beleg: k6.4.1-p3
 ---
 :::
 
 ::: kompass entscheidungsreife
 ---
 begriff: Entscheidungsreife
-andere: [Readiness, Entscheidungsfähigkeit]
+andere: [Readiness]
 beleg: k1-p3
 ---
 :::
@@ -57,7 +67,7 @@ beleg: k1-p3
 ::: kompass betriebshandbuch
 ---
 begriff: Betriebshandbuch
-andere: [Operating Model, Governance-Handbuch, Projekthandbuch]
+andere: [Operating Model, Governance-Handbuch]
 beleg: k5.2-t1
 ---
 :::
@@ -73,15 +83,17 @@ beleg: k4.6-p1
 ::: kompass datenstand
 ---
 begriff: Datenstand
-andere: [Planstand, Revisionsstand, Version]
+andere: [Stand der Unterlagen, Arbeitsstand]
 beleg: k4.6-p1
 ---
+### Hinweis
+Dazu gehört, welche Zahlen, Planstände, Annahmen, Risiken oder Protokolle einer Entscheidung zugrunde lagen (k4.6-p1).
 :::
 
 ::: kompass projektumfang
 ---
 begriff: Projektumfang
-andere: [Scope, Leistungsumfang]
+andere: [Scope]
 beleg: k4.3-p1
 ---
 :::
@@ -121,7 +133,7 @@ beleg: k6.4.3-p1
 ::: kompass restkostenprognose
 ---
 begriff: Restkostenprognose
-andere: [Cost to Complete, Kostenprognose]
+andere: [Cost to Complete, CTC]
 beleg: k2.1-p2
 ---
 :::
@@ -129,23 +141,25 @@ beleg: k2.1-p2
 ::: kompass neuinitialisierung
 ---
 begriff: MVG-Neuinitialisierung
-andere: [Reset, Governance-Reset, Projekt-Neuaufsatz]
+andere: [Reset, Governance-Reset]
 beleg: k7.5-p1
 ---
+### Hinweis
+Kein vollständiger Projektneustart, sondern eine gezielte Neuordnung der Steuerungs- und Entscheidungslogik (k7.5-p1).
 :::
 
 ::: kompass mandat
 ---
 begriff: Mandat
-andere: [Befugnis, Vollmacht, Kompetenzregelung]
-beleg: k4.2-p1
+andere: [Befugnis, Kompetenzregelung]
+beleg: k1.1-p1
 ---
 :::
 
 ::: kompass bauherren-pl
 ---
 begriff: Bauherren-Projektleitung
-andere: [Projektleitung Auftraggeber, AG-Projektleitung, Client Project Manager]
+andere: [Client Project Manager, Projektleitung auf Bauherrenseite]
 beleg: k5.3-l1
 ---
 :::
@@ -153,7 +167,7 @@ beleg: k5.3-l1
 ::: kompass leistungsphase
 ---
 begriff: Leistungsphase
-andere: [HOAI-Phase, Projektphase]
-beleg: k5.4-p1
+andere: [Projektphase]
+beleg: k9.3-p1
 ---
 :::

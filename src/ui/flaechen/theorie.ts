@@ -140,12 +140,25 @@ function impressum(o: TheorieOptionen): HTMLElement {
     h('dl', { class: 'impressum-liste' },
       zeile(T.impressumAbsender, W.absender),
       zeile(T.impressumFassung, h('span', { 'data-pruef': 'impressum-version' }, o.version)),
-      zeile(T.impressumQuelle, T.impressumQuelleText(fassung)),
+      zeile(T.impressumQuelle, T.impressumQuelleText(o.inhalte.whitepaper.titel ?? 'Minimum Viable Governance', fassung)),
       zeile(T.impressumFall, T.impressumFallText),
       zeile(T.impressumStatus, h('span', { class: 'vermerk-hell' }, sym('info'), W.ungeprueft), ' ', T.impressumStatusText),
       zeile(T.impressumFussnoten, T.impressumFussnotenText),
       zeile(T.impressumGrenzen, h('span', { class: 'impressum-grenzen' }, grenzen.map((a) =>
         verweis(o, `#theorie/k${a.kapitel}/${a.nr}`, { class: 'glossar-ort', 'data-pruef': `impressum-grenze-${a.nr}` }, `${a.nr} ${a.titel}`))))),
+    // Quellenverzeichnis der Story (P10.1): je Station die Absätze des Whitepapers, auf die sie sich stützt
+    h('details', { class: 'impressum-quellen', 'data-pruef': 'quellenverzeichnis' },
+      h('summary', { class: 't-label' }, T.quellenverzeichnis),
+      h('p', { class: 'impressum-quellen-text' }, T.quellenverzeichnisText),
+      h('ul', null, o.inhalte.stationsFolge.map((id) => {
+        const ids = o.inhalte.stationen[id]?.whitepaper ?? [];
+        if (ids.length === 0) return null;
+        return h('li', null, h('b', null, stationsName(o.inhalte, id)), ' ',
+          ids.map((a) => {
+            const kap = /^k(\d{1,2})/u.exec(a)?.[1] ?? '';
+            return verweis(o, `#theorie/k${kap}/${a}`, { class: 'absatz-id' }, a);
+          }));
+      }))),
     h('h3', { class: 't-label' }, T.impressumAenderungen),
     h('ol', { class: 'impressum-aenderungen', reversed: true }, AENDERUNGEN.map((a) => h('li', null,
       h('b', null, `${W.story} ${a.fassung}`), h('span', { class: 'mono' }, ` · ${a.datum} · `), a.text))));
@@ -220,7 +233,7 @@ function bloeckeIn(bloecke: readonly Block[], inhalte: OeffentlicheInhalte, stuf
 
 /** Zitierangabe „Bauherr Mentoren, Whitepaper V1.2, Kap. 4.2, Abs. 3“ aus der Absatz-ID (P10.1). */
 export function zitierAngabe(id: string, fassung: string): string | null {
-  const m = /^k(\d{1,2}(?:\.\d{1,2}){0,3})-([plt])(\d{1,3})$/u.exec(id);
+  const m = /^k(\d{1,2}(?:\.\d{1,2}){0,3})-([pltb])(\d{1,3})$/u.exec(id);
   return m === null ? null : W.theorie.zitierAngabe(W.absender, fassung, W.theorie.stelle(m[1] ?? '', m[2] ?? '', m[3] ?? ''));
 }
 
@@ -237,22 +250,27 @@ function zitierKnopf(id: string, kapitel: number, fassung: string, absatz: () =>
     if (offen !== null) {
       offen.remove();
       knopf.setAttribute('aria-expanded', 'false');
+      knopf.removeAttribute('aria-controls');
       return;
     }
     const basis = typeof location === 'object' ? `${location.href.split('#')[0] ?? ''}` : '';
     const link = `${basis}#theorie/k${kapitel}/${id}`;
     const text = h('span', { class: 'zitierangabe-text', 'data-pruef': 'zitierangabe' }, `${angabe}. ${W.theorie.zitatLink}: ${link}`);
     const status = h('span', { class: 'zitierangabe-status', role: 'status' });
-    el.append(h('p', { class: 'zitierangabe' }, text, status));
+    const angabeId = `zitat-${id}`;
+    el.append(h('p', { class: 'zitierangabe', id: angabeId }, text, status));
     knopf.setAttribute('aria-expanded', 'true');
+    knopf.setAttribute('aria-controls', angabeId);
+    // Statustext erst im nächsten Takt: eine eben eingefügte Live-Region liest sonst niemand vor
+    const melde = (t: string): void => { setTimeout(() => { status.textContent = t; }, 50); };
     const markiere = (): void => {
       const sel = typeof getSelection === 'function' ? getSelection() : null;
       if (sel !== null) sel.selectAllChildren(text);
-      status.textContent = W.theorie.zitatMarkieren;
+      melde(W.theorie.zitatMarkieren);
     };
     const ablage = typeof navigator === 'object' ? navigator.clipboard : undefined;
     if (ablage === undefined) markiere();
-    else ablage.writeText(text.textContent ?? '').then(() => { status.textContent = W.theorie.zitatKopiert; }, markiere);
+    else ablage.writeText(text.textContent ?? '').then(() => melde(W.theorie.zitatKopiert), markiere);
   });
   return knopf;
 }
@@ -339,12 +357,17 @@ function glossarListe(o: TheorieOptionen): HTMLElement {
         ? h('button', { type: 'button', class: 'kompass-begriff', 'data-glossar-ziel': k.glossar, onclick: () => {
           const ziel = document.getElementById(k.glossar ?? '');
           if (ziel === null) return;
-          ziel.hidden = false;
+          // Suche zurücksetzen, damit Zähler und Liste zum gezeigten Eintrag passen
+          if (feld.value !== '') {
+            feld.value = '';
+            feld.dispatchEvent(new Event('input'));
+          }
           ziel.tabIndex = -1;
           if (typeof ziel.scrollIntoView === 'function') ziel.scrollIntoView({ block: 'center' });
           ziel.focus({ preventScroll: true });
         } }, k.begriff)
-        : h('b', null, k.begriff)),
+        : h('b', null, k.begriff),
+        k.hinweis !== null ? h('div', { class: 'kompass-hinweis' }, inhalt(k.hinweis)) : null),
       h('td', null, verweis(o, `#theorie/k${kap}/${k.beleg}`, { class: 'absatz-id' }, k.beleg)));
   });
   const kompass = kompassZeilen.length === 0 ? null : h('section', { class: 'kompass', 'data-pruef': 'kompass', 'aria-labelledby': 'kompass-titel' },

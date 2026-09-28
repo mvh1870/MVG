@@ -54,7 +54,15 @@ export async function lauf(seite, h) {
   await h.warte(200);
   const lage = await absatz.boundingBox();
   const hoehe = seite.viewportSize()?.height ?? 800;
-  if (lage === null || lage.y < -1 || lage.y > hoehe) h.befund(`Absatz-Permalink: k4.2-p3 nicht im Bild (${JSON.stringify(lage)})`);
+  const kopfUnten = await seite.evaluate(() => document.querySelector('.lern-kopf')?.getBoundingClientRect().bottom ?? 0);
+  if (lage === null || lage.y < kopfUnten - 1 || lage.y > hoehe) h.befund(`Absatz-Permalink: k4.2-p3 nicht frei sichtbar (${JSON.stringify(lage)}, Kopfleiste bis ${kopfUnten})`);
+  // frisch geladen (geteilter Link): ebenfalls unter der Kopfleiste
+  await seite.reload();
+  await absatz.waitFor({ timeout: 3000 });
+  await h.warte(400);
+  const frisch = await absatz.boundingBox();
+  const kopf2 = await seite.evaluate(() => document.querySelector('.lern-kopf')?.getBoundingClientRect().bottom ?? 0);
+  if (frisch === null || frisch.y < kopf2 - 1 || frisch.y > hoehe) h.befund(`Absatz-Permalink nach Neuladen: ${JSON.stringify(frisch)}, Kopfleiste bis ${kopf2}`);
   if (await absatz.evaluate((el) => el.classList.contains('ist-ziel')) !== true) h.befund('Absatz-Permalink: Ziel nicht hervorgehoben');
   await absatz.locator('[data-pruef="zitieren"]').click();
   const angabe = await absatz.locator('[data-pruef="zitierangabe"]').textContent();
@@ -62,6 +70,9 @@ export async function lauf(seite, h) {
   await h.axe('zitieren');
   await h.bild('zitieren');
   // Druck (P10.2): im Druck ist nur der Bogen sichtbar, die Seite selbst nicht; eine PDF entsteht
+  // Kapitel 8: breite Karten-Tafel (k8.4-t1) – im Druck darf nichts über den Satzspiegel ragen
+  await seite.evaluate(() => { location.hash = '#theorie/k8'; });
+  await h.erwarte('[data-kapitel="8"] [data-pruef="lernseite"]');
   await seite.evaluate(() => { window.print = () => {}; });
   await seite.locator('[data-pruef="kapitel-drucken"]').click();
   await seite.emulateMedia({ media: 'print', reducedMotion: 'reduce' });
@@ -71,10 +82,21 @@ export async function lauf(seite, h) {
     titel: document.querySelector('.druck-bogen .druck-kopf h1')?.textContent ?? '',
     zitieren: [...document.querySelectorAll('.druck-bogen .absatz-zitieren')].filter((x) => getComputedStyle(x).display !== 'none').length,
   }));
-  if (druck.bogen === 'none' || druck.seite !== 'none' || !/^Kapitel 4 · /u.test(druck.titel) || druck.zitieren > 0) h.befund(`Druckbogen: ${JSON.stringify(druck)}`);
+  if (druck.bogen === 'none' || druck.seite !== 'none' || !/^Kapitel 8 · /u.test(druck.titel) || druck.zitieren > 0) h.befund(`Druckbogen: ${JSON.stringify(druck)}`);
+  // nichts im Bogen ragt über den Satzspiegel hinaus (A4 mit 14 mm Rand ≈ 688 px breit)
+  const vorher = seite.viewportSize() ?? { width: 1280, height: 720 };
+  await seite.setViewportSize({ width: 688, height: vorher.height });
+  await h.warte(150);
+  const ueber = await seite.evaluate(() => {
+    const bogen = document.querySelector('.druck-bogen');
+    const rechts = bogen?.getBoundingClientRect().right ?? 0;
+    return [...(bogen?.querySelectorAll('*') ?? [])].filter((el) => el.getBoundingClientRect().right > rechts + 2).length;
+  });
+  if (ueber > 0) h.befund(`Druckbogen: ${ueber} Elemente ragen über den Satzspiegel`);
+  await seite.setViewportSize(vorher);
   const pdf = await seite.pdf({ format: 'A4' });
   const seiten = (pdf.toString('latin1').match(/\/Type\s*\/Page[^s]/gu) ?? []).length;
-  if (seiten < 2 || seiten > 40) h.befund(`Druck Kapitel 4: ${seiten} Seiten`);
+  if (seiten < 2 || seiten > 40) h.befund(`Druck Kapitel 8: ${seiten} Seiten`);
   await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
   await seite.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
   if (await seite.locator('.druck-bogen').count() !== 0) h.befund('Druckbogen bleibt nach dem Druck stehen');
@@ -82,7 +104,8 @@ export async function lauf(seite, h) {
   await seite.evaluate(() => { location.hash = '#theorie/impressum'; });
   await h.erwarte('[data-pruef="impressum"]');
   await h.warte(200);
-  const imp = await seite.locator('[data-pruef="impressum"]').boundingBox();
-  if (imp === null || imp.y > hoehe) h.befund('Impressum-Permalink: Abschnitt nicht im Bild');
+  const imp = await seite.locator('[data-pruef="impressum"] h2').boundingBox();
+  const kopf3 = await seite.evaluate(() => document.querySelector('.lern-kopf')?.getBoundingClientRect().bottom ?? 0);
+  if (imp === null || imp.y > hoehe || imp.y < kopf3 - 1) h.befund(`Impressum-Permalink: Überschrift nicht frei sichtbar (${JSON.stringify(imp)}, Kopfleiste bis ${kopf3})`);
   await h.axe('impressum');
 }

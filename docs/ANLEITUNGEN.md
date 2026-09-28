@@ -28,7 +28,7 @@ Den Vermerk „fachlich ungeprüft“ zeigen beide Dateien, bis der Owner die Fa
    - Jede Lernseite hat eine Kernaussage, Abschnitte mit Tafeln und den Originaltext V1.2 wörtlich.
    - Am Originaltext:
      - Die **Absatz-ID** ist ein Link auf genau diesen Absatz (`#theorie/k4/k4.2-p3`).
-     - **Zitieren** zeigt die Angabe „Bauherr Mentoren, Whitepaper V1.2, Kap. 4.2, Abs. 3“ samt Link und legt sie in die Zwischenablage.
+     - **Zitieren** zeigt die Angabe „Bauherr Mentoren, Whitepaper V1.2, Kap. 4.2, Abs. 3“ samt Link und legt sie in die Zwischenablage. Geht das nicht (etwa beim Öffnen als lokale Datei), ist die Angabe markiert und lässt sich mit Strg+C bzw. ⌘+C kopieren.
    - **Kapitel drucken** und auf der Kapitelliste **Alle 13 Kapitel drucken** öffnen den Druckdialog. Dort „Als PDF speichern“ wählen.
    - Kapitel 13 enthält das Glossar mit Suche und den **Begriffs-Kompass**: Wer „Gate“ oder „Change-Board“ sucht, findet den Begriff des Whitepapers.
    - **Fassung und Impressum** (Fuß jeder Lernseite): Version, Änderungsstand, Quelle, Abgrenzung (5.5) und Leistungsgrenzen (7.6).
@@ -72,14 +72,16 @@ Den Vermerk „fachlich ungeprüft“ zeigen beide Dateien, bis der Owner die Fa
 - Der Host kann schicken:
   - `{ mvg: 'einbettung', art: 'gehe', ziel: '#theorie/k4' }`
   - `{ mvg: 'einbettung', art: 'frage' }`
-- Regie und Leinwand sind von außen nicht erreichbar.
+- Regie und Leinwand gibt es im Rahmen nicht: Weder `gehe` noch eine Adresse mit `#regie` oder `#leinwand` öffnet sie, die Anwendung zeigt dann die Startseite.
 - Mit `einbettung-herkunft` wird nur diese Herkunft gehört und beantwortet.
 
 ## 4. Pflege (für den Bau)
 
 - Inhalte stehen als Markdown unter `inhalte/` (Format: `docs/INHALTSFORMAT.md`).
 - `npm run pruefe` prüft alles, `npm run bau` baut beide Dateien.
-- Neue Whitepaper-Fassung:
+- Neue Whitepaper-Fassung (L-57):
   1. `npm run whitepaper:reimport -- --docx <neue.docx> --bericht tmp/reimport.md` meldet jede betroffene Stelle.
-  2. Danach übernimmt `node werkzeuge/whitepaper-import.mjs --docx <neue.docx> --ziel quellen/whitepaper/v1.3 --fassung V1.3` die neue Fassung (L-57).
+  2. `node werkzeuge/whitepaper-import.mjs --docx <neue.docx> --ziel quellen/whitepaper/v1.3 --fassung V1.3` legt die neue Quelle an.
+  3. Die maßgebliche Fassung umstellen: den Pfad `quellen/whitepaper/v1.2/whitepaper.json` in `werkzeuge/inhalte.mjs` (STANDARD_WHITEPAPER) und `werkzeuge/whitepaper-lib.mjs` (STANDARD_PFAD) auf v1.3 setzen und den Änderungsstand in `src/ui/impressum.ts` nachtragen.
+  4. `npm run pruefe`: Der Inhaltsprüfer meldet jetzt jedes Zitat, das nicht mehr wortgleich ist. Die betroffenen Stellen aus Schritt 1 anpassen.
 - Vorschläge für die Grafiken der V1.3: `docs/KORREKTURLISTE-V1.3.md`.

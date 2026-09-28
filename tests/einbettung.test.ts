@@ -95,3 +95,19 @@ test('Klänge: standardmäßig aus, Schalter gemerkt, Töne nur wenn an', () => 
   kaputt.spiele('wahl');
   assert.equal(kaputt.an(), true);
 });
+
+test('Klänge: ein angehaltener Audio-Kontext (Autoplay-Sperre) wird beim nächsten Ton geweckt', () => {
+  let geweckt = 0;
+  const param = { value: 0, setValueAtTime: () => param, linearRampToValueAtTime: () => param, exponentialRampToValueAtTime: () => param };
+  const fabrik = () => ({
+    currentTime: 0,
+    state: 'suspended',
+    resume: () => { geweckt++; return Promise.resolve(); },
+    destination: {} as AudioNode,
+    createGain: () => ({ gain: param, connect: (x: unknown) => x }) as unknown as GainNode,
+    createOscillator: () => ({ type: '', frequency: param, start: () => undefined, stop: () => undefined, connect: () => ({ connect: () => undefined }) }) as unknown as OscillatorNode,
+  });
+  const k = erzeugeKlang({ getItem: () => 'an', setItem: () => undefined }, fabrik);
+  k.spiele('station');
+  assert.equal(geweckt, 1);
+});

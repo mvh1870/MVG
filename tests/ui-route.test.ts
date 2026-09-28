@@ -24,6 +24,7 @@ test('Permalinks (P10.1): Absatz und Impressum', () => {
   assert.deepEqual(leseRoute('#theorie/k4/k4.2-p3'), { flaeche: 'theorie', kapitel: 4, abschnitt: 'k4.2-p3' });
   assert.deepEqual(leseRoute('#theorie/k1/K1-P2'), { flaeche: 'theorie', kapitel: 1, abschnitt: 'k1-p2' });
   assert.deepEqual(leseRoute('#theorie/k6/k6.4.2-t1'), { flaeche: 'theorie', kapitel: 6, abschnitt: 'k6.4.2-t1' });
+  assert.deepEqual(leseRoute('#theorie/k6/k6.3-b1'), { flaeche: 'theorie', kapitel: 6, abschnitt: 'k6.3-b1' });
   assert.deepEqual(leseRoute('#theorie/impressum'), { flaeche: 'theorie', kapitel: null, abschnitt: 'impressum' });
   for (const hash of ['#theorie/k4/k5.1-p1', '#theorie/k4/k4.2-x1', '#theorie/k4/k4.2-p', '#theorie/impressum/x']) assert.deepEqual(leseRoute(hash), START, hash);
 });

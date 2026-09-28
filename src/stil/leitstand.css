@@ -2020,7 +2020,7 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .express-karte p { margin: 0; font-size: 15px; line-height: 1.45; }
 
 /* Einwand-Karten (E6, P9.2): Denkanstoß im Ebenen-Schritt, Spickzettel in der Regie */
-.einwaende { display: grid; gap: 6px; }
+.einwaende { display: grid; gap: 12px; }
 .einwand, .regie-einwand { border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
 .einwand > summary, .regie-einwand > summary { display: flex; align-items: center; gap: 10px; min-height: 40px; padding: 8px 14px; font-weight: 600; color: var(--tinte); cursor: pointer; }
 .einwand > summary::-webkit-details-marker, .regie-einwand > summary::-webkit-details-marker { display: none; }
@@ -2029,7 +2029,7 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .einwand[open] > summary::after, .regie-einwand[open] > summary::after { transform: rotate(-135deg); }
 @media (prefers-reduced-motion: no-preference) { .einwand > summary::after, .regie-einwand > summary::after { transition: transform .15s ease; } }
 .einwand > div, .regie-einwand-antwort { display: grid; gap: 10px; padding: 0 14px 12px; }
-.regie-einwaende { display: grid; gap: 6px; }
+.regie-einwaende { display: grid; gap: 12px; }
 
 /* Beamer-Schalter (E10, P9.4): größer (wie Browser-Zoom, das Layout bricht dann um) und kontrastreicher –
    Nebenschrift wird Hauptschrift, Linien kräftiger. Gilt auf der Leinwand und in der Regie-Vorschau. */

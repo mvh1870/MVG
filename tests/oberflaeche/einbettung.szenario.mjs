@@ -46,4 +46,12 @@ export async function lauf(seite, h) {
   const danach = await seite.evaluate(() => /** @type {any} */ (window).nachrichten);
   if (!danach.slice(vorher).some((/** @type {any} */ n) => n?.art === 'ort' && n.hash === '#theorie/k4')) h.befund('Einbettung: „frage“ bleibt ohne Antwort');
   await h.bild('einbettung');
+  // Auch über die Adresse des Rahmens gibt es keine Regie und keine Leinwand
+  for (const ziel of ['#regie', '#leinwand']) {
+    await seite.evaluate((z) => { /** @type {HTMLIFrameElement} */ (document.getElementById('mvg')).src = `../../dist/mvg.html${z}`; }, ziel);
+    await h.warte(800);
+    const im = await rahmen.locator('[data-pruef="regie"], [data-pruef="leinwand"]').count();
+    const start = await rahmen.locator('.startseite').count();
+    if (im !== 0 || start !== 1) h.befund(`Einbettung: Rahmen mit ${ziel} zeigt Regie/Leinwand (${im}) statt Startseite (${start})`);
+  }
 }

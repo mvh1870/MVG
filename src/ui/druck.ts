@@ -26,6 +26,20 @@ export function druckeBogen(titel: string, teile: Node[]): HTMLElement {
   for (const alt of document.querySelectorAll('.druck-bogen')) alt.remove();
   const bogen = h('div', { class: 'druck-bogen', 'data-pruef': 'druck-bogen' }, teile);
   for (const d of bogen.querySelectorAll('details')) d.setAttribute('open', '');
+  // keine doppelten IDs neben der Seite: umbenennen, Bezüge (aria-labelledby, for) mitziehen
+  let n = 0;
+  const neu = new Map<string, string>();
+  for (const el of bogen.querySelectorAll('[id]')) {
+    const alt = el.id;
+    el.id = `druck-${++n}-${alt}`;
+    neu.set(alt, el.id);
+  }
+  for (const el of bogen.querySelectorAll('[aria-labelledby], [aria-controls], [aria-describedby], label[for]')) {
+    for (const a of ['aria-labelledby', 'aria-controls', 'aria-describedby', 'for']) {
+      const w = el.getAttribute(a);
+      if (w !== null) el.setAttribute(a, w.split(/\s+/u).map((x) => neu.get(x) ?? x).join(' '));
+    }
+  }
   document.body.append(bogen);
   if (typeof window.print !== 'function') return bogen;
   const alterTitel = document.title;

@@ -22,7 +22,7 @@ import * as B from '../ui/bausteine/bloecke.ts';
 import { inhalt } from '../ui/bausteine/inhalt.ts';
 import { aktuelleStation, eingriffe, kicker, sichtbareSchritte, stationsName, tafelTitel, weiterAktion, zurueckAktion } from '../ui/anzeige.ts';
 import { erzeugeAnzeige } from './leinwand.ts';
-import { kapitelListe } from '../ui/flaechen/theorie.ts';
+import { kapitelFuerDruck, kapitelListe } from '../ui/flaechen/theorie.ts';
 import { kapitelDerSpur } from '../ui/flaechen/story-szenen.ts';
 import { findeEntscheidung } from '../engine/graph.ts';
 import { W } from '../ui/woerter.ts';
@@ -164,6 +164,16 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
 
   // Druckfassung (P9.3): Datum, alle Protokolleinträge, besuchte Stationen und die eigenen Entscheidungen
   const druck = h('section', { class: 'regie-druck', 'aria-hidden': 'true', 'data-pruef': 'regie-druck' });
+  /** Resümee im Druck: erreichtes Ende und die Richtung aus der Wirklichkeit (wie im Epilog, P7.7) */
+  const resuemeeFuerDruck = (oz: OeffentlicherZustand): Node[] => {
+    const ende = [...oz.verlauf].reverse().map((id) => inhalte.stationen[id]).find((st) => st?.art === 'ende') ?? null;
+    if (ende === null) return [];
+    const richtung = [...oz.spur].reverse().find((e) => e.station === 'wirklichkeit') ?? null;
+    const kurz = richtung !== null ? findeEntscheidung(inhalte, richtung.entscheidung)?.entscheidung.optionen.find((x) => x.id === richtung.option)?.kurz ?? null : null;
+    const teile: Node[] = [h('h2', null, W.druck.dossierResuemee), h('p', null, `${W.resuemee.ende}: ${ende.titel}`)];
+    if (kurz !== null) teile.push(h('p', null, `${W.resuemee.richtung}: ${kurz}`));
+    return teile;
+  };
   const drucke = (): void => {
     const z = sitzung.zustand();
     const oz = oeffentlich(z);
@@ -183,12 +193,16 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
         const opt = findeEntscheidung(inhalte, e.entscheidung)?.entscheidung.optionen.find((x) => x.id === e.option);
         return h('li', null, `${stationsName(inhalte, e.station)}: ${e.option} · ${opt?.kurz ?? ''}`);
       })) : h('p', null, '–'),
-      // Dossier (E11): die Kapitel, die der Weg am häufigsten berührt hat, zum Nachlesen
+      // Dossier (E11): Resümee (erreichtes Ende, Richtung) und die Kapitel, die der Weg am häufigsten
+      // berührt hat – als Liste und die ersten zwei als Text zum Nachlesen
+      ...resuemeeFuerDruck(oz),
       h('h2', null, w.druckKapitel),
-      (() => {
+      ...(() => {
         const kap = kapitelDerSpur(oz.verlauf, inhalte).slice(0, 3);
         const titel = (nr: number): string => inhalte.whitepaper.kapitel.find((k) => Number(k.nr) === nr)?.titel ?? '';
-        return kap.length > 0 ? h('ul', null, kap.map((nr) => h('li', null, W.resuemee.kapitel(nr, titel(nr))))) : h('p', null, '–');
+        return kap.length > 0
+          ? [h('ul', null, kap.map((nr) => h('li', null, W.resuemee.kapitel(nr, titel(nr))))), ...kap.slice(0, 2).map((nr) => kapitelFuerDruck(inhalte, nr, o.version))]
+          : [h('p', null, '–')];
       })());
     document.body.classList.add('druck-protokoll');
     const ende = (): void => { document.body.classList.remove('druck-protokoll'); window.removeEventListener('afterprint', ende); };

@@ -31,7 +31,7 @@ import { starteLeinwand } from './regie/leinwand.ts';
 import { W } from './ui/woerter.ts';
 import { fassungText } from './ui/fassung.ts';
 import { erzeugeKlang } from './ui/klang.ts';
-import { istEingebettet, starteEinbettung } from './ui/einbettung.ts';
+import { istEingebettet, starteEinbettung, type Einbettung } from './ui/einbettung.ts';
 
 const TITEL = 'Minimum Viable Governance';
 const VERSION = fassungText(inhalte.whitepaper.fassung ?? '');
@@ -78,6 +78,7 @@ function starteApp(wurzel: HTMLElement): void {
   // Einbettung (P10.6, E12): im iframe meldet die Anwendung dem Host jeden Ort und folgt „gehe“
   const eingebettet = istEingebettet(window);
   if (eingebettet) document.body.classList.add('ist-eingebettet');
+  let einbettung: Einbettung | null = null;
   let story: StoryFlaeche | null = null;
   let tipps: Tooltips | null = null;
   let flaeche = '';
@@ -138,6 +139,9 @@ function starteApp(wurzel: HTMLElement): void {
           abschnitt.tabIndex = -1;
           abschnitt.scrollIntoView({ block: 'start' });
           abschnitt.focus({ preventScroll: true });
+          // Schriften verschieben das Layout nach dem ersten Zeichnen: danach noch einmal ausrichten
+          const hash = location.hash;
+          void document.fonts?.ready.then(() => { if (location.hash === hash && abschnitt.isConnected) abschnitt.scrollIntoView({ block: 'start' }); });
         } else (seite.querySelector('.kapitel-titel') as HTMLElement | null)?.focus({ preventScroll: true });
         flaeche = `theorie-${r.kapitel ?? 0}`;
         document.body.dataset['flaeche'] = 'theorie';
@@ -210,7 +214,7 @@ function starteApp(wurzel: HTMLElement): void {
     if (story.taste(e)) e.preventDefault();
   });
 
-  const einbettung = eingebettet ? starteEinbettung({
+  einbettung = eingebettet ? starteEinbettung({
     fenster: window,
     version: VERSION,
     gehe: (hash) => { if (location.hash !== hash) location.hash = hash; },
@@ -268,6 +272,8 @@ function starteLeinwandFenster(wurzel: HTMLElement): void {
 
 setzeMarke(logoSvg, bildmarkeSvg);
 const wurzel = document.getElementById('mvg') ?? document.body;
+// Im iframe (P10.6) gibt es weder Regie noch Leinwand: eine fremde Seite soll keine Regie einbetten
+if (istEingebettet(window) && betriebsart(leseRoute(location.hash)) !== 'app') history.replaceState(null, '', '#start');
 switch (betriebsart(leseRoute(location.hash))) {
   case 'regie':
     starteRegie(wurzel);

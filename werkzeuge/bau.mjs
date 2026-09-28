@@ -353,7 +353,7 @@ export async function baueText(optionen = {}) {
   if (!existsSync(o.huelle)) throw new BauFehler(`Hülle ${path.relative(o.wurzel, o.huelle).split(path.sep).join('/')} fehlt`);
   const huelle = await readFile(o.huelle, 'utf8');
   const inhalte = o.kundenfassung
-    ? await kundenInhalte(o.inhalte ?? path.join(o.wurzel, 'src', 'generiert', 'inhalte.json'), path.join(WURZEL, 'tmp', 'bau-kunde'))
+    ? await kundenInhalte(o.inhalte ?? path.join(o.wurzel, 'src', 'generiert', 'inhalte.json'), path.join(o.zwischen, `kunde-${process.pid}`))
     : o.inhalte;
   const [skript, stil] = await Promise.all([baueSkript(o.wurzel, o.eintrag, version, inhalte), baueStil(o.wurzel, o.stil)]);
   warnungen.push(...skript.warnungen, ...stil.warnungen);

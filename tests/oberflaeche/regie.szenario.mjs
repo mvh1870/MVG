@@ -95,10 +95,14 @@ export async function lauf(_seite, h) {
   await h.klick('[data-pruef="regie-drucken"]', regie);
   const druck = await regie.locator('[data-pruef="regie-druck"]').textContent();
   if (!/Kunde fragt nach der Mandatsleiter/u.test(druck ?? '') || !/Besuchte Stationen/u.test(druck ?? '')) h.befund('Druckfassung ohne Protokoll oder Weg');
-  // B7: die ausgeblendete Regie erzeugt keine leeren Folgeseiten
+  // B7: die ausgeblendete Regie erzeugt keine leeren Folgeseiten – Seitenzahl passt zur Höhe des Druckteils
+  await regie.emulateMedia({ media: 'print' });
+  const druckHoehe = await regie.locator('[data-pruef="regie-druck"]').evaluate((el) => el.scrollHeight);
+  await regie.emulateMedia({ media: 'screen' });
   const pdf = await regie.pdf({ format: 'A4' });
   const seiten = (pdf.toString('latin1').match(/\/Type\s*\/Page[^s]/gu) ?? []).length;
-  if (seiten !== 1) h.befund(`Druckfassung: ${seiten} Seiten statt einer`);
+  const hoechstens = Math.ceil(druckHoehe / 900) + 2;
+  if (seiten < 1 || seiten > hoechstens) h.befund(`Druckfassung: ${seiten} Seiten bei ${druckHoehe} px Druckteil (höchstens ${hoechstens})`);
   await regie.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
   if ((await leinwand.locator('body').innerText()).includes('Kunde fragt nach der Mandatsleiter')) h.befund('Leinwand zeigt das Protokoll');
   await h.bild('regie', regie);

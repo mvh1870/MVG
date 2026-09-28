@@ -697,9 +697,9 @@ test('Begriffs-Kompass (P10.5): Begriff muss im Beleg stehen, Glossar-Bezug, alt
   const ok = await kompiliere({ pruefe: true, wurzel: gut, ziel: null });
   assert.deepEqual(ok.fehler, [], 'das alte Wort im Kompass ist kein Begriffe-Fund');
   assert.deepEqual(ok.inhalte.kompass, [{ id: 'mandat', begriff: 'Mandat', andere: ['Change-Board'], beleg: 'k2.4-p2', glossar: 'g-mandat', hinweis: null }]);
-  const schlecht = neueWurzel({ ...BEISPIEL, 'inhalte/begriffs-kompass.md': kompass('a', 'Freigabe', 'k2.4-p2') + kompass('b', 'Mandat', 'k9.9-p9') + kompass('a', 'Mandat', 'k2.4-p2') + kompass('c', 'Mandat', 'k2.4-p2', '[]') });
+  const schlecht = neueWurzel({ ...BEISPIEL, 'inhalte/begriffs-kompass.md': kompass('a', 'Freigabe', 'k2.4-p2') + kompass('b', 'Mandat', 'k9.9-p9') + kompass('a', 'Mandat', 'k2.4-p2') + kompass('c', 'Mandat', 'k2.4-p2', '[]') + kompass('d', 'Bericht', 'k2.4-p2') });
   const { fehler } = await kompiliere({ pruefe: true, wurzel: schlecht, ziel: null });
-  for (const e of [/Kompass a: „Freigabe“ steht nicht in k2\.4-p2/u, /Absatz-ID „k9\.9-p9“ gibt es im Whitepaper nicht/u, /Kompass-Eintrag a doppelt/u, /Kompass c: „andere“ ist leer|„andere“/u]) {
+  for (const e of [/Kompass a: „Freigabe“ steht nicht in k2\.4-p2/u, /Absatz-ID „k9\.9-p9“ gibt es im Whitepaper nicht/u, /Kompass-Eintrag a doppelt/u, /Kompass c: „andere“ ist leer|„andere“/u, /Kompass d: „Bericht“ steht nicht in k2\.4-p2/u]) {
     assert.ok(fehler.some((f) => e.test(f)), `erwartet ${e}\nbekommen:\n${fehler.join('\n')}`);
   }
 });

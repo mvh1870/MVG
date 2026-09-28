@@ -479,7 +479,10 @@ a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
   .druck-teil { margin-bottom: 6mm; }
   .druck-teil h2 { margin: 0 0 2mm; font: 700 13pt/1.25 var(--schrift-text); color: var(--navy); }
   .druck-teil.ist-neue-seite, .druck-bogen .druck-kapitel { break-before: page; }
-  .druck-teil.ist-neue-seite + .druck-kapitel { break-before: avoid; }
+  .druck-teil.ist-neue-seite + .druck-kapitel, .druck-kopf + .druck-kapitel { break-before: avoid; }
+  /* Karten- und Registertafeln: lange Wörter umbrechen statt über den Satzspiegel hinauszulaufen */
+  .druck-bogen .tafel-karten > *, .druck-bogen .tafel-register > *, .druck-bogen .lernkarte { min-width: 0; overflow-wrap: anywhere; hyphens: auto; }
+  .druck-bogen .tafel-karten, .druck-bogen .tafel-register { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
   .druck-bogen .lernseite { min-height: 0; background: none; }
   .druck-bogen .lern-rahmen { display: block; padding: 0; max-width: none; }
   .druck-bogen .lern-inhalt { max-width: none; gap: 6mm; }
@@ -495,4 +498,13 @@ a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
 .kompass-tabelle td:first-child { color: var(--tinte-2); }
 .kompass-begriff { min-height: 32px; padding: 2px 0; border: 0; background: none; color: var(--navy); font: inherit; font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; cursor: pointer; }
 .kompass-begriff:hover { text-decoration-thickness: 2px; }
+.kompass-hinweis { margin-top: 2px; font-size: var(--gr-s); color: var(--tinte-2); }
+.kompass-hinweis p { margin: 0; }
+.impressum-quellen { margin: var(--a-4) 0; }
+.impressum-quellen summary { min-height: 32px; cursor: pointer; }
+.impressum-quellen ul { display: grid; gap: var(--a-2); margin-top: var(--a-2); padding-left: 0; list-style: none; font-size: var(--gr-s); }
+.impressum-quellen li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 6px; }
+.impressum-quellen-text { margin: var(--a-2) 0; font-size: var(--gr-s); color: var(--tinte-2); }
+/* Permalink-Ziele nicht hinter der festen Kopfleiste (WCAG 2.4.11) */
+.lernseite .absatz, .lernseite [data-abschnitt], .lernseite .impressum { scroll-margin-top: 72px; }
 

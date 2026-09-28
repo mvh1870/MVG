@@ -541,7 +541,8 @@ function rollenFrage(k: SzenenKontext): { element: HTMLElement; setze: (z: Oeffe
     type: 'button', class: 'knopf knopf-still', 'data-antwort': a.id, 'data-pruef': `reife-${a.id}`, 'aria-pressed': 'false',
     onclick: () => tu(k, { art: 'antworte', frage: frage.id, antwort: a.id }),
   }, B.symbolAusInhalt(a.symbol), a.titel));
-  const element = h('div', { class: 'reife' },
+  // sofort bereit: ohne Vorlage gibt es keinen Auftritt, der die Frage einblendet (P11.3 R2)
+  const element = h('div', { class: 'reife ist-bereit' },
     h('div', { class: 'reife-frage' }, h('div', { class: 'reife-titel' }, inhalt(frage.felder.frage)), h('div', { class: 'reife-knoepfe', role: 'group', 'aria-label': W.ihreEinschaetzung }, knoepfe)),
     rueck);
   let letzte: string | null | undefined;
@@ -555,7 +556,6 @@ function rollenFrage(k: SzenenKontext): { element: HTMLElement; setze: (z: Oeffe
       rueck.replaceChildren(h('p', { class: 'reife-warten' }, W.rueckmeldungWarten));
       return;
     }
-    element.classList.add('ist-bereit');
     rueck.replaceChildren(h('div', { class: 'rueckmeldung', 'data-status': 'neutral' },
       a.praefix !== null ? h('b', null, elementAus(statusSymbol('neutral')), a.praefix) : null, ' ',
       inhaltInline(frage.felder.rueckmeldung ?? ''), a.html !== '' ? inhalt(a.html) : null));
@@ -761,8 +761,11 @@ function ebenenSzene(k: SzenenKontext): Szene {
     type: 'button', class: 'ebene-knopf', 'aria-current': 'false', 'data-pruef': `ebene-knopf-${e.nr}`,
     onclick: () => tu(k, { art: 'setzeEbene', ebene: e.nr }),
   }, h('i', null, String(e.nr)), h('span', null, h('small', null, `${W.ebene} ${e.nr}`), e.titel)));
-  const ort = h('div', { class: 'ebene-ort', 'aria-live': 'polite' });
+  // knappe Ansage „Ebene n: Titel“ statt einer Live-Region über dem ganzen Ort (P11.3 R2)
+  const ort = h('div', { class: 'ebene-ort' });
+  const ansage = h('p', { class: 'nur-sr', 'aria-live': 'polite', 'data-pruef': 'ebene-ansage' });
   let letzte = -1;
+  let erste = true;
   const setze = (z: OeffentlicherZustand): void => {
     const nr = Math.max(1, z.ebene);
     knoepfe.forEach((b, i) => attr(b, 'aria-current', ebenen[i]?.nr === nr ? 'true' : 'false'));
@@ -770,6 +773,8 @@ function ebenenSzene(k: SzenenKontext): Szene {
       letzte = nr;
       const e = ebenen.find((x) => x.nr === nr) ?? ebenen[0];
       if (e !== undefined) {
+        if (!erste) ansage.textContent = `${W.ebene} ${e.nr}: ${e.titel}`;
+        erste = false;
         const teile: Node[] = [];
         const textHtml = e.felder['text'] ?? '';
         if (e.nr === 1) teile.push(h('p', { class: 'kernsatz' }, inhaltInline(textHtml)));
@@ -796,7 +801,7 @@ function ebenenSzene(k: SzenenKontext): Szene {
     });
   };
   setze(k.z);
-  const el = h('div', { class: 'ebenen' }, h('nav', { class: 'ebenen-wahl', 'aria-label': W.ebenen }, h('div', { class: 'ebenen-linie' }), lot, knoepfe), ort);
+  const el = h('div', { class: 'ebenen' }, h('nav', { class: 'ebenen-wahl', 'aria-label': W.ebenen }, h('div', { class: 'ebenen-linie' }), lot, knoepfe), ort, ansage);
   const vertiefungen = vertiefungenFuer(k);
   const einwaende = einwaendeFuer(k);
   if (vertiefungen === null && einwaende === null) return szene(el, setze);

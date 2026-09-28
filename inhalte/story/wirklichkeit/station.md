@@ -19,7 +19,7 @@ weiter:
 ---
 
 ::: express
-Was Sie im Express in Welt A übersprungen haben, liegt hier mit auf dem Tisch: Im Juli vertagte der Bauausschuss, weil ein 40-Seiten-Statusbericht keine Entscheidungsfrage enthielt. Im September zeigte sich, dass ein guter Teil der Risikoreserve verplant war – für Brandschutzauflagen, die auf eine Flurzusage hin umgeplante Mensa und den Nachtrag der TGA-Fachplanung, ohne dass jemand den Einsatz freigegeben hatte.
+Im Express übersprungen, aber mit auf dem Tisch: Im Juli vertagte der Bauausschuss, weil der 40-Seiten-Statusbericht keine Entscheidungsfrage enthielt. Im September war ein guter Teil der Risikoreserve verplant – für Brandschutzauflagen, Mensa und TGA-Nachtrag, ohne dass jemand den Einsatz freigegeben hatte.
 :::
 
 ::: schritt einstieg
@@ -35,7 +35,7 @@ von: olbers
 betreff: Schulcampus – wie geht es weiter?
 zeit: "07:52"
 ---
-Bis zum Lenkungskreis am 15. Dezember brauche ich eine Entscheidungsfrage und die Liste der offenen Entscheidungen. Keinen Statusbericht.
+Bis zum Lenkungskreis am 15. Dezember: eine Entscheidungsfrage und die offenen Entscheidungen. Keinen Statusbericht.
 :::
 
 ::: chat
@@ -197,7 +197,7 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Ist ein Projekt nicht mehr führbar, ordnet eine MVG-Neuinitialisierung die Führungs- und Entscheidungslogik neu – kein Neustart, keine Freigabe, nicht ohne den Bauherrn.
+Die MVG-Neuinitialisierung ordnet die Führungslogik neu – kein Neustart, keine Freigabe, nicht ohne den Bauherrn.
 :::
 
 ::: ebene 2

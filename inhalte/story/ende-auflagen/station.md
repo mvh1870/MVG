@@ -49,7 +49,7 @@ kurz: Ihre Spur
 titel: Wie Sie hierher kamen
 kurz: Ihr Weg
 ---
-Eine Freigabe mit Auflagen ist kein halbes Ergebnis; sie verlagert Arbeit in die Zeit danach.
+Eine Freigabe mit Auflagen verlagert Arbeit in die Zeit danach.
 :::
 
 ::: schritt nachweiskette
@@ -85,7 +85,7 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Auch eine Freigabe mit Auflagen erteilt der Bauherr selbst; Auflagen brauchen jemanden, der sie nachhält.
+Auch die Freigabe mit Auflagen erteilt der Bauherr selbst.
 :::
 
 ::: ebene 2

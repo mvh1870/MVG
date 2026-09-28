@@ -24,7 +24,7 @@ Nichtdelegierbare Bauherrenverantwortungen sind jene Verantwortungen, bei denen 
 titel: Welche Symptome haben Sie erlebt?
 kurz: Symptome
 ---
-Markiert: die Symptome (Kap. 2.5) Ihrer Spur. Wählen Sie eines.
+Markiert: die Symptome Ihrer Spur (Kap. 2.5).
 
 ::: tafel k2.5-t1
 ---
@@ -47,7 +47,7 @@ erlebt:
 titel: Was passiert, wenn …?
 kurz: Wirkungsketten
 ---
-Wählen Sie einen Auslöser: Muster, Folge, MVG-Antwort (Kap. 2.5).
+Wählen Sie einen Auslöser (Kap. 2.5).
 
 ::: tafel k2.5-t1
 ---

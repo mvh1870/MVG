@@ -35,10 +35,16 @@ Inhalt (Rolle Bauherr und Planung, Haupt- und Express-Pfad, Stichprobe Fachtreue
 - [-] Wirklichkeit „Mail von Dr. Olbers“ beim Spielen der Rolle Bauherr: bleibt – die Oberfläche zeigt dann „Sie“ als Absender (H13).
 
 ## P11.3 Korrekturschleife – Runde 2 (R2)
-Inhalt (Rollen GF und Projektsteuerung, Haupt- und Express-Pfad, alle vier am Ende angekommen): 10 Befunde (0 schwer, 5 mittel). Technik: Bericht folgt.
+Inhalt (Rollen GF und Projektsteuerung, Haupt- und Express-Pfad, alle vier am Ende angekommen): 10 Befunde (0 schwer, 5 mittel). Technik (Architektur, Barrierefreiheit, Tests): 7 Befunde (1 schwer, 3 mittel). Alle erledigt; wegen des schweren Befunds folgt Runde 3 (L-64).
 - [x] `paar`-Vergleiche B1/B2/B4/B5 zitieren die gekürzten A-Wortlaute; B2 ohne „Varianten werden durchgerechnet“ (wie A2).
 - [x] ende-auflagen (alle Rollen): „Auf dieser Spur hätte sie noch nicht getragen;“ statt „Bis sie greift …“.
 - [x] Wendepunkt: „Brandschutzauflagen grob 0,4“; Ebene-1-Kernaussage mit Inhalt (k3.3).
 - [x] A1-Kernaussage ohne neue Verknüpfung (k2.1/k2.2/k2.3 getrennt, O-17).
 - [x] A6 Bekannt nennt die unentschiedene Holz-Lieferzeit; B6 Checkliste nennt „Freigabe LPH 5“; B4 GF Option B „nur grob geschätzt“; Express-Knopf „rund 15 Minuten“.
-- Lesezeit danach (pl): Hauptpfad 33,0 min, Express 14,6 min.
+- Lesezeit nach den Inhaltsbefunden (pl, alte Zählung): Hauptpfad 33,0 min, Express 14,6 min.
+- [x] T1 (schwer) B3 „mandat“: Die Rollenfrage war unsichtbar (`.reife` ohne `ist-bereit`, nur nach einer Antwort gesetzt) – jetzt sofort bereit.
+- [x] T2 Test dazu: Unit-Test prüft `ist-bereit`, `aria-pressed` und Rückmeldung; Szenario `welt-b` (1280) blättert zum Mandats-Schritt, antwortet per Enter und prüft beides im Browser (Gegenprobe mit altem Code rot).
+- [x] T3 Ebenen-Ort ohne `aria-live`; knappe Ansage „Ebene n: Titel“ in eigener nur-sr-Zeile.
+- [x] T4/T5 Lesezeit zählt sichtbaren Text unter `aria-hidden` und prüft das Ende streng (L-65); danach Express-Karten und drei Kernsätze gekürzt: alle Rollen Hauptpfad 33,9–34,3 min, Express 14,7–15,0 min.
+- [x] T6 Regie-Vorschau-Test verlangt beim ersten Schritt eine Vorschau und mindestens zwei Vergleiche.
+- [x] T7 Szenario `theorie`: 120 Tabulatorschritte vor und zurück auf Kap. 8, kein Fokus unter der Kopfleiste (Gegenprobe ohne `scroll-padding` rot).

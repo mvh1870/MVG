@@ -523,16 +523,21 @@ test('Regie (P9.5): Start sendet den Beamer-Stand, Sprung erst mit Rolle, Einwä
     assert.equal(sprung.disabled, false);
     assert.equal(rolle.value, 'pl');
     // Als Nächstes (Bauplan 7): die Vorschau nennt, wo „Weiter“ hinführt – über mehrere Schritte verglichen
+    let verglichen = 0;
     for (let i = 0; i < 12; i++) {
-      const vorschau = (q('[data-pruef="regie-naechstes"]').textContent ?? '').replace(/^Als Nächstes: /u, '');
+      const roh = q('[data-pruef="regie-naechstes"]').textContent ?? '';
+      if (i === 0) assert.match(roh, /^Als Nächstes: \S/u);
+      const vorschau = roh.replace(/^Als Nächstes: /u, '');
       if (vorschau === '') break;
       const [stationTitel, ...rest] = vorschau.split(' · ');
       q('[data-pruef="regie-weiter"]').click();
       const ortText = q('[data-pruef="regie-ort"]').textContent ?? '';
-      assert.ok(ortText.startsWith(stationTitel ?? '') && ortText.endsWith(rest.join(' · ')), `Vorschau „${vorschau}“ ≠ Ort „${ortText}“`);
+      assert.ok(ortText.startsWith(stationTitel ?? '') && (rest.length === 0 || ortText.endsWith(rest.join(' · '))), `Vorschau „${vorschau}“ ≠ Ort „${ortText}“`);
+      verglichen++;
       const opt = el.querySelector<HTMLElement>('[data-pruef^="regie-option-"]');
       if (opt !== null && sitzung.zustand().station !== null) opt.click();
     }
+    assert.ok(verglichen >= 2, `nur ${verglichen} Schritte verglichen`);
     // L2: Pfeiltaste im Auswahlfeld blättert nicht
     const schrittVorher = sitzung.zustand().schritt;
     const ereignis = new dom.window.KeyboardEvent('keydown', { key: 'ArrowRight' });
@@ -1113,7 +1118,15 @@ test('B3 Mandat (P11.3): die Rollenfrage am Schritt „mandat“ wird gezeigt un
   story.setze(oeffentlich(z), null);
   const knoepfe = story.element.querySelectorAll<HTMLButtonElement>('[data-pruef^="reife-"]');
   assert.ok(knoepfe.length >= 2, 'Antwortknöpfe fehlen');
+  // sichtbar ohne vorherige Antwort (R2: `.reife` ist ohne `ist-bereit` unsichtbar)
+  assert.ok(knoepfe[0]?.closest('.reife')?.classList.contains('ist-bereit'), 'Rollenfrage bleibt verborgen');
   knoepfe[0]?.click();
-  assert.equal((aktionen.at(-1) as { art: string }).art, 'antworte');
+  const aktion = aktionen.at(-1) as { art: string, frage: string, antwort: string };
+  assert.equal(aktion.art, 'antworte');
+  const frage = b3.szenen['bauherr']?.fragen.find((f) => f.schritt === 'mandat');
+  assert.ok(frage);
+  story.setze(oeffentlich({ ...z, antworten: { [`B3/bauherr/${frage.id}`]: aktion.antwort } }), null);
+  assert.equal(knoepfe[0]?.getAttribute('aria-pressed'), 'true');
+  assert.ok(story.element.querySelector('[data-pruef="rueckmeldung"] .rueckmeldung'), 'Rückmeldung fehlt');
   story.entferne();
 });

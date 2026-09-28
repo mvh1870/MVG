@@ -17,7 +17,7 @@ weiter: wirklichkeit
 ---
 
 ::: express
-Im Juni entschied das Änderungsgremium `ENT-017` (Fassade als `AEN-022`), im Juli auf Vorlage die Brandschutzauflagen (`AEN-031`). Im September kam der Nachtrag der TGA-Fachplanung als Problem `PRB-004`; über die Risikoreserve entscheidet Dr. Olbers auf Vorlage. Seit Oktober gilt die „Kostenprognose 2026-10 · Version 4“.
+Im Juni entschied das Änderungsgremium `ENT-017` (Fassade als `AEN-022`), im Juli die Brandschutzauflagen (`AEN-031`). Im September kam der TGA-Nachtrag als Problem `PRB-004`; über die Risikoreserve entscheidet Dr. Olbers. Seit Oktober gilt die „Kostenprognose 2026-10 · Version 4“.
 :::
 
 ::: schritt einstieg
@@ -25,7 +25,7 @@ Im Juni entschied das Änderungsgremium `ENT-017` (Fassade als `AEN-022`), im Ju
 titel: Montag, 07:45 Uhr. Monat 11.
 kurz: Einstieg
 ---
-Montag, 9. November. Die Freigabe zum Abschluss von LPH 5 ist in Vorbereitung. Holger Stein fällt aus; eine Stellvertretung ist benannt.
+Montag, 9. November. Die Freigabe LPH 5 ist in Vorbereitung; Holger Stein fällt aus.
 
 ::: mail
 ---
@@ -95,7 +95,7 @@ b: datenstand
 **Prognose_Nov_v5** · H. Stein · Erläuterung folgt
 
 ### Welt B
-Kostenprognose als benannter Datenstand · Annahmen darin dokumentiert
+Benannter Datenstand · Annahmen dokumentiert
 :::
 
 ::: paar
@@ -122,7 +122,7 @@ fluss: freigabe
 Freigabe LPH 5 – wer gibt frei? Worauf?
 
 ### Welt B
-Vorlage der Bauherren-PL · Kernfrage und Mindestgrundlagen · der Bauherr erteilt
+Vorlage mit Kernfrage · der Bauherr erteilt
 :::
 
 ::: paar
@@ -136,7 +136,7 @@ fluss: managementbericht
 Welche Unterlagen, in welcher Version?
 
 ### Welt B
-Managementbericht Oktober · Kosten und Termin auf benanntem Datenstand
+Managementbericht Oktober · benannter Datenstand
 :::
 
 ::: kennzahl
@@ -276,7 +276,7 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Jede Leistungsphase endet mit einer Freigabe des Bauherrn auf Kernfrage, Mindestgrundlagen, Mandat und Datenstand. Er erteilt sie selbst; der Lenkungskreis berät.
+Jede LPH endet mit einer Freigabe auf Kernfrage, Mindestgrundlagen, Mandat und Datenstand; der Bauherr erteilt sie selbst.
 :::
 
 ::: ebene 2

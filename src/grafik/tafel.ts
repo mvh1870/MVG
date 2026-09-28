@@ -65,7 +65,7 @@ export const WORT = {
   stand: (r: number, n: number, g: number) => `${r} von ${g} richtig · ${n} zugeordnet`,
   aufloesen: 'Alle zeigen',
   grenze: 'Grenze',
-  legende: 'Ausschlag: in wie vielen Stationen Ihrer Spur das Symptom auftrat (bis drei)',
+  legende: 'Ausschlag: Stationen Ihrer Spur mit diesem Symptom (bis drei)',
   ansicht: (w: string, spalte: string) => `Ansicht: ${w} – ${spalte}`,
   hier: 'hier steht der Fall',
   imFall: 'kommt hier vor',

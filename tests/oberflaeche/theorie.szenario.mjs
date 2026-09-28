@@ -73,6 +73,21 @@ export async function lauf(seite, h) {
   // Kapitel 8: breite Karten-Tafel (k8.4-t1) – im Druck darf nichts über den Satzspiegel ragen
   await seite.evaluate(() => { location.hash = '#theorie/k8'; });
   await h.erwarte('[data-kapitel="8"] [data-pruef="lernseite"]');
+  // Fokus nicht verdeckt (WCAG 2.4.11, P11.3 R2): 60 Tabulatorschritte vor und zurück (rückwärts rollt
+  // die Seite den Fokus an die Oberkante), kein Fokus unter der klebenden Kopfleiste
+  await seite.evaluate(() => { window.scrollTo(0, 0); });
+  let verdeckt = 0;
+  for (let i = 0; i < 120; i++) {
+    await seite.keyboard.press(i < 60 ? 'Tab' : 'Shift+Tab');
+    verdeckt += await seite.evaluate(() => {
+      const f = document.activeElement;
+      const kopf = document.querySelector('.lern-kopf');
+      if (!(f instanceof HTMLElement) || kopf === null || kopf.contains(f) || f.closest('.sprunglink, [class*="sprung"]') !== null) return 0;
+      const r = f.getBoundingClientRect();
+      return r.height > 0 && r.height < 400 && r.top < kopf.getBoundingClientRect().bottom - 1 ? 1 : 0;
+    });
+  }
+  if (verdeckt > 0) h.befund(`Kapitel 8: ${verdeckt} von 120 Fokusstopps unter der Kopfleiste`);
   await seite.evaluate(() => { window.print = () => {}; });
   await seite.locator('[data-pruef="kapitel-drucken"]').click();
   await seite.emulateMedia({ media: 'print', reducedMotion: 'reduce' });

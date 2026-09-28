@@ -59,6 +59,34 @@ export async function lauf(seite, h) {
   // schnell (vor jedem Commit, L-44): je Größe eine Rolle – die PL (mit Interessen), bei 1024 der Bauherr
   const schnell = h.viewport.breite === 1024 ? ['bauherr'] : ['pl'];
   await spiele(seite, h, h.voll ? ROLLEN_JE_GROESSE[h.viewport.breite] ?? ['pl'] : schnell, false);
+  if (h.viewport.breite === 1280) await rollenfrageB3(seite, h);
+}
+
+/**
+ * B3 „mandat“ (P11.3 R2): die Rollenfrage ist ohne Vorlage sofort sichtbar, per Tastatur beantwortbar
+ * und zeigt danach Rückmeldung und `aria-pressed`.
+ * @param {import('playwright').Page} seite
+ * @param {import('../../werkzeuge/oberflaeche.mjs').Helfer} h
+ */
+async function rollenfrageB3(seite, h) {
+  await seite.evaluate(([k, v]) => { localStorage.setItem(k, v); }, [SPEICHER_SCHLUESSEL, standVor('bauherr', 'B3')]);
+  await seite.reload({ waitUntil: 'load' });
+  await seite.evaluate(() => { location.hash = '#story/B3'; });
+  await h.warte(600);
+  // der Sprung per Adresse beginnt die Station vorn: bis zum Mandats-Schritt weiter
+  for (let i = 0; i < 12 && await seite.locator('[data-pruef^="mandat-option-"]').filter({ visible: true }).count() === 0; i++) {
+    await h.klick('[data-pruef="weiter"]');
+    await h.warte(250);
+  }
+  await h.warte(500);
+  const knoepfe = seite.locator('[data-pruef^="reife-"]').filter({ visible: true });
+  if (await knoepfe.count() < 2) { h.befund(`B3 mandat (bauherr): ${await knoepfe.count()} sichtbare Antwortknöpfe der Rollenfrage (${await seite.locator('[data-pruef^="reife-"]').count()} im DOM)`); await seite.evaluate(() => localStorage.clear()); return; }
+  await knoepfe.first().focus();
+  await h.taste('Enter');
+  await h.warte(300);
+  if ((await knoepfe.first().getAttribute('aria-pressed')) !== 'true') h.befund('B3 mandat: Antwort per Enter nicht als gewählt markiert');
+  if (await seite.locator('[data-pruef="rueckmeldung"] .rueckmeldung').filter({ visible: true }).count() === 0) h.befund('B3 mandat: Rückmeldung fehlt nach der Antwort');
+  await seite.evaluate(() => localStorage.clear());
 }
 
 /**

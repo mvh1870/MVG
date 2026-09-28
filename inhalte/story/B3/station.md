@@ -20,7 +20,7 @@ weiter:
 ---
 
 ::: express
-Im Januar bekam die Kämmerei Version 1; Zielsystem und Mandatsleiter standen. Im März wurden Mensa-Zusage und Lieferzeit zu `AEN-012` und `FRW-002`, Bezug Förderfrist.
+Im Januar bekam die Kämmerei Version 1; die Mandatsleiter stand, das Zielsystem war angelegt. Im März wurden Mensa-Zusage und Lieferzeit zu `AEN-012` und `FRW-002`, Bezug Förderfrist.
 :::
 
 ::: schritt signal

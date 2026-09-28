@@ -438,7 +438,7 @@ export const W = {
   // Regie
   regie: {
     titel: 'Regie',
-    tafel: 'Rollen',
+    tafel: 'Leinwand rollen',
     tafelHoch: 'Tafel bzw. Lernseite auf der Leinwand hochrollen',
     tafelRunter: 'Tafel bzw. Lernseite auf der Leinwand runterrollen',
     tafelHinweis: '↑ ↓ oder Pfeiltasten: Tafel der Story bzw. Lernseite, wenn sie länger ist als die Leinwand',

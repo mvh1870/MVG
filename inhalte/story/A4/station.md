@@ -87,7 +87,7 @@ kurz: Lagebild
 knopf: Jetzt entscheiden
 ---
 ::: bekannt
-- Seit Juni: Die Baugenehmigung trägt Brandschutzauflagen zum Holzbau, grob 0,4 Mio. €; Deckung offen.
+- Seit Juni: Die Baugenehmigung trägt Brandschutzauflagen zum Holzbau, grob 0,4 Mio. €; eine Deckung ist nicht festgelegt.
 - Seit Mai zwei Kostenprognosen, keine als geltend dokumentiert.
 - Die Schulseite plant mit der größeren Mensa, ohne Beschluss.
 :::
@@ -102,8 +102,8 @@ knopf: Jetzt entscheiden
 ::: zeitsprung info
 ---
 knopf: Weitere Informationen anfordern
-kosten: "Kostet Zeit: eine Woche"
-dauer: Eine Woche später
+kosten: "Kostet Zeit: vier Tage – bis zum Lenkungskreis"
+dauer: Vier Tage später
 status:
   kostenunsicherheit: +1 (Auflagen nur in einer Prognose)
 loest:

@@ -1907,6 +1907,18 @@ export async function kompiliere(optionen = {}) {
  * einem alten Bild fest. Rückgabe: Verzeichnis für inhalte.json und die Bilder als data:-URL (abbildungen.json).
  * @param {Kompilierer} c @param {any} quelle @param {string} wurzel @param {Record<string, any>} theorie @param {boolean} pruefe
  */
+/**
+ * Zeilenumbrüche einer Überdeckung für die Bildunterschrift: „Änderungs-⏎steuerung“ → „Änderungssteuerung“
+ * (Trennstrich vor Kleinbuchstabe fällt weg), „MVG-⏎Neuinitialisierung“ → „MVG-Neuinitialisierung“, sonst Leerzeichen.
+ * @param {string} text
+ */
+export function einzeilig(text) {
+  return text
+    .replace(/-\s*\n\s*(?=\p{Ll})/gu, '')
+    .replace(/-\s*\n\s*/gu, '-')
+    .replace(/\s*\n\s*/gu, ' ');
+}
+
 function baueAbbildungen(c, quelle, wurzel, theorie, pruefe) {
   /** @type {any[]} */
   const liste = quelle?.abbildungen ?? [];
@@ -1955,7 +1967,7 @@ function baueAbbildungen(c, quelle, wurzel, theorie, pruefe) {
         alt: String(e.roh.alt).trim(),
         breite: st.breite,
         hoehe: st.hoehe,
-        angeglichen: (e.roh.angeglichen ?? []).map((/** @type {any} */ u) => ({ text: String(u.text).replace(/\s*\n\s*/gu, ' '), beleg: u.beleg })),
+        angeglichen: (e.roh.angeglichen ?? []).map((/** @type {any} */ u) => ({ text: einzeilig(String(u.text)), beleg: u.beleg })),
         abweichungen: (e.roh.abweichungen ?? []).map((/** @type {any} */ x) => ({ html: c.inline(String(x.text), ort), belege: String(x.beleg).split(/\s+/u) })),
       },
     };

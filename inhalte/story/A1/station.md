@@ -99,7 +99,7 @@ wert: Stand Kostenberechnung
 
 ::: unbekannt
 - Ob die Zahl aus dem Ratsbeschluss noch gilt {#stadtrat}
-- Ob Baupreissteigerungen eingepreist sind {#preise}
+- Ob irgendeine der Zahlen eine Preissteigerung enthält {#preise}
 - Welches Ziel vorgeht {#zielprioritaet}
 - Wer entscheidet, freigibt, eskaliert {#zustaendigkeit}
 :::
@@ -107,21 +107,21 @@ wert: Stand Kostenberechnung
 ::: zeitsprung info
 ---
 knopf: Erst alle Beteiligten hören
-kosten: "Kostet Zeit: eine Woche"
-dauer: Eine Woche später
+kosten: "Kostet Zeit: drei Tage"
+dauer: Drei Tage später
 status:
   offene-risiken: +1 (Preissteigerung nicht eingepreist)
 loest:
-  preise: nicht eingepreist – die Zahlen stehen auf dem Stand der Kostenberechnung
+  preise: nein – alle Zahlen stehen auf dem Stand der Kostenberechnung
 bleibt:
   stadtrat: drei Zahlen, keine belegt
   zielprioritaet: bleibt offen
   zustaendigkeit: bleibt ungeklärt
 ---
-Offene Risiken steigen um eins. Die Frist der Kämmerei ist verstrichen.
+Offene Risiken steigen um eins. Bis zur Frist der Kämmerei bleibt ein Tag.
 
 ### Neu bekannt
-Die Projektsteuerung schickt ihren 40-Seiten-Bericht, die Generalplanung verweist auf die Kostenberechnung aus LPH 3, das Controlling hat eine eigene Zahl. Eine Baupreissteigerung ist nirgends eingepreist. Die Kämmerei rechnet mit der Projektbasis, Vermerk „vorläufig“.
+Jetzt liegen drei Stände nebeneinander: der 40-Seiten-Statusbericht, die Kostenberechnung aus LPH 3 und die eigene Zahl des Controllings. Eine Baupreissteigerung ist in keinem eingepreist.
 :::
 :::
 
@@ -161,7 +161,7 @@ Annahmen kippen schnell (Kap. 2.1), ESG und LCC gehören früh ins Zielsystem (K
 ---
 titel: Warum relevant
 ---
-In Monat 1 ist noch nichts passiert – außer einer einfachen Frage, die niemand beantworten kann. Die Kämmerei fragt nach einer Preisannahme. Volatile Märkte treffen Bauprojekte über Preisannahmen und Lieferzeiten; im Zeitraum von Ausschreibung und Vergabe kippen Annahmen schnell (Kap. 2.1). Werden [[ESG]] und [[LCC]] nicht früh in Zielsystem und Abwägungsregeln integriert, werden Zielkonflikte erst sichtbar, wenn die Planung weit fortgeschritten ist (Kap. 2.2). Und wenn eine Person geht und ihr Wissen nicht in Artefakten steht, liegt der Engpass in der fehlenden Wiederholbarkeit von Entscheidungen (Kap. 2.3).
+In Monat 1 ist noch nichts passiert – außer einer einfachen Frage, auf die es keine gemeinsame Antwort gibt. Die Kämmerei fragt nach einer Preisannahme. Volatile Märkte treffen Bauprojekte über Preisannahmen und Lieferzeiten; im Zeitraum von Ausschreibung und Vergabe kippen Annahmen schnell (Kap. 2.1). Werden [[ESG]] und [[LCC]] nicht früh in Zielsystem und Abwägungsregeln integriert, werden Zielkonflikte erst sichtbar, wenn die Planung weit fortgeschritten ist (Kap. 2.2). Und wenn eine Person geht und ihr Wissen nicht in Artefakten steht, liegt der Engpass in der fehlenden Wiederholbarkeit von Entscheidungen (Kap. 2.3).
 :::
 
 ::: ebene 3
@@ -170,7 +170,7 @@ titel: Vertiefung
 ---
 | Kapitel | Treiber laut MVG | In A1 sichtbar |
 |---|---|---|
-| 2.1 Volatile Märkte | Preisannahmen, Lieferzeiten, Komponenten mit langer Lieferzeit | Die Kämmerei fragt, ob Baupreissteigerungen eingepreist sind; niemand weiß es |
+| 2.1 Volatile Märkte | Preisannahmen, Lieferzeiten, Komponenten mit langer Lieferzeit | Die Kämmerei fragt, ob Baupreissteigerungen eingepreist sind; eine gemeinsame Antwort gibt es nicht |
 | 2.2 ESG, LCC und Nachweislogik | höhere Anforderungen an Zieldefinition, Variantenvergleich und Nachweisführung | Kosten, Schuljahresbeginn, Holzbau und Betriebskosten ohne Rangfolge |
 | 2.3 Wissensverlust und Schlüsselrollen | Abhängigkeit von wenigen erfahrenen Personen; Wissen nicht in Artefakte und Routinen übersetzt | bisherige Projektleiterin weg, Übergabe „folgt“; die Kostendatei versteht nur Holger Stein |
 
@@ -207,7 +207,7 @@ Es gibt eine Liste der Beteiligten, aber wer wem was vorlegt und wer was freigib
 
 ::: vertiefung risiko
 ---
-titel: Eine Preisannahme, die niemand kennt
+titel: Eine Preisannahme, die nirgends steht
 ---
 Ob Baupreissteigerungen eingepreist sind, fragt nicht die Planung, sondern die Kämmerei. Die Vergabe der Holzbauelemente steht noch bevor. Kap. 2.1 beschreibt die Lage: [[zitat:k2.1-p1|Dort kippen Annahmen schnell, während Entscheidungsprozesse oft noch auf stabilere Umfelder ausgelegt sind.]]
 :::

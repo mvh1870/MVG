@@ -227,7 +227,7 @@ wert: Stand Kostenberechnung · gilt
 ::: bekannt
 - Projektbasis 58,4 Mio. € brutto, vom Stadtrat beschlossen; darin 2,9 Mio. € Risikoreserve, deren Einsatz nur der Bauherr freigibt.
 - Version 1: Mittelabfluss je Jahr, Preissteigerung als offene Annahme.
-- Die Zielpriorität ist noch offen.
+- Die Zielpriorität legt der Bauherr noch fest.
 :::
 
 ::: unbekannt

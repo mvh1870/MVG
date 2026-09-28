@@ -53,7 +53,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Bis einschließlich 100 TEUR gibt die Bauherren-PL frei, darüber bis einschließlich 5 Mio. € das Änderungsgremium unter Ihrem Vorsitz. Der Zielkonflikt steht als offene Entscheidung im Register, mit Frist.
+Bis einschließlich 100 TEUR gibt die Bauherren-PL frei, darüber bis einschließlich 5 Mio. € entscheidet das Änderungsgremium unter Ihrem Vorsitz. Der Zielkonflikt steht als offene Entscheidung im Register, mit Frist.
 
 ### Was fehlt
 Die Festlegung der Zielpriorität – sie bleibt beim Bauherrn.

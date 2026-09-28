@@ -121,7 +121,7 @@ bleibt:
 Terminrisiko steigt.
 
 ### Neu bekannt
-Beschlossen ist die Mensa nirgends; Sabine Roth und die Schulseite planen trotzdem mit ihr. Der Lenkungskreis am 17. März bespricht beides ohne Vorlage; die Förderfrist steht in keinem Terminplan.
+Beschlossen ist die Mensa nirgends; Sabine Roth und die Schulseite planen trotzdem mit ihr. Der Lenkungskreis am 17. März ist vorbei; eine Vorlage zu Mensa und Förderfrist gab es nicht. Die Förderfrist steht in keinem Terminplan.
 :::
 :::
 

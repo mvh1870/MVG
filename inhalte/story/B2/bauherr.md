@@ -6,7 +6,7 @@ rueckbezug-auf: A2
 ---
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Zusage bestätigen‘ gewählt. In Welt B wird die Mensa nicht am Telefon zugesagt: `AEN-012` ist beantragt.
+In Welt A haben Sie ‚Zusage bestätigen‘ gewählt. In Welt B wird die Mensa nicht auf Zuruf zugesagt: `AEN-012` ist beantragt.
 :::
 
 ::: rueckbezug B

@@ -21,7 +21,7 @@ weiter: wendepunkt
 titel: Montag, 07:45 Uhr. Monat 11.
 kurz: Einstieg
 ---
-Montag, 9. November. Die Freigabe LPH 5 steht an; die Annahmen der Kostenprognose kennt nur Holger Stein, und er fällt für Wochen aus.
+Montag, 9. November. Die Freigabe LPH 5 steht an; die Annahmen der Kostenprognose kennt vollständig nur Holger Stein, und er fällt für Wochen aus.
 
 ::: mail
 ---
@@ -63,7 +63,7 @@ Wer vertritt Herrn Stein?
 ---
 farbe: lila
 ---
-Freigabe LPH 5 – wer gibt frei? Worauf?
+Freigabe LPH 5 – Vorlage an wen? Worauf?
 :::
 
 ::: notiz
@@ -90,7 +90,7 @@ kurz: Lagebild
 knopf: Jetzt entscheiden
 ---
 ::: bekannt
-- „Prognose_Nov_v5“ steht neben der CTC; Lieferzeit und Förderfrist sind seit März offen.
+- „Prognose_Nov_v5“ steht neben der CTC; über Lieferzeit und Förderfrist ist seit März nicht entschieden.
 :::
 
 ::: unbekannt
@@ -107,9 +107,8 @@ kosten: "Kostet Zeit: zwei der fünf Tage bis zur Frist"
 dauer: Zwei Tage später
 status:
   offene-risiken: +1 (Bezüge auf ältere Versionen)
-loest:
-  annahmen: nur zum Teil – Struktur verstanden, Annahmen nicht
 bleibt:
+  annahmen: nur die Struktur ist verstanden – die Annahmen bleiben offen
   kostenzahl: bleibt offen
   freigabe: bleibt ungeklärt
   vertretung: bleibt ungeklärt
@@ -171,7 +170,7 @@ Vier Symptome aus Kap. 2.5 – und wo sie an dieser Station zu sehen sind:
 | Symptom | Typisches Muster | Konsequenz für den Bauherrn | In A6 sichtbar |
 |---|---|---|---|
 | Wissensabhängigkeit | Kritisches Wissen liegt bei wenigen Personen und ist nicht in Routinen übersetzt. | Organisation wird verletzlich, sobald Rollen wechseln oder ausfallen. | Holger Stein fällt aus; „Prognose_Nov_v5“ kann niemand vollständig erklären |
-| Rollen ohne Mandat | RACI (Rollen- und Zuständigkeitsmatrix) oder Organigramm existieren, aber Freigabeschwellen, Stellvertretungen und Eskalationswege fehlen. | Entscheidungen werden informell getroffen oder zu spät eskaliert. | Keine Stellvertretung für Holger Stein; offen, wer die Freigabe erteilt |
+| Rollen ohne Mandat | RACI (Rollen- und Zuständigkeitsmatrix) oder Organigramm existieren, aber Freigabeschwellen, Stellvertretungen und Eskalationswege fehlen. | Entscheidungen werden informell getroffen oder zu spät eskaliert. | Keine Stellvertretung für Holger Stein; offen, wem die Freigabe vorgelegt wird und worauf |
 | Parallele Datenstände | Kosten, Termin, Projektumfang, Risiken und Annahmen werden in unterschiedlichen Fassungen geführt. | Entscheidungen beruhen auf widersprüchlichen Grundlagen. | Fünf Versionen der Prognose, daneben die CTC des Controllings |
 | Eskalation ohne Entscheidung | Themen werden nach oben gegeben, aber ohne klare Entscheidungsoptionen, Empfehlung oder Konsequenzen. | Eskalation erzeugt Verzögerung statt Führung. | Die Anfrage des Stadtrats erreicht ein Projekt, in dem seit Mai nichts auf benanntem Stand entschieden ist |
 :::
@@ -197,7 +196,7 @@ Holger Steins letzter Stand heißt „Prognose_Nov_v5“, daneben rechnet das Co
 ---
 titel: Keine Stellvertretung benannt
 ---
-Holger Stein fällt für Wochen aus, eine Stellvertretung ist nicht benannt; offen ist auch, wer die Freigabe zum Abschluss von LPH 5 erteilt. Den Baustein „Rollen und Mandate“ beschreibt Kap. 5.2 so: [[zitat:k5.2-t1|Übersetzt Rollen in Befugnisse, Schwellen, Stellvertretungen, Freigaben und Eskalationswege.]]
+Holger Stein fällt für Wochen aus, eine Stellvertretung ist nicht benannt; offen ist auch, wem die Freigabe zum Abschluss von LPH 5 vorgelegt wird und auf welcher Grundlage. Den Baustein „Rollen und Mandate“ beschreibt Kap. 5.2 so: [[zitat:k5.2-t1|Übersetzt Rollen in Befugnisse, Schwellen, Stellvertretungen, Freigaben und Eskalationswege.]]
 :::
 
 ::: vertiefung risiko

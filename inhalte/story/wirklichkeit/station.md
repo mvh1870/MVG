@@ -263,14 +263,14 @@ Eine wirksame MVG-Neuinitialisierung liefert einen geordneten Führungszustand.
 ---
 titel: Welcher Stand gilt ab jetzt?
 ---
-Zwei Zahlen liegen nebeneinander, Holger Stein ist zurück und fragt: „Für welche Frage?“ Das ist keine Ausrede, sondern der Kern: Ein Datenstand gilt für eine Entscheidung. Unter den Ergebnissen einer MVG-Neuinitialisierung steht deshalb die Datenstandsbereinigung – sie [[zitat:k11.3-t1|Definiert, welcher Stand für die nächsten Entscheidungen gilt.]]
+Zwei Zahlen liegen nebeneinander, Holger Stein ist zurück und fragt: „Für welche Frage?“ Das ist keine Ausrede, sondern der Kern: Ein Datenstand gilt für eine Entscheidung. Unter den Ergebnissen einer MVG-Neuinitialisierung steht deshalb die Datenstandsbereinigung. Ihr Zweck laut Kap. 11.3: [[zitat:k11.3-t1|Definiert, welcher Stand für die nächsten Entscheidungen gilt.]]
 :::
 
 ::: vertiefung organisation
 ---
 titel: Wer ist die verantwortliche Rolle?
 ---
-Der Bauherr erwartet einen Vorschlag, die Geschäftsführung hat viele Projekte, die Bauherren-PL bereitet vor. Wer auf Bauherrenseite verbindlich für die Neuordnung steht, ist nicht benannt. Kap. 8.3 setzt genau dort an; zuerst erforderlich ist [[zitat:k8.3-l1|eine verbindliche verantwortliche Rolle auf Bauherrenseite]].
+Entscheiden muss der Bauherr, die Geschäftsführung hat viele Projekte, die Bauherren-PL bereitet vor. Wer auf Bauherrenseite verbindlich für die Neuordnung steht, ist nicht benannt. Kap. 8.3 setzt genau dort an; zuerst erforderlich ist [[zitat:k8.3-l1|eine verbindliche verantwortliche Rolle auf Bauherrenseite]].
 :::
 
 ::: vertiefung risiko

@@ -7,6 +7,7 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { eingabeSumme, erzeugeAbbildungen, ladeKontext, leseBeschreibungen, pruefeBeschreibung } from '../werkzeuge/abbildungen.mjs';
+import { einzeilig } from '../werkzeuge/inhalte.mjs';
 
 const WURZEL = join(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -40,6 +41,13 @@ test('Prüfsumme der Eingabe: ändert sich mit Quelle und Überdeckung, nicht mi
   assert.notEqual(eingabeSumme(GUT, 'q2'), a);
   assert.notEqual(eingabeSumme({ ...GUT, angeglichen: [{ ...GUT.angeglichen[0], text: 'LPH 0–3' }] }, 'q1'), a);
   assert.notEqual(eingabeSumme({ ...GUT, angeglichen: [{ ...GUT.angeglichen[0], x: 2 }] }, 'q1'), a);
+});
+
+test('Bildunterschrift: zweizeilige Überdeckungen werden zu einem Begriff (Prüfagent abb-2)', () => {
+  assert.equal(einzeilig('Risiko- und\nÄnderungs-\nsteuerung'), 'Risiko- und Änderungssteuerung');
+  assert.equal(einzeilig('Auswirkungs-\nbewertung'), 'Auswirkungsbewertung');
+  assert.equal(einzeilig('MVG-\nNeuinitialisierung'), 'MVG-Neuinitialisierung');
+  assert.equal(einzeilig('Komponenten mit\nlanger Lieferzeit'), 'Komponenten mit langer Lieferzeit');
 });
 
 test('Repo: jede Inhaltsabbildung hat eine gültige Beschreibung, und jedes Bild ist aktuell (stand.json)', async () => {

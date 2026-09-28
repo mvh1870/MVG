@@ -96,8 +96,8 @@ knopf: Jetzt entscheiden
 
 ::: unbekannt
 - Was von der Reserve bleibt {#rest}
-- Wer die Posten zugeordnet hat {#veranlasst}
-- Ob der angekündigte Mensa-Nachtrag in einer Prognose steht {#mensa}
+- Worauf die Posten zurückgehen {#veranlasst}
+- Worauf sich der angekündigte Mensa-Nachtrag stützt {#mensa}
 - Wer über die Reserve entscheidet {#zustaendigkeit}
 :::
 
@@ -110,7 +110,7 @@ status:
   terminrisiko: +1 (Lenkungskreis ohne Vorlage verstrichen)
 loest:
   veranlasst: verteilt auf Jour fixe, Mails und eine Zusage – eine Freigabe ist nicht darunter
-  mensa: angekündigt, in keiner Prognose
+  mensa: auf die Zusage im Flur – beauftragt ist nichts
 bleibt:
   rest: zwei Rechnungen, zwei Antworten
   zustaendigkeit: bleibt ungeklärt
@@ -118,7 +118,7 @@ bleibt:
 Terminrisiko steigt.
 
 ### Neu bekannt
-Der Mensa-Nachtrag ist angekündigt und steht in keiner Prognose. Die Posten der Reserve gehen auf Jour-fixe-Punkte, Mails und die Mensa-Zusage zurück; eine Freigabe ist nicht darunter. Der Lenkungskreis am 15. September ist vorbei, ohne die Reserve auf der Tagesordnung.
+Der Mensa-Nachtrag ist angekündigt und stützt sich auf die Zusage im Flur; beauftragt ist nichts. Die Posten der Reserve gehen auf Jour-fixe-Punkte, Mails und die Mensa-Zusage zurück; eine Freigabe ist nicht darunter. Der Lenkungskreis am 15. September ist vorbei, ohne die Reserve auf der Tagesordnung.
 :::
 :::
 
@@ -194,7 +194,7 @@ Die Risikoreserve von 2,9 Mio. € reicht schon für die Abweichung aus dem Mai 
 ---
 titel: Gerechnet, nicht entschieden
 ---
-Das Controlling hat die Posten gegen die Reserve gerechnet; wer die Posten der Reserve zugeordnet hat, ist offen. Schwellen und Entscheidungsrechte sind in Welt A nicht festgelegt. Die Tabelle in Kap. 3.2 führt als nicht delegierbar: [[zitat:k3.2-t1|Festlegung von Mandaten, Freigabeschwellen, Eskalationswegen und verbindlichen Entscheidungsrechten.]]
+Das Controlling hat die Posten gegen die Reserve gerechnet; wer die Posten veranlasst hat, ist offen. Schwellen und Entscheidungsrechte sind in Welt A nicht festgelegt. Die Tabelle in Kap. 3.2 führt als nicht delegierbar: [[zitat:k3.2-t1|Festlegung von Mandaten, Freigabeschwellen, Eskalationswegen und verbindlichen Entscheidungsrechten.]]
 :::
 
 ::: vertiefung risiko
@@ -236,7 +236,7 @@ figur: sie
 ---
 figur: brenner
 ---
-„Brandschutz und TGA stehen in unserer Prognose, die Mensa kommt mit dem Nachtrag. Ob gegen die Reserve oder daneben – das hat mir niemand vorgegeben.“
+„Brandschutz und TGA stehen in unserer Prognose, für die Mensa kommt jetzt der Nachtrag. Ob gegen die Reserve oder daneben – das hat mir niemand vorgegeben.“
 :::
 
 ::: standpunkt planung

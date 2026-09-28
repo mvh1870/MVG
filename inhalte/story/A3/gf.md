@@ -1,7 +1,7 @@
 ---
 station: A3
 rolle: gf
-frage: Zwei Zahlen, Lenkungskreis in acht Tagen. Was tun Sie?
+frage: Zwei Zahlen, Lenkungskreis am 19. Mai. Was tun Sie?
 ---
 
 ::: option A
@@ -32,7 +32,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Nach acht Tagen kommt eine Präsentation mit beiden Zahlen, ohne Optionen und Empfehlung. Der Lenkungskreis vertagt auf Juni; der Bauausschuss bekommt einen Sachstand.
+Zum Lenkungskreis kommt eine Präsentation mit beiden Zahlen, ohne Optionen und Empfehlung. Der Lenkungskreis vertagt auf Juni; der Bauausschuss bekommt einen Sachstand.
 
 ### Was fehlt
 Ein Standard für Entscheidungsvorlagen: Frage, Optionen, Empfehlung.

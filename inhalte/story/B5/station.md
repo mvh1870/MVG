@@ -258,7 +258,7 @@ wert: eingetretenes Problem · Maßnahme · Entscheidungsbedarf
 - `PRB-004`: Die Projektsteuerung prüft Berechtigung und Höhe; eine Frist fehlt.
 - Risikoreserve 2,9 Mio. €, noch nicht eingesetzt; ihren Einsatz gibt nur der Bauherr frei.
 - Verbindlich: „Kostenprognose 2026-05 · Version 3“; Version 4 ist in Arbeit.
-- Die Deckung von `AEN-031` ist offen.
+- Für `AEN-031` ist noch keine Deckung festgelegt.
 :::
 
 ::: unbekannt

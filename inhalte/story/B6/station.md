@@ -119,7 +119,7 @@ b: vorlage
 fluss: freigabe
 ---
 ### Welt A
-Freigabe LPH 5 – wer gibt frei? Worauf?
+Freigabe LPH 5 – Vorlage an wen? Worauf?
 
 ### Welt B
 Vorlage mit Kernfrage · der Bauherr erteilt

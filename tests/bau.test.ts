@@ -175,8 +175,8 @@ describe('bau: Einzeldatei aus der Fixtur', () => {
     );
   });
 
-  test('Vorstufen: erst Inhalte (pruefe=false), dann Schriften; Warnungen durchgereicht, Fehler brechen ab', async (t) => {
-    const probe: { aufrufe?: string[]; fehler?: string[]; warnungen?: string[] } = { warnungen: ['nur ein Hinweis'] };
+  test('Vorstufen: erst Inhalte (pruefe=false), dann Hilfe, dann Schriften; Warnungen durchgereicht, Fehler brechen ab', async (t) => {
+    const probe: { aufrufe?: string[]; fehler?: string[]; warnungen?: string[]; hilfeFehler?: string[] } = { warnungen: ['nur ein Hinweis'] };
     const global = globalThis as Record<string, unknown>;
     global['mvgBauProbe'] = probe;
     t.after(() => {
@@ -189,8 +189,12 @@ describe('bau: Einzeldatei aus der Fixtur', () => {
       mitVorstufen: true,
     };
     const erg = await baue(optionen(path.join(ablage, 'vorstufen.html'), vorstufen));
-    assert.deepEqual(probe.aufrufe, ['inhalte pruefe=false', 'schriften ziel=undefined']);
+    assert.deepEqual(probe.aufrufe, ['inhalte pruefe=false', 'hilfe wurzel=gesetzt', 'schriften ziel=undefined']);
     assert.deepEqual(erg.warnungen, ['inhalte: nur ein Hinweis']);
+
+    probe.hilfeFehler = ['G3 statt LPH 3'];
+    await assert.rejects(baue(optionen(path.join(ablage, 'vorstufen-hilfe.html'), vorstufen)), /hilfe meldet 1 Fehler:\s+G3 statt LPH 3/);
+    delete probe.hilfeFehler;
 
     probe.fehler = ['inhalte/a.md: Zitat weicht ab'];
     await assert.rejects(

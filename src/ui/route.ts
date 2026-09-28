@@ -3,7 +3,7 @@
  *
  *   #start · #story · #story/A3 (Permalink auf eine Station) · #theorie · #theorie/k1 (auch k01)
  *   · #theorie/k2/2.4 (Abschnitt) · #theorie/k4/k4.2-p3 (Absatz, P10.1) · #theorie/impressum
- *   · #explore · #regie · #leinwand
+ *   · #explore · #regie · #leinwand · #hilfe · #hilfe/<seite> (P13, O-31: Kapitel oder Unterkapitel der Hilfe)
  *
  * Alles andere – auch ein leerer Anker oder ein Kapitel außerhalb 1–13 – führt zur Startseite
  * (ruhiger Einstieg, O-21). Groß-/Kleinschreibung zählt nicht; die Station kommt klein zurück und
@@ -15,6 +15,7 @@ export type Route =
   | { flaeche: 'story'; station: string | null }
   | { flaeche: 'theorie'; kapitel: number | null; abschnitt: string | null }
   | { flaeche: 'explore' }
+  | { flaeche: 'hilfe'; seite: string | null }
   | { flaeche: 'regie' }
   | { flaeche: 'leinwand' };
 
@@ -43,6 +44,10 @@ export function leseRoute(hash: string): Route {
       if (drittes !== undefined) return START;
       if (zweites === undefined) return { flaeche: 'story', station: null };
       return STATION.test(zweites) ? { flaeche: 'story', station: zweites } : START;
+    case 'hilfe':
+      if (drittes !== undefined) return START;
+      if (zweites === undefined) return { flaeche: 'hilfe', seite: null };
+      return STATION.test(zweites) ? { flaeche: 'hilfe', seite: zweites } : START;
     case 'explore':
     case 'regie':
     case 'leinwand':
@@ -70,6 +75,8 @@ export function routeHash(r: Route): string {
   switch (r.flaeche) {
     case 'story':
       return r.station === null ? '#story' : `#story/${r.station}`;
+    case 'hilfe':
+      return r.seite === null ? '#hilfe' : `#hilfe/${r.seite}`;
     case 'theorie':
       if (r.kapitel === null) return r.abschnitt === IMPRESSUM ? `#theorie/${IMPRESSUM}` : '#theorie';
       return r.abschnitt === null ? `#theorie/k${r.kapitel}` : `#theorie/k${r.kapitel}/${r.abschnitt}`;

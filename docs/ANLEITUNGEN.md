@@ -34,6 +34,7 @@ Den Vermerk „fachlich ungeprüft“ zeigen beide Dateien, bis der Owner die Fa
    - **Fassung und Impressum** (Fuß jeder Lernseite): Version, Änderungsstand, Quelle, Abgrenzung (5.5) und Leistungsgrenzen (7.6).
 4. **Explore** wird mit dem Ende der Geschichte freigeschaltet: Szenario-Simulator, Vorher/Nachher-Welten, Governance-Fluss-Sandbox, Zeitmaschine, Grafik-Galerie.
 5. **Dossier**: Im Epilog druckt „Dossier drucken“ Ihren Weg, Ihre Entscheidungen, das Resümee und die zwei Vertiefungskapitel.
+6. **Hilfe** (leiser Link im Fuß der Startseite und oben in Theorie und Explore, `#hilfe`): die Hilfe des MVG Companion in derselben Aufteilung wie in der Anwendung – Vorgehensmodell, Hilfe-Hub, Handbuch, Standards, Registerdokument-Katalog, Rollen-Anleitungen (13 Rollen), Kollaboration, FAQ & Glossar, Kundenanpassung, Datenmanagement, IT-/Datenschutz-Dossier. Die Übersicht hat eine Volltextsuche; jede Seite hat einen eigenen Link (`#hilfe/standards`).
 
 ## 2. Präsentation im Termin (Regie + Leinwand)
 
@@ -123,3 +124,4 @@ Diesen Schnipsel an die Stelle der eigenen Seite kopieren, an der MVG interaktiv
   3. Die maßgebliche Fassung umstellen: den Pfad `quellen/whitepaper/v1.2/whitepaper.json` in `werkzeuge/inhalte.mjs` (STANDARD_WHITEPAPER) und `werkzeuge/whitepaper-lib.mjs` (STANDARD_PFAD) auf v1.3 setzen und den Änderungsstand in `src/ui/impressum.ts` nachtragen.
   4. `npm run pruefe`: Der Inhaltsprüfer meldet jetzt jedes Zitat, das nicht mehr wortgleich ist. Die betroffenen Stellen aus Schritt 1 anpassen.
 - Vorschläge für die Grafiken der V1.3: `docs/KORREKTURLISTE-V1.3.md`.
+- Neue Fassung der Hilfe (MVG Companion, O-31, L-69): den statischen Export der Hilfe nach `quellen/hilfe/` legen, `QUELLE` in `werkzeuge/hilfe.mjs` darauf setzen und `node werkzeuge/hilfe.mjs --pruefe` laufen lassen. Meldet die Prüfung einen Begriff, die Ersetzungsliste `ERSETZUNGEN` ergänzen (nur Fließtext; Kennungen der Anwendung bleiben). Die Aufteilung übernimmt das Werkzeug aus den Kapiteln der Quelle.

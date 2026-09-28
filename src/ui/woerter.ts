@@ -275,6 +275,27 @@ export const W = {
     impressumFussnoten: 'Fußnoten',
     impressumFussnotenText: 'Der Originaltext V1.2 enthält keine Fußnoten. Jede Aussage trägt stattdessen ihre Absatz-ID; „Zitieren“ am Originaltext erzeugt die Angabe.',
   },
+  // Hilfe (P13, O-31): Hilfe des MVG Companion, gleiche Kapitelaufteilung
+  hilfe: {
+    bereich: 'Hilfe',
+    bereichZusatz: '· MVG Companion',
+    link: 'Hilfe',
+    inhalt: 'Inhalt',
+    ueberblick: 'Hilfe',
+    ueberblickText: 'Hilfe und Vorgehensmodell des MVG Companion: Konzepte, Handbuch, Standards, Anleitungen je Rolle, FAQ und Glossar – in derselben Aufteilung wie in der Anwendung.',
+    kicker: (quelle: string) => quelle,
+    stand: (stand: string) => `Stand ${stand}`,
+    kapitelVon: (nr: number) => `Hilfe · Teil ${nr}`,
+    unterseiten: (n: number) => `${n} Anleitungen`,
+    oeffnen: 'Öffnen',
+    suche: 'Hilfe durchsuchen',
+    sucheZahl: (n: number) => n === 1 ? '1 Seite passt' : `${n} Seiten passen`,
+    sucheLeer: 'Keine Hilfeseite passt zur Suche.',
+    zurueck: 'Zurück',
+    weiter: 'Weiter',
+    zurUebersicht: 'Zur Übersicht der Hilfe',
+    hinweis: 'Die Hilfe beschreibt die Anwendung MVG Companion. Begriffe folgen MVG (Leistungsphasen LPH 0–9); Kennungen und Feldnamen stehen wie in der Anwendung.',
+  },
   // Explore (P2.4 Rahmen; die Werkzeuge baut P8)
   explore: {
     bereich: 'Explore',

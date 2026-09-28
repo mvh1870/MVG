@@ -11,6 +11,13 @@ test('die Anker der Flächen', () => {
   assert.deepEqual(leseRoute('#explore'), { flaeche: 'explore' });
   assert.deepEqual(leseRoute('#regie'), { flaeche: 'regie' });
   assert.deepEqual(leseRoute('#leinwand'), { flaeche: 'leinwand' });
+  assert.deepEqual(leseRoute('#hilfe'), { flaeche: 'hilfe', seite: null });
+});
+
+test('Hilfe (P13): Kapitel und Unterkapitel als Seite', () => {
+  assert.deepEqual(leseRoute('#hilfe/handbuch'), { flaeche: 'hilfe', seite: 'handbuch' });
+  assert.deepEqual(leseRoute('#Hilfe/Rollen-Anleitungen-Bauherr-Auftraggeber'), { flaeche: 'hilfe', seite: 'rollen-anleitungen-bauherr-auftraggeber' });
+  for (const hash of ['#hilfe/handbuch/x', '#hilfe/-a', '#hilfe/ä']) assert.deepEqual(leseRoute(hash), START, hash);
 });
 
 test('Permalinks (P2.4): Station und Abschnitt', () => {
@@ -43,7 +50,7 @@ test('Unbekanntes, Leeres und Kaputtes führen zur Startseite', () => {
 });
 
 test('routeHash ist die Umkehrung von leseRoute', () => {
-  for (const hash of ['#start', '#story', '#story/a3', '#theorie', '#theorie/k1', '#theorie/k13', '#theorie/k2/2.4', '#theorie/k4/k4.2-p3', '#theorie/impressum', '#explore', '#regie', '#leinwand']) {
+  for (const hash of ['#start', '#story', '#story/a3', '#theorie', '#theorie/k1', '#theorie/k13', '#theorie/k2/2.4', '#theorie/k4/k4.2-p3', '#theorie/impressum', '#explore', '#regie', '#leinwand', '#hilfe', '#hilfe/faq-glossar']) {
     assert.equal(routeHash(leseRoute(hash)), hash);
   }
   assert.equal(routeHash({ flaeche: 'story', station: 'A3' }), '#story/A3');

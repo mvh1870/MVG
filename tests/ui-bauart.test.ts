@@ -127,6 +127,7 @@ const { erzeugeStory } = await import('../src/ui/flaechen/story.ts');
 const { baueStart } = await import('../src/ui/flaechen/start.ts');
 const theorieModul = await import('../src/ui/flaechen/theorie.ts');
 const { baueTheorie, kapitelListe } = theorieModul;
+const { baueHilfe, hilfeSeiten, HILFE } = await import('../src/ui/flaechen/hilfe.ts');
 const { erzeugeAnzeige } = await import('../src/regie/leinwand.ts');
 const { erzeugeRegie } = await import('../src/regie/regie.ts');
 const { W } = await import('../src/ui/woerter.ts');
@@ -153,6 +154,36 @@ test('Startseite: genau zwei Wege, leiser Fuß mit Version und Vermerk, keine In
   assert.match(weiter.querySelector('[data-pruef="weg-story"]')?.textContent ?? '', /Weiterlesen/);
   const anzeige = baueStart({ startseite: inhalte.startseite, kapitelAnzahl: 13, rollenAnzahl: 6, weiterlesen: false, fassung: 'V1.2', version: VERSION, bedienbar: false });
   assert.equal(anzeige.querySelectorAll('a').length, 0, 'auf der Leinwand keine Verweise');
+});
+
+test('Hilfe (P13, O-31): gleiche Aufteilung wie die Companion-Hilfe, leiser Zugang, Blättern, Vermerk', () => {
+  const s = baueStart({ startseite: inhalte.startseite, kapitelAnzahl: 13, rollenAnzahl: 6, weiterlesen: false, fassung: 'V1.2', version: VERSION, bedienbar: true });
+  assert.equal(s.querySelector('[data-pruef="zur-hilfe"]')?.getAttribute('href'), '#hilfe');
+  assert.deepEqual(HILFE.kapitel.map((k) => k.titel), ['MVG-Vorgehensmodell', 'Hilfe-Hub', 'Handbuch', 'Standards', 'Registerdokument-Katalog', 'Rollen-Anleitungen',
+    'Kollaboration', 'FAQ & Glossar', 'Kundenanpassung', 'Datenmanagement', 'IT-/Datenschutz-Dossier']);
+  const rollen = HILFE.kapitel.find((k) => k.id === 'rollen-anleitungen');
+  assert.equal(rollen?.unter.length, 13);
+  assert.equal(rollen?.unter[0]?.titel, 'Bauherr / Auftraggeber');
+  const uebersicht = baueHilfe({ seite: null, version: VERSION });
+  assert.equal(uebersicht.querySelectorAll('[data-pruef="hilfe-liste"] > li').length, 11);
+  assert.ok(uebersicht.querySelector('[data-pruef="hilfe-suche"]'));
+  assert.equal(uebersicht.querySelector('[data-pruef="ungeprueft"]')?.textContent, 'fachlich ungeprüft');
+  const alle = hilfeSeiten();
+  assert.equal(alle.length, 24);
+  const seite = baueHilfe({ seite: 'rollen-anleitungen-bauherr-auftraggeber', version: VERSION });
+  assert.equal(seite.querySelector('.kapitel-titel')?.textContent, 'Bauherr / Auftraggeber');
+  assert.equal(seite.querySelector('[data-pruef="hilfe-verzeichnis"] [aria-current="page"]')?.getAttribute('href'), '#hilfe/rollen-anleitungen-bauherr-auftraggeber');
+  assert.equal(seite.querySelectorAll('.hilfe-unterliste li').length, 13);
+  assert.equal(seite.querySelector('.kapitel-nav a[rel="prev"]')?.getAttribute('href'), '#hilfe/rollen-anleitungen');
+  // Inhalt ohne Bedienteile der Anwendung, Begriffe nach MVG
+  const text = alle.map((e) => e.seite.html).join(' ');
+  assert.doesNotMatch(text, /<(?:button|input|select|textarea|script|form)\b|\son[a-z]+=|white\s*paper|Stage-Gate|(?<![-.\w])G[0-9]\b/iu);
+  // Prüfagent Begriffe (P13.3): FAQ vollständig, Kennungen wörtlich, keine Bedienreste, Rollenkarten verlinkt
+  assert.match(text, /Was ist der ROI von MVG\?/u);
+  assert.match(text, /GATE-NETZNORD-G2/u);
+  assert.doesNotMatch(text, /Ansicht öffnen|Schnell starten|Meine Rolle|LPH (\d)[^<(]{0,40}\(LPH \1\)|englisch: Nachweis|Audit-PaketeAudit-Pakete/u);
+  assert.equal(rollen?.html.match(/href="#hilfe\/rollen-anleitungen-/gu)?.length, 13);
+  assert.equal(baueHilfe({ seite: 'gibt-es-nicht', version: VERSION }).querySelector('[data-pruef="hilfe-uebersicht"]') !== null, true);
 });
 
 test('Theorie: 13 Kapitel mit Titeln; Kapitel 1 mit Kernaussage, Karten, Originaltext, Querverweis (Kap. 2: A3, B3)', () => {

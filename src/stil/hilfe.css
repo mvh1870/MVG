@@ -1,0 +1,144 @@
+/* =============================================================================================
+   MVG · Hilfe (P13, O-31): Rahmen der Lernseiten (theorie.css), dazu die Bausteine der
+   übernommenen Companion-Hilfe (Karten, Hinweise, Marken, Tabellen, Aufklapper, Grafiken).
+   Nur Klassen, die werkzeuge/hilfe.mjs stehen lässt; alles unter .hilfe-inhalt. Nur Tokens.
+   ============================================================================================= */
+
+/* Verzeichnis: Unterseiten des aktuellen Teils */
+.hilfe-unterliste { display: flex; flex-direction: column; gap: 2px; margin: 2px 0 var(--a-2) 36px; }
+.hilfe-unterliste a { grid-template-columns: 1fr; padding: 4px var(--a-2); font-size: var(--gr-s); }
+.hilfe-verzeichnis .kapitel-liste a b .symbol { font-size: 18px; }
+.hilfe-zusatz { font-size: var(--gr-s); font-weight: 400; color: var(--tinte-2); }
+.hilfe-hinweis { font-size: var(--gr-s); line-height: 1.5; color: var(--tinte-2); }
+
+/* Die Hilfe ist Nachschlagewerk mit Tabellen und Grafiken: Lesespalte über die ganze Breite des Rahmens */
+.hilfe .lern-inhalt { max-width: none; }
+
+/* Suche */
+.hilfe-suche { margin-bottom: 0; }
+.hilfe-treffer { display: grid; gap: var(--a-2); }
+.hilfe-treffer:empty { display: none; }
+.hilfe-treffer li { padding: var(--a-3) var(--a-4); border-radius: var(--radius-m); background: var(--weiss); box-shadow: var(--schatten-karte); }
+.hilfe-treffer a { font-weight: 600; color: var(--navy); }
+.hilfe-treffer p { margin-top: var(--a-1); font-size: var(--gr-s); line-height: 1.5; color: var(--tinte-2); }
+.hilfe-treffer mark { padding: 0 2px; border-radius: var(--radius-xs); background: var(--gold-soft); color: var(--tinte); }
+.hilfe-kopf-symbol .symbol { width: .8em; height: .8em; }
+
+/* Inhalt: Farben der Companion-Grafiken auf die Marke abgebildet */
+.hilfe-inhalt {
+  --c-text: var(--tinte);
+  --c-text-soft: var(--tinte-2);
+  --c-accent: var(--gold-text);
+  --c-panel: var(--weiss);
+  --c-border-strong: var(--linie-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--a-4);
+  min-width: 0;
+  font: var(--typo-lese);
+  overflow-wrap: anywhere;
+}
+.hilfe-inhalt > div { display: flex; flex-direction: column; gap: var(--a-4); min-width: 0; }
+.hilfe-inhalt :is(div, section, details) > * + * { margin-top: var(--a-3); }
+.hilfe-inhalt h2 { margin-top: var(--a-6); font: 700 var(--gr-3xl)/1.25 var(--schrift-text); color: var(--navy); }
+.hilfe-inhalt h3 { margin-top: var(--a-4); font: 700 var(--gr-2xl)/1.3 var(--schrift-text); color: var(--navy); }
+.hilfe-inhalt h4 { margin-top: var(--a-4); font: 700 var(--gr-s)/1.3 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
+.hilfe-inhalt ul, .hilfe-inhalt ol { padding-left: 1.3em; }
+.hilfe-inhalt ul { list-style: disc; }
+.hilfe-inhalt ol { list-style: decimal; }
+.hilfe-inhalt li + li { margin-top: var(--a-1); }
+.hilfe-inhalt li::marker { color: var(--petrol); }
+.hilfe-inhalt b, .hilfe-inhalt strong { font-weight: 600; }
+.hilfe-inhalt a { color: var(--navy); text-decoration: underline; text-underline-offset: 3px; }
+.hilfe-inhalt code { padding: 1px 5px; border-radius: var(--radius-xs); background: var(--flaeche-2); font: .88em/1.4 var(--schrift-mono); color: var(--tinte); overflow-wrap: anywhere; }
+.hilfe-inhalt blockquote { padding: var(--a-2) var(--a-4); border-left: 3px solid var(--gold-hell); color: var(--tinte-2); }
+.hilfe-inhalt svg { max-width: 100%; height: auto; }
+.hilfe-inhalt svg text { font-family: var(--schrift-label); }
+/* Breite Grafiken: in der Lesespalte ganz, schmal waagerecht rollbar statt Mikroschrift */
+.hilfe-inhalt .h-grafik-wrap { max-width: 100%; overflow-x: auto; }
+.hilfe-inhalt .h-grafik-wrap > svg { display: block; min-width: 860px; }
+.hilfe-inhalt svg text.svg-text { fill: var(--c-text); }
+.hilfe-inhalt svg text:is(.svg-text-soft, .svg-text-muted) { fill: var(--c-text-soft); }
+.hilfe-inhalt svg text.svg-text-light { fill: var(--weiss); }
+
+/* Seitenkopf der Anwendung: Unterzeile als Einstieg */
+.hilfe-inhalt .h-page-header .h-sub, .hilfe-inhalt .h-lead, .hilfe-inhalt .h-lead-text { font-size: var(--gr-xl); line-height: 1.5; color: var(--tinte-2); }
+.hilfe-inhalt :is(.h-hint, .h-meta, .h-small, .h-sub, .h-desc) { font-size: var(--gr-s); line-height: 1.5; color: var(--tinte-2); }
+
+/* Karten */
+.hilfe-inhalt :is(.h-card, .h-feature-card, .h-role-pick-card, .h-help-item) {
+  min-width: 0;
+  padding: var(--a-5);
+  border-radius: var(--radius-l);
+  background: var(--weiss);
+  box-shadow: var(--schatten-karte);
+}
+.hilfe-inhalt .h-feature-card { box-shadow: inset 0 3px 0 var(--petrol), var(--schatten-karte); }
+.hilfe-inhalt .h-role-pick-card { box-shadow: inset 3px 0 0 var(--gold-hell), var(--schatten-karte); }
+.hilfe-inhalt :is(.h-card, .h-feature-card) > h3:first-child, .hilfe-inhalt .h-card-title { margin-top: 0; font: 700 var(--gr-xl)/1.3 var(--schrift-text); color: var(--navy); }
+.hilfe-inhalt :is(.h-feature-grid, .h-grid, .h-cols-2, .h-cols-3) { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: var(--a-4); }
+.hilfe-inhalt :is(.h-feature-grid, .h-grid, .h-cols-2, .h-cols-3) > * + * { margin-top: 0; }
+.hilfe-inhalt .h-section-divider { margin-top: var(--a-6); padding-top: var(--a-4); border-top: 1px solid var(--linie-2); }
+.hilfe-inhalt .h-prose { max-width: 70ch; }
+
+/* Hinweise */
+.hilfe-inhalt .h-notice { padding: var(--a-4) var(--a-5); border-radius: var(--radius-m); background: var(--tuerkis-hauch); box-shadow: inset 3px 0 0 var(--petrol); color: var(--tinte); }
+.hilfe-inhalt .h-notice.h-gold { background: var(--gold-soft); box-shadow: inset 3px 0 0 var(--gold-hell); }
+
+/* Marken: Tags, Plaketten, Pillen, frühere Knöpfe der Anwendung */
+.hilfe-inhalt :is(.h-tag, .h-badge, .h-pill) {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: 2px 4px 2px 0;
+  padding: 2px 10px;
+  border-radius: var(--radius-rund);
+  background: var(--flaeche-2);
+  font: 600 var(--gr-s)/1.4 var(--schrift-text);
+  color: var(--navy);
+  text-transform: none;
+  letter-spacing: 0;
+}
+.hilfe-inhalt :is(.h-tag, .h-badge, .h-pill).h-green { background: var(--tuerkis-soft); color: var(--tuerkis-text); }
+.hilfe-inhalt :is(.h-tag, .h-badge, .h-pill).h-gold { background: var(--gold-soft); color: var(--gold-text); }
+.hilfe-inhalt :is(.h-tag, .h-badge, .h-pill).h-gray { background: var(--flaeche-1); color: var(--tinte-2); }
+.hilfe-inhalt .hilfe-marke { display: inline-flex; align-items: center; gap: 4px; padding: 0 6px; border: 1px solid var(--linie-3); border-radius: var(--radius-s); background: var(--weiss); font: 600 .92em/1.5 var(--schrift-label); color: var(--navy); }
+.hilfe-inhalt .h-num-mark { display: inline-grid; place-items: center; min-width: 24px; height: 24px; margin-right: 6px; border-radius: 50%; background: var(--navy); font: 700 13px/1 var(--schrift-label); color: var(--weiss); }
+.hilfe-inhalt ul.h-checked { list-style: "✓  "; }
+.hilfe-inhalt ul.h-checked > li::marker { color: var(--tuerkis-text); font-weight: 700; }
+.hilfe-inhalt .h-ico { display: inline-flex; vertical-align: -3px; margin-right: 4px; color: var(--petrol); }
+.hilfe-inhalt .h-ico svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Kennzahlen */
+.hilfe-inhalt .h-kpi { display: grid; gap: 2px; padding: var(--a-3) var(--a-4); border-radius: var(--radius-m); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
+.hilfe-inhalt .h-kpi .h-label { font: 600 var(--gr-xs)/1.3 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
+.hilfe-inhalt .h-kpi .h-value { font: 800 var(--gr-3xl)/1.1 var(--schrift-anzeige); color: var(--navy); }
+
+/* Schrittliste */
+.hilfe-inhalt ol.h-step-list { padding-left: 1.6em; }
+.hilfe-inhalt ol.h-step-list > li::marker { font-weight: 700; color: var(--petrol); }
+
+/* Tabellen: schmal waagerecht rollbar */
+.hilfe-inhalt .h-table-wrap { max-width: 100%; overflow-x: auto; border-radius: var(--radius-m); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
+.hilfe-inhalt table { width: 100%; border-collapse: collapse; font-size: var(--gr-s); line-height: 1.45; overflow-wrap: normal; }
+.hilfe-inhalt th { padding: var(--a-2) var(--a-3); background: var(--flaeche-2); font: 700 var(--gr-xs)/1.3 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; text-align: left; color: var(--navy); vertical-align: bottom; }
+.hilfe-inhalt td { padding: var(--a-2) var(--a-3); border-top: 1px solid var(--linie); vertical-align: top; color: var(--tinte); hyphens: auto; overflow-wrap: break-word; }
+.hilfe-inhalt td code { white-space: nowrap; }
+
+/* Aufklapper (FAQ, Details) */
+.hilfe-inhalt details { border-radius: var(--radius-m); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
+.hilfe-inhalt details > summary { display: flex; align-items: center; gap: var(--a-2); min-height: 44px; padding: var(--a-2) var(--a-4); font-weight: 600; color: var(--navy); cursor: pointer; list-style: none; }
+.hilfe-inhalt details > summary::-webkit-details-marker { display: none; }
+/* Bedienzeichen wie das Kapitelverzeichnis: + zu, – offen */
+.hilfe-inhalt details > summary::after { content: "+"; margin-left: auto; padding-left: var(--a-3); font: 800 var(--gr-xl)/1 var(--schrift-anzeige); color: var(--petrol); }
+.hilfe-inhalt details[open] > summary::after { content: "–"; }
+.hilfe-inhalt details > :not(summary) { margin-inline: var(--a-4); }
+.hilfe-inhalt details[open] > :last-child { margin-bottom: var(--a-4); }
+
+@media print {
+  .hilfe .kapitel-verzeichnis, .hilfe .hilfe-suche { display: none; }
+  .hilfe-inhalt details > :not(summary) { display: block; }
+}
+
+/* Fließtext bleibt in Lesebreite, auch wenn die Spalte für Tabellen und Grafiken breiter ist */
+.hilfe-inhalt :is(p, li, dd) { max-width: 78ch; }

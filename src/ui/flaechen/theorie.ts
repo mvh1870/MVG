@@ -57,6 +57,7 @@ function kopfleiste(o: TheorieOptionen): HTMLElement {
   return h('header', { class: 'lern-kopf' },
     bildmarke('marke-logo'),
     h('p', { class: 'lern-bereich' }, `${W.theorie.bereich} `, h('span', null, W.theorie.bereichZusatz)),
+    o.bedienbar ? h('a', { class: 'lern-kopf-link lern-kopf-leise', href: '#hilfe', 'data-pruef': 'zur-hilfe' }, W.hilfe.link) : null,
     verweis(o, '#start', { class: 'lern-kopf-link', 'data-pruef': 'zur-start' }, sym('pfeilLinks'), W.theorie.start));
 }
 

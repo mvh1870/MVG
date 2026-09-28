@@ -131,5 +131,10 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P12.4 · Story aus Bauherrensicht (O-28): Fall-Bibel und Drehbuch auf Bauherrenprobleme umstellen, Stationen A1–A6/B1–B6 neu besetzen, Rollen reagieren auf das Bauherrenproblem; Lesezeit hält O-5
 - [~] P12.5 · Prüf-Agenten P12 (alle Rollen) + Korrekturschleife; Übergabe
 
+### P13 · Hilfe (O-31)
+- [x] P13.1 · Hilfe des MVG Companion übernehmen (`werkzeuge/hilfe.mjs`, L-69): gleiche Aufteilung (11 Teile, 13 Rollen-Anleitungen), Bedienteile der Anwendung entfernt, Begriffe nach MVG, in `inhalte` und `bau` eingebunden — Abnahme: `--pruefe` ohne Funde, deterministisch
+- [x] P13.2 · Fläche „Hilfe“ im Lernseiten-Design: Route `#hilfe/<seite>`, Verzeichnis, Suche, Blättern, Vermerk; leise Zugänge (Start, Theorie, Explore) — Abnahme: Einheitentests, Browser-Szenario `hilfe` (alle 24 Seiten, drei Größen, axe, kein Seitwärtsscrollen)
+- [ ] P13.3 · Prüf-Agenten Hilfe (Begriffe, Stil/Barrierefreiheit) in der Korrekturschleife von P12.5
+
 ## Erledigt
 (noch nichts)

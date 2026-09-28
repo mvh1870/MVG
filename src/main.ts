@@ -26,6 +26,7 @@ import { erzeugeStory, type StoryFlaeche } from './ui/flaechen/story.ts';
 import { baueStart } from './ui/flaechen/start.ts';
 import { baueTheorie, kapitelListe } from './ui/flaechen/theorie.ts';
 import { baueExplore } from './ui/flaechen/explore.ts';
+import { baueHilfe, hilfeTitel } from './ui/flaechen/hilfe.ts';
 import { erzeugeRegie } from './regie/regie.ts';
 import { starteLeinwand } from './regie/leinwand.ts';
 import { W } from './ui/woerter.ts';
@@ -174,6 +175,19 @@ function starteApp(wurzel: HTMLElement): void {
         flaeche = 'explore';
         document.body.dataset['flaeche'] = 'explore';
         document.title = `${W.explore.bereich} ${W.explore.bereichZusatz} · ${TITEL}`;
+        break;
+      }
+      case 'hilfe': {
+        // Hilfe (P13, O-31): eigene Fläche ohne Zustand der Story; eine unbekannte Seite zeigt die Übersicht
+        raeume();
+        const seite = baueHilfe({ seite: r.seite, version: VERSION });
+        ersetze(wurzel, seite);
+        window.scrollTo(0, 0);
+        (seite.querySelector('.kapitel-titel') as HTMLElement | null)?.focus({ preventScroll: true });
+        flaeche = `hilfe-${r.seite ?? ''}`;
+        document.body.dataset['flaeche'] = 'hilfe';
+        const t = hilfeTitel(r.seite);
+        document.title = `${t !== null ? `${t} · ` : ''}${W.hilfe.bereich} · ${TITEL}`;
         break;
       }
       default: {

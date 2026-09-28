@@ -1,0 +1,427 @@
+#!/usr/bin/env node
+/**
+ * Hilfe (P13, O-31): übernimmt die Hilfe des MVG Companion (statischer Export, quellen/hilfe/) mit
+ * derselben Kapitelaufteilung in src/generiert/hilfe.json.
+ *
+ *   node werkzeuge/hilfe.mjs            erzeugen
+ *   node werkzeuge/hilfe.mjs --pruefe   erzeugen und prüfen (verbotene Begriffe, „Whitepaper“); Exitcode 1 bei Funden
+ *
+ * Bereinigt wird, was nur in der Companion-Anwendung wirkt (Knöpfe für Export, Scout, Speicher-Hinweise,
+ * Menüs, Dialoge, Eingabefelder, Ereignis- und Datenattribute); Klassen bleiben nur, wenn src/stil/hilfe.css
+ * sie gestaltet. Begriffe folgen dem maßgeblichen Text (O-14, O-15, O-29): Ersetzungsliste ERSETZUNGEN.
+ * Deterministisch: gleiche Quelle → byte-gleiche Ausgabe.
+ */
+
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { JSDOM } from 'jsdom';
+import { istHauptmodul } from './haupt.mjs';
+import { formatiereFund, pruefeText } from './begriffe.mjs';
+
+const WURZEL = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+export const QUELLE = path.join('quellen', 'hilfe', 'companion-hilfe-v1.34.911.html');
+export const ZIEL = path.join('src', 'generiert', 'hilfe.json');
+
+/** Begriffe nach O-14/O-15/O-29; Reihenfolge: spezifisch vor allgemein. */
+export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
+  // Kennungen der Anwendung (GATE-NETZNORD-G2) bleiben: kein G nach Bindestrich, Punkt oder Wortzeichen
+  [/post-G(\d)\b/gu, 'nach LPH $1'],
+  [/G0–G9 entlang der Leistungsphasen \(LPH 0–8\)/gu, 'entlang der Leistungsphasen LPH 0–9'],
+  [/(?<![-.\w])G(\d):\s*([^(\n<]+?)\s*\(LPH \1\)/gu, 'LPH $1: $2'],
+  [/(?<![-.\w])G(\d)\s*[–-]\s*G(\d)\b/gu, 'LPH $1–$2'],
+  [/\bLeistungsphase G(\d)/gu, 'Leistungsphase $1'],
+  [/(?<![-.\w])G(\d)\b/gu, 'LPH $1'],
+  [/Stage-Gate-Logik/gu, 'Freigabelogik'],
+  [/Stage-Gate/gu, 'Freigabe'],
+  [/Gate Guide/gu, 'Freigabe-Leitfaden'],
+  [/Change-Board-Sitzung/gu, 'Sitzung des Änderungsgremiums'],
+  [/Change-Board/gu, 'Änderungsgremium'],
+  [/Decision Files?/gu, 'Entscheidungsvorlage'],
+  [/Entscheidungsakten?/gu, 'Entscheidungsvorlage'],
+  [/Risk-Closure-Rate/gu, 'Risiko-Abschlussquote'],
+  [/Risk- und EW-Erfassung/gu, 'Risiko- und Frühwarnungserfassung'],
+  [/Risk Management/gu, 'Risikomanagement'],
+  [/\bRisks\b/gu, 'Risiken'],
+  [/\bRisk\b/gu, 'Risiko'],
+  [/Go-Entscheidung/gu, 'Freigabeentscheidung'],
+  [/Go \/ No-Go/gu, 'Freigabe / keine Freigabe'],
+  [/No-Go/gu, 'keine Freigabe'],
+  [/Go ohne Bedingungen/gu, 'Freigabe ohne Auflagen'],
+  [/Go with Conditions/gu, 'Freigabe mit Auflagen'],
+  [/Quality Gate/gu, 'Qualitätsfreigabe'],
+  [/Long-Lead-Komponenten/gu, 'Komponenten mit langer Lieferzeit'],
+  [/Long-Lead/gu, 'Komponenten mit langer Lieferzeit'],
+  [/Operating-Model/gu, 'Führungsmodell'],
+  [/Data & Evidence Prompt/gu, 'Daten- und Nachweis-Prompt'],
+  [/Evidence-Belege/gu, 'Nachweis-Belege'],
+  [/\s*\(englisch: Evidence\)/gu, ''],
+  [/\bEvidence\b/gu, 'Nachweis'],
+  [/Nachweise & Links \(evidence\)/gu, 'Nachweise & Links'],
+  [/Minimal Viable Governance/gu, 'Minimum Viable Governance'],
+  [/Go \/ No-Go \/ Go with Conditions/gu, 'Freigabe / keine Freigabe / Freigabe mit Auflagen'],
+  [/Stop\/Go-Steuerung \(Go \/ Hold \/ Stop \/ Repriorisieren\)/gu, 'Fortführungssteuerung (Fortführen / Halten / Stoppen / Repriorisieren)'],
+  [/Stop[/-]Go/gu, 'Fortführen/Stoppen'],
+  [/Governance-Reset/gu, 'MVG-Neuinitialisierung'],
+  [/vor \/ nach Reset/gu, 'vor / nach der Neuinitialisierung'],
+  [/Reset stellt/gu, 'Zurücksetzen stellt'],
+  [/Reset-Bedarf/gu, 'Neuinitialisierungsbedarf'],
+  [/Einfuehrungs-\/Reset-Rhythmus/gu, 'Einführungs-/Neuinitialisierungsrhythmus'],
+  [/Reset \/ MVG-Neuinitialisierung/gu, 'MVG-Neuinitialisierung'],
+  [/\bReset\b/gu, 'Neuinitialisierung'],
+  [/Re-Baseline/gu, 'Neufestlegung der Projektbasis'],
+  [/\bmitigiert\b/gu, 'mindert'],
+  [/stage-gate-\/leistungsphasenbasierte/gu, 'freigabe- und leistungsphasenbasierte'],
+  [/stage-gate-Logik/gu, 'Freigabelogik'],
+  [/gate-loses Sonderformat/gu, 'Sonderformat außerhalb der Freigabereihe'],
+  [/Leistungsphase \(gates\)/gu, 'Leistungsphase (Freigaben)'],
+  [/Standardgates/gu, 'Standardfreigaben'],
+  [/Gate-Review/gu, 'Freigabeprüfung'],
+  [/Release-Gate/gu, 'Freigabeprüfung'],
+  [/Decision Gates/gu, 'Entscheidungspunkte'],
+  [/Stage Gates/gu, 'Phasenfreigaben'],
+  [/Sichtbarkeits-Gates/gu, 'Sichtbarkeitsregeln'],
+  [/GATE-IDs/gu, 'Freigabe-IDs'],
+  [/Change-Impact-Analyse/gu, 'Auswirkungsanalyse der Änderung'],
+  [/Impact-5er-Set/gu, 'Auswirkungs-5er-Set'],
+  [/Whitepaper-Inhalte/gu, 'MVG-Inhalte'],
+  [/Das Whitepaper beschreibt/gu, 'Der MVG-Standard beschreibt'],
+  [/Das Whitepaper/gu, 'MVG'],
+  [/das Whitepaper/gu, 'MVG'],
+  [/Whitepaper/gu, 'MVG-Originaltext'],
+]);
+
+/** Klassen, die src/stil/hilfe.css gestaltet (alles andere fällt weg). */
+/** Farbwerte der Companion-Grafiken → Marken-Tokens */
+const FARBEN = new Map([
+  ['#3a7a43', 'var(--petrol)'], ['#0e7c66', 'var(--tuerkis-text)'], ['#1d3258', 'var(--navy)'], ['#a8823c', 'var(--gold)'],
+  ['#9a3030', 'var(--koralle-text)'], ['#fff', 'var(--weiss)'], ['#ffffff', 'var(--weiss)'],
+]);
+
+const KLASSEN = new Set([
+  'card', 'card-title', 'feature-card', 'feature-grid', 'notice', 'info', 'hint', 'tag', 'badge', 'pill', 'grid', 'cols-2', 'cols-3',
+  'step-list', 'table-wrap', 'lead', 'lead-text', 'sub', 'meta', 'small', 'prose', 'section-divider', 'kpi', 'label', 'value',
+  'green', 'gold', 'blue', 'gray', 'help-content', 'help-content-inline', 'help-item', 'num-mark', 'role-pick-card', 'desc',
+  'checked', 'data', 'page-header', 'ico', 'grafik-wrap',
+]);
+
+/** Was nur in der Anwendung wirkt – samt Inhalt entfernen. */
+const WEG = [
+  'script', 'style', 'input', 'select', 'textarea', 'form', 'dialog', '.bm59-banner', '.page-header .actions', '.bm774-menu',
+  '.bm914-pn', 'aside.help-sidebar', '[data-bmfn="sec"]', '.bmfs-ind', '.bm-reg-filterbar', '[title="Spalten-Reihenfolge ändern"]', '.bm649-dup',
+  '.bm327-float', '.bm120-grip', '.bmx-facetbar', '.toolbar', '.bm399-tbar', '.bm228-toggle', '.bmx-aggfoot',
+].join(',');
+
+/** @param {string} t */
+export function ersetze(t) {
+  let aus = t;
+  for (const [muster, statt] of ERSETZUNGEN) aus = aus.replace(muster, statt);
+  return aus;
+}
+
+/**
+ * Bereinigt einen Teilbaum an Ort und Stelle.
+ * @param {Element} wurzel
+ * @param {Map<string, string>} anker Companion-Kapitel-ID → Hilfe-Route
+ */
+function bereinige(wurzel, anker) {
+  const dok = wurzel.ownerDocument;
+  for (const el of [...wurzel.querySelectorAll(WEG)]) el.remove();
+  // Suchkarten der Anwendung (die Hilfe-Fläche hat eine eigene Suche) und „+ Tag“-Schalter
+  for (const h of [...wurzel.querySelectorAll('.card > h3')]) if (/durchsuchen/u.test(h.textContent ?? '')) h.parentElement?.remove();
+  for (const el of [...wurzel.querySelectorAll('span')]) if (el.children.length === 0 && (el.textContent ?? '').trim() === '+ Tag') el.remove();
+  // Tote Bedienreste: Knopftexte, leere Schnellstart-Hinweise, Rollen-Plaketten, Karte ohne Werkzeuge
+  for (const el of [...wurzel.querySelectorAll('button, span, div, p')]) {
+    const t = (el.textContent ?? '').trim();
+    if (t === 'Ansicht öffnen →' || (t === '×' && el.tagName.toLowerCase() !== 'div') || (el.classList.contains('notice') && /^Schnell starten:/u.test(t))) el.remove();
+  }
+  for (const b of [...wurzel.querySelectorAll('.role-pick-card .badge')]) if (/^(?:Auto|Meine Rolle)$/u.test((b.textContent ?? '').trim())) b.remove();
+  for (const h of [...wurzel.querySelectorAll('.card h3')]) if ((h.textContent ?? '').trim() === 'Loslegen') h.closest('.card')?.remove();
+  // Seitenkopf der Anwendung: der Titel steht schon in der Kopfzeile der Hilfe; weitere Titel eine Ebene tiefer
+  for (const h of [...wurzel.querySelectorAll('.page-header h1')]) h.remove();
+  for (const h of [...wurzel.querySelectorAll('h1')]) {
+    const h2 = dok.createElement('h2');
+    while (h.firstChild) h2.appendChild(h.firstChild);
+    h.replaceWith(h2);
+  }
+  // Feldnamen in Festbreitenschrift: als <code> auszeichnen (sonst stehen „gates“, „risks“ als Wörter im Text)
+  for (const sp of [...wurzel.querySelectorAll('span[style*="monospace"]')]) {
+    const c = dok.createElement('code');
+    while (sp.firstChild) c.appendChild(sp.firstChild);
+    sp.replaceWith(c);
+  }
+  // Knöpfe der Anwendung tragen oft Inhalt (Kennungen, Tags): als Text behalten
+  for (const k of [...wurzel.querySelectorAll('button')]) {
+    const ersatz = dok.createElement('span');
+    ersatz.className = 'hilfe-marke';
+    while (k.firstChild) ersatz.appendChild(k.firstChild);
+    k.replaceWith(ersatz);
+  }
+  for (const a of [...wurzel.querySelectorAll('a')]) {
+    const ziel = a.getAttribute('href') ?? '';
+    const route = ziel.startsWith('#') ? anker.get(ziel.slice(1)) : undefined;
+    if (route !== undefined) {
+      for (const n of [...a.attributes]) a.removeAttribute(n.name);
+      a.setAttribute('href', route);
+      continue;
+    }
+    const ersatz = dok.createElement('span');
+    while (a.firstChild) ersatz.appendChild(a.firstChild);
+    a.replaceWith(ersatz);
+  }
+  for (const el of [wurzel, ...wurzel.querySelectorAll('*')]) {
+    const inSvg = el.closest('svg') !== null;
+    for (const n of [...el.attributes]) {
+      const name = n.name.toLowerCase();
+      if (name.startsWith('on')) el.removeAttribute(n.name);
+      // Rollen und Tooltips der Anwendung („Öffnen: …“, „Klick sortiert …“): hier ohne Wirkung, per Tastatur ohnehin unerreichbar
+      else if ((name === 'role' && n.value !== 'img') || (name === 'title' && !inSvg)) el.removeAttribute(n.name);
+      else if (name === 'id' && inSvg) continue; // Pfeilspitzen und Verläufe: url(#…) braucht die ID
+      else if (name.startsWith('data-') || name === 'id' || name === 'tabindex' || name === 'contenteditable' || name === 'draggable') el.removeAttribute(n.name);
+      else if (name === 'style' && !inSvg) el.removeAttribute(n.name);
+      else if (name === 'class' && !inSvg) {
+        const behalten = n.value.split(/\s+/u).filter((k) => KLASSEN.has(k));
+        if (behalten.length > 0) el.setAttribute('class', behalten.join(' '));
+        else el.removeAttribute('class');
+      } else if ((name === 'aria-label' || name === 'alt') && !inSvg) el.setAttribute(n.name, ersetze(n.value));
+    }
+  }
+  // leere Hüllen (nach dem Entfernen) weg
+  for (const el of [...wurzel.querySelectorAll('div, span, p')].reverse()) {
+    if (el.children.length === 0 && (el.textContent ?? '').trim() === '') el.remove();
+  }
+  // Verlauf auf einer waagerechten Linie: mit objectBoundingBox (Höhe 0) zeichnet der Browser nichts
+  for (const l of [...wurzel.querySelectorAll('line')]) {
+    const id = /^url\(#([^)]+)\)$/u.exec(l.getAttribute('stroke') ?? '')?.[1];
+    const g = id !== undefined ? wurzel.querySelector(`linearGradient[id="${id}"]`) : null;
+    if (g === null || g.hasAttribute('gradientUnits') || l.getAttribute('y1') !== l.getAttribute('y2')) continue;
+    g.setAttribute('gradientUnits', 'userSpaceOnUse');
+    for (const a of ['x1', 'x2', 'y1', 'y2']) g.setAttribute(a, l.getAttribute(a) ?? '0');
+  }
+  // Spalten ohne Inhalt (etwa „Tags“ nach dem Entfernen der Schalter) fallen weg
+  for (const t of [...wurzel.querySelectorAll('table')]) {
+    const zeilen = [...t.querySelectorAll('tr')];
+    const koerper = zeilen.filter((z) => z.querySelector('td') !== null);
+    if (koerper.length === 0) continue;
+    const breite = Math.max(...zeilen.map((z) => z.children.length));
+    for (let sp = breite - 1; sp >= 0; sp -= 1) {
+      const leer = koerper.every((z) => { const c = z.children[sp]; return c === undefined || (c.children.length === 0 && (c.textContent ?? '').trim() === ''); });
+      if (leer && zeilen.every((z) => (z.children[sp]?.getAttribute('colspan') ?? '1') === '1')) for (const z of zeilen) z.children[sp]?.remove();
+    }
+  }
+  // Tabellen scrollen schmal waagerecht in einer Hülle, die per Tastatur erreichbar ist
+  for (const t of [...wurzel.querySelectorAll('table')]) {
+    let huelle = t.parentElement;
+    if (huelle === null || !huelle.classList.contains('table-wrap') || huelle.children.length !== 1) {
+      huelle = dok.createElement('div');
+      huelle.className = 'table-wrap';
+      t.replaceWith(huelle);
+      huelle.appendChild(t);
+    }
+    // tabindex setzt die Oberfläche nur, wenn die Tabelle wirklich überläuft (src/ui/flaechen/hilfe.ts)
+    huelle.setAttribute('role', 'region');
+  }
+  // Name jeder Tabelle und breiten Grafik: die Überschrift davor
+  let ueberschrift = '';
+  for (const el of [...wurzel.querySelectorAll('h1, h2, h3, h4, h5, .table-wrap')]) {
+    if (el.classList.contains('table-wrap')) el.setAttribute('aria-label', ueberschrift !== '' ? `Tabelle: ${ueberschrift}` : 'Tabelle');
+    else ueberschrift = ersetze((el.textContent ?? '').replace(/\s+/gu, ' ').trim());
+  }
+  // Breite Grafiken (viewBox ab 900) rollen schmal waagerecht, statt auf Mikroschrift zu schrumpfen
+  for (const svg of [...wurzel.querySelectorAll('svg')]) {
+    const breite = Number((svg.getAttribute('viewBox') ?? '').split(/\s+/u)[2] ?? 0);
+    if (breite < 900 || svg.parentElement?.closest('svg') !== null) continue;
+    const huelle = dok.createElement('div');
+    huelle.className = 'grafik-wrap';
+    huelle.setAttribute('role', 'region');
+    huelle.setAttribute('aria-label', `Grafik: ${ersetze(svg.getAttribute('aria-label') ?? svg.querySelector('title')?.textContent ?? 'Übersicht')}`);
+    svg.replaceWith(huelle);
+    huelle.appendChild(svg);
+  }
+  // Farben der Grafiken: Marken-Tokens statt fester Werte (Ampelfarben nur für Status, STIL 7)
+  for (const el of [...wurzel.querySelectorAll('svg, svg *')]) {
+    const stil = (el.getAttribute('style') ?? '').split(';').map((x) => x.trim()).filter((x) => x !== '' && !/^cursor\s*:/u.test(x));
+    for (const a of ['fill', 'stroke', 'stop-color']) {
+      const wert = el.getAttribute(a);
+      if (wert === null) continue;
+      const neu = FARBEN.get(wert.toLowerCase()) ?? (wert.startsWith('var(') ? wert.replace(/,\s*#[0-9a-f]{3,8}\s*\)/iu, ')') : null);
+      if (neu !== null) {
+        el.removeAttribute(a);
+        stil.push(`${a}:${neu}`);
+      }
+    }
+    if (stil.length > 0) el.setAttribute('style', stil.join(';'));
+    else el.removeAttribute('style');
+  }
+  // Überschriften lückenlos ab h2 (die Seite trägt das h1)
+  const ebenen = [...new Set([...wurzel.querySelectorAll('h2, h3, h4, h5, h6')].map((x) => Number(x.tagName[1])))].sort();
+  for (const x of [...wurzel.querySelectorAll('h2, h3, h4, h5, h6')]) {
+    const soll = Math.min(6, 2 + ebenen.indexOf(Number(x.tagName[1])));
+    if (soll === Number(x.tagName[1])) continue;
+    const neu = dok.createElement(`h${soll}`);
+    for (const at of [...x.attributes]) neu.setAttribute(at.name, at.value);
+    while (x.firstChild) neu.appendChild(x.firstChild);
+    x.replaceWith(neu);
+  }
+  // Text: Begriffe nach O-14/O-15/O-29
+  const gang = dok.createTreeWalker(wurzel, 4);
+  for (let n = gang.nextNode(); n !== null; n = gang.nextNode()) {
+    if (n.parentElement?.closest('svg') !== null && n.parentElement?.closest('svg') !== undefined && n.parentElement?.tagName.toLowerCase() !== 'text' && n.parentElement?.tagName.toLowerCase() !== 'tspan') continue;
+    n.textContent = ersetze(n.textContent ?? '');
+  }
+}
+
+/** Klassen der Hilfe erhalten den Vorsatz „h-“: keine Kollision mit Klassen der übrigen Flächen (.tag, .card …) */
+function mitVorsatz(/** @type {Element} */ wurzel) {
+  for (const el of [...wurzel.querySelectorAll('[class]')]) {
+    if (el.closest('svg') !== null) continue;
+    el.setAttribute('class', (el.getAttribute('class') ?? '').split(/\s+/u).filter((k) => k !== '').map((k) => (k === 'hilfe-marke' ? k : `h-${k}`)).join(' '));
+  }
+}
+
+/** Verweise der Anwendung ohne Ziel, die auf Teile der Hilfe (oder die Theorie) zeigen */
+const VERWEISE = new Map([
+  ['Vollständiges Glossar mit 130 Begriffen', '#hilfe/faq-glossar'],
+  ['Detaillierte MVG-Beschreibung', '#theorie'],
+  ['Rollen-Anleitungen', '#hilfe/rollen-anleitungen'],
+]);
+
+/**
+ * Rollenkarten auf ihre Unterseite, tote Verweise auf ihr Ziel verlinken.
+ * @param {Element} wurzel
+ * @param {Map<string, string>} ziele Titel → Route
+ */
+function verlinke(wurzel, ziele) {
+  const dok = wurzel.ownerDocument;
+  const zuLink = (/** @type {Element} */ el, /** @type {string} */ href) => {
+    const a = dok.createElement('a');
+    a.setAttribute('href', href);
+    while (el.firstChild) a.appendChild(el.firstChild);
+    el.appendChild(a);
+  };
+  for (const h of [...wurzel.querySelectorAll('.role-pick-card :is(h2, h3, h4, h5)')]) {
+    const ziel = ziele.get((h.textContent ?? '').trim());
+    if (ziel !== undefined) zuLink(h, ziel);
+  }
+  for (const sp of [...wurzel.querySelectorAll('span')]) {
+    const ziel = VERWEISE.get((sp.textContent ?? '').trim());
+    if (ziel !== undefined && sp.closest('a') === null && sp.querySelector('a') === null) zuLink(sp, ziel);
+  }
+}
+
+/**
+ * @typedef {{ id: string, titel: string, html: string, unter: { id: string, titel: string, html: string }[] }} HilfeKapitel
+ * @typedef {{ titel: string, quelle: string, stand: string, kapitel: HilfeKapitel[] }} Hilfe
+ */
+
+/**
+ * @param {string} html
+ * @returns {Hilfe}
+ */
+export function erzeugeHilfe(html) {
+  const { document } = new JSDOM(html).window;
+  const abschnitte = [...document.querySelectorAll('section.bm966-kap')];
+  /** @type {Map<string, string>} */
+  const anker = new Map();
+  let nr = 0;
+  const kennung = (/** @type {string} */ titel) => titel.toLowerCase().replace(/ä/gu, 'ae').replace(/ö/gu, 'oe').replace(/ü/gu, 'ue').replace(/ß/gu, 'ss').replace(/[^a-z0-9]+/gu, '-').replace(/^-|-$/gu, '');
+  const plan = abschnitte.map((s) => {
+    nr += 1;
+    const titel = ersetze((s.querySelector(':scope > .bm966-kap-titel')?.textContent ?? '').trim());
+    const id = kennung(titel) || `kapitel-${nr}`;
+    anker.set(s.id, `#hilfe/${id}`);
+    const unter = [...s.querySelectorAll('.bm966-unterkap')].map((u) => {
+      const ut = ersetze((u.querySelector('.bm966-unterkap-titel')?.textContent ?? '').replace(/^Rollen-Anleitung:\s*/u, '').trim());
+      const uid = `${id}-${kennung(ut)}`;
+      anker.set(u.id, `#hilfe/${uid}`);
+      return { u, id: uid, titel: ut };
+    });
+    return { s, id, titel, unter };
+  });
+  /** @type {HilfeKapitel[]} */
+  const kapitel = plan.map(({ s, id, titel, unter }) => {
+    const unterAus = unter.map(({ u, id: uid, titel: ut }) => {
+      u.querySelector('.bm966-unterkap-titel')?.remove();
+      u.remove();
+      bereinige(u, anker);
+      mitVorsatz(u);
+      return { id: uid, titel: ut, html: u.innerHTML.trim() };
+    });
+    s.querySelector(':scope > .bm966-kap-titel')?.remove();
+    bereinige(s, anker);
+    verlinke(s, new Map([
+      ...unter.map(({ id: uid, titel: ut }) => /** @type {[string, string]} */ ([ut, `#hilfe/${uid}`])),
+      ...plan.map((p) => /** @type {[string, string]} */ ([p.titel, `#hilfe/${p.id}`])),
+    ]));
+    mitVorsatz(s);
+    return { id, titel, html: s.innerHTML.trim(), unter: unterAus };
+  });
+  const kopf = document.querySelector('.bm966-kopf p')?.textContent ?? '';
+  const stand = /Stand (\d{4}-\d{2}-\d{2})/u.exec(kopf)?.[1] ?? '';
+  return { titel: 'Hilfe', quelle: 'MVG Companion – Hilfe und Vorgehensmodell, v1.34.911', stand, kapitel };
+}
+
+/** Sichtbarer Text der Hilfe (für die Begriffsprüfung). @param {Hilfe} h */
+export function hilfeText(h) {
+  const { document } = new JSDOM('').window;
+  const teile = [];
+  for (const k of h.kapitel) {
+    for (const x of [k, ...k.unter]) {
+      const d = document.createElement('div');
+      d.innerHTML = x.html;
+      // Grafiken: nur ihre sichtbaren Beschriftungen und Beschreibungen zählen
+      for (const el of d.querySelectorAll('svg style')) el.remove();
+      for (const el of d.querySelectorAll('svg text, svg tspan, svg title, svg desc')) el.append(' ');
+      for (const el of d.querySelectorAll('td, th, li, p, div, h1, h2, h3, h4, summary, dt, dd, br')) el.append(' ');
+      teile.push(x.titel, d.textContent ?? '');
+      for (const el of d.querySelectorAll('[title],[aria-label],[alt]')) teile.push(el.getAttribute('title') ?? '', el.getAttribute('aria-label') ?? '', el.getAttribute('alt') ?? '');
+    }
+  }
+  return teile.join('\n').replace(/[ \t]+/gu, ' ');
+}
+
+/**
+ * Für die Begriffsprüfung: Kennungen der Software (camelCase, snake_case, ID-Formate wie GATE-<…>,
+ * eingeklammerte Datenfelder „(readouts · 30 Einträge)“) sind Namen, keine Begriffe – sie bleiben in der
+ * Hilfe stehen (sonst stimmte sie nicht mehr mit der Anwendung überein) und werden hier ausgeblendet.
+ * @param {string} t
+ */
+export function ohneKennungen(t) {
+  return t
+    .replace(/\b[a-z]+[A-Z][A-Za-z0-9]*\b/gu, '·')
+    .replace(/\b\w*_\w+\b/gu, '·')
+    .replace(/\b[A-Z]{2,}-(?:<|[A-Z0-9])[\w<>.-]*/gu, '·')
+    .replace(/\bGATE\b/gu, '·')
+    .replace(/\((?:[a-z][A-Za-z]+)(?:\s·[^)]*)?\)/gu, '(·)');
+}
+
+/**
+ * @param {{ wurzel?: string, pruefe?: boolean, ziel?: string | null }} [o]
+ */
+export function baueHilfe(o = {}) {
+  const wurzel = o.wurzel ?? WURZEL;
+  const hilfe = erzeugeHilfe(readFileSync(path.join(wurzel, QUELLE), 'utf8'));
+  const text = hilfeText(hilfe);
+  const funde = pruefeText(ohneKennungen(text), 'src/generiert/hilfe.json');
+  const wort = text.match(/.{0,30}white\s*-?\s*paper.{0,30}/iu);
+  const fehler = funde.map((f) => formatiereFund(f));
+  if (wort !== null) fehler.push(`„Whitepaper“ in der Hilfe (O-29): „${wort[0]}“`);
+  if (o.ziel !== null) {
+    const ziel = path.join(wurzel, o.ziel ?? ZIEL);
+    mkdirSync(path.dirname(ziel), { recursive: true });
+    writeFileSync(ziel, `${JSON.stringify(hilfe)}\n`);
+  }
+  return { hilfe, fehler };
+}
+
+if (istHauptmodul(import.meta.url)) {
+  const pruefe = process.argv.includes('--pruefe');
+  const { hilfe, fehler } = baueHilfe();
+  const n = hilfe.kapitel.reduce((s, k) => s + 1 + k.unter.length, 0);
+  console.log(`hilfe: ${hilfe.kapitel.length} Kapitel, ${n} Seiten → ${ZIEL}`);
+  if (fehler.length > 0) {
+    for (const f of fehler.slice(0, 40)) console.log(`  ${f}`);
+    if (fehler.length > 40) console.log(`  … ${fehler.length - 40} weitere`);
+    if (pruefe) process.exitCode = 1;
+  }
+}

@@ -27,6 +27,7 @@ export const ZIEL = path.join('src', 'generiert', 'hilfe.json');
 export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   // Kennungen der Anwendung (GATE-NETZNORD-G2) bleiben: kein G nach Bindestrich, Punkt oder Wortzeichen
   [/post-G(\d)\b/gu, 'nach LPH $1'],
+  [/G3 \(Ausführungsplanung\)/gu, 'LPH 5 (Ausführungsplanung)'],
   [/G0–G9 entlang der Leistungsphasen \(LPH 0–8\)/gu, 'entlang der Leistungsphasen LPH 0–9'],
   [/(?<![-.\w])G(\d):\s*([^(\n<]+?)\s*\(LPH \1\)/gu, 'LPH $1: $2'],
   [/(?<![-.\w])G(\d)\s*[–-]\s*G(\d)\b/gu, 'LPH $1–$2'],
@@ -69,6 +70,8 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/Einfuehrungs-\/Reset-Rhythmus/gu, 'Einführungs-/Neuinitialisierungsrhythmus'],
   [/Reset \/ MVG-Neuinitialisierung/gu, 'MVG-Neuinitialisierung'],
   [/\bReset\b/gu, 'Neuinitialisierung'],
+  [/Re-Baseline-Sonderformat/gu, 'Sonderformat Neufestlegung der Projektbasis'],
+  [/Re-Baselines/gu, 'Neufestlegungen der Projektbasis'],
   [/Re-Baseline/gu, 'Neufestlegung der Projektbasis'],
   [/\bmitigiert\b/gu, 'mindert'],
   [/stage-gate-\/leistungsphasenbasierte/gu, 'freigabe- und leistungsphasenbasierte'],
@@ -95,14 +98,14 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
 /** Farbwerte der Companion-Grafiken → Marken-Tokens */
 const FARBEN = new Map([
   ['#3a7a43', 'var(--petrol)'], ['#0e7c66', 'var(--tuerkis-text)'], ['#1d3258', 'var(--navy)'], ['#a8823c', 'var(--gold)'],
-  ['#9a3030', 'var(--koralle-text)'], ['#fff', 'var(--weiss)'], ['#ffffff', 'var(--weiss)'],
+  ['#9a3030', 'var(--navy-soft)'], ['#fff', 'var(--weiss)'], ['#ffffff', 'var(--weiss)'],
 ]);
 
 const KLASSEN = new Set([
   'card', 'card-title', 'feature-card', 'feature-grid', 'notice', 'info', 'hint', 'tag', 'badge', 'pill', 'grid', 'cols-2', 'cols-3',
   'step-list', 'table-wrap', 'lead', 'lead-text', 'sub', 'meta', 'small', 'prose', 'section-divider', 'kpi', 'label', 'value',
   'green', 'gold', 'blue', 'gray', 'help-content', 'help-content-inline', 'help-item', 'num-mark', 'role-pick-card', 'desc',
-  'checked', 'data', 'page-header', 'ico', 'grafik-wrap',
+  'checked', 'page-header', 'ico', 'grafik-wrap',
 ]);
 
 /** Was nur in der Anwendung wirkt – samt Inhalt entfernen. */
@@ -209,6 +212,20 @@ function bereinige(wurzel, anker) {
       if (leer && zeilen.every((z) => (z.children[sp]?.getAttribute('colspan') ?? '1') === '1')) for (const z of zeilen) z.children[sp]?.remove();
     }
   }
+  // Fünf-Stufen-Modell (G0–G4) der Anwendung, das keine Leistungsphasen meint: „Stufe n“ statt „LPH n“
+  for (const t of [...wurzel.querySelectorAll('table')]) {
+    const erste = [...t.querySelectorAll('tbody tr')].map((z) => z.children[0]);
+    if (erste.length === 0 || erste.length > 5 || !erste.every((c) => /^G[0-4]$/u.test((c?.textContent ?? '').trim())) || /\(LPH/u.test(t.textContent ?? '')) continue;
+    for (const c of erste) if (c) c.textContent = `Stufe ${(c.textContent ?? '').trim().slice(1)}`;
+    let vor = t.closest('.table-wrap') ?? t;
+    vor = vor.previousElementSibling;
+    if (vor !== null && /^H\d$/u.test(vor.tagName)) vor.textContent = (vor.textContent ?? '').replace(/G0\s*[–-]\s*G9/u, '(Stufen 0–4)');
+  }
+  const stufenGang = dok.createTreeWalker(wurzel, 4);
+  for (let n = stufenGang.nextNode(); n !== null; n = stufenGang.nextNode()) {
+    // Aufzählung je Projekttyp: „G0 Konzept, G1 Vorplanung, … G4 IBN“
+    if (/(?<![-.\w])G\d [^,]+,\s*G\d/u.test(n.textContent ?? '')) n.textContent = (n.textContent ?? '').replace(/(?<![-.\w])G(\d)\b/gu, 'Stufe $1');
+  }
   // Tabellen scrollen schmal waagerecht in einer Hülle, die per Tastatur erreichbar ist
   for (const t of [...wurzel.querySelectorAll('table')]) {
     let huelle = t.parentElement;
@@ -234,7 +251,7 @@ function bereinige(wurzel, anker) {
     const huelle = dok.createElement('div');
     huelle.className = 'grafik-wrap';
     huelle.setAttribute('role', 'region');
-    huelle.setAttribute('aria-label', `Grafik: ${ersetze(svg.getAttribute('aria-label') ?? svg.querySelector('title')?.textContent ?? 'Übersicht')}`);
+    huelle.setAttribute('aria-label', `Grafik: ${ersetze(svg.getAttribute('aria-label') ?? svg.querySelector('title')?.textContent ?? letzteUeberschrift(svg) ?? 'Übersicht')}`);
     svg.replaceWith(huelle);
     huelle.appendChild(svg);
   }
@@ -254,9 +271,11 @@ function bereinige(wurzel, anker) {
     else el.removeAttribute('style');
   }
   // Überschriften lückenlos ab h2 (die Seite trägt das h1)
-  const ebenen = [...new Set([...wurzel.querySelectorAll('h2, h3, h4, h5, h6')].map((x) => Number(x.tagName[1])))].sort();
+  // in Dokumentreihenfolge: höchstens eine Ebene tiefer als die vorige, die erste auf h2
+  let vorige = 1;
   for (const x of [...wurzel.querySelectorAll('h2, h3, h4, h5, h6')]) {
-    const soll = Math.min(6, 2 + ebenen.indexOf(Number(x.tagName[1])));
+    const soll = Math.min(Number(x.tagName[1]), vorige + 1, 6);
+    vorige = soll;
     if (soll === Number(x.tagName[1])) continue;
     const neu = dok.createElement(`h${soll}`);
     for (const at of [...x.attributes]) neu.setAttribute(at.name, at.value);
@@ -269,6 +288,24 @@ function bereinige(wurzel, anker) {
     if (n.parentElement?.closest('svg') !== null && n.parentElement?.closest('svg') !== undefined && n.parentElement?.tagName.toLowerCase() !== 'text' && n.parentElement?.tagName.toLowerCase() !== 'tspan') continue;
     n.textContent = ersetze(n.textContent ?? '');
   }
+}
+
+/** Text der letzten Überschrift vor einem Element (in Dokumentreihenfolge) */
+function letzteUeberschrift(/** @type {Element} */ el) {
+  const alle = [...el.ownerDocument.querySelectorAll('h1, h2, h3, h4, h5, *')];
+  let text = null;
+  for (const x of alle) {
+    if (x === el) break;
+    if (/^H\d$/u.test(x.tagName)) text = (x.textContent ?? '').replace(/\s+/gu, ' ').trim();
+  }
+  return text;
+}
+
+/** Nach den Ersetzungen: doppelte Angaben „LPH 7: Vergabe (LPH 7)“, Kopplung „LPH-0-Vorlage“ */
+function glaette(/** @type {string} */ html) {
+  return html
+    .replace(/(LPH (\d)\b(?:[^()<]|<[^>]*>){0,80}?)\s*\(LPH \2\)/gu, '$1')
+    .replace(/\bLPH (\d)-(?=[A-ZÄÖÜ])/gu, 'LPH-$1-');
 }
 
 /** Klassen der Hilfe erhalten den Vorsatz „h-“: keine Kollision mit Klassen der übrigen Flächen (.tag, .card …) */
@@ -345,7 +382,7 @@ export function erzeugeHilfe(html) {
       u.remove();
       bereinige(u, anker);
       mitVorsatz(u);
-      return { id: uid, titel: ut, html: u.innerHTML.trim() };
+      return { id: uid, titel: ut, html: glaette(u.innerHTML.trim()) };
     });
     s.querySelector(':scope > .bm966-kap-titel')?.remove();
     bereinige(s, anker);
@@ -354,7 +391,7 @@ export function erzeugeHilfe(html) {
       ...plan.map((p) => /** @type {[string, string]} */ ([p.titel, `#hilfe/${p.id}`])),
     ]));
     mitVorsatz(s);
-    return { id, titel, html: s.innerHTML.trim(), unter: unterAus };
+    return { id, titel, html: glaette(s.innerHTML.trim()), unter: unterAus };
   });
   const kopf = document.querySelector('.bm966-kopf p')?.textContent ?? '';
   const stand = /Stand (\d{4}-\d{2}-\d{2})/u.exec(kopf)?.[1] ?? '';

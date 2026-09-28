@@ -183,6 +183,9 @@ test('Hilfe (P13, O-31): gleiche Aufteilung wie die Companion-Hilfe, leiser Zuga
   assert.match(text, /GATE-NETZNORD-G2/u);
   assert.doesNotMatch(text, /Ansicht öffnen|Schnell starten|Meine Rolle|LPH (\d)[^<(]{0,40}\(LPH \1\)|englisch: Nachweis|Audit-PaketeAudit-Pakete/u);
   assert.equal(rollen?.html.match(/href="#hilfe\/rollen-anleitungen-/gu)?.length, 13);
+  // Prüfrunde 2: Fünf-Stufen-Modell der Anwendung nicht als LPH, Ausführungsplanung ist LPH 5, Grammatik der Ersetzungen
+  assert.doesNotMatch(text, /LPH \d LPH\d|LPH 3 \(Ausführungsplanung\)|LPH 4<\/td><td>Pilot|Projektbasiss/u);
+  assert.match(text, /Stufe 0 LPH0, Stufe 1 LPH1–2/u);
   assert.equal(baueHilfe({ seite: 'gibt-es-nicht', version: VERSION }).querySelector('[data-pruef="hilfe-uebersicht"]') !== null, true);
 });
 

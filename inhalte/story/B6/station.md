@@ -191,7 +191,7 @@ datenstand: Kostenprognose 2026-10 · Version 4 (verbindlich)
 [[zitat:k9.3-t1|Ist die Ausführungsplanung so vollständig und koordiniert, dass Vergabe und Ausführung ohne Planungsvorbehalte starten können?]]
 
 ### Checkliste
-- [x] eindeutige [[Entscheidungs-ID]] · im Freigaberegister
+- [x] eindeutige [[Entscheidungs-ID]] · „Freigabe LPH 5“
 - [x] Entscheidungsfrage
 - [x] betroffene Freigabe · Abschluss LPH 5
 - [x] Verantwortungsfeld · Freigabe

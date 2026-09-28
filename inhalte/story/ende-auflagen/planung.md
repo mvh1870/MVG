@@ -5,7 +5,7 @@ rueckbezug-auf: wirklichkeit
 ---
 
 ::: rueckbezug A
-Im Dezember haben Sie ‚MVG-Neuinitialisierung anregen‘ gewählt. Bis sie greift, brauchte LPH 5 einen Abschluss; nach der Freigabe mit Auflagen steht das Projekt in LPH 6.
+Im Dezember haben Sie ‚MVG-Neuinitialisierung anregen‘ gewählt. Auf dieser Spur hätte sie noch nicht getragen; nach der Freigabe mit Auflagen steht das Projekt in LPH 6.
 :::
 
 ::: rueckbezug B

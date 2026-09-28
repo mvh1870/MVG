@@ -68,7 +68,7 @@ titel: Freigaben und Nachweise
 
 ::: interesse express
 ---
-titel: Express – die Kurzfassung in rund zwölf Minuten
+titel: Express – die Kurzfassung in rund 15 Minuten
 ---
 Nur die Schlüsselmomente: Kosten +8 %, die Eskalation, der Wendepunkt und dieselben Momente mit MVG.
 :::

@@ -80,7 +80,7 @@ b: register
 kennung: PRB-004
 ---
 ### Welt A
-Brandschutz, Mensa, TGA laufen gegen die 2,9 Mio. €. Wer hat das freigegeben?
+Brandschutz, Mensa, TGA laufen gegen die Reserve. Wer hat das freigegeben?
 
 ### Welt B
 Nachtrag der TGA-Fachplanung · eingetretenes Problem · mit Maßnahme

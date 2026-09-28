@@ -33,3 +33,12 @@ Inhalt (Rolle Bauherr und Planung, Haupt- und Express-Pfad, Stichprobe Fachtreue
 - [x] „Zurück“ = Umkehr von „Weiter“ im Ebenen-Schritt; Ebenen-Ort mit `aria-live`; Szenario bedient die Reiter per Tastatur.
 - [x] Test „Als Nächstes“ vergleicht Vorschau und tatsächlichen Ort über zwölf Schritte.
 - [-] Wirklichkeit „Mail von Dr. Olbers“ beim Spielen der Rolle Bauherr: bleibt – die Oberfläche zeigt dann „Sie“ als Absender (H13).
+
+## P11.3 Korrekturschleife – Runde 2 (R2)
+Inhalt (Rollen GF und Projektsteuerung, Haupt- und Express-Pfad, alle vier am Ende angekommen): 10 Befunde (0 schwer, 5 mittel). Technik: Bericht folgt.
+- [x] `paar`-Vergleiche B1/B2/B4/B5 zitieren die gekürzten A-Wortlaute; B2 ohne „Varianten werden durchgerechnet“ (wie A2).
+- [x] ende-auflagen (alle Rollen): „Auf dieser Spur hätte sie noch nicht getragen;“ statt „Bis sie greift …“.
+- [x] Wendepunkt: „Brandschutzauflagen grob 0,4“; Ebene-1-Kernaussage mit Inhalt (k3.3).
+- [x] A1-Kernaussage ohne neue Verknüpfung (k2.1/k2.2/k2.3 getrennt, O-17).
+- [x] A6 Bekannt nennt die unentschiedene Holz-Lieferzeit; B6 Checkliste nennt „Freigabe LPH 5“; B4 GF Option B „nur grob geschätzt“; Express-Knopf „rund 15 Minuten“.
+- Lesezeit danach (pl): Hauptpfad 33,0 min, Express 14,6 min.

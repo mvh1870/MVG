@@ -94,7 +94,7 @@ kennung: AEN-031
 fluss: entscheidung
 ---
 ### Welt A
-Tischvorlage Brandschutz – mit zum Statusbericht ablegen?
+Tischvorlage Brandschutz ablegen?
 
 ### Welt B
 Brandschutzauflagen Holzbau · In Prüfung

@@ -27,7 +27,7 @@ Gering: Zwischen Beschluss und Freigabe liegt eine offene Entscheidung, mit Fris
 
 ::: option B
 ---
-titel: Zurückstellen, weil die Terminwirkung in der Vorlage fehlt
+titel: Zurückstellen, weil die Terminwirkung nur grob geschätzt ist
 kurz: Zurückstellen mit Frist
 status:
   terminrisiko: +1
@@ -36,7 +36,7 @@ status:
 Das Gremium stellt zurück – mit Frage und Frist bis zu einer Sondersitzung. Die Vertagung hat einen Grund und ein Datum.
 
 ### Was fehlt
-Die Terminwirkung der Planänderung in der Vorlage.
+Eine belastbare Terminwirkung der Planänderung in der Vorlage.
 
 ### Neues Risiko
 Die Planung wartet; die Frist muss halten.

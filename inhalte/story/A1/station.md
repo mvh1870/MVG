@@ -155,7 +155,7 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Die organisatorische Verletzlichkeit steigt, wenn Preisannahmen kippen, ESG und LCC nicht früh integriert sind und Wissen nicht in Artefakte und Routinen übersetzt ist.
+Preisannahmen kippen (Kap. 2.1), ESG und LCC gehören früh ins Zielsystem (Kap. 2.2), und Wissen in einem Kopf macht verletzlich (Kap. 2.3).
 :::
 
 ::: ebene 2

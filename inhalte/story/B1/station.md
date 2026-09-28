@@ -81,7 +81,7 @@ b: register
 fluss: fruehwarnung
 ---
 ### Welt A
-Marktnotiz Holzbau – in welche Ablage?
+Marktnotiz Holzbau – welche Ablage?
 
 ### Welt B
 Marktnotiz bei der Projektsteuerung · noch in keinem Register

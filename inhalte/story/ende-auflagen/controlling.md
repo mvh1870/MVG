@@ -5,7 +5,7 @@ rueckbezug-auf: wirklichkeit
 ---
 
 ::: rueckbezug A
-Im Dezember haben Sie ‚MVG-Neuinitialisierung empfehlen‘ gewählt. Bis sie greift, brauchte LPH 5 einen Abschluss; Auflage 1 verlangt einen verbindlichen Datenstand – welchen, steht nicht dabei.
+Im Dezember haben Sie ‚MVG-Neuinitialisierung empfehlen‘ gewählt. Auf dieser Spur hätte sie noch nicht getragen; Auflage 1 verlangt einen verbindlichen Datenstand – welchen, steht nicht dabei.
 :::
 
 ::: rueckbezug B

@@ -29,7 +29,6 @@ titel: Marktabfrage Holzbau (Generalplanung)
 datum: 10. März 2026
 ---
 - Holzbauelemente: Lieferzeit jetzt rund 26 Wochen statt 16.
-- Varianten werden durchgerechnet.
 - Terminwirkung: nicht bewertet.
 :::
 
@@ -80,7 +79,7 @@ kennung: FRW-002
 fluss: fruehwarnung
 ---
 ### Welt A
-Lieferzeit Holz: 26 statt 16 Wochen – was heißt das für den Termin?
+Holz 26 statt 16 Wochen – und der Termin?
 
 ### Welt B
 Lieferzeit Holzbauelemente · unbewertetes Signal

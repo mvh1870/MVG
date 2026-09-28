@@ -28,6 +28,8 @@ export interface ZeitmaschineDaten {
   woerter: {
     kosten: string;
     offen: string;
+    /** Einzahl zu `offen` */
+    offenEins?: string;
     stufen: readonly string[];
     weltA: string;
     weltB: string;
@@ -95,7 +97,7 @@ export function zeitmaschine(d: ZeitmaschineDaten): HTMLElement {
     attr(regler, 'aria-valuetext', W.monat(monat));
     ersetze(ablesen, h('b', null, W.monat(monat)), ...(['A', 'B'] as Welt[]).map((welt) => {
       const p = d.punkte.find((q) => q.monat === monat && q.welt === welt);
-      return p === undefined ? null : h('p', { 'data-welt': welt.toLowerCase() }, h('span', { class: 'zm-marke', 'aria-hidden': 'true' }), h('span', null, `${p.station}: ${W.kosten} ${W.stufen[p.kosten - 1] ?? ''} · ${p.offen} ${W.offen}`));
+      return p === undefined ? null : h('p', { 'data-welt': welt.toLowerCase() }, h('span', { class: 'zm-marke', 'aria-hidden': 'true' }), h('span', null, `${p.station}: ${W.kosten} ${W.stufen[p.kosten - 1] ?? ''} · ${p.offen} ${p.offen === 1 ? (W.offenEins ?? W.offen) : W.offen}`));
     }));
   };
   regler.addEventListener('input', () => zeige(Number(regler.value)));

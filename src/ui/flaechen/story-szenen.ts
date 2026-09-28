@@ -13,7 +13,7 @@ import type { Aktion, OeffentlicherZustand, Status, StatusSchluessel } from '../
 import type { Block, Entscheidung, OeffentlicheInhalte, Option, Schritt, Station } from '../../inhalte/typen.ts';
 import { berechneStatus } from '../../engine/status.ts';
 import { rueckbezug } from '../../engine/gedaechtnis.ts';
-import { h, attr, elementAus, s } from '../h.ts';
+import { h, attr, elementAus, ersetze, s } from '../h.ts';
 import { statusSymbol } from '../../stil/symbole.ts';
 import {
   aenderungsSaetze, aktuellerSchritt, aktuelleStation, alleBloecke, ansichtSchluessel, instrumentWerte, kopfKarte, kopfListe,
@@ -407,9 +407,14 @@ function vergleich(k: SzenenKontext): Szene {
     beiWert: k.tue !== null ? (v) => tu(k, { art: 'setzeVergleich', wert: v }) : null,
     beschriftung: { a: W.weltA, aZusatz: W.ohneMvg, b: W.weltB, bZusatz: W.mitMvg, regler: W.regler },
   });
+  // Beschriftung mit {Einzahl|Mehrzahl}: passend zur angezeigten Zahl („1 Version“, „2 Versionen“)
+  const numerus = (text: string, n: number): string => text.replace(/\{([^|{}]*)\|([^|{}]*)\}/gu, (_m, eins: string, mehr: string) => (n === 1 ? eins : mehr));
   const kacheln = kennzahlen.map((b) => {
-    const zahl = h('b', null, String(kopfZahl(b.kopf, 'a') ?? 0));
-    return { zahl, a: kopfZahl(b.kopf, 'a') ?? 0, b: kopfZahl(b.kopf, 'b') ?? 0, el: h('div', { class: 'kachel' }, zahl, h('span', null, inhaltInline(b.felder['text'] ?? ''))) };
+    const a = kopfZahl(b.kopf, 'a') ?? 0;
+    const text = b.felder['text'] ?? '';
+    const zahl = h('b', null, String(a));
+    const name = h('span', null, inhaltInline(numerus(text, a)));
+    return { zahl, a, b: kopfZahl(b.kopf, 'b') ?? 0, el: h('div', { class: 'kachel' }, zahl, name), benenne: (n: number) => ersetze(name, inhaltInline(numerus(text, n))) };
   });
   const ablesung = kacheln.length > 0 ? h('div', { class: 'ablesung', 'data-welt': 'a', 'aria-live': 'off' }, kacheln.map((x) => x.el)) : null;
   const knopf = kopfText(k.schritt.kopf, 'knopf');
@@ -437,6 +442,7 @@ function vergleich(k: SzenenKontext): Szene {
         const nach = b ? x.b : x.a;
         if (erst) x.zahl.textContent = String(nach);
         else zaehle(x.zahl, von, nach, 500);
+        x.benenne(nach);
       }
       sr.replaceChildren(inhaltInline((b ? k.schritt.felder['weltB'] : k.schritt.felder['weltA']) ?? ''));
     }

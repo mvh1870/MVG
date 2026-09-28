@@ -107,7 +107,7 @@ von: petersen
 b: mandat
 ---
 ### Welt A
-Dr. Olbers: „Nichts freigegeben.“
+Die Kämmerei fragt nach – freigegeben ist nichts.
 
 ### Welt B
 Einsatz der Risikoreserve · nur der Bauherr, nicht delegierbar
@@ -132,7 +132,7 @@ Vorlage zum Einsatz der Risikoreserve · Frage an den Bauherrn
 a: 0
 b: 1
 ---
-Nachträge mit Kennung und Maßnahme
+{Nachtrag|Nachträge} mit Kennung und Maßnahme
 :::
 
 ::: kennzahl
@@ -329,7 +329,7 @@ titel: Vertiefung
 | [[Entscheidungsvorlage]] | 9.4 | Checkliste unter der Kennung `PRB-004`: was erfüllt ist und was offen |
 | Rhythmus | 6.4.5 | Maßnahmen, Probleme und Fristen im Takt von PMO und verantwortlichen Rollen |
 
-Die Mensa steht nicht in dieser Kette: Ihre Kosten stehen in der Auswirkung von `AEN-012`. Offen ist auch, ob die Deckung von `AEN-031` aus der Reserve kommt; sie gehört in dieselbe Betrachtung des Reservestands wie `PRB-004` – ob in dieselbe Vorlage, ist offen.
+Die Mensa steht nicht in dieser Kette: deren Kosten stehen in der Auswirkung von `AEN-012`. Offen ist auch, ob die Deckung von `AEN-031` aus der Reserve kommt; sie gehört in dieselbe Betrachtung des Reservestands wie `PRB-004` – ob in dieselbe Vorlage, ist offen.
 :::
 
 ::: ebene 4

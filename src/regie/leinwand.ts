@@ -33,6 +33,10 @@ export function erzeugeAnzeige(inhalte: OeffentlicheInhalte, version: string, ei
   let story: StoryFlaeche | null = null;
   let bereichJetzt = '';
   let theorieJetzt: number | null | undefined;
+  // neue Seite auf der Leinwand: oben beginnen wie im Hauptfenster (nicht in der Regie-Vorschau, die im Regie-Fenster sitzt)
+  const nachOben = (): void => {
+    if (!eingebettet && typeof window !== 'undefined') window.scrollTo(0, 0);
+  };
 
   return {
     element,
@@ -43,6 +47,7 @@ export function erzeugeAnzeige(inhalte: OeffentlicheInhalte, version: string, ei
           story?.entferne();
           story = erzeugeStory({ inhalte, tue: null, eingebettet });
           ersetze(element, story.element);
+          nachOben();
         }
         story.setze(z, bereichJetzt === 'story' ? aktion : null);
       } else if (bereich === 'theorie') {
@@ -51,6 +56,7 @@ export function erzeugeAnzeige(inhalte: OeffentlicheInhalte, version: string, ei
           story = null;
           const seite = baueTheorie({ inhalte, kapitel: z.theorie.kapitel, version, bedienbar: false });
           ersetze(element, seite);
+          nachOben();
           // die Leinwand ist inert: niemand kann das Verzeichnis rollen – der aktuelle Eintrag muss von selbst sichtbar sein
           zeigeAktuellenEintrag(seite);
           theorieJetzt = z.theorie.kapitel;
@@ -67,6 +73,7 @@ export function erzeugeAnzeige(inhalte: OeffentlicheInhalte, version: string, ei
           version,
           bedienbar: false,
         }));
+        nachOben();
       }
       if (bereich !== 'theorie') theorieJetzt = undefined;
       bereichJetzt = bereich;

@@ -66,7 +66,7 @@ Die Freigabe der Reserve verzögert sich um einen Monat.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Reserve einrechnen‘ gewählt. In Welt B wird die Reserve nicht still verbraucht: Ihr Einsatz braucht die Freigabe des Bauherrn.
+In Welt A haben Sie ‚Reserve einrechnen‘ gewählt. In Welt B wird die Reserve nicht still verbraucht: ihr Einsatz braucht die Freigabe des Bauherrn.
 :::
 
 ::: rueckbezug B

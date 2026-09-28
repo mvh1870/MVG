@@ -547,6 +547,7 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .reiter {
   flex: 1;
   min-width: 0;
+  min-height: 36px;
   padding: var(--a-2) var(--a-1) 9px;
   border: 0;
   border-bottom: 3px solid transparent;
@@ -1148,7 +1149,7 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .quelle .marke-logo { height: 26px; color: var(--weiss); }
 .quelle b { font-weight: 600; color: var(--weiss); }
 /* Zitat als eigener Block auf hellem Grund (Story-Schritte ohne eigene Szene): Navy-Karte wie Ebene 4 (P4.7) */
-.stapel > .zitat-block, .welten-aspekt > .zitat-block, .einwand .zitat-block, .regie-einwand .zitat-block { padding: 22px 26px 18px; border-radius: var(--radius-xl); background: var(--navy); color: var(--weiss); }
+.stapel > .zitat-block, .welten-aspekt > .zitat-block, .einwand .zitat-block, .regie-einwand .zitat-block, .klapp-inhalt .zitat-block { padding: 22px 26px 18px; border-radius: var(--radius-xl); background: var(--navy); color: var(--weiss); }
 
 /* =============================================================================================
    18 · Entscheidungsvorlage mit Prüfliste (.ent, .chk, .ck) – Checkliste Kap. 9.4
@@ -1487,7 +1488,7 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 
 /* Welt B: Teile-Leiste (.beats) */
 .teile { display: flex; flex-wrap: wrap; gap: var(--a-1); margin-bottom: var(--a-3); padding: var(--a-1); border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
-.teil { flex: 1 1 auto; display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 34px; padding: var(--a-1) var(--a-2); border: 0; border-radius: 7px; background: none; color: var(--tinte-2); font-size: 13.5px; font-weight: 600; white-space: nowrap; }
+.teil { flex: 1 1 auto; display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 36px; padding: var(--a-1) var(--a-2); border: 0; border-radius: 7px; background: none; color: var(--tinte-2); font-size: 13.5px; font-weight: 600; white-space: nowrap; }
 .teil i { font: 800 15px/1 var(--schrift-anzeige); font-style: normal; color: var(--tuerkis-text); }
 .teil:hover { background: var(--flaeche-1); }
 .teil.ist-erledigt { color: var(--tinte); }
@@ -1659,6 +1660,13 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .vorschau-buehne { position: absolute; left: 0; top: 0; overflow: hidden; transform-origin: 0 0; pointer-events: none; }
 .vorschau-buehne .anzeige { height: 100%; }
 .vorschau-buehne .startseite, .vorschau-buehne .lernseite { height: 100%; min-height: 0; overflow: hidden; }
+/* Die Bühne ist 1280 × 720, unabhängig vom Regie-Fenster: Höhen aus der Bühne, nicht aus vh (P12.5 R7) */
+.vorschau-buehne { --vh: 7.2px; }
+.vorschau-buehne.ist-beamer .anzeige { --vh: calc(7.2px / 1.15); }
+.vorschau-buehne .kapitel-verzeichnis { max-height: calc(720px - 136px); }
+.vorschau-buehne.ist-beamer .anzeige .kapitel-verzeichnis { max-height: calc(720px / 1.15 - 136px); }
+.vorschau-buehne.ist-beamer .tuer-bild { display: none; }
+.vorschau-buehne.ist-beamer .anzeige .startseite { min-height: 0; }
 .regie-karte { min-width: 0; padding: var(--a-3) var(--a-4) 14px; border-radius: var(--radius-l); background: var(--weiss); color: var(--tinte); box-shadow: var(--schatten-karte); --fokus: var(--navy); }
 .regie-h2 { display: flex; align-items: center; gap: var(--a-2); margin-bottom: var(--a-2); font: 700 var(--gr-text)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy); }
 .regie-h2 .symbol { font-size: 18px; color: var(--gold-kante); }
@@ -2043,7 +2051,7 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 @media (min-width: 1100px) { .ist-beamer .anzeige .kapitel-verzeichnis { max-height: calc(100vh / 1.15 - 136px); max-height: calc(100dvh / 1.15 - 136px); } }
 /* zoom vergrößert auch die Fensterhöhe des Leitstands: auf 1/1.15 zurückrechnen, sonst fehlt unten ein Siebtel.
    In der Vorschau gilt height:100 % der Bühne (bereits im Zoom-Maßstab gerechnet). */
-.leinwand.ist-beamer .leitstand { height: calc(100vh / 1.15); height: calc(100dvh / 1.15); min-height: calc(540px / 1.15); }
+@media (min-width: 981px) { .leinwand.ist-beamer .leitstand { height: calc(100vh / 1.15); height: calc(100dvh / 1.15); min-height: calc(540px / 1.15); } }
 .ist-beamer { --tinte-2: var(--tinte); --tinte-leise: var(--tinte-instrument); --linie: var(--linie-3); --auf-navy-2: var(--auf-navy); }
 
 /* Regie (P9): Auswahl Springen/Rolle, Ein-Fenster-Modus, Druckfassung des Protokolls */
@@ -2072,7 +2080,7 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 }
 
 /* Klänge (P10.6, E14): leiser Schalter im Kopf, standardmäßig aus */
-.klang-knopf { margin-left: auto; min-height: 32px; padding: 4px 12px; border: 1px solid var(--navy-linie); border-radius: 999px; background: none; color: var(--auf-navy-2); font: 600 12px/1.2 var(--schrift-text); letter-spacing: .04em; cursor: pointer; }
+.klang-knopf { margin-left: auto; min-height: 36px; padding: 4px 12px; border: 1px solid var(--navy-linie); border-radius: 999px; background: none; color: var(--auf-navy-2); font: 600 12px/1.2 var(--schrift-text); letter-spacing: .04em; cursor: pointer; }
 .klang-knopf[aria-pressed="true"] { color: var(--navy); background: var(--gold-hell); border-color: var(--gold-hell); }
 .klang-knopf + .vermerk { margin-left: var(--a-3); }
 .regie-naechstes { margin: 6px 0 0; font-size: 13px; color: var(--tinte-2); min-height: 1.3em; }

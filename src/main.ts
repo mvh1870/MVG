@@ -275,6 +275,8 @@ function starteRegie(wurzel: HTMLElement): void {
     version: VERSION,
     regieFuer,
     regieKapitel,
+    // Kundenfassung: ohne Regie-Material – die Regie sagt das, statt „keine Notiz“ an jeder Stelle
+    ohneNotizen: regieKapitel(1) === null && regieFuer(inhalte.stationsFolge[0] ?? '', null).station === null,
     oeffneLeinwand: () => {
       window.open(`${location.href.replace(/#.*$/, '')}#leinwand`, 'mvg-leinwand');
     },

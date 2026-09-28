@@ -431,8 +431,12 @@ Tastatur am Griff: Der Regler ist ein **Umschalter mit Überblendung** zwischen 
 | `node werkzeuge/schriften.mjs [--ziel p]` | `src/generiert/schriften.css` (22 @font-face, ≈ 562 KiB) |
 | `node werkzeuge/stilreferenz.mjs [--bilder]` | `tmp/stilreferenz.html`, Bildschirmfotos 1280/400 px, meldet Konsolenfehler und waagerechten Überlauf |
 
+## Beamer-Modus (E10, L-71)
+
+- Die Regie schaltet „Beamer“: `.ist-beamer` an Leinwand und Vorschau-Bühne. `.anzeige` bekommt `zoom: 1.15`, und `--tinte-2`/`--tinte-leise`/`--linie` werden kräftiger.
+- `vh` ist unter dem Zoom ungezoomt: Leitstand (ab 981 px), Kapitelverzeichnis (ab 1100 px) und Startseite rechnen ihre Höhen durch 1,15 (`--vh: calc(1vh / 1.15)`); auf Beamern bis 800 px Höhe entfällt das Türbild der Startseite.
+- Die Regie-Vorschau ist eine feste Bühne von 1280 × 720 (`--vh: 7.2px`), unabhängig vom Regie-Fenster.
+
 ## Offen
 
-- **Beamer-Schalter (E10):** größere Schrift und höherer Kontrast auf der Leinwand sind noch nicht als Tokens angelegt (Vorschlag: `[data-beamer]` am Rahmen skaliert die `--gr-*`-Skala um 1,15 und hebt `--tinte-2` auf `--tinte`).
-- **Mimik der Figuren** und weitere Requisiten (Protokoll, Aktenstapel) folgen in P3.1 im selben Klassenvertrag.
 - **Grafik-Baukasten** (`src/grafik/`): nutzt `--gitter`, `--spur`, Welt- und Statusfarben; eigene Regeln entstehen dort.

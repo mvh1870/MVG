@@ -35,7 +35,7 @@ von: petersen
 betreff: "WG: Schulcampus – wie geht es weiter?"
 zeit: "07:52"
 ---
-Dr. Olbers will bis 15. Dezember eine Entscheidungsfrage und die offenen Entscheidungen, keinen Statusbericht.
+Für den Lenkungskreis am 15. Dezember: eine Entscheidungsfrage und die offenen Entscheidungen, kein Statusbericht.
 :::
 
 ::: chat
@@ -215,7 +215,7 @@ titel: Vertiefung
 ---
 **Von der Diagnose in den Regelbetrieb.** Kap. 8 beschreibt die Einführung: [[zitat:k8-p1|MVG wird sequenziert eingeführt. Der Ansatz ist bewusst pragmatisch. Er beginnt mit einem Lagebild, übersetzt dieses in ein funktionsfähiges Mindestmodell, testet das Modell an echten Entscheidungen und übergibt es anschließend in den Regelbetrieb.]] Für ein Projekt wie Lindenhall nennt Kap. 7 einen eigenen Einstieg: [[zitat:k7-p2|Für laufende Projekte mit eingeschränkter Steuerbarkeit kommt die MVG-Neuinitialisierung als gezieltes Sonderformat hinzu.]] Die Tafel zeigt die sechs Vorgehensschritte; die Spalten „Mitwirkung“ und „Abnahme“ sagen, was an jedem Schritt beim Bauherrn liegt.
 
-**Woran man merkt, dass es trägt.** [[zitat:k8.4-p1|Abnahme bedeutet nicht, dass alle künftigen Entscheidungen risikofrei sind. Abnahme bedeutet, dass die Organisation weiß, wie wesentliche Entscheidungen vorbereitet, mandatiert, freigegeben, dokumentiert und nachverfolgt werden.]] Die zweite Tafel zeigt die acht Abnahmekriterien mit ihrer Prüffrage. In Welt B stand bei Ihrer Übernahme das meiste davon schon – Zielsystem (B1), Mandatsleiter (B1, B3), `ENT-017` (B3), ein benannter Datenstand (B3, B6); das Betriebshandbuch war erst auf dem Weg (B6). In Welt A müsste all das erst entstehen.
+**Woran man merkt, dass es trägt.** [[zitat:k8.4-p1|Abnahme bedeutet nicht, dass alle künftigen Entscheidungen risikofrei sind. Abnahme bedeutet, dass die Organisation weiß, wie wesentliche Entscheidungen vorbereitet, mandatiert, freigegeben, dokumentiert und nachverfolgt werden.]] Die zweite Tafel zeigt die acht Abnahmekriterien mit ihrer Prüffrage. In Welt B stand in Monat 0 das meiste davon schon – Zielsystem (B1), Mandatsleiter (B1, B3), `ENT-017` (B3), ein benannter Datenstand (B3, B6); das Betriebshandbuch war erst auf dem Weg (B6). In Welt A müsste all das erst entstehen.
 
 Die MVG-Neuinitialisierung beschreibt Kap. 7.5 als Sonderformat der Leistungsarchitektur. Für den Bauherrn nennt die Tabelle dort: [[zitat:k7.5-t1|Entscheidung über den Auftrag zur MVG-Neuinitialisierung, Prioritäten, Neufestlegung der Projektbasis, Freigaben und eine neue Mandatslogik.]]
 

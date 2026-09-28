@@ -18,7 +18,7 @@ weiter:
 titel: Zurück auf Monat 0
 kurz: Einstieg
 ---
-Gedankenexperiment: Diesmal steht MVG schon bei Ihrer Übernahme.
+Gedankenexperiment: Diesmal steht MVG schon in Monat 0.
 :::
 
 ::: schritt bausteine
@@ -40,7 +40,7 @@ form: bausteine
 titel: Früher Hebel
 kurz: LPH 0
 ---
-Sie übernehmen in LPH 4. Kap. 5.4:
+Die Geschichte beginnt in LPH 4. Kap. 5.4:
 
 ::: zitat k5.4-p2
 LPH 0 ist der Zeitpunkt, an dem spätere Steuerbarkeit vorbereitet werden kann. Wenn dort Zielprioritäten unklar bleiben, Mandate nicht definiert werden, Gremienlogik und Projektlogik auseinanderlaufen und Datenstände nicht referenziert werden, entstehen spätere Kosten-, Termin-, Qualitäts- und Freigaberisiken. MVG nutzt LPH 0 deshalb als frühen Hebel, bleibt aber nicht auf LPH 0 beschränkt.

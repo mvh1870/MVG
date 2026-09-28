@@ -33,5 +33,5 @@ export function zeitmaschine(inhalte: OeffentlicheInhalte): HTMLElement | null {
   return h('section', { class: 'werkzeug', id: 'werkzeug-zeitmaschine-flaeche', 'aria-labelledby': 'zm-titel', 'data-pruef': 'werkzeug-zm' },
     h('h2', { class: 'lern-abschnitt-titel', id: 'zm-titel' }, Z.name),
     h('p', { class: 'kapitel-einstieg' }, Z.einstieg),
-    grafik({ punkte, woerter: { kosten: Z.kosten, offen: Z.offen, stufen: STUFEN, weltA: Z.weltA, weltB: Z.weltB, monat: Z.monat, regler: Z.regler, tabelle: Z.tabelle, quelle: Z.quelle, achseMonat: Z.achseMonat } }));
+    grafik({ punkte, woerter: { kosten: Z.kosten, offen: Z.offen, offenEins: Z.offenEins, stufen: STUFEN, weltA: Z.weltA, weltB: Z.weltB, monat: Z.monat, regler: Z.regler, tabelle: Z.tabelle, quelle: Z.quelle, achseMonat: Z.achseMonat } }));
 }

@@ -56,8 +56,10 @@
 .kapitel-verzeichnis > summary::after { content: "+"; font: 800 var(--gr-xl)/1 var(--schrift-anzeige); color: var(--tinte-2); }
 .kapitel-verzeichnis[open] > summary::after { content: "–"; }
 .kapitel-liste { display: flex; flex-direction: column; gap: 2px; }
-.kapitel-liste a {
+.kapitel-liste > li > :is(a, span) {
   display: grid;
+  min-height: 36px;
+  align-content: center;
   grid-template-columns: 28px 1fr;
   gap: var(--a-2);
   padding: 6px var(--a-2);
@@ -67,10 +69,10 @@
   line-height: 1.3;
   text-decoration: none;
 }
-.kapitel-liste a b { font: 800 var(--gr-l)/1.1 var(--schrift-anzeige); color: var(--navy-soft); }
+.kapitel-liste > li > :is(a, span) b { font: 800 var(--gr-l)/1.1 var(--schrift-anzeige); color: var(--navy-soft); }
 .kapitel-liste a:hover { background: var(--weiss); color: var(--tinte); }
-.kapitel-liste a[aria-current="page"] { background: var(--weiss); color: var(--tinte); font-weight: 600; box-shadow: inset 3px 0 0 var(--petrol); }
-.kapitel-liste a.ist-gelesen b { color: var(--petrol); }
+.kapitel-liste :is(a, span)[aria-current="page"] { background: var(--weiss); color: var(--tinte); font-weight: 600; box-shadow: inset 3px 0 0 var(--petrol); }
+.kapitel-liste .ist-gelesen b { color: var(--petrol); }
 @media (max-width: 1099px) {
   .kapitel-verzeichnis { position: static; max-height: none; overflow: visible; }
   .kapitel-verzeichnis:not([open]) .kapitel-liste { display: none; }
@@ -139,7 +141,7 @@ button.lernkarte[aria-expanded="true"] { box-shadow: 0 0 0 2px var(--gold-hell),
   background: var(--flaeche-3);
   box-shadow: inset 0 0 0 1px var(--linie), inset 4px 0 0 var(--navy-soft);
 }
-.originaltext-kopf { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--a-1) var(--a-4); cursor: pointer; list-style: none; }
+.originaltext-kopf { display: flex; flex-wrap: wrap; align-items: baseline; min-height: 36px; align-content: center; justify-content: space-between; gap: var(--a-1) var(--a-4); cursor: pointer; list-style: none; }
 .originaltext-kopf::-webkit-details-marker { display: none; }
 .originaltext[open] > .originaltext-kopf { margin-bottom: var(--a-4); padding-bottom: var(--a-3); border-bottom: 1px solid var(--linie); }
 .originaltext-hinweis { flex-basis: 100%; font-size: var(--gr-s); color: var(--tinte-2); }
@@ -167,7 +169,7 @@ button.lernkarte[aria-expanded="true"] { box-shadow: 0 0 0 2px var(--gold-hell),
 a.absatz-id:hover { background: var(--weiss); box-shadow: inset 0 0 0 1px var(--navy-soft); }
 /* Zitierfunktion (P10.1): ID als Permalink, darunter „Zitieren“; die Angabe erscheint über die ganze Breite */
 .absatz-kopf { display: flex; flex-direction: column; align-items: flex-start; gap: var(--a-1); }
-.absatz-zitieren { display: inline-flex; align-items: center; gap: 4px; min-height: 28px; padding: 2px 6px; border: 0; border-radius: var(--radius-xs); background: none; color: var(--tinte-2); font: 500 var(--gr-xs)/1.2 var(--schrift-text); cursor: pointer; }
+.absatz-zitieren { display: inline-flex; align-items: center; gap: 4px; min-height: 36px; padding: 2px 6px; border: 0; border-radius: var(--radius-xs); background: none; color: var(--tinte-2); font: 500 var(--gr-xs)/1.2 var(--schrift-text); cursor: pointer; }
 .absatz-zitieren:hover, .absatz-zitieren[aria-expanded="true"] { color: var(--navy); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
 .absatz-zitieren .symbol { width: 14px; height: 14px; }
 .zitierangabe { grid-column: 1 / -1; display: grid; gap: 2px; margin: 0; padding: var(--a-2) var(--a-3); border-radius: var(--radius-s); background: var(--weiss); box-shadow: inset 3px 0 0 var(--gold); font-size: var(--gr-s); overflow-wrap: anywhere; }
@@ -360,7 +362,7 @@ q.mvg-zitat { font-weight: 500; }
 .glossar-eintrag dd p { margin-top: var(--a-2); font-size: var(--gr-text); line-height: 1.55; color: var(--tinte); }
 .glossar-orte { display: flex; flex-wrap: wrap; align-items: center; gap: var(--a-2); }
 .glossar-orte .t-label { color: var(--tinte-2); }
-.glossar-ort { display: inline-flex; align-items: center; min-height: 28px; padding: 2px var(--a-3); border-radius: 999px; background: var(--flaeche-2); font-size: var(--gr-s); color: var(--navy); text-decoration: none; }
+.glossar-ort { display: inline-flex; align-items: center; min-height: 36px; padding: 2px var(--a-3); border-radius: 999px; background: var(--flaeche-2); font-size: var(--gr-s); color: var(--navy); text-decoration: none; }
 .glossar-ort[data-welt="a"], .glossar-ort[data-welt="b"] { background: var(--welt-soft); color: var(--welt-text); }
 a.glossar-ort:hover { text-decoration: underline; }
 .glossar-leer, .glossar-quelle { margin-top: var(--a-4); font-size: var(--gr-s); color: var(--tinte-2); }
@@ -506,7 +508,7 @@ a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
 .kompass { margin-top: var(--a-8); }
 .kompass .lesetext { margin: var(--a-2) 0 var(--a-4); }
 .kompass-tabelle td:first-child { color: var(--tinte-2); }
-.kompass-begriff { min-height: 32px; padding: 2px 0; border: 0; background: none; color: var(--navy); font: inherit; font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; cursor: pointer; }
+.kompass-begriff { min-height: 36px; padding: 2px 0; border: 0; background: none; color: var(--navy); font: inherit; font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; cursor: pointer; }
 .kompass-begriff:hover { text-decoration-thickness: 2px; }
 .kompass-hinweis { margin-top: 2px; font-size: var(--gr-s); color: var(--tinte-2); }
 .kompass-hinweis p { margin: 0; }

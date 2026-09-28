@@ -31,7 +31,7 @@ hinweis: Fiktiver Fall. Stadt, Gesellschaft, Projekt und Personen sind erfunden.
 
 Die Stadt Lindenhall baut im Süden der Stadt einen Schulcampus: eine Gesamtschule, eine Grundschule und eine Dreifeldsporthalle, als Holzhybridbau. Eigentümerin ist die Stadt; Stadtrat und Bauausschuss legen den Rahmen fest. Als Bauherr wird sie von der Gebäudemanagement Lindenhall GmbH (GML) vertreten. Die Projektbasis liegt bei 58,4 Mio. € brutto.
 
-Die Geschichte beginnt mit Ihrer Übernahme der Projektleitung auf Bauherrenseite (Monat 0). In Monat 5 steht das Projekt in LPH 5 Ausführungsplanung.
+Die Geschichte beginnt mit der Übernahme der Projektleitung auf Bauherrenseite (Monat 0). In Monat 5 steht das Projekt in LPH 5 Ausführungsplanung.
 
 ## Zahlen
 

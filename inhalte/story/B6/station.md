@@ -144,7 +144,7 @@ Managementbericht Oktober · benannter Datenstand
 a: 5
 b: 1
 ---
-Versionen der Kostenprognose im Umlauf
+{Version|Versionen} der Kostenprognose im Umlauf
 :::
 
 ::: kennzahl
@@ -152,7 +152,7 @@ Versionen der Kostenprognose im Umlauf
 a: 0
 b: 1
 ---
-benannte Stellvertretungen für die Kostenprognose
+benannte {Stellvertretung|Stellvertretungen} für die Kostenprognose
 :::
 
 ### Welt A
@@ -227,13 +227,13 @@ wert: Status in Vorbereitung · Ergebnis offen
 :::
 
 ::: bekannt
-- Die Bauherren-PL legt vor, der Lenkungskreis berät am 17. November; Dr. Olbers gibt selbst frei.
+- Die Bauherren-PL legt vor, der Lenkungskreis berät am 17. November; der Bauherr gibt selbst frei.
 - Verbindlich: „Kostenprognose 2026-10 · Version 4“, ohne `PRB-004`.
 :::
 
 ::: unbekannt
 - Ob offene Punkte der Generalplanung den Abschluss hindern {#offene-punkte}
-- Ob das Controlling den Datenstand bestätigt {#datenstand}
+- Ob der Datenstand bestätigt ist {#datenstand}
 - Ob die Stellvertretung die Prognose weiterführt {#stellvertretung}
 - Welche Risiken der Bauherr mit der Freigabe annimmt {#risiken}
 :::

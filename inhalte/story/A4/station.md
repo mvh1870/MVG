@@ -95,7 +95,7 @@ knopf: Jetzt entscheiden
 ::: unbekannt
 - Welche Frage der Ausschuss beantworten soll {#frage}
 - Wer über die Auflagen-Mehrkosten entscheidet {#zustaendigkeit}
-- Ob die Auflagen in den Prognosen stehen {#auflagen}
+- Ob beide Prognosen die Auflagen enthalten {#auflagen}
 - Welche Kostenzahl gilt {#kostenzahl}
 :::
 

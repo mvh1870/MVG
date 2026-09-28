@@ -24,7 +24,7 @@ weiter:
 titel: Montag, 08:30 Uhr. Monat 5.
 kurz: Einstieg
 ---
-Montag, 11. Mai. Nächste Woche tagen Lenkungskreis und Bauausschuss; Dr. Olbers braucht eine Kostenzahl. Es gibt zwei.
+Montag, 11. Mai. Nächste Woche tagen Lenkungskreis und Bauausschuss; beide brauchen eine Kostenzahl. Es gibt zwei.
 
 ::: mail
 ---

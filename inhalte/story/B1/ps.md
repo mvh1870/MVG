@@ -48,7 +48,7 @@ Schlüsselrolle: Wer übernimmt Holger Steins Aufgabe, wenn er ausfällt?
 ::: option C
 ---
 titel: Eine Stellvertretung für Holger Stein vorschlagen; die Bauherren-PL nimmt sie ins Verantwortungsmodell auf
-kurz: Stellvertretung benennen
+kurz: Stellvertretung vorschlagen
 status:
   offene-risiken: -1
 ---

@@ -37,7 +37,7 @@ von: petersen
 ::: mail
 ---
 von: hoffmeister
-betreff: "AW: Ihre Nachfrage Holzbauelemente"
+betreff: "AW: Lieferzeit Holzbauelemente"
 zeit: "10:31"
 ---
 Lieferzeit rund 26 statt 16 Wochen. Terminwirkung nicht bewertet.
@@ -49,7 +49,7 @@ von: roth
 betreff: Mensa für den Ganztag
 zeit: "11:09"
 ---
-Schulverwaltung und Schulleitung: Der Ganztag braucht eine Mensa für rund 450 statt 300 Essen, laut Generalplanung grob 0,6 Mio. €. Herr Deppe sagte im Flur: „Machen wir.“ Ich nehme ihn beim Wort.
+Schulverwaltung und Schulleitung: Der Ganztag braucht eine Mensa für rund 450 statt 300 Essen, laut Generalplanung grob 0,6 Mio. €. Die Geschäftsführung der GML sagte im Flur: „Machen wir.“ Ich nehme die GML beim Wort.
 :::
 
 ::: notiz
@@ -121,7 +121,7 @@ bleibt:
 Terminrisiko steigt.
 
 ### Neu bekannt
-Der Satz im Flur war als Absichtserklärung gemeint, Sabine Roth versteht ihn als Zusage. Der Lenkungskreis am 17. März bespricht beides ohne Vorlage; die Förderfrist steht in keinem Terminplan.
+Der Satz im Flur gilt der einen Seite als Absichtserklärung, Sabine Roth als Zusage. Der Lenkungskreis am 17. März bespricht beides ohne Vorlage; die Förderfrist steht in keinem Terminplan.
 :::
 :::
 
@@ -207,7 +207,7 @@ Für Änderungen am Projektumfang sind keine Schwellen festgelegt; ob über rund
 ---
 titel: Zehn Wochen mehr, unbewertet
 ---
-Die Lieferzeit der Holzbauelemente steigt von rund 16 auf 26 Wochen; die Generalplanung meldet es auf Ihre Nachfrage. Ob die Förderfrist hält, bewertet niemand. Kap. 4.4 beschreibt, was zu einem Risiko gehört: [[zitat:k4.4-p2|Ein Risiko wird nicht nur als Eintrag geführt, sondern mit einer verantwortlichen Rolle, Frist, Wirkung, Risikominderung, Restrisiko, Entscheidungsbedarf und Eskalationsschwelle verbunden.]]
+Die Lieferzeit der Holzbauelemente steigt von rund 16 auf 26 Wochen; die Generalplanung meldet es auf Nachfrage der Bauherren-PL. Ob die Förderfrist hält, bewertet niemand. Kap. 4.4 beschreibt, was zu einem Risiko gehört: [[zitat:k4.4-p2|Ein Risiko wird nicht nur als Eintrag geführt, sondern mit einer verantwortlichen Rolle, Frist, Wirkung, Risikominderung, Restrisiko, Entscheidungsbedarf und Eskalationsschwelle verbunden.]]
 :::
 
 ::: vertiefung freigaben

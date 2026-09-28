@@ -48,7 +48,7 @@ von: petersen
 betreff: "WG: Anfrage Kämmerei – Risikoreserve"
 zeit: "13:31"
 ---
-Dr. Olbers: „Nichts freigegeben. Bis Freitag: Was läuft gegen die Reserve, wer hat es veranlasst?“
+Die Kämmerei fragt, wer den Einsatz der Reserve freigegeben hat – freigegeben ist nichts. Bis Freitag: Was läuft gegen die Reserve, wer hat es veranlasst?
 :::
 
 ::: chat

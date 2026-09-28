@@ -62,7 +62,7 @@ Das Detailwissen zur Kostendatei liegt noch vor allem bei Holger Stein.
 Abhängigkeit von einer Schlüsselperson.
 
 ### Governance-Frage
-[[Mandat]]: Ist für Holger Steins Aufgabe eine Stellvertretung geregelt?
+Schlüsselrolle: Wer übernimmt Holger Steins Aufgabe, wenn er ausfällt?
 :::
 
 ::: rueckbezug A

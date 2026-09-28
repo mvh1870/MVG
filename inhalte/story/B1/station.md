@@ -122,7 +122,7 @@ Zielpriorität · legt der Bauherr fest
 a: 3
 b: 0
 ---
-getrennte Ablagen
+getrennte {Ablage|Ablagen}
 :::
 
 ::: kennzahl
@@ -130,7 +130,7 @@ getrennte Ablagen
 a: 2
 b: 0
 ---
-lose Notizen
+lose {Notiz|Notizen}
 :::
 
 ### Welt A

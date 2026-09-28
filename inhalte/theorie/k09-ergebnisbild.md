@@ -242,7 +242,7 @@ Die Freigabe am Abschluss einer Leistungsphase gibt die nächste frei. Nach der 
 ---
 titel: Welche Frage die Freigabe am Ende jeder Leistungsphase stellt
 ---
-Die Freigabefragen je Leistungsphase, wörtlich aus Tabelle 9.3; die Tafel darunter zeigt sie im Zusammenhang, danach folgt der Regelbetrieb. Die Zuordnung kann projektspezifisch angepasst werden.
+Die Freigabefragen je Leistungsphase, wörtlich aus der Tabelle in Kap. 9.3; die Tafel darunter zeigt sie im Zusammenhang. Nach der Freigabe zum Abschluss von LPH 9 folgt der Regelbetrieb. Die Zuordnung kann projektspezifisch angepasst werden.
 
 ::: stufe lph0
 ---

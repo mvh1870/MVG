@@ -33,7 +33,7 @@ status:
   offene-risiken: -1
 ---
 ### Konsequenz
-Die Projektsteuerung benennt eine Stellvertretung für Holger Stein; der Kostenplan ist kein Privatordner.
+Die Projektsteuerung schlägt eine Stellvertretung für Holger Stein vor, die Bauherren-PL nimmt sie ins Verantwortungsmodell auf; der Kostenplan ist kein Privatordner.
 
 ### Was fehlt
 Übung: Die Stellvertretung muss den Datenstand auch führen, nicht nur kennen.
@@ -42,7 +42,7 @@ Die Projektsteuerung benennt eine Stellvertretung für Holger Stein; der Kostenp
 Eine benannte Stellvertretung, die im Ernstfall nicht eingearbeitet ist.
 
 ### Governance-Frage
-[[Mandat]]: Welche Stellvertretungen gehören zu den Schlüsselrollen?
+Schlüsselrollen: Welche Aufgaben brauchen eine Stellvertretung?
 :::
 
 ::: option C

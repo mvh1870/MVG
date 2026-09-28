@@ -203,7 +203,7 @@ Bausteine in einem `schritt`:
 | `vorlage` | Pflicht (`ENT-017`) | `titel`, `datenstand` | `frage`, `checkliste` (2.4) |
 | `fluss` | – | `position`: `fruehwarnung` · `bestaetigt` · `risiko` · `entscheidung` · `freigabe` · `massnahme` · `managementbericht` | `text` |
 | `paar` | – | `a` (Art des Welt-A-Stücks: `mail` · `chat` · `notiz` · `datei`), `von`, `b` (Art im Fluss), `kennung`, `fluss` (Position wie oben) | `weltA`, `weltB` |
-| `kennzahl` | – | `a` (Zahl), `b` (Zahl) | `text` = Bezeichnung |
+| `kennzahl` | – | `a` (Zahl), `b` (Zahl) | `text` = Bezeichnung; `{Einzahl\|Mehrzahl}` wählt die Form nach der angezeigten Zahl („{Version\|Versionen} im Umlauf“) |
 | `interesse` | Pflicht (`kosten`) | `titel` (Pflicht) | `text` |
 | `merksatz` | – | – | `text` |
 | `hinweis` | – | – | `text` |

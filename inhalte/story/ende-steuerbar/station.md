@@ -14,7 +14,7 @@ schaltet-frei: [explore]
 titel: Dienstag, 16. März 2027. Monat 15.
 kurz: Einstieg
 ---
-Dr. Olbers hat im Dezember die [[MVG-Neuinitialisierung]] beauftragt und eigene Zeit gegeben. Das Projekt steht in LPH 5. Heute beginnt die Übergabe des [[Bauherren-Führungsmodell]]s – nicht die [[Übergabe]] des Vorhabens in LPH 9.
+Der Bauherr hat im Dezember die [[MVG-Neuinitialisierung]] beauftragt und eigene Zeit gegeben. Das Projekt steht in LPH 5. Heute beginnt die Übergabe des [[Bauherren-Führungsmodell]]s – nicht die [[Übergabe]] des Vorhabens in LPH 9.
 
 ::: protokoll
 ---

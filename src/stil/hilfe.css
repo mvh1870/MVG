@@ -6,7 +6,7 @@
 
 /* Verzeichnis: Unterseiten des aktuellen Teils */
 .hilfe-unterliste { display: flex; flex-direction: column; gap: 2px; margin: 2px 0 var(--a-2) 36px; }
-.hilfe-unterliste a { grid-template-columns: 1fr; padding: 4px var(--a-2); font-size: var(--gr-s); }
+.hilfe-unterliste a { display: grid; grid-template-columns: 1fr; align-content: center; min-height: 36px; padding: 4px var(--a-2); border-radius: var(--radius-s); color: var(--tinte-2); font-size: var(--gr-s); line-height: 1.3; text-decoration: none; }
 .hilfe-verzeichnis .kapitel-liste a b .symbol { font-size: 18px; }
 .hilfe-zusatz { font-size: var(--gr-s); font-weight: 400; color: var(--tinte-2); }
 .hilfe-hinweis { max-width: 78ch; font-size: var(--gr-s); line-height: 1.5; color: var(--tinte-2); }

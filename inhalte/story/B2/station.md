@@ -27,7 +27,7 @@ Dienstag, 10. März. Dieselbe Flurzusage, dieselbe Förderfrist.
 ::: mail
 ---
 von: hoffmeister
-betreff: "AW: Ihre Nachfrage Holzbauelemente"
+betreff: "AW: Lieferzeit Holzbauelemente"
 zeit: "10:31"
 ---
 Lieferzeit rund 26 statt 16 Wochen. Terminwirkung nicht bewertet.
@@ -47,7 +47,7 @@ von: roth
 betreff: Mensa für den Ganztag
 zeit: "11:09"
 ---
-Schulverwaltung und Schulleitung: Der Ganztag braucht eine Mensa für rund 450 statt 300 Essen, laut Generalplanung grob 0,6 Mio. €. Herr Deppe sagte im Flur: „Machen wir.“ Ich nehme ihn beim Wort.
+Schulverwaltung und Schulleitung: Der Ganztag braucht eine Mensa für rund 450 statt 300 Essen, laut Generalplanung grob 0,6 Mio. €. Die Geschäftsführung der GML sagte im Flur: „Machen wir.“ Ich nehme die GML beim Wort.
 :::
 
 :::
@@ -111,7 +111,7 @@ Mandatsleiter · über 100 TEUR · Änderungsgremium
 a: 3
 b: 0
 ---
-lose Notizen
+lose {Notiz|Notizen}
 :::
 
 ::: kennzahl
@@ -119,7 +119,7 @@ lose Notizen
 a: 0
 b: 2
 ---
-Einträge mit Kennung
+{Eintrag|Einträge} mit Kennung
 :::
 
 ### Welt A
@@ -241,7 +241,7 @@ wert: Beantragt · Auswirkung offen
 ::: unbekannt
 - Ob die Förderfrist hält {#terminwirkung}
 - Termin- und Risikowirkung der Mensa {#mensa-wirkung}
-- Wann das Gremium über `AEN-012` entscheidet {#gremium}
+- Termin der Entscheidung über `AEN-012` {#gremium}
 - Ob Sabine Roth weiß, dass nichts beschlossen ist {#nutzerseite}
 :::
 :::

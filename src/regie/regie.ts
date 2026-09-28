@@ -37,6 +37,8 @@ export interface RegieOptionen {
   regieFuer: (station: string, rolle: string | null) => { station: RegieEintrag | null; szene: RegieEintrag | null };
   /** Regie-Material einer Lernseite (P9.2) */
   regieKapitel?: (kapitel: number) => RegieEintrag | null;
+  /** Kundenfassung ohne Regie-Material */
+  ohneNotizen?: boolean;
   /** öffnet das Leinwand-Fenster */
   oeffneLeinwand: () => void;
   /** Takt der Verbindungsprüfung in ms */
@@ -274,12 +276,12 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
       const teile: Node[] = [];
       if (e?.notiz) teile.push(h('div', { class: 'regie-notiz-text' }, inhalt(e.notiz)));
       if (e !== null && e.leitfragen.length > 0) teile.push(h('h3', { class: 'regie-h3' }, w.leitfragen), h('ol', { class: 'regie-leitfragen', 'data-pruef': 'regie-leitfragen' }, e.leitfragen.map((f) => h('li', null, f))));
-      ersetze(notizInhalt, teile.length > 0 ? teile : h('p', { class: 'regie-leise' }, w.keineNotiz));
+      ersetze(notizInhalt, teile.length > 0 ? teile : h('p', { class: 'regie-leise' }, o.ohneNotizen === true ? w.keineNotizenFassung : w.keineNotiz));
       ersetze(einwandInhalt, ...spickzettel(einwaendeFuer(z)));
       return;
     }
     if (z.station === null || z.bereich !== 'story') {
-      ersetze(notizInhalt, h('p', { class: 'regie-leise' }, w.keineNotiz));
+      ersetze(notizInhalt, h('p', { class: 'regie-leise' }, o.ohneNotizen === true ? w.keineNotizenFassung : w.keineNotiz));
       ersetze(einwandInhalt);
       return;
     }
@@ -292,7 +294,7 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
         teile.push(h('h3', { class: 'regie-h3' }, w.leitfragen), h('ol', { class: 'regie-leitfragen', 'data-pruef': 'regie-leitfragen' }, e.leitfragen.map((f) => h('li', null, f))));
       }
     }
-    ersetze(notizInhalt, teile.length > 0 ? teile : h('p', { class: 'regie-leise' }, w.keineNotiz));
+    ersetze(notizInhalt, teile.length > 0 ? teile : h('p', { class: 'regie-leise' }, o.ohneNotizen === true ? w.keineNotizenFassung : w.keineNotiz));
     ersetze(einwandInhalt, ...spickzettel(einwaendeFuer(z)));
   };
 

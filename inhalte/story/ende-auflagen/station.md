@@ -14,7 +14,7 @@ schaltet-frei: [explore]
 titel: Dienstag, 16. März 2027. Monat 15.
 kurz: Einstieg
 ---
-Im Januar hat Dr. Olbers die Freigabe zum Abschluss von LPH 5 mit Auflagen erteilt; seitdem läuft LPH 6.
+Im Januar hat der Bauherr die Freigabe zum Abschluss von LPH 5 mit Auflagen erteilt; seitdem läuft LPH 6.
 
 ::: protokoll
 ---

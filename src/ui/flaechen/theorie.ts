@@ -105,7 +105,7 @@ function liste(o: TheorieOptionen): HTMLElement {
         h('header', { class: 'kapitel-kopf' },
           h('span', { class: 'kapitel-nr' }, String(kap.length)),
           h('p', { class: 'kapitel-kicker' }, `${W.whitepaper} ${o.inhalte.whitepaper.fassung ?? ''}`),
-          h('h1', { class: 'kapitel-titel' }, W.theorie.ueberblick),
+          h('h1', { class: 'kapitel-titel', tabindex: -1 }, W.theorie.ueberblick),
           h('p', { class: 'kapitel-einstieg' }, W.theorie.ueberblickText),
           o.bedienbar ? h('p', null, h('button', { type: 'button', class: 'knopf knopf-still druck-knopf', 'data-pruef': 'alles-drucken', onclick: () => {
             druckeBogen(W.druck.allesTitel, [bogenKopf(W.druck.allesTitel, o.version, false), ...kap.filter((k) => k.seite).map((k) => kapitelFuerDruck(o.inhalte, k.nr, o.version))]);
@@ -545,7 +545,10 @@ export function zeigeAktuellenEintrag(seite: HTMLElement): void {
     const v = seite.querySelector<HTMLElement>('.kapitel-verzeichnis');
     const a = v?.querySelector<HTMLElement>('[aria-current="page"]');
     if (!v || !a || v.scrollHeight <= v.clientHeight + 1) return;
-    const oben = a.getBoundingClientRect().top - v.getBoundingClientRect().top + v.scrollTop;
+    // Regie-Vorschau: die Bühne ist per transform skaliert – Abstände aus dem Rechteck zurückrechnen
+    const vr = v.getBoundingClientRect();
+    const massstab = v.offsetHeight > 0 ? vr.height / v.offsetHeight : 1;
+    const oben = (a.getBoundingClientRect().top - vr.top) / (massstab || 1) + v.scrollTop;
     v.scrollTop = Math.max(0, oben - v.clientHeight / 2);
   });
 }

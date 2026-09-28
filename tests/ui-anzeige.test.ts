@@ -88,7 +88,6 @@ test('Weiter wartet auf die Entscheidung; danach Konsequenz, Ebenen, Welt B (B3)
   assert.equal(art(z), 'konsequenz');
   z = weiter(z);
   assert.equal(art(z), 'ebenen', 'A3 hat seit P3.4 Ebenen 1–4 nach der Konsequenz');
-  for (let e = 2; e <= 4; e += 1) z = tue(z, weiterAktion(o(z), inhalte) ?? { art: 'weiter' });
   z = weiter(z);
   assert.equal(z.station, 'A6', 'Express: nach A3 folgt A6');
   assert.equal(tafelWelt(inhalte.stationen['A3'] ?? null), 'a');
@@ -99,11 +98,9 @@ test('Weiter wartet auf die Entscheidung; danach Konsequenz, Ebenen, Welt B (B3)
   assert.ok(b3);
   assert.equal(tafelWelt({ ...b3, welt: null, vergleich: { a: 'A3', b: 'B3' } }), 'ab');
   while (art(z) !== 'ebenen') z = weiter(z);
-  for (let e = 2; e <= 4; e += 1) {
-    const a = weiterAktion(o(z), inhalte);
-    assert.deepEqual(a, { art: 'setzeEbene', ebene: e });
-    z = tue(z, a);
-  }
+  // L-61: „Weiter“ geht auch im Ebenen-Schritt weiter; die Ebenen 2–4 öffnet man selbst
+  assert.deepEqual(weiterAktion(o(z), inhalte), { art: 'weiter' }, 'Ebene 1 ist Hauptpfad, Weiter führt zur nächsten Station');
+  z = tue(z, { art: 'setzeEbene', ebene: 4 });
   assert.deepEqual(weiterAktion(o(z), inhalte), { art: 'weiter' }, 'nach Ebene 4 geht es zur nächsten Station');
   assert.deepEqual(zurueckAktion(o(z), inhalte), { art: 'setzeEbene', ebene: 3 });
   assert.equal(weiter(z).station, 'B6', 'Express: nach B3 folgt B6');

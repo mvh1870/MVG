@@ -307,8 +307,23 @@ export async function fuehreAus(browser, szenario, viewport, url, bilder = BILDE
         if (!(await p.evaluate(() => 'axe' in window))) await p.evaluate(axeQuelle());
         /** @type {{ id: string, impact: string | null, help: string, ziele: string[] }[]} */
         const verstoesse = await p.evaluate(async () => {
-          const erg = await /** @type {any} */ (window).axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] }, resultTypes: ['violations'] });
-          return erg.violations.map((/** @type {any} */ v) => ({ id: v.id, impact: v.impact, help: v.help, ziele: v.nodes.slice(0, 3).map((/** @type {any} */ n) => String(n.target)) }));
+          // Klebende Leisten (Fußleiste bei schmaler Breite) für die Messung in den Fluss legen: axe misst
+          // sonst bei target-size nur den unverdeckten Teil eines Ziels, das zufällig gerade unter der
+          // Leiste liegt – ein Artefakt der Scrollposition (L-62). Verdeckten Fokus verhindert scroll-padding.
+          /** @type {[HTMLElement, string][]} */
+          const klebend = [];
+          for (const el of document.querySelectorAll('body *')) {
+            if (el instanceof HTMLElement && getComputedStyle(el).position === 'sticky') {
+              klebend.push([el, el.style.position]);
+              el.style.position = 'static';
+            }
+          }
+          try {
+            const erg = await /** @type {any} */ (window).axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] }, resultTypes: ['violations'] });
+            return erg.violations.map((/** @type {any} */ v) => ({ id: v.id, impact: v.impact, help: v.help, ziele: v.nodes.slice(0, 3).map((/** @type {any} */ n) => String(n.target)) }));
+          } finally {
+            for (const [el, alt] of klebend) el.style.position = alt;
+          }
         });
         for (const v of verstoesse) {
           const zeile = `${name}: axe ${v.impact ?? '?'} ${v.id} – ${v.help} (${v.ziele.join(' | ')})`;

@@ -141,8 +141,9 @@ export async function lauf(seite, h) {
   /* ------------------------------------------------------ A3 · Ebenen 1 → 4 -- */
   await weiter();
   await h.erwarte('[data-pruef="ebene-1"]');
-  for (let i = 0; i < 3; i += 1) {
-    await h.taste('ArrowRight');
+  // Ebenen 2–4 auf Wunsch über ihre Reiter (L-61); „Weiter“ geht zur nächsten Station
+  for (let e = 2; e <= 4; e += 1) {
+    await h.klick(`[data-pruef="ebene-knopf-${e}"]`);
     await h.warte(150);
   }
   await h.erwarte('[data-pruef="ebene-4"] [data-pruef="zitat"]');
@@ -182,8 +183,9 @@ export async function lauf(seite, h) {
   /* ---------------------------------------------------------- Ebenen 1 → 4 -- */
   await weiter();
   await h.erwarte('[data-pruef="ebene-1"]');
-  for (let i = 0; i < 3; i += 1) {
-    await h.taste('ArrowRight');
+  // Ebenen 2–4 auf Wunsch über ihre Reiter (L-61); „Weiter“ geht zur nächsten Station
+  for (let e = 2; e <= 4; e += 1) {
+    await h.klick(`[data-pruef="ebene-knopf-${e}"]`);
     await h.warte(150);
   }
   await h.erwarte('[data-pruef="ebene-4"] [data-pruef="zitat"]');

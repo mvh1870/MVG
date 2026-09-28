@@ -191,7 +191,8 @@ export function karteSichtbar(z: OeffentlicherZustand, inhalte: OeffentlicheInha
 
 /**
  * Die Aktion hinter „Weiter“ (Knopf, Pfeiltaste, Regie) – oder null, wenn es gerade nicht weitergeht
- * (Rolle fehlt, Entscheidung fehlt, Ende). Im Ebenen-Schritt blättert „Weiter“ durch die Ebenen 1–4.
+ * (Rolle fehlt, Entscheidung fehlt, Ende). Im Ebenen-Schritt geht „Weiter“ weiter (L-61): Ebene 1
+ * gehört zum Hauptpfad, die Ebenen 2–4 sind Tiefe auf Wunsch (Reiter der Ebenen, „Progressive Information“).
  */
 export function weiterAktion(z: OeffentlicherZustand, inhalte: OeffentlicheInhalte): Aktion | null {
   if (z.station === null) return { art: 'starteStory' };
@@ -200,10 +201,6 @@ export function weiterAktion(z: OeffentlicherZustand, inhalte: OeffentlicheInhal
   const schritte = sichtbareSchritte(st, z.rolle);
   const s = schritte[z.schritt];
   if (s !== undefined) {
-    if (s.art === 'ebenen') {
-      const e = Math.max(1, z.ebene);
-      if (e < 4) return { art: 'setzeEbene', ebene: e + 1 };
-    }
     if (s.art === 'rollenwahl' && z.rolle === null) return null;
     if (s.art === 'entscheidung') {
       const ent = z.rolle !== null ? st.szenen[z.rolle]?.entscheidung ?? null : null;

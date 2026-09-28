@@ -400,7 +400,8 @@ export function ohneKennungen(t) {
  */
 export function baueHilfe(o = {}) {
   const wurzel = o.wurzel ?? WURZEL;
-  const hilfe = erzeugeHilfe(readFileSync(path.join(wurzel, QUELLE), 'utf8'));
+  // Zeilenenden wie im Checkout (.gitattributes: eol=lf), unabhängig von der Arbeitskopie
+  const hilfe = erzeugeHilfe(readFileSync(path.join(wurzel, QUELLE), 'utf8').replace(/\r\n?/gu, '\n'));
   const text = hilfeText(hilfe);
   const funde = pruefeText(ohneKennungen(text), 'src/generiert/hilfe.json');
   const wort = text.match(/.{0,30}white\s*-?\s*paper.{0,30}/iu);

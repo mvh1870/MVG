@@ -32,7 +32,7 @@ status:
   terminrisiko: hoch
 ---
 ### Konsequenz
-Zwei Wochen Abstimmung: Ein Teil der Differenz von rund 1,3 Mio. € liegt an verschiedenen Annahmen zum Holzpreis; welche gilt, legt niemand fest. Die Gremien tagen ohne Zahl.
+Zwei Wochen Abstimmung: Ein Teil der Differenz von rund 1,2 Mio. € liegt an verschiedenen Annahmen zum Holzpreis; welche gilt, legt niemand fest. Die Gremien tagen ohne Zahl.
 
 ### Was fehlt
 Eine Stelle, die offene Annahmen festlegt.

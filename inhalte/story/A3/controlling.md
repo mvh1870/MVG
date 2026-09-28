@@ -26,7 +26,7 @@ Im Ausschuss setzt sich die angenehmere Zahl durch, nicht die belastbarere.
 
 ::: option B
 ---
-titel: Mit der Projektsteuerung die Differenz von rund 1,3 Mio. € aufschlüsseln
+titel: Mit der Projektsteuerung die Differenz von rund 1,2 Mio. € aufschlüsseln
 kurz: Differenz aufschlüsseln
 status:
   terminrisiko: +1

@@ -240,9 +240,6 @@ Welcher Termin in welchem Takt worüber spricht – und wann eskaliert wird.
 :::
 :::
 
-::: abbildung abb-10
-:::
-
 :::
 
 ::: abschnitt k6.4.1

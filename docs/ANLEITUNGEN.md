@@ -46,7 +46,7 @@ Den Vermerk „fachlich ungeprüft“ zeigen beide Dateien, bis der Owner die Fa
 3. Steuern:
    - Die Knöpfe **Zurück/Weiter** oder die Pfeiltasten ← → blättern: in der Story Schritt für Schritt, im Bereich Theorie Kapitel für Kapitel (die Story bleibt dabei, wo sie war).
    - **Rollen ↑/↓** oder die Pfeiltasten ↑ ↓ rollen auf der Leinwand die Tafel der Story bzw. die Lernseite, wenn sie länger ist als der Bildschirm; die Vorschau rollt mit. Am Beamer-Fenster selbst rollen auch Mausrad, Bild↑/↓ und Leertaste.
-   - Die **Abbildungen** der Lernseiten erscheinen auf der Leinwand mit aufgeklappten Abweichungen, ohne „Vergrößern“. Abbildung 12 (Reifegradanalyse) steht nur im zugeklappten Originaltext und ist auf der Leinwand nicht zu sehen – im Termin am Laptop über Explore › Grafik-Galerie zeigen.
+   - Die **Abbildungen** der Lernseiten erscheinen auf der Leinwand mit aufgeklappten Abweichungen, ohne „Vergrößern“. Die Abbildungen 10 (Governance-Fluss), 12 (Reifegradanalyse) und 13 (Implementierung) stehen nur im zugeklappten Originaltext und sind auf der Leinwand nicht zu sehen – im Termin am Laptop über Explore › Grafik-Galerie zeigen.
    - Die Tasten **a–d** übernehmen die Kundenwahl an der Entscheidung.
    - Die **Kundenwahl und Eingriffe** (Rolle, Ebenen, Informationen, Optionen) stehen oben rechts.
    - **Fläche**: Start · Story · Theorie · Kapitel 1–13 · Neu.

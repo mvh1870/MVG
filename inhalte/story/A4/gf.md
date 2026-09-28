@@ -67,7 +67,7 @@ Welche Entscheidung ist wesentlich – und wer muss sie treffen?
 :::
 
 ::: rueckbezug A
-Im Mai haben Sie ‚Controlling-Zahl übernehmen‘ gewählt. Die Differenz von rund 1,3 Mio. € ist ungeklärt; im Statusbericht steht die Zahl der Projektsteuerung.
+Im Mai haben Sie ‚Controlling-Zahl übernehmen‘ gewählt. Die Differenz von rund 1,2 Mio. € ist ungeklärt; im Statusbericht steht die Zahl der Projektsteuerung.
 :::
 
 ::: rueckbezug B

@@ -6,11 +6,12 @@ alt: >-
   Entscheidungsvorlage (reif) → „Freigabe (LPH 0–9)“; Frühwarnung (wird zu, bestätigt) → Risiko; Problem
   (eskaliert), Änderung (erfordert) → Register; Vorlage (führt zu) → Änderung (beeinflusst) → CTC / Prognose;
   Vorlage (erzeugt), Freigabe (Auflagen) → Maßnahme. „Überwachung / Indikator“: Band „Schwellenwert löst
-  Frühwarnung aus“ → Frühwarnung, CTC; Risiko (Indicator) → Frühwarnung; Maßnahme (mitigiert das Risiko) →
+  Frühwarnung aus“ → Frühwarnung, CTC; Risiko (Indicator) → Frühwarnung; Maßnahme (Risikominderung) →
   Risiko. „Bericht in den Managementbericht“: Freigabe (Bericht) → Managementbericht.
 angeglichen:
   - { x: 1291, y: 343, b: 62, h: 23, text: (LPH 0–9), beleg: k13-t1, schrift: barlow, gewicht: 700, groesse: 16, ausrichtung: rechts }
   - { x: 1232, y: 368, b: 122, h: 24, text: Freigabeentscheidung, beleg: k6.4.4-t1, schrift: barlow, gewicht: 500, groesse: 15, farbe: '#081114' }
+  - { x: 355, y: 553, b: 156, h: 30, text: Risikominderung, beleg: k6.4.4-t1, schrift: barlow, gewicht: 700, groesse: 24, ausrichtung: rechts }
 abweichungen:
   - text: 'Ein gestrichelter Pfeil „Indicator“ führt vom Risiko zurück zur Frühwarnung; der Text schließt diese Richtung aus: CTC- oder Schwellenwertverletzungen erzeugen neue Frühwarnungen als neue Signale, nicht als Rückrichtung aus einem bestehenden Risiko.'
     beleg: k6.4.3-p2
@@ -18,7 +19,7 @@ abweichungen:
     beleg: k6.4.3-p2
   - text: 'Von der Maßnahme führt keine Kante zum Managementbericht, sondern eine gestrichelte Rückkante zum Risiko; den Managementbericht erreicht nur der „Bericht“ aus der Freigabe. Der kanonische Fluss im Text lautet: „EW (unbewertetes Signal) → bestätigt → Risiko → Entscheidung → Freigabe → Maßnahme → Managementbericht“.'
     beleg: k6.4.3-p1
-  - text: 'Die Rückkante von der Maßnahme zum Risiko heißt „mitigiert das Risiko (Regelkreis schließt)“; der Text nennt als nächsten Schritt im Risikoregister „Risikominderung oder Entscheidung“.'
+  - text: 'Die Rückkante von der Maßnahme zum Risiko trägt den Zusatz „Regelkreis schließt“; der Text nennt als nächsten Schritt im Risikoregister „Risikominderung oder Entscheidung“.'
     beleg: k6.4.4-t1
   - text: 'Vom Problem führt nur „eskaliert“ ins Entscheidungsregister, keine Kante zur Maßnahme; der Text nennt als nächsten Schritt im Problemregister „Maßnahme, ggf. Entscheidung“.'
     beleg: k6.4.4-t1

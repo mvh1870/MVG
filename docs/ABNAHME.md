@@ -10,7 +10,7 @@ Zum Abhaken beim Durchsehen von `dist/mvg.html` (Anleitung: `docs/ANLEITUNGEN.md
 - [ ] Selbstdiagnose ohne Punktzahl, Hinweis auf die Reifegradanalyse als BM-Methode (O-8).
 - [ ] Fall fiktiv und überall so gekennzeichnet (O-3).
 - [ ] Korrekturliste V1.3 (`docs/KORREKTURLISTE-V1.3.md`) gesichtet.
-- [ ] Abbildungen (O-32, L-77): alle 13 in Explore › Grafik-Galerie › Abbildungsverzeichnis geöffnet; jede im Bild angeglichene Beschriftung („Im Bild an die Begriffe des Texts angeglichen …“) und jede aufgeführte Abweichung vom Text gesichtet – die Überdeckungen sind Änderungen an den eigenen Grafiken. Stimmen die Plätze auf den Lernseiten, und soll abb-12 (Reifegradanalyse, weicht in der Sache ab) nur im Originaltext stehen?
+- [ ] Abbildungen (O-32, L-77): alle 13 in Explore › Grafik-Galerie › Abbildungsverzeichnis geöffnet; jede im Bild angeglichene Beschriftung („Im Bild an die Begriffe des Texts angeglichen …“) und jede aufgeführte Abweichung vom Text gesichtet – die Überdeckungen sind Änderungen an den eigenen Grafiken. Stimmen die Plätze auf den Lernseiten, und sollen abb-10, abb-12 und abb-13 (widersprechen einer Regel, die ihre Lernseite lehrt, L-82) nur im Originaltext stehen?
 - [ ] Hilfe (O-31): Aufteilung wie im Companion, Begriffe nach MVG, Korrekturen in `docs/KORREKTURLISTE-COMPANION.md` gesichtet.
 - [ ] **Danach:** Vermerk „fachlich ungeprüft“ entfernen lassen (Owner-Entscheid; der Lauf nimmt ihn nicht selbst weg, O-24).
 

@@ -29,7 +29,7 @@
     { "muster": "(?<![\\p{L}\\p{N}])Long[-\\s]?Leads?(?![\\p{L}\\p{N}])", "flags": "iu", "statt": "Komponente mit langer Lieferzeit" },
     { "muster": "Impact", "flags": "u", "statt": "Auswirkung / Auswirkungsbewertung" },
     { "muster": "(?<![\\p{L}\\p{N}])Risk(?!ant|ier)", "flags": "u", "statt": "Risiko" },
-    { "muster": "Mitigation", "flags": "iu", "statt": "Risikominderung" },
+    { "muster": "Mitigation|mitigier", "flags": "iu", "statt": "Risikominderung" },
     { "muster": "Contingenc(?:y|ies)", "flags": "iu", "statt": "Risikoreserve" },
     { "muster": "Heat[-\\s]?maps?", "flags": "iu", "statt": "Bewertungsmatrix / Risikomatrix" },
     { "muster": "Stakeholder", "flags": "u", "statt": "Beteiligte" },

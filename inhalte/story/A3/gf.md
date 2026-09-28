@@ -12,7 +12,7 @@ status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Im Lenkungskreis nennen Sie +5,9 %, die Zahl der GML. Die Projektsteuerung widerspricht; die Differenz von rund 1,3 Mio. € bleibt im Raum.
+Im Lenkungskreis nennen Sie +5,9 %, die Zahl der GML. Die Projektsteuerung widerspricht; die Differenz von rund 1,2 Mio. € bleibt im Raum.
 
 ### Was fehlt
 Ein verbindlicher [[Datenstand]]: Welche Version gilt?

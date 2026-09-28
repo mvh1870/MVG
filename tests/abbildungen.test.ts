@@ -49,6 +49,7 @@ test('Bildunterschrift: zweizeilige Überdeckungen werden zu einem Begriff (Prü
   assert.equal(einzeilig('Auswirkungs-\nbewertung'), 'Auswirkungsbewertung');
   assert.equal(einzeilig('MVG-\nNeuinitialisierung'), 'MVG-Neuinitialisierung');
   assert.equal(einzeilig('Komponenten mit\nlanger Lieferzeit'), 'Komponenten mit langer Lieferzeit');
+  assert.equal(einzeilig('Risiko-/Änderungs-/\nMaßnahmenverknüpfung'), 'Risiko-/Änderungs-/Maßnahmenverknüpfung');
 });
 
 test('Repo: jede Inhaltsabbildung hat eine gültige Beschreibung, und jedes Bild ist aktuell (stand.json)', async () => {
@@ -89,7 +90,7 @@ test('Originaltext: jede Abbildung steht an ihrer Stelle der DOCX (nach Übersch
     }
   };
   for (const t of Object.values(inhalte.theorie) as { bloecke: { art: string; id: string | null; kinder?: unknown[] }[] }[]) gehe(t.bloecke);
-  assert.equal(zahl.size, 12, 'zwölf Abbildungen auf Lernseiten (abb-12 nur im Originaltext, L-77)');
+  assert.equal(zahl.size, 10, 'zehn Abbildungen auf Lernseiten (abb-10, abb-12, abb-13 nur im Originaltext, L-77, L-82)');
   for (const [id, n] of zahl) assert.equal(n, 1, `${id} ${n}× auf Lernseiten`);
 });
 

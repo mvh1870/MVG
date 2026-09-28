@@ -41,7 +41,7 @@ const BEISPIELE: Record<string, string[]> = {
   [LISTE.verboten[13]?.muster ?? '']: ['Long-Lead-Komponente', 'Long Leads', 'Longlead'],
   [LISTE.verboten[14]?.muster ?? '']: ['der Impact', 'Impacts', 'Impactanalyse', 'impact'],
   [LISTE.verboten[15]?.muster ?? '']: ['Risk Register', 'Risks', 'Riskmanagement', 'risk', 'RISK'],
-  [LISTE.verboten[16]?.muster ?? '']: ['Mitigation', 'Mitigations', 'Mitigationsmaßnahme'],
+  [LISTE.verboten[16]?.muster ?? '']: ['Mitigation', 'Mitigations', 'Mitigationsmaßnahme', 'mitigiert das Risiko', 'mitigieren', 'Mitigierung'],
   [LISTE.verboten[17]?.muster ?? '']: ['Contingency', 'Contingencies'],
   [LISTE.verboten[18]?.muster ?? '']: ['die Heatmap', 'Heatmaps', 'Risikoheatmap', 'Heat Map', 'Heat-Map'],
   [LISTE.verboten[19]?.muster ?? '']: ['Stakeholdern', 'stakeholder', 'STAKEHOLDER'],

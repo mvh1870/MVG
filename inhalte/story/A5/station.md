@@ -110,15 +110,15 @@ status:
   terminrisiko: +1 (Lenkungskreis ohne Vorlage verstrichen)
 loest:
   veranlasst: verteilt auf Jour fixe, Mails und eine Zusage – eine Freigabe ist nicht darunter
-  mensa: auf die Zusage im Flur – beauftragt ist nichts
+  mensa: auf die Zusage im Flur – eine Beauftragung ist nirgends vermerkt
 bleibt:
   rest: zwei Rechnungen, zwei Antworten
   zustaendigkeit: bleibt ungeklärt
 ---
-Terminrisiko steigt.
+Terminrisiko steigt. Die Frist der Kämmerei ist verstrichen, eine Antwort steht aus.
 
 ### Neu bekannt
-Der Mensa-Nachtrag ist angekündigt und stützt sich auf die Zusage im Flur; beauftragt ist nichts. Die Posten der Reserve gehen auf Jour-fixe-Punkte, Mails und die Mensa-Zusage zurück; eine Freigabe ist nicht darunter. Der Lenkungskreis am 15. September ist vorbei, ohne die Reserve auf der Tagesordnung.
+Der Mensa-Nachtrag ist angekündigt und stützt sich auf die Zusage im Flur; eine Beauftragung ist nirgends vermerkt. Die Posten der Reserve gehen auf Jour-fixe-Punkte, Mails und die Mensa-Zusage zurück; eine Freigabe ist nicht darunter. Der Lenkungskreis am 15. September ist vorbei, ohne die Reserve auf der Tagesordnung.
 :::
 :::
 
@@ -208,7 +208,7 @@ Brandschutzauflagen, Mensa-Umplanung und der Nachtrag der TGA-Fachplanung sind e
 ---
 titel: Im Protokoll, nicht im Beschluss
 ---
-Im Jour-fixe-Protokoll stehen die Posten; wer ihre Deckung beschlossen hat, steht nirgends, eine Freigabe des Einsatzes der Reserve gibt es nicht. Vor Lenkungskreis (15.) und Bauausschuss (17. September) bleiben zwei Fragen der Datenstandslogik offen: [[zitat:k4.6-p2|Welche Beschlusslage besteht? Wo wird die Nachweiskette geführt?]]
+Im Jour-fixe-Protokoll stehen die Posten; wer ihre Deckung beschlossen hat, steht nirgends, eine Freigabe des Einsatzes der Reserve gibt es nicht. Für Lenkungskreis und Bauausschuss im September bleiben zwei Fragen der Datenstandslogik offen: [[zitat:k4.6-p2|Welche Beschlusslage besteht? Wo wird die Nachweiskette geführt?]]
 :::
 
 ::: standpunkt gf

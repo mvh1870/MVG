@@ -94,9 +94,6 @@ form: rhythmus
 ---
 :::
 
-::: abbildung abb-13
-:::
-
 :::
 
 ::: abschnitt k8.2

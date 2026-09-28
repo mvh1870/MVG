@@ -123,7 +123,7 @@ export async function lauf(seite, h) {
       if (!offen.offen || !offen.ziel) h.befund(`Beleg-Link ${ziel}: Originaltext nicht aufgeklappt oder Absatz nicht markiert (${JSON.stringify(offen)})`);
     }
   }
-  // Abbildung nur im Originaltext (abb-12, L-77): Permalink klappt ihn auf
+  // Abbildung nur im Originaltext (abb-10, abb-12, abb-13; L-77, L-82): Permalink klappt ihn auf
   const nurOriginal = inhalte.whitepaper.abbildungen.find((/** @type {any} */ a) => a.bild !== null
     && !JSON.stringify(Object.values(inhalte.theorie).find((/** @type {any} */ t) => t.kapitel === Number(a.kapitel))?.bloecke ?? []).includes(`"id":"${a.id}"`));
   if (nurOriginal !== undefined) {

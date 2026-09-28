@@ -52,3 +52,6 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 ## Runde 11 (P12.5, zugleich P14.3)
 - **Stil, Barrierefreiheit, Architektur, Vollständigkeit** (13 Abbildungen in drei Größen, beide Dateien, Dialog, Permalinks, Leinwand/Vorschau, Druck, Galerie, Einbettung; Änderungen seit R9; Rundgang): 13 Befunde (0 schwer, 4 mittel) – alle eingearbeitet (L-80): Dialog eingebettet an der Figur, Abbildungsverzeichnis bei 400 px, Tests der Compiler-Prüfungen, Abnahme-Checkliste; dazu Dialog-Layout, Innenrand, Leinwand/Druck, Belege Kap. 13, Druck wartet auf Bilder, Doku, Szenarien, Übergabe.
 - **Abbildungen je Bild** (Workflow: 13 Autoren, unabhängige Prüfung, Nachbesserung): abb-2, -3, -8, -10, -11 in zwei Runden, danach bei allen 13 nur leichte Befunde; Feinschliff der leichten Befunde je Bild.
+
+## Runde 12 (P12.5, zugleich P14)
+- **Fachtreue, Begriffe, Dramaturgie, O-1** (13 Bilder nach der Überdeckung, 24 Ersatztexte, alle Abweichungen an Bild und Text, Plätze auf den Lernseiten, Story nach Runde 10 gegen die Fall-Bibel, 237 Rückbezüge, 209 Zitate, Bau 2da731a): 12 Befunde (0 schwer, 1 mittel) – alle eingearbeitet (L-82): abb-10 und abb-13 nur im Originaltext wie abb-12, „mitigiert“ überdeckt und in der Verbotsliste, Bildunterschriften (Schrägstrich, doppelte Angleichungen), drei Abweichungstexte, fünf Story-Stellen (A1, A3, A4, A5).

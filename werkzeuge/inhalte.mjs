@@ -1909,13 +1909,15 @@ export async function kompiliere(optionen = {}) {
  */
 /**
  * Zeilenumbrüche einer Überdeckung für die Bildunterschrift: „Änderungs-⏎steuerung“ → „Änderungssteuerung“
- * (Trennstrich vor Kleinbuchstabe fällt weg), „MVG-⏎Neuinitialisierung“ → „MVG-Neuinitialisierung“, sonst Leerzeichen.
+ * (Trennstrich vor Kleinbuchstabe fällt weg), „MVG-⏎Neuinitialisierung“ → „MVG-Neuinitialisierung“,
+ * „Änderungs-/⏎Maßnahmen…“ → „Änderungs-/Maßnahmen…“ (nach Schrägstrich kein Leerzeichen), sonst Leerzeichen.
  * @param {string} text
  */
 export function einzeilig(text) {
   return text
     .replace(/-\s*\n\s*(?=\p{Ll})/gu, '')
     .replace(/-\s*\n\s*/gu, '-')
+    .replace(/\/\s*\n\s*/gu, '/')
     .replace(/\s*\n\s*/gu, ' ');
 }
 

@@ -52,7 +52,7 @@ status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Holger Stein rechnet bis Donnerstag einen Aufschlag ein. Die Kämmerei hat eine neue Zahl, der Stadtrat die alte; die Rechnung versteht nur er.
+Holger Stein rechnet vor der Frist einen Aufschlag ein. Die Kämmerei hat eine neue Zahl, der Stadtrat die alte; die Rechnung versteht nur er.
 
 ### Was fehlt
 Ein Weg, auf dem eine Annahme bewertet wird; Wissen in Artefakten statt in einem Kopf.

@@ -102,7 +102,7 @@ knopf: Jetzt entscheiden
 ::: zeitsprung info
 ---
 knopf: Weitere Informationen anfordern
-kosten: "Kostet Zeit: vier Tage – bis zum Lenkungskreis"
+kosten: "Kostet Zeit: vier Tage – bis zum Vortag des Lenkungskreises"
 dauer: Vier Tage später
 status:
   kostenunsicherheit: +1 (Auflagen nur in einer Prognose)

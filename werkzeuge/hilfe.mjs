@@ -473,6 +473,10 @@ function glaette(/** @type {string} */ html) {
   return html
     .replace(/&amp;amp;/gu, '&amp;')
     .replace(/berichtet ins <b>Managementbericht<\/b>/gu, 'berichtet in den <b>Managementbericht</b>')
+    .replace(/werden am <span>Freigabe<\/span> beschlossen/gu, 'werden an der <span>Freigabe</span> beschlossen')
+    .replace(/mit <span>Entscheidungsvorlage<\/span>-Vorlagen/gu, 'mit Vorlagen für <span>Entscheidungsvorlagen</span>')
+    // das Inhaltsverzeichnis ist hier eine Liste ohne Verweise
+    .replace(/<li>Das Inhaltsverzeichnis ist klickbar<\/li>/gu, '')
     .replace(/<b>Kein Lizenzmodell<\/b>, keine/gu, '<b>Keine</b>')
     // O-1: Angebotsaussage über BM (im Quelltext mit Hervorhebung, daher auf dem HTML)
     .replace(/\s*Für Beratungskunden (?:<b>)?kostenfrei(?:<\/b>)?: kein separates Lizenzentgelt, unbegrenzte Nutzungsrechte auch nach Mandatsende\./gu, '')

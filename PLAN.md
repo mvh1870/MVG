@@ -134,7 +134,7 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 ### P13 · Hilfe (O-31)
 - [x] P13.1 · Hilfe des MVG Companion übernehmen (`werkzeuge/hilfe.mjs`, L-69): gleiche Aufteilung (11 Teile, 13 Rollen-Anleitungen), Bedienteile der Anwendung entfernt, Begriffe nach MVG, in `inhalte` und `bau` eingebunden — Abnahme: `--pruefe` ohne Funde, deterministisch
 - [x] P13.2 · Fläche „Hilfe“ im Lernseiten-Design: Route `#hilfe/<seite>`, Verzeichnis, Suche, Blättern, Vermerk; leise Zugänge (Start, Theorie, Explore) — Abnahme: Einheitentests, Browser-Szenario `hilfe` (alle 24 Seiten, drei Größen, axe, kein Seitwärtsscrollen)
-- [ ] P13.3 · Prüf-Agenten Hilfe (Begriffe, Stil/Barrierefreiheit) in der Korrekturschleife von P12.5
+- [x] P13.3 · Prüf-Agenten Hilfe (Begriffe, Stil/Barrierefreiheit): 17 Runden, Runden 16 und 17 ohne schwere/mittlere Befunde (L-69 (7)–(24), `docs/KORREKTURLISTE-COMPANION.md`)
 
 ## Erledigt
 (noch nichts)

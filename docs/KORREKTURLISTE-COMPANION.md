@@ -43,3 +43,4 @@ Gefunden bei der Übernahme der Hilfe (P13, O-31, L-69). Die Hilfe in MVG intera
 | Handbuch · Leistungsphase (gates) | „G0–G9 entlang der Leistungsphasen (LPH 0–8)“ (in der Hilfe als LPH 0–9 wiedergegeben) | LPH 0–9 | Kap. 9.3 |
 | Kundenanpassung | „Quality Gate“, „Release-Gate“ (in der Hilfe „Qualitätstor“, „Prüftor vor der Auslieferung“) | Freigabe nur für MVG-Freigaben | docs/BEGRIFFE.md |
 | Handbuch · Einführung | „Reifegradmodell des MVG-Standards“ (in der Hilfe „der Anwendung“) | 10 Domänen, 0–100, drei Bänder | k7.1-p2 |
+| Registerdokument-Katalog, FAQ & Glossar · Mandate | „… Änderungsgremium bis 5 Mio., darüber Lenkungskreis“ | darüber Beschlussfassung durch den Bauherrn im Lenkungskreis | Kap. 4.2 |

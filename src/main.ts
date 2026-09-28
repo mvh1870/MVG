@@ -313,6 +313,8 @@ function starteLeinwandFenster(wurzel: HTMLElement): void {
 /* ------------------------------------------------------------------- Start -- */
 
 setzeMarke(logoSvg, bildmarkeSvg);
+// Jede Seite beginnt oben, auch nach „Zurück“ im Browser: dort sitzt der Fokus (Titel), WCAG 2.4.3 (P12.5 R9)
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 const wurzel = document.getElementById('mvg') ?? document.body;
 // Im iframe (P10.6) gibt es weder Regie noch Leinwand: eine fremde Seite soll keine Regie einbetten
 if (istEingebettet(window) && betriebsart(leseRoute(location.hash)) !== 'app') history.replaceState(null, '', '#start');

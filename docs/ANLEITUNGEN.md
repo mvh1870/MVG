@@ -43,7 +43,8 @@ Den Vermerk „fachlich ungeprüft“ zeigen beide Dateien, bis der Owner die Fa
    - Die Leinwand zeigt nur, was die Regie steuert.
    - Notizen, Leitfragen und das Protokoll erreichen sie nie (Bauart, getestet).
 3. Steuern:
-   - Die Knöpfe **Zurück/Weiter** oder die Pfeiltasten blättern.
+   - Die Knöpfe **Zurück/Weiter** oder die Pfeiltasten ← → blättern: in der Story Schritt für Schritt, im Bereich Theorie Kapitel für Kapitel (die Story bleibt dabei, wo sie war).
+   - **Rollen ↑/↓** oder die Pfeiltasten ↑ ↓ rollen auf der Leinwand die Tafel der Story bzw. die Lernseite, wenn sie länger ist als der Bildschirm; die Vorschau rollt mit. Am Beamer-Fenster selbst rollen auch Mausrad, Bild↑/↓ und Leertaste.
    - Die Tasten **a–d** übernehmen die Kundenwahl an der Entscheidung.
    - Die **Kundenwahl und Eingriffe** (Rolle, Ebenen, Informationen, Optionen) stehen oben rechts.
    - **Fläche**: Start · Story · Theorie · Kapitel 1–13 · Neu.

@@ -23,7 +23,10 @@ import { W } from '../ui/woerter.ts';
 
 export interface Anzeige {
   element: HTMLElement;
-  /** Tafel um knapp eine Höhe rollen (−1 hoch, +1 runter); false, wenn nichts zu rollen ist */
+  /**
+   * Um knapp eine Höhe rollen (−1 hoch, +1 runter): in der Story die Tafel, sonst die Seite (Lernseite) –
+   * auf der Leinwand das Fenster, in der Regie-Vorschau die Seite in der Bühne. false, wenn nichts zu rollen ist.
+   */
   rolle(schritt: -1 | 1): boolean;
   setze(z: OeffentlicherZustand, aktion: Aktion | null): void;
   entferne(): void;
@@ -44,8 +47,22 @@ export function erzeugeAnzeige(inhalte: OeffentlicheInhalte, version: string, ei
     element,
     rolle(schritt) {
       const t = element.querySelector<HTMLElement>('.tafel-inhalt');
-      if (t === null || t.scrollHeight <= t.clientHeight + 1) return false;
-      t.scrollTop += schritt * Math.round(t.clientHeight * 0.8);
+      if (t !== null) {
+        if (t.scrollHeight <= t.clientHeight + 1) return false;
+        t.scrollTop += schritt * Math.round(t.clientHeight * 0.8);
+        return true;
+      }
+      // Lernseite (P12.5 R9): die Seite selbst – in der Vorschau rollt die Seite in der Bühne, auf der Leinwand das Fenster
+      if (eingebettet) {
+        const s = element.querySelector<HTMLElement>('.lernseite');
+        if (s === null || s.scrollHeight <= s.clientHeight + 1) return false;
+        s.scrollTop += schritt * Math.round(s.clientHeight * 0.8);
+        return true;
+      }
+      if (typeof window === 'undefined' || element.querySelector('.lernseite') === null) return false;
+      const d = document.scrollingElement ?? document.documentElement;
+      if (d.scrollHeight <= window.innerHeight + 1) return false;
+      window.scrollBy(0, schritt * Math.round(window.innerHeight * 0.8));
       return true;
     },
     setze(z, aktion) {
@@ -131,7 +148,7 @@ export function starteLeinwand(wurzel: HTMLElement, o: LeinwandOptionen): () => 
     }
     anzeige.setze(z, null);
   });
-  // Direkt an der Leinwand: Mausrad und Tasten rollen die Tafel (die Anzeige ist inert, das Fenster nicht)
+  // Direkt an der Leinwand: Mausrad und Tasten rollen die Tafel bzw. die Lernseite (die Anzeige ist inert, das Fenster nicht)
   const rad = (e: WheelEvent): void => {
     const t = anzeige.element.querySelector<HTMLElement>('.tafel-inhalt');
     if (t === null || t.scrollHeight <= t.clientHeight + 1) return;

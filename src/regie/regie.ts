@@ -260,9 +260,23 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
 
   /* -------------------------------------------------------------- Handeln -- */
   function schritt(richtung: 1 | -1): void {
-    const z = oeffentlich(sitzung.zustand());
-    const a = richtung === 1 ? weiterAktion(z, inhalte) : zurueckAktion(z, inhalte);
+    const a = schrittAktion(oeffentlich(sitzung.zustand()), richtung);
     if (a !== null) tue(a);
+  }
+
+  /** Kapitel mit Lernseite, in Lesereihenfolge (Blättern im Bereich Theorie) */
+  const kapitelNummern = kapitelListe(inhalte).filter((k) => k.seite).map((k) => k.nr);
+  /**
+   * Was „Weiter“/„Zurück“ tut: in der Story der nächste bzw. vorige Schritt; im Bereich Theorie blättern sie
+   * die Kapitel (Liste → Kap. 1 … 13) und lassen den Story-Stand unberührt (P12.5 R9).
+   */
+  function schrittAktion(z: OeffentlicherZustand, richtung: 1 | -1): Aktion | null {
+    if (z.bereich === 'theorie') {
+      if (z.theorie.kapitel === null) return richtung === 1 && kapitelNummern[0] !== undefined ? { art: 'oeffneKapitel', kapitel: kapitelNummern[0] } : null;
+      const ziel = kapitelNummern[kapitelNummern.indexOf(z.theorie.kapitel) + richtung];
+      return ziel !== undefined ? { art: 'oeffneKapitel', kapitel: ziel } : null;
+    }
+    return richtung === 1 ? weiterAktion(z, inhalte) : zurueckAktion(z, inhalte);
   }
 
   /* -------------------------------------------------------------- Zeichnen -- */
@@ -326,19 +340,22 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
       text(ort, w.start);
     }
     // Als Nächstes: den Weiter-Schritt probehalber anwenden (die Engine ist rein) und den Ort beschreiben
-    const weiterA = weiterAktion(oz, inhalte);
+    const weiterA = schrittAktion(oz, 1);
     const danach = weiterA !== null && oz.bereich === 'story' ? oeffentlich(wende(z, weiterA, inhalte)) : null;
     const stDanach = danach !== null ? aktuelleStation(danach, inhalte) : null;
     if (danach !== null && stDanach !== null) {
       const sd = sichtbareSchritte(stDanach, danach.rolle);
       text(naechstes, `${w.alsNaechstes}: ${stDanach.kurztitel || stDanach.titel} · ${tafelTitel(sd, danach.schritt)}`);
+    } else if (oz.bereich === 'theorie' && weiterA?.art === 'oeffneKapitel') {
+      const k = inhalte.whitepaper.kapitel.find((x) => Number(x.nr) === weiterA.kapitel);
+      text(naechstes, `${w.alsNaechstes}: ${W.theorie.kapitelVon(String(weiterA.kapitel))}${k !== undefined ? ` · ${k.titel}` : ''}`);
     } else text(naechstes, '');
     for (const opt of sprung.querySelectorAll('option')) if (opt.dataset['welt'] === 'B') attr(opt, 'disabled', !oz.freigeschaltet.weltB);
     attr(rollenWahl, 'disabled', oz.rolle === null);
     attr(sprung, 'disabled', oz.rolle === null);
     rollenWahl.value = oz.rolle ?? '';
-    attr(weiterKnopf, 'disabled', weiterAktion(oz, inhalte) === null);
-    attr(zurueckKnopf, 'disabled', zurueckAktion(oz, inhalte) === null);
+    attr(weiterKnopf, 'disabled', weiterA === null);
+    attr(zurueckKnopf, 'disabled', schrittAktion(oz, -1) === null);
     const aktiv = oz.bereich === 'story' && oz.station !== null ? 'story' : oz.bereich === 'theorie' ? 'theorie' : 'start';
     for (const b of bereiche) attr(b, 'aria-pressed', b.dataset['bereich'] === aktiv ? 'true' : 'false');
     for (const b of kapitelKnoepfe) attr(b, 'aria-pressed', aktiv === 'theorie' && Number(b.dataset['kapitel']) === oz.theorie.kapitel ? 'true' : 'false');
@@ -404,7 +421,10 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
         schritt(-1);
         return true;
       }
+      // ↑/↓ rollen die Tafel bzw. Lernseite der Leinwand – nur dort, wo sie etwas zu rollen hat; sonst rollt die Regie-Seite (P12.5 R9)
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        const z = oeffentlich(sitzung.zustand());
+        if (!((z.bereich === 'story' && z.station !== null) || (z.bereich === 'theorie' && z.theorie.kapitel !== null))) return false;
         rolleTafel(e.key === 'ArrowDown' ? 1 : -1);
         return true;
       }

@@ -24,6 +24,7 @@ Zum Abhaken beim Durchsehen von `dist/mvg.html` (Anleitung: `docs/ANLEITUNGEN.md
 ## C. Termin mit Regie und Leinwand (O-9)
 - [ ] Zwei Fenster: Regie am Laptop, Leinwand am Beamer; Verbindung grün, Leinwand zeigt nie Notizen, Leitfragen, Protokoll.
 - [ ] Springen, Rolle umschalten, Kundenwahl per a–d, Beamer-Schalter, Ein-Fenster-Modus mit Esc.
+- [ ] Langer Tafelinhalt (z. B. Epilog-Resümee im Beamer) und lange Lernseite: mit „Rollen ↓“ bzw. ↓ bis ans Ende, mit ↑ zurück; die Vorschau zeigt dieselbe Stelle. Im Bereich Theorie blättert „Weiter“ zum nächsten Kapitel, die Story bleibt stehen.
 - [ ] Protokoll drucken (eine Seite bei kurzem Protokoll).
 
 ## D. Geräte (O-10)

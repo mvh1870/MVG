@@ -42,17 +42,30 @@ export async function lauf(_seite, h) {
   const rolleLeinwand = await leinwand.locator('.karte-meta').innerText().catch(() => '');
   if (!/Bauherr/u.test(rolleLeinwand)) h.befund(`Rolle umschalten: Leinwand zeigt „${rolleLeinwand}“`);
 
-  // Tafel rollen (P12.5 R8, L-75): überlanger Tafelinhalt ist von der Regie aus erreichbar
+  // Tafel rollen (P12.5 R8, L-75; R9 Befund 8): Leinwand bewusst niedrig, damit A2 sicher überlang ist;
+  // mit ↓ bis ans Ende, mit ↑ zurück an den Anfang – die Vorschau rollt mit
+  await leinwand.setViewportSize({ width: 1280, height: 520 });
   await regie.locator('[data-pruef="regie-sprung"]').selectOption('A2');
   await h.warte(500);
-  const tafel = () => leinwand.evaluate(() => { const t = document.querySelector('.tafel-inhalt'); return t === null ? null : { oben: t.scrollTop, hoch: t.scrollHeight, sicht: t.clientHeight }; });
-  const vor = await tafel();
-  if (vor !== null && vor.hoch > vor.sicht + 1) {
+  const tafel = (/** @type {import('playwright').Page} */ fenster, /** @type {string} */ sel) => fenster.evaluate((s) => { const t = document.querySelector(s); return t === null ? null : { oben: t.scrollTop, hoch: t.scrollHeight, sicht: t.clientHeight }; }, sel);
+  const vor = await tafel(leinwand, '.tafel-inhalt');
+  if (vor === null || vor.hoch <= vor.sicht + 1) h.befund(`Tafel rollen: A2 bei 1280×520 nicht überlang (${JSON.stringify(vor)}) – Prüfung ohne Wirkung`);
+  else {
+    const schritte = Math.ceil(vor.hoch / (vor.sicht * 0.8)) + 1;
     await h.klick('[data-pruef="regie-tafel-runter"]', regie);
+    for (let i = 1; i < schritte; i++) await regie.keyboard.press('ArrowDown');
     await h.warte(300);
-    const nach = await tafel();
-    if (nach === null || nach.oben <= vor.oben) h.befund(`Tafel ↓: Leinwand rollt nicht (${JSON.stringify(vor)} → ${JSON.stringify(nach)})`);
+    const unten = await tafel(leinwand, '.tafel-inhalt');
+    if (unten === null || unten.oben + unten.sicht < unten.hoch - 1) h.befund(`Tafel ↓: Ende nicht erreicht (${JSON.stringify(unten)})`);
+    const vorschau = await tafel(regie, '.vorschau-buehne .tafel-inhalt');
+    if (vorschau === null || vorschau.oben <= 0) h.befund(`Tafel ↓: Vorschau rollt nicht mit (${JSON.stringify(vorschau)})`);
+    for (let i = 0; i < schritte; i++) await regie.keyboard.press('ArrowUp');
+    await h.warte(300);
+    const oben = await tafel(leinwand, '.tafel-inhalt');
+    if (oben === null || oben.oben > 0) h.befund(`Tafel ↑: nicht zurück am Anfang (${JSON.stringify(oben)})`);
   }
+  await leinwand.setViewportSize({ width: 1280, height: 720 });
+  const storyOrt = await regie.locator('[data-pruef="regie-ort"]').innerText();
 
   // Beamer-Schalter: Leinwand bekommt die Klasse, Vorschau auch
   await h.klick('[data-pruef="regie-beamer"]', regie);
@@ -82,6 +95,29 @@ export async function lauf(_seite, h) {
   }
   if (await regie.locator('[data-pruef="regie-einwaende"] details').count() < 1) h.befund('Kap. 5: kein Einwand-Spickzettel');
   await h.axe('regie-theorie', regie);
+
+  // Lernseite rollen (P12.5 R9 Befund 1): ↓ rollt die Seite auf der Leinwand und in der Vorschau
+  await regie.locator('body').focus().catch(() => {});
+  await regie.keyboard.press('ArrowDown');
+  await regie.keyboard.press('ArrowDown');
+  await h.warte(300);
+  const lwY = await leinwand.evaluate(() => scrollY);
+  if (lwY <= 0) h.befund('Lernseite: ↓ in der Regie rollt die Leinwand nicht');
+  const vsY = await regie.evaluate(() => document.querySelector('.vorschau-buehne .lernseite')?.scrollTop ?? 0);
+  if (vsY <= 0) h.befund('Lernseite: die Vorschau rollt nicht mit');
+  // Kapitel blättern (R9 Befund 2): Weiter → Kap. 6, Zurück → Kap. 5, die Story bleibt, wo sie war
+  const naechst = await regie.locator('[data-pruef="regie-naechstes"]').innerText();
+  if (!/Kapitel 6/u.test(naechst)) h.befund(`Theorie: „Als Nächstes“ nennt „${naechst}“ statt Kapitel 6`);
+  await h.klick('[data-pruef="regie-weiter"]', regie);
+  await h.erwarte('[data-kapitel="6"]', leinwand);
+  await h.klick('[data-pruef="regie-zurueck"]', regie);
+  await h.erwarte('[data-kapitel="5"]', leinwand);
+  await h.klick('[data-pruef="regie-bereich-story"]', regie);
+  await h.warte(300);
+  const storyDanach = await regie.locator('[data-pruef="regie-ort"]').innerText();
+  if (storyDanach !== storyOrt) h.befund(`Kapitel blättern hat die Story verändert: „${storyOrt}“ → „${storyDanach}“`);
+  await h.klick('[data-pruef="regie-kapitel-5"]', regie);
+  await h.erwarte('[data-kapitel="5"]', leinwand);
 
   // Ein-Fenster-Regie: Vorschau groß, Pfeiltaste blättert, Esc kehrt zurück
   await h.klick('[data-pruef="regie-ein-fenster"]', regie);

@@ -513,7 +513,7 @@ a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
 .kompass-hinweis { margin-top: 2px; font-size: var(--gr-s); color: var(--tinte-2); }
 .kompass-hinweis p { margin: 0; }
 .impressum-quellen { margin: var(--a-4) 0; }
-.impressum-quellen summary { min-height: 32px; cursor: pointer; }
+.impressum-quellen summary { box-sizing: border-box; min-height: 36px; padding-block: 8px; cursor: pointer; }
 .impressum-quellen ul { display: grid; gap: var(--a-2); margin-top: var(--a-2); padding-left: 0; list-style: none; font-size: var(--gr-s); }
 .impressum-quellen li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 6px; }
 .impressum-quellen-text { margin: var(--a-2) 0; font-size: var(--gr-s); color: var(--tinte-2); }

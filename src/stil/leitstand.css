@@ -1667,6 +1667,14 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .vorschau-buehne.ist-beamer .anzeige .kapitel-verzeichnis { max-height: calc(720px / 1.15 - 136px); }
 .vorschau-buehne.ist-beamer .tuer-bild { display: none; }
 .vorschau-buehne.ist-beamer .anzeige .startseite { min-height: 0; }
+/* Vorschau deckungsgleich mit einer Leinwand von 1280 × 720 (P12.5 R9): Höhen aus der Bühne (--vh), nicht aus dem
+   Regie-Fenster – die Welt-A⟷B-Szene wie auf der Leinwand, die kompakte Höhe (Leinwand ≤ 760 px) immer */
+.vorschau-buehne .anzeige .morph-szene, .ist-beamer .anzeige .morph-szene { height: clamp(220px, calc(var(--vh, 1vh) * 100 - 500px), 440px); }
+.vorschau-buehne .kopf { padding: 7px var(--a-4) 6px; }
+.vorschau-buehne .kopf .marke-logo { height: 32px; }
+.vorschau-buehne .instrumente { padding-bottom: var(--a-2); }
+.vorschau-buehne .tafel-kopf { padding: 9px 18px var(--a-2); }
+.vorschau-buehne .tafel-inhalt { padding: var(--a-3) 18px 14px; }
 .regie-karte { min-width: 0; padding: var(--a-3) var(--a-4) 14px; border-radius: var(--radius-l); background: var(--weiss); color: var(--tinte); box-shadow: var(--schatten-karte); --fokus: var(--navy); }
 .regie-h2 { display: flex; align-items: center; gap: var(--a-2); margin-bottom: var(--a-2); font: 700 var(--gr-text)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy); }
 .regie-h2 .symbol { font-size: 18px; color: var(--gold-kante); }
@@ -1892,7 +1900,7 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .feld-karte[data-zustand="chaos"] { box-shadow: inset 0 0 0 1.5px var(--koralle-kante); transform: rotate(calc((var(--i, 0) - 2.5) * .5deg)); }
 .feld-karte[data-zustand="ordnung"] { box-shadow: inset 0 0 0 1.5px var(--tuerkis); }
 .feld-zustand { margin: 0; font-size: 14.5px; line-height: 1.4; }
-.feld-karte details summary { min-height: 32px; font-size: 13px; font-weight: 600; cursor: pointer; }
+.feld-karte details summary { box-sizing: border-box; min-height: 36px; padding-block: 8px; font-size: 13px; font-weight: 600; cursor: pointer; }
 
 /* Bausteine */
 .tafel-bausteine { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 0; padding: 0; list-style: none; }

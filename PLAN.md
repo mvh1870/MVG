@@ -136,5 +136,10 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P13.2 · Fläche „Hilfe“ im Lernseiten-Design: Route `#hilfe/<seite>`, Verzeichnis, Suche, Blättern, Vermerk; leise Zugänge (Start, Theorie, Explore) — Abnahme: Einheitentests, Browser-Szenario `hilfe` (alle 24 Seiten, drei Größen, axe, kein Seitwärtsscrollen)
 - [x] P13.3 · Prüf-Agenten Hilfe (Begriffe, Stil/Barrierefreiheit): 17 Runden, Runden 16 und 17 ohne schwere/mittlere Befunde (L-69 (7)–(24), `docs/KORREKTURLISTE-COMPANION.md`)
 
+### P14 · Abbildungen im Fachtext (O-32)
+- [ ] P14.1 · Bildwerkzeug `werkzeuge/abbildungen.mjs` (L-77): 13 Inhaltsabbildungen aus der DOCX (abb-2 … abb-14) als WebP, Beschriftungen mit verbotenen Begriffen (docs/BEGRIFFE.md, O-14) durch die Begriffe des Texts überdeckt, deterministisch; Beschreibung je Abbildung in `inhalte/abbildungen/abb-N.yaml` — Abnahme: zweimal ausgeführt byte-gleich, `inhalte --pruefe` erkennt veraltete Bilder, jede überdeckte Stelle im Bild geprüft
+- [ ] P14.2 · Abbildungen an ihren Stellen: im zugeklappten Originaltext an der Stelle der DOCX, auf der Lernseite beim passenden Abschnitt (`::: abbildung`), vergrößerbar, mit Bildunterschrift „wo die Abbildung vom Text abweicht, gilt der Text“; Abbildungsverzeichnis in Explore zeigt sie — Abnahme: Einheitentests, Browser-Szenario (drei Größen, axe, Dialog), `dist/mvg.html` < 4 MB
+- [ ] P14.3 · Prüf-Agenten Abbildungen (Fachtreue/Begriffe je Bild, Stil/Barrierefreiheit) + Korrekturen — Abnahme: zwei Runden ohne schwere/mittlere Befunde (L-64)
+
 ## Erledigt
 (noch nichts)

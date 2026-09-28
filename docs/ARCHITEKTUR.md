@@ -39,7 +39,9 @@ quellen/ + inhalte/  ──werkzeuge (Node)──►  src/generiert/ (ignoriert)
 - Persistenz: `localStorage` Schlüssel `mvg.stand.v1`, jede Lese- und Schreiboperation in try/catch; ohne Speicher läuft alles weiter.
 
 ## Regie und Leinwand (O-9)
-- Die **Regie** besitzt den Zustand. Nach jeder Aktion sendet sie `{ art: 'zustand', zustand: oeffentlich(zustand), nr }` über den Kanal. Die **Leinwand** zeichnet nur, was sie empfängt, und ist nicht bedienbar.
+- Die **Regie** besitzt den Zustand. Nach jeder Aktion sendet sie `{ art: 'zustand', zustand: oeffentlich(zustand), nr }` über den Kanal. Die **Leinwand** zeichnet nur, was sie empfängt; ihre Zeichnung ist `inert` (nicht bedienbar).
+- Nachrichten im Kanal (`src/regie/kanal.ts`, jede geprüft): `zustand` (öffentlicher Zustand), `anzeige` (Beamer-Schalter), `rollen` (Nummer, Schritt −1/+1: Tafel der Story bzw. Lernseite um knapp eine Höhe rollen, L-75, P12.5 R9), `hallo` und `lebenszeichen` (Verbindung). Keine trägt Regie-Material.
+- Das Leinwand-**Fenster** reagiert selbst nur auf Mausrad und Rolltasten (Bild↑/↓, ↑ ↓, Leertaste): Es rollt die Tafel bzw. die Seite, ändert aber keinen Zustand.
 - Regie-Eigenes (Sprechernotizen, Leitfragen, Protokoll) liegt **nicht** im gesendeten Zustand und wird von der Leinwand-Zeichnung **nie** angefordert – Schutz durch Bauart, nicht durch CSS.
 - Kanal nach Vorbild `quellen/bm/buehnenkanal.ts`: BroadcastChannel, Rückfall über `localStorage`-`storage`-Ereignis, Lebenszeichen der Leinwand zurück an die Regie. Funktioniert auch unter `file://`.
 - Einwand-Karten (E6) sind **öffentlich** (Story, Ebenen-Schritt); die Regie zeigt sie zusätzlich als Spickzettel, getrennt unter dem Hinweis „nur in der Regie“ (L-54).

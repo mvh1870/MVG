@@ -55,10 +55,11 @@ async function spieleIn(seite, rolle, express) {
   let schluss = 'grenze';
   let station = 'start';
   let vorEpilog = '';
+  let leer = 0;
   for (let i = 0; i < 900; i++) {
     // Rolle genau einmal wählen (eine erneute Wahl setzt die Interessen zurück)
     if (!rolleGewaehlt && await sichtbar(`[data-pruef="rolle-${rolle}"]`)) {
-      await seite.locator(`[data-pruef="rolle-${rolle}"]`).click(); klicks++; rolleGewaehlt = true;
+      await seite.locator(`[data-pruef="rolle-${rolle}"]`).click(); klicks++; rolleGewaehlt = true; leer = 0;
       // die Rollenwahl führt selbst weiter: erst den nächsten Schritt abwarten, sonst überspringt ein
       // sofortiges „Weiter“ die Interessenwahl (Express)
       await seite.waitForTimeout(400);
@@ -109,10 +110,13 @@ async function spieleIn(seite, rolle, express) {
       jeStation[station] = (jeStation[station] ?? 0) + t.split(/\s+/u).length;
     }
     const optionen = seite.locator('[data-pruef^="option-"]').filter({ visible: true });
-    if (await optionen.count() > 0 && await seite.locator('[data-pruef^="option-"][aria-pressed="true"]').count() === 0) { await optionen.first().click(); klicks++; await seite.waitForTimeout(60); continue; }
-    if (await sichtbar('[data-pruef="szene-weiter"]')) { await seite.locator('[data-pruef="szene-weiter"]').filter({ visible: true }).first().click(); klicks++; await seite.waitForTimeout(60); continue; }
+    if (await optionen.count() > 0 && await seite.locator('[data-pruef^="option-"][aria-pressed="true"]').count() === 0) { await optionen.first().click(); klicks++; leer = 0; await seite.waitForTimeout(60); continue; }
+    if (await sichtbar('[data-pruef="szene-weiter"]')) { await seite.locator('[data-pruef="szene-weiter"]').filter({ visible: true }).first().click(); klicks++; leer = 0; await seite.waitForTimeout(60); continue; }
     const weiter = seite.locator('[data-pruef="weiter"]');
-    if (await weiter.count() > 0 && await weiter.isEnabled()) { await weiter.click(); klicks++; await seite.waitForTimeout(60); continue; }
+    if (await weiter.count() > 0 && await weiter.isEnabled()) { await weiter.click(); klicks++; leer = 0; await seite.waitForTimeout(60); continue; }
+    // nichts bedienbar: unter Last (CI) ist die nächste Szene evtl. noch nicht bereit – bis 5 s warten,
+    // erst dann gilt „Weiter“ als gesperrt (sonst endete der Pfad schon bei „#story“)
+    if (++leer < 20) { await seite.waitForTimeout(250); continue; }
     schluss = 'gesperrt';
     break;
   }

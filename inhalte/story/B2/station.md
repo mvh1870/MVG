@@ -209,7 +209,7 @@ detail: "Änderung AEN-012 · Status Beantragt"
 zustaendig: Änderungsgremium
 stufe: 2
 ---
-Über 100 TEUR bis einschließlich 5 Mio. €: Änderungsgremium, Vorsitz Frank Deppe.
+Über 100 TEUR bis einschließlich 5 Mio. €: Änderungsgremium, Vorsitz Geschäftsführung.
 :::
 
 ::: merksatz
@@ -333,7 +333,7 @@ Die größere Mensa ist grob auf 0,6 Mio. € geschätzt, noch ohne Termin- und 
 ---
 titel: Eine Leiter statt eines Flurs
 ---
-Rund 0,6 Mio. € liegen nach der Mandatsleiter beim Änderungsgremium; den Vorsitz hat Frank Deppe, dazu gehören die Bauherren-PL und Aylin Kaya, bei Nutzerthemen auch Sabine Roth. Kap. 6.4.5 beschreibt den Weg über die Stufen: [[zitat:k6.4.5-p1|Bei Überschreitung von Wert-, Risiko-, Frist- oder Mandatsschwellen wird entlang der Mandatsleiter an die Bauherren-PL, das Änderungsgremium oder zur Beschlussfassung durch den Bauherrn im Lenkungskreis eskaliert.]]
+Rund 0,6 Mio. € liegen nach der Mandatsleiter beim Änderungsgremium; den Vorsitz hat die Geschäftsführung, dazu gehören die Bauherren-PL und das Controlling, bei Nutzerthemen auch Sabine Roth. Kap. 6.4.5 beschreibt den Weg über die Stufen: [[zitat:k6.4.5-p1|Bei Überschreitung von Wert-, Risiko-, Frist- oder Mandatsschwellen wird entlang der Mandatsleiter an die Bauherren-PL, das Änderungsgremium oder zur Beschlussfassung durch den Bauherrn im Lenkungskreis eskaliert.]]
 :::
 
 ::: vertiefung risiko
@@ -394,7 +394,7 @@ figur: kaya
 
 ::: nachweis
 ---
-mandat: Änderungsgremium unter Vorsitz von Frank Deppe – rund 0,6 Mio. € liegen über 100 TEUR und bis einschließlich 5 Mio. €.
+mandat: Änderungsgremium unter Vorsitz der Geschäftsführung – rund 0,6 Mio. € liegen über 100 TEUR und bis einschließlich 5 Mio. €.
 freigabe: Berührt die Freigabe zum Abschluss von LPH 5 – dort muss AEN-012 sichtbar sein; für die Änderung selbst sind Auswirkung und Freigabeweg der nächste Schritt.
 kennung: AEN-012 · Mensa für den Ganztag, Status „Beantragt“.
 datenstand: Grobe Schätzung der Generalplanung, rund 0,6 Mio. € – Auswirkung noch nicht bewertet.

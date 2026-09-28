@@ -135,9 +135,22 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     h('option', { value: '', disabled: true }, '–'),
     inhalte.rollenFolge.filter((id) => inhalte.rollen[id]?.spielbar).map((id) => h('option', { value: id }, inhalte.rollen[id]?.kurztitel ?? id))) as HTMLSelectElement;
   rollenWahl.addEventListener('change', () => { if (rollenWahl.value !== '') tue({ art: 'waehleRolle', rolle: rollenWahl.value }); });
+  // Tafel rollen (P12.5 R8): Inhalt, der höher ist als die Tafel, auf Leinwand und Vorschau erreichbar machen
+  let rollNr = 0;
+  const rolleTafel = (s: -1 | 1): void => {
+    anzeige.rolle(s);
+    rollNr += 1;
+    o.kanal?.senden({ art: 'rollen', nr: rollNr, schritt: s });
+  };
+  const tafelZeile = h('div', { class: 'regie-zeile', 'data-pruef': 'regie-tafel' },
+    h('span', { class: 't-label' }, w.tafel),
+    h('button', { type: 'button', class: 'regie-chip', 'data-pruef': 'regie-tafel-hoch', 'aria-label': w.tafelHoch, onclick: () => rolleTafel(-1) }, '↑'),
+    h('button', { type: 'button', class: 'regie-chip', 'data-pruef': 'regie-tafel-runter', 'aria-label': w.tafelRunter, onclick: () => rolleTafel(1) }, '↓'),
+    h('span', { class: 'regie-leise' }, w.tafelHinweis));
   const steuerung = h('section', { class: 'regie-karte regie-steuerung', 'aria-label': w.titel },
     h('div', { class: 'regie-blaettern' }, zurueckKnopf, weiterKnopf),
     naechstes,
+    tafelZeile,
     h('div', { class: 'regie-zeile' }, h('span', { class: 't-label' }, w.bereich), bereiche, kapitelKnoepfe, neuKnopf),
     h('div', { class: 'regie-zeile' },
       h('label', { for: 'regie-sprung', class: 't-label' }, w.sprung), sprung,
@@ -389,6 +402,10 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
       }
       if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
         schritt(-1);
+        return true;
+      }
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        rolleTafel(e.key === 'ArrowDown' ? 1 : -1);
         return true;
       }
       if (/^[a-dA-D]$/.test(e.key) && !e.shiftKey) {

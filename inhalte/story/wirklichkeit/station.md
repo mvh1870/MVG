@@ -134,9 +134,9 @@ gruppe: Was jetzt? · MVG-Neuinitialisierung
 |---|---|
 | [[zitat:k8.3-l1|eine verbindliche verantwortliche Rolle auf Bauherrenseite]] | nicht benannt |
 | [[zitat:k8.3-l1|Zugang zu Kernunterlagen, Projektauftrag, Zielsystem, Rollen, Kosten-/Terminstand sowie Risiko- und Änderungsinformationen]] | neun Ordner, zwei Zahlen |
-| [[zitat:k8.3-l1|Gespräche mit Bauherren-Projektleitung, Auftraggeberlogik, PMO, Projektsteuerung und Fachrollen]] | Bauherren-PL, Dr. Olbers und die GML, Jonas Brenner mit Holger Stein, Lena Hoffmeister, Aylin Kaya – ein PMO gibt es in Welt A nicht; Protokolle schreibt Nora Petersen |
-| [[zitat:k8.3-l1|Entscheidungen zu Zielprioritäten, Mandaten, Schwellen und Freigaben]] | Dr. Olbers selbst |
-| [[zitat:k8.3-l1|Teilnahme an Managementberichten, Pilotentscheidungen und Befähigungsmaßnahmen]] | Zeit im Kalender von Dr. Olbers und Frank Deppe |
+| [[zitat:k8.3-l1|Gespräche mit Bauherren-Projektleitung, Auftraggeberlogik, PMO, Projektsteuerung und Fachrollen]] | Bauherren-PL, Bauherr und GML, Projektsteuerung mit Holger Stein, Generalplanung, Controlling – ein PMO gibt es in Welt A nicht; Protokolle schreibt Nora Petersen |
+| [[zitat:k8.3-l1|Entscheidungen zu Zielprioritäten, Mandaten, Schwellen und Freigaben]] | der Bauherr selbst |
+| [[zitat:k8.3-l1|Teilnahme an Managementberichten, Pilotentscheidungen und Befähigungsmaßnahmen]] | Zeit im Kalender von Bauherr und Geschäftsführung |
 | [[zitat:k8.3-l1|Übernahme des Regelbetriebs nach Übergabe]] | Stadt und GML selbst |
 :::
 
@@ -204,9 +204,9 @@ Die MVG-Neuinitialisierung ordnet die Entscheidungslogik neu – kein Neustart, 
 ---
 titel: Warum relevant
 ---
-**Kein Neustart:** Die MVG-Neuinitialisierung – [[zitat:k7.5-p1|Sie bedeutet keinen vollständigen Projektneustart, sondern eine gezielte Neuordnung der Steuerungs- und Entscheidungslogik.]] Sie beginnt mit einem Lagebild und endet mit einer stabilisierten Entscheidungsarchitektur. Die Freigabe zum Abschluss von LPH 5 erteilt weiter Dr. Olbers selbst.
+**Kein Neustart:** Die MVG-Neuinitialisierung – [[zitat:k7.5-p1|Sie bedeutet keinen vollständigen Projektneustart, sondern eine gezielte Neuordnung der Steuerungs- und Entscheidungslogik.]] Sie beginnt mit einem Lagebild und endet mit einer stabilisierten Entscheidungsarchitektur. Die Freigabe zum Abschluss von LPH 5 erteilt weiter der Bauherr selbst.
 
-Welt A hat im Dezember kein Informationsproblem, sondern ein Legitimationsproblem: zwei Zahlen, eine Reserve ohne entschiedene Posten, offene Änderungen, eine offene Freigabe. Kap. 11.2 bringt es auf eine Frage: [[zitat:k11.2-p2|Welche Entscheidungen müssen jetzt neu legitimiert werden, damit das Projekt wieder führbar wird?]] Vorbereiten können die Antwort Bauherren-PL, Projektsteuerung, Planung und Controlling. Die Entscheidung über den Auftrag, über Prioritäten, über eine Neufestlegung der Projektbasis und über Freigaben bleibt bei Dr. Olbers (Kap. 7.5).
+Welt A hat im Dezember kein Informationsproblem, sondern ein Legitimationsproblem: zwei Zahlen, eine Reserve ohne entschiedene Posten, offene Änderungen, eine offene Freigabe. Kap. 11.2 bringt es auf eine Frage: [[zitat:k11.2-p2|Welche Entscheidungen müssen jetzt neu legitimiert werden, damit das Projekt wieder führbar wird?]] Vorbereiten können die Antwort Bauherren-PL, Projektsteuerung, Planung und Controlling. Die Entscheidung über den Auftrag, über Prioritäten, über eine Neufestlegung der Projektbasis und über Freigaben bleibt beim Bauherrn (Kap. 7.5).
 :::
 
 ::: ebene 3
@@ -215,7 +215,7 @@ titel: Vertiefung
 ---
 **Von der Diagnose in den Regelbetrieb.** Kap. 8 beschreibt die Einführung: [[zitat:k8-p1|MVG wird sequenziert eingeführt. Der Ansatz ist bewusst pragmatisch. Er beginnt mit einem Lagebild, übersetzt dieses in ein funktionsfähiges Mindestmodell, testet das Modell an echten Entscheidungen und übergibt es anschließend in den Regelbetrieb.]] Für ein Projekt wie Lindenhall nennt Kap. 7 einen eigenen Einstieg: [[zitat:k7-p2|Für laufende Projekte mit eingeschränkter Steuerbarkeit kommt die MVG-Neuinitialisierung als gezieltes Sonderformat hinzu.]] Die Tafel zeigt die sechs Vorgehensschritte; die Spalten „Mitwirkung“ und „Abnahme“ sagen, was an jedem Schritt beim Bauherrn liegt.
 
-**Woran man merkt, dass es trägt.** [[zitat:k8.4-p1|Abnahme bedeutet nicht, dass alle künftigen Entscheidungen risikofrei sind. Abnahme bedeutet, dass die Organisation weiß, wie wesentliche Entscheidungen vorbereitet, mandatiert, freigegeben, dokumentiert und nachverfolgt werden.]] Die zweite Tafel zeigt die acht Abnahmekriterien mit ihrer Prüffrage. In Welt B stand in Monat 0 das meiste davon schon – Zielsystem (B1), Mandatsleiter (B1, B3), `ENT-017` (B3), ein benannter Datenstand (B3, B6); das Betriebshandbuch war erst auf dem Weg (B6). In Welt A müsste all das erst entstehen.
+**Woran man merkt, dass es trägt.** [[zitat:k8.4-p1|Abnahme bedeutet nicht, dass alle künftigen Entscheidungen risikofrei sind. Abnahme bedeutet, dass die Organisation weiß, wie wesentliche Entscheidungen vorbereitet, mandatiert, freigegeben, dokumentiert und nachverfolgt werden.]] Die zweite Tafel zeigt die acht Abnahmekriterien mit ihrer Prüffrage. In Welt B standen von Monat 0 an Zielsystem und Mandatsleiter (B1); bis Monat 11 kamen `ENT-017` (B3) und benannte Datenstände (B3, B6) hinzu; das Betriebshandbuch war erst auf dem Weg (B6). In Welt A müsste all das erst entstehen.
 
 Die MVG-Neuinitialisierung beschreibt Kap. 7.5 als Sonderformat der Leistungsarchitektur. Für den Bauherrn nennt die Tabelle dort: [[zitat:k7.5-t1|Entscheidung über den Auftrag zur MVG-Neuinitialisierung, Prioritäten, Neufestlegung der Projektbasis, Freigaben und eine neue Mandatslogik.]]
 
@@ -270,7 +270,7 @@ Zwei Zahlen liegen nebeneinander, Holger Stein ist zurück und fragt: „Für we
 ---
 titel: Wer ist die verantwortliche Rolle?
 ---
-Olbers will einen Vorschlag, Deppe hat viele Projekte, die Bauherren-PL bereitet vor. Wer auf Bauherrenseite verbindlich für die Neuordnung steht, ist nicht benannt. Kap. 8.3 setzt genau dort an; zuerst erforderlich ist [[zitat:k8.3-l1|eine verbindliche verantwortliche Rolle auf Bauherrenseite]].
+Der Bauherr erwartet einen Vorschlag, die Geschäftsführung hat viele Projekte, die Bauherren-PL bereitet vor. Wer auf Bauherrenseite verbindlich für die Neuordnung steht, ist nicht benannt. Kap. 8.3 setzt genau dort an; zuerst erforderlich ist [[zitat:k8.3-l1|eine verbindliche verantwortliche Rolle auf Bauherrenseite]].
 :::
 
 ::: vertiefung risiko

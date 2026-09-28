@@ -235,6 +235,23 @@ test('Beamer-Schalter („anzeige“): gültig, veraltet, ungültig, nach „hal
   assert.deepEqual(bei.slice(1).map((n) => (n.art === 'anzeige' ? `${n.nr}:${n.beamer}` : n.art)), ['hallo', '1:false']);
 });
 
+test('Tafel rollen („rollen“, P12.5 R8): gültig, veraltet, ungültig', () => {
+  const hub = fensterHub();
+  const regie = erzeugeKanal('t-roll', hub.fenster({ kennung: 'regie' }));
+  const leinwand = erzeugeKanal('t-roll', hub.fenster({ kennung: 'leinwand' }));
+  const bei = sammle(leinwand);
+  regie.senden({ art: 'rollen', nr: 1, schritt: 1 });
+  regie.senden({ art: 'rollen', nr: 2, schritt: -1 });
+  regie.senden({ art: 'rollen', nr: 1, schritt: 1 });
+  assert.deepEqual(bei.map((n) => (n.art === 'rollen' ? `${n.nr}:${n.schritt}` : n.art)), ['1:1', '2:-1'], 'kleinere Nummer ist veraltet');
+  const fremd = hub.fenster({ kennung: 'fremd' });
+  let folge = 0;
+  for (const nachricht of [{ art: 'rollen', nr: 9 }, { art: 'rollen', nr: 9, schritt: 5 }, { art: 'rollen', nr: 9, schritt: '1' }]) {
+    fremd.speicher?.setItem(kanalSchluessel('t-roll'), JSON.stringify({ mvg: 'kanal', von: 'fremd', folge: ++folge, nachricht }));
+  }
+  assert.equal(bei.length, 2, 'ohne schritt oder mit anderem Schritt als −1/+1: verworfen');
+});
+
 test('Beamer-Schalter auf beiden Wegen zugleich: kommt genau einmal an', async () => {
   const hub = fensterHub();
   const regie = erzeugeKanal('t-anz2', hub.fenster({ kennung: 'regie', rundfunk: RUNDFUNK }));

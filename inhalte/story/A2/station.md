@@ -31,7 +31,7 @@ datum: 3. März 2026
 von: petersen
 ---
 - Ausführungsplanung LPH 5 läuft.
-- Freigabe zum Abschluss von LPH 4: kein eigener Termin.
+- Freigabe zum Abschluss von LPH 4: kein eigener Termin, weiter wie besprochen.
 :::
 
 ::: mail

@@ -263,7 +263,7 @@ wert: In Prüfung · Vorlage liegt vor
 ::: unbekannt
 - Wie sich die Planänderung auf den Termin auswirkt {#terminwirkung}
 - Wie belastbar die Kostenschätzung ist {#kosten}
-- Ob es eine günstigere Ausführung der Auflagen gibt {#variante}
+- Ob eine günstigere Ausführung der Auflagen genehmigungsfähig wäre {#variante}
 - Woher die Deckung kommt {#deckung}
 :::
 :::
@@ -312,7 +312,7 @@ titel: Kernaussage
 ---
 titel: Warum relevant
 ---
-Im Juni hat das Gremium `ENT-017` entschieden: Die Fassade wird als Änderung `AEN-022` angepasst – auf der ergänzten Vorlage und nachdem Dr. Olbers die Zielpriorität für diesen Konflikt festgelegt hatte; die Risikoreserve blieb unberührt. Nun die nächste Änderung: Dieselben Auflagen wie in Welt A, derselbe Ausschusstermin – aber bevor der Bauausschuss tagt, liegt die Frage schon bei der Stelle mit dem Mandat. Kap. 4.3 sagt, wozu das dient: [[zitat:k4.3-p2|Das System der Entscheidungs-IDs verhindert, dass kritische Entscheidungen in Protokollen, E-Mails, Fachrunden oder informellen Abstimmungen verschwinden.]] Offen ist auch hier etwas – die Terminwirkung ist grob geschätzt, die Deckung nicht geklärt. Aber beides steht in der Vorlage.
+Im Juni hat das Gremium `ENT-017` entschieden: Die Fassade wird als Änderung `AEN-022` angepasst – auf der ergänzten Vorlage und nachdem der Bauherr die Zielpriorität für diesen Konflikt festgelegt hatte; die Risikoreserve blieb unberührt. Nun die nächste Änderung: Dieselben Auflagen wie in Welt A, derselbe Ausschusstermin – aber bevor der Bauausschuss tagt, liegt die Frage schon bei der Stelle mit dem Mandat. Kap. 4.3 sagt, wozu das dient: [[zitat:k4.3-p2|Das System der Entscheidungs-IDs verhindert, dass kritische Entscheidungen in Protokollen, E-Mails, Fachrunden oder informellen Abstimmungen verschwinden.]] Offen ist auch hier etwas – die Terminwirkung ist grob geschätzt, die Deckung nicht geklärt. Aber beides steht in der Vorlage.
 :::
 
 ::: ebene 3
@@ -356,7 +356,7 @@ Grob 0,4 Mio. € schätzt die Generalplanung für die Planänderung. Über die 
 ---
 titel: Wer am Tisch sitzt
 ---
-Im Änderungsgremium sitzen Frank Deppe (Vorsitz), die Bauherren-PL und Aylin Kaya, bei Nutzerthemen auch Sabine Roth; Projektsteuerung und Planung bereiten vor. Das Mandat folgt der Mandatsleiter aus Kap. 4.2: [[zitat:k4.2-p3|oberhalb von 100 TEUR bis einschließlich 5 Mio. EUR entscheidet das Änderungsgremium]]. Die Stufen hat der Bauherr festgelegt; das Gremium entscheidet in seinem Mandat.
+Im Änderungsgremium sitzen die Geschäftsführung (Vorsitz), die Bauherren-PL und das Controlling, bei Nutzerthemen auch Sabine Roth; Projektsteuerung und Planung bereiten vor. Das Mandat folgt der Mandatsleiter aus Kap. 4.2: [[zitat:k4.2-p3|oberhalb von 100 TEUR bis einschließlich 5 Mio. EUR entscheidet das Änderungsgremium]]. Die Stufen hat der Bauherr festgelegt; das Gremium entscheidet in seinem Mandat.
 :::
 
 ::: vertiefung risiko
@@ -417,7 +417,7 @@ figur: kaya
 
 ::: nachweis
 ---
-mandat: Änderungsgremium unter Vorsitz von Frank Deppe – grob 0,4 Mio. € liegen über 100 TEUR und bis einschließlich 5 Mio. €.
+mandat: Änderungsgremium unter Vorsitz der Geschäftsführung – grob 0,4 Mio. € liegen über 100 TEUR und bis einschließlich 5 Mio. €.
 freigabe: Betroffen ist die Freigabe LPH 5; eine Deckung aus der Risikoreserve gibt nur der Bauherr frei.
 kennung: AEN-031 · Brandschutzauflagen Holzbau, Status „In Prüfung“.
 datenstand: Kostenprognose 2026-05 · Version 3 mit Schätzung der Generalplanung zu AEN-031, Stand Juli.

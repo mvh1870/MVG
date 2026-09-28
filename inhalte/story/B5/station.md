@@ -200,7 +200,7 @@ von: olbers
 Freigabe des Einsatzes · steht aus
 
 ### Text
-Dr. Miriam Olbers entscheidet auf Vorlage der Bauherren-PL
+Der Bauherr entscheidet auf Vorlage der Bauherren-PL
 :::
 :::
 
@@ -419,7 +419,7 @@ figur: kaya
 ::: nachweis
 ---
 mandat: Bauherr – den Einsatz der Risikoreserve gibt nur er frei, nicht delegierbar.
-freigabe: Freigabe des Einsatzes der Risikoreserve – steht aus; Dr. Olbers entscheidet auf Vorlage.
+freigabe: Freigabe des Einsatzes der Risikoreserve – steht aus; der Bauherr entscheidet auf Vorlage.
 kennung: PRB-004 · Nachtrag der TGA-Fachplanung; eine Entscheidungs-ID ist noch nicht vergeben.
 datenstand: Kostenprognose 2026-05 · Version 3 (verbindlich); Version 4 ist in Arbeit.
 nachweis: Vorlage zum Einsatz der Risikoreserve in Vorbereitung; Berechtigung und Höhe noch nicht abschließend geprüft.

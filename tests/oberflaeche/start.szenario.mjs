@@ -17,6 +17,13 @@ export async function lauf(seite, h) {
   const text = await seite.locator('body').innerText();
   if (!text.includes('Minimum Viable Governance')) h.befund('Startseite nennt „Minimum Viable Governance“ nicht ausgeschrieben');
 
+  // Die ganze Startseite samt Fuß im ersten Bild (P12.5 R6, L-71), nicht in der schmalen Ansicht
+  const groesse = seite.viewportSize();
+  if (groesse !== null && groesse.width >= 1024) {
+    const m = await seite.evaluate(() => ({ doc: document.documentElement.scrollHeight, fenster: innerHeight }));
+    if (m.doc > m.fenster + 1) h.befund(`Startseite ${m.doc} px hoch bei ${m.fenster} px Fenster – der Fuß liegt unter der Falz`);
+  }
+
   // Genau zwei Wege, sonst nichts vom Leitstand.
   const wege = await seite.locator('[data-pruef^="weg-"]').filter({ visible: true }).count();
   if (wege !== 2) h.befund(`erwartet genau zwei sichtbare Wege, gefunden ${wege}`);

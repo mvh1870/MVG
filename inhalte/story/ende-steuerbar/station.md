@@ -103,15 +103,15 @@ Fünf der Ergebnisse, die eine MVG-Neuinitialisierung nach Kap. 11.3 liefert –
 
 | Ergebnis (Kap. 11.3) | In Lindenhall |
 |---|---|
-| Entscheidungsinventar | die Liste, die Dr. Olbers im Dezember verlangt hat – jetzt mit Rolle, Frist und Stufe |
+| Entscheidungsinventar | die Liste der offenen Entscheidungen für den Lenkungskreis im Dezember – jetzt mit Rolle, Frist und Stufe |
 | Datenstandsbereinigung | ein Stand für die nächsten Entscheidungen statt „Prognose_Nov_v5“ neben der CTC |
-| Nachholung und Wiederholung von Freigaben | geordnet; erteilen wird sie Dr. Olbers selbst |
+| Nachholung und Wiederholung von Freigaben | geordnet; erteilen wird sie der Bauherr selbst |
 | Eskalationsplan | welche Entscheidung auf welcher Ebene fällt |
 | Stabilisiertes Betriebshandbuch | als Entwurf vorhanden; mit der Übergabe sollen Stadt und GML das Modell selbst betreiben |
 
 Das Betriebshandbuch ist [[zitat:k9.5-p1|das verbindliche abschließende Ergebnisdokument für den Regelbetrieb des Bauherren-Führungsmodells]]. Offen bleiben in Lindenhall die Mensa, die Brandschutzauflagen und der Nachtrag der TGA-Fachplanung.
 
-Dr. Olbers hat eigene Zeit dazugegeben, Frank Deppe ebenso. Kap. 8.2 beschreibt den Stand nach 90 Tagen: [[zitat:k8.2-p4|der Entwurf des Betriebshandbuchs liegt vor. Die Übergabe schließt an.]] Die neue Mandatslogik legt der Bauherr fest; Kap. 7.5 nennt als seine Rolle die [[zitat:k7.5-t1|Entscheidung über den Auftrag zur MVG-Neuinitialisierung, Prioritäten, Neufestlegung der Projektbasis, Freigaben und eine neue Mandatslogik.]] Was die Übergabe leistet, sagt das Glossar: Sie [[zitat:k13-t1|überführt Rollen, Routinen und Betriebshandbuch in den Eigenbetrieb.]]
+Der Bauherr hat eigene Zeit dazugegeben, die Geschäftsführung ebenso. Kap. 8.2 beschreibt den Stand nach 90 Tagen: [[zitat:k8.2-p4|der Entwurf des Betriebshandbuchs liegt vor. Die Übergabe schließt an.]] Die neue Mandatslogik legt der Bauherr fest; Kap. 7.5 nennt als seine Rolle die [[zitat:k7.5-t1|Entscheidung über den Auftrag zur MVG-Neuinitialisierung, Prioritäten, Neufestlegung der Projektbasis, Freigaben und eine neue Mandatslogik.]] Was die Übergabe leistet, sagt das Glossar: Sie [[zitat:k13-t1|überführt Rollen, Routinen und Betriebshandbuch in den Eigenbetrieb.]]
 
 Kap. 12 zieht Bilanz: [[zitat:k12-p1|Für Bauherren zählt am Ende nicht die Zahl der Governance-Artefakte, sondern ihre Führungswirkung.]] Wählen Sie eine Karte:
 
@@ -141,7 +141,7 @@ Die MVG-Neuinitialisierung beginnt mit einem Lagebild und endet mit einer stabil
 Eines von drei Enden, gleichwertig mit den anderen – nicht das „richtige“. Hierher führt nur die Richtung MVG-Neuinitialisierung, und nur, wenn die Spur bis Monat 12 wieder Entscheidungsfähigkeit aufgebaut hat. Mit Option C in A6 gelingt das immer (je nach Rolle: die Lage offenlegen, eine Bandbreite melden, beim Abgleich helfen oder empfehlen, die Freigabe noch nicht vorzulegen). Ohne sie nur, wenn eine frühere Wahl nachwirkt – etwa die Offenlegung in A5 (Option C bei GF, Bauherren-PL, Planung) oder die Entscheidungsvorlage in A4 (Bauherren-PL, B) –, solange keine andere Wahl sie aufgehoben hat. Übergeben wird nach 90 Tagen noch nicht: Der Entwurf des Betriebshandbuchs liegt vor, die Übergabe schließt an (k8.2-p4). Zwei Sätze festhalten: Die Übergabe des Bauherren-Führungsmodells ist ein Befähigungsschritt und keine Freigabe (k9.3-p2); das Projekt steht weiter in LPH 5, die Freigabe zu ihrem Abschluss erteilt Dr. Olbers selbst. Steuerbar heißt nicht gelöst: Lieferzeit und Mehrkosten sind weiter da. Die Nachweiskette zeigt die Stationen der Welt B, die der Leser besucht hat.
 
 ### Leitfragen
-- Welche Entscheidungen stünden bei Ihnen auf der Liste, die Dr. Olbers verlangt hat?
+- Welche Entscheidungen stünden bei Ihnen auf der Liste der offenen Entscheidungen für den Lenkungskreis?
 - Woran würden Sie merken, dass Ihre Organisation das Modell selbst betreibt?
 - Welches Glied der Nachweiskette ist bei Ihnen am häufigsten offen?
 :::

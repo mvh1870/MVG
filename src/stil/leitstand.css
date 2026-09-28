@@ -1971,7 +1971,7 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .zeitachse-abschnitt small { font-size: 12px; line-height: 1.2; color: var(--tinte-leise); }
 .zeitachse-abschnitt[aria-pressed="true"] { background: var(--navy); color: var(--weiss); }
 .zeitachse-abschnitt[aria-pressed="true"] small { color: var(--auf-navy); }
-.zeitachse-regler { width: 100%; min-height: 32px; accent-color: var(--navy); }
+.zeitachse-regler { width: 100%; min-height: 36px; accent-color: var(--navy); }
 .zeitachse-tag { font-variant-numeric: tabular-nums; }
 @media (max-width: 599px) { .zeitachse-leiste { flex-direction: column; } }
 

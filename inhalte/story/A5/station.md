@@ -158,7 +158,7 @@ Wird die Risikoreserve ohne Freigabe verplant, trifft niemand die Entscheidung, 
 ---
 titel: Warum relevant
 ---
-Kap. 4.4: [[zitat:k4.4-p1|Die Annahme wesentlicher Risikoexposition bleibt jedoch eine Bauherrenentscheidung.]] Die Tabelle in Kap. 3.2 zählt die [[zitat:k3.2-t1|Freigabe des Einsatzes der Risikoreserve]] zur [[Nichtdelegierbare Bauherrenverantwortung|nichtdelegierbaren Bauherrenverantwortung]]. In A5 sind Brandschutzauflagen, Mensa-Umplanung und der Nachtrag der TGA-Fachplanung in die Reserve gewandert, ohne dass Dr. Olbers den Einsatz der Reserve dafür freigegeben hat. Wer jetzt nachträglich unterschreiben lässt, trifft auf den ersten Satz von Kap. 4.5: [[zitat:k4.5-p1|Freigabe ist mehr als Unterschrift.]] Sie bezieht sich auf einen benannten [[Datenstand]] – und den gibt es für die verplanten Posten nicht.
+Kap. 4.4: [[zitat:k4.4-p1|Die Annahme wesentlicher Risikoexposition bleibt jedoch eine Bauherrenentscheidung.]] Die Tabelle in Kap. 3.2 zählt die [[zitat:k3.2-t1|Freigabe des Einsatzes der Risikoreserve]] zur [[Nichtdelegierbare Bauherrenverantwortung|nichtdelegierbaren Bauherrenverantwortung]]. In A5 sind Brandschutzauflagen, Mensa-Umplanung und der Nachtrag der TGA-Fachplanung in die Reserve gewandert, ohne dass der Bauherr den Einsatz der Reserve dafür freigegeben hat. Wer jetzt nachträglich unterschreiben lässt, trifft auf den ersten Satz von Kap. 4.5: [[zitat:k4.5-p1|Freigabe ist mehr als Unterschrift.]] Sie bezieht sich auf einen benannten [[Datenstand]] – und den gibt es für die verplanten Posten nicht.
 :::
 
 ::: ebene 3
@@ -194,7 +194,7 @@ Die Risikoreserve von 2,9 Mio. € reicht schon für die Abweichung aus dem Mai 
 ---
 titel: Gerechnet, nicht entschieden
 ---
-Aylin Kaya hat die Posten gegen die Reserve gerechnet; wer die Posten der Reserve zugeordnet hat, ist offen. Schwellen und Entscheidungsrechte sind in Welt A nicht festgelegt. Die Tabelle in Kap. 3.2 führt als nicht delegierbar: [[zitat:k3.2-t1|Festlegung von Mandaten, Freigabeschwellen, Eskalationswegen und verbindlichen Entscheidungsrechten.]]
+Das Controlling hat die Posten gegen die Reserve gerechnet; wer die Posten der Reserve zugeordnet hat, ist offen. Schwellen und Entscheidungsrechte sind in Welt A nicht festgelegt. Die Tabelle in Kap. 3.2 führt als nicht delegierbar: [[zitat:k3.2-t1|Festlegung von Mandaten, Freigabeschwellen, Eskalationswegen und verbindlichen Entscheidungsrechten.]]
 :::
 
 ::: vertiefung risiko

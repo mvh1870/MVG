@@ -17,7 +17,7 @@ weiter: wirklichkeit
 ---
 
 ::: express
-Im Juni entschied das Änderungsgremium `ENT-017` (Fassade, `AEN-022`), im Juli `AEN-031` (Brandschutzauflagen). Im September kam der TGA-Nachtrag als `PRB-004`; über die Risikoreserve entscheidet Dr. Olbers. Seit Oktober gilt die „Kostenprognose 2026-10 · Version 4“.
+Im Juni entschied das Änderungsgremium `ENT-017` (Fassade, `AEN-022`), im Juli `AEN-031` (Brandschutzauflagen). Im September kam der TGA-Nachtrag als `PRB-004`; über die Risikoreserve entscheidet der Bauherr. Seit Oktober gilt die „Kostenprognose 2026-10 · Version 4“.
 :::
 
 ::: schritt einstieg
@@ -156,7 +156,7 @@ benannte {Stellvertretung|Stellvertretungen} für die Kostenprognose
 :::
 
 ### Welt A
-Welt A: fünf Prognoseversionen, die nur einer erklären kann, zwei Fragen auf Haftnotizen und eine Dezernentin ohne vertretbare Zahl.
+Welt A: fünf Prognoseversionen, die nur einer erklären kann, zwei Fragen auf Haftnotizen und keine Zahl, die der Bauherr vertreten kann.
 
 ### Welt B
 Welt B: ein benannter Datenstand, eine benannte Stellvertretung, eine Vorlage mit Kernfrage – und ein Managementbericht, aus dem die Antwort an die Fraktion kommt.
@@ -283,7 +283,7 @@ Jede LPH endet mit einer Freigabe, die der Bauherr selbst erteilt.
 ---
 titel: Warum relevant
 ---
-Dieselbe Freigabe, derselbe Ausfall, dieselbe Anfrage – entscheidend ist, worauf die Freigabe beruht. Ein belastbares Bauherren-Führungsmodell verringert die Abhängigkeit von wenigen Personen (Kap. 2.3): Holger Stein fällt aus, seine Stellvertretung im Team der Projektsteuerung ist benannt. Kap. 9.3: [[zitat:k9.3-p1|Jede Leistungsphase endet mit einer Freigabe des Bauherrn. Diese Freigabe beruht auf einer Kernfrage, Mindestgrundlagen, Mandat, Datenstand und einem dokumentierten Ergebnis.]] Der Bauherr erteilt sie selbst auf Vorlage der Bauherren-PL. Kernfrage, Mandat und Weg stehen in der Vorlage. Ob Datenstand, Risikolage und offene Punkte tragen, klären Controlling, Projektsteuerung und Generalplanung bis zum Lenkungskreis. Welches Ergebnis die Freigabe bekommt, entscheidet Dr. Olbers – dokumentiert wird es in jedem Fall.
+Dieselbe Freigabe, derselbe Ausfall, dieselbe Anfrage – entscheidend ist, worauf die Freigabe beruht. Ein belastbares Bauherren-Führungsmodell verringert die Abhängigkeit von wenigen Personen (Kap. 2.3): Holger Stein fällt aus, seine Stellvertretung im Team der Projektsteuerung ist benannt. Kap. 9.3: [[zitat:k9.3-p1|Jede Leistungsphase endet mit einer Freigabe des Bauherrn. Diese Freigabe beruht auf einer Kernfrage, Mindestgrundlagen, Mandat, Datenstand und einem dokumentierten Ergebnis.]] Der Bauherr erteilt sie selbst auf Vorlage der Bauherren-PL. Kernfrage, Mandat und Weg stehen in der Vorlage. Ob Datenstand, Risikolage und offene Punkte tragen, klären Controlling, Projektsteuerung und Generalplanung bis zum Lenkungskreis. Welches Ergebnis die Freigabe bekommt, entscheidet der Bauherr – dokumentiert wird es in jedem Fall.
 :::
 
 ::: ebene 3
@@ -392,7 +392,7 @@ figur: kaya
 
 ::: nachweis
 ---
-mandat: Bauherr – Dr. Olbers gibt selbst frei.
+mandat: Bauherr – gibt selbst frei.
 freigabe: Abschluss LPH 5, Status „in Vorbereitung“.
 kennung: „Freigabe LPH 5“ im Freigaberegister.
 datenstand: Kostenprognose 2026-10 · Version 4; Controlling-Bestätigung steht aus.

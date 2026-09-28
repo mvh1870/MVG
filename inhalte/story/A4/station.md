@@ -95,7 +95,7 @@ knopf: Jetzt entscheiden
 ::: unbekannt
 - Welche Frage der Ausschuss beantworten soll {#frage}
 - Wer über die Auflagen-Mehrkosten entscheidet {#zustaendigkeit}
-- Ob beide Prognosen die Auflagen enthalten {#auflagen}
+- Ob die Prognose der Projektsteuerung die Auflagen enthält {#auflagen}
 - Welche Kostenzahl gilt {#kostenzahl}
 :::
 
@@ -116,7 +116,7 @@ bleibt:
 Kostenunsicherheit steigt.
 
 ### Neu bekannt
-Holger Stein hat die Auflagen in die Prognose der Projektsteuerung eingetragen; in der CTC des Controllings fehlen sie. Wer bis September was vorlegt, steht in der Niederschrift nicht.
+Holger Stein hat die Auflagen in die Prognose der Projektsteuerung eingetragen; die CTC des Controllings rechnet ohne sie, abgeglichen hat beides niemand. Wer bis September was vorlegt, steht in der Niederschrift nicht.
 :::
 :::
 
@@ -186,7 +186,7 @@ Nicht jede operative Entscheidung ist bauherrenseitig wesentlich. Wesentlich sin
 ---
 titel: Die Auflagen – in welcher Zahl?
 ---
-Seit Juni kommen Brandschutzauflagen von grob 0,4 Mio. € hinzu. Ob sie in den Kostenprognosen stehen, weiß niemand; seit Mai stehen mehrere Zahlen nebeneinander. Als Wirkung der Datenstands- und Nachweislogik nennt Kap. 5.2: [[zitat:k5.2-t1|Reduziert parallele Wahrheiten und stärkt die Nachweiskette, Gremienfähigkeit und Nachvollziehbarkeit.]]
+Seit Juni kommen Brandschutzauflagen von grob 0,4 Mio. € hinzu. Ob die Kostenprognosen sie gleich berücksichtigen, hat niemand abgeglichen; seit Mai stehen mehrere Zahlen nebeneinander. Als Wirkung der Datenstands- und Nachweislogik nennt Kap. 5.2: [[zitat:k5.2-t1|Reduziert parallele Wahrheiten und stärkt die Nachweiskette, Gremienfähigkeit und Nachvollziehbarkeit.]]
 :::
 
 ::: vertiefung organisation

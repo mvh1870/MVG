@@ -42,6 +42,18 @@ export async function lauf(_seite, h) {
   const rolleLeinwand = await leinwand.locator('.karte-meta').innerText().catch(() => '');
   if (!/Bauherr/u.test(rolleLeinwand)) h.befund(`Rolle umschalten: Leinwand zeigt „${rolleLeinwand}“`);
 
+  // Tafel rollen (P12.5 R8, L-75): überlanger Tafelinhalt ist von der Regie aus erreichbar
+  await regie.locator('[data-pruef="regie-sprung"]').selectOption('A2');
+  await h.warte(500);
+  const tafel = () => leinwand.evaluate(() => { const t = document.querySelector('.tafel-inhalt'); return t === null ? null : { oben: t.scrollTop, hoch: t.scrollHeight, sicht: t.clientHeight }; });
+  const vor = await tafel();
+  if (vor !== null && vor.hoch > vor.sicht + 1) {
+    await h.klick('[data-pruef="regie-tafel-runter"]', regie);
+    await h.warte(300);
+    const nach = await tafel();
+    if (nach === null || nach.oben <= vor.oben) h.befund(`Tafel ↓: Leinwand rollt nicht (${JSON.stringify(vor)} → ${JSON.stringify(nach)})`);
+  }
+
   // Beamer-Schalter: Leinwand bekommt die Klasse, Vorschau auch
   await h.klick('[data-pruef="regie-beamer"]', regie);
   await leinwand.locator('.leinwand.ist-beamer').waitFor({ timeout: 3000 }).catch(() => h.befund('Beamer-Schalter erreicht die Leinwand nicht'));

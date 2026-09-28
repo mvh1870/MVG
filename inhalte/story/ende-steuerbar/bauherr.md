@@ -5,7 +5,7 @@ rueckbezug-auf: wirklichkeit
 ---
 
 ::: rueckbezug A
-Im Dezember haben Sie ‚MVG-Neuinitialisierung beauftragen‘ gewählt. Im März liegt die Liste, die Sie verlangt hatten – mit Rolle, Frist und Stufe.
+Im Dezember haben Sie ‚MVG-Neuinitialisierung beauftragen‘ gewählt. Im März liegt die Liste der offenen Entscheidungen vor – mit Rolle, Frist und Stufe.
 :::
 
 ::: rueckbezug B
@@ -17,5 +17,5 @@ Im Dezember haben Sie ‚Neufestlegung vorbereiten‘ gewählt. Im März liegt d
 :::
 
 ::: rueckbezug ohne
-Im Dezember stand die Frage an, wie es weitergeht. Im März liegt die Liste der offenen Entscheidungen vor, die Sie verlangt hatten.
+Im Dezember stand die Frage an, wie es weitergeht. Im März liegt die Liste der offenen Entscheidungen vor, die im Dezember für den Lenkungskreis gefehlt hat.
 :::

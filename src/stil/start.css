@@ -51,6 +51,7 @@
   text-transform: uppercase;
   color: var(--gold-text);
 }
+.start-titel:focus { outline: none; }
 .start-titel {
   max-width: 26ch;
   margin-top: var(--a-2);

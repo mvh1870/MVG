@@ -30,7 +30,7 @@ status:
   kostenunsicherheit: -1
 ---
 ### Konsequenz
-Sie schlagen Dr. Olbers und Frank Deppe eine [[MVG-Neuinitialisierung]] vor. Die verlangte Liste wird der Anfang des Entscheidungsinventars; den Auftrag erteilt Dr. Olbers.
+Sie schlagen Dr. Olbers und Frank Deppe eine [[MVG-Neuinitialisierung]] vor. Die Liste der offenen Entscheidungen für den Lenkungskreis wird der Anfang des Entscheidungsinventars; den Auftrag erteilt Dr. Olbers.
 
 ### Was fehlt
 Die Mitwirkung des Bauherrn – Zeit von Dr. Olbers und Frank Deppe, nicht nur Ihre.
@@ -89,7 +89,7 @@ Sie schlagen vor, Dr. Olbers entscheidet. Wohin das führt, hängt auch vom bish
 
 ::: regie
 ### Notiz
-Die Bauherren-PL schlägt vor und bereitet vor; entscheiden muss der Bauherr. Die Liste der offenen Entscheidungen, die Dr. Olbers verlangt, ist in jeder Option nötig – mit Option A wird sie zum Entscheidungsinventar (Kap. 11.3). Die Leistungsarchitektur erklären, nicht anbieten.
+Die Bauherren-PL schlägt vor und bereitet vor; entscheiden muss der Bauherr. Die Liste der offenen Entscheidungen für den Lenkungskreis ist in jeder Option nötig – mit Option A wird sie zum Entscheidungsinventar (Kap. 11.3). Die Leistungsarchitektur erklären, nicht anbieten.
 
 ### Leitfragen
 - Welche Entscheidungen in Ihrem Projekt müssten heute neu legitimiert werden?

@@ -23,6 +23,8 @@ import { W } from '../ui/woerter.ts';
 
 export interface Anzeige {
   element: HTMLElement;
+  /** Tafel um knapp eine Höhe rollen (−1 hoch, +1 runter); false, wenn nichts zu rollen ist */
+  rolle(schritt: -1 | 1): boolean;
   setze(z: OeffentlicherZustand, aktion: Aktion | null): void;
   entferne(): void;
 }
@@ -40,6 +42,12 @@ export function erzeugeAnzeige(inhalte: OeffentlicheInhalte, version: string, ei
 
   return {
     element,
+    rolle(schritt) {
+      const t = element.querySelector<HTMLElement>('.tafel-inhalt');
+      if (t === null || t.scrollHeight <= t.clientHeight + 1) return false;
+      t.scrollTop += schritt * Math.round(t.clientHeight * 0.8);
+      return true;
+    },
     setze(z, aktion) {
       const bereich = z.bereich === 'story' && z.station !== null ? 'story' : z.bereich === 'theorie' ? 'theorie' : 'start';
       if (bereich === 'story') {
@@ -110,6 +118,10 @@ export function starteLeinwand(wurzel: HTMLElement, o: LeinwandOptionen): () => 
       element.classList.toggle('ist-beamer', n.beamer);
       return;
     }
+    if (n.art === 'rollen') {
+      anzeige.rolle(n.schritt);
+      return;
+    }
     if (n.art !== 'zustand') return;
     const z = pruefeOeffentlich(n.zustand);
     if (z === null) return;
@@ -119,6 +131,21 @@ export function starteLeinwand(wurzel: HTMLElement, o: LeinwandOptionen): () => 
     }
     anzeige.setze(z, null);
   });
+  // Direkt an der Leinwand: Mausrad und Tasten rollen die Tafel (die Anzeige ist inert, das Fenster nicht)
+  const rad = (e: WheelEvent): void => {
+    const t = anzeige.element.querySelector<HTMLElement>('.tafel-inhalt');
+    if (t === null || t.scrollHeight <= t.clientHeight + 1) return;
+    t.scrollTop += e.deltaY;
+    e.preventDefault();
+  };
+  const taste = (e: KeyboardEvent): void => {
+    const s = e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ' ? 1 : e.key === 'ArrowUp' || e.key === 'PageUp' ? -1 : 0;
+    if (s !== 0 && anzeige.rolle(s)) e.preventDefault();
+  };
+  if (typeof window !== 'undefined') {
+    window.addEventListener('wheel', rad, { passive: false });
+    window.addEventListener('keydown', taste);
+  }
   o.kanal.senden({ art: 'hallo' });
   const lebenszeichen = setInterval(() => {
     nr += 1;
@@ -128,6 +155,10 @@ export function starteLeinwand(wurzel: HTMLElement, o: LeinwandOptionen): () => 
   }, o.takt ?? 1000);
 
   return () => {
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('wheel', rad);
+      window.removeEventListener('keydown', taste);
+    }
     clearInterval(lebenszeichen);
     ab();
     anzeige.entferne();

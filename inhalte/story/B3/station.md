@@ -58,7 +58,7 @@ von: brenner
 bestätigt und bewertet
 
 ### Text
-Jonas Brenner · Projektsteuerung
+Projektsteuerung
 :::
 
 ::: glied RIS-014

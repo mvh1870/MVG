@@ -21,7 +21,7 @@ weiter: wendepunkt
 titel: Montag, 07:45 Uhr. Monat 11.
 kurz: Einstieg
 ---
-Montag, 9. November. Die Freigabe LPH 5 steht an; die Kostenprognose der Projektsteuerung kennt nur Holger Stein, und er fällt für Wochen aus.
+Montag, 9. November. Die Freigabe LPH 5 steht an; die Annahmen der Kostenprognose kennt nur Holger Stein, und er fällt für Wochen aus.
 
 ::: mail
 ---

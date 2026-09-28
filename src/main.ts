@@ -112,6 +112,8 @@ function starteApp(wurzel: HTMLElement): void {
           ersetze(wurzel, story.element);
           story.setze(oeffentlich(sitzung.zustand()), null);
           window.scrollTo(0, 0);
+          // wie Theorie, Explore und Hilfe: der Fokus sitzt nach dem Wechsel auf dem Titel (Screenreader hören den Wechsel)
+          (story.element.querySelector('.tafel-titel') as HTMLElement | null)?.focus({ preventScroll: true });
         }
         // vor dem Permalink-Sprung: sonst zeichnet das Abo ihn nicht (P11.3 R3), und die Ortsmeldung der
         // Einbettung aus dem Abo trüge die alte Fläche (R4)
@@ -205,6 +207,7 @@ function starteApp(wurzel: HTMLElement): void {
           bedienbar: true,
         }));
         window.scrollTo(0, 0);
+        if (flaeche !== '' && flaeche !== 'start') (wurzel.querySelector('.start-titel') as HTMLElement | null)?.focus({ preventScroll: true });
         flaeche = 'start';
         document.body.dataset['flaeche'] = 'start';
         document.title = `${TITEL} – ${W.absender}`;
@@ -276,7 +279,8 @@ function starteRegie(wurzel: HTMLElement): void {
     regieFuer,
     regieKapitel,
     // Kundenfassung: ohne Regie-Material – die Regie sagt das, statt „keine Notiz“ an jeder Stelle
-    ohneNotizen: regieKapitel(1) === null && regieFuer(inhalte.stationsFolge[0] ?? '', null).station === null,
+    ohneNotizen: Array.from({ length: 13 }, (_, i) => regieKapitel(i + 1)).every((e) => e === null)
+      && inhalte.stationsFolge.every((id) => regieFuer(id, null).station === null),
     oeffneLeinwand: () => {
       window.open(`${location.href.replace(/#.*$/, '')}#leinwand`, 'mvg-leinwand');
     },

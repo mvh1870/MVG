@@ -58,7 +58,7 @@ export function baueStart(o: StartOptionen): HTMLElement {
     h('main', { class: 'start-haupt' },
       h('div', null,
         o.startseite !== null ? h('p', { class: 'start-kicker' }, o.startseite.kicker) : null,
-        h('h1', { class: 'start-titel', 'data-pruef': 'start-titel' }, o.startseite?.titel ?? W.absender),
+        h('h1', { class: 'start-titel', 'data-pruef': 'start-titel', tabindex: -1 }, o.startseite?.titel ?? W.absender),
         h('p', { class: 'start-these' }, o.startseite !== null ? inhaltInline(o.startseite.these) : null, o.startseite !== null ? ' ' : null, w.wegWaehlen)),
       h('nav', { class: 'tueren', 'aria-label': w.wege },
         tuer('theorie', [

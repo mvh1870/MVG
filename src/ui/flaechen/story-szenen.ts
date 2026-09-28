@@ -355,12 +355,13 @@ function konsequenz(k: SzenenKontext): Szene {
 
 /* ------------------------------------------------ Vergleich Welt A ⟷ Welt B -- */
 
-function stueckA(b: Block, inhalte: OeffentlicheInhalte): Node {
+function stueckA(b: Block, inhalte: OeffentlicheInhalte, ich: string | null): Node {
   const art = kopfText(b.kopf, 'a') ?? 'notiz';
   const html = b.felder['weltA'] ?? '';
   if (art === 'mail' || art === 'chat') {
     const von = kopfText(b.kopf, 'von');
-    const name = von !== null ? personName(von, inhalte).split(' ').pop() ?? '' : '';
+    // H13: die Figur der gespielten Rolle liest „Sie“, nicht ihren eigenen Namen
+    const name = von === null ? '' : ich !== null && von === ich ? W.sieSelbst : personName(von, inhalte).split(' ').pop() ?? '';
     return h('div', { class: `morph-karte morph-${art}` }, h('div', { class: 'morph-kopf' }, B.sym(art === 'mail' ? 'mail' : 'chat'), name), inhaltInline(html));
   }
   if (art === 'datei') {
@@ -390,12 +391,13 @@ function stueckB(b: Block): Node | null {
 
 function vergleich(k: SzenenKontext): Szene {
   const paare = k.schritt.bloecke.filter((b) => b.art === 'paar');
+  const ich = k.z.rolle !== null ? k.inhalte.rollen[k.z.rolle]?.figur ?? null : null;
   const kennzahlen = k.schritt.bloecke.filter((b) => b.art === 'kennzahl');
   const hinweise = k.schritt.bloecke.filter((b) => b.art === 'hinweis');
   const stuecke: VergleichsStueck[] = paare.map((b) => {
     const fluss = kopfText(b.kopf, 'fluss');
     const bKnoten = stueckB(b);
-    return { a: stueckA(b, k.inhalte), aArt: kopfText(b.kopf, 'a') ?? 'notiz', b: bKnoten, bArt: bKnoten !== null ? kopfText(b.kopf, 'b') : null, fluss: istFlussPosition(fluss) ? fluss : null };
+    return { a: stueckA(b, k.inhalte, ich), aArt: kopfText(b.kopf, 'a') ?? 'notiz', b: bKnoten, bArt: bKnoten !== null ? kopfText(b.kopf, 'b') : null, fluss: istFlussPosition(fluss) ? fluss : null };
   });
   // Position im Fluss: die Station der B-Seite steht bei der Entscheidung (Fluss-Baustein dort), sonst „Entscheidung“.
   const bStation = k.station.vergleich !== null ? k.inhalte.stationen[k.station.vergleich.b] ?? null : null;

@@ -215,6 +215,9 @@ test('Hilfe (P13, O-31): gleiche Aufteilung wie die Companion-Hilfe, leiser Zuga
   // Prüfrunde 10: keine Selbstdarstellung/Akquise (O-1), keine Verweise ohne Ziel, keine Instanz-Momentaufnahme
   assert.doesNotMatch(text, /Über Bauherr Mentoren|Akquise|Print-Center →|Speicher-Modus dieser Instanz|Modul 1 oder 2|einen strukturierten MVG|Wie wir arbeiten|>→ Portfolio-Manager/u);
   assert.match(HILFE.kapitel.find((k) => k.id === 'registerdokument-katalog')?.html ?? '', /aria-label="Tabelle: Registerdokument-Katalog"/u);
+  // Prüfrunde 12: Zeitpunkt „vor Freigabe LPH n“, kein Leitprinzip als MVG-Aussage, Genus
+  assert.doesNotMatch(text, /vor LPH \d|nach LPH \d|MVG-Leitprinzip|Erstes Managementbericht|ins <b>Managementbericht/u);
+  assert.match(text, /vor Freigabe LPH 0/u);
   assert.equal(baueHilfe({ seite: 'gibt-es-nicht', version: VERSION }).querySelector('[data-pruef="hilfe-uebersicht"]') !== null, true);
 });
 

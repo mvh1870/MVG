@@ -26,7 +26,14 @@ export const ZIEL = path.join('src', 'generiert', 'hilfe.json');
 /** Begriffe nach O-14/O-15/O-29; Reihenfolge: spezifisch vor allgemein. */
 export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   // Kennungen der Anwendung (GATE-NETZNORD-G2) bleiben: kein G nach Bindestrich, Punkt oder Wortzeichen
-  [/post-G(\d)\b/gu, 'nach LPH $1'],
+  // Zeitpunkt der Freigabe am Ende der Phase, nicht ihr Beginn (BEGRIFFE: „Freigabe LPH n“)
+  [/post-G(\d)\b/gu, 'nach Freigabe LPH $1'],
+  [/\bvor G(\d)\b/gu, 'vor Freigabe LPH $1'],
+  [/— MVG-Leitprinzip/gu, '— Leitprinzip der Anwendung'],
+  [/Erstes Managementbericht/gu, 'Erster Managementbericht'],
+  [/Gremientaugliches Managementbericht/gu, 'Gremientauglicher Managementbericht'],
+  [/Das fertige, entscheidungsorientierte Managementbericht/gu, 'Der fertige, entscheidungsorientierte Managementbericht'],
+  [/Externe Berater fließt/gu, 'Externe Berater fließen'],
   // im Quelltext steht „<b>Freigabebesprechung</b> – G0 bis G4“: das Muster muss im eigenen Textknoten greifen
   [/– G0 bis G4/gu, '– Freigabestufe 0 bis 4'],
   [/Standardisierter Einfuehrungs-\/Reset-Rhythmus/gu, 'Orientierungsrahmen für Einführung und Neuinitialisierung'],
@@ -444,6 +451,7 @@ function letzteUeberschrift(/** @type {Element} */ el) {
 function glaette(/** @type {string} */ html) {
   return html
     .replace(/&amp;amp;/gu, '&amp;')
+    .replace(/berichtet ins <b>Managementbericht<\/b>/gu, 'berichtet in den <b>Managementbericht</b>')
     .replace(/<b>Kein Lizenzmodell<\/b>, keine/gu, '<b>Keine</b>')
     // O-1: Angebotsaussage über BM (im Quelltext mit Hervorhebung, daher auf dem HTML)
     .replace(/\s*Für Beratungskunden (?:<b>)?kostenfrei(?:<\/b>)?: kein separates Lizenzentgelt, unbegrenzte Nutzungsrechte auch nach Mandatsende\./gu, '')

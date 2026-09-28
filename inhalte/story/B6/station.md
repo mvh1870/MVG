@@ -43,7 +43,7 @@ Beides steht im Managementbericht Oktober. Wer arbeitet zu?
 von: brenner
 zeit: "07:41"
 ---
-Die Annahmen stehen im Datenstand; ob seine benannte Stellvertretung weiterführt, klären wir heute.
+Die Annahmen stehen im Datenstand; ob Steins Stellvertretung weiterführt, klären wir heute.
 :::
 
 ::: datei

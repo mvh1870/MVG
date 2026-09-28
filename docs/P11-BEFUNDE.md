@@ -60,3 +60,8 @@ Technik R3 (Architektur, Barrierefreiheit, Tests): 5 Befunde (0 schwer, 2 mittel
 - [x] Lesezeit ohne unsichtbaren (Deckkraft) und dekorativen `aria-hidden`-Text, gezählt nach Ende der Übergänge, Hauptpfad bis zum letzten Epilog-Schritt (L-65 Nachtrag).
 - [x] Permalink-/Querverweis-Sprung in die Story zeichnet die Zielstation (vorher blieb die alte Tafel stehen); Probe in `welt-b` (Kap. 2 → A3 bei gespeichertem B3-Stand), Gegenprobe mit altem Code rot.
 - [x] Unit-Tests: Ebenen-Ansage (leer beim Aufbau, „Ebene 2: …“ beim Wechsel, kein `aria-live` am Ort); B3-Antwort durch den Reducer.
+
+## P11.3 Korrekturschleife – Runde 4 (R4)
+Inhalt (Diff R3, alle Ebene-1-Kernsätze gegen die Quelle, gf Hauptpfad zweimal, pl Express dreimal; alle am Ende, 0 Konsolenfehler): 2 Befunde (0 schwer, 0 mittel). Technik: Bericht folgt.
+- [x] Wendepunkt Ebene 1: „Mandatsausübung in Schwellen“ (k3.3-p2).
+- [x] B6-Chat: „ob Steins Stellvertretung weiterführt“.

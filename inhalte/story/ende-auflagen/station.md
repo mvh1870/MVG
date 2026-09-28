@@ -69,7 +69,7 @@ Kap. 9: [[zitat:k9-p1|Das Mandat verweist auf eine Freigabe, die Freigabe auf ei
 titel: Was eine Freigabe trägt
 kurz: Zielbild
 ---
-Kap. 9: Auflage 1 zeigt, dass der Datenstand noch nicht verbindlich war.
+Kap. 9: Freigaben beruhen auf einem Datenstand; dieser war nicht verbindlich.
 :::
 
 ::: schritt ebenen

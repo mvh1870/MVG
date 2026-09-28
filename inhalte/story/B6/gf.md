@@ -1,7 +1,7 @@
 ---
 station: B6
 rolle: gf
-frage: "Freigabe LPH 5 im Lenkungskreis: Was empfehlen Sie dem Bauherrn?"
+frage: "Lenkungskreis berät Freigabe LPH 5: Ihre Empfehlung?"
 rueckbezug-auf: A6
 ---
 

@@ -133,7 +133,7 @@ b: bericht
 fluss: managementbericht
 ---
 ### Welt A
-Welche Zahl kann Dr. Olbers vertreten?
+Welche Zahl ist vertretbar?
 
 ### Welt B
 Managementbericht Oktober · benannter Datenstand
@@ -250,7 +250,7 @@ kurz: Rückbezug
 ::: schritt entscheidung
 ---
 art: entscheidung
-titel: Was tun Sie?
+titel: Entscheidung
 kurz: Entscheidung
 ---
 :::

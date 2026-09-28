@@ -123,7 +123,7 @@ Holger Stein hat die Auflagen in die Prognose der Projektsteuerung eingetragen; 
 ::: schritt entscheidung
 ---
 art: entscheidung
-titel: Was tun Sie?
+titel: Entscheidung
 kurz: Entscheidung
 ---
 :::

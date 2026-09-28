@@ -125,7 +125,7 @@ Der Mensa-Nachtrag liegt vor, in keiner Prognose. Die Posten der Reserve gehen a
 ::: schritt entscheidung
 ---
 art: entscheidung
-titel: Was tun Sie?
+titel: Entscheidung
 kurz: Entscheidung
 ---
 :::

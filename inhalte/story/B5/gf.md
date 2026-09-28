@@ -1,7 +1,7 @@
 ---
 station: B5
 rolle: gf
-frage: Die Kämmerei fragt nach der Reserve. Was tun Sie?
+frage: PRB-004 berührt die Reserve. Was tun Sie?
 rueckbezug-auf: A5
 ---
 

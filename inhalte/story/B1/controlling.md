@@ -1,7 +1,7 @@
 ---
 station: B1
 rolle: controlling
-frage: Was geben Sie der Kämmerei zuerst?
+frage: "Kämmerei-Ansatz: Was richten Sie ein?"
 rueckbezug-auf: A1
 ---
 

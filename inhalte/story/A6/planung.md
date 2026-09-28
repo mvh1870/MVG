@@ -1,7 +1,7 @@
 ---
 station: A6
 rolle: planung
-frage: Der Bauherr entscheidet über LPH 5. Was liefern Sie?
+frage: "Freigabe LPH 5 durch den Bauherrn: Was liefern Sie?"
 rueckbezug-auf: A5
 ---
 

@@ -5,7 +5,7 @@ rueckbezug-auf: wirklichkeit
 ---
 
 ::: rueckbezug A
-Im Dezember haben Sie ‚MVG-Neuinitialisierung empfehlen‘ gewählt. Getragen hat sie noch nicht; Auflage 1 verlangt einen verbindlichen Datenstand – welchen, steht nicht dabei.
+Im Dezember haben Sie ‚MVG-Neuinitialisierung empfehlen‘ gewählt. Gewirkt hat sie noch nicht; Auflage 1 verlangt einen verbindlichen Datenstand – welchen, steht nicht dabei.
 :::
 
 ::: rueckbezug B

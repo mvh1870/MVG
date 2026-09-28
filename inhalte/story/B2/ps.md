@@ -1,7 +1,7 @@
 ---
 station: B2
 rolle: ps
-frage: FRW-002 und AEN-012 liegen vor. Womit fangen Sie an?
+frage: "Lieferzeit gegen Förderfrist: Was liefern Sie dem Bauherrn?"
 rueckbezug-auf: A2
 ---
 

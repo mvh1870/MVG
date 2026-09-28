@@ -32,7 +32,7 @@ Welt B war ein Gedankenexperiment. Montag, 7. Dezember: LPH 5 ist nicht abgeschl
 ::: mail
 ---
 von: petersen
-betreff: Schulcampus – wie geht es weiter?
+betreff: "WG: Schulcampus – wie geht es weiter?"
 zeit: "07:52"
 ---
 Dr. Olbers will bis 15. Dezember eine Entscheidungsfrage und die offenen Entscheidungen, keinen Statusbericht.

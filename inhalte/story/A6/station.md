@@ -31,7 +31,7 @@ zeit: "07:38"
 ---
 Fraktion fragt nach Kosten und Termin; Antwort bis Fr., 13. November.
 
-Welche Zahl kann Dr. Olbers vertreten?
+Welche Zahl ist vertretbar?
 :::
 
 ::: protokoll
@@ -124,7 +124,7 @@ Offene Risiken steigen.
 ::: schritt entscheidung
 ---
 art: entscheidung
-titel: Was tun Sie?
+titel: Entscheidung
 kurz: Entscheidung
 ---
 :::

@@ -125,7 +125,7 @@ Ursache überwiegend Preissteigerung Holzbauelemente; ein Nachtrag TGA ist angek
 ::: schritt entscheidung
 ---
 art: entscheidung
-titel: Was tun Sie?
+titel: Entscheidung
 kurz: Entscheidung
 ---
 :::

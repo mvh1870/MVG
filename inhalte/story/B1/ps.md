@@ -1,7 +1,7 @@
 ---
 station: B1
 rolle: ps
-frage: Die Kämmerei will bis Freitag eine Zahl. Was zuerst?
+frage: Die Kämmerei bekommt Version 1. Was zuerst?
 rueckbezug-auf: A1
 ---
 

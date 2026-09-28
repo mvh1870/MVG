@@ -1,7 +1,7 @@
 ---
 station: A3
 rolle: pl
-frage: Was tun Sie?
+frage: "Zwei Zahlen, Dr. Olbers braucht eine: Was tun Sie?"
 ---
 
 ::: option A

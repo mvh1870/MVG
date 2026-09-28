@@ -44,7 +44,7 @@ Die Kämmerei braucht bis Freitag den Haushaltsansatz 2027: Mittelabfluss und Ge
 von: petersen
 zeit: "09:02"
 ---
-Dr. Olbers fragt: Gilt noch die Zahl aus dem Ratsbeschluss?
+Aus dem Dezernat: Gilt noch die Zahl aus dem Ratsbeschluss?
 :::
 
 ::: protokoll
@@ -128,7 +128,7 @@ Die Projektsteuerung schickt ihren 40-Seiten-Bericht, die Generalplanung verweis
 ::: schritt entscheidung
 ---
 art: entscheidung
-titel: Was tun Sie?
+titel: Entscheidung
 kurz: Entscheidung
 ---
 :::

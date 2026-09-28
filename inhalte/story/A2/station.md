@@ -128,7 +128,7 @@ Der Satz im Flur war als Absichtserklärung gemeint, Sabine Roth versteht ihn al
 ::: schritt entscheidung
 ---
 art: entscheidung
-titel: Was tun Sie?
+titel: Entscheidung
 kurz: Entscheidung
 ---
 :::

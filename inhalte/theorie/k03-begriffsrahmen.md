@@ -12,7 +12,7 @@ Kapitel 3 zieht die Linie, auf der das ganze Modell steht: Was kann der Bauherr 
 :::
 
 ::: zitat k3-p1
-Der Begriff der nichtdelegierbaren Bauherrenverantwortung wird in diesem Whitepaper als Governance- und Führungsbegriff verwendet.
+Der Begriff der nichtdelegierbaren Bauherrenverantwortung wird in MVG als Governance- und Führungsbegriff verwendet.
 :::
 
 ::: zitat k3-p2

@@ -8,7 +8,7 @@ titel: Was Bauherren mit MVG und MVG Companion gewinnen
 kurztitel: Was Bauherren gewinnen
 story: [ende-steuerbar]
 ---
-Kapitel 12 zieht Bilanz: was Minimum Viable Governance (MVG) und der MVG Companion laut Whitepaper für Bauherren bewirken – die Karten nennen fünf Gewinne mit ihrer Wirkung – und wie der Einstieg aussieht. Es schließt den Bogen zur Leitthese vom Anfang.
+Kapitel 12 zieht Bilanz: was Minimum Viable Governance (MVG) und der MVG Companion für Bauherren bewirken – die Karten nennen fünf Gewinne mit ihrer Wirkung – und wie der Einstieg aussieht. Es schließt den Bogen zur Leitthese vom Anfang.
 
 ::: kernaussage
 [[zitat:k12-p1|Für Bauherren zählt am Ende nicht die Zahl der Governance-Artefakte, sondern ihre Führungswirkung.]]
@@ -24,7 +24,7 @@ form: karten
 ---
 titel: Pragmatischer Einstieg
 ---
-Laut Whitepaper beginnt der Einstieg mit einer kompakten MVG-Reifegradanalyse; sie macht sichtbar, welche Entscheidungen, Mandate, Datenstände und Nachweise kritisch sind. Auf dieser Grundlage kann der Bauherr priorisieren, welche MVG-Bausteine sofort wirksam werden und wo der [[MVG Companion]] die Einführung beschleunigt. Die Karten zeigen drei Einstiegspunkte mit Kernfrage und Ergebnis.
+Laut MVG beginnt der Einstieg mit einer kompakten MVG-Reifegradanalyse; sie macht sichtbar, welche Entscheidungen, Mandate, Datenstände und Nachweise kritisch sind. Auf dieser Grundlage kann der Bauherr priorisieren, welche MVG-Bausteine sofort wirksam werden und wo der [[MVG Companion]] die Einführung beschleunigt. Die Karten zeigen drei Einstiegspunkte mit Kernfrage und Ergebnis.
 
 ::: zitat k12.1-p1
 Der Einstieg ist kein Governance-Großprojekt.
@@ -42,7 +42,7 @@ form: karten
 ---
 titel: Kernaussage
 ---
-Maßstab ist die Führungswirkung, nicht die Zahl der Artefakte: Laut Whitepaper bereiten MVG und der MVG Companion Entscheidungen schneller vor, machen Mandate klarer, erhöhen die Gremienfähigkeit und führen Nachweise belastbarer.
+Maßstab ist die Führungswirkung, nicht die Zahl der Artefakte: MVG und der MVG Companion bereiten Entscheidungen schneller vor, machen Mandate klarer, erhöhen die Gremienfähigkeit und führen Nachweise belastbarer.
 :::
 
 ::: ebene 2
@@ -109,7 +109,7 @@ Nach der MVG-Neuinitialisierung ist das Projekt wieder steuerbar: Das Bauherren-
 
 ::: regie
 ### Notiz
-Kapitel 12 zieht Bilanz; hier ist die Nähe zum Vertrieb am größten – nur wiedergeben, was das Whitepaper sagt, keine Aufforderung, kein Angebot, keine Wirkungszahlen. Es tragen die fünf Gewinne in der Tafel, besonders „Geringere Zusatzlast“: Der Mindeststandard bleibt auf führungsrelevante Entscheidungen konzentriert. Mit der Leitthese schließen.
+Kapitel 12 zieht Bilanz; hier ist die Nähe zum Vertrieb am größten – nur wiedergeben, was MVG sagt, keine Aufforderung, kein Angebot, keine Wirkungszahlen. Es tragen die fünf Gewinne in der Tafel, besonders „Geringere Zusatzlast“: Der Mindeststandard bleibt auf führungsrelevante Entscheidungen konzentriert. Mit der Leitthese schließen.
 
 ### Leitfragen
 - Welcher der fünf Gewinne wäre in Ihrem Projekt am ehesten spürbar?

@@ -133,7 +133,7 @@ const { W } = await import('../src/ui/woerter.ts');
 const { leseRoute } = await import('../src/ui/route.ts');
 type KanalNachricht = import('../src/regie/kanal.ts').KanalNachricht;
 
-const VERSION = 'Whitepaper V1.2 · Story 0.1';
+const VERSION = 'MVG V1.2 · Story 0.1';
 const pause = (ms: number): Promise<void> => new Promise((r) => setTimeout(r, ms));
 const klartext = (html: string): string => html.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
 
@@ -361,7 +361,7 @@ test('Leitstand: Sprunglink, Reiter nach dem Tabs-Muster, modale Rollen-Linse, G
     const bezug = (await import('../src/inhalte/index.ts')).inhalte.stationen[st]?.whitepaper ?? [];
     assert.ok(bezug.length > 0);
     assert.deepEqual(quellen.map((q) => q.getAttribute('data-absatz')), bezug);
-    assert.match(quellen[0]?.querySelector('figcaption')?.textContent ?? '', /Whitepaper V?1\.2.*Kap\. \d/);
+    assert.match(quellen[0]?.querySelector('figcaption')?.textContent ?? '', /MVG V?1\.2.*Kap\. \d/);
     assert.ok(quellen[0]?.querySelector('.mvg-original'), 'Originaltext eingebettet');
 
     // Rollen-Linse: modal (übriger Leitstand inert), schließt beim Szenenwechsel
@@ -757,11 +757,11 @@ test('Begriffs-Kompass (P10.5, E7): im Glossar, Suche nach dem anderen Wort find
 
 test('Zitierfunktion und Impressum (P10.1): Absatz-Permalink, Zitierangabe, nicht auf der Leinwand', () => {
   const { zitierAngabe } = theorieModul;
-  assert.equal(zitierAngabe('k4.2-p3', 'V1.2'), 'Bauherr Mentoren, Whitepaper V1.2, Kap. 4.2, Abs. 3');
-  assert.equal(zitierAngabe('k1-p2', 'V1.2'), 'Bauherr Mentoren, Whitepaper V1.2, Kap. 1, Abs. 2');
-  assert.equal(zitierAngabe('k6.4.2-t1', 'V1.2'), 'Bauherr Mentoren, Whitepaper V1.2, Kap. 6.4.2, Tabelle 1');
-  assert.equal(zitierAngabe('k5.3-l1', 'V1.2'), 'Bauherr Mentoren, Whitepaper V1.2, Kap. 5.3, Aufzählung 1');
-  assert.equal(zitierAngabe('k6.3-b1', 'V1.2'), 'Bauherr Mentoren, Whitepaper V1.2, Kap. 6.3, Kasten 1');
+  assert.equal(zitierAngabe('k4.2-p3', 'V1.2'), 'Bauherr Mentoren, MVG V1.2, Kap. 4.2, Abs. 3');
+  assert.equal(zitierAngabe('k1-p2', 'V1.2'), 'Bauherr Mentoren, MVG V1.2, Kap. 1, Abs. 2');
+  assert.equal(zitierAngabe('k6.4.2-t1', 'V1.2'), 'Bauherr Mentoren, MVG V1.2, Kap. 6.4.2, Tabelle 1');
+  assert.equal(zitierAngabe('k5.3-l1', 'V1.2'), 'Bauherr Mentoren, MVG V1.2, Kap. 5.3, Aufzählung 1');
+  assert.equal(zitierAngabe('k6.3-b1', 'V1.2'), 'Bauherr Mentoren, MVG V1.2, Kap. 6.3, Kasten 1');
   assert.equal(zitierAngabe('kaputt', 'V1.2'), null);
   const seite = baueTheorie({ inhalte, kapitel: 4, version: VERSION, bedienbar: true });
   document.body.replaceChildren(seite);
@@ -773,7 +773,7 @@ test('Zitierfunktion und Impressum (P10.1): Absatz-Permalink, Zitierangabe, nich
   knopf.click();
   assert.equal(knopf.getAttribute('aria-expanded'), 'true');
   const angabe = absatz.querySelector('[data-pruef="zitierangabe"]')?.textContent ?? '';
-  assert.ok(angabe.startsWith('Bauherr Mentoren, Whitepaper V1.2, Kap. 4.2, Abs. 3. Link: '), angabe);
+  assert.ok(angabe.startsWith('Bauherr Mentoren, MVG V1.2, Kap. 4.2, Abs. 3. Link: '), angabe);
   assert.ok(angabe.endsWith('#theorie/k4/k4.2-p3'));
   knopf.click();
   assert.equal(absatz.querySelector('.zitierangabe'), null);
@@ -1149,4 +1149,18 @@ test('Ebenen (P11.3 R2/R3): knappe Ansage „Ebene n: Titel“ nur beim Wechsel,
   const titel = b3.ebenen?.find((e) => e.nr === 2)?.titel ?? '';
   assert.equal(ansage.textContent, `${W.ebene} 2: ${titel}`);
   story.entferne();
+});
+
+test('Lernseiten (O-30): Originaltext am Seitenende, zugeklappt; ein Absatz-Permalink findet ihn', () => {
+  for (const nr of [1, 4, 9, 12]) {
+    const seite = baueTheorie({ inhalte, kapitel: nr, version: VERSION, bedienbar: true });
+    const original = seite.querySelector<HTMLDetailsElement>('details.originaltext');
+    assert.ok(original, `Kap. ${nr}: Originaltext fehlt`);
+    assert.equal(original.open, false, `Kap. ${nr}: Originaltext ist aufgeklappt`);
+    const inhaltEl = seite.querySelector('.lern-inhalt');
+    const kinder = [...(inhaltEl?.children ?? [])];
+    const pos = kinder.indexOf(original);
+    const nachher = kinder.slice(pos + 1).map((k) => k.className);
+    assert.ok(nachher.every((c) => /kapitel-nav|lern-fuss|originaltext/u.test(c)), `Kap. ${nr}: nach dem Originaltext steht noch ${nachher.join(', ')}`);
+  }
 });

@@ -13,7 +13,7 @@ kapitel: ["6.4"]
 Ist das nicht nur mehr Bürokratie?
 
 ### Antwort
-Das Whitepaper beschreibt die Zusammenarbeit in Registern, Rollen und Takt ausdrücklich als gemeinsamen Arbeitsstandard.
+MVG beschreibt die Zusammenarbeit in Registern, Rollen und Takt ausdrücklich als gemeinsamen Arbeitsstandard.
 
 ::: zitat k6.4-p1
 Der Zweck ist nicht zusätzliche Bürokratie, sondern ein gemeinsamer Arbeitsstandard für verantwortliche Rollen, Projektleitung, PMO, Controlling und Lenkungskreis.
@@ -45,7 +45,7 @@ kapitel: ["1.2", "3.3"]
 Das macht doch schon unsere Projektsteuerung.
 
 ### Antwort
-Das Whitepaper sieht die Projektsteuerung ausdrücklich in der Unterstützung – bei Kosten, Terminen, Qualität, Koordination und Berichterstattung. Die bauherrenseitige Entscheidung ersetzt sie nicht.
+MVG sieht die Projektsteuerung ausdrücklich in der Unterstützung – bei Kosten, Terminen, Qualität, Koordination und Berichterstattung. Die bauherrenseitige Entscheidung ersetzt sie nicht.
 
 ::: zitat k1.2-l1
 Projektsteuerung unterstützt Kosten, Termine, Qualität, Koordination und Berichterstattung; sie ersetzt keine bauherrenseitige Entscheidung.
@@ -81,7 +81,7 @@ kapitel: ["1", "4.3", "5.1"]
 Unsere Projekte sind zu klein dafür.
 
 ### Antwort
-Eine Mindestgröße nennt das Whitepaper nicht. Es richtet sich an Organisationen, die komplexe Vorhaben aktiv, nachweisbar und entscheidungsfähig führen müssen, und beginnt mit den Entscheidungen, die für den Bauherrn kritisch sind. Wesentlich ist dabei nicht jede operative Entscheidung.
+Eine Mindestgröße nennt MVG nicht. Es richtet sich an Organisationen, die komplexe Vorhaben aktiv, nachweisbar und entscheidungsfähig führen müssen, und beginnt mit den Entscheidungen, die für den Bauherrn kritisch sind. Wesentlich ist dabei nicht jede operative Entscheidung.
 
 ::: zitat k1-p3
 Der Ansatz richtet sich an Organisationen, die komplexe Vorhaben nicht nur berichten, sondern aktiv, nachweisbar und entscheidungsfähig führen müssen.
@@ -101,7 +101,7 @@ kapitel: ["4.2", "9.2"]
 Wir haben schon RACI.
 
 ### Antwort
-RACI übersetzt Rollenbilder in eine transparente Verantwortungslogik. Laut Whitepaper reicht diese Zuordnung allein aber nicht aus – entscheidend ist ihre Kopplung an Mandate, Freigabeschwellen, Stellvertretungen und Eskalationspfade.
+RACI übersetzt Rollenbilder in eine transparente Verantwortungslogik. Laut MVG reicht diese Zuordnung allein aber nicht aus – entscheidend ist ihre Kopplung an Mandate, Freigabeschwellen, Stellvertretungen und Eskalationspfade.
 
 ::: zitat k9.2-p1
 Entscheidend ist die Kopplung an Mandate, Freigabeschwellen, Stellvertretungen und Eskalationspfade. Nur dann wird RACI von einer Kommunikationsmatrix zu einem Führungsinstrument.
@@ -117,7 +117,7 @@ kapitel: ["6", "6.3"]
 Das ist doch nur ein neues Tool.
 
 ### Antwort
-MVG ist ein Führungsmodell; der MVG Companion ist ein optionales Arbeitsmittel und kein Ersatz für Entscheidung oder Führung. Das Führungsmodell funktioniert laut Whitepaper auch mit vorhandenen Büro- und Projektwerkzeugen.
+MVG ist ein Führungsmodell; der MVG Companion ist ein optionales Arbeitsmittel und kein Ersatz für Entscheidung oder Führung. Das Führungsmodell funktioniert laut MVG auch mit vorhandenen Büro- und Projektwerkzeugen.
 
 ::: zitat k6-p2
 Der Companion ist dabei kein zweites Dachkonzept neben MVG und kein Ersatz für Entscheidung oder Führung.
@@ -137,7 +137,7 @@ kapitel: ["4.5", "9.3"]
 Freigaben machen wir sowieso.
 
 ### Antwort
-Das Whitepaper versteht Freigabe als mehr als eine Unterschrift: als Legitimation eines nächsten Schritts auf einem benannten Datenstand. Vor einer Freigabe muss klar sein, welche Entscheidung getroffen wird, welches Mandat gilt, welche Mindestgrundlagen vorliegen und welche Risiken angenommen werden.
+MVG versteht Freigabe als mehr als eine Unterschrift: als Legitimation eines nächsten Schritts auf einem benannten Datenstand. Vor einer Freigabe muss klar sein, welche Entscheidung getroffen wird, welches Mandat gilt, welche Mindestgrundlagen vorliegen und welche Risiken angenommen werden.
 
 ::: zitat k4.5-p1
 Freigabe ist mehr als Unterschrift. Freigabe bedeutet bauherrenseitige Legitimation eines nächsten Schritts auf einem benannten Datenstand.
@@ -153,7 +153,7 @@ kapitel: ["1", "5.1"]
 Das kostet nur Geld.
 
 ### Antwort
-Kosten der Einführung beziffert das Whitepaper nicht. Den Nutzen beschreibt es als weniger Entscheidungsstau, klarere Eskalationswege, belastbare Gremienfähigkeit und eine nachvollziehbare Nachweiskette – mit dem kleinstmöglichen funktionsfähigen Standard statt maximaler Governance.
+Kosten der Einführung beziffert MVG nicht. Den Nutzen beschreibt es als weniger Entscheidungsstau, klarere Eskalationswege, belastbare Gremienfähigkeit und eine nachvollziehbare Nachweiskette – mit dem kleinstmöglichen funktionsfähigen Standard statt maximaler Governance.
 
 ::: zitat k1-p2
 Der Nutzen liegt nicht in mehr Bürokratie, sondern in weniger Entscheidungsstau, klareren Eskalationswegen, belastbarer Gremienfähigkeit und einer nachvollziehbaren Nachweiskette.
@@ -173,7 +173,7 @@ kapitel: ["5.4", "7.5", "11"]
 Wir sind mitten im Projekt – dafür ist es zu spät.
 
 ### Antwort
-LPH 0 ist ein früher Hebel, doch MVG bleibt nicht darauf beschränkt. Das Whitepaper nennt ausdrücklich laufende Projekte, anstehende wesentliche Freigaben und die MVG-Neuinitialisierung – eine gezielte Neuordnung der Steuerungs- und Entscheidungslogik, kein vollständiger Projektneustart.
+LPH 0 ist ein früher Hebel, doch MVG bleibt nicht darauf beschränkt. MVG nennt ausdrücklich laufende Projekte, anstehende wesentliche Freigaben und die MVG-Neuinitialisierung – eine gezielte Neuordnung der Steuerungs- und Entscheidungslogik, kein vollständiger Projektneustart.
 
 ::: zitat k5.4-p2
 MVG nutzt LPH 0 deshalb als frühen Hebel, bleibt aber nicht auf LPH 0 beschränkt. Auch in laufenden Projekten, vor wesentlichen Freigaben, bei Neufestlegungen der Projektbasis, bei schleichenden Änderungen oder im Rahmen einer MVG-Neuinitialisierung kann MVG die Entscheidungs- und Nachweisfähigkeit wiederherstellen.

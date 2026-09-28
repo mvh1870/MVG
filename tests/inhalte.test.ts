@@ -420,7 +420,7 @@ test('Beispiel → erwartetes JSON (Auszüge exakt), fehlerfrei, deterministisch
     ],
   });
   const zitat = x1.ebenen?.[1]?.bloecke[0];
-  assert.deepEqual(zitat?.kopf, { quelle: 'Whitepaper V1.2, Kap. 2.4', vollstaendig: false });
+  assert.deepEqual(zitat?.kopf, { quelle: 'MVG V1.2, Kap. 2.4', vollstaendig: false });
   assert.equal(zitat?.felder['text'], '<blockquote class="mvg-zitat" data-absatz="k2.4-p2"><p>Berichterstattung erzeugt Information. Führung entsteht erst, wenn Information mit Mandat verbunden wird.</p></blockquote>');
 
   assert.deepEqual(i.stationen['Y1']?.szenen['pl']?.rueckbezug, {

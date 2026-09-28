@@ -49,7 +49,7 @@ Die Geschichte beginnt mit Ihrer Übernahme der Projektleitung auf Bauherrenseit
 | Lieferzeit Holzbauelemente (Monat 3) | von rund 16 auf 26 Wochen | Marktabfrage der Generalplanung |
 | Brandschutzauflagen (Monat 6) | Auflagen der Baugenehmigung zum Holzbau, grob 0,4 Mio. € | Welt A: Folgekosten in A5; Welt B: Änderung `AEN-031` im Änderungsgremium (B4) |
 
-Mandatsleiter in Welt B: die Muster-Mandatsleiter des Whitepapers (k4.2-p3) – Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium über 100 TEUR bis einschließlich 5 Mio. €, darüber Beschlussfassung durch den Bauherrn im Lenkungskreis. In Welt A gibt es keine festgelegten Schwellen.
+Mandatsleiter in Welt B: die Muster-Mandatsleiter von MVG (k4.2-p3) – Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium über 100 TEUR bis einschließlich 5 Mio. €, darüber Beschlussfassung durch den Bauherrn im Lenkungskreis. In Welt A gibt es keine festgelegten Schwellen.
 
 ## Zeitachse
 

@@ -62,7 +62,7 @@ Damit bleibt die Verantwortung formal beim Bauherrn – praktisch wird sie aber 
 ---
 titel: Volatile Märkte und Infrastrukturprogramme
 ---
-Volatile Märkte treffen Bauprojekte über Preisannahmen, Lieferzeiten, Angebotsgültigkeiten und Komponenten mit langer Lieferzeit. Für Infrastrukturträger leitet das Whitepaper daraus einen eigenen Governance-Bedarf ab, von der Freigabereife bis zu klaren Eskalationsroutinen.
+Volatile Märkte treffen Bauprojekte über Preisannahmen, Lieferzeiten, Angebotsgültigkeiten und Komponenten mit langer Lieferzeit. Für Infrastrukturträger leitet MVG daraus einen eigenen Governance-Bedarf ab, von der Freigabereife bis zu klaren Eskalationsroutinen.
 
 ::: zitat k2.1-p1
 Besonders exponiert sind Vorhaben vor der finalen Investitionsentscheidung (FID) sowie im Zeitraum von Ausschreibung, Vergabe und Beschaffung von Komponenten mit langer Lieferzeit. Dort kippen Annahmen schnell, während Entscheidungsprozesse oft noch auf stabilere Umfelder ausgelegt sind.
@@ -101,7 +101,7 @@ So wird Erfahrung nicht ersetzt, aber in wiederholbare Führungslogik überführ
 ---
 titel: Warum Berichterstattung das Kernproblem nicht löst
 ---
-Mehr Berichte, mehr Abstimmung und mehr Gremienvorlagen können in einzelnen Situationen helfen – sie klären aber nicht automatisch, wer was auf welcher Grundlage entscheiden darf und muss. Information wird erst zu Führung, wenn sie mit Mandat, Entscheidung und Nachweis verbunden ist. Vier Beispiele, wörtlich aus dem Whitepaper:
+Mehr Berichte, mehr Abstimmung und mehr Gremienvorlagen können in einzelnen Situationen helfen – sie klären aber nicht automatisch, wer was auf welcher Grundlage entscheiden darf und muss. Information wird erst zu Führung, wenn sie mit Mandat, Entscheidung und Nachweis verbunden ist. Vier Beispiele, wörtlich aus MVG:
 
 ::: karten
 ::: karte 1

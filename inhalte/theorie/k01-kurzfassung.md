@@ -6,7 +6,7 @@ titel: Kurzfassung
 kurztitel: Kurzfassung
 story: [prolog]
 ---
-Kapitel 1 fasst das Whitepaper zu [[Minimum Viable Governance (MVG)]] auf einer Seite zusammen: die Leitthese, fünf Managementaussagen und das Ergebnisbild. Die Karten zeigen die Aussagen einzeln, darunter steht der Originaltext.
+Kapitel 1 fasst [[Minimum Viable Governance (MVG)]] auf einer Seite zusammen: die Leitthese, fünf Managementaussagen und das Ergebnisbild. Die Karten zeigen die Aussagen einzeln, darunter steht der Originaltext.
 
 ::: kernaussage
 [[zitat:k1-p1|Arbeit kann delegiert werden; bauherrenseitige Legitimation nicht.]]
@@ -25,7 +25,7 @@ Bauherren können Arbeit, Analyse, Koordination und Dokumentation delegieren. Ni
 ---
 titel: Managementaussagen
 ---
-Fünf Aussagen, jeweils wörtlich aus dem Whitepaper.
+Fünf Aussagen, jeweils im Originaltext.
 
 ::: karten
 ::: karte 1

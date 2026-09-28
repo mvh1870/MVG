@@ -66,7 +66,7 @@ export async function lauf(seite, h) {
   if (await absatz.evaluate((el) => el.classList.contains('ist-ziel')) !== true) h.befund('Absatz-Permalink: Ziel nicht hervorgehoben');
   await absatz.locator('[data-pruef="zitieren"]').click();
   const angabe = await absatz.locator('[data-pruef="zitierangabe"]').textContent();
-  if (!/^Bauherr Mentoren, Whitepaper V1\.2, Kap\. 4\.2, Abs\. 3\. Link: .*#theorie\/k4\/k4\.2-p3$/u.test(angabe ?? '')) h.befund(`Zitierangabe: „${angabe}“`);
+  if (!/^Bauherr Mentoren, MVG V1\.2, Kap\. 4\.2, Abs\. 3\. Link: .*#theorie\/k4\/k4\.2-p3$/u.test(angabe ?? '')) h.befund(`Zitierangabe: „${angabe}“`);
   await h.axe('zitieren');
   await h.bild('zitieren');
   // Druck (P10.2): im Druck ist nur der Bogen sichtbar, die Seite selbst nicht; eine PDF entsteht

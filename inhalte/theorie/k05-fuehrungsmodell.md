@@ -170,7 +170,7 @@ Die Wirkung von MVG entsteht durch Kopplung. Ein Zielsystem allein reicht nicht 
 ---
 titel: LPH 0 als früher Wirkungsraum
 ---
-In LPH 0, der Bedarfsplanung vor den HOAI-Leistungsphasen, lassen sich Zielsystem, Mandatslogik, Freigabemodell und Datenstandslogik früh anlegen. Bleibt dort etwas offen, zeigt es sich später als Kosten-, Termin-, Qualitäts- und Freigaberisiko. Das Whitepaper stellt LPH 0 dennoch nicht in den Mittelpunkt – wichtiger ist, ob der Bauherr seine nichtdelegierbare Verantwortung ausüben kann.
+In LPH 0, der Bedarfsplanung vor den HOAI-Leistungsphasen, lassen sich Zielsystem, Mandatslogik, Freigabemodell und Datenstandslogik früh anlegen. Bleibt dort etwas offen, zeigt es sich später als Kosten-, Termin-, Qualitäts- und Freigaberisiko. MVG stellt LPH 0 dennoch nicht in den Mittelpunkt – wichtiger ist, ob der Bauherr seine nichtdelegierbare Verantwortung ausüben kann.
 
 ::: zitat k5.4-p2
 MVG nutzt LPH 0 deshalb als frühen Hebel, bleibt aber nicht auf LPH 0 beschränkt. Auch in laufenden Projekten, vor wesentlichen Freigaben, bei Neufestlegungen der Projektbasis, bei schleichenden Änderungen oder im Rahmen einer MVG-Neuinitialisierung kann MVG die Entscheidungs- und Nachweisfähigkeit wiederherstellen.
@@ -181,7 +181,7 @@ MVG nutzt LPH 0 deshalb als frühen Hebel, bleibt aber nicht auf LPH 0 beschrän
 ---
 titel: Abgrenzung und rechtlicher Hinweis
 ---
-Das Whitepaper steckt den Rahmen des Modells ausdrücklich ab – der Hinweis steht hier im Wortlaut.
+MVG steckt den Rahmen des Modells ausdrücklich ab – der Hinweis steht hier im Wortlaut.
 
 ::: zitat k5.5-p1
 MVG behandelt nicht alle denkbaren Bauherrenpflichten. Es ist keine bauordnungsrechtliche Pflichtenmatrix, keine arbeitsschutzrechtliche Vertiefung, keine Vergaberechtsprüfung und keine technische Betreiberberatung. Der Fokus liegt auf Führungs-, Entscheidungs- und Nachweisfähigkeit.

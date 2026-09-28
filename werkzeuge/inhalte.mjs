@@ -13,6 +13,7 @@
  * Die Engine-Regeln (Statuswerte, Bedingungen, Graph) kommen aus src/engine/*.ts – eine Lesart für
  * Bauzeit und Laufzeit. Deterministisch: Dateien sortiert, Schlüssel sortiert, keine Zeitstempel.
  */
+import { anzeigeFassung } from './anzeige-fassung.mjs';
 import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -433,7 +434,8 @@ async function ladeQuelle(pfad) {
     lib = null;
   }
   /** @type {any} */
-  const wp = lib?.ladeWhitepaper ? lib.ladeWhitepaper(pfad) : JSON.parse(readFileSync(pfad, 'utf8'));
+  // Anzeigefassung (O-29, L-66): ohne das Wort „Whitepaper“; Zitate werden gegen sie geprüft
+  const wp = anzeigeFassung(lib?.ladeWhitepaper ? lib.ladeWhitepaper(pfad) : JSON.parse(readFileSync(pfad, 'utf8')));
   /** @type {FlacherBlock[]} */
   let bloecke;
   if (lib?.alleBloecke) {
@@ -640,7 +642,7 @@ class Kompilierer {
   quellenangabe(ids) {
     const fassung = this.quelle?.fassung ?? 'V1.2';
     const abschnitte = [...new Set(ids.map((id) => this.quelle?.nachId.get(id)?.abschnitt ?? abschnittAusId(id)))];
-    return `Whitepaper ${fassung}, Kap. ${abschnitte.join(', ')}`;
+    return `MVG ${fassung}, Kap. ${abschnitte.join(', ')}`;
   }
 
   /**

@@ -89,7 +89,7 @@ export function simuliere(e: SimEingabe): SimErgebnis {
       quelle: 'k6.4.5-p1',
       text: e.schwelleUeberschritten
         ? 'Eine Wert-, Risiko-, Frist- oder Mandatsschwelle ist überschritten: Es wird entlang der Mandatsleiter eskaliert.'
-        : 'Für Terminwirkungen nennt das Whitepaper keine allgemeine Schwelle; ob eine Fristschwelle überschritten ist, legt das projektspezifische Mandat fest.',
+        : 'Für Terminwirkungen nennt MVG keine allgemeine Schwelle; ob eine Fristschwelle überschritten ist, legt das projektspezifische Mandat fest.',
     });
   }
 

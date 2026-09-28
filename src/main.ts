@@ -33,7 +33,7 @@ import { fassungText } from './ui/fassung.ts';
 import { erzeugeKlang } from './ui/klang.ts';
 import { istEingebettet, starteEinbettung, type Einbettung } from './ui/einbettung.ts';
 
-const TITEL = 'Minimum Viable Governance';
+const TITEL = 'MVG interaktiv';
 const VERSION = fassungText(inhalte.whitepaper.fassung ?? '');
 const KANAL = 'regie';
 
@@ -136,6 +136,9 @@ function starteApp(wurzel: HTMLElement): void {
           : `[data-abschnitt="k${r.abschnitt}"]`;
         const abschnitt = ziel !== null ? seite.querySelector<HTMLElement>(ziel) : null;
         if (abschnitt !== null) {
+          // ein Absatz steht im zugeklappten Originaltext (O-30): aufklappen
+          const zu = abschnitt.closest('details');
+          if (zu !== null) zu.open = true;
           abschnitt.classList.add('ist-ziel');
           // Permalink auf einen Abschnitt (P2.4): dorthin, Fokus für Screenreader
           abschnitt.tabIndex = -1;

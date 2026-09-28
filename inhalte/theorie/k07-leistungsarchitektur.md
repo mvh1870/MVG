@@ -70,7 +70,7 @@ form: karten
 ---
 titel: MVG-Neuinitialisierung
 ---
-Für laufende Projekte mit eingeschränkter Steuerbarkeit beschreibt das Whitepaper die [[MVG-Neuinitialisierung]] als Sonderformat. Sie ist kein vollständiger Projektneustart, sondern ordnet die Steuerungs- und Entscheidungslogik gezielt neu. Über den Auftrag dazu, die Prioritäten und die Neufestlegung der Projektbasis entscheidet der Bauherr; Kapitel 11 vertieft Auslöser und Ergebnisbild.
+Für laufende Projekte mit eingeschränkter Steuerbarkeit beschreibt MVG die [[MVG-Neuinitialisierung]] als Sonderformat. Sie ist kein vollständiger Projektneustart, sondern ordnet die Steuerungs- und Entscheidungslogik gezielt neu. Über den Auftrag dazu, die Prioritäten und die Neufestlegung der Projektbasis entscheidet der Bauherr; Kapitel 11 vertieft Auslöser und Ergebnisbild.
 
 ::: tafel k7.5-t1
 ---
@@ -83,7 +83,7 @@ form: karten
 ---
 titel: Leistungsgrenzen
 ---
-Das Whitepaper zieht die Grenzen der Leistungen ausdrücklich – der Absatz steht hier im Wortlaut. Die Tabelle ordnet jeder Rolle zu, was sie leisten kann und was sie nicht ersetzen darf.
+MVG zieht die Grenzen der Leistungen ausdrücklich – der Absatz steht hier im Wortlaut. Die Tabelle ordnet jeder Rolle zu, was sie leisten kann und was sie nicht ersetzen darf.
 
 ::: zitat k7.6-p1
 Bauherr Mentoren übernimmt keine operative Dauer-Projektsteuerung und keine Linienfunktion. BM ersetzt keine Bauherrenentscheidung, keine Gremienentscheidung, keine Fachplanung, keine Bauleitung, keine Objektüberwachung und keine Rechtsberatung. BM übernimmt keine Einführung von Drittsoftware und erbringt keine SaaS-Leistungen; die Bereitstellung des MVG Companions ist ein methodisches Arbeitsmittel innerhalb der Beratung. BM liefert Struktur, Entscheidungsreife, Mandatsklarheit, Nachweislogik, Befähigung und Übergang in den Regelbetrieb.
@@ -178,12 +178,12 @@ Zurück in Welt A, Monat 12: Eine MVG-Neuinitialisierung, der Weg von der Diagno
 ---
 text: "In der Story erlebt: Epilog"
 ---
-Und bei Ihnen? Eine Selbstdiagnose ohne Punktzahl, die Anwendungssituationen aus dem Whitepaper, ein persönliches Resümee und die Bibliothek mit dem Glossar.
+Und bei Ihnen? Eine Selbstdiagnose ohne Punktzahl, die Anwendungssituationen aus MVG, ein persönliches Resümee und die Bibliothek mit dem Glossar.
 :::
 
 ::: regie
 ### Notiz
-Kapitel 7 beschreibt die Leistungspakete von Bauherr Mentoren – im Termin besonders zurückhaltend: beschreiben, nicht anbieten, keine Aufforderung, nichts über Aufwand oder Dauer über das Whitepaper hinaus. Die Reifegradanalyse nur als Methode nennen und keine Punktzahl für den Kunden schätzen. Es tragen die Zeile „Rolle des Bauherrn“ in jeder Paket-Tafel und die Leistungsgrenzen (7.6): BM ersetzt keine Bauherrenentscheidung.
+Kapitel 7 beschreibt die Leistungspakete von Bauherr Mentoren – im Termin besonders zurückhaltend: beschreiben, nicht anbieten, keine Aufforderung, nichts über Aufwand oder Dauer über MVG hinaus. Die Reifegradanalyse nur als Methode nennen und keine Punktzahl für den Kunden schätzen. Es tragen die Zeile „Rolle des Bauherrn“ in jeder Paket-Tafel und die Leistungsgrenzen (7.6): BM ersetzt keine Bauherrenentscheidung.
 
 ### Leitfragen
 - Welche der zentralen Arbeitsfragen aus den Tafeln könnten Sie für Ihr Projekt heute beantworten?

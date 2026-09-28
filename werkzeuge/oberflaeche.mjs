@@ -304,6 +304,15 @@ export async function fuehreAus(browser, szenario, viewport, url, bilder = BILDE
       },
       async axe(name, f) {
         const p = auf(f);
+        // O-29: das Wort „Whitepaper“ erscheint nirgends – weder im Text noch in Titel, Beschriftungen, Tooltips
+        const wp = await p.evaluate(() => {
+          const texte = [document.title, document.body.innerText];
+          for (const el of document.querySelectorAll('[aria-label],[title],[alt],[placeholder]')) {
+            for (const a of ['aria-label', 'title', 'alt', 'placeholder']) texte.push(el.getAttribute(a) ?? '');
+          }
+          return texte.join('\n').match(/.{0,30}white\s*-?\s*paper.{0,30}/iu)?.[0] ?? null;
+        });
+        if (wp !== null) befunde.push(`${name}: „Whitepaper“ sichtbar (O-29): „${wp}“`);
         // Über evaluate statt Skript-Tag: die strenge CSP der Datei bleibt unangetastet.
         if (!(await p.evaluate(() => 'axe' in window))) await p.evaluate(axeQuelle());
         /** @type {{ id: string, impact: string | null, help: string, ziele: string[] }[]} */

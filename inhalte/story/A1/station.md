@@ -169,7 +169,7 @@ In Monat 1 ist noch nichts passiert – das ist der Punkt. Die Marktnotiz betrif
 ---
 titel: Vertiefung
 ---
-| Kapitel | Treiber laut Whitepaper | In A1 sichtbar |
+| Kapitel | Treiber laut MVG | In A1 sichtbar |
 |---|---|---|
 | 2.1 Volatile Märkte | Preisannahmen, Lieferzeiten, Komponenten mit langer Lieferzeit | Marktnotiz zu Holzpreisen, nur an den alten Verteiler, von niemandem bewertet |
 | 2.2 ESG, LCC und Nachweislogik | höhere Anforderungen an Zieldefinition, Variantenvergleich und Nachweisführung | Kosten, Termin, ESG und LCC ohne Rangfolge |
@@ -217,7 +217,7 @@ Die Marktnotiz der Generalplanung kam kurz vor Weihnachten nur an den alten Vert
 ---
 titel: Die Freigabefrage zu LPH 4
 ---
-Der Bauantrag geht diese Woche raus; im Februar steht die Freigabe zum Abschluss von LPH 4 an. Die Freigabefrage dazu lautet im Whitepaper: [[zitat:k9.3-t1|Sind die Genehmigungsunterlagen eingereicht beziehungsweise die Genehmigungslage gesichert – und sind Auflagen und Risiken bewertet?]] Wer diese [[Freigabe]] erteilt, steht in keiner der drei Ablagen.
+Der Bauantrag geht diese Woche raus; im Februar steht die Freigabe zum Abschluss von LPH 4 an. Die Freigabefrage dazu lautet in MVG: [[zitat:k9.3-t1|Sind die Genehmigungsunterlagen eingereicht beziehungsweise die Genehmigungslage gesichert – und sind Auflagen und Risiken bewertet?]] Wer diese [[Freigabe]] erteilt, steht in keiner der drei Ablagen.
 :::
 
 ::: standpunkt gf

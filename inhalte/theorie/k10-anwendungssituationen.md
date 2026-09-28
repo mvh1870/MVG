@@ -7,7 +7,7 @@ titel: Anwendungssituationen und Praxislogik
 kurztitel: Anwendungssituationen
 story: [epilog, ende-neufestlegung]
 ---
-Kapitel 10 zeigt, wo Minimum Viable Governance (MVG) in der Praxis ansetzt: bei drei Bauherrentypen, bei Projekten mit schleichendem Steuerungsverlust und bei typischen Entscheidungsproblemen. Für jedes dieser Entscheidungsprobleme nennt das Whitepaper, warum es kritisch ist und welches Artefakt bzw. welche Routine hilft.
+Kapitel 10 zeigt, wo Minimum Viable Governance (MVG) in der Praxis ansetzt: bei drei Bauherrentypen, bei Projekten mit schleichendem Steuerungsverlust und bei typischen Entscheidungsproblemen. Für jedes dieser Entscheidungsprobleme nennt MVG, warum es kritisch ist und welches Artefakt bzw. welche Routine hilft.
 
 ::: kernaussage
 MVG setzt dort an, wo die jeweilige Bauherrensituation Entscheidungen kritisch macht – bei Nachweis und Gremien, bei Zielkonflikten, bei Freigabereife und Prognose oder bei schleichendem Steuerungsverlust.
@@ -28,7 +28,7 @@ Entscheidungen müssen nicht nur sachlich plausibel, sondern auch nachvollziehba
 ---
 titel: Private und institutionelle Bauherren
 ---
-Private und institutionelle Bauherren brauchen Steuerbarkeit vor allem dort, wo Geschwindigkeit, Renditeanforderungen, Nutzerinteressen, Finanzierung, [[ESG]]/[[LCC]] und technische Komplexität zusammentreffen. Dazu das Whitepaper über den MVG-Ansatz:
+Private und institutionelle Bauherren brauchen Steuerbarkeit vor allem dort, wo Geschwindigkeit, Renditeanforderungen, Nutzerinteressen, Finanzierung, [[ESG]]/[[LCC]] und technische Komplexität zusammentreffen. Dazu MVG über den MVG-Ansatz:
 
 ::: zitat k10.2-p1
 Der Ansatz hilft, Zielkonflikte früh zu klären und operative Geschwindigkeit nicht gegen Entscheidungssicherheit auszuspielen.
@@ -39,7 +39,7 @@ Der Ansatz hilft, Zielkonflikte früh zu klären und operative Geschwindigkeit n
 ---
 titel: Energieversorger und Infrastrukturträger
 ---
-Bei Energieversorgern und Infrastrukturträgern verschieben sich Projektrisiken häufig in Freigaben, Priorisierung, Beschaffung, Entscheidungen zu Komponenten mit langer Lieferzeit und die Disziplin bei der Restkostenprognose. Die Karten ordnen, was das Whitepaper hier als besonders relevant nennt – darunter die Freigabereife zum Abschluss von LPH 2, LPH 3 und LPH 7.
+Bei Energieversorgern und Infrastrukturträgern verschieben sich Projektrisiken häufig in Freigaben, Priorisierung, Beschaffung, Entscheidungen zu Komponenten mit langer Lieferzeit und die Disziplin bei der Restkostenprognose. Die Karten ordnen, was MVG hier als besonders relevant nennt – darunter die Freigabereife zum Abschluss von LPH 2, LPH 3 und LPH 7.
 
 ::: karten
 ---
@@ -134,7 +134,7 @@ titel: Gezielte MVG-Neuinitialisierung
 ---
 titel: Typische Entscheidungsprobleme
 ---
-Fünf typische Entscheidungsprobleme – von der Variantenfreigabe bis zur MVG-Neuinitialisierung ohne eindeutigen Datenstand. Jede Karte nennt, warum das Problem kritisch ist, und darunter das Artefakt oder die Routine von Bauherr Mentoren, die das Whitepaper dafür vorsieht.
+Fünf typische Entscheidungsprobleme – von der Variantenfreigabe bis zur MVG-Neuinitialisierung ohne eindeutigen Datenstand. Jede Karte nennt, warum das Problem kritisch ist, und darunter das Artefakt oder die Routine von Bauherr Mentoren, die MVG dafür vorsieht.
 
 ::: tafel k10.5-t1
 ---
@@ -189,7 +189,7 @@ Oft reicht dann keine vollständige Neuaufsetzung, sondern eine gezielte MVG-Neu
 ---
 text: "In der Story erlebt: Epilog"
 ---
-Und bei Ihnen? Eine Selbstdiagnose ohne Punktzahl, die Anwendungssituationen aus dem Whitepaper, ein persönliches Resümee und die Bibliothek mit dem Glossar.
+Und bei Ihnen? Eine Selbstdiagnose ohne Punktzahl, die Anwendungssituationen aus MVG, ein persönliches Resümee und die Bibliothek mit dem Glossar.
 :::
 
 ::: querverweis ende-neufestlegung

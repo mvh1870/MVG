@@ -69,7 +69,7 @@ Der Zweck ist nicht zusätzliche Bürokratie, sondern ein gemeinsamer Arbeitssta
 ---
 titel: Grundlogik der Zusammenarbeit
 ---
-Vier Regeln tragen die Zusammenarbeit – jede wörtlich aus dem Whitepaper.
+Vier Regeln tragen die Zusammenarbeit – jede im Originaltext.
 
 ::: karten
 ::: karte 1

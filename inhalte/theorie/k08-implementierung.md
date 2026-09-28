@@ -86,7 +86,7 @@ Der verbindliche Projektverlauf folgt dem Vorgehensmodell (Einrichtung → Diagn
 ---
 titel: Mitwirkung des Bauherrn
 ---
-Weil die zentrale Verantwortung beim Bauherrn bleibt, lässt sich MVG nicht ohne die Bauherrenorganisation einführen. Das Whitepaper rechnet die Mitwirkung deshalb zur Leistungslogik, nicht zum Verwaltungsaufwand. Die Karten fassen zusammen, was insbesondere erforderlich ist.
+Weil die zentrale Verantwortung beim Bauherrn bleibt, lässt sich MVG nicht ohne die Bauherrenorganisation einführen. MVG rechnet die Mitwirkung deshalb zur Leistungslogik, nicht zum Verwaltungsaufwand. Die Karten fassen zusammen, was insbesondere erforderlich ist.
 
 ::: karten
 ---

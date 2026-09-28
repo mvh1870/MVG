@@ -211,7 +211,7 @@ Die Lieferzeit der Holzbauelemente, 26 statt 16 Wochen, ist seit März bekannt; 
 ---
 titel: Die Freigabefrage zu LPH 5
 ---
-Die Freigabe zum Abschluss von LPH 5 steht an; die Generalplanung führt eine Liste offener Punkte, eine geltende Kostenzahl fehlt. Die Freigabefrage dazu lautet im Whitepaper: [[zitat:k9.3-t1|Ist die Ausführungsplanung so vollständig und koordiniert, dass Vergabe und Ausführung ohne Planungsvorbehalte starten können?]]
+Die Freigabe zum Abschluss von LPH 5 steht an; die Generalplanung führt eine Liste offener Punkte, eine geltende Kostenzahl fehlt. Die Freigabefrage dazu lautet in MVG: [[zitat:k9.3-t1|Ist die Ausführungsplanung so vollständig und koordiniert, dass Vergabe und Ausführung ohne Planungsvorbehalte starten können?]]
 :::
 
 ::: standpunkt gf

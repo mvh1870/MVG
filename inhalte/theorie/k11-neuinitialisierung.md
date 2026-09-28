@@ -22,7 +22,7 @@ Eine MVG-Neuinitialisierung ist keine Freigabe; ihr Ergebnis kann die Nachholung
 ---
 titel: Wann eine MVG-Neuinitialisierung erforderlich wird
 ---
-Eine [[MVG-Neuinitialisierung]] wird erforderlich, wenn ein Projekt im bisherigen Modus nicht mehr ausreichend führbar ist. Das Whitepaper nennt acht typische Signale; die Karten fassen sie paarweise zusammen.
+Eine [[MVG-Neuinitialisierung]] wird erforderlich, wenn ein Projekt im bisherigen Modus nicht mehr ausreichend führbar ist. MVG nennt acht typische Signale; die Karten fassen sie paarweise zusammen.
 
 ::: karten
 ---
@@ -196,7 +196,7 @@ titel: Vertiefung
 ---
 Der Bogen einer MVG-Neuinitialisierung laut Abschnitt 11.2 und 11.3:
 
-| Schritt | Was das Whitepaper nennt |
+| Schritt | Was MVG nennt |
 |---|---|
 | Beginn | ein Lagebild |
 | Dazwischen | die zentrale Bauherrenfrage, welche Entscheidungen jetzt neu legitimiert werden müssen, damit das Projekt wieder führbar wird |

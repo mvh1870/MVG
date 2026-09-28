@@ -12,7 +12,7 @@ ende: ja
 titel: Und bei Ihnen?
 kurz: Epilog
 ---
-Lindenhall ist erfunden, die Muster aus Welt A beschreibt das Whitepaper dagegen als typisch. Deshalb fragt diese Station nach Ihrem eigenen Projekt.
+Lindenhall ist erfunden, die Muster aus Welt A beschreibt MVG dagegen als typisch. Deshalb fragt diese Station nach Ihrem eigenen Projekt.
 :::
 
 ::: schritt diagnose
@@ -106,7 +106,7 @@ form: karten
 titel: Die Bibliothek
 kurz: Bibliothek
 ---
-Das Whitepaper bleibt offen: **Theorie** zeigt alle 13 Kapitel im Originaltext V1.2, Kap. 13 das **Glossar** mit den Definitionen der markierten Begriffe, etwa [[Datenstand]].
+Zum Nachlesen: **Theorie** zeigt alle 13 Kapitel im Originaltext V1.2, Kap. 13 das **Glossar** mit den Definitionen der markierten Begriffe, etwa [[Datenstand]].
 
 **Explore** ist jetzt freigeschaltet: „Selbst ausprobieren · Explore“ unter der Story-Karte.
 :::
@@ -131,7 +131,7 @@ Lindenhall folgt einem Muster aus Kap. 2.5 und Kap. 10. Leitthese: Arbeit kann d
 ---
 titel: Warum relevant
 ---
-Die Selbstdiagnose gibt Ihnen ein Profil in Worten, kein Urteil; sie zählt nichts und bewertet nichts. Die Symptome sind [[zitat:k2.5-p1|zugleich der Prüfgegenstand der MVG-Reifegradanalyse]]; dort werden sie [[zitat:k2.5-p1|systematisch erhoben, bewertet und priorisiert]]. Das Profil hilft, die eigene Situation zu benennen: welche Symptome sich zeigen und welche Reaktion das Whitepaper jeweils vorsieht.
+Die Selbstdiagnose gibt Ihnen ein Profil in Worten, kein Urteil; sie zählt nichts und bewertet nichts. Die Symptome sind [[zitat:k2.5-p1|zugleich der Prüfgegenstand der MVG-Reifegradanalyse]]; dort werden sie [[zitat:k2.5-p1|systematisch erhoben, bewertet und priorisiert]]. Das Profil hilft, die eigene Situation zu benennen: welche Symptome sich zeigen und welche Reaktion MVG jeweils vorsieht.
 :::
 
 ::: ebene 3
@@ -157,7 +157,7 @@ form: register
 ---
 :::
 
-Das Schlussbild in Kap. 12 kehrt an den Anfang zurück: [[zitat:k12-p2|Damit schließt sich der Bogen zur Leitthese dieses Whitepapers: Arbeit kann delegiert werden – bauherrenseitige Legitimation nicht.]]
+Das Schlussbild in Kap. 12 kehrt an den Anfang zurück: [[zitat:k12-p2|Damit schließt sich der Bogen zur Leitthese von MVG: Arbeit kann delegiert werden – bauherrenseitige Legitimation nicht.]]
 :::
 
 ::: ebene 4

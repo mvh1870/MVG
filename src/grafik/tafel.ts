@@ -51,7 +51,7 @@ export interface TafelDaten {
 
 export const WORT = {
   quelle: 'Quelle',
-  wortgleich: 'Tabelle wortgleich aus dem Whitepaper',
+  wortgleich: 'Tabelle wortgleich aus dem Originaltext',
   erlebtIn: 'erlebt in',
   ihreSpur: 'auf Ihrer Spur',
   nichtErlebt: 'auf Ihrer Spur nicht erlebt',
@@ -78,7 +78,7 @@ export const WORT = {
   profilLeer: 'Wählen Sie bei jeder Zeile, ob sich das Muster bei Ihnen zeigt. Es gibt keine Punkte.',
   deutlich: 'Zeigt sich bei Ihnen',
   teils: 'Zeigt sich teilweise',
-  dazu: 'Dazu nennt das Whitepaper',
+  dazu: 'Dazu nennt MVG',
   keineWahl: 'keine Markierung',
   schieben: 'Tag wählen',
 } as const;

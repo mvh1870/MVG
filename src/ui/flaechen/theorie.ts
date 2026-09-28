@@ -346,10 +346,12 @@ function originaltext(b: Block, fassung: string, kapitel: number, bedienbar: boo
         : h('div', { class: 'absatz-block' }, el));
     absaetze.push(zeile);
   }
-  return h('section', { class: 'originaltext', 'aria-label': W.theorie.originaltext(fassung), 'data-pruef': 'originaltext' },
-    h('header', { class: 'originaltext-kopf' },
+  // am Seitenende, immer zugeklappt (O-30): „braucht man in den seltensten Fällen“; ein Absatz-Permalink klappt auf
+  return h('details', { class: 'originaltext', 'data-pruef': 'originaltext' },
+    h('summary', { class: 'originaltext-kopf', 'data-pruef': 'originaltext-auf' },
       h('span', { class: 't-label' }, W.theorie.originaltext(fassung)),
-      h('span', { class: 'originaltext-quelle' }, kopfText(b.kopf, 'quelle') ?? '')),
+      h('span', { class: 'originaltext-quelle' }, kopfText(b.kopf, 'quelle') ?? ''),
+      h('span', { class: 'originaltext-hinweis' }, W.theorie.originaltextAufklappen)),
     absaetze);
 }
 
@@ -465,6 +467,8 @@ function lernseite(o: TheorieOptionen, nr: number): HTMLElement {
       druckeBogen(W.druck.kapitelTitel(nr, titel), [bogenKopf(W.druck.kapitelTitel(nr, titel), o.version, false), kapitelFuerDruck(o.inhalte, nr, o.version)]);
     } }, sym('dokument'), W.druck.kapitelDrucken)
     : null;
+  /** Originaltext: ans Seitenende (O-30) */
+  const unten: HTMLElement[] = [];
   const teile: Node[] = [kopf, h('p', { class: 'kapitel-vermerk' }, h('span', { class: 'vermerk-hell' }, sym('info'), W.ungeprueft), drucken)];
   if (seite === null) {
     teile.push(h('div', { class: 'kernaussage ist-folgt', 'data-pruef': 'folgt' }, h('span', { class: 't-label' }, W.theorie.folgt), h('p', null, W.theorie.folgtText)),
@@ -482,7 +486,7 @@ function lernseite(o: TheorieOptionen, nr: number): HTMLElement {
           b.felder['text'] ? h('div', { class: 'lesetext' }, inhalt(b.felder['text'])) : null,
           bloeckeIn(b.kinder, o.inhalte)));
       } else if (b.art === 'original') {
-        teile.push(originaltext(b, fassung, nr, o.bedienbar));
+        unten.push(originaltext(b, fassung, nr, o.bedienbar));
       } else if (b.art === 'glossar') {
         teile.push(glossarListe(o));
       } else if (b.art !== 'querverweis') {
@@ -492,6 +496,7 @@ function lernseite(o: TheorieOptionen, nr: number): HTMLElement {
     }
     const qv = querverweise(o, seite.bloecke);
     if (qv !== null) teile.push(qv);
+    teile.push(...unten);
   }
   teile.push(kapitelNav(o, nr), fuss(o));
 
@@ -510,6 +515,8 @@ function lernseite(o: TheorieOptionen, nr: number): HTMLElement {
 export function kapitelFuerDruck(inhalte: OeffentlicheInhalte, nr: number, version: string): HTMLElement {
   const seite = baueTheorie({ inhalte, kapitel: nr, version, bedienbar: false });
   for (const weg of seite.querySelectorAll('.lern-kopf, .kapitel-verzeichnis, .kapitel-nav, .sprunglink, .lern-fuss')) weg.remove();
+  // im Druck mit dem Originaltext (aufgeklappt)
+  for (const d of seite.querySelectorAll<HTMLDetailsElement>('details.originaltext')) d.open = true;
   seite.classList.add('druck-kapitel');
   return seite;
 }

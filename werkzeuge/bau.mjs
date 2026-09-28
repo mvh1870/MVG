@@ -359,6 +359,9 @@ export async function baueText(optionen = {}) {
   warnungen.push(...skript.warnungen, ...stil.warnungen);
   const { html, skript: skriptText } = setzeZusammen(huelle, stil.text, skript.text);
   const bytes = Buffer.byteLength(html, 'utf8');
+  // O-29: kein „Whitepaper“ im Text der Datei (Eigenschaftsnamen im Code sind klein geschrieben und unsichtbar)
+  const wort = html.match(/.{0,40}(?:Whitepaper|WHITEPAPER|White[ -]Paper).{0,40}/u);
+  if (wort !== null) throw new BauFehler(`„Whitepaper“ im Text der Datei (O-29): „${wort[0]}“`);
   if (bytes > o.budget) {
     throw new BauFehler(`Größenbudget überschritten: ${formatiereGroesse(bytes)} (${bytes} Bytes) > ${formatiereGroesse(o.budget)} (${o.budget} Bytes)`);
   }

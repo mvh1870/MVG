@@ -33,7 +33,7 @@ MVG verlangt deshalb ein Zielsystem mit Muss-Kriterien, verhandelbaren Kriterien
 ---
 titel: Mandat
 ---
-Mit dem [[Mandat]] legt der Bauherr fest, wer eine Entscheidung vorbereiten, treffen, freigeben oder eskalieren darf. Eine [[RACI]]-Zuordnung allein reicht dafür nicht; es braucht Freigabeschwellen, Stellvertretungen und Eskalationswege. Das Whitepaper nennt dazu eine Muster-Mandatsleiter mit drei Stufen.
+Mit dem [[Mandat]] legt der Bauherr fest, wer eine Entscheidung vorbereiten, treffen, freigeben oder eskalieren darf. Eine [[RACI]]-Zuordnung allein reicht dafür nicht; es braucht Freigabeschwellen, Stellvertretungen und Eskalationswege. MVG nennt dazu eine Muster-Mandatsleiter mit drei Stufen.
 
 ::: zitat k4.2-p1
 RACI unterscheidet dabei ausführungsverantwortliche, letztverantwortliche, konsultierte und informierte Rollen. Diese Zuordnung reicht allein nicht aus, wenn Freigabeschwellen, Stellvertretungen und Eskalationswege fehlen.
@@ -273,7 +273,7 @@ Welt B, Monat 11: Die Freigabe zum Abschluss von LPH 5 steht an – der Bauherr 
 
 ::: regie
 ### Notiz
-Kapitel 4 macht die Linie aus Kap. 3 greifbar. Es trägt die Tafel der sechs Felder mit der typischen Fehlstelle je Feld; die sechs Felder sind keine juristische Vollständigkeitsliste. Der Muster-Mandatsleiter (4.2) ist ein Muster – keine Empfehlung für die Schwellen des Kunden. Datenstand und Nachweis (4.6) nicht als Verwaltung abtun: Das Whitepaper führt sie als eigenes Verantwortungsfeld.
+Kapitel 4 macht die Linie aus Kap. 3 greifbar. Es trägt die Tafel der sechs Felder mit der typischen Fehlstelle je Feld; die sechs Felder sind keine juristische Vollständigkeitsliste. Der Muster-Mandatsleiter (4.2) ist ein Muster – keine Empfehlung für die Schwellen des Kunden. Datenstand und Nachweis (4.6) nicht als Verwaltung abtun: MVG führt sie als eigenes Verantwortungsfeld.
 
 ### Leitfragen
 - In welchem der sechs Felder erkennen Sie bei sich die typische Fehlstelle am ehesten?

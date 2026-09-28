@@ -1,20 +1,26 @@
 id: abb-11
 quelle: bilder/image11.jpeg
 titel: Leistungsarchitektur von Bauherr Mentoren
-alt: 'Fünf Spalten mit Pfeilen: „Reifegradanalyse“ (Lagebild, Mandate, Datenstand, 30/60/90 Plan), „MVG-Konzeption“ (Zielsystem, Freigabe-Set, Entscheidungs-IDs, Betriebshandbuch), „Pilot & Kalibrierung“ (angeschnitten „eche Entscheidung“, Schwellen, Managementbericht), „Befähigung & Übergabe“ (Rollenkarten, Routinen, Abnahme) und grün „Regelbetrieb“ (Steuerbarkeit, Nachweis, Betriebsverantwortung). Aus der Reifegradanalyse führt eine Linie zur unteren Reihe „MVG-Neuinitialisierung“, „Bewertung“, „Stabilisierung“; ein gestrichelter Doppelpfeil verbindet Stabilisierung und Regelbetrieb.'
+alt: 'Fünf Spalten mit Pfeilen: „Reifegradanalyse“ (Lagebild, Mandate, Datenstand, 30/60/90 Plan), „MVG-Konzeption“ (Zielsystem, Freigabe-Set, Entscheidungs-IDs, Betriebshandbuch), „Pilot & Kalibrierung“ (unvollständig „eche Entscheidung“, Schwellen, Managementbericht), „Befähigung & Übergabe“ (Rollenkarten, Routinen, Abnahme) und grün „Regelbetrieb“ (Steuerbarkeit, Nachweis, Betriebsverantwortung). Aus der Reifegradanalyse führt eine Linie zur unteren Reihe „MVG-Neuinitialisierung“, „Bewertung“, „Stabilisierung“; ein gestrichelter Doppelpfeil verbindet Stabilisierung und Regelbetrieb.'
 angeglichen:
-  - { x: 326, y: 30, b: 207, h: 40, text: MVG-Konzeption, beleg: k7.2-p1, schrift: barlow, gewicht: 700, groesse: 27, ausrichtung: mitte }
-  - { x: 331, y: 630, b: 160, h: 52, text: "MVG-\nNeuinitialisierung", beleg: k7.5-p1, schrift: barlow, gewicht: 500, groesse: 24, ausrichtung: mitte }
+  - { x: 326, y: 28, b: 207, h: 40, text: MVG-Konzeption, beleg: k7.2-p1, schrift: barlow, gewicht: 700, groesse: 27, ausrichtung: mitte }
+  - { x: 331, y: 630, b: 160, h: 52, text: "MVG-\nNeuinitialisierung", beleg: k7.5-p1, schrift: barlow, gewicht: 500, groesse: 24, ausrichtung: mitte, farbe: '#050c14' }
 abweichungen:
+  - text: 'Der Regelbetrieb steht im Bild als fünfte, grün abgesetzte Spalte in derselben Pfeilkette und Form wie die Stationen davor, und die Kachel „Betriebsverantwortung“ nennt niemanden; im Text ist er das Ziel des Umsetzungspfads und fehlt in der Aufzählung zu Beginn von Kapitel 7, die Betriebsverantwortung übernimmt der Bauherr, und Bauherr Mentoren darf die Projektsteuerung im Regelbetrieb nicht ersetzen.'
+    beleg: k7-p2 k7-l1 k7.4-t1 k7.6-t1
   - text: 'Die untere Reihe zweigt aus der Reifegradanalyse ab; im Text ist die MVG-Neuinitialisierung ein eigenes Sonderformat für laufende Projekte mit eingeschränkter Steuerbarkeit, neben dem frühen Einstieg über die MVG-Reifegradanalyse.'
     beleg: k7-p2 k7.5-p1 k11.3-p2
-  - text: 'Auf die MVG-Neuinitialisierung folgen im Bild „Bewertung“ und „Stabilisierung“; im Text beginnt sie mit einem Lagebild und endet mit einer stabilisierten Entscheidungsarchitektur, ihre Ergebnisse sind Governance-Lagebild, Neuordnung offener Entscheidungen, Logik zur Neufestlegung der Projektbasis, Eskalationsplan und stabilisierter Regelbetrieb.'
+  - text: 'Auf die MVG-Neuinitialisierung folgen im Bild „Bewertung“ und „Stabilisierung“; im Text beginnt sie mit einem Lagebild und endet mit einer stabilisierten Entscheidungsarchitektur, typische Ergebnisse sind Governance-Lagebild, Neuordnung offener Entscheidungen, Logik zur Neufestlegung der Projektbasis, Eskalationsplan und stabilisierter Regelbetrieb.'
     beleg: k11.2-p2 k7.5-t1
-  - text: 'Unter der Reifegradanalyse stehen „Lagebild“, „Mandate“, „Datenstand“ und „30/60/90 Plan“; als Ergebnisse nennt der Text Bewertungsmatrix, wichtigste Risiken, Verantwortungslücken, Entscheidungsliste und 30/60/90-Tage-Plan.'
-    beleg: k7.1-t1
-  - text: 'In der MVG-Konzeption steht „Freigabe-Set“; der Text nennt das Leistungsphasen- und Freigabemodell und dazu Mandatsmodell, Datenstandslogik und Eskalationslogik, die im Bild fehlen.'
+  - text: 'Der gestrichelte Doppelpfeil weist auch vom Regelbetrieb zurück zur Stabilisierung; der Text nennt nur die Richtung in einen handhabbaren Regelbetrieb.'
+    beleg: k11.3-t1 k7.5-t1
+  - text: 'Unter der Reifegradanalyse stehen „Lagebild“, „Mandate“, „Datenstand“ und „30/60/90 Plan“; als typische Ergebnisse nennt der Text Bewertungsmatrix, wichtigste Risiken, Verantwortungslücken, Entscheidungsliste und 30/60/90-Tage-Plan, das Lagebild nennt er als Zweck, Mandate und Datenstände in den zentralen Arbeitsfragen.'
+    beleg: k7.1-t1 k7.1-p1
+  - text: 'In der MVG-Konzeption steht „Freigabe-Set“; unter den typischen Ergebnissen nennt der Text das Leistungsphasen- und Freigabemodell und dazu Mandatsmodell, Datenstandslogik und Eskalationslogik, die im Bild fehlen.'
     beleg: k7.2-t1
-  - text: 'Die dritte Spalte heißt „Pilot & Kalibrierung“ und nennt einen „Managementbericht“; im Text heißt das Paket „Pilotierung und Kalibrierung“, seine Ergebnisse sind Berichte zur Pilotierung, kalibrierte Schwellen, angepasste Routinen, Erkenntnisse und ein Abnahmevorschlag.'
+  - text: 'Die dritte Spalte heißt „Pilot & Kalibrierung“ und nennt einen „Managementbericht“; im Text heißt das Paket „Pilotierung und Kalibrierung“, typische Ergebnisse sind Berichte zur Pilotierung, kalibrierte Schwellen, angepasste Routinen, Erkenntnisse und ein Abnahmevorschlag.'
     beleg: k7-l1 k7.3-t1
-  - text: 'Unter „Befähigung & Übergabe“ stehen Rollenkarten, Routinen und Abnahme; der Text nennt Schulungen, Rollenkarten, Betriebshandbuch, Verbesserungsvorrat, Übergabebericht und Abnahmekriterien.'
+  - text: 'In der dritten Spalte steht „eche Entscheidung“ mit unvollständigem ersten Wort; der Text spricht vom echten Entscheidungsfall.'
+    beleg: k7.3-p1 k7.3-t1
+  - text: 'Unter „Befähigung & Übergabe“ stehen Rollenkarten, Routinen und Abnahme; als typische Ergebnisse nennt der Text Schulungen, Rollenkarten, Betriebshandbuch, Verbesserungsvorrat, Übergabebericht und Abnahmekriterien.'
     beleg: k7.4-t1

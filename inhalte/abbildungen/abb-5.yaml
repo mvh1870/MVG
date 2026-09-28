@@ -1,7 +1,7 @@
 id: abb-5
 quelle: bilder/image5.jpeg
 titel: Die Verantwortungspyramide – Arbeitsebene, Mandatsebene und Letztverantwortung
-alt: 'Dreistufige Pyramide auf dem Sockel „MVG“, an der Spitze „Bauherr legitimiert“. Oben „Letztverantwortung“: Ziel, Grundsatzentscheidung, Freigabe, Risikoannahme, Nachweis, Beschlusslage; Notiz „bleibt beim Bauherrn“. Mitte „Mandatsebene“: Befugnisse, Freigabegrenzen, Zeichnungsrechte, Eskalation, Gremienbezug; Notiz „begrenzt übertragbar“. Unten „Arbeitsebene“: Analyse, Planung, Koordination, Dokumentation, Auswirkungsbewertung, Inputs. Sockel: Inputs, Rollen, Freigaben, Entscheidungs-IDs, Datenstände. Seitlich je eine Tafel „Dritte bereiten vor“ mit Pfeil zur Arbeitsebene.'
+alt: 'Pyramide mit Aufwärtspfeilen, Spitze „Bauherr legitimiert“. Oben „Letztverantwortung“: Ziel, Grundsatzentscheidung, Freigabe, Risikoannahme, Nachweis, Beschlusslage; „bleibt beim Bauherrn“. Mitte „Mandatsebene“: Befugnisse, Freigabegrenzen, Zeichnungsrechte, Eskalation, Gremienbezug; „begrenzt übertragbar“. Unten „Arbeitsebene“: Analyse, Planung, Koordination, Dokumentation, Auswirkungsbewertung, Inputs. Sockel „MVG“: Inputs, Rollen, Freigaben, Entscheidungs-IDs, Datenstände. Seitlich je eine Tafel „Dritte“ mit vier Personen und „Dritte bereiten vor“; Pfeil zur Arbeitsebene, Linie zum Sockel.'
 angeglichen:
   - { x: 718, y: 665, b: 82, h: 33, text: "Auswirkungs-\nbewertung", beleg: k3.3-t1, schrift: barlow, groesse: 16, farbe: "#1f2021", ausrichtung: mitte }
 abweichungen:
@@ -11,9 +11,9 @@ abweichungen:
     beleg: k3.3-p2
   - text: 'In der Arbeitsebene steht „Inputs“, und die Nachverfolgung fehlt; der Text nennt Unterlagenzusammenstellung und Nachverfolgung.'
     beleg: k3.3-t1
-  - text: 'Die Letztverantwortung zeigt „Freigabe“ und „Nachweis“; der Text nennt wesentliche Freigabe und Nachweisfähigkeit.'
+  - text: 'Die Letztverantwortung zeigt „Freigabe“, „Nachweis“ und das falsch getrennte „Grundsatze-ntscheidung“; der Text nennt wesentliche Freigabe, Nachweisfähigkeit und Grundsatzentscheidung.'
     beleg: k3.3-t1
-  - text: 'Die Abbildung legt MVG als Sockel mit „Inputs“ unter die drei Ebenen; der Text beschreibt je Ebene, was MVG leistet, und sagt, dass MVG Rollen in ein Mandatsmodell übersetzt und es mit Freigaben, Entscheidungs-IDs und Datenständen verknüpft.'
-    beleg: k3.3-p1 k3.3-t1
+  - text: 'Die Abbildung legt MVG als Sockel mit „Inputs“ unter die drei Ebenen; der Text nennt keine Inputs, sondern beschreibt in der Spalte „Relevanz für MVG“ je Ebene, was MVG leistet – bei der Mandatsebene etwa, dass MVG Rollen in ein Mandatsmodell übersetzt und es mit Freigaben, Entscheidungs-IDs und Datenständen verknüpft.'
+    beleg: k3.3-t1
   - text: 'Die Seitentafeln nennen allgemein „Dritte“ und sind auch mit dem Sockel verbunden; der Text nennt als Träger der Arbeitsebene Planer, Projektsteuerung, PMO, Gutachter oder Berater.'
     beleg: k3.3-p2

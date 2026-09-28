@@ -212,3 +212,38 @@ test('Abmelden, Schließen und fremder Inhalt unter dem Schlüssel', () => {
   regie.senden({ art: 'hallo' });
   assert.equal(hub.daten.get(kanalSchluessel('t-ab')), vorher, 'ein geschlossener Kanal sendet nicht');
 });
+
+test('Beamer-Schalter („anzeige“): gültig, veraltet, ungültig, nach „hallo“', () => {
+  const hub = fensterHub();
+  const regie = erzeugeKanal('t-anz', hub.fenster({ kennung: 'regie' }));
+  const leinwand = erzeugeKanal('t-anz', hub.fenster({ kennung: 'leinwand' }));
+  const bei = sammle(leinwand);
+  regie.senden({ art: 'anzeige', nr: 2, beamer: true });
+  regie.senden({ art: 'anzeige', nr: 1, beamer: false });
+  assert.deepEqual(bei.map((n) => (n.art === 'anzeige' ? `${n.nr}:${n.beamer}` : n.art)), ['2:true'], 'kleinere Nummer ist veraltet');
+  // ungültige Nachrichten von fremder Hand
+  const fremd = hub.fenster({ kennung: 'fremd' });
+  let folge = 0;
+  for (const nachricht of [{ art: 'anzeige', nr: 9 }, { art: 'anzeige', nr: 9, beamer: 'ja' }, { art: 'anzeige', nr: Number.NaN, beamer: true }]) {
+    fremd.speicher?.setItem(kanalSchluessel('t-anz'), JSON.stringify({ mvg: 'kanal', von: 'fremd', folge: ++folge, nachricht }));
+  }
+  assert.equal(bei.length, 1, 'ohne beamer, beamer kein Wahrheitswert, nr keine Zahl: verworfen');
+  // Regie neu geladen: nach „hallo“ gilt die kleine Nummer wieder
+  const neu = erzeugeKanal('t-anz', hub.fenster({ kennung: 'regie-2' }));
+  neu.senden({ art: 'hallo' });
+  neu.senden({ art: 'anzeige', nr: 1, beamer: false });
+  assert.deepEqual(bei.slice(1).map((n) => (n.art === 'anzeige' ? `${n.nr}:${n.beamer}` : n.art)), ['hallo', '1:false']);
+});
+
+test('Beamer-Schalter auf beiden Wegen zugleich: kommt genau einmal an', async () => {
+  const hub = fensterHub();
+  const regie = erzeugeKanal('t-anz2', hub.fenster({ kennung: 'regie', rundfunk: RUNDFUNK }));
+  const leinwand = erzeugeKanal('t-anz2', hub.fenster({ kennung: 'leinwand', rundfunk: RUNDFUNK }));
+  const bei = sammle(leinwand);
+  regie.senden({ art: 'anzeige', nr: 1, beamer: true });
+  await bis(() => bei.length >= 1);
+  await warte(50);
+  assert.equal(bei.length, 1);
+  regie.schliessen();
+  leinwand.schliessen();
+});

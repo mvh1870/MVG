@@ -72,13 +72,14 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
       buehne.classList.toggle('ist-beamer', beamer);
       sendeAnzeige();
     },
-  }, sym('diagramm'), w.beamer);
+  }, sym('beamer'), w.beamer);
   const verbindung = h('span', { class: 'regie-verbindung', 'data-status': 'neutral', 'data-pruef': 'leinwand-status', role: 'status' }, w.nichtVerbunden);
+  const einFensterKnopf = h('button', { type: 'button', class: 'regie-chip', 'data-pruef': 'regie-ein-fenster', onclick: () => einFenster(true) }, sym('fenster'), w.einFenster);
   const kopf = h('header', { class: 'regie-kopf' },
     bildmarke('marke-logo'),
     h('h1', { class: 'regie-titel' }, w.titel, h('span', { class: 'nur-sr' }, ' – '), h('span', { class: 'regie-unterzeile' }, W.produkt)),
     verbindung,
-    h('button', { type: 'button', class: 'regie-chip', 'data-pruef': 'regie-ein-fenster', onclick: () => einFenster(true) }, sym('diagramm'), w.einFenster),
+    einFensterKnopf,
     beamerKnopf,
     h('button', { type: 'button', class: 'knopf knopf-gold regie-oeffnen', 'data-pruef': 'leinwand-oeffnen', onclick: () => o.oeffneLeinwand() },
       sym('diagramm'), h('span', null, h('b', null, w.leinwandOeffnen))));
@@ -123,9 +124,11 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     }
     sprung.value = '';
   });
+  // vor der Kundenwahl: Platzhalter statt einer scheinbar gewählten Rolle; Springen erst mit Rolle (sonst fehlt die Rollenszene)
   const rollenWahl = h('select', { class: 'regie-auswahl', id: 'regie-rollenwahl', 'data-pruef': 'regie-rollenwahl' },
+    h('option', { value: '', disabled: true }, '–'),
     inhalte.rollenFolge.filter((id) => inhalte.rollen[id]?.spielbar).map((id) => h('option', { value: id }, inhalte.rollen[id]?.kurztitel ?? id))) as HTMLSelectElement;
-  rollenWahl.addEventListener('change', () => tue({ art: 'waehleRolle', rolle: rollenWahl.value }));
+  rollenWahl.addEventListener('change', () => { if (rollenWahl.value !== '') tue({ art: 'waehleRolle', rolle: rollenWahl.value }); });
   const steuerung = h('section', { class: 'regie-karte regie-steuerung', 'aria-label': w.titel },
     h('div', { class: 'regie-blaettern' }, zurueckKnopf, weiterKnopf),
     h('div', { class: 'regie-zeile' }, h('span', { class: 't-label' }, w.bereich), bereiche, kapitelKnoepfe, neuKnopf),
@@ -134,12 +137,14 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
       h('label', { for: 'regie-rollenwahl', class: 't-label' }, w.rolleUmschalten), rollenWahl));
 
   const eingriffListe = h('div', { class: 'regie-eingriffe', role: 'group', 'aria-label': w.kundenwahl, 'data-pruef': 'regie-eingriffe' });
-  const eingriffKarte = h('section', { class: 'regie-karte' }, h('h2', { class: 'regie-h2' }, w.kundenwahl), eingriffListe);
+  const eingriffKarte = h('section', { class: 'regie-karte regie-eingriff-karte' }, h('h2', { class: 'regie-h2' }, w.kundenwahl), eingriffListe);
 
   /* ----------------------------------------------------------------- Notiz -- */
   const notizInhalt = h('div', { class: 'regie-notiz-inhalt' });
+  // Einwand-Karten sind öffentlich (auch in der Story): eigener Teil unter dem Hinweis „nur in der Regie“
+  const einwandInhalt = h('div', { class: 'regie-einwand-teil' });
   const notiz = h('section', { class: 'regie-karte regie-notiz', 'data-pruef': 'regie-notiz', 'aria-label': w.notiz },
-    h('h2', { class: 'regie-h2' }, sym('lesezeichen'), w.notiz), notizInhalt, h('p', { class: 'regie-leise' }, w.nurRegie));
+    h('h2', { class: 'regie-h2' }, sym('lesezeichen'), w.notiz), notizInhalt, h('p', { class: 'regie-leise' }, w.nurRegie), einwandInhalt);
 
   /* ------------------------------------------------------------- Protokoll -- */
   const feld = h('textarea', { class: 'regie-feld', rows: 2, 'aria-label': w.protokollFeld, placeholder: w.protokollFeld, 'data-pruef': 'regie-protokoll-feld' });
@@ -179,8 +184,12 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
       })) : h('p', null, '–'));
     document.body.classList.add('druck-protokoll');
     const ende = (): void => { document.body.classList.remove('druck-protokoll'); window.removeEventListener('afterprint', ende); };
+    if (typeof window.print !== 'function') {
+      ende();
+      return;
+    }
     window.addEventListener('afterprint', ende);
-    if (typeof window.print === 'function') window.print();
+    window.print();
   };
 
   // Ein-Fenster-Regie (P9.1): die Vorschau füllt das Fenster, Pfeiltasten steuern weiter, Esc kehrt zurück
@@ -189,18 +198,23 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
   function einFenster(an: boolean): void {
     vollbild = an;
     element.classList.toggle('ist-ein-fenster', an);
+    // verdeckte Teile aus der Tab-Folge nehmen; die Eingriffsleiste bleibt bedienbar
+    for (const teil of [kopf, steuerung, notiz, protokoll, fussleiste]) attr(teil, 'inert', an);
     if (an) zurueckAusVollbild.focus();
+    else einFensterKnopf.focus();
     massstab();
   }
 
+  const fussleiste = h('footer', { class: 'regie-fuss' }, h('span', null, o.version), h('span', { class: 'start-vermerk' }, W.ungeprueft));
   const element = h('div', { class: 'regie', 'data-pruef': 'regie' },
     kopf,
     h('div', { class: 'regie-raster' },
       h('div', { class: 'regie-links' },
         h('section', { class: 'regie-vorschau', 'aria-label': w.vorschau }, h('span', { class: 't-label' }, w.vorschau), ort, rahmen, zurueckAusVollbild),
         steuerung),
-      h('div', { class: 'regie-rechts' }, notiz, eingriffKarte, protokoll)),
-    h('footer', { class: 'regie-fuss' }, h('span', null, o.version), h('span', { class: 'start-vermerk' }, W.ungeprueft)),
+      // Eingriffe zuerst: im Termin die meistgebrauchte Karte
+      h('div', { class: 'regie-rechts' }, eingriffKarte, notiz, protokoll)),
+    fussleiste,
     druck);
 
   /* -------------------------------------------------------------- Handeln -- */
@@ -234,12 +248,13 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
       const teile: Node[] = [];
       if (e?.notiz) teile.push(h('div', { class: 'regie-notiz-text' }, inhalt(e.notiz)));
       if (e !== null && e.leitfragen.length > 0) teile.push(h('h3', { class: 'regie-h3' }, w.leitfragen), h('ol', { class: 'regie-leitfragen', 'data-pruef': 'regie-leitfragen' }, e.leitfragen.map((f) => h('li', null, f))));
-      teile.push(...spickzettel(einwaendeFuer(z)));
       ersetze(notizInhalt, teile.length > 0 ? teile : h('p', { class: 'regie-leise' }, w.keineNotiz));
+      ersetze(einwandInhalt, ...spickzettel(einwaendeFuer(z)));
       return;
     }
     if (z.station === null || z.bereich !== 'story') {
       ersetze(notizInhalt, h('p', { class: 'regie-leise' }, w.keineNotiz));
+      ersetze(einwandInhalt);
       return;
     }
     const r = o.regieFuer(z.station, z.rolle);
@@ -251,8 +266,8 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
         teile.push(h('h3', { class: 'regie-h3' }, w.leitfragen), h('ol', { class: 'regie-leitfragen', 'data-pruef': 'regie-leitfragen' }, e.leitfragen.map((f) => h('li', null, f))));
       }
     }
-    teile.push(...spickzettel(einwaendeFuer(z)));
     ersetze(notizInhalt, teile.length > 0 ? teile : h('p', { class: 'regie-leise' }, w.keineNotiz));
+    ersetze(einwandInhalt, ...spickzettel(einwaendeFuer(z)));
   };
 
   const zeichne = (z: Zustand, aktion: Aktion | null): void => {
@@ -271,7 +286,8 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     }
     for (const opt of sprung.querySelectorAll('option')) if (opt.dataset['welt'] === 'B') attr(opt, 'disabled', !oz.freigeschaltet.weltB);
     attr(rollenWahl, 'disabled', oz.rolle === null);
-    if (oz.rolle !== null) rollenWahl.value = oz.rolle;
+    attr(sprung, 'disabled', oz.rolle === null);
+    rollenWahl.value = oz.rolle ?? '';
     attr(weiterKnopf, 'disabled', weiterAktion(oz, inhalte) === null);
     attr(zurueckKnopf, 'disabled', zurueckAktion(oz, inhalte) === null);
     const aktiv = oz.bereich === 'story' && oz.station !== null ? 'story' : oz.bereich === 'theorie' ? 'theorie' : 'start';
@@ -318,12 +334,14 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
   }, o.takt ?? 1000);
   o.kanal?.senden({ art: 'hallo' });
   sende(sitzung.zustand());
+  // nach Neuladen der Regie: die Leinwand auf den Stand des Beamer-Schalters bringen (aus)
+  sendeAnzeige();
 
   return {
     element,
     taste(e) {
       const ziel = e.target instanceof HTMLElement ? e.target : null;
-      if (ziel !== null && (ziel instanceof HTMLTextAreaElement || ziel instanceof HTMLInputElement)) return false;
+      if (ziel !== null && (ziel instanceof HTMLTextAreaElement || ziel instanceof HTMLInputElement || ziel instanceof HTMLSelectElement)) return false;
       if (e.altKey || e.ctrlKey || e.metaKey) return false;
       if (e.key === 'Escape' && vollbild) {
         einFenster(false);

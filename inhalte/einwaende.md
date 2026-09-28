@@ -1,6 +1,7 @@
 ---
 # Einwand-Karten (E6): im Story-Modus als Denkanstoß, in der Regie als Spickzettel.
 # Jede Antwort braucht einen Beleg aus dem Whitepaper (zitat oder original).
+# Stationen ohne Schritt `ebenen` (wendepunkt, rueckspulen) wirken nur in der Regie.
 ---
 
 ::: einwand buerokratie
@@ -54,29 +55,37 @@ Projektsteuerung unterstützt Kosten, Termine, Qualität, Koordination und Beric
 ::: einwand gremien
 ---
 stationen: [A4, B4]
-kapitel: ["5.1"]
+kapitel: ["5.1", "5.3", "6.4"]
 ---
 ### Einwand
 Wir haben keine Zeit für zusätzliche Gremien.
 
 ### Antwort
-MVG zielt nicht auf maximale Governance, sondern auf ausreichende Steuerbarkeit mit dem kleinstmöglichen funktionsfähigen Standard. Es beginnt mit den Entscheidungen, die für den Bauherrn kritisch sind.
+MVG zielt nicht auf maximale Governance, sondern auf ausreichende Steuerbarkeit mit dem kleinstmöglichen funktionsfähigen Standard. Einen festen Takt sieht es trotzdem vor, etwa ein Änderungsgremium, das monatlich tagt, dazu anlassbezogene Sondersitzungen. Gremien sollen dann Entscheidungsunterlagen statt reiner Statusberichte erhalten.
 
 ::: zitat k5.1-p1
 Der Zweck von MVG ist nicht maximale Governance. Der Zweck ist ausreichende Steuerbarkeit mit dem kleinstmöglichen funktionsfähigen Standard.
+:::
+
+::: zitat k5.3-l1
+Gremien erhalten Entscheidungsunterlagen statt reiner Statusberichte.
 :::
 :::
 
 ::: einwand projektgroesse
 ---
 stationen: [A1, B1]
-kapitel: ["4.3", "5.1"]
+kapitel: ["1", "4.3", "5.1"]
 ---
 ### Einwand
 Unsere Projekte sind zu klein dafür.
 
 ### Antwort
-Das Whitepaper richtet sich an komplexe Vorhaben, nennt aber keine Mindestgröße. Sein Maßstab ist, welche Entscheidungen wesentlich sind: nicht jede operative, sondern jede, die Projektzweck, Zielsystem oder Kosten, Termin, Qualität, Projektumfang, Risiko und ESG/LCC substanziell beeinflusst.
+Eine Mindestgröße nennt das Whitepaper nicht. Es richtet sich an Organisationen, die komplexe Vorhaben aktiv, nachweisbar und entscheidungsfähig führen müssen, und beginnt mit den Entscheidungen, die für den Bauherrn kritisch sind. Wesentlich ist dabei nicht jede operative Entscheidung.
+
+::: zitat k1-p3
+Der Ansatz richtet sich an Organisationen, die komplexe Vorhaben nicht nur berichten, sondern aktiv, nachweisbar und entscheidungsfähig führen müssen.
+:::
 
 ::: zitat k4.3-p1
 Nicht jede operative Entscheidung ist bauherrenseitig wesentlich. Wesentlich sind Entscheidungen, die Projektzweck, Zielsystem oder die Dimensionen Kosten, Termin, Qualität, Projektumfang, Risiko und ESG/LCC substanziell beeinflussen
@@ -92,7 +101,7 @@ kapitel: ["4.2", "9.2"]
 Wir haben schon RACI.
 
 ### Antwort
-RACI ist ein Baustein. Laut Whitepaper reicht die Zuordnung allein nicht aus – entscheidend ist ihre Kopplung an Mandate, Freigabeschwellen, Stellvertretungen und Eskalationspfade.
+RACI übersetzt Rollenbilder in eine transparente Verantwortungslogik. Laut Whitepaper reicht diese Zuordnung allein aber nicht aus – entscheidend ist ihre Kopplung an Mandate, Freigabeschwellen, Stellvertretungen und Eskalationspfade.
 
 ::: zitat k9.2-p1
 Entscheidend ist die Kopplung an Mandate, Freigabeschwellen, Stellvertretungen und Eskalationspfade. Nur dann wird RACI von einer Kommunikationsmatrix zu einem Führungsinstrument.
@@ -149,6 +158,10 @@ Kosten der Einführung beziffert das Whitepaper nicht. Den Nutzen beschreibt es 
 ::: zitat k1-p2
 Der Nutzen liegt nicht in mehr Bürokratie, sondern in weniger Entscheidungsstau, klareren Eskalationswegen, belastbarer Gremienfähigkeit und einer nachvollziehbaren Nachweiskette.
 :::
+
+::: zitat k5.1-p1
+Der Zweck von MVG ist nicht maximale Governance. Der Zweck ist ausreichende Steuerbarkeit mit dem kleinstmöglichen funktionsfähigen Standard.
+:::
 :::
 
 ::: einwand zu-spaet
@@ -164,5 +177,9 @@ LPH 0 ist ein früher Hebel, doch MVG bleibt nicht darauf beschränkt. Das White
 
 ::: zitat k5.4-p2
 MVG nutzt LPH 0 deshalb als frühen Hebel, bleibt aber nicht auf LPH 0 beschränkt. Auch in laufenden Projekten, vor wesentlichen Freigaben, bei Neufestlegungen der Projektbasis, bei schleichenden Änderungen oder im Rahmen einer MVG-Neuinitialisierung kann MVG die Entscheidungs- und Nachweisfähigkeit wiederherstellen.
+:::
+
+::: zitat k7.5-p1
+Sie bedeutet keinen vollständigen Projektneustart, sondern eine gezielte Neuordnung der Steuerungs- und Entscheidungslogik.
 :::
 :::

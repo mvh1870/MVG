@@ -101,7 +101,7 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P9.2 (2026-09-28) · Notizen, Leitfragen, Einwand-Karten (E6) je Station und Theorie-Kapitel
 - [x] P9.3 (2026-09-28) · Gesprächsprotokoll (lokal) + Druckfassung
 - [x] P9.4 (2026-09-28) · Regie-Eingriffe: springen, Welt/Rolle umschalten, Ereignis einspielen, Szenario-Werte; Beamer-Schalter (E10) – wirkt auf die Story, nicht auf Explore (L-53)
-- [ ] P9.5 · Zwei-Fenster-Tests + Prüf-Agenten P9
+- [x] P9.5 · Zwei-Fenster-Tests + Prüf-Agenten P9 (`docs/P9-BEFUNDE.md`)
 
 ### P10 · Whitepaper-Funktionen & Auslieferung
 - [ ] P10.1 · Zitierfunktion, Permalinks, Fußnoten/Quellen, Versions- und Änderungsstand, Vermerk „fachlich ungeprüft“

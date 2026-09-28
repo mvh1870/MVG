@@ -85,5 +85,5 @@ Kapitel 12 zieht Bilanz; hier ist die Nähe zum Vertrieb am größten – nur wi
 
 ### Leitfragen
 - Welcher der fünf Gewinne wäre in Ihrem Projekt am ehesten spürbar?
-- Welche echte Entscheidung in Ihrem Projekt würde sich eignen, um Freigabefrage, Entscheidungs-ID, Datenstand und Nachweis einmal durchzuspielen?
+- Bei welcher Entscheidung in Ihrem Projekt ließen sich Freigabefrage, Entscheidungs-ID, Datenstand und Nachweis heute schon nachvollziehen?
 :::

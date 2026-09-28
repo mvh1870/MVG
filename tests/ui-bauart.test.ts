@@ -119,7 +119,7 @@ for (const k of [
 ]) g[k] = (dom.window as unknown as Record<string, unknown>)[k];
 after(() => dom.window.close());
 
-const { inhalte, regieFuer } = await import('../src/inhalte/index.ts');
+const { inhalte, regieFuer, regieKapitel } = await import('../src/inhalte/index.ts');
 const { anfangszustand, oeffentlich } = await import('../src/engine/zustand.ts');
 const { erzeugeSitzung } = await import('../src/ui/sitzung.ts');
 const { erzeugeStory } = await import('../src/ui/flaechen/story.ts');
@@ -127,6 +127,7 @@ const { baueStart } = await import('../src/ui/flaechen/start.ts');
 const { baueTheorie, kapitelListe } = await import('../src/ui/flaechen/theorie.ts');
 const { erzeugeAnzeige } = await import('../src/regie/leinwand.ts');
 const { erzeugeRegie } = await import('../src/regie/regie.ts');
+const { W } = await import('../src/ui/woerter.ts');
 type KanalNachricht = import('../src/regie/kanal.ts').KanalNachricht;
 
 const VERSION = 'Whitepaper V1.2 · Story 0.1';
@@ -483,6 +484,87 @@ test('Regie: Notiz und Leitfragen; „weiter“ sendet den öffentlichen Zustand
     for (const fn of empfaenger) fn({ art: 'hallo' });
     // … dazu den Stand des Beamer-Schalters (E10)
     assert.deepEqual(gesendet.slice(anzahl).map((n) => n.art), ['zustand', 'anzeige']);
+  } finally {
+    regie.entferne();
+  }
+});
+
+test('Regie (P9.5): Start sendet den Beamer-Stand, Sprung erst mit Rolle, Einwände getrennt vom Nur-Regie-Teil, Druck, Ein-Fenster', () => {
+  const gesendet: KanalNachricht[] = [];
+  const kanal = {
+    senden: (n: KanalNachricht) => { gesendet.push(JSON.parse(JSON.stringify(n)) as KanalNachricht); },
+    abonnieren: () => () => undefined,
+    schliessen: () => undefined,
+  };
+  const sitzung = erzeugeSitzung(anfangszustand(), inhalte, { speicher: null });
+  // ohne Eintrag: Kapitel 99 gibt es nicht
+  const regie = erzeugeRegie({ inhalte, sitzung, kanal, version: VERSION, regieFuer, regieKapitel: (k) => (k === 5 ? regieKapitel(k) : null), oeffneLeinwand: () => undefined, takt: 60_000 });
+  document.body.replaceChildren(regie.element);
+  const el = regie.element;
+  const q = <T extends Element = HTMLElement>(sel: string): T => {
+    const x = el.querySelector<T>(sel);
+    assert.ok(x, `fehlt: ${sel}`);
+    return x;
+  };
+  try {
+    // B2: nach dem Laden bekommt die Leinwand den Stand des Beamer-Schalters (aus)
+    assert.deepEqual(gesendet.map((n) => n.art), ['hallo', 'zustand', 'anzeige']);
+    assert.equal((gesendet[2] as Extract<KanalNachricht, { art: 'anzeige' }>).beamer, false);
+    // B6/L1: vor der Rollenwahl ist Springen gesperrt und das Rollenfeld zeigt „–“
+    const sprung = q<HTMLSelectElement>('[data-pruef="regie-sprung"]');
+    const rolle = q<HTMLSelectElement>('[data-pruef="regie-rollenwahl"]');
+    assert.equal(sprung.disabled, true);
+    assert.equal(rolle.value, '');
+    q('[data-pruef="regie-bereich-story"]').click();
+    q('[data-pruef="regie-weiter"]').click();
+    q('[data-pruef="regie-rolle-pl"]').click();
+    assert.equal(sprung.disabled, false);
+    assert.equal(rolle.value, 'pl');
+    // L2: Pfeiltaste im Auswahlfeld blättert nicht
+    const schrittVorher = sitzung.zustand().schritt;
+    const ereignis = new dom.window.KeyboardEvent('keydown', { key: 'ArrowRight' });
+    Object.defineProperty(ereignis, 'target', { value: rolle });
+    assert.equal(regie.taste(ereignis), false);
+    assert.equal(sitzung.zustand().schritt, schrittVorher);
+    // Station mit Einwand: Spickzettel steht NACH dem Hinweis „nur in der Regie“ (Einwände sind öffentlich, L5)
+    const mitEinwand = inhalte.einwaende.find((e) => e.stationen.some((s) => inhalte.stationen[s]?.welt === 'A'));
+    assert.ok(mitEinwand);
+    sitzung.tue({ art: 'geheZu', station: mitEinwand.stationen.find((s) => inhalte.stationen[s]?.welt === 'A') ?? '', schritt: 0 });
+    const notiz = q('[data-pruef="regie-notiz"]');
+    const hinweis = [...notiz.querySelectorAll('.regie-leise')].find((p) => p.textContent === W.regie.nurRegie);
+    assert.ok(hinweis);
+    const zettel = q(`[data-pruef="regie-einwand-${mitEinwand.id}"]`);
+    assert.ok(hinweis.compareDocumentPosition(zettel) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING);
+    assert.equal(q('.regie-notiz-inhalt').querySelector('[data-pruef^="regie-einwand"]'), null);
+    // Kapitel mit und ohne Regie-Eintrag
+    sitzung.tue({ art: 'oeffneKapitel', kapitel: 5 });
+    assert.ok(q('[data-pruef="regie-leitfragen"]'));
+    assert.ok(q('[data-pruef="regie-einwaende"]'));
+    sitzung.tue({ art: 'oeffneKapitel', kapitel: 1 });
+    assert.equal(q('.regie-notiz-inhalt').textContent, W.regie.keineNotiz);
+    // Druckteil: Protokoll vollständig (nicht nur die letzten sechs), Weg, Vermerke; ohne print keine hängende Klasse (L9)
+    for (let i = 1; i <= 8; i++) sitzung.tue({ art: 'notiere', text: `Eintrag ${i}`, zeit: Date.UTC(2026, 8, 28, 9, i) });
+    const druckfn = dom.window.print;
+    (dom.window as unknown as { print: unknown }).print = undefined;
+    q('[data-pruef="regie-drucken"]').click();
+    (dom.window as unknown as { print: unknown }).print = druckfn;
+    const druck = q('[data-pruef="regie-druck"]');
+    assert.equal(druck.querySelectorAll('ol li').length, 8);
+    assert.match(druck.textContent ?? '', new RegExp(`${W.fiktiv}.*${W.ungeprueft}`, 'u'));
+    assert.match(druck.textContent ?? '', /A3/u);
+    assert.equal(document.body.classList.contains('druck-protokoll'), false);
+    // B4: Ein-Fenster nimmt die verdeckten Teile aus der Tab-Folge, Esc gibt den Fokus zurück
+    const knopf = q('[data-pruef="regie-ein-fenster"]');
+    knopf.click();
+    assert.ok(el.classList.contains('ist-ein-fenster'));
+    assert.ok(q('.regie-kopf').hasAttribute('inert'));
+    assert.ok(q('.regie-steuerung').hasAttribute('inert'));
+    assert.equal(q('.regie-eingriff-karte').hasAttribute('inert'), false);
+    assert.equal(document.activeElement, q('[data-pruef="regie-ein-fenster-aus"]'));
+    assert.equal(regie.taste(new dom.window.KeyboardEvent('keydown', { key: 'Escape' })), true);
+    assert.equal(el.classList.contains('ist-ein-fenster'), false);
+    assert.equal(q('.regie-kopf').hasAttribute('inert'), false);
+    assert.equal(document.activeElement, knopf);
   } finally {
     regie.entferne();
   }

@@ -45,6 +45,13 @@ export async function lauf(_seite, h) {
   // Beamer-Schalter: Leinwand bekommt die Klasse, Vorschau auch
   await h.klick('[data-pruef="regie-beamer"]', regie);
   await leinwand.locator('.leinwand.ist-beamer').waitFor({ timeout: 3000 }).catch(() => h.befund('Beamer-Schalter erreicht die Leinwand nicht'));
+  // B1: der Zoom darf die Leinwand nicht über die Fensterhöhe schieben (Fuß mit „Weiter“ bleibt sichtbar)
+  for (const [breite, hoehe] of [[1280, 720], [1180, 820]]) {
+    await leinwand.setViewportSize({ width: breite, height: hoehe });
+    await h.warte(200);
+    const m = await leinwand.evaluate(() => ({ doc: document.documentElement.scrollHeight, fenster: innerHeight }));
+    if (m.doc > m.fenster + 1) h.befund(`Beamer bei ${breite}×${hoehe}: Leinwand ${m.doc} px hoch, Fenster ${m.fenster} px`);
+  }
   await h.klick('[data-pruef="regie-beamer"]', regie);
   await h.warte(300);
   if (await leinwand.locator('.leinwand.ist-beamer').count() !== 0) h.befund('Beamer-Schalter lässt sich nicht ausschalten');
@@ -68,8 +75,18 @@ export async function lauf(_seite, h) {
   await h.klick('[data-pruef="regie-ein-fenster"]', regie);
   if (await regie.locator('.regie.ist-ein-fenster').count() !== 1) h.befund('Ein-Fenster-Modus schaltet nicht ein');
   await h.bild('ein-fenster', regie);
+  // B3: breites, niedriges Fenster – der Rahmen passt auch in der Höhe
+  await regie.setViewportSize({ width: 1920, height: 1000 });
+  await h.warte(300);
+  const rahmen = await regie.locator('.vorschau-rahmen').boundingBox();
+  const leiste = await regie.locator('.regie-eingriff-karte').boundingBox();
+  if (rahmen === null || rahmen.y < 0 || rahmen.y + rahmen.height > 1000) h.befund(`Ein-Fenster 1920×1000: Rahmen ${JSON.stringify(rahmen)}`);
+  else if (leiste !== null && leiste.y < rahmen.y + rahmen.height - 1) h.befund('Ein-Fenster: Eingriffsleiste verdeckt die Vorschau');
+  await h.axe('regie-ein-fenster', regie);
+  await regie.setViewportSize({ width: 1280, height: 800 });
   await regie.keyboard.press('Escape');
   if (await regie.locator('.regie.ist-ein-fenster').count() !== 0) h.befund('Esc beendet den Ein-Fenster-Modus nicht');
+  if (await regie.evaluate(() => document.activeElement?.getAttribute('data-pruef')) !== 'regie-ein-fenster') h.befund('Nach Esc steht der Fokus nicht auf „Ein Fenster“');
 
   // Protokoll und Druckfassung
   await regie.locator('[data-pruef="regie-protokoll-feld"]').fill('Kunde fragt nach der Mandatsleiter.');
@@ -78,8 +95,20 @@ export async function lauf(_seite, h) {
   await h.klick('[data-pruef="regie-drucken"]', regie);
   const druck = await regie.locator('[data-pruef="regie-druck"]').textContent();
   if (!/Kunde fragt nach der Mandatsleiter/u.test(druck ?? '') || !/Besuchte Stationen/u.test(druck ?? '')) h.befund('Druckfassung ohne Protokoll oder Weg');
+  // B7: die ausgeblendete Regie erzeugt keine leeren Folgeseiten
+  const pdf = await regie.pdf({ format: 'A4' });
+  const seiten = (pdf.toString('latin1').match(/\/Type\s*\/Page[^s]/gu) ?? []).length;
+  if (seiten !== 1) h.befund(`Druckfassung: ${seiten} Seiten statt einer`);
+  await regie.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
   if ((await leinwand.locator('body').innerText()).includes('Kunde fragt nach der Mandatsleiter')) h.befund('Leinwand zeigt das Protokoll');
   await h.bild('regie', regie);
+  // B2: Regie mit Beamer an neu laden – Leinwand und Knopf stimmen danach überein (aus)
+  await h.klick('[data-pruef="regie-beamer"]', regie);
+  await leinwand.locator('.leinwand.ist-beamer').waitFor({ timeout: 3000 }).catch(() => undefined);
+  await regie.reload();
+  await h.erwarte('[data-pruef="regie"]', regie);
+  await h.warte(600);
+  if (await leinwand.locator('.leinwand.ist-beamer').count() !== 0) h.befund('Nach Neuladen der Regie steht die Leinwand noch auf Beamer');
   await leinwand.close();
   await regie.close();
 }

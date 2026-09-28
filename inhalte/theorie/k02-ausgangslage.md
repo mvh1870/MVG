@@ -249,10 +249,10 @@ Welt B, Monat 11: Holger Stein fällt auch hier aus – für ihn ist eine Stellv
 
 ::: regie
 ### Notiz
-Kapitel 2 holt den Kunden bei seinen eigenen Erfahrungen ab. Es trägt die Tafel der acht Symptome (2.5): den Kunden selbst wählen lassen, was er kennt – ohne Punktzahl und ohne Urteil über seine Organisation. Der Kern steht in 2.4: Berichterstattung erzeugt Information, Führung entsteht erst mit Mandat, Entscheidung, Schwelle und Nachweis. Nicht behaupten, mehr Berichte schadeten – laut 2.4 können sie in einzelnen Situationen helfen.
+Kapitel 2 holt den Kunden bei seinen eigenen Erfahrungen ab. Es trägt die Tafel der acht Symptome (2.5): den Kunden selbst wählen lassen, was er kennt – ohne Punktzahl und ohne Urteil über seine Organisation. Der Kern steht in 2.4: Berichterstattung erzeugt Information, Führung entsteht erst, wenn Information unter anderem mit Mandat, Entscheidung, Schwelle, Datenstand, Freigabe und Nachweis verbunden wird. Nicht behaupten, mehr Berichte schadeten – laut 2.4 können sie in einzelnen Situationen helfen.
 
 ### Leitfragen
 - Welche der acht Symptome erkennen Sie in einem Ihrer laufenden Projekte wieder?
-- Wenn bei Ihnen ein Projekt ins Rutschen kommt: Folgen eher mehr Berichte – oder eine klare Entscheidungsfrage?
+- Was passiert bei Ihnen als Erstes, wenn ein Projekt ins Rutschen kommt?
 - Von welchen Personen hängt bei Ihnen eine kritische Entscheidung ab?
 :::

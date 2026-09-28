@@ -154,6 +154,6 @@ Kapitel 8 zeigt die Reihenfolge der Einführung (Tafel in 8.1) und die Mitwirkun
 
 ### Leitfragen
 - Welche Rolle ist bei Ihnen heute verbindlich für Zielprioritäten, Mandate und Schwellen zuständig?
-- An welcher echten Entscheidung in Ihrem Projekt ließe sich prüfen, ob Schwellen und Datenstände tragen?
+- Bei welcher Entscheidung in Ihrem Projekt waren zuletzt Schwelle und Datenstand unklar?
 - Woran würden Sie erkennen, dass Ihre Organisation wesentliche Entscheidungen selbst vorbereitet, mandatiert und nachverfolgt?
 :::

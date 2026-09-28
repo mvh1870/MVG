@@ -1518,8 +1518,8 @@ function baueSzene(c, rel, ordner, rolle, text, regie) {
  * @param {string} rel
  * @param {string} id
  * @param {string} text
+ * @param {Record<string, any>} regie Regie-Material (P9.2): Schlüssel `theorie/k5`
  */
-/** @param {Record<string, any>} regie Regie-Material (P9.2): Schlüssel `theorie/k5` */
 function baueTheorie(c, rel, id, text, regie) {
   const { kopf, wurzel, rohFelder } = leseDateiKopf(c, rel, '@theorie', text);
   const ort = `${rel}:1`;
@@ -1528,7 +1528,12 @@ function baueTheorie(c, rel, id, text, regie) {
   for (const k of wurzel.kinder) {
     if (k.art === 'regie') {
       const r = c.lies(k, '@theorie', rel);
-      if (r !== null && kopf.kapitel !== undefined) regie[`theorie/k${kopf.kapitel}`] = baueRegie(c, r.rohFelder, rel);
+      if (r !== null) {
+        const schluessel = `theorie/k${kopf.kapitel}`;
+        if (kopf.kapitel === undefined) c.fehler(`${rel}:${k.zeile}`, 'Regie-Block ohne „kapitel:“ im Dateikopf');
+        else if (regie[schluessel] !== undefined) c.fehler(`${rel}:${k.zeile}`, `zweiter Regie-Block zu Kapitel ${kopf.kapitel}`);
+        else regie[schluessel] = baueRegie(c, r.rohFelder, rel);
+      }
       continue;
     }
     if (k.art === 'ebenen') {
@@ -1576,6 +1581,12 @@ function baueEinwaende(c, rel, text) {
     }
     if (aus.some((e) => e.id === bl.id)) c.fehler(`${rel}:${k.zeile}`, `Einwand ${bl.id} doppelt`);
     for (const s of bl.kopf.stationen ?? []) c.verweise.push({ art: 'station', wert: s, ort: `${rel}:${k.zeile}` });
+    const gl = c.quelle?.gliederung ?? [];
+    for (const nr of bl.kopf.kapitel ?? []) {
+      if (gl.length > 0 && !gl.some((/** @type {GliederungsKapitel} */ g) => g.nr === String(nr) || g.abschnitte.some((a) => a.nr === String(nr)))) {
+        c.fehler(`${rel}:${k.zeile}`, `Einwand ${bl.id}: Kapitel „${nr}“ gibt es im Whitepaper nicht`);
+      }
+    }
     aus.push({ id: bl.id ?? '', stationen: bl.kopf.stationen ?? [], kapitel: bl.kopf.kapitel ?? [], felder: bl.felder, bloecke: bl.kinder });
   }
   return aus;

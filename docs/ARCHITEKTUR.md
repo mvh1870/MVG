@@ -40,9 +40,10 @@ quellen/ + inhalte/  ──werkzeuge (Node)──►  src/generiert/ (ignoriert)
 
 ## Regie und Leinwand (O-9)
 - Die **Regie** besitzt den Zustand. Nach jeder Aktion sendet sie `{ art: 'zustand', zustand: oeffentlich(zustand), nr }` über den Kanal. Die **Leinwand** zeichnet nur, was sie empfängt, und ist nicht bedienbar.
-- Regie-Eigenes (Sprechernotizen, Leitfragen, Einwand-Karten, Protokoll) liegt **nicht** im gesendeten Zustand und wird von der Leinwand-Zeichnung **nie** angefordert – Schutz durch Bauart, nicht durch CSS.
+- Regie-Eigenes (Sprechernotizen, Leitfragen, Protokoll) liegt **nicht** im gesendeten Zustand und wird von der Leinwand-Zeichnung **nie** angefordert – Schutz durch Bauart, nicht durch CSS.
 - Kanal nach Vorbild `quellen/bm/buehnenkanal.ts`: BroadcastChannel, Rückfall über `localStorage`-`storage`-Ereignis, Lebenszeichen der Leinwand zurück an die Regie. Funktioniert auch unter `file://`.
-- Ein-Fenster-Regie: dieselbe Regie-Fläche mit einblendbarer Schublade (Taste), wenn kein zweites Fenster möglich ist.
+- Einwand-Karten (E6) sind **öffentlich** (Story, Ebenen-Schritt); die Regie zeigt sie zusätzlich als Spickzettel, getrennt unter dem Hinweis „nur in der Regie“ (L-54).
+- Ein-Fenster-Regie: die Vorschau füllt das Fenster (Maßstab aus Breite und Höhe), darunter eine Eingriffsleiste mit den öffentlichen Kundenwahlen; Notizen, Protokoll und Steuerung sind verdeckt und `inert`. Pfeiltasten und a–d wirken weiter, Esc kehrt zurück (L-54).
 
 ## Inhalte
 - `werkzeuge/inhalte.mjs` liest `inhalte/**/*.md` (Kopfdaten YAML über `yaml`, Text Markdown über `marked` → HTML zur Bauzeit, Strukturblöcke nach `docs/INHALTSFORMAT.md`), prüft Schema, Graph, Begriffe, Zitate und Abdeckung und schreibt `src/generiert/inhalte.json`.

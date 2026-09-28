@@ -66,10 +66,10 @@ test('Regie-Material erreicht nur die Regie (Konstruktion, O-9): kein Modul auß
     assert.ok(!ziele.includes('src/generiert/inhalte.json'), `${rel(p)} importiert die Inhalte-Datei`);
     assert.doesNotMatch(text, /regieInhalte/, `${rel(p)} nennt regieInhalte`);
     // Die Regie bekommt regieFuer als Parameter von main.ts – nur dort darf der Name stehen.
-    if (rel(p) !== 'src/regie/regie.ts') assert.doesNotMatch(text, /regieFuer/, `${rel(p)} nennt regieFuer`);
+    if (rel(p) !== 'src/regie/regie.ts') assert.doesNotMatch(text, /regieFuer|regieKapitel/, `${rel(p)} nennt regieFuer/regieKapitel`);
   }
   const main = readFileSync(join(WURZEL, 'src/main.ts'), 'utf8');
-  assert.match(main, /import \{ inhalte, regieFuer \} from '\.\/inhalte\/index\.ts'/);
+  assert.match(main, /import \{ inhalte, regieFuer, regieKapitel \} from '\.\/inhalte\/index\.ts'/);
 });
 
 test('Leinwand: der ganze Importgraph (transitiv, auch dynamisch) enthält weder Inhalte-Datei noch Regie', () => {
@@ -481,8 +481,8 @@ test('Regie: Notiz und Leitfragen; „weiter“ sendet den öffentlichen Zustand
     // Ein „hallo“ der Leinwand beantwortet die Regie mit dem Stand
     const anzahl = gesendet.length;
     for (const fn of empfaenger) fn({ art: 'hallo' });
-    assert.equal(gesendet.at(-1)?.art, 'zustand');
-    assert.equal(gesendet.length, anzahl + 1);
+    // … dazu den Stand des Beamer-Schalters (E10)
+    assert.deepEqual(gesendet.slice(anzahl).map((n) => n.art), ['zustand', 'anzeige']);
   } finally {
     regie.entferne();
   }

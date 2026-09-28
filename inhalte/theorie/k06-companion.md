@@ -256,3 +256,13 @@ text: "In der Story erlebt: Freigabe mit Auflagen"
 ---
 Ein mögliches Ende: Der Bauherr erteilt die Freigabe zum Abschluss von LPH 5 mit Auflagen – neben Freigabe und keiner Freigabe eines der drei Ergebnisse, die Kap. 6.4.4 für Freigaben unterscheidet.
 :::
+
+::: regie
+### Notiz
+Kapitel 6 beschreibt den MVG Companion – beschreiben, nicht vorführen oder anbieten. Er ist ein optionales Arbeitsmittel und ersetzt keine Bauherrenentscheidung, keine Gremienfreigabe und keine Projektsteuerung (6.3); das Führungsmodell funktioniert auch mit vorhandenen Büro- und Projektwerkzeugen. Im Termin trägt der zweite Teil: die Register mit Rolle und Takt (6.4.2) und der kanonische Governance-Fluss (6.4.3). Die Nutzungsbedingungen aus 6.3 nicht von sich aus ansprechen.
+
+### Leitfragen
+- Welche Register führen Sie heute – und wer pflegt welches in welchem Takt?
+- Wo landet bei Ihnen ein Signal, bevor jemand es bewertet hat?
+- Wann wird bei Ihnen aus einem Risiko ein Entscheidungsbedarf – und wer bemerkt das?
+:::

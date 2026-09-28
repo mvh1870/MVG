@@ -11,17 +11,19 @@
  */
 
 import type { Aktion, OeffentlicherZustand, Zustand } from '../engine/typen.ts';
-import type { OeffentlicheInhalte, RegieEintrag } from '../inhalte/typen.ts';
+import type { Einwand, OeffentlicheInhalte, RegieEintrag } from '../inhalte/typen.ts';
 import { oeffentlich } from '../engine/zustand.ts';
 import type { Kanal } from './kanal.ts';
 import type { Sitzung } from '../ui/sitzung.ts';
 import { h, attr, text, ersetze } from '../ui/h.ts';
 import { bildmarke } from '../ui/marke.ts';
 import { sym } from '../ui/bausteine/bloecke.ts';
+import * as B from '../ui/bausteine/bloecke.ts';
 import { inhalt } from '../ui/bausteine/inhalt.ts';
-import { aktuelleStation, eingriffe, kicker, sichtbareSchritte, tafelTitel, weiterAktion, zurueckAktion } from '../ui/anzeige.ts';
+import { aktuelleStation, eingriffe, kicker, sichtbareSchritte, stationsName, tafelTitel, weiterAktion, zurueckAktion } from '../ui/anzeige.ts';
 import { erzeugeAnzeige } from './leinwand.ts';
 import { kapitelListe } from '../ui/flaechen/theorie.ts';
+import { findeEntscheidung } from '../engine/graph.ts';
 import { W } from '../ui/woerter.ts';
 
 export interface RegieOptionen {
@@ -31,6 +33,8 @@ export interface RegieOptionen {
   version: string;
   /** Regie-Material je Station/Rolle (nur die Regie bekommt es) */
   regieFuer: (station: string, rolle: string | null) => { station: RegieEintrag | null; szene: RegieEintrag | null };
+  /** Regie-Material einer Lernseite (P9.2) */
+  regieKapitel?: (kapitel: number) => RegieEintrag | null;
   /** öffnet das Leinwand-Fenster */
   oeffneLeinwand: () => void;
   /** Takt der Verbindungsprüfung in ms */
@@ -53,11 +57,29 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
   };
 
   /* ------------------------------------------------------------------ Kopf -- */
+  // Beamer-Schalter (E10): größere Schrift und höherer Kontrast auf der Leinwand (und in der Vorschau)
+  let beamer = false;
+  let anzeigeNr = 0;
+  const sendeAnzeige = (): void => {
+    anzeigeNr += 1;
+    o.kanal?.senden({ art: 'anzeige', nr: anzeigeNr, beamer });
+  };
+  const beamerKnopf = h('button', {
+    type: 'button', class: 'regie-chip', 'aria-pressed': 'false', 'data-pruef': 'regie-beamer',
+    onclick: () => {
+      beamer = !beamer;
+      attr(beamerKnopf, 'aria-pressed', beamer ? 'true' : 'false');
+      buehne.classList.toggle('ist-beamer', beamer);
+      sendeAnzeige();
+    },
+  }, sym('diagramm'), w.beamer);
   const verbindung = h('span', { class: 'regie-verbindung', 'data-status': 'neutral', 'data-pruef': 'leinwand-status', role: 'status' }, w.nichtVerbunden);
   const kopf = h('header', { class: 'regie-kopf' },
     bildmarke('marke-logo'),
     h('h1', { class: 'regie-titel' }, w.titel, h('span', { class: 'nur-sr' }, ' – '), h('span', { class: 'regie-unterzeile' }, W.produkt)),
     verbindung,
+    h('button', { type: 'button', class: 'regie-chip', 'data-pruef': 'regie-ein-fenster', onclick: () => einFenster(true) }, sym('diagramm'), w.einFenster),
+    beamerKnopf,
     h('button', { type: 'button', class: 'knopf knopf-gold regie-oeffnen', 'data-pruef': 'leinwand-oeffnen', onclick: () => o.oeffneLeinwand() },
       sym('diagramm'), h('span', null, h('b', null, w.leinwandOeffnen))));
 
@@ -90,9 +112,26 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     onclick: () => tue({ art: 'oeffneKapitel', kapitel: k.nr }),
   }, `${W.theorie.kapitel} ${k.nr}`));
   const neuKnopf = h('button', { type: 'button', class: 'regie-chip', 'data-pruef': 'regie-neustart', onclick: () => tue({ art: 'neustart' }) }, sym('zurueckspulen'), W.seite.neu);
+  // Regie-Eingriffe (P9.4): zu jeder Station springen (Welt B erst nach der Freischaltung), Rolle umschalten
+  const sprung = h('select', { class: 'regie-auswahl', id: 'regie-sprung', 'data-pruef': 'regie-sprung' },
+    h('option', { value: '' }, w.sprungWaehlen),
+    inhalte.stationsFolge.map((id) => h('option', { value: id, 'data-welt': inhalte.stationen[id]?.welt ?? '' }, stationsName(inhalte, id)))) as HTMLSelectElement;
+  sprung.addEventListener('change', () => {
+    if (sprung.value !== '') {
+      if (sitzung.zustand().station === null) tue({ art: 'starteStory' });
+      tue({ art: 'geheZu', station: sprung.value, schritt: 0 });
+    }
+    sprung.value = '';
+  });
+  const rollenWahl = h('select', { class: 'regie-auswahl', id: 'regie-rollenwahl', 'data-pruef': 'regie-rollenwahl' },
+    inhalte.rollenFolge.filter((id) => inhalte.rollen[id]?.spielbar).map((id) => h('option', { value: id }, inhalte.rollen[id]?.kurztitel ?? id))) as HTMLSelectElement;
+  rollenWahl.addEventListener('change', () => tue({ art: 'waehleRolle', rolle: rollenWahl.value }));
   const steuerung = h('section', { class: 'regie-karte regie-steuerung', 'aria-label': w.titel },
     h('div', { class: 'regie-blaettern' }, zurueckKnopf, weiterKnopf),
-    h('div', { class: 'regie-zeile' }, h('span', { class: 't-label' }, w.bereich), bereiche, kapitelKnoepfe, neuKnopf));
+    h('div', { class: 'regie-zeile' }, h('span', { class: 't-label' }, w.bereich), bereiche, kapitelKnoepfe, neuKnopf),
+    h('div', { class: 'regie-zeile' },
+      h('label', { for: 'regie-sprung', class: 't-label' }, w.sprung), sprung,
+      h('label', { for: 'regie-rollenwahl', class: 't-label' }, w.rolleUmschalten), rollenWahl));
 
   const eingriffListe = h('div', { class: 'regie-eingriffe', role: 'group', 'aria-label': w.kundenwahl, 'data-pruef': 'regie-eingriffe' });
   const eingriffKarte = h('section', { class: 'regie-karte' }, h('h2', { class: 'regie-h2' }, w.kundenwahl), eingriffListe);
@@ -114,16 +153,55 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
         tue({ art: 'notiere', text: t, zeit: Date.now() });
         feld.value = '';
       } }, w.protokollSichern)),
-    protokollListe);
+    protokollListe,
+    h('button', { type: 'button', class: 'knopf knopf-still', 'data-pruef': 'regie-drucken', onclick: () => drucke() }, w.protokollDrucken));
+
+  // Druckfassung (P9.3): Datum, alle Protokolleinträge, besuchte Stationen und die eigenen Entscheidungen
+  const druck = h('section', { class: 'regie-druck', 'aria-hidden': 'true', 'data-pruef': 'regie-druck' });
+  const drucke = (): void => {
+    const z = sitzung.zustand();
+    const oz = oeffentlich(z);
+    const datum = new Date().toLocaleString('de-DE', { dateStyle: 'long', timeStyle: 'short' });
+    ersetze(druck,
+      h('h1', null, w.druckTitel),
+      h('p', null, `${W.produkt} · ${o.version} · ${datum}`),
+      h('p', null, `${W.fiktiv} · ${W.ungeprueft}`),
+      h('h2', null, w.protokoll),
+      z.regie.protokoll.length > 0
+        ? h('ol', null, z.regie.protokoll.map((p) => h('li', null, h('span', { class: 'mono' }, new Date(p.zeit).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' })), ' ', p.text)))
+        : h('p', null, w.druckLeer),
+      h('h2', null, w.druckWeg),
+      h('p', null, [...new Set(oz.verlauf)].map((id) => stationsName(inhalte, id)).join(' → ') || '–'),
+      h('h2', null, w.druckEntscheidungen),
+      oz.spur.length > 0 ? h('ul', null, oz.spur.map((e) => {
+        const opt = findeEntscheidung(inhalte, e.entscheidung)?.entscheidung.optionen.find((x) => x.id === e.option);
+        return h('li', null, `${stationsName(inhalte, e.station)}: ${e.option} · ${opt?.kurz ?? ''}`);
+      })) : h('p', null, '–'));
+    document.body.classList.add('druck-protokoll');
+    const ende = (): void => { document.body.classList.remove('druck-protokoll'); window.removeEventListener('afterprint', ende); };
+    window.addEventListener('afterprint', ende);
+    if (typeof window.print === 'function') window.print();
+  };
+
+  // Ein-Fenster-Regie (P9.1): die Vorschau füllt das Fenster, Pfeiltasten steuern weiter, Esc kehrt zurück
+  const zurueckAusVollbild = h('button', { type: 'button', class: 'regie-chip regie-vollbild-zurueck', 'data-pruef': 'regie-ein-fenster-aus', onclick: () => einFenster(false) }, w.einFensterAus);
+  let vollbild = false;
+  function einFenster(an: boolean): void {
+    vollbild = an;
+    element.classList.toggle('ist-ein-fenster', an);
+    if (an) zurueckAusVollbild.focus();
+    massstab();
+  }
 
   const element = h('div', { class: 'regie', 'data-pruef': 'regie' },
     kopf,
     h('div', { class: 'regie-raster' },
       h('div', { class: 'regie-links' },
-        h('section', { class: 'regie-vorschau', 'aria-label': w.vorschau }, h('span', { class: 't-label' }, w.vorschau), ort, rahmen),
+        h('section', { class: 'regie-vorschau', 'aria-label': w.vorschau }, h('span', { class: 't-label' }, w.vorschau), ort, rahmen, zurueckAusVollbild),
         steuerung),
       h('div', { class: 'regie-rechts' }, notiz, eingriffKarte, protokoll)),
-    h('footer', { class: 'regie-fuss' }, h('span', null, o.version), h('span', { class: 'start-vermerk' }, W.ungeprueft)));
+    h('footer', { class: 'regie-fuss' }, h('span', null, o.version), h('span', { class: 'start-vermerk' }, W.ungeprueft)),
+    druck);
 
   /* -------------------------------------------------------------- Handeln -- */
   function schritt(richtung: 1 | -1): void {
@@ -139,7 +217,27 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     o.kanal?.senden({ art: 'zustand', nr, zustand: oeffentlich(z) });
   };
 
+  /** Einwand-Karten (E6) als Spickzettel: zur Station oder zum Kapitel passend. */
+  const einwaendeFuer = (z: OeffentlicherZustand): Einwand[] => inhalte.einwaende.filter((e) =>
+    (z.bereich === 'story' && z.station !== null && e.stationen.includes(z.station))
+    || (z.bereich === 'theorie' && z.theorie.kapitel !== null && e.kapitel.some((k) => k.split('.')[0] === String(z.theorie.kapitel))));
+  const spickzettel = (liste: Einwand[]): Node[] => liste.length === 0 ? [] : [
+    h('h3', { class: 'regie-h3' }, w.einwaende),
+    h('div', { class: 'regie-einwaende', 'data-pruef': 'regie-einwaende' }, liste.map((e) => h('details', { class: 'regie-einwand', 'data-pruef': `regie-einwand-${e.id}` },
+      h('summary', null, inhalt(e.felder.einwand ?? '')),
+      h('div', { class: 'regie-einwand-antwort' }, inhalt(e.felder.antwort ?? ''), e.bloecke.map((b) => B.block(b, inhalte, W.originalWoertlich)))))),
+  ];
+
   const zeichneNotiz = (z: OeffentlicherZustand): void => {
+    if (z.bereich === 'theorie' && z.theorie.kapitel !== null) {
+      const e = o.regieKapitel?.(z.theorie.kapitel) ?? null;
+      const teile: Node[] = [];
+      if (e?.notiz) teile.push(h('div', { class: 'regie-notiz-text' }, inhalt(e.notiz)));
+      if (e !== null && e.leitfragen.length > 0) teile.push(h('h3', { class: 'regie-h3' }, w.leitfragen), h('ol', { class: 'regie-leitfragen', 'data-pruef': 'regie-leitfragen' }, e.leitfragen.map((f) => h('li', null, f))));
+      teile.push(...spickzettel(einwaendeFuer(z)));
+      ersetze(notizInhalt, teile.length > 0 ? teile : h('p', { class: 'regie-leise' }, w.keineNotiz));
+      return;
+    }
     if (z.station === null || z.bereich !== 'story') {
       ersetze(notizInhalt, h('p', { class: 'regie-leise' }, w.keineNotiz));
       return;
@@ -153,6 +251,7 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
         teile.push(h('h3', { class: 'regie-h3' }, w.leitfragen), h('ol', { class: 'regie-leitfragen', 'data-pruef': 'regie-leitfragen' }, e.leitfragen.map((f) => h('li', null, f))));
       }
     }
+    teile.push(...spickzettel(einwaendeFuer(z)));
     ersetze(notizInhalt, teile.length > 0 ? teile : h('p', { class: 'regie-leise' }, w.keineNotiz));
   };
 
@@ -170,6 +269,9 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     } else {
       text(ort, w.start);
     }
+    for (const opt of sprung.querySelectorAll('option')) if (opt.dataset['welt'] === 'B') attr(opt, 'disabled', !oz.freigeschaltet.weltB);
+    attr(rollenWahl, 'disabled', oz.rolle === null);
+    if (oz.rolle !== null) rollenWahl.value = oz.rolle;
     attr(weiterKnopf, 'disabled', weiterAktion(oz, inhalte) === null);
     attr(zurueckKnopf, 'disabled', zurueckAktion(oz, inhalte) === null);
     const aktiv = oz.bereich === 'story' && oz.station !== null ? 'story' : oz.bereich === 'theorie' ? 'theorie' : 'start';
@@ -202,7 +304,10 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     text(verbindung, an ? w.verbunden : w.nichtVerbunden);
   };
   const abKanal = o.kanal?.abonnieren((n) => {
-    if (n.art === 'hallo') sende(sitzung.zustand());
+    if (n.art === 'hallo') {
+      sende(sitzung.zustand());
+      sendeAnzeige();
+    }
     if (n.art === 'lebenszeichen' || n.art === 'hallo') {
       letztesZeichen = Date.now();
       setzeVerbindung(true);
@@ -220,6 +325,10 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
       const ziel = e.target instanceof HTMLElement ? e.target : null;
       if (ziel !== null && (ziel instanceof HTMLTextAreaElement || ziel instanceof HTMLInputElement)) return false;
       if (e.altKey || e.ctrlKey || e.metaKey) return false;
+      if (e.key === 'Escape' && vollbild) {
+        einFenster(false);
+        return true;
+      }
       if (e.key === 'ArrowRight' || e.key === 'PageDown') {
         schritt(1);
         return true;

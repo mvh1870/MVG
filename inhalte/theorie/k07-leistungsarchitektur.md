@@ -152,3 +152,12 @@ text: "In der Story erlebt: Epilog"
 ---
 Und bei Ihnen? Eine Selbstdiagnose ohne Punktzahl, die Anwendungssituationen aus dem Whitepaper, ein persönliches Resümee und die Bibliothek mit dem Glossar.
 :::
+
+::: regie
+### Notiz
+Kapitel 7 beschreibt die Leistungspakete von Bauherr Mentoren – im Termin besonders zurückhaltend: beschreiben, nicht anbieten, keine Aufforderung, nichts über Aufwand oder Dauer über das Whitepaper hinaus. Die Reifegradanalyse nur als Methode nennen und keine Punktzahl für den Kunden schätzen. Es tragen die Zeile „Rolle des Bauherrn“ in jeder Paket-Tafel und die Leistungsgrenzen (7.6): BM ersetzt keine Bauherrenentscheidung.
+
+### Leitfragen
+- Welche der zentralen Arbeitsfragen aus den Tafeln könnten Sie für Ihr Projekt heute beantworten?
+- Welche Entscheidungen, die bei Ihnen heute bei externen Rollen liegen, ordnet Tafel 7.6 dem Bauherrn zu?
+:::

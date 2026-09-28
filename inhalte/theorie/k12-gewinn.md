@@ -78,3 +78,12 @@ text: "In der Story erlebt: Steuerbar übergeben"
 ---
 Nach der MVG-Neuinitialisierung ist das Projekt wieder steuerbar: Das Bauherren-Führungsmodell wird übergeben – ein Befähigungsschritt, keine Freigabe; das Projekt läuft steuerbar in LPH 5 weiter.
 :::
+
+::: regie
+### Notiz
+Kapitel 12 zieht Bilanz; hier ist die Nähe zum Vertrieb am größten – nur wiedergeben, was das Whitepaper sagt, keine Aufforderung, kein Angebot, keine Wirkungszahlen. Es tragen die fünf Gewinne in der Tafel, besonders „Geringere Zusatzlast“: Der Mindeststandard bleibt auf führungsrelevante Entscheidungen konzentriert. Mit der Leitthese schließen.
+
+### Leitfragen
+- Welcher der fünf Gewinne wäre in Ihrem Projekt am ehesten spürbar?
+- Welche echte Entscheidung in Ihrem Projekt würde sich eignen, um Freigabefrage, Entscheidungs-ID, Datenstand und Nachweis einmal durchzuspielen?
+:::

@@ -216,3 +216,12 @@ text: "In der Story erlebt: B1 · Lage verstehen – mit MVG"
 ---
 Welt B, Monat 1: Zielsystem, Mandatsleiter, Rhythmus und Register mit verantwortlicher Rolle sind angelegt und greifen ineinander; die Zielpriorität legt der Bauherr fest.
 :::
+
+::: regie
+### Notiz
+Kapitel 5 beschreibt MVG als Führungsmodell: sechs Kernfragen, acht Bausteine (Tafel in 5.2), Wirkung durch Kopplung (5.3). Im Termin trägt 5.3: Ein Zielsystem, eine RACI-Matrix oder eine Entscheidungsvorlage allein reicht nicht. LPH 0 ist ein früher Hebel, aber nicht das Hauptnarrativ (5.4). Die Grenzen aus 5.5 offen nennen – MVG ist zum Beispiel keine Vergaberechtsprüfung und keine technische Betreiberberatung.
+
+### Leitfragen
+- Welche der sechs Kernfragen könnten Sie für Ihr Projekt heute schriftlich beantworten?
+- Welche der acht Bausteine gibt es bei Ihnen schon – und wo sind sie miteinander verbunden?
+:::

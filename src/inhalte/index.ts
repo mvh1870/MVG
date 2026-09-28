@@ -43,6 +43,11 @@ export function regieInhalte(): Readonly<Record<string, RegieEintrag>> {
   return alle.regie;
 }
 
+/** Regie-Material einer Lernseite (P9.2): Notiz und Leitfragen zu Kapitel `nr`. */
+export function regieKapitel(nr: number): RegieEintrag | null {
+  return alle.regie[`theorie/k${nr}`] ?? null;
+}
+
 /** Regie-Material für Station und Rolle: erst die Szene, dann die Station. */
 export function regieFuer(station: string, rolle: string | null): { station: RegieEintrag | null; szene: RegieEintrag | null } {
   return {

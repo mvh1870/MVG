@@ -197,3 +197,13 @@ text: "In der Story erlebt: Neufestlegung der Projektbasis"
 ---
 Die Projektbasis trägt nicht mehr: Über eine Entscheidungsvorlage vorbereitet, beschließt der Bauherr im Lenkungskreis eine Neufestlegung der Projektbasis – außerhalb der regulären Freigabereihe.
 :::
+
+::: regie
+### Notiz
+Kapitel 11 vertieft die MVG-Neuinitialisierung: kein vollständiger Projektneustart und keine Freigabe; die Abfolge LPH 0–9 bleibt unverändert. Es tragen die Signale (11.1) und die zentrale Bauherrenfrage aus 11.2: Welche Entscheidungen müssen jetzt neu legitimiert werden? Nicht behaupten, ein Projekt des Kunden brauche eine Neuinitialisierung – der Kunde gleicht die Signale selbst ab.
+
+### Leitfragen
+- Welche der Signale aus 11.1 sehen Sie in einem Ihrer laufenden Projekte?
+- Welche Entscheidung in diesem Projekt müsste heute neu legitimiert werden?
+- Welcher Datenstand gilt dort für die nächste Entscheidung – und wer hat ihn festgelegt?
+:::

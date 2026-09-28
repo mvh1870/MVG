@@ -31,12 +31,15 @@ import type { OeffentlicherZustand } from '../engine/typen.ts';
 export type KanalNachricht =
   | { art: 'zustand'; nr: number; zustand: OeffentlicherZustand }
   | { art: 'lebenszeichen'; nr: number }
+  | { art: 'anzeige'; nr: number; beamer: boolean }
   | { art: 'hallo' };
 
 /** Was ankommt: der Zustand ist ungeprüft (→ `pruefeOeffentlich`). */
 export type EingehendeNachricht =
   | { art: 'zustand'; nr: number; zustand: unknown }
   | { art: 'lebenszeichen'; nr: number }
+  /** Beamer-Schalter (E10): größere Schrift, höherer Kontrast auf der Leinwand */
+  | { art: 'anzeige'; nr: number; beamer: boolean }
   | { art: 'hallo' };
 
 export interface Kanal {
@@ -85,6 +88,7 @@ function istNachricht(x: unknown): x is EingehendeNachricht {
   if (n['art'] === 'hallo') return true;
   if (n['art'] === 'lebenszeichen') return typeof n['nr'] === 'number' && Number.isFinite(n['nr']);
   if (n['art'] === 'zustand') return typeof n['nr'] === 'number' && Number.isFinite(n['nr']) && 'zustand' in n;
+  if (n['art'] === 'anzeige') return typeof n['nr'] === 'number' && Number.isFinite(n['nr']) && typeof n['beamer'] === 'boolean';
   return false;
 }
 
@@ -149,7 +153,7 @@ export function erzeugeKanal(name: string, umgebung: KanalUmgebung = {}): Kanal 
   /** höchste Folgenummer je Absender (verwirft die zweite Zustellung) */
   const letzteFolge = new Map<string, number>();
   /** höchste Nummer je Nachrichtenart (verwirft Veraltetes) */
-  const letzteNr = new Map<'zustand' | 'lebenszeichen', number>();
+  const letzteNr = new Map<'zustand' | 'lebenszeichen' | 'anzeige', number>();
 
   const verteile = (roh: unknown): void => {
     if (!offen || !istUmschlag(roh) || roh.von === kennung) return;

@@ -746,8 +746,20 @@ function ebenenSzene(k: SzenenKontext): Szene {
   setze(k.z);
   const el = h('div', { class: 'ebenen' }, h('nav', { class: 'ebenen-wahl', 'aria-label': W.ebenen }, h('div', { class: 'ebenen-linie' }), lot, knoepfe), ort);
   const vertiefungen = vertiefungenFuer(k);
-  if (vertiefungen === null) return szene(el, setze);
-  return szene(h('div', { class: 'stapel' }, el, vertiefungen), setze);
+  const einwaende = einwaendeFuer(k);
+  if (vertiefungen === null && einwaende === null) return szene(el, setze);
+  return szene(h('div', { class: 'stapel' }, el, vertiefungen, einwaende), setze);
+}
+
+/** Einwand-Karten (E6) als Denkanstoß: typische Einwände zu dieser Station, Antwort mit Beleg zum Aufklappen. */
+function einwaendeFuer(k: SzenenKontext): HTMLElement | null {
+  const liste = k.inhalte.einwaende.filter((e) => e.stationen.includes(k.station.id));
+  if (liste.length === 0) return null;
+  return h('section', { class: 'einwaende', 'aria-label': W.einwandStory, 'data-pruef': 'einwaende' },
+    h('span', { class: 't-label' }, W.einwandStory),
+    liste.map((e) => h('details', { class: 'einwand', 'data-pruef': `einwand-${e.id}` },
+      h('summary', null, inhaltInline(e.felder.einwand ?? '')),
+      h('div', { class: 'ebene-text' }, inhalt(e.felder.antwort ?? ''), e.bloecke.map((b) => B.block(b, k.inhalte, W.originalWoertlich))))));
 }
 
 /** Vertiefungen der Station zu den im Prolog gewählten Interessen (P3.9, O-19); null, wenn keine passt. */

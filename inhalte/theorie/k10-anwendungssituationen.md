@@ -162,3 +162,12 @@ text: "In der Story erlebt: Neufestlegung der Projektbasis"
 ---
 Die Projektbasis trägt nicht mehr: Über eine Entscheidungsvorlage vorbereitet, beschließt der Bauherr im Lenkungskreis eine [[Neufestlegung der Projektbasis]] – außerhalb der regulären Freigabereihe.
 :::
+
+::: regie
+### Notiz
+Kapitel 10 ordnet MVG nach Bauherrentypen und Situationen. Den Abschnitt wählen, der zum Kunden passt (10.1 öffentliche, 10.2 private und institutionelle Bauherren, 10.3 Energieversorger und Infrastrukturträger), die anderen überspringen. Es trägt die Tafel der typischen Entscheidungsprobleme (10.5): Der Kunde wählt ein Problem, das er kennt. Keine Erfahrungen, Referenzen oder Kundenbeispiele von BM behaupten.
+
+### Leitfragen
+- Welches der typischen Entscheidungsprobleme aus 10.5 kennen Sie aus Ihren Projekten?
+- Woran würden Sie einen schleichenden Steuerungsverlust in einem Ihrer Projekte zuerst bemerken?
+:::

@@ -19,3 +19,12 @@ text: "In der Story erlebt: Epilog"
 ---
 Am Ende der Geschichte: die Bibliothek mit dem Glossar, neben Selbstdiagnose, Anwendungssituationen und persönlichem Resümee.
 :::
+
+::: regie
+### Notiz
+Das Glossar ist Nachschlagewerk, kein Vortragsteil. Im Termin nur öffnen, wenn ein Begriff strittig ist; auf der Leinwand erscheint die Liste ohne Suchfeld. Begriffe nicht umdeuten – die Definition steht im Wortlaut des Whitepapers, etwa Freigabe als Entscheidung des Bauherrn am Abschluss einer Leistungsphase.
+
+### Leitfragen
+- Welche Begriffe werden in Ihrer Organisation unterschiedlich verwendet – etwa Freigabe, Mandat oder Datenstand?
+- Wo steht bei Ihnen, was ein solcher Begriff im Projekt verbindlich bedeutet?
+:::

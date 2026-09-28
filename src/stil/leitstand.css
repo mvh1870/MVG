@@ -1147,7 +1147,7 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .quelle .marke-logo { height: 26px; color: var(--weiss); }
 .quelle b { font-weight: 600; color: var(--weiss); }
 /* Zitat als eigener Block auf hellem Grund (Story-Schritte ohne eigene Szene): Navy-Karte wie Ebene 4 (P4.7) */
-.stapel > .zitat-block, .welten-aspekt > .zitat-block { padding: 22px 26px 18px; border-radius: var(--radius-xl); background: var(--navy); color: var(--weiss); }
+.stapel > .zitat-block, .welten-aspekt > .zitat-block, .einwand .zitat-block, .regie-einwand .zitat-block { padding: 22px 26px 18px; border-radius: var(--radius-xl); background: var(--navy); color: var(--weiss); }
 
 /* =============================================================================================
    18 · Entscheidungsvorlage mit Prüfliste (.ent, .chk, .ck) – Checkliste Kap. 9.4
@@ -2018,3 +2018,31 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .express-karte { margin-bottom: var(--a-3); padding: 12px 18px; border-radius: var(--radius-l); background: var(--gold-soft); box-shadow: inset 4px 0 0 var(--gold), inset 0 0 0 1px var(--gold-soft-kante); }
 .express-karte > .t-label { display: block; margin-bottom: 4px; color: var(--gold-text); }
 .express-karte p { margin: 0; font-size: 15px; line-height: 1.45; }
+
+/* Einwand-Karten (E6, P9.2): Denkanstoß im Ebenen-Schritt, Spickzettel in der Regie */
+.einwaende { display: grid; gap: 6px; }
+.einwand, .regie-einwand { border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
+.einwand > summary, .regie-einwand > summary { display: flex; align-items: center; min-height: 40px; padding: 8px 14px; font-weight: 600; color: var(--tinte); cursor: pointer; }
+.einwand > div, .regie-einwand-antwort { display: grid; gap: 10px; padding: 0 14px 12px; }
+.regie-einwaende { display: grid; gap: 6px; }
+
+/* Beamer-Schalter (E10, P9.4): größer (wie Browser-Zoom, das Layout bricht dann um) und kontrastreicher –
+   Nebenschrift wird Hauptschrift, Linien kräftiger. Gilt auf der Leinwand und in der Regie-Vorschau. */
+.ist-beamer .anzeige, .vorschau-buehne.ist-beamer .anzeige { zoom: 1.15; }
+.ist-beamer { --tinte-2: var(--tinte); --tinte-leise: var(--tinte-instrument); --linie: var(--linie-3); --auf-navy-2: var(--auf-navy); }
+
+/* Regie (P9): Auswahl Springen/Rolle, Ein-Fenster-Modus, Druckfassung des Protokolls */
+.regie-auswahl { min-height: 36px; padding: 4px 10px; border: 1px solid var(--linie-2); border-radius: var(--radius-m); background: var(--weiss); font: inherit; color: var(--tinte); }
+.regie-vollbild-zurueck { display: none; }
+.regie.ist-ein-fenster .regie-vorschau { position: fixed; inset: 0; z-index: 50; display: grid; grid-template-rows: auto auto 1fr; gap: 6px; padding: 10px; background: var(--navy); color: var(--auf-navy); }
+.regie.ist-ein-fenster .regie-vorschau .vorschau-rahmen { align-self: center; }
+.regie.ist-ein-fenster .regie-vollbild-zurueck { display: inline-flex; position: fixed; top: 10px; right: 10px; z-index: 51; }
+.regie-druck { display: none; }
+@media print {
+  body.druck-protokoll * { visibility: hidden; }
+  body.druck-protokoll .regie-druck, body.druck-protokoll .regie-druck * { visibility: visible; }
+  body.druck-protokoll .regie-druck { display: block; position: absolute; inset: 0 auto auto 0; width: 100%; padding: 12mm; color: var(--tinte); background: var(--weiss); font: 11pt/1.45 var(--schrift-text); }
+  body.druck-protokoll .regie-druck h1 { font-size: 18pt; margin-bottom: 4pt; }
+  body.druck-protokoll .regie-druck h2 { font-size: 13pt; margin: 10pt 0 4pt; }
+  body.druck-protokoll .regie-druck li { margin: 2pt 0; }
+}

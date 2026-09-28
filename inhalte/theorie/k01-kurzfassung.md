@@ -172,3 +172,12 @@ text: "In der Story erlebt: Prolog"
 ---
 Sie übernehmen eine Rolle im Schulcampus Lindenhall-Süd und erleben dasselbe Projekt zuerst in Welt A ohne MVG, dann in Welt B mit MVG.
 :::
+
+::: regie
+### Notiz
+Kapitel 1 ist der Einstieg: die Leitthese (1.1) in einem Satz, dann die fünf Managementaussagen als Karten. Im Termin tragen die Leitthese und die Karte „Projektsteuerung“ – sie unterstützt, ersetzt aber keine bauherrenseitige Entscheidung; das ist keine Kritik an der Projektsteuerung des Kunden. Das Ergebnisbild (1.3) nur anreißen, die Objekte kommen in Kap. 9.
+
+### Leitfragen
+- Welche Entscheidungen in Ihrem Projekt können Sie nicht abgeben – und wo ist das festgehalten?
+- Was bereitet bei Ihnen die Projektsteuerung vor, und wo beginnt Ihre eigene Entscheidung?
+:::

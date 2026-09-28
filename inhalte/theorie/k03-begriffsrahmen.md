@@ -129,3 +129,13 @@ text: "In der Story erlebt: Neufestlegung der Projektbasis"
 ---
 Ein mögliches Ende: Die Projektbasis wird neu festgelegt – vorbereitet über eine Entscheidungsvorlage, beschlossen vom Bauherrn im Lenkungskreis; die Vorlage ist delegierbar, die Entscheidung nicht.
 :::
+
+::: regie
+### Notiz
+Kapitel 3 zieht die Linie, auf der alles andere steht. Es trägt die Tafel in 3.2 (delegierbar – nicht delegierbar); die Pyramide in 3.3 zeigt die drei Ebenen. Betonen, dass es ein Governance- und Führungsbegriff ist, kein juristischer Pflichtenkatalog – keine rechtliche Einschätzung abgeben. Die Festlegung des Mandats bleibt beim Bauherrn, die Ausübung innerhalb klar definierter Schwellen kann übertragen werden.
+
+### Leitfragen
+- Bei welcher nicht delegierbaren Verantwortung aus 3.2 sind Sie unsicher, wer sie in Ihrem Projekt tatsächlich ausübt?
+- Wo endet in Ihrem Projekt die Vorbereitung, und wo beginnt Ihre Entscheidung?
+- Wer darf bei Ihnen innerhalb welcher Schwelle selbst entscheiden?
+:::

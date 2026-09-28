@@ -87,7 +87,7 @@ const ARTEN = {
   resuemee: { in: ['schritt'], kennung: 'keine', felder: ['text'] },
   // Vertiefung je Interesse (P3.9, O-19): Zusatzkarte im Ebenen-Schritt, nur für Leser mit diesem Interesse
   vertiefung: { in: ['@station'], kennung: 'pflicht', kopf: { titel: { typ: 'text', pflicht: true } }, felder: ['text'], pflichtFelder: ['text'] },
-  regie: { in: ['@station', '@szene'], kennung: 'keine', felder: ['notiz', 'leitfragen'] },
+  regie: { in: ['@station', '@szene', '@theorie'], kennung: 'keine', felder: ['notiz', 'leitfragen'] },
   // Bausteine in Schritten
   mail: { in: ['schritt'], kennung: 'keine', kopf: { von: { typ: 'kennung', pflicht: true }, betreff: { typ: 'text', pflicht: true }, zeit: { typ: 'text' }, anhang: { typ: 'text' } }, felder: ['text'], pflichtFelder: ['text'] },
   chat: { in: ['schritt'], kennung: 'keine', kopf: { von: { typ: 'kennung', pflicht: true }, zeit: { typ: 'text' } }, felder: ['text'], pflichtFelder: ['text'] },
@@ -1519,12 +1519,18 @@ function baueSzene(c, rel, ordner, rolle, text, regie) {
  * @param {string} id
  * @param {string} text
  */
-function baueTheorie(c, rel, id, text) {
+/** @param {Record<string, any>} regie Regie-Material (P9.2): Schlüssel `theorie/k5` */
+function baueTheorie(c, rel, id, text, regie) {
   const { kopf, wurzel, rohFelder } = leseDateiKopf(c, rel, '@theorie', text);
   const ort = `${rel}:1`;
   if (kopf.kapitel !== undefined && `k${String(kopf.kapitel).padStart(2, '0')}` !== id) c.fehler(ort, `kapitel ${kopf.kapitel} passt nicht zum Dateinamen „${id}“`);
   const bloecke = [];
   for (const k of wurzel.kinder) {
+    if (k.art === 'regie') {
+      const r = c.lies(k, '@theorie', rel);
+      if (r !== null && kopf.kapitel !== undefined) regie[`theorie/k${kopf.kapitel}`] = baueRegie(c, r.rohFelder, rel);
+      continue;
+    }
     if (k.art === 'ebenen') {
       const e = baueEbenen(c, k, '@theorie', rel);
       if (e !== null) bloecke.push({ art: 'ebenen', kennungen: [], id: null, kopf: {}, felder: {}, liste: null, kinder: [], ebenen: e });
@@ -1675,7 +1681,7 @@ export async function kompiliere(optionen = {}) {
     else if ((m = /^theorie\/(k\d\d)-[^/]+\.md$/u.exec(r))) {
       const id = m[1] ?? '';
       if (theorie[id] !== undefined) c.fehler(rel, `zweite Lernseite für ${id}`);
-      theorie[id] = baueTheorie(c, rel, id, lies(r));
+      theorie[id] = baueTheorie(c, rel, id, lies(r), regie);
     } else if (r === 'einwaende.md') einwaende = baueEinwaende(c, rel, lies(r));
     else if (r === 'welten.md') welten = baueWelten(c, rel, lies(r));
     else if (r === 'abdeckung.yaml') abdeckungRoh = leseYaml(lies(r), rel, 1, b);

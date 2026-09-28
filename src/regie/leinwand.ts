@@ -96,6 +96,10 @@ export function starteLeinwand(wurzel: HTMLElement, o: LeinwandOptionen): () => 
   let nr = 0;
 
   const ab = o.kanal.abonnieren((n) => {
+    if (n.art === 'anzeige') {
+      element.classList.toggle('ist-beamer', n.beamer);
+      return;
+    }
     if (n.art !== 'zustand') return;
     const z = pruefeOeffentlich(n.zustand);
     if (z === null) return;

@@ -147,3 +147,13 @@ text: "In der Story erlebt: Wirklichkeit"
 ---
 Welt A, Monat 12, weiter in LPH 5: Eine MVG-Neuinitialisierung steht zur Wahl, mit der 30/60/90-Tage-Logik als Orientierungsrahmen – und mit der Frage, was der Bauherr dafür selbst beitragen muss.
 :::
+
+::: regie
+### Notiz
+Kapitel 8 zeigt die Reihenfolge der Einführung (Tafel in 8.1) und die Mitwirkung des Bauherrn (8.3). Die 30/60/90-Tage-Logik ist ein Orientierungsrahmen nach der Reifegradanalyse und bei einer MVG-Neuinitialisierung – kein allgemeiner Einführungsrhythmus und kein starrer Projektplan (8.2); keine Termine für den Kunden in Aussicht stellen. Abnahme bedeutet nicht, dass künftige Entscheidungen risikofrei sind (8.4).
+
+### Leitfragen
+- Welche Rolle ist bei Ihnen heute verbindlich für Zielprioritäten, Mandate und Schwellen zuständig?
+- An welcher echten Entscheidung in Ihrem Projekt ließe sich prüfen, ob Schwellen und Datenstände tragen?
+- Woran würden Sie erkennen, dass Ihre Organisation wesentliche Entscheidungen selbst vorbereitet, mandatiert und nachverfolgt?
+:::

@@ -234,3 +234,13 @@ text: "In der Story erlebt: B6 · Freigabe LPH 5"
 ---
 Welt B, Monat 11: Die Freigabe zum Abschluss von LPH 5 steht an – der Bauherr erteilt sie auf Vorlage der Bauherren-PL, für den ausgefallenen Kostenplaner der Projektsteuerung ist eine Stellvertretung benannt.
 :::
+
+::: regie
+### Notiz
+Kapitel 4 macht die Linie aus Kap. 3 greifbar. Es trägt die Tafel der sechs Felder mit der typischen Fehlstelle je Feld; die sechs Felder sind keine juristische Vollständigkeitsliste. Der Muster-Mandatsleiter (4.2) ist ein Muster – keine Empfehlung für die Schwellen des Kunden. Datenstand und Nachweis (4.6) nicht als Verwaltung abtun: Das Whitepaper führt sie als eigenes Verantwortungsfeld.
+
+### Leitfragen
+- In welchem der sechs Felder erkennen Sie bei sich die typische Fehlstelle am ehesten?
+- Welche Schwellen gelten in Ihrem Projekt – und wo sind sie festgehalten?
+- Welcher Datenstand lag Ihrer letzten Freigabe zugrunde?
+:::

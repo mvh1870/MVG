@@ -13,7 +13,7 @@
 import logoSvg from '../quellen/marke/logo-bm.svg';
 import bildmarkeSvg from '../quellen/marke/logo-bm-bildmarke.svg';
 import type { Aktion, Zustand } from './engine/typen.ts';
-import { inhalte, regieFuer } from './inhalte/index.ts';
+import { inhalte, regieFuer, regieKapitel } from './inhalte/index.ts';
 import { anfangszustand, oeffentlich } from './engine/zustand.ts';
 import { lade, type SpeicherGriff } from './engine/speicher.ts';
 import { erzeugeKanal } from './regie/kanal.ts';
@@ -208,6 +208,7 @@ function starteRegie(wurzel: HTMLElement): void {
     kanal,
     version: VERSION,
     regieFuer,
+    regieKapitel,
     oeffneLeinwand: () => {
       window.open(`${location.href.replace(/#.*$/, '')}#leinwand`, 'mvg-leinwand');
     },

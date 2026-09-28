@@ -291,3 +291,13 @@ text: "In der Story erlebt: Freigabe mit Auflagen"
 ---
 Der Bauherr erteilt die Freigabe zum Abschluss von LPH 5 mit Auflagen; ob sie nachgehalten werden, hängt an einer Struktur, die erst entstehen muss.
 :::
+
+::: regie
+### Notiz
+Kapitel 9 zeigt die Ergebnisobjekte; ihr Wert liegt im Zusammenhang: Mandat, Freigabe, Entscheidungs-ID, Datenstand, Nachweis, Beschlusslage. Im Termin trägt die Tafel der Freigaben LPH 0–9 (9.3) mit ihren Kernfragen: Der Bauherr erteilt jede Freigabe selbst auf Vorlage der Bauherren-PL, der Lenkungskreis berät und bereitet vor. RACI (9.2) nicht als Werkzeug erklären, sondern die Kopplung an Mandate und Schwellen zeigen. Die Zuordnung der Freigaben zu den Leistungsphasen kann projektspezifisch angepasst werden – nicht als starr darstellen.
+
+### Leitfragen
+- Welche Kernfrage stand bei Ihrer letzten Freigabe zum Abschluss einer Leistungsphase im Raum?
+- Könnte ein Dritter nachvollziehen, auf welchem Datenstand Ihre letzte wesentliche Entscheidung getroffen wurde?
+- Was sagt Ihre RACI-Matrix heute über Schwellen und Stellvertretungen?
+:::

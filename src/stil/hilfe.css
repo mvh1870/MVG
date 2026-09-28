@@ -147,7 +147,7 @@
 
 /* Grafik vergrößern: Dialog über die ganze Fensterbreite (Beschriftungen der Anwendung sind klein) */
 .hilfe-grafik-knopf { align-self: flex-start; margin-top: var(--a-2); }
-.hilfe-grafik-dialog { width: min(96vw, 1500px); max-width: none; max-height: 94vh; padding: var(--a-4); border: 0; border-radius: var(--radius-l); background: var(--weiss); color: var(--tinte); box-shadow: var(--schatten-schwebend); }
+.hilfe-grafik-dialog { width: min(98vw, 1500px); max-width: none; max-height: 94vh; padding: var(--a-4); border: 0; border-radius: var(--radius-l); background: var(--weiss); color: var(--tinte); box-shadow: var(--schatten-schwebend); }
 .hilfe-grafik-dialog::backdrop { background: var(--navy-a42); }
 .hilfe-grafik-dialog-kopf { position: sticky; left: 0; display: flex; align-items: center; justify-content: space-between; gap: var(--a-3); margin-bottom: var(--a-3); }
 .hilfe-grafik-dialog-kopf .knopf { flex: none; white-space: nowrap; }

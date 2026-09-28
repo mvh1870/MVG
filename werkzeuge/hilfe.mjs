@@ -37,6 +37,13 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/Change Management/gu, 'Änderungsmanagement'],
   [/\s*Druckbar als PDF\./gu, ''],
   [/Mio\. EUR/gu, 'Mio. €'],
+  [/Re-Start/gu, 'MVG-Neuinitialisierung'],
+  [/Freigabe-Adherence/gu, 'Freigabetreue'],
+  [/\s*Berater bleibt als Sparringspartner verfügbar, ist aber nicht mehr operativ nötig\./gu, ''],
+  [/ — jetzt für /gu, ' — für '],
+  [/ · druckbares Freigabe-Dossier/gu, ''],
+  // O-1: keine Angebotsaussagen über Bauherr Mentoren (Preise, Lizenzen)
+  [/\s*Für Beratungskunden kostenfrei: kein separates Lizenzentgelt, unbegrenzte Nutzungsrechte auch nach Mandatsende\./gu, ''],
   [/(?<![-\w])LPH(\d)/gu, 'LPH $1'],
   [/\s*„?Drucken\/PDF“?( dieser Seite)? klappt alle Kapitel automatisch auf\.?/gu, ''],
   [/Durchsuchbar über die Hilfe-Volltextsuche im Hilfe-Hub/gu, 'Durchsuchbar über die Suche auf der Übersicht der Hilfe'],
@@ -153,6 +160,17 @@ export function ersetze(t) {
 function bereinige(wurzel, anker) {
   const dok = wurzel.ownerDocument;
   for (const el of [...wurzel.querySelectorAll(WEG)]) el.remove();
+  // O-1: Leistungszuschnitt der Beratung (Engagements mit Laufzeiten) – Abschnitt bis zum nächsten Trenner
+  for (const h of [...wurzel.querySelectorAll('h2')]) {
+    if (!/MVG-Lifecycle in der Beratungspraxis/u.test(h.textContent ?? '')) continue;
+    let x = h.nextElementSibling;
+    while (x !== null && !/^H[12]$/u.test(x.tagName) && !x.classList.contains('section-divider')) {
+      const weiter = x.nextElementSibling;
+      x.remove();
+      x = weiter;
+    }
+    h.remove();
+  }
   // Momentaufnahmen des exportierenden Browsers (Speicher-Audit, Sync-Status, localStorage-Belegung, Speicher-Modus)
   wurzel.querySelector('#bm102-sync')?.closest('.grid')?.remove();
   // Suchkarten der Anwendung (die Hilfe-Fläche hat eine eigene Suche) und „+ Tag“-Schalter
@@ -316,6 +334,35 @@ function bereinige(wurzel, anker) {
     while (x.firstChild) neu.appendChild(x.firstChild);
     x.replaceWith(neu);
   }
+  // Einzelner Aufklapper mit eigenen Überschriften, die nicht tiefer als die umgebende Überschrift liegen
+  // (eingebettetes Dossier): summary eine Ebene unter die Umgebung, der Inhalt gleichrangig darunter
+  const alleEl = [...wurzel.querySelectorAll('*')];
+  for (const d of [...wurzel.querySelectorAll('details')]) {
+    const s = d.querySelector(':scope > summary');
+    const innen = [...d.querySelectorAll('h2, h3, h4, h5, h6')].filter((x) => !s?.contains(x));
+    if (s === null || innen.length === 0 || s.querySelector('h1, h2, h3, h4, h5, h6') !== null) continue;
+    // Aufklapper-Reihen (Handbuch, Standards) regelt der nächste Schritt
+    if ([...(d.parentElement?.children ?? [])].filter((x) => x.matches('details')).length > 1) continue;
+    const m = Math.min(...innen.map((x) => Number(x.tagName[1])));
+    let umgebung = 1;
+    for (const x of alleEl) {
+      if (x === d) break;
+      if (/^H[1-6]$/u.test(x.tagName) && !d.contains(x)) umgebung = Number(x.tagName[1]);
+    }
+    if (m > umgebung) continue;
+    const ziel = Math.min(6, umgebung + 1);
+    const schub = ziel + 1 - m;
+    for (const x of innen) {
+      const neu = dok.createElement(`h${Math.min(6, Number(x.tagName[1]) + schub)}`);
+      for (const at of [...x.attributes]) neu.setAttribute(at.name, at.value);
+      while (x.firstChild) neu.appendChild(x.firstChild);
+      x.replaceWith(neu);
+    }
+    const titel = dok.createElement(`h${ziel}`);
+    titel.className = 'summary-titel';
+    while (s.firstChild) titel.appendChild(s.firstChild);
+    s.appendChild(titel);
+  }
   // Abschnitte als Aufklapper (Handbuch, Standards): der Titel im summary wird Überschrift, eine Ebene über
   // der obersten Überschrift im Abschnitt – sonst hingen alle Unterüberschriften unter „Inhaltsverzeichnis“
   for (const d of [...wurzel.querySelectorAll('details')]) {
@@ -325,6 +372,18 @@ function bereinige(wurzel, anker) {
     const oben = Math.min(...innen.map((x) => Number(x.tagName[1])));
     if (oben <= 2) continue;
     const titel = dok.createElement(`h${oben - 1}`);
+    titel.className = 'summary-titel';
+    while (s.firstChild) titel.appendChild(s.firstChild);
+    if (titel.firstChild !== null && titel.firstChild.nodeType === 3) titel.firstChild.textContent = (titel.firstChild.textContent ?? '').replace(/^\s*\d+\s*-\s*/u, '');
+    s.appendChild(titel);
+  }
+  // Geschwister in derselben Aufklapper-Reihe ohne eigene Unterüberschriften: dieselbe Ebene wie die Nachbarn
+  for (const d of [...wurzel.querySelectorAll('details')]) {
+    const s = d.querySelector(':scope > summary');
+    if (s === null || s.querySelector('h1, h2, h3, h4, h5, h6') !== null || d.parentElement === null) continue;
+    const nachbar = [...d.parentElement.children].map((x) => x.matches('details') ? x.querySelector(':scope > summary > .summary-titel') : null).find((x) => x !== null);
+    if (nachbar === undefined || nachbar === null) continue;
+    const titel = dok.createElement(nachbar.tagName.toLowerCase());
     titel.className = 'summary-titel';
     while (s.firstChild) titel.appendChild(s.firstChild);
     if (titel.firstChild !== null && titel.firstChild.nodeType === 3) titel.firstChild.textContent = (titel.firstChild.textContent ?? '').replace(/^\s*\d+\s*-\s*/u, '');
@@ -359,6 +418,9 @@ function letzteUeberschrift(/** @type {Element} */ el) {
 function glaette(/** @type {string} */ html) {
   return html
     .replace(/&amp;amp;/gu, '&amp;')
+    .replace(/<b>Kein Lizenzmodell<\/b>, keine/gu, '<b>Keine</b>')
+    // O-1: Angebotsaussage über BM (im Quelltext mit Hervorhebung, daher auf dem HTML)
+    .replace(/\s*Für Beratungskunden (?:<b>)?kostenfrei(?:<\/b>)?: kein separates Lizenzentgelt, unbegrenzte Nutzungsrechte auch nach Mandatsende\./gu, '')
     .replace(/(LPH (\d)\b(?:[^()<]|<[^>]*>){0,80}?)\s*\(LPH \2\)/gu, '$1')
     .replace(/\bLPH (\d)-(?=[A-ZÄÖÜ])/gu, 'LPH-$1-');
 }

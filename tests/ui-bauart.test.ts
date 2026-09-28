@@ -201,6 +201,15 @@ test('Hilfe (P13, O-31): gleiche Aufteilung wie die Companion-Hilfe, leiser Zuga
   assert.ok((handbuch.match(/<summary><h2 class="h-summary-titel">/gu) ?? []).length >= 6);
   assert.doesNotMatch(text, /Belegt gesamt|Speicher-Ebenen-Audit|Status noch nicht geprüft|Stufe 0 LPH/u);
   assert.match(text, /Freigabestufe 0 LPH 0/u);
+  // Prüfrunde 8: alle Abschnitte der Reihe als Überschrift, ohne sichtbare Nummer; keine Angebotsaussage (O-1)
+  assert.doesNotMatch(handbuch, /<summary>\d+ - /u);
+  assert.equal((handbuch.match(/class="h-summary-titel"/gu) ?? []).length, 17, '16 Abschnitte des Inhaltsverzeichnisses und das Terminmodell');
+  const standards = HILFE.kapitel.find((k) => k.id === 'standards')?.html ?? '';
+  assert.equal((standards.match(/class="h-summary-titel"/gu) ?? []).length, 7, 'alle 7 Abschnitte der Standards');
+  assert.doesNotMatch(text, /Lizenzentgelt|Lizenzmodell|Beratungspraxis|Sparringspartner|Re-Start|Freigabe-Adherence/u);
+  // Prüfrunde 9: eingebettetes Dossier unter seinem Abschnitt (keine h2 im Aufklapper)
+  const dm = HILFE.kapitel.find((k) => k.id === 'datenmanagement')?.html ?? '';
+  assert.doesNotMatch(dm.slice(dm.indexOf('IT-/Datenschutz-Dossier</h')), /<h2>Kurzfreigabe/u);
   assert.equal(baueHilfe({ seite: 'gibt-es-nicht', version: VERSION }).querySelector('[data-pruef="hilfe-uebersicht"]') !== null, true);
 });
 

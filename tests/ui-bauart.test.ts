@@ -221,6 +221,8 @@ test('Hilfe (P13, O-31): gleiche Aufteilung wie die Companion-Hilfe, leiser Zuga
   // Prüfrunde 13: Freigabe-Zeitpunkte auch in Vorbereitung, Meilenstein und Zeitachse
   assert.doesNotMatch(text, /Vorbereitung LPH \d|LPH \d Freigabe|Freigabe-Zeitachse: LPH|fließen aus/u);
   assert.match(text, /Vorbereitung Freigabe LPH 2/u);
+  assert.match(text, /Freigaben LPH 0–9 als Stationen/u);
+  assert.doesNotMatch(text, /LPH-0-Vorlage/u);
   assert.equal(baueHilfe({ seite: 'gibt-es-nicht', version: VERSION }).querySelector('[data-pruef="hilfe-uebersicht"]') !== null, true);
 });
 

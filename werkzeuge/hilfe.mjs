@@ -31,7 +31,9 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/\bvor G(\d)\b/gu, 'vor Freigabe LPH $1'],
   [/\bVorbereitung G(\d)\b/gu, 'Vorbereitung Freigabe LPH $1'],
   [/\bG(\d) Freigabe\b/gu, 'Freigabe LPH $1'],
-  [/Freigabe-Zeitachse: G0–G9/gu, 'Freigabe-Zeitachse: Freigaben LPH 0–9'],
+  // im Quelltext „<b>Freigabe-Zeitachse:</b> G0–G9 als Stationen“: eigener Textknoten
+  [/^\s*G0–G9 als Stationen/gu, ' Freigaben LPH 0–9 als Stationen'],
+  [/\bG(\d)-Vorlage/gu, 'Vorlage Freigabe LPH $1'],
   [/— MVG-Leitprinzip/gu, '— Leitprinzip der Anwendung'],
   [/Erstes Managementbericht/gu, 'Erster Managementbericht'],
   [/Gremientaugliches Managementbericht/gu, 'Gremientauglicher Managementbericht'],

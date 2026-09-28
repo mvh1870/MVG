@@ -70,8 +70,8 @@ v3_final oder v3_final_NEU??
 ::: schritt lage
 ---
 art: lage
-titel: Was Sie wissen, und was nicht
-kurz: Was Sie wissen
+titel: Was feststeht, und was offen ist
+kurz: Lagebild
 knopf: Jetzt entscheiden
 ---
 ::: datei
@@ -110,10 +110,10 @@ dauer: Zwei Wochen später
 status:
   terminrisiko: hoch
 loest:
-  ursache: jetzt bekannt
+  ursache: jetzt geklärt
   nachtragsrisiko: Nachtrag TGA angekündigt
 bleibt:
-  terminwirkung: bleibt unbekannt
+  terminwirkung: bleibt offen
 ---
 Terminrisiko steigt auf hoch.
 

@@ -82,8 +82,8 @@ kurz: Rückbezug
 ::: schritt lage
 ---
 art: lage
-titel: Was Sie wissen, und was nicht
-kurz: Was Sie wissen
+titel: Was feststeht, und was offen ist
+kurz: Lagebild
 knopf: Jetzt entscheiden
 ---
 ::: bekannt
@@ -95,7 +95,7 @@ knopf: Jetzt entscheiden
 ::: unbekannt
 - Welche Frage der Ausschuss beantworten soll {#frage}
 - Wer über die Auflagen-Mehrkosten entscheidet {#zustaendigkeit}
-- Ob die Prognose der Projektsteuerung die Auflagen enthält {#auflagen}
+- Ob beide Prognosen die Auflagen gleich berücksichtigen {#auflagen}
 - Welche Kostenzahl gilt {#kostenzahl}
 :::
 
@@ -107,7 +107,7 @@ dauer: Eine Woche später
 status:
   kostenunsicherheit: +1 (Auflagen nur in einer Prognose)
 loest:
-  auflagen: nur in der Prognose der Projektsteuerung
+  auflagen: nicht abgeglichen – die Auflagen stecken nur in einer der beiden Zahlen
 bleibt:
   frage: bleibt offen
   zustaendigkeit: bleibt ungeklärt
@@ -116,7 +116,7 @@ bleibt:
 Kostenunsicherheit steigt.
 
 ### Neu bekannt
-Holger Stein hat die Auflagen in die Prognose der Projektsteuerung eingetragen; die CTC des Controllings rechnet ohne sie, abgeglichen hat beides niemand. Wer bis September was vorlegt, steht in der Niederschrift nicht.
+Die Auflagen stehen nur in einer der beiden Kostenprognosen – in der der Projektsteuerung; die CTC des Controllings rechnet ohne sie. Abgeglichen hat beides niemand. Wer bis September was vorlegt, steht in der Niederschrift nicht.
 :::
 :::
 

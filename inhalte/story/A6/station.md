@@ -85,8 +85,8 @@ kurz: Rückbezug
 ::: schritt lage
 ---
 art: lage
-titel: Was Sie wissen, und was nicht
-kurz: Was Sie wissen
+titel: Was feststeht, und was offen ist
+kurz: Lagebild
 knopf: Jetzt entscheiden
 ---
 ::: bekannt
@@ -96,7 +96,7 @@ knopf: Jetzt entscheiden
 ::: unbekannt
 - Annahmen in „Prognose_Nov_v5“ {#annahmen}
 - Geltende Kostenzahl {#kostenzahl}
-- Wer freigibt, worauf {#freigabe}
+- Wem die Freigabe vorgelegt wird, und worauf {#freigabe}
 - Wer Holger Stein vertritt {#vertretung}
 :::
 

@@ -78,8 +78,8 @@ farbe: lila
 ::: schritt lage
 ---
 art: lage
-titel: Was Sie wissen, und was nicht
-kurz: Was Sie wissen
+titel: Was feststeht, und was offen ist
+kurz: Lagebild
 knopf: Jetzt entscheiden
 ---
 ::: datei
@@ -100,7 +100,7 @@ wert: Förderfrist Schuljahr 2028/29
 ::: unbekannt
 - Ob die Förderfrist hält {#terminwirkung}
 - Wirkung der Mensa {#mensa-wirkung}
-- Ob die Zusage gilt {#zusage}
+- Ob der Satz im Flur bindet {#zusage}
 - Wer über die Mensa entscheidet {#zustaendigkeit}
 :::
 
@@ -112,7 +112,7 @@ dauer: Zwei Wochen später
 status:
   terminrisiko: +1
 loest:
-  zusage: Absichtserklärung oder Zusage – je nachdem, wen man fragt
+  zusage: beschlossen ist nichts – die Schulseite plant trotzdem damit
 bleibt:
   terminwirkung: bleibt unbewertet
   mensa-wirkung: bleibt unbewertet
@@ -121,7 +121,7 @@ bleibt:
 Terminrisiko steigt.
 
 ### Neu bekannt
-Der Satz im Flur gilt der einen Seite als Absichtserklärung, Sabine Roth als Zusage. Der Lenkungskreis am 17. März bespricht beides ohne Vorlage; die Förderfrist steht in keinem Terminplan.
+Beschlossen ist die Mensa nirgends; Sabine Roth und die Schulseite planen trotzdem mit ihr. Der Lenkungskreis am 17. März bespricht beides ohne Vorlage; die Förderfrist steht in keinem Terminplan.
 :::
 :::
 

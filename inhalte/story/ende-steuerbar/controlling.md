@@ -17,5 +17,5 @@ Im Dezember haben Sie ‚Neufestlegung vorschlagen‘ gewählt. Im März liegt d
 :::
 
 ::: rueckbezug ohne
-Im Dezember stand die Frage an, wie es weitergeht. Im März liegt die Liste der offenen Entscheidungen vor, die im Dezember für den Lenkungskreis gefehlt hat.
+Im Dezember stand die Frage an, wie es weitergeht. Im März liegt die Liste der offenen Entscheidungen vor, die im Dezember für den Lenkungskreis angefordert war.
 :::

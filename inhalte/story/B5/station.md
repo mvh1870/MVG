@@ -242,8 +242,8 @@ datenstand: Kostenprognose 2026-05 · Version 3 (verbindlich) · Nachtrag zu PRB
 ::: schritt lage
 ---
 art: lage
-titel: Was Sie wissen, und was nicht
-kurz: Was Sie wissen
+titel: Was feststeht, und was offen ist
+kurz: Lagebild
 knopf: Jetzt entscheiden
 ---
 ::: datei

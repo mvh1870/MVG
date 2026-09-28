@@ -23,7 +23,7 @@ datum: Di, 16.03.2027
 von: petersen
 ---
 - Entscheidungsinventar: offene Entscheidungen mit Rolle, Frist und Stufe.
-- Mandate und Schwellen: von Dr. Olbers festgelegt; Stellvertretung geregelt.
+- Mandate und Schwellen: vom Bauherrn festgelegt; Stellvertretung geregelt.
 - Betriebshandbuch: Entwurf liegt vor; Übergabe beginnt.
 :::
 
@@ -103,7 +103,7 @@ Fünf der Ergebnisse, die eine MVG-Neuinitialisierung nach Kap. 11.3 liefert –
 
 | Ergebnis (Kap. 11.3) | In Lindenhall |
 |---|---|
-| Entscheidungsinventar | die Liste der offenen Entscheidungen für den Lenkungskreis im Dezember – jetzt mit Rolle, Frist und Stufe |
+| Entscheidungsinventar | die im Dezember für den Lenkungskreis angeforderte Liste der offenen Entscheidungen – jetzt mit Rolle, Frist und Stufe |
 | Datenstandsbereinigung | ein Stand für die nächsten Entscheidungen statt „Prognose_Nov_v5“ neben der CTC |
 | Nachholung und Wiederholung von Freigaben | geordnet; erteilen wird sie der Bauherr selbst |
 | Eskalationsplan | welche Entscheidung auf welcher Ebene fällt |

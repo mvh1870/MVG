@@ -30,7 +30,7 @@ datum: Do, 09.07.2026
 von: petersen
 ---
 - `AEN-031` Brandschutzauflagen Holzbau: Vorlage von Projektsteuerung und Planung.
-- Teilnahme: Frank Deppe (Vorsitz), Bauherren-PL, Aylin Kaya.
+- Teilnahme: Geschäftsführung (Vorsitz), Bauherren-PL, Controlling.
 - Beschlusslage → Managementbericht an den Bauausschuss (16.07.).
 :::
 
@@ -241,8 +241,8 @@ hervor: [3, 4, 5]
 ::: schritt lage
 ---
 art: lage
-titel: Was Sie wissen, und was nicht
-kurz: Was Sie wissen
+titel: Was feststeht, und was offen ist
+kurz: Lagebild
 knopf: Jetzt entscheiden
 ---
 ::: datei
@@ -262,7 +262,7 @@ wert: In Prüfung · Vorlage liegt vor
 
 ::: unbekannt
 - Wie sich die Planänderung auf den Termin auswirkt {#terminwirkung}
-- Wie belastbar die Kostenschätzung ist {#kosten}
+- Wie sich die Kostenschätzung erhärten lässt {#kosten}
 - Ob eine günstigere Ausführung der Auflagen genehmigungsfähig wäre {#variante}
 - Woher die Deckung kommt {#deckung}
 :::

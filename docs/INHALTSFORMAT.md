@@ -357,7 +357,7 @@ v3 oder v4??
 ::: schritt lage
 ---
 art: lage
-titel: Was Sie wissen, und was nicht
+titel: Was feststeht, und was offen ist
 ---
 ::: bekannt
 - Zwei [[Datenstand|Datenstände]]: +8 % und +5,9 %.

@@ -126,7 +126,7 @@ export function schrittPosition(schritte: readonly Schritt[], index: number): { 
   return { nr: 0, takt: 0, takte: 0, gruppe: null };
 }
 
-/** Zeile über dem Tafeltitel: „Schritt 2 · Was Sie wissen“ bzw. „Schritt 1 · 3/6 Mandat“. */
+/** Zeile über dem Tafeltitel: „Schritt 2 · Lagebild“ bzw. „Schritt 1 · 3/6 Mandat“. */
 export function kicker(schritte: readonly Schritt[], index: number): string {
   const s = schritte[index];
   if (s === undefined) return '';

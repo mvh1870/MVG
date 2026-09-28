@@ -85,8 +85,8 @@ kurz: Rückbezug
 ::: schritt lage
 ---
 art: lage
-titel: Was Sie wissen, und was nicht
-kurz: Was Sie wissen
+titel: Was feststeht, und was offen ist
+kurz: Lagebild
 knopf: Jetzt entscheiden
 ---
 ::: bekannt
@@ -97,7 +97,7 @@ knopf: Jetzt entscheiden
 ::: unbekannt
 - Was von der Reserve bleibt {#rest}
 - Wer die Posten zugeordnet hat {#veranlasst}
-- Wie hoch der Mensa-Nachtrag wird {#mensa}
+- Ob der angekündigte Mensa-Nachtrag in einer Prognose steht {#mensa}
 - Wer über die Reserve entscheidet {#zustaendigkeit}
 :::
 
@@ -110,7 +110,7 @@ status:
   terminrisiko: +1 (Lenkungskreis ohne Vorlage verstrichen)
 loest:
   veranlasst: verteilt auf Jour fixe, Mails und eine Zusage – eine Freigabe ist nicht darunter
-  mensa: Nachtrag liegt vor, in keiner Prognose
+  mensa: angekündigt, in keiner Prognose
 bleibt:
   rest: zwei Rechnungen, zwei Antworten
   zustaendigkeit: bleibt ungeklärt
@@ -118,7 +118,7 @@ bleibt:
 Terminrisiko steigt.
 
 ### Neu bekannt
-Der Mensa-Nachtrag liegt vor, in keiner Prognose. Die Posten der Reserve gehen auf Jour-fixe-Punkte, Mails und die Mensa-Zusage zurück; eine Freigabe ist nicht darunter. Der Lenkungskreis am 15. September ist vorbei, ohne die Reserve auf der Tagesordnung.
+Der Mensa-Nachtrag ist angekündigt und steht in keiner Prognose. Die Posten der Reserve gehen auf Jour-fixe-Punkte, Mails und die Mensa-Zusage zurück; eine Freigabe ist nicht darunter. Der Lenkungskreis am 15. September ist vorbei, ohne die Reserve auf der Tagesordnung.
 :::
 :::
 

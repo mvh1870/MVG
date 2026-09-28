@@ -29,8 +29,8 @@ titel: Kick-off – Protokoll
 datum: Di, 16.12.2025
 von: petersen
 ---
-- Zielsystem mit Abwägungsregeln angelegt; die Zielpriorität legt Dr. Olbers noch fest.
-- Mandatsleiter (festgelegt von Dr. Olbers): Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium bis einschließlich 5 Mio. €, darüber Bauherr im Lenkungskreis.
+- Zielsystem mit Abwägungsregeln angelegt; die Zielpriorität legt der Bauherr noch fest.
+- Mandatsleiter (vom Bauherrn festgelegt): Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium bis einschließlich 5 Mio. €, darüber Bauherr im Lenkungskreis.
 - Register mit Rolle und Turnus; dienstags Risikosichtung.
 :::
 
@@ -212,8 +212,8 @@ form: karten
 ::: schritt lage
 ---
 art: lage
-titel: Was Sie wissen, und was nicht
-kurz: Was Sie wissen
+titel: Was feststeht, und was offen ist
+kurz: Lagebild
 knopf: Jetzt entscheiden
 ---
 ::: datei

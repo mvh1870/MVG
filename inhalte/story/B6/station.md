@@ -214,8 +214,8 @@ datenstand: Kostenprognose 2026-10 · Version 4 (verbindlich)
 ::: schritt lage
 ---
 art: lage
-titel: Was Sie wissen, und was nicht
-kurz: Was Sie wissen
+titel: Was feststeht, und was offen ist
+kurz: Lagebild
 knopf: Jetzt entscheiden
 ---
 ::: datei
@@ -233,7 +233,7 @@ wert: Status in Vorbereitung · Ergebnis offen
 
 ::: unbekannt
 - Ob offene Punkte der Generalplanung den Abschluss hindern {#offene-punkte}
-- Ob der Datenstand bestätigt ist {#datenstand}
+- Ob der Datenstand abgeglichen und bestätigt wird {#datenstand}
 - Ob die Stellvertretung die Prognose weiterführt {#stellvertretung}
 - Welche Risiken der Bauherr mit der Freigabe annimmt {#risiken}
 :::

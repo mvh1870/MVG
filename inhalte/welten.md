@@ -109,7 +109,7 @@ stationen: [A4, B4, A6, B6]
 Im Juli liegen die Brandschutzauflagen vor, grob 0,4 Mio. €; welches Gremium über sie entscheidet, ist offen. Der Bauausschuss bekommt keine Vorlage und vertagt – mit der Sommerpause bis September. Wem die Freigabe zum Abschluss von LPH 5 vorgelegt wird, bleibt im November im Jour fixe offen.
 
 ### Welt B
-Über die Brandschutzauflagen `AEN-031` entscheidet das Änderungsgremium auf Vorlage, im Rahmen seines Mandats. Die Freigabe zum Abschluss von LPH 5 erteilt Dr. Olbers selbst auf Vorlage der Bauherren-PL; der Lenkungskreis berät am 17. November.
+Über die Brandschutzauflagen `AEN-031` entscheidet das Änderungsgremium auf Vorlage, im Rahmen seines Mandats. Die Freigabe zum Abschluss von LPH 5 erteilt der Bauherr selbst auf Vorlage der Bauherren-PL; der Lenkungskreis berät am 17. November.
 
 ::: zitat k6.4.5-t1
 Bauherr – er erteilt jede Freigabe selbst auf Vorlage der Bauherren-PL; der Lenkungskreis berät und bereitet vor

@@ -74,9 +74,9 @@ rechts: Der Nutzen von MVG
 ::: ansicht links
 Öffentliche Bauherren stehen häufig unter hoher Komplexität in drei Richtungen:
 
-- **Nachweis:** Entscheidungen müssen nachvollziehbar und prüfbar sein.
-- **Gremien:** Entscheidungen müssen beschlussfähig sein.
-- **Vergabe:** Die Vergabe muss an die Entscheidungen angebunden sein.
+- **Nachweis**
+- **Gremien**
+- **Vergabe**
 
 Entscheidungen müssen nicht nur sachlich plausibel, sondern auch nachvollziehbar, prüfbar und beschlussfähig sein.
 :::
@@ -275,10 +275,10 @@ form: register
 ::: sortieren
 ---
 titel: Welches Werkzeug gehört zu welchem Problem?
-links: Änderungsantrag mit unvollständiger Auswirkungsbewertung
-rechts: Gremienbeschluss ohne Mandatsklarheit
+links: Änderungsantrag
+rechts: Gremienbeschluss
 ---
-Ordnen Sie jedes Werkzeug einem der beiden Probleme zu.
+Ordnen Sie jedes Werkzeug einem der beiden Probleme zu: Änderungsantrag mit unvollständiger Auswirkungsbewertung oder Gremienbeschluss ohne Mandatsklarheit.
 
 ::: posten 1
 ---

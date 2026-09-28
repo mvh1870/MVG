@@ -4,7 +4,7 @@
 # Belege Einleitung/Kernaussage: k1-p1, k1-p2, k1.1-p1
 # Belege k1.1: k1-p1, k1.1-p1 (Sortierübung: Analyse, Koordination, Dokumentation delegierbar; Zielpriorisierung, Mandat, Freigabe, Risikoannahme, Nachweisfähigkeit nicht)
 # Belege k1.2: k1.2-l1 (fünf Aussagen, Kette Zielsystem–Mandat–Datenstand–Risiko–Freigabe–Nachweis), k1-p2, k1.3-p1, k1.3-t1 (Datenstand, Freigabeweg je Entscheidungs-ID)
-# Belege k1.3: k1.3-p1, k1.3-t1, k1-p2, k1-p3, k1.2-l1 (Befähigung nach Übergabe)
+# Belege k1.3: k1.3-p1, k1.3-t1, k1-p2, k1-p3, k1.2-l1 (Befähigung nach Übergabe), k9.3-p2 (Übergabe des Modells ist Befähigungsschritt, keine Freigabe)
 kapitel: 1
 titel: Kurzfassung
 kurztitel: Kurzfassung
@@ -24,7 +24,7 @@ Große Bauvorhaben kommen ohne Fachleute nicht aus. Planer rechnen Varianten dur
 
 Etwas anderes ist die Legitimation. Wenn ein Ziel Vorrang bekommt, ein Risiko bewusst in Kauf genommen oder eine [[Freigabe]] erteilt wird, braucht es jemanden, der dafür einsteht. Das kann nur der Bauherr sein. Die beste Vorlage der Projektsteuerung ändert daran nichts: Sie bereitet die Entscheidung vor, sie ersetzt sie nicht.
 
-Woran erkennen Sie die Grenze im Projekt? Analyse, Vorbereitung, Koordination und Dokumentation können andere übernehmen. Ziel, Mandat, wesentliche Entscheidung, Risikoannahme, Freigabe und Nachweis muss der Bauherr selbst legitimieren. Auch die Nachweisfähigkeit gehört dazu: Das Protokoll darf ein Dritter schreiben, dass die Beschlusslage belastbar bleibt, verantwortet der Bauherr. MVG soll diese Verantwortung praktisch handhabbar machen.
+Woran erkennen Sie die Grenze im Projekt? Analyse, Vorbereitung, Koordination und Dokumentation können andere übernehmen. Ziel, Mandat, wesentliche Entscheidung, Risikoannahme, Freigabe und Nachweis muss der Bauherr selbst legitimieren. Beim Nachweis heißt das: Das Protokoll darf ein Dritter schreiben, dass die Beschlusslage belastbar bleibt, verantwortet der Bauherr. MVG soll diese Verantwortung praktisch handhabbar machen.
 
 ::: zitat k1.1-p1
 Bauherren können Arbeit, Analyse, Koordination und Dokumentation delegieren. Nicht delegierbar bleibt die Legitimation von Ziel, Mandat, wesentlicher Entscheidung, Risikoannahme, Freigabe und Nachweis. MVG macht diese Verantwortung praktisch handhabbar.
@@ -233,7 +233,7 @@ form: karten
 
 ::: umschalter
 ---
-titel: Wer macht was – vor und nach der Übergabe des Modells?
+titel: Wer macht was – während der Begleitung und nach der Übergabe des Modells?
 links: Während der Begleitung
 rechts: Nach der Übergabe des Modells
 ---

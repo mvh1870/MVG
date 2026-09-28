@@ -580,7 +580,7 @@ html:has(.lernseite) { scroll-padding-top: 72px; }
 .lw-posten-text { font-size: var(--gr-text); line-height: 1.45; }
 .lw-posten-text p { margin: 0; }
 .lw-posten-wahl { display: flex; gap: var(--a-1); max-width: 100%; }
-.lw-korb-knopf { min-height: 40px; min-width: 0; white-space: normal; overflow-wrap: anywhere; hyphens: auto; text-align: center; }
+.lw-korb-knopf { min-height: 40px; min-width: 0; white-space: normal; overflow-wrap: break-word; hyphens: auto; text-align: center; }
 .lw-posten-rueck { grid-column: 1 / -1; font-size: var(--gr-m); line-height: 1.45; color: var(--tinte-2); }
 .lw-posten-rueck:empty { display: none; }
 .lw-posten-rueck p { display: inline; margin: 0; }
@@ -613,7 +613,7 @@ html:has(.lernseite) { scroll-padding-top: 72px; }
   .lw-etappe-nr { width: 34px; height: 34px; }
   .lw-posten { grid-template-columns: minmax(0, 1fr); }
   .lw-posten-wahl > * { flex: 1 1 0; }
-  .lw-posten-wahl { min-width: 0; }
+  .lw-posten-wahl { min-width: 0; flex-direction: column; }
   .lw-regler-marke { display: none; }
   .lw-regler-marke.ist-aktiv { display: block; grid-column: 1 / -1; text-align: center; }
 }

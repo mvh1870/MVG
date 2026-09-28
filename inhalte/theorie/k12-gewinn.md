@@ -25,7 +25,7 @@ Man könnte den Nutzen von Governance an der Menge messen: an Registern, Vorlage
 
 MVG und der [[MVG Companion]] sollen dafür eine pragmatische Architektur schaffen. Sie bereitet Entscheidungen schneller vor, macht Mandate klarer, erhöht die Fähigkeit der Gremien, zu entscheiden, und führt Nachweise belastbarer. Die Tafel nennt fünf Gewinne und ihre Wirkung – von klareren Entscheidungen bis zu einer geringeren Zusatzlast, weil der Mindeststandard auf führungsrelevante Entscheidungen konzentriert bleibt.
 
-Das Schlussbild ordnet die Rollen: MVG ist als schlankes [[Bauherren-Führungsmodell]] gedacht, der MVG Companion als anwendungsnaher Beschleuniger. Zusammen sollen sie Bauherrenverantwortung nicht abstrakter machen, sondern praktischer – vorbereitet, mandatiert, nachvollziehbar und im Regelbetrieb nutzbar. Schalten Sie zwischen den beiden Rollen um.
+Das Schlussbild ordnet die Rollen: MVG ist als schlankes [[Bauherren-Führungsmodell]] gedacht, der MVG Companion als anwendungsnaher Beschleuniger. Zusammen sollen sie Bauherrenverantwortung nicht abstrakter machen, sondern praktischer – vorbereitet, mandatiert, nachvollziehbar und im Regelbetrieb nutzbar. Der Umschalter unter der Tafel stellt beide Rollen nebeneinander.
 
 ::: umschalter
 ---

@@ -7,3 +7,7 @@
   - schwer: die Rollenfrage erschien im Entscheidungsschritt nicht → jetzt über den Optionen (`entscheidungs-frage`, Test); alle 72 Rollenfragen auf ≤ 10 Wörter, bauherrenbezogen.
   - Dezernentin schreibt sich in der Rolle Bauherr nicht mehr selbst (Mails über Nora Petersen), „Gilt die Zahl des Ratsbeschlusses noch?“, Förderbescheid sichtbar in der Lage von A2 und bis A6 mitgeführt, „Schulverwaltung“, B4 „Ausschussreif“, Planer-Option in B1 als Zulieferung.
 - Lesezeit danach (alle Rollen): Hauptpfad 34,4–34,9 min, Express 14,7–15,0 min.
+
+## Runde 2 (P12.5)
+- **Story** (gf und controlling Hauptpfad, bauherr Express bis zum Epilog, 0 Konsolenfehler; 237 Rückbezüge, 19 `paar`-Texte geprüft): 9 Befunde (0 schwer, 1 mittel) – alle eingearbeitet: Schritt heißt „Entscheidung“ statt „Was tun Sie?“ (keine doppelte Frage), Rollenfragen in B1/B2/B5/B6/A6 passend zu Optionen und Freigabelogik, keine dritte Person in der Rolle Bauherr, „WG:“ bei weitergeleiteter Mail, Kap.-9-Satz in ende-auflagen wieder mit Aussage.
+- **Lernseiten** (104 Sortier-Posten, alle Regler/Etappen gegen den Originaltext; Browser 1280/400 px je Kapitel): 12 Befunde (0 schwer, 1 mittel) – alle eingearbeitet: Sortierknöpfe bei 400 px untereinander, Silbentrennung statt Bruch an beliebiger Stelle, kürzere Spalten in Kap. 10; Freigabefragen in Kap. 9 als Fragen; Grammatik und Bezüge in Kap. 1, 3, 6, 7, 8, 12.

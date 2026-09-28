@@ -400,7 +400,7 @@ Der aggregierte Gremienbericht – zur Information und Beschlussvorbereitung.
 
 ::: wissenscheck neue-fruehwarnung
 ### Frage
-Die Restkostenprognose (CTC) wird verletzt, zum Thema wird bereits ein Risiko geführt – was entsteht daraus?
+Es tritt eine CTC-Verletzung auf, zum Thema wird bereits ein Risiko geführt – was entsteht daraus?
 
 ### Erklärung
 Die Verletzung ist ein neues, unbewertetes Signal – keine Rückstufung des bestehenden Risikos.
@@ -584,7 +584,7 @@ Wöchentliche Risikosichtung im regelmäßigen Abstimmungstermin; offene Entsche
 ::: stufe 3
 ---
 titel: monatlich
-marke: Projektsteuerung · Bauherren-PL mit Änderungsgremium · Bauherren-PL, Controlling und PMO
+marke: drei Termine im Monatstakt
 ---
 Die Projektsteuerung prüft die Risiken formal und berichtet in den Managementbericht. Die Bauherren-PL und das Änderungsgremium bewerten und entscheiden Änderungen – monatlich, dazu anlassbezogene Sondersitzungen. Bauherren-PL, Controlling und PMO bearbeiten CTC und Prognose sowie den Managementbericht.
 :::

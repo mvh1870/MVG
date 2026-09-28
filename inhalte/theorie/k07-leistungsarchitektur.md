@@ -106,7 +106,7 @@ form: karten
 ---
 titel: MVG-Konzeption
 ---
-Die Konzeption übersetzt den Befund der Diagnose in ein konkretes [[Bauherren-Führungsmodell]]. Die Organisation braucht jetzt ein funktionsfähiges Mindestmodell. Sie definiert Zielsystem, Mandatsmodell, Leistungsphasen- und Freigabemodell, das System der Entscheidungs-IDs, die Datenstandslogik, die Eskalation, die Verknüpfung von Risiken, Änderungen und Maßnahmen sowie die Logik des [[Betriebshandbuch|Betriebshandbuchs]].
+Die Konzeption übersetzt den Befund der Diagnose in ein konkretes [[Bauherren-Führungsmodell]]. Die Organisation braucht jetzt ein funktionsfähiges Mindestmodell. Die Konzeption definiert Zielsystem, Mandatsmodell, Leistungsphasen- und Freigabemodell, das System der Entscheidungs-IDs, die Datenstandslogik, die Eskalation, die Verknüpfung von Risiken, Änderungen und Maßnahmen sowie die Logik des [[Betriebshandbuch|Betriebshandbuchs]].
 
 Die Arbeitsfragen sind handfest: Welche Freigaben sind für dieses Projekt verbindlich? Welche Entscheidungen sind wesentlich? Welche Schwellen gelten? Und welcher Datenstand muss bei welcher Entscheidung genannt werden?
 

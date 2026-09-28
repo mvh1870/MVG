@@ -242,7 +242,7 @@ Die Freigabe am Abschluss einer Leistungsphase gibt die nächste frei. Nach der 
 ---
 titel: Welche Frage die Freigabe am Ende jeder Leistungsphase stellt
 ---
-Die Freigabefragen in Kurzform; den Wortlaut zeigt die Tafel darunter. Die Zuordnung kann projektspezifisch angepasst werden.
+Die Freigabefragen je Leistungsphase; die Tafel darunter zeigt sie im Zusammenhang. Die Zuordnung kann projektspezifisch angepasst werden.
 
 ::: stufe lph0
 ---
@@ -305,7 +305,7 @@ Sind Leistungsverzeichnisse und Vergabeunterlagen vollständig, und ist die Verg
 titel: LPH 7
 marke: Vergabe
 ---
-Ist das Vergabeergebnis geprüft und im Budgetrahmen? Dann können Bauverträge geschlossen und Komponenten mit langer Lieferzeit gebunden werden.
+Ist das Vergabeergebnis geprüft und im Budgetrahmen – können Bauverträge geschlossen und Komponenten mit langer Lieferzeit gebunden werden?
 :::
 
 ::: stufe lph8

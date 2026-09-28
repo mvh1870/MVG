@@ -147,7 +147,7 @@ links: Vorgehensmodell
 rechts: 30/60/90-Tage-Logik
 ---
 ::: ansicht links
-**Der verbindliche Projektverlauf.** Einrichtung → Diagnose → Konzeption → Pilotierung → Befähigung → Regelbetrieb. Jeder Schritt bis zur Übergabe hat seine eigene Abnahme.
+**Der verbindliche Projektverlauf.** Einrichtung → Diagnose → Konzeption → Pilotierung → Befähigung → Regelbetrieb. Jeder Schritt bis einschließlich der Übergabe in den Regelbetrieb hat seine eigene Abnahme.
 :::
 
 ::: ansicht rechts

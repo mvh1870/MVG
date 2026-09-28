@@ -64,6 +64,18 @@ export async function lauf(seite, h) {
     if (s.id === 'mvg-vorgehensmodell' || s.id === 'standards') await h.bild(s.id);
   }
 
+  // Grafik vergrößern (Prüfrunde 3): Dialog öffnet, Beschriftung lesbar, Esc schließt
+  await seite.evaluate(() => { location.hash = '#hilfe/mvg-vorgehensmodell'; });
+  await h.erwarte('[data-pruef="grafik-gross"]');
+  await seite.locator('[data-pruef="grafik-gross"]').last().click();
+  await h.erwarte('dialog[open]');
+  const klein = await seite.evaluate(() => Math.min(...[...document.querySelectorAll('dialog[open] svg text')].map((t) => t.getBoundingClientRect().height)));
+  if (breite >= 1024 && klein < 11.5) h.befund(`Grafik vergrößert: Beschriftung nur ${klein.toFixed(1)} px hoch`);
+  await h.axe('grafik-dialog');
+  await seite.keyboard.press('Escape');
+  await h.warte(100);
+  if ((await seite.locator('dialog[open]').count()) !== 0) h.befund('Grafik-Dialog schließt nicht mit Esc');
+
   // Unterseiten des aktuellen Teils im Verzeichnis (gleiche Aufteilung wie die Quelle)
   const rollen = hilfe.kapitel.find((k) => k.unter.length > 0);
   if (rollen !== undefined) {

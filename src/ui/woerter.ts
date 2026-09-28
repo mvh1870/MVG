@@ -294,7 +294,9 @@ export const W = {
     zurueck: 'Zurück',
     weiter: 'Weiter',
     zurUebersicht: 'Zur Übersicht der Hilfe',
-    hinweis: 'Die Hilfe beschreibt die Anwendung MVG Companion. Begriffe folgen MVG (Leistungsphasen LPH 0–9); Kennungen und Feldnamen stehen wie in der Anwendung.',
+    grafikGross: 'Grafik vergrößern',
+    schliessen: 'Schließen',
+    hinweis: 'Die Hilfe beschreibt die Anwendung MVG Companion. Begriffe folgen MVG (Leistungsphasen LPH 0–9); Kennungen und Feldnamen stehen wie in der Anwendung. Maßgeblich für MVG bleibt die Theorie: Wo die Anwendung anders zuordnet – etwa Business Case und FID je eine Leistungsphase später –, gilt der MVG-Text.',
   },
   // Explore (P2.4 Rahmen; die Werkzeuge baut P8)
   explore: {

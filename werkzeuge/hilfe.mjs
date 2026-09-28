@@ -27,6 +27,12 @@ export const ZIEL = path.join('src', 'generiert', 'hilfe.json');
 export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   // Kennungen der Anwendung (GATE-NETZNORD-G2) bleiben: kein G nach Bindestrich, Punkt oder Wortzeichen
   [/post-G(\d)\b/gu, 'nach LPH $1'],
+  [/Freigabebesprechung – G0 bis G4/gu, 'Freigabebesprechung – Stufe 0 bis Stufe 4'],
+  [/G0–G9 entlang der Leistungsphasen \(LPH 0–9\)/gu, 'Freigaben entlang der Leistungsphasen LPH 0–9'],
+  [/Leistungsphase 0 \(Bedarfsplanung\) nach HOAI/gu, 'Leistungsphase 0 (Bedarfsplanung), den HOAI-Leistungsphasen vorgelagert'],
+  [/Ausfuehrungsplanung/gu, 'Ausführungsplanung'],
+  [/Uebergabe/gu, 'Übergabe'],
+  [/finales Readout/gu, 'finaler Managementbericht'],
   [/G3 \(Ausführungsplanung\)/gu, 'LPH 5 (Ausführungsplanung)'],
   [/G0–G9 entlang der Leistungsphasen \(LPH 0–8\)/gu, 'entlang der Leistungsphasen LPH 0–9'],
   [/(?<![-.\w])G(\d):\s*([^(\n<]+?)\s*\(LPH \1\)/gu, 'LPH $1: $2'],

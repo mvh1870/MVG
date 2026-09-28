@@ -126,6 +126,26 @@ function rollbereiche(wurzel: ParentNode): void {
   }
 }
 
+/**
+ * Breite Grafiken der Anwendung (viewBox ab 900) sind in der Lesespalte klein beschriftet: ein Knopf
+ * zeigt sie in einem Dialog über die ganze Fensterbreite (Esc oder „Schließen“ kehrt zurück).
+ */
+function grafikenVergroesserbar(wurzel: HTMLElement): void {
+  if (typeof HTMLDialogElement !== 'function') return;
+  for (const huelle of wurzel.querySelectorAll<HTMLElement>('.h-grafik-wrap')) {
+    const svg = huelle.querySelector('svg');
+    if (svg === null) continue;
+    const name = (huelle.getAttribute('aria-label') ?? '').replace(/^Grafik: /u, '');
+    const dialog = h('dialog', { class: 'hilfe-grafik-dialog', 'aria-label': name },
+      h('div', { class: 'hilfe-grafik-dialog-kopf' },
+        h('p', { class: 't-label' }, name),
+        h('button', { type: 'button', class: 'knopf knopf-still', onclick: () => dialog.close() }, W.hilfe.schliessen)),
+      svg.cloneNode(true));
+    const knopf = h('button', { type: 'button', class: 'knopf knopf-still hilfe-grafik-knopf', 'data-pruef': 'grafik-gross', onclick: () => dialog.showModal() }, sym('pfeilRechts'), W.hilfe.grafikGross);
+    huelle.after(knopf, dialog);
+  }
+}
+
 /** Volltextsuche über alle Hilfeseiten (ersetzt die Suchkarte der Anwendung). */
 function suche(hilfe: HilfeDaten): HTMLElement {
   const feld = h('input', { type: 'search', class: 'glossar-feld', id: 'hilfe-suche', 'data-pruef': 'hilfe-suche', autocomplete: 'off', spellcheck: 'false' }) as HTMLInputElement;
@@ -181,6 +201,7 @@ function seite(o: HilfeOptionen, hilfe: HilfeDaten, e: Eintrag, vor: Eintrag | n
       h('p', { class: 'kapitel-kicker' }, e.kapitel !== null ? `${W.hilfe.kapitelVon(e.nr)} · ${e.kapitel.titel}` : W.hilfe.kapitelVon(e.nr)),
       h('h1', { class: 'kapitel-titel', tabindex: -1 }, e.seite.titel)),
     h('p', { class: 'kapitel-vermerk' }, h('span', { class: 'vermerk-hell' }, sym('info'), W.ungeprueft)),
+    h('p', { class: 'hilfe-hinweis', 'data-pruef': 'hilfe-hinweis' }, W.hilfe.hinweis),
     h('div', { class: 'hilfe-inhalt', 'data-pruef': 'hilfe-inhalt' }, vonHtml(e.seite.html)),
     unter.length > 0 ? karten(unter.map((u, i) => ({ id: u.id, nr: `${e.nr}.${i + 1}`, titel: u.titel, zusatz: null })), 'hilfe-unterseiten') : null,
     blaettern(vor, nach),
@@ -202,6 +223,7 @@ export function baueHilfe(o: HilfeOptionen): HTMLElement {
     h('div', { class: 'lern-rahmen' },
       verzeichnis(hilfe, e?.seite.id ?? null),
       h('article', { class: 'lern-inhalt', 'data-pruef': e !== undefined ? 'hilfe-seite' : 'hilfe-uebersicht' }, teile)));
+  grafikenVergroesserbar(aussen);
   // gemessen, sobald gezeichnet, und neu bei jeder Größenänderung (Schriften, Fenster)
   if (typeof ResizeObserver === 'function') {
     const beobachter = new ResizeObserver(() => rollbereiche(aussen));

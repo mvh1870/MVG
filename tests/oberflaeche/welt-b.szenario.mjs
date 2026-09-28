@@ -86,6 +86,13 @@ async function rollenfrageB3(seite, h) {
   await h.warte(300);
   if ((await knoepfe.first().getAttribute('aria-pressed')) !== 'true') h.befund('B3 mandat: Antwort per Enter nicht als gewählt markiert');
   if (await seite.locator('[data-pruef="rueckmeldung"] .rueckmeldung').filter({ visible: true }).count() === 0) h.befund('B3 mandat: Rückmeldung fehlt nach der Antwort');
+  // Querverweis aus der Theorie bei gespeichertem Stand (P11.3 R3): die Tafel zeigt danach die Zielstation
+  await seite.evaluate(() => { location.hash = '#theorie/k2'; });
+  await h.klick('[data-pruef="querverweis-A3"]');
+  await h.warte(600);
+  const kicker = await seite.locator('.tafel-kicker').first().innerText();
+  const a3 = await seite.getByText('Montag, 11. Mai', { exact: false }).filter({ visible: true }).count();
+  if (a3 === 0 || (await seite.evaluate(() => location.hash)) !== '#story/A3') h.befund(`Querverweis A3 aus Kap. 2: Tafel zeigt „${kicker}“ bei ${await seite.evaluate(() => location.hash)}`);
   await seite.evaluate(() => localStorage.clear());
 }
 

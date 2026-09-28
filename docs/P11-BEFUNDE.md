@@ -50,9 +50,13 @@ Inhalt (Rollen GF und Projektsteuerung, Haupt- und Express-Pfad, alle vier am En
 - [x] T7 Szenario `theorie`: 120 Tabulatorschritte vor und zurück auf Kap. 8, kein Fokus unter der Kopfleiste (Gegenprobe ohne `scroll-padding` rot).
 
 ## P11.3 Korrekturschleife – Runde 3 (R3)
-Inhalt (bauherr Express, planung Hauptpfad, controlling Express, wechselnde Optionen, alle am Ende, 0 Konsolenfehler): 7 Befunde (0 schwer, 2 mittel). Technik: Bericht folgt.
+Inhalt (bauherr Express, planung Hauptpfad, controlling Express, wechselnde Optionen, alle am Ende, 0 Konsolenfehler): 7 Befunde (0 schwer, 2 mittel). Wegen mittlerer Befunde folgt Runde 4 (L-64).
 - [x] B3 Express-Karte: `AEN-012` „fürs Änderungsgremium“ (nicht die Frühwarnung).
 - [x] ende-auflagen (alle Rollen): „Getragen hat sie noch nicht;“.
 - [x] A6 „seit März offen“; A1 „Annahmen kippen schnell“ (k2.1-p1); Wirklichkeit „Entscheidungslogik“ (k11.2-p1), „ein 40-Seiten-Statusbericht“; B6-Chat „seine benannte Stellvertretung“.
 - [x] Wendepunkt Ebene 1 nach k3.3-p2 berichtigt: übertragbar sind Arbeit und Ausübung von Mandaten, nicht Festlegung des Mandats und Letztverantwortung.
 - [x] CI-Lauf 80 rot: Lesezeit-Szenario brach unter Last bei „#story“ ab – wartet jetzt bis 5 s auf die nächste bedienbare Szene (101fc2e).
+Technik R3 (Architektur, Barrierefreiheit, Tests): 5 Befunde (0 schwer, 2 mittel; einer älter als die Runde). Alle erledigt:
+- [x] Lesezeit ohne unsichtbaren (Deckkraft) und dekorativen `aria-hidden`-Text, gezählt nach Ende der Übergänge, Hauptpfad bis zum letzten Epilog-Schritt (L-65 Nachtrag).
+- [x] Permalink-/Querverweis-Sprung in die Story zeichnet die Zielstation (vorher blieb die alte Tafel stehen); Probe in `welt-b` (Kap. 2 → A3 bei gespeichertem B3-Stand), Gegenprobe mit altem Code rot.
+- [x] Unit-Tests: Ebenen-Ansage (leer beim Aufbau, „Ebene 2: …“ beim Wechsel, kein `aria-live` am Ort); B3-Antwort durch den Reducer.

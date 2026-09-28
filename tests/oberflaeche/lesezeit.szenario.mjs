@@ -83,11 +83,24 @@ async function spieleIn(seite, rolle, express) {
     // Textknoten statt Elementliste (P11.3): jeder sichtbare Text zählt, gebündelt je Block (nächster
     // nicht-inline Vorfahr); ausgenommen wie in L-61: Knöpfe, Tabellen, Grafiken, Screenreader-Texte,
     // zugeklappte Teile, Rahmen (Seitenleiste, Karte, Instrumente, Fußleiste)
+    // erst zählen, wenn Ein- und Ausblendungen fertig sind (die Deckkraft entscheidet mit, R3); endlose
+    // Animationen (Puls) ausgenommen, höchstens 1,5 s
+    await seite.evaluate(() => Promise.race([
+      Promise.all(document.getAnimations().filter((a) => a.effect?.getTiming().iterations !== Infinity).map((a) => a.finished.catch(() => null))),
+      new Promise((r) => { setTimeout(r, 1500); }),
+    ]));
     const teile = await seite.evaluate(() => {
       const wurzel = document.querySelector('main') ?? document.body;
       const aus = new Map();
       // sichtbarer Text unter aria-hidden (Vergleichskarten Welt A/B, Tagesmarken) zählt mit (P11.3 R2)
-      const ohne = 'aside,nav,.seitenleiste,[data-pruef=story-karte],[data-pruef=status],table,.instrumente,.fussleiste,button,details:not([open]) > :not(summary),[role=img],svg,.nur-sr,.kopf';
+      // dekorative Zeichen unter aria-hidden (Tastenkürzel, Marken, Nummern) zählen nicht
+      const ohne = 'aside,nav,.seitenleiste,[data-pruef=story-karte],[data-pruef=status],table,.instrumente,.fussleiste,button,details:not([open]) > :not(summary),[role=img],svg,.nur-sr,.kopf,.option-taste,.fragezeichen,.pruef-status,.nachweis-nr,.raci-marke';
+      // unsichtbar über die Deckkraft (z. B. die ausgeblendete Welt A im Vergleich, R3): Produkt entlang der Vorfahren
+      const deckkraft = (/** @type {Element} */ e) => {
+        let d = 1;
+        for (let x = /** @type {Element | null} */ (e); x !== null && d >= 0.05; x = x.parentElement) d *= Number(getComputedStyle(x).opacity);
+        return d;
+      };
       const gang = document.createTreeWalker(wurzel, NodeFilter.SHOW_TEXT);
       for (let n = gang.nextNode(); n !== null; n = gang.nextNode()) {
         const text = (n.textContent ?? '').replace(/\s+/gu, ' ').trim();
@@ -95,7 +108,7 @@ async function spieleIn(seite, rolle, express) {
         if (text === '' || el === null || el.closest(ohne) !== null) continue;
         const stil = getComputedStyle(el);
         if (el.offsetParent === null && stil.position !== 'fixed') continue;
-        if (stil.visibility === 'hidden' || stil.display === 'none') continue;
+        if (stil.visibility === 'hidden' || stil.display === 'none' || deckkraft(el) < 0.05) continue;
         let block = el;
         while (block !== wurzel && block.parentElement !== null && getComputedStyle(block).display.startsWith('inline')) block = block.parentElement;
         if (!aus.has(block)) aus.set(block, []);
@@ -123,7 +136,12 @@ async function spieleIn(seite, rolle, express) {
   // der Pfad muss wirklich am Ende angekommen sein (sonst wäre eine hängende Story „kurz“): Express am
   // Übergang von einem Ende in den Epilog, der Hauptpfad im Epilog mit gesperrtem „Weiter“
   const letzte = express ? vorEpilog : station;
-  const amEnde = express ? schluss === 'epilog' && vorEpilog.startsWith('ende-') : schluss === 'gesperrt' && station === 'epilog';
+  // Hauptpfad: zusätzlich der letzte Schritt des Epilogs (nicht ein Hängen mitten darin)
+  const letzterSchritt = await seite.evaluate(() => {
+    const s = document.querySelector('.fortschritt-schritt[aria-current="step"]');
+    return s !== null && s.nextElementSibling === null;
+  });
+  const amEnde = express ? schluss === 'epilog' && vorEpilog.startsWith('ende-') : schluss === 'gesperrt' && station === 'epilog' && letzterSchritt;
   const woerter = Object.values(jeStation).reduce((a, b) => a + b, 0);
   if (process.env['MVG_LESEZEIT_DUMP']) writeFileSync(`${process.env['MVG_LESEZEIT_DUMP']}-${rolle}${express ? '-express' : ''}.json`, JSON.stringify(dump));
   return { rolle, express, amEnde, letzte, schluss, woerter, klicks, minuten: Math.round((woerter / WPM + (klicks * SEK_JE_KLICK) / 60) * 10) / 10, jeStation };

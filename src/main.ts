@@ -105,6 +105,8 @@ function starteApp(wurzel: HTMLElement): void {
           ersetze(wurzel, story.element);
           story.setze(oeffentlich(sitzung.zustand()), null);
           window.scrollTo(0, 0);
+          // schon jetzt: sonst zeichnet das Abo den folgenden Permalink-Sprung nicht (P11.3 R3)
+          flaeche = 'story';
         }
         // Permalink #story/A3 (P2.4): springt zur Station, sobald eine Rolle gewählt ist; Welt B nur nach Freischaltung (Engine)
         if (r.station !== null && sitzung.zustand().rolle !== null) {

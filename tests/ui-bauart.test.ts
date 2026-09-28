@@ -121,6 +121,7 @@ after(() => dom.window.close());
 
 const { inhalte, regieFuer, regieKapitel } = await import('../src/inhalte/index.ts');
 const { anfangszustand, oeffentlich } = await import('../src/engine/zustand.ts');
+const { wende } = await import('../src/engine/aktionen.ts');
 const { erzeugeSitzung } = await import('../src/ui/sitzung.ts');
 const { erzeugeStory } = await import('../src/ui/flaechen/story.ts');
 const { baueStart } = await import('../src/ui/flaechen/start.ts');
@@ -1121,12 +1122,31 @@ test('B3 Mandat (P11.3): die Rollenfrage am Schritt „mandat“ wird gezeigt un
   // sichtbar ohne vorherige Antwort (R2: `.reife` ist ohne `ist-bereit` unsichtbar)
   assert.ok(knoepfe[0]?.closest('.reife')?.classList.contains('ist-bereit'), 'Rollenfrage bleibt verborgen');
   knoepfe[0]?.click();
-  const aktion = aktionen.at(-1) as { art: string, frage: string, antwort: string };
+  const aktion = aktionen.at(-1) as Parameters<typeof wende>[1];
   assert.equal(aktion.art, 'antworte');
-  const frage = b3.szenen['bauherr']?.fragen.find((f) => f.schritt === 'mandat');
-  assert.ok(frage);
-  story.setze(oeffentlich({ ...z, antworten: { [`B3/bauherr/${frage.id}`]: aktion.antwort } }), null);
+  // durch den Reducer: UI- und Engine-Schlüssel müssen zusammenpassen (R3)
+  story.setze(oeffentlich(wende(z, aktion, inhalte)), null);
   assert.equal(knoepfe[0]?.getAttribute('aria-pressed'), 'true');
   assert.ok(story.element.querySelector('[data-pruef="rueckmeldung"] .rueckmeldung'), 'Rückmeldung fehlt');
+  story.entferne();
+});
+
+test('Ebenen (P11.3 R2/R3): knappe Ansage „Ebene n: Titel“ nur beim Wechsel, kein aria-live am Ort', () => {
+  const b3 = inhalte.stationen['B3'];
+  assert.ok(b3);
+  const idx = b3.schritte.findIndex((s) => s.art === 'ebenen');
+  assert.ok(idx >= 0);
+  const a = anfangszustand();
+  const z = { ...a, bereich: 'story' as const, station: 'B3', schritt: idx, rolle: 'pl', verlauf: ['prolog', 'B3'], freigeschaltet: { ...a.freigeschaltet, weltB: true } };
+  const story = erzeugeStory({ inhalte, tue: null });
+  document.body.replaceChildren(story.element);
+  story.setze(oeffentlich(z), null);
+  const ansage = story.element.querySelector('[data-pruef="ebene-ansage"]');
+  assert.ok(ansage, 'Ansage fehlt');
+  assert.equal(ansage.textContent, '', 'beim Aufbau keine Ansage');
+  assert.equal(story.element.querySelector('.ebene-ort')?.getAttribute('aria-live') ?? null, null);
+  story.setze(oeffentlich({ ...z, ebene: 2 }), null);
+  const titel = b3.ebenen?.find((e) => e.nr === 2)?.titel ?? '';
+  assert.equal(ansage.textContent, `${W.ebene} 2: ${titel}`);
   story.entferne();
 });

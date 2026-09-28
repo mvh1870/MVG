@@ -167,7 +167,7 @@ Welt B: ein benannter Datenstand, eine benannte Stellvertretung, eine Vorlage mi
 titel: Die Freigabe im Leistungsphasenmodell
 kurz: Freigabe
 ---
-Die Freigabe am Abschluss von LPH 5 gibt LPH 6 frei.
+Die Freigabe LPH 5 gibt LPH 6 frei.
 
 ::: tafel k9.3-t1
 ---

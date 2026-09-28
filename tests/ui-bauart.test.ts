@@ -209,7 +209,11 @@ test('Hilfe (P13, O-31): gleiche Aufteilung wie die Companion-Hilfe, leiser Zuga
   assert.doesNotMatch(text, /Lizenzentgelt|Lizenzmodell|Beratungspraxis|Sparringspartner|Re-Start|Freigabe-Adherence/u);
   // Prüfrunde 9: eingebettetes Dossier unter seinem Abschnitt (keine h2 im Aufklapper)
   const dm = HILFE.kapitel.find((k) => k.id === 'datenmanagement')?.html ?? '';
-  assert.doesNotMatch(dm.slice(dm.indexOf('IT-/Datenschutz-Dossier</h')), /<h2>Kurzfreigabe/u);
+  // das Dossier steht in der Quelle auf Seitenebene (nach Abschnitt 6): Titel h2, Inhalt h3
+  assert.match(dm, /<h2 class="h-summary-titel">IT-\/Datenschutz-Dossier<\/h2>/u);
+  assert.match(dm, /<h3>Kurzfreigabe/u);
+  // Prüfrunde 10: keine Selbstdarstellung/Akquise (O-1), keine Verweise ohne Ziel, keine Instanz-Momentaufnahme
+  assert.doesNotMatch(text, /Über Bauherr Mentoren|Akquise|Print-Center →|Speicher-Modus dieser Instanz|Modul 1 oder 2|einen strukturierten MVG|Wie wir arbeiten/u);
   assert.equal(baueHilfe({ seite: 'gibt-es-nicht', version: VERSION }).querySelector('[data-pruef="hilfe-uebersicht"]') !== null, true);
 });
 

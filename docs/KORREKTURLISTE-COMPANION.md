@@ -32,3 +32,9 @@ Gefunden bei der Übernahme der Hilfe (P13, O-31, L-69). Die Hilfe in MVG intera
 | IT-/Datenschutz-Dossier | „Kein Lizenzmodell“ (in der Hilfe entfernt, O-1) | – | O-1 |
 | Vorgehensmodell · Strategische FAQ „ROI“ | „Ein verhindertes ‚Nicht freigeben‘ spart 3–6 Monate Zeit“ | Kennzahl nicht in V1.2 | – |
 | Vorgehensmodell · Erfolgs-KPIs | Audit-Coverage, Active Users, Process-/Outcome-/Adoption-KPIs | – (Wortlaut der Anwendung) | docs/BEGRIFFE.md |
+| Handbuch · „Über Bauherr Mentoren“, „Vorgehensmodell · Wann nutzen“ | Selbstdarstellung, Leistungsbild, „Argumentationsgrundlage in Akquise-Gesprächen“ (in der Hilfe entfernt, O-1) | keine Vertriebsinhalte | O-1 |
+| Standards, Kundenanpassung, Datenmanagement | Beratungsmodule (`CONS-<THEMA>`, `consultingModules`), Status „Beratung“ | – (Datenstruktur der Anwendung) | O-1 |
+| Vorgehensmodell | Sicht der Beratung („Wie wir arbeiten“ entfernt; „Regelbetrieb beim Kunden“, „Berater in Coaching-Rolle“) | – | O-1 |
+| Rolle Bauherr · Mandat | „Bis 5 Mio. € operative Freigaben“ | Mandatsschwellen projektbezogen | Kap. 4.2 |
+| Vorgehensmodell | Lenkungskreis monatlich, Änderungsgremium anlassbezogen; Freigabestufen 0 Vorplanung … 4 IBN | siehe oben | k6.4.2 |
+| Vorgehensmodell | Detail „Etappe 1“ ist ein ausgewählter Zustand des Zeitstrahls der Anwendung | – | – |

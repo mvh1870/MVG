@@ -37,7 +37,9 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/Change Management/gu, 'Änderungsmanagement'],
   [/\s*Druckbar als PDF\./gu, ''],
   [/Mio\. EUR/gu, 'Mio. €'],
+  [/einen strukturierten Re-Start/gu, 'eine strukturierte MVG-Neuinitialisierung'],
   [/Re-Start/gu, 'MVG-Neuinitialisierung'],
+  [/Wie wir arbeiten\. /gu, ''],
   [/Freigabe-Adherence/gu, 'Freigabetreue'],
   [/\s*Berater bleibt als Sparringspartner verfügbar, ist aber nicht mehr operativ nötig\./gu, ''],
   [/ — jetzt für /gu, ' — für '],
@@ -347,13 +349,14 @@ function bereinige(wurzel, anker) {
     let umgebung = 1;
     for (const x of alleEl) {
       if (x === d) break;
-      if (/^H[1-6]$/u.test(x.tagName) && !d.contains(x)) umgebung = Number(x.tagName[1]);
+      // nur Überschriften, deren Abschnitt den Aufklapper enthält (nicht aus geschlossenen Nachbarkarten)
+      if (/^H[1-6]$/u.test(x.tagName) && !d.contains(x) && x.parentElement?.contains(d)) umgebung = Number(x.tagName[1]);
     }
-    if (m > umgebung) continue;
-    const ziel = Math.min(6, umgebung + 1);
+    // Titel eine Ebene unter der Umgebung, Inhalt genau eine Ebene unter dem Titel
+    const ziel = Math.min(5, umgebung + 1);
     const schub = ziel + 1 - m;
     for (const x of innen) {
-      const neu = dok.createElement(`h${Math.min(6, Number(x.tagName[1]) + schub)}`);
+      const neu = dok.createElement(`h${Math.max(2, Math.min(6, Number(x.tagName[1]) + schub))}`);
       for (const at of [...x.attributes]) neu.setAttribute(at.name, at.value);
       while (x.firstChild) neu.appendChild(x.firstChild);
       x.replaceWith(neu);
@@ -393,6 +396,21 @@ function bereinige(wurzel, anker) {
   for (const sp of [...wurzel.querySelectorAll('nav ol > li > span')]) {
     if (sp.firstChild !== null && sp.firstChild.nodeType === 3) sp.firstChild.textContent = (sp.firstChild.textContent ?? '').replace(/^\s*\d+\s*-\s*/u, '');
   }
+  // O-1: Selbstdarstellung von BM (Eintrag „Über Bauherr Mentoren“) und Akquise-Hinweise
+  for (const h of [...wurzel.querySelectorAll('h3, h4')]) if (/^Über Bauherr Mentoren\b/u.test((h.textContent ?? '').trim())) h.parentElement?.remove();
+  for (const li of [...wurzel.querySelectorAll('li')]) if (/Akquise/u.test(li.textContent ?? '')) li.remove();
+  // Verweise der Anwendung ohne Ziel („Print-Center →“), Hinweise auf entfallene Ansichten, Schulungsmodule
+  for (const el of [...wurzel.querySelectorAll('span')]) {
+    const t = (el.textContent ?? '').trim();
+    if (t.endsWith('→') && t.length < 50 && el.querySelector('a') === null && el.closest('a') === null) {
+      const eltern = el.parentElement;
+      el.remove();
+      if (eltern !== null && eltern.children.length === 0 && (eltern.textContent ?? '').trim() === '') eltern.remove();
+    }
+  }
+  for (const el of [...wurzel.querySelectorAll('div, p')]) if (el.children.length < 6 && /^Diese Inhalte gibt es jetzt als eigene Ansicht/u.test((el.textContent ?? '').trim())) el.remove();
+  for (const el of [...wurzel.querySelectorAll('p')]) if (/^Aktueller Speicher-Modus dieser Instanz/u.test((el.textContent ?? '').trim())) el.remove();
+  for (const li of [...wurzel.querySelectorAll('li')]) if (/^Modul 1 oder 2 durcharbeiten/u.test((li.textContent ?? '').trim())) li.remove();
   // Hinweise auf den Druckknopf der Anwendung (hier gibt es ihn nicht)
   for (const li of [...wurzel.querySelectorAll('li')]) if (/Drucken\/PDF.*klappt alle Kapitel/u.test(li.textContent ?? '')) li.remove();
   // Text: Begriffe nach O-14/O-15/O-29

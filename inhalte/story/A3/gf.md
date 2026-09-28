@@ -1,7 +1,7 @@
 ---
 station: A3
 rolle: gf
-frage: Zwei Zahlen, der Lenkungskreis in acht Tagen, der Bauausschuss zwei Tage danach. Was tun Sie?
+frage: Zwei Zahlen, Lenkungskreis in acht Tagen. Was tun Sie?
 ---
 
 ::: option A

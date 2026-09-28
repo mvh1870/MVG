@@ -1,7 +1,7 @@
 ---
 station: B6
 rolle: planung
-frage: Der Bauherr entscheidet über den Abschluss von LPH 5. Was liefern Sie ihm?
+frage: Der Bauherr entscheidet über LPH 5. Was liefern Sie ihm?
 rueckbezug-auf: A6
 ---
 

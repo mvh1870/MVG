@@ -1,7 +1,7 @@
 ---
 station: A6
 rolle: gf
-frage: Dr. Olbers braucht bis Freitag eine Antwort für den Stadtrat, die Freigabe zum Abschluss von LPH 5 steht an. Was tun Sie?
+frage: Dr. Olbers braucht bis Freitag eine Antwort. Was tun Sie?
 rueckbezug-auf: A5
 ---
 

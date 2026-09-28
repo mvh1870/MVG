@@ -1,7 +1,7 @@
 ---
 station: A5
 rolle: planung
-frage: Der Bauherr muss klären, was gegen die Reserve läuft; Ihre Mensa-Umplanung hat keinen Auftrag. Was melden Sie?
+frage: Der Bauherr prüft die Reserve. Was melden Sie?
 rueckbezug-auf: A4
 ---
 

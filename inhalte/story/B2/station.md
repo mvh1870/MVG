@@ -47,17 +47,9 @@ von: roth
 betreff: Mensa für den Ganztag
 zeit: "11:09"
 ---
-Schulamt und Schulleitung: Der Ganztag braucht eine Mensa für rund 450 statt 300 Essen, laut Generalplanung grob 0,6 Mio. €. Herr Deppe sagte im Flur: „Machen wir.“ Ich nehme ihn beim Wort.
+Schulverwaltung und Schulleitung: Der Ganztag braucht eine Mensa für rund 450 statt 300 Essen, laut Generalplanung grob 0,6 Mio. €. Herr Deppe sagte im Flur: „Machen wir.“ Ich nehme ihn beim Wort.
 :::
 
-::: datei
----
-name: Änderungsregister · AEN-012 · Mensa für den Ganztag
-quelle: Bauherren-PL
-wert: Beantragt · Auswirkung offen
----
-Angelegt nach der Mail von Sabine Roth; grobe Schätzung der Generalplanung, noch ohne Termin- und Risikowirkung.
-:::
 :::
 
 ::: schritt vergleich

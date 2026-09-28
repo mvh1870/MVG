@@ -1,7 +1,7 @@
 ---
 station: A5
 rolle: ps
-frage: Der Bauherr muss der Kämmerei erklären, was gegen die Reserve läuft; freigegeben hat er nichts. Was liefern Sie?
+frage: Die Kämmerei fragt nach der Reserve. Was liefern Sie?
 rueckbezug-auf: A2
 ---
 

@@ -1,7 +1,7 @@
 ---
 station: B4
 rolle: gf
-frage: Sie leiten das Änderungsgremium. AEN-031 liegt mit Vorlage vor. Wie beschließt das Gremium?
+frage: Der Ausschuss tagt am 16. Wie beschließt Ihr Gremium AEN-031?
 rueckbezug-auf: A4
 ---
 

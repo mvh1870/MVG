@@ -1,7 +1,7 @@
 ---
 station: A2
 rolle: planung
-frage: Die Bauherren-PL fragt nach der Lieferzeit, die Schulseite will eine größere Mensa. Was tun Sie?
+frage: "Förderfrist, Lieferzeit, Mensa-Wunsch: Was tun Sie?"
 ---
 
 ::: option A

@@ -1,7 +1,7 @@
 ---
 station: A4
 rolle: controlling
-frage: Was liefern Sie für die nächste Sitzung des Bauausschusses zu?
+frage: Der Ausschuss hat vertagt. Was liefern Sie dem Bauherrn zu?
 rueckbezug-auf: A3
 ---
 

@@ -524,7 +524,7 @@ Welt B, Monat 5: Die Entscheidungsvorlage `ENT-017` zeigt entlang der Checkliste
 
 ::: querverweis B4
 ---
-text: "In der Story erlebt: B4 · Gremium-Szene"
+text: "In der Story erlebt: B4 · Ausschussreif"
 ---
 Welt B, Monat 7: Das Änderungsgremium entscheidet über `AEN-031` auf einer Vorlage mit Frage und Datenstand; der Managementbericht an den Bauausschuss trägt die Beschlusslage.
 :::

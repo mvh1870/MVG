@@ -1,7 +1,7 @@
 ---
 station: B1
 rolle: ps
-frage: Worauf richten Sie die Projektsteuerung in den ersten Wochen aus?
+frage: Die Kämmerei will bis Freitag eine Zahl. Was zuerst?
 rueckbezug-auf: A1
 ---
 

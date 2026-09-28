@@ -1,7 +1,7 @@
 ---
 station: B1
 rolle: pl
-frage: Worauf richten Sie die ersten Wochen aus?
+frage: "Frist der Kämmerei: Womit fangen Sie an?"
 rueckbezug-auf: A1
 ---
 

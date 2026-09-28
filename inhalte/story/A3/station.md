@@ -93,7 +93,7 @@ wert: +5,9 %
 ::: bekannt
 - Zwei Zahlen, kein geltender [[Datenstand]].
 - Beide ohne Einsatz der Risikoreserve (2,9 Mio. €).
-- Seit März offen: Mensa (grob 0,6 Mio. €), Holz-Lieferzeit 26 statt 16 Wochen.
+- Seit März offen: Mensa-Zusage (0,6 Mio. €), Lieferzeit Holz, Förderfrist.
 :::
 
 ::: unbekannt

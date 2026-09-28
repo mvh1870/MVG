@@ -295,7 +295,9 @@ function entscheidung(k: SzenenKontext): Szene {
   const ent = entscheidungVon(k);
   if (ent === null) return generisch(k);
   const opt = optionen(k, ent, true);
-  return szene(h('div', { class: 'stapel entscheidung' }, kurzlage(k), opt.element, optionsHinweis(ent)), (z) => opt.setze(z));
+  // die Frage an die gespielte Rolle (O-28: wie reagiert sie auf das Bauherrenproblem?)
+  const frage = ent.frage.trim() !== '' ? h('p', { class: 'entscheidungs-frage', 'data-pruef': 'entscheidungs-frage' }, ent.frage) : null;
+  return szene(h('div', { class: 'stapel entscheidung' }, frage, kurzlage(k), opt.element, optionsHinweis(ent)), (z) => opt.setze(z));
 }
 
 /* --------------------------------------------------------------- Konsequenz -- */

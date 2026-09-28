@@ -1,7 +1,7 @@
 ---
 station: B5
 rolle: pl
-frage: Wie bringen Sie PRB-004 zur Entscheidung?
+frage: Wie bringen Sie PRB-004 zu Dr. Olbers?
 rueckbezug-auf: A5
 ---
 
@@ -16,7 +16,7 @@ status:
 Sie legen Dr. Olbers die Vorlage vor; über den Einsatz entscheidet sie. Datum, Betrag und Datenstand stehen im Entscheidungsregister.
 
 ### Was fehlt
-Ein Blick darauf, wie viel Reserve danach bleibt.
+Wie viel Reserve danach bleibt.
 
 ### Neues Risiko
 Spätere Risiken treffen auf einen kleineren Puffer.

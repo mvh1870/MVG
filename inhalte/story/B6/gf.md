@@ -1,7 +1,7 @@
 ---
 station: B6
 rolle: gf
-frage: Die Vorlage zur Freigabe LPH 5 kommt am 17. November in den Lenkungskreis. Was empfehlen Sie dem Bauherrn?
+frage: "Freigabe LPH 5 im Lenkungskreis: Was empfehlen Sie dem Bauherrn?"
 rueckbezug-auf: A6
 ---
 

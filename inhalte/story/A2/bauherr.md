@@ -1,7 +1,7 @@
 ---
 station: A2
 rolle: bauherr
-frage: Sabine Roth ruft Sie an – die größere Mensa sei doch zugesagt. Was tun Sie?
+frage: "Sabine Roth: Die Mensa sei doch zugesagt. Was tun Sie?"
 ---
 
 ::: option A

@@ -657,7 +657,7 @@ Welt B, Monat 5, derselbe Montag: `ENT-017` steht im Governance-Fluss bei „Ent
 
 ::: querverweis B4
 ---
-text: "In der Story erlebt: B4 · Gremium-Szene"
+text: "In der Story erlebt: B4 · Ausschussreif"
 ---
 Welt B, Monat 7: Was das Änderungsgremium zu `AEN-031` beschließt, steht im Protokoll und im Änderungsregister; der Managementbericht sammelt es für den Bauausschuss.
 :::

@@ -1,7 +1,7 @@
 ---
 station: B6
 rolle: ps
-frage: Die Freigabe zum Abschluss von LPH 5 steht an, Holger Stein fällt aus. Was liefern Sie zu?
+frage: Stein fällt aus, Freigabe LPH 5 naht. Was liefern Sie?
 rueckbezug-auf: A6
 ---
 

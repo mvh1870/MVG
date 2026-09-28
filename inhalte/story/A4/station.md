@@ -242,7 +242,7 @@ figur: brenner
 ---
 figur: hoffmeister
 ---
-„Die Auflagen hat der Bauherr bekommen, die Kosten schätze ich. Einplanen oder warten muss er entscheiden.“
+„Die Auflagen hat der Bauherr bekommen, die Kosten schätze ich. Ob einplanen oder warten, entscheidet er.“
 :::
 
 ::: standpunkt controlling

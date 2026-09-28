@@ -129,7 +129,7 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P12.2 · Lernseiten: Originaltext ans Seitenende, immer zugeklappt (O-30)
 - [x] P12.3 · Lernseiten neu aufbereiten (O-30): je Kapitel Inhalt erklärt statt zitiert, kleine interaktive Grafiken, ausführlicher; Fachtreue-Prüfung je Kapitelgruppe
 - [x] P12.4 · Story aus Bauherrensicht (O-28): Fall-Bibel und Drehbuch auf Bauherrenprobleme umstellen, Stationen A1–A6/B1–B6 neu besetzen, Rollen reagieren auf das Bauherrenproblem; Lesezeit hält O-5
-- [ ] P12.5 · Prüf-Agenten P12 (alle Rollen) + Korrekturschleife; Übergabe
+- [~] P12.5 · Prüf-Agenten P12 (alle Rollen) + Korrekturschleife; Übergabe
 
 ## Erledigt
 (noch nichts)

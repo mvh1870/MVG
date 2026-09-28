@@ -29,13 +29,13 @@ Montag, 9. November. Die Freigabe LPH 5 ist in Vorbereitung; Holger Stein fällt
 
 ::: mail
 ---
-von: olbers
+von: petersen
 betreff: "WG: Anfrage einer Fraktion"
 zeit: "07:38"
 ---
-Eine Fraktion fragt mich nach Kosten und Termin. Antwort bis Freitag, 13. November.
+Fraktion fragt nach Kosten und Termin; Antwort bis Fr., 13. November.
 
-Ich antworte aus dem Managementbericht Oktober. Wer arbeitet zu?
+Dr. Olbers antwortet aus dem Managementbericht Oktober. Wer arbeitet zu?
 :::
 
 ::: chat
@@ -128,12 +128,12 @@ Vorlage mit Kernfrage · der Bauherr erteilt
 ::: paar
 ---
 a: mail
-von: olbers
+von: petersen
 b: bericht
 fluss: managementbericht
 ---
 ### Welt A
-Welche Zahl kann ich vertreten?
+Welche Zahl kann Dr. Olbers vertreten?
 
 ### Welt B
 Managementbericht Oktober · benannter Datenstand
@@ -201,7 +201,7 @@ datenstand: Kostenprognose 2026-10 · Version 4 (verbindlich)
 - [ ] Wirkung auf Kosten, Termin, Qualität, Projektumfang, Risiko und ESG/LCC · Risikolage offen
 - [ ] Empfehlung
 - [x] Freigabe- oder Eskalationsweg · Bauherren-PL, Lenkungskreis, Bauherr
-- [ ] Freigabeprozess (sechsstufig, jede Stufe wird signiert): offen → in Prüfung → vorbereitet → freigegeben → beschlossen | abgelehnt · Stand der Vorlage: in Prüfung
+- [ ] Freigabeprozess (sechsstufig) · Stand der Vorlage: in Prüfung
 - [ ] Beschlusslage
 - [ ] Nachverfolgung
 :::
@@ -276,7 +276,7 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Jede LPH endet mit einer Freigabe auf Kernfrage, Mindestgrundlagen, Mandat und Datenstand; der Bauherr erteilt sie selbst.
+Jede LPH endet mit einer Freigabe, die der Bauherr selbst erteilt.
 :::
 
 ::: ebene 2

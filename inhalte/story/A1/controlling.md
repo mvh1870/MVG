@@ -1,7 +1,7 @@
 ---
 station: A1
 rolle: controlling
-frage: Die Kämmerei will einen Haushaltsansatz; Ihre Zahl ist nicht die von Holger Stein. Was tun Sie?
+frage: Ihre Zahl weicht ab, die Kämmerei wartet. Was tun Sie?
 ---
 
 ::: option A

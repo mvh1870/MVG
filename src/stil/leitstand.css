@@ -2073,3 +2073,6 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .fluss.ist-uebersicht .fluss-marke, .fluss.ist-uebersicht .fluss-hier-marke, .fluss.ist-uebersicht .fluss-puls { display: none; }
 .lern-fluss { margin: 0; }
 .lern-fluss figcaption { margin-top: 6px; font-size: var(--gr-s); color: var(--tinte-2); }
+
+/* Frage an die gespielte Rolle im Entscheidungsschritt (P12.5, O-28) */
+.entscheidungs-frage { margin: 0; font: 700 var(--gr-xl)/1.35 var(--schrift-text); color: var(--navy); }

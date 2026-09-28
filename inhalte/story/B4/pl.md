@@ -1,7 +1,7 @@
 ---
 station: B4
 rolle: pl
-frage: Wie stimmen Sie im Änderungsgremium zu AEN-031?
+frage: "Vor dem Ausschuss: Wie stimmen Sie zu AEN-031?"
 rueckbezug-auf: A4
 ---
 
@@ -39,7 +39,7 @@ Beschlossen – mit dem Auftrag an die Planung, die Wirkung auf die Lieferzeit d
 Die Verknüpfung mit `RIS-009` im Register.
 
 ### Neues Risiko
-Ein Auftrag, der neben dem Register herläuft, wird zur Nebenliste.
+Ein Auftrag neben dem Register wird zur Nebenliste.
 
 ### Governance-Frage
 [[Nachweiskette]]: Wo steht, was aus dem Auftrag geworden ist?

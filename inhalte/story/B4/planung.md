@@ -1,7 +1,7 @@
 ---
 station: B4
 rolle: planung
-frage: Das Änderungsgremium berät AEN-031. Was bringen Sie in die Vorlage ein?
+frage: "Auflagen der Genehmigung: Was bringen Sie in die Vorlage?"
 rueckbezug-auf: A4
 ---
 

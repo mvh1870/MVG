@@ -1,7 +1,7 @@
 ---
 station: B4
 rolle: controlling
-frage: Wie stimmen Sie im Änderungsgremium zu AEN-031?
+frage: "Brandschutzauflagen als AEN-031: Wie stimmen Sie?"
 rueckbezug-auf: A4
 ---
 

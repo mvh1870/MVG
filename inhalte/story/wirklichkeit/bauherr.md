@@ -1,7 +1,7 @@
 ---
 station: wirklichkeit
 rolle: bauherr
-frage: Welt A, Monat 12, weiter in LPH 5. Am 15. Dezember tagt der Lenkungskreis. Was entscheiden Sie?
+frage: "Lenkungskreis am 15. Dezember: Was entscheiden Sie?"
 rueckbezug-auf: A6
 ---
 

@@ -1,7 +1,7 @@
 ---
 station: B4
 rolle: bauherr
-frage: Das Änderungsgremium hat AEN-031 beschlossen, der Managementbericht für den Bauausschuss liegt vor. Was legen Sie dem Ausschuss vor?
+frage: AEN-031 ist beschlossen. Was legen Sie dem Ausschuss vor?
 rueckbezug-auf: A4
 ---
 

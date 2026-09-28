@@ -1,7 +1,7 @@
 ---
 station: A1
 rolle: gf
-frage: Die Kämmerei will bis Freitag eine Zahl, die Bauherren-PL ist neu. Was tun Sie?
+frage: Die Kämmerei will bis Freitag eine Zahl. Was tun Sie?
 ---
 
 ::: option A
@@ -13,7 +13,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Die Kämmerei setzt 58,4 Mio. € an, ohne Preisannahme. Den Zielkonflikt priorisiert niemand.
+Die Kämmerei rechnet mit 58,4 Mio. €, ohne Preisannahme. Den Zielkonflikt priorisiert niemand.
 
 ### Was fehlt
 Eine Zahl mit benannten Annahmen – und eine Festlegung, welche Zielpriorität gilt.

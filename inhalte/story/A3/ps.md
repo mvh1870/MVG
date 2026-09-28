@@ -1,7 +1,7 @@
 ---
 station: A3
 rolle: ps
-frage: Der Bauherr braucht eine Zahl. Ihre sagt +8 %, das Controlling +5,9 %. Was liefern Sie?
+frage: Der Bauherr braucht eine Zahl. Was liefern Sie?
 ---
 
 ::: option A

@@ -1,7 +1,7 @@
 ---
 station: B4
 rolle: ps
-frage: AEN-031 liegt im Änderungsgremium, der Bauausschuss wartet auf den Managementbericht. Was liefern Sie zu?
+frage: AEN-031 liegt im Gremium, der Ausschuss wartet. Was liefern Sie?
 rueckbezug-auf: A4
 ---
 

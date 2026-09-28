@@ -1,7 +1,7 @@
 ---
 station: B5
 rolle: planung
-frage: PRB-004 berührt die Risikoreserve. Was liefern Sie zur Vorlage?
+frage: Dr. Olbers entscheidet über die Reserve. Was liefern Sie?
 rueckbezug-auf: A5
 ---
 

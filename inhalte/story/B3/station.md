@@ -20,7 +20,7 @@ weiter:
 ---
 
 ::: express
-Im Januar standen Zielsystem und Mandatsleiter. Im März kamen die Mensa-Zusage als Änderung `AEN-012` ins Änderungsgremium und die längere Lieferzeit der Holzbauelemente als Frühwarnung `FRW-002`.
+Im Januar bekam die Kämmerei Version 1; Zielsystem und Mandatsleiter standen. Im März wurden Mensa-Zusage und Lieferzeit zu `AEN-012` und `FRW-002`, Bezug Förderfrist.
 :::
 
 ::: schritt signal

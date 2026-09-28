@@ -1,7 +1,7 @@
 ---
 station: A5
 rolle: bauherr
-frage: Die Kämmerei fragt, wer die Reserve freigegeben hat. Sie waren es nicht. Was tun Sie?
+frage: Wer hat die Reserve freigegeben? Sie nicht. Was tun Sie?
 rueckbezug-auf: A2
 ---
 

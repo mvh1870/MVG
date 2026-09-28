@@ -1,7 +1,7 @@
 ---
 station: A5
 rolle: controlling
-frage: Die Kämmerei fragt, wer die Reserve freigegeben hat. Nach Ihrer Rechnung niemand. Was tun Sie?
+frage: Die Kämmerei fragt nach der Reserve-Freigabe. Was tun Sie?
 rueckbezug-auf: A2
 ---
 

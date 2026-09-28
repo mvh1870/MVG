@@ -103,11 +103,11 @@ Mensa für den Ganztag · Beschlossen · Kosten in der Auswirkung
 ::: paar
 ---
 a: mail
-von: olbers
+von: petersen
 b: mandat
 ---
 ### Welt A
-Ich habe nichts freigegeben.
+Dr. Olbers: „Nichts freigegeben.“
 
 ### Welt B
 Einsatz der Risikoreserve · nur der Bauherr, nicht delegierbar

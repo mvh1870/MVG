@@ -40,16 +40,7 @@ von: petersen
 betreff: "WG: Haushaltsansatz 2027 – bis Freitag"
 zeit: "08:47"
 ---
-Die Kämmerei braucht bis Freitag Mittelabfluss und Kostenobergrenze – und fragt, ob Baupreissteigerungen eingepreist sind.
-:::
-
-::: datei
----
-name: Kostenprognose 2026-01 · Version 1
-quelle: Projektsteuerung
-wert: Stand Kostenberechnung · gilt
----
-Benannter Datenstand mit Version, Status und offenen Annahmen.
+Die Kämmerei braucht bis Freitag Mittelabfluss und Gesamtkosten – und fragt, ob Baupreissteigerungen eingepreist sind.
 :::
 
 ::: chat

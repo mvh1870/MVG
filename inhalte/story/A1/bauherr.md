@@ -1,7 +1,7 @@
 ---
 station: A1
 rolle: bauherr
-frage: Die Kämmerei will eine Zahl; welche der Stadtrat zuletzt gehört hat, wissen Sie nicht. Was tun Sie?
+frage: Gilt die Zahl des Ratsbeschlusses noch? Was tun Sie?
 ---
 
 ::: option A
@@ -32,7 +32,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Sie schreiben Frank Deppe: Die Kostenobergrenze hat Vorrang. Die Generalplanung erfährt es aus zweiter Hand; zum Holzbau steht nichts darin.
+Sie schreiben Frank Deppe: Die Gesamtkosten haben Vorrang. Die Generalplanung erfährt es aus zweiter Hand; zum Holzbau steht nichts darin.
 
 ### Was fehlt
 Ein dokumentiertes Zielsystem mit Abwägungsregeln, das alle Beteiligten kennen.
@@ -75,6 +75,6 @@ Die Geschichte merkt sich Ihre Wahl.
 Der Bauherr soll eine Zahl vertreten, die er nicht belegen kann. Zeigen, dass die Zielpriorität trotzdem bei ihm liegt – und dass sie in Welt A niemand abholt.
 
 ### Leitfragen
-- Welche Zahl hat Ihr Rat zuletzt gehört – und wo steht sie?
+- Gilt die Zahl Ihres Ratsbeschlusses noch – und wo steht sie?
 - Wo steht bei Ihnen, welches Ziel im Konfliktfall Vorrang hat?
 :::

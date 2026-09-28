@@ -25,13 +25,13 @@ Montag, 9. November. Die Freigabe LPH 5 steht an; Ihre Kostenzahl kennt nur Holg
 
 ::: mail
 ---
-von: olbers
+von: petersen
 betreff: "WG: Anfrage einer Fraktion"
 zeit: "07:38"
 ---
-Eine Fraktion fragt mich nach Kosten und Termin. Antwort bis Freitag, 13. November.
+Fraktion fragt nach Kosten und Termin; Antwort bis Fr., 13. November.
 
-Welche Zahl kann ich vertreten?
+Welche Zahl kann Dr. Olbers vertreten?
 :::
 
 ::: protokoll
@@ -90,7 +90,7 @@ kurz: Was Sie wissen
 knopf: Jetzt entscheiden
 ---
 ::: bekannt
-- „Prognose_Nov_v5“ steht neben der CTC des Controllings; die Holz-Lieferzeit ist seit März offen.
+- „Prognose_Nov_v5“ steht neben der CTC; Lieferzeit und Förderfrist sind seit März offen.
 :::
 
 ::: unbekannt

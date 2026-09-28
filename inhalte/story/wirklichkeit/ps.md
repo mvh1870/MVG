@@ -1,7 +1,7 @@
 ---
 station: wirklichkeit
 rolle: ps
-frage: Dr. Olbers will bis zum 15. Dezember einen Vorschlag. Was empfehlen Sie als Projektsteuerung?
+frage: Dr. Olbers will einen Vorschlag. Was empfehlen Sie?
 rueckbezug-auf: A6
 ---
 

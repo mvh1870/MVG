@@ -1,7 +1,7 @@
 ---
 station: A3
 rolle: controlling
-frage: Der Bauherr braucht eine Zahl für die Gremien. Welche liefern Sie?
+frage: Die Gremien brauchen eine Zahl. Welche liefern Sie?
 ---
 
 ::: option A

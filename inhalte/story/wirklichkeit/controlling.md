@@ -1,7 +1,7 @@
 ---
 station: wirklichkeit
 rolle: controlling
-frage: Zwei Zahlen liegen nebeneinander, Dr. Olbers will einen Vorschlag. Was empfehlen Sie?
+frage: Zwei Zahlen, Dr. Olbers will einen Vorschlag. Was empfehlen Sie?
 rueckbezug-auf: A6
 ---
 

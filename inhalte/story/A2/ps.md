@@ -1,7 +1,7 @@
 ---
 station: A2
 rolle: ps
-frage: Lieferzeit 26 Wochen, eine Förderfrist, eine Mensa per Flurzusage. Was tun Sie?
+frage: "Lieferzeit, Förderfrist, Flurzusage: Was liefern Sie dem Bauherrn?"
 ---
 
 ::: option A

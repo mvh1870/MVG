@@ -1,7 +1,7 @@
 ---
 station: wirklichkeit
 rolle: gf
-frage: Dr. Olbers will bis zum 15. Dezember einen Vorschlag. Was schlagen Sie ihr als Geschäftsführung vor?
+frage: "Lenkungskreis am 15. Dezember: Was raten Sie Dr. Olbers?"
 rueckbezug-auf: A6
 ---
 

@@ -36,15 +36,15 @@ von: petersen
 betreff: "WG: Haushaltsansatz 2027 – bis Freitag"
 zeit: "08:47"
 ---
-Die Kämmerei braucht bis Freitag den Haushaltsansatz 2027: Mittelabfluss und Kostenobergrenze. Und: Sind Baupreissteigerungen eingepreist?
+Die Kämmerei braucht bis Freitag den Haushaltsansatz 2027: Mittelabfluss und Gesamtkosten. Und: Sind Baupreissteigerungen eingepreist?
 :::
 
 ::: chat
 ---
-von: olbers
+von: petersen
 zeit: "09:02"
 ---
-Welche Zahl hat der Stadtrat zuletzt gehört? Ich möchte nicht die zweite nennen.
+Dr. Olbers fragt: Gilt noch die Zahl aus dem Ratsbeschluss?
 :::
 
 ::: protokoll
@@ -92,13 +92,13 @@ wert: Stand Kostenberechnung
 
 ::: bekannt
 - Projektbasis 58,4 Mio. € brutto, darin 2,9 Mio. € Risikoreserve.
-- Die Kämmerei will bis Freitag Mittelabfluss und Kostenobergrenze.
+- Die Kämmerei will bis Freitag Mittelabfluss und Gesamtkosten.
 - Vier Ziele: Kosten, Schuljahresbeginn 2028, Holzbau als Klimaziel des Rats, Betriebskosten (LCC); keine Rangfolge.
 - Die Kostendatei pflegt Holger Stein allein.
 :::
 
 ::: unbekannt
-- Welche Zahl der Stadtrat zuletzt gehört hat {#stadtrat}
+- Ob die Zahl aus dem Ratsbeschluss noch gilt {#stadtrat}
 - Ob Baupreissteigerungen eingepreist sind {#preise}
 - Welches Ziel vorgeht {#zielprioritaet}
 - Wer entscheidet, freigibt, eskaliert {#zustaendigkeit}
@@ -114,14 +114,14 @@ status:
 loest:
   preise: nicht eingepreist – die Zahlen stehen auf dem Stand der Kostenberechnung
 bleibt:
-  stadtrat: drei Antworten, keine belegt
+  stadtrat: drei Zahlen, keine belegt
   zielprioritaet: bleibt offen
   zustaendigkeit: bleibt ungeklärt
 ---
 Offene Risiken steigen um eins. Die Frist der Kämmerei ist verstrichen.
 
 ### Neu bekannt
-Die Projektsteuerung schickt ihren 40-Seiten-Bericht, die Generalplanung verweist auf die Kostenberechnung aus LPH 3, das Controlling hat eine eigene Zahl. Eine Baupreissteigerung ist nirgends eingepreist. Die Kämmerei setzt die Projektbasis an, mit dem Vermerk „vorläufig“.
+Die Projektsteuerung schickt ihren 40-Seiten-Bericht, die Generalplanung verweist auf die Kostenberechnung aus LPH 3, das Controlling hat eine eigene Zahl. Eine Baupreissteigerung ist nirgends eingepreist. Die Kämmerei rechnet mit der Projektbasis, Vermerk „vorläufig“.
 :::
 :::
 
@@ -230,7 +230,7 @@ figur: deppe
 ---
 figur: olbers
 ---
-„Im Stadtrat stehe ich mit einer Zahl. Ich will wissen, welche es war – und ob sie noch gilt.“
+„Im Stadtrat stehe ich mit 58,4 Mio. €. Gilt die Zahl noch?“
 :::
 
 ::: standpunkt pl
@@ -258,7 +258,7 @@ figur: hoffmeister
 ---
 figur: kaya
 ---
-„Meine Zahl weicht von Holger Steins ab. Welche davon hat der Stadtrat gehört?“
+„Meine Zahl weicht von Holger Steins ab. Welche gilt?“
 :::
 
 ::: regie

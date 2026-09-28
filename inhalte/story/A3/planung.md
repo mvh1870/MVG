@@ -1,7 +1,7 @@
 ---
 station: A3
 rolle: planung
-frage: Der Bauherr braucht für den Ausschuss eine belastbare Zahl; die Abweichung liegt vor allem beim Holzbau. Was liefern Sie?
+frage: Der Bauherr braucht eine belastbare Zahl. Was liefern Sie?
 ---
 
 ::: option A

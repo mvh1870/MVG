@@ -1,7 +1,7 @@
 ---
 station: A1
 rolle: ps
-frage: Die Bauherren-PL braucht bis Freitag eine Zahl für die Kämmerei. Was liefern Sie?
+frage: Die Kämmerei will bis Freitag eine Zahl. Was liefern Sie?
 ---
 
 ::: option A

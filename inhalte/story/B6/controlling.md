@@ -1,7 +1,7 @@
 ---
 station: B6
 rolle: controlling
-frage: Was steuern Sie zur Freigabe zum Abschluss von LPH 5 bei?
+frage: Was braucht Dr. Olbers von Ihnen zur Freigabe LPH 5?
 rueckbezug-auf: A6
 ---
 

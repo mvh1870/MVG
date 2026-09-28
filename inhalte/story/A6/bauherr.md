@@ -1,7 +1,7 @@
 ---
 station: A6
 rolle: bauherr
-frage: Bis Freitag braucht die Fraktion eine Antwort, und die Freigabe zum Abschluss von LPH 5 steht an. Was tun Sie?
+frage: "Fraktion fragt, Freigabe LPH 5 steht an: Was tun Sie?"
 rueckbezug-auf: A5
 ---
 

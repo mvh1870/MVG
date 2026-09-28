@@ -44,11 +44,11 @@ von: petersen
 
 ::: mail
 ---
-von: olbers
+von: petersen
 betreff: "WG: Anfrage Kämmerei – Risikoreserve"
 zeit: "13:31"
 ---
-„Ich habe nichts freigegeben. Bis Freitag: Was läuft gegen die Reserve, und wer hat es veranlasst?“
+Dr. Olbers: „Nichts freigegeben. Bis Freitag: Was läuft gegen die Reserve, wer hat es veranlasst?“
 :::
 
 ::: chat

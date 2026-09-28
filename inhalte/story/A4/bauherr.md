@@ -1,7 +1,7 @@
 ---
 station: A4
 rolle: bauherr
-frage: Bernd Kowalski hat zweimal gefragt, worüber der Ausschuss entscheiden soll. Vertagt. Was nehmen Sie aus der Sitzung mit?
+frage: Der Ausschuss hat vertagt. Was nehmen Sie mit?
 rueckbezug-auf: A3
 ---
 

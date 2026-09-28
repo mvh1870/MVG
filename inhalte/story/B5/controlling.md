@@ -1,7 +1,7 @@
 ---
 station: B5
 rolle: controlling
-frage: Was liefern Sie für die Entscheidung über die Risikoreserve zu?
+frage: Die Kämmerei fragt nach der Reserve. Was liefern Sie?
 rueckbezug-auf: A5
 ---
 

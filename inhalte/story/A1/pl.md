@@ -1,7 +1,7 @@
 ---
 station: A1
 rolle: pl
-frage: Keine Übergabe, eine Frist bis Freitag. Womit fangen Sie an?
+frage: "Frist der Kämmerei, keine Übergabe: Womit fangen Sie an?"
 ---
 
 ::: option A

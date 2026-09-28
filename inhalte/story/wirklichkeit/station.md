@@ -31,11 +31,11 @@ Welt B war ein Gedankenexperiment. Montag, 7. Dezember: LPH 5 ist nicht abgeschl
 
 ::: mail
 ---
-von: olbers
+von: petersen
 betreff: Schulcampus – wie geht es weiter?
 zeit: "07:52"
 ---
-Bis zum Lenkungskreis am 15. Dezember: eine Entscheidungsfrage und die offenen Entscheidungen. Keinen Statusbericht.
+Dr. Olbers will bis 15. Dezember eine Entscheidungsfrage und die offenen Entscheidungen, keinen Statusbericht.
 :::
 
 ::: chat
@@ -197,7 +197,7 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Die MVG-Neuinitialisierung ordnet die Entscheidungslogik neu – kein Neustart, keine Freigabe, nicht ohne den Bauherrn.
+Die MVG-Neuinitialisierung ordnet die Entscheidungslogik neu – kein Neustart, keine Freigabe.
 :::
 
 ::: ebene 2

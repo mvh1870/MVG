@@ -470,7 +470,7 @@ Welt B, Monat 5, derselbe Montag: ein Datenstand, eine Mandatsprüfung, eine Ent
 
 ::: querverweis B4
 ---
-text: "In der Story erlebt: B4 · Gremium-Szene"
+text: "In der Story erlebt: B4 · Ausschussreif"
 ---
 Welt B, Monat 7: Das Änderungsgremium entscheidet über `AEN-031`, weil es nach der Mandatsleiter das Mandat hat – auf einer Vorlage mit Frage und Datenstand.
 :::

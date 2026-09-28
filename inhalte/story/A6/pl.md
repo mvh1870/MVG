@@ -1,7 +1,7 @@
 ---
 station: A6
 rolle: pl
-frage: Was tun Sie mit der anstehenden Freigabe zum Abschluss von LPH 5?
+frage: Die Freigabe LPH 5 steht an. Was tun Sie?
 rueckbezug-auf: A3
 ---
 

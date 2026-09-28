@@ -1,7 +1,7 @@
 ---
 station: A1
 rolle: planung
-frage: Die Bauherren-PL fragt, ob Baupreissteigerungen in Ihrer Kostenberechnung stecken. Was antworten Sie?
+frage: "Die Kämmerei fragt: Preissteigerungen eingepreist? Was antworten Sie?"
 ---
 
 ::: option A

@@ -1,7 +1,7 @@
 ---
 station: B2
 rolle: planung
-frage: FRW-002 und AEN-012 sind erfasst. Was liefern Sie zu?
+frage: "Lieferzeit gegen Förderfrist, Mensa beantragt: Was liefern Sie zu?"
 rueckbezug-auf: A2
 ---
 

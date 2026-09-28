@@ -1,7 +1,7 @@
 ---
 station: A5
 rolle: gf
-frage: Die Kämmerei fragt, wer die Reserve freigegeben hat – und sie reicht schon für die Mai-Abweichung nicht. Was tun Sie?
+frage: Die Kämmerei fragt nach der Reserve. Was tun Sie?
 rueckbezug-auf: A2
 ---
 

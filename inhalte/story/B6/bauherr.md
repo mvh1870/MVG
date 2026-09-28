@@ -1,7 +1,7 @@
 ---
 station: B6
 rolle: bauherr
-frage: Die Bauherren-PL legt Ihnen die Vorlage zur Freigabe LPH 5 vor, der Lenkungskreis berät am 17. November. Wie entscheiden Sie?
+frage: "Vorlage zur Freigabe LPH 5: Wie entscheiden Sie?"
 rueckbezug-auf: A6
 ---
 

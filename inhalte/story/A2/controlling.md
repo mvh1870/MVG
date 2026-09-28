@@ -1,7 +1,7 @@
 ---
 station: A2
 rolle: controlling
-frage: Wie gehen Sie mit Mensa-Zusage und Lieferzeit in Ihren Zahlen um?
+frage: Die Mensa wurde im Flur zugesagt. Wie rechnen Sie?
 ---
 
 ::: option A

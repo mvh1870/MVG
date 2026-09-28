@@ -1,7 +1,7 @@
 ---
 station: A4
 rolle: pl
-frage: Was legen Sie dem Bauausschuss beim nächsten Mal vor?
+frage: Ihre Vorlage ist vertagt. Was legen Sie jetzt vor?
 rueckbezug-auf: A3
 ---
 

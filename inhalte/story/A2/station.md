@@ -34,14 +34,6 @@ von: petersen
 - Freigabe zum Abschluss von LPH 4: kein eigener Termin.
 :::
 
-::: datei
----
-name: Förderbescheid_Ganztag.pdf
-quelle: Kämmerei
-wert: Inbetriebnahme zum Schuljahr 2028/29
----
-:::
-
 ::: mail
 ---
 von: hoffmeister
@@ -57,7 +49,7 @@ von: roth
 betreff: Mensa für den Ganztag
 zeit: "11:09"
 ---
-Schulamt und Schulleitung: Der Ganztag braucht eine Mensa für rund 450 statt 300 Essen, laut Generalplanung grob 0,6 Mio. €. Herr Deppe sagte im Flur: „Machen wir.“ Ich nehme ihn beim Wort.
+Schulverwaltung und Schulleitung: Der Ganztag braucht eine Mensa für rund 450 statt 300 Essen, laut Generalplanung grob 0,6 Mio. €. Herr Deppe sagte im Flur: „Machen wir.“ Ich nehme ihn beim Wort.
 :::
 
 ::: notiz
@@ -90,6 +82,14 @@ titel: Was Sie wissen, und was nicht
 kurz: Was Sie wissen
 knopf: Jetzt entscheiden
 ---
+::: datei
+---
+name: Förderbescheid_Ganztag.pdf
+quelle: Fördermittelgeber
+wert: Förderfrist Schuljahr 2028/29
+---
+:::
+
 ::: bekannt
 - Lieferzeit Holz 26 statt 16 Wochen; Mensa grob 0,6 Mio. €.
 - Förderbescheid Ganztag: Inbetriebnahme zum Schuljahr 2028/29.

@@ -1,7 +1,7 @@
 ---
 station: B2
 rolle: bauherr
-frage: Sabine Roth ruft an – die Mensa sei doch zugesagt. AEN-012 steht beantragt im Änderungsregister. Was tun Sie?
+frage: "Sabine Roth: Die Mensa sei doch zugesagt. Was tun Sie?"
 rueckbezug-auf: A2
 ---
 

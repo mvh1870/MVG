@@ -1,7 +1,7 @@
 ---
 station: A4
 rolle: ps
-frage: Ihr Bericht war die Vorlage des Bauherrn, der Ausschuss hat vertagt. Was liefern Sie beim nächsten Mal?
+frage: Ihr Bericht, die Vorlage des Bauherrn, ist vertagt. Was nun?
 rueckbezug-auf: A3
 ---
 

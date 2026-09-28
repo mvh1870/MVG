@@ -1,7 +1,7 @@
 ---
 station: B2
 rolle: gf
-frage: Ihre Flurzusage steht jetzt als beantragte Änderung AEN-012 im Register. Was tun Sie?
+frage: Ihre Flurzusage steht als AEN-012 im Register. Was tun Sie?
 rueckbezug-auf: A2
 ---
 

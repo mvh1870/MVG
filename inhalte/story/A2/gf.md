@@ -1,7 +1,7 @@
 ---
 station: A2
 rolle: gf
-frage: Die Mensa-Zusage im Flur kam von Ihnen. Was tun Sie jetzt?
+frage: Die Flurzusage kam von Ihnen. Was tun Sie jetzt?
 ---
 
 ::: option A

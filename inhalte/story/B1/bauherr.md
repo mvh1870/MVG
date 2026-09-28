@@ -1,7 +1,7 @@
 ---
 station: B1
 rolle: bauherr
-frage: Die Kämmerei bekommt Version 1. Was tun Sie als Bauherr in der ersten Woche?
+frage: Die Kämmerei bekommt Version 1. Was tun Sie als Bauherr?
 rueckbezug-auf: A1
 ---
 

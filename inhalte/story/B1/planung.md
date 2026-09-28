@@ -1,7 +1,7 @@
 ---
 station: B1
 rolle: planung
-frage: Die Bauherren-PL fragt nach Ihrer Preisannahme. Was tun Sie?
+frage: Die Kämmerei fragt nach der Preisannahme. Was tun Sie?
 rueckbezug-auf: A1
 ---
 
@@ -47,22 +47,22 @@ Welche Zielkonflikte löst die Regel – und welche entscheidet der Bauherr?
 
 ::: option C
 ---
-titel: Eine günstigere Holzbauvariante als Änderung beantragen
-kurz: Variante beantragen
+titel: Die Preisannahme als Spanne für Version 1 zuliefern
+kurz: Spanne zuliefern
 status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Die Variante geht mit Auswirkung ins Änderungsregister. Welche Stufe entscheidet, hängt von der Summe ab.
+Ihre Spanne steht in Version 1 als offene Annahme; bewertet wird sie in der Risikosichtung.
 
 ### Was fehlt
-Eine Auswirkungsbewertung zu Termin und Risiko.
+Eine Bewertung zu Termin und Risiko.
 
 ### Neues Risiko
-Eine offene Änderung mehr, aber mit Weg.
+Eine offene Annahme mehr, aber benannt.
 
 ### Governance-Frage
-[[Mandat]]: Welche Stufe ist für diese Variante zuständig?
+[[Datenstand]]: Wer bewertet die offene Annahme?
 :::
 
 ::: rueckbezug A

@@ -1,7 +1,7 @@
 ---
 station: wirklichkeit
 rolle: pl
-frage: Dr. Olbers will bis zum 15. Dezember einen Vorschlag. Was schlagen Sie ihr vor?
+frage: Dr. Olbers will einen Vorschlag. Was schlagen Sie ihr vor?
 rueckbezug-auf: A6
 ---
 

@@ -1,7 +1,7 @@
 ---
 station: wirklichkeit
 rolle: planung
-frage: Dr. Olbers will bis 15. Dezember einen Vorschlag. Was liefern Sie der Bauherren-PL?
+frage: Dr. Olbers will einen Vorschlag. Was liefern Sie zu?
 rueckbezug-auf: A6
 ---
 

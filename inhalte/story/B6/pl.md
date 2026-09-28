@@ -1,7 +1,7 @@
 ---
 station: B6
 rolle: pl
-frage: Was empfehlen Sie Dr. Olbers zur Freigabe zum Abschluss von LPH 5?
+frage: Was empfehlen Sie Dr. Olbers zur Freigabe LPH 5?
 rueckbezug-auf: A6
 ---
 

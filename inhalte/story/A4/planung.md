@@ -1,7 +1,7 @@
 ---
 station: A4
 rolle: planung
-frage: Die Baugenehmigung kam mit Brandschutzauflagen an den Bauherrn; sein Ausschuss hat vertagt. Was tun Sie?
+frage: "Auflagen der Genehmigung, Ausschuss vertagt: Was tun Sie?"
 rueckbezug-auf: A3
 ---
 

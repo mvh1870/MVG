@@ -1,7 +1,7 @@
 ---
 station: B1
 rolle: controlling
-frage: Womit beginnen Sie im Controlling?
+frage: Was geben Sie der Kämmerei zuerst?
 rueckbezug-auf: A1
 ---
 
@@ -39,7 +39,7 @@ Wird ein Schwellenwert verletzt, entsteht eine Frühwarnung; wer entscheidet, sa
 Die offene Preisannahme berührt noch keine Schwelle.
 
 ### Neues Risiko
-Ein Signal von außen bleibt unter dem Radar der Zahlen.
+Ein Signal von außen bleibt unter dem Radar.
 
 ### Governance-Frage
 [[Frühwarnung]]: Wer erfasst ein Signal, das noch keine Schwelle verletzt?

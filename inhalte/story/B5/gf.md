@@ -1,7 +1,7 @@
 ---
 station: B5
 rolle: gf
-frage: PRB-004 berührt die Risikoreserve. Was tun Sie als Geschäftsführung?
+frage: Die Kämmerei fragt nach der Reserve. Was tun Sie?
 rueckbezug-auf: A5
 ---
 

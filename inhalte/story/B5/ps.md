@@ -1,7 +1,7 @@
 ---
 station: B5
 rolle: ps
-frage: PRB-004 ist eingetreten und berührt die Reserve. Was tragen Sie bei?
+frage: Die Kämmerei fragt nach der Reserve. Was tragen Sie bei?
 rueckbezug-auf: A5
 ---
 

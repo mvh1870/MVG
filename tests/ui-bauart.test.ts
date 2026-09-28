@@ -1220,3 +1220,21 @@ test('Lernwerkzeuge (P12.3): Umschalter wechselt die Ansicht, Sortieren gibt Rü
   assert.match(r.querySelector('[data-pruef="regler-karte"]')?.textContent ?? '', /Änderungsgremium.*zwei/su);
   assert.equal(ein?.getAttribute('aria-valuetext'), 'bis 5 Mio. €');
 });
+
+test('Entscheidung (P12.5, O-28): die Frage an die gespielte Rolle steht über den Optionen', () => {
+  const a3 = inhalte.stationen['A3'];
+  assert.ok(a3);
+  const idx = a3.schritte.findIndex((s) => s.art === 'entscheidung');
+  assert.ok(idx >= 0);
+  for (const rolle of ['ps', 'controlling', 'bauherr']) {
+    const a = anfangszustand();
+    const z = { ...a, bereich: 'story' as const, station: 'A3', schritt: idx, rolle, verlauf: ['prolog', 'A3'] };
+    const story = erzeugeStory({ inhalte, tue: null });
+    document.body.replaceChildren(story.element);
+    story.setze(oeffentlich(z), null);
+    const soll: string = a3.szenen[rolle]?.entscheidung?.frage ?? '';
+    assert.ok(soll !== '', `${rolle}: Rollenfrage fehlt in A3`);
+    assert.equal(story.element.querySelector('[data-pruef="entscheidungs-frage"]')?.textContent, soll, rolle);
+    story.entferne();
+  }
+});

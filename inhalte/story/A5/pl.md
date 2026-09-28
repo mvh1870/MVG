@@ -1,7 +1,7 @@
 ---
 station: A5
 rolle: pl
-frage: Die Kämmerei fragt, wer die Reserve freigegeben hat. Was tun Sie?
+frage: Die Kämmerei fragt, wer die Reserve freigab. Was tun Sie?
 rueckbezug-auf: A2
 ---
 

@@ -1,7 +1,7 @@
 ---
 station: B5
 rolle: bauherr
-frage: Die Vorlage zur Risikoreserve für PRB-004 ist in Vorbereitung; der Nachtrag ist nicht abschließend geprüft. Wie entscheiden Sie?
+frage: "Nachtrag nicht abschließend geprüft: Wie entscheiden Sie über die Reserve?"
 rueckbezug-auf: A5
 ---
 

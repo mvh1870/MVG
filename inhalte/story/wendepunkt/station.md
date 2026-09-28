@@ -61,7 +61,7 @@ form: ketten
 titel: Delegierbar oder nicht?
 kurz: Delegierbar?
 ---
-Kap. 3.2: [[zitat:k3.2-p1|Der Bauherr muss aber wissen, wo Vorbereitung endet und eigene Entscheidung beginnt.]]
+Wo endet Vorbereitung, wo beginnt die eigene Entscheidung?
 
 ::: tafel k3.2-t1
 ---

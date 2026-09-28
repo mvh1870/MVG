@@ -1,7 +1,7 @@
 ---
 station: A3
 rolle: bauherr
-frage: Zwei Zahlen, der Lenkungskreis am 19. Mai, der Bauausschuss am 21. Mai. Was tun Sie als Bauherr?
+frage: Zwei Zahlen, zwei Gremien nächste Woche. Was tun Sie?
 ---
 
 ::: option A

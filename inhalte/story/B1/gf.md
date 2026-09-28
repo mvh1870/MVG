@@ -1,7 +1,7 @@
 ---
 station: B1
 rolle: gf
-frage: Register stehen, die Kämmerei bekommt Version 1. Worauf richten Sie die ersten Wochen aus?
+frage: Die Kämmerei bekommt Version 1. Worauf achten Sie?
 rueckbezug-auf: A1
 ---
 

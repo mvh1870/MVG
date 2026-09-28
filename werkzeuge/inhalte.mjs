@@ -122,6 +122,8 @@ const ARTEN = {
   mandatsoption: { in: ['schritt'], kennung: 'pflicht', muster: /^\d+$/u, kopf: { titel: { typ: 'text', pflicht: true }, detail: { typ: 'text' }, zustaendig: { typ: 'text', pflicht: true }, stufe: { typ: 'zahl', min: 1 } }, felder: ['text'], pflichtFelder: ['text'] },
   // Kennung optional (L-40): Freigaben führen kein Kürzel („Freigabe LPH 5“)
   vorlage: { in: ['schritt'], kennung: 'optional', kopf: { titel: { typ: 'text' }, datenstand: { typ: 'text' } }, felder: ['frage', 'checkliste'], pflichtFelder: ['frage', 'checkliste'] },
+  // Governance-Fluss als Übersicht auf einer Lernseite (P11, Kap. 6.4.3): alle Stationen, ohne Markierung
+  governancefluss: { in: ['@theorie', 'abschnitt'], kennung: 'keine', felder: ['text'] },
   fluss: { in: ['schritt'], kennung: 'keine', kopf: { position: { typ: 'wahl', werte: FLUSS, pflicht: true } }, felder: ['text'] },
   paar: {
     in: ['schritt'], kennung: 'keine',

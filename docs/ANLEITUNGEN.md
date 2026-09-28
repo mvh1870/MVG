@@ -1,6 +1,6 @@
 # Anleitungen
 
-Die Anwendung ist **eine einzige Datei**. Sie läuft ohne Internet und ohne Installation in Chrome, Edge, Safari und Firefox, auf dem Laptop, am Beamer (16:9) und auf dem iPad quer (O-10).
+Die Anwendung ist **eine einzige Datei**. Sie läuft ohne Internet und ohne Installation; gebaut ist sie für Chrome, Edge, Safari und Firefox, Laptop, Beamer (16:9) und iPad quer (O-10). Automatisch getestet wird in Chromium; Safari, Firefox und iPad gehören zur Abnahme (`docs/ABNAHME.md`, D).
 
 | Datei | Für wen | Inhalt |
 |---|---|---|

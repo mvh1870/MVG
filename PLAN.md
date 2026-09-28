@@ -100,23 +100,25 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P9.1 (2026-09-28) · Regie/Leinwand vollständig: Kanal mit Rückfall, Lebenszeichen, Ein-Fenster-Regie
 - [x] P9.2 (2026-09-28) · Notizen, Leitfragen, Einwand-Karten (E6) je Station und Theorie-Kapitel
 - [x] P9.3 (2026-09-28) · Gesprächsprotokoll (lokal) + Druckfassung
-- [x] P9.4 (2026-09-28) · Regie-Eingriffe: springen, Welt/Rolle umschalten, Ereignis einspielen, Szenario-Werte; Beamer-Schalter (E10) – wirkt auf die Story, nicht auf Explore (L-53)
-- [x] P9.5 · Zwei-Fenster-Tests + Prüf-Agenten P9 (`docs/P9-BEFUNDE.md`)
+- [x] P9.4 (2740e07) · Regie-Eingriffe: springen, Welt/Rolle umschalten; Beamer-Schalter (E10) – „Ereignis einspielen“ und „Szenario-Werte“ gestrichen (L-60), Ereignisse sind die Zeitsprünge und Kundenwahlen der Story
+- [x] P9.5 (58705fc) · Zwei-Fenster-Tests + Prüf-Agenten P9 (`docs/P9-BEFUNDE.md`)
 
 ### P10 · Whitepaper-Funktionen & Auslieferung
-- [x] P10.1 · Zitierfunktion, Permalinks, Fußnoten/Quellen, Versions- und Änderungsstand, Vermerk „fachlich ungeprüft“ (L-55)
-- [x] P10.2 · Druckansicht je Kapitel und gesamt, Druck-Dossier (E11) (L-56)
-- [x] P10.3 · Re-Import-Werkzeug V1.3: neue DOCX einlesen, Diff je Absatz-ID, betroffene Stellen melden (L-57)
-- [x] P10.4 · Korrekturliste V1.3 (E13): alle Grafik↔Text-Widersprüche mit Bild-Prompts (`docs/KORREKTURLISTE-V1.3.md`) – 8 Text-, 90 Grafik-Einträge, 13 Bild-Prompts
-- [x] P10.5 · Begriffs-Kompass (E7) (L-57)
-- [x] P10.6 · Einbett-Schnittstelle (E12): iframe-sicher, postMessage; dezente Klänge (E14, standardmäßig aus) (L-58)
-- [x] P10.8 · Kundenfassung ohne Regie-Material (L-7): `npm run bau -- --kundenfassung` → `dist/mvg-kunde.html`; Test, dass kein Regie-Text enthalten ist (L-58)
-- [x] P10.7 · Größenbudget < 4 MB, Determinismus, Anleitungen (Selbstlernen, Präsentator), Abnahme-Checkliste für den Owner (`docs/ABNAHME.md`) (L-58)
-- [x] P10.9 · Prüf-Agenten P10 (`docs/P10-BEFUNDE.md`)
+- [x] P10.1 (8acbff0) · Zitierfunktion, Permalinks, Fußnoten/Quellen, Versions- und Änderungsstand, Vermerk „fachlich ungeprüft“ (L-55)
+- [x] P10.2 (8acbff0) · Druckansicht je Kapitel und gesamt, Druck-Dossier (E11) (L-56)
+- [x] P10.3 (8acbff0) · Re-Import-Werkzeug V1.3: neue DOCX einlesen, Diff je Absatz-ID, betroffene Stellen melden (L-57)
+- [x] P10.4 (8acbff0) · Korrekturliste V1.3 (E13): alle Grafik↔Text-Widersprüche mit Bild-Prompts (`docs/KORREKTURLISTE-V1.3.md`) – 8 Text-, 90 Grafik-Einträge, 13 Bild-Prompts
+- [x] P10.5 (8acbff0) · Begriffs-Kompass (E7) (L-57)
+- [x] P10.6 (8acbff0) · Einbett-Schnittstelle (E12): iframe-sicher, postMessage; dezente Klänge (E14, standardmäßig aus) (L-58)
+- [x] P10.8 (8acbff0) · Kundenfassung ohne Regie-Material (L-7): `npm run bau -- --kundenfassung` → `dist/mvg-kunde.html`; Test, dass kein Regie-Text enthalten ist (L-58)
+- [x] P10.7 (8acbff0) · Größenbudget < 4 MB, Determinismus, Anleitungen (Selbstlernen, Präsentator), Abnahme-Checkliste für den Owner (`docs/ABNAHME.md`) (L-58)
+- [x] P10.9 (868249b) · Prüf-Agenten P10 (`docs/P10-BEFUNDE.md`)
 
 ### P11 · Gesamtprüfung
-- [ ] P11.1 · Vollständigkeitsprüfer: Bauplan, 20 Owner-Punkte, E1–E14, O-Entscheide, Abdeckung
-- [ ] P11.2 · Alle Pfade × Rollen × Größen im Browser; Barrierefreiheit (auch Lauf mit `prefers-reduced-motion: reduce`, P2-Befund V6)
+- [x] P11.1 · Vollständigkeitsprüfer: Bauplan, 20 Owner-Punkte, E1–E14, O-Entscheide, Abdeckung (`docs/P11-BEFUNDE.md`)
+- [x] P11.2 · Alle Pfade × Rollen × Größen im Browser; Barrierefreiheit (auch Lauf mit `prefers-reduced-motion: reduce`, P2-Befund V6) – `pruefe:voll` grün (927 s), `MVG_BEWEGUNG=reduziert` voll grün (25 Läufe)
+- [ ] P11.5 · Lesezeit messen (Wörter je Pfad in der Kette) und die Story auf O-5 straffen: Hauptpfad ≤ 35 min, Express ≈ 15 min (L-60) – Abnahme: Messung in der Kette, Fachtreue-Prüfung der gekürzten Stationen
+- [ ] P11.6 · Wissenschecks „Fragen mit Erklärung statt Punkten“ über B3 hinaus: je Lernseite (Kap. 2–12) eine Frage mit Erklärung und Beleg (L-60)
 - [ ] P11.3 · Korrekturschleife, bis zwei Runden nichts Neues finden
 - [ ] P11.4 · Abschluss: UEBERGABE mit Abnahmeanleitung; Ampel rot „fertig – Routine anhalten, claude/haus nach main zusammenführen“
 

@@ -121,6 +121,10 @@ titel: Kanonischer Governance-Fluss
 ---
 Der kanonische Governance-Fluss zeigt, wie ein Thema vom ersten Signal bis zum Managementbericht läuft. Eine [[Frühwarnung]] (EW) ist zunächst ein unbewertetes Signal; erst bestätigt wird sie zum bewerteten Risiko. Aus Risiken, Änderungen oder Problemen kann Entscheidungsbedarf entstehen. CTC- oder Schwellenwertverletzungen erzeugen neue Frühwarnungen, nicht eine Rückrichtung aus einem bestehenden Risiko. Beschlüsse werden als Maßnahmen mit verantwortlicher Rolle und Frist nachverfolgt.
 
+::: governancefluss
+Derselbe Fluss begleitet in der Story die Station B3.
+:::
+
 ::: zitat k6.4.3-p1
 EW (unbewertetes Signal) → bestätigt → Risiko → Entscheidung → Freigabe → Maßnahme → Managementbericht
 :::

@@ -255,6 +255,8 @@ export async function fuehreAus(browser, szenario, viewport, url, bilder = BILDE
     deviceScaleFactor: 1,
     locale: 'de-DE',
     colorScheme: 'light',
+    // P11.2 (P2-Befund V6): ganzer Lauf mit reduzierter Bewegung, MVG_BEWEGUNG=reduziert
+    ...(process.env['MVG_BEWEGUNG'] === 'reduziert' ? { reducedMotion: /** @type {const} */ ('reduce') } : {}),
   });
   // Jedes Fenster des Kontexts wird beobachtet – auch Popups aus window.open (Leinwand), die der
   // Helfer nicht selbst öffnet. Das erste Fenster ist das Hauptfenster (ohne Etikett).
@@ -435,7 +437,7 @@ async function hauptprogramm() {
     const { baueVorschau } = await import('./entwurf.mjs');
     await baueVorschau();
   }
-  console.log(`oberflaeche: ${start.name} ${browser.version()} · ${anzeige} · ${szenarien.length} Szenario${szenarien.length === 1 ? '' : 's'} · ${process.env['MVG_VOLL'] === '1' ? 'voll' : 'schnell (voll: MVG_VOLL=1)'}`);
+  console.log(`oberflaeche: ${start.name} ${browser.version()} · ${anzeige} · ${szenarien.length} Szenario${szenarien.length === 1 ? '' : 's'} · ${process.env['MVG_VOLL'] === '1' ? 'voll' : 'schnell (voll: MVG_VOLL=1)'}${process.env['MVG_BEWEGUNG'] === 'reduziert' ? ' · reduzierte Bewegung' : ''}`);
 
   let laeufe = 0;
   let roteLaeufe = 0;

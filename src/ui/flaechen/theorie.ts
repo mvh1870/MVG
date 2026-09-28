@@ -17,6 +17,7 @@ import { inhalt, inhaltInline } from '../bausteine/inhalt.ts';
 import { kopfText, stationsName } from '../anzeige.ts';
 import { W } from '../woerter.ts';
 import { AENDERUNGEN } from '../impressum.ts';
+import { governanceFluss, FLUSS_BESCHRIFTUNG, FLUSS_POSITIONEN } from '../../grafik/governance-fluss.ts';
 import { bogenKopf, druckeBogen } from '../druck.ts';
 import { IMPRESSUM } from '../route.ts';
 
@@ -217,6 +218,15 @@ function bloeckeIn(bloecke: readonly Block[], inhalte: OeffentlicheInhalte, stuf
       case 'merksatz':
         aus.push(merksatz(b));
         break;
+      case 'governancefluss': {
+        // derselbe Baustein wie in der Story (B3), hier als Übersicht ohne „Sie sind hier“
+        const g = governanceFluss({ position: 'managementbericht', marken: {}, hier: '' });
+        g.setze();
+        g.element.classList.add('ist-uebersicht');
+        g.element.setAttribute('aria-label', W.theorie.flussUebersicht(FLUSS_POSITIONEN.map((p) => FLUSS_BESCHRIFTUNG[p].replace('\u00ad', '')).join(' → ')));
+        aus.push(h('figure', { class: 'lern-fluss' }, g.element, b.felder['text'] ? h('figcaption', null, inhalt(b.felder['text'])) : null));
+        break;
+      }
       case 'hinweis':
         aus.push(hinweis(b));
         break;

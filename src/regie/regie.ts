@@ -13,6 +13,7 @@
 import type { Aktion, OeffentlicherZustand, Zustand } from '../engine/typen.ts';
 import type { Einwand, OeffentlicheInhalte, RegieEintrag } from '../inhalte/typen.ts';
 import { oeffentlich } from '../engine/zustand.ts';
+import { wende } from '../engine/aktionen.ts';
 import type { Kanal } from './kanal.ts';
 import type { Sitzung } from '../ui/sitzung.ts';
 import { h, attr, text, ersetze } from '../ui/h.ts';
@@ -96,6 +97,8 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
   const beobachter = typeof ResizeObserver === 'function' ? new ResizeObserver(massstab) : null;
   beobachter?.observe(rahmen);
   const ort = h('p', { class: 'regie-ort', 'data-pruef': 'regie-ort' });
+  // Vorschau auf den nächsten Schritt (Bauplan 7): was „Weiter“ zeigen wird
+  const naechstes = h('p', { class: 'regie-naechstes', 'data-pruef': 'regie-naechstes' });
 
   /* ------------------------------------------------------------- Steuerung -- */
   const zurueckKnopf = h('button', { type: 'button', class: 'knopf knopf-still', 'data-pruef': 'regie-zurueck', onclick: () => schritt(-1) }, sym('pfeilLinks'), W.zurueck);
@@ -132,6 +135,7 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
   rollenWahl.addEventListener('change', () => { if (rollenWahl.value !== '') tue({ art: 'waehleRolle', rolle: rollenWahl.value }); });
   const steuerung = h('section', { class: 'regie-karte regie-steuerung', 'aria-label': w.titel },
     h('div', { class: 'regie-blaettern' }, zurueckKnopf, weiterKnopf),
+    naechstes,
     h('div', { class: 'regie-zeile' }, h('span', { class: 't-label' }, w.bereich), bereiche, kapitelKnoepfe, neuKnopf),
     h('div', { class: 'regie-zeile' },
       h('label', { for: 'regie-sprung', class: 't-label' }, w.sprung), sprung,
@@ -306,6 +310,14 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     } else {
       text(ort, w.start);
     }
+    // Als Nächstes: den Weiter-Schritt probehalber anwenden (die Engine ist rein) und den Ort beschreiben
+    const weiterA = weiterAktion(oz, inhalte);
+    const danach = weiterA !== null && oz.bereich === 'story' ? oeffentlich(wende(z, weiterA, inhalte)) : null;
+    const stDanach = danach !== null ? aktuelleStation(danach, inhalte) : null;
+    if (danach !== null && stDanach !== null) {
+      const sd = sichtbareSchritte(stDanach, danach.rolle);
+      text(naechstes, `${w.alsNaechstes}: ${stDanach.kurztitel || stDanach.titel} · ${tafelTitel(sd, danach.schritt)}`);
+    } else text(naechstes, '');
     for (const opt of sprung.querySelectorAll('option')) if (opt.dataset['welt'] === 'B') attr(opt, 'disabled', !oz.freigeschaltet.weltB);
     attr(rollenWahl, 'disabled', oz.rolle === null);
     attr(sprung, 'disabled', oz.rolle === null);

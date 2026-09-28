@@ -522,6 +522,8 @@ test('Regie (P9.5): Start sendet den Beamer-Stand, Sprung erst mit Rolle, Einwä
     q('[data-pruef="regie-rolle-pl"]').click();
     assert.equal(sprung.disabled, false);
     assert.equal(rolle.value, 'pl');
+    // Als Nächstes (Bauplan 7): Vorschau auf den Weiter-Schritt
+    assert.match(q('[data-pruef="regie-naechstes"]').textContent ?? '', /^Als Nächstes: /u);
     // L2: Pfeiltaste im Auswahlfeld blättert nicht
     const schrittVorher = sitzung.zustand().schritt;
     const ereignis = new dom.window.KeyboardEvent('keydown', { key: 'ArrowRight' });
@@ -1038,4 +1040,13 @@ test('Explore: ein Werkzeug ohne Inhalte bietet kein „Werkzeug öffnen“ an',
   assert.match(ohne.querySelector('[data-pruef="werkzeug-welten"] .badge')?.textContent ?? '', /in Vorbereitung/u);
   const mit = baueExplore({ inhalte, freigeschaltet: true, weltB: true, version: VERSION });
   for (const w of ['simulator', 'welten', 'sandbox', 'zeitmaschine', 'galerie', 'figuren']) assert.ok(mit.querySelector(`[data-pruef="werkzeug-oeffnen-${w}"]`), w);
+});
+
+test('Lernseite 6 (P11.1, Befund 4): kanonischer Governance-Fluss als Übersicht in Abschnitt 6.4.3', () => {
+  const seite = baueTheorie({ inhalte, kapitel: 6, version: VERSION, bedienbar: true });
+  const fluss = seite.querySelector('[data-abschnitt="k6.4.3"] [data-pruef="fluss"]');
+  assert.ok(fluss, 'Fluss fehlt in 6.4.3');
+  assert.ok(fluss.classList.contains('ist-uebersicht'));
+  assert.equal(fluss.querySelectorAll('.fluss-stationen li').length, 7);
+  assert.match(fluss.getAttribute('aria-label') ?? '', /^Kanonischer Governance-Fluss: Frühwarnung → /u);
 });

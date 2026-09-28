@@ -159,7 +159,7 @@ titel: Warum relevant
 ---
 In Monat 11 treffen drei Dinge zusammen: eine anstehende Freigabe, eine Anfrage des Stadtrats und der Ausfall der Person, die die Kostenprognose gebaut hat. Verletzlich wird das Projekt, weil die Kostenzahl nur in Holger Steins Dateien steckt und keine Stellvertretung geregelt ist.
 
-Auch die Freigabe hat keinen festgelegten Weg. Kap. 9.3 ordnet sie eindeutig zu: Der Bauherr [[zitat:k9.3-p3|erteilt jede Freigabe selbst auf Vorlage der Bauherren-PL – nicht die Projektsteuerung und nicht der Lenkungskreis]]. In Welt A steht das nirgends; im Jour fixe wird die Frage in den Lenkungskreis vertagt.
+Auch die Freigabe hat keinen festgelegten Weg. Kap. 9.3 ordnet sie eindeutig zu: Der Bauherr [[zitat:k9.3-p3|erteilt jede Freigabe selbst auf Vorlage der Bauherren-PL – nicht die Projektsteuerung und nicht der Lenkungskreis]]. In Welt A steht das nirgends; im Jour fixe bleibt die Frage offen.
 :::
 
 ::: ebene 3

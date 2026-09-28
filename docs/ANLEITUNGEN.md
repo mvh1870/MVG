@@ -63,7 +63,7 @@ Den Vermerk „fachlich ungeprüft“ zeigen beide Dateien, bis der Owner die Fa
 
 ## 3. Einbetten in eine Webseite (E12, P12)
 
-Diesen Schnipsel an die Stelle der eigenen Seite kopieren, an der MVG interaktiv erscheinen soll. Er lässt den Rahmen **mit dem Inhalt mitwachsen** (keine zweite Scrollleiste, weiche Höhenänderung), gibt der Story eine feste Höhe (90 % des Fensters, 640–900 px) rollt beim Wechsel zwischen Start, Story, Lernseiten und Kapiteln sanft an den Anfang des Rahmens zurück, falls er aus dem Bild gescrollt ist, und springt bei Absatz-Links an die richtige Stelle. Bei reduzierter Bewegung (Systemeinstellung) geschieht all das ohne Animation.
+Diesen Schnipsel an die Stelle der eigenen Seite kopieren, an der MVG interaktiv erscheinen soll. Er lässt den Rahmen **mit dem Inhalt mitwachsen** (keine zweite Scrollleiste, weiche Höhenänderung), gibt der Story ab 981 px Breite eine feste Höhe (90 % des Fensters, 640–900 px), rollt beim Wechsel zwischen Start, Story, Lernseiten und Kapiteln sanft an den Anfang des Rahmens zurück, falls er aus dem Bild gescrollt ist, und springt bei Absatz-Links an die richtige Stelle. Bei reduzierter Bewegung (Systemeinstellung) geschieht all das ohne Animation.
 
 ```html
 <iframe id="mvg" title="MVG interaktiv"
@@ -84,7 +84,10 @@ Diesen Schnipsel an die Stelle der eigenen Seite kopieren, an der MVG interaktiv
     if (d.art === 'ort') {
       // neue Seite (Fläche oder Kapitel): an den Anfang des Rahmens, falls er aus dem Bild ist
       var neu = String(d.hash).split('/').slice(0, 2).join('/');
-      if (ort !== '' && neu !== ort && rahmen.getBoundingClientRect().top < 0) rahmen.scrollIntoView({ behavior: ruhig ? 'auto' : 'smooth', block: 'start' });
+      var r = rahmen.getBoundingClientRect();
+      // weit weg: ohne Animation (sonst kurz leere Fläche, während der Rahmen schrumpft); Story: ganz ins Bild
+      var weit = r.top < -window.innerHeight;
+      if (ort !== '' && neu !== ort && (r.top < 0 || (d.flaeche === 'story' && r.bottom > window.innerHeight))) rahmen.scrollIntoView({ behavior: (ruhig || weit) ? 'auto' : 'smooth', block: 'start' });
       ort = neu;
     }
     // Sprungziel im Rahmen (z. B. ein Absatz): die Hostseite rollt dorthin

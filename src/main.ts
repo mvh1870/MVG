@@ -107,7 +107,7 @@ function starteApp(wurzel: HTMLElement): void {
         else tue({ art: 'wechsleBereich', bereich: 'story' });
         if (flaeche !== 'story') {
           raeume();
-          story = erzeugeStory({ inhalte, tue, zurStart: () => navigiere({ flaeche: 'start' }), klang });
+          story = erzeugeStory({ inhalte, tue, zurStart: () => navigiere({ flaeche: 'start' }), klang, meldeZiel: eingebettet ? (y) => einbettung?.meldeZiel(y) : null });
           ersetze(wurzel, story.element);
           story.setze(oeffentlich(sitzung.zustand()), null);
           window.scrollTo(0, 0);
@@ -148,13 +148,16 @@ function starteApp(wurzel: HTMLElement): void {
           abschnitt.classList.add('ist-ziel');
           // Permalink auf einen Abschnitt (P2.4): dorthin, Fokus für Screenreader
           abschnitt.tabIndex = -1;
-          abschnitt.scrollIntoView({ block: 'start' });
+          // eingebettet scrollt nicht der Rahmen, sondern die Hostseite: nur ihr die Lage des Ziels melden (ein Sprung)
+          const ausrichten = (): void => {
+            if (einbettung !== null) einbettung.meldeZiel(abschnitt.getBoundingClientRect().top + window.scrollY);
+            else abschnitt.scrollIntoView({ block: 'start' });
+          };
+          ausrichten();
           abschnitt.focus({ preventScroll: true });
-          // eingebettet scrollt nicht der Rahmen, sondern die Hostseite: ihr die Lage des Ziels melden
-          einbettung?.meldeZiel(abschnitt.getBoundingClientRect().top + window.scrollY);
           // Schriften verschieben das Layout nach dem ersten Zeichnen: danach noch einmal ausrichten
           const hash = location.hash;
-          void document.fonts?.ready.then(() => { if (location.hash === hash && abschnitt.isConnected) abschnitt.scrollIntoView({ block: 'start' }); });
+          void document.fonts?.ready.then(() => { if (location.hash === hash && abschnitt.isConnected) ausrichten(); });
         } else (seite.querySelector('.kapitel-titel') as HTMLElement | null)?.focus({ preventScroll: true });
         flaeche = `theorie-${r.kapitel ?? 0}`;
         document.body.dataset['flaeche'] = 'theorie';

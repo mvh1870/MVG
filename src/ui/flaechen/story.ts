@@ -40,6 +40,8 @@ export interface StoryOptionen {
   zurStart?: (() => void) | null;
   /** Dezente Klänge (P10.6, E14): Schalter im Kopf; fehlt er, gibt es keinen Knopf */
   klang?: { an: () => boolean; setze: (an: boolean) => void } | null;
+  /** Einbettung in eine Hostseite (L-67): Sprungziel melden, weil der Rahmen selbst nicht scrollt */
+  meldeZiel?: ((y: number) => void) | null;
 }
 
 /** Schalter „Klänge“ (standardmäßig aus) */
@@ -322,7 +324,8 @@ export function erzeugeStory(o: StoryOptionen): StoryFlaeche {
         text(ansage, `${kicker(schritte, index)}: ${tafelTitel(schritte, index)}`);
         if (schmal() || getComputedStyle(leitstand).display === 'block') {
           const oben = tafel.getBoundingClientRect().top;
-          if (oben < 0 && typeof tafel.scrollIntoView === 'function') tafel.scrollIntoView({ block: 'start' });
+          if (o.meldeZiel) o.meldeZiel(oben + window.scrollY);
+          else if (oben < 0 && typeof tafel.scrollIntoView === 'function') tafel.scrollIntoView({ block: 'start' });
         }
         if (bedienbar && (fokusInTafel || aktiv === document.body || (aktiv !== null && !document.contains(aktiv)))) {
           titelEl.focus({ preventScroll: true });

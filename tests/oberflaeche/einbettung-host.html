@@ -26,7 +26,10 @@
     if (d.art === 'ort') {
       // neue Seite (Fläche oder Kapitel): an den Anfang des Rahmens, falls er aus dem Bild ist
       var neu = String(d.hash).split('/').slice(0, 2).join('/');
-      if (ort !== '' && neu !== ort && rahmen.getBoundingClientRect().top < 0) rahmen.scrollIntoView({ behavior: ruhig ? 'auto' : 'smooth', block: 'start' });
+      var r = rahmen.getBoundingClientRect();
+      // weit weg: ohne Animation (sonst kurz leere Fläche, während der Rahmen schrumpft); Story: ganz ins Bild
+      var weit = r.top < -window.innerHeight;
+      if (ort !== '' && neu !== ort && (r.top < 0 || (d.flaeche === 'story' && r.bottom > window.innerHeight))) rahmen.scrollIntoView({ behavior: (ruhig || weit) ? 'auto' : 'smooth', block: 'start' });
       ort = neu;
     }
     // Sprungziel im Rahmen (z. B. ein Absatz): die Hostseite rollt dorthin

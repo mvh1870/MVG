@@ -167,7 +167,7 @@ Drei Symptome aus Kap. 2.5 – und wo sie an dieser Station zu sehen sind:
 
 | Symptom | Typisches Muster | Konsequenz für den Bauherrn | In A4 sichtbar |
 |---|---|---|---|
-| Gremien ohne [[Entscheidungsreife]] | Unterlagen sind umfangreich, aber Entscheidungsfrage, Optionen, Datenstand und Risiken sind nicht präzise genug. | Gremien vertagen, entscheiden unter Unsicherheit oder delegieren Verantwortung zurück. | Ein umfangreicher Statusbericht, zweimal die Frage nach der Entscheidung, vertagt |
+| Gremien ohne [[Entscheidungsreife]] | Unterlagen sind umfangreich, aber Entscheidungsfrage, Optionen, Datenstand und Risiken sind nicht präzise genug. | Gremien vertagen, entscheiden unter Unsicherheit oder delegieren Verantwortung zurück. | Ein umfangreicher Statusbericht, die Frage nach der Entscheidung, vertagt |
 | Parallele Datenstände | Kosten, Termin, Projektumfang, Risiken und Annahmen werden in unterschiedlichen Fassungen geführt. | Entscheidungen beruhen auf widersprüchlichen Grundlagen. | Mehrere Kostenprognosen seit Mai; die Auflagen stehen nicht in allen |
 | Eskalation ohne Entscheidung | Themen werden nach oben gegeben, aber ohne klare Entscheidungsoptionen, Empfehlung oder Konsequenzen. | Eskalation erzeugt Verzögerung statt Führung. | Der Stand geht nach oben in den Ausschuss – ohne Optionen, Empfehlung oder Konsequenzen; eine [[Entscheidungsvorlage]] fehlt |
 :::
@@ -221,7 +221,7 @@ figur: deppe
 ---
 figur: olbers
 ---
-„Zweimal die Frage nach der Entscheidung, und auf dem Tisch lag keine Antwort. Was genau soll der Ausschuss im September beschließen?“
+„Gefragt war die Entscheidung, auf dem Tisch lag keine Antwort. Was genau soll der Ausschuss im September beschließen?“
 :::
 
 ::: standpunkt pl

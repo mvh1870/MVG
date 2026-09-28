@@ -74,7 +74,7 @@ Im September haben Sie ‚Nachtrag auf Zusage stützen‘ gewählt. Beauftragt i
 :::
 
 ::: rueckbezug B
-Im September haben Sie ‚Nachtrag zurückstellen‘ gewählt. Der Nachtrag liegt noch bei Ihnen. Zum Abschluss von LPH 5 fehlt damit eine Zahl, die alle ungefähr kennen.
+Im September haben Sie ‚Nachtrag zurückstellen‘ gewählt. Der Nachtrag liegt noch bei Ihnen. Zum Abschluss von LPH 5 fehlt damit eine belastbare Zahl.
 :::
 
 ::: rueckbezug C

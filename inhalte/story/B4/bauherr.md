@@ -29,7 +29,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Der Ausschuss sieht, was entschieden ist – `AEN-012`, `AEN-022`, `AEN-031` – und was ansteht. Bernd Kowalski fragt einmal nach, nicht zweimal.
+Der Ausschuss sieht, was entschieden ist – `AEN-012`, `AEN-022`, `AEN-031` – und was ansteht. Bernd Kowalski muss nicht mehr nachfragen.
 
 ### Was fehlt
 Die Deckung von `AEN-031`: Soll sie aus der Risikoreserve kommen, braucht es Ihre Freigabe.

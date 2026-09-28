@@ -35,7 +35,7 @@ zeit: "07:38"
 ---
 Fraktion fragt nach Kosten und Termin; Antwort bis Fr., 13. November.
 
-Dr. Olbers antwortet aus dem Managementbericht Oktober. Wer arbeitet zu?
+Antwort aus dem Managementbericht Oktober. Wer arbeitet zu?
 :::
 
 ::: chat

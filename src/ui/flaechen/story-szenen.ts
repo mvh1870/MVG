@@ -17,7 +17,7 @@ import { h, attr, elementAus, s } from '../h.ts';
 import { statusSymbol } from '../../stil/symbole.ts';
 import {
   aenderungsSaetze, aktuellerSchritt, aktuelleStation, alleBloecke, ansichtSchluessel, instrumentWerte, kopfKarte, kopfListe,
-  kopfText, kopfZahl, istKarte, mandatsWahl, rollenAttr, statusWort, gruppiere, schrittPosition,
+  kopfText, kopfZahl, istKarte, mandatsWahl, rollenAttr, statusWort, gruppiere, schrittPosition, stationsName,
 } from '../anzeige.ts';
 import * as B from '../bausteine/bloecke.ts';
 import { inhalt, inhaltInline, personFigur, personName, personFunktion } from '../bausteine/inhalt.ts';
@@ -31,6 +31,9 @@ import { dezimal, naechsterFrame, sanftBeide, zaehle, type Takt } from '../beweg
 import { W } from '../woerter.ts';
 import { spurTafel } from '../leitstand/spur.ts';
 import { findeEntscheidung } from '../../engine/graph.ts';
+import { bogenKopf, druckeBogen } from '../druck.ts';
+import { fassungText } from '../fassung.ts';
+import { kapitelFuerDruck } from './theorie.ts';
 
 export interface SzenenKontext {
   inhalte: OeffentlicheInhalte;
@@ -818,8 +821,28 @@ export function resuemee(b: Block, k: SzenenKontext, text: Node | null): HTMLEle
   const richtung = [...k.z.spur].reverse().find((e) => e.station === 'wirklichkeit') ?? null;
   const richtungKurz = richtung !== null ? findeEntscheidung(k.inhalte, richtung.entscheidung)?.entscheidung.optionen.find((o) => o.id === richtung.option)?.kurz ?? null : null;
   const vertiefungen = [...new Set([...(ende?.vertiefung != null ? [ende.vertiefung] : []), ...kapitel])].slice(0, 2);
+  // Dossier (P10.2, E11): Weg, Entscheidungen, Resümee und die Kapitel der Vertiefung auf einem Bogen
+  const dossier = (): void => {
+    const D = W.druck;
+    const version = fassungText(k.inhalte.whitepaper.fassung ?? '');
+    const weg = [...new Set(k.z.verlauf)].map((id) => stationsName(k.inhalte, id));
+    const zeilen = k.z.spur.map((e) => {
+      const opt = findeEntscheidung(k.inhalte, e.entscheidung)?.entscheidung.optionen.find((x) => x.id === e.option);
+      return h('li', null, `${stationsName(k.inhalte, e.station)}: ${e.option} · ${opt?.kurz ?? ''}`);
+    });
+    const kopie = teil.cloneNode(true) as HTMLElement;
+    for (const x of kopie.querySelectorAll('.druck-knopf')) x.remove();
+    druckeBogen(D.dossierTitel, [
+      bogenKopf(D.dossierTitel, version, true),
+      h('section', { class: 'druck-teil' }, h('h2', null, D.dossierWeg), h('p', null, weg.join(' → ') || '–')),
+      h('section', { class: 'druck-teil' }, h('h2', null, D.dossierEntscheidungen), zeilen.length > 0 ? h('ol', null, zeilen) : h('p', null, D.dossierKeine)),
+      h('section', { class: 'druck-teil' }, h('h2', null, D.dossierResuemee), kopie),
+      h('section', { class: 'druck-teil ist-neue-seite' }, h('h2', null, D.dossierNachlesen)),
+      ...vertiefungen.map((nr) => kapitelFuerDruck(k.inhalte, nr, version)),
+    ]);
+  };
   const link = (nr: number): Node => k.tue !== null ? h('a', { href: `#theorie/k${nr}`, 'data-pruef': `resuemee-k${nr}` }, R.kapitel(nr, titel(nr))) : document.createTextNode(R.kapitel(nr, titel(nr)));
-  return h('div', { class: 'stapel resuemee', 'data-pruef': 'resuemee' }, text,
+  const teil: HTMLElement = h('div', { class: 'stapel resuemee', 'data-pruef': 'resuemee' }, text,
     ende !== null ? h('section', { class: 'resuemee-teil', 'data-pruef': 'resuemee-weg' },
       h('h3', { class: 'tafel-titel' }, R.ihrWeg),
       h('p', null, h('span', { class: 't-label' }, `${R.ende}: `), ende.titel),
@@ -834,7 +857,9 @@ export function resuemee(b: Block, k: SzenenKontext, text: Node | null): HTMLEle
     // Ein `hinweis` im Resümee ist Zwischenüberschrift („Drei Prinzipien“, „Eine Checkliste“)
     b.kinder.map((kind) => kind.art === 'hinweis'
       ? h('h3', { class: 'tafel-titel resuemee-titel' }, inhaltInline(kind.felder['text'] ?? ''))
-      : B.block(kind, k.inhalte, W.originalWoertlich, k.z.verlauf, k.z.rolle, 'h4')));
+      : B.block(kind, k.inhalte, W.originalWoertlich, k.z.verlauf, k.z.rolle, 'h4')),
+    k.tue !== null ? h('p', null, h('button', { type: 'button', class: 'knopf knopf-still druck-knopf', 'data-pruef': 'dossier-drucken', onclick: dossier }, W.druck.dossierDrucken)) : null);
+  return teil;
 }
 
 /* ------------------------------------------------------------------ Auswahl -- */

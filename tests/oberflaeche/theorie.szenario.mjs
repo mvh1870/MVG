@@ -46,4 +46,43 @@ export async function lauf(seite, h) {
     await h.axe(`k${nr}`);
     if (nr === 4 || nr === 8) await h.bild(`k${nr}`);
   }
+
+  // Zitierfunktion (P10.1): Absatz-Permalink springt zum Absatz, „Zitieren“ zeigt die Angabe
+  await seite.evaluate(() => { location.hash = '#theorie/k4/k4.2-p3'; });
+  const absatz = seite.locator('.originaltext .absatz[data-absatz="k4.2-p3"]');
+  await absatz.waitFor({ timeout: 3000 });
+  await h.warte(200);
+  const lage = await absatz.boundingBox();
+  const hoehe = seite.viewportSize()?.height ?? 800;
+  if (lage === null || lage.y < -1 || lage.y > hoehe) h.befund(`Absatz-Permalink: k4.2-p3 nicht im Bild (${JSON.stringify(lage)})`);
+  if (await absatz.evaluate((el) => el.classList.contains('ist-ziel')) !== true) h.befund('Absatz-Permalink: Ziel nicht hervorgehoben');
+  await absatz.locator('[data-pruef="zitieren"]').click();
+  const angabe = await absatz.locator('[data-pruef="zitierangabe"]').textContent();
+  if (!/^Bauherr Mentoren, Whitepaper V1\.2, Kap\. 4\.2, Abs\. 3\. Link: .*#theorie\/k4\/k4\.2-p3$/u.test(angabe ?? '')) h.befund(`Zitierangabe: „${angabe}“`);
+  await h.axe('zitieren');
+  await h.bild('zitieren');
+  // Druck (P10.2): im Druck ist nur der Bogen sichtbar, die Seite selbst nicht; eine PDF entsteht
+  await seite.evaluate(() => { window.print = () => {}; });
+  await seite.locator('[data-pruef="kapitel-drucken"]').click();
+  await seite.emulateMedia({ media: 'print', reducedMotion: 'reduce' });
+  const druck = await seite.evaluate(() => ({
+    bogen: getComputedStyle(document.querySelector('.druck-bogen') ?? document.body).display,
+    seite: getComputedStyle(document.querySelector('#app > *, body > :not(.druck-bogen)') ?? document.body).display,
+    titel: document.querySelector('.druck-bogen .druck-kopf h1')?.textContent ?? '',
+    zitieren: [...document.querySelectorAll('.druck-bogen .absatz-zitieren')].filter((x) => getComputedStyle(x).display !== 'none').length,
+  }));
+  if (druck.bogen === 'none' || druck.seite !== 'none' || !/^Kapitel 4 · /u.test(druck.titel) || druck.zitieren > 0) h.befund(`Druckbogen: ${JSON.stringify(druck)}`);
+  const pdf = await seite.pdf({ format: 'A4' });
+  const seiten = (pdf.toString('latin1').match(/\/Type\s*\/Page[^s]/gu) ?? []).length;
+  if (seiten < 2 || seiten > 40) h.befund(`Druck Kapitel 4: ${seiten} Seiten`);
+  await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
+  await seite.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
+  if (await seite.locator('.druck-bogen').count() !== 0) h.befund('Druckbogen bleibt nach dem Druck stehen');
+  // Impressum
+  await seite.evaluate(() => { location.hash = '#theorie/impressum'; });
+  await h.erwarte('[data-pruef="impressum"]');
+  await h.warte(200);
+  const imp = await seite.locator('[data-pruef="impressum"]').boundingBox();
+  if (imp === null || imp.y > hoehe) h.befund('Impressum-Permalink: Abschnitt nicht im Bild');
+  await h.axe('impressum');
 }

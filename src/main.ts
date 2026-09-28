@@ -18,7 +18,7 @@ import { anfangszustand, oeffentlich } from './engine/zustand.ts';
 import { lade, type SpeicherGriff } from './engine/speicher.ts';
 import { erzeugeKanal } from './regie/kanal.ts';
 import { setzeMarke } from './ui/marke.ts';
-import { leseRoute, routeHash, type Route } from './ui/route.ts';
+import { IMPRESSUM, istAbsatzId, leseRoute, routeHash, type Route } from './ui/route.ts';
 import { erzeugeSitzung, type Sitzung } from './ui/sitzung.ts';
 import { ersetze } from './ui/h.ts';
 import { installiereTooltips, type Tooltips } from './ui/bausteine/tooltip.ts';
@@ -29,12 +29,12 @@ import { baueExplore } from './ui/flaechen/explore.ts';
 import { erzeugeRegie } from './regie/regie.ts';
 import { starteLeinwand } from './regie/leinwand.ts';
 import { W } from './ui/woerter.ts';
-
-declare const __MVG_VERSION__: string;
+import { fassungText } from './ui/fassung.ts';
+import { erzeugeKlang } from './ui/klang.ts';
+import { istEingebettet, starteEinbettung } from './ui/einbettung.ts';
 
 const TITEL = 'Minimum Viable Governance';
-const STORY_VERSION = __MVG_VERSION__.split('.').slice(0, 2).join('.');
-const VERSION = W.version(inhalte.whitepaper.fassung ?? '', STORY_VERSION);
+const VERSION = fassungText(inhalte.whitepaper.fassung ?? '');
 const KANAL = 'regie';
 
 type Betriebsart = 'app' | 'regie' | 'leinwand';
@@ -74,6 +74,10 @@ function startzustand(speicher: SpeicherGriff | null): Zustand {
 function starteApp(wurzel: HTMLElement): void {
   const speicher = standardSpeicher();
   const sitzung: Sitzung = erzeugeSitzung(startzustand(speicher), inhalte, { speicher });
+  const klang = erzeugeKlang(speicher);
+  // Einbettung (P10.6, E12): im iframe meldet die Anwendung dem Host jeden Ort und folgt „gehe“
+  const eingebettet = istEingebettet(window);
+  if (eingebettet) document.body.classList.add('ist-eingebettet');
   let story: StoryFlaeche | null = null;
   let tipps: Tooltips | null = null;
   let flaeche = '';
@@ -96,7 +100,7 @@ function starteApp(wurzel: HTMLElement): void {
         else tue({ art: 'wechsleBereich', bereich: 'story' });
         if (flaeche !== 'story') {
           raeume();
-          story = erzeugeStory({ inhalte, tue, zurStart: () => navigiere({ flaeche: 'start' }) });
+          story = erzeugeStory({ inhalte, tue, zurStart: () => navigiere({ flaeche: 'start' }), klang });
           ersetze(wurzel, story.element);
           story.setze(oeffentlich(sitzung.zustand()), null);
           window.scrollTo(0, 0);
@@ -122,8 +126,14 @@ function starteApp(wurzel: HTMLElement): void {
         ersetze(wurzel, seite);
         tipps = installiereTooltips(seite, inhalte, W.glossarQuelle(inhalte.whitepaper.fassung ?? ''));
         window.scrollTo(0, 0);
-        const abschnitt = r.abschnitt !== null ? seite.querySelector<HTMLElement>(`[data-abschnitt="k${r.abschnitt}"]`) : null;
+        // Abschnitt (k2.4), Absatz (k4.2-p3, Zitierfunktion P10.1) oder das Impressum der Kapitelliste
+        const ziel = r.abschnitt === null ? null
+          : istAbsatzId(r.abschnitt) ? `.originaltext .absatz[data-absatz="${r.abschnitt}"]`
+          : r.abschnitt === IMPRESSUM ? `[data-abschnitt="${IMPRESSUM}"]`
+          : `[data-abschnitt="k${r.abschnitt}"]`;
+        const abschnitt = ziel !== null ? seite.querySelector<HTMLElement>(ziel) : null;
         if (abschnitt !== null) {
+          abschnitt.classList.add('ist-ziel');
           // Permalink auf einen Abschnitt (P2.4): dorthin, Fokus für Screenreader
           abschnitt.tabIndex = -1;
           abschnitt.scrollIntoView({ block: 'start' });
@@ -173,10 +183,17 @@ function starteApp(wurzel: HTMLElement): void {
   };
 
   sitzung.abonniere((neu, alt, aktion) => {
+    // Klänge (aus, bis eingeschaltet): Freischaltung vor Stationswechsel vor Wahl
+    if (neu.freigeschaltet.weltB !== alt.freigeschaltet.weltB || neu.freigeschaltet.explore !== alt.freigeschaltet.explore) klang.spiele('frei');
+    else if (neu.station !== alt.station && neu.station !== null) klang.spiele('station');
+    else if (aktion?.art === 'waehle') klang.spiele('wahl');
     if (story !== null && flaeche === 'story') {
       story.setze(oeffentlich(neu), aktion);
       // Adresszeile zeigt den Permalink der Station (ohne hashchange: replaceState)
-      if (neu.station !== null && neu.station !== alt.station) history.replaceState(null, '', routeHash({ flaeche: 'story', station: neu.station }));
+      if (neu.station !== null && neu.station !== alt.station) {
+        history.replaceState(null, '', routeHash({ flaeche: 'story', station: neu.station }));
+        einbettung?.meldeOrt();
+      }
     }
   });
 
@@ -193,7 +210,16 @@ function starteApp(wurzel: HTMLElement): void {
     if (story.taste(e)) e.preventDefault();
   });
 
+  const einbettung = eingebettet ? starteEinbettung({
+    fenster: window,
+    version: VERSION,
+    gehe: (hash) => { if (location.hash !== hash) location.hash = hash; },
+    ort: () => ({ hash: location.hash || '#start', flaeche: document.body.dataset['flaeche'] ?? '', titel: document.title }),
+  }) : null;
+  window.addEventListener('hashchange', () => einbettung?.meldeOrt());
+
   zeige(leseRoute(location.hash));
+  einbettung?.meldeOrt();
 }
 
 /* ------------------------------------------------------------------- Regie -- */

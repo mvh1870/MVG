@@ -20,6 +20,14 @@ test('Permalinks (P2.4): Station und Abschnitt', () => {
   assert.deepEqual(leseRoute('#theorie/k6/k6.4.3'), { flaeche: 'theorie', kapitel: 6, abschnitt: '6.4.3' });
 });
 
+test('Permalinks (P10.1): Absatz und Impressum', () => {
+  assert.deepEqual(leseRoute('#theorie/k4/k4.2-p3'), { flaeche: 'theorie', kapitel: 4, abschnitt: 'k4.2-p3' });
+  assert.deepEqual(leseRoute('#theorie/k1/K1-P2'), { flaeche: 'theorie', kapitel: 1, abschnitt: 'k1-p2' });
+  assert.deepEqual(leseRoute('#theorie/k6/k6.4.2-t1'), { flaeche: 'theorie', kapitel: 6, abschnitt: 'k6.4.2-t1' });
+  assert.deepEqual(leseRoute('#theorie/impressum'), { flaeche: 'theorie', kapitel: null, abschnitt: 'impressum' });
+  for (const hash of ['#theorie/k4/k5.1-p1', '#theorie/k4/k4.2-x1', '#theorie/k4/k4.2-p', '#theorie/impressum/x']) assert.deepEqual(leseRoute(hash), START, hash);
+});
+
 test('Kapitel mit führender Null, Großschreibung und Schrägstrich am Ende', () => {
   assert.deepEqual(leseRoute('#theorie/k01'), { flaeche: 'theorie', kapitel: 1, abschnitt: null });
   assert.deepEqual(leseRoute('#Theorie/K13'), { flaeche: 'theorie', kapitel: 13, abschnitt: null });
@@ -34,7 +42,7 @@ test('Unbekanntes, Leeres und Kaputtes führen zur Startseite', () => {
 });
 
 test('routeHash ist die Umkehrung von leseRoute', () => {
-  for (const hash of ['#start', '#story', '#story/a3', '#theorie', '#theorie/k1', '#theorie/k13', '#theorie/k2/2.4', '#explore', '#regie', '#leinwand']) {
+  for (const hash of ['#start', '#story', '#story/a3', '#theorie', '#theorie/k1', '#theorie/k13', '#theorie/k2/2.4', '#theorie/k4/k4.2-p3', '#theorie/impressum', '#explore', '#regie', '#leinwand']) {
     assert.equal(routeHash(leseRoute(hash)), hash);
   }
   assert.equal(routeHash({ flaeche: 'story', station: 'A3' }), '#story/A3');

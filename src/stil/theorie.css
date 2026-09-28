@@ -155,7 +155,14 @@ button.lernkarte[aria-expanded="true"] { box-shadow: 0 0 0 2px var(--gold-hell),
   white-space: nowrap;
 }
 a.absatz-id:hover { background: var(--weiss); box-shadow: inset 0 0 0 1px var(--navy-soft); }
-.absatz:target { border-radius: var(--radius-s); background: var(--gold-soft); box-shadow: 0 0 0 var(--a-2) var(--gold-soft); }
+/* Zitierfunktion (P10.1): ID als Permalink, darunter „Zitieren“; die Angabe erscheint über die ganze Breite */
+.absatz-kopf { display: flex; flex-direction: column; align-items: flex-start; gap: var(--a-1); }
+.absatz-zitieren { display: inline-flex; align-items: center; gap: 4px; min-height: 28px; padding: 2px 6px; border: 0; border-radius: var(--radius-xs); background: none; color: var(--tinte-2); font: 500 var(--gr-xs)/1.2 var(--schrift-text); cursor: pointer; }
+.absatz-zitieren:hover, .absatz-zitieren[aria-expanded="true"] { color: var(--navy); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
+.absatz-zitieren .symbol { width: 14px; height: 14px; }
+.zitierangabe { grid-column: 1 / -1; display: grid; gap: 2px; margin: 0; padding: var(--a-2) var(--a-3); border-radius: var(--radius-s); background: var(--weiss); box-shadow: inset 3px 0 0 var(--gold); font-size: var(--gr-s); overflow-wrap: anywhere; }
+.zitierangabe-status { color: var(--tinte-2); font-size: var(--gr-xs); }
+.absatz.ist-ziel, .absatz:target { border-radius: var(--radius-s); background: var(--gold-soft); box-shadow: 0 0 0 var(--a-2) var(--gold-soft); }
 .originaltext ul.absatz-liste { padding-left: 1.3em; list-style: disc; }
 
 /* Querverweis in die Story (Chip) */
@@ -220,6 +227,7 @@ a.absatz-id:hover { background: var(--weiss); box-shadow: inset 0 0 0 1px var(--
   .kernaussage p { font-size: 19px; }
   .originaltext { padding: var(--a-4); }
   .absatz { grid-template-columns: minmax(0, 1fr); gap: var(--a-1); }
+  .absatz-kopf { flex-direction: row; align-items: center; }
   .kapitel-nav { grid-template-columns: minmax(0, 1fr); }
   .kapitel-nav a[rel="next"] { grid-column: auto; }
 }
@@ -446,3 +454,45 @@ a.glossar-ort:hover { text-decoration: underline; }
 a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
 .explore-station.ist-gesperrt { color: var(--tinte-2); background: var(--flaeche-2); }
 .zm-legende [data-welt="a"] .zm-marke, .zm-ablesen p[data-welt="a"] .zm-marke { background: none; box-shadow: inset 0 0 0 2.5px var(--welt-farbe); }
+
+/* Impressum (P10.1) auf der Kapitelliste */
+.impressum { margin-top: var(--a-8); padding-top: var(--a-6); border-top: 1px solid var(--linie); }
+.impressum-liste { display: grid; grid-template-columns: minmax(8em, 14em) minmax(0, 1fr); gap: var(--a-2) var(--a-4); margin: var(--a-4) 0; font-size: var(--gr-m); }
+.impressum-liste dt { font-weight: 600; color: var(--tinte); }
+.impressum-liste dd { margin: 0; color: var(--tinte-2); }
+.impressum-grenzen { display: flex; flex-wrap: wrap; gap: var(--a-2); }
+.impressum-aenderungen { display: grid; gap: var(--a-2); margin-top: var(--a-2); padding-left: 1.3em; font-size: var(--gr-m); color: var(--tinte-2); }
+@media (max-width: 700px) { .impressum-liste { grid-template-columns: minmax(0, 1fr); gap: 2px; } .impressum-liste dd { margin-bottom: var(--a-2); } }
+
+/* Druckbogen (P10.2, E11): Kapitel, alle Kapitel, Dossier. Auf dem Bildschirm unsichtbar; im Druck
+   ist nur er da. Die Lernseiten behalten ihre Klassen, Rahmen und Bildschirmhöhen fallen weg. */
+.druck-bogen { display: none; }
+.kapitel-vermerk { display: flex; flex-wrap: wrap; align-items: center; gap: var(--a-3); }
+@media print {
+  @page { margin: 16mm 14mm; }
+  body.druckt-bogen > :not(.druck-bogen) { display: none !important; }
+  body.druckt-bogen { background: var(--weiss); }
+  body.druckt-bogen .druck-bogen { display: block; color: var(--tinte); font: 10.5pt/1.5 var(--schrift-text); }
+  .druck-kopf { margin-bottom: 8mm; padding-bottom: 4mm; border-bottom: 1px solid var(--linie-2); }
+  .druck-kopf h1 { margin: 2mm 0; font: 800 20pt/1.15 var(--schrift-anzeige); color: var(--navy); }
+  .druck-absender, .druck-meta { margin: 0; font-size: 9pt; color: var(--tinte-2); }
+  .druck-teil { margin-bottom: 6mm; }
+  .druck-teil h2 { margin: 0 0 2mm; font: 700 13pt/1.25 var(--schrift-text); color: var(--navy); }
+  .druck-teil.ist-neue-seite, .druck-bogen .druck-kapitel { break-before: page; }
+  .druck-teil.ist-neue-seite + .druck-kapitel { break-before: avoid; }
+  .druck-bogen .lernseite { min-height: 0; background: none; }
+  .druck-bogen .lern-rahmen { display: block; padding: 0; max-width: none; }
+  .druck-bogen .lern-inhalt { max-width: none; gap: 6mm; }
+  .druck-bogen .druck-knopf, .druck-bogen .absatz-zitieren { display: none !important; }
+  .druck-bogen .absatz, .druck-bogen figure, .druck-bogen .lernkarte, .druck-bogen .kernaussage { break-inside: avoid; }
+  .druck-bogen a { color: inherit; text-decoration: none; }
+  .druck-bogen * { box-shadow: none !important; animation: none !important; transition: none !important; }
+}
+
+/* Begriffs-Kompass (P10.5) im Glossar */
+.kompass { margin-top: var(--a-8); }
+.kompass .lesetext { margin: var(--a-2) 0 var(--a-4); }
+.kompass-tabelle td:first-child { color: var(--tinte-2); }
+.kompass-begriff { min-height: 32px; padding: 2px 0; border: 0; background: none; color: var(--navy); font: inherit; font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; cursor: pointer; }
+.kompass-begriff:hover { text-decoration-thickness: 2px; }
+

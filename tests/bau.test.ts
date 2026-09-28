@@ -258,3 +258,28 @@ describe('bau: Bausteine', () => {
     assert.ok(huelle.indexOf(ANKER.csp) < huelle.indexOf('<title>'));
   });
 });
+
+test('Kundenfassung (P10.8, L-7): dist/mvg-kunde.html enthält kein Regie-Material, dist/mvg.html schon', async () => {
+  const json = JSON.parse(await readFile(path.join(WURZEL, 'src', 'generiert', 'inhalte.json'), 'utf8')) as { regie: Record<string, { notiz: string | null; leitfragen: string[] }>; einwaende: { felder: { einwand?: string } }[] };
+  const kunde = await readFile(path.join(WURZEL, 'dist', 'mvg-kunde.html'), 'utf8');
+  const voll = await readFile(path.join(WURZEL, 'dist', 'mvg.html'), 'utf8');
+  assert.ok(Buffer.byteLength(kunde, 'utf8') < BUDGET);
+  // Proben: je Eintrag die Leitfragen und ein Stück der Notiz ohne Zeichen, die JSON/JS maskieren
+  const proben: string[] = [];
+  for (const e of Object.values(json.regie)) {
+    proben.push(...e.leitfragen.filter((f) => !/["\\<>]/u.test(f)));
+    const text = (e.notiz ?? '').replace(/<[^>]+>/gu, ' ').split(/["\\]/u).map((s) => s.trim()).find((s) => s.length >= 40);
+    if (text !== undefined) proben.push(text.slice(0, 40));
+  }
+  // Nur Proben, die allein im Regie-Material stehen (manche Notiz zitiert das Whitepaper oder die Story)
+  const oeffentlich = JSON.stringify({ ...json, regie: {} });
+  proben.splice(0, proben.length, ...proben.filter((p) => !oeffentlich.includes(p)));
+  assert.ok(proben.length > 100, `zu wenige Proben: ${proben.length}`);
+  const inVoll = proben.filter((p) => voll.includes(p)).length;
+  assert.ok(inVoll > proben.length * 0.9, `Gegenprobe: nur ${inVoll}/${proben.length} Proben in dist/mvg.html`);
+  const inKunde = proben.filter((p) => kunde.includes(p));
+  assert.deepEqual(inKunde, [], 'Regie-Material in der Kundenfassung');
+  // Einwände sind öffentlich (L-54) und bleiben
+  const einwand = json.einwaende[0]?.felder.einwand?.replace(/<[^>]+>/gu, '').trim() ?? '';
+  assert.ok(einwand.length > 10 && kunde.includes(einwand));
+});

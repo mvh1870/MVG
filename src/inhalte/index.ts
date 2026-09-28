@@ -34,6 +34,7 @@ export const inhalte: OeffentlicheInhalte = {
   theorie: alle.theorie,
   einwaende: alle.einwaende,
   welten: alle.welten,
+  kompass: alle.kompass ?? [],
   abdeckung: alle.abdeckung,
   quellen: alle.quellen,
 };

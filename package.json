@@ -18,6 +18,7 @@
     "begriffe": "node werkzeuge/begriffe.mjs",
     "oberflaeche": "node werkzeuge/oberflaeche.mjs",
     "whitepaper:import": "node werkzeuge/whitepaper-import.mjs",
+    "whitepaper:reimport": "node werkzeuge/reimport.mjs",
     "vorschau": "node werkzeuge/vorschau.mjs",
     "entwurf": "node werkzeuge/entwurf.mjs"
   },

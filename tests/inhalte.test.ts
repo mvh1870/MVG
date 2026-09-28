@@ -690,3 +690,31 @@ test('Vorher/Nachher-Welten: doppelte Kennung und fehlende Welt B sind Fehler; o
   const ohne = await kompiliere({ pruefe: true, wurzel: neueWurzel(BEISPIEL), ziel: null });
   assert.deepEqual((ohne.inhalte as Inhalte).welten, []);
 });
+
+test('Begriffs-Kompass (P10.5): Begriff muss im Beleg stehen, Glossar-Bezug, alte Wörter nur hier erlaubt', async () => {
+  const kompass = (id: string, begriff: string, beleg: string, andere = '[Change-Board]'): string => `::: kompass ${id}\n---\nbegriff: ${begriff}\nandere: ${andere}\nbeleg: ${beleg}\n---\n:::\n\n`;
+  const gut = neueWurzel({ ...BEISPIEL, 'inhalte/begriffs-kompass.md': kompass('mandat', 'Mandat', 'k2.4-p2') });
+  const ok = await kompiliere({ pruefe: true, wurzel: gut, ziel: null });
+  assert.deepEqual(ok.fehler, [], 'das alte Wort im Kompass ist kein Begriffe-Fund');
+  assert.deepEqual(ok.inhalte.kompass, [{ id: 'mandat', begriff: 'Mandat', andere: ['Change-Board'], beleg: 'k2.4-p2', glossar: 'g-mandat', hinweis: null }]);
+  const schlecht = neueWurzel({ ...BEISPIEL, 'inhalte/begriffs-kompass.md': kompass('a', 'Freigabe', 'k2.4-p2') + kompass('b', 'Mandat', 'k9.9-p9') + kompass('a', 'Mandat', 'k2.4-p2') + kompass('c', 'Mandat', 'k2.4-p2', '[]') });
+  const { fehler } = await kompiliere({ pruefe: true, wurzel: schlecht, ziel: null });
+  for (const e of [/Kompass a: „Freigabe“ steht nicht in k2\.4-p2/u, /Absatz-ID „k9\.9-p9“ gibt es im Whitepaper nicht/u, /Kompass-Eintrag a doppelt/u, /Kompass c: „andere“ ist leer|„andere“/u]) {
+    assert.ok(fehler.some((f) => e.test(f)), `erwartet ${e}\nbekommen:\n${fehler.join('\n')}`);
+  }
+});
+
+test('Regie auf Lernseiten und Einwand-Kapitel (P9.5, L7): ohne kapitel, doppelt, unbekanntes Kapitel', async () => {
+  const seite = (kopf: string): string => `---\n${kopf}titel: Ausgangslage\n---\n::: kernaussage\nText.\n:::\n\n::: regie\n### Notiz\nEins.\n:::\n\n::: regie\n### Notiz\nZwei.\n:::\n`;
+  const d = {
+    ...BEISPIEL,
+    'inhalte/theorie/k02-ausgangslage.md': seite('kapitel: 2\n'),
+    'inhalte/einwaende.md': (BEISPIEL['inhalte/einwaende.md'] ?? '').replace('stationen: [X1]', 'stationen: [X1]\nkapitel: ["2.4", "7.7"]'),
+  };
+  const { fehler } = await kompiliere({ pruefe: true, wurzel: neueWurzel(d), ziel: null });
+  assert.ok(fehler.some((f) => /k02-ausgangslage\.md:\d+: zweiter Regie-Block zu Kapitel 2/u.test(f)), fehler.join('\n'));
+  assert.ok(fehler.some((f) => /einwaende\.md:\d+: Einwand berichte: Kapitel „7\.7“ gibt es im Whitepaper nicht/u.test(f)), fehler.join('\n'));
+  assert.ok(!fehler.some((f) => /Kapitel „2\.4“/u.test(f)));
+  const ohne = await kompiliere({ pruefe: true, wurzel: neueWurzel({ ...BEISPIEL, 'inhalte/theorie/k02-ausgangslage.md': seite('') }), ziel: null });
+  assert.ok(ohne.fehler.some((f) => /Regie-Block ohne „kapitel:“ im Dateikopf/u.test(f)), ohne.fehler.join('\n'));
+});

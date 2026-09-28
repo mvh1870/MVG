@@ -16,6 +16,9 @@ import { sym, symbolAusInhalt, tafel as tafelBlock, raci as raciBlock, merksatz,
 import { inhalt, inhaltInline } from '../bausteine/inhalt.ts';
 import { kopfText, stationsName } from '../anzeige.ts';
 import { W } from '../woerter.ts';
+import { AENDERUNGEN } from '../impressum.ts';
+import { bogenKopf, druckeBogen } from '../druck.ts';
+import { IMPRESSUM } from '../route.ts';
 
 export interface TheorieOptionen {
   inhalte: OeffentlicheInhalte;
@@ -73,6 +76,7 @@ function fuss(o: TheorieOptionen): HTMLElement {
   return h('footer', { class: 'lern-fuss' },
     verweis(o, '#explore', { class: 'lern-kopf-link', 'data-pruef': 'zu-explore' }, sym('pfeilRechts'), W.explore.selbstAusprobieren),
     h('span', null, `${W.start.fuss} · `, h('span', { 'data-pruef': 'version' }, o.version)),
+    verweis(o, `#theorie/${IMPRESSUM}`, { class: 'lern-fuss-link', 'data-pruef': 'zum-impressum' }, W.theorie.impressumLink),
     h('span', { class: 'vermerk-hell', 'data-pruef': 'ungeprueft' }, sym('info'), W.ungeprueft));
 }
 
@@ -99,7 +103,10 @@ function liste(o: TheorieOptionen): HTMLElement {
           h('span', { class: 'kapitel-nr' }, String(kap.length)),
           h('p', { class: 'kapitel-kicker' }, `${W.whitepaper} ${o.inhalte.whitepaper.fassung ?? ''}`),
           h('h1', { class: 'kapitel-titel' }, W.theorie.ueberblick),
-          h('p', { class: 'kapitel-einstieg' }, W.theorie.ueberblickText)),
+          h('p', { class: 'kapitel-einstieg' }, W.theorie.ueberblickText),
+          o.bedienbar ? h('p', null, h('button', { type: 'button', class: 'knopf knopf-still druck-knopf', 'data-pruef': 'alles-drucken', onclick: () => {
+            druckeBogen(W.druck.allesTitel, [bogenKopf(W.druck.allesTitel, o.version, false), ...kap.filter((k) => k.seite).map((k) => kapitelFuerDruck(o.inhalte, k.nr, o.version))]);
+          } }, sym('dokument'), W.druck.allesDrucken)) : null),
         h('ol', { class: 'kapitel-karten', 'data-pruef': 'kapitel-liste' }, kap.map((k) => h('li', null,
           k.seite
             ? verweis(o, `#theorie/k${k.nr}`, { class: 'kapitel-karte', 'data-pruef': `kapitel-${k.nr}` },
@@ -110,7 +117,38 @@ function liste(o: TheorieOptionen): HTMLElement {
               h('b', { class: 'kapitel-karte-nr' }, String(k.nr)),
               h('span', { class: 'kapitel-karte-titel' }, k.titel),
               h('span', { class: 'badge ist-folgt' }, W.theorie.folgt))))),
+        impressum(o),
         fuss(o))));
+}
+
+/**
+ * Impressum (P10.1): Herausgeber, Fassung mit Änderungsstand, Quelle, fiktiver Fall, Vermerk; die
+ * Abgrenzung (5.5) und die Leistungsgrenzen (7.6) stehen wörtlich im Originaltext – hier verlinkt.
+ */
+function impressum(o: TheorieOptionen): HTMLElement {
+  const T = W.theorie;
+  const fassung = o.inhalte.whitepaper.fassung ?? '';
+  const abschnitt = (nr: string): { kapitel: number; nr: string; titel: string } | null => {
+    const k = o.inhalte.whitepaper.kapitel.find((x) => x.nr === nr.split('.')[0]);
+    const a = k?.abschnitte.find((x) => x.nr === nr);
+    return k !== undefined && a !== undefined ? { kapitel: Number(k.nr), nr, titel: a.titel } : null;
+  };
+  const grenzen = ['5.5', '7.6'].map(abschnitt).filter((a) => a !== null);
+  const zeile = (titel: string, ...inhalt: (Node | string | null)[]): HTMLElement[] => [h('dt', null, titel), h('dd', null, inhalt)];
+  return h('section', { class: 'impressum', 'data-abschnitt': IMPRESSUM, 'data-pruef': 'impressum', 'aria-labelledby': 'impressum-titel' },
+    h('h2', { class: 'abschnitt-titel', id: 'impressum-titel' }, T.impressum),
+    h('dl', { class: 'impressum-liste' },
+      zeile(T.impressumAbsender, W.absender),
+      zeile(T.impressumFassung, h('span', { 'data-pruef': 'impressum-version' }, o.version)),
+      zeile(T.impressumQuelle, T.impressumQuelleText(fassung)),
+      zeile(T.impressumFall, T.impressumFallText),
+      zeile(T.impressumStatus, h('span', { class: 'vermerk-hell' }, sym('info'), W.ungeprueft), ' ', T.impressumStatusText),
+      zeile(T.impressumFussnoten, T.impressumFussnotenText),
+      zeile(T.impressumGrenzen, h('span', { class: 'impressum-grenzen' }, grenzen.map((a) =>
+        verweis(o, `#theorie/k${a.kapitel}/${a.nr}`, { class: 'glossar-ort', 'data-pruef': `impressum-grenze-${a.nr}` }, `${a.nr} ${a.titel}`))))),
+    h('h3', { class: 't-label' }, T.impressumAenderungen),
+    h('ol', { class: 'impressum-aenderungen', reversed: true }, AENDERUNGEN.map((a) => h('li', null,
+      h('b', null, `${W.story} ${a.fassung}`), h('span', { class: 'mono' }, ` · ${a.datum} · `), a.text))));
 }
 
 /* -------------------------------------------------------------- Lernseite -- */
@@ -180,7 +218,46 @@ function bloeckeIn(bloecke: readonly Block[], inhalte: OeffentlicheInhalte, stuf
   return aus;
 }
 
-function originaltext(b: Block, fassung: string): HTMLElement {
+/** Zitierangabe „Bauherr Mentoren, Whitepaper V1.2, Kap. 4.2, Abs. 3“ aus der Absatz-ID (P10.1). */
+export function zitierAngabe(id: string, fassung: string): string | null {
+  const m = /^k(\d{1,2}(?:\.\d{1,2}){0,3})-([plt])(\d{1,3})$/u.exec(id);
+  return m === null ? null : W.theorie.zitierAngabe(W.absender, fassung, W.theorie.stelle(m[1] ?? '', m[2] ?? '', m[3] ?? ''));
+}
+
+/**
+ * „Zitieren“ an einem Absatz: Zitierangabe mit Permalink zeigen und in die Zwischenablage legen;
+ * ohne Zwischenablage (file://, verweigert) bleibt die Angabe markiert zum Kopieren stehen.
+ */
+function zitierKnopf(id: string, kapitel: number, fassung: string, absatz: () => HTMLElement): HTMLElement {
+  const angabe = zitierAngabe(id, fassung) ?? id;
+  const knopf = h('button', { type: 'button', class: 'absatz-zitieren', 'aria-label': W.theorie.zitierenAbsatz(id), 'aria-expanded': 'false', 'data-pruef': 'zitieren' }, sym('dokument'), h('span', null, W.theorie.zitieren));
+  knopf.addEventListener('click', () => {
+    const el = absatz();
+    const offen = el.querySelector('.zitierangabe');
+    if (offen !== null) {
+      offen.remove();
+      knopf.setAttribute('aria-expanded', 'false');
+      return;
+    }
+    const basis = typeof location === 'object' ? `${location.href.split('#')[0] ?? ''}` : '';
+    const link = `${basis}#theorie/k${kapitel}/${id}`;
+    const text = h('span', { class: 'zitierangabe-text', 'data-pruef': 'zitierangabe' }, `${angabe}. ${W.theorie.zitatLink}: ${link}`);
+    const status = h('span', { class: 'zitierangabe-status', role: 'status' });
+    el.append(h('p', { class: 'zitierangabe' }, text, status));
+    knopf.setAttribute('aria-expanded', 'true');
+    const markiere = (): void => {
+      const sel = typeof getSelection === 'function' ? getSelection() : null;
+      if (sel !== null) sel.selectAllChildren(text);
+      status.textContent = W.theorie.zitatMarkieren;
+    };
+    const ablage = typeof navigator === 'object' ? navigator.clipboard : undefined;
+    if (ablage === undefined) markiere();
+    else ablage.writeText(text.textContent ?? '').then(() => { status.textContent = W.theorie.zitatKopiert; }, markiere);
+  });
+  return knopf;
+}
+
+function originaltext(b: Block, fassung: string, kapitel: number, bedienbar: boolean): HTMLElement {
   const f = inhalt(b.felder['text'] ?? '');
   const absaetze: HTMLElement[] = [];
   for (const el of [...f.children]) {
@@ -193,12 +270,19 @@ function originaltext(b: Block, fassung: string): HTMLElement {
     el.classList.remove('mvg-original');
     if (el.tagName === 'UL' || el.tagName === 'OL') el.classList.add('absatz-liste');
     if (el.tagName === 'TABLE') el.classList.add('register-tabelle');
-    absaetze.push(h('div', { class: 'absatz', 'data-absatz': id },
-      h('span', { class: 'absatz-id' }, id),
+    // Absatz-ID als Permalink (P10.1); „Zitieren“ nur, wenn bedienbar (nicht auf der Leinwand)
+    const kopf = bedienbar && id !== ''
+      ? h('span', { class: 'absatz-kopf' },
+        h('a', { class: 'absatz-id', href: `#theorie/k${kapitel}/${id}`, 'aria-label': W.theorie.permalinkAbsatz(id) }, id),
+        zitierKnopf(id, kapitel, fassung, () => zeile))
+      : h('span', { class: 'absatz-id' }, id);
+    const zeile: HTMLElement = h('div', { class: 'absatz', 'data-absatz': id },
+      kopf,
       el.tagName === 'P' ? h('span', null, ...el.childNodes)
         // breite Tabellen scrollen waagrecht: der Bereich muss per Tastatur erreichbar sein (WCAG 2.1.1)
         : el.tagName === 'TABLE' ? h('div', { class: 'absatz-block', tabindex: 0, role: 'region', 'aria-label': W.theorie.tabelle(id) }, el)
-        : h('div', { class: 'absatz-block' }, el)));
+        : h('div', { class: 'absatz-block' }, el));
+    absaetze.push(zeile);
   }
   return h('section', { class: 'originaltext', 'aria-label': W.theorie.originaltext(fassung), 'data-pruef': 'originaltext' },
     h('header', { class: 'originaltext-kopf' },
@@ -245,6 +329,31 @@ function glossarListe(o: TheorieOptionen): HTMLElement {
         orte.length > 0 ? h('p', { class: 'glossar-orte' }, h('span', { class: 't-label' }, W.theorie.kommtVor), ...orte) : null));
   });
   const feld = h('input', { type: 'search', class: 'glossar-feld', id: 'glossar-suche', 'data-pruef': 'glossar-suche', autocomplete: 'off', spellcheck: 'false' }) as HTMLInputElement;
+  // Begriffs-Kompass (P10.5, E7): andere Wörter → Begriff des Whitepapers; dieselbe Suche filtert mit
+  const kompassZeilen = o.inhalte.kompass.map((k) => {
+    const kap = /^k(\d{1,2})/u.exec(k.beleg)?.[1] ?? '';
+    return h('tr', { 'data-pruef': 'kompass-eintrag', 'data-suche': `${k.begriff} ${k.andere.join(' ')}`.toLocaleLowerCase('de') },
+      h('td', null, k.andere.join(' · ')),
+      // Der Anker gehört dem Router: der Begriff springt selbst zum Glossareintrag
+      h('td', null, o.bedienbar && k.glossar !== null
+        ? h('button', { type: 'button', class: 'kompass-begriff', 'data-glossar-ziel': k.glossar, onclick: () => {
+          const ziel = document.getElementById(k.glossar ?? '');
+          if (ziel === null) return;
+          ziel.hidden = false;
+          ziel.tabIndex = -1;
+          if (typeof ziel.scrollIntoView === 'function') ziel.scrollIntoView({ block: 'center' });
+          ziel.focus({ preventScroll: true });
+        } }, k.begriff)
+        : h('b', null, k.begriff)),
+      h('td', null, verweis(o, `#theorie/k${kap}/${k.beleg}`, { class: 'absatz-id' }, k.beleg)));
+  });
+  const kompass = kompassZeilen.length === 0 ? null : h('section', { class: 'kompass', 'data-pruef': 'kompass', 'aria-labelledby': 'kompass-titel' },
+    h('h2', { class: 'abschnitt-titel', id: 'kompass-titel' }, W.theorie.kompass),
+    h('p', { class: 'lesetext' }, W.theorie.kompassText),
+    h('div', { class: 'absatz-block', tabindex: 0, role: 'region', 'aria-labelledby': 'kompass-titel' },
+      h('table', { class: 'register-tabelle kompass-tabelle' },
+        h('thead', null, h('tr', null, h('th', { scope: 'col' }, W.theorie.kompassAndere), h('th', { scope: 'col' }, W.theorie.kompassBegriff), h('th', { scope: 'col' }, W.theorie.kompassBeleg))),
+        h('tbody', null, kompassZeilen))));
   feld.addEventListener('input', () => {
     const q = feld.value.trim().toLocaleLowerCase('de');
     let sichtbar = 0;
@@ -253,13 +362,15 @@ function glossarListe(o: TheorieOptionen): HTMLElement {
       z.hidden = !treffer;
       if (treffer) sichtbar++;
     }
+    for (const z of kompassZeilen) z.hidden = !(q === '' || (z.getAttribute('data-suche') ?? '').includes(q));
     zahl.textContent = W.theorie.glossarZahl(sichtbar, gesamt);
-    leer.hidden = sichtbar > 0;
+    leer.hidden = sichtbar > 0 || kompassZeilen.some((z) => !z.hidden);
   });
   return h('section', { class: 'glossar', 'aria-label': W.theorie.glossar, 'data-pruef': 'glossar' },
     o.bedienbar ? h('div', { class: 'glossar-suche' }, h('label', { for: 'glossar-suche', class: 't-label' }, W.theorie.glossarSuche), feld, zahl) : null,
     h('dl', { class: 'glossar-eintraege' }, zeilen), leer,
-    h('p', { class: 'glossar-quelle' }, W.glossarQuelle(o.inhalte.whitepaper.fassung ?? '')));
+    h('p', { class: 'glossar-quelle' }, W.glossarQuelle(o.inhalte.whitepaper.fassung ?? '')),
+    kompass);
 }
 
 function kapitelNav(o: TheorieOptionen, nr: number): HTMLElement {
@@ -282,7 +393,12 @@ function lernseite(o: TheorieOptionen, nr: number): HTMLElement {
     h('h1', { class: 'kapitel-titel', tabindex: -1 }, titel),
     seite !== null && seite.einleitung !== '' ? h('div', { class: 'kapitel-einstieg' }, inhalt(seite.einleitung)) : null);
 
-  const teile: Node[] = [kopf, h('p', null, h('span', { class: 'vermerk-hell' }, sym('info'), W.ungeprueft))];
+  const drucken = o.bedienbar && seite !== null
+    ? h('button', { type: 'button', class: 'knopf knopf-still druck-knopf', 'data-pruef': 'kapitel-drucken', onclick: () => {
+      druckeBogen(W.druck.kapitelTitel(nr, titel), [bogenKopf(W.druck.kapitelTitel(nr, titel), o.version, false), kapitelFuerDruck(o.inhalte, nr, o.version)]);
+    } }, sym('dokument'), W.druck.kapitelDrucken)
+    : null;
+  const teile: Node[] = [kopf, h('p', { class: 'kapitel-vermerk' }, h('span', { class: 'vermerk-hell' }, sym('info'), W.ungeprueft), drucken)];
   if (seite === null) {
     teile.push(h('div', { class: 'kernaussage ist-folgt', 'data-pruef': 'folgt' }, h('span', { class: 't-label' }, W.theorie.folgt), h('p', null, W.theorie.folgtText)),
       h('p', null, verweis(o, '#theorie', { class: 'querverweis' }, h('span', { class: 'querverweis-symbol' }, sym('pfeilLinks')), W.theorie.zurListe)));
@@ -299,7 +415,7 @@ function lernseite(o: TheorieOptionen, nr: number): HTMLElement {
           b.felder['text'] ? h('div', { class: 'lesetext' }, inhalt(b.felder['text'])) : null,
           bloeckeIn(b.kinder, o.inhalte)));
       } else if (b.art === 'original') {
-        teile.push(originaltext(b, fassung));
+        teile.push(originaltext(b, fassung, nr, o.bedienbar));
       } else if (b.art === 'glossar') {
         teile.push(glossarListe(o));
       } else if (b.art !== 'querverweis') {
@@ -318,6 +434,17 @@ function lernseite(o: TheorieOptionen, nr: number): HTMLElement {
     h('div', { class: 'lern-rahmen' },
       verzeichnis(o, nr),
       h('article', { class: 'lern-inhalt', 'data-pruef': seite !== null ? 'lernseite' : 'lernseite-folgt' }, teile)));
+}
+
+/**
+ * Lernseite eines Kapitels für den Druckbogen (P10.2): dieselbe Zeichnung wie die Leinwand (nicht
+ * bedienbar), ohne Kopfleiste, Kapitelverzeichnis und Blättern.
+ */
+export function kapitelFuerDruck(inhalte: OeffentlicheInhalte, nr: number, version: string): HTMLElement {
+  const seite = baueTheorie({ inhalte, kapitel: nr, version, bedienbar: false });
+  for (const weg of seite.querySelectorAll('.lern-kopf, .kapitel-verzeichnis, .kapitel-nav, .sprunglink, .lern-fuss')) weg.remove();
+  seite.classList.add('druck-kapitel');
+  return seite;
 }
 
 export function baueTheorie(o: TheorieOptionen): HTMLElement {

@@ -23,6 +23,7 @@ import { inhalt } from '../ui/bausteine/inhalt.ts';
 import { aktuelleStation, eingriffe, kicker, sichtbareSchritte, stationsName, tafelTitel, weiterAktion, zurueckAktion } from '../ui/anzeige.ts';
 import { erzeugeAnzeige } from './leinwand.ts';
 import { kapitelListe } from '../ui/flaechen/theorie.ts';
+import { kapitelDerSpur } from '../ui/flaechen/story-szenen.ts';
 import { findeEntscheidung } from '../engine/graph.ts';
 import { W } from '../ui/woerter.ts';
 
@@ -181,7 +182,14 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
       oz.spur.length > 0 ? h('ul', null, oz.spur.map((e) => {
         const opt = findeEntscheidung(inhalte, e.entscheidung)?.entscheidung.optionen.find((x) => x.id === e.option);
         return h('li', null, `${stationsName(inhalte, e.station)}: ${e.option} · ${opt?.kurz ?? ''}`);
-      })) : h('p', null, '–'));
+      })) : h('p', null, '–'),
+      // Dossier (E11): die Kapitel, die der Weg am häufigsten berührt hat, zum Nachlesen
+      h('h2', null, w.druckKapitel),
+      (() => {
+        const kap = kapitelDerSpur(oz.verlauf, inhalte).slice(0, 3);
+        const titel = (nr: number): string => inhalte.whitepaper.kapitel.find((k) => Number(k.nr) === nr)?.titel ?? '';
+        return kap.length > 0 ? h('ul', null, kap.map((nr) => h('li', null, W.resuemee.kapitel(nr, titel(nr))))) : h('p', null, '–');
+      })());
     document.body.classList.add('druck-protokoll');
     const ende = (): void => { document.body.classList.remove('druck-protokoll'); window.removeEventListener('afterprint', ende); };
     if (typeof window.print !== 'function') {

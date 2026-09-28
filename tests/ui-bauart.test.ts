@@ -97,7 +97,7 @@ test('Datenebene: `inhalte` enthält kein Regie-Material, die Schlüssel stehen 
   const { inhalte, regieFuer } = await import('../src/inhalte/index.ts');
   assert.equal('regie' in inhalte, false);
   assert.deepEqual(Object.keys(inhalte).sort(), [
-    'abdeckung', 'einwaende', 'fall', 'glossar', 'interessen', 'quellen', 'rollen', 'rollenFolge', 'start', 'startseite', 'stationen', 'stationsFolge', 'theorie', 'version', 'welten', 'whitepaper',
+    'abdeckung', 'einwaende', 'fall', 'glossar', 'interessen', 'kompass', 'quellen', 'rollen', 'rollenFolge', 'start', 'startseite', 'stationen', 'stationsFolge', 'theorie', 'version', 'welten', 'whitepaper',
   ]);
   // Kein Regie-Text steckt irgendwo sonst in den öffentlichen Inhalten.
   const oeffentlichText = JSON.stringify(inhalte);
@@ -124,7 +124,8 @@ const { anfangszustand, oeffentlich } = await import('../src/engine/zustand.ts')
 const { erzeugeSitzung } = await import('../src/ui/sitzung.ts');
 const { erzeugeStory } = await import('../src/ui/flaechen/story.ts');
 const { baueStart } = await import('../src/ui/flaechen/start.ts');
-const { baueTheorie, kapitelListe } = await import('../src/ui/flaechen/theorie.ts');
+const theorieModul = await import('../src/ui/flaechen/theorie.ts');
+const { baueTheorie, kapitelListe } = theorieModul;
 const { erzeugeAnzeige } = await import('../src/regie/leinwand.ts');
 const { erzeugeRegie } = await import('../src/regie/regie.ts');
 const { W } = await import('../src/ui/woerter.ts');
@@ -703,6 +704,77 @@ test('Lernseite (P6.1): Tafel, RACI, Merksatz und Ebenen 1–4 werden auf Seiten
   assert.equal(e[3]?.hasAttribute('open'), false);
 });
 
+test('Begriffs-Kompass (P10.5, E7): im Glossar, Suche nach dem anderen Wort findet den Whitepaper-Begriff', () => {
+  assert.ok(inhalte.kompass.length >= 10);
+  const seite = baueTheorie({ inhalte, kapitel: 13, version: VERSION, bedienbar: true });
+  document.body.replaceChildren(seite);
+  const kompass = seite.querySelector('[data-pruef="kompass"]');
+  assert.ok(kompass);
+  const zeilen = [...kompass.querySelectorAll<HTMLElement>('[data-pruef="kompass-eintrag"]')];
+  assert.equal(zeilen.length, inhalte.kompass.length);
+  const feld = seite.querySelector<HTMLInputElement>('[data-pruef="glossar-suche"]');
+  assert.ok(feld);
+  feld.value = 'change-board';
+  feld.dispatchEvent(new dom.window.Event('input'));
+  const sichtbar = zeilen.filter((z) => !z.hidden);
+  assert.equal(sichtbar.length, 1);
+  assert.match(sichtbar[0]?.textContent ?? '', /Änderungsgremium/u);
+  assert.equal(seite.querySelector<HTMLElement>('.glossar-leer')?.hidden, true, 'ein Kompass-Treffer ist kein leeres Ergebnis');
+  // Beleg-Absatz als Permalink, Glossar-Begriff springt zum Eintrag (ohne den Anker des Routers)
+  const freigabe = zeilen.find((z) => /Gate/u.test(z.textContent ?? ''));
+  assert.equal(freigabe?.querySelector('a.absatz-id')?.getAttribute('href'), '#theorie/k4/k4.5-p1');
+  const knopf = freigabe?.querySelector<HTMLButtonElement>('.kompass-begriff');
+  assert.ok(knopf);
+  feld.value = '';
+  feld.dispatchEvent(new dom.window.Event('input'));
+  knopf.click();
+  assert.equal(document.activeElement?.id, 'g-freigabe');
+  // Leinwand: keine Knöpfe, keine Links
+  const leinwand = baueTheorie({ inhalte, kapitel: 13, version: VERSION, bedienbar: false });
+  assert.equal(leinwand.querySelectorAll('[data-pruef="kompass"] button, [data-pruef="kompass"] a').length, 0);
+});
+
+test('Zitierfunktion und Impressum (P10.1): Absatz-Permalink, Zitierangabe, nicht auf der Leinwand', () => {
+  const { zitierAngabe } = theorieModul;
+  assert.equal(zitierAngabe('k4.2-p3', 'V1.2'), 'Bauherr Mentoren, Whitepaper V1.2, Kap. 4.2, Abs. 3');
+  assert.equal(zitierAngabe('k1-p2', 'V1.2'), 'Bauherr Mentoren, Whitepaper V1.2, Kap. 1, Abs. 2');
+  assert.equal(zitierAngabe('k6.4.2-t1', 'V1.2'), 'Bauherr Mentoren, Whitepaper V1.2, Kap. 6.4.2, Tabelle 1');
+  assert.equal(zitierAngabe('k5.3-l1', 'V1.2'), 'Bauherr Mentoren, Whitepaper V1.2, Kap. 5.3, Aufzählung 1');
+  assert.equal(zitierAngabe('kaputt', 'V1.2'), null);
+  const seite = baueTheorie({ inhalte, kapitel: 4, version: VERSION, bedienbar: true });
+  document.body.replaceChildren(seite);
+  const absatz = seite.querySelector<HTMLElement>('.originaltext .absatz[data-absatz="k4.2-p3"]');
+  assert.ok(absatz);
+  assert.equal(absatz.querySelector('a.absatz-id')?.getAttribute('href'), '#theorie/k4/k4.2-p3');
+  const knopf = absatz.querySelector<HTMLButtonElement>('[data-pruef="zitieren"]');
+  assert.ok(knopf);
+  knopf.click();
+  assert.equal(knopf.getAttribute('aria-expanded'), 'true');
+  const angabe = absatz.querySelector('[data-pruef="zitierangabe"]')?.textContent ?? '';
+  assert.ok(angabe.startsWith('Bauherr Mentoren, Whitepaper V1.2, Kap. 4.2, Abs. 3. Link: '), angabe);
+  assert.ok(angabe.endsWith('#theorie/k4/k4.2-p3'));
+  knopf.click();
+  assert.equal(absatz.querySelector('.zitierangabe'), null);
+  // jeder Absatz des Originaltexts hat Permalink und Zitierknopf
+  const alle = seite.querySelectorAll('.originaltext .absatz[data-absatz]');
+  assert.ok(alle.length > 5);
+  assert.equal(seite.querySelectorAll('.originaltext [data-pruef="zitieren"]').length, alle.length);
+  // Leinwand (nicht bedienbar): keine Knöpfe, keine Links
+  const leinwand = baueTheorie({ inhalte, kapitel: 4, version: VERSION, bedienbar: false });
+  assert.equal(leinwand.querySelectorAll('[data-pruef="zitieren"], a.absatz-id').length, 0);
+  // Impressum auf der Kapitelliste: Version, Vermerk, Abgrenzung 5.5 und Leistungsgrenzen 7.6
+  const liste = baueTheorie({ inhalte, kapitel: null, version: VERSION, bedienbar: true });
+  const imp = liste.querySelector('[data-pruef="impressum"]');
+  assert.ok(imp);
+  assert.equal(imp.getAttribute('data-abschnitt'), 'impressum');
+  assert.equal(imp.querySelector('[data-pruef="impressum-version"]')?.textContent, VERSION);
+  assert.ok((imp.textContent ?? '').includes('fachlich ungeprüft'));
+  assert.equal(imp.querySelector('[data-pruef="impressum-grenze-5.5"]')?.getAttribute('href'), '#theorie/k5/5.5');
+  assert.equal(imp.querySelector('[data-pruef="impressum-grenze-7.6"]')?.getAttribute('href'), '#theorie/k7/7.6');
+  assert.ok(imp.querySelectorAll('.impressum-aenderungen li').length >= 1);
+  assert.equal(seite.querySelector('[data-pruef="zum-impressum"]')?.getAttribute('href'), '#theorie/impressum');
+});
+
 test('Glossar (P6.14): alle Begriffe wortgleich, Suche filtert, „Kommt vor in“ verlinkt Stationen und Kapitel', () => {
   const el = baueTheorie({ inhalte, kapitel: 13, version: VERSION, bedienbar: true });
   const eintraege = [...el.querySelectorAll<HTMLElement>('[data-pruef="glossar-eintrag"]')];
@@ -830,6 +902,44 @@ test('Resümee (P7.7): Ende, Richtung und erste Vertiefung aus der Spur; Zwische
   assert.doesNotMatch(el.querySelector('[data-pruef="resuemee-themen"]')?.textContent ?? '', /Express/u, 'Express ist kein Thema');
   assert.equal(el.querySelector('.resuemee-titel')?.tagName, 'H3');
   assert.equal(resuemee(block, k(null), null).querySelector('a'), null, 'Leinwand: keine Links');
+  // Dossier (P10.2, E11): Weg, Entscheidungen, Resümee und die zwei Vertiefungskapitel auf einem Bogen
+  assert.equal(resuemee(block, k(null), null).querySelector('[data-pruef="dossier-drucken"]'), null, 'Leinwand: kein Druckknopf');
+  document.body.replaceChildren(el);
+  // jsdom kennt keinen Druckdialog: wie ein eingebettetes Fenster ohne print()
+  const druckfn = dom.window.print;
+  (dom.window as unknown as { print: unknown }).print = undefined;
+  after(() => { (dom.window as unknown as { print: unknown }).print = druckfn; });
+  el.querySelector<HTMLButtonElement>('[data-pruef="dossier-drucken"]')?.click();
+  const bogen = document.querySelector('[data-pruef="druck-bogen"]');
+  assert.ok(bogen);
+  assert.match(bogen.querySelector('.druck-kopf')?.textContent ?? '', /Fiktiver Fall · fachlich ungeprüft/u);
+  assert.equal(bogen.querySelectorAll('.druck-teil ol li').length, z.spur.length);
+  assert.ok(bogen.querySelector('.resuemee [data-pruef="resuemee-weg"]'));
+  assert.equal(bogen.querySelector('.resuemee [data-pruef="dossier-drucken"]'), null);
+  const kapitel = [...bogen.querySelectorAll('.druck-kapitel')].map((x) => x.getAttribute('data-kapitel'));
+  assert.deepEqual(kapitel, links.map((l) => l?.replace('#theorie/k', '') ?? ''));
+  assert.equal(document.body.classList.contains('druckt-bogen'), false, 'ohne Druckdialog keine hängende Klasse');
+});
+
+test('Druck (P10.2): Kapitel und alle Kapitel als Bogen – ohne Kopfleiste, Verzeichnis, Zitierknöpfe', () => {
+  const seite = baueTheorie({ inhalte, kapitel: 6, version: VERSION, bedienbar: true });
+  document.body.replaceChildren(seite);
+  seite.querySelector<HTMLButtonElement>('[data-pruef="kapitel-drucken"]')?.click();
+  const bogen = document.querySelector('[data-pruef="druck-bogen"]');
+  assert.ok(bogen);
+  assert.match(bogen.querySelector('.druck-kopf h1')?.textContent ?? '', /^Kapitel 6 · /u);
+  assert.match(bogen.querySelector('.druck-kopf')?.textContent ?? '', /fachlich ungeprüft/u);
+  assert.equal(bogen.querySelectorAll('.druck-kapitel').length, 1);
+  assert.equal(bogen.querySelectorAll('.lern-kopf, .kapitel-verzeichnis, .kapitel-nav, [data-pruef="zitieren"], [data-pruef="kapitel-drucken"]').length, 0);
+  assert.ok(bogen.querySelector('.originaltext'));
+  for (const d of bogen.querySelectorAll('details')) assert.ok(d.hasAttribute('open'), 'im Druck aufgeklappt');
+  const liste = baueTheorie({ inhalte, kapitel: null, version: VERSION, bedienbar: true });
+  document.body.replaceChildren(liste);
+  liste.querySelector<HTMLButtonElement>('[data-pruef="alles-drucken"]')?.click();
+  const alle = document.querySelectorAll('[data-pruef="druck-bogen"]');
+  assert.equal(alle.length, 1, 'ein neuer Bogen ersetzt den alten');
+  assert.deepEqual([...alle[0]?.querySelectorAll('.druck-kapitel') ?? []].map((x) => Number(x.getAttribute('data-kapitel'))), Array.from({ length: 13 }, (_, i) => i + 1));
+  assert.equal(baueTheorie({ inhalte, kapitel: 6, version: VERSION, bedienbar: false }).querySelector('[data-pruef="kapitel-drucken"]'), null, 'Leinwand: kein Druckknopf');
 });
 
 test('Story-Karte auf der Leinwand (L-49): kein Express-Umschalter, kein Explore-Weg', () => {

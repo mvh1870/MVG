@@ -104,14 +104,14 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P9.5 · Zwei-Fenster-Tests + Prüf-Agenten P9 (`docs/P9-BEFUNDE.md`)
 
 ### P10 · Whitepaper-Funktionen & Auslieferung
-- [ ] P10.1 · Zitierfunktion, Permalinks, Fußnoten/Quellen, Versions- und Änderungsstand, Vermerk „fachlich ungeprüft“
-- [ ] P10.2 · Druckansicht je Kapitel und gesamt, Druck-Dossier (E11)
-- [ ] P10.3 · Re-Import-Werkzeug V1.3: neue DOCX einlesen, Diff je Absatz-ID, betroffene Stellen melden
-- [ ] P10.4 · Korrekturliste V1.3 (E13): alle Grafik↔Text-Widersprüche mit Bild-Prompts (`docs/KORREKTURLISTE-V1.3.md`)
-- [ ] P10.5 · Begriffs-Kompass (E7)
-- [ ] P10.6 · Einbett-Schnittstelle (E12): iframe-sicher, postMessage; dezente Klänge (E14, standardmäßig aus)
-- [ ] P10.8 · Kundenfassung ohne Regie-Material (L-7): `npm run bau -- --kundenfassung` → `dist/mvg-kunde.html`; Test, dass kein Regie-Text enthalten ist
-- [ ] P10.7 · Größenbudget < 4 MB, Determinismus, Anleitungen (Selbstlernen, Präsentator), Abnahme-Checkliste für den Owner (`docs/ABNAHME.md`)
+- [x] P10.1 · Zitierfunktion, Permalinks, Fußnoten/Quellen, Versions- und Änderungsstand, Vermerk „fachlich ungeprüft“ (L-55)
+- [x] P10.2 · Druckansicht je Kapitel und gesamt, Druck-Dossier (E11) (L-56)
+- [x] P10.3 · Re-Import-Werkzeug V1.3: neue DOCX einlesen, Diff je Absatz-ID, betroffene Stellen melden (L-57)
+- [x] P10.4 · Korrekturliste V1.3 (E13): alle Grafik↔Text-Widersprüche mit Bild-Prompts (`docs/KORREKTURLISTE-V1.3.md`) – 8 Text-, 90 Grafik-Einträge, 13 Bild-Prompts
+- [x] P10.5 · Begriffs-Kompass (E7) (L-57)
+- [x] P10.6 · Einbett-Schnittstelle (E12): iframe-sicher, postMessage; dezente Klänge (E14, standardmäßig aus) (L-58)
+- [x] P10.8 · Kundenfassung ohne Regie-Material (L-7): `npm run bau -- --kundenfassung` → `dist/mvg-kunde.html`; Test, dass kein Regie-Text enthalten ist (L-58)
+- [x] P10.7 · Größenbudget < 4 MB, Determinismus, Anleitungen (Selbstlernen, Präsentator), Abnahme-Checkliste für den Owner (`docs/ABNAHME.md`) (L-58)
 
 ### P11 · Gesamtprüfung
 - [ ] P11.1 · Vollständigkeitsprüfer: Bauplan, 20 Owner-Punkte, E1–E14, O-Entscheide, Abdeckung

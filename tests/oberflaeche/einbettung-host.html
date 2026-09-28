@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="de">
+<head><meta charset="utf-8"><title>Hostseite (Test der Einbettung)</title></head>
+<body>
+<!-- Testseite für das Szenario „einbettung“ (P10.6): bettet dist/mvg.html ein und sammelt die Nachrichten. -->
+<main>
+<h1>Hostseite</h1>
+<iframe id="mvg" title="Minimum Viable Governance" src="../../dist/mvg.html#start" style="width:1000px;height:640px;border:0"></iframe>
+</main>
+<script>
+  window.nachrichten = [];
+  window.addEventListener('message', (e) => { if (e.source === document.getElementById('mvg').contentWindow) window.nachrichten.push(e.data); });
+  window.schicke = (n) => document.getElementById('mvg').contentWindow.postMessage(n, '*');
+</script>
+</body>
+</html>

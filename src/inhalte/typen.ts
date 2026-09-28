@@ -244,6 +244,20 @@ export interface WeltAspekt {
   bloecke: Block[];
 }
 
+/**
+ * Begriffs-Kompass (P10.5, E7): ein Whitepaper-Begriff und die Wörter, die Kunden oft stattdessen
+ * benutzen. `beleg` = Absatz-ID, in deren Text der Begriff steht; `glossar` = Glossar-ID oder null.
+ */
+export interface KompassEintrag {
+  id: string;
+  begriff: string;
+  andere: string[];
+  beleg: string;
+  glossar: string | null;
+  /** Inline-HTML oder null */
+  hinweis: string | null;
+}
+
 export interface Abdeckung {
   /** Blöcke im Whitepaper */
   gesamt: number;
@@ -318,6 +332,7 @@ export interface Inhalte extends StoryModell {
   theorie: Record<string, TheorieSeite>;
   einwaende: Einwand[];
   welten: WeltAspekt[];
+  kompass: KompassEintrag[];
   abdeckung: Abdeckung;
   /** Quellenfenster (P2.3): Originaltext der Absätze, auf die Stationen verweisen */
   quellen: Record<string, QuellAbsatz>;

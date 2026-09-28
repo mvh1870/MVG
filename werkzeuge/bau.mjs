@@ -300,6 +300,7 @@ export function formatiereGroesse(bytes) {
  * @property {string} [version]   Wert für __MVG_VERSION__, Vorgabe aus package.json
  * @property {string} [zwischen]  Arbeitsverzeichnis für --pruefe, Vorgabe tmp/bau-pruefe
  * @property {string} [inhalte]   andere inhalte.json statt src/generiert/inhalte.json (Entwurfs-Vorschau)
+ * @property {boolean} [kundenfassung]  ohne Regie-Material (L-7, P10.8); Vorgabe-Ziel dist/mvg-kunde.html
  */
 
 /**
@@ -309,7 +310,7 @@ function vollOptionen(optionen) {
   const wurzel = path.resolve(optionen.wurzel ?? WURZEL);
   return {
     wurzel,
-    ziel: path.resolve(wurzel, optionen.ziel ?? 'dist/mvg.html'),
+    ziel: path.resolve(wurzel, optionen.ziel ?? (optionen.kundenfassung ? KUNDE_ZIEL : 'dist/mvg.html')),
     eintrag: optionen.eintrag ?? 'src/main.ts',
     stil: optionen.stil ?? 'src/stil/index.css',
     huelle: path.resolve(wurzel, optionen.huelle ?? 'werkzeuge/huelle.html'),
@@ -318,7 +319,27 @@ function vollOptionen(optionen) {
     version: optionen.version,
     zwischen: path.resolve(wurzel, optionen.zwischen ?? path.join(WURZEL, 'tmp', 'bau-pruefe')),
     inhalte: optionen.inhalte !== undefined ? path.resolve(wurzel, optionen.inhalte) : null,
+    kundenfassung: optionen.kundenfassung === true,
   };
+}
+
+/** Zieldatei der Kundenfassung (P10.8) */
+export const KUNDE_ZIEL = 'dist/mvg-kunde.html';
+
+/**
+ * Inhalte der Kundenfassung (L-7): dieselben Inhalte ohne Regie-Material (Sprechernotizen,
+ * Leitfragen). Einwand-Karten sind öffentlich (L-54) und bleiben.
+ * @param {string} quelle  generierte inhalte.json
+ * @param {string} zwischen  Arbeitsordner
+ * @returns {Promise<string>} Pfad der bereinigten Datei
+ */
+async function kundenInhalte(quelle, zwischen) {
+  const daten = JSON.parse(await readFile(quelle, 'utf8'));
+  daten.regie = {};
+  await mkdir(zwischen, { recursive: true });
+  const ziel = path.join(zwischen, 'inhalte-kunde.json');
+  await writeFile(ziel, `${JSON.stringify(daten)}\n`, 'utf8');
+  return ziel;
 }
 
 /**
@@ -331,7 +352,10 @@ export async function baueText(optionen = {}) {
   const version = o.version ?? String(JSON.parse(await readFile(path.join(WURZEL, 'package.json'), 'utf8')).version);
   if (!existsSync(o.huelle)) throw new BauFehler(`Hülle ${path.relative(o.wurzel, o.huelle).split(path.sep).join('/')} fehlt`);
   const huelle = await readFile(o.huelle, 'utf8');
-  const [skript, stil] = await Promise.all([baueSkript(o.wurzel, o.eintrag, version, o.inhalte), baueStil(o.wurzel, o.stil)]);
+  const inhalte = o.kundenfassung
+    ? await kundenInhalte(o.inhalte ?? path.join(o.wurzel, 'src', 'generiert', 'inhalte.json'), path.join(WURZEL, 'tmp', 'bau-kunde'))
+    : o.inhalte;
+  const [skript, stil] = await Promise.all([baueSkript(o.wurzel, o.eintrag, version, inhalte), baueStil(o.wurzel, o.stil)]);
   warnungen.push(...skript.warnungen, ...stil.warnungen);
   const { html, skript: skriptText } = setzeZusammen(huelle, stil.text, skript.text);
   const bytes = Buffer.byteLength(html, 'utf8');
@@ -384,18 +408,19 @@ export async function baue(optionen = {}) {
  * @param {string[]} argv
  */
 function leseArgumente(argv) {
-  /** @type {{ pruefe: boolean, ziel?: string }} */
-  const a = { pruefe: false };
+  /** @type {{ pruefe: boolean, ziel?: string, kundenfassung: boolean }} */
+  const a = { pruefe: false, kundenfassung: false };
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
     if (arg === '--pruefe') a.pruefe = true;
+    else if (arg === '--kundenfassung') a.kundenfassung = true;
     else if (arg === '--ziel') {
       const wert = argv[i + 1];
       if (!wert) throw new BauFehler('--ziel braucht einen Pfad');
       a.ziel = path.resolve(process.cwd(), wert);
       i += 1;
     } else if (arg?.startsWith('--ziel=')) a.ziel = path.resolve(process.cwd(), arg.slice('--ziel='.length));
-    else throw new BauFehler(`Unbekannte Option ${arg} (erlaubt: --pruefe, --ziel <pfad>)`);
+    else throw new BauFehler(`Unbekannte Option ${arg} (erlaubt: --pruefe, --kundenfassung, --ziel <pfad>)`);
   }
   return a;
 }
@@ -404,23 +429,29 @@ async function hauptprogramm() {
   try {
     const a = leseArgumente(process.argv.slice(2));
     /** @type {BauOptionen} */
-    const optionen = { pruefe: a.pruefe };
+    const optionen = { pruefe: a.pruefe, kundenfassung: a.kundenfassung };
     if (a.ziel) optionen.ziel = a.ziel;
-    const erg = await baue(optionen);
-    for (const w of erg.warnungen) console.log(`bau: Warnung – ${w}`);
-    const name = path.relative(process.cwd(), erg.ziel).split(path.sep).join('/');
-    const anteil = Math.round((erg.bytes / BUDGET) * 100);
-    if (erg.geprueft) {
-      console.log(`bau --pruefe: zweimal gebaut, byte-gleich und identisch mit ${name} – ${formatiereGroesse(erg.bytes)} (${anteil} % des Budgets), sha256 ${erg.sha256.slice(0, 16)}`);
-    } else {
-      console.log(`bau: ${name} geschrieben – ${formatiereGroesse(erg.bytes)} (${anteil} % des Budgets), sha256 ${erg.sha256.slice(0, 16)}`);
-    }
-    if (anteil >= 90) console.log(`bau: Warnung – ${anteil} % des Größenbudgets belegt`);
+    // Ohne --ziel und ohne --kundenfassung: beide Dateien (die Kundenfassung bleibt so immer aktuell)
+    const auftraege = a.ziel === undefined && !a.kundenfassung ? [optionen, { ...optionen, kundenfassung: true, mitVorstufen: false }] : [optionen];
+    for (const auftrag of auftraege) melde(await baue(auftrag));
   } catch (fehler) {
     const text = fehler instanceof BauFehler ? fehler.message : fehler instanceof Error ? (fehler.stack ?? fehler.message) : String(fehler);
     console.error(`bau: FEHLER – ${text}`);
     process.exitCode = 1;
   }
+}
+
+/** @param {Awaited<ReturnType<typeof baue>>} erg */
+function melde(erg) {
+  for (const w of erg.warnungen) console.log(`bau: Warnung – ${w}`);
+  const name = path.relative(process.cwd(), erg.ziel).split(path.sep).join('/');
+  const anteil = Math.round((erg.bytes / BUDGET) * 100);
+  if (erg.geprueft) {
+    console.log(`bau --pruefe: zweimal gebaut, byte-gleich und identisch mit ${name} – ${formatiereGroesse(erg.bytes)} (${anteil} % des Budgets), sha256 ${erg.sha256.slice(0, 16)}`);
+  } else {
+    console.log(`bau: ${name} geschrieben – ${formatiereGroesse(erg.bytes)} (${anteil} % des Budgets), sha256 ${erg.sha256.slice(0, 16)}`);
+  }
+  if (anteil >= 90) console.log(`bau: Warnung – ${anteil} % des Größenbudgets belegt`);
 }
 
 /** Direkt aufgerufen (nicht importiert)? Auch über Links (werkzeuge/haupt.mjs). */

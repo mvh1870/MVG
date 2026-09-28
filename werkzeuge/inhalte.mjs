@@ -160,6 +160,8 @@ const ARTEN = {
   // Einwände
   // Vorher/Nachher-Welten (P8.2): je Aspekt Welt A und Welt B nebeneinander, mit Beleg aus dem Whitepaper
   welt: { in: ['@welten'], kennung: 'pflicht', kopf: { titel: { typ: 'text', pflicht: true }, stationen: { typ: 'liste' } }, felder: ['weltA', 'weltB'], pflichtFelder: ['weltA', 'weltB'] },
+  // Begriffs-Kompass (P10.5, E7): Whitepaper-Begriff ↔ gängige andere Wörter, mit Beleg
+  kompass: { in: ['@kompass'], kennung: 'pflicht', kopf: { begriff: { typ: 'text', pflicht: true }, andere: { typ: 'liste', pflicht: true }, beleg: { typ: 'text', pflicht: true } }, felder: ['hinweis'] },
   einwand: { in: ['@einwaende'], kennung: 'pflicht', kopf: { stationen: { typ: 'liste' }, kapitel: { typ: 'liste' } }, felder: ['einwand', 'antwort'], pflichtFelder: ['einwand', 'antwort'] },
 };
 
@@ -206,6 +208,7 @@ const DATEI_ARTEN = {
   },
   '@einwaende': { kopf: {}, felder: ['text'] },
   '@welten': { kopf: {}, felder: ['text'] },
+  '@kompass': { kopf: {}, felder: ['text'] },
   '@start': {
     kopf: { kicker: { typ: 'text', pflicht: true }, titel: { typ: 'text', pflicht: true }, 'titel-quelle': { typ: 'text' } },
     felder: ['text'],
@@ -1593,6 +1596,37 @@ function baueEinwaende(c, rel, text) {
 }
 
 /**
+ * Begriffs-Kompass (P10.5, E7): Der Begriff muss im Beleg-Absatz stehen (so bleibt jede Zuordnung am
+ * Whitepaper prüfbar); steht er im Glossar, verweist der Eintrag dorthin.
+ * @param {Kompilierer} c
+ * @param {string} rel
+ * @param {string} text
+ */
+function baueKompass(c, rel, text) {
+  const { wurzel } = leseDateiKopf(c, rel, '@kompass', text);
+  const aus = [];
+  for (const k of wurzel.kinder) {
+    const bl = c.block(k, '@kompass', rel);
+    if (bl === null || bl.art !== 'kompass') continue;
+    const ort = `${rel}:${k.zeile}`;
+    if (aus.some((e) => e.id === bl.id)) c.fehler(ort, `Kompass-Eintrag ${bl.id} doppelt`);
+    const begriff = String(bl.kopf.begriff ?? '');
+    const beleg = String(bl.kopf.beleg ?? '');
+    const ids = c.expandiere(beleg, ort);
+    if (ids.length > 1) c.fehler(ort, `Kompass ${bl.id}: genau eine Absatz-ID als Beleg`);
+    const block = c.quelle?.nachId.get(ids[0] ?? '');
+    if (block !== undefined && !c.quelle.normalisiere(block.text).toLowerCase().includes(c.quelle.normalisiere(begriff).toLowerCase())) {
+      c.fehler(ort, `Kompass ${bl.id}: „${begriff}“ steht nicht in ${beleg}`);
+    }
+    const andere = /** @type {string[]} */ (bl.kopf.andere ?? []);
+    if (andere.length === 0) c.fehler(ort, `Kompass ${bl.id}: „andere“ ist leer`);
+    const g = c.quelle !== null ? c.glossarNachBegriff.get(c.quelle.normalisiere(begriff).toLowerCase()) ?? null : null;
+    aus.push({ id: bl.id ?? '', begriff, andere, beleg, glossar: g?.id ?? null, hinweis: bl.felder.hinweis ?? null });
+  }
+  return aus;
+}
+
+/**
  * Vorher/Nachher-Welten (P8.2).
  * @param {Kompilierer} c
  * @param {string} rel
@@ -1676,6 +1710,8 @@ export async function kompiliere(optionen = {}) {
   let einwaende = [];
   /** @type {any[]} */
   let welten = [];
+  /** @type {any[]} */
+  let kompass = [];
   /** @type {Record<string, any>} */
   const regie = {};
   /** @type {Record<string, unknown> | null} */
@@ -1695,6 +1731,7 @@ export async function kompiliere(optionen = {}) {
       theorie[id] = baueTheorie(c, rel, id, lies(r), regie);
     } else if (r === 'einwaende.md') einwaende = baueEinwaende(c, rel, lies(r));
     else if (r === 'welten.md') welten = baueWelten(c, rel, lies(r));
+    else if (r === 'begriffs-kompass.md') kompass = baueKompass(c, rel, lies(r));
     else if (r === 'abdeckung.yaml') abdeckungRoh = leseYaml(lies(r), rel, 1, b);
     else if (r.endsWith('.md') || r.endsWith('.yaml')) c.warnung(rel, 'Datei gehört zu keiner bekannten Art (docs/INHALTSFORMAT.md Abschnitt 1) – ignoriert');
   }
@@ -1779,6 +1816,7 @@ export async function kompiliere(optionen = {}) {
     theorie,
     einwaende,
     welten,
+    kompass,
     abdeckung,
     quellen: baueQuellen(c, quelle, stationen),
     regie,
@@ -1789,7 +1827,9 @@ export async function kompiliere(optionen = {}) {
   // inhalte/ stammen – Whitepaper-Originaltext, Glossar, Kapiteltitel. Ein Re-Import mit alten
   // Begriffen fiele sonst niemandem auf.
   if (pruefe) {
-    for (const fund of pruefeText(json, STANDARD_ZIEL.replace(/\\/gu, '/'))) b.fehler('begriffe', formatiereFund(fund));
+    // Der Begriffs-Kompass nennt die anderen Wörter absichtlich (Ausnahme in werkzeuge/begriffe.json)
+    const ohneKompass = stabilesJson({ ...inhalte, kompass: inhalte.kompass.map((/** @type {any} */ e) => ({ ...e, andere: [], hinweis: null })) });
+    for (const fund of pruefeText(ohneKompass, STANDARD_ZIEL.replace(/\\/gu, '/'))) b.fehler('begriffe', formatiereFund(fund));
   }
 
   if (ziel !== null) {

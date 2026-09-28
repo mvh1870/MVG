@@ -38,6 +38,18 @@ export interface StoryOptionen {
   eingebettet?: boolean;
   /** Klick auf die Marke im Kopf */
   zurStart?: (() => void) | null;
+  /** Dezente Klänge (P10.6, E14): Schalter im Kopf; fehlt er, gibt es keinen Knopf */
+  klang?: { an: () => boolean; setze: (an: boolean) => void } | null;
+}
+
+/** Schalter „Klänge“ (standardmäßig aus) */
+function klangKnopf(k: { an: () => boolean; setze: (an: boolean) => void }): HTMLElement {
+  const knopf = h('button', { type: 'button', class: 'klang-knopf', 'aria-pressed': k.an() ? 'true' : 'false', 'data-pruef': 'klang', title: W.klangHinweis,
+    onclick: () => {
+      k.setze(!k.an());
+      knopf.setAttribute('aria-pressed', k.an() ? 'true' : 'false');
+    } }, W.klang);
+  return knopf;
 }
 
 export interface StoryFlaeche {
@@ -91,6 +103,7 @@ export function erzeugeStory(o: StoryOptionen): StoryFlaeche {
       h('div', { class: 'marke-titel' },
         h('h1', { class: 'kopf-titel' }, fall?.projekt ?? W.kopfTitelFallback),
         h('p', { class: 'kopf-unter' }, W.produkt))),
+    bedienbar && o.klang ? klangKnopf(o.klang) : null,
     h('p', { class: 'vermerk', 'data-pruef': 'fiktiv' }, `${W.fiktiv} · ${W.ungeprueft}`));
 
   /* ------------------------------------------------------------ Bausteine -- */

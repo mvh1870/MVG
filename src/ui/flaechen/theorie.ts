@@ -539,6 +539,17 @@ export function kapitelFuerDruck(inhalte: OeffentlicheInhalte, nr: number, versi
   return seite;
 }
 
+/** Kapitelverzeichnis (klebend, rollt in sich): den aktuellen Eintrag sichtbar machen, ohne die Seite zu rollen */
+export function zeigeAktuellenEintrag(seite: HTMLElement): void {
+  requestAnimationFrame(() => {
+    const v = seite.querySelector<HTMLElement>('.kapitel-verzeichnis');
+    const a = v?.querySelector<HTMLElement>('[aria-current="page"]');
+    if (!v || !a || v.scrollHeight <= v.clientHeight + 1) return;
+    const oben = a.getBoundingClientRect().top - v.getBoundingClientRect().top + v.scrollTop;
+    v.scrollTop = Math.max(0, oben - v.clientHeight / 2);
+  });
+}
+
 export function baueTheorie(o: TheorieOptionen): HTMLElement {
   return o.kapitel === null ? liste(o) : lernseite(o, o.kapitel);
 }

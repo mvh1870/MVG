@@ -19,7 +19,7 @@ weiter:
 ---
 
 ::: express
-Übersprungen, aber auf dem Tisch: Im Juli vertagte der Bauausschuss Ihre Vorlage, einen 40-Seiten-Statusbericht ohne Entscheidungsfrage. Im September fragte die Kämmerei, wer die Reserve für Brandschutzauflagen, Mensa und TGA-Nachtrag freigegeben hatte: niemand.
+Übersprungen, aber auf dem Tisch: Im Juli vertagte der Bauausschuss die Vorlage der GML, einen 40-Seiten-Statusbericht ohne Entscheidungsfrage. Im September fragte die Kämmerei, wer die Reserve für Brandschutzauflagen, Mensa und TGA-Nachtrag freigegeben hatte: niemand.
 :::
 
 ::: schritt einstieg

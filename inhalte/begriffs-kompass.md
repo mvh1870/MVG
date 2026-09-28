@@ -51,7 +51,7 @@ beleg: k4.3-p2
 ::: kompass entscheidungsregister
 ---
 begriff: Entscheidungsregister
-andere: [Decision Log, Entscheidungsliste]
+andere: [Decision Log, Entscheidungsprotokoll]
 beleg: k6.4.1-p3
 ---
 :::

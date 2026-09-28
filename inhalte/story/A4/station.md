@@ -21,7 +21,7 @@ weiter: A5
 titel: Donnerstag, 17:45 Uhr. Monat 7.
 kurz: Einstieg
 ---
-Donnerstag, 16. Juli, Bauausschuss. Ihre Vorlage: 40 Seiten Statusbericht der Projektsteuerung, Ampeln auf Gelb und Rot, keine Entscheidungsfrage.
+Donnerstag, 16. Juli, Bauausschuss. Die Vorlage der GML: 40 Seiten Statusbericht der Projektsteuerung, Ampeln auf Gelb und Rot, keine Entscheidungsfrage.
 
 ::: akten
 ---
@@ -87,7 +87,7 @@ kurz: Was Sie wissen
 knopf: Jetzt entscheiden
 ---
 ::: bekannt
-- Seit Juni: Ihre Baugenehmigung trägt Brandschutzauflagen zum Holzbau, grob 0,4 Mio. €; Deckung offen.
+- Seit Juni: Die Baugenehmigung trägt Brandschutzauflagen zum Holzbau, grob 0,4 Mio. €; Deckung offen.
 - Seit Mai zwei Kostenprognosen, keine als geltend dokumentiert.
 - Die Schulseite plant mit der größeren Mensa, ohne Beschluss.
 :::

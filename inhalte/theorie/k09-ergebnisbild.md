@@ -242,7 +242,7 @@ Die Freigabe am Abschluss einer Leistungsphase gibt die nächste frei. Nach der 
 ---
 titel: Welche Frage die Freigabe am Ende jeder Leistungsphase stellt
 ---
-Die Freigabefragen je Leistungsphase; die Tafel darunter zeigt sie im Zusammenhang. Die Zuordnung kann projektspezifisch angepasst werden.
+Die Freigabefragen je Leistungsphase, wörtlich aus Tabelle 9.3; die Tafel darunter zeigt sie im Zusammenhang, danach folgt der Regelbetrieb. Die Zuordnung kann projektspezifisch angepasst werden.
 
 ::: stufe lph0
 ---
@@ -265,7 +265,7 @@ Sind Aufgabenstellung, Standort- und Rahmenbedingungen so geklärt, dass die Vor
 titel: LPH 2
 marke: Vorplanung
 ---
-Ist auf Basis der Kostenschätzung eine Vorzugsvariante gewählt, und trägt der [[Business Case]] die Weiterplanung?
+Ist auf Basis der Kostenschätzung eine Vorzugsvariante gewählt – und trägt der [[Business Case]] die Weiterplanung?
 :::
 
 ::: stufe lph3
@@ -273,7 +273,7 @@ Ist auf Basis der Kostenschätzung eine Vorzugsvariante gewählt, und trägt der
 titel: LPH 3
 marke: Entwurfsplanung
 ---
-Tragen Entwurf und Kostenberechnung eine belastbare Investitionsentscheidung ([[Finale Investitionsentscheidung (FID)|FID]]) – einschließlich Risiken, Terminen und Finanzierung?
+Tragen Entwurf und Kostenberechnung eine belastbare Investitionsentscheidung ([[Finale Investitionsentscheidung (FID)|FID]]) – inklusive Risiken, Terminen und Finanzierung?
 :::
 
 ::: stufe lph4
@@ -281,7 +281,7 @@ Tragen Entwurf und Kostenberechnung eine belastbare Investitionsentscheidung ([[
 titel: LPH 4
 marke: Genehmigungsplanung
 ---
-Sind die Genehmigungsunterlagen eingereicht oder ist die Genehmigungslage gesichert – und sind Auflagen und Risiken bewertet?
+Sind die Genehmigungsunterlagen eingereicht beziehungsweise die Genehmigungslage gesichert – und sind Auflagen und Risiken bewertet?
 :::
 
 ::: stufe lph5
@@ -297,7 +297,7 @@ Ist die Ausführungsplanung so vollständig und koordiniert, dass Vergabe und Au
 titel: LPH 6
 marke: Vorbereitung Vergabe
 ---
-Sind Leistungsverzeichnisse und Vergabeunterlagen vollständig, und ist die Vergabestrategie mit Losen, Verfahren und Terminen beschlossen?
+Sind Leistungsverzeichnisse und Vergabeunterlagen vollständig – und ist die Vergabestrategie mit Losen, Verfahren und Terminen beschlossen?
 :::
 
 ::: stufe lph7
@@ -321,7 +321,7 @@ Ist das Vorhaben vertragsgerecht fertiggestellt und abgenommen – sind Mängel,
 titel: LPH 9
 marke: Übergabe
 ---
-Kann das Vorhaben geordnet in Betrieb und Verantwortung des Bauherrn übergehen – mit vollständiger Nachweislage und geklärten Betriebsverantwortungen? Danach folgt der Regelbetrieb.
+Kann das Vorhaben geordnet in Betrieb und Verantwortung des Bauherrn übergehen – mit vollständiger Nachweislage und geklärten Betriebsverantwortungen?
 :::
 :::
 

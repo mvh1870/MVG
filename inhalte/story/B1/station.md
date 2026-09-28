@@ -21,7 +21,7 @@ weiter: B2
 titel: Montag, 09:00 Uhr. Monat 1.
 kurz: Einstieg
 ---
-Montag, 5. Januar. Dieselbe Frist der Kämmerei. Die Vorgängerin ist auch hier weg – übergeben hat sie Register.
+Montag, 5. Januar. Dieselbe Frist der Kämmerei. Die bisherige Projektleiterin ist auch hier gegangen – übergeben hat sie Register.
 
 ::: protokoll
 ---
@@ -156,12 +156,12 @@ zeilen:
     I: [ps]
     mandat: nicht delegierbar (Kap. 3.2) · Lenkungskreis berät
   - id: datenstand
-    titel: CTC und Prognose monatlich als Datenstand führen
+    titel: CTC und Prognose monatlich rechnen und führen
     A: controlling
     R: [ps]
     C: [pl, planung]
     I: [bauherr, gf]
-    mandat: "CTC und Prognose: Controlling, monatlich (Kap. 6.4.2) · führend bleiben die vom Bauherrn freigegebenen Datenquellen und Dokumentenstände (Kap. 6.3)"
+    mandat: "CTC und Prognose: Controlling, monatlich (Kap. 6.4.2) · welcher Stand verbindlich gilt, legt der Bauherr fest (Kap. 4.6); führend bleiben die vom Bauherrn freigegebenen Datenquellen und Dokumentenstände (Kap. 6.3)"
   - id: fruehwarnung
     titel: Frühwarnung melden und erfassen
     A: ps

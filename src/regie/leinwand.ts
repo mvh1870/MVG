@@ -18,7 +18,7 @@ import { h, ersetze } from '../ui/h.ts';
 import { bildmarke } from '../ui/marke.ts';
 import { erzeugeStory, type StoryFlaeche } from '../ui/flaechen/story.ts';
 import { baueStart } from '../ui/flaechen/start.ts';
-import { baueTheorie, kapitelListe } from '../ui/flaechen/theorie.ts';
+import { baueTheorie, kapitelListe, zeigeAktuellenEintrag } from '../ui/flaechen/theorie.ts';
 import { W } from '../ui/woerter.ts';
 
 export interface Anzeige {
@@ -49,7 +49,10 @@ export function erzeugeAnzeige(inhalte: OeffentlicheInhalte, version: string, ei
         if (bereichJetzt !== 'theorie' || theorieJetzt !== z.theorie.kapitel) {
           story?.entferne();
           story = null;
-          ersetze(element, baueTheorie({ inhalte, kapitel: z.theorie.kapitel, version, bedienbar: false }));
+          const seite = baueTheorie({ inhalte, kapitel: z.theorie.kapitel, version, bedienbar: false });
+          ersetze(element, seite);
+          // die Leinwand ist inert: niemand kann das Verzeichnis rollen – der aktuelle Eintrag muss von selbst sichtbar sein
+          zeigeAktuellenEintrag(seite);
           theorieJetzt = z.theorie.kapitel;
         }
       } else if (bereichJetzt !== 'start') {

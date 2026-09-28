@@ -21,12 +21,12 @@ quellen/ + inhalte/  ──werkzeuge (Node)──►  src/generiert/ (ignoriert)
 | `src/main.ts` | Einstieg: liest den Hash (`#regie`, `#leinwand`, Permalinks), startet die passende Fläche |
 | `src/engine/` | Reine Logik ohne DOM: Typen, Anfangszustand, Aktionen (Reducer), Graph, Bedingungen, Gedächtnis; Explore-Regeln `simulator.ts` (Szenario-Simulator) und `sandbox.ts` (Governance-Fluss-Sandbox), je mit Absatz-ID |
 | `src/inhalte/` | Typisierter Laufzeitzugriff auf `src/generiert/inhalte.json` |
-| `src/ui/` | DOM-Zeichnung: `h.ts` (Mini-Helfer), `flaechen/` (start, story, theorie, explore), `leitstand/` (Rahmen, Instrumente, Story-Karte, LPH-Band, Seitenleiste), `bausteine/` (Ebenen, Glossar, Entscheidung, Konsequenz, Schieberegler …) |
+| `src/ui/` | DOM-Zeichnung: `h.ts` (Mini-Helfer), `flaechen/` (start, story, theorie, explore, hilfe), `leitstand/` (Rahmen, Instrumente, Story-Karte, LPH-Band, Seitenleiste), `bausteine/` (Ebenen, Glossar, Entscheidung, Konsequenz, Schieberegler …) |
 | `src/grafik/` | Diagramm-Baukasten als SVG (Governance-Fluss, Mandatsleiter, Pyramide, Felder, Symptom-Radar, LPH-Modell …), von Story, Theorie und Explore gemeinsam genutzt (Explore: Tafeln der Galerie, Zeitmaschine) |
 | `src/figuren/` | SVG-Figuren- und Requisiten-Baukasten |
 | `src/regie/` | `kanal.ts` (BroadcastChannel + storage-Rückfall), Regie, Leinwand, Protokoll |
 | `src/stil/` | `tokens.css`, `basis.css`, Komponenten-CSS; `src/generiert/schriften.css` wird erzeugt |
-| `werkzeuge/` | `bau.mjs`, `kette.mjs`, `inhalte.mjs`, `begriffe.mjs` + `begriffe.json`, `oberflaeche.mjs`, `whitepaper-import.mjs`, `schriften.mjs`, `logo.mjs`, `vorschau.mjs`, `entwurf.mjs`, `huelle.html` |
+| `werkzeuge/` | `bau.mjs`, `kette.mjs`, `inhalte.mjs`, `hilfe.mjs`, `begriffe.mjs` + `begriffe.json`, `oberflaeche.mjs`, `whitepaper-import.mjs`, `schriften.mjs`, `logo.mjs`, `vorschau.mjs`, `entwurf.mjs`, `huelle.html` |
 | `tests/` | `*.test.ts` (node:test, jsdom wo nötig); Browser-Szenarien unter `tests/oberflaeche/` |
 | `dist/mvg.html` | die ausgelieferte Einzeldatei (committet) |
 | `prototyp/` | Stilreferenz und Szenen-Spezifikation (nicht eingebunden) |
@@ -47,6 +47,7 @@ quellen/ + inhalte/  ──werkzeuge (Node)──►  src/generiert/ (ignoriert)
 
 ## Inhalte
 - `werkzeuge/inhalte.mjs` liest `inhalte/**/*.md` (Kopfdaten YAML über `yaml`, Text Markdown über `marked` → HTML zur Bauzeit, Strukturblöcke nach `docs/INHALTSFORMAT.md`), prüft Schema, Graph, Begriffe, Zitate und Abdeckung und schreibt `src/generiert/inhalte.json`.
+- `werkzeuge/hilfe.mjs` übernimmt die Hilfe des MVG Companion aus `quellen/hilfe/` (bereinigt, Begriffe nach MVG, L-69) nach `src/generiert/hilfe.json`; läuft mit `inhalte` und als Vorstufe von `bau`. Die Fläche `src/ui/flaechen/hilfe.ts` zeigt sie unter `#hilfe` und `#hilfe/<seite>`.
 - **Zitate** tragen eine Absatz-ID aus `whitepaper.json`; der Prüfer verlangt Wortgleichheit (Normalisierung nur von Leerraum und Silbentrennzeichen).
 
 ## Einzeldatei und Sicherheit

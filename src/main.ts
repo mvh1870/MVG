@@ -24,7 +24,7 @@ import { ersetze } from './ui/h.ts';
 import { installiereTooltips, type Tooltips } from './ui/bausteine/tooltip.ts';
 import { erzeugeStory, type StoryFlaeche } from './ui/flaechen/story.ts';
 import { baueStart } from './ui/flaechen/start.ts';
-import { baueTheorie, kapitelListe } from './ui/flaechen/theorie.ts';
+import { baueTheorie, kapitelListe, zeigeAktuellenEintrag } from './ui/flaechen/theorie.ts';
 import { baueExplore } from './ui/flaechen/explore.ts';
 import { baueHilfe, hilfeTitel } from './ui/flaechen/hilfe.ts';
 import { erzeugeRegie } from './regie/regie.ts';
@@ -33,17 +33,6 @@ import { W } from './ui/woerter.ts';
 import { fassungText } from './ui/fassung.ts';
 import { erzeugeKlang } from './ui/klang.ts';
 import { istEingebettet, leseHintergrund, starteEinbettung, type Einbettung } from './ui/einbettung.ts';
-
-/** Kapitelverzeichnis (klebend, rollt in sich): den aktuellen Eintrag sichtbar machen, ohne die Seite zu rollen */
-function zeigeAktuellenEintrag(seite: HTMLElement): void {
-  requestAnimationFrame(() => {
-    const v = seite.querySelector<HTMLElement>('.kapitel-verzeichnis');
-    const a = v?.querySelector<HTMLElement>('[aria-current="page"]');
-    if (!v || !a || v.scrollHeight <= v.clientHeight + 1) return;
-    const oben = a.getBoundingClientRect().top - v.getBoundingClientRect().top + v.scrollTop;
-    v.scrollTop = Math.max(0, oben - v.clientHeight / 2);
-  });
-}
 
 const TITEL = 'MVG interaktiv';
 const VERSION = fassungText(inhalte.whitepaper.fassung ?? '');

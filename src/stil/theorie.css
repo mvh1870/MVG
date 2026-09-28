@@ -31,7 +31,7 @@
 .lern-kopf-link { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; font: 600 var(--gr-m)/1.2 var(--schrift-label); letter-spacing: .06em; text-transform: uppercase; color: var(--navy); text-decoration: none; }
 .lern-kopf-link:hover { text-decoration: underline; }
 /* leiser Zugang zur Hilfe (P13): unterstrichen wie die leisen Links der Startseite */
-.lern-kopf-leise { color: var(--tinte-2); text-decoration: underline; text-underline-offset: 3px; }
+.lern-kopf-leise { justify-content: center; min-width: 36px; color: var(--tinte-2); text-decoration: underline; text-underline-offset: 3px; }
 .lern-kopf-leise:hover { color: var(--navy); }
 
 /* Rahmen: Kapitelverzeichnis links (ab 1100 px), Inhalt als Lesespalte */

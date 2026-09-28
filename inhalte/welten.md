@@ -86,11 +86,11 @@ Jedes Register hat eine verantwortliche Rolle, einen Pflegezyklus und einen defi
 
 ::: welt reporting
 ---
-titel: Reporting
+titel: Berichterstattung
 stationen: [A4, B4, A6, B6]
 ---
 ### Welt A
-Der Bauausschuss bekommt im Juli den monatlichen Statusbericht: 40 Seiten, Ampeln auf Gelb und Rot, keine Entscheidungsfrage; Bernd Kowalski fragt zweimal, worüber der Ausschuss entscheiden soll. Als im November eine Fraktion nach Kosten und Termin fragt, ist offen, welche Unterlagen in welcher Version gelten.
+Der Bauausschuss bekommt im Juli den monatlichen Statusbericht: 40 Seiten, Ampeln auf Gelb und Rot, keine Entscheidungsfrage; Bernd Kowalski fragt, worüber der Ausschuss entscheiden soll. Als im November eine Fraktion nach Kosten und Termin fragt, ist offen, welche Unterlagen in welcher Version gelten.
 
 ### Welt B
 Der Bauausschuss bekommt den Managementbericht mit Beschlusslage und Beschlussvorbereitung. Die Anfrage der Fraktion wird aus dem Managementbericht Oktober beantwortet – Kosten und Termin auf benanntem Datenstand.

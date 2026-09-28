@@ -12,8 +12,9 @@ Stand P0.3 (2026-09-26). Verbindlich für alle Flächen (ARCHITEKTUR.md → `src
 | `src/stil/basis.css` | Grundstellung (Browser-Vorgaben zurückgesetzt), Typografie, Silbentrennung, Fokus, Hilfsklassen, Semantik-Attribute (`data-status`, `data-welt`, `data-rolle`), gemeinsame Keyframes, reduzierte Bewegung |
 | `src/stil/leitstand.css` | Story: Rahmen mit schrittweisem Aufbau, alle Leitstand-Bausteine, responsiv |
 | `src/stil/start.css` | Startseite mit zwei Türen |
-| `src/stil/theorie.css` | ruhige Lernseiten |
-| `src/stil/index.css` | Einstieg für esbuild: `../generiert/schriften.css` → tokens → basis → leitstand → start → theorie |
+| `src/stil/theorie.css` | ruhige Lernseiten; Kapitelverzeichnis ab 1100 px klebend und in sich rollend (aktueller Eintrag beim Öffnen sichtbar, auch auf der Leinwand) |
+| `src/stil/hilfe.css` | Hilfe (O-31, L-69): Lernseiten-Rahmen plus Bausteine der übernommenen Companion-Hilfe, alle Klassen mit Vorsatz `h-`, nur unter `.hilfe` |
+| `src/stil/index.css` | Einstieg für esbuild: `../generiert/schriften.css` → tokens → basis → leitstand → start → theorie → hilfe |
 | `src/stil/paare.json` | erlaubte Text/Grund-Paare (Quelle der Tabelle unten) |
 | `src/stil/symbole.ts` | Ikonen und Status-Symbole als SVG-Zeichenketten (`symbol()`, `statusSymbol()`, `trendPfeil()`) |
 | `src/stil/farben.ts` | `liesTokens()`, `loese()`, `kontrast()` – für Prüfungen |
@@ -24,7 +25,7 @@ Bau: esbuild bündelt `src/stil/index.css` mit `bundle: true` (die `@import`s we
 
 ## Grundsätze
 
-1. **Ruhiger Einstieg (O-21).** Die Startseite zeigt genau zwei Wege – „Erklärt – Kapitel für Kapitel“ und „Erlebt – als Geschichte“ – auf hellem Grund mit viel Weißraum. Keine Instrumente, kein Navy-Rahmen. „Präsentieren“ steht leise im Fuß; ein leiser Link „Glossar“ kommt dazu, sobald es eine eigene Glossar-Fläche gibt (bis dahin erreicht man das Glossar in der Seitenleiste der Story und über die Tooltips in Story und Theorie – ein Link ins Leere wäre schlechter als keiner). Explore erscheint erst aus dem Inneren.
+1. **Ruhiger Einstieg (O-21).** Die Startseite zeigt genau zwei Wege – „Erklärt – Kapitel für Kapitel“ und „Erlebt – als Geschichte“ – auf hellem Grund mit viel Weißraum. Keine Instrumente, kein Navy-Rahmen. „Hilfe“ und „Präsentieren“ stehen leise im Fuß (Hilfe auch leise in den Kopfleisten von Theorie und Explore, O-31); ein leiser Link „Glossar“ kommt dazu, sobald es eine eigene Glossar-Fläche gibt (bis dahin erreicht man das Glossar in der Seitenleiste der Story und über die Tooltips in Story und Theorie – ein Link ins Leere wäre schlechter als keiner). Explore erscheint erst aus dem Inneren.
 2. **Der Leitstand baut sich auf (L-4).** Die Story beginnt mit Kopf, Lagetafel und Fußleiste. Die Statusinstrumente erscheinen mit der ersten Entscheidung, die Story-Karte nach der ersten Station, die rechte Seitenleiste ist eingeklappt (schmale Schiene mit drei Knöpfen) und öffnet auf Klick. Gesteuert nur über Attribute am Rahmen, siehe „Rahmen“ im Katalog.
 3. **Theorie ohne Rahmen.** Lernseiten nutzen Schriften, Farben und Bausteine des Leitstands, aber keinen Navy-Rahmen und keine Instrumente: eine Lesespalte (≤ 72 Zeichen), Kapitelverzeichnis links ab 1100 px.
 4. **Farbsemantik der zwei Welten (O-2, O-11).** Welt A (ohne MVG) ist **Koralle** mit Haftnotiz-Pastellen, Pinnwand, Excel-Ständen – Unordnung, die man sieht. Welt B (mit MVG) ist **Türkis/Frischgrün** mit IDs, Datenständen, Siegeln – Ordnung, die man sieht. Der Vergleich A ⟷ B ist ein Verlauf Koralle → Gold → Türkis. Welt immer über `data-welt="a|b|ab"`, nie über eigene Farben.
@@ -362,7 +363,7 @@ Tastatur am Griff: Der Regler ist ein **Umschalter mit Überblendung** zwischen 
 ### Startseite
 ```html
 <div class="startseite">
-  <header class="start-kopf">Bildmarke (navy) <div class="start-absender"><b>Bauherr Mentoren</b><span>Whitepaper V1.2 · interaktiv</span></div></header>
+  <header class="start-kopf">Bildmarke (navy) <div class="start-absender"><b>Bauherr Mentoren</b><span>MVG interaktiv</span></div></header>
   <main class="start-haupt">
     <div><p class="start-kicker">Minimum Viable Governance</p><h1 class="start-titel">…</h1><p class="start-these">…</p></div>
     <div class="tueren">
@@ -372,14 +373,14 @@ Tastatur am Griff: Der Regler ist ein **Umschalter mit Überblendung** zwischen 
       <a class="tuer" data-weg="story" …>… .weg-start, path.weg-a, path.weg-b, text.weg-text[data-welt] …</a>
     </div>
   </main>
-  <footer class="start-fuss"><span>… <span class="start-vermerk">fachlich ungeprüft</span></span><span class="leise-links"><button class="leise-link">Präsentieren</button>…</span></footer>
+  <footer class="start-fuss"><span>… <span class="start-vermerk">fachlich ungeprüft</span></span><span class="leise-links"><a class="leise-link">Hilfe</a><a class="leise-link">Präsentieren</a></span></footer>
 </div>
 ```
 
 ### Theorie-Lernseite
 ```html
 <div class="lernseite">
-  <header class="lern-kopf">Bildmarke <p class="lern-bereich">Erklärt <span>· Kapitel für Kapitel</span></p><a class="lern-kopf-link">Start</a></header>
+  <header class="lern-kopf">Bildmarke <p class="lern-bereich">Erklärt <span>· Kapitel für Kapitel</span></p><a class="lern-kopf-link lern-kopf-leise">Hilfe</a><a class="lern-kopf-link">Start</a></header>
   <div class="lern-rahmen">
     <details class="kapitel-verzeichnis" open><summary class="t-label">Kapitel</summary><ol class="kapitel-liste"><li><a aria-current="page" class="ist-gelesen"><b>2</b><span>…</span></a></li>…</ol></details>
     <article class="lern-inhalt">

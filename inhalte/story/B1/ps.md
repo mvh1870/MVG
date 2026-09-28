@@ -42,12 +42,12 @@ Das Detailwissen zur Kostendatei liegt noch vor allem bei Holger Stein.
 Abhängigkeit von einer Schlüsselperson im eigenen Team.
 
 ### Governance-Frage
-[[Mandat]]: Ist für Holger Steins Aufgabe eine Stellvertretung geregelt?
+Schlüsselrolle: Wer übernimmt Holger Steins Aufgabe, wenn er ausfällt?
 :::
 
 ::: option C
 ---
-titel: Eine Stellvertretung für Holger Stein benennen und der Bauherren-PL melden
+titel: Eine Stellvertretung für Holger Stein vorschlagen; die Bauherren-PL nimmt sie ins Verantwortungsmodell auf
 kurz: Stellvertretung benennen
 status:
   offene-risiken: -1

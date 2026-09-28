@@ -21,7 +21,7 @@ weiter: A2
 titel: Montag, 09:00 Uhr. Monat 1.
 kurz: Einstieg
 ---
-Montag, 5. Januar. Ihre Vorgängerin hat die GML zum Jahresende verlassen. Übergeben hat sie drei Ablagen: GML, Projektsteuerung, Generalplanung.
+Montag, 5. Januar. Die bisherige Projektleiterin der GML ist zum Jahresende gegangen. Übergeben hat sie drei Ablagen: GML, Projektsteuerung, Generalplanung.
 
 ::: akten
 ---
@@ -44,7 +44,7 @@ Die Kämmerei braucht bis Freitag den Haushaltsansatz 2027: Mittelabfluss und Ge
 von: petersen
 zeit: "09:02"
 ---
-Aus dem Dezernat: Gilt noch die Zahl aus dem Ratsbeschluss?
+Aus dem Stadtrat: Gilt noch die Zahl aus dem Ratsbeschluss?
 :::
 
 ::: protokoll
@@ -172,7 +172,7 @@ titel: Vertiefung
 |---|---|---|
 | 2.1 Volatile Märkte | Preisannahmen, Lieferzeiten, Komponenten mit langer Lieferzeit | Die Kämmerei fragt, ob Baupreissteigerungen eingepreist sind; niemand weiß es |
 | 2.2 ESG, LCC und Nachweislogik | höhere Anforderungen an Zieldefinition, Variantenvergleich und Nachweisführung | Kosten, Schuljahresbeginn, Holzbau und Betriebskosten ohne Rangfolge |
-| 2.3 Wissensverlust und Schlüsselrollen | Abhängigkeit von wenigen erfahrenen Personen; Wissen nicht in Artefakte und Routinen übersetzt | Vorgängerin weg, Übergabe „folgt“; die Kostendatei versteht nur Holger Stein |
+| 2.3 Wissensverlust und Schlüsselrollen | Abhängigkeit von wenigen erfahrenen Personen; Wissen nicht in Artefakte und Routinen übersetzt | bisherige Projektleiterin weg, Übergabe „folgt“; die Kostendatei versteht nur Holger Stein |
 
 Kap. 2.3 nennt die Fragen, die ein gemeinsamer Standard beantwortet: [[zitat:k2.3-p2|Wer entscheidet? Welche Unterlagen sind erforderlich? Welche Annahmen gelten? Welche Schwellen lösen eine Eskalation aus? Welche Entscheidungen müssen dokumentiert werden?]] In Welt A ist im ersten Monat keine davon beantwortet.
 :::

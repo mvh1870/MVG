@@ -171,7 +171,7 @@ Die Fragen der Datenstandslogik (Kap. 4.6) – an diesem Montag:
 |---|---|
 | Welche Version gilt? | „v3_final_NEU“ gegen die CTC des Controllings |
 | Welche Annahmen sind offen? | Ursache, Terminwirkung, Nachtragsrisiko |
-| Welche Änderungen wurden seit der letzten Freigabe aufgenommen? | Mensa und Lieferzeit Holz – ob sie drinstecken, weiß niemand |
+| Welche Änderungen wurden seit der letzten Freigabe aufgenommen? | Mensa-Zusage – ob sie drinsteckt, weiß niemand; die Lieferzeit Holz ist nicht bewertet |
 | Welche Beschlusslage besteht? | keine zur Abweichung |
 | Wo wird die Nachweiskette geführt? | in Mails und Excel-Dateien |
 :::

@@ -21,7 +21,7 @@ weiter: B5
 titel: Donnerstag, 10:00 Uhr. Monat 7.
 kurz: Einstieg
 ---
-Donnerstag, 9. Juli. Ihre Baugenehmigung kam im Juni mit Brandschutzauflagen zum Holzbau; am 16. will der Bauausschuss wissen, was daraus folgt. Heute tagt das Änderungsgremium: Die Planänderung `AEN-031`, grob 0,4 Mio. €, liegt als Vorlage auf dem Tisch.
+Donnerstag, 9. Juli. Die Baugenehmigung kam im Juni mit Brandschutzauflagen zum Holzbau; am 16. will der Bauausschuss wissen, was daraus folgt. Heute tagt das Änderungsgremium: Die Planänderung `AEN-031`, grob 0,4 Mio. €, liegt als Vorlage auf dem Tisch.
 
 ::: protokoll
 ---

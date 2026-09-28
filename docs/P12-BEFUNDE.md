@@ -27,3 +27,9 @@ Gesamtprüfung (Diff R3 ohne Verschlechterung ohne Einbettung – Startseite pix
 
 ## Runde 5 (P12.5)
 Gesamtprüfung (Diff R4 ohne neue Fehler, Regie + Leinwand mit den neuen Inhalten, Kundenfassung ohne Notizen, Explore, Fachtreue Kap. 1/3/7/10/11, kein „Whitepaper“): 1 Befund (0 schwer, 1 mittel) – eingearbeitet: Lernwerkzeuge auf Leinwand und im Druck aufgelöst statt scheinbar bedienbar (L-68, Anleitung §2).
+
+## Runde 6 (P12.5)
+Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
+- **Fachtreue, Begriffe, Dramaturgie, O-1** (Kap. 4/6/9/13, A1/B1 und A3/B3 in ps und controlling, Enden, Epilog, 79 Zitate): 9 Befunde (0 schwer, 1 mittel) – alle eingearbeitet (L-70): Story-Einstiege ohne rollenfremde Zuschreibung („Ihre Vorgängerin“, eigene Frage der Dezernentin), Kap.-9-Regler wortgleich zu k9.3-t1, RACI „CTC rechnen“ mit Bauherr für den verbindlichen Stand, Stellvertretung als Schlüsselrolle, A3 Lieferzeit als Signal, Kompass, „Berichterstattung“, Theorie-Übersicht, „fragt zweimal“.
+- **Stil, Barrierefreiheit, Architektur, Vollständigkeit** (alle Flächen, beide Dateien, drei Größen, Regie/Leinwand, Einbettung): 5 Befunde (0 schwer, 2 mittel) – alle eingearbeitet (L-71): aktueller Verzeichniseintrag auf der Leinwand, Beamer-Zoom bei Verzeichnis und Startseite, Explore-/Express-Karte im hover lesbar, Startseite passt bei 1280×720 samt Fuß, leise Links ≥ 36 px, Hilfe in STIL und ARCHITEKTUR.
+

@@ -39,7 +39,8 @@
 .start-haupt {
   display: grid;
   align-content: center;
-  gap: clamp(20px, calc(4.4 * var(--vh, 1vh)), 72px);
+  /* bei 720 px Höhe (Beamer) passt die ganze Seite samt Fuß ins erste Bild (P12.5 R6) */
+  gap: clamp(16px, calc(4.4 * var(--vh, 1vh) - 14px), 72px);
   width: 100%;
   max-width: var(--breite-start);
   margin-inline: auto;
@@ -53,7 +54,7 @@
 .start-titel {
   max-width: 26ch;
   margin-top: var(--a-2);
-  font: 800 clamp(34px, min(5.2vw, calc(7.2 * var(--vh, 1vh))), 76px)/.98 var(--schrift-anzeige);
+  font: 800 clamp(34px, min(5.2vw, calc(7.2 * var(--vh, 1vh) - 10px)), 76px)/.98 var(--schrift-anzeige);
   letter-spacing: .01em;
   text-transform: uppercase;
   color: var(--navy);
@@ -90,7 +91,7 @@
 /* Leiste unten wie die Fortschrittsschritte des Leitstands: Theorie Petrol, Story A → B */
 .tuer::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--petrol); }
 .tuer[data-weg="story"]::after { background: linear-gradient(90deg, var(--koralle), var(--gold-hell), var(--tuerkis)); }
-.tuer-bild { width: auto; max-width: 100%; height: 92px; }
+.tuer-bild { width: auto; max-width: 100%; height: clamp(60px, calc(12.8 * var(--vh, 1vh) - 30px), 92px); }
 .tuer-titel { font: 800 clamp(30px, 3vw, 40px)/1 var(--schrift-anzeige); letter-spacing: .01em; text-transform: uppercase; color: var(--navy); }
 .tuer-kicker {
   display: block;
@@ -157,7 +158,7 @@
   cursor: pointer;
 }
 .leise-link:hover { color: var(--navy); }
-a.leise-link { display: inline-flex; align-items: center; min-height: 36px; }
+a.leise-link { display: inline-flex; align-items: center; justify-content: center; min-width: 36px; min-height: 36px; }
 .start-vermerk {
   display: inline-flex;
   align-items: center;

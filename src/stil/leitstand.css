@@ -218,7 +218,7 @@
 .karte-express-schalter::after { content: ""; position: absolute; top: 2px; left: 2px; width: 12px; height: 12px; border-radius: 50%; background: var(--auf-navy); transition: transform var(--dauer-sofort); }
 .karte-express[aria-pressed="true"] .karte-express-schalter { background: var(--gold); }
 .karte-express[aria-pressed="true"] .karte-express-schalter::after { transform: translateX(12px); background: var(--navy); }
-.karte-explore:hover, .karte-express:hover { background: var(--navy-soft); }
+.karte-explore:hover, .karte-express:hover { background: var(--navy-soft); color: var(--auf-navy); } /* a:hover (basis.css) setzt sonst Navy auf Navy */
 
 .station {
   position: relative;
@@ -2035,6 +2035,12 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 /* Beamer-Schalter (E10, P9.4): größer (wie Browser-Zoom, das Layout bricht dann um) und kontrastreicher –
    Nebenschrift wird Hauptschrift, Linien kräftiger. Gilt auf der Leinwand und in der Regie-Vorschau. */
 .ist-beamer .anzeige { zoom: 1.15; }
+/* Kapitelverzeichnis im Beamer-Modus: vh ist ungezoomt, Kopfleiste (72) und Rahmenabstand (64) sind gezoomt */
+/* Startseite auf der Leinwand im Beamer-Modus: Maße aus der gezoomten Höhe, Türbild weg, wenn der Beamer niedrig ist */
+.ist-beamer .anzeige { --vh: calc(1vh / 1.15); }
+.ist-beamer .anzeige .startseite { min-height: calc(100vh / 1.15); min-height: calc(100dvh / 1.15); }
+@media (max-height: 800px) { .ist-beamer .anzeige .tuer-bild { display: none; } }
+@media (min-width: 1100px) { .ist-beamer .anzeige .kapitel-verzeichnis { max-height: calc(100vh / 1.15 - 136px); max-height: calc(100dvh / 1.15 - 136px); } }
 /* zoom vergrößert auch die Fensterhöhe des Leitstands: auf 1/1.15 zurückrechnen, sonst fehlt unten ein Siebtel.
    In der Vorschau gilt height:100 % der Bühne (bereits im Zoom-Maßstab gerechnet). */
 .leinwand.ist-beamer .leitstand { height: calc(100vh / 1.15); height: calc(100dvh / 1.15); min-height: calc(540px / 1.15); }

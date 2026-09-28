@@ -213,7 +213,8 @@ test('Hilfe (P13, O-31): gleiche Aufteilung wie die Companion-Hilfe, leiser Zuga
   assert.match(dm, /<h2 class="h-summary-titel">IT-\/Datenschutz-Dossier<\/h2>/u);
   assert.match(dm, /<h3>Kurzfreigabe/u);
   // Prüfrunde 10: keine Selbstdarstellung/Akquise (O-1), keine Verweise ohne Ziel, keine Instanz-Momentaufnahme
-  assert.doesNotMatch(text, /Über Bauherr Mentoren|Akquise|Print-Center →|Speicher-Modus dieser Instanz|Modul 1 oder 2|einen strukturierten MVG|Wie wir arbeiten/u);
+  assert.doesNotMatch(text, /Über Bauherr Mentoren|Akquise|Print-Center →|Speicher-Modus dieser Instanz|Modul 1 oder 2|einen strukturierten MVG|Wie wir arbeiten|>→ Portfolio-Manager/u);
+  assert.match(HILFE.kapitel.find((k) => k.id === 'registerdokument-katalog')?.html ?? '', /aria-label="Tabelle: Registerdokument-Katalog"/u);
   assert.equal(baueHilfe({ seite: 'gibt-es-nicht', version: VERSION }).querySelector('[data-pruef="hilfe-uebersicht"]') !== null, true);
 });
 

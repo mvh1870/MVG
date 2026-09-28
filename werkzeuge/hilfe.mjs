@@ -44,6 +44,7 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/\s*Berater bleibt als Sparringspartner verfügbar, ist aber nicht mehr operativ nötig\./gu, ''],
   [/ — jetzt für /gu, ' — für '],
   [/ · druckbares Freigabe-Dossier/gu, ''],
+  [/ — jede Karte führt mit ihren Knöpfen direkt in die passende Ansicht/gu, ''],
   // O-1: keine Angebotsaussagen über Bauherr Mentoren (Preise, Lizenzen)
   [/\s*Für Beratungskunden kostenfrei: kein separates Lizenzentgelt, unbegrenzte Nutzungsrechte auch nach Mandatsende\./gu, ''],
   [/(?<![-\w])LPH(\d)/gu, 'LPH $1'],
@@ -137,7 +138,7 @@ const KLASSEN = new Set([
   'card', 'card-title', 'feature-card', 'feature-grid', 'notice', 'info', 'hint', 'tag', 'badge', 'pill', 'grid', 'cols-2', 'cols-3',
   'step-list', 'table-wrap', 'lead', 'lead-text', 'sub', 'meta', 'small', 'prose', 'section-divider', 'kpi', 'label', 'value',
   'green', 'gold', 'blue', 'gray', 'help-content', 'help-content-inline', 'help-item', 'num-mark', 'role-pick-card', 'desc',
-  'checked', 'page-header', 'ico', 'grafik-wrap', 'summary-titel',
+  'checked', 'page-header', 'ico', 'grafik-wrap', 'summary-titel', 'hilfe-marke',
 ]);
 
 /** Was nur in der Anwendung wirkt – samt Inhalt entfernen. */
@@ -159,7 +160,7 @@ export function ersetze(t) {
  * @param {Element} wurzel
  * @param {Map<string, string>} anker Companion-Kapitel-ID → Hilfe-Route
  */
-function bereinige(wurzel, anker) {
+function bereinige(wurzel, anker, titel = '') {
   const dok = wurzel.ownerDocument;
   for (const el of [...wurzel.querySelectorAll(WEG)]) el.remove();
   // O-1: Leistungszuschnitt der Beratung (Engagements mit Laufzeiten) – Abschnitt bis zum nächsten Trenner
@@ -284,7 +285,7 @@ function bereinige(wurzel, anker) {
     huelle.setAttribute('role', 'region');
   }
   // Name jeder Tabelle und breiten Grafik: die Überschrift davor
-  let ueberschrift = '';
+  let ueberschrift = titel;
   for (const el of [...wurzel.querySelectorAll('h1, h2, h3, h4, h5, .table-wrap')]) {
     if (el.classList.contains('table-wrap')) el.setAttribute('aria-label', ueberschrift !== '' ? `Tabelle: ${ueberschrift}` : 'Tabelle');
     else ueberschrift = ersetze((el.textContent ?? '').replace(/\s+/gu, ' ').trim());
@@ -411,6 +412,13 @@ function bereinige(wurzel, anker) {
   for (const el of [...wurzel.querySelectorAll('div, p')]) if (el.children.length < 6 && /^Diese Inhalte gibt es jetzt als eigene Ansicht/u.test((el.textContent ?? '').trim())) el.remove();
   for (const el of [...wurzel.querySelectorAll('p')]) if (/^Aktueller Speicher-Modus dieser Instanz/u.test((el.textContent ?? '').trim())) el.remove();
   for (const li of [...wurzel.querySelectorAll('li')]) if (/^Modul 1 oder 2 durcharbeiten/u.test((li.textContent ?? '').trim())) li.remove();
+  // frühere Navigationsknöpfe „→ Portfolio-Manager“: ohne Ziel, samt leer gewordener Hülle
+  for (const m of [...wurzel.querySelectorAll('.hilfe-marke')]) {
+    if (!/^→/u.test((m.textContent ?? '').trim())) continue;
+    const eltern = m.parentElement;
+    m.remove();
+    if (eltern !== null && eltern.children.length === 0 && (eltern.textContent ?? '').trim() === '') eltern.remove();
+  }
   // Hinweise auf den Druckknopf der Anwendung (hier gibt es ihn nicht)
   for (const li of [...wurzel.querySelectorAll('li')]) if (/Drucken\/PDF.*klappt alle Kapitel/u.test(li.textContent ?? '')) li.remove();
   // Text: Begriffe nach O-14/O-15/O-29
@@ -515,12 +523,12 @@ export function erzeugeHilfe(html) {
     const unterAus = unter.map(({ u, id: uid, titel: ut }) => {
       u.querySelector('.bm966-unterkap-titel')?.remove();
       u.remove();
-      bereinige(u, anker);
+      bereinige(u, anker, ut);
       mitVorsatz(u);
       return { id: uid, titel: ut, html: glaette(u.innerHTML.trim()) };
     });
     s.querySelector(':scope > .bm966-kap-titel')?.remove();
-    bereinige(s, anker);
+    bereinige(s, anker, titel);
     verlinke(s, new Map([
       ...unter.map(({ id: uid, titel: ut }) => /** @type {[string, string]} */ ([ut, `#hilfe/${uid}`])),
       ...plan.map((p) => /** @type {[string, string]} */ ([p.titel, `#hilfe/${p.id}`])),

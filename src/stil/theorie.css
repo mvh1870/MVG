@@ -72,7 +72,7 @@
 .kapitel-liste a[aria-current="page"] { background: var(--weiss); color: var(--tinte); font-weight: 600; box-shadow: inset 3px 0 0 var(--petrol); }
 .kapitel-liste a.ist-gelesen b { color: var(--petrol); }
 @media (max-width: 1099px) {
-  .kapitel-verzeichnis { position: static; }
+  .kapitel-verzeichnis { position: static; max-height: none; overflow: visible; }
   .kapitel-verzeichnis:not([open]) .kapitel-liste { display: none; }
 }
 

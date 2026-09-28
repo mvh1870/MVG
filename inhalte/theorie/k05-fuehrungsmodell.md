@@ -136,6 +136,34 @@ titel: Bauherren-Projektleitung
 [[zitat:k5.3-l1|Die Bauherren-Projektleitung erhält eine handhabbare Logik für Vorbereitung, Nachverfolgung und Eskalation.]]
 :::
 :::
+
+::: wissenscheck kopplung
+### Frage
+Zielsystem, RACI-Matrix und Freigabekalender liegen vor – wirkt MVG damit schon?
+
+### Erklärung
+Die Wirkung von MVG entsteht durch Kopplung: Ein Zielsystem allein reicht nicht – ebenso wenig eine RACI-Matrix, ein Freigabekalender oder eine einzelne Entscheidungsvorlage. MVG wirkt erst, wenn diese Elemente miteinander verbunden werden.
+
+::: antwort a
+---
+titel: Erst, wenn die Elemente verbunden sind
+praefix: "Genau:"
+---
+Die Wirkung entsteht durch Kopplung, nicht durch das einzelne Element.
+:::
+
+::: antwort b
+---
+titel: Ja, jedes Element wirkt schon für sich
+praefix: "Nicht ganz:"
+---
+Ein Zielsystem allein reicht nicht – ebenso wenig eine RACI-Matrix oder ein Freigabekalender.
+:::
+
+::: zitat k5.3-p1
+Die Wirkung von MVG entsteht durch Kopplung. Ein Zielsystem allein reicht nicht – ebenso wenig eine RACI-Matrix, ein Freigabekalender oder eine einzelne Entscheidungsvorlage. MVG wirkt erst, wenn diese Elemente miteinander verbunden werden.
+:::
+:::
 :::
 
 ::: abschnitt k5.4

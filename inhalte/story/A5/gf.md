@@ -13,13 +13,13 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Der Lenkungskreis nimmt die Verwendung „zur Kenntnis“. Dr. Miriam Olbers fragt nach der Liste der Posten; Aylin Kaya hat drei Fassungen, keine davon ist abgestimmt.
+Der Lenkungskreis nimmt die Verwendung „zur Kenntnis“. Dr. Olbers fragt nach der Liste der Posten; Aylin Kaya hat drei Fassungen, keine abgestimmt.
 
 ### Was fehlt
 Eine Freigabe des Einsatzes der Risikoreserve durch den Bauherrn, auf einem benannten Datenstand.
 
 ### Neues Risiko
-Kenntnisnahme wird später als Freigabe gelesen – ohne Nachweis, wer was angenommen hat.
+Kenntnisnahme wird später als Freigabe gelesen, ohne Nachweis.
 
 ### Governance-Frage
 [[Nichtdelegierbare Bauherrenverantwortung]]: Wer gibt den Einsatz der Risikoreserve frei – und ist das delegierbar?
@@ -34,7 +34,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Brandschutz, der Nachtrag der Generalplanung zur Mensa-Umplanung und der Nachtrag der TGA-Fachplanung werden als „später bei der Vergabe“ geführt. Die Prognose sieht besser aus; Aylin Kaya führt die Posten in ihrer CTC trotzdem weiter.
+Brandschutz, Mensa- und TGA-Nachtrag laufen als „später bei der Vergabe“. Die Prognose sieht besser aus; Aylin Kaya führt die Posten in ihrer CTC weiter.
 
 ### Was fehlt
 Eine Risikoannahme durch den Bauherrn – mit Wirkung, Frist und verantwortlicher Rolle.
@@ -55,13 +55,13 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Sie rufen Dr. Miriam Olbers an. Sie will eine Aufstellung bis nächste Woche; Projektsteuerung und Controlling liefern zwei. Das Problem ist jetzt oben – mit zwei Zahlen.
+Dr. Olbers will bis nächste Woche eine Aufstellung; Projektsteuerung und Controlling liefern zwei. Das Problem ist oben, mit zwei Zahlen.
 
 ### Was fehlt
 Ein [[Datenstand]], der für die Freigabe gilt.
 
 ### Neues Risiko
-Offenlegen ohne Grundlage erzeugt eine neue Entscheidung, die niemand vorbereiten kann.
+Offenlegen ohne Grundlage erzeugt eine Entscheidung, die niemand vorbereiten kann.
 
 ### Governance-Frage
 Welche Mindestgrundlagen braucht der Bauherr, um den Einsatz der Reserve freizugeben?
@@ -72,15 +72,15 @@ Im März haben Sie ‚Zusage stehen lassen‘ gewählt. Grob 0,6 Mio. € sind s
 :::
 
 ::: rueckbezug B
-Im März haben Sie ‚Prüfen lassen‘ gewählt. Die Prüfung hatte keine Frist und keine Stelle, die danach entscheidet. Die Schulseite hat mit der großen Mensa weitergeplant; jetzt kommt der Nachtrag.
+Im März haben Sie ‚Prüfen lassen‘ gewählt, ohne Frist und ohne entscheidende Stelle. Die Schulseite hat weitergeplant; jetzt kommt der Nachtrag.
 :::
 
 ::: rueckbezug C
-Im März haben Sie ‚In den Lenkungskreis‘ gewählt. Dort wurde die Mensa zur Kenntnis genommen, nicht entschieden. Jetzt steht sie als Nachtrag in der Rechnung gegen die Reserve.
+Im März haben Sie ‚In den Lenkungskreis‘ gewählt; die Mensa wurde zur Kenntnis genommen, nicht entschieden. Jetzt läuft sie als Nachtrag gegen die Reserve.
 :::
 
 ::: rueckbezug ohne
-Im März kam die größere Mensa als Zusage aus dem Flur. Im September steht sie als angekündigter Nachtrag in der Rechnung gegen die Reserve.
+Im März kam die Mensa als Flurzusage. Im September steht sie als angekündigter Nachtrag gegen die Reserve.
 :::
 
 ::: regie

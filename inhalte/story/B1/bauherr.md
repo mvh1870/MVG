@@ -6,19 +6,19 @@ rueckbezug-auf: A1
 ---
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Berichten lassen‘ gewählt. In Welt B wartet der Zielkonflikt nicht auf einen Sachstand: Das Zielsystem ist angelegt, seine Priorität legen Sie fest, und was davon abweicht, kommt als Entscheidungsfrage zu Ihnen.
+In Welt A haben Sie ‚Berichten lassen‘ gewählt. In Welt B ist das Zielsystem angelegt; seine Priorität legen Sie fest.
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Priorität per Mail setzen‘ gewählt. In Welt B gehört die Zielpriorität nicht in eine Mail, sondern ins Zielsystem mit Abwägungsregeln, das alle Beteiligten kennen – festlegen müssen Sie sie selbst.
+In Welt A haben Sie ‚Priorität per Mail setzen‘ gewählt. In Welt B gehört sie ins Zielsystem, das alle kennen – festlegen müssen Sie sie selbst.
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Zuständigkeiten klären lassen‘ gewählt. In Welt B gibt es statt eines Organigramms eine Mandatsleiter mit Schwellen und Eskalationswegen; offen ist noch, wer Holger Stein vertritt.
+In Welt A haben Sie ‚Zuständigkeiten klären lassen‘ gewählt. In Welt B gibt es statt eines Organigramms eine Mandatsleiter mit Schwellen.
 :::
 
 ::: rueckbezug ohne
-In Welt A war die erste Woche unauffällig – und niemand hat den Zielkonflikt priorisiert. In Welt B ist das Zielsystem angelegt, und die Frage nach der Priorität liegt bei Ihnen, bevor die erste Abweichung kommt.
+In Welt A hat niemand den Zielkonflikt priorisiert. In Welt B liegt die Frage bei Ihnen, bevor die erste Abweichung kommt.
 :::
 
 ::: option A
@@ -29,7 +29,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Sie bestätigen die Schwellen: Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium bis einschließlich 5 Mio. €, darüber Sie im Lenkungskreis. Die Stellvertretungen je Rolle werden abgefragt; für Holger Stein ist noch keine benannt.
+Sie bestätigen die Schwellen: Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium bis einschließlich 5 Mio. €, darüber Sie im Lenkungskreis. Für Holger Stein ist noch keine Stellvertretung benannt.
 
 ### Was fehlt
 Die Probe: Ob die Schwellen tragen, zeigt erst die erste Änderung.
@@ -49,7 +49,7 @@ status:
   ungeklaerte-entscheidungen: -1
 ---
 ### Konsequenz
-Sie legen fest, welche Zielpriorität gilt, und bestätigen die Abwägungsregeln zwischen Kosten, Termin, [[ESG]] und [[LCC]]. Die Planung kann Varianten daran messen, bevor sie sie vorlegt.
+Sie legen die Zielpriorität fest und bestätigen die Abwägungsregeln. Die Planung misst Varianten daran, bevor sie sie vorlegt.
 
 ### Was fehlt
 Nichts Wesentliches; neue Zielkonflikte kommen als Entscheidungsfrage zu Ihnen.
@@ -69,7 +69,7 @@ status:
   entscheidungsfaehigkeit: -1
 ---
 ### Konsequenz
-Sie lesen den Managementbericht und halten sich sonst heraus. Der Rhythmus läuft; was bei Ihnen liegt, erreicht Sie trotzdem – als Vorlage, nicht als Überraschung.
+Sie lesen den Managementbericht und halten sich heraus. Was bei Ihnen liegt, erreicht Sie trotzdem – als Vorlage.
 
 ### Was fehlt
 Ihre Mitwirkung: Mandate, Schwellen und Zielprioritäten legt niemand für Sie fest.
@@ -82,8 +82,6 @@ Ein Bauherr, der nur liest, wird zum Empfänger statt zum Entscheider.
 :::
 
 ::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
 Die Geschichte merkt sich Ihre Wahl.
 :::
 

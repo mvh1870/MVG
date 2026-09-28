@@ -27,12 +27,12 @@ Im Januar war das Zielsystem angelegt, die Mandatsleiter stand, und die Generalp
 ---
 titel: Signal
 kurz: Signal
-gruppe: Welt B · Monat 5 · derselbe Montag
+gruppe: Welt B · derselbe Montag
 ---
 ::: grafik ctc-verlauf
 ---
 titel: Restkostenprognose (CTC)
-untertitel: Controlling · Monat 1–5
+untertitel: Monat 1–5
 ---
 Die Restkostenprognose des Controllings steigt und überschreitet in Monat 5 den Schwellenwert.
 :::
@@ -74,7 +74,7 @@ Risiko
 :::
 
 ::: merksatz
-**Kein Anruf, keine Haftnotiz:** Das Signal kommt aus dem Controlling, hat eine Nummer – und einen Weg.
+**Kein Anruf:** ein nummeriertes Signal aus dem Controlling.
 :::
 :::
 
@@ -82,7 +82,7 @@ Risiko
 ---
 titel: Datenstand
 kurz: Datenstand
-gruppe: Welt B · Monat 5 · derselbe Montag
+gruppe: Welt B · derselbe Montag
 ---
 ::: datenstand
 ---
@@ -96,7 +96,6 @@ versionen:
   - "Version 3: gilt"
   - "Version 4: künftig"
 ---
-Eine neue Prognose wird Version 4 und ersetzt Version 3 nachvollziehbar.
 
 ### Vergleich
 ~~+8 %~~ · ~~+5,9 %~~
@@ -109,7 +108,7 @@ Zwei Zahlen, keine gilt. In Welt B gibt es genau eine – mit Namen, Version und
 ---
 titel: Mandat
 kurz: Mandat
-gruppe: Welt B · Monat 5 · derselbe Montag
+gruppe: Welt B · derselbe Montag
 ---
 ::: mandatsleiter
 ---
@@ -136,7 +135,7 @@ detail: "Änderung AEN-022: Fassade"
 zustaendig: Änderungsgremium
 stufe: 2
 ---
-4,7 Mio. € liegen über 100 TEUR und bis einschließlich 5 Mio. € – über die Änderung `AEN-022` entscheidet das Änderungsgremium.
+Über `AEN-022` entscheidet das Änderungsgremium.
 :::
 
 ::: mandatsoption 2
@@ -150,7 +149,7 @@ Die Freigabe des Einsatzes der Risikoreserve ist nicht delegierbar; sie bleibt b
 :::
 
 ::: merksatz
-Lehrmoment: Das [[Mandat]] hängt von der Option ab.
+Das [[Mandat]] hängt von der Option ab.
 :::
 :::
 
@@ -158,7 +157,7 @@ Lehrmoment: Das [[Mandat]] hängt von der Option ab.
 ---
 titel: ENT-017
 kurz: ENT-017
-gruppe: Welt B · Monat 5 · derselbe Montag
+gruppe: Welt B · derselbe Montag
 ---
 ::: vorlage ENT-017
 ---
@@ -173,10 +172,10 @@ datenstand: Kostenprognose 2026-05 · Version 3
 - [x] Entscheidungsfrage
 - [x] betroffene Freigabe · hier LPH 5
 - [x] Verantwortungsfeld
-- [ ] Mandat und letztverantwortliche Rolle · hängt von der Option ab
+- [ ] Mandat und letztverantwortliche Rolle · je nach Option
 - [x] Datenstand und zentrale Annahmen
 - [x] Optionen und Konsequenzen
-- [-] Wirkung auf Kosten, Termin, Qualität, Projektumfang, Risiko und ESG/LCC · hier fehlen Termin und Risiko zu Option 2
+- [-] Wirkung auf Kosten, Termin, Qualität, Projektumfang, Risiko und ESG/LCC · Option 2 ohne Termin, Risiko
 - [-] Empfehlung
 - [ ] Freigabe- oder Eskalationsweg
 - [ ] Freigabeprozess (sechsstufig, jede Stufe wird signiert): offen → in Prüfung → vorbereitet → freigegeben → beschlossen | abgelehnt
@@ -189,13 +188,12 @@ datenstand: Kostenprognose 2026-05 · Version 3
 ---
 titel: Governance-Fluss
 kurz: Fluss
-gruppe: Welt B · Monat 5 · derselbe Montag
+gruppe: Welt B · derselbe Montag
 ---
 ::: fluss
 ---
 position: entscheidung
 ---
-`ENT-017` steht bei „Entscheidung“.
 :::
 :::
 
@@ -204,7 +202,7 @@ position: entscheidung
 art: rueckbezug
 titel: Rückbezug
 kurz: Rückbezug
-gruppe: Welt B · Monat 5 · derselbe Montag
+gruppe: Welt B · derselbe Montag
 ---
 :::
 
@@ -221,14 +219,14 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Berichte erzeugen Information. Führung entsteht erst, wenn Information verbunden wird – unter anderem mit Mandat, Entscheidung, Schwelle, Risikoannahme, Datenstand, Freigabe und Nachweis.
+Berichte erzeugen Information. Führung entsteht erst, wenn Information unter anderem mit Mandat, Entscheidung, Datenstand und Freigabe verbunden wird.
 :::
 
 ::: ebene 2
 ---
 titel: Warum relevant
 ---
-Eine Kostenabweichung ist erst dann führbar, wenn klar ist, wer auf welchem Datenstand mit welcher Frage entscheidet.
+Eine Kostenabweichung ist erst dann führbar, wenn klar ist, wer auf welchem Datenstand mit welcher Frage entscheidet. Eine neue Prognose wird Version 4 und ersetzt Version 3 nachvollziehbar; über `AEN-022` entscheidet das Änderungsgremium, weil 4,7 Mio. € über 100 TEUR und bis einschließlich 5 Mio. € liegen.
 :::
 
 ::: ebene 3

@@ -5,11 +5,11 @@ rueckbezug-auf: wirklichkeit
 ---
 
 ::: rueckbezug A
-Im Dezember haben Sie ‚MVG-Neuinitialisierung anregen‘ gewählt. Die Spur hatte zu wenig Entscheidungsfähigkeit übrig gelassen, als dass eine Neuordnung bis zum Frühjahr hätte tragen können; nach der Freigabe mit Auflagen im Januar steht das Projekt in LPH 6, Vorbereitung Vergabe.
+Im Dezember haben Sie ‚MVG-Neuinitialisierung anregen‘ gewählt. Für die Neuordnung fehlte Ihrer Spur die Entscheidungsfähigkeit; nach der Freigabe mit Auflagen steht das Projekt in LPH 6.
 :::
 
 ::: rueckbezug B
-Im Dezember haben Sie ‚Freigabe mit Auflagen vorschlagen‘ gewählt und die Planungsunterlagen zusammengestellt. Dr. Olbers hat die Freigabe im Januar erteilt; mit ihr ist LPH 6 freigegeben, und die Auflagen gehen mit.
+Im Dezember haben Sie ‚Freigabe mit Auflagen vorschlagen‘ gewählt. Dr. Olbers hat sie im Januar erteilt; LPH 6 ist freigegeben, die Auflagen gehen mit.
 :::
 
 ::: rueckbezug C

@@ -33,7 +33,7 @@ status:
   ungeklaerte-entscheidungen: -1
 ---
 ### Konsequenz
-Der Bauausschuss bekommt keinen 40-Seiten-Bericht, sondern den Managementbericht mit Kennungen, Status und einer Beschlussvorbereitung. Diesmal wird nicht vertagt.
+Der Bauausschuss bekommt statt 40 Seiten den Managementbericht mit Kennungen, Status und Beschlussvorbereitung. Diesmal wird nicht vertagt.
 
 ### Was fehlt
 Die Terminwirkung von `AEN-031` ist in der Vorlage erst grob geschätzt.
@@ -66,7 +66,7 @@ Risikoannahme: Wie viel Reserve bleibt für Risiken, die noch nicht eingetreten 
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Bericht erweitern‘ gewählt. In Welt B wächst kein Bericht: Der Bauausschuss bekommt den Managementbericht als aggregierten Gremienbericht, mit Beschlussvorbereitung.
+In Welt A haben Sie ‚Bericht erweitern‘ gewählt. In Welt B wächst kein Bericht: Der Bauausschuss bekommt den Managementbericht mit Beschlussvorbereitung.
 :::
 
 ::: rueckbezug B
@@ -74,7 +74,7 @@ In Welt A haben Sie ‚Entscheidungsfrage voranstellen‘ gewählt. In Welt B mu
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Bericht kürzen‘ gewählt. In Welt B verschwindet kein Risiko in einer Sammelzeile: Jedes steht mit Kennung und Status im Risikoregister, der Managementbericht verdichtet nur.
+In Welt A haben Sie ‚Bericht kürzen‘ gewählt. In Welt B verschwindet kein Risiko in einer Sammelzeile: Jedes steht mit Kennung im Risikoregister, der Managementbericht verdichtet nur.
 :::
 
 ::: rueckbezug ohne

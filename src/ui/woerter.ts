@@ -223,6 +223,8 @@ export const W = {
     kommtVor: 'Kommt vor in',
     kapitelKurz: (nr: string) => `Kap. ${nr}`,
     tabelle: (id: string) => `Tabelle ${id}`,
+    wissenscheck: 'Kurz geprüft',
+    wissenscheckAntworten: 'Ihre Einschätzung',
     flussUebersicht: (stationen: string) => `Kanonischer Governance-Fluss: ${stationen}`,
     // Begriffs-Kompass (P10.5, E7)
     kompass: 'Begriffs-Kompass',

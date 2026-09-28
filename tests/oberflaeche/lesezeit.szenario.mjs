@@ -1,8 +1,8 @@
 // Lesezeit (P11.5, O-5): spielt den Hauptpfad einer Rolle mit „Weiter“ und der ersten Option durch und
 // zählt die sichtbaren Wörter (ohne Knöpfe, Tabellen, Grafiken, Screenreader-Texte, zugeklappte Teile)
 // und die Klicks (Express ohne den optionalen Epilog, L-49). Lesezeit = Wörter / 200 je Minute + 2 s je Klick (L-61). Ergebnis nach
-// tmp/lesezeit.json; über dem Ziel (Hauptpfad 35 min, Express 15 min) ist es ein Befund, sobald
-// MVG_LESEZEIT_PFLICHT=1 gesetzt ist (bis P11.5c abgeschlossen ist, nur Bericht).
+// tmp/lesezeit.json; über dem Ziel (Hauptpfad 35 min, Express 15 min) ist es ein Befund (seit P11.5c;
+// MVG_LESEZEIT_PFLICHT=0 macht daraus nur einen Bericht).
 import { mkdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -106,15 +106,17 @@ async function spieleIn(seite, rolle, express) {
  */
 export async function lauf(seite, h) {
   await seite.emulateMedia({ reducedMotion: 'reduce' });
-  const rollen = h.voll ? ['gf', 'bauherr', 'pl', 'ps', 'planung', 'controlling'] : ['pl'];
+  const rollen = process.env['MVG_LESEZEIT_ROLLEN']?.split(',') ?? (h.voll ? ['gf', 'bauherr', 'pl', 'ps', 'planung', 'controlling'] : ['pl']);
   const ergebnisse = [];
   for (const rolle of rollen) {
     ergebnisse.push(await spiele(seite, rolle, false));
     ergebnisse.push(await spiele(seite, rolle, true));
   }
-  mkdirSync(path.join(WURZEL, 'tmp'), { recursive: true });
-  writeFileSync(path.join(WURZEL, 'tmp', 'lesezeit.json'), `${JSON.stringify(ergebnisse, null, 1)}\n`);
-  const pflicht = process.env['MVG_LESEZEIT_PFLICHT'] === '1';
+  // MVG_LESEZEIT_DATEI: eigene Ausgabe (parallele Messungen); MVG_LESEZEIT_ROLLEN: nur diese Rollen (Komma)
+  const datei = process.env['MVG_LESEZEIT_DATEI'] ?? path.join(WURZEL, 'tmp', 'lesezeit.json');
+  mkdirSync(path.dirname(datei), { recursive: true });
+  writeFileSync(datei, `${JSON.stringify(ergebnisse, null, 1)}\n`);
+  const pflicht = process.env['MVG_LESEZEIT_PFLICHT'] !== '0';
   for (const e of ergebnisse) {
     const ziel = e.express ? ZIEL.express : ZIEL.haupt;
     const zeile = `Lesezeit ${e.rolle}${e.express ? ' Express' : ''}: ${e.minuten} min (${e.woerter} Wörter, ${e.klicks} Klicks; Ziel ≤ ${ziel} min)`;

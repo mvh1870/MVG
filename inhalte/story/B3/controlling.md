@@ -12,7 +12,7 @@ schritt: mandat
 Auf welcher Zahl entscheidet die zuständige Stufe über `ENT-017` – gleich, welche Option?
 
 ### Rückmeldung
-Auf der „Kostenprognose 2026-05 · Version 3“: +8 %, rund +4,7 Mio. €. Beide Optionen werden auf diesem Datenstand bewertet. Ihre CTC hat die Frühwarnung `FRW-003` ausgelöst; was an Ihrer Rechnung abweicht, gehört als offene Annahme in den Datenstand oder in eine neue Version, nicht als zweite Zahl in die Vorlage.
+Auf Version 3: +8 %, rund +4,7 Mio. €. Ihre CTC hat `FRW-003` ausgelöst; was abweicht, gehört als offene Annahme in den Datenstand oder in eine neue Version, nicht als zweite Zahl in die Vorlage.
 
 ::: antwort version
 ---
@@ -32,7 +32,7 @@ symbol: aktualisieren
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Eigene Zahl vertreten‘ gewählt. In Welt B steht Ihre CTC nicht gegen die Prognose der Projektsteuerung: Es gilt der benannte Datenstand „Kostenprognose 2026-05 · Version 3“, und offene Annahmen stehen darin, nicht in zwei Dateien.
+In Welt A haben Sie ‚Eigene Zahl vertreten‘ gewählt. In Welt B gilt Version 3; offene Annahmen stehen darin, nicht in zwei Dateien.
 :::
 
 ::: rueckbezug B
@@ -40,11 +40,11 @@ In Welt A haben Sie ‚Differenz aufschlüsseln‘ gewählt. In Welt B kostet da
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Überschreitung melden‘ gewählt. In Welt B geht die Überschreitung nicht als Meldung an eine Person: Die Schwellenwertverletzung erzeugt die Frühwarnung `FRW-003`, und welche Stufe der Mandatsleiter entscheidet, hängt von der Option ab.
+In Welt A haben Sie ‚Überschreitung melden‘ gewählt. In Welt B erzeugt die Schwellenwertverletzung die Frühwarnung `FRW-003` – keine Meldung an eine Person.
 :::
 
 ::: rueckbezug ohne
-In Welt A lag an diesem Montag Ihre Zahl neben der der Projektsteuerung. In Welt B kommt das Signal aus dem Controlling, hat eine Nummer und einen Weg.
+In Welt A lag Ihre Zahl neben der der Projektsteuerung. In Welt B kommt das Signal aus dem Controlling – mit Nummer und Weg.
 :::
 
 ::: regie

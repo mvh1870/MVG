@@ -718,3 +718,45 @@ test('Regie auf Lernseiten und Einwand-Kapitel (P9.5, L7): ohne kapitel, doppelt
   const ohne = await kompiliere({ pruefe: true, wurzel: neueWurzel({ ...BEISPIEL, 'inhalte/theorie/k02-ausgangslage.md': seite('') }), ziel: null });
   assert.ok(ohne.fehler.some((f) => /Regie-Block ohne „kapitel:“ im Dateikopf/u.test(f)), ohne.fehler.join('\n'));
 });
+
+test('Wissenscheck (P11.6): mindestens zwei Antworten und ein wortgleicher Beleg', async () => {
+  const seite = (inhalt: string): string => `---\nkapitel: 2\ntitel: Ausgangslage\n---\n::: kernaussage\nText.\n:::\n\n${inhalt}`;
+  const gut = `::: wissenscheck berichte
+### Frage
+Reicht ein Ampelbericht?
+
+### Erklärung
+Berichterstattung erzeugt Information.
+
+::: antwort a
+---
+titel: Nein
+praefix: "Genau:"
+---
+Führung braucht mehr.
+:::
+
+::: antwort b
+---
+titel: Ja
+praefix: "Nicht ganz:"
+---
+Er bleibt Beobachtung.
+:::
+
+::: zitat k2.4-p2
+Berichterstattung erzeugt Information.
+:::
+:::
+`;
+  const ok = await kompiliere({ pruefe: true, wurzel: neueWurzel({ ...BEISPIEL, 'inhalte/theorie/k02-ausgangslage.md': seite(gut) }), ziel: null });
+  assert.deepEqual(ok.fehler.filter((f) => /Wissenscheck/u.test(f)), []);
+  const wc = ok.inhalte.theorie['k02'].bloecke.find((b: { art: string }) => b.art === 'wissenscheck');
+  assert.equal(wc?.kinder.filter((k: { art: string }) => k.art === 'antwort').length, 2);
+  const eineAntwort = gut.replace(/::: antwort b[\s\S]*?:::\n\n/u, '');
+  const ohneBeleg = gut.replace(/::: zitat k2\.4-p2\nBerichterstattung erzeugt Information\.\n:::\n/u, '');
+  const f1 = (await kompiliere({ pruefe: true, wurzel: neueWurzel({ ...BEISPIEL, 'inhalte/theorie/k02-ausgangslage.md': seite(eineAntwort) }), ziel: null })).fehler;
+  assert.ok(f1.some((f) => /Wissenscheck berichte: mindestens zwei Antworten/u.test(f)), f1.join('\n'));
+  const f2 = (await kompiliere({ pruefe: true, wurzel: neueWurzel({ ...BEISPIEL, 'inhalte/theorie/k02-ausgangslage.md': seite(ohneBeleg) }), ziel: null })).fehler;
+  assert.ok(f2.some((f) => /Wissenscheck berichte: Beleg fehlt/u.test(f)), f2.join('\n'));
+});

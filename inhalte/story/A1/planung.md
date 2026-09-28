@@ -12,7 +12,7 @@ status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Sie rechnen eine Variante mit anderen Holzbauelementen durch. Bestellt hat sie niemand; sie liegt als zweiter Kostenstand neben der Kostenberechnung.
+Sie rechnen eine Variante mit anderen Holzbauelementen. Bestellt hat sie niemand; sie liegt als zweiter Kostenstand daneben.
 
 ### Was fehlt
 Ein Auftrag – und eine Zielpriorität, die sagt, ob Kosten, ESG oder LCC vorgehen.
@@ -32,7 +32,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Sie fragen, was vorgeht: Kosten, Termin, ESG oder LCC. Die Antwort lautet: „Alles ist wichtig.“ Die Generalplanung plant weiter gegen vier Ziele zugleich.
+Sie fragen, was vorgeht. Die Antwort: „Alles ist wichtig.“ Die Generalplanung plant weiter gegen vier Ziele zugleich.
 
 ### Was fehlt
 Ein priorisiertes Zielsystem mit Abwägungsregeln.
@@ -52,7 +52,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Die Marktnotiz geht an drei Verteiler. Niemand bestätigt sie, niemand bewertet sie; sie liegt in drei Postfächern.
+Die Marktnotiz geht an drei Verteiler. Niemand bestätigt oder bewertet sie; sie liegt in drei Postfächern.
 
 ### Was fehlt
 Ein Ort, an dem ein Signal aufgenommen und bestätigt wird.

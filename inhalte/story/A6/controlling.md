@@ -13,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Dr. Olbers bekommt Ihre Zahl rechtzeitig. Ohne Holger Stein kann die Projektsteuerung nicht sagen, ob sie zu ihrer Prognose passt. Die Antwort an den Stadtrat trägt eine Zahl, die niemand als gültig festgelegt hat.
+Dr. Olbers bekommt Ihre Zahl rechtzeitig. Ob sie zur Prognose passt, kann ohne Holger Stein niemand sagen; als gültig festgelegt hat sie niemand.
 
 ### Was fehlt
 Ein benannter Datenstand.
@@ -22,7 +22,7 @@ Ein benannter Datenstand.
 Eine Zahl vor dem Stadtrat, die später korrigiert werden muss.
 
 ### Governance-Frage
-[[Datenstand]]: Auf welchem Stand beantwortet der Bauherr eine Anfrage des Stadtrats?
+[[Datenstand]]: Auf welchem Stand antwortet der Bauherr dem Stadtrat?
 :::
 
 ::: option B
@@ -53,7 +53,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Dr. Olbers bekommt eine Spanne zwischen Ihrer CTC und der letzten Prognose der Projektsteuerung, dazu die offenen Annahmen. Das ist ehrlich – für die Freigabe zum Abschluss von LPH 5 aber keine belastbare Grundlage.
+Dr. Olbers bekommt eine Spanne zwischen Ihrer CTC und der letzten Prognose, dazu die offenen Annahmen: ehrlich, aber keine belastbare Grundlage für die Freigabe.
 
 ### Was fehlt
 Ein Datenstand, auf dem freigegeben werden kann.
@@ -66,23 +66,23 @@ Die Freigabe wird vertagt, ohne dass jemand sagt, bis wann.
 :::
 
 ::: nachsatz
-Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+Jede Wahl ist nachvollziehbar; es fehlt die Struktur, in der sie wirkt.
 :::
 
 ::: rueckbezug A
-Im Mai haben Sie ‚Eigene Zahl vertreten‘ gewählt. Seither rechnen Sie Ihre CTC, die Projektsteuerung ihre Prognose. Jetzt soll bis Freitag eine Zahl stehen – und die andere Seite hat niemanden, der ihre erklärt.
+Im Mai haben Sie ‚Eigene Zahl vertreten‘ gewählt. Seither rechnen beide Seiten getrennt, und die andere kann ihre Zahl jetzt nicht erklären.
 :::
 
 ::: rueckbezug B
-Im Mai haben Sie ‚Differenz aufschlüsseln‘ gewählt. Mit Holger Stein sind Sie damals Zeile für Zeile durchgegangen. Was Sie dabei über seine Annahmen erfahren haben, steht in Ihren Notizen, nicht in seinen Dateien.
+Im Mai haben Sie ‚Differenz aufschlüsseln‘ gewählt. Was Sie dabei über Holger Steins Annahmen erfahren haben, steht in Ihren Notizen, nicht in seinen Dateien.
 :::
 
 ::: rueckbezug C
-Im Mai haben Sie ‚Überschreitung melden‘ gewählt. Ihre Meldung lag im Lenkungskreis neben dem Statusbericht. Im November fragt der Stadtrat nach der Zahl – und es gibt immer noch zwei.
+Im Mai haben Sie ‚Überschreitung melden‘ gewählt; die Meldung lag neben dem Statusbericht. Im November fragt der Stadtrat nach der Zahl, und es gibt immer noch zwei.
 :::
 
 ::: rueckbezug ohne
-Im Mai standen zwei Kostenzahlen nebeneinander. Im November stehen sie noch immer nebeneinander – und die eine kann ohne Holger Stein niemand erklären.
+Im Mai standen zwei Kostenzahlen nebeneinander. Im November ist es noch so, und die eine kann ohne Holger Stein niemand erklären.
 :::
 
 ::: regie

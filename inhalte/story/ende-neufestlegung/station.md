@@ -14,11 +14,7 @@ schaltet-frei: [explore]
 titel: Dienstag, 16. März 2027. Monat 15.
 kurz: Einstieg
 ---
-Heute beschließt Dr. Olbers im Lenkungskreis eine [[Neufestlegung der Projektbasis]]. Die Entscheidungsvorlage haben Bauherren-PL, Projektsteuerung und Controlling seit Januar vorbereitet, mit Varianten der Generalplanung: eine Kostenzahl statt zwei, die umgeplante Mensa im Projektumfang, die längere Lieferzeit im Termin, die Risikoreserve mit Posten, über die entschieden wird. Beschließen kann das nur der Bauherr; vorbereiten konnten es andere.
-
-Eine Freigabe ist das nicht. Die Neufestlegung steht außerhalb der regulären Freigabereihe. Der Stadtrat, der die bisherige Projektbasis beschlossen hat, und der Bauausschuss werden rückgekoppelt; der Bauausschuss tagt am Donnerstag, 18. März.
-
-Das Projekt steht weiter in LPH 5. Betroffene Freigaben können auf der neuen Basis nachgeholt oder wiederholt werden – als nächste die Freigabe zum Abschluss von LPH 5. Erteilen wird sie Dr. Olbers selbst.
+Heute beschließt Dr. Olbers im Lenkungskreis eine [[Neufestlegung der Projektbasis]], außerhalb der regulären Freigabereihe. Die Vorlage bringt eine Kostenzahl statt zwei, die Mensa im Projektumfang, die Lieferzeit im Termin und die Risikoreserve mit Posten, über die entschieden wird. Das Projekt bleibt in LPH 5.
 
 ::: protokoll
 ---
@@ -26,11 +22,8 @@ titel: Lenkungskreis – Tagesordnung
 datum: Di, 16.03.2027
 von: petersen
 ---
-- Entscheidungsvorlage: Neufestlegung der Projektbasis – Kosten, Termin, Projektumfang, Risiko.
-- Grundlage: ein benannter Datenstand, von Projektsteuerung und Controlling gemeinsam getragen.
-- Beschluss: Dr. Olbers.
+- Grundlage: ein benannter Datenstand von Projektsteuerung und Controlling.
 - Rückkopplung: Bauausschuss am 18.03., Stadtrat.
-- Danach: welche Freigaben auf der neuen Basis nachzuholen sind.
 :::
 
 ::: chat
@@ -38,7 +31,7 @@ von: petersen
 von: kowalski
 zeit: "08:20"
 ---
-Die Unterlage für Donnerstag ist da. Diesmal steht vorn, was Dr. Olbers heute im Lenkungskreis beschließt und warum. Ich lese sie trotzdem zweimal – aus Gewohnheit.
+Die Unterlage für Donnerstag ist da. Vorn steht, was beschlossen wird – und warum.
 :::
 :::
 
@@ -55,11 +48,7 @@ kurz: Ihre Spur
 titel: Wie Sie hierher kamen
 kurz: Ihr Weg
 ---
-Hierher führen zwei Wege. Die Wahl im Dezember gab eine Richtung; welches Ende eintritt, entscheidet Ihre Spur durch Welt A mit.
-
-Wer im Dezember eine Neufestlegung vorbereiten lassen wollte, sieht sie beschlossen. Wer eine Freigabe mit Auflagen wollte, sieht: Die Spur hatte so wenig Entscheidungsfähigkeit übrig gelassen, dass eine Freigabe mit Auflagen nicht getragen hätte – ohne Mandate und Datenstand hätte niemand die Auflagen nachhalten können. Übrig blieb die Frage nach der Projektbasis. Welche Wahlen das bei Ihnen waren, zeigt der Reiter „Spur“ in der Seitenleiste.
-
-Eine neue Projektbasis ist kein Neustart des Projekts. Sie legitimiert neu, was sich verändert hat – und was danach kommt, bezieht sich auf sie.
+Dieses Ende folgt aus der Wahl im Dezember und Ihrer Spur. Eine neue Projektbasis ist kein Neustart; sie legitimiert neu, was sich verändert hat.
 :::
 
 ::: schritt nachweiskette
@@ -67,10 +56,10 @@ Eine neue Projektbasis ist kein Neustart des Projekts. Sie legitimiert neu, was 
 titel: Ihre Nachweiskette
 kurz: Nachweiskette
 ---
-Eine neue Projektbasis braucht dieselbe Kette: vom Mandat des Bauherrn bis zur Beschlusslage, auf die sich später jede Freigabe bezieht.
+Auch eine neue Projektbasis braucht diese Kette.
 
 ::: nachweiskette
-In Welt B haben Sie gesehen, wie jede zentrale Entscheidung eine Kette hinter sich hatte. Kap. 9 beschreibt sie: [[zitat:k9-p1|Das Mandat verweist auf eine Freigabe, die Freigabe auf eine Entscheidungs-ID, die Entscheidungs-ID auf den Datenstand, der Datenstand auf den Nachweis und der Nachweis auf die Beschlusslage.]] Klicken Sie auf eine Station, die Sie besucht haben – die sechs Glieder legen sich aus. Wo ein Glied damals offen war, steht es so da.
+Kap. 9: [[zitat:k9-p1|Das Mandat verweist auf eine Freigabe, die Freigabe auf eine Entscheidungs-ID, die Entscheidungs-ID auf den Datenstand, der Datenstand auf den Nachweis und der Nachweis auf die Beschlusslage.]] Wählen Sie eine Station aus Welt B.
 :::
 :::
 
@@ -79,15 +68,7 @@ In Welt B haben Sie gesehen, wie jede zentrale Entscheidung eine Kette hinter si
 titel: Was trägt
 kurz: Zielbild
 ---
-Kap. 9 beschreibt die Ergebnisse eines MVG-Mandats: [[zitat:k9-p1|Sie sind keine isolierten Vorlagen und keine methodische Sammlung. Ihr Wert entsteht durch den Zusammenhang]]. Für eine neue Projektbasis heißt das: Sie ist so belastbar wie der Datenstand und die Beschlusslage, auf die sie sich stützt.
-
-Kap. 12 zieht Bilanz: [[zitat:k12-p1|Für Bauherren zählt am Ende nicht die Zahl der Governance-Artefakte, sondern ihre Führungswirkung.]] Wählen Sie eine Karte:
-
-::: tafel k12-t1
----
-form: karten
----
-:::
+Kap. 9 über MVG-Ergebnisse: [[zitat:k9-p1|Ihr Wert entsteht durch den Zusammenhang]]. Eine neue Projektbasis trägt so weit wie Datenstand und Beschlusslage darunter.
 :::
 
 ::: schritt ebenen
@@ -103,7 +84,7 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Trägt die Projektbasis nicht mehr, wird sie neu legitimiert – in einem Sonderformat außerhalb der regulären Freigabereihe, über eine Entscheidungsvorlage vorbereitet und vom Bauherrn im Lenkungskreis beschlossen.
+Trägt die Projektbasis nicht mehr, legitimiert der Bauherr sie im Lenkungskreis neu – über eine Entscheidungsvorlage, außerhalb der regulären Freigabereihe.
 :::
 
 ::: ebene 2
@@ -125,6 +106,16 @@ Die Tabelle in Kap. 3.2 trennt Vorbereitung und Entscheidung. Delegierbar ist di
 | Termin | Lieferzeit der Holzbauelemente 26 statt 16 Wochen |
 | Projektumfang | Mensa für rund 450 statt 300 Essen, umgeplant ohne Auftrag |
 | Risiko | eine Reserve, deren Einsatz niemand freigegeben hat |
+
+Der Stadtrat, der die bisherige Projektbasis beschlossen hat, und der Bauausschuss werden rückgekoppelt; der Bauausschuss tagt am Donnerstag, 18. März. Die Entscheidungsvorlage haben Bauherren-PL, Projektsteuerung und Controlling seit Januar vorbereitet, mit Varianten der Generalplanung. Beschließen kann das nur der Bauherr; vorbereiten konnten es andere. Auf der neuen Basis können betroffene Freigaben nachgeholt oder wiederholt werden – als nächste die Freigabe zum Abschluss von LPH 5; erteilen wird sie Dr. Olbers selbst.
+
+Kap. 12 zieht Bilanz: [[zitat:k12-p1|Für Bauherren zählt am Ende nicht die Zahl der Governance-Artefakte, sondern ihre Führungswirkung.]] Wählen Sie eine Karte:
+
+::: tafel k12-t1
+---
+form: karten
+---
+:::
 :::
 
 ::: ebene 4
@@ -139,7 +130,7 @@ Sonderformat außerhalb der regulären Freigabereihe zur erneuten Legitimation v
 
 ::: regie
 ### Notiz
-Eines von drei Enden, gleichwertig mit den anderen – kein Scheitern und kein Neustart. Hierher führen zwei Richtungen: „Neufestlegung vorbereiten“ (immer) und „Freigabe mit Auflagen“, wenn die Spur die Entscheidungsfähigkeit sehr niedrig gelassen hat. Festhalten: Die Neufestlegung ist keine Freigabe; sie liegt außerhalb der regulären Freigabereihe, wird über eine Entscheidungsvorlage vorbereitet und vom Bauherrn im Lenkungskreis beschlossen. Stadtrat und Bauausschuss werden rückgekoppelt. Keine Beträge für die neue Basis nennen – der Fall legt sie nicht fest.
+Eines von drei Enden, gleichwertig mit den anderen – kein Scheitern und kein Neustart. Hierher führen zwei Richtungen: „Neufestlegung vorbereiten“ (wenn die Spur die Kostenunsicherheit sehr hoch gelassen hat, sonst folgt die Freigabe mit Auflagen) und „Freigabe mit Auflagen“, wenn die Spur die Entscheidungsfähigkeit sehr niedrig gelassen hat. Festhalten: Die Neufestlegung ist keine Freigabe; sie liegt außerhalb der regulären Freigabereihe, wird über eine Entscheidungsvorlage vorbereitet und vom Bauherrn im Lenkungskreis beschlossen. Stadtrat und Bauausschuss werden rückgekoppelt. Keine Beträge für die neue Basis nennen – der Fall legt sie nicht fest.
 
 ### Leitfragen
 - Woran würden Sie in Ihrem Projekt merken, dass die Projektbasis nicht mehr trägt?

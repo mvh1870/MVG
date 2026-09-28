@@ -13,7 +13,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Die Marktnotiz geht als [[Frühwarnung]] an die Projektsteuerung, die das Frühwarnungsregister führt, und wird in der wöchentlichen Risikosichtung angesehen. Ob sie für sich steht oder mit einem späteren Signal zusammengehört und ob daraus ein Risiko wird, zeigt die Bestätigung.
+Die Marktnotiz geht als [[Frühwarnung]] an die Projektsteuerung und in die wöchentliche Risikosichtung. Ob daraus ein Risiko wird, zeigt die Bestätigung.
 
 ### Was fehlt
 Noch nichts – das Signal ist erfasst, aber unbewertet.
@@ -33,7 +33,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Die Planung richtet sich am Zielsystem und seinen Abwägungsregeln aus; welche Zielpriorität gilt, legt der Bauherr fest. Varianten werden daran bewertet, nicht gegen vier Ziele zugleich.
+Varianten werden am Zielsystem bewertet, nicht gegen vier Ziele zugleich; die Zielpriorität legt der Bauherr fest.
 
 ### Was fehlt
 Die Abwägung im Einzelfall bleibt Arbeit – aber sie hat eine Regel.
@@ -53,7 +53,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Die Variante geht nicht in die Schublade, sondern mit Auswirkung ins Änderungsregister. Welche Stufe der Mandatsleiter entscheidet, hängt von der Summe ab.
+Die Variante geht mit Auswirkung ins Änderungsregister. Welche Stufe entscheidet, hängt von der Summe ab.
 
 ### Was fehlt
 Eine Auswirkungsbewertung zu Termin und Risiko.
@@ -66,24 +66,22 @@ Eine offene Änderung mehr, aber mit Weg.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Variante vorrechnen‘ gewählt. In Welt B wird aus der Rechnung kein zweiter Kostenstand: Eine Variante geht als beantragte Änderung ins Änderungsregister.
+In Welt A haben Sie ‚Variante vorrechnen‘ gewählt. In Welt B geht eine Variante als beantragte Änderung ins Änderungsregister.
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Zielpriorität erfragen‘ gewählt. In Welt B müssen Sie nicht herumfragen: Das Zielsystem ist angelegt, und die Priorität legt der Bauherr fest – die Frage hat einen Ort.
+In Welt A haben Sie ‚Zielpriorität erfragen‘ gewählt. In Welt B hat die Frage einen Ort: Die Priorität legt der Bauherr fest.
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Bauantrag zuerst, Notiz per Mail‘ gewählt. In Welt B landet die Notiz nicht in drei Postfächern, sondern als Frühwarnung in einem Register mit verantwortlicher Rolle.
+In Welt A haben Sie ‚Bauantrag zuerst, Notiz per Mail‘ gewählt. In Welt B landet die Notiz als Frühwarnung im Register.
 :::
 
 ::: rueckbezug ohne
-In Welt A gab es in dieser ersten Woche eine Marktnotiz und vier gleichrangige Ziele. In Welt B gibt es ein Register für das Signal und eine Regel für den Zielkonflikt.
+In Welt A: eine Marktnotiz, vier gleichrangige Ziele. In Welt B: ein Register für das Signal, eine Regel für den Zielkonflikt.
 :::
 
 ::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
 Die Geschichte merkt sich Ihre Wahl.
 :::
 

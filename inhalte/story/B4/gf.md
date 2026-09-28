@@ -13,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Das Gremium beschließt `AEN-031`; grob 0,4 Mio. € liegen in seinem Mandat. Soll die Deckung aus der Risikoreserve kommen, geht eine Vorlage an Dr. Miriam Olbers – deren Freigabe bleibt beim Bauherrn.
+Das Gremium beschließt `AEN-031` in seinem Mandat. Für eine Deckung aus der Risikoreserve geht eine Vorlage an Dr. Miriam Olbers – die Freigabe bleibt beim Bauherrn.
 
 ### Was fehlt
 Die Freigabe des Einsatzes der Risikoreserve durch den Bauherrn ([[Nichtdelegierbare Bauherrenverantwortung]]).
@@ -33,7 +33,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Das Gremium stellt zurück – mit einer Frage und einer Frist bis zu einer Sondersitzung. Die Vertagung hat diesmal einen Grund und ein Datum.
+Das Gremium stellt zurück – mit Frage und Frist bis zu einer Sondersitzung. Die Vertagung hat einen Grund und ein Datum.
 
 ### Was fehlt
 Die Terminwirkung der Planänderung in der Vorlage.
@@ -66,7 +66,7 @@ Wann wird aus einem Prüfauftrag eine neue Änderung?
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Kurzfassung bestellen‘ gewählt. In Welt B braucht niemand einen kürzeren Bericht: Der Bauausschuss bekommt den Managementbericht mit einer klaren Beschlussvorbereitung.
+In Welt A haben Sie ‚Kurzfassung bestellen‘ gewählt. In Welt B bekommt der Bauausschuss den Managementbericht mit klarer Beschlussvorbereitung.
 :::
 
 ::: rueckbezug B

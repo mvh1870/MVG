@@ -13,7 +13,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Im Jour fixe wird die Lieferzeit bestätigt; `RIS-009` steht mit Bewertung im Risikoregister. Der nächste Schritt ist benannt: Risikominderung oder Entscheidung.
+Im Jour fixe wird die Lieferzeit bestätigt; `RIS-009` steht bewertet im Risikoregister, nächster Schritt benannt.
 
 ### Was fehlt
 Die Auswirkung der Mensa auf Kosten und Termin für `AEN-012`.
@@ -53,7 +53,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Ihr monatlicher Risikobericht führt `FRW-002` mit Kennung und Status; `AEN-012` kommt über das Änderungsregister der Bauherren-PL in den Managementbericht. Dort sieht der Lenkungskreis beides auf einer Seite.
+Ihr Risikobericht führt `FRW-002` mit Status, `AEN-012` kommt über das Änderungsregister dazu: Der Lenkungskreis sieht beides auf einer Seite.
 
 ### Was fehlt
 Die Bewertung selbst – Berichten ersetzt nicht Bestätigen und Bewerten.
@@ -66,15 +66,15 @@ Ein sauber berichteter, aber noch unbewerteter Eintrag.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Im Statusbericht melden‘ gewählt. In Welt B steht die Lieferzeit nicht als Ampel auf Seite 23, sondern als `FRW-002` im Frühwarnungsregister – mit Rolle und nächstem Schritt.
+In Welt A haben Sie ‚Im Statusbericht melden‘ gewählt. In Welt B steht die Lieferzeit nicht als Ampel auf Seite 23, sondern als `FRW-002` im Register.
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Terminfolge bewerten‘ gewählt. In Welt B endet die Bewertung nicht im Postfach: Sie geht in `RIS-009` ein, und der nächste Schritt ist Risikominderung oder Entscheidung.
+In Welt A haben Sie ‚Terminfolge bewerten‘ gewählt. In Welt B endet die Bewertung nicht im Postfach, sondern in `RIS-009`.
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Mensa einplanen‘ gewählt. In Welt B wird aus der Flurzusage keine Planzahl, sondern die beantragte Änderung `AEN-012` – nächster Schritt Auswirkung und Freigabeweg.
+In Welt A haben Sie ‚Mensa einplanen‘ gewählt. In Welt B wird aus der Flurzusage keine Planzahl, sondern die beantragte Änderung `AEN-012`.
 :::
 
 ::: rueckbezug ohne

@@ -13,7 +13,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Rund 0,6 Mio. € stehen mit Kostengruppe und Datenstand in der Auswirkung von `AEN-012`. Das Änderungsgremium, in dem Sie sitzen, kann auf dieser Grundlage entscheiden.
+Grob 0,6 Mio. € stehen mit Kostengruppe und Datenstand in `AEN-012`. Das Änderungsgremium kann darauf entscheiden.
 
 ### Was fehlt
 Die Termin- und Risikowirkung der Mensa – die Schätzung der Generalplanung hat sie noch nicht.
@@ -33,7 +33,7 @@ status:
   kostenunsicherheit: -1
 ---
 ### Konsequenz
-Die Prognose zeigt die Lieferzeit als noch unbewertetes Signal mit möglicher Kostenspanne, getrennt von der CTC; bewertet wird sie erst als `RIS-009`. Wer den Managementbericht liest, sieht beides.
+Die Prognose zeigt die Lieferzeit als unbewertetes Signal mit Kostenspanne, getrennt von der CTC; bewertet wird sie erst als `RIS-009`.
 
 ### Was fehlt
 Ihre Zahl zur Mensa: `AEN-012` wartet noch auf die bezifferte Auswirkung.
@@ -66,19 +66,19 @@ Zahl und Beschlusslage passen nicht zusammen.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Mensa einrechnen‘ gewählt. In Welt B nimmt Ihre Zahl keine Entscheidung vorweg: Die Mensa steht als `AEN-012` beantragt im Änderungsregister, und bei rund 0,6 Mio. € entscheidet das Änderungsgremium.
+In Welt A haben Sie ‚Mensa einrechnen‘ gewählt. In Welt B nimmt Ihre Zahl nichts vorweg: `AEN-012` ist beantragt, das Änderungsgremium entscheidet.
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Mensa herauslassen‘ gewählt. In Welt B bleibt die Zusage nicht außerhalb der Zahlen: Sie hat als `AEN-012` einen Ort und einen Status; nächster Schritt sind Auswirkung und Freigabeweg.
+In Welt A haben Sie ‚Mensa herauslassen‘ gewählt. In Welt B hat die Zusage als `AEN-012` einen Ort und einen Status.
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Zusage klären lassen‘ gewählt. In Welt B braucht es dafür keine Mail an die Geschäftsführung: Die Mandatsleiter sagt, wer entscheidet – oberhalb von 100 TEUR das Änderungsgremium.
+In Welt A haben Sie ‚Zusage klären lassen‘ gewählt. In Welt B braucht es keine Mail: Die Mandatsleiter sagt, wer entscheidet.
 :::
 
 ::: rueckbezug ohne
-In Welt A kamen Marktabfrage und Mail am selben Tag – und gingen in keine Liste. In Welt B sind sie `FRW-002` und `AEN-012`, jede mit Rolle und nächstem Schritt.
+In Welt A gingen Marktabfrage und Mail in keine Liste. In Welt B sind sie `FRW-002` und `AEN-012`.
 :::
 
 ::: regie

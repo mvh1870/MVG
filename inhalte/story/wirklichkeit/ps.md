@@ -1,7 +1,7 @@
 ---
 station: wirklichkeit
 rolle: ps
-frage: Holger Stein ist zurück, Dr. Olbers will bis zum 15. Dezember einen Vorschlag. Was empfehlen Sie der Bauherrenseite als Projektsteuerung?
+frage: Dr. Olbers will bis zum 15. Dezember einen Vorschlag. Was empfehlen Sie als Projektsteuerung?
 rueckbezug-auf: A6
 ---
 
@@ -30,7 +30,7 @@ status:
   kostenunsicherheit: -1
 ---
 ### Konsequenz
-Sie schreiben es offen: Die Projektsteuerung liefert jeden Monat mehr Information, aber der Bauherr gewinnt dadurch keine zusätzliche Führungsfähigkeit. Sie empfehlen der Bauherren-PL und Dr. Olbers eine [[MVG-Neuinitialisierung]] und bieten an, Risikolage und Prognose mit Holger Stein in das erste Lagebild einzubringen. Den Auftrag erteilt Dr. Olbers.
+Sie empfehlen eine [[MVG-Neuinitialisierung]] und bringen Risikolage und Prognose mit Holger Stein ins erste Lagebild ein. Den Auftrag erteilt Dr. Olbers.
 
 ### Was fehlt
 Die Mitwirkung des Bauherrn – Entscheidungen zu Mandaten, Schwellen und Freigaben kann die Projektsteuerung nicht treffen.
@@ -54,7 +54,7 @@ status:
 Mit Holger Stein liefern Sie Prognose, Risikolage und Vorschläge für Auflagen zu. Die Bauherren-PL legt vor, der Lenkungskreis berät, Dr. Olbers entscheidet selbst.
 
 ### Was fehlt
-Die Ursachen: Mandate, Register und ein geltender Datenstand fehlen weiter. Und eine Stellvertretung für Holger Stein, bevor er wieder ausfällt.
+Mandate, Register, ein geltender Datenstand – und eine Stellvertretung für Holger Stein.
 
 ### Neues Risiko
 Auflagen ohne eine Struktur, die sie nachhält.
@@ -71,7 +71,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Sie schlagen vor, mit dem Controlling die Grundlagen für eine Entscheidungsvorlage zur [[Neufestlegung der Projektbasis]] zu rechnen. Beschließen würde der Bauherr im Lenkungskreis, außerhalb der regulären Freigabereihe; bis dahin sind alle Zahlen vorläufig.
+Sie schlagen vor, mit dem Controlling die Grundlagen für eine [[Neufestlegung der Projektbasis]] zu rechnen. Beschließen würde der Bauherr im Lenkungskreis, außerhalb der regulären Freigabereihe.
 
 ### Was fehlt
 Ein Stand, auf dem die neue Basis beruhen soll – noch gibt es mehrere Zahlen.
@@ -84,7 +84,7 @@ Eine neue Projektbasis auf der alten Steuerungslogik.
 :::
 
 ::: nachsatz
-Sie empfehlen, Dr. Olbers entscheidet. Wohin das führt, hängt auch davon ab, was bis hierher geschehen ist.
+Sie empfehlen, Dr. Olbers entscheidet. Wohin das führt, hängt auch vom bisherigen Weg ab.
 :::
 
 ::: regie

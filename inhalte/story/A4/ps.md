@@ -33,13 +33,13 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Sie formulieren eine Frage. Die Bauherren-PL will sie abstimmen, Frank Deppe will sie erst im Lenkungskreis sehen; bis zur Sommerpause gibt es keine Einigung, wer sie stellt.
+Ihre Frage will die Bauherren-PL abstimmen, Frank Deppe erst im Lenkungskreis sehen. Bis zur Sommerpause ist offen, wer sie stellt.
 
 ### Was fehlt
-Ein Standard für die Vorlage – und die Klärung, wer vorbereitet und wer vorlegt.
+Ein Standard für die Vorlage und die Klärung, wer vorbereitet und vorlegt.
 
 ### Neues Risiko
-Die nächste Ausschusssitzung ist erst im September; die Freigabe zum Abschluss von LPH 5 rückt näher.
+Der Ausschuss tagt erst im September; die Freigabe zum Abschluss von LPH 5 rückt näher.
 
 ### Governance-Frage
 [[Entscheidungsvorlage]]: Wer bereitet vor, wer legt vor, wer entscheidet?
@@ -66,19 +66,19 @@ Wesentliche Entscheidung: Welche Themen muss der Ausschuss überhaupt entscheide
 :::
 
 ::: rueckbezug A
-Im Mai haben Sie ‚Eigene Zahl vertreten‘ gewählt. Ihre +8 % stehen seither im Statusbericht, die +5,9 % in der CTC des Controllings; welche gilt, hat der Lenkungskreis offengelassen.
+Im Mai haben Sie ‚Eigene Zahl vertreten‘ gewählt. Ihre +8 % stehen im Statusbericht, die +5,9 % in der CTC; welche gilt, blieb offen.
 :::
 
 ::: rueckbezug B
-Im Mai haben Sie ‚Zahlen abgleichen‘ gewählt. Ein Teil der Differenz ist seither erklärt; welche Annahme zum Holzpreis gilt, hat niemand festgelegt. Ihr Bericht zeigt die Ampel, nicht die Frage.
+Im Mai haben Sie ‚Zahlen abgleichen‘ gewählt. Welche Annahme zum Holzpreis gilt, hat niemand festgelegt. Ihr Bericht zeigt die Ampel, nicht die Frage.
 :::
 
 ::: rueckbezug C
-Im Mai haben Sie ‚Prognose aktualisieren‘ gewählt. Seither rechnet Holger Stein mit +9,1 %, das Controlling mit seiner CTC. Im Bericht vom Juli stehen Ampeln, keine geltende Zahl.
+Im Mai haben Sie ‚Prognose aktualisieren‘ gewählt. Holger Stein rechnet mit +9,1 %, das Controlling mit seiner CTC; der Juli-Bericht zeigt Ampeln, keine geltende Zahl.
 :::
 
 ::: rueckbezug ohne
-Im Mai standen zwei Kostenzahlen nebeneinander, und der Bauausschuss hat nichts beschlossen. Im Juli liegt ihm wieder keine Entscheidungsfrage vor.
+Im Mai standen zwei Kostenzahlen nebeneinander, beschlossen wurde nichts. Im Juli fehlt wieder die Entscheidungsfrage.
 :::
 
 ::: regie

@@ -6,7 +6,7 @@ rueckbezug-auf: A2
 ---
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Zusage bestätigen‘ gewählt. In Welt B wäre die Mensa nicht am Telefon gesetzt worden: `AEN-012` steht beantragt im Änderungsregister, nächster Schritt Auswirkung und Freigabeweg, und bei rund 0,6 Mio. € entscheidet das Änderungsgremium.
+In Welt A haben Sie ‚Zusage bestätigen‘ gewählt. In Welt B wird die Mensa nicht am Telefon gesetzt: `AEN-012` ist beantragt, entscheiden wird das Änderungsgremium.
 :::
 
 ::: rueckbezug B
@@ -14,7 +14,7 @@ In Welt A haben Sie ‚An die GML verweisen‘ gewählt. In Welt B hängt die Fr
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Erst Kosten klären lassen‘ gewählt. In Welt B geht die Lieferzeit darüber nicht unter: Sie steht als Frühwarnung `FRW-002` im Register und wird nach Bestätigung Risiko `RIS-009`.
+In Welt A haben Sie ‚Erst Kosten klären lassen‘ gewählt. In Welt B geht die Lieferzeit nicht unter: Sie steht als `FRW-002` im Register.
 :::
 
 ::: rueckbezug ohne
@@ -29,7 +29,7 @@ status:
   offene-risiken: -1
 ---
 ### Konsequenz
-Sie sagen Sabine Roth: Der Antrag liegt vor, das Änderungsgremium entscheidet – und sie sitzt bei Nutzerthemen mit am Tisch. Die Flurzusage ist damit keine Zusage mehr, sondern ein Antrag.
+Sie sagen Sabine Roth: Das Änderungsgremium entscheidet – und sie sitzt bei Nutzerthemen mit am Tisch. Aus der Flurzusage wird ein Antrag.
 
 ### Was fehlt
 Nichts in der Struktur; die Bewertung von Kosten, Termin und Risiko läuft.
@@ -69,7 +69,7 @@ status:
   entscheidungsfaehigkeit: -1
 ---
 ### Konsequenz
-Nora Petersen fragt nach: Nach der Mandatsleiter, die Sie selbst festgelegt haben, liegt `AEN-012` beim Änderungsgremium; Ihre Zusage greift dem vor und erzeugt Erwartungen, die das Gremium jetzt mitentscheiden muss.
+Nora Petersen fragt nach: Nach Ihrer eigenen Mandatsleiter liegt `AEN-012` beim Änderungsgremium; Ihre Zusage greift dem vor.
 
 ### Was fehlt
 Eine Entscheidung auf der zuständigen Mandatsebene.

@@ -1,16 +1,16 @@
 ---
 station: B6
 rolle: bauherr
-frage: Die Freigabe zum Abschluss von LPH 5 ist in Vorbereitung; die Bauherren-PL legt Ihnen die Vorlage vor, der Lenkungskreis berät am 17. November, die Freigabe erteilen Sie selbst. Wie entscheiden Sie?
+frage: Die Bauherren-PL legt Ihnen die Vorlage zur Freigabe LPH 5 vor, der Lenkungskreis berät am 17. November. Wie entscheiden Sie?
 rueckbezug-auf: A6
 ---
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Freigabe verschieben‘ gewählt. In Welt B wissen Sie, was für die Freigabe vorliegt und was fehlt: Kernfrage, Mindestgrundlagen, Mandat und Datenstand stehen in der Vorlage.
+In Welt A haben Sie ‚Freigabe verschieben‘ gewählt. In Welt B zeigt Ihnen die Vorlage, was für die Freigabe vorliegt und was fehlt.
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Letzte Zahl nennen‘ gewählt. In Welt B nennen Sie keine Zahl aus Holger Steins Kopf: Die Antwort an die Fraktion kommt aus dem Managementbericht, auf dem geltenden Datenstand.
+In Welt A haben Sie ‚Letzte Zahl nennen‘ gewählt. In Welt B kommt die Antwort an die Fraktion aus dem Managementbericht, nicht aus Holger Steins Kopf.
 :::
 
 ::: rueckbezug C
@@ -29,10 +29,10 @@ status:
   ungeklaerte-entscheidungen: -1
 ---
 ### Konsequenz
-Nach der Beratung im Lenkungskreis am 17. November erteilen Sie die Freigabe zum Abschluss von LPH 5 auf dem benannten Datenstand; das Ergebnis ist dokumentiert. Die Fraktion bekommt ihre Antwort aus dem Managementbericht.
+Nach der Beratung im Lenkungskreis erteilen Sie die Freigabe auf dem benannten Datenstand; das Ergebnis ist dokumentiert.
 
 ### Was fehlt
-Nichts in der Struktur, sofern das Controlling den Datenstand bestätigt und die Empfehlung vorliegt; LPH 6 beginnt mit einem klaren Stand.
+Nichts in der Struktur, sofern das Controlling den Datenstand bestätigt und die Empfehlung vorliegt.
 
 ### Neues Risiko
 Offene Risiken gehen in die nächste Phase mit – benannt, aber nicht verschwunden.
@@ -49,7 +49,7 @@ status:
   ungeklaerte-entscheidungen: "-1 (Auflagen mit Frist)"
 ---
 ### Konsequenz
-Nach der Beratung im Lenkungskreis am 17. November erteilen Sie die Freigabe mit Auflagen, etwa zur Stellvertretung für die Kostenprognose. Die Auflagen stehen mit Frist und verantwortlicher Rolle im Register.
+Sie erteilen die Freigabe mit Auflagen, etwa zur Stellvertretung für die Kostenprognose – jede mit Frist und verantwortlicher Rolle im Register.
 
 ### Was fehlt
 Die Erfüllung der Auflagen; sie wird im Rhythmus nachgehalten.
@@ -69,7 +69,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Nach der Beratung im Lenkungskreis am 17. November erteilen Sie keine Freigabe und benennen, was fehlt. Die Vorlage geht mit Frist zurück an die Bauherren-PL; der Stadtrat erfährt den Grund aus dem Managementbericht.
+Sie erteilen keine Freigabe und benennen, was fehlt. Die Vorlage geht mit Frist zurück an die Bauherren-PL.
 
 ### Was fehlt
 Die Mindestgrundlagen, die Sie benannt haben.

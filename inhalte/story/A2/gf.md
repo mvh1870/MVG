@@ -13,13 +13,13 @@ status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Lena Hoffmeister plant die größere Mensa ein. Grob 0,6 Mio. € wandern in die Planung – ohne Termin- und Risikowirkung und ohne dass jemand die Änderung freigegeben hat.
+Lena Hoffmeister plant die größere Mensa ein. Grob 0,6 Mio. € wandern in die Planung, ohne dass jemand die Änderung freigegeben hat.
 
 ### Was fehlt
 Eine Regel, wer den Projektumfang ändern darf und ab welcher Summe.
 
 ### Neues Risiko
-Schleichende Änderung des Projektumfangs; die Kosten tauchen später als Nachtrag auf.
+Schleichende Änderung des Projektumfangs; die Kosten kommen als Nachtrag.
 
 ### Governance-Frage
 [[Mandat]]: Wer darf den Projektumfang ändern – auch die Geschäftsführung?
@@ -33,7 +33,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Sie schreiben Sabine Roth: „Wir prüfen das.“ Die Prüfung liegt bei der Projektsteuerung, ohne Frist und ohne festgelegte Stelle, die danach entscheidet. Die Schulseite plant weiter mit der großen Mensa.
+Sie schreiben Sabine Roth: „Wir prüfen das.“ Die Projektsteuerung prüft, ohne Frist und ohne Stelle, die danach entscheidet. Die Schulseite plant weiter mit der großen Mensa.
 
 ### Was fehlt
 Eine Frist, eine verantwortliche Rolle und eine Stelle, die entscheidet.
@@ -53,7 +53,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Beide Themen landen unter „Verschiedenes“. Ohne Vorlage nimmt der Lenkungskreis sie zur Kenntnis; die Terminwirkung der längeren Lieferzeit bewertet niemand.
+Beide Themen landen unter „Verschiedenes“ und werden ohne Vorlage zur Kenntnis genommen; die Terminwirkung der Lieferzeit bewertet niemand.
 
 ### Was fehlt
 Eine bewertete Auswirkung auf Kosten, Termin und Risiko – und eine Entscheidungsfrage.

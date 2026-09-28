@@ -1,20 +1,20 @@
 ---
 station: wirklichkeit
 rolle: gf
-frage: Dr. Olbers will bis zum Lenkungskreis am 15. Dezember einen Vorschlag. Was schlagen Sie ihr als Geschäftsführung der GML vor?
+frage: Dr. Olbers will bis zum 15. Dezember einen Vorschlag. Was schlagen Sie ihr als Geschäftsführung vor?
 rueckbezug-auf: A6
 ---
 
 ::: rueckbezug A
-Im November haben Sie ‚Aus dem Statusbericht antworten‘ gewählt. Die Fraktion bekam die Zahlen vom Oktober; nachrechnen konnte sie damals niemand. Holger Stein ist zurück – aber die Frage, welche Zahl gilt, hat er nicht mitgebracht.
+Im November haben Sie ‚Aus dem Statusbericht antworten‘ gewählt. Die Fraktion bekam die Zahlen vom Oktober, die niemand nachrechnen konnte. Welche Zahl gilt, ist bis heute offen.
 :::
 
 ::: rueckbezug B
-Im November haben Sie ‚Freigabe verschieben‘ gewählt, bis Holger Stein zurück ist. Er ist zurück. Die Freigabe zum Abschluss von LPH 5 ist trotzdem offen: Das Projekt hat auf eine Person gewartet, nicht auf eine Grundlage.
+Im November haben Sie ‚Freigabe verschieben‘ gewählt, bis Holger Stein zurück ist. Er ist zurück, die Freigabe trotzdem offen: Das Projekt hat auf eine Person gewartet, nicht auf eine Grundlage.
 :::
 
 ::: rueckbezug C
-Im November haben Sie ‚Lage offenlegen‘ gewählt. Im Lenkungskreis lag alles auf dem Tisch – zwei Prognosen, die verplante Reserve, die nie gefassten Beschlüsse. Welche Entscheidung zuerst dran ist, weiß noch niemand.
+Im November haben Sie ‚Lage offenlegen‘ gewählt. Im Lenkungskreis lag alles auf dem Tisch; welche Entscheidung zuerst dran ist, weiß noch niemand.
 :::
 
 ::: rueckbezug ohne
@@ -30,10 +30,10 @@ status:
   kostenunsicherheit: -1
 ---
 ### Konsequenz
-Sie schlagen Dr. Olbers eine [[MVG-Neuinitialisierung]] vor und sagen zu, Leute aus der GML dafür abzustellen – Controlling, Projektassistenz, Ihre eigene Zeit im Lenkungskreis. Den Auftrag erteilt Dr. Olbers. Die Neuinitialisierung beginnt mit einem Lagebild und ordnet die Führungs- und Entscheidungslogik, nicht das ganze Projekt.
+Sie schlagen Dr. Olbers eine [[MVG-Neuinitialisierung]] vor und sagen Leute aus der GML und eigene Zeit zu. Den Auftrag erteilt Dr. Olbers.
 
 ### Was fehlt
-Ein Entscheidungsinventar und ein bereinigter Datenstand – beides entsteht erst. Und die Zusage von Dr. Olbers, selbst mitzuwirken.
+Ein Entscheidungsinventar, ein bereinigter Datenstand – und die Zusage von Dr. Olbers, selbst mitzuwirken.
 
 ### Neues Risiko
 Die Mitwirkung wird als Verwaltungsaufwand gesehen und bleibt aus; dann bleibt es beim Vorschlag.
@@ -71,7 +71,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Sie schlagen Dr. Olbers vor, eine Entscheidungsvorlage zur [[Neufestlegung der Projektbasis]] vorbereiten zu lassen – die Kämmerei hat danach gefragt. Die Neufestlegung beschließen würde der Bauherr im Lenkungskreis, außerhalb der regulären Freigabereihe; Stadtrat und Bauausschuss werden nach dem Warum fragen.
+Sie schlagen vor, eine Entscheidungsvorlage zur [[Neufestlegung der Projektbasis]] vorbereiten zu lassen, nach der die Kämmerei gefragt hat. Beschließen würde der Bauherr im Lenkungskreis, außerhalb der regulären Freigabereihe.
 
 ### Was fehlt
 Eine belastbare Grundlage für die neue Basis: Kosten, Termin, Risiko und Projektumfang.
@@ -84,7 +84,7 @@ Eine neue Basis auf alten Datenständen wiederholt das Problem.
 :::
 
 ::: nachsatz
-Sie schlagen vor, Dr. Olbers entscheidet. Wohin das führt, hängt auch davon ab, was bis hierher geschehen ist.
+Sie schlagen vor, Dr. Olbers entscheidet. Wohin das führt, hängt auch vom bisherigen Weg ab.
 :::
 
 ::: regie

@@ -13,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Die Schulseite geht von einer Zusage aus. Sie arbeiten die Mensa für rund 450 Essen ein; die grob 0,6 Mio. € stehen in keiner Prognose.
+Sie arbeiten die Mensa für rund 450 Essen ein; die grob 0,6 Mio. € stehen in keiner Prognose.
 
 ### Was fehlt
 Eine Entscheidung über die Änderung – und wer sie treffen darf.
@@ -33,7 +33,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Sie schreiben der Bauherren-PL: ohne Auftrag keine Umplanung. Eine Antwort kommt nicht, weil niemand weiß, wer entscheidet. Sabine Roth ruft zweimal an.
+Sie schreiben der Bauherren-PL: ohne Auftrag keine Umplanung. Es antwortet niemand, weil niemand weiß, wer entscheidet.
 
 ### Was fehlt
 Ein Freigabeweg für Änderungen.
@@ -53,7 +53,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Die Terminbewertung geht per Mail an Projektsteuerung und Bauherren-PL. Gelesen wird sie, erfasst nirgends; die Mensa läuft nebenher als Flurzusage weiter.
+Ihre Terminbewertung geht per Mail an Projektsteuerung und Bauherren-PL: gelesen, nirgends erfasst. Die Mensa läuft als Flurzusage weiter.
 
 ### Was fehlt
 Ein Register, in dem aus dem Signal ein bewertetes Risiko wird.

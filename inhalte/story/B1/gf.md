@@ -13,7 +13,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Der Lenkungskreis berät den Zielkonflikt auf Vorlage; Dr. Miriam Olbers legt fest, welche Zielpriorität gilt. Die Abwägungsregel steht im Zielsystem, mit Datum.
+Der Lenkungskreis berät auf Vorlage; Dr. Olbers legt die Zielpriorität fest. Die Abwägungsregel steht im Zielsystem, mit Datum.
 
 ### Was fehlt
 Nichts Grundsätzliches – die Regel muss bei den ersten Varianten angewendet werden.
@@ -33,7 +33,7 @@ status:
   offene-risiken: -1
 ---
 ### Konsequenz
-Sie fragen, wer Holger Stein vertritt. Die Projektsteuerung benennt eine Stellvertretung; der Kostenplan ist ein benannter Datenstand, kein Privatordner.
+Die Projektsteuerung benennt eine Stellvertretung für Holger Stein; der Kostenplan ist kein Privatordner.
 
 ### Was fehlt
 Übung: Die Stellvertretung muss den Datenstand auch führen, nicht nur kennen.
@@ -53,7 +53,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Die Bauherren-PL gibt bis einschließlich 100 TEUR selbst frei; was darüber bis einschließlich 5 Mio. € liegt, entscheidet das Änderungsgremium – mit Ihnen im Vorsitz. Der Zielkonflikt bleibt offen, steht aber als offene Entscheidung im Register, mit Frist.
+Bis einschließlich 100 TEUR gibt die Bauherren-PL frei, darüber bis einschließlich 5 Mio. € das Änderungsgremium unter Ihrem Vorsitz. Der Zielkonflikt steht als offene Entscheidung im Register, mit Frist.
 
 ### Was fehlt
 Die Festlegung der Zielpriorität – sie bleibt beim Bauherrn.
@@ -66,24 +66,22 @@ Welche Frist hat die offene Entscheidung – und wer bereitet sie vor?
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Laufen lassen‘ gewählt. In Welt B läuft das Projekt nicht einfach: Rhythmus und Register zeigen Ihnen jeden Monat, was offen ist und wer es bis wann klärt.
+In Welt A haben Sie ‚Laufen lassen‘ gewählt. In Welt B zeigen Rhythmus und Register jeden Monat, was offen ist und wer es klärt.
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Statusbericht vorlegen lassen‘ gewählt. In Welt B ist der Managementbericht der Sammelpunkt für die Gremien; offene Entscheidungen stehen im Entscheidungsregister, nicht zwischen Ampeln.
+In Welt A haben Sie ‚Statusbericht vorlegen lassen‘ gewählt. In Welt B stehen offene Entscheidungen im Entscheidungsregister, nicht zwischen Ampeln.
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚In den Lenkungskreis‘ gewählt. In Welt B geht der Zielkonflikt mit einer Vorlage hinein, und der Lenkungskreis berät, was der Bauherr festlegt.
+In Welt A haben Sie ‚In den Lenkungskreis‘ gewählt. In Welt B geht der Zielkonflikt mit Vorlage hinein; festlegen muss der Bauherr.
 :::
 
 ::: rueckbezug ohne
-In Welt A lag in dieser Woche derselbe Zielkonflikt auf dem Tisch – ohne Priorität. In Welt B steht er im Zielsystem oder als offene Entscheidung im Register.
+In Welt A lag derselbe Zielkonflikt ohne Priorität auf dem Tisch. In Welt B steht er im Zielsystem oder im Register.
 :::
 
 ::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
 Die Geschichte merkt sich Ihre Wahl.
 :::
 

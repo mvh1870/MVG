@@ -33,7 +33,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Sie liefern die Bestätigung der Lieferzeit und die Terminwirkung zu; die Projektsteuerung, die das Frühwarnungsregister führt, macht aus `FRW-002` das Risiko `RIS-009` mit bewerteter Terminwirkung. Die Mensa wartet eine Woche auf ihre Bewertung.
+Sie liefern Bestätigung und Terminwirkung zu; die Projektsteuerung macht aus `FRW-002` das Risiko `RIS-009`. Die Mensa wartet eine Woche.
 
 ### Was fehlt
 Die Auswirkung von `AEN-012`.
@@ -53,7 +53,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Die Bauherren-PL stoppt es im Jour fixe: `AEN-012` steht auf „Beantragt“, nicht auf „Beschlossen“. Die Arbeit der Woche geht in die Auswirkungsbewertung.
+Die Bauherren-PL stoppt es im Jour fixe: `AEN-012` ist beantragt, nicht beschlossen. Die Woche geht in die Auswirkungsbewertung.
 
 ### Was fehlt
 Der Beschluss des Änderungsgremiums.
@@ -66,15 +66,15 @@ Vorarbeit, die bei einer Ablehnung verloren ist.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Mensa einplanen‘ gewählt. In Welt B wäre das kein stiller Auftrag: Die Mensa ist `AEN-012`, und bei rund 0,6 Mio. € entscheidet das Änderungsgremium.
+In Welt A haben Sie ‚Mensa einplanen‘ gewählt. In Welt B ist das kein stiller Auftrag: Die Mensa ist `AEN-012`, das Änderungsgremium entscheidet.
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Auftrag abwarten‘ gewählt. In Welt B wartet niemand ins Leere: Der Freigabeweg steht fest, und die Sitzung des Änderungsgremiums hat einen Termin.
+In Welt A haben Sie ‚Auftrag abwarten‘ gewählt. In Welt B wartet niemand ins Leere: Der Freigabeweg steht fest.
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Lieferzeit bewerten‘ gewählt. In Welt B bleibt die Bewertung nicht in einer Mail: Sie fließt ein, wenn aus `FRW-002` das Risiko `RIS-009` wird.
+In Welt A haben Sie ‚Lieferzeit bewerten‘ gewählt. In Welt B fließt die Bewertung ein, wenn aus `FRW-002` das Risiko `RIS-009` wird.
 :::
 
 ::: rueckbezug ohne

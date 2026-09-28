@@ -1,7 +1,7 @@
 ---
 station: B6
 rolle: gf
-frage: Die Vorlage zur Freigabe zum Abschluss von LPH 5 kommt am 17. November in den Lenkungskreis. Was empfehlen Sie dem Bauherrn?
+frage: Die Vorlage zur Freigabe LPH 5 kommt am 17. November in den Lenkungskreis. Was empfehlen Sie dem Bauherrn?
 rueckbezug-auf: A6
 ---
 
@@ -13,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: -1
 ---
 ### Konsequenz
-Liegen Kernfrage, Mindestgrundlagen, Mandat und bestätigter Datenstand zum 17. November vor, berät der Lenkungskreis, und Dr. Miriam Olbers entscheidet auf Vorlage der Bauherren-PL selbst über die Freigabe.
+Liegen Mindestgrundlagen und bestätigter Datenstand zum 17. November vor, berät der Lenkungskreis; Dr. Miriam Olbers entscheidet selbst.
 
 ### Was fehlt
 Für die Freigabe nichts, sofern Datenstand und Risikolage bis zum 17. November vorliegen; das Ergebnis wird dokumentiert.
@@ -33,7 +33,7 @@ status:
   offene-risiken: -1
 ---
 ### Konsequenz
-Sie empfehlen, als Auflagen mit Frist festzuhalten: die Stellvertretung führt die Kostenprognose bis zu Holger Steins Rückkehr weiter, und die offenen Punkte der Generalplanung werden nachgewiesen geschlossen. Dr. Miriam Olbers entscheidet, ob sie die Freigabe mit Auflagen erteilt.
+Sie empfehlen Auflagen mit Frist: Die Stellvertretung führt die Kostenprognose weiter, die offenen Punkte der Generalplanung werden nachgewiesen geschlossen. Dr. Miriam Olbers entscheidet.
 
 ### Was fehlt
 Eine verantwortliche Rolle und eine Frist für jede Auflage.
@@ -53,7 +53,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Die Bauherren-PL zeigt: Datenstand und Register tragen, die Stellvertretung ist benannt. Dr. Miriam Olbers fragt, welche Mindestgrundlage nur Holger Stein liefern kann – keine. Was noch offen ist, liefern Controlling, Projektsteuerung und Generalplanung auch ohne ihn.
+Die Bauherren-PL zeigt: Datenstand und Register tragen, die Stellvertretung ist benannt. Dr. Miriam Olbers fragt, welche Mindestgrundlage nur Holger Stein liefern kann – keine.
 
 ### Was fehlt
 Keine Grundlage, die an Holger Stein hängt – nur das Vertrauen, dass die Grundlagen ohne ihn tragen.
@@ -78,7 +78,7 @@ In Welt A haben Sie ‚Lage offenlegen‘ gewählt. In Welt B ist die Lage schon
 :::
 
 ::: rueckbezug ohne
-In Welt A stand in diesem Monat dieselbe Freigabe an, und niemand konnte die Zahlen nachrechnen. In Welt B beruht sie auf Kernfrage, Mindestgrundlagen, Mandat und Datenstand.
+In Welt A konnte niemand die Zahlen zur Freigabe nachrechnen. In Welt B beruht sie auf Kernfrage, Mindestgrundlagen, Mandat und Datenstand.
 :::
 
 ::: regie

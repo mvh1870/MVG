@@ -21,7 +21,7 @@ weiter: B5
 titel: Donnerstag, 10:00 Uhr. Monat 7.
 kurz: Einstieg
 ---
-Donnerstag, 9. Juli. Das Änderungsgremium tagt, Vorsitz Frank Deppe. Im Juni hat es `ENT-017` entschieden: Die Fassade wird als Änderung `AEN-022` angepasst – auf der ergänzten Vorlage und nachdem Dr. Olbers die Zielpriorität für diesen Konflikt festgelegt hatte; die Risikoreserve blieb unberührt. Seit Juni liegt die Baugenehmigung vor, mit Brandschutzauflagen zum Holzbau. Die nötige Planänderung steht als `AEN-031` im Änderungsregister, grob 0,4 Mio. €, Status „In Prüfung“; die Vorlage liegt auf dem Tisch. Eine Woche später tagt der Bauausschuss. Er bekommt den Managementbericht – mit der Beschlusslage dieser Sitzung.
+Donnerstag, 9. Juli. Das Änderungsgremium tagt. Seit Juni liegt die Baugenehmigung vor – mit Brandschutzauflagen zum Holzbau. Die Planänderung steht als `AEN-031` im Änderungsregister, grob 0,4 Mio. €, „In Prüfung“; die Vorlage liegt auf dem Tisch. Eine Woche später bekommt der Bauausschuss den Managementbericht mit der Beschlusslage dieser Sitzung.
 
 ::: protokoll
 ---
@@ -29,10 +29,9 @@ titel: Änderungsgremium – Tagesordnung Juli
 datum: Do, 09.07.2026
 von: petersen
 ---
-- Beschlusslage: `AEN-012` Mensa für den Ganztag · Beschlossen; `AEN-022` Fassade · Beschlossen.
-- `AEN-031` Brandschutzauflagen Holzbau: Vorlage von Projektsteuerung und Planung, grob 0,4 Mio. €.
+- `AEN-031` Brandschutzauflagen Holzbau: Vorlage von Projektsteuerung und Planung.
 - Teilnahme: Frank Deppe (Vorsitz), Bauherren-PL, Aylin Kaya.
-- Die Beschlusslage geht in den Managementbericht an den Bauausschuss (16.07.).
+- Beschlusslage → Managementbericht an den Bauausschuss (16.07.).
 :::
 
 ::: datei
@@ -49,7 +48,7 @@ Planänderung aufgrund der Auflagen aus der Baugenehmigung; Kosten nach grober S
 von: brenner
 zeit: "09:41"
 ---
-Die Vorlage zu `AEN-031` ist verteilt: Frage, Datenstand, Kosten grob 0,4 Mio. €. Die Terminwirkung haben wir nur grob geschätzt – so steht es auch drin.
+Vorlage zu `AEN-031` ist verteilt: Frage, Datenstand, Kosten. Die Terminwirkung ist nur grob geschätzt – so steht es auch drin.
 :::
 
 ::: datei
@@ -70,7 +69,7 @@ kurz: Welt A ⟷ B
 knopf: Welt B ansehen
 ---
 ::: hinweis
-Dieselben Auflagen, derselbe Ausschusstermin – in Welt B liegen sie vorher im Gremium, das dafür das Mandat hat.
+Dieselben Auflagen, derselbe Ausschusstermin – in Welt B liegen sie vorher im Gremium mit Mandat.
 :::
 
 ::: paar
@@ -180,7 +179,7 @@ detail: "Änderung AEN-031 · Status In Prüfung"
 zustaendig: Änderungsgremium
 stufe: 2
 ---
-Grob 0,4 Mio. € liegen über 100 TEUR und bis einschließlich 5 Mio. € – über `AEN-031` entscheidet das Änderungsgremium: Vorsitz Frank Deppe, dazu die Bauherren-PL und Aylin Kaya, bei Nutzerthemen auch Sabine Roth; Projektsteuerung und Planung bereiten vor. Soll die Deckung aus der Risikoreserve kommen, gibt diesen Einsatz nur der Bauherr frei.
+Grob 0,4 Mio. € liegen über 100 TEUR und bis einschließlich 5 Mio. € – über `AEN-031` entscheidet das Änderungsgremium. Einen Einsatz der Risikoreserve gibt nur der Bauherr frei.
 :::
 
 ::: vorlage AEN-031
@@ -217,7 +216,7 @@ datenstand: Kostenprognose 2026-05 · Version 3 · Schätzung der Generalplanung
 titel: Vom Gremium in den Managementbericht
 kurz: Beschlusslage
 ---
-Was das Gremium beschließt – oder mit Frage und Frist zurückstellt –, steht im Protokoll und im Änderungsregister. Der Managementbericht sammelt es für den Bauausschuss.
+Beschluss oder Zurückstellung stehen in Protokoll und Änderungsregister; der Managementbericht sammelt sie für den Bauausschuss.
 
 ::: protokoll
 ---
@@ -225,12 +224,10 @@ titel: Änderungsgremium – Beschlussprotokoll Juli (Entwurf)
 datum: Do, 09.07.2026
 von: petersen
 ---
-- `AEN-012` Mensa für den Ganztag · Beschlossen · unverändert.
-- `AEN-022` Fassade · Beschlossen · unverändert.
-- `AEN-031` Brandschutzauflagen Holzbau · Grundlage: Vorlage mit Datenstand · Beschluss: wird in der Sitzung eingetragen
-- Bei Zurückstellung: Frage · Frist · verantwortliche Rolle
-- Aufträge und Maßnahmen: verantwortliche Rolle · Frist
-- Weiter an: Managementbericht an den Bauausschuss, 16.07.
+- `AEN-012` Mensa, `AEN-022` Fassade · Beschlossen · unverändert.
+- `AEN-031` Brandschutzauflagen · Beschluss: wird in der Sitzung eingetragen
+- Bei Zurückstellung: Frage · Frist · verantwortliche Rolle; Aufträge: Rolle · Frist
+- Weiter an: Managementbericht, 16.07.
 :::
 
 ::: tafel k6.4.5-t1
@@ -257,16 +254,15 @@ wert: In Prüfung · Vorlage liegt vor
 :::
 
 ::: bekannt
-- Seit Juni liegt die Baugenehmigung vor, mit Brandschutzauflagen zum Holzbau. Die nötige Planänderung steht als `AEN-031` im Änderungsregister, Status „In Prüfung“; die Generalplanung schätzt grob 0,4 Mio. €.
-- Mandatsleiter: Grob 0,4 Mio. € liegen über 100 TEUR und bis einschließlich 5 Mio. € – zuständig ist das Änderungsgremium unter Vorsitz von Frank Deppe. Soll die Deckung aus der Risikoreserve kommen, gibt diesen Einsatz nur der Bauherr frei.
-- Die Vorlage nennt Entscheidungsfrage, Datenstand, Mandat, betroffene Freigabe und eine Empfehlung; Kosten und Terminwirkung sind bisher grob geschätzt.
-- Beschlusslage: `ENT-017` ist im Juni über `AEN-022` entschieden; `AEN-012` (Mensa) und `AEN-022` (Fassade) sind beschlossen.
-- Der Bauausschuss tagt am Donnerstag, 16. Juli; er bekommt den Managementbericht mit Beschlusslage und Beschlussvorbereitung.
+- `AEN-031` setzt die Brandschutzauflagen um: „In Prüfung“, grob 0,4 Mio. € nach Schätzung der Generalplanung.
+- Zuständig ist das Änderungsgremium; den Einsatz der Risikoreserve gibt nur der Bauherr frei.
+- Die Vorlage nennt Frage, Datenstand, Mandat, Freigabe und Empfehlung; Kosten und Termin sind grob geschätzt.
+- `ENT-017` (Fassade) ist im Juni entschieden: Änderung `AEN-022`, Risikoreserve unberührt. Der Bauausschuss bekommt am 16. Juli den Managementbericht.
 :::
 
 ::: unbekannt
 - Wie sich die Planänderung auf den Termin auswirkt {#terminwirkung}
-- Wie belastbar die grobe Kostenschätzung ist {#kosten}
+- Wie belastbar die Kostenschätzung ist {#kosten}
 - Ob es eine günstigere Ausführung der Auflagen gibt {#variante}
 - Woher die Deckung kommt {#deckung}
 :::
@@ -309,14 +305,14 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Über eine Änderung entscheidet die Stelle, die nach der Mandatsleiter das Mandat hat – bei `AEN-031` das Änderungsgremium, auf einer Vorlage mit Frage, Datenstand und dokumentierter Beschlusslage. Der Managementbericht ist der gemeinsame Sammelpunkt für die Gremien.
+Über `AEN-031` entscheidet, wer nach der Mandatsleiter das Mandat hat: das Änderungsgremium, auf einer Vorlage mit Frage und Datenstand. Der Managementbericht ist der Sammelpunkt für die Gremien.
 :::
 
 ::: ebene 2
 ---
 titel: Warum relevant
 ---
-Dieselben Auflagen, derselbe Ausschusstermin – aber bevor der Bauausschuss tagt, liegt die Frage schon bei der Stelle mit dem Mandat. Die Planänderung hat eine Kennung, ihr Betrag eine Stufe auf der Mandatsleiter, die Vorlage eine Frage. Kap. 4.3 sagt, wozu das dient: [[zitat:k4.3-p2|Das System der Entscheidungs-IDs verhindert, dass kritische Entscheidungen in Protokollen, E-Mails, Fachrunden oder informellen Abstimmungen verschwinden.]] Offen ist auch hier etwas – die Terminwirkung ist grob geschätzt, die Deckung nicht geklärt. Aber beides steht in der Vorlage.
+Im Juni hat das Gremium `ENT-017` entschieden: Die Fassade wird als Änderung `AEN-022` angepasst – auf der ergänzten Vorlage und nachdem Dr. Olbers die Zielpriorität für diesen Konflikt festgelegt hatte; die Risikoreserve blieb unberührt. Nun die nächste Änderung: Dieselben Auflagen wie in Welt A, derselbe Ausschusstermin – aber bevor der Bauausschuss tagt, liegt die Frage schon bei der Stelle mit dem Mandat. Die Planänderung hat eine Kennung, ihr Betrag eine Stufe auf der Mandatsleiter, die Vorlage eine Frage. Kap. 4.3 sagt, wozu das dient: [[zitat:k4.3-p2|Das System der Entscheidungs-IDs verhindert, dass kritische Entscheidungen in Protokollen, E-Mails, Fachrunden oder informellen Abstimmungen verschwinden.]] Offen ist auch hier etwas – die Terminwirkung ist grob geschätzt, die Deckung nicht geklärt. Aber beides steht in der Vorlage.
 :::
 
 ::: ebene 3

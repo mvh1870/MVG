@@ -13,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: -1
 ---
 ### Konsequenz
-Das Gremium beschließt `AEN-031`; die Beschlusslage steht im Änderungsregister. Der Bauausschuss liest im Managementbericht, was beschlossen ist und worüber er selbst befinden soll.
+Das Gremium beschließt `AEN-031`; die Beschlusslage steht im Änderungsregister und im Managementbericht an den Bauausschuss.
 
 ### Was fehlt
 Die Deckung: Soll sie aus der Risikoreserve kommen, gibt diesen Einsatz nur der Bauherr frei.
@@ -33,7 +33,7 @@ status:
   offene-risiken: -1
 ---
 ### Konsequenz
-Beschlossen – mit dem Auftrag an die Planung, die Wirkung auf die Lieferzeit der Holzbauelemente bis zur nächsten Sitzung darzulegen. Der Auftrag hat eine Frist und eine verantwortliche Rolle.
+Beschlossen – mit dem Auftrag an die Planung, die Wirkung auf die Lieferzeit der Holzbauelemente bis zur nächsten Sitzung darzulegen, mit Frist und verantwortlicher Rolle.
 
 ### Was fehlt
 Die Verknüpfung mit `RIS-009` im Register.
@@ -66,11 +66,11 @@ Die Planänderung wartet; die Ausführungsplanung auch.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Bericht kürzen lassen‘ gewählt. In Welt B wird nicht gekürzt, sondern getrennt: Der Managementbericht ist der Sammelpunkt für die Gremien, das Entscheidungsregister die Warteschlange für echte Entscheidungen.
+In Welt A haben Sie ‚Bericht kürzen lassen‘ gewählt. In Welt B wird getrennt statt gekürzt: Der Managementbericht sammelt für die Gremien, das Entscheidungsregister ist die Warteschlange für echte Entscheidungen.
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Entscheidungsvorlage schreiben‘ gewählt. In Welt B beruht die Vorlage auf einem benannten Datenstand; Projektsteuerung und Controlling liefern nicht zwei Zahlen dazu.
+In Welt A haben Sie ‚Entscheidungsvorlage schreiben‘ gewählt. In Welt B beruht die Vorlage auf einem benannten Datenstand – nicht auf zwei Zahlen.
 :::
 
 ::: rueckbezug C
@@ -78,7 +78,7 @@ In Welt A haben Sie ‚In den Lenkungskreis geben‘ gewählt. In Welt B landet 
 :::
 
 ::: rueckbezug ohne
-In Welt A lag im Juli ein 40-seitiger Statusbericht ohne Entscheidungsfrage auf dem Tisch. In Welt B liegt eine Vorlage im Änderungsgremium und ein Managementbericht beim Bauausschuss.
+In Welt A lag im Juli ein 40-seitiger Statusbericht ohne Frage auf dem Tisch. In Welt B liegt eine Vorlage im Änderungsgremium.
 :::
 
 ::: regie

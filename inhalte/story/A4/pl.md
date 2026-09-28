@@ -13,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Jonas Brenner sagt für September zehn Seiten zu. Die Ampeln bleiben gelb und rot; eine Entscheidungsfrage ist auch in der kurzen Fassung nicht vorgesehen.
+Jonas Brenner sagt für September zehn Seiten zu. Die Ampeln bleiben; eine Entscheidungsfrage ist auch darin nicht vorgesehen.
 
 ### Was fehlt
 Die Trennung von Bericht und Entscheidung: Welche Punkte brauchen einen Beschluss?
@@ -22,7 +22,7 @@ Die Trennung von Bericht und Entscheidung: Welche Punkte brauchen einen Beschlus
 Der Ausschuss gewöhnt sich an Berichte ohne Beschluss.
 
 ### Governance-Frage
-Wesentliche Entscheidung: Was muss der Bauherr entscheiden – und was nur zur Kenntnis nehmen?
+Wesentliche Entscheidung: Was muss der Bauherr entscheiden, was nur zur Kenntnis nehmen?
 :::
 
 ::: option B
@@ -34,7 +34,7 @@ status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Die Frage steht, die Optionen auch. Zu den Kosten liefern Projektsteuerung und Controlling zwei verschiedene Zahlen – der Ausschuss bekommt eine klare Frage auf unklarer Grundlage.
+Frage und Optionen stehen. Zu den Kosten gibt es aber zwei Zahlen: eine klare Frage auf unklarer Grundlage.
 
 ### Was fehlt
 Ein benannter Stand, auf dem die Vorlage beruht.
@@ -54,7 +54,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Frank Deppe nimmt die Liste mit. Der Lenkungskreis am 21. Juli sammelt, beschließt nichts und bittet um Klärung. Die Liste hat fünf Punkte und keine Frist.
+Frank Deppe nimmt die Liste mit. Der Lenkungskreis am 21. Juli sammelt fünf Punkte, beschließt nichts und setzt keine Frist.
 
 ### Was fehlt
 Wer in welchem Gremium was entscheiden darf.
@@ -67,23 +67,23 @@ Der Entscheidungsstau wandert nur in ein anderes Gremium.
 :::
 
 ::: rueckbezug A
-Im Mai haben Sie ‚Weiterarbeiten‘ gewählt. Die günstigere Fassade der Generalplanung ist seither durchgerechnet; eine Entscheidung dazu hat niemand vorbereitet.
+Im Mai haben Sie ‚Weiterarbeiten‘ gewählt. Die günstigere Fassade ist seither durchgerechnet, eine Entscheidung dazu nicht vorbereitet.
 :::
 
 ::: rueckbezug B
-Im Mai haben Sie ‚Entscheidungsvorlage verlangen‘ gewählt. Gekommen ist ein 40-seitiger Statusbericht ohne Entscheidungsfrage – genau diese Art Bericht liegt heute vor dem Ausschuss.
+Im Mai haben Sie ‚Entscheidungsvorlage verlangen‘ gewählt. Gekommen ist ein 40-seitiger Statusbericht ohne Entscheidungsfrage, wie er heute vor dem Ausschuss liegt.
 :::
 
 ::: rueckbezug C
-Im Mai haben Sie ‚Eskalation auslösen‘ gewählt. Der Lenkungskreis bat darum, erst die Ursachen zu klären. Die Ursachen stehen heute im Bericht, eine Frage an den Ausschuss nicht.
+Im Mai haben Sie ‚Eskalation auslösen‘ gewählt. Der Lenkungskreis wollte erst die Ursachen. Die stehen heute im Bericht, eine Frage an den Ausschuss nicht.
 :::
 
 ::: rueckbezug D
-Im Mai haben Sie ‚Prognose aktualisieren lassen‘ gewählt. Seither stehen +9,1 % und die CTC des Controllings nebeneinander. Welche Zahl gilt, sagt auch der Bericht vom Juli nicht.
+Im Mai haben Sie ‚Prognose aktualisieren lassen‘ gewählt. Seither stehen +9,1 % und die CTC des Controllings nebeneinander; welche gilt, sagt auch der Juli-Bericht nicht.
 :::
 
 ::: rueckbezug ohne
-Im Mai standen zwei Kostenzahlen nebeneinander, und der Bauausschuss hat nichts beschlossen. Im Juli liegt ihm wieder keine Entscheidungsfrage vor.
+Im Mai standen zwei Kostenzahlen nebeneinander, beschlossen wurde nichts. Im Juli fehlt wieder die Entscheidungsfrage.
 :::
 
 ::: regie

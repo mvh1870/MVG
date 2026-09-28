@@ -52,7 +52,7 @@ const GLIED_ARTEN = ['fruehwarnung', 'bestaetigung', 'risiko', 'aenderung', 'ent
  *   kopf?: Record<string, KopfDef>, felder?: string[], pflichtFelder?: string[] }} ArtDef
  */
 
-const ZITAT_ORTE = ['schritt', 'ebene', '@theorie', 'abschnitt', 'karte', 'einwand', '@station', 'resuemee', 'welt'];
+const ZITAT_ORTE = ['schritt', 'ebene', '@theorie', 'abschnitt', 'karte', 'einwand', '@station', 'resuemee', 'welt', 'wissenscheck'];
 const TEXT_ORTE = ['schritt', 'ebene', '@theorie', 'abschnitt', 'resuemee'];
 
 /** @type {Record<string, ArtDef>} */
@@ -145,7 +145,9 @@ const ARTEN = {
   },
   nachsatz: { in: ['@szene'], kennung: 'keine', felder: ['text'], pflichtFelder: ['text'] },
   frage: { in: ['@szene'], kennung: 'pflicht', kopf: { schritt: { typ: 'kennung' } }, felder: ['frage', 'rueckmeldung'], pflichtFelder: ['frage'] },
-  antwort: { in: ['frage'], kennung: 'pflicht', kopf: { titel: { typ: 'text', pflicht: true }, praefix: { typ: 'text' }, symbol: { typ: 'text' } }, felder: ['text'] },
+  // Wissenscheck auf einer Lernseite (P11.6): Frage mit Antworten und Erklärung statt Punkten, Beleg als zitat
+  wissenscheck: { in: ['@theorie', 'abschnitt'], kennung: 'pflicht', felder: ['frage', 'erklaerung'], pflichtFelder: ['frage', 'erklaerung'] },
+  antwort: { in: ['frage', 'wissenscheck'], kennung: 'pflicht', kopf: { titel: { typ: 'text', pflicht: true }, praefix: { typ: 'text' }, symbol: { typ: 'text' } }, felder: ['text'] },
   rueckbezug: { in: ['@szene'], kennung: 'pflicht', muster: /^(?:[A-F]|ohne)$/u, felder: ['text'], pflichtFelder: ['text'] },
   // Fall
   figur: {
@@ -1549,6 +1551,18 @@ function baueTheorie(c, rel, id, text, regie) {
     const bl = c.block(k, '@theorie', rel);
     if (bl !== null) bloecke.push(bl);
   }
+  // Wissenschecks (P11.6): mindestens zwei Antworten und ein wortgleicher Beleg
+  const pruefeCheck = (/** @type {any[]} */ liste) => {
+    for (const b of liste) {
+      if (b.art === 'wissenscheck') {
+        const antworten = b.kinder.filter((/** @type {any} */ x) => x.art === 'antwort').length;
+        if (antworten < 2) c.fehler(rel, `Wissenscheck ${b.id}: mindestens zwei Antworten`);
+        if (!b.kinder.some((/** @type {any} */ x) => x.art === 'zitat' || x.art === 'original')) c.fehler(rel, `Wissenscheck ${b.id}: Beleg fehlt (zitat oder original)`);
+      }
+      pruefeCheck(b.kinder ?? []);
+    }
+  };
+  pruefeCheck(bloecke);
   for (const s of kopf.story ?? []) c.verweise.push({ art: 'station', wert: s, ort });
   const deckt = [];
   for (const ref of kopf.deckt ?? []) {

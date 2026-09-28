@@ -13,7 +13,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Die Prognose bleibt fast stabil, weil die Reserve die Folgekosten trägt – auf dem Papier. Dass sie schon für die Mai-Abweichung nicht reicht, steht in keiner Zeile.
+Die Prognose bleibt fast stabil, weil die Reserve die Folgekosten trägt, auf dem Papier. Dass sie schon für die Mai-Abweichung nicht reicht, steht nirgends.
 
 ### Was fehlt
 Die Freigabe des Einsatzes der Risikoreserve durch den Bauherrn.
@@ -33,7 +33,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Ihre Tabelle zeigt, welche Posten gegen die Reserve laufen und dass sie schon die Mai-Abweichung nicht deckt. Sie wird gelesen; wer daraus eine Entscheidung macht, bleibt offen.
+Ihre Tabelle zeigt, was gegen die Reserve läuft und dass sie schon die Mai-Abweichung nicht deckt. Wer daraus eine Entscheidung macht, bleibt offen.
 
 ### Was fehlt
 Eine Vorlage mit Frage, Optionen und Empfehlung statt einer Tabelle im Anhang.
@@ -66,19 +66,19 @@ Der Streit um die Zahl verdeckt die Frage nach der Freigabe.
 :::
 
 ::: rueckbezug A
-Im März haben Sie ‚Im Statusbericht melden‘ gewählt. Die Lieferzeit stand als rote Ampel im Bericht, die Mensa nicht. Jetzt kommt die Mensa als Nachtrag – und wie Sie ihn gegen die Reserve abbilden, gibt Ihnen niemand vor.
+Im März haben Sie ‚Im Statusbericht melden‘ gewählt; die Mensa stand nicht im Bericht. Jetzt kommt sie als Nachtrag, und wie Sie ihn gegen die Reserve abbilden, gibt niemand vor.
 :::
 
 ::: rueckbezug B
-Im März haben Sie ‚Terminfolge bewerten‘ gewählt. Ihre Bewertung wurde gelesen und weitergeleitet; entschieden hat darüber niemand. Mit der Reserve geht es Ihnen jetzt ähnlich: Sie können sie abbilden, nicht freigeben.
+Im März haben Sie ‚Terminfolge bewerten‘ gewählt; entschieden hat darüber niemand. Mit der Reserve ist es ähnlich: Sie können sie abbilden, nicht freigeben.
 :::
 
 ::: rueckbezug C
-Im März haben Sie ‚Mensa einplanen‘ gewählt. Die 0,6 Mio. € stehen seither in der Kostendatei. Mit dem Nachtrag der Generalplanung wird aus der Planzahl ein Posten gegen die Reserve.
+Im März haben Sie ‚Mensa einplanen‘ gewählt. Mit dem Nachtrag wird aus den 0,6 Mio. € in der Kostendatei ein Posten gegen die Reserve.
 :::
 
 ::: rueckbezug ohne
-Im März kam die größere Mensa als Zusage aus dem Flur. Im September steht sie als angekündigter Nachtrag in der Rechnung gegen die Reserve.
+Im März kam die Mensa als Flurzusage. Im September steht sie als angekündigter Nachtrag gegen die Reserve.
 :::
 
 ::: regie

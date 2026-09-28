@@ -21,16 +21,13 @@ weiter: A5
 titel: Donnerstag, 17:45 Uhr. Monat 7.
 kurz: Einstieg
 ---
-Donnerstag, 16. Juli, Sitzungssaal im Rathaus. Dem Bauausschuss liegt der monatliche Statusbericht der Projektsteuerung vor: 40 Seiten, Ampeln auf Gelb und Rot, keine Entscheidungsfrage. Bernd Kowalski fragt, worüber der Ausschuss heute entscheiden soll. Zwanzig Minuten später fragt er noch einmal. Dann ist der Tagesordnungspunkt vertagt – auf den 17. September, im August ist Sommerpause.
-
-Seit Juni liegt die Baugenehmigung vor, mit Brandschutzauflagen zum Holzbau: grob 0,4 Mio. €.
+Donnerstag, 16. Juli, Rathaus. Dem Bauausschuss liegt der Statusbericht der Projektsteuerung vor: 40 Seiten, Ampeln auf Gelb und Rot, keine Entscheidungsfrage.
 
 ::: akten
 ---
 beschriftung: Statusberichte Januar bis Juni
 anzahl: 6
 ---
-Jeder umfangreich, die Ampeln vorn. Eine Entscheidungsfrage steht in keinem.
 :::
 
 ::: protokoll
@@ -38,10 +35,10 @@ Jeder umfangreich, die Ampeln vorn. Eine Entscheidungsfrage steht in keinem.
 titel: Niederschrift Bauausschuss – Auszug TOP 4
 datum: Do, 16.07.2026
 ---
-- TOP 4 Schulcampus Lindenhall-Süd: Sachstand, Statusbericht der Projektsteuerung (Stand Juni).
-- Frage des Vorsitzenden: Worüber soll der Ausschuss heute entscheiden? Eine Beschlussvorlage liegt nicht vor.
-- Erneute Frage des Vorsitzenden: Welche Entscheidung wird bis wann vom Ausschuss erwartet? Die Verwaltung sagt Klärung zu.
-- Der Ausschuss nimmt den Bericht zur Kenntnis. Die Beratung wird auf die Sitzung am 17.09. vertagt.
+- TOP 4 Schulcampus: Statusbericht der Projektsteuerung (Stand Juni).
+- Vorsitzender (Bernd Kowalski): Worüber soll der Ausschuss entscheiden? Keine Beschlussvorlage.
+- Erneute Frage: Welche Entscheidung wird bis wann erwartet? Die Verwaltung sagt Klärung zu.
+- Kenntnisnahme; Beratung vertagt auf 17.09.
 :::
 
 ::: chat
@@ -49,7 +46,7 @@ datum: Do, 16.07.2026
 von: petersen
 zeit: "17:52"
 ---
-Soll ich die Tischvorlage zu den Brandschutzauflagen mit zum Statusbericht ablegen? Im Bericht selbst stehen sie noch nicht – der ist Stand Juni.
+Tischvorlage Brandschutz zum Statusbericht ablegen? Im Bericht (Stand Juni) steht sie noch nicht.
 :::
 
 ::: notiz
@@ -90,19 +87,18 @@ kurz: Was Sie wissen
 knopf: Jetzt entscheiden
 ---
 ::: bekannt
-- Der Bauausschuss hat auf den 17. September vertagt; der Lenkungskreis tagt am 21. Juli.
-- Brandschutzauflagen aus der Baugenehmigung: grob 0,4 Mio. €; wie die Mehrkosten gedeckt werden, ist nicht entschieden.
-- Seit Mai stehen die Kostenprognosen der Projektsteuerung und des Controllings nebeneinander; eine geltende Zahl hat niemand dokumentiert.
-- Die Schulseite plant mit der größeren Mensa; einen Auftrag dafür gibt es nicht.
-- Der Statusbericht (Stand Juni) enthält keine Entscheidungsfrage.
+- Bauausschuss erst am 17. September; Lenkungskreis am 21. Juli.
+- Seit Juni: Baugenehmigung mit Brandschutzauflagen zum Holzbau, grob 0,4 Mio. €; Deckung nicht entschieden.
+- Seit Mai zwei Kostenprognosen nebeneinander; eine geltende Zahl ist nicht dokumentiert.
+- Die Schulseite plant mit der größeren Mensa, ohne Auftrag.
 :::
 
 ::: unbekannt
-- Welche Frage der Bauausschuss beantworten soll {#frage}
-- Wer über die Mehrkosten der Auflagen entscheidet {#zustaendigkeit}
-- Ob die Auflagen in den Kostenprognosen stehen {#auflagen}
+- Welche Frage der Ausschuss beantworten soll {#frage}
+- Wer über die Auflagen-Mehrkosten entscheidet {#zustaendigkeit}
+- Ob die Auflagen in den Prognosen stehen {#auflagen}
 - Welche Kostenzahl gilt {#kostenzahl}
-- Was die Vertagung für den Termin bedeutet {#terminwirkung}
+- Was die Vertagung für den Termin heißt {#terminwirkung}
 :::
 
 ::: zeitsprung info
@@ -123,7 +119,7 @@ bleibt:
 Kostenunsicherheit steigt.
 
 ### Neu bekannt
-Holger Stein hat die Auflagen mit grob 0,4 Mio. € in die Prognose der Projektsteuerung eingetragen; in der CTC des Controllings stehen sie noch nicht. Die Niederschrift ist da: Kenntnisnahme, Beratung vertagt – wer bis September was vorlegt, steht nicht darin.
+Holger Stein hat die Auflagen in die Prognose der Projektsteuerung eingetragen; in der CTC des Controllings fehlen sie. Wer bis September was vorlegt, steht in der Niederschrift nicht.
 :::
 :::
 

@@ -13,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Die Projektsteuerung sagt eine Kurzfassung für September zu. Die Ampeln bleiben; die Frage, die Bernd Kowalski zweimal gestellt hat, beantwortet auch sie nicht.
+Für September ist eine Kurzfassung zugesagt. Die Ampeln bleiben; Bernd Kowalskis Frage beantwortet auch sie nicht.
 
 ### Was fehlt
 Eine Entscheidungsfrage mit Optionen und Empfehlung.
@@ -34,13 +34,13 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Der Lenkungskreis am 21. Juli beschließt die offenen Änderungen „vorbehaltlich“. Dr. Miriam Olbers fragt, auf welcher Grundlage; das Protokoll nennt keinen Datenstand.
+Der Lenkungskreis beschließt die offenen Änderungen „vorbehaltlich“. Dr. Olbers fragt, auf welcher Grundlage; das Protokoll nennt keinen Datenstand.
 
 ### Was fehlt
 Mandat, Datenstand und Nachweis zu jedem Beschluss.
 
 ### Neues Risiko
-Beschlüsse ohne Grundlage – später kann niemand sagen, was worauf beruht.
+Beschlüsse ohne Grundlage: Später weiß niemand, worauf sie beruhen.
 
 ### Governance-Frage
 [[Nachweiskette]]: Wie wird der Beschluss später nachvollzogen?
@@ -54,24 +54,24 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Sie rufen Bernd Kowalski an. Er sagt: „Legen Sie mir eine Frage vor, keinen Bericht.“ Die nächste Sitzung ist im September; bis dahin bleibt alles offen.
+Bernd Kowalski sagt am Telefon: „Legen Sie mir eine Frage vor, keinen Bericht.“ Bis zur Sitzung im September bleibt alles offen.
 
 ### Was fehlt
 Eine vorbereitete Entscheidungsfrage und eine Frist.
 
 ### Neues Risiko
-Ein gutes Gespräch ersetzt die Vorlage nicht; die Sommerpause kostet zwei Monate.
+Das Gespräch ersetzt keine Vorlage; die Sommerpause kostet zwei Monate.
 
 ### Governance-Frage
 Welche Entscheidung ist wesentlich – und wer muss sie treffen?
 :::
 
 ::: rueckbezug A
-Im Mai haben Sie ‚Controlling-Zahl übernehmen‘ gewählt. Die Differenz von rund 1,3 Mio. € ist seither nicht geklärt; im Statusbericht steht die Zahl der Projektsteuerung.
+Im Mai haben Sie ‚Controlling-Zahl übernehmen‘ gewählt. Die Differenz von rund 1,3 Mio. € ist ungeklärt; im Statusbericht steht die Zahl der Projektsteuerung.
 :::
 
 ::: rueckbezug B
-Im Mai haben Sie ‚Vorlage verlangen‘ gewählt. Gekommen ist eine Präsentation mit beiden Zahlen, ohne Optionen. Heute liegt dem Ausschuss ein Statusbericht vor – wieder ohne Entscheidungsfrage.
+Im Mai haben Sie ‚Vorlage verlangen‘ gewählt. Gekommen ist eine Präsentation ohne Optionen; heute liegt ein Statusbericht vor, wieder ohne Entscheidungsfrage.
 :::
 
 ::: rueckbezug C
@@ -79,7 +79,7 @@ Im Mai haben Sie ‚Ohne Zahl berichten‘ gewählt. Der Ausschuss war beruhigt.
 :::
 
 ::: rueckbezug ohne
-Im Mai standen zwei Kostenzahlen nebeneinander, und der Bauausschuss hat nichts beschlossen. Im Juli liegt ihm wieder keine Entscheidungsfrage vor.
+Im Mai standen zwei Kostenzahlen nebeneinander, beschlossen wurde nichts. Im Juli fehlt wieder die Entscheidungsfrage.
 :::
 
 ::: regie

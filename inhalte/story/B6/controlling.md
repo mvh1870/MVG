@@ -13,7 +13,7 @@ status:
   offene-risiken: -1
 ---
 ### Konsequenz
-Die Vorlage der Bauherren-PL beruht auf der „Kostenprognose 2026-10 · Version 4“; Ihre CTC und die Prognose der Projektsteuerung sind darin abgeglichen. Dr. Olbers entscheidet auf dieser Grundlage selbst.
+Die Vorlage beruht auf der „Kostenprognose 2026-10 · Version 4“, mit Ihrer CTC und der Prognose der Projektsteuerung abgeglichen. Dr. Olbers entscheidet darauf selbst.
 
 ### Was fehlt
 Die Zusage, dass Holger Steins Stellvertretung die Prognose bis zu seiner Rückkehr weiterführt.
@@ -53,7 +53,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Sie nennen zwei Positionen, deren Kosten noch nicht belastbar sind, und schlagen vor, sie als Auflagen zu fassen. Ob mit Auflagen freigegeben wird, entscheidet Dr. Olbers; der Lenkungskreis berät.
+Sie nennen zwei Positionen, deren Kosten noch nicht belastbar sind, als mögliche Auflagen. Ob mit Auflagen freigegeben wird, entscheidet Dr. Olbers.
 
 ### Was fehlt
 Frist und verantwortliche Rolle je Auflage.
@@ -74,7 +74,7 @@ In Welt A haben Sie ‚Steins Dateien rekonstruieren‘ gewählt. In Welt B muss
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Bandbreite melden‘ gewählt. In Welt B gibt es statt einer Spanne einen benannten Datenstand, auf dem der Bauherr freigeben kann; offene Punkte können als Auflagen der Freigabe gefasst werden.
+In Welt A haben Sie ‚Bandbreite melden‘ gewählt. In Welt B gibt es statt einer Spanne einen benannten Datenstand; offene Punkte können Auflagen der Freigabe werden.
 :::
 
 ::: rueckbezug ohne

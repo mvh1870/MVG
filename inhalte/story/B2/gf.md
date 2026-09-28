@@ -13,7 +13,7 @@ status:
   offene-risiken: -1
 ---
 ### Konsequenz
-Sie rufen Sabine Roth an: Der Wunsch ist beantragt, entschieden wird im Änderungsgremium. Sabine Roth ist nicht begeistert, weiß aber, wann und wo.
+Sie sagen Sabine Roth: beantragt, entschieden wird im Änderungsgremium. Sie ist nicht begeistert, weiß aber, wann und wo.
 
 ### Was fehlt
 Die bewertete Auswirkung von `AEN-012` auf Kosten, Termin und Risiko.
@@ -33,7 +33,7 @@ status:
   ungeklaerte-entscheidungen: -1
 ---
 ### Konsequenz
-Als Vorsitz setzen Sie `AEN-012` auf die Tagesordnung. Projektsteuerung und Planung bereiten die Auswirkung vor. Rund 0,6 Mio. € liegen über 100 TEUR und bis einschließlich 5 Mio. € – das Gremium ist zuständig.
+Als Vorsitz setzen Sie `AEN-012` auf die Tagesordnung; Projektsteuerung und Planung bereiten die Auswirkung vor.
 
 ### Was fehlt
 Eine vollständige Vorlage bis zur Sitzung.
@@ -53,7 +53,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Dr. Miriam Olbers fragt zurück, warum ein Thema unter 5 Mio. € im Lenkungskreis liegt. Der Punkt geht zurück ins Änderungsgremium; zwei Wochen sind verloren.
+Dr. Olbers fragt, warum ein Thema unter 5 Mio. € im Lenkungskreis liegt. Es geht zurück ins Gremium; zwei Wochen sind verloren.
 
 ### Was fehlt
 Nichts – die Mandatsleiter regelt den Weg. Sie gilt auch für die Geschäftsführung.
@@ -66,15 +66,15 @@ Wer Abkürzungen nimmt, schwächt die Mandatsleiter für alle.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Zusage stehen lassen‘ gewählt. In Welt B wird aus der Flurzusage eine beantragte Änderung `AEN-012` im Änderungsregister – nächster Schritt Auswirkung und Freigabeweg statt stiller Einplanung.
+In Welt A haben Sie ‚Zusage stehen lassen‘ gewählt. In Welt B wird aus der Flurzusage die beantragte Änderung `AEN-012` statt stiller Einplanung.
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Prüfen lassen‘ gewählt. In Welt B hat die Prüfung einen Ort und ein Ende: Die Änderung steht im Änderungsregister, und das Änderungsgremium entscheidet.
+In Welt A haben Sie ‚Prüfen lassen‘ gewählt. In Welt B hat die Prüfung ein Ende: Das Änderungsgremium entscheidet.
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚In den Lenkungskreis‘ gewählt. In Welt B landet die Lieferzeit als Frühwarnung `FRW-002` und nach Bestätigung als Risiko `RIS-009` im Register, die Mensa im Änderungsgremium – nicht unter „Verschiedenes“.
+In Welt A haben Sie ‚In den Lenkungskreis‘ gewählt. In Welt B steht die Lieferzeit als `FRW-002` im Register, die Mensa im Änderungsgremium – nicht unter „Verschiedenes“.
 :::
 
 ::: rueckbezug ohne

@@ -118,9 +118,9 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P11.1 · Vollständigkeitsprüfer: Bauplan, 20 Owner-Punkte, E1–E14, O-Entscheide, Abdeckung (`docs/P11-BEFUNDE.md`)
 - [x] P11.2 · Alle Pfade × Rollen × Größen im Browser; Barrierefreiheit (auch Lauf mit `prefers-reduced-motion: reduce`, P2-Befund V6) – `pruefe:voll` grün (927 s), `MVG_BEWEGUNG=reduziert` voll grün (25 Läufe)
 - [x] P11.5a · Lesezeit messen (Szenario `lesezeit`, L-61) + Ebenen 2–4 auf Wunsch statt Pflicht-Blättern – PL 51,9 min, Express 30,6 min
-- [ ] P11.5b · Lange Listen (Lage bekannt/ungeklärt, Protokolle, Prüflisten) kompakt, Rest aufklappbar
-- [ ] P11.5c · Texte je Station kürzen, bis Hauptpfad ≤ 35 min und Express ≤ 15 min in allen Rollen; dann `MVG_LESEZEIT_PFLICHT=1` in der Kette; Fachtreue-Prüfung der gekürzten Stationen
-- [ ] P11.6 · Wissenschecks „Fragen mit Erklärung statt Punkten“ über B3 hinaus: je Lernseite (Kap. 2–12) eine Frage mit Erklärung und Beleg (L-60)
+- [-] P11.5b · Lange Listen kompakt – verworfen: Lage- und Prüflisten sind Kern der Mechanik; stattdessen in P11.5c redaktionell gekürzt (Listen auf 3–4 Punkte)
+- [x] P11.5c · Texte je Station gekürzt: alle Rollen Hauptpfad 34,4–34,6 min, Express 14,7–14,8 min (vorher 51,9 / 24,2); Messung jetzt Pflicht; Fachtreue Teil 1 (18 Befunde) eingearbeitet, Teil 2 folgt; B4-Vorlage AEN-031 wird jetzt gezeigt
+- [x] P11.6 · Wissenschecks „Fragen mit Erklärung statt Punkten“ über B3 hinaus: je Lernseite (Kap. 2–12) eine Frage mit Erklärung und Beleg (L-60)
 - [ ] P11.3 · Korrekturschleife, bis zwei Runden nichts Neues finden
 - [ ] P11.4 · Abschluss: UEBERGABE mit Abnahmeanleitung; Ampel rot „fertig – Routine anhalten, claude/haus nach main zusammenführen“
 

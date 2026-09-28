@@ -12,7 +12,7 @@ status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Ihre Prognose steigt um rund 0,6 Mio. €. Beantragt oder beschlossen ist die größere Mensa nicht; Ihre Zahl nimmt eine Entscheidung vorweg.
+Ihre Prognose steigt um rund 0,6 Mio. €. Beschlossen ist die Mensa nicht; Ihre Zahl nimmt eine Entscheidung vorweg.
 
 ### Was fehlt
 Wer hat die Mensa entschieden – und auf welcher Grundlage?
@@ -52,7 +52,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Nach zwei Wochen kommt die Antwort: „Rechnen Sie es mit ein.“ Das ist eine Anweisung, keine Entscheidung mit Grundlage. Die Lieferzeit der Holzbauelemente hat in der Zwischenzeit niemand bewertet.
+Nach zwei Wochen: „Rechnen Sie es mit ein.“ Eine Anweisung, keine Entscheidung mit Grundlage. Die Lieferzeit hat inzwischen niemand bewertet.
 
 ### Was fehlt
 Die Wirkung der Mensa auf Termin und Risiko; eine Bewertung der Lieferzeit.

@@ -13,7 +13,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Rund 0,6 Mio. € liegen über Ihrer Schwelle von 100 TEUR; das Änderungsgremium entscheidet in seiner nächsten monatlichen Sitzung auf Vorlage. Sabine Roth weiß, wann.
+Grob 0,6 Mio. € liegen über Ihrer Schwelle; das Änderungsgremium entscheidet in der nächsten Sitzung auf Vorlage. Sabine Roth weiß, wann.
 
 ### Was fehlt
 Die Terminwirkung der Mensa hängt an der Lieferzeit – `FRW-002` ist noch nicht bestätigt, bewertet wird sie erst als `RIS-009`.
@@ -54,7 +54,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Frank Deppe nickt: Seine Zusage läuft als beantragte Änderung, nicht als Entscheidung. Sabine Roth hört, dass ihr Wunsch beantragt ist, nicht beschlossen – enttäuscht, aber im Bild.
+Frank Deppe nickt: Seine Zusage ist ein Antrag, keine Entscheidung. Sabine Roth ist enttäuscht, aber im Bild.
 
 ### Was fehlt
 Die Bewertung selbst steht noch aus.
@@ -67,7 +67,7 @@ Verstimmung auf der Nutzerseite.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Zusage mittragen‘ gewählt. In Welt B wird aus der Flurzusage eine beantragte Änderung: `AEN-012` steht beantragt im Änderungsregister, nächster Schritt Auswirkung und Freigabeweg, und bei rund 0,6 Mio. € entscheidet das Änderungsgremium.
+In Welt A haben Sie ‚Zusage mittragen‘ gewählt. In Welt B wird aus der Flurzusage die beantragte Änderung `AEN-012`; entscheiden wird das Änderungsgremium.
 :::
 
 ::: rueckbezug B
@@ -75,11 +75,11 @@ In Welt A haben Sie ‚Prüfen lassen‘ gewählt. In Welt B hat die Prüfung ei
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚An den Bauherrn geben‘ gewählt. In Welt B muss Dr. Olbers darüber nicht entscheiden: Die Mandatsleiter weist rund 0,6 Mio. € dem Änderungsgremium zu; über Änderungen beschließt der Bauherr im Lenkungskreis erst oberhalb von 5 Mio. €.
+In Welt A haben Sie ‚An den Bauherrn geben‘ gewählt. In Welt B weist die Mandatsleiter 0,6 Mio. € dem Änderungsgremium zu, nicht Dr. Olbers.
 :::
 
 ::: rueckbezug ohne
-In Welt A kamen dieselbe Marktabfrage und dieselbe Mail – und wurden zu einer Flurzusage und einer Notiz. In Welt B werden sie zu `FRW-002` und `AEN-012`.
+In Welt A wurden Marktabfrage und Mail zu Flurzusage und Notiz. In Welt B werden sie zu `FRW-002` und `AEN-012`.
 :::
 
 ::: regie

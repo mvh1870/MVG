@@ -12,9 +12,7 @@ ende: ja
 titel: Und bei Ihnen?
 kurz: Epilog
 ---
-Lindenhall ist erfunden. Die Stadt, die GML, der Schulcampus, Dr. Olbers und Holger Stein gibt es nicht. Die Muster, die Sie in Welt A erlebt haben, beschreibt das Whitepaper dagegen als typisch.
-
-Deshalb verlässt diese letzte Station den Fall. Sie fragt nach einem Projekt, das Sie selbst kennen: ob sich die Symptome dort zeigen, in welcher Situation Ihr Projekt steht, was Ihre Spur durch beide Welten zeigt und was Sie mitnehmen. Am Ende steht die Bibliothek.
+Lindenhall ist erfunden – die Stadt, die GML, Dr. Olbers und Holger Stein gibt es nicht. Die Muster aus Welt A beschreibt das Whitepaper dagegen als typisch. Deshalb fragt diese letzte Station nach einem Projekt, das Sie selbst kennen.
 :::
 
 ::: schritt diagnose
@@ -23,9 +21,7 @@ titel: Eine Selbstdiagnose ohne Punktzahl
 kurz: Selbstdiagnose
 gruppe: Ihr Projekt
 ---
-Am Wendepunkt haben Sie die acht Symptome aus Kap. 2.5 an Lindenhall gesehen. Denken Sie jetzt an ein eigenes Projekt, laufend oder abgeschlossen. Markieren Sie je Symptom, ob es sich dort zeigt, teilweise zeigt oder nicht.
-
-Darunter entsteht Ihr Profil in Worten: die Symptome, die Sie markiert haben, und die MVG-Reaktion, die das Whitepaper jeweils nennt. Es gibt keine Punkte, keine Summe und kein Urteil. Ihre Markierungen werden weder gespeichert noch übertragen.
+Die acht Symptome aus Kap. 2.5 kennen Sie vom Wendepunkt. Zeigen sie sich in Ihrem Projekt? Darunter entsteht ein Profil in Worten – ohne Punkte, Summe oder Urteil. Nichts wird gespeichert oder übertragen.
 
 ::: tafel k2.5-t1
 ---
@@ -34,7 +30,7 @@ form: diagnose
 :::
 
 ::: hinweis
-**Was diese Selbstdiagnose nicht ist.** Sie ist keine MVG-Reifegradanalyse. Die Reifegradanalyse ist eine Methode von Bauherr Mentoren; Kap. 2.5 ordnet die Symptome ihr zu: [[zitat:k2.5-p1|Diese Symptome sind zugleich der Prüfgegenstand der MVG-Reifegradanalyse (Abschnitt 7.1): Dort werden sie systematisch erhoben, bewertet und priorisiert.]]
+**Was diese Selbstdiagnose nicht ist:** eine MVG-Reifegradanalyse – eine Methode von Bauherr Mentoren (Kap. 7.1).
 :::
 
 ::: zitat k7.1-p2
@@ -50,21 +46,13 @@ gruppe: Ihr Projekt
 ---
 Kap. 10 zeigt, wie dieselbe Logik je nach Bauherr anders wirkt. Welche Situation trifft Ihr Projekt?
 
-**Öffentliche Bauherren.** Lindenhall gehört hierher: eine Stadt als Eigentümerin, Stadtrat und Bauausschuss, eine Gesellschaft, die sie vertritt. [[zitat:k10.1-p1|Entscheidungen müssen nicht nur sachlich plausibel, sondern auch nachvollziehbar, prüfbar und beschlussfähig sein.]]
+**Öffentliche Bauherren** – wie Lindenhall: [[zitat:k10.1-p1|Entscheidungen müssen nicht nur sachlich plausibel, sondern auch nachvollziehbar, prüfbar und beschlussfähig sein.]]
 
-**Private und institutionelle Bauherren.** [[zitat:k10.2-p1|Private und institutionelle Bauherren benötigen Steuerbarkeit vor allem dort, wo Geschwindigkeit, Renditeanforderungen, Nutzerinteressen, Finanzierung, ESG/LCC und technische Komplexität zusammentreffen.]] Wo treffen sie bei Ihnen aufeinander?
+**Private und institutionelle Bauherren** brauchen [[zitat:k10.2-p1|Steuerbarkeit vor allem dort, wo Geschwindigkeit, Renditeanforderungen, Nutzerinteressen, Finanzierung, ESG/LCC und technische Komplexität zusammentreffen.]]
 
-**Energieversorger und Infrastrukturträger.** [[zitat:k10.3-p1|Bei Energieversorgern und Infrastrukturträgern verschieben sich Projektrisiken häufig in Freigaben, Priorisierung, Beschaffung, Entscheidungen zu Komponenten mit langer Lieferzeit und die Disziplin bei der Restkostenprognose.]] Auch in Lindenhall hing viel an einer Komponente mit langer Lieferzeit: den Holzbauelementen.
+**Energieversorger und Infrastrukturträger:** Risiken verschieben sich [[zitat:k10.3-p1|häufig in Freigaben, Priorisierung, Beschaffung, Entscheidungen zu Komponenten mit langer Lieferzeit und die Disziplin bei der Restkostenprognose]] – in Lindenhall bei den Holzbauelementen.
 
-**Ein Projekt mit schleichendem Steuerungsverlust.** Das ist kein vierter Bauherrentyp, sondern eine Situation. Welt A war eine. [[zitat:k10.4-p1|Projekte mit schleichendem Steuerungsverlust erkennt man selten an einem einzelnen Fehler. Typisch sind unterschiedliche Lagebilder, schleichende Prognoseabweichungen, informelle Eskalationen, ungeordnete Änderungen, unklare Entscheidungsmandate und eine fehlende Wirksamkeit von Maßnahmen.]]
-
-Dazu nennt Kap. 10.5 fünf typische Entscheidungsprobleme. Welches liegt bei Ihnen gerade auf dem Tisch?
-
-::: tafel k10.5-t1
----
-form: register
----
-:::
+**Schleichender Steuerungsverlust** ist kein Bauherrentyp, sondern eine Situation; Welt A war eine.
 :::
 
 ::: schritt spur
@@ -73,7 +61,7 @@ titel: Ihre Spur – Welt A neben Welt B
 kurz: Ihre Spur
 ---
 ::: spurvergleich
-Hier stehen alle Entscheidungen, die Sie getroffen haben: links in Welt A, rechts an denselben Momenten in Welt B. Die Gegenüberstellung wertet nicht. Sie zeigt, was Sie mit welchem Wissen und welcher Struktur gewählt haben.
+Die Gegenüberstellung wertet nicht. Sie zeigt, was Sie mit welchem Wissen und welcher Struktur gewählt haben.
 :::
 :::
 
@@ -83,10 +71,10 @@ titel: Ihr Resümee
 kurz: Resümee
 ---
 ::: resuemee
-Was Sie mitnehmen, ergibt sich aus Ihrem Weg: Es nennt Ihr Ende und Ihre Richtung im Dezember; Ihre Themen folgen aus den Interessen, die Sie im Prolog gewählt haben, und aus den Stationen, die Sie besucht haben; die zwei Vertiefungen folgen aus Ihrem Ende und aus den Kapiteln, die Ihre Stationen am häufigsten berührt haben. Darunter stehen drei Prinzipien aus dem Whitepaper und eine Checkliste.
+Was Sie mitnehmen, folgt aus Ihrem Weg: Ende, Richtung, Interessen und besuchte Stationen.
 
 ::: hinweis
-**Drei Prinzipien.** Wortgleich aus dem Whitepaper: die Leitthese, eine Stelle zu Information und Führung, eine zu Datenstand und Nachweis.
+**Drei Prinzipien**, wortgleich aus dem Whitepaper.
 :::
 
 ::: zitat k1-p1
@@ -102,7 +90,7 @@ Datenstand und Nachweis sind kein administratives Nebenprodukt. Sie sind ein eig
 :::
 
 ::: hinweis
-**Eine Checkliste.** Die acht Abnahmekriterien, an denen Kap. 8.4 prüft, ob MVG in einer Bauherrenorganisation trägt, jedes mit seiner Prüffrage. Wählen Sie eine Karte und lesen Sie die Frage mit Ihrem Projekt im Kopf.
+**Eine Checkliste:** die acht Abnahmekriterien aus Kap. 8.4. Lesen Sie die Prüffragen mit Ihrem Projekt im Kopf.
 :::
 
 ::: tafel k8.4-t1
@@ -118,11 +106,9 @@ form: karten
 titel: Die Bibliothek
 kurz: Bibliothek
 ---
-Die Geschichte ist zu Ende; das Whitepaper bleibt offen. Im Bereich **Theorie** stehen alle 13 Kapitel, jedes mit dem Originaltext V1.2 und mit Verweisen auf die Stationen der Story.
+Die Geschichte ist zu Ende; das Whitepaper bleibt offen. **Theorie** enthält alle 13 Kapitel im Originaltext V1.2, Kap. 13 das durchsuchbare **Glossar** – dieselben Definitionen wie an markierten Begriffen, etwa [[Datenstand]].
 
-Kap. 13 ist das **Glossar**: die Begriffe des Whitepapers mit ihrer Definition, wortgleich, durchsuchbar und mit dem Hinweis, wo sie in Story und Theorie vorkommen. Dieselben Definitionen erscheinen an jeder Station als Hinweis an den markierten Begriffen, etwa [[Datenstand]], [[Mandat]] oder [[Freigabe]].
-
-Mit dem Ende Ihrer Geschichte ist auch **Explore** freigeschaltet, der Bereich mit den Werkzeugen zum Selbst-Ausprobieren. Explore erreichen Sie über den Link „Selbst ausprobieren · Explore“ unter der Story-Karte.
+**Explore** mit den Werkzeugen ist jetzt freigeschaltet: über „Selbst ausprobieren · Explore“ unter der Story-Karte.
 :::
 
 ::: schritt ebenen
@@ -138,14 +124,14 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Was in Lindenhall geschah, beschreibt das Whitepaper als Muster: acht Symptome fehlender Ausübungsfähigkeit (Kap. 2.5). Kap. 10 zeigt, wie sich die Logik für öffentliche, private und institutionelle Bauherren, für Energieversorger und Infrastrukturträger und für Projekte mit schleichendem Steuerungsverlust jeweils stellt. Über allem steht die Leitthese: Arbeit kann delegiert werden, bauherrenseitige Legitimation nicht.
+Lindenhall folgt einem Muster, das das Whitepaper beschreibt (Kap. 2.5, Kap. 10). Über allem steht die Leitthese: Arbeit kann delegiert werden, bauherrenseitige Legitimation nicht.
 :::
 
 ::: ebene 2
 ---
 titel: Warum relevant
 ---
-Die Selbstdiagnose gibt Ihnen ein Profil in Worten, kein Urteil. Sie zählt nichts und bewertet nichts. Das leistet erst die MVG-Reifegradanalyse; bei ihr werden die Symptome [[zitat:k2.5-p1|systematisch erhoben, bewertet und priorisiert]]. Das Profil hilft, die eigene Situation zu benennen: welche Symptome sich zeigen und welche Reaktion das Whitepaper jeweils vorsieht.
+Die Selbstdiagnose gibt Ihnen ein Profil in Worten, kein Urteil; sie zählt nichts und bewertet nichts. Die Symptome sind [[zitat:k2.5-p1|zugleich der Prüfgegenstand der MVG-Reifegradanalyse]]; dort werden sie [[zitat:k2.5-p1|systematisch erhoben, bewertet und priorisiert]]. Das Profil hilft, die eigene Situation zu benennen: welche Symptome sich zeigen und welche Reaktion das Whitepaper jeweils vorsieht.
 :::
 
 ::: ebene 3
@@ -160,6 +146,16 @@ Kap. 10 legt je nach Situation einen anderen Schwerpunkt:
 | Private und institutionelle Bauherren (10.2) | hilft, [[zitat:k10.2-p1|Zielkonflikte früh zu klären und operative Geschwindigkeit nicht gegen Entscheidungssicherheit auszuspielen]] |
 | Energieversorger und Infrastrukturträger (10.3) | besonders relevant, unter anderem [[zitat:k10.3-p1|die Freigabereife zum Abschluss von LPH 2 für Variantenwahl und Business Case, von LPH 3 für die FID nach Entwurfsplanung und Kostenberechnung und von LPH 7 für Vergabe oder die Bindung einer Komponente mit langer Lieferzeit]] |
 | Schleichender Steuerungsverlust (10.4) | gezielte MVG-Neuinitialisierung: [[zitat:k10.4-p1|Datenstand sichern, Entscheidungslandschaft ordnen, Mandate klären, erforderliche Freigaben nachholen oder wiederholen und den 30/60/90-Orientierungsrahmen für die Neuordnung nutzen]] |
+
+Typisch für schleichenden Steuerungsverlust sind nach Kap. 10.4 [[zitat:k10.4-p1|unterschiedliche Lagebilder, schleichende Prognoseabweichungen, informelle Eskalationen, ungeordnete Änderungen, unklare Entscheidungsmandate und eine fehlende Wirksamkeit von Maßnahmen.]]
+
+Kap. 10.5 nennt fünf typische Entscheidungsprobleme. Welches liegt bei Ihnen gerade auf dem Tisch?
+
+::: tafel k10.5-t1
+---
+form: register
+---
+:::
 
 Das Schlussbild in Kap. 12 kehrt an den Anfang zurück: [[zitat:k12-p2|Damit schließt sich der Bogen zur Leitthese dieses Whitepapers: Arbeit kann delegiert werden – bauherrenseitige Legitimation nicht.]]
 :::

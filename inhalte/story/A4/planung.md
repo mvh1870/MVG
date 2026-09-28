@@ -13,7 +13,7 @@ status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Die Auflagen gelten, also plant die Generalplanung sie ein – grob 0,4 Mio. €. Wie die Mehrkosten gedeckt werden, hat niemand entschieden.
+Die Auflagen gelten, also planen Sie sie ein: grob 0,4 Mio. €. Wie die Mehrkosten gedeckt werden, hat niemand entschieden.
 
 ### Was fehlt
 Eine Entscheidung über Auswirkung und Deckung.
@@ -33,7 +33,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Zwei Seiten, drei Varianten, jeweils mit Kosten und Terminwirkung. Die Projektsteuerung hängt sie als Anlage an den nächsten Statusbericht; eine Entscheidungsfrage steht wieder nicht davor.
+Zwei Seiten, drei Varianten mit Kosten und Terminwirkung. Die Projektsteuerung hängt sie an den Statusbericht an, wieder ohne Entscheidungsfrage.
 
 ### Was fehlt
 Eine [[Entscheidungsvorlage]] mit Frage, Optionen und Empfehlung.
@@ -53,10 +53,10 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Die Bauherren-PL verweist auf die nächste Sitzung im September; im August ist Sommerpause. Die Planung hält den Brandschutz an.
+Die Bauherren-PL verweist auf die Sitzung im September. Die Planung hält den Brandschutz an.
 
 ### Was fehlt
-Ein Gremium mit Mandat für Änderungen – in Welt A gibt es keines, also wartet alles auf den Ausschuss.
+Ein Gremium mit Mandat für Änderungen; in Welt A wartet alles auf den Ausschuss.
 
 ### Neues Risiko
 Zwei Monate Stillstand an einem genehmigungsrelevanten Punkt.
@@ -70,7 +70,7 @@ Im Mai haben Sie ‚Einsparvariante durchrechnen‘ gewählt. Die günstigere Fa
 :::
 
 ::: rueckbezug B
-Im Mai haben Sie ‚Marktabfrage liefern‘ gewählt. Die Preissteigerung der Holzbauelemente ist seither belegt; eine Entscheidung daraus hat niemand vorbereitet. Jetzt kommen die Brandschutzauflagen dazu.
+Im Mai haben Sie ‚Marktabfrage liefern‘ gewählt. Die Preissteigerung ist belegt, eine Entscheidung nicht vorbereitet. Jetzt kommen die Brandschutzauflagen dazu.
 :::
 
 ::: rueckbezug C

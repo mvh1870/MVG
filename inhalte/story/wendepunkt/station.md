@@ -12,7 +12,7 @@ weiter: rueckspulen
 titel: Was ist hier eigentlich passiert?
 kurz: Einstieg
 ---
-Welt A steht still. Sie sehen auf Ihre Spur: Symptome, die Sie erlebt haben, Wirkungsketten, die Grenze zwischen delegierbarer Arbeit und nichtdelegierbarer Verantwortung, die Verantwortungspyramide und die sechs Verantwortungsfelder. Der Begriff dahinter steht in Kap. 3.1:
+Welt A steht still. Der Begriff dahinter:
 
 ::: zitat k3.1-p1
 Nichtdelegierbare Bauherrenverantwortungen sind jene Verantwortungen, bei denen der Bauherr Zweck, Ziel, Mandat, wesentliche Entscheidung, Risikoannahme, Freigabe, Datenstand und Nachweis selbst legitimieren muss, auch wenn Analyse, Vorbereitung, Koordination und Dokumentation durch Dritte erfolgen.
@@ -24,7 +24,7 @@ Nichtdelegierbare Bauherrenverantwortungen sind jene Verantwortungen, bei denen 
 titel: Welche Symptome haben Sie erlebt?
 kurz: Symptome
 ---
-Das Whitepaper beschreibt acht typische Symptome (Kap. 2.5). Markiert sind die, die auf Ihrer Spur durch Welt A aufgetreten sind – wählen Sie eines, um Muster, Folge und MVG-Reaktion zu sehen.
+Markiert sind die Symptome aus Kap. 2.5, die auf Ihrer Spur auftraten. Wählen Sie eines.
 
 ::: tafel k2.5-t1
 ---
@@ -47,7 +47,7 @@ erlebt:
 titel: Was passiert, wenn …?
 kurz: Wirkungsketten
 ---
-Jedes Symptom hat ein typisches Muster, eine Folge für den Bauherrn und eine Antwort im MVG-Modell (Kap. 2.5). Wählen Sie einen Auslöser.
+Muster, Folge und MVG-Antwort je Symptom (Kap. 2.5). Wählen Sie einen Auslöser.
 
 ::: tafel k2.5-t1
 ---
@@ -61,7 +61,7 @@ form: ketten
 titel: Delegierbar oder nicht?
 kurz: Delegierbar?
 ---
-Ordnen Sie die Aufgaben aus der Tabelle in Kap. 3.2 zu. Worum es geht, sagt der Satz unter der Tabelle: [[zitat:k3.2-p1|Der Bauherr muss aber wissen, wo Vorbereitung endet und eigene Entscheidung beginnt.]]
+Kap. 3.2 im Kern: [[zitat:k3.2-p1|Der Bauherr muss aber wissen, wo Vorbereitung endet und eigene Entscheidung beginnt.]]
 
 ::: tafel k3.2-t1
 ---
@@ -75,7 +75,7 @@ form: schwelle
 titel: Wer hätte über welchen Betrag entschieden?
 kurz: Schwellen
 ---
-In Welt A lagen Beträge auf dem Tisch – 0,6 Mio. € für die größere Mensa, grob 0,4 Mio. € für die Brandschutzauflagen, rund 4,7 Mio. € Kostenabweichung nach der Prognose der Projektsteuerung –, aber für keinen war festgelegt, wer entscheidet. Das Whitepaper nennt als Muster eine Mandatsleiter mit Wertschwellen (Kap. 4.2); wie der Schulcampus damit arbeitet, zeigt Welt B.
+Niemand hatte festgelegt, wer über Mensa (0,6 Mio. €), Brandschutz (grob 0,4 Mio. €) und Kostenabweichung (rund 4,7 Mio. €) entscheidet:
 
 ::: zitat k4.2-p3
 Als Muster-Mandatsleiter gilt: Die Bauherren-PL gibt bis einschließlich 100 TEUR eigenständig frei; oberhalb von 100 TEUR bis einschließlich 5 Mio. EUR entscheidet das Änderungsgremium; darüber erfolgt die Beschlussfassung durch den Bauherrn im Lenkungskreis.
@@ -87,7 +87,7 @@ Als Muster-Mandatsleiter gilt: Die Bauherren-PL gibt bis einschließlich 100 TEU
 titel: Drei Ebenen der Verantwortung
 kurz: Pyramide
 ---
-Kap. 3.3 unterscheidet Arbeitsebene, Mandatsebene und Letztverantwortung. Wählen Sie eine Ebene.
+Wählen Sie eine Ebene (Kap. 3.3).
 
 ::: tafel k3.3-t1
 ---
@@ -98,10 +98,10 @@ form: pyramide
 
 ::: schritt felder
 ---
-titel: Sechs Verantwortungsfelder – vom Chaos zur Ordnung
+titel: Sechs Verantwortungsfelder
 kurz: Sechs Felder
 ---
-Die Tabelle aus Kap. 4 nennt je Feld die typische Fehlstelle und die MVG-Antwort. Schalten Sie um.
+Je Feld Fehlstelle und MVG-Antwort (Kap. 4). Schalten Sie um.
 
 ::: tafel k4-t1
 ---

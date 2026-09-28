@@ -12,7 +12,7 @@ status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Über die Bauherren-PL gehen Ihre +8 % in den Lenkungskreis; Aylin Kaya, als Gast geladen, widerspricht mit +5,9 %. Frank Deppe fragt, welche Zahl gilt; die Antwort vertagt der Lenkungskreis.
+Ihre +8 % gehen in den Lenkungskreis; Aylin Kaya widerspricht mit +5,9 %. Frank Deppe fragt, welche Zahl gilt; die Antwort wird vertagt.
 
 ### Was fehlt
 Ein verbindlicher [[Datenstand]]: Welche Version gilt?
@@ -32,7 +32,7 @@ status:
   terminrisiko: hoch
 ---
 ### Konsequenz
-Zwei Wochen Abstimmung. Ein Teil der Differenz von rund 1,3 Mio. € erklärt sich aus unterschiedlichen Annahmen zum Holzpreis; welche Annahme gilt, legt niemand fest. Lenkungskreis und Bauausschuss finden ohne Zahl statt.
+Zwei Wochen Abstimmung: Ein Teil der Differenz von rund 1,3 Mio. € liegt an verschiedenen Annahmen zum Holzpreis; welche gilt, legt niemand fest. Die Gremien tagen ohne Zahl.
 
 ### Was fehlt
 Eine Stelle, die offene Annahmen festlegt.
@@ -58,14 +58,14 @@ Holger Stein rechnet neu: jetzt +9,1 %, rund 5,3 Mio. €. Das Controlling rechn
 Ein benannter Datenstand, der die alte Version nachvollziehbar ersetzt.
 
 ### Neues Risiko
-Die Zahl liegt über 5 Mio. € – in Welt A ohne Folge, weil keine Schwelle festgelegt ist.
+Über 5 Mio. €, in Welt A ohne Folge: Es gibt keine Schwelle.
 
 ### Governance-Frage
 [[Mandat]]: Ab welcher Summe muss der Bauherr selbst entscheiden?
 :::
 
 ::: nachsatz
-Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+Jede Wahl ist nachvollziehbar; es fehlt die Struktur, in der sie wirkt.
 :::
 
 ::: regie

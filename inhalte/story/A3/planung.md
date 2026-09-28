@@ -12,7 +12,7 @@ status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Zwei Wochen später liegt die günstigere Fassade vor – ohne Auftrag und ohne Entscheidung. Die Projektsteuerung rechnet sie zum Teil schon ein, das Controlling nicht.
+Zwei Wochen später liegt die günstigere Fassade vor, ohne Auftrag und Entscheidung. Die Projektsteuerung rechnet sie teils schon ein, das Controlling nicht.
 
 ### Was fehlt
 Ein Weg, auf dem aus einer Variante eine beantragte Änderung wird.
@@ -32,7 +32,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Die Ursache ist belegt: überwiegend Preissteigerung der Holzbauelemente. In derselben Mail steht, dass die TGA-Fachplanung einen Nachtrag angekündigt hat. Beides bauen Projektsteuerung und Controlling verschieden ein.
+Die Ursache ist belegt: überwiegend die Holzbauelemente. In derselben Mail steht ein angekündigter Nachtrag der TGA-Fachplanung. Projektsteuerung und Controlling bauen beides verschieden ein.
 
 ### Was fehlt
 Ein [[Datenstand]], der festhält, welche Annahmen gelten und welche offen sind.
@@ -52,7 +52,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Die Ausführungsplanung läuft auf der alten Basis weiter. Jede Woche, die ohne Entscheidung vergeht, macht eine spätere Umplanung aufwendiger.
+Die Ausführungsplanung läuft auf alter Basis weiter. Jede Woche ohne Entscheidung macht eine spätere Umplanung aufwendiger.
 
 ### Was fehlt
 Eine Frist, bis zu der über die Abweichung entschieden wird.
@@ -61,11 +61,11 @@ Eine Frist, bis zu der über die Abweichung entschieden wird.
 Geplant wird, was möglicherweise nicht gebaut wird.
 
 ### Governance-Frage
-[[Entscheidungsreife]]: Wer sorgt dafür, dass die Abweichung überhaupt zur Entscheidung kommt?
+[[Entscheidungsreife]]: Wer bringt die Abweichung zur Entscheidung?
 :::
 
 ::: nachsatz
-Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+Jede Wahl ist nachvollziehbar; es fehlt die Struktur, in der sie wirkt.
 :::
 
 ::: regie

@@ -21,19 +21,17 @@ weiter: wendepunkt
 titel: Montag, 07:45 Uhr. Monat 11.
 kurz: Einstieg
 ---
-Montag, 9. November. Am 17. September hat der Bauausschuss den vertagten Punkt beraten; eine Kostenzahl hat er nicht festgelegt. Jetzt steht die Freigabe zum Abschluss von LPH 5 an. Wer sie erteilt und auf welcher Grundlage, hat niemand festgehalten.
-
-Seit dem Wochenende ist klar: Holger Stein fällt für Wochen aus. Seine Excel-Stände versteht niemand vollständig. Und seit heute früh liegt eine Anfrage aus dem Stadtrat vor.
+Montag, 9. November. Die Freigabe zum Abschluss von LPH 5 steht an, und Holger Stein fällt für Wochen aus.
 
 ::: mail
 ---
 von: petersen
-betreff: Anfrage einer Fraktion – Schulcampus Lindenhall-Süd, Kosten und Termin
+betreff: "Anfrage einer Fraktion: Kosten und Termin"
 zeit: "07:38"
 ---
-Über das Büro von Dr. Olbers ist eine Anfrage eingegangen: Eine Fraktion im Stadtrat möchte wissen, mit welchen Kosten und mit welchem Termin für den Schulcampus derzeit gerechnet wird. Die Antwort soll bis Freitag, 13. November, vorliegen.
+Eine Fraktion fragt über das Büro von Dr. Olbers nach Kosten und Termin. Antwort bis Freitag, 13. November.
 
-Welche Unterlagen soll ich zusammenstellen – und in welcher Version?
+Welche Unterlagen, in welcher Version?
 :::
 
 ::: protokoll
@@ -42,10 +40,8 @@ titel: Jour fixe – Ergebnisprotokoll
 datum: 3. November 2026
 von: petersen
 ---
-- Ausführungsplanung LPH 5: Abschluss in Vorbereitung, die Generalplanung führt eine Liste offener Punkte.
-- Freigabe zum Abschluss von LPH 5: Vorlage an wen? Klärung im Lenkungskreis.
-- Kosten: aktueller Stand „Prognose_Nov_v5“ (H. Stein), Erläuterung folgt.
-- Verschiedenes: –
+- Freigabe LPH 5: Vorlage an wen? Klärung im Lenkungskreis.
+- Kosten: Stand „Prognose_Nov_v5“ (H. Stein), Erläuterung folgt.
 :::
 
 ::: akten
@@ -53,7 +49,7 @@ von: petersen
 beschriftung: Kostenstände H. Stein
 anzahl: 5
 ---
-Prognose_Nov_v1 bis v5, dazu Vorgängerdateien seit Mai. Die Annahmen stehen in Zellen und Kommentaren, eine Erläuterung gibt es nicht.
+Prognose_Nov_v1 bis v5; Annahmen nur in Zellen und Kommentaren.
 :::
 
 ::: notiz
@@ -94,19 +90,16 @@ kurz: Was Sie wissen
 knopf: Jetzt entscheiden
 ---
 ::: bekannt
-- Die Freigabe zum Abschluss von LPH 5 steht an; die Generalplanung führt eine Liste offener Punkte.
-- Holger Stein fällt für Wochen aus; eine Stellvertretung ist nicht benannt. Sein letzter Stand heißt „Prognose_Nov_v5“, daneben rechnet das Controlling seine CTC.
-- Eine geltende Kostenzahl hat seit Mai niemand dokumentiert. Wie „Prognose_Nov_v5“ die Posten gegen die Risikoreserve rechnet, weiß nur Holger Stein.
-- Die Lieferzeit der Holzbauelemente (26 statt 16 Wochen) ist seit März bekannt; über den Umgang damit hat niemand entschieden.
-- Die Fraktion erwartet bis Freitag, 13. November, eine Antwort zu Kosten und Termin; Lenkungskreis (17.) und Bauausschuss (19. November) tagen erst danach.
+- „Prognose_Nov_v5“ steht neben der CTC des Controllings; eine geltende Kostenzahl ist seit Mai nicht dokumentiert.
+- Lieferzeit Holz (26 statt 16 Wochen): seit März bekannt, nicht entschieden.
 :::
 
 ::: unbekannt
-- Welche Annahmen in „Prognose_Nov_v5“ stecken {#annahmen}
-- Welche Kostenzahl gilt {#kostenzahl}
-- Wer die Freigabe erteilt – und auf welcher Grundlage {#freigabe}
+- Annahmen in „Prognose_Nov_v5“ {#annahmen}
+- Geltende Kostenzahl {#kostenzahl}
+- Wer freigibt, worauf {#freigabe}
 - Wer Holger Stein vertritt {#vertretung}
-- Welcher Termin sich halten lässt {#termin}
+- Haltbarer Termin {#termin}
 :::
 
 ::: zeitsprung info
@@ -127,7 +120,7 @@ bleibt:
 Offene Risiken steigen.
 
 ### Neu bekannt
-Ein erster Durchgang durch „Prognose_Nov_v5“ zeigt die Struktur: Kostengruppen, Zuschläge, eine Zeile für die Reserve. Mehrere Blätter beziehen sich auf frühere Versionen; welche Annahmen gelten, steht in Kommentaren oder nirgends. Bis Freitag bleiben drei Tage.
+„Prognose_Nov_v5“ zeigt ihre Struktur: Kostengruppen, Zuschläge, eine Zeile für die Reserve. Mehrere Blätter beziehen sich auf frühere Versionen; die Annahmen stehen in Kommentaren oder nirgends. Bis Freitag bleiben drei Tage.
 :::
 :::
 
@@ -160,7 +153,7 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Liegt kritisches Wissen bei einer Person statt in Artefakten und Routinen, wird die Organisation verletzlich, sobald diese Person ausfällt. Dann fehlt nicht Fleiß, sondern die Wiederholbarkeit von Entscheidungen.
+Liegt kritisches Wissen bei einer Person statt in Artefakten und Routinen, wird die Organisation verletzlich, sobald diese Person ausfällt. Dann fehlt die Wiederholbarkeit von Entscheidungen.
 :::
 
 ::: ebene 2

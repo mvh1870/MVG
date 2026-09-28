@@ -12,7 +12,7 @@ status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Im Lenkungskreis setzt sich die Zahl der GML durch; die Projektsteuerung hält ihre Rechnung aufrecht. Sie gehen mit +5,9 % in den Bauausschuss – und mit einem Widerspruch im Hintergrund.
+Im Lenkungskreis setzt sich die Zahl der GML durch; die Projektsteuerung bleibt bei ihrer. Sie gehen mit +5,9 % und einem Widerspruch in den Bauausschuss.
 
 ### Was fehlt
 Ein benannter [[Datenstand]]: Welche Version gilt, und warum?
@@ -66,7 +66,7 @@ Vertagen ohne Frage und ohne Frist verschiebt den Entscheidungsstau nur.
 :::
 
 ::: nachsatz
-Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+Jede Wahl ist nachvollziehbar; es fehlt die Struktur, in der sie wirkt.
 :::
 
 ::: regie

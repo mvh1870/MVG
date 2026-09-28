@@ -1,7 +1,7 @@
 ---
 station: B5
 rolle: bauherr
-frage: Die Vorlage zum Einsatz der Risikoreserve für PRB-004 ist in Vorbereitung; Berechtigung und Höhe des Nachtrags sind nicht abschließend geprüft. Der Lenkungskreis berät am 15. September. Wie entscheiden Sie?
+frage: Die Vorlage zur Risikoreserve für PRB-004 ist in Vorbereitung; der Nachtrag ist nicht abschließend geprüft. Wie entscheiden Sie?
 rueckbezug-auf: A5
 ---
 
@@ -10,7 +10,7 @@ In Welt A haben Sie ‚Nachträglich freigeben‘ gewählt. In Welt B geben Sie 
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Reserve sperren‘ gewählt. In Welt B braucht es keine Sperre: Ohne Ihre Freigabe wird die Reserve nicht eingesetzt, und der Nachtrag steht mit Maßnahme im Problemregister.
+In Welt A haben Sie ‚Reserve sperren‘ gewählt. In Welt B braucht es keine Sperre: Ohne Ihre Freigabe wird die Reserve nicht eingesetzt.
 :::
 
 ::: rueckbezug C
@@ -32,7 +32,7 @@ status:
 Sie geben den Einsatz der Risikoreserve frei. Die Freigabe steht mit Nachweis im Entscheidungsregister, die verbleibende Reserve ist ausgewiesen.
 
 ### Was fehlt
-Die abschließende Prüfung von Berechtigung und Höhe – Sie geben auf einer Vorlage frei, deren Grundlagen noch nicht vollständig sind.
+Die abschließende Prüfung von Berechtigung und Höhe – die Grundlagen der Vorlage sind unvollständig.
 
 ### Neues Risiko
 Die Reserve ist kleiner geworden; das Restrisiko muss neu bewertet werden.
@@ -49,7 +49,7 @@ status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Sie geben frei, was belegt ist; den Rest erst, wenn die Projektsteuerung den Nachtrag auf Berechtigung und Höhe geprüft hat. `PRB-004` bleibt mit Frist offen.
+Sie geben frei, was belegt ist, den Rest nach der Prüfung durch die Projektsteuerung. `PRB-004` bleibt mit Frist offen.
 
 ### Was fehlt
 Die Prüfung des Nachtrags durch die Projektsteuerung und eine zweite Vorlage.

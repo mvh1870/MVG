@@ -132,6 +132,34 @@ EW (unbewertetes Signal) → bestätigt → Risiko → Entscheidung → Freigabe
 ::: zitat k6.4.3-p2
 Die Entscheidungsvorlage bündelt Frage, Datenstand, Optionen, Bewertung und Empfehlung.
 :::
+
+::: wissenscheck neue-fruehwarnung
+### Frage
+Die Restkostenprognose (CTC) verletzt eine Schwelle, zum Thema wird bereits ein Risiko geführt – was entsteht daraus?
+
+### Erklärung
+CTC- oder Schwellenwertverletzungen erzeugen neue Frühwarnungen als neue Signale, nicht als Rückrichtung aus einem bestehenden Risiko. Eine Frühwarnung ist ein unbewertetes Signal; erst wenn sie bestätigt wird, wird daraus ein bewertetes Risiko.
+
+::: antwort a
+---
+titel: Eine neue Frühwarnung
+praefix: "Genau:"
+---
+Die Verletzung erzeugt ein neues, noch unbewertetes Signal; ein bewertetes Risiko wird daraus erst, wenn es bestätigt wird.
+:::
+
+::: antwort b
+---
+titel: Das bestehende Risiko wird zur Frühwarnung zurückgestuft
+praefix: "Nicht ganz:"
+---
+Neue Frühwarnungen entstehen als neue Signale, nicht als Rückrichtung aus einem bestehenden Risiko.
+:::
+
+::: zitat k6.4.3-p2
+Eine Frühwarnung (EW) ist ein unbewertetes Signal. Wird sie bestätigt, wird daraus ein bewertetes Risiko. Aus Risiken, Änderungen oder Problemen kann Entscheidungsbedarf entstehen; CTC- oder Schwellenwertverletzungen erzeugen neue Frühwarnungen als neue Signale, nicht als Rückrichtung aus einem bestehenden Risiko.
+:::
+:::
 :::
 
 ::: abschnitt k6.4.4

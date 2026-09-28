@@ -12,7 +12,7 @@ status:
   kostenunsicherheit: sehr hoch
 ---
 ### Konsequenz
-Die Bauherren-PL legt dem Lenkungskreis zwei Zahlen vor; Sie und die Projektsteuerung sind als Gäste dabei. Frank Deppe fragt, welche stimmt; beide Seiten erklären ihre Annahmen. Entschieden wird nichts.
+Der Lenkungskreis bekommt zwei Zahlen. Frank Deppe fragt, welche stimmt; Sie und die Projektsteuerung erklären Ihre Annahmen. Entschieden wird nichts.
 
 ### Was fehlt
 Ein verbindlicher Datenstand: Welche Version gilt?
@@ -32,7 +32,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Mit Holger Stein gehen Sie Zeile für Zeile durch. Der Unterschied liegt vor allem darin, wie Holzbauelemente und der angekündigte Nachtrag der TGA-Fachplanung angesetzt sind. Fertig werden Sie nach dem Lenkungskreis.
+Mit Holger Stein gehen Sie Zeile für Zeile durch: Der Unterschied liegt vor allem bei Holzbauelementen und dem angekündigten TGA-Nachtrag. Fertig sind Sie nach dem Lenkungskreis.
 
 ### Was fehlt
 Wer entscheidet, welche Annahme gilt?
@@ -52,7 +52,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Frank Deppe bedankt sich und nimmt das Thema in den Lenkungskreis mit. Dort liegt Ihre Meldung neben dem Statusbericht – eine Entscheidungsfrage hat keiner.
+Frank Deppe nimmt das Thema in den Lenkungskreis mit. Dort liegt Ihre Meldung neben dem Statusbericht; eine Entscheidungsfrage hat keiner.
 
 ### Was fehlt
 Eine Schwelle, die festlegt, wer ab welcher Abweichung entscheidet.
@@ -65,7 +65,7 @@ Eine Meldung ohne Empfänger mit Mandat.
 :::
 
 ::: nachsatz
-Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+Jede Wahl ist nachvollziehbar; es fehlt die Struktur, in der sie wirkt.
 :::
 
 ::: regie

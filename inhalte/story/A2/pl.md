@@ -13,10 +13,10 @@ status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Sie bitten die Generalplanung, die größere Mensa einzuplanen. Umgeplant wird, bevor jemand entschieden hat; die Lieferzeit bleibt eine Notiz auf der Themenliste des Jour fixe.
+Sie lassen die größere Mensa einplanen. Umgeplant wird, bevor jemand entschieden hat; die Lieferzeit bleibt eine Notiz im Jour fixe.
 
 ### Was fehlt
-Eine Schwelle, ab der eine Änderung in ein Gremium muss – und ein Ort, an dem sie mit ihrer Auswirkung steht.
+Eine Schwelle, ab der eine Änderung in ein Gremium muss.
 
 ### Neues Risiko
 Mehrkosten ohne Entscheidung; die Folgen kommen später als Nachtrag.
@@ -33,7 +33,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Nach drei Wochen liegen Zahlen vor, aber keine Entscheidungsfrage. Die Schulseite geht inzwischen von einer Zusage aus, die Planung auch.
+Nach drei Wochen liegen Zahlen vor, aber keine Entscheidungsfrage. Schulseite und Planung gehen längst von einer Zusage aus.
 
 ### Was fehlt
 Wer danach entscheidet – und bis wann.
@@ -53,13 +53,13 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Dr. Olbers fragt, was genau sie entscheiden soll. Die Mensa wartet auf den Lenkungskreis; die Lieferzeit gilt als Sache der Planung und rutscht aus dem Blick.
+Dr. Olbers fragt, was genau sie entscheiden soll. Die Mensa wartet auf den Lenkungskreis; die Lieferzeit rutscht aus dem Blick.
 
 ### Was fehlt
 Eine Entscheidungsfrage mit Optionen und festgelegte Stufen, wer was entscheidet.
 
 ### Neues Risiko
-Der Bauherr bekommt Einzelthemen ohne Vorlage; das Terminsignal bleibt unbewertet.
+Einzelthemen ohne Vorlage; das Terminsignal bleibt unbewertet.
 
 ### Governance-Frage
 [[Mandat]]: Welche Stufe ist zuständig – und auf welchem Weg wird eskaliert?

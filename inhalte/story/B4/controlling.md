@@ -53,7 +53,7 @@ status:
   offene-risiken: -1
 ---
 ### Konsequenz
-`AEN-031` ist beschlossen. Ihre nächste CTC zeigt die Änderung mit Stand und Wirkung; der Managementbericht an den Bauausschuss nennt beides.
+`AEN-031` ist beschlossen. Ihre nächste CTC zeigt die Änderung mit Wirkung; der Managementbericht nennt beides.
 
 ### Was fehlt
 Die Antwort, woher die Deckung kommt.
@@ -70,11 +70,11 @@ In Welt A haben Sie ‚Eine Seite nachreichen‘ gewählt. In Welt B ist die ein
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚CTC einarbeiten lassen‘ gewählt. In Welt B gibt es keine Anlage 7 mit zweiter Prognose: Ihre CTC fließt im monatlichen Termin mit Bauherren-PL und PMO in den einen Managementbericht.
+In Welt A haben Sie ‚CTC einarbeiten lassen‘ gewählt. In Welt B gibt es keine Anlage 7 mit zweiter Prognose: Ihre CTC fließt in den einen Managementbericht.
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Schwellenwert vorschlagen‘ gewählt. In Welt B gehören Schwellenwerte je Kostengruppe zu den Registern des Controllings; wird einer verletzt, entsteht eine neue Frühwarnung. Und die Mandatsleiter weist `AEN-031` mit rund 0,4 Mio. € dem Änderungsgremium zu.
+In Welt A haben Sie ‚Schwellenwert vorschlagen‘ gewählt. In Welt B gehören Schwellenwerte je Kostengruppe zu den Registern des Controllings; wird einer verletzt, entsteht eine neue Frühwarnung.
 :::
 
 ::: rueckbezug ohne

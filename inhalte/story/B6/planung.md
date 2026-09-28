@@ -33,7 +33,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Die Bauherren-PL nimmt Ihre Bitte in die Vorlage auf. Dr. Olbers entscheidet auf Vorlage – Freigabe, keine Freigabe oder Freigabe mit Auflagen; der Lenkungskreis berät.
+Die Bauherren-PL nimmt Ihre Bitte in die Vorlage auf; nach der Beratung im Lenkungskreis entscheidet Dr. Olbers.
 
 ### Was fehlt
 Eine Begründung, welcher offene Punkt den Abschluss tatsächlich hindert.
@@ -70,7 +70,7 @@ In Welt A haben Sie ‚Abschluss melden‘ gewählt. In Welt B reicht keine List
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Abschluss zurückhalten‘ gewählt. In Welt B hängt der Abschluss nicht an unbeauftragten Änderungen: Jede Änderung – auch `AEN-012` und `AEN-031` – steht mit Status und Beschlusslage im Änderungsregister.
+In Welt A haben Sie ‚Abschluss zurückhalten‘ gewählt. In Welt B hängt der Abschluss nicht an unbeauftragten Änderungen: Jede steht mit Status und Beschlusslage im Änderungsregister.
 :::
 
 ::: rueckbezug C

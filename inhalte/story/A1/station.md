@@ -21,14 +21,13 @@ weiter: A2
 titel: Montag, 09:00 Uhr. Monat 1.
 kurz: Einstieg
 ---
-Montag, 5. Januar, die erste volle Arbeitswoche des Jahres. Die Unterlagen zum Schulcampus Lindenhall-Süd liegen in drei Ablagen: bei der GML, bei der Projektsteuerung und bei der Generalplanung. Es gibt eine Liste der Beteiligten, aber keine Linien dazwischen: Wer wem was vorlegt und wer was freigibt, steht nirgends. Kosten, Termin, ESG und LCC stehen gleichrangig nebeneinander. Die Genehmigungsplanung ist fertig, der Bauantrag geht diese Woche raus.
+Montag, 5. Januar. Die Unterlagen liegen in drei Ablagen: GML, Projektsteuerung, Generalplanung. Wer wem was vorlegt und wer was freigibt, steht nirgends.
 
 ::: akten
 ---
 beschriftung: Ablagen GML, Projektsteuerung, Generalplanung
 anzahl: 12
 ---
-Drei Ablagen, drei Ordnungssysteme.
 :::
 
 ::: mail
@@ -38,7 +37,7 @@ betreff: "WG: Marktnotiz Holzbau – Preisentwicklung"
 zeit: "08:47"
 anhang: Marktnotiz_Holzbau_GP_Dez.pdf
 ---
-Guten Morgen, anbei die Marktnotiz der Generalplanung. Sie kam kurz vor Weihnachten nur an den alten Verteiler. Die Generalplanung rechnet bei den Holzbauelementen mit steigenden Preisen, einen Betrag nennt sie noch nicht. In welche Ablage soll ich sie legen?
+Marktnotiz der Generalplanung, vor Weihnachten nur an den alten Verteiler: Holzbauelemente werden teurer, Betrag offen. In welche Ablage damit?
 :::
 
 ::: chat
@@ -46,7 +45,7 @@ Guten Morgen, anbei die Marktnotiz der Generalplanung. Sie kam kurz vor Weihnach
 von: stein
 zeit: "09:02"
 ---
-Kostendatei liegt auf dem Laufwerk der Projektsteuerung, Stand Kostenberechnung. Blatt „Holz“ bitte nicht sortieren – die Summen in Spalte K hängen an Blatt 4. Erkläre ich gern, wenn Zeit ist.
+Kostendatei liegt bei der Projektsteuerung, Stand Kostenberechnung. Blatt „Holz“ nicht sortieren, Spalte K hängt an Blatt 4.
 :::
 
 ::: protokoll
@@ -55,11 +54,10 @@ titel: Jour fixe – Protokoll
 datum: Di, 16.12.2025
 von: petersen
 ---
-- Bauantrag: Einreichung Anfang Januar, Unterlagen vollständig (Generalplanung).
-- Kosten: im Rahmen der Projektbasis; Details bei H. Stein.
-- ESG und LCC: Ziele gelten wie beschlossen; Abgleich mit dem Kostenrahmen wird nachgereicht.
-- Holzpreise: Generalplanung beobachtet den Markt.
-- Nächster Jour fixe: 06.01.
+- Bauantrag: Einreichung Anfang Januar.
+- Kosten: im Rahmen; Details bei H. Stein.
+- ESG und LCC: wie beschlossen; Abgleich mit Kosten folgt.
+- Holzpreise: Generalplanung beobachtet.
 :::
 
 ::: notiz
@@ -94,18 +92,17 @@ wert: Stand Kostenberechnung
 :::
 
 ::: bekannt
-- Projektbasis 58,4 Mio. € brutto, vom Stadtrat beschlossen; darin 2,9 Mio. € Risikoreserve.
-- LPH 4: Die Genehmigungsplanung ist fertig, der Bauantrag geht diese Woche raus.
-- Vier Ziele – Kosten, Termin, ESG und LCC –, keine Rangfolge.
-- Eine Marktnotiz der Generalplanung: Holzpreise steigen, Betrag offen.
-- Die Kostendatei hat Holger Stein gebaut; er pflegt sie allein.
+- Projektbasis 58,4 Mio. € brutto, darin 2,9 Mio. € Risikoreserve.
+- LPH 4: Der Bauantrag geht diese Woche raus.
+- Vier Ziele (Kosten, Termin, ESG, LCC), keine Rangfolge.
+- Die Kostendatei pflegt Holger Stein allein.
 :::
 
 ::: unbekannt
-- Welches Ziel im Konfliktfall vorgeht {#zielprioritaet}
-- Wie stark der Holzpreis die Kosten trifft {#holzpreis}
-- Auf welchen Annahmen die Kostendatei beruht {#annahmen}
-- Wer was entscheidet, freigibt oder eskaliert {#zustaendigkeit}
+- Welches Ziel vorgeht {#zielprioritaet}
+- Was der Holzpreis kostet {#holzpreis}
+- Welche Annahmen in der Kostendatei stecken {#annahmen}
+- Wer entscheidet, freigibt, eskaliert {#zustaendigkeit}
 :::
 
 ::: zeitsprung info
@@ -125,7 +122,7 @@ bleibt:
 Offene Risiken steigen um eins.
 
 ### Neu bekannt
-Holger Stein erklärt die Kostendatei in einer Stunde: Die Holzbauelemente stehen mit den Preisen der Kostenberechnung darin, ein Aufschlag für steigende Preise ist nicht eingerechnet. Die Generalplanung bestätigt die Tendenz der Marktnotiz, einen Betrag nennt sie weiter nicht. Nach der Zielpriorität fragt in dieser Woche niemand.
+Holger Stein erklärt die Kostendatei: Holz steht mit den Preisen der Kostenberechnung darin, ohne Aufschlag. Die Generalplanung bestätigt die Tendenz, nennt aber keinen Betrag. Nach der Zielpriorität fragt niemand.
 :::
 :::
 

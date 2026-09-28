@@ -13,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: -1
 ---
 ### Konsequenz
-Die Vorlage hat Frage, Optionen und Auswirkung. Das Änderungsgremium beschließt in der Sitzung; ob die Deckung aus der Risikoreserve kommt, geht als Frage an den Bauherrn.
+Die Vorlage hat Frage, Optionen und Auswirkung; das Gremium beschließt. Ob die Deckung aus der Risikoreserve kommt, geht als Frage an den Bauherrn.
 
 ### Was fehlt
 Die Freigabe des Einsatzes der Risikoreserve – sie liegt nicht beim Gremium.
@@ -53,7 +53,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Im Änderungsregister fällt es auf: `AEN-031` steht auf „In Prüfung“, die Planung ist schon weiter. Die Bauherren-PL, die das Register führt, hält die Arbeit bis zum Beschluss an.
+`AEN-031` steht im Register auf „In Prüfung“, die Planung ist schon weiter. Die Bauherren-PL hält die Arbeit bis zum Beschluss an.
 
 ### Was fehlt
 Der Beschluss – die Auflage gilt, aber wie sie umgesetzt wird, ist eine Entscheidung.
@@ -66,7 +66,7 @@ Vorarbeit auf einer Lösung, die das Gremium vielleicht nicht wählt.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Auflagen einarbeiten‘ gewählt. In Welt B wird daraus kein stiller Nachtrag: Die Auflagen stehen als `AEN-031` im Änderungsregister, und das Änderungsgremium entscheidet auf Vorlage.
+In Welt A haben Sie ‚Auflagen einarbeiten‘ gewählt. In Welt B wird daraus kein stiller Nachtrag: `AEN-031` steht im Änderungsregister, das Gremium entscheidet auf Vorlage.
 :::
 
 ::: rueckbezug B

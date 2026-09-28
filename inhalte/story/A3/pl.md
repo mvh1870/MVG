@@ -14,7 +14,7 @@ status:
   kostenunsicherheit: sehr hoch
 ---
 ### Konsequenz
-Die Arbeit läuft weiter. Zwei Wochen später hat die Generalplanung eine günstigere Fassade ‚schon mal durchgerechnet‘ – ohne Auftrag und ohne Entscheidung.
+Zwei Wochen später hat die Generalplanung ohne Auftrag eine günstigere Fassade ‚schon mal durchgerechnet‘.
 
 ### Was fehlt
 Wer entscheidet über Änderungen am Projektumfang – und ab welcher Summe?
@@ -35,7 +35,7 @@ status:
   terminrisiko: hoch
 ---
 ### Konsequenz
-Sie verlangen eine Entscheidungsvorlage. Die Projektsteuerung fragt zurück: ‚Nach welchem Standard – und wer entscheidet dann?‘ Drei Wochen später liegt ein 40-seitiger Statusbericht vor, aber keine Entscheidungsfrage.
+Die Projektsteuerung fragt zurück: ‚Nach welchem Standard – und wer entscheidet dann?‘ Drei Wochen später liegt ein 40-seitiger Statusbericht vor, ohne Entscheidungsfrage.
 
 ### Was fehlt
 Ein Standard für Entscheidungsvorlagen: Frage, Optionen, Empfehlung.
@@ -56,7 +56,7 @@ status:
   terminrisiko: hoch
 ---
 ### Konsequenz
-Die Geschäftsführung nimmt das Thema in den Lenkungskreis mit. Dort wird vertagt: ‚Bitte erst die Ursachen klären.‘ Das Thema ist jetzt oben – aber ohne Optionen und Empfehlung.
+Die Geschäftsführung nimmt das Thema in den Lenkungskreis. Dort heißt es: ‚Bitte erst die Ursachen klären.‘ Das Thema ist oben, aber ohne Optionen und Empfehlung.
 
 ### Was fehlt
 Entscheidungsoptionen, Empfehlung, Konsequenzen.
@@ -90,7 +90,7 @@ Parallele Datenstände – Entscheidungen beruhen auf widersprüchlichen Grundla
 :::
 
 ::: nachsatz
-Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+Jede Wahl ist nachvollziehbar; es fehlt die Struktur, in der sie wirkt.
 :::
 
 ::: regie

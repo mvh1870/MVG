@@ -21,16 +21,13 @@ weiter: A6
 titel: Mittwoch, 14:00 Uhr. Monat 9.
 kurz: Einstieg
 ---
-Mittwoch, 9. September. Die Sommerpause ist vorbei. Der Lenkungskreis am 21. Juli hat die Punkte aus dem Ausschuss beraten; eine Grundlage, auf die sich alle beziehen, ist daraus nicht entstanden.
-
-Seit Juni ist dazugekommen: der Nachtrag der TGA-Fachplanung, ein angekündigter Nachtrag zur Mensa-Umplanung, die Brandschutzauflagen. Aylin Kaya hat die Posten gegen die Risikoreserve von 2,9 Mio. € gehalten. Die reicht schon für die Abweichung aus dem Mai nicht – und ihren Einsatz hat niemand freigegeben.
+Mittwoch, 9. September, nach der Sommerpause. Der Lenkungskreis am 21. Juli hat beraten; eine gemeinsame Grundlage ist nicht entstanden. Seit Juni sind Brandschutzauflagen, ein Nachtrag der TGA-Fachplanung und ein angekündigter Nachtrag zur Mensa dazugekommen.
 
 ::: akten
 ---
 beschriftung: Nachträge und Auflagen 2026
 anzahl: 3
 ---
-Brandschutz, Mensa, TGA – drei Vorgänge, drei Ablagen.
 :::
 
 ::: protokoll
@@ -39,9 +36,9 @@ titel: Jour fixe – Auszug
 datum: Di, 08.09.2026
 von: petersen
 ---
-- Brandschutzauflagen aus der Baugenehmigung (Juni): Mehrkosten grob 0,4 Mio. €; Stand der Einarbeitung offen.
-- Mensa: Die Schulseite plant mit der größeren Variante. Die Generalplanung kündigt einen Nachtrag zur Umplanung an; eine Beauftragung ist nicht vermerkt.
-- Nachtrag der TGA-Fachplanung liegt vor; die Projektsteuerung prüft.
+- Brandschutzauflagen (Juni): grob 0,4 Mio. €; Einarbeitung offen.
+- Mensa: Nachtrag zur Umplanung angekündigt, Beauftragung nicht vermerkt.
+- Nachtrag TGA-Fachplanung liegt vor; Projektsteuerung prüft.
 - Deckung der Mehrkosten: nicht besprochen.
 :::
 
@@ -50,7 +47,7 @@ von: petersen
 von: kaya
 zeit: "13:48"
 ---
-Ich habe die Reserve gegengerechnet. Brandschutz, Mensa, TGA laufen gegen die 2,9 Mio. € – und die reichen schon für die Mai-Abweichung nicht. Wer hat das freigegeben?
+Brandschutz, Mensa, TGA laufen gegen die Reserve von 2,9 Mio. €, und die reicht schon für die Mai-Abweichung nicht. Wer hat das freigegeben?
 :::
 
 ::: notiz
@@ -91,19 +88,17 @@ kurz: Was Sie wissen
 knopf: Jetzt entscheiden
 ---
 ::: bekannt
-- Die Projektbasis enthält eine Risikoreserve von 2,9 Mio. €. Brandschutz, Mensa und TGA laufen gegen sie; eine Freigabe des Einsatzes gibt es nicht.
-- Die Reserve reicht schon für die Abweichung aus dem Mai nicht: ganz eingesetzt, blieben nach Projektsteuerung rund 1,8 Mio. € oder mehr, nach Controlling rund 0,5 Mio. € über der Projektbasis.
-- Brandschutzauflagen aus der Baugenehmigung: grob 0,4 Mio. €; der Nachtrag der TGA-Fachplanung liegt vor.
-- Die Schulseite plant mit der größeren Mensa; die Generalplanung kündigt einen Nachtrag zur Umplanung an, eine Beauftragung fehlt.
-- Der Lenkungskreis tagt am 15. September, der Bauausschuss am 17. September.
+- Brandschutz, Mensa und TGA laufen gegen die Risikoreserve (2,9 Mio. €); eine Freigabe des Einsatzes gibt es nicht.
+- Die Reserve reicht schon für die Mai-Abweichung nicht: Ganz eingesetzt, blieben rund 1,8 Mio. € oder mehr (Projektsteuerung) bzw. rund 0,5 Mio. € (Controlling) über der Projektbasis.
+- Lenkungskreis am 15., Bauausschuss am 17. September.
 :::
 
 ::: unbekannt
-- Welche Abweichung gilt – und was dann von der Reserve bleibt {#rest}
-- Wer die Posten der Reserve zugeordnet hat {#veranlasst}
-- Wie hoch der Nachtrag zur Mensa-Umplanung wird {#mensa}
-- Welche Risiken die Reserve noch tragen soll {#restrisiko}
-- Wer über den Einsatz der Reserve entscheidet {#zustaendigkeit}
+- Was von der Reserve bleibt {#rest}
+- Wer die Posten zugeordnet hat {#veranlasst}
+- Wie hoch der Mensa-Nachtrag wird {#mensa}
+- Welche Risiken die Reserve noch trägt {#restrisiko}
+- Wer über die Reserve entscheidet {#zustaendigkeit}
 :::
 
 ::: zeitsprung info
@@ -124,7 +119,7 @@ bleibt:
 Terminrisiko steigt.
 
 ### Neu bekannt
-Der Nachtrag der Generalplanung zur Mensa-Umplanung liegt vor; in keiner Prognose steht er schon. Die Zuordnung der Posten zur Reserve lässt sich zurückverfolgen – auf Jour-fixe-Punkte, Mails und die Zusage zur Mensa; eine Freigabe ist nicht darunter. Der Lenkungskreis am 15. September ist vorbei; die Reserve stand nicht auf der Tagesordnung.
+Der Mensa-Nachtrag liegt vor, in keiner Prognose. Die Posten der Reserve gehen auf Jour-fixe-Punkte, Mails und die Mensa-Zusage zurück; eine Freigabe ist nicht darunter. Der Lenkungskreis am 15. September ist vorbei, ohne die Reserve auf der Tagesordnung.
 :::
 :::
 

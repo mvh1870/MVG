@@ -13,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: -1
 ---
 ### Konsequenz
-Der Lenkungskreis berät die Vorlage; ob Dr. Miriam Olbers den Einsatz der Risikoreserve auf dem benannten Datenstand freigibt, entscheidet sie selbst. Ihre Entscheidung steht mit Nachweis im Entscheidungsregister.
+Der Lenkungskreis berät die Vorlage; über den Einsatz der Risikoreserve entscheidet Dr. Miriam Olbers selbst, mit Nachweis im Entscheidungsregister.
 
 ### Was fehlt
 Die Prüfung des Nachtrags auf Berechtigung und Höhe muss bis zur Beratung vorliegen.
@@ -53,7 +53,7 @@ status:
   entscheidungsfaehigkeit: -1
 ---
 ### Konsequenz
-Aylin Kaya fragt nach, wer freigibt: Die Freigabe des Einsatzes der Risikoreserve ist nicht delegierbar. Die Vorlage geht doch an Dr. Miriam Olbers, eine Woche später.
+Aylin Kaya fragt nach: Die Freigabe des Einsatzes der Risikoreserve ist nicht delegierbar. Die Vorlage geht eine Woche später doch an Dr. Miriam Olbers.
 
 ### Was fehlt
 Nichts in der Struktur – die Regel hat gegriffen.

@@ -49,6 +49,38 @@ form: schwelle
 ::: zitat k3.2-p1
 Die Tabelle zeigt den Kern des MVG-Ansatzes: Nicht jede Tätigkeit muss beim Bauherrn liegen. Im Gegenteil. Professionelle Projekte brauchen Vorbereitung durch Fachrollen. Der Bauherr muss aber wissen, wo Vorbereitung endet und eigene Entscheidung beginnt.
 :::
+
+::: wissenscheck vorbereitung-entscheidung
+### Frage
+Die Projektsteuerung hat die Varianten analysiert und die Entscheidungsvorlage vorbereitet – wer legitimiert die wesentliche Entscheidung?
+
+### Erklärung
+Analyse, Vorbereitung, Koordination und Dokumentation können durch Dritte erfolgen; die wesentliche Entscheidung muss der Bauherr selbst legitimieren. Er muss wissen, wo Vorbereitung endet und eigene Entscheidung beginnt.
+
+::: antwort a
+---
+titel: Der Bauherr selbst
+praefix: "Genau:"
+---
+Auch wenn Dritte vorbereiten, muss der Bauherr die wesentliche Entscheidung selbst legitimieren.
+:::
+
+::: antwort b
+---
+titel: Die Projektsteuerung, weil sie die Vorlage erarbeitet hat
+praefix: "Nicht ganz:"
+---
+Vorbereitung kann delegiert werden; die Legitimation der wesentlichen Entscheidung bleibt beim Bauherrn.
+:::
+
+::: zitat k3.1-p1
+Nichtdelegierbare Bauherrenverantwortungen sind jene Verantwortungen, bei denen der Bauherr Zweck, Ziel, Mandat, wesentliche Entscheidung, Risikoannahme, Freigabe, Datenstand und Nachweis selbst legitimieren muss, auch wenn Analyse, Vorbereitung, Koordination und Dokumentation durch Dritte erfolgen.
+:::
+
+::: zitat k3.2-p1
+Professionelle Projekte brauchen Vorbereitung durch Fachrollen. Der Bauherr muss aber wissen, wo Vorbereitung endet und eigene Entscheidung beginnt.
+:::
+:::
 :::
 
 ::: abschnitt k3.3

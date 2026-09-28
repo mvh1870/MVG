@@ -5,11 +5,11 @@ rueckbezug-auf: wirklichkeit
 ---
 
 ::: rueckbezug A
-Im Dezember haben Sie ‚MVG-Neuinitialisierung beauftragen‘ gewählt. Die Spur hatte zu wenig Entscheidungsfähigkeit übrig gelassen, als dass eine Neuordnung bis zum Frühjahr hätte tragen können: Im Januar haben Sie zuerst die Freigabe zum Abschluss von LPH 5 erteilt, mit Auflagen.
+Im Dezember haben Sie ‚MVG-Neuinitialisierung beauftragen‘ gewählt. Für die Neuordnung fehlte Ihrer Spur die Entscheidungsfähigkeit; im Januar haben Sie zuerst mit Auflagen freigegeben.
 :::
 
 ::: rueckbezug B
-Im Dezember haben Sie ‚Freigabe mit Auflagen anstreben‘ gewählt. Im Januar haben Sie die Freigabe auf Vorlage der Bauherren-PL erteilt; im März steht oben auf der Tagesordnung, was aus den Auflagen geworden ist.
+Im Dezember haben Sie ‚Freigabe mit Auflagen anstreben‘ gewählt. Im Januar haben Sie auf Vorlage der Bauherren-PL freigegeben; im März steht oben, was aus den Auflagen geworden ist.
 :::
 
 ::: rueckbezug C

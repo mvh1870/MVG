@@ -94,6 +94,34 @@ Bauherr Mentoren übernimmt keine operative Dauer-Projektsteuerung und keine Lin
 form: karten
 ---
 :::
+
+::: wissenscheck leistungsgrenzen
+### Frage
+Bauherr Mentoren begleitet Ihr Projekt, und eine Bauherrenentscheidung steht an – wer trifft sie?
+
+### Erklärung
+BM ersetzt keine Bauherrenentscheidung und keine Gremienentscheidung. BM liefert Struktur, Entscheidungsreife, Mandatsklarheit, Nachweislogik, Befähigung und Übergang in den Regelbetrieb.
+
+::: antwort a
+---
+titel: Die Bauherrenorganisation selbst
+praefix: "Genau:"
+---
+BM liefert Struktur und Entscheidungsreife, ersetzt die Bauherrenentscheidung aber nicht.
+:::
+
+::: antwort b
+---
+titel: Bauherr Mentoren, stellvertretend
+praefix: "Nicht ganz:"
+---
+BM ersetzt keine Bauherrenentscheidung und übernimmt keine operative Dauer-Projektsteuerung.
+:::
+
+::: zitat k7.6-p1
+Bauherr Mentoren übernimmt keine operative Dauer-Projektsteuerung und keine Linienfunktion. BM ersetzt keine Bauherrenentscheidung, keine Gremienentscheidung, keine Fachplanung, keine Bauleitung, keine Objektüberwachung und keine Rechtsberatung. […] BM liefert Struktur, Entscheidungsreife, Mandatsklarheit, Nachweislogik, Befähigung und Übergang in den Regelbetrieb.
+:::
+:::
 :::
 
 ::: ebenen

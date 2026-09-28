@@ -1,7 +1,7 @@
 ---
 station: wirklichkeit
 rolle: planung
-frage: Die Ausführungsplanung läuft, die Freigabe zum Abschluss von LPH 5 ist offen. Was schlagen Sie der Bauherren-PL als Generalplanung vor?
+frage: Die Freigabe zum Abschluss von LPH 5 ist offen. Was schlagen Sie der Bauherren-PL vor?
 rueckbezug-auf: A6
 ---
 
@@ -10,7 +10,7 @@ Im November haben Sie ‚Abschluss melden‘ gewählt, mit 23 offenen Punkten. W
 :::
 
 ::: rueckbezug B
-Im November haben Sie ‚Abschluss zurückhalten‘ gewählt, bis Mensa und Auflagen beauftragt sind. Beauftragt ist beides nicht; die Freigabe wartet weiter auf Entscheidungen, die niemand trifft.
+Im November haben Sie ‚Abschluss zurückhalten‘ gewählt, bis Mensa und Auflagen beauftragt sind. Beauftragt ist beides nicht; die Freigabe wartet weiter.
 :::
 
 ::: rueckbezug C
@@ -30,7 +30,7 @@ status:
   kostenunsicherheit: -1
 ---
 ### Konsequenz
-Sie regen bei der Bauherren-PL eine [[MVG-Neuinitialisierung]] an, die sie zu Dr. Olbers bringt. Für die ersten 30 Tage legt die Generalplanung offen, welche Änderungen ohne Beschluss in der Planung stecken – Mensa, Brandschutzauflagen – und welche eine bauherrenseitige Entscheidung brauchen. Den Auftrag erteilt Dr. Olbers.
+Sie regen bei der Bauherren-PL eine [[MVG-Neuinitialisierung]] an und legen offen, welche Änderungen ohne Beschluss in der Planung stecken – Mensa, Brandschutzauflagen. Den Auftrag erteilt Dr. Olbers.
 
 ### Was fehlt
 Die Mitwirkung des Bauherrn – die Neuordnung kann die Planung nicht allein tragen.
@@ -71,7 +71,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Sie schlagen vor, Varianten für eine [[Neufestlegung der Projektbasis]] zu rechnen; Projektsteuerung und Bauherren-PL würden daraus eine Entscheidungsvorlage machen. Beschließen würde der Bauherr im Lenkungskreis, außerhalb der regulären Freigabereihe; bis dahin sind alle Zahlen vorläufig.
+Sie schlagen vor, Varianten für eine [[Neufestlegung der Projektbasis]] zu rechnen. Beschließen würde der Bauherr im Lenkungskreis, außerhalb der regulären Freigabereihe.
 
 ### Was fehlt
 Ein Datenstand, auf dem die neue Basis beruhen soll.
@@ -84,7 +84,7 @@ Eine neue Projektbasis auf der alten Steuerungslogik.
 :::
 
 ::: nachsatz
-Sie schlagen vor, Dr. Olbers entscheidet. Wohin das führt, hängt auch davon ab, was bis hierher geschehen ist.
+Sie schlagen vor, Dr. Olbers entscheidet. Wohin das führt, hängt auch vom bisherigen Weg ab.
 :::
 
 ::: regie

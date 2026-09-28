@@ -12,10 +12,10 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Der erste Bericht, Stand Januar, hat rund 40 Seiten und 14 Ampeln. Die Marktnotiz zum Holzpreis steht auf Seite 17 als gelbe Ampel; niemand fragt nach.
+Der erste Bericht hat rund 40 Seiten und 14 Ampeln. Die Marktnotiz steht auf Seite 17 als gelbe Ampel; niemand fragt nach.
 
 ### Was fehlt
-Eine Frage, mit der der Bericht gelesen wird – und jemand, der daraus eine Entscheidung macht.
+Eine Frage an den Bericht und jemand, der daraus eine Entscheidung macht.
 
 ### Neues Risiko
 Signale gehen in der Seitenzahl unter.
@@ -32,7 +32,7 @@ status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Holger Stein legt eine neue Fassung an, „v2_Holz“. Die Marktnotiz ist jetzt eine Zahl, aber kein bewertetes Risiko – und die Rechnung versteht nur er.
+Holger Stein legt „v2_Holz“ an. Die Marktnotiz ist jetzt eine Zahl, aber kein bewertetes Risiko; die Rechnung versteht nur er.
 
 ### Was fehlt
 Eine Festlegung, welche Fassung gilt; Wissen in Artefakten statt in einem Kopf.
@@ -52,7 +52,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Die Liste hat zwölf Punkte. Der Jour fixe nimmt sie zur Kenntnis; keinem Punkt ist eine Rolle oder ein nächster Schritt zugeordnet.
+Zwölf Punkte, zur Kenntnis genommen im Jour fixe; keinem ist eine Rolle oder ein nächster Schritt zugeordnet.
 
 ### Was fehlt
 Verantwortliche Rolle, Turnus und ein Weg vom Risiko zur Entscheidung.

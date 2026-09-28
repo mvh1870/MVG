@@ -120,6 +120,46 @@ titel: Projektbasis, Eskalation, Regelbetrieb
 ::: merksatz
 Zwischen Lagebild und stabilisierter Entscheidungsarchitektur liegt die zentrale Bauherrenfrage: [[zitat:k11.2-p2|Welche Entscheidungen müssen jetzt neu legitimiert werden, damit das Projekt wieder führbar wird?]]
 :::
+
+::: wissenscheck neuordnung
+### Frage
+Ihr laufendes Projekt ist im bisherigen Modus nicht mehr ausreichend führbar – was ordnet eine MVG-Neuinitialisierung neu?
+
+### Erklärung
+Die MVG-Neuinitialisierung ordnet nicht das gesamte Projekt fachlich neu, sondern die Führungs- und Entscheidungslogik. Sie ist keine Freigabe; ihr Ergebnis kann die Nachholung oder Wiederholung einzelner Freigaben sein, ohne die Abfolge LPH 0–9 zu verändern.
+
+::: antwort a
+---
+titel: Die Führungs- und Entscheidungslogik
+praefix: "Genau:"
+---
+Neu geordnet wird, wie geführt und entschieden wird, nicht das Projekt fachlich.
+:::
+
+::: antwort b
+---
+titel: Das gesamte Projekt, fachlich von vorn
+praefix: "Nicht ganz:"
+---
+Die MVG-Neuinitialisierung ordnet nicht das gesamte Projekt fachlich neu.
+:::
+
+::: antwort c
+---
+titel: Die Abfolge der Leistungsphasen
+praefix: "Nicht ganz:"
+---
+Einzelne Freigaben können nachgeholt oder wiederholt werden; die Abfolge LPH 0–9 bleibt unverändert.
+:::
+
+::: zitat k11.2-p1
+Die MVG-Neuinitialisierung ordnet nicht das gesamte Projekt fachlich neu. Sie ordnet die Führungs- und Entscheidungslogik.
+:::
+
+::: zitat k11-p1
+Eine MVG-Neuinitialisierung ist keine Freigabe; ihr Ergebnis kann die Nachholung oder Wiederholung einzelner Freigaben sein, ohne die Abfolge LPH 0–9 zu verändern.
+:::
+:::
 :::
 
 ::: abschnitt k11.3

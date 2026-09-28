@@ -508,3 +508,14 @@ a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
 /* Permalink-Ziele nicht hinter der festen Kopfleiste (WCAG 2.4.11) */
 .lernseite .absatz, .lernseite [data-abschnitt], .lernseite .impressum { scroll-margin-top: 72px; }
 
+/* Wissenscheck (P11.6): Frage, Antworten, Rückmeldung mit Erklärung und Beleg – ohne Punkte */
+.wissenscheck { display: grid; gap: var(--a-3); padding: var(--a-5); border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 4px 0 0 var(--petrol), inset 0 0 0 1px var(--linie); }
+.wissenscheck > .t-label { color: var(--tinte-2); }
+.wc-frage { font: 600 var(--gr-l)/1.35 var(--schrift-text); color: var(--tinte); }
+.wc-frage p { margin: 0; }
+.wc-antworten { flex-wrap: wrap; gap: var(--a-2); }
+.wc-antwort[aria-pressed="true"] { box-shadow: inset 0 0 0 2px var(--navy); }
+.wc-ergebnis:empty { display: none; }
+.wc-ergebnis { display: grid; gap: var(--a-3); padding-top: var(--a-3); border-top: 1px solid var(--linie); }
+.wc-rueckmeldung p, .wc-erklaerung p { margin: 0; }
+

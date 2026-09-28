@@ -13,7 +13,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Bis Donnerstagnacht sitzen Sie in „Prognose_Nov_v5“ und ihren Vorgängern. Am Freitag gibt es eine Zahl; welche Annahmen darin stecken, können Sie nur zum Teil sagen.
+Bis Donnerstagnacht sitzen Sie in „Prognose_Nov_v5“. Die Zahl am Freitag können Sie nur zum Teil erklären.
 
 ### Was fehlt
 Wissen in Artefakten statt in einem Kopf; eine geregelte Stellvertretung.
@@ -33,7 +33,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Ihre Antwort: eine Bandbreite zwischen der CTC des Controllings und der letzten Prognose der Projektsteuerung, Annahmen offen. Dr. Olbers gibt sie so an die Fraktion weiter; die nächste Frage lautet, wer die Bandbreite eingrenzt.
+Ihre Bandbreite reicht von der CTC des Controllings bis zur letzten Prognose, Annahmen offen. Dr. Olbers gibt sie an die Fraktion weiter; nun fragt man, wer sie eingrenzt.
 
 ### Was fehlt
 Ein geltender Datenstand und eine Risikolage, die die Bandbreite erklärt.
@@ -54,7 +54,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Ihre Mail nennt drei Gründe: kein geltender Datenstand, unbewertete Folgekosten, keine Stellvertretung für Holger Stein. Die Freigabe bleibt offen; die Antwort an den Stadtrat auch.
+Ihre Mail nennt drei Gründe: kein geltender Datenstand, unbewertete Folgekosten, keine Stellvertretung. Freigabe und Antwort an den Stadtrat bleiben offen.
 
 ### Was fehlt
 Die Mindestgrundlagen, auf denen eine Freigabe beruhen müsste.
@@ -67,23 +67,23 @@ LPH 5 läuft weiter, ohne dass jemand über ihren Abschluss entscheidet.
 :::
 
 ::: nachsatz
-Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+Jede Wahl ist nachvollziehbar; es fehlt die Struktur, in der sie wirkt.
 :::
 
 ::: rueckbezug A
-Im Mai haben Sie ‚Eigene Zahl vertreten‘ gewählt. Gebaut hat die Zahl Holger Stein, vertreten haben Sie sie. Jetzt fehlt er – und mit ihm die Annahmen dahinter.
+Im Mai haben Sie ‚Eigene Zahl vertreten‘ gewählt. Gebaut hat sie Holger Stein; jetzt fehlt er und mit ihm die Annahmen.
 :::
 
 ::: rueckbezug B
-Im Mai haben Sie ‚Zahlen abgleichen‘ gewählt. Ein Teil der Differenz erklärte sich aus den Annahmen zum Holzpreis; welche gilt, hat niemand festgelegt. Diese Annahmen stecken heute in Holger Steins Zellen.
+Im Mai haben Sie ‚Zahlen abgleichen‘ gewählt. Welche Annahme zum Holzpreis gilt, hat niemand festgelegt; sie steckt heute in Holger Steins Zellen.
 :::
 
 ::: rueckbezug C
-Im Mai haben Sie ‚Prognose aktualisieren‘ gewählt. Aus der Aktualisierung sind fünf Novemberfassungen geworden. Die letzte, „Prognose_Nov_v5“, kann ohne Holger Stein niemand erklären.
+Im Mai haben Sie ‚Prognose aktualisieren‘ gewählt. Daraus wurden fünf Novemberfassungen; die letzte kann ohne Holger Stein niemand erklären.
 :::
 
 ::: rueckbezug ohne
-Im Mai standen zwei Kostenzahlen nebeneinander. Im November stehen sie noch immer nebeneinander – und die eine kann ohne Holger Stein niemand erklären.
+Im Mai standen zwei Kostenzahlen nebeneinander. Im November ist es noch so, und die eine kann ohne Holger Stein niemand erklären.
 :::
 
 ::: regie

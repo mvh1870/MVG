@@ -66,7 +66,7 @@ Die Freigabe der Reserve verzögert sich um einen Monat.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Reserve einrechnen‘ gewählt. In Welt B wird die Reserve nicht still verbraucht: Ihr Einsatz braucht die Freigabe des Bauherrn, und die Vorlage zeigt, was danach übrig ist.
+In Welt A haben Sie ‚Reserve einrechnen‘ gewählt. In Welt B wird die Reserve nicht still verbraucht: Ihr Einsatz braucht die Freigabe des Bauherrn.
 :::
 
 ::: rueckbezug B
@@ -74,7 +74,7 @@ In Welt A haben Sie ‚Reserveverbrauch offenlegen‘ gewählt. In Welt B landet
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Mehrkosten getrennt ausweisen‘ gewählt. In Welt B gibt es keinen Streit um die Rechnung: Es gilt ein Datenstand, und das Problem steht mit Kennung im Problemregister.
+In Welt A haben Sie ‚Mehrkosten getrennt ausweisen‘ gewählt. In Welt B gilt ein Datenstand, und das Problem steht mit Kennung im Problemregister.
 :::
 
 ::: rueckbezug ohne

@@ -70,11 +70,11 @@ In Welt A haben Sie ‚Steins Dateien rekonstruieren‘ gewählt. In Welt B muss
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Bandbreite nennen‘ gewählt. In Welt B gibt es eine geltende Zahl mit Version, und die Unsicherheit steht als bewertetes Risiko im Register – nicht als Spanne in einer Mail.
+In Welt A haben Sie ‚Bandbreite nennen‘ gewählt. In Welt B gibt es eine geltende Zahl mit Version; die Unsicherheit steht als bewertetes Risiko im Register.
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Freigabe zurückstellen empfehlen‘ gewählt. In Welt B ist sichtbar, was fehlt: Kernfrage und Mandat stehen in der Vorlage, Datenstandsbestätigung und Empfehlung haben einen Termin vor dem 17. November.
+In Welt A haben Sie ‚Freigabe zurückstellen empfehlen‘ gewählt. In Welt B ist sichtbar, was fehlt – und Datenstandsbestätigung und Empfehlung haben einen Termin vor dem 17. November.
 :::
 
 ::: rueckbezug ohne

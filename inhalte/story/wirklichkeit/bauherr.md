@@ -10,11 +10,11 @@ Im November haben Sie ‚Freigabe verschieben‘ gewählt. Die Fraktion hat eine
 :::
 
 ::: rueckbezug B
-Im November haben Sie ‚Letzte Zahl nennen‘ gewählt. Die Zahl aus Holger Steins letztem Stand steht jetzt in der Welt. Ob sie hält, weiß auch er erst, wenn jemand sagt, für welche Frage sie gilt.
+Im November haben Sie ‚Letzte Zahl nennen‘ gewählt. Die Zahl aus Holger Steins letztem Stand ist in der Welt – ob sie hält, weiß auch er nicht, solange offen ist, für welche Frage sie gilt.
 :::
 
 ::: rueckbezug C
-Im November haben Sie ‚Lage offenlegen‘ gewählt. Die Fraktion weiß, dass es keine belastbare Zahl gibt; die Aufstellung der offenen Entscheidungen haben Sie im Lenkungskreis verlangt – vorgelegt hat sie bis heute niemand. Jetzt fehlt der Weg von der Offenheit zur Entscheidung.
+Im November haben Sie ‚Lage offenlegen‘ gewählt. Die Fraktion weiß, dass es keine belastbare Zahl gibt; die Aufstellung der offenen Entscheidungen hat Ihnen bis heute niemand vorgelegt.
 :::
 
 ::: rueckbezug ohne
@@ -30,13 +30,13 @@ status:
   kostenunsicherheit: -1
 ---
 ### Konsequenz
-Im Lenkungskreis entscheiden Sie über den Auftrag zu einer [[MVG-Neuinitialisierung]]: kein Neustart, sondern eine Neuordnung der Führungs- und Entscheidungslogik. Sie benennen die verantwortliche Rolle auf Bauherrenseite und sagen zu, was nur Sie können – Entscheidungen zu Zielprioritäten, Mandaten, Schwellen und Freigaben. Die ersten 30 Tage gelten der Sichtbarkeit.
+Sie erteilen den Auftrag zu einer [[MVG-Neuinitialisierung]], benennen die verantwortliche Rolle auf Bauherrenseite und sagen zu, was nur Sie können: Entscheidungen zu Zielprioritäten, Mandaten, Schwellen und Freigaben.
 
 ### Was fehlt
-Ein Lagebild, ein Entscheidungsinventar und ein bereinigter Datenstand – all das entsteht erst. Und Ihre Zeit, regelmäßig.
+Lagebild, Entscheidungsinventar, bereinigter Datenstand – und regelmäßig Ihre Zeit.
 
 ### Neues Risiko
-Die Neuordnung läuft neben dem Tagesgeschäft; ob die Freigabe zum Abschluss von LPH 5 vorher mit Auflagen erteilt wird, ist offen. Die Neuinitialisierung selbst ist keine Freigabe.
+Die Neuordnung läuft neben dem Tagesgeschäft; die Neuinitialisierung selbst ist keine Freigabe – LPH 5 bleibt offen.
 
 ### Governance-Frage
 Welche Entscheidungen müssen jetzt neu legitimiert werden, damit das Projekt wieder führbar wird?
@@ -51,7 +51,7 @@ status:
   kostenunsicherheit: -1
 ---
 ### Konsequenz
-Sie verlangen von der Bauherren-PL eine Vorlage bis zum Lenkungskreis. Der Lenkungskreis berät; die Freigabe würden Sie selbst erteilen – mit Auflagen, etwa zum Datenstand, zur Kostenprognose und zur Stellvertretung für Holger Stein. Dann könnte LPH 6 beginnen.
+Sie verlangen von der Bauherren-PL eine Vorlage bis zum Lenkungskreis. Die Freigabe würden Sie selbst erteilen – mit Auflagen etwa zu Datenstand, Kostenprognose und Stellvertretung für Holger Stein.
 
 ### Was fehlt
 Die Ursachen: Mandate, Register und ein geltender Datenstand fehlen weiter. Wer die Auflagen nachhält, ist nicht geregelt.
@@ -71,7 +71,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Sie lassen eine Entscheidungsvorlage zur [[Neufestlegung der Projektbasis]] vorbereiten – außerhalb der regulären Freigabereihe. Beschließen würden Sie im Lenkungskreis. Weil der Stadtrat die bisherige Projektbasis beschlossen hat, koppeln Sie die Frage über Stadtrat und Bauausschuss zurück. Bis dahin sind alle Zahlen vorläufig.
+Sie lassen eine Entscheidungsvorlage zur [[Neufestlegung der Projektbasis]] vorbereiten; beschließen würden Sie im Lenkungskreis, außerhalb der regulären Freigabereihe. Weil der Stadtrat die bisherige Basis beschlossen hat, koppeln Sie die Frage dorthin zurück.
 
 ### Was fehlt
 Ein Stand, auf dem die neue Basis beruhen soll – noch gibt es zwei Zahlen.
@@ -84,7 +84,7 @@ Eine neue Projektbasis auf der alten Steuerungslogik.
 :::
 
 ::: nachsatz
-Ihre Wahl gibt die Richtung vor. Wohin sie führt, hängt auch davon ab, was bis hierher geschehen ist.
+Ihre Wahl gibt die Richtung vor. Wohin sie führt, hängt auch vom bisherigen Weg ab.
 :::
 
 ::: regie

@@ -21,7 +21,7 @@ weiter: B3
 titel: Dienstag, 11:15 Uhr. Monat 3.
 kurz: Einstieg
 ---
-Dienstag, 10. März. Seit Februar steht das Projekt in LPH 5. Dieselbe Marktabfrage, dieselbe Mail, derselbe Satz im Flur. Diesmal hat jedes Stück eine Kennung: Die Lieferzeit steht als Frühwarnung `FRW-002` im Register, bestätigt ist sie noch nicht. Der Mensa-Wunsch steht als Änderung `AEN-012` im Änderungsregister – Status „Beantragt“, die Auswirkung noch nicht bewertet. Aus der Flurzusage ist ein Antrag geworden.
+Dienstag, 10. März, LPH 5. Diesmal hat jedes Stück eine Kennung – aus der Flurzusage ist ein Antrag geworden.
 
 ::: protokoll
 ---
@@ -38,7 +38,7 @@ datum: 10. März 2026
 von: brenner
 zeit: "10:48"
 ---
-Marktabfrage Holzbau kam nach dem Jour fixe – ist jetzt als `FRW-002` im Frühwarnungsregister erfasst. Unbewertet, bestätigt ist noch nichts. Nächste Risikosichtung: Dienstag, 17. März.
+Marktabfrage Holzbau ist als `FRW-002` erfasst – unbewertet. Nächste Risikosichtung: Dienstag, 17. März.
 :::
 
 ::: mail
@@ -47,7 +47,7 @@ von: roth
 betreff: Mensa für den Ganztag
 zeit: "11:09"
 ---
-Der Ganztag wird größer als geplant. Die Kinder brauchen eine Mensa für rund 450 statt 300 Essen; die Generalplanung schätzt grob 0,6 Mio. €. Herr Deppe hat mir im Flur schon gesagt: „Wir kriegen das hin.“ Ich gehe davon aus, dass das gilt.
+Der Ganztag wächst: Die Kinder brauchen eine Mensa für rund 450 statt 300 Essen, laut Generalplanung grob 0,6 Mio. €. Herr Deppe sagte im Flur: „Wir kriegen das hin.“ Ich gehe davon aus, dass das gilt.
 :::
 
 ::: datei
@@ -68,7 +68,7 @@ kurz: Welt A ⟷ B
 knopf: Welt B ansehen
 ---
 ::: hinweis
-Derselbe Vormittag, dieselben Stücke – in Welt B hat jedes eine Kennung und einen nächsten Schritt. Aus einer Änderung kann Entscheidungsbedarf entstehen; der nächste Schritt für `AEN-012` sind Auswirkung und Freigabeweg.
+In Welt B hat jedes Stück eine Kennung und einen nächsten Schritt.
 :::
 
 ::: paar
@@ -142,7 +142,7 @@ Welt B: dasselbe Terminsignal, derselbe Wunsch – aber als Frühwarnung und als
 titel: Zwei Einträge, zwei Wege
 kurz: Register
 ---
-Die Register-Abgrenzung sagt für beide Einträge, was als Nächstes kommt: Die Frühwarnung wird bestätigt oder nicht, die Änderung braucht Auswirkung und Freigabeweg.
+Die Frühwarnung wird bestätigt oder nicht; die Änderung braucht Auswirkung und Freigabeweg.
 
 ::: tafel k6.4.4-t1
 ---
@@ -217,11 +217,11 @@ detail: "Änderung AEN-012 · Status Beantragt"
 zustaendig: Änderungsgremium
 stufe: 2
 ---
-Rund 0,6 Mio. € liegen über 100 TEUR und bis einschließlich 5 Mio. € – über `AEN-012` entscheidet das Änderungsgremium unter Vorsitz von Frank Deppe. Es tagt monatlich, zzgl. anlassbezogener Sondersitzungen.
+Über 100 TEUR, bis einschließlich 5 Mio. €: Es entscheidet das Änderungsgremium unter Vorsitz von Frank Deppe.
 :::
 
 ::: merksatz
-**Kein Flur, keine Haftnotiz:** Die Lieferzeit hat eine Nummer, die Mensa einen Antrag – und beide einen Weg.
+**Kein Flur, keine Haftnotiz:** Die Lieferzeit hat eine Nummer, die Mensa einen Antrag.
 :::
 :::
 
@@ -241,17 +241,15 @@ wert: Beantragt · Auswirkung offen
 :::
 
 ::: bekannt
-- Lieferzeit Holzbauelemente: von rund 16 auf 26 Wochen (Marktabfrage der Generalplanung); als Frühwarnung `FRW-002` im Frühwarnungsregister der Projektsteuerung erfasst, noch nicht bestätigt.
-- Nutzerwunsch: Mensa für rund 450 statt 300 Essen, grob 0,6 Mio. € (Schätzung der Generalplanung); als Änderung `AEN-012` im Änderungsregister, Status „Beantragt“.
-- Laut Sabine Roth ist im Flur gesagt worden: „Wir kriegen das hin.“ Im Register steht der Wunsch als beantragt, nicht als beschlossen.
-- Mandatsleiter: Rund 0,6 Mio. € liegen über 100 TEUR und bis einschließlich 5 Mio. € – zuständig ist das Änderungsgremium.
+- Lieferzeit Holzbauelemente: rund 26 statt 16 Wochen; als `FRW-002` erfasst, nicht bestätigt.
+- Mensa für rund 450 statt 300 Essen, grob 0,6 Mio. €; als `AEN-012` beantragt, nicht beschlossen.
 :::
 
 ::: unbekannt
 - Terminwirkung der Lieferzeit {#terminwirkung}
 - Termin- und Risikowirkung der Mensa {#mensa-wirkung}
-- Wann das Änderungsgremium über `AEN-012` entscheidet {#gremium}
-- Ob Sabine Roth weiß, dass ihr Wunsch beantragt und nicht beschlossen ist {#nutzerseite}
+- Wann das Gremium über `AEN-012` entscheidet {#gremium}
+- Ob Sabine Roth weiß, dass nichts beschlossen ist {#nutzerseite}
 :::
 :::
 
@@ -292,14 +290,14 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Eine Frühwarnung ist ein unbewertetes Signal; wird sie bestätigt, wird daraus ein bewertetes Risiko. Eine gewollte Änderung gehört ins Änderungsregister, ihr nächster Schritt heißt Auswirkung und Freigabeweg.
+Eine Frühwarnung ist ein unbewertetes Signal; bestätigt, wird daraus ein bewertetes Risiko. Eine gewollte Änderung gehört ins Änderungsregister – nächster Schritt: Auswirkung und Freigabeweg.
 :::
 
 ::: ebene 2
 ---
 titel: Warum relevant
 ---
-In Monat 3 trifft Welt B dasselbe Ereignis wie Welt A: dasselbe Terminsignal, derselbe Wunsch. Der Unterschied liegt im Umgang. Die Lieferzeit wird kein Satz im Statusbericht, sondern `FRW-002`; die Flurzusage wird keine stille Einplanung, sondern `AEN-012` mit Status. Beide Einträge haben eine Adresse; Kap. 6.4.1 legt fest: [[zitat:k6.4.1-p1|Jedes Register hat eine verantwortliche Rolle, einen Pflegezyklus und einen definierten nächsten Schritt.]] Bewertet ist damit noch nichts – aber jeder weiß, wer als Nächstes dran ist.
+In Monat 3 trifft Welt B dasselbe Ereignis wie Welt A: dasselbe Terminsignal, derselbe Wunsch. Der Unterschied liegt im Umgang. Die Lieferzeit wird kein Satz im Statusbericht, sondern `FRW-002`; die Flurzusage wird keine stille Einplanung, sondern `AEN-012` mit Status. Beide Einträge haben eine Adresse; Kap. 6.4.1 legt fest: [[zitat:k6.4.1-p1|Jedes Register hat eine verantwortliche Rolle, einen Pflegezyklus und einen definierten nächsten Schritt.]] Bewertet ist damit noch nichts – aber jeder weiß, wer als Nächstes dran ist. Über `AEN-012` entscheidet das Änderungsgremium; es tagt monatlich, zzgl. anlassbezogener Sondersitzungen.
 :::
 
 ::: ebene 3

@@ -13,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Der Nachtrag geht raus. Aylin Kaya bucht ihn gegen die Risikoreserve, weil es kein anderes Budget gibt; eine Freigabe dafür gibt es nicht.
+Der Nachtrag geht raus. Aylin Kaya bucht ihn mangels anderen Budgets gegen die Risikoreserve, ohne Freigabe.
 
 ### Was fehlt
 Eine Beauftragung der Änderung – und die Freigabe des Einsatzes der Risikoreserve.
@@ -53,7 +53,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Auflagen und Mensa-Umplanung stehen mit Beträgen auf einer Seite, an Bauherren-PL und Controlling. Die Summe ist sichtbar; wer über sie entscheidet, bleibt offen.
+Auflagen und Mensa-Umplanung stehen mit Beträgen auf einer Seite. Die Summe ist sichtbar; wer über sie entscheidet, bleibt offen.
 
 ### Was fehlt
 Ein Freigabeweg, der aus der Übersicht eine Entscheidung macht.
@@ -66,11 +66,11 @@ Welche dieser Kosten muss der Bauherr selbst akzeptieren?
 :::
 
 ::: rueckbezug A
-Im Juli haben Sie ‚Auflagen einarbeiten‘ gewählt. Die Auflagen stehen in der Ausführungsplanung; ihre Mehrkosten laufen jetzt gegen die Reserve – und der Mensa-Nachtrag soll folgen.
+Im Juli haben Sie ‚Auflagen einarbeiten‘ gewählt. Ihre Mehrkosten laufen jetzt gegen die Reserve, und der Mensa-Nachtrag soll folgen.
 :::
 
 ::: rueckbezug B
-Im Juli haben Sie ‚Varianten für den Ausschuss‘ gewählt. Ihre Übersicht hing als Anlage am Statusbericht; eine Entscheidung ist daraus nicht geworden. Jetzt kommt der Mensa-Nachtrag dazu.
+Im Juli haben Sie ‚Varianten für den Ausschuss‘ gewählt; entschieden wurde daraus nichts. Jetzt kommt der Mensa-Nachtrag dazu.
 :::
 
 ::: rueckbezug C

@@ -40,6 +40,46 @@ Die 30/60/90-Tage-Logik ist ein Orientierungsrahmen nach der MVG-Reifegradanalys
 form: zeitachse
 ---
 :::
+
+::: wissenscheck orientierungsrahmen
+### Frage
+Wann würden Sie die 30/60/90-Tage-Logik heranziehen?
+
+### Erklärung
+Sie ist ein Orientierungsrahmen nach der MVG-Reifegradanalyse und im Rahmen einer MVG-Neuinitialisierung – kein allgemeiner Einführungsrhythmus und kein starrer Projektplan. Der verbindliche Projektverlauf folgt dem Vorgehensmodell.
+
+::: antwort a
+---
+titel: Nach der Reifegradanalyse oder bei einer MVG-Neuinitialisierung
+praefix: "Genau:"
+---
+Für diese beiden Anlässe ist sie als Orientierungsrahmen gedacht.
+:::
+
+::: antwort b
+---
+titel: Als allgemeinen Einführungsrhythmus in jedem Projekt
+praefix: "Nicht ganz:"
+---
+Ein allgemeiner Einführungsrhythmus ist sie ausdrücklich nicht.
+:::
+
+::: antwort c
+---
+titel: Als festen Projektplan
+praefix: "Nicht ganz:"
+---
+Sie ist kein starrer Projektplan; der verbindliche Projektverlauf folgt dem Vorgehensmodell.
+:::
+
+::: zitat k8.2-p1
+Die 30/60/90-Tage-Logik ist ein Orientierungsrahmen nach der MVG-Reifegradanalyse und im Rahmen einer MVG-Neuinitialisierung; sie ist kein allgemeiner Einführungsrhythmus und kein starrer Projektplan.
+:::
+
+::: zitat k8.2-p5
+Der verbindliche Projektverlauf folgt dem Vorgehensmodell (Einrichtung → Diagnose → Konzeption → Pilotierung → Befähigung → Regelbetrieb); die 30/60/90-Logik priorisiert die ersten Wirkungen nach der Reifegradanalyse.
+:::
+:::
 :::
 
 ::: abschnitt k8.3

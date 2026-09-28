@@ -1050,3 +1050,43 @@ test('Lernseite 6 (P11.1, Befund 4): kanonischer Governance-Fluss als Übersicht
   assert.equal(fluss.querySelectorAll('.fluss-stationen li').length, 7);
   assert.match(fluss.getAttribute('aria-label') ?? '', /^Kanonischer Governance-Fluss: Frühwarnung → /u);
 });
+
+test('Wissenschecks (P11.6): je Lernseite 2–12 einer; Wahl zeigt Rückmeldung, Erklärung und Beleg – ohne Punkte', () => {
+  for (let nr = 2; nr <= 12; nr++) {
+    const seite = baueTheorie({ inhalte, kapitel: nr, version: VERSION, bedienbar: true });
+    assert.equal(seite.querySelectorAll('[data-pruef="wissenscheck"]').length, 1, `Kap. ${nr}`);
+  }
+  const seite = baueTheorie({ inhalte, kapitel: 4, version: VERSION, bedienbar: true });
+  document.body.replaceChildren(seite);
+  const wc = seite.querySelector('[data-pruef="wissenscheck"]');
+  assert.ok(wc);
+  const knoepfe = [...wc.querySelectorAll<HTMLButtonElement>('.wc-antwort')];
+  assert.ok(knoepfe.length >= 2);
+  assert.equal(wc.querySelector('[data-pruef="wc-ergebnis"]')?.textContent, '', 'vor der Wahl keine Rückmeldung');
+  knoepfe[0]?.click();
+  assert.equal(knoepfe[0]?.getAttribute('aria-pressed'), 'true');
+  const ergebnis = wc.querySelector('[data-pruef="wc-ergebnis"]');
+  assert.match(ergebnis?.textContent ?? '', /^(Genau:|Nicht ganz:)/u);
+  assert.ok(ergebnis?.querySelector('[data-pruef="zitat"]'), 'Beleg sichtbar');
+  assert.doesNotMatch(wc.textContent ?? '', /Punkt(e|zahl)|\d+\s*\/\s*\d+ richtig/u, 'keine Punkte');
+  knoepfe[1]?.click();
+  assert.equal(knoepfe[0]?.getAttribute('aria-pressed'), 'false');
+});
+
+test('B4 Gremium (P11.5, Fund der Kürzung): die Vorlage AEN-031 steht unter der Mandatsleiter', () => {
+  const b4 = inhalte.stationen['B4'];
+  assert.ok(b4);
+  const schritte = b4.schritte;
+  const idx = schritte.findIndex((s) => s.id === 'gremium');
+  assert.ok(idx >= 0);
+  const a = anfangszustand();
+  const z = { ...a, bereich: 'story' as const, station: 'B4', schritt: idx, rolle: 'pl', verlauf: ['prolog', 'B4'], freigeschaltet: { ...a.freigeschaltet, weltB: true } };
+  const story = erzeugeStory({ inhalte, tue: null });
+  document.body.replaceChildren(story.element);
+  story.setze(oeffentlich(z), null);
+  const vorlage = story.element.querySelector('[data-pruef="vorlage"]');
+  assert.ok(vorlage, 'Vorlage fehlt im Gremium-Schritt');
+  assert.match(vorlage.getAttribute('aria-label') ?? '', /AEN-031/u);
+  assert.ok(story.element.querySelector('.mandat-raster'), 'Mandatsleiter bleibt');
+  story.entferne();
+});

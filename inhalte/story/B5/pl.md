@@ -13,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: -1
 ---
 ### Konsequenz
-Die Projektsteuerung bereitet die Vorlage vor, Sie legen sie Dr. Olbers vor. Ob sie den Einsatz freigibt, entscheidet Dr. Olbers; Datum, Betrag und Datenstand ihrer Entscheidung stehen im Entscheidungsregister.
+Die Projektsteuerung bereitet vor, Sie legen Dr. Olbers die Vorlage vor; über den Einsatz entscheidet sie. Datum, Betrag und Datenstand stehen im Entscheidungsregister.
 
 ### Was fehlt
 Ein Blick darauf, wie viel Reserve danach bleibt.
@@ -33,7 +33,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Die Projektsteuerung prüft, die Planung liefert die fachliche Auswirkung zu. Zwei Wochen später ist die Summe belegt und kleiner. Die Vorlage an Dr. Olbers kommt eine Sitzung später.
+Die Projektsteuerung prüft, die Planung liefert die fachliche Auswirkung zu. Zwei Wochen später ist die Summe belegt und kleiner; die Vorlage kommt eine Sitzung später.
 
 ### Was fehlt
 Eine Frist für die Prüfung in der Maßnahme zu `PRB-004`.
@@ -66,7 +66,7 @@ Puffer in anderen Positionen fehlen später.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Nachträglich legitimieren‘ gewählt. In Welt B gibt es nichts nachträglich zu legitimieren: Der Einsatz der Risikoreserve wird vorher beim Bauherrn beantragt, auf einem benannten Datenstand.
+In Welt A haben Sie ‚Nachträglich legitimieren‘ gewählt. In Welt B wird der Einsatz der Risikoreserve vorher beim Bauherrn beantragt, auf einem benannten Datenstand.
 :::
 
 ::: rueckbezug B
@@ -74,7 +74,7 @@ In Welt A haben Sie ‚Kosten verschieben‘ gewählt. In Welt B steht der Nacht
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Lage offenlegen‘ gewählt. In Welt B muss nichts eigens offengelegt werden: `PRB-004` hat eine verantwortliche Rolle, eine Maßnahme und einen Weg zur Entscheidung.
+In Welt A haben Sie ‚Lage offenlegen‘ gewählt. In Welt B ist nichts offenzulegen: `PRB-004` hat eine verantwortliche Rolle, eine Maßnahme und einen Weg zur Entscheidung.
 :::
 
 ::: rueckbezug ohne

@@ -13,7 +13,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Bernd Kowalski bekommt eine Seite mit der CTC nach Kostengruppen. Sie ist klarer als der ganze Bericht – eine Frage stellt sie auch nicht. Bis zur Sitzung im September vergehen zwei Monate.
+Bernd Kowalski bekommt eine Seite mit der CTC nach Kostengruppen: klarer als der Bericht, aber ohne Frage.
 
 ### Was fehlt
 Die Entscheidungsfrage: Worüber soll der Ausschuss beschließen?
@@ -53,10 +53,10 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Die Bauherren-PL findet den Vorschlag gut. Festgelegt wird er nicht: Ein Schwellenwert für Kostenabweichungen löst ein Signal aus – wer danach ab welcher Summe entscheidet, ist damit noch nicht geregelt.
+Die Bauherren-PL findet den Vorschlag gut, festgelegt wird er nicht. Ein Schwellenwert löst ein Signal aus; wer danach ab welcher Summe entscheidet, regelt er nicht.
 
 ### Was fehlt
-Zweierlei: Schwellenwerte, deren Überschreitung ein Signal auslöst, und eine Festlegung von Mandaten und Freigabeschwellen – die bleibt beim Bauherrn.
+Festgelegte Schwellenwerte, die ein Signal auslösen – und Mandate mit Freigabeschwellen; deren Festlegung bleibt beim Bauherrn.
 
 ### Neues Risiko
 Ein Vorschlag ohne Beschluss gilt irgendwann als Praxis.
@@ -70,15 +70,15 @@ Im Mai haben Sie ‚Eigene Zahl vertreten‘ gewählt. Seither stehen Ihre +5,9 
 :::
 
 ::: rueckbezug B
-Im Mai haben Sie ‚Differenz aufschlüsseln‘ gewählt. Seit Ende Mai ist klar, dass der Unterschied vor allem an den Holzbauelementen und am angekündigten Nachtrag der TGA-Fachplanung liegt. Entschieden hat darüber niemand; im Ausschuss lag die Aufschlüsselung nicht.
+Im Mai haben Sie ‚Differenz aufschlüsseln‘ gewählt. Der Unterschied liegt vor allem bei Holzbauelementen und TGA-Nachtrag. Entschieden hat darüber niemand; im Ausschuss lag die Aufschlüsselung nicht.
 :::
 
 ::: rueckbezug C
-Im Mai haben Sie ‚Überschreitung melden‘ gewählt. Frank Deppe nahm Ihre Meldung in den Lenkungskreis mit, dort lag sie neben dem Statusbericht. Dem Ausschuss liegt heute nur der Bericht vor.
+Im Mai haben Sie ‚Überschreitung melden‘ gewählt. Im Lenkungskreis lag Ihre Meldung neben dem Statusbericht; dem Ausschuss liegt heute nur der Bericht vor.
 :::
 
 ::: rueckbezug ohne
-Im Mai standen zwei Kostenzahlen nebeneinander, und der Bauausschuss hat nichts beschlossen. Im Juli liegt ihm wieder keine Entscheidungsfrage vor.
+Im Mai standen zwei Kostenzahlen nebeneinander, beschlossen wurde nichts. Im Juli fehlt wieder die Entscheidungsfrage.
 :::
 
 ::: regie

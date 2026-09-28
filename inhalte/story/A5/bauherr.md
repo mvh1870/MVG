@@ -13,7 +13,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Sie unterschreiben eine Liste der Posten. Die Liste stammt aus Holger Steins Excel-Stand; was darin steckt und was noch kommt, kann niemand sonst erklären.
+Sie unterschreiben eine Liste der Posten aus Holger Steins Excel-Stand. Was darin steckt und was noch kommt, kann niemand sonst erklären.
 
 ### Was fehlt
 Ein benannter [[Datenstand]] und eine Bewertung, welches Risiko die kleinere Reserve noch trägt.
@@ -33,7 +33,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Die Verplanung stoppt. Brandschutzauflagen, der Nachtrag der Generalplanung zur Mensa-Umplanung und der Nachtrag der TGA-Fachplanung stehen ohne Deckung da; die Planung wartet auf eine Entscheidung, die niemand vorbereitet.
+Die Verplanung stoppt. Brandschutz, Mensa- und TGA-Nachtrag stehen ohne Deckung da; die Planung wartet auf eine Entscheidung, die niemand vorbereitet.
 
 ### Was fehlt
 Eine Vorlage, die sagt, was aus der Reserve gedeckt werden soll und was nicht.
@@ -56,7 +56,7 @@ status:
 Sie legen die Verplanung offen. Bernd Kowalski fragt, wer das freigegeben hat. Die Antwort ist: niemand.
 
 ### Was fehlt
-Eine Vorlage mit dem, was jetzt entschieden werden muss – Offenheit allein entscheidet nichts.
+Eine Vorlage mit dem, was jetzt zu entscheiden ist; Offenheit allein entscheidet nichts.
 
 ### Neues Risiko
 Vertrauensverlust im Ausschuss; die nächste Zahl wird doppelt geprüft.
@@ -66,19 +66,19 @@ Vertrauensverlust im Ausschuss; die nächste Zahl wird doppelt geprüft.
 :::
 
 ::: rueckbezug A
-Im März haben Sie ‚Zusage bestätigen‘ gewählt. Die Generalplanung hat ohne schriftlichen Auftrag umgeplant. Jetzt kündigt sie den Nachtrag dazu an – und er läuft gegen die Reserve.
+Im März haben Sie ‚Zusage bestätigen‘ gewählt. Die Generalplanung plante ohne schriftlichen Auftrag um; jetzt läuft ihr Nachtrag gegen die Reserve.
 :::
 
 ::: rueckbezug B
-Im März haben Sie ‚An die GML verweisen‘ gewählt. Ob die Mensa zugesagt ist, hing seither zwischen Stadt und GML. Jetzt kommt ein Nachtrag, und beauftragt hat die Umplanung niemand.
+Im März haben Sie ‚An die GML verweisen‘ gewählt; die Frage hing zwischen Stadt und GML. Jetzt kommt ein Nachtrag, beauftragt hat die Umplanung niemand.
 :::
 
 ::: rueckbezug C
-Im März haben Sie ‚Erst Kosten klären lassen‘ gewählt. Die Kostenaussage kam nach sechs Wochen, ohne Termin- und Risikowirkung; entschieden wurde auf ihr nichts. Jetzt steht die Mensa in der Rechnung gegen die Reserve.
+Im März haben Sie ‚Erst Kosten klären lassen‘ gewählt. Die Kostenaussage kam nach sechs Wochen; entschieden wurde nichts. Jetzt läuft die Mensa gegen die Reserve.
 :::
 
 ::: rueckbezug ohne
-Im März kam die größere Mensa als Zusage aus dem Flur. Im September steht sie als angekündigter Nachtrag in der Rechnung gegen die Reserve.
+Im März kam die Mensa als Flurzusage. Im September steht sie als angekündigter Nachtrag gegen die Reserve.
 :::
 
 ::: regie

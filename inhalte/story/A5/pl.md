@@ -14,10 +14,10 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Sie legen Dr. Olbers die Einsätze gesammelt vor. Sie fragt zuerst, worüber sie entscheiden soll, dann nach der Zahl: drei Positionen, zwei Stände, keine Einzelbewertung. Sie unterschreibt.
+Dr. Olbers fragt, worüber sie entscheiden soll, dann nach der Zahl: drei Positionen, zwei Stände, keine Einzelbewertung. Sie unterschreibt.
 
 ### Was fehlt
-Eine Freigabe auf benanntem Stand, bevor die Reserve eingesetzt wird – nicht danach.
+Eine Freigabe auf benanntem Stand, bevor die Reserve eingesetzt wird.
 
 ### Neues Risiko
 Die Unterschrift legitimiert Zahlen, die niemand geprüft hat.
@@ -35,7 +35,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Die Reserve sieht wieder gesünder aus. Die Mehrkosten stehen jetzt in Positionen, die niemand für sie verantwortet.
+Die Reserve sieht gesünder aus; die Mehrkosten stehen in Positionen, die niemand für sie verantwortet.
 
 ### Was fehlt
 Eine Entscheidung des Bauherrn, welches Kostenrisiko das Projekt trägt.
@@ -56,10 +56,10 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Zum ersten Mal liegt eine Liste auf dem Tisch: was verplant ist, wofür, wer es veranlasst hat. Der Lenkungskreis vertagt: Erst müsse die Prognose vollständig sein – und die rechnet Holger Stein.
+Erstmals liegt eine Liste vor: was verplant ist, wofür, von wem veranlasst. Der Lenkungskreis vertagt, bis die Prognose vollständig ist, und die rechnet Holger Stein.
 
 ### Was fehlt
-Ein Weg, der aus der Offenlegung eine Entscheidung macht: Frage, Optionen, Empfehlung, Frist.
+Ein Weg von der Offenlegung zur Entscheidung: Frage, Optionen, Empfehlung, Frist.
 
 ### Neues Risiko
 Transparenz ohne Entscheidung; die Zeit läuft weiter.
@@ -69,7 +69,7 @@ Transparenz ohne Entscheidung; die Zeit läuft weiter.
 :::
 
 ::: rueckbezug A
-Im März haben Sie ‚Zusage mittragen‘ gewählt. Umgeplant wurde, bevor jemand entschieden hat. Jetzt fragt Aylin Kaya, wer den Einsatz der Reserve dafür freigegeben hat.
+Im März haben Sie ‚Zusage mittragen‘ gewählt; umgeplant wurde ohne Entscheidung. Jetzt fragt Aylin Kaya, wer die Reserve dafür freigegeben hat.
 :::
 
 ::: rueckbezug B
@@ -77,11 +77,11 @@ Im März haben Sie ‚Prüfen lassen‘ gewählt. Nach drei Wochen lagen Zahlen 
 :::
 
 ::: rueckbezug C
-Im März haben Sie ‚An den Bauherrn geben‘ gewählt. Dr. Olbers fragte, was sie entscheiden soll; die Mensa wartete auf den Lenkungskreis. Jetzt kommt sie als Nachtrag zurück – wieder ohne Frage.
+Im März haben Sie ‚An den Bauherrn geben‘ gewählt; die Mensa wartete auf den Lenkungskreis. Jetzt kommt sie als Nachtrag zurück, wieder ohne Frage.
 :::
 
 ::: rueckbezug ohne
-Im März kam die größere Mensa als Zusage aus dem Flur. Im September steht sie als angekündigter Nachtrag in der Rechnung gegen die Reserve.
+Im März kam die Mensa als Flurzusage. Im September steht sie als angekündigter Nachtrag gegen die Reserve.
 :::
 
 ::: regie

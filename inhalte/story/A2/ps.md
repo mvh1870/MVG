@@ -12,7 +12,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Ende des Monats steht die Lieferzeit als rote Ampel auf Seite 23. Nach der Terminfolge fragt niemand; die Mensa taucht im Bericht nicht auf.
+Die Lieferzeit steht als rote Ampel auf Seite 23. Nach der Terminfolge fragt niemand; die Mensa fehlt im Bericht.
 
 ### Was fehlt
 Eine Bewertung: Was bedeuten zehn Wochen mehr für den Termin?
@@ -32,7 +32,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Ihre Mail, Betreff „bitte kurzfristig“, hat eine Terminbewertung im Anhang. Sie wird gelesen und weitergeleitet; wer über den Umgang damit entscheidet, bleibt offen.
+Ihre Terminbewertung geht per Mail raus, wird gelesen und weitergeleitet. Wer über den Umgang damit entscheidet, bleibt offen.
 
 ### Was fehlt
 Eine Stelle, die über Risikominderung oder Annahme des Terminrisikos entscheidet.
@@ -52,7 +52,7 @@ status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Holger Stein trägt 0,6 Mio. € in die Kostendatei ein. Die Flurzusage ist jetzt eine Planzahl – ohne dass jemand die Änderung beschlossen hat.
+Holger Stein trägt 0,6 Mio. € in die Kostendatei ein. Die Flurzusage ist jetzt eine Planzahl, ohne Beschluss.
 
 ### Was fehlt
 Ein Freigabeweg für die Änderung, mit Auswirkung auf Kosten und Termin.

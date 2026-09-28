@@ -5,11 +5,11 @@ rueckbezug-auf: wirklichkeit
 ---
 
 ::: rueckbezug A
-Im Dezember haben Sie ‚MVG-Neuinitialisierung vorschlagen‘ gewählt. Die Spur hatte zu wenig Entscheidungsfähigkeit übrig gelassen, als dass eine Neuordnung bis zum Frühjahr hätte tragen können; Dr. Olbers hat im Januar zuerst die Freigabe zum Abschluss von LPH 5 erteilt, mit Auflagen.
+Im Dezember haben Sie ‚MVG-Neuinitialisierung vorschlagen‘ gewählt. Für die Neuordnung fehlte Ihrer Spur die Entscheidungsfähigkeit; im Januar kam zuerst die Freigabe mit Auflagen.
 :::
 
 ::: rueckbezug B
-Im Dezember haben Sie ‚Freigabe mit Auflagen empfehlen‘ gewählt. Dr. Olbers hat die Freigabe im Januar erteilt; ob die Auflagen zu Datenstand, Kostenprognose und Stellvertretung nachgehalten werden, steht im März oben im Lenkungskreis.
+Im Dezember haben Sie ‚Freigabe mit Auflagen empfehlen‘ gewählt. Dr. Olbers hat sie im Januar erteilt; ob die Auflagen nachgehalten werden, steht im März oben.
 :::
 
 ::: rueckbezug C

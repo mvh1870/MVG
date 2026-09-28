@@ -14,11 +14,7 @@ schaltet-frei: [explore]
 titel: Dienstag, 16. März 2027. Monat 15.
 kurz: Einstieg
 ---
-Drei Monate nach dem Lenkungskreis im Dezember. Dr. Olbers hat den Auftrag zur [[MVG-Neuinitialisierung]] erteilt und eigene Zeit dazugegeben, Frank Deppe ebenso. Heute tagt der Lenkungskreis wieder. Auf dem Tisch liegt kein Statusbericht, sondern eine Liste: welche Entscheidungen offen sind, wer sie trifft, auf welchem Datenstand.
-
-Das Projekt steht weiter in LPH 5. Die Freigabe zu ihrem Abschluss ist in Vorbereitung – diesmal mit Kernfrage, einem Datenstand, der gilt, und einer Vorlage, auf die sich alle beziehen. Erteilen wird sie Dr. Olbers selbst.
-
-Heute beginnt etwas anderes: die Übergabe des [[Bauherren-Führungsmodell]]s. Der Entwurf des Betriebshandbuchs liegt vor; die Übergabe schließt an. Das ist ein Befähigungsschritt, keine Freigabe – und nicht die [[Übergabe]] des Vorhabens; die gehört zu LPH 9.
+Dr. Olbers hat im Dezember den Auftrag zur [[MVG-Neuinitialisierung]] erteilt und eigene Zeit dazugegeben. Das Projekt steht in LPH 5. Heute beginnt die Übergabe des [[Bauherren-Führungsmodell]]s – nicht die [[Übergabe]] des Vorhabens in LPH 9.
 
 ::: protokoll
 ---
@@ -26,11 +22,9 @@ titel: Lenkungskreis – Tagesordnung
 datum: Di, 16.03.2027
 von: petersen
 ---
-- Entscheidungsinventar: offene Entscheidungen mit verantwortlicher Rolle, Frist und Stufe.
-- Mandate und Schwellen: von Dr. Olbers festgelegt; die Stellvertretung für die Kostenprognose ist geregelt.
-- Kosten: ein Datenstand gilt für die nächsten Entscheidungen.
-- Freigaben: geordnet, welche nachzuholen sind; die Freigabe zum Abschluss von LPH 5 ist in Vorbereitung.
-- Betriebshandbuch: Entwurf liegt vor; Übergabe an Stadt und GML beginnt.
+- Entscheidungsinventar: offene Entscheidungen mit Rolle, Frist und Stufe.
+- Mandate und Schwellen: von Dr. Olbers festgelegt; Stellvertretung geregelt.
+- Betriebshandbuch: Entwurf liegt vor; Übergabe beginnt.
 :::
 
 ::: chat
@@ -38,7 +32,7 @@ von: petersen
 von: kaya
 zeit: "08:14"
 ---
-Eine Zahl, mit Namen und Version. Herr Stein hat gefragt, für welche Frage – diesmal stand es dabei.
+Eine Zahl, mit Namen und Version – und diesmal steht dabei, für welche Frage.
 :::
 :::
 
@@ -55,9 +49,7 @@ kurz: Ihre Spur
 titel: Wie Sie hierher kamen
 kurz: Ihr Weg
 ---
-Im Dezember haben Sie die Richtung gegeben: eine MVG-Neuinitialisierung – als Auftrag, wenn Sie Dr. Olbers spielen, sonst als Vorschlag an sie. Die Richtung allein entscheidet nicht, welches Ende eintritt; Ihre Spur durch Welt A entscheidet mit. Bis Monat 12 war wieder genug Entscheidungsfähigkeit entstanden, dass eine Neuordnung bis zum Frühjahr tragen konnte. Welche Wahl das bei Ihnen war, zeigt der Reiter „Spur“ in der Seitenleiste.
-
-Steuerbar heißt nicht: gelöst. Die längere Lieferzeit der Holzbauelemente, die Mehrkosten, die Mensa, die Brandschutzauflagen und der Nachtrag der TGA-Fachplanung sind weiter da. Sie haben jetzt eine verantwortliche Rolle, einen Datenstand und einen Weg.
+Die MVG-Neuinitialisierung trug, weil Ihre Spur bis Monat 12 wieder genug Entscheidungsfähigkeit aufgebaut hatte. Steuerbar heißt nicht gelöst: Lieferzeit und Mehrkosten bleiben – jetzt mit Rolle, Datenstand und Weg.
 :::
 
 ::: schritt nachweiskette
@@ -65,10 +57,10 @@ Steuerbar heißt nicht: gelöst. Die längere Lieferzeit der Holzbauelemente, di
 titel: Ihre Nachweiskette
 kurz: Nachweiskette
 ---
-In Lindenhall entsteht diese Kette gerade; das Entscheidungsinventar ist ihr Anfang.
+Das Entscheidungsinventar ist ihr Anfang.
 
 ::: nachweiskette
-In Welt B haben Sie gesehen, wie jede zentrale Entscheidung eine Kette hinter sich hatte. Kap. 9 beschreibt sie: [[zitat:k9-p1|Das Mandat verweist auf eine Freigabe, die Freigabe auf eine Entscheidungs-ID, die Entscheidungs-ID auf den Datenstand, der Datenstand auf den Nachweis und der Nachweis auf die Beschlusslage.]] Klicken Sie auf eine Station, die Sie besucht haben – die sechs Glieder legen sich aus. Wo ein Glied damals offen war, steht es so da.
+Kap. 9: [[zitat:k9-p1|Das Mandat verweist auf eine Freigabe, die Freigabe auf eine Entscheidungs-ID, die Entscheidungs-ID auf den Datenstand, der Datenstand auf den Nachweis und der Nachweis auf die Beschlusslage.]] Wählen Sie eine Station aus Welt B.
 :::
 :::
 
@@ -77,15 +69,7 @@ In Welt B haben Sie gesehen, wie jede zentrale Entscheidung eine Kette hinter si
 titel: Was am Ende vorliegt
 kurz: Zielbild
 ---
-Kap. 9 beschreibt, was am Ende eines MVG-Mandats vorliegt: [[zitat:k9-p1|Die Ergebnisse eines MVG-Mandats sind Führungs- und Entscheidungsobjekte. Sie sind keine isolierten Vorlagen und keine methodische Sammlung.]] Dazu gehört das [[Betriebshandbuch]] – [[zitat:k9.5-p1|das verbindliche abschließende Ergebnisdokument für den Regelbetrieb des Bauherren-Führungsmodells]].
-
-Kap. 12 zieht Bilanz: [[zitat:k12-p1|Für Bauherren zählt am Ende nicht die Zahl der Governance-Artefakte, sondern ihre Führungswirkung.]] Wählen Sie eine Karte:
-
-::: tafel k12-t1
----
-form: karten
----
-:::
+Kap. 9: [[zitat:k9-p1|Die Ergebnisse eines MVG-Mandats sind Führungs- und Entscheidungsobjekte.]] Dazu gehört das [[Betriebshandbuch]].
 :::
 
 ::: schritt ebenen
@@ -101,7 +85,7 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Die Übergabe des Bauherren-Führungsmodells ist ein Befähigungsschritt und keine Freigabe. Das Projekt bleibt in der Abfolge LPH 0–9; die Freigabe zum Abschluss von LPH 5 erteilt weiter der Bauherr selbst.
+Die Übergabe des Bauherren-Führungsmodells ist ein Befähigungsschritt, keine Freigabe; die Freigabe zum Abschluss von LPH 5 erteilt weiter der Bauherr.
 :::
 
 ::: ebene 2
@@ -125,7 +109,17 @@ Fünf der Ergebnisse, die eine MVG-Neuinitialisierung nach Kap. 11.3 liefert –
 | Eskalationsplan | welche Entscheidung auf welcher Ebene fällt |
 | Stabilisiertes Betriebshandbuch | als Entwurf vorhanden; mit der Übergabe sollen Stadt und GML das Modell selbst betreiben |
 
-Kap. 8.2 beschreibt den Stand nach 90 Tagen: [[zitat:k8.2-p4|der Entwurf des Betriebshandbuchs liegt vor. Die Übergabe schließt an.]] Die neue Mandatslogik legt der Bauherr fest; Kap. 7.5 nennt als seine Rolle die [[zitat:k7.5-t1|Entscheidung über den Auftrag zur MVG-Neuinitialisierung, Prioritäten, Neufestlegung der Projektbasis, Freigaben und eine neue Mandatslogik.]] Was die Übergabe leistet, sagt das Glossar: Sie [[zitat:k13-t1|überführt Rollen, Routinen und Betriebshandbuch in den Eigenbetrieb.]]
+Das Betriebshandbuch ist [[zitat:k9.5-p1|das verbindliche abschließende Ergebnisdokument für den Regelbetrieb des Bauherren-Führungsmodells]]. Offen bleiben in Lindenhall die Mensa, die Brandschutzauflagen und der Nachtrag der TGA-Fachplanung.
+
+Dr. Olbers hat eigene Zeit dazugegeben, Frank Deppe ebenso. Kap. 8.2 beschreibt den Stand nach 90 Tagen: [[zitat:k8.2-p4|der Entwurf des Betriebshandbuchs liegt vor. Die Übergabe schließt an.]] Die neue Mandatslogik legt der Bauherr fest; Kap. 7.5 nennt als seine Rolle die [[zitat:k7.5-t1|Entscheidung über den Auftrag zur MVG-Neuinitialisierung, Prioritäten, Neufestlegung der Projektbasis, Freigaben und eine neue Mandatslogik.]] Was die Übergabe leistet, sagt das Glossar: Sie [[zitat:k13-t1|überführt Rollen, Routinen und Betriebshandbuch in den Eigenbetrieb.]]
+
+Kap. 12 zieht Bilanz: [[zitat:k12-p1|Für Bauherren zählt am Ende nicht die Zahl der Governance-Artefakte, sondern ihre Führungswirkung.]] Wählen Sie eine Karte:
+
+::: tafel k12-t1
+---
+form: karten
+---
+:::
 :::
 
 ::: ebene 4

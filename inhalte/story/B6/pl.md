@@ -13,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: -1
 ---
 ### Konsequenz
-Ihre Vorlage nennt Kernfrage, Mindestgrundlagen, Mandat und Datenstand. Der Lenkungskreis berät am 17. November; ob Dr. Olbers die Freigabe erteilt, entscheidet sie selbst – das Ergebnis wird dokumentiert. Die Stellvertretung von Holger Stein rechnet auf dem benannten Datenstand.
+Nach der Beratung im Lenkungskreis entscheidet Dr. Olbers selbst auf Ihre Vorlage; das Ergebnis wird dokumentiert.
 
 ### Was fehlt
 Offene Punkte wie `RIS-009` gehen in die nächste Leistungsphase mit.
@@ -53,7 +53,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Die Stellvertretung soll die Kostenprognose erst nachvollziehbar aktualisieren. Ihre Empfehlung lautet: keine Freigabe – mit Begründung, Frist und nächstem Termin. Dr. Olbers entscheidet nach der Beratung. Der Stadtrat bekommt seine Antwort aus dem Managementbericht.
+Die Stellvertretung soll die Kostenprognose erst nachvollziehbar aktualisieren; Sie empfehlen keine Freigabe – mit Begründung, Frist und nächstem Termin. Dr. Olbers entscheidet nach der Beratung.
 
 ### Was fehlt
 Ein aktualisierter Datenstand als Grundlage.
@@ -66,7 +66,7 @@ Die nächste Leistungsphase beginnt später.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Freigabe beantragen‘ gewählt. In Welt B hat die Vorlage, was Dr. Olbers in Welt A vermisste: eine Kernfrage, ein Mandat, einen benannten Datenstand – und eine Liste dessen, was noch fehlt.
+In Welt A haben Sie ‚Freigabe beantragen‘ gewählt. Jetzt hat die Vorlage, was Dr. Olbers vermisste: Kernfrage und benannten Datenstand.
 :::
 
 ::: rueckbezug B

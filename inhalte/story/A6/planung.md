@@ -33,7 +33,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Die Freigabe verschiebt sich. Dr. Olbers muss dem Stadtrat einen offenen Termin nennen – ohne zu wissen, woran er hängt.
+Die Freigabe verschiebt sich. Dr. Olbers nennt dem Stadtrat einen offenen Termin, ohne zu wissen, woran er hängt.
 
 ### Was fehlt
 Eine Übersicht, welche Änderungen offen und welche beschlossen sind.
@@ -53,7 +53,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Zwei Tage Arbeit mit dem Team von Jonas Brenner. Die Mengen passen zu Holger Steins letztem Stand „Prognose_Nov_v5“; Dr. Olbers bekommt bis Freitag eine Zahl, unter Vorbehalt.
+Zwei Tage mit dem Team von Jonas Brenner: Die Mengen passen zu „Prognose_Nov_v5“. Dr. Olbers bekommt bis Freitag eine Zahl unter Vorbehalt.
 
 ### Was fehlt
 Ein benannter [[Datenstand]] und eine Stellvertretung, die ihn ohne Holger Stein führen kann.
@@ -66,11 +66,11 @@ Wie wird Wissen aus Schlüsselrollen in Artefakte und Routinen übersetzt?
 :::
 
 ::: nachsatz
-Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+Jede Wahl ist nachvollziehbar; es fehlt die Struktur, in der sie wirkt.
 :::
 
 ::: rueckbezug A
-Im September haben Sie ‚Nachtrag auf Zusage stützen‘ gewählt. Der Nachtrag ist gestellt; beauftragt ist die Umplanung bis heute nicht. Jetzt steht sie auf der Liste offener Punkte zum Abschluss.
+Im September haben Sie ‚Nachtrag auf Zusage stützen‘ gewählt. Beauftragt ist die Umplanung bis heute nicht; jetzt steht sie auf der Liste offener Punkte.
 :::
 
 ::: rueckbezug B
@@ -78,7 +78,7 @@ Im September haben Sie ‚Nachtrag zurückstellen‘ gewählt. Der Nachtrag lieg
 :::
 
 ::: rueckbezug C
-Im September haben Sie ‚Mehrkosten offenlegen‘ gewählt. Ihre Übersicht liegt seither bei Bauherren-PL und Controlling; entschieden hat darüber niemand. Jetzt steht der Abschluss an.
+Im September haben Sie ‚Mehrkosten offenlegen‘ gewählt; entschieden hat darüber niemand. Jetzt steht der Abschluss an.
 :::
 
 ::: rueckbezug ohne

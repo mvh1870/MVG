@@ -136,6 +136,38 @@ titel: Gremienvorlage
 ::: zitat k2.4-p3
 MVG setzt deshalb eine Stufe früher an. Es fragt nicht zuerst: Welche Berichte fehlen? Sondern: Welche nichtdelegierbaren Bauherrenentscheidungen müssen getroffen werden?
 :::
+
+::: wissenscheck bericht-fuehrung
+### Frage
+Ihr Gremium erhält jeden Monat einen ausführlichen Ampelbericht, aber keine Entscheidungsfrage – wird damit schon geführt?
+
+### Erklärung
+Berichterstattung erzeugt Information; Führung entsteht erst, wenn Information mit Mandat, Entscheidung, Schwelle, Risikoannahme, Datenstand, Freigabe und Nachweis verbunden wird. Ein Ampelbericht ohne Entscheidungsfrage bleibt Beobachtung.
+
+::: antwort a
+---
+titel: Noch nicht – der Bericht bleibt Beobachtung
+praefix: "Genau:"
+---
+Ohne Entscheidungsfrage liefert der Ampelbericht Information, aber noch keine Führung.
+:::
+
+::: antwort b
+---
+titel: Ja, wenn der Bericht ausführlich genug ist
+praefix: "Nicht ganz:"
+---
+Mehr Berichterstattung löst nicht automatisch die Frage, wer was auf welcher Grundlage entscheiden darf und muss.
+:::
+
+::: zitat k2.4-p2
+Berichterstattung erzeugt Information. Führung entsteht erst, wenn Information mit Mandat, Entscheidung, Schwelle, Risikoannahme, Datenstand, Freigabe und Nachweis verbunden wird. Ein Ampelbericht ohne Entscheidungsfrage bleibt Beobachtung.
+:::
+
+::: zitat k2.4-p1
+Die naheliegende Reaktion auf Projektprobleme lautet oft: mehr Berichterstattung, mehr Abstimmung, mehr Gremienvorlagen, mehr Eskalationsrunden. Das kann in einzelnen Situationen helfen. Es löst aber nicht automatisch die Frage, wer was auf welcher Grundlage entscheiden darf und muss.
+:::
+:::
 :::
 
 ::: abschnitt k2.5

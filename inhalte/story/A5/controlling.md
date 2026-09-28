@@ -13,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Dr. Olbers erfährt, dass Posten gegen die 2,9 Mio. € laufen, deren Einsatz sie nicht freigegeben hat. Sie fragt zuerst, was sie entscheiden soll, dann nach einer Aufstellung – welche Posten, auf welcher Grundlage. Auf einem Stand gibt es die nicht.
+Dr. Olbers erfährt, dass Posten ohne ihre Freigabe gegen die 2,9 Mio. € laufen. Sie fragt, was sie entscheiden soll, und will eine Aufstellung; auf einem Stand gibt es die nicht.
 
 ### Was fehlt
 Eine nachvollziehbare Grundlage je Posten.
@@ -33,13 +33,13 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Brandschutzauflagen, der Nachtrag der Generalplanung zur Mensa-Umplanung und der Nachtrag der TGA-Fachplanung stehen in Ihrer CTC gegen die Reserve; die Abweichung wächst rechnerisch nicht weiter. Für den nächsten Kostenfall bleibt nichts – schon die Mai-Abweichung übersteigt die Reserve.
+Brandschutz, Mensa- und TGA-Nachtrag stehen in Ihrer CTC gegen die Reserve; die Abweichung wächst rechnerisch nicht. Für den nächsten Kostenfall bleibt nichts.
 
 ### Was fehlt
 Die Freigabe des Einsatzes der Reserve – sie liegt beim Bauherrn.
 
 ### Neues Risiko
-Die Reserve ist verbraucht, die Risiken, für die sie gedacht war, sind noch offen.
+Die Reserve ist verbraucht, ihre Risiken sind noch offen.
 
 ### Governance-Frage
 Wer hat entschieden, diese Risikoexposition anzunehmen?
@@ -53,7 +53,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Sie rechnen ohne Reserve: Die Überschreitung der Projektbasis wächst. Die Projektsteuerung rechnet mit Reserve. Wieder zwei Zahlen – der Streit darüber bindet die nächsten Wochen.
+Sie rechnen ohne Reserve, die Projektsteuerung mit. Wieder zwei Zahlen; der Streit bindet die nächsten Wochen.
 
 ### Was fehlt
 Ein Datenstand, auf den sich beide beziehen.
@@ -66,19 +66,19 @@ Die Planung wartet, ob die Mensa-Umplanung weiterlaufen darf.
 :::
 
 ::: rueckbezug A
-Im März haben Sie ‚Mensa einrechnen‘ gewählt. Ihre CTC enthält die Mensa seither – als Annahme ohne Beschluss. Jetzt kommt der Nachtrag, und Sie rechnen ihn gegen die Reserve.
+Im März haben Sie ‚Mensa einrechnen‘ gewählt, als Annahme ohne Beschluss. Jetzt kommt der Nachtrag, und Sie rechnen ihn gegen die Reserve.
 :::
 
 ::: rueckbezug B
-Im März haben Sie ‚Mensa herauslassen‘ gewählt. Ihre Zahl blieb sauber, die Schulseite plante weiter. Jetzt kommt der Nachtrag, und Ihre CTC muss die Mensa zum ersten Mal aufnehmen.
+Im März haben Sie ‚Mensa herauslassen‘ gewählt; die Schulseite plante weiter. Jetzt muss Ihre CTC die Mensa erstmals aufnehmen.
 :::
 
 ::: rueckbezug C
-Im März haben Sie ‚Zusage klären lassen‘ gewählt. Die Antwort war: „Rechnen Sie es mit ein.“ Eine Anweisung, keine Entscheidung – jetzt rechnen Sie die Mensa gegen die Reserve.
+Im März haben Sie ‚Zusage klären lassen‘ gewählt: „Rechnen Sie es mit ein.“ Jetzt rechnen Sie die Mensa gegen die Reserve.
 :::
 
 ::: rueckbezug ohne
-Im März kam die größere Mensa als Zusage aus dem Flur. Im September steht sie als angekündigter Nachtrag in der Rechnung gegen die Reserve.
+Im März kam die Mensa als Flurzusage. Im September steht sie als angekündigter Nachtrag gegen die Reserve.
 :::
 
 ::: regie

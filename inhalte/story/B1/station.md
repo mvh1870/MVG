@@ -21,7 +21,7 @@ weiter: B2
 titel: Montag, 09:00 Uhr. Monat 1.
 kurz: Einstieg
 ---
-Montag, 5. Januar. Dieselbe erste Woche, derselbe Bauantrag, dieselbe Marktnotiz. Diesmal gibt es ein angelegtes Zielsystem, dessen Priorität der Bauherr festlegt, eine Mandatsleiter, einen Rhythmus und Register mit verantwortlicher Rolle. Die Kostenprognose ist ein benannter Datenstand mit Version, nicht Holger Steins Privatsache.
+Montag, 5. Januar. Dieselbe Woche, dieselbe Marktnotiz. Diesmal hat alles einen Ort – auch die Kostenprognose: ein benannter Datenstand mit Version.
 
 ::: protokoll
 ---
@@ -29,11 +29,9 @@ titel: Kick-off – Protokoll
 datum: Di, 16.12.2025
 von: petersen
 ---
-- Zielsystem angelegt: Kosten, Termin, ESG und LCC mit Abwägungsregeln. Welche Zielpriorität gilt, legt Dr. Olbers fest – das steht noch aus.
-- Mandatsleiter, von Dr. Olbers festgelegt: Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium über 100 TEUR bis einschließlich 5 Mio. €, darüber der Bauherr im Lenkungskreis.
-- Register mit verantwortlicher Rolle und Turnus; Jour fixe dienstags mit Risikosichtung.
-- Bauantrag: Einreichung Anfang Januar (Generalplanung).
-- Nächster Jour fixe: 06.01.
+- Zielsystem mit Abwägungsregeln angelegt; die Zielpriorität legt Dr. Olbers noch fest.
+- Mandatsleiter, von Dr. Olbers festgelegt: Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium bis einschließlich 5 Mio. €, darüber der Bauherr im Lenkungskreis.
+- Register mit Rolle und Turnus; dienstags Jour fixe mit Risikosichtung.
 :::
 
 ::: mail
@@ -43,7 +41,7 @@ betreff: Marktnotiz Holzbau – über den Projektverteiler
 zeit: "08:47"
 anhang: Marktnotiz_Holzbau_GP_Dez.pdf
 ---
-Guten Morgen, die Marktnotiz der Generalplanung ist über den Projektverteiler gekommen – an die Projektsteuerung und an Sie. Die Generalplanung rechnet bei den Holzbauelementen mit steigenden Preisen, einen Betrag nennt sie noch nicht. In einem Register steht die Notiz noch nicht.
+Guten Morgen, die Marktnotiz der Generalplanung kam über den Projektverteiler: Holzbauelemente werden teurer, ein Betrag fehlt. In einem Register steht sie noch nicht.
 :::
 
 ::: datei
@@ -60,7 +58,7 @@ Benannter Datenstand mit Version und Status.
 von: stein
 zeit: "09:02"
 ---
-Die Kostenprognose steht als Version 1 im Datenstand. Die Annahmen zum Holz erkläre ich gern – aufgeschrieben sind noch nicht alle.
+Prognose steht als Version 1. Die Holzannahmen erkläre ich gern – aufgeschrieben sind nicht alle.
 :::
 :::
 
@@ -72,7 +70,7 @@ kurz: Welt A ⟷ B
 knopf: Welt B ansehen
 ---
 ::: hinweis
-Dieselbe erste Woche, dieselben Stücke – in Welt B hat jedes seinen Ort.
+In Welt B hat jedes Stück seinen Ort.
 :::
 
 ::: paar
@@ -196,16 +194,16 @@ zeilen:
     I: [ps, planung]
     mandat: nicht delegierbar (Kap. 3.2)
 ---
-Die Tabelle beantwortet für den Schulcampus die Kernfrage aus Kap. 9.2: [[zitat:k9.2-p3|Wer bereitet vor, wer entscheidet, wer liefert belastbare Entscheidungsgrundlagen, wer wird konsultiert und wer muss informiert werden?]]
+Kap. 9.2 fragt: [[zitat:k9.2-p3|Wer bereitet vor, wer entscheidet, wer liefert belastbare Entscheidungsgrundlagen, wer wird konsultiert und wer muss informiert werden?]]
 :::
 :::
 
 ::: schritt rhythmus
 ---
-titel: Wann was auf den Tisch kommt – und wo
+titel: Rhythmus und Register
 kurz: Rhythmus und Register
 ---
-Der Jour fixe am Dienstag ist der Ort der wöchentlichen Risikosichtung, das Änderungsgremium tagt monatlich, zzgl. anlassbezogener Sondersitzungen, jede Freigabe erteilt der Bauherr selbst – und jedes Register hat eine verantwortliche Rolle und einen Turnus, sodass die Marktnotiz eine Adresse hat, bevor jemand rechnet.
+Risikosichtung dienstags, Änderungsgremium monatlich, jedes Register mit Rolle und Turnus: Die Marktnotiz hat eine Adresse, bevor jemand rechnet.
 
 ::: tafel k6.4.5-t1
 ---
@@ -237,17 +235,15 @@ wert: Stand Kostenberechnung · gilt
 :::
 
 ::: bekannt
-- Projektbasis 58,4 Mio. € brutto, vom Stadtrat beschlossen; darin 2,9 Mio. € Risikoreserve – ihren Einsatz gibt nur der Bauherr frei.
-- LPH 4: Die Genehmigungsplanung ist fertig, der Bauantrag geht diese Woche raus.
-- Das Zielsystem ist mit Abwägungsregeln angelegt; welche Zielpriorität gilt, legt der Bauherr fest – das steht noch aus.
-- Mandatsleiter, vom Bauherrn festgelegt: Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium über 100 TEUR bis einschließlich 5 Mio. €, darüber der Bauherr im Lenkungskreis.
-- Die Marktnotiz ist bei der Projektsteuerung angekommen; in einem Register steht sie noch nicht.
+- Projektbasis 58,4 Mio. € brutto, darin 2,9 Mio. € Risikoreserve – ihren Einsatz gibt nur der Bauherr frei.
+- LPH 4: Der Bauantrag geht diese Woche raus.
+- Die Zielpriorität legt der Bauherr fest – noch offen.
 :::
 
 ::: unbekannt
-- Wie stark der Holzpreis die Kosten trifft {#holzpreis}
+- Wie stark der Holzpreis trifft {#holzpreis}
 - Ob aus der Marktnotiz ein Risiko wird {#signal}
-- Welche Annahmen der Kostenprognose bisher nur Holger Stein kennt {#annahmen}
+- Welche Annahmen nur Holger Stein kennt {#annahmen}
 - Wer Holger Stein vertritt {#stellvertretung}
 :::
 :::
@@ -289,14 +285,14 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-MVG wirkt erst, wenn Zielsystem, RACI und Freigabekalender miteinander verbunden sind und Register, Rollen und Taktung eindeutig zusammenarbeiten.
+MVG wirkt erst, wenn Zielsystem, RACI und Freigabekalender miteinander verbunden sind.
 :::
 
 ::: ebene 2
 ---
 titel: Warum relevant
 ---
-In Monat 1 ist in Welt B so wenig passiert wie in Welt A. Der Unterschied liegt im Zusammenhang: Die Marktnotiz geht an die Rolle, die das Frühwarnungsregister führt; die Zielpriorität liegt als Frage beim Bauherrn; die Kostenprognose hat einen Namen und eine Version. Eine [[RACI]] allein leistet das nicht. [[zitat:k9.2-p1|Entscheidend ist die Kopplung an Mandate, Freigabeschwellen, Stellvertretungen und Eskalationspfade.]] Eine Stellvertretung für Holger Stein ist in dieser Woche noch nicht geregelt – auch Welt B hat offene Punkte, aber sie haben einen Ort.
+In Monat 1 ist in Welt B so wenig passiert wie in Welt A. Der Unterschied liegt im Zusammenhang: Die Marktnotiz geht an die Rolle, die das Frühwarnungsregister führt; die Zielpriorität liegt als Frage beim Bauherrn; die Kostenprognose hat einen Namen und eine Version. Eine [[RACI]] allein leistet das nicht. [[zitat:k9.2-p1|Entscheidend ist die Kopplung an Mandate, Freigabeschwellen, Stellvertretungen und Eskalationspfade.]] Eine Stellvertretung für Holger Stein ist in dieser Woche noch nicht geregelt – auch Welt B hat offene Punkte, aber sie haben einen Ort. Die Projektbasis hat der Stadtrat beschlossen; jede Freigabe am Abschluss einer Leistungsphase erteilt der Bauherr selbst, auf Vorlage der Bauherren-PL.
 :::
 
 ::: ebene 3

@@ -12,7 +12,7 @@ status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Die Mensa ist politisch gesetzt, bevor jemand ihre Wirkung auf Kosten, Termin und Risiko kennt. Die Generalplanung beginnt umzuplanen – ohne schriftlichen Auftrag.
+Die Mensa ist politisch gesetzt, bevor jemand ihre Wirkung kennt. Die Generalplanung plant um, ohne schriftlichen Auftrag.
 
 ### Was fehlt
 Eine bewertete Änderung: Auswirkung, Deckung, Freigabeweg.
@@ -52,10 +52,10 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Die Generalplanung rechnet; nach sechs Wochen kommt eine genauere Kostenaussage – weiterhin ohne Termin- und Risikowirkung. Die Lieferzeit der Holzbauelemente geht in der Mensa-Debatte unter.
+Nach sechs Wochen kommt eine genauere Kostenaussage, weiter ohne Termin- und Risikowirkung. Die Lieferzeit geht in der Mensa-Debatte unter.
 
 ### Was fehlt
-Ein Ort, an dem Signale wie die Lieferzeit festgehalten werden, bevor jemand sie bewertet.
+Ein Ort, an dem Signale wie die Lieferzeit festgehalten werden.
 
 ### Neues Risiko
 Die Lieferzeit steht in keiner Liste; niemand ist für sie zuständig.

@@ -13,13 +13,13 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Dr. Olbers fragt nach Kernfrage und Datenstand. Holger Steins letzten Stand „Prognose_Nov_v5“ kann niemand erklären. Sie erteilt keine Freigabe und verlangt eine belastbare Grundlage.
+Dr. Olbers fragt nach Kernfrage und Datenstand. „Prognose_Nov_v5“ kann niemand erklären; sie erteilt keine Freigabe.
 
 ### Was fehlt
 Kernfrage, Mindestgrundlagen, Mandat und ein benannter Datenstand.
 
 ### Neues Risiko
-Die Anfrage des Stadtrats wird mit einer Zahl beantwortet, die niemand verantwortet.
+Der Stadtrat bekommt eine Zahl, die niemand verantwortet.
 
 ### Governance-Frage
 [[Freigabe]]: Worauf beruht eine Freigabe?
@@ -34,7 +34,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Die nächste Leistungsphase wartet; Planung und Projektsteuerung arbeiten derweil mit eigenen Annahmen. Die Stadtratsanfrage beantworten Sie mit „wird geprüft“.
+Die nächste Leistungsphase wartet; Planung und Projektsteuerung arbeiten mit eigenen Annahmen. Der Stadtrat erfährt: „wird geprüft“.
 
 ### Was fehlt
 Eine geregelte Stellvertretung und Wissen, das in Artefakten steht statt in einem Kopf.
@@ -54,7 +54,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Sie schreiben zwei Seiten: was bekannt ist, was nicht, welche Zahl von wem stammt, welche Entscheidungen offen sind. Dr. Olbers antwortet dem Stadtrat ehrlich, aber ohne belastbare Zahl. Im Lenkungskreis fällt der Satz: „So können wir nicht weiterführen.“
+Sie schreiben zwei Seiten: was bekannt ist, was nicht, welche Zahl von wem stammt. Dr. Olbers antwortet ehrlich, ohne belastbare Zahl. Im Lenkungskreis fällt der Satz: „So können wir nicht weiterführen.“
 
 ### Was fehlt
 Ein Lagebild, das nicht an Ihnen hängt.
@@ -67,27 +67,27 @@ Vertrauensverlust im Stadtrat.
 :::
 
 ::: nachsatz
-Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+Jede Wahl ist nachvollziehbar; es fehlt die Struktur, in der sie wirkt.
 :::
 
 ::: rueckbezug A
-Im Mai haben Sie ‚Weiterarbeiten‘ gewählt. Seither ist vieles weitergelaufen – entschieden wurde auf keinem benannten Stand. Jetzt soll darauf eine Freigabe beruhen.
+Im Mai haben Sie ‚Weiterarbeiten‘ gewählt. Seither gilt kein benannter Stand – und darauf soll eine Freigabe beruhen.
 :::
 
 ::: rueckbezug B
-Im Mai haben Sie ‚Entscheidungsvorlage verlangen‘ gewählt. Gekommen ist damals ein Statusbericht ohne Entscheidungsfrage. Jetzt sollen Sie selbst die Vorlage zur Freigabe vorbereiten – und keinen Stand kann jemand erklären.
+Im Mai haben Sie ‚Entscheidungsvorlage verlangen‘ gewählt und einen Statusbericht bekommen. Jetzt bereiten Sie selbst die Vorlage zur Freigabe vor, auf einem Stand, den niemand erklären kann.
 :::
 
 ::: rueckbezug C
-Im Mai haben Sie ‚Eskalation auslösen‘ gewählt. Die Frage ging ohne Optionen nach oben und kam als „Bitte erst die Ursachen klären“ zurück. Im November ist die Kostenfrage noch offen.
+Im Mai haben Sie ‚Eskalation auslösen‘ gewählt; zurück kam „Bitte erst die Ursachen klären“. Im November ist die Kostenfrage noch offen.
 :::
 
 ::: rueckbezug D
-Im Mai haben Sie ‚Prognose aktualisieren lassen‘ gewählt. Holger Stein hat damals neu gerechnet. Aus dieser Rechnung wurde „Prognose_Nov_v5“ – und die kann ohne ihn niemand erklären.
+Im Mai haben Sie ‚Prognose aktualisieren lassen‘ gewählt. Aus Holger Steins Rechnung wurde „Prognose_Nov_v5“, und die kann ohne ihn niemand erklären.
 :::
 
 ::: rueckbezug ohne
-Im Mai standen zwei Kostenzahlen nebeneinander. Im November stehen sie noch immer nebeneinander – und die eine kann ohne Holger Stein niemand erklären.
+Im Mai standen zwei Kostenzahlen nebeneinander. Im November ist es noch so, und die eine kann ohne Holger Stein niemand erklären.
 :::
 
 ::: regie

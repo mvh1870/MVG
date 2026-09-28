@@ -13,10 +13,10 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Für September sind zwölf Seiten statt vierzig angekündigt. Die Ampeln bleiben dieselben; eine Entscheidungsfrage ist nicht vorgesehen.
+Für September sind zwölf Seiten statt vierzig angekündigt, mit denselben Ampeln und ohne Entscheidungsfrage.
 
 ### Was fehlt
-Eine [[Entscheidungsvorlage]] mit Frage, Optionen und Empfehlung – nicht ein kürzerer Statusbericht.
+Eine [[Entscheidungsvorlage]] mit Frage, Optionen und Empfehlung.
 
 ### Neues Risiko
 Der Ausschuss gewöhnt sich an Berichte ohne Beschluss.
@@ -33,10 +33,10 @@ status:
   entscheidungsfaehigkeit: -1
 ---
 ### Konsequenz
-Fünf offene Punkte landen im Dezernat, keiner mit Vorlage. Sie entscheiden zwei davon selbst, drei bleiben liegen, weil Unterlagen fehlen.
+Fünf offene Punkte landen im Dezernat, keiner mit Vorlage. Zwei entscheiden Sie selbst, drei bleiben mangels Unterlagen liegen.
 
 ### Was fehlt
-Eine Unterscheidung: Welche Entscheidungen sind wesentlich und gehören zum Bauherrn, welche nicht?
+Die Unterscheidung, welche Entscheidungen wesentlich sind und zum Bauherrn gehören.
 
 ### Neues Risiko
 Der Engpass wandert zu Ihnen; alles wartet auf Ihren Kalender.
@@ -53,7 +53,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Am 21. Juli tagt der Lenkungskreis mit einer Liste offener Punkte. Keiner hat Optionen; zwei werden erneut vertagt, bis Unterlagen vorliegen.
+Der Lenkungskreis tagt am 21. Juli mit einer Liste offener Punkte, keiner mit Optionen; zwei werden erneut vertagt.
 
 ### Was fehlt
 Vorlagen mit Frage, Optionen und Empfehlung; eine Liste ist keine Entscheidungsgrundlage.
@@ -66,19 +66,19 @@ Mehr Sitzungen, gleich viele Entscheidungen.
 :::
 
 ::: rueckbezug A
-Im Mai haben Sie ‚Eine Zahl verlangen‘ gewählt. In den Bauausschuss ging die Zahl der GML; die Projektsteuerung rechnet weiter mit ihrer eigenen. Im Juli stehen wieder beide nebeneinander.
+Im Mai haben Sie ‚Eine Zahl verlangen‘ gewählt. In den Ausschuss ging die Zahl der GML, die Projektsteuerung rechnet weiter mit ihrer. Im Juli stehen wieder beide nebeneinander.
 :::
 
 ::: rueckbezug B
-Im Mai haben Sie ‚Mündlich informieren‘ gewählt. Im Protokoll vom Mai steht keine Zahl. Heute fragt Bernd Kowalski, worüber der Ausschuss entscheiden soll – und die Antwort steht wieder nirgends.
+Im Mai haben Sie ‚Mündlich informieren‘ gewählt; im Protokoll steht keine Zahl. Heute fragt Bernd Kowalski, worüber der Ausschuss entscheiden soll.
 :::
 
 ::: rueckbezug C
-Im Mai haben Sie ‚Punkt vertagen‘ gewählt. Die Sitzung im Juli hat das Thema geerbt, mit zwei Monaten mehr Abweichung und ohne Vorlage. Jetzt ist es ein zweites Mal vertagt.
+Im Mai haben Sie ‚Punkt vertagen‘ gewählt. Der Juli hat das Thema geerbt, ohne Vorlage. Jetzt ist es ein zweites Mal vertagt.
 :::
 
 ::: rueckbezug ohne
-Im Mai standen zwei Kostenzahlen nebeneinander, und der Bauausschuss hat nichts beschlossen. Im Juli liegt ihm wieder keine Entscheidungsfrage vor.
+Im Mai standen zwei Kostenzahlen nebeneinander, beschlossen wurde nichts. Im Juli fehlt wieder die Entscheidungsfrage.
 :::
 
 ::: regie

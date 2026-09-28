@@ -66,6 +66,42 @@ titel: Freigabereife
 [[zitat:k10.3-p1|die Freigabereife zum Abschluss von LPH 2 für Variantenwahl und Business Case, von LPH 3 für die FID nach Entwurfsplanung und Kostenberechnung und von LPH 7 für Vergabe oder die Bindung einer Komponente mit langer Lieferzeit]]
 :::
 :::
+
+::: wissenscheck infrastruktur-fid
+### Frage
+Als Infrastrukturträger bereiten Sie die finale Investitionsentscheidung (FID) vor – mit welcher Freigabe gehört sie zusammen?
+
+### Erklärung
+Für Energieversorger und Infrastrukturträger ist die Freigabereife besonders relevant: zum Abschluss von LPH 2 für Variantenwahl und Business Case, von LPH 3 für die FID nach Entwurfsplanung und Kostenberechnung und von LPH 7 für Vergabe oder die Bindung einer Komponente mit langer Lieferzeit.
+
+::: antwort a
+---
+titel: Abschluss LPH 3, nach Entwurfsplanung und Kostenberechnung
+praefix: "Genau:"
+---
+Die FID steht bei der Freigabereife zum Abschluss von LPH 3.
+:::
+
+::: antwort b
+---
+titel: Abschluss LPH 2
+praefix: "Nicht ganz:"
+---
+Zum Abschluss von LPH 2 geht es um Variantenwahl und Business Case.
+:::
+
+::: antwort c
+---
+titel: Abschluss LPH 7
+praefix: "Nicht ganz:"
+---
+LPH 7 betrifft Vergabe oder die Bindung einer Komponente mit langer Lieferzeit.
+:::
+
+::: zitat k10.3-p1
+Besonders relevant sind […] die Freigabereife zum Abschluss von LPH 2 für Variantenwahl und Business Case, von LPH 3 für die FID nach Entwurfsplanung und Kostenberechnung und von LPH 7 für Vergabe oder die Bindung einer Komponente mit langer Lieferzeit.
+:::
+:::
 :::
 
 ::: abschnitt k10.4

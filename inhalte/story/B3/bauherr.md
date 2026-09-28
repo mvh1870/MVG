@@ -12,7 +12,7 @@ schritt: mandat
 Bei welcher Option von `ENT-017` landet die Entscheidung bei Ihnen?
 
 ### Rückmeldung
-Bei Option 2: Die Freigabe des Einsatzes der Risikoreserve ist nicht delegierbar; sie bleibt beim Bauherrn. Über Option 1, die Fassadenänderung `AEN-022`, entscheidet nach der Mandatsleiter das Änderungsgremium – 4,7 Mio. € liegen über 100 TEUR und bis einschließlich 5 Mio. €.
+Bei Option 2: Die Freigabe des Einsatzes der Risikoreserve ist nicht delegierbar. Über Option 1, die Fassadenänderung `AEN-022`, entscheidet das Änderungsgremium.
 
 ::: antwort eins
 ---
@@ -32,19 +32,19 @@ symbol: schild
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Eine Zahl verlangen‘ gewählt. In Welt B stünde keine Zahl gegen die andere: Hier gilt der benannte Datenstand „Kostenprognose 2026-05 · Version 3“; wer abweicht, legt eine neue Version vor.
+In Welt A haben Sie ‚Eine Zahl verlangen‘ gewählt. In Welt B gilt Version 3; wer abweicht, legt eine neue Version vor.
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Mündlich informieren‘ gewählt. In Welt B ist die Abweichung mit Kennung erfasst, `ENT-017` hat eine Frage und eine Frist, und der Managementbericht trägt sie in die Gremien.
+In Welt A haben Sie ‚Mündlich informieren‘ gewählt. In Welt B ist die Abweichung erfasst, und `ENT-017` hat Frage und Frist.
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Punkt vertagen‘ gewählt. In Welt B hängt die Entscheidung nicht an der Tagesordnung: Welche Stelle entscheidet, ergibt sich aus der Mandatsleiter und der gewählten Option.
+In Welt A haben Sie ‚Punkt vertagen‘ gewählt. In Welt B hängt die Entscheidung nicht an der Tagesordnung, sondern an Mandatsleiter und Option.
 :::
 
 ::: rueckbezug ohne
-In Welt A lagen an diesem Montag zwei Zahlen und ein Ausschuss vor Ihnen. In Welt B hat das Signal eine Nummer, der Datenstand einen Namen und die Entscheidung ein Mandat.
+In Welt A lagen zwei Zahlen und ein Ausschuss vor Ihnen. In Welt B hat das Signal eine Nummer, der Datenstand einen Namen, die Entscheidung ein Mandat.
 :::
 
 ::: regie

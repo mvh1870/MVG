@@ -12,13 +12,13 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Nach drei Wochen gibt es eine Ablage statt drei. Welche Fassung der Kostendatei gilt, weiß weiter nur Holger Stein; der Zielkonflikt bleibt, wo er war.
+Nach drei Wochen gibt es eine Ablage statt drei. Welche Fassung der Kostendatei gilt, weiß weiter nur Holger Stein.
 
 ### Was fehlt
 Eine Festlegung, welcher Stand gilt – und eine Zielpriorität.
 
 ### Neues Risiko
-Ordnung ohne Priorität: Der Zielkonflikt bricht später im Projekt auf, nicht jetzt am Tisch.
+Ordnung ohne Priorität: Der Zielkonflikt bricht später auf.
 
 ### Governance-Frage
 [[Datenstand]]: Welche Version gilt – und wer legt das fest?
@@ -32,7 +32,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Lena Hoffmeister liefert vier Varianten zu Kosten, Termin, ESG und LCC. Welche gilt, entscheidet niemand; die Unterlage landet in einer vierten Ablage.
+Lena Hoffmeister liefert vier Varianten. Welche gilt, entscheidet niemand; die Unterlage landet in einer vierten Ablage.
 
 ### Was fehlt
 Die Priorisierung der Ziele durch den Bauherrn. Die Analyse ist delegierbar, die Festlegung der Zielpriorität nicht.
@@ -52,10 +52,10 @@ status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Holger Stein rechnet eine neue Fassung in seiner Datei. Die Marktnotiz ist jetzt eine Zahl, aber kein bewertetes Risiko – und die Rechnung versteht weiterhin nur er.
+Holger Stein rechnet eine neue Fassung. Die Marktnotiz ist jetzt eine Zahl, aber kein bewertetes Risiko; die Rechnung versteht nur er.
 
 ### Was fehlt
-Ein Weg, auf dem ein Signal erfasst, bewertet und zum Risiko wird; Wissen in Artefakten statt in einem Kopf.
+Ein Weg, auf dem ein Signal bewertet wird; Wissen in Artefakten statt in einem Kopf.
 
 ### Neues Risiko
 Abhängigkeit von einer Schlüsselperson.

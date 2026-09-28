@@ -10,7 +10,7 @@
 
 import type { TitelStufe } from '../../grafik/tafel.ts';
 import type { Block, Ebene, OeffentlicheInhalte, TheorieSeite, WhitepaperKapitel } from '../../inhalte/typen.ts';
-import { h } from '../h.ts';
+import { h, ersetze } from '../h.ts';
 import { bildmarke } from '../marke.ts';
 import { sym, symbolAusInhalt, tafel as tafelBlock, raci as raciBlock, merksatz, hinweis } from '../bausteine/bloecke.ts';
 import { inhalt, inhaltInline } from '../bausteine/inhalt.ts';
@@ -185,6 +185,34 @@ function karten(b: Block): HTMLElement {
   }));
 }
 
+/**
+ * Wissenscheck (P11.6, Owner-Punkt „Wissenschecks ohne Schulungscharakter“): eine Frage, zwei bis drei
+ * Antworten; die Wahl zeigt eine kurze Rückmeldung und die Erklärung mit wortgleichem Beleg – keine
+ * Punkte, kein Richtig/Falsch-Zähler. Die Wahl bleibt örtlich (kein Engine-Zustand).
+ */
+function wissenscheck(b: Block): HTMLElement {
+  const antworten = b.kinder.filter((k) => k.art === 'antwort');
+  const belege = b.kinder.filter((k) => k.art === 'zitat' || k.art === 'original');
+  const ergebnis = h('div', { class: 'wc-ergebnis', 'aria-live': 'polite', 'data-pruef': 'wc-ergebnis' });
+  const knoepfe = antworten.map((a) => h('button', {
+    type: 'button', class: 'knopf knopf-still wc-antwort', 'aria-pressed': 'false', 'data-pruef': `wc-antwort-${a.id ?? ''}`,
+    onclick: () => {
+      for (const k of knoepfe) k.setAttribute('aria-pressed', k === knopf(a) ? 'true' : 'false');
+      const praefix = kopfText(a.kopf, 'praefix');
+      ersetze(ergebnis,
+        h('div', { class: 'wc-rueckmeldung' }, praefix !== null ? h('b', null, `${praefix} `) : null, inhalt(a.felder['text'] ?? '')),
+        h('div', { class: 'wc-erklaerung' }, inhalt(b.felder['erklaerung'] ?? '')),
+        belege.map((z) => zitatBlock(z)));
+    },
+  }, kopfText(a.kopf, 'titel') ?? a.id ?? ''));
+  const knopf = (a: Block): HTMLElement | undefined => knoepfe[antworten.indexOf(a)];
+  return h('section', { class: 'wissenscheck', 'data-pruef': 'wissenscheck', 'aria-label': W.theorie.wissenscheck },
+    h('span', { class: 't-label' }, W.theorie.wissenscheck),
+    h('div', { class: 'wc-frage' }, inhalt(b.felder['frage'] ?? '')),
+    h('div', { class: 'wc-antworten reihe', role: 'group', 'aria-label': W.theorie.wissenscheckAntworten }, knoepfe),
+    ergebnis);
+}
+
 /** Ebenen 1–4 auf einer Lernseite (P6.1): aufklappbar, Ebene 1 offen; Ebene 4 trägt den Nachweis (Zitat). */
 function ebenenBlock(ebenen: readonly Ebene[], inhalte: OeffentlicheInhalte, stufe: TitelStufe): HTMLElement {
   return h('div', { class: 'lern-ebenen', 'data-pruef': 'lern-ebenen' }, ebenen.map((e) => h('details', { class: 'lern-ebene', 'data-ebene': e.nr, 'data-pruef': `lern-ebene-${e.nr}`, open: e.nr === 1 },
@@ -217,6 +245,9 @@ function bloeckeIn(bloecke: readonly Block[], inhalte: OeffentlicheInhalte, stuf
       }
       case 'merksatz':
         aus.push(merksatz(b));
+        break;
+      case 'wissenscheck':
+        aus.push(wissenscheck(b));
         break;
       case 'governancefluss': {
         // derselbe Baustein wie in der Story (B3), hier als Übersicht ohne „Sie sind hier“

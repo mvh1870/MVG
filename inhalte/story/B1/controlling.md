@@ -13,7 +13,7 @@ status:
   kostenunsicherheit: -1
 ---
 ### Konsequenz
-Die erste CTC hat Version und Datum. Im monatlichen Termin mit Bauherren-PL und PMO geht sie in den Managementbericht.
+Die erste CTC hat Version und Datum und geht monatlich in den Managementbericht.
 
 ### Was fehlt
 Schwellenwerte je Kostengruppe – bis sie festgehalten sind, bleibt eine Abweichung eine Zahl ohne Auslöser.
@@ -33,7 +33,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Jede Kostengruppe hat einen Schwellenwert. Wird er verletzt, entsteht eine neue Frühwarnung; welche Stufe dann entscheidet, sagt die Mandatsleiter.
+Wird ein Schwellenwert verletzt, entsteht eine Frühwarnung; wer entscheidet, sagt die Mandatsleiter.
 
 ### Was fehlt
 Die Marktnotiz zum Holzpreis berührt noch keine Schwelle.
@@ -66,24 +66,22 @@ Eine gemeinsame Zahl – aber noch kein Auslöser, wenn sie kippt.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Eigene CTC aufsetzen‘ gewählt. In Welt B ist die CTC kein Nebenstrang: Sie gehört zu den Registern des Controllings, monatlich, mit Version – neben der Prognose, nicht gegen sie.
+In Welt A haben Sie ‚Eigene CTC aufsetzen‘ gewählt. In Welt B ist die CTC kein Nebenstrang: monatlich, mit Version, neben der Prognose.
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Kostendatei nachvollziehen‘ gewählt. In Welt B ist die Kostenprognose ein benannter Datenstand; niemand muss die Annahmen aus einem Kopf erfragen.
+In Welt A haben Sie ‚Kostendatei nachvollziehen‘ gewählt. In Welt B muss niemand die Annahmen aus einem Kopf erfragen.
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Holzpreis einrechnen‘ gewählt. In Welt B hat die Marktnotiz einen Ort: Sie geht als Frühwarnung ins Register und wird in der Risikosichtung angesehen, nicht still in eine Zelle gerechnet.
+In Welt A haben Sie ‚Holzpreis einrechnen‘ gewählt. In Welt B geht die Marktnotiz als Frühwarnung ins Register, nicht still in eine Zelle.
 :::
 
 ::: rueckbezug ohne
-In Welt A war dieselbe erste Woche: zwei Rechnungen, eine Datei, ein Kopf. In Welt B haben CTC, Prognose und Schwellenwerte eine verantwortliche Rolle und einen Turnus.
+In Welt A: zwei Rechnungen, eine Datei, ein Kopf. In Welt B haben CTC und Prognose eine Rolle und einen Turnus.
 :::
 
 ::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
 Die Geschichte merkt sich Ihre Wahl.
 :::
 

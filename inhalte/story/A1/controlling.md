@@ -12,7 +12,7 @@ status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Sie bauen Ihre Restkostenprognose neben Holger Steins Kostendatei auf. Zwei Rechnungen, zwei Ablagen, zwei Stände – vorerst liegen sie nah beieinander.
+Sie bauen Ihre Restkostenprognose neben Holger Steins Kostendatei auf. Zwei Rechnungen, zwei Stände, vorerst nah beieinander.
 
 ### Was fehlt
 Eine Festlegung, welche Zahl gilt, wenn beide auseinanderlaufen.
@@ -32,7 +32,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Holger Stein erklärt Ihnen zwei Stunden lang seine Datei, in Zellbezügen. Danach verstehen Sie die Struktur – die Annahmen kennt weiter nur er.
+Holger Stein erklärt Ihnen zwei Stunden lang seine Zellbezüge. Sie verstehen die Struktur; die Annahmen kennt weiter nur er.
 
 ### Was fehlt
 Annahmen, die irgendwo stehen und nicht nur in einem Kopf.
@@ -55,10 +55,10 @@ status:
 Sie setzen einen Aufschlag für die Holzbauelemente an. Ihre Zahl steigt; ob sie damit gilt, hat niemand entschieden.
 
 ### Was fehlt
-Ein Ort, an dem ein Signal erfasst und bewertet wird, bevor es in eine Zahl wandert.
+Ein Ort, an dem ein Signal bewertet wird, bevor es in eine Zahl wandert.
 
 ### Neues Risiko
-Ein Kostensignal ohne Empfänger – es steht in einer Zelle, nicht auf einer Tagesordnung.
+Das Signal steht in einer Zelle, nicht auf einer Tagesordnung.
 
 ### Governance-Frage
 [[Frühwarnung]]: Ist die Marktnotiz ein Signal – und wer bewertet es?

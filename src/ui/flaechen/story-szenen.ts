@@ -567,7 +567,18 @@ function mandatTeil(k: SzenenKontext): Szene {
     leiter.setzeZiel(stufeVon(wahl));
   };
   setze(k.z, true);
-  const el = h('div', { class: 'mandat-raster' },
+  // Liegt im selben Schritt eine Vorlage (B4: AEN-031 im Gremium), steht sie unter der Mandatsleiter –
+  // vollständig ausgefüllt, ohne eigene Reifefrage (die hat nur der Vorlage-Schritt)
+  const vorlageBl = k.schritt.bloecke.find((b) => b.art === 'vorlage') ?? null;
+  const vorlageG = vorlageBl !== null ? vorlageGrafik({
+    id: vorlageBl.id ?? '',
+    titel: kopfText(vorlageBl.kopf, 'titel') ?? '',
+    meta: kopfText(vorlageBl.kopf, 'datenstand') !== null ? `Datenstand: ${kopfText(vorlageBl.kopf, 'datenstand')}` : null,
+    frage: inhaltInline(vorlageBl.felder['frage'] ?? ''),
+    punkte: (vorlageBl.liste ?? []).map((p) => ({ inhalt: inhaltInline(p.html), stand: (p.stand ?? 'offen') as PruefStand })),
+  }) : null;
+  vorlageG?.zeigeAlle();
+  const raster = h('div', { class: 'mandat-raster' },
     leiter.element,
     h('div', { class: 'mandat-seite' },
       h('span', { class: 't-label mandat-titel' }, W.musterMandatsleiter),
@@ -575,6 +586,7 @@ function mandatTeil(k: SzenenKontext): Szene {
       h('div', { class: 'mandat-optionen', role: 'group', 'aria-label': W.mandatFrage }, knoepfe),
       urteil,
       merksatz !== undefined ? B.merksatz(merksatz) : null));
+  const el = vorlageG !== null ? h('div', { class: 'stapel' }, raster, vorlageG.element) : raster;
   return szene(el, (z) => setze(z, false), () => leiter.klettere(k.takt));
 }
 

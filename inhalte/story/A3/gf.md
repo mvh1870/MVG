@@ -12,7 +12,7 @@ status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Im Lenkungskreis nennen Sie +5,9 %, die Zahl der GML. Die Projektsteuerung, als Gast in der Sitzung, widerspricht; die Differenz von rund 1,3 Mio. € bleibt ungeklärt im Raum.
+Im Lenkungskreis nennen Sie +5,9 %, die Zahl der GML. Die Projektsteuerung widerspricht; die Differenz von rund 1,3 Mio. € bleibt im Raum.
 
 ### Was fehlt
 Ein verbindlicher [[Datenstand]]: Welche Version gilt?
@@ -32,7 +32,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Die Bauherren-PL hat acht Tage. Es kommt eine Präsentation mit beiden Zahlen, ohne Optionen und ohne Empfehlung. Der Lenkungskreis vertagt auf Juni; der Bauausschuss bekommt einen Sachstand.
+Nach acht Tagen kommt eine Präsentation mit beiden Zahlen, ohne Optionen und Empfehlung. Der Lenkungskreis vertagt auf Juni; der Bauausschuss bekommt einen Sachstand.
 
 ### Was fehlt
 Ein Standard für Entscheidungsvorlagen: Frage, Optionen, Empfehlung.
@@ -41,7 +41,7 @@ Ein Standard für Entscheidungsvorlagen: Frage, Optionen, Empfehlung.
 Die Entscheidung wandert von Sitzung zu Sitzung, der Zeitdruck wächst.
 
 ### Governance-Frage
-[[Entscheidungsreife]]: Was muss eine Vorlage enthalten, bevor sie in den Lenkungskreis geht?
+[[Entscheidungsreife]]: Was muss eine Vorlage für den Lenkungskreis enthalten?
 :::
 
 ::: option C
@@ -66,7 +66,7 @@ Wenn die Zahl später kommt, fragt der Ausschuss, seit wann sie bekannt war.
 :::
 
 ::: nachsatz
-Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+Jede Wahl ist nachvollziehbar; es fehlt die Struktur, in der sie wirkt.
 :::
 
 ::: regie

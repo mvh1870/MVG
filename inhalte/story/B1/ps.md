@@ -13,7 +13,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Beide Register liegen bei Ihnen: monatlich die formale Prüfung, wöchentlich die Sichtung im Jour fixe. Jeder Eintrag hat eine Rolle und einen nächsten Schritt.
+Beide Register liegen bei Ihnen: monatlich Prüfung, wöchentlich Sichtung. Jeder Eintrag hat einen nächsten Schritt.
 
 ### Was fehlt
 Die Marktnotiz zum Holzpreis steht noch in keinem Register.
@@ -33,7 +33,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Die Notiz geht ins Frühwarnungsregister und wird in der wöchentlichen Risikosichtung angesehen; ob sie für sich steht oder mit einem späteren Signal zusammengehört, zeigt sich dort. Die Zahl der offenen Punkte steigt – sichtbar.
+Die Notiz geht ins Frühwarnungsregister und in die wöchentliche Risikosichtung. Die Zahl der offenen Punkte steigt – sichtbar.
 
 ### Was fehlt
 Das Detailwissen zur Kostendatei liegt noch vor allem bei Holger Stein.
@@ -53,7 +53,7 @@ status:
   offene-risiken: -1
 ---
 ### Konsequenz
-Eine Kollegin arbeitet sich in die Kostenprognose ein; die Annahmen stehen im Datenstand, nicht nur in Steins Dateien. Die Bauherren-PL trägt die Stellvertretung ein.
+Eine Kollegin arbeitet sich in die Kostenprognose ein; die Annahmen stehen im Datenstand, nicht nur bei Stein.
 
 ### Was fehlt
 Die Marktnotiz zum Holzpreis ist noch nicht erfasst.
@@ -66,24 +66,22 @@ Ein offenes Kostensignal, während das Team mit sich selbst beschäftigt ist.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Statusbericht aufsetzen‘ gewählt. In Welt B steht die Marktnotiz nicht auf Seite 17, sondern im Frühwarnungsregister – mit Rolle und nächstem Schritt.
+In Welt A haben Sie ‚Statusbericht aufsetzen‘ gewählt. In Welt B steht die Marktnotiz nicht auf Seite 17, sondern im Frühwarnungsregister.
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Kostendatei nachrechnen‘ gewählt. In Welt B ist die Kostenprognose ein benannter Datenstand mit Version; ein Signal wird zuerst als Frühwarnung erfasst und gesichtet, dann gerechnet.
+In Welt A haben Sie ‚Kostendatei nachrechnen‘ gewählt. In Welt B wird ein Signal zuerst als Frühwarnung erfasst, dann gerechnet.
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Risikoliste anlegen‘ gewählt. In Welt B ist daraus ein Register geworden: mit verantwortlicher Rolle, Turnus und einem definierten nächsten Schritt je Eintrag.
+In Welt A haben Sie ‚Risikoliste anlegen‘ gewählt. In Welt B ist daraus ein Register mit Rolle und Turnus geworden.
 :::
 
 ::: rueckbezug ohne
-In Welt A war dieselbe erste Woche: ein Bericht, eine Datei, ein Kopf. In Welt B haben Signale, Risiken und Zahlen einen festen Ort.
+In Welt A: ein Bericht, eine Datei, ein Kopf. In Welt B haben Signale und Zahlen einen festen Ort.
 :::
 
 ::: nachsatz
-In Welt B hat jede dieser Entscheidungen einen Ort, eine Rolle und einen Weg.
-
 Die Geschichte merkt sich Ihre Wahl.
 :::
 

@@ -53,7 +53,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Sie zeigen, welche Einsparungen in anderen Kostengruppen den Nachtrag tragen könnten. Das schont die Reserve, wäre aber eine Änderung – sie ginge über das Änderungsregister.
+Sie zeigen, welche Einsparungen in anderen Kostengruppen den Nachtrag tragen könnten. Das schont die Reserve, wäre aber eine Änderung im Änderungsregister.
 
 ### Was fehlt
 Eine Bewertung der Einsparungen durch die Planung.
@@ -66,7 +66,7 @@ Wer legt fest, welche Zielpriorität im Konflikt gilt?
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Reserve offenlegen‘ gewählt. In Welt B muss niemand eine Verplanung aufdecken: Der Einsatz der Risikoreserve wird vorher beim Bauherrn beantragt, und Dr. Olbers entscheidet auf Vorlage.
+In Welt A haben Sie ‚Reserve offenlegen‘ gewählt. In Welt B wird der Einsatz der Risikoreserve vorher beantragt, und Dr. Olbers entscheidet auf Vorlage.
 :::
 
 ::: rueckbezug B
@@ -74,7 +74,7 @@ In Welt A haben Sie ‚Reserve weiterführen‘ gewählt. In Welt B steht der Re
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Überschreitung ausweisen‘ gewählt. In Welt B gibt es keine zweite Rechnung: Die Folgekosten stehen mit Kennung in `AEN-012`, `AEN-031` und `PRB-004`, und welcher Datenstand gilt, ist benannt.
+In Welt A haben Sie ‚Überschreitung ausweisen‘ gewählt. In Welt B gibt es keine zweite Rechnung: Die Folgekosten stehen mit Kennung in den Registern, der geltende Datenstand ist benannt.
 :::
 
 ::: rueckbezug ohne

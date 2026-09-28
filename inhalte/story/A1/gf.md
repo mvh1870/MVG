@@ -13,13 +13,13 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Die Bauherren-PL arbeitet sich ein, Sie sehen das Projekt im nächsten Lenkungskreis wieder. Den Zielkonflikt zwischen Kosten, Termin, ESG und LCC priorisiert niemand; die Marktnotiz zu den Holzpreisen liegt in einer der drei Ablagen.
+Die Bauherren-PL arbeitet sich ein. Den Zielkonflikt priorisiert niemand; die Marktnotiz liegt in einer der drei Ablagen.
 
 ### Was fehlt
 Eine Festlegung, welche Zielpriorität gilt und wie Zielkonflikte aufgelöst werden.
 
 ### Neues Risiko
-Den Zielkonflikt entscheidet später die Planung – ohne Auftrag, Variante für Variante.
+Den Zielkonflikt entscheidet später die Planung, Variante für Variante.
 
 ### Governance-Frage
 Wer legt fest, welche Zielpriorität gilt – und wer darf sie nicht festlegen?
@@ -33,13 +33,13 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Noch im Januar legt Ihnen Jonas Brenner den ersten Statusbericht mit Ampeln vor, danach jeden Monat. Sie wissen jetzt mehr über das Projekt; entschieden ist dadurch nichts.
+Jonas Brenner legt Ihnen ab Januar monatlich einen Statusbericht mit Ampeln vor. Sie wissen mehr; entschieden ist nichts.
 
 ### Was fehlt
 Die Verbindung der Information mit Mandat, Entscheidung und Schwelle.
 
 ### Neues Risiko
-Mehr Berichterstattung ersetzt Führung – der Bericht wird zur Beobachtung.
+Der Bericht ersetzt Führung und wird zur Beobachtung.
 
 ### Governance-Frage
 Welche Entscheidungen muss der [[Bauherr]] in diesem Projekt selbst treffen?
@@ -54,13 +54,13 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Der Lenkungskreis im Januar diskutiert Kosten gegen ESG und LCC. Ohne Vorlage und Abwägungsregel steht im Protokoll: „Alle Ziele bleiben gleich wichtig.“
+Der Lenkungskreis diskutiert Kosten gegen ESG und LCC. Ohne Vorlage steht im Protokoll: „Alle Ziele bleiben gleich wichtig.“
 
 ### Was fehlt
 Eine [[Entscheidungsvorlage]] mit Frage, Optionen und Empfehlung.
 
 ### Neues Risiko
-Ein Gremium hat sich befasst, aber nicht entschieden; der Konflikt gilt als erledigt.
+Das Gremium hat sich befasst, nicht entschieden; der Konflikt gilt als erledigt.
 
 ### Governance-Frage
 Mit welcher Entscheidungsfrage geht ein Zielkonflikt in den Lenkungskreis?

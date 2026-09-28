@@ -5,11 +5,11 @@ rueckbezug-auf: wirklichkeit
 ---
 
 ::: rueckbezug A
-Im Dezember haben Sie ‚MVG-Neuinitialisierung empfehlen‘ gewählt. Die Spur hatte zu wenig Entscheidungsfähigkeit übrig gelassen, als dass eine Neuordnung bis zum Frühjahr hätte tragen können; nach der Freigabe mit Auflagen im Januar verlangt Auflage 1 einen verbindlichen Datenstand – welcher es ist, steht nicht dabei.
+Im Dezember haben Sie ‚MVG-Neuinitialisierung empfehlen‘ gewählt. Für die Neuordnung fehlte Ihrer Spur die Entscheidungsfähigkeit; Auflage 1 verlangt einen verbindlichen Datenstand – welchen, steht nicht dabei.
 :::
 
 ::: rueckbezug B
-Im Dezember haben Sie ‚Freigabe mit Auflagen empfehlen‘ gewählt und Kostenauflagen empfohlen. Dr. Olbers hat die Freigabe im Januar erteilt; im März ist offen, welche Prognose für die Vergabeunterlagen gilt.
+Im Dezember haben Sie ‚Freigabe mit Auflagen empfehlen‘ gewählt. Dr. Olbers hat sie im Januar erteilt; im März ist offen, welche Prognose für die Vergabeunterlagen gilt.
 :::
 
 ::: rueckbezug C

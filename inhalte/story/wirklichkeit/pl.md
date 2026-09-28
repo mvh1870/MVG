@@ -1,16 +1,16 @@
 ---
 station: wirklichkeit
 rolle: pl
-frage: Dr. Olbers will bis zum 15. Dezember einen Vorschlag, wie es weitergeht, und eine Liste der offenen Entscheidungen. Was schlagen Sie ihr vor?
+frage: Dr. Olbers will bis zum 15. Dezember einen Vorschlag. Was schlagen Sie ihr vor?
 rueckbezug-auf: A6
 ---
 
 ::: rueckbezug A
-Im November haben Sie ‚Freigabe beantragen‘ gewählt. Dr. Olbers fragte nach Kernfrage und Datenstand und erteilte keine Freigabe. Die belastbare Grundlage, die sie verlangt hat, gibt es noch nicht.
+Im November haben Sie ‚Freigabe beantragen‘ gewählt. Dr. Olbers erteilte sie nicht: Kernfrage und Datenstand fehlten – bis heute.
 :::
 
 ::: rueckbezug B
-Im November haben Sie ‚Vorlage zurückstellen‘ gewählt, bis Holger Stein zurück ist. Er ist zurück. Planung und Projektsteuerung haben inzwischen mit eigenen Annahmen weitergearbeitet – jetzt gibt es davon mehr, nicht weniger.
+Im November haben Sie ‚Vorlage zurückstellen‘ gewählt, bis Holger Stein zurück ist. Er ist zurück – und Planung und Projektsteuerung haben inzwischen mit eigenen Annahmen weitergearbeitet.
 :::
 
 ::: rueckbezug C
@@ -30,7 +30,7 @@ status:
   kostenunsicherheit: -1
 ---
 ### Konsequenz
-Sie schlagen Dr. Olbers und Frank Deppe eine [[MVG-Neuinitialisierung]] vor: kein Neustart des Projekts, sondern eine Neuordnung von Mandaten, Datenstand, offenen Entscheidungen und Freigaben. Die Liste, die Dr. Olbers verlangt, wird der Anfang des Entscheidungsinventars. Die ersten 30 Tage gelten der Sichtbarkeit; den Auftrag erteilt Dr. Olbers.
+Sie schlagen Dr. Olbers und Frank Deppe eine [[MVG-Neuinitialisierung]] vor. Die verlangte Liste wird der Anfang des Entscheidungsinventars; den Auftrag erteilt Dr. Olbers.
 
 ### Was fehlt
 Die Mitwirkung des Bauherrn – Zeit von Dr. Olbers und Frank Deppe, nicht nur Ihre.
@@ -51,7 +51,7 @@ status:
   kostenunsicherheit: -1
 ---
 ### Konsequenz
-Sie bereiten die Vorlage vor und empfehlen die Freigabe mit Auflagen – zu Datenstand, Kostenprognose und Stellvertretung für Holger Stein. Der Lenkungskreis berät, Dr. Olbers entscheidet selbst. Die Auflagen tragen jetzt die Last, die das Projekt bisher nicht tragen konnte.
+Sie empfehlen die Freigabe mit Auflagen – zu Datenstand, Kostenprognose und Stellvertretung für Holger Stein. Der Lenkungskreis berät, Dr. Olbers entscheidet selbst.
 
 ### Was fehlt
 Die Ursachen: Mandate, Register und ein geltender Datenstand fehlen weiter.
@@ -71,7 +71,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Sie schlagen vor, mit Projektsteuerung und Controlling eine Entscheidungsvorlage zur [[Neufestlegung der Projektbasis]] vorzubereiten. Beschließen würde der Bauherr im Lenkungskreis, außerhalb der regulären Freigabereihe. Bis dahin sind alle Zahlen vorläufig.
+Sie schlagen eine Entscheidungsvorlage zur [[Neufestlegung der Projektbasis]] vor. Beschließen würde der Bauherr im Lenkungskreis, außerhalb der regulären Freigabereihe; bis dahin sind alle Zahlen vorläufig.
 
 ### Was fehlt
 Ein Stand, auf dem die neue Basis beruhen soll – noch gibt es zwei Zahlen.
@@ -84,7 +84,7 @@ Eine neue Projektbasis auf der alten Steuerungslogik.
 :::
 
 ::: nachsatz
-Sie schlagen vor, Dr. Olbers entscheidet. Wohin das führt, hängt auch davon ab, was bis hierher geschehen ist.
+Sie schlagen vor, Dr. Olbers entscheidet. Wohin das führt, hängt auch vom bisherigen Weg ab.
 :::
 
 ::: regie

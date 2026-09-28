@@ -13,7 +13,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Die GML schreibt die Antwort aus dem Statusbericht vom Oktober. Die Zahlen dahinter stammen aus Holger Steins Dateien; nachrechnen kann sie gerade niemand.
+Die GML antwortet aus dem Statusbericht vom Oktober. Die Zahlen stammen aus Holger Steins Dateien; nachrechnen kann sie niemand.
 
 ### Was fehlt
 Ein benannter [[Datenstand]] und eine Stellvertretung für den Kostenplan.
@@ -34,7 +34,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Sie empfehlen Dr. Miriam Olbers, die Freigabe zu verschieben. Die Planung arbeitet weiter, LPH 5 bleibt offen. Das Projekt wartet auf eine Person.
+Sie empfehlen Dr. Olbers, die Freigabe zu verschieben. LPH 5 bleibt offen; das Projekt wartet auf eine Person.
 
 ### Was fehlt
 Wissen in Artefakten und Routinen statt in einem Kopf.
@@ -55,36 +55,36 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Im Lenkungskreis liegen zwei Prognosen, die verplante Reserve und die Beschlüsse, die nie gefasst wurden, offen auf dem Tisch. Niemand kann sagen, welche Entscheidung zuerst dran ist – aber die Lage ist ausgesprochen.
+Zwei Prognosen, die verplante Reserve und nie gefasste Beschlüsse liegen auf dem Tisch. Welche Entscheidung zuerst dran ist, weiß niemand, aber die Lage ist ausgesprochen.
 
 ### Was fehlt
 Ein Entscheidungsinventar: Was ist offen, was überfällig, was unklar?
 
 ### Neues Risiko
-Die offene Lage ohne Entscheidungslogik erzeugt Druck, aber noch keine Führung.
+Offene Lage ohne Entscheidungslogik erzeugt Druck, keine Führung.
 
 ### Governance-Frage
 Welche Entscheidungen müssen jetzt neu legitimiert werden, damit das Projekt wieder führbar wird?
 :::
 
 ::: nachsatz
-Jede dieser Entscheidungen ist nachvollziehbar. In Welt A fehlt die Struktur, in der sie wirken könnten.
+Jede Wahl ist nachvollziehbar; es fehlt die Struktur, in der sie wirkt.
 :::
 
 ::: rueckbezug A
-Im September haben Sie ‚Nachträglich bestätigen‘ gewählt. Der Lenkungskreis hat die Verwendung zur Kenntnis genommen; eine Freigabe ist daraus nicht geworden. Die Fassungen der Liste sind bis heute nicht abgestimmt.
+Im September haben Sie ‚Nachträglich bestätigen‘ gewählt. Aus der Kenntnisnahme wurde keine Freigabe; die Fassungen der Liste sind bis heute nicht abgestimmt.
 :::
 
 ::: rueckbezug B
-Im September haben Sie ‚Kosten verschieben‘ gewählt. Brandschutz, Mensa und TGA laufen seither als „später bei der Vergabe“. In der Antwort an den Stadtrat müssen sie irgendwo stehen – nur wo?
+Im September haben Sie ‚Kosten verschieben‘ gewählt. Brandschutz, Mensa und TGA laufen als „später bei der Vergabe“; in der Antwort an den Stadtrat müssen sie stehen. Nur wo?
 :::
 
 ::: rueckbezug C
-Im September haben Sie ‚Offenlegen‘ gewählt. Dr. Olbers hat damals zwei Aufstellungen bekommen. Jetzt fragt der Stadtrat nach einer Zahl, und es gibt immer noch zwei.
+Im September haben Sie ‚Offenlegen‘ gewählt; Dr. Olbers bekam zwei Aufstellungen. Jetzt fragt der Stadtrat nach einer Zahl, und es gibt immer noch zwei.
 :::
 
 ::: rueckbezug ohne
-Im September liefen Posten gegen die Risikoreserve, deren Einsatz niemand freigegeben hatte. Im November fragt eine Fraktion, womit die Stadt rechnen muss.
+Im September liefen Posten ohne Freigabe gegen die Risikoreserve. Im November fragt eine Fraktion, womit die Stadt rechnen muss.
 :::
 
 ::: regie

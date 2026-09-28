@@ -21,7 +21,7 @@ weiter: A3
 titel: Dienstag, 11:15 Uhr. Monat 3.
 kurz: Einstieg
 ---
-Dienstag, 10. März. Seit Februar steht das Projekt in LPH 5. An diesem Vormittag kommen zwei neue Unterlagen dazu.
+Dienstag, 10. März. Zwei neue Unterlagen kommen dazu.
 
 ::: protokoll
 ---
@@ -30,9 +30,8 @@ datum: 3. März 2026
 von: petersen
 ---
 - Ausführungsplanung LPH 5 läuft.
-- Freigabe zum Abschluss von LPH 4: kein eigener Termin, weiter wie besprochen.
-- Marktlage Holz: Generalplanung fragt bei Herstellern an.
-- Verschiedenes: –
+- Freigabe zum Abschluss von LPH 4: kein eigener Termin.
+- Marktlage Holz: Generalplanung fragt Hersteller an.
 :::
 
 ::: protokoll
@@ -51,7 +50,7 @@ von: roth
 betreff: Mensa für den Ganztag
 zeit: "11:09"
 ---
-Der Ganztag wird größer als geplant. Die Kinder brauchen eine Mensa für rund 450 statt 300 Essen; die Generalplanung schätzt grob 0,6 Mio. €. Herr Deppe hat mir im Flur schon gesagt: „Wir kriegen das hin.“ Ich gehe davon aus, dass das gilt.
+Der Ganztag wächst: Die Kinder brauchen eine Mensa für rund 450 statt 300 Essen, laut Generalplanung grob 0,6 Mio. €. Herr Deppe sagte im Flur: „Wir kriegen das hin.“ Ich gehe davon aus, dass das gilt.
 :::
 
 ::: notiz
@@ -85,15 +84,14 @@ kurz: Was Sie wissen
 knopf: Jetzt entscheiden
 ---
 ::: bekannt
-- Lieferzeit Holzbauelemente: von rund 16 auf 26 Wochen (Marktabfrage der Generalplanung).
-- Nutzerwunsch: Mensa für rund 450 statt 300 Essen, grob 0,6 Mio. € (Schätzung der Generalplanung).
-- Laut Sabine Roth ist im Flur gesagt worden: „Wir kriegen das hin.“ Schriftlich gibt es nichts.
-- Für Änderungen am Projektumfang sind keine Schwellen festgelegt.
+- Lieferzeit Holz 26 statt 16 Wochen; Mensa grob 0,6 Mio. €.
+- Die Zusage fiel im Flur; schriftlich gibt es nichts.
+- Für Änderungen gibt es keine Schwellen.
 :::
 
 ::: unbekannt
 - Terminwirkung der Lieferzeit {#terminwirkung}
-- Termin- und Risikowirkung der Mensa {#mensa-wirkung}
+- Wirkung der Mensa {#mensa-wirkung}
 - Ob die Zusage gilt {#zusage}
 - Wer über die Mensa entscheidet {#zustaendigkeit}
 :::
@@ -115,7 +113,7 @@ bleibt:
 Terminrisiko steigt.
 
 ### Neu bekannt
-Der Satz im Flur war als Absichtserklärung gemeint; Sabine Roth versteht ihn als Zusage. Die Schulseite plant bereits mit der größeren Mensa. Im Lenkungskreis am 17. März kommen beide Themen ohne Vorlage zur Sprache; entschieden wird nichts.
+Der Satz im Flur war als Absichtserklärung gemeint, Sabine Roth versteht ihn als Zusage; die Schulseite plant schon mit der größeren Mensa. Der Lenkungskreis am 17. März bespricht beides ohne Vorlage und entscheidet nichts.
 :::
 :::
 

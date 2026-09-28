@@ -51,7 +51,8 @@ export const STANDARD_VIEWPORTS = Object.freeze([
   { breite: 1024, hoehe: 768 },
   { breite: 400, hoehe: 800 },
 ]);
-export const BILDER = path.join(WURZEL, 'tmp', 'oberflaeche');
+// MVG_BILDER: eigener Bilderordner (parallele Läufe, z. B. Messungen der Lesezeit)
+export const BILDER = process.env['MVG_BILDER'] ? path.resolve(process.env['MVG_BILDER']) : path.join(WURZEL, 'tmp', 'oberflaeche');
 export const UEBERSPRUNGEN = 3;
 
 /** Zeitlimit je Helfer-Schritt (Klick, Erwartung) in ms. */

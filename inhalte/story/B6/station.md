@@ -17,7 +17,7 @@ weiter: wirklichkeit
 ---
 
 ::: express
-Im Juni entschied das Änderungsgremium `ENT-017`: Die Fassade wird als Änderung `AEN-022` angepasst, die Risikoreserve blieb unberührt. Im Sommer entschied es auf Vorlage über die Brandschutzauflagen (`AEN-031`); der Bauausschuss bekam im Juli den Managementbericht mit der Beschlusslage. Im September kam der Nachtrag der TGA-Fachplanung als Problem `PRB-004`; über den Einsatz der Risikoreserve entscheidet Dr. Olbers auf Vorlage. Seit Oktober gilt die „Kostenprognose 2026-10 · Version 4“.
+Im Juni entschied das Änderungsgremium `ENT-017` (Fassade als `AEN-022`), im Juli auf Vorlage die Brandschutzauflagen (`AEN-031`). Im September kam der Nachtrag der TGA-Fachplanung als Problem `PRB-004`; über die Risikoreserve entscheidet Dr. Olbers auf Vorlage. Seit Oktober gilt die „Kostenprognose 2026-10 · Version 4“.
 :::
 
 ::: schritt einstieg
@@ -25,17 +25,17 @@ Im Juni entschied das Änderungsgremium `ENT-017`: Die Fassade wird als Änderun
 titel: Montag, 07:45 Uhr. Monat 11.
 kurz: Einstieg
 ---
-Montag, 9. November. Die Freigabe zum Abschluss von LPH 5 steht an; im Register hat sie den Status „in Vorbereitung“. Seit dem Wochenende ist klar: Holger Stein fällt für Wochen aus. Für ihn ist eine Stellvertretung im Team der Projektsteuerung benannt. Seit heute früh liegt eine Anfrage aus dem Stadtrat vor. Der Lenkungskreis tagt am Dienstag, 17. November, der Bauausschuss am Donnerstag, 19. November.
+Montag, 9. November. Die Freigabe zum Abschluss von LPH 5 ist „in Vorbereitung“. Holger Stein fällt für Wochen aus, eine Stellvertretung ist benannt.
 
 ::: mail
 ---
 von: petersen
-betreff: Anfrage einer Fraktion – Schulcampus Lindenhall-Süd, Kosten und Termin
+betreff: Anfrage einer Fraktion – Kosten und Termin
 zeit: "07:38"
 ---
-Über das Büro von Dr. Olbers ist eine Anfrage eingegangen: Eine Fraktion im Stadtrat möchte wissen, mit welchen Kosten und mit welchem Termin für den Schulcampus derzeit gerechnet wird. Die Antwort soll bis Freitag, 13. November, vorliegen.
+Eine Fraktion fragt über das Büro von Dr. Olbers nach Kosten und Termin. Antwort bis Freitag, 13. November.
 
-Kosten und Termin stehen im Managementbericht Oktober. Wer arbeitet die Antwort zu?
+Beides steht im Managementbericht Oktober. Wer arbeitet zu?
 :::
 
 ::: chat
@@ -43,7 +43,7 @@ Kosten und Termin stehen im Managementbericht Oktober. Wer arbeitet die Antwort 
 von: brenner
 zeit: "07:41"
 ---
-Herr Stein fällt für Wochen aus. Seine Stellvertretung ist benannt, die Annahmen der Prognose stehen im Datenstand. Ob und wie sie die Prognose bis zu seiner Rückkehr führt, klären wir heute.
+Die Annahmen stehen im Datenstand; ob die Stellvertretung weiterführt, klären wir heute.
 :::
 
 ::: datei
@@ -61,10 +61,7 @@ titel: Jour fixe – Auszug
 datum: Di, 03.11.2026
 von: petersen
 ---
-- Freigabe LPH 5 · Status in Vorbereitung · Vorlage der Bauherren-PL an Dr. Olbers; der Lenkungskreis berät am 17.11.
-- Ausführungsplanung: Die Generalplanung führt eine Liste offener Punkte; ihre Bewertung für die Vorlage steht aus.
-- Kostenprognose: Datenstand benannt; die Bestätigung des Controllings für die Vorlage steht aus.
-- Risikosichtung: offene Risiken im Risikoregister, je mit verantwortlicher Rolle und nächstem Schritt.
+- Offene Punkte der Generalplanung: Bewertung steht aus.
 - Termine: Lenkungskreis 17.11., Bauausschuss 19.11.
 :::
 
@@ -86,7 +83,7 @@ kurz: Welt A ⟷ B
 knopf: Welt B ansehen
 ---
 ::: hinweis
-Derselbe Montag, derselbe Ausfall, dieselbe Anfrage – in Welt B hat die Freigabe eine Kernfrage und einen Weg, und die Kostenprognose steht nicht nur in einem Kopf.
+Derselbe Ausfall – doch die Freigabe hat eine Kernfrage, und die Prognose steht nicht nur in einem Kopf.
 :::
 
 ::: paar
@@ -136,7 +133,7 @@ b: bericht
 fluss: managementbericht
 ---
 ### Welt A
-Welche Unterlagen soll ich zusammenstellen – und in welcher Version?
+Welche Unterlagen, in welcher Version?
 
 ### Welt B
 Managementbericht Oktober · Kosten und Termin auf benanntem Datenstand
@@ -170,7 +167,7 @@ Welt B: ein benannter Datenstand, eine benannte Stellvertretung, eine Vorlage mi
 titel: Die Freigabe im Leistungsphasenmodell
 kurz: Freigabe
 ---
-Jede Leistungsphase endet mit einer Freigabe des Bauherrn; die Freigabe am Abschluss von LPH 5 gibt LPH 6 frei. Die Freigabefrage der Ausführungsplanung steht in der Tabelle.
+Die Freigabe am Abschluss von LPH 5 gibt LPH 6 frei.
 
 ::: tafel k9.3-t1
 ---
@@ -194,19 +191,19 @@ datenstand: Kostenprognose 2026-10 · Version 4 (verbindlich) · Kosten, Termin 
 [[zitat:k9.3-t1|Ist die Ausführungsplanung so vollständig und koordiniert, dass Vergabe und Ausführung ohne Planungsvorbehalte starten können?]]
 
 ### Checkliste
-- [x] eindeutige [[Entscheidungs-ID]] · „Freigabe LPH 5“ im Freigaberegister; ein eigenes Kürzel führen Freigaben nicht
-- [x] Entscheidungsfrage · die Freigabefrage zu LPH 5
-- [x] betroffene Freigabe · Freigabe zum Abschluss von LPH 5; sie gibt LPH 6 frei
+- [x] eindeutige [[Entscheidungs-ID]] · „Freigabe LPH 5“ im Freigaberegister
+- [x] Entscheidungsfrage
+- [x] betroffene Freigabe · Abschluss LPH 5
 - [x] Verantwortungsfeld · Freigabe
-- [x] Mandat und letztverantwortliche Rolle · Bauherr, er erteilt die Freigabe selbst
-- [ ] Datenstand und zentrale Annahmen · Datenstand benannt, Annahmen darin dokumentiert; die Bestätigung des Controllings für die Vorlage steht aus
-- [ ] Optionen und Konsequenzen · Freigabe, keine Freigabe oder Freigabe mit Auflagen; was aus den offenen Punkten folgt, ist nicht ausgearbeitet
-- [ ] Wirkung auf Kosten, Termin, Qualität, Projektumfang, Risiko und ESG/LCC · Kosten und Termin laut Managementbericht; Risikolage und offene Punkte der Generalplanung noch nicht zusammengefasst
-- [ ] Empfehlung · Bauherren-PL, steht aus
-- [x] Freigabe- oder Eskalationsweg · Vorlage der Bauherren-PL, der Lenkungskreis berät am 17. November, der Bauherr entscheidet
-- [ ] Freigabeprozess (sechsstufig, jede Stufe wird signiert): offen → in Prüfung → vorbereitet → freigegeben → beschlossen | abgelehnt · Stand der Vorlage: in Prüfung
-- [ ] Beschlusslage · wird mit der Entscheidung des Bauherrn dokumentiert
-- [ ] Nachverfolgung · folgt aus dem Ergebnis
+- [x] Mandat und letztverantwortliche Rolle · Bauherr
+- [ ] Datenstand und zentrale Annahmen · Controlling-Bestätigung steht aus
+- [ ] Optionen und Konsequenzen
+- [ ] Wirkung auf Kosten, Termin, Qualität, Projektumfang, Risiko und ESG/LCC · Risikolage offen
+- [ ] Empfehlung
+- [x] Freigabe- oder Eskalationsweg · Bauherren-PL, Lenkungskreis, Bauherr
+- [ ] Freigabeprozess (sechsstufig, jede Stufe wird signiert): offen → in Prüfung → vorbereitet → freigegeben → beschlossen | abgelehnt · Stand: in Prüfung
+- [ ] Beschlusslage
+- [ ] Nachverfolgung
 :::
 
 ::: merksatz
@@ -230,19 +227,15 @@ wert: Status in Vorbereitung · Ergebnis offen
 :::
 
 ::: bekannt
-- Die Freigabe zum Abschluss von LPH 5 steht an, Status „in Vorbereitung“. Die Kernfrage lautet, ob Vergabe und Ausführung ohne Planungsvorbehalte starten können.
-- Die Bauherren-PL legt die Vorlage vor, der Lenkungskreis berät am Dienstag, 17. November; die Freigabe erteilt Dr. Olbers selbst.
-- Holger Stein fällt für Wochen aus; eine Stellvertretung im Team der Projektsteuerung ist benannt. Verbindlicher Datenstand ist die „Kostenprognose 2026-10 · Version 4“; sie ersetzt Version 3 und enthält die beschlossenen Änderungen `AEN-012`, `AEN-022` und `AEN-031`, die Annahmen stehen darin. `PRB-004` ist nicht enthalten.
-- Die Generalplanung führt eine Liste offener Punkte zur Ausführungsplanung.
-- Die Fraktion erwartet bis Freitag, 13. November, eine Antwort zu Kosten und Termin; beides steht im Managementbericht Oktober. Der Bauausschuss tagt am Donnerstag, 19. November.
+- Die Bauherren-PL legt vor, der Lenkungskreis berät am 17. November; Dr. Olbers erteilt selbst.
+- Verbindlich ist die „Kostenprognose 2026-10 · Version 4“ mit den beschlossenen Änderungen, ohne `PRB-004`.
 :::
 
 ::: unbekannt
-- Ob die offenen Punkte der Generalplanung den Abschluss von LPH 5 hindern {#offene-punkte}
-- Ob das Controlling den Datenstand für die Vorlage bestätigt {#datenstand}
-- Ob die Stellvertretung die Kostenprognose bis zu Holger Steins Rückkehr weiterführt {#stellvertretung}
-- Welche offenen Risiken mit der Freigabe angenommen würden {#risiken}
-- Welches Ergebnis die Freigabe bekommt: Freigabe, keine Freigabe oder Freigabe mit Auflagen {#ergebnis}
+- Ob offene Punkte der Generalplanung den Abschluss hindern {#offene-punkte}
+- Ob das Controlling den Datenstand bestätigt {#datenstand}
+- Ob die Stellvertretung die Prognose weiterführt {#stellvertretung}
+- Welche Risiken mit der Freigabe angenommen würden {#risiken}
 :::
 :::
 
@@ -283,14 +276,14 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Jede Leistungsphase endet mit einer Freigabe des Bauherrn. Sie beruht auf Kernfrage, Mindestgrundlagen, Mandat, Datenstand und einem dokumentierten Ergebnis; der Bauherr erteilt sie selbst auf Vorlage der Bauherren-PL, der Lenkungskreis berät und bereitet vor. Ein belastbares Bauherren-Führungsmodell verringert die Abhängigkeit von wenigen Personen.
+Jede Leistungsphase endet mit einer Freigabe des Bauherrn auf Kernfrage, Mindestgrundlagen, Mandat und Datenstand. Er erteilt sie selbst; der Lenkungskreis berät.
 :::
 
 ::: ebene 2
 ---
 titel: Warum relevant
 ---
-Dieselbe Freigabe, derselbe Ausfall, dieselbe Anfrage – entscheidend ist, worauf die Freigabe beruht. Kap. 9.3: [[zitat:k9.3-p1|Jede Leistungsphase endet mit einer Freigabe des Bauherrn. Diese Freigabe beruht auf einer Kernfrage, Mindestgrundlagen, Mandat, Datenstand und einem dokumentierten Ergebnis.]] Kernfrage, Mandat und Weg stehen in der Vorlage. Ob Datenstand, Risikolage und offene Punkte tragen, klären Controlling, Projektsteuerung und Generalplanung bis zum Lenkungskreis. Welches Ergebnis die Freigabe bekommt, entscheidet Dr. Olbers – dokumentiert wird es in jedem Fall.
+Dieselbe Freigabe, derselbe Ausfall, dieselbe Anfrage – entscheidend ist, worauf die Freigabe beruht. Ein belastbares Bauherren-Führungsmodell verringert die Abhängigkeit von wenigen Personen (Kap. 2.3): Holger Stein fällt aus, seine Stellvertretung im Team der Projektsteuerung ist benannt. Offen ist auch, welches Ergebnis die Freigabe bekommt – Freigabe, keine Freigabe oder Freigabe mit Auflagen. Kap. 9.3: [[zitat:k9.3-p1|Jede Leistungsphase endet mit einer Freigabe des Bauherrn. Diese Freigabe beruht auf einer Kernfrage, Mindestgrundlagen, Mandat, Datenstand und einem dokumentierten Ergebnis.]] Der Bauherr erteilt sie selbst auf Vorlage der Bauherren-PL, das Ergebnis wird dokumentiert. Kernfrage, Mandat und Weg stehen in der Vorlage. Ob Datenstand, Risikolage und offene Punkte tragen, klären Controlling, Projektsteuerung und Generalplanung bis zum Lenkungskreis. Welches Ergebnis die Freigabe bekommt, entscheidet Dr. Olbers – dokumentiert wird es in jedem Fall.
 :::
 
 ::: ebene 3
@@ -399,12 +392,12 @@ figur: kaya
 
 ::: nachweis
 ---
-mandat: Bauherr – Dr. Olbers erteilt die Freigabe selbst; der Lenkungskreis berät.
-freigabe: Freigabe zum Abschluss von LPH 5, Status „in Vorbereitung“; sie gibt LPH 6 frei.
-kennung: Freigabe LPH 5 im Freigaberegister – Freigaben führen kein eigenes Kürzel.
-datenstand: Kostenprognose 2026-10 · Version 4; die Bestätigung des Controllings für die Vorlage steht aus.
-nachweis: Vorlage der Bauherren-PL mit der Freigabefrage zu LPH 5; die Annahmen stehen im Datenstand.
-beschlusslage: Wird mit der Entscheidung des Bauherrn dokumentiert; der Lenkungskreis berät am 17. November.
+mandat: Bauherr – Dr. Olbers erteilt selbst; der Lenkungskreis berät.
+freigabe: Abschluss LPH 5, Status „in Vorbereitung“.
+kennung: „Freigabe LPH 5“ im Freigaberegister.
+datenstand: Kostenprognose 2026-10 · Version 4; Bestätigung des Controllings steht aus.
+nachweis: Vorlage der Bauherren-PL mit Freigabefrage; Annahmen im Datenstand.
+beschlusslage: Wird mit der Entscheidung des Bauherrn dokumentiert.
 ---
 :::
 

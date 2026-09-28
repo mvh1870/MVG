@@ -24,7 +24,7 @@ weiter:
 titel: Montag, 08:30 Uhr. Monat 5.
 kurz: Einstieg
 ---
-Montag, 11. Mai. Nächste Woche tagen der Lenkungskreis (19. Mai) und der Bauausschuss (21. Mai). Um 08:12 kommt die Kostenprognose der Projektsteuerung, eine Viertelstunde später die Zahl des Controllings – und sie passen nicht zusammen. Aus dem März liegt noch mehr offen: Die größere Mensa ist gewünscht, beschlossen ist sie nicht; die längere Lieferzeit der Holzbauelemente hat niemand bewertet.
+Montag, 11. Mai. Nächste Woche tagen Lenkungskreis und Bauausschuss. Zwei Kostenzahlen kommen herein, die nicht zusammenpassen.
 
 ::: mail
 ---
@@ -33,7 +33,7 @@ betreff: Kostenprognose Mai – bitte kurzfristig ansehen
 zeit: "08:12"
 anhang: Prognose_Mai_v3_final_NEU.xlsx
 ---
-„Die aktualisierte Kostenprognose liegt 8 % über der Projektbasis, rund +4,7 Mio. €. Die Ursache ist noch nicht vollständig geklärt – vermutlich Holzbauelemente und TGA.“
+„Die Kostenprognose liegt 8 % über der Projektbasis, rund +4,7 Mio. €. Ursache offen, vermutlich Holzbauelemente und TGA.“
 :::
 
 ::: chat
@@ -41,7 +41,7 @@ anhang: Prognose_Mai_v3_final_NEU.xlsx
 von: kaya
 zeit: "08:27"
 ---
-Bei mir stehen +5,9 %. Welche Zahl nehmen wir für den Ausschuss?
+Bei mir: +5,9 %. Welche Zahl geht in den Ausschuss?
 :::
 
 ::: notiz
@@ -98,11 +98,9 @@ wert: +5,9 %
 :::
 
 ::: bekannt
-- Kostenabweichung +8 % (Projektsteuerung) bzw. +5,9 % (Controlling) – zwei Zahlen, kein geltender [[Datenstand]].
-- Beide Zahlen sind gegen die Projektbasis gerechnet; die Risikoreserve von 2,9 Mio. € ist darin noch nicht eingesetzt.
-- Mensa für rund 450 statt 300 Essen, grob 0,6 Mio. €: seit März gewünscht, ohne Beschluss.
-- Lieferzeit Holzbauelemente rund 26 statt 16 Wochen: seit März bekannt, nicht bewertet.
-- Lenkungskreis am 19. Mai, Bauausschuss am 21. Mai.
+- Zwei Zahlen, kein geltender [[Datenstand]].
+- Beide gegen die Projektbasis, ohne Einsatz der Risikoreserve (2,9 Mio. €).
+- Seit März offen: Mensa (grob 0,6 Mio. €) und Lieferzeit Holz (26 statt 16 Wochen).
 :::
 
 ::: unbekannt
@@ -160,7 +158,7 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Zwei Zahlen sind keine Entscheidungsgrundlage. Eine Entscheidung braucht einen benannten Datenstand – sonst ist sie später nicht nachvollziehbar (Kap. 4.6).
+Zwei Zahlen sind keine Entscheidungsgrundlage. Ohne benannten Datenstand ist eine Entscheidung später nicht nachvollziehbar.
 :::
 
 ::: ebene 2

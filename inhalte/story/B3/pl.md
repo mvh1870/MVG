@@ -12,7 +12,7 @@ schritt: vorlage
 Ist `ENT-017` [[Entscheidungsreife|entscheidungsreif]]?
 
 ### Rückmeldung
-Noch nicht entscheidungsreif: Ohne Wirkung auf Termin und Risiko und ohne Empfehlung kann auf der zuständigen Mandatsebene nicht auf belastbarer Grundlage entschieden werden – welche das ist, hängt von der Option ab. Ergänzung bis in 10 Tagen, verantwortlich: Projektsteuerung.
+Noch nicht: Ohne Wirkung auf Termin und Risiko und ohne Empfehlung kann die zuständige Mandatsebene nicht belastbar entscheiden. Ergänzung binnen 10 Tagen, verantwortlich: Projektsteuerung.
 
 ::: antwort ja
 ---
@@ -32,23 +32,23 @@ symbol: vorlage
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Weiterarbeiten‘ gewählt. In Welt B hätte das keine informelle Umplanung erlaubt: Die Fassadenänderung steht als `AEN-022` im Änderungsregister, und bei 4,7 Mio. € entscheidet das Änderungsgremium.
+In Welt A haben Sie ‚Weiterarbeiten‘ gewählt. In Welt B ist die Fassade `AEN-022` im Register, keine informelle Umplanung.
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Entscheidungsvorlage verlangen‘ gewählt. In Welt B hätte niemand zurückfragen müssen: Hier gibt es einen Standard für Entscheidungsvorlagen; `ENT-017` hat eine Frage, Optionen und eine Frist.
+In Welt A haben Sie ‚Entscheidungsvorlage verlangen‘ gewählt. In Welt B gibt es einen Standard: `ENT-017` hat Frage, Optionen und Frist.
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Eskalation auslösen‘ gewählt. In Welt B wäre das Thema nicht ohne Optionen oben angekommen: Hier wird mit einer Entscheidungsfrage entlang der Mandatsleiter eskaliert, nicht mit einem Statusbericht.
+In Welt A haben Sie ‚Eskalation auslösen‘ gewählt. In Welt B wird mit einer Entscheidungsfrage entlang der Mandatsleiter eskaliert, nicht mit einem Statusbericht.
 :::
 
 ::: rueckbezug D
-In Welt A haben Sie ‚Prognose aktualisieren lassen‘ gewählt. In Welt B lägen im Ausschuss nicht zwei Zahlen: Hier gilt ein benannter Datenstand; eine neue Prognose wird Version 4 und ersetzt Version 3 nachvollziehbar.
+In Welt A haben Sie ‚Prognose aktualisieren lassen‘ gewählt. In Welt B gilt eine Zahl; eine neue Prognose wird Version 4.
 :::
 
 ::: rueckbezug ohne
-In Welt A lag an diesem Montag dieselbe Prognose auf dem Tisch – mit zwei Zahlen und ohne festen Weg. In Welt B hat das Signal eine Nummer, der Datenstand einen Namen und die Entscheidung ein Mandat.
+In Welt A lagen zwei Zahlen ohne Weg auf dem Tisch. In Welt B hat das Signal eine Nummer, der Datenstand einen Namen, die Entscheidung ein Mandat.
 :::
 
 ::: regie

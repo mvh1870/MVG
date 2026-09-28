@@ -1,7 +1,7 @@
 ---
 station: wirklichkeit
 rolle: controlling
-frage: Zwei Zahlen liegen nebeneinander, und Dr. Olbers will bis zum 15. Dezember einen Vorschlag. Was empfehlen Sie der Bauherrenseite?
+frage: Zwei Zahlen liegen nebeneinander, Dr. Olbers will einen Vorschlag. Was empfehlen Sie?
 rueckbezug-auf: A6
 ---
 
@@ -14,7 +14,7 @@ Im November haben Sie ‚Steins Dateien rekonstruieren‘ gewählt. Sie verstehe
 :::
 
 ::: rueckbezug C
-Im November haben Sie ‚Bandbreite melden‘ gewählt, mit den offenen Annahmen. Das war ehrlich. Die Spanne ist seither nicht kleiner geworden, weil niemand über die Annahmen entschieden hat.
+Im November haben Sie ‚Bandbreite melden‘ gewählt, mit den offenen Annahmen. Die Spanne ist nicht kleiner geworden, weil niemand über die Annahmen entschieden hat.
 :::
 
 ::: rueckbezug ohne
@@ -30,7 +30,7 @@ status:
   kostenunsicherheit: -1
 ---
 ### Konsequenz
-Sie legen offen, dass es zwei Zahlen und keinen geltenden Stand gibt, und empfehlen eine [[MVG-Neuinitialisierung]]. Ihre CTC und die Posten, die gegen die Risikoreserve laufen, gehen in das erste Lagebild ein; welcher Stand für die nächsten Entscheidungen gilt, würde die Datenstandsbereinigung klären. Den Auftrag erteilt Dr. Olbers.
+Sie empfehlen eine [[MVG-Neuinitialisierung]]. Ihre CTC und die Posten gegen die Risikoreserve gehen ins erste Lagebild; den Auftrag erteilt Dr. Olbers.
 
 ### Was fehlt
 Die Mitwirkung des Bauherrn – Mandate, Schwellen und Freigaben legt nicht das Controlling fest.
@@ -71,7 +71,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Sie schlagen vor, mit der Projektsteuerung die Grundlagen für eine Entscheidungsvorlage zur [[Neufestlegung der Projektbasis]] zu rechnen. Beschließen würde der Bauherr im Lenkungskreis, außerhalb der regulären Freigabereihe; bis dahin sind alle Zahlen vorläufig.
+Sie schlagen vor, mit der Projektsteuerung die Grundlagen für eine [[Neufestlegung der Projektbasis]] zu rechnen. Beschließen würde der Bauherr im Lenkungskreis, außerhalb der regulären Freigabereihe.
 
 ### Was fehlt
 Ein Stand, auf dem die neue Basis beruhen soll – noch gibt es zwei Zahlen.
@@ -84,7 +84,7 @@ Die neue Basis erbt die alte Unsicherheit, wenn offen bleibt, welche Posten die 
 :::
 
 ::: nachsatz
-Sie empfehlen, Dr. Olbers entscheidet. Wohin das führt, hängt auch davon ab, was bis hierher geschehen ist.
+Sie empfehlen, Dr. Olbers entscheidet. Wohin das führt, hängt auch vom bisherigen Weg ab.
 :::
 
 ::: regie

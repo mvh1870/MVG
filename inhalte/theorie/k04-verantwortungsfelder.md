@@ -64,6 +64,42 @@ titel: Bauherr im Lenkungskreis
 [[zitat:k4.2-p3|darüber erfolgt die Beschlussfassung durch den Bauherrn im Lenkungskreis]]
 :::
 :::
+
+::: wissenscheck mandatsleiter
+### Frage
+Eine Änderung hat einen Wert von 250 TEUR – wer entscheidet nach dem Muster-Mandatsleiter?
+
+### Erklärung
+Nach dem Muster gibt die Bauherren-PL bis einschließlich 100 TEUR eigenständig frei; oberhalb von 100 TEUR bis einschließlich 5 Mio. € entscheidet das Änderungsgremium; darüber beschließt der Bauherr im Lenkungskreis.
+
+::: antwort a
+---
+titel: Das Änderungsgremium
+praefix: "Genau:"
+---
+250 TEUR liegen oberhalb von 100 TEUR und unterhalb von 5 Mio. € – das ist der Rahmen des Änderungsgremiums.
+:::
+
+::: antwort b
+---
+titel: Die Bauherren-PL eigenständig
+praefix: "Nicht ganz:"
+---
+Die Bauherren-PL gibt nur bis einschließlich 100 TEUR eigenständig frei.
+:::
+
+::: antwort c
+---
+titel: Der Bauherr im Lenkungskreis
+praefix: "Nicht ganz:"
+---
+Die Beschlussfassung durch den Bauherrn im Lenkungskreis greift erst oberhalb von 5 Mio. €.
+:::
+
+::: zitat k4.2-p3
+Als Muster-Mandatsleiter gilt: Die Bauherren-PL gibt bis einschließlich 100 TEUR eigenständig frei; oberhalb von 100 TEUR bis einschließlich 5 Mio. EUR entscheidet das Änderungsgremium; darüber erfolgt die Beschlussfassung durch den Bauherrn im Lenkungskreis.
+:::
+:::
 :::
 
 ::: abschnitt k4.3

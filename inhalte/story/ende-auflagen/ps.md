@@ -5,11 +5,11 @@ rueckbezug-auf: wirklichkeit
 ---
 
 ::: rueckbezug A
-Im Dezember haben Sie ‚MVG-Neuinitialisierung empfehlen‘ gewählt. Die Spur hatte zu wenig Entscheidungsfähigkeit übrig gelassen, als dass eine Neuordnung bis zum Frühjahr hätte tragen können; im Januar kam zuerst die Freigabe mit Auflagen, und im März steht die Stellvertretung für Holger Stein als Auflage auf der Tagesordnung.
+Im Dezember haben Sie ‚MVG-Neuinitialisierung empfehlen‘ gewählt. Für die Neuordnung fehlte Ihrer Spur die Entscheidungsfähigkeit; im März steht die Stellvertretung für Holger Stein als Auflage auf der Tagesordnung.
 :::
 
 ::: rueckbezug B
-Im Dezember haben Sie ‚Freigabe mit Auflagen empfehlen‘ gewählt und der Vorlage zugearbeitet. Dr. Olbers hat die Freigabe im Januar erteilt; im März fragt der Lenkungskreis, welche Prognose für die Vergabeunterlagen gilt.
+Im Dezember haben Sie ‚Freigabe mit Auflagen empfehlen‘ gewählt. Dr. Olbers hat sie im Januar erteilt; im März ist offen, welche Prognose für die Vergabeunterlagen gilt.
 :::
 
 ::: rueckbezug C

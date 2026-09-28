@@ -6,7 +6,7 @@ rueckbezug-auf: A4
 ---
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Kürzeren Bericht verlangen‘ gewählt. In Welt B geht es nicht um die Seitenzahl: Der Managementbericht ist der Sammelpunkt für die Gremien und trägt die Beschlussvorbereitung mit einer Frage.
+In Welt A haben Sie ‚Kürzeren Bericht verlangen‘ gewählt. In Welt B zählt nicht die Seitenzahl: Der Managementbericht trägt die Beschlussvorbereitung mit einer Frage.
 :::
 
 ::: rueckbezug B
@@ -69,7 +69,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Sie legen die Deckungsfrage mit Frist auf September – die Entscheidung liegt bei Ihnen. Der Ausschuss erfährt Frage und Termin aus dem Managementbericht. Die Frist ist ein Termin, kein Stau.
+Sie legen die Deckungsfrage, die bei Ihnen liegt, mit Frist auf September. Der Ausschuss erfährt Frage und Termin aus dem Managementbericht.
 
 ### Was fehlt
 Nichts in der Struktur; die Vorlage entsteht im Rhythmus.

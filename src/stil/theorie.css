@@ -624,3 +624,14 @@ html:has(.lernseite) { scroll-padding-top: 72px; }
 @media print {
   .lw-blaetter-reihe, .lw-posten-wahl, .lw-regler-eingabe { display: none; }
 }
+
+/* Aufgelöst (Leinwand, Druck – P12.5 R5): der ganze Inhalt ohne Bedienung */
+.lernwerkzeug.ist-aufgeloest .lw-aufgeloest-liste { display: grid; gap: var(--a-3); margin: 0; padding: 0; list-style: none; counter-reset: lw; }
+.lernwerkzeug.ist-aufgeloest ol.lw-aufgeloest-liste > li { position: relative; display: grid; gap: var(--a-1); padding: var(--a-3) var(--a-3) var(--a-3) calc(var(--a-3) + 36px); border-radius: var(--radius-m, 8px); background: var(--flaeche-3); counter-increment: lw; }
+.lernwerkzeug.ist-aufgeloest ol.lw-aufgeloest-liste > li::before { content: counter(lw); position: absolute; left: var(--a-3); top: var(--a-3); display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--petrol); color: var(--weiss); font: 800 var(--gr-s)/1 var(--schrift-anzeige); }
+.lernwerkzeug.ist-aufgeloest ul.lw-aufgeloest-liste > li { display: grid; gap: var(--a-1); padding: var(--a-2) var(--a-3); border-radius: var(--radius-m, 8px); box-shadow: inset 0 0 0 1px var(--linie); }
+.lw-nebeneinander { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--a-3); }
+.lw-korb-aufgeloest { display: grid; align-content: start; gap: var(--a-2); }
+.lw-nebeneinander .lw-ansicht { display: grid; align-content: start; gap: var(--a-2); }
+.lw-nebeneinander .lw-posten-rueck { grid-column: auto; }
+@media (max-width: 700px) { .lw-nebeneinander { grid-template-columns: minmax(0, 1fr); } }

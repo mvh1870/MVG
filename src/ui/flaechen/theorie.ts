@@ -235,16 +235,16 @@ function bloeckeIn(bloecke: readonly Block[], inhalte: OeffentlicheInhalte, stuf
         aus.push(karten(b));
         break;
       case 'etappen':
-        aus.push(etappen(b, stufe));
+        aus.push(etappen(b, stufe, lwBedienbar));
         break;
       case 'umschalter':
-        aus.push(umschalter(b, stufe));
+        aus.push(umschalter(b, stufe, lwBedienbar));
         break;
       case 'sortieren':
-        aus.push(sortieren(b, stufe));
+        aus.push(sortieren(b, stufe, lwBedienbar));
         break;
       case 'regler':
-        aus.push(regler(b, stufe));
+        aus.push(regler(b, stufe, lwBedienbar));
         break;
       case 'tafel': {
         const t = tafelBlock(b, [], inhalte, stufe);
@@ -464,7 +464,11 @@ function kapitelNav(o: TheorieOptionen, nr: number): HTMLElement {
     nach !== null ? verweis(o, `#theorie/k${nach.nr}`, { rel: 'next' }, h('span', { class: 't-label' }, W.theorie.weiterKap(String(nach.nr))), h('b', null, nach.titel)) : null);
 }
 
+/** Lernwerkzeuge bedienbar (Hauptfenster) oder aufgelöst (Leinwand, Druck); gesetzt beim Bau einer Lernseite. */
+let lwBedienbar = true;
+
 function lernseite(o: TheorieOptionen, nr: number): HTMLElement {
+  lwBedienbar = o.bedienbar;
   const seite = lernseiteFuer(o.inhalte, nr);
   const gl = kapitelListe(o.inhalte).find((k) => k.nr === nr) ?? null;
   const fassung = o.inhalte.whitepaper.fassung ?? '';

@@ -6,6 +6,9 @@
  *   ::: sortieren    Zuordnungsübung mit zwei Körben, Rückmeldung je Element, ohne Punkte
  *   ::: regler       Schieberegler über geordnete Stufen (z. B. Beträge der Mandatsleiter)
  *
+ * Auf der Leinwand und im Druck (nicht bedienbar) zeigen alle vier ihren ganzen Inhalt aufgelöst: Etappen
+ * als Liste, beide Ansichten nebeneinander, die Zuordnung sortiert, alle Stufen (P12.5 R5).
+ *
  * Alle vier sind per Tastatur bedienbar, melden Wechsel knapp an Screenreader und zeigen ohne
  * Bedienung schon einen sinnvollen Anfangszustand (Druck, Leinwand). Bewegung nur über CSS
  * (prefers-reduced-motion schaltet sie ab). Die Wahl bleibt örtlich (kein Engine-Zustand).
@@ -32,8 +35,15 @@ function kopf(b: Block, klasse: string, stufe: TitelStufe): HTMLElement | null {
 
 /* ---------------------------------------------------------------- Etappen -- */
 
-export function etappen(b: Block, stufe: TitelStufe = 'h3'): HTMLElement {
+export function etappen(b: Block, stufe: TitelStufe = 'h3', bedienbar = true): HTMLElement {
   const liste = b.kinder.filter((k) => k.art === 'etappe');
+  if (!bedienbar) {
+    return h('section', { class: 'lernwerkzeug lw-etappen ist-aufgeloest', 'data-pruef': 'etappen' },
+      kopf(b, 'lw-etappen', stufe),
+      h('ol', { class: 'lw-aufgeloest-liste' }, liste.map((e) => h('li', null,
+        h('b', { class: 'lw-etappe-titel' }, kopfText(e.kopf, 'titel') ?? ''),
+        h('div', { class: 'lw-etappe-text' }, inhalt(e.felder['text'] ?? ''))))));
+  }
   const n = liste.length;
   const ansage = h('p', { class: 'nur-sr', 'aria-live': 'polite' });
   const detail = h('div', { class: 'lw-etappe-detail', 'data-pruef': 'etappe-detail' });
@@ -85,12 +95,19 @@ export function etappen(b: Block, stufe: TitelStufe = 'h3'): HTMLElement {
 
 /* -------------------------------------------------------------- Umschalter -- */
 
-export function umschalter(b: Block, stufe: TitelStufe = 'h3'): HTMLElement {
+export function umschalter(b: Block, stufe: TitelStufe = 'h3', bedienbar = true): HTMLElement {
   const seiten = (['links', 'rechts'] as const).map((s) => ({
     s,
     name: kopfText(b.kopf, s) ?? s,
     block: b.kinder.find((k) => k.art === 'ansicht' && k.id === s),
   }));
+  if (!bedienbar) {
+    return h('section', { class: 'lernwerkzeug lw-umschalter ist-aufgeloest', 'data-pruef': 'umschalter' },
+      kopf(b, 'lw-umschalter', stufe),
+      h('div', { class: 'lw-nebeneinander' }, seiten.map((x) => h('div', { class: 'lw-ansicht', 'data-seite': x.s },
+        h('span', { class: 't-label' }, x.name),
+        h('div', { class: 'lw-ansicht-inhalt' }, inhalt(x.block?.felder['text'] ?? ''))))));
+  }
   const feld = h('div', { class: 'lw-ansicht', 'data-pruef': 'umschalter-ansicht', 'aria-live': 'polite' });
   const knoepfe = seiten.map((x, i) => h('button', {
     type: 'button', class: `lw-schalter-seite lw-seite-${x.s}`, 'aria-pressed': i === 0 ? 'true' : 'false', 'data-pruef': `umschalter-${x.s}`,
@@ -115,9 +132,18 @@ export function umschalter(b: Block, stufe: TitelStufe = 'h3'): HTMLElement {
 
 /* --------------------------------------------------------------- Sortieren -- */
 
-export function sortieren(b: Block, stufe: TitelStufe = 'h3'): HTMLElement {
+export function sortieren(b: Block, stufe: TitelStufe = 'h3', bedienbar = true): HTMLElement {
   const namen = { links: kopfText(b.kopf, 'links') ?? '', rechts: kopfText(b.kopf, 'rechts') ?? '' };
   const posten = b.kinder.filter((k) => k.art === 'posten');
+  if (!bedienbar) {
+    const korb = (seite: 'links' | 'rechts'): HTMLElement => h('div', { class: `lw-korb-aufgeloest lw-seite-${seite}` },
+      h('span', { class: `lw-korb lw-seite-${seite}` }, namen[seite]),
+      h('ul', { class: 'lw-aufgeloest-liste' }, posten.filter((p) => (kopfText(p.kopf, 'seite') ?? 'links') === seite).map((p) => h('li', null,
+        h('div', { class: 'lw-posten-text' }, inhalt(p.felder['text'] ?? '')),
+        p.felder['erklaerung'] ? h('div', { class: 'lw-posten-rueck' }, inhalt(p.felder['erklaerung'])) : null))));
+    return h('section', { class: 'lernwerkzeug lw-sortieren ist-aufgeloest', 'data-pruef': 'sortieren' },
+      kopf(b, 'lw-sortieren', stufe), h('div', { class: 'lw-nebeneinander' }, korb('links'), korb('rechts')));
+  }
   const ansage = h('p', { class: 'nur-sr', 'aria-live': 'polite' });
   const stand = h('p', { class: 'lw-sortier-stand', 'data-pruef': 'sortieren-stand' });
   let erledigt = 0;
@@ -160,8 +186,19 @@ export function sortieren(b: Block, stufe: TitelStufe = 'h3'): HTMLElement {
 
 /* ------------------------------------------------------------------ Regler -- */
 
-export function regler(b: Block, stufe: TitelStufe = 'h3'): HTMLElement {
+export function regler(b: Block, stufe: TitelStufe = 'h3', bedienbar = true): HTMLElement {
   const stufen = b.kinder.filter((k) => k.art === 'stufe');
+  if (!bedienbar) {
+    return h('section', { class: 'lernwerkzeug lw-regler ist-aufgeloest', 'data-pruef': 'regler-block' },
+      kopf(b, 'lw-regler', stufe),
+      h('ol', { class: 'lw-aufgeloest-liste' }, stufen.map((s) => {
+        const marke = kopfText(s.kopf, 'marke');
+        return h('li', null,
+          h('span', { class: 't-label' }, kopfText(s.kopf, 'titel') ?? ''),
+          marke !== null ? h('b', { class: 'lw-stufe-marke' }, marke) : null,
+          h('div', { class: 'lw-stufe-text' }, inhalt(s.felder['text'] ?? '')));
+      })));
+  }
   const n = stufen.length;
   const karte = h('div', { class: 'lw-stufe-karte', 'data-pruef': 'regler-karte', 'aria-live': 'polite' });
   const marken = stufen.map((s, i) => h('li', { class: 'lw-regler-marke', 'data-stufe': i + 1 }, kopfText(s.kopf, 'titel') ?? ''));

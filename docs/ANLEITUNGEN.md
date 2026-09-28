@@ -61,6 +61,8 @@ Den Vermerk „fachlich ungeprüft“ zeigen beide Dateien, bis der Owner die Fa
    - Esc kehrt zur Regie zurück.
 8. **Explore** steuert die Regie nicht (L-54). Wer es zeigen will, öffnet es im Hauptfenster (`#explore`).
 
+- **Lernseiten im Termin:** Die Leinwand zeigt die Lernwerkzeuge aufgelöst – Etappen als Liste, beide Ansichten eines Umschalters nebeneinander, Zuordnungen fertig sortiert, alle Stufen eines Reglers. Wer eine Übung gemeinsam lösen will, öffnet die Lernseite im Hauptfenster (z. B. `#theorie/k7`); der Druck zeigt dieselbe aufgelöste Fassung.
+
 ## 3. Einbetten in eine Webseite (E12, P12)
 
 Diesen Schnipsel an die Stelle der eigenen Seite kopieren, an der MVG interaktiv erscheinen soll. Er lässt den Rahmen **mit dem Inhalt mitwachsen** (keine zweite Scrollleiste, weiche Höhenänderung), gibt der Story ab 981 px Breite eine feste Höhe (90 % des Fensters, 640–900 px), rollt beim Wechsel zwischen Start, Story, Lernseiten und Kapiteln sanft an den Anfang des Rahmens zurück, falls er aus dem Bild gescrollt ist, und springt bei Absatz-Links an die richtige Stelle. Bei reduzierter Bewegung (Systemeinstellung) geschieht all das ohne Animation.

@@ -24,3 +24,6 @@ Gesamtprüfung (Diff R2 + Einbettung, Stichprobe Fachtreue Kap. 4/6/9/11 und A2/
 Gesamtprüfung (Diff R3 ohne Verschlechterung ohne Einbettung – Startseite pixelgleich; Stichprobe Kap. 2/5/8/12 und A4/B4/A6/B6 in bauherr/planung; planung Express und Hauptpfad; Einbettung 400/1280 mit reduzierter Bewegung): 10 Befunde (0 schwer, 1 mittel) – alle eingearbeitet:
 - mittel: eingebettet unter 981 px rollt die Hostseite beim Schrittwechsel der Story jetzt zur Tafel (`meldeZiel` statt `scrollIntoView` im Rahmen).
 - Absatz-Link eingebettet mit einem Sprung statt zwei; Schnipsel rollt über große Entfernung ohne Animation und bringt die Story ganz ins Bild; Anleitung „ab 981 px Breite“; A4/B4 ohne „zweimal gefragt“, A6 „bleibt die Frage offen“, A6/planung „belastbare Zahl“, B6-Mail ohne dritte Person; toter Testcode entfernt.
+
+## Runde 5 (P12.5)
+Gesamtprüfung (Diff R4 ohne neue Fehler, Regie + Leinwand mit den neuen Inhalten, Kundenfassung ohne Notizen, Explore, Fachtreue Kap. 1/3/7/10/11, kein „Whitepaper“): 1 Befund (0 schwer, 1 mittel) – eingearbeitet: Lernwerkzeuge auf Leinwand und im Druck aufgelöst statt scheinbar bedienbar (L-68, Anleitung §2).

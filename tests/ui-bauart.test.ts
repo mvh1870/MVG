@@ -1238,3 +1238,23 @@ test('Entscheidung (P12.5, O-28): die Frage an die gespielte Rolle steht über d
     story.entferne();
   }
 });
+
+test('Lernwerkzeuge aufgelöst (P12.5 R5): Leinwand und Druck zeigen den ganzen Inhalt ohne Bedienelemente', () => {
+  const et = lw.etappen(blk('etappen', null, { titel: 'Weg' }, {}, [1, 2].map((i) => blk('etappe', String(i), { titel: `T${i}` }, { text: `<p>Text ${i}</p>` }))) as never, 'h3', false);
+  const um = lw.umschalter(blk('umschalter', null, { links: 'Ohne', rechts: 'Mit' }, {}, [blk('ansicht', 'links', {}, { text: '<p>A</p>' }), blk('ansicht', 'rechts', {}, { text: '<p>B</p>' })]) as never, 'h3', false);
+  const so = lw.sortieren(blk('sortieren', null, { links: 'L', rechts: 'R' }, {}, [blk('posten', '1', { seite: 'rechts' }, { text: '<p>X</p>' }), blk('posten', '2', { seite: 'links' }, { text: '<p>Y</p>' })]) as never, 'h3', false);
+  const re = lw.regler(blk('regler', null, {}, {}, [blk('stufe', '1', { titel: 'S1' }, { text: '<p>eins</p>' }), blk('stufe', '2', { titel: 'S2' }, { text: '<p>zwei</p>' })]) as never, 'h3', false);
+  for (const el of [et, um, so, re]) {
+    assert.equal(el.querySelectorAll('button, input').length, 0, `${el.className}: Bedienelemente`);
+    assert.ok(el.classList.contains('ist-aufgeloest'));
+  }
+  assert.match(et.textContent ?? '', /Text 1.*Text 2/su);
+  assert.match(um.textContent ?? '', /A.*B/su);
+  assert.match(so.querySelector('.lw-seite-rechts')?.textContent ?? '', /X/u);
+  assert.match(so.querySelector('.lw-seite-links')?.textContent ?? '', /Y/u);
+  assert.match(re.textContent ?? '', /eins.*zwei/su);
+  // die Lernseite auf der Leinwand (nicht bedienbar) baut sie aufgelöst
+  const k7 = baueTheorie({ inhalte, kapitel: 7, version: VERSION, bedienbar: false });
+  assert.ok(k7.querySelectorAll('.lernwerkzeug').length > 0);
+  assert.equal(k7.querySelectorAll('.lernwerkzeug:not(.ist-aufgeloest)').length, 0);
+});

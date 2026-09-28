@@ -12,7 +12,7 @@ status:
   kostenunsicherheit: sehr hoch
 ---
 ### Konsequenz
-Der Lenkungskreis bekommt zwei Zahlen. Frank Deppe fragt, welche stimmt; Sie und die Projektsteuerung erklären Ihre Annahmen. Entschieden wird nichts.
+Der Lenkungskreis bekommt zwei Zahlen. Frank Deppe fragt, welche stimmt; Sie und die Projektsteuerung erklären ihre Annahmen. Entschieden wird nichts.
 
 ### Was fehlt
 Ein verbindlicher Datenstand: Welche Version gilt?

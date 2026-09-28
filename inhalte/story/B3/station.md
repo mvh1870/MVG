@@ -27,7 +27,7 @@ Im Januar war das Zielsystem angelegt, die Mandatsleiter stand, und die Generalp
 ---
 titel: Signal
 kurz: Signal
-gruppe: Welt B · derselbe Montag
+gruppe: Welt B · Monat 5 · derselbe Montag
 ---
 ::: grafik ctc-verlauf
 ---
@@ -82,7 +82,7 @@ Risiko
 ---
 titel: Datenstand
 kurz: Datenstand
-gruppe: Welt B · derselbe Montag
+gruppe: Welt B · Monat 5 · derselbe Montag
 ---
 ::: datenstand
 ---
@@ -108,7 +108,7 @@ Zwei Zahlen, keine gilt. In Welt B gibt es genau eine – mit Namen, Version und
 ---
 titel: Mandat
 kurz: Mandat
-gruppe: Welt B · derselbe Montag
+gruppe: Welt B · Monat 5 · derselbe Montag
 ---
 ::: mandatsleiter
 ---
@@ -157,7 +157,7 @@ Das [[Mandat]] hängt von der Option ab.
 ---
 titel: ENT-017
 kurz: ENT-017
-gruppe: Welt B · derselbe Montag
+gruppe: Welt B · Monat 5 · derselbe Montag
 ---
 ::: vorlage ENT-017
 ---
@@ -188,7 +188,7 @@ datenstand: Kostenprognose 2026-05 · Version 3
 ---
 titel: Governance-Fluss
 kurz: Fluss
-gruppe: Welt B · derselbe Montag
+gruppe: Welt B · Monat 5 · derselbe Montag
 ---
 ::: fluss
 ---
@@ -202,7 +202,7 @@ position: entscheidung
 art: rueckbezug
 titel: Rückbezug
 kurz: Rückbezug
-gruppe: Welt B · derselbe Montag
+gruppe: Welt B · Monat 5 · derselbe Montag
 ---
 :::
 

@@ -71,7 +71,7 @@ Der Einstieg ist kein Governance-Großprojekt. Er beginnt mit einer kompakten MV
 
 ::: wissenscheck fuehrungswirkung
 ### Frage
-Woran würden Sie am Ende messen, was MVG Ihrer Organisation gebracht hat?
+Woran bemisst sich für Bauherren am Ende der Nutzen von MVG?
 
 ### Erklärung
 Für Bauherren zählt am Ende nicht die Zahl der Governance-Artefakte, sondern ihre Führungswirkung: Entscheidungen werden schneller vorbereitet, Mandate klarer, die Gremienfähigkeit steigt und Nachweise werden belastbarer geführt.

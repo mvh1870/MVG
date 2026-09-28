@@ -85,7 +85,7 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Auch „mit Auflagen“ bestimmt der Bauherr selbst. Auflagen brauchen jemanden, der sie nachhält.
+Auch eine Freigabe mit Auflagen erteilt der Bauherr selbst; Auflagen brauchen jemanden, der sie nachhält.
 :::
 
 ::: ebene 2

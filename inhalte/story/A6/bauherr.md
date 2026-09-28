@@ -74,11 +74,11 @@ Im September haben Sie ‚Nachträglich freigeben‘ gewählt, auf einer Liste a
 :::
 
 ::: rueckbezug B
-Im September haben Sie ‚Reserve sperren‘ gewählt. Brandschutz, Mensa und TGA stehen seither ohne Deckung da, und genau darauf trifft jetzt die Freigabe.
+Im September haben Sie ‚Reserve sperren‘ gewählt. Brandschutz, Mensa und TGA stehen seither ohne Deckung da, und genau darauf trifft jetzt die Freigabe von LPH 5.
 :::
 
 ::: rueckbezug C
-Im September haben Sie ‚Offenlegen‘ gewählt; der Ausschuss weiß, dass niemand die Reserve freigegeben hat. Jetzt fragt eine Fraktion nach einer Zahl.
+Im September haben Sie ‚Offenlegen‘ gewählt; der Ausschuss weiß, dass niemand den Einsatz der Reserve freigegeben hat. Jetzt fragt eine Fraktion nach einer Zahl.
 :::
 
 ::: rueckbezug ohne

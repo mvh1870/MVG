@@ -78,7 +78,7 @@ Im September haben Sie ‚Nachtrag zurückstellen‘ gewählt. Der Nachtrag lieg
 :::
 
 ::: rueckbezug C
-Im September haben Sie ‚Mehrkosten offenlegen‘ gewählt; entschieden hat darüber niemand. Jetzt steht der Abschluss an.
+Im September haben Sie ‚Mehrkosten offenlegen‘ gewählt; über Ihre Übersicht hat niemand entschieden. Jetzt steht der Abschluss an.
 :::
 
 ::: rueckbezug ohne

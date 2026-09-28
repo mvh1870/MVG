@@ -6,7 +6,7 @@ rueckbezug-auf: A6
 ---
 
 ::: rueckbezug A
-Im November haben Sie ‚Eigene CTC liefern‘ gewählt. Die Antwort an den Stadtrat trug Ihre Zahl – eine Zahl, die niemand als gültig festgelegt hat. Holger Stein hat inzwischen seine eigene erklärt.
+Im November haben Sie ‚Eigene CTC liefern‘ gewählt. Die Antwort an den Stadtrat trug Ihre Zahl – als gültig festgelegt hat sie niemand. Holger Stein hat inzwischen seine eigene erklärt.
 :::
 
 ::: rueckbezug B
@@ -36,7 +36,7 @@ Sie empfehlen eine [[MVG-Neuinitialisierung]]. Ihre CTC und die Posten gegen die
 Die Mitwirkung des Bauherrn – Mandate, Schwellen und Freigaben legt nicht das Controlling fest.
 
 ### Neues Risiko
-Die Neuordnung läuft neben dem Tagesgeschäft; ob die Freigabe zum Abschluss von LPH 5 vorher mit Auflagen erteilt wird, ist offen.
+Die Neuordnung läuft neben dem Tagesgeschäft; ob LPH 5 vorher mit Auflagen freigegeben wird, ist offen.
 
 ### Governance-Frage
 [[Datenstand]]: Welche Zahl gilt ab jetzt – und wer legt das fest?

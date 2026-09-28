@@ -36,7 +36,7 @@ Sie erteilen den Auftrag zu einer [[MVG-Neuinitialisierung]], benennen die veran
 Lagebild, Entscheidungsinventar, bereinigter Datenstand – und regelmäßig Ihre Zeit.
 
 ### Neues Risiko
-Die Neuordnung läuft neben dem Tagesgeschäft; die Neuinitialisierung selbst ist keine Freigabe – LPH 5 bleibt offen.
+Die Neuordnung läuft neben dem Tagesgeschäft; die Neuinitialisierung selbst ist keine Freigabe – LPH 5 ist damit nicht freigegeben.
 
 ### Governance-Frage
 Welche Entscheidungen müssen jetzt neu legitimiert werden, damit das Projekt wieder führbar wird?

@@ -27,7 +27,7 @@ Was Sie im Express in Welt A übersprungen haben, liegt hier mit auf dem Tisch: 
 titel: Montag, 08:00 Uhr. Monat 12.
 kurz: Einstieg
 ---
-Welt B war ein Gedankenexperiment. Montag, 7. Dezember, in Welt A: LPH 5 ist nicht abgeschlossen, im November wurde nichts entschieden.
+Welt B war ein Gedankenexperiment. Montag, 7. Dezember, in Welt A: LPH 5 ist nicht abgeschlossen, der Lenkungskreis hat im November nichts entschieden.
 
 ::: mail
 ---
@@ -204,7 +204,7 @@ Ist ein Projekt im bisherigen Modus nicht mehr führbar, ordnet eine MVG-Neuinit
 ---
 titel: Warum relevant
 ---
-**Kein Neustart:** [[zitat:k7.5-p1|Sie bedeutet keinen vollständigen Projektneustart, sondern eine gezielte Neuordnung der Steuerungs- und Entscheidungslogik.]] Sie beginnt mit einem Lagebild und endet mit einer stabilisierten Entscheidungsarchitektur. Die Freigabe zum Abschluss von LPH 5 erteilt weiter Dr. Olbers selbst.
+**Kein Neustart:** Die MVG-Neuinitialisierung – [[zitat:k7.5-p1|Sie bedeutet keinen vollständigen Projektneustart, sondern eine gezielte Neuordnung der Steuerungs- und Entscheidungslogik.]] Sie beginnt mit einem Lagebild und endet mit einer stabilisierten Entscheidungsarchitektur. Die Freigabe zum Abschluss von LPH 5 erteilt weiter Dr. Olbers selbst.
 
 Welt A hat im Dezember kein Informationsproblem, sondern ein Legitimationsproblem: zwei Zahlen, eine Reserve ohne entschiedene Posten, offene Änderungen, eine offene Freigabe. Kap. 11.2 bringt es auf eine Frage: [[zitat:k11.2-p2|Welche Entscheidungen müssen jetzt neu legitimiert werden, damit das Projekt wieder führbar wird?]] Vorbereiten können die Antwort Bauherren-PL, Projektsteuerung, Planung und Controlling. Die Entscheidung über den Auftrag, über Prioritäten, über eine Neufestlegung der Projektbasis und über Freigaben bleibt bei Dr. Olbers (Kap. 7.5).
 :::

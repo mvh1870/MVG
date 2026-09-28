@@ -97,14 +97,14 @@ form: karten
 
 ::: wissenscheck leistungsgrenzen
 ### Frage
-Bauherr Mentoren begleitet Ihr Projekt, und eine Bauherrenentscheidung steht an – wer trifft sie?
+Wer trifft die Bauherrenentscheidung, wenn Bauherr Mentoren ein Projekt begleitet?
 
 ### Erklärung
 BM ersetzt keine Bauherrenentscheidung und keine Gremienentscheidung. BM liefert Struktur, Entscheidungsreife, Mandatsklarheit, Nachweislogik, Befähigung und Übergang in den Regelbetrieb.
 
 ::: antwort a
 ---
-titel: Die Bauherrenorganisation selbst
+titel: Der Bauherr selbst
 praefix: "Genau:"
 ---
 BM liefert Struktur und Entscheidungsreife, ersetzt die Bauherrenentscheidung aber nicht.

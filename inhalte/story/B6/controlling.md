@@ -13,7 +13,7 @@ status:
   offene-risiken: -1
 ---
 ### Konsequenz
-Die Vorlage beruht auf der „Kostenprognose 2026-10 · Version 4“, mit Ihrer CTC und der Prognose der Projektsteuerung abgeglichen. Dr. Olbers entscheidet darauf selbst.
+Die Vorlage beruht auf der „Kostenprognose 2026-10 · Version 4“, abgeglichen mit der Prognose der Projektsteuerung. Dr. Olbers entscheidet darauf.
 
 ### Was fehlt
 Die Zusage, dass Holger Steins Stellvertretung die Prognose bis zu seiner Rückkehr weiterführt.
@@ -66,7 +66,7 @@ Auflagen, die niemand nachhält.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Eigene CTC liefern‘ gewählt. In Welt B beantwortet der Bauherr den Stadtrat aus dem Managementbericht – mit der Zahl, die auch in der Freigabevorlage steht.
+In Welt A haben Sie ‚Eigene CTC liefern‘ gewählt. In Welt B antwortet der Bauherr dem Stadtrat mit der Zahl aus der Freigabevorlage.
 :::
 
 ::: rueckbezug B

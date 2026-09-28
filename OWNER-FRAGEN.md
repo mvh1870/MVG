@@ -7,3 +7,4 @@ FRAGE 2026-09-28-1 · 2026-09-28 02:43 UTC · Die gemessene Lesezeit der Story l
   a) Kürzen, bis Hauptpfad ≤ 35 min und Express ≤ 15 min in allen Rollen (Einstiege, Lage-Listen, Wirklichkeit, Enden, Epilog straffen; Tiefe bleibt in den Ebenen 2–4) — Preis: weniger Detail im Hauptpfad, mehrere Stunden Redaktion mit Fachtreue-Prüfung
   b) O-5 auf etwa 45–55 min anheben und nur die längsten Stellen straffen — Preis: Termin mit Kunden braucht eine Stunde, Express bleibt deutlich über 12 min
   VORGABE: a · FRIST: 2026-09-28 14:43 UTC
+ANTWORT 2026-09-28-1 · 2026-09-28 08:18 UTC · a – Länge bleibt wie jetzt (Owner im Chat: „Erst mal können wir die Länge so lassen“; Stand Hauptpfad 33,8–34,2 min, Express 14,8–15,0 min)

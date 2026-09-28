@@ -45,6 +45,24 @@ export async function lauf(seite, h) {
   await h.warte(300);
   const danach = await seite.evaluate(() => /** @type {any} */ (window).nachrichten);
   if (!danach.slice(vorher).some((/** @type {any} */ n) => n?.art === 'ort' && n.hash === '#theorie/k4')) h.befund('Einbettung: „frage“ bleibt ohne Antwort');
+  // Sprung in die Story von einer anderen Fläche (P11.3 R4/R5): jede Ortsmeldung zur Station trägt die Fläche
+  // „story“, und keine Meldung wiederholt die vorige
+  await seite.evaluate(() => /** @type {any} */ (window).schicke({ mvg: 'einbettung', art: 'gehe', ziel: '#story' }));
+  for (let i = 0; i < 5 && await rahmen.locator('[data-pruef="rolle-pl"]').filter({ visible: true }).count() === 0; i++) {
+    const weiter = rahmen.locator('[data-pruef="weiter"]');
+    if (await weiter.count() > 0 && await weiter.isEnabled()) await weiter.click();
+    await h.warte(300);
+  }
+  await rahmen.locator('[data-pruef="rolle-pl"]').click().catch(() => h.befund('Einbettung: Rolle PL nicht wählbar'));
+  await h.warte(300);
+  await seite.evaluate(() => /** @type {any} */ (window).schicke({ mvg: 'einbettung', art: 'gehe', ziel: '#theorie/k4' }));
+  await h.warte(400);
+  const ab = (await seite.evaluate(() => /** @type {any} */ (window).nachrichten)).length;
+  await seite.evaluate(() => /** @type {any} */ (window).schicke({ mvg: 'einbettung', art: 'gehe', ziel: '#story/a3' }));
+  await warteAuf((n) => n?.art === 'ort' && n.hash === '#story/A3' && n.flaeche === 'story', 'ort #story/A3');
+  const orte = (await seite.evaluate(() => /** @type {any} */ (window).nachrichten)).slice(ab).filter((/** @type {any} */ n) => n?.art === 'ort');
+  if (orte.some((/** @type {any} */ n) => String(n.hash).startsWith('#story') && n.flaeche !== 'story')) h.befund(`Einbettung: Ortsmeldung mit falscher Fläche ${JSON.stringify(orte)}`);
+  if (orte.some((/** @type {any} */ n, /** @type {number} */ i) => i > 0 && JSON.stringify(n) === JSON.stringify(orte[i - 1]))) h.befund(`Einbettung: doppelte Ortsmeldung ${JSON.stringify(orte)}`);
   await h.bild('einbettung');
   // Auch über die Adresse des Rahmens gibt es keine Regie und keine Leinwand
   for (const ziel of ['#regie', '#leinwand']) {

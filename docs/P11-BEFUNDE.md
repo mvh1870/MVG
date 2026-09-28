@@ -69,6 +69,9 @@ Inhalt (Diff R3, alle Ebene-1-Kernsätze gegen die Quelle, gf Hauptpfad zweimal,
 - [x] Lesezeit: erst zählen, wenn der Takt der Szene angelaufen ist (zwei Bilder + 150 ms), dann Übergänge abwarten; Glossarbegriffe und Prüf-Statuswörter zählen mit (L-65). Danach alle Rollen Hauptpfad 33,8–34,2 min, Express 14,8–15,0 min; Express-Karten B6/Wirklichkeit leicht gestrafft.
 
 ## P11.3 Korrekturschleife – Runde 5 (R5)
-Inhalt (Diff R4, Rollenszenen controlling/planung in A1–B5, alle elf Wissenschecks, controlling Hauptpfad zweimal bis zum Epilog, 0 Konsolenfehler): 4 Befunde (0 schwer, 0 mittel). Technik: Bericht folgt.
+Inhalt (Diff R4, Rollenszenen controlling/planung in A1–B5, alle elf Wissenschecks, controlling Hauptpfad zweimal bis zum Epilog, 0 Konsolenfehler): 4 Befunde (0 schwer, 0 mittel). Technik (Explore, Regie/Leinwand/Druck, Kundenfassung, Impressum, Klang, Einbettung je 400/1280 px; Determinismus; Netz): 3 Befunde (0 schwer, 0 mittel). **Zweite Runde in Folge ohne schwere oder mittlere Befunde – Korrekturschleife geschlossen (L-64).**
 - [x] Wendepunkt „innerhalb der Schwellen“; B1 Planung „Ein Signal mehr im Blick“; B2/B4 Controlling Rückbezüge ohne „Mail“ bzw. „eine Seite“.
 - [x] ende-neufestlegung (fünf Rollen): „Auflagen hätten auf Ihrer Spur nicht gereicht;“ statt des unklaren „hätte sie nicht getragen“.
+- [x] Einbettung meldet einen Ort nicht zweimal hintereinander (Antwort auf „frage“ immer); Szenario `einbettung` prüft den Sprung Theorie → `#story/a3` auf Fläche „story“ und ohne Doppelmeldung (Gegenprobe alter Code rot).
+- [x] main.ts: Fläche und Titel der Story nur noch an einer Stelle gesetzt (vor dem Permalink-Sprung).
+- Zur Kenntnis (kein Befund): Die Regie der Kundenfassung bleibt erreichbar, ohne Notizen (L-58).

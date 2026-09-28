@@ -105,12 +105,12 @@ function starteApp(wurzel: HTMLElement): void {
           ersetze(wurzel, story.element);
           story.setze(oeffentlich(sitzung.zustand()), null);
           window.scrollTo(0, 0);
-          // schon jetzt: sonst zeichnet das Abo den folgenden Permalink-Sprung nicht (P11.3 R3); Fläche
-          // und Titel mit, damit die Ortsmeldung der Einbettung aus dem Abo stimmt (R4)
-          flaeche = 'story';
-          document.body.dataset['flaeche'] = 'story';
-          document.title = `${W.story} · ${TITEL}`;
         }
+        // vor dem Permalink-Sprung: sonst zeichnet das Abo ihn nicht (P11.3 R3), und die Ortsmeldung der
+        // Einbettung aus dem Abo trüge die alte Fläche (R4)
+        flaeche = 'story';
+        document.body.dataset['flaeche'] = 'story';
+        document.title = `${W.story} · ${TITEL}`;
         // Permalink #story/A3 (P2.4): springt zur Station, sobald eine Rolle gewählt ist; Welt B nur nach Freischaltung (Engine)
         if (r.station !== null && sitzung.zustand().rolle !== null) {
           const ziel = Object.keys(inhalte.stationen).find((id) => id.toLowerCase() === r.station);
@@ -119,9 +119,6 @@ function starteApp(wurzel: HTMLElement): void {
         // Adresszeile auf die tatsächliche Station (auch bei „Weiterlesen“ oder gesperrtem Permalink)
         const jetzt = sitzung.zustand().station;
         if (jetzt !== null) history.replaceState(null, '', routeHash({ flaeche: 'story', station: jetzt }));
-        flaeche = 'story';
-        document.body.dataset['flaeche'] = 'story';
-        document.title = `${W.story} · ${TITEL}`;
         break;
       }
       case 'theorie': {

@@ -47,7 +47,8 @@ export function leseHostNachricht(daten: unknown): VomHost | null {
 }
 
 export interface Einbettung {
-  meldeOrt(): void;
+  /** meldet den Ort; eine gleiche Meldung wie zuletzt nur mit `immer` (Antwort auf „frage“) */
+  meldeOrt(immer?: boolean): void;
   entferne(): void;
 }
 
@@ -73,14 +74,22 @@ export function starteEinbettung(o: {
       // Host weg oder Herkunft passt nicht: nichts zu tun
     }
   };
-  const meldeOrt = (): void => sende({ mvg: EINBETTUNG, art: 'ort', ...o.ort() });
+  // Abo und hashchange melden denselben Sprung sonst doppelt (P11.3 R5)
+  let letzte = '';
+  const meldeOrt = (immer = false): void => {
+    const ort = o.ort();
+    const schluessel = `${ort.hash}|${ort.flaeche}|${ort.titel}`;
+    if (!immer && schluessel === letzte) return;
+    letzte = schluessel;
+    sende({ mvg: EINBETTUNG, art: 'ort', ...ort });
+  };
   const bei = (e: MessageEvent): void => {
     if (e.source !== eltern) return;
     if (herkunft !== null && e.origin !== herkunft) return;
     const n = leseHostNachricht(e.data);
     if (n === null) return;
     if (n.art === 'gehe') o.gehe(n.ziel);
-    else meldeOrt();
+    else meldeOrt(true);
   };
   fenster.addEventListener('message', bei);
   sende({ mvg: EINBETTUNG, art: 'bereit', version: o.version });

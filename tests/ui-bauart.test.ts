@@ -185,9 +185,9 @@ test('Hilfe (P13, O-31): gleiche Aufteilung wie die Companion-Hilfe, leiser Zuga
   assert.equal(rollen?.html.match(/href="#hilfe\/rollen-anleitungen-/gu)?.length, 13);
   // Prüfrunde 2: Fünf-Stufen-Modell der Anwendung nicht als LPH, Ausführungsplanung ist LPH 5, Grammatik der Ersetzungen
   assert.doesNotMatch(text, /LPH \d LPH\d|LPH 3 \(Ausführungsplanung\)|LPH 4<\/td><td>Pilot|Projektbasiss/u);
-  assert.match(text, /Stufe 0 LPH 0, Stufe 1 LPH 1–2/u);
+  assert.match(text, /Freigabestufe 0 LPH 0, Freigabestufe 1 LPH 1–2/u);
   // Prüfrunde 4: Termintypen im Fünf-Stufen-Modell, doppelte Maskierung, Kontrast der Grafikfarben
-  assert.match(text, /Freigabebesprechung<\/b> – Stufe 0 bis Stufe 4/u);
+  assert.match(text, /Freigabebesprechung<\/b> – Freigabestufe 0 bis 4/u);
   assert.doesNotMatch(text, /&amp;amp;|finales Managementbericht|fill:var\(--gold\)/u);
   // Prüfrunde 5: keine MVG-Aussage über die Namen der Anwendung, Kennungen wörtlich, keine Umschrift im Fließtext
   assert.doesNotMatch(text, /Der MVG-Standard beschreibt den Companion|GCT-LPH 3|Zulaessige|Gedaechtnis|<span>1 - Über das Programm/u);
@@ -196,6 +196,11 @@ test('Hilfe (P13, O-31): gleiche Aufteilung wie die Companion-Hilfe, leiser Zuga
   const ebenen = [...(rollen?.html.matchAll(/<div class="h-role-pick-card"><(h\d)>/gu) ?? [])].map((m) => m[1]);
   assert.equal(ebenen.length, 14, "13 Rollen mit Unterseite und die Rolle BM-Mentor");
   assert.equal(new Set(ebenen).size, 1, ebenen.join(' '));
+  // Prüfrunde 7: Abschnitte des Handbuchs sind Überschriften; keine Momentaufnahmen des Browsers; Freigabestufen eindeutig
+  const handbuch = HILFE.kapitel.find((k) => k.id === 'handbuch')?.html ?? '';
+  assert.ok((handbuch.match(/<summary><h2 class="h-summary-titel">/gu) ?? []).length >= 6);
+  assert.doesNotMatch(text, /Belegt gesamt|Speicher-Ebenen-Audit|Status noch nicht geprüft|Stufe 0 LPH/u);
+  assert.match(text, /Freigabestufe 0 LPH 0/u);
   assert.equal(baueHilfe({ seite: 'gibt-es-nicht', version: VERSION }).querySelector('[data-pruef="hilfe-uebersicht"]') !== null, true);
 });
 

@@ -28,7 +28,7 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   // Kennungen der Anwendung (GATE-NETZNORD-G2) bleiben: kein G nach Bindestrich, Punkt oder Wortzeichen
   [/post-G(\d)\b/gu, 'nach LPH $1'],
   // im Quelltext steht „<b>Freigabebesprechung</b> – G0 bis G4“: das Muster muss im eigenen Textknoten greifen
-  [/– G0 bis G4/gu, '– Stufe 0 bis Stufe 4'],
+  [/– G0 bis G4/gu, '– Freigabestufe 0 bis 4'],
   [/Standardisierter Einfuehrungs-\/Reset-Rhythmus/gu, 'Orientierungsrahmen für Einführung und Neuinitialisierung'],
   [/MVG-Reifegrad-Modell \(5 Stufen\)/gu, 'Reifegrad-Modell der Anwendung (5 Stufen)'],
   [/Die MVG-Reife einer Organisation entwickelt sich entlang fünf Stufen/gu, 'Im Modell der Anwendung entwickelt sich die Reife einer Organisation entlang fünf Stufen'],
@@ -128,13 +128,13 @@ const KLASSEN = new Set([
   'card', 'card-title', 'feature-card', 'feature-grid', 'notice', 'info', 'hint', 'tag', 'badge', 'pill', 'grid', 'cols-2', 'cols-3',
   'step-list', 'table-wrap', 'lead', 'lead-text', 'sub', 'meta', 'small', 'prose', 'section-divider', 'kpi', 'label', 'value',
   'green', 'gold', 'blue', 'gray', 'help-content', 'help-content-inline', 'help-item', 'num-mark', 'role-pick-card', 'desc',
-  'checked', 'page-header', 'ico', 'grafik-wrap',
+  'checked', 'page-header', 'ico', 'grafik-wrap', 'summary-titel',
 ]);
 
 /** Was nur in der Anwendung wirkt – samt Inhalt entfernen. */
 const WEG = [
   'script', 'style', 'input', 'select', 'textarea', 'form', 'dialog', '.bm59-banner', '.page-header .actions', '.bm774-menu',
-  '.bm914-pn', 'aside.help-sidebar', '[data-bmfn="sec"]', '.bmfs-ind', '.bm-reg-filterbar', '[title="Spalten-Reihenfolge ändern"]', '.bm649-dup',
+  '#bm825Card', '.bm61-kpis', '.bm914-pn', 'aside.help-sidebar', '[data-bmfn="sec"]', '.bmfs-ind', '.bm-reg-filterbar', '[title="Spalten-Reihenfolge ändern"]', '.bm649-dup',
   '.bm327-float', '.bm120-grip', '.bmx-facetbar', '.toolbar', '.bm399-tbar', '.bm228-toggle', '.bmx-aggfoot',
 ].join(',');
 
@@ -153,6 +153,8 @@ export function ersetze(t) {
 function bereinige(wurzel, anker) {
   const dok = wurzel.ownerDocument;
   for (const el of [...wurzel.querySelectorAll(WEG)]) el.remove();
+  // Momentaufnahmen des exportierenden Browsers (Speicher-Audit, Sync-Status, localStorage-Belegung, Speicher-Modus)
+  wurzel.querySelector('#bm102-sync')?.closest('.grid')?.remove();
   // Suchkarten der Anwendung (die Hilfe-Fläche hat eine eigene Suche) und „+ Tag“-Schalter
   for (const h of [...wurzel.querySelectorAll('.card > h3')]) if (/durchsuchen/u.test(h.textContent ?? '')) h.parentElement?.remove();
   for (const el of [...wurzel.querySelectorAll('span')]) if (el.children.length === 0 && (el.textContent ?? '').trim() === '+ Tag') el.remove();
@@ -239,15 +241,15 @@ function bereinige(wurzel, anker) {
   for (const t of [...wurzel.querySelectorAll('table')]) {
     const erste = [...t.querySelectorAll('tbody tr')].map((z) => z.children[0]);
     if (erste.length === 0 || erste.length > 5 || !erste.every((c) => /^G[0-4]$/u.test((c?.textContent ?? '').trim())) || /\(LPH/u.test(t.textContent ?? '')) continue;
-    for (const c of erste) if (c) c.textContent = `Stufe ${(c.textContent ?? '').trim().slice(1)}`;
+    for (const c of erste) if (c) c.textContent = `Freigabestufe ${(c.textContent ?? '').trim().slice(1)}`;
     let vor = t.closest('.table-wrap') ?? t;
     vor = vor.previousElementSibling;
-    if (vor !== null && /^H\d$/u.test(vor.tagName)) vor.textContent = (vor.textContent ?? '').replace(/G0\s*[–-]\s*G9/u, '(Stufen 0–4)');
+    if (vor !== null && /^H\d$/u.test(vor.tagName)) vor.textContent = (vor.textContent ?? '').replace(/G0\s*[–-]\s*G9/u, '(Freigabestufen 0–4)');
   }
   const stufenGang = dok.createTreeWalker(wurzel, 4);
   for (let n = stufenGang.nextNode(); n !== null; n = stufenGang.nextNode()) {
     // Aufzählung je Projekttyp: „G0 Konzept, G1 Vorplanung, … G4 IBN“
-    if (/(?<![-.\w])G\d [^,]+,\s*G\d/u.test(n.textContent ?? '')) n.textContent = (n.textContent ?? '').replace(/(?<![-.\w])G(\d)\b/gu, 'Stufe $1');
+    if (/(?<![-.\w])G\d [^,]+,\s*G\d/u.test(n.textContent ?? '')) n.textContent = (n.textContent ?? '').replace(/(?<![-.\w])G(\d)\b/gu, 'Freigabestufe $1');
   }
   // Tabellen scrollen schmal waagerecht in einer Hülle, die per Tastatur erreichbar ist
   for (const t of [...wurzel.querySelectorAll('table')]) {
@@ -313,6 +315,20 @@ function bereinige(wurzel, anker) {
     for (const at of [...x.attributes]) neu.setAttribute(at.name, at.value);
     while (x.firstChild) neu.appendChild(x.firstChild);
     x.replaceWith(neu);
+  }
+  // Abschnitte als Aufklapper (Handbuch, Standards): der Titel im summary wird Überschrift, eine Ebene über
+  // der obersten Überschrift im Abschnitt – sonst hingen alle Unterüberschriften unter „Inhaltsverzeichnis“
+  for (const d of [...wurzel.querySelectorAll('details')]) {
+    const s = d.querySelector(':scope > summary');
+    const innen = [...d.querySelectorAll(':scope > :not(summary) :is(h2, h3, h4, h5, h6), :scope > :is(h2, h3, h4, h5, h6)')];
+    if (s === null || innen.length === 0 || s.querySelector('h1, h2, h3, h4, h5, h6') !== null) continue;
+    const oben = Math.min(...innen.map((x) => Number(x.tagName[1])));
+    if (oben <= 2) continue;
+    const titel = dok.createElement(`h${oben - 1}`);
+    titel.className = 'summary-titel';
+    while (s.firstChild) titel.appendChild(s.firstChild);
+    if (titel.firstChild !== null && titel.firstChild.nodeType === 3) titel.firstChild.textContent = (titel.firstChild.textContent ?? '').replace(/^\s*\d+\s*-\s*/u, '');
+    s.appendChild(titel);
   }
   // Inhaltsverzeichnis: die Liste zählt selbst, die Nummer im Text („1 - …“) fällt weg
   for (const sp of [...wurzel.querySelectorAll('nav ol > li > span')]) {

@@ -3,7 +3,7 @@
 Zum Abhaken beim Durchsehen von `dist/mvg.html` (Anleitung: `docs/ANLEITUNGEN.md`). Jede Zeile nennt, woran man es sieht; in Klammern der Entscheid. Was nicht passt, als Frage in `OWNER-FRAGEN.md` oder direkt als Änderungswunsch.
 
 ## A. Fachliche Abnahme (entscheidet über den Vermerk)
-- [ ] Theorie: je Kapitel Kernaussage und Abschnitte gelesen; nichts behauptet, was das Whitepaper nicht sagt (O-17). Stichprobe: „Zitieren“ an drei Absätzen, Angabe stimmt.
+- [ ] Theorie: je Kapitel Kernaussage und Abschnitte gelesen; nichts behauptet, was der MVG-Originaltext nicht sagt (O-17). Stichprobe: „Zitieren“ an drei Absätzen, Angabe stimmt.
 - [ ] Story: je Welt zwei Stationen in einer Rolle gespielt; Optionen, Konsequenzen und Belege (Ebene 4, Absatz-ID) fachlich korrekt (O-4, O-17).
 - [ ] Begriffe: LPH 0–9, nie G0–G5; Änderungsgremium, Entscheidungsvorlage, Freigabe / keine Freigabe / Freigabe mit Auflagen (O-14, O-15). Begriffs-Kompass (Kap. 13) als Lesehilfe in Ordnung.
 - [ ] Einwand-Karten (10) und Regie-Notizen: Antworten tragen, nichts klingt nach Vertrieb (O-1).

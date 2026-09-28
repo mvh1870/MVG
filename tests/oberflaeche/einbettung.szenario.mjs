@@ -63,6 +63,29 @@ export async function lauf(seite, h) {
   const orte = (await seite.evaluate(() => /** @type {any} */ (window).nachrichten)).slice(ab).filter((/** @type {any} */ n) => n?.art === 'ort');
   if (orte.some((/** @type {any} */ n) => String(n.hash).startsWith('#story') && n.flaeche !== 'story')) h.befund(`Einbettung: Ortsmeldung mit falscher Fläche ${JSON.stringify(orte)}`);
   if (orte.some((/** @type {any} */ n, /** @type {number} */ i) => i > 0 && JSON.stringify(n) === JSON.stringify(orte[i - 1]))) h.befund(`Einbettung: doppelte Ortsmeldung ${JSON.stringify(orte)}`);
+  // Höhe (P12, Owner: Einbettung ohne Springen): der Rahmen folgt dem Inhalt, innen keine Scrollleiste;
+  // die Story meldet „feste Höhe“ (null); kürzere Seiten lassen den Rahmen wieder schrumpfen
+  const rahmenHoehe = async () => seite.evaluate(() => document.getElementById('mvg')?.getBoundingClientRect().height ?? 0);
+  const innenScroll = async () => seite.frames()[1]?.evaluate(() => document.documentElement.scrollHeight - document.documentElement.clientHeight) ?? 0;
+  const letzteHoehe = async () => (await seite.evaluate(() => /** @type {any} */ (window).nachrichten)).filter((/** @type {any} */ n) => n?.art === 'hoehe').at(-1)?.px;
+  const geheUndWarte = async (/** @type {string} */ ziel) => {
+    await seite.evaluate((z) => /** @type {any} */ (window).schicke({ mvg: 'einbettung', art: 'gehe', ziel: z }), ziel);
+    await h.warte(900);
+  };
+  await geheUndWarte('#theorie/k4');
+  const k4 = await letzteHoehe();
+  if (typeof k4 !== 'number' || k4 < 1500) h.befund(`Einbettung: Lernseite meldet keine Inhaltshöhe (${k4})`);
+  if (Math.abs((await rahmenHoehe()) - (k4 ?? 0)) > 3) h.befund(`Einbettung: Rahmen ${await rahmenHoehe()} px folgt der gemeldeten Höhe ${k4} nicht`);
+  if ((await innenScroll()) > 2) h.befund(`Einbettung: Lernseite scrollt im Rahmen (${await innenScroll()} px)`);
+  await geheUndWarte('#start');
+  const start = await letzteHoehe();
+  if (typeof start !== 'number' || start >= (k4 ?? 0)) h.befund(`Einbettung: Rahmen schrumpft nach der Lernseite nicht (Start ${start}, Kap. 4 ${k4})`);
+  if ((await innenScroll()) > 2) h.befund(`Einbettung: Startseite scrollt im Rahmen (${await innenScroll()} px)`);
+  await geheUndWarte('#story');
+  if ((await letzteHoehe()) !== null) h.befund(`Einbettung: Story meldet keine feste Höhe (${await letzteHoehe()})`);
+  const grund = await seite.frames()[1]?.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--grund').trim());
+  if (grund !== '#ffffff') h.befund(`Einbettung: Hintergrund der Hostseite nicht übernommen (${grund})`);
+  await h.axe('einbettung-hoehe');
   await h.bild('einbettung');
   // Auch über die Adresse des Rahmens gibt es keine Regie und keine Leinwand
   for (const ziel of ['#regie', '#leinwand']) {

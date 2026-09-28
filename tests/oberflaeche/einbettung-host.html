@@ -1,11 +1,34 @@
 <!doctype html>
 <html lang="de">
-<head><meta charset="utf-8"><title>Hostseite (Test der Einbettung)</title></head>
+<head><meta charset="utf-8"><title>Hostseite (Test der Einbettung)</title>
+<style>body{margin:0;font:16px/1.5 system-ui,sans-serif;background:#ffffff}main{max-width:1040px;margin:0 auto;padding:24px}</style></head>
 <body>
-<!-- Testseite für das Szenario „einbettung“ (P10.6): bettet dist/mvg.html ein und sammelt die Nachrichten. -->
+<!-- Testseite für das Szenario „einbettung“ (P10.6, P12): bettet dist/mvg.html mit dem Schnipsel aus
+     docs/ANLEITUNGEN.md ein und sammelt die Nachrichten. -->
 <main>
 <h1>Hostseite</h1>
-<iframe id="mvg" title="Minimum Viable Governance" src="../../dist/mvg.html#start" style="width:1000px;height:640px;border:0"></iframe>
+<p>Text der Hostseite vor dem Rahmen.</p>
+<!-- MVG interaktiv – Einbau (docs/ANLEITUNGEN.md, Abschnitt 3) -->
+<iframe id="mvg" title="MVG interaktiv" src="../../dist/mvg.html?einbettung-hintergrund=ffffff#start"
+        style="display:block;width:100%;height:720px;border:0;transition:height .35s ease"></iframe>
+<script>
+(function () {
+  var rahmen = document.getElementById('mvg');
+  var fest = function () { return Math.round(Math.max(640, Math.min(900, window.innerHeight * 0.9))); };
+  var flaeche = '';
+  window.addEventListener('message', function (e) {
+    if (e.source !== rahmen.contentWindow) return;
+    var d = e.data;
+    if (!d || d.mvg !== 'einbettung') return;
+    if (d.art === 'hoehe') rahmen.style.height = (d.px === null ? fest() : Math.max(320, d.px)) + 'px';
+    if (d.art === 'ort') {
+      if (flaeche !== '' && d.flaeche !== flaeche && rahmen.getBoundingClientRect().top < 0) rahmen.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      flaeche = d.flaeche;
+    }
+  });
+})();
+</script>
+<p>Text der Hostseite nach dem Rahmen.</p>
 </main>
 <script>
   window.nachrichten = [];

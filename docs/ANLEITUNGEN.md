@@ -12,7 +12,7 @@ Den Vermerk „fachlich ungeprüft“ zeigen beide Dateien, bis der Owner die Fa
 ## 1. Selbstlernen (ein Fenster)
 
 1. Datei doppelklicken. Die Startseite zeigt zwei Wege:
-   - **Erklärt – Kapitel für Kapitel**: die Theorie in den 13 Kapiteln des Whitepapers.
+   - **Erklärt – Kapitel für Kapitel**: die Theorie in 13 Kapiteln.
    - **Erlebt – als Geschichte**: die Story „Zwei Welten. Ein Schulcampus.“
 2. **Story** (ca. 30 Minuten):
    - Rolle wählen, Interessen wählen (oder „Express“ für die Kurzfassung).
@@ -28,9 +28,9 @@ Den Vermerk „fachlich ungeprüft“ zeigen beide Dateien, bis der Owner die Fa
    - Jede Lernseite hat eine Kernaussage, Abschnitte mit Tafeln und den Originaltext V1.2 wörtlich.
    - Am Originaltext:
      - Die **Absatz-ID** ist ein Link auf genau diesen Absatz (`#theorie/k4/k4.2-p3`).
-     - **Zitieren** zeigt die Angabe „Bauherr Mentoren, Whitepaper V1.2, Kap. 4.2, Abs. 3“ samt Link und legt sie in die Zwischenablage. Geht das nicht (etwa beim Öffnen als lokale Datei), ist die Angabe markiert und lässt sich mit Strg+C bzw. ⌘+C kopieren.
+     - **Zitieren** zeigt die Angabe „Bauherr Mentoren, MVG V1.2, Kap. 4.2, Abs. 3“ samt Link und legt sie in die Zwischenablage. Geht das nicht (etwa beim Öffnen als lokale Datei), ist die Angabe markiert und lässt sich mit Strg+C bzw. ⌘+C kopieren.
    - **Kapitel drucken** und auf der Kapitelliste **Alle 13 Kapitel drucken** öffnen den Druckdialog. Dort „Als PDF speichern“ wählen.
-   - Kapitel 13 enthält das Glossar mit Suche und den **Begriffs-Kompass**: Wer „Gate“ oder „Change-Board“ sucht, findet den Begriff des Whitepapers.
+   - Kapitel 13 enthält das Glossar mit Suche und den **Begriffs-Kompass**: Wer „Gate“ oder „Change-Board“ sucht, findet den MVG-Begriff.
    - **Fassung und Impressum** (Fuß jeder Lernseite): Version, Änderungsstand, Quelle, Abgrenzung (5.5) und Leistungsgrenzen (7.6).
 4. **Explore** wird mit dem Ende der Geschichte freigeschaltet: Szenario-Simulator, Vorher/Nachher-Welten, Governance-Fluss-Sandbox, Zeitmaschine, Grafik-Galerie.
 5. **Dossier**: Im Epilog druckt „Dossier drucken“ Ihren Weg, Ihre Entscheidungen, das Resümee und die zwei Vertiefungskapitel.
@@ -50,7 +50,7 @@ Den Vermerk „fachlich ungeprüft“ zeigen beide Dateien, bis der Owner die Fa
    - **Rolle** wechselt die Perspektive mitten in der Station.
 4. **Regie-Notiz** (rechts):
    - Notiz und Leitfragen zur Station, Rollenszene oder Theorie-Seite.
-   - Darunter die **Einwand-Karten** als Spickzettel mit der Antwort des Whitepapers.
+   - Darunter die **Einwand-Karten** als Spickzettel mit der Antwort von MVG.
 5. **Beamer: groß und kontrastreich** vergrößert Schrift und Linien auf der Leinwand.
 6. **Gesprächsprotokoll**:
    - Notizen während des Termins festhalten.
@@ -61,25 +61,46 @@ Den Vermerk „fachlich ungeprüft“ zeigen beide Dateien, bis der Owner die Fa
    - Esc kehrt zur Regie zurück.
 8. **Explore** steuert die Regie nicht (L-54). Wer es zeigen will, öffnet es im Hauptfenster (`#explore`).
 
-## 3. Einbetten in eine Webseite (E12)
+## 3. Einbetten in eine Webseite (E12, P12)
+
+Diesen Schnipsel an die Stelle der eigenen Seite kopieren, an der MVG interaktiv erscheinen soll. Er lässt den Rahmen **mit dem Inhalt mitwachsen** (keine zweite Scrollleiste, weiche Höhenänderung), gibt der Story eine feste Höhe (90 % des Fensters, 640–900 px) und rollt beim Wechsel zwischen Start, Story und Lernseiten sanft an den Anfang des Rahmens zurück, falls er aus dem Bild gescrollt ist.
 
 ```html
-<iframe src="mvg-kunde.html?einbettung-herkunft=https%3A%2F%2Fwww.example.de#start"
-        title="Minimum Viable Governance" style="width:100%;height:720px;border:0"></iframe>
+<iframe id="mvg" title="MVG interaktiv"
+        src="mvg-kunde.html?einbettung-herkunft=https%3A%2F%2Fwww.example.de&einbettung-hintergrund=ffffff#start"
+        style="display:block;width:100%;height:720px;border:0;transition:height .35s ease"></iframe>
+<script>
+(function () {
+  var rahmen = document.getElementById('mvg');
+  var fest = function () { return Math.round(Math.max(640, Math.min(900, window.innerHeight * 0.9))); };
+  var flaeche = '';
+  window.addEventListener('message', function (e) {
+    if (e.source !== rahmen.contentWindow) return;
+    var d = e.data;
+    if (!d || d.mvg !== 'einbettung') return;
+    if (d.art === 'hoehe') rahmen.style.height = (d.px === null ? fest() : Math.max(320, d.px)) + 'px';
+    if (d.art === 'ort') {
+      if (flaeche !== '' && d.flaeche !== flaeche && rahmen.getBoundingClientRect().top < 0) rahmen.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      flaeche = d.flaeche;
+    }
+  });
+})();
+</script>
 ```
 
-- Die Anwendung meldet dem Host `{ mvg: 'einbettung', art: 'bereit', version }` und nach jedem Wechsel `{ …, art: 'ort', hash, flaeche, titel }`.
+- `einbettung-herkunft`: die Adresse der eigenen Website (URL-kodiert). Dann hört und antwortet MVG interaktiv nur dieser Herkunft.
+- `einbettung-hintergrund`: Hintergrundfarbe der eigenen Seite als Hex ohne `#` (z. B. `ffffff`). Nur helle Farben werden übernommen, damit die Texte lesbar bleiben; sonst bleibt das eigene Grau.
+- Die Anwendung meldet dem Host `{ mvg: 'einbettung', art: 'bereit', version }`, nach jedem Wechsel `{ …, art: 'ort', hash, flaeche, titel }` und bei jeder Größenänderung `{ …, art: 'hoehe', px }` (`px: null` = feste Höhe, z. B. die Story).
 - Der Host kann schicken:
   - `{ mvg: 'einbettung', art: 'gehe', ziel: '#theorie/k4' }`
   - `{ mvg: 'einbettung', art: 'frage' }`
 - Regie und Leinwand gibt es im Rahmen nicht: Weder `gehe` noch eine Adresse mit `#regie` oder `#leinwand` öffnet sie, die Anwendung zeigt dann die Startseite.
-- Mit `einbettung-herkunft` wird nur diese Herkunft gehört und beantwortet.
 
 ## 4. Pflege (für den Bau)
 
 - Inhalte stehen als Markdown unter `inhalte/` (Format: `docs/INHALTSFORMAT.md`).
 - `npm run pruefe` prüft alles, `npm run bau` baut beide Dateien.
-- Neue Whitepaper-Fassung (L-57):
+- Neue Fassung des MVG-Originaltexts (L-57):
   1. `npm run whitepaper:reimport -- --docx <neue.docx> --bericht tmp/reimport.md` meldet jede betroffene Stelle.
   2. `node werkzeuge/whitepaper-import.mjs --docx <neue.docx> --ziel quellen/whitepaper/v1.3 --fassung V1.3` legt die neue Quelle an.
   3. Die maßgebliche Fassung umstellen: den Pfad `quellen/whitepaper/v1.2/whitepaper.json` in `werkzeuge/inhalte.mjs` (STANDARD_WHITEPAPER) und `werkzeuge/whitepaper-lib.mjs` (STANDARD_PFAD) auf v1.3 setzen und den Änderungsstand in `src/ui/impressum.ts` nachtragen.

@@ -31,7 +31,7 @@ import { starteLeinwand } from './regie/leinwand.ts';
 import { W } from './ui/woerter.ts';
 import { fassungText } from './ui/fassung.ts';
 import { erzeugeKlang } from './ui/klang.ts';
-import { istEingebettet, starteEinbettung, type Einbettung } from './ui/einbettung.ts';
+import { istEingebettet, leseHintergrund, starteEinbettung, type Einbettung } from './ui/einbettung.ts';
 
 const TITEL = 'MVG interaktiv';
 const VERSION = fassungText(inhalte.whitepaper.fassung ?? '');
@@ -77,7 +77,13 @@ function starteApp(wurzel: HTMLElement): void {
   const klang = erzeugeKlang(speicher);
   // Einbettung (P10.6, E12): im iframe meldet die Anwendung dem Host jeden Ort und folgt „gehe“
   const eingebettet = istEingebettet(window);
-  if (eingebettet) document.body.classList.add('ist-eingebettet');
+  if (eingebettet) {
+    document.body.classList.add('ist-eingebettet');
+    document.documentElement.classList.add('ist-eingebettet');
+    // Hintergrund der Hostseite übernehmen (nur hell), damit der Rahmen nicht als Farbfläche absetzt
+    const grund = leseHintergrund(location.search);
+    if (grund !== null) document.documentElement.style.setProperty('--grund', grund);
+  }
   let einbettung: Einbettung | null = null;
   let story: StoryFlaeche | null = null;
   let tipps: Tooltips | null = null;
@@ -224,6 +230,9 @@ function starteApp(wurzel: HTMLElement): void {
     version: VERSION,
     gehe: (hash) => { if (location.hash !== hash) location.hash = hash; },
     ort: () => ({ hash: location.hash || '#start', flaeche: document.body.dataset['flaeche'] ?? '', titel: document.title }),
+    // Story (Leitstand) braucht eine feste Höhe; alle anderen Flächen fließen mit ihrem Inhalt
+    // gemessen am Körper, nicht am Dokument: scrollHeight wird nie kleiner als der Rahmen, der Rahmen schrumpfte nie
+    hoehe: () => (document.body.dataset['flaeche'] === 'story' ? null : document.body.getBoundingClientRect().height),
   }) : null;
   window.addEventListener('hashchange', () => einbettung?.meldeOrt());
 

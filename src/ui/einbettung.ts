@@ -3,6 +3,7 @@
  * Hostseite über postMessage. Umschlag `{ mvg: 'einbettung', art, … }`.
  *
  *   an den Host:  bereit { version } · ort { hash, flaeche, titel }  (nach jedem Flächenwechsel)
+ *                 hoehe { px }  (Inhaltshöhe, sobald sie sich ändert; null = feste Höhe, z. B. die Story)
  *   vom Host:     gehe { ziel: '#theorie/k4' } · frage  (antwortet mit „ort“)
  *
  * Sicher: angenommen wird nur, was vom direkten Elternfenster kommt und – wenn die Hostseite ihre
@@ -17,7 +18,8 @@ export const EINBETTUNG = 'einbettung';
 
 export type AnHost =
   | { mvg: typeof EINBETTUNG; art: 'bereit'; version: string }
-  | { mvg: typeof EINBETTUNG; art: 'ort'; hash: string; flaeche: string; titel: string };
+  | { mvg: typeof EINBETTUNG; art: 'ort'; hash: string; flaeche: string; titel: string }
+  | { mvg: typeof EINBETTUNG; art: 'hoehe'; px: number | null };
 
 export type VomHost =
   | { art: 'gehe'; ziel: string }
@@ -46,6 +48,18 @@ export function leseHostNachricht(daten: unknown): VomHost | null {
   return null;
 }
 
+/** Hintergrund der Hostseite aus `?einbettung-hintergrund=ffffff` – nur helle Farben (Kontrast der Texte bleibt, O-11). */
+export function leseHintergrund(suche: string): string | null {
+  const wert = new URLSearchParams(suche).get('einbettung-hintergrund') ?? '';
+  if (!/^[0-9a-f]{6}$/iu.test(wert)) return null;
+  const kanal = (i: number): number => {
+    const c = parseInt(wert.slice(i, i + 2), 16) / 255;
+    return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+  };
+  const leuchtdichte = 0.2126 * kanal(0) + 0.7152 * kanal(2) + 0.0722 * kanal(4);
+  return leuchtdichte >= 0.8 ? `#${wert.toLowerCase()}` : null;
+}
+
 export interface Einbettung {
   /** meldet den Ort; eine gleiche Meldung wie zuletzt nur mit `immer` (Antwort auf „frage“) */
   meldeOrt(immer?: boolean): void;
@@ -58,6 +72,8 @@ export function starteEinbettung(o: {
   /** Hash setzen (der Router übernimmt) */
   gehe: (hash: string) => void;
   ort: () => { hash: string; flaeche: string; titel: string };
+  /** Inhaltshöhe in px (null = die Fläche braucht eine feste Höhe); ohne Angabe keine Höhenmeldung */
+  hoehe?: () => number | null;
 }): Einbettung {
   const { fenster } = o;
   let herkunft: string | null = null;
@@ -93,8 +109,32 @@ export function starteEinbettung(o: {
   };
   fenster.addEventListener('message', bei);
   sende({ mvg: EINBETTUNG, art: 'bereit', version: o.version });
+  // Höhe (P12, Owner: Einbettung ohne Springen): nach jeder Größenänderung einmal je Bild melden, nur bei
+  // echter Änderung – die Hostseite passt den Rahmen weich an, im Rahmen entsteht keine eigene Scrollleiste
+  let letzteHoehe: number | null | undefined;
+  let geplant = false;
+  const meldeHoehe = (): void => {
+    geplant = false;
+    const px = o.hoehe?.() ?? null;
+    const gerundet = px === null ? null : Math.ceil(px);
+    if (gerundet === letzteHoehe || (gerundet !== null && typeof letzteHoehe === 'number' && Math.abs(gerundet - letzteHoehe) < 2)) return;
+    letzteHoehe = gerundet;
+    sende({ mvg: EINBETTUNG, art: 'hoehe', px: gerundet });
+  };
+  const plane = (): void => {
+    if (geplant) return;
+    geplant = true;
+    fenster.requestAnimationFrame(meldeHoehe);
+  };
+  const Beobachter = (fenster as Window & { ResizeObserver?: typeof ResizeObserver }).ResizeObserver;
+  const beobachter = o.hoehe !== undefined && Beobachter !== undefined ? new Beobachter(plane) : null;
+  if (beobachter !== null) {
+    beobachter.observe(fenster.document.documentElement);
+    beobachter.observe(fenster.document.body);
+  }
+  if (o.hoehe !== undefined) plane();
   return {
-    meldeOrt,
-    entferne: () => fenster.removeEventListener('message', bei),
+    meldeOrt: (immer = false) => { meldeOrt(immer); if (o.hoehe !== undefined) plane(); },
+    entferne: () => { fenster.removeEventListener('message', bei); beobachter?.disconnect(); },
   };
 }

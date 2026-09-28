@@ -296,7 +296,7 @@ export const W = {
     zurUebersicht: 'Zur Übersicht der Hilfe',
     grafikGross: 'Grafik vergrößern',
     schliessen: 'Schließen',
-    hinweis: 'Die Hilfe beschreibt die Anwendung MVG Companion. Begriffe folgen MVG (Leistungsphasen LPH 0–9); Kennungen und Feldnamen stehen wie in der Anwendung. Maßgeblich für MVG bleibt die Theorie: Wo die Anwendung anders zuordnet – etwa Business Case und FID je eine Leistungsphase später –, gilt der MVG-Text.',
+    hinweis: 'Die Hilfe beschreibt die Anwendung MVG Companion. Begriffe folgen MVG (Leistungsphasen LPH 0–9); Kennungen und Feldnamen stehen wie in der Anwendung. Maßgeblich für MVG bleibt die Theorie: Wo die Anwendung anders zuordnet oder eigene Modelle nutzt – etwa Business Case und FID je eine Leistungsphase später, Beschlussfassung im Lenkungskreis ab LPH 2, ein Fünf-Stufen-Freigabe- und ein Fünf-Stufen-Reifegradmodell, eigene Sitzungsrhythmen –, gilt der MVG-Text.',
   },
   // Explore (P2.4 Rahmen; die Werkzeuge baut P8)
   explore: {

@@ -11,3 +11,9 @@ Gefunden bei der Übernahme der Hilfe (P13, O-31, L-69). Die Hilfe in MVG intera
 | Standards · Freigabe-ID | `GATE-<KUERZEL>-G0..G4` | LPH 0–9 | Kap. 9.3 |
 | FAQ & Glossar · LPH0 | „Leistungsphase 0 (Bedarfsplanung) nach HOAI“ (in der Hilfe angepasst) | LPH 0 Bedarfsplanung, den HOAI-Leistungsphasen vorgelagert | Kap. 9.3 |
 | verstreut | G0–G9, Stage-Gate, Change-Board, Decision File, Evidence, Reset, Re-Baseline | LPH 0–9, Freigabe, Änderungsgremium, Entscheidungsvorlage, Nachweis, Neuinitialisierung, Neufestlegung der Projektbasis | docs/BEGRIFFE.md (in der Hilfe ersetzt) |
+| Standards · Glossar „30/60/90-Tage-Logik“ | „Standardisierter Einführungs-/Reset-Rhythmus“ (in der Hilfe als Orientierungsrahmen wiedergegeben) | kein allgemeiner Einführungsrhythmus; Vorgehen nach Reifegradanalyse | k8.2-p1 |
+| Vorgehensmodell · Schritt 2 „Init-Kanon setzen“ | Projektinitialisierung, Zielbild, Rollen, Charter: A = Bauherren-PL, C = Bauherr | Ziel und Mandat sind nichtdelegierbarer Kern des Bauherrn | Kap. 4, Tabelle k4-t1 |
+| Vorgehensmodell · Reifegrad-Modell (5 Stufen) | fünf Stufen Reaktiv … Lernend, als „MVG-Reifegrad-Modell“ bezeichnet (in der Hilfe als Modell der Anwendung gekennzeichnet) | 10 Domänen, Punktwert 0–100, drei Bänder | k7.1-p2 |
+| Handbuch · Termintypen | Änderungsgremium anlassbezogen | monatlich zuzüglich Sondersitzungen | k6.4.2 |
+| Handbuch · Termintypen; Glossar | Risikobesprechung quartalsweise | wöchentliche Sichtung, monatliche formale Prüfung | k6.4.5 |
+| Leistungsphasen-Liste | Abnahme in LPH 9 | Abnahme in LPH 8 | k9.3-t1 |

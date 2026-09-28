@@ -185,7 +185,10 @@ test('Hilfe (P13, O-31): gleiche Aufteilung wie die Companion-Hilfe, leiser Zuga
   assert.equal(rollen?.html.match(/href="#hilfe\/rollen-anleitungen-/gu)?.length, 13);
   // Prüfrunde 2: Fünf-Stufen-Modell der Anwendung nicht als LPH, Ausführungsplanung ist LPH 5, Grammatik der Ersetzungen
   assert.doesNotMatch(text, /LPH \d LPH\d|LPH 3 \(Ausführungsplanung\)|LPH 4<\/td><td>Pilot|Projektbasiss/u);
-  assert.match(text, /Stufe 0 LPH0, Stufe 1 LPH1–2/u);
+  assert.match(text, /Stufe 0 LPH 0, Stufe 1 LPH 1–2/u);
+  // Prüfrunde 4: Termintypen im Fünf-Stufen-Modell, doppelte Maskierung, Kontrast der Grafikfarben
+  assert.match(text, /Freigabebesprechung<\/b> – Stufe 0 bis Stufe 4/u);
+  assert.doesNotMatch(text, /&amp;amp;|finales Managementbericht|fill:var\(--gold\)/u);
   assert.equal(baueHilfe({ seite: 'gibt-es-nicht', version: VERSION }).querySelector('[data-pruef="hilfe-uebersicht"]') !== null, true);
 });
 

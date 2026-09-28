@@ -148,10 +148,13 @@
 .hilfe-grafik-knopf { align-self: flex-start; margin-top: var(--a-2); }
 .hilfe-grafik-dialog { width: min(96vw, 1500px); max-width: none; max-height: 94vh; padding: var(--a-4); border: 0; border-radius: var(--radius-l); background: var(--weiss); color: var(--tinte); box-shadow: var(--schatten-schwebend); }
 .hilfe-grafik-dialog::backdrop { background: var(--navy-a42); }
-.hilfe-grafik-dialog-kopf { display: flex; align-items: center; justify-content: space-between; gap: var(--a-3); margin-bottom: var(--a-3); }
+.hilfe-grafik-dialog-kopf { position: sticky; left: 0; display: flex; align-items: center; justify-content: space-between; gap: var(--a-3); margin-bottom: var(--a-3); }
+.hilfe-grafik-dialog-kopf .knopf { flex: none; white-space: nowrap; }
 .hilfe-grafik-dialog svg { display: block; width: 100%; height: auto; font-family: var(--schrift-label); --c-text: var(--tinte); --c-text-soft: var(--tinte-2); --c-accent: var(--gold-text); --c-panel: var(--weiss); --c-border-strong: var(--linie-3); }
 .hilfe-grafik-dialog svg text { font-family: var(--schrift-label); }
 .hilfe-grafik-dialog svg text.svg-text { fill: var(--tinte); }
 .hilfe-grafik-dialog svg text.svg-text-light { fill: var(--weiss); }
-@media (max-width: 760px) { .hilfe-grafik-dialog { overflow-x: auto; } .hilfe-grafik-dialog svg { min-width: 900px; } }
+/* Mindestbreite: die kleinsten Beschriftungen der Anwendung (10 Einheiten bei 1000 Breite) erreichen 12 px */
+.hilfe-grafik-dialog { overflow: auto; }
+.hilfe-grafik-dialog svg { min-width: 1200px; }
 @media print { .hilfe-grafik-knopf { display: none; } }

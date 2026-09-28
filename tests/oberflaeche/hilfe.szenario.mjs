@@ -70,7 +70,7 @@ export async function lauf(seite, h) {
   await seite.locator('[data-pruef="grafik-gross"]').last().click();
   await h.erwarte('dialog[open]');
   const klein = await seite.evaluate(() => Math.min(...[...document.querySelectorAll('dialog[open] svg text')].map((t) => t.getBoundingClientRect().height)));
-  if (breite >= 1024 && klein < 11.5) h.befund(`Grafik vergrößert: Beschriftung nur ${klein.toFixed(1)} px hoch`);
+  if (klein < 11.5) h.befund(`Grafik vergrößert: Beschriftung nur ${klein.toFixed(1)} px hoch`);
   await h.axe('grafik-dialog');
   await seite.keyboard.press('Escape');
   await h.warte(100);

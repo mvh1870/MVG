@@ -27,12 +27,19 @@ export const ZIEL = path.join('src', 'generiert', 'hilfe.json');
 export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   // Kennungen der Anwendung (GATE-NETZNORD-G2) bleiben: kein G nach Bindestrich, Punkt oder Wortzeichen
   [/post-G(\d)\b/gu, 'nach LPH $1'],
-  [/Freigabebesprechung – G0 bis G4/gu, 'Freigabebesprechung – Stufe 0 bis Stufe 4'],
+  // im Quelltext steht „<b>Freigabebesprechung</b> – G0 bis G4“: das Muster muss im eigenen Textknoten greifen
+  [/– G0 bis G4/gu, '– Stufe 0 bis Stufe 4'],
+  [/Standardisierter Einfuehrungs-\/Reset-Rhythmus/gu, 'Orientierungsrahmen für Einführung und Neuinitialisierung'],
+  [/MVG-Reifegrad-Modell \(5 Stufen\)/gu, 'Reifegrad-Modell der Anwendung (5 Stufen)'],
+  [/\s*Druckbar als PDF\./gu, ''],
+  [/Mio\. EUR/gu, 'Mio. €'],
+  [/\bLPH(\d)/gu, 'LPH $1'],
   [/G0–G9 entlang der Leistungsphasen \(LPH 0–9\)/gu, 'Freigaben entlang der Leistungsphasen LPH 0–9'],
   [/Leistungsphase 0 \(Bedarfsplanung\) nach HOAI/gu, 'Leistungsphase 0 (Bedarfsplanung), den HOAI-Leistungsphasen vorgelagert'],
   [/Ausfuehrungsplanung/gu, 'Ausführungsplanung'],
   [/Uebergabe/gu, 'Übergabe'],
   [/finales Readout/gu, 'finaler Managementbericht'],
+  [/finales Managementbericht/gu, 'finaler Managementbericht'],
   [/G3 \(Ausführungsplanung\)/gu, 'LPH 5 (Ausführungsplanung)'],
   [/G0–G9 entlang der Leistungsphasen \(LPH 0–8\)/gu, 'entlang der Leistungsphasen LPH 0–9'],
   [/(?<![-.\w])G(\d):\s*([^(\n<]+?)\s*\(LPH \1\)/gu, 'LPH $1: $2'],
@@ -103,7 +110,7 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
 /** Klassen, die src/stil/hilfe.css gestaltet (alles andere fällt weg). */
 /** Farbwerte der Companion-Grafiken → Marken-Tokens */
 const FARBEN = new Map([
-  ['#3a7a43', 'var(--petrol)'], ['#0e7c66', 'var(--tuerkis-text)'], ['#1d3258', 'var(--navy)'], ['#a8823c', 'var(--gold)'],
+  ['#3a7a43', 'var(--petrol)'], ['#0e7c66', 'var(--tuerkis-text)'], ['#1d3258', 'var(--navy)'], ['#a8823c', 'var(--gold-text)'],
   ['#9a3030', 'var(--navy-soft)'], ['#fff', 'var(--weiss)'], ['#ffffff', 'var(--weiss)'],
 ]);
 
@@ -310,6 +317,7 @@ function letzteUeberschrift(/** @type {Element} */ el) {
 /** Nach den Ersetzungen: doppelte Angaben „LPH 7: Vergabe (LPH 7)“, Kopplung „LPH-0-Vorlage“ */
 function glaette(/** @type {string} */ html) {
   return html
+    .replace(/&amp;amp;/gu, '&amp;')
     .replace(/(LPH (\d)\b(?:[^()<]|<[^>]*>){0,80}?)\s*\(LPH \2\)/gu, '$1')
     .replace(/\bLPH (\d)-(?=[A-ZÄÖÜ])/gu, 'LPH-$1-');
 }

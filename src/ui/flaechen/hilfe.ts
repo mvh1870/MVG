@@ -227,7 +227,11 @@ export function baueHilfe(o: HilfeOptionen): HTMLElement {
   // gemessen, sobald gezeichnet, und neu bei jeder Größenänderung (Schriften, Fenster)
   if (typeof ResizeObserver === 'function') {
     const beobachter = new ResizeObserver(() => rollbereiche(aussen));
-    for (const el of aussen.querySelectorAll('.h-table-wrap, .h-grafik-wrap')) beobachter.observe(el);
+    // Hülle und Inhalt: lädt eine Schrift nach, wächst nur die Tabelle, nicht ihre Hülle
+    for (const el of aussen.querySelectorAll('.h-table-wrap, .h-grafik-wrap')) {
+      beobachter.observe(el);
+      if (el.firstElementChild !== null) beobachter.observe(el.firstElementChild);
+    }
   }
   return aussen;
 }

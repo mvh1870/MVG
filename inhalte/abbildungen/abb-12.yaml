@@ -1,0 +1,27 @@
+id: abb-12
+quelle: bilder/image12.jpeg
+titel: MVG-Reifegradanalyse mit Bewertungsmatrix und 30/60/90-Tage-Plan
+alt: >-
+  Oben ein Zeigerinstrument (Skala 0 bis 5), beschriftet „Maturity Assessment“. Pfeile führen zu fünf
+  nummerierten Kästen: „Governance & Organisation“, „Risiko & Änderungssteuerung“, „Ressourcen & Rollenfähigkeit“,
+  „Informationsmanagement & Entscheidungsreife“, „QA/QM & Qualitätssteuerung“, je mit einer Liste „Nachweise“ (etwa
+  Risikoregister, Änderungsregister) und einem Regler „Punktwert: 0 … 5“. Darunter, mit
+  Pfeilen verbunden: „Bewertungsmatrix“ (Farbraster), „Roadmap für 30/60/90 Tage“ und „Klare
+  Verantwortungszuordnungen“ (RACI-Matrix: Projektauftraggeber, Manager, Team).
+angeglichen:
+  - { x: 617, y: 301, b: 41, h: 15, text: Risiko, beleg: k4.4-p2, schrift: barlow, gewicht: 600, groesse: 16, ausrichtung: mitte }
+  - { x: 341, y: 410, b: 195, h: 25, text: Änderungsregister, beleg: k6.4.4-t1, schrift: barlow, gewicht: 500, groesse: 21 }
+  - { x: 110, y: 553, b: 222, h: 27, text: Bewertungsmatrix, beleg: k7.1-p1, schrift: barlow, gewicht: 700, groesse: 23, ausrichtung: mitte }
+abweichungen:
+  - text: 'Zeigerinstrument und Regler zeigen eine Skala von 0 bis 5 mit einem Beispielwert je Kasten; der Text bewertet mit 49 Fragen in der Logik Ja = 100, Teilweise = 50 und Nein = 0 auf einer Skala von 0–100 und liest das Ergebnis als < 55 kritisch, 55–79 mit Lücken, ≥ 80 steuerbar.'
+    beleg: k7.1-p2
+  - text: 'Das Bild zeigt fünf benannte Kästen; der Text bewertet die 10 MVG-Domänen, die mitsamt ihren Prüffragen im Erhebungsinstrument der MVG-Reifegradanalyse dokumentiert sind, und nennt ihre Namen nicht.'
+    beleg: k7.1-p2
+  - text: 'Als Ergebnisse zeigt das Bild Bewertungsmatrix, Roadmap und Verantwortungszuordnungen; der Text nennt Bewertungsmatrix, Governance-Lücken, Entscheidungsliste und 30/60/90-Tage-Plan, als typische Ergebnisse zusätzlich die wichtigsten Risiken und Verantwortungslücken.'
+    beleg: k7.1-p1 k7.1-t1
+  - text: 'Die RACI-Matrix nennt „Projektauftraggeber“, „Manager“ und „Team“; das Standard-Rollenmodell umfasst 13 Arbeitsrollen, zu denen „Manager“ und „Team“ nicht gehören, und die Funktion des Projektauftraggebers ist keine zusätzliche Arbeitsrolle, sondern eine Facette des Bauherrn.'
+    beleg: k9.2-p4
+  - text: 'Die Roadmap nennt als Fokus „Quick Wins“, „Stabilisierung“ und „Optimierung“; der Text nennt Diagnose und Priorisierung (0–30 Tage), Konzeption und Mindeststandard (31–60 Tage) sowie Modell in Anwendung und Kalibrierung (61–90 Tage) und versteht die 30/60/90-Tage-Logik als Orientierungsrahmen, nicht als starren Projektplan.'
+    beleg: k8.2-t1 k8.2-p1
+  - text: 'Der Titel lautet englisch „Maturity Assessment“; der Text spricht von der MVG-Reifegradanalyse.'
+    beleg: k7.1-p1

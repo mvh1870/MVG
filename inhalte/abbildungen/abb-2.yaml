@@ -1,0 +1,13 @@
+id: abb-2
+quelle: bilder/image2.jpeg
+titel: Delegierbare Arbeit, MVG und Legitimation beim Bauherrn
+alt: 'Drei Spalten, verbunden durch zwei Pfeile nach rechts. Links „Delegierbare Arbeit“ mit dem Block „Rollen“ (Planer, Projektsteuerer, PMO, Gutachter, Berater) und dem Block „Funktionen“ (Analyse, Vorbereitung, Koordination, Dokumentation). In der Mitte unter einem Brückensymbol „MVG“ mit zehn Kacheln: Zielsystem, Rollen, Mandate, Freigaben, Entscheidungs-IDs, Datenstand, Risiko- und Änderungssteuerung, Nachweis, Betriebshandbuch, Befähigung. Rechts in Grün „Bauherr“ mit sieben Kacheln untereinander: Ziel, Mandat, Entscheidung, Freigabe, Risikoannahme, Datenstand, Nachweis.'
+angeglichen:
+  - { x: 563, y: 516, b: 117, h: 88, text: "Risiko- und\nÄnderungs-\nsteuerung", beleg: k1-p2, schrift: barlow, gewicht: 600 }
+abweichungen:
+  - text: 'Die Spalte „Bauherr“ zeigt sieben Kacheln mit „Datenstand“ und „Nachweis“ getrennt; der Text nennt sechs Verantwortungsfelder und fasst „Datenstand und Nachweis“ zu einem Feld zusammen.'
+    beleg: k3.1-p2
+  - text: 'In der Spalte „Bauherr“ steht „Freigabe“ vor „Risikoannahme“ und „Entscheidung“ ohne Zusatz; der Text nennt die Risikoannahme vor der Freigabe und spricht von der wesentlichen Entscheidung.'
+    beleg: k1.1-p1 k3.1-p2
+  - text: 'Die MVG-Kacheln heißen „Datenstand“ und „Nachweis“; der Text nennt als Bausteine Datenstandslogik und Nachweisführung.'
+    beleg: k1-p2

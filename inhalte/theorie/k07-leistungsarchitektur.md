@@ -22,6 +22,9 @@ Kapitel 7 beschreibt, wie Bauherr Mentoren die Arbeit mit Minimum Viable Governa
 Der Umsetzungspfad führt von der Diagnose über Konzeption, Pilotierung und Befähigung in den Regelbetrieb; für laufende Projekte mit eingeschränkter Steuerbarkeit kommt die MVG-Neuinitialisierung als Sonderformat hinzu. In jedem Schritt bleiben die Entscheidungen beim Bauherrn.
 :::
 
+::: abbildung abb-11
+:::
+
 ::: etappen
 ---
 titel: Der Umsetzungspfad auf einen Blick

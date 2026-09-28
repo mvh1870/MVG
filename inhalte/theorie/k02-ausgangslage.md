@@ -19,6 +19,9 @@ Kapitel 2 beschreibt, unter welchem Druck komplexe Bauvorhaben heute stehen, und
 Mehr Berichte lösen das Kernproblem nicht. Entscheidend ist, ob der Bauherr eine klare Führungs- und Entscheidungsarchitektur hat – sonst bleibt die Verantwortung formal bei ihm, wird praktisch aber diffus.
 :::
 
+::: abbildung abb-3
+:::
+
 ::: umschalter
 ---
 titel: Wie Verantwortung diffus wird

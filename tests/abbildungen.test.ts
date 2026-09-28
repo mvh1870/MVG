@@ -3,7 +3,12 @@
 // `node werkzeuge/abbildungen.mjs` (zweimal ausgeführt byte-gleich, siehe Abnahme P14.1).
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { eingabeSumme, pruefeBeschreibung } from '../werkzeuge/abbildungen.mjs';
+import { readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { eingabeSumme, erzeugeAbbildungen, ladeKontext, leseBeschreibungen, pruefeBeschreibung } from '../werkzeuge/abbildungen.mjs';
+
+const WURZEL = join(dirname(fileURLToPath(import.meta.url)), '..');
 
 const KONTEXT = { ids: new Set(['k4-t1', 'k4-p1']), abbildungen: new Map([['abb-6', { id: 'abb-6', datei: 'bilder/image6.png', sha256: 'x' }]]) };
 const GUT = {
@@ -35,4 +40,41 @@ test('Prüfsumme der Eingabe: ändert sich mit Quelle und Überdeckung, nicht mi
   assert.notEqual(eingabeSumme(GUT, 'q2'), a);
   assert.notEqual(eingabeSumme({ ...GUT, angeglichen: [{ ...GUT.angeglichen[0], text: 'LPH 0–3' }] }, 'q1'), a);
   assert.notEqual(eingabeSumme({ ...GUT, angeglichen: [{ ...GUT.angeglichen[0], x: 2 }] }, 'q1'), a);
+});
+
+test('Repo: jede Inhaltsabbildung hat eine gültige Beschreibung, und jedes Bild ist aktuell (stand.json)', async () => {
+  const kontext = ladeKontext(WURZEL);
+  const beschreibungen = leseBeschreibungen(WURZEL);
+  assert.deepEqual(beschreibungen.map((b) => b.roh.id), [...kontext.abbildungen.keys()], 'abb-2 … abb-14 in der Reihenfolge des Texts');
+  for (const { datei, roh } of beschreibungen) assert.deepEqual(pruefeBeschreibung(roh, datei, kontext), [], datei);
+  const { fehler } = await erzeugeAbbildungen({ wurzel: WURZEL, pruefe: true });
+  assert.deepEqual(fehler, []);
+});
+
+test('Originaltext: jede Abbildung steht an ihrer Stelle der DOCX (nach Überschrift bzw. Absatz), die Lernseite zeigt sie höchstens einmal', () => {
+  const inhalte = JSON.parse(readFileSync(join(WURZEL, 'src', 'generiert', 'inhalte.json'), 'utf8'));
+  const bilder = JSON.parse(readFileSync(join(WURZEL, 'src', 'generiert', 'abbildungen.json'), 'utf8')) as Record<string, string>;
+  /** Kennungen (Absatz, Abschnitt, Abbildung) im Originaltext in Lesereihenfolge */
+  const folge: string[] = [];
+  for (const t of Object.values(inhalte.theorie) as { bloecke: { art: string; felder: Record<string, string> }[] }[]) {
+    for (const b of t.bloecke) {
+      if (b.art !== 'original') continue;
+      for (const m of (b.felder['text'] ?? '').matchAll(/data-(absatz|abschnitt|abbildung)="([^"]+)"/gu)) folge.push(m[2] ?? '');
+    }
+  }
+  for (const a of inhalte.whitepaper.abbildungen as { id: string; ort: string; bild: unknown }[]) {
+    assert.ok(a.bild !== null, `${a.id} ohne Bild`);
+    assert.match(bilder[a.id] ?? '', /^data:image\/webp;base64,/u, `${a.id}: Bilddaten`);
+    const i = folge.indexOf(a.id);
+    assert.ok(i > -1, `${a.id} fehlt im Originaltext`);
+    // Kapitelanfang: vor dem ersten Absatz; sonst direkt nach der Überschrift bzw. dem Absatz des Orts
+    if (/^k\d+$/u.test(a.ort)) assert.ok(i === 0 || !folge.slice(0, i).some((x) => x.startsWith(`${a.ort}-`) || x.startsWith(`${a.ort}.`)), `${a.id}: nicht am Kapitelanfang`);
+    else assert.equal(folge[i - 1], a.ort, `${a.id} steht nicht nach ${a.ort}`);
+  }
+  // Lernseiten: jede Abbildung höchstens einmal
+  const text = JSON.stringify(inhalte.theorie);
+  for (const a of inhalte.whitepaper.abbildungen as { id: string }[]) {
+    const n = [...text.matchAll(new RegExp(`"art":"abbildung"[^}]*?"id":"${a.id}"`, 'gu'))].length;
+    assert.ok(n <= 1, `${a.id} ${n}× auf Lernseiten`);
+  }
 });

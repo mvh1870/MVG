@@ -22,6 +22,9 @@ Arbeit lässt sich delegieren, die Verantwortung des Bauherrn nicht – das ist 
 In sechs Feldern muss der Bauherr selbst entscheidungsfähig bleiben. Die Vorbereitung darf er in jedem Feld abgeben, den Kern nicht.
 :::
 
+::: abbildung abb-6
+:::
+
 ::: abschnitt k4
 ---
 titel: Sechs Felder im Überblick

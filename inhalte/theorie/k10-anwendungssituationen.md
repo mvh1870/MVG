@@ -21,6 +21,9 @@ Nicht jeder Bauherr hat dieselben Schwierigkeiten. Kapitel 10 zeigt, wo Minimum 
 Wo Entscheidungen kritisch werden, hängt von der Lage des Bauherrn ab: bei Nachweis und Gremien, bei Zielkonflikten, bei Freigabereife und Prognose oder bei einem Projekt, das schleichend die Steuerung verliert. MVG setzt jeweils an dieser Stelle an.
 :::
 
+::: abbildung abb-14
+:::
+
 ::: karten
 ---
 titel: Drei Bauherrentypen im Überblick

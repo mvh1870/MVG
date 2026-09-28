@@ -1,0 +1,26 @@
+id: abb-10
+quelle: bilder/image10.jpeg
+titel: Governance-Fluss von der Frühwarnung bis zum Managementbericht
+alt: >-
+  Flussdiagramm. Mitte: „Risiko – bewertet (P-A)“ → wesentlich → „Entscheidungsregister – offener
+  Entscheidungsbedarf“ → ausarbeiten → „Entscheidungsvorlage – entscheidungsreif“ → reif → „Freigabe (LPH 0–9) –
+  Freigabeentscheidung“. Oben „Frühwarnung – schwaches Signal“ (wird zu Risiko), „Problem – akutes Problem“,
+  „Änderung – Änderungsantrag“, „CTC / Prognose – Kostenprognose“ und ein Band „Schwellenwert löst Frühwarnung
+  aus“. Unten „Maßnahme – Maßnahme mit Frist“ und „Managementbericht – Gremienbericht“. Gestrichelt: „Indicator“
+  zur Frühwarnung, „mitigiert das Risiko“ zurück zum Risiko.
+angeglichen:
+  - { x: 1291, y: 343, b: 64, h: 23, text: (LPH 0–9), beleg: k13-t1, schrift: barlow, gewicht: 700, groesse: 17, ausrichtung: mitte }
+  - { x: 1232, y: 368, b: 124, h: 24, text: Freigabeentscheidung, beleg: k6.4.4-t1, schrift: barlow, gewicht: 500 }
+abweichungen:
+  - text: 'Ein gestrichelter Pfeil „Indicator“ führt vom Risiko zurück zur Frühwarnung; der Text schließt diese Richtung aus: CTC- oder Schwellenwertverletzungen erzeugen neue Frühwarnungen als neue Signale, nicht als Rückrichtung aus einem bestehenden Risiko.'
+    beleg: k6.4.3-p2
+  - text: 'Vom Band „Schwellenwert löst Frühwarnung aus“ zeigt ein gestrichelter Pfeil in „CTC / Prognose“ hinein; im Text sind CTC- oder Schwellenwertverletzungen der Ausgangspunkt, aus dem neue Frühwarnungen entstehen.'
+    beleg: k6.4.3-p2
+  - text: 'Von der Maßnahme führt keine Kante zum Managementbericht, sondern eine gestrichelte Rückkante „mitigiert das Risiko (Regelkreis schließt)“ zum Risiko; den Managementbericht erreicht nur der „Bericht“ aus der Freigabe. Der kanonische Fluss im Text lautet: EW (unbewertetes Signal) → bestätigt → Risiko → Entscheidung → Freigabe → Maßnahme → Managementbericht.'
+    beleg: k6.4.3-p1
+  - text: 'Die Zusätze an den Knoten weichen von der Register-Abgrenzung ab: „schwaches Signal“ (Text: unbewertetes Signal), „bewertet (P-A)“ (bewertetes mögliches Ereignis), „akutes Problem“ (eingetretenes Problem), „Änderungsantrag“ (gewollte Änderung), „Gremienbericht“ (aggregierter Gremienbericht).'
+    beleg: k6.4.4-t1
+  - text: 'Die Maßnahme trägt den Zusatz „Maßnahme mit Frist“; im Text werden Beschlüsse als Maßnahmen mit einer verantwortlichen Rolle und einer Frist nachverfolgt.'
+    beleg: k6.4.3-p2
+  - text: 'Der Knoten heißt „CTC / Prognose – Kostenprognose“; der Text führt „CTC und Prognose“ und bezeichnet die CTC als Restkostenprognose.'
+    beleg: k6.4.2-t1 k13-t1

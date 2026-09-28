@@ -1,0 +1,22 @@
+id: abb-8
+quelle: bilder/image8.jpeg
+titel: LPH 0 als früher Wirkungsraum
+alt: >-
+  In der Mitte ein Kreis mit „LPH0“, ringsum sechs Karten, jede durch Pfeile mit dem Kreis verbunden. Oben links
+  „Zielsystem“: Capex, Termin, Qualität, ESG, LCC, dazu Schieberegler und „Kompromisse“. Oben rechts „RACI“: Matrix
+  mit R, A, C, I für drei Rollen, daneben „Mandate“ und „Freigaben“. Links „Governance“: Lenkungsebene,
+  Projektebene, Fachebene, Rhythmus, Standardagenda. Rechts „Freigabe“: ein Tor, „Entscheidungsreife“ und eine
+  Prüfliste. Unten links „Risikoregister“: Änderungssteuerung, Frühwarnung. Unten rechts „KPI-System“: Diagramme
+  und „Nachweisführung“.
+angeglichen: []
+abweichungen:
+  - text: 'Die sechs Karten heißen Zielsystem, RACI, Governance, Freigabe, Risikoregister und KPI-System; der Text nennt als das, was in LPH 0 früh angelegt werden kann, Zielsystem, Mandatslogik, Leistungsphasen- und Freigabemodell, Datenstandslogik und erste Entscheidungsstandards – die beiden letzten fehlen im Bild.'
+    beleg: k5.4-p1
+  - text: 'Die Karte „Zielsystem“ zeigt Capex, Termin, Qualität, ESG, LCC und „Kompromisse“; der Text nennt Zielsystem und Abwägungsregeln, die festlegen, was Vorrang hat, wenn Kosten, Termine, Qualität, ESG, LCC, Risiko und Nutzwert kollidieren.'
+    beleg: k5.2-t1
+  - text: 'Die Karte „RACI“ zeigt eine Rollenmatrix mit „Mandate“ und „Freigaben“; der Text spricht von der Mandatslogik und von Rollen und Mandaten, die Rollen in Befugnisse, Schwellen, Stellvertretungen, Freigaben und Eskalationswege übersetzen.'
+    beleg: k5.4-p1 k5.2-t1
+  - text: 'Die Karte „Freigabe“ zeigt ein Tor mit „Entscheidungsreife“ und einer Prüfliste, ohne Bezug zu einer Leistungsphase; der Text spricht vom Leistungsphasen- und Freigabemodell und versteht die Freigabe als Entscheidung des Bauherrn am Abschluss einer Leistungsphase.'
+    beleg: k5.4-p1 k13-t1
+  - text: 'Die Karte „Governance“ zeigt Lenkungsebene, Projektebene, Fachebene, Rhythmus und Standardagenda; der Text nennt in 5.4 Gremienlogik und Projektlogik, deren Auseinanderlaufen spätere Risiken erzeugt; die Begriffe Lenkungsebene, Fachebene und Standardagenda kommen im Text nicht vor.'
+    beleg: k5.4-p2

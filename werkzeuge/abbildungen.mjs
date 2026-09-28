@@ -40,10 +40,10 @@ export const QUELLORDNER = 'quellen/whitepaper/v1.2';
 export const STAND = `${ORDNER}/stand.json`;
 /** Ändert sich die Zeichnung (Schrift, Maße, Kodierung), steigt die Version: alle Bilder gelten als veraltet. */
 export const WERKZEUG_VERSION = 1;
-/** größte Breite der Ausgabe in Pixeln (Originale 1116–1448 px) */
-const BREITE = 1400;
-/** WebP-Qualität (0–1): Beschriftungen bleiben scharf, 13 Bilder zusammen unter 1 MB */
-const QUALITAET = 0.76;
+/** größte Breite der Ausgabe in Pixeln (Originale 1116–1448 px; Lesespalte ≈ 720 px; im Dialog bis 1200 px) */
+const BREITE = 1200;
+/** WebP-Qualität (0–1): Beschriftungen bleiben scharf, 13 Bilder zusammen ≈ 0,67 MB (Budget der Einzeldatei 4 MB; bei doppelter Vergrößerung geprüft) */
+const QUALITAET = 0.62;
 const SCHRIFTEN = {
   plex: { familie: 'IBM Plex Sans', paket: '@fontsource/ibm-plex-sans', datei: 'ibm-plex-sans-latin-{g}-normal.woff2' },
   barlow: { familie: 'Barlow Condensed', paket: '@fontsource/barlow-condensed', datei: 'barlow-condensed-latin-{g}-normal.woff2' },

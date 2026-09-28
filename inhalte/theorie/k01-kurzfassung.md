@@ -16,6 +16,9 @@ Kapitel 1 fasst [[Minimum Viable Governance (MVG)]] auf einer Seite zusammen. Es
 Der Bauherr kann Arbeit weitgehend abgeben – an Planer, Projektsteuerung, Gutachter oder Berater. Die Legitimation bleibt bei ihm: Ziel, Mandat, wesentliche Entscheidung, Risikoannahme, Freigabe und Nachweis muss er selbst tragen. MVG macht das im Alltag handhabbar.
 :::
 
+::: abbildung abb-2
+:::
+
 ::: abschnitt k1.1
 ---
 titel: Leitthese

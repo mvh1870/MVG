@@ -1,0 +1,19 @@
+id: abb-3
+quelle: bilder/image3.png
+titel: Vom Entscheidungsdruck über Grauzonen zur diffusen Verantwortung
+alt: >-
+  Kaskade von oben nach unten. Von drei Karten „Volatile Märkte – Kippende Annahmen“, „ESG & LCC – Späte
+  Zielkonflikte“ und „Schlüsselrollen – Wissensverlust“ führen Pfeile in ein dunkles Band „Entscheidungsdruck“.
+  Darunter das Feld „Fehlende Architektur“ mit den Symbolen Entscheidung, Freigabe, Dokumentation und Gremium. Von dort
+  führen Pfeile zu fünf Karten: „Rollen ohne Mandat“, „Risiken nicht entscheidungsreif“, „Changes ohne Schwellen“,
+  „Parallele Datenstände“, „Gremien ohne Entscheidungsreife“. Alle münden in das Band „Diffuse Verantwortung und
+  Steuerbarkeit“.
+angeglichen:
+  - { x: 1180, y: 885, b: 206, h: 56, text: "Gremien ohne\nEntscheidungsreife", beleg: k2.5-t1, schrift: barlow, gewicht: 700, groesse: 25, ausrichtung: mitte }
+abweichungen:
+  - text: Die dritte Karte heißt „Changes ohne Schwellen“; der Text spricht von Änderungen, die bearbeitet, aber nicht mit Freigabeschwellen verbunden werden.
+    beleg: k2-p2
+  - text: Das untere Band nennt „Diffuse Verantwortung und Steuerbarkeit“; der Text sagt, die Verantwortung bleibe formal beim Bauherrn, werde praktisch aber diffus.
+    beleg: k2-p2
+  - text: Das Feld heißt „Fehlende Architektur“; der Text spricht von einer Führungs- und Entscheidungsarchitektur und nennt an dieser Stelle keine Bestandteile wie die vier Symbole Entscheidung, Freigabe, Dokumentation und Gremium.
+    beleg: k2-p2

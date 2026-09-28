@@ -26,6 +26,7 @@ Den Vermerk „fachlich ungeprüft“ zeigen beide Dateien, bis der Owner die Fa
    - **Klänge** (Knopf im Kopf) sind standardmäßig aus.
 3. **Theorie**:
    - Jede Lernseite hat eine Kernaussage, Abschnitte mit Tafeln und den Originaltext V1.2 wörtlich.
+   - **Abbildungen** aus dem Originaltext stehen beim passenden Abschnitt und im Originaltext an ihrer Stelle; „Vergrößern“ (oder ein Klick aufs Bild) zeigt sie über die ganze Breite, Esc schließt. Veraltete Beschriftungen sind im Bild durch die Begriffe des Texts ersetzt; wo die Abbildung sonst vom Text abweicht, sagt es die Bildunterschrift – es gilt der Text. Jede Abbildung hat einen eigenen Link (`#theorie/k4/abb-6`), das Abbildungsverzeichnis steht in Explore (Grafik-Galerie).
    - Am Originaltext:
      - Die **Absatz-ID** ist ein Link auf genau diesen Absatz (`#theorie/k4/k4.2-p3`).
      - **Zitieren** zeigt die Angabe „Bauherr Mentoren, MVG V1.2, Kap. 4.2, Abs. 3“ samt Link und legt sie in die Zwischenablage. Geht das nicht (etwa beim Öffnen als lokale Datei), ist die Angabe markiert und lässt sich mit Strg+C bzw. ⌘+C kopieren.

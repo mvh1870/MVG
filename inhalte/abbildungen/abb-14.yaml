@@ -1,0 +1,26 @@
+id: abb-14
+quelle: bilder/image14.jpeg
+titel: Anwendungssituationen nach Branche und Projektstand
+alt: >-
+  Vier Felder um einen Kreis, aus jedem führt ein Pfeil zum Kreis; dazwischen zwei Brückenmotive. Oben links
+  „Öffentliche Bauherren“: Nachweisfestigkeit, Gremienlogik, Vergabeanbindung. Oben rechts „Private /
+  Institutionelle“: Geschwindigkeit, Zielkonflikte, Entscheidungssicherheit. Unten links „Energie /
+  Infrastruktur“: Priorisierung, Komponenten mit langer Lieferzeit, Freigabereife. Unten rechts „Driftende
+  Projekte“ als Pfeilkette: Lagebild ordnen, Mandate klären, MVG-Neuinitialisierung. Im Kreis
+  „Governance-Kern“: Entscheidungsvorlage, darunter Freigabelogik und Eskalationspfad.
+angeglichen:
+  - { x: 522, y: 450, b: 156, h: 25, text: Entscheidungsvorlage, beleg: k10.5-t1, schrift: barlow, gewicht: 500, groesse: 19, ausrichtung: mitte }
+  - { x: 203, y: 812, b: 128, h: 41, text: "Komponenten mit\nlanger Lieferzeit", beleg: k10.3-p1, schrift: barlow, gewicht: 500, groesse: 17, ausrichtung: mitte }
+  - { x: 355, y: 824, b: 134, h: 28, text: Freigabereife, beleg: k10.3-p1, schrift: barlow, gewicht: 500, groesse: 20, ausrichtung: mitte }
+  - { x: 1031, y: 820, b: 122, h: 36, text: "MVG-\nNeuinitialisierung", beleg: k10.4-p1, schrift: barlow, gewicht: 500, groesse: 17, ausrichtung: mitte }
+abweichungen:
+  - text: 'Unten rechts führt eine Kette von „Lagebild ordnen“ über „Mandate klären“ zu „MVG-Neuinitialisierung“; im Text ist die MVG-Neuinitialisierung kein letzter Schritt, sondern sie umfasst: Datenstand sichern, Entscheidungslandschaft ordnen, Mandate klären, erforderliche Freigaben nachholen oder wiederholen und den 30/60/90-Orientierungsrahmen für die Neuordnung nutzen. Unterschiedliche Lagebilder nennt der Text als typisches Anzeichen.'
+    beleg: k10.4-p1
+  - text: 'Der Kreis „Governance-Kern“, auf den alle vier Felder zeigen, enthält Entscheidungsvorlage, Freigabelogik und Eskalationspfad; der Text nennt Entscheidungsvorlagen, Freigabelogik und belastbar dokumentierte Eskalationen beim Nutzen für öffentliche Bauherren, zusammen mit klaren Mandaten, Protokollstandard und Vergabeanbindung.'
+    beleg: k10.1-p1
+  - text: 'Drei Felder heißen „Private / Institutionelle“, „Energie / Infrastruktur“ und „Driftende Projekte“; der Text spricht von privaten und institutionellen Bauherren, von Energieversorgern und Infrastrukturträgern sowie von Projekten mit schleichendem Steuerungsverlust.'
+    beleg: k10.2-p1 k10.3-p1 k10.4-p1
+  - text: 'Unter „Öffentliche Bauherren“ stehen „Nachweisfestigkeit“ und „Gremienlogik“; der Text spricht von hoher Nachweis-, Gremien- und Vergabekomplexität.'
+    beleg: k10.1-p1
+  - text: '„Freigabereife“ steht ohne Leistungsphase; der Text nennt die Freigabereife zum Abschluss von LPH 2 für Variantenwahl und Business Case, von LPH 3 für die FID und von LPH 7 für Vergabe oder die Bindung einer Komponente mit langer Lieferzeit.'
+    beleg: k10.3-p1

@@ -1,0 +1,22 @@
+id: abb-9
+quelle: bilder/image9.jpeg
+titel: MVG Companion als Umsetzungsbeschleuniger
+alt: >-
+  Links der Block „MVG-Logik“ mit Gebäude und Organigramm, ein Pfeil führt in einen breiten Block mit dem
+  Rundzeichen „Companion“ (Brücke) und dem Balken „Anwendung“; darunter sieben Kacheln: Entscheidung, Freigabe,
+  Mandat, Datenstand, Nachweisführung, Betriebshandbuch, Übergabe. Pfeile führen weiter zu „Befähigung“
+  (Personengruppe, steigende Balken) und „Regelbetrieb“ (Bildschirm mit Diagrammen). Ein Pfeilkreis
+  „Wiederkehrende Anwendungshilfe“ verbindet Regelbetrieb und Anwendung. Unten fünf Plaketten: Bauherr
+  entscheidet, Freigabe bleibt, Rollenrechte, Nachweiskette, Prüfung-Takt.
+angeglichen:
+  - { x: 308, y: 480, b: 148, h: 28, text: Nachweisführung, beleg: k6-p1, schrift: barlow, gewicht: 500, groesse: 23, ausrichtung: mitte }
+  - { x: 895, y: 520, b: 352, h: 34, text: Wiederkehrende Anwendungshilfe, beleg: k6.2-t1, schrift: barlow, gewicht: 700, groesse: 25, ausrichtung: mitte }
+abweichungen:
+  - text: 'Der Companion-Block zeigt sieben Kacheln: Entscheidung, Freigabe, Mandat, Datenstand, Nachweisführung, Betriebshandbuch und Übergabe; der Text nennt sieben Funktionslogiken: Entscheidungsassistent, Leitfaden für Freigaben, Verantwortungszuordnung, Daten- und Nachweisabfrage, Betriebshandbuch-Assistent, Rolleneinführung und MVG-Übergabeassistent. Die Rolleneinführung fehlt im Bild; Datenstand und Nachweisführung stehen als zwei Kacheln, der Text fasst sie in der Daten- und Nachweisabfrage zusammen.'
+    beleg: k6.1-t1
+  - text: 'Die Abbildung führt von „Anwendung“ (mit der Kachel „Übergabe“) über „Befähigung“ zu „Regelbetrieb“; im Text ist Befähigung eine wiederholbare Anwendungskette, in der Schulung, Pilotierung, Übergabe und Regelbetrieb auf dieselbe Logik zurückgreifen. Schulung und Pilotierung fehlen im Bild, und die Übergabe steht dort vor der Befähigung statt als ihr dritter Schritt.'
+    beleg: k6.2-p1 k6.2-t1
+  - text: 'Die Leiste unten zeigt „Bauherr entscheidet“, „Freigabe bleibt“, „Rollenrechte“, „Nachweiskette“ und „Prüfung-Takt“; laut Text bleiben verbindlich: freigegebene Datenstände, definierte Rollenrechte, Datenschutzanforderungen und die bauherrenseitige Legitimation der Entscheidung. Freigegebene Datenstände und Datenschutzanforderungen fehlen in der Leiste.'
+    beleg: k6.3-b1
+  - text: '„Prüfung-Takt“ ist kein Begriff des Texts; er spricht bei der Übergabe vom Prüfrhythmus und beim MVG-Übergabeassistenten von Prüfzyklen.'
+    beleg: k6.2-t1 k6.1-t1

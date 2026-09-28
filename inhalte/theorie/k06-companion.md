@@ -35,6 +35,9 @@ Der MVG Companion ist eine anwendungsnahe Arbeitsumgebung. Er soll den Schritt v
 
 Wichtig ist, was er **nicht** ist. Er ist kein zweites Dachkonzept neben MVG, und er ersetzt weder Entscheidung noch Führung. Er ist eine Begleitlogik: Mit ihm soll MVG schneller verstanden, einheitlicher angewendet und dauerhafter verankert werden.
 
+::: abbildung abb-9
+:::
+
 ::: umschalter
 ---
 titel: Der Companion
@@ -236,6 +239,10 @@ titel: Rhythmus und Eskalation (6.4.5)
 Welcher Termin in welchem Takt worüber spricht – und wann eskaliert wird.
 :::
 :::
+
+::: abbildung abb-10
+:::
+
 :::
 
 ::: abschnitt k6.4.1

@@ -43,10 +43,52 @@ export async function lauf(seite, h) {
     const ohneFokus = await seite.evaluate(() => [...document.querySelectorAll('.absatz-block')]
       .filter((el) => el.scrollWidth > el.clientWidth + 1 && el.getAttribute('tabindex') !== '0').length);
     if (ohneFokus > 0) h.befund(`k${nr}: ${ohneFokus} scrollbare Tabellen nicht per Tastatur erreichbar`);
+    // Abbildungen (P14, O-32): jede im Originaltext ihres Kapitels, jedes Bild dekodiert
+    const abb = await seite.evaluate(() => [...document.querySelectorAll('figure.abbildung')].map((f) => ({
+      id: f.getAttribute('data-abbildung') ?? '', original: f.closest('.originaltext') !== null,
+      ok: (f.querySelector('img')?.naturalWidth ?? 0) > 0, alt: f.querySelector('img')?.getAttribute('alt') ?? '' })));
+    const soll = inhalte.whitepaper.abbildungen.filter((/** @type {any} */ a) => Number(a.kapitel) === nr && a.bild !== null).map((/** @type {any} */ a) => a.id);
+    for (const id of soll) if (!abb.some((a) => a.id === id && a.original)) h.befund(`k${nr}: ${id} fehlt im Originaltext`);
+    for (const a of abb) {
+      if (!a.ok) h.befund(`k${nr}: ${a.id} – Bild nicht geladen`);
+      if (a.alt.trim() === '') h.befund(`k${nr}: ${a.id} ohne Alternativtext`);
+    }
     await h.axe(`k${nr}`);
     if (nr === 4 || nr === 8) await h.bild(`k${nr}`);
     // Lernwerkzeuge (P12.3, O-30): Kap. 1–12 erklären mit kleinen interaktiven Grafiken; jede Art per Tastatur bedienen
     if (nr <= 12) await lernwerkzeuge(seite, h, nr);
+  }
+
+  // Abbildung (P14): Permalink springt zur Abbildung der Lernseite, „Vergrößern“ öffnet den Dialog, Esc schließt
+  const mitBild = inhalte.whitepaper.abbildungen.find((/** @type {any} */ a) => a.bild !== null
+    && JSON.stringify(Object.values(inhalte.theorie).find((/** @type {any} */ t) => t.kapitel === Number(a.kapitel))?.bloecke ?? []).includes(`"id":"${a.id}"`));
+  if (mitBild === undefined) h.befund('keine Abbildung auf einer Lernseite');
+  else {
+    await seite.evaluate((a) => { location.hash = `#theorie/k${a.kapitel}/${a.id}`; }, mitBild);
+    const fig = seite.locator(`.lern-inhalt figure.abbildung[data-abbildung="${mitBild.id}"]`).first();
+    await fig.waitFor({ timeout: 3000 });
+    await h.warte(300);
+    const oben = await fig.boundingBox();
+    const kopfA = await seite.evaluate(() => document.querySelector('.lern-kopf')?.getBoundingClientRect().bottom ?? 0);
+    if (oben === null || oben.y < kopfA - 1 || oben.y > (seite.viewportSize()?.height ?? 800)) h.befund(`Abbildungs-Permalink ${mitBild.id}: nicht frei sichtbar (${JSON.stringify(oben)})`);
+    if (await fig.evaluate((el) => el.closest('.originaltext') !== null)) h.befund(`Abbildungs-Permalink ${mitBild.id}: springt in den Originaltext statt auf die Lernseite`);
+    const gross = fig.locator('[data-pruef="abbildung-gross"]');
+    await gross.focus();
+    await seite.keyboard.press('Enter');
+    await h.erwarte('dialog.abbildung-dialog[open]');
+    const dlg = await seite.evaluate(() => {
+      const d = document.querySelector('dialog.abbildung-dialog[open]');
+      const img = d?.querySelector('img');
+      return { breite: img?.getBoundingClientRect().width ?? 0, fenster: innerWidth, fokusDrin: d?.contains(document.activeElement) ?? false };
+    });
+    if (dlg.breite < Math.min(900, dlg.fenster * 0.85)) h.befund(`Abbildung vergrößert nur ${Math.round(dlg.breite)} px breit`);
+    if (!dlg.fokusDrin) h.befund('Abbildungs-Dialog: Fokus nicht im Dialog');
+    await h.axe('abbildung-dialog');
+    await h.bild('abbildung-dialog');
+    await seite.keyboard.press('Escape');
+    await h.warte(100);
+    if ((await seite.locator('dialog[open]').count()) !== 0) h.befund('Abbildungs-Dialog schließt nicht mit Esc');
+    if (!(await gross.evaluate((el) => el === document.activeElement))) h.befund('Abbildungs-Dialog: Fokus kehrt nicht zum Knopf zurück');
   }
 
   // Zitierfunktion (P10.1): Absatz-Permalink springt zum Absatz, „Zitieren“ zeigt die Angabe

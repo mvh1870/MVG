@@ -21,6 +21,9 @@ Nach den sechs Verantwortungsfeldern stellt sich die Frage: Wie wird daraus etwa
 MVG ist kein Bürokratieprogramm und keine Berichtsoffensive, sondern der kleinste funktionsfähige Standard, mit dem ein Bauherr ein komplexes Projekt wirksam führen kann. Es übersetzt Verantwortung in Strukturen, in denen entschieden, mandatiert und nachgewiesen werden kann.
 :::
 
+::: abbildung abb-7
+:::
+
 ::: abschnitt k5
 ---
 titel: Sechs Kernfragen
@@ -259,6 +262,9 @@ LPH 0 ist die Bedarfsplanung nach DIN 18205 – sie liegt vor den HOAI-Leistungs
 Was hier offen bleibt, kommt später zurück: Bleiben Zielprioritäten unklar, sind Mandate nicht definiert, laufen Gremien- und Projektlogik auseinander oder werden Datenstände nicht referenziert, entstehen spätere Kosten-, Termin-, Qualitäts- und Freigaberisiken.
 
 Trotzdem stellt MVG LPH 0 nicht in den Mittelpunkt. Wichtiger ist, ob der Bauherr seine nichtdelegierbare Verantwortung ausüben kann. MVG nutzt LPH 0 als frühen Hebel, ist aber nicht darauf beschränkt: Auch in laufenden Projekten, vor wesentlichen Freigaben, bei einer Neufestlegung der Projektbasis, bei schleichenden Änderungen oder im Rahmen einer [[MVG-Neuinitialisierung]] kann MVG die Entscheidungs- und Nachweisfähigkeit wiederherstellen.
+
+::: abbildung abb-8
+:::
 
 ::: umschalter
 ---

@@ -16,6 +16,9 @@ Kapitel 3 zieht die Linie, auf der das ganze Modell steht: Was kann der [[Bauher
 Arbeit kann delegiert werden, Verantwortung muss ausübbar bleiben. Vorbereitung darf bei Fachrollen liegen – die eigene Legitimation der Entscheidung verliert der Bauherr dadurch nicht.
 :::
 
+::: abbildung abb-4
+:::
+
 ::: abschnitt k3.1
 ---
 titel: Arbeitsdefinition
@@ -189,6 +192,10 @@ marke: Nicht delegierbar
 Sie bleibt dort, wo der Bauherr die bauherrenseitige Entscheidung selbst legitimieren muss.
 :::
 :::
+
+::: abbildung abb-5
+:::
+
 :::
 
 ::: querverweis wendepunkt

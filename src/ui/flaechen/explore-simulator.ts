@@ -79,7 +79,7 @@ export function simulator(inhalte: OeffentlicheInhalte): HTMLElement {
         regler('betragTeur', 10000, 50, S.teur),
         deckung,
         regler('terminWochen', 26, 1, S.wochen),
-        h('div', { class: 'sim-gruppe' }, schalter('schwelleUeberschritten'), schalter('zielkonflikt'), schalter('risikoAnnahme'), schalter('substanziell'), schalter('freigabeBeruehrt'), schalter('datenstandBenannt')),
+        h('fieldset', { class: 'sim-gruppe' }, h('legend', { class: 't-label' }, S.lage), schalter('schwelleUeberschritten'), schalter('zielkonflikt'), schalter('risikoAnnahme'), schalter('substanziell'), schalter('freigabeBeruehrt'), schalter('datenstandBenannt')),
         h('div', { class: 'sim-feld' }, h('label', { for: 'sim-status', class: 't-label' }, S.felder.status), status)),
       h('div', { class: 'sim-ausgabe' }, kurz, ergebnis)),
     h('p', { class: 'sim-hinweis' }, S.grenze));

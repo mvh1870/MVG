@@ -1961,7 +1961,7 @@ if (istHaupt) {
   const th = Object.keys(inhalte.theorie).length;
   for (const w of warnungen) console.log(`Warnung  ${w}`);
   for (const f of fehler) console.log(`FEHLER   ${f}`);
-  console.log(`inhalte: ${st} Stationen, ${sz} Rollenszenen, ${Object.keys(inhalte.rollen).length} Rollen, ${th} Theorie-Seiten, ${inhalte.einwaende.length} Einwände → ${STANDARD_ZIEL.replace(/\\/gu, '/')}`);
+  console.log(`inhalte: ${st} Stationen, ${sz} Rollenszenen, ${Object.keys(inhalte.rollen).length} Rollen, ${th} Theorie-Seiten, ${inhalte.einwaende.length} Einwände, ${inhalte.welten.length} Welten-Aspekte → ${STANDARD_ZIEL.replace(/\\/gu, '/')}`);
   console.log(`${pruefe ? 'Prüfung' : 'Kompilieren'}: ${fehler.length} Fehler, ${warnungen.length} Warnungen`);
   process.exitCode = fehler.length > 0 ? 1 : 0;
 }

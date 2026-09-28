@@ -65,3 +65,12 @@ test('Jede Regel zitiert einen Absatz aus dem Quellenfenster', () => {
   const varianten: SimEingabe[] = [basis, { ...basis, deckung: 'reserve', zielkonflikt: true, risikoAnnahme: true, freigabeBeruehrt: true, datenstandBenannt: false, schwelleUeberschritten: true, status: 'entscheidungsreif' }, { ...basis, deckung: 'ueber-basis', terminWochen: 3, status: 'entschieden' }, { ...basis, status: 'in-bearbeitung' }];
   for (const v of varianten) for (const h of alle(simuliere(v))) assert.ok((SIM_QUELLEN as readonly string[]).includes(h.quelle), h.quelle);
 });
+
+test('Grenzfälle: kein Betrag, Freigabe bei Bauherrenstufe', () => {
+  assert.equal(stufeNachBetrag(Number.NaN), 'pl');
+  assert.equal(simuliere({ ...basis, betragTeur: Number.NaN }).wer, 'Bauherren-PL');
+  const f = simuliere({ ...basis, betragTeur: 8000, freigabeBeruehrt: true });
+  assert.equal(f.wer, 'Bauherr im Lenkungskreis');
+  assert.ok(f.freigabeweg.some((h) => h.quelle === 'k9.3-p3'));
+  assert.ok(!simuliere({ ...basis, betragTeur: 8000 }).freigabeweg.some((h) => /Innerhalb des Mandats/u.test(h.text)), 'Bauherrenstufe ist nicht „innerhalb des Mandats“');
+});

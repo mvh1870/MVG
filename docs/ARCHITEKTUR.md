@@ -19,10 +19,10 @@ quellen/ + inhalte/  ──werkzeuge (Node)──►  src/generiert/ (ignoriert)
 | `inhalte/` | Alle Texte als Markdown (siehe `docs/INHALTSFORMAT.md`), seit P5.10 der ganze Entscheidungsgraph (L-45) |
 | `entwurf/` | Ort für künftige Entwürfe in der Form von `inhalte/`; `npm run entwurf` überlagert `inhalte/` damit und prüft (Vorschau mit `--bau` → `tmp/mvg-entwurf.html`); derzeit leer bis auf `LIESMICH.md` |
 | `src/main.ts` | Einstieg: liest den Hash (`#regie`, `#leinwand`, Permalinks), startet die passende Fläche |
-| `src/engine/` | Reine Logik ohne DOM: Typen, Anfangszustand, Aktionen (Reducer), Graph, Bedingungen, Gedächtnis |
+| `src/engine/` | Reine Logik ohne DOM: Typen, Anfangszustand, Aktionen (Reducer), Graph, Bedingungen, Gedächtnis; Explore-Regeln `simulator.ts` (Szenario-Simulator) und `sandbox.ts` (Governance-Fluss-Sandbox), je mit Absatz-ID |
 | `src/inhalte/` | Typisierter Laufzeitzugriff auf `src/generiert/inhalte.json` |
 | `src/ui/` | DOM-Zeichnung: `h.ts` (Mini-Helfer), `flaechen/` (start, story, theorie, explore), `leitstand/` (Rahmen, Instrumente, Story-Karte, LPH-Band, Seitenleiste), `bausteine/` (Ebenen, Glossar, Entscheidung, Konsequenz, Schieberegler …) |
-| `src/grafik/` | Diagramm-Baukasten als SVG (Governance-Fluss, Mandatsleiter, Pyramide, Felder, Symptom-Radar, LPH-Modell …), von Story und Theorie gemeinsam genutzt |
+| `src/grafik/` | Diagramm-Baukasten als SVG (Governance-Fluss, Mandatsleiter, Pyramide, Felder, Symptom-Radar, LPH-Modell …), von Story, Theorie und Explore gemeinsam genutzt (Explore: Tafeln der Galerie, Zeitmaschine) |
 | `src/figuren/` | SVG-Figuren- und Requisiten-Baukasten |
 | `src/regie/` | `kanal.ts` (BroadcastChannel + storage-Rückfall), Regie, Leinwand, Protokoll |
 | `src/stil/` | `tokens.css`, `basis.css`, Komponenten-CSS; `src/generiert/schriften.css` wird erzeugt |

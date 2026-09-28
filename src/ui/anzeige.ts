@@ -519,3 +519,14 @@ export function eingriffe(z: OeffentlicherZustand, inhalte: OeffentlicheInhalte)
   }
   return aus;
 }
+
+/**
+ * Name einer Station für Knöpfe und Listen (L-46): „A3 · Kosten +8 %“ für die Stationen A1–B6, sonst
+ * der Kurztitel („Prolog“, „Wirklichkeit“); die Enden mit ihrem Titel, weil ihr Kurztitel nur „Ende“ ist.
+ */
+export function stationsName(inhalte: Pick<OeffentlicheInhalte, 'stationen'>, id: string): string {
+  const st = inhalte.stationen[id];
+  if (st === undefined) return id;
+  if (/^[AB]\d$/u.test(id)) return `${id} · ${st.kurztitel}`;
+  return st.art === 'ende' ? st.titel : st.kurztitel;
+}

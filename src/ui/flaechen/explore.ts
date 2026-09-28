@@ -26,12 +26,8 @@ export interface ExploreOptionen {
   version: string;
 }
 
-/** Werkzeuge, die schon stehen (P8): Kennung → Anker der Fläche. */
-const FERTIG: Record<string, string> = { simulator: 'werkzeug-simulator-flaeche', welten: 'werkzeug-welten-flaeche', sandbox: 'werkzeug-sandbox-flaeche', zeitmaschine: 'werkzeug-zeitmaschine-flaeche', galerie: 'werkzeug-galerie-flaeche', figuren: 'werkzeug-figuren-flaeche' };
-
-function springe(id: string): void {
-  const ziel = document.getElementById(FERTIG[id] ?? '');
-  if (ziel === null) return;
+/** Springt zur Fläche eines Werkzeugs und setzt den Fokus auf ihren Titel. */
+function springe(ziel: HTMLElement): void {
   ziel.scrollIntoView({ block: 'start' });
   const titel = ziel.querySelector<HTMLElement>('h2');
   if (titel !== null) { titel.tabIndex = -1; titel.focus({ preventScroll: true }); }
@@ -39,6 +35,16 @@ function springe(id: string): void {
 
 export function baueExplore(o: ExploreOptionen): HTMLElement {
   const E = W.explore;
+  // Werkzeuge zuerst bauen: eine Karte bietet „Werkzeug öffnen“ nur an, wenn ihre Fläche gezeichnet ist
+  const figuren = [besetzung(o.inhalte), stationsKarte(o.inhalte, o.weltB)].filter((x): x is HTMLElement => x !== null);
+  const flaechen: Record<string, HTMLElement | null> = {
+    simulator: simulator(o.inhalte),
+    welten: welten(o.inhalte),
+    sandbox: sandbox(),
+    zeitmaschine: zeitmaschine(o.inhalte),
+    galerie: galerie(o.inhalte, o.weltB),
+    figuren: figuren.length > 0 ? h('div', { id: 'werkzeug-figuren-flaeche', 'data-pruef': 'werkzeug-figuren' }, figuren) : null,
+  };
   return h('div', { class: 'lernseite', 'data-pruef': 'explore' },
     h('header', { class: 'lern-kopf' },
       bildmarke('marke-logo'),
@@ -51,20 +57,14 @@ export function baueExplore(o: ExploreOptionen): HTMLElement {
           h('h1', { class: 'kapitel-titel', tabindex: -1 }, E.titel),
           h('p', { class: 'kapitel-einstieg' }, E.einstieg)),
         h('ul', { class: 'explore-karten', 'data-pruef': 'explore-werkzeuge' }, E.werkzeuge.map((w) => {
-          const bereit = FERTIG[w.id] !== undefined;
+          const flaeche = flaechen[w.id] ?? null;
           return h('li', { class: 'explore-karte', 'data-pruef': `werkzeug-${w.id}` },
-            h('span', { class: `badge${bereit ? ' ist-bereit' : ' ist-folgt'}` }, bereit ? E.bereit : E.inVorbereitung),
+            h('span', { class: `badge${flaeche !== null ? ' ist-bereit' : ' ist-folgt'}` }, flaeche !== null ? E.bereit : E.inVorbereitung),
             h('h2', { class: 'explore-karte-titel' }, w.titel),
             h('p', null, w.text),
-            bereit ? h('button', { type: 'button', class: 'querverweis', 'data-pruef': `werkzeug-oeffnen-${w.id}`, onclick: () => springe(w.id) }, h('span', { class: 'querverweis-symbol' }, sym('pfeilRechts')), E.oeffnen) : null);
+            flaeche !== null ? h('button', { type: 'button', class: 'querverweis', 'data-pruef': `werkzeug-oeffnen-${w.id}`, onclick: () => springe(flaeche) }, h('span', { class: 'querverweis-symbol' }, sym('pfeilRechts')), E.oeffnen) : null);
         })),
-        simulator(o.inhalte),
-        welten(o.inhalte),
-        sandbox(),
-        zeitmaschine(o.inhalte),
-        galerie(o.inhalte, o.weltB),
-        stationsKarte(o.inhalte, o.weltB),
-        besetzung(o.inhalte),
+        Object.values(flaechen),
         h('p', null,
           h('a', { class: 'querverweis', href: '#story', 'data-pruef': 'explore-zur-story' }, h('span', { class: 'querverweis-symbol' }, sym('pfeilRechts')), W.story),
           ' ',

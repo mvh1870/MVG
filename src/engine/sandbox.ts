@@ -23,7 +23,7 @@ export type Schritt =
 export interface Eintrag {
   kennung: string;
   register: Register;
-  /** Statusbegriff nach k6.4.4-p1 (Frühwarnung: „unbewertet“, Problem: „eingetreten“, Maßnahme: „nachverfolgt“) */
+  /** Status: Begriffe aus k6.4.4-p1; wo das Whitepaper keinen Status nennt, die Wortwahl aus Bedeutung bzw. Fluss (STATUS_QUELLE) */
   status: string;
   /** Herkunft, z. B. „aus FRW-001“ */
   aus: string | null;
@@ -49,8 +49,26 @@ export const REGISTER: Record<Register, { name: string; bedeutung: string; weite
   massnahme: { name: 'Maßnahmen', bedeutung: 'Beschlüsse werden als Maßnahmen mit einer verantwortlichen Rolle und einer Frist nachverfolgt', weiter: 'nachverfolgen', rolle: 'PMO', quelle: 'k6.4.3-p2' },
 };
 
+/**
+ * Woher jedes Statuswort stammt: Statusbegriffe aus k6.4.4-p1; „unbewertet“ und „eingetreten“ aus der
+ * Bedeutung in k6.4.4-t1 („unbewertetes Signal“, „eingetretenes Problem“), „bestätigt“ aus dem Fluss
+ * k6.4.3-p1, „nachverfolgt“ aus k6.4.3-p2 (Maßnahmen haben keinen Statusbegriff).
+ */
+export const STATUS_QUELLE: Record<string, { quelle: string; wort: string }> = {
+  unbewertet: { quelle: 'k6.4.4-t1', wort: 'unbewertetes Signal' },
+  eingetreten: { quelle: 'k6.4.4-t1', wort: 'eingetretenes Problem' },
+  bestätigt: { quelle: 'k6.4.3-p1', wort: 'bestätigt' },
+  nachverfolgt: { quelle: 'k6.4.3-p2', wort: 'nachverfolgt' },
+};
+
 export function anfang(): SandboxZustand {
   return { eintraege: [], zaehler: {}, meldung: '' };
+}
+
+/** Erlaubte Schritte im Zusammenhang: Entscheidungsbedarf entsteht aus einer Quelle nur einmal. */
+export function erlaubtIn(z: SandboxZustand, e: Eintrag): Schritt[] {
+  const schonEntschieden = z.eintraege.some((x) => x.register === 'entscheidung' && x.aus === `aus ${e.kennung}`);
+  return erlaubt(e).filter((s) => !(s === 'entscheidungsbedarf' && schonEntschieden));
 }
 
 /** Welche Schritte ein Eintrag in seinem Status erlaubt (k6.4.4-t1 „Nächster Schritt“, k6.4.4-p1 Status). */
@@ -63,6 +81,7 @@ export function erlaubt(e: Eintrag): Schritt[] {
       return [];
     // Probleme haben im Whitepaper keinen Statusbegriff: sie bleiben „eingetreten“, Maßnahme und ggf. Entscheidung jederzeit
     case 'problem': return ['massnahme', 'entscheidungsbedarf'];
+    // (Entscheidungsbedarf je Quelle nur einmal: siehe erlaubtIn)
     case 'aenderung':
       if (e.status === 'Beantragt') return ['pruefen'];
       if (e.status === 'In Prüfung') return ['beschliessen', 'ablehnen', 'entscheidungsbedarf'];
@@ -96,7 +115,7 @@ export function wirf(z: SandboxZustand, ereignis: Ereignis): SandboxZustand {
 
 export function schritt(z: SandboxZustand, kennung: string, s: Schritt): SandboxZustand {
   const e = z.eintraege.find((x) => x.kennung === kennung);
-  if (e === undefined || !erlaubt(e).includes(s)) return z;
+  if (e === undefined || !erlaubtIn(z, e).includes(s)) return z;
   const setze = (status: string, zz: SandboxZustand = z): SandboxZustand => ({ ...zz, eintraege: zz.eintraege.map((x) => (x.kennung === kennung ? { ...x, status } : x)) });
   switch (s) {
     case 'bestaetigen': {

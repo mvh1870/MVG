@@ -94,13 +94,13 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P8.3 (2026-09-27) · Governance-Fluss-Sandbox (E5)
 - [x] P8.4 (2026-09-27) · Zeitmaschine (E4)
 - [x] P8.5 (2026-09-27, L-51) · Grafik-Galerie + Abbildungsverzeichnis, Figurenübersicht, Story-Karte mit Sprung
-- [ ] P8.6 · Prüf-Agenten P8 + Korrekturen
+- [x] P8.6 (2026-09-28, docs/P8-BEFUNDE.md, 30 Befunde erledigt) · Prüf-Agenten P8 + Korrekturen
 
 ### P9 · Präsentator (O-9)
 - [ ] P9.1 · Regie/Leinwand vollständig: Kanal mit Rückfall, Lebenszeichen, Ein-Fenster-Regie
 - [ ] P9.2 · Notizen, Leitfragen, Einwand-Karten (E6) je Station und Theorie-Kapitel
 - [ ] P9.3 · Gesprächsprotokoll (lokal) + Druckfassung
-- [ ] P9.4 · Regie-Eingriffe: springen, Welt/Rolle umschalten, Ereignis einspielen, Szenario-Werte; Beamer-Schalter (E10)
+- [ ] P9.4 · Regie-Eingriffe: springen, Welt/Rolle umschalten, Ereignis einspielen, Szenario-Werte; Beamer-Schalter (E10) – wirkt auf die Story, nicht auf Explore (L-53)
 - [ ] P9.5 · Zwei-Fenster-Tests + Prüf-Agenten P9
 
 ### P10 · Whitepaper-Funktionen & Auslieferung

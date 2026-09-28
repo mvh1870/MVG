@@ -61,6 +61,7 @@ const RANG: Record<Stufe, number> = { pl: 0, gremium: 1, bauherr: 2 };
 
 /** Muster-Mandatsleiter (k4.2-p3): bis einschließlich 100 TEUR PL, bis einschließlich 5 Mio. € Änderungsgremium, darüber Bauherr im Lenkungskreis. */
 export function stufeNachBetrag(betragTeur: number): Stufe {
+  if (!Number.isFinite(betragTeur)) return 'pl';
   if (betragTeur <= 100) return 'pl';
   if (betragTeur <= 5000) return 'gremium';
   return 'bauherr';
@@ -73,7 +74,7 @@ export function simuliere(e: SimEingabe): SimErgebnis {
   const freigabeweg: SimHinweis[] = [];
   const naechsterSchritt: SimHinweis[] = [];
 
-  let stufe = stufeNachBetrag(Math.max(0, e.betragTeur));
+  let stufe = stufeNachBetrag(Math.max(0, Number.isFinite(e.betragTeur) ? e.betragTeur : 0));
   /** Stufe offen: das projektspezifische Mandat bestimmt sie (keine Stufe der Leiter markiert) */
   let eskaliert = false;
   let wer = stufe === 'pl' ? 'Bauherren-PL' : stufe === 'gremium' ? 'Änderungsgremium' : 'Bauherr im Lenkungskreis';

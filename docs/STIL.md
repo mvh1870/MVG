@@ -107,6 +107,9 @@ Nur diese Paare dürfen Text (bzw. bei „Grafik“ Symbole, Ränder, Fokusringe
 | `--tinte-2` #4B5563 | `--grund` #EEF1F5 | 6,7:1 | Text | leiser Text auf Grund |
 | `--tinte-2` #4B5563 | `--flaeche-1` #F6F8FB | 7,1:1 | Text | Tabellenkopf |
 | `--tinte-2` #4B5563 | `--flaeche-2` #F3F5F8 | 6,9:1 | Text | Versionen, Rollenübersicht |
+| `--tinte` #0F1722 | `--flaeche-2` #F3F5F8 | 16,5:1 | Text | Sandbox-Einträge, Sim-Stufen |
+| `--tinte` #0F1722 | `--koralle-soft` #FDEBE5 | 15,6:1 | Text | Vorher/Nachher Welt A, Story-Karte Explore |
+| `--tinte` #0F1722 | `--tuerkis-soft` #E6F5F4 | 16,1:1 | Text | Vorher/Nachher Welt B, Story-Karte Explore |
 | `--tinte-2` #4B5563 | `--flaeche-3` #F4F7FB | 7,0:1 | Text | Quelle im Originaltext |
 | `--tinte-2` #4B5563 | `--gold-soft` #FFF7E3 | 7,1:1 | Text | Nebentext auf Gold-Fläche |
 | `--tinte-2` #4B5563 | `--koralle-hauch` #FFF4F0 | 7,0:1 | Text | Nebentext Welt A |

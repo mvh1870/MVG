@@ -34,13 +34,14 @@ export interface ZeitmaschineDaten {
     monat: (n: number) => string;
     regler: string;
     tabelle: string;
+    achseMonat: string;
     quelle: string;
   };
 }
 
 const B = 320;
-const H = 150;
-const RAND = { l: 72, r: 76, o: 14, u: 26 };
+const H = 170;
+const RAND = { l: 78, r: 76, o: 14, u: 40 };
 
 function diagramm(d: ZeitmaschineDaten, feld: 'kosten' | 'offen', titel: string, max: number, achse: (v: number) => string, schritte: number[]): { svg: SVGSVGElement; setze: (monat: number) => void } {
   const monate = [...new Set(d.punkte.map((p) => p.monat))].sort((a, b) => a - b);
@@ -56,12 +57,14 @@ function diagramm(d: ZeitmaschineDaten, feld: 'kosten' | 'offen', titel: string,
     schritte.map((v) => s('g', null,
       s('line', { class: 'zm-raster', x1: RAND.l, x2: B - RAND.r, y1: y(v), y2: y(v) }),
       s('text', { class: 'zm-achse', x: RAND.l - 6, y: y(v) + 3.5, 'text-anchor': 'end' }, achse(v)))),
-    monate.map((m) => s('text', { class: 'zm-achse', x: x(m), y: H - 8, 'text-anchor': 'middle' }, String(m))),
+    monate.map((m) => s('text', { class: 'zm-achse', x: x(m), y: H - RAND.u + 16, 'text-anchor': 'middle' }, String(m))),
+    s('text', { class: 'zm-achse', x: (RAND.l + B - RAND.r) / 2, y: H - 4, 'text-anchor': 'middle' }, d.woerter.achseMonat),
     faden,
-    (['A', 'B'] as Welt[]).map((welt) => s('g', { class: 'zm-reihe', 'data-welt': welt.toLowerCase() },
+    // Welt B zuerst (gefülltes Quadrat), Welt A darüber als Ring: bei gleichen Werten bleiben beide sichtbar
+    (['B', 'A'] as Welt[]).map((welt) => s('g', { class: 'zm-reihe', 'data-welt': welt.toLowerCase() },
       s('path', { class: 'zm-linie', d: linie(welt) }),
       d.punkte.filter((p) => p.welt === welt).map((p) => welt === 'A'
-        ? s('circle', { class: 'zm-punkt', cx: x(p.monat), cy: y(p[feld]), r: 4 })
+        ? s('circle', { class: 'zm-punkt ist-ring', cx: x(p.monat), cy: y(p[feld]), r: 6 })
         : s('rect', { class: 'zm-punkt', x: x(p.monat) - 4, y: y(p[feld]) - 4, width: 8, height: 8, rx: 1.5 })),
       // direkte Beschriftung am Linienende
       (() => { const p = letzte(welt); return p === undefined ? null : s('text', { class: 'zm-name', x: x(p.monat) + 8, y: y(p[feld]) + 4 }, welt === 'A' ? d.woerter.weltA : d.woerter.weltB); })())));
@@ -80,7 +83,11 @@ export function zeitmaschine(d: ZeitmaschineDaten): HTMLElement {
   const ablesen = h('div', { class: 'zm-ablesen', 'aria-live': 'polite', 'data-pruef': 'zm-ablesen' });
   const regler = h('input', { type: 'range', class: 'zm-regler', id: 'zm-regler', min: 0, max: monate.length - 1, step: 1, value: 0, 'data-pruef': 'zm-regler' }) as HTMLInputElement;
 
+  let jetzt = -1;
   const zeige = (i: number): void => {
+    // nur bei einem Monatswechsel neu zeichnen (Live-Region nicht bei jeder Zeigerbewegung)
+    if (i === jetzt) return;
+    jetzt = i;
     const monat = monate[i] ?? 0;
     kosten.setze(monat);
     offen.setze(monat);
@@ -109,7 +116,7 @@ export function zeitmaschine(d: ZeitmaschineDaten): HTMLElement {
 
   const tabelle = h('details', { class: 'zm-tabelle' }, h('summary', null, W.tabelle),
     h('table', { class: 'register-tabelle' },
-      h('thead', null, h('tr', null, h('th', null, 'Monat'), h('th', null, `${W.weltA} · ${W.kosten}`), h('th', null, `${W.weltA} · ${W.offen}`), h('th', null, `${W.weltB} · ${W.kosten}`), h('th', null, `${W.weltB} · ${W.offen}`))),
+      h('thead', null, h('tr', null, h('th', null, W.achseMonat), h('th', null, `${W.weltA} · ${W.kosten}`), h('th', null, `${W.weltA} · ${W.offen}`), h('th', null, `${W.weltB} · ${W.kosten}`), h('th', null, `${W.weltB} · ${W.offen}`))),
       h('tbody', null, monate.map((m) => {
         const a = d.punkte.find((p) => p.monat === m && p.welt === 'A');
         const b = d.punkte.find((p) => p.monat === m && p.welt === 'B');

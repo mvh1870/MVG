@@ -680,3 +680,13 @@ test('Vorher/Nachher-Welten (P8.2): Beleg Pflicht, Welt A und Welt B Pflicht', a
   const ohne = await kompiliere({ pruefe: true, wurzel: neueWurzel(mit('::: welt rollen\n---\ntitel: Rollen\n---\n### Welt A\nA.\n\n### Welt B\nB.\n:::\n')), ziel: null });
   assert.ok(ohne.fehler.some((f) => /Welt rollen: Beleg fehlt/u.test(f)), ohne.fehler.join('\n'));
 });
+
+test('Vorher/Nachher-Welten: doppelte Kennung und fehlende Welt B sind Fehler; ohne Datei leer', async () => {
+  const eins = '::: welt rollen\n---\ntitel: Rollen\n---\n### Welt A\nA.\n\n### Welt B\nB.\n\n::: zitat k2.4-p1\nMehr Berichte helfen manchmal.\n:::\n:::\n';
+  const doppelt = await kompiliere({ pruefe: true, wurzel: neueWurzel({ ...BEISPIEL, 'inhalte/welten.md': eins + '\n' + eins }), ziel: null });
+  assert.ok(doppelt.fehler.some((f) => /Welt rollen doppelt/u.test(f)), doppelt.fehler.join('\n'));
+  const ohneB = await kompiliere({ pruefe: true, wurzel: neueWurzel({ ...BEISPIEL, 'inhalte/welten.md': eins.replace('### Welt B\nB.\n\n', '') }), ziel: null });
+  assert.ok(ohneB.fehler.some((f) => /weltB/u.test(f) || /Welt B/u.test(f)), ohneB.fehler.join('\n'));
+  const ohne = await kompiliere({ pruefe: true, wurzel: neueWurzel(BEISPIEL), ziel: null });
+  assert.deepEqual((ohne.inhalte as Inhalte).welten, []);
+});

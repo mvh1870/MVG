@@ -355,7 +355,7 @@ a.glossar-ort:hover { text-decoration: underline; }
 .sim-eingabe { display: grid; gap: var(--a-4); padding: var(--a-4); border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
 .sim-feld { display: grid; gap: 6px; }
 .sim-regler-zeile { display: flex; align-items: center; gap: var(--a-3); }
-.sim-regler { flex: 1 1 auto; min-width: 0; min-height: 32px; accent-color: var(--navy); }
+.sim-regler { flex: 1 1 auto; min-width: 0; min-height: 36px; accent-color: var(--navy); }
 .sim-wert { flex: none; min-width: 6.5em; font: 700 var(--gr-m)/1.2 var(--schrift-text); font-variant-numeric: tabular-nums; color: var(--navy); text-align: right; }
 .sim-gruppe { display: grid; gap: 6px; margin: 0; padding: 0; border: 0; }
 .sim-gruppe legend { margin-bottom: 6px; }
@@ -374,14 +374,14 @@ a.glossar-ort:hover { text-decoration: underline; }
 .sim-liste { display: grid; gap: var(--a-2); margin: 0; padding: 0; list-style: none; }
 .sim-liste li { display: grid; gap: 4px; }
 .sim-liste p { font-size: var(--gr-text); line-height: 1.5; color: var(--tinte); }
-.sim-quelle summary { min-height: 28px; font-size: var(--gr-s); color: var(--tuerkis-text); cursor: pointer; }
+.sim-quelle summary { display: flex; align-items: center; min-height: 36px; font-size: var(--gr-s); color: var(--tuerkis-text); cursor: pointer; }
 .sim-zitat { margin-top: 6px; padding: 8px 12px; border-left: 3px solid var(--tuerkis); font-size: var(--gr-s); color: var(--tinte-2); }
 .sim-hinweis { font-size: var(--gr-s); color: var(--tinte-2); }
 
 /* Explore · Vorher/Nachher-Welten (P8.2) */
-.welten-wahl { display: flex; flex-wrap: wrap; gap: 6px; }
-.welten-knopf { min-height: 40px; padding: 6px 12px; border: 0; border-radius: var(--radius-m); background: var(--weiss); color: var(--tinte); font: 600 14px/1.2 var(--schrift-text); box-shadow: inset 0 0 0 1px var(--linie); }
-.welten-knopf[aria-pressed="true"] { background: var(--navy); color: var(--weiss); box-shadow: none; }
+.wahl-leiste { display: flex; flex-wrap: wrap; gap: 6px; }
+.wahl-knopf { min-height: 40px; padding: 6px 12px; border: 0; border-radius: var(--radius-m); background: var(--weiss); color: var(--tinte); font: 600 14px/1.2 var(--schrift-text); box-shadow: inset 0 0 0 1px var(--linie); }
+.wahl-knopf[aria-pressed="true"] { background: var(--navy); color: var(--weiss); box-shadow: none; }
 .welten-buehne { display: grid; gap: var(--a-4); }
 .welten-aspekt { display: grid; gap: var(--a-3); padding: var(--a-4); border-radius: var(--radius-l); background: var(--weiss); box-shadow: var(--schatten-karte); }
 .welten-titel { font: 700 var(--gr-l)/1.2 var(--schrift-text); color: var(--navy); }
@@ -401,11 +401,12 @@ a.glossar-ort:hover { text-decoration: underline; }
 .sandbox-bedeutung { display: grid; gap: 2px; font-size: var(--gr-s); color: var(--tinte-2); }
 .sandbox-leer { font-size: var(--gr-s); color: var(--tinte-2); font-style: italic; }
 .sandbox-liste { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
-.sandbox-eintrag { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; padding: 6px 8px; border-radius: var(--radius-m); background: var(--flaeche-2); animation: szene-ein 300ms var(--kurve-aus) both; }
+.sandbox-eintrag { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; padding: 6px 8px; border-radius: var(--radius-m); background: var(--flaeche-2); }
+.sandbox-eintrag.ist-neu { animation: szene-ein 300ms var(--kurve-aus) both; }
 .sandbox-status { font-size: 14px; font-weight: 600; color: var(--tinte); }
 .sandbox-aus { width: 100%; font-size: 12.5px; color: var(--tinte-2); }
 .sandbox-schritte { display: flex; flex-wrap: wrap; gap: 4px; width: 100%; }
-.sandbox-schritt { min-height: 32px; padding: 4px 8px; border: 0; border-radius: var(--radius-m); background: var(--weiss); color: var(--navy); font: 600 13px/1.2 var(--schrift-text); box-shadow: inset 0 0 0 1px var(--linie); }
+.sandbox-schritt { min-height: 36px; padding: 4px 8px; border: 0; border-radius: var(--radius-m); background: var(--weiss); color: var(--navy); font: 600 13px/1.2 var(--schrift-text); box-shadow: inset 0 0 0 1px var(--linie); }
 .sandbox-summe { display: grid; gap: 4px; margin: 0; }
 .sandbox-summe div { display: grid; grid-template-columns: minmax(0, 12em) minmax(0, 1fr); gap: 8px; font-size: var(--gr-s); }
 .sandbox-summe dt { font-weight: 600; color: var(--tinte); }
@@ -422,17 +423,18 @@ a.glossar-ort:hover { text-decoration: underline; }
 .zm-diagramme figure { display: grid; gap: 4px; margin: 0; padding: var(--a-3); border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
 .zm-diagramm { width: 100%; height: auto; overflow: visible; touch-action: pan-y; }
 .zm-raster { stroke: var(--linie); stroke-width: 1; }
-.zm-achse { font: 11px var(--schrift-text); fill: var(--tinte-2); }
+.zm-achse { font: 13px var(--schrift-text); fill: var(--tinte-2); }
 .zm-reihe[data-welt="a"] { --farbe: var(--koralle); }
 .zm-reihe[data-welt="b"] { --farbe: var(--tuerkis); }
 .zm-linie { fill: none; stroke: var(--farbe); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
 .zm-punkt { fill: var(--farbe); stroke: var(--weiss); stroke-width: 2; }
-.zm-name { font: 600 11px var(--schrift-text); fill: var(--tinte); }
+.zm-punkt.ist-ring { fill: none; stroke: var(--farbe); stroke-width: 2.5; }
+.zm-name { font: 600 13px var(--schrift-text); fill: var(--tinte); }
 .zm-faden { stroke: var(--navy); stroke-width: 1.5; stroke-dasharray: 3 3; }
 .zm-steuer { display: grid; gap: 6px; max-width: 480px; }
-.zm-regler { width: 100%; min-height: 32px; accent-color: var(--navy); }
+.zm-regler { width: 100%; min-height: 36px; accent-color: var(--navy); }
 .zm-ablesen { display: grid; gap: 4px; font-size: var(--gr-text); color: var(--tinte); }
-.zm-tabelle summary { min-height: 32px; font-size: var(--gr-s); color: var(--navy); cursor: pointer; }
+.zm-tabelle summary { display: flex; align-items: center; min-height: 36px; font-size: var(--gr-s); color: var(--navy); cursor: pointer; }
 
 /* Explore · Galerie und Story-Karte (P8.5) */
 .galerie-buehne { display: grid; gap: var(--a-3); min-width: 0; }
@@ -443,3 +445,4 @@ a.glossar-ort:hover { text-decoration: underline; }
 .explore-station { display: flex; align-items: center; min-height: 40px; padding: 6px 12px; border-radius: var(--radius-m); background: var(--weiss); color: var(--tinte); font-size: var(--gr-text); text-decoration: none; box-shadow: inset 3px 0 0 var(--welt-farbe, var(--linie)), inset 0 0 0 1px var(--linie); }
 a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
 .explore-station.ist-gesperrt { color: var(--tinte-2); background: var(--flaeche-2); }
+.zm-legende [data-welt="a"] .zm-marke, .zm-ablesen p[data-welt="a"] .zm-marke { background: none; box-shadow: inset 0 0 0 2.5px var(--welt-farbe); }

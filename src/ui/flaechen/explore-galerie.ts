@@ -7,10 +7,11 @@
  * (O-14, O-15). Story-Karte: jede Station als Sprungziel; Welt B erst nach der Freischaltung.
  */
 
-import { h, attr, ersetze } from '../h.ts';
+import { h, ersetze } from '../h.ts';
+import { wahlleiste } from '../bausteine/wahlleiste.ts';
 import type { Block, OeffentlicheInhalte } from '../../inhalte/typen.ts';
 import * as B from '../bausteine/bloecke.ts';
-import { kopfText } from '../anzeige.ts';
+import { kopfText, stationsName } from '../anzeige.ts';
 import { W } from '../woerter.ts';
 
 interface TafelEintrag { block: Block; kapitel: number }
@@ -48,21 +49,31 @@ export function storyDiagramme(inhalte: OeffentlicheInhalte): { art: string; sta
   return [...nach.entries()].map(([art, stationen]) => ({ art, stationen }));
 }
 
+/** Stelle im Text als Permalink: `k3.3` → Abschnitt 3.3, `k7.1-p1` → Abschnitt 7.1, `k1` → Kapitel 1. */
+function stelle(ort: string, kapitel: string): Node {
+  const abschnitt = /^k(\d+(?:\.\d+)+)/u.exec(ort)?.[1] ?? null;
+  const ziel = abschnitt !== null ? `#theorie/k${kapitel}/${abschnitt}` : `#theorie/k${kapitel}`;
+  return h('a', { href: ziel }, abschnitt !== null ? W.galerie.abschnitt(abschnitt) : W.theorie.kapitelVon(kapitel));
+}
+
 export function galerie(inhalte: OeffentlicheInhalte, weltB = true): HTMLElement | null {
   const G = W.galerie;
   const tafeln = galerieTafeln(inhalte);
   if (tafeln.length === 0) return null;
-  const buehne = h('div', { class: 'galerie-buehne', 'aria-live': 'polite', 'data-pruef': 'galerie-buehne' });
-  const knoepfe = tafeln.map((t, i) => h('button', { type: 'button', class: 'welten-knopf', 'aria-pressed': 'false', 'data-pruef': `galerie-${t.block.id ?? ''}`, onclick: () => zeige(i) },
-    `${W.theorie.kapitelKurz(String(t.kapitel))} · ${t.block.id ?? ''}`));
-  const zeige = (i: number): void => {
-    knoepfe.forEach((k, j) => attr(k, 'aria-pressed', i === j ? 'true' : 'false'));
-    const t = tafeln[i];
-    if (t === undefined) return;
-    ersetze(buehne, h('p', { class: 'galerie-quelle' }, `${kopfText(t.block.kopf, 'quelle') ?? ''} · `, h('a', { href: `#theorie/k${t.kapitel}` }, G.zurLernseite)),
-      B.tafel(t.block, [], inhalte, 'h3'));
-  };
-  zeige(0);
+  const buehne = h('div', { class: 'galerie-buehne', 'data-pruef': 'galerie-buehne' });
+  const wahl = wahlleiste({
+    beschriftungen: tafeln.map((t) => `${W.theorie.kapitelKurz(String(t.kapitel))} · ${t.block.id ?? ''}`),
+    pruef: (i) => `galerie-${tafeln[i]?.block.id ?? ''}`,
+    gruppe: G.wahl,
+    meldung: G.gezeigt,
+    bei: (i) => {
+      const t = tafeln[i];
+      if (t === undefined) return;
+      ersetze(buehne, h('p', { class: 'galerie-quelle' }, `${kopfText(t.block.kopf, 'quelle') ?? ''} · `, h('a', { href: `#theorie/k${t.kapitel}` }, G.zurLernseite)),
+        B.tafel(t.block, [], inhalte, 'h3'));
+    },
+  });
+  wahl.waehle(0);
 
   const abb = inhalte.whitepaper.abbildungen;
   const diagramme = storyDiagramme(inhalte);
@@ -74,7 +85,7 @@ export function galerie(inhalte: OeffentlicheInhalte, weltB = true): HTMLElement
   return h('section', { class: 'werkzeug', id: 'werkzeug-galerie-flaeche', 'aria-labelledby': 'galerie-titel', 'data-pruef': 'galerie' },
     h('h2', { class: 'lern-abschnitt-titel', id: 'galerie-titel' }, G.name),
     h('p', { class: 'kapitel-einstieg' }, G.einstieg(tafeln.length)),
-    h('div', { class: 'welten-wahl', role: 'group', 'aria-label': G.wahl }, knoepfe),
+    wahl.leiste, wahl.meldung,
     buehne,
     diagramme.length > 0 ? h('section', { class: 'galerie-verzeichnis', 'aria-labelledby': 'dia-titel', 'data-pruef': 'story-diagramme' },
       h('h3', { class: 'sim-teil-titel', id: 'dia-titel' }, G.diagramme),
@@ -86,22 +97,22 @@ export function galerie(inhalte: OeffentlicheInhalte, weltB = true): HTMLElement
       h('p', { class: 'sim-hinweis' }, G.verzeichnisText),
       h('table', { class: 'register-tabelle' },
         h('thead', null, h('tr', null, h('th', null, G.abb), h('th', null, G.kapitel), h('th', null, G.stelle))),
-        h('tbody', null, abb.map((a) => h('tr', null,
-          h('td', null, G.abbNr(a.id)),
+        h('tbody', null, abb.map((a, i) => h('tr', null,
+          h('td', null, G.abbNr(i + 1)),
           h('td', null, h('a', { href: `#theorie/k${a.kapitel}` }, W.theorie.kapitelVon(a.kapitel))),
-          h('td', null, a.ort)))))) : null);
+          h('td', null, stelle(a.ort, a.kapitel))))))) : null);
 }
 
 /** Story-Karte mit Sprung: jede Station; Welt B erst, wenn sie freigeschaltet ist (sonst ohne Link). */
 export function stationsKarte(inhalte: OeffentlicheInhalte, weltB: boolean): HTMLElement {
   const G = W.galerie;
-  return h('section', { class: 'werkzeug', id: 'werkzeug-figuren-flaeche', 'aria-labelledby': 'karte-titel', 'data-pruef': 'explore-karte' },
+  return h('section', { class: 'werkzeug', 'aria-labelledby': 'karte-titel', 'data-pruef': 'explore-karte' },
     h('h2', { class: 'lern-abschnitt-titel', id: 'karte-titel' }, G.karte),
     h('p', { class: 'kapitel-einstieg' }, weltB ? G.karteText : G.karteGesperrt),
     h('ol', { class: 'explore-stationen' }, inhalte.stationsFolge.map((id) => {
       const st = inhalte.stationen[id];
       if (st === undefined) return null;
-      const name = /^[AB]\d$/u.test(id) ? `${id} · ${st.kurztitel}` : st.kurztitel === 'Ende' ? st.titel : st.kurztitel;
+      const name = stationsName(inhalte, id);
       const gesperrt = st.welt === 'B' && !weltB;
       return h('li', { 'data-welt': st.welt === 'A' ? 'a' : st.welt === 'B' ? 'b' : null },
         gesperrt ? h('span', { class: 'explore-station ist-gesperrt' }, name, h('span', { class: 'nur-sr' }, ` (${G.gesperrt})`))

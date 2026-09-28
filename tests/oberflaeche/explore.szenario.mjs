@@ -81,6 +81,9 @@ export async function lauf(seite, h) {
   const fokusNach = await seite.evaluate(() => document.activeElement?.getAttribute('data-pruef') ?? '');
   if (!fokusNach.startsWith('schritt-ENT-001-')) h.befund(`Sandbox: Fokus nach „Vorlage fertig“ auf ${fokusNach || 'nichts'}`);
   await h.klick('[data-pruef="schritt-ENT-001-entscheiden"]');
+  // S1: nach einem Schritt ohne Folgeschritt bleibt der Fokus im Werkzeug (neuer Eintrag MAS-001 oder ENT-001)
+  const fokusEnde = await seite.evaluate(() => document.activeElement?.getAttribute('data-pruef') ?? document.activeElement?.tagName ?? '');
+  if (!/eintrag-(MAS|ENT)-001/u.test(fokusEnde)) h.befund(`Sandbox: Fokus nach „entscheiden“ auf ${fokusEnde}`);
   if (await seite.locator('[data-pruef="eintrag-MAS-001"]').count() !== 1) h.befund('Sandbox: nach „entscheiden“ keine Maßnahme MAS-001');
   const summe = await seite.locator('[data-pruef="sandbox-bericht"]').innerText();
   if (!/Entscheidungsregister[\s\S]*1 Entschieden/u.test(summe)) h.befund(`Sandbox: Managementbericht ohne Entscheidung („${summe.slice(0, 80)}“)`);

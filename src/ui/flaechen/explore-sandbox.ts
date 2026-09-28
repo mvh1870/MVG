@@ -6,7 +6,7 @@
  */
 
 import { h, ersetze } from '../h.ts';
-import { anfang, bericht, erlaubt, REGISTER, schritt, wirf, type Ereignis, type Register, type SandboxZustand } from '../../engine/sandbox.ts';
+import { anfang, bericht, erlaubtIn, REGISTER, schritt, wirf, type Ereignis, type Register, type SandboxZustand } from '../../engine/sandbox.ts';
 import { W } from '../woerter.ts';
 
 export function sandbox(): HTMLElement {
@@ -16,6 +16,7 @@ export function sandbox(): HTMLElement {
   const spalten = h('div', { class: 'sandbox-spalten', 'data-pruef': 'sandbox-spalten' });
   const berichtFlaeche = h('section', { class: 'sandbox-bericht', 'aria-labelledby': 'sandbox-bericht-titel', 'data-pruef': 'sandbox-bericht' });
   let fokus: string | null = null;
+  let bekannt = new Set<string>();
 
   const tue = (neu: SandboxZustand, naechsterFokus: string | null): void => {
     z = neu;
@@ -30,11 +31,11 @@ export function sandbox(): HTMLElement {
       return h('section', { class: 'sandbox-spalte', 'data-register': r, 'aria-labelledby': `sandbox-${r}`, 'data-pruef': `sandbox-${r}` },
         h('h3', { class: 'sandbox-spalte-titel', id: `sandbox-${r}` }, REGISTER[r].name),
         h('p', { class: 'sandbox-bedeutung' }, REGISTER[r].bedeutung, h('small', null, `${S.weiter}: ${REGISTER[r].weiter}`), h('small', null, `${S.rolle}: ${REGISTER[r].rolle}`)),
-        eintraege.length === 0 ? h('p', { class: 'sandbox-leer' }, S.leer) : h('ul', { class: 'sandbox-liste' }, eintraege.map((e) => h('li', { class: 'sandbox-eintrag', 'data-pruef': `eintrag-${e.kennung}` },
+        eintraege.length === 0 ? h('p', { class: 'sandbox-leer' }, S.leer) : h('ul', { class: 'sandbox-liste' }, eintraege.map((e) => h('li', { class: `sandbox-eintrag${bekannt.has(e.kennung) ? '' : ' ist-neu'}`, tabindex: -1, 'data-pruef': `eintrag-${e.kennung}` },
           h('span', { class: 'id-marke' }, e.kennung),
           h('span', { class: 'sandbox-status' }, e.status),
           e.aus !== null ? h('small', { class: 'sandbox-aus' }, e.aus) : null,
-          h('span', { class: 'sandbox-schritte' }, erlaubt(e).map((s) => h('button', {
+          h('span', { class: 'sandbox-schritte' }, erlaubtIn(z, e).map((s) => h('button', {
             type: 'button', class: 'sandbox-schritt', 'data-pruef': `schritt-${e.kennung}-${s}`,
             onclick: () => tue(schritt(z, e.kennung, s), e.kennung),
           }, S.schritte[s])))))));
@@ -46,11 +47,15 @@ export function sandbox(): HTMLElement {
       b.length === 0 ? h('p', { class: 'sandbox-leer' }, S.leer) : h('dl', { class: 'sandbox-summe' }, b.map((x) => h('div', null,
         h('dt', null, REGISTER[x.register].name),
         h('dd', null, Object.entries(x.status).map(([st, n]) => `${n} ${st}`).join(' · '))))));
-    // Fokus bleibt beim bearbeiteten Eintrag: erster verbleibender Schritt, sonst der neue Eintrag
+    // Fokus: erster verbleibender Schritt des bearbeiteten Eintrags, sonst der neu entstandene Eintrag
+    // (sein erster Schritt oder der Eintrag selbst), sonst der bearbeitete Eintrag – nie ins Leere
     if (fokus !== null) {
-      const ziel = spalten.querySelector<HTMLElement>(`[data-pruef="eintrag-${fokus}"] .sandbox-schritt`) ?? spalten.querySelector<HTMLElement>(`[data-pruef="eintrag-${z.eintraege[z.eintraege.length - 1]?.kennung ?? ''}"] .sandbox-schritt`);
+      const neuer = z.eintraege.find((e) => !bekannt.has(e.kennung) && e.kennung !== fokus)?.kennung ?? null;
+      const eintrag = (k: string | null): HTMLElement | null => (k === null ? null : spalten.querySelector<HTMLElement>(`[data-pruef="eintrag-${k}"]`));
+      const ziel = eintrag(fokus)?.querySelector<HTMLElement>('.sandbox-schritt') ?? eintrag(neuer)?.querySelector<HTMLElement>('.sandbox-schritt') ?? eintrag(neuer) ?? eintrag(fokus);
       ziel?.focus();
     }
+    bekannt = new Set(z.eintraege.map((e) => e.kennung));
   };
 
   const einwurf = (e: Ereignis): HTMLElement => h('button', { type: 'button', class: 'sandbox-einwurf', 'data-pruef': `einwurf-${e}`, onclick: () => tue(wirf(z, e), null) }, S.einwurf[e]);

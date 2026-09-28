@@ -796,3 +796,12 @@ test('Galerie (P8.5): jede Tafel der Lernseiten einmal; Abbildungsverzeichnis; S
   assert.ok(zu.querySelector('[data-pruef="sprung-A1"]'));
   assert.ok(stationsKarte(inhalte, true).querySelector('[data-pruef="sprung-B1"]'));
 });
+
+test('Explore: ein Werkzeug ohne Inhalte bietet kein „Werkzeug öffnen“ an', async () => {
+  const { baueExplore } = await import('../src/ui/flaechen/explore.ts');
+  const ohne = baueExplore({ inhalte: { ...inhalte, welten: [] }, freigeschaltet: true, weltB: true, version: VERSION });
+  assert.equal(ohne.querySelector('[data-pruef="werkzeug-oeffnen-welten"]'), null);
+  assert.match(ohne.querySelector('[data-pruef="werkzeug-welten"] .badge')?.textContent ?? '', /in Vorbereitung/u);
+  const mit = baueExplore({ inhalte, freigeschaltet: true, weltB: true, version: VERSION });
+  for (const w of ['simulator', 'welten', 'sandbox', 'zeitmaschine', 'galerie', 'figuren']) assert.ok(mit.querySelector(`[data-pruef="werkzeug-oeffnen-${w}"]`), w);
+});

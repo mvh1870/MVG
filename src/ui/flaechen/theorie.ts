@@ -14,7 +14,7 @@ import { h } from '../h.ts';
 import { bildmarke } from '../marke.ts';
 import { sym, symbolAusInhalt, tafel as tafelBlock, raci as raciBlock, merksatz, hinweis } from '../bausteine/bloecke.ts';
 import { inhalt, inhaltInline } from '../bausteine/inhalt.ts';
-import { kopfText } from '../anzeige.ts';
+import { kopfText, stationsName } from '../anzeige.ts';
 import { W } from '../woerter.ts';
 
 export interface TheorieOptionen {
@@ -221,12 +221,6 @@ function querverweise(o: TheorieOptionen, bloecke: readonly Block[]): HTMLElemen
     })));
 }
 
-/** Stations-Beschriftung für „Kommt vor in“: ID · Kurztitel (A1–B6), sonst der Kurztitel (L-46). */
-function stationsName(o: TheorieOptionen, id: string): string {
-  const st = o.inhalte.stationen[id];
-  if (st === undefined) return id;
-  return /^[AB]\d$/u.test(id) ? `${id} · ${st.kurztitel}` : st.kurztitel;
-}
 
 /**
  * Glossar (P6.14): alle Begriffe des Whitepapers wortgleich, alphabetisch, mit Suchfeld und
@@ -241,7 +235,7 @@ function glossarListe(o: TheorieOptionen): HTMLElement {
     const orte: HTMLElement[] = [
       ...g.vorkommen.stationen.map((id) => {
         const welt = o.inhalte.stationen[id]?.welt;
-        return verweis(o, `#story/${id}`, { class: 'glossar-ort', ...(welt === 'A' || welt === 'B' ? { 'data-welt': welt.toLowerCase() } : {}) }, stationsName(o, id));
+        return verweis(o, `#story/${id}`, { class: 'glossar-ort', ...(welt === 'A' || welt === 'B' ? { 'data-welt': welt.toLowerCase() } : {}) }, stationsName(o.inhalte, id));
       }),
       ...g.vorkommen.kapitel.map((k) => verweis(o, `#theorie/k${k}`, { class: 'glossar-ort' }, W.theorie.kapitelKurz(String(k)))),
     ];

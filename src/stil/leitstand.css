@@ -2063,7 +2063,7 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .ist-beamer { --tinte-2: var(--tinte); --tinte-leise: var(--tinte-instrument); --linie: var(--linie-3); --auf-navy-2: var(--auf-navy); }
 
 /* Regie (P9): Auswahl Springen/Rolle, Ein-Fenster-Modus, Druckfassung des Protokolls */
-.regie-auswahl { min-height: 36px; padding: 4px 10px; border: 1px solid var(--linie-2); border-radius: var(--radius-m); background: var(--weiss); font: inherit; color: var(--tinte); }
+.regie-auswahl { max-width: 100%; min-width: 0; min-height: 36px; padding: 4px 10px; border: 1px solid var(--linie-2); border-radius: var(--radius-m); background: var(--weiss); font: inherit; color: var(--tinte); }
 .regie-vollbild-zurueck { display: none; }
 .regie.ist-ein-fenster .regie-vorschau { position: fixed; inset: 0; z-index: 50; display: grid; grid-template-rows: auto auto 1fr; gap: 6px; padding: 10px 10px var(--ein-fenster-leiste, 88px); background: var(--navy); color: var(--auf-navy); }
 /* Maßstab aus Breite UND Höhe: der Rahmen ist nie höher als der Platz zwischen Kopfzeilen und Eingriffsleiste */

@@ -389,7 +389,7 @@ a.glossar-ort:hover { text-decoration: underline; }
 .sim-teil-titel { font: 700 var(--gr-text)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy); }
 .sim-wer-name { font: 700 var(--gr-2xl)/1.2 var(--schrift-text); color: var(--navy); }
 .sim-leiter { display: flex; gap: 4px; margin: 0; padding: 0; list-style: none; }
-.sim-stufe { flex: 1 1 0; min-width: 0; overflow-wrap: normal; hyphens: auto; padding: 6px 4px; border-radius: var(--radius-m); background: var(--flaeche-2); font-size: var(--gr-s); color: var(--tinte-2); text-align: center; }
+.sim-stufe { flex: 1 1 0; min-width: 0; overflow-wrap: normal; hyphens: manual; padding: 6px 4px; border-radius: var(--radius-m); background: var(--flaeche-2); font-size: var(--gr-s); color: var(--tinte-2); text-align: center; }
 .sim-stufe.ist-aktiv { background: var(--navy); color: var(--weiss); font-weight: 700; }
 .sim-wesentlich { font-size: var(--gr-s); color: var(--tinte-2); }
 .sim-liste { display: grid; gap: var(--a-2); margin: 0; padding: 0; list-style: none; }

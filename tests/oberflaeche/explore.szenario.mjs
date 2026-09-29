@@ -36,6 +36,9 @@ export async function lauf(seite, h) {
   await seite.locator('[data-pruef="sim-bauherr"] .sim-quelle summary').first().click();
   if ((await seite.locator('[data-pruef="sim-bauherr"] .sim-zitat').first().innerText()).trim() === '') h.befund('Simulator: Quelle ohne Wortlaut');
   await h.warte(200);
+  // R32: die Stufen der Mandatsleiter passen in ihre Pille, auch ohne Trennwörterbuch des Browsers
+  const ueberlauf = await seite.evaluate(() => [...document.querySelectorAll('.sim-stufe')].filter((s) => s.scrollWidth > s.clientWidth + 1).map((s) => s.textContent));
+  if (ueberlauf.length > 0) h.befund(`Mandatsleiter: Stufe läuft aus ihrer Pille (${ueberlauf.join(', ')})`);
   await pruefe('simulator');
 
   // P8.2 Vorher/Nachher-Welten: ein Aspekt, dann alle nebeneinander

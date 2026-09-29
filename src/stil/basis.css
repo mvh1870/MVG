@@ -100,11 +100,12 @@ strong, b { font-weight: 700; }
   button:is([aria-pressed="true"], [aria-selected="true"], [aria-current]:not([aria-current="false"])) *:not(svg, svg *) { background-color: transparent !important; box-shadow: none !important; }
   .fortschritt-schritt i { border: 1px solid currentColor; }
   /* R31: Flächen ohne Grenze verschwinden – Welt-Leiste der Schritte und Express-Schalter als Linien */
-  .fortschritt-schritt::after { height: 0; border-bottom: 3px solid currentColor; }
-  .karte-express-schalter { border: 1px solid currentColor; }
-  .karte-express-schalter::after { top: 1px; left: 1px; border: 6px solid currentColor; }
-  /* aktuelle Stelle ohne Knopf: LPH-Band und Verzeichnis-Links */
-  .lph[aria-current="step"] { outline: 2px solid Highlight; outline-offset: -2px; }
+  /* :root hebt die Spezifität über leitstand.css, das später geladen wird (R32) */
+  :root .fortschritt-schritt::after { height: 0; border-bottom: 3px solid currentColor; }
+  :root .karte-express-schalter { border: 1px solid currentColor; }
+  :root .karte-express-schalter::after { top: 1px; left: 1px; width: 12px; height: 12px; border: 6px solid currentColor; }
+  /* aktuelle Stelle ohne Knopf: LPH-Band, Stufe der Mandatsleiter (R32) und Verzeichnis-Links */
+  :is(li, span, div)[aria-current]:not([aria-current="false"]) { outline: 2px solid Highlight; outline-offset: -2px; }
   a[aria-current]:not([aria-current="false"]) { outline: 2px solid Highlight; outline-offset: -2px; }
   /* R29: SVG-Füllungen erzwingt der Browser nicht – das Logo folgt der Textfarbe */
   .marke-logo, .marke-logo * { fill: CanvasText !important; }

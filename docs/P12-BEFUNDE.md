@@ -113,3 +113,6 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 31 (P12.5, zugleich P14.3)
 - **Beide Rollen als Agenten**: Fachtreue 6 Befunde (3 mittel: tote Rückbezüge der Enden, Regie-Notizen zur Weiche, B6/Planung), Stil 3 Befunde (1 mittel: Testlücken der R30-Zusagen) – Textbefunde eingearbeitet (L-103); tote Rückbezüge gestrichen mit Erreichbarkeitstest (L-104), Stil-Testlücken geschlossen (L-105).
+
+## Runde 32 (P12.5, zugleich P14.3)
+- **Beide Rollen als Agenten**: Fachtreue 2 Befunde (leicht: Regie-Notizen zur Weiche genauer), Stil/Architektur 4 Befunde (1 mittel: Stufe „Änderungsgremium“ läuft ohne Trennwörterbuch aus der Pille; 3 leicht: Hochkontrast-Spezifität, aktuelle Stufe im Hochkontrast, Regie-Auswahl unter 400 px) – eingearbeitet (L-106); Zählung neu.

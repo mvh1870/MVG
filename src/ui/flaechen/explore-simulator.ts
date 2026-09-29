@@ -11,6 +11,9 @@ import type { OeffentlicheInhalte } from '../../inhalte/typen.ts';
 import { inhalt } from '../bausteine/inhalt.ts';
 import { W } from '../woerter.ts';
 
+/** Die Stufen der Leiter trennen nicht selbst (STIL: Labels nie automatisch getrennt, R32) – nur an gesetzter Stelle. */
+const trennbar = (s: string): string => s.replace('Änderungsgremium', 'Änderungs\u00adgremium');
+
 const START: SimEingabe = { betragTeur: 400, deckung: 'budget', terminWochen: 0, schwelleUeberschritten: false, zielkonflikt: false, risikoAnnahme: false, substanziell: true, freigabeBeruehrt: false, datenstandBenannt: false, status: 'in-bearbeitung' };
 
 export function simulator(inhalte: OeffentlicheInhalte): HTMLElement {
@@ -55,7 +58,7 @@ export function simulator(inhalte: OeffentlicheInhalte): HTMLElement {
     : h('section', { class: 'sim-teil', 'data-pruef': pruef }, h('h3', { class: 'sim-teil-titel' }, titel),
       h('ul', { class: 'sim-liste' }, hinweise.map((x) => h('li', null, h('p', null, x.text), quelle(x.quelle)))));
   const leiter = (stufe: Stufe | null): HTMLElement => h('ol', { class: 'sim-leiter', 'aria-label': S.leiter }, (['pl', 'gremium', 'bauherr'] as Stufe[]).map((s) =>
-    h('li', { class: `sim-stufe${s === stufe ? ' ist-aktiv' : ''}`, 'aria-current': s === stufe ? 'true' : null, 'data-pruef': `sim-stufe-${s}` }, S.stufen[s])));
+    h('li', { class: `sim-stufe${s === stufe ? ' ist-aktiv' : ''}`, 'aria-current': s === stufe ? 'true' : null, 'data-pruef': `sim-stufe-${s}` }, trennbar(S.stufen[s]))));
 
   const zeichne = (): void => {
     const r = simuliere(e);

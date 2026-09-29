@@ -1,9 +1,10 @@
 // Abbildungen der DOCX V1.2 (P14, O-32, L-77): Schema der Beschreibung, Prüfsumme der Eingabe, Stand der
 // Bilder im Repo und ihr Platz im Originaltext. Das Zeichnen selbst braucht Chromium und läuft nur mit
 // `node werkzeuge/abbildungen.mjs` (zweimal ausgeführt byte-gleich, siehe Abnahme P14.1).
-import { test } from 'node:test';
+import { after, test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -101,8 +102,12 @@ test('Compiler (baueAbbildungen): veraltetes Bild, fremdes WebP, fremdes Kapitel
     nachId: new Map([['k4-t1', {}], ['k4-p1', {}]]),
   };
   /** Testwurzel mit Beschreibung, WebP und passendem stand.json; `aendere` verfälscht danach einen Teil */
+  const wurzeln: string[] = [];
+  after(() => { for (const w of wurzeln) rmSync(w, { recursive: true, force: true }); });
   const wurzel = (aendere: (w: string) => void = () => {}): string => {
-    const w = mkdtempSync(join(WURZEL, 'tmp', 'test-abb-'));
+    // im System-Temp (R12): läuft auch ohne tmp/ im Repo und räumt hinterher auf
+    const w = mkdtempSync(join(tmpdir(), 'mvg-test-abb-'));
+    wurzeln.push(w);
     mkdirSync(join(w, 'inhalte', 'abbildungen'), { recursive: true });
     writeFileSync(join(w, 'inhalte', 'abbildungen', 'abb-6.yaml'), 'id: abb-6\nquelle: bilder/image6.png\ntitel: T\nalt: A\nangeglichen:\n  - { x: 1, y: 2, b: 30, h: 12, text: LPH 0–2, beleg: k4-t1 }\nabweichungen:\n  - { text: Satz, beleg: k4-p1 }\n');
     const webp = Buffer.from('RIFF-probe');

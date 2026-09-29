@@ -110,28 +110,46 @@ export async function lauf(seite, h) {
     lage = neu;
   }
   if (lage === null || lage < -20 || lage > 400) h.befund(`Einbettung: Absatz k4.2-p3 nicht im Bild (Lage ${lage})`);
-  // Vergrößern eingebettet (P12.5 R11): der Dialog öffnet an seiner Figur, die Hostseite rollt dorthin
-  await geheUndWarte('#theorie/k4');
-  const gross = rahmen.locator('.lern-inhalt [data-pruef="abbildung-gross"]').first();
-  if (await gross.count() === 0) h.befund('Einbettung: keine Abbildung auf der Lernseite k4');
-  else {
-    await gross.click();
-    await rahmen.locator('dialog.abbildung-dialog[open]').waitFor({ timeout: 3000 }).catch(() => h.befund('Einbettung: Abbildungs-Dialog öffnet nicht'));
+  // Vergrößern eingebettet (P12.5 R11/R12): der Dialog öffnet an seiner Figur, die Hostseite rollt dorthin;
+  // er passt ins Fenster der Hostseite, „Schließen“ bleibt sichtbar – für Abbildungen und die Grafiken der Hilfe
+  const pruefeDialog = async (/** @type {string} */ ziel, /** @type {string} */ knopfSel, /** @type {string} */ dialogSel, /** @type {string} */ name) => {
+    await geheUndWarte(ziel);
+    const knopf = rahmen.locator(knopfSel).first();
+    if (await knopf.count() === 0) { h.befund(`Einbettung: kein Knopf „Vergrößern“ (${name})`); return; }
+    await knopf.click();
+    await rahmen.locator(`${dialogSel}[open]`).waitFor({ timeout: 3000 }).catch(() => h.befund(`Einbettung: ${name}-Dialog öffnet nicht`));
     const lageDialog = async () => {
-      const innen = await seite.frames()[1]?.evaluate(() => document.querySelector('dialog.abbildung-dialog[open]')?.getBoundingClientRect().top ?? null);
+      const innen = await seite.frames()[1]?.evaluate((sel) => {
+        const d = document.querySelector(`${sel}[open]`);
+        const k = d?.querySelector('button');
+        if (!d || !k) return null;
+        return { oben: d.getBoundingClientRect().top, unten: d.getBoundingClientRect().bottom, knopfOben: k.getBoundingClientRect().top, knopfUnten: k.getBoundingClientRect().bottom };
+      }, dialogSel);
       const oben = await seite.evaluate(() => document.getElementById('mvg')?.getBoundingClientRect().top ?? 0);
-      return innen === null || innen === undefined ? null : oben + innen;
+      return innen === null || innen === undefined ? null
+        : { oben: oben + innen.oben, unten: oben + innen.unten, knopfOben: oben + innen.knopfOben, knopfUnten: oben + innen.knopfUnten };
     };
     let lageD = await lageDialog();
     for (let i = 0; i < 30; i++) {
       await h.warte(100);
       const neu = await lageDialog();
-      if (neu === lageD) break;
+      if (neu?.oben === lageD?.oben) break;
       lageD = neu;
     }
-    if (lageD === null || lageD < -20 || lageD > 400) h.befund(`Einbettung: Abbildungs-Dialog außerhalb des sichtbaren Bereichs (Lage ${lageD})`);
-    await rahmen.locator('dialog.abbildung-dialog[open] [data-pruef="abbildung-schliessen"]').click().catch(() => h.befund('Einbettung: „Schließen“ nicht erreichbar'));
-  }
+    const fensterH = await seite.evaluate(() => window.innerHeight);
+    if (lageD === null || lageD.oben < -20 || lageD.oben > 400) h.befund(`Einbettung: ${name}-Dialog außerhalb des sichtbaren Bereichs (Lage ${lageD?.oben})`);
+    else {
+      if (lageD.unten > fensterH + 1) h.befund(`Einbettung: ${name}-Dialog ragt unter das Fenster der Hostseite (${Math.round(lageD.unten)} > ${fensterH})`);
+      if (lageD.knopfOben < 0 || lageD.knopfUnten > fensterH) h.befund(`Einbettung: „Schließen“ im ${name}-Dialog nicht sichtbar`);
+    }
+    await rahmen.locator(`${dialogSel}[open] button`).first().click().catch(() => h.befund(`Einbettung: „Schließen“ nicht erreichbar (${name})`));
+    await h.warte(100);
+    if (await rahmen.locator(`${dialogSel}[open]`).count() !== 0) h.befund(`Einbettung: ${name}-Dialog schließt nicht`);
+  };
+  // k4 und k10 tragen die höchsten Abbildungen der Lernseiten (abb-6, abb-14)
+  await pruefeDialog('#theorie/k4', '.lern-inhalt [data-pruef="abbildung-gross"]', 'dialog.abbildung-dialog', 'Abbildungs');
+  await pruefeDialog('#theorie/k10', '.lern-inhalt [data-pruef="abbildung-gross"]', 'dialog.abbildung-dialog', 'Abbildungs');
+  await pruefeDialog('#hilfe/mvg-vorgehensmodell', '[data-pruef="grafik-gross"]', 'dialog.hilfe-grafik-dialog', 'Hilfe-Grafik');
   await geheUndWarte('#story');
   const grund = await seite.frames()[1]?.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--grund').trim());
   if (grund !== '#ffffff') h.befund(`Einbettung: Hintergrund der Hostseite nicht übernommen (${grund})`);

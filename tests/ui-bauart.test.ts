@@ -1348,7 +1348,7 @@ test('Abbildungen (P14, O-32): Lernseite und Originaltext zeigen das Bild mit Vo
     setzeAbbildungsBilder({ 'abb-2': 'data:image/webp;base64,UklGRg==' });
     const eintrag = Object.entries(inhalte.theorie).find(([, s]) => s.kapitel === 1);
     assert.ok(eintrag);
-    const abb = { id: 'abb-2', nr: 1, kapitel: '1', ort: 'k1', bild: { titel: 'Probe-Titel', alt: 'Probe-Alternativtext', breite: 1200, hoehe: 800, angeglichen: [{ text: 'Neuer Begriff', beleg: 'k1-p2' }], abweichungen: [{ html: 'Probe-Abweichung', belege: ['k1-p1'] }] } };
+    const abb = { id: 'abb-2', nr: 1, kapitel: '1', ort: 'k1', bild: { titel: 'Probe-Titel', alt: 'Probe-Alternativtext', breite: 1200, hoehe: 800, angeglichen: [{ text: 'Neuer Begriff', beleg: 'k1-p2' }], abweichungen: [{ html: 'Probe-Abweichung', belege: ['k1-p1', 'k13-t1'] }] } };
     const block = { art: 'abbildung', kennungen: ['abb-2'], id: 'abb-2', kopf: {}, felder: {}, liste: null, kinder: [] };
     const original = { art: 'original', kennungen: ['k1'], id: null, kopf: { quelle: 'Q' }, felder: { text: '<figure class="mvg-abbildung" data-abbildung="abb-2"></figure>\n<p class="mvg-original" data-absatz="k1-p1">Absatz</p>' }, liste: null, kinder: [] };
     const probe = { ...inhalte, whitepaper: { ...inhalte.whitepaper, abbildungen: [abb] }, theorie: { ...inhalte.theorie, [eintrag[0]]: { ...eintrag[1], bloecke: [block, original] } } } as unknown as typeof inhalte;
@@ -1368,6 +1368,9 @@ test('Abbildungen (P14, O-32): Lernseite und Originaltext zeigen das Bild mit Vo
     assert.match(unter, /„Neuer Begriff“/u);
     assert.equal(lern?.querySelector('[data-pruef="abbildung-abweichungen"] summary')?.textContent, 'Abweichungen vom Text (1)');
     assert.equal(lern?.querySelector('a.abbildung-beleg')?.getAttribute('href'), '#theorie/k1/k1-p1');
+    // Belege aus Kap. 13 (Glossar, kein Originaltext) bleiben Text (R11); Abweichungen am Bildschirm zugeklappt
+    assert.deepEqual([...lern?.querySelectorAll('.abbildung-beleg') ?? []].map((x) => `${x.tagName}:${x.textContent ?? ''}`), ['A:k1-p1', 'SPAN:k13-t1']);
+    assert.equal(lern?.querySelector('details[data-pruef="abbildung-abweichungen"]')?.hasAttribute('open'), false);
     const knopf = lern?.querySelector('[data-pruef="abbildung-gross"]');
     assert.equal(knopf?.getAttribute('aria-label'), 'Abbildung vergrößern: Probe-Titel');
     assert.ok(lern?.querySelector('dialog.abbildung-dialog img'), 'Dialog mit dem Bild in voller Größe');
@@ -1377,6 +1380,44 @@ test('Abbildungen (P14, O-32): Lernseite und Originaltext zeigen das Bild mit Vo
     assert.equal(lw.querySelectorAll('figure.abbildung').length, 2);
     assert.equal(lw.querySelector('[data-pruef="abbildung-gross"], dialog'), null);
     assert.equal(lw.querySelector('a.abbildung-beleg'), null);
+    // … und die Abweichungen offen: auf der Leinwand kann niemand aufklappen (R11)
+    const lwAbw = [...lw.querySelectorAll('details[data-pruef="abbildung-abweichungen"]')];
+    assert.ok(lwAbw.length === 2 && lwAbw.every((d) => d.hasAttribute('open')), 'Leinwand: Abweichungen offen');
+
+    // Druck (R11/R12): der Dialog geht erst auf, wenn die Bilder dekodiert sind; ein zweiter Klick
+    // solange bleibt ohne Wirkung, afterprint stellt Titel und Seite wieder her
+    const Bild = (dom.window as unknown as { HTMLImageElement: { prototype: { decode?: unknown } } }).HTMLImageElement.prototype;
+    const altDecode = Bild.decode;
+    let freigeben = (): void => undefined;
+    const dekodiert = new Promise<void>((r) => { freigeben = r; });
+    Bild.decode = () => dekodiert;
+    const altPrint = dom.window.print;
+    let drucke = 0;
+    (dom.window as unknown as { print: () => void }).print = () => { drucke += 1; };
+    try {
+      document.body.replaceChildren(el);
+      document.title = 'Vorher';
+      const druckKnopf = el.querySelector<HTMLButtonElement>('[data-pruef="kapitel-drucken"]');
+      assert.ok(druckKnopf);
+      druckKnopf.click();
+      druckKnopf.click();
+      assert.equal(document.querySelectorAll('.druck-bogen').length, 1, 'ein Bogen trotz Doppelklick');
+      assert.ok((document.querySelector('.druck-bogen')?.querySelectorAll('img').length ?? 0) > 0, 'Bogen mit Bild');
+      await Promise.resolve();
+      assert.equal(drucke, 0, 'kein Druck vor dem Dekodieren');
+      freigeben();
+      await dekodiert;
+      await new Promise((r) => setTimeout(r, 0));
+      assert.equal(drucke, 1, 'genau ein Druck nach dem Dekodieren');
+      dom.window.dispatchEvent(new dom.window.Event('afterprint'));
+      assert.equal(document.title, 'Vorher');
+      assert.equal(document.querySelector('.druck-bogen'), null);
+      assert.equal(document.body.classList.contains('druckt-bogen'), false);
+    } finally {
+      Bild.decode = altDecode;
+      (dom.window as unknown as { print: unknown }).print = altPrint;
+      document.body.replaceChildren();
+    }
 
     // Abbildungsverzeichnis: Vorschaubild (schmückend) und Titel mit Sprung zur Abbildung
     const gal = galerie(probe);

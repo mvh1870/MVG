@@ -152,11 +152,13 @@
 
 /* Grafik vergrößern: Dialog über die ganze Fensterbreite (Beschriftungen der Anwendung sind klein) */
 .hilfe-grafik-knopf { align-self: flex-start; margin-top: var(--a-2); }
-.hilfe-grafik-dialog { width: min(98vw, 1500px); max-width: none; max-height: 94vh; padding: var(--a-4); border: 0; border-radius: var(--radius-l); background: var(--weiss); color: var(--tinte); box-shadow: var(--schatten-schwebend); }
+/* dasselbe Layout wie .abbildung-dialog (P12.5 R11/R12): Breite neben der Rollleiste, kein Innenabstand, Kopf klebt bündig */
+.hilfe-grafik-dialog { width: min(calc(100% - 16px), 1500px); max-width: none; max-height: 94vh; padding: 0; border: 0; border-radius: var(--radius-l); background: var(--weiss); color: var(--tinte); box-shadow: var(--schatten-schwebend); }
 .hilfe-grafik-dialog::backdrop { background: var(--navy-a42); }
-.hilfe-grafik-dialog-kopf { position: sticky; left: 0; display: flex; align-items: center; justify-content: space-between; gap: var(--a-3); margin-bottom: var(--a-3); }
+.hilfe-grafik-dialog-kopf { position: sticky; top: 0; left: 0; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: var(--a-3); margin: 0; padding: var(--a-2) var(--a-3); background: var(--weiss); border-bottom: 1px solid var(--linie); }
+.hilfe-grafik-dialog-kopf .t-label { margin: 0; color: var(--navy); }
 .hilfe-grafik-dialog-kopf .knopf { flex: none; white-space: nowrap; }
-.hilfe-grafik-dialog svg { display: block; width: 100%; height: auto; font-family: var(--schrift-label); --c-text: var(--tinte); --c-text-soft: var(--tinte-2); --c-accent: var(--gold-text); --c-panel: var(--weiss); --c-border-strong: var(--linie-3); }
+.hilfe-grafik-dialog svg { display: block; box-sizing: content-box; width: calc(100% - 2 * var(--a-3)); margin: var(--a-3); height: auto; font-family: var(--schrift-label); --c-text: var(--tinte); --c-text-soft: var(--tinte-2); --c-accent: var(--gold-text); --c-panel: var(--weiss); --c-border-strong: var(--linie-3); }
 .hilfe-grafik-dialog svg text { font-family: var(--schrift-label); }
 .hilfe-grafik-dialog svg text.svg-text { fill: var(--tinte); }
 .hilfe-grafik-dialog svg text.svg-text-light { fill: var(--weiss); }

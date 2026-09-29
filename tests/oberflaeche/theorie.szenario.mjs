@@ -99,9 +99,21 @@ export async function lauf(seite, h) {
     await h.erwarte('dialog.abbildung-dialog[open]');
     const rahmenD = await seite.locator('dialog.abbildung-dialog[open]').boundingBox();
     if (rahmenD !== null) {
-      await seite.mouse.click(rahmenD.x + 4, rahmenD.y + Math.min(rahmenD.height - 4, 60));
-      await h.warte(100);
-      if ((await seite.locator('dialog[open]').count()) !== 1) h.befund('Abbildungs-Dialog: Klick auf den Innenrand schließt');
+      // R12: ein Punkt, an dem wirklich der Dialog selbst liegt (Rand neben dem Bild), nicht der Kopf
+      const innen = await seite.evaluate(() => {
+        const d = document.querySelector('dialog.abbildung-dialog[open]');
+        if (d === null) return null;
+        const r = d.getBoundingClientRect();
+        const unten = Math.min(r.bottom, window.innerHeight) - 4;
+        for (let y = unten; y > r.top; y -= 6) if (document.elementFromPoint(r.left + 4, y) === d) return { x: r.left + 4, y };
+        return null;
+      });
+      if (innen === null) h.befund('Abbildungs-Dialog: kein Innenrand zum Anklicken gefunden');
+      else {
+        await seite.mouse.click(innen.x, innen.y);
+        await h.warte(100);
+        if ((await seite.locator('dialog[open]').count()) !== 1) h.befund('Abbildungs-Dialog: Klick auf den Innenrand schließt');
+      }
       const fenster = seite.viewportSize() ?? { width: 1280, height: 720 };
       const aussen = rahmenD.y > 6 ? { x: fenster.width / 2, y: 3 } : { x: 3, y: fenster.height / 2 };
       await seite.mouse.click(aussen.x, aussen.y);

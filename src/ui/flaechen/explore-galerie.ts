@@ -107,11 +107,11 @@ export function galerie(inhalte: OeffentlicheInhalte, weltB = true): HTMLElement
       h('p', { class: 'sim-hinweis' }, G.verzeichnisText),
       h('table', { class: 'register-tabelle' },
         // drei Spalten (P12.5 R11): die Stelle nennt das Kapitel schon; bei 400 px bleibt Platz für Bild und Titel
-        h('thead', null, h('tr', null, h('th', { class: 'galerie-nr' }, G.nr), h('th', null, G.abb), h('th', null, G.stelle))),
+        h('thead', null, h('tr', null, h('th', { class: 'galerie-nr' }, G.nr), h('th', null, G.abb), h('th', { class: 'galerie-stelle' }, G.stelle))),
         h('tbody', null, abb.map((a, i) => h('tr', null,
           h('td', { class: 'galerie-nr' }, String(i + 1)),
           h('td', null, abbildungsZelle(a) ?? G.abbNr(i + 1)),
-          h('td', null, stelle(a.ort, a.kapitel))))))) : null);
+          h('td', { class: 'galerie-stelle' }, stelle(a.ort, a.kapitel))))))) : null);
 }
 
 /** Story-Karte mit Sprung: jede Station; Welt B erst, wenn sie freigeschaltet ist (sonst ohne Link). */

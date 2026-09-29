@@ -682,4 +682,9 @@ a.abbildung-beleg { color: var(--navy); }
 .galerie-abbildung { display: flex; align-items: center; gap: var(--a-3); min-height: 36px; }
 .galerie-abbildung img { flex: none; width: 96px; height: auto; border-radius: var(--radius-xs); box-shadow: inset 0 0 0 1px var(--linie), var(--schatten-karte); }
 @media (max-width: 700px) { .galerie-abbildung img { width: 64px; } }
+/* schmal: Vorschaubild über dem Titel, damit lange Titelwörter („Verantwortungspyramide“) in die Zeile passen */
+@media (max-width: 480px) { .galerie-abbildung { flex-direction: column; align-items: flex-start; gap: var(--a-2); } }
 .galerie-verzeichnis .galerie-nr { width: 1%; white-space: nowrap; }
+/* Stelle im Text nie mitten im Wort (R12): die schmale Tabelle bricht sonst „Abs|chnitt“ (overflow-wrap der Tabellen bei 400 px);
+   umbrechen darf sie zwischen „Abschnitt“ und „3.3“ – so bleibt der Spalte der Titel genug Platz */
+.galerie-verzeichnis .galerie-stelle { overflow-wrap: normal; hyphens: manual; }

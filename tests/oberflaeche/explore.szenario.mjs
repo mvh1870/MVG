@@ -78,6 +78,22 @@ export async function lauf(seite, h) {
   const eng = await seite.evaluate(() => [...document.querySelectorAll('[data-pruef="abbildungsverzeichnis"] th, [data-pruef="abbildungsverzeichnis"] td')]
     .filter((z) => !z.classList.contains('galerie-nr') && z.getBoundingClientRect().width < 44).length);
   if (eng > 0) h.befund(`Galerie: ${eng} Zellen des Abbildungsverzeichnisses schmaler als 44 px`);
+  // R12: kein Wort der Spalten Nr. und Stelle (samt Kopfzeile) läuft ohne Trennstrich über zwei Zeilen
+  const gebrochen = await seite.evaluate(() => {
+    const funde = [];
+    for (const z of document.querySelectorAll('[data-pruef="abbildungsverzeichnis"] th, [data-pruef="abbildungsverzeichnis"] td.galerie-nr, [data-pruef="abbildungsverzeichnis"] td.galerie-stelle')) {
+      const lauf = document.createTreeWalker(z, NodeFilter.SHOW_TEXT);
+      for (let t = lauf.nextNode(); t !== null; t = lauf.nextNode()) {
+        for (const m of (t.textContent ?? '').matchAll(/\S+/gu)) {
+          const r = document.createRange();
+          r.setStart(t, m.index); r.setEnd(t, m.index + m[0].length);
+          if (new Set([...r.getClientRects()].filter((q) => q.width > 0).map((q) => Math.round(q.top))).size > 1) funde.push(m[0]);
+        }
+      }
+    }
+    return funde;
+  });
+  if (gebrochen.length > 0) h.befund(`Galerie: ${gebrochen.length} Wörter im Abbildungsverzeichnis mitten im Wort gebrochen (${gebrochen.slice(0, 3).join(', ')})`);
   await h.klick('[data-pruef="werkzeug-oeffnen-figuren"]');
   if (await seite.locator('[data-pruef="sprung-A3"]').count() !== 1) h.befund('Story-Karte: kein Sprung nach A3');
 

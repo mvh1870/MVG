@@ -402,7 +402,7 @@ Tastatur am Griff: Der Regler ist ein **Umschalter mit Überblendung** zwischen 
 **Abbildung der DOCX (`.abbildung`, P14, O-32).** Auf der Lernseite beim Abschnitt und im Originaltext an ihrer Stelle (`.original-abbildung`):
 ```html
 <figure class="abbildung" data-abbildung="abb-6">
-  <div class="abbildung-rahmen"><img class="abbildung-bild ist-vergroesserbar" alt="…" width="1400" height="1034"></div>
+  <div class="abbildung-rahmen"><img class="abbildung-bild ist-vergroesserbar" alt="…" width="1200" height="886"></div>
   <figcaption class="abbildung-unterschrift">
     <span class="t-label abbildung-marke">Abbildung 5 · Kapitel 4</span><span class="abbildung-titel">…</span>
     <span class="abbildung-vorrang">Abbildung aus dem Originaltext. Wo sie vom Text abweicht, gilt der Text.</span>
@@ -413,7 +413,7 @@ Tastatur am Griff: Der Regler ist ein **Umschalter mit Überblendung** zwischen 
   <dialog class="abbildung-dialog">Kopf (Titel, Schließen) + Bild in voller Breite, mindestens 900 px (schmale Fenster rollen waagrecht)</dialog>
 </figure>
 ```
-Weiße Karte wie `.lern-grafik`, Bild auf ganzer Spaltenbreite; Klick aufs Bild öffnet ebenfalls den Dialog (Tastatur: der Knopf). Auf der Leinwand und im Druck ohne Knopf und Dialog, im Druck mit aufgeklappten Abweichungen.
+Weiße Karte wie `.lern-grafik`, Bild auf ganzer Spaltenbreite; Klick aufs Bild öffnet ebenfalls den Dialog (Tastatur: der Knopf). Auf der Leinwand und im Druck ohne Knopf und Dialog, mit aufgeklappten Abweichungen (dort kann niemand aufklappen). Der Dialog hat keinen Innenabstand, der Kopf klebt bündig; eingebettet ist seine Höhe auf das Fenster der Hostseite gedeckelt (fremde Herkunft: 640 px). Die Grafik-Dialoge der Hilfe folgen demselben Layout.
 
 ## Barrierefreiheit
 

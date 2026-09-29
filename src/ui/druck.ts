@@ -17,12 +17,21 @@ export function bogenKopf(titel: string, version: string, mitFiktiv: boolean): H
     h('p', { class: 'druck-meta' }, [mitFiktiv ? `${W.fiktiv} · ` : '', W.ungeprueft].join('')));
 }
 
+/** Der laufende Druck: bis der Dialog aufgeht (Bilder dekodieren), bleiben weitere Klicks ohne Wirkung. */
+let laufend: { bogen: HTMLElement; gedruckt: boolean; ende: () => void } | null = null;
+
 /**
  * Hängt den Bogen an und öffnet den Druckdialog; danach (afterprint) verschwindet er wieder. Ohne
  * Druckdialog (Test, eingebettet) bleibt keine Druckklasse stehen; der Bogen bleibt unsichtbar bis zum
  * nächsten Druck. Gibt den Bogen zurück.
  */
 export function druckeBogen(titel: string, teile: Node[]): HTMLElement {
+  // Doppelklick (P12.5 R12): ein zweiter Auftrag, solange der erste noch auf die Bilder wartet, wird
+  // verworfen; blieb nach einem Druck `afterprint` aus, räumt der neue Auftrag den alten erst auf
+  if (laufend !== null) {
+    if (!laufend.gedruckt) return laufend.bogen;
+    laufend.ende();
+  }
   for (const alt of document.querySelectorAll('.druck-bogen')) alt.remove();
   const bogen = h('div', { class: 'druck-bogen', 'data-pruef': 'druck-bogen' }, teile);
   for (const d of bogen.querySelectorAll('details')) d.setAttribute('open', '');
@@ -45,16 +54,27 @@ export function druckeBogen(titel: string, teile: Node[]): HTMLElement {
   const alterTitel = document.title;
   document.title = titel;
   document.body.classList.add('druckt-bogen');
-  const ende = (): void => {
-    document.body.classList.remove('druckt-bogen');
-    document.title = alterTitel;
-    bogen.remove();
-    window.removeEventListener('afterprint', ende);
+  const auftrag = {
+    bogen,
+    gedruckt: false,
+    ende: (): void => {
+      document.body.classList.remove('druckt-bogen');
+      // nur zurückstellen, was der Druck gesetzt hat (hat die Seite den Titel inzwischen neu gesetzt, gilt ihrer)
+      if (document.title === titel) document.title = alterTitel;
+      bogen.remove();
+      window.removeEventListener('afterprint', auftrag.ende);
+      if (laufend === auftrag) laufend = null;
+    },
   };
-  window.addEventListener('afterprint', ende);
+  laufend = auftrag;
+  window.addEventListener('afterprint', auftrag.ende);
+  const drucke = (): void => {
+    auftrag.gedruckt = true;
+    window.print();
+  };
   // Abbildungen (P14) erst dekodieren lassen, sonst kann der Dialog leere Bildflächen drucken (P12.5 R11)
   const bilder = [...bogen.querySelectorAll('img')];
-  if (bilder.length === 0) window.print();
-  else void Promise.all(bilder.map((b) => (typeof b.decode === 'function' ? b.decode().catch(() => undefined) : undefined))).then(() => window.print());
+  if (bilder.length === 0) drucke();
+  else void Promise.all(bilder.map((b) => (typeof b.decode === 'function' ? b.decode().catch(() => undefined) : undefined))).then(drucke);
   return bogen;
 }

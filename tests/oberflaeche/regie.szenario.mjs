@@ -5,6 +5,7 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { pruefeLayout } from './hilfen.mjs';
 
 export const name = 'regie';
 export const hash = '#start';
@@ -34,6 +35,13 @@ export async function lauf(_seite, h) {
   // R21: die Regie hat genau eine main-Landmarke; die Vorschau (aria-hidden) zeigt die Leinwand, deren Story-Tafel eine eigene main trägt
   const mains = await regie.evaluate(() => [...document.querySelectorAll('main')].filter((m) => m.closest('[aria-hidden="true"]') === null).length);
   if (mains !== 1) h.befund(`Regie: ${mains} sichtbare main-Landmarken statt 1`);
+  // R34: die Regie-Auswahl bricht auch schmal nicht aus (L-106 (4)); Regie auf dem Telefon bei 360 px
+  const regieGroesse = regie.viewportSize();
+  await regie.setViewportSize({ width: 360, height: 740 }); await h.warte(150);
+  for (const fund of await regie.evaluate(pruefeLayout)) h.befund(`Regie @360: ${fund}`);
+  const regieSw = await regie.evaluate(() => document.documentElement.scrollWidth);
+  if (regieSw > 361) h.befund(`Regie: rollt bei 360 px waagerecht (${regieSw} px)`);
+  if (regieGroesse !== null) { await regie.setViewportSize(regieGroesse); await h.warte(100); }
   const [leinwand] = await Promise.all([regie.waitForEvent('popup', { timeout: 5000 }), h.klick('[data-pruef="leinwand-oeffnen"]', regie)]);
   await leinwand.waitForLoadState('load');
   await h.erwarte('[data-pruef="leinwand"]', leinwand);

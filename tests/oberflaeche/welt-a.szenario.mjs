@@ -4,7 +4,7 @@
 // Vertiefung je Interesse (P3.9): die PL wählt „Kosten“ und „Risiko“ und sieht an jedem Ebenen-Schritt
 // genau diese beiden Karten; die anderen Rollen wählen nichts und sehen keine.
 
-import { pruefeLayout, pruefer } from './hilfen.mjs';
+import { pruefeLayout, pruefer, schmal } from './hilfen.mjs';
 
 export const name = 'welt-a';
 export const hash = '#story';
@@ -51,6 +51,7 @@ export async function lauf(seite, h) {
         }
         for (const fund of await seite.evaluate(pruefeLayout)) h.befund(`${rolle}/${st}: ${fund}`);
         await h.axe(`${rolle}/${st}`);
+        await schmal(seite, h, `${rolle}/${st}`);
         if (rolle === 'pl') await h.bild(`${st}-einstieg`);
       }
       if (STATIONEN.includes(st) && !vertieft.has(st) && await seite.locator('[data-pruef="ebene-1"]').filter({ visible: true }).count() > 0) {

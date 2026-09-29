@@ -383,17 +383,17 @@ a.glossar-ort:hover { text-decoration: underline; }
 .sim-schalter { display: flex; align-items: flex-start; gap: 8px; min-height: 36px; font-size: var(--gr-text); line-height: 1.4; color: var(--tinte); cursor: pointer; }
 .sim-schalter input { flex: none; width: 20px; height: 20px; margin-top: 1px; accent-color: var(--navy); }
 .sim-auswahl { min-height: 40px; padding: 6px 10px; border: 1px solid var(--tinte-2); border-radius: var(--radius-m); background: var(--weiss); font: inherit; color: var(--tinte); }
-.sim-ausgabe { display: grid; gap: var(--a-3); min-width: 0; }
-.sim-ergebnis { display: grid; gap: var(--a-3); }
-.sim-teil { display: grid; gap: 6px; padding: var(--a-4); border-radius: var(--radius-l); background: var(--weiss); box-shadow: var(--schatten-karte); }
+.sim-ausgabe { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--a-3); min-width: 0; }
+.sim-ergebnis { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--a-3); min-width: 0; }
+.sim-teil { display: grid; grid-template-columns: minmax(0, 1fr); min-width: 0; gap: 6px; padding: var(--a-4); border-radius: var(--radius-l); background: var(--weiss); box-shadow: var(--schatten-karte); }
 .sim-teil-titel { font: 700 var(--gr-text)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy); }
 .sim-wer-name { font: 700 var(--gr-2xl)/1.2 var(--schrift-text); color: var(--navy); }
 .sim-leiter { display: flex; gap: 4px; margin: 0; padding: 0; list-style: none; }
 .sim-stufe { flex: 1 1 0; min-width: 0; overflow-wrap: normal; hyphens: manual; padding: 6px 4px; border-radius: var(--radius-m); background: var(--flaeche-2); font-size: var(--gr-s); color: var(--tinte-2); text-align: center; }
 .sim-stufe.ist-aktiv { background: var(--navy); color: var(--weiss); font-weight: 700; }
 .sim-wesentlich { font-size: var(--gr-s); color: var(--tinte-2); }
-.sim-liste { display: grid; gap: var(--a-2); margin: 0; padding: 0; list-style: none; }
-.sim-liste li { display: grid; gap: 4px; }
+.sim-liste { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--a-2); margin: 0; padding: 0; list-style: none; }
+.sim-liste li { display: grid; grid-template-columns: minmax(0, 1fr); min-width: 0; gap: 4px; }
 .sim-liste p { font-size: var(--gr-text); line-height: 1.5; color: var(--tinte); }
 .sim-quelle summary { display: flex; align-items: center; min-height: 36px; font-size: var(--gr-s); color: var(--tuerkis-text); cursor: pointer; }
 .sim-zitat { overflow-x: auto; min-width: 0; margin-top: 6px; padding: 8px 12px; border-left: 3px solid var(--tuerkis); font-size: var(--gr-s); color: var(--tinte-2); }

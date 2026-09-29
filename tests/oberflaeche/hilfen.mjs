@@ -102,7 +102,25 @@ export function pruefer(seite, h) {
     for (const fund of await seite.evaluate(pruefeLayout)) h.befund(`${name}: ${fund}`);
     await h.axe(name);
     await h.bild(name);
+    await schmal(seite, h, name);
   };
+}
+
+/**
+ * R34: im schmalen Lauf (≤ 400 px) dieselbe Stelle auch bei 320 px (WCAG 1.4.10, 400 % Zoom): Layout ohne
+ * Text aus seiner Fläche und kein waagerechtes Rollen der Seite; danach zurück auf die Laufgröße.
+ * @param {import('playwright').Page} seite
+ * @param {import('../../werkzeuge/oberflaeche.mjs').Helfer} h
+ * @param {string} name
+ */
+export async function schmal(seite, h, name) {
+  const vp = seite.viewportSize();
+  if (vp === null || vp.width > 400 || vp.width <= 320) return;
+  await seite.setViewportSize({ width: 320, height: vp.height }); await h.warte(150);
+  for (const fund of await seite.evaluate(pruefeLayout)) h.befund(`${name} @320: ${fund}`);
+  const sw = await seite.evaluate(() => document.documentElement.scrollWidth);
+  if (sw > 321) h.befund(`${name}: rollt bei 320 px waagerecht (${sw} px)`);
+  await seite.setViewportSize(vp); await h.warte(100);
 }
 
 /** Ausgebaute Stationen der Welt B (P5.2 ff.); weitere kommen mit ihren Posten dazu. */

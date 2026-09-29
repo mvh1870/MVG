@@ -122,3 +122,4 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 34 (P12.5, zugleich P14.3)
 - **Fachtreue + Begriffe (Agent):** keine Befunde. Geprüft: Diff seit 5a5e97f (drei Regie-Notizen der Enden/Wirklichkeit, Simulator-Trennstelle), Weiche der Enden per Skript über alle Wahlen und Rollen nachgerechnet, Stichprobe A4, Wirklichkeit, B2–B6, drei Enden, Epilog, k04, k06, k08, k11, abb-4/6/9/12; `begriffe` ohne Funde.
+- **Stil/Architektur (Agent):** 4 Befunde (3 mittel: Simulator rollt bei 320–380 px waagerecht, Pyramide „Arbeitsebene“ läuft bei 320 px aus der Karte, kein Szenario sichert „Story bei 320 px“; 1 leicht: Regie schmal ungetestet) – alle nachgemessen und eingearbeitet (L-109); Zählung neu.

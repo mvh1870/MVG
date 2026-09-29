@@ -43,6 +43,9 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/– G0 bis G4/gu, '– Freigabestufe 0 bis 4'],
   [/Standardisierter Einfuehrungs-\/Reset-Rhythmus/gu, 'Orientierungsrahmen für Einführung und Neuinitialisierung'],
   [/MVG-Reifegrad-Modell \(5 Stufen\)/gu, 'Reifegrad-Modell der Anwendung (5 Stufen)'],
+  // Beschlussfassung durch den Bauherrn im Lenkungskreis, der Lenkungskreis berät (k4.2-p3, k9.3-p3; R33)
+  [/formal durch Lenkungskreis verabschiedet/gu, 'durch den Bauherrn im Lenkungskreis beschlossen'],
+  [/im Lenkungskreis verabschiedet/gu, 'vom Bauherrn im Lenkungskreis beschlossen'],
   [/Die MVG-Reife einer Organisation entwickelt sich entlang fünf Stufen/gu, 'Im Modell der Anwendung entwickelt sich die Reife einer Organisation entlang fünf Stufen'],
   [/Eine bewährte Einführungs-Roadmap für neue MVG-Projekte/gu, 'Die Einführungs-Roadmap der Anwendung für neue Projekte'],
   [/Decision Management/gu, 'Entscheidungsmanagement'],

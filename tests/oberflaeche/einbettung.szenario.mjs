@@ -212,11 +212,12 @@ export async function lauf(seite, h) {
     return k === null || k === undefined ? null : { unten: o + k.unten, knopf: o + k.knopf };
   };
   await rahmen.locator('dialog.abbildung-dialog[open] button').first().focus();
-  for (const taste of ['End', 'End', 'PageDown', 'ArrowDown']) { await seite.keyboard.press(taste); await h.warte(80); }
+  // R20: ein einziger Druck auf Ende bzw. Pos1 genügt
+  for (const taste of ['End']) { await seite.keyboard.press(taste); await h.warte(80); }
   await h.warte(300);
   const nachEnde = await lageTasten();
   if (nachEnde === null || nachEnde.unten < 500 || nachEnde.unten > 561) h.befund(`Einbettung (fremd, 560 px): Ende rollt die Hostseite nicht genau bis zur Unterkante des Dialogs (${nachEnde === null ? '–' : Math.round(nachEnde.unten)} px)`);
-  for (const taste of ['Home', 'Home', 'PageUp']) { await seite.keyboard.press(taste); await h.warte(80); }
+  for (const taste of ['Home']) { await seite.keyboard.press(taste); await h.warte(80); }
   await h.warte(300);
   const nachPos1 = await lageTasten();
   if (nachPos1 === null || nachPos1.knopf < -1 || nachPos1.knopf > 80) h.befund(`Einbettung (fremd, 560 px): Pos1 holt „Schließen“ nicht an den oberen Rand (${nachPos1 === null ? '–' : Math.round(nachPos1.knopf)} px)`);
@@ -255,6 +256,30 @@ export async function lauf(seite, h) {
   await seite.keyboard.press('Space');
   await h.warte(200);
   if (await rahmen.locator('dialog.hilfe-grafik-dialog[open]').count() !== 0) { h.befund('Einbettung (ohne Meldung): Leertaste auf „Schließen“ schließt den Hilfe-Dialog nicht'); await seite.keyboard.press('Escape'); }
+  // R20: ohne Meldung rollt ein Rad neben dem Dialog die Hostseite höchstens bis zur Dialogkante (400×800, abb-6 rollt selbst)
+  await seite.setViewportSize({ width: 400, height: 800 });
+  await seite.goto(`${HOST}?ohne-fenster`);
+  await h.warte(1500);
+  await geheUndWarte('#theorie/k4');
+  const zieleN = (await seite.evaluate(() => /** @type {any} */ (window).nachrichten)).filter((/** @type {any} */ n) => n?.art === 'ziel').length;
+  await rahmen.locator('.lern-inhalt [data-pruef="abbildung-gross"]').first().click();
+  for (let i = 0; i < 30 && (await seite.evaluate(() => /** @type {any} */ (window).nachrichten)).filter((/** @type {any} */ n) => n?.art === 'ziel').length <= zieleN; i++) await h.warte(100);
+  await h.warte(1200);
+  const lageN = async () => {
+    const i = await seite.frames()[1]?.evaluate(() => { const d = document.querySelector('dialog.abbildung-dialog[open]'); if (!d) return null; const r = d.getBoundingClientRect(); return { oben: r.top, unten: r.bottom, links: r.left, rollt: d.scrollHeight > d.clientHeight }; });
+    const o = await seite.evaluate(() => { const r = document.getElementById('mvg')?.getBoundingClientRect(); return { oben: r?.top ?? 0, links: r?.left ?? 0 }; });
+    return i === null || i === undefined ? null : { oben: o.oben + i.oben, unten: o.oben + i.unten, links: o.links + i.links, rollt: i.rollt };
+  };
+  const vorN = await lageN();
+  if (vorN === null || !vorN.rollt) h.befund('Einbettung (ohne Meldung, 400 px): Probe „Dialog rollt selbst“ nicht hergestellt');
+  else {
+    await seite.mouse.move(Math.max(1, vorN.links - 4), (vorN.oben + Math.min(vorN.unten, 800)) / 2);
+    for (let i = 0; i < 6; i++) { await seite.mouse.wheel(0, 150); await h.warte(60); }
+    await h.warte(400);
+    const nachN = await lageN();
+    if (nachN === null || nachN.oben < -1 || nachN.unten > 801) h.befund(`Einbettung (ohne Meldung): Mausrad neben dem Dialog rollt die Hostseite über die Dialogkante hinaus (oben ${nachN === null ? '–' : Math.round(nachN.oben)} px)`);
+  }
+  await seite.keyboard.press('Escape');
   if (groesseAlt !== null) await seite.setViewportSize(groesseAlt);
   // Gleiche Herkunft (R14): über http://mvg.test geladen misst der Rahmen das Hostfenster (L-83); bei 560 px
   // Höhe muss der Dialog darin bleiben – der Rückfall für fremde Herkunft (640 px) täte es nicht

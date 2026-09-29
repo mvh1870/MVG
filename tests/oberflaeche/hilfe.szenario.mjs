@@ -115,4 +115,22 @@ export async function lauf(seite, h) {
       if (!ort.startsWith('#hilfe/rollen-anleitungen-')) h.befund(`Rollenkarte: Klick in die Karte führt nicht zur Anleitung (${ort})`);
     }
   }
+  // R20: der Tastaturfokus auf einem Kartenlink umrandet die Karte sichtbar
+  await seite.evaluate(() => { location.hash = '#hilfe/rollen-anleitungen'; });
+  await h.warte(300);
+  const erster = seite.locator('.h-role-pick-card > h2 > a').first();
+  await erster.focus();
+  await seite.keyboard.press('Shift+Tab');
+  await seite.keyboard.press('Tab');
+  await h.warte(400); // Fokusrahmen blendet weich ein
+  const ring = await seite.evaluate(() => {
+    const a = document.activeElement;
+    const k = a?.closest('.h-role-pick-card');
+    if (!k) return null;
+    const s = getComputedStyle(k);
+    return { stil: s.outlineStyle, breite: parseFloat(s.outlineWidth) };
+  });
+  if (ring === null || ring.stil === 'none' || ring.breite < 2) h.befund(`Rollenkarte: Tastaturfokus ohne sichtbaren Rahmen (${JSON.stringify(ring)})`);
+  // R20: die Hilfe hat genau eine main-Landmarke
+  if (await seite.locator('main').count() !== 1) h.befund(`Hilfe: ${await seite.locator('main').count()} main-Landmarken statt 1`);
 }

@@ -65,6 +65,8 @@ export async function lauf(seite, h) {
   }
   await h.warte(300);
   await pruefe('galerie');
+  // R20: genau eine main-Landmarke
+  if (await seite.locator('main').count() !== 1) h.befund(`Explore: ${await seite.locator('main').count()} main-Landmarken statt 1`);
   if (await seite.locator('[data-pruef="abbildungsverzeichnis"] tbody tr').count() < 1) h.befund('Galerie: Abbildungsverzeichnis leer');
   // Abbildungen (P14): Vorschaubild geladen und schmückend, Titel springt zur Abbildung; Zellen nicht buchstabenweise gebrochen (R11)
   const vz = await seite.evaluate(() => [...document.querySelectorAll('[data-pruef^="galerie-abbildung-"]')].map((a) => ({

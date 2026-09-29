@@ -17,7 +17,7 @@ abweichungen:
     beleg: k6.4.3-p2
   - text: 'Vom Band „Schwellenwert löst Frühwarnung aus“ zeigt ein gestrichelter Pfeil in „CTC / Prognose“ hinein; im Text sind CTC- oder Schwellenwertverletzungen der Ausgangspunkt, aus dem neue Frühwarnungen entstehen.'
     beleg: k6.4.3-p2
-  - text: 'Von der Maßnahme führt keine Kante zum Managementbericht, sondern eine gestrichelte Rückkante zum Risiko; den Managementbericht erreicht nur der „Bericht“ aus der Freigabe. Der kanonische Fluss im Text lautet: „EW (unbewertetes Signal) → bestätigt → Risiko → Entscheidung → Freigabe → Maßnahme → Managementbericht“.'
+  - text: 'Von der Maßnahme führt keine Kante zum Managementbericht, sondern eine gestrichelte Rückkante zum Risiko; den Managementbericht erreicht nur die gestrichelte Berichtskante aus der Freigabe. Der kanonische Fluss im Text lautet: „EW (unbewertetes Signal) → bestätigt → Risiko → Entscheidung → Freigabe → Maßnahme → Managementbericht“.'
     beleg: k6.4.3-p1
   - text: 'Die Rückkante von der Maßnahme zum Risiko heißt „Risikominderung (Regelkreis schließt)“; einen Regelkreis kennt der Text nicht. Er nennt die Risikominderung als nächsten Schritt im Risikoregister („Risikominderung oder Entscheidung“), nicht als Kante von der Maßnahme zurück zum Risiko.'
     beleg: k6.4.4-t1

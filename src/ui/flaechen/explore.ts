@@ -52,7 +52,7 @@ export function baueExplore(o: ExploreOptionen): HTMLElement {
       h('a', { class: 'lern-kopf-link lern-kopf-leise', href: '#hilfe', 'data-pruef': 'zur-hilfe' }, W.hilfe.link),
       h('a', { class: 'lern-kopf-link', href: '#start', 'data-pruef': 'zur-start' }, sym('pfeilLinks'), W.theorie.start)),
     h('div', { class: 'lern-rahmen ist-einspaltig' },
-      h('article', { class: 'lern-inhalt', id: 'lern-inhalt' },
+      h('main', { class: 'lern-inhalt', id: 'lern-inhalt' },
         h('header', { class: 'explore-kopf' },
           h('p', { class: 'kapitel-kicker' }, o.freigeschaltet ? E.freigeschaltet : E.gesperrt),
           h('h1', { class: 'kapitel-titel', tabindex: -1 }, E.titel),

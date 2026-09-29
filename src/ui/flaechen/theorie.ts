@@ -102,7 +102,7 @@ function liste(o: TheorieOptionen): HTMLElement {
   return h('div', { class: 'lernseite', 'data-pruef': 'theorie' },
     kopfleiste(o),
     h('div', { class: 'lern-rahmen ist-einspaltig' },
-      h('article', { class: 'lern-inhalt', id: 'lern-inhalt' },
+      h('main', { class: 'lern-inhalt', id: 'lern-inhalt' },
         h('header', { class: 'kapitel-kopf' },
           h('span', { class: 'kapitel-nr' }, String(kap.length)),
           h('p', { class: 'kapitel-kicker' }, `${W.whitepaper} ${o.inhalte.whitepaper.fassung ?? ''}`),
@@ -546,7 +546,7 @@ function lernseite(o: TheorieOptionen, nr: number): HTMLElement {
     kopfleiste(o),
     h('div', { class: 'lern-rahmen' },
       verzeichnis(o, nr),
-      h('article', { class: 'lern-inhalt', id: 'lern-inhalt', 'data-pruef': seite !== null ? 'lernseite' : 'lernseite-folgt' }, teile)));
+      h('main', { class: 'lern-inhalt', id: 'lern-inhalt', 'data-pruef': seite !== null ? 'lernseite' : 'lernseite-folgt' }, teile)));
 }
 
 /**

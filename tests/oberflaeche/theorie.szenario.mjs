@@ -237,6 +237,8 @@ export async function lauf(seite, h) {
     if (!offen || lage === null || lage.y > (seite.viewportSize()?.height ?? 800)) h.befund(`Permalink ${a.id}: Originaltext zu oder Abbildung nicht sichtbar (${JSON.stringify(lage)})`);
   }
 
+  // R20: genau eine main-Landmarke je Lernseite
+  if (await seite.locator('main').count() !== 1) h.befund(`Theorie: ${await seite.locator('main').count()} main-Landmarken statt 1`);
   // Zitierfunktion (P10.1): Absatz-Permalink springt zum Absatz, „Zitieren“ zeigt die Angabe
   await seite.evaluate(() => { location.hash = '#theorie/k4/k4.2-p3'; });
   const absatz = seite.locator('.originaltext .absatz[data-absatz="k4.2-p3"]');

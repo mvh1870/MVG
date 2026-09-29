@@ -158,8 +158,11 @@ export function halteRollenImDialog(dialog: HTMLDialogElement): void {
       ArrowUp: [0, -40], ArrowDown: [0, 40], ArrowLeft: [-40, 0], ArrowRight: [40, 0],
       PageUp: [0, -seite], PageDown: [0, seite], ' ': [0, e.shiftKey ? -seite : seite],
     };
-    if (e.key === 'Home') dialog.scrollTo({ top: 0 });
-    else if (e.key === 'End') dialog.scrollTo({ top: dialog.scrollHeight });
+    if (e.key === 'Home' || e.key === 'End') {
+      dialog.scrollTo({ top: e.key === 'Home' ? 0 : dialog.scrollHeight });
+      // rollfrei: ein Druck holt auch die Kante des Dialogs ins Bild (R20)
+      if (rollfrei()) zeigeKante(dialog, e.key === 'Home');
+    }
     else {
       const [dx, dy] = schritt[e.key] ?? [0, 0];
       dialog.scrollBy({ left: dx, top: dy });

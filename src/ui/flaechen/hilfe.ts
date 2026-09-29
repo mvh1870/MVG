@@ -251,7 +251,7 @@ export function baueHilfe(o: HilfeOptionen): HTMLElement {
     kopfleiste(),
     h('div', { class: 'lern-rahmen' },
       verzeichnis(hilfe, e?.seite.id ?? null),
-      h('article', { class: 'lern-inhalt', id: 'lern-inhalt', 'data-pruef': e !== undefined ? 'hilfe-seite' : 'hilfe-uebersicht' }, teile)));
+      h('main', { class: 'lern-inhalt', id: 'lern-inhalt', 'data-pruef': e !== undefined ? 'hilfe-seite' : 'hilfe-uebersicht' }, teile)));
   grafikenVergroesserbar(aussen);
   // gemessen, sobald gezeichnet, und neu bei jeder Größenänderung (Schriften, Fenster)
   if (typeof ResizeObserver === 'function') {

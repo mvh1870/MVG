@@ -77,3 +77,6 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 19 (P12.5, zugleich P14.3)
 - **Beide Rollen als Workflow** mit Gegenprüfung: Fachtreue 2 Befunde (0 schwer, 0 mittel – sechste saubere Fachtreue-Runde), Stil/Architektur 6 Befunde (4 mittel, alle bestätigt, alle im rollfrei-Zweig der Einbettung) – alle eingearbeitet (L-90).
+
+## Runde 20 (P12.5, zugleich P14.3)
+- **Beide Rollen als Workflow** mit Gegenprüfung: Fachtreue 1 Befund (0 schwer, 0 mittel – siebte saubere Fachtreue-Runde), Stil/Architektur 5 Befunde (1 mittel, bestätigt: Testlücke Rad neben dem Dialog) – alle eingearbeitet (L-91).

@@ -419,7 +419,7 @@ Weiße Karte wie `.lern-grafik`, Bild auf ganzer Spaltenbreite; Klick aufs Bild 
 
 - **Kontrast** nur über die erlaubten Paare oben (≥ 4,5:1; Grafik ≥ 3:1), gemessen im Test.
 - **Fokus immer sichtbar:** 3 px Ring (`--fokus`): Navy mit Gold-Hof auf hellen Flächen (Lagetafel, Seitenleiste, Start, Theorie, `.flaeche-hell`), Gold-hell auf Navy (`.leitstand`, `.auf-navy`). Nie `outline: none` ohne Ersatz; Maus-Klicks zeigen keinen Ring (`:focus-visible`).
-- **Tastatur überall:** alle Bedienelemente sind `button`/`a`/`[role=slider][tabindex=0]`; Tasten A–D, ←/→, Esc wie im Prototyp; Dialoge (Rollen-Linse) halten den Fokus und geben ihn zurück.
+- **Tastatur überall:** alle Bedienelemente sind `button`/`a`/`[role=slider][tabindex=0]`; Tasten A–D, ←/→, Esc wie im Prototyp; Dialoge (Rollen-Linse, Abbildungs- und Hilfe-Grafik-Dialog) halten den Fokus – Tab und Umschalt+Tab kreisen im Dialog, auch eingebettet – und geben ihn beim Schließen zurück.
 - **Nie nur Farbe:** Welt = Farbe + Wort („Welt A · ohne MVG“), Status = Form + Wort, Rolle = Farbe + Name, Auswahl = Fläche + Ring + `aria-pressed`, Prüfpunkt = Symbol + Wort.
 - **Sprache und Struktur:** `lang="de"`, Silbentrennung automatisch, eine `h1` je Fläche, Landmarken (`header`, `nav`, `main`, `aside`), Live-Region für Statusänderungen (Prototyp `#live`), `.nur-sr` für Werte, die sonst nur grafisch sind; Sprunglink `.sprunglink` zur Lagetafel.
 - **Bewegung:** siehe oben; kein Blinken schneller als 3 Hz (die Vorspul-Ikone wechselt mit 2,9 Hz nur während des Zeitsprungs und entfällt bei reduzierter Bewegung).

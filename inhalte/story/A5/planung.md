@@ -78,7 +78,7 @@ Im Juli haben Sie ‚Entscheidung anmahnen‘ gewählt. Über die Deckung der Au
 :::
 
 ::: rueckbezug ohne
-Im Juli kamen die Brandschutzauflagen, und über ihre Deckung hat niemand entschieden. Jetzt kommt der Mensa-Nachtrag dazu.
+Im Juli lagen die Brandschutzauflagen aus der Baugenehmigung vom Juni auf dem Tisch, und über ihre Deckung hat niemand entschieden. Jetzt kommt der Mensa-Nachtrag dazu.
 :::
 
 ::: regie

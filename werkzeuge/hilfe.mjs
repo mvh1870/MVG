@@ -420,11 +420,11 @@ function bereinige(wurzel, anker, titel = '') {
   for (const sp of [...wurzel.querySelectorAll('nav ol > li > span')]) {
     if (sp.firstChild !== null && sp.firstChild.nodeType === 3) sp.firstChild.textContent = (sp.firstChild.textContent ?? '').replace(/^\s*\d+\s*-\s*/u, '');
   }
-  // … und ist ohne Verweise keine Navigation: <nav> ohne Link wird <div class="h-toc"> (P12.5 R23, L-69 (8))
+  // … und ist ohne Verweise keine Navigation: <nav> ohne Link wird <div class="toc"> (ausgeliefert als h-toc; P12.5 R23, L-69 (8))
   for (const nav of [...wurzel.querySelectorAll('nav')]) {
     if (nav.querySelector('a[href]') !== null) continue;
     const div = dok.createElement('div');
-    div.className = 'h-toc';
+    div.className = 'toc';
     while (nav.firstChild) div.appendChild(nav.firstChild);
     nav.replaceWith(div);
   }

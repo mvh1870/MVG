@@ -107,3 +107,6 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 29 (P12.5, zugleich P14.3)
 - **Beide Rollen als Agenten**: Fachtreue 4 Befunde (leicht; kein Widerspruch Story/Lernseiten); Stil/Architektur 6 Befunde (3 mittel: Regler im Druck, Drucktest sichert Zusagen nicht, Hochkontrast nur aria-pressed; 3 leicht) – eingearbeitet (L-101); Zählung neu.
+
+## Runde 30 (P12.5, zugleich P14.3)
+- **Beide Rollen als Agenten**: Fachtreue 5 Befunde (1 mittel: Regie-Notiz auf gestrichenen Satz), Stil/Architektur 5 Befunde (1 mittel: Hochkontrast-Unterelemente) – eingearbeitet (L-102); Zählung neu.

@@ -5,7 +5,7 @@ rueckbezug-auf: wirklichkeit
 ---
 
 ::: rueckbezug A
-Im Dezember haben Sie ‚MVG-Neuinitialisierung anregen‘ gewählt. Im März beschließt Dr. Olbers eine Neufestlegung der Projektbasis.
+Im Dezember haben Sie ‚MVG-Neuinitialisierung anregen‘ gewählt; die Kosten waren zu unsicher. Im März beschließt Dr. Olbers eine Neufestlegung der Projektbasis.
 :::
 
 ::: rueckbezug B

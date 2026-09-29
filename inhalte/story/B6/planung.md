@@ -74,7 +74,7 @@ In Welt A haben Sie ‚Abschluss zurückhalten‘ gewählt. In Welt B hängt der
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Kostenstand mit abgleichen‘ gewählt. In Welt B trägt die benannte Stellvertretung mit dem benannten Datenstand; Ihre Mengen gehen den regulären Weg.
+In Welt A haben Sie ‚Kostenstand mit abgleichen‘ gewählt. In Welt B arbeitet die benannte Stellvertretung auf dem geltenden Datenstand; Ihre Mengen gehen den regulären Weg.
 :::
 
 ::: rueckbezug ohne

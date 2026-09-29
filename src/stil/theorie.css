@@ -484,6 +484,8 @@ a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
 @media print {
   /* R28: die leichte Drehung der Chaos-Feldkarten (k4) ragte 1–3 px über den Satzspiegel */
   .druck-bogen .feld-karte { transform: none; }
+  /* R30: gewählter Stand aufgelöster Grafiken (Knopf → Text, L-100) auch ohne Hintergrundgrafiken erkennbar */
+  .druck-bogen [data-gewaehlt] { outline: 2px solid var(--navy); outline-offset: -2px; font-weight: 700; }
   @page { margin: 16mm 14mm; }
   body.druckt-bogen > :not(.druck-bogen) { display: none !important; }
   body.druckt-bogen { background: var(--weiss); }

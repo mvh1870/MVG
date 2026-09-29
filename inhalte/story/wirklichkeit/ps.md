@@ -89,7 +89,7 @@ Sie empfehlen, Dr. Olbers entscheidet. Wohin das führt, hängt auch vom bisheri
 
 ::: regie
 ### Notiz
-Die Projektsteuerung kann empfehlen und zuarbeiten. Der Satz aus Option A ist ein Signal aus Kap. 11.1 – mehr Information, keine zusätzliche Führungsfähigkeit. Bei jeder Option klarmachen, dass Mandate, Schwellen und Freigaben beim Bauherrn liegen.
+Die Projektsteuerung kann empfehlen und zuarbeiten. Das Signal aus Kap. 11.1 (mehr Information, keine zusätzliche Führungsfähigkeit) steht in der Station. Bei jeder Option klarmachen, dass Mandate, Schwellen und Freigaben beim Bauherrn liegen.
 
 ### Leitfragen
 - Was würde Ihre Projektsteuerung heute empfehlen?

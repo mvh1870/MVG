@@ -193,6 +193,17 @@ export async function lauf(seite, h) {
   }
   await h.erwarte('[data-pruef="ebene-4"] [data-pruef="zitat"]');
   await stand('b3-ebene4');
+  // R29 (L-101): im Hochkontrastmodus sind gewählte Ebene und aktueller Schritt von ihren Geschwistern zu unterscheiden
+  await seite.emulateMedia({ forcedColors: 'active' });
+  const hkStory = await seite.evaluate(() => {
+    const bg = (el) => (el === null ? '' : getComputedStyle(el).backgroundColor);
+    return {
+      ebene: bg(document.querySelector('[data-pruef="ebene-knopf-4"]')) !== bg(document.querySelector('[data-pruef="ebene-knopf-2"]')),
+      schritt: bg(document.querySelector('.fortschritt-schritt[aria-current="step"]')) !== bg(document.querySelector('.fortschritt-schritt:not([aria-current])')),
+    };
+  });
+  await seite.emulateMedia({ forcedColors: 'none' });
+  if (!hkStory.ebene || !hkStory.schritt) h.befund(`Hochkontrast: gewählte Ebene oder aktueller Schritt nicht erkennbar (${JSON.stringify(hkStory)})`);
 
   /* ------------------------------------------------------ Theorie · Kapitel 1 -- */
   await h.klick('.marke-knopf');

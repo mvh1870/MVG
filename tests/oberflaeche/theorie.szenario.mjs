@@ -324,6 +324,7 @@ export async function lauf(seite, h) {
     titel: document.querySelector('.druck-bogen .druck-kopf h1')?.textContent ?? '',
     zitieren: [...document.querySelectorAll('.druck-bogen .absatz-zitieren')].filter((x) => getComputedStyle(x).display !== 'none').length,
     // R28: aufgelöst statt scheinbar bedienbar – keine Knöpfe außer Glossarbegriffen, der Wissenscheck mit Erklärung
+    aria: document.querySelectorAll('.druck-bogen span[aria-pressed], .druck-bogen span[aria-controls]').length,
     knoepfe: [...document.querySelectorAll('.druck-bogen :is(button:not(.begriff), input, select, textarea, [role="button"])')].filter((x) => getComputedStyle(x).display !== 'none').length,
     // jede Antwort des Wissenschecks mit Rückmeldung (R29)
     antworten: document.querySelectorAll('.lernseite:not(.druck-kapitel) .wc-antwort').length,
@@ -332,7 +333,7 @@ export async function lauf(seite, h) {
     wc: document.querySelectorAll('.druck-bogen .wissenscheck').length,
   }));
   if (druck.bogen === 'none' || druck.seite !== 'none' || !/^Kapitel 8 · /u.test(druck.titel) || druck.zitieren > 0
-    || druck.knoepfe > 0 || druck.wc < 1 || druck.erklaerung !== druck.wc || druck.antworten < 2 || druck.druckAntworten !== druck.antworten) h.befund(`Druckbogen: ${JSON.stringify(druck)}`);
+    || druck.knoepfe > 0 || druck.aria > 0 || druck.wc < 1 || druck.erklaerung !== druck.wc || druck.antworten < 2 || druck.druckAntworten !== druck.antworten) h.befund(`Druckbogen: ${JSON.stringify(druck)}`);
   // nichts im Bogen ragt über den Satzspiegel hinaus (A4 mit 14 mm Rand ≈ 688 px breit)
   const vorher = seite.viewportSize() ?? { width: 1280, height: 720 };
   await seite.setViewportSize({ width: 688, height: vorher.height });
@@ -370,6 +371,13 @@ export async function lauf(seite, h) {
     const c = getComputedStyle(b); return { an: b.getAttribute('aria-pressed'), rand: parseFloat(c.borderTopWidth), bg: c.backgroundColor };
   }));
   if (hk.length < 2 || hk.some((x) => x.rand < 1) || hk[0]?.an !== 'true' || hk[0]?.bg === hk[1]?.bg) h.befund(`Hochkontrast: Schwellen-Knöpfe ohne Grenze oder ohne sichtbare Wahl (${JSON.stringify(hk)})`);
+  // R30: Unterelemente gewählter Knöpfe tragen keine eigene Fläche (sonst HighlightText auf Autorfarbe)
+  await seite.evaluate(() => { location.hash = '#theorie/k1'; });
+  await h.erwarte('[data-kapitel="1"] [data-pruef="etappe-1"]');
+  const flaechen = await seite.evaluate(() => [...document.querySelectorAll('button[aria-pressed="true"] *')]
+    .filter((e) => !(e instanceof SVGElement)).map((e) => getComputedStyle(e).backgroundColor)
+    .filter((c) => c !== 'rgba(0, 0, 0, 0)' && c !== 'transparent').length);
+  if (flaechen > 0) h.befund(`Hochkontrast: ${flaechen} Unterelemente gewählter Knöpfe mit eigener Fläche`);
   await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce', forcedColors: 'none' });
   // Impressum
   await seite.evaluate(() => { location.hash = '#theorie/impressum'; });

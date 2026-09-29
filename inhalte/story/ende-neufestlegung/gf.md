@@ -4,10 +4,6 @@ rolle: gf
 rueckbezug-auf: wirklichkeit
 ---
 
-::: rueckbezug A
-Im Dezember haben Sie ‚MVG-Neuinitialisierung vorschlagen‘ gewählt. Im März beschließt Dr. Olbers eine Neufestlegung der Projektbasis.
-:::
-
 ::: rueckbezug B
 Im Dezember haben Sie ‚Freigabe mit Auflagen empfehlen‘ gewählt. Ohne Mandate und Datenstand hätte niemand die Auflagen nachgehalten; im März beschließt Dr. Olbers eine Neufestlegung.
 :::

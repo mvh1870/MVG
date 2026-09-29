@@ -4,10 +4,6 @@ rolle: pl
 rueckbezug-auf: wirklichkeit
 ---
 
-::: rueckbezug A
-Im Dezember haben Sie ‚MVG-Neuinitialisierung vorschlagen‘ gewählt. Im März beschließt Dr. Olbers eine Neufestlegung der Projektbasis.
-:::
-
 ::: rueckbezug B
 Im Dezember haben Sie ‚Freigabe mit Auflagen vorschlagen‘ gewählt. Auflagen hätten auf Ihrer Spur nicht gereicht; im März liegt stattdessen Ihre Vorlage zur Neufestlegung.
 :::

@@ -105,6 +105,13 @@ test('Graph-Prüfung: Testmodell ist sauber; jede Verletzung wird benannt', () =
   (bedingt.stationen['a1'] as { weiter: unknown[] }).weiter = [{ ziel: 'v', wenn: lies('rolle = pl') }];
   assert.ok(pruefeGraph(bedingt).warnungen.some((x) => /alle Kanten haben Bedingungen/u.test(x)));
   assert.deepEqual(erreichbar(testModell(), 'p', (st) => st.id === 'a1'), ['p', 'a1']);
+  // L-104: ein Ende darf Rückbezüge auslassen (welche Wahl es erreicht, rechnet tests/story-graph.test.ts durch), braucht dann aber „ohne“
+  const ende = testModell();
+  (ende.stationen['b1'] as { art: string }).art = 'ende';
+  delete (ende.stationen['b1']?.szenen['pl']?.rueckbezug?.texte as Record<string, string>)['C'];
+  assert.deepEqual(pruefeGraph(ende).fehler, []);
+  (ende.stationen['b1']?.szenen['pl']?.rueckbezug as { ohne: string | null }).ohne = null;
+  assert.ok(pruefeGraph(ende).fehler.some((f) => /b1\/pl: ein Ende braucht den Rückbezug „ohne“/u.test(f)), JSON.stringify(pruefeGraph(ende).fehler));
 });
 
 test('Gedächtnis (Testmodell): für jede Option A–D der passende Rückbezug, sonst „ohne“', () => {

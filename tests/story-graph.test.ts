@@ -6,11 +6,11 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { kompiliere } from '../werkzeuge/inhalte.mjs';
 import { ANPASSUNGEN, pruefeEntwurf } from '../werkzeuge/entwurf.mjs';
-import { wendeWirkung } from '../src/engine/status.ts';
+import { berechneStatus, wendeWirkung } from '../src/engine/status.ts';
 import type { Aktion, Status, StoryModell } from '../src/engine/typen.ts';
 import { wende } from '../src/engine/aktionen.ts';
 import { anfangszustand } from '../src/engine/zustand.ts';
-import { aktuellerSchritt } from '../src/engine/graph.ts';
+import { aktuellerSchritt, naechsteStation } from '../src/engine/graph.ts';
 import { rueckbezug } from '../src/engine/gedaechtnis.ts';
 
 const ROLLEN = ['gf', 'bauherr', 'pl', 'ps', 'planung', 'controlling'];
@@ -69,6 +69,49 @@ test('Enden-Logik (H10): die Wahl in der Wirklichkeit gibt die Richtung, die Spu
     assert.ok(erreicht.get('C')?.has('ende-neufestlegung'), `${r}: C kann zur Neufestlegung führen`);
     assert.ok(erreicht.get('B')?.has('ende-auflagen'), `${r}: B kann mit Auflagen enden`);
     assert.ok((erreicht.get('B')?.size ?? 0) >= 2, `${r}: B hängt von der Spur ab (${[...(erreicht.get('B') ?? [])].join(', ')})`);
+  }
+});
+
+test('Rückbezüge der Enden (L-103, L-104): jedes Ende hat genau die Rückbezüge der Wahlen, die es erreichen – über jede Spur gerechnet', () => {
+  // Jede Wahl in Welt A (Haupt- und Express-Weg), jede Auswahl angeforderter Informationen, jede Wahl in der
+  // Wirklichkeit – mit der Status-Rechnung der Engine und ihren Kanten. Welt B wirkt nicht auf den Status A.
+  // Die Wirklichkeit hat keinen status-start und keine Informationen: ihr Stand ist der von A6 plus die Wahl.
+  const m = erg.inhalte as StoryModell;
+  const wk = m.stationen.wirklichkeit!;
+  assert.equal(wk.statusStart, null);
+  assert.deepEqual(wk.infos, []);
+  const enden = ['ende-steuerbar', 'ende-auflagen', 'ende-neufestlegung'];
+  for (const r of ROLLEN) {
+    const went = wk.szenen[r]!.entscheidung!;
+    const erreicht = new Map<string, Set<string>>(enden.map((e) => [e, new Set<string>()]));
+    for (const weg of [['A1', 'A2', 'A3', 'A4', 'A5', 'A6'], ['A3', 'A6']]) {
+      const ents = weg.map((id) => m.stationen[id]!.szenen[r]!.entscheidung!);
+      let kombis: string[][] = [[]];
+      for (const e of ents) kombis = kombis.flatMap((k) => e.optionen.map((o) => [...k, o.id]));
+      for (const k of kombis) {
+        for (let maske = 0; maske < 1 << weg.length; maske++) {
+          const z = {
+            ...anfangszustand(),
+            rolle: r,
+            verlauf: weg,
+            entscheidungen: Object.fromEntries(ents.map((e, i) => [e.id, k[i]!])),
+            info: weg.flatMap((id, i) => ((maske >> i) & 1 ? m.stationen[id]!.infos.map((x) => `${id}/${x.id}`) : [])),
+          };
+          const a6 = berechneStatus(z, m).A;
+          for (const o of went.optionen) {
+            const ziel = naechsteStation(wk, { ...z, verlauf: [...weg, 'wirklichkeit'], entscheidungen: { ...z.entscheidungen, [went.id]: o.id }, status: { A: wendeWirkung(a6, o.wirkung), B: null } }, m);
+            assert.ok(ziel !== null && erreicht.has(ziel), `${r}: Ziel ${ziel}`);
+            erreicht.get(ziel)!.add(o.id);
+          }
+        }
+      }
+    }
+    for (const e of enden) {
+      const rb = m.stationen[e]!.szenen[r]!.rueckbezug!;
+      assert.equal(rb.auf, went.id, `${e}/${r}`);
+      assert.deepEqual(Object.keys(rb.texte).sort(), [...erreicht.get(e)!].sort(), `${e}/${r}: Rückbezüge = Wahlen, die das Ende erreichen`);
+      assert.ok(rb.ohne !== null, `${e}/${r}: „ohne“ für Sprünge und Permalinks`);
+    }
   }
 });
 

@@ -4,10 +4,6 @@ rolle: bauherr
 rueckbezug-auf: wirklichkeit
 ---
 
-::: rueckbezug A
-Im Dezember haben Sie ‚MVG-Neuinitialisierung beauftragen‘ gewählt. Im März beschließen Sie eine Neufestlegung der Projektbasis.
-:::
-
 ::: rueckbezug B
 Im Dezember haben Sie ‚Freigabe mit Auflagen anstreben‘ gewählt. Auflagen hätten auf Ihrer Spur nicht gereicht; im März beschließen Sie eine Neufestlegung der Projektbasis.
 :::

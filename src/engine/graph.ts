@@ -203,7 +203,10 @@ export function pruefeGraph(modell: StoryModell): GraphBefund {
         if (ziel === null) {
           fehler.push(`Station ${id}/${rolle}: Rückbezug auf unbekannte Entscheidung „${szene.rueckbezug.auf}“`);
         } else {
-          for (const o of ziel.entscheidung.optionen) {
+          // Ein Ende zeigt nur die Rückbezüge der Wahlen, die es erreichen (L-104; die Spur legt fest, welche
+          // das sind – tests/story-graph.test.ts rechnet es durch); sonst gilt „ohne“.
+          if (st.art === 'ende' && szene.rueckbezug.ohne === null) fehler.push(`Station ${id}/${rolle}: ein Ende braucht den Rückbezug „ohne“`);
+          for (const o of st.art === 'ende' ? [] : ziel.entscheidung.optionen) {
             if (szene.rueckbezug.texte[o.id] === undefined) fehler.push(`Station ${id}/${rolle}: Rückbezug für Option ${o.id} von ${ziel.entscheidung.id} fehlt`);
           }
           for (const k of Object.keys(szene.rueckbezug.texte)) {

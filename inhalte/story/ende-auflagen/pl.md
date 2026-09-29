@@ -12,10 +12,6 @@ Im Dezember haben Sie ‚MVG-Neuinitialisierung vorschlagen‘ gewählt. Gewirkt
 Im Dezember haben Sie ‚Freigabe mit Auflagen vorschlagen‘ gewählt. Dr. Olbers hat sie im Januar auf Ihre Vorlage erteilt; wer die Auflagen nachhält, ist noch offen.
 :::
 
-::: rueckbezug C
-Im Dezember haben Sie ‚Neufestlegung vorschlagen‘ gewählt. Im März steht das Projekt nach der Freigabe mit Auflagen in LPH 6; die offene Kostenfrage geht mit.
-:::
-
 ::: rueckbezug ohne
 Im Dezember stand die Frage an, wie es weitergeht. Im März ist die Freigabe zum Abschluss von LPH 5 mit Auflagen erteilt, und wer die Auflagen nachhält, ist die erste Frage im Lenkungskreis.
 :::

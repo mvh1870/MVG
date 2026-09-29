@@ -4,10 +4,6 @@ rolle: controlling
 rueckbezug-auf: wirklichkeit
 ---
 
-::: rueckbezug A
-Im Dezember haben Sie ‚MVG-Neuinitialisierung empfehlen‘ gewählt. Im März beschließt Dr. Olbers eine Neufestlegung der Projektbasis.
-:::
-
 ::: rueckbezug B
 Im Dezember haben Sie ‚Freigabe mit Auflagen empfehlen‘ gewählt. Auflagen hätten auf Ihrer Spur nicht gereicht; im März liegt eine Kostenzahl statt zwei in der Vorlage zur Neufestlegung.
 :::

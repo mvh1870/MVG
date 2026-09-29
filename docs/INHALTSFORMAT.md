@@ -222,7 +222,7 @@ Kopfdaten: `station` (Pflicht, = Ordner), `rolle` (Pflicht, = Dateiname), `frage
 | `rueckbezug` | Option (`A`) oder `ohne` | – | `text` – Welt B zitiert die frühere Wahl („Damals haben Sie …“); `ohne` gilt, wenn keine Wahl vorliegt |
 | `regie` | – | – | `notiz`, `leitfragen` – nur Regie |
 
-Der Prüfer verlangt: jede Option hat alle vier Konsequenz-Felder und eine Statuswirkung; zu jeder Option der Entscheidung, auf die `rueckbezug-auf` zeigt, gibt es einen `rueckbezug`.
+Der Prüfer verlangt: jede Option hat alle vier Konsequenz-Felder und eine Statuswirkung; zu jeder Option der Entscheidung, auf die `rueckbezug-auf` zeigt, gibt es einen `rueckbezug`. Ausnahme Enden (L-104): Ein Ende trägt nur die Rückbezüge der Wahlen, die es tatsächlich erreichen, und immer `ohne` (für Sprünge und Permalinks); welche das sind, rechnet `tests/story-graph.test.ts` über jede Spur durch.
 
 ### 3.5 Vergleichsstation (Welt A ↔ B)
 Eine Station mit `art: vergleich`, `vergleich: {a: A3, b: B3}` und einem Schritt `art: vergleich`. (Die Form bleibt erlaubt; die Inhalte nutzen sie seit P5.10 nicht mehr – die Durchstich-Station `A3-B3-vergleich` ist entfallen, der Regler steht in den Vergleichsschritten `art: vergleich` der B-Stationen, L-45.) Ihre `paar`-Container beschreiben, welches Welt-A-Stück an welche Stelle des Governance-Flusses „fliegt“, die `kennzahl`-Container die Zähler unter dem Regler (Welt A → Welt B). Nach dem Wendepunkt tragen alle Stationen einer Welt ihren `partner`; der Schieberegler steht dann an jeder Station bereit.
@@ -316,7 +316,7 @@ Bilder erzeugen: `node werkzeuge/abbildungen.mjs [abb-N …]` (Chromium; schreib
 | Form | Container nicht geschlossen, unbekannte Art/Feld/Kopfdaten, Art am falschen Ort, Kennung fehlt |
 | Schema | Pflichtfeld fehlt, Wert nicht erlaubt (Stufe, Zahl außerhalb des Bereichs, Farbe) |
 | Verweise | Figur, Rolle, Station, Schritt, Folgeknoten, Partner, Frage-Schritt existiert nicht |
-| Graph | Station vom Prolog nicht erreichbar · Sackgasse (keine Kante, kein Ende) · Welt B ohne Freischaltung erreichbar · spielbare Rolle ohne Szene an einer Station mit Entscheidung · Rückbezug fehlt für eine Option |
+| Graph | Station vom Prolog nicht erreichbar · Sackgasse (keine Kante, kein Ende) · Welt B ohne Freischaltung erreichbar · spielbare Rolle ohne Szene an einer Station mit Entscheidung · Rückbezug fehlt für eine Option (am Ende: `ohne` fehlt) |
 | Zitate | Absatz-ID unbekannt oder Text nicht wortgleich |
 | Glossar | `[[Begriff]]` nicht im Glossar |
 | Abdeckung | Theorie-Abdeckung < 100 % · Absatz nicht auf der Seite seines Kapitels · Seite/Station unbekannt |

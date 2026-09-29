@@ -119,3 +119,6 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 33 (P12.5, zugleich P14.3)
 - **Beide Rollen als Agenten**: Fachtreue 2 Befunde (1 mittel: Regie-Notiz „Neufestlegung ist keine Freigabe“ gegen k4.5-p1; eingearbeitet, L-107), Stil/Architektur 8 Befunde (5 mittel: Text aus Flächen in Tafel-Karten, Leiter-Kabine, Story-Karte bei 1024, fehlende allgemeine Prüfung, Story bei 320 px; 3 leicht) – eingearbeitet (L-108), neue Überlaufprüfung in allen Szenarien; Zählung neu.
+
+## Runde 34 (P12.5, zugleich P14.3)
+- **Fachtreue + Begriffe (Agent):** keine Befunde. Geprüft: Diff seit 5a5e97f (drei Regie-Notizen der Enden/Wirklichkeit, Simulator-Trennstelle), Weiche der Enden per Skript über alle Wahlen und Rollen nachgerechnet, Stichprobe A4, Wirklichkeit, B2–B6, drei Enden, Epilog, k04, k06, k08, k11, abb-4/6/9/12; `begriffe` ohne Funde.

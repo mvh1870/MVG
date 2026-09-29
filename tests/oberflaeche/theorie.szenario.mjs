@@ -39,6 +39,14 @@ export async function lauf(seite, h) {
     if (lang.length > 0) h.befund(`k${nr}: ${lang.length} Animationen trotz reduzierter Bewegung länger als 1 ms (${lang.slice(0, 3).join(', ')})`);
     for (const fund of await seite.evaluate(kontrastQuellen, '.lern-zitat p, .lern-zitat-rahmen figcaption')) h.befund(`k${nr}: ${fund}`);
     for (const fund of await seite.evaluate(pruefeLayout)) h.befund(`k${nr}: ${fund}`);
+    // R28: im schmalen Lauf auch bei 320 px (WCAG 1.4.10, 400 % Zoom) kein waagerechtes Rollen der Seite
+    const vp = seite.viewportSize();
+    if (vp !== null && vp.width <= 400) {
+      await seite.setViewportSize({ width: 320, height: vp.height }); await h.warte(150);
+      const sw = await seite.evaluate(() => document.documentElement.scrollWidth);
+      if (sw > 321) h.befund(`k${nr}: rollt bei 320 px waagerecht (${sw} px)`);
+      await seite.setViewportSize(vp); await h.warte(100);
+    }
     // breite Tabellen im Originaltext: scrollbarer Bereich per Tastatur erreichbar
     const ohneFokus = await seite.evaluate(() => [...document.querySelectorAll('.absatz-block')]
       .filter((el) => el.scrollWidth > el.clientWidth + 1 && el.getAttribute('tabindex') !== '0').length);
@@ -315,8 +323,13 @@ export async function lauf(seite, h) {
     seite: getComputedStyle(document.querySelector('#app > *, body > :not(.druck-bogen)') ?? document.body).display,
     titel: document.querySelector('.druck-bogen .druck-kopf h1')?.textContent ?? '',
     zitieren: [...document.querySelectorAll('.druck-bogen .absatz-zitieren')].filter((x) => getComputedStyle(x).display !== 'none').length,
+    // R28: aufgelöst statt scheinbar bedienbar – keine Knöpfe außer Glossarbegriffen, der Wissenscheck mit Erklärung
+    knoepfe: [...document.querySelectorAll('.druck-bogen button:not(.begriff)')].filter((x) => getComputedStyle(x).display !== 'none').length,
+    erklaerung: document.querySelectorAll('.druck-bogen .wissenscheck .wc-erklaerung').length,
+    wc: document.querySelectorAll('.druck-bogen .wissenscheck').length,
   }));
-  if (druck.bogen === 'none' || druck.seite !== 'none' || !/^Kapitel 8 · /u.test(druck.titel) || druck.zitieren > 0) h.befund(`Druckbogen: ${JSON.stringify(druck)}`);
+  if (druck.bogen === 'none' || druck.seite !== 'none' || !/^Kapitel 8 · /u.test(druck.titel) || druck.zitieren > 0
+    || druck.knoepfe > 0 || druck.wc < 1 || druck.erklaerung !== druck.wc) h.befund(`Druckbogen: ${JSON.stringify(druck)}`);
   // nichts im Bogen ragt über den Satzspiegel hinaus (A4 mit 14 mm Rand ≈ 688 px breit)
   const vorher = seite.viewportSize() ?? { width: 1280, height: 720 };
   await seite.setViewportSize({ width: 688, height: vorher.height });
@@ -334,6 +347,16 @@ export async function lauf(seite, h) {
   await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
   await seite.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
   if (await seite.locator('.druck-bogen').count() !== 0) h.befund('Druckbogen bleibt nach dem Druck stehen');
+  // R28: Hochkontrastmodus – Knöpfe behalten eine Grenze, der gewählte Zustand ist ohne Hintergrundfarbe der Seite erkennbar
+  await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce', forcedColors: 'active' });
+  await seite.evaluate(() => { location.hash = '#theorie/k3'; });
+  await h.erwarte('[data-kapitel="3"] .schwelle-knopf');
+  await seite.locator('.schwelle-knopf').first().click();
+  const hk = await seite.evaluate(() => [...document.querySelectorAll('.schwelle-knopf')].slice(0, 2).map((b) => {
+    const c = getComputedStyle(b); return { an: b.getAttribute('aria-pressed'), rand: parseFloat(c.borderTopWidth), bg: c.backgroundColor };
+  }));
+  if (hk.length < 2 || hk.some((x) => x.rand < 1) || hk[0]?.an !== 'true' || hk[0]?.bg === hk[1]?.bg) h.befund(`Hochkontrast: Schwellen-Knöpfe ohne Grenze oder ohne sichtbare Wahl (${JSON.stringify(hk)})`);
+  await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce', forcedColors: 'none' });
   // Impressum
   await seite.evaluate(() => { location.hash = '#theorie/impressum'; });
   await h.erwarte('[data-pruef="impressum"]');

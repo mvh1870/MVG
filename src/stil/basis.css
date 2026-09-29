@@ -89,6 +89,15 @@ strong, b { font-weight: 700; }
 .auf-navy { --fokus: var(--gold-hell); }
 .flaeche-hell :focus-visible { box-shadow: 0 0 0 6px var(--fokus-hof); }
 
+/* Hochkontrastmodus (R28): der Browser entfernt Hintergründe und Schatten – Knöpfe behalten eine Grenze,
+   der gewählte Zustand (aria-pressed) zeigt sich in Systemfarben. !important nur hier: die Regel muss jede
+   Knopfklasse schlagen, und sie wirkt nur mit forced-colors. Glossarbegriffe bleiben Text. */
+@media (forced-colors: active) {
+  button:not(.begriff) { border: 1px solid ButtonText !important; }
+  button[aria-pressed="true"] { forced-color-adjust: none; background: Highlight !important; color: HighlightText !important; border-color: Highlight !important; }
+  button[aria-pressed="true"] * { color: inherit !important; }
+}
+
 /* Sprunglink */
 .sprunglink {
   position: absolute;

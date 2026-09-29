@@ -396,7 +396,7 @@ a.glossar-ort:hover { text-decoration: underline; }
 .sim-liste li { display: grid; gap: 4px; }
 .sim-liste p { font-size: var(--gr-text); line-height: 1.5; color: var(--tinte); }
 .sim-quelle summary { display: flex; align-items: center; min-height: 36px; font-size: var(--gr-s); color: var(--tuerkis-text); cursor: pointer; }
-.sim-zitat { margin-top: 6px; padding: 8px 12px; border-left: 3px solid var(--tuerkis); font-size: var(--gr-s); color: var(--tinte-2); }
+.sim-zitat { overflow-x: auto; min-width: 0; margin-top: 6px; padding: 8px 12px; border-left: 3px solid var(--tuerkis); font-size: var(--gr-s); color: var(--tinte-2); }
 .sim-hinweis { font-size: var(--gr-s); color: var(--tinte-2); }
 
 /* Explore · Vorher/Nachher-Welten (P8.2) */
@@ -577,7 +577,9 @@ html:has(.lernseite) { scroll-padding-top: 72px; }
 .lw-ansicht li + li { margin-top: var(--a-1); }
 
 /* Sortieren: je Posten zwei Körbe, Rückmeldung mit Erklärung */
-.lw-koerbe { display: grid; grid-template-columns: 1fr 1fr; gap: var(--a-2); }
+.lw-koerbe { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--a-2); }
+/* R28: bei 320–370 px passen zwei Körbe mit Versal-Wörtern („ENTSCHEIDUNGSVORLAGE“) nicht nebeneinander */
+@media (max-width: 370px) { .lw-koerbe { grid-template-columns: minmax(0, 1fr); } }
 .lw-korb { padding: var(--a-2) var(--a-3); border-radius: var(--radius-m, 8px); font: 700 var(--gr-s)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; text-align: center; }
 .lw-korb.lw-seite-links, .lw-korb-knopf.lw-seite-links[aria-pressed="true"] { background: var(--flaeche-4); color: var(--navy); }
 .lw-korb.lw-seite-rechts, .lw-korb-knopf.lw-seite-rechts[aria-pressed="true"] { background: var(--gold-soft); color: var(--gold-text); box-shadow: inset 0 0 0 1px var(--gold-soft-kante); }
@@ -658,7 +660,7 @@ html:has(.lernseite) { scroll-padding-top: 72px; }
 .abbildung-abweichungen summary:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; border-radius: 4px; }
 .abbildung-abweichungen ul { margin: var(--a-1) 0 0; padding-left: 1.2em; list-style: disc; }
 .abbildung-abweichungen li + li { margin-top: var(--a-1); }
-.abbildung-belege { white-space: nowrap; font: 500 var(--gr-s)/1.3 var(--schrift-mono); }
+.abbildung-belege { white-space: normal; font: 500 var(--gr-s)/1.3 var(--schrift-mono); }
 a.abbildung-beleg { color: var(--navy); }
 .abbildung-gross { margin-top: var(--a-1); }
 .original-abbildung { margin: var(--a-4) 0; }

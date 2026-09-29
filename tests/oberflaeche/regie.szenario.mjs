@@ -24,9 +24,10 @@ export async function lauf(_seite, h) {
   await h.erwarte('[data-pruef="leinwand-warten"]', wartend);
   const warteLandmarken = await wartend.evaluate(() => {
     const w = document.querySelector('[data-pruef="leinwand-warten"]');
-    return `${w?.tagName}:${w?.querySelectorAll('h1').length}:${document.querySelectorAll('main').length}`;
+    const huelle = document.querySelector('[data-pruef="leinwand"]');
+    return `${w?.tagName}:${w?.querySelectorAll('h1').length}:${document.querySelectorAll('main').length}:${huelle?.tagName}${huelle?.hasAttribute('aria-label') ? '+name' : ''}`;
   });
-  if (warteLandmarken !== 'MAIN:1:1') h.befund(`Leinwand wartet ohne main/h1 (${warteLandmarken})`);
+  if (warteLandmarken !== 'MAIN:1:1:DIV') h.befund(`Leinwand wartet ohne main/h1 (${warteLandmarken})`);
   await wartend.close();
   const regie = await h.zweitesFenster('#regie');
   await h.erwarte('[data-pruef="regie"]', regie);

@@ -560,8 +560,46 @@ export function kapitelFuerDruck(inhalte: OeffentlicheInhalte, nr: number, versi
   for (const weg of seite.querySelectorAll('.lern-kopf, .kapitel-verzeichnis-nav, .kapitel-verzeichnis, .kapitel-nav, .sprunglink, .lern-fuss')) weg.remove();
   // im Druck mit dem Originaltext (aufgeklappt)
   for (const d of seite.querySelectorAll<HTMLDetailsElement>('details.originaltext, details.abbildung-abweichungen')) d.open = true;
+  loeseFuerDruckAuf(seite);
   seite.classList.add('druck-kapitel');
   return seite;
+}
+
+/**
+ * Druck (R28, wie L-68): Wissenscheck und Schwellen-Spiel aufgelöst statt scheinbar bedienbar. Der Wissenscheck
+ * zeigt jede Antwort mit ihrer Rückmeldung, dann Erklärung und Beleg; das Schwellen-Spiel je Aufgabe die Seite.
+ */
+function loeseFuerDruckAuf(seite: HTMLElement): void {
+  for (const wc of seite.querySelectorAll<HTMLElement>('.wissenscheck')) {
+    const ergebnis = wc.querySelector('.wc-ergebnis');
+    const knoepfe = [...wc.querySelectorAll<HTMLButtonElement>('.wc-antwort')];
+    if (ergebnis === null || knoepfe.length === 0) continue;
+    const liste = h('ul', { class: 'wc-druck-antworten' });
+    for (const k of knoepfe) {
+      k.click();
+      const r = ergebnis.querySelector('.wc-rueckmeldung');
+      liste.append(h('li', null, h('b', null, `${k.textContent ?? ''} – `), ...(r !== null ? [...r.childNodes] : [])));
+    }
+    ergebnis.querySelector('.wc-rueckmeldung')?.remove();
+    ergebnis.prepend(liste);
+    ergebnis.removeAttribute('aria-live');
+    wc.querySelector('.wc-antworten')?.remove();
+  }
+  for (const s of seite.querySelectorAll<HTMLElement>('.tafel-schwelle')) {
+    s.querySelector<HTMLButtonElement>('[data-pruef="schwelle-aufloesen"]')?.click();
+    for (const karte of s.querySelectorAll<HTMLElement>('.schwelle-karte')) {
+      const gewaehlt = karte.querySelector('.schwelle-knopf[aria-pressed="true"]')?.textContent ?? '';
+      karte.querySelector('.schwelle-knoepfe')?.replaceWith(h('p', { class: 'schwelle-druck-seite' }, h('b', null, `→ ${gewaehlt}`)));
+      karte.querySelector('.schwelle-rueck')?.remove();
+    }
+    for (const weg of s.querySelectorAll('.tafel-hinweis, .schwelle-stand, [data-pruef="schwelle-aufloesen"]')) weg.remove();
+  }
+  // übrige Knöpfe der Grafiken (Leisten, Zeitachsen …) werden Text in gleicher Gestalt; der gewählte Stand bleibt sichtbar
+  for (const k of seite.querySelectorAll<HTMLButtonElement>('button:not(.begriff)')) {
+    const text = h('span', null, ...k.childNodes);
+    for (const a of k.getAttributeNames()) if (a !== 'type' && a !== 'disabled') text.setAttribute(a, k.getAttribute(a) ?? '');
+    k.replaceWith(text);
+  }
 }
 
 /** Kapitelverzeichnis (klebend, rollt in sich): den aktuellen Eintrag sichtbar machen, ohne die Seite zu rollen */

@@ -95,7 +95,9 @@ function hostHoehe(): number | null {
   } catch {
     fenster = gemeldetesFenster ?? 0;
   }
-  return Number.isFinite(fenster) && fenster > 0 ? Math.max(320, Math.round(fenster * 0.94) - 16) : null;
+  if (!Number.isFinite(fenster) || fenster <= 0) return null;
+  // Untergrenze 320 px, aber nie höher als das Fenster abzüglich Abstand oben und Rand (Telefon quer, R26)
+  return Math.max(120, Math.min(Math.round(fenster) - 32, Math.max(320, Math.round(fenster * 0.94) - 16)));
 }
 
 const radSperre = new WeakMap<HTMLDialogElement, (e: WheelEvent) => boolean>();

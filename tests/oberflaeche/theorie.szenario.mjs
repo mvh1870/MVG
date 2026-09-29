@@ -243,6 +243,25 @@ export async function lauf(seite, h) {
   if (await seite.locator('main').count() !== 1) h.befund(`Theorie: ${await seite.locator('main').count()} main-Landmarken statt 1`);
   // R21: das Kapitelverzeichnis ist eine eigene Navigation
   if (await seite.locator('nav[aria-label="Kapitel"] details.kapitel-verzeichnis').count() !== 1) h.befund('Theorie: Kapitelverzeichnis ohne Navigation-Landmarke');
+  // R26: Fokusfalle ohne Einbettung – vom (nicht rollenden) Dialog selbst aus bleiben Tab und Umschalt+Tab im Dialog
+  if ((seite.viewportSize()?.width ?? 0) >= 1200) {
+    await seite.evaluate(() => { location.hash = '#theorie/k6'; });
+    await h.warte(600);
+    const knopf9 = seite.locator('.lern-inhalt [data-pruef="abbildung-gross"]').first();
+    await knopf9.click();
+    await h.erwarte('dialog.abbildung-dialog[open]');
+    for (const taste of ['Shift+Tab', 'Tab']) {
+      await seite.locator('dialog.abbildung-dialog[open] .t-label').first().click();
+      await seite.keyboard.press(taste);
+      await h.warte(80);
+      const drin = await seite.evaluate(() => { const d = document.querySelector('dialog.abbildung-dialog[open]'); return d !== null && d.contains(document.activeElement); });
+      if (!drin) h.befund(`Abbildungs-Dialog: ${taste} vom Dialog selbst aus verlässt ihn`);
+    }
+    await seite.keyboard.press('Escape');
+    await h.warte(100);
+    await seite.evaluate(() => { location.hash = '#theorie/k4'; });
+    await h.warte(600);
+  }
   // R22: Landmarken tragen verschiedene Namen
   const navNamen = await seite.evaluate(() => [...document.querySelectorAll('nav, [role="navigation"], [role="region"], section[aria-label], section[aria-labelledby]')].map((n) => `${n.tagName}:${n.getAttribute('aria-label') ?? document.getElementById(n.getAttribute('aria-labelledby') ?? '')?.textContent ?? ''}`));
   const doppelt = navNamen.filter((n, i) => navNamen.indexOf(n) !== i);

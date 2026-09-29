@@ -95,3 +95,6 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 25 (P12.5, zugleich P14.3)
 - **Beide Rollen als Workflow** mit Gegenprüfung: Fachtreue 2 Befunde (leicht), Stil/Architektur 1 Befund (mittel, bestätigt: Fokusfalle bei nicht rollendem Dialog) – eingearbeitet (L-96); die Zählung zweier sauberer Runden beginnt neu.
+
+## Runde 26 (P12.5, zugleich P14.3)
+- **Beide Rollen als Workflow** mit Gegenprüfung: Fachtreue 1 Befund (leicht), Stil/Architektur 3 Befunde (1 mittel, bestätigt: Dialoghöhe bei sehr niedrigem Hostfenster) – eingearbeitet (L-97).

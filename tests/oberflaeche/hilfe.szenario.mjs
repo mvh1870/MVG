@@ -128,9 +128,11 @@ export async function lauf(seite, h) {
     const k = a?.closest('.h-role-pick-card');
     if (!k) return null;
     const s = getComputedStyle(k);
-    return { stil: s.outlineStyle, breite: parseFloat(s.outlineWidth) };
+    return { stil: s.outlineStyle, breite: parseFloat(s.outlineWidth), linkHof: a ? getComputedStyle(a).boxShadow : '' };
   });
   if (ring === null || ring.stil === 'none' || ring.breite < 2) h.befund(`Rollenkarte: Tastaturfokus ohne sichtbaren Rahmen (${JSON.stringify(ring)})`);
+  // R26: nur eine Fokusanzeige – der Titel-Link trägt keinen eigenen Hof
+  else if (ring.linkHof !== 'none') h.befund(`Rollenkarte: doppelte Fokusanzeige (Link-Hof ${ring.linkHof})`);
   // R20: die Hilfe hat genau eine main-Landmarke
   if (await seite.locator('main').count() !== 1) h.befund(`Hilfe: ${await seite.locator('main').count()} main-Landmarken statt 1`);
   if (await seite.locator('nav[aria-label="Hilfe-Kapitel"] details.kapitel-verzeichnis').count() !== 1) h.befund('Hilfe: Verzeichnis ohne Navigation-Landmarke');

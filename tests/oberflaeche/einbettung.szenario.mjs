@@ -200,6 +200,18 @@ export async function lauf(seite, h) {
   await seite.setViewportSize({ width: 1280, height: 800 });
   await h.warte(400);
   await pruefeFokusNichtRollend('#theorie/k6', '.lern-inhalt [data-pruef="abbildung-gross"]', 'dialog.abbildung-dialog', 'Abbildungs');
+  // R26: sehr niedriges Hostfenster (Telefon quer, 740×300, gleiche Herkunft wie der Testhost über file://
+  // mit Meldung): der Dialog passt mit Rand ins Fenster
+  await seite.setViewportSize({ width: 740, height: 300 });
+  await h.warte(400);
+  await geheUndWarte('#theorie/k4');
+  const zieleT = (await seite.evaluate(() => /** @type {any} */ (window).nachrichten)).filter((/** @type {any} */ n) => n?.art === 'ziel').length;
+  await rahmen.locator('.lern-inhalt [data-pruef="abbildung-gross"]').first().click();
+  for (let i = 0; i < 30 && (await seite.evaluate(() => /** @type {any} */ (window).nachrichten)).filter((/** @type {any} */ n) => n?.art === 'ziel').length <= zieleT; i++) await h.warte(100);
+  await h.warte(1200);
+  const niedrig = await seite.frames()[1]?.evaluate(() => { const d = document.querySelector('dialog.abbildung-dialog[open]'); return d ? Math.round(d.getBoundingClientRect().height) : null; });
+  if (niedrig === null || niedrig === undefined || niedrig > 300 - 32 + 1) h.befund(`Einbettung (Hostfenster 300 px): Dialog ${niedrig} px hoch – höher als das Fenster abzüglich Rand`);
+  await seite.keyboard.press('Escape');
   if (groesseFokus !== null) { await seite.setViewportSize(groesseFokus); await h.warte(400); }
   // k4 und k10 tragen die höchsten Abbildungen der Lernseiten (abb-6, abb-14)
   await pruefeDialog('#theorie/k4', '.lern-inhalt [data-pruef="abbildung-gross"]', 'dialog.abbildung-dialog', 'Abbildungs');

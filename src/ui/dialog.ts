@@ -46,15 +46,22 @@ function hostHoehe(): number {
   return Number.isFinite(fenster) && fenster > 0 ? Math.max(320, Math.round(fenster * 0.94) - 16) : 640;
 }
 
-const radSperre = new WeakMap<HTMLDialogElement, (e: WheelEvent) => void>();
+const radSperre = new WeakMap<HTMLDialogElement, (e: WheelEvent) => boolean>();
 
-/** Öffnet modal und hängt die Radsperre (halteRollenImDialog) bis zum Schließen ans Fenster. */
+/**
+ * Öffnet modal und hängt die Radsperre (halteRollenImDialog) ans Fenster – bis zum Schließen oder bis der
+ * Dialog nicht mehr offen im Dokument steht (ein Seitenwechsel nimmt ihn heraus, ohne dass 'close' feuert).
+ */
 function zeigeModal(dialog: HTMLDialogElement): void {
   dialog.showModal();
   const sperre = radSperre.get(dialog);
   if (sperre === undefined) return;
-  window.addEventListener('wheel', sperre, { passive: false, capture: true });
-  dialog.addEventListener('close', () => window.removeEventListener('wheel', sperre, { capture: true }), { once: true });
+  const ende = new AbortController();
+  window.addEventListener('wheel', (e) => {
+    if (!dialog.open || !dialog.isConnected) { ende.abort(); return; }
+    if (sperre(e)) e.preventDefault();
+  }, { passive: false, capture: true, signal: ende.signal });
+  dialog.addEventListener('close', () => ende.abort(), { once: true, signal: ende.signal });
 }
 
 const ROLLTASTEN = new Set(['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'PageUp', 'PageDown', 'Home', 'End', ' ']);
@@ -76,10 +83,13 @@ function kannRollen(el: HTMLElement, dx: number, dy: number): boolean {
 export function halteRollenImDialog(dialog: HTMLDialogElement): void {
   // am Fenster (Erfassung), nur solange der Dialog offen ist: ein Rad über dem Hintergrund (::backdrop)
   // erreicht den Dialog sonst nicht verlässlich; geschlossen bleibt das Rollen der Seite passiv
+  // gibt zurück, ob das Rad gesperrt wird; Strg+Rad (Zoom) gehört dem Browser, Umschalt+Rad rollt waagrecht
   radSperre.set(dialog, (e: WheelEvent) => {
+    if (e.ctrlKey) return false;
+    const [dx, dy] = e.shiftKey && e.deltaX === 0 ? [e.deltaY, 0] : [e.deltaX, e.deltaY];
     const r = dialog.getBoundingClientRect();
     const drin = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
-    if (!drin || !kannRollen(dialog, e.deltaX, e.deltaY)) e.preventDefault();
+    return !drin || !kannRollen(dialog, dx, dy);
   });
   let y0 = 0;
   let x0 = 0;
@@ -88,6 +98,7 @@ export function halteRollenImDialog(dialog: HTMLDialogElement): void {
     if (t !== undefined) { y0 = t.clientY; x0 = t.clientX; }
   }, { passive: true });
   dialog.addEventListener('touchmove', (e) => {
+    if (e.touches.length > 1) return; // Zwei-Finger-Zoom gehört dem Browser
     const t = e.touches[0];
     if (t !== undefined && !kannRollen(dialog, x0 - t.clientX, y0 - t.clientY)) e.preventDefault();
   }, { passive: false });

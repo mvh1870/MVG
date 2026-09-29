@@ -297,7 +297,7 @@ Wann ist die Einführung „fertig“? Nicht erst dann, wenn alle künftigen Ent
 
 Gegenstand der Leistung ist also die Herstellung und Übergabe eines belastbaren Bauherren-Führungsmodells. Bauherr Mentoren strukturiert, moderiert, entwirft, erprobt und befähigt. Entscheidung, Freigabe und Risikoannahme dagegen legitimieren die zuständigen Bauherrenrollen.
 
-Geprüft wird an acht Kriterien, jedes mit einer Prüffrage: vom Zielsystem über Mandatsmodell, Freigabemodell, Entscheidungs-IDs, Datenstandslogik und die Verknüpfung von Risiken, Änderungen und Maßnahmen bis zum Betriebshandbuch. Das letzte Kriterium lautet: Können die Schlüsselrollen das Modell ohne eine Dauerrolle von Bauherr Mentoren anwenden? Was am Ende dieses Weges konkret vorliegt, beschreibt Kapitel 9.
+Geprüft wird an acht Kriterien, jedes mit einer Prüffrage: Zielsystem, Mandatsmodell, Leistungsphasen- und Freigabemodell, Entscheidungs-IDs, Datenstandslogik, die Verknüpfung von Risiken, Änderungen und Maßnahmen, das Betriebshandbuch und zuletzt die Befähigung: Können die Schlüsselrollen das Modell ohne eine Dauerrolle von Bauherr Mentoren anwenden? Was am Ende dieses Weges konkret vorliegt, beschreibt Kapitel 9.
 
 ::: umschalter
 ---

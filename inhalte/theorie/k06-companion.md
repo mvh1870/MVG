@@ -489,7 +489,7 @@ Eingetreten, also Problemregister.
 ---
 seite: links
 ---
-Beispiel: Eine bewertete Genehmigungsauflage könnte zusätzliche Kosten auslösen.
+Beispiel: Die Genehmigung steht noch aus; eine bewertete, mögliche Auflage zum Brandschutz könnte zusätzliche Kosten auslösen.
 
 ### Erklärung
 Noch nicht eingetreten, bereits bewertet – ein Risiko.

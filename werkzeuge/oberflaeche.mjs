@@ -6,7 +6,9 @@
  *
  * Lädt dist/mvg.html als file://-URL in Chromium (Playwright) und führt alle
  * tests/oberflaeche/*.szenario.mjs aus. Ein Szenario-Modul exportiert
- *   name: string, viewports?: Array<{ breite, hoehe }>, hash?: string (z. B. '#regie'),
+ *   name: string, viewports?: Array<{ breite, hoehe }>, hash?: string (z. B. '#regie'), seite?: string (andere
+ *   HTML-Datei), testHerkunft?: 'http://<name>.test/' (nur .test nach RFC 6761; das Szenario beantwortet sie
+ *   selbst per seite.route, L-86),
  *   async lauf(seite, h)
  * (benannte Exporte oder ein Default-Objekt). `seite` ist eine Playwright-Page, `h` der Helfer unten.
  *
@@ -157,6 +159,12 @@ export async function starteBrowser(optionen = {}) {
  * @param {string} verzeichnis
  * @returns {Promise<Szenario[]>}
  */
+/** @param {unknown} wert @param {string} datei @returns {string} */
+function pruefeTestHerkunft(wert, datei) {
+  if (typeof wert !== 'string' || !/^http:\/\/[a-z-]+\.test\/$/u.test(wert)) throw new Error(`${datei}: testHerkunft muss http://<name>.test/ sein`);
+  return wert;
+}
+
 export async function ladeSzenarien(verzeichnis) {
   if (!existsSync(verzeichnis)) return [];
   const namen = (await readdir(verzeichnis)).filter((n) => n.endsWith('.szenario.mjs')).sort();
@@ -176,7 +184,7 @@ export async function ladeSzenarien(verzeichnis) {
       viewports,
       hash: typeof s.hash === 'string' ? s.hash : '',
       ...(typeof s.seite === 'string' ? { seite: s.seite } : {}),
-      ...(typeof s.testHerkunft === 'string' && /^http:\/\/[a-z-]+\.test\/$/u.test(s.testHerkunft) ? { testHerkunft: s.testHerkunft } : {}),
+      ...(s.testHerkunft !== undefined ? { testHerkunft: pruefeTestHerkunft(s.testHerkunft, datei) } : {}),
       lauf: s.lauf,
     });
   }

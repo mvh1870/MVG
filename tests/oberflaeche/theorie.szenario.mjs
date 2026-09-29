@@ -145,6 +145,43 @@ export async function lauf(seite, h) {
       await seite.mouse.click(aussen.x, aussen.y);
       await h.warte(100);
       if ((await seite.locator('dialog[open]').count()) !== 0) h.befund('Abbildungs-Dialog: Klick auf den Hintergrund schließt nicht');
+      // R16: nach dem Schließen rollt das Mausrad die Seite wieder
+      const radRolltSeite = async (/** @type {string} */ wann) => {
+        const fb = seite.viewportSize() ?? { width: 1280, height: 720 };
+        await seite.mouse.move(fb.width / 2, fb.height / 2);
+        const y1 = await seite.evaluate(() => window.scrollY);
+        for (let i = 0; i < 3; i++) { await seite.mouse.wheel(0, 200); await h.warte(60); }
+        await h.warte(300);
+        const y2 = await seite.evaluate(() => window.scrollY);
+        if (y2 <= y1) h.befund(`Abbildungs-Dialog: ${wann} rollt das Mausrad die Seite nicht mehr (${y1} → ${y2})`);
+      };
+      await radRolltSeite('nach dem Schließen');
+      // R16: Umschalt+Rad rollt einen breiten Dialog waagrecht (bei 400 px ist das Bild breiter als das Fenster)
+      if (fenster.width < 600) {
+        await gross.click();
+        await h.erwarte('dialog.abbildung-dialog[open]');
+        const bx = await seite.locator('dialog.abbildung-dialog[open]').boundingBox();
+        if (bx !== null) {
+          await seite.mouse.move(bx.x + bx.width / 2, bx.y + Math.min(bx.height, 300) / 2);
+          await seite.keyboard.down('Shift');
+          for (let i = 0; i < 3; i++) { await seite.mouse.wheel(0, 150); await h.warte(60); }
+          await seite.keyboard.up('Shift');
+          await h.warte(300);
+          const links = await seite.evaluate(() => document.querySelector('dialog.abbildung-dialog[open]')?.scrollLeft ?? 0);
+          if (links <= 0) h.befund('Abbildungs-Dialog: Umschalt+Mausrad rollt nicht waagrecht');
+        }
+        await seite.keyboard.press('Escape');
+        await h.warte(100);
+      }
+      // R16: wird der offene Dialog durch einen Seitenwechsel entfernt, bleibt keine Radsperre zurück
+      await gross.click();
+      await h.erwarte('dialog.abbildung-dialog[open]');
+      const hashVorher = await seite.evaluate(() => location.hash);
+      await seite.evaluate(() => { location.hash = '#theorie/k5'; });
+      await h.warte(600);
+      await radRolltSeite('nach einem Seitenwechsel bei offenem Dialog');
+      await seite.evaluate((x) => { location.hash = x; }, hashVorher);
+      await h.warte(600);
     }
     // Beleg einer Abweichung: springt zum Absatz im aufgeklappten Originaltext
     const abw = fig.locator('[data-pruef="abbildung-abweichungen"]');

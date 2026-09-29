@@ -65,3 +65,6 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 15 (P12.5, zugleich P14.3)
 - **Beide Rollen als Workflow** mit Gegenprüfung: Fachtreue 4 Befunde (0 schwer, 0 mittel – zweite saubere Fachtreue-Runde), Stil/Architektur 6 Befunde (2 mittel, beide bestätigt) – alle eingearbeitet (L-86): Rollsperre der Dialoge für Rad ohne Rollbereich und Rolltasten, Netzwache nur mit angemeldeter Testherkunft `mvg.test`, Drucktest, Verzeichnis ab 481 px, STIL, vier Wortlaute.
+
+## Runde 16 (P12.5, zugleich P14.3)
+- **Beide Rollen als Workflow** mit Gegenprüfung: Fachtreue 2 Befunde (0 schwer, 0 mittel – dritte saubere Fachtreue-Runde), Stil/Architektur 4 Befunde (3 mittel, alle bestätigt, alle in der neuen Rollsperre) – alle eingearbeitet (L-87).

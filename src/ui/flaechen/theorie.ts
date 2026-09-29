@@ -599,8 +599,8 @@ function loeseFuerDruckAuf(seite: HTMLElement): void {
   // übrige Knöpfe der Grafiken (Leisten, Zeitachsen …) werden Text in gleicher Gestalt; der gewählte Stand bleibt sichtbar
   for (const k of seite.querySelectorAll<HTMLButtonElement>('button:not(.begriff)')) {
     const text = h('span', null, ...k.childNodes);
-    // ohne ARIA eines Knopfs (R30): der Stand bleibt über data-gewaehlt gestaltbar
-    for (const a of k.getAttributeNames()) if (a !== 'type' && a !== 'disabled' && !a.startsWith('aria-')) text.setAttribute(a, k.getAttribute(a) ?? '');
+    // ohne ARIA, Rolle und Tabulatorstopp eines Knopfs (R30, R31): der Stand bleibt über data-gewaehlt gestaltbar
+    for (const a of k.getAttributeNames()) if (!['type', 'disabled', 'role', 'tabindex'].includes(a) && !a.startsWith('aria-')) text.setAttribute(a, k.getAttribute(a) ?? '');
     if (k.getAttribute('aria-pressed') === 'true') text.setAttribute('data-gewaehlt', '');
     k.replaceWith(text);
   }

@@ -200,10 +200,14 @@ export async function lauf(seite, h) {
     return {
       ebene: bg(document.querySelector('[data-pruef="ebene-knopf-4"]')) !== bg(document.querySelector('[data-pruef="ebene-knopf-2"]')),
       schritt: bg(document.querySelector('.fortschritt-schritt[aria-current="step"]')) !== bg(document.querySelector('.fortschritt-schritt:not([aria-current])')),
+      // R31: aktuelle LPH mit Rahmen, Welt-Leiste der Schritte und Express-Schalter als Linien (Flächen entfallen)
+      lph: ((el) => el !== null && getComputedStyle(el).outlineStyle === 'solid' && parseFloat(getComputedStyle(el).outlineWidth) >= 2)(document.querySelector('.lph[aria-current="step"]')),
+      leiste: [...document.querySelectorAll('.fortschritt-schritt')].every((el) => parseFloat(getComputedStyle(el, '::after').borderBottomWidth) >= 3),
+      express: ((el) => el === null || (parseFloat(getComputedStyle(el).borderTopWidth) >= 1 && parseFloat(getComputedStyle(el, '::after').borderTopWidth) >= 6))(document.querySelector('.karte-express-schalter')),
     };
   });
   await seite.emulateMedia({ forcedColors: 'none' });
-  if (!hkStory.ebene || !hkStory.schritt) h.befund(`Hochkontrast: gewählte Ebene oder aktueller Schritt nicht erkennbar (${JSON.stringify(hkStory)})`);
+  if (!hkStory.ebene || !hkStory.schritt || !hkStory.lph || !hkStory.leiste || !hkStory.express) h.befund(`Hochkontrast (Story): gewählte Ebene, aktueller Schritt, LPH, Welt-Leiste oder Express-Schalter nicht erkennbar (${JSON.stringify(hkStory)})`);
 
   /* ------------------------------------------------------ Theorie · Kapitel 1 -- */
   await h.klick('.marke-knopf');

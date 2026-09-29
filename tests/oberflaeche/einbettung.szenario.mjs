@@ -174,6 +174,33 @@ export async function lauf(seite, h) {
     await h.warte(100);
     if (await rahmen.locator(`${dialogSel}[open]`).count() !== 0) h.befund(`Einbettung: ${name}-Dialog schließt nicht`);
   };
+  // R25: Fokus auf einem nicht rollenden Dialog selbst (Klick in den Kopf): Umschalt+Tab und Tab bleiben im Dialog
+  const pruefeFokusNichtRollend = async (/** @type {string} */ ziel, /** @type {string} */ knopfSel, /** @type {string} */ dialogSel, /** @type {string} */ name) => {
+    await geheUndWarte(ziel);
+    const zieleF = (await seite.evaluate(() => /** @type {any} */ (window).nachrichten)).filter((/** @type {any} */ n) => n?.art === 'ziel').length;
+    await rahmen.locator(knopfSel).first().click();
+    for (let i = 0; i < 30 && (await seite.evaluate(() => /** @type {any} */ (window).nachrichten)).filter((/** @type {any} */ n) => n?.art === 'ziel').length <= zieleF; i++) await h.warte(100);
+    await h.warte(1000);
+    const rollt = await seite.frames()[1]?.evaluate((sel) => { const d = document.querySelector(`${sel}[open]`); return d ? d.scrollHeight > d.clientHeight + 1 || d.scrollWidth > d.clientWidth + 1 : null; }, dialogSel);
+    if (rollt !== false) { h.befund(`Einbettung: Probe „${name} rollt nicht“ nicht hergestellt (${rollt})`); await seite.keyboard.press('Escape'); return; }
+    for (const taste of ['Shift+Tab', 'Tab']) {
+      await rahmen.locator(`${dialogSel}[open] .t-label`).first().click();
+      await seite.keyboard.press(taste);
+      await h.warte(80);
+      const drin = await seite.frames()[1]?.evaluate((sel) => { const d = document.querySelector(`${sel}[open]`); return d !== null && d.contains(document.activeElement); }, dialogSel);
+      const host = await seite.evaluate(() => document.activeElement?.tagName ?? '');
+      if (!drin || host !== 'IFRAME') h.befund(`Einbettung: ${taste} vom nicht rollenden ${name}-Dialog aus verlässt ihn (Hostseite ${host})`);
+    }
+    await seite.keyboard.press('Escape');
+    await h.warte(150);
+    if (await rahmen.locator(`${dialogSel}[open]`).count() !== 0) h.befund(`Einbettung: Esc schließt den nicht rollenden ${name}-Dialog nicht`);
+  };
+  // bei 1280×800 passt abb-9 (Kap. 6) ganz in ihren Dialog
+  const groesseFokus = seite.viewportSize();
+  await seite.setViewportSize({ width: 1280, height: 800 });
+  await h.warte(400);
+  await pruefeFokusNichtRollend('#theorie/k6', '.lern-inhalt [data-pruef="abbildung-gross"]', 'dialog.abbildung-dialog', 'Abbildungs');
+  if (groesseFokus !== null) { await seite.setViewportSize(groesseFokus); await h.warte(400); }
   // k4 und k10 tragen die höchsten Abbildungen der Lernseiten (abb-6, abb-14)
   await pruefeDialog('#theorie/k4', '.lern-inhalt [data-pruef="abbildung-gross"]', 'dialog.abbildung-dialog', 'Abbildungs');
   await pruefeDialog('#theorie/k10', '.lern-inhalt [data-pruef="abbildung-gross"]', 'dialog.abbildung-dialog', 'Abbildungs');

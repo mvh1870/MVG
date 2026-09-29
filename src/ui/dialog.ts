@@ -189,8 +189,10 @@ export function halteRollenImDialog(dialog: HTMLDialogElement): void {
       const erstes = ziele[0];
       const letztes = ziele[ziele.length - 1];
       if (erstes === undefined || letztes === undefined) { e.preventDefault(); return; }
-      const jetzt = document.activeElement;
-      if (e.shiftKey ? jetzt === erstes || !dialog.contains(jetzt) : jetzt === letztes || !dialog.contains(jetzt)) {
+      // nach der Stelle in den Zielen entscheiden: der Fokus auf dem nicht rollenden Dialog selbst (Klick auf
+      // Kopf oder Bild) steht nicht darin und gilt als Rand (R25)
+      const i = ziele.indexOf(document.activeElement as HTMLElement);
+      if (i === -1 || (e.shiftKey ? i === 0 : i === ziele.length - 1)) {
         e.preventDefault();
         (e.shiftKey ? letztes : erstes).focus({ preventScroll: true });
       }

@@ -92,3 +92,6 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 24 (P12.5, zugleich P14.3)
 - **Beide Rollen als Workflow**: Fachtreue 1 Befund (leicht), Stil/Architektur 2 Befunde (leicht) – **erste Runde beider Rollen ohne schwere oder mittlere Befunde** (L-64: erste von zwei). Alle eingearbeitet (L-95).
+
+## Runde 25 (P12.5, zugleich P14.3)
+- **Beide Rollen als Workflow** mit Gegenprüfung: Fachtreue 2 Befunde (leicht), Stil/Architektur 1 Befund (mittel, bestätigt: Fokusfalle bei nicht rollendem Dialog) – eingearbeitet (L-96); die Zählung zweier sauberer Runden beginnt neu.

@@ -16,7 +16,7 @@ story: [wirklichkeit, ende-steuerbar, ende-neufestlegung]
 Nicht jedes Projekt startet mit einer sauberen Führungsstruktur – und manches verliert sie unterwegs. Für laufende Projekte, deren Steuerungs- und Entscheidungslogik nicht mehr ausreichend trägt, sieht Minimum Viable Governance (MVG) ein eigenes Format vor: die MVG-Neuinitialisierung. Dieses Kapitel erklärt, woran Sie erkennen, dass sie nötig wird, was sie neu ordnet und was am Ende vorliegt.
 
 ::: kernaussage
-Die MVG-Neuinitialisierung soll ein laufendes Projekt wieder führbar machen. Sie ordnet nicht das Projekt fachlich neu, sondern die Führungs- und Entscheidungslogik – vom ersten Lagebild bis zu einer stabilisierten Entscheidungsarchitektur.
+Die MVG-Neuinitialisierung soll ein laufendes Projekt wieder führbar machen. Sie ordnet nicht das gesamte Projekt fachlich neu, sondern die Führungs- und Entscheidungslogik – vom ersten Lagebild bis zu einer stabilisierten Entscheidungsarchitektur.
 :::
 
 ::: abschnitt k11
@@ -232,7 +232,7 @@ Die MVG-Neuinitialisierung ordnet nicht das gesamte Projekt fachlich neu, sonder
 titel: Die Führungs- und Entscheidungslogik
 praefix: "Genau:"
 ---
-Neu geordnet wird, wie geführt und entschieden wird, nicht das Projekt fachlich.
+Neu geordnet wird, wie geführt und entschieden wird, nicht das gesamte Projekt fachlich.
 :::
 
 ::: antwort b

@@ -145,7 +145,7 @@ Besonders relevant sind hier:
 
 - eine **Projektklassenlogik** und Entscheidungen über **Fortführung oder Stopp**,
 - die **Neupriorisierung** im Projektportfolio,
-- **Frühwarnungen**, eine geordnete **Änderungssteuerung**, CTC und Prognose,
+- **Frühwarnungen**, **Änderungssteuerung**, CTC und Prognose,
 - und die **Freigabereife**, besonders an drei Stellen des Projekts.
 
 Diese drei Stellen zeigt der Regler. Zum Abschluss von LPH 2 geht es um die Wahl der Variante und den [[Business Case]], zum Abschluss von LPH 3 um die [[Finale Investitionsentscheidung (FID)|finale Investitionsentscheidung (FID)]] und zum Abschluss von LPH 7 um die Vergabe oder die Bindung einer Komponente mit langer Lieferzeit.

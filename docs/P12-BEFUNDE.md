@@ -126,3 +126,6 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 35 (P12.5, zugleich P14.3)
 - **Beide Rollen als Agenten**: Fachtreue 3 Befunde (1 mittel: Simulator zeigt beim Startwert 400 TEUR „innerhalb des Mandats … Bauherren-PL“; 2 leicht: MVG nicht ausgeschrieben in Glossar und Explore), Stil/Architektur 2 Befunde (1 mittel: rollende Quelle im Simulator ohne Tastaturzugang bei 320–380 px; 1 leicht: 320-px-Abdeckung) – eingearbeitet (L-110); Zählung neu.
+
+## Runde 36 (P12.5, zugleich P14.3)
+- **Beide Rollen als Agenten**: Fachtreue 2 Befunde (leicht: Simulator-Satz der Gremiumsstufe, Freigabe neben „Wer entscheidet“; 7 680 Eingabekombinationen durchgerechnet), Stil/Architektur 2 Befunde (leicht: Rollprüfung zählt unsichtbare Zugänge, Quelle rollt auf dem Desktop um 2 px) – **keine schweren oder mittleren**; nach L-64 erste von zwei sauberen Runden. Eingearbeitet (L-111).

@@ -77,6 +77,9 @@ test('Grenzfälle: kein Betrag, Freigabe bei Bauherrenstufe', () => {
   const g = simuliere({ ...basis, betragTeur: 400 });
   assert.equal(g.wer, 'Änderungsgremium');
   assert.ok(!g.freigabeweg.some((h) => /Innerhalb des Mandats/u.test(h.text)), 'Gremiumsstufe ist nicht „innerhalb des Mandats“');
-  assert.ok(g.freigabeweg.some((h) => /an das Änderungsgremium eskaliert/u.test(h.text)));
+  assert.ok(g.freigabeweg.some((h) => h.quelle === 'k4.2-p3' && /an das Änderungsgremium/u.test(h.text)));
+  // R36: berührt die Lage eine Freigabe, sagt der Freigabeweg, dass die Stufe nur die Sachentscheidung meint
+  assert.ok(simuliere({ ...basis, betragTeur: 400, freigabeBeruehrt: true }).freigabeweg.some((h) => h.quelle === 'k3.2-t1' && /Sachentscheidung/u.test(h.text)));
+  assert.ok(!simuliere({ ...basis, betragTeur: 8000, freigabeBeruehrt: true }).freigabeweg.some((h) => /Sachentscheidung/u.test(h.text)));
   assert.ok(simuliere({ ...basis, betragTeur: 80 }).freigabeweg.some((h) => /Innerhalb des Mandats/u.test(h.text)), 'PL-Stufe ist innerhalb des Mandats');
 });

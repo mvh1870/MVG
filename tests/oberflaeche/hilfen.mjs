@@ -113,7 +113,13 @@ export function rollbarOhneTastatur() {
     if (!(el instanceof HTMLElement) || el.clientWidth === 0 || el.scrollWidth <= el.clientWidth + 1) return false;
     const ox = getComputedStyle(el).overflowX;
     if (ox !== 'auto' && ox !== 'scroll') return false;
-    return !el.matches(fokussierbar) && el.querySelector(fokussierbar) === null;
+    // nur Sichtbares zählt: der Inhalt geschlossener details hat in Chromium Maße, ist aber nicht zu sehen
+    const zu = (k) => { const d = k.closest('details:not([open])'); return d !== null && k.closest('summary')?.parentElement !== d; };
+    const sichtbar = (k) => k instanceof HTMLElement && k.getClientRects().length > 0 && getComputedStyle(k).visibility === 'visible' && !zu(k);
+    if (!sichtbar(el)) return false;
+    // Zugang nur über bedienbare Elemente (nicht disabled, nicht inert)
+    const bedienbar = (k) => sichtbar(k) && !k.matches(':disabled') && k.closest('[inert]') === null;
+    return !(el.matches(fokussierbar) && bedienbar(el)) && ![...el.querySelectorAll(fokussierbar)].some(bedienbar);
   }).map((el) => `rollt waagerecht ohne Tastaturzugang: ${el.tagName.toLowerCase()}.${[...el.classList].join('.')}`);
 }
 

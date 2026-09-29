@@ -104,7 +104,7 @@ Die Tabelle in Kap. 3.2 trennt Vorbereitung und Entscheidung. Delegierbar ist di
 |---|---|
 | Kosten | +8 % gegen +5,9 % im Mai, dazu die Folgekosten aus dem September |
 | Termin | Lieferzeit der Holzbauelemente 26 statt 16 Wochen |
-| Projektumfang | Mensa für rund 450 statt 300 Essen, umgeplant ohne Auftrag |
+| Projektumfang | Mensa für rund 450 statt 300 Essen, umgeplant auf eine Zusage, ohne vermerkte Beauftragung |
 | Risiko | eine Reserve, deren Einsatz niemand freigegeben hat |
 
 Der Stadtrat, der die bisherige Projektbasis beschlossen hat, und der Bauausschuss werden rückgekoppelt; der Bauausschuss tagt am Donnerstag, 18. März. Die Entscheidungsvorlage haben Bauherren-PL, Projektsteuerung und Controlling seit Januar vorbereitet, mit Varianten der Generalplanung. Beschließen kann das nur der Bauherr; vorbereiten konnten es andere. Auf der neuen Basis können betroffene Freigaben nachgeholt oder wiederholt werden – als nächste die Freigabe zum Abschluss von LPH 5; erteilen wird sie der Bauherr selbst.

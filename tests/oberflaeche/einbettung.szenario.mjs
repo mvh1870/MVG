@@ -199,6 +199,8 @@ export async function lauf(seite, h) {
   const unterkante = await seite.frames()[1]?.evaluate(() => document.querySelector('dialog.abbildung-dialog[open]')?.getBoundingClientRect().bottom ?? null);
   const rahmenOben = await seite.evaluate(() => document.getElementById('mvg')?.getBoundingClientRect().top ?? 0);
   if (unterkante === null || unterkante === undefined || rahmenOben + unterkante > 561) h.befund(`Einbettung (fremd, 560 px): Unterkante des Dialogs bleibt unerreichbar (${unterkante === null || unterkante === undefined ? '–' : Math.round(rahmenOben + unterkante)} px)`);
+  // R19: … aber nicht darüber hinaus
+  else if (rahmenOben + unterkante < 500) h.befund(`Einbettung (fremd, 560 px): Mausrad rollt die Hostseite über die Unterkante des Dialogs hinaus (${Math.round(rahmenOben + unterkante)} px)`);
   // R18: Rolltasten am Dialogende rollen die Hostseite nur bis zur Kante – Ende, dann Pos1 lassen „Schließen“ erreichbar
   const lageTasten = async () => {
     const k = await seite.frames()[1]?.evaluate(() => {
@@ -218,7 +220,41 @@ export async function lauf(seite, h) {
   await h.warte(300);
   const nachPos1 = await lageTasten();
   if (nachPos1 === null || nachPos1.knopf < -1 || nachPos1.knopf > 80) h.befund(`Einbettung (fremd, 560 px): Pos1 holt „Schließen“ nicht an den oberen Rand (${nachPos1 === null ? '–' : Math.round(nachPos1.knopf)} px)`);
-  await seite.keyboard.press('Escape');
+  // R19: die Leertaste auf „Schließen“ schließt auch hier
+  await rahmen.locator('dialog.abbildung-dialog[open] button').first().focus();
+  await seite.keyboard.press('Space');
+  await h.warte(200);
+  if (await rahmen.locator('dialog.abbildung-dialog[open]').count() !== 0) { h.befund('Einbettung (fremd, 560 px): Leertaste auf „Schließen“ schließt nicht'); await seite.keyboard.press('Escape'); }
+  // R19: mit gemeldeter Fensterhöhe (Testhost ohne Schalter) passt der Dialog bei 560 px ins Fenster – der Rückfall 640 px täte es nicht
+  await seite.goto(HOST);
+  await h.warte(1500);
+  await pruefeDialog('#theorie/k4', '.lern-inhalt [data-pruef="abbildung-gross"]', 'dialog.abbildung-dialog', 'Abbildungs (Fenster gemeldet, 560 px)');
+  const rollfreiMitMeldung = await seite.frames()[1]?.evaluate(() => document.querySelector('dialog.abbildung-dialog')?.getAttribute('data-rollfrei'));
+  if (rollfreiMitMeldung !== 'nein') h.befund(`Einbettung: trotz gemeldeter Fensterhöhe data-rollfrei=„${rollfreiMitMeldung}“`);
+  // R19: ohne Meldung, Dialog passt ganz (760 px, Hilfe-Grafik): ein Radschritt verschiebt ihn nicht, die Leertaste schließt
+  await seite.setViewportSize({ width: 1100, height: 760 });
+  await seite.goto(`${HOST}?ohne-fenster`);
+  await h.warte(1500);
+  await geheUndWarte('#hilfe/mvg-vorgehensmodell');
+  const zieleH = (await seite.evaluate(() => /** @type {any} */ (window).nachrichten)).filter((/** @type {any} */ n) => n?.art === 'ziel').length;
+  await rahmen.locator('[data-pruef="grafik-gross"]').first().click();
+  for (let i = 0; i < 30 && (await seite.evaluate(() => /** @type {any} */ (window).nachrichten)).filter((/** @type {any} */ n) => n?.art === 'ziel').length <= zieleH; i++) await h.warte(100);
+  await h.warte(1200);
+  const obenH = async () => {
+    const i = await seite.frames()[1]?.evaluate(() => document.querySelector('dialog.hilfe-grafik-dialog[open]')?.getBoundingClientRect().top ?? null);
+    const o = await seite.evaluate(() => document.getElementById('mvg')?.getBoundingClientRect().top ?? 0);
+    return i === null || i === undefined ? null : Math.round(o + i);
+  };
+  const vorRad = await obenH();
+  await seite.mouse.move(550, (vorRad ?? 100) + 100);
+  await seite.mouse.wheel(0, 120);
+  await h.warte(400);
+  const nachRadH = await obenH();
+  if (vorRad === null || nachRadH === null || Math.abs(nachRadH - vorRad) > 1) h.befund(`Einbettung (ohne Meldung): ein Radschritt verschiebt den passenden Hilfe-Dialog (${vorRad} → ${nachRadH})`);
+  await rahmen.locator('dialog.hilfe-grafik-dialog[open] button').first().focus();
+  await seite.keyboard.press('Space');
+  await h.warte(200);
+  if (await rahmen.locator('dialog.hilfe-grafik-dialog[open]').count() !== 0) { h.befund('Einbettung (ohne Meldung): Leertaste auf „Schließen“ schließt den Hilfe-Dialog nicht'); await seite.keyboard.press('Escape'); }
   if (groesseAlt !== null) await seite.setViewportSize(groesseAlt);
   // Gleiche Herkunft (R14): über http://mvg.test geladen misst der Rahmen das Hostfenster (L-83); bei 560 px
   // Höhe muss der Dialog darin bleiben – der Rückfall für fremde Herkunft (640 px) täte es nicht

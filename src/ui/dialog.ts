@@ -90,7 +90,8 @@ function zeigeKante(dialog: HTMLDialogElement, oben: boolean): void {
   marke.setAttribute('aria-hidden', 'true');
   marke.style.cssText = `position:absolute;left:0;width:1px;height:1px;pointer-events:none;top:${Math.round((oben ? r.top : r.bottom - 1) + window.scrollY)}px`;
   document.body.append(marke);
-  marke.scrollIntoView({ block: oben ? 'start' : 'end', inline: 'nearest', behavior: 'auto' });
+  // 'nearest': liegt die Kante schon im Bild, rollt nichts; sonst nur bis zu ihr (R19)
+  marke.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'auto' });
   marke.remove();
 }
 
@@ -118,14 +119,15 @@ export function halteRollenImDialog(dialog: HTMLDialogElement): void {
   radSperre.set(dialog, (e: WheelEvent) => {
     if (e.ctrlKey) return false;
     const [dx, dy] = e.shiftKey && e.deltaX === 0 ? [e.deltaY, 0] : [e.deltaX, e.deltaY];
-    // rollfrei: am Ende nur bis zur Dialogkante weiter (die Hostseite rollt mit), nie darüber hinaus (R18)
+    const r = dialog.getBoundingClientRect();
+    const drin = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+    // rollfrei: am Ende (oder neben dem Dialog) nur bis zur Dialogkante weiter – die Hostseite rollt mit,
+    // nie darüber hinaus und nie entgegen der Drehrichtung (R18, R19)
     if (rollfrei()) {
-      if (dy === 0 || kannRollen(dialog, dx, dy)) return false;
+      if (dy === 0 || (drin && kannRollen(dialog, dx, dy))) return false;
       zeigeKante(dialog, dy < 0);
       return true;
     }
-    const r = dialog.getBoundingClientRect();
-    const drin = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
     return !drin || !kannRollen(dialog, dx, dy);
   });
   let y0 = 0;
@@ -141,6 +143,8 @@ export function halteRollenImDialog(dialog: HTMLDialogElement): void {
   }, { passive: false });
   dialog.addEventListener('keydown', (e) => {
     if (!ROLLTASTEN.has(e.key) || e.altKey || e.ctrlKey || e.metaKey) return;
+    // Leertaste auf einem Knopf oder Link löst ihn aus, rollt nicht (auch rollfrei, R19)
+    if (e.key === ' ' && e.target instanceof Element && e.target.closest('button, a') !== null) return;
     // rollfrei: am Ende rollt die Hostseite nur bis zur Dialogkante mit (R18), vorher der Dialog selbst
     const hoch = ['ArrowUp', 'PageUp', 'Home'].includes(e.key) || (e.key === ' ' && e.shiftKey);
     if (rollfrei() && !['ArrowLeft', 'ArrowRight'].includes(e.key) && !kannRollen(dialog, 0, hoch ? -1 : 1)) {
@@ -148,8 +152,6 @@ export function halteRollenImDialog(dialog: HTMLDialogElement): void {
       zeigeKante(dialog, hoch);
       return;
     }
-    // Leertaste auf einem Knopf oder Link löst ihn aus, rollt nicht
-    if (e.key === ' ' && e.target instanceof Element && e.target.closest('button, a') !== null) return;
     e.preventDefault();
     const seite = Math.max(40, dialog.clientHeight - 60);
     const schritt: Record<string, [number, number]> = {

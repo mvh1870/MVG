@@ -66,7 +66,7 @@ Ein Vorschlag ohne Beschluss gilt irgendwann als Praxis.
 :::
 
 ::: rueckbezug A
-Im Mai haben Sie ‚Eigene Zahl vertreten‘ gewählt. Seither stehen Ihre +5,9 % und die Prognose der Projektsteuerung nebeneinander. Im Statusbericht vom Juli kommt Ihre Zahl nicht vor.
+Im Mai haben Sie ‚Eigene Zahl vertreten‘ gewählt. Seither stehen Ihre +5,9 % und die Prognose der Projektsteuerung nebeneinander. Im Juni-Bericht kommt Ihre Zahl nicht vor.
 :::
 
 ::: rueckbezug B

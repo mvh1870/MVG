@@ -74,7 +74,7 @@ gruppe: Was jetzt? · MVG-Neuinitialisierung
 |---|---|
 | [[zitat:k11.1-l1|Kosten, Termine und Projektumfang entwickeln sich auseinander.]] | +8 % gegen +5,9 %, Lieferzeit 26 statt 16 Wochen, größere Mensa |
 | [[zitat:k11.1-l1|Bauherr, Projektleitung, Projektsteuerung, Planung und Gremien nutzen unterschiedliche Lagebilder.]] | „Prognose_Nov_v5“ neben der CTC des Controllings |
-| [[zitat:k11.1-l1|Änderungen werden operativ bearbeitet, aber nicht strategisch freigegeben.]] | Die Mensa wurde umgeplant, nachdem ein Satz im Flur als Zusage verstanden worden war – einen Auftrag dazu gibt es nicht |
+| [[zitat:k11.1-l1|Änderungen werden operativ bearbeitet, aber nicht strategisch freigegeben.]] | Die Mensa wurde umgeplant, nachdem ein Satz im Flur als Zusage verstanden worden war – eine Beauftragung ist nirgends vermerkt |
 | [[zitat:k11.1-l1|Risiken sind bekannt, aber nicht mit Risikoannahme, Risikominderung und Entscheidung verbunden.]] | Lieferzeit seit März bekannt, Umgang nie entschieden |
 | [[zitat:k11.1-l1|Gremien erhalten Statusberichte, aber keine entscheidungsfähigen Optionen.]] | Bauausschuss vertagt über 40 Seiten ohne Entscheidungsfrage |
 | [[zitat:k11.1-l1|Neufestlegung der Projektbasis, Fortführung oder Stopp, Moratorium oder Beschleunigung stehen im Raum, ohne klare Entscheidungslogik.]] | Die Kämmerei fragt nach einer neuen Projektbasis; wer entscheidet, ist offen |
@@ -319,7 +319,7 @@ figur: brenner
 ---
 figur: hoffmeister
 ---
-„Die Ausführungsplanung läuft weiter. Aber in ihr stecken Änderungen, die nie jemand beauftragt hat.“
+„Die Ausführungsplanung läuft weiter. Aber in ihr stecken Änderungen, für die nirgends ein Auftrag vermerkt ist.“
 :::
 
 ::: standpunkt controlling

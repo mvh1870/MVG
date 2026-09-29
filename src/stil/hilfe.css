@@ -79,6 +79,9 @@
 .hilfe-inhalt .h-role-pick-card { position: relative; box-shadow: inset 3px 0 0 var(--gold-hell), var(--schatten-karte); }
 /* Rollenkarte ohne eigene Anleitung (ohne Link): ohne Goldkante, damit sie nicht wie ein Ziel aussieht (R17) */
 .hilfe-inhalt .h-role-pick-card:not(:has(> :is(h2, h3) > a)) { box-shadow: var(--schatten-karte); }
+/* Fokus zeigt die ganze Karte, so groß wie ihr Klickziel (R19) */
+.hilfe-inhalt .h-role-pick-card:has(> :is(h2, h3) > a:focus-visible) { outline: 3px solid var(--navy); outline-offset: 2px; }
+.hilfe-inhalt .h-role-pick-card > :is(h2, h3) > a:focus-visible { outline: none; }
 /* die ganze Rollenkarte ist Ziel des Überschrift-Links (Zielgröße ≥ 36 px, R14) */
 .hilfe-inhalt .h-role-pick-card > :is(h2, h3) > a::after { content: ""; position: absolute; inset: 0; }
 .hilfe-inhalt :is(.h-card, .h-feature-card) > h3:first-child, .hilfe-inhalt .h-card-title { margin-top: 0; font: 700 var(--gr-xl)/1.3 var(--schrift-text); color: var(--navy); }

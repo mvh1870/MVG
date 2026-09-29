@@ -74,3 +74,6 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 18 (P12.5, zugleich P14.3)
 - **Beide Rollen als Workflow** mit Gegenprüfung: Fachtreue 4 Befunde (0 schwer, 0 mittel – fünfte saubere Fachtreue-Runde), Stil/Architektur 4 Befunde (1 mittel, bestätigt) – alle eingearbeitet (L-89): Rollen ohne Fenstermeldung nur bis zur Dialogkante, stabileres Einbettungs-Szenario, Protokoll-Doku, Trennstellen bei 320 px, vier Wortlaute.
+
+## Runde 19 (P12.5, zugleich P14.3)
+- **Beide Rollen als Workflow** mit Gegenprüfung: Fachtreue 2 Befunde (0 schwer, 0 mittel – sechste saubere Fachtreue-Runde), Stil/Architektur 6 Befunde (4 mittel, alle bestätigt, alle im rollfrei-Zweig der Einbettung) – alle eingearbeitet (L-90).

@@ -67,6 +67,9 @@ export async function lauf(seite, h) {
   await pruefe('galerie');
   // R20: genau eine main-Landmarke
   if (await seite.locator('main').count() !== 1) h.befund(`Explore: ${await seite.locator('main').count()} main-Landmarken statt 1`);
+  // R23: freistehende Querverweise (Pillen) erreichen die Zielgröße 36 px
+  const pillen = await seite.evaluate(() => [...document.querySelectorAll('a.querverweis')].map((a) => Math.round(a.getBoundingClientRect().height)).filter((x) => x > 0));
+  if (pillen.some((x) => x < 36)) h.befund(`Explore: Querverweise kleiner als 36 px (${pillen.join(', ')})`);
   if (await seite.locator('[data-pruef="abbildungsverzeichnis"] tbody tr').count() < 1) h.befund('Galerie: Abbildungsverzeichnis leer');
   // Abbildungen (P14): Vorschaubild geladen und schmückend, Titel springt zur Abbildung; Zellen nicht buchstabenweise gebrochen (R11)
   const vz = await seite.evaluate(() => [...document.querySelectorAll('[data-pruef^="galerie-abbildung-"]')].map((a) => ({

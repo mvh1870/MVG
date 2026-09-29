@@ -179,6 +179,23 @@ export function halteRollenImDialog(dialog: HTMLDialogElement): void {
     if (t !== undefined && !kannRollen(dialog, x0 - t.clientX, y0 - t.clientY)) e.preventDefault();
   }, { passive: false });
   dialog.addEventListener('keydown', (e) => {
+    // Fokus bleibt im Dialog (R23): eingebettet schickte Tab ihn sonst auf die Hostseite, und Esc wirkte nicht mehr
+    if (e.key === 'Tab' && !e.altKey && !e.ctrlKey && !e.metaKey) {
+      const rollt = dialog.scrollHeight > dialog.clientHeight + 1 || dialog.scrollWidth > dialog.clientWidth + 1;
+      const ziele: HTMLElement[] = [
+        ...(rollt ? [dialog] : []),
+        ...dialog.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'),
+      ].filter((el) => el === dialog || el.getClientRects().length > 0);
+      const erstes = ziele[0];
+      const letztes = ziele[ziele.length - 1];
+      if (erstes === undefined || letztes === undefined) { e.preventDefault(); return; }
+      const jetzt = document.activeElement;
+      if (e.shiftKey ? jetzt === erstes || !dialog.contains(jetzt) : jetzt === letztes || !dialog.contains(jetzt)) {
+        e.preventDefault();
+        (e.shiftKey ? letztes : erstes).focus({ preventScroll: true });
+      }
+      return;
+    }
     if (!ROLLTASTEN.has(e.key) || e.altKey || e.ctrlKey || e.metaKey) return;
     // Leertaste auf einem Knopf oder Link löst ihn aus, rollt nicht (auch rollfrei, R19)
     if (e.key === ' ' && e.target instanceof Element && e.target.closest('button, a') !== null) return;

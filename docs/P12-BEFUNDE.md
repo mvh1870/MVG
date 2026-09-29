@@ -86,3 +86,6 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 22 (P12.5, zugleich P14.3)
 - **Beide Rollen als Workflow** mit Gegenprüfung: Fachtreue 1 Befund (0 schwer, 0 mittel – neunte saubere Fachtreue-Runde), Stil/Architektur 4 Befunde (2 mittel, beide bestätigt) – alle eingearbeitet (L-93).
+
+## Runde 23 (P12.5, zugleich P14.3)
+- **Beide Rollen als Workflow** mit Gegenprüfung: Fachtreue 1 Befund (0 schwer, 0 mittel – zehnte saubere Fachtreue-Runde), Stil/Architektur 4 Befunde (1 mittel, bestätigt: Fokus verlässt eingebettet den Dialog) – alle eingearbeitet (L-94).

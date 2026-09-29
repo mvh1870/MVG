@@ -162,6 +162,14 @@ export async function lauf(seite, h) {
       const nachTasten = await lageDialog();
       if (nachTasten === null || nachTasten.knopfOben < 0) h.befund(`Einbettung: Rolltasten im ${name}-Dialog rollen die Hostseite mit („Schließen“ bei ${nachTasten?.knopfOben})`);
     }
+    // R23: Tab und Umschalt+Tab halten den Fokus im Dialog (nicht auf der Hostseite), Esc schließt danach
+    await rahmen.locator(`${dialogSel}[open] button`).first().focus();
+    const hostYVor = await seite.evaluate(() => window.scrollY);
+    for (const taste of ['Tab', 'Tab', 'Shift+Tab', 'Shift+Tab', 'Tab']) { await seite.keyboard.press(taste); await h.warte(60); }
+    const fokus = await seite.frames()[1]?.evaluate((sel) => { const d = document.querySelector(`${sel}[open]`); return d !== null && d.contains(document.activeElement); }, dialogSel);
+    const hostFokus = await seite.evaluate(() => document.activeElement?.tagName ?? '');
+    const hostYNach = await seite.evaluate(() => window.scrollY);
+    if (!fokus || hostFokus !== 'IFRAME' || Math.abs(hostYNach - hostYVor) > 1) h.befund(`Einbettung: Tab verlässt den ${name}-Dialog (Fokus im Dialog ${fokus}, Hostseite ${hostFokus}, rollt ${hostYVor} → ${hostYNach})`);
     await rahmen.locator(`${dialogSel}[open] button`).first().click().catch(() => h.befund(`Einbettung: „Schließen“ nicht erreichbar (${name})`));
     await h.warte(100);
     if (await rahmen.locator(`${dialogSel}[open]`).count() !== 0) h.befund(`Einbettung: ${name}-Dialog schließt nicht`);

@@ -136,4 +136,11 @@ export async function lauf(seite, h) {
   if (await seite.locator('nav[aria-label="Hilfe-Kapitel"] details.kapitel-verzeichnis').count() !== 1) h.befund('Hilfe: Verzeichnis ohne Navigation-Landmarke');
   const hilfeNav = await seite.evaluate(() => [...document.querySelectorAll('nav')].map((n) => n.getAttribute('aria-label') ?? ''));
   if (new Set(hilfeNav).size !== hilfeNav.length) h.befund(`Hilfe: gleichnamige Navigationen (${hilfeNav.join(', ')})`);
+  // R23: jede Navigation der Hilfe hat einen Namen und mindestens einen Link (auch Handbuch und Standards)
+  for (const id of ['handbuch', 'standards']) {
+    await seite.evaluate((x) => { location.hash = `#hilfe/${x}`; }, id);
+    await h.warte(400);
+    const leer = await seite.evaluate(() => [...document.querySelectorAll('nav')].filter((n) => !n.getAttribute('aria-label') || n.querySelector('a[href]') === null).length);
+    if (leer > 0) h.befund(`Hilfe ${id}: ${leer} Navigation(en) ohne Namen oder ohne Link`);
+  }
 }

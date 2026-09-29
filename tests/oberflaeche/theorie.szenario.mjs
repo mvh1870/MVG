@@ -199,8 +199,10 @@ export async function lauf(seite, h) {
       await gross.click();
       await h.erwarte('dialog.abbildung-dialog[open]');
       const hashVorher = await seite.evaluate(() => location.hash);
-      await seite.evaluate(() => { location.hash = '#theorie/k5'; });
+      await seite.evaluate(() => { /** @type {any} */ (window).offenerDialog = document.querySelector('dialog[open]'); location.hash = '#theorie/k5'; });
       await h.warte(600);
+      // R23: der Seitenwechsel schließt den offenen Dialog (Beobachter räumen über 'close' auf)
+      if (await seite.locator('dialog[open]').count() !== 0 || await seite.evaluate(() => /** @type {any} */ (window).offenerDialog?.open === true)) h.befund('Seitenwechsel schließt den offenen Dialog nicht');
       await radRolltSeite('nach einem Seitenwechsel bei offenem Dialog');
       // R17: jede Kapitelseite trägt ihren Titel im Dokumenttitel
       const titelK5 = await seite.title();

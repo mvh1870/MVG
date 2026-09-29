@@ -181,6 +181,7 @@ a.absatz-id:hover { background: var(--weiss); box-shadow: inset 0 0 0 1px var(--
 .querverweis {
   display: inline-flex;
   align-items: center;
+  min-height: 36px; /* Zielgröße (R23) */
   gap: var(--a-2);
   padding: 5px var(--a-3) 5px 6px;
   border-radius: var(--radius-rund);

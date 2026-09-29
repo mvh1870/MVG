@@ -95,6 +95,9 @@ function starteApp(wurzel: HTMLElement): void {
   let flaeche = '';
 
   const raeume = (): void => {
+    // offene Dialoge (Abbildung, Hilfe-Grafik) schließen, bevor die Fläche wechselt: so räumen Rad- und
+    // Fenster-Beobachter über 'close' auf (P12.5 R23)
+    for (const d of document.querySelectorAll<HTMLDialogElement>('dialog[open]')) d.close();
     story?.entferne();
     story = null;
     tipps?.entferne();

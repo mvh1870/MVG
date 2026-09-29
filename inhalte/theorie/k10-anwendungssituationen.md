@@ -141,7 +141,7 @@ titel: Energieversorger und Infrastrukturträger
 ---
 Bei Energieversorgern und Infrastrukturträgern verschieben sich Projektrisiken häufig: in Freigaben, in die Priorisierung, in die Beschaffung, in Entscheidungen über Komponenten mit langer Lieferzeit und in die Disziplin bei der Restkostenprognose ([[CTC]]).
 
-Besonders wichtig sind hier deshalb:
+Besonders relevant sind hier:
 
 - eine **Projektklassenlogik** und Entscheidungen über **Fortführung oder Stopp**,
 - die **Neupriorisierung** im Projektportfolio,

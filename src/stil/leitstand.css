@@ -396,7 +396,7 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
   box-shadow: inset 0 0 0 1px var(--gold-kante);
 }
 .uhr-tag { font: 600 11.5px/1.1 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--gold-hell); white-space: nowrap; }
-.uhr-zeit { font: 800 var(--gr-3xl)/1 var(--schrift-anzeige); letter-spacing: .05em; }
+.uhr-zeit { font: 800 var(--gr-3xl)/1.1 var(--schrift-anzeige); letter-spacing: .05em; }
 .uhr.ist-gesprungen .uhr-tag { padding: 0 var(--a-1); border-radius: 2px; background: var(--koralle-text); color: var(--weiss); }
 
 /* Welt-Badge (.wbadge) */
@@ -2099,3 +2099,22 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 
 /* Frage an die gespielte Rolle im Entscheidungsschritt (P12.5, O-28) */
 .entscheidungs-frage { margin: 0; font: 700 var(--gr-xl)/1.35 var(--schrift-text); color: var(--navy); }
+
+/* R33: Text bleibt in seiner Fläche – Karten der Tafeln, Leiter-Kabine, Schritte der Story-Karte, schmale Fenster */
+.tafel-karten { grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr)); }
+.register-karte, .tafel-karte { grid-template-columns: minmax(0, 1fr); }
+.register-karte > *, .tafel-karte > * { overflow-wrap: anywhere; }
+.leiter-kabine { left: 3px; right: 3px; height: auto; min-height: 40px; padding: 3px 2px; font-size: 15px; line-height: 1.05; text-align: center; white-space: normal; }
+@media (max-width: 1200px) {
+  button.station { padding-left: 30px; }
+  button.station .station-titel { font-size: .92em; }
+}
+@media (max-width: 400px) {
+  .lagetafel table { width: 100%; table-layout: fixed; }
+  .lagetafel :is(th, td) { overflow-wrap: anywhere; hyphens: auto; }
+  .baustein-karte, .protokoll, .glied { min-width: 0; overflow-wrap: anywhere; }
+  .instrument-wertzeile { white-space: normal; }
+  .instrument .wert.wort { flex-wrap: wrap; row-gap: 2px; font-size: 18px; }
+  .datenstand-zahlen b { white-space: normal; }
+}
+.feld-karte { min-width: 0; overflow-wrap: anywhere; }

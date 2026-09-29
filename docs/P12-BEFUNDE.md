@@ -116,3 +116,6 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 32 (P12.5, zugleich P14.3)
 - **Beide Rollen als Agenten**: Fachtreue 2 Befunde (leicht: Regie-Notizen zur Weiche genauer), Stil/Architektur 4 Befunde (1 mittel: Stufe „Änderungsgremium“ läuft ohne Trennwörterbuch aus der Pille; 3 leicht: Hochkontrast-Spezifität, aktuelle Stufe im Hochkontrast, Regie-Auswahl unter 400 px) – eingearbeitet (L-106); Zählung neu.
+
+## Runde 33 (P12.5, zugleich P14.3)
+- **Beide Rollen als Agenten**: Fachtreue 2 Befunde (1 mittel: Regie-Notiz „Neufestlegung ist keine Freigabe“ gegen k4.5-p1; eingearbeitet, L-107), Stil/Architektur 8 Befunde (5 mittel: Text aus Flächen in Tafel-Karten, Leiter-Kabine, Story-Karte bei 1024, fehlende allgemeine Prüfung, Story bei 320 px; 3 leicht) – eingearbeitet (L-108), neue Überlaufprüfung in allen Szenarien; Zählung neu.

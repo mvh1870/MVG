@@ -39,6 +39,11 @@ export async function lauf(seite, h) {
   // R32: die Stufen der Mandatsleiter passen in ihre Pille, auch ohne Trennwörterbuch des Browsers
   const ueberlauf = await seite.evaluate(() => [...document.querySelectorAll('.sim-stufe')].filter((s) => s.scrollWidth > s.clientWidth + 1).map((s) => s.textContent));
   if (ueberlauf.length > 0) h.befund(`Mandatsleiter: Stufe läuft aus ihrer Pille (${ueberlauf.join(', ')})`);
+  // R33: im Hochkontrast trägt die aktuelle Stufe einen Rahmen in Systemfarbe (Flächen entfallen dort)
+  await seite.emulateMedia({ forcedColors: 'active' });
+  const stufeHk = await seite.evaluate(() => [...document.querySelectorAll('.sim-stufe[aria-current="true"]')].map((s) => { const c = getComputedStyle(s); return c.outlineStyle === 'solid' && parseFloat(c.outlineWidth) >= 2; }));
+  await seite.emulateMedia({ forcedColors: 'none' });
+  if (stufeHk.length !== 1 || !stufeHk[0]) h.befund(`Hochkontrast: aktuelle Stufe der Mandatsleiter ohne Rahmen (${JSON.stringify(stufeHk)})`);
   await pruefe('simulator');
 
   // P8.2 Vorher/Nachher-Welten: ein Aspekt, dann alle nebeneinander

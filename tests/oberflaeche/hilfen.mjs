@@ -21,6 +21,42 @@ export function pruefeLayout() {
     if (!eigenerText && !nurInline) continue;
     if (el.scrollWidth > el.clientWidth + 1) funde.push(`abgeschnitten: ${el.tagName.toLowerCase()}.${[...el.classList].slice(0, 2).join('.')} „${text.slice(0, 40)}“`);
   }
+  // R33: Text, der sichtbar aus seiner Fläche läuft (nächster Vorfahr mit Hintergrund oder Rahmen) – ohne
+  // overflow: hidden fängt das die Prüfung oben nicht (Mandatsleiter, Tafel-Karten, Leiter-Kabine).
+  const tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  const gemeldet = new Set();
+  for (let n = tw.nextNode(); n; n = tw.nextNode()) {
+    if ((n.textContent ?? '').trim() === '') continue;
+    const el = n.parentElement;
+    if (el === null || !el.checkVisibility({ visibilityProperty: true, opacityProperty: true })) continue;
+    if (el.closest('svg, .nur-sr, [data-pruef-erlaubt~="abschneiden"]')) continue;
+    // absichtlich unsichtbar gemacht (clip, clip-path) oder in einem rollenden Rahmen
+    let versteckt = false;
+    for (let q = el; q && q !== document.body; q = q.parentElement) {
+      const s = getComputedStyle(q);
+      if ((s.clip && s.clip !== 'auto') || (s.clipPath && s.clipPath !== 'none') || s.overflowX === 'auto' || s.overflowX === 'scroll') { versteckt = true; break; }
+    }
+    if (versteckt) continue;
+    const rg = document.createRange();
+    rg.selectNodeContents(n);
+    const rects = [...rg.getClientRects()].filter((r) => r.width > 0);
+    if (rects.length === 0) continue;
+    const links = Math.min(...rects.map((r) => r.left));
+    const rechts = Math.max(...rects.map((r) => r.right));
+    let a = el;
+    while (a && a !== document.body) {
+      const c = getComputedStyle(a);
+      if (c.backgroundColor !== 'rgba(0, 0, 0, 0)' || c.backgroundImage !== 'none' || parseFloat(c.borderLeftWidth) > 0 || parseFloat(c.borderRightWidth) > 0) break;
+      a = a.parentElement;
+    }
+    if (!a || a === document.body || gemeldet.has(a)) continue;
+    const ar = a.getBoundingClientRect();
+    const ueber = Math.max(rechts - ar.right, ar.left - links);
+    if (ueber > 1.5) {
+      gemeldet.add(a);
+      funde.push(`Text aus der Fläche (+${Math.round(ueber)} px): ${a.tagName.toLowerCase()}.${[...a.classList].slice(0, 2).join('.')} „${(n.textContent ?? '').trim().slice(0, 40)}“`);
+    }
+  }
   return funde;
 }
 

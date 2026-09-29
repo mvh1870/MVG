@@ -423,7 +423,7 @@ Weiße Karte wie `.lern-grafik`, Bild auf ganzer Spaltenbreite; Klick aufs Bild 
 - **Nie nur Farbe:** Welt = Farbe + Wort („Welt A · ohne MVG“), Status = Form + Wort, Rolle = Farbe + Name, Auswahl = Fläche + Ring + `aria-pressed`, Prüfpunkt = Symbol + Wort.
 - **Sprache und Struktur:** `lang="de"`, Silbentrennung automatisch, eine `h1` je Fläche, Landmarken (`header`, `nav`, `main`, `aside`), Live-Region für Statusänderungen (Prototyp `#live`), `.nur-sr` für Werte, die sonst nur grafisch sind; Sprunglink `.sprunglink` zur Lagetafel.
 - **Bewegung:** siehe oben; kein Blinken schneller als 3 Hz (die Vorspul-Ikone wechselt mit 2,9 Hz nur während des Zeitsprungs und entfällt bei reduzierter Bewegung).
-- **Zielgrößen:** Bedienelemente ≥ 36 × 36 px (Entscheidungsknöpfe ≥ 96 px hoch, Reglergriff 48 px). Ausgenommen sind Textverweise (im Fließtext, in Tabellen und Listen, Absatz-Permalinks, Fußverweise) und die Fortschrittsschritte bei schmaler Breite; für sie gilt WCAG 2.5.8 (≥ 24 px oder ausreichender Abstand, L-73/L-75).
+- **Zielgrößen:** Bedienelemente ≥ 36 × 36 px (Entscheidungsknöpfe ≥ 96 px hoch, Reglergriff 48 px). Ausgenommen sind Textverweise (im Fließtext, in Tabellen und Listen, Absatz-Permalinks, Fußverweise) und die Fortschrittsschritte bei schmaler Breite; für sie gilt WCAG 2.5.8 (≥ 24 px oder ausreichender Abstand, L-73/L-75); unter 360 px (Stationen mit neun Schritten) gilt für die Fortschrittsschritte die Ausnahme „gleichwertige Bedienung“ von WCAG 2.5.8: Weiter/Zurück und die Schritte der Story-Karte erreichen dieselben Ziele (L-108).
 - **Geräte:** 1280 × 720 (Beamer), 1024 × 768 (iPad quer), 400 px Breite lesbar ohne waagerechtes Scrollen (Referenzseite geprüft).
 
 ## Tabus

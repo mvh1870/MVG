@@ -664,7 +664,7 @@ a.abbildung-beleg { color: var(--navy); }
 .original-abbildung .abbildung { margin: 0; }
 /* Innenabstand am Bild statt am Dialog: der klebende Kopf schließt oben bündig ab und bleibt beim waagrechten Rollen stehen;
    Breite aus dem Platz neben den Rollleisten (100 %), nicht aus dem Fenster (vw) – P12.5 R11 */
-.abbildung-dialog { width: min(calc(100% - 16px), 1480px); max-width: none; max-height: 94vh; padding: 0; overflow: auto; border: 0; border-radius: var(--radius-l); background: var(--weiss); color: var(--tinte); box-shadow: var(--schatten-schwebend); }
+.abbildung-dialog { width: min(calc(100% - 16px), 1480px); max-width: none; max-height: 94vh; padding: 0; overflow: auto; overscroll-behavior: contain; border: 0; border-radius: var(--radius-l); background: var(--weiss); color: var(--tinte); box-shadow: var(--schatten-schwebend); }
 .abbildung-dialog::backdrop { background: var(--navy-a42); }
 .abbildung-dialog-kopf { position: sticky; top: 0; left: 0; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: var(--a-3); margin: 0; padding: var(--a-2) var(--a-3); background: var(--weiss); border-bottom: 1px solid var(--linie); }
 .abbildung-dialog-kopf .t-label { margin: 0; color: var(--navy); }

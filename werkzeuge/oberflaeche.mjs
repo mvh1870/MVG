@@ -195,7 +195,8 @@ function beobachte(seite, befunde, etikett) {
   seite.on('pageerror', (e) => befunde.push(`${etikett}pageerror: ${kurz(e)}`));
   seite.on('request', (r) => {
     const u = r.url();
-    if (!/^(file|data|blob|about):/.test(u)) befunde.push(`${etikett}Netzzugriff: ${u}`);
+    // http://mvg.lokal/ ist der Testname für „gleiche Herkunft“: ein Szenario beantwortet ihn per seite.route aus dem Repo (L-85)
+    if (!/^(file|data|blob|about):/.test(u) && !u.startsWith('http://mvg.lokal/')) befunde.push(`${etikett}Netzzugriff: ${u}`);
   });
 }
 

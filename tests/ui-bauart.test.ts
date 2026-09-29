@@ -1429,6 +1429,18 @@ test('Abbildungen (P14, O-32): Lernseite und Originaltext zeigen das Bild mit Vo
       assert.equal(document.title, 'Vorher');
       assert.equal(document.querySelector('.druck-bogen'), null);
       assert.equal(document.body.classList.contains('druckt-bogen'), false);
+      // bleibt afterprint aus, räumt der nächste Auftrag den alten auf (L-83, Prüfrunde 14)
+      druckKnopf.click();
+      await new Promise((r) => setTimeout(r, 0));
+      assert.equal(drucke, 2);
+      druckKnopf.click();
+      await new Promise((r) => setTimeout(r, 0));
+      assert.equal(drucke, 3, 'der zweite Auftrag nach einem Druck ohne afterprint wird nicht verschluckt');
+      assert.equal(document.querySelectorAll('.druck-bogen').length, 1, 'der alte Bogen ist weg');
+      dom.window.dispatchEvent(new dom.window.Event('afterprint'));
+      assert.equal(document.title, 'Vorher');
+      assert.equal(document.querySelector('.druck-bogen'), null);
+      assert.equal(document.body.classList.contains('druckt-bogen'), false);
     } finally {
       Bild.decode = altDecode;
       (dom.window as unknown as { print: unknown }).print = altPrint;

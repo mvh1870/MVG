@@ -77,10 +77,17 @@ export async function lauf(seite, h) {
   const dlgMass = await seite.evaluate(() => {
     const d = document.querySelector('dialog[open]');
     const k = d?.querySelector('.hilfe-grafik-dialog-kopf');
-    return d && k ? { sw: d.scrollWidth, cw: d.clientWidth, kopf: Math.round(k.getBoundingClientRect().top - d.getBoundingClientRect().top), breit: window.innerWidth } : null;
+    const knopf = k?.querySelector('button');
+    if (!d || !k || !knopf) return null;
+    const r = d.getBoundingClientRect();
+    return { sw: d.scrollWidth, cw: d.clientWidth, kopf: Math.round(k.getBoundingClientRect().top - r.top), breit: window.innerWidth,
+      oben: Math.round(r.top), unten: Math.round(window.innerHeight - r.bottom), knopfAbKopf: Math.round(knopf.getBoundingClientRect().top - k.getBoundingClientRect().top) };
   });
   if (dlgMass !== null && dlgMass.breit >= 1260 && dlgMass.sw > dlgMass.cw + 1) h.befund(`Grafik-Dialog: ${dlgMass.sw - dlgMass.cw} px breiter als sein Innenraum`);
   if (dlgMass !== null && dlgMass.kopf !== 0) h.befund(`Grafik-Dialog: Kopf ${dlgMass.kopf} px unter der Oberkante`);
+  // R14: mittig (wie der Abbildungs-Dialog), „Schließen“ so dicht an der Kopfkante wie dort (8 px Innenabstand)
+  if (dlgMass !== null && Math.abs(dlgMass.oben - dlgMass.unten) > 2) h.befund(`Grafik-Dialog nicht mittig (oben ${dlgMass.oben}, unten ${dlgMass.unten} px)`);
+  if (dlgMass !== null && dlgMass.knopfAbKopf > 10) h.befund(`Grafik-Dialog: „Schließen“ ${dlgMass.knopfAbKopf} px unter der Kopfkante`);
   await h.axe('grafik-dialog');
   await seite.keyboard.press('Escape');
   await h.warte(100);

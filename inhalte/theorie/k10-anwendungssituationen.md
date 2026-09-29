@@ -139,7 +139,7 @@ Der Ansatz hilft,
 ---
 titel: Energieversorger und Infrastrukturträger
 ---
-Bei Energieversorgern und Infrastrukturträgern entstehen Risiken oft nicht dort, wo man sie zuerst sucht. Sie verschieben sich in Freigaben, in die Priorisierung zwischen Projekten, in die Beschaffung, in Entscheidungen über Komponenten mit langer Lieferzeit – etwa große Transformatoren oder Turbinen – und in die Disziplin bei der Restkostenprognose ([[CTC]]).
+Bei Energieversorgern und Infrastrukturträgern entstehen Risiken oft nicht dort, wo man sie zuerst sucht. Sie verschieben sich in Freigaben, in die Priorisierung zwischen Projekten, in die Beschaffung, in Entscheidungen über Komponenten mit langer Lieferzeit und in die Disziplin bei der Restkostenprognose ([[CTC]]).
 
 Besonders wichtig sind hier deshalb:
 

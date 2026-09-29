@@ -114,6 +114,16 @@ export async function lauf(seite, h) {
         await h.warte(100);
         if ((await seite.locator('dialog[open]').count()) !== 1) h.befund('Abbildungs-Dialog: Klick auf den Innenrand schließt');
       }
+      // R14: das Mausrad über dem Dialog rollt die Seite dahinter nicht mit (auch nicht am Ende des Bilds)
+      const yVor = await seite.evaluate(() => window.scrollY);
+      const mitte = await seite.locator('dialog.abbildung-dialog[open]').boundingBox();
+      if (mitte !== null) {
+        await seite.mouse.move(mitte.x + mitte.width / 2, mitte.y + Math.min(mitte.height, 300) / 2);
+        for (let i = 0; i < 8; i++) { await seite.mouse.wheel(0, 150); await h.warte(60); }
+        await h.warte(300);
+        const yNach = await seite.evaluate(() => window.scrollY);
+        if (Math.abs(yNach - yVor) > 1) h.befund(`Abbildungs-Dialog: Mausrad rollt die Seite dahinter mit (${yVor} → ${yNach})`);
+      }
       const fenster = seite.viewportSize() ?? { width: 1280, height: 720 };
       const aussen = rahmenD.y > 6 ? { x: fenster.width / 2, y: 3 } : { x: 3, y: fenster.height / 2 };
       await seite.mouse.click(aussen.x, aussen.y);

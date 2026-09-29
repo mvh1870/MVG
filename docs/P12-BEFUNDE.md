@@ -59,3 +59,6 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 13 (P12.5, zugleich P14.3)
 - **Beide Rollen als Workflow** mit Gegenprüfung jedes schweren/mittleren Befunds: Fachtreue 8 Befunde (1 mittel), Stil/Architektur 6 Befunde (3 mittel); alle 4 mittleren vom Skeptiker bestätigt – alle eingearbeitet (L-84): Tests für die Zusagen aus L-82 und L-83 (welche Abbildungen, <wbr>, Wortbrüche aller Spalten bei 360 px, alle drei Permalinks nur im Originaltext), Hilfe-Grafik-Dialog (Inline-Breite, Abstände), Wortlaut in Verzeichnis, abb-7, abb-10, B2, A5, Fall-Bibel, BEGRIFFE, Doku zur Einbettung.
+
+## Runde 14 (P12.5, zugleich P14.3)
+- **Beide Rollen als Workflow** mit Gegenprüfung: Fachtreue 3 Befunde (0 schwer, 0 mittel), Stil/Architektur 6 Befunde (3 mittel, alle bestätigt) – alle eingearbeitet (L-85): Mausrad über Dialogen rollt nicht mit, Höhendeckel bei gleicher Herkunft geprüft, Mitte/Kopf des Hilfe-Dialogs geprüft, Drucktest ohne afterprint, Rollenkarten, Wortlaut abb-7, abb-14, k10.3.

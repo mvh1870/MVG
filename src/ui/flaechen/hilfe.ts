@@ -146,10 +146,6 @@ function eindeutig(svg: SVGSVGElement, anhang: string): SVGSVGElement {
   return svg;
 }
 
-/**
- * Breite Grafiken der Anwendung (viewBox ab 900) sind in der Lesespalte klein beschriftet: ein Knopf
- * zeigt sie in einem Dialog über die ganze Fensterbreite (Esc oder „Schließen“ kehrt zurück).
- */
 /** Klon für den Dialog: ohne die Inline-Breite der Quelle (width:100 %), sonst gilt der Rand aus hilfe.css nicht (R13). */
 function grosseGrafik(svg: SVGSVGElement): SVGSVGElement {
   const klon = eindeutig(svg.cloneNode(true) as SVGSVGElement, '-gross');
@@ -157,6 +153,10 @@ function grosseGrafik(svg: SVGSVGElement): SVGSVGElement {
   return klon;
 }
 
+/**
+ * Breite Grafiken der Anwendung (viewBox ab 900) sind in der Lesespalte klein beschriftet: ein Knopf
+ * zeigt sie in einem Dialog über die ganze Fensterbreite (Esc oder „Schließen“ kehrt zurück).
+ */
 function grafikenVergroesserbar(wurzel: HTMLElement): void {
   if (typeof HTMLDialogElement !== 'function') return;
   for (const huelle of wurzel.querySelectorAll<HTMLElement>('.h-grafik-wrap')) {

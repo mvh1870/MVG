@@ -76,7 +76,9 @@
   box-shadow: var(--schatten-karte);
 }
 .hilfe-inhalt .h-feature-card { box-shadow: inset 0 3px 0 var(--petrol), var(--schatten-karte); }
-.hilfe-inhalt .h-role-pick-card { box-shadow: inset 3px 0 0 var(--gold-hell), var(--schatten-karte); }
+.hilfe-inhalt .h-role-pick-card { position: relative; box-shadow: inset 3px 0 0 var(--gold-hell), var(--schatten-karte); }
+/* die ganze Rollenkarte ist Ziel des Überschrift-Links (Zielgröße ≥ 36 px, R14) */
+.hilfe-inhalt .h-role-pick-card > :is(h2, h3) > a::after { content: ""; position: absolute; inset: 0; }
 .hilfe-inhalt :is(.h-card, .h-feature-card) > h3:first-child, .hilfe-inhalt .h-card-title { margin-top: 0; font: 700 var(--gr-xl)/1.3 var(--schrift-text); color: var(--navy); }
 .hilfe-inhalt :is(.h-feature-grid, .h-grid, .h-cols-2, .h-cols-3) { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: var(--a-4); }
 .hilfe-inhalt :is(.h-feature-grid, .h-grid, .h-cols-2, .h-cols-3) > * + * { margin-top: 0; }
@@ -166,7 +168,7 @@
 .hilfe-grafik-dialog svg text.svg-text { fill: var(--tinte); }
 .hilfe-grafik-dialog svg text.svg-text-light { fill: var(--weiss); }
 /* Mindestbreite: die kleinsten Beschriftungen der Anwendung (10 Einheiten bei 1000 Breite) erreichen 12 px */
-.hilfe-grafik-dialog { overflow: auto; }
+.hilfe-grafik-dialog { overflow: auto; overscroll-behavior: contain; }
 .hilfe-grafik-dialog svg { min-width: 1200px; }
 @media print { .hilfe-grafik-knopf { display: none; } }
 

@@ -141,6 +141,13 @@ export async function lauf(seite, h) {
     else {
       if (lageD.unten > fensterH + 1) h.befund(`Einbettung: ${name}-Dialog ragt unter das Fenster der Hostseite (${Math.round(lageD.unten)} > ${fensterH})`);
       if (lageD.knopfOben < 0 || lageD.knopfUnten > fensterH) h.befund(`Einbettung: „Schließen“ im ${name}-Dialog nicht sichtbar`);
+      // R14: das Mausrad über dem Dialog rollt nur ihn – auch am Ende nicht die Hostseite mit
+      const breiteH = await seite.evaluate(() => window.innerWidth);
+      await seite.mouse.move(breiteH / 2, (lageD.oben + Math.min(lageD.unten, fensterH)) / 2);
+      for (let i = 0; i < 6; i++) { await seite.mouse.wheel(0, 150); await h.warte(60); }
+      await h.warte(300);
+      const nachRad = await lageDialog();
+      if (nachRad === null || nachRad.knopfOben < 0) h.befund(`Einbettung: Mausrad über dem ${name}-Dialog rollt die Hostseite mit („Schließen“ bei ${nachRad?.knopfOben})`);
     }
     await rahmen.locator(`${dialogSel}[open] button`).first().click().catch(() => h.befund(`Einbettung: „Schließen“ nicht erreichbar (${name})`));
     await h.warte(100);
@@ -163,4 +170,14 @@ export async function lauf(seite, h) {
     const start = await rahmen.locator('.startseite').count();
     if (im !== 0 || start !== 1) h.befund(`Einbettung: Rahmen mit ${ziel} zeigt Regie/Leinwand (${im}) statt Startseite (${start})`);
   }
+  // Gleiche Herkunft (R14): über http://mvg.lokal geladen misst der Rahmen das Hostfenster (L-83); bei 560 px
+  // Höhe muss der Dialog darin bleiben – der Rückfall für fremde Herkunft (640 px) täte es nicht
+  const wurzel = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
+  await seite.route('http://mvg.lokal/**', (r) => r.fulfill({ path: path.join(wurzel, decodeURIComponent(new URL(r.request().url()).pathname)) }));
+  const groesseVorher = seite.viewportSize();
+  await seite.setViewportSize({ width: 1100, height: 560 });
+  await seite.goto('http://mvg.lokal/tests/oberflaeche/einbettung-host.html');
+  await h.warte(1500);
+  await pruefeDialog('#theorie/k4', '.lern-inhalt [data-pruef="abbildung-gross"]', 'dialog.abbildung-dialog', 'Abbildungs (gleiche Herkunft)');
+  if (groesseVorher !== null) await seite.setViewportSize(groesseVorher);
 }

@@ -117,6 +117,8 @@ Diesen Schnipsel an die Stelle der eigenen Seite kopieren, an der MVG interaktiv
   - `{ mvg: 'einbettung', art: 'frage' }`
 - Regie und Leinwand gibt es im Rahmen nicht: Weder `gehe` noch eine Adresse mit `#regie` oder `#leinwand` öffnet sie, die Anwendung zeigt dann die Startseite.
 
+**Vergrößerte Abbildungen und Grafiken** öffnen eingebettet an ihrer Stelle, die Hostseite rollt dorthin. Ihre Höhe ist auf das Fenster der Hostseite begrenzt, wenn beide dieselbe Herkunft haben; bei fremder Herkunft kann der Rahmen das Fenster nicht messen und nimmt höchstens 640 px – auf niedrigeren Fenstern (Telefon quer) rollt dann die Hostseite mit, „Schließen“ bleibt oben sichtbar.
+
 ## 4. Pflege (für den Bau)
 
 - Inhalte stehen als Markdown unter `inhalte/` (Format: `docs/INHALTSFORMAT.md`).

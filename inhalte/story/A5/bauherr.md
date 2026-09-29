@@ -70,7 +70,7 @@ Im März haben Sie ‚Zusage bestätigen‘ gewählt. Die Generalplanung plante 
 :::
 
 ::: rueckbezug B
-Im März haben Sie ‚An die GML verweisen‘ gewählt; die Frage hing zwischen Stadt und GML. Jetzt kommt ein Nachtrag, beauftragt hat die Umplanung niemand.
+Im März haben Sie ‚An die GML verweisen‘ gewählt; die Frage hing zwischen Stadt und GML. Jetzt kommt ein Nachtrag; eine Beauftragung der Umplanung ist nirgends vermerkt.
 :::
 
 ::: rueckbezug C

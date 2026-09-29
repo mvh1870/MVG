@@ -11,8 +11,8 @@ angeglichen:
 abweichungen:
   - text: 'Die Abbildung gliedert das Modell in fünf Spalten, darunter „Steuerungslogik“; der Text nennt acht Bausteine. „System der Entscheidungs-IDs“, „Risiko-/Änderungs-/Maßnahmenverknüpfung“ und „Befähigung“ fehlen; die „Datenstands- und Nachweislogik“ erscheint nur als Kacheln „Datenstand“, der Baustein „Zielsystem und Abwägungsregeln“ nur als Spalte „Zielsystem“ ohne Abwägungsregeln.'
     beleg: k5.2-t1 k7.2-p1
-  - text: 'Die Leiste unten nennt „Minimum first“, „Auswirkungsbewertung“, „Entscheidungsreife“, „Evidenz“ und „Auditierbarkeit“; „Minimum first“, „Evidenz“ und „Auditierbarkeit“ kommen im Text nicht vor – er spricht von Nachweis und Nachweisfähigkeit. Er beschreibt MVG als kleinsten funktionsfähigen Governance-Standard und als Bauherren-Führungsmodell, das Verantwortung in entscheidbare, mandatsfähige und nachweisbare Strukturen übersetzt.'
-    beleg: k5-p1
+  - text: 'Die Leiste unten nennt „Minimum first“, „Auswirkungsbewertung“, „Entscheidungsreife“, „Evidenz“ und „Auditierbarkeit“; „Minimum first“ und „Auditierbarkeit“ kommen im Text nicht vor, „Evidenz“ nur in „evidenzbasiert“ – als Leitbegriff spricht er von Nachweis und Nachweisfähigkeit. Er beschreibt MVG als kleinsten funktionsfähigen Governance-Standard und als Bauherren-Führungsmodell, das Verantwortung in entscheidbare, mandatsfähige und nachweisbare Strukturen übersetzt.'
+    beleg: k5-p1 k7.1-p1
   - text: 'Die Spalte „Rollen & Mandate“ zeigt eine Kachel „Mandatskarte“, die im Text nicht vorkommt; dort übersetzt der Baustein „Rollen und Mandate“ Rollen in Befugnisse, Schwellen, Stellvertretungen, Freigaben und Eskalationswege.'
     beleg: k5.2-t1
   - text: 'Die dritte Spalte heißt „Freigaben & Files“; der Baustein im Text heißt „Freigabelogik“ und verknüpft Projektfortschritt mit Entscheidungsvorbereitung und Freigabereife.'

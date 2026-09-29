@@ -5,9 +5,9 @@ alt: >-
   Legende „Lebenszyklus / ‚wird zu‘“: Risiko (wesentlich) → Entscheidungsregister (ausarbeiten) →
   Entscheidungsvorlage (reif) → „Freigabe (LPH 0–9)“; Frühwarnung (wird zu, bestätigt) → Risiko; Problem
   (eskaliert), Änderung (erfordert) → Register; Vorlage (führt zu) → Änderung (beeinflusst) → CTC / Prognose;
-  Vorlage (erzeugt), Freigabe (Auflagen) → Maßnahme. „Überwachung / Indikator“: Band „Schwellenwert löst
-  Frühwarnung aus“ → Frühwarnung, CTC; Risiko (Indicator) → Frühwarnung; Maßnahme (Risikominderung) →
-  Risiko. „Bericht in den Managementbericht“: Freigabe (Bericht) → Managementbericht.
+  Vorlage (erzeugt), Freigabe (Auflagen) → Maßnahme. „Überwachung / Indikator“: „Schwellenwert löst
+  Frühwarnung aus“ → Frühwarnung, CTC; Risiko (Indicator) → Frühwarnung; Maßnahme (Risikominderung, Regelkreis schließt) →
+  Risiko. „Bericht in den Managementbericht“: Freigabe → Managementbericht.
 angeglichen:
   - { x: 1291, y: 343, b: 62, h: 23, text: (LPH 0–9), beleg: k13-t1, schrift: barlow, gewicht: 700, groesse: 16, ausrichtung: rechts }
   - { x: 1232, y: 368, b: 122, h: 24, text: Freigabeentscheidung, beleg: k6.4.4-t1, schrift: barlow, gewicht: 500, groesse: 15, farbe: '#081114' }

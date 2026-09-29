@@ -679,7 +679,7 @@ a.abbildung-beleg { color: var(--navy); }
   .abbildung-gross, .abbildung-dialog { display: none; }
 }
 /* Abbildungsverzeichnis in Explore (P14): Vorschaubild und Titel als Sprung zur Abbildung */
-.galerie-abbildung { display: flex; align-items: center; gap: var(--a-3); min-height: 36px; }
+.galerie-abbildung { display: flex; align-items: center; gap: var(--a-3); min-height: 36px; hyphens: manual; }
 .galerie-abbildung img { flex: none; width: 96px; height: auto; border-radius: var(--radius-xs); box-shadow: inset 0 0 0 1px var(--linie), var(--schatten-karte); }
 @media (max-width: 700px) { .galerie-abbildung img { width: 64px; } }
 /* schmal: Vorschaubild über dem Titel, damit lange Titelwörter („Verantwortungspyramide“) in die Zeile passen */

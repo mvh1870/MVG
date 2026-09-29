@@ -93,6 +93,8 @@ test('Originaltext: jede Abbildung steht an ihrer Stelle der DOCX (nach Übersch
   for (const t of Object.values(inhalte.theorie) as { bloecke: { art: string; id: string | null; kinder?: unknown[] }[] }[]) gehe(t.bloecke);
   assert.equal(zahl.size, 10, 'zehn Abbildungen auf Lernseiten (abb-10, abb-12, abb-13 nur im Originaltext, L-77, L-82)');
   for (const [id, n] of zahl) assert.equal(n, 1, `${id} ${n}× auf Lernseiten`);
+  // R13: welche – nicht nur wie viele (L-82: die drei widersprechen einer Regel ihrer Lernseite)
+  for (const id of ['abb-10', 'abb-12', 'abb-13']) assert.ok(!zahl.has(id), `${id} steht auf einer Lernseite – nur im Originaltext (L-82)`);
 });
 
 test('Compiler (baueAbbildungen): veraltetes Bild, fremdes WebP, fremdes Kapitel, doppelt, ohne Originaltext → Fehler (Prüfagent R11)', () => {

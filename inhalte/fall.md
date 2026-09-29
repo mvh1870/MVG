@@ -43,6 +43,7 @@ Die Geschichte beginnt mit der Übernahme der Projektleitung auf Bauherrenseite 
 | Datenstand ab Oktober (nur Welt B) | „Kostenprognose 2026-10 · Version 4“ | ersetzt Version 3; enthält die beschlossenen Änderungen `AEN-012`, `AEN-022`, `AEN-031` (L-42); in B5 (September) ist sie in Arbeit |
 | aktualisierte Prognose (nur Welt A) | +9,1 %, rund +5,3 Mio. € | A3, Option „Prognose aktualisieren lassen“; läge über 5 Mio. € und damit auf der Stufe des Bauherrn im Lenkungskreis |
 | Abweichung Monat 5, Controlling | +5,9 %, rund +3,4 Mio. € | eigene CTC-Rechnung der GML |
+| Differenz Monat 5 | 2,1 Prozentpunkte, rund 1,2 Mio. € | 2,1 % von 58,4 Mio. €; nicht aus den gerundeten Werten 4,7 − 3,4 rechnen (L-82) |
 | Abweichung und Reserve | Abweichungen gegen die Projektbasis gerechnet, Risikoreserve darin noch nicht eingesetzt | ganz eingesetzt, blieben nach Projektsteuerung rund 1,8 Mio. €, nach Controlling rund 0,5 Mio. € Überschreitung |
 | Ursache (nach Klärung) | überwiegend Preissteigerung Holzbauelemente laut Marktabfrage; Nachtrag der TGA-Fachplanung angekündigt | A3; Bauverträge gibt es erst nach LPH 7 |
 | Nutzerwunsch Mensa (Monat 3) | Ganztag: Mensa für rund 450 statt 300 Essen, grob 0,6 Mio. € | Schätzung der Generalplanung, noch ohne Termin- und Risikowirkung |

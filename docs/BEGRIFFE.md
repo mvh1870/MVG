@@ -47,7 +47,7 @@ Maßgeblich ist der Text des Whitepapers V1.2 (O-15), danach die Companion-Termi
 | Long Lead | Komponente mit langer Lieferzeit |
 | Impact, Impact-Bewertung | Auswirkung, Auswirkungsbewertung |
 | Risk | Risiko |
-| Mitigation | Risikominderung |
+| Mitigation, mitigieren, mitigiert | Risikominderung |
 | Contingency | Risikoreserve |
 | Heatmap | Bewertungsmatrix bzw. Risikomatrix |
 | Stakeholder | Beteiligte |

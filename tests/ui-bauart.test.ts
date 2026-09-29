@@ -785,6 +785,22 @@ test('Tafeln Welt B (T9): Phasen-Wahl wandert, Screenreader-Hinweis am hervorgeh
   assert.match(m.querySelector('[data-pruef="raci-detail"]')?.textContent ?? '', /Zweite.*A · entscheidet.*Bauherren-PL \(Sie\)/su);
 });
 
+test('Tafeltitel (P12.5 R12/R13): nach „/“ darf umgebrochen werden (<wbr>), der Text bleibt wortgleich', () => {
+  let gefunden = 0;
+  for (const k of kapitelListe(inhalte).filter((x) => x.seite)) {
+    const seite = baueTheorie({ inhalte, kapitel: k.nr, version: VERSION, bedienbar: false });
+    for (const t of seite.querySelectorAll('.tafel-titel')) {
+      const text = t.textContent ?? '';
+      const striche = (text.match(/\//gu) ?? []).length;
+      if (striche === 0) continue;
+      gefunden += 1;
+      assert.equal(t.querySelectorAll('wbr').length, striche, `„${text}“: ein <wbr> je „/“`);
+      assert.ok(!/\u200b/u.test(text), 'kein unsichtbares Zeichen im Text');
+    }
+  }
+  assert.ok(gefunden > 0, 'mindestens ein Tafeltitel mit „/“ (Kap. 8: Risiko-/Änderungs-/Maßnahmenverknüpfung)');
+});
+
 test('Lernseite (P6.1): Tafel, RACI, Merksatz und Ebenen 1–4 werden auf Seiten- und Abschnittsebene gezeichnet', () => {
   const eintrag = Object.entries(inhalte.theorie).find(([, s]) => s.kapitel === 1);
   assert.ok(eintrag);

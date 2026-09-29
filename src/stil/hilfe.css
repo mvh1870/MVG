@@ -155,6 +155,9 @@
 /* dasselbe Layout wie .abbildung-dialog (P12.5 R11/R12): Breite neben der Rollleiste, kein Innenabstand, Kopf klebt bündig */
 .hilfe-grafik-dialog { width: min(calc(100% - 16px), 1500px); max-width: none; max-height: 94vh; padding: 0; border: 0; border-radius: var(--radius-l); background: var(--weiss); color: var(--tinte); box-shadow: var(--schatten-schwebend); }
 .hilfe-grafik-dialog::backdrop { background: var(--navy-a42); }
+/* die Abstandsregel der Hilfe (> * + *) nicht in den Dialog tragen: er steht mittig, der Kopf ist so hoch wie bei den Abbildungen (R13) */
+.hilfe-inhalt .hilfe-grafik-dialog { margin: auto; }
+.hilfe-inhalt .hilfe-grafik-dialog-kopf > * + * { margin-top: 0; }
 .hilfe-grafik-dialog-kopf { position: sticky; top: 0; left: 0; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: var(--a-3); margin: 0; padding: var(--a-2) var(--a-3); background: var(--weiss); border-bottom: 1px solid var(--linie); }
 .hilfe-grafik-dialog-kopf .t-label { margin: 0; color: var(--navy); }
 .hilfe-grafik-dialog-kopf .knopf { flex: none; white-space: nowrap; }

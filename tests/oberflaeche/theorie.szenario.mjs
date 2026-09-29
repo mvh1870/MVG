@@ -136,16 +136,17 @@ export async function lauf(seite, h) {
     }
   }
   // Abbildung nur im Originaltext (abb-10, abb-12, abb-13; L-77, L-82): Permalink klappt ihn auf
-  const nurOriginal = inhalte.whitepaper.abbildungen.find((/** @type {any} */ a) => a.bild !== null
+  const nurOriginal = inhalte.whitepaper.abbildungen.filter((/** @type {any} */ a) => a.bild !== null
     && !JSON.stringify(Object.values(inhalte.theorie).find((/** @type {any} */ t) => t.kapitel === Number(a.kapitel))?.bloecke ?? []).includes(`"id":"${a.id}"`));
-  if (nurOriginal !== undefined) {
-    await seite.evaluate((a) => { location.hash = `#theorie/k${a.kapitel}/${a.id}`; }, nurOriginal);
-    const f = seite.locator(`.originaltext figure.abbildung[data-abbildung="${nurOriginal.id}"]`);
+  if (nurOriginal.length !== 3) h.befund(`${nurOriginal.length} Abbildungen nur im Originaltext statt 3 (L-82)`);
+  for (const a of nurOriginal) {
+    await seite.evaluate((x) => { location.hash = `#theorie/k${x.kapitel}/${x.id}`; }, a);
+    const f = seite.locator(`.originaltext figure.abbildung[data-abbildung="${a.id}"]`);
     await f.waitFor({ timeout: 3000 });
     await h.warte(300);
     const lage = await f.boundingBox();
     const offen = await f.evaluate((el) => el.closest('details')?.open ?? false);
-    if (!offen || lage === null || lage.y > (seite.viewportSize()?.height ?? 800)) h.befund(`Permalink ${nurOriginal.id}: Originaltext zu oder Abbildung nicht sichtbar (${JSON.stringify(lage)})`);
+    if (!offen || lage === null || lage.y > (seite.viewportSize()?.height ?? 800)) h.befund(`Permalink ${a.id}: Originaltext zu oder Abbildung nicht sichtbar (${JSON.stringify(lage)})`);
   }
 
   // Zitierfunktion (P10.1): Absatz-Permalink springt zum Absatz, „Zitieren“ zeigt die Angabe

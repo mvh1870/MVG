@@ -345,7 +345,7 @@ export const W = {
     diagrammeText: 'Diese Grafiken leben in den Stationen, wo sie mit dem Fall arbeiten – ein Klick führt zur Station.',
     diagrammName: (art: string) => ({ mandatsleiter: 'Mandatsleiter', kette: 'Governance-Fluss als Kette', raci: 'RACI mit Mandat', datenstand: 'Datenstand mit Versionen', 'grafik:ctc-verlauf': 'CTC-Verlauf', vorlage: 'Entscheidungsvorlage mit Prüfliste', nachweiskette: 'Nachweiskette' } as Record<string, string>)[art] ?? art,
     verzeichnis: 'Abbildungsverzeichnis',
-    verzeichnisText: 'Die Abbildungen des Originaltexts in der Reihenfolge des Textes (der Originaltext nummeriert sie nicht). Sie stehen auf den Lernseiten und im Originaltext an ihrer Stelle; wo eine Abbildung vom Text abweicht, gilt der Text V1.2. Die Tabellen der Kapitel stehen als interaktive Grafik auf den Lernseiten.',
+    verzeichnisText: 'Die Abbildungen des Originaltexts in der Reihenfolge des Textes (der Originaltext nummeriert sie nicht). Sie stehen im Originaltext an ihrer Stelle, zehn davon auch auf der Lernseite beim passenden Abschnitt; wo eine Abbildung vom Text abweicht, gilt der Text V1.2. Die Tabellen der Kapitel stehen als interaktive Grafik auf den Lernseiten.',
     abb: 'Abbildung',
     nr: 'Nr.',
     stelle: 'Stelle im Text',

@@ -73,6 +73,14 @@ export async function lauf(seite, h) {
   await h.erwarte('dialog[open]');
   const klein = await seite.evaluate(() => Math.min(...[...document.querySelectorAll('dialog[open] svg text')].map((t) => t.getBoundingClientRect().height)));
   if (klein < 11.5) h.befund(`Grafik vergrößert: Beschriftung nur ${klein.toFixed(1)} px hoch`);
+  // R13: ab 1224 px passt die Grafik samt Rand in den Dialog (keine Inline-Breite aus der Quelle), der Kopf ist bündig
+  const dlgMass = await seite.evaluate(() => {
+    const d = document.querySelector('dialog[open]');
+    const k = d?.querySelector('.hilfe-grafik-dialog-kopf');
+    return d && k ? { sw: d.scrollWidth, cw: d.clientWidth, kopf: Math.round(k.getBoundingClientRect().top - d.getBoundingClientRect().top), breit: window.innerWidth } : null;
+  });
+  if (dlgMass !== null && dlgMass.breit >= 1260 && dlgMass.sw > dlgMass.cw + 1) h.befund(`Grafik-Dialog: ${dlgMass.sw - dlgMass.cw} px breiter als sein Innenraum`);
+  if (dlgMass !== null && dlgMass.kopf !== 0) h.befund(`Grafik-Dialog: Kopf ${dlgMass.kopf} px unter der Oberkante`);
   await h.axe('grafik-dialog');
   await seite.keyboard.press('Escape');
   await h.warte(100);

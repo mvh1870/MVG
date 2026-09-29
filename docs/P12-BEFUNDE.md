@@ -101,3 +101,6 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 27 (P12.5, zugleich P14.3)
 - **Beide Rollen als Agenten**: Fachtreue 6 Befunde (leicht), Stil/Architektur 2 Befunde (leicht, axe „moderate“) – keine schweren oder mittleren; nach L-64 erste von zwei sauberen Runden. Fachtreue eingearbeitet (L-98); CI rot seit Lauf 142 (Chrome 153 trennt im Abbildungsverzeichnis) behoben.
+
+## Runde 28 (P12.5, zugleich P14.3)
+- **Beide Rollen als Agenten**: Fachtreue 7 Befunde (leicht, eingearbeitet, L-99); Stil/Architektur 7 Befunde (3 mittel: Druckbogen zeigt Wissenscheck und Schwellen-Spiel bedienbar, forced-colors ohne Knopfgrenzen und Wahlzustand, Kap. 9 rollt bei 320 px waagerecht; 4 leicht) – die Zählung zweier sauberer Runden beginnt neu.

@@ -64,6 +64,8 @@ export async function lauf(seite, h) {
   await h.erwarteNicht('[data-pruef="story-karte"]');
   if ((await seite.locator('[data-pruef="leitstand"]').getAttribute('data-seitenleiste')) !== 'zu') h.befund('Seitenleiste nicht eingeklappt');
   await stand('prolog');
+  // R27: die Fußleiste ist eine benannte Landmarke (sonst axe „region“)
+  if (await seite.locator('nav.fussleiste[aria-label="Story blättern"]').count() !== 1) h.befund('Story: Fußleiste nicht als nav „Story blättern“');
 
   /* -------------------------------------------------------------- Rollenwahl -- */
   await weiter();

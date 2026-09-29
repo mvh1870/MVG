@@ -19,6 +19,15 @@ const klartext = (html) => html.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').tri
  */
 export async function lauf(_seite, h) {
   const inhalte = JSON.parse(readFileSync(path.join(WURZEL, 'src', 'generiert', 'inhalte.json'), 'utf8'));
+  // R27: die Warteansicht (Leinwand ohne Regie) ist die main der Leinwand und trägt eine h1
+  const wartend = await h.zweitesFenster('#leinwand');
+  await h.erwarte('[data-pruef="leinwand-warten"]', wartend);
+  const warteLandmarken = await wartend.evaluate(() => {
+    const w = document.querySelector('[data-pruef="leinwand-warten"]');
+    return `${w?.tagName}:${w?.querySelectorAll('h1').length}:${document.querySelectorAll('main').length}`;
+  });
+  if (warteLandmarken !== 'MAIN:1:1') h.befund(`Leinwand wartet ohne main/h1 (${warteLandmarken})`);
+  await wartend.close();
   const regie = await h.zweitesFenster('#regie');
   await h.erwarte('[data-pruef="regie"]', regie);
   // R21: die Regie hat genau eine main-Landmarke; die Vorschau (aria-hidden) zeigt die Leinwand, deren Story-Tafel eine eigene main trägt

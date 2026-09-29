@@ -892,7 +892,7 @@ test('Zitierfunktion und Impressum (P10.1): Absatz-Permalink, Zitierangabe, nich
   assert.equal(seite.querySelector('[data-pruef="zum-impressum"]')?.getAttribute('href'), '#theorie/impressum');
 });
 
-test('Glossar (P6.14): alle Begriffe wortgleich, Suche filtert, „Kommt vor in“ verlinkt Stationen und Kapitel', () => {
+test('Glossar (P6.14): alle Begriffe wortgleich, Suche filtert, „Verlinkt in“ nennt Stationen und Kapitel', () => {
   const el = baueTheorie({ inhalte, kapitel: 13, version: VERSION, bedienbar: true });
   const eintraege = [...el.querySelectorAll<HTMLElement>('[data-pruef="glossar-eintrag"]')];
   const alle = Object.values(inhalte.glossar);

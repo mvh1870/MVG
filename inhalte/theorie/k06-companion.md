@@ -559,7 +559,7 @@ Beantragt · In Prüfung · Beschlossen · Abgelehnt · Umgesetzt
 ---
 titel: Rhythmus, Rollen und Eskalation
 ---
-Zur Zusammenarbeit gehören feste Takte. Jeder Termin hat seine Beteiligten und seinen Fokus – vom täglichen Blick auf Fristen bis zur einzelnen Freigabe. Ziehen Sie den Regler vom täglichen Takt bis zur einzelnen Freigabe.
+Zur Zusammenarbeit gehören feste Takte. Jeder Termin hat seine Beteiligten und seinen Fokus – vom täglichen Blick auf Fristen bis zur einzelnen Freigabe. Ziehen Sie den Regler.
 
 Was geschieht, wenn eine Schwelle berührt wird? **Innerhalb des Mandats** entscheiden die verantwortliche Rolle und die Bauherren-PL selbst, im definierten Rahmen, und dokumentieren das im Register. Wird eine Wert-, Risiko-, Frist- oder Mandatsschwelle **überschritten**, geht das Thema entlang der Mandatsleiter weiter: an die Bauherren-PL, an das Änderungsgremium oder zur Beschlussfassung durch den Bauherrn im Lenkungskreis (die Muster-Mandatsleiter steht in Kapitel 4.2).
 

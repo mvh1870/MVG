@@ -107,6 +107,9 @@ export async function lauf(seite, h) {
     if (breite !== null && fenster !== null) { await seite.setViewportSize({ width: breite, height: fenster.height }); await h.warte(200); }
     const gebrochen = await wortbrueche();
     if (gebrochen.length > 0) h.befund(`Galerie${breite !== null ? ` bei ${breite} px` : ''}: ${gebrochen.length} Wörter im Abbildungsverzeichnis mitten im Wort gebrochen (${gebrochen.slice(0, 3).join(', ')})`);
+    // L-98: ohne Bruch im Wort darf das Verzeichnis trotzdem nicht über die Seite hinauslaufen
+    const ueber = await seite.evaluate(() => { const v = document.querySelector('[data-pruef="abbildungsverzeichnis"]'); return v === null ? 0 : Math.max(v.scrollWidth - v.clientWidth, Math.round(v.getBoundingClientRect().right - document.documentElement.clientWidth)); });
+    if (ueber > 1) h.befund(`Galerie${breite !== null ? ` bei ${breite} px` : ''}: Abbildungsverzeichnis läuft ${ueber} px über`);
   }
   if (fenster !== null) { await seite.setViewportSize(fenster); await h.warte(200); }
   await h.klick('[data-pruef="werkzeug-oeffnen-figuren"]');

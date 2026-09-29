@@ -82,6 +82,7 @@ export const W = {
   weiter: 'Weiter',
   ende: 'Ende',
   schritte: 'Schritte der Station',
+  storyBlaettern: 'Story blättern',
   schritt: 'Schritt',
   teile: 'Teile',
   lagetafel: 'Lagetafel',
@@ -236,7 +237,7 @@ export const W = {
     glossarSuche: 'Begriff oder Wort suchen',
     glossarZahl: (n: number, gesamt: number) => n === gesamt ? `${gesamt} Begriffe` : `${n} von ${gesamt} Begriffen`,
     glossarLeer: 'Kein Begriff passt zur Suche.',
-    kommtVor: 'Kommt vor in',
+    kommtVor: 'Verlinkt in',
     kapitelKurz: (nr: string) => `Kap. ${nr}`,
     tabelle: (id: string) => `Tabelle ${id}`,
     verzeichnisNav: 'Kapitel',
@@ -300,7 +301,7 @@ export const W = {
     zurUebersicht: 'Zur Übersicht der Hilfe',
     grafikGross: 'Grafik vergrößern',
     schliessen: 'Schließen',
-    hinweis: 'Die Hilfe beschreibt die Anwendung MVG Companion. Wo sie von „MVG“ spricht (MVG-Phasen, MVG-Einführung, MVG-Domänen …), meint sie die Umsetzung in der Anwendung. Leistungsphasen heißen LPH 0–9; Kennungen, Feldnamen und einige Registerwörter der Anwendung (Change, EW) stehen wie dort; die Ziffer am Ende der Freigabe-Kennungen in den Standards ist die Freigabestufe 0–4 der Anwendung, keine Leistungsphase. Maßgeblich für MVG bleibt die Theorie: Wo die Anwendung anders zuordnet oder eigene Modelle nutzt – etwa Business Case und FID je eine Leistungsphase später, Beschlussfassung im Lenkungskreis ab LPH 2, eigene Phasen-, Stufen- und Reifegradmodelle, ein 30/60/90-Einführungsplan, eigene Sitzungsrhythmen –, gilt der MVG-Text.',
+    hinweis: 'Die Hilfe beschreibt die Anwendung MVG Companion. Wo sie von „MVG“ spricht (MVG-Phasen, MVG-Einführung, MVG-Domänen …), meint sie die Umsetzung in der Anwendung. Leistungsphasen heißen LPH 0–9; Kennungen, Feldnamen und einige Registerwörter der Anwendung (Change, EW) stehen wie dort; die Ziffer am Ende der Freigabe-Kennungen ist eine Nummer der Anwendung – in MVG heißt eine Freigabe „Freigabe LPH n“. Maßgeblich für MVG bleibt die Theorie: Wo die Anwendung anders zuordnet oder eigene Modelle nutzt – etwa Business Case und FID je eine Leistungsphase später, Beschlussfassung im Lenkungskreis ab LPH 2, eigene Phasen-, Stufen- und Reifegradmodelle, ein 30/60/90-Einführungsplan, eigene Sitzungsrhythmen –, gilt der MVG-Text.',
   },
   // Explore (P2.4 Rahmen; die Werkzeuge baut P8)
   explore: {

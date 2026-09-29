@@ -686,9 +686,9 @@ a.abbildung-beleg { color: var(--navy); }
 /* schmal: Vorschaubild über dem Titel, damit lange Titelwörter („Verantwortungspyramide“) in die Zeile passen */
 @media (max-width: 480px) { .galerie-abbildung { flex-direction: column; align-items: flex-start; gap: var(--a-2); } }
 .galerie-verzeichnis .galerie-nr { width: 1%; white-space: nowrap; }
-/* Verzeichnisse trennen nie selbst (CI, L-98): td erbt sonst hyphens:auto aus basis.css; ein Browser mit deutscher
-   Silbentrennung (Chrome 153) schmälert damit die Spalte und bricht bei 320 px „Verantwortungs-felder“ */
-.galerie-verzeichnis :is(th, td) { hyphens: manual; }
+/* Verzeichnisse brechen nie im Wort (CI, L-98): Tabellenzellen tragen sonst overflow-wrap:anywhere – dann darf die
+   Tabelle eine Spalte schmaler als ihr längstes Wort machen, und Chrome 153 bricht bei 320 px „Verantwortungs|felder“ */
+.galerie-verzeichnis :is(th, td) { overflow-wrap: normal; hyphens: manual; }
 /* Navigation um das Kapitelverzeichnis (R21): nur Landmarke, keine eigene Box im Raster der Lernseite */
 .kapitel-verzeichnis-nav { display: contents; }
 /* Stelle im Text nie mitten im Wort (R12): die schmale Tabelle bricht sonst „Abs|chnitt“ (overflow-wrap der Tabellen bei 400 px);

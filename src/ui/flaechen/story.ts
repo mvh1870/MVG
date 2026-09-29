@@ -126,7 +126,7 @@ export function erzeugeStory(o: StoryOptionen): StoryFlaeche {
     zuSchritt: bedienbar ? (i) => {
       if (z?.station) tue({ art: 'geheZu', station: z.station, schritt: i });
     } : null,
-    woerter: { zurueck: W.zurueck, weiter: W.weiter, ende: W.ende, schritte: W.schritte },
+    woerter: { zurueck: W.zurueck, weiter: W.weiter, ende: W.ende, schritte: W.schritte, blaettern: W.storyBlaettern },
   });
 
   const leitstand = h('div', {

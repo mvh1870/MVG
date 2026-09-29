@@ -50,7 +50,7 @@ Welche Situation aus Kap. 10 trifft Ihr Projekt?
 
 **Private und institutionelle Bauherren** brauchen [[zitat:k10.2-p1|Steuerbarkeit vor allem dort, wo Geschwindigkeit, Renditeanforderungen, Nutzerinteressen, Finanzierung, ESG/LCC und technische Komplexität zusammentreffen.]]
 
-**Energieversorger und Infrastrukturträger:** Risiken verschieben sich [[zitat:k10.3-p1|häufig in Freigaben, Priorisierung, Beschaffung, Entscheidungen zu Komponenten mit langer Lieferzeit und die Disziplin bei der Restkostenprognose]] – ähnlich wie die Lieferzeit der Holzbauelemente in Lindenhall.
+**Energieversorger und Infrastrukturträger:** Risiken verschieben sich [[zitat:k10.3-p1|häufig in Freigaben, Priorisierung, Beschaffung, Entscheidungen zu Komponenten mit langer Lieferzeit und die Disziplin bei der Restkostenprognose]].
 
 **Schleichender Steuerungsverlust** – wie in Welt A.
 :::

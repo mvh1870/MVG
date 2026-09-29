@@ -8,7 +8,7 @@ kurztitel: Glossar
 story: [epilog]
 deckt: [k13-t1]
 ---
-Das Glossar von MVG mit allen Begriffen und ihren Definitionen im Wortlaut. Das Suchfeld filtert die Liste. Unter jedem Begriff steht, in welchen Stationen der Story und in welchen Kapiteln er vorkommt.
+Das Glossar von MVG mit allen Begriffen und ihren Definitionen im Wortlaut. Das Suchfeld filtert die Liste. Unter jedem Begriff steht, welche Stationen der Story und welche Kapitel auf ihn verlinken.
 
 ::: glossar
 :::

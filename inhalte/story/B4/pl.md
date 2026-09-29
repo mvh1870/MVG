@@ -36,7 +36,7 @@ status:
 Beschlossen – mit dem Auftrag an die Planung, die Wirkung auf die Lieferzeit der Holzbauelemente bis zur nächsten Sitzung darzulegen, mit Frist und verantwortlicher Rolle.
 
 ### Was fehlt
-Die Verknüpfung mit `RIS-009` im Register.
+Die Verknüpfung mit dem Lieferzeit-Eintrag im Register.
 
 ### Neues Risiko
 Ein Auftrag neben dem Register wird zur Nebenliste.

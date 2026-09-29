@@ -19,7 +19,7 @@ export interface FussOptionen {
   zurueck: (() => void) | null;
   weiter: (() => void) | null;
   zuSchritt: ((index: number) => void) | null;
-  woerter: { zurueck: string; weiter: string; ende: string; schritte: string };
+  woerter: { zurueck: string; weiter: string; ende: string; schritte: string; blaettern: string };
 }
 
 export function erzeugeFussleiste(o: FussOptionen): Fussleiste {
@@ -29,7 +29,8 @@ export function erzeugeFussleiste(o: FussOptionen): Fussleiste {
   const weiterKnopf = h('button', { type: 'button', class: 'nav-knopf weiter', 'aria-label': o.woerter.weiter, 'data-pruef': 'weiter', onclick: () => o.weiter?.() },
     weiterText, sym('pfeilRechts'));
   const fortschritt = h('div', { class: 'fortschritt', role: 'group', 'aria-label': o.woerter.schritte });
-  const element = h('div', { class: 'fussleiste' }, zurueckKnopf, fortschritt, weiterKnopf);
+  // R27: benannte Landmarke – sonst liegt die Leiste außerhalb aller Landmarken (axe „region“)
+  const element = h('nav', { class: 'fussleiste', 'aria-label': o.woerter.blaettern }, zurueckKnopf, fortschritt, weiterKnopf);
   let schluessel = '';
 
   return {

@@ -121,11 +121,12 @@ export interface LeinwandOptionen {
 /** Startet die Leinwand in `wurzel`; gibt eine Abmeldung zurück. */
 export function starteLeinwand(wurzel: HTMLElement, o: LeinwandOptionen): () => void {
   const anzeige = erzeugeAnzeige(o.inhalte, o.version, false);
-  const warten = h('div', { class: 'leinwand-warten', 'data-pruef': 'leinwand-warten' },
+  // R27: die Warteansicht ist die main der Leinwand (mit h1); die Hülle ist keine Landmarke, damit die main der Story-Tafel oben liegt
+  const warten = h('main', { class: 'leinwand-warten', 'data-pruef': 'leinwand-warten', 'aria-label': W.leinwand.titel },
     bildmarke('marke-logo'),
-    h('p', { class: 'leinwand-warten-titel' }, W.leinwand.warten),
+    h('h1', { class: 'leinwand-warten-titel' }, W.leinwand.warten),
     h('p', null, W.leinwand.wartenHinweis));
-  const element = h('section', { class: 'leinwand', 'data-pruef': 'leinwand', 'aria-label': W.leinwand.titel }, warten);
+  const element = h('div', { class: 'leinwand', 'data-pruef': 'leinwand' }, warten);
   ersetze(wurzel, element);
   let empfangen = false;
   let nr = 0;

@@ -7,6 +7,8 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 export const name = 'einbettung';
 export const hash = '#start';
 export const viewports = [{ breite: 1100, hoehe: 760 }];
+/** Testherkunft für „gleiche Herkunft“ (reserviert nach RFC 6761), per seite.route aus dem Repo beantwortet (L-86) */
+export const testHerkunft = 'http://mvg.test/';
 
 const HOST = pathToFileURL(path.join(path.dirname(fileURLToPath(import.meta.url)), 'einbettung-host.html')).href;
 
@@ -148,6 +150,12 @@ export async function lauf(seite, h) {
       await h.warte(300);
       const nachRad = await lageDialog();
       if (nachRad === null || nachRad.knopfOben < 0) h.befund(`Einbettung: Mausrad über dem ${name}-Dialog rollt die Hostseite mit („Schließen“ bei ${nachRad?.knopfOben})`);
+      // R15: Rolltasten ebenso
+      await rahmen.locator(`${dialogSel}[open] button`).first().focus();
+      for (const taste of ['PageDown', 'PageDown', 'End', 'ArrowDown']) { await seite.keyboard.press(taste); await h.warte(60); }
+      await h.warte(300);
+      const nachTasten = await lageDialog();
+      if (nachTasten === null || nachTasten.knopfOben < 0) h.befund(`Einbettung: Rolltasten im ${name}-Dialog rollen die Hostseite mit („Schließen“ bei ${nachTasten?.knopfOben})`);
     }
     await rahmen.locator(`${dialogSel}[open] button`).first().click().catch(() => h.befund(`Einbettung: „Schließen“ nicht erreichbar (${name})`));
     await h.warte(100);
@@ -170,13 +178,13 @@ export async function lauf(seite, h) {
     const start = await rahmen.locator('.startseite').count();
     if (im !== 0 || start !== 1) h.befund(`Einbettung: Rahmen mit ${ziel} zeigt Regie/Leinwand (${im}) statt Startseite (${start})`);
   }
-  // Gleiche Herkunft (R14): über http://mvg.lokal geladen misst der Rahmen das Hostfenster (L-83); bei 560 px
+  // Gleiche Herkunft (R14): über http://mvg.test geladen misst der Rahmen das Hostfenster (L-83); bei 560 px
   // Höhe muss der Dialog darin bleiben – der Rückfall für fremde Herkunft (640 px) täte es nicht
   const wurzel = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
-  await seite.route('http://mvg.lokal/**', (r) => r.fulfill({ path: path.join(wurzel, decodeURIComponent(new URL(r.request().url()).pathname)) }));
+  await seite.route('http://mvg.test/**', (r) => r.fulfill({ path: path.join(wurzel, decodeURIComponent(new URL(r.request().url()).pathname)) }));
   const groesseVorher = seite.viewportSize();
   await seite.setViewportSize({ width: 1100, height: 560 });
-  await seite.goto('http://mvg.lokal/tests/oberflaeche/einbettung-host.html');
+  await seite.goto('http://mvg.test/tests/oberflaeche/einbettung-host.html');
   await h.warte(1500);
   await pruefeDialog('#theorie/k4', '.lern-inhalt [data-pruef="abbildung-gross"]', 'dialog.abbildung-dialog', 'Abbildungs (gleiche Herkunft)');
   if (groesseVorher !== null) await seite.setViewportSize(groesseVorher);

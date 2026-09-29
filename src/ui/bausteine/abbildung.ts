@@ -13,7 +13,7 @@ import { h } from '../h.ts';
 import type { Abbildung } from '../../inhalte/typen.ts';
 import { inhaltInline } from './inhalt.ts';
 import { sym } from './bloecke.ts';
-import { oeffneDialog, schliesseBeiKlickDaneben } from '../dialog.ts';
+import { halteRollenImDialog, oeffneDialog, schliesseBeiKlickDaneben } from '../dialog.ts';
 import { W } from '../woerter.ts';
 
 let bilder: Readonly<Record<string, string>> = {};
@@ -61,6 +61,7 @@ export function abbildung(a: Abbildung, o: AbbildungsOptionen): HTMLElement | nu
       img()) as HTMLDialogElement;
     // Klick neben den Dialog (auf den Hintergrund) schließt ebenfalls, der Innenrand nicht
     schliesseBeiKlickDaneben(dialog);
+    halteRollenImDialog(dialog);
     bildEl.addEventListener('click', oeffne);
     bildEl.classList.add('ist-vergroesserbar');
   }

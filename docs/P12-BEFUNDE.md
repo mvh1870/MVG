@@ -62,3 +62,6 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 14 (P12.5, zugleich P14.3)
 - **Beide Rollen als Workflow** mit Gegenprüfung: Fachtreue 3 Befunde (0 schwer, 0 mittel), Stil/Architektur 6 Befunde (3 mittel, alle bestätigt) – alle eingearbeitet (L-85): Mausrad über Dialogen rollt nicht mit, Höhendeckel bei gleicher Herkunft geprüft, Mitte/Kopf des Hilfe-Dialogs geprüft, Drucktest ohne afterprint, Rollenkarten, Wortlaut abb-7, abb-14, k10.3.
+
+## Runde 15 (P12.5, zugleich P14.3)
+- **Beide Rollen als Workflow** mit Gegenprüfung: Fachtreue 4 Befunde (0 schwer, 0 mittel – zweite saubere Fachtreue-Runde), Stil/Architektur 6 Befunde (2 mittel, beide bestätigt) – alle eingearbeitet (L-86): Rollsperre der Dialoge für Rad ohne Rollbereich und Rolltasten, Netzwache nur mit angemeldeter Testherkunft `mvg.test`, Drucktest, Verzeichnis ab 481 px, STIL, vier Wortlaute.

@@ -42,7 +42,7 @@ Ihre Zahl zur Mensa: `AEN-012` wartet noch auf die bezifferte Auswirkung.
 Die Änderung läuft ohne Kostenseite ins Gremium.
 
 ### Governance-Frage
-Welche Risiken sind in der Prognose enthalten – und welche nur beobachtet?
+[[Frühwarnung]]: Welche Risiken sind in der Prognose bewertet – und welche Signale noch unbewertet?
 :::
 
 ::: option C

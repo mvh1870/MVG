@@ -72,7 +72,7 @@ Im März haben Sie ‚Zusage stehen lassen‘ gewählt. Grob 0,6 Mio. € sind s
 :::
 
 ::: rueckbezug B
-Im März haben Sie ‚Prüfen lassen‘ gewählt, ohne Frist und ohne entscheidende Stelle. Die Schulseite hat weitergeplant; jetzt kommt der Nachtrag.
+Im März haben Sie ‚Prüfen lassen‘ gewählt, ohne Frist und ohne entscheidende Stelle. Die Schulseite hat mit der großen Mensa weitergeplant; jetzt kommt der Nachtrag der Generalplanung.
 :::
 
 ::: rueckbezug C

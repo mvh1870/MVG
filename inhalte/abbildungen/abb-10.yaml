@@ -19,7 +19,7 @@ abweichungen:
     beleg: k6.4.3-p2
   - text: 'Von der Maßnahme führt keine Kante zum Managementbericht, sondern eine gestrichelte Rückkante zum Risiko; den Managementbericht erreicht nur der „Bericht“ aus der Freigabe. Der kanonische Fluss im Text lautet: „EW (unbewertetes Signal) → bestätigt → Risiko → Entscheidung → Freigabe → Maßnahme → Managementbericht“.'
     beleg: k6.4.3-p1
-  - text: 'Die Rückkante von der Maßnahme zum Risiko trägt den Zusatz „Regelkreis schließt“; der Text nennt als nächsten Schritt im Risikoregister „Risikominderung oder Entscheidung“.'
+  - text: 'Die Rückkante von der Maßnahme zum Risiko heißt „Risikominderung (Regelkreis schließt)“; einen Regelkreis kennt der Text nicht. Er nennt die Risikominderung als nächsten Schritt im Risikoregister („Risikominderung oder Entscheidung“), nicht als Kante von der Maßnahme zurück zum Risiko.'
     beleg: k6.4.4-t1
   - text: 'Vom Problem führt nur „eskaliert“ ins Entscheidungsregister, keine Kante zur Maßnahme; der Text nennt als nächsten Schritt im Problemregister „Maßnahme, ggf. Entscheidung“.'
     beleg: k6.4.4-t1

@@ -123,6 +123,22 @@ export async function lauf(seite, h) {
         await h.warte(300);
         const yNach = await seite.evaluate(() => window.scrollY);
         if (Math.abs(yNach - yVor) > 1) h.befund(`Abbildungs-Dialog: Mausrad rollt die Seite dahinter mit (${yVor} → ${yNach})`);
+        // R15: Rolltasten (Fokus auf „Schließen“) rollen nur den Dialog
+        await seite.locator('dialog.abbildung-dialog[open] [data-pruef="abbildung-schliessen"]').focus();
+        for (const taste of ['PageDown', 'PageDown', 'ArrowDown', 'End', 'Home', 'End']) { await seite.keyboard.press(taste); await h.warte(40); }
+        await h.warte(200);
+        const yTasten = await seite.evaluate(() => window.scrollY);
+        if (Math.abs(yTasten - yVor) > 1) h.befund(`Abbildungs-Dialog: Rolltasten rollen die Seite dahinter mit (${yVor} → ${yTasten})`);
+        // R15: auch ein Dialog, der nichts zu rollen hat, gibt das Mausrad nicht an die Seite weiter
+        await seite.evaluate(() => { const b = document.querySelector('dialog.abbildung-dialog[open] img'); if (b) b.setAttribute('style', 'width:120px;min-width:0'); });
+        await h.warte(100);
+        const kurz = await seite.evaluate(() => { const d = document.querySelector('dialog.abbildung-dialog[open]'); return d ? d.scrollHeight <= d.clientHeight && d.scrollWidth <= d.clientWidth : false; });
+        for (let i = 0; i < 6; i++) { await seite.mouse.wheel(0, 150); await h.warte(60); }
+        await h.warte(300);
+        const yKurz = await seite.evaluate(() => window.scrollY);
+        if (!kurz) h.befund('Abbildungs-Dialog: Probe „nicht rollbar“ nicht hergestellt');
+        else if (Math.abs(yKurz - yVor) > 1) h.befund(`Abbildungs-Dialog ohne Rollbereich: Mausrad rollt die Seite (${yVor} → ${yKurz})`);
+        await seite.evaluate(() => document.querySelector('dialog.abbildung-dialog[open] img')?.removeAttribute('style'));
       }
       const fenster = seite.viewportSize() ?? { width: 1280, height: 720 };
       const aussen = rahmenD.y > 6 ? { x: fenster.width / 2, y: 3 } : { x: 3, y: fenster.height / 2 };

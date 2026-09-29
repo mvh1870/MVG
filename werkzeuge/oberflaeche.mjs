@@ -135,7 +135,7 @@ export async function starteBrowser(optionen = {}) {
 
 /**
  * @typedef {{ breite: number, hoehe: number }} Viewport
- * @typedef {{ name: string, datei: string, viewports: Viewport[], hash: string, seite?: string, lauf: (seite: import('playwright').Page, h: Helfer) => Promise<void> }} Szenario  seite: andere HTML-Datei (relativ zur Wurzel), z. B. die Entwurfs-Vorschau
+ * @typedef {{ name: string, datei: string, viewports: Viewport[], hash: string, seite?: string, testHerkunft?: string, lauf: (seite: import('playwright').Page, h: Helfer) => Promise<void> }} Szenario  seite: andere HTML-Datei (relativ zur Wurzel), z. B. die Entwurfs-Vorschau
  * @typedef {object} Helfer
  * @property {import('playwright').Page} seite
  * @property {string} url
@@ -176,6 +176,7 @@ export async function ladeSzenarien(verzeichnis) {
       viewports,
       hash: typeof s.hash === 'string' ? s.hash : '',
       ...(typeof s.seite === 'string' ? { seite: s.seite } : {}),
+      ...(typeof s.testHerkunft === 'string' && /^http:\/\/[a-z-]+\.test\/$/u.test(s.testHerkunft) ? { testHerkunft: s.testHerkunft } : {}),
       lauf: s.lauf,
     });
   }
@@ -188,15 +189,16 @@ export async function ladeSzenarien(verzeichnis) {
  * @param {string[]} befunde
  * @param {string} etikett
  */
-function beobachte(seite, befunde, etikett) {
+function beobachte(seite, befunde, etikett, testHerkunft = null) {
   seite.on('console', (m) => {
     if (m.type() === 'error') befunde.push(`${etikett}console.error: ${m.text()}`);
   });
   seite.on('pageerror', (e) => befunde.push(`${etikett}pageerror: ${kurz(e)}`));
   seite.on('request', (r) => {
     const u = r.url();
-    // http://mvg.lokal/ ist der Testname für „gleiche Herkunft“: ein Szenario beantwortet ihn per seite.route aus dem Repo (L-85)
-    if (!/^(file|data|blob|about):/.test(u) && !u.startsWith('http://mvg.lokal/')) befunde.push(`${etikett}Netzzugriff: ${u}`);
+    // Ein Szenario kann eine Testherkunft anmelden (`export const testHerkunft = 'http://mvg.test/'`, reservierter Name
+    // nach RFC 6761); es beantwortet sie selbst per seite.route aus dem Repo – nur dort ist sie kein Netzzugriff (L-86)
+    if (!/^(file|data|blob|about):/.test(u) && !(testHerkunft !== null && u.startsWith(testHerkunft))) befunde.push(`${etikett}Netzzugriff: ${u}`);
   });
 }
 
@@ -265,7 +267,7 @@ export async function fuehreAus(browser, szenario, viewport, url, bilder = BILDE
   let fenster = 0;
   kontext.on('page', (p) => {
     fenster += 1;
-    beobachte(p, befunde, fenster === 1 ? '' : `[Fenster ${fenster}] `);
+    beobachte(p, befunde, fenster === 1 ? '' : `[Fenster ${fenster}] `, szenario.testHerkunft ?? null);
   });
   try {
     const seite = await kontext.newPage();

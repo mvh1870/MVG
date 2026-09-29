@@ -11,7 +11,7 @@ import daten from '../../generiert/hilfe.json' with { type: 'json' };
 import { h, textAus, vonHtml } from '../h.ts';
 import { bildmarke } from '../marke.ts';
 import { sym } from '../bausteine/bloecke.ts';
-import { oeffneDialog, schliesseBeiKlickDaneben } from '../dialog.ts';
+import { halteRollenImDialog, oeffneDialog, schliesseBeiKlickDaneben } from '../dialog.ts';
 import { W } from '../woerter.ts';
 
 export interface HilfeSeite {
@@ -169,6 +169,7 @@ function grafikenVergroesserbar(wurzel: HTMLElement): void {
         h('button', { type: 'button', class: 'knopf knopf-still', onclick: () => dialog.close() }, W.hilfe.schliessen)),
       grosseGrafik(svg));
     schliesseBeiKlickDaneben(dialog);
+    halteRollenImDialog(dialog);
     const knopf = h('button', { type: 'button', class: 'knopf knopf-still hilfe-grafik-knopf', 'data-pruef': 'grafik-gross', 'aria-label': `${W.hilfe.grafikGross}: ${name}`, onclick: () => oeffneDialog(dialog, huelle) }, sym('pfeilRechts'), W.hilfe.grafikGross);
     huelle.after(knopf, dialog);
   }

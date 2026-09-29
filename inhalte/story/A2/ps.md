@@ -18,7 +18,7 @@ Die Lieferzeit steht als rote Ampel auf Seite 23. Nach der Förderfrist fragt ni
 Eine Bewertung: Was bedeuten zehn Wochen mehr für die Förderfrist?
 
 ### Neues Risiko
-Ein bekanntes Risiko ohne nächsten Schritt.
+Ein gemeldetes Signal ohne Bewertung und ohne nächsten Schritt.
 
 ### Governance-Frage
 [[Frühwarnung]]: Wer bestätigt das Signal – und was folgt daraus?

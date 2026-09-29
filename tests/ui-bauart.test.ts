@@ -1429,15 +1429,37 @@ test('Abbildungen (P14, O-32): Lernseite und Originaltext zeigen das Bild mit Vo
       assert.equal(document.title, 'Vorher');
       assert.equal(document.querySelector('.druck-bogen'), null);
       assert.equal(document.body.classList.contains('druckt-bogen'), false);
-      // bleibt afterprint aus, räumt der nächste Auftrag den alten auf (L-83, Prüfrunde 14)
+      // hat die Seite den Titel während des Drucks neu gesetzt, bleibt ihrer (L-83, Prüfrunde 15)
       druckKnopf.click();
       await new Promise((r) => setTimeout(r, 0));
       assert.equal(drucke, 2);
+      document.title = 'Neu';
+      dom.window.dispatchEvent(new dom.window.Event('afterprint'));
+      assert.equal(document.title, 'Neu', 'afterprint überschreibt einen neuen Seitentitel nicht');
+      document.title = 'Vorher';
+      // bleibt afterprint aus, räumt der nächste Auftrag den alten auf (L-83, Prüfrunde 14/15) – auch seinen
+      // afterprint-Beobachter (gezählt über add/removeEventListener)
+      let beobachter = 0;
+      const addOrig = dom.window.addEventListener;
+      const remOrig = dom.window.removeEventListener;
+      const add = addOrig.bind(dom.window);
+      const rem = remOrig.bind(dom.window);
+      (dom.window as unknown as { addEventListener: typeof add }).addEventListener = ((t: string, f: EventListener, o?: unknown) => { if (t === 'afterprint') beobachter += 1; add(t, f, o as AddEventListenerOptions); }) as typeof add;
+      (dom.window as unknown as { removeEventListener: typeof rem }).removeEventListener = ((t: string, f: EventListener, o?: unknown) => { if (t === 'afterprint') beobachter -= 1; rem(t, f, o as EventListenerOptions); }) as typeof rem;
       druckKnopf.click();
       await new Promise((r) => setTimeout(r, 0));
-      assert.equal(drucke, 3, 'der zweite Auftrag nach einem Druck ohne afterprint wird nicht verschluckt');
+      assert.equal(drucke, 3);
+      const druckTitel = document.title;
+      druckKnopf.click();
+      assert.equal(document.title, druckTitel, 'der Folgeauftrag setzt den Drucktitel, nicht den Seitentitel des alten Auftrags');
+      await new Promise((r) => setTimeout(r, 0));
+      assert.equal(drucke, 4, 'der zweite Auftrag nach einem Druck ohne afterprint wird nicht verschluckt');
       assert.equal(document.querySelectorAll('.druck-bogen').length, 1, 'der alte Bogen ist weg');
+      assert.equal(beobachter, 1, 'nur der neue Auftrag wartet auf afterprint');
       dom.window.dispatchEvent(new dom.window.Event('afterprint'));
+      assert.equal(beobachter, 0);
+      (dom.window as unknown as { addEventListener: unknown }).addEventListener = addOrig;
+      (dom.window as unknown as { removeEventListener: unknown }).removeEventListener = remOrig;
       assert.equal(document.title, 'Vorher');
       assert.equal(document.querySelector('.druck-bogen'), null);
       assert.equal(document.body.classList.contains('druckt-bogen'), false);

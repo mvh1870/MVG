@@ -688,3 +688,4 @@ a.abbildung-beleg { color: var(--navy); }
 /* Stelle im Text nie mitten im Wort (R12): die schmale Tabelle bricht sonst „Abs|chnitt“ (overflow-wrap der Tabellen bei 400 px);
    umbrechen darf sie zwischen „Abschnitt“ und „3.3“ – so bleibt der Spalte der Titel genug Platz */
 .galerie-verzeichnis .galerie-stelle { overflow-wrap: normal; hyphens: manual; }
+@media (min-width: 481px) { .galerie-verzeichnis td.galerie-stelle { white-space: nowrap; } }

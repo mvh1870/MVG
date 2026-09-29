@@ -23,7 +23,7 @@ Arbeit kann delegiert werden, Verantwortung muss ausübbar bleiben. Vorbereitung
 ---
 titel: Arbeitsdefinition
 ---
-Der Begriff „nichtdelegierbare Bauherrenverantwortung“ ist in MVG ein Governance- und Führungsbegriff. Er beschreibt Verantwortungen, bei denen der Bauherr Unterstützung einkaufen, Vorbereitung delegieren und die Dokumentation strukturieren lassen kann – die eigene Legitimation der Entscheidung verliert er dabei nicht.
+Der Begriff „nichtdelegierbare Bauherrenverantwortung“ ist in [[Minimum Viable Governance (MVG)]] ein Governance- und Führungsbegriff. Er beschreibt Verantwortungen, bei denen der Bauherr Unterstützung einkaufen, Vorbereitung delegieren und die Dokumentation strukturieren lassen kann – die eigene Legitimation der Entscheidung verliert er dabei nicht.
 
 Wichtig ist, was der Begriff nicht ist: kein abschließender juristischer Pflichtenkatalog. Er fragt nicht, welche Rechtsnorm in welcher Projektkonstellation gilt. Er fragt, an welchen Stellen die Bauherrenorganisation selbst entscheidungsfähig bleiben muss – und welche Führungsleistung beim Bauherrn verbleibt, damit Entscheidungen tragfähig, mandatiert, nachvollziehbar und organisationsfest werden.
 

@@ -313,7 +313,7 @@ Ein eingetretenes Problem führt zu Maßnahme und ggf. Entscheidung. Den Einsatz
 ---
 titel: Warum relevant
 ---
-Derselbe Nachtrag, dieselbe Reserve – nur wird in Welt B nicht gegengerechnet, sondern gefragt. Der Nachtrag stand seit Mai im Risikoregister als „beobachtet“; jetzt ist er `PRB-004`, mit Maßnahme; die Mensa steht mit ihren Kosten in `AEN-012`; und die Reserve ist kein Topf, gegen den gerechnet wird, sondern eine Frage an den Bauherrn. Kap. 4.5 sagt, was vorher klar sein muss: [[zitat:k4.5-p2|Vor einer Freigabe muss klar sein, welche Entscheidung getroffen wird, welches Mandat gilt, welche Mindestgrundlagen vorliegen, welche Risiken angenommen werden und welcher Datenstand referenziert wird.]] Die Vorlage zeigt, was davon steht und was offen ist.
+Derselbe Nachtrag, dieselbe Reserve – nur wird in Welt B nicht gegengerechnet, sondern gefragt. Angekündigt war der Nachtrag seit Mai; jetzt ist er `PRB-004`, mit Maßnahme; die Mensa steht mit ihren Kosten in `AEN-012`; und die Reserve ist kein Topf, gegen den gerechnet wird, sondern eine Frage an den Bauherrn. Kap. 4.5 sagt, was vorher klar sein muss: [[zitat:k4.5-p2|Vor einer Freigabe muss klar sein, welche Entscheidung getroffen wird, welches Mandat gilt, welche Mindestgrundlagen vorliegen, welche Risiken angenommen werden und welcher Datenstand referenziert wird.]] Die Vorlage zeigt, was davon steht und was offen ist.
 :::
 
 ::: ebene 3

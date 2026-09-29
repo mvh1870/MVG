@@ -13,7 +13,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Die Auswirkung der Mensa steht in `AEN-012`, verknüpft mit `FRW-002`; das Gremium kann entscheiden.
+Die Auswirkung der Mensa steht in `AEN-012`, verknüpft mit `FRW-002`; das Gremium kann beraten – entscheidungsreif ist `AEN-012`, sobald die Lieferzeit bestätigt ist.
 
 ### Was fehlt
 Die Bestätigung der Lieferzeit, damit die Terminwirkung belastbar ist.

@@ -35,7 +35,7 @@ von: petersen
 betreff: "WG: Schulcampus – wie geht es weiter?"
 zeit: "07:52"
 ---
-Für den Lenkungskreis am 15. Dezember: eine Entscheidungsfrage und die offenen Entscheidungen, kein Statusbericht.
+Im Lenkungskreis am 17. November hat die Kämmerei nach einer neuen Projektbasis gefragt. Für den Lenkungskreis am 15. Dezember: eine Entscheidungsfrage und die offenen Entscheidungen, kein Statusbericht.
 :::
 
 ::: chat
@@ -149,7 +149,7 @@ knopf: Jetzt entscheiden
 ---
 ::: bekannt
 - Zwei Kostenstände, keine geregelte Stellvertretung.
-- Die Reserve reicht nicht; im Lenkungskreis fragt die Kämmerei nach einer neuen Projektbasis.
+- Die Reserve reicht nicht; im Lenkungskreis am 17. November hat die Kämmerei nach einer neuen Projektbasis gefragt.
 - Drei Wege: [[MVG-Neuinitialisierung]], Freigabe mit Auflagen, [[Neufestlegung der Projektbasis]]. Über jeden entscheidet der Bauherr.
 :::
 

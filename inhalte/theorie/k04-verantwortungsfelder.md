@@ -31,7 +31,7 @@ titel: Sechs Felder im Überblick
 ---
 Die sechs Felder sind keine juristische Vollständigkeitsliste. Sie sind eine Arbeitsstruktur: Mit ihr lässt sich sichtbar machen, prüfen und gestalten, ob der Bauherr seine Verantwortung tatsächlich ausüben kann.
 
-Jedes Feld hat denselben Aufbau. Es gibt einen **nichtdelegierbaren Kern** – das, was nur der Bauherr festlegen, annehmen oder freigeben kann. Daneben steht die **delegierbare Vorbereitung**: Analysen, Varianten, Vorlagen, Register und Protokolle, die andere Beteiligte erarbeiten können. Und es gibt eine **typische Fehlstelle**, an der es in diesem Feld typischerweise hakt, und die Antwort, die MVG darauf gibt.
+Jedes Feld hat denselben Aufbau. Es gibt einen **nichtdelegierbaren Kern** – das, was nur der Bauherr festlegen, annehmen oder freigeben kann. Daneben steht die **delegierbare Vorbereitung**: Analysen, Varianten, Vorlagen, Register und Protokolle, die andere Beteiligte erarbeiten können. Und es gibt eine **typische Fehlstelle**, an der es in diesem Feld typischerweise hakt, und die Antwort, die [[Minimum Viable Governance (MVG)]] darauf gibt.
 
 Die Tafel zeigt alle sechs Felder nebeneinander. Mit der Übung darunter können Sie prüfen, ob Sie Kern und Vorbereitung auseinanderhalten: Wohin gehört die jeweilige Tätigkeit?
 

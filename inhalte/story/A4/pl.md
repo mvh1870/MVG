@@ -79,7 +79,7 @@ Im Mai haben Sie ‚Eskalation auslösen‘ gewählt. Der Lenkungskreis wollte e
 :::
 
 ::: rueckbezug D
-Im Mai haben Sie ‚Prognose aktualisieren lassen‘ gewählt. Seither stehen +9,1 % und die CTC des Controllings nebeneinander; welche gilt, sagt auch der Juli-Bericht nicht.
+Im Mai haben Sie ‚Prognose aktualisieren lassen‘ gewählt. Seither stehen +9,1 % und die CTC des Controllings nebeneinander; welche gilt, sagt auch der Juni-Bericht nicht.
 :::
 
 ::: rueckbezug ohne

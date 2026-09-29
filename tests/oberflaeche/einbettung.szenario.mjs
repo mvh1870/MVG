@@ -118,7 +118,11 @@ export async function lauf(seite, h) {
     await geheUndWarte(ziel);
     const knopf = rahmen.locator(knopfSel).first();
     if (await knopf.count() === 0) { h.befund(`Einbettung: kein Knopf „Vergrößern“ (${name})`); return; }
+    // R18: erst auf die neue Meldung „ziel“ warten, dann rollt die Hostseite – sonst misst die Prüfung zu früh
+    const zieleZahl = async () => (await seite.evaluate(() => /** @type {any} */ (window).nachrichten)).filter((/** @type {any} */ n) => n?.art === 'ziel').length;
+    const zieleVor = await zieleZahl();
     await knopf.click();
+    for (let i = 0; i < 30 && (await zieleZahl()) <= zieleVor; i++) await h.warte(100);
     await rahmen.locator(`${dialogSel}[open]`).waitFor({ timeout: 3000 }).catch(() => h.befund(`Einbettung: ${name}-Dialog öffnet nicht`));
     const lageDialog = async () => {
       const innen = await seite.frames()[1]?.evaluate((sel) => {
@@ -132,10 +136,11 @@ export async function lauf(seite, h) {
         : { oben: oben + innen.oben, unten: oben + innen.unten, knopfOben: oben + innen.knopfOben, knopfUnten: oben + innen.knopfUnten };
     };
     let lageD = await lageDialog();
-    for (let i = 0; i < 30; i++) {
+    let gleich = 0;
+    for (let i = 0; i < 40 && gleich < 2; i++) {
       await h.warte(100);
       const neu = await lageDialog();
-      if (neu?.oben === lageD?.oben) break;
+      gleich = neu?.oben === lageD?.oben ? gleich + 1 : 0;
       lageD = neu;
     }
     const fensterH = await seite.evaluate(() => window.innerHeight);
@@ -194,6 +199,25 @@ export async function lauf(seite, h) {
   const unterkante = await seite.frames()[1]?.evaluate(() => document.querySelector('dialog.abbildung-dialog[open]')?.getBoundingClientRect().bottom ?? null);
   const rahmenOben = await seite.evaluate(() => document.getElementById('mvg')?.getBoundingClientRect().top ?? 0);
   if (unterkante === null || unterkante === undefined || rahmenOben + unterkante > 561) h.befund(`Einbettung (fremd, 560 px): Unterkante des Dialogs bleibt unerreichbar (${unterkante === null || unterkante === undefined ? '–' : Math.round(rahmenOben + unterkante)} px)`);
+  // R18: Rolltasten am Dialogende rollen die Hostseite nur bis zur Kante – Ende, dann Pos1 lassen „Schließen“ erreichbar
+  const lageTasten = async () => {
+    const k = await seite.frames()[1]?.evaluate(() => {
+      const d = document.querySelector('dialog.abbildung-dialog[open]');
+      const b = d?.querySelector('button');
+      return d && b ? { unten: d.getBoundingClientRect().bottom, knopf: b.getBoundingClientRect().top } : null;
+    });
+    const o = await seite.evaluate(() => document.getElementById('mvg')?.getBoundingClientRect().top ?? 0);
+    return k === null || k === undefined ? null : { unten: o + k.unten, knopf: o + k.knopf };
+  };
+  await rahmen.locator('dialog.abbildung-dialog[open] button').first().focus();
+  for (const taste of ['End', 'End', 'PageDown', 'ArrowDown']) { await seite.keyboard.press(taste); await h.warte(80); }
+  await h.warte(300);
+  const nachEnde = await lageTasten();
+  if (nachEnde === null || nachEnde.unten < 500 || nachEnde.unten > 561) h.befund(`Einbettung (fremd, 560 px): Ende rollt die Hostseite nicht genau bis zur Unterkante des Dialogs (${nachEnde === null ? '–' : Math.round(nachEnde.unten)} px)`);
+  for (const taste of ['Home', 'Home', 'PageUp']) { await seite.keyboard.press(taste); await h.warte(80); }
+  await h.warte(300);
+  const nachPos1 = await lageTasten();
+  if (nachPos1 === null || nachPos1.knopf < -1 || nachPos1.knopf > 80) h.befund(`Einbettung (fremd, 560 px): Pos1 holt „Schließen“ nicht an den oberen Rand (${nachPos1 === null ? '–' : Math.round(nachPos1.knopf)} px)`);
   await seite.keyboard.press('Escape');
   if (groesseAlt !== null) await seite.setViewportSize(groesseAlt);
   // Gleiche Herkunft (R14): über http://mvg.test geladen misst der Rahmen das Hostfenster (L-83); bei 560 px

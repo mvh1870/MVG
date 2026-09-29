@@ -119,6 +119,7 @@ Diesen Schnipsel an die Stelle der eigenen Seite kopieren, an der MVG interaktiv
 - Der Host kann schicken:
   - `{ mvg: 'einbettung', art: 'gehe', ziel: '#theorie/k4' }`
   - `{ mvg: 'einbettung', art: 'frage' }`
+  - `{ mvg: 'einbettung', art: 'fenster', hoehe: window.innerHeight }` – Fensterhöhe der eigenen Seite (200–10 000 px), bei „bereit“ und nach jeder Größenänderung; begrenzt vergrößerte Abbildungen
 - Regie und Leinwand gibt es im Rahmen nicht: Weder `gehe` noch eine Adresse mit `#regie` oder `#leinwand` öffnet sie, die Anwendung zeigt dann die Startseite.
 
 **Vergrößerte Abbildungen und Grafiken** öffnen eingebettet an ihrer Stelle, die Hostseite rollt dorthin. Ihre Höhe ist auf das Fenster der Hostseite begrenzt: bei gleicher Herkunft gemessen, sonst über die Nachricht `fenster`, die der Schnipsel oben sendet. Fehlt sie (älterer Schnipsel), nimmt der Dialog höchstens 640 px, und am Ende des Bilds rollt die Hostseite weiter – so bleibt auch auf niedrigen Fenstern (Telefon quer) der untere Teil erreichbar.

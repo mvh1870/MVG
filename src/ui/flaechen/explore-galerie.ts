@@ -56,7 +56,24 @@ function abbildungsZelle(a: OeffentlicheInhalte['whitepaper']['abbildungen'][num
   const daten = abbildungsBild(a.id);
   return h('a', { class: 'galerie-abbildung', href: `#theorie/k${a.kapitel}/${a.id}`, 'data-pruef': `galerie-abbildung-${a.id}` },
     daten !== null ? h('img', { src: daten, alt: '', width: 96, height: Math.round(96 * a.bild.hoehe / a.bild.breite), decoding: 'async' }) : null,
-    h('span', null, a.bild.titel));
+    h('span', null, mitTrennstellen(a.bild.titel)));
+}
+
+/**
+ * Weiche Trennstellen in langen Titelwörtern des Verzeichnisses: bei 320 px (Reflow, WCAG 1.4.10) brechen sie
+ * sonst mitten im Wort ohne Trennstrich (P12.5 R18). Bildunterschrift und Suche bleiben unverändert.
+ */
+const TRENNSTELLEN: readonly [string, string][] = [
+  ['Verantwortungspyramide', 'Verantwortungs\u00ADpyramide'],
+  ['Umsetzungsbeschleuniger', 'Umsetzungs\u00ADbeschleuniger'],
+  ['Anwendungssituationen', 'Anwendungs\u00ADsituationen'],
+  ['Leistungsarchitektur', 'Leistungs\u00ADarchitektur'],
+  ['Entscheidungsdruck', 'Entscheidungs\u00ADdruck'],
+  ['Managementbericht', 'Management\u00ADbericht'],
+  ['Letztverantwortung', 'Letzt\u00ADverantwortung'],
+];
+function mitTrennstellen(titel: string): string {
+  return TRENNSTELLEN.reduce((t, [wort, getrennt]) => t.replaceAll(wort, getrennt), titel);
 }
 
 /** Stelle im Text als Permalink: `k3.3` → Abschnitt 3.3, `k7.1-p1` → Abschnitt 7.1, `k1` → Kapitel 1. */

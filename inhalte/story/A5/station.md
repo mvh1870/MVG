@@ -243,7 +243,7 @@ figur: brenner
 ---
 figur: hoffmeister
 ---
-„Auflagen und Mensa habe ich als Nachtrag gemeldet. Dass die Reserve sie deckt, hat der Bauherr nie beschlossen.“
+„Die Auflagen arbeiten wir ein, für die Mensa-Umplanung ist der Nachtrag angekündigt. Dass die Reserve das deckt, hat der Bauherr nie beschlossen.“
 :::
 
 ::: standpunkt controlling

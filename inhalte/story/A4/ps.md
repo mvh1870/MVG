@@ -74,7 +74,7 @@ Im Mai haben Sie ‚Zahlen abgleichen‘ gewählt. Welche Annahme zum Holzpreis 
 :::
 
 ::: rueckbezug C
-Im Mai haben Sie ‚Prognose aktualisieren‘ gewählt. Holger Stein rechnet mit +9,1 %, das Controlling mit seiner CTC; der Juli-Bericht zeigt Ampeln, keine geltende Zahl.
+Im Mai haben Sie ‚Prognose aktualisieren‘ gewählt. Holger Stein rechnet mit +9,1 %, das Controlling mit seiner CTC; der Juni-Bericht zeigt Ampeln, keine geltende Zahl.
 :::
 
 ::: rueckbezug ohne

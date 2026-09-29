@@ -71,3 +71,6 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 17 (P12.5, zugleich P14.3)
 - **Beide Rollen als Workflow** mit Gegenprüfung: Fachtreue 2 Befunde (0 schwer, 0 mittel – vierte saubere Fachtreue-Runde), Stil/Architektur 5 Befunde (2 mittel, beide bestätigt) – alle eingearbeitet (L-88): Hostfenster-Meldung im Einbett-Protokoll, Freigabe des Rollens am Dialogende ohne Meldung, Tests für Zoom, Zwei-Finger, Leertaste, Kapiteltitel, Rollenkarte.
+
+## Runde 18 (P12.5, zugleich P14.3)
+- **Beide Rollen als Workflow** mit Gegenprüfung: Fachtreue 4 Befunde (0 schwer, 0 mittel – fünfte saubere Fachtreue-Runde), Stil/Architektur 4 Befunde (1 mittel, bestätigt) – alle eingearbeitet (L-89): Rollen ohne Fenstermeldung nur bis zur Dialogkante, stabileres Einbettungs-Szenario, Protokoll-Doku, Trennstellen bei 320 px, vier Wortlaute.

@@ -79,23 +79,26 @@ export async function lauf(seite, h) {
     .filter((z) => !z.classList.contains('galerie-nr') && z.getBoundingClientRect().width < 44).length);
   if (eng > 0) h.befund(`Galerie: ${eng} Zellen des Abbildungsverzeichnisses schmaler als 44 px`);
   // R12/R13: kein Wort des Verzeichnisses (alle Spalten) läuft über zwei Zeilen – erlaubt ist nur der Umbruch
-  // nach „-“ oder „/“; geprüft in der Laufgröße und zusätzlich bei 360 px (L-83)
+  // nach „-“, „/“ oder einer weichen Trennstelle; geprüft in der Laufgröße und zusätzlich bei 360 und 320 px (L-83, R18)
   const wortbrueche = () => seite.evaluate(() => {
     const funde = [];
     for (const z of document.querySelectorAll('[data-pruef="abbildungsverzeichnis"] th, [data-pruef="abbildungsverzeichnis"] td')) {
       const lauf = document.createTreeWalker(z, NodeFilter.SHOW_TEXT);
       for (let t = lauf.nextNode(); t !== null; t = lauf.nextNode()) {
-        for (const m of (t.textContent ?? '').matchAll(/[^\s/-]+[/-]?/gu)) {
+        for (const m of (t.textContent ?? '').matchAll(/[^\s/\u00AD-]+[/\u00AD-]?/gu)) {
           const r = document.createRange();
           r.setStart(t, m.index); r.setEnd(t, m.index + m[0].length);
-          if (new Set([...r.getClientRects()].filter((q) => q.width > 0).map((q) => Math.round(q.top))).size > 1) funde.push(m[0]);
+          // nach einer weichen Trennstelle rechnet Chromium den gezeichneten Trennstrich (≈ 6 px) dem Folgewort zu
+          const nachTrennstelle = m.index > 0 && (t.textContent ?? '')[m.index - 1] === '\u00AD';
+          const rechtecke = [...r.getClientRects()].filter((q) => q.width > 0 && !(nachTrennstelle && q.width < 9));
+          if (new Set(rechtecke.map((q) => Math.round(q.top))).size > 1) funde.push(m[0]);
         }
       }
     }
     return funde;
   });
   const fenster = seite.viewportSize();
-  for (const breite of [null, 360]) {
+  for (const breite of [null, 360, 320]) {
     if (breite !== null && fenster !== null) { await seite.setViewportSize({ width: breite, height: fenster.height }); await h.warte(200); }
     const gebrochen = await wortbrueche();
     if (gebrochen.length > 0) h.befund(`Galerie${breite !== null ? ` bei ${breite} px` : ''}: ${gebrochen.length} Wörter im Abbildungsverzeichnis mitten im Wort gebrochen (${gebrochen.slice(0, 3).join(', ')})`);

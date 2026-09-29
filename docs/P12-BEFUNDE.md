@@ -98,3 +98,6 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 26 (P12.5, zugleich P14.3)
 - **Beide Rollen als Workflow** mit Gegenprüfung: Fachtreue 1 Befund (leicht), Stil/Architektur 3 Befunde (1 mittel, bestätigt: Dialoghöhe bei sehr niedrigem Hostfenster) – eingearbeitet (L-97).
+
+## Runde 27 (P12.5, zugleich P14.3)
+- **Beide Rollen als Agenten**: Fachtreue 6 Befunde (leicht), Stil/Architektur 2 Befunde (leicht, axe „moderate“) – keine schweren oder mittleren; nach L-64 erste von zwei sauberen Runden. Fachtreue eingearbeitet (L-98); CI rot seit Lauf 142 (Chrome 153 trennt im Abbildungsverzeichnis) behoben.

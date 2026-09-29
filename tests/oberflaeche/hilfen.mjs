@@ -106,6 +106,17 @@ export function pruefer(seite, h) {
   };
 }
 
+/** Sichtbare, waagerecht rollende Bereiche ohne Tabulatorstopp (weder selbst noch ein Kind fokussierbar). */
+export function rollbarOhneTastatur() {
+  const fokussierbar = 'a[href], button, input, select, textarea, summary, [tabindex]:not([tabindex="-1"])';
+  return [...document.querySelectorAll('body *')].filter((el) => {
+    if (!(el instanceof HTMLElement) || el.clientWidth === 0 || el.scrollWidth <= el.clientWidth + 1) return false;
+    const ox = getComputedStyle(el).overflowX;
+    if (ox !== 'auto' && ox !== 'scroll') return false;
+    return !el.matches(fokussierbar) && el.querySelector(fokussierbar) === null;
+  }).map((el) => `rollt waagerecht ohne Tastaturzugang: ${el.tagName.toLowerCase()}.${[...el.classList].join('.')}`);
+}
+
 /**
  * R34: im schmalen Lauf (≤ 400 px) dieselbe Stelle auch bei 320 px (WCAG 1.4.10, 400 % Zoom): Layout ohne
  * Text aus seiner Fläche und kein waagerechtes Rollen der Seite; danach zurück auf die Laufgröße.
@@ -120,6 +131,8 @@ export async function schmal(seite, h, name) {
   for (const fund of await seite.evaluate(pruefeLayout)) h.befund(`${name} @320: ${fund}`);
   const sw = await seite.evaluate(() => document.documentElement.scrollWidth);
   if (sw > 321) h.befund(`${name}: rollt bei 320 px waagerecht (${sw} px)`);
+  // R35: was bei 320 px waagerecht rollt, ist per Tastatur erreichbar (axe scrollable-region-focusable läuft hier nicht)
+  for (const fund of await seite.evaluate(rollbarOhneTastatur)) h.befund(`${name} @320: ${fund}`);
   await seite.setViewportSize(vp); await h.warte(100);
 }
 

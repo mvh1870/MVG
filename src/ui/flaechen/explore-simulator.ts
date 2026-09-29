@@ -52,7 +52,7 @@ export function simulator(inhalte: OeffentlicheInhalte): HTMLElement {
   const quelle = (id: string): HTMLElement => {
     const q = inhalte.quellen[id];
     return q === undefined ? h('span', { class: 'sim-quelle' }, id)
-      : h('details', { class: 'sim-quelle' }, h('summary', null, `${S.quelle} ${id}`), h('div', { class: 'sim-zitat' }, inhalt(q.html)));
+      : h('details', { class: 'sim-quelle' }, h('summary', null, `${S.quelle} ${id}`), h('div', { class: 'sim-zitat', tabindex: 0, role: 'region', 'aria-label': `${S.quelle} ${id}` }, inhalt(q.html)));
   };
   const liste = (titel: string, hinweise: SimHinweis[], pruef: string): HTMLElement | null => hinweise.length === 0 ? null
     : h('section', { class: 'sim-teil', 'data-pruef': pruef }, h('h3', { class: 'sim-teil-titel' }, titel),

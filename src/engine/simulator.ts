@@ -135,8 +135,11 @@ export function simuliere(e: SimEingabe): SimErgebnis {
   if (e.freigabeBeruehrt) {
     freigabeweg.push({ quelle: 'k9.3-p3', text: 'Die Freigabe zum Abschluss der Leistungsphase erteilt der Bauherr selbst auf Vorlage der Bauherren-PL – nicht die Projektsteuerung und nicht der Lenkungskreis; der Lenkungskreis berät und bereitet vor.' });
     freigabeweg.push({ quelle: 'k4.5-p1', text: 'Eine Freigabe legitimiert den nächsten Schritt auf einem benannten Datenstand.' });
-  } else if (!e.schwelleUeberschritten && stufe !== 'bauherr') {
+  } else if (!e.schwelleUeberschritten && stufe === 'pl') {
     freigabeweg.push({ quelle: 'k6.4.5-p1', text: 'Innerhalb des Mandats entscheiden die verantwortliche Rolle und die Bauherren-PL im definierten Rahmen und dokumentiert im Register.' });
+  } else if (!e.schwelleUeberschritten && stufe === 'gremium') {
+    // R35: oberhalb von 100 TEUR liegt die Entscheidung nicht mehr im Mandat der Bauherren-PL (k4.2-p3)
+    freigabeweg.push({ quelle: 'k6.4.5-p1', text: 'Die Wertschwelle der Bauherren-PL ist überschritten: Entlang der Mandatsleiter wird an das Änderungsgremium eskaliert.' });
   }
 
   switch (e.status) {

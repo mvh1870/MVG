@@ -6,7 +6,7 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { kontrastQuellen, pruefeLayout } from './hilfen.mjs';
+import { kontrastQuellen, pruefeLayout, rollbarOhneTastatur } from './hilfen.mjs';
 
 export const name = 'theorie';
 export const hash = '#theorie';
@@ -45,6 +45,8 @@ export async function lauf(seite, h) {
       await seite.setViewportSize({ width: 320, height: vp.height }); await h.warte(150);
       const sw = await seite.evaluate(() => document.documentElement.scrollWidth);
       if (sw > 321) h.befund(`k${nr}: rollt bei 320 px waagerecht (${sw} px)`);
+      for (const fund of await seite.evaluate(pruefeLayout)) h.befund(`k${nr} @320: ${fund}`);
+      for (const fund of await seite.evaluate(rollbarOhneTastatur)) h.befund(`k${nr} @320: ${fund}`);
       await seite.setViewportSize(vp); await h.warte(100);
     }
     // breite Tabellen im Originaltext: scrollbarer Bereich per Tastatur erreichbar

@@ -324,7 +324,7 @@ export const W = {
       { id: 'welten', titel: 'Vorher/Nachher-Welten', text: 'Informationswege, Rollen, Entscheidungen, Eskalationen, Register, Berichterstattung und Gremien in Welt A und Welt B nebeneinander.' },
       { id: 'sandbox', titel: 'Governance-Fluss-Sandbox', text: 'Ereignisse einwerfen – Frühwarnung, Problem, Änderung – und durch Register, Status und Rollen laufen sehen.' },
       { id: 'zeitmaschine', titel: 'Zeitmaschine', text: 'Die Zeitachse schieben und sehen, wie sich Kostenunsicherheit und Entscheidungsstau in beiden Welten entwickeln.' },
-      { id: 'galerie', titel: 'Grafik-Galerie', text: 'Die Tabellen von MVG als interaktive Tafeln, die Diagramme der Geschichte mit ihrer Station, dazu das Abbildungsverzeichnis mit Kapitel und Stelle.' },
+      { id: 'galerie', titel: 'Grafik-Galerie', text: 'Die Tabellen von Minimum Viable Governance (MVG) als interaktive Tafeln, die Diagramme der Geschichte mit ihrer Station, dazu das Abbildungsverzeichnis mit Kapitel und Stelle.' },
       { id: 'figuren', titel: 'Figuren und Story-Karte', text: 'Die Besetzung des Falls und jede Station der Geschichte zum direkten Sprung.' },
     ],
   },

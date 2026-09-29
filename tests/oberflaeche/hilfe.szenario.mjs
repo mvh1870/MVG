@@ -4,7 +4,7 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { pruefeLayout } from './hilfen.mjs';
+import { pruefeLayout, schmal } from './hilfen.mjs';
 
 export const name = 'hilfe';
 export const hash = '#start';
@@ -54,6 +54,7 @@ export async function lauf(seite, h) {
     const ohneFokus = await seite.evaluate(() => [...document.querySelectorAll('.hilfe-inhalt .h-table-wrap, .hilfe-inhalt .h-grafik-wrap')]
       .filter((el) => el.scrollWidth > el.clientWidth + 1 && el.getAttribute('tabindex') !== '0').length);
     if (ohneFokus > 0) h.befund(`${s.id}: ${ohneFokus} scrollbare Tabellen nicht per Tastatur erreichbar`);
+    await schmal(seite, h, s.id);
     // Blättern: Weiter führt zur nächsten Seite der Lesereihenfolge
     const weiter = await seite.locator('.kapitel-nav a[rel="next"]').getAttribute('href').catch(() => null);
     const soll = alle[i + 1] !== undefined ? `#hilfe/${alle[i + 1].id}` : null;

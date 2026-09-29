@@ -73,4 +73,10 @@ test('Grenzfälle: kein Betrag, Freigabe bei Bauherrenstufe', () => {
   assert.equal(f.wer, 'Bauherr im Lenkungskreis');
   assert.ok(f.freigabeweg.some((h) => h.quelle === 'k9.3-p3'));
   assert.ok(!simuliere({ ...basis, betragTeur: 8000 }).freigabeweg.some((h) => /Innerhalb des Mandats/u.test(h.text)), 'Bauherrenstufe ist nicht „innerhalb des Mandats“');
+  // R35: 400 TEUR (Startwert) liegt beim Änderungsgremium, nicht im Mandat der Bauherren-PL (k4.2-p3, k6.4.5-p1)
+  const g = simuliere({ ...basis, betragTeur: 400 });
+  assert.equal(g.wer, 'Änderungsgremium');
+  assert.ok(!g.freigabeweg.some((h) => /Innerhalb des Mandats/u.test(h.text)), 'Gremiumsstufe ist nicht „innerhalb des Mandats“');
+  assert.ok(g.freigabeweg.some((h) => /an das Änderungsgremium eskaliert/u.test(h.text)));
+  assert.ok(simuliere({ ...basis, betragTeur: 80 }).freigabeweg.some((h) => /Innerhalb des Mandats/u.test(h.text)), 'PL-Stufe ist innerhalb des Mandats');
 });

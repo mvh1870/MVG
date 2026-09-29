@@ -123,3 +123,6 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 ## Runde 34 (P12.5, zugleich P14.3)
 - **Fachtreue + Begriffe (Agent):** keine Befunde. Geprüft: Diff seit 5a5e97f (drei Regie-Notizen der Enden/Wirklichkeit, Simulator-Trennstelle), Weiche der Enden per Skript über alle Wahlen und Rollen nachgerechnet, Stichprobe A4, Wirklichkeit, B2–B6, drei Enden, Epilog, k04, k06, k08, k11, abb-4/6/9/12; `begriffe` ohne Funde.
 - **Stil/Architektur (Agent):** 4 Befunde (3 mittel: Simulator rollt bei 320–380 px waagerecht, Pyramide „Arbeitsebene“ läuft bei 320 px aus der Karte, kein Szenario sichert „Story bei 320 px“; 1 leicht: Regie schmal ungetestet) – alle nachgemessen und eingearbeitet (L-109); Zählung neu.
+
+## Runde 35 (P12.5, zugleich P14.3)
+- **Beide Rollen als Agenten**: Fachtreue 3 Befunde (1 mittel: Simulator zeigt beim Startwert 400 TEUR „innerhalb des Mandats … Bauherren-PL“; 2 leicht: MVG nicht ausgeschrieben in Glossar und Explore), Stil/Architektur 2 Befunde (1 mittel: rollende Quelle im Simulator ohne Tastaturzugang bei 320–380 px; 1 leicht: 320-px-Abdeckung) – eingearbeitet (L-110); Zählung neu.

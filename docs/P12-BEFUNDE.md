@@ -104,3 +104,6 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 28 (P12.5, zugleich P14.3)
 - **Beide Rollen als Agenten**: Fachtreue 7 Befunde (leicht, eingearbeitet, L-99); Stil/Architektur 7 Befunde (3 mittel: Druckbogen zeigt Wissenscheck und Schwellen-Spiel bedienbar, forced-colors ohne Knopfgrenzen und Wahlzustand, Kap. 9 rollt bei 320 px waagerecht; 4 leicht) – die Zählung zweier sauberer Runden beginnt neu. Stil-Befunde eingearbeitet (L-100).
+
+## Runde 29 (P12.5, zugleich P14.3)
+- **Beide Rollen als Agenten**: Fachtreue 4 Befunde (leicht; kein Widerspruch Story/Lernseiten); Stil/Architektur 6 Befunde (3 mittel: Regler im Druck, Drucktest sichert Zusagen nicht, Hochkontrast nur aria-pressed; 3 leicht) – eingearbeitet (L-101); Zählung neu.

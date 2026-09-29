@@ -1,7 +1,7 @@
 ---
 station: A4
 rolle: gf
-frage: Die Vorlage des Bauherrn ist vertagt. Was nehmen Sie mit?
+frage: Die Vorlage der GML ist vertagt. Was nehmen Sie mit?
 rueckbezug-auf: A3
 ---
 

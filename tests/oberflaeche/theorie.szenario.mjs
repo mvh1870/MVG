@@ -324,12 +324,15 @@ export async function lauf(seite, h) {
     titel: document.querySelector('.druck-bogen .druck-kopf h1')?.textContent ?? '',
     zitieren: [...document.querySelectorAll('.druck-bogen .absatz-zitieren')].filter((x) => getComputedStyle(x).display !== 'none').length,
     // R28: aufgelöst statt scheinbar bedienbar – keine Knöpfe außer Glossarbegriffen, der Wissenscheck mit Erklärung
-    knoepfe: [...document.querySelectorAll('.druck-bogen button:not(.begriff)')].filter((x) => getComputedStyle(x).display !== 'none').length,
+    knoepfe: [...document.querySelectorAll('.druck-bogen :is(button:not(.begriff), input, select, textarea, [role="button"])')].filter((x) => getComputedStyle(x).display !== 'none').length,
+    // jede Antwort des Wissenschecks mit Rückmeldung (R29)
+    antworten: document.querySelectorAll('.lernseite:not(.druck-kapitel) .wc-antwort').length,
+    druckAntworten: [...document.querySelectorAll('.druck-bogen .wc-druck-antworten li')].filter((li) => (li.textContent ?? '').split('→')[1]?.trim()).length,
     erklaerung: document.querySelectorAll('.druck-bogen .wissenscheck .wc-erklaerung').length,
     wc: document.querySelectorAll('.druck-bogen .wissenscheck').length,
   }));
   if (druck.bogen === 'none' || druck.seite !== 'none' || !/^Kapitel 8 · /u.test(druck.titel) || druck.zitieren > 0
-    || druck.knoepfe > 0 || druck.wc < 1 || druck.erklaerung !== druck.wc) h.befund(`Druckbogen: ${JSON.stringify(druck)}`);
+    || druck.knoepfe > 0 || druck.wc < 1 || druck.erklaerung !== druck.wc || druck.antworten < 2 || druck.druckAntworten !== druck.antworten) h.befund(`Druckbogen: ${JSON.stringify(druck)}`);
   // nichts im Bogen ragt über den Satzspiegel hinaus (A4 mit 14 mm Rand ≈ 688 px breit)
   const vorher = seite.viewportSize() ?? { width: 1280, height: 720 };
   await seite.setViewportSize({ width: 688, height: vorher.height });
@@ -337,7 +340,7 @@ export async function lauf(seite, h) {
   const ueber = await seite.evaluate(() => {
     const bogen = document.querySelector('.druck-bogen');
     const rechts = bogen?.getBoundingClientRect().right ?? 0;
-    return [...(bogen?.querySelectorAll('*') ?? [])].filter((el) => el.getBoundingClientRect().right > rechts + 2).length;
+    return [...(bogen?.querySelectorAll('*') ?? [])].filter((el) => el.getBoundingClientRect().right > rechts + 0.5).length;
   });
   if (ueber > 0) h.befund(`Druckbogen: ${ueber} Elemente ragen über den Satzspiegel`);
   await seite.setViewportSize(vorher);
@@ -347,6 +350,17 @@ export async function lauf(seite, h) {
   await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
   await seite.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
   if (await seite.locator('.druck-bogen').count() !== 0) h.befund('Druckbogen bleibt nach dem Druck stehen');
+  // R29: Kap. 3 – das Schwellen-Spiel steht im Druck aufgelöst (je Aufgabe die Seite, ohne Hinweis und „Auflösen“)
+  await seite.evaluate(() => { location.hash = '#theorie/k3'; });
+  await h.erwarte('[data-kapitel="3"] .schwelle-karte');
+  await seite.locator('[data-pruef="kapitel-drucken"]').click();
+  const schw = await seite.evaluate(() => ({
+    aufgaben: document.querySelectorAll('.lernseite:not(.druck-kapitel) .schwelle-karte').length,
+    seiten: [...document.querySelectorAll('.druck-bogen .schwelle-druck-seite')].filter((x) => /^→ \S/u.test(x.textContent ?? '')).length,
+    rest: document.querySelectorAll('.druck-bogen :is(.tafel-schwelle .tafel-hinweis, [data-pruef="schwelle-aufloesen"], .schwelle-rueck, .schwelle-stand)').length,
+  }));
+  if (schw.aufgaben < 2 || schw.seiten !== schw.aufgaben || schw.rest > 0) h.befund(`Druck Kap. 3: Schwellen-Spiel nicht aufgelöst (${JSON.stringify(schw)})`);
+  await seite.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
   // R28: Hochkontrastmodus – Knöpfe behalten eine Grenze, der gewählte Zustand ist ohne Hintergrundfarbe der Seite erkennbar
   await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce', forcedColors: 'active' });
   await seite.evaluate(() => { location.hash = '#theorie/k3'; });

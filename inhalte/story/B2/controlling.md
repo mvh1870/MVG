@@ -13,7 +13,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Grob 0,6 Mio. € stehen mit Kostengruppe und Datenstand in `AEN-012`. Das Änderungsgremium kann darauf beraten.
+Grob 0,6 Mio. € stehen mit Kostengruppe und Datenstand in `AEN-012`. Das Änderungsgremium kann darüber beraten.
 
 ### Was fehlt
 Die Termin- und Risikowirkung der Mensa – die Schätzung der Generalplanung hat sie noch nicht.

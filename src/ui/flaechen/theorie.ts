@@ -578,7 +578,7 @@ function loeseFuerDruckAuf(seite: HTMLElement): void {
     for (const k of knoepfe) {
       k.click();
       const r = ergebnis.querySelector('.wc-rueckmeldung');
-      liste.append(h('li', null, h('b', null, `${k.textContent ?? ''} – `), ...(r !== null ? [...r.childNodes] : [])));
+      liste.append(h('li', null, h('b', null, k.textContent ?? ''), ' → ', ...(r !== null ? [...r.childNodes] : [])));
     }
     ergebnis.querySelector('.wc-rueckmeldung')?.remove();
     ergebnis.prepend(liste);
@@ -594,6 +594,8 @@ function loeseFuerDruckAuf(seite: HTMLElement): void {
     }
     for (const weg of s.querySelectorAll('.tafel-hinweis, .schwelle-stand, [data-pruef="schwelle-aufloesen"]')) weg.remove();
   }
+  // Regler und Eingaben entfallen (R29: der Stand steht in der Auswahl daneben)
+  for (const e of seite.querySelectorAll('input, select, textarea')) e.remove();
   // übrige Knöpfe der Grafiken (Leisten, Zeitachsen …) werden Text in gleicher Gestalt; der gewählte Stand bleibt sichtbar
   for (const k of seite.querySelectorAll<HTMLButtonElement>('button:not(.begriff)')) {
     const text = h('span', null, ...k.childNodes);

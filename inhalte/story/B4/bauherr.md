@@ -1,7 +1,7 @@
 ---
 station: B4
 rolle: bauherr
-frage: AEN-031 ist beschlossen. Was legen Sie dem Ausschuss vor?
+frage: Das Gremium hat AEN-031 beschlossen. Was legen Sie dem Ausschuss vor?
 rueckbezug-auf: A4
 ---
 

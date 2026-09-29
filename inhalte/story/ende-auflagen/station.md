@@ -135,7 +135,7 @@ Der Bauherr ist für die Freigaben zum Abschluss der Leistungsphasen LPH 0–9 l
 
 ::: regie
 ### Notiz
-Eines von drei Enden, gleichwertig mit den anderen – kein Zwischenergebnis und keine Niederlage. Hierher führt jede Richtung, für die die Spur kein anderes Ende trägt: „Freigabe mit Auflagen“ (wenn die Spur genug Entscheidungsfähigkeit gelassen hat), eine MVG-Neuinitialisierung, die die Spur nicht bis zum Frühjahr trug, und eine Neufestlegung, solange die Kostenunsicherheit nicht sehr hoch ist. Festhalten: Dr. Olbers erteilt die Freigabe selbst, der Lenkungskreis berät; mit der Freigabe ist LPH 6 freigegeben. Die Frage des Endes ist, wer die Auflagen nachhält.
+Eines von drei Enden, gleichwertig mit den anderen – kein Zwischenergebnis und keine Niederlage. Hierher führt jede Richtung, für die die Spur kein anderes Ende trägt: „Freigabe mit Auflagen“ (wenn die Spur genug Entscheidungsfähigkeit gelassen hat), eine MVG-Neuinitialisierung, die die Spur nicht bis zum Frühjahr trug. „Neufestlegung vorbereiten“ führt nach dem heutigen Stand der Spur immer zur Neufestlegung. Festhalten: Dr. Olbers erteilt die Freigabe selbst, der Lenkungskreis berät; mit der Freigabe ist LPH 6 freigegeben. Die Frage des Endes ist, wer die Auflagen nachhält.
 
 ### Leitfragen
 - Wer hält bei Ihnen Auflagen aus einer Freigabe nach – und wo steht ihr Stand?

@@ -110,3 +110,6 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 30 (P12.5, zugleich P14.3)
 - **Beide Rollen als Agenten**: Fachtreue 5 Befunde (1 mittel: Regie-Notiz auf gestrichenen Satz), Stil/Architektur 5 Befunde (1 mittel: Hochkontrast-Unterelemente) – eingearbeitet (L-102); Zählung neu.
+
+## Runde 31 (P12.5, zugleich P14.3)
+- **Beide Rollen als Agenten**: Fachtreue 6 Befunde (3 mittel: tote Rückbezüge der Enden, Regie-Notizen zur Weiche, B6/Planung), Stil 3 Befunde (1 mittel: Testlücken der R30-Zusagen) – Textbefunde eingearbeitet, Rest offen (L-103).

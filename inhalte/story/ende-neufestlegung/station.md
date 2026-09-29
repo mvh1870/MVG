@@ -130,7 +130,7 @@ Sonderformat außerhalb der regulären Freigabereihe zur erneuten Legitimation v
 
 ::: regie
 ### Notiz
-Eines von drei Enden, gleichwertig mit den anderen – kein Scheitern und kein Neustart. Hierher führen zwei Richtungen: „Neufestlegung vorbereiten“ (wenn die Spur die Kostenunsicherheit sehr hoch gelassen hat, sonst folgt die Freigabe mit Auflagen) und „Freigabe mit Auflagen“, wenn die Spur die Entscheidungsfähigkeit sehr niedrig gelassen hat. Festhalten: Die Neufestlegung ist keine Freigabe; sie liegt außerhalb der regulären Freigabereihe, wird über eine Entscheidungsvorlage vorbereitet und vom Bauherrn im Lenkungskreis beschlossen. Stadtrat und Bauausschuss werden rückgekoppelt. Keine Beträge für die neue Basis nennen – der Fall legt sie nicht fest.
+Eines von drei Enden, gleichwertig mit den anderen – kein Scheitern und kein Neustart. Hierher führen zwei Richtungen: „Neufestlegung vorbereiten“ (die Kostenunsicherheit steht in Welt A am Ende immer auf sehr hoch) und „Freigabe mit Auflagen“, wenn die Spur die Entscheidungsfähigkeit sehr niedrig gelassen hat. Festhalten: Die Neufestlegung ist keine Freigabe; sie liegt außerhalb der regulären Freigabereihe, wird über eine Entscheidungsvorlage vorbereitet und vom Bauherrn im Lenkungskreis beschlossen. Stadtrat und Bauausschuss werden rückgekoppelt. Keine Beträge für die neue Basis nennen – der Fall legt sie nicht fest.
 
 ### Leitfragen
 - Woran würden Sie in Ihrem Projekt merken, dass die Projektbasis nicht mehr trägt?

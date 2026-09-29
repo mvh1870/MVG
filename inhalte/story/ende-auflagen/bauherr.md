@@ -13,7 +13,7 @@ Im Dezember haben Sie ‚Freigabe mit Auflagen anstreben‘ gewählt. Im Januar 
 :::
 
 ::: rueckbezug C
-Im Dezember haben Sie ‚Neufestlegung vorbereiten‘ gewählt; die Basis trug auf Ihrer Spur noch. Im März steht das Projekt nach der Freigabe mit Auflagen in LPH 6; die offene Kostenfrage geht mit.
+Im Dezember haben Sie ‚Neufestlegung vorbereiten‘ gewählt. Im März steht das Projekt nach der Freigabe mit Auflagen in LPH 6; die offene Kostenfrage geht mit.
 :::
 
 ::: rueckbezug ohne

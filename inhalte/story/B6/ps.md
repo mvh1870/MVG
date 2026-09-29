@@ -83,7 +83,7 @@ In Welt A war im November alles offen: Zahl, Stellvertretung, Freigabe. In Welt 
 
 ::: regie
 ### Notiz
-Holger Stein fällt auch hier aus. Zeigen, dass die Stellvertretung auf dem Datenstand weiterarbeitet – der Ausfall kostet Tage, nicht die Freigabe.
+Holger Stein fällt auch hier aus. Zeigen, dass die Stellvertretung benannt ist und die Annahmen im Datenstand stehen – ob sie weiterführt, bleibt offen.
 
 ### Leitfragen
 - Wer vertritt bei Ihnen die Kostenprognose?

@@ -5,7 +5,7 @@ rueckbezug-auf: wirklichkeit
 ---
 
 ::: rueckbezug A
-Im Dezember haben Sie ‚MVG-Neuinitialisierung beauftragen‘ gewählt; die Kosten waren zu unsicher. Im März beschließen Sie eine Neufestlegung der Projektbasis.
+Im Dezember haben Sie ‚MVG-Neuinitialisierung beauftragen‘ gewählt. Im März beschließen Sie eine Neufestlegung der Projektbasis.
 :::
 
 ::: rueckbezug B

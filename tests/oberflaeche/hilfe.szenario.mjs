@@ -134,4 +134,6 @@ export async function lauf(seite, h) {
   // R20: die Hilfe hat genau eine main-Landmarke
   if (await seite.locator('main').count() !== 1) h.befund(`Hilfe: ${await seite.locator('main').count()} main-Landmarken statt 1`);
   if (await seite.locator('nav[aria-label="Hilfe-Kapitel"] details.kapitel-verzeichnis').count() !== 1) h.befund('Hilfe: Verzeichnis ohne Navigation-Landmarke');
+  const hilfeNav = await seite.evaluate(() => [...document.querySelectorAll('nav')].map((n) => n.getAttribute('aria-label') ?? ''));
+  if (new Set(hilfeNav).size !== hilfeNav.length) h.befund(`Hilfe: gleichnamige Navigationen (${hilfeNav.join(', ')})`);
 }

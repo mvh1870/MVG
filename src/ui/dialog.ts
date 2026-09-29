@@ -8,7 +8,8 @@
  * auf seinen Innenrand.
  *
  * Die Höhe (94vh) bezöge sich eingebettet auf den hohen Rahmen: dort deckelt `oeffneDialog` sie auf das
- * Fenster der Hostseite (gleiche Herkunft gemessen, sonst von ihr gemeldet); ist es unbekannt, auf 640 px,
+ * Fenster der Hostseite (gleiche Herkunft gemessen, sonst von ihr gemeldet) und folgt ihm, solange der Dialog
+ * offen ist (`deckeleHoehe`); ist es unbekannt, auf 640 px,
  * und am Ende des Dialogs rollt dann die Hostseite weiter (P12.5 R12, R17).
  */
 
@@ -21,7 +22,10 @@ const offeneEingebettet = new Set<HTMLDialogElement>();
 export function setzeHostFenster(hoehe: number | null): void {
   gemeldetesFenster = hoehe;
   // offene Dialoge folgen dem Fenster (Telefon drehen, Fenster verkleinern; P12.5 R21)
-  for (const d of offeneEingebettet) deckeleHoehe(d);
+  for (const d of offeneEingebettet) {
+    if (d.open && d.isConnected) deckeleHoehe(d);
+    else offeneEingebettet.delete(d); // durch einen Seitenwechsel entfernt, ohne 'close' (R22)
+  }
 }
 
 /** Höhendeckel und rollfrei nach dem aktuell bekannten Hostfenster setzen. */
@@ -43,13 +47,18 @@ function beobachteHostfenster(dialog: HTMLDialogElement): void {
   } catch {
     eltern = null;
   }
-  const neu = (): void => deckeleHoehe(dialog);
-  eltern?.addEventListener('resize', neu);
-  offeneEingebettet.add(dialog);
-  dialog.addEventListener('close', () => {
+  const ende = (): void => {
     offeneEingebettet.delete(dialog);
     eltern?.removeEventListener('resize', neu);
-  }, { once: true });
+  };
+  // ein Seitenwechsel nimmt den Dialog heraus, ohne dass 'close' feuert: dann hier aufräumen (R22)
+  const neu = (): void => {
+    if (!dialog.open || !dialog.isConnected) { ende(); return; }
+    deckeleHoehe(dialog);
+  };
+  eltern?.addEventListener('resize', neu);
+  offeneEingebettet.add(dialog);
+  dialog.addEventListener('close', ende, { once: true });
 }
 
 /** Eingebettet: wie die Hostseite zu einer Stelle im Rahmen rollt (src/main.ts → einbettung.meldeZiel). */

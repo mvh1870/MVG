@@ -94,7 +94,7 @@ function verzeichnis(hilfe: HilfeDaten, aktuell: string | null): HTMLElement {
 }
 
 function blaettern(vor: Eintrag | null, nach: Eintrag | null): HTMLElement {
-  return h('nav', { class: 'kapitel-nav', 'aria-label': W.hilfe.bereich },
+  return h('nav', { class: 'kapitel-nav', 'aria-label': W.hilfe.blaettern },
     vor !== null ? h('a', { href: `#hilfe/${vor.seite.id}`, rel: 'prev' }, h('span', { class: 't-label' }, W.hilfe.zurueck), h('b', null, vor.seite.titel)) : null,
     nach !== null ? h('a', { href: `#hilfe/${nach.seite.id}`, rel: 'next' }, h('span', { class: 't-label' }, W.hilfe.weiter), h('b', null, nach.seite.titel)) : null);
 }

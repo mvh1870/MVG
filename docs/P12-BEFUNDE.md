@@ -83,3 +83,6 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 21 (P12.5, zugleich P14.3)
 - **Beide Rollen als Workflow** mit Gegenprüfung: Fachtreue 3 Befunde (0 schwer, 0 mittel – achte saubere Fachtreue-Runde), Stil/Architektur 6 Befunde (2 mittel, beide bestätigt) – alle eingearbeitet (L-92).
+
+## Runde 22 (P12.5, zugleich P14.3)
+- **Beide Rollen als Workflow** mit Gegenprüfung: Fachtreue 1 Befund (0 schwer, 0 mittel – neunte saubere Fachtreue-Runde), Stil/Architektur 4 Befunde (2 mittel, beide bestätigt) – alle eingearbeitet (L-93).

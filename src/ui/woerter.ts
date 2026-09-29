@@ -240,6 +240,7 @@ export const W = {
     kapitelKurz: (nr: string) => `Kap. ${nr}`,
     tabelle: (id: string) => `Tabelle ${id}`,
     verzeichnisNav: 'Kapitel',
+    blaettern: 'Kapitel blättern',
     wissenscheck: 'Kurz geprüft',
     wissenscheckAntworten: 'Ihre Einschätzung',
     flussUebersicht: (stationen: string) => `Kanonischer Governance-Fluss: ${stationen}`,
@@ -280,6 +281,7 @@ export const W = {
   hilfe: {
     bereich: 'Hilfe',
     verzeichnisNav: 'Hilfe-Kapitel',
+    blaettern: 'Hilfe blättern',
     bereichZusatz: '· MVG Companion',
     link: 'Hilfe',
     inhalt: 'Inhalt',

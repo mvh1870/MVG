@@ -52,7 +52,7 @@ titel: Private und institutionelle Bauherren
 ---
 titel: Energieversorger und Infrastrukturträger
 ---
-**Engpass:** Risiken wandern in Freigaben, Priorisierung, Beschaffung, Komponenten mit langer Lieferzeit und die Restkostenprognose.
+**Engpass:** Projektrisiken verschieben sich in Freigaben, Priorisierung, Beschaffung, Entscheidungen zu Komponenten mit langer Lieferzeit und die Disziplin bei der Restkostenprognose.
 
 **Worauf es ankommt:** Projektklassenlogik, Neupriorisierung im Portfolio, Frühwarnung, Prognose und Freigabereife.
 :::

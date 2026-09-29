@@ -308,5 +308,19 @@ export async function lauf(seite, h) {
   await seite.goto('http://mvg.test/tests/oberflaeche/einbettung-host.html');
   await h.warte(1500);
   await pruefeDialog('#theorie/k4', '.lern-inhalt [data-pruef="abbildung-gross"]', 'dialog.abbildung-dialog', 'Abbildungs (gleiche Herkunft)');
+  // R22: gleiche Herkunft ohne Meldung – ein offener Dialog folgt dem resize der Hostseite
+  await seite.setViewportSize({ width: 1100, height: 760 });
+  await seite.goto('http://mvg.test/tests/oberflaeche/einbettung-host.html?ohne-fenster');
+  await h.warte(1500);
+  await geheUndWarte('#theorie/k4');
+  const zieleG = (await seite.evaluate(() => /** @type {any} */ (window).nachrichten)).filter((/** @type {any} */ n) => n?.art === 'ziel').length;
+  await rahmen.locator('.lern-inhalt [data-pruef="abbildung-gross"]').first().click();
+  for (let i = 0; i < 30 && (await seite.evaluate(() => /** @type {any} */ (window).nachrichten)).filter((/** @type {any} */ n) => n?.art === 'ziel').length <= zieleG; i++) await h.warte(100);
+  await h.warte(1200);
+  await seite.setViewportSize({ width: 1100, height: 520 });
+  await h.warte(600);
+  const nachResize = await seite.frames()[1]?.evaluate(() => { const d = document.querySelector('dialog.abbildung-dialog[open]'); return d ? { hoehe: d.getBoundingClientRect().height, rollfrei: d.getAttribute('data-rollfrei') } : null; });
+  if (nachResize === null || nachResize === undefined || nachResize.hoehe > 520 * 0.94 - 16 + 1 || nachResize.rollfrei !== 'nein') h.befund(`Einbettung (gleiche Herkunft, ohne Meldung): offener Dialog folgt dem kleineren Hostfenster nicht (${JSON.stringify(nachResize)})`);
+  await seite.keyboard.press('Escape');
   if (groesseVorher !== null) await seite.setViewportSize(groesseVorher);
 }

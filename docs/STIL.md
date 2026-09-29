@@ -392,7 +392,7 @@ Tastatur am Griff: Der Regler ist ein **Umschalter mit Überblendung** zwischen 
       <section class="originaltext"><header class="originaltext-kopf"><span class="t-label">Originaltext V1.2 · wörtlich</span><span class="originaltext-quelle">Kap. 2.4</span></header>
         <p class="absatz" id="…"><a class="absatz-id" href="#…">Absatz-ID</a><span>wortgleicher Text</span></p>…</section>
       <div class="querverweise"><a class="querverweis" data-welt="a"><span class="querverweis-symbol">…</span>In der Story: Station 3 <small>Welt A</small></a></div>
-      <nav class="kapitel-nav"><a rel="prev">…</a><a rel="next">…</a></nav>
+      <nav class="kapitel-nav" aria-label="Kapitel blättern"><a rel="prev">…</a><a rel="next">…</a></nav>
     </main>
   </div>
 </div>

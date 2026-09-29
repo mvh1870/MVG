@@ -485,7 +485,7 @@ function kapitelNav(o: TheorieOptionen, nr: number): HTMLElement {
   const kap = kapitelListe(o.inhalte);
   const vor = kap.find((k) => k.nr === nr - 1) ?? null;
   const nach = kap.find((k) => k.nr === nr + 1) ?? null;
-  return h('nav', { class: 'kapitel-nav', 'aria-label': W.theorie.kapitel },
+  return h('nav', { class: 'kapitel-nav', 'aria-label': W.theorie.blaettern },
     vor !== null ? verweis(o, `#theorie/k${vor.nr}`, { rel: 'prev' }, h('span', { class: 't-label' }, W.theorie.zurueckKap(String(vor.nr))), h('b', null, vor.titel)) : null,
     nach !== null ? verweis(o, `#theorie/k${nach.nr}`, { rel: 'next' }, h('span', { class: 't-label' }, W.theorie.weiterKap(String(nach.nr))), h('b', null, nach.titel)) : null);
 }

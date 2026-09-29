@@ -241,6 +241,10 @@ export async function lauf(seite, h) {
   if (await seite.locator('main').count() !== 1) h.befund(`Theorie: ${await seite.locator('main').count()} main-Landmarken statt 1`);
   // R21: das Kapitelverzeichnis ist eine eigene Navigation
   if (await seite.locator('nav[aria-label="Kapitel"] details.kapitel-verzeichnis').count() !== 1) h.befund('Theorie: Kapitelverzeichnis ohne Navigation-Landmarke');
+  // R22: Landmarken tragen verschiedene Namen
+  const navNamen = await seite.evaluate(() => [...document.querySelectorAll('nav, [role="navigation"], [role="region"], section[aria-label], section[aria-labelledby]')].map((n) => `${n.tagName}:${n.getAttribute('aria-label') ?? document.getElementById(n.getAttribute('aria-labelledby') ?? '')?.textContent ?? ''}`));
+  const doppelt = navNamen.filter((n, i) => navNamen.indexOf(n) !== i);
+  if (doppelt.length > 0) h.befund(`Theorie: gleichnamige Landmarken (${[...new Set(doppelt)].join(', ')})`);
   // Zitierfunktion (P10.1): Absatz-Permalink springt zum Absatz, „Zitieren“ zeigt die Angabe
   await seite.evaluate(() => { location.hash = '#theorie/k4/k4.2-p3'; });
   const absatz = seite.locator('.originaltext .absatz[data-absatz="k4.2-p3"]');

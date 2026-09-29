@@ -87,6 +87,10 @@ export async function lauf(_seite, h) {
   // Theorie-Kapitel: Regie-Notiz und Einwände nur in der Regie
   await h.klick('[data-pruef="regie-kapitel-5"]', regie);
   await h.erwarte('[data-kapitel="5"]', leinwand);
+  // R22: Leinwand und Regie-Vorschau betten die Lernseite als article ein – nie als zweite main
+  if (await leinwand.locator('main').count() !== 0 || await leinwand.locator('article.lern-inhalt').count() !== 1) h.befund('Leinwand: Lernseite nicht als article eingebettet');
+  const vorschauMains = await regie.evaluate(() => [...document.querySelectorAll('.regie-vorschau main')].length);
+  if (vorschauMains !== 0) h.befund(`Regie-Vorschau: ${vorschauMains} main in der eingebetteten Lernseite`);
   const e = inhalte.regie['theorie/k5'];
   if (e === undefined) h.befund('Regie-Material zu Kap. 5 fehlt');
   else {

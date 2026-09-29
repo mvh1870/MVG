@@ -6,6 +6,7 @@
  *                 hoehe { px }  (Inhaltshöhe, sobald sie sich ändert; null = feste Höhe, z. B. die Story)
  *                 ziel { y }  (Sprungziel im Rahmen, z. B. ein Absatz-Permalink – der Host rollt dorthin)
  *   vom Host:     gehe { ziel: '#theorie/k4' } · frage  (antwortet mit „ort“)
+ *                 fenster { hoehe }  (Fensterhöhe der Hostseite; begrenzt vergrößerte Abbildungen, P12.5 R17)
  *
  * Sicher: angenommen wird nur, was vom direkten Elternfenster kommt und – wenn die Hostseite ihre
  * Herkunft per `?einbettung-herkunft=https://…` nennt – nur von dieser Herkunft; dorthin geht dann auch
@@ -25,7 +26,8 @@ export type AnHost =
 
 export type VomHost =
   | { art: 'gehe'; ziel: string }
-  | { art: 'frage' };
+  | { art: 'frage' }
+  | { art: 'fenster'; hoehe: number };
 
 /** Läuft das Fenster in einem Rahmen? (Zugriff auf `top` kann fremdherkünftig werfen → ja) */
 export function istEingebettet(fenster: Window): boolean {
@@ -42,6 +44,7 @@ export function leseHostNachricht(daten: unknown): VomHost | null {
   const d = daten as Record<string, unknown>;
   if (d['mvg'] !== EINBETTUNG) return null;
   if (d['art'] === 'frage') return { art: 'frage' };
+  if (d['art'] === 'fenster' && typeof d['hoehe'] === 'number' && Number.isFinite(d['hoehe']) && d['hoehe'] >= 200 && d['hoehe'] <= 10000) return { art: 'fenster', hoehe: Math.round(d['hoehe']) };
   if (d['art'] === 'gehe' && typeof d['ziel'] === 'string' && d['ziel'].length <= 200) {
     const r = leseRoute(d['ziel']);
     if (r.flaeche === 'regie' || r.flaeche === 'leinwand') return null;
@@ -78,6 +81,8 @@ export function starteEinbettung(o: {
   ort: () => { hash: string; flaeche: string; titel: string };
   /** Inhaltshöhe in px (null = die Fläche braucht eine feste Höhe); ohne Angabe keine Höhenmeldung */
   hoehe?: () => number | null;
+  /** Fensterhöhe der Hostseite, wenn sie sie meldet */
+  hostFenster?: (hoehe: number) => void;
 }): Einbettung {
   const { fenster } = o;
   let herkunft: string | null = null;
@@ -109,6 +114,7 @@ export function starteEinbettung(o: {
     const n = leseHostNachricht(e.data);
     if (n === null) return;
     if (n.art === 'gehe') o.gehe(n.ziel);
+    else if (n.art === 'fenster') o.hostFenster?.(n.hoehe);
     else meldeOrt(true);
   };
   fenster.addEventListener('message', bei);

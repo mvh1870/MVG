@@ -47,8 +47,8 @@ Auflagen, die niemand nachhält, versanden.
 
 ::: option C
 ---
-titel: Empfehlen, die Freigabe um einen Monat zurückzustellen
-kurz: Freigabe zurückstellen
+titel: Keine Freigabe empfehlen – in einem Monat neu vorlegen
+kurz: Keine Freigabe empfehlen
 status:
   terminrisiko: +1
 ---

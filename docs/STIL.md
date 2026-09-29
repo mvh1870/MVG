@@ -413,7 +413,7 @@ Tastatur am Griff: Der Regler ist ein **Umschalter mit Überblendung** zwischen 
   <dialog class="abbildung-dialog">Kopf (Titel, Schließen) + Bild in voller Breite, mindestens 900 px (schmale Fenster rollen waagrecht)</dialog>
 </figure>
 ```
-Weiße Karte wie `.lern-grafik`, Bild auf ganzer Spaltenbreite; Klick aufs Bild öffnet ebenfalls den Dialog (Tastatur: der Knopf). Auf der Leinwand und im Druck ohne Knopf und Dialog, mit aufgeklappten Abweichungen (dort kann niemand aufklappen). Der Dialog hat keinen Innenabstand, der Kopf klebt bündig; eingebettet ist seine Höhe auf das Fenster der Hostseite gedeckelt (fremde Herkunft: 640 px; auf niedrigeren Hostfenstern rollt die Hostseite mit). Die Grafik-Dialoge der Hilfe folgen demselben Layout. Mausrad, Wischen und Rolltasten über dem offenen Dialog rollen nur ihn – nie die Seite oder die Hostseite dahinter, auch wenn das Bild ganz hineinpasst (`halteRollenImDialog`).
+Weiße Karte wie `.lern-grafik`, Bild auf ganzer Spaltenbreite; Klick aufs Bild öffnet ebenfalls den Dialog (Tastatur: der Knopf). Auf der Leinwand und im Druck ohne Knopf und Dialog, mit aufgeklappten Abweichungen (dort kann niemand aufklappen). Der Dialog hat keinen Innenabstand, der Kopf klebt bündig; eingebettet ist seine Höhe auf das Fenster der Hostseite gedeckelt (gemessen oder von der Hostseite gemeldet; unbekannt: 640 px, und am Dialogende rollt die Hostseite weiter). Die Grafik-Dialoge der Hilfe folgen demselben Layout. Mausrad, Wischen und Rolltasten über dem offenen Dialog rollen nur ihn – nie die Seite oder die Hostseite dahinter, auch wenn das Bild ganz hineinpasst (`halteRollenImDialog`).
 
 ## Barrierefreiheit
 

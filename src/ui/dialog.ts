@@ -8,10 +8,17 @@
  * auf seinen Innenrand.
  *
  * Die Höhe (94vh) bezöge sich eingebettet auf den hohen Rahmen: dort deckelt `oeffneDialog` sie auf das
- * Fenster der Hostseite (gleiche Herkunft) bzw. auf 640 px, wenn die Hostseite fremd ist (P12.5 R12).
+ * Fenster der Hostseite (gleiche Herkunft gemessen, sonst von ihr gemeldet); ist es unbekannt, auf 640 px,
+ * und am Ende des Dialogs rollt dann die Hostseite weiter (P12.5 R12, R17).
  */
 
 let zielMelder: ((y: number) => void) | null = null;
+let gemeldetesFenster: number | null = null;
+
+/** Eingebettet: Fensterhöhe, die die Hostseite meldet (Einbett-Nachricht „fenster“, auch bei fremder Herkunft). */
+export function setzeHostFenster(hoehe: number | null): void {
+  gemeldetesFenster = hoehe;
+}
 
 /** Eingebettet: wie die Hostseite zu einer Stelle im Rahmen rollt (src/main.ts → einbettung.meldeZiel). */
 export function setzeZielMelder(melder: ((y: number) => void) | null): void {
@@ -29,21 +36,29 @@ export function oeffneDialog(dialog: HTMLDialogElement, anker: Element): void {
   // der Rahmen rollt nicht selbst (er ist so hoch wie sein Inhalt): Fensterkoordinaten = Dokumentkoordinaten
   const y = Math.max(0, Math.round(anker.getBoundingClientRect().top + window.scrollY));
   dialog.style.inset = `${y}px 0 auto 0`;
-  dialog.style.maxHeight = `${hostHoehe()}px`;
+  const hoehe = hostHoehe();
+  dialog.style.maxHeight = `${hoehe ?? 640}px`;
   dialog.style.margin = '0 auto';
+  // fremde Herkunft (Hostfenster nicht messbar, P12.5 R17): Am Ende des Dialogs geht das Rollen an die
+  // Hostseite weiter – sonst bliebe auf niedrigen Fenstern der untere Teil des Bilds unerreichbar
+  dialog.dataset['rollfrei'] = hoehe === null ? 'ja' : 'nein';
+  dialog.style.overscrollBehavior = hoehe === null ? 'auto' : '';
   zeigeModal(dialog);
   zielMelder?.(y);
 }
 
-/** Nutzbare Höhe im Fenster der Hostseite: deren innerHeight abzüglich Rand, fremde Herkunft 640 px. */
-function hostHoehe(): number {
+/**
+ * Nutzbare Höhe im Fenster der Hostseite: deren innerHeight abzüglich Rand – gemessen (gleiche Herkunft) oder
+ * von der Hostseite gemeldet; null = unbekannt (fremde Herkunft ohne Meldung).
+ */
+function hostHoehe(): number | null {
   let fenster = 0;
   try {
     fenster = window.parent.innerHeight;
   } catch {
-    fenster = 0;
+    fenster = gemeldetesFenster ?? 0;
   }
-  return Number.isFinite(fenster) && fenster > 0 ? Math.max(320, Math.round(fenster * 0.94) - 16) : 640;
+  return Number.isFinite(fenster) && fenster > 0 ? Math.max(320, Math.round(fenster * 0.94) - 16) : null;
 }
 
 const radSperre = new WeakMap<HTMLDialogElement, (e: WheelEvent) => boolean>();
@@ -84,8 +99,9 @@ export function halteRollenImDialog(dialog: HTMLDialogElement): void {
   // am Fenster (Erfassung), nur solange der Dialog offen ist: ein Rad über dem Hintergrund (::backdrop)
   // erreicht den Dialog sonst nicht verlässlich; geschlossen bleibt das Rollen der Seite passiv
   // gibt zurück, ob das Rad gesperrt wird; Strg+Rad (Zoom) gehört dem Browser, Umschalt+Rad rollt waagrecht
+  const rollfrei = (): boolean => dialog.dataset['rollfrei'] === 'ja';
   radSperre.set(dialog, (e: WheelEvent) => {
-    if (e.ctrlKey) return false;
+    if (e.ctrlKey || rollfrei()) return false;
     const [dx, dy] = e.shiftKey && e.deltaX === 0 ? [e.deltaY, 0] : [e.deltaX, e.deltaY];
     const r = dialog.getBoundingClientRect();
     const drin = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
@@ -98,12 +114,14 @@ export function halteRollenImDialog(dialog: HTMLDialogElement): void {
     if (t !== undefined) { y0 = t.clientY; x0 = t.clientX; }
   }, { passive: true });
   dialog.addEventListener('touchmove', (e) => {
-    if (e.touches.length > 1) return; // Zwei-Finger-Zoom gehört dem Browser
+    if (e.touches.length > 1 || rollfrei()) return; // Zwei-Finger-Zoom gehört dem Browser
     const t = e.touches[0];
     if (t !== undefined && !kannRollen(dialog, x0 - t.clientX, y0 - t.clientY)) e.preventDefault();
   }, { passive: false });
   dialog.addEventListener('keydown', (e) => {
     if (!ROLLTASTEN.has(e.key) || e.altKey || e.ctrlKey || e.metaKey) return;
+    // rollfrei: am Ende rollt die Hostseite weiter (Standardverhalten), vorher der Dialog selbst
+    if (rollfrei() && !kannRollen(dialog, 0, ['ArrowUp', 'PageUp', 'Home'].includes(e.key) || (e.key === ' ' && e.shiftKey) ? -1 : 1)) return;
     // Leertaste auf einem Knopf oder Link löst ihn aus, rollt nicht
     if (e.key === ' ' && e.target instanceof Element && e.target.closest('button, a') !== null) return;
     e.preventDefault();

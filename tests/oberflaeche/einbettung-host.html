@@ -18,10 +18,15 @@
   if (ruhig) rahmen.style.transition = 'none';
   var fest = function () { return Math.round(Math.max(640, Math.min(900, window.innerHeight * 0.9))); };
   var ort = '';
+  // Fensterhöhe melden (begrenzt vergrößerte Abbildungen); ?ohne-fenster prüft den Fall ohne Meldung
+  var ohneFenster = /[?&]ohne-fenster\b/.test(location.search);
+  var melde = function () { if (!ohneFenster) rahmen.contentWindow.postMessage({ mvg: 'einbettung', art: 'fenster', hoehe: window.innerHeight }, '*'); };
+  window.addEventListener('resize', melde);
   window.addEventListener('message', function (e) {
     if (e.source !== rahmen.contentWindow) return;
     var d = e.data;
     if (!d || d.mvg !== 'einbettung') return;
+    if (d.art === 'bereit') melde();
     if (d.art === 'hoehe') rahmen.style.height = (d.px === null ? fest() : Math.max(320, d.px)) + 'px';
     if (d.art === 'ort') {
       // neue Seite (Fläche oder Kapitel): an den Anfang des Rahmens, falls er aus dem Bild ist

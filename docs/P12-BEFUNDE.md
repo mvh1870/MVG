@@ -68,3 +68,6 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 16 (P12.5, zugleich P14.3)
 - **Beide Rollen als Workflow** mit Gegenprüfung: Fachtreue 2 Befunde (0 schwer, 0 mittel – dritte saubere Fachtreue-Runde), Stil/Architektur 4 Befunde (3 mittel, alle bestätigt, alle in der neuen Rollsperre) – alle eingearbeitet (L-87).
+
+## Runde 17 (P12.5, zugleich P14.3)
+- **Beide Rollen als Workflow** mit Gegenprüfung: Fachtreue 2 Befunde (0 schwer, 0 mittel – vierte saubere Fachtreue-Runde), Stil/Architektur 5 Befunde (2 mittel, beide bestätigt) – alle eingearbeitet (L-88): Hostfenster-Meldung im Einbett-Protokoll, Freigabe des Rollens am Dialogende ohne Meldung, Tests für Zoom, Zwei-Finger, Leertaste, Kapiteltitel, Rollenkarte.

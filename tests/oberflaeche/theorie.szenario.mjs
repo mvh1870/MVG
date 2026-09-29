@@ -156,6 +156,28 @@ export async function lauf(seite, h) {
         if (y2 <= y1) h.befund(`Abbildungs-Dialog: ${wann} rollt das Mausrad die Seite nicht mehr (${y1} → ${y2})`);
       };
       await radRolltSeite('nach dem Schließen');
+      // R17: Strg+Rad (Zoom) und Zwei-Finger-Gesten bleiben dem Browser; die Leertaste auf „Schließen“ schließt
+      await gross.click();
+      await h.erwarte('dialog.abbildung-dialog[open]');
+      const frei = await seite.evaluate(() => {
+        const d = /** @type {HTMLDialogElement} */ (document.querySelector('dialog.abbildung-dialog[open]'));
+        const r = d.getBoundingClientRect();
+        const x = r.left + r.width / 2;
+        const y = r.top + Math.min(r.height, 200) / 2;
+        const zoom = new WheelEvent('wheel', { cancelable: true, bubbles: true, ctrlKey: true, deltaY: -100, clientX: x, clientY: y });
+        d.dispatchEvent(zoom);
+        const f = (/** @type {number} */ i, /** @type {number} */ yy) => new Touch({ identifier: i, target: d, clientX: x + i * 40, clientY: yy });
+        d.dispatchEvent(new TouchEvent('touchstart', { cancelable: true, bubbles: true, touches: [f(0, y), f(1, y)] }));
+        const wisch = new TouchEvent('touchmove', { cancelable: true, bubbles: true, touches: [f(0, y + 30), f(1, y - 30)] });
+        d.dispatchEvent(wisch);
+        return { zoom: !zoom.defaultPrevented, zweiFinger: !wisch.defaultPrevented };
+      });
+      if (!frei.zoom) h.befund('Abbildungs-Dialog: Strg+Mausrad (Zoom) wird gesperrt');
+      if (!frei.zweiFinger) h.befund('Abbildungs-Dialog: Zwei-Finger-Geste wird gesperrt');
+      await seite.locator('dialog.abbildung-dialog[open] [data-pruef="abbildung-schliessen"]').focus();
+      await seite.keyboard.press('Space');
+      await h.warte(150);
+      if ((await seite.locator('dialog[open]').count()) !== 0) h.befund('Abbildungs-Dialog: Leertaste auf „Schließen“ schließt nicht');
       // R16: Umschalt+Rad rollt einen breiten Dialog waagrecht (bei 400 px ist das Bild breiter als das Fenster)
       if (fenster.width < 600) {
         await gross.click();
@@ -180,6 +202,9 @@ export async function lauf(seite, h) {
       await seite.evaluate(() => { location.hash = '#theorie/k5'; });
       await h.warte(600);
       await radRolltSeite('nach einem Seitenwechsel bei offenem Dialog');
+      // R17: jede Kapitelseite trägt ihren Titel im Dokumenttitel
+      const titelK5 = await seite.title();
+      if (!/^Kapitel 5 · .+ · Erklärt · /u.test(titelK5)) h.befund(`Kapitel 5: Dokumenttitel „${titelK5}“ nennt das Kapitel nicht`);
       await seite.evaluate((x) => { location.hash = x; }, hashVorher);
       await h.warte(600);
     }

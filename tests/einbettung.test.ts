@@ -10,6 +10,9 @@ test('Host-Nachrichten: gehe (normalisiert), frage; Regie, Leinwand und Fremdes 
   assert.deepEqual(leseHostNachricht({ mvg: EINBETTUNG, art: 'gehe', ziel: '#Theorie/K04' }), { art: 'gehe', ziel: '#theorie/k4' });
   assert.deepEqual(leseHostNachricht({ mvg: EINBETTUNG, art: 'gehe', ziel: 'unfug' }), { art: 'gehe', ziel: '#start' });
   assert.deepEqual(leseHostNachricht({ mvg: EINBETTUNG, art: 'frage' }), { art: 'frage' });
+  // Fensterhöhe der Hostseite (P12.5 R17): nur plausible Zahlen
+  assert.deepEqual(leseHostNachricht({ mvg: EINBETTUNG, art: 'fenster', hoehe: 719.6 }), { art: 'fenster', hoehe: 720 });
+  for (const hoehe of ['720', -1, 50, 1e6, Number.NaN, null]) assert.equal(leseHostNachricht({ mvg: EINBETTUNG, art: 'fenster', hoehe }), null, String(hoehe));
   for (const n of [null, 'gehe', { art: 'gehe', ziel: '#story' }, { mvg: EINBETTUNG, art: 'gehe', ziel: '#regie' }, { mvg: EINBETTUNG, art: 'gehe', ziel: '#leinwand' },
     { mvg: EINBETTUNG, art: 'gehe', ziel: 42 }, { mvg: EINBETTUNG, art: 'gehe', ziel: `#${'x'.repeat(300)}` }, { mvg: EINBETTUNG, art: 'loesche' }]) {
     assert.equal(leseHostNachricht(n), null, JSON.stringify(n));

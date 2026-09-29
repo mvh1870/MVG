@@ -82,10 +82,14 @@ Diesen Schnipsel an die Stelle der eigenen Seite kopieren, an der MVG interaktiv
   if (ruhig) rahmen.style.transition = 'none';
   var fest = function () { return Math.round(Math.max(640, Math.min(900, window.innerHeight * 0.9))); };
   var ort = '';
+  // Fensterhöhe melden: vergrößerte Abbildungen passen dann ins Fenster
+  var melde = function () { rahmen.contentWindow.postMessage({ mvg: 'einbettung', art: 'fenster', hoehe: window.innerHeight }, '*'); };
+  window.addEventListener('resize', melde);
   window.addEventListener('message', function (e) {
     if (e.source !== rahmen.contentWindow) return;
     var d = e.data;
     if (!d || d.mvg !== 'einbettung') return;
+    if (d.art === 'bereit') melde();
     if (d.art === 'hoehe') rahmen.style.height = (d.px === null ? fest() : Math.max(320, d.px)) + 'px';
     if (d.art === 'ort') {
       // neue Seite (Fläche oder Kapitel): an den Anfang des Rahmens, falls er aus dem Bild ist
@@ -117,7 +121,7 @@ Diesen Schnipsel an die Stelle der eigenen Seite kopieren, an der MVG interaktiv
   - `{ mvg: 'einbettung', art: 'frage' }`
 - Regie und Leinwand gibt es im Rahmen nicht: Weder `gehe` noch eine Adresse mit `#regie` oder `#leinwand` öffnet sie, die Anwendung zeigt dann die Startseite.
 
-**Vergrößerte Abbildungen und Grafiken** öffnen eingebettet an ihrer Stelle, die Hostseite rollt dorthin. Ihre Höhe ist auf das Fenster der Hostseite begrenzt, wenn beide dieselbe Herkunft haben; bei fremder Herkunft kann der Rahmen das Fenster nicht messen und nimmt höchstens 640 px – auf niedrigeren Fenstern (Telefon quer) rollt dann die Hostseite mit, „Schließen“ bleibt oben sichtbar.
+**Vergrößerte Abbildungen und Grafiken** öffnen eingebettet an ihrer Stelle, die Hostseite rollt dorthin. Ihre Höhe ist auf das Fenster der Hostseite begrenzt: bei gleicher Herkunft gemessen, sonst über die Nachricht `fenster`, die der Schnipsel oben sendet. Fehlt sie (älterer Schnipsel), nimmt der Dialog höchstens 640 px, und am Ende des Bilds rollt die Hostseite weiter – so bleibt auch auf niedrigen Fenstern (Telefon quer) der untere Teil erreichbar.
 
 ## 4. Pflege (für den Bau)
 

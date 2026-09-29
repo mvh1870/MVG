@@ -21,7 +21,7 @@ import { lade, type SpeicherGriff } from './engine/speicher.ts';
 import { erzeugeKanal } from './regie/kanal.ts';
 import { setzeMarke } from './ui/marke.ts';
 import { setzeAbbildungsBilder } from './ui/bausteine/abbildung.ts';
-import { setzeZielMelder } from './ui/dialog.ts';
+import { setzeHostFenster, setzeZielMelder } from './ui/dialog.ts';
 import { IMPRESSUM, istAbbildungsId, istAbsatzId, leseRoute, routeHash, type Route } from './ui/route.ts';
 import { erzeugeSitzung, type Sitzung } from './ui/sitzung.ts';
 import { ersetze } from './ui/h.ts';
@@ -171,7 +171,9 @@ function starteApp(wurzel: HTMLElement): void {
         } else (seite.querySelector('.kapitel-titel') as HTMLElement | null)?.focus({ preventScroll: true });
         flaeche = `theorie-${r.kapitel ?? 0}`;
         document.body.dataset['flaeche'] = 'theorie';
-        document.title = `${W.theorie.bereich} ${W.theorie.bereichZusatz} · ${TITEL}`;
+        // Kapitelseiten tragen ihren Titel (Tabs, Verlauf, Screenreader; P12.5 R17)
+        const kapTitel = r.kapitel !== null ? seite.querySelector('.kapitel-titel')?.textContent?.trim() ?? '' : '';
+        document.title = kapTitel !== '' && r.kapitel !== null ? `${W.druck.kapitelTitel(r.kapitel, kapTitel)} · ${W.theorie.bereich} · ${TITEL}` : `${W.theorie.bereich} ${W.theorie.bereichZusatz} · ${TITEL}`;
         break;
       }
       case 'explore': {
@@ -263,6 +265,7 @@ function starteApp(wurzel: HTMLElement): void {
     // Story (Leitstand) braucht eine feste Höhe; alle anderen Flächen fließen mit ihrem Inhalt
     // gemessen am Körper, nicht am Dokument: scrollHeight wird nie kleiner als der Rahmen, der Rahmen schrumpfte nie
     // Story: fester Leitstand erst ab 981 px; darunter fließt sie wie die übrigen Flächen (P12.5 R3)
+    hostFenster: setzeHostFenster,
     hoehe: () => (document.body.dataset['flaeche'] === 'story' && window.matchMedia('(min-width: 981px)').matches ? null : document.body.getBoundingClientRect().height),
   }) : null;
   // Dialoge (Abbildung, Grafik der Hilfe) öffnen eingebettet an ihrer Figur; die Hostseite rollt dorthin (P12.5 R11)

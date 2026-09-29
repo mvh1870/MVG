@@ -101,4 +101,18 @@ export async function lauf(seite, h) {
     const n = await seite.locator('.hilfe-unterliste li').count();
     if (n !== rollen.unter.length) h.befund(`Verzeichnis: ${n} Unterseiten statt ${rollen.unter.length}`);
   }
+  // R17: eine Rollenkarte ist als Ganzes Ziel ihres Links (Klick in die untere linke Ecke)
+  await seite.evaluate(() => { location.hash = '#hilfe/rollen-anleitungen'; });
+  const karte = seite.locator('.h-role-pick-card:has(> h2 > a)').nth(1);
+  if (await karte.count() === 0) h.befund('Rollen-Anleitungen: keine Rollenkarte mit Link');
+  else {
+    await karte.scrollIntoViewIfNeeded();
+    const kb = await karte.boundingBox();
+    if (kb !== null) {
+      await seite.mouse.click(kb.x + 6, kb.y + kb.height - 6);
+      await h.warte(300);
+      const ort = await seite.evaluate(() => location.hash);
+      if (!ort.startsWith('#hilfe/rollen-anleitungen-')) h.befund(`Rollenkarte: Klick in die Karte führt nicht zur Anleitung (${ort})`);
+    }
+  }
 }

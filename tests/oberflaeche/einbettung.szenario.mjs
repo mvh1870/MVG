@@ -178,6 +178,24 @@ export async function lauf(seite, h) {
     const start = await rahmen.locator('.startseite').count();
     if (im !== 0 || start !== 1) h.befund(`Einbettung: Rahmen mit ${ziel} zeigt Regie/Leinwand (${im}) statt Startseite (${start})`);
   }
+  // Fremde Herkunft ohne gemeldete Fensterhöhe, niedriges Hostfenster (R17): der Dialog (640 px) ragt unter das Fenster; das Mausrad
+  // rollt am Ende des Dialogs die Hostseite weiter, bis seine Unterkante sichtbar ist
+  const groesseAlt = seite.viewportSize();
+  await seite.setViewportSize({ width: 1100, height: 560 });
+  await seite.goto(`${HOST}?ohne-fenster`);
+  await h.warte(1500);
+  await geheUndWarte('#theorie/k4');
+  await rahmen.locator('.lern-inhalt [data-pruef="abbildung-gross"]').first().click();
+  await rahmen.locator('dialog.abbildung-dialog[open]').waitFor({ timeout: 3000 }).catch(() => h.befund('Einbettung (fremd, 560 px): Dialog öffnet nicht'));
+  await h.warte(800);
+  await seite.mouse.move(550, 300);
+  for (let i = 0; i < 20; i++) { await seite.mouse.wheel(0, 150); await h.warte(50); }
+  await h.warte(400);
+  const unterkante = await seite.frames()[1]?.evaluate(() => document.querySelector('dialog.abbildung-dialog[open]')?.getBoundingClientRect().bottom ?? null);
+  const rahmenOben = await seite.evaluate(() => document.getElementById('mvg')?.getBoundingClientRect().top ?? 0);
+  if (unterkante === null || unterkante === undefined || rahmenOben + unterkante > 561) h.befund(`Einbettung (fremd, 560 px): Unterkante des Dialogs bleibt unerreichbar (${unterkante === null || unterkante === undefined ? '–' : Math.round(rahmenOben + unterkante)} px)`);
+  await seite.keyboard.press('Escape');
+  if (groesseAlt !== null) await seite.setViewportSize(groesseAlt);
   // Gleiche Herkunft (R14): über http://mvg.test geladen misst der Rahmen das Hostfenster (L-83); bei 560 px
   // Höhe muss der Dialog darin bleiben – der Rückfall für fremde Herkunft (640 px) täte es nicht
   const wurzel = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');

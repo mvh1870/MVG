@@ -133,4 +133,5 @@ export async function lauf(seite, h) {
   if (ring === null || ring.stil === 'none' || ring.breite < 2) h.befund(`Rollenkarte: Tastaturfokus ohne sichtbaren Rahmen (${JSON.stringify(ring)})`);
   // R20: die Hilfe hat genau eine main-Landmarke
   if (await seite.locator('main').count() !== 1) h.befund(`Hilfe: ${await seite.locator('main').count()} main-Landmarken statt 1`);
+  if (await seite.locator('nav[aria-label="Hilfe-Kapitel"] details.kapitel-verzeichnis').count() !== 1) h.befund('Hilfe: Verzeichnis ohne Navigation-Landmarke');
 }

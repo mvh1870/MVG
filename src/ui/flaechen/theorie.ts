@@ -87,12 +87,13 @@ function fuss(o: TheorieOptionen): HTMLElement {
 function verzeichnis(o: TheorieOptionen, aktuell: number | null): HTMLElement {
   const liste = kapitelListe(o.inhalte);
   const breit = typeof matchMedia !== 'function' || matchMedia('(min-width: 1100px)').matches;
-  return h('details', { class: 'kapitel-verzeichnis', open: breit },
+  // eigene Navigation-Landmarke (R21); display: contents lässt das Raster der Lernseite unberührt
+  return h('nav', { class: 'kapitel-verzeichnis-nav', 'aria-label': W.theorie.verzeichnisNav }, h('details', { class: 'kapitel-verzeichnis', open: breit },
     h('summary', { class: 't-label' }, W.theorie.kapitel),
     h('ol', { class: 'kapitel-liste' }, liste.map((k) => h('li', null, verweis(o, `#theorie/k${k.nr}`, {
       class: k.seite ? 'ist-gelesen' : 'ist-folgt',
       ...(k.nr === aktuell ? { 'aria-current': 'page' } : {}),
-    }, h('b', null, String(k.nr)), h('span', null, k.titel, !k.seite ? h('small', { class: 'folgt-marke' }, ` · ${W.theorie.folgt}`) : null))))));
+    }, h('b', null, String(k.nr)), h('span', null, k.titel, !k.seite ? h('small', { class: 'folgt-marke' }, ` · ${W.theorie.folgt}`) : null)))))));
 }
 
 /* ------------------------------------------------------------ Kapitelliste -- */
@@ -102,7 +103,8 @@ function liste(o: TheorieOptionen): HTMLElement {
   return h('div', { class: 'lernseite', 'data-pruef': 'theorie' },
     kopfleiste(o),
     h('div', { class: 'lern-rahmen ist-einspaltig' },
-      h('main', { class: 'lern-inhalt', id: 'lern-inhalt' },
+      // main nur bedienbar: Leinwand und Regie-Vorschau betten die Seite ein und haben keine eigene main (R21)
+      h(o.bedienbar ? 'main' : 'article', { class: 'lern-inhalt', id: 'lern-inhalt' },
         h('header', { class: 'kapitel-kopf' },
           h('span', { class: 'kapitel-nr' }, String(kap.length)),
           h('p', { class: 'kapitel-kicker' }, `${W.whitepaper} ${o.inhalte.whitepaper.fassung ?? ''}`),
@@ -456,7 +458,7 @@ function glossarListe(o: TheorieOptionen): HTMLElement {
   const kompass = kompassZeilen.length === 0 ? null : h('section', { class: 'kompass', 'data-pruef': 'kompass', 'aria-labelledby': 'kompass-titel' },
     h('h2', { class: 'abschnitt-titel', id: 'kompass-titel' }, W.theorie.kompass),
     h('p', { class: 'lesetext' }, W.theorie.kompassText),
-    h('div', { class: 'absatz-block', tabindex: 0, role: 'region', 'aria-labelledby': 'kompass-titel' },
+    h('div', { class: 'absatz-block', tabindex: 0, role: 'region', 'aria-label': W.theorie.tabelle('Begriffs-Kompass') },
       h('table', { class: 'register-tabelle kompass-tabelle' },
         h('thead', null, h('tr', null, h('th', { scope: 'col' }, W.theorie.kompassAndere), h('th', { scope: 'col' }, W.theorie.kompassBegriff), h('th', { scope: 'col' }, W.theorie.kompassBeleg))),
         h('tbody', null, kompassZeilen))));
@@ -546,7 +548,7 @@ function lernseite(o: TheorieOptionen, nr: number): HTMLElement {
     kopfleiste(o),
     h('div', { class: 'lern-rahmen' },
       verzeichnis(o, nr),
-      h('main', { class: 'lern-inhalt', id: 'lern-inhalt', 'data-pruef': seite !== null ? 'lernseite' : 'lernseite-folgt' }, teile)));
+      h(o.bedienbar ? 'main' : 'article', { class: 'lern-inhalt', id: 'lern-inhalt', 'data-pruef': seite !== null ? 'lernseite' : 'lernseite-folgt' }, teile)));
 }
 
 /**
@@ -555,7 +557,7 @@ function lernseite(o: TheorieOptionen, nr: number): HTMLElement {
  */
 export function kapitelFuerDruck(inhalte: OeffentlicheInhalte, nr: number, version: string): HTMLElement {
   const seite = baueTheorie({ inhalte, kapitel: nr, version, bedienbar: false });
-  for (const weg of seite.querySelectorAll('.lern-kopf, .kapitel-verzeichnis, .kapitel-nav, .sprunglink, .lern-fuss')) weg.remove();
+  for (const weg of seite.querySelectorAll('.lern-kopf, .kapitel-verzeichnis-nav, .kapitel-verzeichnis, .kapitel-nav, .sprunglink, .lern-fuss')) weg.remove();
   // im Druck mit dem Originaltext (aufgeklappt)
   for (const d of seite.querySelectorAll<HTMLDetailsElement>('details.originaltext, details.abbildung-abweichungen')) d.open = true;
   seite.classList.add('druck-kapitel');

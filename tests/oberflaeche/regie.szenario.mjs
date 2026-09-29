@@ -21,6 +21,9 @@ export async function lauf(_seite, h) {
   const inhalte = JSON.parse(readFileSync(path.join(WURZEL, 'src', 'generiert', 'inhalte.json'), 'utf8'));
   const regie = await h.zweitesFenster('#regie');
   await h.erwarte('[data-pruef="regie"]', regie);
+  // R21: die Regie hat genau eine main-Landmarke; die Vorschau (aria-hidden) zeigt die Leinwand, deren Story-Tafel eine eigene main trägt
+  const mains = await regie.evaluate(() => [...document.querySelectorAll('main')].filter((m) => m.closest('[aria-hidden="true"]') === null).length);
+  if (mains !== 1) h.befund(`Regie: ${mains} sichtbare main-Landmarken statt 1`);
   const [leinwand] = await Promise.all([regie.waitForEvent('popup', { timeout: 5000 }), h.klick('[data-pruef="leinwand-oeffnen"]', regie)]);
   await leinwand.waitForLoadState('load');
   await h.erwarte('[data-pruef="leinwand"]', leinwand);

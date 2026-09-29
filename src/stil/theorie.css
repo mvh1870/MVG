@@ -685,6 +685,8 @@ a.abbildung-beleg { color: var(--navy); }
 /* schmal: Vorschaubild über dem Titel, damit lange Titelwörter („Verantwortungspyramide“) in die Zeile passen */
 @media (max-width: 480px) { .galerie-abbildung { flex-direction: column; align-items: flex-start; gap: var(--a-2); } }
 .galerie-verzeichnis .galerie-nr { width: 1%; white-space: nowrap; }
+/* Navigation um das Kapitelverzeichnis (R21): nur Landmarke, keine eigene Box im Raster der Lernseite */
+.kapitel-verzeichnis-nav { display: contents; }
 /* Stelle im Text nie mitten im Wort (R12): die schmale Tabelle bricht sonst „Abs|chnitt“ (overflow-wrap der Tabellen bei 400 px);
    umbrechen darf sie zwischen „Abschnitt“ und „3.3“ – so bleibt der Spalte der Titel genug Platz */
 .galerie-verzeichnis .galerie-stelle { overflow-wrap: normal; hyphens: manual; }

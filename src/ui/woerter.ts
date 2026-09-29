@@ -239,6 +239,7 @@ export const W = {
     kommtVor: 'Kommt vor in',
     kapitelKurz: (nr: string) => `Kap. ${nr}`,
     tabelle: (id: string) => `Tabelle ${id}`,
+    verzeichnisNav: 'Kapitel',
     wissenscheck: 'Kurz geprüft',
     wissenscheckAntworten: 'Ihre Einschätzung',
     flussUebersicht: (stationen: string) => `Kanonischer Governance-Fluss: ${stationen}`,
@@ -278,6 +279,7 @@ export const W = {
   // Hilfe (P13, O-31): Hilfe des MVG Companion, gleiche Kapitelaufteilung
   hilfe: {
     bereich: 'Hilfe',
+    verzeichnisNav: 'Hilfe-Kapitel',
     bereichZusatz: '· MVG Companion',
     link: 'Hilfe',
     inhalt: 'Inhalt',

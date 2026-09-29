@@ -59,7 +59,7 @@ titel: Wann eine MVG-Neuinitialisierung erforderlich wird
 ---
 Eine MVG-Neuinitialisierung wird erforderlich, wenn ein Projekt im bisherigen Modus nicht mehr ausreichend führbar ist. Das kündigt sich an – MVG nennt acht typische Signale.
 
-Fünf davon haben dieselbe Form: **Es passiert etwas, aber das Entscheidende fehlt.** Änderungen werden bearbeitet, aber nicht strategisch freigegeben. Risiken sind bekannt, aber nicht mit Risikoannahme, Risikominderung und Entscheidung verbunden. Gremien bekommen Statusberichte, aber keine Optionen, zwischen denen sie entscheiden könnten. Grundsatzfragen wie Fortführung oder Stopp stehen im Raum, aber ohne klare Entscheidungslogik. Und die Projektsteuerung liefert immer mehr Information, ohne dass der Bauherr dadurch besser führen kann. Auf den ersten Blick wirkt das Projekt geschäftig; erst beim zweiten Blick zeigt sich, was fehlt.
+Fünf davon haben dieselbe Form: **Es passiert etwas, aber das Entscheidende fehlt.** Änderungen werden bearbeitet, aber nicht strategisch freigegeben. Risiken sind bekannt, aber nicht mit Risikoannahme, Risikominderung und Entscheidung verbunden. Gremien bekommen Statusberichte, aber keine Optionen, zwischen denen sie entscheiden könnten. Grundsatzfragen wie Fortführung oder Stopp stehen im Raum, aber ohne klare Entscheidungslogik. Und die Projektsteuerung liefert mehr Information, ohne dass der Bauherr dadurch an Führungsfähigkeit gewinnt. Auf den ersten Blick wirkt das Projekt geschäftig; erst beim zweiten Blick zeigt sich, was fehlt.
 
 Die übrigen drei Signale betreffen die **Grundlagen**: Kosten, Termine und Projektumfang laufen auseinander; die Beteiligten arbeiten mit unterschiedlichen Lagebildern; Datenstände, Annahmen und Beschlusslagen passen nicht mehr zusammen.
 

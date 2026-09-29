@@ -1069,7 +1069,8 @@ test('Druck (P10.2): Kapitel und alle Kapitel als Bogen – ohne Kopfleiste, Ver
     assert.match(document.title, /^Kapitel 13 · /u);
     const ids = [...document.querySelectorAll('[id]')].map((x) => x.id);
     assert.deepEqual(ids.filter((x, i) => ids.indexOf(x) !== i), [], 'doppelte IDs neben dem Bogen');
-    const region = document.querySelector('.druck-bogen [data-pruef="kompass"] [role="region"]');
+    // der Abschnitt Begriffs-Kompass trägt den Bezug (seine Tabelle heißt seit R21 „Tabelle Begriffs-Kompass“)
+    const region = document.querySelector('.druck-bogen [data-pruef="kompass"]');
     assert.ok(region && document.getElementById(region.getAttribute('aria-labelledby') ?? '')?.closest('.druck-bogen'), 'Bezug zeigt in den Bogen');
     dom.window.dispatchEvent(new dom.window.Event('afterprint'));
     assert.equal(document.body.classList.contains('druckt-bogen'), false);

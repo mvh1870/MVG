@@ -80,7 +80,7 @@ function fuss(o: HilfeOptionen, hilfe: HilfeDaten): HTMLElement {
 function verzeichnis(hilfe: HilfeDaten, aktuell: string | null): HTMLElement {
   const breit = typeof matchMedia !== 'function' || matchMedia('(min-width: 1100px)').matches;
   const aktiv = (id: string): Record<string, string> => (id === aktuell ? { 'aria-current': 'page' } : {});
-  return h('details', { class: 'kapitel-verzeichnis hilfe-verzeichnis', open: breit },
+  return h('nav', { class: 'kapitel-verzeichnis-nav', 'aria-label': W.hilfe.verzeichnisNav }, h('details', { class: 'kapitel-verzeichnis hilfe-verzeichnis', open: breit },
     h('summary', { class: 't-label' }, W.hilfe.inhalt),
     h('ol', { class: 'kapitel-liste', 'data-pruef': 'hilfe-verzeichnis' },
       h('li', null, h('a', { href: '#hilfe', class: 'ist-gelesen', ...(aktuell === null ? { 'aria-current': 'page' } : {}) }, h('b', null, sym('info')), h('span', null, W.hilfe.ueberblick))),
@@ -90,7 +90,7 @@ function verzeichnis(hilfe: HilfeDaten, aktuell: string | null): HTMLElement {
         return h('li', null,
           h('a', { href: `#hilfe/${k.id}`, class: 'ist-gelesen', ...aktiv(k.id) }, h('b', null, String(i + 1)), h('span', null, k.titel)),
           offen ? h('ol', { class: 'hilfe-unterliste' }, k.unter.map((u) => h('li', null, h('a', { href: `#hilfe/${u.id}`, ...aktiv(u.id) }, h('span', null, u.titel))))) : null);
-      })));
+      }))));
 }
 
 function blaettern(vor: Eintrag | null, nach: Eintrag | null): HTMLElement {

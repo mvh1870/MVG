@@ -239,6 +239,8 @@ export async function lauf(seite, h) {
 
   // R20: genau eine main-Landmarke je Lernseite
   if (await seite.locator('main').count() !== 1) h.befund(`Theorie: ${await seite.locator('main').count()} main-Landmarken statt 1`);
+  // R21: das Kapitelverzeichnis ist eine eigene Navigation
+  if (await seite.locator('nav[aria-label="Kapitel"] details.kapitel-verzeichnis').count() !== 1) h.befund('Theorie: Kapitelverzeichnis ohne Navigation-Landmarke');
   // Zitierfunktion (P10.1): Absatz-Permalink springt zum Absatz, „Zitieren“ zeigt die Angabe
   await seite.evaluate(() => { location.hash = '#theorie/k4/k4.2-p3'; });
   const absatz = seite.locator('.originaltext .absatz[data-absatz="k4.2-p3"]');

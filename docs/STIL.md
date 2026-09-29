@@ -382,8 +382,8 @@ Tastatur am Griff: Der Regler ist ein **Umschalter mit Überblendung** zwischen 
 <div class="lernseite">
   <header class="lern-kopf">Bildmarke <p class="lern-bereich">Erklärt <span>· Kapitel für Kapitel</span></p><a class="lern-kopf-link lern-kopf-leise">Hilfe</a><a class="lern-kopf-link">Start</a></header>
   <div class="lern-rahmen">
-    <details class="kapitel-verzeichnis" open><summary class="t-label">Kapitel</summary><ol class="kapitel-liste"><li><a aria-current="page" class="ist-gelesen"><b>2</b><span>…</span></a></li>…</ol></details>
-    <article class="lern-inhalt">
+    <nav class="kapitel-verzeichnis-nav" aria-label="Kapitel"><details class="kapitel-verzeichnis" open><summary class="t-label">Kapitel</summary><ol class="kapitel-liste"><li><a aria-current="page" class="ist-gelesen"><b>2</b><span>…</span></a></li>…</ol></details></nav>
+    <main class="lern-inhalt" id="lern-inhalt">
       <header class="kapitel-kopf"><span class="kapitel-nr">2</span><p class="kapitel-kicker">…</p><h1 class="kapitel-titel">…</h1><p class="kapitel-einstieg">…</p></header>
       <section class="kernaussage"><span class="t-label">Kernaussage</span><p>… <em>Mandat</em> …</p></section>
       <div class="lesetext">(Markdown-HTML)</div>
@@ -393,11 +393,11 @@ Tastatur am Griff: Der Regler ist ein **Umschalter mit Überblendung** zwischen 
         <p class="absatz" id="…"><a class="absatz-id" href="#…">Absatz-ID</a><span>wortgleicher Text</span></p>…</section>
       <div class="querverweise"><a class="querverweis" data-welt="a"><span class="querverweis-symbol">…</span>In der Story: Station 3 <small>Welt A</small></a></div>
       <nav class="kapitel-nav"><a rel="prev">…</a><a rel="next">…</a></nav>
-    </article>
+    </main>
   </div>
 </div>
 ```
-`.vermerk-hell` trägt „fachlich ungeprüft“. Ein angesprungener Absatz (`:target`) wird gold hinterlegt.
+Theorie, Hilfe und Explore zeichnen ihren Inhaltsbereich als `main` (genau eine je Fläche, L-91), das Kapitelverzeichnis als `nav` (`display: contents`); Leinwand und Regie-Vorschau betten die Lernseite als `article` ein, die Regie hat ihren eigenen `main` (L-92). `.vermerk-hell` trägt „fachlich ungeprüft“. Ein angesprungener Absatz (`:target`) wird gold hinterlegt.
 
 **Abbildung der DOCX (`.abbildung`, P14, O-32).** Auf der Lernseite beim Abschnitt und im Originaltext an ihrer Stelle (`.original-abbildung`):
 ```html

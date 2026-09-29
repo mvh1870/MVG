@@ -212,12 +212,16 @@ export async function lauf(seite, h) {
     return k === null || k === undefined ? null : { unten: o + k.unten, knopf: o + k.knopf };
   };
   await rahmen.locator('dialog.abbildung-dialog[open] button').first().focus();
-  // R20: ein einziger Druck auf Ende bzw. Pos1 genügt
-  for (const taste of ['End']) { await seite.keyboard.press(taste); await h.warte(80); }
+  // R20/R21: ein einziger Druck auf Pos1 bzw. Ende genügt – Ende von oben aus prüfen, sonst hat das Rad die Kante schon geholt
+  await seite.keyboard.press('Home');
+  await h.warte(300);
+  const nachPos1Vorab = await lageTasten();
+  if (nachPos1Vorab === null || nachPos1Vorab.unten <= 561) h.befund(`Einbettung (fremd, 560 px): Probe „Unterkante unter dem Fenster“ vor Ende nicht hergestellt (${nachPos1Vorab === null ? '–' : Math.round(nachPos1Vorab.unten)} px)`);
+  await seite.keyboard.press('End');
   await h.warte(300);
   const nachEnde = await lageTasten();
   if (nachEnde === null || nachEnde.unten < 500 || nachEnde.unten > 561) h.befund(`Einbettung (fremd, 560 px): Ende rollt die Hostseite nicht genau bis zur Unterkante des Dialogs (${nachEnde === null ? '–' : Math.round(nachEnde.unten)} px)`);
-  for (const taste of ['Home']) { await seite.keyboard.press(taste); await h.warte(80); }
+  await seite.keyboard.press('Home');
   await h.warte(300);
   const nachPos1 = await lageTasten();
   if (nachPos1 === null || nachPos1.knopf < -1 || nachPos1.knopf > 80) h.befund(`Einbettung (fremd, 560 px): Pos1 holt „Schließen“ nicht an den oberen Rand (${nachPos1 === null ? '–' : Math.round(nachPos1.knopf)} px)`);
@@ -232,6 +236,20 @@ export async function lauf(seite, h) {
   await pruefeDialog('#theorie/k4', '.lern-inhalt [data-pruef="abbildung-gross"]', 'dialog.abbildung-dialog', 'Abbildungs (Fenster gemeldet, 560 px)');
   const rollfreiMitMeldung = await seite.frames()[1]?.evaluate(() => document.querySelector('dialog.abbildung-dialog')?.getAttribute('data-rollfrei'));
   if (rollfreiMitMeldung !== 'nein') h.befund(`Einbettung: trotz gemeldeter Fensterhöhe data-rollfrei=„${rollfreiMitMeldung}“`);
+  // R21: ein offener Dialog folgt einem kleiner werdenden Hostfenster (Meldung nach der Größenänderung)
+  await seite.setViewportSize({ width: 1100, height: 760 });
+  await seite.goto(HOST);
+  await h.warte(1500);
+  await geheUndWarte('#theorie/k4');
+  const zieleR = (await seite.evaluate(() => /** @type {any} */ (window).nachrichten)).filter((/** @type {any} */ n) => n?.art === 'ziel').length;
+  await rahmen.locator('.lern-inhalt [data-pruef="abbildung-gross"]').first().click();
+  for (let i = 0; i < 30 && (await seite.evaluate(() => /** @type {any} */ (window).nachrichten)).filter((/** @type {any} */ n) => n?.art === 'ziel').length <= zieleR; i++) await h.warte(100);
+  await h.warte(1200);
+  await seite.setViewportSize({ width: 1100, height: 520 });
+  await h.warte(600);
+  const nachDrehen = await seite.frames()[1]?.evaluate(() => { const d = document.querySelector('dialog.abbildung-dialog[open]'); return d ? { hoehe: d.getBoundingClientRect().height, rollfrei: d.getAttribute('data-rollfrei') } : null; });
+  if (nachDrehen === null || nachDrehen === undefined || nachDrehen.hoehe > 520 * 0.94 - 16 + 1 || nachDrehen.rollfrei !== 'nein') h.befund(`Einbettung: offener Dialog folgt dem kleineren Hostfenster nicht (${JSON.stringify(nachDrehen)})`);
+  await seite.keyboard.press('Escape');
   // R19: ohne Meldung, Dialog passt ganz (760 px, Hilfe-Grafik): ein Radschritt verschiebt ihn nicht, die Leertaste schließt
   await seite.setViewportSize({ width: 1100, height: 760 });
   await seite.goto(`${HOST}?ohne-fenster`);

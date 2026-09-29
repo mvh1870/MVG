@@ -14,10 +14,42 @@
 
 let zielMelder: ((y: number) => void) | null = null;
 let gemeldetesFenster: number | null = null;
+/** Eingebettet offene Dialoge; ihre Höhe folgt jeder neuen Fenstermeldung bzw. Größenänderung der Hostseite. */
+const offeneEingebettet = new Set<HTMLDialogElement>();
 
 /** Eingebettet: Fensterhöhe, die die Hostseite meldet (Einbett-Nachricht „fenster“, auch bei fremder Herkunft). */
 export function setzeHostFenster(hoehe: number | null): void {
   gemeldetesFenster = hoehe;
+  // offene Dialoge folgen dem Fenster (Telefon drehen, Fenster verkleinern; P12.5 R21)
+  for (const d of offeneEingebettet) deckeleHoehe(d);
+}
+
+/** Höhendeckel und rollfrei nach dem aktuell bekannten Hostfenster setzen. */
+function deckeleHoehe(dialog: HTMLDialogElement): void {
+  const hoehe = hostHoehe();
+  dialog.style.maxHeight = `${hoehe ?? 640}px`;
+  // fremde Herkunft (Hostfenster nicht messbar, P12.5 R17): Am Ende des Dialogs geht das Rollen an die
+  // Hostseite weiter – sonst bliebe auf niedrigen Fenstern der untere Teil des Bilds unerreichbar
+  dialog.dataset['rollfrei'] = hoehe === null ? 'ja' : 'nein';
+  dialog.style.overscrollBehavior = hoehe === null ? 'auto' : '';
+}
+
+/** Gleiche Herkunft: Größenänderung der Hostseite direkt beobachten, solange ein Dialog offen ist. */
+function beobachteHostfenster(dialog: HTMLDialogElement): void {
+  let eltern: Window | null = null;
+  try {
+    eltern = window.parent !== window ? window.parent : null;
+    void eltern?.innerHeight;
+  } catch {
+    eltern = null;
+  }
+  const neu = (): void => deckeleHoehe(dialog);
+  eltern?.addEventListener('resize', neu);
+  offeneEingebettet.add(dialog);
+  dialog.addEventListener('close', () => {
+    offeneEingebettet.delete(dialog);
+    eltern?.removeEventListener('resize', neu);
+  }, { once: true });
 }
 
 /** Eingebettet: wie die Hostseite zu einer Stelle im Rahmen rollt (src/main.ts → einbettung.meldeZiel). */
@@ -36,14 +68,10 @@ export function oeffneDialog(dialog: HTMLDialogElement, anker: Element): void {
   // der Rahmen rollt nicht selbst (er ist so hoch wie sein Inhalt): Fensterkoordinaten = Dokumentkoordinaten
   const y = Math.max(0, Math.round(anker.getBoundingClientRect().top + window.scrollY));
   dialog.style.inset = `${y}px 0 auto 0`;
-  const hoehe = hostHoehe();
-  dialog.style.maxHeight = `${hoehe ?? 640}px`;
   dialog.style.margin = '0 auto';
-  // fremde Herkunft (Hostfenster nicht messbar, P12.5 R17): Am Ende des Dialogs geht das Rollen an die
-  // Hostseite weiter – sonst bliebe auf niedrigen Fenstern der untere Teil des Bilds unerreichbar
-  dialog.dataset['rollfrei'] = hoehe === null ? 'ja' : 'nein';
-  dialog.style.overscrollBehavior = hoehe === null ? 'auto' : '';
+  deckeleHoehe(dialog);
   zeigeModal(dialog);
+  beobachteHostfenster(dialog);
   zielMelder?.(y);
 }
 

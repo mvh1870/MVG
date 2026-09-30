@@ -370,6 +370,20 @@ export async function lauf(seite, h) {
     kopf: [...document.querySelectorAll('.druck-bogen :is(h2, h3)')].filter((x) => getComputedStyle(x).breakAfter !== 'avoid').length,
     tabelle: [...document.querySelectorAll('.druck-bogen .absatz')].filter((x) => x.querySelector('table') !== null && getComputedStyle(x).breakInside !== 'auto').length,
   }));
+  // R40: ein echtes window.print() löst beforeprint synchron aus – der Knopf-Bogen („alle Kapitel“) darf dabei nicht abgeräumt werden
+  await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
+  await seite.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
+  await seite.evaluate(() => { location.hash = '#theorie'; });
+  await h.erwarte('[data-pruef="alles-drucken"]');
+  await seite.evaluate(() => { window.print = () => { window.dispatchEvent(new Event('beforeprint')); }; });
+  await seite.locator('[data-pruef="alles-drucken"]').click();
+  await h.warte(300);
+  const alles = await seite.evaluate(() => ({ boegen: document.querySelectorAll('.druck-bogen').length, klasse: document.body.classList.contains('druckt-bogen'), kapitel: document.querySelectorAll('.druck-bogen .druck-kapitel').length }));
+  if (alles.boegen !== 1 || !alles.klasse || alles.kapitel < 13) h.befund(`Alles drucken nach Kapitelbesuch: ${JSON.stringify(alles)}`);
+  await seite.evaluate(() => { window.print = () => {}; window.dispatchEvent(new Event('afterprint')); history.back(); });
+  await h.erwarte('[data-pruef="kapitel-drucken"]');
+  await seite.evaluate(() => { window.dispatchEvent(new Event('beforeprint')); });
+  await seite.emulateMedia({ media: 'print', reducedMotion: 'reduce' });
   if (umbruch.kopf > 0 || umbruch.tabelle > 0) h.befund(`Druckbogen Umbruch: ${JSON.stringify(umbruch)}`);
   if (!strgP.klasse || !/^Kapitel 8 · /u.test(strgP.titel) || strgP.seite !== 'none' || strgP.zu > 0 || strgP.knoepfe > 0) h.befund(`Strg+P: ${JSON.stringify(strgP)}`);
   await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });

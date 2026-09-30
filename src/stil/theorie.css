@@ -294,7 +294,7 @@ a.kapitel-karte:hover { color: var(--tinte); transform: translateY(-2px); box-sh
 .lernkarte-text p + p { margin-top: var(--a-2); }
 q.mvg-zitat { font-weight: 500; }
 /* R41: Bedienhinweise gelten nur dort, wo das Werkzeug bedienbar ist – nicht im Druck, nicht auf der Leinwand (aufgelöst) */
-.leinwand .bedienhinweis { display: none; }
+:is(.leinwand, .vorschau-buehne) .bedienhinweis { display: none; }
 @media print { .bedienhinweis { display: none; } }
 
 /* Originaltext: Listen und Tabellen als eigene Absätze */
@@ -523,6 +523,15 @@ a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
   /* Glossareinträge, Tabellenzeilen: Begriff nicht ohne Erklärung, Zeile nicht mitten im Wort geteilt */
   .druck-bogen :is(.glossar-eintrag, tr) { break-inside: avoid; }
   .druck-bogen dt { break-after: avoid; }
+  /* R42: Chromium wertet im Druck die Media Queries bei ≈ 794 px aus, setzt aber 688 px – die schmale Absatzform (≤ 700 px)
+     griff nicht, die Kennspalte blieb und schnitt wortgleiche Tabellen ab. Im Druck immer einspaltig, nichts rollt */
+  .druck-bogen .absatz { grid-template-columns: minmax(0, 1fr); gap: 1mm; }
+  .druck-bogen .absatz-block { overflow: visible; }
+  .druck-bogen .absatz-block table { width: 100%; table-layout: fixed; font-size: 8.5pt; }
+  .druck-bogen .absatz-block :is(th, td) { overflow-wrap: break-word; hyphens: auto; padding: 3px 4px; }
+  .druck-bogen .absatz-block th { letter-spacing: 0; }
+  .druck-bogen :is(.querverweis-block, .wissenscheck) > .t-label { break-after: avoid; }
+  .druck-bogen .lw-koerbe { break-inside: avoid; }
   .druck-bogen .abbildung-bild { width: auto; max-width: 100%; max-height: 170mm; margin-inline: auto; object-fit: contain; }
   .druck-bogen a { color: inherit; text-decoration: none; }
   .druck-bogen * { box-shadow: none !important; animation: none !important; transition: none !important; }

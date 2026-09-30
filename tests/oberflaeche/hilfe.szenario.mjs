@@ -92,11 +92,15 @@ export async function lauf(seite, h) {
       }).length);
       if (ohneKopf > 0) h.befund(`Druck ${id}: ${ohneKopf} Grafik-Überschriften nicht auf der Querseite`);
       // R41: im echten PDF – keine Seite endet mit einer Überschrift, keine leere Seite (Abstand unter der Seite)
-      const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.hilfe-inhalt :is(h1, h2, h3, h4, summary), .hilfe-inhalt .h-help-content-inline > b:first-child')].map((x) => x.textContent ?? ''));
+      const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.hilfe-inhalt :is(h1, h2, h3, h4, summary), .hilfe-inhalt .h-help-content-inline > b:first-child')]
+        .map((x) => ({ text: x.textContent ?? '', pt: parseFloat(getComputedStyle(x).fontSize) * 0.75 })));
       const pdfText = await pdfSeiten(await seite.pdf({ preferCSSPageSize: true }));
       const amEnde = seitenMitUeberschriftAmEnde(pdfText, koepfe);
       if (amEnde.length > 0) h.befund(`Druck ${id}: Überschrift am Seitenende ${JSON.stringify(amEnde)}`);
       if (pdfText.some((x) => x.zeilen.length === 0)) h.befund(`Druck ${id}: leere Seite`);
+      // R42: Papier hat keine Links – kein Kopf-Link, kein Zurück/Weiter, kein „Öffnen“
+      const bedien = await seite.evaluate(() => [...document.querySelectorAll('.hilfe :is(.lern-kopf-link, .kapitel-nav, .kapitel-karte-los)')].filter((x) => getComputedStyle(x).display !== 'none').length);
+      if (bedien > 0) h.befund(`Druck ${id}: ${bedien} Bedienelemente im Druck`);
     }
     // auf der Querseite erreichen die kleinsten Beschriftungen 7 pt (9,33 px)
     await seite.evaluate(() => { location.hash = '#hilfe/kollaboration'; });

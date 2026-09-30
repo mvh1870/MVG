@@ -339,9 +339,12 @@ export async function lauf(seite, h) {
   }));
   if (druck.bogen === 'none' || druck.seite !== 'none' || !/^Kapitel 8 · /u.test(druck.titel) || druck.zitieren > 0
     || druck.knoepfe > 0 || druck.aria > 0 || druck.gewaehlt.length < 1 || druck.gewaehlt.includes(false) || druck.wc < 1 || druck.erklaerung !== druck.wc || druck.antworten < 2 || druck.druckAntworten !== druck.antworten) h.befund(`Druckbogen: ${JSON.stringify(druck)}`);
-  // nichts im Bogen ragt über den Satzspiegel hinaus (A4 mit 14 mm Rand ≈ 688 px breit)
+  // nichts im Bogen ragt über den Satzspiegel hinaus (A4 mit 14 mm Rand ≈ 688 px breit). R42: Chromium wertet im Druck die
+  // Media Queries bei der Blattbreite (≈ 794 px) aus, setzt aber 688 px – gemessen wird genauso, sonst greift eine schmale
+  // Form (≤ 700 px), die im Druck nie greift
   const vorher = seite.viewportSize() ?? { width: 1280, height: 720 };
-  await seite.setViewportSize({ width: 688, height: vorher.height });
+  await seite.setViewportSize({ width: 794, height: vorher.height });
+  await seite.evaluate(() => { document.documentElement.style.width = '688px'; });
   await h.warte(150);
   const ueber = await seite.evaluate(() => {
     const bogen = document.querySelector('.druck-bogen');
@@ -349,12 +352,15 @@ export async function lauf(seite, h) {
     return [...(bogen?.querySelectorAll('*') ?? [])].filter((el) => el.getBoundingClientRect().right > rechts + 0.5).length;
   });
   if (ueber > 0) h.befund(`Druckbogen: ${ueber} Elemente ragen über den Satzspiegel`);
+  await seite.evaluate(() => { document.documentElement.style.width = ''; });
   await seite.setViewportSize(vorher);
   const pdf = await seite.pdf({ format: 'A4' });
   const seiten = (pdf.toString('latin1').match(/\/Type\s*\/Page[^s]/gu) ?? []).length;
   if (seiten < 2 || seiten > 40) h.befund(`Druck Kapitel 8: ${seiten} Seiten`);
   // R41: im echten PDF – keine Seite endet mit einer Überschrift, keine leere Seite, kein Bedienhinweis („Ziehen Sie den Regler“)
-  const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen :is(h1, h2, h3, h4, dt, .lw-titel, .original-abschnitt, summary, .lw-etappe-titel), .druck-bogen .lw-aufgeloest-liste > li > b:first-child')].map((x) => x.textContent ?? ''));
+  // R42: auch die Kapitälchen-Labels über Querverweis und Wissenscheck; je Kopf seine Druckgröße in pt (Listenpunkte gleichen Wortlauts zählen nicht)
+  const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen :is(h1, h2, h3, h4, dt, .lw-titel, .original-abschnitt, summary, .lw-etappe-titel), .druck-bogen .lw-aufgeloest-liste > li > b:first-child, .druck-bogen :is(.querverweis-block, .wissenscheck) > .t-label')]
+    .map((x) => ({ text: x.textContent ?? '', pt: parseFloat(getComputedStyle(x).fontSize) * 0.75 })));
   const pdfText = await pdfSeiten(pdf);
   const amEnde = seitenMitUeberschriftAmEnde(pdfText, koepfe);
   if (amEnde.length > 0) h.befund(`Druck Kapitel 8: Überschrift am Seitenende ${JSON.stringify(amEnde)}`);

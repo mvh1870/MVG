@@ -152,6 +152,9 @@
 @page hilfe-quer { size: A4 landscape; margin: 12mm 10mm; }
 @media print {
   .hilfe .kapitel-verzeichnis, .hilfe .hilfe-suche { display: none; }
+  /* R42: Papier hat keine Links – Kopf-Link, „Öffnen“, Zurück/Weiter und der Theorie-Link im Fuß entfallen; der Fuß bleibt beim Inhalt */
+  .hilfe :is(.lern-kopf-link, .kapitel-karte-los, .kapitel-nav) { display: none; }
+  .hilfe .lern-fuss { break-before: avoid; break-inside: avoid; }
   .hilfe-inhalt details > :not(summary) { display: block; }
   /* R41: Überschriften stehen nie allein am Seitenende und reißen nicht */
   .hilfe-inhalt :is(h1, h2, h3, h4, summary) { break-after: avoid; break-inside: avoid; }

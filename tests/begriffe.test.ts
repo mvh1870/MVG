@@ -12,6 +12,7 @@ import {
   pruefeBaum,
   pruefeText,
 } from '../werkzeuge/begriffe.mjs';
+import { ohneKennungen } from '../werkzeuge/hilfe.mjs';
 
 type Eintrag = { muster: string; flags?: string; statt: string };
 const LISTE = JSON.parse(readFileSync(STANDARD_LISTE, 'utf8')) as {
@@ -215,6 +216,9 @@ describe('begriffe: Zeilenmarken und Ausnahmen', () => {
     assert.equal(pruefeText('Gate', 'inhalte/andere.md').length, 1);
     // R48: der Text der Hilfe gilt ohne Rücksicht auf gross/klein (Fließtext, Feldnamen blendet ohneKennungen vorher aus)
     assert.equal(pruefeText('Das Projekt braucht einen reset und mehr scope sowie impact.', 'src/generiert/hilfe.json').length, 3);
+    // R49: ohneKennungen blendet nur Datenfelder mit Zählangabe aus – ein eingeklammertes Fachwort bleibt prüfbar
+    assert.equal(pruefeText(ohneKennungen('Projektumfang (scope) und Nachweis (evidence)'), 'src/generiert/hilfe.json').length, 2);
+    assert.deepEqual(pruefeText(ohneKennungen('Anzeige (readouts · 30 Einträge), Feld riskScore'), 'src/generiert/hilfe.json'), []);
   });
 
   test('Baum der Fixtur: pfade, Ausnahmen und Funde mit Datei:Zeile:Spalte', async () => {

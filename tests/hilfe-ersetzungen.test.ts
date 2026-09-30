@@ -9,10 +9,12 @@ const AUSNAHMEN = new Set([
   'Einfuehrungs-\\/Reset-Rhythmus', // Teil von „Standardisierter Einfuehrungs-/Reset-Rhythmus“ (frühere Regel)
   'Leistungsphase \\(gates\\)', // Feldname in <code>, in Überschriften entfernt (R45)
   'Whitepaper-Inhalte', 'Das Whitepaper beschreibt', 'Whitepaper', // Stellen in entfernten Abschnitten bzw. von spezielleren Regeln gefasst
+  // R49: standen nur im entfernten Abschnitt „Compliance & Standards-Zuordnung“; als Schutz für spätere Quellstände behalten
+  'Change Management', 'Risk Management', 'Decision Gates', 'Stage Gates',
 ]);
 
 /** Zahl der Regeln heute; wer eine Regel bewusst streicht, senkt diese Zahl mit Begründung */
-const MINDESTENS = 204;
+const MINDESTENS = 223;
 
 /** Fachlich tragende Ergebnisse (k9.3-p3, k4.2-p3, k6.4.2-t1, k6.4.4-p1, k6.4.3-p1, O-1) – unabhängig von der Regelliste */
 const FEST = [
@@ -50,10 +52,18 @@ const FEST = [
   'Verantwortungspyramide (Ansicht der Anwendung)',
   'Verantwortungspyramide (MVG Kap. 3.3)',
   'Bauherr (im Lenkungskreis)',
+  // R49: Nachweise (k6.4.2-t1), Einführungsrolle (k9.2-p4), 30/60/90 (k8.2), Maßnahmen (k6.4.3-p2), Mandat (k6.4.5-p1), Leitthese (k1-p1)
+  'Nachweise und Verknüpfungen pflegt das PMO mit den Fachrollen (MVG Kap. 6.4.2)',
+  'als Einführungsrolle, nach der Einführung deaktiviert (MVG Kap. 9.2)',
+  'nur für die Einführung, danach deaktiviert (MVG Kap. 9.2)',
+  '90 Tage Modell in Anwendung – die Übergabe schließt an (MVG Kap. 8.2)',
+  'Beschlüsse und Auflagen werden zu Maßnahmen mit Frist',
+  'Sie wird zur Entscheidung nach Mandat vorgelegt',
+  'Arbeit kann delegiert werden; bauherrenseitige Legitimation nicht (MVG Kap. 1)',
 ];
 
 /** Wortlaut der Quelle, der nach der Angleichung nirgends mehr stehen darf (R47/R48: Zuständigkeit, Register, Status) */
-const WEG = /Bestätigt CTC-Neurechnungen|Beschlüsse mit klaren Bedingungen fassen|Gremium für strategische Change-Beschlüsse|entgegennehmen und Beschlüsse fassen|Trägt KEINE projektbezogenen|Register-Verantwortliche \(Projektsteuerung\)|Top-Entscheidungen treffen|auf Status beschlossen|Lenkungskreis informieren|Freigaben verwaltet der Admin/u;
+const WEG = /Bestätigt CTC-Neurechnungen|Beschlüsse mit klaren Bedingungen fassen|Gremium für strategische Change-Beschlüsse|entgegennehmen und Beschlüsse fassen|Trägt KEINE projektbezogenen|Register-Verantwortliche \(Projektsteuerung\)|Top-Entscheidungen treffen|auf Status beschlossen|Lenkungskreis informieren|Freigaben verwaltet der Admin|Betreiber-Rolle|Arbeit ist delegierbar|pflegt Nachweise & Links|Compliance & Standards-Zuordnung|MVG ist kompatibel|klassischen PMO-Einrichtung|wenn der Berater abzieht|Regelbetrieb\/ ?Übergabe\.|zu Aktionen mit Frist|berfällige Aktionen|dem Gremium zur Beschlussfassung|ohne eine Zeile Code|garantiert prüfungs|verlässt das Haus|ultimative Verantwortung|Anti-Patterns|MVG-Adoption/u;
 
 test('Hilfe (R48): jede Ersetzung mit festem Ersatz steht im Ergebnis – außer den benannten Ausnahmen', () => {
   const { hilfe, fehler } = baueHilfe({ ziel: null });

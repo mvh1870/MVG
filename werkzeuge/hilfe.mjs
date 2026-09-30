@@ -251,6 +251,33 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/Cross-Links\b/gu, 'Querverweise'],
   [/Cross-Link\b/gu, 'Querverweis'],
   [/High-Priority-Entscheidungen/gu, 'Entscheidungen mit hoher Priorität'],
+  // R49: Nachweise und Verknüpfungen pflegt das PMO mit den Fachrollen (k6.4.2-t1)
+  [/Bauherren-PL pflegt Nachweise (?:&amp;|&) Links\./gu, 'Nachweise und Verknüpfungen pflegt das PMO mit den Fachrollen (MVG Kap. 6.4.2).'],
+  // R49: BM-Mentor ist eine Einführungsrolle, nach der Einführung deaktiviert (k9.2-p4; O-34)
+  [/— dazu der BM-Mentor \(Betreiber-Rolle\)\./gu, '— dazu die Sonderrolle BM-Mentor als Einführungsrolle, nach der Einführung deaktiviert (MVG Kap. 9.2).'],
+  [/ohne operative Verantwortung \(keine RACI-\/Prozess-Teilnahme\)/gu, 'ohne operative Verantwortung (keine RACI-/Prozess-Teilnahme) – nur für die Einführung, danach deaktiviert (MVG Kap. 9.2)'],
+  // R49: 30/60/90 nach k8.2-p2…p4 (Mindestmodell, Modell in Anwendung, Übergabe schließt an)
+  [/60 Tage Stabilisierung, 90 Tage Regelbetrieb\/Übergabe\./gu, '60 Tage Mindestmodell aufgebaut, 90 Tage Modell in Anwendung – die Übergabe schließt an (MVG Kap. 8.2).'],
+  // R49: Beschlüsse werden als Maßnahmen nachverfolgt (k6.4.3-p2); Pflege durch die verantwortlichen Rollen
+  [/überfällige Aktionen/gu, 'überfällige Maßnahmen'],
+  [/Beschlüsse und Aktionen\./gu, 'Beschlüsse und Maßnahmen.'],
+  [/verantwortliche Rolle pflegen ihre Register/gu, 'die verantwortlichen Rollen pflegen ihre Register'],
+  // R49: englische und saloppe Wörter im Fließtext (L-69 (12))
+  [/von Best zu Worst/gu, 'von stärkeren zu schwächeren Projekten'],
+  [/Source-Verknüpfung/gu, 'Quellen-Verknüpfung'],
+  [/ultimative Verantwortung/gu, 'Letztverantwortung'],
+  [/Anti-Patterns/gu, 'Fehlmuster'],
+  [/MVG-Adoption/gu, 'MVG-Einführung'],
+  [/Genau eine Accountable-Rolle je Prozess/gu, 'Genau eine verantwortliche Rolle (A) je Prozess'],
+  // R49: Vorlage zur Entscheidung nach Mandat (k6.4.5-p1), nicht „dem Gremium“
+  [/Sie wird dem Gremium zur Beschlussfassung vorgelegt\./gu, 'Sie wird zur Entscheidung nach Mandat vorgelegt (Bauherren-PL, Änderungsgremium oder Beschlussfassung durch den Bauherrn im Lenkungskreis).'],
+  // R49: Leitthese im Wortlaut von V1.2 (k1-p1)
+  [/Kernthese: Arbeit ist delegierbar, Verantwortung nicht\./gu, 'Kernthese: Arbeit kann delegiert werden; bauherrenseitige Legitimation nicht (MVG Kap. 1).'],
+  [/Glossar von Accountable bis Abweichung/gu, 'Glossar von Abweichung bis Zielsystem-Dokument'],
+  // R49: Kundenanpassung ohne Werbeversprechen
+  [/ — ohne eine Zeile Code\./gu, '.'],
+  [/das Ergebnis ist garantiert prüfungs-grün/gu, 'das Ergebnis durchläuft die Prüfung'],
+  [/Regel: Kein Paket verlässt das Haus ohne „✔ 0 Fehler"\./gu, 'Regel: Ausgeliefert wird nur ein Paket mit „✔ 0 Fehler“.'],
 ]);
 
 /** Klassen, die src/stil/hilfe.css gestaltet (alles andere fällt weg). */
@@ -289,9 +316,10 @@ export function ersetze(t) {
 function bereinige(wurzel, anker, titel = '') {
   const dok = wurzel.ownerDocument;
   for (const el of [...wurzel.querySelectorAll(WEG)]) el.remove();
-  // O-1: Leistungszuschnitt der Beratung (Engagements mit Laufzeiten) – Abschnitt bis zum nächsten Trenner
+  // O-1: Leistungszuschnitt der Beratung (Engagements mit Laufzeiten) – Abschnitt bis zum nächsten Trenner;
+  // O-17 (R49): Zuordnung zu Normen („MVG ist kompatibel …“, „vollständige Abdeckung“) ist keine Aussage aus V1.2
   for (const h of [...wurzel.querySelectorAll('h2')]) {
-    if (!/MVG-Lifecycle in der Beratungspraxis/u.test(h.textContent ?? '')) continue;
+    if (!/MVG-Lifecycle in der Beratungspraxis|Compliance & Standards-Zuordnung/u.test(h.textContent ?? '')) continue;
     let x = h.nextElementSibling;
     while (x !== null && !/^H[12]$/u.test(x.tagName) && !x.classList.contains('section-divider')) {
       const weiter = x.nextElementSibling;
@@ -300,8 +328,10 @@ function bereinige(wurzel, anker, titel = '') {
     }
     h.remove();
   }
-  // O-1/O-17: FAQ „ROI“ mit Wirkungszahlen, die V1.2 nicht nennt (R45; Korrekturliste)
-  for (const d of [...wurzel.querySelectorAll('details')]) if (/ROI von MVG/u.test(d.querySelector(':scope > summary')?.textContent ?? '')) d.remove();
+  // O-1/O-17: FAQ „ROI“ mit Wirkungszahlen, die V1.2 nicht nennt (R45); R49: Abgrenzung zum „klassischen PMO“
+  // (V1.2 führt das PMO als Arbeitsrolle, k9.2-p4) und „wenn der Berater abzieht“ (Beraterbezug, O-34) – Korrekturliste
+  const FAQ_WEG = /ROI von MVG|von einer klassischen PMO-Einrichtung|wenn der Berater abzieht/u;
+  for (const d of [...wurzel.querySelectorAll('details')]) if (FAQ_WEG.test(d.querySelector(':scope > summary')?.textContent ?? '')) d.remove();
   // Momentaufnahmen des exportierenden Browsers (Speicher-Audit, Sync-Status, localStorage-Belegung, Speicher-Modus)
   wurzel.querySelector('#bm102-sync')?.closest('.grid')?.remove();
   // Suchkarten der Anwendung (die Hilfe-Fläche hat eine eigene Suche) und „+ Tag“-Schalter
@@ -672,6 +702,10 @@ function glaette(/** @type {string} */ html) {
     // das Inhaltsverzeichnis ist hier eine Liste ohne Verweise
     .replace(/<li>Das Inhaltsverzeichnis ist klickbar<\/li>/gu, '')
     .replace(/<b>Kein Lizenzmodell<\/b>, keine/gu, '<b>Keine</b>')
+    // R49: Beschlüsse werden als Maßnahmen nachverfolgt (k6.4.3-p2), Probleme im Problemregister
+    .replace(/werden zu <span>Aktionen<\/span> mit Frist/gu, 'werden zu <span>Maßnahmen</span> mit Frist')
+    .replace(/Überfällige <span>Aktionen<\/span> &amp; neue <span>Problemregister<\/span>/gu, 'Überfällige <span>Maßnahmen</span> &amp; neue <span>Probleme</span>')
+    .replace(/hat eine <b>Verantwortliche Rolle<\/b>/gu, 'hat eine <b>verantwortliche Rolle</b>')
     // O-1: Angebotsaussage über BM (im Quelltext mit Hervorhebung, daher auf dem HTML)
     .replace(/\s*Für Beratungskunden (?:<b>)?kostenfrei(?:<\/b>)?: kein separates Lizenzentgelt, unbegrenzte Nutzungsrechte auch nach Mandatsende\./gu, '')
     .replace(/(LPH (\d)\b(?:[^()<]|<[^>]*>){0,80}?)\s*\(LPH \2\)/gu, '$1')
@@ -799,7 +833,8 @@ export function ohneKennungen(t) {
     .replace(/\b\w*_\w+\b/gu, '·')
     .replace(/\b[A-Z]{2,}-(?:<|[A-Z0-9])[\w<>.-]*/gu, '·')
     .replace(/\bGATE\b/gu, '·')
-    .replace(/\((?:[a-z][A-Za-z]+)(?:\s·[^)]*)?\)/gu, '(·)');
+    // nur Datenfelder mit Zählangabe „(readouts · 30 Einträge)“; ein bloßes „(scope)“ bleibt prüfbar (R49)
+    .replace(/\([a-z][A-Za-z]+\s·\s[^)]*\)/gu, '(·)');
 }
 
 /**

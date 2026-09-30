@@ -1975,7 +1975,9 @@ export function baueAbbildungen(c, quelle, wurzel, theorie, pruefe) {
         if (bl === undefined) return;
         const volltext = norm([bl?.text ?? '', ...(bl?.punkte ?? []), ...(bl?.kopf ?? []), ...(bl?.zeilen ?? []).flat()].join(' '));
         const neu = norm(einzeilig(String(u.text)));
-        if (!volltext.includes(neu)) f.push(`${e.datei}: angeglichen[${i}]: „${neu}“ steht nicht wortgleich im Absatz ${u.beleg}`);
+        // R49: als ganzer Begriff – ein Wortbruchstück („Freigabeentscheidun“) ist nicht wortgleich
+        const ganz = new RegExp(`(?<![\\p{L}\\p{N}])${neu.replace(/[.*+?^${}()|[\]\\]/gu, '\\$&')}(?![\\p{L}\\p{N}])`, 'u');
+        if (!ganz.test(volltext)) f.push(`${e.datei}: angeglichen[${i}]: „${neu}“ steht nicht wortgleich im Absatz ${u.beleg}`);
       });
     }
     for (const x of f) c.b.fehler(e.datei, x.slice(e.datei.length + 2), true);

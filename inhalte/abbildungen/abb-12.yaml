@@ -23,6 +23,8 @@ abweichungen:
     beleg: k7.1-p1 k7.1-t1
   - text: 'Die RACI-Matrix nennt „Projektauftraggeber“, „Manager“ und „Team“; das Standard-Rollenmodell umfasst 13 Arbeitsrollen, zu denen „Manager“ und „Team“ nicht gehören, und die Funktion des Projektauftraggebers ist keine zusätzliche Arbeitsrolle, sondern eine Facette des Bauherrn.'
     beleg: k9.2-p4
+  - text: 'In der RACI-Matrix ist „A“ in allen drei Zeilen gesetzt und „R“ in keiner, sodass auch „Manager“ und „Team“ letztverantwortlich erscheinen; der Text versteht RACI als Matrix mit ausführungsverantwortlichen, letztverantwortlichen, konsultierten und informierten Rollen, und die Entscheidung fällt an die letztverantwortliche Bauherrenrolle zurück.'
+    beleg: k13-t1 k9.2-p2
   - text: 'Der Block „Klare Verantwortungszuordnungen“ zeigt nur die RACI-Matrix; nach dem Text reicht RACI allein nicht aus, entscheidend ist die Kopplung an Mandate, Freigabeschwellen, Stellvertretungen und Eskalationspfade.'
     beleg: k9.2-p1
   - text: 'Die Roadmap nennt als Fokus „Quick Wins“, „Stabilisierung“ und „Optimierung“; der Text nennt Diagnose und Priorisierung (0–30 Tage), Konzeption und Mindeststandard (31–60 Tage) sowie Modell in Anwendung und Kalibrierung (61–90 Tage) und versteht die 30/60/90-Tage-Logik als Orientierungsrahmen, nicht als starren Projektplan.'

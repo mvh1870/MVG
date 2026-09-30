@@ -321,7 +321,7 @@ Bilder erzeugen: `node werkzeuge/abbildungen.mjs [abb-N …]` (Chromium; schreib
 | Zitate | Absatz-ID unbekannt oder Text nicht wortgleich |
 | Glossar | `[[Begriff]]` nicht im Glossar |
 | Abdeckung | Theorie-Abdeckung < 100 % · Absatz nicht auf der Seite seines Kapitels · Seite/Station unbekannt |
-| Abbildungen (4.6) | Beschreibung verletzt das Schema (Felder, Rechteck, Beleg keine Absatz-ID, `alt` > 600 Zeichen) · Bild veraltet gegenüber `stand.json` oder WebP passt nicht (auch ohne `--pruefe`, harter Fehler) · `::: abbildung` ohne Beschreibung, im fremden Kapitel oder auf zwei Lernseiten · Abbildung mit Bild steht in keinem Originaltext |
+| Abbildungen (4.6) | Beschreibung verletzt das Schema (Felder, Rechteck, Beleg keine Absatz-ID, `alt` > 600 Zeichen) · Bild veraltet gegenüber `stand.json` oder WebP passt nicht (auch ohne `--pruefe`, harter Fehler) · `::: abbildung` ohne Beschreibung, im fremden Kapitel oder auf zwei Lernseiten · Abbildung mit Bild steht in keinem Originaltext · Überdeckungstext nicht als ganzer Begriff wortgleich im Absatz `beleg` |
 
 Fehlt `whitepaper.json` noch, sind Zitat-, Glossar- und Abdeckungsprüfung **Warnungen** (sonst Fehler). Ohne `--pruefe` meldet das Werkzeug nur Formfehler, die das Kompilieren verhindern.
 

@@ -1,6 +1,6 @@
 id: abb-11
 quelle: bilder/image11.jpeg
-titel: Leistungsarchitektur von Bauherr Mentoren
+titel: Leistungspakete von der Reifegradanalyse bis zum Regelbetrieb
 alt: 'Fünf Spalten mit Pfeilen: „Reifegradanalyse“ (Lagebild, Mandate, Datenstand, 30/60/90 Plan), „MVG-Konzeption“ (Zielsystem, Freigabe-Set, Entscheidungs-IDs, Betriebshandbuch), „Pilot & Kalibrierung“ (unvollständig „eche Entscheidung“, Schwellen, Managementbericht), „Befähigung & Übergabe“ (Rollenkarten, Routinen, Abnahme) und grün „Regelbetrieb“ (Steuerbarkeit, Nachweis, Betriebsverantwortung). Aus der Reifegradanalyse führt eine Linie zur unteren Reihe „MVG-Neuinitialisierung“, „Bewertung“, „Stabilisierung“; ein gestrichelter Doppelpfeil verbindet Stabilisierung und Regelbetrieb.'
 angeglichen:
   - { x: 326, y: 28, b: 207, h: 40, text: MVG-Konzeption, beleg: k7.2-p1, schrift: barlow, gewicht: 700, groesse: 27, ausrichtung: mitte }

@@ -107,6 +107,11 @@ export async function wortbrueche(seite, wurzel) {
   return seite.evaluate((sel) => {
     /** @type {string[]} */
     const aus = [];
+    // CI (Chrome 153) trennt mit Wörterbuch und sichtbarem Strich, der vorinstallierte Chromium hat keins: gemessen wird
+    // ohne automatische Trennung, damit beide dasselbe prüfen – Brüche außerhalb der eigenen Trennstellen
+    const ohneAuto = document.createElement('style');
+    ohneAuto.textContent = '* { hyphens: manual !important; -webkit-hyphens: manual !important; }';
+    document.head.append(ohneAuto);
     const rg = document.createRange();
     for (const w of document.querySelectorAll(sel)) {
       const gang = document.createTreeWalker(w, NodeFilter.SHOW_TEXT);
@@ -126,6 +131,7 @@ export async function wortbrueche(seite, wurzel) {
         }
       }
     }
+    ohneAuto.remove();
     return aus;
   }, wurzel);
 }

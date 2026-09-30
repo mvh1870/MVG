@@ -78,7 +78,7 @@ export async function lauf(seite, h) {
     // R47: dazu das Handbuch (Zwischenzeilen vor Listen) und eine Rollenseite (Kopfzeile der Cheat-Sheets)
     // R48: voll alle Seiten samt Übersicht (''), schnell eine Auswahl mit den bekannten Druckfällen
     const druckSeiten = h.voll ? ['', ...alle.map((x) => x.id)]
-      : ['', 'mvg-vorgehensmodell', 'registerdokument-katalog', 'kollaboration', 'datenmanagement', 'faq-glossar', 'kundenanpassung', 'handbuch', 'rollen-anleitungen', 'rollen-anleitungen-bauherr-auftraggeber'];
+      : ['', 'mvg-vorgehensmodell', 'registerdokument-katalog', 'kollaboration', 'datenmanagement', 'faq-glossar', 'kundenanpassung', 'handbuch', 'rollen-anleitungen', 'rollen-anleitungen-bauherr-auftraggeber', 'rollen-anleitungen-controlling-finance'];
     for (const id of druckSeiten) {
       await seite.evaluate((x) => { location.hash = x === '' ? '#hilfe' : `#hilfe/${x}`; }, id);
       await h.erwarte(id === '' ? '[data-pruef="hilfe-uebersicht"]' : `[data-seite="${id}"] [data-pruef="hilfe-inhalt"]`);
@@ -135,6 +135,18 @@ export async function lauf(seite, h) {
             k.append(m);
           }
         }
+        // R49: der Fuß bleibt beisammen und beim Inhalt – Marken an seinem Anfang und Ende (Fall: letztes Blatt nur „fachlich ungeprüft“)
+        const fuss = document.querySelector('.lernseite.hilfe .lern-fuss');
+        if (fuss instanceof HTMLElement) {
+          if (getComputedStyle(fuss).position === 'static') fuss.style.position = 'relative';
+          for (const [ort, lage] of [['A', 'top:0'], ['E', 'bottom:0']]) {
+            const m = document.createElement('span');
+            m.className = 'pruef-marke';
+            m.textContent = `QF${ort}Q`;
+            m.style.cssText = `position:absolute;${lage};left:0;font-size:8px;line-height:1;color:#000;white-space:nowrap`;
+            fuss.append(m);
+          }
+        }
         return n;
       });
       // R48: page.pdf auf A4 (ohne `format` setzt Playwright US-Letter) und ohne die Mess-Breite des Satzspiegels
@@ -143,7 +155,7 @@ export async function lauf(seite, h) {
       const pdfRoh = await pdfSeiten(await seite.pdf({ format: 'A4', preferCSSPageSize: true }));
       // die Marken selbst zählen für die übrigen Proben nicht (sonst wäre eine Marke die letzte Zeile einer Seite)
       const pdfText = pdfRoh.map((x) => {
-        const behalten = x.zeilen.map((z, i) => ({ z: z.replace(/\s*QK[AE]\d+Q\s*/gu, ' ').trim(), g: x.groessen?.[i] })).filter((y) => y.z !== '');
+        const behalten = x.zeilen.map((z, i) => ({ z: z.replace(/\s*Q(?:K[AE]\d+|F[AE])Q\s*/gu, ' ').trim(), g: x.groessen?.[i] })).filter((y) => y.z !== '');
         return { ...x, zeilen: behalten.map((y) => y.z), groessen: behalten.map((y) => y.g ?? 0) };
       });
       await seite.setViewportSize({ width: 794, height: vorher.height });
@@ -162,6 +174,11 @@ export async function lauf(seite, h) {
       }
       if (kartenMarken > 0 && gefunden < kartenMarken) h.befund(`Druck ${id}: nur ${gefunden} von ${kartenMarken} Kartenmarken im PDF gefunden`);
       if (gerissen.length > 0) h.befund(`Druck ${id}: Karten über die Seitengrenze ${JSON.stringify(gerissen.slice(0, 5))}`);
+      const fussA = seiteVon('QFAQ');
+      const fussE = seiteVon('QFEQ');
+      // vor dem Fuß steht auf seiner Seite noch Inhalt (die Zeile mit der Anfangsmarke ist nicht die erste der Seite)
+      const vorFuss = fussA < 0 ? 0 : (pdfRoh[fussA]?.zeilen.findIndex((z) => z.includes('QFAQ')) ?? 0);
+      if (fussA < 0 || fussE < 0 || fussA !== fussE || vorFuss === 0) h.befund(`Druck ${id}: Fuß gerissen oder allein (Anfang S. ${fussA + 1}, Ende S. ${fussE + 1}, Zeilen davor ${vorFuss})`);
       const amEnde = seitenMitUeberschriftAmEnde(pdfText, koepfe);
       if (amEnde.length > 0) h.befund(`Druck ${id}: Überschrift am Seitenende ${JSON.stringify(amEnde)}`);
       if (pdfText.some((x) => x.zeilen.length === 0)) h.befund(`Druck ${id}: leere Seite`);

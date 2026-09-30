@@ -70,7 +70,7 @@ export const W = {
     ersatzTitel: 'Governance Kompass · Druckfassungen',
     ersatzText: 'Diese Ansicht ist für den Bildschirm gedacht. Gedruckt wird über diese Wege:',
     ersatzWege: [
-      'Theorie: „Kapitel drucken“ auf jeder Lernseite, „Alle 13 Kapitel drucken“ in der Kapitelliste.',
+      'Theorie: „Kapitel drucken“ auf jeder Lernseite, „Alle 13 Kapitel drucken“ in der Kapitelliste (mit Impressum).',
       'Story: „Dossier drucken“ im Epilog – Ihr Weg, Ihre Entscheidungen und die Kapitel zum Nachlesen.',
       'Hilfe: jede Seite über den Druckbefehl des Browsers.',
       'Regie: „Protokoll drucken“ – Notizen, Weg und Entscheidungen des Gesprächs.',

@@ -57,3 +57,15 @@ test('eine weiche Trennstelle erscheint im PDF als Strich – der Kopf wird trot
   assert.equal(seitenMitUeberschriftAmEnde([seite(['Text.', 'WAS PASSIERT, WENN … Unklare Zielprioritäten', 'Wissens-abhängigkeit Eskalation ohne Entscheidung']), schluss], [wahl]).length, 1);
   assert.equal(seitenMitUeberschriftAmEnde([seite(['Text.', 'Wissens-abhängigkeit Eskalation ohne Entscheidung', 'Wenn die Ziele unklar bleiben.']), schluss], [wahl]).length, 0);
 });
+
+test('kurze Köpfe (Absatz-ID, Glossarbegriff) mit Schriftgröße werden erkannt – nur ganz und in passender Größe (R49)', () => {
+  const koepfe = [{ text: 'k4-t1', pt: 9 }, { text: 'CTC', pt: 9 }];
+  assert.equal(seitenMitUeberschriftAmEnde([seite(['Text.', 'k4-t1'], [7.9, 9]), schluss], koepfe).length, 1);
+  assert.equal(seitenMitUeberschriftAmEnde([seite(['Text.', 'CTC'], [7.9, 9]), schluss], koepfe).length, 1);
+  // Grundschrift, Teil einer Zeile oder ohne gemessene Größe: kein Kopf
+  assert.equal(seitenMitUeberschriftAmEnde([seite(['Text.', 'k4-t1'], [7.9, 7.9]), schluss], koepfe).length, 0);
+  assert.equal(seitenMitUeberschriftAmEnde([seite(['Text.', 'siehe k4-t1'], [7.9, 9]), schluss], koepfe).length, 0);
+  assert.equal(seitenMitUeberschriftAmEnde([seite(['Text.', 'k4-t1']), schluss], koepfe).length, 0);
+  // ohne Größe im DOM bleiben kurze Köpfe außen vor
+  assert.equal(seitenMitUeberschriftAmEnde([seite(['Text.', 'k4-t1'], [7.9, 9]), schluss], ['k4-t1']).length, 0);
+});

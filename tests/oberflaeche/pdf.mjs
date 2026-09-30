@@ -70,7 +70,8 @@ export const flach = (/** @type {string} */ s) => s.replace(/[\s\u00ad\-\u2010\u
  */
 export function seitenMitUeberschriftAmEnde(seiten, ueberschriften) {
   const koepfe = ueberschriften.map((u) => (typeof u === 'string' ? { text: u } : u))
-    .map((u) => ({ k: flach(u.text), pt: u.pt })).filter((u) => u.k.length >= 6);
+    // R49: kurze Köpfe (Absatz-ID „k4-t1“, „CTC“) nur mit Schriftgröße und nur bei ganzer Gleichheit (sonst Fehlalarme)
+    .map((u) => ({ k: flach(u.text), pt: u.pt })).filter((u) => u.k.length >= 6 || (u.pt !== undefined && u.k.length >= 3));
   /** @type {{ seite: number, zeile: string }[]} */
   const treffer = [];
   seiten.forEach((s, i) => {
@@ -85,6 +86,7 @@ export function seitenMitUeberschriftAmEnde(seiten, ueberschriften) {
     const satzende = /[.:;!]$/u.test(letzte.trim());
     const passt = (/** @type {{ k: string, pt?: number }} */ u) => {
       if (u.pt !== undefined && pt !== undefined && Math.abs(u.pt - pt) > 0.6) return false;
+      if (u.k.length < 6) return pt !== undefined && u.k === f;
       // die ganze Überschrift (auch mit „?“ am Ende: „Wer pflegt dieses Register?“)
       if (u.k === f) return true;
       if (satzende) return false;

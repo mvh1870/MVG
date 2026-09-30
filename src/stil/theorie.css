@@ -508,6 +508,8 @@ a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
   .druck-kopf { margin-bottom: 8mm; padding-bottom: 4mm; border-bottom: 1px solid var(--linie-2); }
   .druck-kopf h1 { margin: 2mm 0; font: 800 20pt/1.15 var(--schrift-anzeige); color: var(--navy); }
   .druck-absender, .druck-meta { margin: 0; font-size: 9pt; color: var(--tinte-2); }
+  .druck-absender { display: flex; align-items: center; gap: 3mm; }
+  .druck-absender .marke-logo { height: 8mm; color: var(--navy); }
   .druck-teil { margin-bottom: 6mm; }
   .druck-teil h2 { margin: 0 0 2mm; font: 700 13pt/1.25 var(--schrift-text); color: var(--navy); }
   .druck-teil.ist-neue-seite, .druck-bogen .druck-kapitel { break-before: page; }
@@ -540,6 +542,10 @@ a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
      die Quellzeile bleibt bei der letzten Karte */
   .druck-bogen figure.tafel { break-inside: auto; }
   .druck-bogen figure.tafel > figcaption { break-before: avoid; }
+  /* R49: nach dem Kartenraster hielt Chromium `break-before: avoid` nicht ein – die Quellzeile stand allein oben auf der
+     Folgeseite wie der Kopf des nächsten Blocks. Bei Kartentafeln steht sie im Druck deshalb über den Karten */
+  .druck-bogen figure.tafel:has(> .tafel-karten) { display: flex; flex-direction: column; }
+  .druck-bogen figure.tafel:has(> .tafel-karten) > figcaption { order: -1; break-before: auto; break-after: avoid; }
   /* Umschalter: zwei kurze Ansichten nebeneinander – als Ganzes auf einer Seite, sonst blieb der Titel allein zurück */
   .druck-bogen .lw-umschalter { break-inside: avoid; }
   /* Glossareinträge, Tabellenzeilen: Begriff nicht ohne Erklärung, Zeile nicht mitten im Wort geteilt */

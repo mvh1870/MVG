@@ -101,6 +101,12 @@ function verzeichnis(o: TheorieOptionen, aktuell: number | null): HTMLElement {
 
 function liste(o: TheorieOptionen): HTMLElement {
   const kap = kapitelListe(o.inhalte);
+  const imp = impressum(o);
+  // R49: Strg+P auf „Fassung und Impressum“ druckt das Impressum (vorher nur den Ersatzbogen mit den Druckwegen)
+  if (o.bedienbar) {
+    bogenFuerStrgP(imp, () => ({ titel: W.theorie.impressum, teile: [bogenKopf(W.theorie.impressum, o.version, false), impressumFuerDruck(o, false)] }),
+      () => imp.isConnected && window.location.hash === `#theorie/${IMPRESSUM}`);
+  }
   return h('div', { class: 'lernseite', 'data-pruef': 'theorie' },
     kopfleiste(o),
     h('div', { class: 'lern-rahmen ist-einspaltig' },
@@ -112,7 +118,7 @@ function liste(o: TheorieOptionen): HTMLElement {
           h('h1', { class: 'kapitel-titel', tabindex: -1 }, W.theorie.ueberblick),
           h('p', { class: 'kapitel-einstieg' }, W.theorie.ueberblickText),
           o.bedienbar ? h('p', null, h('button', { type: 'button', class: 'knopf knopf-still druck-knopf', 'data-pruef': 'alles-drucken', onclick: () => {
-            druckeBogen(W.druck.allesTitel, [bogenKopf(W.druck.allesTitel, o.version, false), ...kap.filter((k) => k.seite).map((k) => kapitelFuerDruck(o.inhalte, k.nr, o.version))]);
+            druckeBogen(W.druck.allesTitel, [bogenKopf(W.druck.allesTitel, o.version, false), ...kap.filter((k) => k.seite).map((k) => kapitelFuerDruck(o.inhalte, k.nr, o.version)), impressumFuerDruck(o, true)]);
           } }, sym('dokument'), W.druck.allesDrucken)) : null),
         h('ol', { class: 'kapitel-karten', 'data-pruef': 'kapitel-liste' }, kap.map((k) => h('li', null,
           k.seite
@@ -124,8 +130,15 @@ function liste(o: TheorieOptionen): HTMLElement {
               h('b', { class: 'kapitel-karte-nr' }, String(k.nr)),
               h('span', { class: 'kapitel-karte-titel' }, k.titel),
               h('span', { class: 'badge ist-folgt' }, W.theorie.folgt))))),
-        impressum(o),
+        imp,
         fuss(o))));
+}
+
+/** R49: das Impressum im Druck – Quellenverzeichnis aufgeklappt; in „Alle 13 Kapitel“ als letzter Teil auf neuer Seite */
+function impressumFuerDruck(o: TheorieOptionen, neueSeite: boolean): HTMLElement {
+  const teil = impressum({ ...o, bedienbar: false });
+  for (const d of teil.querySelectorAll('details')) d.open = true;
+  return h('section', { class: neueSeite ? 'druck-teil ist-neue-seite' : 'druck-teil', 'data-pruef': 'impressum-druck' }, teil);
 }
 
 /**

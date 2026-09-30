@@ -5,16 +5,23 @@
  */
 
 import { h } from './h.ts';
+import { bildmarke } from './marke.ts';
 import { W } from './woerter.ts';
 
 /** Kopf jedes Bogens: Titel, Absender, Fassung, Druckdatum und die Vermerke. */
 export function bogenKopf(titel: string, version: string, mitFiktiv: boolean): HTMLElement {
   const datum = new Date().toLocaleDateString('de-DE', { dateStyle: 'long' });
   return h('header', { class: 'druck-kopf' },
-    h('p', { class: 'druck-absender' }, W.produkt),
+    // R49: die Bildmarke auch im Druck (O-33), klein und neben dem Namen (O-34)
+    h('p', { class: 'druck-absender' }, bildmarke('marke-logo'), h('span', null, W.produkt)),
     h('h1', null, titel),
     h('p', { class: 'druck-meta' }, `${version} · ${W.druck.stand(datum)} · ${W.adresse} · ${W.herausgeber}`),
     h('p', { class: 'druck-meta' }, [mitFiktiv ? `${W.fiktiv} · ` : '', W.ungeprueft].join('')));
+}
+
+/** R49: Dokumenttitel im Druck (PDF-Metadaten, vorgeschlagener Dateiname) mit dem Namen des Programms (O-33) */
+export function druckTitel(titel: string): string {
+  return titel.includes(W.name) ? titel : `${titel} · ${W.name}`;
 }
 
 /** Der laufende Druck: bis der Dialog aufgeht (Bilder dekodieren), bleiben weitere Klicks ohne Wirkung. */
@@ -74,7 +81,8 @@ function bereiteStrgP(): void {
     }
     const quelle = strgP !== null && strgP.gilt() ? strgP.bauer : ersatz !== null && ersatz.aktiv() ? ersatz.bauer : null;
     if (quelle === null) return;
-    const { titel, teile } = quelle();
+    const { titel: bogenTitel, teile } = quelle();
+    const titel = druckTitel(bogenTitel);
     const bogen = haengeBogenAn(teile);
     const alterTitel = document.title;
     document.title = titel;
@@ -155,7 +163,8 @@ function haengeBogenAn(teile: Node[]): HTMLElement {
 }
 
 /** Titel, Druckklasse, Auftrag und Druckdialog für einen angehängten Bogen. */
-function druckeAngehaengt(titel: string, bogen: HTMLElement): void {
+function druckeAngehaengt(bogenTitel: string, bogen: HTMLElement): void {
+  const titel = druckTitel(bogenTitel);
   const alterTitel = document.title;
   document.title = titel;
   document.body.classList.add('druckt-bogen');

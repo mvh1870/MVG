@@ -155,6 +155,9 @@
   /* R42: Papier hat keine Links – Kopf-Link, „Öffnen“, Zurück/Weiter und der Theorie-Link im Fuß entfallen; der Fuß bleibt beim Inhalt */
   .hilfe :is(.lern-kopf-link, .kapitel-karte-los, .kapitel-nav) { display: none; }
   .hilfe .lern-fuss { break-before: avoid; break-inside: avoid; }
+  /* R49: im Druck als ein Absatz – umbrochen (161 px hoch) riss der Fuß ab, das letzte Blatt trug nur „fachlich ungeprüft“ */
+  .hilfe .lern-fuss { display: block; }
+  .hilfe .lern-fuss > :not(.lern-kopf-link) { display: inline; margin-right: 1em; }
   /* R44: im Druck bricht nur, was allein nicht in die Zeile passt (am Bildschirm schützt `anywhere` schmale Fenster) */
   .hilfe-inhalt { overflow-wrap: break-word; }
   .hilfe-inhalt details > :not(summary) { display: block; }
@@ -163,6 +166,8 @@
   /* fette Zwischenzeile („Vorgehen“) vor einer Liste: im Druck als eigene Zeile, die bei der Liste bleibt */
   /* R47: jede fette Zwischenzeile vor einer Liste, nicht nur die erste (Handbuch: „Praxistipp“, „Lesart“, „Typische Fehler“ …) */
   .hilfe-inhalt .h-help-content-inline > b:has(+ :is(ol, ul)) { display: block; break-after: avoid; }
+  /* R49: Etappenkopf (Etappe · Überschrift · Einleitungszeile) bleibt beim folgenden Raster (Aktivitäten, Rollen, Ergebnisse) */
+  .hilfe-inhalt div:has(> div > h2):has(+ .h-grid) { break-after: avoid; break-inside: avoid; }
   .hilfe-inhalt tr { break-inside: avoid; }
   /* der Bildschirm-Abstand unter der Seite (64 px) rutschte als leeres Blatt ans Ende */
   .hilfe .lern-rahmen { padding-bottom: 0; }

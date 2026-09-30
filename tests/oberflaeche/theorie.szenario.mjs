@@ -374,10 +374,17 @@ export async function lauf(seite, h) {
   // R47: vor page.pdf lesen – page.pdf löst afterprint aus und räumt den Bogen ab (vorher blieb die Kopfliste leer)
   // R41: im echten PDF – keine Seite endet mit einer Überschrift, keine leere Seite, kein Bedienhinweis („Ziehen Sie den Regler“)
   // R42: auch die Kapitälchen-Labels über Querverweis und Wissenscheck; je Kopf seine Druckgröße in pt (Listenpunkte gleichen Wortlauts zählen nicht)
-  const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen :is(h1, h2, h3, h4, dt, .lw-titel, .original-abschnitt, summary, .lw-etappe-titel, .felder-ansicht, .querverweis-text, .absatz-id), .druck-bogen .lw-aufgeloest-liste > li > b:first-child, .druck-bogen :is(.querverweis-block, .wissenscheck) > .t-label')]
+  // R49: dazu die Quellzeile einer Kartentafel – sie steht im Druck über den Karten und bleibt bei ihnen
+  const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen :is(h1, h2, h3, h4, dt, .lw-titel, .original-abschnitt, summary, .lw-etappe-titel, .felder-ansicht, .querverweis-text, .absatz-id), .druck-bogen .lw-aufgeloest-liste > li > b:first-child, .druck-bogen :is(.querverweis-block, .wissenscheck) > .t-label, .druck-bogen figure.tafel > figcaption')]
+    .filter((x) => (x.tagName !== 'FIGCAPTION' || Number.parseInt(getComputedStyle(x).order, 10) < 0) && x.closest('.impressum') === null)
     // R43: die Größe des sichtbaren Texts (größte Schrift eines Elements mit eigenem Text), nicht die des Kopfelements selbst
     .map((x) => ({ text: x.textContent ?? '', pt: Math.max(...[x, ...x.querySelectorAll('*')].filter((e) => [...e.childNodes].some((k) => k.nodeType === 3 && (k.textContent ?? '').trim() !== ''))
       .map((e) => parseFloat(getComputedStyle(e).fontSize))) * 0.75 })));
+  // R49: Quellzeilen, die im Druck unter ihrer Tafel stehen (nach dem Layout, nicht nach der Tafelform) – nie allein oben
+  // auf der Folgeseite; die über den Karten stehen in der Kopfliste (nie allein am Seitenende)
+  const quellenUnten = () => seite.evaluate(() => [...document.querySelectorAll('.druck-bogen figure.tafel > figcaption')]
+    .filter((x) => Number.parseInt(getComputedStyle(x).order, 10) >= 0).map((x) => (x.textContent ?? '').replace(/\s+/gu, '')));
+  const unten8 = await quellenUnten();
   const pdf = await seite.pdf({ format: 'A4' });
   const seiten = (pdf.toString('latin1').match(/\/Type\s*\/Page[^s]/gu) ?? []).length;
   if (seiten < 2 || seiten > 40) h.befund(`Druck Kapitel 8: ${seiten} Seiten`);
@@ -386,6 +393,10 @@ export async function lauf(seite, h) {
   const amEnde = seitenMitUeberschriftAmEnde(pdfText, koepfe);
   if (amEnde.length > 0) h.befund(`Druck Kapitel 8: Überschrift am Seitenende ${JSON.stringify(amEnde)}`);
   if (pdfText.some((x) => x.zeilen.length === 0)) h.befund('Druck Kapitel 8: leere Seite');
+  // R49: die Quellzeile einer Tafel steht nie allein oben auf der Folgeseite (wirkte wie der Kopf des nächsten Blocks)
+  const quelleOben = (/** @type {{ zeilen: string[] }[]} */ p, /** @type {string[]} */ unten) => p.map((x, i) => ({ seite: i + 1, z: x.zeilen[0] ?? '' }))
+    .filter((x) => /^Quelle: MVG V?1\.2/u.test(x.z) && unten.some((u) => u.startsWith(x.z.replace(/\s+/gu, ''))));
+  if (quelleOben(pdfText, unten8).length > 0) h.befund(`Druck Kapitel 8: Quellzeile am Seitenanfang ${JSON.stringify(quelleOben(pdfText, unten8))}`);
   if (pdfText.some((x) => x.zeilen.some((z) => /Ziehen Sie|Klicken Sie/u.test(z)))) h.befund('Druck Kapitel 8: Bedienhinweis im Druck');
   await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
   await seite.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
@@ -435,7 +446,8 @@ export async function lauf(seite, h) {
   if (wortbruch.length > 0) h.befund(`Alles drucken: ${wortbruch.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(wortbruch.slice(0, 6))}`);
   // R47: im echten PDF aller Kapitel – kein Kopf, kein Feld-Schalter, kein Querverweis-Titel allein am Seitenende
   // (die Druckbefunde der Runde 47 lagen alle hier); Köpfe vor page.pdf lesen, das den Bogen abräumt
-  const koepfeAlle = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen :is(h1, h2, h3, h4, dt, .lw-titel, .original-abschnitt, summary, .lw-etappe-titel, .felder-ansicht, .querverweis-text, .absatz-id), .druck-bogen .lw-aufgeloest-liste > li > b:first-child, .druck-bogen :is(.querverweis-block, .wissenscheck) > .t-label')]
+  const koepfeAlle = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen :is(h1, h2, h3, h4, dt, .lw-titel, .original-abschnitt, summary, .lw-etappe-titel, .felder-ansicht, .querverweis-text, .absatz-id), .druck-bogen .lw-aufgeloest-liste > li > b:first-child, .druck-bogen :is(.querverweis-block, .wissenscheck) > .t-label, .druck-bogen figure.tafel > figcaption')]
+    .filter((x) => (x.tagName !== 'FIGCAPTION' || Number.parseInt(getComputedStyle(x).order, 10) < 0) && x.closest('.impressum') === null)
     .map((x) => ({ text: x.textContent ?? '', pt: Math.max(...[x, ...x.querySelectorAll('*')].filter((e) => [...e.childNodes].some((k) => k.nodeType === 3 && (k.textContent ?? '').trim() !== ''))
       .map((e) => parseFloat(getComputedStyle(e).fontSize))) * 0.75 })));
   // R48: keine Auslöser-Wahl im Druck – Tafeln stehen dort aufgelöst (L-140), eine Wahl ohne Kette riss am Seitenende ab
@@ -445,9 +457,18 @@ export async function lauf(seite, h) {
   const marker = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen summary')].filter((x) => getComputedStyle(x).display === 'list-item' && getComputedStyle(x).listStyleType !== 'none').length);
   if (marker > 0) h.befund(`Alles drucken: ${marker} Aufklappzeichen im Druck`);
   if (!koepfeAlle.some((x) => /^k\d+(?:\.\d+)*-t\d+$/u.test(x.text.trim()))) h.befund('Alles drucken: Absatz-IDs fehlen in der Kopfliste');
+  const untenAlle = await quellenUnten();
+  if (!koepfeAlle.some((x) => /^Quelle: MVG/u.test(x.text))) h.befund('Alles drucken: Quellzeilen der Kartentafeln fehlen in der Kopfliste');
   const allesPdf = await pdfSeiten(await seite.pdf({ format: 'A4' }));
   const allesEnde = seitenMitUeberschriftAmEnde(allesPdf, koepfeAlle);
   if (allesEnde.length > 0) h.befund(`Alles drucken: Überschrift am Seitenende ${JSON.stringify(allesEnde.slice(0, 6))}`);
+  if (quelleOben(allesPdf, untenAlle).length > 0) h.befund(`Alles drucken: Quellzeile am Seitenanfang ${JSON.stringify(quelleOben(allesPdf, untenAlle).slice(0, 6))}`);
+  // R49: keine fast leere Seite in allen Kapiteln – außer der letzten und der vor einem Kapitelbeginn oder dem Impressum (erzwungener Umbruch)
+  const vorKapitelAlles = (/** @type {number} */ i) => /^(?:KAPITEL\d|FassungundImpressum)/u.test((allesPdf[i + 1]?.zeilen.slice(0, 2).join('') ?? '').replace(/\s+/gu, ''));
+  if (!allesPdf.some((x) => x.zeilen.join(' ').includes('Herausgeber Bauherr Mentoren'))) h.befund('Alles drucken: Impressum fehlt im PDF');
+  const leerAlles = allesPdf.slice(0, -1).map((x, i) => ({ seite: i + 1, fuellung: Math.round((x.fuellung ?? 0) * 100), vor: vorKapitelAlles(i) }))
+    .filter((x) => x.fuellung < 35 && !x.vor);
+  if (leerAlles.length > 0) h.befund(`Alles drucken: fast leere Seiten ${JSON.stringify(leerAlles.slice(0, 6))}`);
   await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
   await seite.evaluate(() => { window.print = () => {}; window.dispatchEvent(new Event('afterprint')); history.back(); });
   await h.erwarte('[data-pruef="kapitel-drucken"]');
@@ -468,6 +489,17 @@ export async function lauf(seite, h) {
   if (leer7.length > 0) h.befund(`Druck Kapitel 7: fast leere Seiten ${JSON.stringify(leer7)}`);
   await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
   await seite.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
+  // R49: Strg+P auf „Fassung und Impressum“ druckt das Impressum (aufgeklappt), auf der übrigen Kapitelliste den Ersatzbogen
+  await seite.evaluate(() => { location.hash = '#theorie/impressum'; });
+  await h.erwarte('[data-pruef="impressum"]');
+  const impDruck = await seite.evaluate(() => {
+    window.dispatchEvent(new Event('beforeprint'));
+    const bog = document.querySelector('.druck-bogen');
+    const r = { titel: document.title, imp: bog?.querySelector('[data-pruef="impressum"]') !== null && bog !== null, zu: bog?.querySelectorAll('details:not([open])').length ?? -1 };
+    window.dispatchEvent(new Event('afterprint'));
+    return r;
+  });
+  if (!impDruck.imp || impDruck.zu !== 0 || !/^Fassung und Impressum · Governance Kompass$/u.test(impDruck.titel)) h.befund(`Strg+P Impressum: ${JSON.stringify(impDruck)}`);
   // R29: Kap. 3 – das Schwellen-Spiel steht im Druck aufgelöst (je Aufgabe die Seite, ohne Hinweis und „Auflösen“)
   await seite.evaluate(() => { location.hash = '#theorie/k3'; });
   await h.erwarte('[data-kapitel="3"] .schwelle-karte');

@@ -188,7 +188,13 @@ test('Name (O-33, O-34): „Governance Kompass“ mit Bildmarke auf jeder Fläch
   const impressum = flaechen[1]?.[1].querySelector('[data-pruef="impressum"]')?.textContent ?? '';
   assert.match(impressum, /Governance Kompass · www\.GovernanceKompass\.de/u);
   assert.match(impressum, /Bauherr Mentoren/u);
-  const druck = bogenKopf('Kapitel 3', VERSION, false).textContent ?? '';
+  const druckKopf = bogenKopf('Kapitel 3', VERSION, false);
+  // R49: Bildmarke auch im Druckkopf, der Dokumenttitel im Druck trägt den Namen
+  assert.ok(druckKopf.querySelector('.druck-absender svg.marke-logo'), 'Bildmarke im Druckkopf');
+  const { druckTitel } = await import('../src/ui/druck.ts');
+  assert.equal(druckTitel('Ihr Dossier zur Story'), 'Ihr Dossier zur Story · Governance Kompass');
+  assert.equal(druckTitel(W.druck.ersatzTitel), W.druck.ersatzTitel);
+  const druck = druckKopf.textContent ?? '';
   assert.match(druck, /^Governance Kompass – Minimum Viable Governance/u);
   assert.match(druck, /www\.GovernanceKompass\.de · Herausgeber: Bauherr Mentoren/u);
   assert.equal((druck.match(/Bauherr Mentoren/gu) ?? []).length, 1, 'Druckkopf nennt Bauherr Mentoren einmal, als Herausgeber');
@@ -1254,6 +1260,11 @@ test('Druck (P10.2): Kapitel und alle Kapitel als Bogen – ohne Kopfleiste, Ver
   const alle = document.querySelectorAll('[data-pruef="druck-bogen"]');
   assert.equal(alle.length, 1, 'ein neuer Bogen ersetzt den alten');
   assert.deepEqual([...alle[0]?.querySelectorAll('.druck-kapitel') ?? []].map((x) => Number(x.getAttribute('data-kapitel'))), Array.from({ length: 13 }, (_, i) => i + 1));
+  // R49: das Impressum steht als letzter Teil im Bogen – Herausgeber, Vermerk, Quellenverzeichnis aufgeklappt, ohne Verweise
+  const impDruck = alle[0]?.querySelector(':scope > :last-child [data-pruef="impressum"]');
+  assert.ok(impDruck, 'Impressum als letzter Teil von „Alle 13 Kapitel“');
+  assert.match(impDruck.textContent ?? '', /Bauherr Mentoren/u);
+  assert.equal(impDruck.querySelectorAll('details:not([open]), a[href]').length, 0);
   // R45 (L-129): weiche Trennstellen im Bogen auch in Tafeln (Karten 196 px), die Seite selbst bleibt ohne
   const tafeln = [...alle[0]?.querySelectorAll('.tafel') ?? []].map((t) => t.textContent ?? '').join(' ');
   assert.match(tafeln, /Entscheidungs\u00advorbereitung/u, 'Tafelkarte k06/k09');
@@ -1271,7 +1282,7 @@ test('Druck (P10.2): Kapitel und alle Kapitel als Bogen – ohne Kopfleiste, Ver
   try {
     kap13.querySelector<HTMLButtonElement>('[data-pruef="kapitel-drucken"]')?.click();
     assert.ok(document.body.classList.contains('druckt-bogen'));
-    assert.match(document.title, /^Kapitel 13 · /u);
+    assert.match(document.title, /^Kapitel 13 · .* · Governance Kompass$/u);
     const ids = [...document.querySelectorAll('[id]')].map((x) => x.id);
     assert.deepEqual(ids.filter((x, i) => ids.indexOf(x) !== i), [], 'doppelte IDs neben dem Bogen');
     // der Abschnitt Begriffs-Kompass trägt den Bezug (seine Tabelle heißt seit R21 „Tabelle Begriffs-Kompass“)

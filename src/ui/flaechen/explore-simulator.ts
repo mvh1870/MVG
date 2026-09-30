@@ -62,10 +62,10 @@ export function simulator(inhalte: OeffentlicheInhalte): HTMLElement {
 
   const zeichne = (): void => {
     const r = simuliere(e);
-    kurz.textContent = S.meldung(r.wer, r.wesentlich, r.freigabeBeimBauherrn);
+    kurz.textContent = S.meldung(r.wer, r.wesentlich, r.freigabeBeimBauherrn, r.stufeOffen);
     ersetze(ergebnis,
       h('section', { class: 'sim-teil sim-wer', 'data-pruef': 'sim-wer' }, h('h3', { class: 'sim-teil-titel' }, S.wer), h('p', { class: 'sim-wer-name' }, r.wer), leiter(r.stufeOffen ? null : r.stufe),
-        h('p', { class: 'sim-wesentlich' }, r.wesentlich ? S.wesentlich : S.nichtWesentlich)),
+        h('p', { class: 'sim-wesentlich' }, r.wesentlich ? S.wesentlich : r.stufeOffen ? S.offenWesentlich : S.nichtWesentlich)),
       liste(S.titel.eskalation, r.eskalation, 'sim-eskalation'),
       liste(S.titel.bauherr, r.bauherr, 'sim-bauherr'),
       liste(S.titel.information, r.information, 'sim-information'),

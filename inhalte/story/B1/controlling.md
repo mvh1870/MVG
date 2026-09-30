@@ -33,7 +33,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Wird ein Schwellenwert verletzt, entsteht eine Frühwarnung; wer entscheidet, sagt die Mandatsleiter.
+Wird ein Schwellenwert verletzt, entsteht eine neue Frühwarnung. Bestätigt sie sich, wird sie ein bewertetes Risiko; entsteht daraus Entscheidungsbedarf, sagt die Mandatsleiter, wer entscheidet.
 
 ### Was fehlt
 Die offene Preisannahme berührt noch keine Schwelle.

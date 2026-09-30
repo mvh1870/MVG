@@ -129,3 +129,6 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 36 (P12.5, zugleich P14.3)
 - **Beide Rollen als Agenten**: Fachtreue 2 Befunde (leicht: Simulator-Satz der Gremiumsstufe, Freigabe neben „Wer entscheidet“; 7 680 Eingabekombinationen durchgerechnet), Stil/Architektur 2 Befunde (leicht: Rollprüfung zählt unsichtbare Zugänge, Quelle rollt auf dem Desktop um 2 px) – **keine schweren oder mittleren**; nach L-64 erste von zwei sauberen Runden. Eingearbeitet (L-111).
+
+## Runde 37 (P12.5, zugleich P14.3)
+- **Fachtreue + Begriffe (Agent):** 2 Befunde (1 mittel: Simulator nennt eine berührte Freigabe bei kleinem Betrag „keine wesentliche Entscheidung“; 1 leicht: B1 Controlling überspringt die Registerlogik); 209 Zitate per Skript wortgleich, 28 von Hand; `begriffe` ohne Funde – eingearbeitet (L-112); Zählung neu.

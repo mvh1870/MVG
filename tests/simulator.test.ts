@@ -82,4 +82,10 @@ test('Grenzfälle: kein Betrag, Freigabe bei Bauherrenstufe', () => {
   assert.ok(simuliere({ ...basis, betragTeur: 400, freigabeBeruehrt: true }).freigabeweg.some((h) => h.quelle === 'k3.2-t1' && /Sachentscheidung/u.test(h.text)));
   assert.ok(!simuliere({ ...basis, betragTeur: 8000, freigabeBeruehrt: true }).freigabeweg.some((h) => /Sachentscheidung/u.test(h.text)));
   assert.ok(simuliere({ ...basis, betragTeur: 80 }).freigabeweg.some((h) => /Innerhalb des Mandats/u.test(h.text)), 'PL-Stufe ist innerhalb des Mandats');
+  // R37: eine berührte Freigabe ist immer wesentlich (k9.3-p3, k3.2-t1, k4.3-p1), auch bei kleinem Betrag
+  const r = simuliere({ ...basis, freigabeBeruehrt: true, status: 'entscheidungsreif' });
+  assert.equal(r.wesentlich, true);
+  assert.ok(!r.information.some((h) => h.quelle === 'k4.3-p1'), 'kein „nicht wesentlich“ neben der Freigabe');
+  assert.match(r.naechsterSchritt[0]?.text ?? '', /hier Bauherren-PL; die Freigabe erteilt der Bauherr\.$/u);
+  assert.match(simuliere({ ...basis, betragTeur: 8000, freigabeBeruehrt: true, status: 'entscheidungsreif' }).naechsterSchritt[0]?.text ?? '', /hier Bauherr im Lenkungskreis\.$/u);
 });

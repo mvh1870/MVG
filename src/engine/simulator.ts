@@ -122,7 +122,8 @@ export function simuliere(e: SimEingabe): SimErgebnis {
     hebe('bauherr', stufe === 'bauherr' ? wer : 'Bauherr');
   }
 
-  const wesentlich = e.substanziell || bauherr.length > 0;
+  // R37: jede Freigabe zum Abschluss einer LPH erteilt der Bauherr selbst (k9.3-p3); sie ist wesentlich (k3.2-t1, k4.3-p1)
+  const wesentlich = e.substanziell || e.freigabeBeruehrt || bauherr.length > 0;
   if (wesentlich) {
     information.push({ quelle: 'k4.3-p2', text: 'Als wesentliche Entscheidung braucht sie eine eindeutige Kennung, einen Datenstand, eine verantwortliche Rolle, eine Entscheidungsfrage und einen Nachverfolgungsstatus.' });
   } else {
@@ -152,7 +153,7 @@ export function simuliere(e: SimEingabe): SimErgebnis {
       naechsterSchritt.push({ quelle: 'k9.4-l1', text: 'Status „In Bearbeitung“: die Entscheidungsvorlage vervollständigen – Frage, betroffene Freigabe, Mandat, Datenstand, Optionen, Wirkung, Empfehlung, Freigabe- oder Eskalationsweg.' });
       break;
     case 'entscheidungsreif':
-      naechsterSchritt.push({ quelle: 'k13-t1', text: `Status „Entscheidungsreif“: ausreichend vorbereitet, um auf der zuständigen Mandatsebene getroffen zu werden – hier ${wer}.` });
+      naechsterSchritt.push({ quelle: 'k13-t1', text: `Status „Entscheidungsreif“: ausreichend vorbereitet, um auf der zuständigen Mandatsebene getroffen zu werden – hier ${wer}${e.freigabeBeruehrt && stufe !== 'bauherr' ? '; die Freigabe erteilt der Bauherr' : ''}.` });
       break;
     case 'entschieden':
       naechsterSchritt.push({ quelle: 'k9.4-l1', text: 'Status „Entschieden“: Beschlusslage dokumentieren und die Nachverfolgung führen.' });

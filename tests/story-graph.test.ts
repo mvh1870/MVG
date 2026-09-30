@@ -255,3 +255,49 @@ test('Express-Karten (R48, L-136 (3)): jede Station, zu der der Express-Pfad spr
   assert.ok(ziele.has('A3') && ziele.has('A6'), `Sprungziele: ${[...ziele].join(', ')}`);
   for (const z of ziele) assert.ok(String((erg.inhalte.stationen as any)[z]?.express ?? '').replace(/<[^>]+>/gu, '').trim().length > 20, `${z}: keine Express-Karte`);
 });
+
+test('Rückbezüge (R49): jeder Text nennt die frühere Wahl mit ihrem Kurztitel und den richtigen Monat bzw. „In Welt A“', () => {
+  const MONATE = ['', 'Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+  const st = erg.inhalte.stationen as any;
+  let geprueft = 0;
+  for (const [id, s] of Object.entries(st) as [string, any][]) {
+    for (const [rolle, sz] of Object.entries(s.szenen ?? {}) as [string, any][]) {
+      const rb = sz?.rueckbezug;
+      if (!rb) continue;
+      const [bezSt, bezRolle] = String(rb.auf).split('/');
+      const ent = st[bezSt ?? '']?.szenen?.[bezRolle ?? rolle]?.entscheidung;
+      assert.ok(ent, `${id}/${rolle}: Bezug ${rb.auf} ohne Entscheidung`);
+      for (const [o, text] of Object.entries(rb.texte ?? {}) as [string, string][]) {
+        const opt = ent.optionen.find((x: any) => x.id === o);
+        assert.ok(opt, `${id}/${rolle}: Option ${o} fehlt in ${rb.auf}`);
+        assert.ok(text.includes(`‚${opt.kurz}‘`), `${id}/${rolle}/${o}: nennt nicht ‚${opt.kurz}‘`);
+        const anfang = s.welt === 'B' ? 'In Welt A' : `Im ${MONATE[Number(st[bezSt ?? '']?.monat)] ?? '?'}`;
+        assert.ok(text.replace(/<[^>]+>/gu, '').startsWith(anfang), `${id}/${rolle}/${o}: beginnt nicht mit „${anfang}“`);
+        geprueft += 1;
+      }
+    }
+  }
+  assert.ok(geprueft >= 150, `nur ${geprueft} Rückbezüge geprüft`);
+});
+
+test('Schluss ohne Werbung (R49, O-1, O-34): Wirklichkeit, Enden und Epilog nennen Bauherr Mentoren nur im Hinweis zur Reifegradanalyse (O-8)', () => {
+  const w = JSON.parse(readFileSync(new URL('../quellen/whitepaper/v1.2/whitepaper.json', import.meta.url), 'utf8'));
+  const finde = (o: unknown, id: string): unknown => {
+    if (Array.isArray(o)) { for (const x of o) { const r = finde(x, id); if (r) return r; } return null; }
+    if (o !== null && typeof o === 'object') {
+      if ((o as { id?: string }).id === id) return o;
+      for (const v of Object.values(o)) { const r = finde(v, id); if (r) return r; }
+    }
+    return null;
+  };
+  const bm = (t: string): string[] => t.match(/Bauherr Mentoren|\bBM\b/gu) ?? [];
+  for (const id of ['wirklichkeit', 'ende-steuerbar', 'ende-auflagen', 'ende-neufestlegung', 'epilog']) {
+    const text = JSON.stringify((erg.inhalte.stationen as any)[id]);
+    const erlaubt = id === 'epilog' ? (text.match(/eine Methode von Bauherr Mentoren/gu) ?? []).length : 0;
+    assert.equal(bm(text).length, erlaubt, `${id}: ${bm(text).length} Nennungen`);
+    if (id !== 'wirklichkeit' && id !== 'epilog') continue;
+    for (const t of new Set(text.match(/"id":"(k[\d.]+-t\d+)"/gu)?.map((x) => x.split('"')[3] ?? '') ?? [])) {
+      assert.deepEqual(bm(JSON.stringify(finde(w, t) ?? {})), [], `${id}: Tafel ${t} nennt Bauherr Mentoren`);
+    }
+  }
+});

@@ -5,7 +5,7 @@ titel: Steuerbar übergeben
 kurztitel: Ende
 whitepaper-bezug: [k9.3-p2, k11.2-p2, k12-p1, k9-p1, k9.5-p1, k12-t1, k11.3-t1, k13-t1, k8.4-p1, k7.5-t1, k8.2-p4]
 weiter: epilog
-vertiefung: 8
+vertiefung: 9
 schaltet-frei: [explore]
 ---
 

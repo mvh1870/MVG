@@ -225,9 +225,15 @@ function lage(k: SzenenKontext): Szene {
 /** Chips der Kurzlage: Stände aus den Excel-Dateien, offene bzw. geklärte Punkte des Lagebilds. */
 function kurzlage(k: SzenenKontext): HTMLElement | null {
   const chips: HTMLElement[] = [];
+  // R49: dieselbe Datei in Einstieg und Lagebild (B4–B6) steht nur einmal als Chip
+  const dateien = new Set<string>();
   for (const sch of k.station.schritte) {
     for (const b of sch.bloecke) {
-      if (b.art === 'datei' && kopfText(b.kopf, 'wert') !== null) chips.push(h('span', { class: 'chip' }, kopfText(b.kopf, 'wert'), ' ', h('small', null, kopfText(b.kopf, 'quelle') ?? '')));
+      if (b.art !== 'datei' || kopfText(b.kopf, 'wert') === null) continue;
+      const schluessel = `${kopfText(b.kopf, 'name') ?? ''}|${kopfText(b.kopf, 'wert') ?? ''}|${kopfText(b.kopf, 'quelle') ?? ''}`;
+      if (dateien.has(schluessel)) continue;
+      dateien.add(schluessel);
+      chips.push(h('span', { class: 'chip' }, kopfText(b.kopf, 'wert'), ' ', h('small', null, kopfText(b.kopf, 'quelle') ?? '')));
     }
     const sprung = sch.bloecke.find((b) => b.art === 'zeitsprung' && b.id !== null);
     const angefordert = sprung !== undefined && k.z.info.includes(`${k.station.id}/${sprung.id}`);

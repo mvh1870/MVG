@@ -150,7 +150,7 @@ stationen: [A5, B5]
 kapitel: ["1", "5.1"]
 ---
 ### Einwand
-Das kostet nur Geld.
+Was kostet ein solcher Standard?
 
 ### Antwort
 Kosten der Einführung beziffert MVG nicht. Den Nutzen beschreibt es als weniger Entscheidungsstau, klarere Eskalationswege, belastbare Gremienfähigkeit und eine nachvollziehbare Nachweiskette – mit dem kleinstmöglichen funktionsfähigen Standard statt maximaler Governance.

@@ -42,7 +42,7 @@ Die Kämmerei braucht bis Freitag den Haushaltsansatz 2027: Mittelabfluss und Ge
 ::: chat
 ---
 von: petersen
-zeit: "09:02"
+zeit: "08:58"
 ---
 Aus dem Stadtrat: Gilt noch die Zahl aus dem Ratsbeschluss?
 :::
@@ -154,7 +154,7 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Annahmen kippen schnell (Kap. 2.1), ESG und LCC gehören früh ins Zielsystem (Kap. 2.2), und Wissen in einem Kopf macht verletzlich (Kap. 2.3).
+Annahmen kippen in der Vergabephase schnell (Kap. 2.1), ESG und LCC gehören früh ins Zielsystem (Kap. 2.2), und Wissen in einem Kopf macht verletzlich (Kap. 2.3).
 :::
 
 ::: ebene 2

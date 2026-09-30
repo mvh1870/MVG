@@ -3,7 +3,7 @@ id: epilog
 art: epilog
 titel: Ihr Projekt
 kurztitel: Epilog
-whitepaper-bezug: [k2.5-t1, k2.5-p1, k7.1-p1, k7.1-p2, k10.1-p1, k10.2-p1, k10.3-p1, k10.4-p1, k10.5-t1, k1-p1, k1.1-p1, k2.4-p2, k4.6-p1, k8.4-t1, k12-p2, k13-t1]
+whitepaper-bezug: [k2.5-t1, k2.5-p1, k7.1-p1, k10.1-p1, k10.2-p1, k10.3-p1, k10.4-p1, k1-p1, k1.1-p1, k2.4-p2, k4.6-p1, k5-l1, k12-p2, k13-t1]
 ende: ja
 ---
 
@@ -31,10 +31,6 @@ form: diagnose
 
 ::: hinweis
 **Das ist keine MVG-Reifegradanalyse** – diese ist eine Methode von Bauherr Mentoren (Kap. 7.1).
-:::
-
-::: zitat k7.1-p2
-Die Reifegradbewertung der MVG-Reifegradanalyse bewertet die 10 MVG-Domänen mit 49 Fragen […]. Die zehn Domänen sind mitsamt ihren Prüffragen im Erhebungsinstrument der MVG-Reifegradanalyse dokumentiert.
 :::
 :::
 
@@ -90,13 +86,11 @@ Datenstand und Nachweis sind kein administratives Nebenprodukt. Sie sind ein eig
 :::
 
 ::: hinweis
-**Checkliste:** die Abnahmekriterien aus Kap. 8.4, gelesen mit Ihrem Projekt im Kopf.
+**Sechs Kernfragen** aus Kap. 5, gelesen mit Ihrem Projekt im Kopf.
 :::
 
-::: tafel k8.4-t1
----
-form: karten
----
+::: zitat k5-l1
+Welche Ziele gelten? Wer darf was vorbereiten, entscheiden, freigeben oder eskalieren? Welche Entscheidungen sind wesentlich? Welche Risiken und Änderungen brauchen bauherrenseitige Annahme oder Freigabe? Welcher Datenstand gilt? Wie wird die Entscheidung später nachvollzogen?
 :::
 :::
 :::
@@ -131,7 +125,7 @@ Lindenhall folgt einem Muster aus Kap. 2.5 und Kap. 10. Leitthese: Arbeit kann d
 ---
 titel: Warum relevant
 ---
-Die Selbstdiagnose gibt Ihnen ein Profil in Worten, kein Urteil; sie zählt nichts und bewertet nichts. Die Symptome sind [[zitat:k2.5-p1|zugleich der Prüfgegenstand der MVG-Reifegradanalyse]]; dort werden sie [[zitat:k2.5-p1|systematisch erhoben, bewertet und priorisiert]]. Das Profil hilft, die eigene Situation zu benennen: welche Symptome sich zeigen und welche Reaktion MVG jeweils vorsieht.
+Die Selbstdiagnose gibt Ihnen ein Profil in Worten, kein Urteil; sie zählt nichts und bewertet nichts. Das Profil hilft, die eigene Situation zu benennen: welche Symptome sich zeigen und welche Reaktion MVG jeweils vorsieht.
 :::
 
 ::: ebene 3
@@ -150,12 +144,6 @@ Kap. 10 legt je nach Situation einen anderen Schwerpunkt:
 Typisch für schleichenden Steuerungsverlust sind nach Kap. 10.4 [[zitat:k10.4-p1|unterschiedliche Lagebilder, schleichende Prognoseabweichungen, informelle Eskalationen, ungeordnete Änderungen, unklare Entscheidungsmandate und eine fehlende Wirksamkeit von Maßnahmen.]]
 
 Kap. 10.5 nennt fünf typische Entscheidungsprobleme. Welches liegt bei Ihnen gerade auf dem Tisch?
-
-::: tafel k10.5-t1
----
-form: register
----
-:::
 
 Das Schlussbild in Kap. 12 kehrt an den Anfang zurück: [[zitat:k12-p2|Damit schließt sich der Bogen zur Leitthese von MVG: Arbeit kann delegiert werden – bauherrenseitige Legitimation nicht.]]
 :::
@@ -180,7 +168,7 @@ Diese Symptome sind zugleich der Prüfgegenstand der MVG-Reifegradanalyse (Absch
 
 ::: regie
 ### Notiz
-Der Epilog verlässt den fiktiven Fall und wendet sich an das eigene Projekt des Lesers. Die Selbstdiagnose (Kap. 2.5) ist qualitativ: keine Punkte, keine Summe, keine Einstufung (O-8). Die MVG-Reifegradanalyse (Kap. 7.1) wird nur als Methode von Bauherr Mentoren genannt – kein Angebot, keine Aufforderung (O-1); ihre Bewertungsskala bleibt bewusst außen vor, damit niemand die Selbstdiagnose als Punktwert liest. Die Anwendungssituationen (Kap. 10) sind Fragen an den Leser, keine Zuordnung. Der Spurvergleich zeigt die eigenen Entscheidungen beider Welten nebeneinander, ohne Wertung (O-7). Das Resümee setzt Themen und Vertiefungen aus der Spur zusammen; Prinzipien und Checkliste sind wortgleich. Explore ist seit dem Ende freigeschaltet (L-49).
+Der Epilog verlässt den fiktiven Fall und wendet sich an das eigene Projekt des Lesers. Die Selbstdiagnose (Kap. 2.5) ist qualitativ: keine Punkte, keine Summe, keine Einstufung (O-8). Die MVG-Reifegradanalyse (Kap. 7.1) wird nur als Methode von Bauherr Mentoren genannt – kein Angebot, keine Aufforderung (O-1); ihre Bewertungsskala bleibt bewusst außen vor, damit niemand die Selbstdiagnose als Punktwert liest. Die Anwendungssituationen (Kap. 10) sind Fragen an den Leser, keine Zuordnung. Der Spurvergleich zeigt die eigenen Entscheidungen beider Welten nebeneinander, ohne Wertung (O-7). Das Resümee setzt Themen und Vertiefungen aus der Spur zusammen; Prinzipien und Kernfragen sind wortgleich. Explore ist seit dem Ende freigeschaltet (L-49).
 
 ### Leitfragen
 - Welche der acht Symptome zeigen sich in einem Ihrer Projekte – und wo nur teilweise?

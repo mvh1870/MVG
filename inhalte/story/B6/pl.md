@@ -16,7 +16,7 @@ status:
 Nach der Beratung im Lenkungskreis entscheidet Dr. Olbers selbst auf Ihre Vorlage; das Ergebnis wird dokumentiert.
 
 ### Was fehlt
-Offene Punkte wie `RIS-009` gehen in die nächste Leistungsphase mit.
+Offene Punkte wie die Lieferzeit (`RIS-009`) gehen in die nächste Leistungsphase mit.
 
 ### Neues Risiko
 Restrisiken werden mitgenommen, nicht erledigt.

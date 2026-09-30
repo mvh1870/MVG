@@ -153,6 +153,7 @@ k5-p2:
   theorie: k05
 k5-l1:
   theorie: k05
+  story: epilog
 k5-p3:
   theorie: k05
 # ── 5.1 Zweck von MVG
@@ -270,7 +271,6 @@ k7.1-p1:
   story: epilog
 k7.1-p2:
   theorie: k07
-  story: epilog
 k7.1-t1:
   theorie: k07
 # ── 7.2 MVG-Konzeption
@@ -347,7 +347,6 @@ k8.4-p2:
   theorie: k08
 k8.4-t1:
   theorie: k08
-  story: [wirklichkeit, epilog]
 k8.4-p3:
   theorie: k08
 
@@ -431,7 +430,6 @@ k10.4-p1:
 # ── 10.5 Typische Entscheidungsprobleme
 k10.5-t1:
   theorie: k10
-  story: epilog
 
 # ── 11 MVG-Neuinitialisierung als Vertiefungsformat
 k11-p1:

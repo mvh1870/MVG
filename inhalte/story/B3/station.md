@@ -272,7 +272,7 @@ Das Controlling führt CTC und Prognose (die Zahl der Version 3 rechnet die Proj
 ---
 titel: Ein Risiko mit Entscheidungsbedarf
 ---
-Die Lieferzeit steht seit März als `FRW-002` im Register; `FRW-003` ist ein neues Signal, ausgelöst von der CTC. Die Projektsteuerung hat es bestätigt und bewertet: `RIS-014` „Preissteigerung Holzbauelemente“. In `ENT-017` fehlen zu Option 2 noch Termin und Risiko. Kap. 4.4: [[zitat:k4.4-p2|Ein Risiko wird nicht nur als Eintrag geführt, sondern mit einer verantwortlichen Rolle, Frist, Wirkung, Risikominderung, Restrisiko, Entscheidungsbedarf und Eskalationsschwelle verbunden.]]
+Die Lieferzeit steht seit März im Register – erfasst als `FRW-002`, in der Risikosichtung am 17. März als `RIS-009` bestätigt; `FRW-003` ist ein neues Signal, ausgelöst von der CTC. Die Projektsteuerung hat es bestätigt und bewertet: `RIS-014` „Preissteigerung Holzbauelemente“. In `ENT-017` fehlen zu Option 2 noch Termin und Risiko. Kap. 4.4: [[zitat:k4.4-p2|Ein Risiko wird nicht nur als Eintrag geführt, sondern mit einer verantwortlichen Rolle, Frist, Wirkung, Risikominderung, Restrisiko, Entscheidungsbedarf und Eskalationsschwelle verbunden.]]
 :::
 
 ::: vertiefung freigaben

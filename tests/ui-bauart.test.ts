@@ -1407,6 +1407,24 @@ test('B4 Gremium (P11.5, Fund der Kürzung): die Vorlage AEN-031 steht unter der
   story.entferne();
 });
 
+test('Kurzlage (R49): dieselbe Datei aus Einstieg und Lagebild steht nur einmal als Chip (B4, B5, B6)', () => {
+  for (const id of ['B4', 'B5', 'B6']) {
+    const st = inhalte.stationen[id];
+    assert.ok(st);
+    const idx = st.schritte.findIndex((s) => s.art === 'entscheidung');
+    assert.ok(idx >= 0, `${id}: kein Entscheidungsschritt`);
+    const a = anfangszustand();
+    const z = { ...a, bereich: 'story' as const, station: id, schritt: idx, rolle: 'pl', verlauf: ['prolog', id], freigeschaltet: { ...a.freigeschaltet, weltB: true } };
+    const story = erzeugeStory({ inhalte, tue: null });
+    document.body.replaceChildren(story.element);
+    story.setze(oeffentlich(z), null);
+    const chips = [...story.element.querySelectorAll('.kurzlage .chip')].map((c) => (c.textContent ?? '').replace(/\s+/gu, ' ').trim());
+    assert.ok(chips.length > 0, `${id}: keine Kurzlage`);
+    assert.equal(new Set(chips).size, chips.length, `${id}: doppelte Chips ${JSON.stringify(chips)}`);
+    story.entferne();
+  }
+});
+
 test('B3 Mandat (P11.3): die Rollenfrage am Schritt „mandat“ wird gezeigt und beantwortet', () => {
   const b3 = inhalte.stationen['B3'];
   assert.ok(b3);

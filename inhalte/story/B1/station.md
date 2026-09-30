@@ -46,7 +46,7 @@ Die Kämmerei braucht bis Freitag Mittelabfluss und Gesamtkosten – und fragt, 
 ::: chat
 ---
 von: kaya
-zeit: "09:02"
+zeit: "08:58"
 ---
 Version 1 enthält den Mittelabfluss je Jahr. Baupreissteigerung: nicht eingepreist, als offene Annahme vermerkt.
 :::

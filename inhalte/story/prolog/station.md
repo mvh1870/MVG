@@ -73,3 +73,12 @@ titel: Express – die Kurzfassung in rund 15 Minuten
 Nur die Schlüsselmomente: Kosten +8 %, die Eskalation, der Wendepunkt und dieselben Momente mit MVG.
 :::
 :::
+
+::: regie
+### Notiz
+Der Prolog stellt den fiktiven Fall vor – Stadt, Projekt, Personen und Ereignisse sind erfunden – und lässt eine Rolle wählen. Die Rolle bestimmt die Sicht auf die Entscheidungen; entscheiden muss in jeder Rolle der Bauherr. Interessen öffnen Vertiefungen, „Express“ kürzt auf die Kernstationen.
+
+### Leitfragen
+- Aus welcher Rolle wollen Sie das Projekt erleben?
+- Welche Frage bringen Sie aus Ihrem eigenen Projekt mit?
+:::

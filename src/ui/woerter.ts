@@ -61,7 +61,8 @@ export const W = {
   lphBand: 'Leistungsphasen LPH 0–9',
   lphJetzt: 'aktuell',
   lphAbgeschlossen: 'zurückliegend',
-  einwandStory: 'Typische Einwände – und was MVG dazu sagt',
+  // R49 (O-34): sachlich statt Einwandbehandlung
+  einwandStory: 'Oft gehört – was MVG dazu sagt',
   // Druck (P10.2, E11)
   druck: {
     stand: (datum: string) => `Druck vom ${datum}`,

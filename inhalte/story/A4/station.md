@@ -44,7 +44,7 @@ datum: Do, 16.07.2026
 ::: chat
 ---
 von: petersen
-zeit: "17:52"
+zeit: "17:41"
 ---
 Tischvorlage Brandschutz ablegen? Im Juni-Bericht fehlt sie.
 :::

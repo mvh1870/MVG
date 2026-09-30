@@ -32,7 +32,7 @@ Es gibt eine Liste der Beteiligten, aber wer wem was vorlegt und wer was freigib
 Eine RACI-Tabelle hält fest, wer vorbereitet, wer entscheidet, wer konsultiert und wer informiert wird; die Mandatsleiter dazu hat der Bauherr festgelegt. Als Holger Stein im November ausfällt, ist eine Stellvertretung im Team der Projektsteuerung benannt.
 
 ::: zitat k9.2-p1
-RACI übersetzt komplexe Rollenbilder in eine transparente Verantwortungslogik. Im BM-Modell reicht dies jedoch nicht aus. Entscheidend ist die Kopplung an Mandate, Freigabeschwellen, Stellvertretungen und Eskalationspfade. Nur dann wird RACI von einer Kommunikationsmatrix zu einem Führungsinstrument.
+RACI übersetzt komplexe Rollenbilder in eine transparente Verantwortungslogik. […] Entscheidend ist die Kopplung an Mandate, Freigabeschwellen, Stellvertretungen und Eskalationspfade. Nur dann wird RACI von einer Kommunikationsmatrix zu einem Führungsinstrument.
 :::
 :::
 

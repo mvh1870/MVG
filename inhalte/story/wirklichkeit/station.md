@@ -7,7 +7,7 @@ lph: 5
 titel: Zurück in Welt A
 kurztitel: Wirklichkeit
 uhr: Montag, 08:00 Uhr
-whitepaper-bezug: [k11-p1, k11.1-p1, k11.1-l1, k11.2-p1, k11.2-l1, k11.2-p2, k11.3-p1, k11.3-t1, k7-p2, k7.5-p1, k7.5-t1, k8-p1, k8.1-t1, k8.2-p1, k8.2-p2, k8.2-t1, k8.3-p1, k8.3-l1, k8.4-p1, k8.4-t1, k13-t1, k3.2-t1, k10.4-p1]
+whitepaper-bezug: [k11-p1, k11.1-p1, k11.1-l1, k11.2-p1, k11.2-l1, k11.2-p2, k11.3-p1, k11.3-t1, k7-p2, k7.5-p1, k7.5-t1, k8-p1, k8.1-t1, k8.2-p1, k8.2-p2, k8.2-t1, k8.3-p1, k8.3-l1, k8.4-p1, k13-t1, k3.2-t1, k10.4-p1]
 weiter:
   - ziel: ende-steuerbar
     wenn: [wahl wirklichkeit = A, status A entscheidungsfaehigkeit >= 3]
@@ -215,22 +215,15 @@ titel: Vertiefung
 ---
 **Von der Diagnose in den Regelbetrieb.** Kap. 8 beschreibt die Einführung: [[zitat:k8-p1|MVG wird sequenziert eingeführt. Der Ansatz ist bewusst pragmatisch. Er beginnt mit einem Lagebild, übersetzt dieses in ein funktionsfähiges Mindestmodell, testet das Modell an echten Entscheidungen und übergibt es anschließend in den Regelbetrieb.]] Für ein Projekt wie Lindenhall nennt Kap. 7 einen eigenen Einstieg: [[zitat:k7-p2|Für laufende Projekte mit eingeschränkter Steuerbarkeit kommt die MVG-Neuinitialisierung als gezieltes Sonderformat hinzu.]] Die Tafel zeigt die sechs Vorgehensschritte; die Spalten „Mitwirkung“ und „Abnahme“ sagen, was an jedem Schritt beim Bauherrn liegt.
 
-**Woran man merkt, dass es trägt.** [[zitat:k8.4-p1|Abnahme bedeutet nicht, dass alle künftigen Entscheidungen risikofrei sind. Abnahme bedeutet, dass die Organisation weiß, wie wesentliche Entscheidungen vorbereitet, mandatiert, freigegeben, dokumentiert und nachverfolgt werden.]] Die zweite Tafel zeigt die acht Abnahmekriterien mit ihrer Prüffrage. In Welt B standen von Monat 0 an die Mandatsleiter und ein angelegtes Zielsystem (B1), ab Monat 1 ein benannter Datenstand; bis Monat 11 kamen `ENT-017` (B3) und weitere benannte Datenstände (B3, B6) hinzu; das Betriebshandbuch war erst auf dem Weg (B6). In Welt A müsste all das erst entstehen.
+**Woran man merkt, dass es trägt.** [[zitat:k8.4-p1|Abnahme bedeutet nicht, dass alle künftigen Entscheidungen risikofrei sind. Abnahme bedeutet, dass die Organisation weiß, wie wesentliche Entscheidungen vorbereitet, mandatiert, freigegeben, dokumentiert und nachverfolgt werden.]] In Welt B standen von Monat 0 an die Mandatsleiter und ein angelegtes Zielsystem (B1), ab Monat 1 ein benannter Datenstand; bis Monat 11 kamen `ENT-017` (B3) und weitere benannte Datenstände (B3, B6) hinzu; das Betriebshandbuch war erst auf dem Weg (B6). In Welt A müsste all das erst entstehen.
 
 Die MVG-Neuinitialisierung beschreibt Kap. 7.5 als Sonderformat der Leistungsarchitektur. Für den Bauherrn nennt die Tabelle dort: [[zitat:k7.5-t1|Entscheidung über den Auftrag zur MVG-Neuinitialisierung, Prioritäten, Neufestlegung der Projektbasis, Freigaben und eine neue Mandatslogik.]]
 
-**Was am Ende vorliegt.** Die dritte Tafel zeigt, was eine [[MVG-Neuinitialisierung]] nach Kap. 11.3 liefert. [[bedienung:Wählen Sie eine Karte.]]
+**Was am Ende vorliegt.** Die zweite Tafel zeigt, was eine [[MVG-Neuinitialisierung]] nach Kap. 11.3 liefert. [[bedienung:Wählen Sie eine Karte.]]
 
 ::: tafel k8.1-t1
 ---
 form: phasen
-hervor: [1]
----
-:::
-
-::: tafel k8.4-t1
----
-form: karten
 ---
 :::
 

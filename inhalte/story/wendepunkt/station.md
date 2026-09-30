@@ -133,3 +133,13 @@ Für MVG lassen sich sechs Felder unterscheiden.
 :::
 :::
 :::
+
+::: regie
+### Notiz
+Der Wendepunkt ordnet Welt A, bevor Welt B beginnt. Das Radar markiert nur die Symptome der eigenen Spur (Kap. 2.5); die Wirkungsketten zeigen, wohin ein Symptom führt. Im Schritt „Delegierbar oder nicht?“ die Runde selbst zuordnen lassen, bevor die Auflösung kommt (Kap. 3.2). Die Mandatsleiter ist das Muster aus Kap. 4.2, keine Zuordnung für Lindenhall; gearbeitet wird mit ihr erst in Welt B. Nur wiedergeben, was MVG sagt – kein Angebot, keine Aufforderung.
+
+### Leitfragen
+- Welches dieser Symptome kennen Sie aus Ihrem Projekt?
+- Wo endet bei Ihnen die Vorbereitung, und wo beginnt die eigene Entscheidung des Bauherrn?
+- Wer hätte in Welt A über Mensa, Brandschutzauflagen und die Kostenabweichung entscheiden müssen?
+:::

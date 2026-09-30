@@ -16,7 +16,7 @@ titel: Ergebnisbild und Ergebnisse
 kurztitel: Ergebnisbild
 story: [B1, B3, B4, B6, ende-steuerbar, ende-auflagen]
 ---
-Kapitel 9 beschreibt, was am Ende eines Mandats zur Einführung von Minimum Viable Governance (MVG) tatsächlich vorliegt. Es sind fünf Ergebnisobjekte: das Mandats- und Verantwortungsmodell, der RACI-Prozess, das [[Leistungsphasen- und Freigabemodell LPH 0–9]], der Standard für Entscheidungsvorlagen und das Betriebshandbuch. Für den Bauherrn zählt dabei weniger das einzelne Dokument als der Zusammenhang: Die Objekte verweisen aufeinander, sodass sich eine wesentliche Entscheidung auch später noch nachvollziehen lässt.
+Kapitel 9 beschreibt, was am Ende eines Mandats zur Einführung von Minimum Viable Governance (MVG) tatsächlich vorliegt. Das Kapitel stellt die Ergebnisobjekte in fünf Abschnitten vor: das Mandats- und Verantwortungsmodell, den RACI-Prozess, das [[Leistungsphasen- und Freigabemodell LPH 0–9]], den Standard für Entscheidungsvorlagen und das Betriebshandbuch; die eindeutige Entscheidungs-ID ist Teil jeder Entscheidungsvorlage. Für den Bauherrn zählt dabei weniger das einzelne Dokument als der Zusammenhang: Die Objekte verweisen aufeinander, sodass sich eine wesentliche Entscheidung auch später noch nachvollziehen lässt.
 
 ::: kernaussage
 Die Ergebnisse eines MVG-Mandats sind Führungs- und Entscheidungsobjekte, keine Sammlung isolierter Vorlagen. Ihr Wert liegt in der Kette, die sie bilden: vom Mandat über Freigabe, Entscheidungs-ID, Datenstand und Nachweis bis zur Beschlusslage.

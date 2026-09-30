@@ -219,7 +219,7 @@ titel: Vertiefung
 
 Die MVG-Neuinitialisierung beschreibt Kap. 7.5 als Sonderformat der Leistungsarchitektur. Für den Bauherrn nennt die Tabelle dort: [[zitat:k7.5-t1|Entscheidung über den Auftrag zur MVG-Neuinitialisierung, Prioritäten, Neufestlegung der Projektbasis, Freigaben und eine neue Mandatslogik.]]
 
-**Was am Ende vorliegt.** Die dritte Tafel zeigt, was eine [[MVG-Neuinitialisierung]] nach Kap. 11.3 liefert – wählen Sie eine Karte.
+**Was am Ende vorliegt.** Die dritte Tafel zeigt, was eine [[MVG-Neuinitialisierung]] nach Kap. 11.3 liefert.[[bedienung: Wählen Sie eine Karte.]]
 
 ::: tafel k8.1-t1
 ---

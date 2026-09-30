@@ -169,3 +169,6 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 - **Eingearbeitet (L-127):** alle sechs, im PDF gerendert bzw. im Drucklayout nachgemessen; Zählung neu – als Nächstes Runde 45.
 - **CI 204 rot (L-129):** Tafelkarten unter Chrome 153 – Trennstellen in ganzen Tafeln; Zählung bleibt neu – als Nächstes Runde 45.
 
+## Runde 45 (P12.5, zugleich P14.3)
+- **Fachtreue + Begriffe (Agent):** 7 Befunde (3 mittel: B4 `AEN-031` als Entscheidungs-ID-Beleg, Hilfe-Eskalation an den Lenkungskreis, Hilfe-FAQ „ROI“ mit Wirkungszahlen; 4 leicht) – k04–k08, k11, k12, B3–B6, Wirklichkeit, Rückspulen, Epilog, Explore; 197 Zitate (1 gewollt abweichend); eingearbeitet (L-130), Zählung neu.
+

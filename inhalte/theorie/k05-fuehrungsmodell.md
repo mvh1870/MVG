@@ -286,7 +286,7 @@ Zielprioritäten bleiben unklar, Mandate sind nicht definiert, Gremien- und Proj
 ---
 titel: Abgrenzung und rechtlicher Hinweis
 ---
-MVG deckt nicht alle Pflichten ab, die ein Bauherr hat. Es konzentriert sich auf das, was die vorigen Abschnitte beschreiben: dass der Bauherr führen, entscheiden und seine Entscheidungen nachweisen kann. Eine bauordnungsrechtliche Pflichtenmatrix, eine arbeitsschutzrechtliche Vertiefung, eine Vergaberechtsprüfung oder eine technische Betreiberberatung leistet MVG nicht. MVG steckt damit seinen Rahmen selbst ab. Weil es um eine Leistungsgrenze geht, steht der Hinweis hier im Wortlaut. Mit der Übung darunter können Sie prüfen, was in den Rahmen fällt. Wie MVG im Alltag der beteiligten Rollen ankommt, zeigt das folgende Kapitel zum MVG Companion.
+MVG deckt nicht alle Pflichten ab, die ein Bauherr hat. Es konzentriert sich auf das, was die vorigen Abschnitte beschreiben: dass der Bauherr führen, entscheiden und seine Entscheidungen nachweisen kann. Eine bauordnungsrechtliche Pflichtenmatrix, eine arbeitsschutzrechtliche Vertiefung, eine Vergaberechtsprüfung oder eine technische Betreiberberatung leistet MVG nicht. MVG steckt damit seinen Rahmen selbst ab. Weil es um eine Leistungsgrenze geht, steht der Hinweis hier im Wortlaut. [[bedienung:Mit der Übung darunter können Sie prüfen, was in den Rahmen fällt.]] Wie MVG im Alltag der beteiligten Rollen ankommt, zeigt das folgende Kapitel zum MVG Companion.
 
 ::: zitat k5.5-p1
 MVG behandelt nicht alle denkbaren Bauherrenpflichten. Es ist keine bauordnungsrechtliche Pflichtenmatrix, keine arbeitsschutzrechtliche Vertiefung, keine Vergaberechtsprüfung und keine technische Betreiberberatung. Der Fokus liegt auf Führungs-, Entscheidungs- und Nachweisfähigkeit.

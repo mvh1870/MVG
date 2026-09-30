@@ -181,7 +181,9 @@ test('Hilfe (P13, O-31): gleiche Aufteilung wie die Companion-Hilfe, leiser Zuga
   const text = alle.map((e) => e.seite.html).join(' ');
   assert.doesNotMatch(text, /<(?:button|input|select|textarea|script|form)\b|\son[a-z]+=|white\s*paper|Stage-Gate|(?<![-.\w])G[0-9]\b/iu);
   // Prüfagent Begriffe (P13.3): FAQ vollständig, Kennungen wörtlich, keine Bedienreste, Rollenkarten verlinkt
-  assert.match(text, /Was ist der ROI von MVG\?/u);
+  // R45: FAQ „ROI“ (Wirkungszahlen nicht in V1.2) entfernt, Eskalation entlang der Mandatsleiter, kein Feldname in Überschriften
+  assert.doesNotMatch(text, /ROI von MVG|spart 3-6 Monate|an den Lenkungskreis eskaliert|automatisch an den Lenkungskreis|Eskalation an (?:den )?Lenkungskreis|<h\d>[^<]*<code>\(/u);
+  assert.match(text, /Was ist MVG\?|FAQ/u);
   assert.match(text, /GATE-NETZNORD-G2/u);
   assert.doesNotMatch(text, /Ansicht öffnen|Schnell starten|Meine Rolle|LPH (\d)[^<(]{0,40}\(LPH \1\)|englisch: Nachweis|Audit-PaketeAudit-Pakete/u);
   assert.equal(rollen?.html.match(/href="#hilfe\/rollen-anleitungen-/gu)?.length, 13);

@@ -74,7 +74,7 @@ In Welt A haben Sie ‚CTC einarbeiten lassen‘ gewählt. In Welt B gibt es kei
 :::
 
 ::: rueckbezug C
-In Welt A haben Sie ‚Schwellenwert vorschlagen‘ gewählt. In Welt B gehören Schwellenwerte je Kostengruppe zu den Registern des Controllings; wird einer verletzt, entsteht eine neue Frühwarnung.
+In Welt A haben Sie ‚Schwellenwert vorschlagen‘ gewählt. In Welt B gehören Kostengruppen und Schwellenwerte zu den Registern des Controllings; wird ein Schwellenwert verletzt, entsteht eine neue Frühwarnung.
 :::
 
 ::: rueckbezug ohne

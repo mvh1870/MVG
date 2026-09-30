@@ -312,7 +312,7 @@ titel: Kernaussage
 ---
 titel: Warum relevant
 ---
-Im Juni hat das Gremium `ENT-017` entschieden: Die Fassade wird als Änderung `AEN-022` angepasst – auf der ergänzten Vorlage und nachdem der Bauherr die Zielpriorität für diesen Konflikt festgelegt hatte; die Risikoreserve blieb unberührt. Nun die nächste Änderung: Dieselben Auflagen wie in Welt A, derselbe Ausschusstermin – aber bevor der Bauausschuss tagt, liegt die Frage schon bei der Stelle mit dem Mandat. Kap. 4.3 sagt, wozu das dient: [[zitat:k4.3-p2|Das System der Entscheidungs-IDs verhindert, dass kritische Entscheidungen in Protokollen, E-Mails, Fachrunden oder informellen Abstimmungen verschwinden.]] Offen ist auch hier etwas – die Terminwirkung ist grob geschätzt, die Deckung nicht geklärt. Aber beides steht in der Vorlage.
+Im Juni hat das Gremium `ENT-017` entschieden: Die Fassade wird als Änderung `AEN-022` angepasst – auf der ergänzten Vorlage und nachdem der Bauherr die Zielpriorität für diesen Konflikt festgelegt hatte; die Risikoreserve blieb unberührt. Nun die nächste Änderung: Dieselben Auflagen wie in Welt A, derselbe Ausschusstermin – aber bevor der Bauausschuss tagt, liegt die Frage schon bei der Stelle mit dem Mandat. Eine [[Entscheidungs-ID]] ist für diese Änderung noch nicht vergeben – die Checkliste zeigt es. Kap. 4.3 sagt, wozu sie dient: [[zitat:k4.3-p2|Das System der Entscheidungs-IDs verhindert, dass kritische Entscheidungen in Protokollen, E-Mails, Fachrunden oder informellen Abstimmungen verschwinden.]] Offen ist auch hier etwas – die Terminwirkung ist grob geschätzt, die Deckung nicht geklärt. Aber beides steht in der Vorlage.
 :::
 
 ::: ebene 3
@@ -322,7 +322,7 @@ titel: Vertiefung
 | Baustein | Kapitel | In B4 sichtbar |
 |---|---|---|
 | Mandatsleiter | 4.2 | Grob 0,4 Mio. € liegen über 100 TEUR und bis einschließlich 5 Mio. € – Änderungsgremium |
-| Kennung mit Datenstand, Rolle, Frage und Status | 4.3 | `AEN-031` im Änderungsregister, Status „In Prüfung“ |
+| Kennung der Änderung | 6.4.4 | `AEN-031` im Änderungsregister, Status „In Prüfung“; eine Entscheidungs-ID (Kap. 4.3) ist noch nicht vergeben |
 | Managementbericht als Sammelpunkt | 6.4.1 | Bericht an den Bauausschuss mit Beschlusslage und Beschlussvorbereitung |
 | Rhythmus | 6.4.5 | Änderungsgremium monatlich, zzgl. anlassbezogener Sondersitzungen |
 | [[Entscheidungsvorlage]] | 9.4 | Checkliste zu `AEN-031`: was erfüllt ist und was offen |

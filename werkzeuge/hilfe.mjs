@@ -46,6 +46,12 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   // Beschlussfassung durch den Bauherrn im Lenkungskreis, der Lenkungskreis berät (k4.2-p3, k9.3-p3; R33)
   [/formal durch Lenkungskreis verabschiedet/gu, 'durch den Bauherrn im Lenkungskreis beschlossen'],
   [/im Lenkungskreis verabschiedet/gu, 'vom Bauherrn im Lenkungskreis beschlossen'],
+  [/entscheidungsreif gemacht und im Lenkungskreis beschlossen/gu, 'entscheidungsreif gemacht und durch den Bauherrn im Lenkungskreis beschlossen'],
+  [/^Bauherr \/ Lenkungskreis:/gu, 'Bauherr (Lenkungskreis berät):'],
+  // Eskalation entlang der Mandatsleiter, nicht pauschal an den Lenkungskreis (k4.2-p3, k6.4.5-p1; R45, wie L-69 im Handbuch)
+  [/wird sie automatisch markiert und an den Lenkungskreis eskaliert/gu, 'wird sie markiert und entlang der Mandatsleiter eskaliert – an die Bauherren-PL, das Änderungsgremium oder zur Beschlussfassung durch den Bauherrn im Lenkungskreis'],
+  [/eskaliert es automatisch an den Lenkungskreis/gu, 'eskaliert es entlang der Mandatsleiter – an die Bauherren-PL, das Änderungsgremium oder zur Beschlussfassung durch den Bauherrn im Lenkungskreis'],
+  [/Eskalation an (?:den )?Lenkungskreis/gu, 'Eskalation entlang der Mandatsleiter'],
   [/Die MVG-Reife einer Organisation entwickelt sich entlang fünf Stufen/gu, 'Im Modell der Anwendung entwickelt sich die Reife einer Organisation entlang fünf Stufen'],
   [/Eine bewährte Einführungs-Roadmap für neue MVG-Projekte/gu, 'Die Einführungs-Roadmap der Anwendung für neue Projekte'],
   [/Decision Management/gu, 'Entscheidungsmanagement'],
@@ -192,6 +198,8 @@ function bereinige(wurzel, anker, titel = '') {
     }
     h.remove();
   }
+  // O-1/O-17: FAQ „ROI“ mit Wirkungszahlen, die V1.2 nicht nennt (R45; Korrekturliste)
+  for (const d of [...wurzel.querySelectorAll('details')]) if (/ROI von MVG/u.test(d.querySelector(':scope > summary')?.textContent ?? '')) d.remove();
   // Momentaufnahmen des exportierenden Browsers (Speicher-Audit, Sync-Status, localStorage-Belegung, Speicher-Modus)
   wurzel.querySelector('#bm102-sync')?.closest('.grid')?.remove();
   // Suchkarten der Anwendung (die Hilfe-Fläche hat eine eigene Suche) und „+ Tag“-Schalter
@@ -225,6 +233,8 @@ function bereinige(wurzel, anker, titel = '') {
     while (sp.firstChild) c.appendChild(sp.firstChild);
     sp.replaceWith(c);
   }
+  // Feldnamen der Anwendung nicht in Überschriften („Leistungsphase (gates)“, R45)
+  for (const c of [...wurzel.querySelectorAll(':is(h1, h2, h3, h4, h5, h6) code')]) if (/^\(\w+\)$/u.test((c.textContent ?? '').trim())) { const vor = c.previousSibling; c.remove(); if (vor?.nodeType === 3) vor.textContent = (vor.textContent ?? '').trimEnd(); }
   // Knöpfe der Anwendung tragen oft Inhalt (Kennungen, Tags): als Text behalten
   for (const k of [...wurzel.querySelectorAll('button')]) {
     const ersatz = dok.createElement('span');

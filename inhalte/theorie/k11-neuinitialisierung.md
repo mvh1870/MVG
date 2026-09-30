@@ -63,7 +63,7 @@ Fünf davon haben dieselbe Form: **Es passiert etwas, aber das Entscheidende feh
 
 Die übrigen drei Signale betreffen die **Grundlagen**: Kosten, Termine und Projektumfang laufen auseinander; die Beteiligten arbeiten mit unterschiedlichen Lagebildern; Datenstände, Annahmen und Beschlusslagen passen nicht mehr zusammen.
 
-Für den Bauherrn heißt das: Viel Aktivität ist noch kein Zeichen von Führung. Prüfen Sie mit dem Umschalter, was man sieht und was fehlt.
+Für den Bauherrn heißt das: Viel Aktivität ist noch kein Zeichen von Führung. [[bedienung:Prüfen Sie mit dem Umschalter, was man sieht und was fehlt.]]
 
 ::: umschalter
 ---

@@ -26,7 +26,7 @@ Gedankenexperiment: Diesmal steht MVG schon in Monat 0.
 titel: Die acht Bausteine
 kurz: Bausteine
 ---
-Öffnen Sie einen Baustein (Kap. 5.2).
+[[bedienung:Öffnen Sie einen Baustein (Kap. 5.2).]]
 
 ::: tafel k5.2-t1
 ---

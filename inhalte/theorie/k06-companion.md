@@ -280,7 +280,7 @@ Jede Registergruppe hat eine verantwortliche Rolle und einen Turnus.
 - Das **Controlling** verantwortet [[CTC]] und Prognose, die Kostengruppen nach DIN 276 und die Schwellenwerte, monatlich.
 - Nachweise und Verknüpfungen sowie Übergabe und Betriebshandbuch liegen **anlassbezogen beim PMO mit den Fachrollen**.
 
-Prüfen Sie in der Übung, welche Register bei der Bauherren-PL und welche bei der Projektsteuerung liegen; die Karten darunter zeigen alle Registergruppen.
+[[bedienung:Prüfen Sie in der Übung, welche Register bei der Bauherren-PL und welche bei der Projektsteuerung liegen.]] Die Karten darunter zeigen alle Registergruppen.
 
 ::: sortieren
 ---

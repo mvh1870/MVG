@@ -30,7 +30,8 @@ Gefunden bei der Übernahme der Hilfe (P13, O-31, L-69). Die Hilfe in MVG intera
 | IT-/Datenschutz-Dossier, Datenmanagement · Einordnung | „Für Beratungskunden kostenfrei: kein separates Lizenzentgelt, unbegrenzte Nutzungsrechte …“ (in der Hilfe entfernt, O-1) | keine Angebotsaussagen | O-1 |
 | Vorgehensmodell · „MVG-Lifecycle in der Beratungspraxis“, FAQ „Berater abzieht“ | Engagement-Stufen mit Laufzeiten, Berater als Sparringspartner (in der Hilfe entfernt, O-1) | keine Angebots- oder Leistungsaussagen | O-1 |
 | IT-/Datenschutz-Dossier | „Kein Lizenzmodell“ (in der Hilfe entfernt, O-1) | – | O-1 |
-| Vorgehensmodell · Strategische FAQ „ROI“ | „Ein verhindertes ‚Nicht freigeben‘ spart 3–6 Monate Zeit“ | Kennzahl nicht in V1.2 | – |
+| Vorgehensmodell · Strategische FAQ „ROI“ | „Ein verhindertes ‚Nicht freigeben‘ spart 3–6 Monate Zeit“ (in der Hilfe entfernt, R45) | Kennzahl nicht in V1.2 | O-1, O-17 |
+| Kollaboration, Handbuch, Registerdokument-Katalog · Eskalation | „eskaliert automatisch an den Lenkungskreis“, „EAC-Drift > 5 %: Eskalation an Lenkungskreis“, „CTC-Abweichung > 5 % → Eskalation an den Lenkungskreis“ (in der Hilfe angeglichen, R45) | Eskalation entlang der Mandatsleiter an Bauherren-PL, Änderungsgremium oder zur Beschlussfassung durch den Bauherrn im Lenkungskreis; Schwellenwerte der Anwendung sind Beispiele | k4.2-p3, k6.4.5-p1 |
 | Vorgehensmodell · Erfolgs-KPIs | Audit-Coverage, Active Users, Process-/Outcome-/Adoption-KPIs | – (Wortlaut der Anwendung) | docs/BEGRIFFE.md |
 | Handbuch · „Über Bauherr Mentoren“, „Vorgehensmodell · Wann nutzen“ | Selbstdarstellung, Leistungsbild, „Argumentationsgrundlage in Akquise-Gesprächen“ (in der Hilfe entfernt, O-1) | keine Vertriebsinhalte | O-1 |
 | Standards, Kundenanpassung, Datenmanagement | Beratungsmodule (`CONS-<THEMA>`, `consultingModules`), Status „Beratung“ | – (Datenstruktur der Anwendung) | O-1 |

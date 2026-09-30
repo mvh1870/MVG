@@ -9,8 +9,7 @@ rueckbezug-auf: A1
 ---
 titel: Die fehlende Preisfortschreibung als Frühwarnung melden
 kurz: Frühwarnung melden
-status:
-  offene-risiken: +1
+status: keine
 ---
 ### Konsequenz
 Keine Preissteigerung in der Kostenberechnung: Sie melden das als [[Frühwarnung]]. Ob daraus ein Risiko wird, zeigt die Bestätigung.

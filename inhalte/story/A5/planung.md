@@ -33,7 +33,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Die Mehrkosten sind geplant, aber in keiner Zahl. Die Prognose ist zu niedrig, und alle wissen es ungefähr.
+Der Nachtrag steht in keiner Zahl; gegen die Reserve läuft nur die alte Schätzung. Die Prognose ist zu niedrig, und alle wissen es ungefähr.
 
 ### Was fehlt
 Ein vollständiger [[Datenstand]], der auch bekannte, noch nicht gestellte Forderungen enthält.

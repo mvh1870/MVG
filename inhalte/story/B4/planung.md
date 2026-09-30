@@ -7,13 +7,13 @@ rueckbezug-auf: A4
 
 ::: option A
 ---
-titel: Die Auswirkung von AEN-031 auf Kosten, Termin und Qualität vollständig bewerten
-kurz: Auswirkung vollständig bewerten
+titel: Die Auswirkung von AEN-031 auf Kosten, Termin und Qualität bewerten
+kurz: Auswirkung bewerten
 status:
   ungeklaerte-entscheidungen: -1
 ---
 ### Konsequenz
-Die Vorlage hat Frage, Optionen und Auswirkung; das Gremium beschließt. Die Deckung aus der Risikoreserve geht als Frage an den Bauherrn.
+Die Vorlage hat Frage und bewertete Auswirkung; das Gremium beschließt. Die Deckung aus der Risikoreserve geht als Frage an den Bauherrn.
 
 ### Was fehlt
 Die Freigabe des Einsatzes der Risikoreserve – sie liegt nicht beim Gremium.

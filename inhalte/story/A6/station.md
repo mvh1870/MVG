@@ -16,6 +16,10 @@ partner: B6
 weiter: wendepunkt
 ---
 
+::: express
+Im Juni kamen Brandschutzauflagen, im Juli vertagte der Ausschuss. Im September liefen Brandschutz, Mensa und TGA ohne Freigabe gegen die Reserve.
+:::
+
 ::: schritt einstieg
 ---
 titel: Montag, 07:45 Uhr. Monat 11.
@@ -90,7 +94,7 @@ kurz: Lagebild
 knopf: Jetzt entscheiden
 ---
 ::: bekannt
-- „Prognose_Nov_v5“ steht neben der CTC; über Lieferzeit und Förderfrist ist seit März nicht entschieden.
+- „Prognose_Nov_v5“ steht neben der [[CTC]]; über Lieferzeit und Förderfrist ist seit März nicht entschieden.
 :::
 
 ::: unbekannt

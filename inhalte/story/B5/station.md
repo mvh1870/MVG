@@ -313,7 +313,7 @@ Ein eingetretenes Problem führt zu Maßnahme und ggf. Entscheidung. Den Einsatz
 ---
 titel: Warum relevant
 ---
-Derselbe Nachtrag, dieselbe Reserve – nur wird in Welt B nicht gegengerechnet, sondern gefragt. Angekündigt war der Nachtrag seit Mai; jetzt ist er `PRB-004`, mit Maßnahme; die Mensa steht mit ihren Kosten in `AEN-012`; und die Reserve ist kein Topf, gegen den gerechnet wird, sondern eine Frage an den Bauherrn. Kap. 4.5 sagt, was vorher klar sein muss: [[zitat:k4.5-p2|Vor einer Freigabe muss klar sein, welche Entscheidung getroffen wird, welches Mandat gilt, welche Mindestgrundlagen vorliegen, welche Risiken angenommen werden und welcher Datenstand referenziert wird.]] Die Vorlage zeigt, was davon steht und was offen ist.
+Derselbe Nachtrag, dieselbe Reserve – nur wird in Welt B nicht gegengerechnet, sondern gefragt. Jetzt liegt der Nachtrag vor: `PRB-004`, mit Maßnahme; die Mensa steht mit ihren Kosten in `AEN-012`; und die Reserve ist kein Topf, gegen den gerechnet wird, sondern eine Frage an den Bauherrn. Kap. 4.5 sagt, was vorher klar sein muss: [[zitat:k4.5-p2|Vor einer Freigabe muss klar sein, welche Entscheidung getroffen wird, welches Mandat gilt, welche Mindestgrundlagen vorliegen, welche Risiken angenommen werden und welcher Datenstand referenziert wird.]] Die Vorlage zeigt, was davon steht und was offen ist.
 :::
 
 ::: ebene 3
@@ -329,7 +329,7 @@ titel: Vertiefung
 | [[Entscheidungsvorlage]] | 9.4 | Checkliste unter der Kennung `PRB-004`: was erfüllt ist und was offen |
 | Rhythmus | 6.4.5 | Maßnahmen, Probleme und Fristen im Takt von PMO und verantwortlichen Rollen |
 
-Die Mensa steht nicht in dieser Kette: deren Kosten stehen in der Auswirkung von `AEN-012`. Offen ist auch, ob die Deckung von `AEN-031` aus der Reserve kommt; sie gehört in dieselbe Betrachtung des Reservestands wie `PRB-004` – ob in dieselbe Vorlage, ist offen.
+Die Mensa steht nicht in dieser Kette: Kosten und Deckung stehen im Beschluss zu `AEN-012` – ohne Risikoreserve. Offen ist auch, ob die Deckung von `AEN-031` aus der Reserve kommt; sie gehört in dieselbe Betrachtung des Reservestands wie `PRB-004` – ob in dieselbe Vorlage, ist offen.
 :::
 
 ::: ebene 4
@@ -420,7 +420,7 @@ figur: kaya
 ---
 mandat: Bauherr – den Einsatz der Risikoreserve gibt nur er frei, nicht delegierbar.
 freigabe: Freigabe des Einsatzes der Risikoreserve – steht aus; der Bauherr entscheidet auf Vorlage.
-kennung: PRB-004 · Nachtrag der TGA-Fachplanung; eine Entscheidungs-ID ist noch nicht vergeben.
+kennung: Noch keine – Bezug `PRB-004` (Problem).
 datenstand: Kostenprognose 2026-05 · Version 3 (verbindlich); Version 4 ist in Arbeit.
 nachweis: Vorlage zum Einsatz der Risikoreserve in Vorbereitung; Berechtigung und Höhe noch nicht abschließend geprüft.
 beschlusslage: Wird mit der Entscheidung des Bauherrn dokumentiert; der Lenkungskreis berät am 15. September.

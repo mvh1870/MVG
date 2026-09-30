@@ -112,7 +112,7 @@ dauer: Drei Tage später
 status:
   offene-risiken: +1 (Preissteigerung nicht eingepreist)
 loest:
-  preise: nein – alle Zahlen stehen auf dem Stand der Kostenberechnung
+  preise: nein – alle Zahlen rechnen mit den Preisen der Kostenberechnung
 bleibt:
   stadtrat: drei Zahlen, keine belegt
   zielprioritaet: bleibt offen
@@ -263,7 +263,7 @@ figur: kaya
 
 ::: regie
 ### Notiz
-A1 ist absichtlich unauffällig: kein Alarm, nur eine Frist der Kämmerei. Hier liegen die Wurzeln der späteren Stationen – Preisannahmen (A3), fehlende Zielpriorität (A2, A5), Wissen bei Holger Stein (A6). Nicht vorgreifen; die Runde selbst suchen lassen, wer die Frage der Kämmerei beantworten könnte.
+A1 ist absichtlich unauffällig: kein Alarm, nur eine Frist der Kämmerei. Hier liegen die Wurzeln der späteren Stationen – Preisannahmen (A3), fehlende Zielpriorität (A2), Wissen bei Holger Stein (A6). Nicht vorgreifen; die Runde selbst suchen lassen, wer die Frage der Kämmerei beantworten könnte.
 
 ### Leitfragen
 - Was lag bei Ihrer letzten Projektübernahme auf dem Tisch – und was fehlte?

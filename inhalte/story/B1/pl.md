@@ -49,11 +49,10 @@ Ziel: Welche Abwägungsregel gilt, wenn Kosten und Termin gegeneinander stehen?
 ---
 titel: Die offene Preisannahme als Frühwarnung erfassen lassen
 kurz: Frühwarnung erfassen
-status:
-  offene-risiken: +1
+status: keine
 ---
 ### Konsequenz
-Das Signal geht ins Frühwarnungsregister und in die Risikosichtung. Die offenen Punkte steigen – sichtbar.
+Das Signal geht ins Frühwarnungsregister und in die Risikosichtung. Erfasst, noch nicht bewertet – ein Risiko wird es erst mit der Bestätigung.
 
 ### Was fehlt
 Das Detailwissen zur Kostendatei liegt noch vor allem bei Holger Stein.

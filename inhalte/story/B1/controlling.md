@@ -16,7 +16,7 @@ status:
 Die erste CTC hat Version und Datum und geht monatlich in den Managementbericht.
 
 ### Was fehlt
-Schwellenwerte je Kostengruppe – bis sie festgehalten sind, bleibt eine Abweichung eine Zahl ohne Auslöser.
+Schwellenwerte – bis sie festgehalten sind, bleibt eine Abweichung eine Zahl ohne Auslöser.
 
 ### Neues Risiko
 Abweichungen werden gesehen, aber nichts wird ausgelöst.
@@ -27,7 +27,7 @@ Abweichungen werden gesehen, aber nichts wird ausgelöst.
 
 ::: option B
 ---
-titel: Schwellenwerte je Kostengruppe festhalten
+titel: Schwellenwerte festhalten
 kurz: Schwellenwerte festhalten
 status:
   entscheidungsfaehigkeit: +1
@@ -56,7 +56,7 @@ status:
 Die Annahmen stehen im Datenstand, nicht in Steins Zellbezügen. Ihre CTC und seine Prognose beruhen auf derselben Grundlage.
 
 ### Was fehlt
-Schwellenwerte je Kostengruppe – bis sie festgehalten sind, löst eine Abweichung kein Signal aus.
+Schwellenwerte – bis sie festgehalten sind, löst eine Abweichung kein Signal aus.
 
 ### Neues Risiko
 Eine gemeinsame Zahl – aber noch kein Auslöser, wenn sie kippt.

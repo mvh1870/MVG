@@ -753,6 +753,29 @@ test('Ihre Spur (L-41): der Reiter „Spur“ zeichnet neu, wenn sich die Wahl �
   }
 });
 
+test('Rückbezug (R47): im Express übersprungene Bezugsstation heißt „Inzwischen“, nicht „Ohne Wahl in Welt A“', async () => {
+  document.body.replaceChildren();
+  const sitzung = erzeugeSitzung(anfangszustand(), inhalte, { speicher: null });
+  const story = erzeugeStory({ inhalte, tue: (a) => sitzung.tue(a) });
+  sitzung.abonniere((neu, _alt, aktion) => story.setze(oeffentlich(neu), aktion));
+  document.body.append(story.element);
+  const el = story.element;
+  try {
+    for (const a of [{ art: 'starteStory' }, { art: 'weiter' }, { art: 'waehleRolle', rolle: 'gf' }, { art: 'setzeInteressen', interessen: ['express'] as string[] }, { art: 'weiter' }, { art: 'weiter' }, { art: 'weiter' }] as const) sitzung.tue(a);
+    assert.equal(sitzung.zustand().station, 'A3');
+    for (let i = 0; i < 60 && !(sitzung.zustand().station === 'A6' && el.querySelector('[data-pruef="rueckbezug"]')); i++) {
+      if (el.querySelector('[data-pruef="option-A"]') && sitzung.zustand().entscheidungen[inhalte.stationen[sitzung.zustand().station ?? '']?.szenen['gf']?.entscheidung?.id ?? ''] === undefined) sitzung.tue({ art: 'waehle', option: 'A' });
+      sitzung.tue({ art: 'weiter' });
+    }
+    assert.equal(sitzung.zustand().station, 'A6');
+    const etikett = el.querySelector('[data-pruef="rueckbezug"] .erinnerung.ist-ohne .t-label')?.textContent ?? '';
+    assert.equal(etikett, 'Inzwischen', 'A5 wurde im Express übersprungen');
+  } finally {
+    story.entferne?.();
+    document.body.replaceChildren();
+  }
+});
+
 test('Tafeln Welt B (T9): Phasen-Wahl wandert, Screenreader-Hinweis am hervorgehobenen Knopf; Rhythmus, Karten; RACI-Zeilenwahl und eigene Spalte zuerst', async () => {
   const { tafel } = await import('../src/grafik/tafel.ts');
   const { raci } = await import('../src/grafik/raci.ts');

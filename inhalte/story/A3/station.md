@@ -19,6 +19,10 @@ weiter:
   - ziel: A4
 ---
 
+::: express
+Im Januar ging die Projektbasis ohne Zielpriorität an die Kämmerei. Im März sagte die GML eine größere Mensa zu; die Holz-Lieferzeit stieg auf 26 Wochen, bei Förderfrist 2028/29.
+:::
+
 ::: schritt einstieg
 ---
 titel: Montag, 08:30 Uhr. Monat 5.
@@ -169,7 +173,7 @@ Die Fragen der Datenstandslogik (Kap. 4.6) – an diesem Montag:
 
 | Frage | An diesem Montag |
 |---|---|
-| Welche Version gilt? | „v3_final_NEU“ gegen die CTC des Controllings |
+| Welche Version gilt? | „v3_final_NEU“ gegen die [[CTC]] des Controllings |
 | Welche Annahmen sind offen? | Ursache, Terminwirkung, Nachtragsrisiko |
 | Welche Änderungen wurden seit der letzten Freigabe aufgenommen? | Mensa-Zusage – ob sie in einer der beiden Zahlen steckt, ist nirgends festgehalten; die Lieferzeit Holz ist nicht bewertet |
 | Welche Beschlusslage besteht? | keine zur Abweichung |

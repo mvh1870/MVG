@@ -16,7 +16,7 @@ status:
 Die GML antwortet aus dem Statusbericht vom Oktober. Die Zahlen stammen aus Holger Steins Dateien; nachrechnen kann sie niemand.
 
 ### Was fehlt
-Ein benannter [[Datenstand]] und eine Stellvertretung für den Kostenplan.
+Ein benannter [[Datenstand]] und eine Stellvertretung für Holger Stein.
 
 ### Neues Risiko
 Eine Antwort an den Stadtrat auf einer Grundlage, die niemand vertreten kann.

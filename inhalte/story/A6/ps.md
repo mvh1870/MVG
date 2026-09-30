@@ -1,7 +1,7 @@
 ---
 station: A6
 rolle: ps
-frage: Stein fällt aus, Dr. Olbers braucht Antwort. Was tun Sie?
+frage: Holger Stein fällt aus. Was liefern Sie Dr. Olbers?
 rueckbezug-auf: A3
 ---
 

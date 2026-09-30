@@ -116,7 +116,7 @@ bleibt:
 Kostenunsicherheit steigt.
 
 ### Neu bekannt
-Die Auflagen stehen nur in einer der beiden Kostenprognosen – in der der Projektsteuerung; die CTC des Controllings rechnet ohne sie. Abgeglichen hat beides niemand. Wer bis September was vorlegt, steht in der Niederschrift nicht.
+Die Auflagen stehen nur in einer der beiden Kostenprognosen – in der der Projektsteuerung; die [[CTC]] des Controllings rechnet ohne sie. Abgeglichen hat beides niemand. Wer bis September was vorlegt, steht in der Niederschrift nicht.
 :::
 :::
 

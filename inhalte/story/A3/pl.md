@@ -14,7 +14,7 @@ status:
   kostenunsicherheit: sehr hoch
 ---
 ### Konsequenz
-Zwei Wochen später hat die Generalplanung ohne Auftrag eine günstigere Fassade ‚schon mal durchgerechnet‘.
+Zwei Wochen später hat die Generalplanung ohne Auftrag eine günstigere Fassade „schon mal durchgerechnet“.
 
 ### Was fehlt
 Wer entscheidet über Änderungen am Projektumfang – und ab welcher Summe?
@@ -35,7 +35,7 @@ status:
   terminrisiko: hoch
 ---
 ### Konsequenz
-Die Projektsteuerung fragt zurück: ‚Nach welchem Standard – und wer entscheidet dann?‘ Drei Wochen später liegt ein 40-seitiger Statusbericht vor, ohne Entscheidungsfrage.
+Die Projektsteuerung fragt zurück: „Nach welchem Standard – und wer entscheidet dann?“ Drei Wochen später liegt ein 40-seitiger Statusbericht vor, ohne Entscheidungsfrage.
 
 ### Was fehlt
 Ein Standard für Entscheidungsvorlagen: Frage, Optionen, Empfehlung.
@@ -56,7 +56,7 @@ status:
   terminrisiko: hoch
 ---
 ### Konsequenz
-Die Geschäftsführung nimmt das Thema in den Lenkungskreis. Dort heißt es: ‚Bitte erst die Ursachen klären.‘ Das Thema ist oben, aber ohne Optionen und Empfehlung.
+Die Geschäftsführung nimmt das Thema in den Lenkungskreis. Dort heißt es: „Bitte erst die Ursachen klären.“ Das Thema ist oben, aber ohne Optionen und Empfehlung.
 
 ### Was fehlt
 Entscheidungsoptionen, Empfehlung, Konsequenzen.
@@ -95,7 +95,7 @@ Jede Wahl ist nachvollziehbar; es fehlt die Struktur, in der sie wirkt.
 
 ::: regie
 ### Notiz
-Erst die Lage wirken lassen: zwei Zahlen, vier Randnotizen, kein Weg. Die Wahl nicht kommentieren – in Welt A ist jede Option nachvollziehbar. Wer „Weitere Informationen anfordern“ wählt, kauft Klarheit mit Zeit: das Terminrisiko steigt.
+Erst die Lage wirken lassen: zwei Zahlen, drei Randnotizen, kein Weg. Die Wahl nicht kommentieren – in Welt A ist jede Option nachvollziehbar. Wer „Weitere Informationen anfordern“ wählt, kauft Klarheit mit Zeit: das Terminrisiko steigt.
 
 ### Leitfragen
 - Welche Zahl hätte bei Ihnen im Ausschuss gelegen?

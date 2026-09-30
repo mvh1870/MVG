@@ -21,6 +21,13 @@ test('Inhalte: Graph, Form, Zitate, Begriffe und Abdeckung ohne Fehler und ohne 
   assert.deepEqual(erg.warnungen, []);
 });
 
+test('Nachweiskette (R47): unter „Entscheidungs-ID“ steht nur eine Entscheidungs-ID, eine Freigabe oder „Noch keine“', () => {
+  const kennungen = Object.values(erg.inhalte.stationen).flatMap((s: any) => (s.nachweis ? [[s.id, s.nachweis.kennung]] : []));
+  assert.ok(kennungen.length >= 6, 'alle Stationen der Welt B tragen eine Nachweiskette');
+  // AEN- (Änderung), PRB- (Problem), FRW-/RIS- sind Registerkennungen, keine Entscheidungs-IDs (k4.3-p2, k13-t1; L-125, L-130)
+  for (const [id, k] of kennungen) assert.match(String(k), /^(?:ENT-\d|„?Freigabe LPH|Noch keine)/u, `${id}: ${k}`);
+});
+
 test('Entwurfswerkzeug (L-45): ohne Entwürfe keine Anpassung, nichts überlagert, dasselbe Ergebnis wie inhalte/', async () => {
   assert.deepEqual(ANPASSUNGEN, [], 'die Express-Kanten stehen seit P5.10 fest in inhalte/');
   const e = await pruefeEntwurf();

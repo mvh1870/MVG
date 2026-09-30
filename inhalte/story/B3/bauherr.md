@@ -49,7 +49,7 @@ In Welt A lagen zwei Zahlen und ein Ausschuss vor Ihnen. In Welt B hat das Signa
 
 ::: regie
 ### Notiz
-Der Bauherr trifft an B3 keine eigene Entscheidung. Zeigen, wann die Frage bei ihm ankommt: wenn die Risikoreserve eingesetzt werden soll (nicht delegierbar) oder eine Option über 5 Mio. € führt – dann im Lenkungskreis.
+Der Bauherr trifft an B3 keine eigene Entscheidung. Zeigen, wann die Frage bei ihm ankommt: wenn die Risikoreserve eingesetzt werden soll (nicht delegierbar), wenn – bei Option 1 – festzulegen ist, welche Zielpriorität im Konflikt gilt, oder wenn eine Option über 5 Mio. € führt – dann im Lenkungskreis. Über `AEN-022` selbst entscheidet das Änderungsgremium.
 
 ### Leitfragen
 - Ab welcher Summe landet eine Kostenfrage bei Ihnen?

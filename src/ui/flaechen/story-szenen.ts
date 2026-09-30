@@ -751,7 +751,12 @@ function rueckbezugTeil(k: SzenenKontext): Szene {
       h('div', { class: 'erinnerung-pfeil', 'aria-hidden': 'true' }, B.sym('pfeilRechts')),
       h('div', { class: 'erinnerung-b' }, h('span', { class: 't-label' }, inB ? W.weltBErinnert : W.weltAErinnert), h('div', null, inhalt(rb.html))));
   } else {
-    oben = h('div', { class: 'erinnerung ist-ohne' }, h('div', { class: 'erinnerung-b' }, h('span', { class: 't-label' }, W.ohneWahlA), h('div', null, inhalt(rb?.html ?? ''))));
+    // R47: „Ohne Wahl“ nur, wenn die Bezugsstation gespielt wurde; im Express übersprungen heißt es „Inzwischen“
+    const bezug = rb?.entscheidung ?? '';
+    const bezugStation = k.inhalte.stationen[bezug] !== undefined ? bezug
+      : Object.values(k.inhalte.stationen).find((st) => Object.values(st.szenen).some((sz) => sz.entscheidung?.id === bezug))?.id ?? bezug;
+    const etikett = k.z.verlauf.includes(bezugStation) ? W.ohneWahlA : W.inzwischen;
+    oben = h('div', { class: 'erinnerung ist-ohne' }, h('div', { class: 'erinnerung-b' }, h('span', { class: 't-label' }, etikett), h('div', null, inhalt(rb?.html ?? ''))));
   }
   const tabelle = h('div', { class: 'vergleichstabelle anim-einblenden', style: '--verzug:900ms' }, h('table', null,
     // Welt A zeigt den Endstand von Welt A (P11.3: nicht „nach Wahl X“), Welt B den Stand jetzt

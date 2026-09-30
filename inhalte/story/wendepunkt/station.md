@@ -47,7 +47,7 @@ erlebt:
 titel: Was passiert, wenn …?
 kurz: Wirkungsketten
 ---
-Symptome fehlender Ausübungsfähigkeit aus Kap. 2.5 – je Symptom Muster, Konsequenz und MVG-Reaktion. [[bedienung:Wählen Sie einen Auslöser.]]
+Symptome aus Kap. 2.5: Muster, Konsequenz, MVG-Reaktion. [[bedienung:Wählen Sie einen Auslöser.]]
 
 ::: tafel k2.5-t1
 ---

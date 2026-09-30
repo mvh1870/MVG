@@ -29,11 +29,10 @@ Ein Signal außerhalb des Registers bleibt unbewertet.
 ---
 titel: Die offene Preisannahme als Frühwarnung erfassen
 kurz: Frühwarnung erfassen
-status:
-  offene-risiken: +1
+status: keine
 ---
 ### Konsequenz
-Das Signal geht ins Frühwarnungsregister und in die wöchentliche Risikosichtung. Die Zahl der offenen Punkte steigt – sichtbar.
+Das Signal geht ins Frühwarnungsregister und in die wöchentliche Risikosichtung. Erfasst, noch nicht bewertet – ein Risiko wird es erst mit der Bestätigung.
 
 ### Was fehlt
 Das Detailwissen zur Kostendatei liegt noch vor allem bei Holger Stein.

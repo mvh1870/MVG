@@ -4,7 +4,7 @@
 // Vertiefung je Interesse (P3.9): die PL wählt „Kosten“ und „Risiko“ und sieht an jedem Ebenen-Schritt
 // genau diese beiden Karten; die anderen Rollen wählen nichts und sehen keine.
 
-import { mittelbreit, pruefeLayout, pruefer, schmal } from './hilfen.mjs';
+import { mittelbreit, pruefeLayout, pruefer, rueckfallTabellenstand, schmal } from './hilfen.mjs';
 
 export const name = 'welt-a';
 export const hash = '#story';
@@ -65,6 +65,11 @@ export async function lauf(seite, h) {
           await h.axe(`${rolle}/${st}/vertiefung`);
           await h.bild(`${st}-vertiefung`);
         }
+      }
+      // R49 (Architektur): Excel-Stand im Lagebild von Welt A (A1) auch ohne Container-Einheiten
+      if (rolle === 'pl' && !gesehen.has(`${st}-tabellenstand`) && await seite.locator('.tabellenstand').filter({ visible: true }).count() > 0) {
+        gesehen.add(`${st}-tabellenstand`);
+        await rueckfallTabellenstand(seite, h, `${st}-tabellenstand`);
       }
       const optionA = seite.locator('[data-pruef="option-A"]').filter({ visible: true });
       if (await optionA.count() > 0 && (await optionA.first().getAttribute('aria-pressed')) !== 'true') {

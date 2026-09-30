@@ -108,6 +108,19 @@ export async function lauf(_seite, h) {
     if (bruchB.length > 0) h.befund(`Beamer bei ${breite}×${hoehe}: ${bruchB.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(bruchB.slice(0, 6))}`);
   }
   if (await leinwand.locator('.instrument-label').count() === 0) h.befund('Beamer: keine Instrumente auf der Leinwand gemessen');
+  // R49 (Architektur, L-149): die Vorschau zeigt den Umbruch der Leinwand ab 1280 px – ihr Zoom hängt nicht an der Breite
+  // des Regie-Fensters (Regie auf dem Notebook mit 1024 px, Beamer an)
+  await leinwand.setViewportSize({ width: 1280, height: 720 });
+  await h.warte(200);
+  const zoomLeinwand = await leinwand.evaluate(() => getComputedStyle(document.querySelector('.leinwand.ist-beamer .anzeige') ?? document.body).zoom);
+  const regieFenster = regie.viewportSize();
+  for (const breite of [1024, 1280]) {
+    await regie.setViewportSize({ width: breite, height: 768 });
+    await h.warte(200);
+    const zoomVorschau = await regie.evaluate(() => getComputedStyle(document.querySelector('.vorschau-buehne.ist-beamer .anzeige') ?? document.body).zoom);
+    if (zoomVorschau !== zoomLeinwand || zoomLeinwand === '1') h.befund(`Beamer: Vorschau-Zoom ${zoomVorschau} bei Regie ${breite} px, Leinwand ${zoomLeinwand}`);
+  }
+  if (regieFenster !== null) await regie.setViewportSize(regieFenster);
   await h.klick('[data-pruef="regie-beamer"]', regie);
   await h.warte(300);
   if (await leinwand.locator('.leinwand.ist-beamer').count() !== 0) h.befund('Beamer-Schalter lässt sich nicht ausschalten');

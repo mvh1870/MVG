@@ -168,6 +168,12 @@ describe('bau: Einzeldatei aus der Fixtur', () => {
     );
   });
 
+  test('der alte Name „MVG interaktiv“ im Text ist ein Fehler (O-33, R49)', async () => {
+    const alt = path.join(ablage, 'huelle-alter-name.html');
+    await writeFile(alt, (await readFile(HUELLE, 'utf8')).replace('<title>Governance Kompass', '<title>MVG interaktiv'));
+    await assert.rejects(baue(optionen(path.join(ablage, 'alter-name.html'), { huelle: alt })), /alter Name „MVG interaktiv“/);
+  });
+
   test('fehlender Anker in der Hülle ist ein Fehler', async () => {
     await assert.rejects(
       baue(optionen(path.join(ablage, 'ohne.html'), { huelle: 'huelle-ohne-skript.html' })),
@@ -258,6 +264,10 @@ describe('bau: Bausteine', () => {
     assert.ok(huelle.includes('<title>Governance Kompass – Minimum Viable Governance</title>'));
     assert.ok(/<meta name="description" content="[^"]+">/.test(huelle));
     assert.ok(/<noscript>[\s\S]+<\/noscript>/.test(huelle));
+    // R49 (Architektur): Beschreibung und noscript tragen den Namen (O-33), nicht den Absender (O-34)
+    assert.match(/<meta name="description" content="([^"]+)">/.exec(huelle)?.[1] ?? '', /^Governance Kompass/u);
+    assert.match(/<noscript>([\s\S]+)<\/noscript>/.exec(huelle)?.[1] ?? '', /Governance Kompass/u);
+    assert.doesNotMatch(huelle, /Bauherr Mentoren|MVG interaktiv/u);
     // Die CSP steht direkt hinter charset, damit sie vor allem anderen gilt.
     assert.ok(huelle.indexOf(ANKER.csp) < huelle.indexOf('<title>'));
   });

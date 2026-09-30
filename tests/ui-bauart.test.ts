@@ -185,6 +185,28 @@ test('Name (O-33, O-34): „Governance Kompass“ mit Bildmarke auf jeder Fläch
     assert.match(el.querySelector('.lern-fuss')?.textContent ?? '', /Governance Kompass · www\.GovernanceKompass\.de · Herausgeber: Bauherr Mentoren/u, `${name}: Fuß`);
     assert.doesNotMatch(el.querySelector('.lern-kopf')?.textContent ?? '', /Bauherr Mentoren/u, `${name}: Kopf ohne Absender (O-34)`);
   }
+  // R49 (Architektur): auch Story-Kopf, Regie und Leinwand – Name ja, Bauherr Mentoren nein (O-34)
+  const sitzungN = erzeugeSitzung(anfangszustand(), inhalte, { speicher: null });
+  const storyN = erzeugeStory({ inhalte, tue: (a) => sitzungN.tue(a) });
+  const kanalN = { senden: () => undefined, abonnieren: () => () => undefined, schliessen: () => undefined };
+  const regieN = erzeugeRegie({ inhalte, sitzung: sitzungN, kanal: kanalN, version: VERSION, regieFuer, oeffneLeinwand: () => undefined, takt: 60_000 });
+  const { starteLeinwand } = await import('../src/regie/leinwand.ts');
+  const lwWurzel = document.createElement('div');
+  const lwEnde = starteLeinwand(lwWurzel, { inhalte, kanal: kanalN, version: VERSION, takt: 60_000 });
+  try {
+    const weitere: [string, string][] = [
+      ['Story-Kopf', storyN.element.querySelector('.kopf-unter')?.textContent ?? ''],
+      ['Regie', regieN.element.querySelector('.regie-unterzeile')?.textContent ?? ''],
+      ['Leinwand', lwWurzel.querySelector('.leinwand-warten-name')?.textContent ?? ''],
+    ];
+    for (const [name, text] of weitere) {
+      assert.match(text, /^Governance Kompass/u, `${name}: Name`);
+      assert.doesNotMatch(text, /Bauherr Mentoren|MVG interaktiv/u, `${name}: ohne Absender (O-34)`);
+    }
+  } finally {
+    lwEnde();
+    regieN.entferne();
+  }
   const impressum = flaechen[1]?.[1].querySelector('[data-pruef="impressum"]')?.textContent ?? '';
   assert.match(impressum, /Governance Kompass · www\.GovernanceKompass\.de/u);
   assert.match(impressum, /Bauherr Mentoren/u);

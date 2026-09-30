@@ -208,12 +208,13 @@ export async function schmal(seite, h, name) {
 
 /**
  * R48 (Architektur): Excel-Stand ohne Container-Einheiten (Safari 15.4–15.x) – die @supports-Regel mit cqi wird aus dem
- * Stilblatt genommen; bei 981 px (schmalster Kasten), 1000 und 1024 px bricht keine Zahl mitten im Wort. Danach zurück.
+ * Stilblatt genommen; bei 981 px, 1000 und 1024 px bricht keine Zahl mitten im Wort. Danach zurück.
+ * R49: dazu 720, 744 (iPad mini hochkant, iPadOS 15) und 768 px – dort ist der Kasten am schmalsten (144 px Innenbreite).
  * @param {import('playwright').Page} seite
  * @param {import('../../werkzeuge/oberflaeche.mjs').Helfer} h
  * @param {string} name
  */
-async function rueckfallTabellenstand(seite, h, name) {
+export async function rueckfallTabellenstand(seite, h, name) {
   const vp = seite.viewportSize();
   if (vp === null || vp.width < 1024) return;
   const entfernt = await seite.evaluate(() => {
@@ -230,7 +231,7 @@ async function rueckfallTabellenstand(seite, h, name) {
     return weg;
   });
   if (entfernt.length === 0) { h.befund(`${name}: Rückfall des Excel-Stands nicht prüfbar (keine @supports-Regel mit cqi)`); return; }
-  for (const breite of [981, 1000, 1024]) {
+  for (const breite of [720, 744, 768, 981, 1000, 1024]) {
     await seite.setViewportSize({ width: breite, height: vp.height }); await h.warte(150);
     const bruch = await wortbrueche(seite, '.tabellenstand-zahl', { bildschirm: true });
     if (bruch.length > 0) h.befund(`${name} @${breite} ohne cqi: ${bruch.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(bruch.slice(0, 4))}`);

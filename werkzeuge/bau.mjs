@@ -366,6 +366,9 @@ export async function baueText(optionen = {}) {
   // O-29: kein „Whitepaper“ im Text der Datei (Eigenschaftsnamen im Code sind klein geschrieben und unsichtbar)
   const wort = html.match(/.{0,40}(?:Whitepaper|WHITEPAPER|White[ -]Paper).{0,40}/u);
   if (wort !== null) throw new BauFehler(`„Whitepaper“ im Text der Datei (O-29): „${wort[0]}“`);
+  // O-33 (R49): der alte Arbeitstitel kommt nicht zurück
+  const alt = html.match(/.{0,40}MVG interaktiv.{0,40}/u);
+  if (alt !== null) throw new BauFehler(`alter Name „MVG interaktiv“ im Text der Datei (O-33): „${alt[0]}“`);
   if (bytes > o.budget) {
     throw new BauFehler(`Größenbudget überschritten: ${formatiereGroesse(bytes)} (${bytes} Bytes) > ${formatiereGroesse(o.budget)} (${o.budget} Bytes)`);
   }

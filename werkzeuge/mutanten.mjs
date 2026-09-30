@@ -25,6 +25,7 @@ export const MUTANTEN = [
   ['src/engine/status.ts', '  let s = vorher;\n  let basis', '  let s: Status | null = null;\n  let basis', 'Station ohne Startstand übernimmt den Stand (L-19)'],
   ['src/engine/bedingungen.ts', 'case \'interesse\': return z.interessen.includes(b.interesse);', 'case \'interesse\': return !z.interessen.includes(b.interesse);', 'Bedingung „interesse“'],
   ['src/engine/bedingungen.ts', 'return wahl !== undefined && b.optionen.includes(wahl);', 'return wahl !== undefined;', 'Bedingung „wahl“'],
+  ['src/engine/bedingungen.ts', "case 'info': return z.info.includes(b.info);", "case 'info': return true;", 'Bedingung „info“ (R49)'],
   ['src/engine/graph.ts', '  if (st.ende) return null;\n', '', 'Ende hält die Geschichte an'],
   ['src/engine/aktionen.ts', "return z.freigeschaltet.weltB || st.schaltetFrei.includes('weltB');", 'return true;', 'Sperre für Welt B'],
   ['src/engine/speicher.ts', '(roh as { version?: unknown }).version !== ZUSTAND_VERSION', 'false', 'Versionsprüfung beim Weiterlesen'],

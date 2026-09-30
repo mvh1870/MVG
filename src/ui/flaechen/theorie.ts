@@ -20,7 +20,7 @@ import { kopfText, stationsName } from '../anzeige.ts';
 import { W } from '../woerter.ts';
 import { AENDERUNGEN } from '../impressum.ts';
 import { governanceFluss, FLUSS_BESCHRIFTUNG, FLUSS_POSITIONEN } from '../../grafik/governance-fluss.ts';
-import { bogenKopf, druckeBogen } from '../druck.ts';
+import { bogenFuerStrgP, bogenKopf, druckeBogen } from '../druck.ts';
 import { IMPRESSUM } from '../route.ts';
 
 export interface TheorieOptionen {
@@ -510,6 +510,8 @@ function lernseite(o: TheorieOptionen, nr: number): HTMLElement {
       druckeBogen(W.druck.kapitelTitel(nr, titel), [bogenKopf(W.druck.kapitelTitel(nr, titel), o.version, false), kapitelFuerDruck(o.inhalte, nr, o.version)]);
     } }, sym('dokument'), W.druck.kapitelDrucken)
     : null;
+  // R38: Strg+P druckt denselben Bogen wie der Knopf
+  if (drucken !== null) bogenFuerStrgP(drucken, () => ({ titel: W.druck.kapitelTitel(nr, titel), teile: [bogenKopf(W.druck.kapitelTitel(nr, titel), o.version, false), kapitelFuerDruck(o.inhalte, nr, o.version)] }));
   /** Originaltext: ans Seitenende (O-30) */
   const unten: HTMLElement[] = [];
   const teile: Node[] = [kopf, h('p', { class: 'kapitel-vermerk' }, h('span', { class: 'vermerk-hell' }, sym('info'), W.ungeprueft), drucken)];

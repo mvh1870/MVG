@@ -32,6 +32,43 @@ export function druckeBogen(titel: string, teile: Node[]): HTMLElement {
     if (!laufend.gedruckt) return laufend.bogen;
     laufend.ende();
   }
+  const bogen = haengeBogenAn(teile);
+  if (typeof window.print !== 'function') return bogen;
+  druckeAngehaengt(titel, bogen);
+  return bogen;
+}
+
+/**
+ * Strg+P (P12.5 R38): Wer auf einer Seite mit Druckbogen den Druckdialog des Browsers öffnet, bekommt
+ * denselben Bogen wie über den Knopf. `anker` ist der Druckknopf der Seite: nur solange er im Dokument
+ * steht, gilt `bauer`. Der Bogen wird bei `beforeprint` angehängt und bei `afterprint` abgebaut.
+ */
+let strgP: { anker: HTMLElement; bauer: () => { titel: string; teile: Node[] } } | null = null;
+let strgPBereit = false;
+export function bogenFuerStrgP(anker: HTMLElement, bauer: () => { titel: string; teile: Node[] }): void {
+  strgP = { anker, bauer };
+  if (strgPBereit) return;
+  strgPBereit = true;
+  window.addEventListener('beforeprint', () => {
+    // der Knopf druckt schon einen Bogen, oder die Seite hat keinen
+    if (laufend !== null || strgP === null || !strgP.anker.isConnected) return;
+    const { titel, teile } = strgP.bauer();
+    const bogen = haengeBogenAn(teile);
+    const alterTitel = document.title;
+    document.title = titel;
+    document.body.classList.add('druckt-bogen');
+    const ende = (): void => {
+      document.body.classList.remove('druckt-bogen');
+      if (document.title === titel) document.title = alterTitel;
+      bogen.remove();
+      window.removeEventListener('afterprint', ende);
+    };
+    window.addEventListener('afterprint', ende);
+  });
+}
+
+/** Baut den Bogen (Details offen, IDs eindeutig) und hängt ihn unsichtbar an `body`. */
+function haengeBogenAn(teile: Node[]): HTMLElement {
   for (const alt of document.querySelectorAll('.druck-bogen')) alt.remove();
   const bogen = h('div', { class: 'druck-bogen', 'data-pruef': 'druck-bogen' }, teile);
   for (const d of bogen.querySelectorAll('details')) d.setAttribute('open', '');
@@ -50,7 +87,11 @@ export function druckeBogen(titel: string, teile: Node[]): HTMLElement {
     }
   }
   document.body.append(bogen);
-  if (typeof window.print !== 'function') return bogen;
+  return bogen;
+}
+
+/** Titel, Druckklasse, Auftrag und Druckdialog für einen angehängten Bogen. */
+function druckeAngehaengt(titel: string, bogen: HTMLElement): void {
   const alterTitel = document.title;
   document.title = titel;
   document.body.classList.add('druckt-bogen');
@@ -76,5 +117,4 @@ export function druckeBogen(titel: string, teile: Node[]): HTMLElement {
   const bilder = [...bogen.querySelectorAll('img')];
   if (bilder.length === 0) drucke();
   else void Promise.all(bilder.map((b) => (typeof b.decode === 'function' ? b.decode().catch(() => undefined) : undefined))).then(drucke);
-  return bogen;
 }

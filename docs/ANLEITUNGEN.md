@@ -113,6 +113,7 @@ Diesen Schnipsel an die Stelle der eigenen Seite kopieren, an der MVG interaktiv
 </script>
 ```
 
+- Mindestbreite des Rahmens: 320 px (L-115). Auf schmalen Telefonen (unter 360 px) den Rahmen ohne seitlichen Innenabstand der eigenen Seite über die volle Breite setzen; schmaler gebaut rollen einzelne Abbildungen und der Simulator waagerecht.
 - `einbettung-herkunft`: die Adresse der eigenen Website (URL-kodiert). Dann hört und antwortet MVG interaktiv nur dieser Herkunft.
 - `einbettung-hintergrund`: Hintergrundfarbe der eigenen Seite als Hex ohne `#` (z. B. `ffffff`). Nur helle Farben (etwa ab #ececec) werden übernommen, damit die Texte lesbar bleiben; sonst bleibt das eigene Grau.
 - Die Anwendung meldet dem Host `{ mvg: 'einbettung', art: 'bereit', version }`, nach jedem Wechsel `{ …, art: 'ort', hash, flaeche, titel }` und bei jeder Größenänderung `{ …, art: 'hoehe', px }` (`px: null` = feste Höhe, z. B. die Story am großen Bildschirm) sowie bei Sprüngen auf einen Absatz `{ …, art: 'ziel', y }`.

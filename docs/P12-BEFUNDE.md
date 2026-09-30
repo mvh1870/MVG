@@ -136,3 +136,4 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 38 (P12.5, zugleich P14.3)
 - **Fachtreue + Begriffe (Agent):** 4 Befunde (2 mittel: Simulator nennt Betragsstufe Bauherr „keine wesentliche Entscheidung“, B6-Regie-Notiz „entscheidet die Rolle“; 2 leicht: offene Stufe als Mandatsebene, Freigabe nicht unter „Bleibt beim Bauherrn“); 12 288 Simulator-Eingaben, 209 Zitate wortgleich – eingearbeitet (L-114); Zählung neu.
+- **Stil/Architektur (Agent):** 5 Befunde (3 mittel: Hilfe-Grafiken im Druck < 7 pt, Strg+P auf Lernseiten druckt die Bildschirmseite, Zielgröße der Fortschrittsschritte bei 320 px; 2 leicht: Spaltenaufteilung im Hilfe-Druck, Einbettung unter 320 px) – vier eingearbeitet (L-115), Zielgröße verworfen (entschieden in L-108 (6)).

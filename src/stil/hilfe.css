@@ -149,13 +149,18 @@
 .hilfe-inhalt details > :not(summary) { margin-inline: var(--a-4); }
 .hilfe-inhalt details[open] > :last-child { margin-bottom: var(--a-4); }
 
+@page hilfe-quer { size: A4 landscape; margin: 12mm 10mm; }
 @media print {
   .hilfe .kapitel-verzeichnis, .hilfe .hilfe-suche { display: none; }
   .hilfe-inhalt details > :not(summary) { display: block; }
   /* R37: Papier rollt nicht – breite Tabellen und Grafiken passen sich dem Satzspiegel an statt abgeschnitten zu werden */
   .hilfe-inhalt :is(.h-table-wrap, .h-grafik-wrap) { overflow: visible; }
   .hilfe-inhalt .h-grafik-wrap > svg { min-width: 0; width: 100%; }
-  .hilfe-inhalt table { table-layout: auto; font-size: 9pt; }
+  /* R38: breite Grafiken auf eine Querseite – hochkant schrumpften ihre Beschriftungen unter 7 pt */
+  .hilfe-inhalt .h-grafik-wrap { page: hilfe-quer; }
+  .hilfe-inhalt table { font-size: 9pt; }
+  /* Spalten mit nur einer Plakette so schmal wie die Plakette, der Platz geht an den Text */
+  .hilfe-inhalt td:has(> :is(.h-badge, .h-tag, .h-pill, .hilfe-marke):only-child) { width: 1%; }
   .hilfe-inhalt :is(th, td) { padding: 4px 6px; overflow-wrap: anywhere; hyphens: auto; }
   .hilfe-inhalt th { font-size: 7pt; letter-spacing: 0; overflow-wrap: normal; }
   .hilfe-inhalt .h-table-wrap table :is(td, td *) { font-size: 8pt; line-height: 1.35; }

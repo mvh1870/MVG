@@ -355,6 +355,20 @@ export async function lauf(seite, h) {
   await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
   await seite.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
   if (await seite.locator('.druck-bogen').count() !== 0) h.befund('Druckbogen bleibt nach dem Druck stehen');
+  // R38: Strg+P ohne den Knopf – der Browser meldet beforeprint, gedruckt wird derselbe Bogen (Abweichungen offen, keine Knöpfe)
+  await seite.evaluate(() => { window.dispatchEvent(new Event('beforeprint')); });
+  await seite.emulateMedia({ media: 'print', reducedMotion: 'reduce' });
+  const strgP = await seite.evaluate(() => ({
+    klasse: document.body.classList.contains('druckt-bogen'),
+    titel: document.querySelector('.druck-bogen .druck-kopf h1')?.textContent ?? '',
+    seite: getComputedStyle(document.querySelector('body > :not(.druck-bogen)') ?? document.body).display,
+    zu: document.querySelectorAll('.druck-bogen details:not([open])').length,
+    knoepfe: [...document.querySelectorAll('.druck-bogen :is(button:not(.begriff), input, select, textarea, [role="button"])')].filter((x) => getComputedStyle(x).display !== 'none').length,
+  }));
+  if (!strgP.klasse || !/^Kapitel 8 · /u.test(strgP.titel) || strgP.seite !== 'none' || strgP.zu > 0 || strgP.knoepfe > 0) h.befund(`Strg+P: ${JSON.stringify(strgP)}`);
+  await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
+  await seite.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
+  if (await seite.locator('.druck-bogen').count() !== 0 || await seite.evaluate(() => document.body.classList.contains('druckt-bogen'))) h.befund('Strg+P: Bogen bleibt nach dem Druck stehen');
   // R29: Kap. 3 – das Schwellen-Spiel steht im Druck aufgelöst (je Aufgabe die Seite, ohne Hinweis und „Auflösen“)
   await seite.evaluate(() => { location.hash = '#theorie/k3'; });
   await h.erwarte('[data-kapitel="3"] .schwelle-karte');

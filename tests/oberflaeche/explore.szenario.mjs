@@ -36,6 +36,12 @@ export async function lauf(seite, h) {
   await seite.locator('[data-pruef="sim-bauherr"] .sim-quelle summary').first().click();
   if ((await seite.locator('[data-pruef="sim-bauherr"] .sim-zitat').first().innerText()).trim() === '') h.befund('Simulator: Quelle ohne Wortlaut');
   await h.warte(200);
+  // R37 (Zusage L-111 (4)): oberhalb von 400 px rollt die Quelle k3.2-t1 nicht waagerecht
+  const fensterBreite = seite.viewportSize()?.width ?? 1280;
+  if (fensterBreite > 400) {
+    const zitat = await seite.locator('[data-pruef="sim-bauherr"] .sim-zitat').first().evaluate((el) => [el.scrollWidth, el.clientWidth]);
+    if (zitat[0] > zitat[1] + 1) h.befund(`Simulator: Quelle k3.2-t1 rollt bei ${fensterBreite} px (${zitat[0]}/${zitat[1]})`);
+  }
   // R32: die Stufen der Mandatsleiter passen in ihre Pille, auch ohne Trennwörterbuch des Browsers
   const ueberlauf = await seite.evaluate(() => [...document.querySelectorAll('.sim-stufe')].filter((s) => s.scrollWidth > s.clientWidth + 1).map((s) => s.textContent));
   if (ueberlauf.length > 0) h.befund(`Mandatsleiter: Stufe läuft aus ihrer Pille (${ueberlauf.join(', ')})`);

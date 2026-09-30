@@ -67,6 +67,23 @@ export async function lauf(seite, h) {
     if (s.id === 'mvg-vorgehensmodell' || s.id === 'standards') await h.bild(s.id);
   }
 
+  // R37: im Browserdruck (A4, Satzspiegel ≈ 688 px) wird keine breite Tabelle oder Grafik abgeschnitten
+  if (breite >= 1280) {
+    const vorher = seite.viewportSize() ?? { width: 1280, height: 720 };
+    await seite.emulateMedia({ media: 'print', reducedMotion: 'reduce' });
+    await seite.setViewportSize({ width: 688, height: vorher.height });
+    for (const id of ['mvg-vorgehensmodell', 'registerdokument-katalog', 'kollaboration', 'datenmanagement']) {
+      await seite.evaluate((x) => { location.hash = `#hilfe/${x}`; }, id);
+      await h.erwarte(`[data-seite="${id}"] [data-pruef="hilfe-inhalt"]`);
+      await h.warte(150);
+      const gekappt = await seite.evaluate(() => [...document.querySelectorAll('.hilfe-inhalt :is(.h-table-wrap, .h-grafik-wrap)')]
+        .filter((el) => el.scrollWidth > el.clientWidth + 1 || el.getBoundingClientRect().right > (document.querySelector('.hilfe-inhalt')?.getBoundingClientRect().right ?? 0) + 1).length);
+      if (gekappt > 0) h.befund(`Druck ${id}: ${gekappt} Tabellen oder Grafiken abgeschnitten`);
+    }
+    await seite.setViewportSize(vorher);
+    await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
+  }
+
   // Grafik vergrößern (Prüfrunde 3): Dialog öffnet, Beschriftung lesbar, Esc schließt
   await seite.evaluate(() => { location.hash = '#hilfe/mvg-vorgehensmodell'; });
   await h.erwarte('[data-pruef="grafik-gross"]');

@@ -152,6 +152,15 @@
 @media print {
   .hilfe .kapitel-verzeichnis, .hilfe .hilfe-suche { display: none; }
   .hilfe-inhalt details > :not(summary) { display: block; }
+  /* R37: Papier rollt nicht – breite Tabellen und Grafiken passen sich dem Satzspiegel an statt abgeschnitten zu werden */
+  .hilfe-inhalt :is(.h-table-wrap, .h-grafik-wrap) { overflow: visible; }
+  .hilfe-inhalt .h-grafik-wrap > svg { min-width: 0; width: 100%; }
+  .hilfe-inhalt table { table-layout: auto; font-size: 9pt; }
+  .hilfe-inhalt :is(th, td) { padding: 4px 6px; overflow-wrap: anywhere; hyphens: auto; }
+  .hilfe-inhalt th { font-size: 7pt; letter-spacing: 0; overflow-wrap: normal; }
+  .hilfe-inhalt .h-table-wrap table :is(td, td *) { font-size: 8pt; line-height: 1.35; }
+  .hilfe-inhalt .h-table-wrap td :is(.h-tag, .h-badge, .h-pill, .hilfe-marke, code) { padding-inline: 3px; letter-spacing: 0; overflow-wrap: normal; hyphens: auto; }
+  .hilfe-inhalt td code { white-space: normal; }
 }
 
 /* Fließtext bleibt in Lesebreite, auch wenn die Spalte für Tabellen und Grafiken breiter ist */

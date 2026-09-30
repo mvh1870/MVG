@@ -193,9 +193,46 @@ export async function schmal(seite, h, name) {
   // R47: Wortbrüche in den Bauteilen auch bei 320 px; Schrittknöpfe mindestens 24 × 24 px (WCAG 2.5.8, axe läuft hier nicht)
   const bruch = await wortbrueche(seite, BAUTEILE_UNGETEILT, { bildschirm: true });
   if (bruch.length > 0) h.befund(`${name} @320: ${bruch.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(bruch.slice(0, 6))}`);
-  const klein = await seite.evaluate(() => [...document.querySelectorAll('.fortschritt-schritt')].filter((el) => el.getClientRects().length > 0)
-    .map((el) => el.getBoundingClientRect()).filter((r) => r.width < 23.9 || r.height < 23.9).map((r) => `${Math.round(r.width)}×${Math.round(r.height)}`));
-  if (klein.length > 0) h.befund(`${name} @320: ${klein.length} Schrittknöpfe unter 24 px (${klein.slice(0, 3).join(', ')})`);
+  // R48 (Architektur): auch an der Grenze des Rasters (unter 380 px, L-133) – bei 360 und 379 px
+  for (const b of [320, 360, 379]) {
+    if (b !== 320) { await seite.setViewportSize({ width: b, height: vp.height }); await h.warte(100); }
+    const klein = await seite.evaluate(() => [...document.querySelectorAll('.fortschritt-schritt')].filter((el) => el.getClientRects().length > 0)
+      .map((el) => el.getBoundingClientRect()).filter((r) => r.width < 23.9 || r.height < 23.9).map((r) => `${Math.round(r.width)}×${Math.round(r.height)}`));
+    if (klein.length > 0) h.befund(`${name} @${b}: ${klein.length} Schrittknöpfe unter 24 px (${klein.slice(0, 3).join(', ')})`);
+  }
+  await seite.setViewportSize(vp); await h.warte(100);
+}
+
+/**
+ * R48 (Architektur): Excel-Stand ohne Container-Einheiten (Safari 15.4–15.x) – die @supports-Regel mit cqi wird aus dem
+ * Stilblatt genommen; bei 981 px (schmalster Kasten), 1000 und 1024 px bricht keine Zahl mitten im Wort. Danach zurück.
+ * @param {import('playwright').Page} seite
+ * @param {import('../../werkzeuge/oberflaeche.mjs').Helfer} h
+ * @param {string} name
+ */
+async function rueckfallTabellenstand(seite, h, name) {
+  const vp = seite.viewportSize();
+  if (vp === null || vp.width < 1024) return;
+  const entfernt = await seite.evaluate(() => {
+    /** @type {{ blatt: number, i: number, text: string }[]} */
+    const weg = [];
+    [...document.styleSheets].forEach((blatt, b) => {
+      let regeln;
+      try { regeln = blatt.cssRules; } catch { return; }
+      for (let i = regeln.length - 1; i >= 0; i--) {
+        const r = regeln[i];
+        if (r instanceof CSSSupportsRule && /cqi/u.test(r.conditionText) && /tabellenstand/u.test(r.cssText)) { weg.push({ blatt: b, i, text: r.cssText }); blatt.deleteRule(i); }
+      }
+    });
+    return weg;
+  });
+  if (entfernt.length === 0) { h.befund(`${name}: Rückfall des Excel-Stands nicht prüfbar (keine @supports-Regel mit cqi)`); return; }
+  for (const breite of [981, 1000, 1024]) {
+    await seite.setViewportSize({ width: breite, height: vp.height }); await h.warte(150);
+    const bruch = await wortbrueche(seite, '.tabellenstand-zahl', { bildschirm: true });
+    if (bruch.length > 0) h.befund(`${name} @${breite} ohne cqi: ${bruch.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(bruch.slice(0, 4))}`);
+  }
+  await seite.evaluate((weg) => { for (const w of [...weg].sort((a, b) => a.i - b.i)) document.styleSheets[w.blatt]?.insertRule(w.text, w.i); }, entfernt);
   await seite.setViewportSize(vp); await h.warte(100);
 }
 
@@ -251,6 +288,7 @@ export async function weltB(seite, h, station, pruefe, optionen = {}) {
         if (w === 'raci') await seite.locator('[data-pruef^="raci-"]:not([data-pruef="raci-detail"])').nth(1).click();
         await h.warte(1500);
         await pruefe(`${st}-${w}`);
+        if (w === 'tabellenstand') await rueckfallTabellenstand(seite, h, `${st}-${w}`);
       }
       const optionA = seite.locator('[data-pruef="option-A"]').filter({ visible: true });
       if (await optionA.count() > 0 && (await optionA.first().getAttribute('aria-pressed')) !== 'true') {

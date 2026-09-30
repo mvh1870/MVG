@@ -189,3 +189,13 @@ Neun Prüffelder auf 7f1083d, adversariale Gegenprüfung (nach 49 Urteilen angeh
 - **Stil Bildschirm:** 6 mittel, 2 leicht (Wortbrüche bei 320–400 px) – L-138.
 - **Architektur:** 5 mittel, 3 leicht (überlebende Mutanten) – L-139.
 Zählung neu – als Nächstes Runde 48.
+## Runde 48 (P12.5, zugleich P14.3) – Workflow auf 1a8184f
+Neun Prüffelder, leichte Befunde ohne Gegenprüfung; Gegenprüfung nach den Findern angehalten (alle Befunde eingearbeitet, L-139), Lückenkritik entfällt.
+- **Fachtreue Theorie k01–k06 / k07–k13:** 4 mittel (Tafeln mit Auswahl im Druck und auf der Leinwand nur im Anfangszustand u. a.), 16 leicht – L-140.
+- **Story A / B:** 2 mittel (Nachweis-Kennungen mit Backticks, Test zu „Inzwischen“ ohne Gegenfall), 13 leicht – L-141.
+- **Abbildungen:** 4 leicht (Abweichungen abb-4/-12/-13, Überdeckungstext wortgleich im Beleg) – L-142.
+- **Hilfe + Begriffe:** 4 mittel (Test sicherte die R47-Ersetzungen nicht, PMO, Status „Entschieden“, Lenkungskreis), 12 leicht – L-143. Dazu CI 220 rot (Lesezeit ps 35,1 / Controlling Express 15,1) – gekürzt.
+- **Druck:** 5 mittel (Absatz-ID am Seitenende, Auslöser-Wahl, Hilfe-Karten, Hilfe-PDF auf Letter, Strg+P in der Regie), 4 leicht – L-144; CI 223 rot (Kartenmarken unter Chrome 153) – L-145.
+- **Stil Bildschirm:** 5 mittel (Buchstabensäule, Beamer-Zoom, Zeitmaschinen-Tabelle, Lernkarten, Rückbezug/Radar bei mittleren Breiten), 2 leicht – L-145; neue Proben fanden zusätzlich „Rechts|beratu|ng“ in k7.
+- **Architektur:** 9 mittel (fehlende Wächter, Excel-Stand-Rückfall), 3 leicht – L-148.
+Nicht sauber – Zählung neu, als Nächstes Runde 49 (prüft auch P15 „Governance Kompass“, O-33/O-34).

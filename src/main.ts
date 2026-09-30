@@ -231,7 +231,7 @@ function starteApp(wurzel: HTMLElement): void {
         if (flaeche !== '' && flaeche !== 'start') (wurzel.querySelector('.start-titel') as HTMLElement | null)?.focus({ preventScroll: true });
         flaeche = 'start';
         document.body.dataset['flaeche'] = 'start';
-        document.title = `${TITEL} – ${W.absender}`;
+        document.title = `${TITEL} – ${W.langname}`;
       }
     }
   };

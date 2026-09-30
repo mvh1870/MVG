@@ -231,3 +231,27 @@ test('Ihre Spur (E1, P5.8): Partner werden zu einer Zeile zusammengefasst, A lin
   const zeilen = spurZeilen(spur, erg.inhalte);
   assert.deepEqual(zeilen.map((z: any) => [z.station, z.a?.option ?? null, z.b?.option ?? null]), [['A1', 'A', 'B'], ['A3', 'C', null], ['A4', null, 'A']]);
 });
+
+test('Frühwarnung ist kein Risiko (R48, L-136 (2)): keine Option, die eine Frühwarnung erfasst, erhöht die offenen Risiken', () => {
+  let geprueft = 0;
+  for (const s of Object.values(erg.inhalte.stationen) as any[]) {
+    for (const [rolle, sz] of Object.entries(s.szenen ?? {}) as [string, any][]) {
+      for (const o of sz?.entscheidung?.optionen ?? []) {
+        if (!/Frühwarnung/u.test(`${o.titel} ${o.kurz}`) || /Risiko/u.test(`${o.titel} ${o.kurz}`)) continue;
+        geprueft += 1;
+        const risiken = (o.wirkung ?? []).filter((w: any) => w.schluessel === 'offeneRisiken' && Number(w.wert) > 0);
+        assert.deepEqual(risiken, [], `${s.id}/${rolle}/${o.id}: „${o.kurz}“ erhöht die offenen Risiken`);
+      }
+    }
+  }
+  assert.ok(geprueft >= 3, `nur ${geprueft} Optionen „Frühwarnung erfassen“ gefunden`);
+});
+
+test('Express-Karten (R48, L-136 (3)): jede Station, zu der der Express-Pfad springt, sagt, was dazwischen geschah', () => {
+  const ziele = new Set<string>();
+  for (const s of Object.values(erg.inhalte.stationen) as any[]) {
+    for (const w of s.weiter ?? []) if (w?.wenn?.art === 'interesse' && w.wenn.interesse === 'express' && w.wenn.nicht === false) ziele.add(w.ziel);
+  }
+  assert.ok(ziele.has('A3') && ziele.has('A6'), `Sprungziele: ${[...ziele].join(', ')}`);
+  for (const z of ziele) assert.ok(String((erg.inhalte.stationen as any)[z]?.express ?? '').replace(/<[^>]+>/gu, '').trim().length > 20, `${z}: keine Express-Karte`);
+});

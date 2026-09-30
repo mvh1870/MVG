@@ -46,7 +46,14 @@ const FEST = [
   'Orientierungsrahmen nach der Reifegradanalyse und bei MVG-Neuinitialisierung',
   'Auflagen prüfbar und terminiert vorschlagen (die Freigabe erteilt der Bauherr)',
   'die Sichtbarkeit der Ansichten verwaltet der Admin',
+  // R48 (Architektur): Schritte in `angleiche` (DOM) statt ERSETZUNGEN
+  'Verantwortungspyramide (Ansicht der Anwendung)',
+  'Verantwortungspyramide (MVG Kap. 3.3)',
+  'Bauherr (im Lenkungskreis)',
 ];
+
+/** Wortlaut der Quelle, der nach der Angleichung nirgends mehr stehen darf (R47/R48: Zuständigkeit, Register, Status) */
+const WEG = /Bestätigt CTC-Neurechnungen|Beschlüsse mit klaren Bedingungen fassen|Gremium für strategische Change-Beschlüsse|entgegennehmen und Beschlüsse fassen|Trägt KEINE projektbezogenen|Register-Verantwortliche \(Projektsteuerung\)|Top-Entscheidungen treffen|auf Status beschlossen|Lenkungskreis informieren|Freigaben verwaltet der Admin/u;
 
 test('Hilfe (R48): jede Ersetzung mit festem Ersatz steht im Ergebnis – außer den benannten Ausnahmen', () => {
   const { hilfe, fehler } = baueHilfe({ ziel: null });
@@ -68,6 +75,11 @@ test('Hilfe (R48): jede Ersetzung mit festem Ersatz steht im Ergebnis – außer
   // eine gelöschte Regel nimmt ihre Prüfung mit – daher: Mindestzahl und die fachlich tragenden Ergebnisse fest (R48, Architektur)
   assert.ok(ERSETZUNGEN.length >= MINDESTENS, `nur ${ERSETZUNGEN.length} Ersetzungen (vorher ${MINDESTENS}) – eine Regel entfernt?`);
   for (const soll of FEST) assert.ok(text.includes(soll), `fehlt: ${soll}`);
+  assert.doesNotMatch(text, WEG);
+  // R48 (Architektur): die Kopfzeile jeder Tabelle steht im thead (Druck wiederholt sie, sie bleibt nie allein am Seitenende)
+  const roh = teile.join(' ');
+  assert.equal((roh.match(/<tbody><tr><th[ >]/gu) ?? []).length, 0, 'Tabelle beginnt mit einer th-Zeile im tbody');
+  assert.ok((roh.match(/<thead>/gu) ?? []).length >= 30, 'Tabellenköpfe als thead');
   // die Ausnahmen gibt es noch (sonst gehört der Eintrag weg)
   for (const a of AUSNAHMEN) assert.ok((ERSETZUNGEN as [RegExp, string][]).some(([m]) => m.source === a), a);
 });

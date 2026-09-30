@@ -104,8 +104,17 @@ export async function lauf(seite, h) {
       }).length);
       if (ohneKopf > 0) h.befund(`Druck ${id}: ${ohneKopf} Grafik-Überschriften nicht auf der Querseite`);
       // R41: im echten PDF – keine Seite endet mit einer Überschrift, keine leere Seite (Abstand unter der Seite)
-      const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.hilfe-inhalt :is(h1, h2, h3, h4, summary), .hilfe-inhalt .h-help-content-inline > b:first-child, .hilfe-inhalt .h-help-content-inline > b:has(+ :is(ol, ul)), .hilfe-inhalt thead tr')]
+      // R48 (Architektur): auch eine Kopfzeile, die (ohne thead) als erste Zeile im tbody steht
+      const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.hilfe-inhalt :is(h1, h2, h3, h4, summary), .hilfe-inhalt .h-help-content-inline > b:first-child, .hilfe-inhalt .h-help-content-inline > b:has(+ :is(ol, ul)), .hilfe-inhalt thead tr, .hilfe-inhalt tbody > tr:first-child:not(:has(> td))')]
         .map((x) => ({ text: x.textContent ?? '', pt: parseFloat(getComputedStyle(x).fontSize) * 0.75 })));
+      // R48 (Architektur): helle Schrift druckt ihre Fläche mit (Nummernmarken „01“–„05“ weiß auf Navy, L-137) – wie die Theorie
+      const blass = await seite.evaluate(() => {
+        const lum = (/** @type {string} */ c) => { const m = c.match(/[\d.]+/gu)?.map(Number) ?? [0, 0, 0]; const f = (/** @type {number} */ v) => { const x = v / 255; return x <= 0.03928 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; }; return 0.2126 * f(m[0] ?? 0) + 0.7152 * f(m[1] ?? 0) + 0.0722 * f(m[2] ?? 0); };
+        return [...document.querySelectorAll('.hilfe-inhalt *')].filter((el) => [...el.childNodes].some((k) => k.nodeType === 3 && (k.textContent ?? '').trim() !== '') && el.getClientRects().length > 0)
+          .filter((el) => { const cs = getComputedStyle(el); return 1.05 / (lum(cs.color) + 0.05) < 4.5 && cs.printColorAdjust !== 'exact'; })
+          .map((el) => `${el.tagName.toLowerCase()}.${String(el.className).split(' ')[0]}`).slice(0, 5);
+      });
+      if (blass.length > 0) h.befund(`Druck ${id}: helle Schrift ohne gedruckte Fläche ${JSON.stringify(blass)}`);
       // R48: keine Aufklappzeichen („+“/„–“) im Druck
       const zeichen = await seite.evaluate(() => [...document.querySelectorAll('.hilfe-inhalt summary')].filter((x) => !['none', 'normal'].includes(getComputedStyle(x, '::after').content)).length);
       if (zeichen > 0) h.befund(`Druck ${id}: ${zeichen} Aufklappzeichen im Druck`);

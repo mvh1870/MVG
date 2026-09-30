@@ -7,12 +7,14 @@
  */
 
 export const W = {
-  // O-33: Der Name des Programms; Bauherr Mentoren bleibt Absender mit Bildmarke
+  // O-33: Der Name des Programms; Bauherr Mentoren bleibt mit Bildmarke und als Herausgeber genannt –
+  // O-34: zurückhaltend, an der Sache orientiert (im Rahmen nur als Herausgeber, nicht im Produktnamen)
   name: 'Governance Kompass',
   adresse: 'www.GovernanceKompass.de',
   langname: 'Minimum Viable Governance',
-  produkt: 'Governance Kompass – Minimum Viable Governance von Bauherr Mentoren',
+  produkt: 'Governance Kompass – Minimum Viable Governance',
   absender: 'Bauherr Mentoren',
+  herausgeber: 'Herausgeber: Bauherr Mentoren',
   fiktiv: 'Fiktiver Fall',
   ungeprueft: 'fachlich ungeprüft',
   whitepaper: 'MVG',
@@ -39,7 +41,7 @@ export const W = {
     storyWeiter: 'Weiterlesen',
     weltA: 'Welt A · ohne MVG',
     weltB: 'Welt B · mit MVG',
-    fuss: 'Governance Kompass · Bauherr Mentoren · www.GovernanceKompass.de',
+    fuss: 'Governance Kompass · www.GovernanceKompass.de · Herausgeber: Bauherr Mentoren',
     praesentieren: 'Präsentieren',
   },
   // Leitstand

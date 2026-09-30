@@ -158,7 +158,7 @@ test('Startseite: genau zwei Wege, leiser Fuß mit Version und Vermerk, keine In
   assert.equal(anzeige.querySelectorAll('a').length, 0, 'auf der Leinwand keine Verweise');
 });
 
-test('Name (O-33): „Governance Kompass“ mit Bildmarke und Absender „Bauherr Mentoren“ auf jeder Fläche, Adresse in Fuß, Impressum und Druck', async () => {
+test('Name (O-33, O-34): „Governance Kompass“ mit Bildmarke auf jeder Fläche, Bauherr Mentoren zurückhaltend als Herausgeber, Adresse in Fuß, Impressum und Druck', async () => {
   const { baueExplore } = await import('../src/ui/flaechen/explore.ts');
   const { bogenKopf } = await import('../src/ui/druck.ts');
   // die Bildmarke setzt main.ts beim Start aus quellen/marke (wie im Bau)
@@ -169,9 +169,10 @@ test('Name (O-33): „Governance Kompass“ mit Bildmarke und Absender „Bauher
   const start = baueStart({ startseite: inhalte.startseite, kapitelAnzahl: 13, rollenAnzahl: 6, weiterlesen: false, fassung: 'V1.2', version: VERSION, bedienbar: true });
   const kopf = start.querySelector('[data-pruef="start-name"]');
   assert.equal(kopf?.querySelector('b')?.textContent, W.name);
-  assert.match(kopf?.textContent ?? '', /Bauherr Mentoren/u);
   assert.ok(start.querySelector('.start-kopf svg.marke-logo'), 'Bildmarke auf der Startseite');
-  assert.match(start.querySelector('[data-pruef="fuss"]')?.textContent ?? '', /Governance Kompass.*Bauherr Mentoren.*www\.GovernanceKompass\.de/u);
+  assert.match(start.querySelector('[data-pruef="fuss"]')?.textContent ?? '', /www\.GovernanceKompass\.de · Herausgeber: Bauherr Mentoren/u);
+  // O-34: zurückhaltend – im Rahmen der Startseite genau einmal genannt, als Herausgeber im Fuß
+  assert.equal((start.textContent?.match(/Bauherr Mentoren/gu) ?? []).length, 1, 'Startseite nennt Bauherr Mentoren genau einmal');
   const flaechen: [string, HTMLElement][] = [
     ['Theorie', baueTheorie({ inhalte, kapitel: 3, version: VERSION, bedienbar: true })],
     ['Kapitelliste', baueTheorie({ inhalte, kapitel: null, version: VERSION, bedienbar: true })],
@@ -181,14 +182,16 @@ test('Name (O-33): „Governance Kompass“ mit Bildmarke und Absender „Bauher
   for (const [name, el] of flaechen) {
     assert.ok(el.querySelector('.lern-kopf svg.marke-logo'), `${name}: Bildmarke im Kopf`);
     assert.equal(el.querySelector('.lern-kopf [data-pruef="lern-marke"]')?.textContent, W.name, `${name}: Name im Kopf`);
-    assert.match(el.querySelector('.lern-fuss')?.textContent ?? '', /Governance Kompass · Bauherr Mentoren · www\.GovernanceKompass\.de/u, `${name}: Fuß`);
+    assert.match(el.querySelector('.lern-fuss')?.textContent ?? '', /Governance Kompass · www\.GovernanceKompass\.de · Herausgeber: Bauherr Mentoren/u, `${name}: Fuß`);
+    assert.doesNotMatch(el.querySelector('.lern-kopf')?.textContent ?? '', /Bauherr Mentoren/u, `${name}: Kopf ohne Absender (O-34)`);
   }
   const impressum = flaechen[1]?.[1].querySelector('[data-pruef="impressum"]')?.textContent ?? '';
   assert.match(impressum, /Governance Kompass · www\.GovernanceKompass\.de/u);
   assert.match(impressum, /Bauherr Mentoren/u);
   const druck = bogenKopf('Kapitel 3', VERSION, false).textContent ?? '';
-  assert.match(druck, /^Governance Kompass – Minimum Viable Governance von Bauherr Mentoren/u);
-  assert.match(druck, /www\.GovernanceKompass\.de/u);
+  assert.match(druck, /^Governance Kompass – Minimum Viable Governance/u);
+  assert.match(druck, /www\.GovernanceKompass\.de · Herausgeber: Bauherr Mentoren/u);
+  assert.equal((druck.match(/Bauherr Mentoren/gu) ?? []).length, 1, 'Druckkopf nennt Bauherr Mentoren einmal, als Herausgeber');
   assert.doesNotMatch([start, ...flaechen.map((x) => x[1])].map((x) => x.textContent).join(' '), /MVG interaktiv/u);
 });
 
@@ -831,6 +834,12 @@ test('Rückbezug (R47): im Express übersprungene Bezugsstation heißt „Inzwis
     assert.equal(sitzung.zustand().station, 'A6');
     const etikett = el.querySelector('[data-pruef="rueckbezug"] .erinnerung.ist-ohne .t-label')?.textContent ?? '';
     assert.equal(etikett, 'Inzwischen', 'A5 wurde im Express übersprungen');
+    // R48 (Architektur): Gegenfall – A5 gesehen, aber ohne Wahl weiter (Permalink/Regie-Sprung): „Ohne Wahl in Welt A“
+    sitzung.tue({ art: 'geheZu', station: 'A5' });
+    sitzung.tue({ art: 'geheZu', station: 'A6' });
+    for (let i = 0; i < 30 && !el.querySelector('[data-pruef="rueckbezug"]'); i++) sitzung.tue({ art: 'weiter' });
+    assert.ok(sitzung.zustand().verlauf.includes('A5'));
+    assert.equal(el.querySelector('[data-pruef="rueckbezug"] .erinnerung.ist-ohne .t-label')?.textContent, W.ohneWahlA, 'A5 gesehen, ohne Wahl');
   } finally {
     story.entferne?.();
     document.body.replaceChildren();
@@ -1176,7 +1185,7 @@ test('Resümee (P7.7): Ende, Richtung und erste Vertiefung aus der Spur; Zwische
   document.body.replaceChildren();
 });
 
-test('Originaltext und Kapiteltitel (R47): Umbruch nach „/“ ohne Zeichen, Titelgröße nach dem längsten Wort', () => {
+test('Originaltext und Kapiteltitel (R47): Umbruch nach „/“ ohne Zeichen, Titelgröße nach dem längsten Wort', async () => {
   const k7 = baueTheorie({ inhalte, kapitel: 7, version: VERSION, bedienbar: true });
   const absatz = k7.querySelector('.originaltext .absatz[data-absatz="k7.2-p1"] > span:not(.absatz-kopf)');
   assert.ok(absatz, 'Absatz k7.2-p1');
@@ -1184,6 +1193,11 @@ test('Originaltext und Kapiteltitel (R47): Umbruch nach „/“ ohne Zeichen, Ti
   assert.match(absatz.textContent ?? '', /Risiko-\/Änderungs-\/Maßnahmenverknüpfung/u, 'Wortlaut unverändert');
   const k6 = baueTheorie({ inhalte, kapitel: 6, version: VERSION, bedienbar: true });
   assert.equal(k6.querySelector<HTMLElement>('.kapitel-titel')?.style.getPropertyValue('--zeichen'), String('Umsetzungsbeschleuniger'.length));
+  // R48 (Architektur): Einheiten wie der Browser umbricht – nach „-“ mit Strich, nicht an „/“
+  const { laengstesWort } = await import('../src/ui/h.ts');
+  assert.equal(laengstesWort('IT-/Datenschutz-Dossier'), 'IT-/Datenschutz-'.length);
+  assert.equal(laengstesWort('Registerdokument-Katalog'), 'Registerdokument-'.length);
+  assert.equal(laengstesWort('Kosten +8 %'), 'Kosten'.length);
 });
 
 test('Druck und Leinwand (R48): jede Tafel zeigt alle Zellen ihrer Tabelle – auch Formen mit Auswahl (aufgelöst)', () => {

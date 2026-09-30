@@ -95,9 +95,13 @@ export function umbruchNachSchraegstrich(el: Element): void {
   }
 }
 
-/** R47: Zeichenzahl des längsten Worts – für Schriftgrößen, die ein Wort nie mitten im Wort brechen lassen (CSS `--zeichen`). */
+/**
+ * R47: Zeichenzahl des längsten Worts – für Schriftgrößen, die ein Wort nie mitten im Wort brechen lassen (CSS `--zeichen`).
+ * R48: geteilt wird nur, wo der Browser umbricht – an Leerraum und nach einem Bindestrich vor einem Buchstaben (der Strich
+ * zählt mit); „/“ ist in Titeln keine Umbruchstelle („IT-/Datenschutz-“ ist eine Einheit mit 16 Zeichen).
+ */
 export function laengstesWort(text: string): number {
-  return Math.max(1, ...text.split(/[\s/–-]+/u).map((w) => [...w].length));
+  return Math.max(1, ...text.split(/\s+|(?<=-)(?=\p{L})/u).map((w) => [...w].length));
 }
 
 export function ersetze(el: Element, ...kinder: Kind[]): void {

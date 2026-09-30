@@ -48,7 +48,9 @@ test('Bedingungen: Textform wird gelesen und gegen den Zustand ausgewertet', () 
     'status A entscheidungsfaehigkeit <= 2', 'nicht wahl a1 = B', 'nicht freigeschaltet explore', 'nicht besucht b1',
   ];
   for (const t of wahr) assert.equal(pruefeBedingung(lies(t), z, m), true, t);
-  const falsch = ['wahl a1 = B', 'rolle = gf', 'welt = B', 'interesse risiko', 'status A terminrisiko > mittel', 'status B terminrisiko = mittel', 'nicht rolle = pl', 'wahl x9 = A'];
+  // R48 (Architektur): die gegebene Antwort zählt, nicht nur, dass eine gegeben wurde
+  const falsch = ['wahl a1 = B', 'rolle = gf', 'welt = B', 'interesse risiko', 'status A terminrisiko > mittel', 'status B terminrisiko = mittel', 'nicht rolle = pl', 'wahl x9 = A',
+    'antwort b1/reife = ja', 'antwort b1/pl/reife = ja', 'antwort b9/reife = nein'];
   for (const t of falsch) assert.equal(pruefeBedingung(lies(t), z, m), false, t);
   const alle = leseBedingungen(['rolle = pl', 'wahl a1 = A'], 'alle');
   const eine = leseBedingungen(['rolle = gf', 'wahl a1 = A'], 'eine');

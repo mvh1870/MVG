@@ -55,11 +55,11 @@ export function baueStart(o: StartOptionen): HTMLElement {
     h('header', { class: 'start-kopf' },
       bildmarke('marke-logo'),
       // O-33: der Name des Programms, darunter der Absender mit der Fassung
-      h('div', { class: 'start-absender', 'data-pruef': 'start-name' }, h('b', null, W.name), h('span', null, `${W.langname} · ${W.absender} · ${W.whitepaper} ${o.fassung}`))),
+      h('div', { class: 'start-absender', 'data-pruef': 'start-name' }, h('b', null, W.name), h('span', null, `${W.langname} · ${W.whitepaper} ${o.fassung}`))),
     h('main', { class: 'start-haupt' },
       h('div', null,
         o.startseite !== null ? h('p', { class: 'start-kicker' }, o.startseite.kicker) : null,
-        h('h1', { class: 'start-titel', 'data-pruef': 'start-titel', tabindex: -1 }, o.startseite?.titel ?? W.absender),
+        h('h1', { class: 'start-titel', 'data-pruef': 'start-titel', tabindex: -1 }, o.startseite?.titel ?? W.name),
         h('p', { class: 'start-these' }, o.startseite !== null ? inhaltInline(o.startseite.these) : null, o.startseite !== null ? ' ' : null, w.wegWaehlen)),
       h('nav', { class: 'tueren', 'aria-label': w.wege },
         tuer('theorie', [
@@ -75,7 +75,8 @@ export function baueStart(o: StartOptionen): HTMLElement {
           h('span', { class: 'tuer-meta' }, h('span', null, w.storyMeta(o.rollenAnzahl)), h('span', { class: 'tuer-los' }, o.weiterlesen ? w.storyWeiter : w.storyLos, sym('pfeilRechts'))),
         ]))),
     h('footer', { class: 'start-fuss', 'data-pruef': 'fuss' },
-      h('span', null, `${W.start.fuss} · ${W.fiktiv} · `, h('span', { 'data-pruef': 'version' }, o.version), ' ', h('span', { class: 'start-vermerk', 'data-pruef': 'ungeprueft' }, W.ungeprueft)),
+      // der Name steht im Kopf; der Fuß nennt Adresse und Herausgeber (O-34)
+      h('span', null, `${W.adresse} · ${W.herausgeber} · ${W.fiktiv} · `, h('span', { 'data-pruef': 'version' }, o.version), ' ', h('span', { class: 'start-vermerk', 'data-pruef': 'ungeprueft' }, W.ungeprueft)),
       o.bedienbar ? h('span', { class: 'leise-links' }, h('a', { class: 'leise-link', href: '#hilfe', 'data-pruef': 'zur-hilfe' }, W.hilfe.link), h('a', { class: 'leise-link', href: '#regie', 'data-pruef': 'praesentieren' }, w.praesentieren)) : null));
   return seite;
 }

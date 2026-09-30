@@ -2091,10 +2091,15 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
   .ist-beamer .anzeige .startseite { min-height: calc(100vh / 1.15); min-height: calc(100dvh / 1.15); }
 }
 @media (max-height: 800px) { .ist-beamer .anzeige .tuer-bild { display: none; } }
-@media (min-width: 1100px) { .ist-beamer .anzeige .kapitel-verzeichnis { max-height: calc(100vh / 1.15 - 136px); max-height: calc(100dvh / 1.15 - 136px); } }
+@media (min-width: 1280px) { .ist-beamer .anzeige .kapitel-verzeichnis { max-height: calc(100vh / 1.15 - 136px); max-height: calc(100dvh / 1.15 - 136px); } }
+/* R48: die Regie-Vorschau zeigt die Leinwand auf ihrer Bühne von 1280 px – dort gilt der Zoom unabhängig vom Regie-Fenster */
+.vorschau-buehne.ist-beamer .anzeige { zoom: 1.15; }
+/* R48 (CI 225): im Zoom stehen Statuswörter ohne Sperrung – Chrome 153 setzt etwas breiter, „sehr hoch“ lief 3 px über;
+   reicht es trotzdem nicht, bricht das Wort zwischen „sehr“ und „hoch“ */
+.ist-beamer .instrument .wert.wort { letter-spacing: 0; flex-wrap: wrap; row-gap: 2px; white-space: normal; }
 /* zoom vergrößert auch die Fensterhöhe des Leitstands: auf 1/1.15 zurückrechnen, sonst fehlt unten ein Siebtel.
    In der Vorschau gilt height:100 % der Bühne (bereits im Zoom-Maßstab gerechnet). */
-@media (min-width: 981px) { .leinwand.ist-beamer .leitstand { height: calc(100vh / 1.15); height: calc(100dvh / 1.15); min-height: calc(540px / 1.15); } }
+@media (min-width: 1280px) { .leinwand.ist-beamer .leitstand { height: calc(100vh / 1.15); height: calc(100dvh / 1.15); min-height: calc(540px / 1.15); } }
 .ist-beamer { --tinte-2: var(--tinte); --tinte-leise: var(--tinte-instrument); --linie: var(--linie-3); --auf-navy-2: var(--auf-navy); }
 
 /* Regie (P9): Auswahl Springen/Rolle, Ein-Fenster-Modus, Druckfassung des Protokolls */

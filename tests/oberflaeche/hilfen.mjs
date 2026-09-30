@@ -54,9 +54,12 @@ export function pruefeLayout() {
         if (s.writingMode !== 'horizontal-tb' || (m !== null && Math.abs(parseFloat(m[2] ?? '0')) > 0.5)) { gedreht = true; break; }
       }
       const spalte = Math.max(...rects.map((r) => r.width));
-      // nur, wo Wörter selbst brechen: mehr Zeilen als Wörter (eine schmale Notiz, die an Wortgrenzen umbricht, zählt nicht)
+      // nur, wo Wörter selbst brechen: mehr Zeilen als Wörter (eine schmale Notiz, die an Wortgrenzen umbricht, zählt nicht);
+      // bei Silbentrennung (hyphens: auto, Chrome 153 mit Wörterbuch: „Orga-nisa-tion“) erst unter drei Zeichen je Zeile
       const woerter = (n.textContent ?? '').trim().split(/\s+/u).length;
-      if (!gedreht && zeile > 0 && spalte < 2.5 * zeile && rects.length > woerter + 1) {
+      const zeichenJeZeile = (n.textContent ?? '').replace(/\s/gu, '').length / rects.length;
+      const silben = getComputedStyle(el).hyphens === 'auto';
+      if (!gedreht && zeile > 0 && spalte < 2.5 * zeile && (silben ? zeichenJeZeile < 3 : rects.length > woerter + 1)) {
         gemeldet.add(el);
         funde.push(`Buchstabensäule (Spalte ${Math.round(spalte)} px): ${el.tagName.toLowerCase()}.${[...el.classList].slice(0, 2).join('.')} „${(n.textContent ?? '').trim().slice(0, 40)}“`);
       }

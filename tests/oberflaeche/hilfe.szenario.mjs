@@ -5,6 +5,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { pruefeLayout, schmal } from './hilfen.mjs';
+import { pdfSeiten, seitenMitUeberschriftAmEnde } from './pdf.mjs';
 
 export const name = 'hilfe';
 export const hash = '#start';
@@ -90,6 +91,12 @@ export async function lauf(seite, h) {
         return kopf !== null && getComputedStyle(kopf).page !== 'hilfe-quer';
       }).length);
       if (ohneKopf > 0) h.befund(`Druck ${id}: ${ohneKopf} Grafik-Überschriften nicht auf der Querseite`);
+      // R41: im echten PDF – keine Seite endet mit einer Überschrift, keine leere Seite (Abstand unter der Seite)
+      const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.hilfe-inhalt :is(h1, h2, h3, h4, summary), .hilfe-inhalt .h-help-content-inline > b:first-child')].map((x) => x.textContent ?? ''));
+      const pdfText = await pdfSeiten(await seite.pdf({ preferCSSPageSize: true }));
+      const amEnde = seitenMitUeberschriftAmEnde(pdfText, koepfe);
+      if (amEnde.length > 0) h.befund(`Druck ${id}: Überschrift am Seitenende ${JSON.stringify(amEnde)}`);
+      if (pdfText.some((x) => x.zeilen.length === 0)) h.befund(`Druck ${id}: leere Seite`);
     }
     // auf der Querseite erreichen die kleinsten Beschriftungen 7 pt (9,33 px)
     await seite.evaluate(() => { location.hash = '#hilfe/kollaboration'; });

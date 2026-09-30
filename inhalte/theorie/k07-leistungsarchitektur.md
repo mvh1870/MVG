@@ -29,7 +29,7 @@ Der Umsetzungspfad führt von der Diagnose über Konzeption, Pilotierung und Bef
 ---
 titel: Der Umsetzungspfad auf einen Blick
 ---
-Vier Leistungspakete bauen aufeinander auf und münden in den Regelbetrieb. Die MVG-Neuinitialisierung steht als Sonderformat daneben (Abschnitt 7.5). Klicken Sie sich durch die Stationen.
+Vier Leistungspakete bauen aufeinander auf und münden in den Regelbetrieb. Die MVG-Neuinitialisierung steht als Sonderformat daneben (Abschnitt 7.5). [[bedienung:Klicken Sie sich durch die Stationen.]]
 
 ::: etappe 1
 ---

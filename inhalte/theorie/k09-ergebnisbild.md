@@ -85,7 +85,7 @@ Ein Beispiel: Die Projektsteuerung bereitet eine Entscheidung gründlich vor. Wa
 ---
 titel: Acht Fragen, die das Modell beantwortet
 ---
-Die acht Fragen, paarweise geordnet. Klicken Sie sich durch.
+Die acht Fragen, paarweise geordnet. [[bedienung:Klicken Sie sich durch.]]
 
 ::: etappe 1
 ---

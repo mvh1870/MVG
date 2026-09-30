@@ -7,6 +7,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { kontrastQuellen, pruefeLayout, rollbarOhneTastatur } from './hilfen.mjs';
+import { pdfSeiten, seitenMitUeberschriftAmEnde } from './pdf.mjs';
 
 export const name = 'theorie';
 export const hash = '#theorie';
@@ -141,8 +142,8 @@ export async function lauf(seite, h) {
         if (Math.abs(yTasten - yVor) > 1) h.befund(`Abbildungs-Dialog: Rolltasten rollen die Seite dahinter mit (${yVor} → ${yTasten})`);
         // R15: auch ein Dialog, der nichts zu rollen hat, gibt das Mausrad nicht an die Seite weiter
         await seite.evaluate(() => { const b = document.querySelector('dialog.abbildung-dialog[open] img'); if (b) b.setAttribute('style', 'width:120px;min-width:0'); });
-        await h.warte(100);
-        const kurz = await seite.evaluate(() => { const d = document.querySelector('dialog.abbildung-dialog[open]'); return d ? d.scrollHeight <= d.clientHeight && d.scrollWidth <= d.clientWidth : false; });
+        // R41: unter Last (drei Läufe parallel) reichten feste 100 ms nicht – warten, bis die Probe tatsächlich steht (höchstens 3 s)
+        const kurz = await seite.waitForFunction(() => { const d = document.querySelector('dialog.abbildung-dialog[open]'); return d ? d.scrollHeight <= d.clientHeight && d.scrollWidth <= d.clientWidth : false; }, null, { timeout: 3000 }).then(() => true, () => false);
         for (let i = 0; i < 6; i++) { await seite.mouse.wheel(0, 150); await h.warte(60); }
         await h.warte(300);
         const yKurz = await seite.evaluate(() => window.scrollY);
@@ -352,6 +353,13 @@ export async function lauf(seite, h) {
   const pdf = await seite.pdf({ format: 'A4' });
   const seiten = (pdf.toString('latin1').match(/\/Type\s*\/Page[^s]/gu) ?? []).length;
   if (seiten < 2 || seiten > 40) h.befund(`Druck Kapitel 8: ${seiten} Seiten`);
+  // R41: im echten PDF – keine Seite endet mit einer Überschrift, keine leere Seite, kein Bedienhinweis („Ziehen Sie den Regler“)
+  const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen :is(h1, h2, h3, h4, dt, .lw-titel, .original-abschnitt, summary, .lw-etappe-titel), .druck-bogen .lw-aufgeloest-liste > li > b:first-child')].map((x) => x.textContent ?? ''));
+  const pdfText = await pdfSeiten(pdf);
+  const amEnde = seitenMitUeberschriftAmEnde(pdfText, koepfe);
+  if (amEnde.length > 0) h.befund(`Druck Kapitel 8: Überschrift am Seitenende ${JSON.stringify(amEnde)}`);
+  if (pdfText.some((x) => x.zeilen.length === 0)) h.befund('Druck Kapitel 8: leere Seite');
+  if (pdfText.some((x) => x.zeilen.some((z) => /Ziehen Sie|Klicken Sie/u.test(z)))) h.befund('Druck Kapitel 8: Bedienhinweis im Druck');
   await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
   await seite.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
   if (await seite.locator('.druck-bogen').count() !== 0) h.befund('Druckbogen bleibt nach dem Druck stehen');

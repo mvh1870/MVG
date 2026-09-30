@@ -115,7 +115,7 @@ Auf dieser Grundlage priorisiert der Bauherr: Welche MVG-Bausteine sollen sofort
 
 MVG nennt drei Einstiegspunkte. Die **Reifegradanalyse** klärt, welche Entscheidungen, Mandate, Freigaben und Datenstände im 30/60/90-Orientierungsrahmen relevant sind, und liefert ein Lagebild, eine Entscheidungsliste und priorisierte Umsetzungsschritte. Die **Companion-Kalibrierung** klärt, welche Rollen, Entscheidungsroutinen und Teile des Betriebshandbuchs mit Unterstützung des Companion verfügbar sein sollen. Bei der **Entscheidung für die Pilotierung** wird eine echte Entscheidung gesucht, an der sich das MVG-Modell kalibrieren lässt – ein Praxistest mit Freigabefrage, [[Entscheidungs-ID]], Datenstand und Nachweislogik.
 
-Klicken Sie sich durch den Ablauf; die Tafel darunter zeigt die drei Einstiegspunkte mit Kernfrage und Ergebnis.
+[[bedienung:Klicken Sie sich durch den Ablauf.]] Die Tafel darunter zeigt die drei Einstiegspunkte mit Kernfrage und Ergebnis.
 
 ::: etappen
 ---

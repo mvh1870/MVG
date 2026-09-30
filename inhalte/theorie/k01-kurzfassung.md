@@ -172,7 +172,7 @@ Ein wichtiger früher Hebel – entscheidend ist aber die Entscheidungs- und Nac
 ---
 titel: Die Kette der Entscheidungssicherheit
 ---
-Sechs Glieder, die zusammengehören – die Reihenfolge folgt der Aufzählung im Kapitel und ist kein Ablauf. Klicken Sie sich durch.
+Sechs Glieder, die zusammengehören – die Reihenfolge folgt der Aufzählung im Kapitel und ist kein Ablauf. [[bedienung:Klicken Sie sich durch.]]
 
 ::: etappe 1
 ---

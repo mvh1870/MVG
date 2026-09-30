@@ -266,7 +266,7 @@ Woran erkennt man, dass ein Bauherr seine Verantwortung nicht mehr wirksam ausü
 
 Jedes Symptom folgt demselben Muster: Es zeigt sich in einer typischen Situation im Projekt, hat eine Konsequenz für den Bauherrn und hat eine Antwort im MVG-Modell. Ein Beispiel ist die Eskalation ohne Entscheidung: Themen werden nach oben gegeben, aber ohne klare Optionen, Empfehlung oder Konsequenzen. Die Folge ist Verzögerung statt Führung. Die Antwort ist ein verbindlicher Standard für [[Entscheidungsvorlage|Entscheidungsvorlagen]] mit einer Entscheidungsfrage je Eskalation.
 
-Wählen Sie in der Grafik ein Symptom und verfolgen Sie die Kette von Muster über Konsequenz bis zur Reaktion. Fragen Sie sich dabei, welche Symptome Sie aus eigenen Projekten kennen.
+[[bedienung:Wählen Sie in der Grafik ein Symptom und verfolgen Sie die Kette von Muster über Konsequenz bis zur Reaktion.]] Fragen Sie sich dabei, welche Symptome Sie aus eigenen Projekten kennen.
 
 Die acht Symptome sind zugleich das, was die MVG-Reifegradanalyse (Kapitel 7.1) systematisch erhebt, bewertet und priorisiert. Bevor daraus ein [[Bauherren-Führungsmodell]] werden kann, braucht es aber begriffliche Klarheit: Was ist delegierbar – und was nicht? Diese Linie zieht Kapitel 3.
 

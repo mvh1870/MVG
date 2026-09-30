@@ -552,7 +552,7 @@ class Kompilierer {
   /* ---------------------------------------------------- Markdown -- */
 
   /**
-   * Markdown → HTML; `[[Begriff]]`, `[[Begriff|Text]]`, `[[zitat:ID|Text]]` werden markierte Spannen.
+   * Markdown → HTML; `[[Begriff]]`, `[[Begriff|Text]]`, `[[zitat:ID|Text]]`, `[[bedienung:Text]]` werden markierte Spannen.
    * @param {string} text
    * @param {string} ort
    */
@@ -593,6 +593,12 @@ class Kompilierer {
       if (text === '') this.fehler(ort, `Inline-Zitat ${id} ohne Text ([[zitat:${id}|Text]])`);
       this.pruefeZitat([id], text, ort);
       return `<q class="mvg-zitat" data-absatz="${esc(id)}">${esc(text)}</q>`;
+    }
+    // R41: Bedienhinweis („Ziehen Sie den Regler“) – im Druck und auf der Leinwand, wo die Werkzeuge aufgelöst sind, ausgeblendet
+    if (ziel.startsWith('bedienung:')) {
+      const text = innen.slice(10).trim();
+      if (text === '') this.fehler(ort, 'Bedienhinweis ohne Text ([[bedienung:Text]])');
+      return `<span class="bedienhinweis">${esc(text)}</span>`;
     }
     const begriff = ziel.trim();
     const zeige = (anzeige ?? begriff).trim();

@@ -49,14 +49,15 @@ export function simulator(inhalte: OeffentlicheInhalte): HTMLElement {
     (['offen', 'in-bearbeitung', 'entscheidungsreif', 'entschieden'] as EntscheidungsStatus[]).map((s) => h('option', { value: s, selected: e.status === s }, S.status[s]))) as HTMLSelectElement;
   status.addEventListener('change', () => { e.status = status.value as EntscheidungsStatus; zeichne(); });
 
-  const quelle = (id: string): HTMLElement => {
+  // R41: der Name der Region ist eindeutig (dieselbe Quelle kann mehrfach zitiert sein) – Abschnitt und Punkt dazu
+  const quelle = (id: string, ort: string): HTMLElement => {
     const q = inhalte.quellen[id];
     return q === undefined ? h('span', { class: 'sim-quelle' }, id)
-      : h('details', { class: 'sim-quelle' }, h('summary', null, `${S.quelle} ${id}`), h('div', { class: 'sim-zitat', tabindex: 0, role: 'region', 'aria-label': `${S.quelle} ${id}` }, inhalt(q.html)));
+      : h('details', { class: 'sim-quelle' }, h('summary', null, `${S.quelle} ${id}`), h('div', { class: 'sim-zitat', tabindex: 0, role: 'region', 'aria-label': `${S.quelle} ${id} · ${ort}` }, inhalt(q.html)));
   };
   const liste = (titel: string, hinweise: SimHinweis[], pruef: string): HTMLElement | null => hinweise.length === 0 ? null
     : h('section', { class: 'sim-teil', 'data-pruef': pruef }, h('h3', { class: 'sim-teil-titel' }, titel),
-      h('ul', { class: 'sim-liste' }, hinweise.map((x) => h('li', null, h('p', null, x.text), quelle(x.quelle)))));
+      h('ul', { class: 'sim-liste' }, hinweise.map((x, i) => h('li', null, h('p', null, x.text), quelle(x.quelle, `${titel}, Punkt ${i + 1}`)))));
   const leiter = (stufe: Stufe | null): HTMLElement => h('ol', { class: 'sim-leiter', 'aria-label': S.leiter }, (['pl', 'gremium', 'bauherr'] as Stufe[]).map((s) =>
     h('li', { class: `sim-stufe${s === stufe ? ' ist-aktiv' : ''}`, 'aria-current': s === stufe ? 'true' : null, 'data-pruef': `sim-stufe-${s}` }, trennbar(S.stufen[s]))));
 

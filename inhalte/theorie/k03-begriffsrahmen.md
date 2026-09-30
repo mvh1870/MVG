@@ -156,7 +156,7 @@ In der Mitte liegt die **Mandatsebene**: Befugnisse, Freigabegrenzen, Zeichnungs
 
 Oben steht die **Letztverantwortung**: Ziel, Grundsatzentscheidung, wesentliche Freigabe, Risikoannahme, Nachweisfähigkeit und Beschlusslage. MVG macht sichtbar, was der Bauherr hier selbst legitimieren und dokumentieren muss.
 
-Damit ist der Begriffsrahmen komplett: Arbeits- und Mandatsebene lassen sich gestalten und delegieren, die Letztverantwortung nicht. Wählen Sie eine Ebene in der Pyramide, und ziehen Sie den Regler, um zu sehen, wer sie tragen kann.
+Damit ist der Begriffsrahmen komplett: Arbeits- und Mandatsebene lassen sich gestalten und delegieren, die Letztverantwortung nicht. [[bedienung:Wählen Sie eine Ebene in der Pyramide, und ziehen Sie den Regler, um zu sehen, wer sie tragen kann.]]
 
 ::: tafel k3.3-t1
 ---

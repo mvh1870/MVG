@@ -79,7 +79,7 @@ titel: Befähigung mit Unterstützung des MVG Companion
 ---
 [[Befähigung]] heißt: Die Bauherrenorganisation soll das Modell selbst anwenden können. Mit dem Companion wird Befähigung von der einmaligen Schulung zu einer **wiederholbaren Anwendungskette**: Schulung, Pilotierung, Übergabe und Regelbetrieb greifen auf dieselbe Logik zurück.
 
-Der Unterschied liegt in der Anwendung. Die Rollen lernen nicht nur Begriffe, sondern arbeiten mit Entscheidungs-IDs, Freigabefragen, Mandatslogik, Datenstandsprüfung und den Routinen des Betriebshandbuchs – und zwar in konkreten Entscheidungssituationen des eigenen Projekts. Klicken Sie die vier Schritte durch: Was trägt der Companion jeweils bei, und was kommt dabei heraus?
+Der Unterschied liegt in der Anwendung. Die Rollen lernen nicht nur Begriffe, sondern arbeiten mit Entscheidungs-IDs, Freigabefragen, Mandatslogik, Datenstandsprüfung und den Routinen des Betriebshandbuchs – und zwar in konkreten Entscheidungssituationen des eigenen Projekts. [[bedienung:Klicken Sie die vier Schritte durch: Was trägt der Companion jeweils bei, und was kommt dabei heraus?]]
 
 ::: etappen
 ---
@@ -559,7 +559,7 @@ Beantragt · In Prüfung · Beschlossen · Abgelehnt · Umgesetzt
 ---
 titel: Rhythmus, Rollen und Eskalation
 ---
-Zur Zusammenarbeit gehören feste Takte. Jeder Termin hat seine Beteiligten und seinen Fokus – vom täglichen Blick auf Fristen bis zur einzelnen Freigabe. Ziehen Sie den Regler.
+Zur Zusammenarbeit gehören feste Takte. Jeder Termin hat seine Beteiligten und seinen Fokus – vom täglichen Blick auf Fristen bis zur einzelnen Freigabe. [[bedienung:Ziehen Sie den Regler.]]
 
 Was geschieht, wenn eine Schwelle berührt wird? **Innerhalb des Mandats** entscheiden die verantwortliche Rolle und die Bauherren-PL selbst, im definierten Rahmen, und dokumentieren das im Register. Wird eine Wert-, Risiko-, Frist- oder Mandatsschwelle **überschritten**, geht das Thema entlang der Mandatsleiter weiter: an die Bauherren-PL, an das Änderungsgremium oder zur Beschlussfassung durch den Bauherrn im Lenkungskreis (die Muster-Mandatsleiter steht in Kapitel 4.2).
 

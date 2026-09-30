@@ -153,6 +153,14 @@
 @media print {
   .hilfe .kapitel-verzeichnis, .hilfe .hilfe-suche { display: none; }
   .hilfe-inhalt details > :not(summary) { display: block; }
+  /* R41: Überschriften stehen nie allein am Seitenende und reißen nicht */
+  .hilfe-inhalt :is(h1, h2, h3, h4, summary) { break-after: avoid; break-inside: avoid; }
+  /* fette Zwischenzeile („Vorgehen“) vor einer Liste: im Druck als eigene Zeile, die bei der Liste bleibt */
+  .hilfe-inhalt .h-help-content-inline > b:first-child:has(+ :is(ol, ul)) { display: block; break-after: avoid; }
+  .hilfe-inhalt tr { break-inside: avoid; }
+  /* der Bildschirm-Abstand unter der Seite (64 px) rutschte als leeres Blatt ans Ende */
+  .hilfe .lern-rahmen { padding-bottom: 0; }
+  .lernseite.hilfe { min-height: 0; }
   /* R37: Papier rollt nicht – breite Tabellen und Grafiken passen sich dem Satzspiegel an statt abgeschnitten zu werden */
   .hilfe-inhalt :is(.h-table-wrap, .h-grafik-wrap) { overflow: visible; }
   .hilfe-inhalt .h-grafik-wrap > svg { min-width: 0; width: 100%; }

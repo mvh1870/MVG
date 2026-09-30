@@ -27,7 +27,7 @@ Die Einführung folgt sechs Schritten: Einrichtung, Diagnose, Konzeption, Piloti
 
 Auffällig ist die Spalte „Mitwirkung“ der Tafel: In keinem Schritt läuft die Einführung ohne die Bauherrenseite. Am Anfang benennt sie eine verantwortliche Rolle und sichert den Zugang zu den Unterlagen. In der Konzeption trifft sie Entscheidungen zu Mandaten, Schwellen, Freigaben und Rollen. In der Pilotierung wendet sie das Modell im realen Projekt an. Und am Ende erteilt sie selbst die Abnahme, benennt die verantwortliche Rolle für den Regelbetrieb und bestätigt den Prüfzyklus.
 
-Klicken Sie sich durch die Schritte; die Tafel darunter zeigt alle Spalten mit Kernaktivitäten und Ergebnissen.
+[[bedienung:Klicken Sie sich durch die Schritte.]] Die Tafel darunter zeigt alle Spalten mit Kernaktivitäten und Ergebnissen.
 
 ::: etappen
 ---
@@ -104,7 +104,7 @@ Bei der 30/60/90-Tage-Logik kommt es auf die Einordnung an. Sie ist ein Orientie
 
 Ihr Zweck ist, die ersten Wirkungen zu ordnen. In den ersten 30 Tagen geht es um Sichtbarkeit: Wo sind Entscheidungen kritisch, wo fehlen Mandate, wo widersprechen sich Datenstände? Bis Tag 60 steht das Mindestmodell und ist mit realen Entscheidungspunkten verbunden. Bis Tag 90 ist das Modell in Anwendung – an realen Entscheidungen und, falls im Projekt gerade eine ansteht, an einer Freigabe zum Abschluss einer Leistungsphase. Danach schließt die Übergabe an.
 
-Verbindlich bleibt das Vorgehensmodell aus Abschnitt 8.1. Die 30/60/90-Logik ersetzt es nicht; sie priorisiert die ersten Wirkungen nach der Reifegradanalyse. Ziehen Sie den Regler, um zu sehen, was in welchem Zeitraum im Mittelpunkt steht.
+Verbindlich bleibt das Vorgehensmodell aus Abschnitt 8.1. Die 30/60/90-Logik ersetzt es nicht; sie priorisiert die ersten Wirkungen nach der Reifegradanalyse. [[bedienung:Ziehen Sie den Regler, um zu sehen, was in welchem Zeitraum im Mittelpunkt steht.]]
 
 ::: regler
 ---

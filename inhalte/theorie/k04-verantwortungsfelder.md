@@ -185,7 +185,7 @@ Mit dem [[Mandat]] legt der Bauherr fest, wer welche Entscheidung vorbereiten, t
 
 Ein wirksames Mandatsmodell beantwortet fünf Fragen: Was darf auf Projektebene entschieden werden? Ab welcher Schwelle entscheidet der Bauherr oder beschließt er im Lenkungskreis? Wer darf Kosten, Projektumfang, Termin, Risiko oder Vergabe beeinflussen? Welche Unterlagen müssen vorliegen? Welche Rolle ist letztverantwortlich? MVG verbindet diese Antworten mit den Freigaben und den Entscheidungs-IDs.
 
-Wie eine solche Schwelle aussehen kann, zeigt die **Muster-Mandatsleiter**. Sie ist ein Muster, keine feste Vorgabe: Die Freigabeschwellen selbst legt der Bauherr fest – sie gehören zum Kern des Feldes Mandat. Ziehen Sie den Regler, um zu sehen, wer nach dem Muster bei welchem Betrag entscheidet.
+Wie eine solche Schwelle aussehen kann, zeigt die **Muster-Mandatsleiter**. Sie ist ein Muster, keine feste Vorgabe: Die Freigabeschwellen selbst legt der Bauherr fest – sie gehören zum Kern des Feldes Mandat. [[bedienung:Ziehen Sie den Regler, um zu sehen, wer nach dem Muster bei welchem Betrag entscheidet.]]
 
 ::: regler
 ---
@@ -346,7 +346,7 @@ titel: Freigabe
 Eine [[Freigabe]] ist mehr als eine Unterschrift. Mit ihr legitimiert der Bauherr den nächsten Schritt – und zwar auf einem benannten Datenstand. Freigaben können Planung, Vergabe, Budget, Änderungen, eine Neufestlegung der Projektbasis, die Bindung einer Komponente mit langer Lieferzeit, die Übergabe des Vorhabens oder den Regelbetrieb betreffen; dazu gehört auch die Freigabe zum Abschluss einer Leistungsphase.
 
 Die typische Fehlstelle: Es wird freigegeben, obwohl unklar ist, welcher Datenstand gilt, oder ohne dass jemand geprüft hat, ob das Mandat reicht. 
-MVG bindet jede Freigabe an die Freigabelogik. Vor der Freigabe müssen fünf Dinge klar sein. Die Vorbereitung – Unterlagenpakete, Prüfvermerke, Planungsstände, Freigabevorschläge, Gremienberichte – kann delegiert werden; die Freigabe selbst nicht. Klicken Sie die fünf Punkte durch.
+MVG bindet jede Freigabe an die Freigabelogik. Vor der Freigabe müssen fünf Dinge klar sein. Die Vorbereitung – Unterlagenpakete, Prüfvermerke, Planungsstände, Freigabevorschläge, Gremienberichte – kann delegiert werden; die Freigabe selbst nicht. [[bedienung:Klicken Sie die fünf Punkte durch.]]
 
 ::: etappen
 ---

@@ -13,10 +13,10 @@ status:
   offene-risiken: -1
 ---
 ### Konsequenz
-Die Vorlage beruht auf der „Kostenprognose 2026-10 · Version 4“, abgeglichen mit der Prognose der Projektsteuerung. Dr. Olbers entscheidet darauf.
+Dr. Olbers entscheidet auf der „Kostenprognose 2026-10 · Version 4“, abgeglichen mit der Prognose der Projektsteuerung.
 
 ### Was fehlt
-Die Zusage, dass Holger Steins Stellvertretung die Prognose bis zu seiner Rückkehr weiterführt.
+Die Zusage, dass Steins Stellvertretung die Prognose weiterführt.
 
 ### Neues Risiko
 Gering – solange der Turnus auch ohne Stein gehalten wird.

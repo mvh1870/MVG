@@ -13,7 +13,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Die Vorlage zu `AEN-031` nennt Kosten, Terminwirkung und berührte Risiken. Das Änderungsgremium beschließt auf dieser Grundlage; die Beschlusslage ist dokumentiert.
+Die Vorlage zu `AEN-031` nennt Kosten, Terminwirkung und berührte Risiken. Das Änderungsgremium beschließt darauf; die Beschlusslage ist dokumentiert.
 
 ### Was fehlt
 Die Frage der Deckung: Kommt sie aus der Risikoreserve, entscheidet darüber der Bauherr.

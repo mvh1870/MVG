@@ -192,7 +192,7 @@ test('Hilfe (P13, O-31): gleiche Aufteilung wie die Companion-Hilfe, leiser Zuga
   assert.match(text, /Bauherr \(Lenkungskreis berät\)/u);
   // R47: Schrägstrich-Ketten brechen nach „/“ (Umbruchstelle ohne Zeichen), nicht mitten im Wort
   assert.match(text, /Rollen\/<wbr>Freigaben/u);
-  assert.match(text, /<td>Risiko-\/(?:<wbr>)?Mandats-Eskalation<\/td><td>PL<\/td><td>entlang der Mandatsleiter/u);
+  assert.match(text, /<td>Risiko-\/(?:<wbr>)?Mandats-Eskalation<\/td><td>PL<\/td><td>nächste Stufe der Mandatsleiter \(Änderungsgremium bzw\. Bauherr im Lenkungskreis\)/u);
   assert.match(text, /<td>Freigabeentscheidung<\/td><td>Bauherr \(im Lenkungskreis\)<\/td>/u);
   assert.match(text, /<td>Maßnahmenregister · Problemregister · Governance-Kalender · Protokolle<\/td><td>PMO<\/td>/u);
   assert.match(text, /GATE-NETZNORD-G2/u);

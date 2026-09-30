@@ -149,7 +149,7 @@ knopf: Jetzt entscheiden
 ---
 ::: bekannt
 - Zwei Kostenstände, keine geregelte Stellvertretung.
-- Die Reserve reicht nicht; die Kämmerei fragt nach einer neuen Projektbasis.
+- Die Reserve reicht nicht.
 - Drei Wege: [[MVG-Neuinitialisierung]], Freigabe mit Auflagen, [[Neufestlegung der Projektbasis]]. Über jeden entscheidet der Bauherr.
 :::
 

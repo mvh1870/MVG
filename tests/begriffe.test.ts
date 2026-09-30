@@ -213,6 +213,8 @@ describe('begriffe: Zeilenmarken und Ausnahmen', () => {
     // Die kompilierten Inhalte sind KEINE Ausnahme: inhalte.mjs --pruefe prüft sie mit dieser Liste.
     assert.equal(pruefeText('Gate', 'src/generiert/inhalte.json').length, 1);
     assert.equal(pruefeText('Gate', 'inhalte/andere.md').length, 1);
+    // R48: der Text der Hilfe gilt ohne Rücksicht auf gross/klein (Fließtext, Feldnamen blendet ohneKennungen vorher aus)
+    assert.equal(pruefeText('Das Projekt braucht einen reset und mehr scope sowie impact.', 'src/generiert/hilfe.json').length, 3);
   });
 
   test('Baum der Fixtur: pfade, Ausnahmen und Funde mit Datei:Zeile:Spalte', async () => {

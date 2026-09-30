@@ -12,7 +12,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Rund 40 Seiten, 14 Ampeln. Die Kosten stehen auf Seite 12, ohne Mittelabfluss und ohne Preisannahme; niemand fragt nach.
+Rund 40 Seiten, 14 Ampeln. Die Kosten stehen auf Seite 12, ohne Mittelabfluss und Preisannahme; niemand fragt nach.
 
 ### Was fehlt
 Eine Frage an den Bericht und jemand, der daraus eine Entscheidung macht.

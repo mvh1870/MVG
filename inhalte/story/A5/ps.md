@@ -13,7 +13,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Die Prognose bleibt fast stabil, weil die Reserve die Folgekosten trägt, auf dem Papier. Dass sie schon für die Mai-Abweichung nicht reicht, steht nirgends.
+Die Prognose bleibt fast stabil, weil die Reserve die Folgekosten trägt, auf dem Papier. Dass sie schon die Mai-Abweichung nicht deckt, steht nirgends.
 
 ### Was fehlt
 Die Freigabe des Einsatzes der Risikoreserve durch den Bauherrn.

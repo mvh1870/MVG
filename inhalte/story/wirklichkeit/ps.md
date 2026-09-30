@@ -36,7 +36,7 @@ Sie empfehlen eine [[MVG-Neuinitialisierung]] und bringen Risikolage und Prognos
 Die Mitwirkung des Bauherrn – Entscheidungen zu Mandaten, Schwellen und Freigaben kann die Projektsteuerung nicht treffen.
 
 ### Neues Risiko
-Die Neuordnung läuft neben dem Tagesgeschäft; ob die Freigabe zum Abschluss von LPH 5 vorher mit Auflagen erteilt wird, ist offen.
+Die Neuordnung läuft neben dem Tagesgeschäft; ob LPH 5 vorher mit Auflagen freigegeben wird, ist offen.
 
 ### Governance-Frage
 Welche Entscheidungen müssen jetzt neu legitimiert werden, damit das Projekt wieder führbar wird?

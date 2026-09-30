@@ -41,7 +41,8 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/Externe Berater fließt schrittweise aus/gu, 'Externe Berater ziehen sich schrittweise zurück'],
   // im Quelltext steht „<b>Freigabebesprechung</b> – G0 bis G4“: das Muster muss im eigenen Textknoten greifen
   [/– G0 bis G4/gu, '– Freigabestufe 0 bis 4'],
-  [/Standardisierter Einfuehrungs-\/Reset-Rhythmus/gu, 'Orientierungsrahmen für Einführung und Neuinitialisierung'],
+  // R48: kein allgemeiner Einführungsrhythmus, Bezug nach der Reifegradanalyse (k8.2-p1)
+  [/Standardisierter Einfuehrungs-\/Reset-Rhythmus/gu, 'Orientierungsrahmen nach der Reifegradanalyse und bei MVG-Neuinitialisierung'],
   [/MVG-Reifegrad-Modell \(5 Stufen\)/gu, 'Reifegrad-Modell der Anwendung (5 Stufen)'],
   // Beschlussfassung durch den Bauherrn im Lenkungskreis, der Lenkungskreis berät (k4.2-p3, k9.3-p3; R33)
   [/formal durch Lenkungskreis verabschiedet/gu, 'durch den Bauherrn im Lenkungskreis beschlossen'],
@@ -104,7 +105,8 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/Go-Entscheidung/gu, 'Freigabeentscheidung'],
   [/Go \/ No-Go/gu, 'Freigabe / keine Freigabe'],
   [/No-Go/gu, 'keine Freigabe'],
-  [/Go ohne Bedingungen/gu, 'Freigabe ohne Auflagen'],
+  // R48: „Freigabe“ ist ein reguläres Ergebnis, der Bauherr erteilt sie (k6.4.4-p1, k9.3-p3)
+  [/Stolperstein: Go ohne Bedingungen - formulieren Sie Auflagen prüfbar und terminiert\./gu, 'Stolperstein: Auflagen ohne Prüfkriterium und Frist – Auflagen prüfbar und terminiert vorschlagen (die Freigabe erteilt der Bauherr).'],
   [/Go with Conditions/gu, 'Freigabe mit Auflagen'],
   // Beispiel für eine fremde Kundenbezeichnung: bleibt erkennbar anders als „Freigabe“
   [/Quality Gate/gu, 'Qualitätstor'],
@@ -207,6 +209,48 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/^Thresholds$/gu, 'Schwellenwerte'],
   [/^Threshold:$/gu, 'Schwellenwert:'],
   [/\(Risiko\/EW\/Change\/Decision\/Gap\/Threshold\)/gu, '(Risiko/Frühwarnung/Änderung/Entscheidung/Lücke/Schwellenwert)'],
+  // R48: PMO pflegt die Register nach k6.4.2-t1; RACI und Prozesse des Projekts bei der Projektsteuerung
+  [/projektbezogene Tätigkeiten liegen bei der Projektsteuerung \(voll funktionaler Platzhalter für Kunden mit eigenem projektnahem PMO\)\./gu, 'RACI und Prozesse des Projekts liegen bei der Projektsteuerung (voll funktionaler Platzhalter für Kunden mit eigenem projektnahem PMO); Maßnahmen-, Problemregister, Governance-Kalender und Protokolle pflegt das PMO (MVG Kap. 6.4.2).'],
+  // R48: Status der Entscheidung („Entschieden“) getrennt vom Freigabeprozess („beschlossen“) (k6.4.4-p1, k9.4-l1)
+  [/auf Status beschlossen aktualisiert/gu, 'auf Status „Entschieden“ aktualisiert'],
+  [/Alle offenen, in Prüfung befindlichen oder beschlossenen Entscheidungen/gu, 'Alle offenen, in Bearbeitung befindlichen oder entschiedenen Entscheidungen'],
+  [/Tage von offen bis beschlossen/gu, 'Tage von Offen bis Entschieden'],
+  // R48: der Lenkungskreis berät, der Bauherr beschließt; Eskalation entlang der Mandatsleiter (k9.3-p3, k4.2-p3, k6.4.5-p1)
+  [/was vom Lenkungskreis erwartet wird/gu, 'was der Bauherr entscheiden soll (der Lenkungskreis berät)'],
+  [/Setzt Eskalationen aus Risikobesprechung um/gu, 'Berät Eskalationen aus der Risikobesprechung (Beschlussfassung durch den Bauherrn)'],
+  [/Abweichung > 5%: Lenkungskreis informieren/gu, 'Abweichung > 5 %: Eskalation entlang der Mandatsleiter'],
+  [/— Freigaben verwaltet der Admin\./gu, '— die Sichtbarkeit der Ansichten verwaltet der Admin.'],
+  // R48: Controlling weist aus, der Einsatz der Risikoreserve ist nicht delegierbar (k3.2-t1, k6.4.2-t1)
+  [/Bestätigt EAC und Risikoreserve/gu, 'Weist EAC und Stand der Risikoreserve aus (Freigabe des Einsatzes: Bauherr)'],
+  // R48: Übergabe der Betriebslogik, die Letztverantwortung bleibt beim Bauherrn (k3.3-p2, k6.1-t1)
+  [/Übergang der Governance-Verantwortung an den Regelbetrieb des Kundenteams\./gu, 'Übergang der MVG-Betriebslogik aus dem Beratungsmandat in den Eigenbetrieb der Bauherrenorganisation.'],
+  [/\(Arbeitsvorrat \/ File\)/gu, '(Arbeitsvorrat / Entscheidungsvorlage)'],
+  // R48: Verweise mit Ziel in dieser Hilfe – Glossar unter FAQ & Glossar, Suche auf der Übersicht (L-69 (7))
+  [/Eine vollständige Begriffsliste und die ID-Nomenklatur finden Sie unter /gu, 'Die Begriffsliste steht unter FAQ & Glossar, die ID-Nomenklatur unter '],
+  [/Status- und Ampelwerte, Namens- und Verknüpfungsregeln sowie das Glossar der Governance-Begriffe/gu, 'Status- und Ampelwerte sowie Namens- und Verknüpfungsregeln (das Glossar der Governance-Begriffe steht unter FAQ & Glossar)'],
+  [/Bei Unsicherheit zu einem Begriff erst ins Glossar schauen/gu, 'Bei Unsicherheit zu einem Begriff erst ins Glossar (FAQ & Glossar) schauen'],
+  [/Mit Volltextsuche über Handbuch, Standards und Kontext-Hilfen — Treffer springen direkt ins Kapitel\./gu, 'Die Hilfe ist über die Suche auf ihrer Übersicht durchsuchbar.'],
+  [/Im Handbuch blättern, statt die Volltextsuche zu nutzen/gu, 'Im Handbuch blättern, statt die Suche auf der Übersicht der Hilfe zu nutzen'],
+  [/Live-Suche durchsucht beide: FAQ und Glossar/gu, 'Die Suche auf der Übersicht der Hilfe durchsucht beide: FAQ und Glossar'],
+  [/Glossar mit Live-Suche von/gu, 'Glossar von'],
+  [/ – mit Live-Suche/gu, ' – durchsuchbar über die Übersicht der Hilfe'],
+  // R48: englische Wörter im Fließtext (L-69 (12))
+  [/Risiko, EW, Change, Decision oder Gap/gu, 'Risiko, Frühwarnung, Änderung, Entscheidung oder Lücke'],
+  [/Early-Warning-Behandlung/gu, 'Frühwarnungs-Behandlung'],
+  [/durch Accountable Role bestätigt/gu, 'durch die verantwortliche Rolle (A) bestätigt'],
+  [/side-by-side/gu, 'nebeneinander'],
+  [/RAG-Status/gu, 'Ampelstatus'],
+  [/Cross-Project-KPIs/gu, 'projektübergreifende Kennzahlen'],
+  [/Knowledge-Transfer/gu, 'Wissenstransfer'],
+  [/Ausreißer und Best\/Worst-Performer/gu, 'Ausreißer sowie die stärksten und schwächsten Projekte'],
+  [/"Suggested Reaction"/gu, '„Vorgeschlagene Reaktion“'],
+  [/Source und Source-ID \(woher die Aktion stammt\)/gu, 'Quelle und Quellen-ID (woher die Maßnahme stammt)'],
+  [/im Stand-up/gu, 'in der kurzen Abstimmungsrunde'],
+  [/\(TL;DR\)/gu, '(Überblick)'],
+  [/Cross-Link zu Freigabe, EW, Nachweise/gu, 'Querverweis zu Freigabe, Frühwarnung und Nachweisen'],
+  [/Cross-Links\b/gu, 'Querverweise'],
+  [/Cross-Link\b/gu, 'Querverweis'],
+  [/High-Priority-Entscheidungen/gu, 'Entscheidungen mit hoher Priorität'],
 ]);
 
 /** Klassen, die src/stil/hilfe.css gestaltet (alles andere fällt weg). */
@@ -587,7 +631,7 @@ function angleiche(wurzel) {
     }
     for (const tr of [...t.querySelectorAll('tbody tr')]) {
       const z = [...tr.children];
-      if (text(z[0]) === 'Risiko-/Mandats-Eskalation' && text(z[2]) === 'Lenkungskreis' && z[2] !== undefined) z[2].textContent = 'entlang der Mandatsleiter (Bauherren-PL, Änderungsgremium, Bauherr im Lenkungskreis)';
+      if (text(z[0]) === 'Risiko-/Mandats-Eskalation' && text(z[2]) === 'Lenkungskreis' && z[2] !== undefined) z[2].textContent = 'nächste Stufe der Mandatsleiter (Änderungsgremium bzw. Bauherr im Lenkungskreis)';
       if (text(z[0]) === 'Freigabeentscheidung' && text(z[1]) === 'Lenkungskreis' && z[1] !== undefined) z[1].textContent = 'Bauherr (im Lenkungskreis)';
       // Glossar: die drei Ebenen heißen in MVG Verantwortungspyramide; die gleichnamige Ansicht der Anwendung zeigt die Mandatsleiter
       const b = z[0]?.querySelector('b');

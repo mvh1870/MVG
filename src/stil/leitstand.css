@@ -977,6 +977,11 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .tabellenstand-quelle { display: flex; align-items: center; gap: 6px; font-size: var(--gr-s); color: var(--tinte-2); }
 .tabellenstand-quelle .symbol { font-size: var(--gr-l); color: var(--tabelle-symbol); }
 .tabellenstand-zahl { display: block; margin: 2px 0; font: 800 var(--gr-5xl)/1 var(--schrift-anzeige); color: var(--tinte); }
+/* R45: lange Wörter („Entscheidungsbedarf“) passen ungeteilt in den Kasten – Anzeigeschrift ≈ 0,43 em je Zeichen */
+@supports (width: 1cqi) {
+  .tabellenstand { container-type: inline-size; }
+  .tabellenstand-zahl { font-size: min(var(--gr-5xl), calc(200cqi / var(--zeichen, 1))); }
+}
 .tabellenstand-datei { display: block; font-size: var(--gr-xs); line-height: 1.3; color: var(--tabelle-text); overflow-wrap: anywhere; white-space: normal; }
 .ungleich { align-self: center; font: 800 30px/1 var(--schrift-anzeige); color: var(--koralle-text); animation: wackeln 2.4s ease-in-out infinite; }
 
@@ -1058,7 +1063,8 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .vergleich-marke { position: absolute; z-index: 5; top: 10px; padding: 3px 9px; border-radius: 4px; background: var(--weiss-a85); color: var(--welt-text); font: 700 var(--gr-s)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; }
 .vergleich-marke[data-welt="a"] { left: 10px; opacity: calc(1 - var(--t) * 2.5); }
 .vergleich-marke[data-welt="b"] { right: 10px; opacity: calc(var(--t) * 2.5 - 1.5); }
-.ablesung { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--a-2); }
+/* R45: Kachelbreite nach dem längsten Satzteil („Entscheidungsfrage“ 133 px) – so viele Spalten, wie ungeteilt passen */
+.ablesung { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 196px), 1fr)); gap: var(--a-2); }
 
 /* =============================================================================================
    16 · Glossar-Begriff und Tooltip (.term, .tip)
@@ -1330,7 +1336,6 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
   .optionen, .felder, .dreier { grid-template-columns: minmax(0, 1fr); }
   .pinnwand { min-height: 300px; gap: var(--a-2); padding: var(--a-6) var(--a-3) var(--a-4); }
   .nochmal { justify-content: flex-start; }
-  .ablesung { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ebenen-wahl { flex-wrap: wrap; }
   .ebene-knopf { flex: 1 1 40%; min-height: 48px; }
   .nav-knopf { padding: 0 10px; }
@@ -1341,6 +1346,15 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 @media (max-width: 420px) {
   .instrumente { gap: 6px; }
   .instrument-label { font-size: 11.5px; }
+}
+/* R45: unter 360 px passt „ENTSCHEIDUNGSFÄHIGKEIT“ nur mit schmalerem Rand und ohne Sperrung (Labels werden nie getrennt) */
+@media (max-width: 359px) {
+  .instrumente { padding-inline: var(--a-2); }
+  .instrument { padding-inline: 6px; }
+  .instrument-label { letter-spacing: 0; }
+  /* Schrittknöpfe mindestens 24 px breit (WCAG 2.5.8), bei neun Schritten in zwei Reihen (R45) */
+  .fortschritt { display: grid; grid-template-columns: repeat(auto-fill, minmax(24px, 1fr)); row-gap: 4px; }
+  .fortschritt-schritt { height: 30px; }
 }
 
 /* =============================================================================================

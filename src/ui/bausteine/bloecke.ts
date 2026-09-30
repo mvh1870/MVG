@@ -122,9 +122,12 @@ export function akten(b: Block, verzug = 0): HTMLElement {
 }
 
 export function tabellenstand(b: Block, i: number): HTMLElement {
-  return h('div', { class: 'tabellenstand', style: `--dreh:${i % 2 === 0 ? -1 : 1.2}deg` },
+  const wert = kopfText(b.kopf, 'wert') ?? '';
+  // R45: die Anzeigeschrift wird nie getrennt – das längste Wort bestimmt, wie groß sie im Kasten sein darf (CSS)
+  const zeichen = Math.max(1, ...wert.split(/\s+/u).map((w) => [...w].length));
+  return h('div', { class: 'tabellenstand', style: `--dreh:${i % 2 === 0 ? -1 : 1.2}deg; --zeichen:${zeichen}` },
     h('span', { class: 'tabellenstand-quelle' }, sym('tabelle'), kopfText(b.kopf, 'quelle') ?? ''),
-    h('b', { class: 'tabellenstand-zahl' }, kopfText(b.kopf, 'wert') ?? ''),
+    h('b', { class: 'tabellenstand-zahl' }, wert),
     h('span', { class: 'tabellenstand-datei mono' }, dateinameMitUmbruch(kopfText(b.kopf, 'name') ?? '')));
 }
 

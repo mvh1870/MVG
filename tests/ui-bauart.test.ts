@@ -1058,6 +1058,13 @@ test('Druck (P10.2): Kapitel und alle Kapitel als Bogen – ohne Kopfleiste, Ver
   const alle = document.querySelectorAll('[data-pruef="druck-bogen"]');
   assert.equal(alle.length, 1, 'ein neuer Bogen ersetzt den alten');
   assert.deepEqual([...alle[0]?.querySelectorAll('.druck-kapitel') ?? []].map((x) => Number(x.getAttribute('data-kapitel'))), Array.from({ length: 13 }, (_, i) => i + 1));
+  // R45 (L-129): weiche Trennstellen im Bogen auch in Tafeln (Karten 196 px), die Seite selbst bleibt ohne
+  const tafeln = [...alle[0]?.querySelectorAll('.tafel') ?? []].map((t) => t.textContent ?? '').join(' ');
+  assert.match(tafeln, /Entscheidungs\u00advorbereitung/u, 'Tafelkarte k06/k09');
+  assert.match(tafeln, /Lieferketten\u00adunsicherheit/u, 'Registername');
+  const kap9 = baueTheorie({ inhalte, kapitel: 9, version: VERSION, bedienbar: true });
+  assert.match(kap9.textContent ?? '', /Entscheidungsvorbereitung/u, 'Tafel am Bildschirm ohne Trennstelle');
+  assert.doesNotMatch(kap9.textContent ?? '', /Entscheidungs\u00advorbereitung/u);
   assert.equal(baueTheorie({ inhalte, kapitel: 6, version: VERSION, bedienbar: false }).querySelector('[data-pruef="kapitel-drucken"]'), null, 'Leinwand: kein Druckknopf');
   // Mit Druckdialog: Klasse und Titel während des Drucks, danach (afterprint) alles zurück; keine doppelten IDs
   const kap13 = baueTheorie({ inhalte, kapitel: 13, version: VERSION, bedienbar: true });

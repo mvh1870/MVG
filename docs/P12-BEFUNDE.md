@@ -171,4 +171,5 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 45 (P12.5, zugleich P14.3)
 - **Fachtreue + Begriffe (Agent):** 7 Befunde (3 mittel: B4 `AEN-031` als Entscheidungs-ID-Beleg, Hilfe-Eskalation an den Lenkungskreis, Hilfe-FAQ „ROI“ mit Wirkungszahlen; 4 leicht) – k04–k08, k11, k12, B3–B6, Wirklichkeit, Rückspulen, Epilog, Explore; 197 Zitate (1 gewollt abweichend); eingearbeitet (L-130), Zählung neu.
+- **Stil/Architektur (Agent, auf 8d6a5ab):** 6 Befunde (2 mittel: Anzeigezahl im Excel-Stand bricht lange Wörter ohne Strich, Instrument-Label bei 320 px gebrochen; 4 leicht: Kacheln bei 320 px, Schrittknöpfe unter 24 px, Mutation L-129 überlebt lokal, Dossier-PDF ungeprüft) – eingearbeitet (L-132). Ohne Fund: Überlauf, Fokus, Kontrast, reduzierte Bewegung, Leinwand ohne Regie, CSP, Engine, L-129 ohne Nebenwirkung. Vorsorge Hilfe-Druck (L-131). CI 208 (0f71eb6) grün. Zählung neu – als Nächstes Runde 46.
 

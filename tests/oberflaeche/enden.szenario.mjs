@@ -10,6 +10,7 @@ import { wende } from '../../src/engine/aktionen.ts';
 import { aktuellerSchritt } from '../../src/engine/graph.ts';
 import { speichere, SPEICHER_SCHLUESSEL } from '../../src/engine/speicher.ts';
 import { pruefer } from './hilfen.mjs';
+import { pdfSeiten, seitenMitUeberschriftAmEnde, wortbrueche } from './pdf.mjs';
 
 export const name = 'enden';
 export const hash = '#story';
@@ -80,6 +81,36 @@ export async function lauf(seite, h) {
     }
     if ((await station()) !== 'epilog') h.befund(`${ende}: endet in ${await station()} statt im Epilog`);
     for (const n of ['nachweis', 'diagnose']) if (!gesehen.has(n)) h.befund(`${ende}: ${n} nicht gesehen`);
+    // R45: das Dossier im Epilog als echtes PDF (wie Theorie und Hilfe) – keine Überschrift am Seitenende, keine leere oder
+    // fast leere Seite, kein Wort ohne Trennstrich gebrochen; einmal je Lauf (erster Fall)
+    // schmal zeigt der Epilog nur den aktuellen Schritt: zurück zum Resümee
+    const schritte = seite.locator('.fortschritt-schritt');
+    for (let n = (await schritte.count()) - 1; n >= 0 && await seite.locator('[data-pruef="dossier-drucken"]').filter({ visible: true }).count() === 0; n--) { await schritte.nth(n).click(); await h.warte(300); }
+    if (ende === faelle[0]?.[1] && await seite.locator('[data-pruef="dossier-drucken"]').filter({ visible: true }).count() > 0) {
+      await seite.evaluate(() => { window.print = () => { window.dispatchEvent(new Event('beforeprint')); }; });
+      await seite.locator('[data-pruef="dossier-drucken"]').click();
+      await h.warte(300);
+      await seite.emulateMedia({ media: 'print', reducedMotion: 'reduce' });
+      const vorher = seite.viewportSize() ?? { width: breite, height: 768 };
+      await seite.setViewportSize({ width: 794, height: vorher.height });
+      await seite.evaluate(() => { document.documentElement.style.width = '688px'; });
+      await h.warte(200);
+      const bruch = await wortbrueche(seite, '.druck-bogen');
+      if (bruch.length > 0) h.befund(`Dossier: ${bruch.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(bruch.slice(0, 6))}`);
+      const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen :is(h1, h2, h3, h4, dt, summary)')]
+        .map((x) => ({ text: x.textContent ?? '', pt: parseFloat(getComputedStyle(x).fontSize) * 0.75 })));
+      await seite.evaluate(() => { document.documentElement.style.width = ''; });
+      await seite.setViewportSize(vorher);
+      const pdf = await pdfSeiten(await seite.pdf({ format: 'A4' }));
+      const amEnde = seitenMitUeberschriftAmEnde(pdf, koepfe);
+      if (amEnde.length > 0) h.befund(`Dossier: Überschrift am Seitenende ${JSON.stringify(amEnde)}`);
+      if (pdf.length < 2 || pdf.some((x) => x.zeilen.length === 0)) h.befund(`Dossier: ${pdf.length} Seiten, davon leer ${pdf.filter((x) => x.zeilen.length === 0).length}`);
+      const leer = pdf.slice(0, -1).map((x, i) => ({ seite: i + 1, fuellung: Math.round((x.fuellung ?? 0) * 100) })).filter((x) => x.fuellung < 35);
+      if (leer.length > 0) h.befund(`Dossier: fast leere Seiten ${JSON.stringify(leer)}`);
+      await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
+      await seite.evaluate(() => { window.print = () => {}; window.dispatchEvent(new Event('afterprint')); });
+      if (await seite.locator('.druck-bogen').count() !== 0) h.befund('Dossier: Bogen bleibt nach dem Druck stehen');
+    } else if (ende === faelle[0]?.[1]) h.befund(`${ende}: Dossier-Knopf im Epilog fehlt`);
     await seite.evaluate(() => localStorage.clear());
   }
 }

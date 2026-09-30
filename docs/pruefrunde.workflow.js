@@ -95,13 +95,19 @@ Rückgabe: echt (Sachverhalt stimmt und ist ein Mangel), schwere (nach der Skala
 const RANG = { schwer: 3, mittel: 2, leicht: 1, keiner: 0 }
 const NAME = ['keiner', 'leicht', 'mittel', 'schwer']
 
+// R50 (L-154): Teilrunden (args.felder) und Gegenprüfung beim Einarbeiten statt durch Skeptiker (args.ohneGegenpruefung) –
+// die Skeptiker standen hinter den Findern in der Warteschlange (2 Plätze bei 4 Kernen) und liefen erst nach dem Einarbeiten
+const FELDER = Array.isArray(args.felder) ? PRUEFFELDER.filter((f) => args.felder.includes(f.key)) : PRUEFFELDER
+if (Array.isArray(args.felder)) log(`Teilrunde: ${FELDER.map((f) => f.key).join(', ')} (ausgelassen: ${PRUEFFELDER.filter((f) => !FELDER.includes(f)).map((f) => f.key).join(', ')})`)
+
 const ergebnisse = await pipeline(
-  PRUEFFELDER,
+  FELDER,
   (feld) => agent(`${GEMEINSAM}
 
 DEINE ROLLE: ${feld.rolle}. DEIN PRÜFFELD („${feld.key}“): ${feld.auftrag}`, { label: `finden:${feld.key}`, phase: 'Finden', schema: BEFUNDE_SCHEMA }),
   async (res, feld) => {
     if (!res) return { feld: feld.key, fehlt: true, umfang: 'Agent ausgefallen', befunde: [] }
+    if (args.ohneGegenpruefung) return { feld: feld.key, umfang: res.umfang, befunde: res.befunde.map((f) => ({ ...f, feld: feld.key, echt: true, schwereGeprueft: f.schwere, stimmen: 'beim Einarbeiten', urteile: [] })) }
     const geprueft = await parallel(res.befunde.map((f, i) => async () => {
       // leichte Befunde zählen für L-64 nicht – sie werden beim Einarbeiten geprüft (4 Kerne: Rechenzeit für die mittleren)
       if (f.schwere === 'leicht' && args.leichtOhnePruefung) return { ...f, feld: feld.key, echt: true, schwereGeprueft: 'leicht', stimmen: 'ungeprüft', urteile: [] }
@@ -128,7 +134,7 @@ log(`Runde ${RUNDE}: bestätigt ${bestaetigt.length} (schwer ${zaehl('schwer')},
 for (const e of alle) if (e.fehlt) log(`Prüffeld ${e.feld}: Agent ausgefallen – Runde unvollständig`)
 
 phase('Lücken')
-const luecken = await agent(`${GEMEINSAM}
+const luecken = args.luecken === false ? 'ausgelassen (Teilrunde)' : await agent(`${GEMEINSAM}
 
 DEINE AUFGABE: Lückenkritik. Unten stehen die Umfangsberichte aller Prüf-Agenten dieser Runde. Nenne, was im Produkt (Start, Story je Rolle, Theorie, Explore, Hilfe, Regie/Leinwand, Druck, Kundenfassung, Abbildungen, Tests) in dieser Runde NICHT oder nur oberflächlich geprüft wurde und in der nächsten Runde Vorrang haben sollte. Sieh dazu selbst in die Verzeichnisse. Nur Lücken, keine Befunde. Höchstens 10 Punkte, je ein Satz.
 

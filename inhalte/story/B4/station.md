@@ -428,7 +428,7 @@ beschlusslage: Beschlussprotokoll der Sitzung vom 9. Juli (Entwurf) – ob besch
 
 ::: regie
 ### Notiz
-B4 zeigt dasselbe Ereignis wie A4 – dieselben Auflagen, derselbe Ausschusstermin. Der Leser sitzt im Änderungsgremium (Rollen gf, pl, controlling stimmen mit; ps und planung bereiten vor; der Bauherr sitzt nicht darin und bekommt die Beschlusslage). Das Beschlussprotokoll bleibt ein Entwurf: Ob das Gremium beschließt, mit Auftrag beschließt oder mit Frist zurückstellt, entscheidet die Rolle. Beschluss und Deckung trennen – die Freigabe des Einsatzes der Risikoreserve ist Thema von B5. Zuerst den Regler zeigen, dann Mandatsleiter und Vorlage.
+B4 zeigt dasselbe Ereignis wie A4 – dieselben Auflagen, derselbe Ausschusstermin. Der Leser sitzt im Änderungsgremium (Rollen gf, pl, controlling stimmen mit; ps und planung bereiten vor; der Bauherr sitzt nicht darin und bekommt die Beschlusslage). Das Beschlussprotokoll bleibt ein Entwurf: Ob das Gremium beschließt, mit Auftrag beschließt oder mit Frist zurückstellt, wählt der Leser nur in den Rollen gf, pl und controlling; ps und planung arbeiten der Vorlage zu, der Bauherr bekommt die Beschlusslage und legt sie dem Ausschuss vor. Beschluss und Deckung trennen – die Freigabe des Einsatzes der Risikoreserve ist Thema von B5. Zuerst den Regler zeigen, dann Mandatsleiter und Vorlage.
 
 ### Leitfragen
 - Was liegt Ihrem Gremium vor: eine Vorlage mit Frage oder ein Bericht?

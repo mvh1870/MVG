@@ -51,7 +51,20 @@ test('Nicht delegierbar (k3.2-t1): Projektbasis hebt auf den Bauherrn, Risikores
   const sr = simuliere({ ...basis, schwelleUeberschritten: true, deckung: 'reserve' });
   assert.equal(sr.stufeOffen, true, 'R40: die Reserve bestimmt nicht die Stufe der Sachentscheidung');
   assert.ok(sr.freigabeweg.some((h) => /projektspezifische Mandat bestimmt, gilt für die Sachentscheidung; die Freigabe des Einsatzes der Risikoreserve ist nicht delegierbar und bleibt beim Bauherrn\./u.test(h.text)));
-  assert.equal(simuliere({ ...basis, schwelleUeberschritten: true, risikoAnnahme: true }).stufeOffen, false, 'Risikoexposition annehmen entscheidet der Bauherr');
+  // R41: auch die Annahme der Risikoexposition ist Vorbehalt des Bauherrn, keine Stufe der Sachentscheidung (k3.2-t1, k4.4-p1)
+  assert.equal(simuliere({ ...basis, schwelleUeberschritten: true, risikoAnnahme: true }).stufeOffen, true);
+  const ri = simuliere({ ...basis, betragTeur: 400, risikoAnnahme: true });
+  assert.equal(ri.wer, 'Änderungsgremium');
+  assert.deepEqual(ri.vorbehalte, ['die Annahme der Risikoexposition entscheidet der Bauherr']);
+  assert.ok(ri.freigabeweg.some((h) => /die Annahme der Risikoexposition ist nicht delegierbar und bleibt beim Bauherrn/u.test(h.text)));
+  // R41: nicht wesentlich – keine Entscheidungsvorlage, keine Kennung (k13-t1, k4.3-p2)
+  const nw = simuliere({ ...basis, status: 'in-bearbeitung' });
+  assert.equal(nw.wesentlich, false);
+  assert.equal(nw.naechsterSchritt[0]?.quelle, 'k6.4.5-p1');
+  assert.equal(simuliere(basis).naechsterSchritt[0]?.quelle, 'k6.4.5-p1');
+  assert.equal(simuliere({ ...basis, substanziell: true, status: 'in-bearbeitung' }).naechsterSchritt[0]?.quelle, 'k9.4-l1');
+  // R41: entschieden mit berührter Freigabe ohne Datenstand – der Freigabe fehlte ihre Grundlage (k4.5-p1)
+  assert.ok(simuliere({ ...basis, freigabeBeruehrt: true, datenstandBenannt: false, status: 'entschieden' }).naechsterSchritt.some((h) => h.quelle === 'k4.5-p1'));
 });
 
 test('Wesentlich (k4.3): Kennung und Vorlage, sonst der Hinweis, dass nicht jede Entscheidung wesentlich ist', () => {
@@ -103,7 +116,7 @@ test('Grenzfälle: kein Betrag, Freigabe bei Bauherrenstufe', () => {
   const r = simuliere({ ...basis, freigabeBeruehrt: true, status: 'entscheidungsreif' });
   assert.equal(r.wesentlich, true);
   assert.ok(!r.information.some((h) => h.quelle === 'k4.3-p1'), 'kein „nicht wesentlich“ neben der Freigabe');
-  assert.match(r.naechsterSchritt[0]?.text ?? '', /hier Bauherren-PL; die Freigabe erteilt der Bauherr selbst\.$/u);
+  assert.match(r.naechsterSchritt[0]?.text ?? '', /hier Bauherren-PL; die Freigabe zum Abschluss der Leistungsphase erteilt der Bauherr selbst\.$/u);
   assert.equal(r.freigabeBeimBauherrn, true);
   assert.ok(r.bauherr.some((h) => h.quelle === 'k3.2-t1' && /Freigabe/u.test(h.text)), 'die Freigabe steht unter „Bleibt beim Bauherrn“');
   // R38: hebt allein der Betrag die Stufe zum Bauherrn, ist es eine wesentliche Bauherrenentscheidung (k4.2-p3)
@@ -113,13 +126,13 @@ test('Grenzfälle: kein Betrag, Freigabe bei Bauherrenstufe', () => {
   // R38: Schwelle überschritten (Stufe offen) – der nächste Schritt nennt eine Mandatsebene, keinen Vorgang
   const o = simuliere({ ...basis, schwelleUeberschritten: true, freigabeBeruehrt: true, status: 'entscheidungsreif' });
   assert.equal(o.stufeOffen, true);
-  assert.match(o.naechsterSchritt[0]?.text ?? '', /hier die Stufe, die das projektspezifische Mandat bestimmt; die Freigabe erteilt der Bauherr selbst\.$/u);
+  assert.match(o.naechsterSchritt[0]?.text ?? '', /hier die Stufe, die das projektspezifische Mandat bestimmt; die Freigabe zum Abschluss der Leistungsphase erteilt der Bauherr selbst\.$/u);
   assert.ok(!o.freigabeweg.some((h) => /unter „Wer entscheidet“/u.test(h.text)));
   // R39: auch auf der Stufe Bauherr (Betrag, Projektbasis) steht die Freigabe beim Bauherrn selbst, nicht im Lenkungskreis
   for (const v of [{ ...basis, betragTeur: 8000 }, { ...basis, deckung: 'ueber-basis' as const }]) {
     const x = simuliere({ ...v, freigabeBeruehrt: true, status: 'entscheidungsreif' });
     assert.equal(x.freigabeBeimBauherrn, true);
     assert.ok(x.bauherr.some((h) => h.quelle === 'k3.2-t1' && /Freigabe zum Abschluss/u.test(h.text)));
-    assert.match(x.naechsterSchritt[0]?.text ?? '', /hier Bauherr im Lenkungskreis; die Freigabe erteilt der Bauherr selbst\.$/u);
+    assert.match(x.naechsterSchritt[0]?.text ?? '', /hier Bauherr im Lenkungskreis; die Freigabe zum Abschluss der Leistungsphase erteilt der Bauherr selbst\.$/u);
   }
 });

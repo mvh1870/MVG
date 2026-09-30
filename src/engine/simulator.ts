@@ -125,8 +125,9 @@ export function simuliere(e: SimEingabe): SimErgebnis {
     vorbehalte.push('die Zielpriorität legt der Bauherr fest');
   }
   if (e.risikoAnnahme) {
+    // R41: wie Reserve und Zielpriorität – die Annahme der Risikoexposition ist Vorbehalt des Bauherrn, die Sachentscheidung bleibt auf ihrer Stufe (k3.2-t1, k4.4-p1)
     bauherr.push({ quelle: 'k4.4-p1', text: 'Die Annahme wesentlicher Risikoexposition bleibt eine Bauherrenentscheidung.' });
-    hebe('bauherr', stufe === 'bauherr' ? wer : 'Bauherr');
+    vorbehalte.push('die Annahme der Risikoexposition entscheidet der Bauherr');
   }
 
   // R37/R38: jede Freigabe zum Abschluss einer LPH erteilt der Bauherr selbst (k9.3-p3); sie ist nicht delegierbar (k3.2-t1)
@@ -134,7 +135,7 @@ export function simuliere(e: SimEingabe): SimErgebnis {
   const freigabeBeimBauherrn = e.freigabeBeruehrt;
   // liegt die Sachentscheidung ohnehin beim Bauherrn, trennt nur die Freigabe (k9.3-p3: nicht der Lenkungskreis)
   if (stufe === 'bauherr' && !eskaliert) vorbehalte.length = 0;
-  if (freigabeBeimBauherrn) vorbehalte.unshift('die Freigabe erteilt der Bauherr selbst');
+  if (freigabeBeimBauherrn) vorbehalte.unshift('die Freigabe zum Abschluss der Leistungsphase erteilt der Bauherr selbst');
   if (freigabeBeimBauherrn) bauherr.push({ quelle: 'k3.2-t1', text: 'Die Entscheidung über eine wesentliche Freigabe ist nicht delegierbar – die Freigabe zum Abschluss der Leistungsphase bleibt beim Bauherrn.' });
   // R38: hebt schon der Betrag die Stufe zum Bauherrn, beschließt er selbst (k4.2-p3) – das ist eine Bauherrenentscheidung
   const wesentlich = e.substanziell || e.freigabeBeruehrt || bauherr.length > 0 || (stufe === 'bauherr' && !eskaliert);
@@ -145,7 +146,7 @@ export function simuliere(e: SimEingabe): SimErgebnis {
   }
   if (!e.datenstandBenannt && e.status === 'entschieden') {
     // R40: nach der Entscheidung gibt es kein „zuerst“ mehr – der Datenstand, auf dem entschieden wurde, wird nachgetragen
-    information.push({ quelle: 'k4.6-p2', text: 'Den Datenstand nachtragen, auf dem entschieden wurde: Welche Version galt? Welche Annahmen waren offen? Welche Änderungen waren seit der letzten Freigabe aufgenommen? Welche Beschlusslage bestand?' });
+    information.push({ quelle: 'k4.6-p2', text: 'Den Datenstand nachtragen, auf dem entschieden wurde: Welche Version galt? Welche Annahmen waren offen? Welche Änderungen waren seit der letzten Freigabe aufgenommen worden? Welche Beschlusslage bestand?' });
   } else if (!e.datenstandBenannt) {
     information.push({ quelle: 'k4.6-p2', text: 'Zuerst den Datenstand klären: Welche Version gilt? Welche Annahmen sind offen? Welche Änderungen wurden seit der letzten Freigabe aufgenommen? Welche Beschlusslage besteht?' });
   }
@@ -156,7 +157,7 @@ export function simuliere(e: SimEingabe): SimErgebnis {
   }
   // R36/R40: die Mandatsleiter oben gilt für die Sachentscheidung; was nicht delegierbar ist, bleibt beim Bauherrn
   if (vorbehalte.length > 0 && (stufe !== 'bauherr' || eskaliert)) {
-    const teile = [e.freigabeBeruehrt ? 'die Entscheidung über eine wesentliche Freigabe' : null, e.deckung === 'reserve' ? 'die Freigabe des Einsatzes der Risikoreserve' : null, e.zielkonflikt ? 'die Festlegung der Zielpriorität' : null].filter((t): t is string => t !== null);
+    const teile = [e.freigabeBeruehrt ? 'die Entscheidung über eine wesentliche Freigabe' : null, e.deckung === 'reserve' ? 'die Freigabe des Einsatzes der Risikoreserve' : null, e.zielkonflikt ? 'die Festlegung der Zielpriorität' : null, e.risikoAnnahme ? 'die Annahme der Risikoexposition' : null].filter((t): t is string => t !== null);
     const aufzaehlung = teile.length === 1 ? teile[0] : `${teile.slice(0, -1).join(', ')} und ${teile[teile.length - 1]}`;
     freigabeweg.push({ quelle: 'k3.2-t1', text: `${eskaliert ? 'Die Stufe, die das projektspezifische Mandat bestimmt,' : 'Die Stufe unter „Wer entscheidet“'} gilt für die Sachentscheidung; ${aufzaehlung} ${teile.length === 1 ? 'ist' : 'sind'} nicht delegierbar und ${teile.length === 1 ? 'bleibt' : 'bleiben'} beim Bauherrn.` });
   } else if (e.freigabeBeruehrt) {
@@ -170,10 +171,16 @@ export function simuliere(e: SimEingabe): SimErgebnis {
 
   switch (e.status) {
     case 'offen':
-      naechsterSchritt.push({ quelle: 'k4.3-p2', text: wesentlich ? 'Status „Offen“: Entscheidungsfrage und verantwortliche Rolle festlegen, Kennung vergeben.' : 'Status „Offen“: Entscheidungsfrage und verantwortliche Rolle festlegen.' });
+      // R41: k4.3-p2 gilt nur für wesentliche Entscheidungen; sonst entscheidet die verantwortliche Rolle im Rahmen (k6.4.5-p1)
+      naechsterSchritt.push(wesentlich
+        ? { quelle: 'k4.3-p2', text: 'Status „Offen“: Entscheidungsfrage und verantwortliche Rolle festlegen, Kennung vergeben.' }
+        : { quelle: 'k6.4.5-p1', text: 'Status „Offen“: Entscheidungsfrage und verantwortliche Rolle festlegen.' });
       break;
     case 'in-bearbeitung':
-      naechsterSchritt.push({ quelle: 'k9.4-l1', text: 'Status „In Bearbeitung“: die Entscheidungsvorlage vervollständigen – Frage, betroffene Freigabe, Mandat, Datenstand, Optionen, Wirkung, Empfehlung, Freigabe- oder Eskalationsweg.' });
+      // R41: die Entscheidungsvorlage ist die Nachweislogik einer wesentlichen Entscheidung (k13-t1)
+      naechsterSchritt.push(wesentlich || eskaliert
+        ? { quelle: 'k9.4-l1', text: 'Status „In Bearbeitung“: die Entscheidungsvorlage vervollständigen – Frage, betroffene Freigabe, Mandat, Datenstand, Optionen, Wirkung, Empfehlung, Freigabe- oder Eskalationsweg.' }
+        : { quelle: 'k6.4.5-p1', text: 'Status „In Bearbeitung“: im definierten Rahmen vorbereiten und im Register dokumentieren.' });
       break;
     case 'entscheidungsreif':
       naechsterSchritt.push({ quelle: 'k13-t1', text: `Status „Entscheidungsreif“: ausreichend vorbereitet, um auf der zuständigen Mandatsebene getroffen zu werden – hier ${eskaliert ? 'die Stufe, die das projektspezifische Mandat bestimmt' : wer}${vorbehalte.map((v) => `; ${v}`).join('')}.` });
@@ -182,7 +189,7 @@ export function simuliere(e: SimEingabe): SimErgebnis {
       naechsterSchritt.push({ quelle: 'k9.4-l1', text: 'Status „Entschieden“: Beschlusslage dokumentieren und die Nachverfolgung führen.' });
       break;
   }
-  if (!e.datenstandBenannt && e.status === 'entscheidungsreif') {
+  if (!e.datenstandBenannt && (e.status === 'entscheidungsreif' || (e.status === 'entschieden' && e.freigabeBeruehrt))) {
     naechsterSchritt.push(e.freigabeBeruehrt
       ? { quelle: 'k4.5-p1', text: 'Ohne benannten Datenstand fehlt der Freigabe ihre Grundlage.' }
       : { quelle: 'k4.6-p2', text: 'Ohne benannten Datenstand fehlt der Entscheidung ihre belastbare Grundlage.' });

@@ -119,7 +119,7 @@ Wichtig ist die Rollenverteilung. Bauherr Mentoren konzipiert, strukturiert, mod
 ---
 titel: Wer tut was in der Konzeption?
 links: Entscheidet der Bauherr
-rechts: Leistet Bauherr Mentoren
+rechts: Leistet die Begleitung
 ---
 [[bedienung:Ordnen Sie jede Tätigkeit zu.]]
 
@@ -321,8 +321,8 @@ Bauherr Mentoren übernimmt keine operative Dauer-Projektsteuerung und keine Lin
 ::: sortieren
 ---
 titel: Leistung oder Grenze?
-links: Kann Bauherr Mentoren leisten
-rechts: Ersetzt Bauherr Mentoren nicht
+links: Innerhalb der Leistungen
+rechts: Außerhalb der Leistungen
 ---
 [[bedienung:Ordnen Sie zu, was innerhalb und was außerhalb der Leistungen liegt.]]
 

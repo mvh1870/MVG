@@ -14,7 +14,7 @@ story: [ende-steuerbar]
 Kapitel 12 zieht Bilanz. Es fragt, was Minimum Viable Governance (MVG) und der MVG Companion für Bauherren bewirken sollen, und beschreibt, wie ein Einstieg aussieht. Damit schließt sich der Bogen zur Leitthese vom Anfang: Arbeit lässt sich delegieren, die Legitimation des Bauherrn nicht.
 
 ::: kernaussage
-Am Ende zählt nicht, wie viele Governance-Artefakte es gibt, sondern ob der Bauherr damit besser führen kann. Der Einstieg dazu ist klein angelegt: Er beginnt mit einer kompakten MVG-Reifegradanalyse.
+Am Ende zählt nicht, wie viele Governance-Artefakte es gibt, sondern ob der Bauherr damit besser führen kann. Arbeit lässt sich delegieren, die Legitimation des Bauherrn nicht.
 :::
 
 ::: abschnitt k12
@@ -81,14 +81,14 @@ Arbeit kann delegiert werden – bauherrenseitige Legitimation nicht.
 Woran bemisst sich für Bauherren am Ende der Nutzen von MVG?
 
 ### Erklärung
-Für Bauherren zählt am Ende nicht die Zahl der Governance-Artefakte, sondern ihre Führungswirkung: Entscheidungen werden schneller vorbereitet, Mandate klarer, die Gremienfähigkeit steigt und Nachweise werden belastbarer geführt.
+Für Bauherren zählt am Ende nicht die Zahl der Governance-Artefakte, sondern ihre Führungswirkung – ob der Bauherr durch sie besser führen kann.
 
 ::: antwort a
 ---
 titel: An der Führungswirkung
 praefix: "Genau:"
 ---
-Entscheidend ist, ob Entscheidungen schneller vorbereitet werden, Mandate klarer werden und Nachweise belastbarer geführt werden.
+Entscheidend ist, ob der Bauherr durch die Artefakte besser führen kann.
 :::
 
 ::: antwort b
@@ -165,6 +165,6 @@ Nach der MVG-Neuinitialisierung ist das Projekt wieder steuerbar: Das Bauherren-
 Kapitel 12 zieht Bilanz; hier ist die Nähe zum Vertrieb am größten – nur wiedergeben, was MVG sagt, keine Aufforderung, kein Angebot, keine Wirkungszahlen. Es tragen der Umschalter „Woran MVG gemessen wird“ und die fünf Gewinne in der Tafel, besonders „Geringere Zusatzlast“: Der Mindeststandard bleibt auf führungsrelevante Entscheidungen konzentriert. Mit der Leitthese schließen.
 
 ### Leitfragen
-- Welcher der fünf Gewinne wäre in Ihrem Projekt am ehesten spürbar?
+- Welche Register, Vorlagen oder Berichte haben in Ihrem Projekt heute Führungswirkung – und welche nicht?
 - Bei welcher Entscheidung in Ihrem Projekt ließen sich Freigabefrage, Entscheidungs-ID, Datenstand und Nachweis heute schon nachvollziehen?
 :::

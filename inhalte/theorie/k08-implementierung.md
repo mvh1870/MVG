@@ -213,7 +213,7 @@ Bauherr Mentoren strukturiert, moderiert, entwirft, erprobt und befähigt. Die �
 ---
 titel: Wer trägt was bei?
 links: Bauherrenseite
-rechts: Bauherr Mentoren
+rechts: Begleitung
 ---
 [[bedienung:Ordnen Sie jeden Beitrag zu.]]
 

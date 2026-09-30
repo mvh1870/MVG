@@ -15,7 +15,7 @@ titel: Minimum Viable Governance als Bauherren-Führungsmodell
 kurztitel: Führungsmodell
 story: [rueckspulen, B1]
 ---
-Nach den sechs Verantwortungsfeldern stellt sich die Frage: Wie wird daraus etwas, womit ein Bauherr ein Projekt tatsächlich führen kann? Kapitel 5 beschreibt Minimum Viable Governance (MVG) als ein solches [[Bauherren-Führungsmodell]] – mit sechs Kernfragen, acht Bausteinen und einer einfachen Wirklogik: Die Bausteine wirken erst, wenn sie miteinander verbunden sind. Am Ende steht, was MVG ausdrücklich nicht ist.
+Nach den sechs Verantwortungsfeldern stellt sich die Frage: Wie wird daraus etwas, womit ein Bauherr ein Projekt tatsächlich führen kann? Kapitel 5 beschreibt Minimum Viable Governance (MVG) als ein solches [[Bauherren-Führungsmodell]] – mit sechs Kernfragen, acht Bausteinen und einer einfachen Wirklogik: MVG wirkt erst, wenn die Bausteine miteinander verbunden sind. Am Ende steht, was MVG ausdrücklich nicht ist.
 
 ::: kernaussage
 MVG ist kein Bürokratieprogramm und keine Berichtsoffensive, sondern der kleinste funktionsfähige Standard, mit dem ein Bauherr ein komplexes Projekt wirksam führen kann. Es übersetzt Verantwortung in Strukturen, in denen entschieden, mandatiert und nachgewiesen werden kann.
@@ -257,7 +257,7 @@ Die Wirkung von MVG entsteht durch Kopplung. Ein Zielsystem allein reicht nicht 
 ---
 titel: LPH 0 als früher Wirkungsraum
 ---
-LPH 0 ist die Bedarfsplanung nach DIN 18205 – sie liegt vor den HOAI-Leistungsphasen 1–9. Hier lassen sich früh die Grundlagen legen: Zielsystem, Mandatslogik, das Leistungsphasen- und Freigabemodell, die Datenstandslogik und erste Entscheidungsstandards. LPH 0 ist damit der Zeitpunkt, an dem spätere Steuerbarkeit vorbereitet wird.
+LPH 0 ist die Bedarfsplanung nach DIN 18205 – sie liegt vor den HOAI-Leistungsphasen 1–9. Hier lassen sich früh die Grundlagen legen: Zielsystem, Mandatslogik, das Leistungsphasen- und Freigabemodell, die Datenstandslogik und erste Entscheidungsstandards. LPH 0 ist damit der Zeitpunkt, an dem spätere Steuerbarkeit vorbereitet werden kann.
 
 Was hier offen bleibt, kommt später zurück: Bleiben Zielprioritäten unklar, sind Mandate nicht definiert, laufen Gremien- und Projektlogik auseinander oder werden Datenstände nicht referenziert, entstehen spätere Kosten-, Termin-, Qualitäts- und Freigaberisiken.
 

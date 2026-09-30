@@ -226,7 +226,7 @@ Was hat die Bauherrenorganisation in der Hand, wenn MVG umgesetzt ist? Keine los
 
 Das Kapitel nennt sechs Elemente dieses Modells, jedes mit seinem Ergebnis. Die Karten unten zeigen sie im Wortlaut der Tabelle. Mehrere davon werden in späteren Kapiteln ausführlich behandelt.
 
-Wichtig ist das letzte Element, die [[Befähigung]]. Der Bauherr muss das Modell nach der Übergabe selbst anwenden können. Bauherr Mentoren übernimmt dabei keine Bauherrenrolle, sondern stellt Struktur, [[Entscheidungsreife]], Mandatsklarheit und Befähigung her, damit die Bauherrenorganisation ihre Verantwortung selbst wirksam ausüben kann. Das [[Betriebshandbuch]] übergibt Routinen und Rollen in den Regelbetrieb.
+Wichtig ist das letzte Element, die [[Befähigung]]. Der Bauherr muss das Modell nach der Übergabe selbst anwenden können. Die Begleitung übernimmt dabei keine Bauherrenrolle; sie schafft Struktur und [[Entscheidungsreife]], damit die Bauherrenorganisation ihre Verantwortung selbst wirksam ausüben kann. Das [[Betriebshandbuch]] übergibt Routinen und Rollen in den Regelbetrieb.
 
 ::: tafel k1.3-t1
 ---
@@ -236,15 +236,14 @@ form: karten
 
 ::: umschalter
 ---
-titel: Wer macht was – während der Begleitung und nach der Übergabe des Modells?
-links: Während der Begleitung
+titel: Wer macht was – während der Einführung und nach der Übergabe des Modells?
+links: Während der Einführung
 rechts: Nach der Übergabe des Modells
 ---
 Befähigung ist Pflichtbestandteil – der Blick auf beide Zeitpunkte zeigt, warum.
 
 ::: ansicht links
-- Bauherr Mentoren stellt Struktur, Entscheidungsreife, Mandatsklarheit und Befähigung her.
-- Die Bauherrenrolle bleibt bei der Bauherrenorganisation – auch in dieser Phase.
+- Die Bauherrenrolle bleibt bei der Bauherrenorganisation – auch während der Einführung.
 - Ziel ist, dass die Organisation ihre Verantwortung selbst wirksam ausüben kann.
 :::
 

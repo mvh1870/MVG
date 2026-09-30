@@ -535,6 +535,20 @@ test('Mutanten-Probe (Beispiel): ein verfälschtes Zitat, eine erfundene ID und 
     'Berichterstattung erzeugt Information. Führung entsteht erst, wenn Information mit Mandat verbunden wird.',
     'Ein Ampelbericht ohne Entscheidungsfrage bleibt Beobachtung. […] Berichterstattung erzeugt Information.'));
   assert.ok((await kompiliere({ pruefe: true, wurzel: vertauscht, ziel: null })).fehler.some((f) => /nicht wortgleich/u.test(f)));
+  // R49: ein Zitat, das mitten im Wort beginnt oder endet, ist nicht wortgleich („erzeugt Informati“ aus „Information“)
+  const imWort = neueWurzel(veraendere(BEISPIEL, 'inhalte/story/X1/station.md',
+    'Berichterstattung erzeugt Information. Führung entsteht erst, wenn Information mit Mandat verbunden wird.',
+    'erstattung erzeugt Information. Führung entsteht erst, wenn Information mit Mandat verbunden wird.'));
+  assert.ok((await kompiliere({ pruefe: true, wurzel: imWort, ziel: null })).fehler.some((f) => /beginnt oder endet mitten im Wort/u.test(f)));
+  const imWortEnde = neueWurzel(veraendere(BEISPIEL, 'inhalte/story/X1/station.md',
+    'Berichterstattung erzeugt Information. Führung entsteht erst, wenn Information mit Mandat verbunden wird.',
+    'Berichterstattung erzeugt Informati'));
+  assert.ok((await kompiliere({ pruefe: true, wurzel: imWortEnde, ziel: null })).fehler.some((f) => /beginnt oder endet mitten im Wort/u.test(f)));
+  // R49: zwischen „[…]“ mindestens zwei Wörter – ein einzelnes Wort verschöbe den Sinn
+  const einWort = neueWurzel(veraendere(BEISPIEL, 'inhalte/story/X1/station.md',
+    'Berichterstattung erzeugt Information. Führung entsteht erst, wenn Information mit Mandat verbunden wird.',
+    'Berichterstattung erzeugt Information. […] Beobachtung.'));
+  assert.ok((await kompiliere({ pruefe: true, wurzel: einWort, ziel: null })).fehler.some((f) => /ist zu kurz/u.test(f)));
 });
 
 test('Abdeckung (P1.1): Lücke, fremdes Kapitel und unbekannte Seite sind Fehler; geplante Kapitelseite gilt', async () => {
@@ -780,4 +794,33 @@ Berichterstattung erzeugt Information.
   assert.ok(f1.some((f) => /Wissenscheck berichte: mindestens zwei Antworten/u.test(f)), f1.join('\n'));
   const f2 = (await kompiliere({ pruefe: true, wurzel: neueWurzel({ ...BEISPIEL, 'inhalte/theorie/k02-ausgangslage.md': seite(ohneBeleg) }), ziel: null })).fehler;
   assert.ok(f2.some((f) => /Wissenscheck berichte: Beleg fehlt/u.test(f)), f2.join('\n'));
+});
+
+test('Eigentext (R49): „EW“ und „Mio. EUR“ nur im wortgleichen Zitat; Schwellen der Mandatsleiter überall 100 TEUR / 5 Mio.', async () => {
+  const { readdirSync, statSync } = await import('node:fs');
+  const dateien: string[] = [];
+  const sammle = (d: string): void => {
+    for (const n of readdirSync(d)) {
+      const p = path.join(d, n);
+      if (statSync(p).isDirectory()) sammle(p);
+      else if (/\.(md|yaml)$/u.test(n)) dateien.push(p);
+    }
+  };
+  sammle(path.join(WURZEL, 'inhalte'));
+  assert.ok(dateien.length > 100);
+  const funde: string[] = [];
+  let schwellen = 0;
+  for (const p of dateien) {
+    const roh = readFileSync(p, 'utf8');
+    // Zitate: Container „::: zitat …“, eingebettete [[zitat:…|…]] und in Anführung „…“ wiedergegebener Quelltext
+    const eigen = roh.replace(/^::: zitat [^\n]*\n[\s\S]*?\n:::$/gmu, ' ').replace(/\[\[zitat:[^|\]]+\|[^\]]*\]\]/gu, ' ').replace(/„[^“]*“/gu, ' ');
+    for (const m of eigen.matchAll(/\bEW\b|Mio\. EUR/gu)) funde.push(`${path.relative(WURZEL, p)}: „${m[0]}“`);
+    for (const m of roh.matchAll(/einschließlich ([\d.,]+) (TEUR|Mio\.)/gu)) {
+      schwellen += 1;
+      const soll = m[2] === 'TEUR' ? '100' : '5';
+      if (m[1] !== soll) funde.push(`${path.relative(WURZEL, p)}: Schwelle „einschließlich ${m[1]} ${m[2]}“`);
+    }
+  }
+  assert.deepEqual(funde, []);
+  assert.ok(schwellen >= 30, `nur ${schwellen} Schwellen gefunden`);
 });

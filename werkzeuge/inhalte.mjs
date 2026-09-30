@@ -710,9 +710,26 @@ class Kompilierer {
       this.fehler(ort, 'Zitat ist leer');
       return { ok: false, vollstaendig: false };
     }
+    // R49: ein Stück beginnt und endet an einer Wortgrenze (sonst gälte „verantwortlich“ aus „letztverantwortlich“ als
+    // wortgleich); zwischen „[…]“ trägt jedes Stück mindestens zwei Wörter (ein einzelnes „nicht“ verschöbe den Sinn)
+    const wortzeichen = /[\p{L}\p{N}]/u;
+    const anGrenze = (/** @type {number} */ i, /** @type {string} */ s) =>
+      !(wortzeichen.test(s[0] ?? '') && wortzeichen.test(original[i - 1] ?? '')) && !(wortzeichen.test(s[s.length - 1] ?? '') && wortzeichen.test(original[i + s.length] ?? ''));
+    if (stuecke.length > 1) {
+      const kurz = stuecke.find((s) => s.split(/\s+/u).length < 2);
+      if (kurz !== undefined) {
+        this.fehler(ort, `Zitat mit Auslassung: das Stück „${kurz}“ ist zu kurz (mindestens zwei Wörter zwischen „[…]“)`);
+        return { ok: false, vollstaendig: false };
+      }
+    }
     let pos = 0;
     for (const s of stuecke) {
-      const i = original.indexOf(s, pos);
+      let i = original.indexOf(s, pos);
+      while (i >= 0 && !anGrenze(i, s)) i = original.indexOf(s, i + 1);
+      if (i < 0 && original.includes(s)) {
+        this.fehler(ort, `Zitat nicht wortgleich mit ${ids.join(' ')}: „${s.slice(0, 40)}“ beginnt oder endet mitten im Wort`);
+        return { ok: false, vollstaendig: false };
+      }
       if (i < 0) {
         let gut = 0;
         let unten = 1;

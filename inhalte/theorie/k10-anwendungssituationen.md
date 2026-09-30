@@ -263,9 +263,9 @@ Eine gezielte MVG-Neuinitialisierung statt einer vollständigen Neuaufsetzung:
 ---
 titel: Typische Entscheidungsprobleme
 ---
-Fünf Entscheidungsprobleme kommen in Bauprojekten immer wieder vor – von der Variantenfreigabe ohne vollständige Abwägung bis zur MVG-Neuinitialisierung ohne eindeutigen Datenstand. Bei der Vergabe unter Preis- und Lieferkettenunsicherheit werden Angebotsgültigkeit, Risiken bei Komponenten mit langer Lieferzeit und Terminfolgen nicht zusammengeführt. Beim Änderungsantrag werden Kosten, Termin, Qualität, Projektumfang, Risiko und ESG/LCC nicht einheitlich bewertet und entschieden. Beim Gremienbeschluss fehlt die Klarheit über das Mandat.
+Fünf Entscheidungsprobleme kommen in Bauprojekten immer wieder vor – von der Variantenfreigabe ohne vollständige Abwägung bis zur MVG-Neuinitialisierung ohne eindeutigen Datenstand. Bei der Vergabe unter Preis- und Lieferkettenunsicherheit werden Angebotsgültigkeit, Risiken bei Komponenten mit langer Lieferzeit und Terminfolgen nicht zusammengeführt. Beim Änderungsantrag mit unvollständiger Auswirkungsbewertung werden Kosten, Termin, Qualität, Projektumfang, Risiko und ESG/LCC nicht einheitlich bewertet und entschieden. Fehlt beim Gremienbeschluss die Klarheit über das Mandat, werden Beschlüsse angreifbar oder müssen nachträglich geheilt werden.
 
-Die Folgen sind ernst. Folgekosten werden spät sichtbar, Beschlüsse werden angreifbar oder müssen nachträglich geheilt werden, oder das Projekt arbeitet mit mehreren Wahrheiten und verliert seine Wiederanlauffähigkeit.
+Die Folgen sind ernst. Folgekosten werden spät sichtbar, oder das Projekt arbeitet mit mehreren Wahrheiten und verliert seine Wiederanlauffähigkeit.
 
 Für jedes Problem nennt MVG ein Artefakt oder eine Routine, die dagegen hilft – etwa die Entscheidungsvorlage, das Änderungsregister mit verbindlicher Auswirkungsbewertung und dem monatlichen Änderungsgremium oder die Festschreibung des Datenstands. Die Tafel zeigt alle fünf. [[bedienung:In der Übung darunter ordnen Sie Werkzeuge ihrem Problem zu.]]
 

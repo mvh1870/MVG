@@ -269,6 +269,9 @@ test('Mutanten-Probe: verfälschte Zitate werden als nicht wortgleich erkannt', 
   assert.equal(istWortgleich(wp, 'k4.2-p3', '  '), false, 'leeres Zitat');
   assert.match(pruefeZitat(wp, 'k4.2-p3', mutanten[0]?.[1] ?? '').grund, /weicht in k4\.2-p3 nach \d+ Zeichen ab/);
   assert.match(pruefeZitat(wp, 'k4.2-p99', MANDATSLEITER).grund, /unbekannte Absatz-ID/);
+  // R49: Teilzeichenkette mitten im Wort ist kein wortgleiches Zitat
+  assert.equal(istWortgleich(wp, 'k4.2-p3', MANDATSLEITER.slice(1)), false, 'beginnt mitten im Wort');
+  assert.match(pruefeZitat(wp, 'k4.2-p3', MANDATSLEITER.slice(1)).grund, /mitten im Wort/);
 });
 
 test('whitepaper.md: Überschriften, je Block genau ein Anker in Dokumentreihenfolge, Abbildungen', () => {

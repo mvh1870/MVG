@@ -121,7 +121,7 @@ titel: Bezug und Nachweis
 ---
 titel: RACI-Prozess
 ---
-[[RACI]] ist vielen als Matrix bekannt, die Rollen und Zuständigkeiten gegenüberstellt. Sie übersetzt komplexe Rollenbilder in eine transparente Verantwortungslogik – reicht im Modell von Bauherr Mentoren aber nicht aus. Erst wenn die Rollen an Mandate, Freigabeschwellen, Stellvertretungen und Eskalationspfade gekoppelt sind, wird aus einer Kommunikationsmatrix ein Führungsinstrument.
+[[RACI]] ist vielen als Matrix bekannt, die Rollen und Zuständigkeiten gegenüberstellt. Sie übersetzt komplexe Rollenbilder in eine transparente Verantwortungslogik – reicht in MVG aber nicht aus. Erst wenn die Rollen an Mandate, Freigabeschwellen, Stellvertretungen und Eskalationspfade gekoppelt sind, wird aus einer Kommunikationsmatrix ein Führungsinstrument.
 
 So verstanden schützt RACI die Bauherrenorganisation vor stillschweigender Verantwortungsverlagerung. Es macht sichtbar, wann Projektsteuerung, [[PMO]], Planung oder Fachberatung unterstützen und wann die Entscheidung an die letztverantwortliche Bauherrenrolle zurückfallen muss. Die Kernfrage lautet: Wer bereitet vor, wer entscheidet, wer liefert belastbare Entscheidungsgrundlagen, wer wird konsultiert, wer informiert? Diese Rollenlogik gehört in Freigaben, Änderungssteuerung, Risikoprüfung und Berichterstattung.
 

@@ -53,7 +53,7 @@ Die Verantwortung liegt formal weiter beim Bauherrn – praktisch wird sie diffu
 ---
 titel: Volatile Märkte und Infrastrukturprogramme
 ---
-Wenn Märkte schwanken, trifft das ein Bauprojekt nicht an einer Stelle, sondern über viele Kanäle zugleich: Preisannahmen, Lieferzeiten, Angebotsgültigkeiten und Komponenten mit langer Lieferzeit geraten gleichzeitig in Bewegung. Dazu kommen Finanzierungspuffer, die Vergabestrategie und die Frage, welches Vorhaben im Portfolio Vorrang hat.
+Wenn Märkte schwanken, trifft das ein Bauprojekt nicht an einer Stelle, sondern über mehrere Kanäle: Preisannahmen, Lieferzeiten, Angebotsgültigkeiten und Komponenten mit langer Lieferzeit. Dazu kommen Finanzierungspuffer, die Vergabestrategie und die Frage, welches Vorhaben im Portfolio Vorrang hat.
 
 Besonders verwundbar sind zwei Zeiträume: die Zeit vor der [[Finale Investitionsentscheidung (FID)|finalen Investitionsentscheidung (FID)]] und die Zeit von Ausschreibung, Vergabe und Beschaffung der Komponenten mit langer Lieferzeit. Dort kippen Annahmen schnell. Die Entscheidungsprozesse sind aber oft noch auf stabilere Umfelder ausgelegt.
 

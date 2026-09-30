@@ -126,7 +126,14 @@ export function pruefeZitat(wp, id, zitat) {
   const z = normalisiere(zitat);
   if (z === '') return { ok: false, grund: 'leeres Zitat' };
   const t = normalisiere(block.text);
-  if (t.includes(z)) return { ok: true, grund: '' };
+  // R49: nur an Wortgrenzen (nicht „verantwortlich“ aus „letztverantwortlich“)
+  const wortzeichen = /[\p{L}\p{N}]/u;
+  for (let i = t.indexOf(z); i >= 0; i = t.indexOf(z, i + 1)) {
+    const vorn = wortzeichen.test(z[0] ?? '') && wortzeichen.test(t[i - 1] ?? '');
+    const hinten = wortzeichen.test(z[z.length - 1] ?? '') && wortzeichen.test(t[i + z.length] ?? '');
+    if (!vorn && !hinten) return { ok: true, grund: '' };
+  }
+  if (t.includes(z)) return { ok: false, grund: `Zitat beginnt oder endet in ${id} mitten im Wort` };
   // Längsten passenden Anfang suchen, damit der Befund zeigt, wo das Zitat abweicht.
   let gut = 0;
   let unten = 1;

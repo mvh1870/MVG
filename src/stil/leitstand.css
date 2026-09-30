@@ -977,7 +977,9 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .tabellenstand-quelle { display: flex; align-items: center; gap: 6px; font-size: var(--gr-s); color: var(--tinte-2); }
 .tabellenstand-quelle .symbol { font-size: var(--gr-l); color: var(--tabelle-symbol); }
 .tabellenstand-zahl { display: block; margin: 2px 0; font: 800 var(--gr-5xl)/1 var(--schrift-anzeige); color: var(--tinte); }
-/* R45: lange Wörter („Entscheidungsbedarf“) passen ungeteilt in den Kasten – Anzeigeschrift ≈ 0,43 em je Zeichen */
+/* R45: lange Wörter („Entscheidungsbedarf“) passen ungeteilt in den Kasten – Anzeigeschrift ≈ 0,43 em je Zeichen.
+   R47: Rückfall ohne Container-Einheiten (Safari 15.4): nach dem schmalsten Kasten (≈ 177 px bei 1024) */
+.tabellenstand-zahl { font-size: min(var(--gr-5xl), calc(380px / var(--zeichen, 1))); }
 @supports (width: 1cqi) {
   .tabellenstand { container-type: inline-size; }
   .tabellenstand-zahl { font-size: min(var(--gr-5xl), calc(200cqi / var(--zeichen, 1))); }

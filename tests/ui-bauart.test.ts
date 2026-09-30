@@ -187,6 +187,9 @@ test('Hilfe (P13, O-31): gleiche Aufteilung wie die Companion-Hilfe, leiser Zuga
   // R47: Governance-Fluss, Lenkungskreis berät, Eskalation und Registerzuständigkeit nach MVG, keine Wirkungsversprechen, kein Englisch im Fließtext
   assert.doesNotMatch(text, /Freigabe → Managementbericht → Maßnahme|Top-Entscheidungen treffen|Nutzen Sie den Approval-Workflow in der Entscheidungsvorlage für signierte Freigaben|sogar besser als bei einem Neustart|sonst Lenkungskreis|Eigenfreigabe bis 100 TEUR|<b>Verantwortungsdreieck<\/b>|Berichts-Sink|timeboxed|Late Claims|Threshold-Regeln|Das im Monatslauf|<b>EW Log:<\/b> Bauherren-PL|<b>Änderungsregister:<\/b> PMO/u);
   assert.match(text, /Freigabe → Maßnahme → Managementbericht/u);
+  // R47 (Architektur): die Ersetzungen zur Beschlusszuständigkeit (L-107 (2), L-130 (5)) sind gesichert
+  assert.doesNotMatch(text, /formal durch Lenkungskreis|(?<!Bauherrn )im Lenkungskreis (?:verabschiedet|beschlossen)|Bauherr \/ Lenkungskreis|MVG-Reifegrad-Modell/u);
+  assert.match(text, /Bauherr \(Lenkungskreis berät\)/u);
   // R47: Schrägstrich-Ketten brechen nach „/“ (Umbruchstelle ohne Zeichen), nicht mitten im Wort
   assert.match(text, /Rollen\/<wbr>Freigaben/u);
   assert.match(text, /<td>Risiko-\/(?:<wbr>)?Mandats-Eskalation<\/td><td>PL<\/td><td>entlang der Mandatsleiter/u);
@@ -1095,6 +1098,14 @@ test('Druck (P10.2): Kapitel und alle Kapitel als Bogen – ohne Kopfleiste, Ver
   assert.equal(bogen.querySelectorAll('.lern-kopf, .kapitel-verzeichnis, .kapitel-nav, [data-pruef="zitieren"], [data-pruef="kapitel-drucken"]').length, 0);
   assert.ok(bogen.querySelector('.originaltext'));
   for (const d of bogen.querySelectorAll('details')) assert.ok(d.hasAttribute('open'), 'im Druck aufgeklappt');
+  // R47 (Architektur): Kap. 5 hat zugeklappte Bausteine (5.2) – im Bogen sind alle offen (Kap. 6 hatte keine zu, die Probe konnte nie fehlschlagen)
+  const seite5 = baueTheorie({ inhalte, kapitel: 5, version: VERSION, bedienbar: true });
+  assert.ok(seite5.querySelectorAll('details:not([open])').length >= 8, 'Kap. 5 am Bildschirm mit zugeklappten Bausteinen');
+  document.body.replaceChildren(seite5);
+  seite5.querySelector<HTMLButtonElement>('[data-pruef="kapitel-drucken"]')?.click();
+  const bogen5 = document.querySelector('[data-pruef="druck-bogen"]');
+  assert.ok(bogen5 && bogen5.querySelectorAll('details').length >= 8);
+  assert.equal(bogen5.querySelectorAll('details:not([open])').length, 0, 'Kap. 5: alles aufgeklappt');
   const liste = baueTheorie({ inhalte, kapitel: null, version: VERSION, bedienbar: true });
   document.body.replaceChildren(liste);
   liste.querySelector<HTMLButtonElement>('[data-pruef="alles-drucken"]')?.click();

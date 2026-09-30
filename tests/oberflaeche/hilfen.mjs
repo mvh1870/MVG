@@ -1,5 +1,7 @@
 // Gemeinsame Hilfen der Browser-Szenarien (kein Szenario: Dateiname ohne .szenario.mjs).
 
+import { wortbrueche } from './pdf.mjs';
+
 /** Läuft im Browser: horizontales Scrollen und abgeschnittener Text (wie im Szenario „durchstich“). */
 export function pruefeLayout() {
   const funde = [];
@@ -100,11 +102,17 @@ export function pruefer(seite, h) {
     await seite.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
     await h.warte(150);
     for (const fund of await seite.evaluate(pruefeLayout)) h.befund(`${name}: ${fund}`);
+    // R47: Bauteile, deren Wörter nie mitten im Wort brechen dürfen (L-132, L-133, L-138) – am Bildschirm, ohne hyphens:auto-Text
+    const bruch = await wortbrueche(seite, BAUTEILE_UNGETEILT, { bildschirm: true });
+    if (bruch.length > 0) h.befund(`${name}: ${bruch.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(bruch.slice(0, 6))}`);
     await h.axe(name);
     await h.bild(name);
     await schmal(seite, h, name);
   };
 }
+
+/** R47: Bauteile, deren Wörter am Bildschirm nie mitten im Wort brechen dürfen */
+export const BAUTEILE_UNGETEILT = '.tabellenstand-zahl, .instrument-label, .ablesung, .protokoll-kopf, .lw-korb, .kapitel-titel, .fortschritt';
 
 /** Sichtbare, waagerecht rollende Bereiche ohne Tabulatorstopp (weder selbst noch ein Kind fokussierbar). */
 export function rollbarOhneTastatur() {
@@ -139,6 +147,12 @@ export async function schmal(seite, h, name) {
   if (sw > 321) h.befund(`${name}: rollt bei 320 px waagerecht (${sw} px)`);
   // R35: was bei 320 px waagerecht rollt, ist per Tastatur erreichbar (axe scrollable-region-focusable läuft hier nicht)
   for (const fund of await seite.evaluate(rollbarOhneTastatur)) h.befund(`${name} @320: ${fund}`);
+  // R47: Wortbrüche in den Bauteilen auch bei 320 px; Schrittknöpfe mindestens 24 × 24 px (WCAG 2.5.8, axe läuft hier nicht)
+  const bruch = await wortbrueche(seite, BAUTEILE_UNGETEILT, { bildschirm: true });
+  if (bruch.length > 0) h.befund(`${name} @320: ${bruch.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(bruch.slice(0, 6))}`);
+  const klein = await seite.evaluate(() => [...document.querySelectorAll('.fortschritt-schritt')].filter((el) => el.getClientRects().length > 0)
+    .map((el) => el.getBoundingClientRect()).filter((r) => r.width < 23.9 || r.height < 23.9).map((r) => `${Math.round(r.width)}×${Math.round(r.height)}`));
+  if (klein.length > 0) h.befund(`${name} @320: ${klein.length} Schrittknöpfe unter 24 px (${klein.slice(0, 3).join(', ')})`);
   await seite.setViewportSize(vp); await h.warte(100);
 }
 
@@ -161,6 +175,8 @@ export async function weltB(seite, h, station, pruefe, optionen = {}) {
   const WERKZEUGE = Object.entries({
     raci: '[data-pruef="raci"]', rhythmus: '[data-pruef="tafel-rhythmus"]', karten: '[data-pruef="tafel-karten"]', register: '[data-pruef="tafel-register"]',
     phasen: '[data-pruef="tafel-phasen"]', kette: '.kette', mandatsleiter: '.mandat-raster', vorlage: '[data-pruef="vorlage"]', fluss: '[data-pruef="fluss"]', datenstand: '[data-pruef="datenstand"]',
+    // R47: Excel-Stand (Anzeigezahl nach dem längsten Wort, L-132) – vorher nie an einer Prüfstelle sichtbar
+    tabellenstand: '.tabellenstand',
   });
   for (const st of WELT_B) {
     // Stationen dazwischen (noch nicht ausgebaut oder anders gebaut, z. B. B3) nur durchklicken

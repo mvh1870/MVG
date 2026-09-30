@@ -91,7 +91,7 @@ function bereiteStrgP(): void {
  */
 export function mitTrennstellen(text: string): string {
   // „Risiko-/Änderungs-/Maßnahmen…“, „Rollen/Freigaben/…“: nach „/“ darf die Zeile umbrechen (sonst ein unteilbarer Block)
-  return text.replace(/(?<=[\p{L}-])\/(?=\p{L})/gu, '/\u200b').replace(/\p{L}{12,}/gu, (wort) => wort.replace(/(?<=\p{L}(?:ungs|heits|keits|schafts|tions|täts|stands|ßnahmen|agement|umenten|triebs|utzen|ister|tritts|ketten|lagen|gabe|schutz|ohbau))(?!(?<=agement)s)(?=\p{Ll}{4})/gu, '\u00ad'));
+  return text.replace(/(?<=[\p{L}-])\/(?=\p{L})/gu, '/\u200b').replace(/\p{L}{12,}/gu, (wort) => wort.replace(/(?<=\p{L}(?:ungs|heits|keits|schafts|tions|täts|stands|ßnahmen|agement|umenten|triebs|utzen|ister|tritts|ketten|lagen|gabe|schutz|ohbau))(?!(?<=agement)s)(?!(?<=gabe)n[^aeiouäöü])(?=\p{Ll}{4})/gu, '\u00ad'));
 }
 
 /** Setzt in den Textknoten unter `el` die Trennstellen; gibt zurück, wie der alte Text wiederherzustellen ist. */

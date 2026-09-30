@@ -19,8 +19,11 @@ test('Trennstellen an den Fugen, Wortlaut unverändert', () => {
 
 test('kurze Wörter und Wortenden bleiben ungeteilt', () => {
   for (const w of ['Leistung', 'Bauherr', 'Entscheidungs', 'Freigabe', 'Wirkungen']) assert.equal(sicht(w), w);
-  // nach der Fuge mindestens vier Buchstaben: „Entscheidungsrat“ ja, „Leitungs-ID“ nein
+  // nach der Fuge mindestens vier Kleinbuchstaben – keine Trennstelle vor einer Endung (R47: Mutation {1} überlebte)
   assert.equal(sicht('Leitungs-ID'), 'Leitungs-ID');
+  for (const w of ['Risikoregisters', 'Phasenfreigaben', 'Standardfreigaben', 'Entscheidungsrat', 'Aufgabenstellung']) assert.equal(sicht(w), w, w);
+  assert.equal(sicht('Entscheidungsregisters'), 'Entscheidungs|registers');
+  assert.equal(sicht('Freigabenummer'), 'Freigabe|nummer');
   // nach „/“ zwischen Wörtern ein Umbruch ohne Breite, nicht in Zahlen (1/2) oder am Wortanfang
   assert.equal(sicht('Rollen/Freigaben/Nachweise'), 'Rollen/^Freigaben/^Nachweise');
   assert.equal(sicht('LPH 1/2 und /pfad'), 'LPH 1/2 und /pfad');

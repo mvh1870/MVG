@@ -177,3 +177,15 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 - **Fachtreue + Begriffe (Agent, auf 17adf62):** 5 Befunde (2 mittel: Hilfe „sofortige Lenkungskreis-Eskalation“, B3-bauherr ohne Zielpriorität des Bauherrn; 3 leicht: Hilfe-Mandate „darüber Lenkungskreis“, k09-Beispiel aus 9.2 in 9.1, Rückspulen ohne tragenden Satz) – eingearbeitet (L-133).
 - **Stil/Architektur (Agent, auf 17adf62):** 2 Befunde (1 mittel: Dossier-Probe weist den Bogen nicht nach; 1 leicht: 24-px-Grenze der Schrittknöpfe erst ab 380 px) – eingearbeitet (L-133). Ohne Fund: Anzeigezahl in allen Excel-Ständen ≤ 86,7 %, `container-type` ohne Nebenwirkung, Ablesung, Label, Fokus, Wortbrüche bei 320 px. Zählung neu – als Nächstes Runde 47.
 
+## Runde 47 (P12.5, zugleich P14.3) – erstmals als Workflow (L-134)
+Neun Prüffelder auf 7f1083d, adversariale Gegenprüfung (nach 49 Urteilen angehalten, L-139).
+- **Fachtreue Theorie k01–k06:** 12 leicht (Bedienhinweise in Übungen, Wortlaut nah an der Quelle) – L-135.
+- **Fachtreue Theorie k07–k13:** 1 mittel (Druckprobe kannte „Ordnen/Prüfen Sie“ nicht; bestätigt 3/3), 7 leicht – L-135.
+- **Story A:** 1 mittel (Express Welt A ohne Karten, Rückbezug „Ohne Wahl“ bei übersprungener Station), 8 leicht – L-136.
+- **Story B:** 2 mittel (Nachweiskette mit AEN-/PRB- unter „Entscheidungs-ID“; Frühwarnung zählte als aktives Risiko), 6 leicht – L-136.
+- **Abbildungen:** 2 leicht (Abweichungen abb-10, abb-7) – L-137. Alle 25 Überdeckungen, 13 Bilder byte-gleich reproduzierbar.
+- **Hilfe + Begriffe gesamt:** 7 mittel, 5 leicht (Governance-Fluss, Registerzuständigkeit, Lenkungskreis, Wirkungsversprechen, Verantwortungspyramide, Status, Schwellen) – L-137. Begriffe im ganzen Bau ohne Fund.
+- **Druck:** 10 mittel, 5 leicht (Regie-Protokoll ohne Bogenregeln, blasse Schrift ohne Hintergrundgrafiken, Umbrüche, Strg+P auf Epilog/Explore) – L-137.
+- **Stil Bildschirm:** 6 mittel, 2 leicht (Wortbrüche bei 320–400 px) – L-138.
+- **Architektur:** 5 mittel, 3 leicht (überlebende Mutanten) – L-139.
+Zählung neu – als Nächstes Runde 48.

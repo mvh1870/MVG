@@ -48,6 +48,8 @@ export interface SimErgebnis {
   wer: string;
   eskalation: SimHinweis[];
   wesentlich: boolean;
+  /** Freigabe berührt, Sachentscheidung unter dem Bauherrn: die Freigabe erteilt trotzdem der Bauherr (R38) */
+  freigabeBeimBauherrn: boolean;
   bauherr: SimHinweis[];
   information: SimHinweis[];
   freigabeweg: SimHinweis[];
@@ -122,8 +124,11 @@ export function simuliere(e: SimEingabe): SimErgebnis {
     hebe('bauherr', stufe === 'bauherr' ? wer : 'Bauherr');
   }
 
-  // R37: jede Freigabe zum Abschluss einer LPH erteilt der Bauherr selbst (k9.3-p3); sie ist wesentlich (k3.2-t1, k4.3-p1)
-  const wesentlich = e.substanziell || e.freigabeBeruehrt || bauherr.length > 0;
+  // R37/R38: jede Freigabe zum Abschluss einer LPH erteilt der Bauherr selbst (k9.3-p3); sie ist nicht delegierbar (k3.2-t1)
+  const freigabeBeimBauherrn = e.freigabeBeruehrt && (stufe !== 'bauherr' || eskaliert);
+  if (freigabeBeimBauherrn) bauherr.push({ quelle: 'k3.2-t1', text: 'Die Entscheidung über eine wesentliche Freigabe ist nicht delegierbar – die Freigabe zum Abschluss der Leistungsphase bleibt beim Bauherrn.' });
+  // R38: hebt schon der Betrag die Stufe zum Bauherrn, beschließt er selbst (k4.2-p3) – das ist eine Bauherrenentscheidung
+  const wesentlich = e.substanziell || e.freigabeBeruehrt || bauherr.length > 0 || (stufe === 'bauherr' && !eskaliert);
   if (wesentlich) {
     information.push({ quelle: 'k4.3-p2', text: 'Als wesentliche Entscheidung braucht sie eine eindeutige Kennung, einen Datenstand, eine verantwortliche Rolle, eine Entscheidungsfrage und einen Nachverfolgungsstatus.' });
   } else {
@@ -137,7 +142,9 @@ export function simuliere(e: SimEingabe): SimErgebnis {
     freigabeweg.push({ quelle: 'k9.3-p3', text: 'Die Freigabe zum Abschluss der Leistungsphase erteilt der Bauherr selbst auf Vorlage der Bauherren-PL – nicht die Projektsteuerung und nicht der Lenkungskreis; der Lenkungskreis berät und bereitet vor.' });
     freigabeweg.push({ quelle: 'k4.5-p1', text: 'Eine Freigabe legitimiert den nächsten Schritt auf einem benannten Datenstand.' });
     // R36: die Mandatsleiter oben gilt für die Sachentscheidung, die wesentliche Freigabe ist nicht delegierbar
-    if (stufe !== 'bauherr') freigabeweg.push({ quelle: 'k3.2-t1', text: 'Die Stufe unter „Wer entscheidet“ gilt für die Sachentscheidung; die Entscheidung über eine wesentliche Freigabe ist nicht delegierbar und bleibt beim Bauherrn.' });
+    if (freigabeBeimBauherrn) freigabeweg.push({ quelle: 'k3.2-t1', text: eskaliert
+      ? 'Die Stufe, die das projektspezifische Mandat bestimmt, gilt für die Sachentscheidung; die Entscheidung über eine wesentliche Freigabe ist nicht delegierbar und bleibt beim Bauherrn.'
+      : 'Die Stufe unter „Wer entscheidet“ gilt für die Sachentscheidung; die Entscheidung über eine wesentliche Freigabe ist nicht delegierbar und bleibt beim Bauherrn.' });
   } else if (!e.schwelleUeberschritten && stufe === 'pl') {
     freigabeweg.push({ quelle: 'k6.4.5-p1', text: 'Innerhalb des Mandats entscheiden die verantwortliche Rolle und die Bauherren-PL im definierten Rahmen und dokumentiert im Register.' });
   } else if (!e.schwelleUeberschritten && stufe === 'gremium') {
@@ -153,7 +160,7 @@ export function simuliere(e: SimEingabe): SimErgebnis {
       naechsterSchritt.push({ quelle: 'k9.4-l1', text: 'Status „In Bearbeitung“: die Entscheidungsvorlage vervollständigen – Frage, betroffene Freigabe, Mandat, Datenstand, Optionen, Wirkung, Empfehlung, Freigabe- oder Eskalationsweg.' });
       break;
     case 'entscheidungsreif':
-      naechsterSchritt.push({ quelle: 'k13-t1', text: `Status „Entscheidungsreif“: ausreichend vorbereitet, um auf der zuständigen Mandatsebene getroffen zu werden – hier ${wer}${e.freigabeBeruehrt && stufe !== 'bauherr' ? '; die Freigabe erteilt der Bauherr' : ''}.` });
+      naechsterSchritt.push({ quelle: 'k13-t1', text: `Status „Entscheidungsreif“: ausreichend vorbereitet, um auf der zuständigen Mandatsebene getroffen zu werden – hier ${eskaliert ? 'die Stufe, die das projektspezifische Mandat bestimmt' : wer}${freigabeBeimBauherrn ? '; die Freigabe erteilt der Bauherr' : ''}.` });
       break;
     case 'entschieden':
       naechsterSchritt.push({ quelle: 'k9.4-l1', text: 'Status „Entschieden“: Beschlusslage dokumentieren und die Nachverfolgung führen.' });
@@ -165,5 +172,5 @@ export function simuliere(e: SimEingabe): SimErgebnis {
       : { quelle: 'k4.6-p2', text: 'Ohne benannten Datenstand fehlt der Entscheidung ihre belastbare Grundlage.' });
   }
 
-  return { stufe, stufeOffen: eskaliert, wer, eskalation, wesentlich, bauherr, information, freigabeweg, naechsterSchritt };
+  return { stufe, stufeOffen: eskaliert, wer, eskalation, wesentlich, freigabeBeimBauherrn, bauherr, information, freigabeweg, naechsterSchritt };
 }

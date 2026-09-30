@@ -436,7 +436,7 @@ export const W = {
     nichtWesentlich: 'Nach Ihren Angaben keine wesentliche Bauherrenentscheidung.',
     titel: { eskalation: 'Mandat und Eskalation', bauherr: 'Bleibt beim Bauherrn', information: 'Informationsbedarf', freigabeweg: 'Freigabeweg', naechster: 'Nächster Schritt' },
     quelle: 'Originaltext',
-    meldung: (wer: string, wesentlich: boolean) => `Es entscheidet: ${wer}. ${wesentlich ? 'Wesentliche Entscheidung.' : 'Keine wesentliche Entscheidung.'}`,
+    meldung: (wer: string, wesentlich: boolean, freigabeBeimBauherrn: boolean) => `Es entscheidet: ${wer}${freigabeBeimBauherrn ? '; die Freigabe erteilt der Bauherr' : ''}. ${wesentlich ? 'Wesentliche Entscheidung.' : 'Keine wesentliche Entscheidung.'}`,
     grenze: 'Der Simulator rechnet nur mit Regeln, die MVG nennt. Beträge der Mandatsleiter sind ein Muster; im Projekt gilt das projektspezifische Mandat. Eine Risikobewertung nimmt der Simulator nicht vor – MVG nennt dafür keine Schwelle; er zeigt, ob die Risikoannahme beim Bauherrn liegt.',
   },
   // Regie

@@ -133,3 +133,6 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 ## Runde 37 (P12.5, zugleich P14.3)
 - **Fachtreue + Begriffe (Agent):** 2 Befunde (1 mittel: Simulator nennt eine berührte Freigabe bei kleinem Betrag „keine wesentliche Entscheidung“; 1 leicht: B1 Controlling überspringt die Registerlogik); 209 Zitate per Skript wortgleich, 28 von Hand; `begriffe` ohne Funde – eingearbeitet (L-112); Zählung neu.
 - **Stil/Architektur (Agent):** 2 Befunde (1 mittel: Browserdruck der Hilfe schneidet breite Tabellen und Grafiken ab; 1 leicht: Zusage L-111 (4) ohne Test) – nachgemessen, eingearbeitet mit Gegenproben (L-113). Ohne Fund: Start, Theorie k1–k13, Hilfe, Explore, Story (4 Rollen), 13 Abbildungsdialoge, Regie/Leinwand, Kapitel-Druckbogen, CSP, Netz, Größe.
+
+## Runde 38 (P12.5, zugleich P14.3)
+- **Fachtreue + Begriffe (Agent):** 4 Befunde (2 mittel: Simulator nennt Betragsstufe Bauherr „keine wesentliche Entscheidung“, B6-Regie-Notiz „entscheidet die Rolle“; 2 leicht: offene Stufe als Mandatsebene, Freigabe nicht unter „Bleibt beim Bauherrn“); 12 288 Simulator-Eingaben, 209 Zitate wortgleich – eingearbeitet (L-114); Zählung neu.

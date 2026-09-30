@@ -55,8 +55,8 @@ test('Nicht delegierbar (k3.2-t1): Projektbasis hebt auf den Bauherrn, Risikores
   assert.equal(simuliere({ ...basis, schwelleUeberschritten: true, risikoAnnahme: true }).stufeOffen, true);
   const ri = simuliere({ ...basis, betragTeur: 400, risikoAnnahme: true });
   assert.equal(ri.wer, 'Änderungsgremium');
-  assert.deepEqual(ri.vorbehalte, ['die Annahme der Risikoexposition entscheidet der Bauherr']);
-  assert.ok(ri.freigabeweg.some((h) => /die Annahme der Risikoexposition ist nicht delegierbar und bleibt beim Bauherrn/u.test(h.text)));
+  assert.deepEqual(ri.vorbehalte, ['über die Annahme wesentlicher Risikoexposition entscheidet der Bauherr']);
+  assert.ok(ri.freigabeweg.some((h) => /die Annahme wesentlicher Risikoexposition ist nicht delegierbar und bleibt beim Bauherrn/u.test(h.text)));
   // R41: nicht wesentlich – keine Entscheidungsvorlage, keine Kennung (k13-t1, k4.3-p2)
   const nw = simuliere({ ...basis, status: 'in-bearbeitung' });
   assert.equal(nw.wesentlich, false);
@@ -135,4 +135,25 @@ test('Grenzfälle: kein Betrag, Freigabe bei Bauherrenstufe', () => {
     assert.ok(x.bauherr.some((h) => h.quelle === 'k3.2-t1' && /Freigabe zum Abschluss/u.test(h.text)));
     assert.match(x.naechsterSchritt[0]?.text ?? '', /hier Bauherr im Lenkungskreis; die Freigabe zum Abschluss der Leistungsphase erteilt der Bauherr selbst\.$/u);
   }
+});
+
+test('R42: Schritte ohne Vorlage, Freigabeweg auf jeder Stufe, Projektbasis unter „Mandat und Eskalation“', () => {
+  // eskaliert, nicht wesentlich: „Offen“ und „In Bearbeitung“ behandeln den Fall gleich (Kennung, Vorlage)
+  assert.equal(simuliere({ ...basis, schwelleUeberschritten: true }).naechsterSchritt[0]?.quelle, 'k4.3-p2');
+  assert.equal(simuliere({ ...basis, schwelleUeberschritten: true, status: 'in-bearbeitung' }).naechsterSchritt[0]?.quelle, 'k9.4-l1');
+  // nicht wesentlich: keine Entscheidungsfrage, „im definierten Rahmen“ nur auf der PL-Stufe, „Entschieden“ ohne Vorlage
+  assert.doesNotMatch(simuliere(basis).naechsterSchritt[0]?.text ?? '', /Entscheidungsfrage/u);
+  const g = simuliere({ ...basis, betragTeur: 400, status: 'in-bearbeitung' });
+  assert.equal(g.wesentlich, false);
+  assert.equal(g.naechsterSchritt[0]?.quelle, 'k4.2-p3');
+  assert.doesNotMatch(g.naechsterSchritt[0]?.text ?? '', /definierten Rahmen/u);
+  assert.equal(simuliere({ ...basis, status: 'entschieden' }).naechsterSchritt[0]?.quelle, 'k6.4.5-p1');
+  // jede Lage hat einen Freigabeweg
+  for (const v of [{ ...basis, betragTeur: 8000 }, { ...basis, deckung: 'ueber-basis' as const }, { ...basis, schwelleUeberschritten: true }]) {
+    assert.ok(simuliere(v).freigabeweg.length > 0, JSON.stringify(v));
+  }
+  assert.equal(simuliere({ ...basis, deckung: 'ueber-basis' }).freigabeweg[0]?.quelle, 'k13-t1');
+  // Projektbasis bei kleinem Betrag: „Mandat und Eskalation“ nennt den Lenkungskreis
+  assert.ok(simuliere({ ...basis, deckung: 'ueber-basis' }).eskalation.some((h) => h.quelle === 'k13-t1' && /Lenkungskreis/u.test(h.text)));
+  assert.ok(!simuliere({ ...basis, betragTeur: 8000, deckung: 'ueber-basis' }).eskalation.some((h) => h.quelle === 'k13-t1'));
 });

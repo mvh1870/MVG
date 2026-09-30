@@ -66,7 +66,7 @@ Ein öffentlicher Bauherr steht häufig unter hoher Komplexität bei Nachweis, G
 
 Ein Beispiel: Ein Ausschuss soll über zusätzliche Mittel für ein Schulgebäude beschließen. Dass die Mehrkosten fachlich begründet sind, genügt nicht. Der Ausschuss braucht eine Vorlage, die zeigt, wer was vorbereitet hat, auf welchem Stand die Zahlen beruhen und worüber genau er entscheidet.
 
-Genau hier liegt der Nutzen des MVG-Ansatzes für öffentliche Bauherren: in klaren [[Mandat|Mandaten]], in [[Entscheidungsvorlage|Entscheidungsvorlagen]], in einer Freigabelogik, in einem Protokollstandard, in der Anbindung an die Vergabe und in Eskalationen, die belastbar dokumentiert sind. Schalten Sie um: Links sehen Sie die Anforderungen, rechts die Antwort.
+Genau hier liegt der Nutzen des MVG-Ansatzes für öffentliche Bauherren: in klaren [[Mandat|Mandaten]], in [[Entscheidungsvorlage|Entscheidungsvorlagen]], in einer Freigabelogik, in einem Protokollstandard, in der Anbindung an die Vergabe und in Eskalationen, die belastbar dokumentiert sind. [[bedienung:Schalten Sie um: Links sehen Sie die Anforderungen, rechts die Antwort.]]
 
 ::: umschalter
 ---
@@ -154,7 +154,7 @@ Diese drei Stellen zeigt der Regler. Zum Abschluss von LPH 2 geht es um die Wahl
 ---
 titel: Freigabereife an drei Stellen
 ---
-Schieben Sie den Regler durch die Leistungsphasen.
+[[bedienung:Schieben Sie den Regler durch die Leistungsphasen.]]
 
 ::: stufe lph2
 ---
@@ -226,7 +226,7 @@ Manche Projekte geraten nicht durch einen großen Fehler aus der Spur, sondern l
 
 Aussagekräftig ist also das Muster, nicht der einzelne Ausreißer. Und wenn das Muster da ist, braucht es oft keine vollständige Neuaufsetzung des Projekts, sondern eine gezielte [[MVG-Neuinitialisierung]]. Sie sichert den Datenstand, ordnet die Entscheidungslandschaft, klärt die Mandate, holt erforderliche Freigaben nach oder wiederholt sie und nutzt den 30/60/90-Orientierungsrahmen für die Neuordnung.
 
-Schalten Sie zwischen Muster und Antwort um. Wie eine MVG-Neuinitialisierung im Einzelnen abläuft, zeigt Kapitel 11.
+[[bedienung:Schalten Sie zwischen Muster und Antwort um.]] Wie eine MVG-Neuinitialisierung im Einzelnen abläuft, zeigt Kapitel 11.
 
 ::: umschalter
 ---

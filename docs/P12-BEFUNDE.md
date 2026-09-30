@@ -151,3 +151,7 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 ## Runde 41 (P12.5, zugleich P14.3)
 - **Fachtreue + Begriffe (Agent):** 5 Befunde (1 mittel: Risikoannahme hob weiter die ganze Entscheidung zum Bauherrn, gegen die L-119-Regel; 4 leicht: Vorlage/Kennung bei nicht wesentlicher Entscheidung, mehrdeutiges „die Freigabe“, Grammatik und Freigabe ohne Datenstand bei „Entschieden“, Regie-Notiz B4); 12 288 Simulator-Eingaben, 208 Zitate (207 wortgleich, 1 gewollt nach L-66), `begriffe` ohne Funde – eingearbeitet (L-120); Zählung neu.
 - **Stil/Architektur (Agent):** 6 Befunde (4 mittel: Lernwerkzeug-Titel allein am Seitenende im PDF, aufgelöste Etappenkarten reißen nach dem Titel, Umbruchtest liest nur CSS-Werte, Hilfe-Druck ohne Überschriftenregel – 12 Seiten enden mit Überschrift; 2 leicht: „Ziehen Sie den Regler“ im Druck, gleichnamige Quellen-Regionen im Simulator) – eingearbeitet, im PDF nachgemessen, Szenarien lesen jetzt das echte PDF (L-121); Zählung neu – als Nächstes Runde 42.
+
+## Runde 42 (P12.5, zugleich P14.3)
+- **Fachtreue + Begriffe (Agent):** 7 Befunde, **alle leicht** (Simulator: Schrittbedingungen, Belege nicht wesentlicher Schritte, Grammatik Risikoannahme, leerer Freigabeweg auf Stufe Bauherr; Bedienhinweise k02 „dabei“, sieben weitere Stellen) – 12 288 Eingaben, 209 Zitate (208 wortgleich, 1 gewollt), `begriffe` ohne Funde; eingearbeitet (L-122).
+- **Stil/Architektur (Agent):** läuft.

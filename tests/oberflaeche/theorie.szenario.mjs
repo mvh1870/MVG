@@ -391,6 +391,12 @@ export async function lauf(seite, h) {
   await h.warte(300);
   const alles = await seite.evaluate(() => ({ boegen: document.querySelectorAll('.druck-bogen').length, klasse: document.body.classList.contains('druckt-bogen'), kapitel: document.querySelectorAll('.druck-bogen .druck-kapitel').length }));
   if (alles.boegen !== 1 || !alles.klasse || alles.kapitel < 13) h.befund(`Alles drucken nach Kapitelbesuch: ${JSON.stringify(alles)}`);
+  // R42: in keinem Kapitel steht im Druck ein Bedienhinweis („Ziehen Sie den Regler“, „Schalten Sie um“ …)
+  await seite.emulateMedia({ media: 'print', reducedMotion: 'reduce' });
+  const bedienung = await seite.evaluate(() => (document.querySelector('.druck-bogen') instanceof HTMLElement ? /** @type {HTMLElement} */ (document.querySelector('.druck-bogen')).innerText : '')
+    .match(/[^.!?\n]*\b(?:Ziehen|Klicken|Schalten|Schieben|Wählen|Tippen|klicken|schalten|ziehen|schieben|wählen) Sie\b[^.!?\n]*/gu) ?? []);
+  if (bedienung.length > 0) h.befund(`Alles drucken: Bedienhinweise im Druck ${JSON.stringify(bedienung.slice(0, 5))}`);
+  await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
   await seite.evaluate(() => { window.print = () => {}; window.dispatchEvent(new Event('afterprint')); history.back(); });
   await h.erwarte('[data-pruef="kapitel-drucken"]');
   await seite.evaluate(() => { window.dispatchEvent(new Event('beforeprint')); });

@@ -166,7 +166,7 @@ titel: "Wirklogik: Verantwortung wird entscheidungsfähig"
 ---
 Die Wirkung von MVG entsteht durch **Kopplung**. Ein Zielsystem allein reicht nicht, eine RACI-Matrix, ein Freigabekalender oder eine einzelne Entscheidungsvorlage auch nicht. MVG wirkt erst, wenn diese Elemente miteinander verbunden sind.
 
-Ein Beispiel ist eine wesentliche Änderung. Als bloßer technischer Änderungsvorschlag ist sie für den Bauherrn nicht führbar. Führbar wird sie erst, wenn alle Elemente zusammenkommen – klicken Sie sie in der Leiste durch.
+Ein Beispiel ist eine wesentliche Änderung. Als bloßer technischer Änderungsvorschlag ist sie für den Bauherrn nicht führbar. Führbar wird sie erst, wenn alle Elemente zusammenkommen. [[bedienung:Klicken Sie sie in der Leiste durch.]]
 
 Diese Kopplung verändert das Verhalten im Projekt: Zielkonflikte werden sichtbar, bevor entschieden wird. Mandate werden ausdrücklich vergeben, statt aus Hierarchie oder Gewohnheit angenommen zu werden. Freigaben hängen an einer definierten Entscheidungsreife. Risiken und Änderungen werden entscheidungsfähig. Gremien erhalten Entscheidungsunterlagen statt bloßer Statusberichte. Und die Bauherren-PL bekommt eine handhabbare Logik für Vorbereitung, Nachverfolgung und Eskalation.
 

@@ -28,7 +28,7 @@ titel: Wie Verantwortung diffus wird
 links: Auf dem Papier
 rechts: In der Praxis
 ---
-Ohne Führungs- und Entscheidungsarchitektur entstehen Grauzonen. Auf dem Papier scheint alles geregelt – schalten Sie um und sehen Sie, was fehlt.
+Ohne Führungs- und Entscheidungsarchitektur entstehen Grauzonen. Auf dem Papier scheint alles geregelt. [[bedienung:Schalten Sie um und sehen Sie, was fehlt.]]
 
 ::: ansicht links
 - Rollen sind beschrieben.
@@ -57,7 +57,7 @@ Wenn Märkte schwanken, trifft das ein Bauprojekt nicht an einer Stelle, sondern
 
 Besonders verwundbar sind zwei Zeiträume: die Zeit vor der [[Finale Investitionsentscheidung (FID)|finalen Investitionsentscheidung (FID)]] und die Zeit von Ausschreibung, Vergabe und Beschaffung der Komponenten mit langer Lieferzeit. Dort kippen Annahmen schnell. Die Entscheidungsprozesse sind aber oft noch auf stabilere Umfelder ausgelegt.
 
-Für Energieversorger, Netzbetreiber, Stadtwerkegruppen und andere Infrastrukturträger entsteht daraus ein eigener Governance-Bedarf. Er reicht von der Freigabereife über Regeln für Priorisierung und für Fortführung oder Stopp bis zu klaren Eskalationsroutinen. Diese Elemente gehören zum Kern des Modells. Schalten Sie in der Grafik zwischen den Kanälen des Drucks und den Antworten der Governance um.
+Für Energieversorger, Netzbetreiber, Stadtwerkegruppen und andere Infrastrukturträger entsteht daraus ein eigener Governance-Bedarf. Er reicht von der Freigabereife über Regeln für Priorisierung und für Fortführung oder Stopp bis zu klaren Eskalationsroutinen. Diese Elemente gehören zum Kern des Modells. [[bedienung:Schalten Sie in der Grafik zwischen den Kanälen des Drucks und den Antworten der Governance um.]]
 
 ::: umschalter
 ---
@@ -168,7 +168,7 @@ Wenn ein Projekt ins Rutschen kommt, liegt eine Reaktion nahe: mehr Berichte, me
 
 Der Grund ist einfach. Berichte erzeugen Information. Führung entsteht erst, wenn Information mit Mandat, Entscheidung, Schwelle, Risikoannahme, [[Datenstand]], [[Freigabe]] und Nachweis verbunden wird. Die vier Karten zeigen, was ohne diese Verbindung übrig bleibt.
 
-MVG setzt deshalb eine Stufe früher an. Die erste Frage lautet nicht: Welche Berichte fehlen? Sondern: Welche nichtdelegierbaren Bauherrenentscheidungen stehen an? Daraus ergeben sich sechs weitere Fragen. Schalten Sie in der Grafik zwischen beiden Blickwinkeln um.
+MVG setzt deshalb eine Stufe früher an. Die erste Frage lautet nicht: Welche Berichte fehlen? Sondern: Welche nichtdelegierbaren Bauherrenentscheidungen stehen an? Daraus ergeben sich sechs weitere Fragen. [[bedienung:Schalten Sie in der Grafik zwischen beiden Blickwinkeln um.]]
 
 ::: karten
 ---
@@ -266,7 +266,7 @@ Woran erkennt man, dass ein Bauherr seine Verantwortung nicht mehr wirksam ausü
 
 Jedes Symptom folgt demselben Muster: Es zeigt sich in einer typischen Situation im Projekt, hat eine Konsequenz für den Bauherrn und hat eine Antwort im MVG-Modell. Ein Beispiel ist die Eskalation ohne Entscheidung: Themen werden nach oben gegeben, aber ohne klare Optionen, Empfehlung oder Konsequenzen. Die Folge ist Verzögerung statt Führung. Die Antwort ist ein verbindlicher Standard für [[Entscheidungsvorlage|Entscheidungsvorlagen]] mit einer Entscheidungsfrage je Eskalation.
 
-[[bedienung:Wählen Sie in der Grafik ein Symptom und verfolgen Sie die Kette von Muster über Konsequenz bis zur Reaktion.]] Fragen Sie sich dabei, welche Symptome Sie aus eigenen Projekten kennen.
+[[bedienung:Wählen Sie in der Grafik ein Symptom und verfolgen Sie die Kette von Muster über Konsequenz bis zur Reaktion.]] Fragen Sie sich, welche dieser Symptome Sie aus eigenen Projekten kennen.
 
 Die acht Symptome sind zugleich das, was die MVG-Reifegradanalyse (Kapitel 7.1) systematisch erhebt, bewertet und priorisiert. Bevor daraus ein [[Bauherren-Führungsmodell]] werden kann, braucht es aber begriffliche Klarheit: Was ist delegierbar – und was nicht? Diese Linie zieht Kapitel 3.
 

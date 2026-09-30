@@ -88,6 +88,10 @@ export function simuliere(e: SimEingabe): SimErgebnis {
       : stufe === 'gremium' ? 'Oberhalb von 100 TEUR bis einschließlich 5 Mio. € entscheidet das Änderungsgremium.'
         : 'Oberhalb von 5 Mio. € erfolgt die Beschlussfassung durch den Bauherrn im Lenkungskreis.',
   });
+  if (e.deckung === 'ueber-basis' && stufe !== 'bauherr') {
+    // R42: sonst nannte „Mandat und Eskalation“ nur die Betragsstufe, während „Wer entscheidet“ den Bauherrn im Lenkungskreis zeigt
+    eskalation.push({ quelle: 'k13-t1', text: 'Eine Neufestlegung der Projektbasis liegt außerhalb der regulären Freigabereihe und wird vom Bauherrn im Lenkungskreis beschlossen – gleich, welche Betragsstufe gilt.' });
+  }
   if (e.schwelleUeberschritten || e.terminWochen > 0) {
     eskalation.push({
       quelle: 'k6.4.5-p1',
@@ -127,7 +131,7 @@ export function simuliere(e: SimEingabe): SimErgebnis {
   if (e.risikoAnnahme) {
     // R41: wie Reserve und Zielpriorität – die Annahme der Risikoexposition ist Vorbehalt des Bauherrn, die Sachentscheidung bleibt auf ihrer Stufe (k3.2-t1, k4.4-p1)
     bauherr.push({ quelle: 'k4.4-p1', text: 'Die Annahme wesentlicher Risikoexposition bleibt eine Bauherrenentscheidung.' });
-    vorbehalte.push('die Annahme der Risikoexposition entscheidet der Bauherr');
+    vorbehalte.push('über die Annahme wesentlicher Risikoexposition entscheidet der Bauherr');
   }
 
   // R37/R38: jede Freigabe zum Abschluss einer LPH erteilt der Bauherr selbst (k9.3-p3); sie ist nicht delegierbar (k3.2-t1)
@@ -157,7 +161,7 @@ export function simuliere(e: SimEingabe): SimErgebnis {
   }
   // R36/R40: die Mandatsleiter oben gilt für die Sachentscheidung; was nicht delegierbar ist, bleibt beim Bauherrn
   if (vorbehalte.length > 0 && (stufe !== 'bauherr' || eskaliert)) {
-    const teile = [e.freigabeBeruehrt ? 'die Entscheidung über eine wesentliche Freigabe' : null, e.deckung === 'reserve' ? 'die Freigabe des Einsatzes der Risikoreserve' : null, e.zielkonflikt ? 'die Festlegung der Zielpriorität' : null, e.risikoAnnahme ? 'die Annahme der Risikoexposition' : null].filter((t): t is string => t !== null);
+    const teile = [e.freigabeBeruehrt ? 'die Entscheidung über eine wesentliche Freigabe' : null, e.deckung === 'reserve' ? 'die Freigabe des Einsatzes der Risikoreserve' : null, e.zielkonflikt ? 'die Festlegung der Zielpriorität' : null, e.risikoAnnahme ? 'die Annahme wesentlicher Risikoexposition' : null].filter((t): t is string => t !== null);
     const aufzaehlung = teile.length === 1 ? teile[0] : `${teile.slice(0, -1).join(', ')} und ${teile[teile.length - 1]}`;
     freigabeweg.push({ quelle: 'k3.2-t1', text: `${eskaliert ? 'Die Stufe, die das projektspezifische Mandat bestimmt,' : 'Die Stufe unter „Wer entscheidet“'} gilt für die Sachentscheidung; ${aufzaehlung} ${teile.length === 1 ? 'ist' : 'sind'} nicht delegierbar und ${teile.length === 1 ? 'bleibt' : 'bleiben'} beim Bauherrn.` });
   } else if (e.freigabeBeruehrt) {
@@ -167,26 +171,43 @@ export function simuliere(e: SimEingabe): SimErgebnis {
   } else if (!e.schwelleUeberschritten && stufe === 'gremium') {
     // R35: oberhalb von 100 TEUR liegt die Entscheidung nicht mehr im Mandat der Bauherren-PL (k4.2-p3)
     freigabeweg.push({ quelle: 'k4.2-p3', text: 'Oberhalb von 100 TEUR liegt die Änderung nach der Muster-Mandatsleiter über der Freigabegrenze der Bauherren-PL; sie geht an das Änderungsgremium.' });
+  } else if (eskaliert) {
+    // R42: offene Stufe ohne Vorbehalt – der Weg führt entlang der Mandatsleiter (k6.4.5-p1)
+    freigabeweg.push({ quelle: 'k6.4.5-p1', text: 'Den Weg bestimmt das projektspezifische Mandat: entlang der Mandatsleiter an die Bauherren-PL, das Änderungsgremium oder zur Beschlussfassung durch den Bauherrn im Lenkungskreis.' });
+  } else if (stufe === 'bauherr') {
+    // R42: auch auf der Stufe Bauherr ohne berührte LPH-Freigabe steht ein Freigabeweg (k1.3-t1)
+    freigabeweg.push(e.deckung === 'ueber-basis'
+      ? { quelle: 'k13-t1', text: 'Die Neufestlegung der Projektbasis wird über eine Entscheidungsvorlage vorbereitet und vom Bauherrn im Lenkungskreis beschlossen.' }
+      : { quelle: 'k4.2-p3', text: 'Oberhalb von 5 Mio. € erfolgt die Beschlussfassung durch den Bauherrn im Lenkungskreis.' });
   }
 
+  /** Wesentlich oder eskaliert (Ende offen): Kennung und Entscheidungsvorlage (k4.3-p2, k9.4-l1, k13-t1) */
+  const vorlage = wesentlich || eskaliert;
   switch (e.status) {
     case 'offen':
       // R41: k4.3-p2 gilt nur für wesentliche Entscheidungen; sonst entscheidet die verantwortliche Rolle im Rahmen (k6.4.5-p1)
-      naechsterSchritt.push(wesentlich
+      // R42: dieselbe Bedingung wie „In Bearbeitung“; die Entscheidungsfrage gehört zur wesentlichen Entscheidung (k4.3-p2)
+      naechsterSchritt.push(vorlage
         ? { quelle: 'k4.3-p2', text: 'Status „Offen“: Entscheidungsfrage und verantwortliche Rolle festlegen, Kennung vergeben.' }
-        : { quelle: 'k6.4.5-p1', text: 'Status „Offen“: Entscheidungsfrage und verantwortliche Rolle festlegen.' });
+        : { quelle: 'k6.4.5-p1', text: 'Status „Offen“: verantwortliche Rolle festlegen und im Register dokumentieren.' });
       break;
     case 'in-bearbeitung':
       // R41: die Entscheidungsvorlage ist die Nachweislogik einer wesentlichen Entscheidung (k13-t1)
-      naechsterSchritt.push(wesentlich || eskaliert
+      // R42: „im definierten Rahmen“ gilt nur innerhalb des Mandats der Bauherren-PL (k6.4.5-p1, L-110)
+      naechsterSchritt.push(vorlage
         ? { quelle: 'k9.4-l1', text: 'Status „In Bearbeitung“: die Entscheidungsvorlage vervollständigen – Frage, betroffene Freigabe, Mandat, Datenstand, Optionen, Wirkung, Empfehlung, Freigabe- oder Eskalationsweg.' }
-        : { quelle: 'k6.4.5-p1', text: 'Status „In Bearbeitung“: im definierten Rahmen vorbereiten und im Register dokumentieren.' });
+        : stufe === 'pl'
+          ? { quelle: 'k6.4.5-p1', text: 'Status „In Bearbeitung“: im definierten Rahmen vorbereiten und im Register dokumentieren.' }
+          : { quelle: 'k4.2-p3', text: 'Status „In Bearbeitung“: die Änderung für das Änderungsgremium vorbereiten.' });
       break;
     case 'entscheidungsreif':
       naechsterSchritt.push({ quelle: 'k13-t1', text: `Status „Entscheidungsreif“: ausreichend vorbereitet, um auf der zuständigen Mandatsebene getroffen zu werden – hier ${eskaliert ? 'die Stufe, die das projektspezifische Mandat bestimmt' : wer}${vorbehalte.map((v) => `; ${v}`).join('')}.` });
       break;
     case 'entschieden':
-      naechsterSchritt.push({ quelle: 'k9.4-l1', text: 'Status „Entschieden“: Beschlusslage dokumentieren und die Nachverfolgung führen.' });
+      // R42: nicht wesentlich – ohne Entscheidungsvorlage, dokumentiert im Register (k6.4.5-p1)
+      naechsterSchritt.push(vorlage
+        ? { quelle: 'k9.4-l1', text: 'Status „Entschieden“: Beschlusslage dokumentieren und die Nachverfolgung führen.' }
+        : { quelle: 'k6.4.5-p1', text: 'Status „Entschieden“: die Entscheidung im Register dokumentieren.' });
       break;
   }
   if (!e.datenstandBenannt && (e.status === 'entscheidungsreif' || (e.status === 'entschieden' && e.freigabeBeruehrt))) {

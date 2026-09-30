@@ -505,6 +505,8 @@ a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
      im Wort; umbrochen wird nur noch, was allein nicht in die Zeile passt */
   .druck-bogen .tafel-karten > *, .druck-bogen .tafel-register > *, .druck-bogen .lernkarte { min-width: 0; overflow-wrap: break-word; hyphens: auto; }
   .druck-bogen .tafel-karten, .druck-bogen .tafel-register { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
+  /* R43: Tafeltitel im Druck 11 pt – in 13,5 pt passten lange Titelwörter nicht in eine Karte */
+  .druck-bogen .tafel-titel { font-size: 11pt; }
   .druck-bogen .lernseite { min-height: 0; background: none; }
   .druck-bogen .lern-rahmen { display: block; padding: 0; max-width: none; }
   .druck-bogen .lern-inhalt { max-width: none; gap: 6mm; }
@@ -717,7 +719,11 @@ a.abbildung-beleg { color: var(--navy); }
   .abbildung-rahmen { padding: var(--a-2); }
 }
 @media print {
-  .abbildung { break-inside: avoid; }
+  /* R43: die Abbildung darf nach dem Bild umbrechen – als ein Block (Bild, Unterschrift, bis zu neun Abweichungen) ließ sie
+     fast leere Seiten zurück (k5, k7, k10). Ganz bleiben das Bild, Marke und Titel und jede einzelne Abweichung */
+  .druck-bogen figure.abbildung { break-inside: auto; }
+  .abbildung-rahmen, .abbildung-unterschrift > span, .abbildung-abweichungen li { break-inside: avoid; }
+  .abbildung-rahmen, .abbildung-marke { break-after: avoid; }
   .abbildung-gross, .abbildung-dialog { display: none; }
 }
 /* Abbildungsverzeichnis in Explore (P14): Vorschaubild und Titel als Sprung zur Abbildung */

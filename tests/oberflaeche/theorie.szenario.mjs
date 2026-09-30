@@ -360,7 +360,9 @@ export async function lauf(seite, h) {
   // R41: im echten PDF – keine Seite endet mit einer Überschrift, keine leere Seite, kein Bedienhinweis („Ziehen Sie den Regler“)
   // R42: auch die Kapitälchen-Labels über Querverweis und Wissenscheck; je Kopf seine Druckgröße in pt (Listenpunkte gleichen Wortlauts zählen nicht)
   const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen :is(h1, h2, h3, h4, dt, .lw-titel, .original-abschnitt, summary, .lw-etappe-titel), .druck-bogen .lw-aufgeloest-liste > li > b:first-child, .druck-bogen :is(.querverweis-block, .wissenscheck) > .t-label')]
-    .map((x) => ({ text: x.textContent ?? '', pt: parseFloat(getComputedStyle(x).fontSize) * 0.75 })));
+    // R43: die Größe des sichtbaren Texts (größte Schrift eines Elements mit eigenem Text), nicht die des Kopfelements selbst
+    .map((x) => ({ text: x.textContent ?? '', pt: Math.max(...[x, ...x.querySelectorAll('*')].filter((e) => [...e.childNodes].some((k) => k.nodeType === 3 && (k.textContent ?? '').trim() !== ''))
+      .map((e) => parseFloat(getComputedStyle(e).fontSize))) * 0.75 })));
   const pdfText = await pdfSeiten(pdf);
   const amEnde = seitenMitUeberschriftAmEnde(pdfText, koepfe);
   if (amEnde.length > 0) h.befund(`Druck Kapitel 8: Überschrift am Seitenende ${JSON.stringify(amEnde)}`);
@@ -402,6 +404,41 @@ export async function lauf(seite, h) {
   const bedienung = await seite.evaluate(() => (document.querySelector('.druck-bogen') instanceof HTMLElement ? /** @type {HTMLElement} */ (document.querySelector('.druck-bogen')).innerText : '')
     .match(/[^.!?\n]*\b(?:Ziehen|Klicken|Schalten|Schieben|Wählen|Tippen|klicken|schalten|ziehen|schieben|wählen) Sie\b[^.!?\n]*/gu) ?? []);
   if (bedienung.length > 0) h.befund(`Alles drucken: Bedienhinweise im Druck ${JSON.stringify(bedienung.slice(0, 5))}`);
+  // R43: im Drucklayout (794 px Medienbreite, 688 px Satz) bricht kein Wort mitten im Wort ohne Trennstrich – nur an einer
+  // weichen Trennstelle (U+00AD); gemessen je Zeichen über die Zeilenlage
+  const vorAlles = seite.viewportSize() ?? { width: 1280, height: 720 };
+  await seite.setViewportSize({ width: 794, height: vorAlles.height });
+  await seite.evaluate(() => { document.documentElement.style.width = '688px'; });
+  await h.warte(200);
+  const wortbruch = await seite.evaluate(() => {
+    /** @type {string[]} */
+    const aus = [];
+    const rg = document.createRange();
+    const bogen = document.querySelector('.druck-bogen');
+    if (bogen === null) return aus;
+    const gang = document.createTreeWalker(bogen, NodeFilter.SHOW_TEXT);
+    for (let n = gang.nextNode(); n !== null; n = gang.nextNode()) {
+      if (n.parentElement === null || n.parentElement.getClientRects().length === 0) continue;
+      for (const m of (n.textContent ?? '').matchAll(/[\p{L}\p{N}\u00ad]{4,}/gu)) {
+        const wort = m[0];
+        const start = m.index ?? 0;
+        /** @type {{ y: number, i: number } | null} */
+        let vor = null;
+        for (let i = 0; i < wort.length; i++) {
+          rg.setStart(n, start + i); rg.setEnd(n, start + i + 1);
+          const r = [...rg.getClientRects()].find((x) => x.width > 0);
+          if (r === undefined) continue;
+          // gebrochen an einer Trennstelle: der Trennstrich kann dem ersten Zeichen danach zugeschlagen werden
+          if (vor !== null && r.top > vor.y + 2 && !wort.slice(Math.max(0, i - 2), i).includes('\u00ad')) { aus.push(wort.replace(/\u00ad/gu, '')); break; }
+          vor = { y: r.top, i };
+        }
+      }
+    }
+    return aus;
+  });
+  await seite.evaluate(() => { document.documentElement.style.width = ''; });
+  await seite.setViewportSize(vorAlles);
+  if (wortbruch.length > 0) h.befund(`Alles drucken: ${wortbruch.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(wortbruch.slice(0, 6))}`);
   await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
   await seite.evaluate(() => { window.print = () => {}; window.dispatchEvent(new Event('afterprint')); history.back(); });
   await h.erwarte('[data-pruef="kapitel-drucken"]');
@@ -412,6 +449,16 @@ export async function lauf(seite, h) {
   await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
   await seite.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
   if (await seite.locator('.druck-bogen').count() !== 0 || await seite.evaluate(() => document.body.classList.contains('druckt-bogen'))) h.befund('Strg+P: Bogen bleibt nach dem Druck stehen');
+  // R43: Kap. 7 im echten PDF – keine fast leere Seite vor einer Abbildung (die ganze Abbildung ließ 10 % Füllung zurück)
+  await seite.evaluate(() => { location.hash = '#theorie/k7'; });
+  await h.erwarte('[data-kapitel="7"] [data-pruef="kapitel-drucken"]');
+  await seite.locator('[data-pruef="kapitel-drucken"]').click();
+  await seite.emulateMedia({ media: 'print', reducedMotion: 'reduce' });
+  const k7 = await pdfSeiten(await seite.pdf({ format: 'A4' }));
+  const leer7 = k7.slice(0, -1).map((x, i) => ({ seite: i + 1, fuellung: Math.round((x.fuellung ?? 1) * 100) })).filter((x) => x.fuellung < 35);
+  if (leer7.length > 0) h.befund(`Druck Kapitel 7: fast leere Seiten ${JSON.stringify(leer7)}`);
+  await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
+  await seite.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
   // R29: Kap. 3 – das Schwellen-Spiel steht im Druck aufgelöst (je Aufgabe die Seite, ohne Hinweis und „Auflösen“)
   await seite.evaluate(() => { location.hash = '#theorie/k3'; });
   await h.erwarte('[data-kapitel="3"] .schwelle-karte');

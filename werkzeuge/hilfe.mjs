@@ -291,7 +291,14 @@ function bereinige(wurzel, anker, titel = '') {
     for (const c of erste) if (c) c.textContent = `Freigabestufe ${(c.textContent ?? '').trim().slice(1)}`;
     let vor = t.closest('.table-wrap') ?? t;
     vor = vor.previousElementSibling;
-    if (vor !== null && /^H\d$/u.test(vor.tagName)) vor.textContent = (vor.textContent ?? '').replace(/G0\s*[–-]\s*G9/u, '(Freigabestufen 0–4)');
+    if (vor !== null && /^H\d$/u.test(vor.tagName)) {
+      vor.textContent = (vor.textContent ?? '').replace(/G0\s*[–-]\s*G9/u, '(Freigabestufen 0–4)');
+      // R43: das Stufenmodell steht unter „MVG-Methodik“ – am Ort sagen, dass es das der Anwendung ist (Satz wortgleich k9.3-p1)
+      const vermerk = dok.createElement('p');
+      vermerk.className = 'hilfe-hinweis';
+      vermerk.textContent = 'Stufenmodell der Anwendung, keine Leistungsphasen. In MVG gilt: „Jede Leistungsphase endet mit einer Freigabe des Bauherrn.“ (Theorie, Kapitel 9.3)';
+      vor.after(vermerk);
+    }
   }
   const stufenGang = dok.createTreeWalker(wurzel, 4);
   for (let n = stufenGang.nextNode(); n !== null; n = stufenGang.nextNode()) {

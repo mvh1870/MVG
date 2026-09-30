@@ -191,7 +191,7 @@ datenstand: Kostenprognose 2026-05 · Version 3 · Schätzung der Generalplanung
 „Wie werden die Brandschutzauflagen aus der Baugenehmigung in der Ausführungsplanung umgesetzt?“
 
 ### Checkliste
-- [x] eindeutige [[Entscheidungs-ID]] · `AEN-031`
+- [ ] eindeutige [[Entscheidungs-ID]] · nicht vergeben; Bezug `AEN-031` (Änderung)
 - [x] Entscheidungsfrage
 - [x] betroffene Freigabe · Freigabe zum Abschluss von LPH 5
 - [x] Verantwortungsfeld · Freigabe (Änderung)

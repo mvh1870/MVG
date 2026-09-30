@@ -30,3 +30,12 @@ test('gleichlautender Listenpunkt in Grundschrift ist keine Überschrift', () =>
   assert.equal(seitenMitUeberschriftAmEnde([seite(['Text.', 'Rollen und Mandate'], [7.9, 7.9]), schluss], koepfe).length, 0);
   assert.equal(seitenMitUeberschriftAmEnde([seite(['Text.', 'Rollen und Mandate'], [7.9, 12]), schluss], koepfe).length, 1);
 });
+
+test('kurzer Anfang und Anfang mit Satzzeichen zählen nicht (R43)', () => {
+  const kopf = 'Freigabelogik und Entscheidungsreife im Regelbetrieb';
+  // unter 60 % der Überschrift: ein Wort am Seitenende ist noch keine Überschrift
+  assert.equal(seitenMitUeberschriftAmEnde([seite(['Text.', 'Freigabelogik und']), schluss], [kopf]).length, 0);
+  // mit Satzzeichen am Ende ist es ein Satz, auch wenn er wie der Anfang der Überschrift lautet
+  assert.equal(seitenMitUeberschriftAmEnde([seite(['Text.', 'Regel 1: Vorrang der Ziele. Regel 2:']), schluss], ['Regel 1: Vorrang der Ziele. Regel 2: Mandat']).length, 0);
+  assert.equal(seitenMitUeberschriftAmEnde([seite(['Text.', 'Freigabelogik und Entscheidungsreife']), schluss], [kopf]).length, 1);
+});

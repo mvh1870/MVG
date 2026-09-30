@@ -21,4 +21,24 @@ test('kurze Wörter und Wortenden bleiben ungeteilt', () => {
   for (const w of ['Leistung', 'Bauherr', 'Entscheidungs', 'Freigabe', 'Wirkungen']) assert.equal(sicht(w), w);
   // nach der Fuge mindestens vier Buchstaben: „Entscheidungsrat“ ja, „Leitungs-ID“ nein
   assert.equal(sicht('Leitungs-ID'), 'Leitungs-ID');
+  // nach „/“ zwischen Wörtern ein Umbruch ohne Breite, nicht in Zahlen (1/2) oder am Wortanfang
+  assert.equal(sicht('Rollen/Freigaben/Nachweise'), 'Rollen/^Freigaben/^Nachweise');
+  assert.equal(sicht('LPH 1/2 und /pfad'), 'LPH 1/2 und /pfad');
+  // zweimal angewandt ändert nichts (verschachtelte Elemente)
+  const einmal = mitTrennstellen('Risiko-/Änderungs-/Maßnahmenverknüpfung und Rollen/Freigaben');
+  assert.equal(mitTrennstellen(einmal), einmal);
+});
+
+test('jede Fuge einzeln (R44)', () => {
+  for (const [w, soll] of [
+    ['Sicherheitskonzept', 'Sicherheits|konzept'], ['Zuständigkeitsmatrix', 'Zuständigkeits|matrix'],
+    ['Gesellschaftsvertrag', 'Gesellschafts|vertrag'], ['Eskalationslogik', 'Eskalations|logik'],
+    ['Qualitätssicherung', 'Qualitäts|sicherung'], ['Datenstandsprüfung', 'Datenstands|prüfung'],
+    ['Maßnahmenregister', 'Maßnahmen|register'], ['Dokumentenprüfung', 'Dokumenten|prüfung'],
+    ['Betriebshandbuch', 'Betriebs|handbuch'], ['Nutzenbewertung', 'Nutzen|bewertung'], ['Managementbericht', 'Management|bericht'],
+  ] as [string, string][]) assert.equal(sicht(w), soll, w);
+});
+
+test('keine Trennstelle vor einem Fugen-s oder in fremden Wortteilen (R44)', () => {
+  for (const w of ['Managementsystem', 'Risikomanagementsystem', 'Projektmanagementsoftware', 'Investmentsicherung', 'Übernahmenachweis']) assert.equal(sicht(w), w);
 });

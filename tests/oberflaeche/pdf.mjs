@@ -35,7 +35,7 @@ export async function pdfSeiten(daten) {
       zeilen: sortiert.map((teile) => teile.map((t) => t.s).join(' ').replace(/\s+/gu, ' ').trim()),
       groessen: sortiert.map((teile) => Math.max(...teile.map((t) => t.pt))),
       // Anteil der Seite bis zur tiefsten Textzeile (Rand oben eingerechnet) – für „fast leere Seite“
-      fuellung: (Number(hoehe) - tiefste) / Number(hoehe),
+      fuellung: fuellung(Number(hoehe), tiefste),
     });
   }
   await aufgabe.destroy();
@@ -43,6 +43,16 @@ export async function pdfSeiten(daten) {
 }
 
 /** @typedef {{ breite: number, hoehe: number, zeilen: string[], groessen?: number[], fuellung?: number }} Seite */
+
+/**
+ * Anteil einer Seite bis zu ihrer tiefsten Textzeile (PDF-y wächst nach oben; ohne Text 0).
+ * @param {number} hoehe
+ * @param {number} tiefsteY
+ */
+export function fuellung(hoehe, tiefsteY) {
+  if (!(hoehe > 0) || tiefsteY >= hoehe) return 0;
+  return Math.min(1, Math.max(0, (hoehe - tiefsteY) / hoehe));
+}
 /** @typedef {{ text: string, pt?: number }} Kopf */
 
 /** Vergleichsform: ohne Leerraum, weiche Trennzeichen und Groß-/Kleinschreibung (Kapitälchen-Sperrung im PDF) */
@@ -83,4 +93,39 @@ export function seitenMitUeberschriftAmEnde(seiten, ueberschriften) {
     if (koepfe.some(passt)) treffer.push({ seite: i + 1, zeile: letzte });
   });
   return treffer;
+}
+
+/**
+ * R43/R44: Wörter, die im aktuellen Layout mitten im Wort ohne Trennstrich umbrechen – nur an einer weichen Trennstelle
+ * (U+00AD) ist ein Umbruch erlaubt. Gemessen je Zeichen über die Zeilenlage; der Trennstrich kann dem ersten Zeichen danach
+ * zugeschlagen werden. Aufruf im Drucklayout (Fenster 794 px, Seite 688 px).
+ * @param {import('playwright').Page} seite
+ * @param {string} wurzel CSS-Selektor der geprüften Bereiche
+ * @returns {Promise<string[]>}
+ */
+export async function wortbrueche(seite, wurzel) {
+  return seite.evaluate((sel) => {
+    /** @type {string[]} */
+    const aus = [];
+    const rg = document.createRange();
+    for (const w of document.querySelectorAll(sel)) {
+      const gang = document.createTreeWalker(w, NodeFilter.SHOW_TEXT);
+      for (let n = gang.nextNode(); n !== null; n = gang.nextNode()) {
+        if (n.parentElement === null || n.parentElement.getClientRects().length === 0) continue;
+        for (const m of (n.textContent ?? '').matchAll(/[\p{L}\p{N}\u00ad]{4,}/gu)) {
+          const wort = m[0];
+          const start = m.index ?? 0;
+          let vorY = /** @type {number | null} */ (null);
+          for (let i = 0; i < wort.length; i++) {
+            rg.setStart(n, start + i); rg.setEnd(n, start + i + 1);
+            const r = [...rg.getClientRects()].find((x) => x.width > 0);
+            if (r === undefined) continue;
+            if (vorY !== null && r.top > vorY + 2 && !wort.slice(Math.max(0, i - 2), i).includes('\u00ad')) { aus.push(wort.replace(/\u00ad/gu, '')); break; }
+            vorY = r.top;
+          }
+        }
+      }
+    }
+    return aus;
+  }, wurzel);
 }

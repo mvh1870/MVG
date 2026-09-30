@@ -7,7 +7,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { kontrastQuellen, pruefeLayout, rollbarOhneTastatur } from './hilfen.mjs';
-import { pdfSeiten, seitenMitUeberschriftAmEnde } from './pdf.mjs';
+import { pdfSeiten, seitenMitUeberschriftAmEnde, wortbrueche } from './pdf.mjs';
 
 export const name = 'theorie';
 export const hash = '#theorie';
@@ -410,32 +410,7 @@ export async function lauf(seite, h) {
   await seite.setViewportSize({ width: 794, height: vorAlles.height });
   await seite.evaluate(() => { document.documentElement.style.width = '688px'; });
   await h.warte(200);
-  const wortbruch = await seite.evaluate(() => {
-    /** @type {string[]} */
-    const aus = [];
-    const rg = document.createRange();
-    const bogen = document.querySelector('.druck-bogen');
-    if (bogen === null) return aus;
-    const gang = document.createTreeWalker(bogen, NodeFilter.SHOW_TEXT);
-    for (let n = gang.nextNode(); n !== null; n = gang.nextNode()) {
-      if (n.parentElement === null || n.parentElement.getClientRects().length === 0) continue;
-      for (const m of (n.textContent ?? '').matchAll(/[\p{L}\p{N}\u00ad]{4,}/gu)) {
-        const wort = m[0];
-        const start = m.index ?? 0;
-        /** @type {{ y: number, i: number } | null} */
-        let vor = null;
-        for (let i = 0; i < wort.length; i++) {
-          rg.setStart(n, start + i); rg.setEnd(n, start + i + 1);
-          const r = [...rg.getClientRects()].find((x) => x.width > 0);
-          if (r === undefined) continue;
-          // gebrochen an einer Trennstelle: der Trennstrich kann dem ersten Zeichen danach zugeschlagen werden
-          if (vor !== null && r.top > vor.y + 2 && !wort.slice(Math.max(0, i - 2), i).includes('\u00ad')) { aus.push(wort.replace(/\u00ad/gu, '')); break; }
-          vor = { y: r.top, i };
-        }
-      }
-    }
-    return aus;
-  });
+  const wortbruch = await wortbrueche(seite, '.druck-bogen');
   await seite.evaluate(() => { document.documentElement.style.width = ''; });
   await seite.setViewportSize(vorAlles);
   if (wortbruch.length > 0) h.befund(`Alles drucken: ${wortbruch.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(wortbruch.slice(0, 6))}`);
@@ -455,7 +430,7 @@ export async function lauf(seite, h) {
   await seite.locator('[data-pruef="kapitel-drucken"]').click();
   await seite.emulateMedia({ media: 'print', reducedMotion: 'reduce' });
   const k7 = await pdfSeiten(await seite.pdf({ format: 'A4' }));
-  const leer7 = k7.slice(0, -1).map((x, i) => ({ seite: i + 1, fuellung: Math.round((x.fuellung ?? 1) * 100) })).filter((x) => x.fuellung < 35);
+  const leer7 = k7.slice(0, -1).map((x, i) => ({ seite: i + 1, fuellung: Math.round((x.fuellung ?? 0) * 100) })).filter((x) => x.fuellung < 35);
   if (leer7.length > 0) h.befund(`Druck Kapitel 7: fast leere Seiten ${JSON.stringify(leer7)}`);
   await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
   await seite.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });

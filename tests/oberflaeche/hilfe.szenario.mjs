@@ -5,7 +5,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { pruefeLayout, schmal } from './hilfen.mjs';
-import { pdfSeiten, seitenMitUeberschriftAmEnde } from './pdf.mjs';
+import { pdfSeiten, seitenMitUeberschriftAmEnde, wortbrueche } from './pdf.mjs';
 
 export const name = 'hilfe';
 export const hash = '#start';
@@ -72,11 +72,18 @@ export async function lauf(seite, h) {
   if (breite >= 1280) {
     const vorher = seite.viewportSize() ?? { width: 1280, height: 720 };
     await seite.emulateMedia({ media: 'print', reducedMotion: 'reduce' });
-    await seite.setViewportSize({ width: 688, height: vorher.height });
-    for (const id of ['mvg-vorgehensmodell', 'registerdokument-katalog', 'kollaboration', 'datenmanagement']) {
+    // R44: wie im Druck – Media Queries bei der Blattbreite (≈ 794 px), Satz 688 px (L-124)
+    await seite.setViewportSize({ width: 794, height: vorher.height });
+    await seite.evaluate(() => { document.documentElement.style.width = '688px'; });
+    for (const id of ['mvg-vorgehensmodell', 'registerdokument-katalog', 'kollaboration', 'datenmanagement', 'faq-glossar', 'kundenanpassung']) {
       await seite.evaluate((x) => { location.hash = `#hilfe/${x}`; }, id);
       await h.erwarte(`[data-seite="${id}"] [data-pruef="hilfe-inhalt"]`);
       await h.warte(150);
+      // R44: Druckzustand wie beim echten Druck (beforeprint setzt Trennstellen); Wörter brechen nur an Trennstellen
+      const textVorher = await seite.evaluate(() => document.querySelector('.hilfe-inhalt')?.textContent ?? '');
+      await seite.evaluate(() => { window.dispatchEvent(new Event('beforeprint')); });
+      const bruch = await wortbrueche(seite, '.hilfe-inhalt');
+      if (bruch.length > 0) h.befund(`Druck ${id}: ${bruch.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(bruch.slice(0, 6))}`);
       // Tabellen bleiben hochkant im Satzspiegel; breite Grafiken stehen auf der Querseite (R39, unten geprüft)
       const gekappt = await seite.evaluate(() => [...document.querySelectorAll('.hilfe-inhalt .h-table-wrap')]
         .filter((el) => el.scrollWidth > el.clientWidth + 1 || el.getBoundingClientRect().right > (document.querySelector('.hilfe-inhalt')?.getBoundingClientRect().right ?? 0) + 1).length);
@@ -101,6 +108,9 @@ export async function lauf(seite, h) {
       // R42: Papier hat keine Links – kein Kopf-Link, kein Zurück/Weiter, kein „Öffnen“
       const bedien = await seite.evaluate(() => [...document.querySelectorAll('.hilfe :is(.lern-kopf-link, .kapitel-nav, .kapitel-karte-los)')].filter((x) => getComputedStyle(x).display !== 'none').length);
       if (bedien > 0) h.befund(`Druck ${id}: ${bedien} Bedienelemente im Druck`);
+      // der Druckzustand endet mit afterprint: danach steht wieder der Originaltext (Suche, Kopieren)
+      await seite.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
+      if (await seite.evaluate(() => document.querySelector('.hilfe-inhalt')?.textContent ?? '') !== textVorher) h.befund(`Druck ${id}: Text nach dem Druck verändert`);
     }
     // auf der Querseite erreichen die kleinsten Beschriftungen 7 pt (9,33 px)
     await seite.evaluate(() => { location.hash = '#hilfe/kollaboration'; });
@@ -111,6 +121,7 @@ export async function lauf(seite, h) {
     const klein = await seite.evaluate(() => Math.min(...[...document.querySelectorAll('.hilfe-inhalt .h-grafik-wrap svg text')]
       .map((t) => parseFloat(getComputedStyle(t).fontSize) * (t.getScreenCTM()?.a ?? 1))));
     if (!(klein >= 9.33)) h.befund(`Druck: kleinste Grafikbeschriftung auf der Querseite ${klein.toFixed(1)} px (< 7 pt)`);
+    await seite.evaluate(() => { document.documentElement.style.width = ''; });
     await seite.setViewportSize(vorher);
     await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
   }

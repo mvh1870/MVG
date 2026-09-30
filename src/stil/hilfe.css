@@ -155,6 +155,8 @@
   /* R42: Papier hat keine Links – Kopf-Link, „Öffnen“, Zurück/Weiter und der Theorie-Link im Fuß entfallen; der Fuß bleibt beim Inhalt */
   .hilfe :is(.lern-kopf-link, .kapitel-karte-los, .kapitel-nav) { display: none; }
   .hilfe .lern-fuss { break-before: avoid; break-inside: avoid; }
+  /* R44: im Druck bricht nur, was allein nicht in die Zeile passt (am Bildschirm schützt `anywhere` schmale Fenster) */
+  .hilfe-inhalt { overflow-wrap: break-word; }
   .hilfe-inhalt details > :not(summary) { display: block; }
   /* R41: Überschriften stehen nie allein am Seitenende und reißen nicht */
   .hilfe-inhalt :is(h1, h2, h3, h4, summary) { break-after: avoid; break-inside: avoid; }
@@ -177,9 +179,11 @@
   .hilfe-inhalt table { font-size: 9pt; }
   /* Spalten mit nur einer Plakette so schmal wie die Plakette, der Platz geht an den Text */
   .hilfe-inhalt td:has(> :is(.h-badge, .h-tag, .h-pill, .hilfe-marke):only-child) { width: 1%; }
-  .hilfe-inhalt :is(th, td) { padding: 4px 6px; overflow-wrap: anywhere; hyphens: auto; }
+  /* R44: umbrochen wird nur, was allein nicht in die Zelle passt – die Trennstellen setzt `mitTrennstellen` (beforeprint) */
+  .hilfe-inhalt :is(th, td) { padding: 4px 6px; overflow-wrap: break-word; hyphens: auto; }
   .hilfe-inhalt th { font-size: 7pt; letter-spacing: 0; overflow-wrap: normal; }
-  .hilfe-inhalt .h-table-wrap table :is(td, td *) { font-size: 8pt; line-height: 1.35; }
+  /* R44: 7,5 pt und schmalere Marken – mit `break-word` statt `anywhere` bestimmt das längste Wort die Spalte, der Registerkatalog lief sonst 39 px über */
+  .hilfe-inhalt .h-table-wrap table :is(td, td *) { font-size: 7.5pt; line-height: 1.35; }
   .hilfe-inhalt .h-table-wrap td :is(.h-tag, .h-badge, .h-pill, .hilfe-marke, code) { padding-inline: 3px; letter-spacing: 0; overflow-wrap: normal; hyphens: auto; }
   .hilfe-inhalt td code { white-space: normal; }
 }

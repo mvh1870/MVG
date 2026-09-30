@@ -13,6 +13,7 @@ import { bildmarke } from '../marke.ts';
 import { sym } from '../bausteine/bloecke.ts';
 import { halteRollenImDialog, oeffneDialog, schliesseBeiKlickDaneben } from '../dialog.ts';
 import { W } from '../woerter.ts';
+import { trennstellenImDruck } from '../druck.ts';
 
 export interface HilfeSeite {
   id: string;
@@ -253,6 +254,8 @@ export function baueHilfe(o: HilfeOptionen): HTMLElement {
       verzeichnis(hilfe, e?.seite.id ?? null),
       h('main', { class: 'lern-inhalt', id: 'lern-inhalt', 'data-pruef': e !== undefined ? 'hilfe-seite' : 'hilfe-uebersicht' }, teile)));
   grafikenVergroesserbar(aussen);
+  // R44: Papier hat kein Trennwörterbuch – Tabellenzellen bekommen beim Drucken weiche Trennstellen
+  if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') trennstellenImDruck('.hilfe-inhalt :is(th, td, li, p)');
   // gemessen, sobald gezeichnet, und neu bei jeder Größenänderung (Schriften, Fenster)
   if (typeof ResizeObserver === 'function') {
     const beobachter = new ResizeObserver(() => rollbereiche(aussen));

@@ -165,3 +165,6 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 44 (P12.5, zugleich P14.3)
 - **Fachtreue + Begriffe (Agent):** 1 Befund, leicht (k09 zählt die Ergebnisobjekte abschließend) – eingearbeitet (L-126). Gelesen: k01, k02, k03, k09, k10, k13 Satz für Satz, Prolog, A1–A6, Wendepunkt, B1, B2, drei Enden, alle Wissenscheck-Erklärungen, alle 13 Abbildungsbeschreibungen; Beträge nachgerechnet; L-125 bestätigt.
+- **Stil/Architektur (Agent, auf 50503dd):** 6 Befunde – (1) mittel: Kapitelziffer ragt im Druck über ihre Zeile (in „alles drucken“ am Seitenanfang gekappt, Fleck auf der Vorseite); (2) mittel: Hilfe-Druck bricht Wörter ohne Trennstrich (340 im Drucklayout); (3) leicht: Hilfe-Druckproben messen bei 688 statt 794 px; (4) leicht: falsche Fugen („Management|s|ystem“); (5) leicht: Fugenliste im Test nur teilweise festgehalten (7 Mutanten überleben); (6) leicht: `fuellung` ohne Einheitentest, Szenario setzt fehlende Werte auf „voll“. Ohne Fund: Theorie-Druck aller Kapitel und Dossier ohne Wortbruch und Überlauf, keine Trennzeichen im PDF-Text, Proben R43 wirksam, Story/Explore in vier Größen, Regie/Leinwand über 116 Orte.
+- **Eingearbeitet (L-127):** alle sechs, im PDF gerendert bzw. im Drucklayout nachgemessen; Zählung neu – als Nächstes Runde 45.
+

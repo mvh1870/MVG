@@ -507,6 +507,8 @@ a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
   .druck-bogen .tafel-karten, .druck-bogen .tafel-register { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
   /* R43: Tafeltitel im Druck 11 pt – in 13,5 pt passten lange Titelwörter nicht in eine Karte */
   .druck-bogen .tafel-titel { font-size: 11pt; }
+  /* R44: die große Kapitelziffer (Zeilenhöhe .8) ragte über ihre Zeile – am Seitenanfang oben gekappt, der Rest als Fleck unten auf der Vorseite */
+  .druck-bogen .kapitel-nr { line-height: 1.05; }
   .druck-bogen .lernseite { min-height: 0; background: none; }
   .druck-bogen .lern-rahmen { display: block; padding: 0; max-width: none; }
   .druck-bogen .lern-inhalt { max-width: none; gap: 6mm; }

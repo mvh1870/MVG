@@ -70,11 +70,40 @@ export function bogenFuerStrgP(anker: HTMLElement, bauer: () => { titel: string;
 /**
  * Weiche Trennstellen (U+00AD) in langen Wörtern nach einer Fuge („Entscheidungs|grundlagen“, „Maßnahmen|verknüpfung“).
  * Sichtbar wird der Strich nur, wo die Zeile tatsächlich dort umbricht; der Wortlaut bleibt gleich (dazu ein
- * Umbruch ohne Breite nach „-/“).
+ * Umbruch ohne Breite nach „/“ zwischen Wörtern).
  */
 export function mitTrennstellen(text: string): string {
-  // „Risiko-/Änderungs-/Maßnahmen…“: nach „-/“ darf die Zeile umbrechen (sonst ein unteilbarer Block)
-  return text.replace(/-\/(?=\p{L})/gu, '-/\u200b').replace(/\p{L}{12,}/gu, (wort) => wort.replace(/(?<=\p{L}(?:ungs|heits|keits|schafts|tions|täts|stands|nahmen|ments|agement|umenten|triebs|utzen))(?=\p{Ll}{4})/gu, '\u00ad'));
+  // „Risiko-/Änderungs-/Maßnahmen…“, „Rollen/Freigaben/…“: nach „/“ darf die Zeile umbrechen (sonst ein unteilbarer Block)
+  return text.replace(/(?<=[\p{L}-])\/(?=\p{L})/gu, '/\u200b').replace(/\p{L}{12,}/gu, (wort) => wort.replace(/(?<=\p{L}(?:ungs|heits|keits|schafts|tions|täts|stands|ßnahmen|agement|umenten|triebs|utzen|ister|tritts))(?!(?<=agement)s)(?=\p{Ll}{4})/gu, '\u00ad'));
+}
+
+/** Setzt in den Textknoten unter `el` die Trennstellen; gibt zurück, wie der alte Text wiederherzustellen ist. */
+function setzeTrennstellen(el: Element): () => void {
+  const alt: [Node, string][] = [];
+  const gang = el.ownerDocument.createTreeWalker(el, 4);
+  for (let t = gang.nextNode(); t !== null; t = gang.nextNode()) {
+    const vorher = t.textContent ?? '';
+    const neu = mitTrennstellen(vorher);
+    if (neu !== vorher) { alt.push([t, vorher]); t.textContent = neu; }
+  }
+  return () => { for (const [t, vorher] of alt) t.textContent = vorher; };
+}
+
+/**
+ * R44: Seiten ohne Druckbogen (Hilfe) – beim Drucken bekommen die Elemente unter `selektor` Trennstellen,
+ * danach steht wieder der Originaltext (Suche, Kopieren am Bildschirm unverändert).
+ */
+let druckTrennung: string[] | null = null;
+export function trennstellenImDruck(selektor: string): void {
+  if (druckTrennung !== null) { if (!druckTrennung.includes(selektor)) druckTrennung.push(selektor); return; }
+  druckTrennung = [selektor];
+  let zurueck: (() => void)[] = [];
+  window.addEventListener('beforeprint', () => {
+    for (const z of zurueck.reverse()) z();
+    zurueck = [...document.querySelectorAll((druckTrennung ?? []).join(', '))].map(setzeTrennstellen);
+  });
+  // verschachtelte Elemente (li > p): in umgekehrter Reihenfolge zurück, sonst bliebe ein Zwischenstand stehen
+  window.addEventListener('afterprint', () => { for (const z of zurueck.reverse()) z(); zurueck = []; });
 }
 
 /** Baut den Bogen (Details offen, IDs eindeutig) und hängt ihn unsichtbar an `body`. */
@@ -83,10 +112,7 @@ function haengeBogenAn(teile: Node[]): HTMLElement {
   const bogen = h('div', { class: 'druck-bogen', 'data-pruef': 'druck-bogen' }, teile);
   for (const d of bogen.querySelectorAll('details')) d.setAttribute('open', '');
   // R43: Papier hat kein Trennwörterbuch – lange Wörter in Tabellenzellen und Tafeltiteln bekommen weiche Trennstellen an ihren Fugen
-  for (const el of bogen.querySelectorAll('th, td, .tafel-titel')) {
-    const gang = el.ownerDocument.createTreeWalker(el, 4);
-    for (let t = gang.nextNode(); t !== null; t = gang.nextNode()) t.textContent = mitTrennstellen(t.textContent ?? '');
-  }
+  for (const el of bogen.querySelectorAll('th, td, .tafel-titel')) setzeTrennstellen(el);
   // keine doppelten IDs neben der Seite: umbenennen, Bezüge (aria-labelledby, for) mitziehen
   let n = 0;
   const neu = new Map<string, string>();

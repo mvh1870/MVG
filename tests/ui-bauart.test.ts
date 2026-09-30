@@ -158,6 +158,40 @@ test('Startseite: genau zwei Wege, leiser Fuß mit Version und Vermerk, keine In
   assert.equal(anzeige.querySelectorAll('a').length, 0, 'auf der Leinwand keine Verweise');
 });
 
+test('Name (O-33): „Governance Kompass“ mit Bildmarke und Absender „Bauherr Mentoren“ auf jeder Fläche, Adresse in Fuß, Impressum und Druck', async () => {
+  const { baueExplore } = await import('../src/ui/flaechen/explore.ts');
+  const { bogenKopf } = await import('../src/ui/druck.ts');
+  // die Bildmarke setzt main.ts beim Start aus quellen/marke (wie im Bau)
+  const { setzeMarke } = await import('../src/ui/marke.ts');
+  setzeMarke(readFileSync(join(WURZEL, 'quellen', 'marke', 'logo-bm.svg'), 'utf8'), readFileSync(join(WURZEL, 'quellen', 'marke', 'logo-bm-bildmarke.svg'), 'utf8'));
+  assert.equal(W.name, 'Governance Kompass');
+  assert.equal(W.adresse, 'www.GovernanceKompass.de');
+  const start = baueStart({ startseite: inhalte.startseite, kapitelAnzahl: 13, rollenAnzahl: 6, weiterlesen: false, fassung: 'V1.2', version: VERSION, bedienbar: true });
+  const kopf = start.querySelector('[data-pruef="start-name"]');
+  assert.equal(kopf?.querySelector('b')?.textContent, W.name);
+  assert.match(kopf?.textContent ?? '', /Bauherr Mentoren/u);
+  assert.ok(start.querySelector('.start-kopf svg.marke-logo'), 'Bildmarke auf der Startseite');
+  assert.match(start.querySelector('[data-pruef="fuss"]')?.textContent ?? '', /Governance Kompass.*Bauherr Mentoren.*www\.GovernanceKompass\.de/u);
+  const flaechen: [string, HTMLElement][] = [
+    ['Theorie', baueTheorie({ inhalte, kapitel: 3, version: VERSION, bedienbar: true })],
+    ['Kapitelliste', baueTheorie({ inhalte, kapitel: null, version: VERSION, bedienbar: true })],
+    ['Explore', baueExplore({ inhalte, freigeschaltet: true, weltB: true, version: VERSION })],
+    ['Hilfe', baueHilfe({ seite: 'standards', version: VERSION })],
+  ];
+  for (const [name, el] of flaechen) {
+    assert.ok(el.querySelector('.lern-kopf svg.marke-logo'), `${name}: Bildmarke im Kopf`);
+    assert.equal(el.querySelector('.lern-kopf [data-pruef="lern-marke"]')?.textContent, W.name, `${name}: Name im Kopf`);
+    assert.match(el.querySelector('.lern-fuss')?.textContent ?? '', /Governance Kompass · Bauherr Mentoren · www\.GovernanceKompass\.de/u, `${name}: Fuß`);
+  }
+  const impressum = flaechen[1]?.[1].querySelector('[data-pruef="impressum"]')?.textContent ?? '';
+  assert.match(impressum, /Governance Kompass · www\.GovernanceKompass\.de/u);
+  assert.match(impressum, /Bauherr Mentoren/u);
+  const druck = bogenKopf('Kapitel 3', VERSION, false).textContent ?? '';
+  assert.match(druck, /^Governance Kompass – Minimum Viable Governance von Bauherr Mentoren/u);
+  assert.match(druck, /www\.GovernanceKompass\.de/u);
+  assert.doesNotMatch([start, ...flaechen.map((x) => x[1])].map((x) => x.textContent).join(' '), /MVG interaktiv/u);
+});
+
 test('Hilfe (P13, O-31): gleiche Aufteilung wie die Companion-Hilfe, leiser Zugang, Blättern, Vermerk', () => {
   const s = baueStart({ startseite: inhalte.startseite, kapitelAnzahl: 13, rollenAnzahl: 6, weiterlesen: false, fassung: 'V1.2', version: VERSION, bedienbar: true });
   assert.equal(s.querySelector('[data-pruef="zur-hilfe"]')?.getAttribute('href'), '#hilfe');

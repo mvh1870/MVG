@@ -363,7 +363,7 @@ Tastatur am Griff: Der Regler ist ein **Umschalter mit Überblendung** zwischen 
 ### Startseite
 ```html
 <div class="startseite">
-  <header class="start-kopf">Bildmarke (navy) <div class="start-absender"><b>Bauherr Mentoren</b><span>MVG interaktiv</span></div></header>
+  <header class="start-kopf">Bildmarke (navy) <div class="start-absender"><b>Governance Kompass</b><span>Bauherr Mentoren · MVG V1.2</span></div></header>
   <main class="start-haupt">
     <div><p class="start-kicker">Minimum Viable Governance</p><h1 class="start-titel">…</h1><p class="start-these">…</p></div>
     <div class="tueren">

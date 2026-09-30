@@ -255,7 +255,7 @@ describe('bau: Bausteine', () => {
     assert.ok(huelle.includes('<html lang="de">'));
     assert.ok(huelle.includes('<meta charset="utf-8">'));
     assert.ok(huelle.includes('viewport-fit=cover'));
-    assert.ok(huelle.includes('<title>MVG interaktiv – Minimum Viable Governance</title>'));
+    assert.ok(huelle.includes('<title>Governance Kompass – Minimum Viable Governance</title>'));
     assert.ok(/<meta name="description" content="[^"]+">/.test(huelle));
     assert.ok(/<noscript>[\s\S]+<\/noscript>/.test(huelle));
     // Die CSP steht direkt hinter charset, damit sie vor allem anderen gilt.

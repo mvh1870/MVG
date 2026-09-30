@@ -69,10 +69,10 @@ Den Vermerk „fachlich ungeprüft“ zeigen beide Dateien, bis der Owner die Fa
 
 ## 3. Einbetten in eine Webseite (E12, P12)
 
-Diesen Schnipsel an die Stelle der eigenen Seite kopieren, an der MVG interaktiv erscheinen soll. Er lässt den Rahmen **mit dem Inhalt mitwachsen** (keine zweite Scrollleiste, weiche Höhenänderung), gibt der Story ab 981 px Breite eine feste Höhe (90 % des Fensters, 640–900 px), rollt beim Wechsel zwischen Start, Story, Lernseiten und Kapiteln sanft an den Anfang des Rahmens zurück, falls er aus dem Bild gescrollt ist, und springt bei Absatz-Links an die richtige Stelle. Bei reduzierter Bewegung (Systemeinstellung) geschieht all das ohne Animation.
+Diesen Schnipsel an die Stelle der eigenen Seite kopieren, an der der Governance Kompass erscheinen soll. Er lässt den Rahmen **mit dem Inhalt mitwachsen** (keine zweite Scrollleiste, weiche Höhenänderung), gibt der Story ab 981 px Breite eine feste Höhe (90 % des Fensters, 640–900 px), rollt beim Wechsel zwischen Start, Story, Lernseiten und Kapiteln sanft an den Anfang des Rahmens zurück, falls er aus dem Bild gescrollt ist, und springt bei Absatz-Links an die richtige Stelle. Bei reduzierter Bewegung (Systemeinstellung) geschieht all das ohne Animation.
 
 ```html
-<iframe id="mvg" title="MVG interaktiv"
+<iframe id="mvg" title="Governance Kompass"
         src="mvg-kunde.html?einbettung-herkunft=https%3A%2F%2Fwww.example.de&einbettung-hintergrund=ffffff#start"
         style="display:block;width:100%;height:720px;border:0;transition:height .35s ease"></iframe>
 <script>
@@ -114,7 +114,7 @@ Diesen Schnipsel an die Stelle der eigenen Seite kopieren, an der MVG interaktiv
 ```
 
 - Mindestbreite des Rahmens: 320 px (L-115). Auf schmalen Telefonen (unter 360 px) den Rahmen ohne seitlichen Innenabstand der eigenen Seite über die volle Breite setzen; schmaler gebaut rollen einzelne Abbildungen und der Simulator waagerecht.
-- `einbettung-herkunft`: die Adresse der eigenen Website (URL-kodiert). Dann hört und antwortet MVG interaktiv nur dieser Herkunft.
+- `einbettung-herkunft`: die Adresse der eigenen Website (URL-kodiert). Dann hört und antwortet der Governance Kompass nur dieser Herkunft.
 - `einbettung-hintergrund`: Hintergrundfarbe der eigenen Seite als Hex ohne `#` (z. B. `ffffff`). Nur helle Farben (etwa ab #ececec) werden übernommen, damit die Texte lesbar bleiben; sonst bleibt das eigene Grau.
 - Die Anwendung meldet dem Host `{ mvg: 'einbettung', art: 'bereit', version }`, nach jedem Wechsel `{ …, art: 'ort', hash, flaeche, titel }` und bei jeder Größenänderung `{ …, art: 'hoehe', px }` (`px: null` = feste Höhe, z. B. die Story am großen Bildschirm) sowie bei Sprüngen auf einen Absatz `{ …, art: 'ziel', y }`.
 - Der Host kann schicken:

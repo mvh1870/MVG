@@ -26,6 +26,9 @@
   background: var(--weiss);
 }
 .lern-kopf .marke-logo { height: 30px; color: var(--navy); }
+/* O-33: der Name des Programms neben der Bildmarke; schmal steht er im Dokumenttitel und im Fuß */
+.lern-marke { flex: none; padding-right: var(--a-3); border-right: 1px solid var(--linie); font: 800 var(--gr-m)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-kicker); text-transform: uppercase; color: var(--navy); white-space: nowrap; }
+@media (max-width: 640px) { .lern-marke { display: none; } }
 .lern-bereich { flex: 1; min-width: 0; font: 700 var(--gr-m)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-kicker); text-transform: uppercase; color: var(--petrol); }
 .lern-bereich span { color: var(--tinte-2); font-weight: 600; }
 .lern-kopf-link { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; font: 600 var(--gr-m)/1.2 var(--schrift-label); letter-spacing: .06em; text-transform: uppercase; color: var(--navy); text-decoration: none; }

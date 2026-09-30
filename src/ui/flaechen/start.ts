@@ -54,7 +54,8 @@ export function baueStart(o: StartOptionen): HTMLElement {
   const seite = h('div', { class: 'startseite', 'data-pruef': 'startseite' },
     h('header', { class: 'start-kopf' },
       bildmarke('marke-logo'),
-      h('div', { class: 'start-absender' }, h('b', null, W.absender), h('span', null, `${W.whitepaper} ${o.fassung} · ${w.interaktiv}`))),
+      // O-33: der Name des Programms, darunter der Absender mit der Fassung
+      h('div', { class: 'start-absender', 'data-pruef': 'start-name' }, h('b', null, W.name), h('span', null, `${W.langname} · ${W.absender} · ${W.whitepaper} ${o.fassung}`))),
     h('main', { class: 'start-haupt' },
       h('div', null,
         o.startseite !== null ? h('p', { class: 'start-kicker' }, o.startseite.kicker) : null,
@@ -74,7 +75,7 @@ export function baueStart(o: StartOptionen): HTMLElement {
           h('span', { class: 'tuer-meta' }, h('span', null, w.storyMeta(o.rollenAnzahl)), h('span', { class: 'tuer-los' }, o.weiterlesen ? w.storyWeiter : w.storyLos, sym('pfeilRechts'))),
         ]))),
     h('footer', { class: 'start-fuss', 'data-pruef': 'fuss' },
-      h('span', null, `${W.produkt} · ${W.fiktiv} · `, h('span', { 'data-pruef': 'version' }, o.version), ' ', h('span', { class: 'start-vermerk', 'data-pruef': 'ungeprueft' }, W.ungeprueft)),
+      h('span', null, `${W.start.fuss} · ${W.fiktiv} · `, h('span', { 'data-pruef': 'version' }, o.version), ' ', h('span', { class: 'start-vermerk', 'data-pruef': 'ungeprueft' }, W.ungeprueft)),
       o.bedienbar ? h('span', { class: 'leise-links' }, h('a', { class: 'leise-link', href: '#hilfe', 'data-pruef': 'zur-hilfe' }, W.hilfe.link), h('a', { class: 'leise-link', href: '#regie', 'data-pruef': 'praesentieren' }, w.praesentieren)) : null));
   return seite;
 }

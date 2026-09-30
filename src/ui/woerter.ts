@@ -7,7 +7,11 @@
  */
 
 export const W = {
-  produkt: 'MVG interaktiv – Minimum Viable Governance von Bauherr Mentoren',
+  // O-33: Der Name des Programms; Bauherr Mentoren bleibt Absender mit Bildmarke
+  name: 'Governance Kompass',
+  adresse: 'www.GovernanceKompass.de',
+  langname: 'Minimum Viable Governance',
+  produkt: 'Governance Kompass – Minimum Viable Governance von Bauherr Mentoren',
   absender: 'Bauherr Mentoren',
   fiktiv: 'Fiktiver Fall',
   ungeprueft: 'fachlich ungeprüft',
@@ -35,9 +39,8 @@ export const W = {
     storyWeiter: 'Weiterlesen',
     weltA: 'Welt A · ohne MVG',
     weltB: 'Welt B · mit MVG',
-    fuss: 'MVG interaktiv · Bauherr Mentoren',
+    fuss: 'Governance Kompass · Bauherr Mentoren · www.GovernanceKompass.de',
     praesentieren: 'Präsentieren',
-    interaktiv: 'interaktiv',
   },
   // Leitstand
   kopfTitelFallback: 'Zwei Welten',
@@ -61,7 +64,7 @@ export const W = {
   druck: {
     stand: (datum: string) => `Druck vom ${datum}`,
     // R47: Strg+P auf Flächen ohne eigenen Druckbogen
-    ersatzTitel: 'MVG interaktiv · Druckfassungen',
+    ersatzTitel: 'Governance Kompass · Druckfassungen',
     ersatzText: 'Diese Ansicht ist für den Bildschirm gedacht. Gedruckt wird über diese Wege:',
     ersatzWege: [
       'Theorie: „Kapitel drucken“ auf jeder Lernseite, „Alle 13 Kapitel drucken“ in der Kapitelliste.',
@@ -273,6 +276,7 @@ export const W = {
     // Impressum (P10.1)
     impressum: 'Fassung und Impressum',
     impressumLink: 'Fassung und Impressum',
+    impressumName: 'Programm',
     impressumAbsender: 'Herausgeber',
     impressumFassung: 'Fassung',
     impressumQuelle: 'Quelle des Inhalts',

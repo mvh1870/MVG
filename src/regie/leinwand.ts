@@ -124,6 +124,7 @@ export function starteLeinwand(wurzel: HTMLElement, o: LeinwandOptionen): () => 
   // R27: die Warteansicht ist die main der Leinwand (mit h1); die Hülle ist keine Landmarke, damit die main der Story-Tafel oben liegt
   const warten = h('main', { class: 'leinwand-warten', 'data-pruef': 'leinwand-warten', 'aria-label': W.leinwand.titel },
     bildmarke('marke-logo'),
+    h('p', { class: 'leinwand-warten-name' }, W.produkt),
     h('h1', { class: 'leinwand-warten-titel' }, W.leinwand.warten),
     h('p', null, W.leinwand.wartenHinweis));
   const element = h('div', { class: 'leinwand', 'data-pruef': 'leinwand' }, warten);

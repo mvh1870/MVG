@@ -1,5 +1,5 @@
 // Abbildungs-Werkzeug (P14.1, O-32, L-77): die 13 Inhaltsabbildungen der DOCX V1.2 als WebP für
-// MVG interaktiv.
+// Governance Kompass.
 //
 // Quelle: quellen/whitepaper/v1.2/bilder/imageN.* – unverändert, Prüfsumme aus whitepaper.json.
 // Beschreibung je Abbildung: inhalte/abbildungen/abb-N.yaml (docs/INHALTSFORMAT.md 4.6):

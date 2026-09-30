@@ -48,6 +48,7 @@ export function baueExplore(o: ExploreOptionen): HTMLElement {
   return h('div', { class: 'lernseite', 'data-pruef': 'explore' },
     h('header', { class: 'lern-kopf' },
       bildmarke('marke-logo'),
+      h('span', { class: 'lern-marke', 'data-pruef': 'lern-marke' }, W.name),
       h('p', { class: 'lern-bereich' }, `${E.bereich} `, h('span', null, E.bereichZusatz)),
       h('a', { class: 'lern-kopf-link lern-kopf-leise', href: '#hilfe', 'data-pruef': 'zur-hilfe' }, W.hilfe.link),
       h('a', { class: 'lern-kopf-link', href: '#start', 'data-pruef': 'zur-start' }, sym('pfeilLinks'), W.theorie.start)),

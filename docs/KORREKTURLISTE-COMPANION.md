@@ -1,6 +1,6 @@
 # Korrekturliste MVG Companion (Hilfe v1.34.911) – Abweichungen von MVG V1.2
 
-Gefunden bei der Übernahme der Hilfe (P13, O-31, L-69). Die Hilfe in MVG interaktiv gibt die Anwendung wieder und trägt auf jeder Seite den Hinweis, dass die Theorie maßgeblich bleibt. Für die nächste Fassung der Anwendung:
+Gefunden bei der Übernahme der Hilfe (P13, O-31, L-69). Die Hilfe im Governance Kompass gibt die Anwendung wieder und trägt auf jeder Seite den Hinweis, dass die Theorie maßgeblich bleibt. Für die nächste Fassung der Anwendung:
 
 | Stelle in der Hilfe | Companion | MVG V1.2 | Beleg |
 |---|---|---|---|

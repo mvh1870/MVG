@@ -58,6 +58,7 @@ export function hilfeSeiten(hilfe: HilfeDaten = HILFE): Eintrag[] {
 function kopfleiste(): HTMLElement {
   return h('header', { class: 'lern-kopf' },
     bildmarke('marke-logo'),
+    h('span', { class: 'lern-marke', 'data-pruef': 'lern-marke' }, W.name),
     h('p', { class: 'lern-bereich' }, `${W.hilfe.bereich} `, h('span', null, W.hilfe.bereichZusatz)),
     h('a', { class: 'lern-kopf-link', href: '#start', 'data-pruef': 'zur-start' }, sym('pfeilLinks'), W.theorie.start));
 }

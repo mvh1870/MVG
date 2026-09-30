@@ -1729,6 +1729,7 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .leinwand { min-height: 100vh; min-height: 100dvh; background: var(--navy); }
 .leinwand-warten { min-height: 100vh; min-height: 100dvh; display: grid; place-content: center; justify-items: center; gap: 14px; padding: var(--a-6); color: var(--auf-navy); text-align: center; }
 .leinwand-warten .marke-logo { height: 64px; color: var(--weiss); }
+.leinwand-warten-name { margin: 0; font: 700 var(--gr-l)/1.3 var(--schrift-label); letter-spacing: var(--sperrung-kicker); color: var(--auf-navy); }
 .leinwand-warten-titel { font: 800 var(--gr-5xl)/1.1 var(--schrift-anzeige); letter-spacing: var(--sperrung-titel); text-transform: uppercase; color: var(--weiss); }
 
 /* =============================================================================================

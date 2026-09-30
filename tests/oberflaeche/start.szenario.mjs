@@ -10,7 +10,7 @@ export const name = 'start';
  */
 export async function lauf(seite, h) {
   const titel = await seite.title();
-  if (!titel.includes('MVG interaktiv')) h.befund(`Dokumenttitel ohne „MVG interaktiv“ (O-29): „${titel}“`);
+  if (!titel.includes('Governance Kompass')) h.befund(`Dokumenttitel ohne „Governance Kompass“ (O-33): „${titel}“`);
 
   await h.erwarte('[data-pruef="weg-story"]');
   await h.erwarte('[data-pruef="weg-theorie"]');

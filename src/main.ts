@@ -39,7 +39,7 @@ import { fassungText } from './ui/fassung.ts';
 import { erzeugeKlang } from './ui/klang.ts';
 import { istEingebettet, leseHintergrund, starteEinbettung, type Einbettung } from './ui/einbettung.ts';
 
-const TITEL = 'MVG interaktiv';
+const TITEL = W.name;
 const VERSION = fassungText(inhalte.whitepaper.fassung ?? '');
 const KANAL = 'regie';
 

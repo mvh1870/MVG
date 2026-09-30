@@ -142,7 +142,7 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [ ] P14.3 · Prüf-Agenten Abbildungen (Fachtreue/Begriffe je Bild, Stil/Barrierefreiheit) + Korrekturen — Abnahme: zwei Runden ohne schwere/mittlere Befunde (L-64)
 
 ### P15 · Name „Governance Kompass“ (O-33)
-- [ ] P15.1 · Benennung „Governance Kompass“ überall (Dokumenttitel, Startseite, Kopfleisten, Füße, Druckbögen, Regie, Leinwand, Hülle, Anleitungen), Adresse www.GovernanceKompass.de in Fuß, Impressum und Druckkopf; Bildmarke und Bezeichnung „Bauherr Mentoren“ bleiben; Dateinamen (`dist/mvg.html`) bleiben (Bauregel) — Abnahme: Einheitentests und Szenarien prüfen Name, Absender, Adresse und Logo auf jeder Fläche; Kette grün.
+- [x] P15.1 (Commit „MVG P15.1“, L-146) · Benennung „Governance Kompass“ überall (Dokumenttitel, Startseite, Kopfleisten, Füße, Druckbögen, Regie, Leinwand, Hülle, Anleitungen), Adresse www.GovernanceKompass.de in Fuß, Impressum und Druckkopf; Bildmarke und Bezeichnung „Bauherr Mentoren“ bleiben; Dateinamen (`dist/mvg.html`) bleiben (Bauregel) — Abnahme: Einheitentests und Szenarien prüfen Name, Absender, Adresse und Logo auf jeder Fläche; Kette grün.
 - [ ] P15.2 · Prüf-Agenten P15 (Begriffe, Stil, Druck) in der nächsten Prüfrunde von P12.5 — Abnahme: wie P12.5 (L-64).
 
 ## Erledigt

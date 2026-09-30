@@ -13,7 +13,7 @@ export function bogenKopf(titel: string, version: string, mitFiktiv: boolean): H
   return h('header', { class: 'druck-kopf' },
     h('p', { class: 'druck-absender' }, W.produkt),
     h('h1', null, titel),
-    h('p', { class: 'druck-meta' }, `${version} · ${W.druck.stand(datum)}`),
+    h('p', { class: 'druck-meta' }, `${version} · ${W.druck.stand(datum)} · ${W.adresse}`),
     h('p', { class: 'druck-meta' }, [mitFiktiv ? `${W.fiktiv} · ` : '', W.ungeprueft].join('')));
 }
 

@@ -57,6 +57,7 @@ function verweis(o: TheorieOptionen, href: string, attrs: Record<string, string>
 function kopfleiste(o: TheorieOptionen): HTMLElement {
   return h('header', { class: 'lern-kopf' },
     bildmarke('marke-logo'),
+    h('span', { class: 'lern-marke', 'data-pruef': 'lern-marke' }, W.name),
     h('p', { class: 'lern-bereich' }, `${W.theorie.bereich} `, h('span', null, W.theorie.bereichZusatz)),
     o.bedienbar ? h('a', { class: 'lern-kopf-link lern-kopf-leise', href: '#hilfe', 'data-pruef': 'zur-hilfe' }, W.hilfe.link) : null,
     verweis(o, '#start', { class: 'lern-kopf-link', 'data-pruef': 'zur-start' }, sym('pfeilLinks'), W.theorie.start));
@@ -144,6 +145,7 @@ function impressum(o: TheorieOptionen): HTMLElement {
   return h('section', { class: 'impressum', 'data-abschnitt': IMPRESSUM, 'data-pruef': 'impressum', 'aria-labelledby': 'impressum-titel' },
     h('h2', { class: 'abschnitt-titel', id: 'impressum-titel' }, T.impressum),
     h('dl', { class: 'impressum-liste' },
+      zeile(T.impressumName, W.name, ' · ', W.adresse),
       zeile(T.impressumAbsender, W.absender),
       zeile(T.impressumFassung, h('span', { 'data-pruef': 'impressum-version' }, o.version)),
       zeile(T.impressumQuelle, T.impressumQuelleText(o.inhalte.whitepaper.titel ?? 'Minimum Viable Governance', fassung)),

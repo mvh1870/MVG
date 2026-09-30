@@ -83,6 +83,13 @@ export async function lauf(seite, h) {
       // R38: breite Grafiken stehen auf einer Querseite (A4 quer, Rand 10 mm, Satzspiegel 277 mm; Grafik ausdrücklich 262 mm breit)
       const hochkant = await seite.evaluate(() => [...document.querySelectorAll('.hilfe-inhalt .h-grafik-wrap')].filter((el) => getComputedStyle(el).page !== 'hilfe-quer').length);
       if (hochkant > 0) h.befund(`Druck ${id}: ${hochkant} breite Grafiken nicht auf der Querseite`);
+      // R40: die Überschrift der Grafik steht mit ihr auf der Querseite, nicht allein am Ende der Hochkantseite
+      const ohneKopf = await seite.evaluate(() => [...document.querySelectorAll('.hilfe-inhalt .h-card:has(.h-grafik-wrap)')].filter((karte) => {
+        const vor = karte.previousElementSibling;
+        const kopf = vor?.matches('h2, h3') ? vor : vor?.matches('p') && vor.previousElementSibling?.matches('h2, h3') ? vor.previousElementSibling : null;
+        return kopf !== null && getComputedStyle(kopf).page !== 'hilfe-quer';
+      }).length);
+      if (ohneKopf > 0) h.befund(`Druck ${id}: ${ohneKopf} Grafik-Überschriften nicht auf der Querseite`);
     }
     // auf der Querseite erreichen die kleinsten Beschriftungen 7 pt (9,33 px)
     await seite.evaluate(() => { location.hash = '#hilfe/kollaboration'; });

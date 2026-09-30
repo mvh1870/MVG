@@ -26,12 +26,12 @@ export async function lauf(seite, h) {
   await seite.keyboard.press('End');
   if ((await wer()) !== 'Bauherr im Lenkungskreis') h.befund(`Simulator 10 Mio. €: ${await wer()}`);
   await seite.keyboard.press('Home');
-  // Risikoreserve: auch bei 0 TEUR beim Bauherrn (k3.2-t1)
+  // Risikoreserve (R40): die Sachentscheidung bleibt auf ihrer Stufe, die Freigabe des Reserve-Einsatzes beim Bauherrn (k3.2-t1)
   await h.klick('[data-pruef="sim-deckung-reserve"]');
-  if ((await wer()) !== 'Bauherr') h.befund(`Simulator Reserve: ${await wer()}`);
+  if ((await wer()) !== 'Bauherren-PL') h.befund(`Simulator Reserve: ${await wer()}`);
   if (!/Risikoreserve/u.test(await seite.locator('[data-pruef="sim-bauherr"]').innerText())) h.befund('Simulator: „Bleibt beim Bauherrn“ ohne Risikoreserve');
   await seite.locator('[data-pruef="sim-status"]').selectOption('entscheidungsreif');
-  if (!/hier Bauherr/u.test(await seite.locator('[data-pruef="sim-naechster"]').innerText())) h.befund('Simulator: nächster Schritt nennt die zuständige Stelle nicht');
+  if (!/hier Bauherren-PL; die Freigabe des Einsatzes der Risikoreserve erteilt der Bauherr/u.test(await seite.locator('[data-pruef="sim-naechster"]').innerText())) h.befund('Simulator: nächster Schritt nennt die zuständige Stelle oder den Vorbehalt des Bauherrn nicht');
   // Quelle aufklappen: Wortlaut aus dem Whitepaper
   await seite.locator('[data-pruef="sim-bauherr"] .sim-quelle summary').first().click();
   if ((await seite.locator('[data-pruef="sim-bauherr"] .sim-zitat').first().innerText()).trim() === '') h.befund('Simulator: Quelle ohne Wortlaut');

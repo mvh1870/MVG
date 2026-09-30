@@ -18,18 +18,28 @@ test('Mandatsleiter (k4.2-p3): Grenzen einschließlich 100 TEUR und 5 Mio. EUR',
   assert.equal(simuliere({ ...basis, betragTeur: 6000 }).wer, 'Bauherr im Lenkungskreis');
 });
 
-test('Nicht delegierbar (k3.2-t1): Risikoreserve, Projektbasis, Zielpriorität heben auf den Bauherrn – auch bei kleinem Betrag', () => {
+test('Nicht delegierbar (k3.2-t1): Projektbasis hebt auf den Bauherrn, Risikoreserve und Zielpriorität bleiben beim Bauherrn neben der Sachentscheidung (R40)', () => {
   const r = simuliere({ ...basis, deckung: 'reserve' });
-  assert.equal(r.stufe, 'bauherr');
-  assert.equal(r.wer, 'Bauherr');
+  assert.equal(r.stufe, 'pl');
+  assert.equal(r.wer, 'Bauherren-PL');
+  assert.deepEqual(r.vorbehalte, ['die Freigabe des Einsatzes der Risikoreserve erteilt der Bauherr']);
   assert.ok(r.bauherr.some((h) => h.quelle === 'k3.2-t1' && /Risikoreserve/u.test(h.text)));
   const p = simuliere({ ...basis, deckung: 'ueber-basis' });
   assert.equal(p.wer, 'Bauherr im Lenkungskreis');
   assert.ok(p.bauherr.some((h) => h.quelle === 'k13-t1' && /außerhalb der regulären Freigabereihe/u.test(h.text)));
-  assert.equal(simuliere({ ...basis, zielkonflikt: true }).stufe, 'bauherr');
+  assert.equal(simuliere({ ...basis, zielkonflikt: true }).stufe, 'pl');
+  // R40 (Story B4 „Zwei Fragen, zwei Stufen“): 400 TEUR aus der Reserve – die Änderung beim Gremium, die Reserve-Freigabe beim Bauherrn
+  const b4 = simuliere({ ...basis, betragTeur: 400, deckung: 'reserve', zielkonflikt: true, status: 'entscheidungsreif' });
+  assert.equal(b4.wer, 'Änderungsgremium');
+  assert.match(b4.naechsterSchritt[0]?.text ?? '', /hier Änderungsgremium; die Freigabe des Einsatzes der Risikoreserve erteilt der Bauherr; die Zielpriorität legt der Bauherr fest\.$/u);
+  assert.ok(b4.freigabeweg.some((h) => h.quelle === 'k3.2-t1' && /Sachentscheidung; die Freigabe des Einsatzes der Risikoreserve und die Festlegung der Zielpriorität sind nicht delegierbar/u.test(h.text)));
+  assert.ok(!b4.freigabeweg.some((h) => /Innerhalb des Mandats/u.test(h.text)));
+  assert.ok(!simuliere({ ...basis, deckung: 'reserve' }).freigabeweg.some((h) => /Innerhalb des Mandats/u.test(h.text)), 'Reserve ist nicht „innerhalb des Mandats“');
   assert.equal(simuliere({ ...basis, risikoAnnahme: true }).bauherr[0]?.quelle, 'k4.4-p1');
-  // Bauherr im Lenkungskreis bleibt, wenn zusätzlich die Reserve berührt ist
-  assert.equal(simuliere({ ...basis, betragTeur: 7000, deckung: 'reserve' }).wer, 'Bauherr im Lenkungskreis');
+  // Bauherr im Lenkungskreis bleibt, wenn zusätzlich die Reserve berührt ist – dann ohne getrennten Vorbehalt
+  const lk = simuliere({ ...basis, betragTeur: 7000, deckung: 'reserve' });
+  assert.equal(lk.wer, 'Bauherr im Lenkungskreis');
+  assert.deepEqual(lk.vorbehalte, []);
   // überschrittene Schwelle: nicht mehr „innerhalb des Mandats“ (k6.4.5-p1)
   const s = simuliere({ ...basis, schwelleUeberschritten: true });
   assert.equal(s.wer, 'Die Stufe, die das projektspezifische Mandat bestimmt');
@@ -38,7 +48,10 @@ test('Nicht delegierbar (k3.2-t1): Risikoreserve, Projektbasis, Zielpriorität h
   const g = simuliere({ ...basis, betragTeur: 400, schwelleUeberschritten: true });
   assert.equal(g.wer, 'Die Stufe, die das projektspezifische Mandat bestimmt', 'auch auf Gremiumsstufe');
   assert.ok(g.eskalation.some((h) => h.quelle === 'k3.2-t1'));
-  assert.equal(simuliere({ ...basis, schwelleUeberschritten: true, deckung: 'reserve' }).stufeOffen, false, 'nicht delegierbar entscheidet der Bauherr');
+  const sr = simuliere({ ...basis, schwelleUeberschritten: true, deckung: 'reserve' });
+  assert.equal(sr.stufeOffen, true, 'R40: die Reserve bestimmt nicht die Stufe der Sachentscheidung');
+  assert.ok(sr.freigabeweg.some((h) => /projektspezifische Mandat bestimmt, gilt für die Sachentscheidung; die Freigabe des Einsatzes der Risikoreserve ist nicht delegierbar und bleibt beim Bauherrn\./u.test(h.text)));
+  assert.equal(simuliere({ ...basis, schwelleUeberschritten: true, risikoAnnahme: true }).stufeOffen, false, 'Risikoexposition annehmen entscheidet der Bauherr');
 });
 
 test('Wesentlich (k4.3): Kennung und Vorlage, sonst der Hinweis, dass nicht jede Entscheidung wesentlich ist', () => {
@@ -51,7 +64,11 @@ test('Wesentlich (k4.3): Kennung und Vorlage, sonst der Hinweis, dass nicht jede
 });
 
 test('Datenstand, Freigabeweg, Termin ohne erfundene Schwelle', () => {
-  assert.ok(simuliere({ ...basis, datenstandBenannt: false }).information.some((h) => h.quelle === 'k4.6-p2'));
+  assert.ok(simuliere({ ...basis, datenstandBenannt: false }).information.some((h) => h.quelle === 'k4.6-p2' && /^Zuerst/u.test(h.text)));
+  // R40: nach der Entscheidung wird der Datenstand nachgetragen, nicht „zuerst“ geklärt
+  const nach = simuliere({ ...basis, datenstandBenannt: false, status: 'entschieden' }).information.filter((h) => h.quelle === 'k4.6-p2');
+  assert.equal(nach.length, 1);
+  assert.match(nach[0]?.text ?? '', /^Den Datenstand nachtragen, auf dem entschieden wurde/u);
   const f = simuliere({ ...basis, freigabeBeruehrt: true });
   assert.ok(f.freigabeweg.some((h) => h.quelle === 'k9.3-p3' && /erteilt der Bauherr selbst/u.test(h.text)));
   const t = simuliere({ ...basis, terminWochen: 6 });

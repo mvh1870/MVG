@@ -368,6 +368,9 @@ export async function lauf(seite, h) {
   // R39: Überschriften bleiben beim Folgenden, Absätze mit Tabelle dürfen umbrechen (sonst Überschrift allein auf der Seite)
   const umbruch = await seite.evaluate(() => ({
     kopf: [...document.querySelectorAll('.druck-bogen :is(h2, h3)')].filter((x) => getComputedStyle(x).breakAfter !== 'avoid').length,
+    // R40: Überschriften reißen nicht über zwei Seiten; Abbildungen sind im Druck höchstens 170 mm hoch (passen samt Überschrift auf die Seite)
+    zerreisst: [...document.querySelectorAll('.druck-bogen :is(h2, h3, .original-abschnitt)')].filter((x) => getComputedStyle(x).breakInside !== 'avoid').length,
+    bildHoch: [...document.querySelectorAll('.druck-bogen .abbildung-bild')].filter((x) => getComputedStyle(x).maxHeight === 'none').length,
     tabelle: [...document.querySelectorAll('.druck-bogen .absatz')].filter((x) => x.querySelector('table') !== null && getComputedStyle(x).breakInside !== 'auto').length,
   }));
   // R40: ein echtes window.print() löst beforeprint synchron aus – der Knopf-Bogen („alle Kapitel“) darf dabei nicht abgeräumt werden
@@ -384,7 +387,7 @@ export async function lauf(seite, h) {
   await h.erwarte('[data-pruef="kapitel-drucken"]');
   await seite.evaluate(() => { window.dispatchEvent(new Event('beforeprint')); });
   await seite.emulateMedia({ media: 'print', reducedMotion: 'reduce' });
-  if (umbruch.kopf > 0 || umbruch.tabelle > 0) h.befund(`Druckbogen Umbruch: ${JSON.stringify(umbruch)}`);
+  if (umbruch.kopf > 0 || umbruch.tabelle > 0 || umbruch.zerreisst > 0 || umbruch.bildHoch > 0) h.befund(`Druckbogen Umbruch: ${JSON.stringify(umbruch)}`);
   if (!strgP.klasse || !/^Kapitel 8 · /u.test(strgP.titel) || strgP.seite !== 'none' || strgP.zu > 0 || strgP.knoepfe > 0) h.befund(`Strg+P: ${JSON.stringify(strgP)}`);
   await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
   await seite.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });

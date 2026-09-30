@@ -334,6 +334,8 @@ export async function lauf(seite, h) {
     // R28: aufgelöst statt scheinbar bedienbar – keine Knöpfe außer Glossarbegriffen, der Wissenscheck mit Erklärung
     // R31: aus Knöpfen gewordene Spans ohne ARIA, Rolle und Tabulatorstopp; der gewählte Stand trägt seinen Rahmen
     aria: document.querySelectorAll('.druck-bogen span:is([role], [tabindex], [aria-pressed], [aria-controls], [aria-selected], [aria-expanded], [aria-current], [aria-describedby])').length,
+    // R48: Tafeln mit Auswahl stehen im Druck aufgelöst (alle Zeilen) – ein gewählter Stand bleibt nur bei Lernwerkzeugen
+    aufgeloest: document.querySelectorAll('.druck-bogen .tafel-aufgeloest').length,
     gewaehlt: [...document.querySelectorAll('.druck-bogen [data-gewaehlt]')].map((x) => { const c = getComputedStyle(x); return c.outlineStyle === 'solid' && parseFloat(c.outlineWidth) >= 2; }),
     knoepfe: [...document.querySelectorAll('.druck-bogen :is(button:not(.begriff), input, select, textarea, [role="button"])')].filter((x) => getComputedStyle(x).display !== 'none').length,
     // jede Antwort des Wissenschecks mit Rückmeldung (R29)
@@ -343,7 +345,7 @@ export async function lauf(seite, h) {
     wc: document.querySelectorAll('.druck-bogen .wissenscheck').length,
   }));
   if (druck.bogen === 'none' || druck.seite !== 'none' || !/^Kapitel 8 · /u.test(druck.titel) || druck.zitieren > 0
-    || druck.knoepfe > 0 || druck.aria > 0 || druck.gewaehlt.length < 1 || druck.gewaehlt.includes(false) || druck.wc < 1 || druck.erklaerung !== druck.wc || druck.antworten < 2 || druck.druckAntworten !== druck.antworten) h.befund(`Druckbogen: ${JSON.stringify(druck)}`);
+    || druck.knoepfe > 0 || druck.aria > 0 || (druck.gewaehlt.length < 1 && druck.aufgeloest < 1) || druck.gewaehlt.includes(false) || druck.wc < 1 || druck.erklaerung !== druck.wc || druck.antworten < 2 || druck.druckAntworten !== druck.antworten) h.befund(`Druckbogen: ${JSON.stringify(druck)}`);
   // nichts im Bogen ragt über den Satzspiegel hinaus (A4 mit 14 mm Rand ≈ 688 px breit). R42: Chromium wertet im Druck die
   // Media Queries bei der Blattbreite (≈ 794 px) aus, setzt aber 688 px – gemessen wird genauso, sonst greift eine schmale
   // Form (≤ 700 px), die im Druck nie greift

@@ -572,7 +572,15 @@ class Kompilierer {
 
   /** @param {string} text @param {string} ort */
   ersetzeSpannen(text, ort) {
-    return text.replace(/\[\[([^\[\]\n]+?)\]\]/gu, (_, innen) => {
+    return text.replace(/\[\[([^\[\]\n]+?)\]\]/gu, (_, innen, stelle, ganz) => {
+      // R48: ein Bedienhinweis ist ein ganzer Satz, getrennt vom Text davor – im Druck und auf der Leinwand fällt er
+      // weg, und übrig bliebe sonst ein Satzrest („was im Standard-Rollenmodell …“) oder „Wortlaut.Das Suchfeld …“
+      if (String(innen).startsWith('bedienung:')) {
+        const satz = String(innen).slice(10);
+        const davor = stelle > 0 ? String(ganz)[stelle - 1] ?? '' : '';
+        if (/^\s/u.test(satz) || (davor !== '' && !/[\s(]/u.test(davor))) this.fehler(ort, `Bedienhinweis ohne Leerraum davor – das Leerzeichen gehört vor die Spanne: „[[${String(innen).slice(0, 40)}“`);
+        if (!/[.!?]$/u.test(satz.trim())) this.fehler(ort, `Bedienhinweis ist kein ganzer Satz (endet nicht auf . ! ?): „${satz.trim().slice(0, 40)}“`);
+      }
       const i = this.spannen.length;
       this.spannen.push(this.spanne(String(innen), ort));
       return `${i}`;

@@ -672,6 +672,20 @@ test('Nachweis (E2, P7.3): nur an Stationen der Welt B, höchstens einmal je Sta
   assert.ok(doppelt.fehler.some((f) => /„nachweis“ doppelt/u.test(f)), doppelt.fehler.join('\n'));
 });
 
+test('Bedienhinweis (R48): ein ganzer Satz mit Leerraum davor – sonst bleibt im Druck ein Satzrest', async () => {
+  const mit = (satz: string) => veraendere(BEISPIEL, 'inhalte/story/X1/station.md', 'v3 oder v4??', satz);
+  const gut = await kompiliere({ pruefe: true, wurzel: neueWurzel(mit('v3 oder v4? [[bedienung:Wählen Sie eine Version.]]')), ziel: null });
+  assert.ok(!gut.fehler.some((f) => /Bedienhinweis/u.test(f)), gut.fehler.join('\n'));
+  for (const [satz, muster] of [
+    ['[[bedienung:Ordnen Sie zu,]] was gilt.', /kein ganzer Satz/u],
+    ['v3 oder v4?[[bedienung:Wählen Sie eine Version.]]', /ohne Leerraum/u],
+    ['v3 oder v4?[[bedienung: Wählen Sie eine Version.]]', /ohne Leerraum/u],
+  ] as [string, RegExp][]) {
+    const r = await kompiliere({ pruefe: true, wurzel: neueWurzel(mit(satz)), ziel: null });
+    assert.ok(r.fehler.some((f) => muster.test(f)), `${satz}: ${r.fehler.join('\n')}`);
+  }
+});
+
 test('Vorher/Nachher-Welten (P8.2): Beleg Pflicht, Welt A und Welt B Pflicht', async () => {
   const mit = (text: string) => ({ ...BEISPIEL, 'inhalte/welten.md': text });
   const gut = await kompiliere({ pruefe: true, wurzel: neueWurzel(mit('::: welt rollen\n---\ntitel: Rollen\nstationen: [X1]\n---\n### Welt A\nOhne Mandat.\n\n### Welt B\nMit Mandat.\n\n::: zitat k2.4-p1\nMehr Berichte helfen manchmal.\n:::\n:::\n')), ziel: null });

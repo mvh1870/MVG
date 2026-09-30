@@ -267,7 +267,7 @@ Fünf Entscheidungsprobleme kommen in Bauprojekten immer wieder vor – von der 
 
 Die Folgen sind ernst. Folgekosten werden spät sichtbar, Beschlüsse werden angreifbar oder müssen nachträglich geheilt werden, oder das Projekt arbeitet mit mehreren Wahrheiten und verliert seine Wiederanlauffähigkeit.
 
-Für jedes Problem nennt MVG ein Artefakt oder eine Routine, die dagegen hilft – etwa die Entscheidungsvorlage, das Änderungsregister mit verbindlicher Auswirkungsbewertung und dem monatlichen Änderungsgremium oder die Festschreibung des Datenstands. Die Tafel zeigt alle fünf.[[bedienung: In der Übung darunter ordnen Sie Werkzeuge ihrem Problem zu.]]
+Für jedes Problem nennt MVG ein Artefakt oder eine Routine, die dagegen hilft – etwa die Entscheidungsvorlage, das Änderungsregister mit verbindlicher Auswirkungsbewertung und dem monatlichen Änderungsgremium oder die Festschreibung des Datenstands. Die Tafel zeigt alle fünf. [[bedienung:In der Übung darunter ordnen Sie Werkzeuge ihrem Problem zu.]]
 
 ::: tafel k10.5-t1
 ---
@@ -281,7 +281,7 @@ titel: Welches Werkzeug gehört zu welchem Problem?
 links: Änderungsantrag
 rechts: Gremienbeschluss
 ---
-[[bedienung:Ordnen Sie jedes Werkzeug einem der beiden Probleme zu:]] Änderungsantrag mit unvollständiger Auswirkungsbewertung oder Gremienbeschluss ohne Mandatsklarheit.
+Zwei der fünf Probleme: Änderungsantrag mit unvollständiger Auswirkungsbewertung und Gremienbeschluss ohne Mandatsklarheit. [[bedienung:Ordnen Sie jedes Werkzeug einem der beiden zu.]]
 
 ::: posten 1
 ---

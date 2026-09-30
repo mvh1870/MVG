@@ -152,7 +152,7 @@ titel: Die Verantwortungspyramide – Arbeitsebene, Mandatsebene und Letztverant
 ---
 Für die Praxis unterscheidet MVG drei Ebenen. Unten liegt die **Arbeitsebene**: Analyse, Planung, Koordination, Dokumentation, Auswirkungsbewertung, das Zusammenstellen von Unterlagen und die Nachverfolgung. MVG legt fest, welche Zuarbeiten wann, von wem und in welcher Qualität gebraucht werden.
 
-In der Mitte liegt die **Mandatsebene**: Befugnisse, Freigabegrenzen, Zeichnungsrechte, Stellvertretungen, Eskalationsschwellen und der Bezug zu den Gremien. Hier ist genau zu unterscheiden. Das Mandat festzulegen bleibt Sache des Bauherrn. Es innerhalb klar definierter Schwellen auszuüben, kann er an Rollen übertragen. MVG verknüpft dieses Mandatsmodell mit Freigaben, [[Entscheidungs-ID|Entscheidungs-IDs]] und Datenständen.
+In der Mitte liegt die **Mandatsebene**: Befugnisse, Freigabegrenzen, Zeichnungsrechte, Stellvertretungen, Eskalationsschwellen und der Bezug zu den Gremien. Hier ist genau zu unterscheiden. Das Mandat festzulegen bleibt Sache des Bauherrn. Es innerhalb klar definierter Schwellen auszuüben, kann er an Rollen übertragen. MVG übersetzt die Rollen in ein Mandatsmodell und verknüpft es mit Freigaben, [[Entscheidungs-ID|Entscheidungs-IDs]] und Datenständen.
 
 Oben steht die **Letztverantwortung**: Ziel, Grundsatzentscheidung, wesentliche Freigabe, Risikoannahme, Nachweisfähigkeit und Beschlusslage. MVG macht sichtbar, was der Bauherr hier selbst legitimieren und dokumentieren muss.
 
@@ -202,7 +202,7 @@ Sie bleibt dort, wo der Bauherr die bauherrenseitige Entscheidung selbst legitim
 ---
 text: "In der Story erlebt: Wendepunkt"
 ---
-Welt A steht still: Sie ordnen Aufgaben aus Kap. 3.2 als delegierbar oder nicht delegierbar zu und gehen die drei Ebenen der Verantwortungspyramide durch.
+Welt A steht still: Sie ordnen Aufgaben aus Kap. 3.2 als delegierbar oder nicht delegierbar zu und können unter „Tiefer gehen“ die drei Ebenen der Verantwortungspyramide aufklappen.
 :::
 
 ::: querverweis B5

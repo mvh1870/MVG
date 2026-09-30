@@ -117,7 +117,7 @@ Die wesentliche Freigabe bleibt beim Bauherrn, auch wenn die Unterlagen von Drit
 ---
 titel: Managementaussagen
 ---
-Das Kapitel verdichtet MVG in fünf Aussagen für die Leitungsebene. Sie beschreiben, was die Projektsteuerung leistet, wie MVG die Verantwortung in Rollen, Mandate und Routinen übersetzt, woraus Entscheidungssicherheit entsteht, warum Befähigung dazugehört und welche Rolle die frühe Projektphase spielt.
+Das Kapitel verdichtet MVG in fünf Aussagen für die Leitungsebene. Sie beschreiben, was die Projektsteuerung leistet, wie MVG die Verantwortung in Rollen, Mandate, Freigaben und Entscheidungs-IDs übersetzt, woraus Entscheidungssicherheit entsteht, warum Befähigung dazugehört und welche Rolle die frühe Projektphase spielt.
 
 Die dritte Aussage trägt das Modell: Entscheidungssicherheit entsteht nicht aus einem einzelnen guten Dokument. Sie entsteht, wenn Ziel, Mandat, Datenstand, Risiko, Freigabe und Nachweis verbindlich zusammenhängen. Fehlt ein Glied, fehlt dieser Zusammenhang – etwa wenn niemand sagen kann, auf welchem Datenstand eine Entscheidung beruht. Gehen Sie die Kette unten Glied für Glied durch.
 
@@ -222,7 +222,7 @@ Lässt sich die Entscheidung später nachvollziehen? Dafür wird sie in der [[Na
 ---
 titel: Ergebnisbild
 ---
-Was hat die Bauherrenorganisation in der Hand, wenn MVG umgesetzt ist? Keine lose Sammlung einzelner Methoden, sondern ein zusammenhängendes Führungs- und Entscheidungsmodell. Es zeigt, welche Entscheidungen beim Bauherrn bleiben und welche Vorbereitung delegierbar ist. Es legt fest, welche Mandate und Schwellen gelten und welche Unterlagen entscheidungsreif sein müssen. Und es zeigt, wie Entscheidungen nachvollziehbar in der [[Nachweiskette]] verankert werden.
+Was hat die Bauherrenorganisation in der Hand, wenn MVG umgesetzt ist? Keine lose Sammlung einzelner Methoden, sondern ein zusammenhängendes Führungs- und Entscheidungsmodell. Es zeigt, welche Entscheidungen beim Bauherrn bleiben und welche Vorbereitung delegierbar ist. Es zeigt auch, welche Mandate und Schwellen gelten und welche Unterlagen entscheidungsreif sein müssen. Und es zeigt, wie Entscheidungen nachvollziehbar in der [[Nachweiskette]] verankert werden.
 
 Das Kapitel nennt sechs Elemente dieses Modells, jedes mit seinem Ergebnis. Die Karten unten zeigen sie im Wortlaut der Tabelle. Mehrere davon werden in späteren Kapiteln ausführlich behandelt.
 

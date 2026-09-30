@@ -73,7 +73,7 @@ titel: Was verlangt MVG – und was nicht?
 links: Gehört zur Entscheidungssicherheit
 rechts: Verlangt MVG nicht
 ---
-[[bedienung:Ordnen Sie zu:]] Was macht eine Entscheidung entscheidungssicher, und was verlangt MVG ausdrücklich nicht?
+Was macht eine Entscheidung entscheidungssicher, und was verlangt MVG ausdrücklich nicht? [[bedienung:Ordnen Sie jede Aussage zu.]]
 
 ::: posten 1
 ---
@@ -178,7 +178,7 @@ titel: Was eine wesentliche Änderung führbar macht
 ---
 titel: Entscheidungs-ID
 ---
-Die Änderung bekommt eine Entscheidungs-ID.
+Die Entscheidung über die Änderung bekommt eine Entscheidungs-ID.
 :::
 
 ::: etappe 2

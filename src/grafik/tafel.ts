@@ -375,9 +375,30 @@ function diagnose(d: TafelDaten): HTMLElement {
   return h('div', { class: 'tafel-diagnose' }, h('ol', { class: 'diagnose-liste' }, zeilen), meldung, profil);
 }
 
+/**
+ * R48: Formen, die immer nur eine gewählte Zeile oder Ansicht zeigen (oder Teile zuklappen). Nicht bedienbar – im
+ * Druckbogen und auf der Leinwand – fehlte der Rest (k4-t1: Spalte „MVG-Antwort“, k2.5-t1: sieben von acht Ketten);
+ * dort stehen sie aufgelöst als Karten mit allen Spalten (L-68, L-100: aufgelöst statt scheinbar bedienbar).
+ */
+const MIT_AUSWAHL: ReadonlySet<TafelForm> = new Set<TafelForm>(['radar', 'ketten', 'pyramide', 'felder', 'bausteine', 'phasen', 'rhythmus', 'zeitachse']);
+let aufgeloest = false;
+/** Beim Bau einer nicht bedienbaren Lernseite (Leinwand, Druck, Regie-Vorschau) setzen, danach zurücksetzen. */
+export function tafelnAufgeloest(ja: boolean): void {
+  aufgeloest = ja;
+}
+
+function aufgeloesteKarten(d: TafelDaten): HTMLElement {
+  const ab = d.form === 'phasen' ? 2 : 1;
+  // die Pyramide von oben (Letztverantwortung) nach unten, wie gezeichnet
+  const zeilen = d.form === 'pyramide' ? [...d.zeilen].reverse() : d.zeilen;
+  return h('ol', { class: 'tafel-karten tafel-aufgeloest', 'data-pruef': 'tafel-aufgeloest' }, zeilen.map((z, i) => h('li', { class: 'tafel-karte', 'data-pruef': `karte-${i + 1}` },
+    h(d.stufe ?? 'h4', { class: 'tafel-titel' }, titelMitUmbruch(z.slice(0, ab).join(' · '))), detailListe(d.kopf, z, ab))));
+}
+
 /** Zeichnet eine Tafel; `besucht` = Stationen der eigenen Spur (für das Radar). */
 export function tafel(d: TafelDaten, besucht: readonly string[] = []): HTMLElement {
   let bild: HTMLElement;
+  if (aufgeloest && MIT_AUSWAHL.has(d.form)) return h('figure', { class: 'tafel', 'data-form': d.form, 'data-absatz': d.absatz, 'data-pruef': `tafel-${d.form}` }, aufgeloesteKarten(d), h('figcaption', null, quellZeile(d)));
   switch (d.form) {
     case 'radar': bild = radar(d, besucht); break;
     case 'ketten': bild = ketten(d); break;

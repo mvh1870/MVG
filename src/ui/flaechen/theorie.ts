@@ -8,7 +8,7 @@
  * Absatz-IDs (O-17) · Querverweis in die Story · Kapitel blättern.
  */
 
-import type { TitelStufe } from '../../grafik/tafel.ts';
+import { tafelnAufgeloest, type TitelStufe } from '../../grafik/tafel.ts';
 import type { Block, Ebene, OeffentlicheInhalte, TheorieSeite, WhitepaperKapitel } from '../../inhalte/typen.ts';
 import { h, ersetze, laengstesWort, umbruchNachSchraegstrich } from '../h.ts';
 import { bildmarke } from '../marke.ts';
@@ -623,5 +623,12 @@ export function zeigeAktuellenEintrag(seite: HTMLElement): void {
 }
 
 export function baueTheorie(o: TheorieOptionen): HTMLElement {
-  return o.kapitel === null ? liste(o) : lernseite(o, o.kapitel);
+  if (o.kapitel === null) return liste(o);
+  // R48: nicht bedienbar (Leinwand, Druck, Vorschau) stehen Tafeln mit Auswahl aufgelöst
+  tafelnAufgeloest(!o.bedienbar);
+  try {
+    return lernseite(o, o.kapitel);
+  } finally {
+    tafelnAufgeloest(false);
+  }
 }

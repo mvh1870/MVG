@@ -88,7 +88,7 @@ Für Bauherren zählt am Ende nicht die Zahl der Governance-Artefakte, sondern i
 titel: An der Führungswirkung
 praefix: "Genau:"
 ---
-Entscheidend ist, ob Entscheidungen schneller vorbereitet, Mandate klarer und Nachweise belastbarer geführt werden.
+Entscheidend ist, ob Entscheidungen schneller vorbereitet werden, Mandate klarer werden und Nachweise belastbarer geführt werden.
 :::
 
 ::: antwort b

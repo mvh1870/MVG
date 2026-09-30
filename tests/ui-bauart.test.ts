@@ -128,7 +128,7 @@ const { erzeugeSitzung } = await import('../src/ui/sitzung.ts');
 const { erzeugeStory } = await import('../src/ui/flaechen/story.ts');
 const { baueStart } = await import('../src/ui/flaechen/start.ts');
 const theorieModul = await import('../src/ui/flaechen/theorie.ts');
-const { baueTheorie, kapitelListe } = theorieModul;
+const { baueTheorie, kapitelListe, kapitelFuerDruck } = theorieModul;
 const { baueHilfe, hilfeSeiten, HILFE } = await import('../src/ui/flaechen/hilfe.ts');
 const { erzeugeAnzeige } = await import('../src/regie/leinwand.ts');
 const { erzeugeRegie } = await import('../src/regie/regie.ts');
@@ -1086,6 +1086,32 @@ test('Originaltext und Kapiteltitel (R47): Umbruch nach „/“ ohne Zeichen, Ti
   assert.equal(k6.querySelector<HTMLElement>('.kapitel-titel')?.style.getPropertyValue('--zeichen'), String('Umsetzungsbeschleuniger'.length));
 });
 
+test('Druck und Leinwand (R48): jede Tafel zeigt alle Zellen ihrer Tabelle – auch Formen mit Auswahl (aufgelöst)', () => {
+  const norm = (t: string): string => t.replace(/[\u00ad\u200b]/gu, '').replace(/\s+/gu, ' ').trim();
+  const fehlt: string[] = [];
+  let tafeln = 0;
+  for (let nr = 1; nr <= 13; nr++) {
+    const seite = kapitelFuerDruck(inhalte, nr, VERSION);
+    for (const fig of seite.querySelectorAll<HTMLElement>('figure.tafel[data-absatz]')) {
+      if (fig.closest('.originaltext') !== null) continue;
+      const id = fig.getAttribute('data-absatz') ?? '';
+      const tabelle = seite.querySelector(`.originaltext .absatz[data-absatz="${id}"] table`);
+      if (tabelle === null) continue;
+      tafeln++;
+      const text = norm(fig.textContent ?? '');
+      for (const td of tabelle.querySelectorAll('td')) {
+        const zelle = norm(td.textContent ?? '');
+        if (zelle !== '' && !text.includes(zelle)) fehlt.push(`k${nr} ${id} (${fig.getAttribute('data-form')}): „${zelle.slice(0, 40)}“`);
+      }
+    }
+  }
+  assert.ok(tafeln >= 10, `Tafeln mit Originaltabelle: ${tafeln}`);
+  assert.deepEqual(fehlt.slice(0, 8), [], `${fehlt.length} Zellen fehlen`);
+  // am Bildschirm bleibt die Tafel bedienbar (Schalter der Felder, Stufen der Pyramide)
+  const k4 = baueTheorie({ inhalte, kapitel: 4, version: VERSION, bedienbar: true });
+  assert.ok(k4.querySelector('[data-pruef="felder-ordnung"]') && !k4.querySelector('[data-pruef="tafel-aufgeloest"]'));
+});
+
 test('Druck (P10.2): Kapitel und alle Kapitel als Bogen – ohne Kopfleiste, Verzeichnis, Zitierknöpfe', () => {
   const seite = baueTheorie({ inhalte, kapitel: 6, version: VERSION, bedienbar: true });
   document.body.replaceChildren(seite);
@@ -1104,8 +1130,10 @@ test('Druck (P10.2): Kapitel und alle Kapitel als Bogen – ohne Kopfleiste, Ver
   document.body.replaceChildren(seite5);
   seite5.querySelector<HTMLButtonElement>('[data-pruef="kapitel-drucken"]')?.click();
   const bogen5 = document.querySelector('[data-pruef="druck-bogen"]');
-  assert.ok(bogen5 && bogen5.querySelectorAll('details').length >= 8);
+  assert.ok(bogen5 && bogen5.querySelectorAll('details').length >= 1, 'Originaltext und Abweichungen als details');
   assert.equal(bogen5.querySelectorAll('details:not([open])').length, 0, 'Kap. 5: alles aufgeklappt');
+  // R48: die Bausteine (5.2) stehen im Bogen aufgelöst – Funktion und Wirkung aller acht sichtbar (Test „jede Tafel zeigt alle Zellen“)
+  assert.equal(bogen5.querySelectorAll('.tafel-aufgeloest > li').length >= 8, true);
   const liste = baueTheorie({ inhalte, kapitel: null, version: VERSION, bedienbar: true });
   document.body.replaceChildren(liste);
   liste.querySelector<HTMLButtonElement>('[data-pruef="alles-drucken"]')?.click();

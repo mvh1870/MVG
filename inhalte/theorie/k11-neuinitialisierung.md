@@ -261,7 +261,7 @@ Die MVG-Neuinitialisierung ordnet nicht das gesamte Projekt fachlich neu. Sie or
 ---
 titel: Ergebnisbild einer MVG-Neuinitialisierung
 ---
-Woran erkennt man, dass eine MVG-Neuinitialisierung gewirkt hat? Sie liefert einen **geordneten Führungszustand**. Der besteht aus sieben Ergebnissen, jedes mit einem klaren Zweck.
+Woran erkennt man, dass eine MVG-Neuinitialisierung gewirkt hat? Sie liefert einen **geordneten Führungszustand**; die Tafel nennt dazu sieben Ergebnisse, jedes mit einem klaren Zweck.
 
 Das **Governance-Lagebild** zeigt, wo die Steuerbarkeit verloren gegangen ist. Das **Entscheidungsinventar** macht sichtbar, welche wesentlichen Entscheidungen offen, überfällig oder unklar sind. Die **Logik zur Neufestlegung der Projektbasis** klärt, ob und wie Kosten, Termine, Projektumfang, Risiko oder Mandat neu legitimiert werden müssen. Die **Datenstandsbereinigung** legt fest, welcher Stand für die nächsten Entscheidungen gilt. Außerdem wird geordnet, welche **Freigaben nachgeholt oder wiederholt** werden – die Abfolge LPH 0–9 bleibt dabei unverändert. Der **Eskalationsplan** bestimmt, welche Entscheidungen auf welcher Ebene getroffen werden müssen. Und das **stabilisierte Betriebshandbuch** führt das Projekt zurück in einen handhabbaren Regelbetrieb.
 

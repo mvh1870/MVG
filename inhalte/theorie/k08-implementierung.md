@@ -203,7 +203,7 @@ Die 30/60/90-Tage-Logik ist ein Orientierungsrahmen nach der MVG-Reifegradanalys
 ---
 titel: Mitwirkung des Bauherrn
 ---
-MVG lässt sich nicht an der Bauherrenorganisation vorbei einführen. Der Grund liegt im Gegenstand selbst: Es geht um Verantwortung, die beim Bauherrn bleibt. Wer ein Modell für Mandate, Schwellen und Freigaben einführt, braucht deshalb die Menschen, die diese Mandate tragen und diese Freigaben erteilen. Die Mitwirkung ist darum kein Verwaltungsaufwand neben der eigentlichen Arbeit, sondern Teil der Leistung.
+MVG lässt sich nicht an der Bauherrenorganisation vorbei einführen. Der Grund liegt im Gegenstand selbst: Es geht um Verantwortung, die beim Bauherrn bleibt. Wer ein Modell für Mandate, Schwellen und Freigaben einführt, braucht deshalb die Menschen, die diese Mandate tragen und diese Freigaben erteilen. Die Mitwirkung ist darum kein Verwaltungsaufwand neben der eigentlichen Arbeit, sondern Teil der Leistungslogik.
 
 Konkret heißt das: Auf Bauherrenseite gibt es eine verbindliche verantwortliche Rolle, und es besteht Zugang zu den Kernunterlagen – Projektauftrag, Zielsystem, Rollen, Kosten- und Terminstand, Risiko- und Änderungsinformationen. Die Bauherren-Projektleitung, die Auftraggeberlogik, das [[PMO]], die Projektsteuerung und Fachrollen stehen für Gespräche zur Verfügung. Der Bauherr trifft Entscheidungen zu Zielprioritäten, Mandaten, Schwellen und Freigaben, nimmt an Managementberichten, Pilotentscheidungen und Befähigungsmaßnahmen teil und übernimmt nach der Übergabe den Regelbetrieb.
 

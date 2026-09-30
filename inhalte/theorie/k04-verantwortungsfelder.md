@@ -29,7 +29,7 @@ In sechs Feldern muss der Bauherr selbst entscheidungsfähig bleiben. Die Vorber
 ---
 titel: Sechs Felder im Überblick
 ---
-Die sechs Felder sind keine juristische Vollständigkeitsliste. Sie sind eine Arbeitsstruktur: Mit ihr lässt sich die Ausübungsfähigkeit des Bauherrn sichtbar, prüfbar und gestaltbar machen: Kann er seine Verantwortung tatsächlich ausüben?
+Die sechs Felder sind keine juristische Vollständigkeitsliste. Sie sind eine Arbeitsstruktur, mit der sich die Ausübungsfähigkeit des Bauherrn sichtbar, prüfbar und gestaltbar machen lässt. Die Frage dahinter: Kann er seine Verantwortung tatsächlich ausüben?
 
 Jedes Feld hat denselben Aufbau. Es gibt einen **nichtdelegierbaren Kern** – das, was nur der Bauherr festlegen, annehmen oder freigeben kann. Daneben steht die **delegierbare Vorbereitung**: Analysen, Varianten, Vorlagen, Register und Protokolle, die andere Beteiligte erarbeiten können. Und es gibt eine **typische Fehlstelle**, an der es in diesem Feld hakt, und die Antwort, die [[Minimum Viable Governance (MVG)]] darauf gibt.
 
@@ -447,7 +447,7 @@ Welt A, Monat 9: Nachträge und Auflagen werden gegen die Risikoreserve gehalten
 ---
 text: "In der Story erlebt: Wendepunkt"
 ---
-Welt A steht still: die sechs Verantwortungsfelder vom Chaos zur Ordnung und die Muster-Mandatsleiter neben den Beträgen aus Welt A.
+Welt A steht still: unter „Tiefer gehen“ die sechs Verantwortungsfelder vom Chaos zur Ordnung, dazu die Muster-Mandatsleiter neben den Beträgen aus Welt A.
 :::
 
 ::: querverweis B1

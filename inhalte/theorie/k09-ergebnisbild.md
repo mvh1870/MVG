@@ -75,7 +75,7 @@ Was tatsächlich beschlossen ist. Die Entscheidungsvorlage hält die Beschlussla
 ---
 titel: Bauherren-Mandats- und Verantwortungsmodell
 ---
-Das Mandats- und Verantwortungsmodell ist das zentrale Ergebnisobjekt. Es beantwortet eine Grundfrage jeder Bauherrenorganisation: Was verbleibt beim Bauherrn, und was kann vorbereitet werden? Dazu verbindet es sechs Dinge: Verantwortungsfelder, Rollen, [[Mandat|Mandate]], Schwellen, Freigaben und Eskalation.
+Für eine Grundfrage jeder Bauherrenorganisation ist das Mandats- und Verantwortungsmodell das zentrale Ergebnisobjekt: Was verbleibt beim Bauherrn, und was kann vorbereitet werden? Dazu verbindet es sechs Dinge: Verantwortungsfelder, Rollen, [[Mandat|Mandate]], Schwellen, Freigaben und Eskalation.
 
 Praktisch wird das Modell an konkreten Fragen. Steht eine Entscheidung an, lässt sich mit ihm klären, welche Bauherrenverantwortung betroffen ist, welche Vorbereitung delegiert werden kann und wer letztverantwortlich ist. Es zeigt, wer ausführt, wer konsultiert und wer informiert wird, welche Schwelle eine Eskalation auslöst und welche Grundlagen vorliegen müssen. Schließlich verbindet es die Entscheidung mit ihrer Entscheidungs-ID, der betroffenen Freigabe und dem Ort, an dem der Nachweis geführt wird.
 
@@ -125,7 +125,7 @@ titel: RACI-Prozess
 
 So verstanden schützt RACI die Bauherrenorganisation vor stillschweigender Verantwortungsverlagerung. Es macht sichtbar, wann Projektsteuerung, [[PMO]], Planung oder Fachberatung unterstützen und wann die Entscheidung an die letztverantwortliche Bauherrenrolle zurückfallen muss. Die Kernfrage lautet: Wer bereitet vor, wer entscheidet, wer liefert belastbare Entscheidungsgrundlagen, wer wird konsultiert, wer informiert? Diese Rollenlogik gehört in Freigaben, Änderungssteuerung, Risikoprüfung und Berichterstattung.
 
-Das Standard-Rollenmodell umfasst 13 Arbeitsrollen – vom Bauherrn/Projektauftraggeber über Bauherren-PL, PMO, Projektsteuerung, Lenkungskreis/Vorstand, Controlling/Finanzen, Einkauf/Vergabe und Planung bis zu externen Beratern, Auftragnehmern/Lieferanten, Administration, Ausführung und Gebäudemanagement (FM)/Betrieb. Dazu kommt die Sonderrolle „BM-Mentor“ nur für die Einführung.
+Das Standard-Rollenmodell umfasst 13 Arbeitsrollen – vom Bauherrn/Projektauftraggeber über Bauherren-PL, PMO, Projektsteuerung, Lenkungskreis/Vorstand, Controlling/Finanzen, Einkauf/Vergabe und Planung/Fachplanung bis zu externen Beratern, Auftragnehmern/Lieferanten, Administration, Ausführung und Gebäudemanagement (FM)/Betrieb. Dazu kommt die Sonderrolle „BM-Mentor“ nur für die Einführung.
 
 ::: umschalter
 ---
@@ -148,7 +148,7 @@ titel: Eigene Arbeitsrolle oder nicht?
 links: Arbeitsrolle im Standardmodell
 rechts: Keine eigene Arbeitsrolle
 ---
-[[bedienung:Ordnen Sie zu,]] was im Standard-Rollenmodell als eigene Arbeitsrolle zählt.
+Was zählt im Standard-Rollenmodell als eigene Arbeitsrolle? [[bedienung:Ordnen Sie jeden Posten zu.]]
 
 ::: posten pl
 ---
@@ -242,7 +242,7 @@ Die Freigabe am Abschluss einer Leistungsphase gibt die nächste frei. Nach der 
 ---
 titel: Welche Frage die Freigabe am Ende jeder Leistungsphase stellt
 ---
-Die Freigabefragen je Leistungsphase, wörtlich aus der Tabelle in Kap. 9.3; die Tafel darunter zeigt sie im Zusammenhang. Nach der Freigabe zum Abschluss von LPH 9 folgt der Regelbetrieb. Die Zuordnung kann projektspezifisch angepasst werden.
+Die Freigabefragen je Leistungsphase, wörtlich aus der Tabelle in Kap. 9.3; die Tafel darunter stellt die zehn Leistungsphasen nebeneinander. Nach der Freigabe zum Abschluss von LPH 9 folgt der Regelbetrieb. Die Zuordnung kann projektspezifisch angepasst werden.
 
 ::: stufe lph0
 ---
@@ -519,7 +519,7 @@ Welt B, Monat 1: Statt einer Liste der Beteiligten gibt es eine RACI mit Mandats
 ---
 text: "In der Story erlebt: B3 · Kosten +8 %"
 ---
-Welt B, Monat 5: Die Entscheidungsvorlage `ENT-017` zeigt entlang der Checkliste aus Kap. 9.4, was erfüllt ist und was noch fehlt – etwa Mandat und Freigabeweg, die von der Option abhängen.
+Welt B, Monat 5: Die Entscheidungsvorlage `ENT-017` zeigt entlang der Checkliste aus Kap. 9.4, was erfüllt ist, was fehlt und was noch offen ist – etwa Mandat und Freigabeweg, die von der Option abhängen.
 :::
 
 ::: querverweis B4
@@ -552,7 +552,7 @@ Der Bauherr erteilt die Freigabe zum Abschluss von LPH 5 mit Auflagen; ob sie na
 
 ::: regie
 ### Notiz
-Kapitel 9 zeigt die Ergebnisobjekte; ihr Wert liegt im Zusammenhang – die Etappen „Nachweiskette“ oben führen Mandat, Freigabe, Entscheidungs-ID, Datenstand, Nachweis und Beschlusslage der Reihe nach vor. Im Termin tragen in 9.3 der Weg einer Freigabe und der Regler über LPH 0–9: Der Bauherr erteilt jede Freigabe selbst auf Vorlage der Bauherren-PL, der Lenkungskreis berät und bereitet vor. Der Regler zeigt die Freigabefrage je Leistungsphase, die Tafel darunter alle zehn im Zusammenhang. RACI (9.2) nicht als Werkzeug erklären, sondern die Kopplung an Mandate und Schwellen zeigen (Umschalter). Die Zuordnung der Freigaben zu den Leistungsphasen kann projektspezifisch angepasst werden – nicht als starr darstellen.
+Kapitel 9 zeigt die Ergebnisobjekte; ihr Wert liegt im Zusammenhang – die Etappen „Nachweiskette“ oben führen Mandat, Freigabe, Entscheidungs-ID, Datenstand, Nachweis und Beschlusslage der Reihe nach vor. Im Termin tragen in 9.3 der Weg einer Freigabe und der Regler über LPH 0–9: Der Bauherr erteilt jede Freigabe selbst auf Vorlage der Bauherren-PL, der Lenkungskreis berät und bereitet vor. Der Regler zeigt die Freigabefrage je Leistungsphase, die Tafel darunter die zehn Leistungsphasen nebeneinander. RACI (9.2) nicht als Werkzeug erklären, sondern die Kopplung an Mandate und Schwellen zeigen (Umschalter). Die Zuordnung der Freigaben zu den Leistungsphasen kann projektspezifisch angepasst werden – nicht als starr darstellen.
 
 ### Leitfragen
 - Welche Kernfrage stand bei Ihrer letzten Freigabe zum Abschluss einer Leistungsphase im Raum?

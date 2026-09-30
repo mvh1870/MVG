@@ -619,14 +619,14 @@ Die verantwortliche Rolle und die Bauherren-PL entscheiden im definierten Rahmen
 ---
 titel: Bauherren-PL
 ---
-Eine Wert-, Risiko-, Frist- oder Mandatsschwelle ist überschritten. Liegt die Schwelle im Mandat der Bauherren-PL, geht das Thema an sie.
+Eine Wert-, Risiko-, Frist- oder Mandatsschwelle ist überschritten. Liegt das Thema im Mandat der Bauherren-PL, geht es an sie.
 :::
 
 ::: etappe 3
 ---
 titel: Änderungsgremium
 ---
-Das Änderungsgremium entscheidet, wenn die Schwelle in seinem Mandat liegt.
+Das Änderungsgremium entscheidet, wenn das Thema in seinem Mandat liegt.
 :::
 
 ::: etappe 4

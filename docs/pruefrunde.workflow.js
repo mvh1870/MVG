@@ -21,6 +21,7 @@ SCHWERE (verbindlich, damit die Runde zählbar ist):
 - schwer: falsche Fachaussage oder falsche Zuständigkeit/Schwelle gegenüber V1.2; sichtbarer verbotener Begriff (BEGRIFFE, G0–G5 statt LPH); Vertriebsaussage/erfundene Kennzahl über BM (O-1); Funktion kaputt; Barriere, die eine Aufgabe blockiert; Regie-Notiz auf der Leinwand.
 - mittel: neue Fachaussage ohne Beleg (O-17) oder Widerspruch zwischen zwei Stellen; Zitat nicht wortgleich; sichtbarer Layoutfehler (Wort ohne Trennstrich gebrochen, Überlauf, abgeschnittener oder fast leerer Druck, Überschrift am Seitenende); WCAG-AA-Verstoß; ein Test/eine Probe prüft nicht, was sie behauptet (Mutation überlebt).
 - leicht: Grammatik, Stil, missverständliche Formulierung ohne falsche Aussage, Vorsorge (Risiko ohne heutigen Fehler), Bedienhinweis außerhalb [[bedienung:…]].
+SCHWERPUNKT DIESER RUNDE: ${args.schwerpunkt ?? 'keiner'}
 RÜCKGABE: strukturiert. Je Befund: schwere, datei (Pfad relativ zum Repo), ort (Zeile, Knoten-ID, Selektor oder Seite), befund (was falsch ist, mit Messwert), beleg, vorschlag. Keine Befunde → leere Liste. Dazu \`umfang\`: 3–6 Sätze, was du tatsächlich gelesen/gemessen hast und was ohne Fund blieb.`
 
 const PRUEFFELDER = [
@@ -102,6 +103,8 @@ DEINE ROLLE: ${feld.rolle}. DEIN PRÜFFELD („${feld.key}“): ${feld.auftrag}`
   async (res, feld) => {
     if (!res) return { feld: feld.key, fehlt: true, umfang: 'Agent ausgefallen', befunde: [] }
     const geprueft = await parallel(res.befunde.map((f, i) => async () => {
+      // leichte Befunde zählen für L-64 nicht – sie werden beim Einarbeiten geprüft (4 Kerne: Rechenzeit für die mittleren)
+      if (f.schwere === 'leicht' && args.leichtOhnePruefung) return { ...f, feld: feld.key, echt: true, schwereGeprueft: 'leicht', stimmen: 'ungeprüft', urteile: [] }
       const linsen = f.schwere === 'leicht' ? [LINSEN[0]] : LINSEN
       const urteile = (await parallel(linsen.map((l, j) => () =>
         agent(pruefePrompt(f, feld, l), { label: `pruefen:${feld.key}#${i + 1}.${j + 1}`, phase: 'Gegenprüfen', schema: URTEIL_SCHEMA })))).filter(Boolean)

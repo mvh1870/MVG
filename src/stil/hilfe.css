@@ -158,6 +158,11 @@
   /* R49: im Druck als ein Absatz – umbrochen (161 px hoch) riss der Fuß ab, das letzte Blatt trug nur „fachlich ungeprüft“ */
   .hilfe .lern-fuss { display: block; }
   .hilfe .lern-fuss > :not(.lern-kopf-link) { display: inline; margin-right: 1em; }
+  /* R50 (CI 231–233): unter Chrome 153 stand der Fuß trotz break-before: avoid allein auf dem letzten Blatt (Kundenanpassung) –
+     im Druck steht er deshalb oben unter Seitenkopf und Vermerk, wie die Meta-Zeilen der Druckbögen */
+  .lernseite.hilfe .lern-inhalt { display: flex; flex-direction: column; }
+  .lernseite.hilfe .lern-inhalt > :is(.kapitel-kopf, .kapitel-vermerk) { order: -2; }
+  .lernseite.hilfe .lern-inhalt > .lern-fuss { order: -1; margin: 0 0 4mm; padding: 0 0 2mm; border-top: 0; border-bottom: 1px solid var(--linie); }
   /* R44: im Druck bricht nur, was allein nicht in die Zeile passt (am Bildschirm schützt `anywhere` schmale Fenster) */
   .hilfe-inhalt { overflow-wrap: break-word; }
   .hilfe-inhalt details > :not(summary) { display: block; }

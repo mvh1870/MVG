@@ -76,7 +76,7 @@ export function mail(b: Block, inhalte: OeffentlicheInhalte, beschriftung: { ein
       h('div', { class: 'absender' }, personFigur(von, 46, inhalte), h('div', null, h('b', null, name), h('span', null, personFunktion(von, inhalte)))),
       h('h3', { class: 'mail-betreff' }, h('span', { class: 't-label' }, beschriftung.betreff), kopfText(b.kopf, 'betreff') ?? ''),
       h('div', { class: 'mail-text' }, inhalt(b.felder['text'] ?? '')),
-      anhang !== null ? h('span', { class: 'anhang' }, sym('tabelle'), h('span', { class: 'nur-sr' }, `${beschriftung.anhang}: `), h('span', { class: 'mono' }, anhang)) : null));
+      anhang !== null ? h('span', { class: 'anhang' }, sym('tabelle'), h('span', { class: 'nur-sr' }, `${beschriftung.anhang}: `), h('span', { class: 'mono' }, dateinameMitUmbruch(anhang))) : null));
 }
 
 export function chat(b: Block, inhalte: OeffentlicheInhalte, verzug: number, ich: string | null = null, sieWort = 'Sie'): HTMLElement {

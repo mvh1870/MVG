@@ -178,7 +178,8 @@ export async function leitstandSchmal(seite, h, name) {
 
 /** R47: Bauteile, deren Wörter am Bildschirm nie mitten im Wort brechen dürfen */
 // R48: dazu der Kopf der Zeitmaschinen-Tabelle („MO|NAT“, „KOSTENUN|SICHERHEI|T“) und der Beamer-Status („SEHR HOC“)
-export const BAUTEILE_UNGETEILT = '.tabellenstand-zahl, .instrument-label, .ablesung, .protokoll-kopf, .lw-korb, .kapitel-titel, .fortschritt, .zm-tabelle th, .instrument .wert';
+// R50: dazu der Dateiname im Mail-Anhang und Kennungen in der Hilfe
+export const BAUTEILE_UNGETEILT = '.anhang .mono, .hilfe-inhalt code, .tabellenstand-zahl, .instrument-label, .ablesung, .protokoll-kopf, .lw-korb, .kapitel-titel, .fortschritt, .zm-tabelle th, .instrument .wert';
 
 /**
  * R49 (Stil): Kästen mit eigener Fläche (Hintergrund oder Schatten) ragen nicht über den Inhaltsbereich der Spalte `wurzel` –

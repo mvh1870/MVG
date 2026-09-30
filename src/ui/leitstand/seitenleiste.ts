@@ -211,9 +211,16 @@ export function erzeugeSeitenleiste(o: SeitenOptionen): Seitenleiste {
       else {
         teile.push(h('p', { class: 'leiste-hinweis' }, w.quellenHinweis));
         for (const q of absaetze) {
+          const text = inhalt(q.html);
+          // R50: breite Originaltabellen rollen in eigenem Bereich (per Tastatur erreichbar) – unter 981 px liefen sie aus der Karte
+          for (const t of [...text.querySelectorAll('table')]) {
+            const rahmen = h('div', { class: 'quell-tabelle', tabindex: 0, role: 'region', 'aria-label': w.quellAngabe(o.inhalte.whitepaper.fassung ?? '', q.abschnitt, q.id) });
+            t.replaceWith(rahmen);
+            rahmen.append(t);
+          }
           teile.push(h('figure', { class: 'quell-absatz', 'data-absatz': q.id, 'data-pruef': `quelle-${q.id}` },
             h('figcaption', null, h('b', null, `${q.abschnitt} ${q.abschnittTitel}`), h('small', null, w.quellAngabe(o.inhalte.whitepaper.fassung ?? '', q.abschnitt, q.id))),
-            inhalt(q.html)));
+            text));
         }
       }
     } else if (st !== null) {

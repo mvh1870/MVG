@@ -9,7 +9,7 @@ import { anfangszustand } from '../../src/engine/zustand.ts';
 import { wende } from '../../src/engine/aktionen.ts';
 import { aktuellerSchritt } from '../../src/engine/graph.ts';
 import { speichere, SPEICHER_SCHLUESSEL } from '../../src/engine/speicher.ts';
-import { pruefer } from './hilfen.mjs';
+import { pruefeLayout, pruefer, rollbarOhneTastatur } from './hilfen.mjs';
 import { pdfSeiten, seitenMitUeberschriftAmEnde, wortbrueche } from './pdf.mjs';
 
 export const name = 'enden';
@@ -79,6 +79,24 @@ export async function lauf(seite, h) {
         const weg = await seite.evaluate(() => document.querySelector('.druck-bogen')?.textContent?.includes('Ihr Weg durch die Story') ?? false);
         await seite.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
         if (!weg) h.befund(`${ende}: Strg+P auf dem ersten Epilog-Schritt druckt kein Dossier`);
+        // R50 (Stil): Quellen-Reiter der Seitenleiste – breite Originaltabellen (k2.5-t1, k13-t1) bleiben in der Fläche und
+        // sind per Tastatur erreichbar, auch bei 320 px
+        const knopf = seite.locator('[data-pruef="seitenleiste-quellen"]').filter({ visible: true });
+        if (await knopf.count() === 0) await h.klick('[data-pruef="seitenleiste-raum"]');
+        if (await seite.locator('[data-pruef="reiter-quellen"]').filter({ visible: true }).count() > 0) await h.klick('[data-pruef="reiter-quellen"]');
+        else await knopf.first().click();
+        await h.warte(300);
+        if (await seite.locator('.seitenleiste-inhalt .quell-absatz table').count() === 0) h.befund(`${ende}: Quellen-Reiter zeigt keine Tabelle`);
+        const vp = seite.viewportSize();
+        for (const b of [vp?.width ?? 400, 320]) {
+          if (vp !== null) await seite.setViewportSize({ width: b, height: vp.height });
+          await h.warte(150);
+          for (const fund of await seite.evaluate(pruefeLayout)) h.befund(`${ende} Quellen @${b}: ${fund}`);
+          for (const fund of await seite.evaluate(rollbarOhneTastatur)) h.befund(`${ende} Quellen @${b}: ${fund}`);
+        }
+        if (vp !== null) await seite.setViewportSize(vp);
+        await h.taste('Escape');
+        await h.warte(200);
       }
       await pruefe(`${ende}-${st}-${i}`);
       if (st === 'epilog' && await seite.locator('[data-pruef="weiter"]').isDisabled()) break;

@@ -666,6 +666,17 @@ function bereinige(wurzel, anker, titel = '') {
     teile.forEach((teil, i) => { if (i > 0) frag.append(dok.createElement('wbr')); frag.append(dok.createTextNode(teil)); });
     t.replaceWith(frag);
   }
+  // R50: Dateinamen und Kennungen in code brechen nach „_“ und „-“ und vor „.“ um, nicht mitten im Wort („mvg_project_pack|age.json“)
+  const gangC = dok.createTreeWalker(wurzel, 4);
+  /** @type {Text[]} */
+  const kennungen = [];
+  for (let n = gangC.nextNode(); n !== null; n = gangC.nextNode()) if (n.parentElement?.closest('code') !== null && n.parentElement?.closest('svg') === null && /\w[_.-]\w/u.test(n.textContent ?? '')) kennungen.push(/** @type {Text} */ (n));
+  for (const t of kennungen) {
+    const teile = (t.textContent ?? '').split(/(?<=\w[_-])(?=\w)|(?<=\w)(?=\.\w)/u);
+    const frag = dok.createDocumentFragment();
+    teile.forEach((teil, i) => { if (i > 0) frag.append(dok.createElement('wbr')); frag.append(dok.createTextNode(teil)); });
+    t.replaceWith(frag);
+  }
 }
 
 /**

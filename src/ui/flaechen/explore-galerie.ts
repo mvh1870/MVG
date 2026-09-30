@@ -56,7 +56,7 @@ function abbildungsZelle(a: OeffentlicheInhalte['whitepaper']['abbildungen'][num
   const daten = abbildungsBild(a.id);
   return h('a', { class: 'galerie-abbildung', href: `#theorie/k${a.kapitel}/${a.id}`, 'data-pruef': `galerie-abbildung-${a.id}` },
     daten !== null ? h('img', { src: daten, alt: '', width: 96, height: Math.round(96 * a.bild.hoehe / a.bild.breite), decoding: 'async' }) : null,
-    h('span', null, mitTrennstellen(a.bild.titel)));
+    h('span', null, titelMitTrennstellen(a.bild.titel)));
 }
 
 /**
@@ -72,7 +72,7 @@ const TRENNSTELLEN: readonly [string, string][] = [
   ['Managementbericht', 'Management\u00ADbericht'],
   ['Letztverantwortung', 'Letzt\u00ADverantwortung'],
 ];
-function mitTrennstellen(titel: string): string {
+function titelMitTrennstellen(titel: string): string {
   return TRENNSTELLEN.reduce((t, [wort, getrennt]) => t.replaceAll(wort, getrennt), titel);
 }
 

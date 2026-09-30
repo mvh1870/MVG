@@ -956,7 +956,8 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .mail-text { margin-top: 6px; font-size: 15.5px; line-height: 1.5; }
 .anhang { display: inline-flex; align-items: center; gap: var(--a-2); max-width: 100%; margin-top: 10px; padding: 6px 10px; border-radius: var(--radius-s); background: var(--anhang-grund); color: var(--tabelle-text); font-size: var(--gr-s); }
 .anhang .symbol { flex: none; font-size: var(--gr-xl); }
-.anhang .mono { overflow-wrap: anywhere; white-space: normal; }
+/* R50: Umbruch nach „_“ und vor „.“ (dateinameMitUmbruch), nicht mehr mitten im Wort */
+.anhang .mono { overflow-wrap: break-word; white-space: normal; }
 
 /* Chat (.chatrow, .bubble) */
 .chat { display: flex; align-items: flex-end; gap: 10px; margin-left: 10px; }
@@ -2165,3 +2166,7 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .leiter-stock b, .pyramide-stufe, .lw-schalter-seite, .tafel small { hyphens: auto; }
 /* R48: ebenso die Titel der Tafel-Karten („Maßnahmenverknüpfung“ bei 320 px, „Verantwortungszuordnung“ bei 548 px) */
 .tafel-karte .tafel-titel { hyphens: auto; }
+
+/* R50: Originaltabellen im Quellen-Reiter rollen waagerecht in ihrem eigenen Bereich (Tastatur: tabindex) */
+.quell-tabelle { max-width: 100%; overflow-x: auto; }
+.quell-tabelle:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }

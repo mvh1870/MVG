@@ -74,7 +74,7 @@ export function bogenFuerStrgP(anker: HTMLElement, bauer: () => { titel: string;
  */
 export function mitTrennstellen(text: string): string {
   // „Risiko-/Änderungs-/Maßnahmen…“, „Rollen/Freigaben/…“: nach „/“ darf die Zeile umbrechen (sonst ein unteilbarer Block)
-  return text.replace(/(?<=[\p{L}-])\/(?=\p{L})/gu, '/\u200b').replace(/\p{L}{12,}/gu, (wort) => wort.replace(/(?<=\p{L}(?:ungs|heits|keits|schafts|tions|täts|stands|ßnahmen|agement|umenten|triebs|utzen|ister|tritts))(?!(?<=agement)s)(?=\p{Ll}{4})/gu, '\u00ad'));
+  return text.replace(/(?<=[\p{L}-])\/(?=\p{L})/gu, '/\u200b').replace(/\p{L}{12,}/gu, (wort) => wort.replace(/(?<=\p{L}(?:ungs|heits|keits|schafts|tions|täts|stands|ßnahmen|agement|umenten|triebs|utzen|ister|tritts|ketten|lagen))(?!(?<=agement)s)(?=\p{Ll}{4})/gu, '\u00ad'));
 }
 
 /** Setzt in den Textknoten unter `el` die Trennstellen; gibt zurück, wie der alte Text wiederherzustellen ist. */
@@ -112,7 +112,8 @@ function haengeBogenAn(teile: Node[]): HTMLElement {
   const bogen = h('div', { class: 'druck-bogen', 'data-pruef': 'druck-bogen' }, teile);
   for (const d of bogen.querySelectorAll('details')) d.setAttribute('open', '');
   // R43: Papier hat kein Trennwörterbuch – lange Wörter in Tabellenzellen und Tafeltiteln bekommen weiche Trennstellen an ihren Fugen
-  for (const el of bogen.querySelectorAll('th, td, .tafel-titel')) setzeTrennstellen(el);
+  // R45: ganze Tafeln – ihre Karten sind 196 px breit (CI 204: „Entscheidungsvorbereitung“ passte unter Chrome 153 nicht mehr)
+  for (const el of bogen.querySelectorAll('th, td, .tafel')) setzeTrennstellen(el);
   // keine doppelten IDs neben der Seite: umbenennen, Bezüge (aria-labelledby, for) mitziehen
   let n = 0;
   const neu = new Map<string, string>();

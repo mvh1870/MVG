@@ -36,6 +36,8 @@ test('jede Fuge einzeln (R44)', () => {
     ['Qualitätssicherung', 'Qualitäts|sicherung'], ['Datenstandsprüfung', 'Datenstands|prüfung'],
     ['Maßnahmenregister', 'Maßnahmen|register'], ['Dokumentenprüfung', 'Dokumenten|prüfung'],
     ['Betriebshandbuch', 'Betriebs|handbuch'], ['Nutzenbewertung', 'Nutzen|bewertung'], ['Managementbericht', 'Management|bericht'],
+    // R45: Tafelkarten (196 px) und schmale Zellen – unter Chrome 153 etwas breiter gesetzt als lokal
+    ['Lieferkettenunsicherheit', 'Lieferketten|unsicherheit'], ['Unterlagenzugang', 'Unterlagen|zugang'], ['Grundlagenermittlung', 'Grundlagen|ermittlung'],
   ] as [string, string][]) assert.equal(sicht(w), soll, w);
 });
 

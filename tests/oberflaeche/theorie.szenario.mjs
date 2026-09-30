@@ -6,7 +6,7 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { kontrastQuellen, mittelbreit, pruefeLayout, rollbarOhneTastatur } from './hilfen.mjs';
+import { kaestenUeberRand, kontrastQuellen, mittelbreit, pruefeLayout, rollbarOhneTastatur } from './hilfen.mjs';
 import { pdfSeiten, seitenMitUeberschriftAmEnde, wortbrueche } from './pdf.mjs';
 
 export const name = 'theorie';
@@ -48,6 +48,11 @@ export async function lauf(seite, h) {
       await seite.setViewportSize({ width: 320, height: vp.height }); await h.warte(150);
       const sw = await seite.evaluate(() => document.documentElement.scrollWidth);
       if (sw > 321) h.befund(`k${nr}: rollt bei 320 px waagerecht (${sw} px)`);
+      // R49: Kästen bleiben in ihrer Spalte – erst unbeantwortet, dann mit beantworteten Wissenschecks (Ergebnis mit Zitat)
+      for (const fund of await seite.evaluate(kaestenUeberRand, '.lern-inhalt')) h.befund(`k${nr} @320: ${fund}`);
+      await seite.evaluate(() => { for (const wc of document.querySelectorAll('.wissenscheck')) wc.querySelector('.wc-antwort')?.click(); });
+      await h.warte(150);
+      for (const fund of await seite.evaluate(kaestenUeberRand, '.lern-inhalt')) h.befund(`k${nr} @320 beantwortet: ${fund}`);
       for (const fund of await seite.evaluate(pruefeLayout)) h.befund(`k${nr} @320: ${fund}`);
       for (const fund of await seite.evaluate(rollbarOhneTastatur)) h.befund(`k${nr} @320: ${fund}`);
       // R47: kein Wort bricht mitten im Wort ohne Trennstrich (Titel, Körbe, Tabellenköpfe, Originaltext) – außer in Text mit hyphens:auto

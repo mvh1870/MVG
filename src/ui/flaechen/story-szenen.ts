@@ -871,6 +871,9 @@ function zustandsBlock(b: Block, k: SzenenKontext): Node | null {
 }
 
 /** Kapitelnummern der Whitepaper-Bezüge der besuchten Stationen, nach Häufigkeit (bei Gleichstand nach Nummer). */
+/** R50 (O-34): Kap. 7 und 8 beschreiben Leistungsarchitektur und Einführungsmandat – keine automatische Vertiefung im Dossier */
+export const OHNE_AUTO_VERTIEFUNG: ReadonlySet<number> = new Set([7, 8]);
+
 export function kapitelDerSpur(verlauf: readonly string[], inhalte: OeffentlicheInhalte): number[] {
   const zahl = new Map<number, number>();
   for (const id of new Set(verlauf)) {
@@ -896,7 +899,8 @@ export function resuemee(b: Block, k: SzenenKontext, text: Node | null): HTMLEle
   const ende = [...k.z.verlauf].reverse().map((id) => k.inhalte.stationen[id]).find((st) => st?.art === 'ende') ?? null;
   const richtung = [...k.z.spur].reverse().find((e) => e.station === 'wirklichkeit') ?? null;
   const richtungKurz = richtung !== null ? findeEntscheidung(k.inhalte, richtung.entscheidung)?.entscheidung.optionen.find((o) => o.id === richtung.option)?.kurz ?? null : null;
-  const vertiefungen = [...new Set([...(ende?.vertiefung != null ? [ende.vertiefung] : []), ...kapitel])].slice(0, 2);
+  const vertiefungen = [...new Set([...(ende?.vertiefung != null ? [ende.vertiefung] : []),
+    ...kapitelDerSpur(k.z.verlauf.filter((id) => id !== k.station.id), k.inhalte).filter((nr) => !OHNE_AUTO_VERTIEFUNG.has(nr))])].slice(0, 2);
   // Dossier (P10.2, E11): Weg, Entscheidungen, Resümee und die Kapitel der Vertiefung auf einem Bogen
   const dossierBogen = (): { titel: string; teile: Node[] } => {
     const D = W.druck;

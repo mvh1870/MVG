@@ -156,7 +156,7 @@ Umfangreiche Unterlagen machen ein Gremium nicht entscheidungsfähig. Fehlen Ent
 ---
 titel: Warum relevant
 ---
-Wesentlich sind Entscheidungen, die Kosten, Termin, Qualität, Projektumfang, Risiko oder ESG/LCC substanziell beeinflussen (Kap. 4.3). Im Juli liegen solche Fragen offen: welche Kostenzahl gilt, wie die Brandschutzauflagen gedeckt werden, was aus der Mensa wird. Keine davon ist als Frage gestellt. Kap. 2.5 beschreibt, was dann geschieht: [[zitat:k2.5-t1|Gremien vertagen, entscheiden unter Unsicherheit oder delegieren Verantwortung zurück.]] Mit der Sommerpause dauert die Vertagung zwei Monate.
+Wesentlich sind Entscheidungen, die Kosten, Termin, Qualität, Projektumfang, Risiko oder ESG/LCC substanziell beeinflussen (Kap. 4.3). Im Juli liegen solche Fragen offen: welche Kostenzahl gilt, wie die Brandschutzauflagen gedeckt werden, was aus der Mensa wird. Keine davon ist als Frage gestellt. Kap. 2.5 beschreibt, was dann geschieht: [[zitat:k2.5-t1|Gremien vertagen, entscheiden unter Unsicherheit oder delegieren Verantwortung zurück.]] Der Ausschuss tagt erst wieder im September – dazwischen liegt die Sommerpause.
 :::
 
 ::: ebene 3
@@ -254,7 +254,7 @@ figur: kaya
 
 ::: regie
 ### Notiz
-A4 zeigt das Symptom „Gremien ohne Entscheidungsreife“ (Kap. 2.5): viel Unterlage, keine Frage – das Gremium vertagt. Bernd Kowalski nicht als Bremser zeigen; seine Frage ist berechtigt. Dieselben Auflagen liegen in B4 als Änderung im Änderungsgremium. Die Sommerpause macht aus der Vertagung zwei Monate.
+A4 zeigt das Symptom „Gremien ohne Entscheidungsreife“ (Kap. 2.5): viel Unterlage, keine Frage – das Gremium vertagt. Bernd Kowalski nicht als Bremser zeigen; seine Frage ist berechtigt. Dieselben Auflagen liegen in B4 als Änderung im Änderungsgremium. Der Ausschuss tagt zweimonatlich; die Vertagung kostet bis September zwei Monate.
 
 ### Leitfragen
 - Was lag Ihrem Gremium zuletzt vor – ein Bericht oder eine Frage?

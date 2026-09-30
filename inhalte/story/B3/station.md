@@ -265,14 +265,14 @@ Es gilt die „Kostenprognose 2026-05 · Version 3“: +8 %, rund +4,7 Mio. € 
 ---
 titel: Jedes Register hat eine Rolle
 ---
-Das Controlling führt CTC und Prognose (die Zahl der Version 3 rechnet die Projektsteuerung zu), die Projektsteuerung Frühwarnungs- und Risikoregister, die Bauherren-PL Entscheidungs- und Änderungsregister. So kommt `FRW-003` über `RIS-014` bei `ENT-017` an – mit Frage und Frist. Kap. 6.4.1: [[zitat:k6.4.1-p3|Entscheidungsbedürftige Themen werden nicht nur berichtet, sondern über das Entscheidungsregister und eine Entscheidungsvorlage entscheidungsreif gemacht.]]
+Das Controlling führt CTC und Prognose (die Zahl der Version 3 liefert die Projektsteuerung zu), die Projektsteuerung Frühwarnungs- und Risikoregister, die Bauherren-PL Entscheidungs- und Änderungsregister. So kommt `FRW-003` über `RIS-014` bei `ENT-017` an – mit Frage und Frist. Kap. 6.4.1: [[zitat:k6.4.1-p3|Entscheidungsbedürftige Themen werden nicht nur berichtet, sondern über das Entscheidungsregister und eine Entscheidungsvorlage entscheidungsreif gemacht.]]
 :::
 
 ::: vertiefung risiko
 ---
 titel: Ein Risiko mit Entscheidungsbedarf
 ---
-Die Lieferzeit steht seit März im Register – erfasst als `FRW-002`, in der Risikosichtung am 17. März als `RIS-009` bestätigt; `FRW-003` ist ein neues Signal, ausgelöst von der CTC. Die Projektsteuerung hat es bestätigt und bewertet: `RIS-014` „Preissteigerung Holzbauelemente“. In `ENT-017` fehlen zu Option 2 noch Termin und Risiko. Kap. 4.4: [[zitat:k4.4-p2|Ein Risiko wird nicht nur als Eintrag geführt, sondern mit einer verantwortlichen Rolle, Frist, Wirkung, Risikominderung, Restrisiko, Entscheidungsbedarf und Eskalationsschwelle verbunden.]]
+Die Lieferzeit steht seit März im Register – erfasst als `FRW-002`, in der Risikosichtung im März als `RIS-009` bestätigt; `FRW-003` ist ein neues Signal, ausgelöst von der CTC. Die Projektsteuerung hat es bestätigt und bewertet: `RIS-014` „Preissteigerung Holzbauelemente“. In `ENT-017` fehlen zu Option 2 noch Termin und Risiko. Kap. 4.4: [[zitat:k4.4-p2|Ein Risiko wird nicht nur als Eintrag geführt, sondern mit einer verantwortlichen Rolle, Frist, Wirkung, Risikominderung, Restrisiko, Entscheidungsbedarf und Eskalationsschwelle verbunden.]]
 :::
 
 ::: vertiefung freigaben

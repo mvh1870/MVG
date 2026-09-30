@@ -181,6 +181,8 @@ test('Name (O-33, O-34): „Governance Kompass“ mit Bildmarke auf jeder Fläch
   ];
   for (const [name, el] of flaechen) {
     assert.ok(el.querySelector('.lern-kopf svg.marke-logo'), `${name}: Bildmarke im Kopf`);
+    // R49 (O-34): die Bildmarke steht nur neben dem Namen – nicht als Siegel vor Quellenzeilen
+    assert.equal(el.querySelectorAll('svg.marke-logo').length, 1, `${name}: Bildmarke nur im Kopf`);
     assert.equal(el.querySelector('.lern-kopf [data-pruef="lern-marke"]')?.textContent, W.name, `${name}: Name im Kopf`);
     assert.match(el.querySelector('.lern-fuss')?.textContent ?? '', /Governance Kompass · www\.GovernanceKompass\.de · Herausgeber: Bauherr Mentoren/u, `${name}: Fuß`);
     assert.doesNotMatch(el.querySelector('.lern-kopf')?.textContent ?? '', /Bauherr Mentoren/u, `${name}: Kopf ohne Absender (O-34)`);
@@ -199,6 +201,7 @@ test('Name (O-33, O-34): „Governance Kompass“ mit Bildmarke auf jeder Fläch
       ['Regie', regieN.element.querySelector('.regie-unterzeile')?.textContent ?? ''],
       ['Leinwand', lwWurzel.querySelector('.leinwand-warten-name')?.textContent ?? ''],
     ];
+    assert.equal(storyN.element.querySelectorAll('svg.marke-logo').length, 1, 'Story: Bildmarke nur im Kopf (nicht im Fuß der Seitenleiste)');
     for (const [name, text] of weitere) {
       assert.match(text, /^Governance Kompass/u, `${name}: Name`);
       assert.doesNotMatch(text, /Bauherr Mentoren|MVG interaktiv/u, `${name}: ohne Absender (O-34)`);
@@ -1175,6 +1178,29 @@ test('Resümee (P7.7): Ende, Richtung und erste Vertiefung aus der Spur; Zwische
   const links = [...el.querySelectorAll('[data-pruef="resuemee-vertiefungen"] a')].map((a) => a.getAttribute('href'));
   assert.equal(links[0], `#theorie/k${inhalte.stationen['ende-steuerbar']?.vertiefung}`, 'erste Vertiefung aus dem Ende');
   assert.equal(links.length, 2);
+  // R50 (O-34): Kap. 7/8 (Leistungsarchitektur, Einführungsmandat) nie als automatische Vertiefung – alle Enden, Haupt- und Express-Pfad
+  for (const express of [true, false]) {
+    for (const wahl of ['A', 'B', 'C']) {
+      let s = anfangszustand();
+      const mach = (a: Parameters<typeof wende>[1]): void => { s = wende(s, a, inhalte); };
+      mach({ art: 'starteStory' });
+      mach({ art: 'waehleRolle', rolle: 'pl' });
+      mach({ art: 'setzeInteressen', interessen: express ? ['express'] : [] });
+      for (let i = 0; i < 3000 && s.station !== 'epilog'; i++) {
+        const ent = s.station !== null ? inhalte.stationen[s.station]?.szenen['pl']?.entscheidung : null;
+        if (aktuellerSchritt(s, inhalte)?.art === 'entscheidung' && ent && s.entscheidungen[ent.id] === undefined) tu2(s.station === 'wirklichkeit' ? wahl : s.station === 'A6' ? 'C' : 'A');
+        const vorher = s;
+        mach({ art: 'weiter' });
+        if (s === vorher) break;
+      }
+      function tu2(option: string): void { mach({ art: 'waehle', option }); }
+      assert.equal(s.station, 'epilog', `${express ? 'Express' : 'Haupt'}/${wahl}`);
+      const ks = { inhalte, station, schritte: station.schritte, index: 0, schritt: station.schritte[0], z: oeffentlich(s), tue: () => undefined, takt: null } as never;
+      const v = [...resuemee(block, ks, null).querySelectorAll('[data-pruef="resuemee-vertiefungen"] a')].map((a) => a.getAttribute('href') ?? '');
+      assert.equal(v.length, 2, `${express ? 'Express' : 'Haupt'}/${wahl}: ${v.join(' ')}`);
+      assert.ok(!v.some((x) => /#theorie\/k[78]$/u.test(x)), `${express ? 'Express' : 'Haupt'}/${wahl}: ${v.join(' ')}`);
+    }
+  }
   assert.doesNotMatch(el.querySelector('[data-pruef="resuemee-themen"]')?.textContent ?? '', /Express/u, 'Express ist kein Thema');
   assert.equal(el.querySelector('.resuemee-titel')?.tagName, 'H3');
   assert.equal(resuemee(block, k(null), null).querySelector('a'), null, 'Leinwand: keine Links');

@@ -22,3 +22,5 @@ abweichungen:
     beleg: k8.1-t1
   - text: 'Einzelne Kacheln weichen im Wortlaut ab: „Umfang klären“ (Text: Leistungsumfang), „Freigabe-Set“ (Leistungsphasen- und Freigabemodell), „Training“ (Schulungen) und „Prüfung-Takt“ (Prüfrhythmus); unter „Design“ fehlen die Eskalationswege und die Struktur des Betriebshandbuchs, unter „Übergabe“ der Übergabebericht.'
     beleg: k8.1-t1
+  - text: 'In der Spalte „Design“ ist „Entscheidungs-IDs“ als „Entscheidu-ngs-IDs“ falsch getrennt.'
+    beleg: k5.2-t1 k8.1-t1

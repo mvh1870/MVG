@@ -5,7 +5,7 @@ monat: 1
 titel: Übernahme ohne Übergabe – mit MVG
 lph: 4
 uhr: Montag, 09:00 Uhr
-whitepaper-bezug: [k4.2-p3, k5.3-p1, k6.4.2-t1, k6.4.5-t1, k3.2-t1, k4.2-p1, k4.5-p1, k4.6-p2, k6.3-p2, k6.3-p3, k6.4-p1, k6.4.1-p1, k6.4.3-p2, k9.1-p1, k9.2-p1, k9.2-p3]
+whitepaper-bezug: [k4.2-p3, k5.3-p1, k6.4.2-t1, k6.4.5-t1, k3.2-t1, k4.2-p1, k4.5-p1, k4.6-p2, k6.3-p2, k6.4-p1, k6.4.1-p1, k6.4.3-p2, k9.1-p1, k9.2-p1, k9.2-p3]
 status-start:
   entscheidungsfaehigkeit: 4
   kostenunsicherheit: mittel

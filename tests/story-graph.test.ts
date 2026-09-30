@@ -300,4 +300,13 @@ test('Schluss ohne Werbung (R49, O-1, O-34): Wirklichkeit, Enden und Epilog nenn
       assert.deepEqual(bm(JSON.stringify(finde(w, t) ?? {})), [], `${id}: Tafel ${t} nennt Bauherr Mentoren`);
     }
   }
+  // R50 (O-1, O-34): der Quellen-Reiter der Seitenleiste zeigt die Absätze aus whitepaper-bezug vollständig – im Schluss ohne
+  // Bauherr Mentoren, in keiner Station mit Angebotsaussagen („kostenfrei“, „Lizenzentgelt“); vorher prüfte der Test nur Kennungen
+  const quellen = (erg.inhalte as unknown as { quellen: Record<string, { html: string }> }).quellen;
+  const schluss = ['wirklichkeit', 'ende-steuerbar', 'ende-auflagen', 'ende-neufestlegung', 'epilog'];
+  for (const [id, st] of Object.entries(erg.inhalte.stationen as unknown as Record<string, { whitepaper: string[] }>)) {
+    const text = st.whitepaper.map((q) => quellen[q]?.html ?? '').join(' ');
+    assert.doesNotMatch(text, /kostenfrei|Lizenzentgelt/u, `${id}: Angebotsaussage im Quellen-Reiter`);
+    if (schluss.includes(id)) assert.deepEqual(bm(text), [], `${id}: Quellen-Reiter nennt Bauherr Mentoren`);
+  }
 });

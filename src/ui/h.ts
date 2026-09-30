@@ -128,3 +128,13 @@ export function attr(el: Element, name: string, wert: AttributWert): void {
 export function text(el: Node, wert: string): void {
   if (el.textContent !== wert) el.textContent = wert;
 }
+
+/**
+ * Weiche Trennstellen (U+00AD) in langen Wörtern nach einer Fuge („Entscheidungs|grundlagen“, „Maßnahmen|verknüpfung“).
+ * Sichtbar wird der Strich nur, wo die Zeile tatsächlich dort umbricht; der Wortlaut bleibt gleich (dazu ein
+ * Umbruch ohne Breite nach „/“ zwischen Wörtern).
+ */
+export function mitTrennstellen(text: string): string {
+  // „Risiko-/Änderungs-/Maßnahmen…“, „Rollen/Freigaben/…“: nach „/“ darf die Zeile umbrechen (sonst ein unteilbarer Block)
+  return text.replace(/(?<=[\p{L}-])\/(?=\p{L})/gu, '/\u200b').replace(/\p{L}{12,}/gu, (wort) => wort.replace(/(?<=\p{L}(?:ungs|heits|keits|schafts|tions|täts|stands|ßnahmen|agement|umenten|triebs|utzen|ister|tritts|ketten|lagen|gabe|schutz|ohbau))(?!(?<=agement)s)(?!(?<=gabe)n[^aeiouäöü])(?=\p{Ll}{4})/gu, '\u00ad'));
+}

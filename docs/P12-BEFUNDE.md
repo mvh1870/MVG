@@ -199,3 +199,17 @@ Neun Prüffelder, leichte Befunde ohne Gegenprüfung; Gegenprüfung nach den Fin
 - **Stil Bildschirm:** 5 mittel (Buchstabensäule, Beamer-Zoom, Zeitmaschinen-Tabelle, Lernkarten, Rückbezug/Radar bei mittleren Breiten), 2 leicht – L-145; neue Proben fanden zusätzlich „Rechts|beratu|ng“ in k7.
 - **Architektur:** 9 mittel (fehlende Wächter, Excel-Stand-Rückfall), 3 leicht – L-148.
 Nicht sauber – Zählung neu, als Nächstes Runde 49 (prüft auch P15 „Governance Kompass“, O-33/O-34).
+## Runde 49 (P12.5, zugleich P14.3 und P15.2) – Workflow auf 21cefa6
+Neun Prüffelder; Gegenprüfung beim Einarbeiten (die Skeptiker standen hinter den Findern, Workflow nach dem letzten Finder angehalten, L-154).
+- **Fachtreue Theorie k01–k06 / k07–k13:** 1 mittel (Zitatprüfung ohne Wortgrenzen), 9 leicht – L-150.
+- **Story A / B:** 2 mittel (Tafel k10.5-t1 und Checkliste k8.4-t1 mit BM im Schluss), 12 leicht – L-151.
+- **Abbildungen:** 1 mittel (Überdeckung als Teilzeichenkette), 4 leicht – L-152.
+- **Hilfe + Begriffe:** 4 mittel (Nachweise/PMO, BM-Mentor, Normen-Zuordnung, FAQ mit Beraterbezug), 9 leicht – L-152.
+- **Druck:** 3 mittel (Hilfe-Fuß allein auf dem letzten Blatt, Quellzeile am Seitenanfang, Kopfprobe für kurze IDs blind), 5 leicht – L-153.
+- **Stil Bildschirm:** 4 mittel (Statuswort bei 981 px, Rückbezug bei 981 px, Wissenscheck und Glossar bei 320 px), 3 leicht – L-156.
+- **Architektur:** 4 mittel (Excel-Stand-Rückfall, Namens-Wächter, Vorschau-Zoom, Löschregeln der Hilfe), 1 leicht – L-155.
+Nicht sauber – Zählung neu, als Nächstes Runde 50.
+## Runde 50 (P12.5, zugleich P14.3 und P15.2) – Teilrunden (L-154)
+- **Teil 1 auf c7cb6a8** (Theorie, Story, Abbildungen, Hilfe): 11 mittel, 26 leicht – L-157, L-158.
+- **Teil 2** (Stil, Druck, Architektur) auf dem Stand mit allen Korrekturen aus Runde 49 – folgt.
+Nicht sauber – nach Teil 2 Zählung neu, als Nächstes Runde 51.

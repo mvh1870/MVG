@@ -60,7 +60,7 @@ Bernd Kowalski sagt am Telefon: „Legen Sie mir eine Frage vor, keinen Bericht.
 Eine vorbereitete Entscheidungsfrage und eine Frist.
 
 ### Neues Risiko
-Das Gespräch ersetzt keine Vorlage; die Sommerpause kostet zwei Monate.
+Das Gespräch ersetzt keine Vorlage; bis zur Sitzung im September vergehen zwei Monate.
 
 ### Governance-Frage
 Welche Entscheidung ist wesentlich – und wer muss sie treffen?

@@ -219,6 +219,9 @@ describe('begriffe: Zeilenmarken und Ausnahmen', () => {
     // R49: ohneKennungen blendet nur Datenfelder mit Zählangabe aus – ein eingeklammertes Fachwort bleibt prüfbar
     assert.equal(pruefeText(ohneKennungen('Projektumfang (scope) und Nachweis (evidence)'), 'src/generiert/hilfe.json').length, 2);
     assert.deepEqual(pruefeText(ohneKennungen('Anzeige (readouts · 30 Einträge), Feld riskScore'), 'src/generiert/hilfe.json'), []);
+    // R50: nur echte Kennungen fallen heraus – ein Kürzel mit Bindestrich vor einem Wort („MVG-Readiness“) bleibt prüfbar
+    assert.equal(pruefeText(ohneKennungen('Die MVG-Readiness prüft der PMO-Stakeholder.'), 'src/generiert/hilfe.json').length, 2);
+    assert.deepEqual(pruefeText(ohneKennungen('Kennungen GATE-<KUERZEL>-G0..G4, D-030 und RIS-NETZNORD-2026-001.'), 'src/generiert/hilfe.json'), []);
   });
 
   test('Baum der Fixtur: pfade, Ausnahmen und Funde mit Datei:Zeile:Spalte', async () => {

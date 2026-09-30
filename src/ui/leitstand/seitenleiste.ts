@@ -11,7 +11,6 @@ import { h, attr, ersetze } from '../h.ts';
 import { alleBloecke, aktuelleStation, kopfText, rollenAttr } from '../anzeige.ts';
 import { inhalt, personFigur, personName, personFunktion } from '../bausteine/inhalt.ts';
 import { sym, zitat } from '../bausteine/bloecke.ts';
-import { bildmarke } from '../marke.ts';
 
 export type Reiter = 'raum' | 'ebenen' | 'glossar' | 'quellen' | 'spur';
 
@@ -145,7 +144,7 @@ export function erzeugeSeitenleiste(o: SeitenOptionen): Seitenleiste {
     zeichne(true);
     reiterKnoepfe[ziel]?.focus();
   };
-  const fuss = h('footer', { class: 'seitenleiste-fuss' }, bildmarke('marke-logo'), h('span', null, w.tasten),
+  const fuss = h('footer', { class: 'seitenleiste-fuss' }, h('span', null, w.tasten),
     h('button', { type: 'button', class: 'knopf-neustart', 'data-pruef': 'seitenleiste-zu', onclick: () => schliesse() }, sym('pfeilRechts'), w.einklappen),
     o.neustart !== null ? h('button', { type: 'button', class: 'knopf-neustart', 'data-pruef': 'neustart', onclick: () => o.neustart?.() }, sym('zurueckspulen'), w.neu) : null);
   const karte = h('div', { class: 'seitenleiste-karte' }, rollenBox, h('div', { class: 'reiter-leiste', role: 'tablist', 'aria-label': w.kontext, onkeydown: reiterTaste }, reiterKnoepfe), inhaltEl, fuss);

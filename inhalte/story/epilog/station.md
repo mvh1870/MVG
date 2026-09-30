@@ -3,7 +3,7 @@ id: epilog
 art: epilog
 titel: Ihr Projekt
 kurztitel: Epilog
-whitepaper-bezug: [k2.5-t1, k2.5-p1, k7.1-p1, k10.1-p1, k10.2-p1, k10.3-p1, k10.4-p1, k1-p1, k1.1-p1, k2.4-p2, k4.6-p1, k5-l1, k12-p2, k13-t1]
+whitepaper-bezug: [k2.5-t1, k7.1-p1, k10.2-p1, k10.3-p1, k10.4-p1, k1-p1, k1.1-p1, k2.4-p2, k4.6-p1, k5-l1, k13-t1]
 ende: ja
 ---
 
@@ -90,7 +90,12 @@ Datenstand und Nachweis sind kein administratives Nebenprodukt. Sie sind ein eig
 :::
 
 ::: zitat k5-l1
-Welche Ziele gelten? Wer darf was vorbereiten, entscheiden, freigeben oder eskalieren? Welche Entscheidungen sind wesentlich? Welche Risiken und Änderungen brauchen bauherrenseitige Annahme oder Freigabe? Welcher Datenstand gilt? Wie wird die Entscheidung später nachvollzogen?
+- Welche Ziele gelten?
+- Wer darf was vorbereiten, entscheiden, freigeben oder eskalieren?
+- Welche Entscheidungen sind wesentlich?
+- Welche Risiken und Änderungen brauchen bauherrenseitige Annahme oder Freigabe?
+- Welcher Datenstand gilt?
+- Wie wird die Entscheidung später nachvollzogen?
 :::
 :::
 :::
@@ -102,7 +107,7 @@ kurz: Bibliothek
 ---
 Zum Nachlesen: **Theorie** erklärt alle 13 Kapitel, samt Originaltext V1.2; Kap. 13 das **Glossar** mit den Definitionen der markierten Begriffe, etwa [[Datenstand]].
 
-**Explore** ist jetzt freigeschaltet: „Selbst ausprobieren · Explore“ unter der Story-Karte.
+**Explore** ist jetzt freigeschaltet. [[bedienung:„Selbst ausprobieren · Explore“ steht unter der Story-Karte.]]
 :::
 
 ::: schritt ebenen
@@ -143,8 +148,6 @@ Kap. 10 legt je nach Situation einen anderen Schwerpunkt:
 
 Typisch für schleichenden Steuerungsverlust sind nach Kap. 10.4 [[zitat:k10.4-p1|unterschiedliche Lagebilder, schleichende Prognoseabweichungen, informelle Eskalationen, ungeordnete Änderungen, unklare Entscheidungsmandate und eine fehlende Wirksamkeit von Maßnahmen.]]
 
-Kap. 10.5 nennt fünf typische Entscheidungsprobleme. Welches liegt bei Ihnen gerade auf dem Tisch?
-
 Das Schlussbild in Kap. 12 kehrt an den Anfang zurück: [[zitat:k12-p2|Damit schließt sich der Bogen zur Leitthese von MVG: Arbeit kann delegiert werden – bauherrenseitige Legitimation nicht.]]
 :::
 
@@ -160,9 +163,6 @@ Im Mittelpunkt steht nicht die Frage, ob Projektunterlagen vollständig wirken, 
 Bauherren können Arbeit, Analyse, Koordination und Dokumentation delegieren. Nicht delegierbar bleibt die Legitimation von Ziel, Mandat, wesentlicher Entscheidung, Risikoannahme, Freigabe und Nachweis. MVG macht diese Verantwortung praktisch handhabbar.
 :::
 
-::: zitat k2.5-p1
-Diese Symptome sind zugleich der Prüfgegenstand der MVG-Reifegradanalyse (Abschnitt 7.1): Dort werden sie systematisch erhoben, bewertet und priorisiert.
-:::
 :::
 :::
 
@@ -174,5 +174,5 @@ Der Epilog verlässt den fiktiven Fall und wendet sich an das eigene Projekt des
 - Welche der acht Symptome zeigen sich in einem Ihrer Projekte – und wo nur teilweise?
 - Welche der vier Situationen aus Kap. 10 trifft Ihr Projekt am ehesten?
 - An welcher Stelle haben Sie in Welt A und Welt B verschieden entschieden – und warum?
-- Welche Prüffrage aus Kap. 8.4 könnten Sie für Ihr Projekt heute nicht beantworten?
+- Welche der sechs Kernfragen aus Kap. 5 könnten Sie für Ihr Projekt heute nicht beantworten?
 :::

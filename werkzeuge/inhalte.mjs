@@ -35,6 +35,18 @@ export const STANDARD_WHITEPAPER = path.join('quellen', 'whitepaper', 'v1.2', 'w
 export const ROLLEN = ['gf', 'bauherr', 'pl', 'ps', 'planung', 'controlling'];
 
 const KENNUNG = /^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/u;
+/**
+ * R50: Liegt die Stelle p (zwischen t[p-1] und t[p]) in einem Wort? Auch „Bauherren|-PL“, „LPH 0|–9“ und „Rollen|/Freigaben“:
+ * ein Binde-, Strecken- oder Schrägstrich zwischen zwei Wortzeichen verbindet.
+ * @param {string} t
+ * @param {number} p
+ */
+export function imWort(t, p) {
+  const w = (/** @type {string | undefined} */ z) => z !== undefined && /[\p{L}\p{N}]/u.test(z);
+  const b = (/** @type {string | undefined} */ z) => z !== undefined && /[-–/]/u.test(z);
+  return (w(t[p - 1]) && w(t[p])) || (b(t[p]) && w(t[p - 1]) && w(t[p + 1])) || (b(t[p - 1]) && w(t[p - 2]) && w(t[p]));
+}
+
 const BLOCK_ID = /^k\d+(?:\.\d+)*-[pltb]\d+$/u;
 const ABSCHNITT_ID = /^k\d+(?:\.\d+)*$/u;
 const FARBE = /^#[0-9A-Fa-f]{6}$/u;
@@ -711,12 +723,12 @@ class Kompilierer {
       return { ok: false, vollstaendig: false };
     }
     // R49: ein Stück beginnt und endet an einer Wortgrenze (sonst gälte „verantwortlich“ aus „letztverantwortlich“ als
-    // wortgleich); zwischen „[…]“ trägt jedes Stück mindestens zwei Wörter (ein einzelnes „nicht“ verschöbe den Sinn)
-    const wortzeichen = /[\p{L}\p{N}]/u;
-    const anGrenze = (/** @type {number} */ i, /** @type {string} */ s) =>
-      !(wortzeichen.test(s[0] ?? '') && wortzeichen.test(original[i - 1] ?? '')) && !(wortzeichen.test(s[s.length - 1] ?? '') && wortzeichen.test(original[i + s.length] ?? ''));
+    // wortgleich); zwischen „[…]“ trägt jedes Stück mindestens zwei Wörter (ein einzelnes „nicht“ verschöbe den Sinn).
+    // R50: auch Binde-, Strecken- und Schrägstrich zwischen zwei Wortzeichen verbinden („Bauherren-PL“, „LPH 0–9“); als Wort
+    // zählt nur, was Buchstaben oder Ziffern trägt (ein Gedankenstrich ist keins)
+    const anGrenze = (/** @type {number} */ i, /** @type {string} */ s) => !imWort(original, i) && !imWort(original, i + s.length);
     if (stuecke.length > 1) {
-      const kurz = stuecke.find((s) => s.split(/\s+/u).length < 2);
+      const kurz = stuecke.find((s) => s.split(/\s+/u).filter((t) => /[\p{L}\p{N}]/u.test(t)).length < 2);
       if (kurz !== undefined) {
         this.fehler(ort, `Zitat mit Auslassung: das Stück „${kurz}“ ist zu kurz (mindestens zwei Wörter zwischen „[…]“)`);
         return { ok: false, vollstaendig: false };
@@ -1083,7 +1095,10 @@ class Kompilierer {
     }
     if (r.art === 'zitat') {
       const text = r.rohFelder['text']?.text ?? '';
-      const erg = this.pruefeZitat(r.kennungen, text, r.ort);
+      // R50: ein Zitat aus einer Liste darf als Liste stehen („- Welche Ziele gelten?“) – geprüft wird der Wortlaut ohne die Marken
+      const zeilen = text.split('\n').filter((z) => z.trim() !== '');
+      const alsListe = zeilen.length > 1 && zeilen.every((z) => /^\s*- \S/u.test(z));
+      const erg = this.pruefeZitat(r.kennungen, alsListe ? zeilen.map((z) => z.replace(/^\s*- /u, '')).join(' ') : text, r.ort);
       kopf['quelle'] = this.quellenangabe(r.kennungen);
       kopf['vollstaendig'] = erg.vollstaendig;
       const absaetze = r.kennungen.join(' ');

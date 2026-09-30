@@ -19,7 +19,7 @@
  * - diagnose  qualitative Selbstdiagnose (Epilog, O-8): je Zeile „zeigt sich / teilweise / nicht“, Profil in Worten, keine Punktzahl
  */
 
-import { h, s, attr, ersetze, elementAus } from '../ui/h.ts';
+import { h, s, attr, ersetze, elementAus, mitTrennstellen } from '../ui/h.ts';
 import { symbol } from '../stil/symbole.ts';
 
 export const TAFEL_FORMEN = ['radar', 'ketten', 'schwelle', 'pyramide', 'felder', 'bausteine', 'phasen', 'register', 'rhythmus', 'karten', 'zeitachse', 'diagnose'] as const;
@@ -131,7 +131,7 @@ function radar(d: TafelDaten, besucht: readonly string[]): HTMLElement {
     return h('button', {
       type: 'button', class: `radar-knopf${e.length > 0 ? ' ist-erlebt' : ''}`, 'aria-pressed': 'false', 'data-pruef': `symptom-${i + 1}`,
       onclick: () => waehle(i),
-    }, h('i', null, String(i + 1)), h('span', null, h('b', null, z[0] ?? ''), h('small', null, e.length > 0 ? `${WORT.erlebtIn} ${e.join(', ')}` : WORT.nichtErlebt)));
+    }, h('i', null, String(i + 1)), h('span', null, h('b', null, mitTrennstellen(z[0] ?? '')), h('small', null, e.length > 0 ? `${WORT.erlebtIn} ${e.join(', ')}` : WORT.nichtErlebt)));
   });
   const waehle = (i: number): void => {
     knoepfe.forEach((b, j) => attr(b, 'aria-pressed', i === j ? 'true' : 'false'));

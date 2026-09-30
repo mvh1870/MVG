@@ -58,7 +58,7 @@ Kein zweites Dachkonzept neben MVG und kein Ersatz für Entscheidung oder Führu
 ---
 titel: Funktionslogiken des MVG Companion
 ---
-Der Companion ist nach sieben Funktionslogiken gegliedert. Sie spiegeln die Bausteine des Führungsmodells aus Kapitel 5.2 – jede übersetzt einen Teil der vereinbarten Governance in eine Arbeitshilfe.
+Der Companion bündelt sieben Funktionslogiken. Sie spiegeln die Bausteine des Führungsmodells aus Kapitel 5.2 – jede übersetzt einen Teil der vereinbarten Governance in eine Arbeitshilfe.
 
 Einige Beispiele: Der **Entscheidungsassistent** führt durch Entscheidungsfrage, Mandat, Freigabe, Datenstand und Nachweis; das soll die Entscheidungsvorbereitung schneller und einheitlicher machen. Der **Leitfaden für Freigaben** erklärt Zweck, Mindestgrundlagen und typische Entscheidungs-IDs einer Freigabe. Die **Verantwortungszuordnung** verbindet Verantwortungsfeld, Rolle, Schwelle und Eskalation. Die **Daten- und Nachweisabfrage** fragt Datenstand, Annahmen, Versionen und Nachweise ab.
 

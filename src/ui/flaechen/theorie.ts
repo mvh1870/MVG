@@ -443,7 +443,8 @@ function glossarListe(o: TheorieOptionen): HTMLElement {
     ];
     return h('div', { class: 'glossar-eintrag', id: g.id, 'data-pruef': 'glossar-eintrag', 'data-suche': `${g.begriff} ${g.definition}`.toLocaleLowerCase('de') },
       h('dt', null, g.begriff),
-      h('dd', null, h('p', null, g.definition),
+      // R49: nach „/“ darf die Zeile umbrechen („Änderungs-/Maßnahmenverknüpfung“ war bei 320 px ein Block)
+      h('dd', null, (() => { const p = h('p', null, g.definition); umbruchNachSchraegstrich(p); return p; })(),
         orte.length > 0 ? h('p', { class: 'glossar-orte' }, h('span', { class: 't-label' }, W.theorie.kommtVor), ...orte) : null));
   });
   const feld = h('input', { type: 'search', class: 'glossar-feld', id: 'glossar-suche', 'data-pruef': 'glossar-suche', autocomplete: 'off', spellcheck: 'false' }) as HTMLInputElement;

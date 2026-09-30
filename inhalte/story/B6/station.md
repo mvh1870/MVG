@@ -228,7 +228,7 @@ wert: Status in Vorbereitung · Ergebnis offen
 
 ::: bekannt
 - Die Bauherren-PL legt vor, der Lenkungskreis berät am 17. November; der Bauherr gibt selbst frei.
-- Verbindlich: „Kostenprognose 2026-10 · Version 4“; `PRB-004` ist noch in Prüfung (Berechtigung und Höhe).
+- Verbindlich: „Kostenprognose 2026-10 · Version 4“; `PRB-004` steht mit seiner Maßnahme im Problemregister.
 :::
 
 ::: unbekannt

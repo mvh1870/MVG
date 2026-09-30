@@ -113,6 +113,18 @@ export function findeBlock(wp, id) {
 }
 
 /**
+ * R50: Liegt die Stelle p (zwischen t[p-1] und t[p]) in einem Wort? Binde-, Strecken- und Schrägstrich zwischen zwei
+ * Wortzeichen verbinden („Bauherren-PL“, „LPH 0–9“). Gleiche Regel wie der Compiler (werkzeuge/inhalte.mjs).
+ * @param {string} t
+ * @param {number} p
+ */
+function imWort(t, p) {
+  const w = (/** @type {string | undefined} */ z) => z !== undefined && /[\p{L}\p{N}]/u.test(z);
+  const b = (/** @type {string | undefined} */ z) => z !== undefined && /[-–/]/u.test(z);
+  return (w(t[p - 1]) && w(t[p])) || (b(t[p]) && w(t[p - 1]) && w(t[p + 1])) || (b(t[p - 1]) && w(t[p - 2]) && w(t[p]));
+}
+
+/**
  * Prüft ein Zitat mit Begründung: es muss nach normalisiere() als zusammenhängender Teilstring
  * im Block vorkommen. `grund` nennt bei Misserfolg die Stelle, ab der das Zitat abweicht.
  * @param {Whitepaper} wp
@@ -126,12 +138,9 @@ export function pruefeZitat(wp, id, zitat) {
   const z = normalisiere(zitat);
   if (z === '') return { ok: false, grund: 'leeres Zitat' };
   const t = normalisiere(block.text);
-  // R49: nur an Wortgrenzen (nicht „verantwortlich“ aus „letztverantwortlich“)
-  const wortzeichen = /[\p{L}\p{N}]/u;
+  // R49: nur an Wortgrenzen (nicht „verantwortlich“ aus „letztverantwortlich“); R50: auch nicht „Bauherren“ aus „Bauherren-PL“
   for (let i = t.indexOf(z); i >= 0; i = t.indexOf(z, i + 1)) {
-    const vorn = wortzeichen.test(z[0] ?? '') && wortzeichen.test(t[i - 1] ?? '');
-    const hinten = wortzeichen.test(z[z.length - 1] ?? '') && wortzeichen.test(t[i + z.length] ?? '');
-    if (!vorn && !hinten) return { ok: true, grund: '' };
+    if (!imWort(t, i) && !imWort(t, i + z.length)) return { ok: true, grund: '' };
   }
   if (t.includes(z)) return { ok: false, grund: `Zitat beginnt oder endet in ${id} mitten im Wort` };
   // Längsten passenden Anfang suchen, damit der Befund zeigt, wo das Zitat abweicht.

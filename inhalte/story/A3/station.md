@@ -97,7 +97,7 @@ wert: +5,9 %
 ::: bekannt
 - Zwei Zahlen, kein geltender [[Datenstand]].
 - Beide ohne Einsatz der Risikoreserve (2,9 Mio. €).
-- Seit März ohne Entscheidung: Mensa-Zusage (0,6 Mio. €), Lieferzeit Holz, Förderfrist.
+- Seit März ohne Beschluss: Mensa-Zusage (0,6 Mio. €); unbewertet: Lieferzeit Holz, Förderfrist.
 :::
 
 ::: unbekannt
@@ -174,8 +174,8 @@ Die Fragen der Datenstandslogik (Kap. 4.6) – an diesem Montag:
 | Frage | An diesem Montag |
 |---|---|
 | Welche Version gilt? | „v3_final_NEU“ gegen die [[CTC]] des Controllings |
-| Welche Annahmen sind offen? | Ursache, Terminwirkung, Nachtragsrisiko |
-| Welche Änderungen wurden seit der letzten Freigabe aufgenommen? | Mensa-Zusage – ob sie in einer der beiden Zahlen steckt, ist nirgends festgehalten; die Lieferzeit Holz ist nicht bewertet |
+| Welche Annahmen sind offen? | Ursache, Terminwirkung, Nachtragsrisiko; die Lieferzeit Holz ist nicht bewertet |
+| Welche Änderungen wurden seit der letzten Freigabe aufgenommen? | Mensa-Zusage – ob sie in einer der beiden Zahlen steckt, ist nirgends festgehalten |
 | Welche Beschlusslage besteht? | keine zur Abweichung |
 | Wo wird die Nachweiskette geführt? | in Mails und Excel-Dateien |
 :::

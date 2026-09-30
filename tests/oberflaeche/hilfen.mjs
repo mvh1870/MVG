@@ -147,7 +147,27 @@ export async function mittelbreit(seite, h, name) {
   const vp = seite.viewportSize();
   if (vp === null || vp.width < 1280) return;
   if (await seite.locator(MITTEL_BAUTEILE).filter({ visible: true }).count() === 0) return;
-  for (const breite of [500, 560, 720, 768]) {
+  // R49: dazu der schmale Leitstand (981/1000 px) – Rückbezug der Rolle Planung, Radar
+  for (const breite of [500, 560, 720, 768, 981, 1000]) {
+    await seite.setViewportSize({ width: breite, height: vp.height }); await h.warte(150);
+    for (const fund of await seite.evaluate(pruefeLayout)) h.befund(`${name} @${breite}: ${fund}`);
+    const bruch = await wortbrueche(seite, BAUTEILE_UNGETEILT, { bildschirm: true });
+    if (bruch.length > 0) h.befund(`${name} @${breite}: ${bruch.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(bruch.slice(0, 6))}`);
+  }
+  await seite.setViewportSize(vp); await h.warte(100);
+}
+
+/**
+ * R49 (Stil): der schmalste Leitstand (981 und 1000 px, Story-Karte daneben) – Statuswörter der Instrumente („SEHR HOCH“)
+ * blieben dort nicht im Instrument; keine Prüfgröße lag zwischen 981 und 1023 px.
+ * @param {import('playwright').Page} seite
+ * @param {import('../../werkzeuge/oberflaeche.mjs').Helfer} h
+ * @param {string} name
+ */
+export async function leitstandSchmal(seite, h, name) {
+  const vp = seite.viewportSize();
+  if (vp === null || vp.width < 1280) return;
+  for (const breite of [981, 1000]) {
     await seite.setViewportSize({ width: breite, height: vp.height }); await h.warte(150);
     for (const fund of await seite.evaluate(pruefeLayout)) h.befund(`${name} @${breite}: ${fund}`);
     const bruch = await wortbrueche(seite, BAUTEILE_UNGETEILT, { bildschirm: true });
@@ -159,6 +179,32 @@ export async function mittelbreit(seite, h, name) {
 /** R47: Bauteile, deren Wörter am Bildschirm nie mitten im Wort brechen dürfen */
 // R48: dazu der Kopf der Zeitmaschinen-Tabelle („MO|NAT“, „KOSTENUN|SICHERHEI|T“) und der Beamer-Status („SEHR HOC“)
 export const BAUTEILE_UNGETEILT = '.tabellenstand-zahl, .instrument-label, .ablesung, .protokoll-kopf, .lw-korb, .kapitel-titel, .fortschritt, .zm-tabelle th, .instrument .wert';
+
+/**
+ * R49 (Stil): Kästen mit eigener Fläche (Hintergrund oder Schatten) ragen nicht über den Inhaltsbereich der Spalte `wurzel` –
+ * pruefeLayout sieht das nicht, wenn der Text in seinem Kasten bleibt (Glossarkarten bei 320 px, Wissenscheck-Ergebnis).
+ * Gedrehte, absolut gesetzte und in rollenden oder beschnittenen Bereichen liegende Kästen zählen nicht.
+ * @param {string} wurzel
+ */
+export function kaestenUeberRand(wurzel) {
+  const spalte = document.querySelector(wurzel);
+  if (!(spalte instanceof HTMLElement)) return [];
+  const sc = getComputedStyle(spalte);
+  const rechts = spalte.getBoundingClientRect().right - parseFloat(sc.borderRightWidth) - parseFloat(sc.paddingRight);
+  const funde = [];
+  for (const el of spalte.querySelectorAll('*')) {
+    if (!(el instanceof HTMLElement) || el.getClientRects().length === 0) continue;
+    const cs = getComputedStyle(el);
+    const flaeche = (cs.backgroundColor !== 'rgba(0, 0, 0, 0)' && cs.backgroundColor !== 'transparent') || cs.boxShadow !== 'none';
+    if (!flaeche || cs.position === 'absolute' || cs.position === 'fixed' || cs.transform !== 'none') continue;
+    let beschnitten = false;
+    for (let a = el.parentElement; a !== null && a !== spalte; a = a.parentElement) if (getComputedStyle(a).overflowX !== 'visible') { beschnitten = true; break; }
+    if (beschnitten) continue;
+    const ueber = el.getBoundingClientRect().right - rechts;
+    if (ueber > 1.5) funde.push(`Kasten über die Spalte (+${Math.round(ueber)} px): ${el.tagName.toLowerCase()}.${String(el.className).split(' ')[0]}`);
+  }
+  return [...new Set(funde)].slice(0, 8);
+}
 
 /** Sichtbare, waagerecht rollende Bereiche ohne Tabulatorstopp (weder selbst noch ein Kind fokussierbar). */
 export function rollbarOhneTastatur() {

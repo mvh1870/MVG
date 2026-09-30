@@ -602,7 +602,6 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .glossar-liste dd { margin: 2px 0 0; font-size: 13.5px; line-height: 1.45; color: var(--tinte); }
 
 .seitenleiste-fuss { display: flex; align-items: center; gap: var(--a-2); padding: var(--a-2) var(--a-3); border-top: 1px solid var(--linie); font-size: var(--gr-xs); line-height: 1.3; color: var(--tinte-2); }
-.seitenleiste-fuss .marke-logo { height: 28px; color: var(--navy); }
 .seitenleiste-fuss > span { flex: 1; min-width: 0; }
 .knopf-neustart { flex: none; display: inline-flex; align-items: center; gap: 5px; min-height: 36px; padding: 5px 9px; border: 0; border-radius: var(--radius-s); background: var(--status-neutral-soft); color: var(--navy); font-weight: 600; font-size: 12.5px; }
 
@@ -1157,7 +1156,7 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .zitat { position: relative; padding-left: 30px; font-size: 19px; line-height: 1.55; }
 .zitat::before { content: "„"; position: absolute; left: -2px; top: -14px; font: 800 var(--gr-7xl)/1 var(--schrift-anzeige); color: var(--gold-hell); }
 .quelle { display: flex; align-items: center; gap: 10px; margin-top: 14px; padding-top: var(--a-3); border-top: 1px solid var(--navy-linie); font-size: 13.5px; color: var(--auf-navy-2); }
-.quelle .marke-logo { height: 26px; color: var(--weiss); }
+.quelle .symbol { flex: none; font-size: 20px; color: var(--gold-hell); }
 .quelle b { font-weight: 600; color: var(--weiss); }
 /* Zitat als eigener Block auf hellem Grund (Story-Schritte ohne eigene Szene): Navy-Karte wie Ebene 4 (P4.7) */
 .stapel > .zitat-block, .welten-aspekt > .zitat-block, .einwand .zitat-block, .regie-einwand .zitat-block, .klapp-inhalt .zitat-block { padding: 22px 26px 18px; border-radius: var(--radius-xl); background: var(--navy); color: var(--weiss); }
@@ -1941,6 +1940,14 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
   .radar-liste, .erinnerung { grid-template-columns: minmax(0, 1fr); }
   .erinnerung-pfeil { height: 34px; transform: rotate(90deg); }
 }
+/* R49: im schmalen Leitstand (981–1100 px, Story-Karte daneben) ebenso – „Ausführungsplanung“ lief bei 981 px aus der Notiz,
+   „Änderungsentwicklung“ füllte den Radar-Knopf zu 100 % */
+@media (min-width: 981px) and (max-width: 1100px) {
+  .radar-liste, .erinnerung { grid-template-columns: minmax(0, 1fr); }
+  .erinnerung-pfeil { height: 34px; transform: rotate(90deg); }
+  /* „SEHR HOCH“ gesperrt ragte bei 981 px 2 px aus dem Instrument (Chrome 153 bis 1010 px) – wie im Beamer (L-149) */
+  .instrument .wert.wort { letter-spacing: 0; flex-wrap: wrap; row-gap: 2px; white-space: normal; }
+}
 @media (max-width: 760px) {
   .tafel-radar, .tafel-pyramide, .wirkungskette, .schwelle-karten, .felder-karten, .tafel-bausteine, .radar-liste { grid-template-columns: minmax(0, 1fr); }
   .radar-links { max-width: 260px; justify-self: center; width: 100%; }
@@ -2011,7 +2018,8 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .zeitachse-abschnitt small { font-size: 12px; line-height: 1.2; color: var(--tinte-leise); }
 .zeitachse-abschnitt[aria-pressed="true"] { background: var(--navy); color: var(--weiss); }
 .zeitachse-abschnitt[aria-pressed="true"] small { color: var(--auf-navy); }
-.zeitachse-regler { width: 100%; min-height: 36px; accent-color: var(--navy); }
+/* R49: ohne den Standardrand des Reglers (2 px) – mit width: 100 % ragte er bei 320 px über die Spalte */
+.zeitachse-regler { width: 100%; min-height: 36px; margin-inline: 0; accent-color: var(--navy); }
 .zeitachse-tag { font-variant-numeric: tabular-nums; }
 @media (max-width: 599px) { .zeitachse-leiste { flex-direction: column; } }
 

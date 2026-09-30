@@ -23,3 +23,5 @@ abweichungen:
     beleg: k5.2-t1 k4-t1 k6.4.3-p2
   - text: '„Datenstand“ und „Nachverfolgung“ stehen in mehreren Spalten; im Text gehören die geltenden Versionen und Annahmen zur „Datenstands- und Nachweislogik“, die Nachverfolgungslogik zum „System der Entscheidungs-IDs“.'
     beleg: k5.2-t1
+  - text: 'Im Ablauf des Kastens Betriebshandbuch ist „Entscheidung“ als „Entsch-eidung“ falsch getrennt.'
+    beleg: k5.2-t1

@@ -40,7 +40,7 @@ titel: Was interessiert Sie besonders?
 kurz: Interessen
 knopf: Projekt übernehmen
 ---
-Jede Station vertieft das. Überspringen möglich.
+Jede Station vertieft das. [[bedienung:Überspringen ist möglich.]]
 
 ::: interesse kosten
 ---
@@ -76,7 +76,7 @@ Nur die Schlüsselmomente: Kosten +8 %, die Eskalation, der Wendepunkt und diese
 
 ::: regie
 ### Notiz
-Der Prolog stellt den fiktiven Fall vor – Stadt, Projekt, Personen und Ereignisse sind erfunden – und lässt eine Rolle wählen. Die Rolle bestimmt die Sicht auf die Entscheidungen; entscheiden muss in jeder Rolle der Bauherr. Interessen öffnen Vertiefungen, „Express“ kürzt auf die Kernstationen.
+Der Prolog stellt den fiktiven Fall vor – Stadt, Projekt, Personen und Ereignisse sind erfunden – und lässt eine Rolle wählen. Die Rolle bestimmt die Sicht auf die Entscheidungen; was nicht delegierbar ist – Zielpriorisierung, Mandat, wesentliche Freigabe, Risikoannahme –, bleibt in jeder Rolle beim Bauherrn (Kap. 1). Interessen öffnen Vertiefungen, „Express“ kürzt auf die Kernstationen.
 
 ### Leitfragen
 - Aus welcher Rolle wollen Sie das Projekt erleben?

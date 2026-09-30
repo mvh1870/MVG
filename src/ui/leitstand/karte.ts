@@ -6,7 +6,7 @@
 
 import type { OeffentlicherZustand } from '../../engine/typen.ts';
 import type { OeffentlicheInhalte, Station } from '../../inhalte/typen.ts';
-import { h, attr, ersetze } from '../h.ts';
+import { h, attr, ersetze, mitTrennstellen } from '../h.ts';
 import { sym } from '../bausteine/bloecke.ts';
 import { gruppiere, schrittPosition, sichtbareSchritte, tafelWelt } from '../anzeige.ts';
 
@@ -131,7 +131,8 @@ export function erzeugeKarte(inhalte: OeffentlicheInhalte, beiSchritt: ((index: 
         },
         h('span', { class: 'spur', 'aria-hidden': 'true' }, h('i', { class: 'spur-a' }), h('i', { class: 'spur-b' }), knoten),
         nummer !== undefined && station.vergleich === null ? h('span', { class: 'station-nr' }, nummer) : null,
-        h('span', { class: 'station-titel' }, station.kurztitel || station.titel),
+        // R49: weiche Trennstellen – „Wirkungsketten“ füllte die schmale Karte (981 px) zu 98 %
+        h('span', { class: 'station-titel' }, mitTrennstellen(station.kurztitel || station.titel)),
         station.monat !== null && station.art !== 'prolog' ? h('span', { class: 'station-meta' }, `M${station.monat}`, h('span', { class: 'nur-sr' }, ` (${woerter.monat} ${station.monat})`)) : null));
         if (aktuell) {
           const schritte = sichtbareSchritte(station, z.rolle);
@@ -157,7 +158,7 @@ export function erzeugeKarte(inhalte: OeffentlicheInhalte, beiSchritt: ((index: 
             h('span', { class: 'spur', 'aria-hidden': 'true' }, h('i', { class: 'spur-a' }), h('i', { class: 'spur-b' }),
               mitWahl ? h('i', { class: 'knoten knoten-klein knoten-wahl', 'data-welt': w }, wahl) : h('i', { class: `knoten knoten-klein${istAktuell ? ' ist-aktuell' : gi + 1 > pos.nr ? ' ist-offen' : ''}`, 'data-welt': w })),
             h('span', { class: 'schritt-nr' }, String(gi + 1)),
-            h('span', { class: 'station-titel' }, g.kurz)));
+            h('span', { class: 'station-titel' }, mitTrennstellen(g.kurz))));
           }))));
         }
       });

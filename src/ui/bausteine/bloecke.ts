@@ -13,7 +13,6 @@ import { idArt } from '../../grafik/checkliste.ts';
 import { tafel as tafelGrafik, istTafelForm, type TitelStufe } from '../../grafik/tafel.ts';
 import { nachweiskette as nachweisketteGrafik } from '../../grafik/nachweiskette.ts';
 import { raci as raciGrafik, istRaciBuchstabe, RACI_BESCHRIFTUNG, type RaciBuchstabe, type RaciZeile } from '../../grafik/raci.ts';
-import { bildmarke } from '../marke.ts';
 import { W } from '../woerter.ts';
 
 export function sym(name: SymbolName, klasse = ''): Element {
@@ -151,7 +150,8 @@ export function zitat(b: Block, klasse: string, quelleWort: string): HTMLElement
   const bq = f.querySelector('blockquote');
   if (bq !== null) bq.classList.add(klasse);
   return h('div', { class: 'zitat-block', 'data-pruef': 'zitat' }, f,
-    h('p', { class: 'quelle' }, bildmarke('marke-logo'), h('span', null, `${quelleWort} · Quelle: `, h('b', null, kopfText(b.kopf, 'quelle') ?? ''))));
+    // R49 (O-34): die Quelle trägt ein neutrales Zeichen – die Bildmarke steht nur neben dem Namen
+    h('p', { class: 'quelle' }, sym('buch'), h('span', null, `${quelleWort} · Quelle: `, h('b', null, kopfText(b.kopf, 'quelle') ?? ''))));
 }
 
 const GLIED_ART: Readonly<Record<string, string>> = {

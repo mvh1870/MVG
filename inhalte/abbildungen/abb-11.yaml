@@ -16,8 +16,8 @@ abweichungen:
     beleg: k11.3-t1 k7.5-t1
   - text: 'Unter der Reifegradanalyse stehen „Lagebild“, „Mandate“, „Datenstand“ und „30/60/90 Plan“; als typische Ergebnisse nennt der Text Bewertungsmatrix, wichtigste Risiken, Verantwortungslücken, Entscheidungsliste und 30/60/90-Tage-Plan, das Lagebild nennt er als Zweck, Mandate und Datenstände in den zentralen Arbeitsfragen.'
     beleg: k7.1-t1 k7.1-p1
-  - text: 'In der MVG-Konzeption steht „Freigabe-Set“; unter den typischen Ergebnissen nennt der Text das Leistungsphasen- und Freigabemodell und dazu Mandatsmodell, Datenstandslogik und Eskalationslogik, die im Bild fehlen.'
-    beleg: k7.2-t1
+  - text: 'In der MVG-Konzeption steht „Freigabe-Set“; unter den typischen Ergebnissen nennt der Text das Leistungsphasen- und Freigabemodell und dazu Mandatsmodell, Datenstandslogik und Eskalationslogik, die im Bild fehlen; statt der Struktur des Betriebshandbuchs zeigt die Spalte die Kachel „Betriebshandbuch“, das der Text als Ergebnis von Befähigung und Übergabe nennt.'
+    beleg: k7.2-t1 k7.4-t1
   - text: 'Die dritte Spalte heißt „Pilot & Kalibrierung“ und nennt einen „Managementbericht“; im Text heißt das Paket „Pilotierung und Kalibrierung“, typische Ergebnisse sind Berichte zur Pilotierung, kalibrierte Schwellen, angepasste Routinen, Erkenntnisse und ein Abnahmevorschlag.'
     beleg: k7-l1 k7.3-t1
   - text: 'In der dritten Spalte steht „eche Entscheidung“ mit unvollständigem ersten Wort; der Text spricht vom echten Entscheidungsfall.'

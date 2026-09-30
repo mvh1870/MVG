@@ -7,7 +7,7 @@ lph: 5
 titel: Zurück in Welt A
 kurztitel: Wirklichkeit
 uhr: Montag, 08:00 Uhr
-whitepaper-bezug: [k11-p1, k11.1-p1, k11.1-l1, k11.2-p1, k11.2-l1, k11.2-p2, k11.3-p1, k11.3-t1, k7-p2, k7.5-p1, k7.5-t1, k8-p1, k8.1-t1, k8.2-p1, k8.2-p2, k8.2-t1, k8.3-p1, k8.3-l1, k8.4-p1, k13-t1, k3.2-t1, k10.4-p1]
+whitepaper-bezug: [k11-p1, k11.1-p1, k11.1-l1, k11.2-p1, k11.2-l1, k11.2-p2, k11.3-p1, k11.3-t1, k7-p2, k7.5-p1, k8-p1, k8.1-t1, k8.2-p1, k8.2-p2, k8.2-t1, k8.3-p1, k8.3-l1, k8.4-p1, k13-t1, k3.2-t1, k10.4-p1]
 weiter:
   - ziel: ende-steuerbar
     wenn: [wahl wirklichkeit = A, status A entscheidungsfaehigkeit >= 3]

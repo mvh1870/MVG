@@ -31,3 +31,5 @@ abweichungen:
     beleg: k6.4.3-p2 k6.4.4-t1
   - text: 'Der Knoten heißt „CTC / Prognose – Kostenprognose“; der Text führt „CTC und Prognose“ und bezeichnet die CTC als Restkostenprognose.'
     beleg: k6.4.2-t1 k13-t1
+  - text: 'Der Knoten „Entscheidungsvorlage“ ist im Bild als „Entscheidung-svorlage“ falsch getrennt.'
+    beleg: k6.4.4-t1 k13-t1

@@ -4,9 +4,12 @@
  * bleibt er unsichtbar. Details (Ebenen, Tabellen) sind im Bogen aufgeklappt.
  */
 
-import { h } from './h.ts';
+import { h, mitTrennstellen } from './h.ts';
 import { bildmarke } from './marke.ts';
 import { W } from './woerter.ts';
+
+// R49: die Trennstellen gelten auch am Bildschirm (Story-Karte, Radar) – die Funktion steht in h.ts
+export { mitTrennstellen };
 
 /** Kopf jedes Bogens: Titel, Absender, Fassung, Druckdatum und die Vermerke. */
 export function bogenKopf(titel: string, version: string, mitFiktiv: boolean): HTMLElement {
@@ -97,15 +100,6 @@ function bereiteStrgP(): void {
   });
 }
 
-/**
- * Weiche Trennstellen (U+00AD) in langen Wörtern nach einer Fuge („Entscheidungs|grundlagen“, „Maßnahmen|verknüpfung“).
- * Sichtbar wird der Strich nur, wo die Zeile tatsächlich dort umbricht; der Wortlaut bleibt gleich (dazu ein
- * Umbruch ohne Breite nach „/“ zwischen Wörtern).
- */
-export function mitTrennstellen(text: string): string {
-  // „Risiko-/Änderungs-/Maßnahmen…“, „Rollen/Freigaben/…“: nach „/“ darf die Zeile umbrechen (sonst ein unteilbarer Block)
-  return text.replace(/(?<=[\p{L}-])\/(?=\p{L})/gu, '/\u200b').replace(/\p{L}{12,}/gu, (wort) => wort.replace(/(?<=\p{L}(?:ungs|heits|keits|schafts|tions|täts|stands|ßnahmen|agement|umenten|triebs|utzen|ister|tritts|ketten|lagen|gabe|schutz|ohbau))(?!(?<=agement)s)(?!(?<=gabe)n[^aeiouäöü])(?=\p{Ll}{4})/gu, '\u00ad'));
-}
 
 /** Setzt in den Textknoten unter `el` die Trennstellen; gibt zurück, wie der alte Text wiederherzustellen ist. */
 function setzeTrennstellen(el: Element): () => void {

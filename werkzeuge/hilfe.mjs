@@ -45,9 +45,11 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/Standardisierter Einfuehrungs-\/Reset-Rhythmus/gu, 'Orientierungsrahmen nach der Reifegradanalyse und bei MVG-Neuinitialisierung'],
   [/MVG-Reifegrad-Modell \(5 Stufen\)/gu, 'Reifegrad-Modell der Anwendung (5 Stufen)'],
   // Beschlussfassung durch den Bauherrn im Lenkungskreis, der Lenkungskreis berät (k4.2-p3, k9.3-p3; R33)
-  [/formal durch Lenkungskreis verabschiedet/gu, 'durch den Bauherrn im Lenkungskreis beschlossen'],
+  // R50: die Stufe gilt für jede Entscheidungsvorlage – beschlossen wird nach Mandat (k4.2-p3, k6.4.5-p1)
+  [/formal durch Lenkungskreis verabschiedet/gu, 'durch die nach Mandat zuständige Stelle (Bauherren-PL, Änderungsgremium oder Beschlussfassung durch den Bauherrn im Lenkungskreis)'],
   [/im Lenkungskreis verabschiedet/gu, 'vom Bauherrn im Lenkungskreis beschlossen'],
-  [/entscheidungsreif gemacht und im Lenkungskreis beschlossen/gu, 'entscheidungsreif gemacht und durch den Bauherrn im Lenkungskreis beschlossen'],
+  // R50: die Freigabe erteilt der Bauherr selbst auf Vorlage der Bauherren-PL; der Lenkungskreis berät (k9.3-p3)
+  [/entscheidungsreif gemacht und im Lenkungskreis beschlossen/gu, 'entscheidungsreif gemacht; die Freigabe erteilt der Bauherr selbst auf Vorlage der Bauherren-PL (der Lenkungskreis berät)'],
   [/^Bauherr \/ Lenkungskreis:/gu, 'Bauherr (Lenkungskreis berät):'],
   // Eskalation entlang der Mandatsleiter, nicht pauschal an den Lenkungskreis (k4.2-p3, k6.4.5-p1; R45, wie L-69 im Handbuch)
   [/wird sie automatisch markiert und an den Lenkungskreis eskaliert/gu, 'wird sie markiert und entlang der Mandatsleiter eskaliert – an die Bauherren-PL, das Änderungsgremium oder zur Beschlussfassung durch den Bauherrn im Lenkungskreis'],
@@ -162,7 +164,7 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/^Gremium für strategische Change-Beschlüsse$/gu, 'Gremium, in dem der Bauherr strategische Änderungen beschließt'],
   [/Managementbericht lesen, Top-Entscheidungen treffen/gu, 'Managementbericht lesen, Top-Entscheidungen des Bauherrn beraten'],
   [/Managementbericht entgegennehmen und Beschlüsse fassen/gu, 'Managementbericht entgegennehmen und die Beschlussfassung des Bauherrn beraten'],
-  [/Nutzen Sie den Approval-Workflow in der Entscheidungsvorlage für signierte Freigaben\. Verlangen Sie vor jeder Freigabe/gu, 'Achten Sie darauf, dass der Bauherr die Freigabe im Approval-Workflow der Entscheidungsvorlage signiert, und verlangen Sie vor jeder Freigabe'],
+  [/Nutzen Sie den Approval-Workflow in der Entscheidungsvorlage für signierte Freigaben\. Verlangen Sie vor jeder Freigabe/gu, 'Achten Sie darauf, dass der Bauherr die Freigabe im Freigabeprozess der Entscheidungsvorlage signiert, und verlangen Sie vor jeder Freigabe'],
   // R47: kein Wirkungsversprechen ohne Beleg (O-1, O-17); die MVG-Neuinitialisierung ist das Format bei eingeschränkter Steuerbarkeit (k7.5-p1)
   [/Ja, sogar besser als bei einem Neustart – die Lücken sind sichtbar, die Wirkung wird schnell messbar\. Empfehlung: MVG-Neuinitialisierung mit Scout,/gu, 'Ja. Bei eingeschränkter Steuerbarkeit ist die MVG-Neuinitialisierung das passende Format (MVG Kap. 7.5): mit Scout,'],
   // R47: Status der Entscheidung und Freigabeprozess der Entscheidungsvorlage getrennt (k6.4.4-p1, k9.4-l1)
@@ -278,6 +280,22 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/ — ohne eine Zeile Code\./gu, '.'],
   [/das Ergebnis ist garantiert prüfungs-grün/gu, 'das Ergebnis durchläuft die Prüfung'],
   [/Regel: Kein Paket verlässt das Haus ohne „✔ 0 Fehler"\./gu, 'Regel: Ausgeliefert wird nur ein Paket mit „✔ 0 Fehler“.'],
+  // R50: 30/60/90 auch im Handbuch nach k8.2-p1…p4 (Orientierungsrahmen; Mindestmodell, Modell in Anwendung)
+  [/^ Mandate, Freigabe-\/Entscheidungslogik, Register und Managementbericht stabilisieren\.$/gu, ' Mindestmodell aufgebaut: Zielsystem, Mandatslogik, Leistungsphasen- und Freigabemodell, Entscheidungs-IDs, Datenstandslogik, Eskalation.'],
+  [/^ Pilotbetrieb, Übergabe, Verbesserungs-Arbeitsvorrat\.$/gu, ' Modell in Anwendung, Schwellen kalibriert, Entwurf des Betriebshandbuchs – die Übergabe schließt an. Orientierungsrahmen nach der Reifegradanalyse und bei MVG-Neuinitialisierung (MVG Kap. 8.2).'],
+  // R50: „Approval“ im Fließtext → Freigabeprozess (der Entscheidungsvorlage, k9.4-l1); der Glossarbegriff der Anwendung bleibt
+  [/Entscheidungsvorlagen mit Approval-Workflow\./gu, 'Entscheidungsvorlagen mit Freigabeprozess.'],
+  [/Empfehlung und Approval-Workflow\./gu, 'Empfehlung und Freigabeprozess.'],
+  [/im Approval-Workflow der Entscheidungsvorlage/gu, 'im Freigabeprozess der Entscheidungsvorlage'],
+  [/^Approval-Workflow durchlaufen$/gu, 'Freigabeprozess durchlaufen'],
+  [/MCDA (?:&amp;|&) Approval-Workflow\)/gu, 'MCDA & Freigabeprozess)'],
+  [/Nutzen Sie die Approval-Workflows in der Entscheidungsvorlage/gu, 'Nutzen Sie den Freigabeprozess in der Entscheidungsvorlage'],
+  [/^Approval-Stufen$/gu, 'Stufen des Freigabeprozesses'],
+  [/Entscheidungen \(Approval\)/gu, 'Entscheidungen (Freigabeprozess)'],
+  [/Wirkung, Approval\)/gu, 'Wirkung, Freigabeprozess)'],
+  [/Gateway \(Entscheidung\)/gu, 'Verzweigung (Entscheidung)'],
+  // R50: die Summenzeile der Quelle entfällt – gezeigt werden 51 Bereiche
+  [/Alle Bereiche des Datenvertrags \(52\)/gu, 'Alle Bereiche des Datenvertrags (51)'],
 ]);
 
 /** Klassen, die src/stil/hilfe.css gestaltet (alles andere fällt weg). */
@@ -319,7 +337,8 @@ function bereinige(wurzel, anker, titel = '') {
   // O-1: Leistungszuschnitt der Beratung (Engagements mit Laufzeiten) – Abschnitt bis zum nächsten Trenner;
   // O-17 (R49): Zuordnung zu Normen („MVG ist kompatibel …“, „vollständige Abdeckung“) ist keine Aussage aus V1.2
   for (const h of [...wurzel.querySelectorAll('h2')]) {
-    if (!/MVG-Lifecycle in der Beratungspraxis|Compliance & Standards-Zuordnung/u.test(h.textContent ?? '')) continue;
+    // R50: dazu „Methodische Grundlage“ (Anschluss an ISO/NAO/PRINCE2 – keine Aussage von V1.2)
+    if (!/MVG-Lifecycle in der Beratungspraxis|Compliance & Standards-Zuordnung|^Methodische Grundlage$/u.test((h.textContent ?? '').trim())) continue;
     let x = h.nextElementSibling;
     while (x !== null && !/^H[12]$/u.test(x.tagName) && !x.classList.contains('section-divider')) {
       const weiter = x.nextElementSibling;
@@ -702,6 +721,8 @@ function glaette(/** @type {string} */ html) {
     // das Inhaltsverzeichnis ist hier eine Liste ohne Verweise
     .replace(/<li>Das Inhaltsverzeichnis ist klickbar<\/li>/gu, '')
     .replace(/<b>Kein Lizenzmodell<\/b>, keine/gu, '<b>Keine</b>')
+    // R50: nicht MVG orientiert sich an Frameworks, sondern die Konventionen der Anwendung (O-17)
+    .replace(/MVG ist ein eigenständiger, schlanker Governance-Ansatz\. Er <b>orientiert<\/b> sich konzeptionell an etablierten Methoden/gu, 'Die Konventionen der Anwendung <b>orientieren</b> sich an etablierten Methoden')
     // R49: Beschlüsse werden als Maßnahmen nachverfolgt (k6.4.3-p2), Probleme im Problemregister
     .replace(/werden zu <span>Aktionen<\/span> mit Frist/gu, 'werden zu <span>Maßnahmen</span> mit Frist')
     .replace(/Überfällige <span>Aktionen<\/span> &amp; neue <span>Problemregister<\/span>/gu, 'Überfällige <span>Maßnahmen</span> &amp; neue <span>Probleme</span>')
@@ -831,7 +852,8 @@ export function ohneKennungen(t) {
   return t
     .replace(/\b[a-z]+[A-Z][A-Za-z0-9]*\b/gu, '·')
     .replace(/\b\w*_\w+\b/gu, '·')
-    .replace(/\b[A-Z]{2,}-(?:<|[A-Z0-9])[\w<>.-]*/gu, '·')
+    // R50: nur echte Kennungen (Großbuchstaben, Ziffern, <…>) – „MVG-Neuinitialisierung“, „PMO-Stakeholder“ bleiben prüfbar
+    .replace(/\b[A-Z]{2,}-(?:<[^>]*>|[A-Z0-9]+)(?:[-.]+(?:<[^>]*>|[A-Z0-9]+))*(?![\p{L}\p{N}])/gu, '·')
     .replace(/\bGATE\b/gu, '·')
     // nur Datenfelder mit Zählangabe „(readouts · 30 Einträge)“; ein bloßes „(scope)“ bleibt prüfbar (R49)
     .replace(/\([a-z][A-Za-z]+\s·\s[^)]*\)/gu, '(·)');

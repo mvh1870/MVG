@@ -549,6 +549,35 @@ test('Mutanten-Probe (Beispiel): ein verfälschtes Zitat, eine erfundene ID und 
     'Berichterstattung erzeugt Information. Führung entsteht erst, wenn Information mit Mandat verbunden wird.',
     'Berichterstattung erzeugt Information. […] Beobachtung.'));
   assert.ok((await kompiliere({ pruefe: true, wurzel: einWort, ziel: null })).fehler.some((f) => /ist zu kurz/u.test(f)));
+  // R50: ein Gedankenstrich ist kein Wort („[…] – Beobachtung.“ ist zu kurz)
+  const strich = neueWurzel(veraendere(BEISPIEL, 'inhalte/story/X1/station.md',
+    'Berichterstattung erzeugt Information. Führung entsteht erst, wenn Information mit Mandat verbunden wird.',
+    'Berichterstattung erzeugt Information. […] – Beobachtung.'));
+  assert.ok((await kompiliere({ pruefe: true, wurzel: strich, ziel: null })).fehler.some((f) => /ist zu kurz/u.test(f)));
+  // R50: Binde- und Streckenstrich zwischen zwei Wortzeichen verbinden – „Bauherren“ aus „Bauherren-PL“, „LPH 0“ aus „LPH 0–9“
+  const mitBinder = structuredClone(WHITEPAPER);
+  const block = mitBinder.kapitel[0]?.abschnitte[0]?.bloecke[1];
+  assert.ok(block);
+  block.text += ' Die Vorlage kommt von der Bauherren-PL für LPH 0–9.';
+  const binder = (zitat: string) => neueWurzel(veraendere(BEISPIEL, 'inhalte/story/X1/station.md',
+    'Berichterstattung erzeugt Information. Führung entsteht erst, wenn Information mit Mandat verbunden wird.', zitat), mitBinder);
+  const ganz = await kompiliere({ pruefe: true, wurzel: binder('Die Vorlage kommt von der Bauherren-PL für LPH 0–9.'), ziel: null });
+  assert.deepEqual(ganz.fehler, []);
+  for (const zitat of ['Die Vorlage kommt von der Bauherren', 'Die Vorlage kommt von der Bauherren-PL für LPH 0', 'PL für LPH 0–9.']) {
+    const f = await kompiliere({ pruefe: true, wurzel: binder(zitat), ziel: null });
+    assert.ok(f.fehler.some((x) => /beginnt oder endet mitten im Wort/u.test(x)), `${zitat}: ${f.fehler.join('\n')}`);
+  }
+});
+
+test('Zitat aus einer Liste (R50): als Liste gesetzt, geprüft ohne die Marken', async () => {
+  const liste = (text: string) => neueWurzel(veraendere(BEISPIEL, 'inhalte/story/X1/station.md',
+    '::: zitat k2.4-p2\nBerichterstattung erzeugt Information. Führung entsteht erst, wenn Information mit Mandat verbunden wird.',
+    `::: zitat k2.4-l1\n${text}`));
+  const gut = await kompiliere({ pruefe: true, wurzel: liste('- eins\n- zwei'), ziel: null });
+  assert.deepEqual(gut.fehler, []);
+  assert.match(JSON.stringify(gut.inhalte), /<ul>\\n<li>eins<\/li>\\n<li>zwei<\/li>/u);
+  const falsch = await kompiliere({ pruefe: true, wurzel: liste('- eins\n- drei'), ziel: null });
+  assert.ok(falsch.fehler.some((x) => /nicht wortgleich/u.test(x)), falsch.fehler.join('\n'));
 });
 
 test('Abdeckung (P1.1): Lücke, fremdes Kapitel und unbekannte Seite sind Fehler; geplante Kapitelseite gilt', async () => {
@@ -683,6 +712,10 @@ test('Echte Inhalte: fehlerfrei; Mutanten-Probe am Zitat in B3 (Ebene 4, Kap. 2.
   writeFileSync(abb10, yaml.replace('text: Freigabeentscheidung,', 'text: Freigabeentscheidun,'), 'utf8');
   const bruch = await kompiliere({ pruefe: true, wurzel: w, whitepaperPfad: ECHT_WP, ziel: null });
   assert.ok(bruch.fehler.some((f) => /abb-10\.yaml.*„Freigabeentscheidun“ steht nicht wortgleich/u.test(f)), bruch.fehler.join('\n'));
+  // R50: auch am Wortanfang – „entscheidung“ aus „Freigabeentscheidung“ ist kein Begriff des Texts
+  writeFileSync(abb10, yaml.replace('text: Freigabeentscheidung,', 'text: entscheidung,'), 'utf8');
+  const anfang = await kompiliere({ pruefe: true, wurzel: w, whitepaperPfad: ECHT_WP, ziel: null });
+  assert.ok(anfang.fehler.some((f) => /abb-10\.yaml.*„entscheidung“ steht nicht wortgleich/u.test(f)), anfang.fehler.join('\n'));
 });
 
 test('Nachweis (E2, P7.3): nur an Stationen der Welt B, höchstens einmal je Station', async () => {

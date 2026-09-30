@@ -1,7 +1,7 @@
 ---
 # Einwand-Karten (E6): im Story-Modus als Denkanstoß, in der Regie als Spickzettel.
 # Jede Antwort braucht einen Beleg aus dem Whitepaper (zitat oder original).
-# Stationen ohne Schritt `ebenen` (wendepunkt, rueckspulen) wirken nur in der Regie.
+# Stationen ohne Schritt `ebenen` (z. B. rueckspulen) wirken nur in der Regie; am Wendepunkt steht die Karte im Ebenen-Schritt.
 ---
 
 ::: einwand buerokratie

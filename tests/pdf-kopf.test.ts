@@ -51,3 +51,9 @@ test('Füllung einer Seite bis zur tiefsten Textzeile (R44)', () => {
   assert.equal(fuellung(800, 800), 0);
   assert.equal(fuellung(0, 10), 0);
 });
+
+test('eine weiche Trennstelle erscheint im PDF als Strich – der Kopf wird trotzdem erkannt (R48, Auslöser-Wahl)', () => {
+  const wahl = 'Was passiert, wenn … Unklare Zielprioritäten Wissens­abhängigkeit Eskalation ohne Entscheidung';
+  assert.equal(seitenMitUeberschriftAmEnde([seite(['Text.', 'WAS PASSIERT, WENN … Unklare Zielprioritäten', 'Wissens-abhängigkeit Eskalation ohne Entscheidung']), schluss], [wahl]).length, 1);
+  assert.equal(seitenMitUeberschriftAmEnde([seite(['Text.', 'Wissens-abhängigkeit Eskalation ohne Entscheidung', 'Wenn die Ziele unklar bleiben.']), schluss], [wahl]).length, 0);
+});

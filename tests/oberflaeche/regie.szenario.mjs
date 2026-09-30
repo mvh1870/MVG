@@ -196,6 +196,15 @@ export async function lauf(_seite, h) {
   if (amEndeR.length > 0) h.befund(`Druckfassung: Überschrift am Seitenende ${JSON.stringify(amEndeR)}`);
   await regie.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
   if ((await leinwand.locator('body').innerText()).includes('Kunde fragt nach der Mandatsleiter')) h.befund('Leinwand zeigt das Protokoll');
+  // R48: Strg+P ohne Knopf (page.pdf meldet beforeprint) druckt das Protokoll mit Kopf, nicht die Bedienoberfläche
+  await regie.emulateMedia({ media: 'print' });
+  const strgPR = await pdfSeiten(await regie.pdf({ format: 'A4' }));
+  await regie.emulateMedia({ media: 'screen' });
+  const textStrgP = strgPR.map((x) => x.zeilen.join(' ')).join(' ');
+  if (!textStrgP.includes('Gesprächsprotokoll') || !textStrgP.includes('Kunde fragt nach der Mandatsleiter') || /Ins Protokoll|Protokoll drucken|Notiz zum Gespräch/u.test(textStrgP)) {
+    h.befund(`Regie: Strg+P druckt nicht das Protokoll (${strgPR.length} Seiten, Anfang „${textStrgP.slice(0, 80)}“)`);
+  }
+  if (await regie.locator('.druck-bogen').count() !== 0) h.befund('Regie: Strg+P-Bogen bleibt stehen');
   await h.bild('regie', regie);
   // B2: Regie mit Beamer an neu laden – Leinwand und Knopf stimmen danach überein (aus)
   await h.klick('[data-pruef="regie-beamer"]', regie);

@@ -372,7 +372,7 @@ export async function lauf(seite, h) {
   // R47: vor page.pdf lesen – page.pdf löst afterprint aus und räumt den Bogen ab (vorher blieb die Kopfliste leer)
   // R41: im echten PDF – keine Seite endet mit einer Überschrift, keine leere Seite, kein Bedienhinweis („Ziehen Sie den Regler“)
   // R42: auch die Kapitälchen-Labels über Querverweis und Wissenscheck; je Kopf seine Druckgröße in pt (Listenpunkte gleichen Wortlauts zählen nicht)
-  const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen :is(h1, h2, h3, h4, dt, .lw-titel, .original-abschnitt, summary, .lw-etappe-titel, .felder-ansicht, .querverweis-text), .druck-bogen .lw-aufgeloest-liste > li > b:first-child, .druck-bogen :is(.querverweis-block, .wissenscheck) > .t-label')]
+  const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen :is(h1, h2, h3, h4, dt, .lw-titel, .original-abschnitt, summary, .lw-etappe-titel, .felder-ansicht, .querverweis-text, .absatz-id), .druck-bogen .lw-aufgeloest-liste > li > b:first-child, .druck-bogen :is(.querverweis-block, .wissenscheck) > .t-label')]
     // R43: die Größe des sichtbaren Texts (größte Schrift eines Elements mit eigenem Text), nicht die des Kopfelements selbst
     .map((x) => ({ text: x.textContent ?? '', pt: Math.max(...[x, ...x.querySelectorAll('*')].filter((e) => [...e.childNodes].some((k) => k.nodeType === 3 && (k.textContent ?? '').trim() !== ''))
       .map((e) => parseFloat(getComputedStyle(e).fontSize))) * 0.75 })));
@@ -433,9 +433,16 @@ export async function lauf(seite, h) {
   if (wortbruch.length > 0) h.befund(`Alles drucken: ${wortbruch.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(wortbruch.slice(0, 6))}`);
   // R47: im echten PDF aller Kapitel – kein Kopf, kein Feld-Schalter, kein Querverweis-Titel allein am Seitenende
   // (die Druckbefunde der Runde 47 lagen alle hier); Köpfe vor page.pdf lesen, das den Bogen abräumt
-  const koepfeAlle = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen :is(h1, h2, h3, h4, dt, .lw-titel, .original-abschnitt, summary, .lw-etappe-titel, .felder-ansicht, .querverweis-text), .druck-bogen .lw-aufgeloest-liste > li > b:first-child, .druck-bogen :is(.querverweis-block, .wissenscheck) > .t-label')]
+  const koepfeAlle = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen :is(h1, h2, h3, h4, dt, .lw-titel, .original-abschnitt, summary, .lw-etappe-titel, .felder-ansicht, .querverweis-text, .absatz-id), .druck-bogen .lw-aufgeloest-liste > li > b:first-child, .druck-bogen :is(.querverweis-block, .wissenscheck) > .t-label')]
     .map((x) => ({ text: x.textContent ?? '', pt: Math.max(...[x, ...x.querySelectorAll('*')].filter((e) => [...e.childNodes].some((k) => k.nodeType === 3 && (k.textContent ?? '').trim() !== ''))
       .map((e) => parseFloat(getComputedStyle(e).fontSize))) * 0.75 })));
+  // R48: keine Auslöser-Wahl im Druck – Tafeln stehen dort aufgelöst (L-140), eine Wahl ohne Kette riss am Seitenende ab
+  const wahlImDruck = await seite.evaluate(() => document.querySelectorAll('.druck-bogen .ausloeser-wahl').length);
+  if (wahlImDruck > 0) h.befund(`Alles drucken: ${wahlImDruck} Auslöser-Wahlen im Druck (Tafel nicht aufgelöst)`);
+  // R48: keine Aufklappzeichen (Dreieck) im Druck
+  const marker = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen summary')].filter((x) => getComputedStyle(x).display === 'list-item' && getComputedStyle(x).listStyleType !== 'none').length);
+  if (marker > 0) h.befund(`Alles drucken: ${marker} Aufklappzeichen im Druck`);
+  if (!koepfeAlle.some((x) => /^k\d+(?:\.\d+)*-t\d+$/u.test(x.text.trim()))) h.befund('Alles drucken: Absatz-IDs fehlen in der Kopfliste');
   const allesPdf = await pdfSeiten(await seite.pdf({ format: 'A4' }));
   const allesEnde = seitenMitUeberschriftAmEnde(allesPdf, koepfeAlle);
   if (allesEnde.length > 0) h.befund(`Alles drucken: Überschrift am Seitenende ${JSON.stringify(allesEnde.slice(0, 6))}`);

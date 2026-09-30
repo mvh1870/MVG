@@ -662,13 +662,27 @@ test('Regie (P9.5): Start sendet den Beamer-Stand, Sprung erst mit Rolle, Einwä
     // R47: der Druckteil ist ein Druckbogen an body (wie Kapitel und Dossier)
     const druck = document.querySelector('.druck-bogen [data-pruef="regie-druck"]');
     assert.ok(druck, 'Protokoll im Druckbogen');
-    assert.equal(druck.querySelectorAll(':scope > ol > li').length, 8);
+    assert.equal(druck.querySelectorAll(':scope > .druck-teil > ol > li').length, 8);
+    // R48: Kopf wie Kapitel und Dossier (Absender, Vermerke), der Titel steht einmal, jeder Abschnitt ist ein eigener Teil
+    const bogenR = druck.closest('.druck-bogen');
+    assert.ok(bogenR?.querySelector(':scope .druck-kopf .druck-absender'));
+    assert.equal([...(bogenR?.querySelectorAll('h1, h2') ?? [])].filter((x) => x.textContent === W.regie.druckTitel).length, 1);
+    assert.equal(druck.querySelectorAll(':scope > h2').length, 0);
+    assert.ok([...druck.querySelectorAll(':scope > .druck-teil')].every((x) => x.firstElementChild?.tagName === 'H2'));
+    assert.match(bogenR?.textContent ?? '', new RegExp(`${W.fiktiv}.*${W.ungeprueft}`, 'u'));
     // Dossier (E11): Kapitel zum Nachlesen als Text (höchstens zwei Lernseiten)
     const kapitelImDruck = druck.querySelectorAll('.druck-kapitel').length;
     assert.ok(kapitelImDruck >= 1 && kapitelImDruck <= 2, `Kapitel im Regie-Druck: ${kapitelImDruck}`);
-    assert.match(druck.textContent ?? '', new RegExp(`${W.fiktiv}.*${W.ungeprueft}`, 'u'));
     assert.match(druck.textContent ?? '', /A3/u);
     assert.equal(document.body.classList.contains('druck-protokoll'), false);
+    // R48: Strg+P (nur beforeprint, ohne Knopf) druckt das Protokoll, nicht die Bedienoberfläche
+    for (const x of document.querySelectorAll('.druck-bogen')) x.remove();
+    dom.window.dispatchEvent(new dom.window.Event('beforeprint'));
+    assert.ok(document.querySelector('.druck-bogen [data-pruef="regie-druck"]'), 'Strg+P: Protokoll im Bogen');
+    assert.ok(document.body.classList.contains('druckt-bogen'));
+    dom.window.dispatchEvent(new dom.window.Event('afterprint'));
+    assert.equal(document.querySelectorAll('.druck-bogen').length, 0);
+    assert.equal(document.body.classList.contains('druckt-bogen'), false);
     // B4: Ein-Fenster nimmt die verdeckten Teile aus der Tab-Folge, Esc gibt den Fokus zurück
     const knopf = q('[data-pruef="regie-ein-fenster"]');
     knopf.click();
@@ -1110,6 +1124,22 @@ test('Resümee (P7.7): Ende, Richtung und erste Vertiefung aus der Spur; Zwische
   const kapitel = [...bogen.querySelectorAll('.druck-kapitel')].map((x) => x.getAttribute('data-kapitel'));
   assert.deepEqual(kapitel, links.map((l) => l?.replace('#theorie/k', '') ?? ''));
   assert.equal(document.body.classList.contains('druckt-bogen'), false, 'ohne Druckdialog keine hängende Klasse');
+  // R48: Strg+P druckt auf jedem Schritt des Epilogs das Dossier – auch wenn das Resümee (mit Knopf) nicht im Dokument steht
+  dom.window.dispatchEvent(new dom.window.Event('afterprint')); // ein offener Auftrag früherer Tests endet
+  for (const x of document.querySelectorAll('.druck-bogen')) x.remove();
+  resuemee(block, k(() => undefined), null);
+  // eine Szene der Station Epilog steht im Dokument (ein anderer Schritt), der Knopf nicht
+  document.body.replaceChildren(Object.assign(document.createElement('div'), { className: 'szene' }));
+  document.querySelector('.szene')?.setAttribute('data-station', 'epilog');
+  dom.window.dispatchEvent(new dom.window.Event('beforeprint'));
+  assert.match(document.querySelector('.druck-bogen')?.textContent ?? '', /Ihr Weg durch die Story/u, 'Strg+P auf einem anderen Epilog-Schritt');
+  dom.window.dispatchEvent(new dom.window.Event('afterprint'));
+  assert.equal(document.querySelectorAll('.druck-bogen').length, 0);
+  // Gegenfall: eine andere Station druckt kein Dossier
+  document.querySelector('.szene')?.setAttribute('data-station', 'A1');
+  dom.window.dispatchEvent(new dom.window.Event('beforeprint'));
+  assert.equal(document.querySelectorAll('.druck-bogen').length, 0);
+  document.body.replaceChildren();
 });
 
 test('Originaltext und Kapiteltitel (R47): Umbruch nach „/“ ohne Zeichen, Titelgröße nach dem längsten Wort', () => {

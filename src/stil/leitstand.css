@@ -2096,8 +2096,6 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .regie.ist-ein-fenster .regie-eingriff-karte { position: fixed; left: 10px; right: 10px; bottom: 10px; z-index: 51; max-height: 68px; overflow: auto; padding: 8px 12px; }
 .regie.ist-ein-fenster .regie-eingriff-karte .regie-h2 { display: none; }
 .regie.ist-ein-fenster .regie-vollbild-zurueck { display: inline-flex; position: fixed; top: 10px; right: 10px; z-index: 51; }
-/* Regie-Protokoll: ein Druckbogen (src/ui/druck.ts, R47) – im Bogen nur der Abstand der Kopfzeilen */
-@media print { .regie-druck-inhalt > h1 { margin: 0 0 2mm; font: 800 18pt/1.2 var(--schrift-anzeige); color: var(--navy); } }
 
 /* Klänge (P10.6, E14): leiser Schalter im Kopf, standardmäßig aus */
 .klang-knopf { margin-left: auto; min-height: 36px; padding: 4px 12px; border: 1px solid var(--navy-linie); border-radius: 999px; background: none; color: var(--auf-navy-2); font: 600 12px/1.2 var(--schrift-text); letter-spacing: .04em; cursor: pointer; }

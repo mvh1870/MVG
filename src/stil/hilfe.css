@@ -191,6 +191,11 @@
   .hilfe-inhalt :is(.h-card, .h-feature-card):has(.h-grafik-wrap) { background: none; box-shadow: none; border: 0; padding: 0; }
   /* R47: wie der Druckbogen – Farben wie am Bildschirm (Nummernmarken sonst 2,3 : 1) */
   .hilfe-inhalt { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  /* R48: Karten reißen nicht über die Seitengrenze (Nummernmarke allein am Seitenende); Karten mit Tabelle oder
+     Querseiten-Grafik dürfen umbrechen – ganz verschoben ließen sie fast leere Seiten zurück */
+  .hilfe-inhalt :is(.h-card, .h-feature-card, .h-role-pick-card):not(:has(.h-grafik-wrap, table)), .lernseite.hilfe .kapitel-karten > li { break-inside: avoid; }
+  /* R48: „+“/„–“ der Aufklapper sind auf Papier Bedienzeichen ohne Funktion */
+  .hilfe-inhalt details > summary::after, .hilfe-inhalt details[open] > summary::after { content: none; }
 }
 
 /* Fließtext bleibt in Lesebreite, auch wenn die Spalte für Tabellen und Grafiken breiter ist */

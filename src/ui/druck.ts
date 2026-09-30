@@ -43,12 +43,13 @@ export function druckeBogen(titel: string, teile: Node[]): HTMLElement {
  * denselben Bogen wie über den Knopf. `anker` ist der Druckknopf der Seite: nur solange er im Dokument
  * steht, gilt `bauer`. Der Bogen wird bei `beforeprint` angehängt und bei `afterprint` abgebaut.
  */
-let strgP: { anker: HTMLElement; bauer: () => { titel: string; teile: Node[] } } | null = null;
+let strgP: { gilt: () => boolean; bauer: () => { titel: string; teile: Node[] } } | null = null;
 /** R47: Flächen ohne eigenen Bogen (Start, Story vor dem Epilog, Explore, Theorie-Übersicht) – ein kurzer Bogen mit den Druckwegen */
 let ersatz: { aktiv: () => boolean; bauer: () => { titel: string; teile: Node[] } } | null = null;
 let strgPBereit = false;
-export function bogenFuerStrgP(anker: HTMLElement, bauer: () => { titel: string; teile: Node[] }): void {
-  strgP = { anker, bauer };
+/** R48: `gilt` ersetzt die Ankerregel, wo der Bogen auch ohne sichtbaren Knopf gilt (Epilog: jeder Schritt der Station) */
+export function bogenFuerStrgP(anker: HTMLElement, bauer: () => { titel: string; teile: Node[] }, gilt: () => boolean = () => anker.isConnected): void {
+  strgP = { gilt, bauer };
   bereiteStrgP();
 }
 
@@ -65,9 +66,13 @@ function bereiteStrgP(): void {
   if (strgPBereit) return;
   strgPBereit = true;
   window.addEventListener('beforeprint', () => {
-    // der Knopf druckt schon einen Bogen (window.print() löst beforeprint synchron aus – R40: nie abräumen), oder die Seite hat keinen
-    if (laufend !== null) return;
-    const quelle = strgP !== null && strgP.anker.isConnected ? strgP.bauer : ersatz !== null && ersatz.aktiv() ? ersatz.bauer : null;
+    // der Knopf druckt schon einen Bogen (window.print() löst beforeprint synchron aus – R40: nie abräumen), oder die Seite hat keinen;
+    // R48: ein Auftrag, dessen Bogen nicht mehr im Dokument steht (afterprint blieb aus), ist vorbei
+    if (laufend !== null) {
+      if (laufend.bogen.isConnected) return;
+      laufend.ende();
+    }
+    const quelle = strgP !== null && strgP.gilt() ? strgP.bauer : ersatz !== null && ersatz.aktiv() ? ersatz.bauer : null;
     if (quelle === null) return;
     const { titel, teile } = quelle();
     const bogen = haengeBogenAn(teile);

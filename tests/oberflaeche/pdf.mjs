@@ -55,8 +55,11 @@ export function fuellung(hoehe, tiefsteY) {
 }
 /** @typedef {{ text: string, pt?: number }} Kopf */
 
-/** Vergleichsform: ohne Leerraum, weiche Trennzeichen und Groß-/Kleinschreibung (Kapitälchen-Sperrung im PDF) */
-export const flach = (/** @type {string} */ s) => s.replace(/[\s\u00ad]+/gu, '').toLowerCase();
+/**
+ * Vergleichsform: ohne Leerraum, weiche Trennzeichen und Groß-/Kleinschreibung (Kapitälchen-Sperrung im PDF); R48: auch ohne
+ * Bindestriche – eine weiche Trennstelle erscheint im PDF als sichtbarer Strich („Wissens-abhängigkeit“)
+ */
+export const flach = (/** @type {string} */ s) => s.replace(/[\s\u00ad\-\u2010\u2011]+/gu, '').toLowerCase();
 
 /**
  * Seiten, deren letzte Zeile eine Überschrift ist – ganz, als Anfang oder als Ende einer umbrochenen –, außer der letzten Seite.

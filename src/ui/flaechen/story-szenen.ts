@@ -930,9 +930,13 @@ export function resuemee(b: Block, k: SzenenKontext, text: Node | null): HTMLEle
       ? h('h3', { class: 'tafel-titel resuemee-titel' }, inhaltInline(kind.felder['text'] ?? ''))
       : B.block(kind, k.inhalte, W.originalWoertlich, k.z.verlauf, k.z.rolle, 'h4')),
     k.tue !== null ? h('p', null, h('button', { type: 'button', class: 'knopf knopf-still druck-knopf', 'data-pruef': 'dossier-drucken', onclick: dossier }, W.druck.dossierDrucken)) : null);
-  // R47: Strg+P im Epilog druckt das Dossier (wie die Lernseiten, R38) – solange der Knopf im Dokument steht
+  // R47: Strg+P im Epilog druckt das Dossier (wie die Lernseiten, R38); R48: auf jedem Schritt der Station, nicht nur
+  // solange der Knopf im Resümee zu sehen ist
   const knopf = teil.querySelector<HTMLElement>('[data-pruef="dossier-drucken"]');
-  if (knopf !== null && typeof window !== 'undefined' && typeof window.addEventListener === 'function') bogenFuerStrgP(knopf, dossierBogen);
+  const szeneDerStation = `.szene[data-station="${k.station.id}"]`;
+  if (knopf !== null && typeof window !== 'undefined' && typeof window.addEventListener === 'function') {
+    bogenFuerStrgP(knopf, dossierBogen, () => knopf.isConnected || document.querySelector(szeneDerStation) !== null);
+  }
   return teil;
 }
 
@@ -989,14 +993,25 @@ function rueckspulen(k: SzenenKontext): Szene {
   });
 }
 
+/**
+ * R48: Strg+P druckt auf jedem Schritt des Epilogs das Dossier – steht das Resümee nicht im aktuellen Schritt, entsteht
+ * es hier ungezeigt und meldet seinen Bogen an (nur bedienbar, nicht auf Leinwand und in der Regie-Vorschau).
+ */
+function dossierFuerStrgP(k: SzenenKontext): void {
+  if (k.tue === null || k.schritt.bloecke.some((b) => b.art === 'resuemee')) return;
+  const b = k.schritte.flatMap((s) => s.bloecke).find((x) => x.art === 'resuemee');
+  if (b !== undefined) resuemee(b, k, b.felder['text'] ? h('div', { class: 'tafel-einleitung' }, inhalt(b.felder['text'])) : null);
+}
+
 /** Baut die Szene des aktuellen Schritts (mit Teile-Leiste bei Gruppen). */
 export function baueSzene(k: SzenenKontext): Szene {
   const innen = inhaltsSzene(k);
+  dossierFuerStrgP(k);
   const teile = teileLeiste(k);
   // Express (E8, L-43): über dem ersten Schritt einer Station, was der Leser übersprungen hat
   const express = k.index === 0 && k.station.express !== null && k.z.interessen.includes('express')
     ? h('aside', { class: 'express-karte', 'data-pruef': 'express-karte', 'aria-label': W.wasDazwischen }, h('span', { class: 't-label' }, W.wasDazwischen), inhalt(k.station.express))
     : null;
-  const element = h('div', { class: 'szene', 'data-schritt': k.schritt.id }, express, teile, innen.element);
+  const element = h('div', { class: 'szene', 'data-schritt': k.schritt.id, 'data-station': k.station.id }, express, teile, innen.element);
   return { element, aktualisiere: innen.aktualisiere, beimEintritt: innen.beimEintritt };
 }

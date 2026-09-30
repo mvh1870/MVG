@@ -558,6 +558,15 @@ a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
   .druck-bogen :is(.wirkungskette li, .querverweis, .wc-druck-antworten li) { break-inside: avoid; }
   .druck-bogen :is(.felder-schalter, .felder-ansicht) { break-after: avoid; break-inside: avoid; }
   .druck-bogen .absatz:has(+ .absatz .absatz-liste) { break-after: avoid; }
+  /* R48: die Absatz-ID einer wortgleichen Tabelle stand allein am Seitenende (k6.1-t1, k7.3-t1) – im Raster wirkt
+     `break-after` am Kopf nicht, daher als Block; Tabellenkopf und erste Zeile bleiben zusammen */
+  .druck-bogen .absatz:has(table) { display: block; }
+  .druck-bogen .absatz:has(table) > :is(.absatz-kopf, .absatz-id) { display: block; width: fit-content; break-after: avoid; }
+  .druck-bogen .absatz-block thead { break-after: avoid; }
+  .druck-bogen .absatz-block tbody tr:first-child { break-before: avoid; }
+  /* R48: Aufklappzeichen sind auf Papier Bedienzeichen ohne Funktion */
+  .druck-bogen summary { list-style: none; }
+  .druck-bogen summary::-webkit-details-marker { display: none; }
   /* R47: ein Fokus-Hof (Tastaturbedienung vor dem Druck) gehört nicht aufs Papier */
   :focus-visible { box-shadow: none !important; outline: none !important; }
 }

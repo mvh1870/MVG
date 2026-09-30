@@ -24,7 +24,7 @@ import { inhalt } from '../ui/bausteine/inhalt.ts';
 import { aktuelleStation, eingriffe, kicker, sichtbareSchritte, stationsName, tafelTitel, weiterAktion, zurueckAktion } from '../ui/anzeige.ts';
 import { erzeugeAnzeige } from './leinwand.ts';
 import { kapitelFuerDruck, kapitelListe } from '../ui/flaechen/theorie.ts';
-import { druckeBogen } from '../ui/druck.ts';
+import { bogenFuerStrgP, bogenKopf, druckeBogen } from '../ui/druck.ts';
 import { kapitelDerSpur } from '../ui/flaechen/story-szenen.ts';
 import { findeEntscheidung } from '../engine/graph.ts';
 import { W } from '../ui/woerter.ts';
@@ -170,6 +170,7 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
   /* ------------------------------------------------------------- Protokoll -- */
   const feld = h('textarea', { class: 'regie-feld', rows: 2, 'aria-label': w.protokollFeld, placeholder: w.protokollFeld, 'data-pruef': 'regie-protokoll-feld' });
   const protokollListe = h('ol', { class: 'regie-protokoll-liste' });
+  const druckKnopf = h('button', { type: 'button', class: 'knopf knopf-still', 'data-pruef': 'regie-drucken', onclick: () => drucke() }, w.protokollDrucken);
   const protokoll = h('section', { class: 'regie-karte regie-protokoll', 'aria-label': w.protokoll },
     h('h2', { class: 'regie-h2' }, w.protokoll),
     h('div', { class: 'regie-protokoll-eingabe' }, feld,
@@ -180,7 +181,7 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
         feld.value = '';
       } }, w.protokollSichern)),
     protokollListe,
-    h('button', { type: 'button', class: 'knopf knopf-still', 'data-pruef': 'regie-drucken', onclick: () => drucke() }, w.protokollDrucken));
+    druckKnopf);
 
   // Druckfassung (P9.3): Datum, alle Protokolleinträge, besuchte Stationen und die eigenen Entscheidungen
   /** Resümee im Druck: erreichtes Ende und die Richtung aus der Wirklichkeit (wie im Epilog, P7.7) */
@@ -193,40 +194,43 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     if (kurz !== null) teile.push(h('p', null, `${W.resuemee.richtung}: ${kurz}`));
     return teile;
   };
-  const drucke = (): void => {
+  // R48: Kopf wie Kapitel und Dossier (Absender, Fassung, Datum, Vermerke), je Abschnitt ein eigener Teil mit Abstand
+  const druckBogen = (): { titel: string; teile: Node[] } => {
     const z = sitzung.zustand();
     const oz = oeffentlich(z);
-    const datum = new Date().toLocaleString('de-DE', { dateStyle: 'long', timeStyle: 'short' });
+    const teil = (...kinder: (Node | null)[]): HTMLElement => h('section', { class: 'druck-teil' }, kinder);
     // R47: das Protokoll ist ein Druckbogen wie Kapitel und Dossier – wortgleiche Tabellen im Satzspiegel, Details offen,
     // Trennstellen, Überschriften nie am Seitenende (vorher eigene Klasse ohne diese Regeln)
-    const druck = h('section', { class: 'druck-teil regie-druck-inhalt', 'data-pruef': 'regie-druck' },
-      h('h1', null, w.druckTitel),
-      h('p', null, `${W.produkt} · ${o.version} · ${datum}`),
-      h('p', null, `${W.fiktiv} · ${W.ungeprueft}`),
-      h('h2', null, w.protokoll),
-      z.regie.protokoll.length > 0
-        ? h('ol', null, z.regie.protokoll.map((p) => h('li', null, h('span', { class: 'mono' }, new Date(p.zeit).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' })), ' ', p.text)))
-        : h('p', null, w.druckLeer),
-      h('h2', null, w.druckWeg),
-      h('p', null, [...new Set(oz.verlauf)].map((id) => stationsName(inhalte, id)).join(' → ') || '–'),
-      h('h2', null, w.druckEntscheidungen),
-      oz.spur.length > 0 ? h('ul', null, oz.spur.map((e) => {
-        const opt = findeEntscheidung(inhalte, e.entscheidung)?.entscheidung.optionen.find((x) => x.id === e.option);
-        return h('li', null, `${stationsName(inhalte, e.station)}: ${e.option} · ${opt?.kurz ?? ''}`);
-      })) : h('p', null, '–'),
+    const druck = h('div', { class: 'regie-druck-inhalt', 'data-pruef': 'regie-druck' },
+      teil(h('h2', null, w.druckEintraege),
+        z.regie.protokoll.length > 0
+          ? h('ol', null, z.regie.protokoll.map((p) => h('li', null, h('span', { class: 'mono' }, new Date(p.zeit).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' })), ' ', p.text)))
+          : h('p', null, w.druckLeer)),
+      teil(h('h2', null, w.druckWeg),
+        h('p', null, [...new Set(oz.verlauf)].map((id) => stationsName(inhalte, id)).join(' → ') || '–')),
+      teil(h('h2', null, w.druckEntscheidungen),
+        oz.spur.length > 0 ? h('ul', null, oz.spur.map((e) => {
+          const opt = findeEntscheidung(inhalte, e.entscheidung)?.entscheidung.optionen.find((x) => x.id === e.option);
+          return h('li', null, `${stationsName(inhalte, e.station)}: ${e.option} · ${opt?.kurz ?? ''}`);
+        })) : h('p', null, '–')),
       // Dossier (E11): Resümee (erreichtes Ende, Richtung) und die Kapitel, die der Weg am häufigsten
       // berührt hat – als Liste und die ersten zwei als Text zum Nachlesen
-      ...resuemeeFuerDruck(oz),
-      h('h2', null, w.druckKapitel),
+      ...(resuemeeFuerDruck(oz).length > 0 ? [teil(...resuemeeFuerDruck(oz))] : []),
       ...(() => {
         const kap = kapitelDerSpur(oz.verlauf, inhalte).slice(0, 3);
         const titel = (nr: number): string => inhalte.whitepaper.kapitel.find((k) => Number(k.nr) === nr)?.titel ?? '';
         return kap.length > 0
-          ? [h('ul', null, kap.map((nr) => h('li', null, W.resuemee.kapitel(nr, titel(nr))))), ...kap.slice(0, 2).map((nr) => kapitelFuerDruck(inhalte, nr, o.version))]
-          : [h('p', null, '–')];
+          ? [teil(h('h2', null, w.druckKapitel), h('ul', null, kap.map((nr) => h('li', null, W.resuemee.kapitel(nr, titel(nr)))))), ...kap.slice(0, 2).map((nr) => kapitelFuerDruck(inhalte, nr, o.version))]
+          : [teil(h('h2', null, w.druckKapitel), h('p', null, '–'))];
       })());
-    druckeBogen(w.druckTitel, [druck]);
+    return { titel: w.druckTitel, teile: [bogenKopf(w.druckTitel, o.version, true), druck] };
   };
+  const drucke = (): void => {
+    const { titel, teile } = druckBogen();
+    druckeBogen(titel, teile);
+  };
+  // R48: Strg+P in der Regie druckt das Protokoll (wie Lernseiten und Epilog), nicht die Bedienoberfläche
+  bogenFuerStrgP(druckKnopf, druckBogen);
 
   // Ein-Fenster-Regie (P9.1): die Vorschau füllt das Fenster, Pfeiltasten steuern weiter, Esc kehrt zurück
   const zurueckAusVollbild = h('button', { type: 'button', class: 'regie-chip regie-vollbild-zurueck', 'data-pruef': 'regie-ein-fenster-aus', onclick: () => einFenster(false) }, w.einFensterAus);

@@ -76,9 +76,13 @@ export async function lauf(seite, h) {
     await seite.setViewportSize({ width: 794, height: vorher.height });
     await seite.evaluate(() => { document.documentElement.style.width = '688px'; });
     // R47: dazu das Handbuch (Zwischenzeilen vor Listen) und eine Rollenseite (Kopfzeile der Cheat-Sheets)
-    for (const id of ['mvg-vorgehensmodell', 'registerdokument-katalog', 'kollaboration', 'datenmanagement', 'faq-glossar', 'kundenanpassung', 'handbuch', 'rollen-anleitungen-bauherr-auftraggeber']) {
-      await seite.evaluate((x) => { location.hash = `#hilfe/${x}`; }, id);
-      await h.erwarte(`[data-seite="${id}"] [data-pruef="hilfe-inhalt"]`);
+    // R48: voll alle Seiten samt Übersicht (''), schnell eine Auswahl mit den bekannten Druckfällen
+    const druckSeiten = h.voll ? ['', ...alle.map((x) => x.id)]
+      : ['', 'mvg-vorgehensmodell', 'registerdokument-katalog', 'kollaboration', 'datenmanagement', 'faq-glossar', 'kundenanpassung', 'handbuch', 'rollen-anleitungen', 'rollen-anleitungen-bauherr-auftraggeber'];
+    for (const id of druckSeiten) {
+      await seite.evaluate((x) => { location.hash = x === '' ? '#hilfe' : `#hilfe/${x}`; }, id);
+      await h.erwarte(id === '' ? '[data-pruef="hilfe-uebersicht"]' : `[data-seite="${id}"] [data-pruef="hilfe-inhalt"]`);
+      await seite.evaluate(() => { document.documentElement.style.width = '688px'; });
       await h.warte(150);
       // R44: Druckzustand wie beim echten Druck (beforeprint setzt Trennstellen); Wörter brechen nur an Trennstellen
       const textVorher = await seite.evaluate(() => document.querySelector('.hilfe-inhalt')?.textContent ?? '');
@@ -102,10 +106,54 @@ export async function lauf(seite, h) {
       // R41: im echten PDF – keine Seite endet mit einer Überschrift, keine leere Seite (Abstand unter der Seite)
       const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.hilfe-inhalt :is(h1, h2, h3, h4, summary), .hilfe-inhalt .h-help-content-inline > b:first-child, .hilfe-inhalt .h-help-content-inline > b:has(+ :is(ol, ul)), .hilfe-inhalt thead tr')]
         .map((x) => ({ text: x.textContent ?? '', pt: parseFloat(getComputedStyle(x).fontSize) * 0.75 })));
-      const pdfText = await pdfSeiten(await seite.pdf({ preferCSSPageSize: true }));
+      // R48: keine Aufklappzeichen („+“/„–“) im Druck
+      const zeichen = await seite.evaluate(() => [...document.querySelectorAll('.hilfe-inhalt summary')].filter((x) => !['none', 'normal'].includes(getComputedStyle(x, '::after').content)).length);
+      if (zeichen > 0) h.befund(`Druck ${id}: ${zeichen} Aufklappzeichen im Druck`);
+      // R48: Karten unter einer Seitenhöhe reißen nicht über die Seitengrenze – je Karte eine Marke oben und unten (absolut
+      // gesetzt, ohne Einfluss auf den Fluss); im PDF stehen beide auf derselben Seite
+      const kartenMarken = await seite.evaluate(() => {
+        let n = 0;
+        for (const k of document.querySelectorAll('.hilfe-inhalt :is(.h-card, .h-feature-card, .h-role-pick-card):not(:has(.h-grafik-wrap, table)), .lernseite.hilfe .kapitel-karten > li')) {
+          if (!(k instanceof HTMLElement) || k.getBoundingClientRect().height > 800 || k.getBoundingClientRect().height === 0) continue;
+          n += 1;
+          if (getComputedStyle(k).position === 'static') k.style.position = 'relative';
+          for (const [ort, lage] of [['A', 'top:0'], ['E', 'bottom:0']]) {
+            const m = document.createElement('span');
+            m.className = 'pruef-marke';
+            m.textContent = `QK${ort}${n}Q`;
+            m.style.cssText = `position:absolute;${lage};left:0;font-size:2px;line-height:1;color:#fff;white-space:nowrap`;
+            k.append(m);
+          }
+        }
+        return n;
+      });
+      // R48: page.pdf auf A4 (ohne `format` setzt Playwright US-Letter) und ohne die Mess-Breite des Satzspiegels
+      await seite.evaluate(() => { document.documentElement.style.width = ''; });
+      await seite.setViewportSize(vorher);
+      const pdfText = await pdfSeiten(await seite.pdf({ format: 'A4', preferCSSPageSize: true }));
+      await seite.setViewportSize({ width: 794, height: vorher.height });
+      await seite.evaluate(() => { for (const m of document.querySelectorAll('.pruef-marke')) m.remove(); });
+      // A4 hochkant 595 × 842 pt, quer 842 × 595 pt (US-Letter wäre 612 × 792)
+      if (pdfText.some((x) => !(Math.abs(x.breite - 595.3) < 2 || Math.abs(x.breite - 841.9) < 2))) h.befund(`Druck ${id}: Seitenformat nicht A4 (${pdfText.map((x) => Math.round(x.breite)).join('/')} pt breit)`);
+      const seiteVon = (/** @type {string} */ marke) => pdfText.findIndex((x) => x.zeilen.some((z) => z.includes(marke)));
+      /** @type {{ karte: number, von: number, bis: number }[]} */
+      const gerissen = [];
+      let gefunden = 0;
+      for (let i = 1; i <= kartenMarken; i++) {
+        const a = seiteVon(`QKA${i}Q`);
+        const e = seiteVon(`QKE${i}Q`);
+        if (a >= 0 && e >= 0) gefunden += 1;
+        if (a >= 0 && e >= 0 && a !== e) gerissen.push({ karte: i, von: a + 1, bis: e + 1 });
+      }
+      if (kartenMarken > 0 && gefunden < kartenMarken) h.befund(`Druck ${id}: nur ${gefunden} von ${kartenMarken} Kartenmarken im PDF gefunden`);
+      if (gerissen.length > 0) h.befund(`Druck ${id}: Karten über die Seitengrenze ${JSON.stringify(gerissen.slice(0, 5))}`);
       const amEnde = seitenMitUeberschriftAmEnde(pdfText, koepfe);
       if (amEnde.length > 0) h.befund(`Druck ${id}: Überschrift am Seitenende ${JSON.stringify(amEnde)}`);
       if (pdfText.some((x) => x.zeilen.length === 0)) h.befund(`Druck ${id}: leere Seite`);
+      // R48: keine fast leere Seite – außer vor einer Querseite (L-144: die breite Grafik erzwingt dort den Seitenwechsel)
+      const fastLeer = pdfText.slice(0, -1).map((x, i) => ({ seite: i + 1, fuellung: Math.round((x.fuellung ?? 0) * 100), vorQuer: (pdfText[i + 1]?.breite ?? 0) > (pdfText[i + 1]?.hoehe ?? 0) }))
+        .filter((x) => x.fuellung < 35 && !x.vorQuer && (pdfText[x.seite - 1]?.breite ?? 0) < (pdfText[x.seite - 1]?.hoehe ?? 0));
+      if (fastLeer.length > 0) h.befund(`Druck ${id}: fast leere Seiten ${JSON.stringify(fastLeer)}`);
       // R42: Papier hat keine Links – kein Kopf-Link, kein Zurück/Weiter, kein „Öffnen“
       const bedien = await seite.evaluate(() => [...document.querySelectorAll('.hilfe :is(.lern-kopf-link, .kapitel-nav, .kapitel-karte-los)')].filter((x) => getComputedStyle(x).display !== 'none').length);
       if (bedien > 0) h.befund(`Druck ${id}: ${bedien} Bedienelemente im Druck`);

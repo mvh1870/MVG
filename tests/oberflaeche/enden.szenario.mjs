@@ -72,6 +72,14 @@ export async function lauf(seite, h) {
         for (let n = 1; n <= zeilen; n++) await seite.locator(`[data-pruef="diagnose-${n}-${n % 3}"]`).click();
       }
       await h.warte(200);
+      // R48: schon auf dem ersten Epilog-Schritt (Resümee noch nie gezeigt) druckt Strg+P das Dossier
+      if (st === 'epilog' && !gesehen.has('epilog-strgp') && await seite.locator('[data-pruef="dossier-drucken"]').count() === 0) {
+        gesehen.add('epilog-strgp');
+        await seite.evaluate(() => { window.dispatchEvent(new Event('beforeprint')); });
+        const weg = await seite.evaluate(() => document.querySelector('.druck-bogen')?.textContent?.includes('Ihr Weg durch die Story') ?? false);
+        await seite.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
+        if (!weg) h.befund(`${ende}: Strg+P auf dem ersten Epilog-Schritt druckt kein Dossier`);
+      }
       await pruefe(`${ende}-${st}-${i}`);
       if (st === 'epilog' && await seite.locator('[data-pruef="weiter"]').isDisabled()) break;
       if (await seite.locator('[data-pruef="szene-weiter"]').filter({ visible: true }).count() > 0) await h.klick('[data-pruef="szene-weiter"]');
@@ -80,7 +88,7 @@ export async function lauf(seite, h) {
       await h.warte(200);
     }
     if ((await station()) !== 'epilog') h.befund(`${ende}: endet in ${await station()} statt im Epilog`);
-    for (const n of ['nachweis', 'diagnose']) if (!gesehen.has(n)) h.befund(`${ende}: ${n} nicht gesehen`);
+    for (const n of ['nachweis', 'diagnose', 'epilog-strgp']) if (!gesehen.has(n)) h.befund(`${ende}: ${n} nicht gesehen`);
     // R45: das Dossier im Epilog als echtes PDF (wie Theorie und Hilfe) – keine Überschrift am Seitenende, keine leere oder
     // fast leere Seite, kein Wort ohne Trennstrich gebrochen; einmal je Lauf (erster Fall)
     // schmal zeigt der Epilog nur den aktuellen Schritt: zurück zum Resümee
@@ -100,7 +108,8 @@ export async function lauf(seite, h) {
       await h.warte(200);
       const bruch = await wortbrueche(seite, '.druck-bogen');
       if (bruch.length > 0) h.befund(`Dossier: ${bruch.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(bruch.slice(0, 6))}`);
-      const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen :is(h1, h2, h3, h4, dt, summary)')]
+      // R48: auch die Absatz-ID einer wortgleichen Tabelle steht nie allein am Seitenende
+      const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen :is(h1, h2, h3, h4, dt, summary, .absatz-id)')]
         .map((x) => ({ text: x.textContent ?? '', pt: parseFloat(getComputedStyle(x).fontSize) * 0.75 })));
       await seite.evaluate(() => { document.documentElement.style.width = ''; });
       await seite.setViewportSize(vorher);
@@ -124,6 +133,14 @@ export async function lauf(seite, h) {
       await seite.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
       if (!strgP.klasse || !strgP.weg) h.befund(`Dossier: Strg+P ohne Bogen ${JSON.stringify(strgP)}`);
       if (await seite.locator('.druck-bogen').count() !== 0) h.befund('Dossier: Strg+P-Bogen bleibt stehen');
+      // R48: auch auf einem anderen Schritt des Epilogs (ohne Resümee und Knopf) druckt Strg+P das Dossier
+      await seite.locator('.fortschritt-schritt').first().click();
+      await h.warte(300);
+      const ohneKnopf = await seite.locator('[data-pruef="dossier-drucken"]').count();
+      await seite.evaluate(() => { window.dispatchEvent(new Event('beforeprint')); });
+      const strgP2 = await seite.evaluate(() => ({ station: location.hash, weg: document.querySelector('.druck-bogen')?.textContent?.includes('Ihr Weg durch die Story') ?? false }));
+      await seite.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
+      if (ohneKnopf !== 0 || !strgP2.weg) h.befund(`Dossier: Strg+P auf einem anderen Epilog-Schritt ${JSON.stringify({ ohneKnopf, ...strgP2 })}`);
     } else if (ende === faelle[0]?.[1]) h.befund(`${ende}: Dossier-Knopf im Epilog fehlt`);
     await seite.evaluate(() => localStorage.clear());
   }

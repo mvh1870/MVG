@@ -90,6 +90,9 @@ export async function lauf(seite, h) {
       await seite.evaluate(() => { window.print = () => { window.dispatchEvent(new Event('beforeprint')); }; });
       await seite.locator('[data-pruef="dossier-drucken"]').click();
       await h.warte(300);
+      // R46: der Bogen entsteht wirklich (genau einer, mit Köpfen und dem Weg) – sonst prüfte das PDF die Bildschirmseite
+      const bogen = await seite.evaluate(() => ({ n: document.querySelectorAll('.druck-bogen').length, koepfe: document.querySelectorAll('.druck-bogen :is(h1, h2)').length, text: document.querySelector('.druck-bogen')?.textContent ?? '' }));
+      if (bogen.n !== 1 || bogen.koepfe < 3 || !bogen.text.includes('Ihr Weg durch die Story')) h.befund(`Dossier: kein vollständiger Bogen ${JSON.stringify({ n: bogen.n, koepfe: bogen.koepfe })}`);
       await seite.emulateMedia({ media: 'print', reducedMotion: 'reduce' });
       const vorher = seite.viewportSize() ?? { width: breite, height: 768 };
       await seite.setViewportSize({ width: 794, height: vorher.height });
@@ -102,10 +105,15 @@ export async function lauf(seite, h) {
       await seite.evaluate(() => { document.documentElement.style.width = ''; });
       await seite.setViewportSize(vorher);
       const pdf = await pdfSeiten(await seite.pdf({ format: 'A4' }));
+      const erster = koepfe[0]?.text.replace(/\s+/gu, '') ?? '';
+      if (erster === '' || !pdf.some((x) => x.zeilen.join('').replace(/\s+/gu, '').includes(erster.slice(0, 30)))) h.befund(`Dossier: Kopf „${koepfe[0]?.text ?? ''}“ nicht im PDF`);
       const amEnde = seitenMitUeberschriftAmEnde(pdf, koepfe);
       if (amEnde.length > 0) h.befund(`Dossier: Überschrift am Seitenende ${JSON.stringify(amEnde)}`);
       if (pdf.length < 2 || pdf.some((x) => x.zeilen.length === 0)) h.befund(`Dossier: ${pdf.length} Seiten, davon leer ${pdf.filter((x) => x.zeilen.length === 0).length}`);
-      const leer = pdf.slice(0, -1).map((x, i) => ({ seite: i + 1, fuellung: Math.round((x.fuellung ?? 0) * 100) })).filter((x) => x.fuellung < 35);
+      // Jedes Kapitel der Vertiefung beginnt auf einer neuen Seite: die Seite davor darf kurz sein (CI 209: S. 17 = Ende von Kap. 8)
+      const vorKapitel = (i) => /^(?:ZumNachlesen.*?)?KAPITEL\d/u.test((pdf[i + 1]?.zeilen.slice(0, 2).join('') ?? '').replace(/\s+/gu, ''));
+      const leer = pdf.slice(0, -1).map((x, i) => ({ seite: i + 1, fuellung: Math.round((x.fuellung ?? 0) * 100), vorKapitel: vorKapitel(i) }))
+        .filter((x) => x.fuellung < 35 && !x.vorKapitel);
       if (leer.length > 0) h.befund(`Dossier: fast leere Seiten ${JSON.stringify(leer)}`);
       await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
       await seite.evaluate(() => { window.print = () => {}; window.dispatchEvent(new Event('afterprint')); });

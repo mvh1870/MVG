@@ -52,6 +52,9 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/wird sie automatisch markiert und an den Lenkungskreis eskaliert/gu, 'wird sie markiert und entlang der Mandatsleiter eskaliert – an die Bauherren-PL, das Änderungsgremium oder zur Beschlussfassung durch den Bauherrn im Lenkungskreis'],
   [/eskaliert es automatisch an den Lenkungskreis/gu, 'eskaliert es entlang der Mandatsleiter – an die Bauherren-PL, das Änderungsgremium oder zur Beschlussfassung durch den Bauherrn im Lenkungskreis'],
   [/Eskalation an (?:den )?Lenkungskreis/gu, 'Eskalation entlang der Mandatsleiter'],
+  [/sofortige Lenkungskreis-Eskalation/gu, 'sofortige Eskalation entlang der Mandatsleiter'],
+  // Mandatsleiter k4.2-p3: bis einschließlich 5 Mio. €, darüber beschließt der Bauherr im Lenkungskreis (R46)
+  [/Änderungsgremium bis 5 Mio\., darüber Lenkungskreis/gu, 'Änderungsgremium bis einschließlich 5 Mio. €, darüber Beschlussfassung durch den Bauherrn im Lenkungskreis'],
   [/Die MVG-Reife einer Organisation entwickelt sich entlang fünf Stufen/gu, 'Im Modell der Anwendung entwickelt sich die Reife einer Organisation entlang fünf Stufen'],
   [/Eine bewährte Einführungs-Roadmap für neue MVG-Projekte/gu, 'Die Einführungs-Roadmap der Anwendung für neue Projekte'],
   [/Decision Management/gu, 'Entscheidungsmanagement'],

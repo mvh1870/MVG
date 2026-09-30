@@ -12,7 +12,7 @@ schritt: mandat
 Bei welcher Option von `ENT-017` landet die Entscheidung bei Ihnen?
 
 ### Rückmeldung
-Bei Option 2: Die Freigabe des Einsatzes der Risikoreserve ist nicht delegierbar. Über Option 1, die Fassadenänderung `AEN-022`, entscheidet das Änderungsgremium.
+Bei Option 2: Die Freigabe des Einsatzes der Risikoreserve ist nicht delegierbar. Über Option 1, die Fassadenänderung `AEN-022`, entscheidet das Änderungsgremium – welche Zielpriorität in diesem Konflikt gilt, legen aber Sie fest.
 
 ::: antwort eins
 ---

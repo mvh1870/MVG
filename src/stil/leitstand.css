@@ -1347,14 +1347,17 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
   .instrumente { gap: 6px; }
   .instrument-label { font-size: 11.5px; }
 }
+/* R45/R46: Schrittknöpfe mindestens 24 px breit (WCAG 2.5.8) – ab acht Schritten fällt Flex unter 380 px darunter; dann in
+   zwei gleichmäßigen Reihen (höchstens fünf je Reihe) */
+@media (max-width: 379px) {
+  .fortschritt:has(> .fortschritt-schritt:nth-child(8)) { display: grid; grid-template-columns: repeat(5, minmax(24px, 1fr)); row-gap: 4px; }
+  .fortschritt:has(> .fortschritt-schritt:nth-child(8)) > .fortschritt-schritt { height: 30px; }
+}
 /* R45: unter 360 px passt „ENTSCHEIDUNGSFÄHIGKEIT“ nur mit schmalerem Rand und ohne Sperrung (Labels werden nie getrennt) */
 @media (max-width: 359px) {
   .instrumente { padding-inline: var(--a-2); }
   .instrument { padding-inline: 6px; }
   .instrument-label { letter-spacing: 0; }
-  /* Schrittknöpfe mindestens 24 px breit (WCAG 2.5.8), bei neun Schritten in zwei Reihen (R45) */
-  .fortschritt { display: grid; grid-template-columns: repeat(auto-fill, minmax(24px, 1fr)); row-gap: 4px; }
-  .fortschritt-schritt { height: 30px; }
 }
 
 /* =============================================================================================

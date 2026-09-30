@@ -79,7 +79,7 @@ Das Mandats- und Verantwortungsmodell ist das zentrale Ergebnisobjekt. Es beantw
 
 Praktisch wird das Modell an konkreten Fragen. Steht eine Entscheidung an, lässt sich mit ihm klären, welche Bauherrenverantwortung betroffen ist, welche Vorbereitung delegiert werden kann und wer letztverantwortlich ist. Es zeigt, wer ausführt, wer konsultiert und wer informiert wird, welche Schwelle eine Eskalation auslöst und welche Grundlagen vorliegen müssen. Schließlich verbindet es die Entscheidung mit ihrer Entscheidungs-ID, der betroffenen Freigabe und dem Ort, an dem der Nachweis geführt wird.
 
-Ein Beispiel: Die Projektsteuerung bereitet eine Entscheidung gründlich vor. Wann ihre Unterstützung endet und die Entscheidung an die letztverantwortliche Bauherrenrolle zurückfallen muss, macht das Modell sichtbar.
+Ein Beispiel: Die Projektsteuerung bereitet eine Entscheidung gründlich vor. Mit dem Modell lässt sich fragen, welche Vorbereitung sie übernehmen kann und wer letztverantwortlich ist.
 
 ::: etappen
 ---

@@ -43,6 +43,24 @@ export function pruefeLayout() {
     rg.selectNodeContents(n);
     const rects = [...rg.getClientRects()].filter((r) => r.width > 0);
     if (rects.length === 0) continue;
+    // R48: Buchstabensäule – eine Textspalte schmaler als drei Zeichen (Glieder ohne ID-Marke brachen je Zeichen um)
+    if (rects.length >= 3 && (n.textContent ?? '').replace(/\s/gu, '').length >= 12 && !gemeldet.has(el)) {
+      // Maß ist die Zeilenhöhe im Bild (skalierte Vorschau, Zoom): drei Zeichen sind etwa 2,5 Zeilenhöhen breit
+      const zeile = Math.min(...rects.map((r) => r.height));
+      let gedreht = false;
+      for (let q = el; q && q !== document.body; q = q.parentElement) {
+        const s = getComputedStyle(q);
+        const m = /^matrix\(([^,]+),\s*([^,]+)/u.exec(s.transform);
+        if (s.writingMode !== 'horizontal-tb' || (m !== null && Math.abs(parseFloat(m[2] ?? '0')) > 0.5)) { gedreht = true; break; }
+      }
+      const spalte = Math.max(...rects.map((r) => r.width));
+      // nur, wo Wörter selbst brechen: mehr Zeilen als Wörter (eine schmale Notiz, die an Wortgrenzen umbricht, zählt nicht)
+      const woerter = (n.textContent ?? '').trim().split(/\s+/u).length;
+      if (!gedreht && zeile > 0 && spalte < 2.5 * zeile && rects.length > woerter + 1) {
+        gemeldet.add(el);
+        funde.push(`Buchstabensäule (Spalte ${Math.round(spalte)} px): ${el.tagName.toLowerCase()}.${[...el.classList].slice(0, 2).join('.')} „${(n.textContent ?? '').trim().slice(0, 40)}“`);
+      }
+    }
     const links = Math.min(...rects.map((r) => r.left));
     const rechts = Math.max(...rects.map((r) => r.right));
     let a = el;
@@ -108,11 +126,36 @@ export function pruefer(seite, h) {
     await h.axe(name);
     await h.bild(name);
     await schmal(seite, h, name);
+    await mittelbreit(seite, h, name);
   };
 }
 
+/** R48: Bauteile, die zwischen den Prüfgrößen (400/1024/1280) brechen oder überlaufen (Rückbezug-Karte, Radar, Lernkarten, Glieder) */
+export const MITTEL_BAUTEILE = '.erinnerung, .radar-liste, .lernkarten, .glied, .tafel-karten';
+
+/**
+ * R48: Im breiten Lauf zusätzlich bei 500, 560, 720 und 768 px messen – nur wenn der Schritt eines der Bauteile zeigt, die
+ * dort umbrechen (gemessen: Lernkarten 488–568, Rückbezug 704–744, Radar 761–780 px).
+ * @param {import('playwright').Page} seite
+ * @param {import('../../werkzeuge/oberflaeche.mjs').Helfer} h
+ * @param {string} name
+ */
+export async function mittelbreit(seite, h, name) {
+  const vp = seite.viewportSize();
+  if (vp === null || vp.width < 1280) return;
+  if (await seite.locator(MITTEL_BAUTEILE).filter({ visible: true }).count() === 0) return;
+  for (const breite of [500, 560, 720, 768]) {
+    await seite.setViewportSize({ width: breite, height: vp.height }); await h.warte(150);
+    for (const fund of await seite.evaluate(pruefeLayout)) h.befund(`${name} @${breite}: ${fund}`);
+    const bruch = await wortbrueche(seite, BAUTEILE_UNGETEILT, { bildschirm: true });
+    if (bruch.length > 0) h.befund(`${name} @${breite}: ${bruch.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(bruch.slice(0, 6))}`);
+  }
+  await seite.setViewportSize(vp); await h.warte(100);
+}
+
 /** R47: Bauteile, deren Wörter am Bildschirm nie mitten im Wort brechen dürfen */
-export const BAUTEILE_UNGETEILT = '.tabellenstand-zahl, .instrument-label, .ablesung, .protokoll-kopf, .lw-korb, .kapitel-titel, .fortschritt';
+// R48: dazu der Kopf der Zeitmaschinen-Tabelle („MO|NAT“, „KOSTENUN|SICHERHEI|T“) und der Beamer-Status („SEHR HOC“)
+export const BAUTEILE_UNGETEILT = '.tabellenstand-zahl, .instrument-label, .ablesung, .protokoll-kopf, .lw-korb, .kapitel-titel, .fortschritt, .zm-tabelle th, .instrument .wert';
 
 /** Sichtbare, waagerecht rollende Bereiche ohne Tabulatorstopp (weder selbst noch ein Kind fokussierbar). */
 export function rollbarOhneTastatur() {

@@ -71,6 +71,10 @@ export async function lauf(seite, h) {
   await seite.locator('[data-pruef="zm-regler"]').focus();
   await seite.keyboard.press('End');
   if (!/Monat 11/u.test(await seite.locator('[data-pruef="zm-ablesen"]').innerText())) h.befund('Zeitmaschine: Ablesung folgt dem Regler nicht');
+  // R48: die Tabelle mitprüfen – ihre Köpfe brachen am Bildschirm mitten im Wort („MO|NAT“, „KOSTENUN|SICHERHEI|T“)
+  await seite.locator('.zm-tabelle > summary').focus();
+  await seite.keyboard.press('Enter');
+  if (await seite.locator('.zm-tabelle[open]').count() !== 1) h.befund('Zeitmaschine: „Als Tabelle“ öffnet nicht per Tastatur');
   await h.warte(200);
   await pruefe('zeitmaschine');
 

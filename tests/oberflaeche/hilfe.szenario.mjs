@@ -110,7 +110,8 @@ export async function lauf(seite, h) {
       const zeichen = await seite.evaluate(() => [...document.querySelectorAll('.hilfe-inhalt summary')].filter((x) => !['none', 'normal'].includes(getComputedStyle(x, '::after').content)).length);
       if (zeichen > 0) h.befund(`Druck ${id}: ${zeichen} Aufklappzeichen im Druck`);
       // R48: Karten unter einer Seitenhöhe reißen nicht über die Seitengrenze – je Karte eine Marke oben und unten (absolut
-      // gesetzt, ohne Einfluss auf den Fluss); im PDF stehen beide auf derselben Seite
+      // gesetzt, ohne Einfluss auf den Fluss); im PDF stehen beide auf derselben Seite. Die Marken sind 8 pt und schwarz:
+      // Chrome 153 übernahm weiße 2-px-Marken nicht in den Text des PDF (CI 223); das PDF dient nur der Messung
       const kartenMarken = await seite.evaluate(() => {
         let n = 0;
         for (const k of document.querySelectorAll('.hilfe-inhalt :is(.h-card, .h-feature-card, .h-role-pick-card):not(:has(.h-grafik-wrap, table)), .lernseite.hilfe .kapitel-karten > li')) {
@@ -121,7 +122,7 @@ export async function lauf(seite, h) {
             const m = document.createElement('span');
             m.className = 'pruef-marke';
             m.textContent = `QK${ort}${n}Q`;
-            m.style.cssText = `position:absolute;${lage};left:0;font-size:2px;line-height:1;color:#fff;white-space:nowrap`;
+            m.style.cssText = `position:absolute;${lage};left:0;font-size:8px;line-height:1;color:#000;white-space:nowrap`;
             k.append(m);
           }
         }
@@ -130,12 +131,17 @@ export async function lauf(seite, h) {
       // R48: page.pdf auf A4 (ohne `format` setzt Playwright US-Letter) und ohne die Mess-Breite des Satzspiegels
       await seite.evaluate(() => { document.documentElement.style.width = ''; });
       await seite.setViewportSize(vorher);
-      const pdfText = await pdfSeiten(await seite.pdf({ format: 'A4', preferCSSPageSize: true }));
+      const pdfRoh = await pdfSeiten(await seite.pdf({ format: 'A4', preferCSSPageSize: true }));
+      // die Marken selbst zählen für die übrigen Proben nicht (sonst wäre eine Marke die letzte Zeile einer Seite)
+      const pdfText = pdfRoh.map((x) => {
+        const behalten = x.zeilen.map((z, i) => ({ z: z.replace(/\s*QK[AE]\d+Q\s*/gu, ' ').trim(), g: x.groessen?.[i] })).filter((y) => y.z !== '');
+        return { ...x, zeilen: behalten.map((y) => y.z), groessen: behalten.map((y) => y.g ?? 0) };
+      });
       await seite.setViewportSize({ width: 794, height: vorher.height });
       await seite.evaluate(() => { for (const m of document.querySelectorAll('.pruef-marke')) m.remove(); });
       // A4 hochkant 595 × 842 pt, quer 842 × 595 pt (US-Letter wäre 612 × 792)
       if (pdfText.some((x) => !(Math.abs(x.breite - 595.3) < 2 || Math.abs(x.breite - 841.9) < 2))) h.befund(`Druck ${id}: Seitenformat nicht A4 (${pdfText.map((x) => Math.round(x.breite)).join('/')} pt breit)`);
-      const seiteVon = (/** @type {string} */ marke) => pdfText.findIndex((x) => x.zeilen.some((z) => z.includes(marke)));
+      const seiteVon = (/** @type {string} */ marke) => pdfRoh.findIndex((x) => x.zeilen.some((z) => z.includes(marke)));
       /** @type {{ karte: number, von: number, bis: number }[]} */
       const gerissen = [];
       let gefunden = 0;

@@ -117,13 +117,13 @@ export function zeitmaschine(d: ZeitmaschineDaten): HTMLElement {
   zeige(0);
 
   const tabelle = h('details', { class: 'zm-tabelle' }, h('summary', null, W.tabelle),
-    h('table', { class: 'register-tabelle' },
+    h('div', { class: 'zm-tabelle-rahmen', tabindex: 0, role: 'region', 'aria-label': W.tabelle }, h('table', { class: 'register-tabelle' },
       h('thead', null, h('tr', null, h('th', null, W.achseMonat), h('th', null, `${W.weltA} · ${W.kosten}`), h('th', null, `${W.weltA} · ${W.offen}`), h('th', null, `${W.weltB} · ${W.kosten}`), h('th', null, `${W.weltB} · ${W.offen}`))),
       h('tbody', null, monate.map((m) => {
         const a = d.punkte.find((p) => p.monat === m && p.welt === 'A');
         const b = d.punkte.find((p) => p.monat === m && p.welt === 'B');
         return h('tr', null, h('td', null, String(m)), h('td', null, a ? W.stufen[a.kosten - 1] ?? '' : '–'), h('td', null, a ? String(a.offen) : '–'), h('td', null, b ? W.stufen[b.kosten - 1] ?? '' : '–'), h('td', null, b ? String(b.offen) : '–'));
-      }))));
+      })))));
 
   return h('div', { class: 'zeitmaschine', 'data-pruef': 'zeitmaschine' },
     h('div', { class: 'zm-legende', 'aria-hidden': 'true' },

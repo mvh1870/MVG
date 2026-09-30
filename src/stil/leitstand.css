@@ -827,6 +827,8 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .kette { display: flex; flex-direction: column; min-width: 0; }
 .glied { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 2px var(--a-3); padding: 10px 14px; border-radius: var(--radius-l); background: var(--weiss); box-shadow: var(--schatten-karte); animation: auftauchen var(--dauer-mittel) var(--kurve-pop) both; animation-delay: var(--verzug, 0ms); }
 .glied .id-marke { grid-row: span 2; }
+/* R48: Glieder ohne ID-Marke (Maßnahme, Entscheidung, Freigabe) einspaltig – sonst stand der Text schmal unter 400 px als Buchstabensäule */
+.glied:not(:has(> .id-marke)) { grid-template-columns: minmax(0, 1fr); }
 .glied b { font-size: var(--gr-l); line-height: 1.2; }
 .glied > span:last-child { font-size: var(--gr-m); color: var(--tinte-2); }
 .glied[data-welt="b"] { box-shadow: inset 0 0 0 2px var(--tuerkis), var(--schatten-weich); }
@@ -1931,6 +1933,12 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .baustein-karte summary i { flex: none; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--gold-text); color: var(--weiss); font: 700 12px var(--schrift-label); font-style: normal; }
 .baustein-karte .tafel-detail { padding: 0 12px 12px; }
 
+/* R48: Radar-Knöpfe und Rückbezug-Karte einspaltig bis 800 px – zweispaltig lief „Änderungsentwicklung“ (761–780 px) bzw.
+   „Holzbauelementen“ (704–744 px) aus der Karte */
+@media (max-width: 800px) {
+  .radar-liste, .erinnerung { grid-template-columns: minmax(0, 1fr); }
+  .erinnerung-pfeil { height: 34px; transform: rotate(90deg); }
+}
 @media (max-width: 760px) {
   .tafel-radar, .tafel-pyramide, .wirkungskette, .schwelle-karten, .felder-karten, .tafel-bausteine, .radar-liste { grid-template-columns: minmax(0, 1fr); }
   .radar-links { max-width: 260px; justify-self: center; width: 100%; }
@@ -2072,11 +2080,14 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 
 /* Beamer-Schalter (E10, P9.4): größer (wie Browser-Zoom, das Layout bricht dann um) und kontrastreicher –
    Nebenschrift wird Hauptschrift, Linien kräftiger. Gilt auf der Leinwand und in der Regie-Vorschau. */
-.ist-beamer .anzeige { zoom: 1.15; }
-/* Kapitelverzeichnis im Beamer-Modus: vh ist ungezoomt, Kopfleiste (72) und Rahmenabstand (64) sind gezoomt */
-/* Startseite auf der Leinwand im Beamer-Modus: Maße aus der gezoomten Höhe, Türbild weg, wenn der Beamer niedrig ist */
-.ist-beamer .anzeige { --vh: calc(1vh / 1.15); }
-.ist-beamer .anzeige .startseite { min-height: calc(100vh / 1.15); min-height: calc(100dvh / 1.15); }
+/* R48: erst ab 1280 px – darunter (XGA-Projektor 1024 × 768) brach „Entscheidungsfähigkeit“ und „sehr hoch“ wurde abgeschnitten */
+@media (min-width: 1280px) {
+  .ist-beamer .anzeige { zoom: 1.15; }
+  /* Kapitelverzeichnis im Beamer-Modus: vh ist ungezoomt, Kopfleiste (72) und Rahmenabstand (64) sind gezoomt */
+  /* Startseite auf der Leinwand im Beamer-Modus: Maße aus der gezoomten Höhe, Türbild weg, wenn der Beamer niedrig ist */
+  .ist-beamer .anzeige { --vh: calc(1vh / 1.15); }
+  .ist-beamer .anzeige .startseite { min-height: calc(100vh / 1.15); min-height: calc(100dvh / 1.15); }
+}
 @media (max-height: 800px) { .ist-beamer .anzeige .tuer-bild { display: none; } }
 @media (min-width: 1100px) { .ist-beamer .anzeige .kapitel-verzeichnis { max-height: calc(100vh / 1.15 - 136px); max-height: calc(100dvh / 1.15 - 136px); } }
 /* zoom vergrößert auch die Fensterhöhe des Leitstands: auf 1/1.15 zurückrechnen, sonst fehlt unten ein Siebtel.
@@ -2137,3 +2148,5 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
    („Änderungsgremium“, „Letztverantwortung“, „Entscheidungsregister“, „Vorbereitung“): lieber mit Strich getrennt als
    mitten im Wort gebrochen, falls ein Browser etwas breiter setzt (L-129) */
 .leiter-stock b, .pyramide-stufe, .lw-schalter-seite, .tafel small { hyphens: auto; }
+/* R48: ebenso die Titel der Tafel-Karten („Maßnahmenverknüpfung“ bei 320 px, „Verantwortungszuordnung“ bei 548 px) */
+.tafel-karte .tafel-titel { hyphens: auto; }

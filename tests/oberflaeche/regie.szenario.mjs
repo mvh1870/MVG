@@ -5,7 +5,7 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { pruefeLayout } from './hilfen.mjs';
+import { BAUTEILE_UNGETEILT, pruefeLayout } from './hilfen.mjs';
 import { pdfSeiten, seitenMitUeberschriftAmEnde, wortbrueche } from './pdf.mjs';
 
 export const name = 'regie';
@@ -87,18 +87,27 @@ export async function lauf(_seite, h) {
     if (oben === null || oben.oben > 0) h.befund(`Tafel ↑: nicht zurück am Anfang (${JSON.stringify(oben)})`);
   }
   await leinwand.setViewportSize({ width: 1280, height: 720 });
+  // R48: für den Beamer an eine Station mit Instrumenten und Statuswörtern („sehr hoch“): A6, drei Schritte weiter
+  await regie.locator('[data-pruef="regie-sprung"]').selectOption('A6');
+  await h.warte(300);
+  for (let i = 0; i < 3; i++) { await h.klick('[data-pruef="regie-weiter"]', regie); await h.warte(200); }
   const storyOrt = await regie.locator('[data-pruef="regie-ort"]').innerText();
 
   // Beamer-Schalter: Leinwand bekommt die Klasse, Vorschau auch
   await h.klick('[data-pruef="regie-beamer"]', regie);
   await leinwand.locator('.leinwand.ist-beamer').waitFor({ timeout: 3000 }).catch(() => h.befund('Beamer-Schalter erreicht die Leinwand nicht'));
   // B1: der Zoom darf die Leinwand nicht über die Fensterhöhe schieben (Fuß mit „Weiter“ bleibt sichtbar)
-  for (const [breite, hoehe] of [[1280, 720], [1180, 820]]) {
+  for (const [breite, hoehe] of [[1280, 720], [1180, 820], [1024, 768]]) {
     await leinwand.setViewportSize({ width: breite, height: hoehe });
     await h.warte(200);
     const m = await leinwand.evaluate(() => ({ doc: document.documentElement.scrollHeight, fenster: innerHeight }));
     if (m.doc > m.fenster + 1) h.befund(`Beamer bei ${breite}×${hoehe}: Leinwand ${m.doc} px hoch, Fenster ${m.fenster} px`);
+    // R48: im Beamer-Zoom (XGA-Projektor 1024×768) weder abgeschnittene Werte („SEHR HOC“) noch gebrochene Beschriftungen
+    for (const fund of await leinwand.evaluate(pruefeLayout)) h.befund(`Beamer bei ${breite}×${hoehe}: ${fund}`);
+    const bruchB = await wortbrueche(leinwand, BAUTEILE_UNGETEILT, { bildschirm: true });
+    if (bruchB.length > 0) h.befund(`Beamer bei ${breite}×${hoehe}: ${bruchB.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(bruchB.slice(0, 6))}`);
   }
+  if (await leinwand.locator('.instrument-label').count() === 0) h.befund('Beamer: keine Instrumente auf der Leinwand gemessen');
   await h.klick('[data-pruef="regie-beamer"]', regie);
   await h.warte(300);
   if (await leinwand.locator('.leinwand.ist-beamer').count() !== 0) h.befund('Beamer-Schalter lässt sich nicht ausschalten');

@@ -114,7 +114,8 @@
 .lesetext strong { font-weight: 600; }
 
 /* Lernkarten */
-.lernkarten { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--a-4); }
+/* R48: Spalten ab 270 px – bei 220 px liefen Versaltitel („ENTSCHEIDUNGSSICHERHEIT“) zwischen 488 und 568 px aus der Karte */
+.lernkarten { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr)); gap: var(--a-4); }
 .lernkarte {
   position: relative;
   min-width: 0;
@@ -442,7 +443,7 @@ a.glossar-ort:hover { text-decoration: underline; }
 .welten-aspekt > .zitat-block .zitat { font-size: 16.5px; }
 
 /* Explore · Zeitmaschine (P8.4): zwei Diagramme mit je einer Achse; Welt A Kreis, Welt B Quadrat */
-.zeitmaschine { display: grid; gap: var(--a-3); }
+.zeitmaschine { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--a-3); }
 .zm-legende { display: flex; flex-wrap: wrap; gap: var(--a-4); font-size: var(--gr-s); color: var(--tinte); }
 .zm-legende span, .zm-ablesen p { display: inline-flex; align-items: center; gap: 6px; }
 .zm-marke { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--welt-farbe); }
@@ -463,6 +464,10 @@ a.glossar-ort:hover { text-decoration: underline; }
 .zm-regler { width: 100%; min-height: 36px; accent-color: var(--navy); }
 .zm-ablesen { display: grid; gap: 4px; font-size: var(--gr-text); color: var(--tinte); }
 .zm-tabelle summary { display: flex; align-items: center; min-height: 36px; font-size: var(--gr-s); color: var(--navy); cursor: pointer; }
+/* R48: Köpfe brechen nie mitten im Wort („MO|NAT“) – die Tabelle rollt schmal waagerecht (per Tastatur erreichbar) */
+.zm-tabelle { min-width: 0; }
+.zm-tabelle-rahmen { overflow-x: auto; }
+.zm-tabelle .register-tabelle :is(th, td) { overflow-wrap: normal; hyphens: manual; }
 
 /* Explore · Galerie und Story-Karte (P8.5) */
 .galerie-buehne { display: grid; gap: var(--a-3); min-width: 0; }
@@ -651,12 +656,14 @@ html:has(.lernseite) { scroll-padding-top: 72px; }
 .lw-korb.lw-seite-links, .lw-korb-knopf.lw-seite-links[aria-pressed="true"] { background: var(--flaeche-4); color: var(--navy); }
 .lw-korb.lw-seite-rechts, .lw-korb-knopf.lw-seite-rechts[aria-pressed="true"] { background: var(--gold-soft); color: var(--gold-text); box-shadow: inset 0 0 0 1px var(--gold-soft-kante); }
 .lw-posten-liste { display: grid; gap: var(--a-2); counter-reset: posten; }
-.lw-posten { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--a-2) var(--a-3); padding: var(--a-3); border-radius: var(--radius-m, 8px); box-shadow: inset 0 0 0 1px var(--linie); transition: box-shadow var(--dauer-kurz), background var(--dauer-kurz); }
-.lw-posten-text { font-size: var(--gr-text); line-height: 1.45; }
+.lw-posten { display: flex; flex-wrap: wrap; align-items: center; gap: var(--a-2) var(--a-3); padding: var(--a-3); border-radius: var(--radius-m, 8px); box-shadow: inset 0 0 0 1px var(--linie); transition: box-shadow var(--dauer-kurz), background var(--dauer-kurz); }
+/* R48: der Text behält mindestens 12 em – neben breiten Korb-Knöpfen stand „Rechtsberatung“ bei 1280 px in 46 px (k7);
+   reicht die Zeile nicht, rücken die Knöpfe darunter */
+.lw-posten-text { flex: 1 1 12em; min-width: 0; font-size: var(--gr-text); line-height: 1.45; }
 .lw-posten-text p { margin: 0; }
 .lw-posten-wahl { display: flex; gap: var(--a-1); max-width: 100%; }
 .lw-korb-knopf { min-height: 40px; min-width: 0; white-space: normal; overflow-wrap: break-word; hyphens: auto; text-align: center; }
-.lw-posten-rueck { grid-column: 1 / -1; font-size: var(--gr-m); line-height: 1.45; color: var(--tinte-2); }
+.lw-posten-rueck { flex: 1 1 100%; font-size: var(--gr-m); line-height: 1.45; color: var(--tinte-2); }
 .lw-posten-rueck:empty { display: none; }
 .lw-posten-rueck p { display: inline; margin: 0; }
 .lw-posten.ist-zugeordnet { background: var(--tuerkis-hauch); box-shadow: inset 4px 0 0 var(--tuerkis), inset 0 0 0 1px var(--linie); }
@@ -686,9 +693,8 @@ html:has(.lernseite) { scroll-padding-top: 72px; }
   .lw-etappen-leiste { grid-template-columns: repeat(auto-fit, minmax(34px, 1fr)); row-gap: var(--a-2); }
   .lw-etappen-linie { display: none; }
   .lw-etappe-nr { width: 34px; height: 34px; }
-  .lw-posten { grid-template-columns: minmax(0, 1fr); }
   .lw-posten-wahl > * { flex: 1 1 0; }
-  .lw-posten-wahl { min-width: 0; flex-direction: column; }
+  .lw-posten-wahl { flex: 1 1 100%; min-width: 0; flex-direction: column; }
   .lw-regler-marke { display: none; }
   .lw-regler-marke.ist-aktiv { display: block; grid-column: 1 / -1; text-align: center; }
 }
@@ -708,7 +714,7 @@ html:has(.lernseite) { scroll-padding-top: 72px; }
 .lw-nebeneinander { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--a-3); }
 .lw-korb-aufgeloest { display: grid; align-content: start; gap: var(--a-2); }
 .lw-nebeneinander .lw-ansicht { display: grid; align-content: start; gap: var(--a-2); }
-.lw-nebeneinander .lw-posten-rueck { grid-column: auto; }
+.lw-nebeneinander .lw-posten-rueck { flex-basis: auto; }
 @media (max-width: 700px) { .lw-nebeneinander { grid-template-columns: minmax(0, 1fr); } }
 
 /* Abbildungen der DOCX V1.2 im Fachtext (P14, O-32, L-77): Bild auf weißer Karte, Bildunterschrift mit Vorrang

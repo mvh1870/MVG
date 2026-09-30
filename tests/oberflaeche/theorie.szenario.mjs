@@ -6,7 +6,7 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { kontrastQuellen, pruefeLayout, rollbarOhneTastatur } from './hilfen.mjs';
+import { kontrastQuellen, mittelbreit, pruefeLayout, rollbarOhneTastatur } from './hilfen.mjs';
 import { pdfSeiten, seitenMitUeberschriftAmEnde, wortbrueche } from './pdf.mjs';
 
 export const name = 'theorie';
@@ -40,6 +40,8 @@ export async function lauf(seite, h) {
     if (lang.length > 0) h.befund(`k${nr}: ${lang.length} Animationen trotz reduzierter Bewegung länger als 1 ms (${lang.slice(0, 3).join(', ')})`);
     for (const fund of await seite.evaluate(kontrastQuellen, '.lern-zitat p, .lern-zitat-rahmen figcaption')) h.befund(`k${nr}: ${fund}`);
     for (const fund of await seite.evaluate(pruefeLayout)) h.befund(`k${nr}: ${fund}`);
+    // R48: Lernkarten und Tafel-Karten auch zwischen den Prüfgrößen (Titel liefen bei 488–568 px aus der Karte)
+    await mittelbreit(seite, h, `k${nr}`);
     // R28: im schmalen Lauf auch bei 320 px (WCAG 1.4.10, 400 % Zoom) kein waagerechtes Rollen der Seite
     const vp = seite.viewportSize();
     if (vp !== null && vp.width <= 400) {

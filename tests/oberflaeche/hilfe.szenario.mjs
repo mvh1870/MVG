@@ -76,17 +76,19 @@ export async function lauf(seite, h) {
       await seite.evaluate((x) => { location.hash = `#hilfe/${x}`; }, id);
       await h.erwarte(`[data-seite="${id}"] [data-pruef="hilfe-inhalt"]`);
       await h.warte(150);
-      const gekappt = await seite.evaluate(() => [...document.querySelectorAll('.hilfe-inhalt :is(.h-table-wrap, .h-grafik-wrap)')]
+      // Tabellen bleiben hochkant im Satzspiegel; breite Grafiken stehen auf der Querseite (R39, unten geprüft)
+      const gekappt = await seite.evaluate(() => [...document.querySelectorAll('.hilfe-inhalt .h-table-wrap')]
         .filter((el) => el.scrollWidth > el.clientWidth + 1 || el.getBoundingClientRect().right > (document.querySelector('.hilfe-inhalt')?.getBoundingClientRect().right ?? 0) + 1).length);
-      if (gekappt > 0) h.befund(`Druck ${id}: ${gekappt} Tabellen oder Grafiken abgeschnitten`);
-      // R38: breite Grafiken stehen auf einer Querseite (A4 quer, Rand 10 mm, Satzspiegel 277 mm ≈ 1047 px)
+      if (gekappt > 0) h.befund(`Druck ${id}: ${gekappt} Tabellen abgeschnitten`);
+      // R38: breite Grafiken stehen auf einer Querseite (A4 quer, Rand 10 mm, Satzspiegel 277 mm; Grafik ausdrücklich 262 mm breit)
       const hochkant = await seite.evaluate(() => [...document.querySelectorAll('.hilfe-inhalt .h-grafik-wrap')].filter((el) => getComputedStyle(el).page !== 'hilfe-quer').length);
       if (hochkant > 0) h.befund(`Druck ${id}: ${hochkant} breite Grafiken nicht auf der Querseite`);
     }
     // auf der Querseite erreichen die kleinsten Beschriftungen 7 pt (9,33 px)
     await seite.evaluate(() => { location.hash = '#hilfe/kollaboration'; });
     await h.erwarte('[data-seite="kollaboration"] .h-grafik-wrap svg text');
-    await seite.setViewportSize({ width: 1047, height: vorher.height });
+    // R39: Chromium setzt die Querseite in der Spaltenbreite der Hochkantseite – gemessen wird daher bei 688 px
+    await seite.setViewportSize({ width: 688, height: vorher.height });
     await h.warte(150);
     const klein = await seite.evaluate(() => Math.min(...[...document.querySelectorAll('.hilfe-inhalt .h-grafik-wrap svg text')]
       .map((t) => parseFloat(getComputedStyle(t).fontSize) * (t.getScreenCTM()?.a ?? 1))));

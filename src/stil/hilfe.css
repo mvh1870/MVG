@@ -158,6 +158,8 @@
   .hilfe-inhalt .h-grafik-wrap > svg { min-width: 0; width: 100%; }
   /* R38: breite Grafiken auf eine Querseite – hochkant schrumpften ihre Beschriftungen unter 7 pt */
   .hilfe-inhalt .h-grafik-wrap { page: hilfe-quer; }
+  /* R39: die Spalte bleibt hochkant breit – die Grafik nimmt ausdrücklich die Breite der Querseite ein (277 mm abzüglich Kartenrand) */
+  .hilfe-inhalt .h-grafik-wrap > svg { width: 262mm !important; max-width: none; }
   .hilfe-inhalt table { font-size: 9pt; }
   /* Spalten mit nur einer Plakette so schmal wie die Plakette, der Platz geht an den Text */
   .hilfe-inhalt td:has(> :is(.h-badge, .h-tag, .h-pill, .hilfe-marke):only-child) { width: 1%; }

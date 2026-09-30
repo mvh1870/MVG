@@ -365,6 +365,12 @@ export async function lauf(seite, h) {
     zu: document.querySelectorAll('.druck-bogen details:not([open])').length,
     knoepfe: [...document.querySelectorAll('.druck-bogen :is(button:not(.begriff), input, select, textarea, [role="button"])')].filter((x) => getComputedStyle(x).display !== 'none').length,
   }));
+  // R39: Überschriften bleiben beim Folgenden, Absätze mit Tabelle dürfen umbrechen (sonst Überschrift allein auf der Seite)
+  const umbruch = await seite.evaluate(() => ({
+    kopf: [...document.querySelectorAll('.druck-bogen :is(h2, h3)')].filter((x) => getComputedStyle(x).breakAfter !== 'avoid').length,
+    tabelle: [...document.querySelectorAll('.druck-bogen .absatz')].filter((x) => x.querySelector('table') !== null && getComputedStyle(x).breakInside !== 'auto').length,
+  }));
+  if (umbruch.kopf > 0 || umbruch.tabelle > 0) h.befund(`Druckbogen Umbruch: ${JSON.stringify(umbruch)}`);
   if (!strgP.klasse || !/^Kapitel 8 · /u.test(strgP.titel) || strgP.seite !== 'none' || strgP.zu > 0 || strgP.knoepfe > 0) h.befund(`Strg+P: ${JSON.stringify(strgP)}`);
   await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
   await seite.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });

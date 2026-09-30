@@ -140,3 +140,4 @@ Gesamtprüfung nach P13 (Hilfe) mit zwei Prüf-Agenten:
 
 ## Runde 39 (P12.5, zugleich P14.3)
 - **Fachtreue + Begriffe (Agent):** 3 Befunde (1 mittel: auf der Stufe „Bauherr im Lenkungskreis“ fehlte bei berührter Freigabe der Hinweis, dass der Bauherr selbst freigibt; 2 leicht: Freigabe unter „Bleibt beim Bauherrn“ stufenabhängig, offene Stufe als Vorgang) – Ursache behoben (L-116); 7 680 Grenzkombinationen, 209 Zitate wortgleich; Zählung neu.
+- **Stil/Architektur (Agent):** 3 Befunde (2 mittel: Querseite der Hilfe-Grafiken wirkt im PDF nicht – L-115 (2) widerlegt; Überschrift allein auf fast leerer Seite im Kapitelbogen; 1 leicht: Strg+P nach ausgebliebenem afterprint) – eingearbeitet, im PDF nachgemessen (L-117).

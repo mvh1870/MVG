@@ -505,6 +505,9 @@ a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
   .druck-bogen .lern-inhalt { max-width: none; gap: 6mm; }
   .druck-bogen .druck-knopf, .druck-bogen .absatz-zitieren { display: none !important; }
   .druck-bogen .absatz, .druck-bogen figure, .druck-bogen .lernkarte, .druck-bogen .kernaussage { break-inside: avoid; }
+  /* R39: Absätze mit Tabelle oder Abbildung dürfen umbrechen (sonst bleibt die Überschrift allein auf der Seite); Überschriften bleiben beim Folgenden */
+  .druck-bogen .absatz:has(table, figure, .original-abbildung) { break-inside: auto; }
+  .druck-bogen :is(h1, h2, h3, h4, .original-abschnitt, summary) { break-after: avoid; }
   .druck-bogen a { color: inherit; text-decoration: none; }
   .druck-bogen * { box-shadow: none !important; animation: none !important; transition: none !important; }
 }

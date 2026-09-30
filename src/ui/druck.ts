@@ -50,8 +50,10 @@ export function bogenFuerStrgP(anker: HTMLElement, bauer: () => { titel: string;
   if (strgPBereit) return;
   strgPBereit = true;
   window.addEventListener('beforeprint', () => {
-    // der Knopf druckt schon einen Bogen, oder die Seite hat keinen
-    if (laufend !== null || strgP === null || !strgP.anker.isConnected) return;
+    // der Knopf druckt schon einen Bogen, oder die Seite hat keinen; blieb nach dem Knopf `afterprint` aus, wird aufgeräumt (R39)
+    if (laufend !== null && !laufend.gedruckt) return;
+    laufend?.ende();
+    if (strgP === null || !strgP.anker.isConnected) return;
     const { titel, teile } = strgP.bauer();
     const bogen = haengeBogenAn(teile);
     const alterTitel = document.title;

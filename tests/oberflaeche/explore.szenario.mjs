@@ -13,6 +13,12 @@ export const hash = '#explore';
 export async function lauf(seite, h) {
   const pruefe = pruefer(seite, h);
   await h.erwarte('[data-pruef="explore"]');
+  // R47: Strg+P auf Explore druckt die Druckwege, nicht die Bildschirmseite mit Knöpfen und Reglern
+  await seite.evaluate(() => { window.dispatchEvent(new Event('beforeprint')); });
+  const ersatz = await seite.evaluate(() => ({ klasse: document.body.classList.contains('druckt-bogen'), text: document.querySelector('.druck-bogen')?.textContent ?? '' }));
+  await seite.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
+  if (!ersatz.klasse || !/Dossier drucken/u.test(ersatz.text) || !/fachlich ungeprüft/u.test(ersatz.text)) h.befund(`Strg+P auf Explore: ${JSON.stringify({ klasse: ersatz.klasse, text: ersatz.text.slice(0, 80) })}`);
+  if (await seite.locator('.druck-bogen').count() !== 0) h.befund('Strg+P auf Explore: Bogen bleibt stehen');
   await h.klick('[data-pruef="werkzeug-oeffnen-simulator"]');
   const fokus = await seite.evaluate(() => document.activeElement?.id ?? '');
   if (fokus !== 'sim-titel') h.befund(`„Werkzeug öffnen“ setzt den Fokus auf ${fokus || 'nichts'} statt auf den Titel des Simulators`);

@@ -118,6 +118,12 @@ export async function lauf(seite, h) {
       await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
       await seite.evaluate(() => { window.print = () => {}; window.dispatchEvent(new Event('afterprint')); });
       if (await seite.locator('.druck-bogen').count() !== 0) h.befund('Dossier: Bogen bleibt nach dem Druck stehen');
+      // R47: Strg+P ohne Knopf (der Browser meldet nur beforeprint) druckt dasselbe Dossier, nicht die Bildschirmseite
+      await seite.evaluate(() => { window.dispatchEvent(new Event('beforeprint')); });
+      const strgP = await seite.evaluate(() => ({ klasse: document.body.classList.contains('druckt-bogen'), weg: document.querySelector('.druck-bogen')?.textContent?.includes('Ihr Weg durch die Story') ?? false }));
+      await seite.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
+      if (!strgP.klasse || !strgP.weg) h.befund(`Dossier: Strg+P ohne Bogen ${JSON.stringify(strgP)}`);
+      if (await seite.locator('.druck-bogen').count() !== 0) h.befund('Dossier: Strg+P-Bogen bleibt stehen');
     } else if (ende === faelle[0]?.[1]) h.befund(`${ende}: Dossier-Knopf im Epilog fehlt`);
     await seite.evaluate(() => localStorage.clear());
   }

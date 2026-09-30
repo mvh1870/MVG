@@ -75,7 +75,8 @@ export async function lauf(seite, h) {
     // R44: wie im Druck – Media Queries bei der Blattbreite (≈ 794 px), Satz 688 px (L-124)
     await seite.setViewportSize({ width: 794, height: vorher.height });
     await seite.evaluate(() => { document.documentElement.style.width = '688px'; });
-    for (const id of ['mvg-vorgehensmodell', 'registerdokument-katalog', 'kollaboration', 'datenmanagement', 'faq-glossar', 'kundenanpassung']) {
+    // R47: dazu das Handbuch (Zwischenzeilen vor Listen) und eine Rollenseite (Kopfzeile der Cheat-Sheets)
+    for (const id of ['mvg-vorgehensmodell', 'registerdokument-katalog', 'kollaboration', 'datenmanagement', 'faq-glossar', 'kundenanpassung', 'handbuch', 'rollen-anleitungen-bauherr-auftraggeber']) {
       await seite.evaluate((x) => { location.hash = `#hilfe/${x}`; }, id);
       await h.erwarte(`[data-seite="${id}"] [data-pruef="hilfe-inhalt"]`);
       await h.warte(150);
@@ -99,7 +100,7 @@ export async function lauf(seite, h) {
       }).length);
       if (ohneKopf > 0) h.befund(`Druck ${id}: ${ohneKopf} Grafik-Überschriften nicht auf der Querseite`);
       // R41: im echten PDF – keine Seite endet mit einer Überschrift, keine leere Seite (Abstand unter der Seite)
-      const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.hilfe-inhalt :is(h1, h2, h3, h4, summary), .hilfe-inhalt .h-help-content-inline > b:first-child')]
+      const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.hilfe-inhalt :is(h1, h2, h3, h4, summary), .hilfe-inhalt .h-help-content-inline > b:first-child, .hilfe-inhalt .h-help-content-inline > b:has(+ :is(ol, ul)), .hilfe-inhalt thead tr')]
         .map((x) => ({ text: x.textContent ?? '', pt: parseFloat(getComputedStyle(x).fontSize) * 0.75 })));
       const pdfText = await pdfSeiten(await seite.pdf({ preferCSSPageSize: true }));
       const amEnde = seitenMitUeberschriftAmEnde(pdfText, koepfe);

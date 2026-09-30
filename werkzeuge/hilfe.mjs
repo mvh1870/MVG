@@ -152,6 +152,61 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/Das Whitepaper/gu, 'MVG'],
   [/das Whitepaper/gu, 'MVG'],
   [/Whitepaper/gu, 'MVG-Originaltext'],
+  // R47: kanonischer Governance-Fluss (k6.4.3-p1) – Maßnahme vor Managementbericht
+  [/Frühwarnung → Risiko → Entscheidung \(Entscheidungsvorlage\) → Freigabe → Managementbericht → Maßnahme/gu, 'Frühwarnung → Risiko → Entscheidung (Entscheidungsvorlage) → Freigabe → Maßnahme → Managementbericht'],
+  // R47: der Lenkungskreis berät, der Bauherr beschließt und erteilt Freigaben (k9.3-p3, k13-t1)
+  [/^Bestätigt CTC-Neurechnungen mit Abweichung > 5 %$/gu, 'Berät CTC-Neurechnungen mit Abweichung > 5 % (Bestätigung durch den Bauherrn)'],
+  [/^Beschlüsse mit klaren Bedingungen fassen$/gu, 'Beschlüsse des Bauherrn mit klaren Bedingungen vorbereiten'],
+  [/^Gremium für strategische Change-Beschlüsse$/gu, 'Gremium, in dem der Bauherr strategische Änderungen beschließt'],
+  [/Managementbericht lesen, Top-Entscheidungen treffen/gu, 'Managementbericht lesen, Top-Entscheidungen des Bauherrn beraten'],
+  [/Managementbericht entgegennehmen und Beschlüsse fassen/gu, 'Managementbericht entgegennehmen und die Beschlussfassung des Bauherrn beraten'],
+  [/Nutzen Sie den Approval-Workflow in der Entscheidungsvorlage für signierte Freigaben\. Verlangen Sie vor jeder Freigabe/gu, 'Achten Sie darauf, dass der Bauherr die Freigabe im Approval-Workflow der Entscheidungsvorlage signiert, und verlangen Sie vor jeder Freigabe'],
+  // R47: kein Wirkungsversprechen ohne Beleg (O-1, O-17); die MVG-Neuinitialisierung ist das Format bei eingeschränkter Steuerbarkeit (k7.5-p1)
+  [/Ja, sogar besser als bei einem Neustart – die Lücken sind sichtbar, die Wirkung wird schnell messbar\. Empfehlung: MVG-Neuinitialisierung mit Scout,/gu, 'Ja. Bei eingeschränkter Steuerbarkeit ist die MVG-Neuinitialisierung das passende Format (MVG Kap. 7.5): mit Scout,'],
+  // R47: Status der Entscheidung und Freigabeprozess der Entscheidungsvorlage getrennt (k6.4.4-p1, k9.4-l1)
+  [/(?<!Entscheidungsvorlage: )offen → in Prüfung → vorbereitet → freigegeben → beschlossen \/ abgelehnt \(6 Stufen\)/gu, 'Offen · In Bearbeitung · Entscheidungsreif · Entschieden · Verworfen; Freigabeprozess der Entscheidungsvorlage: offen → in Prüfung → vorbereitet → freigegeben → beschlossen / abgelehnt (6 Stufen)'],
+  [/^Status auf "beschlossen" setzen$/gu, 'Freigabeprozess bis „beschlossen“ führen (Status: Entschieden)'],
+  [/als Entscheidungen mit Status 'beschlossen' nachgeführt/gu, 'als Entscheidungen mit Status „Entschieden“ nachgeführt'],
+  // R47: Zielkonflikt entscheidet der Bauherr, Eskalation entlang der Mandatsleiter (k3.2-t1, k4.2-p3)
+  [/max\. 3 % Mehrkosten zulässig, sonst Lenkungskreis/gu, 'max. 3 % Mehrkosten zulässig, sonst Entscheidung des Bauherrn (Eskalation entlang der Mandatsleiter)'],
+  // R47: Schwellen der Muster-Mandatsleiter mit „einschließlich“ (k4.2-p3)
+  [/Bauherren-PL: Eigenfreigabe bis 100 TEUR/gu, 'Bauherren-PL: Eigenfreigabe bis einschließlich 100 TEUR'],
+  [/Änderungsgremium: 100 TEUR bis 5 Mio\. €/gu, 'Änderungsgremium: über 100 TEUR bis einschließlich 5 Mio. €'],
+  [/\(bis 100 TEUR\) über das Änderungsgremium \(bis 5 Mio\. €\)/gu, '(bis einschließlich 100 TEUR) über das Änderungsgremium (bis einschließlich 5 Mio. €)'],
+  [/Bauherren-PL bis 100 TEUR, Änderungsgremium bis einschließlich/gu, 'Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium bis einschließlich'],
+  [/^Bis 100 TEUR Eigenfreigabe/gu, 'Bis einschließlich 100 TEUR Eigenfreigabe'],
+  // R47: Registerzuständigkeiten nach k6.4.2-t1 und k6.4.5-t1
+  [/^Register-Verantwortliche \(Projektsteuerung\)$/gu, 'Verantwortliche Rollen, PMO'],
+  [/Trägt KEINE projektbezogenen Standard-Zuständigkeiten — RACI\/Prozesse\/Register-Verantwortliche liegen bei der Projektsteuerung/gu, 'Trägt keine projektbezogenen Standard-Zuständigkeiten für RACI und Prozesse (Projektsteuerung); pflegt Maßnahmen-, Problemregister, Governance-Kalender, Protokolle und Nachweise (MVG Kap. 6.4.2)'],
+  [/^Elf rollenbasierte Anleitungen$/gu, 'Rollenbasierte Anleitungen, unter anderem'],
+  // R47: Grammatik der übernommenen Sätze (L-69 (19))
+  [/Das im Monatslauf angestoßene Managementbericht/gu, 'Der im Monatslauf angestoßene Managementbericht'],
+  [/für das nächste Managementbericht/gu, 'für den nächsten Managementbericht'],
+  [/Im wöchentlichen Maßnahmenverfolgung/gu, 'In der wöchentlichen Maßnahmenverfolgung'],
+  [/Beim wöchentlichen Maßnahmenprüfung/gu, 'Bei der wöchentlichen Maßnahmenprüfung'],
+  [/mit Auswirkungsvergleich und Nachweise\b/gu, 'mit Auswirkungsvergleich und Nachweisen'],
+  [/Annahmen, Risiken, Nachweise und Empfehlung/gu, 'Annahmen, Risiken, Nachweisen und Empfehlung'],
+  [/und bestätigen sich das Signal zum Risiko befördert/gu, 'und bei Bestätigung zum Risiko befördert'],
+  [/gegenüber dem Vorstand geändert/gu, 'gegenüber der Vorfassung geändert'],
+  // R47: englische Wörter im Fließtext (L-69 (12))
+  [/Aggregations-\/Berichts-Sink/gu, 'Aggregations- und Berichtssammelpunkt'],
+  [/straff und timeboxed/gu, 'straff und mit fester Zeitvorgabe'],
+  [/formal benannt und committed/gu, 'formal benannt und verpflichtet'],
+  [/Audit-Spotcheck/gu, 'Audit-Stichprobe'],
+  [/Werkzeug-Overhead-Trap/gu, 'Werkzeug-Aufwandsfalle'],
+  [/rote Findings/gu, 'rote Befunde'],
+  [/Anzahl Findings/gu, 'Anzahl Befunde'],
+  [/können on-demand zugreifen/gu, 'können bei Bedarf zugreifen'],
+  [/Im served Betrieb/gu, 'Im Betrieb über einen Webserver'],
+  [/Entscheidungs- und Action-Management/gu, 'Entscheidungs- und Maßnahmensteuerung'],
+  [/^Contracts$/gu, 'Verträge'],
+  [/Stolperstein: Late Claims -/gu, 'Stolperstein: verspätete Nachforderungen –'],
+  [/Threshold-Regeln/gu, 'Schwellenwert-Regeln'],
+  [/keine Action erzeugen/gu, 'keine Maßnahme erzeugen'],
+  [/Anzahl überfälliger Actions/gu, 'Anzahl überfälliger Maßnahmen'],
+  [/^Thresholds$/gu, 'Schwellenwerte'],
+  [/^Threshold:$/gu, 'Schwellenwert:'],
+  [/\(Risiko\/EW\/Change\/Decision\/Gap\/Threshold\)/gu, '(Risiko/Frühwarnung/Änderung/Entscheidung/Lücke/Schwellenwert)'],
 ]);
 
 /** Klassen, die src/stil/hilfe.css gestaltet (alles andere fällt weg). */
@@ -485,6 +540,59 @@ function bereinige(wurzel, anker, titel = '') {
   for (let n = gang.nextNode(); n !== null; n = gang.nextNode()) {
     if (n.parentElement?.closest('svg') !== null && n.parentElement?.closest('svg') !== undefined && n.parentElement?.tagName.toLowerCase() !== 'text' && n.parentElement?.tagName.toLowerCase() !== 'tspan') continue;
     n.textContent = ersetze(n.textContent ?? '');
+  }  angleiche(wurzel);
+}
+
+/**
+ * R47: Zuständigkeiten, die sich nur aus Tabellenzeile, Listenpunkt oder Glossarname ergeben, an MVG angleichen
+ * (k6.4.2-t1 Registerzuständigkeit, k4.2-p3/k6.4.5-p1 Eskalation, k9.3-p3 Freigabe, k3.3-t1 Verantwortungspyramide).
+ * @param {Element} wurzel
+ */
+function angleiche(wurzel) {
+  const dok = wurzel.ownerDocument;
+  const text = (/** @type {Element | null | undefined} */ el) => (el?.textContent ?? '').replace(/\s+/gu, ' ').trim();
+  for (const t of [...wurzel.querySelectorAll('table')]) {
+    // R47: Kopfzeile aus th im tbody (Cheat-Sheets der Rollen) als thead – im Druck wiederholt und nie allein am Seitenende
+    const ersteZeile = t.querySelector(':scope > tbody > tr:first-child');
+    if (t.querySelector(':scope > thead') === null && ersteZeile !== null && ersteZeile.children.length > 0 && [...ersteZeile.children].every((z) => z.tagName === 'TH')) {
+      const thead = dok.createElement('thead');
+      thead.append(ersteZeile);
+      t.prepend(thead);
+    }
+    const kopf = [...t.querySelectorAll('thead th')].map((x) => text(x)).join('|');
+    const tb = t.querySelector('tbody');
+    if (kopf === 'Register|Verantwortlich' && tb !== null) {
+      tb.replaceChildren(...[
+        ['Entscheidungsregister · Änderungsregister · Leistungsphase', 'Bauherren-PL'],
+        ['Risikoregister · Frühwarnungsregister', 'Projektsteuerung'],
+        ['Maßnahmenregister · Problemregister · Governance-Kalender · Protokolle', 'PMO'],
+        ['CTC / Prognose', 'Controlling'],
+        ['Nachweise & Übergabe/Betriebshandbuch', 'PMO (mit Fachrollen)'],
+      ].map((zeile) => {
+        const tr = dok.createElement('tr');
+        for (const z of zeile) { const td = dok.createElement('td'); td.textContent = z; tr.append(td); }
+        return tr;
+      }));
+    }
+    for (const tr of [...t.querySelectorAll('tbody tr')]) {
+      const z = [...tr.children];
+      if (text(z[0]) === 'Risiko-/Mandats-Eskalation' && text(z[2]) === 'Lenkungskreis' && z[2] !== undefined) z[2].textContent = 'entlang der Mandatsleiter (Bauherren-PL, Änderungsgremium, Bauherr im Lenkungskreis)';
+      if (text(z[0]) === 'Freigabeentscheidung' && text(z[1]) === 'Lenkungskreis' && z[1] !== undefined) z[1].textContent = 'Bauherr (im Lenkungskreis)';
+      // Glossar: die drei Ebenen heißen in MVG Verantwortungspyramide; die gleichnamige Ansicht der Anwendung zeigt die Mandatsleiter
+      const b = z[0]?.querySelector('b');
+      if (b !== null && b !== undefined && text(b) === 'Verantwortungspyramide' && /^Die im Companion visualisierte Mandats/u.test(text(z[1]))) b.textContent = 'Verantwortungspyramide (Ansicht der Anwendung)';
+      if (b !== null && b !== undefined && text(b) === 'Verantwortungsdreieck') b.textContent = 'Verantwortungspyramide (MVG Kap. 3.3)';
+    }
+  }
+  // Handbuch · Übergabe: verantwortliche Rolle je Register nach k6.4.2-t1
+  const soll = new Map([['EW Log:', ['Frühwarnungsregister:', ' Projektsteuerung']], ['Änderungsregister:', ['Änderungsregister:', ' Bauherren-PL']]]);
+  for (const li of [...wurzel.querySelectorAll('li')]) {
+    const b = li.firstElementChild;
+    const neu = b?.tagName === 'B' ? soll.get(text(b)) : undefined;
+    if (b === null || b === undefined || neu === undefined || li.childNodes.length !== 2 || li.lastChild?.nodeType !== 3) continue;
+    if (![li.previousElementSibling, li.nextElementSibling].some((x) => /^(?:Risikoregister|Entscheidungsregister|Maßnahmenregister|Frühwarnungsregister):/u.test(text(x)))) continue;
+    b.textContent = neu[0];
+    /** @type {Text} */ (li.lastChild).textContent = neu[1];
   }
 }
 

@@ -354,16 +354,26 @@ export async function lauf(seite, h) {
   if (ueber > 0) h.befund(`Druckbogen: ${ueber} Elemente ragen über den Satzspiegel`);
   await seite.evaluate(() => { document.documentElement.style.width = ''; });
   await seite.setViewportSize(vorher);
-  const pdf = await seite.pdf({ format: 'A4' });
-  const seiten = (pdf.toString('latin1').match(/\/Type\s*\/Page[^s]/gu) ?? []).length;
-  if (seiten < 2 || seiten > 40) h.befund(`Druck Kapitel 8: ${seiten} Seiten`);
+  // R47: ohne Hintergrundgrafiken dunkelt Chrome helle Schrift nur auf Grau ab – helle Schrift im Bogen druckt ihre Fläche mit
+  const blass = await seite.evaluate(() => {
+    const lum = (/** @type {string} */ c) => { const m = c.match(/[\d.]+/gu)?.map(Number) ?? [0, 0, 0]; const f = (/** @type {number} */ v) => { const x = v / 255; return x <= 0.03928 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; }; return 0.2126 * f(m[0] ?? 0) + 0.7152 * f(m[1] ?? 0) + 0.0722 * f(m[2] ?? 0); };
+    return [...document.querySelectorAll('.druck-bogen *')].filter((el) => [...el.childNodes].some((k) => k.nodeType === 3 && (k.textContent ?? '').trim() !== '') && el.getClientRects().length > 0)
+      .filter((el) => { const cs = getComputedStyle(el); return 1.05 / (lum(cs.color) + 0.05) < 4.5 && cs.printColorAdjust !== 'exact'; })
+      .map((el) => `${el.tagName.toLowerCase()}.${String(el.className).split(' ')[0]}`).slice(0, 5);
+  });
+  if (blass.length > 0) h.befund(`Druck Kapitel 8: helle Schrift ohne gedruckte Fläche ${JSON.stringify(blass)}`);
+  // R47: vor page.pdf lesen – page.pdf löst afterprint aus und räumt den Bogen ab (vorher blieb die Kopfliste leer)
   // R41: im echten PDF – keine Seite endet mit einer Überschrift, keine leere Seite, kein Bedienhinweis („Ziehen Sie den Regler“)
   // R42: auch die Kapitälchen-Labels über Querverweis und Wissenscheck; je Kopf seine Druckgröße in pt (Listenpunkte gleichen Wortlauts zählen nicht)
-  const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen :is(h1, h2, h3, h4, dt, .lw-titel, .original-abschnitt, summary, .lw-etappe-titel), .druck-bogen .lw-aufgeloest-liste > li > b:first-child, .druck-bogen :is(.querverweis-block, .wissenscheck) > .t-label')]
+  const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen :is(h1, h2, h3, h4, dt, .lw-titel, .original-abschnitt, summary, .lw-etappe-titel, .felder-ansicht, .querverweis-text), .druck-bogen .lw-aufgeloest-liste > li > b:first-child, .druck-bogen :is(.querverweis-block, .wissenscheck) > .t-label')]
     // R43: die Größe des sichtbaren Texts (größte Schrift eines Elements mit eigenem Text), nicht die des Kopfelements selbst
     .map((x) => ({ text: x.textContent ?? '', pt: Math.max(...[x, ...x.querySelectorAll('*')].filter((e) => [...e.childNodes].some((k) => k.nodeType === 3 && (k.textContent ?? '').trim() !== ''))
       .map((e) => parseFloat(getComputedStyle(e).fontSize))) * 0.75 })));
+  const pdf = await seite.pdf({ format: 'A4' });
+  const seiten = (pdf.toString('latin1').match(/\/Type\s*\/Page[^s]/gu) ?? []).length;
+  if (seiten < 2 || seiten > 40) h.befund(`Druck Kapitel 8: ${seiten} Seiten`);
   const pdfText = await pdfSeiten(pdf);
+  if (koepfe.length < 10) h.befund(`Druck Kapitel 8: nur ${koepfe.length} Köpfe gelesen`);
   const amEnde = seitenMitUeberschriftAmEnde(pdfText, koepfe);
   if (amEnde.length > 0) h.befund(`Druck Kapitel 8: Überschrift am Seitenende ${JSON.stringify(amEnde)}`);
   if (pdfText.some((x) => x.zeilen.length === 0)) h.befund('Druck Kapitel 8: leere Seite');
@@ -402,7 +412,7 @@ export async function lauf(seite, h) {
   // R42: in keinem Kapitel steht im Druck ein Bedienhinweis („Ziehen Sie den Regler“, „Schalten Sie um“ …); R47: auch „Ordnen/Prüfen/Probieren/Öffnen Sie“ und das Suchfeld
   await seite.emulateMedia({ media: 'print', reducedMotion: 'reduce' });
   const bedienung = await seite.evaluate(() => (document.querySelector('.druck-bogen') instanceof HTMLElement ? /** @type {HTMLElement} */ (document.querySelector('.druck-bogen')).innerText : '')
-    .match(/[^.!?\n]*(?<!\p{L})(?:(?:Ziehen|Klicken|Schalten|Schieben|Wählen|Tippen|Ordnen|Prüfen|Probieren|Öffnen|Blättern|Drücken|klicken|schalten|ziehen|schieben|wählen|ordnen|prüfen|probieren|öffnen) Sie(?!\p{L})|Suchfeld)[^.!?\n]*/gu) ?? []);
+    .match(/[^.!?\n]*(?<!\p{L})(?:(?:Ziehen|Klicken|Schalten|Schieben|Wählen|Tippen|Ordnen|Prüfen|Probieren|Öffnen|Blättern|Drücken|klicken|schalten|ziehen|schieben|wählen|ordnen|prüfen|probieren|öffnen) Sie(?!\p{L})|Suchfeld|(?:Der|der|den|dem) (?:Umschalter|Regler)(?!\p{L}))[^.!?\n]*/gu) ?? []);
   if (bedienung.length > 0) h.befund(`Alles drucken: Bedienhinweise im Druck ${JSON.stringify(bedienung.slice(0, 5))}`);
   // R43: im Drucklayout (794 px Medienbreite, 688 px Satz) bricht kein Wort mitten im Wort ohne Trennstrich – nur an einer
   // weichen Trennstelle (U+00AD); gemessen je Zeichen über die Zeilenlage
@@ -414,6 +424,14 @@ export async function lauf(seite, h) {
   await seite.evaluate(() => { document.documentElement.style.width = ''; });
   await seite.setViewportSize(vorAlles);
   if (wortbruch.length > 0) h.befund(`Alles drucken: ${wortbruch.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(wortbruch.slice(0, 6))}`);
+  // R47: im echten PDF aller Kapitel – kein Kopf, kein Feld-Schalter, kein Querverweis-Titel allein am Seitenende
+  // (die Druckbefunde der Runde 47 lagen alle hier); Köpfe vor page.pdf lesen, das den Bogen abräumt
+  const koepfeAlle = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen :is(h1, h2, h3, h4, dt, .lw-titel, .original-abschnitt, summary, .lw-etappe-titel, .felder-ansicht, .querverweis-text), .druck-bogen .lw-aufgeloest-liste > li > b:first-child, .druck-bogen :is(.querverweis-block, .wissenscheck) > .t-label')]
+    .map((x) => ({ text: x.textContent ?? '', pt: Math.max(...[x, ...x.querySelectorAll('*')].filter((e) => [...e.childNodes].some((k) => k.nodeType === 3 && (k.textContent ?? '').trim() !== ''))
+      .map((e) => parseFloat(getComputedStyle(e).fontSize))) * 0.75 })));
+  const allesPdf = await pdfSeiten(await seite.pdf({ format: 'A4' }));
+  const allesEnde = seitenMitUeberschriftAmEnde(allesPdf, koepfeAlle);
+  if (allesEnde.length > 0) h.befund(`Alles drucken: Überschrift am Seitenende ${JSON.stringify(allesEnde.slice(0, 6))}`);
   await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
   await seite.evaluate(() => { window.print = () => {}; window.dispatchEvent(new Event('afterprint')); history.back(); });
   await h.erwarte('[data-pruef="kapitel-drucken"]');

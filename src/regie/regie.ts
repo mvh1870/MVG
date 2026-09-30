@@ -24,6 +24,7 @@ import { inhalt } from '../ui/bausteine/inhalt.ts';
 import { aktuelleStation, eingriffe, kicker, sichtbareSchritte, stationsName, tafelTitel, weiterAktion, zurueckAktion } from '../ui/anzeige.ts';
 import { erzeugeAnzeige } from './leinwand.ts';
 import { kapitelFuerDruck, kapitelListe } from '../ui/flaechen/theorie.ts';
+import { druckeBogen } from '../ui/druck.ts';
 import { kapitelDerSpur } from '../ui/flaechen/story-szenen.ts';
 import { findeEntscheidung } from '../engine/graph.ts';
 import { W } from '../ui/woerter.ts';
@@ -182,7 +183,6 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     h('button', { type: 'button', class: 'knopf knopf-still', 'data-pruef': 'regie-drucken', onclick: () => drucke() }, w.protokollDrucken));
 
   // Druckfassung (P9.3): Datum, alle Protokolleinträge, besuchte Stationen und die eigenen Entscheidungen
-  const druck = h('section', { class: 'regie-druck', 'aria-hidden': 'true', 'data-pruef': 'regie-druck' });
   /** Resümee im Druck: erreichtes Ende und die Richtung aus der Wirklichkeit (wie im Epilog, P7.7) */
   const resuemeeFuerDruck = (oz: OeffentlicherZustand): Node[] => {
     const ende = [...oz.verlauf].reverse().map((id) => inhalte.stationen[id]).find((st) => st?.art === 'ende') ?? null;
@@ -197,7 +197,9 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     const z = sitzung.zustand();
     const oz = oeffentlich(z);
     const datum = new Date().toLocaleString('de-DE', { dateStyle: 'long', timeStyle: 'short' });
-    ersetze(druck,
+    // R47: das Protokoll ist ein Druckbogen wie Kapitel und Dossier – wortgleiche Tabellen im Satzspiegel, Details offen,
+    // Trennstellen, Überschriften nie am Seitenende (vorher eigene Klasse ohne diese Regeln)
+    const druck = h('section', { class: 'druck-teil regie-druck-inhalt', 'data-pruef': 'regie-druck' },
       h('h1', null, w.druckTitel),
       h('p', null, `${W.produkt} · ${o.version} · ${datum}`),
       h('p', null, `${W.fiktiv} · ${W.ungeprueft}`),
@@ -223,14 +225,7 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
           ? [h('ul', null, kap.map((nr) => h('li', null, W.resuemee.kapitel(nr, titel(nr))))), ...kap.slice(0, 2).map((nr) => kapitelFuerDruck(inhalte, nr, o.version))]
           : [h('p', null, '–')];
       })());
-    document.body.classList.add('druck-protokoll');
-    const ende = (): void => { document.body.classList.remove('druck-protokoll'); window.removeEventListener('afterprint', ende); };
-    if (typeof window.print !== 'function') {
-      ende();
-      return;
-    }
-    window.addEventListener('afterprint', ende);
-    window.print();
+    druckeBogen(w.druckTitel, [druck]);
   };
 
   // Ein-Fenster-Regie (P9.1): die Vorschau füllt das Fenster, Pfeiltasten steuern weiter, Esc kehrt zurück
@@ -256,8 +251,7 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
         steuerung),
       // Eingriffe zuerst: im Termin die meistgebrauchte Karte
       h('div', { class: 'regie-rechts' }, eingriffKarte, notiz, protokoll)),
-    fussleiste,
-    druck);
+    fussleiste);
 
   /* -------------------------------------------------------------- Handeln -- */
   function schritt(richtung: 1 | -1): void {

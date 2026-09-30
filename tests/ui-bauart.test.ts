@@ -184,6 +184,12 @@ test('Hilfe (P13, O-31): gleiche Aufteilung wie die Companion-Hilfe, leiser Zuga
   // R45: FAQ „ROI“ (Wirkungszahlen nicht in V1.2) entfernt, Eskalation entlang der Mandatsleiter, kein Feldname in Überschriften
   assert.doesNotMatch(text, /ROI von MVG|spart 3-6 Monate|an den Lenkungskreis eskaliert|automatisch an den Lenkungskreis|Eskalation an (?:den )?Lenkungskreis|Lenkungskreis-Eskalation|darüber Lenkungskreis|<h\d>[^<]*<code>\(/u);
   assert.match(text, /Was ist MVG\?|FAQ/u);
+  // R47: Governance-Fluss, Lenkungskreis berät, Eskalation und Registerzuständigkeit nach MVG, keine Wirkungsversprechen, kein Englisch im Fließtext
+  assert.doesNotMatch(text, /Freigabe → Managementbericht → Maßnahme|Top-Entscheidungen treffen|Nutzen Sie den Approval-Workflow in der Entscheidungsvorlage für signierte Freigaben|sogar besser als bei einem Neustart|sonst Lenkungskreis|Eigenfreigabe bis 100 TEUR|<b>Verantwortungsdreieck<\/b>|Berichts-Sink|timeboxed|Late Claims|Threshold-Regeln|Das im Monatslauf|<b>EW Log:<\/b> Bauherren-PL|<b>Änderungsregister:<\/b> PMO/u);
+  assert.match(text, /Freigabe → Maßnahme → Managementbericht/u);
+  assert.match(text, /<td>Risiko-\/Mandats-Eskalation<\/td><td>PL<\/td><td>entlang der Mandatsleiter/u);
+  assert.match(text, /<td>Freigabeentscheidung<\/td><td>Bauherr \(im Lenkungskreis\)<\/td>/u);
+  assert.match(text, /<td>Maßnahmenregister · Problemregister · Governance-Kalender · Protokolle<\/td><td>PMO<\/td>/u);
   assert.match(text, /GATE-NETZNORD-G2/u);
   assert.doesNotMatch(text, /Ansicht öffnen|Schnell starten|Meine Rolle|LPH (\d)[^<(]{0,40}\(LPH \1\)|englisch: Nachweis|Audit-PaketeAudit-Pakete/u);
   assert.equal(rollen?.html.match(/href="#hilfe\/rollen-anleitungen-/gu)?.length, 13);
@@ -648,7 +654,9 @@ test('Regie (P9.5): Start sendet den Beamer-Stand, Sprung erst mit Rolle, Einwä
     (dom.window as unknown as { print: unknown }).print = undefined;
     q('[data-pruef="regie-drucken"]').click();
     (dom.window as unknown as { print: unknown }).print = druckfn;
-    const druck = q('[data-pruef="regie-druck"]');
+    // R47: der Druckteil ist ein Druckbogen an body (wie Kapitel und Dossier)
+    const druck = document.querySelector('.druck-bogen [data-pruef="regie-druck"]');
+    assert.ok(druck, 'Protokoll im Druckbogen');
     assert.equal(druck.querySelectorAll(':scope > ol > li').length, 8);
     // Dossier (E11): Kapitel zum Nachlesen als Text (höchstens zwei Lernseiten)
     const kapitelImDruck = druck.querySelectorAll('.druck-kapitel').length;

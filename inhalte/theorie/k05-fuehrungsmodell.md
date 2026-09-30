@@ -39,7 +39,7 @@ Ein solches Führungsmodell muss sechs Fragen beantworten:
 5. Welcher Datenstand gilt?
 6. Wie lässt sich eine Entscheidung später nachvollziehen?
 
-Die Antworten allein genügen noch nicht. Wirksam wird MVG erst, wenn sie im Projektalltag ankommen – in Routinen, Freigaben, Entscheidungs-IDs, Datenstandslogik, Eskalationswegen, Betriebshandbuch und Befähigung. Erst dann wird aus Verantwortung eine Führungslogik, die man tatsächlich benutzen kann. Der Umschalter zeigt den Unterschied.
+Die Antworten allein genügen noch nicht. Wirksam wird MVG erst, wenn sie im Projektalltag ankommen – in Routinen, Freigaben, Entscheidungs-IDs, Datenstandslogik, Eskalationswegen, Betriebshandbuch und Befähigung. Erst dann wird aus Verantwortung eine Führungslogik, die man tatsächlich benutzen kann. [[bedienung:Der Umschalter zeigt den Unterschied.]]
 
 ::: umschalter
 ---

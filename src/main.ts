@@ -24,7 +24,8 @@ import { setzeAbbildungsBilder } from './ui/bausteine/abbildung.ts';
 import { setzeHostFenster, setzeZielMelder } from './ui/dialog.ts';
 import { IMPRESSUM, istAbbildungsId, istAbsatzId, leseRoute, routeHash, type Route } from './ui/route.ts';
 import { erzeugeSitzung, type Sitzung } from './ui/sitzung.ts';
-import { ersetze } from './ui/h.ts';
+import { ersetze, h } from './ui/h.ts';
+import { bogenKopf, ersatzBogenFuerStrgP } from './ui/druck.ts';
 import { installiereTooltips, type Tooltips } from './ui/bausteine/tooltip.ts';
 import { erzeugeStory, type StoryFlaeche } from './ui/flaechen/story.ts';
 import { baueStart } from './ui/flaechen/start.ts';
@@ -93,6 +94,15 @@ function starteApp(wurzel: HTMLElement): void {
   let story: StoryFlaeche | null = null;
   let tipps: Tooltips | null = null;
   let flaeche = '';
+  // R47: Strg+P auf Start, Story (vor dem Epilog), Explore und der Kapitelliste druckt die Druckwege statt der Bildschirmseite;
+  // Lernseiten und Epilog haben eigene Bögen (Vorrang), die Hilfe druckt ihre Seite
+  ersatzBogenFuerStrgP(() => ['start', 'story', 'explore', 'theorie'].includes(document.body.dataset['flaeche'] ?? ''), () => ({
+    titel: W.druck.ersatzTitel,
+    teile: [
+      bogenKopf(W.druck.ersatzTitel, VERSION, false),
+      h('section', { class: 'druck-teil' }, h('p', null, W.druck.ersatzText), h('ul', null, W.druck.ersatzWege.map((x) => h('li', null, x)))),
+    ],
+  }));
 
   const raeume = (): void => {
     // offene Dialoge (Abbildung, Hilfe-Grafik) schließen, bevor die Fläche wechselt: so räumen Rad- und

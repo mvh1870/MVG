@@ -105,7 +105,7 @@ Private und institutionelle Bauherren stehen oft unter anderem Druck: Das Projek
 
 Das Problem liegt selten in einem einzelnen Ziel, sondern darin, dass die Ziele sich widersprechen. Ein Beispiel: Ein schnellerer Bauablauf kann die Finanzierung entlasten, aber eine Entscheidung über die Haustechnik vorziehen, bevor ihre Lebenszykluskosten geklärt sind.
 
-Der MVG-Ansatz hilft, solche Zielkonflikte **früh** zu klären – und operative Geschwindigkeit nicht gegen Entscheidungssicherheit auszuspielen. Beides soll nebeneinander bestehen können. Der Umschalter zeigt beide Seiten.
+Der MVG-Ansatz hilft, solche Zielkonflikte **früh** zu klären – und operative Geschwindigkeit nicht gegen Entscheidungssicherheit auszuspielen. Beides soll nebeneinander bestehen können. [[bedienung:Der Umschalter zeigt beide Seiten.]]
 
 ::: umschalter
 ---
@@ -148,7 +148,7 @@ Besonders relevant sind hier:
 - **Frühwarnungen**, **Änderungssteuerung**, CTC und Prognose,
 - und die **Freigabereife**, besonders an drei Stellen des Projekts.
 
-Diese drei Stellen zeigt der Regler. Zum Abschluss von LPH 2 geht es um die Wahl der Variante und den [[Business Case]], zum Abschluss von LPH 3 um die [[Finale Investitionsentscheidung (FID)|finale Investitionsentscheidung (FID)]] und zum Abschluss von LPH 7 um die Vergabe oder die Bindung einer Komponente mit langer Lieferzeit.
+[[bedienung:Diese drei Stellen zeigt der Regler.]] Zum Abschluss von LPH 2 geht es um die Wahl der Variante und den [[Business Case]], zum Abschluss von LPH 3 um die [[Finale Investitionsentscheidung (FID)|finale Investitionsentscheidung (FID)]] und zum Abschluss von LPH 7 um die Vergabe oder die Bindung einer Komponente mit langer Lieferzeit.
 
 ::: regler
 ---

@@ -6,6 +6,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { pruefeLayout } from './hilfen.mjs';
+import { pdfSeiten, seitenMitUeberschriftAmEnde, wortbrueche } from './pdf.mjs';
 
 export const name = 'regie';
 export const hash = '#start';
@@ -169,13 +170,30 @@ export async function lauf(_seite, h) {
   const druck = await regie.locator('[data-pruef="regie-druck"]').textContent();
   if (!/Kunde fragt nach der Mandatsleiter/u.test(druck ?? '') || !/Besuchte Stationen/u.test(druck ?? '')) h.befund('Druckfassung ohne Protokoll oder Weg');
   // B7: die ausgeblendete Regie erzeugt keine leeren Folgeseiten – Seitenzahl passt zur Höhe des Druckteils
+  // R47: das Protokoll ist ein Druckbogen – nichts ragt über den Satzspiegel, kein Wort bricht ohne Trennstrich, keine Überschrift am Seitenende
   await regie.emulateMedia({ media: 'print' });
-  const druckHoehe = await regie.locator('[data-pruef="regie-druck"]').evaluate((el) => el.scrollHeight);
-  await regie.emulateMedia({ media: 'screen' });
+  const vorherR = regie.viewportSize() ?? { width: 1280, height: 800 };
+  await regie.setViewportSize({ width: 794, height: vorherR.height });
+  await regie.evaluate(() => { document.documentElement.style.width = '688px'; });
+  const ueberR = await regie.evaluate(() => {
+    const bogen = document.querySelector('.druck-bogen');
+    const rechts = bogen?.getBoundingClientRect().right ?? 0;
+    return { bogen: bogen !== null, ueber: [...(bogen?.querySelectorAll('*') ?? [])].filter((el) => el.getBoundingClientRect().right > rechts + 0.5).length };
+  });
+  if (!ueberR.bogen || ueberR.ueber > 0) h.befund(`Druckfassung: Bogen ${ueberR.bogen ? 'da' : 'fehlt'}, ${ueberR.ueber} Elemente über dem Satzspiegel`);
+  const bruchR = await wortbrueche(regie, '.druck-bogen');
+  if (bruchR.length > 0) h.befund(`Druckfassung: ${bruchR.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(bruchR.slice(0, 6))}`);
+  const koepfeR = await regie.evaluate(() => [...document.querySelectorAll('.druck-bogen :is(h1, h2, h3, h4, .original-abschnitt, summary, .lw-titel)')].map((x) => ({ text: x.textContent ?? '', pt: parseFloat(getComputedStyle(x).fontSize) * 0.75 })));
+  await regie.evaluate(() => { document.documentElement.style.width = ''; });
+  await regie.setViewportSize(vorherR);
   const pdf = await regie.pdf({ format: 'A4' });
-  const seiten = (pdf.toString('latin1').match(/\/Type\s*\/Page[^s]/gu) ?? []).length;
-  const hoechstens = Math.ceil(druckHoehe / 900) + 2;
-  if (seiten < 1 || seiten > hoechstens) h.befund(`Druckfassung: ${seiten} Seiten bei ${druckHoehe} px Druckteil (höchstens ${hoechstens})`);
+  await regie.emulateMedia({ media: 'screen' });
+  const seitenR = await pdfSeiten(pdf);
+  const amEndeR = seitenMitUeberschriftAmEnde(seitenR, koepfeR);
+  // B7: die ausgeblendete Regie erzeugt keine leeren Seiten (gemessen im PDF statt über die Höhe)
+  const leerR = seitenR.map((x, i) => (x.zeilen.length === 0 ? i + 1 : 0)).filter((x) => x > 0);
+  if (seitenR.length < 1 || leerR.length > 0) h.befund(`Druckfassung: ${seitenR.length} Seiten, leer: ${JSON.stringify(leerR)}`);
+  if (amEndeR.length > 0) h.befund(`Druckfassung: Überschrift am Seitenende ${JSON.stringify(amEndeR)}`);
   await regie.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
   if ((await leinwand.locator('body').innerText()).includes('Kunde fragt nach der Mandatsleiter')) h.befund('Leinwand zeigt das Protokoll');
   await h.bild('regie', regie);

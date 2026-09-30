@@ -44,15 +44,32 @@ export function druckeBogen(titel: string, teile: Node[]): HTMLElement {
  * steht, gilt `bauer`. Der Bogen wird bei `beforeprint` angehängt und bei `afterprint` abgebaut.
  */
 let strgP: { anker: HTMLElement; bauer: () => { titel: string; teile: Node[] } } | null = null;
+/** R47: Flächen ohne eigenen Bogen (Start, Story vor dem Epilog, Explore, Theorie-Übersicht) – ein kurzer Bogen mit den Druckwegen */
+let ersatz: { aktiv: () => boolean; bauer: () => { titel: string; teile: Node[] } } | null = null;
 let strgPBereit = false;
 export function bogenFuerStrgP(anker: HTMLElement, bauer: () => { titel: string; teile: Node[] }): void {
   strgP = { anker, bauer };
+  bereiteStrgP();
+}
+
+/**
+ * R47: Strg+P auf einer Fläche ohne Druckbogen druckte die Bildschirmseite mit Knöpfen, Reglern und Bedienhinweisen.
+ * Gilt `aktiv()` und steht kein Druckknopf eines Bogens im Dokument, kommt stattdessen der Bogen aus `bauer`.
+ */
+export function ersatzBogenFuerStrgP(aktiv: () => boolean, bauer: () => { titel: string; teile: Node[] }): void {
+  ersatz = { aktiv, bauer };
+  bereiteStrgP();
+}
+
+function bereiteStrgP(): void {
   if (strgPBereit) return;
   strgPBereit = true;
   window.addEventListener('beforeprint', () => {
     // der Knopf druckt schon einen Bogen (window.print() löst beforeprint synchron aus – R40: nie abräumen), oder die Seite hat keinen
-    if (laufend !== null || strgP === null || !strgP.anker.isConnected) return;
-    const { titel, teile } = strgP.bauer();
+    if (laufend !== null) return;
+    const quelle = strgP !== null && strgP.anker.isConnected ? strgP.bauer : ersatz !== null && ersatz.aktiv() ? ersatz.bauer : null;
+    if (quelle === null) return;
+    const { titel, teile } = quelle();
     const bogen = haengeBogenAn(teile);
     const alterTitel = document.title;
     document.title = titel;

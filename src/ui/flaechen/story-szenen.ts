@@ -31,7 +31,7 @@ import { dezimal, naechsterFrame, sanftBeide, zaehle, type Takt } from '../beweg
 import { W } from '../woerter.ts';
 import { spurTafel } from '../leitstand/spur.ts';
 import { findeEntscheidung } from '../../engine/graph.ts';
-import { bogenKopf, druckeBogen } from '../druck.ts';
+import { bogenFuerStrgP, bogenKopf, druckeBogen } from '../druck.ts';
 import { fassungText } from '../fassung.ts';
 import { kapitelFuerDruck } from './theorie.ts';
 
@@ -891,7 +891,7 @@ export function resuemee(b: Block, k: SzenenKontext, text: Node | null): HTMLEle
   const richtungKurz = richtung !== null ? findeEntscheidung(k.inhalte, richtung.entscheidung)?.entscheidung.optionen.find((o) => o.id === richtung.option)?.kurz ?? null : null;
   const vertiefungen = [...new Set([...(ende?.vertiefung != null ? [ende.vertiefung] : []), ...kapitel])].slice(0, 2);
   // Dossier (P10.2, E11): Weg, Entscheidungen, Resümee und die Kapitel der Vertiefung auf einem Bogen
-  const dossier = (): void => {
+  const dossierBogen = (): { titel: string; teile: Node[] } => {
     const D = W.druck;
     const version = fassungText(k.inhalte.whitepaper.fassung ?? '');
     const weg = [...new Set(k.z.verlauf)].map((id) => stationsName(k.inhalte, id));
@@ -901,15 +901,16 @@ export function resuemee(b: Block, k: SzenenKontext, text: Node | null): HTMLEle
     });
     const kopie = teil.cloneNode(true) as HTMLElement;
     for (const x of kopie.querySelectorAll('.druck-knopf')) x.remove();
-    druckeBogen(D.dossierTitel, [
+    return { titel: D.dossierTitel, teile: [
       bogenKopf(D.dossierTitel, version, true),
       h('section', { class: 'druck-teil' }, h('h2', null, D.dossierWeg), h('p', null, weg.join(' → ') || '–')),
       h('section', { class: 'druck-teil' }, h('h2', null, D.dossierEntscheidungen), zeilen.length > 0 ? h('ol', null, zeilen) : h('p', null, D.dossierKeine)),
       h('section', { class: 'druck-teil' }, h('h2', null, D.dossierResuemee), kopie),
       h('section', { class: 'druck-teil ist-neue-seite' }, h('h2', null, D.dossierNachlesen)),
       ...vertiefungen.map((nr) => kapitelFuerDruck(k.inhalte, nr, version)),
-    ]);
+    ] };
   };
+  const dossier = (): void => { const { titel: t, teile } = dossierBogen(); druckeBogen(t, teile); };
   const link = (nr: number): Node => k.tue !== null ? h('a', { href: `#theorie/k${nr}`, 'data-pruef': `resuemee-k${nr}` }, R.kapitel(nr, titel(nr))) : document.createTextNode(R.kapitel(nr, titel(nr)));
   const teil: HTMLElement = h('div', { class: 'stapel resuemee', 'data-pruef': 'resuemee' }, text,
     ende !== null ? h('section', { class: 'resuemee-teil', 'data-pruef': 'resuemee-weg' },
@@ -928,6 +929,9 @@ export function resuemee(b: Block, k: SzenenKontext, text: Node | null): HTMLEle
       ? h('h3', { class: 'tafel-titel resuemee-titel' }, inhaltInline(kind.felder['text'] ?? ''))
       : B.block(kind, k.inhalte, W.originalWoertlich, k.z.verlauf, k.z.rolle, 'h4')),
     k.tue !== null ? h('p', null, h('button', { type: 'button', class: 'knopf knopf-still druck-knopf', 'data-pruef': 'dossier-drucken', onclick: dossier }, W.druck.dossierDrucken)) : null);
+  // R47: Strg+P im Epilog druckt das Dossier (wie die Lernseiten, R38) – solange der Knopf im Dokument steht
+  const knopf = teil.querySelector<HTMLElement>('[data-pruef="dossier-drucken"]');
+  if (knopf !== null && typeof window !== 'undefined' && typeof window.addEventListener === 'function') bogenFuerStrgP(knopf, dossierBogen);
   return teil;
 }
 

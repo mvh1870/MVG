@@ -27,5 +27,7 @@ abweichungen:
     beleg: k6.4.4-t1
   - text: 'Die Maßnahme trägt den Zusatz „Maßnahme mit Frist“ und entsteht im Bild neben den „Auflagen“ der Freigabe auch direkt aus der Entscheidungsvorlage („erzeugt“); im Text werden Beschlüsse als Maßnahmen mit einer verantwortlichen Rolle und einer Frist nachverfolgt.'
     beleg: k6.4.3-p2
+  - text: 'Von der Entscheidungsvorlage führt eine Lebenszyklus-Kante „führt zu“ zur Änderung; der Text nennt nur die Gegenrichtung – aus Änderungen kann Entscheidungsbedarf entstehen – und führt die Änderung über Auswirkung und Freigabeweg.'
+    beleg: k6.4.3-p2 k6.4.4-t1
   - text: 'Der Knoten heißt „CTC / Prognose – Kostenprognose“; der Text führt „CTC und Prognose“ und bezeichnet die CTC als Restkostenprognose.'
     beleg: k6.4.2-t1 k13-t1

@@ -194,7 +194,7 @@ a.absatz-id:hover { background: var(--weiss); box-shadow: inset 0 0 0 1px var(--
   text-decoration: none;
 }
 .querverweis:hover { background: var(--welt-soft, var(--flaeche-2)); color: var(--welt-text, var(--navy)); }
-.querverweis-symbol { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--welt-text, var(--navy-soft)); color: var(--weiss); }
+.querverweis-symbol { display: grid; flex: none; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--welt-text, var(--navy-soft)); color: var(--weiss); }
 .querverweis-symbol .symbol { font-size: var(--gr-m); }
 .querverweis small { font-weight: 400; color: var(--tinte-2); }
 .querverweise { display: flex; flex-wrap: wrap; gap: var(--a-2); }
@@ -546,6 +546,16 @@ a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
   .druck-bogen .abbildung-bild { width: auto; max-width: 100%; max-height: 170mm; margin-inline: auto; object-fit: contain; }
   .druck-bogen a { color: inherit; text-decoration: none; }
   .druck-bogen * { box-shadow: none !important; animation: none !important; transition: none !important; }
+  /* R47: Chrome druckt ohne Hintergrundgrafiken und dunkelt helle Schrift nur auf Grau ab (Zitatblöcke, Tabellenköpfe,
+     Lernkarten-Ziffern: 2,3–2,8 : 1) – der Bogen druckt seine Farben wie am Bildschirm */
+  .druck-bogen { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  /* R47: Glieder der Wirkungskette, Feld-Schalter, Querverweise und aufgelöste Wissenscheck-Antworten nicht zwischen
+     Label und Text trennen; Einleitungssätze bleiben bei ihrer Liste */
+  .druck-bogen :is(.wirkungskette li, .querverweis, .wc-druck-antworten li) { break-inside: avoid; }
+  .druck-bogen :is(.felder-schalter, .felder-ansicht) { break-after: avoid; break-inside: avoid; }
+  .druck-bogen .absatz:has(+ .absatz .absatz-liste) { break-after: avoid; }
+  /* R47: ein Fokus-Hof (Tastaturbedienung vor dem Druck) gehört nicht aufs Papier */
+  :focus-visible { box-shadow: none !important; outline: none !important; }
 }
 
 /* Begriffs-Kompass (P10.5) im Glossar */

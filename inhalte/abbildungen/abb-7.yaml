@@ -19,5 +19,7 @@ abweichungen:
     beleg: k5.2-t1
   - text: 'Die Spalte „Betriebshandbuch & Aktive Führung“ zeigt einen Ablauf Input – Entscheidung – Umsetzung, „Governance-Routinen“ und eine „Aktive Entscheidungsführung“; beide Bezeichnungen kommen im Text nicht vor. Dort beschreibt das Betriebshandbuch den Regelbetrieb mit Taktung, Rollen, Routinen, Eskalation und Verantwortlichkeiten.'
     beleg: k5.2-t1
+  - text: 'Unter „Zielsystem“ steht die Kachel „Dokumentierte Optionen“; der Text ordnet Optionen der Vorbereitung wesentlicher Entscheidungen und der Entscheidungsvorlage zu, das Zielsystem legt fest, was bei Zielkonflikten Vorrang hat.'
+    beleg: k5.2-t1 k4-t1 k6.4.3-p2
   - text: '„Datenstand“ und „Nachverfolgung“ stehen in mehreren Spalten; im Text gehören die geltenden Versionen und Annahmen zur „Datenstands- und Nachweislogik“, die Nachverfolgungslogik zum „System der Entscheidungs-IDs“.'
     beleg: k5.2-t1

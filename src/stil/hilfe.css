@@ -161,7 +161,8 @@
   /* R41: Überschriften stehen nie allein am Seitenende und reißen nicht */
   .hilfe-inhalt :is(h1, h2, h3, h4, summary) { break-after: avoid; break-inside: avoid; }
   /* fette Zwischenzeile („Vorgehen“) vor einer Liste: im Druck als eigene Zeile, die bei der Liste bleibt */
-  .hilfe-inhalt .h-help-content-inline > b:first-child:has(+ :is(ol, ul)) { display: block; break-after: avoid; }
+  /* R47: jede fette Zwischenzeile vor einer Liste, nicht nur die erste (Handbuch: „Praxistipp“, „Lesart“, „Typische Fehler“ …) */
+  .hilfe-inhalt .h-help-content-inline > b:has(+ :is(ol, ul)) { display: block; break-after: avoid; }
   .hilfe-inhalt tr { break-inside: avoid; }
   /* der Bildschirm-Abstand unter der Seite (64 px) rutschte als leeres Blatt ans Ende */
   .hilfe .lern-rahmen { padding-bottom: 0; }
@@ -186,6 +187,10 @@
   .hilfe-inhalt .h-table-wrap table :is(td, td *) { font-size: 7.5pt; line-height: 1.35; }
   .hilfe-inhalt .h-table-wrap td :is(.h-tag, .h-badge, .h-pill, .hilfe-marke, code) { padding-inline: 3px; letter-spacing: 0; overflow-wrap: normal; hyphens: auto; }
   .hilfe-inhalt td code { white-space: normal; }
+  /* R47: die Karte um eine Querseiten-Grafik bleibt hochkant schmal – ihr Rand liefe mitten durch die Grafik */
+  .hilfe-inhalt :is(.h-card, .h-feature-card):has(.h-grafik-wrap) { background: none; box-shadow: none; border: 0; padding: 0; }
+  /* R47: wie der Druckbogen – Farben wie am Bildschirm (Nummernmarken sonst 2,3 : 1) */
+  .hilfe-inhalt { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
 
 /* Fließtext bleibt in Lesebreite, auch wenn die Spalte für Tabellen und Grafiken breiter ist */

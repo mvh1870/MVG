@@ -60,6 +60,14 @@ export const W = {
   // Druck (P10.2, E11)
   druck: {
     stand: (datum: string) => `Druck vom ${datum}`,
+    // R47: Strg+P auf Flächen ohne eigenen Druckbogen
+    ersatzTitel: 'MVG interaktiv · Druckfassungen',
+    ersatzText: 'Diese Ansicht ist für den Bildschirm gedacht. Gedruckt wird über diese Wege:',
+    ersatzWege: [
+      'Theorie: „Kapitel drucken“ auf jeder Lernseite, „Alle 13 Kapitel drucken“ in der Kapitelliste.',
+      'Story: „Dossier drucken“ im Epilog – Ihr Weg, Ihre Entscheidungen und die Kapitel zum Nachlesen.',
+      'Hilfe: jede Seite über den Druckbefehl des Browsers.',
+    ],
     kapitelDrucken: 'Kapitel drucken',
     allesDrucken: 'Alle 13 Kapitel drucken',
     allesTitel: 'Minimum Viable Governance – alle Kapitel',

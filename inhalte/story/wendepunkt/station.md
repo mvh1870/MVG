@@ -47,7 +47,7 @@ erlebt:
 titel: Was passiert, wenn …?
 kurz: Wirkungsketten
 ---
-Wählen Sie einen Auslöser (Kap. 2.5).
+Symptome fehlender Ausübungsfähigkeit aus Kap. 2.5 – je Symptom Muster, Konsequenz und MVG-Reaktion. [[bedienung:Wählen Sie einen Auslöser.]]
 
 ::: tafel k2.5-t1
 ---
@@ -102,7 +102,7 @@ Arbeit und Mandatsausübung innerhalb der Schwellen lassen sich übertragen – 
 ---
 titel: Drei Ebenen
 ---
-Wählen Sie eine Ebene (Kap. 3.3).
+Die drei Ebenen aus Kap. 3.3. [[bedienung:Wählen Sie eine Ebene.]]
 
 ::: tafel k3.3-t1
 ---
@@ -115,7 +115,7 @@ form: pyramide
 ---
 titel: Sechs Felder
 ---
-Je Feld Fehlstelle und MVG-Antwort (Kap. 4). Schalten Sie um.
+Je Feld Fehlstelle und MVG-Antwort (Kap. 4). [[bedienung:Schalten Sie um.]]
 
 ::: tafel k4-t1
 ---

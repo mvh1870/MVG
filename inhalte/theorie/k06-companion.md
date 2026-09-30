@@ -445,7 +445,7 @@ Jedes Register hat eine eigene Bedeutung und einen eigenen nächsten Schritt. Di
 - Die **Freigabe** ist die Entscheidung des Bauherrn am Abschluss der Leistungsphase; Status und Freigabeentscheidung werden dokumentiert.
 - Der **Managementbericht** ist der aggregierte Gremienbericht für Information und Beschlussvorbereitung.
 
-Entscheidungen, Risiken, Änderungen und Freigaben haben eigene Statusbegriffe, und diese bleiben vom Freigabeprozess getrennt. Die Leiste zeigt den Weg einer Freigabe, die Karten die Status der drei anderen.
+Entscheidungen, Risiken, Änderungen und Freigaben haben eigene Statusbegriffe, und diese bleiben vom Freigabeprozess der Entscheidungsvorlage (Kap. 9.4) getrennt. Die Leiste zeigt den Status einer Freigabe, die Karten die Status der drei anderen.
 
 ::: sortieren
 ---
@@ -642,14 +642,14 @@ Darüber folgt die Beschlussfassung durch den Bauherrn im Lenkungskreis.
 ---
 text: "In der Story erlebt: B1 · Übernahme ohne Übergabe – mit MVG"
 ---
-Welt B, Monat 1: Der Jour fixe ist der Ort der wöchentlichen Risikosichtung, das Änderungsgremium tagt monatlich, und jedes Register hat eine verantwortliche Rolle und einen Turnus.
+Welt B, Monat 1: Die Risikosichtung ist wöchentlich (dienstags), das Änderungsgremium tagt monatlich, und jedes Register hat eine verantwortliche Rolle und einen Turnus.
 :::
 
 ::: querverweis B2
 ---
 text: "In der Story erlebt: B2 · Zusage im Flur – mit MVG"
 ---
-Welt B, Monat 3: Die Register-Abgrenzung gibt beiden Einträgen ihren Weg – die Lieferzeit wird Frühwarnung `FRW-002`, der Mensa-Wunsch wird Änderung `AEN-012` – nächster Schritt: Auswirkung und Freigabeweg.
+Welt B, Monat 3: Die Register-Abgrenzung gibt beiden Einträgen ihren Weg – die Lieferzeit wird Frühwarnung `FRW-002` (nächster Schritt: bestätigen), der Mensa-Wunsch wird Änderung `AEN-012` (nächster Schritt: Auswirkung und Freigabeweg).
 :::
 
 ::: querverweis B3

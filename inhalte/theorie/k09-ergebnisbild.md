@@ -148,7 +148,7 @@ titel: Eigene Arbeitsrolle oder nicht?
 links: Arbeitsrolle im Standardmodell
 rechts: Keine eigene Arbeitsrolle
 ---
-Ordnen Sie zu, was im Standard-Rollenmodell als eigene Arbeitsrolle zählt.
+[[bedienung:Ordnen Sie zu,]] was im Standard-Rollenmodell als eigene Arbeitsrolle zählt.
 
 ::: posten pl
 ---

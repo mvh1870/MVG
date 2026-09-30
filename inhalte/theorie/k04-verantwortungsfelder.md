@@ -29,9 +29,9 @@ In sechs Feldern muss der Bauherr selbst entscheidungsfähig bleiben. Die Vorber
 ---
 titel: Sechs Felder im Überblick
 ---
-Die sechs Felder sind keine juristische Vollständigkeitsliste. Sie sind eine Arbeitsstruktur: Mit ihr lässt sich sichtbar machen, prüfen und gestalten, ob der Bauherr seine Verantwortung tatsächlich ausüben kann.
+Die sechs Felder sind keine juristische Vollständigkeitsliste. Sie sind eine Arbeitsstruktur: Mit ihr lässt sich die Ausübungsfähigkeit des Bauherrn sichtbar, prüfbar und gestaltbar machen: Kann er seine Verantwortung tatsächlich ausüben?
 
-Jedes Feld hat denselben Aufbau. Es gibt einen **nichtdelegierbaren Kern** – das, was nur der Bauherr festlegen, annehmen oder freigeben kann. Daneben steht die **delegierbare Vorbereitung**: Analysen, Varianten, Vorlagen, Register und Protokolle, die andere Beteiligte erarbeiten können. Und es gibt eine **typische Fehlstelle**, an der es in diesem Feld typischerweise hakt, und die Antwort, die [[Minimum Viable Governance (MVG)]] darauf gibt.
+Jedes Feld hat denselben Aufbau. Es gibt einen **nichtdelegierbaren Kern** – das, was nur der Bauherr festlegen, annehmen oder freigeben kann. Daneben steht die **delegierbare Vorbereitung**: Analysen, Varianten, Vorlagen, Register und Protokolle, die andere Beteiligte erarbeiten können. Und es gibt eine **typische Fehlstelle**, an der es in diesem Feld hakt, und die Antwort, die [[Minimum Viable Governance (MVG)]] darauf gibt.
 
 Die Tafel zeigt alle sechs Felder nebeneinander. [[bedienung:Mit der Übung darunter können Sie prüfen, ob Sie Kern und Vorbereitung auseinanderhalten: Wohin gehört die jeweilige Tätigkeit?]]
 
@@ -47,7 +47,7 @@ titel: Delegierbar oder beim Bauherrn?
 links: Delegierbare Vorbereitung
 rechts: Kern beim Bauherrn
 ---
-Ordnen Sie jede Tätigkeit zu. Alle Zuordnungen stammen aus der Tafel der sechs Felder.
+[[bedienung:Ordnen Sie jede Tätigkeit zu.]] Alle Zuordnungen stammen aus der Tafel der sechs Felder.
 
 ::: posten 1
 ---
@@ -218,7 +218,7 @@ Darüber beschließt der Bauherr im Lenkungskreis.
 
 ::: wissenscheck mandatsleiter
 ### Frage
-Eine Änderung hat einen Wert von 250 TEUR – wer entscheidet nach dem Muster-Mandatsleiter?
+Eine Änderung hat einen Wert von 250 TEUR – wer entscheidet nach der Muster-Mandatsleiter?
 
 ### Erklärung
 Nach dem Muster gibt die Bauherren-PL bis einschließlich 100 TEUR eigenständig frei; oberhalb von 100 TEUR bis einschließlich 5 Mio. € entscheidet das Änderungsgremium; darüber beschließt der Bauherr im Lenkungskreis.

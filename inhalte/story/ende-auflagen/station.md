@@ -110,7 +110,7 @@ Was eine Freigabe ist, sagt das Glossar: [[zitat:k13-t1|Die Freigabe gibt die n�
 
 Die Abfolge bleibt: [[zitat:k9.3-p2|Die Freigabe am Abschluss einer Leistungsphase gibt die n채chste frei.]]
 
-Kap. 12 zieht Bilanz: [[zitat:k12-p1|F체r Bauherren z채hlt am Ende nicht die Zahl der Governance-Artefakte, sondern ihre F체hrungswirkung.]] W채hlen Sie eine Karte:
+Kap. 12 zieht Bilanz: [[zitat:k12-p1|F체r Bauherren z채hlt am Ende nicht die Zahl der Governance-Artefakte, sondern ihre F체hrungswirkung.]] [[bedienung:W채hlen Sie eine Karte.]]
 
 ::: tafel k12-t1
 ---

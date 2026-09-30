@@ -157,7 +157,7 @@ titel: Neu geordnet oder nicht?
 links: Wird neu geordnet
 rechts: Wird nicht neu geordnet
 ---
-Ordnen Sie jeden Punkt zu.
+[[bedienung:Ordnen Sie jeden Punkt zu.]]
 
 ::: posten 1
 ---

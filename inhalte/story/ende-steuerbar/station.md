@@ -113,7 +113,7 @@ Das Betriebshandbuch ist [[zitat:k9.5-p1|das verbindliche abschließende Ergebni
 
 Der Bauherr hat eigene Zeit dazugegeben, die Geschäftsführung ebenso. Kap. 8.2 beschreibt den Stand nach 90 Tagen: [[zitat:k8.2-p4|der Entwurf des Betriebshandbuchs liegt vor. Die Übergabe schließt an.]] Die neue Mandatslogik legt der Bauherr fest; Kap. 7.5 nennt als seine Rolle die [[zitat:k7.5-t1|Entscheidung über den Auftrag zur MVG-Neuinitialisierung, Prioritäten, Neufestlegung der Projektbasis, Freigaben und eine neue Mandatslogik.]] Was die Übergabe leistet, sagt das Glossar: Sie [[zitat:k13-t1|überführt Rollen, Routinen und Betriebshandbuch in den Eigenbetrieb.]]
 
-Kap. 12 zieht Bilanz: [[zitat:k12-p1|Für Bauherren zählt am Ende nicht die Zahl der Governance-Artefakte, sondern ihre Führungswirkung.]] Wählen Sie eine Karte:
+Kap. 12 zieht Bilanz: [[zitat:k12-p1|Für Bauherren zählt am Ende nicht die Zahl der Governance-Artefakte, sondern ihre Führungswirkung.]] [[bedienung:Wählen Sie eine Karte.]]
 
 ::: tafel k12-t1
 ---

@@ -13,7 +13,7 @@ titel: Implementierung – von Diagnose zu Regelbetrieb
 kurztitel: Implementierung
 story: [wirklichkeit]
 ---
-Kapitel 8 zeigt, in welcher Reihenfolge Minimum Viable Governance (MVG) eingeführt wird und woran man erkennt, dass die Einführung gelungen ist. Der Ansatz ist bewusst pragmatisch: erst ein Lagebild, dann ein Mindestmodell, dann der Test an echten Entscheidungen, zuletzt die Übergabe in den Regelbetrieb. Für den Bauherrn ist das Kapitel wichtig, weil es in jedem Schritt seine eigene Mitwirkung verlangt – und weil die Abnahme nicht an Papieren gemessen wird, sondern daran, ob seine Organisation das Modell selbst anwenden kann.
+Kapitel 8 zeigt, in welcher Reihenfolge Minimum Viable Governance (MVG) eingeführt wird und woran man erkennt, dass die Einführung gelungen ist. Der Ansatz ist bewusst pragmatisch: erst ein Lagebild, dann ein Mindestmodell, dann der Test an echten Entscheidungen, zuletzt die Übergabe in den Regelbetrieb. Für den Bauherrn ist das Kapitel wichtig, weil es in jedem Schritt seine eigene Mitwirkung verlangt – und weil die Abnahme nicht allein an Papieren gemessen wird, sondern auch daran, ob seine Organisation das Modell selbst anwenden kann.
 
 ::: kernaussage
 MVG wird in Schritten eingeführt: Lagebild, funktionsfähiges Mindestmodell, Test an echten Entscheidungen, Übergabe in den Regelbetrieb. Abnahmefähig ist es, wenn die Bauherrenorganisation diesen Mindeststandard hat und praktisch anwenden kann.
@@ -115,7 +115,7 @@ titel: Was in welchem Zeitraum im Mittelpunkt steht
 titel: 0–30 Tage
 marke: Sichtbarkeit
 ---
-**Fokus:** Diagnose und Priorisierung. Welche Entscheidungen sind kritisch? Wo fehlen Mandate? Welche Datenstände widersprechen sich? Welche Risiken und Änderungen brauchen eine Entscheidung des Bauherrn?
+**Fokus:** Diagnose und Priorisierung. Welche Entscheidungen sind kritisch? Wo fehlen Mandate? Welche Datenstände widersprechen sich? Welche Risiken und Änderungen brauchen eine bauherrenseitige Entscheidung?
 
 **Typische Ergebnisse:** Bewertungsmatrix, wichtigste Risiken, Entscheidungsliste, Sofortmaßnahmen.
 :::
@@ -148,7 +148,7 @@ links: Vorgehensmodell
 rechts: 30/60/90-Tage-Logik
 ---
 ::: ansicht links
-**Der verbindliche Projektverlauf.** Einrichtung → Diagnose → Konzeption → Pilotierung → Befähigung → Regelbetrieb. Jeder Schritt bis einschließlich der Übergabe in den Regelbetrieb hat seine eigene Abnahme.
+**Der verbindliche Verlauf der Einführung.** Einrichtung → Diagnose → Konzeption → Pilotierung → Befähigung → Regelbetrieb. Jeder Schritt bis einschließlich der Übergabe in den Regelbetrieb hat seine eigene Abnahme.
 :::
 
 ::: ansicht rechts
@@ -167,7 +167,7 @@ form: zeitachse
 Wann würden Sie die 30/60/90-Tage-Logik heranziehen?
 
 ### Erklärung
-Sie ist ein Orientierungsrahmen nach der MVG-Reifegradanalyse und im Rahmen einer MVG-Neuinitialisierung – kein allgemeiner Einführungsrhythmus und kein starrer Projektplan. Der verbindliche Projektverlauf folgt dem Vorgehensmodell.
+Sie ist ein Orientierungsrahmen nach der MVG-Reifegradanalyse und im Rahmen einer MVG-Neuinitialisierung – kein allgemeiner Einführungsrhythmus und kein starrer Projektplan. Der verbindliche Verlauf der Einführung folgt dem Vorgehensmodell.
 
 ::: antwort a
 ---
@@ -190,7 +190,7 @@ Ein allgemeiner Einführungsrhythmus ist sie ausdrücklich nicht.
 titel: Als festen Projektplan
 praefix: "Nicht ganz:"
 ---
-Sie ist kein starrer Projektplan; der verbindliche Projektverlauf folgt dem Vorgehensmodell.
+Sie ist kein starrer Projektplan; der verbindliche Verlauf der Einführung folgt dem Vorgehensmodell.
 :::
 
 ::: zitat k8.2-p1
@@ -215,7 +215,7 @@ titel: Wer trägt was bei?
 links: Bauherrenseite
 rechts: Bauherr Mentoren
 ---
-Ordnen Sie jeden Beitrag zu.
+[[bedienung:Ordnen Sie jeden Beitrag zu.]]
 
 ::: posten rolle
 ---

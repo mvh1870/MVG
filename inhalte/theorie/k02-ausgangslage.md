@@ -164,7 +164,7 @@ Erfahrung wird nicht ersetzt, aber in wiederholbare Führungslogik überführt.
 ---
 titel: Warum Berichterstattung das Kernproblem nicht löst
 ---
-Wenn ein Projekt ins Rutschen kommt, liegt eine Reaktion nahe: mehr Berichte, mehr Abstimmung, mehr Gremienvorlagen, mehr Eskalationsrunden. Das kann im Einzelfall helfen. Die eigentliche Frage beantwortet es aber nicht: Wer darf und muss was auf welcher Grundlage entscheiden?
+Wenn ein Projekt ins Rutschen kommt, liegt eine Reaktion nahe: mehr Berichte, mehr Abstimmung, mehr Gremienvorlagen, mehr Eskalationsrunden. Das kann im Einzelfall helfen. Die eigentliche Frage beantwortet es aber nicht automatisch: Wer darf und muss was auf welcher Grundlage entscheiden?
 
 Der Grund ist einfach. Berichte erzeugen Information. Führung entsteht erst, wenn Information mit Mandat, Entscheidung, Schwelle, Risikoannahme, [[Datenstand]], [[Freigabe]] und Nachweis verbunden wird. Die vier Karten zeigen, was ohne diese Verbindung übrig bleibt.
 
@@ -316,7 +316,7 @@ Welt A steht still: Symptom-Radar und Wirkungsketten aus Kap. 2.5, bezogen auf I
 ---
 text: "In der Story erlebt: B3 · Kosten +8 %"
 ---
-Welt B, Monat 5, derselbe Montag: ein Datenstand, ein Mandat, eine Entscheidungsvorlage.
+Welt B, Monat 5, derselbe Montag: ein Datenstand, eine Mandatsprüfung, eine Entscheidungsvorlage.
 :::
 
 ::: querverweis B6

@@ -27,7 +27,7 @@ Große Bauvorhaben kommen ohne Fachleute nicht aus. Planer rechnen Varianten dur
 
 Etwas anderes ist die Legitimation. Wenn ein Ziel Vorrang bekommt, ein Risiko bewusst in Kauf genommen oder eine [[Freigabe]] erteilt wird, braucht es jemanden, der dafür einsteht. Das kann nur der Bauherr sein. Die beste Vorlage der Projektsteuerung ändert daran nichts: Sie bereitet die Entscheidung vor, sie ersetzt sie nicht.
 
-Woran erkennen Sie die Grenze im Projekt? Analyse, Vorbereitung, Koordination und Dokumentation können andere übernehmen. Ziel, Mandat, wesentliche Entscheidung, Risikoannahme, Freigabe und Nachweis muss der Bauherr selbst legitimieren. Beim Nachweis heißt das: Das Protokoll darf ein Dritter schreiben, dass die Beschlusslage belastbar bleibt, verantwortet der Bauherr. MVG soll diese Verantwortung praktisch handhabbar machen.
+Woran erkennen Sie die Grenze im Projekt? Analyse, Vorbereitung, Koordination und Dokumentation können andere übernehmen. Ziel, Mandat, wesentliche Entscheidung, Risikoannahme, Freigabe und Nachweis muss der Bauherr selbst legitimieren. Beim Nachweis heißt das: Das Protokoll darf ein Dritter schreiben; dass die Beschlusslage nachweisbar bleibt, verantwortet der Bauherr. MVG soll diese Verantwortung praktisch handhabbar machen.
 
 ::: zitat k1.1-p1
 Bauherren können Arbeit, Analyse, Koordination und Dokumentation delegieren. Nicht delegierbar bleibt die Legitimation von Ziel, Mandat, wesentlicher Entscheidung, Risikoannahme, Freigabe und Nachweis. MVG macht diese Verantwortung praktisch handhabbar.
@@ -39,7 +39,7 @@ titel: Arbeit oder Legitimation?
 links: Kann abgegeben werden
 rechts: Bleibt beim Bauherrn
 ---
-Ordnen Sie jede Tätigkeit zu. Es gibt keine Punkte – nur eine kurze Erklärung.
+[[bedienung:Ordnen Sie jede Tätigkeit zu. Es gibt keine Punkte – nur eine kurze Erklärung.]]
 
 ::: posten 1
 ---
@@ -117,7 +117,7 @@ Die wesentliche Freigabe bleibt beim Bauherrn, auch wenn die Unterlagen von Drit
 ---
 titel: Managementaussagen
 ---
-Das Kapitel verdichtet MVG in fünf Aussagen für die Leitungsebene. Sie beschreiben, was die Projektsteuerung leistet, wie MVG die Verantwortung in Werkzeuge übersetzt, woraus Entscheidungssicherheit entsteht, warum Befähigung dazugehört und welche Rolle die frühe Projektphase spielt.
+Das Kapitel verdichtet MVG in fünf Aussagen für die Leitungsebene. Sie beschreiben, was die Projektsteuerung leistet, wie MVG die Verantwortung in Rollen, Mandate und Routinen übersetzt, woraus Entscheidungssicherheit entsteht, warum Befähigung dazugehört und welche Rolle die frühe Projektphase spielt.
 
 Die dritte Aussage trägt das Modell: Entscheidungssicherheit entsteht nicht aus einem einzelnen guten Dokument. Sie entsteht, wenn Ziel, Mandat, Datenstand, Risiko, Freigabe und Nachweis verbindlich zusammenhängen. Fehlt ein Glied, fehlt dieser Zusammenhang – etwa wenn niemand sagen kann, auf welchem Datenstand eine Entscheidung beruht. Gehen Sie die Kette unten Glied für Glied durch.
 
@@ -140,7 +140,7 @@ Sie unterstützt bei Kosten, Terminen, Qualität, Koordination und Berichten. Di
 titel: Übersetzung
 symbol: wechsel
 ---
-MVG macht aus Bauherrenverantwortung greifbare Werkzeuge: Rollen, Mandate, Freigaben, [[Entscheidungs-ID|Entscheidungs-IDs]], Datenstandslogik, Eskalation, [[Betriebshandbuch]] und [[Befähigung]].
+MVG übersetzt Bauherrenverantwortung in Rollen, Mandate, Freigaben, [[Entscheidungs-ID|Entscheidungs-IDs]], Datenstandslogik, Eskalation, [[Betriebshandbuch]] und [[Befähigung]].
 :::
 
 ::: karte 3
@@ -222,7 +222,7 @@ Lässt sich die Entscheidung später nachvollziehen? Dafür wird sie in der [[Na
 ---
 titel: Ergebnisbild
 ---
-Was hat die Bauherrenorganisation in der Hand, wenn MVG umgesetzt ist? Keine lose Sammlung einzelner Methoden, sondern ein zusammenhängendes Führungs- und Entscheidungsmodell. Es zeigt, welche Entscheidungen beim Bauherrn bleiben und welche Vorbereitung delegierbar ist. Es legt fest, welche Mandate und Schwellen gelten und welche Unterlagen entscheidungsreif sein müssen. Und es verankert jede Entscheidung nachvollziehbar in der [[Nachweiskette]].
+Was hat die Bauherrenorganisation in der Hand, wenn MVG umgesetzt ist? Keine lose Sammlung einzelner Methoden, sondern ein zusammenhängendes Führungs- und Entscheidungsmodell. Es zeigt, welche Entscheidungen beim Bauherrn bleiben und welche Vorbereitung delegierbar ist. Es legt fest, welche Mandate und Schwellen gelten und welche Unterlagen entscheidungsreif sein müssen. Und es zeigt, wie Entscheidungen nachvollziehbar in der [[Nachweiskette]] verankert werden.
 
 Das Kapitel nennt sechs Elemente dieses Modells, jedes mit seinem Ergebnis. Die Karten unten zeigen sie im Wortlaut der Tabelle. Mehrere davon werden in späteren Kapiteln ausführlich behandelt.
 

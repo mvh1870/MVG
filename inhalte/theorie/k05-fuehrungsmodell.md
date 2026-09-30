@@ -73,7 +73,7 @@ titel: Was verlangt MVG – und was nicht?
 links: Gehört zur Entscheidungssicherheit
 rechts: Verlangt MVG nicht
 ---
-Ordnen Sie zu: Was macht eine Entscheidung entscheidungssicher, und was verlangt MVG ausdrücklich nicht?
+[[bedienung:Ordnen Sie zu:]] Was macht eine Entscheidung entscheidungssicher, und was verlangt MVG ausdrücklich nicht?
 
 ::: posten 1
 ---

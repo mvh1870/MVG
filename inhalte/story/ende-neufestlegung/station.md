@@ -109,7 +109,7 @@ Die Tabelle in Kap. 3.2 trennt Vorbereitung und Entscheidung. Delegierbar ist di
 
 Der Stadtrat, der die bisherige Projektbasis beschlossen hat, und der Bauausschuss werden rückgekoppelt; der Bauausschuss tagt am Donnerstag, 18. März. Die Entscheidungsvorlage haben Bauherren-PL, Projektsteuerung und Controlling seit Januar vorbereitet, mit Varianten der Generalplanung. Beschließen kann das nur der Bauherr; vorbereiten konnten es andere. Auf der neuen Basis können betroffene Freigaben nachgeholt oder wiederholt werden – als nächste die Freigabe zum Abschluss von LPH 5; erteilen wird sie der Bauherr selbst.
 
-Kap. 12 zieht Bilanz: [[zitat:k12-p1|Für Bauherren zählt am Ende nicht die Zahl der Governance-Artefakte, sondern ihre Führungswirkung.]] Wählen Sie eine Karte:
+Kap. 12 zieht Bilanz: [[zitat:k12-p1|Für Bauherren zählt am Ende nicht die Zahl der Governance-Artefakte, sondern ihre Führungswirkung.]] [[bedienung:Wählen Sie eine Karte.]]
 
 ::: tafel k12-t1
 ---

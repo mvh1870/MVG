@@ -121,7 +121,7 @@ titel: Wer tut was in der Konzeption?
 links: Entscheidet der Bauherr
 rechts: Leistet Bauherr Mentoren
 ---
-Ordnen Sie jede Tätigkeit zu.
+[[bedienung:Ordnen Sie jede Tätigkeit zu.]]
 
 ::: posten zielprioritaeten
 ---
@@ -197,7 +197,7 @@ titel: Pilotierung und Kalibrierung
 ---
 Ein Modell, das nur auf Papier überzeugt, reicht nicht. Deshalb wird der Entwurf an realen Entscheidungen, Freigaben, Risiken oder Änderungen erprobt. Erst im echten Entscheidungsfall zeigt sich, ob die Schwellen praktikabel sind, ob die Datenstände tragen, ob die Mandate klar sind und ob Gremien mit ihren Unterlagen tatsächlich entscheiden können.
 
-Im Projekt heißt das zum Beispiel: Die nächste anstehende Änderung läuft bereits über die neue Entscheidungs-ID, die neue Schwelle und die neue Vorlage. Dabei wird sichtbar, wo es hakt – etwa weil eine Schwelle missverständlich formuliert ist oder eine Vorlage die Frage nicht klar stellt.
+Im Projekt heißt das zum Beispiel: Die nächste wesentliche Entscheidung – etwa über eine anstehende Änderung – erhält bereits eine Entscheidungs-ID, läuft über die neue Schwelle und auf der neuen Vorlage. Dabei wird sichtbar, wo es hakt – etwa weil eine Schwelle missverständlich formuliert ist oder eine Vorlage die Frage nicht klar stellt.
 
 Der Bauherr wendet das Modell im echten Entscheidungsfall an, gibt Rückmeldung und gibt die Anpassungen frei. Bauherr Mentoren begleitet, beobachtet, kalibriert, moderiert und fasst zusammen, was gelernt wurde. Am Ende stehen Berichte zur Pilotierung, kalibrierte Schwellen, angepasste Routinen, festgehaltene Erkenntnisse und ein Abnahmevorschlag.
 
@@ -324,7 +324,7 @@ titel: Leistung oder Grenze?
 links: Kann Bauherr Mentoren leisten
 rechts: Ersetzt Bauherr Mentoren nicht
 ---
-Ordnen Sie zu, was innerhalb und was außerhalb der Leistungen liegt.
+[[bedienung:Ordnen Sie zu, was innerhalb und was außerhalb der Leistungen liegt.]]
 
 ::: posten diagnose
 ---

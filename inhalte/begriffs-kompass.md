@@ -29,7 +29,7 @@ andere: [Steering Committee, Lenkungsausschuss, Steuerungskreis]
 beleg: k4.2-p3
 ---
 ### Hinweis
-Im Muster-Mandatsleiter erfolgt die Beschlussfassung durch den Bauherrn im Lenkungskreis (k4.2-p3).
+Auf der obersten Stufe der Muster-Mandatsleiter (über 5 Mio. €) erfolgt die Beschlussfassung durch den Bauherrn im Lenkungskreis (k4.2-p3).
 :::
 
 ::: kompass entscheidungsvorlage

@@ -1341,6 +1341,8 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
   .nav-knopf { padding: 0 10px; }
   .nav-knopf-text { display: none; }
   .vergleichstabelle th, .vergleichstabelle td, .register-tabelle th, .register-tabelle td { padding: 6px var(--a-2); overflow-wrap: anywhere; }
+  /* R47: wortgleiche Tabellen im Originaltext rollen in ihrem Bereich (tabindex) statt Wörter mitten im Wort zu brechen */
+  .absatz-block .register-tabelle :is(th, td) { overflow-wrap: normal; }
   .lph-band { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }
 @media (max-width: 420px) {
@@ -2121,8 +2123,17 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
   .lagetafel table { width: 100%; table-layout: fixed; }
   .lagetafel :is(th, td) { overflow-wrap: anywhere; hyphens: auto; }
   .baustein-karte, .protokoll, .glied { min-width: 0; overflow-wrap: anywhere; }
+  /* R47: Datum und Titel des Protokollkopfs brechen nicht mitten im Wort – der Kopf umbricht als Ganzes */
+  .protokoll-kopf { flex-wrap: wrap; }
+  .protokoll-kopf small { flex: none; white-space: nowrap; }
+  .protokoll-kopf b { overflow-wrap: break-word; }
   .instrument-wertzeile { white-space: normal; }
   .instrument .wert.wort { flex-wrap: wrap; row-gap: 2px; font-size: 18px; }
   .datenstand-zahlen b { white-space: normal; }
 }
 .feld-karte { min-width: 0; overflow-wrap: anywhere; }
+
+/* R47: Bauteil-Beschriftungen, deren längstes Wort bei 320 px oder im Beamer-Zoom über 93 % der Zeile liegt
+   („Änderungsgremium“, „Letztverantwortung“, „Entscheidungsregister“, „Vorbereitung“): lieber mit Strich getrennt als
+   mitten im Wort gebrochen, falls ein Browser etwas breiter setzt (L-129) */
+.leiter-stock b, .pyramide-stufe, .lw-schalter-seite, .tafel small { hyphens: auto; }

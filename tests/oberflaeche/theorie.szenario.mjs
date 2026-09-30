@@ -48,7 +48,12 @@ export async function lauf(seite, h) {
       if (sw > 321) h.befund(`k${nr}: rollt bei 320 px waagerecht (${sw} px)`);
       for (const fund of await seite.evaluate(pruefeLayout)) h.befund(`k${nr} @320: ${fund}`);
       for (const fund of await seite.evaluate(rollbarOhneTastatur)) h.befund(`k${nr} @320: ${fund}`);
+      // R47: kein Wort bricht mitten im Wort ohne Trennstrich (Titel, Körbe, Tabellenköpfe, Originaltext) – außer in Text mit hyphens:auto
+      const bruch320 = await wortbrueche(seite, '.lernseite', { bildschirm: true });
+      if (bruch320.length > 0) h.befund(`k${nr} @320: ${bruch320.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(bruch320.slice(0, 6))}`);
       await seite.setViewportSize(vp); await h.warte(100);
+      const bruch = await wortbrueche(seite, '.lernseite', { bildschirm: true });
+      if (bruch.length > 0) h.befund(`k${nr} @${vp.width}: ${bruch.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(bruch.slice(0, 6))}`);
     }
     // breite Tabellen im Originaltext: scrollbarer Bereich per Tastatur erreichbar
     const ohneFokus = await seite.evaluate(() => [...document.querySelectorAll('.absatz-block')]

@@ -83,6 +83,10 @@
 .kapitel-nr { grid-row: span 2; font: 800 var(--gr-8xl)/.8 var(--schrift-anzeige); color: var(--petrol); }
 .kapitel-kicker { font: var(--typo-kicker); letter-spacing: var(--sperrung-kicker); text-transform: uppercase; color: var(--tinte-2); }
 .kapitel-titel { font: 800 clamp(30px, 3.6vw, 44px)/1.02 var(--schrift-anzeige); letter-spacing: .01em; color: var(--navy); }
+/* R47: Titel nie mitten im Wort gebrochen – das längste Wort (--zeichen, gesetzt beim Bauen) bestimmt die Höchstgröße im Schmalen */
+.kapitel-titel[style*="--zeichen"] { font-size: min(clamp(30px, 3.6vw, 44px), calc((100vw - 40px) * 2 / var(--zeichen, 1))); }
+/* R47: Absätze des Originaltexts stehen als span (Kopf und Text im Raster) – sie trennen wie Absätze */
+.absatz > span:not(.absatz-kopf):not(.absatz-id) { hyphens: auto; }
 .kapitel-einstieg { grid-column: 1 / -1; max-width: 60ch; margin-top: var(--a-3); font-size: var(--gr-xl); line-height: 1.5; color: var(--tinte-2); }
 
 /* Kernaussage (entspricht Ebene 1) */
@@ -575,7 +579,7 @@ a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
 .lernseite .absatz, .lernseite [data-abschnitt], .lernseite .impressum { scroll-margin-top: 72px; }
 
 /* Wissenscheck (P11.6): Frage, Antworten, Rückmeldung mit Erklärung und Beleg – ohne Punkte */
-.wissenscheck { display: grid; gap: var(--a-3); padding: var(--a-5); border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 4px 0 0 var(--petrol), inset 0 0 0 1px var(--linie); }
+.wissenscheck { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--a-3); padding: var(--a-5); border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 4px 0 0 var(--petrol), inset 0 0 0 1px var(--linie); }
 .wissenscheck > .t-label { color: var(--tinte-2); }
 .wc-frage { font: 600 var(--gr-l)/1.35 var(--schrift-text); color: var(--tinte); }
 .wc-frage p { margin: 0; }
@@ -632,7 +636,8 @@ html:has(.lernseite) { scroll-padding-top: 72px; }
 /* Sortieren: je Posten zwei Körbe, Rückmeldung mit Erklärung */
 .lw-koerbe { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--a-2); }
 /* R28: bei 320–370 px passen zwei Körbe mit Versal-Wörtern („ENTSCHEIDUNGSVORLAGE“) nicht nebeneinander */
-@media (max-width: 370px) { .lw-koerbe { grid-template-columns: minmax(0, 1fr); } }
+/* R47: Korb-Labels in Versalien („Gehört zur Entscheidungssicherheit“) brachen bis 440 px mitten im Wort – unter 480 px untereinander */
+@media (max-width: 480px) { .lw-koerbe { grid-template-columns: minmax(0, 1fr); } }
 .lw-korb { padding: var(--a-2) var(--a-3); border-radius: var(--radius-m, 8px); font: 700 var(--gr-s)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; text-align: center; }
 .lw-korb.lw-seite-links, .lw-korb-knopf.lw-seite-links[aria-pressed="true"] { background: var(--flaeche-4); color: var(--navy); }
 .lw-korb.lw-seite-rechts, .lw-korb-knopf.lw-seite-rechts[aria-pressed="true"] { background: var(--gold-soft); color: var(--gold-text); box-shadow: inset 0 0 0 1px var(--gold-soft-kante); }

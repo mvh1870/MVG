@@ -10,7 +10,7 @@
 
 import type { TitelStufe } from '../../grafik/tafel.ts';
 import type { Block, Ebene, OeffentlicheInhalte, TheorieSeite, WhitepaperKapitel } from '../../inhalte/typen.ts';
-import { h, ersetze } from '../h.ts';
+import { h, ersetze, laengstesWort, umbruchNachSchraegstrich } from '../h.ts';
 import { bildmarke } from '../marke.ts';
 import { sym, symbolAusInhalt, tafel as tafelBlock, raci as raciBlock, merksatz, hinweis } from '../bausteine/bloecke.ts';
 import { inhalt, inhaltInline } from '../bausteine/inhalt.ts';
@@ -379,7 +379,7 @@ function originaltext(b: Block, fassung: string, kapitel: number, bedienbar: boo
       : h('span', { class: 'absatz-id' }, id);
     const zeile: HTMLElement = h('div', { class: 'absatz', 'data-absatz': id },
       kopf,
-      el.tagName === 'P' ? h('span', null, ...el.childNodes)
+      el.tagName === 'P' ? (() => { const span = h('span', null, ...el.childNodes); umbruchNachSchraegstrich(span); return span; })()
         // breite Tabellen scrollen waagrecht: der Bereich muss per Tastatur erreichbar sein (WCAG 2.1.1)
         : el.tagName === 'TABLE' ? h('div', { class: 'absatz-block', tabindex: 0, role: 'region', 'aria-label': W.theorie.tabelle(id) }, el)
         : h('div', { class: 'absatz-block' }, el));
@@ -502,7 +502,7 @@ function lernseite(o: TheorieOptionen, nr: number): HTMLElement {
   const kopf = h('header', { class: 'kapitel-kopf' },
     h('span', { class: 'kapitel-nr' }, String(nr)),
     h('p', { class: 'kapitel-kicker' }, `${W.theorie.kapitelVon(String(nr))} · ${W.whitepaper} ${fassung}`),
-    h('h1', { class: 'kapitel-titel', tabindex: -1 }, titel),
+    h('h1', { class: 'kapitel-titel', tabindex: -1, style: `--zeichen:${laengstesWort(titel)}` }, titel),
     seite !== null && seite.einleitung !== '' ? h('div', { class: 'kapitel-einstieg' }, inhalt(seite.einleitung)) : null);
 
   const drucken = o.bedienbar && seite !== null

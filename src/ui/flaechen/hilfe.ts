@@ -8,7 +8,7 @@
  */
 
 import daten from '../../generiert/hilfe.json' with { type: 'json' };
-import { h, textAus, vonHtml } from '../h.ts';
+import { h, laengstesWort, textAus, vonHtml } from '../h.ts';
 import { bildmarke } from '../marke.ts';
 import { sym } from '../bausteine/bloecke.ts';
 import { halteRollenImDialog, oeffneDialog, schliesseBeiKlickDaneben } from '../dialog.ts';
@@ -229,7 +229,7 @@ function seite(o: HilfeOptionen, hilfe: HilfeDaten, e: Eintrag, vor: Eintrag | n
     h('header', { class: 'kapitel-kopf' },
       h('span', { class: 'kapitel-nr' }, String(e.nr)),
       h('p', { class: 'kapitel-kicker' }, e.kapitel !== null ? `${W.hilfe.kapitelVon(e.nr)} · ${e.kapitel.titel}` : W.hilfe.kapitelVon(e.nr)),
-      h('h1', { class: 'kapitel-titel', tabindex: -1 }, e.seite.titel)),
+      h('h1', { class: 'kapitel-titel', tabindex: -1, style: `--zeichen:${laengstesWort(e.seite.titel)}` }, e.seite.titel)),
     h('p', { class: 'kapitel-vermerk' }, h('span', { class: 'vermerk-hell' }, sym('info'), W.ungeprueft)),
     h('p', { class: 'hilfe-hinweis', 'data-pruef': 'hilfe-hinweis' }, W.hilfe.hinweis),
     h('div', { class: 'hilfe-inhalt', 'data-pruef': 'hilfe-inhalt' }, vonHtml(e.seite.html)),

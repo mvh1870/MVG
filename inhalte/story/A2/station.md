@@ -26,7 +26,7 @@ Dienstag, 10. März. Neue Unterlagen.
 
 ::: protokoll
 ---
-titel: Jour fixe – Ergebnisprotokoll
+titel: Jour fixe – Ergebnis­protokoll
 datum: 3. März 2026
 von: petersen
 ---

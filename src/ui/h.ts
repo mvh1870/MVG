@@ -77,6 +77,29 @@ export function elementAus(html: string): Element {
 }
 
 /** Ersetzt alle Kinder. */
+/**
+ * R47: Umbruchstelle ohne Zeichen (<wbr>) nach „/“ zwischen Wörtern („Risiko-/Änderungs-/Maßnahmenverknüpfung“,
+ * „Rollen/Freigaben/Entscheidungen“) – sonst ist die Kette ein einziges Wort und bricht mitten im Wort. Text,
+ * Suche und Kopieren bleiben unverändert (anders als U+200B im Druck).
+ */
+export function umbruchNachSchraegstrich(el: Element): void {
+  const dok = el.ownerDocument;
+  const gang = dok.createTreeWalker(el, 4);
+  const knoten: Text[] = [];
+  for (let n = gang.nextNode(); n !== null; n = gang.nextNode()) if (/[\p{L}-]\/\p{L}/u.test(n.textContent ?? '') && n.parentElement?.closest('code, svg, script, style') === null) knoten.push(n as Text);
+  for (const t of knoten) {
+    const teile = (t.textContent ?? '').split(/(?<=[\p{L}-]\/)(?=\p{L})/u);
+    const frag = dok.createDocumentFragment();
+    teile.forEach((teil, i) => { if (i > 0) frag.append(dok.createElement('wbr')); frag.append(dok.createTextNode(teil)); });
+    t.replaceWith(frag);
+  }
+}
+
+/** R47: Zeichenzahl des längsten Worts – für Schriftgrößen, die ein Wort nie mitten im Wort brechen lassen (CSS `--zeichen`). */
+export function laengstesWort(text: string): number {
+  return Math.max(1, ...text.split(/[\s/–-]+/u).map((w) => [...w].length));
+}
+
 export function ersetze(el: Element, ...kinder: Kind[]): void {
   el.replaceChildren();
   haengeAn(el, kinder);

@@ -541,6 +541,17 @@ function bereinige(wurzel, anker, titel = '') {
     if (n.parentElement?.closest('svg') !== null && n.parentElement?.closest('svg') !== undefined && n.parentElement?.tagName.toLowerCase() !== 'text' && n.parentElement?.tagName.toLowerCase() !== 'tspan') continue;
     n.textContent = ersetze(n.textContent ?? '');
   }  angleiche(wurzel);
+  // R47: Umbruchstelle ohne Zeichen nach „/“ zwischen Wörtern (Ketten wie „Rollen/Freigaben/Entscheidungen“ brachen mitten im Wort)
+  const gangW = dok.createTreeWalker(wurzel, 4);
+  /** @type {Text[]} */
+  const ketten = [];
+  for (let n = gangW.nextNode(); n !== null; n = gangW.nextNode()) if (/[\p{L}-]\/\p{L}/u.test(n.textContent ?? '') && n.parentElement?.closest('code, svg, script, style') === null) ketten.push(/** @type {Text} */ (n));
+  for (const t of ketten) {
+    const teile = (t.textContent ?? '').split(/(?<=[\p{L}-]\/)(?=\p{L})/u);
+    const frag = dok.createDocumentFragment();
+    teile.forEach((teil, i) => { if (i > 0) frag.append(dok.createElement('wbr')); frag.append(dok.createTextNode(teil)); });
+    t.replaceWith(frag);
+  }
 }
 
 /**

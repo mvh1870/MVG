@@ -101,14 +101,19 @@ export function seitenMitUeberschriftAmEnde(seiten, ueberschriften) {
  * zugeschlagen werden. Aufruf im Drucklayout (Fenster 794 px, Seite 688 px).
  * @param {import('playwright').Page} seite
  * @param {string} wurzel CSS-Selektor der geprüften Bereiche
+ * @param {{ bildschirm?: boolean }} [o] R47: am Bildschirm zählt nur Text ohne `hyphens: auto` (dort trennt ein Browser mit
+ *   Wörterbuch mit Strich; der vorinstallierte Chromium hat keins und bräche dort immer)
  * @returns {Promise<string[]>}
  */
-export async function wortbrueche(seite, wurzel) {
-  return seite.evaluate((sel) => {
+export async function wortbrueche(seite, wurzel, o = {}) {
+  return seite.evaluate(([sel, bildschirm]) => {
     /** @type {string[]} */
     const aus = [];
     // CI (Chrome 153) trennt mit Wörterbuch und sichtbarem Strich, der vorinstallierte Chromium hat keins: gemessen wird
     // ohne automatische Trennung, damit beide dasselbe prüfen – Brüche außerhalb der eigenen Trennstellen
+    /** @type {Set<Element>} */
+    const mitAuto = new Set();
+    if (bildschirm) for (const w of document.querySelectorAll(sel)) for (const el of [w, ...w.querySelectorAll('*')]) if (getComputedStyle(el).hyphens === 'auto') mitAuto.add(el);
     const ohneAuto = document.createElement('style');
     ohneAuto.textContent = '* { hyphens: manual !important; -webkit-hyphens: manual !important; }';
     document.head.append(ohneAuto);
@@ -116,7 +121,7 @@ export async function wortbrueche(seite, wurzel) {
     for (const w of document.querySelectorAll(sel)) {
       const gang = document.createTreeWalker(w, NodeFilter.SHOW_TEXT);
       for (let n = gang.nextNode(); n !== null; n = gang.nextNode()) {
-        if (n.parentElement === null || n.parentElement.getClientRects().length === 0) continue;
+        if (n.parentElement === null || n.parentElement.getClientRects().length === 0 || mitAuto.has(n.parentElement)) continue;
         for (const m of (n.textContent ?? '').matchAll(/[\p{L}\p{N}\u00ad]{4,}/gu)) {
           const wort = m[0];
           const start = m.index ?? 0;
@@ -133,5 +138,5 @@ export async function wortbrueche(seite, wurzel) {
     }
     ohneAuto.remove();
     return aus;
-  }, wurzel);
+  }, /** @type {[string, boolean]} */ ([wurzel, o.bildschirm === true]));
 }

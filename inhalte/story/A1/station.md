@@ -70,7 +70,7 @@ Wer gibt hier was frei?
 ---
 farbe: lila
 ---
-Kosten, 2028, Holzbau, Betriebskosten – was geht vor?
+Kosten, 2028, Holzbau, Betriebs­kosten – was geht vor?
 :::
 
 :::

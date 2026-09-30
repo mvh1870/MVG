@@ -187,7 +187,9 @@ test('Hilfe (P13, O-31): gleiche Aufteilung wie die Companion-Hilfe, leiser Zuga
   // R47: Governance-Fluss, Lenkungskreis berät, Eskalation und Registerzuständigkeit nach MVG, keine Wirkungsversprechen, kein Englisch im Fließtext
   assert.doesNotMatch(text, /Freigabe → Managementbericht → Maßnahme|Top-Entscheidungen treffen|Nutzen Sie den Approval-Workflow in der Entscheidungsvorlage für signierte Freigaben|sogar besser als bei einem Neustart|sonst Lenkungskreis|Eigenfreigabe bis 100 TEUR|<b>Verantwortungsdreieck<\/b>|Berichts-Sink|timeboxed|Late Claims|Threshold-Regeln|Das im Monatslauf|<b>EW Log:<\/b> Bauherren-PL|<b>Änderungsregister:<\/b> PMO/u);
   assert.match(text, /Freigabe → Maßnahme → Managementbericht/u);
-  assert.match(text, /<td>Risiko-\/Mandats-Eskalation<\/td><td>PL<\/td><td>entlang der Mandatsleiter/u);
+  // R47: Schrägstrich-Ketten brechen nach „/“ (Umbruchstelle ohne Zeichen), nicht mitten im Wort
+  assert.match(text, /Rollen\/<wbr>Freigaben/u);
+  assert.match(text, /<td>Risiko-\/(?:<wbr>)?Mandats-Eskalation<\/td><td>PL<\/td><td>entlang der Mandatsleiter/u);
   assert.match(text, /<td>Freigabeentscheidung<\/td><td>Bauherr \(im Lenkungskreis\)<\/td>/u);
   assert.match(text, /<td>Maßnahmenregister · Problemregister · Governance-Kalender · Protokolle<\/td><td>PMO<\/td>/u);
   assert.match(text, /GATE-NETZNORD-G2/u);
@@ -220,7 +222,7 @@ test('Hilfe (P13, O-31): gleiche Aufteilung wie die Companion-Hilfe, leiser Zuga
   // Prüfrunde 9: eingebettetes Dossier unter seinem Abschnitt (keine h2 im Aufklapper)
   const dm = HILFE.kapitel.find((k) => k.id === 'datenmanagement')?.html ?? '';
   // das Dossier steht in der Quelle auf Seitenebene (nach Abschnitt 6): Titel h2, Inhalt h3
-  assert.match(dm, /<h2 class="h-summary-titel">IT-\/Datenschutz-Dossier<\/h2>/u);
+  assert.match(dm, /<h2 class="h-summary-titel">IT-\/(?:<wbr>)?Datenschutz-Dossier<\/h2>/u);
   assert.match(dm, /<h3>Kurzfreigabe/u);
   // Prüfrunde 10: keine Selbstdarstellung/Akquise (O-1), keine Verweise ohne Ziel, keine Instanz-Momentaufnahme
   assert.doesNotMatch(text, /Über Bauherr Mentoren|Akquise|Print-Center →|Speicher-Modus dieser Instanz|Modul 1 oder 2|einen strukturierten MVG|Wie wir arbeiten|>→ Portfolio-Manager/u);
@@ -1069,6 +1071,16 @@ test('Resümee (P7.7): Ende, Richtung und erste Vertiefung aus der Spur; Zwische
   const kapitel = [...bogen.querySelectorAll('.druck-kapitel')].map((x) => x.getAttribute('data-kapitel'));
   assert.deepEqual(kapitel, links.map((l) => l?.replace('#theorie/k', '') ?? ''));
   assert.equal(document.body.classList.contains('druckt-bogen'), false, 'ohne Druckdialog keine hängende Klasse');
+});
+
+test('Originaltext und Kapiteltitel (R47): Umbruch nach „/“ ohne Zeichen, Titelgröße nach dem längsten Wort', () => {
+  const k7 = baueTheorie({ inhalte, kapitel: 7, version: VERSION, bedienbar: true });
+  const absatz = k7.querySelector('.originaltext .absatz[data-absatz="k7.2-p1"] > span:not(.absatz-kopf)');
+  assert.ok(absatz, 'Absatz k7.2-p1');
+  assert.ok(absatz.querySelector('wbr'), 'Umbruchstelle nach „/“');
+  assert.match(absatz.textContent ?? '', /Risiko-\/Änderungs-\/Maßnahmenverknüpfung/u, 'Wortlaut unverändert');
+  const k6 = baueTheorie({ inhalte, kapitel: 6, version: VERSION, bedienbar: true });
+  assert.equal(k6.querySelector<HTMLElement>('.kapitel-titel')?.style.getPropertyValue('--zeichen'), String('Umsetzungsbeschleuniger'.length));
 });
 
 test('Druck (P10.2): Kapitel und alle Kapitel als Bogen – ohne Kopfleiste, Verzeichnis, Zitierknöpfe', () => {

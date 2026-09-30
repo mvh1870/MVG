@@ -4,7 +4,7 @@
  * Merksatz und Zitat. Jede Funktion zeichnet genau einen Block; Texte kommen aus dem Block.
  */
 
-import { h, elementAus } from '../h.ts';
+import { h, elementAus, laengstesWort } from '../h.ts';
 import { symbol, type SymbolName } from '../../stil/symbole.ts';
 import type { Block, Nachweis, OeffentlicheInhalte, Station } from '../../inhalte/typen.ts';
 import { kopfListe, kopfText, istKarte } from '../anzeige.ts';
@@ -124,7 +124,7 @@ export function akten(b: Block, verzug = 0): HTMLElement {
 export function tabellenstand(b: Block, i: number): HTMLElement {
   const wert = kopfText(b.kopf, 'wert') ?? '';
   // R45: die Anzeigeschrift wird nie getrennt – das längste Wort bestimmt, wie groß sie im Kasten sein darf (CSS)
-  const zeichen = Math.max(1, ...wert.split(/\s+/u).map((w) => [...w].length));
+  const zeichen = laengstesWort(wert);
   return h('div', { class: 'tabellenstand', style: `--dreh:${i % 2 === 0 ? -1 : 1.2}deg; --zeichen:${zeichen}` },
     h('span', { class: 'tabellenstand-quelle' }, sym('tabelle'), kopfText(b.kopf, 'quelle') ?? ''),
     h('b', { class: 'tabellenstand-zahl' }, wert),

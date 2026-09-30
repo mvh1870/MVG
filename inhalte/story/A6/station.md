@@ -40,7 +40,7 @@ Welche Zahl ist vertretbar?
 
 ::: protokoll
 ---
-titel: Jour fixe – Ergebnisprotokoll
+titel: Jour fixe – Ergebnis­protokoll
 datum: 3. November 2026
 von: petersen
 ---

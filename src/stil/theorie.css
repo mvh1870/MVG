@@ -542,6 +542,11 @@ a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
   /* R42: eine Tafel darf zwischen ihren Karten umbrechen – ganz verschoben ließ sie fast leere Seiten zurück (k5, k7);
      die Quellzeile bleibt bei der letzten Karte */
   .druck-bogen figure.tafel { break-inside: auto; }
+  /* R50 (Druck): die Quellzeile eines Zitatkastens (Resümee „Sechs Kernfragen“) steht nie allein auf der Folgeseite */
+  .druck-bogen .zitat-block > .quelle { break-before: avoid; }
+  .druck-bogen .zitat-block blockquote li { break-inside: avoid; }
+  /* R50 (Druck): aufgelöst trägt jede Karte ihre Seite – die Achse „Delegierbar · Grenze · Nicht delegierbar“ läse sich als Spalten */
+  .druck-bogen .schwelle-kopf { display: none; }
   .druck-bogen figure.tafel > figcaption { break-before: avoid; }
   /* R49: nach dem Kartenraster hielt Chromium `break-before: avoid` nicht ein – die Quellzeile stand allein oben auf der
      Folgeseite wie der Kopf des nächsten Blocks. Bei Kartentafeln steht sie im Druck deshalb über den Karten */

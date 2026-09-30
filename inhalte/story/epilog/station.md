@@ -3,7 +3,7 @@ id: epilog
 art: epilog
 titel: Ihr Projekt
 kurztitel: Epilog
-whitepaper-bezug: [k2.5-t1, k7.1-p1, k10.2-p1, k10.3-p1, k10.4-p1, k1-p1, k1.1-p1, k2.4-p2, k4.6-p1, k5-l1, k13-t1]
+whitepaper-bezug: [k2.5-t1, k10.2-p1, k10.3-p1, k10.4-p1, k1-p1, k1.1-p1, k2.4-p2, k4.6-p1, k5-l1, k13-t1]
 ende: ja
 ---
 
@@ -155,10 +155,6 @@ Das Schlussbild in Kap. 12 kehrt an den Anfang zurück: [[zitat:k12-p2|Damit sch
 ---
 titel: Nachweis
 ---
-::: zitat k7.1-p1
-Im Mittelpunkt steht nicht die Frage, ob Projektunterlagen vollständig wirken, sondern ob die Bauherrenorganisation ihre wesentlichen Entscheidungen, Mandate, Risikoannahmen, Freigaben, Datenstände und Nachweise ausreichend beherrscht.
-:::
-
 ::: zitat k1.1-p1
 Bauherren können Arbeit, Analyse, Koordination und Dokumentation delegieren. Nicht delegierbar bleibt die Legitimation von Ziel, Mandat, wesentlicher Entscheidung, Risikoannahme, Freigabe und Nachweis. MVG macht diese Verantwortung praktisch handhabbar.
 :::

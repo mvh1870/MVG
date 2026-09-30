@@ -13,7 +13,7 @@ status:
   offene-risiken: -1
 ---
 ### Konsequenz
-Dr. Olbers entscheidet auf der „Kostenprognose 2026-10 · Version 4“, abgeglichen mit der Prognose der Projektsteuerung.
+Dr. Olbers entscheidet auf der „Kostenprognose 2026-10 · Version 4“, abgeglichen mit den Zulieferungen der Projektsteuerung.
 
 ### Was fehlt
 Die Zusage, dass Steins Stellvertretung die Prognose weiterführt.

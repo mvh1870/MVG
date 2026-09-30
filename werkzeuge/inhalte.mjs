@@ -1099,6 +1099,25 @@ class Kompilierer {
       const zeilen = text.split('\n').filter((z) => z.trim() !== '');
       const alsListe = zeilen.length > 1 && zeilen.every((z) => /^\s*- \S/u.test(z));
       const erg = this.pruefeZitat(r.kennungen, alsListe ? zeilen.map((z) => z.replace(/^\s*- /u, '')).join(' ') : text, r.ort);
+      // R51: als Liste nur, was in der Quelle eine Liste ist – jeder Punkt ist ein ganzer Punkt der Quelle, in ihrer Reihenfolge
+      const q = this.quelle;
+      if (alsListe && q !== null) {
+        const bl = r.kennungen.length === 1 ? q.nachId.get(r.kennungen[0] ?? '') : undefined;
+        if (bl === undefined || bl.art !== 'liste' || !Array.isArray(bl.punkte)) {
+          this.fehler(r.ort, `Zitat als Liste nur aus einer Liste des Whitepapers – ${r.kennungen.join(' ')} ist keine`);
+        } else {
+          const punkte = bl.punkte.map((p) => q.normalisiere(p));
+          let j = 0;
+          for (const z of zeilen.map((x) => q.normalisiere(x.replace(/^\s*- /u, '')))) {
+            while (j < punkte.length && punkte[j] !== z) j++;
+            if (j >= punkte.length) {
+              this.fehler(r.ort, `Zitat als Liste: „${z.slice(0, 40)}“ ist kein ganzer Punkt von ${bl.id} (in der Reihenfolge der Quelle)`);
+              break;
+            }
+            j++;
+          }
+        }
+      }
       kopf['quelle'] = this.quellenangabe(r.kennungen);
       kopf['vollstaendig'] = erg.vollstaendig;
       const absaetze = r.kennungen.join(' ');

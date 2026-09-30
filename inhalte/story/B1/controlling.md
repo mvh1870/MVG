@@ -70,7 +70,7 @@ In Welt A haben Sie ‚Eigene Zahl melden‘ gewählt. In Welt B bekommt die Kä
 :::
 
 ::: rueckbezug B
-In Welt A haben Sie ‚Kostendatei nachvollziehen‘ gewählt. In Welt B muss niemand die Annahmen aus einem Kopf erfragen.
+In Welt A haben Sie ‚Kostendatei nachvollziehen‘ gewählt. In Welt B hat die Frage einen Ort: Offene Annahmen stehen im Datenstand – welche noch nur Holger Stein kennt, ist als offener Punkt benannt.
 :::
 
 ::: rueckbezug C

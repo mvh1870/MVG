@@ -95,7 +95,7 @@ kurz: Tiefer gehen
 ---
 titel: Kernaussage
 ---
-Arbeit und Mandatsausübung innerhalb der Schwellen lassen sich übertragen – Mandatsfestlegung und Letztverantwortung nicht (Kap. 3.3).
+Arbeit und Mandatsausübung innerhalb der Schwellen lassen sich übertragen – Mandatsfestlegung und Letztverantwortung nicht (Kap. 3.2, 3.3).
 :::
 
 ::: ebene 2

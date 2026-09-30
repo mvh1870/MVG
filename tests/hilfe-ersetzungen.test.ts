@@ -14,7 +14,7 @@ const AUSNAHMEN = new Set([
 ]);
 
 /** Zahl der Regeln heute; wer eine Regel bewusst streicht, senkt diese Zahl mit Begründung */
-const MINDESTENS = 236;
+const MINDESTENS = 252;
 
 /** Fachlich tragende Ergebnisse (k9.3-p3, k4.2-p3, k6.4.2-t1, k6.4.4-p1, k6.4.3-p1, O-1) – unabhängig von der Regelliste */
 const FEST = [
@@ -63,10 +63,13 @@ const FEST = [
   'durch die nach Mandat zuständige Stelle (Bauherren-PL, Änderungsgremium oder Beschlussfassung durch den Bauherrn im Lenkungskreis)',
   'die Freigabe erteilt der Bauherr selbst auf Vorlage der Bauherren-PL (der Lenkungskreis berät)',
   'Modell in Anwendung, Schwellen kalibriert, Entwurf des Betriebshandbuchs – die Übergabe schließt an',
+  // R51: nach Mandat beschlossen, an einer Freigabe entscheidet der Bauherr (k4.2-p3, k6.4.5-p1, k9.3-p3)
+  'werden nach Mandat beschlossen (Bauherren-PL, Änderungsgremium oder Beschlussfassung durch den Bauherrn im Lenkungskreis); betrifft eine Entscheidung eine',
+  'ausgearbeitet und nach Mandat beschlossen wird (die Freigabe erteilt der Bauherr)',
 ];
 
 /** Wortlaut der Quelle, der nach der Angleichung nirgends mehr stehen darf (R47/R48: Zuständigkeit, Register, Status) */
-const WEG = /Bestätigt CTC-Neurechnungen|Beschlüsse mit klaren Bedingungen fassen|Gremium für strategische Change-Beschlüsse|entgegennehmen und Beschlüsse fassen|Trägt KEINE projektbezogenen|Register-Verantwortliche \(Projektsteuerung\)|Top-Entscheidungen treffen|auf Status beschlossen|Lenkungskreis informieren|Freigaben verwaltet der Admin|Betreiber-Rolle|Arbeit ist delegierbar|pflegt Nachweise & Links|Compliance & Standards-Zuordnung|MVG ist kompatibel|klassischen PMO-Einrichtung|wenn der Berater abzieht|Regelbetrieb\/ ?Übergabe\.|zu Aktionen mit Frist|berfällige Aktionen|dem Gremium zur Beschlussfassung|ohne eine Zeile Code|garantiert prüfungs|verlässt das Haus|ultimative Verantwortung|Anti-Patterns|MVG-Adoption|Druckbar als PDF|jede Karte führt mit ihren Knöpfen|Wie wir arbeiten\. |Berater bleibt als Sparringspartner| · druckbares Freigabe-Dossier|Für Beratungskunden kostenfrei|klappt alle Kapitel automatisch auf|englisch: Evidence|Methodische Grundlage|anschlussfähig an anerkannte Standards|orientiert sich konzeptionell|Approval-Stufen|Datenvertrags \(52\)|Pilotbetrieb, Übergabe, Verbesserungs|Nutzen Sie die Approval-Workflows/u;
+const WEG = /Bestätigt CTC-Neurechnungen|Beschlüsse mit klaren Bedingungen fassen|Gremium für strategische Change-Beschlüsse|entgegennehmen und Beschlüsse fassen|Trägt KEINE projektbezogenen|Register-Verantwortliche \(Projektsteuerung\)|Top-Entscheidungen treffen|auf Status beschlossen|Lenkungskreis informieren|Freigaben verwaltet der Admin|Betreiber-Rolle|Arbeit ist delegierbar|pflegt Nachweise & Links|Compliance & Standards-Zuordnung|MVG ist kompatibel|klassischen PMO-Einrichtung|wenn der Berater abzieht|Regelbetrieb\/ ?Übergabe\.|zu Aktionen mit Frist|berfällige Aktionen|dem Gremium zur Beschlussfassung|ohne eine Zeile Code|garantiert prüfungs|verlässt das Haus|ultimative Verantwortung|Anti-Patterns|MVG-Adoption|Druckbar als PDF|jede Karte führt mit ihren Knöpfen|Wie wir arbeiten\. |Berater bleibt als Sparringspartner| · druckbares Freigabe-Dossier|Für Beratungskunden kostenfrei|klappt alle Kapitel automatisch auf|englisch: Evidence|Methodische Grundlage|anschlussfähig an anerkannte Standards|orientiert sich konzeptionell|Approval-Stufen|Datenvertrags \(52\)|Pilotbetrieb, Übergabe, Verbesserungs|Nutzen Sie die Approval-Workflows|an der Freigabe beschlossen|zur Freigabe bringen|Freigabe Fassadenmuster|Neukunden-Einrichtung|Beraterstandard|Zwei Berater haben|3 dringendste Domänen/u;
 
 test('Hilfe (R48): jede Ersetzung mit festem Ersatz steht im Ergebnis – außer den benannten Ausnahmen', () => {
   const { hilfe, fehler } = baueHilfe({ ziel: null });

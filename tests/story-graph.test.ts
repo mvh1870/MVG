@@ -308,5 +308,7 @@ test('Schluss ohne Werbung (R49, O-1, O-34): Wirklichkeit, Enden und Epilog nenn
     const text = st.whitepaper.map((q) => quellen[q]?.html ?? '').join(' ');
     assert.doesNotMatch(text, /kostenfrei|Lizenzentgelt/u, `${id}: Angebotsaussage im Quellen-Reiter`);
     if (schluss.includes(id)) assert.deepEqual(bm(text), [], `${id}: Quellen-Reiter nennt Bauherr Mentoren`);
+    // R51: auch keine Leistungsbeschreibung (Reifegradanalyse Kap. 7.1 mit Dauer und Lieferumfang, Einstieg 12.1, Companion 6.3-p3)
+    if (schluss.includes(id)) assert.deepEqual(st.whitepaper.filter((q) => /^k(?:7\.1|12\.1)-|^k6\.3-p3$/u.test(q)), [], `${id}: Leistungsbeschreibung im Quellen-Reiter`);
   }
 });

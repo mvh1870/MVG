@@ -95,7 +95,7 @@ Nachhaltigkeits-, Energie- und Klimaziele werden für Bauherren zunehmend zu Ent
 
 Was folgt daraus für die Steuerung? [[ESG]] und LCC dürfen nicht erst als späte Nachweise auftauchen. Sie gehören früh in das Zielsystem, in die Abwägungsregeln, in die Variantenentscheidungen und in die Freigaben – die verbindlichen Entscheidungspunkte des Projekts.
 
-Geschieht das nicht, zeigen sich Zielkonflikte erst spät. Ein allgemeines Beispiel: Erst bei fortgeschrittener Planung stellt sich heraus, dass die gewählte Variante ein Nachhaltigkeitsziel verfehlt. Dann sind Änderungen teuer. Vergleichen Sie beide Wege in der Grafik.
+Geschieht das nicht, zeigen sich Zielkonflikte erst spät. Ein allgemeines Beispiel: Erst bei fortgeschrittener Planung stellt sich heraus, dass die gewählte Variante ein Nachhaltigkeitsziel verfehlt. Dann sind Änderungen teuer.
 
 ::: umschalter
 ---

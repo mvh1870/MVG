@@ -178,7 +178,8 @@ export async function lauf(seite, h) {
       const fussE = seiteVon('QFEQ');
       // vor dem Fuß steht auf seiner Seite noch Inhalt (die Zeile mit der Anfangsmarke ist nicht die erste der Seite)
       const vorFuss = fussA < 0 ? 0 : (pdfRoh[fussA]?.zeilen.findIndex((z) => z.includes('QFAQ')) ?? 0);
-      if (fussA < 0 || fussE < 0 || fussA !== fussE || vorFuss === 0) h.befund(`Druck ${id}: Fuß gerissen oder allein (Anfang S. ${fussA + 1}, Ende S. ${fussE + 1}, Zeilen davor ${vorFuss})`);
+      // R50: der Fuß steht im Druck oben auf der ersten Seite (L-159; unter Chrome 153 blieb er unten allein zurück)
+      if (fussA !== 0 || fussE !== 0 || vorFuss === 0) h.befund(`Druck ${id}: Fuß nicht oben auf S. 1 (Anfang S. ${fussA + 1}, Ende S. ${fussE + 1}, Zeilen davor ${vorFuss})`);
       const amEnde = seitenMitUeberschriftAmEnde(pdfText, koepfe);
       if (amEnde.length > 0) h.befund(`Druck ${id}: Überschrift am Seitenende ${JSON.stringify(amEnde)}`);
       if (pdfText.some((x) => x.zeilen.length === 0)) h.befund(`Druck ${id}: leere Seite`);

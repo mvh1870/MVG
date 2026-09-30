@@ -578,6 +578,14 @@ test('Zitat aus einer Liste (R50): als Liste gesetzt, geprüft ohne die Marken',
   assert.match(JSON.stringify(gut.inhalte), /<ul>\\n<li>eins<\/li>\\n<li>zwei<\/li>/u);
   const falsch = await kompiliere({ pruefe: true, wurzel: liste('- eins\n- drei'), ziel: null });
   assert.ok(falsch.fehler.some((x) => /nicht wortgleich/u.test(x)), falsch.fehler.join('\n'));
+  // R51: nur ganze Punkte der Quelle in ihrer Reihenfolge – und nur aus einer Liste
+  const quer = await kompiliere({ pruefe: true, wurzel: liste('- eins zwei\n- zwei'), ziel: null });
+  assert.ok(quer.fehler.some((x) => /kein ganzer Punkt von k2\.4-l1/u.test(x)), quer.fehler.join('\n'));
+  const fliess = neueWurzel(veraendere(BEISPIEL, 'inhalte/story/X1/station.md',
+    '::: zitat k2.4-p2\nBerichterstattung erzeugt Information. Führung entsteht erst, wenn Information mit Mandat verbunden wird.',
+    '::: zitat k2.4-p2\n- Berichterstattung erzeugt Information.\n- Führung entsteht erst, wenn Information mit Mandat verbunden wird.'));
+  const f2 = await kompiliere({ pruefe: true, wurzel: fliess, ziel: null });
+  assert.ok(f2.fehler.some((x) => /nur aus einer Liste des Whitepapers – k2\.4-p2 ist keine/u.test(x)), f2.fehler.join('\n'));
 });
 
 test('Abdeckung (P1.1): Lücke, fremdes Kapitel und unbekannte Seite sind Fehler; geplante Kapitelseite gilt', async () => {

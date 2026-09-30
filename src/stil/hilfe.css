@@ -162,7 +162,10 @@
      im Druck steht er deshalb oben unter Seitenkopf und Vermerk, wie die Meta-Zeilen der Druckbögen */
   .lernseite.hilfe .lern-inhalt { display: flex; flex-direction: column; }
   .lernseite.hilfe .lern-inhalt > :is(.kapitel-kopf, .kapitel-vermerk) { order: -2; }
-  .lernseite.hilfe .lern-inhalt > .lern-fuss { order: -1; margin: 0 0 4mm; padding: 0 0 2mm; border-top: 0; border-bottom: 1px solid var(--linie); }
+  .lernseite.hilfe .lern-inhalt > .lern-fuss { order: -1; margin: 0 0 3mm; padding: 0 0 1mm; border-top: 0; border-bottom: 1px solid var(--linie); }
+  /* R50: oben knapp – der Vermerk steht direkt darüber (kapitel-vermerk); sonst kostete der Fuß fünf Rollenseiten ein drittes Blatt */
+  .lernseite.hilfe .lern-inhalt > .lern-fuss .vermerk-hell { display: none; }
+  .lernseite.hilfe .lern-inhalt > .lern-fuss { font-size: 7pt; line-height: 1.25; }
   /* R44: im Druck bricht nur, was allein nicht in die Zeile passt (am Bildschirm schützt `anywhere` schmale Fenster) */
   .hilfe-inhalt { overflow-wrap: break-word; }
   .hilfe-inhalt details > :not(summary) { display: block; }
@@ -191,7 +194,8 @@
   /* Spalten mit nur einer Plakette so schmal wie die Plakette, der Platz geht an den Text */
   .hilfe-inhalt td:has(> :is(.h-badge, .h-tag, .h-pill, .hilfe-marke):only-child) { width: 1%; }
   /* R44: umbrochen wird nur, was allein nicht in die Zelle passt – die Trennstellen setzt `mitTrennstellen` (beforeprint) */
-  .hilfe-inhalt :is(th, td) { padding: 4px 6px; overflow-wrap: break-word; hyphens: auto; }
+  /* R50: 3 px statt 4 px – mit dem Fuß oben passten fünf Rollenseiten sonst nicht mehr auf zwei Blätter */
+  .hilfe-inhalt :is(th, td) { padding: 3px 6px; overflow-wrap: break-word; hyphens: auto; }
   .hilfe-inhalt th { font-size: 7pt; letter-spacing: 0; overflow-wrap: normal; }
   /* R44: 7,5 pt und schmalere Marken – mit `break-word` statt `anywhere` bestimmt das längste Wort die Spalte, der Registerkatalog lief sonst 39 px über */
   .hilfe-inhalt .h-table-wrap table :is(td, td *) { font-size: 7.5pt; line-height: 1.35; }

@@ -166,7 +166,7 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/Managementbericht entgegennehmen und Beschlüsse fassen/gu, 'Managementbericht entgegennehmen und die Beschlussfassung des Bauherrn beraten'],
   [/Nutzen Sie den Approval-Workflow in der Entscheidungsvorlage für signierte Freigaben\. Verlangen Sie vor jeder Freigabe/gu, 'Achten Sie darauf, dass der Bauherr die Freigabe im Freigabeprozess der Entscheidungsvorlage signiert, und verlangen Sie vor jeder Freigabe'],
   // R47: kein Wirkungsversprechen ohne Beleg (O-1, O-17); die MVG-Neuinitialisierung ist das Format bei eingeschränkter Steuerbarkeit (k7.5-p1)
-  [/Ja, sogar besser als bei einem Neustart – die Lücken sind sichtbar, die Wirkung wird schnell messbar\. Empfehlung: MVG-Neuinitialisierung mit Scout,/gu, 'Ja. Bei eingeschränkter Steuerbarkeit ist die MVG-Neuinitialisierung das passende Format (MVG Kap. 7.5): mit Scout,'],
+  [/Ja, sogar besser als bei einem Neustart – die Lücken sind sichtbar, die Wirkung wird schnell messbar\. Empfehlung: MVG-Neuinitialisierung mit Scout,/gu, 'Ja. Bei eingeschränkter Steuerbarkeit ist die MVG-Neuinitialisierung das passende Format (MVG Kap. 7.5). In der Anwendung: mit Scout,'],
   // R47: Status der Entscheidung und Freigabeprozess der Entscheidungsvorlage getrennt (k6.4.4-p1, k9.4-l1)
   [/(?<!Entscheidungsvorlage: )offen → in Prüfung → vorbereitet → freigegeben → beschlossen \/ abgelehnt \(6 Stufen\)/gu, 'Offen · In Bearbeitung · Entscheidungsreif · Entschieden · Verworfen; Freigabeprozess der Entscheidungsvorlage: offen → in Prüfung → vorbereitet → freigegeben → beschlossen / abgelehnt (6 Stufen)'],
   [/^Status auf "beschlossen" setzen$/gu, 'Freigabeprozess bis „beschlossen“ führen (Status: Entschieden)'],
@@ -296,6 +296,27 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/Gateway \(Entscheidung\)/gu, 'Verzweigung (Entscheidung)'],
   // R50: die Summenzeile der Quelle entfällt – gezeigt werden 51 Bereiche
   [/Alle Bereiche des Datenvertrags \(52\)/gu, 'Alle Bereiche des Datenvertrags (51)'],
+  // R51: Entscheidungen werden nach Mandat beschlossen, Freigaben erteilt der Bauherr (k4.2-p3, k6.4.5-p1, k9.3-p3)
+  [/ausgearbeitet zur Entscheidungsvorlage und an der Freigabe beschlossen/gu, 'ausgearbeitet zur Entscheidungsvorlage und nach Mandat beschlossen'],
+  [/\) → zur Freigabe bringen\./gu, ') → nach Mandat entscheiden lassen.'],
+  // R51: Rhythmus nach k6.4.5-t1
+  [/^Projektleitung, verantwortliche Rolle$/gu, 'Bauherren-PL, Projektsteuerung, verantwortliche Rolle'],
+  [/^PL, Controlling$/gu, 'Bauherren-PL, Controlling, PMO'],
+  // R51: das Vorgehen der Anwendung ist keine Regel aus V1.2 (O-17)
+  [/ Fokus auf 3 dringendste Domänen, danach systematisch erweitern\./gu, ' Fokus auf die dringendsten Domänen, danach erweitern.'],
+  // R51: „Freigabe“ nur für die Entscheidung des Bauherrn (BEGRIFFE)
+  [/Freigabe Fassadenmuster 12 Tage überfällig/gu, 'Bemusterung Fassade 12 Tage überfällig'],
+  [/^ Risiko wird beobachtet$/gu, ' Risiko wird gesteuert (Risikominderung läuft)'],
+  // R51 (O-34): sachlich statt aus Sicht des Beratungsbetriebs
+  [/^Neukunden-Einrichtung:$/gu, 'Einrichtung eines neuen Portfolios:'],
+  [/^Kunden-Austausch:$/gu, 'Austausch:'],
+  [/^ JSON-Datei vom Kunden anfordern/gu, ' Projektdatei anfordern'],
+  [/^Beraterstandard:$/gu, 'Organisationsstandard:'],
+  [/^ firmeneigene Vorlagen für wiederkehrende Projekttypen$/gu, ' eigene Vorlagen für wiederkehrende Projekttypen'],
+  [/Mit anderen Beratern via Export/gu, 'Mit anderen Installationen via Export'],
+  [/Zwei Berater haben parallel offline gearbeitet/gu, 'Zwei Personen haben parallel offline gearbeitet'],
+  [/Geführte Erst-Einrichtung einer Kundeninstallation/gu, 'Geführte Erst-Einrichtung einer Installation'],
+  [/Die Kunden-Einführung per Checkliste aufsetzen/gu, 'Die Einführung per Checkliste aufsetzen'],
 ]);
 
 /** Klassen, die src/stil/hilfe.css gestaltet (alles andere fällt weg). */
@@ -717,6 +738,11 @@ function glaette(/** @type {string} */ html) {
     .replace(/&amp;amp;/gu, '&amp;')
     .replace(/berichtet ins <b>Managementbericht<\/b>/gu, 'berichtet in den <b>Managementbericht</b>')
     .replace(/werden am <span>Freigabe<\/span> beschlossen/gu, 'werden an der <span>Freigabe</span> beschlossen')
+    // R51: nach Mandat beschlossen; an einer Freigabe entscheidet der Bauherr (k4.2-p3, k6.4.5-p1, k9.3-p3)
+    .replace(/werden an der <span>Freigabe<\/span> beschlossen \(Freigeben \/ Nicht freigeben \/ Freigabe mit Auflagen\)/gu, 'werden nach Mandat beschlossen (Bauherren-PL, Änderungsgremium oder Beschlussfassung durch den Bauherrn im Lenkungskreis); betrifft eine Entscheidung eine <span>Freigabe</span>, entscheidet der Bauherr dort über Freigeben / Nicht freigeben / Freigabe mit Auflagen')
+    // (auch in der Beschreibung der Grafik – <desc> geht nicht durch ersetze)
+    .replace(/ausgearbeitet zur Entscheidungsvorlage und an der Freigabe beschlossen/gu, 'ausgearbeitet zur Entscheidungsvorlage und nach Mandat beschlossen')
+    .replace(/ausgearbeitet und an der <b>Freigabe<\/b> beschlossen wird/gu, 'ausgearbeitet und nach Mandat beschlossen wird (die <b>Freigabe</b> erteilt der Bauherr)')
     .replace(/mit <span>Entscheidungsvorlage<\/span>-Vorlagen/gu, 'mit Vorlagen für <span>Entscheidungsvorlagen</span>')
     // das Inhaltsverzeichnis ist hier eine Liste ohne Verweise
     .replace(/<li>Das Inhaltsverzeichnis ist klickbar<\/li>/gu, '')

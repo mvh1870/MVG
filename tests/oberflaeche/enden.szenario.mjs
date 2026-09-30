@@ -121,6 +121,9 @@ export async function lauf(seite, h) {
       if (pdf.length < 2 || pdf.some((x) => x.zeilen.length === 0)) h.befund(`Dossier: ${pdf.length} Seiten, davon leer ${pdf.filter((x) => x.zeilen.length === 0).length}`);
       // Jedes Kapitel der Vertiefung beginnt auf einer neuen Seite: die Seite davor darf kurz sein (CI 209: S. 17 = Ende von Kap. 8)
       const vorKapitel = (i) => /^(?:ZumNachlesen.*?)?KAPITEL\d/u.test((pdf[i + 1]?.zeilen.slice(0, 2).join('') ?? '').replace(/\s+/gu, ''));
+      // R50: die Quellzeile eines Zitats steht nie allein oben auf der Folgeseite (Resümee „Sechs Kernfragen“)
+      const quelleOben = pdf.map((x, i) => ({ seite: i + 1, z: x.zeilen[0] ?? '' })).filter((x) => /^Originaltext, wörtlich · Quelle:/u.test(x.z));
+      if (quelleOben.length > 0) h.befund(`Dossier: Quellzeile am Seitenanfang ${JSON.stringify(quelleOben)}`);
       const leer = pdf.slice(0, -1).map((x, i) => ({ seite: i + 1, fuellung: Math.round((x.fuellung ?? 0) * 100), vorKapitel: vorKapitel(i) }))
         .filter((x) => x.fuellung < 35 && !x.vorKapitel);
       if (leer.length > 0) h.befund(`Dossier: fast leere Seiten ${JSON.stringify(leer)}`);

@@ -211,5 +211,8 @@ Neun Prüffelder; Gegenprüfung beim Einarbeiten (die Skeptiker standen hinter d
 Nicht sauber – Zählung neu, als Nächstes Runde 50.
 ## Runde 50 (P12.5, zugleich P14.3 und P15.2) – Teilrunden (L-154)
 - **Teil 1 auf c7cb6a8** (Theorie, Story, Abbildungen, Hilfe): 11 mittel, 26 leicht – L-157, L-158.
-- **Teil 2** (Stil, Druck, Architektur) auf dem Stand mit allen Korrekturen aus Runde 49 – folgt.
+- **Teil 2 auf d26f50b** (Stil, Druck, Architektur): Druck 1 mittel, 3 leicht – L-161; Stil und Architektur folgen. CI 231–234 rot (Hilfe-Fuß unter Chrome 153) – L-159.
 Nicht sauber – nach Teil 2 Zählung neu, als Nächstes Runde 51.
+## Runde 51 (P12.5, zugleich P14.3 und P15.2) – Teilrunden (L-154)
+- **Teil 1 auf aa6b938** (Theorie, Story, Abbildungen, Hilfe): 4 mittel, 17 leicht – L-160.
+Nicht sauber – als Nächstes Runde 52.

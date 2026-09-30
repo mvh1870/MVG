@@ -175,7 +175,7 @@ export function simuliere(e: SimEingabe): SimErgebnis {
     // R42: offene Stufe ohne Vorbehalt – der Weg führt entlang der Mandatsleiter (k6.4.5-p1)
     freigabeweg.push({ quelle: 'k6.4.5-p1', text: 'Den Weg bestimmt das projektspezifische Mandat: entlang der Mandatsleiter an die Bauherren-PL, das Änderungsgremium oder zur Beschlussfassung durch den Bauherrn im Lenkungskreis.' });
   } else if (stufe === 'bauherr') {
-    // R42: auch auf der Stufe Bauherr ohne berührte LPH-Freigabe steht ein Freigabeweg (k1.3-t1)
+    // R42: auch auf der Stufe Bauherr ohne berührte LPH-Freigabe steht ein Freigabeweg (k13-t1, k4.2-p3)
     freigabeweg.push(e.deckung === 'ueber-basis'
       ? { quelle: 'k13-t1', text: 'Die Neufestlegung der Projektbasis wird über eine Entscheidungsvorlage vorbereitet und vom Bauherrn im Lenkungskreis beschlossen.' }
       : { quelle: 'k4.2-p3', text: 'Oberhalb von 5 Mio. € erfolgt die Beschlussfassung durch den Bauherrn im Lenkungskreis.' });

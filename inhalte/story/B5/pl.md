@@ -19,7 +19,7 @@ Sie legen Dr. Olbers die Vorlage vor; über den Einsatz entscheidet sie. Datum, 
 Wie viel Reserve danach bleibt.
 
 ### Neues Risiko
-Spätere Risiken treffen auf einen kleineren Puffer.
+Gibt Dr. Olbers den Einsatz frei, treffen spätere Risiken auf einen kleineren Puffer.
 
 ### Governance-Frage
 Risikoannahme: Wie viel Reserve will der Bauherr für die nächsten Leistungsphasen halten?

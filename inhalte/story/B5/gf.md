@@ -19,7 +19,7 @@ Der Lenkungskreis berät die Vorlage; über den Einsatz der Risikoreserve entsch
 Die Prüfung des Nachtrags auf Berechtigung und Höhe muss bis zur Beratung vorliegen.
 
 ### Neues Risiko
-Die Reserve ist kleiner geworden; das Restrisiko muss neu bewertet werden.
+Gibt Dr. Olbers den Einsatz frei, bleibt weniger Reserve; das Restrisiko muss dann neu bewertet werden.
 
 ### Governance-Frage
 Wie viel Reserve bleibt – und wer bewertet das Restrisiko?

@@ -26,6 +26,11 @@ test('Nachweiskette (R47): unter „Entscheidungs-ID“ steht nur eine Entscheid
   assert.ok(kennungen.length >= 6, 'alle Stationen der Welt B tragen eine Nachweiskette');
   // AEN- (Änderung), PRB- (Problem), FRW-/RIS- sind Registerkennungen, keine Entscheidungs-IDs (k4.3-p2, k13-t1; L-125, L-130)
   for (const [id, k] of kennungen) assert.match(String(k), /^(?:ENT-\d|„?Freigabe LPH|Noch keine)/u, `${id}: ${k}`);
+  // R48: die Felder sind Klartext (die Grafik setzt sie als Text) – kein Markdown, das sichtbar stünde
+  for (const s of Object.values(erg.inhalte.stationen) as any[]) {
+    if (!s.nachweis) continue;
+    for (const [feld, wert] of Object.entries(s.nachweis)) if (feld !== 'text') assert.doesNotMatch(String(wert), /`|\*\*|\[\[/u, `${s.id}.${feld}: ${wert}`);
+  }
 });
 
 test('Entwurfswerkzeug (L-45): ohne Entwürfe keine Anpassung, nichts überlagert, dasselbe Ergebnis wie inhalte/', async () => {

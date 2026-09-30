@@ -118,7 +118,7 @@ bleibt:
   zielprioritaet: bleibt offen
   zustaendigkeit: bleibt ungeklärt
 ---
-Offene Risiken steigen um eins. Morgen endet die Frist der Kämmerei.
+Aktive Risiken steigen um eins. Morgen endet die Frist der Kämmerei.
 
 ### Neu bekannt
 Jetzt liegen drei Stände nebeneinander: der 40-Seiten-Statusbericht, die Kostenberechnung aus LPH 3 und die eigene Zahl des Controllings. Eine Baupreissteigerung ist in keinem eingepreist.

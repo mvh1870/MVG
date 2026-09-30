@@ -20,7 +20,7 @@ weiter:
 ---
 
 ::: express
-Im Januar ging die Projektbasis ohne Zielpriorität an die Kämmerei. Im März sagte die GML eine größere Mensa zu; die Holz-Lieferzeit stieg auf 26 Wochen, bei Förderfrist 2028/29.
+Im Januar bekam die Kämmerei die Projektbasis, ohne Preisannahme; eine Zielpriorität gab es nicht. Im März sagte die GML-Geschäftsführung im Flur eine größere Mensa zu; die Holz-Lieferzeit stieg auf 26 Wochen, bei Förderfrist 2028/29.
 :::
 
 ::: schritt einstieg

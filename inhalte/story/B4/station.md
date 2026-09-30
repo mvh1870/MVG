@@ -419,7 +419,7 @@ figur: kaya
 ---
 mandat: Änderungsgremium unter Vorsitz der Geschäftsführung – grob 0,4 Mio. € liegen über 100 TEUR und bis einschließlich 5 Mio. €.
 freigabe: Betroffen ist die Freigabe LPH 5; eine Deckung aus der Risikoreserve gibt nur der Bauherr frei.
-kennung: Noch keine – Bezug `AEN-031` (Änderung, „In Prüfung“).
+kennung: Noch keine – Bezug AEN-031 (Änderung, „In Prüfung“).
 datenstand: Kostenprognose 2026-05 · Version 3 mit Schätzung der Generalplanung zu AEN-031, Stand Juli.
 nachweis: Vorlage mit Frage, Mandat und Empfehlung; die Terminwirkung ist nur grob geschätzt.
 beschlusslage: Beschlussprotokoll der Sitzung vom 9. Juli (Entwurf) – ob beschlossen oder mit Frist zurückgestellt, trägt das Gremium ein; es geht in den Managementbericht an den Bauausschuss (16. Juli).

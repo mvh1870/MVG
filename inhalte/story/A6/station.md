@@ -117,7 +117,7 @@ bleibt:
   freigabe: bleibt ungeklärt
   vertretung: bleibt ungeklärt
 ---
-Offene Risiken steigen.
+Aktive Risiken steigen.
 
 ### Neu bekannt
 „Prognose_Nov_v5“ zeigt ihre Struktur: Kostengruppen, Zuschläge, eine Zeile für die Reserve. Mehrere Blätter beziehen sich auf frühere Versionen; die Annahmen stehen in Kommentaren oder nirgends. Bis Freitag bleiben drei Tage.
@@ -176,7 +176,7 @@ Vier Symptome aus Kap. 2.5 – und wo sie an dieser Station zu sehen sind:
 | Wissensabhängigkeit | Kritisches Wissen liegt bei wenigen Personen und ist nicht in Routinen übersetzt. | Organisation wird verletzlich, sobald Rollen wechseln oder ausfallen. | Holger Stein fällt aus; „Prognose_Nov_v5“ kann niemand vollständig erklären |
 | Rollen ohne Mandat | RACI (Rollen- und Zuständigkeitsmatrix) oder Organigramm existieren, aber Freigabeschwellen, Stellvertretungen und Eskalationswege fehlen. | Entscheidungen werden informell getroffen oder zu spät eskaliert. | Keine Stellvertretung für Holger Stein; offen, wem die Freigabe vorgelegt wird und worauf |
 | Parallele Datenstände | Kosten, Termin, Projektumfang, Risiken und Annahmen werden in unterschiedlichen Fassungen geführt. | Entscheidungen beruhen auf widersprüchlichen Grundlagen. | Fünf Versionen der Prognose, daneben die CTC des Controllings |
-| Eskalation ohne Entscheidung | Themen werden nach oben gegeben, aber ohne klare Entscheidungsoptionen, Empfehlung oder Konsequenzen. | Eskalation erzeugt Verzögerung statt Führung. | Die Anfrage des Stadtrats erreicht ein Projekt, in dem seit Mai nichts auf benanntem Stand entschieden ist |
+| Eskalation ohne Entscheidung | Themen werden nach oben gegeben, aber ohne klare Entscheidungsoptionen, Empfehlung oder Konsequenzen. | Eskalation erzeugt Verzögerung statt Führung. | Die Freigabe LPH 5 soll nach oben – „Vorlage an wen? Offen.“, ohne Optionen, Empfehlung oder Konsequenzen |
 :::
 
 ::: ebene 4

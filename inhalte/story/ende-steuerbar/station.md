@@ -60,7 +60,7 @@ kurz: Nachweiskette
 Das Entscheidungsinventar ist ihr Anfang.
 
 ::: nachweiskette
-Kap. 9: [[zitat:k9-p1|Das Mandat verweist auf eine Freigabe, die Freigabe auf eine Entscheidungs-ID, die Entscheidungs-ID auf den Datenstand, der Datenstand auf den Nachweis und der Nachweis auf die Beschlusslage.]] Wählen Sie eine Station aus Welt B.
+Kap. 9: [[zitat:k9-p1|Das Mandat verweist auf eine Freigabe, die Freigabe auf eine Entscheidungs-ID, die Entscheidungs-ID auf den Datenstand, der Datenstand auf den Nachweis und der Nachweis auf die Beschlusslage.]] [[bedienung:Wählen Sie eine Station aus Welt B.]]
 :::
 :::
 

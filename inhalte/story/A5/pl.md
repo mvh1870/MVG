@@ -14,7 +14,7 @@ status:
   offene-risiken: +1
 ---
 ### Konsequenz
-Dr. Olbers fragt, worüber sie entscheiden soll, dann nach der Zahl: drei Positionen, zwei Stände, keine Einzelbewertung. Sie unterschreibt.
+Dr. Olbers fragt, worüber sie entscheiden soll, dann nach der Zahl: drei Positionen, zwei Stände, keine Einzelbewertung. Dr. Olbers unterschreibt.
 
 ### Was fehlt
 Eine Freigabe auf benanntem Stand, bevor die Reserve eingesetzt wird.

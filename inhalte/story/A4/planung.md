@@ -83,7 +83,7 @@ Im Mai stieg die Prognose vor allem wegen der Holzbauelemente; entschieden wurde
 
 ::: regie
 ### Notiz
-Die Auflagen gelten sofort, der Bauherr kann erst im September beschließen lassen. Zeigen, was die Planung ihm liefert.
+Die Auflagen gelten sofort, der Ausschuss tagt erst im September wieder. Zeigen, was die Planung dem Bauherrn liefert.
 
 ### Leitfragen
 - Wer entscheidet bei Ihnen zwischen zwei Ausschusssitzungen?

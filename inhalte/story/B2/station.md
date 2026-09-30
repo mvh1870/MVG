@@ -396,7 +396,7 @@ figur: kaya
 ---
 mandat: Änderungsgremium unter Vorsitz der Geschäftsführung – rund 0,6 Mio. € liegen über 100 TEUR und bis einschließlich 5 Mio. €.
 freigabe: Berührt die Freigabe zum Abschluss von LPH 5 – dort muss AEN-012 sichtbar sein; für die Änderung selbst sind Auswirkung und Freigabeweg der nächste Schritt.
-kennung: Noch keine – Bezug `AEN-012` (Änderung, „Beantragt“).
+kennung: Noch keine – Bezug AEN-012 (Änderung, „Beantragt“).
 datenstand: Grobe Schätzung der Generalplanung, rund 0,6 Mio. € – Auswirkung noch nicht bewertet.
 nachweis: Eintrag im Änderungsregister nach der Mail von Sabine Roth – aus der Flurzusage wird ein Antrag.
 beschlusslage: Offen – das Änderungsgremium tagt monatlich, zzgl. anlassbezogener Sondersitzungen.

@@ -789,6 +789,42 @@ test('Rückbezug (R47): im Express übersprungene Bezugsstation heißt „Inzwis
   }
 });
 
+test('Rückbezug (R48): gespielte Bezugsstation ohne Wahl und Stationen der Welt B heißen „Ohne Wahl in Welt A“', async () => {
+  const { wende } = await import('../src/engine/aktionen.ts');
+  const { aktuellerSchritt } = await import('../src/engine/graph.ts');
+  // Hauptpfad gf bis A6, jede Entscheidung A – dann die Wahl an A5 streichen: A5 steht im Verlauf, ohne Wahl
+  let z = anfangszustand();
+  const tu = (a: Parameters<typeof wende>[1]): void => { z = wende(z, a, inhalte); };
+  tu({ art: 'starteStory' });
+  tu({ art: 'waehleRolle', rolle: 'gf' });
+  for (let i = 0; i < 400 && z.station !== 'A6'; i++) {
+    const ent = z.station !== null ? inhalte.stationen[z.station]?.szenen['gf']?.entscheidung : null;
+    if (aktuellerSchritt(z, inhalte)?.art === 'entscheidung' && ent && z.entscheidungen[ent.id] === undefined) tu({ art: 'waehle', option: 'A' });
+    const vorher = z;
+    tu({ art: 'weiter' });
+    if (z === vorher) break;
+  }
+  assert.equal(z.station, 'A6');
+  assert.ok(z.verlauf.includes('A5'));
+  const idA5 = inhalte.stationen['A5']?.szenen['gf']?.entscheidung?.id ?? '';
+  const { [idA5]: _weg, ...ohneA5 } = z.entscheidungen;
+  const etikettAn = (zustand: typeof z, ziel: string): string => {
+    const sitzung = erzeugeSitzung({ ...zustand, entscheidungen: zustand.station === 'A6' ? ohneA5 : zustand.entscheidungen }, inhalte, { speicher: null });
+    const story = erzeugeStory({ inhalte, tue: (a) => sitzung.tue(a) });
+    sitzung.abonniere((neu, _alt, aktion) => story.setze(oeffentlich(neu), aktion));
+    document.body.replaceChildren(story.element);
+    try {
+      story.setze(oeffentlich(sitzung.zustand()), null);
+      for (let i = 0; i < 12 && !story.element.querySelector('[data-pruef="rueckbezug"]') && sitzung.zustand().station === ziel; i++) sitzung.tue({ art: 'weiter' });
+      return story.element.querySelector('[data-pruef="rueckbezug"] .erinnerung.ist-ohne .t-label')?.textContent ?? '';
+    } finally {
+      story.entferne?.();
+      document.body.replaceChildren();
+    }
+  };
+  assert.equal(etikettAn(z, 'A6'), 'Ohne Wahl in Welt A', 'A5 gespielt, aber ohne Wahl');
+});
+
 test('Tafeln Welt B (T9): Phasen-Wahl wandert, Screenreader-Hinweis am hervorgehobenen Knopf; Rhythmus, Karten; RACI-Zeilenwahl und eigene Spalte zuerst', async () => {
   const { tafel } = await import('../src/grafik/tafel.ts');
   const { raci } = await import('../src/grafik/raci.ts');

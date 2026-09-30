@@ -13,7 +13,7 @@ status:
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
-Dr. Olbers erfährt, dass Posten ohne ihre Freigabe gegen die 2,9 Mio. € laufen. Sie will eine Aufstellung auf einem Stand; die gibt es nicht.
+Dr. Olbers erfährt, welche Posten ohne ihre Freigabe gegen die 2,9 Mio. € laufen. Dr. Olbers will eine Aufstellung auf einem Stand; die gibt es nicht.
 
 ### Was fehlt
 Eine nachvollziehbare Grundlage je Posten.

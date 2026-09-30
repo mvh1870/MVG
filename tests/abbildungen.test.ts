@@ -101,7 +101,7 @@ test('Compiler (baueAbbildungen): veraltetes Bild, fremdes WebP, fremdes Kapitel
   const sha = (x: string | Buffer): string => createHash('sha256').update(x).digest('hex');
   const quelle = {
     abbildungen: [{ id: 'abb-6', kapitel: '4', ort: 'k4', datei: 'bilder/image6.png', sha256: 'q' }],
-    nachId: new Map([['k4-t1', {}], ['k4-p1', {}]]),
+    nachId: new Map([['k4-t1', { zeilen: [['LPH 0–2', 'Vorbereitung']] }], ['k4-p1', { text: 'Satz.' }]]),
   };
   /** Testwurzel mit Beschreibung, WebP und passendem stand.json; `aendere` verfälscht danach einen Teil */
   const wurzeln: string[] = [];

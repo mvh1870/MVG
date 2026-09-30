@@ -14,3 +14,5 @@ abweichungen:
     beleg: k3.1-p2 k4.6-p1
   - text: 'Der rechte Kopf heißt nur „Bauherrenverantwortung“; der Text stellt der delegierbaren Arbeit die nichtdelegierbare Bauherrenverantwortung gegenüber, seine Tabelle überschreibt diese Spalte mit „Nicht delegierbar“.'
     beleg: k3-p1 k3-p2 k3.2-t1
+  - text: 'Die Mittelspalte heißt „Mandatsschwelle“ („Vorbereitung endet“, „Entscheidung beginnt“); der Text zieht hier die Linie, wo Vorbereitung endet und eigene Entscheidung beginnt, und kennt Mandatsschwellen nur als Eskalationsschwellen entlang der Mandatsleiter – innerhalb des Mandats entscheiden auch die verantwortliche Rolle und die Bauherren-PL.'
+    beleg: k3.2-p1 k6.4.5-p1 k3.3-p2

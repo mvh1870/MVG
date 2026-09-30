@@ -658,6 +658,13 @@ test('Echte Inhalte: fehlerfrei; Mutanten-Probe am Zitat in B3 (Ebene 4, Kap. 2.
   writeFileSync(b3, text.replace('bleibt Beobachtung.', 'bleibt reine Beobachtung.'), 'utf8');
   const { fehler } = await kompiliere({ pruefe: true, wurzel: w, whitepaperPfad: ECHT_WP, ziel: null });
   assert.ok(fehler.some((f) => /^inhalte\/story\/B3\/station\.md:\d+: Zitat nicht wortgleich mit k2\.4-p2/u.test(f)), fehler.join('\n'));
+  // R48: eine Bildüberdeckung, deren Text nicht wortgleich im Beleg steht, fällt auf (INHALTSFORMAT 4.6)
+  const abb10 = path.join(w, 'inhalte', 'abbildungen', 'abb-10.yaml');
+  const yaml = readFileSync(abb10, 'utf8');
+  assert.ok(yaml.includes('text: Freigabeentscheidung,'));
+  writeFileSync(abb10, yaml.replace('text: Freigabeentscheidung,', 'text: Freigabesitzung,'), 'utf8');
+  const abb = await kompiliere({ pruefe: true, wurzel: w, whitepaperPfad: ECHT_WP, ziel: null });
+  assert.ok(abb.fehler.some((f) => /abb-10\.yaml.*„Freigabesitzung“ steht nicht wortgleich im Absatz k6\.4\.4-t1/u.test(f)), abb.fehler.join('\n'));
 });
 
 test('Nachweis (E2, P7.3): nur an Stationen der Welt B, höchstens einmal je Station', async () => {

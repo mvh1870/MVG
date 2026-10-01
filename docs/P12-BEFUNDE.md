@@ -239,3 +239,6 @@ Nicht sauber – als Nächstes Runde 58.
 ## Runde 58 (P12.5, zugleich P14.3 und P15.2) – volle Runde auf f53edb7
 - Begriff im Link (doppelt gemeldet), Tastaturprobe Begriffe, Simulator (Bauherr bei wesentlich), Hilfe CTC der PL, Hilfe-Druck code: 7 mittel, 15 leicht – L-172.
 Nicht sauber – als Nächstes Runde 59.
+## Runde 59 (P12.5, zugleich P14.3 und P15.2) – volle Runde auf ab36567
+- Theorie (Glossarbezug Freigabe), Rollenkarte Planung, Hilfe (Frist), Druck (Schrittnummern), Stil (Datenstand-Zahl), Architektur (Ersatz eingefroren, Wissenscheck, Impressum): 8 mittel, 17 leicht – L-173.
+Nicht sauber – als Nächstes Runde 60.

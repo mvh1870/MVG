@@ -156,7 +156,7 @@ kurz: Gremium
 ---
 ::: mandatsleiter
 ---
-betrag: grob 0,4 Mio. €
+betrag: grob 0,4 Mio. €
 betrag-teur: 400
 stufen:
   - wer: Bauherren-PL

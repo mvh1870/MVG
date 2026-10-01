@@ -590,7 +590,7 @@ Wöchentliche Risikosichtung im regelmäßigen Abstimmungstermin; offene Entsche
 titel: monatlich
 marke: drei Termine im Monatstakt
 ---
-Die Projektsteuerung prüft die Risiken formal und berichtet in den Managementbericht. Die Bauherren-PL und das Änderungsgremium bewerten und entscheiden Änderungen – monatlich, dazu anlassbezogene Sondersitzungen. Bauherren-PL, Controlling und PMO bearbeiten CTC und Prognose sowie den Managementbericht.
+Die Projektsteuerung prüft die Risiken formal und berichtet in den Managementbericht. Die Bauherren-PL und das Änderungsgremium bewerten und entscheiden Änderungen – monatlich, dazu anlassbezogene Sondersitzungen. Im Monatstermin von Bauherren-PL, Controlling und PMO stehen CTC und Prognose sowie der Managementbericht im Mittelpunkt.
 :::
 
 ::: stufe 4

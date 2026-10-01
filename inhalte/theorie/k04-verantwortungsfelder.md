@@ -96,7 +96,7 @@ seite: links
 Entscheidungsvorlagen und Auswirkungsanalysen erarbeiten
 
 ### Erklärung
-Feld wesentliche Entscheidung: Vorlagen, Optionen und Empfehlungen sind delegierbar.
+Feld Wesentliche Entscheidung: Vorlagen, Optionen und Empfehlungen sind delegierbar.
 :::
 
 ::: posten 6
@@ -106,7 +106,7 @@ seite: rechts
 Über Fortführung oder Stopp des Projekts entscheiden
 
 ### Erklärung
-Feld wesentliche Entscheidung: Das gehört zum nichtdelegierbaren Kern.
+Feld Wesentliche Entscheidung: Das gehört zum nichtdelegierbaren Kern.
 :::
 
 ::: posten 7
@@ -343,7 +343,7 @@ Das Risiko hat eine verantwortliche Rolle, eine Frist, eine Wirkung, eine Risiko
 ---
 titel: Freigabe
 ---
-Eine [[Freigabe]] ist mehr als eine Unterschrift. Mit ihr legitimiert der Bauherr den nächsten Schritt – und zwar auf einem benannten Datenstand. Freigaben können Planung, Vergabe, Budget, Änderungen, eine Neufestlegung der Projektbasis, die Bindung einer Komponente mit langer Lieferzeit, die Übergabe des Vorhabens oder den Regelbetrieb betreffen; dazu gehört auch die Freigabe zum Abschluss einer Leistungsphase.
+Eine Freigabe ist mehr als eine Unterschrift. Mit ihr legitimiert der Bauherr den nächsten Schritt – und zwar auf einem benannten Datenstand. Freigaben können Planung, Vergabe, Budget, Änderungen, eine Neufestlegung der Projektbasis, die Bindung einer Komponente mit langer Lieferzeit, die Übergabe des Vorhabens oder den Regelbetrieb betreffen; dazu gehört auch die [[Freigabe]] zum Abschluss einer Leistungsphase.
 
 Die typische Fehlstelle: Es wird freigegeben, obwohl unklar ist, welcher Datenstand gilt, oder ohne dass jemand geprüft hat, ob das Mandat reicht.
 

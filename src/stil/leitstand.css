@@ -1548,7 +1548,7 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .datenstand-zahlen { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--a-3); margin: var(--a-3) 0; }
 .datenstand-zahlen > div { min-width: 0; padding: var(--a-2) var(--a-3); border-radius: var(--radius-m); background: var(--tuerkis-hauch); }
 .datenstand-zahlen b { display: block; font: 800 44px/1 var(--schrift-anzeige); white-space: nowrap; }
-.datenstand-zahlen b small { margin-left: 1px; font-size: 22px; color: var(--tuerkis-text); }
+.datenstand-zahlen b small { margin-left: 1px; font-size: 22px; color: var(--tuerkis-text); white-space: nowrap; } /* R59: „Mio. €“ bricht als Ganzes, nie „M|io.“ */
 .datenstand-zahlen > div > span { display: block; font-size: 13px; color: var(--tinte-2); }
 .datenstand-notiz { margin-top: var(--a-2); font-size: 13.5px; line-height: 1.4; color: var(--tinte-2); }
 .welt-a-vergleich { margin-top: 6px; font-size: 14.5px; line-height: 1.4; }

@@ -50,8 +50,7 @@ Eine Entscheidung auf geschätzter Grundlage.
 ---
 titel: Mit Frank Deppe die Flurzusage einordnen
 kurz: Flurzusage einordnen
-status:
-  offene-risiken: +1
+status: keine
 ---
 ### Konsequenz
 Frank Deppe nickt: Seine Zusage ist ein Antrag, keine Entscheidung. Sabine Roth ist enttäuscht, aber im Bild.

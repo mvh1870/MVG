@@ -74,6 +74,8 @@ test('Wesentlich unterhalb des Bauherrn (R58): beim Bauherrn bleibt die Festlegu
   assert.equal(r.stufe, 'gremium');
   assert.ok(r.bauherr.some((h) => h.quelle === 'k3.3-p2'));
   assert.ok(!simuliere({ ...basis, betragTeur: 400 }).bauherr.some((h) => h.quelle === 'k3.3-p2'), 'nicht wesentlich: kein Hinweis');
+  // R59: bei überschrittener Schwelle (offene Stufe) nicht
+  assert.ok(!simuliere({ ...basis, betragTeur: 400, substanziell: true, schwelleUeberschritten: true }).bauherr.some((h) => h.quelle === 'k3.3-p2'));
 });
 
 test('Wesentlich (k4.3): Kennung und Vorlage, sonst der Hinweis, dass nicht jede Entscheidung wesentlich ist', () => {

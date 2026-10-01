@@ -85,7 +85,7 @@ export function betragBei(stufen: readonly LeiterStufe[], prozent: number): numb
 export function formatiereTeur(teur: number): string {
   if (teur < 999.5) return `${Math.round(teur)} TEUR`;
   const mio = teur / 1000;
-  return `${Number.isInteger(Math.round(mio * 10) / 10) ? String(Math.round(mio)) : dezimal(mio, 1)} Mio. €`;
+  return `${Number.isInteger(Math.round(mio * 10) / 10) ? String(Math.round(mio)) : dezimal(mio, 1)}\u00a0Mio.\u00a0€`;
 }
 
 export function mandatsleiter(o: LeiterOptionen): LeiterGrafik {

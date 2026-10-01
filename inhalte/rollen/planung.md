@@ -16,5 +16,5 @@ Ist diese Änderung beauftragt? Wer entscheidet über Varianten – und ab welch
 - Arbeitsebene: Planung und Auswirkungsbewertung (Kap. 3.3)
 
 ### Nicht delegierbar
-- Die Entscheidung über eine wesentliche Änderung bleibt beim Bauherrn (Kap. 3.2)
+- Wer über Änderungen entscheidet – Mandat, Schwellen, Eskalationswege –, legt der Bauherr fest; die Ausübung innerhalb der Schwellen kann übertragen werden (Kap. 3.2, 3.3)
 - Im Muster gibt die Bauherren-PL bis einschließlich 100 TEUR frei, darüber bis einschließlich 5 Mio. € entscheidet das Änderungsgremium, oberhalb davon der Bauherr im Lenkungskreis (Kap. 4.2)

@@ -144,7 +144,8 @@ export function simuliere(e: SimEingabe): SimErgebnis {
   // R38: hebt schon der Betrag die Stufe zum Bauherrn, beschließt er selbst (k4.2-p3) – das ist eine Bauherrenentscheidung
   const wesentlich = e.substanziell || e.freigabeBeruehrt || bauherr.length > 0 || (stufe === 'bauherr' && !eskaliert);
   // R58: wesentlich, aber unterhalb des Bauherrn entschieden – beim Bauherrn bleibt die Festlegung des Mandats (k3.3-p2)
-  if (wesentlich && stufe !== 'bauherr' && bauherr.length === 0) bauherr.push({ quelle: 'k3.3-p2', text: 'Die Festlegung des Mandats, nach dem hier entschieden wird, bleibt Bauherrenverantwortung; die Ausübung innerhalb klar definierter Schwellen ist an Rollen übertragen.' });
+  // R59: nicht bei offener Stufe (Schwelle überschritten – dort trägt der Hinweis unter „Mandat und Eskalation“)
+  if (wesentlich && stufe !== 'bauherr' && !eskaliert && bauherr.length === 0) bauherr.push({ quelle: 'k3.3-p2', text: 'Die Festlegung des Mandats, nach dem hier entschieden wird, bleibt Bauherrenverantwortung; die Ausübung innerhalb klar definierter Schwellen kann an Rollen übertragen werden.' });
   if (wesentlich) {
     information.push({ quelle: 'k4.3-p2', text: 'Als wesentliche Entscheidung braucht sie eine eindeutige Kennung, einen Datenstand, eine verantwortliche Rolle, eine Entscheidungsfrage und einen Nachverfolgungsstatus.' });
   } else {

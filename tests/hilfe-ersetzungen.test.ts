@@ -12,15 +12,17 @@ const AUSNAHMEN = new Set([
   'Whitepaper-Inhalte', 'Das Whitepaper beschreibt', 'Whitepaper', // Stellen in entfernten Abschnitten bzw. von spezielleren Regeln gefasst
   // R49: standen nur im entfernten Abschnitt „Compliance & Standards-Zuordnung“; als Schutz für spätere Quellstände behalten
   'Change Management', 'Risk Management', 'Decision Gates', 'Stage Gates',
+  // R59: das Glossar „Nachweiskette“ fasst die Zelle als Ganzes nach k13-t1 (glaette)
+  'Chronologische, unveränderliche Historie aller Mutationen',
 ]);
 
 /** Zahl der Regeln heute; wer eine Regel bewusst streicht, senkt diese Zahl mit Begründung */
-const MINDESTENS = 299;
+const MINDESTENS = 301;
 
 /** Fachlich tragende Ergebnisse (k9.3-p3, k4.2-p3, k6.4.2-t1, k6.4.4-p1, k6.4.3-p1, O-1) – unabhängig von der Regelliste */
 const FEST = [
   'Frühwarnung → Risiko → Entscheidung (Entscheidungsvorlage) → Freigabe → Maßnahme → Managementbericht',
-  'Berät CTC-Neurechnungen mit Abweichung > 5 % (Bestätigung durch den Bauherrn)',
+  'Berät bei CTC-Abweichungen über 5 % die Entscheidung des Bauherrn (Eskalation entlang der Mandatsleiter)',
   'Beschlüsse des Bauherrn mit klaren Bedingungen vorbereiten',
   'Gremium, in dem der Bauherr strategische Änderungen beschließt',
   'Managementbericht lesen, Top-Entscheidungen des Bauherrn beraten',
@@ -89,10 +91,13 @@ const FEST = [
   'Betriebslogik für den Regelbetrieb von MVG mit Rollen, Routinen, Taktung, Eskalation und Prüfmechanismen.',
   'die Grundlage für den Planungsstart legitimiert',
   'CTC – Restkostenprognose: verbleibende Restkosten',
+  // R57/R59: Zuständigkeiten zu CTC (k6.4.2-t1) und Risiken mit Maßnahme und Frist (k6.4.3-p2)
+  'Liefert Kosten- und Terminstände für CTC und Prognose zu (Führung: Controlling)',
+  'Risiken ohne verantwortliche Rolle und ohne Maßnahme mit Frist verpuffen',
 ];
 
 /** Wortlaut der Quelle, der nach der Angleichung nirgends mehr stehen darf (R47/R48: Zuständigkeit, Register, Status) */
-const WEG = /Bestätigt CTC-Neurechnungen|Beschlüsse mit klaren Bedingungen fassen|Gremium für strategische Change-Beschlüsse|entgegennehmen und Beschlüsse fassen|Trägt KEINE projektbezogenen|Register-Verantwortliche \(Projektsteuerung\)|Top-Entscheidungen treffen|auf Status beschlossen|Lenkungskreis informieren|Freigaben verwaltet der Admin|Betreiber-Rolle|Arbeit ist delegierbar|pflegt Nachweise & Links|Compliance & Standards-Zuordnung|MVG ist kompatibel|klassischen PMO-Einrichtung|wenn der Berater abzieht|Regelbetrieb\/ ?Übergabe\.|zu Aktionen mit Frist|berfällige Aktionen|dem Gremium zur Beschlussfassung|ohne eine Zeile Code|garantiert prüfungs|verlässt das Haus|ultimative Verantwortung|Anti-Patterns|MVG-Adoption|Druckbar als PDF|jede Karte führt mit ihren Knöpfen|Wie wir arbeiten\. |Berater bleibt als Sparringspartner| · druckbares Freigabe-Dossier|Für Beratungskunden kostenfrei|klappt alle Kapitel automatisch auf|englisch: Evidence|Methodische Grundlage|anschlussfähig an anerkannte Standards|orientiert sich konzeptionell|Approval-Stufen|Datenvertrags \(52\)|Pilotbetrieb, Übergabe, Verbesserungs|Nutzen Sie die Approval-Workflows|an der Freigabe beschlossen|zur Freigabe bringen|Freigabe Fassadenmuster|Neukunden-Einrichtung|Beraterstandard|Zwei Berater haben|3 dringendste Domänen|LPH 0–8|Re-Baseline|(?<!letzt)verantwortliche Rolle \(A\)|Kunden mit eigenem projektnahem|Freigabe-Dossier|Revisionssicherheit|neuer Berater|Kundenprojekt|Freigabe von Changes|Change-Freigaben|[Ii]st Accountable für|Accountable bleibt|als Accountable auf|rechenschaftspflichtig|Rohbauvergabe an Bieter B, (?:Budget )?4,1 Mio|Accountable Role|Accountable-Rolle|freigegebenen Changes|Entscheidung \(Freigabe\)|Approval-Workflow mit 6|Kundeninstallation|revisionssicher|ist Accountable|einem Accountable|Freigabebefugnis einer Rolle|vor weiterem Fortschritt erfüllt|Quartalsweise \/ je Freigabe|Accountable: wer trägt|Strukturierter Entscheidungsmeilenstein|Entscheidungen durchlaufen 6 signierte|approveChange – Freigaben|Risiken \/ Entscheidungen \/ Changes aktualisieren|Erstellt CTC-Neurechnungen|CTC-Closing und Prognose-Szenarien rechnen|Lenkungskreis-Beschlüssen|Stoppen als Sonderformat|Bei Drift: CTC-Neurechnung, |Schlanker Governance-Standard|schlanke Steuerungsentscheidung|Forecast-to-Complete|Forecast to Complete|FTC|den Projektstart freigibt|Kette Frühwarnung → Risiko → Maßnahme/u;
+const WEG = /Bestätigt CTC-Neurechnungen|Beschlüsse mit klaren Bedingungen fassen|Gremium für strategische Change-Beschlüsse|entgegennehmen und Beschlüsse fassen|Trägt KEINE projektbezogenen|Register-Verantwortliche \(Projektsteuerung\)|Top-Entscheidungen treffen|auf Status beschlossen|Lenkungskreis informieren|Freigaben verwaltet der Admin|Betreiber-Rolle|Arbeit ist delegierbar|pflegt Nachweise & Links|Compliance & Standards-Zuordnung|MVG ist kompatibel|klassischen PMO-Einrichtung|wenn der Berater abzieht|Regelbetrieb\/ ?Übergabe\.|zu Aktionen mit Frist|berfällige Aktionen|dem Gremium zur Beschlussfassung|ohne eine Zeile Code|garantiert prüfungs|verlässt das Haus|ultimative Verantwortung|Anti-Patterns|MVG-Adoption|Druckbar als PDF|jede Karte führt mit ihren Knöpfen|Wie wir arbeiten\. |Berater bleibt als Sparringspartner| · druckbares Freigabe-Dossier|Für Beratungskunden kostenfrei|klappt alle Kapitel automatisch auf|englisch: Evidence|Methodische Grundlage|anschlussfähig an anerkannte Standards|orientiert sich konzeptionell|Approval-Stufen|Datenvertrags \(52\)|Pilotbetrieb, Übergabe, Verbesserungs|Nutzen Sie die Approval-Workflows|an der Freigabe beschlossen|zur Freigabe bringen|Freigabe Fassadenmuster|Neukunden-Einrichtung|Beraterstandard|Zwei Berater haben|3 dringendste Domänen|LPH 0–8|Re-Baseline|(?<!letzt)verantwortliche Rolle \(A\)|Kunden mit eigenem projektnahem|Freigabe-Dossier|Revisionssicherheit|neuer Berater|Kundenprojekt|Freigabe von Changes|Change-Freigaben|[Ii]st Accountable für|Accountable bleibt|als Accountable auf|rechenschaftspflichtig|Rohbauvergabe an Bieter B, (?:Budget )?4,1 Mio|Accountable Role|Accountable-Rolle|freigegebenen Changes|Entscheidung \(Freigabe\)|Approval-Workflow mit 6|Kundeninstallation|revisionssicher|ist Accountable|einem Accountable|Freigabebefugnis einer Rolle|vor weiterem Fortschritt erfüllt|Quartalsweise \/ je Freigabe|Accountable: wer trägt|Strukturierter Entscheidungsmeilenstein|Entscheidungen durchlaufen 6 signierte|approveChange – Freigaben|Risiken \/ Entscheidungen \/ Changes aktualisieren|Erstellt CTC-Neurechnungen|CTC-Closing und Prognose-Szenarien rechnen|Lenkungskreis-Beschlüssen|Stoppen als Sonderformat|Bei Drift: CTC-Neurechnung, |Schlanker Governance-Standard|schlanke Steuerungsentscheidung|Forecast-to-Complete|Forecast to Complete|FTC|den Projektstart freigibt|Kette Frühwarnung → Risiko → Maßnahme|Bestätigung durch den Bauherrn\)|Eigentümer\/|ausgearbeitete Akte|dueDate etc|ab über 5/u;
 
 test('Hilfe (R48): jede Ersetzung mit festem Ersatz steht im Ergebnis – außer den benannten Ausnahmen', () => {
   const { hilfe, fehler } = baueHilfe({ ziel: null });
@@ -124,10 +129,13 @@ test('Hilfe (R48): jede Ersetzung mit festem Ersatz steht im Ergebnis – außer
   assert.ok(ERSETZUNGEN.length >= MINDESTENS, `nur ${ERSETZUNGEN.length} Ersetzungen (vorher ${MINDESTENS}) – eine Regel entfernt?`);
   // R54 (Architektur): die Mindestzahl ließ neun Regeln stillschweigend fallen – jetzt ist jedes Muster eingefroren
   // (tests/hilfe-ersetzungen.muster.json); wer eine Regel bewusst streicht, streicht dort ihr Muster mit Begründung im L-Eintrag
-  const quellen = new Set(ERSETZUNGEN.map(([m]) => m.source));
-  const eingefroren: string[] = JSON.parse(readFileSync(new URL('./hilfe-ersetzungen.muster.json', import.meta.url), 'utf8'));
-  assert.deepEqual(eingefroren.filter((m) => !quellen.has(m)), [], 'Regel entfernt oder geändert');
-  assert.equal(ERSETZUNGEN.length, eingefroren.length, 'neue Regel: ihr Muster in tests/hilfe-ersetzungen.muster.json aufnehmen');
+  // R59: Muster UND Ersatz eingefroren – ein still geänderter Ersatz (z. B. „Führung: Projektsteuerung“) wäre sonst grün geblieben
+  const aktuell = (ERSETZUNGEN as [RegExp, unknown][]).map(([m, statt]) => [m.source, typeof statt === 'string' ? statt : String(statt)]);
+  const eingefroren: [string, string][] = JSON.parse(readFileSync(new URL('./hilfe-ersetzungen.muster.json', import.meta.url), 'utf8'));
+  const schluessel = (x: unknown[]): string => JSON.stringify(x);
+  const jetzt = new Set(aktuell.map(schluessel));
+  assert.deepEqual(eingefroren.filter((e) => !jetzt.has(schluessel(e))).map((e) => e[0]), [], 'Regel entfernt oder ihr Ersatz geändert');
+  assert.equal(ERSETZUNGEN.length, eingefroren.length, 'neue Regel: Muster und Ersatz in tests/hilfe-ersetzungen.muster.json aufnehmen');
   for (const soll of FEST) assert.ok(text.includes(soll), `fehlt: ${soll}`);
   assert.doesNotMatch(text, WEG);
   // R57: Rechte-Kennungen stehen als Feldnamen in <code> (eine entfernte Auszeichnung ließe den Text gleich)

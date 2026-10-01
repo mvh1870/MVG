@@ -89,7 +89,7 @@ Risikoexposition und ihre Auswirkungen akzeptieren; den Einsatz der Risikoreserv
 ---
 titel: Freigabe
 ---
-Die wesentliche [[Freigabe]] erteilen.
+Die wesentliche Freigabe erteilen.
 :::
 
 ::: karte 6

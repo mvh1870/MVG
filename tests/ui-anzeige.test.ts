@@ -179,7 +179,7 @@ test('Mandatsleiter: Anzeige-Wahl mit Vorgabe, Stockwerke, Höhe und Beträge', 
   assert.equal(hoeheFuer(stufen, 100), 22);
   assert.ok(hoeheFuer(stufen, 4700) > 74 && hoeheFuer(stufen, 4700) <= 100);
   assert.equal(formatiereTeur(100), '100 TEUR');
-  assert.equal(formatiereTeur(4700), '4,7 Mio. €');
+  assert.equal(formatiereTeur(4700), '4,7\u00a0Mio.\u00a0€'); // R59: Betrag und Einheit bleiben in einer Zeile
 });
 
 test('Vergleichsszene, Prüfliste, Fluss: Ziele und Kennungen', () => {

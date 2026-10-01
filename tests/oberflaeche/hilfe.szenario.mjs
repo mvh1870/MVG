@@ -105,7 +105,7 @@ export async function lauf(seite, h) {
       if (ohneKopf > 0) h.befund(`Druck ${id}: ${ohneKopf} Grafik-Überschriften nicht auf der Querseite`);
       // R41: im echten PDF – keine Seite endet mit einer Überschrift, keine leere Seite (Abstand unter der Seite)
       // R48 (Architektur): auch eine Kopfzeile, die (ohne thead) als erste Zeile im tbody steht
-      const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.hilfe-inhalt :is(h1, h2, h3, h4, summary), .hilfe-inhalt .h-help-content-inline > b:first-child, .hilfe-inhalt .h-help-content-inline > b:has(+ :is(ol, ul)), .hilfe-inhalt thead tr, .hilfe-inhalt tbody > tr:first-child:not(:has(> td))')]
+      const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.hilfe-inhalt :is(h1, h2, h3, h4, summary), .hilfe-inhalt .h-help-content-inline > b:first-child, .hilfe-inhalt .h-help-content-inline > b:has(+ :is(ol, ul)), .hilfe-inhalt thead tr, .hilfe-inhalt tbody > tr:first-child:not(:has(> td)), .hilfe-inhalt .h-schritt-nr')]
         .map((x) => ({ text: x.textContent ?? '', pt: parseFloat(getComputedStyle(x).fontSize) * 0.75 })));
       // R48 (Architektur): helle Schrift druckt ihre Fläche mit (Nummernmarken „01“–„05“ weiß auf Navy, L-137) – wie die Theorie
       const blass = await seite.evaluate(() => {
@@ -184,6 +184,9 @@ export async function lauf(seite, h) {
       // pdf.js liefert Wortteile getrennt (Unterschneidung) – ohne Leerraum zählen
       const vermerke = ((pdfText[0]?.zeilen.join('') ?? '').replace(/\s+/gu, '').normalize('NFC').match(/ungeprüft/giu) ?? []).length;
       if (vermerke !== 1) h.befund(`Druck ${id}: „ungeprüft“ ${vermerke}-mal auf S. 1 (erwartet einmal)`);
+      // R59: eine Schrittnummer („2“) steht nie allein als letzte Zeile einer Seite (zu kurz für seitenMitUeberschriftAmEnde)
+      const nummerAmEnde = pdfText.slice(0, -1).map((x, i) => (/^\d{1,2}$/u.test((x.zeilen.at(-1) ?? '').trim()) ? i + 1 : 0)).filter((x) => x > 0);
+      if (nummerAmEnde.length > 0) h.befund(`Druck ${id}: Schrittnummer allein am Seitenende (S. ${nummerAmEnde.join(', ')})`);
       const amEnde = seitenMitUeberschriftAmEnde(pdfText, koepfe);
       if (amEnde.length > 0) h.befund(`Druck ${id}: Überschrift am Seitenende ${JSON.stringify(amEnde)}`);
       if (pdfText.some((x) => x.zeilen.length === 0)) h.befund(`Druck ${id}: leere Seite`);

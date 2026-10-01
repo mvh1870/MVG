@@ -159,7 +159,7 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   // R47: kanonischer Governance-Fluss (k6.4.3-p1) – Maßnahme vor Managementbericht
   [/Frühwarnung → Risiko → Entscheidung \(Entscheidungsvorlage\) → Freigabe → Managementbericht → Maßnahme/gu, 'Frühwarnung → Risiko → Entscheidung (Entscheidungsvorlage) → Freigabe → Maßnahme → Managementbericht'],
   // R47: der Lenkungskreis berät, der Bauherr beschließt und erteilt Freigaben (k9.3-p3, k13-t1)
-  [/^Bestätigt CTC-Neurechnungen mit Abweichung > 5 %$/gu, 'Berät CTC-Neurechnungen mit Abweichung > 5 % (Bestätigung durch den Bauherrn)'],
+  [/^Bestätigt CTC-Neurechnungen mit Abweichung > 5 %$/gu, 'Berät bei CTC-Abweichungen über 5 % die Entscheidung des Bauherrn (Eskalation entlang der Mandatsleiter)'],
   [/^Beschlüsse mit klaren Bedingungen fassen$/gu, 'Beschlüsse des Bauherrn mit klaren Bedingungen vorbereiten'],
   [/^Gremium für strategische Change-Beschlüsse$/gu, 'Gremium, in dem der Bauherr strategische Änderungen beschließt'],
   [/Managementbericht lesen, Top-Entscheidungen treffen/gu, 'Managementbericht lesen, Top-Entscheidungen des Bauherrn beraten'],
@@ -342,6 +342,9 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/Entscheidungs-Accountable/gu, 'letztverantwortliche Rolle (A) der Entscheidung'],
   [/^Freigabebefugnis einer Rolle mit Schwellenwert\.$/gu, 'Klar zugewiesene Entscheidungs- und Eskalationsbefugnis einer Rolle oder eines Gremiums, verbunden mit Schwellen, Stellvertretung und Freigabeweg.'],
   // R55: Freigabe mit Auflagen gibt frei; Auflagen werden zu Maßnahmen (k6.4.4-p1, k6.4.3-p2)
+  // R59: CTC-Neurechnung ist delegierbar (Controlling); der Lenkungskreis berät die Entscheidung des Bauherrn
+  [/ab über 5 %/gu, 'über 5 %'],
+  [/^Die beim Bauherrn verbleibende Verantwortung für Ziel, Grundsatzentscheidung, wesentliche Freigabe, Risikoannahme und Nachweisfähigkeit – auch bei vollständig delegierter Vorbereitung\.$/gu, 'Die beim Bauherrn verbleibende Verantwortung für Ziel, Grundsatzentscheidung, wesentliche Freigabe, Risikoannahme, Nachweisfähigkeit und Beschlusslage – auch bei vollständig delegierter Vorbereitung.'],
   // R58: auch die Bauherren-PL stößt die CTC-Neurechnung beim Controlling an (k6.4.2-t1)
   [/Bei Drift: CTC-Neurechnung, Eskalation entlang der Mandatsleiter/gu, 'Bei Drift: CTC-Neurechnung beim Controlling anstoßen, Eskalation entlang der Mandatsleiter'],
   // R58: Glossar „MVG“ und „Betriebshandbuch“ im Wortlaut von k13-t1; Maßnahme ohne verkürzte Kette; LPH 0 legitimiert den Planungsstart
@@ -840,6 +843,17 @@ function glaette(/** @type {string} */ html) {
     .replace(/(<tr><td><b>Monatlich, zzgl\. Sondersitzungen<\/b>)/gu, '<tr><td><b>Monatlich</b></td><td>Projektsteuerung</td><td>Formale Risikoprüfung und Bericht → <span>Managementbericht</span></td></tr>$1')
     // R56: Rechte-Kennungen als Feldnamen (L-69); Entscheidungen und Änderungen sind keine Freigaben
     .replace(/<li>approveDecision\/(?:<wbr>)?approveGate\/(?:<wbr>)?approveChange – Freigaben<\/li>/gu, '<li><code>approveDecision</code>/<wbr><code>approveGate</code>/<wbr><code>approveChange</code> – Entscheidungen, Freigaben und Änderungen bestätigen (nach Mandat)</li>')
+    // R59: Schritte „Nummer + Überschrift“ mit Klassen, damit der Druck die Nummer beim Schritt hält
+    .replace(/<div><div>(\d)<\/div><div><h3>/gu, '<div class="h-schritt"><div class="h-schritt-nr">$1</div><div><h3>')
+    // R59: Glossar „Bauherren-Führungsmodell“ und „Nachweiskette“ im Wortlaut von k13-t1
+    .replace(/<td><b>Bauherren-Führungsmodell<\/b><\/td><td>[^<]*Risiko\/(?:<wbr>)?Change\/(?:<wbr>)?Maßnahme, CTC\/(?:<wbr>)?KPI, [^<]*<\/td>/gu, '<td><b>Bauherren-Führungsmodell</b></td><td>Das Zusammenspiel aus Zielsystem, Rollen und Mandaten, Freigaben, Entscheidungs-IDs, Datenstands- und Nachweislogik, Risiko-/Änderungs-/Maßnahmenverknüpfung, Restkostenprognose (CTC), Leistungskennzahlen (KPI), Eskalation, Betriebshandbuch und Befähigung zu einer durchgängigen Steuerungsarchitektur – das Führungsmodell, mit dem ein Bauherr ein komplexes Vorhaben steuerbar hält.</td>')
+    .replace(/<td><b>Nachweiskette<\/b><\/td><td>Chronologische, fortlaufende Historie aller Änderungen mit Zeitstempel und Rolle\.<\/td>/gu, '<td><b>Nachweiskette</b></td><td>Nachvollziehbare Kette von Entscheidungsgrundlagen, Annahmen, Freigaben, Beschlüssen und Nachverfolgung (in der Anwendung zusätzlich die fortlaufende Historie aller Änderungen mit Zeitstempel und Rolle).</td>')
+    // R59: Risiken haben keine Frist (Frühwarnungsregister), die Maßnahme schon (k6.4.3-p2)
+    .replace(/Stolperstein: Risiken ohne Eigentümer\/(?:<wbr>)?Frist verpuffen - jedes Top-Risiko braucht beides\./gu, 'Stolperstein: Risiken ohne verantwortliche Rolle und ohne Maßnahme mit Frist verpuffen – jedes Top-Risiko braucht beides.')
+    // R59: Entscheidungsvorlage = Nachweislogik einer wesentlichen Entscheidung (k13-t1)
+    .replace(/ausgearbeitete Akte zu <b>einer<\/b> wesentlichen Entscheidung/gu, 'ausgearbeitete Nachweislogik zu <b>einer</b> wesentlichen Entscheidung')
+    // R59: Feldnamen deutsch (L-69)
+    .replace(/Pflichtfelder fehlen:<\/b> Title, verantwortliche Rolle, dueDate etc\./gu, 'Pflichtfelder fehlen:</b> Titel, verantwortliche Rolle, Fälligkeit usw.')
     // R58: CTC statt FTC in den Methoden (Glossar: CTC = Restkostenprognose)
     .replace(/<li><b>FTC – Forecast to Complete:<\/b> verbleibende Restkosten/gu, '<li><b>CTC – Restkostenprognose:</b> verbleibende Restkosten')
     .replace(/<li><b>EAC – Estimate at Completion:<\/b> Ist-Kosten \+ FTC</gu, '<li><b>EAC – Estimate at Completion:</b> Ist-Kosten + CTC<')

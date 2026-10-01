@@ -50,7 +50,7 @@ Die Antwort an die Fraktion bis Freitag, 13. November, arbeitet noch niemand zu.
 titel: Die Antwort an den Stadtrat aus dem Managementbericht zuarbeiten
 kurz: Stadtratsanfrage zuarbeiten
 status:
-  offene-risiken: -1
+  entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
 Kosten und Termin kommen aus dem geltenden Datenstand und dem letzten Managementbericht. Dr. Olbers hat ihre Antwort am Mittwoch, mit Kennungen und Version.

@@ -195,7 +195,7 @@ Komplexe Bauherrenorganisationen hängen in kritischen Momenten oft von wenigen 
 ---
 titel: Drei Zahlen, keine benannt
 ---
-Die Projektbasis von 58,4 Mio. € enthält 2,9 Mio. € Risikoreserve. Die Kostendatei steht auf dem Stand der Kostenberechnung, gepflegt allein von Holger Stein; das Controlling rechnet daneben. Für den Haushaltsansatz fehlt die Antwort auf eine Frage der Datenstandslogik: [[zitat:k4.6-p2|Welche Annahmen sind offen?]]
+Die Projektbasis von 58,4 Mio. € enthält 2,9 Mio. € Risikoreserve. Die Kostendatei steht auf dem Stand der Kostenberechnung, gepflegt allein von Holger Stein; der Statusbericht der Projektsteuerung und das Controlling rechnen daneben. Für den Haushaltsansatz fehlt die Antwort auf eine Frage der Datenstandslogik: [[zitat:k4.6-p2|Welche Annahmen sind offen?]]
 :::
 
 ::: vertiefung organisation

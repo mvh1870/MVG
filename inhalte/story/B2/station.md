@@ -187,7 +187,7 @@ kurz: Mandat
 ---
 ::: mandatsleiter
 ---
-betrag: rund 0,6 Mio. €
+betrag: rund 0,6 Mio. €
 betrag-teur: 600
 stufen:
   - wer: Bauherren-PL

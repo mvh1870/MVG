@@ -1765,21 +1765,17 @@ test('Abbildungen (P14, O-32): Lernseite und Originaltext zeigen das Bild mit Vo
   }
 });
 
-// R58: in den Quellen steht die passende Antwort zuerst – angezeigt nicht immer an derselben Stelle
+// R58/R59: in den Quellen steht die passende Antwort zuerst – in der gebauten Seite nicht in jedem Check an derselben Stelle
 test('Wissenscheck: die passende Antwort steht nicht in jedem Check an derselben Stelle', () => {
   const stellen: number[] = [];
-  const sammle = (o: unknown): void => {
-    if (Array.isArray(o)) { o.forEach(sammle); return; }
-    if (o === null || typeof o !== 'object') return;
-    const b = o as { art?: string; id?: string; kinder?: { art: string }[] };
-    if (b.art === 'wissenscheck') {
-      const n = (b.kinder ?? []).filter((k) => k.art === 'antwort').length;
-      const v = theorieModul.wcVerschiebung(b.id ?? '', n);
-      stellen.push(v === 0 ? 0 : n - v);
+  for (const k of kapitelListe(inhalte).filter((x) => x.seite)) {
+    const seite = baueTheorie({ inhalte, kapitel: k.nr, version: VERSION, bedienbar: true });
+    for (const wc of seite.querySelectorAll('.wissenscheck')) {
+      const knoepfe = [...wc.querySelectorAll('.wc-antwort')].map((b) => b.getAttribute('data-pruef'));
+      stellen.push(knoepfe.indexOf('wc-antwort-a'));
     }
-    Object.values(o).forEach(sammle);
-  };
-  sammle(inhalte.theorie);
-  assert.ok(stellen.length >= 10);
+  }
+  assert.ok(stellen.length >= 10, `${stellen.length} Wissenschecks`);
+  assert.ok(!stellen.includes(-1));
   assert.ok(new Set(stellen).size >= 2, `alle an Stelle ${stellen[0]}`);
 });

@@ -31,6 +31,8 @@ export const WURZEL = path.resolve(path.dirname(fileURLToPath(import.meta.url)),
 export const MITSCHNITT = path.join(WURZEL, 'tmp', 'kette');
 /** Zeitlimit je Schritt; ein hängender Schritt ist ein Befund, kein Stillstand. */
 export const ZEITLIMIT_MS = 20 * 60_000;
+/** --voll (GitHub-Aktion, alle Rollen und Größen): mehr Zeit – seit den Breitenproben (L-166 ff.) reichten 20 min dort nicht (CI 241–244, L-169); die Aktion selbst endet nach 45 min */
+export const ZEITLIMIT_VOLL_MS = 35 * 60_000;
 
 /**
  * @typedef {object} Schritt
@@ -145,7 +147,7 @@ export async function laufe(liste, optionen = {}) {
   const o = {
     wurzel: optionen.wurzel ?? WURZEL,
     still: optionen.still ?? false,
-    zeitlimitMs: optionen.zeitlimitMs ?? ZEITLIMIT_MS,
+    zeitlimitMs: optionen.zeitlimitMs ?? (process.env['MVG_VOLL'] === '1' ? ZEITLIMIT_VOLL_MS : ZEITLIMIT_MS),
   };
   const mitschnitt = optionen.mitschnitt ?? MITSCHNITT;
   const nur = optionen.nur ?? null;

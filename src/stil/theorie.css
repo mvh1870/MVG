@@ -545,6 +545,8 @@ a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
   /* R50 (Druck): die Quellzeile eines Zitatkastens (Resümee „Sechs Kernfragen“) steht nie allein auf der Folgeseite */
   .druck-bogen .zitat-block > .quelle { break-before: avoid; }
   .druck-bogen .zitat-block blockquote li { break-inside: avoid; }
+  /* R51: kurze Listenzitate (Kernfragen) ungeteilt – sonst blieb ein Blatt mit einer Frage und der Quellzeile */
+  .druck-bogen .zitat-block:has(blockquote > ul) { break-inside: avoid; }
   /* R50 (Druck): aufgelöst trägt jede Karte ihre Seite – die Achse „Delegierbar · Grenze · Nicht delegierbar“ läse sich als Spalten */
   .druck-bogen .schwelle-kopf { display: none; }
   .druck-bogen figure.tafel > figcaption { break-before: avoid; }
@@ -772,6 +774,8 @@ a.abbildung-beleg { color: var(--navy); }
   .druck-bogen figure.abbildung { break-inside: auto; }
   .abbildung-rahmen, .abbildung-unterschrift > span, .abbildung-abweichungen li { break-inside: avoid; }
   .abbildung-rahmen, .abbildung-marke { break-after: avoid; }
+  /* R51: Marke und Titel stehen im Druck über dem Bild (theorie.ts, loeseFuerDruckAuf) und gehen mit ihm auf die nächste Seite */
+  .druck-bogen .abbildung-druckkopf { display: grid; gap: 1mm; margin: 0 0 2mm; break-inside: avoid; break-after: avoid; }
   .abbildung-gross, .abbildung-dialog { display: none; }
 }
 /* Abbildungsverzeichnis in Explore (P14): Vorschaubild und Titel als Sprung zur Abbildung */

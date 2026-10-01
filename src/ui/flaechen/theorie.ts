@@ -588,6 +588,15 @@ export function kapitelFuerDruck(inhalte: OeffentlicheInhalte, nr: number, versi
  * zeigt jede Antwort mit ihrer Rückmeldung, dann Erklärung und Beleg; das Schwellen-Spiel je Aufgabe die Seite.
  */
 function loeseFuerDruckAuf(seite: HTMLElement): void {
+  // R51: Marke und Titel einer Abbildung stehen im Druck über dem Bild und gehen mit ihm um – unter dem Bild (Raster der
+  // Unterschrift) rissen sie ab (Abb. 11: Bild unten auf S. 17, Marke und Titel oben auf S. 18)
+  for (const f of seite.querySelectorAll<HTMLElement>('figure.abbildung')) {
+    const marke = f.querySelector('.abbildung-unterschrift > .abbildung-marke');
+    const titel = f.querySelector('.abbildung-unterschrift > .abbildung-titel');
+    const rahmen = f.querySelector('.abbildung-rahmen');
+    // im Rahmen, der ungeteilt bleibt (break-inside: avoid) – break-after hielt Chromium vor dem Bild nicht ein
+    if (marke !== null && titel !== null && rahmen !== null) rahmen.prepend(h('p', { class: 'abbildung-druckkopf' }, marke, titel));
+  }
   for (const wc of seite.querySelectorAll<HTMLElement>('.wissenscheck')) {
     const ergebnis = wc.querySelector('.wc-ergebnis');
     const knoepfe = [...wc.querySelectorAll<HTMLButtonElement>('.wc-antwort')];

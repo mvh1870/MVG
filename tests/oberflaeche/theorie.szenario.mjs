@@ -489,6 +489,33 @@ export async function lauf(seite, h) {
   await h.erwarte('[data-kapitel="7"] [data-pruef="kapitel-drucken"]');
   await seite.locator('[data-pruef="kapitel-drucken"]').click();
   await seite.emulateMedia({ media: 'print', reducedMotion: 'reduce' });
+  // R51: Marke und Titel (Druckkopf über dem Bild) stehen auf derselben Seite wie der Anfang des Bilds
+  const abbMarken = await seite.evaluate(() => {
+    let n = 0;
+    for (const f of document.querySelectorAll('.druck-bogen figure.abbildung')) {
+      const rahmen = f.querySelector('.abbildung-rahmen');
+      const cap = f.querySelector('.abbildung-druckkopf');
+      if (!(rahmen instanceof HTMLElement) || !(cap instanceof HTMLElement)) continue;
+      n += 1;
+      for (const [el, ort, lage] of [[rahmen, 'B', 'bottom:0'], [cap, 'U', 'top:0']]) {
+        if (getComputedStyle(el).position === 'static') el.style.position = 'relative';
+        const m = document.createElement('span');
+        m.textContent = `QA${ort}${n}Q`;
+        m.style.cssText = `position:absolute;${lage};left:0;font-size:8px;line-height:1;color:#000;white-space:nowrap`;
+        el.append(m);
+      }
+    }
+    return n;
+  });
+  const k7roh = await pdfSeiten(await seite.pdf({ format: 'A4' }));
+  const seiteVonA = (/** @type {string} */ m) => k7roh.findIndex((x) => x.zeilen.some((z) => z.includes(m)));
+  for (let i = 1; i <= abbMarken; i++) {
+    const b = seiteVonA(`QAB${i}Q`);
+    const u = seiteVonA(`QAU${i}Q`);
+    if (b < 0 || u < 0 || b !== u) h.befund(`Druck Kapitel 7: Abbildung ${i} – Bild S. ${b + 1}, Marke und Titel S. ${u + 1}`);
+  }
+  if (abbMarken === 0) h.befund('Druck Kapitel 7: keine Abbildung im Bogen gemessen');
+  await seite.evaluate(() => { for (const f of document.querySelectorAll('.druck-bogen figure.abbildung span')) if (/^QA[BU]\d+Q$/u.test(f.textContent ?? '')) f.remove(); });
   const k7 = await pdfSeiten(await seite.pdf({ format: 'A4' }));
   const leer7 = k7.slice(0, -1).map((x, i) => ({ seite: i + 1, fuellung: Math.round((x.fuellung ?? 0) * 100) })).filter((x) => x.fuellung < 35);
   if (leer7.length > 0) h.befund(`Druck Kapitel 7: fast leere Seiten ${JSON.stringify(leer7)}`);

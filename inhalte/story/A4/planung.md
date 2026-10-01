@@ -56,7 +56,7 @@ status:
 Die Bauherren-PL verweist auf die Sitzung im September. Die Planung hält den Brandschutz an.
 
 ### Was fehlt
-Ein Gremium mit Mandat für Änderungen; in Welt A wartet alles auf den Ausschuss.
+Ein Gremium mit Mandat für Änderungen; in Welt A ist nicht festgelegt, wer zwischen zwei Ausschusssitzungen entscheidet.
 
 ### Neues Risiko
 Zwei Monate Stillstand an einem genehmigungsrelevanten Punkt.

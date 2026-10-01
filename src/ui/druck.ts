@@ -135,6 +135,8 @@ function haengeBogenAn(teile: Node[]): HTMLElement {
   for (const alt of document.querySelectorAll('.druck-bogen')) alt.remove();
   const bogen = h('div', { class: 'druck-bogen', 'data-pruef': 'druck-bogen' }, teile);
   for (const d of bogen.querySelectorAll('details')) d.setAttribute('open', '');
+  // R57: Glossarbegriffe sind auf Papier Text, keine Bedienelemente (role/tabindex aus inhalt.ts)
+  for (const b of bogen.querySelectorAll('.begriff')) { b.removeAttribute('role'); b.removeAttribute('tabindex'); }
   // R43: Papier hat kein Trennwörterbuch – lange Wörter in Tabellenzellen und Tafeltiteln bekommen weiche Trennstellen an ihren Fugen
   // R45: ganze Tafeln – ihre Karten sind 196 px breit (CI 204: „Entscheidungsvorbereitung“ passte unter Chrome 153 nicht mehr)
   for (const el of bogen.querySelectorAll('th, td, .tafel')) setzeTrennstellen(el);

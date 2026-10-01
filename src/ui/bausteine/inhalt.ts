@@ -3,8 +3,9 @@
  *
  * Das HTML ist zur Bauzeit aus Markdown entstanden und maskiert (werkzeuge/inhalte.mjs). Hier wird es
  * nur noch aufbereitet:
- * - Glossarbezüge `<span class="mvg-glossar" data-glossar=…>` werden zu `button.begriff` (Mouseover
- *   und Tastaturfokus zeigen die Definition, siehe tooltip.ts);
+ * - Glossarbezüge `<span class="mvg-glossar" data-glossar=…>` werden zu `span.begriff[role=button]` (Mouseover
+ *   und Tastaturfokus zeigen die Definition, siehe tooltip.ts) – kein `<button>`: Chromium setzt Knöpfe immer
+ *   als inline-block, ein Begriff aus mehreren Wörtern bräche dann nicht im Fließtext um (R57);
  * - `<code>` (so schreiben Autoren IDs wie `ENT-017`) wird zu `span.mono`.
  */
 
@@ -16,9 +17,14 @@ import type { OeffentlicheInhalte } from '../../inhalte/typen.ts';
 /** Ersetzt Glossarbezüge durch Begriff-Knöpfe. */
 export function aktiviereGlossar(wurzel: ParentNode): void {
   for (const span of [...wurzel.querySelectorAll('span.mvg-glossar')]) {
-    const knopf = document.createElement('button');
-    knopf.type = 'button';
+    const knopf = document.createElement('span');
+    knopf.setAttribute('role', 'button');
+    knopf.tabIndex = 0;
     knopf.className = 'begriff';
+    // wie ein Knopf: Eingabe und Leertaste lösen aus (der Hinweis zeigt sich schon beim Fokus)
+    knopf.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); knopf.click(); }
+    });
     const id = span.getAttribute('data-glossar');
     if (id !== null) knopf.setAttribute('data-glossar', id);
     knopf.setAttribute('data-pruef', 'glossar-begriff');

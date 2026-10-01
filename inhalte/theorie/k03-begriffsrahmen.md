@@ -202,7 +202,7 @@ Sie bleibt dort, wo der Bauherr die bauherrenseitige Entscheidung selbst legitim
 ---
 text: "In der Story erlebt: Wendepunkt"
 ---
-Welt A steht still: Sie ordnen Aufgaben aus Kap. 3.2 als delegierbar oder nicht delegierbar zu und können unter „Tiefer gehen“ die drei Ebenen der Verantwortungspyramide aufklappen.
+Welt A steht still: Sie ordnen Aufgaben aus Kap. 3.2 als delegierbar oder nicht delegierbar zu; unter „Tiefer gehen“ stehen die drei Ebenen der Verantwortungspyramide.
 :::
 
 ::: querverweis B5

@@ -58,6 +58,9 @@ export async function lauf(seite, h) {
       // R47: kein Wort bricht mitten im Wort ohne Trennstrich (Titel, Körbe, Tabellenköpfe, Originaltext) – außer in Text mit hyphens:auto
       const bruch320 = await wortbrueche(seite, '.lernseite', { bildschirm: true });
       if (bruch320.length > 0) h.befund(`k${nr} @320: ${bruch320.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(bruch320.slice(0, 6))}`);
+      // R57: Glossarbegriffe im Fließtext inline (als <button> standen mehrteilige Begriffe als Block, die Zeile begann mit „,“)
+      const block320 = await seite.evaluate(() => [...document.querySelectorAll('.lernseite .begriff')].filter((b) => b.getClientRects().length > 0 && getComputedStyle(b).display !== 'inline').map((b) => (b.textContent ?? '').slice(0, 30)));
+      if (block320.length > 0) h.befund(`k${nr} @320: Glossarbegriffe nicht inline ${JSON.stringify(block320.slice(0, 3))}`);
       // R54 (L-129): Überschriften und Lernkarten-Titel ohne ungeteiltes Wort über 93 % der Zeile
       const knapp320 = await knappeWoerter(seite, '.lernseite :is(.abschnitt-titel, .lernkarte-titel)');
       if (knapp320.length > 0) h.befund(`k${nr} @320: ungeteilte Wörter über 93 % der Zeile ${JSON.stringify(knapp320.slice(0, 6))}`);

@@ -15,7 +15,7 @@ const AUSNAHMEN = new Set([
 ]);
 
 /** Zahl der Regeln heute; wer eine Regel bewusst streicht, senkt diese Zahl mit Begründung */
-const MINDESTENS = 287;
+const MINDESTENS = 290;
 
 /** Fachlich tragende Ergebnisse (k9.3-p3, k4.2-p3, k6.4.2-t1, k6.4.4-p1, k6.4.3-p1, O-1) – unabhängig von der Regelliste */
 const FEST = [
@@ -79,10 +79,14 @@ const FEST = [
   'Die Freigabe erteilt der Bauherr selbst auf Vorlage der Bauherren-PL; der Lenkungskreis berät.',
   'Formale Risikoprüfung und Bericht → Managementbericht',
   'Entscheidungen, Freigaben und Änderungen bestätigen (nach Mandat)',
+  // R57: Glättungsregeln der Rhythmus-Tabelle und Zulieferung der Projektsteuerung zur CTC (k6.4.2-t1, k6.4.5-t1)
+  'Risikosichtung, Entscheidungen / Changes aktualisieren',
+  'Monatlich: Zulieferung zum CTC-Closing (Controlling)',
+  'sowie Fortführung oder Stopp als wesentliche Entscheidung beschließen',
 ];
 
 /** Wortlaut der Quelle, der nach der Angleichung nirgends mehr stehen darf (R47/R48: Zuständigkeit, Register, Status) */
-const WEG = /Bestätigt CTC-Neurechnungen|Beschlüsse mit klaren Bedingungen fassen|Gremium für strategische Change-Beschlüsse|entgegennehmen und Beschlüsse fassen|Trägt KEINE projektbezogenen|Register-Verantwortliche \(Projektsteuerung\)|Top-Entscheidungen treffen|auf Status beschlossen|Lenkungskreis informieren|Freigaben verwaltet der Admin|Betreiber-Rolle|Arbeit ist delegierbar|pflegt Nachweise & Links|Compliance & Standards-Zuordnung|MVG ist kompatibel|klassischen PMO-Einrichtung|wenn der Berater abzieht|Regelbetrieb\/ ?Übergabe\.|zu Aktionen mit Frist|berfällige Aktionen|dem Gremium zur Beschlussfassung|ohne eine Zeile Code|garantiert prüfungs|verlässt das Haus|ultimative Verantwortung|Anti-Patterns|MVG-Adoption|Druckbar als PDF|jede Karte führt mit ihren Knöpfen|Wie wir arbeiten\. |Berater bleibt als Sparringspartner| · druckbares Freigabe-Dossier|Für Beratungskunden kostenfrei|klappt alle Kapitel automatisch auf|englisch: Evidence|Methodische Grundlage|anschlussfähig an anerkannte Standards|orientiert sich konzeptionell|Approval-Stufen|Datenvertrags \(52\)|Pilotbetrieb, Übergabe, Verbesserungs|Nutzen Sie die Approval-Workflows|an der Freigabe beschlossen|zur Freigabe bringen|Freigabe Fassadenmuster|Neukunden-Einrichtung|Beraterstandard|Zwei Berater haben|3 dringendste Domänen|LPH 0–8|Re-Baseline|(?<!letzt)verantwortliche Rolle \(A\)|Kunden mit eigenem projektnahem|Freigabe-Dossier|Revisionssicherheit|neuer Berater|Kundenprojekt|Freigabe von Changes|Change-Freigaben|[Ii]st Accountable für|Accountable bleibt|als Accountable auf|rechenschaftspflichtig|Rohbauvergabe an Bieter B, (?:Budget )?4,1 Mio|Accountable Role|Accountable-Rolle|freigegebenen Changes|Entscheidung \(Freigabe\)|Approval-Workflow mit 6|Kundeninstallation|revisionssicher|ist Accountable|einem Accountable|Freigabebefugnis einer Rolle|vor weiterem Fortschritt erfüllt|Quartalsweise \/ je Freigabe|Accountable: wer trägt|Strukturierter Entscheidungsmeilenstein|Entscheidungen durchlaufen 6 signierte|approveChange – Freigaben/u;
+const WEG = /Bestätigt CTC-Neurechnungen|Beschlüsse mit klaren Bedingungen fassen|Gremium für strategische Change-Beschlüsse|entgegennehmen und Beschlüsse fassen|Trägt KEINE projektbezogenen|Register-Verantwortliche \(Projektsteuerung\)|Top-Entscheidungen treffen|auf Status beschlossen|Lenkungskreis informieren|Freigaben verwaltet der Admin|Betreiber-Rolle|Arbeit ist delegierbar|pflegt Nachweise & Links|Compliance & Standards-Zuordnung|MVG ist kompatibel|klassischen PMO-Einrichtung|wenn der Berater abzieht|Regelbetrieb\/ ?Übergabe\.|zu Aktionen mit Frist|berfällige Aktionen|dem Gremium zur Beschlussfassung|ohne eine Zeile Code|garantiert prüfungs|verlässt das Haus|ultimative Verantwortung|Anti-Patterns|MVG-Adoption|Druckbar als PDF|jede Karte führt mit ihren Knöpfen|Wie wir arbeiten\. |Berater bleibt als Sparringspartner| · druckbares Freigabe-Dossier|Für Beratungskunden kostenfrei|klappt alle Kapitel automatisch auf|englisch: Evidence|Methodische Grundlage|anschlussfähig an anerkannte Standards|orientiert sich konzeptionell|Approval-Stufen|Datenvertrags \(52\)|Pilotbetrieb, Übergabe, Verbesserungs|Nutzen Sie die Approval-Workflows|an der Freigabe beschlossen|zur Freigabe bringen|Freigabe Fassadenmuster|Neukunden-Einrichtung|Beraterstandard|Zwei Berater haben|3 dringendste Domänen|LPH 0–8|Re-Baseline|(?<!letzt)verantwortliche Rolle \(A\)|Kunden mit eigenem projektnahem|Freigabe-Dossier|Revisionssicherheit|neuer Berater|Kundenprojekt|Freigabe von Changes|Change-Freigaben|[Ii]st Accountable für|Accountable bleibt|als Accountable auf|rechenschaftspflichtig|Rohbauvergabe an Bieter B, (?:Budget )?4,1 Mio|Accountable Role|Accountable-Rolle|freigegebenen Changes|Entscheidung \(Freigabe\)|Approval-Workflow mit 6|Kundeninstallation|revisionssicher|ist Accountable|einem Accountable|Freigabebefugnis einer Rolle|vor weiterem Fortschritt erfüllt|Quartalsweise \/ je Freigabe|Accountable: wer trägt|Strukturierter Entscheidungsmeilenstein|Entscheidungen durchlaufen 6 signierte|approveChange – Freigaben|Risiken \/ Entscheidungen \/ Changes aktualisieren|Erstellt CTC-Neurechnungen|CTC-Closing und Prognose-Szenarien rechnen|Lenkungskreis-Beschlüssen|Stoppen als Sonderformat/u;
 
 test('Hilfe (R48): jede Ersetzung mit festem Ersatz steht im Ergebnis – außer den benannten Ausnahmen', () => {
   const { hilfe, fehler } = baueHilfe({ ziel: null });
@@ -120,6 +124,8 @@ test('Hilfe (R48): jede Ersetzung mit festem Ersatz steht im Ergebnis – außer
   assert.equal(ERSETZUNGEN.length, eingefroren.length, 'neue Regel: ihr Muster in tests/hilfe-ersetzungen.muster.json aufnehmen');
   for (const soll of FEST) assert.ok(text.includes(soll), `fehlt: ${soll}`);
   assert.doesNotMatch(text, WEG);
+  // R57: Rechte-Kennungen stehen als Feldnamen in <code> (eine entfernte Auszeichnung ließe den Text gleich)
+  for (const k of ['approveDecision', 'approveGate', 'approveChange', 'createXxx', 'deleteXxx', 'editXxx', 'importJson', 'exportJson', 'clearAudit']) assert.ok(teile.join(" ").includes(`<code>${k}</code>`), `Kennung ohne code: ${k}`);
   // R55: „Glossar A-Z“ ist alphabetisch (die Angleichungen ließen ersetzte Stichwörter an der Stelle der alten stehen)
   const glossar = teile.join(' ').match(/Tabelle: Glossar A-Z[\s\S]*?<\/tbody>/u)?.[0] ?? '';
   const stich = [...glossar.matchAll(/<tr><td>(?:<b>)?([^<]*)/gu)].map((x) => (x[1] ?? '').trim());

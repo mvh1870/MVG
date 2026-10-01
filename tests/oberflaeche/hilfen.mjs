@@ -247,6 +247,9 @@ export async function schmal(seite, h, name) {
   // R47: Wortbrüche in den Bauteilen auch bei 320 px; Schrittknöpfe mindestens 24 × 24 px (WCAG 2.5.8, axe läuft hier nicht)
   const bruch = await wortbrueche(seite, BAUTEILE_UNGETEILT, { bildschirm: true });
   if (bruch.length > 0) h.befund(`${name} @320: ${bruch.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(bruch.slice(0, 6))}`);
+  // R57: Glossarbegriffe brechen im Fließtext um (ein <button> wäre inline-block und stünde als Block über der Spalte)
+  const block = await seite.evaluate(() => [...document.querySelectorAll('.begriff')].filter((b) => b.getClientRects().length > 0 && getComputedStyle(b).display !== 'inline').map((b) => (b.textContent ?? '').slice(0, 30)));
+  if (block.length > 0) h.befund(`${name} @320: Glossarbegriffe nicht inline ${JSON.stringify(block.slice(0, 3))}`);
   // R54: Überschriften der Lernseiten und Optionstitel nach der 93-%-Regel (L-129)
   const knapp = await knappeWoerter(seite, '.abschnitt-titel, .lernkarte-titel, .option-text');
   if (knapp.length > 0) h.befund(`${name} @320: ungeteilte Wörter über 93 % der Zeile ${JSON.stringify(knapp.slice(0, 6))}`);

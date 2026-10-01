@@ -233,3 +233,6 @@ Nicht sauber – als Nächstes Runde 56.
 ## Runde 56 (P12.5, zugleich P14.3 und P15.2) – volle Runde auf 1342851
 - Story B (RACI-Zeilen), Druck (Hilfe-Kopfleiste nach dem Rollen): 2 mittel, 15 leicht – L-170. CI 241–244 rot (Zeitlimit, Hochkontrast-Wettlauf) – L-169.
 Nicht sauber – als Nächstes Runde 57.
+## Runde 57 (P12.5, zugleich P14.3 und P15.2) – volle Runde auf ebe9836
+- Story B (RACI), Hilfe (CTC-Zuständigkeit), Architektur (Glättungsregeln ungesichert), Stil (Glossarbegriffe als Block): 4 mittel, 12 leicht – L-171.
+Nicht sauber – als Nächstes Runde 58.

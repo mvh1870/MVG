@@ -9,8 +9,8 @@ angeglichen:
   - { x: 956, y: 556, b: 126, h: 46, text: "Auswirkungs-\nbewertung", beleg: k5.3-p2, schrift: barlow, gewicht: 700, groesse: 18, farbe: "#0b0d11" }
   - { x: 261, y: 850, b: 190, h: 31, text: Auswirkungsbewertung, beleg: k5.3-p2, schrift: barlow, gewicht: 700, ausrichtung: mitte }
 abweichungen:
-  - text: 'Die Abbildung gliedert das Modell in fünf Spalten, darunter „Steuerungslogik“; der Text nennt acht Bausteine. „System der Entscheidungs-IDs“, „Risiko-/Änderungs-/Maßnahmenverknüpfung“ und „Befähigung“ fehlen; die „Datenstands- und Nachweislogik“ erscheint nur als Kacheln „Datenstand“, der Baustein „Zielsystem und Abwägungsregeln“ nur als Spalte „Zielsystem“ ohne Abwägungsregeln.'
-    beleg: k5.2-t1 k7.2-p1
+  - text: 'Die Abbildung gliedert das Modell in fünf Spalten, darunter „Steuerungslogik“; der Text nennt acht Bausteine. „System der Entscheidungs-IDs“, „Risiko-/Änderungs-/Maßnahmenverknüpfung“ und „Befähigung“ fehlen; die „Datenstands- und Nachweislogik“ erscheint nur als Kacheln „Datenstand“, der Baustein „Zielsystem und Abwägungsregeln“ nur als Spalte „Zielsystem“ ohne Abwägungsregeln. Die Kachel „KPIs“ entspricht den Leistungskennzahlen, die das Glossar zum Bauherren-Führungsmodell zählt; eine eigene „Steuerungslogik“ als Baustein kennt der Text nicht.'
+    beleg: k5.2-t1 k7.2-p1 k13-t1
   - text: 'Die Leiste unten nennt „Minimum first“, „Auswirkungsbewertung“, „Entscheidungsreife“, „Evidenz“ und „Auditierbarkeit“; „Minimum first“ und „Auditierbarkeit“ kommen im Text nicht vor, „Evidenz“ nur in „evidenzbasiert“; sonst spricht er von Nachweis und Nachweisfähigkeit. Er beschreibt MVG als kleinsten funktionsfähigen Governance-Standard und als Bauherren-Führungsmodell, das Verantwortung in entscheidbare, mandatsfähige und nachweisbare Strukturen übersetzt.'
     beleg: k5-p1 k7.1-p1 k7.1-t1
   - text: 'Die Spalte „Rollen & Mandate“ zeigt eine Kachel „Mandatskarte“, die im Text nicht vorkommt; dort übersetzt der Baustein „Rollen und Mandate“ Rollen in Befugnisse, Schwellen, Stellvertretungen, Freigaben und Eskalationswege.'

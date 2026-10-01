@@ -161,12 +161,12 @@ zeilen:
     R: [ps]
     C: [pl, planung]
     I: [bauherr, gf]
-    mandat: "CTC und Prognose: Controlling, monatlich (Kap. 6.4.2) · welcher Stand verbindlich gilt, legt der Bauherr fest (Kap. 4.6); führend bleiben die vom Bauherrn freigegebenen Datenquellen und Dokumentenstände (Kap. 6.3)"
+    mandat: "CTC und Prognose: Controlling, monatlich (Kap. 6.4.2) · welcher Stand verbindlich gilt, legt der Bauherr fest (Kap. 4, Feld Datenstand und Nachweis); führend bleiben die vom Bauherrn freigegebenen Datenquellen und Dokumentenstände (Kap. 6.3)"
   - id: fruehwarnung
     titel: "Frühwarnung: Meldung und Erfassung"
     A: ps
-    R: [planung]
-    C: [controlling]
+    R: [planung, controlling]
+    C: []
     I: [pl]
     mandat: "Frühwarnungsregister: Projektsteuerung, wöchentliche Sichtung (Kap. 6.4.2)"
   - id: aenderung
@@ -180,8 +180,8 @@ zeilen:
     titel: "Einsatz der Risikoreserve: Vorlage und Freigabe"
     A: bauherr
     R: [pl]
-    C: [gf, controlling]
-    I: [ps, planung]
+    C: [gf, controlling, ps, planung]
+    I: []
     mandat: nicht delegierbar (Kap. 3.2)
 ---
 Kap. 9.2 fragt: [[zitat:k9.2-p3|Wer bereitet vor, wer entscheidet, wer liefert belastbare Entscheidungsgrundlagen, wer wird konsultiert und wer muss informiert werden?]]

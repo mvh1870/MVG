@@ -342,6 +342,11 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/Entscheidungs-Accountable/gu, 'letztverantwortliche Rolle (A) der Entscheidung'],
   [/^Freigabebefugnis einer Rolle mit Schwellenwert\.$/gu, 'Klar zugewiesene Entscheidungs- und Eskalationsbefugnis einer Rolle oder eines Gremiums, verbunden mit Schwellen, Stellvertretung und Freigabeweg.'],
   // R55: Freigabe mit Auflagen gibt frei; Auflagen werden zu Maßnahmen (k6.4.4-p1, k6.4.3-p2)
+  // R57: CTC und Prognose führt das Controlling (k6.4.2-t1, k6.4.5-t1); die Projektsteuerung liefert zu
+  [/Erstellt CTC-Neurechnungen und Prognosen/gu, 'Liefert Kosten- und Terminstände für CTC und Prognose zu (Führung: Controlling)'],
+  [/Monatlich: CTC-Closing und Prognose-Szenarien rechnen/gu, 'Monatlich: Zulieferung zum CTC-Closing (Controlling)'],
+  // R57: Beschlüsse fasst der Bauherr im Lenkungskreis (k9.3-p3)
+  [/Mandate bei Phasenwechseln und Lenkungskreis-Beschlüssen überprüfen/gu, 'Mandate bei Phasenwechseln und Beschlüssen des Bauherrn im Lenkungskreis überprüfen'],
   // R56: Glossar „Freigabe“ mit der Zuständigkeit (k13-t1, k9.3-p3); Säule II trennt Entscheidung und Freigabeprozess der Vorlage
   [/^Strukturierter Entscheidungsmeilenstein \(LPH 0–9\)\.$/gu, 'Entscheidung des Bauherrn am Abschluss einer Leistungsphase (LPH 0–9); sie gibt die nächste Leistungsphase frei. Die Freigabe erteilt der Bauherr selbst auf Vorlage der Bauherren-PL; der Lenkungskreis berät.'],
   [/Entscheidungen durchlaufen 6 signierte Stufen in der Nachweiskette\./gu, 'Entscheidungsvorlagen durchlaufen den Freigabeprozess mit signierten Stufen in der Nachweiskette (offen → … → beschlossen / abgelehnt).'],
@@ -823,6 +828,11 @@ function glaette(/** @type {string} */ html) {
     .replace(/(<tr><td><b>Monatlich, zzgl\. Sondersitzungen<\/b>)/gu, '<tr><td><b>Monatlich</b></td><td>Projektsteuerung</td><td>Formale Risikoprüfung und Bericht → <span>Managementbericht</span></td></tr>$1')
     // R56: Rechte-Kennungen als Feldnamen (L-69); Entscheidungen und Änderungen sind keine Freigaben
     .replace(/<li>approveDecision\/(?:<wbr>)?approveGate\/(?:<wbr>)?approveChange – Freigaben<\/li>/gu, '<li><code>approveDecision</code>/<wbr><code>approveGate</code>/<wbr><code>approveChange</code> – Entscheidungen, Freigaben und Änderungen bestätigen (nach Mandat)</li>')
+    // R57: alle Rechte-Kennungen der Liste als Feldnamen (L-69)
+    .replace(/<li>(createXxx|deleteXxx|editXxx|clearAudit) – /gu, '<li><code>$1</code> – ')
+    .replace(/<li>importJson \/ exportJson – /gu, '<li><code>importJson</code> / <code>exportJson</code> – ')
+    // R57: Fortführung oder Stopp ist eine wesentliche Entscheidung, kein Sonderformat (k4.3-p1, k13-t1)
+    .replace(/Neufestlegung der Projektbasis \/ Fortführen\/(?:<wbr>)?Stoppen als Sonderformat außerhalb der Freigabereihe beschließen/gu, 'Neufestlegung der Projektbasis als Sonderformat außerhalb der Freigabereihe sowie Fortführung oder Stopp als wesentliche Entscheidung beschließen')
     // R55: „Glossar A-Z“ nach den Angleichungen wieder alphabetisch (Intl.Collator de)
     .replace(/(aria-label="Tabelle: Glossar A-Z"><table>\s*<thead>[\s\S]*?<\/thead>\s*<tbody>)([\s\S]*?)(<\/tbody>)/gu, (_, vor, zeilen, nach) => {
       const liste = zeilen.match(/<tr>[\s\S]*?<\/tr>/gu) ?? [];

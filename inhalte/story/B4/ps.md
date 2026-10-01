@@ -30,10 +30,10 @@ Eine beschlossene Änderung mit noch offener Deckung.
 titel: Den monatlichen Risikobericht in den Managementbericht einspeisen
 kurz: Risikobericht einspeisen
 status:
-  ungeklaerte-entscheidungen: -1
+  entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Der Bauausschuss bekommt statt 40 Seiten den Managementbericht mit Kennungen, Status und Beschlussvorbereitung. Diesmal wird nicht vertagt.
+Der Bauausschuss bekommt den Managementbericht mit Kennungen, Status und Beschlussvorbereitung und sieht, worüber er entscheiden soll.
 
 ### Was fehlt
 Die Terminwirkung von `AEN-031` ist in der Vorlage erst grob geschätzt.

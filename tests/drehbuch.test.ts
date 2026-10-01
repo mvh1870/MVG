@@ -7,6 +7,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { parse } from 'yaml';
 import { WURZEL } from '../werkzeuge/kette.mjs';
+import { RACI_BESCHRIFTUNG } from '../src/grafik/raci.ts';
 
 const text = readFileSync(path.join(WURZEL, 'docs', 'DREHBUCH.md'), 'utf8');
 const tabelle = text.slice(text.indexOf('<!-- stationen:anfang -->'), text.indexOf('<!-- stationen:ende -->'));
@@ -100,5 +101,11 @@ test('RACI B1: jede Zeile als Prozess mit zwei Handlungen („…: X und Y“)',
   const kopf = datei.match(/::: raci\n---\n([\s\S]*?)\n---/u)?.[1] ?? '';
   const zeilen = (parse(kopf) as { zeilen: { titel: string }[] }).zeilen;
   assert.ok(zeilen.length >= 5);
-  for (const z of zeilen) assert.match(z.titel, /^[^:]+: \S.* und \S/u, z.titel);
+  // R57: die beiden Glieder sind Handlungen, keine Rollen („Einsatz der Risikoreserve: Bauherr und Bauherren-PL“ wäre falsch)
+  const ROLLEN = /\b(?:Bauherr|Bauherren-PL|Projektsteuerung|Planung|Controlling|Geschäftsführung|PMO|Lenkungskreis|Änderungsgremium)\b/u;
+  for (const z of zeilen) {
+    assert.match(z.titel, /^[^:]+: \S.* und \S/u, z.titel);
+    assert.doesNotMatch(z.titel.split(': ')[1] ?? '', ROLLEN, z.titel);
+  }
+  assert.equal(RACI_BESCHRIFTUNG.entscheidung, 'Prozess');
 });

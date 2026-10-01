@@ -19,7 +19,7 @@ Dr. Olbers fragt nach Kernfrage und Datenstand. „Prognose_Nov_v5“ kann niema
 Kernfrage, Mindestgrundlagen, Mandat und ein benannter Datenstand.
 
 ### Neues Risiko
-Die Freigabe ist abgelehnt, ohne dass jemand sagt, was bis wann fehlt; LPH 5 bleibt offen.
+Keine Freigabe – und niemand legt fest, wer Kernfrage und Datenstand bis wann nachliefert; LPH 5 bleibt offen.
 
 ### Governance-Frage
 [[Freigabe]]: Worauf beruht eine Freigabe?

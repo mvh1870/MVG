@@ -27,7 +27,7 @@ Im regulären Verlauf eines Projekts folgen die Freigaben der Abfolge der Leistu
 
 Das hat eine wichtige Folge: Eine MVG-Neuinitialisierung ist selbst **keine** [[Freigabe]]. Sie kann aber dazu führen, dass einzelne Freigaben nachgeholt oder wiederholt werden. Die Abfolge LPH 0–9 ändert sich dadurch nicht. Ein Beispiel: Stellt sich heraus, dass eine frühere Freigabe auf einem überholten Datenstand beruhte, kann ihre Wiederholung ein Ergebnis der MVG-Neuinitialisierung sein – die Leistungsphasen selbst werden dabei nicht neu sortiert.
 
-Das Kapitel bündelt drei Dinge: die wichtigsten Auslöser, die Felder, die neu geordnet werden, und die Ergebnisse. Anwendungssituationen nach Branche und Projektstand zeigt Kapitel 10.
+Das Kapitel bündelt drei Dinge: die wichtigsten Auslöser, die Felder, die neu geordnet werden, und die Ergebnisse. Anwendungssituationen nach Bauherrentyp und Projektstand zeigt Kapitel 10.
 
 ::: zitat k11-p1
 Eine MVG-Neuinitialisierung ist keine Freigabe; ihr Ergebnis kann die Nachholung oder Wiederholung einzelner Freigaben sein, ohne die Abfolge LPH 0–9 zu verändern.

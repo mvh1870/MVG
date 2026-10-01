@@ -95,7 +95,7 @@ Jede Wahl ist nachvollziehbar; es fehlt die Struktur, in der sie wirkt.
 
 ::: regie
 ### Notiz
-Erst die Lage wirken lassen: zwei Zahlen, drei Randnotizen, kein Weg. Die Wahl nicht kommentieren – in Welt A ist jede Option nachvollziehbar. Wer „Weitere Informationen anfordern“ wählt, kauft Klarheit mit Zeit: das Terminrisiko steigt.
+Erst die Lage wirken lassen: zwei Zahlen, drei Randnotizen, kein Weg. Die Wahl nicht kommentieren – in Welt A ist jede Option nachvollziehbar.
 
 ### Leitfragen
 - Welche Zahl hätte bei Ihnen im Ausschuss gelegen?

@@ -259,3 +259,12 @@ figur: kaya
 ---
 „Welche Prognose gilt – meine +5,9 % oder die +8 % der Projektsteuerung?“
 :::
+
+::: regie
+### Notiz
+A3 zeigt, dass Berichterstattung das Kernproblem nicht löst (Kap. 2.4): zwei Zahlen, kein benannter Datenstand, keine Entscheidungsfrage (Kap. 4.6). Wer „Weitere Informationen anfordern“ wählt, kauft Klarheit mit Zeit: das Terminrisiko steigt. Partner B3: dieselbe Abweichung mit verbindlichem Datenstand und Mandatsleiter.
+
+### Leitfragen
+- Welche Zahl hätte bei Ihnen im Gremium gelegen?
+- Wer legt bei Ihnen fest, welcher Datenstand gilt?
+:::

@@ -293,7 +293,7 @@ Befähigen gehört zur Leistung von Bauherr Mentoren; die Teilnahme an den Befä
 ---
 titel: Abnahmelogik
 ---
-Wann ist die Einführung „fertig“? Nicht erst dann, wenn alle künftigen Entscheidungen risikofrei sind – das bedeutet Abnahme ausdrücklich nicht. Abnahmefähig ist MVG, wenn die Bauherrenorganisation einen funktionsfähigen Mindeststandard hat und ihn praktisch anwenden kann. Sie weiß dann, wie wesentliche Entscheidungen vorbereitet, mandatiert, freigegeben, dokumentiert und nachverfolgt werden.
+Wann ist die Einführung „fertig“? Risikofreiheit aller künftigen Entscheidungen ist nicht der Maßstab – das bedeutet Abnahme ausdrücklich nicht. Abnahmefähig ist MVG, wenn die Bauherrenorganisation einen funktionsfähigen Mindeststandard hat und ihn praktisch anwenden kann. Sie weiß dann, wie wesentliche Entscheidungen vorbereitet, mandatiert, freigegeben, dokumentiert und nachverfolgt werden.
 
 Gegenstand der Leistung ist also die Herstellung und Übergabe eines belastbaren Bauherren-Führungsmodells. Bauherr Mentoren strukturiert, moderiert, entwirft, erprobt und befähigt. Entscheidung, Freigabe und Risikoannahme dagegen legitimieren die zuständigen Bauherrenrollen.
 

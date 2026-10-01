@@ -1,7 +1,7 @@
 ---
 station: A4
 rolle: ps
-frage: Ihr Bericht, die Vorlage des Bauherrn, ist vertagt. Was nun?
+frage: Ihr Bericht, die Vorlage der GML, ist vertagt. Was nun?
 rueckbezug-auf: A3
 ---
 

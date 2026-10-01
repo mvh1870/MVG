@@ -259,7 +259,7 @@ titel: LPH 0 als früher Wirkungsraum
 ---
 LPH 0 ist die Bedarfsplanung nach DIN 18205 – sie liegt vor den HOAI-Leistungsphasen 1–9. Hier lassen sich früh die Grundlagen legen: Zielsystem, Mandatslogik, das Leistungsphasen- und Freigabemodell, die Datenstandslogik und erste Entscheidungsstandards. LPH 0 ist damit der Zeitpunkt, an dem spätere Steuerbarkeit vorbereitet werden kann.
 
-Was hier offen bleibt, kommt später zurück: Bleiben Zielprioritäten unklar, sind Mandate nicht definiert, laufen Gremien- und Projektlogik auseinander oder werden Datenstände nicht referenziert, entstehen spätere Kosten-, Termin-, Qualitäts- und Freigaberisiken.
+Was hier offen bleibt, kommt später zurück: Bleiben Zielprioritäten unklar, sind Mandate nicht definiert, laufen Gremien- und Projektlogik auseinander und werden Datenstände nicht referenziert, entstehen spätere Kosten-, Termin-, Qualitäts- und Freigaberisiken.
 
 Trotzdem macht MVG LPH 0 nicht zum Hauptthema. Wichtiger ist, ob der Bauherr seine nichtdelegierbare Verantwortung ausüben kann. MVG nutzt LPH 0 als frühen Hebel, ist aber nicht darauf beschränkt: Auch in laufenden Projekten, vor wesentlichen Freigaben, bei einer Neufestlegung der Projektbasis, bei schleichenden Änderungen oder im Rahmen einer [[MVG-Neuinitialisierung]] kann MVG die Entscheidungs- und Nachweisfähigkeit wiederherstellen.
 

@@ -119,7 +119,7 @@ titel: Managementaussagen
 ---
 Das Kapitel verdichtet MVG in fünf Aussagen für die Leitungsebene. Sie beschreiben, was die Projektsteuerung leistet, wie MVG die Verantwortung in Rollen, Mandate, Freigaben und Entscheidungs-IDs übersetzt, woraus Entscheidungssicherheit entsteht, warum Befähigung dazugehört und welche Rolle die frühe Projektphase spielt.
 
-Die dritte Aussage erklärt, woraus Entscheidungssicherheit entsteht: Entscheidungssicherheit entsteht nicht aus einem einzelnen guten Dokument. Sie entsteht, wenn Ziel, Mandat, Datenstand, Risiko, Freigabe und Nachweis verbindlich zusammenhängen. Fehlt ein Glied, fehlt dieser Zusammenhang – etwa wenn niemand sagen kann, auf welchem Datenstand eine Entscheidung beruht.
+Die dritte Aussage erklärt, woraus Entscheidungssicherheit entsteht: nicht aus einem einzelnen guten Dokument, sondern aus dem verbindlichen Zusammenhang von Zielsystem, Mandat, Datenstand, Risiko, Freigabe und Nachweis. Fehlt ein Glied, fehlt dieser Zusammenhang – etwa wenn niemand sagen kann, auf welchem Datenstand eine Entscheidung beruht.
 
 Die fünfte Aussage schützt vor einem Missverständnis: LPH 0 ist ein wichtiger früher Hebel. Maßgeblich ist aber, dass der Bauherr über den gesamten kritischen Projektverlauf entscheiden und nachweisen kann.
 

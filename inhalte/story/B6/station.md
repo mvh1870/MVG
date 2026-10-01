@@ -43,7 +43,7 @@ Antwort aus dem Managementbericht Oktober. Wer arbeitet zu?
 von: brenner
 zeit: "07:41"
 ---
-Die Annahmen stehen im Datenstand; ob Steins Stellvertretung weiterführt, klären wir heute.
+Die Annahmen stehen im Datenstand; die Stellvertretung klären wir heute.
 :::
 
 ::: datei
@@ -61,7 +61,7 @@ titel: Jour fixe – Auszug
 datum: Di, 03.11.2026
 von: petersen
 ---
-- Offene Punkte der Generalplanung: Bewertung steht aus.
+- Offene Punkte der Generalplanung: noch unbewertet.
 - Termine: Lenkungskreis 17.11., Bauausschuss 19.11.
 :::
 
@@ -71,7 +71,7 @@ name: Managementbericht Oktober
 quelle: Bauherren-PL mit Controlling und PMO
 wert: Kosten und Termin auf benanntem Datenstand · Beschlusslage
 ---
-Der aggregierte Bericht für die Gremien, mit Kennungen, Status und Beschlusslage.
+Bericht an die Gremien.
 :::
 :::
 
@@ -201,13 +201,13 @@ datenstand: Kostenprognose 2026-10 · Version 4 (verbindlich)
 - [ ] Wirkung auf Kosten, Termin, Qualität, Projektumfang, Risiko und ESG/LCC · Risikolage offen
 - [ ] Empfehlung
 - [x] Freigabe- oder Eskalationsweg · Bauherren-PL, Lenkungskreis, Bauherr
-- [ ] Freigabeprozess (sechsstufig) · Stand der Vorlage: in Prüfung
+- [ ] Freigabeprozess (sechsstufig, jede Stufe wird signiert): offen → in Prüfung → vorbereitet → freigegeben → beschlossen | abgelehnt
 - [ ] Beschlusslage
 - [ ] Nachverfolgung
 :::
 
 ::: merksatz
-**Nicht aus einem Kopf:** Die Freigabe hat eine Kernfrage, einen Datenstand und einen Weg – das Ergebnis bestimmt der Bauherr.
+**Nicht aus einem Kopf:** Die Freigabe hat Kernfrage, Datenstand und Weg – das Ergebnis bestimmt der Bauherr.
 :::
 :::
 

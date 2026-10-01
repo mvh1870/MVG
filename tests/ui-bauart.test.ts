@@ -627,7 +627,8 @@ test('Regie: Notiz und Leitfragen; „weiter“ sendet den öffentlichen Zustand
     const soll = regieFuer('A3', 'pl').szene;
     assert.ok(soll?.notiz);
     assert.ok(notiz.includes(klartext(soll.notiz).slice(0, 40)));
-    assert.equal(el.querySelectorAll('[data-pruef="regie-leitfragen"] li').length, soll.leitfragen.length);
+    // Szene (Rolle) und Station (seit R53 auch in A3) tragen je eigene Leitfragen
+    assert.equal(el.querySelectorAll('[data-pruef="regie-leitfragen"] li').length, soll.leitfragen.length + (regieFuer('A3', 'pl').station?.leitfragen.length ?? 0));
     // Vorschau zeigt denselben Stand, aber ohne Notiz
     const vorschau = el.querySelector('.vorschau-buehne');
     assert.ok(vorschau?.querySelector('.mail'));

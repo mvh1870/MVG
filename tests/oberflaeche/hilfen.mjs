@@ -313,7 +313,7 @@ export const WELT_B = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6'];
  * @param {import('../../werkzeuge/oberflaeche.mjs').Helfer} h
  * @param {() => Promise<string>} station
  * @param {(name: string) => Promise<void>} pruefe
- * @param {{ vertiefungen?: string[], spur?: { a: string, b: string } }} [optionen]  erwartete Vertiefungen je Station; Kurzformen A1/B1 in der Spur
+ * @param {{ vertiefungen?: string[], spur?: { a: string, b: string }, breitenProben?: boolean }} [optionen]  erwartete Vertiefungen je Station; Kurzformen A1/B1 in der Spur; breitenProben: Messungen über mehrere Fensterbreiten (CI 241/242: mit allen sechs Rollen über dem Zeitlimit) nur für die erste Rolle
  */
 export async function weltB(seite, h, station, pruefe, optionen = {}) {
   if ((await station()) !== 'B1') h.befund(`Welt B beginnt nicht in B1 (steht in ${await station()})`);
@@ -341,11 +341,11 @@ export async function weltB(seite, h, station, pruefe, optionen = {}) {
       if (await sichtbar('[data-pruef="einstieg-text"]') && !gesehen.has('einstieg')) {
         gesehen.add('einstieg');
         await pruefe(`${st}-einstieg`);
-        if (h.viewport.breite === 1280) await schritttitelBreit(seite, h, st);
+        if (h.viewport.breite === 1280 && optionen.breitenProben !== false) await schritttitelBreit(seite, h, st);
       }
       if (await sichtbar('[data-pruef="vergleich"]') && !gesehen.has('vergleich')) {
         gesehen.add('vergleich');
-        if (h.viewport.breite === 1280) await vergleichFrei(seite, h, `${st}-vergleich`);
+        if (h.viewport.breite === 1280 && optionen.breitenProben !== false) await vergleichFrei(seite, h, `${st}-vergleich`);
         await seite.locator('[data-pruef="vergleich"]').focus();
         await h.taste('End');
         await h.warte(600);
@@ -362,7 +362,7 @@ export async function weltB(seite, h, station, pruefe, optionen = {}) {
         await pruefe(`${st}-${w}`);
         if (w === 'tabellenstand') await rueckfallTabellenstand(seite, h, `${st}-${w}`);
         // R55: die RACI-Matrix rollt schmal in ihrem Rahmen statt in Buchstabensäulen (table-layout fixed traf sie unter 400 px)
-        if (w === 'raci') {
+        if (w === 'raci' && optionen.breitenProben !== false) {
           const vpR = seite.viewportSize();
           for (const breite of [320, 400]) {
             if (vpR === null) break;

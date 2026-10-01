@@ -555,6 +555,9 @@ export async function lauf(seite, h) {
   await seite.evaluate(() => { location.hash = '#theorie/k3'; });
   await h.erwarte('[data-kapitel="3"] .schwelle-knopf');
   await seite.locator('.schwelle-knopf').first().click();
+  // CI 242: unter Chrome 153 griff die Emulation einmal erst nach der Messung (rand 0, Autorfarben) – erst messen, wenn sie gilt
+  for (let i = 0; i < 20 && !(await seite.evaluate(() => matchMedia('(forced-colors: active)').matches)); i++) await h.warte(100);
+  await h.warte(150);
   const hk = await seite.evaluate(() => [...document.querySelectorAll('.schwelle-knopf')].slice(0, 2).map((b) => {
     const c = getComputedStyle(b); return { an: b.getAttribute('aria-pressed'), rand: parseFloat(c.borderTopWidth), bg: c.backgroundColor };
   }));

@@ -113,7 +113,7 @@ export async function spiele(seite, h, rollen, express) {
     await seite.evaluate(() => { location.hash = '#story/B1'; });
     await h.warte(600);
     if ((await station()) !== 'B1') { h.befund(`${rolle}: geladener Stand steht nicht in B1 (${await station()})`); continue; }
-    await weltB(seite, h, station, async (n) => pruefe(`${rolle}-${n}`), { vertiefungen: INTERESSEN[rolle] ?? [], spur: { a: kurzA('A1', rolle), b: kurzA('B1', rolle) } });
+    await weltB(seite, h, station, async (n) => pruefe(`${rolle}-${n}`), { vertiefungen: INTERESSEN[rolle] ?? [], spur: { a: kurzA('A1', rolle), b: kurzA('B1', rolle) }, breitenProben: rolle === rollen[0] });
     await seite.evaluate(() => localStorage.clear());
   }
   if (!express) return;

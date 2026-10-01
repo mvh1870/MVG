@@ -42,6 +42,9 @@ test('jede Fuge einzeln (R44)', () => {
     // R45: Tafelkarten (196 px) und schmale Zellen – unter Chrome 153 etwas breiter gesetzt als lokal
     ['Lieferkettenunsicherheit', 'Lieferketten|unsicherheit'], ['Unterlagenzugang', 'Unterlagen|zugang'], ['Grundlagenermittlung', 'Grundlagen|ermittlung'],
     ['Freigabeentscheidungen', 'Freigabe|entscheidungen'], ['Brandschutzgutachten', 'Brandschutz|gutachten'], ['Rohbauausschreibung', 'Rohbau|ausschreibung'],
+    // R55: die übrigen Fugen je einmal (vorher nur von Browser-Proben am heutigen Inhalt gesichert)
+    ['Registerführung', 'Register|führung'], ['Eintrittswahrscheinlichkeit', 'Eintritts|wahrscheinlichkeit'], ['Infrastrukturträger', 'Infrastruktur|träger'],
+    ['Baupreissteigerungen', 'Baupreis|steigerungen'], ['Kostenabweichungen', 'Kosten|abweichungen'],
   ] as [string, string][]) assert.equal(sicht(w), soll, w);
 });
 

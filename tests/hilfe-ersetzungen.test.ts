@@ -15,7 +15,7 @@ const AUSNAHMEN = new Set([
 ]);
 
 /** Zahl der Regeln heute; wer eine Regel bewusst streicht, senkt diese Zahl mit Begründung */
-const MINDESTENS = 284;
+const MINDESTENS = 285;
 
 /** Fachlich tragende Ergebnisse (k9.3-p3, k4.2-p3, k6.4.2-t1, k6.4.4-p1, k6.4.3-p1, O-1) – unabhängig von der Regelliste */
 const FEST = [
@@ -71,10 +71,14 @@ const FEST = [
   'Gremium zur Bewertung und Entscheidung von Änderungen nach Mandat (über 100 TEUR bis einschließlich 5 Mio. €).',
   'Ist letztverantwortlich (A) für alle Freigaben LPH 0–9',
   'wer ausführt (R), wer letztverantwortlich ist (A), wer konsultiert (C) oder informiert (I) wird',
+  // R55: Glossar „Mandat“ wortgleich k13-t1, Freigabe mit Auflagen (k6.4.4-p1), Änderungsgremium im Rhythmus (k6.4.5-t1)
+  'Klar zugewiesene Entscheidungs- und Eskalationsbefugnis einer Rolle oder eines Gremiums, verbunden mit Schwellen, Stellvertretung und Freigabeweg.',
+  'Freigabebeschluss, der die nächste Leistungsphase freigibt und Auflagen festlegt; die Auflagen werden zu Maßnahmen mit Frist.',
+  'Änderungen bewerten und nach Mandat entscheiden',
 ];
 
 /** Wortlaut der Quelle, der nach der Angleichung nirgends mehr stehen darf (R47/R48: Zuständigkeit, Register, Status) */
-const WEG = /Bestätigt CTC-Neurechnungen|Beschlüsse mit klaren Bedingungen fassen|Gremium für strategische Change-Beschlüsse|entgegennehmen und Beschlüsse fassen|Trägt KEINE projektbezogenen|Register-Verantwortliche \(Projektsteuerung\)|Top-Entscheidungen treffen|auf Status beschlossen|Lenkungskreis informieren|Freigaben verwaltet der Admin|Betreiber-Rolle|Arbeit ist delegierbar|pflegt Nachweise & Links|Compliance & Standards-Zuordnung|MVG ist kompatibel|klassischen PMO-Einrichtung|wenn der Berater abzieht|Regelbetrieb\/ ?Übergabe\.|zu Aktionen mit Frist|berfällige Aktionen|dem Gremium zur Beschlussfassung|ohne eine Zeile Code|garantiert prüfungs|verlässt das Haus|ultimative Verantwortung|Anti-Patterns|MVG-Adoption|Druckbar als PDF|jede Karte führt mit ihren Knöpfen|Wie wir arbeiten\. |Berater bleibt als Sparringspartner| · druckbares Freigabe-Dossier|Für Beratungskunden kostenfrei|klappt alle Kapitel automatisch auf|englisch: Evidence|Methodische Grundlage|anschlussfähig an anerkannte Standards|orientiert sich konzeptionell|Approval-Stufen|Datenvertrags \(52\)|Pilotbetrieb, Übergabe, Verbesserungs|Nutzen Sie die Approval-Workflows|an der Freigabe beschlossen|zur Freigabe bringen|Freigabe Fassadenmuster|Neukunden-Einrichtung|Beraterstandard|Zwei Berater haben|3 dringendste Domänen|LPH 0–8|Re-Baseline|(?<!letzt)verantwortliche Rolle \(A\)|Kunden mit eigenem projektnahem|Freigabe-Dossier|Revisionssicherheit|neuer Berater|Kundenprojekt|Freigabe von Changes|Change-Freigaben|[Ii]st Accountable für|Accountable bleibt|als Accountable auf|rechenschaftspflichtig|Rohbauvergabe an Bieter B, (?:Budget )?4,1 Mio|Accountable Role|Accountable-Rolle|freigegebenen Changes|Entscheidung \(Freigabe\)|Approval-Workflow mit 6|Kundeninstallation|revisionssicher|ist Accountable|einem Accountable|Freigabebefugnis einer Rolle/u;
+const WEG = /Bestätigt CTC-Neurechnungen|Beschlüsse mit klaren Bedingungen fassen|Gremium für strategische Change-Beschlüsse|entgegennehmen und Beschlüsse fassen|Trägt KEINE projektbezogenen|Register-Verantwortliche \(Projektsteuerung\)|Top-Entscheidungen treffen|auf Status beschlossen|Lenkungskreis informieren|Freigaben verwaltet der Admin|Betreiber-Rolle|Arbeit ist delegierbar|pflegt Nachweise & Links|Compliance & Standards-Zuordnung|MVG ist kompatibel|klassischen PMO-Einrichtung|wenn der Berater abzieht|Regelbetrieb\/ ?Übergabe\.|zu Aktionen mit Frist|berfällige Aktionen|dem Gremium zur Beschlussfassung|ohne eine Zeile Code|garantiert prüfungs|verlässt das Haus|ultimative Verantwortung|Anti-Patterns|MVG-Adoption|Druckbar als PDF|jede Karte führt mit ihren Knöpfen|Wie wir arbeiten\. |Berater bleibt als Sparringspartner| · druckbares Freigabe-Dossier|Für Beratungskunden kostenfrei|klappt alle Kapitel automatisch auf|englisch: Evidence|Methodische Grundlage|anschlussfähig an anerkannte Standards|orientiert sich konzeptionell|Approval-Stufen|Datenvertrags \(52\)|Pilotbetrieb, Übergabe, Verbesserungs|Nutzen Sie die Approval-Workflows|an der Freigabe beschlossen|zur Freigabe bringen|Freigabe Fassadenmuster|Neukunden-Einrichtung|Beraterstandard|Zwei Berater haben|3 dringendste Domänen|LPH 0–8|Re-Baseline|(?<!letzt)verantwortliche Rolle \(A\)|Kunden mit eigenem projektnahem|Freigabe-Dossier|Revisionssicherheit|neuer Berater|Kundenprojekt|Freigabe von Changes|Change-Freigaben|[Ii]st Accountable für|Accountable bleibt|als Accountable auf|rechenschaftspflichtig|Rohbauvergabe an Bieter B, (?:Budget )?4,1 Mio|Accountable Role|Accountable-Rolle|freigegebenen Changes|Entscheidung \(Freigabe\)|Approval-Workflow mit 6|Kundeninstallation|revisionssicher|ist Accountable|einem Accountable|Freigabebefugnis einer Rolle|vor weiterem Fortschritt erfüllt|Quartalsweise \/ je Freigabe|Accountable: wer trägt/u;
 
 test('Hilfe (R48): jede Ersetzung mit festem Ersatz steht im Ergebnis – außer den benannten Ausnahmen', () => {
   const { hilfe, fehler } = baueHilfe({ ziel: null });
@@ -112,6 +116,12 @@ test('Hilfe (R48): jede Ersetzung mit festem Ersatz steht im Ergebnis – außer
   assert.equal(ERSETZUNGEN.length, eingefroren.length, 'neue Regel: ihr Muster in tests/hilfe-ersetzungen.muster.json aufnehmen');
   for (const soll of FEST) assert.ok(text.includes(soll), `fehlt: ${soll}`);
   assert.doesNotMatch(text, WEG);
+  // R55: „Glossar A-Z“ ist alphabetisch (die Angleichungen ließen ersetzte Stichwörter an der Stelle der alten stehen)
+  const glossar = teile.join(' ').match(/Tabelle: Glossar A-Z[\s\S]*?<\/tbody>/u)?.[0] ?? '';
+  const stich = [...glossar.matchAll(/<tr><td>(?:<b>)?([^<]*)/gu)].map((x) => (x[1] ?? '').trim());
+  const ordnung = new Intl.Collator('de');
+  assert.ok(stich.length > 100, `Glossar mit ${stich.length} Zeilen`);
+  assert.deepEqual(stich.filter((w, i) => i > 0 && ordnung.compare(stich[i - 1] ?? '', w) > 0), [], 'Glossar nicht alphabetisch');
   // R48 (Architektur): die Kopfzeile jeder Tabelle steht im thead (Druck wiederholt sie, sie bleibt nie allein am Seitenende)
   const roh = teile.join(' ');
   assert.equal((roh.match(/<tbody><tr><th[ >]/gu) ?? []).length, 0, 'Tabelle beginnt mit einer th-Zeile im tbody');

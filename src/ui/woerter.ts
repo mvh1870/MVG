@@ -293,7 +293,7 @@ export const W = {
     quellenverzeichnis: 'Quellenverzeichnis der Story',
     quellenverzeichnisText: 'Je Station die Absätze des MVG-Originaltexts, auf die sie sich stützt. Die Lernseiten zeigen den Originaltext mit denselben Absatz-IDs; das Abbildungsverzeichnis steht in Explore (Grafik-Galerie).',
     impressumFussnoten: 'Fußnoten',
-    impressumFussnotenText: 'Der Originaltext V1.2 enthält keine Fußnoten. Jede Aussage trägt stattdessen ihre Absatz-ID; „Zitieren“ am Originaltext erzeugt die Angabe.',
+    impressumFussnotenText: 'Der Originaltext V1.2 enthält keine Fußnoten. Jede Aussage trägt stattdessen ihre Absatz-ID.',
   },
   // Hilfe (P13, O-31): Hilfe des MVG Companion, gleiche Kapitelaufteilung
   hilfe: {

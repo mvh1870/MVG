@@ -1360,8 +1360,9 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
   .fortschritt:has(> .fortschritt-schritt:nth-child(8)) { display: grid; grid-template-columns: repeat(5, minmax(24px, 1fr)); row-gap: 4px; }
   .fortschritt:has(> .fortschritt-schritt:nth-child(8)) > .fortschritt-schritt { height: 30px; }
 }
-/* R45: unter 360 px passt „ENTSCHEIDUNGSFÄHIGKEIT“ nur mit schmalerem Rand und ohne Sperrung (Labels werden nie getrennt) */
-@media (max-width: 359px) {
+/* R45: unter 360 px passt „ENTSCHEIDUNGSFÄHIGKEIT“ nur mit schmalerem Rand und ohne Sperrung (Labels werden nie getrennt);
+   R55: Grenze bei 363 px – darüber bleibt das Label mit Abstand unter 93 % seiner Zeile (L-129) */
+@media (max-width: 363px) {
   .instrumente { padding-inline: var(--a-2); }
   .instrument { padding-inline: 6px; }
   .instrument-label { letter-spacing: 0; }
@@ -2150,7 +2151,8 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
   button.station .station-titel { font-size: .92em; }
 }
 @media (max-width: 400px) {
-  .lagetafel table { width: 100%; table-layout: fixed; }
+  /* R55: nicht die RACI-Matrix – sie rollt in ihrem Rahmen; gleich breite Spalten machten Buchstabensäulen */
+  .lagetafel table:not(.raci-tabelle) { width: 100%; table-layout: fixed; }
   .lagetafel :is(th, td) { overflow-wrap: anywhere; hyphens: auto; }
   .baustein-karte, .protokoll, .glied { min-width: 0; overflow-wrap: anywhere; }
   /* R47: Datum und Titel des Protokollkopfs brechen nicht mitten im Wort – der Kopf umbricht als Ganzes */

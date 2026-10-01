@@ -224,7 +224,7 @@ seite: links
 Eine verbindliche verantwortliche Rolle benennen
 
 ### Erklärung
-Diese Rolle stellt die Bauherrenseite – sie steht an erster Stelle der Mitwirkung.
+Die verantwortliche Rolle benennt die Bauherrenseite selbst – sie steht als Erstes in der Liste der Mitwirkung.
 :::
 
 ::: posten entwerfen

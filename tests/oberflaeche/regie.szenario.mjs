@@ -227,6 +227,14 @@ export async function lauf(_seite, h) {
     h.befund(`Regie: Strg+P druckt nicht das Protokoll (${strgPR.length} Seiten, Anfang „${textStrgP.slice(0, 80)}“)`);
   }
   if (await regie.locator('.druck-bogen').count() !== 0) h.befund('Regie: Strg+P-Bogen bleibt stehen');
+  // R55: Strg+P auf der Leinwand druckt einen Bogen, nicht die Bildschirmseite (kein „ZURÜCK/WEITER“, keine Knöpfe)
+  await leinwand.emulateMedia({ media: 'print' });
+  const strgPL = await pdfSeiten(await leinwand.pdf({ format: 'A4' }));
+  await leinwand.emulateMedia({ media: 'screen' });
+  const textL = strgPL.map((x) => x.zeilen.join(' ')).join(' ');
+  if (/ZURÜCK|WEITER/u.test(textL) || !textL.includes('Governance Kompass')) h.befund(`Leinwand: Strg+P druckt die Bildschirmseite (${strgPL.length} Seiten, Anfang „${textL.slice(0, 80)}“)`);
+  await leinwand.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
+  if (await leinwand.locator('.druck-bogen').count() !== 0) h.befund('Leinwand: Strg+P-Bogen bleibt stehen');
   await h.bild('regie', regie);
   // B2: Regie mit Beamer an neu laden – Leinwand und Knopf stimmen danach überein (aus)
   await h.klick('[data-pruef="regie-beamer"]', regie);

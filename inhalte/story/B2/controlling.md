@@ -66,7 +66,7 @@ Zahl und Beschlusslage passen nicht zusammen.
 :::
 
 ::: rueckbezug A
-In Welt A haben Sie ‚Mensa einrechnen‘ gewählt. In Welt B nimmt Ihre Zahl nichts vorweg: `AEN-012` ist beantragt, das Änderungsgremium entscheidet.
+In Welt A haben Sie ‚Mensa einrechnen‘ gewählt. In Welt B muss Ihre Zahl nichts vorwegnehmen: `AEN-012` ist beantragt, das Änderungsgremium entscheidet.
 :::
 
 ::: rueckbezug B

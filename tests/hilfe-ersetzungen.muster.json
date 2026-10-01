@@ -272,6 +272,7 @@
  "Verantwortlich\\/Accountable\\/Responsible",
  "Entscheidungs-Accountable",
  "^Freigabebefugnis einer Rolle mit Schwellenwert\\.$",
+ "^Freigabebeschluss mit Auflagen, die vor weiterem Fortschritt erfüllt werden müssen\\.$",
  "Zustand eines freigegebenen Changes",
  "^Antrag\\/Freigabe$",
  "→ Entscheidung \\(Freigabe\\)",

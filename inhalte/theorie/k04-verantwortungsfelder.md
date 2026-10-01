@@ -273,7 +273,7 @@ titel: Wesentliche Entscheidungen im Projektverlauf
 ---
 titel: LPH 0 – Projektstart
 ---
-Der Projektstart ist die erste der wesentlichen Entscheidungen, die MVG nennt.
+Der Projektstart in LPH 0 gehört zum nichtdelegierbaren Kern des Feldes „Wesentliche Entscheidung“.
 :::
 
 ::: etappe 2

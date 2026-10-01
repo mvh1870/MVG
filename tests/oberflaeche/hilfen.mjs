@@ -254,9 +254,14 @@ export async function schmal(seite, h, name) {
   // R54 (Architektur): das ganze Band bis zur Rastergrenze abtasten (alle 3 px und 379) – feste Stützstellen ließen
   // eine verschobene Grenze (379 → 369 px) mit 23 px kleinen Knöpfen bei 370–378 px durch
   const breiten = [...Array.from({ length: 21 }, (_, i) => 320 + i * 3), 379];
-  const mitSchritten = await seite.locator('.fortschritt-schritt').filter({ visible: true }).count() > 0;
+  const mitSchritten = await seite.locator('.fortschritt-schritt, .instrument-label').filter({ visible: true }).count() > 0;
   for (const b of mitSchritten ? breiten : [320]) {
     if (b !== 320) { await seite.setViewportSize({ width: b, height: vp.height }); await h.warte(60); }
+    // R55: im selben Band das Instrument-Label – nie getrennt, nie über 93 % seiner Zeile (Grenze bei 363 px)
+    if (await seite.locator('.instrument-label').filter({ visible: true }).count() > 0) {
+      const lb = [...await wortbrueche(seite, '.instrument-label'), ...await knappeWoerter(seite, '.instrument-label')];
+      if (lb.length > 0) h.befund(`${name} @${b}: Instrument-Label ${JSON.stringify(lb.slice(0, 3))}`);
+    }
     const klein = await seite.evaluate(() => [...document.querySelectorAll('.fortschritt-schritt')].filter((el) => el.getClientRects().length > 0)
       .map((el) => el.getBoundingClientRect()).filter((r) => r.width < 23.9 || r.height < 23.9).map((r) => `${Math.round(r.width)}×${Math.round(r.height)}`));
     if (klein.length > 0) h.befund(`${name} @${b}: ${klein.length} Schrittknöpfe unter 24 px (${klein.slice(0, 3).join(', ')})`);
@@ -356,6 +361,17 @@ export async function weltB(seite, h, station, pruefe, optionen = {}) {
         await h.warte(1500);
         await pruefe(`${st}-${w}`);
         if (w === 'tabellenstand') await rueckfallTabellenstand(seite, h, `${st}-${w}`);
+        // R55: die RACI-Matrix rollt schmal in ihrem Rahmen statt in Buchstabensäulen (table-layout fixed traf sie unter 400 px)
+        if (w === 'raci') {
+          const vpR = seite.viewportSize();
+          for (const breite of [320, 400]) {
+            if (vpR === null) break;
+            await seite.setViewportSize({ width: breite, height: vpR.height }); await h.warte(150);
+            const saeulen = await seite.evaluate(() => [...document.querySelectorAll('.raci-tabelle :is(th, td)')].filter((z) => z.getClientRects().length > 0 && (z.textContent ?? '').trim().length > 6 && z.getBoundingClientRect().width < 40).map((z) => `${(z.textContent ?? '').trim().slice(0, 20)} ${Math.round(z.getBoundingClientRect().width)} px`));
+            if (saeulen.length > 0) h.befund(`${st}-raci @${breite}: Buchstabensäulen ${JSON.stringify(saeulen.slice(0, 3))}`);
+          }
+          if (vpR !== null) { await seite.setViewportSize(vpR); await h.warte(150); }
+        }
       }
       const optionA = seite.locator('[data-pruef="option-A"]').filter({ visible: true });
       if (await optionA.count() > 0 && (await optionA.first().getAttribute('aria-pressed')) !== 'true') {

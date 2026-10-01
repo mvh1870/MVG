@@ -291,4 +291,21 @@ export async function lauf(seite, h) {
     const leer = await seite.evaluate(() => [...document.querySelectorAll('nav')].filter((n) => !n.getAttribute('aria-label') || n.querySelector('a[href]') === null).length);
     if (leer > 0) h.befund(`Hilfe ${id}: ${leer} Navigation(en) ohne Namen oder ohne Link`);
   }
+  // R55: Druck bei offenem Grafik-Dialog – der Dialog liegt nicht als feste Ebene über jeder Seite (kein „Schließen“ auf dem Papier)
+  if (h.viewport.breite === 1280) {
+    await seite.evaluate(() => { location.hash = '#hilfe/mvg-vorgehensmodell'; });
+    await h.warte(500);
+    await seite.emulateMedia({ media: 'print' });
+    const ohne = await pdfSeiten(await seite.pdf({ format: 'A4', preferCSSPageSize: true }));
+    await seite.emulateMedia({ media: 'screen' });
+    await h.klick('.hilfe-grafik-knopf');
+    await h.warte(300);
+    if (await seite.locator('dialog[open]').count() !== 1) h.befund('Hilfe: Grafik-Dialog öffnet nicht');
+    await seite.emulateMedia({ media: 'print' });
+    const mit = await pdfSeiten(await seite.pdf({ format: 'A4', preferCSSPageSize: true }));
+    await seite.emulateMedia({ media: 'screen' });
+    const text = mit.map((x) => x.zeilen.join(' ')).join(' ');
+    if (/Schließen/u.test(text) || mit.length !== ohne.length) h.befund(`Hilfe-Druck mit offenem Grafik-Dialog: ${mit.length} statt ${ohne.length} Seiten${/Schließen/u.test(text) ? ', „Schließen“ auf dem Papier' : ''}`);
+    await seite.keyboard.press('Escape');
+  }
 }

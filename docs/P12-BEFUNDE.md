@@ -227,3 +227,6 @@ Nicht sauber – als Nächstes Runde 54.
 ## Runde 54 (P12.5, zugleich P14.3 und P15.2) – volle Runde auf 7d4b426
 - Fachtreue Theorie/Story, Hilfe, Stil, Architektur: 7 mittel, 12 leicht (Abbildungen und Druck ohne Befund) – L-167.
 Nicht sauber – als Nächstes Runde 55.
+## Runde 55 (P12.5, zugleich P14.3 und P15.2) – volle Runde auf a2cc9b8
+- Story B (RACI), Druck (Leinwand, Hilfe-Dialog), Stil (RACI schmal), Architektur (Instrument-Label): 5 mittel, 18 leicht – L-168.
+Nicht sauber – als Nächstes Runde 56.

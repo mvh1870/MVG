@@ -340,7 +340,9 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/als Verantwortlich, Accountable oder Freigeber/gu, 'als ausführungsverantwortlich (R), letztverantwortlich (A) oder freigebend'],
   [/Verantwortlich\/Accountable\/Responsible/gu, 'ausführungs- oder letztverantwortlich (R/A)'],
   [/Entscheidungs-Accountable/gu, 'letztverantwortliche Rolle (A) der Entscheidung'],
-  [/^Freigabebefugnis einer Rolle mit Schwellenwert\.$/gu, 'Entscheidungs- und Eskalationsbefugnis einer Rolle oder eines Gremiums mit Schwellenwert.'],
+  [/^Freigabebefugnis einer Rolle mit Schwellenwert\.$/gu, 'Klar zugewiesene Entscheidungs- und Eskalationsbefugnis einer Rolle oder eines Gremiums, verbunden mit Schwellen, Stellvertretung und Freigabeweg.'],
+  // R55: Freigabe mit Auflagen gibt frei; Auflagen werden zu Maßnahmen (k6.4.4-p1, k6.4.3-p2)
+  [/^Freigabebeschluss mit Auflagen, die vor weiterem Fortschritt erfüllt werden müssen\.$/gu, 'Freigabebeschluss, der die nächste Leistungsphase freigibt und Auflagen festlegt; die Auflagen werden zu Maßnahmen mit Frist.'],
   [/Zustand eines freigegebenen Changes/gu, 'Zustand eines beschlossenen Changes'],
   [/^Antrag\/Freigabe$/gu, 'Antrag/Beschluss'],
   [/→ Entscheidung \(Freigabe\)/gu, '→ Entscheidung (nach Mandat)'],
@@ -808,7 +810,18 @@ function glaette(/** @type {string} */ html) {
     // O-1: Angebotsaussage über BM (im Quelltext mit Hervorhebung, daher auf dem HTML)
     .replace(/\s*Für Beratungskunden (?:<b>)?kostenfrei(?:<\/b>)?: kein separates Lizenzentgelt, unbegrenzte Nutzungsrechte auch nach Mandatsende\./gu, '')
     .replace(/(LPH (\d)\b(?:[^()<]|<[^>]*>){0,80}?)\s*\(LPH \2\)/gu, '$1')
-    .replace(/\bLPH (\d)-(?=[A-ZÄÖÜ])/gu, 'LPH-$1-');
+    .replace(/\bLPH (\d)-(?=[A-ZÄÖÜ])/gu, 'LPH-$1-')
+    // R55: Feldname im Entscheidungsregister wie die übrigen Stellen der Hilfe (letztverantwortliche Rolle, k4.2-p1)
+    .replace(/<b>Accountable:<\/b> wer trägt die Letztverantwortung/gu, '<b>Letztverantwortlich (A):</b> wer trägt die Letztverantwortung')
+    // R55: Rhythmus nach k6.4.5-t1 – Freigaben je Freigabe, Änderungsgremium monatlich und anlassbezogen
+    .replace(/<tr><td><b>Quartalsweise \/ je Freigabe<\/b><\/td>/gu, '<tr><td><b>Monatlich, zzgl. Sondersitzungen</b></td><td>Bauherren-PL, Änderungsgremium</td><td>Änderungen bewerten und nach Mandat entscheiden</td></tr><tr><td><b>Je Freigabe</b></td>')
+    // R55: „Glossar A-Z“ nach den Angleichungen wieder alphabetisch (Intl.Collator de)
+    .replace(/(aria-label="Tabelle: Glossar A-Z"><table>\s*<thead>[\s\S]*?<\/thead>\s*<tbody>)([\s\S]*?)(<\/tbody>)/gu, (_, vor, zeilen, nach) => {
+      const liste = zeilen.match(/<tr>[\s\S]*?<\/tr>/gu) ?? [];
+      const wort = (/** @type {string} */ z) => (z.match(/<td>(?:<b>)?([^<]*)/u)?.[1] ?? '').trim();
+      const ordnung = new Intl.Collator('de');
+      return vor + [...liste].sort((x, y) => ordnung.compare(wort(x), wort(y))).join('') + nach;
+    });
 }
 
 /** Klassen der Hilfe erhalten den Vorsatz „h-“: keine Kollision mit Klassen der übrigen Flächen (.tag, .card …) */

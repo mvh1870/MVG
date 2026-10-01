@@ -149,7 +149,7 @@ kurz: RACI
 ---
 zeilen:
   - id: zielprioritaet
-    titel: Zielpriorität festlegen
+    titel: "Zielpriorität: Vorlage und Festlegung"
     A: bauherr
     R: [pl]
     C: [gf, planung, controlling]
@@ -170,14 +170,14 @@ zeilen:
     I: [pl]
     mandat: "Frühwarnungsregister: Projektsteuerung, wöchentliche Sichtung (Kap. 6.4.2)"
   - id: aenderung
-    titel: Änderung bis einschließlich 100 TEUR freigeben
+    titel: "Änderung bis einschließlich 100 TEUR: Vorbereitung und Freigabe"
     A: pl
     R: [ps, planung]
     C: [controlling]
     I: [gf, bauherr]
     mandat: Bauherren-PL bis einschließlich 100 TEUR · über 100 TEUR bis einschließlich 5 Mio. € Änderungsgremium (Vorsitz Geschäftsführung) · darüber Bauherr im Lenkungskreis (Kap. 4.2)
   - id: reserve
-    titel: Einsatz der Risikoreserve freigeben
+    titel: "Einsatz der Risikoreserve: Vorlage und Freigabe"
     A: bauherr
     R: [pl]
     C: [gf, controlling]

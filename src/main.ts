@@ -329,6 +329,14 @@ function starteLeinwandFenster(wurzel: HTMLElement): void {
   starteLeinwand(wurzel, { inhalte, kanal, version: VERSION });
   document.body.dataset['flaeche'] = 'leinwand';
   document.title = `${W.leinwand.titel} · ${TITEL}`;
+  // R55: Strg+P auf der Leinwand (kein Druckknopf) druckt die Druckwege statt der Bildschirmseite mit „ZURÜCK/WEITER“
+  ersatzBogenFuerStrgP(() => true, () => ({
+    titel: W.druck.ersatzTitel,
+    teile: [
+      bogenKopf(W.druck.ersatzTitel, VERSION, false),
+      h('section', { class: 'druck-teil' }, h('p', null, W.druck.ersatzText), h('ul', null, W.druck.ersatzWege.map((x) => h('li', null, x)))),
+    ],
+  }));
   window.addEventListener('hashchange', () => {
     if (betriebsart(leseRoute(location.hash)) !== 'leinwand') location.reload();
   });

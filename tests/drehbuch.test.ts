@@ -92,3 +92,13 @@ test('Drehbuch: Statuswerte vollständig und im Wertebereich; Startstand jeder S
     }
   }
 });
+
+// R56: mit der Legende nach k4.2-p1 (R ausführungs-, A letztverantwortlich) nennt jede RACI-Zeile in B1 zwei Handlungen –
+// sonst führt R die Handlung von A aus (L-168: „Vorlage und Freigabe“ statt „freigeben“)
+test('RACI B1: jede Zeile als Prozess mit zwei Handlungen („…: X und Y“)', () => {
+  const datei = readFileSync(path.join(WURZEL, 'inhalte', 'story', 'B1', 'station.md'), 'utf8');
+  const kopf = datei.match(/::: raci\n---\n([\s\S]*?)\n---/u)?.[1] ?? '';
+  const zeilen = (parse(kopf) as { zeilen: { titel: string }[] }).zeilen;
+  assert.ok(zeilen.length >= 5);
+  for (const z of zeilen) assert.match(z.titel, /^[^:]+: \S.* und \S/u, z.titel);
+});

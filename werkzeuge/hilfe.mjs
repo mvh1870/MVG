@@ -342,6 +342,9 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/Entscheidungs-Accountable/gu, 'letztverantwortliche Rolle (A) der Entscheidung'],
   [/^Freigabebefugnis einer Rolle mit Schwellenwert\.$/gu, 'Klar zugewiesene Entscheidungs- und Eskalationsbefugnis einer Rolle oder eines Gremiums, verbunden mit Schwellen, Stellvertretung und Freigabeweg.'],
   // R55: Freigabe mit Auflagen gibt frei; Auflagen werden zu Maßnahmen (k6.4.4-p1, k6.4.3-p2)
+  // R56: Glossar „Freigabe“ mit der Zuständigkeit (k13-t1, k9.3-p3); Säule II trennt Entscheidung und Freigabeprozess der Vorlage
+  [/^Strukturierter Entscheidungsmeilenstein \(LPH 0–9\)\.$/gu, 'Entscheidung des Bauherrn am Abschluss einer Leistungsphase (LPH 0–9); sie gibt die nächste Leistungsphase frei. Die Freigabe erteilt der Bauherr selbst auf Vorlage der Bauherren-PL; der Lenkungskreis berät.'],
+  [/Entscheidungen durchlaufen 6 signierte Stufen in der Nachweiskette\./gu, 'Entscheidungsvorlagen durchlaufen den Freigabeprozess mit signierten Stufen in der Nachweiskette (offen → … → beschlossen / abgelehnt).'],
   [/^Freigabebeschluss mit Auflagen, die vor weiterem Fortschritt erfüllt werden müssen\.$/gu, 'Freigabebeschluss, der die nächste Leistungsphase freigibt und Auflagen festlegt; die Auflagen werden zu Maßnahmen mit Frist.'],
   [/Zustand eines freigegebenen Changes/gu, 'Zustand eines beschlossenen Changes'],
   [/^Antrag\/Freigabe$/gu, 'Antrag/Beschluss'],
@@ -815,6 +818,11 @@ function glaette(/** @type {string} */ html) {
     .replace(/<b>Accountable:<\/b> wer trägt die Letztverantwortung/gu, '<b>Letztverantwortlich (A):</b> wer trägt die Letztverantwortung')
     // R55: Rhythmus nach k6.4.5-t1 – Freigaben je Freigabe, Änderungsgremium monatlich und anlassbezogen
     .replace(/<tr><td><b>Quartalsweise \/ je Freigabe<\/b><\/td>/gu, '<tr><td><b>Monatlich, zzgl. Sondersitzungen</b></td><td>Bauherren-PL, Änderungsgremium</td><td>Änderungen bewerten und nach Mandat entscheiden</td></tr><tr><td><b>Je Freigabe</b></td>')
+    // R56: Rhythmus vollständig nach k6.4.5-t1 – wöchentliche Risikosichtung, monatliche formale Risikoprüfung der Projektsteuerung
+    .replace(/(<tr><td><b>Wöchentlich<\/b><\/td><td>Bauherren-PL, Projektsteuerung, verantwortliche Rolle<\/td><td>)<span>Risiken<\/span> \/ /gu, '$1Risikosichtung, ')
+    .replace(/(<tr><td><b>Monatlich, zzgl\. Sondersitzungen<\/b>)/gu, '<tr><td><b>Monatlich</b></td><td>Projektsteuerung</td><td>Formale Risikoprüfung und Bericht → <span>Managementbericht</span></td></tr>$1')
+    // R56: Rechte-Kennungen als Feldnamen (L-69); Entscheidungen und Änderungen sind keine Freigaben
+    .replace(/<li>approveDecision\/(?:<wbr>)?approveGate\/(?:<wbr>)?approveChange – Freigaben<\/li>/gu, '<li><code>approveDecision</code>/<wbr><code>approveGate</code>/<wbr><code>approveChange</code> – Entscheidungen, Freigaben und Änderungen bestätigen (nach Mandat)</li>')
     // R55: „Glossar A-Z“ nach den Angleichungen wieder alphabetisch (Intl.Collator de)
     .replace(/(aria-label="Tabelle: Glossar A-Z"><table>\s*<thead>[\s\S]*?<\/thead>\s*<tbody>)([\s\S]*?)(<\/tbody>)/gu, (_, vor, zeilen, nach) => {
       const liste = zeilen.match(/<tr>[\s\S]*?<\/tr>/gu) ?? [];

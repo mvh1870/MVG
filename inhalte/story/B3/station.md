@@ -226,7 +226,7 @@ Berichte erzeugen Information. Führung entsteht erst, wenn Information unter an
 ---
 titel: Warum relevant
 ---
-Eine Kostenabweichung ist erst dann führbar, wenn klar ist, wer auf welchem Datenstand mit welcher Frage entscheidet. Eine neue Prognose wird Version 4 und ersetzt Version 3 nachvollziehbar; über `AEN-022` entscheidet das Änderungsgremium, weil 4,7 Mio. € über 100 TEUR und bis einschließlich 5 Mio. € liegen.
+Eine Kostenabweichung ist erst dann führbar, wenn klar ist, wer auf welchem Datenstand mit welcher Frage entscheidet. Eine neue Prognose wird Version 4 und ersetzt Version 3 nachvollziehbar; über `AEN-022` entscheidet das Änderungsgremium, weil die Fassadenänderung, die bis zu 4,7 Mio. € auffangen soll, über 100 TEUR und bis einschließlich 5 Mio. € liegt.
 :::
 
 ::: ebene 3
@@ -286,7 +286,7 @@ titel: Die betroffene Freigabe steht in der Vorlage
 ---
 figur: deppe
 ---
-„4,7 Mio. € – das liegt beim Änderungsgremium, wenn es um die Fassade geht. Da habe ich den Vorsitz. Bei der Risikoreserve nicht.“
+„Eine Fassadenänderung bis 4,7 Mio. € – das liegt beim Änderungsgremium. Da habe ich den Vorsitz. Bei der Risikoreserve nicht.“
 :::
 
 ::: standpunkt bauherr

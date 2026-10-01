@@ -21,7 +21,7 @@ export const RACI_WORT: Readonly<Record<RaciBuchstabe, string>> = {
 };
 
 /** Beschriftung der Matrix (Bedienwörter, keine Fachaussage). */
-export const RACI_BESCHRIFTUNG = { entscheidung: 'Entscheidung', mandat: 'Mandat', legende: 'RACI mit Mandat', sie: 'Sie' } as const;
+export const RACI_BESCHRIFTUNG = { entscheidung: 'Prozess', mandat: 'Mandat', legende: 'RACI mit Mandat', sie: 'Sie' } as const;
 
 export interface RaciZeile {
   id: string;

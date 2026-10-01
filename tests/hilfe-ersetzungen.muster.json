@@ -272,6 +272,8 @@
  "Verantwortlich\\/Accountable\\/Responsible",
  "Entscheidungs-Accountable",
  "^Freigabebefugnis einer Rolle mit Schwellenwert\\.$",
+ "^Strukturierter Entscheidungsmeilenstein \\(LPH 0–9\\)\\.$",
+ "Entscheidungen durchlaufen 6 signierte Stufen in der Nachweiskette\\.",
  "^Freigabebeschluss mit Auflagen, die vor weiterem Fortschritt erfüllt werden müssen\\.$",
  "Zustand eines freigegebenen Changes",
  "^Antrag\\/Freigabe$",

@@ -295,9 +295,15 @@ export async function lauf(seite, h) {
   if (h.viewport.breite === 1280) {
     await seite.evaluate(() => { location.hash = '#hilfe/mvg-vorgehensmodell'; });
     await h.warte(500);
+    // R56: gerollt drucken – die klebende Kopfleiste steht im Druck oben auf S. 1, nicht dort, wo sie beim Rollen stand
+    await seite.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight * 0.6));
+    await h.warte(200);
     await seite.emulateMedia({ media: 'print' });
     const ohne = await pdfSeiten(await seite.pdf({ format: 'A4', preferCSSPageSize: true }));
     await seite.emulateMedia({ media: 'screen' });
+    const kopfSeiten = ohne.map((x, i) => (x.zeilen.some((z) => z.replace(/\s+/gu, '').includes('HILFE·MVGCOMPANION')) ? i + 1 : 0)).filter((x) => x > 0);
+    if (kopfSeiten.join(',') !== '1') h.befund(`Hilfe-Druck nach dem Rollen: Kopfleiste auf S. ${kopfSeiten.join(', ') || '–'} statt nur S. 1`);
+    await seite.evaluate(() => window.scrollTo(0, 0));
     await h.klick('.hilfe-grafik-knopf');
     await h.warte(300);
     if (await seite.locator('dialog[open]').count() !== 1) h.befund('Hilfe: Grafik-Dialog öffnet nicht');

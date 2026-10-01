@@ -23,9 +23,9 @@ titel: Führungswirkung statt Artefakte
 ---
 Man könnte den Nutzen von Governance an der Menge messen: an Registern, Vorlagen und Berichten. MVG legt einen anderen Maßstab an. Entscheidend ist nicht die **Zahl** der Governance-Artefakte, sondern ihre **Führungswirkung** – also die Frage, ob der Bauherr durch sie besser führen kann.
 
-MVG und der [[MVG Companion]] sollen dafür eine pragmatische Architektur schaffen. Sie bereitet Entscheidungen schneller vor, macht Mandate klarer, erhöht die Gremienfähigkeit und führt Nachweise belastbarer. Die Tafel nennt fünf Gewinne und ihre Wirkung – von klareren Entscheidungen bis zu einer geringeren Zusatzlast, weil der Mindeststandard auf führungsrelevante Entscheidungen konzentriert bleibt.
+MVG und der [[MVG Companion]] sollen dafür eine pragmatische Architektur schaffen. Sie bereitet Entscheidungen schneller vor, macht Mandate klarer, erhöht die Gremienfähigkeit und führt Nachweise belastbarer. Die Tafel nennt fünf Gewinne und ihre Wirkung; MVG nennt sie für die Kombination aus beiden – von klareren Entscheidungen bis zu einer geringeren Zusatzlast, weil der Mindeststandard auf führungsrelevante Entscheidungen konzentriert bleibt.
 
-Das Schlussbild ordnet die Rollen: MVG ist als schlankes [[Bauherren-Führungsmodell]] gedacht, der MVG Companion als anwendungsnaher Beschleuniger. Zusammen sollen sie Bauherrenverantwortung nicht abstrakter machen, sondern praktischer – vorbereitet, mandatiert, nachvollziehbar und im Regelbetrieb nutzbar. [[bedienung:Der Umschalter unter der Tafel stellt beide Rollen nebeneinander. Die fünf Gewinne der Tafel nennt MVG für die Kombination aus beiden.]]
+Das Schlussbild ordnet die Rollen: MVG ist als schlankes [[Bauherren-Führungsmodell]] gedacht, der MVG Companion als anwendungsnaher Beschleuniger. Zusammen sollen sie Bauherrenverantwortung nicht abstrakter machen, sondern praktischer – vorbereitet, mandatiert, nachvollziehbar und im Regelbetrieb nutzbar. [[bedienung:Der Umschalter unter der Tafel stellt beide Rollen nebeneinander.]]
 
 ::: umschalter
 ---

@@ -258,6 +258,7 @@ wert: In Prüfung · Vorlage liegt vor
 - Zuständig ist das Änderungsgremium.
 - In der Vorlage sind Kosten und Termin nur grob geschätzt.
 - `ENT-017` (Fassade) ist im Juni entschieden: Änderung `AEN-022`, Risikoreserve unberührt.
+- `AEN-012` (Mensa) hat das Änderungsgremium inzwischen beschlossen.
 :::
 
 ::: unbekannt

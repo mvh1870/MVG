@@ -156,6 +156,8 @@
   /* R42: Papier hat keine Links – Kopf-Link, „Öffnen“, Zurück/Weiter und der Theorie-Link im Fuß entfallen; der Fuß bleibt beim Inhalt */
   .hilfe :is(.lern-kopf-link, .kapitel-karte-los, .kapitel-nav) { display: none; }
   .hilfe .lern-fuss { break-before: avoid; break-inside: avoid; }
+  /* R56: die klebende Kopfleiste druckt sonst dort, wo sie beim Rollen stand – mitten im Dokument über dem Text */
+  .lernseite.hilfe .lern-kopf { position: static; }
   /* R49: im Druck als ein Absatz – umbrochen (161 px hoch) riss der Fuß ab, das letzte Blatt trug nur „fachlich ungeprüft“ */
   .hilfe .lern-fuss { display: block; }
   .hilfe .lern-fuss > :not(.lern-kopf-link) { display: inline; margin-right: 1em; }

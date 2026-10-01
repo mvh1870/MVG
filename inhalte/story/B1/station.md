@@ -156,14 +156,14 @@ zeilen:
     I: [ps]
     mandat: nicht delegierbar (Kap. 3.2) · Lenkungskreis berät
   - id: datenstand
-    titel: CTC und Prognose monatlich rechnen und führen
+    titel: "CTC und Prognose: Zulieferung und monatliche Führung"
     A: controlling
     R: [ps]
     C: [pl, planung]
     I: [bauherr, gf]
     mandat: "CTC und Prognose: Controlling, monatlich (Kap. 6.4.2) · welcher Stand verbindlich gilt, legt der Bauherr fest (Kap. 4.6); führend bleiben die vom Bauherrn freigegebenen Datenquellen und Dokumentenstände (Kap. 6.3)"
   - id: fruehwarnung
-    titel: Frühwarnung melden und erfassen
+    titel: "Frühwarnung: Meldung und Erfassung"
     A: ps
     R: [planung]
     C: [controlling]

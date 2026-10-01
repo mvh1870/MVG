@@ -8,7 +8,7 @@ kurztitel: Glossar
 story: [epilog]
 deckt: [k13-t1]
 ---
-Das Glossar von Minimum Viable Governance (MVG) mit allen Begriffen und ihren Definitionen im Wortlaut. [[bedienung:Das Suchfeld filtert die Liste.]] Wo ein Begriff verlinkt ist, steht darunter, welche Stationen der Story und welche Kapitel auf ihn verweisen.
+Das Glossar von Minimum Viable Governance (MVG): die Begriffe und ihre Definitionen im Wortlaut von MVG V1.2. [[bedienung:Das Suchfeld filtert die Liste.]] Wo ein Begriff verlinkt ist, steht darunter, welche Stationen der Story und welche Kapitel auf ihn verweisen.
 
 ::: glossar
 :::

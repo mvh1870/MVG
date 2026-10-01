@@ -98,7 +98,7 @@ titel: Verantwortung
 ---
 titel: Rollen
 ---
-**Wer ist letztverantwortlich?** Und: **Wer führt aus, wer wird konsultiert, wer informiert?** Hier setzt der RACI-Prozess an (9.2).
+**Wer ist letztverantwortlich?** Und: **Wer führt aus, wer wird konsultiert, wer wird informiert?** Hier setzt der RACI-Prozess an (9.2).
 :::
 
 ::: etappe 3
@@ -123,7 +123,7 @@ titel: RACI-Prozess
 ---
 [[RACI]] ist vielen als Matrix bekannt, die Rollen und Zuständigkeiten gegenüberstellt. Sie übersetzt komplexe Rollenbilder in eine transparente Verantwortungslogik – reicht in MVG aber nicht aus. Erst wenn die Rollen an Mandate, Freigabeschwellen, Stellvertretungen und Eskalationspfade gekoppelt sind, wird aus einer Kommunikationsmatrix ein Führungsinstrument.
 
-So verstanden schützt RACI die Bauherrenorganisation vor stillschweigender Verantwortungsverlagerung. Es macht sichtbar, wann Projektsteuerung, [[PMO]], Planung oder Fachberatung unterstützen und wann die Entscheidung an die letztverantwortliche Bauherrenrolle zurückfallen muss. Die Kernfrage lautet: Wer bereitet vor, wer entscheidet, wer liefert belastbare Entscheidungsgrundlagen, wer wird konsultiert, wer informiert? Diese Rollenlogik gehört in Freigaben, Änderungssteuerung, Risikoprüfung und Berichterstattung.
+So verstanden schützt RACI die Bauherrenorganisation vor stillschweigender Verantwortungsverlagerung. Es macht sichtbar, wann Projektsteuerung, [[PMO]], Planung oder Fachberatung unterstützen und wann die Entscheidung an die letztverantwortliche Bauherrenrolle zurückfallen muss. Die Kernfrage lautet: [[zitat:k9.2-p3|Wer bereitet vor, wer entscheidet, wer liefert belastbare Entscheidungsgrundlagen, wer wird konsultiert und wer muss informiert werden?]] Diese Rollenlogik gehört in Freigaben, Änderungssteuerung, Risikoprüfung und Berichterstattung.
 
 Das Standard-Rollenmodell umfasst 13 Arbeitsrollen – vom Bauherrn/Projektauftraggeber über Bauherren-PL, PMO, Projektsteuerung, Lenkungskreis/Vorstand, Controlling/Finanzen, Einkauf/Vergabe und Planung/Fachplanung bis zu externen Beratern, Auftragnehmern/Lieferanten, Administration, Ausführung und Gebäudemanagement (FM)/Betrieb. Dazu kommt die Sonderrolle „BM-Mentor“ nur für die Einführung.
 

@@ -45,6 +45,17 @@ const KANAL = 'regie';
 
 type Betriebsart = 'app' | 'regie' | 'leinwand';
 
+/** Ersatzbogen für Strg+P ohne eigenen Druckweg (App-Flächen und Leinwand, R56: an einer Stelle gebaut) */
+function ersatzDruck(): { titel: string; teile: HTMLElement[] } {
+  return {
+    titel: W.druck.ersatzTitel,
+    teile: [
+      bogenKopf(W.druck.ersatzTitel, VERSION, false),
+      h('section', { class: 'druck-teil' }, h('p', null, W.druck.ersatzText), h('ul', null, W.druck.ersatzWege.map((x) => h('li', null, x)))),
+    ],
+  };
+}
+
 function betriebsart(r: Route): Betriebsart {
   return r.flaeche === 'regie' ? 'regie' : r.flaeche === 'leinwand' ? 'leinwand' : 'app';
 }
@@ -96,13 +107,7 @@ function starteApp(wurzel: HTMLElement): void {
   let flaeche = '';
   // R47: Strg+P auf Start, Story (vor dem Epilog), Explore und der Kapitelliste druckt die Druckwege statt der Bildschirmseite;
   // Lernseiten und Epilog haben eigene Bögen (Vorrang), die Hilfe druckt ihre Seite
-  ersatzBogenFuerStrgP(() => ['start', 'story', 'explore', 'theorie'].includes(document.body.dataset['flaeche'] ?? ''), () => ({
-    titel: W.druck.ersatzTitel,
-    teile: [
-      bogenKopf(W.druck.ersatzTitel, VERSION, false),
-      h('section', { class: 'druck-teil' }, h('p', null, W.druck.ersatzText), h('ul', null, W.druck.ersatzWege.map((x) => h('li', null, x)))),
-    ],
-  }));
+  ersatzBogenFuerStrgP(() => ['start', 'story', 'explore', 'theorie'].includes(document.body.dataset['flaeche'] ?? ''), ersatzDruck);
 
   const raeume = (): void => {
     // offene Dialoge (Abbildung, Hilfe-Grafik) schließen, bevor die Fläche wechselt: so räumen Rad- und
@@ -330,13 +335,7 @@ function starteLeinwandFenster(wurzel: HTMLElement): void {
   document.body.dataset['flaeche'] = 'leinwand';
   document.title = `${W.leinwand.titel} · ${TITEL}`;
   // R55: Strg+P auf der Leinwand (kein Druckknopf) druckt die Druckwege statt der Bildschirmseite mit „ZURÜCK/WEITER“
-  ersatzBogenFuerStrgP(() => true, () => ({
-    titel: W.druck.ersatzTitel,
-    teile: [
-      bogenKopf(W.druck.ersatzTitel, VERSION, false),
-      h('section', { class: 'druck-teil' }, h('p', null, W.druck.ersatzText), h('ul', null, W.druck.ersatzWege.map((x) => h('li', null, x)))),
-    ],
-  }));
+  ersatzBogenFuerStrgP(() => true, ersatzDruck);
   window.addEventListener('hashchange', () => {
     if (betriebsart(leseRoute(location.hash)) !== 'leinwand') location.reload();
   });

@@ -16,7 +16,7 @@ titel: Ergebnisbild und Ergebnisse
 kurztitel: Ergebnisbild
 story: [B1, B3, B4, B6, ende-steuerbar, ende-auflagen]
 ---
-Kapitel 9 beschreibt, was am Ende eines Mandats zur Einführung von Minimum Viable Governance (MVG) tatsächlich vorliegt. Das Kapitel stellt die Ergebnisobjekte in fünf Abschnitten vor: das Mandats- und Verantwortungsmodell, den RACI-Prozess, das [[Leistungsphasen- und Freigabemodell LPH 0–9]], den Standard für Entscheidungsvorlagen und das Betriebshandbuch; die eindeutige Entscheidungs-ID ist Teil jeder Entscheidungsvorlage. Für den Bauherrn zählt dabei weniger das einzelne Dokument als der Zusammenhang: Die Objekte verweisen aufeinander, sodass sich eine wesentliche Entscheidung auch später noch nachvollziehen lässt.
+Kapitel 9 beschreibt, was am Ende eines Mandats zur Einführung von Minimum Viable Governance (MVG) tatsächlich vorliegt. Das Kapitel stellt die Ergebnisobjekte in fünf Abschnitten vor: das Mandats- und Verantwortungsmodell, den RACI-Prozess, das [[Leistungsphasen- und Freigabemodell LPH 0–9]], den Standard für Entscheidungsvorlagen und das Betriebshandbuch; die eindeutige Entscheidungs-ID ist Teil des Standards für Entscheidungsvorlagen. Für den Bauherrn zählt dabei weniger das einzelne Dokument als der Zusammenhang: Die Objekte verweisen aufeinander, sodass sich eine wesentliche Entscheidung auch später noch nachvollziehen lässt.
 
 ::: kernaussage
 Die Ergebnisse eines MVG-Mandats sind Führungs- und Entscheidungsobjekte, keine Sammlung isolierter Vorlagen. Ihr Wert liegt in der Kette, die sie bilden: vom Mandat über Freigabe, Entscheidungs-ID, Datenstand und Nachweis bis zur Beschlusslage.
@@ -46,7 +46,7 @@ Die Entscheidung des Bauherrn am Abschluss einer Leistungsphase (9.3). Sie beruh
 ---
 titel: Entscheidungs-ID
 ---
-Kennzeichnet eine wesentliche Entscheidung eindeutig – sie steht an erster Stelle jeder Entscheidungsvorlage (9.4). Die ID verweist auf den **Datenstand**.
+Kennzeichnet eine wesentliche Entscheidung eindeutig – sie steht an erster Stelle des Standards für Entscheidungsvorlagen (9.4). Die ID verweist auf den **Datenstand**.
 :::
 
 ::: etappe 4
@@ -83,7 +83,7 @@ Ein Beispiel: Die Projektsteuerung bereitet eine Entscheidung gründlich vor. Mi
 
 ::: etappen
 ---
-titel: Acht Fragen, die das Modell beantwortet
+titel: Acht Fragen, die das Modell insbesondere beantwortet
 ---
 Die acht Fragen, paarweise geordnet. [[bedienung:Klicken Sie sich durch.]]
 
@@ -439,7 +439,7 @@ seite: links
 Entscheidungsfrage
 
 ### Erklärung
-Sie ist ein Punkt jeder Entscheidungsvorlage.
+Sie ist ein Punkt des Standards für Entscheidungsvorlagen.
 :::
 
 ::: posten takt

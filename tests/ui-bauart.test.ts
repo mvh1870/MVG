@@ -294,7 +294,7 @@ test('Hilfe (P13, O-31): gleiche Aufteilung wie die Companion-Hilfe, leiser Zuga
   const dm = HILFE.kapitel.find((k) => k.id === 'datenmanagement')?.html ?? '';
   // das Dossier steht in der Quelle auf Seitenebene (nach Abschnitt 6): Titel h2, Inhalt h3
   assert.match(dm, /<h2 class="h-summary-titel">IT-\/(?:<wbr>)?Datenschutz-Dossier<\/h2>/u);
-  assert.match(dm, /<h3>Kurzfreigabe/u);
+  assert.match(dm, /<h3>Kurzfassung \(Überblick\)/u);
   // Prüfrunde 10: keine Selbstdarstellung/Akquise (O-1), keine Verweise ohne Ziel, keine Instanz-Momentaufnahme
   assert.doesNotMatch(text, /Über Bauherr Mentoren|Akquise|Print-Center →|Speicher-Modus dieser Instanz|Modul 1 oder 2|einen strukturierten MVG|Wie wir arbeiten|>→ Portfolio-Manager/u);
   assert.match(HILFE.kapitel.find((k) => k.id === 'registerdokument-katalog')?.html ?? '', /aria-label="Tabelle: Registerdokument-Katalog"/u);

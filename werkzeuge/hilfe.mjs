@@ -212,7 +212,7 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/^Threshold:$/gu, 'Schwellenwert:'],
   [/\(Risiko\/EW\/Change\/Decision\/Gap\/Threshold\)/gu, '(Risiko/Frühwarnung/Änderung/Entscheidung/Lücke/Schwellenwert)'],
   // R48: PMO pflegt die Register nach k6.4.2-t1; RACI und Prozesse des Projekts bei der Projektsteuerung
-  [/projektbezogene Tätigkeiten liegen bei der Projektsteuerung \(voll funktionaler Platzhalter für Kunden mit eigenem projektnahem PMO\)\./gu, 'RACI und Prozesse des Projekts liegen bei der Projektsteuerung (voll funktionaler Platzhalter für Kunden mit eigenem projektnahem PMO); Maßnahmen-, Problemregister, Governance-Kalender und Protokolle pflegt das PMO (MVG Kap. 6.4.2).'],
+  [/projektbezogene Tätigkeiten liegen bei der Projektsteuerung \(voll funktionaler Platzhalter für Kunden mit eigenem projektnahem PMO\)\./gu, 'RACI und Prozesse des Projekts liegen bei der Projektsteuerung (Platzhalter bei eigenem projektnahem PMO); Maßnahmen-, Problemregister, Governance-Kalender und Protokolle pflegt das PMO (MVG Kap. 6.4.2).'],
   // R48: Status der Entscheidung („Entschieden“) getrennt vom Freigabeprozess („beschlossen“) (k6.4.4-p1, k9.4-l1)
   [/auf Status beschlossen aktualisiert/gu, 'auf Status „Entschieden“ aktualisiert'],
   [/Alle offenen, in Prüfung befindlichen oder beschlossenen Entscheidungen/gu, 'Alle offenen, in Bearbeitung befindlichen oder entschiedenen Entscheidungen'],
@@ -239,7 +239,7 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   // R48: englische Wörter im Fließtext (L-69 (12))
   [/Risiko, EW, Change, Decision oder Gap/gu, 'Risiko, Frühwarnung, Änderung, Entscheidung oder Lücke'],
   [/Early-Warning-Behandlung/gu, 'Frühwarnungs-Behandlung'],
-  [/durch Accountable Role bestätigt/gu, 'durch die verantwortliche Rolle (A) bestätigt'],
+  [/durch Accountable Role bestätigt/gu, 'durch die letztverantwortliche Rolle (A) bestätigt'],
   [/side-by-side/gu, 'nebeneinander'],
   [/RAG-Status/gu, 'Ampelstatus'],
   [/Cross-Project-KPIs/gu, 'projektübergreifende Kennzahlen'],
@@ -270,7 +270,7 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/ultimative Verantwortung/gu, 'Letztverantwortung'],
   [/Anti-Patterns/gu, 'Fehlmuster'],
   [/MVG-Adoption/gu, 'MVG-Einführung'],
-  [/Genau eine Accountable-Rolle je Prozess/gu, 'Genau eine verantwortliche Rolle (A) je Prozess'],
+  [/Genau eine Accountable-Rolle je Prozess/gu, 'Genau eine letztverantwortliche Rolle (A) je Prozess'],
   // R49: Vorlage zur Entscheidung nach Mandat (k6.4.5-p1), nicht „dem Gremium“
   [/Sie wird dem Gremium zur Beschlussfassung vorgelegt\./gu, 'Sie wird zur Entscheidung nach Mandat vorgelegt (Bauherren-PL, Änderungsgremium oder Beschlussfassung durch den Bauherrn im Lenkungskreis).'],
   // R49: Leitthese im Wortlaut von V1.2 (k1-p1)
@@ -317,6 +317,26 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/Zwei Berater haben parallel offline gearbeitet/gu, 'Zwei Personen haben parallel offline gearbeitet'],
   [/Geführte Erst-Einrichtung einer Kundeninstallation/gu, 'Geführte Erst-Einrichtung einer Installation'],
   [/Die Kunden-Einführung per Checkliste aufsetzen/gu, 'Die Einführung per Checkliste aufsetzen'],
+  // R52: „Freigabe“ nur für die Entscheidung des Bauherrn (BEGRIFFE) – Dossier, Beschluss, Change
+  [/Kompaktes Freigabe-Dossier für Kunden-IT und Datenschutz\./gu, 'Kompaktes Prüf-Dossier für die IT und den Datenschutz.'],
+  [/Kompaktes, druckbares Freigabe-Dossier für Kunden-IT\/Datenschutz/gu, 'Kompaktes, druckbares Prüf-Dossier für IT/Datenschutz'],
+  [/^Kurzfreigabe \(Überblick\)$/gu, 'Kurzfassung (Überblick)'],
+  [/Vor dem Einsatz beim Kunden ausdrucken und mit IT\/Datenschutz freigeben/gu, 'Vor dem Einsatz ausdrucken und mit IT/Datenschutz abstimmen'],
+  [/Eine veraltete Version vorlegen → Freigabe passt nicht zum Stand/gu, 'Eine veraltete Version vorlegen → Prüfung passt nicht zum Stand'],
+  [/Beschluss: Rohbauvergabe an Bieter B, Budget 4,1 Mio freigegeben/gu, 'Beschluss nach Mandat: Rohbauvergabe an Bieter B, 4,1 Mio'],
+  [/Zustand eines freigegebenen Changes/gu, 'Zustand eines beschlossenen Changes'],
+  [/^Antrag\/Freigabe$/gu, 'Antrag/Beschluss'],
+  [/→ Entscheidung \(Freigabe\)/gu, '→ Entscheidung (nach Mandat)'],
+  // R52 (O-34): ohne Sicht des Beratungsbetriebs
+  [/Bei der Einführung neuer Berater oder Kundenteams/gu, 'Bei der Einführung neuer Teammitglieder'],
+  [/^Einführung neuer Berater$/gu, 'Einführung neuer Beteiligter'],
+  [/ein aktives Kundenprojekt mit vollständigem Profil/gu, 'ein aktives Projekt mit vollständigem Profil'],
+  [/^Aktives Kundenprojekt $/gu, 'Aktives Projekt '],
+  // R52: Nachweisfähigkeit statt Revisionssicherheit (k1.3-t1: „Nachweiskette“)
+  [/Nachvollziehbarkeit und Revisionssicherheit\./gu, 'Nachvollziehbarkeit und Nachweisfähigkeit.'],
+  [/Sichert Revisionssicherheit und die dauerhafte Auffindbarkeit/gu, 'Sichert die Nachweisfähigkeit und die dauerhafte Auffindbarkeit'],
+  [/revisionssicher archiviert/gu, 'nachweisfähig archiviert'],
+  [/Chronologische, unveränderliche Historie aller Mutationen/gu, 'Chronologische, fortlaufende Historie aller Änderungen'],
 ]);
 
 /** Klassen, die src/stil/hilfe.css gestaltet (alles andere fällt weg). */
@@ -758,6 +778,8 @@ function glaette(/** @type {string} */ html) {
     // das Inhaltsverzeichnis ist hier eine Liste ohne Verweise
     .replace(/<li>Das Inhaltsverzeichnis ist klickbar<\/li>/gu, '')
     .replace(/<b>Kein Lizenzmodell<\/b>, keine/gu, '<b>Keine</b>')
+    // R52: Nachweise nimmt die Bauherren-PL entgegen, gepflegt werden sie vom PMO mit den Fachrollen (k6.4.2-t1)
+    .replace(/(<td>Nachweise\/(?:<wbr>)?Abnahmen<\/td><td>Externe<\/td><td>)Bauherren-PL(<\/td>)/gu, '$1Bauherren-PL; Pflege durch das PMO$2')
     // R50: nicht MVG orientiert sich an Frameworks, sondern die Konventionen der Anwendung (O-17)
     .replace(/MVG ist ein eigenständiger, schlanker Governance-Ansatz\. Er <b>orientiert<\/b> sich konzeptionell an etablierten Methoden/gu, 'Die Konventionen der Anwendung <b>orientieren</b> sich an etablierten Methoden')
     // R49: Beschlüsse werden als Maßnahmen nachverfolgt (k6.4.3-p2), Probleme im Problemregister

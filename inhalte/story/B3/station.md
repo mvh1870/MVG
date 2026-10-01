@@ -141,11 +141,11 @@ stufe: 2
 ::: mandatsoption 2
 ---
 titel: Risikoreserve einsetzen
-detail: Freigabe des Einsatzes nicht delegierbar
+detail: Reserve 2,9 Mio. €, rund 1,8 Mio. € blieben offen; Freigabe nicht delegierbar
 zustaendig: Bauherr
 stufe: 3
 ---
-Die Freigabe des Einsatzes der Risikoreserve ist nicht delegierbar; sie bleibt beim Bauherrn.
+Die Freigabe bleibt beim Bauherrn.
 :::
 
 ::: merksatz

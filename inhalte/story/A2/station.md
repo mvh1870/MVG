@@ -261,7 +261,7 @@ figur: kaya
 
 ::: regie
 ### Notiz
-Zwei Bauherrenprobleme an einem Vormittag: eine gewollte Änderung und eine gefährdete Förderfrist. Die Flurzusage nicht verurteilen – sie ist gut gemeint. Die Station zeigt, dass es für beides keinen festgelegten Weg gibt (Kap. 4.1 Ziel, 4.2 Mandat). Die stille Freigabe zu LPH 4 im Protokoll nur erwähnen, wenn jemand fragt.
+Zwei Bauherrenprobleme an einem Vormittag: eine gewollte Änderung und eine gefährdete Förderfrist. Die Flurzusage nicht verurteilen – sie ist gut gemeint. Die Station zeigt, dass es für beides keinen festgelegten Weg gibt (Kap. 4.1 Ziel, 4.2 Mandat). Die übergangene Freigabe zu LPH 4 („weiter wie besprochen“) im Protokoll nur erwähnen, wenn jemand fragt.
 
 ### Leitfragen
 - Wer priorisiert bei Ihnen, wenn Nutzerbedarf, Kosten und Termin auseinandergehen?

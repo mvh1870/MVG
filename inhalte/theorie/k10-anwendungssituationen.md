@@ -222,7 +222,7 @@ Besonders relevant sind […] die Freigabereife zum Abschluss von LPH 2 für Var
 ---
 titel: Projekte mit schleichendem Steuerungsverlust und MVG-Neuinitialisierung
 ---
-Manche Projekte geraten nicht durch einen großen Fehler aus der Spur, sondern langsam. Erkennbar ist er selten an einem einzelnen Fehler, sondern an einem **Bündel von Anzeichen**: Die Beteiligten arbeiten mit unterschiedlichen Lagebildern, die Prognose weicht Monat für Monat ein Stück weiter ab, Eskalationen laufen über den Flur statt über das Gremium, Änderungen werden ungeordnet bearbeitet, niemand weiß genau, wer was entscheiden darf – und Maßnahmen zeigen keine Wirkung.
+Manche Projekte verlieren ihre Steuerbarkeit nicht durch einen großen Fehler, sondern langsam. Erkennbar ist der Steuerungsverlust selten an einem einzelnen Fehler, sondern an einem **Bündel von Anzeichen**: Die Beteiligten arbeiten mit unterschiedlichen Lagebildern, die Prognose weicht Monat für Monat ein Stück weiter ab, Eskalationen laufen über den Flur statt über das Gremium, Änderungen werden ungeordnet bearbeitet, niemand weiß genau, wer was entscheiden darf – und Maßnahmen zeigen keine Wirkung.
 
 Aussagekräftig ist also das Muster, nicht der einzelne Ausreißer. Und wenn das Muster da ist, braucht es oft keine vollständige Neuaufsetzung des Projekts, sondern eine gezielte [[MVG-Neuinitialisierung]]. Sie sichert den Datenstand, ordnet die Entscheidungslandschaft, klärt die Mandate, holt erforderliche Freigaben nach oder wiederholt sie und nutzt den 30/60/90-Orientierungsrahmen für die Neuordnung.
 
@@ -244,7 +244,7 @@ Typische Anzeichen eines schleichenden Steuerungsverlusts:
 - unklare Entscheidungsmandate
 - Maßnahmen ohne Wirkung
 
-Selten erkennt man es an einem einzelnen Fehler – meist am Bündel.
+Selten erkennt man ihn an einem einzelnen Fehler – meist am Bündel.
 :::
 
 ::: ansicht rechts

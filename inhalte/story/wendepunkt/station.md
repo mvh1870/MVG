@@ -31,7 +31,7 @@ Markiert: die Symptome Ihrer Spur (Kap. 2.5).
 form: radar
 erlebt:
   1: A1, A2
-  2: A2, A5, A6
+  2: A1, A2, A5, A6
   3: A4
   4: A3, A4, A6
   5: A2, A3, A5

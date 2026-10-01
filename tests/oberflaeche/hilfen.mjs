@@ -11,6 +11,8 @@ export function pruefeLayout() {
   const funde = [];
   const d = document.documentElement;
   if (d.scrollWidth > d.clientWidth) funde.push(`horizontales Scrollen: ${d.scrollWidth} > ${d.clientWidth}`);
+  // R58: kein bedienbarer Glossarbegriff in einem Link, Knopf oder einer Aufklappzeile (verschachtelte Bedienelemente)
+  for (const b of document.querySelectorAll(':is(a, button, summary, label) :is(.begriff[tabindex], .begriff[role="button"])')) funde.push(`Glossarbegriff „${(b.textContent ?? '').slice(0, 30)}“ bedienbar in ${b.closest('a, button, summary, label')?.tagName.toLowerCase()}`);
   for (const el of document.body.querySelectorAll('*')) {
     if (!(el instanceof HTMLElement)) continue;
     const st = getComputedStyle(el);

@@ -396,7 +396,7 @@ titel: Datenstand und Nachweis
 ---
 [[Datenstand]] und Nachweis wirken auf den ersten Blick wie Verwaltung. MVG führt sie aber als eigenes Verantwortungsfeld. Der Grund: Eine formal richtige Entscheidung kann praktisch unbrauchbar werden, wenn unklar ist, welche Zahlen, Planstände, Annahmen, Risiken oder Protokolle ihr zugrunde lagen.
 
-Ein Beispiel: Im Gremium liegen zwei Kostenstände vor, einer aus der Planung und einer aus dem Controlling. Wird auf dieser Grundlage beschlossen, lässt sich später kaum sagen, welche Zahl gemeint war. Die typische Fehlstelle heißt deshalb: parallele Datenstände und Entscheidungsgrundlagen, die sich nicht reproduzieren lassen.
+Ein Beispiel (allgemein): Im Gremium liegen zwei Kostenstände vor, einer aus der Planung und einer aus dem Controlling. Wird auf dieser Grundlage beschlossen, lässt sich später kaum sagen, welche Zahl gemeint war. Die typische Fehlstelle heißt deshalb: parallele Datenstände und Entscheidungsgrundlagen, die sich nicht reproduzieren lassen.
 
 MVG verlangt eine klare Datenstandslogik mit fünf Fragen: Welche Version gilt? Welche Annahmen sind offen? Welche Änderungen sind seit der letzten Freigabe dazugekommen? Welche Beschlusslage besteht? Wo wird die [[Nachweiskette]] geführt? Der Bauherr muss die Daten nicht selbst pflegen – Datenpflege, Dokumentation, Protokolle und Annahmenregister kann er abgeben. Er muss aber sicherstellen, dass Entscheidungen auf belastbaren, benannten und reproduzierbaren Grundlagen beruhen.
 

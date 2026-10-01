@@ -30,7 +30,7 @@ Die Stellvertretung trägt – solange sie selbst nicht ausfällt.
 titel: Die Risikolage als Mindestgrundlage der Freigabevorlage zuarbeiten
 kurz: Risikolage zuarbeiten
 status:
-  ungeklaerte-entscheidungen: -1
+  entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
 Offene Risiken, ihre Bewertung und die nächsten Schritte liegen der Vorlage bei. Die Bauherren-PL legt vor, der Lenkungskreis berät, Dr. Olbers entscheidet selbst.

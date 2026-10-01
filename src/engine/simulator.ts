@@ -59,7 +59,7 @@ export interface SimErgebnis {
 }
 
 /** Die Absätze, auf die sich der Simulator stützt (Test: alle im Quellenfenster vorhanden). */
-export const SIM_QUELLEN = ['k4.2-p3', 'k6.4.5-p1', 'k3.2-t1', 'k13-t1', 'k4.3-p1', 'k4.3-p2', 'k4.4-p1', 'k4.5-p1', 'k4.6-p2', 'k9.3-p3', 'k9.4-l1', 'k6.4.4-p1'] as const;
+export const SIM_QUELLEN = ['k4.2-p3', 'k6.4.5-p1', 'k3.2-t1', 'k13-t1', 'k4.3-p1', 'k4.3-p2', 'k4.4-p1', 'k4.5-p1', 'k4.6-p2', 'k9.3-p3', 'k9.4-l1', 'k6.4.4-p1', 'k3.3-p2'] as const;
 
 const RANG: Record<Stufe, number> = { pl: 0, gremium: 1, bauherr: 2 };
 
@@ -143,6 +143,8 @@ export function simuliere(e: SimEingabe): SimErgebnis {
   if (freigabeBeimBauherrn) bauherr.push({ quelle: 'k3.2-t1', text: 'Die Entscheidung über eine wesentliche Freigabe ist nicht delegierbar – die Freigabe zum Abschluss der Leistungsphase bleibt beim Bauherrn.' });
   // R38: hebt schon der Betrag die Stufe zum Bauherrn, beschließt er selbst (k4.2-p3) – das ist eine Bauherrenentscheidung
   const wesentlich = e.substanziell || e.freigabeBeruehrt || bauherr.length > 0 || (stufe === 'bauherr' && !eskaliert);
+  // R58: wesentlich, aber unterhalb des Bauherrn entschieden – beim Bauherrn bleibt die Festlegung des Mandats (k3.3-p2)
+  if (wesentlich && stufe !== 'bauherr' && bauherr.length === 0) bauherr.push({ quelle: 'k3.3-p2', text: 'Die Festlegung des Mandats, nach dem hier entschieden wird, bleibt Bauherrenverantwortung; die Ausübung innerhalb klar definierter Schwellen ist an Rollen übertragen.' });
   if (wesentlich) {
     information.push({ quelle: 'k4.3-p2', text: 'Als wesentliche Entscheidung braucht sie eine eindeutige Kennung, einen Datenstand, eine verantwortliche Rolle, eine Entscheidungsfrage und einen Nachverfolgungsstatus.' });
   } else {

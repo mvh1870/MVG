@@ -794,3 +794,5 @@ a.abbildung-beleg { color: var(--navy); }
    umbrechen darf sie zwischen „Abschnitt“ und „3.3“ – so bleibt der Spalte der Titel genug Platz */
 .galerie-verzeichnis .galerie-stelle { overflow-wrap: normal; hyphens: manual; }
 @media (min-width: 481px) { .galerie-verzeichnis td.galerie-stelle { white-space: nowrap; } }
+/* R58: ein Quellen-Eintrag des Impressums (Station und ihre Absatz-IDs) reißt nicht über die Seitengrenze */
+@media print { .druck-bogen .impressum-quellen li { break-inside: avoid; } }

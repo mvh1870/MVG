@@ -10,7 +10,7 @@ rueckbezug-auf: A6
 titel: Die Planungsgrundlagen vollständig liefern, offene Punkte mit Vorschlag für Auflagen
 kurz: Grundlagen mit Auflagenvorschlag
 status:
-  ungeklaerte-entscheidungen: -1
+  entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
 Die Bauherren-PL übernimmt die Unterlagen in ihre Vorlage. Dr. Olbers kann entscheiden: Freigabe, keine Freigabe oder Freigabe mit Auflagen.

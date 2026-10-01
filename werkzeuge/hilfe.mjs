@@ -342,6 +342,18 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/Entscheidungs-Accountable/gu, 'letztverantwortliche Rolle (A) der Entscheidung'],
   [/^Freigabebefugnis einer Rolle mit Schwellenwert\.$/gu, 'Klar zugewiesene Entscheidungs- und Eskalationsbefugnis einer Rolle oder eines Gremiums, verbunden mit Schwellen, Stellvertretung und Freigabeweg.'],
   // R55: Freigabe mit Auflagen gibt frei; Auflagen werden zu Maßnahmen (k6.4.4-p1, k6.4.3-p2)
+  // R58: auch die Bauherren-PL stößt die CTC-Neurechnung beim Controlling an (k6.4.2-t1)
+  [/Bei Drift: CTC-Neurechnung, Eskalation entlang der Mandatsleiter/gu, 'Bei Drift: CTC-Neurechnung beim Controlling anstoßen, Eskalation entlang der Mandatsleiter'],
+  // R58: Glossar „MVG“ und „Betriebshandbuch“ im Wortlaut von k13-t1; Maßnahme ohne verkürzte Kette; LPH 0 legitimiert den Planungsstart
+  [/^Minimum Viable Governance\. Schlanker Governance-Standard\.$/gu, 'Minimum Viable Governance: kleinster funktionsfähiger Governance-Standard, mit dem Bauherrenverantwortung entscheidungsfähig, nachweisbar und operabel wird.'],
+  [/^Handlungsanweisung für den Regelbetrieb\.$/gu, 'Betriebslogik für den Regelbetrieb von MVG mit Rollen, Routinen, Taktung, Eskalation und Prüfmechanismen.'],
+  [/Aus einer behandelten Frühwarnung angelegte Maßnahme im Maßnahmenregister mit verantwortlicher Rolle und Frist, verknüpft mit dem auslösenden Signal\. Sie schließt die Kette Frühwarnung → Risiko → Maßnahme\./gu, 'Maßnahme im Maßnahmenregister mit verantwortlicher Rolle und Frist, z. B. als Sofortreaktion aus der Frühwarnungs-Behandlung, verknüpft mit dem auslösenden Signal.'],
+  [/Initialisierungs-Freigabe LPH 0, mit der der Bauherr den Projektstart freigibt\./gu, 'Freigabe zum Abschluss von LPH 0, mit der der Bauherr die Grundlage für den Planungsstart legitimiert.'],
+  [/^ schlanke Steuerungsentscheidung – kein vollständiges PPM-System/gu, ' Markierung in der Portfoliosicht – die Entscheidung selbst ist eine wesentliche Entscheidung des Bauherrn (MVG Kap. 4.3)'],
+  // R58: dieselbe Größe heißt CTC (Restkostenprognose) wie im Glossar – nicht FTC/Forecast-to-Complete
+  [/Ist-Kosten plus Forecast-to-Complete/gu, 'Ist-Kosten plus CTC (Restkostenprognose)'],
+  [/Halten Sie die FTC-Schätzung/gu, 'Halten Sie die CTC-Schätzung'],
+  [/FTC 6,1 Mio/gu, 'CTC 6,1 Mio'],
   // R57: CTC und Prognose führt das Controlling (k6.4.2-t1, k6.4.5-t1); die Projektsteuerung liefert zu
   [/Erstellt CTC-Neurechnungen und Prognosen/gu, 'Liefert Kosten- und Terminstände für CTC und Prognose zu (Führung: Controlling)'],
   [/Monatlich: CTC-Closing und Prognose-Szenarien rechnen/gu, 'Monatlich: Zulieferung zum CTC-Closing (Controlling)'],
@@ -828,6 +840,9 @@ function glaette(/** @type {string} */ html) {
     .replace(/(<tr><td><b>Monatlich, zzgl\. Sondersitzungen<\/b>)/gu, '<tr><td><b>Monatlich</b></td><td>Projektsteuerung</td><td>Formale Risikoprüfung und Bericht → <span>Managementbericht</span></td></tr>$1')
     // R56: Rechte-Kennungen als Feldnamen (L-69); Entscheidungen und Änderungen sind keine Freigaben
     .replace(/<li>approveDecision\/(?:<wbr>)?approveGate\/(?:<wbr>)?approveChange – Freigaben<\/li>/gu, '<li><code>approveDecision</code>/<wbr><code>approveGate</code>/<wbr><code>approveChange</code> – Entscheidungen, Freigaben und Änderungen bestätigen (nach Mandat)</li>')
+    // R58: CTC statt FTC in den Methoden (Glossar: CTC = Restkostenprognose)
+    .replace(/<li><b>FTC – Forecast to Complete:<\/b> verbleibende Restkosten/gu, '<li><b>CTC – Restkostenprognose:</b> verbleibende Restkosten')
+    .replace(/<li><b>EAC – Estimate at Completion:<\/b> Ist-Kosten \+ FTC</gu, '<li><b>EAC – Estimate at Completion:</b> Ist-Kosten + CTC<')
     // R57: alle Rechte-Kennungen der Liste als Feldnamen (L-69)
     .replace(/<li>(createXxx|deleteXxx|editXxx|clearAudit) – /gu, '<li><code>$1</code> – ')
     .replace(/<li>importJson \/ exportJson – /gu, '<li><code>importJson</code> / <code>exportJson</code> – ')

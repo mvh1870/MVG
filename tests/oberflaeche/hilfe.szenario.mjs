@@ -313,5 +313,14 @@ export async function lauf(seite, h) {
     const text = mit.map((x) => x.zeilen.join(' ')).join(' ');
     if (/Schließen/u.test(text) || mit.length !== ohne.length) h.befund(`Hilfe-Druck mit offenem Grafik-Dialog: ${mit.length} statt ${ohne.length} Seiten${/Schließen/u.test(text) ? ', „Schließen“ auf dem Papier' : ''}`);
     await seite.keyboard.press('Escape');
+    // R58: Kennungen in code tragen auch im Druck keine Wörterbuchtrennung (sonst „pack‐age.json“ unter Chrome 153)
+    await seite.evaluate(() => { location.hash = '#hilfe/datenmanagement'; });
+    await h.warte(500);
+    await seite.emulateMedia({ media: 'print' });
+    await seite.evaluate(() => { window.dispatchEvent(new Event('beforeprint')); });
+    const autoCode = await seite.evaluate(() => [...document.querySelectorAll('.hilfe-inhalt code')].filter((c) => getComputedStyle(c).hyphens === 'auto').map((c) => c.textContent ?? '').slice(0, 3));
+    await seite.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
+    await seite.emulateMedia({ media: 'screen' });
+    if (autoCode.length > 0) h.befund(`Hilfe-Druck: code mit hyphens:auto ${JSON.stringify(autoCode)}`);
   }
 }

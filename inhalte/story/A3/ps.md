@@ -58,7 +58,7 @@ Holger Stein rechnet neu: jetzt +9,1 %, rund 5,3 Mio. €. Das Controlling rechn
 Ein benannter Datenstand, der die alte Version nachvollziehbar ersetzt.
 
 ### Neues Risiko
-Über 5 Mio. €, in Welt A ohne Folge: Es gibt keine Schwelle.
+Über 5 Mio. € läge die Stufe der Eskalation beim Bauherrn – in Welt A ohne Folge: Es gibt keine Schwelle.
 
 ### Governance-Frage
 [[Mandat]]: Ab welcher Summe muss der Bauherr selbst entscheiden?

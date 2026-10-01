@@ -15,7 +15,7 @@ titel: Anwendungssituationen und Praxislogik
 kurztitel: Anwendungssituationen
 story: [epilog, ende-neufestlegung]
 ---
-Nicht jeder Bauherr hat dieselben Schwierigkeiten. Kapitel 10 zeigt, wo Minimum Viable Governance (MVG) in der Praxis ansetzt: bei öffentlichen Bauherren, bei privaten und institutionellen Bauherren, bei Energieversorgern und Infrastrukturträgern und bei Projekten, die schleichend an Steuerbarkeit verlieren. Zum Schluss stehen fünf typische Entscheidungsprobleme – jeweils mit dem Grund, warum sie kritisch sind, und mit dem Werkzeug, das MVG dafür vorsieht. So können Sie Ihre eigene Lage wiederfinden.
+Nicht jeder Bauherr hat dieselben Schwierigkeiten. Kapitel 10 zeigt, wo Minimum Viable Governance (MVG) in der Praxis ansetzt: bei öffentlichen Bauherren, bei privaten und institutionellen Bauherren, bei Energieversorgern und Infrastrukturträgern und bei Projekten, die schleichend an Steuerbarkeit verlieren. Zum Schluss stehen fünf typische Entscheidungsprobleme – jeweils mit dem Grund, warum sie kritisch sind, und mit den Werkzeugen, die MVG dafür vorsieht. So können Sie Ihre eigene Lage wiederfinden.
 
 ::: kernaussage
 Wo Entscheidungen kritisch werden, hängt von der Lage des Bauherrn ab: bei Nachweis und Gremien, bei Zielkonflikten, bei Freigabereife und Prognose oder bei einem Projekt, das schleichend die Steuerung verliert. MVG setzt jeweils an dieser Stelle an.
@@ -267,7 +267,7 @@ Fünf Entscheidungsprobleme kommen in Bauprojekten immer wieder vor – von der 
 
 Die Folgen sind ernst. Folgekosten werden spät sichtbar, oder das Projekt arbeitet mit mehreren Wahrheiten und verliert seine Wiederanlauffähigkeit.
 
-Für jedes Problem nennt MVG ein Artefakt oder eine Routine, die dagegen hilft – etwa die Entscheidungsvorlage, das Änderungsregister mit verbindlicher Auswirkungsbewertung und dem monatlichen Änderungsgremium oder die Festschreibung des Datenstands. Die Tafel zeigt alle fünf. [[bedienung:In der Übung darunter ordnen Sie Werkzeuge ihrem Problem zu.]]
+Für jedes Problem nennt MVG Artefakte und Routinen, die dagegen helfen – etwa die Entscheidungsvorlage, das Änderungsregister mit verbindlicher Auswirkungsbewertung und dem monatlichen Änderungsgremium oder die Festschreibung des Datenstands. Die Tafel zeigt alle fünf. [[bedienung:In der Übung darunter ordnen Sie Werkzeuge ihrem Problem zu.]]
 
 ::: tafel k10.5-t1
 ---

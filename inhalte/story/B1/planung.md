@@ -49,7 +49,7 @@ Welche Zielkonflikte löst die Regel – und welche entscheidet der Bauherr?
 titel: Die Preisannahme als Spanne für Version 1 zuliefern
 kurz: Spanne zuliefern
 status:
-  ungeklaerte-entscheidungen: +1
+  offene-risiken: +1
 ---
 ### Konsequenz
 Ihre Spanne steht in Version 1 als offene Annahme; bewertet wird sie in der Risikosichtung.

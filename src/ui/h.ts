@@ -44,6 +44,12 @@ function haengeAn(el: Node, kinder: readonly Kind[]): void {
     }
     el.appendChild(k as Node);
   }
+  // R58: in Links, Knöpfen und Aufklappzeilen ist ein Glossarbegriff nur Text – ein bedienbarer Begriff darin wäre ein
+  // verschachteltes Bedienelement (Eingabe auf dem Begriff folgte dem Link). Er behält Klasse und Hinweis bei Mouseover.
+  const e = el as Element;
+  if (typeof e.matches === 'function' && e.matches('a, button, summary, label')) {
+    for (const b of e.querySelectorAll('.begriff[tabindex]')) { b.removeAttribute('tabindex'); b.removeAttribute('role'); }
+  }
 }
 
 /** Baut ein HTML-Element. */

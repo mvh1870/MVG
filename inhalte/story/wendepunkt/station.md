@@ -75,7 +75,7 @@ form: schwelle
 titel: Wer hätte entschieden?
 kurz: Schwellen
 ---
-Für keinen Betrag war festgelegt, wer entscheidet: Mensa grob 0,6, Brandschutzauflagen grob 0,4, Abweichung rund 4,7 Mio. €. Muster aus Kap. 4.2:
+Für keinen Betrag war festgelegt, wer entscheidet: Mensa grob 0,6, Brandschutzauflagen grob 0,4 Mio. €. Muster aus Kap. 4.2:
 
 ::: zitat k4.2-p3
 Als Muster-Mandatsleiter gilt: Die Bauherren-PL gibt bis einschließlich 100 TEUR eigenständig frei; oberhalb von 100 TEUR bis einschließlich 5 Mio. EUR entscheidet das Änderungsgremium; darüber erfolgt die Beschlussfassung durch den Bauherrn im Lenkungskreis.

@@ -205,6 +205,14 @@ function karten(b: Block): HTMLElement {
   }));
 }
 
+/** Feste Verschiebung der Antworten je Wissenscheck (deterministisch aus der Kennung, 0 … n−1). */
+export function wcVerschiebung(id: string, n: number): number {
+  if (n < 2) return 0;
+  let s = 0;
+  for (const z of id) s = (s * 31 + (z.codePointAt(0) ?? 0)) % 9973;
+  return s % n;
+}
+
 /**
  * Wissenscheck (P11.6, Owner-Punkt „Wissenschecks ohne Schulungscharakter“): eine Frage, zwei bis drei
  * Antworten; die Wahl zeigt eine kurze Rückmeldung und die Erklärung mit wortgleichem Beleg – keine
@@ -226,10 +234,13 @@ function wissenscheck(b: Block): HTMLElement {
     },
   }, kopfText(a.kopf, 'titel') ?? a.id ?? ''));
   const knopf = (a: Block): HTMLElement | undefined => knoepfe[antworten.indexOf(a)];
+  // R58: in den Quellen steht die passende Antwort immer zuerst – angezeigt wird je Check fest verschoben (wie mische() der Tafeln)
+  const v = wcVerschiebung(b.id ?? '', knoepfe.length);
+  const reihe = [...knoepfe.slice(v), ...knoepfe.slice(0, v)];
   return h('section', { class: 'wissenscheck', 'data-pruef': 'wissenscheck', 'aria-label': W.theorie.wissenscheck },
     h('span', { class: 't-label' }, W.theorie.wissenscheck),
     h('div', { class: 'wc-frage' }, inhalt(b.felder['frage'] ?? '')),
-    h('div', { class: 'wc-antworten reihe', role: 'group', 'aria-label': W.theorie.wissenscheckAntworten }, knoepfe),
+    h('div', { class: 'wc-antworten reihe', role: 'group', 'aria-label': W.theorie.wissenscheckAntworten }, reihe),
     ergebnis);
 }
 

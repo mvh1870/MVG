@@ -202,7 +202,9 @@
   .hilfe-inhalt th { font-size: 7pt; letter-spacing: 0; overflow-wrap: normal; }
   /* R44: 7,5 pt und schmalere Marken – mit `break-word` statt `anywhere` bestimmt das längste Wort die Spalte, der Registerkatalog lief sonst 39 px über */
   .hilfe-inhalt .h-table-wrap table :is(td, td *) { font-size: 7.5pt; line-height: 1.35; }
-  .hilfe-inhalt .h-table-wrap td :is(.h-tag, .h-badge, .h-pill, .hilfe-marke, code) { padding-inline: 3px; letter-spacing: 0; overflow-wrap: normal; hyphens: auto; }
+  .hilfe-inhalt .h-table-wrap td :is(.h-tag, .h-badge, .h-pill, .hilfe-marke) { padding-inline: 3px; letter-spacing: 0; overflow-wrap: normal; hyphens: auto; }
+  /* R58: Kennungen auch im Druck ohne Wörterbuchtrennung (L-166) – sie brechen nur an ihren <wbr>-Stellen */
+  .hilfe-inhalt .h-table-wrap td code { padding-inline: 3px; letter-spacing: 0; overflow-wrap: break-word; hyphens: manual; }
   .hilfe-inhalt td code { white-space: normal; }
   /* R47: die Karte um eine Querseiten-Grafik bleibt hochkant schmal – ihr Rand liefe mitten durch die Grafik */
   .hilfe-inhalt :is(.h-card, .h-feature-card):has(.h-grafik-wrap) { background: none; box-shadow: none; border: 0; padding: 0; }

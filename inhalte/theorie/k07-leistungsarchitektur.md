@@ -73,7 +73,7 @@ titel: MVG-Reifegradanalyse
 ---
 Die MVG-Reifegradanalyse ist der Einstieg. Sie erzeugt typischerweise in zwei bis vier Wochen ein evidenzbasiertes Lagebild dazu, ob der Bauherr seine Verantwortung tatsächlich ausüben kann. Die entscheidende Frage ist dabei nicht, ob die Projektunterlagen vollständig wirken. Gefragt wird, ob die Bauherrenorganisation ihre wesentlichen Entscheidungen, Mandate, Risikoannahmen, Freigaben, Datenstände und Nachweise ausreichend beherrscht.
 
-Typischer Anlass sind unklare Mandate, ein Entscheidungsstau, auseinanderlaufende Datenstände, Brüche bei Freigaben sowie Risiken oder Änderungen, die sich schleichend entwickeln. Am Ende stehen eine Bewertungsmatrix, die wichtigsten Risiken und Verantwortungslücken, eine Entscheidungsliste und ein [[30/60/90-Tage-Plan]].
+Typische Anlässe sind unklare Mandate, ein Entscheidungsstau, auseinanderlaufende Datenstände, Brüche bei Freigaben sowie Risiken oder Änderungen, die sich schleichend entwickeln. Am Ende stehen eine Bewertungsmatrix, die wichtigsten Risiken und Verantwortungslücken, eine Entscheidungsliste und ein [[30/60/90-Tage-Plan]].
 
 Methodisch ist die Analyse ein Instrument von Bauherr Mentoren: Sie misst über zehn MVG-Domänen mit 49 Fragen. Die sechs Verantwortungsfelder geben dabei die Struktur der Bauherrenverantwortung vor, gemessen wird aber ausschließlich über die Domänen. Der Bauherr benennt eine verantwortliche Rolle, stellt die Kernunterlagen bereit, nimmt an Gesprächen und am Managementbericht teil und entscheidet über die Prioritäten.
 

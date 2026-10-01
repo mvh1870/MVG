@@ -65,6 +65,15 @@ test('Nicht delegierbar (k3.2-t1): Projektbasis hebt auf den Bauherrn, Risikores
   assert.equal(simuliere({ ...basis, substanziell: true, status: 'in-bearbeitung' }).naechsterSchritt[0]?.quelle, 'k9.4-l1');
   // R41: entschieden mit berührter Freigabe ohne Datenstand – der Freigabe fehlte ihre Grundlage (k4.5-p1)
   assert.ok(simuliere({ ...basis, freigabeBeruehrt: true, datenstandBenannt: false, status: 'entschieden' }).naechsterSchritt.some((h) => h.quelle === 'k4.5-p1'));
+  // R58: ohne berührte Freigabe nach der Entscheidung kein „fehlt die Grundlage“ unter „Nächster Schritt“ (nur der Nachtrag unter Information)
+  assert.ok(!simuliere({ ...basis, datenstandBenannt: false, status: 'entschieden' }).naechsterSchritt.some((h) => h.quelle === 'k4.6-p2' || h.quelle === 'k4.5-p1'));
+});
+
+test('Wesentlich unterhalb des Bauherrn (R58): beim Bauherrn bleibt die Festlegung des Mandats (k3.3-p2)', () => {
+  const r = simuliere({ ...basis, betragTeur: 400, substanziell: true });
+  assert.equal(r.stufe, 'gremium');
+  assert.ok(r.bauherr.some((h) => h.quelle === 'k3.3-p2'));
+  assert.ok(!simuliere({ ...basis, betragTeur: 400 }).bauherr.some((h) => h.quelle === 'k3.3-p2'), 'nicht wesentlich: kein Hinweis');
 });
 
 test('Wesentlich (k4.3): Kennung und Vorlage, sonst der Hinweis, dass nicht jede Entscheidung wesentlich ist', () => {

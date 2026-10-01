@@ -236,3 +236,6 @@ Nicht sauber – als Nächstes Runde 57.
 ## Runde 57 (P12.5, zugleich P14.3 und P15.2) – volle Runde auf ebe9836
 - Story B (RACI), Hilfe (CTC-Zuständigkeit), Architektur (Glättungsregeln ungesichert), Stil (Glossarbegriffe als Block): 4 mittel, 12 leicht – L-171.
 Nicht sauber – als Nächstes Runde 58.
+## Runde 58 (P12.5, zugleich P14.3 und P15.2) – volle Runde auf f53edb7
+- Begriff im Link (doppelt gemeldet), Tastaturprobe Begriffe, Simulator (Bauherr bei wesentlich), Hilfe CTC der PL, Hilfe-Druck code: 7 mittel, 15 leicht – L-172.
+Nicht sauber – als Nächstes Runde 59.

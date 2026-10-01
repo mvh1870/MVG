@@ -1764,3 +1764,22 @@ test('Abbildungen (P14, O-32): Lernseite und Originaltext zeigen das Bild mit Vo
     setzeAbbildungsBilder({});
   }
 });
+
+// R58: in den Quellen steht die passende Antwort zuerst – angezeigt nicht immer an derselben Stelle
+test('Wissenscheck: die passende Antwort steht nicht in jedem Check an derselben Stelle', () => {
+  const stellen: number[] = [];
+  const sammle = (o: unknown): void => {
+    if (Array.isArray(o)) { o.forEach(sammle); return; }
+    if (o === null || typeof o !== 'object') return;
+    const b = o as { art?: string; id?: string; kinder?: { art: string }[] };
+    if (b.art === 'wissenscheck') {
+      const n = (b.kinder ?? []).filter((k) => k.art === 'antwort').length;
+      const v = theorieModul.wcVerschiebung(b.id ?? '', n);
+      stellen.push(v === 0 ? 0 : n - v);
+    }
+    Object.values(o).forEach(sammle);
+  };
+  sammle(inhalte.theorie);
+  assert.ok(stellen.length >= 10);
+  assert.ok(new Set(stellen).size >= 2, `alle an Stelle ${stellen[0]}`);
+});

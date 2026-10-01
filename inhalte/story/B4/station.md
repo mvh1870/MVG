@@ -5,7 +5,7 @@ monat: 7
 titel: Ausschuss­reif
 lph: 5
 uhr: Donnerstag, 10:00 Uhr
-whitepaper-bezug: [k6.4.1-p4, k6.4.5-t1, k4.3-p1, k4.3-p2, k4.2-p3, k9.4-l1, k9.4-p3, k6.4.4-p1, k3.2-t1, k6.4.3-p2, k4.6-p2]
+whitepaper-bezug: [k3.3-p2, k6.4.1-p4, k6.4.5-t1, k4.3-p1, k4.3-p2, k4.2-p3, k9.4-l1, k9.4-p3, k6.4.4-p1, k3.2-t1, k6.4.3-p2, k4.6-p2]
 status-start:
   entscheidungsfaehigkeit: 4
   kostenunsicherheit: mittel

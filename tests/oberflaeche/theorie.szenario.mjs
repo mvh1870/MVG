@@ -553,6 +553,25 @@ export async function lauf(seite, h) {
   if (schw.aufgaben < 2 || schw.seiten !== schw.aufgaben || schw.rest > 0 || schw.achse > 0) h.befund(`Druck Kap. 3: Schwellen-Spiel nicht aufgelöst (${JSON.stringify(schw)})`);
   await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
   await seite.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
+  // R58: Glossarbegriffe sind per Tastatur erreichbar (span mit Knopfrolle seit L-171): Fokus öffnet den Hinweis, Esc schließt,
+  // Eingabe öffnet wieder, die Leertaste rollt die Seite nicht
+  await seite.evaluate(() => { location.hash = '#theorie/k3'; });
+  await h.warte(500);
+  const begriff = seite.locator('.lernseite .begriff[role="button"]').filter({ visible: true }).first();
+  await begriff.waitFor({ timeout: 5000 }).catch(async () => h.befund(`Glossarbegriff per Tastatur: keiner sichtbar (${await seite.evaluate(() => `${location.hash} · ${document.body.className} · ${document.querySelectorAll('.lernseite .begriff').length} Begriffe`)})`));
+  await begriff.focus().catch(() => {});
+  const tast = { fokus: await seite.evaluate(() => document.activeElement?.classList.contains('begriff') ?? false) };
+  const offen = () => seite.evaluate(() => { const t = document.querySelector('.tipp'); return t instanceof HTMLElement && !t.hidden; });
+  tast.tipp = await offen();
+  await h.taste('Escape');
+  tast.zu = !(await offen());
+  await h.taste('Enter');
+  tast.wieder = await offen();
+  const yVor = await seite.evaluate(() => window.scrollY);
+  await h.taste(' ');
+  await h.warte(200);
+  tast.rollt = (await seite.evaluate(() => window.scrollY)) !== yVor;
+  if (!tast.fokus || !tast.tipp || !tast.zu || !tast.wieder || tast.rollt) h.befund(`Glossarbegriff per Tastatur: ${JSON.stringify(tast)}`);
   // R28: Hochkontrastmodus – Knöpfe behalten eine Grenze, der gewählte Zustand ist ohne Hintergrundfarbe der Seite erkennbar
   await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce', forcedColors: 'active' });
   await seite.evaluate(() => { location.hash = '#theorie/k3'; });

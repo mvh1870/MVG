@@ -7,7 +7,7 @@ rueckbezug-auf: A2
 
 ::: option A
 ---
-titel: Die Verplanung der Reserve der Bauherren-PL und Dr. Olbers offenlegen
+titel: Die Verplanung der Reserve gegenüber Bauherren-PL und Dr. Olbers offenlegen
 kurz: Reserve offenlegen
 status:
   ungeklaerte-entscheidungen: +1

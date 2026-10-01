@@ -30,7 +30,7 @@ Gering – solange der Turnus auch ohne Stein gehalten wird.
 titel: Die Kostenzahlen für die Antwort an den Stadtrat aus dem Managementbericht liefern
 kurz: Stadtrat beliefern
 status:
-  ungeklaerte-entscheidungen: -1
+  entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
 Dr. Olbers antwortet der Fraktion mit denselben Zahlen, die auch in der Freigabevorlage stehen. Kein Sonderbericht, keine dritte Zahl.

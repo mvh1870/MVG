@@ -1471,11 +1471,12 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .morph {
   /* Lage je Stück setzt src/grafik/vergleich-szene.ts: a = Welt A, b = Welt B, n… = hochkant */
   --ax: 50; --ay: 50; --ar: 0; --aw: 19; --bx: 50; --by: 50; --bw: 13;
-  --nax: 50; --nay: 50; --naw: 42; --nbx: 70; --nby: 50; --nbw: 40;
+  --nax: 50; --nay: 50; --naw: 42; --nbx: 70; --nby: 50; --nbw: 40; --a-oben: 40px;
   position: absolute;
   z-index: 3;
   left: calc(var(--ax) * 1% * (1 - var(--t)) + var(--bx) * 1% * var(--t));
-  top: calc(var(--ay) * 1% * (1 - var(--t)) + var(--by) * 1% * var(--t));
+  /* R51: Welt A beginnt unter der Marke „Welt A · …“ (--a-oben) – sonst verdeckte sie Text der oberen Karten */
+  top: calc((var(--a-oben) + var(--ay) * (100% - var(--a-oben)) / 100) * (1 - var(--t)) + var(--by) * 1% * var(--t));
   width: calc(var(--aw) * 1% * (1 - var(--t)) + var(--bw) * 1% * var(--t));
   transform: translate(-50%, -50%) rotate(calc(var(--ar) * (1 - var(--t)) * 1deg));
 }
@@ -1504,7 +1505,8 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .morph-station { --sx: 50; --sy: 50; position: absolute; z-index: 2; left: calc(var(--sx) * 1%); top: 46%; width: 0; height: 0; opacity: calc((var(--t) - .45) * 2.4); }
 .morph-station i { position: absolute; left: -12px; top: -12px; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--weiss); color: var(--tuerkis-text); font: 800 13px/1 var(--schrift-anzeige); font-style: normal; box-shadow: inset 0 0 0 3px var(--tuerkis); transform: scale(calc(.4 + .6 * var(--t))); }
 .morph-station.ist-hier i { background: var(--tuerkis-text); color: var(--weiss); box-shadow: 0 0 0 4px var(--tuerkis-a25); }
-.morph-station span { position: absolute; left: 0; top: var(--a-4); width: 13.6cqw; transform: translateX(-50%); color: var(--tinte); font: 700 13px/1.05 var(--schrift-label); text-align: center; hyphens: manual; }
+/* R51: das Label beginnt 2 px unter dem Kreis (r = 12 px) – bei 220 px Szenenhöhe berührte es sonst die Karte darunter */
+.morph-station span { position: absolute; left: 0; top: 14px; width: 13.6cqw; transform: translateX(-50%); color: var(--tinte); font: 700 13px/1.05 var(--schrift-label); text-align: center; hyphens: manual; }
 .morph-puls { position: absolute; z-index: 2; left: 7.14%; top: 46%; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; background: var(--gold-hell); box-shadow: 0 0 0 4px var(--gold-hell-a28), 0 0 14px var(--gold-hell); opacity: 0; pointer-events: none; }
 .vergleich.ist-angekommen .morph-puls { animation: bahn-puls 2.8s linear infinite; }
 @keyframes bahn-puls { 0% { left: 7.14%; opacity: 0; } 6% { opacity: 1; } 94% { opacity: 1; } 100% { left: 92.86%; opacity: 0; } }
@@ -1775,13 +1777,14 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
   .morph-szene { height: 560px; }
   .morph {
     left: calc(var(--nax) * 1% * (1 - var(--t)) + var(--nbx) * 1% * var(--t));
-    top: calc(var(--nay) * 1% * (1 - var(--t)) + var(--nby) * 1% * var(--t));
+    top: calc((var(--a-oben) + var(--nay) * (100% - var(--a-oben)) / 100) * (1 - var(--t)) + var(--nby) * 1% * var(--t));
     width: calc(var(--naw) * 1% * (1 - var(--t)) + var(--nbw) * 1% * var(--t));
   }
   .morph.ist-marke { opacity: calc(1 - var(--t) * 1.6); }
   .morph.ist-marke .morph-b { display: none; }
   .morph-station { left: 10%; top: calc(var(--sy) * 1%); }
-  .morph-station span { left: 18px; top: -8px; width: auto; transform: none; text-align: left; white-space: nowrap; }
+  /* R51: das Label endet vor der Karte (Karte ab 50 %) und bricht sonst an der Fuge */
+  .morph-station span { left: 18px; top: -8px; width: max-content; max-width: calc(40cqw - 24px); transform: none; text-align: left; }
   .vergleich-b::after { background-image: none; }
   .morph-puls { left: 10%; top: 13%; }
   .vergleich.ist-angekommen .morph-puls { animation-name: bahn-puls-senkrecht; }

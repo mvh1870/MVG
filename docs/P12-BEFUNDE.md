@@ -215,7 +215,7 @@ Nicht sauber – Zählung neu, als Nächstes Runde 50.
 Nicht sauber – Zählung neu (Runde 51 lief als Teilrunde parallel).
 ## Runde 51 (P12.5, zugleich P14.3 und P15.2) – Teilrunden (L-154)
 - **Teil 1 auf aa6b938** (Theorie, Story, Abbildungen, Hilfe): 4 mittel, 17 leicht – L-160.
-- **Teil 2 auf 59b6e35** (Stil, Druck, Architektur): Druck 1 mittel, 1 leicht – L-164; Stil und Architektur folgen (L-166).
+- **Teil 2 auf 59b6e35** (Stil, Druck, Architektur): Druck 1 mittel, 1 leicht – L-164; Stil 4 mittel, 1 leicht, Architektur 3 mittel – L-166.
 Nicht sauber – als Nächstes Runde 52.
 ## Runde 52 (P12.5, zugleich P14.3 und P15.2) – Teilrunden (L-154)
 - **Teil 1 auf bf5ec7c** (Theorie, Story, Abbildungen, Hilfe): 1 mittel, 15 leicht – L-163.

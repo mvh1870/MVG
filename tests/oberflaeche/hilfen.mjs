@@ -1,5 +1,9 @@
 // Gemeinsame Hilfen der Browser-Szenarien (kein Szenario: Dateiname ohne .szenario.mjs).
 
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { mitTrennstellen } from '../../src/ui/h.ts';
 import { wortbrueche } from './pdf.mjs';
 
 /** Läuft im Browser: horizontales Scrollen und abgeschnittener Text (wie im Szenario „durchstich“). */
@@ -325,6 +329,7 @@ export async function weltB(seite, h, station, pruefe, optionen = {}) {
       if (await sichtbar('[data-pruef="einstieg-text"]') && !gesehen.has('einstieg')) { gesehen.add('einstieg'); await pruefe(`${st}-einstieg`); }
       if (await sichtbar('[data-pruef="vergleich"]') && !gesehen.has('vergleich')) {
         gesehen.add('vergleich');
+        if (h.viewport.breite === 1280) await vergleichFrei(seite, h, `${st}-vergleich`);
         await seite.locator('[data-pruef="vergleich"]').focus();
         await h.taste('End');
         await h.warte(600);
@@ -386,4 +391,128 @@ export async function weltB(seite, h, station, pruefe, optionen = {}) {
   }
   await pruefe('spur');
   await h.taste('Escape');
+}
+
+/**
+ * R51 (Stil): die Optionstitel ALLER Rollen bei 320 px – `.option-text` ist dort 168 px breit, und lange Komposita
+ * („Verantwortungsmodell“) brachen ohne Strich, obwohl die Szenarien bei 320 px nur die Rolle pl spielen. Gemessen
+ * werden Klone der sichtbaren Option mit jedem Titel aus inhalte.json; vorher muss der echte Titel so stehen, wie die
+ * Story ihn setzt (mitTrennstellen), sonst mäße die Probe etwas anderes als die Anwendung.
+ * @param {import('playwright').Page} seite
+ * @param {import('../../werkzeuge/oberflaeche.mjs').Helfer} h
+ * @param {string} name
+ * @returns {Promise<boolean>} gemessen (false: keine Option mit Trennstelle sichtbar)
+ */
+export async function optionstitelSchmal(seite, h, name) {
+  const vp = seite.viewportSize();
+  if (vp === null) return false;
+  const datei = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..', 'src', 'generiert', 'inhalte.json');
+  /** @type {{ stationen: Record<string, { szenen?: Record<string, { entscheidung?: { optionen?: { titel: string }[] } | null }> }> }} */
+  const inhalte = JSON.parse(readFileSync(datei, 'utf8'));
+  const titel = new Set();
+  for (const st of Object.values(inhalte.stationen)) for (const sz of Object.values(st.szenen ?? {})) for (const o of sz.entscheidung?.optionen ?? []) titel.add(o.titel);
+  if (titel.size < 100) { h.befund(`${name}: nur ${titel.size} Optionstitel in inhalte.json gefunden`); return true; }
+  const gesetzt = [...titel].map((t) => mitTrennstellen(t));
+  await seite.setViewportSize({ width: 320, height: vp.height }); await h.warte(150);
+  const echt = await seite.evaluate(() => [...document.querySelectorAll('.option .option-text')].filter((x) => x.getClientRects().length > 0).map((el) => {
+    const k = /** @type {HTMLElement} */ (el.cloneNode(true));
+    for (const sr of k.querySelectorAll('.nur-sr')) sr.remove();
+    return k.textContent ?? '';
+  }));
+  // erst an einer Entscheidung messen, deren Titel eine Trennstelle bekommt – sonst sähe die Probe nicht, ob die Story sie setzt
+  if (!echt.some((t) => mitTrennstellen(t.replaceAll('\u00ad', '')).includes('\u00ad'))) { await seite.setViewportSize(vp); await h.warte(100); return false; }
+  const anders = echt.filter((t) => !gesetzt.includes(t));
+  if (anders.length > 0) h.befund(`${name}: Optionstitel ${JSON.stringify(anders)} stehen nicht so, wie mitTrennstellen sie setzt`);
+  else {
+    await seite.evaluate((liste) => {
+      const vorbild = [...document.querySelectorAll('.option')].find((x) => x.getClientRects().length > 0);
+      if (vorbild === undefined || vorbild.parentElement === null) return;
+      for (const t of liste) {
+        const k = /** @type {HTMLElement} */ (vorbild.cloneNode(true));
+        k.classList.add('pruef-klon');
+        k.removeAttribute('data-pruef');
+        const text = k.querySelector('.option-text');
+        if (text !== null) text.textContent = t;
+        vorbild.parentElement.append(k);
+      }
+    }, gesetzt);
+    const bruch = await wortbrueche(seite, '.pruef-klon .option-text', { bildschirm: true });
+    if (bruch.length > 0) h.befund(`${name} @320: ${bruch.length} Wörter in Optionstiteln ohne Trennstrich gebrochen ${JSON.stringify(bruch.slice(0, 6))}`);
+    await seite.evaluate(() => { for (const k of document.querySelectorAll('.pruef-klon')) k.remove(); });
+  }
+  await seite.setViewportSize(vp); await h.warte(100);
+  return true;
+}
+
+/**
+ * R51 (Stil): im Vergleich Welt A ⟷ B verdeckt nichts den Text der Karten – die Marke „Welt A · …“ (Regler auf A)
+ * keine Textzeile einer Welt-A-Karte, ein Stationslabel des Governance-Flusses (Regler auf B) keine Karte. pruefeLayout
+ * sieht das nicht, weil der Text in seiner eigenen Fläche bleibt. Bei 320, 360, 400, 1024 und 1280 px; danach zurück.
+ * @param {import('playwright').Page} seite
+ * @param {import('../../werkzeuge/oberflaeche.mjs').Helfer} h
+ * @param {string} name
+ */
+export async function vergleichFrei(seite, h, name) {
+  const vp = seite.viewportSize();
+  if (vp === null) return;
+  const regler = seite.locator('[data-pruef="vergleich"]');
+  const messe = (/** @type {'a' | 'b'} */ welt) => seite.evaluate((w) => {
+    const deck = (/** @type {Element} */ el) => { let d = 1; for (let x = /** @type {Element | null} */ (el); x !== null; x = x.parentElement) d *= Number(getComputedStyle(x).opacity); return d; };
+    const schnitt = (/** @type {DOMRect} */ p, /** @type {DOMRect} */ q) => [Math.min(p.right, q.right) - Math.max(p.left, q.left), Math.min(p.bottom, q.bottom) - Math.max(p.top, q.top)];
+    /** @type {string[]} */
+    const funde = [];
+    for (const v of document.querySelectorAll('.vergleich')) {
+      if (v.getClientRects().length === 0) continue;
+      if (w === 'a') {
+        const marke = v.querySelector('.vergleich-marke[data-welt="a"]');
+        if (marke === null || deck(marke) < 0.5) {
+          const kette = [];
+          for (let x = /** @type {Element | null} */ (marke); x !== null; x = x.parentElement) if (Number(getComputedStyle(x).opacity) < 1) kette.push(`${x.className}:${getComputedStyle(x).opacity}`);
+          funde.push(`Marke Welt A nicht sichtbar (${kette.join(', ')}; ${v.getAttribute('style')})`);
+          continue;
+        }
+        const m = marke.getBoundingClientRect();
+        const gang = document.createTreeWalker(v, NodeFilter.SHOW_TEXT);
+        for (let n = gang.nextNode(); n !== null; n = gang.nextNode()) {
+          const el = n.parentElement;
+          if (el === null || el.closest('.morph-a') === null || (n.textContent ?? '').trim() === '' || deck(el) < 0.5) continue;
+          const r = document.createRange();
+          r.selectNodeContents(n);
+          for (const q of r.getClientRects()) {
+            const [b, hh] = schnitt(m, q);
+            if (b > 1 && hh > 1) funde.push(`Marke über „${(n.textContent ?? '').trim().slice(0, 24)}“ ${Math.round(b)}×${Math.round(hh)} px`);
+          }
+        }
+      } else {
+        const karten = [...v.querySelectorAll('.morph-b')].filter((k) => k.getClientRects().length > 0 && deck(k) >= 0.5).map((k) => k.getBoundingClientRect());
+        for (const l of v.querySelectorAll('.morph-station span')) {
+          if (l.getClientRects().length === 0 || deck(l) < 0.5) continue;
+          const r = l.getBoundingClientRect();
+          for (const k of karten) {
+            const [b, hh] = schnitt(r, k);
+            if (b > 1 && hh > 1) funde.push(`Label „${(l.textContent ?? '').replaceAll('\u00ad', '')}“ unter einer Karte ${Math.round(b)}×${Math.round(hh)} px`);
+          }
+        }
+      }
+    }
+    return funde;
+  }, welt);
+  // der Regler läuft beim Ankommen von selbst nach B – so lange drücken, bis --t am Ziel steht
+  const stelle = async (/** @type {string} */ taste, /** @type {number} */ ziel) => {
+    for (let i = 0; i < 30; i++) {
+      await regler.focus(); await h.taste(taste); await h.warte(200);
+      const t = await seite.evaluate(() => Number(getComputedStyle(/** @type {Element} */ (document.querySelector('.vergleich'))).getPropertyValue('--t')));
+      if (Math.abs(t - ziel) < 0.001) { await h.warte(150); return; }
+    }
+    h.befund(`${name}: Regler erreicht ${ziel === 0 ? 'Welt A' : 'Welt B'} nicht`);
+  };
+  for (const breite of [320, 360, 400, 1024, 1280]) {
+    await seite.setViewportSize({ width: breite, height: vp.height }); await h.warte(150);
+    await stelle('Home', 0);
+    for (const f of await messe('a')) h.befund(`${name} @${breite} Welt A: ${f}`);
+    await stelle('End', 1);
+    for (const f of await messe('b')) h.befund(`${name} @${breite} Welt B: ${f}`);
+  }
+  await seite.setViewportSize(vp); await h.warte(150);
+  await stelle('Home', 0);
 }

@@ -13,7 +13,7 @@ import type { Aktion, OeffentlicherZustand, Status, StatusSchluessel } from '../
 import type { Block, Entscheidung, OeffentlicheInhalte, Option, Schritt, Station } from '../../inhalte/typen.ts';
 import { berechneStatus } from '../../engine/status.ts';
 import { rueckbezug } from '../../engine/gedaechtnis.ts';
-import { h, attr, elementAus, ersetze, s } from '../h.ts';
+import { h, attr, elementAus, ersetze, mitTrennstellen, s } from '../h.ts';
 import { statusSymbol } from '../../stil/symbole.ts';
 import {
   aenderungsSaetze, aktuellerSchritt, aktuelleStation, alleBloecke, ansichtSchluessel, instrumentWerte, kopfKarte, kopfListe,
@@ -262,7 +262,8 @@ function optionKnopf(o: Option, i: number, gewaehlt: string | null, beiWahl: (id
     onclick: () => beiWahl(o.id),
   },
   h('kbd', { class: 'option-taste', 'aria-hidden': 'true' }, o.id),
-  h('span', { class: 'option-text' }, h('span', { class: 'nur-sr' }, `${W.option} ${o.id}: `), o.titel),
+  // R51: lange Komposita („Verantwortungsmodell“) brechen bei 320 px nur an der Fuge (168 px Textspalte)
+  h('span', { class: 'option-text' }, h('span', { class: 'nur-sr' }, `${W.option} ${o.id}: `), mitTrennstellen(o.titel)),
   h('span', { class: 'option-symbol' }, B.symbolAusInhalt(o.symbol)));
 }
 

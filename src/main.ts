@@ -226,6 +226,7 @@ function starteApp(wurzel: HTMLElement): void {
           fassung: inhalte.whitepaper.fassung ?? '',
           version: VERSION,
           bedienbar: true,
+          praesentierbar: !eingebettet,
         }));
         window.scrollTo(0, 0);
         if (flaeche !== '' && flaeche !== 'start') (wurzel.querySelector('.start-titel') as HTMLElement | null)?.focus({ preventScroll: true });

@@ -180,6 +180,10 @@ export async function lauf(seite, h) {
       const vorFuss = fussA < 0 ? 0 : (pdfRoh[fussA]?.zeilen.findIndex((z) => z.includes('QFAQ')) ?? 0);
       // R50: der Fuß steht im Druck oben auf der ersten Seite (L-159; unter Chrome 153 blieb er unten allein zurück)
       if (fussA !== 0 || fussE !== 0 || vorFuss === 0) h.befund(`Druck ${id}: Fuß nicht oben auf S. 1 (Anfang S. ${fussA + 1}, Ende S. ${fussE + 1}, Zeilen davor ${vorFuss})`);
+      // R51: „fachlich ungeprüft“ steht auf S. 1 genau einmal (Kopf), der Fuß wiederholt ihn im Druck nicht
+      // pdf.js liefert Wortteile getrennt (Unterschneidung) – ohne Leerraum zählen
+      const vermerke = ((pdfText[0]?.zeilen.join('') ?? '').replace(/\s+/gu, '').normalize('NFC').match(/ungeprüft/giu) ?? []).length;
+      if (vermerke !== 1) h.befund(`Druck ${id}: „ungeprüft“ ${vermerke}-mal auf S. 1 (erwartet einmal)`);
       const amEnde = seitenMitUeberschriftAmEnde(pdfText, koepfe);
       if (amEnde.length > 0) h.befund(`Druck ${id}: Überschrift am Seitenende ${JSON.stringify(amEnde)}`);
       if (pdfText.some((x) => x.zeilen.length === 0)) h.befund(`Druck ${id}: leere Seite`);

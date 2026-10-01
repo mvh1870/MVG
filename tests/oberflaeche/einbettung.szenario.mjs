@@ -33,6 +33,9 @@ export async function lauf(seite, h) {
   await warteAuf((n) => n?.art === 'ort' && n.hash === '#start', 'ort #start');
   const klasse = await seite.frames()[1]?.evaluate(() => document.body.classList.contains('ist-eingebettet'));
   if (klasse !== true) h.befund('Einbettung: body ohne Klasse ist-eingebettet');
+  // R51: kein toter Link – „Präsentieren“ führt in die Regie, die eingebettet gesperrt ist (L-58); „Hilfe“ bleibt
+  if (await rahmen.locator('[data-pruef="zur-hilfe"]').count() !== 1) h.befund('Einbettung: Startseite ohne Link zur Hilfe');
+  if (await rahmen.locator('[data-pruef="praesentieren"]').count() !== 0) h.befund('Einbettung: Startseite zeigt „Präsentieren“, obwohl die Regie gesperrt ist');
   // gehe: Theorie Kapitel 4
   await seite.evaluate(() => /** @type {any} */ (window).schicke({ mvg: 'einbettung', art: 'gehe', ziel: '#theorie/k4' }));
   await rahmen.locator('[data-kapitel="4"] [data-pruef="lernseite"]').waitFor({ timeout: 5000 }).catch(() => h.befund('Einbettung: „gehe #theorie/k4“ nicht gefolgt'));

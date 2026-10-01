@@ -536,12 +536,16 @@ export async function lauf(seite, h) {
   await seite.evaluate(() => { location.hash = '#theorie/k3'; });
   await h.erwarte('[data-kapitel="3"] .schwelle-karte');
   await seite.locator('[data-pruef="kapitel-drucken"]').click();
+  await seite.emulateMedia({ media: 'print', reducedMotion: 'reduce' });
   const schw = await seite.evaluate(() => ({
     aufgaben: document.querySelectorAll('.lernseite:not(.druck-kapitel) .schwelle-karte').length,
     seiten: [...document.querySelectorAll('.druck-bogen .schwelle-druck-seite')].filter((x) => /^→ \S/u.test(x.textContent ?? '')).length,
     rest: document.querySelectorAll('.druck-bogen :is(.tafel-schwelle .tafel-hinweis, [data-pruef="schwelle-aufloesen"], .schwelle-rueck, .schwelle-stand)').length,
+    // R51: die Achse „Delegierbar · Grenze · Nicht delegierbar“ läse sich über den aufgelösten Karten als Spalten
+    achse: [...document.querySelectorAll('.druck-bogen .schwelle-kopf')].filter((x) => x.getClientRects().length > 0).length,
   }));
-  if (schw.aufgaben < 2 || schw.seiten !== schw.aufgaben || schw.rest > 0) h.befund(`Druck Kap. 3: Schwellen-Spiel nicht aufgelöst (${JSON.stringify(schw)})`);
+  if (schw.aufgaben < 2 || schw.seiten !== schw.aufgaben || schw.rest > 0 || schw.achse > 0) h.befund(`Druck Kap. 3: Schwellen-Spiel nicht aufgelöst (${JSON.stringify(schw)})`);
+  await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
   await seite.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
   // R28: Hochkontrastmodus – Knöpfe behalten eine Grenze, der gewählte Zustand ist ohne Hintergrundfarbe der Seite erkennbar
   await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce', forcedColors: 'active' });

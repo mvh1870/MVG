@@ -103,6 +103,9 @@ strong, b { font-weight: 700; }
   /* :root hebt die Spezifität über leitstand.css, das später geladen wird (R32) */
   :root .fortschritt-schritt::after { height: 0; border-bottom: 3px solid currentColor; }
   :root .karte-express-schalter { border: 1px solid currentColor; }
+  /* R51: Nachweiskette – Linie als Rand (Hintergrund fällt weg), Pfeilkopf ohne erzwungene Rahmenfarbe (sonst ein Klotz) */
+  :root .glied-link::before { width: 0; background: none; border-left: 2px solid CanvasText; }
+  :root .glied-link::after { forced-color-adjust: none; border-color: transparent; border-top-color: CanvasText; }
   :root .karte-express-schalter::after { top: 1px; left: 1px; width: 12px; height: 12px; border: 6px solid currentColor; }
   /* aktuelle Stelle ohne Knopf: LPH-Band, Stufe der Mandatsleiter (R32) und Verzeichnis-Links */
   :is(li, span, div)[aria-current]:not([aria-current="false"]) { outline: 2px solid Highlight; outline-offset: -2px; }

@@ -4,7 +4,7 @@
 // Vertiefung je Interesse (P3.9): die PL wählt „Kosten“ und „Risiko“ und sieht an jedem Ebenen-Schritt
 // genau diese beiden Karten; die anderen Rollen wählen nichts und sehen keine.
 
-import { leitstandSchmal, mittelbreit, pruefeLayout, pruefer, rueckfallTabellenstand, schmal } from './hilfen.mjs';
+import { leitstandSchmal, mittelbreit, optionstitelSchmal, pruefeLayout, pruefer, rueckfallTabellenstand, schmal } from './hilfen.mjs';
 
 export const name = 'welt-a';
 export const hash = '#story';
@@ -20,6 +20,7 @@ export async function lauf(seite, h) {
   const rollen = h.voll && h.viewport.breite === 1280 ? ['gf', 'bauherr', 'pl', 'ps', 'planung', 'controlling'] : ['pl'];
   const station = async () => (await seite.evaluate(() => location.hash)).replace(/^#story\//u, '');
   let erste = true;
+  let optionstitelGeprueft = false;
   for (const rolle of rollen) {
     if (!erste) {
       await h.klick('[data-pruef="seitenleiste-raum"]');
@@ -74,6 +75,8 @@ export async function lauf(seite, h) {
       }
       const optionA = seite.locator('[data-pruef="option-A"]').filter({ visible: true });
       if (await optionA.count() > 0 && (await optionA.first().getAttribute('aria-pressed')) !== 'true') {
+        // R51 (Stil): einmal je Lauf alle Optionstitel aller Rollen bei 320 px
+        if (!optionstitelGeprueft && h.viewport.breite <= 400) optionstitelGeprueft = await optionstitelSchmal(seite, h, `${rolle}/${st}`);
         await optionA.first().click();
         await h.warte(700);
         await h.erwarte('[data-pruef="konsequenz"]');
@@ -87,6 +90,7 @@ export async function lauf(seite, h) {
     if ((await station()) !== 'wendepunkt') h.befund(`${rolle}: Wendepunkt nicht erreicht (steht in ${await station()})`);
     if (rolle === 'pl') await wendepunkt(seite, h, station);
   }
+  if (h.viewport.breite <= 400 && !optionstitelGeprueft) h.befund('Optionstitel bei 320 px nicht geprüft: keine Entscheidung mit Trennstelle in Welt A');
 }
 
 /**

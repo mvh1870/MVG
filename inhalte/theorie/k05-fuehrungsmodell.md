@@ -82,7 +82,7 @@ seite: links
 Ein benannter Datenstand
 
 ### Erklärung
-Jede Entscheidung braucht den Datenstand, auf dem sie beruht.
+Jede wesentliche Entscheidung braucht den Datenstand, auf dem sie beruht.
 :::
 
 ::: posten 2

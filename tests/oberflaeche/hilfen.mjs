@@ -185,7 +185,7 @@ export async function leitstandSchmal(seite, h, name) {
 /** R47: Bauteile, deren Wörter am Bildschirm nie mitten im Wort brechen dürfen */
 // R48: dazu der Kopf der Zeitmaschinen-Tabelle („MO|NAT“, „KOSTENUN|SICHERHEI|T“) und der Beamer-Status („SEHR HOC“)
 // R50: dazu der Dateiname im Mail-Anhang und Kennungen in der Hilfe
-export const BAUTEILE_UNGETEILT = '.anhang .mono, .hilfe-inhalt code, .datenstand-zahlen b, .tabellenstand-zahl, .instrument-label, .ablesung, .protokoll-kopf, .lw-korb, .kapitel-titel, .fortschritt, .zm-tabelle th, .instrument .wert';
+export const BAUTEILE_UNGETEILT = '.anhang .mono, .morph-datei .mono, .hilfe-inhalt code, .datenstand-zahlen b, .tabellenstand-zahl, .instrument-label, .ablesung, .protokoll-kopf, .lw-korb, .kapitel-titel, .fortschritt, .zm-tabelle th, .instrument .wert';
 
 /**
  * R49 (Stil): Kästen mit eigener Fläche (Hintergrund oder Schatten) ragen nicht über den Inhaltsbereich der Spalte `wurzel` –
@@ -508,6 +508,13 @@ export async function vergleichFrei(seite, h, name) {
           funde.push(`Marke Welt A nicht sichtbar (${kette.join(', ')}; ${v.getAttribute('style')})`);
           continue;
         }
+        // R61: die Zahl der Datei-Karte („58,4 Mio. €“) steht in einer Zeile (Dateinamen dürfen nach „_“ brechen) und ragt nicht über ihre Karte
+        for (const z of v.querySelectorAll('.morph-a .morph-datei b')) {
+          const r = document.createRange();
+          r.selectNodeContents(z);
+          const zeilen = new Set([...r.getClientRects()].map((q) => Math.round(q.top))).size;
+          if ((zeilen > 1 && !(z.textContent ?? '').includes('_')) || z.scrollWidth > z.clientWidth + 1) funde.push(`Zahl der Datei-Karte „${(z.textContent ?? '').trim()}“ in ${zeilen} Zeilen, ${z.scrollWidth} > ${z.clientWidth} px`);
+        }
         const m = marke.getBoundingClientRect();
         const gang = document.createTreeWalker(v, NodeFilter.SHOW_TEXT);
         for (let n = gang.nextNode(); n !== null; n = gang.nextNode()) {
@@ -547,6 +554,9 @@ export async function vergleichFrei(seite, h, name) {
     await seite.setViewportSize({ width: breite, height: vp.height }); await h.warte(150);
     await stelle('Home', 0);
     for (const f of await messe('a')) h.befund(`${name} @${breite} Welt A: ${f}`);
+    // R61: der Dateiname der Welt-A-Karte bricht nur an „_“ und vor der Endung
+    const bruch = await wortbrueche(seite, '.morph-a .morph-datei .mono', { bildschirm: true });
+    if (bruch.length > 0) h.befund(`${name} @${breite} Welt A: Dateiname ohne Trennstrich gebrochen ${JSON.stringify(bruch.slice(0, 3))}`);
     await stelle('End', 1);
     for (const f of await messe('b')) h.befund(`${name} @${breite} Welt B: ${f}`);
   }

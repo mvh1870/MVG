@@ -30,7 +30,7 @@ Restrisiken werden mitgenommen, nicht erledigt.
 titel: Die Freigabe mit Auflagen empfehlen
 kurz: Freigabe mit Auflagen empfehlen
 status:
-  offene-risiken: -1
+  entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
 Sie schlagen Auflagen vor, etwa zur Terminwirkung der Lieferzeit, jede mit Frist und verantwortlicher Rolle; ob Dr. Olbers mit Auflagen freigibt, entscheidet sie.

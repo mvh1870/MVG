@@ -245,3 +245,6 @@ Nicht sauber – als Nächstes Runde 60.
 ## Runde 60 (P12.5, zugleich P14.3 und P15.2) – volle Runde auf 63a576d
 - Architektur (zwei Proben): 2 mittel, 13 leicht – L-174.
 Nicht sauber – als Nächstes Runde 61.
+## Runde 61 (P12.5, zugleich P14.3 und P15.2) – volle Runde auf 20a6255
+- Theorie, Story, Abbildungen, Hilfe, Druck, Architektur, Stil: 6 mittel, 18 leicht – L-175 (vier neue Proben, je mit Gegenprobe rot).
+Nicht sauber – als Nächstes Runde 62.

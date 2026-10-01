@@ -38,7 +38,7 @@ function setzeAttribute(el: Element, attr: Attribute | null | undefined): void {
 export function schuetzeEinheiten(text: string): string {
   return text
     .replace(/(\d) (?=(?:TEUR|EUR|€|Mio\.|Wochen|Tage|Monate)(?![\p{L}]))/gu, '$1\u00a0')
-    .replace(/Mio\. €/gu, 'Mio.\u00a0€')
+    .replace(/Mio\. (?=€|EUR)/gu, 'Mio.\u00a0')
     .replace(/\b(LPH|Kap\.) (?=\d)/gu, '$1\u00a0');
 }
 
@@ -154,6 +154,6 @@ export function text(el: Node, wert: string): void {
 export function mitTrennstellen(text: string): string {
   // „Risiko-/Änderungs-/Maßnahmen…“, „Rollen/Freigaben/…“: nach „/“ darf die Zeile umbrechen (sonst ein unteilbarer Block)
   return text.replace(/(?<=[\p{L}-])\/(?=\p{L})/gu, '/\u200b').replace(/\p{L}{12,}/gu, (wort) => wort.replace(/(?<=\p{L}(?:ungs|heits|keits|schafts|tions|täts|stands|ßnahmen|agement|umenten|triebs|utzen|ister|tritts|ketten|lagen|gabe|schutz|ohbau|struktur|upreis|osten))(?!(?<=agement)s)(?!(?<=gabe)n[^aeiouäöü])(?=\p{Ll}{4})/gu, '\u00ad'))
-    // R56: „Daten|anforderung“ (Tabelle k8.1-t1 im Druck) – die Fuge liegt vor dem Grundwort, nicht hinter einer Endung der Liste
-    .replace(/(?<=\p{L}{4})(?=anforderung)/gu, '\u00ad');
+    // R56: „Daten|anforderung“ (Tabelle k8.1-t1 im Druck) – die Fuge liegt vor dem Grundwort, nicht hinter einer Endung der Liste; R61: „Status|bericht“ (Datei-Karte B4)
+    .replace(/(?<=\p{L}{4})(?=anforderung|bericht)/gu, '\u00ad');
 }

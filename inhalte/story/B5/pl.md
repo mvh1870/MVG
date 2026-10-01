@@ -10,7 +10,7 @@ rueckbezug-auf: A5
 titel: Eine Entscheidungsvorlage zum Einsatz der Risikoreserve vorlegen
 kurz: Vorlage an den Bauherrn
 status:
-  ungeklaerte-entscheidungen: -1
+  entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
 Sie legen Dr. Olbers die Vorlage vor; über den Einsatz entscheidet sie. Datum, Betrag und Datenstand stehen im Entscheidungsregister.

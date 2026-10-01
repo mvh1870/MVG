@@ -44,10 +44,22 @@ test('jede Fuge einzeln (R44)', () => {
     ['Freigabeentscheidungen', 'Freigabe|entscheidungen'], ['Brandschutzgutachten', 'Brandschutz|gutachten'], ['Rohbauausschreibung', 'Rohbau|ausschreibung'],
     // R55: die übrigen Fugen je einmal (vorher nur von Browser-Proben am heutigen Inhalt gesichert)
     ['Registerführung', 'Register|führung'], ['Eintrittswahrscheinlichkeit', 'Eintritts|wahrscheinlichkeit'], ['Infrastrukturträger', 'Infrastruktur|träger'],
-    ['Baupreissteigerungen', 'Baupreis|steigerungen'], ['Kostenabweichungen', 'Kosten|abweichungen'], ['Datenanforderung', 'Daten|anforderung'],
+    ['Baupreissteigerungen', 'Baupreis|steigerungen'], ['Kostenabweichungen', 'Kosten|abweichungen'], ['Datenanforderung', 'Daten|anforderung'], ['Statusbericht', 'Status|bericht'],
   ] as [string, string][]) assert.equal(sicht(w), soll, w);
 });
 
 test('keine Trennstelle vor einem Fugen-s oder in fremden Wortteilen (R44)', () => {
   for (const w of ['Managementsystem', 'Risikomanagementsystem', 'Projektmanagementsoftware', 'Investmentsicherung', 'Übernahmenachweis']) assert.equal(sicht(w), w);
+});
+
+// R61: Zahl und Einheit bleiben in der Anzeige zusammen (L-174) – Fälle und Gegenfälle
+test('schuetzeEinheiten: geschützte Leerzeichen zwischen Zahl und Einheit, LPH und Kap.', async () => {
+  const { schuetzeEinheiten } = await import('../src/ui/h.ts');
+  const n = ' ';
+  assert.equal(schuetzeEinheiten('bis 100 TEUR frei'), `bis 100${n}TEUR frei`);
+  assert.equal(schuetzeEinheiten('über 5 Mio. €'), `über 5${n}Mio.${n}€`);
+  assert.equal(schuetzeEinheiten('5 Mio. EUR'), `5${n}Mio.${n}EUR`);
+  assert.equal(schuetzeEinheiten('31–60 Tage'), `31–60${n}Tage`);
+  assert.equal(schuetzeEinheiten('LPH 0 und Kap. 6.4.3'), `LPH${n}0 und Kap.${n}6.4.3`);
+  assert.equal(schuetzeEinheiten('3 Tagessätze, 2 Wochenenden'), '3 Tagessätze, 2 Wochenenden');
 });

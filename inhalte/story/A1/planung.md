@@ -12,7 +12,7 @@ status:
   kostenunsicherheit: +1
 ---
 ### Konsequenz
-Ihre Schätzung liegt als dritte Zahl neben Holger Steins und Aylin Kayas. Bestellt hat sie niemand.
+Ihre Schätzung liegt als weitere Zahl neben dem Statusbericht, Holger Steins Kostendatei und Aylin Kayas Rechnung. Bestellt hat sie niemand.
 
 ### Was fehlt
 Ein Auftrag – und ein Datenstand, in den die Annahme gehört.

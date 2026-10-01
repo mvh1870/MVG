@@ -124,6 +124,9 @@ export async function lauf(seite, h) {
       await seite.setViewportSize({ width: 794, height: vorher.height });
       await seite.evaluate(() => { document.documentElement.style.width = '688px'; });
       await h.warte(200);
+      // R61: im Druck steht nur der Bogen – die Bildschirmseite (Epilog, Kopf, Fußleiste) ist verborgen
+      const sichtbar = await seite.evaluate(() => [...document.body.children].filter((k) => !k.classList.contains('druck-bogen') && getComputedStyle(k).display !== 'none' && k.getClientRects().length > 0).map((k) => `${k.tagName.toLowerCase()}.${k.className}`));
+      if (sichtbar.length > 0) h.befund(`Dossier: im Druck neben dem Bogen sichtbar ${JSON.stringify(sichtbar.slice(0, 3))}`);
       const bruch = await wortbrueche(seite, '.druck-bogen');
       if (bruch.length > 0) h.befund(`Dossier: ${bruch.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(bruch.slice(0, 6))}`);
       // R48: auch die Absatz-ID einer wortgleichen Tabelle steht nie allein am Seitenende

@@ -30,7 +30,7 @@ Wie erfährt die Nutzerseite, welche Stelle entscheidet?
 titel: AEN-012 auf die nächste Sitzung des Änderungsgremiums setzen
 kurz: Ins Änderungsgremium
 status:
-  ungeklaerte-entscheidungen: -1
+  entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
 Als Vorsitz setzen Sie `AEN-012` auf die Tagesordnung; Projektsteuerung und Planung bereiten die Auswirkung vor.

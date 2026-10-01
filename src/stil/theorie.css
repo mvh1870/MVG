@@ -250,7 +250,8 @@ a.absatz-id:hover { background: var(--weiss); box-shadow: inset 0 0 0 1px var(--
   .absatz { grid-template-columns: minmax(0, 1fr); gap: var(--a-1); }
   .absatz-kopf { flex-direction: row; align-items: center; }
   .kapitel-nav { grid-template-columns: minmax(0, 1fr); }
-  .kapitel-nav a[rel="next"] { grid-column: auto; }
+  /* R61: auf der Leinwand sind die Blätterkarten span[rel] (keine Links) */
+  .kapitel-nav > :is(a, span)[rel="next"] { grid-column: auto; }
 }
 
 /* =============================================================================================

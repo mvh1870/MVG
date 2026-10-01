@@ -105,7 +105,7 @@ export async function lauf(seite, h) {
       if (ohneKopf > 0) h.befund(`Druck ${id}: ${ohneKopf} Grafik-Überschriften nicht auf der Querseite`);
       // R41: im echten PDF – keine Seite endet mit einer Überschrift, keine leere Seite (Abstand unter der Seite)
       // R48 (Architektur): auch eine Kopfzeile, die (ohne thead) als erste Zeile im tbody steht
-      const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.hilfe-inhalt :is(h1, h2, h3, h4, summary), .hilfe-inhalt .h-help-content-inline > b:first-child, .hilfe-inhalt .h-help-content-inline > b:has(+ :is(ol, ul)), .hilfe-inhalt thead tr, .hilfe-inhalt tbody > tr:first-child:not(:has(> td)), .hilfe-inhalt .h-schritt-nr')]
+      const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.hilfe-inhalt :is(h1, h2, h3, h4, summary), .hilfe-inhalt .h-help-content-inline > b:first-child, .hilfe-inhalt .h-help-content-inline > b:has(+ :is(ol, ul)), .hilfe-inhalt thead tr, .hilfe-inhalt tbody > tr:first-child:not(:has(> td)), .hilfe-inhalt .h-schritt-nr, .hilfe-inhalt tbody tr > td:only-child[colspan]')]
         .map((x) => ({ text: x.textContent ?? '', pt: parseFloat(getComputedStyle(x).fontSize) * 0.75 })));
       // R48 (Architektur): helle Schrift druckt ihre Fläche mit (Nummernmarken „01“–„05“ weiß auf Navy, L-137) – wie die Theorie
       const blass = await seite.evaluate(() => {

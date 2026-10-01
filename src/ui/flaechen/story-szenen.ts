@@ -377,7 +377,8 @@ function stueckA(b: Block, inhalte: OeffentlicheInhalte, ich: string | null): No
     const zahl = stark?.textContent ?? '';
     stark?.remove();
     const rest = (f.textContent ?? '').replace(/^\s*·\s*/, '').trim();
-    return h('div', { class: 'morph-karte morph-datei' }, h('b', null, zahl), h('span', { class: 'mono' }, rest));
+    // R61: Dateinamen brechen nur nach „_“ und vor „.“ (kein „Stei|n.xlsx“)
+    return h('div', { class: 'morph-karte morph-datei' }, h('b', null, zahl.replace(/(?<=_)(?=\S)/gu, '\u200b')), h('span', { class: 'mono' }, mitTrennstellen(rest.replace(/(?<=_)(?=\S)|(?<=\S)(?=\.\w+$)/gu, '\u200b'))));
   }
   return h('div', { class: 'morph-karte morph-notiz', 'data-farbe': B.notizFarbe(kopfText(b.kopf, 'farbe')) }, inhaltInline(html));
 }

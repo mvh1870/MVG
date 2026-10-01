@@ -1494,9 +1494,9 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .morph-notiz[data-farbe="lila"] { background: var(--notiz-lila); }
 .morph-notiz[data-farbe="gruen"] { background: var(--notiz-gruen); }
 .morph-notiz::before { content: ""; position: absolute; left: 50%; top: 4px; width: 9px; height: 9px; margin-left: -4.5px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, var(--koralle-nadel), var(--koralle-text)); }
-.morph-datei { border-radius: 6px; background: var(--tabelle-grund); box-shadow: inset 0 0 0 1.5px var(--tabelle-kante), var(--schatten-notiz); }
-.morph-datei b { display: block; font: 800 26px/1 var(--schrift-anzeige); }
-.morph-datei .mono { display: block; margin-top: 3px; font-size: 11.5px; color: var(--tabelle-text); overflow-wrap: anywhere; white-space: normal; }
+.morph-datei { container-type: inline-size; border-radius: 6px; background: var(--tabelle-grund); box-shadow: inset 0 0 0 1.5px var(--tabelle-kante), var(--schatten-notiz); }
+.morph-datei b { display: block; font: 800 min(26px, 19cqi) / 1.05 var(--schrift-anzeige); } /* R61: „58,4 Mio. €“ in einer Zeile, auch in 116 px schmalen Karten; Dateinamen brechen nach „_“ */
+.morph-datei .mono { display: block; margin-top: 3px; font-size: 11.5px; color: var(--tabelle-text); overflow-wrap: break-word; white-space: normal; }
 .morph-baustein { padding: 5px 6px; border-radius: 6px; background: var(--weiss); color: var(--tinte); font-size: 11.5px; line-height: 1.2; text-align: center; box-shadow: inset 0 0 0 1.5px var(--tuerkis), var(--schatten-welt-b); overflow-wrap: break-word; hyphens: auto; }
 .morph-baustein .mono { display: block; font-size: 11.5px; font-weight: 600; color: var(--tuerkis-text); white-space: normal; }
 .morph-datenstand { padding: 7px var(--a-2); text-align: left; box-shadow: inset 0 0 0 2px var(--tuerkis), var(--schatten-welt-b); }

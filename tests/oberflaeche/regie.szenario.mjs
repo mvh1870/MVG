@@ -143,6 +143,12 @@ export async function lauf(_seite, h) {
   }
   if (await regie.locator('[data-pruef="regie-einwaende"] details').count() < 1) h.befund('Kap. 5: kein Einwand-Spickzettel');
   await h.axe('regie-theorie', regie);
+  // R61: die Lernseite auf schmaler Leinwand – die Blätterkarten sind dort span[rel] (keine Links) und stehen untereinander
+  await leinwand.setViewportSize({ width: 400, height: 720 }); await h.warte(200);
+  for (const fund of await leinwand.evaluate(pruefeLayout)) h.befund(`Leinwand Kap. 5 @400: ${fund}`);
+  const navBruch = await wortbrueche(leinwand, '.kapitel-nav', { bildschirm: true });
+  if (navBruch.length > 0) h.befund(`Leinwand Kap. 5 @400: Blätterkarten brechen Wörter ${JSON.stringify(navBruch.slice(0, 4))}`);
+  await leinwand.setViewportSize({ width: 1280, height: 720 }); await h.warte(200);
 
   // Lernseite rollen (P12.5 R9 Befund 1): ↓ rollt die Seite auf der Leinwand und in der Vorschau
   await regie.locator('body').focus().catch(() => {});

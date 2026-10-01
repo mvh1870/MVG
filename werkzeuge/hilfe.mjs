@@ -345,7 +345,7 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   // R59: CTC-Neurechnung ist delegierbar (Controlling); der Lenkungskreis berät die Entscheidung des Bauherrn
   [/ab über 5 %/gu, 'über 5 %'],
   // R60: Risiko-, Entscheidungs- und Maßnahmensteuerung – Registerpflege nach MVG Kap. 6.4.2
-  [/^Verantwortet Risiko-, Entscheidungs- und Maßnahmensteuerung$/gu, 'Steuert Risiken, Entscheidungen und Maßnahmen (Registerpflege nach MVG Kap. 6.4.2)'],
+  [/^Verantwortet Risiko-, Entscheidungs- und Maßnahmensteuerung$/gu, 'Steuert Risiken, Entscheidungen und Maßnahmen; pflegt Entscheidungs-, Änderungs- und Freigaberegister (MVG Kap. 6.4.2)'],
   [/^Die beim Bauherrn verbleibende Verantwortung für Ziel, Grundsatzentscheidung, wesentliche Freigabe, Risikoannahme und Nachweisfähigkeit – auch bei vollständig delegierter Vorbereitung\.$/gu, 'Die beim Bauherrn verbleibende Verantwortung für Ziel, Grundsatzentscheidung, wesentliche Freigabe, Risikoannahme, Nachweisfähigkeit und Beschlusslage – auch bei vollständig delegierter Vorbereitung.'],
   // R58: auch die Bauherren-PL stößt die CTC-Neurechnung beim Controlling an (k6.4.2-t1)
   [/Bei Drift: CTC-Neurechnung, Eskalation entlang der Mandatsleiter/gu, 'Bei Drift: CTC-Neurechnung beim Controlling anstoßen, Eskalation entlang der Mandatsleiter'],
@@ -848,14 +848,14 @@ function glaette(/** @type {string} */ html) {
     // R59: Schritte „Nummer + Überschrift“ mit Klassen, damit der Druck die Nummer beim Schritt hält
     .replace(/<div><div>(\d)<\/div><div><h3>/gu, '<div class="h-schritt"><div class="h-schritt-nr">$1</div><div><h3>')
     // R60: Registerpflege nach MVG Kap. 6.4.2 – die Bauherren-PL steuert, Risikoregister pflegt die Projektsteuerung
-    .replace(/hält Risiken\/(?:<wbr>)?Entscheidungen\/(?:<wbr>)?Changes aktuell/gu, 'hält Entscheidungen und Changes aktuell und steuert die Risikobehandlung (Risikoregister: Projektsteuerung)')
+    .replace(/<b>Projektleitung:<\/b> steuert operativ, moderiert den Jour fixe, hält Risiken\/(?:<wbr>)?Entscheidungen\/(?:<wbr>)?Changes aktuell und bereitet/gu, '<b>Bauherren-PL:</b> steuert operativ, moderiert den Jour fixe, hält Entscheidungen und Changes aktuell, steuert die Risikobehandlung (Risikoregister: Projektsteuerung) und bereitet')
     // R60: deutsche Wörter im Fließtext (L-69), Kennungen in code bleiben
     .replace(/<b>Residual:<\/b> verbleibendes Risiko/gu, '<b>Restrisiko:</b> verbleibendes Risiko')
     .replace(/einen protokollierten Override/gu, 'eine protokollierte Ausnahme')
     .replace(/oder protokollierten Override;/gu, 'oder eine protokollierte Ausnahme;')
     .replace(/<li>Inline-Edit für /gu, '<li>Direktbearbeitung für ')
     .replace(/Benachrichtigung \(Toast\)/gu, 'Benachrichtigung (Kurzmeldung)')
-    .replace(/niedrig-prioritäres Item/gu, 'niedrig priorisierter Eintrag')
+    .replace(/ein altes, niedrig-prioritäres Item/gu, 'ein alter, niedrig priorisierter Eintrag')
     .replace(/<li>Seed-Risiken \(wenn definiert\)/gu, '<li>Vorbelegte Risiken (wenn definiert)')
     .replace(/Auflagen-Tracker:/gu, 'Auflagen-Übersicht:')
     .replace(/Lösung\/(?:<wbr>)?Workaround/gu, 'Lösung/<wbr>Behelfslösung')
@@ -863,14 +863,20 @@ function glaette(/** @type {string} */ html) {
     .replace(/Workaround Zusatzpumpe/gu, 'Behelfslösung Zusatzpumpe')
     .replace(/>Forecast-Update</gu, '>Prognose-Aktualisierung<')
     // R60: der Governance-Kalender wird laufend geführt, gepflegt monatlich (Register-Pflege derselben Seite)
-    .replace(/<td>PMO · wöchentlich<\/td>/gu, '<td>PMO · laufend (Pflege monatlich)</td>')
+    .replace(/<td>PMO · wöchentlich<\/td>/gu, '<td>PMO · wöchentlich bis monatlich</td>')
     // R60: Zahl und Einheit nicht am Zeilenende trennen (außerhalb von Tags)
     .replace(/(\d) (?=(?:TEUR|EUR|€|Mio\.|Wochen|Tage|Monate)(?![\p{L}]))/gu, '$1\u00a0')
     .replace(/Mio\. €/gu, 'Mio.\u00a0€')
+    // R61: Ein Risiko trägt nach MVG eine Frist (k4.4) – der Gegensatz zur Frühwarnung entfällt
+    .replace(/<li>Hat Frist und Eskalationsdatum – Risiko hat keine Frist<\/li>/gu, '<li>Hat Frist und Eskalationsdatum</li>')
+    .replace(/Checkliste mit Pflicht-Items/gu, 'Checkliste mit Pflichtpunkten')
+    .replace(/gebundene Kosten und aktualisierter Restkostenprognose/gu, 'gebundenen Kosten und aktualisierter Restkostenprognose')
+    .replace(/und Optionen-Punktwerte \(1-5\)/gu, 'und Optionen-Punktwerten (1-5)')
+    .replace(/„\+3 Risiken seit letztem Stand\)/gu, '„+3 Risiken seit letztem Stand“)')
     // R59: Glossar „Bauherren-Führungsmodell“ und „Nachweiskette“ im Wortlaut von k13-t1
     .replace(/<td><b>Bauherren-Führungsmodell<\/b><\/td><td>[^<]*Risiko\/(?:<wbr>)?Change\/(?:<wbr>)?Maßnahme, CTC\/(?:<wbr>)?KPI, [^<]*<\/td>/gu, '<td><b>Bauherren-Führungsmodell</b></td><td>Das Zusammenspiel aus Zielsystem, Rollen und Mandaten, Freigaben, Entscheidungs-IDs, Datenstands- und Nachweislogik, Risiko-/Änderungs-/Maßnahmenverknüpfung, Restkostenprognose (CTC), Leistungskennzahlen (KPI), Eskalation, Betriebshandbuch und Befähigung zu einer durchgängigen Steuerungsarchitektur – das Führungsmodell, mit dem ein Bauherr ein komplexes Vorhaben steuerbar hält.</td>')
     .replace(/<td><b>Nachweiskette<\/b><\/td><td>Chronologische, fortlaufende Historie aller Änderungen mit Zeitstempel und Rolle\.<\/td>/gu, '<td><b>Nachweiskette</b></td><td>Nachvollziehbare Kette von Entscheidungsgrundlagen, Annahmen, Freigaben, Beschlüssen und Nachverfolgung (in der Anwendung zusätzlich die fortlaufende Historie aller Änderungen mit Zeitstempel und Rolle).</td>')
-    // R59: Risiken haben keine Frist (Frühwarnungsregister), die Maßnahme schon (k6.4.3-p2)
+    // R59: Risiken mit verantwortlicher Rolle und Maßnahme mit Frist (k4.4, k6.4.3-p2)
     .replace(/Stolperstein: Risiken ohne Eigentümer\/(?:<wbr>)?Frist verpuffen - jedes Top-Risiko braucht beides\./gu, 'Stolperstein: Risiken ohne verantwortliche Rolle und ohne Maßnahme mit Frist verpuffen – jedes Top-Risiko braucht beides.')
     // R59: Entscheidungsvorlage = Nachweislogik einer wesentlichen Entscheidung (k13-t1)
     .replace(/ausgearbeitete Akte zu <b>einer<\/b> wesentlichen Entscheidung/gu, 'ausgearbeitete Nachweislogik zu <b>einer</b> wesentlichen Entscheidung')

@@ -30,7 +30,7 @@ Was muss vor einer [[Freigabe]] klar sein?
 titel: Die Freigabe mit Auflagen empfehlen
 kurz: Mit Auflagen empfehlen
 status:
-  offene-risiken: -1
+  entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
 Sie empfehlen Auflagen mit Frist: Die Stellvertretung führt die Kostenprognose weiter, die offenen Punkte der Generalplanung werden nachgewiesen geschlossen. Dr. Miriam Olbers entscheidet.

@@ -15,11 +15,9 @@ angeglichen:
 abweichungen:
   - text: 'Zeigerinstrument und Regler zeigen eine Skala von 0 bis 5 mit einem Beispielwert je Kasten; der Text bewertet mit 49 Fragen in der Logik Ja = 100, Teilweise = 50 und Nein = 0 auf einer Skala von 0–100 und liest das Ergebnis als < 55 kritisch, 55–79 mit Lücken, ≥ 80 steuerbar.'
     beleg: k7.1-p2
-  - text: 'In der Nachweisliste des zweiten Kastens steht „Änderungsregister“; das Original nannte Änderungsanträge mit ihrer Auswirkung, der Text führt dafür das Änderungsregister mit dem nächsten Schritt „Auswirkung, Freigabeweg“.'
-    beleg: k6.4.4-t1
   - text: 'Das Bild zeigt fünf benannte Kästen; der Text bewertet die 10 MVG-Domänen, die mitsamt ihren Prüffragen im Erhebungsinstrument der MVG-Reifegradanalyse dokumentiert sind, und nennt weder ihre Namen noch Nachweise je Domäne; einzelne Einträge der Nachweislisten (etwa „QA-Plan“, „Defect-Logik“, „Wiederholfehler-Auswertung“) kommen im Text nicht vor.'
     beleg: k7.1-p2
-  - text: 'Im dritten Kasten stehen unter den Symbolen die Beschriftungen „TRNEL“ und „OLEE“ ohne Entsprechung im Text; in der Nachweisliste des zweiten Kastens steht „Frühwarnungs“, der Text spricht vom Frühwarnungsregister.'
+  - text: 'Im dritten Kasten stehen unter den Symbolen die Beschriftungen „Risiko“, „TRNEL“ und „OLEE“ ohne Entsprechung im Text; in der Nachweisliste des zweiten Kastens steht „Frühwarnungs“, der Text spricht vom Frühwarnungsregister.'
     beleg: k6.4.2-t1
   - text: 'Unter den Kästen zeigt das Bild, mit Pfeilen verbunden, Bewertungsmatrix, Roadmap und Verantwortungszuordnungen; der Text nennt als Ergebnisse Bewertungsmatrix, Governance-Lücken, Entscheidungsliste und 30/60/90-Tage-Plan, als typische Ergebnisse zusätzlich die wichtigsten Risiken und Verantwortungslücken.'
     beleg: k7.1-p1 k7.1-t1

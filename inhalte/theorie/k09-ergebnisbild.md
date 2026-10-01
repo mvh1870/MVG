@@ -77,7 +77,7 @@ titel: Bauherren-Mandats- und Verantwortungsmodell
 ---
 Für eine Grundfrage jeder Bauherrenorganisation ist das Mandats- und Verantwortungsmodell das zentrale Ergebnisobjekt: Was verbleibt beim Bauherrn, und was kann vorbereitet werden? Dazu verbindet es sechs Dinge: Verantwortungsfelder, Rollen, [[Mandat|Mandate]], Schwellen, Freigaben und Eskalation.
 
-Praktisch wird das Modell an konkreten Fragen. Steht eine Entscheidung an, lässt sich mit ihm klären, welche Bauherrenverantwortung betroffen ist, welche Vorbereitung delegiert werden kann und wer letztverantwortlich ist. Es zeigt, wer ausführt, wer konsultiert wird und wer informiert wird, welche Schwelle eine Eskalation auslöst und welche Grundlagen vorliegen müssen. Schließlich verbindet es die Entscheidung mit ihrer Entscheidungs-ID, der betroffenen Freigabe und dem Ort, an dem der Nachweis geführt wird.
+Praktisch wird das Modell an konkreten Fragen. Steht eine Entscheidung an, lässt sich mit ihm klären, welche Bauherrenverantwortung betroffen ist, welche Vorbereitung delegiert werden kann und wer letztverantwortlich ist. Es zeigt, wer ausführungsverantwortlich ist, wer konsultiert und wer informiert wird, welche Schwelle eine Eskalation auslöst und welche Grundlagen vorliegen müssen. Schließlich verbindet es die Entscheidung mit ihrer Entscheidungs-ID, der betroffenen Freigabe und dem Ort, an dem der Nachweis geführt wird.
 
 Ein Beispiel: Die Projektsteuerung bereitet eine Entscheidung gründlich vor. Mit dem Modell lässt sich fragen, welche Vorbereitung sie übernehmen kann und wer letztverantwortlich ist.
 

@@ -250,7 +250,7 @@ Befähigung ist Pflichtbestandteil – der Blick auf beide Zeitpunkte zeigt, war
 
 ::: ansicht rechts
 - Das Betriebshandbuch hat Routinen, Rollen, Taktung, Fristen, Eskalationswege und Betriebslogik in den Regelbetrieb übergeben.
-- Bauherren-Projektleitung, Auftraggeberlogik, PMO, Gremienrollen und Fachrollen wenden das Modell selbst an.
+- Bauherren-Projektleitung, Auftraggeberlogik, PMO, Gremienrollen und Fachrollen können das Modell selbst anwenden.
 - Die Übergabe des Modells ist ein Befähigungsschritt – nicht die Übergabe des Vorhabens in LPH 9.
 :::
 :::

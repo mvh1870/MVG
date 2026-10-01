@@ -15,7 +15,7 @@ titel: Minimum Viable Governance als Bauherren-Führungsmodell
 kurztitel: Führungsmodell
 story: [rueckspulen, B1]
 ---
-Nach den sechs Verantwortungsfeldern stellt sich die Frage: Wie wird daraus etwas, womit ein Bauherr ein Projekt tatsächlich führen kann? Kapitel 5 beschreibt Minimum Viable Governance (MVG) als ein solches [[Bauherren-Führungsmodell]] – mit sechs Kernfragen, acht Bausteinen und einer einfachen Wirklogik: MVG wirkt erst, wenn die Bausteine miteinander verbunden sind. Am Ende steht, was MVG ausdrücklich nicht ist.
+Nach den sechs Verantwortungsfeldern stellt sich die Frage: Wie wird daraus etwas, womit ein Bauherr ein Projekt tatsächlich führen kann? Kapitel 5 beschreibt Minimum Viable Governance (MVG) als ein solches [[Bauherren-Führungsmodell]] – mit sechs Kernfragen, acht Bausteinen und einer einfachen Wirklogik: MVG wirkt erst, wenn seine Elemente miteinander verbunden sind. Am Ende steht, was MVG ausdrücklich nicht ist.
 
 ::: kernaussage
 MVG ist kein Bürokratieprogramm und keine Berichtsoffensive, sondern der kleinste funktionsfähige Standard, mit dem ein Bauherr ein komplexes Projekt wirksam führen kann. Es übersetzt Verantwortung in Strukturen, in denen entschieden, mandatiert und nachgewiesen werden kann.

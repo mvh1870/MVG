@@ -345,7 +345,7 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   // R59: CTC-Neurechnung ist delegierbar (Controlling); der Lenkungskreis berät die Entscheidung des Bauherrn
   [/ab über 5 %/gu, 'über 5 %'],
   // R60: Risiko-, Entscheidungs- und Maßnahmensteuerung – Registerpflege nach MVG Kap. 6.4.2
-  [/^Verantwortet Risiko-, Entscheidungs- und Maßnahmensteuerung$/gu, 'Steuert Risiken, Entscheidungen und Maßnahmen; pflegt Entscheidungs-, Änderungs- und Freigaberegister (MVG Kap. 6.4.2)'],
+  [/^Verantwortet Risiko-, Entscheidungs- und Maßnahmensteuerung$/gu, 'Steuert Risiken, Entscheidungen und Maßnahmen; pflegt Entscheidungs- und Änderungsregister sowie die Leistungsphase (Freigaben; MVG Kap. 6.4.2)'],
   [/^Die beim Bauherrn verbleibende Verantwortung für Ziel, Grundsatzentscheidung, wesentliche Freigabe, Risikoannahme und Nachweisfähigkeit – auch bei vollständig delegierter Vorbereitung\.$/gu, 'Die beim Bauherrn verbleibende Verantwortung für Ziel, Grundsatzentscheidung, wesentliche Freigabe, Risikoannahme, Nachweisfähigkeit und Beschlusslage – auch bei vollständig delegierter Vorbereitung.'],
   // R58: auch die Bauherren-PL stößt die CTC-Neurechnung beim Controlling an (k6.4.2-t1)
   [/Bei Drift: CTC-Neurechnung, Eskalation entlang der Mandatsleiter/gu, 'Bei Drift: CTC-Neurechnung beim Controlling anstoßen, Eskalation entlang der Mandatsleiter'],
@@ -888,6 +888,8 @@ function glaette(/** @type {string} */ html) {
     .replace(/eskaliert es an die PL\./gu, 'eskaliert es an die Bauherren-PL.')
     .replace(/<td>PL\/(<wbr>)?(verantwortliche Rolle|PMO) ·/gu, '<td>Bauherren-PL/$1$2 ·')
     .replace(/<td>PL<\/td>/gu, '<td>Bauherren-PL</td>')
+    // R63: Eskalation entlang der Mandatsleiter (k4.2-p3, k6.4.5-p1; k9.3-p3: der Lenkungskreis berät)
+    .replace(/Risiken materialisieren sich, ohne dass der Lenkungskreis es weiß\./gu, 'Risiken materialisieren sich, ohne dass die nächste Stufe der Mandatsleiter davon erfährt.')
     // R63: Optionen gehen an die Stelle, die nach Mandat entscheidet – der Lenkungskreis berät (k4.2-p3, k9.3-p3); die Freigabe ist
     // kein Meilenstein, sondern die Entscheidung des Bauherrn am Abschluss der Leistungsphase (k6.4.4-t1, k9.3-p2)
     .replace(/Optionen ohne ehrliche Nachteile - der Lenkungskreis braucht die ganze Wahrheit\./gu, 'Optionen ohne ehrliche Nachteile – wer nach Mandat entscheidet, braucht die ganze Wahrheit.')

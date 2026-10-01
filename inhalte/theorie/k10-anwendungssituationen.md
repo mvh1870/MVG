@@ -148,13 +148,13 @@ Besonders relevant sind hier:
 - **Frühwarnungen**, **Änderungssteuerung**, CTC und Prognose,
 - und die **Freigabereife**, besonders an drei Stellen des Projekts.
 
-[[bedienung:Diese drei Stellen zeigt der Regler.]] Zum Abschluss von LPH 2 geht es um die Wahl der Variante und den [[Business Case]], zum Abschluss von LPH 3 um die [[Finale Investitionsentscheidung (FID)|finale Investitionsentscheidung (FID)]] und zum Abschluss von LPH 7 um die Vergabe oder die Bindung einer Komponente mit langer Lieferzeit.
+Zum Abschluss von LPH 2 geht es um die Wahl der Variante und den [[Business Case]], zum Abschluss von LPH 3 um die [[Finale Investitionsentscheidung (FID)|finale Investitionsentscheidung (FID)]] und zum Abschluss von LPH 7 um die Vergabe oder die Bindung einer Komponente mit langer Lieferzeit.
 
 ::: regler
 ---
 titel: Freigabereife an drei Stellen
 ---
-[[bedienung:Schieben Sie den Regler durch die Leistungsphasen.]]
+[[bedienung:Schieben Sie den Regler durch die drei Stellen.]]
 
 ::: stufe lph2
 ---

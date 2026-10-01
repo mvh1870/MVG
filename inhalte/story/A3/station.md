@@ -112,14 +112,14 @@ knopf: Weitere Informationen anfordern
 kosten: "Kostet Zeit: vier Tage"
 dauer: Vier Tage später
 status:
-  terminrisiko: hoch
+  terminrisiko: +1
 loest:
   ursache: jetzt geklärt
   nachtragsrisiko: Nachtrag TGA angekündigt
 bleibt:
   terminwirkung: bleibt offen
 ---
-Terminrisiko steigt auf hoch.
+Terminrisiko steigt.
 
 ### Neu bekannt
 Ursache überwiegend Preissteigerung Holzbauelemente; ein Nachtrag TGA ist angekündigt.

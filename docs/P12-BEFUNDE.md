@@ -254,3 +254,4 @@ Nicht sauber – als Nächstes Runde 63.
 ## Runde 63 (P12.5, zugleich P14.3 und P15.2) – volle Runde auf 288b8b8
 - Theorie, Story, Abbildungen, Hilfe, Druck, Architektur, Stil: 4 mittel (zwei gleich), 13 leicht – L-177; dazu ein vorbestehender Fehler (RACI unter 400 px in Buchstabensäulen) selbst gefunden.
 Nicht sauber – als Nächstes Runde 64.
+- **Runde 63b auf 808f372** (zweiter Block, parallel): 3 mittel, 14 leicht; Überschneidungen mit L-177 entfallen, Rest L-178; offen für R64: glaette-Gegenstücke (Architektur), Rollen-Linse bei 1024 px (Stil).

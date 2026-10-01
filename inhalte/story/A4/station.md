@@ -156,7 +156,7 @@ Umfangreiche Unterlagen machen ein Gremium nicht entscheidungsfähig. Fehlen Ent
 ---
 titel: Warum relevant
 ---
-Wesentlich sind Entscheidungen, die Kosten, Termin, Qualität, Projektumfang, Risiko oder ESG/LCC substanziell beeinflussen (Kap. 4.3). Im Juli liegen solche Fragen offen: wie die Brandschutzauflagen gedeckt werden, was aus der Mensa wird – und darunter fehlt ein geltender Datenstand. Keine davon ist als Frage gestellt. Kap. 2.5 beschreibt, was dann geschieht: [[zitat:k2.5-t1|Gremien vertagen, entscheiden unter Unsicherheit oder delegieren Verantwortung zurück.]] Der Ausschuss tagt erst wieder im September – dazwischen liegt die Sommerpause.
+Wesentlich sind Entscheidungen, die Kosten, Termin, Qualität, Projektumfang, Risiko oder ESG/LCC substanziell beeinflussen (Kap. 4.3). Im Juli liegen solche Fragen offen: wie die Brandschutzauflagen gedeckt werden und was aus der Mensa wird. Keine davon ist als Frage gestellt – und als Grundlage fehlt ein geltender Datenstand. Kap. 2.5 beschreibt, was dann geschieht: [[zitat:k2.5-t1|Gremien vertagen, entscheiden unter Unsicherheit oder delegieren Verantwortung zurück.]] Der Ausschuss tagt erst wieder im September – dazwischen liegt die Sommerpause.
 :::
 
 ::: ebene 3

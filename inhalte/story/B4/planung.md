@@ -10,7 +10,7 @@ rueckbezug-auf: A4
 titel: Die Auswirkung von AEN-031 auf Kosten, Termin und Qualität bewerten
 kurz: Auswirkung bewerten
 status:
-  ungeklaerte-entscheidungen: -1
+  ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz
 Die Vorlage hat Frage und bewertete Auswirkung; das Gremium beschließt. Die Deckung aus der Risikoreserve geht als Frage an den Bauherrn.

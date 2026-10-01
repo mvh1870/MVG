@@ -74,6 +74,10 @@ test('Wesentlich unterhalb des Bauherrn (R58): beim Bauherrn bleibt die Festlegu
   assert.equal(r.stufe, 'gremium');
   assert.ok(r.bauherr.some((h) => h.quelle === 'k3.3-p2'));
   assert.ok(!simuliere({ ...basis, betragTeur: 400 }).bauherr.some((h) => h.quelle === 'k3.3-p2'), 'nicht wesentlich: kein Hinweis');
+  // R60: nicht, wenn der Bauherr selbst entscheidet (Stufe Bauherr) oder schon ein Bauherrn-Vorbehalt steht
+  assert.ok(!simuliere({ ...basis, betragTeur: 6000 }).bauherr.some((h) => h.quelle === 'k3.3-p2'), 'Stufe Bauherr');
+  const vorbehalt = simuliere({ ...basis, betragTeur: 50, freigabeBeruehrt: true });
+  assert.ok(vorbehalt.bauherr.length > 0 && !vorbehalt.bauherr.some((h) => h.quelle === 'k3.3-p2'), 'Bauherrn-Vorbehalt steht schon');
   // R59: bei überschrittener Schwelle (offene Stufe) nicht
   assert.ok(!simuliere({ ...basis, betragTeur: 400, substanziell: true, schwelleUeberschritten: true }).bauherr.some((h) => h.quelle === 'k3.3-p2'));
 });

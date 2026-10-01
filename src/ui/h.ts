@@ -31,6 +31,17 @@ function setzeAttribute(el: Element, attr: Attribute | null | undefined): void {
   }
 }
 
+/**
+ * R60: Zahl und Einheit bleiben in einer Zeile („100 TEUR“, „5 Mio. €“, „6 Wochen“, „LPH 0“, „Kap. 6.4.3“) –
+ * geschützte Leerzeichen nur in der Anzeige; die Quellen (und damit die Zitatprüfung) bleiben unverändert.
+ */
+export function schuetzeEinheiten(text: string): string {
+  return text
+    .replace(/(\d) (?=(?:TEUR|EUR|€|Mio\.|Wochen|Tage|Monate)(?![\p{L}]))/gu, '$1\u00a0')
+    .replace(/Mio\. €/gu, 'Mio.\u00a0€')
+    .replace(/\b(LPH|Kap\.) (?=\d)/gu, '$1\u00a0');
+}
+
 function haengeAn(el: Node, kinder: readonly Kind[]): void {
   for (const k of kinder) {
     if (k === null || k === undefined || k === false) continue;

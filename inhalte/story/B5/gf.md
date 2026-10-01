@@ -10,7 +10,7 @@ rueckbezug-auf: A5
 titel: Die Vorlage der Bauherren-PL im Lenkungskreis beraten
 kurz: Im Lenkungskreis beraten
 status:
-  ungeklaerte-entscheidungen: -1
+  entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
 Der Lenkungskreis berät die Vorlage; über den Einsatz der Risikoreserve entscheidet Dr. Miriam Olbers selbst, mit Nachweis im Entscheidungsregister.

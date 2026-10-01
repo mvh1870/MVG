@@ -13,7 +13,7 @@ titel: Ausgangslage und Kernproblem
 kurztitel: Ausgangslage
 story: [A1, A3, A4, A6, wendepunkt, B3, B6]
 ---
-Kapitel 2 beschreibt, unter welchem Druck komplexe Bauvorhaben heute stehen, und benennt das Kernproblem, auf das [[Minimum Viable Governance (MVG)]] antwortet. Kosten, Termine, Qualität, Risiken, [[ESG]], [[LCC]], Nutzerbedarfe und Gremien wirken nicht jeder für sich – sie treffen in konkreten Entscheidungen zusammen. Für den [[Bauherr|Bauherrn]] heißt das: Nicht die Menge an Information entscheidet, sondern ob klar ist, wer auf welcher Grundlage entscheiden darf und muss.
+Kapitel 2 beschreibt, unter welchem Druck komplexe Bauvorhaben heute stehen, und benennt das Kernproblem, auf das [[Minimum Viable Governance (MVG)]] antwortet. Kosten, Termine, Qualität, Risiken, [[ESG]], [[LCC]], Nutzerbedarfe und Gremienfähigkeit wirken nicht isoliert – sie treffen in konkreten Entscheidungen zusammen. Für den [[Bauherr|Bauherrn]] heißt das: Nicht die Menge an Information entscheidet, sondern ob klar ist, wer auf welcher Grundlage entscheiden darf und muss.
 
 ::: kernaussage
 Mehr Berichte lösen das Kernproblem nicht. Entscheidend ist, ob der Bauherr eine klare Führungs- und Entscheidungsarchitektur hat – sonst bleibt die Verantwortung formal bei ihm, wird praktisch aber diffus.
@@ -166,7 +166,7 @@ titel: Warum Berichterstattung das Kernproblem nicht löst
 ---
 Wenn ein Projekt ins Rutschen kommt, liegt eine Reaktion nahe: mehr Berichte, mehr Abstimmung, mehr Gremienvorlagen, mehr Eskalationsrunden. Das kann im Einzelfall helfen. Die eigentliche Frage beantwortet es aber nicht automatisch: Wer darf und muss was auf welcher Grundlage entscheiden?
 
-Der Grund ist einfach. Berichte erzeugen Information. Führung entsteht erst, wenn Information mit Mandat, Entscheidung, Schwelle, Risikoannahme, [[Datenstand]], [[Freigabe]] und Nachweis verbunden wird. Die vier Karten zeigen, was ohne diese Verbindung übrig bleibt.
+Der Grund ist einfach. Berichte erzeugen Information. Führung entsteht erst, wenn Information mit Mandat, Entscheidung, Schwelle, Risikoannahme, [[Datenstand]], Freigabe und Nachweis verbunden wird. Die vier Karten zeigen, was ohne diese Verbindung übrig bleibt.
 
 MVG setzt deshalb eine Stufe früher an. Die erste Frage lautet nicht: Welche Berichte fehlen? Sondern: Welche nichtdelegierbaren Bauherrenentscheidungen stehen an? Daraus ergeben sich sechs weitere Fragen. [[bedienung:Der Umschalter unten stellt beide Blickwinkel gegenüber.]]
 

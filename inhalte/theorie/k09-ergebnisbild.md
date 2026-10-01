@@ -98,7 +98,7 @@ titel: Verantwortung
 ---
 titel: Rollen
 ---
-**Wer ist letztverantwortlich?** Und: **Wer führt aus, wer wird konsultiert, wer wird informiert?** Hier setzt der RACI-Prozess an (9.2).
+**Wer ist letztverantwortlich?** Und: **Wer ist ausführungsverantwortlich, wer wird konsultiert, wer informiert?** Hier setzt der RACI-Prozess an (9.2).
 :::
 
 ::: etappe 3
@@ -134,7 +134,7 @@ links: Nur Matrix
 rechts: Gekoppelt
 ---
 ::: ansicht links
-**Kommunikationsmatrix.** Sie zeigt, wer ausführt, verantwortet, konsultiert oder informiert wird – transparent, aber ohne Mandate, Schwellen, Stellvertretungen und Eskalationspfade. Vor stillschweigender Verantwortungsverlagerung schützt erst die Kopplung.
+**Kommunikationsmatrix.** Sie zeigt, wer ausführungsverantwortlich und wer letztverantwortlich ist und wer konsultiert oder informiert wird – transparent, aber ohne Mandate, Schwellen, Stellvertretungen und Eskalationspfade. Vor stillschweigender Verantwortungsverlagerung schützt erst die Kopplung.
 :::
 
 ::: ansicht rechts

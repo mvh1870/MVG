@@ -10,7 +10,7 @@ rueckbezug-auf: A6
 titel: Die Freigabe empfehlen
 kurz: Freigabe empfehlen
 status:
-  ungeklaerte-entscheidungen: -1
+  entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
 Nach der Beratung im Lenkungskreis entscheidet Dr. Olbers selbst auf Ihre Vorlage; das Ergebnis wird dokumentiert.

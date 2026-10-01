@@ -10,7 +10,7 @@ rueckbezug-auf: A5
 titel: Den Stand der Risikoreserve je Posten für die Vorlage aufbereiten
 kurz: Reservestand aufbereiten
 status:
-  ungeklaerte-entscheidungen: -1
+  entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
 Die Vorlage zeigt, was von 2,9 Mio. € beansprucht, freigegeben und frei ist, auf dem geltenden Datenstand. Dr. Olbers entscheidet selbst.

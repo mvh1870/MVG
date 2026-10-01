@@ -242,3 +242,6 @@ Nicht sauber – als Nächstes Runde 59.
 ## Runde 59 (P12.5, zugleich P14.3 und P15.2) – volle Runde auf ab36567
 - Theorie (Glossarbezug Freigabe), Rollenkarte Planung, Hilfe (Frist), Druck (Schrittnummern), Stil (Datenstand-Zahl), Architektur (Ersatz eingefroren, Wissenscheck, Impressum): 8 mittel, 17 leicht – L-173.
 Nicht sauber – als Nächstes Runde 60.
+## Runde 60 (P12.5, zugleich P14.3 und P15.2) – volle Runde auf 63a576d
+- Architektur (zwei Proben): 2 mittel, 13 leicht – L-174.
+Nicht sauber – als Nächstes Runde 61.

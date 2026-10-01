@@ -14,10 +14,12 @@ const AUSNAHMEN = new Set([
   'Change Management', 'Risk Management', 'Decision Gates', 'Stage Gates',
   // R59: das Glossar „Nachweiskette“ fasst die Zelle als Ganzes nach k13-t1 (glaette)
   'Chronologische, unveränderliche Historie aller Mutationen',
+  // R60: die Rollenzeile „Verantwortet Risiko-, Entscheidungs- und Maßnahmensteuerung“ fasst eine spätere Regel neu
+  'Entscheidungs- und Action-Management',
 ]);
 
 /** Zahl der Regeln heute; wer eine Regel bewusst streicht, senkt diese Zahl mit Begründung */
-const MINDESTENS = 301;
+const MINDESTENS = 302;
 
 /** Fachlich tragende Ergebnisse (k9.3-p3, k4.2-p3, k6.4.2-t1, k6.4.4-p1, k6.4.3-p1, O-1) – unabhängig von der Regelliste */
 const FEST = [

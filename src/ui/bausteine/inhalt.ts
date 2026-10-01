@@ -9,7 +9,7 @@
  * - `<code>` (so schreiben Autoren IDs wie `ENT-017`) wird zu `span.mono`.
  */
 
-import { vonHtml } from '../h.ts';
+import { schuetzeEinheiten, vonHtml } from '../h.ts';
 import { figur, type Mimik } from '../../figuren/figur.ts';
 import { rollenAttr } from '../anzeige.ts';
 import type { OeffentlicheInhalte } from '../../inhalte/typen.ts';
@@ -30,6 +30,14 @@ export function aktiviereGlossar(wurzel: ParentNode): void {
     knopf.setAttribute('data-pruef', 'glossar-begriff');
     knopf.append(...span.childNodes);
     span.replaceWith(knopf);
+  }
+  // R60: Zahl und Einheit nicht am Zeilenende trennen (nur Anzeige)
+  const doc = (wurzel as Node).ownerDocument ?? document;
+  const gang = doc.createTreeWalker(wurzel as Node, 4);
+  for (let n = gang.nextNode(); n !== null; n = gang.nextNode()) {
+    const alt = n.nodeValue ?? '';
+    const neu = schuetzeEinheiten(alt);
+    if (neu !== alt) n.nodeValue = neu;
   }
   for (const code of [...wurzel.querySelectorAll('code')]) {
     const m = document.createElement('span');

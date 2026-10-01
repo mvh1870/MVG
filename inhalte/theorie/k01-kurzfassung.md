@@ -25,7 +25,7 @@ titel: Leitthese
 ---
 Große Bauvorhaben kommen ohne Fachleute nicht aus. Planer rechnen Varianten durch, die Projektsteuerung koordiniert Termine und Unterlagen, ein [[PMO]] führt Protokolle und Listen. Diese Arbeit darf und soll abgegeben werden.
 
-Etwas anderes ist die Legitimation. Wenn ein Ziel Vorrang bekommt, ein Risiko bewusst in Kauf genommen oder eine [[Freigabe]] erteilt wird, braucht es jemanden, der dafür einsteht. Das kann nur der Bauherr sein. Die beste Vorlage der Projektsteuerung ändert daran nichts: Sie bereitet die Entscheidung vor, sie ersetzt sie nicht.
+Etwas anderes ist die Legitimation. Wenn ein Ziel Vorrang bekommt, ein Risiko bewusst in Kauf genommen oder eine wesentliche Freigabe erteilt wird, braucht es jemanden, der dafür einsteht. Das kann nur der Bauherr sein. Die beste Vorlage der Projektsteuerung ändert daran nichts: Sie bereitet die Entscheidung vor, sie ersetzt sie nicht.
 
 Woran erkennen Sie die Grenze im Projekt? Analyse, Vorbereitung, Koordination und Dokumentation können andere übernehmen. Ziel, Mandat, wesentliche Entscheidung, Risikoannahme, Freigabe und Nachweis muss der Bauherr selbst legitimieren. Beim Nachweis heißt das: Das Protokoll darf ein Dritter schreiben; dass die Beschlusslage nachweisbar bleibt, verantwortet der Bauherr. MVG soll diese Verantwortung praktisch handhabbar machen.
 

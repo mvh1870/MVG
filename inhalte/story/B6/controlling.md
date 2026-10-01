@@ -10,7 +10,7 @@ rueckbezug-auf: A6
 titel: CTC und Prognose als benannten Datenstand für die Freigabevorlage bestätigen
 kurz: Datenstand bestätigen
 status:
-  offene-risiken: -1
+  entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
 Dr. Olbers entscheidet auf der „Kostenprognose 2026-10 · Version 4“, abgeglichen mit den Zulieferungen der Projektsteuerung.

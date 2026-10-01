@@ -10,7 +10,7 @@ rueckbezug-auf: A6
 titel: Die Freigabe empfehlen
 kurz: Freigabe empfehlen
 status:
-  ungeklaerte-entscheidungen: -1
+  entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
 Liegen Mindestgrundlagen und bestätigter Datenstand zum 17. November vor, berät der Lenkungskreis; Dr. Miriam Olbers entscheidet selbst.

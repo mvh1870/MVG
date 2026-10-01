@@ -7,7 +7,7 @@ lph: 5
 uhr: derselbe Montag
 whitepaper-bezug: [k2.4-p2, k4.2-p3, k6.4.3-p1, k6.4.3-p2, k6.4.4-t1, k9.4-l1, k6.4.1-p3, k4.4-p2, k9.4-p1]
 status-start:
-  entscheidungsfaehigkeit: 4
+  entscheidungsfaehigkeit: 3
   kostenunsicherheit: mittel
   offene-risiken: 7 (1 neu bewertet)
   ungeklaerte-entscheidungen: 1

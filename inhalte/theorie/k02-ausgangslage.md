@@ -110,7 +110,7 @@ Zielkonflikte werden sichtbar, wenn die Planungsstände schon weit fortgeschritt
 :::
 
 ::: ansicht rechts
-ESG und LCC sind von Anfang an Teil von
+ESG und LCC sind früh Teil von
 
 1. Zielsystem,
 2. Abwägungsregeln,

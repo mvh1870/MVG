@@ -238,3 +238,16 @@ test('Story-Karte: Welt A vom Prolog bis zur Wirklichkeit, Welt B beginnt mit de
   assert.deepEqual(nurAV.map((s) => s.a), ['start', 'linie', 'ende', 'keine']);
   assert.deepEqual(nurAV.map((s) => s.b), ['keine', 'start', 'linie', 'ende']);
 });
+
+test('Anschlag (R63): eine Wirkung auf einen Wert am Anschlag nennt die Konsequenz („bleibt …“), eine wirksame nicht doppelt', async () => {
+  const { anschlagSaetze } = await import('../src/ui/anzeige.ts');
+  const s = { entscheidungsfaehigkeit: 5, kostenunsicherheit: 'mittel', offeneRisiken: 3, ungeklaerteEntscheidungen: 0, terminrisiko: 'sehr hoch', hinweise: {} } as any;
+  const w = (schluessel: string, wert: number) => ({ schluessel, art: 'aendere', wert, hinweis: null }) as any;
+  assert.deepEqual(anschlagSaetze([w('terminrisiko', 1)], s, s).map((x) => [x.text, x.richtung]), [['Terminrisiko bleibt sehr hoch (Höchststufe)', 'schlecht']]);
+  assert.deepEqual(anschlagSaetze([w('entscheidungsfaehigkeit', 1)], s, s).map((x) => [x.text, x.richtung]), [['Entscheidungsfähigkeit bleibt 5 von 5 (Höchstwert)', 'gut']]);
+  assert.deepEqual(anschlagSaetze([w('ungeklaerteEntscheidungen', -1)], s, s).map((x) => x.text), ['Ungeklärte Entscheidungen bleiben 0 (Tiefstwert)']);
+  // nicht am Anschlag (und unverändert, etwa weil eine zweite Wirkung aufhob): kein Satz
+  assert.deepEqual(anschlagSaetze([w('kostenunsicherheit', 1), w('offeneRisiken', 1)], s, s), []);
+  // schon geändert: steht in den Änderungssätzen
+  assert.deepEqual(anschlagSaetze([w('terminrisiko', 1)], { ...s, terminrisiko: 'hoch' }, s), []);
+});

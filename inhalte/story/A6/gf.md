@@ -31,7 +31,7 @@ titel: Empfehlen, die Freigabe zu verschieben, bis Holger Stein zurück ist
 kurz: Freigabe verschieben
 status:
   ungeklaerte-entscheidungen: +1
-  terminrisiko: +1
+  offene-risiken: +1
 ---
 ### Konsequenz
 Sie empfehlen Dr. Olbers, die Freigabe zu verschieben. LPH 5 bleibt offen; das Projekt wartet auf eine Person.

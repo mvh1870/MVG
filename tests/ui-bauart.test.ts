@@ -1001,7 +1001,7 @@ test('Begriffs-Kompass (P10.5, E7): im Glossar, Suche nach dem anderen Wort find
   assert.equal(seite.querySelector<HTMLElement>('.glossar-leer')?.hidden, true, 'ein Kompass-Treffer ist kein leeres Ergebnis');
   // Beleg-Absatz als Permalink, Glossar-Begriff springt zum Eintrag (ohne den Anker des Routers)
   const freigabe = zeilen.find((z) => /Gate/u.test(z.textContent ?? ''));
-  assert.equal(freigabe?.querySelector('a.absatz-id')?.getAttribute('href'), '#theorie/k4/k4.5-p1');
+  assert.equal(freigabe?.querySelector('a.absatz-id')?.getAttribute('href'), '#theorie/k9/k9.3-p1');
   const knopf = freigabe?.querySelector<HTMLButtonElement>('.kompass-begriff');
   assert.ok(knopf);
   feld.value = '';

@@ -9,7 +9,7 @@ frage: Die Gremien brauchen eine Zahl. Welche liefern Sie?
 titel: Die eigene CTC von +5,9 % vertreten
 kurz: Eigene Zahl vertreten
 status:
-  kostenunsicherheit: sehr hoch
+  kostenunsicherheit: +1
 ---
 ### Konsequenz
 Der Lenkungskreis bekommt zwei Zahlen. Frank Deppe fragt, welche stimmt; Sie und die Projektsteuerung erklären ihre Annahmen. Entschieden wird nichts.

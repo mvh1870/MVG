@@ -257,6 +257,18 @@ export async function lauf(_seite, h) {
     const breit = await leinwand.evaluate(() => [...document.querySelectorAll('.leinwand *')].filter((e) => e.getClientRects().length > 0 && /auto|scroll/u.test(getComputedStyle(e).overflowX) && e.scrollWidth > e.clientWidth + 1)
       .map((e) => `${e.tagName.toLowerCase()}.${e.className} ${e.scrollWidth}>${e.clientWidth}`));
     if (breit.length > 0) h.befund(`Leinwand B1 RACI @${breite}${beamer ? ' Beamer' : ''}: rollt waagerecht ${JSON.stringify(breit.slice(0, 3))}`);
+    // R63: Reserve für breiteren Satz (Chrome 153, L-129) – die Matrix braucht im Mindestinhalt höchstens 93 % ihres Rahmens
+    const reserve = await leinwand.evaluate(() => {
+      const t = document.querySelector('.leinwand .raci-tabelle');
+      const r = t?.parentElement;
+      if (!(t instanceof HTMLElement) || r === null || r === undefined) return null;
+      const alt = t.style.width;
+      t.style.width = 'min-content';
+      const min = t.offsetWidth; // Layout-Pixel wie clientWidth (getBoundingClientRect enthält den Beamer-Zoom)
+      t.style.width = alt;
+      return { min: Math.round(min), rahmen: r.clientWidth };
+    });
+    if (reserve !== null && reserve.min > 0.93 * reserve.rahmen) h.befund(`Leinwand B1 RACI @${breite}${beamer ? ' Beamer' : ''}: Mindestbreite ${reserve.min} px > 93 % des Rahmens (${reserve.rahmen} px)`);
   }
   await h.klick('[data-pruef="regie-beamer"]', regie); await h.warte(300);
   await leinwand.setViewportSize({ width: 1280, height: 720 });

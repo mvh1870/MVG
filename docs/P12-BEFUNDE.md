@@ -251,3 +251,6 @@ Nicht sauber – als Nächstes Runde 62.
 ## Runde 62 (P12.5, zugleich P14.3 und P15.2) – volle Runde auf 165d702
 - Theorie, Story, Abbildungen, Hilfe, Druck, Architektur, Stil: 4 mittel, 12 leicht – L-176 (vier neue Proben, je mit Gegenprobe rot).
 Nicht sauber – als Nächstes Runde 63.
+## Runde 63 (P12.5, zugleich P14.3 und P15.2) – volle Runde auf 288b8b8
+- Theorie, Story, Abbildungen, Hilfe, Druck, Architektur, Stil: 4 mittel (zwei gleich), 13 leicht – L-177; dazu ein vorbestehender Fehler (RACI unter 400 px in Buchstabensäulen) selbst gefunden.
+Nicht sauber – als Nächstes Runde 64.

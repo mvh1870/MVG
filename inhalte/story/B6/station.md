@@ -7,10 +7,10 @@ lph: 5
 uhr: Montag, 07:45 Uhr
 whitepaper-bezug: [k9.3-p1, k9.3-p2, k9.3-p3, k9.3-t1, k9.4-l1, k2.3-p1, k2.3-p2, k4.2-p1, k4.5-p2, k6.4.1-p4, k6.4.4-t1, k6.4.4-p1, k6.4.5-t1, k9.5-l1]
 status-start:
-  entscheidungsfaehigkeit: 4
+  entscheidungsfaehigkeit: 3
   kostenunsicherheit: mittel
   offene-risiken: 5
-  ungeklaerte-entscheidungen: 1
+  ungeklaerte-entscheidungen: 2
   terminrisiko: mittel
 partner: A6
 weiter: wirklichkeit

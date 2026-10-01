@@ -10,7 +10,7 @@
 ---
 begriff: Freigabe
 andere: [Gate, Stage-Gate, Go/No-Go]
-beleg: k4.5-p1
+beleg: k9.3-p1
 ---
 :::
 
@@ -75,8 +75,16 @@ beleg: k5.2-t1
 ::: kompass nachweis
 ---
 begriff: Nachweis
-andere: [Evidence, Audit Trail]
+andere: [Evidence]
 beleg: k4.6-p1
+---
+:::
+
+::: kompass nachweiskette
+---
+begriff: Nachweiskette
+andere: [Audit Trail]
+beleg: k4.6-p2
 ---
 :::
 

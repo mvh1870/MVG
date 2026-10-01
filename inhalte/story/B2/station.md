@@ -8,7 +8,7 @@ lph: 5
 uhr: Dienstag, 11:15 Uhr
 whitepaper-bezug: [k6.4.4-t1, k4.2-p3, k6.4.2-t1, k6.4.3-p2, k6.4.4-p1, k6.4.1-p1, k6.4.5-p1, k6.4.5-t1, k4.4-p1, k4.6-p2]
 status-start:
-  entscheidungsfaehigkeit: 4
+  entscheidungsfaehigkeit: 3
   kostenunsicherheit: mittel
   offene-risiken: 5
   ungeklaerte-entscheidungen: 2

@@ -6,7 +6,7 @@
  * Vorschau und Leinwand aus demselben Zustand dasselbe Bild.
  */
 
-import type { Aktion, OeffentlicherZustand, Status, StatusSchluessel, Stufe } from '../engine/typen.ts';
+import type { Aktion, OeffentlicherZustand, Status, StatusSchluessel, Stufe, WirkEintrag } from '../engine/typen.ts';
 import type { Block, KopfWert, OeffentlicheInhalte, Schritt, Station } from '../inhalte/typen.ts';
 import { naechsteStation, schritteFuer } from '../engine/graph.ts';
 import { STATUS_BESCHRIFTUNG, STATUS_SCHLUESSEL, STUFEN, wortEntscheidungsfaehigkeit } from '../engine/status.ts';
@@ -354,6 +354,30 @@ export function aenderungsSaetze(vorher: Readonly<Status> | null, nachher: Reado
       text: zahl ? `${STATUS_BESCHRIFTUNG[k]} ${statusWort(vorher, k)} → ${statusWort(nachher, k)}` : `${STATUS_BESCHRIFTUNG[k]} → ${statusWort(nachher, k)}`,
       richtung: t,
     });
+  }
+  return aus;
+}
+
+/**
+ * R63: Eine erklärte Wirkung auf einen Wert, der schon am Anschlag steht („sehr hoch“, 5 von 5, 0), ändert nichts – die
+ * Konsequenz sagt dann, dass er bleibt („Terminrisiko bleibt sehr hoch (Höchststufe)“), statt „Status unverändert“.
+ */
+export function anschlagSaetze(wirkung: readonly WirkEintrag[], vorher: Readonly<Status> | null, nachher: Readonly<Status> | null): { schluessel: StatusSchluessel; text: string; richtung: 'gut' | 'schlecht' }[] {
+  if (vorher === null || nachher === null) return [];
+  const aus: { schluessel: StatusSchluessel; text: string; richtung: 'gut' | 'schlecht' }[] = [];
+  for (const w of wirkung) {
+    const k = w.schluessel;
+    if (rang(vorher, k) !== rang(nachher, k) || aus.some((x) => x.schluessel === k)) continue;
+    const stufe = k === 'kostenunsicherheit' || k === 'terminrisiko';
+    const r = rang(nachher, k);
+    const hoch = stufe ? STUFEN.length - 1 : k === 'entscheidungsfaehigkeit' ? 5 : Number.POSITIVE_INFINITY;
+    // nur relative Wirkungen („+1“) stoßen an; eine gesetzte Stufe, die schon gilt, ist keine Wirkung
+    if (w.art !== 'aendere' || typeof w.wert !== 'number' || w.wert === 0) continue;
+    const rauf = w.wert > 0;
+    if (rauf ? r < hoch : r > 0) continue;
+    const grenze = rauf ? (stufe ? ' (Höchststufe)' : ' (Höchstwert)') : stufe ? ' (niedrigste Stufe)' : ' (Tiefstwert)';
+    const gut = k === 'entscheidungsfaehigkeit' ? rauf : !rauf;
+    aus.push({ schluessel: k, text: `${STATUS_BESCHRIFTUNG[k]} ${k === 'offeneRisiken' || k === 'ungeklaerteEntscheidungen' ? 'bleiben' : 'bleibt'} ${statusWort(nachher, k)}${grenze}`, richtung: gut ? 'gut' : 'schlecht' });
   }
   return aus;
 }

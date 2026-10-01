@@ -29,7 +29,7 @@ Der Bauausschuss hört zwei Zahlen.
 titel: Die Differenz mit Aylin Kaya abgleichen
 kurz: Zahlen abgleichen
 status:
-  terminrisiko: hoch
+  terminrisiko: +1
 ---
 ### Konsequenz
 Zwei Wochen Abstimmung: Ein Teil der Differenz von rund 1,2 Mio. € liegt an verschiedenen Annahmen zum Holzpreis; welche gilt, legt niemand fest. Die Gremien tagen ohne Zahl.
@@ -49,7 +49,7 @@ Die Gremientermine verstreichen.
 titel: Die Prognose aktualisieren
 kurz: Prognose aktualisieren
 status:
-  kostenunsicherheit: sehr hoch
+  kostenunsicherheit: +1
 ---
 ### Konsequenz
 Holger Stein rechnet neu: jetzt +9,1 %, rund 5,3 Mio. €. Das Controlling rechnet parallel weiter; im Umlauf sind drei Dateien.

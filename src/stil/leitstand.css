@@ -1982,8 +1982,12 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 .raci-tabelle th, .raci-tabelle td { padding: 6px 8px; border-bottom: 1px solid var(--linie); text-align: center; vertical-align: middle; }
 .raci-tabelle thead th { font: 700 12px/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
 .raci-tabelle th[scope="row"], .raci-tabelle thead th:first-child { text-align: left; }
+/* R63: Rollenköpfe brechen nur an ihrer Trennstelle („Geschäfts-|führung“) – Chromium rechnet den Trennstrich nicht in die Mindestbreite, break-word brach sonst „Geschäft|s“ */
+.raci-tabelle thead th { overflow-wrap: normal; }
 .raci-tabelle .ist-ich { background: var(--gold-soft); }
 .raci-mandat { min-width: 150px; text-align: left !important; font-size: 13px; color: var(--tinte-2); }
+/* R63: unter 1100 px (XGA-Leinwand, inert) engere Zellen – die Matrix braucht Reserve für breiteren Satz (L-129) */
+@media (min-width: 701px) and (max-width: 1100px) { .raci-tabelle th, .raci-tabelle td { padding-inline: 4px; } }
 .raci-zeile-knopf { min-height: 44px; padding: 4px 8px; border: 0; border-radius: var(--radius-m); background: transparent; color: var(--tinte); font: inherit; font-weight: 600; text-align: left; cursor: pointer; }
 .raci-zeile-knopf[aria-pressed="true"] { background: var(--navy); color: var(--weiss); }
 .raci-marke { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 6px; font: 700 13px var(--schrift-label); text-decoration: none; cursor: help; }
@@ -2154,7 +2158,8 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
 @media (max-width: 400px) {
   /* R55: nicht die RACI-Matrix – sie rollt in ihrem Rahmen; gleich breite Spalten machten Buchstabensäulen */
   .lagetafel table:not(.raci-tabelle) { width: 100%; table-layout: fixed; }
-  .lagetafel :is(th, td) { overflow-wrap: anywhere; hyphens: auto; }
+  /* R63: auch kein „anywhere“ in der RACI-Matrix – es ließ ihre Spalten auf 42 px schrumpfen (Buchstabensäulen); sie rollt */
+  .lagetafel table:not(.raci-tabelle) :is(th, td) { overflow-wrap: anywhere; hyphens: auto; }
   .baustein-karte, .protokoll, .glied { min-width: 0; overflow-wrap: anywhere; }
   /* R47: Datum und Titel des Protokollkopfs brechen nicht mitten im Wort – der Kopf umbricht als Ganzes */
   .protokoll-kopf b { overflow-wrap: break-word; }

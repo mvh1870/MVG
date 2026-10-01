@@ -92,6 +92,8 @@ export function pruefeLayout() {
     const r = document.createRange();
     r.selectNodeContents(k);
     if (new Set([...r.getClientRects()].map((q) => Math.round(q.top))).size > 1) funde.push(`Datum im Protokollkopf umbrochen: „${(k.textContent ?? '').trim()}“`);
+    // R63: unter Chromium 141 bricht das Datum auch ohne die Regel selten – die Regel selbst muss gelten (Chrome 153 setzt breiter)
+    if (getComputedStyle(k).whiteSpace !== 'nowrap') funde.push(`Datum im Protokollkopf ohne nowrap: „${(k.textContent ?? '').trim()}“`);
   }
   return funde;
 }
@@ -382,8 +384,11 @@ export async function weltB(seite, h, station, pruefe, optionen = {}) {
           for (const breite of [320, 400]) {
             if (vpR === null) break;
             await seite.setViewportSize({ width: breite, height: vpR.height }); await h.warte(150);
-            const saeulen = await seite.evaluate(() => [...document.querySelectorAll('.raci-tabelle :is(th, td)')].filter((z) => z.getClientRects().length > 0 && (z.textContent ?? '').trim().length > 6 && z.getBoundingClientRect().width < 40).map((z) => `${(z.textContent ?? '').trim().slice(0, 20)} ${Math.round(z.getBoundingClientRect().width)} px`));
+            const saeulen = await seite.evaluate(() => [...document.querySelectorAll('.raci-tabelle :is(th, td)')].filter((z) => z.getClientRects().length > 0 && (z.textContent ?? '').trim().length > 6 && z.getBoundingClientRect().width < 56).map((z) => `${(z.textContent ?? '').trim().slice(0, 20)} ${Math.round(z.getBoundingClientRect().width)} px`));
             if (saeulen.length > 0) h.befund(`${st}-raci @${breite}: Buchstabensäulen ${JSON.stringify(saeulen.slice(0, 3))}`);
+            // R63: die Breitengrenze 40 px übersah Spalten von 42 px (jetzt 56 px; schmalste echte Spalte 64 px) – dazu der Wortbruch selbst
+            const bruchR = await wortbrueche(seite, '.raci-tabelle', { bildschirm: true });
+            if (bruchR.length > 0) h.befund(`${st}-raci @${breite}: ${bruchR.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(bruchR.slice(0, 4))}`);
           }
           if (vpR !== null) { await seite.setViewportSize(vpR); await h.warte(150); }
         }

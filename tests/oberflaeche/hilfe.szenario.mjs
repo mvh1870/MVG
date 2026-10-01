@@ -187,6 +187,9 @@ export async function lauf(seite, h) {
       // R59: eine Schrittnummer („2“) steht nie allein als letzte Zeile einer Seite (zu kurz für seitenMitUeberschriftAmEnde)
       const nummerAmEnde = pdfText.slice(0, -1).map((x, i) => (/^\d{1,2}$/u.test((x.zeilen.at(-1) ?? '').trim()) ? i + 1 : 0)).filter((x) => x > 0);
       if (nummerAmEnde.length > 0) h.befund(`Druck ${id}: Schrittnummer allein am Seitenende (S. ${nummerAmEnde.join(', ')})`);
+      // R63: die letzte Seite besteht nie nur aus dem wiederholten Tabellenkopf und einer Zeile
+      const letzte = pdfText.at(-1)?.zeilen ?? [];
+      if (pdfText.length > 1 && letzte.length <= 2 && /^[A-ZÄÖÜ][A-ZÄÖÜ ]{5,}$/u.test((letzte[0] ?? '').trim())) h.befund(`Druck ${id}: letzte Seite nur Tabellenkopf und ${letzte.length - 1} Zeile (${JSON.stringify(letzte)})`);
       const amEnde = seitenMitUeberschriftAmEnde(pdfText, koepfe);
       if (amEnde.length > 0) h.befund(`Druck ${id}: Überschrift am Seitenende ${JSON.stringify(amEnde)}`);
       if (pdfText.some((x) => x.zeilen.length === 0)) h.befund(`Druck ${id}: leere Seite`);

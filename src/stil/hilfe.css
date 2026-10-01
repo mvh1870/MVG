@@ -158,6 +158,8 @@
   .hilfe .lern-fuss { break-before: avoid; break-inside: avoid; }
   /* R61: Gruppenzeilen einer Tabelle (eine Zelle über alle Spalten) bleiben bei ihrer ersten Zeile */
   .hilfe-inhalt tbody tr:has(> td:only-child[colspan]) { break-after: avoid; }
+  /* R63: die letzte Tabellenzeile steht nie allein unter dem wiederholten Kopf auf einer neuen Seite (Cheat-Sheet Projektsteuerung) */
+  .hilfe-inhalt tbody tr:last-child:not(:first-child) { break-before: avoid; }
   /* R59: eine Schrittnummer („2“) bleibt bei ihrem Schritt – als Zeile neben dem Schritt (Rasterzeile) statt eigener Block, der allein am Seitenende stand */
   .hilfe-inhalt .h-schritt { display: grid; grid-template-columns: auto 1fr; gap: 0 2mm; align-items: start; }
   /* R56: die klebende Kopfleiste druckt sonst dort, wo sie beim Rollen stand – mitten im Dokument über dem Text */

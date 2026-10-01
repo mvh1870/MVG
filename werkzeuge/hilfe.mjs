@@ -888,6 +888,10 @@ function glaette(/** @type {string} */ html) {
     .replace(/eskaliert es an die PL\./gu, 'eskaliert es an die Bauherren-PL.')
     .replace(/<td>PL\/(<wbr>)?(verantwortliche Rolle|PMO) ·/gu, '<td>Bauherren-PL/$1$2 ·')
     .replace(/<td>PL<\/td>/gu, '<td>Bauherren-PL</td>')
+    // R63: Optionen gehen an die Stelle, die nach Mandat entscheidet – der Lenkungskreis berät (k4.2-p3, k9.3-p3); die Freigabe ist
+    // kein Meilenstein, sondern die Entscheidung des Bauherrn am Abschluss der Leistungsphase (k6.4.4-t1, k9.3-p2)
+    .replace(/Optionen ohne ehrliche Nachteile - der Lenkungskreis braucht die ganze Wahrheit\./gu, 'Optionen ohne ehrliche Nachteile – wer nach Mandat entscheidet, braucht die ganze Wahrheit.')
+    .replace(/kein Vorfall-Register — der <b>Beschluss-Meilenstein<\/b>/gu, 'kein Vorfall-Register — die <b>Entscheidung des Bauherrn</b> am Abschluss der Leistungsphase')
     // R59: Entscheidungsvorlage = Nachweislogik einer wesentlichen Entscheidung (k13-t1)
     .replace(/ausgearbeitete Akte zu <b>einer<\/b> wesentlichen Entscheidung/gu, 'ausgearbeitete Nachweislogik zu <b>einer</b> wesentlichen Entscheidung')
     // R59: Feldnamen deutsch (L-69)

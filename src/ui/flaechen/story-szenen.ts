@@ -16,7 +16,7 @@ import { rueckbezug } from '../../engine/gedaechtnis.ts';
 import { h, attr, elementAus, ersetze, mitTrennstellen, s } from '../h.ts';
 import { statusSymbol } from '../../stil/symbole.ts';
 import {
-  aenderungsSaetze, aktuellerSchritt, aktuelleStation, alleBloecke, ansichtSchluessel, instrumentWerte, kopfKarte, kopfListe,
+  aenderungsSaetze, aktuellerSchritt, anschlagSaetze, aktuelleStation, alleBloecke, ansichtSchluessel, instrumentWerte, kopfKarte, kopfListe,
   kopfText, kopfZahl, istKarte, mandatsWahl, rollenAttr, statusWort, gruppiere, schrittPosition, stationsName,
 } from '../anzeige.ts';
 import * as B from '../bausteine/bloecke.ts';
@@ -324,7 +324,8 @@ function konsequenz(k: SzenenKontext): Szene {
   delete ohne[ent.id];
   const vorher = berechneStatus({ verlauf: k.z.verlauf, rolle: k.z.rolle, entscheidungen: ohne, info: k.z.info }, k.inhalte)[welt];
   const nachher = k.z.status[welt];
-  const saetze = aenderungsSaetze(vorher, nachher);
+  // R63: eine Wirkung am Anschlag nennt die Konsequenz ausdrücklich („bleibt sehr hoch“)
+  const saetze = [...aenderungsSaetze(vorher, nachher), ...anschlagSaetze(o.wirkung, vorher, nachher)];
   const nachsatz = ent.nachsatz !== null ? inhalt(ent.nachsatz) : null;
   const fuss = h('div', { class: 'feld-fuss anim-einblenden', style: '--verzug:700ms' });
   if (nachsatz !== null) {

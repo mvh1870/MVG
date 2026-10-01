@@ -30,7 +30,7 @@ Die Kostenseite ist klar, die Terminseite offen.
 titel: Die Lieferzeit (FRW-002) in der Prognose getrennt als offenes Signal ausweisen
 kurz: Lieferzeit ausweisen
 status:
-  kostenunsicherheit: -1
+  entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
 Die Prognose führt die Lieferzeit getrennt von der CTC als offenes, noch unbewertetes Signal; ihre Kostenwirkung wird erst mit `RIS-009` bewertet.

@@ -313,31 +313,68 @@ test('Schluss ohne Werbung (R49, O-1, O-34): Wirklichkeit, Enden und Epilog nenn
   }
 });
 
-test('Statuswirkung (R62): jede Option (außer „status: keine“) ändert den Status in mindestens einer gespielten Spur', () => {
-  // eine Wirkung auf einen Wert, der in jeder Spur schon am Anschlag steht („sehr hoch“, 5 von 5), wäre unsichtbar
+test('Statuswirkung (R62, R63): jeder Wirkeintrag zeigt sich in einer Spur; in Welt B wirkt jede Option auch auf den einheitlichen Wegen', () => {
+  // eine Wirkung auf einen Wert, der in jeder Spur schon am Anschlag steht („sehr hoch“, 5 von 5), wäre unsichtbar (R62);
+  // in Welt B erzählt jede Wahl eine Wirkung – sie zeigt sich auch dort, wo alle früheren Wahlen gleich waren (R63: B5/B6 stand
+  // nach dem Spur-Delta am Anschlag). In Welt A darf ein Wert am Anschlag stehen – die Konsequenz sagt dann „bleibt …“
   const m = erg.inhalte as StoryModell;
   const leer: string[] = [];
+  const sicht = (s: Status | null): string => JSON.stringify(s === null ? null : { ...s, hinweise: null });
   for (const [welt, weg] of [['A', ['A1', 'A2', 'A3', 'A4', 'A5', 'A6']], ['B', ['B1', 'B2', 'B3', 'B4', 'B5', 'B6']]] as const) {
     for (const r of ROLLEN) {
       const ents = weg.map((id) => (m.stationen[id] as any)?.szenen[r]?.entscheidung ?? null);
       weg.forEach((id, j) => {
         const e = ents[j];
         if (e === null) return;
-        // alle Kombinationen der früheren Wahlen dieser Welt, ohne und mit allen Informationen
         let kombis: Record<string, string>[] = [{}];
         for (const f of ents.slice(0, j)) if (f !== null) kombis = kombis.flatMap((k) => f.optionen.map((p: any) => ({ ...k, [f.id]: p.id })));
         const alleInfos = weg.slice(0, j + 1).flatMap((s) => ((m.stationen[s] as any)?.infos ?? []).map((i: any) => `${s}/${i.id}`));
+        const modellOhne = (o: any, n: number): StoryModell => {
+          // dieselbe Station mit der Option ohne ihren n-ten Wirkeintrag
+          const st = m.stationen[id] as any;
+          const e2 = { ...e, optionen: e.optionen.map((p: any) => (p === o ? { ...p, wirkung: p.wirkung.filter((_: unknown, i: number) => i !== n) } : p)) };
+          return { ...m, stationen: { ...m.stationen, [id]: { ...st, szenen: { ...st.szenen, [r]: { ...st.szenen[r], entscheidung: e2 } } } } } as StoryModell;
+        };
         for (const o of e.optionen) {
           if (o.wirkung.length === 0) continue;
-          const wirkt = kombis.some((ohne) => [[], alleInfos].some((info) => {
-            const z1 = { ...anfangszustand(), rolle: r, verlauf: weg.slice(0, j + 1), entscheidungen: ohne, info };
-            const z2 = { ...z1, entscheidungen: { ...ohne, [e.id]: o.id } };
-            return JSON.stringify(berechneStatus(z1 as any, m)[welt]) !== JSON.stringify(berechneStatus(z2 as any, m)[welt]);
-          }));
-          if (!wirkt) leer.push(`${r} ${id} ${o.id}`);
+          const zu = (ohne: Record<string, string>, info: string[]) => ({ ...anfangszustand(), rolle: r, verlauf: weg.slice(0, j + 1), entscheidungen: { ...ohne, [e.id]: o.id }, info });
+          o.wirkung.forEach((w: any, n: number) => {
+            const m2 = modellOhne(o, n);
+            const sichtbar = kombis.some((k) => [[], alleInfos].some((info) => sicht(berechneStatus(zu(k, info) as any, m)[welt]) !== sicht(berechneStatus(zu(k, info) as any, m2)[welt])));
+            if (!sichtbar) leer.push(`${r} ${id} ${o.id} ${w.schluessel}`);
+          });
+          if (welt === 'B') {
+            for (const x of ['A', 'B', 'C']) {
+              const k: Record<string, string> = {};
+              for (const f of ents.slice(0, j)) if (f !== null) k[f.id] = f.optionen.some((p: any) => p.id === x) ? x : f.optionen[0].id;
+              const ohne = { ...anfangszustand(), rolle: r, verlauf: weg.slice(0, j + 1), entscheidungen: k, info: [] };
+              if (sicht(berechneStatus(ohne as any, m).B) === sicht(berechneStatus(zu(k, []) as any, m).B)) leer.push(`${r} ${id} ${o.id} (Weg überall ${x})`);
+            }
+          }
         }
       });
     }
   }
   assert.deepEqual(leer, []);
+});
+
+test('Regie-Notiz „steuerbar“ (R63): die A6-Wahlen, die bei Richtung A immer dorthin führen, sind genau C – bei der Projektsteuerung auch B', () => {
+  const m = erg.inhalte as StoryModell;
+  const weg = ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'wendepunkt', 'rueckspulen', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'wirklichkeit'];
+  const immer: string[] = [];
+  for (const r of ROLLEN) {
+    const ents = weg.map((id) => (m.stationen[id] as any)?.szenen?.[r]?.entscheidung ?? null);
+    const a6 = ents[5];
+    const wi = ents[14];
+    let kombis: Record<string, string>[] = [{}];
+    for (const f of ents.slice(0, 5)) if (f !== null) kombis = kombis.flatMap((k) => f.optionen.map((p: any) => ({ ...k, [f.id]: p.id })));
+    for (const o of a6.optionen) {
+      // Weiche in wirklichkeit/station.md: steuerbar bei Wahl A und Entscheidungsfähigkeit (Welt A) ≥ 3
+      const alle = kombis.every((k) => (berechneStatus({ ...anfangszustand(), rolle: r, verlauf: weg, entscheidungen: { ...k, [a6.id]: o.id, [wi.id]: 'A' }, info: [] } as any, m).A as any).entscheidungsfaehigkeit >= 3);
+      if (alle) immer.push(`${r} ${o.id}`);
+    }
+  }
+  assert.deepEqual(immer.sort(), ['bauherr C', 'controlling C', 'gf C', 'pl C', 'planung C', 'ps B', 'ps C']);
+  const notiz = readFileSync(new URL('../inhalte/story/ende-steuerbar/station.md', import.meta.url), 'utf8');
+  assert.match(notiz, /Mit Option C in A6 gelingt das immer[^.]*bei der Projektsteuerung auch mit B/u);
 });

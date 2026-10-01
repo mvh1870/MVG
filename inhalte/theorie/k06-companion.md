@@ -196,7 +196,7 @@ Seine Ergebnisse prüfen die zuständigen Rollen, bevor sie in Freigaben oder Gr
 ---
 titel: Zusammenarbeit im MVG Companion
 ---
-Der zweite Teil des Kapitels beschreibt die Zusammenarbeit. Governance wirkt nur, wenn **Register, Rollen und Takte** eindeutig zusammenarbeiten. Es geht dabei nicht um zusätzliche Bürokratie, sondern um einen gemeinsamen Arbeitsstandard für die verantwortlichen Rollen, die Projektleitung, das [[PMO]], das Controlling und den Lenkungskreis.
+Der zweite Teil des Kapitels beschreibt die Zusammenarbeit. Governance wirkt nur, wenn **Register, Rollen und Takte** eindeutig zusammenarbeiten. Es geht dabei nicht um zusätzliche Bürokratie, sondern um einen gemeinsamen Arbeitsstandard für die verantwortlichen Rollen, die Bauherren-PL, das [[PMO]], das Controlling und den Lenkungskreis.
 
 Die folgenden fünf Abschnitte beantworten drei Fragen: Wer pflegt welches Register? Wie läuft ein Thema durch den Governance-Fluss? Und wann wird eskaliert oder entschieden? Die Leiste zeigt, wo welche Frage beantwortet wird. Lesen Sie die Abschnitte mit einer Frage im Kopf: Hat in Ihrem Projekt jedes Register eine verantwortliche Rolle, jedes Thema einen Weg und jede Entscheidung ihren Ort?
 

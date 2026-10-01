@@ -480,6 +480,9 @@ export async function lauf(seite, h) {
   // R59: ein Quellen-Eintrag des Impressums reißt nicht – keine Seite beginnt mit einer Zeile nur aus Absatz-IDs
   const idsOben = allesPdf.map((x, i) => ({ seite: i + 1, z: (x.zeilen[0] ?? '').trim() })).filter((x) => /^k\d[\w.-]*(?:\s+k\d[\w.-]*)+$/u.test(x.z));
   if (idsOben.length > 0) h.befund(`Alles drucken: Absatz-IDs ohne ihre Station oben auf der Seite ${JSON.stringify(idsOben.slice(0, 3))}`);
+  // R62: die Vorrang-Zeile einer Abbildung steht mit ihrem Bild auf einer Seite – nie allein oben auf der Folgeseite
+  const vorrangOben = allesPdf.map((x, i) => ({ seite: i + 1, z: x.zeilen.slice(0, 2).join(' ') })).filter((x) => /^\s*Abbildung aus dem Originaltext/u.test(x.z)).map((x) => x.seite);
+  if (vorrangOben.length > 0) h.befund(`Alles drucken: Bildunterschrift ohne ihr Bild oben auf S. ${vorrangOben.join(', ')}`);
   const leerAlles = allesPdf.slice(0, -1).map((x, i) => ({ seite: i + 1, fuellung: Math.round((x.fuellung ?? 0) * 100), vor: vorKapitelAlles(i) }))
     .filter((x) => x.fuellung < 35 && !x.vor);
   if (leerAlles.length > 0) h.befund(`Alles drucken: fast leere Seiten ${JSON.stringify(leerAlles.slice(0, 6))}`);

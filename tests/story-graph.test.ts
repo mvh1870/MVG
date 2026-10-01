@@ -312,3 +312,32 @@ test('Schluss ohne Werbung (R49, O-1, O-34): Wirklichkeit, Enden und Epilog nenn
     if (schluss.includes(id)) assert.deepEqual(st.whitepaper.filter((q) => /^k(?:7\.1|12\.1)-|^k6\.3-p3$/u.test(q)), [], `${id}: Leistungsbeschreibung im Quellen-Reiter`);
   }
 });
+
+test('Statuswirkung (R62): jede Option (außer „status: keine“) ändert den Status in mindestens einer gespielten Spur', () => {
+  // eine Wirkung auf einen Wert, der in jeder Spur schon am Anschlag steht („sehr hoch“, 5 von 5), wäre unsichtbar
+  const m = erg.inhalte as StoryModell;
+  const leer: string[] = [];
+  for (const [welt, weg] of [['A', ['A1', 'A2', 'A3', 'A4', 'A5', 'A6']], ['B', ['B1', 'B2', 'B3', 'B4', 'B5', 'B6']]] as const) {
+    for (const r of ROLLEN) {
+      const ents = weg.map((id) => (m.stationen[id] as any)?.szenen[r]?.entscheidung ?? null);
+      weg.forEach((id, j) => {
+        const e = ents[j];
+        if (e === null) return;
+        // alle Kombinationen der früheren Wahlen dieser Welt, ohne und mit allen Informationen
+        let kombis: Record<string, string>[] = [{}];
+        for (const f of ents.slice(0, j)) if (f !== null) kombis = kombis.flatMap((k) => f.optionen.map((p: any) => ({ ...k, [f.id]: p.id })));
+        const alleInfos = weg.slice(0, j + 1).flatMap((s) => ((m.stationen[s] as any)?.infos ?? []).map((i: any) => `${s}/${i.id}`));
+        for (const o of e.optionen) {
+          if (o.wirkung.length === 0) continue;
+          const wirkt = kombis.some((ohne) => [[], alleInfos].some((info) => {
+            const z1 = { ...anfangszustand(), rolle: r, verlauf: weg.slice(0, j + 1), entscheidungen: ohne, info };
+            const z2 = { ...z1, entscheidungen: { ...ohne, [e.id]: o.id } };
+            return JSON.stringify(berechneStatus(z1 as any, m)[welt]) !== JSON.stringify(berechneStatus(z2 as any, m)[welt]);
+          }));
+          if (!wirkt) leer.push(`${r} ${id} ${o.id}`);
+        }
+      });
+    }
+  }
+  assert.deepEqual(leer, []);
+});

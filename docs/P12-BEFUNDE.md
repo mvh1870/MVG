@@ -248,3 +248,6 @@ Nicht sauber – als Nächstes Runde 61.
 ## Runde 61 (P12.5, zugleich P14.3 und P15.2) – volle Runde auf 20a6255
 - Theorie, Story, Abbildungen, Hilfe, Druck, Architektur, Stil: 6 mittel, 18 leicht – L-175 (vier neue Proben, je mit Gegenprobe rot).
 Nicht sauber – als Nächstes Runde 62.
+## Runde 62 (P12.5, zugleich P14.3 und P15.2) – volle Runde auf 165d702
+- Theorie, Story, Abbildungen, Hilfe, Druck, Architektur, Stil: 4 mittel, 12 leicht – L-176 (vier neue Proben, je mit Gegenprobe rot).
+Nicht sauber – als Nächstes Runde 63.

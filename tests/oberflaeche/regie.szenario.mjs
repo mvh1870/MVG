@@ -241,6 +241,25 @@ export async function lauf(_seite, h) {
   if (/ZURÜCK|WEITER/u.test(textL) || !textL.includes('Governance Kompass')) h.befund(`Leinwand: Strg+P druckt die Bildschirmseite (${strgPL.length} Seiten, Anfang „${textL.slice(0, 80)}“)`);
   await leinwand.evaluate(() => { window.dispatchEvent(new Event('afterprint')); });
   if (await leinwand.locator('.druck-bogen').count() !== 0) h.befund('Leinwand: Strg+P-Bogen bleibt stehen');
+  // R62: B1 Schritt 3 (RACI) auf der Leinwand – die Leinwand ist inert und rollt nicht waagerecht: nichts darf dort breiter
+  // als sein Rahmen sein (XGA 1024×768 ohne Beamer, 1280×720 mit Beamer-Zoom)
+  await h.klick('[data-pruef="regie-bereich-story"]', regie);
+  await h.warte(300);
+  for (const st of ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'wendepunkt', 'rueckspulen', 'B1']) {
+    await regie.locator('[data-pruef="regie-sprung"]').selectOption(st, { timeout: 3000 }).catch(() => undefined);
+    await h.warte(250);
+  }
+  for (let i = 0; i < 2; i++) { await h.klick('[data-pruef="regie-weiter"]', regie); await h.warte(300); }
+  if (await leinwand.locator('.raci-rahmen').filter({ visible: true }).count() === 0) h.befund('Leinwand: RACI-Schritt in B1 nicht erreicht');
+  for (const [breite, hoehe, beamer] of [[1024, 768, false], [1280, 720, true]]) {
+    if (beamer) { await h.klick('[data-pruef="regie-beamer"]', regie); await leinwand.locator('.leinwand.ist-beamer').waitFor({ timeout: 3000 }).catch(() => undefined); }
+    await leinwand.setViewportSize({ width: breite, height: hoehe }); await h.warte(250);
+    const breit = await leinwand.evaluate(() => [...document.querySelectorAll('.leinwand *')].filter((e) => e.getClientRects().length > 0 && /auto|scroll/u.test(getComputedStyle(e).overflowX) && e.scrollWidth > e.clientWidth + 1)
+      .map((e) => `${e.tagName.toLowerCase()}.${e.className} ${e.scrollWidth}>${e.clientWidth}`));
+    if (breit.length > 0) h.befund(`Leinwand B1 RACI @${breite}${beamer ? ' Beamer' : ''}: rollt waagerecht ${JSON.stringify(breit.slice(0, 3))}`);
+  }
+  await h.klick('[data-pruef="regie-beamer"]', regie); await h.warte(300);
+  await leinwand.setViewportSize({ width: 1280, height: 720 });
   await h.bild('regie', regie);
   // B2: Regie mit Beamer an neu laden – Leinwand und Knopf stimmen danach überein (aus)
   await h.klick('[data-pruef="regie-beamer"]', regie);

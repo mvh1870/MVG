@@ -86,6 +86,13 @@ export function pruefeLayout() {
       funde.push(`Text aus der Fläche (+${Math.round(ueber)} px): ${a.tagName.toLowerCase()}.${[...a.classList].slice(0, 2).join('.')} „${(n.textContent ?? '').trim().slice(0, 40)}“`);
     }
   }
+  // R62: das Datum im Protokollkopf („Do, 09.07.2026“) steht in einer Zeile (L-138)
+  for (const k of document.querySelectorAll('.protokoll-kopf small')) {
+    if (k.getClientRects().length === 0) continue;
+    const r = document.createRange();
+    r.selectNodeContents(k);
+    if (new Set([...r.getClientRects()].map((q) => Math.round(q.top))).size > 1) funde.push(`Datum im Protokollkopf umbrochen: „${(k.textContent ?? '').trim()}“`);
+  }
   return funde;
 }
 

@@ -113,7 +113,7 @@ Die Konzeption übersetzt den Befund der Diagnose in ein konkretes [[Bauherren-F
 
 Die Arbeitsfragen sind handfest: Welche Freigaben sind für dieses Projekt verbindlich? Welche Entscheidungen sind wesentlich? Welche Schwellen gelten? Und welcher Datenstand muss bei welcher Entscheidung genannt werden?
 
-Wichtig ist die Rollenverteilung. Bauherr Mentoren konzipiert, strukturiert, moderiert die Entscheidungen, konsolidiert und macht das Modell anwendbar. Die Festlegungen selbst trifft der Bauherr: über Zielprioritäten, Mandate, Schwellen, das Leistungsphasen- und Freigabemodell und die Logik des Regelbetriebs. Ein Beispiel: Ab welchem Betrag eine Änderung nicht mehr von der Projektleitung entschieden werden darf, ist eine Schwelle – und über Schwellen entscheidet der Bauherr.
+Wichtig ist die Rollenverteilung. Bauherr Mentoren konzipiert, strukturiert, moderiert die Entscheidungen, konsolidiert und macht das Modell anwendbar. Die Festlegungen selbst trifft der Bauherr: über Zielprioritäten, Mandate, Schwellen, das Leistungsphasen- und Freigabemodell und die Logik des Regelbetriebs. Ein Beispiel: Ab welchem Betrag eine Änderung nicht mehr von der Bauherren-PL entschieden werden darf, ist eine Schwelle – und über Schwellen entscheidet der Bauherr.
 
 ::: sortieren
 ---

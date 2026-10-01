@@ -17,8 +17,8 @@ abweichungen:
     beleg: k7.1-p2
   - text: 'Das Bild zeigt fünf benannte Kästen; der Text bewertet die 10 MVG-Domänen, die mitsamt ihren Prüffragen im Erhebungsinstrument der MVG-Reifegradanalyse dokumentiert sind, und nennt weder ihre Namen noch Nachweise je Domäne; einzelne Einträge der Nachweislisten (etwa „QA-Plan“, „Defect-Logik“, „Wiederholfehler-Auswertung“) kommen im Text nicht vor.'
     beleg: k7.1-p2
-  - text: 'Im dritten Kasten stehen unter den Symbolen die Beschriftungen „Risiko“, „TRNEL“ und „OLEE“ ohne Entsprechung im Text; in der Nachweisliste des zweiten Kastens steht „Frühwarnungs“, der Text spricht vom Frühwarnungsregister.'
-    beleg: k6.4.2-t1
+  - text: 'Im dritten Kasten stehen unter den Personensymbolen die Beschriftungen „Risiko“ (angeglichen), „TRNEL“ und „OLEE“; Rollen oder Domänen dieses Namens kennt der Text nicht. In der Nachweisliste des zweiten Kastens steht „Frühwarnungs“, der Text spricht vom Frühwarnungsregister.'
+    beleg: k6.4.2-t1 k9.2-p4
   - text: 'Unter den Kästen zeigt das Bild, mit Pfeilen verbunden, Bewertungsmatrix, Roadmap und Verantwortungszuordnungen; der Text nennt als Ergebnisse Bewertungsmatrix, Governance-Lücken, Entscheidungsliste und 30/60/90-Tage-Plan, als typische Ergebnisse zusätzlich die wichtigsten Risiken und Verantwortungslücken.'
     beleg: k7.1-p1 k7.1-t1
   - text: 'Die RACI-Matrix nennt „Projektauftraggeber“, „Manager“ und „Team“; das Standard-Rollenmodell umfasst 13 Arbeitsrollen, zu denen „Manager“ und „Team“ nicht gehören, und die Funktion des Projektauftraggebers ist keine zusätzliche Arbeitsrolle, sondern eine Facette des Bauherrn.'

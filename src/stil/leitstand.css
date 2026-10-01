@@ -1831,9 +1831,10 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
    ============================================================================================= */
 .protokoll { position: relative; margin: 0; padding: 12px 14px 14px 18px; border-radius: var(--radius-s); background: var(--weiss); box-shadow: var(--schatten-karte); transform: rotate(var(--dreh, -.6deg)); }
 .protokoll::before { content: ""; position: absolute; left: 8px; top: 10px; bottom: 10px; width: 2px; background: var(--linie); }
-.protokoll-kopf { display: flex; align-items: baseline; gap: var(--a-2); margin-bottom: 6px; padding-bottom: 6px; border-bottom: 1px dashed var(--linie); }
+.protokoll-kopf { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--a-2); margin-bottom: 6px; padding-bottom: 6px; border-bottom: 1px dashed var(--linie); }
 .protokoll-kopf b { font: 700 var(--gr-text)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte); }
-.protokoll-kopf small { margin-left: auto; font: 500 12px/1.2 var(--schrift-mono); color: var(--tinte-2); }
+/* R62: das Datum („Do, 09.07.2026“) bleibt in jeder Breite eine Zeile und rückt als Ganzes unter den Titel */
+.protokoll-kopf small { flex: none; white-space: nowrap; margin-left: auto; font: 500 12px/1.2 var(--schrift-mono); color: var(--tinte-2); }
 .protokoll-text { font-size: 14.5px; line-height: 1.5; color: var(--tinte); }
 .protokoll-text ul, .protokoll-text ol { padding-left: 1.1em; }
 .akten { display: flex; align-items: flex-end; gap: var(--a-3); margin: 0; }
@@ -2156,8 +2157,6 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
   .lagetafel :is(th, td) { overflow-wrap: anywhere; hyphens: auto; }
   .baustein-karte, .protokoll, .glied { min-width: 0; overflow-wrap: anywhere; }
   /* R47: Datum und Titel des Protokollkopfs brechen nicht mitten im Wort – der Kopf umbricht als Ganzes */
-  .protokoll-kopf { flex-wrap: wrap; }
-  .protokoll-kopf small { flex: none; white-space: nowrap; }
   .protokoll-kopf b { overflow-wrap: break-word; }
   .instrument-wertzeile { white-space: normal; }
   .instrument .wert.wort { flex-wrap: wrap; row-gap: 2px; font-size: 18px; }

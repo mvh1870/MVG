@@ -30,6 +30,7 @@ Risikoannahme: Wer hat entschieden, die Reserve einzusetzen?
 titel: Den Reserveverbrauch offenlegen und an Bauherren-PL und Dr. Olbers schicken
 kurz: Reserveverbrauch offenlegen
 status:
+  entscheidungsfaehigkeit: +1
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz

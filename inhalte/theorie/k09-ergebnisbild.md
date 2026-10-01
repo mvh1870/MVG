@@ -372,7 +372,7 @@ Der Bauherr ist für die Freigaben zum Abschluss der Leistungsphasen LPH 0–9 l
 ---
 titel: Standard für Entscheidungsvorlagen als Nachweislogik
 ---
-Die [[Entscheidungsvorlage]] beschreibt, welche Nachweislogik eine wesentliche Bauherrenentscheidung braucht. Das Ziel: Auch spätere Dritte sollen nachvollziehen können, welche Frage entschieden wurde, auf welchem Datenstand, mit welchen Optionen, Annahmen, Risiken, Empfehlungen und Freigaben. Solche Dritten können zum Beispiel eine neue Projektleitung sein oder eine Prüfung Jahre nach dem Beschluss.
+Die [[Entscheidungsvorlage]] beschreibt, welche Nachweislogik eine wesentliche Bauherrenentscheidung braucht. Das Ziel: Auch spätere Dritte sollen nachvollziehen können, welche Frage entschieden wurde, auf welchem Datenstand, mit welchen Optionen, Annahmen, Risiken, Empfehlungen und Freigaben. Solche Dritten können zum Beispiel eine neue Projektleitung sein oder Prüfende, die Jahre nach dem Beschluss auf die Entscheidung schauen.
 
 Dafür bildet die Vorlage dreizehn Punkte ab – von der eindeutigen Entscheidungs-ID bis zur Nachverfolgung. Dazu gehört auch ein eigener Freigabeprozess mit sechs Stufen, von denen jede signiert wird: offen, in Prüfung, vorbereitet, freigegeben und am Ende beschlossen oder abgelehnt.
 

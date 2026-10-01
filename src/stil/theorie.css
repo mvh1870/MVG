@@ -772,7 +772,11 @@ a.abbildung-beleg { color: var(--navy); }
 @media print {
   /* R43: die Abbildung darf nach dem Bild umbrechen – als ein Block (Bild, Unterschrift, bis zu neun Abweichungen) ließ sie
      fast leere Seiten zurück (k5, k7, k10). Ganz bleiben das Bild, Marke und Titel und jede einzelne Abweichung */
-  .druck-bogen figure.abbildung { break-inside: auto; }
+  /* R62: im Druck ein Block statt Raster – an Rasterkindern hielt Chromium break-after nicht ein, und die Zeile „Wo sie vom Text
+     abweicht, gilt der Text“ stand ohne ihr Bild oben auf der Folgeseite (k3 abb-4, k7 abb-10) */
+  .druck-bogen figure.abbildung { display: block; break-inside: auto; }
+  .druck-bogen figure.abbildung > * + * { margin-top: var(--a-3); }
+  .druck-bogen .abbildung-unterschrift { break-before: avoid; }
   .abbildung-rahmen, .abbildung-unterschrift > span, .abbildung-abweichungen li { break-inside: avoid; }
   .abbildung-rahmen, .abbildung-marke { break-after: avoid; }
   /* R51: Marke und Titel stehen im Druck über dem Bild (theorie.ts, loeseFuerDruckAuf) und gehen mit ihm auf die nächste Seite */

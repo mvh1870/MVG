@@ -10,7 +10,7 @@ rueckbezug-auf: A3
 titel: Die Prognose selbst aus Holger Steins Dateien rekonstruieren
 kurz: Steins Dateien rekonstruieren
 status:
-  terminrisiko: +1
+  offene-risiken: +1
 ---
 ### Konsequenz
 Bis Donnerstagnacht sitzen Sie in „Prognose_Nov_v5“. Die Zahl am Freitag können Sie nur zum Teil erklären.
@@ -30,6 +30,7 @@ Eine Zahl, die niemand vollständig verantworten kann.
 titel: Dr. Olbers eine Bandbreite statt einer Zahl nennen
 kurz: Bandbreite nennen
 status:
+  entscheidungsfaehigkeit: +1
   offene-risiken: +1
 ---
 ### Konsequenz

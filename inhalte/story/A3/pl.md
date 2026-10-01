@@ -10,8 +10,8 @@ titel: Weiterarbeiten und Ursachenanalyse parallel
 kurz: Weiterarbeiten
 symbol: weiterarbeiten
 status:
-  ungeklaerte-entscheidungen: 4
-  kostenunsicherheit: sehr hoch
+  ungeklaerte-entscheidungen: +1
+  kostenunsicherheit: +1
 ---
 ### Konsequenz
 Zwei Wochen später hat die Generalplanung ohne Auftrag eine günstigere Fassade „schon mal durchgerechnet“.
@@ -32,7 +32,7 @@ titel: Entscheidungsvorlage verlangen
 kurz: Entscheidungsvorlage verlangen
 symbol: vorlage
 status:
-  terminrisiko: hoch
+  terminrisiko: +1
 ---
 ### Konsequenz
 Die Projektsteuerung fragt zurück: „Nach welchem Standard – und wer entscheidet dann?“ Drei Wochen später liegt ein 40-seitiger Statusbericht vor, ohne Entscheidungsfrage.
@@ -53,7 +53,7 @@ titel: Eskalation auslösen (an die Geschäftsführung)
 kurz: Eskalation auslösen
 symbol: eskalation
 status:
-  terminrisiko: hoch
+  terminrisiko: +1
 ---
 ### Konsequenz
 Die Geschäftsführung nimmt das Thema in den Lenkungskreis. Dort heißt es: „Bitte erst die Ursachen klären.“ Das Thema ist oben, aber ohne Optionen und Empfehlung.
@@ -74,7 +74,7 @@ titel: Prognose aktualisieren lassen
 kurz: Prognose aktualisieren lassen
 symbol: aktualisieren
 status:
-  kostenunsicherheit: sehr hoch
+  kostenunsicherheit: +1
 ---
 ### Konsequenz
 Die Projektsteuerung aktualisiert die Prognose: jetzt +9,1 %. Das Controlling rechnet parallel weiter. Im Ausschuss liegen zwei Zahlen.

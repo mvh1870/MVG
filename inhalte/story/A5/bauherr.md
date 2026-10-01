@@ -50,6 +50,7 @@ Wer bereitet die Freigabe des Einsatzes der Risikoreserve vor – und für wen?
 titel: Den Bauausschuss im September offen informieren
 kurz: Offenlegen
 status:
+  entscheidungsfaehigkeit: +1
   ungeklaerte-entscheidungen: +1
 ---
 ### Konsequenz

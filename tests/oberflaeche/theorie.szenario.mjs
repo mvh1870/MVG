@@ -6,7 +6,7 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { kaestenUeberRand, kontrastQuellen, mittelbreit, pruefeLayout, rollbarOhneTastatur } from './hilfen.mjs';
+import { kaestenUeberRand, knappeWoerter, kontrastQuellen, mittelbreit, pruefeLayout, rollbarOhneTastatur } from './hilfen.mjs';
 import { pdfSeiten, seitenMitUeberschriftAmEnde, wortbrueche } from './pdf.mjs';
 
 export const name = 'theorie';
@@ -58,6 +58,9 @@ export async function lauf(seite, h) {
       // R47: kein Wort bricht mitten im Wort ohne Trennstrich (Titel, Körbe, Tabellenköpfe, Originaltext) – außer in Text mit hyphens:auto
       const bruch320 = await wortbrueche(seite, '.lernseite', { bildschirm: true });
       if (bruch320.length > 0) h.befund(`k${nr} @320: ${bruch320.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(bruch320.slice(0, 6))}`);
+      // R54 (L-129): Überschriften und Lernkarten-Titel ohne ungeteiltes Wort über 93 % der Zeile
+      const knapp320 = await knappeWoerter(seite, '.lernseite :is(.abschnitt-titel, .lernkarte-titel)');
+      if (knapp320.length > 0) h.befund(`k${nr} @320: ungeteilte Wörter über 93 % der Zeile ${JSON.stringify(knapp320.slice(0, 6))}`);
       await seite.setViewportSize(vp); await h.warte(100);
       const bruch = await wortbrueche(seite, '.lernseite', { bildschirm: true });
       if (bruch.length > 0) h.befund(`k${nr} @${vp.width}: ${bruch.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(bruch.slice(0, 6))}`);

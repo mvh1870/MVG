@@ -140,7 +140,8 @@ export async function lauf(seite, h) {
       // Jedes Kapitel der Vertiefung beginnt auf einer neuen Seite: die Seite davor darf kurz sein (CI 209: S. 17 = Ende von Kap. 8)
       const vorKapitel = (i) => /^(?:ZumNachlesen.*?)?KAPITEL\d/u.test((pdf[i + 1]?.zeilen.slice(0, 2).join('') ?? '').replace(/\s+/gu, ''));
       // R50: die Quellzeile eines Zitats steht nie allein oben auf der Folgeseite (Resümee „Sechs Kernfragen“)
-      const quelleOben = pdf.map((x, i) => ({ seite: i + 1, z: x.zeilen[0] ?? '' })).filter((x) => /^Originaltext, wörtlich · Quelle:/u.test(x.z));
+      // R54 (Architektur): auch nach nur einer Zeile des Zitats (eine Kernfrage und die Quelle, L-164) – nicht nur ganz oben
+      const quelleOben = pdf.map((x, i) => ({ seite: i + 1, zeile: x.zeilen.slice(0, 2).findIndex((z) => /^Originaltext, wörtlich · Quelle:/u.test(z)) })).filter((x) => x.zeile >= 0);
       if (quelleOben.length > 0) h.befund(`Dossier: Quellzeile am Seitenanfang ${JSON.stringify(quelleOben)}`);
       const leer = pdf.slice(0, -1).map((x, i) => ({ seite: i + 1, fuellung: Math.round((x.fuellung ?? 0) * 100), vorKapitel: vorKapitel(i) }))
         .filter((x) => x.fuellung < 35 && !x.vorKapitel);

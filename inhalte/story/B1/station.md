@@ -191,7 +191,7 @@ Kap. 9.2 fragt: [[zitat:k9.2-p3|Wer bereitet vor, wer entscheidet, wer liefert b
 ::: schritt rhythmus
 ---
 titel: Rhythmus und Register
-kurz: Rhythmus und Register
+kurz: Rhythmus
 ---
 Monatlich CTC und Prognose, dazu der Managementbericht: Die Frage der Kämmerei hat eine Adresse, bevor jemand rechnet.
 

@@ -247,9 +247,16 @@ export async function schmal(seite, h, name) {
   // R47: Wortbrüche in den Bauteilen auch bei 320 px; Schrittknöpfe mindestens 24 × 24 px (WCAG 2.5.8, axe läuft hier nicht)
   const bruch = await wortbrueche(seite, BAUTEILE_UNGETEILT, { bildschirm: true });
   if (bruch.length > 0) h.befund(`${name} @320: ${bruch.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(bruch.slice(0, 6))}`);
+  // R54: Überschriften der Lernseiten und Optionstitel nach der 93-%-Regel (L-129)
+  const knapp = await knappeWoerter(seite, '.abschnitt-titel, .lernkarte-titel, .option-text');
+  if (knapp.length > 0) h.befund(`${name} @320: ungeteilte Wörter über 93 % der Zeile ${JSON.stringify(knapp.slice(0, 6))}`);
   // R48 (Architektur): auch an der Grenze des Rasters (unter 380 px, L-133) – bei 360 und 379 px
-  for (const b of [320, 360, 379]) {
-    if (b !== 320) { await seite.setViewportSize({ width: b, height: vp.height }); await h.warte(100); }
+  // R54 (Architektur): das ganze Band bis zur Rastergrenze abtasten (alle 3 px und 379) – feste Stützstellen ließen
+  // eine verschobene Grenze (379 → 369 px) mit 23 px kleinen Knöpfen bei 370–378 px durch
+  const breiten = [...Array.from({ length: 21 }, (_, i) => 320 + i * 3), 379];
+  const mitSchritten = await seite.locator('.fortschritt-schritt').filter({ visible: true }).count() > 0;
+  for (const b of mitSchritten ? breiten : [320]) {
+    if (b !== 320) { await seite.setViewportSize({ width: b, height: vp.height }); await h.warte(60); }
     const klein = await seite.evaluate(() => [...document.querySelectorAll('.fortschritt-schritt')].filter((el) => el.getClientRects().length > 0)
       .map((el) => el.getBoundingClientRect()).filter((r) => r.width < 23.9 || r.height < 23.9).map((r) => `${Math.round(r.width)}×${Math.round(r.height)}`));
     if (klein.length > 0) h.befund(`${name} @${b}: ${klein.length} Schrittknöpfe unter 24 px (${klein.slice(0, 3).join(', ')})`);
@@ -326,7 +333,11 @@ export async function weltB(seite, h, station, pruefe, optionen = {}) {
     const gesehen = new Set();
     for (let i = 0; i < 40 && (await station()) === st; i++) {
       await h.warte(700);
-      if (await sichtbar('[data-pruef="einstieg-text"]') && !gesehen.has('einstieg')) { gesehen.add('einstieg'); await pruefe(`${st}-einstieg`); }
+      if (await sichtbar('[data-pruef="einstieg-text"]') && !gesehen.has('einstieg')) {
+        gesehen.add('einstieg');
+        await pruefe(`${st}-einstieg`);
+        if (h.viewport.breite === 1280) await schritttitelBreit(seite, h, st);
+      }
       if (await sichtbar('[data-pruef="vergleich"]') && !gesehen.has('vergleich')) {
         gesehen.add('vergleich');
         if (h.viewport.breite === 1280) await vergleichFrei(seite, h, `${st}-vergleich`);
@@ -438,6 +449,8 @@ export async function optionstitelSchmal(seite, h, name) {
     }, gesetzt);
     const bruch = await wortbrueche(seite, '.pruef-klon .option-text', { bildschirm: true });
     if (bruch.length > 0) h.befund(`${name} @320: ${bruch.length} Wörter in Optionstiteln ohne Trennstrich gebrochen ${JSON.stringify(bruch.slice(0, 6))}`);
+    const knapp = await knappeWoerter(seite, '.pruef-klon .option-text');
+    if (knapp.length > 0) h.befund(`${name} @320: ungeteilte Wörter in Optionstiteln über 93 % der Zeile ${JSON.stringify(knapp.slice(0, 6))}`);
     await seite.evaluate(() => { for (const k of document.querySelectorAll('.pruef-klon')) k.remove(); });
   }
   await seite.setViewportSize(vp); await h.warte(100);
@@ -515,4 +528,73 @@ export async function vergleichFrei(seite, h, name) {
   }
   await seite.setViewportSize(vp); await h.warte(150);
   await stelle('Home', 0);
+}
+
+/**
+ * R54 (Stil, L-129): ungeteilte Wortstücke über 93 % ihrer Zeilenbreite – lokal (Chromium 141) passen sie noch, unter
+ * Chrome 153 (breiterer Satz) brechen sie ohne Strich oder ragen aus Flex-Überschriften. Gemessen wird jedes Stück
+ * zwischen weichen Trennstellen gegen die Breite vom Beginn des Textknotens bis zum rechten Inhaltsrand des Elements.
+ * @param {import('playwright').Page} seite
+ * @param {string} selektor
+ * @returns {Promise<string[]>}
+ */
+export function knappeWoerter(seite, selektor) {
+  return seite.evaluate((sel) => {
+    /** @type {string[]} */
+    const funde = [];
+    for (const el of document.querySelectorAll(sel)) {
+      if (el.getClientRects().length === 0) continue;
+      const st = getComputedStyle(el);
+      if (st.hyphens === 'auto') continue;
+      const r = el.getBoundingClientRect();
+      const rechts = r.right - parseFloat(st.paddingRight) - parseFloat(st.borderRightWidth);
+      const gang = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+      for (let n = gang.nextNode(); n !== null; n = gang.nextNode()) {
+        if (n.parentElement === null || n.parentElement.closest('.nur-sr') !== null) continue;
+        const text = n.textContent ?? '';
+        const ganz = document.createRange();
+        ganz.selectNodeContents(n);
+        const rects = [...ganz.getClientRects()];
+        if (rects.length === 0) continue;
+        const links = Math.min(...rects.map((q) => q.left));
+        for (const m of text.matchAll(/[^\s­​/-]{8,}/gu)) {
+          const w = document.createRange();
+          w.setStart(n, m.index ?? 0);
+          w.setEnd(n, (m.index ?? 0) + m[0].length);
+          // breitestes Einzelrechteck: ein Stück am Zeilenanfang nach einer Trennstelle trägt sonst das leere Rechteck am Ende der Vorzeile mit
+          const breite = Math.max(0, ...[...w.getClientRects()].map((q) => q.width));
+          const platz = rechts - links;
+          if (platz > 0 && breite / platz > 0.93) funde.push(`„${m[0]}“ ${Math.round((breite / platz) * 1000) / 10} %`);
+        }
+      }
+    }
+    return funde;
+  }, selektor);
+}
+
+/**
+ * R54 (Stil): die Titel der Schrittleiste (sichtbar ab 1440 px, eine Zeile, ohne Auslassung) passen bei gängigen
+ * Laptop- und Beamerbreiten ganz in ihren Platz – „Rhythmus und Register“ war zwischen 1440 und 1900 px gekappt.
+ * @param {import('playwright').Page} seite
+ * @param {import('../../werkzeuge/oberflaeche.mjs').Helfer} h
+ * @param {string} name
+ */
+export async function schritttitelBreit(seite, h, name) {
+  const vp = seite.viewportSize();
+  if (vp === null) return;
+  let gemessen = 0;
+  for (const breite of [1440, 1536, 1680, 1920]) {
+    await seite.setViewportSize({ width: breite, height: vp.height }); await h.warte(150);
+    const funde = await seite.evaluate(() => [...document.querySelectorAll('.fs-titel')].filter((el) => el.getClientRects().length > 0).map((el) => {
+      const r = document.createRange();
+      r.selectNodeContents(el);
+      const text = r.getBoundingClientRect().width;
+      return { t: (el.textContent ?? '').replaceAll('\u00ad', ''), text, platz: el.clientWidth };
+    }));
+    gemessen += funde.length;
+    // der Titel schrumpft auf seinen Text, wo Platz ist – gekappt ist er, wo der Text breiter ist als sein Kasten
+    for (const f of funde) if (f.text > f.platz + 0.5) h.befund(`${name} @${breite}: Schritttitel „${f.t}“ ${Math.round(f.text)} px auf ${f.platz} px`);
+  }
+  if (gemessen === 0) h.befund(`${name}: keine Schritttitel ab 1440 px sichtbar`);
+  await seite.setViewportSize(vp); await h.warte(150);
 }

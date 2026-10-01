@@ -29,7 +29,7 @@ stationen: [A1, B1, A6, B6]
 Es gibt eine Liste der Beteiligten, aber wer wem was vorlegt und wer was freigibt, steht nirgends. Als Holger Stein im November für Wochen ausfällt, ist keine Stellvertretung benannt, und seine Prognose kann niemand vollständig erklären.
 
 ### Welt B
-Eine RACI-Tabelle hält fest, wer vorbereitet, wer entscheidet, wer konsultiert und wer informiert wird; die Mandatsleiter dazu hat der Bauherr festgelegt. Als Holger Stein im November ausfällt, ist eine Stellvertretung im Team der Projektsteuerung benannt.
+Eine RACI-Tabelle hält fest, wer ausführungsverantwortlich und wer letztverantwortlich ist, wer konsultiert und wer informiert wird; die Mandatsleiter dazu hat der Bauherr festgelegt. Als Holger Stein im November ausfällt, ist eine Stellvertretung im Team der Projektsteuerung benannt.
 
 ::: zitat k9.2-p1
 RACI übersetzt komplexe Rollenbilder in eine transparente Verantwortungslogik. […] Entscheidend ist die Kopplung an Mandate, Freigabeschwellen, Stellvertretungen und Eskalationspfade. Nur dann wird RACI von einer Kommunikationsmatrix zu einem Führungsinstrument.

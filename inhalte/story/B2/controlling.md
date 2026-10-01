@@ -1,7 +1,7 @@
 ---
 station: B2
 rolle: controlling
-frage: Was liefern Sie dem Bauherrn zu Mensa und Lieferzeit?
+frage: Was liefern Sie zu Mensa und Lieferzeit zu?
 rueckbezug-auf: A2
 ---
 

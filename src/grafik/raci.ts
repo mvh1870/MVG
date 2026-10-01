@@ -7,17 +7,17 @@
  * ordnet nur an. Jeder Buchstabe steht mit Wort im Tooltip/aria-Label da, nie nur als Farbe.
  */
 
-import { h, attr, ersetze } from '../ui/h.ts';
+import { h, attr, ersetze, mitTrennstellen } from '../ui/h.ts';
 
 export const RACI_BUCHSTABEN = ['R', 'A', 'C', 'I'] as const;
 export type RaciBuchstabe = (typeof RACI_BUCHSTABEN)[number];
 
-/** Bedeutung je Buchstabe in den Worten von k9.2-p3. */
+/** Bedeutung je Buchstabe in den Worten von k4.2-p1 (R54: vorher „bereitet vor“/„entscheidet“ – A ist die letztverantwortliche Rolle). */
 export const RACI_WORT: Readonly<Record<RaciBuchstabe, string>> = {
-  R: 'bereitet vor',
-  A: 'entscheidet',
-  C: 'wird konsultiert',
-  I: 'wird informiert',
+  R: 'ausführungsverantwortlich',
+  A: 'letztverantwortlich',
+  C: 'konsultiert',
+  I: 'informiert',
 };
 
 /** Beschriftung der Matrix (Bedienwörter, keine Fachaussage). */
@@ -60,7 +60,7 @@ export function raci(d0: RaciDaten): HTMLElement {
       h('dl', { class: 'tafel-detail' },
         RACI_BUCHSTABEN.map((b) => {
           const wer = d.rollen.filter((r) => z.zuordnung[r.id] === b).map((r) => (r.id === d.ich ? `${r.titel} (${d.beschriftung.sie})` : r.titel));
-          return wer.length > 0 ? h('div', null, h('dt', null, `${b} · ${RACI_WORT[b]}`), h('dd', null, wer.join(', '))) : null;
+          return wer.length > 0 ? h('div', null, h('dt', null, `${b} · ${mitTrennstellen(RACI_WORT[b])}`), h('dd', null, wer.join(', '))) : null;
         }),
         h('div', null, h('dt', null, d.beschriftung.mandat), h('dd', null, z.mandat))));
   };
@@ -84,6 +84,6 @@ export function raci(d0: RaciDaten): HTMLElement {
   return h('figure', { class: 'raci', 'data-pruef': 'raci' },
     h('div', { class: 'raci-rahmen', tabindex: 0, role: 'region', 'aria-label': d.beschriftung.legende },
       h('table', { class: 'raci-tabelle' }, h('thead', null, kopf), h('tbody', null, zeilen))),
-    h('figcaption', { class: 'raci-legende' }, RACI_BUCHSTABEN.map((b) => h('span', null, h('b', { class: 'raci-marke', 'data-raci': b, 'aria-hidden': 'true' }, b), ` ${RACI_WORT[b]}`))),
+    h('figcaption', { class: 'raci-legende' }, RACI_BUCHSTABEN.map((b) => h('span', null, h('b', { class: 'raci-marke', 'data-raci': b, 'aria-hidden': 'true' }, b), ` ${mitTrennstellen(RACI_WORT[b])}`))),
     detail);
 }

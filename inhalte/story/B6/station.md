@@ -43,7 +43,7 @@ Antwort aus dem Managementbericht Oktober. Wer arbeitet zu?
 von: brenner
 zeit: "07:41"
 ---
-Die Annahmen stehen im Datenstand; die Stellvertretung klären wir heute.
+Die Annahmen stehen im Datenstand; mit der Stellvertretung kläre ich heute, ob sie die Prognose weiterführt.
 :::
 
 ::: datei

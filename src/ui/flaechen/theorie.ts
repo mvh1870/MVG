@@ -10,7 +10,7 @@
 
 import { tafelnAufgeloest, type TitelStufe } from '../../grafik/tafel.ts';
 import type { Block, Ebene, OeffentlicheInhalte, TheorieSeite, WhitepaperKapitel } from '../../inhalte/typen.ts';
-import { h, ersetze, laengstesWort, umbruchNachSchraegstrich } from '../h.ts';
+import { h, ersetze, laengstesWort, mitTrennstellen, umbruchNachSchraegstrich } from '../h.ts';
 import { bildmarke } from '../marke.ts';
 import { sym, symbolAusInhalt, tafel as tafelBlock, raci as raciBlock, merksatz, hinweis } from '../bausteine/bloecke.ts';
 import { inhalt, inhaltInline } from '../bausteine/inhalt.ts';
@@ -200,7 +200,7 @@ function karten(b: Block): HTMLElement {
     const titel = kopfText(k.kopf, 'titel');
     const nr = k.id !== null && /^\d+$/.test(k.id) ? k.id : null;
     return h('div', { class: 'lernkarte', 'data-pruef': 'lernkarte' },
-      titel !== null ? h('span', { class: 'lernkarte-titel' }, symbolAusInhalt(kopfText(k.kopf, 'symbol')), nr !== null ? h('span', { class: 'lernkarte-zahl' }, nr) : null, titel) : null,
+      titel !== null ? h('span', { class: 'lernkarte-titel' }, symbolAusInhalt(kopfText(k.kopf, 'symbol')), nr !== null ? h('span', { class: 'lernkarte-zahl' }, nr) : null, mitTrennstellen(titel)) : null,
       h('div', { class: 'lernkarte-text' }, inhalt(k.felder['text'] ?? '')));
   }));
 }
@@ -543,7 +543,7 @@ function lernseite(o: TheorieOptionen, nr: number): HTMLElement {
         const a = b.id !== null ? abschnittTitel.get(b.id) : undefined;
         const t = kopfText(b.kopf, 'titel') ?? a?.titel ?? '';
         teile.push(h('section', { class: 'lern-abschnitt', 'data-abschnitt': b.id ?? '' },
-          h('h2', { class: 'abschnitt-titel' }, a !== undefined ? h('span', { class: 'abschnitt-nr' }, a.nr) : null, t),
+          h('h2', { class: 'abschnitt-titel' }, a !== undefined ? h('span', { class: 'abschnitt-nr' }, a.nr) : null, mitTrennstellen(t)),
           b.felder['text'] ? h('div', { class: 'lesetext' }, inhalt(b.felder['text'])) : null,
           bloeckeIn(b.kinder, o.inhalte)));
       } else if (b.art === 'original') {

@@ -32,12 +32,12 @@ form: radar
 erlebt:
   1: A1, A2
   2: A1, A2, A5, A6
-  3: A4
+  3: A3, A4
   4: A3, A4, A6
   5: A2, A3, A5
   6: A3, A5
   7: A1, A6
-  8: A4, A6
+  8: A3, A4, A6
 ---
 :::
 :::

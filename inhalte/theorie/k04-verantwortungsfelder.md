@@ -345,7 +345,8 @@ titel: Freigabe
 ---
 Eine [[Freigabe]] ist mehr als eine Unterschrift. Mit ihr legitimiert der Bauherr den nächsten Schritt – und zwar auf einem benannten Datenstand. Freigaben können Planung, Vergabe, Budget, Änderungen, eine Neufestlegung der Projektbasis, die Bindung einer Komponente mit langer Lieferzeit, die Übergabe des Vorhabens oder den Regelbetrieb betreffen; dazu gehört auch die Freigabe zum Abschluss einer Leistungsphase.
 
-Die typische Fehlstelle: Es wird freigegeben, obwohl unklar ist, welcher Datenstand gilt, oder ohne dass jemand geprüft hat, ob das Mandat reicht. 
+Die typische Fehlstelle: Es wird freigegeben, obwohl unklar ist, welcher Datenstand gilt, oder ohne dass jemand geprüft hat, ob das Mandat reicht.
+
 MVG bindet jede Freigabe an die Freigabelogik. Vor der Freigabe müssen fünf Dinge klar sein. Die Vorbereitung – Unterlagenpakete, Prüfvermerke, Planungsstände, Freigabevorschläge, Gremienberichte – kann delegiert werden; die Freigabe selbst nicht. [[bedienung:Klicken Sie die fünf Punkte durch.]]
 
 ::: etappen
@@ -447,7 +448,7 @@ Welt A, Monat 9: Nachträge und Auflagen werden gegen die Risikoreserve gehalten
 ---
 text: "In der Story erlebt: Wendepunkt"
 ---
-Welt A steht still: unter „Tiefer gehen“ die sechs Verantwortungsfelder vom Chaos zur Ordnung, dazu die Muster-Mandatsleiter neben den Beträgen aus Welt A.
+Welt A steht still: die Muster-Mandatsleiter neben den Beträgen aus Welt A, unter „Tiefer gehen“ die sechs Verantwortungsfelder vom Chaos zur Ordnung.
 :::
 
 ::: querverweis B1

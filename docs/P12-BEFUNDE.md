@@ -222,5 +222,8 @@ Nicht sauber – als Nächstes Runde 52.
 - **Teil 2** folgt nach Runde 51 Teil 2.
 ## Runde 53 (P12.5, zugleich P14.3 und P15.2) – Teilrunden (L-154)
 - **Teil 1 auf bdb3407** (Theorie, Story, Abbildungen, Hilfe): 1 mittel, 12 leicht – L-165.
-- **Teil 2** folgt.
+- **Teil 2** entfällt – Runde 54 lief voll.
 Nicht sauber – als Nächstes Runde 54.
+## Runde 54 (P12.5, zugleich P14.3 und P15.2) – volle Runde auf 7d4b426
+- Fachtreue Theorie/Story, Hilfe, Stil, Architektur: 7 mittel, 12 leicht (Abbildungen und Druck ohne Befund) – L-167.
+Nicht sauber – als Nächstes Runde 55.

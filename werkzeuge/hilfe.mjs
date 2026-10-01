@@ -334,6 +334,13 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   [/wer verantwortet \(R\), rechenschaftspflichtig ist \(A\), konsultiert \(C\) oder informiert \(I\) wird/gu, 'wer ausführt (R), wer letztverantwortlich ist (A), wer konsultiert (C) oder informiert (I) wird'],
   [/Wer verantwortet \(R\), wer ist rechenschaftspflichtig \(A\)/gu, 'Wer führt aus (R), wer ist letztverantwortlich (A)'],
   [/^ Accountable - rechenschaftspflichtig/gu, ' Accountable – letztverantwortlich'],
+  // R54: auch die übrigen „Accountable“ im Fließtext (Glossar-Stichwort und RACI-Auflösung bleiben) und das Glossar „Mandat“ (k13-t1)
+  [/genau eine Rolle ist Accountable\./gu, 'genau eine Rolle ist letztverantwortlich (A).'],
+  [/mit genau einem Accountable,/gu, 'mit genau einer letztverantwortlichen Rolle (A),'],
+  [/als Verantwortlich, Accountable oder Freigeber/gu, 'als ausführungsverantwortlich (R), letztverantwortlich (A) oder freigebend'],
+  [/Verantwortlich\/Accountable\/Responsible/gu, 'ausführungs- oder letztverantwortlich (R/A)'],
+  [/Entscheidungs-Accountable/gu, 'letztverantwortliche Rolle (A) der Entscheidung'],
+  [/^Freigabebefugnis einer Rolle mit Schwellenwert\.$/gu, 'Entscheidungs- und Eskalationsbefugnis einer Rolle oder eines Gremiums mit Schwellenwert.'],
   [/Zustand eines freigegebenen Changes/gu, 'Zustand eines beschlossenen Changes'],
   [/^Antrag\/Freigabe$/gu, 'Antrag/Beschluss'],
   [/→ Entscheidung \(Freigabe\)/gu, '→ Entscheidung (nach Mandat)'],
@@ -790,6 +797,8 @@ function glaette(/** @type {string} */ html) {
     .replace(/<b>Kein Lizenzmodell<\/b>, keine/gu, '<b>Keine</b>')
     // R52: Nachweise nimmt die Bauherren-PL entgegen, gepflegt werden sie vom PMO mit den Fachrollen (k6.4.2-t1)
     .replace(/(<td>Nachweise\/(?:<wbr>)?Abnahmen<\/td><td>Externe<\/td><td>)Bauherren-PL(<\/td>)/gu, '$1Bauherren-PL; Pflege durch das PMO$2')
+    // R54: im Fließtext der Freigabeprozess (das Glossar-Stichwort „Approval-Workflow“ bleibt)
+    .replace(/<li><b>Approval-Workflow<\/b> mit 6 signierten Stufen/gu, '<li><b>Freigabeprozess</b> mit 6 signierten Stufen')
     // R50: nicht MVG orientiert sich an Frameworks, sondern die Konventionen der Anwendung (O-17)
     .replace(/MVG ist ein eigenständiger, schlanker Governance-Ansatz\. Er <b>orientiert<\/b> sich konzeptionell an etablierten Methoden/gu, 'Die Konventionen der Anwendung <b>orientieren</b> sich an etablierten Methoden')
     // R49: Beschlüsse werden als Maßnahmen nachverfolgt (k6.4.3-p2), Probleme im Problemregister

@@ -337,7 +337,7 @@ export const W = {
     mimik: { neutral: 'gelassen', besorgt: 'besorgt', erleichtert: 'erleichtert' },
     stimme: 'Stimme',
     werkzeuge: [
-      { id: 'simulator', titel: 'Szenario-Simulator', text: 'Kostenabweichung, Terminabweichung, Risiken und Entscheidungsstatus eingeben – Eskalationsstufe, Informationsbedarf und Freigabeweg ablesen.' },
+      { id: 'simulator', titel: 'Szenario-Simulator', text: 'Kostenwirkung, Terminwirkung, Risiken und Entscheidungsstatus einer Entscheidung eingeben – Eskalationsstufe, Informationsbedarf und Freigabeweg ablesen.' },
       { id: 'welten', titel: 'Vorher/Nachher-Welten', text: 'Informationswege, Rollen, Entscheidungen, Eskalationen, Register, Berichterstattung und Gremien in Welt A und Welt B nebeneinander.' },
       { id: 'sandbox', titel: 'Governance-Fluss-Sandbox', text: 'Ereignisse einwerfen – Frühwarnung, Problem, Änderung – und durch Register, Status und Rollen laufen sehen.' },
       { id: 'zeitmaschine', titel: 'Zeitmaschine', text: 'Die Zeitachse schieben und sehen, wie sich Kostenunsicherheit und Entscheidungsstau in beiden Welten entwickeln.' },

@@ -19,7 +19,7 @@ Lena Hoffmeister plant die größere Mensa ein. Grob 0,6 Mio. € wandern in die
 Eine Regel, wer den Projektumfang ändern darf und ab welcher Summe.
 
 ### Neues Risiko
-Schleichende Änderung des Projektumfangs; die Kosten kommen als Nachtrag.
+Schleichende Änderung des Projektumfangs; die Folgen kommen später als Nachtrag.
 
 ### Governance-Frage
 [[Mandat]]: Wer darf den Projektumfang ändern – auch die Geschäftsführung?

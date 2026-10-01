@@ -2,6 +2,7 @@
 // Angleichung an MVG (Zuständigkeiten, Status, Schwellen, Begriffe) wegfallen, ohne dass ein Test rot wird.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { ERSETZUNGEN, baueHilfe } from '../werkzeuge/hilfe.mjs';
 
 /** Regeln, deren Ergebnis bewusst nicht im Text steht: eine frühere Regel oder ein anderer Schritt fasst dieselbe Stelle */
@@ -14,7 +15,7 @@ const AUSNAHMEN = new Set([
 ]);
 
 /** Zahl der Regeln heute; wer eine Regel bewusst streicht, senkt diese Zahl mit Begründung */
-const MINDESTENS = 269;
+const MINDESTENS = 284;
 
 /** Fachlich tragende Ergebnisse (k9.3-p3, k4.2-p3, k6.4.2-t1, k6.4.4-p1, k6.4.3-p1, O-1) – unabhängig von der Regelliste */
 const FEST = [
@@ -73,7 +74,7 @@ const FEST = [
 ];
 
 /** Wortlaut der Quelle, der nach der Angleichung nirgends mehr stehen darf (R47/R48: Zuständigkeit, Register, Status) */
-const WEG = /Bestätigt CTC-Neurechnungen|Beschlüsse mit klaren Bedingungen fassen|Gremium für strategische Change-Beschlüsse|entgegennehmen und Beschlüsse fassen|Trägt KEINE projektbezogenen|Register-Verantwortliche \(Projektsteuerung\)|Top-Entscheidungen treffen|auf Status beschlossen|Lenkungskreis informieren|Freigaben verwaltet der Admin|Betreiber-Rolle|Arbeit ist delegierbar|pflegt Nachweise & Links|Compliance & Standards-Zuordnung|MVG ist kompatibel|klassischen PMO-Einrichtung|wenn der Berater abzieht|Regelbetrieb\/ ?Übergabe\.|zu Aktionen mit Frist|berfällige Aktionen|dem Gremium zur Beschlussfassung|ohne eine Zeile Code|garantiert prüfungs|verlässt das Haus|ultimative Verantwortung|Anti-Patterns|MVG-Adoption|Druckbar als PDF|jede Karte führt mit ihren Knöpfen|Wie wir arbeiten\. |Berater bleibt als Sparringspartner| · druckbares Freigabe-Dossier|Für Beratungskunden kostenfrei|klappt alle Kapitel automatisch auf|englisch: Evidence|Methodische Grundlage|anschlussfähig an anerkannte Standards|orientiert sich konzeptionell|Approval-Stufen|Datenvertrags \(52\)|Pilotbetrieb, Übergabe, Verbesserungs|Nutzen Sie die Approval-Workflows|an der Freigabe beschlossen|zur Freigabe bringen|Freigabe Fassadenmuster|Neukunden-Einrichtung|Beraterstandard|Zwei Berater haben|3 dringendste Domänen|LPH 0–8|Re-Baseline|(?<!letzt)verantwortliche Rolle \(A\)|Kunden mit eigenem projektnahem|Freigabe-Dossier|Revisionssicherheit|neuer Berater|Kundenprojekt|Freigabe von Changes|Change-Freigaben|[Ii]st Accountable für|Accountable bleibt|als Accountable auf|rechenschaftspflichtig|Rohbauvergabe an Bieter B, (?:Budget )?4,1 Mio/u;
+const WEG = /Bestätigt CTC-Neurechnungen|Beschlüsse mit klaren Bedingungen fassen|Gremium für strategische Change-Beschlüsse|entgegennehmen und Beschlüsse fassen|Trägt KEINE projektbezogenen|Register-Verantwortliche \(Projektsteuerung\)|Top-Entscheidungen treffen|auf Status beschlossen|Lenkungskreis informieren|Freigaben verwaltet der Admin|Betreiber-Rolle|Arbeit ist delegierbar|pflegt Nachweise & Links|Compliance & Standards-Zuordnung|MVG ist kompatibel|klassischen PMO-Einrichtung|wenn der Berater abzieht|Regelbetrieb\/ ?Übergabe\.|zu Aktionen mit Frist|berfällige Aktionen|dem Gremium zur Beschlussfassung|ohne eine Zeile Code|garantiert prüfungs|verlässt das Haus|ultimative Verantwortung|Anti-Patterns|MVG-Adoption|Druckbar als PDF|jede Karte führt mit ihren Knöpfen|Wie wir arbeiten\. |Berater bleibt als Sparringspartner| · druckbares Freigabe-Dossier|Für Beratungskunden kostenfrei|klappt alle Kapitel automatisch auf|englisch: Evidence|Methodische Grundlage|anschlussfähig an anerkannte Standards|orientiert sich konzeptionell|Approval-Stufen|Datenvertrags \(52\)|Pilotbetrieb, Übergabe, Verbesserungs|Nutzen Sie die Approval-Workflows|an der Freigabe beschlossen|zur Freigabe bringen|Freigabe Fassadenmuster|Neukunden-Einrichtung|Beraterstandard|Zwei Berater haben|3 dringendste Domänen|LPH 0–8|Re-Baseline|(?<!letzt)verantwortliche Rolle \(A\)|Kunden mit eigenem projektnahem|Freigabe-Dossier|Revisionssicherheit|neuer Berater|Kundenprojekt|Freigabe von Changes|Change-Freigaben|[Ii]st Accountable für|Accountable bleibt|als Accountable auf|rechenschaftspflichtig|Rohbauvergabe an Bieter B, (?:Budget )?4,1 Mio|Accountable Role|Accountable-Rolle|freigegebenen Changes|Entscheidung \(Freigabe\)|Approval-Workflow mit 6|Kundeninstallation|revisionssicher|ist Accountable|einem Accountable|Freigabebefugnis einer Rolle/u;
 
 test('Hilfe (R48): jede Ersetzung mit festem Ersatz steht im Ergebnis – außer den benannten Ausnahmen', () => {
   const { hilfe, fehler } = baueHilfe({ ziel: null });
@@ -103,6 +104,12 @@ test('Hilfe (R48): jede Ersetzung mit festem Ersatz steht im Ergebnis – außer
   assert.deepEqual(nochDa, []);
   // eine gelöschte Regel nimmt ihre Prüfung mit – daher: Mindestzahl und die fachlich tragenden Ergebnisse fest (R48, Architektur)
   assert.ok(ERSETZUNGEN.length >= MINDESTENS, `nur ${ERSETZUNGEN.length} Ersetzungen (vorher ${MINDESTENS}) – eine Regel entfernt?`);
+  // R54 (Architektur): die Mindestzahl ließ neun Regeln stillschweigend fallen – jetzt ist jedes Muster eingefroren
+  // (tests/hilfe-ersetzungen.muster.json); wer eine Regel bewusst streicht, streicht dort ihr Muster mit Begründung im L-Eintrag
+  const quellen = new Set(ERSETZUNGEN.map(([m]) => m.source));
+  const eingefroren: string[] = JSON.parse(readFileSync(new URL('./hilfe-ersetzungen.muster.json', import.meta.url), 'utf8'));
+  assert.deepEqual(eingefroren.filter((m) => !quellen.has(m)), [], 'Regel entfernt oder geändert');
+  assert.equal(ERSETZUNGEN.length, eingefroren.length, 'neue Regel: ihr Muster in tests/hilfe-ersetzungen.muster.json aufnehmen');
   for (const soll of FEST) assert.ok(text.includes(soll), `fehlt: ${soll}`);
   assert.doesNotMatch(text, WEG);
   // R48 (Architektur): die Kopfzeile jeder Tabelle steht im thead (Druck wiederholt sie, sie bleibt nie allein am Seitenende)

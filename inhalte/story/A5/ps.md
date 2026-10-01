@@ -74,7 +74,7 @@ Im März haben Sie ‚Terminfolge bewerten‘ gewählt; entschieden hat darüber
 :::
 
 ::: rueckbezug C
-Im März haben Sie ‚Mensa einplanen‘ gewählt. Mit dem Nachtrag wird aus den 0,6 Mio. € in der Kostendatei ein Posten gegen die Reserve.
+Im März haben Sie ‚Mensa einplanen‘ gewählt. Mit dem Nachtrag der Generalplanung wird die Mensa, in der Kostendatei mit 0,6 Mio. €, zum Posten gegen die Reserve.
 :::
 
 ::: rueckbezug ohne

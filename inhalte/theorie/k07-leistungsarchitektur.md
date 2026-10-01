@@ -19,7 +19,7 @@ story: [wirklichkeit, epilog]
 Kapitel 7 beschreibt, wie Bauherr Mentoren die Arbeit mit Minimum Viable Governance (MVG) gliedert: als Weg von der Diagnose zur Anwendung. Dieser Weg ist kein Baukasten einzelner Spezialleistungen. Er zeigt, wie eine Bauherrenorganisation ihre nichtdelegierbaren Verantwortungen sichtbar, entscheidungsfähig, nachweisbar und dauerhaft ausübbar macht. Für den Bauherrn ist das Kapitel vor allem deshalb lesenswert, weil es in jedem Schritt festhält, was er selbst beiträgt und entscheidet – und wo die Leistungen von Bauherr Mentoren enden.
 
 ::: kernaussage
-Der Umsetzungspfad führt von der Diagnose über Konzeption, Pilotierung und Befähigung in den Regelbetrieb; für laufende Projekte mit eingeschränkter Steuerbarkeit kommt die MVG-Neuinitialisierung als Sonderformat hinzu. In jedem Schritt bleiben die Entscheidungen beim Bauherrn.
+Der Umsetzungspfad führt von der Diagnose über Konzeption, Pilotierung und Befähigung in den Regelbetrieb; für laufende Projekte mit eingeschränkter Steuerbarkeit kommt die MVG-Neuinitialisierung als Sonderformat hinzu. In jedem Schritt bleiben die Bauherrenentscheidungen beim Bauherrn – die Begleitung ersetzt sie nicht.
 :::
 
 ::: abbildung abb-11
@@ -29,7 +29,7 @@ Der Umsetzungspfad führt von der Diagnose über Konzeption, Pilotierung und Bef
 ---
 titel: Der Umsetzungspfad auf einen Blick
 ---
-Vier Leistungspakete bauen aufeinander auf und münden in den Regelbetrieb. Die MVG-Neuinitialisierung steht als Sonderformat daneben (Abschnitt 7.5). [[bedienung:Klicken Sie sich durch die Stationen.]]
+Vier Leistungspakete bauen aufeinander auf und münden in den Regelbetrieb. Die MVG-Neuinitialisierung steht als Sonderformat daneben (Abschnitt 7.5). [[bedienung:Klicken Sie sich durch die Etappen.]]
 
 ::: etappe 1
 ---

@@ -945,7 +945,7 @@ test('Tafeln Welt B (T9): Phasen-Wahl wandert, Screenreader-Hinweis am hervorgeh
   const kopfzellen = [...m.querySelectorAll('thead th')];
   assert.equal(kopfzellen.findIndex((t) => t.classList.contains('ist-ich')), 1, 'eigene Spalte direkt hinter der Entscheidung');
   m.querySelector<HTMLElement>('[data-pruef="raci-y"]')?.click();
-  assert.match(m.querySelector('[data-pruef="raci-detail"]')?.textContent ?? '', /Zweite.*A · entscheidet.*Bauherren-PL \(Sie\)/su);
+  assert.match(m.querySelector('[data-pruef="raci-detail"]')?.textContent ?? '', /Zweite.*A · letztverantwortlich.*Bauherren-PL \(Sie\)/su);
 });
 
 test('Tafeltitel (P12.5 R12/R13): nach „/“ darf umgebrochen werden (<wbr>), der Text bleibt wortgleich', () => {

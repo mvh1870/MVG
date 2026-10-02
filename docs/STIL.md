@@ -2,7 +2,7 @@
 
 Stand P0.3 (2026-09-26). Verbindlich für alle Flächen (ARCHITEKTUR.md → `src/stil/`). Referenz ist der vom Owner gewählte Prototyp **Variante B „Leitstand“** (`prototyp/variante-b-leitstand.html`, O-22) zusammen mit dem ruhigen Einstieg (O-21, L-4) und dem Startseiten-Entwurf (`prototyp/startseite-entwurf.html`). Farben nach O-11, Schriften nach L-2 und O-12.
 
-**Anschauen statt lesen:** `node werkzeuge/stilreferenz.mjs --bilder` erzeugt `tmp/stilreferenz.html` (jeder Baustein, Startseite, Lernseite, Farben, Paare) und Bildschirmfotos bei 1280 × 720 und 400 px in `tmp/stilreferenz/`.
+**Anschauen statt lesen:** `npm run oberflaeche` legt Bildschirmfotos jeder Fläche bei 1280 × 720, 1024 × 768 und 400 px in `tmp/oberflaeche/` ab (L-197: die alte Stilreferenz ist gelöscht).
 
 ## Dateien und Einbindung
 
@@ -249,7 +249,7 @@ Inline-SVG im 24 × 24-Raster, Strich 1,8, runde Enden und Ecken, `currentColor`
 
 ## Komponentenkatalog
 
-Klassennamen deutsch; in Klammern der Name im Prototyp. Zustände über `ist-…`-Klassen oder ARIA (`aria-current`, `aria-pressed`, `aria-selected`, `aria-expanded`). Markup-Skizzen verkürzt; vollständige Beispiele in `werkzeuge/stilreferenz.mjs`.
+Klassennamen deutsch; in Klammern der Name im Prototyp. Zustände über `ist-…`-Klassen oder ARIA (`aria-current`, `aria-pressed`, `aria-selected`, `aria-expanded`). Markup-Skizzen verkürzt; vollständige Beispiele in `src/ui/`.
 
 ### Knöpfe (`.btn`)
 `.knopf.knopf-navy` (Hauptaktion, Symbol gold; `:disabled` grau) · `.knopf.knopf-gold` (Weiter-Aktion, Symbol rechts) · `.knopf.knopf-still[aria-pressed]` (stille Aktion oder Wahl). Mindesthöhe 44 px, gedrückt `translateY(1px)`. In `tafeln.css`.
@@ -351,7 +351,6 @@ Weiße Karte wie `.lern-grafik`, Bild auf ganzer Spaltenbreite; Klick aufs Bild 
 | `node --test tests/stil-werkzeuge.test.ts` | PNG-Decoder, Logo neu gezeichnet = `quellen/marke`, Schriften nur Variante-B-Schnitte, unicode-range aus @fontsource, deterministisch |
 | `node werkzeuge/logo.mjs [--vergleich]` | Logo-SVGs aus dem Original-PNG (potrace, deterministisch); `--vergleich` → `tmp/logo-vergleich.png` |
 | `node werkzeuge/schriften.mjs [--ziel p]` | `src/generiert/schriften.css` (22 @font-face, ≈ 562 KiB) |
-| `node werkzeuge/stilreferenz.mjs [--bilder]` | `tmp/stilreferenz.html`, Bildschirmfotos 1280/400 px, meldet Konsolenfehler und waagerechten Überlauf |
 
 ## Beamer-Modus (E10, L-71)
 

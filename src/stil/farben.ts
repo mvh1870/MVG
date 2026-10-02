@@ -1,5 +1,5 @@
 // Farb-Hilfen für Prüfungen: Tokens aus tokens.css lesen und WCAG-Kontrast berechnen.
-// Keine DOM-Abhängigkeit; genutzt von tests/stil-kontrast.test.ts und werkzeuge/stilreferenz.mjs.
+// Keine DOM-Abhängigkeit; genutzt von tests/stil-kontrast.test.ts.
 
 /** Liest alle Custom Properties (`--name: wert;`) aus den `:root`-Blöcken ohne Media-Query. */
 export function liesTokens(css: string): Map<string, string> {

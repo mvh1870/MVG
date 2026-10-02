@@ -76,7 +76,7 @@ const ARTEN = {
   zitat: { in: ZITAT_ORTE, kennung: 'mehrere', felder: ['text'], pflichtFelder: ['text'] },
   // Wissenscheck auf einer Lernseite (P11.6): Frage mit Antworten und Erklärung statt Punkten, Beleg als zitat
   wissenscheck: { in: ['@theorie', 'abschnitt'], kennung: 'pflicht', felder: ['frage', 'erklaerung'], pflichtFelder: ['frage', 'erklaerung'] },
-  antwort: { in: ['frage', 'wissenscheck'], kennung: 'pflicht', kopf: { titel: { typ: 'text', pflicht: true }, praefix: { typ: 'text' }, symbol: { typ: 'text' } }, felder: ['text'] },
+  antwort: { in: ['wissenscheck'], kennung: 'pflicht', kopf: { titel: { typ: 'text', pflicht: true }, praefix: { typ: 'text' }, symbol: { typ: 'text' } }, felder: ['text'] },
   // Theorie
   kernaussage: { in: ['@theorie'], kennung: 'keine', felder: ['text'], pflichtFelder: ['text'] },
   abschnitt: { in: ['@theorie'], kennung: 'pflicht', muster: ABSCHNITT_ID, kopf: { titel: { typ: 'text' } }, felder: ['text'] },

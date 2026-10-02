@@ -98,3 +98,8 @@
    In der Vorschau gilt height: 100 % der Bühne (bereits im Zoom-Maßstab gerechnet). */
 .vorschau-buehne.ist-beamer .anzeige { zoom: 1.15; }
 .ist-beamer { --tinte-2: var(--tinte); --tinte-leise: var(--tinte-instrument); --linie: var(--linie-3); --auf-navy-2: var(--auf-navy); }
+
+/* R71: im Protokolldruck bleibt jeder Eintrag auf einer Seite */
+@media print {
+  .regie-druck-inhalt li { break-inside: avoid; }
+}

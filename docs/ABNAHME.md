@@ -12,6 +12,7 @@ Zum Abhaken beim Durchsehen von `dist/mvg.html` (Anleitung: `docs/ANLEITUNGEN.md
 - [ ] Korrekturliste V1.3 (`docs/KORREKTURLISTE-V1.3.md`) gesichtet.
 - [ ] Abbildungen (O-32, L-77): alle 13 in Explore › Grafik-Galerie › Abbildungsverzeichnis geöffnet; jede im Bild angeglichene Beschriftung („Im Bild an die Begriffe des Texts angeglichen …“) und jede aufgeführte Abweichung vom Text gesichtet – die Überdeckungen sind Änderungen an den eigenen Grafiken. Stimmen die Plätze auf den Lernseiten, und sollen die Abbildungen 9, 11 und 12 (Kennungen abb-10, abb-12, abb-13; sie widersprechen einer Regel, die ihre Lernseite lehrt, L-82) nur im Originaltext stehen?
 - [ ] Hilfe (O-31): Aufteilung wie im Companion, Begriffe nach MVG, Korrekturen in `docs/KORREKTURLISTE-COMPANION.md` gesichtet.
+- [ ] Offene mittlere Befunde der Prüfrunden (`docs/ABNAHME-MITTEL.md`, O-35) entschieden: übernehmen, ändern oder so lassen.
 - [ ] **Danach:** Vermerk „fachlich ungeprüft“ entfernen lassen (Owner-Entscheid; der Lauf nimmt ihn nicht selbst weg, O-24).
 
 ## B. Erlebnis

@@ -129,7 +129,7 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 - [x] P12.2 · Lernseiten: Originaltext ans Seitenende, immer zugeklappt (O-30)
 - [x] P12.3 · Lernseiten neu aufbereiten (O-30): je Kapitel Inhalt erklärt statt zitiert, kleine interaktive Grafiken, ausführlicher; Fachtreue-Prüfung je Kapitelgruppe
 - [x] P12.4 · Story aus Bauherrensicht (O-28): Fall-Bibel und Drehbuch auf Bauherrenprobleme umstellen, Stationen A1–A6/B1–B6 neu besetzen, Rollen reagieren auf das Bauherrenproblem; Lesezeit hält O-5
-- [~] P12.5 · Prüf-Agenten P12 (alle Rollen) + Korrekturschleife; Übergabe
+- [~] P12.5 · Prüf-Agenten P12 (alle Rollen) + Korrekturschleife; Übergabe — Abnahme (O-35): zwei Runden ohne schwere Befunde (erfüllt mit R65 und R66); R66 einarbeiten, offene mittlere Befunde in `docs/ABNAHME-MITTEL.md`
 
 ### P13 · Hilfe (O-31)
 - [x] P13.1 · Hilfe des MVG Companion übernehmen (`werkzeuge/hilfe.mjs`, L-69): gleiche Aufteilung (11 Teile, 13 Rollen-Anleitungen), Bedienteile der Anwendung entfernt, Begriffe nach MVG, in `inhalte` und `bau` eingebunden — Abnahme: `--pruefe` ohne Funde, deterministisch
@@ -139,11 +139,11 @@ Grundlagen: `docs/BAUPLAN.md` (freigegeben) · `ENTSCHEIDE.md` · `docs/ARCHITEK
 ### P14 · Abbildungen im Fachtext (O-32)
 - [~] P14.1 (3848a7d, Bilder in Prüfung) · Bildwerkzeug `werkzeuge/abbildungen.mjs` (L-77): 13 Inhaltsabbildungen aus der DOCX (abb-2 … abb-14) als WebP, Beschriftungen mit verbotenen Begriffen (docs/BEGRIFFE.md, O-14) durch die Begriffe des Texts überdeckt, deterministisch; Beschreibung je Abbildung in `inhalte/abbildungen/abb-N.yaml` — Abnahme: zweimal ausgeführt byte-gleich, `inhalte --pruefe` erkennt veraltete Bilder, jede überdeckte Stelle im Bild geprüft
 - [~] P14.2 (in Prüfung) · Abbildungen an ihren Stellen: im zugeklappten Originaltext an der Stelle der DOCX, auf der Lernseite beim passenden Abschnitt (`::: abbildung`), vergrößerbar, mit Bildunterschrift „wo die Abbildung vom Text abweicht, gilt der Text“; Abbildungsverzeichnis in Explore zeigt sie — Abnahme: Einheitentests, Browser-Szenario (drei Größen, axe, Dialog), `dist/mvg.html` < 4 MB
-- [ ] P14.3 · Prüf-Agenten Abbildungen (Fachtreue/Begriffe je Bild, Stil/Barrierefreiheit) + Korrekturen — Abnahme: zwei Runden ohne schwere/mittlere Befunde (L-64)
+- [ ] P14.3 · Prüf-Agenten Abbildungen (Fachtreue/Begriffe je Bild, Stil/Barrierefreiheit) + Korrekturen — Abnahme: zwei Runden ohne schwere Befunde, offene mittlere in `docs/ABNAHME-MITTEL.md` (O-35, ersetzt L-64)
 
 ### P15 · Name „Governance Kompass“ (O-33)
 - [x] P15.1 (Commit „MVG P15.1“, L-146) · Benennung „Governance Kompass“ überall (Dokumenttitel, Startseite, Kopfleisten, Füße, Druckbögen, Regie, Leinwand, Hülle, Anleitungen), Adresse www.GovernanceKompass.de in Fuß, Impressum und Druckkopf; Bildmarke und Bezeichnung „Bauherr Mentoren“ bleiben; Dateinamen (`dist/mvg.html`) bleiben (Bauregel) — Abnahme: Einheitentests und Szenarien prüfen Name, Absender, Adresse und Logo auf jeder Fläche; Kette grün.
-- [ ] P15.2 · Prüf-Agenten P15 (Begriffe, Stil, Druck) in der nächsten Prüfrunde von P12.5 — Abnahme: wie P12.5 (L-64).
+- [ ] P15.2 · Prüf-Agenten P15 (Begriffe, Stil, Druck) in der nächsten Prüfrunde von P12.5 — Abnahme: wie P12.5 (O-35).
 
 ## Erledigt
 (noch nichts)

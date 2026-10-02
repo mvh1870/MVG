@@ -99,15 +99,6 @@
 .bp-baum { stroke: var(--gruen); stroke-width: 1; }
 .bp-mass-linie { stroke: var(--gold); stroke-width: 1.2; }
 
-/* Rasterpapier unter jeder Bauplan-Fläche */
-.bauplan-papier {
-  background-color: var(--grund);
-  background-image:
-    linear-gradient(var(--gitter) 1px, transparent 1px),
-    linear-gradient(90deg, var(--gitter) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
 @media (max-width: 720px) {
   .seiten-kopf { padding: var(--a-2) var(--a-4); flex-wrap: wrap; }
   .kopf-bereiche { margin-left: 0; width: 100%; }

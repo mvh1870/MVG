@@ -9,12 +9,15 @@ Stand P0.3 (2026-09-26). Verbindlich für alle Flächen (ARCHITEKTUR.md → `src
 | Datei | Inhalt |
 |---|---|
 | `src/stil/tokens.css` | alle Farben, Schriften, Größen, Abstände, Radien, Schatten, Bewegung (einzige Stelle mit Farbwerten) |
-| `src/stil/basis.css` | Grundstellung (Browser-Vorgaben zurückgesetzt), Typografie, Silbentrennung, Fokus, Hilfsklassen, Semantik-Attribute (`data-status`, `data-welt`, `data-rolle`), gemeinsame Keyframes, reduzierte Bewegung |
-| `src/stil/leitstand.css` | Story: Rahmen mit schrittweisem Aufbau, alle Leitstand-Bausteine, responsiv |
-| `src/stil/start.css` | Startseite mit zwei Türen |
-| `src/stil/theorie.css` | ruhige Lernseiten; Kapitelverzeichnis ab 1100 px klebend und in sich rollend (aktueller Eintrag beim Öffnen sichtbar, auch auf der Leinwand) |
-| `src/stil/hilfe.css` | Hilfe (O-31, L-69): Lernseiten-Rahmen plus Bausteine der übernommenen Companion-Hilfe, alle Klassen mit Vorsatz `h-`, nur unter `.hilfe` |
-| `src/stil/index.css` | Einstieg für esbuild: `../generiert/schriften.css` → tokens → basis → leitstand → start → theorie → hilfe |
+| `src/stil/basis.css` | Grundstellung (Browser-Vorgaben zurückgesetzt), Typografie, Silbentrennung, Fokus, Hochkontrast, Hilfsklassen, Semantik-Attribut `data-status`, gemeinsame Keyframes, reduzierte Bewegung |
+| `src/stil/tafeln.css` | gemeinsame Bausteine (Knöpfe, Status-Symbol, ID-Marke, Merksatz, Hinweis, Glossar-Begriff mit Tooltip, Tabelle) und die Tafeln aus `src/grafik/tafel.ts` |
+| `src/stil/regie.css` | Regie (Steuerpult mit Vorschau, Notiz, Leitfragen, Protokoll, Einwände), Leinwand, Beamer-Schalter |
+| `src/stil/start.css` | Startseite mit den Türen |
+| `src/stil/theorie.css` | ruhige Lernseiten der Themen; Verzeichnis ab 1100 px klebend und in sich rollend, Glossar, Lernwerkzeuge, Abbildungen, Druckbogen |
+| `src/stil/rahmen.css` | Seitenrahmen (Kopf, Fuß) und Bauplan-Linien |
+| `src/stil/geschichte.css` | Story |
+| `src/stil/explore.css` | Explore-Werkzeuge |
+| `src/stil/index.css` | Einstieg für esbuild: `../generiert/schriften.css` → tokens → basis → tafeln → regie → start → theorie → rahmen → geschichte → explore |
 | `src/stil/paare.json` | erlaubte Text/Grund-Paare (Quelle der Tabelle unten) |
 | `src/stil/symbole.ts` | Ikonen und Status-Symbole als SVG-Zeichenketten (`symbol()`, `statusSymbol()`, `trendPfeil()`) |
 | `src/stil/farben.ts` | `liesTokens()`, `loese()`, `kontrast()` – für Prüfungen |
@@ -240,12 +243,6 @@ Kurven: `--kurve-aus` (Szene, Einblenden) · `--kurve-pop` (Karten mit leichtem 
 
 **Reduzierte Bewegung:** Unter `prefers-reduced-motion: reduce` laufen alle Animationen und Übergänge in 1 ms auf ihren Endzustand, Schleifen enden nach einem Durchgang, „tippt …“ entfällt, der Zeitsprung zeigt nur den Titel. Zustände hängen **nie** an einer Animation (alles ist auch ohne Bewegung ablesbar). Schleifen, die ganz entfallen sollen, bekommen die Klasse `.schleife`.
 
-## Figuren und Requisiten (O-6)
-
-- **Figuren:** flache SVG im 64er-Raster, runder Ausschnitt, Grund in `--rollen-soft`, Kleidung in `--rollen-farbe`, weißer Kragen, **Namensschild** (weißes Rechteck mit Linie in Rollenfarbe) auf der Brust, Haut/Haar aus `--figur-haut-1…6`/`--figur-haar-1…6`, Augen und Mund `--figur-linie`, keine Konturen, keine Verläufe. Klassenvertrag (in `leitstand.css`): `svg.figur[data-rolle][data-figur]` mit `.figur-grund`, `.figur-kleid`, `.figur-kragen`, `.figur-hals`, `.figur-haut`, `.figur-haar`, `.figur-auge`, `.figur-mund`, `.figur-brille`, `.figur-schild`, `.figur-schild-linie`. Besetzung (L-5): `pl` (Sie), `brenner`, `kaya`, `hoffmeister`, `olbers`, `deppe`. Figuren sind dekorativ (`aria-hidden`); Name und Rolle stehen als Text daneben (`.absender`, `.besetzung`). Mimik (P3.1): `data-mimik="neutral|besorgt|erleichtert"` mit Mund-Pfad und `.figur-braue` (Brauen in Haarfarbe); `figur(id, { rolle, groesse, mimik })`.
-- **Requisiten der Welt A:** Haftnotiz (Caveat, leicht gedreht über `--dreh`, Pinnadel), Pinnwand mit Fäden, Excel-Stand mit Dateiname in Mono, Mail mit Navy-Leiste, Chat-Sprechblase. **Requisiten der Welt B:** ID-Marken, Datenstand mit Siegel und Versionen, Entscheidungsvorlage mit Prüfliste, Verknüpfungskette mit Stempel.
-- Trockener Humor steckt im Text der Requisiten, nie in der Gestaltung (keine Comic-Effekte, keine Emojis).
-
 ## Ikonen
 
 Inline-SVG im 24 × 24-Raster, Strich 1,8, runde Enden und Ecken, `currentColor`, keine Füllung (Ausnahme `vorspulen`). Größe über `font-size` (Ikone = 1em). Immer dekorativ (`aria-hidden="true"`); die Bedeutung trägt ein Text daneben oder `aria-label` am Knopf. Satz: `src/stil/symbole.ts` (`symbol('haken')`), Namen deutsch (u. a. `mail`, `chat`, `pfeilRechts`, `haken`, `kreuz`, `warnung`, `dokument`, `eskalieren`, `aktualisieren`, `zurueckspulen`, `wechsel`, `stempel`, `tabelle`, `buch`, `person`, `ebenen`). Status-Symbole im 16er-Raster: `statusSymbol('ok'|'mittel'|'kritisch'|'neutral')`.
@@ -254,112 +251,20 @@ Inline-SVG im 24 × 24-Raster, Strich 1,8, runde Enden und Ecken, `currentColor`
 
 Klassennamen deutsch; in Klammern der Name im Prototyp. Zustände über `ist-…`-Klassen oder ARIA (`aria-current`, `aria-pressed`, `aria-selected`, `aria-expanded`). Markup-Skizzen verkürzt; vollständige Beispiele in `werkzeuge/stilreferenz.mjs`.
 
-### Rahmen und schrittweiser Aufbau (`.app`)
-
-```html
-<body data-flaeche="story">
-<div class="leitstand" data-instrumente data-karte data-seitenleiste="offen">
-  <header class="kopf">…</header>
-  <section class="instrumente">…</section>      <!-- nur mit [data-instrumente] -->
-  <nav class="story-karte">…</nav>                <!-- nur mit [data-karte] -->
-  <main class="lagetafel" data-welt="a">…</main>
-  <div class="fussleiste">…</div>
-  <aside class="seitenleiste">…</aside>           <!-- zu: .seitenleiste-schiene, offen: .seitenleiste-karte -->
-</div>
-```
-
-Ohne `data-instrumente` fällt die Instrumentenzeile weg, ohne `data-karte` bleibt links nur ein 16-px-Rand, `data-seitenleiste="zu"` (Vorgabe) zeigt die Schiene mit drei Knöpfen. Beim Setzen eines Attributs blenden die Teile einmal ein (`von-oben`, `einblenden`, `von-rechts`), die Spalten gleiten (`grid-template-columns`). `.ist-neu` lässt ein einzelnes neues Teil auftauchen. Unter 980 px wird gestapelt (Kopf, Instrumente 3- bzw. 2-spaltig, Schritte als Pillen, Tafel, klebende Fußleiste, Seitenleiste).
-
-### Kopf (`.top`)
-`.kopf > .marke (svg.marke-logo + .marke-titel > h1.kopf-titel + p.kopf-unter) + p.vermerk` – Bildmarke weiß, Titel in Versalien, Vermerk „Fall fiktiv · fachlich ungeprüft“ in Gold-Haarlinie.
-
-### Statusinstrumente (`.hud`, `.inst`)
-```html
-<section class="instrumente" aria-label="Statusinstrumente">
-  <div class="welt-anzeige" data-welt="a"><span class="welt-k">Status</span>
-    <span class="welt-name"><span class="led"></span>Welt A</span><span class="welt-zusatz">ohne MVG</span></div>
-  <div class="instrument blitz" role="group" aria-label="Entscheidungsfähigkeit">
-    <div class="instrument-kopf"><span class="instrument-label">…</span><span class="trend" data-trend="schlecht">trendPfeil()</span></div>
-    <div class="instrument-mitte"><svg class="instrument-grafik zeiger" data-status="kritisch">…</svg>
-      <div class="instrument-wert"><span class="wert">2</span><span class="wert-einheit">von 5</span>
-        <div class="instrument-zusatz">statusSymbol('kritisch')<span>niedrig</span></div></div></div>
-    <span class="nur-sr">Entscheidungsfähigkeit: 2 von 5, niedrig</span></div>
-</section>
-```
-Grafiken: `.zeiger` (`.segment.ist-an`, `.nadel`, `.nabe`), `.balken` (`rect.ist-an`), `.punkte` (`rect.ist-an`, `.ist-neu-bewertet`), `.stufen` (`.stufe-ok|-mittel|-kritisch.ist-an`, `.marke-pfeil`) – Farbe über `data-status` am `<svg>`. Wortwerte: `.wert.wort`. Änderung: `.blitz` einmal setzen, Trendpfeil `data-trend="gut|schlecht"`. Der Wert steht immer auch als Text.
-
-### Story-Karte (`.rail`, `.tl`)
-`.story-karte > .karte-kopf (.karte-kicker, .karte-jetzt[data-welt], .karte-meta) + ol.zeitleiste > li.station[data-a][data-b]` mit `.spur > .spur-a + .spur-b + .knoten…`, dann `.station-nr`, `.station-titel`, `.station-meta`. `data-a`/`data-b`: `start | ende | keine` (Vorgabe: durchgehend). Zustände: `.ist-erledigt`, `.ist-aktuell` + `aria-current="location"`, `.ist-kuenftig`, `.ist-wendepunkt`, `.ist-b-erleuchtet`. Knoten: `.knoten-a`, `.knoten-b` (`.ist-gross`, `.ist-aktuell`, `.ist-erleuchtet`), `.knoten-wende` + `svg.rueckspul-bogen`, `.knoten-rueck`, `.knoten-ende`. Schritte einer Station: `ol.schritte > li > button.station[aria-current="step"]` mit `.knoten-klein[data-welt]` (`.ist-offen`, `.ist-aktuell`, `.knoten-wahl`), `.schritt-nr`, `.wahl-chip`.
-
-### Lagetafel (`.board`)
-```html
-<main class="lagetafel" data-welt="a" aria-labelledby="t">
-  <div class="tafel-kopf"><div class="tafel-text"><p class="tafel-kicker">Schritt 3 · Entscheidung</p><h2 class="tafel-titel" id="t" tabindex="-1">…</h2></div>
-    <div class="uhr" aria-hidden="true"><span class="uhr-tag">Mo · Monat 5</span><span class="uhr-zeit">08:30</span></div>
-    <span class="welt-badge" data-welt="a">Welt A · ohne MVG</span></div>
-  <div class="tafel-inhalt"><div class="szene">…</div></div>
-</main>
-```
-Punktraster im Hintergrund, Unterkante des Kopfs in Weltfarbe (`ab`: Verlauf). `.uhr.ist-gesprungen` nach dem Zeitsprung. Neue Szene = neues `.szene`-Element.
-
-### Fußleiste (`.navbar`)
-`.fussleiste > button.nav-knopf (+ .nav-knopf-text) · .fortschritt > button.fortschritt-schritt[data-welt][aria-current="step"].ist-erledigt (.fs-zeile > .fs-nr + .fs-titel, .fs-takte > i.ist-an) · button.nav-knopf.weiter`.
-
-### Seitenleiste (`.panel`) und Rollen-Linse (`.lens`)
-Eingeklappt: `.seitenleiste-schiene > button.schienen-knopf[aria-expanded]` (Ikonen `person`, `ebenen`, `buch`). Offen: `.seitenleiste-karte > .rollen-box (.rollen-box-zeile: Figur + .rollen-chip[data-rolle] + button.knopf-linse) + .reiter-leiste[role=tablist] > button.reiter[aria-selected] + .seitenleiste-inhalt (.leiste-titel, ul.besetzung > li[.ist-entfernt], dl.fall-daten, details.klapp > summary(.klapp-nr) + .klapp-inhalt, dl.glossar-liste, .leiste-hinweis) + .seitenleiste-fuss (.knopf-neustart)`. Linse: `.linse-grund` + `section.linse[role=dialog][aria-modal]` in der Lagetafel mit `.linse-kopf (.linse-titel, button.knopf-schliessen)`, `.linse-inhalt (.linse-unter, .blickwinkel[data-rolle] > Figur + .blickwinkel-rolle + b + blockquote, .rollen-uebersicht li.ist-ich)`.
-
 ### Knöpfe (`.btn`)
-`.knopf.knopf-navy` (Hauptaktion, Symbol gold; `:disabled` grau) · `.knopf.knopf-gold` (Weiter-Aktion, Symbol rechts) · `.knopf.knopf-still[aria-pressed]` (Wahl zwischen zwei Einschätzungen) · im Rahmen `.nav-knopf`, `.schienen-knopf`, `.knopf-linse`, `.knopf-schliessen`, `.knopf-neustart`. Mindestgröße 36 × 36 px, Hauptknöpfe ≥ 42 px hoch.
+`.knopf.knopf-navy` (Hauptaktion, Symbol gold; `:disabled` grau) · `.knopf.knopf-gold` (Weiter-Aktion, Symbol rechts) · `.knopf.knopf-still[aria-pressed]` (stille Aktion oder Wahl). Mindesthöhe 44 px, gedrückt `translateY(1px)`. In `tafeln.css`.
 
-### Entscheidung A–D (`.brief`, `.opts`, `.opt`)
-```html
-<div class="kurzlage"><span class="t-label">Lage</span><span class="chip ist-warnung">+8 % <small>Projektsteuerung</small></span>…</div>
-<div class="optionen">
-  <button type="button" class="option" aria-pressed="false" style="--verzug:0ms">
-    <kbd class="option-taste">A</kbd><span class="option-text">Weiterarbeiten …</span><span class="option-symbol">symbol('weiterarbeiten')</span></button> …
-</div>
-<p class="options-hinweis">Tasten <kbd>A</kbd>–<kbd>D</kbd> …</p>
-```
-Gewählt: `aria-pressed="true"` (Gold-Fläche, Gold-Ring mit dunkler Außenkante); bestätigt: `.ist-bestaetigt`; ungültige Eingabe: `.optionen.ist-schubsen`.
-
-### Konsequenz-Felder (`.s4`, `.fld`)
-`.wahl-kopf > .wahl (kbd.option-taste + b) + .status-leiste (statusSymbol + Text)`, dann `.felder > section.feld[data-art="konsequenz|fehlt|risiko|governance"] > h3 (Symbol + Titel) + p` – weiß/Koralle, Lila, Rosa, Navy/Gold. Fuß: `.feld-fuss > .kernsatz-kurz + .gedaechtnis + .nochmal > button.nochmal-knopf[aria-pressed]`.
-
-### Karten, Kacheln, Hinweise
-`.karte` (+ `.karte-titel`, `.ist-leise`, `[data-welt="b"]`) · `.kacheln > .kachel (b + span, .ist-block, .ist-jetzt)` · `.ablesung` (4 Kacheln) · `.lehre` · `.urteil` (Navy, Gold-Anzeige) · `.neu-hinweis > .neu-marke` · `ul.ungeklaert > li (.fragezeichen, .ungeklaert-text, .ungeklaert-tag, .ist-geloest, .ist-offen)` · `.spaeter` (Zeitmarke) · `.rueckmeldung[data-status]` · `.welt-a-kasten` · `.kette > .glied (+ [data-welt="b"]) / .glied-link > .stempel[data-rolle]`.
-
-### Chips, Badges, ID-Marken
-`.chip (.ist-warnung)` · `.badge[data-status|data-welt|data-rolle]` (mit `statusSymbol`) · `.welt-badge[data-welt]` · `.id-marke[data-art="ent|ris|frw|aen|mas|nac"]` (Kürzel nach Companion §3, Form `ENT-017`) · `.siegel` · `ol.versionen > li.ist-alt|.ist-aktuell|.ist-naechste`.
-
-### Requisiten
-`.pinnwand (.pinnwand-label, svg.faeden > path)` mit `p.haftnotiz[data-farbe="gelb|rosa|lila|gruen"][style="--dreh:-3deg"]` · `article.mail > .mail-leiste (.mail-neu, .mail-zeit) + .mail-inhalt (.absender, .mail-betreff, .mail-text, .anhang)` · `.chat > Figur + .sprechblase (.blase-kopf, .blase-zeit, .tippt > i×3, .nachricht)` · `.tabellenstand (.tabellenstand-quelle, -zahl, -datei)` + `.ungleich`.
-
-### Schieberegler Welt A ⟷ B (`.abx`, `.scene`)
-```html
-<div class="welt-regler">
-  <button class="regler-ende" data-welt="a"><b>Welt A</b><small>ohne MVG</small></button>
-  <div class="regler-bahn"><div class="regler-schiene"></div>
-    <div class="regler-griff" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="35" aria-valuetext="…" style="--wert:35">symbol('griff')</div></div>
-  <button class="regler-ende" data-welt="b"><b>Welt B</b><small>mit MVG</small></button>
-</div>
-<div class="vergleich" style="--t:.35"><div class="vergleich-a"></div><div class="vergleich-b"></div><span class="vergleich-marke" data-welt="a">…</span>…</div>
-```
-Tastatur am Griff: Der Regler ist ein **Umschalter mit Überblendung** zwischen genau zwei Welten (wie im Prototyp und wie der Hinweis „mit ← → umschalten“ sagt): → ↑ Bild↑ Ende gleiten zu Welt B, ← ↓ Bild↓ Pos1 zu Welt A, Enter/Leertaste wechselt; Zwischenstände nur beim Ziehen mit Maus oder Finger. `aria-valuetext` nennt die Welt. `.ist-hinweis` wackelt zweimal zur Einladung. `--t` (0…1) blendet die Ebenen der Szene.
+### Status-Symbol, ID-Marke, Merksatz, Hinweis
+`svg.status-symbol[data-status] > .form + .zeichen` (Form + Farbe, nie Farbe allein) · `.id-marke[data-art="ent|ris|frw|aen|mas|nac|prb"]` (Kürzel nach Companion §3, Form `ENT-017`) · `.lehre` (Merksatz auf Gold-Fläche, Symbol `lesezeichen`) · `.hinweis-zeile` (Symbol `info` + Text). In `tafeln.css`.
 
 ### Glossar-Begriff und Tooltip (`.term`, `.tip`)
-`button.begriff` im Fließtext (gepunktete Unterstreichung, `cursor: help`), Tooltip `div.tipp[role=tooltip] > b + Text + small` (fest positioniert, erscheint bei Maus **und** Tastaturfokus, bleibt offen, solange der Zeiger auf Begriff oder Tooltip steht, und schließt erst nach kurzer Verzögerung – WCAG 1.4.13; Esc schließt nur den Tooltip und verbraucht die Taste, `aria-describedby` am Begriff).
+`span.begriff[role=button]` im Fließtext (gepunktete Unterstreichung, `cursor: help`), Tooltip `div.tipp[role=tooltip] > b + Text + small` (fest positioniert, erscheint bei Maus **und** Tastaturfokus, bleibt offen, solange der Zeiger auf Begriff oder Tooltip steht). In `tafeln.css`, Verhalten in `src/ui/bausteine/tooltip.ts`.
 
-### Ebenen 1–4 (`.s7`, `.dp`, `.ebv`)
-`.ebenen > nav.ebenen-wahl (.ebenen-linie, .ebenen-lot, button.ebene-knopf[aria-current] > i + span > small) + section.ebene[data-ebene="1…4"]` – 1 weiß (`.kernsatz` mit `em`-Markierung), 2 hell (`.ebene-text`, `.dreier`), 3 heller Stahl (`table.register-tabelle`), 4 Navy (`blockquote.zitat` + `p.quelle` mit Bildmarke). In der Seitenleiste als `details.klapp`.
+### Tafeln
+`figure.tafel[data-form]` aus `src/grafik/tafel.ts`: Radar (`.tafel-radar`, `.radar-…`), Wirkungsketten (`.tafel-ketten`, `.ausloeser`, `.wirkungskette > li.glied-1…3`), Mandatsschwelle (`.tafel-schwelle`, `.schwelle-…`), Pyramide (`.pyramide-stufe`), Verantwortungsfelder (`.felder-schalter`, `.feld-karte[data-zustand="chaos|ordnung"]`), Bausteine (`.baustein-karte`), Phasen und Rhythmus (`.tafel-leiste`, `.leiste-knopf`), Register und Karten (`.register-karte`, `.tafel-karte`), Zeitachse (`.zeitachse-…`), Selbstdiagnose (`.diagnose-…`). Gemeinsam: `.tafel-titel`, `.tafel-auswahl`, `.tafel-detail`, `.tafel-einleitung`. In `tafeln.css`.
 
-### Entscheidungsvorlage und Prüfliste (`.ent`, `.ck`)
-`article.vorlage > header.vorlage-kopf (.id-marke, .t-label, .vorlage-meta) + p.vorlage-frage + .pruef-spalten > ul.pruefliste > li.pruefpunkt[data-stand="erfuellt|fehlt|offen"].ist-an > .pruef-kaestchen (symbol haken|kreuz|ring) + span + .pruef-status`. Stand immer als Symbol **und** Wort („fehlt“, „noch offen“); `.pruefliste.ist-markiert` lässt fehlende Punkte zweimal aufleuchten.
-
-### Vergleichstabelle, LPH-Band
-`.vergleichstabelle > table` mit `th[data-welt]` · `ol.lph-band > li.lph (.ist-erledigt, .ist-aktuell | aria-current="step") > .lph-freigabe? + b (0…9) + span (Name)` – Freigaben nur als **LPH 0–9** (O-14); erteilte Freigabe = grüner Kreis mit Haken plus Text im `title`/`aria-label`. Auf Navy im Container `.auf-navy`.
-
-### Zeitsprung (`.jump`)
-`.zeitsprung.laeuft > .zeitsprung-innen > .zeitsprung-k + .zeitsprung-zahl (small) + .lineal[style="--tage:14"] > .lineal-streifen > .tag(.ist-montag) + .lineal-kopf + .zeitsprung-titel`. Nur als Übergang; `aria-hidden`, Ansage über die Live-Region.
+### Regie und Leinwand (O-9)
+`.regie > .regie-kopf + .regie-raster (.regie-links: .regie-vorschau > .vorschau-rahmen > .vorschau-buehne (1280 × 720) · .regie-rechts: .regie-karte, .regie-notiz, .regie-leitfragen, .regie-einwand, .regie-protokoll-…) + .regie-fuss`; Leinwand `.leinwand` (bzw. `.leinwand-warten`) mit `.anzeige`; `.ist-beamer` vergrößert und verstärkt (siehe „Beamer-Modus“). In `regie.css`.
 
 ### Startseite
 ```html

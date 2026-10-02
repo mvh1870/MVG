@@ -1,0 +1,92 @@
+# Station 1 (P16.7a). Belege intern, nie sichtbar (O-38).
+# Projektblatt vor der Ausschreibung von der befugten Stelle des Auftraggebers festgelegt, mit Grenzen und Schwellen
+# (v24:hb-projektblatt, v24:va-7.1); Kriterien, Gewichte und Bewertungsstufen vor der Bewertung mit dem Auftraggeber abgestimmt (v24:hb-3.1).
+# Die Zielpriorität (Gewichte) legt der Bauherr fest – nicht delegierbar (k3.2-t1, k4.1-p1, k4-t1; v24:hb-1); die Bauherren-PL empfiehlt (R68).
+# Skalen (L-Eintrag): Termin wie die Beispielskala aus v24:hb-3.2 (7/14/21/28 Tage → 5/4/3/2, sonst 1); Kosten auf die Größe des
+# Projekts gestuft (20/50/150/500 TEUR → 5/4/3/2, sonst 1; Einsparung = keine Mehrkosten). Jeder Punkt für Kosten und Termin
+# folgt aus den Folgen der Option (geprüft in tests/geschichte.test.ts).
+id: s1
+nr: 1
+titel: Übernahme mit Projektblatt
+kurztitel: Übernahme
+datum: Januar 2026
+monat: 1
+lph: 4
+kurzfassung: true
+belege: [v24:hb-1, v24:hb-3.1, v24:hb-4, v24:hb-projektblatt, v24:va-7.1, v24:tlb-2, k4.2-p3, k4.6-p2, k3.2-t1, k4.1-p1, k4-t1]
+lage: |
+  Ihr erster Tag. Die Vorgängerin ist weg, die Unterlagen liegen in drei Ablagen, die Kämmerei will bis Freitag den Haushaltsansatz 2027.
+
+  Jonas Brenner von der Projektsteuerung bringt das Projektblatt mit, von der GML vor seiner Beauftragung festgelegt – mit Grenzen, Schwellen und Skalen: Mehrkosten bis 20, 50, 150 oder 500 TEUR und Verzug bis 7, 14, 21 oder 28 Tage geben 5, 4, 3 oder 2 Punkte, mehr gibt 1; Einsparungen zählen wie keine Mehrkosten. Mehrkosten über der Projektbasis gehen zulasten der Risikoreserve; ihren Einsatz gibt der Bauherr frei, auch wenn eine andere Stelle in der Sache entscheidet. Offen sind nur die Gewichte.
+bericht:
+  titel: Monatsbericht · Januar 2026 (Auftakt)
+  zeilen:
+    - Alle Vorgänge ab heute in der Software der GML – eine Ablage statt drei.
+    - Haushaltsansatz 2027 bis Freitag, aus der Kostenprognose 2026-01 · Version 1.
+    - Annahme zur Baupreissteigerung – das Controlling klärt bis 20. Januar.
+  reaktion: Welche Gewichte soll der Bauherr festlegen? Ihre Empfehlung geht an Dr. Olbers.
+vorgaenge:
+  - art: aufgabe
+    kennung: AUF-001
+    titel: Haushaltsansatz 2027 für die Kämmerei
+    text: Mittelabfluss je Jahr und Gesamtkosten aus dem benannten Datenstand.
+    verantwortlich: Projektsteuerung
+    termin: Freitag, 9. Januar
+    stand: in Arbeit
+  - art: fruehwarnung
+    kennung: FRW-001
+    titel: Baupreissteigerung nicht belegt
+    text: Die Annahme zur Baupreissteigerung in der Kostenberechnung kann niemand mehr belegen. Prüffrage an das Controlling.
+    verantwortlich: Aylin Kaya, Controlling
+    termin: 20. Januar
+    stand: offen
+  - art: aufgabe
+    kennung: AUF-002
+    titel: Erster abgestimmter Bestand
+    text: Drei Ablagen sichten, Lücken benennen, offene Punkte als Vorgänge erfassen.
+    verantwortlich: Projektsteuerung
+    termin: 30. Januar
+    stand: in Arbeit
+vorlage:
+  art: gewichte
+  frage: Nach welchen Zielen werden künftige Vorlagen abgewogen?
+  grund: |
+    Welches Ziel Vorrang hat, legt der Bauherr fest – das ist nicht delegierbar; die Projektsteuerung schlägt nur vor. Jede spätere Vorlage sagt, ob andere vertretbare Gewichte die Rangfolge ändern würden.
+  stelle: Bauherr – Dr. Miriam Olbers (der Lenkungskreis berät)
+  termin: 20. Januar 2026 (Lenkungskreis)
+  verzug: Ohne Festlegung begründet jede Vorlage ihre Gewichte selbst – und wird angreifbar.
+  optionen:
+    - id: A
+      titel: Termin vor Kosten
+      text: Die Förderfrist zählt am meisten.
+      gewichte: { kosten: 3, termin: 5, qualitaet: 3, klima: 2 }
+      folgen: {}
+      konsequenz: Der Termin wiegt am schwersten – wer teurer, aber pünktlich ist, hat einen Vorteil.
+    - id: B
+      titel: Kosten vor Termin
+      text: Die Zahl des Ratsbeschlusses zählt am meisten.
+      gewichte: { kosten: 5, termin: 3, qualitaet: 3, klima: 2 }
+      folgen: {}
+      konsequenz: Die Kosten wiegen am schwersten. Optionen, die Geld sparen und Zeit kosten, rücken nach vorn – die Vorlagen zeigen, wann das die Förderfrist gefährdet.
+    - id: C
+      titel: Ausgewogen
+      text: Kosten und Termin sind gleich wichtig.
+      gewichte: { kosten: 4, termin: 4, qualitaet: 3, klima: 3 }
+      folgen: {}
+      konsequenz: Kosten und Termin wiegen gleich. Manche Vorlagen gehen dann anders aus als mit „Termin vor Kosten“ – umso wichtiger, dass die Projektsteuerung sagt, wann eine kleine Verschiebung die Rangfolge kippt.
+  empfehlung:
+    option: A
+    text: Die Projektsteuerung schlägt „Termin vor Kosten“ vor – der Förderbescheid verlangt die Inbetriebnahme zum Schuljahr 2028/29. Nachteil – teurere Wege werden leichter akzeptiert; die Kosten bleiben mit Gewicht 3 im Spiel. Die Empfehlung an den Bauherrn geben Sie; festlegen muss er.
+folge: |
+  Der Bauherr legt die Gewichte fest, die Projektsteuerung dokumentiert den Beschluss; sie gelten für alle weiteren Vorlagen.
+so-laeuft-es-oft: |
+  Die Ziele stehen im Projekthandbuch, ohne Rangfolge. Erst wenn zwei kollidieren, wird verhandelt – und oft setzt sich die Sicht durch, die gerade am Tisch sitzt.
+einwand:
+  frage: „Gewichte vorab festlegen? Das hängt doch vom Einzelfall ab.“
+  antwort: Deshalb sagt jede Vorlage offen, ob andere vertretbare Gewichte die Rangfolge ändern würden. Feste Gewichte verhindern nur, dass man sie nachträglich der gewünschten Option anpasst.
+theorie: entscheidungsvorlage
+regie:
+  notiz: Hier wird der Rahmen gesetzt. Das Projektblatt mit Grenzen, Schwellen und Skalen hat die GML vor der Beauftragung der Projektsteuerung festgelegt; die Projektsteuerung bringt nur die Gewichte zur Abstimmung. Festlegen muss sie der Bauherr (Dr. Olbers) – die Zielpriorität ist nicht delegierbar; die Bauherren-PL empfiehlt. Die drei Vorschläge ruhig zeigen – die festgelegten Gewichte gelten ab jetzt für jede Vorlage; frei verschieben lassen sie sich in der Story selbst. Betonen, dass der Bauherr keine Liste pflegt.
+  leitfragen:
+    - Wie würden Sie die Ziele Ihres aktuellen Projekts gewichten?
+    - Wer entscheidet bei Ihnen heute, wenn Kosten und Termin kollidieren?

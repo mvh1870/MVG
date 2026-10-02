@@ -1,0 +1,99 @@
+id: s2
+nr: 2
+titel: Freigabe zum Abschluss von LPH 4
+kurztitel: Freigabe LPH 4
+datum: Februar 2026
+monat: 2
+lph: 4
+kurzfassung: false
+belege: [v24:hb-1.2, v24:hb-1.3, v24:hb-3.1, v24:hb-5, k9.3-p1, k9.3-p3, k4.5-p1]
+lage: |
+  Ende Januar ist der Bauantrag eingereicht. Die Genehmigungsplanung ist abgeschlossen, die Ausführungsplanung soll im März beginnen. Jede Leistungsphase endet mit einer Freigabe des Bauherrn – diese hier ist die erste, die Sie mit Ihrer Empfehlung begleiten.
+
+  Das Controlling hat die Prüffrage zur Baupreissteigerung beantwortet: Die Annahme in der Kostenberechnung ist zu niedrig. Die Projektsteuerung hat aus der Frühwarnung ein bewertetes Risiko gemacht.
+bericht:
+  titel: Monatsbericht · Februar 2026
+  zeilen:
+    - Bauantrag eingereicht am 29. Januar; Genehmigungsplanung vollständig.
+    - Frühwarnung FRW-001 geklärt – weitergeführt als Risiko RIS-005 Baupreissteigerung.
+    - Erster abgestimmter Bestand liegt vor – 23 Vorgänge, alle mit Verantwortlichem und Termin.
+    - Freigabevorlage LPH 4 liegt vor; Entscheidung bis 24. Februar.
+  reaktion: Wie soll der Bauherr über die Freigabe zum Abschluss von LPH 4 entscheiden? Ihre Empfehlung geht an Dr. Olbers.
+vorgaenge:
+  - art: fruehwarnung
+    kennung: FRW-001
+    titel: Baupreissteigerung nicht belegt
+    text: Geklärt – die Annahme liegt unter der aktuellen Marktentwicklung. Weitergeführt als Risiko; die Herkunft bleibt verknüpft.
+    verantwortlich: Aylin Kaya, Controlling
+    termin: 20. Januar
+    stand: geklärt → RIS-005
+  - art: risiko
+    kennung: RIS-005
+    titel: Baupreissteigerung Holzbau
+    text: Ursache – Marktpreise für Holzbauelemente steigen schneller als angenommen. Mögliche Folge – höhere Kosten bei der Vergabe in LPH 7. Zeitraum bis zur Vergabe.
+    verantwortlich: Projektsteuerung mit Controlling
+    termin: Wiedervorlage monatlich
+    stand: aktiv · gezielt bearbeiten
+    matrix: { w: 3, a: 3 }
+  - art: aufgabe
+    kennung: AUF-002
+    titel: Erster abgestimmter Bestand
+    text: Erledigt – 23 Vorgänge aus drei Ablagen, Lücken benannt.
+    verantwortlich: Projektsteuerung
+    termin: 30. Januar
+    stand: erledigt
+vorlage:
+  art: optionen
+  frage: Wird LPH 4 abgeschlossen und LPH 5 freigegeben?
+  grund: |
+    Die Freigabe legitimiert den nächsten Schritt. Sie erteilt der Bauherr selbst – nicht die Projektsteuerung und nicht der Lenkungskreis. Die Projektsteuerung hat geprüft, ob die Grundlagen vorliegen: Genehmigungsunterlagen eingereicht, Kostenprognose 2026-01 · Version 1, Terminplan. Offen ist das Risiko Baupreissteigerung.
+  stelle: Bauherr – Dr. Miriam Olbers (der Lenkungskreis berät)
+  termin: 24. Februar 2026
+  verzug: Ohne Freigabe darf die Generalplanung nicht mit der Ausführungsplanung beginnen; jede Woche Verzug kostet Puffer.
+  muss: Genehmigungsunterlagen vollständig eingereicht – erfüllt.
+  optionen:
+    - id: A
+      titel: Freigabe
+      text: LPH 5 beginnt sofort. Das Risiko Baupreissteigerung läuft im Register weiter.
+      punkte:
+        kosten: [5, "keine Mehrkosten"]
+        termin: [5, "kein Verzug"]
+        qualitaet: [3, "Grundlagen vollständig, Preisrisiko unbelegt"]
+        klima: [3, "unverändert"]
+      folgen: {}
+      konsequenz: LPH 5 beginnt. Das Risiko Baupreissteigerung bleibt offen, ohne dass jemand bis zur Vergabe nachweisen muss, wie groß es ist.
+    - id: B
+      titel: Freigabe mit Auflagen
+      text: LPH 5 beginnt sofort. Auflage – bis Ende März eine Marktabfrage für die Holzbauelemente; ihr Ergebnis geht in die nächste Kostenprognose ein.
+      punkte:
+        kosten: [5, "keine Mehrkosten"]
+        termin: [5, "kein Verzug"]
+        qualitaet: [4, "Preisrisiko bis Ende März belegt"]
+        klima: [3, "unverändert"]
+      folgen: {}
+      konsequenz: LPH 5 beginnt. Die Auflage wird zur Maßnahme mit Termin Ende März – die Projektsteuerung fordert die Marktabfrage bei der Generalplanung an, verfolgt sie und legt das Ergebnis vor.
+    - id: C
+      titel: Keine Freigabe
+      text: Erst die Marktabfrage, dann die Freigabe – rund drei Wochen.
+      punkte:
+        kosten: [5, "keine Mehrkosten"]
+        termin: [3, "rund 21 Tage Verzug"]
+        qualitaet: [4, "Preisrisiko vor dem Start belegt"]
+        klima: [3, "unverändert"]
+      folgen: { puffer: -21, offen: 1 }
+      konsequenz: Die Ausführungsplanung wartet. Die Projektsteuerung fordert die Marktabfrage bei der Generalplanung an und legt die Freigabe in drei Wochen erneut vor.
+  empfehlung:
+    option: B
+    text: Die Projektsteuerung empfiehlt die Freigabe mit Auflagen. Sie hält den Termin und macht das Preisrisiko bis Ende März belastbar; sie liegt mit jeder der drei vorgeschlagenen Gewichtungen vorn. Nachteil – bis dahin plant die Generalplanung mit einer Zahl, die noch steigen kann.
+folge: |
+  Die Projektsteuerung dokumentiert den Beschluss getrennt von der Vorlage – mit Datum, Wortlaut und Bedingungen. Eine Auflage wird zur Maßnahme mit Verantwortlichem und Termin. Die Freigabe selbst ist keine Bestellung und keine Vertragsänderung.
+so-laeuft-es-oft: |
+  Der Abschluss einer Leistungsphase passiert stillschweigend: Die Planung arbeitet einfach weiter, irgendwann liegt eine Rechnung für die nächste Phase vor. Wann und worauf der Bauherr zugestimmt hat, weiß später niemand mehr genau.
+einwand:
+  frage: „Eine Freigabe für jede Leistungsphase? Das bremst nur.“
+  antwort: Die Freigabe braucht eine Vorlage, keine Sitzungsreihe. Sie dauert einen Termin – und sie verhindert, dass ein offenes Risiko unbemerkt in die nächste Phase wandert.
+theorie: ergebnisbild
+regie:
+  notiz: Den Unterschied zwischen Vorlage und Beschluss betonen – der Beschluss wird getrennt dokumentiert.
+  leitfragen:
+    - Wann hat Ihr Bauherr zuletzt ausdrücklich eine Leistungsphase freigegeben?

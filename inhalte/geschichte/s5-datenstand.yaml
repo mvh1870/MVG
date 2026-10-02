@@ -1,0 +1,124 @@
+id: s5
+nr: 5
+titel: Zwei Zahlen, ein Datenstand
+kurztitel: Datenstand
+datum: Mai 2026
+monat: 5
+lph: 5
+kurzfassung: true
+# Rechnung (inhalte/fall.md, „Kosten und Reserve“): Version 3 liegt ohne die Beschlüsse aus s3/s4 1,73 Mio. € über Version 1
+# (allgemeine Baupreissteigerung 1,13 + Marktpreise Holzbauelemente 0,6). Die Beschlüsse aus s3/s4 stehen schon über deren Folgen im
+# Status, deshalb bringt die Lage nur die 1,73. Empfohlener Weg: 58,4 + 0,15 + 0,12 + 1,73 = 60,4 (+2,0 = 3,4 %).
+# Auf jedem Weg liegt die Prognose zwischen 60,13 und 60,98 – über der Basis, unter Basis plus Reserve (61,3);
+# mit dem vollen Nachtrag (1,2) läge sie auf jedem Weg darüber. Beträge in der Prognose kenntlich, nicht doppelt (v24:hb-2).
+# Neufestlegung der Projektbasis: der Bauherr im Lenkungskreis (k13-t1, wie das Glossar); der Stadtrat bestätigt (Fall: die Stadt bewilligt die Mittel).
+# Option C (R68): so gefasst, wie der Weg verläuft – die Projektsteuerung bereitet die Neufestlegung vor, der Bauherr entscheidet, wann,
+# und stellt sie bis nach den Hauptvergaben zurück (Berichte s6, s7, s8). Bis dahin trägt die vorgesehene Reserve, kein Auftrag wartet:
+# kein Verzug, Termin 5. B und C sind damit in jeder Gewichtung gleichauf; die Empfehlung begründet B (v24:hb-3.1, Urteil statt Punktzahl).
+belege: [v24:hb-2, v24:hb-3, v24:hb-4, v24:tlb-3, v24:tlb-2, k4.6-p2, k3.2-t1]
+lage: |
+  Montag, 11. Mai. Zwei Prognosen liegen auf dem Tisch, 1,2 Mio. € auseinander: die Kostenberechnung von Holger Stein, Kostenplaner der Generalplanung, und die Rechnung von Aylin Kaya vom Controlling.
+
+  Die Projektsteuerung hat beide angefordert und klärt vorab: Die Differenz ist ein angekündigter Nachtrag der Haustechnikplanung – nicht eingetreten, also ein Risiko mit Bandbreite.
+lage-folgen: { kosten: 1.73 }
+bericht:
+  titel: Monatsbericht · Mai 2026
+  zeilen:
+    - „Kostenprognose 2026-05 · Version 3“ – ohne die Beschlüsse zu Holzbau und Mensa 1,73 Mio. € über Version 1 – Baupreise 1,13 Mio. €, Marktpreise Holzbau 0,6 Mio. € (in RIS-005 vermerkt, nicht doppelt).
+    - Über der Projektbasis, unter Basis plus Reserve (61,3 Mio. €).
+    - text: MAS-007 vorgezogene Vergabe Holzbau läuft.
+      wenn: s3=A
+    - text: RIS-009 Lieferzeit Holzbau weiter vorrangig; die Entscheidung bleibt offen bis zur Vergabe.
+      wenn: s3=B
+    - text: AEN-013 Sporthalle in Stahlbeton eingeplant.
+      wenn: s3=C
+    - text: Die 0,6 Mio. € schätzt das Controlling aus RIS-005, ohne Marktabfrage.
+      wenn: s2=A
+    - text: Die Marktabfrage aus der Auflage zur Freigabe LPH 4 ist in Version 3 eingerechnet.
+      wenn: lang & s2=B
+    - text: Die Marktabfrage für die Holzbauelemente vom 27. März – Auflage aus der Freigabe LPH 4 – ist in Version 3 eingerechnet.
+      wenn: kurz & s2=B
+    - text: Die Marktabfrage vom März, vor der Freigabe LPH 4, ist in Version 3 eingerechnet.
+      wenn: s2=C
+    - text: Im April entschieden – Mensa für 450 Essen (AEN-012, +0,6 Mio. €, rund 14 Tage).
+      wenn: kurz & s4=A
+    - text: Im April entschieden – Mensa erweiterbar vorbereitet (AEN-012, +0,12 Mio. €).
+      wenn: kurz & s4=B
+    - text: Im April entschieden – Mensa bleibt wie geplant (AEN-012 mit Begründung abgelehnt).
+      wenn: kurz & s4=C
+    - text: Terminpuffer überschritten – die Inbetriebnahme zum Schuljahr 2028/29 ist nach heutigem Stand gefährdet, damit auch die Förderfrist.
+      wenn: puffer<0
+  reaktion: Wie soll der Bauherr mit der Prognose umgehen? Ihre Empfehlung geht an Dr. Olbers.
+vorgaenge:
+  - art: risiko
+    kennung: RIS-014
+    titel: Nachtrag der Haustechnikplanung
+    text: Ursache – angekündigte Mehrleistungen der Haustechnikplanung. Mögliche Folge – bis 1,2 Mio. € Mehrkosten; Bandbreite statt einer Zahl.
+    verantwortlich: Projektsteuerung mit Controlling
+    termin: Wiedervorlage wöchentlich
+    stand: aktiv · gezielt bearbeiten
+    matrix: { w: 3, a: 3 }
+  - art: risiko
+    kennung: RIS-005
+    titel: Baupreissteigerung Holzbau
+    text: 0,6 Mio. € Marktpreise stecken in Version 3 – hier vermerkt, nicht doppelt gezählt. Offen – ob die Angebote darüber liegen.
+    verantwortlich: Projektsteuerung mit Controlling
+    termin: Wiedervorlage monatlich
+    stand: aktiv · gezielt bearbeiten
+    matrix: { w: 3, a: 3 }
+vorlage:
+  art: optionen
+  frage: Wie gehen wir mit der gestiegenen Prognose um?
+  grund: |
+    Die Reserve deckt die Abweichung; tritt der Nachtrag voll ein, reicht sie nicht. Eine neue Projektbasis beschließt der Bauherr im Lenkungskreis, der Stadtrat bestätigt sie.
+  stelle: Bauherr – Dr. Miriam Olbers (der Lenkungskreis berät)
+  termin: 19. Mai 2026 (Lenkungskreis)
+  verzug: Sonst fehlt dem Bauausschuss am 21. Mai die klare Frage.
+  muss: Alle Optionen halten Förderung und Genehmigung ein.
+  optionen:
+    - id: A
+      titel: Einsparpaket
+      text: Ausstattung und Außenanlagen werden reduziert, rund 1,5 Mio. €.
+      punkte:
+        kosten: [5, "−1,5 Mio. €"]
+        termin: [5, "rund 7 Tage Umplanung"]
+        qualitaet: [2, "weniger Ausstattung"]
+        klima: [4, "unverändert"]
+      folgen: { kosten: -1.5, puffer: -7 }
+      konsequenz: Die Generalplanung arbeitet das Paket aus. Die Projektsteuerung legt es als Änderung an und verfolgt, ob die Einsparung tatsächlich eintritt.
+    - id: B
+      titel: Reserve vorsehen und offen berichten
+      text: Die Reserve wird für die bekannten Mehrkosten vorgesehen, nicht freigegeben; Stadtrat und Bauausschuss erhalten die Lage auf einer Seite.
+      punkte:
+        kosten: [5, "keine Mehrkosten"]
+        termin: [5, "kein Verzug"]
+        qualitaet: [4, "unverändert"]
+        klima: [4, "unverändert"]
+      folgen: {}
+      konsequenz: Der Bauausschuss nimmt den Bericht zur Kenntnis. Freigegeben wird die Reserve erst, wenn Mehrkosten eintreten – vom Bauherrn selbst.
+    - id: C
+      titel: Neufestlegung der Projektbasis vorbereiten
+      text: Die Projektsteuerung bereitet eine neue Projektbasis mit den bekannten Mehrkosten vor; wann sie beschlossen wird, entscheidet der Bauherr. Bis dahin trägt die vorgesehene Reserve.
+      punkte:
+        kosten: [5, "keine Mehrkosten"]
+        termin: [5, "kein Verzug"]
+        qualitaet: [4, "unverändert"]
+        klima: [4, "unverändert"]
+      folgen: { offen: 1 }
+      konsequenz: Die Projektsteuerung legt die Vorlage zur Neufestlegung im Lenkungskreis vor. Der Bauherr stellt den Beschluss zurück, bis die Hauptvergaben abgeschlossen sind. Bis dahin gilt die bisherige Basis, Mehrkosten laufen über die vorgesehene Reserve – und die Entscheidung bleibt offen.
+  empfehlung:
+    option: B
+    text: Die Projektsteuerung empfiehlt, die Reserve vorzusehen und offen zu berichten. Achtung – B und C liegen mit jeder Gewichtung gleichauf. Für B spricht, dass eine neue Basis vor den Hauptvergaben nur auf Schätzungen stünde; reicht die Reserve später nicht, legt die Projektsteuerung die Neufestlegung dann vor. Nachteil – tritt der Nachtrag voll ein, reicht die Reserve nicht ganz.
+folge: |
+  Ein Datenstand für alle: Bericht, Software und Vorlage nennen dieselbe Zahl. Der Bericht passt auf eine Seite, weil er auf die Einträge verweist.
+so-laeuft-es-oft: |
+  Zwei Zahlen gehen in den Lenkungskreis, eine Stunde wird gestritten, welche stimmt. Der Bauausschuss bekommt 40 Seiten Ampeln – und vertagt.
+einwand:
+  frage: „Ein Bericht von einer Seite? Unsere Gremien wollen Details.“
+  antwort: Die Details stehen in der Software, jeder Eintrag mit Verweis. Die eine Seite zeigt, was sich geändert hat und welche Reaktion gebraucht wird.
+theorie: takt
+regie:
+  notiz: Der Monatstermin ist der Kern – 60 Minuten, eine Seite. Den Unterschied zwischen Prognose und Risiko (Bandbreite) erklären; die 0,6 Mio. € Marktpreise stehen in der Prognose und sind im Risiko vermerkt, damit nichts doppelt zählt. Auf dem empfohlenen Weg zeigt der Status 60,4 Mio. € (+2,0 Mio. €, 3,4 %). B und C sind punktgleich – hier entscheidet das Urteil, nicht die Zahl.
+  leitfragen:
+    - Wie lang ist Ihr letzter Monatsbericht?
+    - Wer klärt bei Ihnen widersprüchliche Zahlen, bevor sie ins Gremium gehen?

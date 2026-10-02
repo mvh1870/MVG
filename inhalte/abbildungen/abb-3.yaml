@@ -1,0 +1,27 @@
+id: abb-3
+quelle: bilder/image3.png
+titel: Vom Entscheidungsdruck über Grauzonen zur diffusen Verantwortung
+alt: >-
+  Kaskade von oben nach unten. Von drei Karten „Volatile Märkte – Kippende Annahmen“, „ESG & LCC – Späte
+  Zielkonflikte“ und „Schlüsselrollen – Wissensverlust“ führen Pfeile ins Band „Entscheidungsdruck“, von dort ein
+  Pfeil zum Feld „Fehlende Architektur“ mit den Symbolen Entscheidung, Freigabe, Dokumentation und Gremium.
+  Gestrichelte Pfeile führen zu fünf Karten: „Rollen ohne Mandat“, „Risiken nicht entscheidungsreif“, „Changes ohne
+  Schwellen“, „Parallele Datenstände“, „Gremien ohne Entscheidungsreife“. Alle außer der vierten Karte münden ins
+  Band „Diffuse Verantwortung und Steuerbarkeit“.
+angeglichen:
+  - { x: 1165, y: 885, b: 236, h: 56, text: "Gremien ohne\nEntscheidungsreife", beleg: k2.5-t1, schrift: plex, gewicht: 700, groesse: 23, ausrichtung: mitte }
+abweichungen:
+  - text: Die dritte Karte heißt „Changes ohne Schwellen“; der Text spricht von Änderungen, die bearbeitet, aber nicht mit Freigabeschwellen verbunden werden.
+    beleg: k2-p2
+  - text: Die fünfte Karte zeigt als Symbol ein Organigramm mit Schild und Haken; der Text nennt als fünfte Grauzone Gremien, die Statusinformationen, aber keine klaren Entscheidungsfragen erhalten.
+    beleg: k2-p2
+  - text: Die Karte „Parallele Datenstände“ ist im Bild nicht mit dem unteren Band verbunden; im Text folgt die diffuse Verantwortung aus allen fünf Grauzonen.
+    beleg: k2-p2
+  - text: Das untere Band nennt „Diffuse Verantwortung und Steuerbarkeit“; der Text sagt, die Verantwortung bleibe formal beim Bauherrn, werde praktisch aber diffus, und spricht an dieser Stelle nicht von Steuerbarkeit.
+    beleg: k2-p2
+  - text: Das Feld heißt „Fehlende Architektur“; der Text spricht von einer Führungs- und Entscheidungsarchitektur und nennt an dieser Stelle keine Bestandteile wie die vier Symbole Entscheidung, Freigabe, Dokumentation und Gremium.
+    beleg: k2-p2
+  - text: Auch von der Karte „Schlüsselrollen – Wissensverlust“ führt ein Pfeil ins Band „Entscheidungsdruck“; der Text zählt Schlüsselrollen nicht zu dem, was sich in Entscheidungssituationen verdichtet, sondern nennt als Folge steigende organisatorische Verletzlichkeit und als Engpass die fehlende Wiederholbarkeit von Entscheidungen.
+    beleg: k2-p1 k2.3-p1
+  - text: Ein Pfeil führt vom Band „Entscheidungsdruck“ zum Feld „Fehlende Architektur“; der Text nennt den Entscheidungsdruck nicht als Ursache fehlender Architektur, sondern hält für entscheidend, ob der Bauherr eine klare Führungs- und Entscheidungsarchitektur besitzt.
+    beleg: k2-p1 k2-p2

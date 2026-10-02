@@ -1,0 +1,252 @@
+/* =============================================================================================
+   MVG · Bausteine und Tafeln: gemeinsame Bausteine (Knöpfe, ID-Marke, Status-Symbol, Merksatz,
+   Hinweis, Glossar-Begriff mit Tooltip, Tabelle) und die Tafeln aus src/grafik/tafel.ts.
+   Quelle: prototyp/variante-b-leitstand.html (Variante B), Klassen deutsch benannt.
+   Nur Tokens aus tokens.css, keine Farbwerte.
+   ============================================================================================= */
+
+/* Neu erschienene Einzelteile (z. B. ein Detail, ein Schritt) leuchten einmal auf. */
+.ist-neu { animation: auftauchen var(--dauer-mittel) var(--kurve-pop) both; animation-delay: var(--verzug, 0ms); }
+
+/* Bildmarke */
+.marke-logo { height: 36px; width: auto; flex: none; color: var(--weiss); }
+
+/* Status-Symbol: Form + Farbe, nie Farbe allein.
+   <svg class="status-symbol" data-status="ok" viewBox="0 0 16 16"><circle class="form" …/><path class="zeichen" …/></svg> */
+.status-symbol { flex: none; display: inline-block; width: 14px; height: 14px; }
+.status-symbol .form { fill: var(--status-farbe, var(--status-neutral)); }
+.status-symbol .zeichen { fill: none; stroke: var(--weiss); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+/* =============================================================================================
+   Knöpfe
+   ============================================================================================= */
+.knopf {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--a-3);
+  min-height: 54px;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 9px;
+  font-size: var(--gr-l);
+  line-height: 1.25;
+  text-align: left;
+  transition: transform var(--dauer-sofort), box-shadow .2s, background .2s;
+}
+.knopf b { display: block; font-weight: 700; }
+.knopf small { display: block; font-size: var(--gr-s); font-weight: 400; }
+.knopf .symbol { font-size: 22px; }
+.knopf:not(:disabled):hover { transform: translateY(-1px); }
+.knopf:not(:disabled):active { transform: translateY(1px); }
+.knopf-navy { background: var(--navy); color: var(--weiss); box-shadow: 0 3px 0 var(--knopf-sockel-navy); --fokus: var(--navy); }
+.knopf-navy .symbol { color: var(--gold-hell); }
+.knopf-navy:disabled { background: var(--gesperrt); color: var(--gesperrt-text); box-shadow: none; }
+.knopf-navy:disabled .symbol { color: var(--gesperrt-text); }
+.knopf-gold { background: var(--gold-hell); color: var(--navy); box-shadow: 0 3px 0 var(--gold-kante); }
+.knopf-gold .symbol { order: 2; }
+.knopf-still { min-height: 44px; padding: 6px 14px; background: var(--weiss); color: var(--tinte); box-shadow: inset 0 0 0 1.5px var(--linie-2), 0 3px 0 var(--knopf-sockel); font-weight: 600; }
+.knopf-still[aria-pressed="true"] { background: var(--navy); color: var(--weiss); box-shadow: 0 3px 0 var(--knopf-sockel-navy); }
+
+/* =============================================================================================
+   Merksatz, Hinweis, ID-Marke
+   ============================================================================================= */
+.lehre { display: flex; align-items: flex-start; gap: var(--a-2); padding: 6px var(--a-3); border-radius: var(--radius-m); background: var(--gold-soft); box-shadow: inset 0 0 0 1.5px var(--gold-soft-kante); font-size: 14.5px; font-weight: 600; line-height: 1.35; }
+.lehre .symbol { margin-top: 1px; font-size: 18px; color: var(--gold-kante); }
+
+.hinweis-zeile { display: flex; align-items: flex-start; gap: var(--a-2); font-size: var(--gr-m); color: var(--tinte-2); }
+.hinweis-zeile .symbol { margin-top: 2px; font-size: 17px; color: var(--navy-soft); }
+
+/* ID-Marke: ENT- RIS- FRW- AEN- MAS- NAC- (Companion §3) */
+.id-marke {
+  display: inline-grid;
+  place-items: center;
+  padding: 3px 7px;
+  border-radius: var(--radius-s);
+  background: var(--id-grund, var(--id-ent-grund));
+  color: var(--id-text, var(--id-ent-text));
+  font: 600 var(--gr-s)/1.2 var(--schrift-mono);
+  letter-spacing: -.01em;
+  white-space: nowrap;
+}
+.id-marke[data-art="ent"] { --id-grund: var(--id-ent-grund); --id-text: var(--id-ent-text); }
+.id-marke[data-art="ris"] { --id-grund: var(--id-ris-grund); --id-text: var(--id-ris-text); }
+.id-marke[data-art="frw"] { --id-grund: var(--id-frw-grund); --id-text: var(--id-frw-text); }
+.id-marke[data-art="aen"] { --id-grund: var(--id-aen-grund); --id-text: var(--id-aen-text); }
+.id-marke[data-art="mas"] { --id-grund: var(--id-mas-grund); --id-text: var(--id-mas-text); }
+.id-marke[data-art="nac"] { --id-grund: var(--id-nac-grund); --id-text: var(--id-nac-text); }
+.id-marke[data-art="prb"] { --id-grund: var(--id-prb-grund); --id-text: var(--id-prb-text); }
+
+/* =============================================================================================
+   Glossar-Begriff und Tooltip (src/ui/bausteine/tooltip.ts)
+   ============================================================================================= */
+.begriff {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-bottom: 2px dotted currentColor;
+  border-radius: 0;
+  background: none;
+  font: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-align: inherit;
+  text-transform: inherit;
+  color: inherit;
+  cursor: help;
+}
+.begriff:hover { background: var(--gold-hell-a18); }
+.tipp {
+  position: fixed;
+  z-index: 300;
+  max-width: 300px;
+  padding: 10px var(--a-3) 9px;
+  border: 1px solid var(--gold-kante);
+  border-radius: var(--radius-m);
+  background: var(--navy);
+  color: var(--weiss);
+  font-size: 13.5px;
+  line-height: 1.45;
+  box-shadow: var(--schatten-schwebend);
+  pointer-events: none;
+  animation: einblenden var(--dauer-sofort) ease both;
+}
+.tipp b { display: block; margin-bottom: 3px; font: 700 var(--gr-m)/1.2 var(--schrift-label); letter-spacing: .08em; text-transform: uppercase; color: var(--gold-hell); }
+.tipp small { display: block; margin-top: 6px; font-size: 11.5px; color: var(--auf-navy-2); }
+
+/* =============================================================================================
+   Tabelle (Kompass-Tabelle der Themen)
+   ============================================================================================= */
+.register-tabelle { width: 100%; overflow: hidden; border-radius: var(--radius-m); background: var(--weiss); font-size: 14.5px; }
+.register-tabelle th, .register-tabelle td { padding: 7px 10px; border-bottom: 1px solid var(--linie); text-align: left; vertical-align: top; }
+.register-tabelle th { background: var(--navy-soft); color: var(--auf-navy); font: 700 12.5px/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; }
+.register-tabelle td:first-child { font-weight: 600; }
+.register-tabelle tr:last-child td { border-bottom: 0; }
+@media (max-width: 700px) {
+  .register-tabelle th, .register-tabelle td { padding: 6px var(--a-2); overflow-wrap: anywhere; }
+  /* R47: breite Tabellen rollen in ihrem Bereich (tabindex) statt Wörter mitten im Wort zu brechen */
+  .absatz-block .register-tabelle :is(th, td) { overflow-wrap: normal; }
+}
+
+/* =============================================================================================
+   Tafeln (P4, L-32): Tabellen als klickbare Grafiken (src/grafik/tafel.ts). Zustände stehen immer
+   als Wort oder Symbol da, nie nur als Farbe; Knöpfe ≥ 44 px.
+   ============================================================================================= */
+.tafel { display: grid; gap: var(--a-3); margin: 0; min-width: 0; }
+.tafel > figcaption { order: 9; }
+.tafel-hinweis { margin: 0; color: var(--tinte-2); }
+.tafel-einleitung { font-size: var(--gr-l); line-height: 1.5; }
+.tafel-titel { margin: 0 0 6px; font: var(--typo-tafeltitel); font-size: 18px; line-height: 1.3; color: var(--tinte); }
+.tafel-titel:focus, .tafel-titel:focus-visible { outline: none; box-shadow: none; }
+.tafel-auswahl { min-width: 0; padding: 14px 18px; border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
+.tafel-detail { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; margin: 0; }
+.tafel-detail > * { min-width: 0; }
+.tafel-detail dt { font: 700 12px/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-leise); }
+.tafel-detail dd { margin: 2px 0 0; font-size: 15.5px; line-height: 1.45; overflow-wrap: anywhere; }
+.tafel-spur { display: flex; align-items: center; gap: 6px; margin: 0 0 8px; font-weight: 600; color: var(--tuerkis-text); }
+.tafel-spur .symbol { width: 18px; height: 18px; }
+.tafel button { font: inherit; cursor: pointer; }
+
+/* Wirkungsketten */
+.tafel-ketten { display: grid; gap: var(--a-3); }
+.ausloeser-wahl { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.ausloeser-wahl > .t-label { flex-basis: 100%; }
+.ausloeser { min-height: 44px; padding: 6px 12px; border: 0; border-radius: var(--radius-rund); background: var(--weiss); color: var(--tinte); box-shadow: inset 0 0 0 1px var(--linie-2); font-size: 14px; }
+.ausloeser[aria-pressed="true"] { background: var(--navy); color: var(--weiss); box-shadow: none; }
+.wirkungskette { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+.wirkungskette li { position: relative; min-width: 0; padding: 12px 14px; border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); animation: szene-ein 420ms var(--kurve-aus) both; animation-delay: calc(var(--i, 0) * 260ms); }
+.wirkungskette li p { margin: 4px 0 0; font-size: 15px; line-height: 1.45; }
+.wirkungskette .glied-1 { box-shadow: inset 4px 0 0 var(--gold), inset 0 0 0 1px var(--linie); }
+.wirkungskette .glied-2 { box-shadow: inset 4px 0 0 var(--koralle), inset 0 0 0 1px var(--linie); }
+.wirkungskette .glied-3 { box-shadow: inset 4px 0 0 var(--tuerkis), inset 0 0 0 1px var(--linie); }
+
+/* Mandatsschwelle */
+.tafel-schwelle { display: grid; gap: var(--a-3); }
+.schwelle-kopf { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px; font-weight: 700; }
+.schwelle-seite[data-seite="1"] { text-align: right; }
+.schwelle-linie { padding: 2px 10px; border-radius: var(--radius-rund); background: var(--gold-soft); color: var(--gold-text); font: 700 12px var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; }
+.schwelle-stand { margin: 0; font-weight: 600; }
+.schwelle-karten { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 0; padding: 0; list-style: none; }
+.schwelle-karte { display: grid; gap: 6px; min-width: 0; padding: 10px 12px; border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
+.schwelle-karte p { margin: 0; font-size: 14.5px; line-height: 1.4; }
+.schwelle-knoepfe { display: flex; flex-wrap: wrap; gap: 6px; }
+.schwelle-knopf { min-height: 44px; padding: 4px 10px; border: 0; border-radius: var(--radius-m); background: var(--flaeche-2); color: var(--tinte); box-shadow: inset 0 0 0 1px var(--linie-2); font-size: 13.5px; font-weight: 600; }
+.schwelle-knopf[aria-pressed="true"] { background: var(--navy); color: var(--weiss); box-shadow: none; }
+.schwelle-rueck { display: flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 600; }
+.schwelle-rueck .symbol { width: 16px; height: 16px; }
+.schwelle-karte[data-ergebnis="richtig"] { box-shadow: inset 0 0 0 2px var(--status-gruen-kante); }
+.schwelle-karte[data-ergebnis="richtig"] .schwelle-rueck { color: var(--frischgruen-text); }
+.schwelle-karte[data-ergebnis="falsch"] { box-shadow: inset 0 0 0 2px var(--koralle-kante); }
+.schwelle-karte[data-ergebnis="falsch"] .schwelle-rueck { color: var(--koralle-text); }
+
+/* Pyramide */
+.tafel-pyramide { display: grid; grid-template-columns: minmax(220px, 340px) minmax(0, 1fr); gap: var(--a-4); align-items: start; }
+.pyramide { display: grid; gap: 6px; justify-items: center; }
+.pyramide-stufe { width: calc(100% - var(--stufe, 0) * 22%); min-height: 60px; padding: 8px 12px; border: 0; border-radius: var(--radius-m); background: var(--flaeche-3); color: var(--tinte); font-weight: 700; box-shadow: inset 0 0 0 1px var(--linie); }
+.pyramide-stufe:first-child { background: var(--navy); color: var(--weiss); }
+.pyramide-stufe[aria-pressed="true"] { box-shadow: inset 0 0 0 3px var(--gold); }
+
+/* Verantwortungsfelder */
+.tafel-felder { display: grid; gap: var(--a-3); }
+.felder-ansicht { margin: 0; font-weight: 600; }
+.felder-schalter { display: inline-flex; justify-self: start; padding: 3px; border-radius: var(--radius-rund); background: var(--flaeche-3); }
+.felder-schalter-knopf { min-height: 44px; min-width: 110px; padding: 4px 16px; border: 0; border-radius: var(--radius-rund); background: transparent; color: var(--tinte); font-weight: 700; }
+.felder-schalter-knopf[aria-pressed="true"] { background: var(--weiss); box-shadow: var(--schatten-knopf); }
+.felder-karten { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+.feld-karte { display: grid; align-content: start; gap: 4px; min-width: 0; padding: 12px 14px; border-radius: var(--radius-l); background: var(--weiss); transition: box-shadow var(--dauer-mittel) var(--kurve-aus); }
+.feld-karte[data-zustand="chaos"] { box-shadow: inset 0 0 0 1.5px var(--koralle-kante); transform: rotate(calc((var(--i, 0) - 2.5) * .5deg)); }
+.feld-karte[data-zustand="ordnung"] { box-shadow: inset 0 0 0 1.5px var(--tuerkis); }
+.feld-zustand { margin: 0; font-size: 14.5px; line-height: 1.4; }
+.feld-karte details summary { box-sizing: border-box; min-height: 36px; padding-block: 8px; font-size: 13px; font-weight: 600; cursor: pointer; }
+
+/* Bausteine */
+.tafel-bausteine { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 0; padding: 0; list-style: none; }
+.baustein-karte { min-width: 0; border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); animation: szene-ein 420ms var(--kurve-aus) both; animation-delay: calc(var(--i, 0) * 180ms); }
+.baustein-karte summary { display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 8px 12px; cursor: pointer; }
+.baustein-karte summary i { flex: none; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--gold-text); color: var(--weiss); font: 700 12px var(--schrift-label); font-style: normal; }
+.baustein-karte .tafel-detail { padding: 0 12px 12px; }
+
+@media (max-width: 760px) {
+  .tafel-pyramide, .wirkungskette, .schwelle-karten, .felder-karten, .tafel-bausteine { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Phasenleiste, Rhythmus, Karten (P5.1) */
+.tafel-leiste { display: grid; gap: var(--a-3); }
+.leiste { display: flex; flex-wrap: wrap; gap: 6px; }
+.leiste-knopf { display: grid; justify-items: start; gap: 1px; min-height: 48px; padding: 6px 10px; border: 0; border-radius: var(--radius-m); background: var(--weiss); color: var(--tinte); text-align: left; box-shadow: inset 0 0 0 1px var(--linie); }
+.leiste-knopf b { font-size: 14px; }
+.leiste-knopf small { font-size: 12px; line-height: 1.2; color: var(--tinte-leise); }
+.leiste-knopf.ist-hervor { box-shadow: inset 0 0 0 2px var(--gold); }
+.leiste-knopf[aria-pressed="true"] { background: var(--navy); color: var(--weiss); }
+.leiste-knopf[aria-pressed="true"] small { color: var(--auf-navy); }
+.tafel-karten { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 8px; margin: 0; padding: 0; list-style: none; }
+.tafel-karte { display: grid; align-content: start; gap: 6px; min-width: 0; padding: 12px 14px; border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
+
+/* Zeitachse 30/60/90 (P7.1): Zeiträume als Abschnitte, darunter der Regler */
+.tafel-zeitachse { display: grid; gap: var(--a-3); }
+.zeitachse-leiste { display: flex; gap: 4px; }
+.zeitachse-abschnitt { flex: calc(var(--bis, 1) - var(--von, 0)) 1 0; display: grid; justify-items: start; gap: 1px; min-width: 0; min-height: 48px; padding: 6px 10px; border: 0; border-radius: var(--radius-m); background: var(--weiss); color: var(--tinte); text-align: left; box-shadow: inset 0 0 0 1px var(--linie); }
+.zeitachse-abschnitt b { font-size: 14px; }
+.zeitachse-abschnitt small { font-size: 12px; line-height: 1.2; color: var(--tinte-leise); }
+.zeitachse-abschnitt[aria-pressed="true"] { background: var(--navy); color: var(--weiss); }
+.zeitachse-abschnitt[aria-pressed="true"] small { color: var(--auf-navy); }
+/* R49: ohne den Standardrand des Reglers (2 px) – mit width: 100 % ragte er bei 320 px über die Spalte */
+.zeitachse-regler { width: 100%; min-height: 36px; margin-inline: 0; accent-color: var(--navy); }
+.zeitachse-tag { font-variant-numeric: tabular-nums; }
+@media (max-width: 599px) { .zeitachse-leiste { flex-direction: column; } }
+
+/* R33: Text bleibt in seiner Fläche – Karten der Tafeln, schmale Fenster */
+.tafel-karten { grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr)); }
+.tafel-karte { grid-template-columns: minmax(0, 1fr); }
+.tafel-karte > * { overflow-wrap: anywhere; }
+@media (max-width: 400px) {
+  .baustein-karte { min-width: 0; overflow-wrap: anywhere; }
+}
+.feld-karte { min-width: 0; overflow-wrap: anywhere; }
+
+/* R47: Bauteil-Beschriftungen, deren längstes Wort bei 320 px oder im Beamer-Zoom über 93 % der Zeile liegt
+   („Änderungsgremium“, „Letztverantwortung“, „Entscheidungsregister“, „Vorbereitung“): lieber mit Strich getrennt als
+   mitten im Wort gebrochen, falls ein Browser etwas breiter setzt (L-129) */
+.pyramide-stufe, .lw-schalter-seite, .tafel small { hyphens: auto; }
+/* R48: ebenso die Titel der Tafel-Karten („Maßnahmenverknüpfung“ bei 320 px, „Verantwortungszuordnung“ bei 548 px) */
+.tafel-karte .tafel-titel { hyphens: auto; }

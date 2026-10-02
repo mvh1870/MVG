@@ -1,8 +1,65 @@
-// Browser-Szenario Startseite (O-21 „ruhiger Einstieg“, L-4). Ausgeführt von werkzeuge/oberflaeche.mjs.
-// Test-Haken-Vertrag der UI: [data-pruef="weg-story"], [data-pruef="weg-theorie"]; der Leitstand
-// ([data-pruef="status"]) ist auf der Startseite nicht sichtbar.
+// Browser-Szenario Startseite (O-21, O-42, O-44, P16.11): drei Wege, „Wer steht dahinter“ mit dem leisen Link zu
+// bauherr-mentoren.com, Impressum und Datenschutz im Fuß, Wortlaut „Internetseite“. Ausgeführt von werkzeuge/oberflaeche.mjs.
+import { pruefer, sichtbarVerboten } from './hilfen.mjs';
 
 export const name = 'start';
+
+/**
+ * Kontrast des Leittexts gegen die Pixel des Hintergrunds darunter: Text unsichtbar, Bildschirmfoto der Zeilen,
+ * je Pixel das Kontrastverhältnis zur Textfarbe; Befund, wenn das 5-%-Perzentil unter 4,5 : 1 liegt.
+ * @param {import('playwright').Page} seite
+ * @returns {Promise<string[]>}
+ */
+async function leittextKontrast(seite) {
+  const zeilen = await seite.evaluate(() => [...document.querySelectorAll('.start-these, .start-internetseite')].map((el) => {
+    const rg = document.createRange();
+    rg.selectNodeContents(el);
+    return { name: el.className, farbe: getComputedStyle(el).color, rects: [...rg.getClientRects()].filter((r) => r.width > 0).map((r) => ({ x: r.left + scrollX, y: r.top + scrollY, w: r.width, h: r.height })) };
+  }));
+  const stil = await seite.addStyleTag({ content: '.startseite * { color: transparent !important; text-shadow: none !important; }' });
+  /** @type {string[]} */
+  const funde = [];
+  for (const z of zeilen) {
+    if (z.rects.length === 0) { funde.push(`${z.name}: keine Zeilen gefunden`); continue; }
+    const x = Math.max(0, Math.floor(Math.min(...z.rects.map((r) => r.x))));
+    const y = Math.max(0, Math.floor(Math.min(...z.rects.map((r) => r.y))));
+    const w = Math.ceil(Math.max(...z.rects.map((r) => r.x + r.w))) - x;
+    const hh = Math.ceil(Math.max(...z.rects.map((r) => r.y + r.h))) - y;
+    const bild = (await seite.screenshot({ clip: { x, y, width: w, height: hh }, fullPage: true })).toString('base64');
+    const werte = await seite.evaluate(async ([b64, farbe, rects, ox, oy]) => {
+      const img = new Image();
+      img.src = `data:image/png;base64,${b64}`;
+      await img.decode();
+      const c = document.createElement('canvas');
+      c.width = img.width; c.height = img.height;
+      const k = c.getContext('2d');
+      if (k === null) return null;
+      k.drawImage(img, 0, 0);
+      const d = k.getImageData(0, 0, img.width, img.height).data;
+      const sx = img.width / /** @type {number} */ (rects.reduce((m, r) => Math.max(m, r.x + r.w), 0) - ox);
+      const lum = (/** @type {number[]} */ rgb) => { const f = (/** @type {number} */ v) => { const s = v / 255; return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4; }; return 0.2126 * f(rgb[0] ?? 0) + 0.7152 * f(rgb[1] ?? 0) + 0.0722 * f(rgb[2] ?? 0); };
+      const m = /rgba?\((\d+), (\d+), (\d+)/u.exec(farbe);
+      if (m === null) return null;
+      const lt = lum([Number(m[1]), Number(m[2]), Number(m[3])]);
+      const ks = [];
+      for (const r of rects) {
+        for (let yy = Math.floor((r.y - oy) * sx); yy < (r.y - oy + r.h) * sx && yy < img.height; yy++) {
+          for (let xx = Math.floor((r.x - ox) * sx); xx < (r.x - ox + r.w) * sx && xx < img.width; xx++) {
+            const i = (yy * img.width + xx) * 4;
+            const lb = lum([d[i] ?? 0, d[i + 1] ?? 0, d[i + 2] ?? 0]);
+            ks.push((Math.max(lt, lb) + 0.05) / (Math.min(lt, lb) + 0.05));
+          }
+        }
+      }
+      ks.sort((a, b) => a - b);
+      return { p05: ks[Math.floor(ks.length * 0.05)] ?? 0, min: ks[0] ?? 0, n: ks.length };
+    }, /** @type {const} */ ([bild, z.farbe, z.rects, x, y]));
+    if (werte === null || werte.n === 0) { funde.push(`${z.name}: Hintergrund nicht messbar`); continue; }
+    if (werte.p05 < 4.5) funde.push(`${z.name}: Kontrast über der Zeichnung 5-%-Perzentil ${werte.p05.toFixed(2)} : 1 (min ${werte.min.toFixed(2)}) < 4,5`);
+  }
+  await stil.evaluate((e) => e.remove());
+  return funde;
+}
 
 /**
  * @param {import('playwright').Page} seite
@@ -10,29 +67,45 @@ export const name = 'start';
  */
 export async function lauf(seite, h) {
   const titel = await seite.title();
-  if (!titel.includes('Minimum Viable Governance')) h.befund(`Dokumenttitel ohne „Minimum Viable Governance“: „${titel}“`);
-
-  await h.erwarte('[data-pruef="weg-story"]');
-  await h.erwarte('[data-pruef="weg-theorie"]');
+  if (!titel.includes('Governance Kompass')) h.befund(`Dokumenttitel ohne „Governance Kompass“: „${titel}“`);
+  for (const weg of ['weg-story', 'weg-theorie', 'weg-explore']) await h.erwarte(`[data-pruef="${weg}"]`);
+  const wege = await seite.locator('[data-pruef^="weg-"]').filter({ visible: true }).count();
+  if (wege !== 3) h.befund(`erwartet drei sichtbare Wege, gefunden ${wege}`);
   const text = await seite.locator('body').innerText();
   if (!text.includes('Minimum Viable Governance')) h.befund('Startseite nennt „Minimum Viable Governance“ nicht ausgeschrieben');
+  if (!/Internetseite/u.test(text)) h.befund('Startseite sagt nicht, dass der Governance Kompass eine Internetseite ist (O-42)');
+  for (const f of sichtbarVerboten(text)) h.befund(`Startseite: ${f}`);
+  // O-44: Logo im Kopf, „Wer steht dahinter“ und Fuß führen leise zu bauherr-mentoren.com
+  for (const sel of ['[data-pruef="kopf-bm"]', '[data-pruef="start-dahinter"] [data-pruef="bm-link"]', '[data-pruef="fuss"] [data-pruef="bm-link"]']) {
+    const href = await (await h.erwarte(sel)).getAttribute('href');
+    if (href !== 'https://www.bauherr-mentoren.com/') h.befund(`${sel}: Ziel ${href}`);
+  }
+  for (const [sel, ziel] of [['impressum', 'impressum.html'], ['datenschutz', 'datenschutz.html']]) {
+    const href = await (await h.erwarte(`[data-pruef="fuss"] [data-pruef="${sel}"]`)).getAttribute('href');
+    if (href !== ziel) h.befund(`Fuß: ${sel} führt nach ${href}`);
+  }
+  await h.erwarte('[data-pruef="praesentieren"]');
 
-  // Genau zwei Wege, sonst nichts vom Leitstand.
-  const wege = await seite.locator('[data-pruef^="weg-"]').filter({ visible: true }).count();
-  if (wege !== 2) h.befund(`erwartet genau zwei sichtbare Wege, gefunden ${wege}`);
-  await h.erwarteNicht('[data-pruef="status"]');
-
-  // Beide Wege per Tastatur erreichbar (Tab-Reihenfolge, höchstens 15 Schritte).
+  // Alle drei Wege per Tastatur erreichbar
   const erreicht = new Set();
-  for (let i = 0; i < 15 && erreicht.size < 2; i += 1) {
+  for (let i = 0; i < 20 && erreicht.size < 3; i += 1) {
     await h.taste('Tab');
     const weg = await seite.evaluate(() => document.activeElement?.closest('[data-pruef^="weg-"]')?.getAttribute('data-pruef') ?? null);
     if (weg) erreicht.add(weg);
   }
-  for (const weg of ['weg-story', 'weg-theorie']) {
-    if (!erreicht.has(weg)) h.befund(`${weg} ist per Tab nicht erreichbar`);
-  }
+  for (const weg of ['weg-story', 'weg-theorie', 'weg-explore']) if (!erreicht.has(weg)) h.befund(`${weg} ist per Tab nicht erreichbar`);
 
-  await h.warte(1200); // Einblendung abwarten, damit das Bild den Ruhezustand zeigt
-  await h.bild('start');
+  await h.warte(1000);
+  // R67: Leittext über der Campus-Zeichnung – Kontrast je Pixel des Hintergrunds unter den Zeilen (Text ausgeblendet),
+  // 5-%-Perzentil ≥ 4,5 : 1; in der Laufgröße, im schmalen Lauf dazu 360 × 740
+  const vp = seite.viewportSize();
+  for (const groesse of vp !== null && vp.width <= 400 ? [vp, { width: 360, height: 740 }] : vp !== null ? [vp] : []) {
+    if (vp !== null && groesse.width !== vp.width) { await seite.setViewportSize(groesse); await h.warte(150); }
+    for (const fund of await leittextKontrast(seite)) h.befund(`Start @${groesse.width}: ${fund}`);
+  }
+  if (vp !== null) { await seite.setViewportSize(vp); await h.warte(100); }
+  await pruefer(seite, h)('start');
+  // der Weg in die Story führt dorthin
+  await h.klick('[data-pruef="weg-story"]');
+  await h.erwarte('[data-pruef="gs-titel"]');
 }

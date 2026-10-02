@@ -9,7 +9,10 @@ import assert from 'node:assert/strict';
 import {
   erzeugeKanal, kanalSchluessel, type EingehendeNachricht, type Kanal, type KanalUmgebung, type RundfunkGriff,
 } from '../src/regie/kanal.ts';
-import { anfangszustand, oeffentlich, pruefeOeffentlich } from '../src/engine/zustand.ts';
+import { neueBuehne as anfangszustand, pruefeBuehne } from '../src/regie/buehne.ts';
+import { inhalte } from '../src/inhalte/index.ts';
+const oeffentlich = <T>(x: T): T => x;
+const pruefeOeffentlich = (x: unknown) => pruefeBuehne(x, inhalte.geschichte);
 
 /** Mehrere „Fenster“ über einem gemeinsamen Speicher: ein Schreiben meldet sich bei allen ANDEREN (wie `storage`). */
 function fensterHub() {
@@ -147,7 +150,7 @@ test('Dieselbe Serialisierung auf beiden Wegen (JSON-Rundlauf)', async () => {
   try {
     const a = sammle(nurRundfunk);
     const b = sammle(nurSpeicher);
-    const zustand = { ...oeffentlich(anfangszustand()), extra: undefined, datum: new Date(0) } as unknown as ReturnType<typeof oeffentlich>;
+    const zustand = { ...oeffentlich(anfangszustand()), extra: undefined, datum: new Date(0) } as unknown as ReturnType<typeof anfangszustand>;
     regie.senden({ art: 'zustand', nr: 1, zustand });
     await bis(() => a.length === 1 && b.length === 1);
     assert.deepEqual(a, b);
@@ -211,4 +214,56 @@ test('Abmelden, Schließen und fremder Inhalt unter dem Schlüssel', () => {
   regie.schliessen();
   regie.senden({ art: 'hallo' });
   assert.equal(hub.daten.get(kanalSchluessel('t-ab')), vorher, 'ein geschlossener Kanal sendet nicht');
+});
+
+test('Beamer-Schalter („anzeige“): gültig, veraltet, ungültig, nach „hallo“', () => {
+  const hub = fensterHub();
+  const regie = erzeugeKanal('t-anz', hub.fenster({ kennung: 'regie' }));
+  const leinwand = erzeugeKanal('t-anz', hub.fenster({ kennung: 'leinwand' }));
+  const bei = sammle(leinwand);
+  regie.senden({ art: 'anzeige', nr: 2, beamer: true });
+  regie.senden({ art: 'anzeige', nr: 1, beamer: false });
+  assert.deepEqual(bei.map((n) => (n.art === 'anzeige' ? `${n.nr}:${n.beamer}` : n.art)), ['2:true'], 'kleinere Nummer ist veraltet');
+  // ungültige Nachrichten von fremder Hand
+  const fremd = hub.fenster({ kennung: 'fremd' });
+  let folge = 0;
+  for (const nachricht of [{ art: 'anzeige', nr: 9 }, { art: 'anzeige', nr: 9, beamer: 'ja' }, { art: 'anzeige', nr: Number.NaN, beamer: true }]) {
+    fremd.speicher?.setItem(kanalSchluessel('t-anz'), JSON.stringify({ mvg: 'kanal', von: 'fremd', folge: ++folge, nachricht }));
+  }
+  assert.equal(bei.length, 1, 'ohne beamer, beamer kein Wahrheitswert, nr keine Zahl: verworfen');
+  // Regie neu geladen: nach „hallo“ gilt die kleine Nummer wieder
+  const neu = erzeugeKanal('t-anz', hub.fenster({ kennung: 'regie-2' }));
+  neu.senden({ art: 'hallo' });
+  neu.senden({ art: 'anzeige', nr: 1, beamer: false });
+  assert.deepEqual(bei.slice(1).map((n) => (n.art === 'anzeige' ? `${n.nr}:${n.beamer}` : n.art)), ['hallo', '1:false']);
+});
+
+test('Tafel rollen („rollen“, P12.5 R8): gültig, veraltet, ungültig', () => {
+  const hub = fensterHub();
+  const regie = erzeugeKanal('t-roll', hub.fenster({ kennung: 'regie' }));
+  const leinwand = erzeugeKanal('t-roll', hub.fenster({ kennung: 'leinwand' }));
+  const bei = sammle(leinwand);
+  regie.senden({ art: 'rollen', nr: 1, schritt: 1 });
+  regie.senden({ art: 'rollen', nr: 2, schritt: -1 });
+  regie.senden({ art: 'rollen', nr: 1, schritt: 1 });
+  assert.deepEqual(bei.map((n) => (n.art === 'rollen' ? `${n.nr}:${n.schritt}` : n.art)), ['1:1', '2:-1'], 'kleinere Nummer ist veraltet');
+  const fremd = hub.fenster({ kennung: 'fremd' });
+  let folge = 0;
+  for (const nachricht of [{ art: 'rollen', nr: 9 }, { art: 'rollen', nr: 9, schritt: 5 }, { art: 'rollen', nr: 9, schritt: '1' }]) {
+    fremd.speicher?.setItem(kanalSchluessel('t-roll'), JSON.stringify({ mvg: 'kanal', von: 'fremd', folge: ++folge, nachricht }));
+  }
+  assert.equal(bei.length, 2, 'ohne schritt oder mit anderem Schritt als −1/+1: verworfen');
+});
+
+test('Beamer-Schalter auf beiden Wegen zugleich: kommt genau einmal an', async () => {
+  const hub = fensterHub();
+  const regie = erzeugeKanal('t-anz2', hub.fenster({ kennung: 'regie', rundfunk: RUNDFUNK }));
+  const leinwand = erzeugeKanal('t-anz2', hub.fenster({ kennung: 'leinwand', rundfunk: RUNDFUNK }));
+  const bei = sammle(leinwand);
+  regie.senden({ art: 'anzeige', nr: 1, beamer: true });
+  await bis(() => bei.length >= 1);
+  await warte(50);
+  assert.equal(bei.length, 1);
+  regie.schliessen();
+  leinwand.schliessen();
 });

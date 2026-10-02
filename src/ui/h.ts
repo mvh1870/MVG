@@ -31,6 +31,36 @@ function setzeAttribute(el: Element, attr: Attribute | null | undefined): void {
   }
 }
 
+/**
+ * R60: Zahl und Einheit bleiben in einer Zeile („100 TEUR“, „5 Mio. €“, „6 Wochen“, „LPH 0“, „Kap. 6.4.3“) –
+ * geschützte Leerzeichen nur in der Anzeige; die Quellen (und damit die Zitatprüfung) bleiben unverändert.
+ */
+export function schuetzeEinheiten(text: string): string {
+  return text
+    .replace(/(\d) (?=(?:TEUR|EUR|€|Mio\.|Wochen|Tage|Monate)(?![\p{L}]))/gu, '$1\u00a0')
+    .replace(/Mio\. (?=€|EUR)/gu, 'Mio.\u00a0')
+    .replace(/\b(LPH|Kap\.) (?=\d)/gu, '$1\u00a0')
+    // R68: Zahlenbereiche („LPH 0–9“, „31–60 Tage“) nicht am Strich trennen
+    .replace(/(\d)–(?=\d)/gu, '$1\u2060–\u2060');
+}
+
+/** Weiche Trennstellen an Kompositum-Fugen, ohne den Umbruch nach „/“ (kein unsichtbares Zeichen im Text, R12/R13). */
+export function nurFugen(text: string): string {
+  return mitTrennstellen(text).replace(/\u200b/gu, '');
+}
+
+/** R60/R68: schützt Zahl und Einheit in allen Textknoten unter `wurzel` (nur Anzeige). */
+export function schuetzeEinheitenIn(wurzel: Node): void {
+  const doc = wurzel.ownerDocument ?? document;
+  const gang = doc.createTreeWalker(wurzel, 4);
+  for (let n = gang.nextNode(); n !== null; n = gang.nextNode()) {
+    const alt = n.nodeValue ?? '';
+    // R69: dazu weiche Trennstellen an den Fugen langer Komposita (Browser ohne deutsches Trennwörterbuch)
+    const neu = nurFugen(schuetzeEinheiten(alt));
+    if (neu !== alt) n.nodeValue = neu;
+  }
+}
+
 function haengeAn(el: Node, kinder: readonly Kind[]): void {
   for (const k of kinder) {
     if (k === null || k === undefined || k === false) continue;
@@ -43,6 +73,12 @@ function haengeAn(el: Node, kinder: readonly Kind[]): void {
       continue;
     }
     el.appendChild(k as Node);
+  }
+  // R58: in Links, Knöpfen und Aufklappzeilen ist ein Glossarbegriff nur Text – ein bedienbarer Begriff darin wäre ein
+  // verschachteltes Bedienelement (Eingabe auf dem Begriff folgte dem Link). Er behält Klasse und Hinweis bei Mouseover.
+  const e = el as Element;
+  if (typeof e.matches === 'function' && e.matches('a, button, summary, label')) {
+    for (const b of e.querySelectorAll('.begriff[tabindex]')) { b.removeAttribute('tabindex'); b.removeAttribute('role'); }
   }
 }
 
@@ -77,14 +113,36 @@ export function elementAus(html: string): Element {
 }
 
 /** Ersetzt alle Kinder. */
+/**
+ * R47: Umbruchstelle ohne Zeichen (<wbr>) nach „/“ zwischen Wörtern („Risiko-/Änderungs-/Maßnahmenverknüpfung“,
+ * „Rollen/Freigaben/Entscheidungen“) – sonst ist die Kette ein einziges Wort und bricht mitten im Wort. Text,
+ * Suche und Kopieren bleiben unverändert (anders als U+200B im Druck).
+ */
+export function umbruchNachSchraegstrich(el: Element): void {
+  const dok = el.ownerDocument;
+  const gang = dok.createTreeWalker(el, 4);
+  const knoten: Text[] = [];
+  for (let n = gang.nextNode(); n !== null; n = gang.nextNode()) if (/[\p{L}-]\/\p{L}/u.test(n.textContent ?? '') && n.parentElement?.closest('code, svg, script, style') === null) knoten.push(n as Text);
+  for (const t of knoten) {
+    const teile = (t.textContent ?? '').split(/(?<=[\p{L}-]\/)(?=\p{L})/u);
+    const frag = dok.createDocumentFragment();
+    teile.forEach((teil, i) => { if (i > 0) frag.append(dok.createElement('wbr')); frag.append(dok.createTextNode(teil)); });
+    t.replaceWith(frag);
+  }
+}
+
+/**
+ * R47: Zeichenzahl des längsten Worts – für Schriftgrößen, die ein Wort nie mitten im Wort brechen lassen (CSS `--zeichen`).
+ * R48: geteilt wird nur, wo der Browser umbricht – an Leerraum und nach einem Bindestrich vor einem Buchstaben (der Strich
+ * zählt mit); „/“ ist in Titeln keine Umbruchstelle („IT-/Datenschutz-“ ist eine Einheit mit 16 Zeichen).
+ */
+export function laengstesWort(text: string): number {
+  return Math.max(1, ...text.split(/\s+|(?<=-)(?=\p{L})/u).map((w) => [...w].length));
+}
+
 export function ersetze(el: Element, ...kinder: Kind[]): void {
   el.replaceChildren();
   haengeAn(el, kinder);
-}
-
-/** Text ohne Tags aus vertrauenswürdigem HTML (für aria-Beschriftungen). */
-export function textAus(html: string): string {
-  return (vonHtml(html).textContent ?? '').replace(/\s+/g, ' ').trim();
 }
 
 /** Setzt oder entfernt ein Attribut, nur wenn es sich ändert (spart Stil-Neuberechnungen). */
@@ -100,4 +158,20 @@ export function attr(el: Element, name: string, wert: AttributWert): void {
 /** Setzt Text nur, wenn er sich ändert. */
 export function text(el: Node, wert: string): void {
   if (el.textContent !== wert) el.textContent = wert;
+}
+
+/**
+ * Weiche Trennstellen (U+00AD) in langen Wörtern nach einer Fuge („Entscheidungs|grundlagen“, „Maßnahmen|verknüpfung“).
+ * Sichtbar wird der Strich nur, wo die Zeile tatsächlich dort umbricht; der Wortlaut bleibt gleich (dazu ein
+ * Umbruch ohne Breite nach „/“ zwischen Wörtern).
+ */
+export function mitTrennstellen(text: string): string {
+  // „Risiko-/Änderungs-/Maßnahmen…“, „Rollen/Freigaben/…“: nach „/“ darf die Zeile umbrechen (sonst ein unteilbarer Block)
+  return text.replace(/(?<=[\p{L}-])\/(?=\p{L})/gu, '/\u200b').replace(/\p{L}{12,}/gu, (wort) => wort.replace(/(?<=\p{L}(?:ungs|heits|keits|schafts|tions|täts|stands|ßnahmen|agement|umenten|triebs|utzen|ister|tritts|ketten|lagen|gabe|schutz|ohbau|struktur|upreis|osten))(?!(?<=agement)s)(?!(?<=gabe)n[^aeiouäöü])(?=\p{Ll}{4})/gu, '\u00ad'))
+    // R56: „Daten|anforderung“ (Tabelle k8.1-t1 im Druck) – die Fuge liegt vor dem Grundwort, nicht hinter einer Endung der Liste; R61: „Status|bericht“ (Datei-Karte B4)
+    // R64: „Folge|kosten“ (Stationstitel A5 stand bei 1008–1088 px über 93 % seiner Zeile)
+    .replace(/(?<=\p{L}{4})(?=anforderung|bericht|kosten|verknüpfung|bewertung)/gu, '\u00ad')
+    // R68: Fugen, die die Liste oben nicht kennt (Etappen, Umschalter, Bausteine in schmalen Spalten)
+    .replace(/(?<=Mandats|Beschluss)(?=\p{Ll}{4})/gu, '\u00ad')
+    .replace(/Entscheidungs-/gu, 'Entschei\u00addungs-');
 }

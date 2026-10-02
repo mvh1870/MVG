@@ -1,0 +1,33 @@
+id: abb-12
+quelle: bilder/image12.jpeg
+titel: MVG-Reifegradanalyse mit Bewertungsmatrix und 30/60/90-Tage-Plan
+alt: >-
+  Oben ein Zeigerinstrument (Skala 0 bis 5), beschriftet „Maturity Assessment“. Pfeile führen zu fünf
+  nummerierten Kästen: „Governance & Organisation“, „Risiko & Änderungssteuerung“, „Ressourcen & Rollenfähigkeit“,
+  „Informationsmanagement & Entscheidungsreife“, „QA/QM & Qualitätssteuerung“, je mit einer Liste „Nachweise“ (etwa
+  Risikoregister, Änderungsregister) und einem Regler „Punktwert: 0 … 5“. Darunter, mit
+  Pfeilen verbunden: „Bewertungsmatrix“ (Farbraster), „Roadmap für 30/60/90 Tage“ und „Klare
+  Verantwortungszuordnungen“ (RACI-Matrix: Projektauftraggeber, Manager, Team).
+angeglichen:
+  - { x: 617, y: 301, b: 41, h: 15, text: Risiko, beleg: k4.4-p2, schrift: barlow, gewicht: 600, groesse: 16, ausrichtung: mitte }
+  - { x: 341, y: 411, b: 195, h: 22, text: Änderungsregister, beleg: k6.4.4-t1, schrift: barlow, gewicht: 500, groesse: 19 }
+  - { x: 110, y: 553, b: 222, h: 27, text: Bewertungsmatrix, beleg: k7.1-p1, schrift: barlow, gewicht: 700, groesse: 23, ausrichtung: mitte }
+abweichungen:
+  - text: 'Das Bild zeigt oben und in jedem Kasten Punktwerte von 0 bis 5; diese Skala kennt der Text nicht – er bewertet zehn Domänen mit 49 Fragen.'
+    beleg: k7.1-p2
+  - text: 'Das Bild zeigt fünf benannte Kästen; der Text bewertet die zehn MVG-Domänen mit 49 Fragen und nennt weder ihre Namen noch Nachweise je Domäne; einzelne Einträge der Nachweislisten (etwa „QA-Plan“, „Defect-Logik“, „Wiederholfehler-Auswertung“) kommen im Text nicht vor.'
+    beleg: k7.1-p2
+  - text: 'Im dritten Kasten stehen unter den drei Symbolen (zwei Personen, eine Uhr) die Beschriftungen „Risiko“ (angeglichen), „TRNEL“ und „OLEE“; Rollen oder Domänen dieses Namens kennt der Text nicht. In der Nachweisliste des zweiten Kastens steht „Frühwarnungs“, der Text spricht von Frühwarnungen.'
+    beleg: k6.4.2-t1 k9.2-p4
+  - text: 'Unter den Kästen zeigt das Bild, mit Pfeilen verbunden, Bewertungsmatrix, Roadmap und Verantwortungszuordnungen; der Text nennt als Ergebnisse Bewertungsmatrix, die wichtigsten Risiken und Verantwortungslücken, Entscheidungsliste und 30/60/90-Tage-Plan.'
+    beleg: k7.1-p1 k7.1-t1
+  - text: 'Die RACI-Matrix nennt „Projektauftraggeber“, „Manager“ und „Team“; das Standard-Rollenmodell umfasst 13 Arbeitsrollen, zu denen „Manager“ und „Team“ nicht gehören, und die Funktion des Projektauftraggebers ist keine zusätzliche Arbeitsrolle, sondern eine Facette des Bauherrn.'
+    beleg: k9.2-p4
+  - text: 'In der RACI-Matrix ist „A“ in allen drei Zeilen gesetzt und „R“ in keiner, sodass auch „Manager“ und „Team“ letztverantwortlich erscheinen; der Text versteht RACI als Matrix mit ausführungsverantwortlichen, letztverantwortlichen, konsultierten und informierten Rollen, und das Modell macht sichtbar, wann die Entscheidung an die letztverantwortliche Bauherrenrolle zurückfallen muss.'
+    beleg: k13-t1 k9.2-p2
+  - text: 'Der Block „Klare Verantwortungszuordnungen“ zeigt nur die RACI-Matrix; nach dem Text reicht RACI allein nicht aus, entscheidend ist die Kopplung an Mandate, Freigabeschwellen, Stellvertretungen und Eskalationspfade.'
+    beleg: k9.2-p1
+  - text: 'Die Roadmap nennt als Fokus „Quick Wins“, „Stabilisierung“ und „Optimierung“; der Text nennt Diagnose und Priorisierung (0–30 Tage), Konzeption und Mindeststandard (31–60 Tage) sowie Modell in Anwendung und Kalibrierung (61–90 Tage) und versteht die 30/60/90-Tage-Logik als Orientierungsrahmen, nicht als starren Projektplan.'
+    beleg: k8.2-t1 k8.2-p1
+  - text: 'Der Titel lautet englisch „Maturity Assessment“; der Text spricht von der MVG-Reifegradanalyse.'
+    beleg: k7.1-p1

@@ -269,6 +269,14 @@ test('Mutanten-Probe: verfälschte Zitate werden als nicht wortgleich erkannt', 
   assert.equal(istWortgleich(wp, 'k4.2-p3', '  '), false, 'leeres Zitat');
   assert.match(pruefeZitat(wp, 'k4.2-p3', mutanten[0]?.[1] ?? '').grund, /weicht in k4\.2-p3 nach \d+ Zeichen ab/);
   assert.match(pruefeZitat(wp, 'k4.2-p99', MANDATSLEITER).grund, /unbekannte Absatz-ID/);
+  // R49: Teilzeichenkette mitten im Wort ist kein wortgleiches Zitat
+  assert.equal(istWortgleich(wp, 'k4.2-p3', MANDATSLEITER.slice(1)), false, 'beginnt mitten im Wort');
+  assert.match(pruefeZitat(wp, 'k4.2-p3', MANDATSLEITER.slice(1)).grund, /mitten im Wort/);
+  // R50: auch am Ende („… Die Bauhe“) und in einem Kompositum mit Bindestrich („… Die Bauherren“ aus „Bauherren-PL“)
+  assert.equal(istWortgleich(wp, 'k4.2-p3', MANDATSLEITER.slice(0, 40)), false, 'endet mitten im Wort');
+  assert.match(pruefeZitat(wp, 'k4.2-p3', MANDATSLEITER.slice(0, 40)).grund, /mitten im Wort/);
+  assert.equal(istWortgleich(wp, 'k4.2-p3', 'Als Muster-Mandatsleiter gilt: Die Bauherren'), false, 'endet vor dem Bindestrich');
+  assert.equal(istWortgleich(wp, 'k4.2-p3', 'Als Muster-Mandatsleiter gilt: Die Bauherren-PL'), true, 'ganzes Kompositum');
 });
 
 test('whitepaper.md: Überschriften, je Block genau ein Anker in Dokumentreihenfolge, Abbildungen', () => {

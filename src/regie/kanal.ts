@@ -13,7 +13,7 @@
  * zwei Fenster auf verschiedenen Ständen.
  *
  * DER KANAL PRÜFT KEINEN INHALT. Er liefert den Zustand als `unknown`; die Leinwand muss ihn durch
- * `pruefeOeffentlich()` schicken. Er entscheidet auch nicht, wer antwortet: auf ein „hallo“ sendet
+ * `pruefeBuehne()` schicken. Er entscheidet auch nicht, wer antwortet: auf ein „hallo“ sendet
  * die Regie ihren Zustand, nicht der Kanal.
  *
  * VERALTETES FÄLLT WEG. Je Nachrichtenart merkt sich der Empfänger die höchste Nummer; eine
@@ -25,18 +25,25 @@
  * leerer aussieht.
  */
 
-import type { OeffentlicherZustand } from '../engine/typen.ts';
+import type { Buehne } from './buehne.ts';
 
 /** Was gesendet wird. */
 export type KanalNachricht =
-  | { art: 'zustand'; nr: number; zustand: OeffentlicherZustand }
+  | { art: 'zustand'; nr: number; zustand: Buehne }
   | { art: 'lebenszeichen'; nr: number }
+  | { art: 'anzeige'; nr: number; beamer: boolean }
+  /** Tafel rollen (P12.5 R8): Inhalt höher als die Tafel – die inerte Leinwand rollt auf Anweisung der Regie */
+  | { art: 'rollen'; nr: number; schritt: -1 | 1 }
   | { art: 'hallo' };
 
-/** Was ankommt: der Zustand ist ungeprüft (→ `pruefeOeffentlich`). */
+/** Was ankommt: der Zustand ist ungeprüft (→ `pruefeBuehne`). */
 export type EingehendeNachricht =
   | { art: 'zustand'; nr: number; zustand: unknown }
   | { art: 'lebenszeichen'; nr: number }
+  /** Beamer-Schalter (E10): größere Schrift, höherer Kontrast auf der Leinwand */
+  | { art: 'anzeige'; nr: number; beamer: boolean }
+  /** Tafel rollen (P12.5 R8): Inhalt höher als die Tafel – die inerte Leinwand rollt auf Anweisung der Regie */
+  | { art: 'rollen'; nr: number; schritt: -1 | 1 }
   | { art: 'hallo' };
 
 export interface Kanal {
@@ -85,6 +92,8 @@ function istNachricht(x: unknown): x is EingehendeNachricht {
   if (n['art'] === 'hallo') return true;
   if (n['art'] === 'lebenszeichen') return typeof n['nr'] === 'number' && Number.isFinite(n['nr']);
   if (n['art'] === 'zustand') return typeof n['nr'] === 'number' && Number.isFinite(n['nr']) && 'zustand' in n;
+  if (n['art'] === 'anzeige') return typeof n['nr'] === 'number' && Number.isFinite(n['nr']) && typeof n['beamer'] === 'boolean';
+  if (n['art'] === 'rollen') return typeof n['nr'] === 'number' && Number.isFinite(n['nr']) && (n['schritt'] === -1 || n['schritt'] === 1);
   return false;
 }
 
@@ -149,7 +158,7 @@ export function erzeugeKanal(name: string, umgebung: KanalUmgebung = {}): Kanal 
   /** höchste Folgenummer je Absender (verwirft die zweite Zustellung) */
   const letzteFolge = new Map<string, number>();
   /** höchste Nummer je Nachrichtenart (verwirft Veraltetes) */
-  const letzteNr = new Map<'zustand' | 'lebenszeichen', number>();
+  const letzteNr = new Map<'zustand' | 'lebenszeichen' | 'anzeige' | 'rollen', number>();
 
   const verteile = (roh: unknown): void => {
     if (!offen || !istUmschlag(roh) || roh.von === kennung) return;

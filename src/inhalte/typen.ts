@@ -1,17 +1,14 @@
 /*
  * Typen von `src/generiert/inhalte.json` (erzeugt von werkzeuge/inhalte.mjs, Format:
- * docs/INHALTSFORMAT.md). Die Story-Typen erweitern das Engine-Modell (src/engine/typen.ts), damit
- * die Inhalte ohne Umbau als `StoryModell` in `wende()` gehen.
+ * docs/INHALTSFORMAT.md): Themen der Theorie, Story (src/geschichte/typen.ts), Explore-Texte, Glossar.
  *
  * Alle Felder mit HTML-Inhalt sind zur Bauzeit aus Markdown erzeugt; rohes HTML der Autoren ist dort
  * bereits maskiert. Glossarbezüge: `<span class="mvg-glossar" data-glossar="g-…" data-begriff="…">`,
  * Zitate: `<blockquote|q class="mvg-zitat" data-absatz="k2.4-p2">`.
  */
 
-import type {
-  Freischaltung, Kante, ModellEntscheidung, ModellFrage, ModellInfo, ModellOption, ModellRolle, ModellRueckbezug,
-  ModellSchritt, ModellStation, ModellSzene, SchrittArt, StationArt, StoryModell, Welt, WirkEintrag,
-} from '../engine/typen.ts';
+import type { Geschichte, GeschichteRegie } from '../geschichte/typen.ts';
+export type { Geschichte, GeschichteRegie };
 
 /** Kopfdaten nach Umwandlung (Zahlen, Listen, ja/nein, verschachtelte Karten). Schlüssel in camelCase. */
 export type KopfWert = string | number | boolean | null | KopfWert[] | { [schluessel: string]: KopfWert };
@@ -44,59 +41,6 @@ export interface Block {
   ebenen?: Ebene[];
 }
 
-export interface Schritt extends ModellSchritt {
-  art: SchrittArt;
-  titel: string;
-  kurz: string;
-  gruppe: string | null;
-  uhr: string | null;
-  /** übrige Kopfdaten (z. B. `folgt` bei der Rollenwahl) */
-  kopf: Record<string, KopfWert>;
-  felder: Record<string, string>;
-  bloecke: Block[];
-}
-
-export interface Info extends ModellInfo {
-  /** Schritt, in dem der Zeitsprung steht */
-  schritt: string;
-}
-
-export interface Option extends ModellOption {
-  titel: string;
-  symbol: string | null;
-  felder: { konsequenz: string; wasFehlt: string; neuesRisiko: string; governanceFrage: string };
-}
-
-export interface Entscheidung extends ModellEntscheidung {
-  /** Frage als Text („Was tun Sie?“) */
-  frage: string;
-  optionen: Option[];
-  /** HTML unter jeder Konsequenz */
-  nachsatz: string | null;
-}
-
-export interface Antwort {
-  id: string;
-  titel: string;
-  praefix: string | null;
-  symbol: string | null;
-  html: string;
-}
-
-export interface Frage extends ModellFrage {
-  schritt: string | null;
-  felder: { frage: string; rueckmeldung?: string };
-  antworten: Antwort[];
-}
-
-export interface Szene extends ModellSzene {
-  station: string;
-  entscheidung: Entscheidung | null;
-  fragen: Frage[];
-  rueckbezug: ModellRueckbezug | null;
-  quelle: string;
-}
-
 export interface Ebene {
   /** 1 Kernaussage · 2 Warum relevant · 3 Vertiefung · 4 Nachweis */
   nr: number;
@@ -105,104 +49,41 @@ export interface Ebene {
   bloecke: Block[];
 }
 
-export interface Standpunkt {
-  rolle: string;
-  figur: string;
-  html: string;
-}
-
-export interface Station extends ModellStation {
-  art: StationArt;
-  welt: Welt | null;
-  monat: number | null;
-  titel: string;
-  kurztitel: string;
-  lph: number | null;
-  uhr: string | null;
-  /** Absatz-IDs */
-  whitepaper: string[];
-  statusStart: WirkEintrag[] | null;
-  weiter: Kante[];
-  schaltetFrei: Freischaltung[];
-  einleitung: string;
-  schritte: Schritt[];
-  infos: Info[];
-  ebenen: Ebene[] | null;
-  standpunkte: Standpunkt[];
-  szenen: Record<string, Szene>;
-  quelle: string;
-}
-
-export interface Figur {
-  id: string;
-  name: string;
-  /** Rollen-ID oder null */
-  rolle: string | null;
-  funktion: string;
-  farbe: string;
-  spieler: boolean;
-  felder: { kurzbeschreibung?: string; stimme?: string };
-}
-
-export interface Fall {
-  hinweis: string;
-  stadt: string;
-  bauherr: string;
-  vertretung: string;
-  vertretungKurz: string | null;
-  projekt: string;
-  bauteile: string[];
-  bauweise: string | null;
-  projektbasis: string;
-  projektbasisMio: number | null;
-  gremien: string[];
-  einleitung: string;
-  figuren: Record<string, Figur>;
-}
-
-export interface Rolle extends ModellRolle {
-  titel: string;
-  kurztitel: string;
-  farbe: string;
-  textfarbe: string | null;
-  figur: string | null;
-  whitepaper: string[];
-  /** Kap. 3.2: delegierbar = Arbeit, die diese Rolle trägt oder weitergibt; nichtDelegierbar = was beim Bauherrn bzw. außerhalb ihres Mandats bleibt */
-  felder: { text?: string; linse?: string; delegierbar?: string; nichtDelegierbar?: string };
-  quelle: string;
-}
-
-export interface Interesse {
-  id: string;
-  titel: string;
-  html: string;
-}
-
 export interface GlossarEintrag {
   id: string;
   begriff: string;
   definition: string;
+  /** wo der Begriff markiert ist (P6.14): Kapitelnummern der Themen */
+  vorkommen: { kapitel: number[] };
 }
 
 export interface TheorieSeite {
   id: string;
   kapitel: number;
+  /** Kennung in der Adresse (#theorie/<thema>, P16.3) */
+  thema: string;
+  /** Reihenfolge der Themen */
+  reihe: number;
   titel: string;
   kurztitel: string;
-  grafik: string | null;
-  story: string[];
   deckt: string[];
   einleitung: string;
   bloecke: Block[];
   quelle: string;
 }
 
-export interface Einwand {
+/**
+ * Begriffs-Kompass (P10.5, E7): ein Whitepaper-Begriff und die Wörter, die Kunden oft stattdessen
+ * benutzen. `beleg` = Absatz-ID, in deren Text der Begriff steht; `glossar` = Glossar-ID oder null.
+ */
+export interface KompassEintrag {
   id: string;
-  stationen: string[];
-  kapitel: string[];
-  felder: { einwand?: string; antwort?: string };
-  bloecke: Block[];
+  begriff: string;
+  andere: string[];
+  beleg: string;
+  glossar: string | null;
+  /** Inline-HTML oder null */
+  hinweis: string | null;
 }
 
 export interface Abdeckung {
@@ -212,7 +93,7 @@ export interface Abdeckung {
   zugeordnet: number;
   /** 0 … 1 */
   anteil: number;
-  ziele: Record<string, { theorie: string[]; story: string[] }>;
+  ziele: Record<string, { theorie: string[] }>;
 }
 
 /** Regie-Material: Sprechernotiz (HTML) und Leitfragen (Inline-HTML). Nie auf der Leinwand. */
@@ -221,13 +102,27 @@ export interface RegieEintrag {
   leitfragen: string[];
 }
 
-/** Gliederung des Whitepapers (Kapitel mit Abschnitten), für die Kapitelliste der Theorie. */
-export interface WhitepaperKapitel {
-  /** `k1` … `k13` */
+/** Abbildung der DOCX V1.2 (P8.5; Bild seit P14, O-32, L-77) */
+export interface Abbildung {
   id: string;
-  nr: string;
+  /** laufende Nummer in der Reihenfolge des Texts (1 = erste Inhaltsabbildung) */
+  nr: number;
+  kapitel: string;
+  /** Absatz- oder Abschnitts-ID, bei der die Abbildung steht */
+  ort: string;
+  /** Bild mit Beschreibung (inhalte/abbildungen/abb-N.yaml); null = nur Verzeichniseintrag */
+  bild: AbbildungsBild | null;
+}
+
+export interface AbbildungsBild {
   titel: string;
-  abschnitte: { id: string; nr: string; titel: string }[];
+  alt: string;
+  breite: number;
+  hoehe: number;
+  /** im Bild überdeckte Beschriftungen: neuer Text (Begriff des Texts) und Beleg */
+  angeglichen: { text: string; beleg: string }[];
+  /** was nach der Angleichung noch vom Text abweicht (HTML inline) mit Belegen */
+  abweichungen: { html: string; belege: string[] }[];
 }
 
 /** Startseite (inhalte/start.md, O-21) */
@@ -240,27 +135,49 @@ export interface Startseite {
   these: string;
 }
 
-export interface Inhalte extends StoryModell {
+export interface Inhalte {
   version: 1;
-  whitepaper: { fassung: string | null; titel: string | null; kapitel: WhitepaperKapitel[] };
-  fall: Fall | null;
+  /** Abbildungen mit Bildbeschreibung (Bilddaten getrennt in abbildungen.json) */
+  abbildungen: Abbildung[];
   startseite: Startseite | null;
-  rollen: Record<string, Rolle>;
-  rollenFolge: string[];
-  interessen: Interesse[];
-  start: string;
-  stationen: Record<string, Station>;
-  stationsFolge: string[];
   glossar: Record<string, GlossarEintrag>;
   theorie: Record<string, TheorieSeite>;
-  einwaende: Einwand[];
+  kompass: KompassEintrag[];
   abdeckung: Abdeckung;
-  /** Schlüssel `A3` (Station) oder `A3/pl` (Rollenszene) */
+  /** Regie-Material der Themen, Schlüssel `theorie/k3` bzw. `theorie/k3/k3.2` */
   regie: Record<string, RegieEintrag>;
+  /** Story (P16.6, O-40) */
+  geschichte: Geschichte | null;
+  /** Regie-Notizen der Story je Station */
+  geschichteRegie: Record<string, GeschichteRegie>;
+  /** Texte der Explore-Werkzeuge (P16.8) */
+  werkzeuge: Werkzeuge | null;
+}
+
+interface WerkzeugTeil { titel: string; kurz: string; html: string }
+
+/** Explore-Werkzeuge (inhalte/werkzeuge.yaml, P16.8, O-46) */
+export interface Werkzeuge {
+  einleitungHtml: string;
+  mcda: WerkzeugTeil & { hinweisHtml: string };
+  matrix: WerkzeugTeil & {
+    stufen: { id: string; titel: string; von: number; bis: number; html: string }[];
+    regel: string;
+    sonder: string;
+    wahrscheinlichkeit: string[];
+    qualitaet: string[];
+    beispiele: { kennung: string; titel: string; w: number; a: number }[];
+  };
+  vorgaenge: WerkzeugTeil & {
+    arten: { id: string; titel: string; html: string; beispiel: string; abschluss: string; wege: string[] }[];
+    entscheidung: { titel: string; html: string };
+  };
+  takt: WerkzeugTeil & { stufen: { id: string; titel: string; wer: string; html: string; beispiel: string }[] };
+  glossar: WerkzeugTeil;
 }
 
 /**
  * Was jede Fläche (auch die Leinwand) sehen darf. `regie?: never` macht den Typ streng: Ein volles
  * `Inhalte` (mit Regie-Material) ist NICHT zuweisbar, strukturell wie als Objektliteral.
  */
-export type OeffentlicheInhalte = Omit<Inhalte, 'regie'> & { regie?: never };
+export type OeffentlicheInhalte = Omit<Inhalte, 'regie' | 'geschichteRegie'> & { regie?: never; geschichteRegie?: never };

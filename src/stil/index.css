@@ -1,11 +1,15 @@
 /* =============================================================================================
    MVG · Stil-Einstieg für esbuild (CSS-Bündelung). Reihenfolge ist Teil des Vertrags:
    1. Schriften (generiert von werkzeuge/schriften.mjs – vor dem Bau erzeugen!)
-   2. Tokens   3. Basis   4. Leitstand (Story)   5. Startseite   6. Theorie
+   2. Tokens   3. Basis   4. Bausteine und Tafeln   5. Regie und Leinwand   6. Startseite   7. Theorie   8. Rahmen   9. Story   10. Explore
    ============================================================================================= */
 @import "../generiert/schriften.css";
 @import "./tokens.css";
 @import "./basis.css";
-@import "./leitstand.css";
+@import "./tafeln.css";
+@import "./regie.css";
 @import "./start.css";
 @import "./theorie.css";
+@import "./rahmen.css";
+@import "./geschichte.css";
+@import "./explore.css";

@@ -1,51 +1,48 @@
 /*
- * Einstieg der Einzeldatei (P0.6 Durchstich): Hash-Router, Sitzung, Flächen.
+ * Einstieg der Hauptseite (P16, O-42): Hash-Router und Bereiche.
  *
- *   #start · #story · #theorie · #theorie/k1 · #regie · #leinwand   (Unbekanntes → Start)
+ *   #start · #story(/s3) · #theorie(/<thema>) · #explore(/<werkzeug>) · #regie · #leinwand   (Unbekanntes → Start)
  *
  * Ein Fenster läuft in genau einer Betriebsart, festgelegt beim Laden:
- *   App      – Start, Story, Theorie; eine Sitzung, Stand im Speicher (Weiterlesen, E9)
- *   Regie    – eigene Sitzung (eigener Speicherschlüssel), sendet den öffentlichen Zustand
- *   Leinwand – keine Sitzung; zeichnet nur, was über den Kanal kommt (O-9)
+ *   Seite    – Start, Story, Theorie, Explore; der Stand der Story liegt nur in diesem Browser
+ *   Regie    – eigener Bühnenstand (eigener Speicherschlüssel), sendet den öffentlichen Stand
+ *   Leinwand – zeichnet nur, was über den Kanal kommt (O-9)
  * Wechselt der Anker die Betriebsart (z. B. „Präsentieren“ → #regie), lädt das Fenster neu.
  */
 
 import logoSvg from '../quellen/marke/logo-bm.svg';
 import bildmarkeSvg from '../quellen/marke/logo-bm-bildmarke.svg';
-import type { Aktion, Zustand } from './engine/typen.ts';
-import { inhalte, regieFuer } from './inhalte/index.ts';
-import { anfangszustand, oeffentlich } from './engine/zustand.ts';
-import { lade, type SpeicherGriff } from './engine/speicher.ts';
+// Abbildungen als data:-URL (P14): getrennt von inhalte.json, nur hier geladen
+import abbildungsBilder from './generiert/abbildungen.json' with { type: 'json' };
+import { inhalte, regieGeschichte, regieKapitel } from './inhalte/index.ts';
 import { erzeugeKanal } from './regie/kanal.ts';
 import { setzeMarke } from './ui/marke.ts';
-import { leseRoute, routeHash, type Route } from './ui/route.ts';
-import { erzeugeSitzung, type Sitzung } from './ui/sitzung.ts';
+import { setzeAbbildungsBilder } from './ui/bausteine/abbildung.ts';
+import { istAbbildungsId, leseRoute, routeHash, type Route } from './ui/route.ts';
 import { ersetze } from './ui/h.ts';
+import { ersatzBogenFuerLeinwand, ersatzBogenFuerStrgP, ersatzDruck } from './ui/druck.ts';
 import { installiereTooltips, type Tooltips } from './ui/bausteine/tooltip.ts';
-import { erzeugeStory, type StoryFlaeche } from './ui/flaechen/story.ts';
+import { erzeugeGeschichte, ladeStand, type GeschichteFlaeche, type SpeicherGriff } from './ui/flaechen/geschichte.ts';
 import { baueStart } from './ui/flaechen/start.ts';
-import { baueTheorie, kapitelListe } from './ui/flaechen/theorie.ts';
+import { baueTheorie, themaSeite, themaTitel, themen, zeigeAktuellenEintrag } from './ui/flaechen/theorie.ts';
+import { baueExplore, werkzeugAus, WERKZEUGE } from './ui/flaechen/explore.ts';
+import { wegStationen } from './geschichte/engine.ts';
 import { erzeugeRegie } from './regie/regie.ts';
 import { starteLeinwand } from './regie/leinwand.ts';
 import { W } from './ui/woerter.ts';
+import { fassungText } from './ui/fassung.ts';
 
-declare const __MVG_VERSION__: string;
-
-const TITEL = 'Minimum Viable Governance';
-const STORY_VERSION = __MVG_VERSION__.split('.').slice(0, 2).join('.');
-const VERSION = W.version(inhalte.whitepaper.fassung ?? '', STORY_VERSION);
+const TITEL = W.name;
+const VERSION = fassungText();
 const KANAL = 'regie';
 
-type Betriebsart = 'app' | 'regie' | 'leinwand';
+type Betriebsart = 'seite' | 'regie' | 'leinwand';
 
 function betriebsart(r: Route): Betriebsart {
-  return r.flaeche === 'regie' ? 'regie' : r.flaeche === 'leinwand' ? 'leinwand' : 'app';
+  return r.flaeche === 'regie' ? 'regie' : r.flaeche === 'leinwand' ? 'leinwand' : 'seite';
 }
 
-/**
- * `localStorage`, wenn erreichbar; sonst null (schon der Zugriff kann werfen, z. B. bei gesperrten
- * Website-Daten). Die Plattform-API liest nur der Einstieg – die Engine bekommt den Griff gereicht.
- */
+/** `localStorage`, wenn erreichbar; sonst null (schon der Zugriff kann werfen). */
 function standardSpeicher(): SpeicherGriff | null {
   try {
     return window.localStorage ?? null;
@@ -54,107 +51,93 @@ function standardSpeicher(): SpeicherGriff | null {
   }
 }
 
-/** Speicher mit eigenem Schlüsselvorsatz (die Regie stört das Weiterlesen des Hauptfensters nicht). */
-function mitVorsatz(g: SpeicherGriff | null, vorsatz: string): SpeicherGriff | null {
-  if (g === null) return null;
-  return {
-    getItem: (k) => g.getItem(vorsatz + k),
-    setItem: (k, v) => g.setItem(vorsatz + k, v),
-    removeItem: (k) => g.removeItem(vorsatz + k),
-  };
-}
+/* -------------------------------------------------------------------- Seite -- */
 
-function startzustand(speicher: SpeicherGriff | null): Zustand {
-  return lade(speicher, inhalte) ?? anfangszustand();
-}
-
-/* --------------------------------------------------------------------- App -- */
-
-function starteApp(wurzel: HTMLElement): void {
+function starteSeite(wurzel: HTMLElement): void {
   const speicher = standardSpeicher();
-  const sitzung: Sitzung = erzeugeSitzung(startzustand(speicher), inhalte, { speicher });
-  let story: StoryFlaeche | null = null;
+  const g = inhalte.geschichte;
+  let story: GeschichteFlaeche | null = null;
   let tipps: Tooltips | null = null;
   let flaeche = '';
+  ersatzBogenFuerStrgP(() => ['start', 'story', 'explore'].includes(document.body.dataset['flaeche'] ?? '') || document.querySelector('[data-pruef="thema-drucken"]') === null, () => ersatzDruck(VERSION));
 
   const raeume = (): void => {
-    story?.entferne();
-    story = null;
+    for (const d of document.querySelectorAll<HTMLDialogElement>('dialog[open]')) d.close();
     tipps?.entferne();
     tipps = null;
   };
-  const tue = (a: Aktion): void => {
-    sitzung.tue(a);
+  const zeigeSeite = (seite: HTMLElement, name: string, titel: string, fokus: string): void => {
+    ersetze(wurzel, seite);
+    tipps = installiereTooltips(seite, inhalte, W.themen.glossar);
+    window.scrollTo(0, 0);
+    if (flaeche !== '') (seite.querySelector(fokus) as HTMLElement | null)?.focus({ preventScroll: true });
+    flaeche = name;
+    document.body.dataset['flaeche'] = name.split(':')[0] ?? name;
+    document.title = titel;
   };
 
   const zeige = (r: Route): void => {
-    const z = sitzung.zustand();
     switch (r.flaeche) {
       case 'story': {
-        if (z.station === null) tue({ art: 'starteStory' });
-        else tue({ art: 'wechsleBereich', bereich: 'story' });
-        if (flaeche !== 'story') {
-          raeume();
-          story = erzeugeStory({ inhalte, tue, zurStart: () => navigiere({ flaeche: 'start' }) });
-          ersetze(wurzel, story.element);
-          story.setze(oeffentlich(sitzung.zustand()), null);
-          window.scrollTo(0, 0);
+        if (g === null) return;
+        raeume();
+        if (story === null) {
+          story = erzeugeGeschichte({ g, speicher, themaTitel: (id) => themaTitel(inhalte, id) });
+          story.beiAenderung((s) => {
+            const id = s.schritt.ort === 'station' ? s.schritt.station : null;
+            history.replaceState(null, '', routeHash({ flaeche: 'story', station: id }));
+          });
         }
-        flaeche = 'story';
-        document.body.dataset['flaeche'] = 'story';
-        document.title = `${W.story} · ${TITEL}`;
+        if (flaeche !== 'story') zeigeSeite(story.element, 'story', `${W.story} · ${TITEL}`, '.gs-titel');
+        tipps ??= installiereTooltips(story.element, inhalte, W.themen.glossar);
+        if (r.station !== null) story.zuStation(r.station);
         break;
       }
       case 'theorie': {
-        if (r.kapitel === null) tue({ art: 'wechsleBereich', bereich: 'theorie' });
-        else tue({ art: 'oeffneKapitel', kapitel: r.kapitel });
         raeume();
-        const seite = baueTheorie({ inhalte, kapitel: r.kapitel, version: VERSION, bedienbar: true });
-        ersetze(wurzel, seite);
-        tipps = installiereTooltips(seite, inhalte, W.glossarQuelle(inhalte.whitepaper.fassung ?? ''));
-        window.scrollTo(0, 0);
-        (seite.querySelector('.kapitel-titel') as HTMLElement | null)?.focus({ preventScroll: true });
-        flaeche = `theorie-${r.kapitel ?? 0}`;
-        document.body.dataset['flaeche'] = 'theorie';
-        document.title = `${W.theorie.bereich} ${W.theorie.bereichZusatz} · ${TITEL}`;
+        const seite = baueTheorie({ inhalte, thema: r.thema, version: VERSION, bedienbar: true });
+        const t = r.thema !== null ? themaSeite(inhalte, r.thema) : null;
+        zeigeSeite(seite, `theorie:${t?.thema ?? ''}`, t !== null ? `${t.titel} · ${W.themen.bereich} · ${TITEL}` : `${W.themen.titel} · ${TITEL}`, '.kapitel-titel');
+        zeigeAktuellenEintrag(seite);
+        // Abbildung (abb-6) als Sprungziel
+        if (r.abschnitt !== null && istAbbildungsId(r.abschnitt)) {
+          const ziel = seite.querySelector<HTMLElement>(`figure.abbildung[data-abbildung="${r.abschnitt}"]`);
+          if (ziel !== null) {
+            ziel.classList.add('ist-ziel');
+            ziel.tabIndex = -1;
+            ziel.scrollIntoView({ block: 'start' });
+            ziel.focus({ preventScroll: true });
+          }
+        }
+        break;
+      }
+      case 'explore': {
+        raeume();
+        const werkzeug = werkzeugAus(r.werkzeug);
+        zeigeSeite(baueExplore({ inhalte, werkzeug, bedienbar: true }), `explore:${werkzeug}`, `${inhalte.werkzeuge?.[werkzeug].titel ?? W.rahmen.explore} · ${W.rahmen.explore} · ${TITEL}`, '.ex-titel');
         break;
       }
       default: {
-        tue({ art: 'wechsleBereich', bereich: 'start' });
         raeume();
-        ersetze(wurzel, baueStart({
+        zeigeSeite(baueStart({
           startseite: inhalte.startseite,
-          kapitelAnzahl: kapitelListe(inhalte).length,
-          rollenAnzahl: inhalte.rollenFolge.length,
-          weiterlesen: sitzung.zustand().station !== null,
-          fassung: inhalte.whitepaper.fassung ?? '',
-          version: VERSION,
+          themenAnzahl: themen(inhalte).length,
+          stationenAnzahl: g !== null ? wegStationen(g, false).length : 0,
+          werkzeugAnzahl: WERKZEUGE.length,
+          weiterlesen: g !== null && ladeStand(g, speicher) !== null,
           bedienbar: true,
-        }));
-        window.scrollTo(0, 0);
-        flaeche = 'start';
-        document.body.dataset['flaeche'] = 'start';
-        document.title = `${TITEL} – ${W.absender}`;
+        }), 'start', `${TITEL} – ${W.langname}`, '.start-titel');
       }
     }
   };
 
-  const navigiere = (r: Route): void => {
-    const ziel = routeHash(r);
-    if (location.hash !== ziel) location.hash = ziel;
-    else zeige(r);
-  };
-
-  sitzung.abonniere((neu, _alt, aktion) => {
-    if (story !== null && flaeche === 'story') story.setze(oeffentlich(neu), aktion);
-  });
-
   window.addEventListener('hashchange', () => {
     const r = leseRoute(location.hash);
-    if (betriebsart(r) !== 'app') {
+    if (betriebsart(r) !== 'seite') {
       location.reload();
       return;
     }
+    // die Story schreibt ihren Anker selbst (replaceState); ein Klick auf denselben Bereich zeichnet neu
     zeige(r);
   });
   document.addEventListener('keydown', (e) => {
@@ -168,17 +151,16 @@ function starteApp(wurzel: HTMLElement): void {
 /* ------------------------------------------------------------------- Regie -- */
 
 function starteRegie(wurzel: HTMLElement): void {
-  const speicher = mitVorsatz(standardSpeicher(), 'regie.');
-  const sitzung = erzeugeSitzung(startzustand(speicher), inhalte, { speicher });
   const kanal = erzeugeKanal(KANAL);
   const regie = erzeugeRegie({
     inhalte,
-    sitzung,
     kanal,
     version: VERSION,
-    regieFuer,
+    speicher: standardSpeicher(),
+    regieGeschichte,
+    regieKapitel,
     oeffneLeinwand: () => {
-      window.open(`${location.href.replace(/#.*$/, '')}#leinwand`, 'mvg-leinwand');
+      window.open(`${location.href.replace(/#.*$/, '')}#leinwand`, 'gk-leinwand');
     },
   });
   ersetze(wurzel, regie.element);
@@ -200,6 +182,7 @@ function starteLeinwandFenster(wurzel: HTMLElement): void {
   starteLeinwand(wurzel, { inhalte, kanal, version: VERSION });
   document.body.dataset['flaeche'] = 'leinwand';
   document.title = `${W.leinwand.titel} · ${TITEL}`;
+  ersatzBogenFuerLeinwand(VERSION);
   window.addEventListener('hashchange', () => {
     if (betriebsart(leseRoute(location.hash)) !== 'leinwand') location.reload();
   });
@@ -209,6 +192,8 @@ function starteLeinwandFenster(wurzel: HTMLElement): void {
 /* ------------------------------------------------------------------- Start -- */
 
 setzeMarke(logoSvg, bildmarkeSvg);
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+setzeAbbildungsBilder(abbildungsBilder as Record<string, string>);
 const wurzel = document.getElementById('mvg') ?? document.body;
 switch (betriebsart(leseRoute(location.hash))) {
   case 'regie':
@@ -218,5 +203,5 @@ switch (betriebsart(leseRoute(location.hash))) {
     starteLeinwandFenster(wurzel);
     break;
   default:
-    starteApp(wurzel);
+    starteSeite(wurzel);
 }

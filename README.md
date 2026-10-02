@@ -1,20 +1,21 @@
-# Minimum Viable Governance – interaktives Whitepaper
+# Governance Kompass
 
-Ein interaktives, animiertes Whitepaper von **Bauherr Mentoren** auf Grundlage des Whitepapers V1.2 „Nichtdelegierbare Bauherrenverantwortung und Minimum Viable Governance für komplexe Bau- und Infrastrukturprojekte“.
+Eine Internetseite von **Bauherr Mentoren** zu „Minimum Viable Governance“ für komplexe Bau- und Infrastrukturprojekte, ausgerichtet am Standard „Aufgaben- und Risikomanagement V2.4“ (www.GovernanceKompass.de).
 
-- **Erlebt – als Geschichte:** „Zwei Welten. Ein Schulcampus.“ – ein fiktives Projekt, einmal ohne und einmal mit MVG, aus sechs Rollen spielbar.
-- **Erklärt – Kapitel für Kapitel:** die gesamte MVG-Theorie in den 13 Kapiteln des Whitepapers, interaktiv aufbereitet, mit Originaltext.
-- **Explore:** Simulator und Werkzeuge. **Präsentieren:** Regie + Leinwand für Kundentermine.
+- **Story:** eine Geschichte aus Sicht der Bauherren-PL am fiktiven Schulcampus Lindenhall-Süd – acht Stationen, Vorlagen mit gewichtetem Vergleich, etwa 25 Minuten, als Kurzfassung etwa 10.
+- **Theorie:** die Inhalte als 16 Themen mit Grafiken, Übungen und Glossar.
+- **Explore:** gewichteter Vergleich, Risikomatrix, Vorgangsarten, Takt und Monatsbericht, Glossar.
+- **Präsentieren:** Regie und Leinwand für Kundentermine.
 
-Ausgeliefert wird eine einzige Datei: `dist/mvg.html` (offline, ohne Installation, im Browser öffnen).
+Ausgeliefert wird der Webseitenordner `dist/` (Hauptseite, Impressum, Datenschutz, robots, sitemap, Vorschaubild, `.htaccess`); nichts wird von Dritten nachgeladen. Upload: `docs/LAUNCH.md`, Bedienung: `docs/ANLEITUNGEN.md`.
 
 ## Entwickeln
 ```bash
-npm install
-npm run bau        # dist/mvg.html erzeugen
+npm ci
+npm run bau        # dist/ erzeugen
 npm run pruefe     # vollständige Prüfkette
 npm run vorschau   # lokale Vorschau auf http://127.0.0.1:8301
 ```
 Regeln und Plan: `CLAUDE.md`, `PLAN.md`, `ENTSCHEIDE.md`, `docs/`.
 
-Status: im Aufbau · fachlich ungeprüft · Fall fiktiv.
+Fall fiktiv.

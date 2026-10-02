@@ -54,10 +54,6 @@ export const SCHRIFTEN = [
       { gewicht: 600, wo: 'Versionsstände, Schwellen-Marken, Mail-Kopf' },
     ],
   },
-  {
-    paket: 'caveat', familie: 'Caveat', rolle: 'nur Haftnotizen',
-    gewichte: [{ gewicht: 700, wo: 'Haftnotizen der Welt A' }],
-  },
 ];
 
 export const UNTERMENGEN = /** @type {const} */ (['latin', 'latin-ext']);

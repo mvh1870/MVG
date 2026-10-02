@@ -20,7 +20,7 @@ function alsElement(text: string, klasse: string): Node {
   if (text === '') return document.createTextNode('');
   const svg = vonHtml(text.trim()).firstElementChild;
   if (svg === null) return document.createTextNode('');
-  // dekorativ: der Name „Bauherr Mentoren“ steht als Text daneben
+  // dekorativ: der Name steht als Text im Fuß („Herausgeber: Bauherr Mentoren“) und im Impressum
   svg.querySelector('title')?.remove();
   svg.removeAttribute('role');
   svg.removeAttribute('aria-label');

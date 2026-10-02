@@ -1,36 +1,45 @@
 /*
- * Regie (O-9): die Moderation steuert, die Leinwand zeigt.
+ * Regie (O-9, O-46, P16.9): die Moderation steuert, die Leinwand zeigt.
  *
- *   Kopf (Leinwand öffnen, Verbindung) · Vorschau der Leinwand · Zurück/Weiter · Fläche ·
- *   Kundenwahl und Eingriffe · Regie-Notiz und Leitfragen · Gesprächsprotokoll
+ *   Kopf (Leinwand öffnen, Verbindung, Beamer) · Vorschau der Leinwand · Zurück/Weiter · Bereich,
+ *   Thema, Werkzeug, Station · Kundenwahl · Regie-Notiz und Leitfragen · Gesprächsprotokoll
  *
- * Die Regie hält den Zustand (eigene Sitzung) und schickt nach jeder Änderung den ÖFFENTLICHEN
- * Zustand (`oeffentlich()`, ohne Protokoll) über den Kanal. Notizen und Leitfragen kommen aus
- * `regieFuer()` und bleiben in diesem Fenster; die Vorschau zeichnet mit derselben Anzeige wie die
+ * Die Regie hält den Bühnenstand (eigener Speicher) und schickt nach jeder Änderung den öffentlichen
+ * Stand (`Buehne`) über den Kanal. Notizen und Leitfragen kommen aus `regieGeschichte()` bzw.
+ * `regieKapitel()` und bleiben in diesem Fenster; die Vorschau zeichnet mit derselben Anzeige wie die
  * Leinwand (erzeugeAnzeige), also ebenfalls ohne Regie-Material.
  */
 
-import type { Aktion, OeffentlicherZustand, Zustand } from '../engine/typen.ts';
-import type { OeffentlicheInhalte, RegieEintrag } from '../inhalte/typen.ts';
-import { oeffentlich } from '../engine/zustand.ts';
-import type { Kanal } from './kanal.ts';
-import type { Sitzung } from '../ui/sitzung.ts';
+import type { GeschichteRegie, OeffentlicheInhalte, RegieEintrag } from '../inhalte/typen.ts';
+import { empfohlen, geheZu, neuerStand, schritte, schrittIndex, setzeKurz, station, waehle, weiter, zurueck } from '../geschichte/engine.ts';
+import { kanalSchluessel, type Kanal } from './kanal.ts';
+import { neueBuehne, pruefeBuehne, BUEHNEN_BEREICHE, type Buehne, type BuehnenBereich } from './buehne.ts';
 import { h, attr, text, ersetze } from '../ui/h.ts';
 import { bildmarke } from '../ui/marke.ts';
 import { sym } from '../ui/bausteine/bloecke.ts';
 import { inhalt } from '../ui/bausteine/inhalt.ts';
-import { aktuelleStation, eingriffe, kicker, sichtbareSchritte, tafelTitel, weiterAktion, zurueckAktion } from '../ui/anzeige.ts';
 import { erzeugeAnzeige } from './leinwand.ts';
-import { kapitelListe } from '../ui/flaechen/theorie.ts';
+import { themen, themaSeite } from '../ui/flaechen/theorie.ts';
+import { WERKZEUGE, werkzeugAus } from '../ui/flaechen/explore.ts';
+import { bogenFuerStrgP, bogenKopf, druckeBogen } from '../ui/druck.ts';
 import { W } from '../ui/woerter.ts';
+import { bmLink, DATENSCHUTZ_SEITE, IMPRESSUM_SEITE } from '../ui/bausteine/seite.ts';
+
+export interface SpeicherGriff {
+  getItem(k: string): string | null;
+  setItem(k: string, v: string): void;
+  removeItem(k: string): void;
+}
 
 export interface RegieOptionen {
   inhalte: OeffentlicheInhalte;
-  sitzung: Sitzung;
   kanal: Kanal | null;
   version: string;
-  /** Regie-Material je Station/Rolle (nur die Regie bekommt es) */
-  regieFuer: (station: string, rolle: string | null) => { station: RegieEintrag | null; szene: RegieEintrag | null };
+  speicher: SpeicherGriff | null;
+  /** Regie-Material je Story-Station */
+  regieGeschichte: (station: string) => GeschichteRegie | null;
+  /** Regie-Material eines Themas (über seine interne Nummer) */
+  regieKapitel: (kapitel: number) => RegieEintrag | null;
   /** öffnet das Leinwand-Fenster */
   oeffneLeinwand: () => void;
   /** Takt der Verbindungsprüfung in ms */
@@ -44,156 +53,292 @@ export interface RegieFlaeche {
 }
 
 const BUEHNE = { breite: 1280, hoehe: 720 };
+export const REGIE_SCHLUESSEL = 'gk.regie';
+
+interface Protokoll { zeit: number; text: string }
 
 export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
-  const { inhalte, sitzung } = o;
+  const { inhalte } = o;
+  const g = inhalte.geschichte;
   const w = W.regie;
-  const tue = (a: Aktion): void => {
-    sitzung.tue(a);
+  const lade = (): { buehne: Buehne; protokoll: Protokoll[] } => {
+    try {
+      const roh = JSON.parse(o.speicher?.getItem(REGIE_SCHLUESSEL) ?? 'null') as { buehne?: unknown; protokoll?: unknown } | null;
+      const b = pruefeBuehne(roh?.buehne, g);
+      const p = Array.isArray(roh?.protokoll) ? (roh.protokoll as Protokoll[]).filter((x) => typeof x?.text === 'string' && typeof x?.zeit === 'number') : [];
+      return { buehne: b ?? neueBuehne(), protokoll: p };
+    } catch {
+      return { buehne: neueBuehne(), protokoll: [] };
+    }
+  };
+  let { buehne, protokoll } = lade();
+  const speichere = (): void => {
+    try { o.speicher?.setItem(REGIE_SCHLUESSEL, JSON.stringify({ buehne, protokoll })); } catch { /* Speicher gesperrt */ }
   };
 
   /* ------------------------------------------------------------------ Kopf -- */
+  let beamer = false;
+  let anzeigeNr = 0;
+  const sendeAnzeige = (): void => {
+    anzeigeNr += 1;
+    o.kanal?.senden({ art: 'anzeige', nr: anzeigeNr, beamer });
+  };
+  const beamerKnopf = h('button', {
+    type: 'button', class: 'regie-chip', 'aria-pressed': 'false', 'data-pruef': 'regie-beamer',
+    onclick: () => {
+      beamer = !beamer;
+      attr(beamerKnopf, 'aria-pressed', beamer ? 'true' : 'false');
+      buehneEl.classList.toggle('ist-beamer', beamer);
+      sendeAnzeige();
+    },
+  }, sym('beamer'), w.beamer);
   const verbindung = h('span', { class: 'regie-verbindung', 'data-status': 'neutral', 'data-pruef': 'leinwand-status', role: 'status' }, w.nichtVerbunden);
   const kopf = h('header', { class: 'regie-kopf' },
     bildmarke('marke-logo'),
-    h('h1', { class: 'regie-titel' }, w.titel, h('span', { class: 'nur-sr' }, ' – '), h('span', { class: 'regie-unterzeile' }, W.produkt)),
+    h('h1', { class: 'regie-titel' }, w.titel, h('span', { class: 'nur-sr' }, ' – '), h('span', { class: 'regie-unterzeile' }, W.name)),
     verbindung,
+    beamerKnopf,
     h('button', { type: 'button', class: 'knopf knopf-gold regie-oeffnen', 'data-pruef': 'leinwand-oeffnen', onclick: () => o.oeffneLeinwand() },
       sym('diagramm'), h('span', null, h('b', null, w.leinwandOeffnen))));
 
   /* -------------------------------------------------------------- Vorschau -- */
   const anzeige = erzeugeAnzeige(inhalte, o.version, true);
-  const buehne = h('div', { class: 'vorschau-buehne', style: `width:${BUEHNE.breite}px;height:${BUEHNE.hoehe}px` }, anzeige.element);
-  const rahmen = h('div', { class: 'vorschau-rahmen', 'aria-hidden': 'true' }, buehne);
+  const buehneEl = h('div', { class: 'vorschau-buehne', style: `width:${BUEHNE.breite}px;height:${BUEHNE.hoehe}px` }, anzeige.element);
+  const rahmen = h('div', { class: 'vorschau-rahmen', 'aria-hidden': 'true' }, buehneEl);
   const massstab = (): void => {
     const b = rahmen.clientWidth;
-    if (b > 0) buehne.style.transform = `scale(${(b / BUEHNE.breite).toFixed(4)})`;
+    if (b > 0) buehneEl.style.transform = `scale(${(b / BUEHNE.breite).toFixed(4)})`;
   };
   const beobachter = typeof ResizeObserver === 'function' ? new ResizeObserver(massstab) : null;
   beobachter?.observe(rahmen);
   const ort = h('p', { class: 'regie-ort', 'data-pruef': 'regie-ort' });
 
   /* ------------------------------------------------------------- Steuerung -- */
-  const zurueckKnopf = h('button', { type: 'button', class: 'knopf knopf-still', 'data-pruef': 'regie-zurueck', onclick: () => schritt(-1) }, sym('pfeilLinks'), W.zurueck);
-  const weiterKnopf = h('button', { type: 'button', class: 'knopf knopf-navy', 'data-pruef': 'regie-weiter', onclick: () => schritt(1) }, h('span', null, h('b', null, W.weiter)), sym('pfeilRechts'));
-  const bereichKnopf = (bereich: 'start' | 'story' | 'theorie', beschriftung: string): HTMLButtonElement => h('button', {
-    type: 'button', class: 'regie-chip', 'data-bereich': bereich, 'data-pruef': `regie-bereich-${bereich}`, 'aria-pressed': 'false',
-    onclick: () => {
-      const z = sitzung.zustand();
-      if (bereich === 'story' && z.station === null) tue({ art: 'starteStory' });
-      else tue({ art: 'wechsleBereich', bereich });
-    },
-  }, beschriftung);
-  const bereiche = [bereichKnopf('start', w.start), bereichKnopf('story', w.story), bereichKnopf('theorie', w.theorie)];
-  const kapitelKnoepfe = kapitelListe(inhalte).filter((k) => k.seite).map((k) => h('button', {
-    type: 'button', class: 'regie-chip', 'data-kapitel': k.nr, 'data-pruef': `regie-kapitel-${k.nr}`, 'aria-pressed': 'false',
-    onclick: () => tue({ art: 'oeffneKapitel', kapitel: k.nr }),
-  }, `${W.theorie.kapitel} ${k.nr}`));
-  const neuKnopf = h('button', { type: 'button', class: 'regie-chip', 'data-pruef': 'regie-neustart', onclick: () => tue({ art: 'neustart' }) }, sym('zurueckspulen'), W.seite.neu);
+  const zurueckKnopf = h('button', { type: 'button', class: 'knopf knopf-still', 'data-pruef': 'regie-zurueck', onclick: () => schritt(-1) }, sym('pfeilLinks'), w.zurueck);
+  const weiterKnopf = h('button', { type: 'button', class: 'knopf knopf-navy', 'data-pruef': 'regie-weiter', onclick: () => schritt(1) }, h('span', null, h('b', null, w.weiter)), sym('pfeilRechts'));
+  const bereichsName: Record<BuehnenBereich, string> = { start: w.start, story: W.story, theorie: W.rahmen.theorie, explore: W.rahmen.explore };
+  const bereiche = BUEHNEN_BEREICHE.map((b) => h('button', {
+    type: 'button', class: 'regie-chip', 'data-bereich': b, 'data-pruef': `regie-bereich-${b}`, 'aria-pressed': 'false',
+    onclick: () => setze({ ...buehne, bereich: b }),
+  }, bereichsName[b]));
+  const themaWahl = h('select', { class: 'regie-auswahl', id: 'regie-thema', 'data-pruef': 'regie-thema' },
+    h('option', { value: '' }, w.themenUebersicht),
+    themen(inhalte).map((t) => h('option', { value: t.thema }, t.kurztitel))) as HTMLSelectElement;
+  themaWahl.addEventListener('change', () => setze({ ...buehne, bereich: 'theorie', thema: themaWahl.value === '' ? null : themaWahl.value }));
+  const werkzeugWahl = h('select', { class: 'regie-auswahl', id: 'regie-werkzeug', 'data-pruef': 'regie-werkzeug' },
+    WERKZEUGE.map((id) => h('option', { value: id }, inhalte.werkzeuge?.[id].titel ?? id))) as HTMLSelectElement;
+  werkzeugWahl.addEventListener('change', () => setze({ ...buehne, bereich: 'explore', werkzeug: werkzeugWahl.value }));
+  const sprung = h('select', { class: 'regie-auswahl', id: 'regie-sprung', 'data-pruef': 'regie-sprung' },
+    h('option', { value: '' }, w.sprungWaehlen),
+    (g?.stationen ?? []).map((st) => h('option', { value: st.id }, `${st.nr} · ${st.kurztitel}`))) as HTMLSelectElement;
+  sprung.addEventListener('change', () => {
+    if (g !== null && sprung.value !== '') {
+      const st = station(g, sprung.value);
+      let s = buehne.story;
+      if (st !== null && s.kurz && !st.kurzfassung) s = setzeKurz(g, s, false);
+      setze({ ...buehne, bereich: 'story', story: geheZu(g, s, { ort: 'station', station: sprung.value, teil: 'lage' }) });
+    }
+    sprung.value = '';
+  });
+  const kurzKnopf = h('button', { type: 'button', class: 'regie-chip', 'aria-pressed': 'false', 'data-pruef': 'regie-kurz', onclick: () => {
+    if (g !== null) setze({ ...buehne, story: setzeKurz(g, buehne.story, !buehne.story.kurz) });
+  } }, W.geschichte.kurzfassung);
+  const neuKnopf = h('button', { type: 'button', class: 'regie-chip', 'data-pruef': 'regie-neustart', onclick: () => setze({ ...buehne, bereich: 'story', story: neuerStand(buehne.story.kurz) }) }, sym('zurueckspulen'), W.geschichte.vonVorn);
+  let rollNr = 0;
+  const rolleTafel = (s: -1 | 1): void => {
+    anzeige.rolle(s);
+    rollNr += 1;
+    o.kanal?.senden({ art: 'rollen', nr: rollNr, schritt: s });
+  };
+  const tafelZeile = h('div', { class: 'regie-zeile', 'data-pruef': 'regie-tafel' },
+    h('span', { class: 't-label' }, w.tafel),
+    h('button', { type: 'button', class: 'regie-chip', 'data-pruef': 'regie-tafel-hoch', 'aria-label': w.tafelHoch, onclick: () => rolleTafel(-1) }, '↑'),
+    h('button', { type: 'button', class: 'regie-chip', 'data-pruef': 'regie-tafel-runter', 'aria-label': w.tafelRunter, onclick: () => rolleTafel(1) }, '↓'),
+    h('span', { class: 'regie-leise' }, w.tafelHinweis));
   const steuerung = h('section', { class: 'regie-karte regie-steuerung', 'aria-label': w.titel },
     h('div', { class: 'regie-blaettern' }, zurueckKnopf, weiterKnopf),
-    h('div', { class: 'regie-zeile' }, h('span', { class: 't-label' }, w.bereich), bereiche, kapitelKnoepfe, neuKnopf));
+    tafelZeile,
+    h('div', { class: 'regie-zeile' }, h('span', { class: 't-label' }, w.bereich), bereiche),
+    h('div', { class: 'regie-zeile' },
+      h('label', { for: 'regie-sprung', class: 't-label' }, w.sprung), sprung, kurzKnopf, neuKnopf),
+    h('div', { class: 'regie-zeile' },
+      h('label', { for: 'regie-thema', class: 't-label' }, W.rahmen.theorie), themaWahl,
+      h('label', { for: 'regie-werkzeug', class: 't-label' }, W.rahmen.explore), werkzeugWahl));
 
   const eingriffListe = h('div', { class: 'regie-eingriffe', role: 'group', 'aria-label': w.kundenwahl, 'data-pruef': 'regie-eingriffe' });
-  const eingriffKarte = h('section', { class: 'regie-karte' }, h('h2', { class: 'regie-h2' }, w.kundenwahl), eingriffListe);
+  const eingriffKarte = h('section', { class: 'regie-karte regie-eingriff-karte' }, h('h2', { class: 'regie-h2' }, w.kundenwahl), eingriffListe);
 
   /* ----------------------------------------------------------------- Notiz -- */
   const notizInhalt = h('div', { class: 'regie-notiz-inhalt' });
+  const einwandInhalt = h('div', { class: 'regie-einwand-teil' });
   const notiz = h('section', { class: 'regie-karte regie-notiz', 'data-pruef': 'regie-notiz', 'aria-label': w.notiz },
-    h('h2', { class: 'regie-h2' }, sym('lesezeichen'), w.notiz), notizInhalt, h('p', { class: 'regie-leise' }, w.nurRegie));
+    h('h2', { class: 'regie-h2' }, sym('lesezeichen'), w.notiz), notizInhalt, h('p', { class: 'regie-leise' }, w.nurRegie), einwandInhalt);
 
   /* ------------------------------------------------------------- Protokoll -- */
   const feld = h('textarea', { class: 'regie-feld', rows: 2, 'aria-label': w.protokollFeld, placeholder: w.protokollFeld, 'data-pruef': 'regie-protokoll-feld' });
   const protokollListe = h('ol', { class: 'regie-protokoll-liste' });
-  const protokoll = h('section', { class: 'regie-karte regie-protokoll', 'aria-label': w.protokoll },
+  const druckKnopf = h('button', { type: 'button', class: 'knopf knopf-still', 'data-pruef': 'regie-drucken', onclick: () => drucke() }, w.protokollDrucken);
+  const protokollKarte = h('section', { class: 'regie-karte regie-protokoll', 'aria-label': w.protokoll },
     h('h2', { class: 'regie-h2' }, w.protokoll),
     h('div', { class: 'regie-protokoll-eingabe' }, feld,
-      h('button', { type: 'button', class: 'knopf knopf-still', onclick: () => {
+      h('button', { type: 'button', class: 'knopf knopf-still', 'data-pruef': 'regie-protokoll-sichern', onclick: () => {
         const t = feld.value.trim();
         if (t === '') return;
-        tue({ art: 'notiere', text: t, zeit: Date.now() });
+        protokoll = [...protokoll, { zeit: Date.now(), text: t }];
         feld.value = '';
+        speichere();
+        zeichneProtokoll();
       } }, w.protokollSichern)),
-    protokollListe);
+    protokollListe,
+    h('div', { class: 'regie-zeile' }, druckKnopf,
+      // R67: Notizen bleiben nicht ungefragt im Browser – löscht Protokoll und gespeicherten Stand der Präsentation
+      h('button', { type: 'button', class: 'knopf knopf-still', 'data-pruef': 'regie-protokoll-loeschen', onclick: () => {
+        protokoll = [];
+        try { o.speicher?.removeItem(REGIE_SCHLUESSEL); o.speicher?.removeItem(kanalSchluessel('regie')); } catch { /* Speicher gesperrt */ }
+        zeichneProtokoll();
+      } }, w.protokollLoeschen)));
+  const uhr = (zeit: number): string => new Date(zeit).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+  const zeichneProtokoll = (): void => {
+    ersetze(protokollListe, protokoll.slice(-6).reverse().map((p) => h('li', null, h('span', { class: 'regie-zeit mono' }, uhr(p.zeit)), ' ', p.text)));
+  };
+  const druckBogen = (): { titel: string; teile: Node[] } => {
+    const teil = (...kinder: (Node | null)[]): HTMLElement => h('section', { class: 'druck-teil' }, kinder);
+    const entscheidungen = g === null ? [] : g.stationen.filter((st) => buehne.story.wahlen[st.id] !== undefined).map((st) => {
+      const opt = st.vorlage.optionen.find((x) => x.id === buehne.story.wahlen[st.id]);
+      return h('li', null, `${st.nr} · ${st.kurztitel}: ${opt?.titel ?? ''}`);
+    });
+    return {
+      titel: w.druckTitel,
+      teile: [bogenKopf(w.druckTitel, o.version, true), h('div', { class: 'regie-druck-inhalt', 'data-pruef': 'regie-druck' },
+        teil(h('h2', null, w.druckEintraege), protokoll.length > 0 ? h('ol', null, protokoll.map((p) => h('li', null, h('span', { class: 'mono' }, uhr(p.zeit)), ' ', p.text))) : h('p', null, w.druckLeer)),
+        teil(h('h2', null, w.druckEntscheidungen), entscheidungen.length > 0 ? h('ul', null, entscheidungen) : h('p', null, '–')))],
+    };
+  };
+  const drucke = (): void => {
+    const { titel, teile } = druckBogen();
+    druckeBogen(titel, teile);
+  };
+  bogenFuerStrgP(druckKnopf, druckBogen);
 
   const element = h('div', { class: 'regie', 'data-pruef': 'regie' },
     kopf,
-    h('div', { class: 'regie-raster' },
+    h('main', { class: 'regie-raster' },
       h('div', { class: 'regie-links' },
         h('section', { class: 'regie-vorschau', 'aria-label': w.vorschau }, h('span', { class: 't-label' }, w.vorschau), ort, rahmen),
         steuerung),
-      h('div', { class: 'regie-rechts' }, notiz, eingriffKarte, protokoll)),
-    h('footer', { class: 'regie-fuss' }, h('span', null, o.version), h('span', { class: 'start-vermerk' }, W.ungeprueft)));
+      h('div', { class: 'regie-rechts' }, eingriffKarte, notiz, protokollKarte)),
+    // R68: Impressum, Datenschutz und der leise Link auch hier (P16.12 „aus jeder Fläche erreichbar“)
+    h('footer', { class: 'regie-fuss' }, h('span', null, o.version),
+      h('a', { href: IMPRESSUM_SEITE, 'data-pruef': 'impressum' }, W.rahmen.impressum),
+      h('a', { href: DATENSCHUTZ_SEITE, 'data-pruef': 'datenschutz' }, W.rahmen.datenschutz),
+      bmLink()));
 
   /* -------------------------------------------------------------- Handeln -- */
+  const themenListe = themen(inhalte).map((t) => t.thema);
+  function naechste(b: Buehne, richtung: 1 | -1): Buehne | null {
+    if (b.bereich === 'story' && g !== null) {
+      const s = richtung === 1 ? weiter(g, b.story) : zurueck(g, b.story);
+      return s.schritt === b.story.schritt || JSON.stringify(s.schritt) === JSON.stringify(b.story.schritt) ? null : { ...b, story: s };
+    }
+    if (b.bereich === 'theorie') {
+      const i = b.thema === null ? -1 : themenListe.indexOf(b.thema);
+      const ziel = i + richtung;
+      if (ziel < -1 || ziel >= themenListe.length) return null;
+      return { ...b, thema: ziel === -1 ? null : themenListe[ziel] ?? null };
+    }
+    if (b.bereich === 'explore') {
+      const i = WERKZEUGE.indexOf(werkzeugAus(b.werkzeug));
+      const ziel = WERKZEUGE[i + richtung];
+      return ziel === undefined ? null : { ...b, werkzeug: ziel };
+    }
+    return richtung === 1 ? { ...b, bereich: 'story' } : null;
+  }
   function schritt(richtung: 1 | -1): void {
-    const z = oeffentlich(sitzung.zustand());
-    const a = richtung === 1 ? weiterAktion(z, inhalte) : zurueckAktion(z, inhalte);
-    if (a !== null) tue(a);
+    const n = naechste(buehne, richtung);
+    if (n !== null) setze(n);
   }
 
   /* -------------------------------------------------------------- Zeichnen -- */
   let nr = 0;
-  const sende = (z: Zustand): void => {
+  const sende = (): void => {
     nr += 1;
-    o.kanal?.senden({ art: 'zustand', nr, zustand: oeffentlich(z) });
+    o.kanal?.senden({ art: 'zustand', nr, zustand: buehne });
   };
 
-  const zeichneNotiz = (z: OeffentlicherZustand): void => {
-    if (z.station === null || z.bereich !== 'story') {
-      ersetze(notizInhalt, h('p', { class: 'regie-leise' }, w.keineNotiz));
+  const leitfragen = (fragen: readonly string[]): Node[] => fragen.length === 0 ? [] : [h('h3', { class: 'regie-h3' }, w.leitfragen), h('ol', { class: 'regie-leitfragen', 'data-pruef': 'regie-leitfragen' }, fragen.map((f) => h('li', null, f)))];
+  const zeichneNotiz = (): void => {
+    const leer = h('p', { class: 'regie-leise' }, w.keineNotiz);
+    ersetze(einwandInhalt);
+    if (buehne.bereich === 'theorie' && buehne.thema !== null) {
+      const seite = themaSeite(inhalte, buehne.thema);
+      const e = seite !== null ? o.regieKapitel(seite.kapitel) : null;
+      const teile: Node[] = [];
+      if (e?.notiz) teile.push(h('div', { class: 'regie-notiz-text' }, inhalt(e.notiz)));
+      if (e !== null) teile.push(...leitfragen(e.leitfragen));
+      ersetze(notizInhalt, teile.length > 0 ? teile : leer);
       return;
     }
-    const r = o.regieFuer(z.station, z.rolle);
-    const teile: Node[] = [];
-    for (const e of [r.szene, r.station]) {
-      if (e === null) continue;
-      if (e.notiz !== null) teile.push(h('div', { class: 'regie-notiz-text' }, inhalt(e.notiz)));
-      if (e.leitfragen.length > 0) {
-        teile.push(h('h3', { class: 'regie-h3' }, w.leitfragen), h('ol', { class: 'regie-leitfragen', 'data-pruef': 'regie-leitfragen' }, e.leitfragen.map((f) => h('li', null, f))));
+    const s = buehne.story.schritt;
+    if (buehne.bereich !== 'story' || s.ort !== 'station' || g === null) {
+      ersetze(notizInhalt, leer);
+      return;
+    }
+    const r = o.regieGeschichte(s.station);
+    const st = station(g, s.station);
+    ersetze(notizInhalt, r !== null ? [h('div', { class: 'regie-notiz-text' }, inhalt(r.notizHtml)), ...leitfragen(r.leitfragen)] : leer);
+    if (st !== null) {
+      ersetze(einwandInhalt, h('h3', { class: 'regie-h3' }, W.geschichte.einwand),
+        h('details', { class: 'regie-einwand', 'data-pruef': 'regie-einwand' }, h('summary', null, st.einwand.frage), h('div', { class: 'regie-einwand-antwort' }, inhalt(st.einwand.antwortHtml))));
+    }
+  };
+
+  const ortText = (): string => {
+    if (buehne.bereich === 'story' && g !== null) {
+      const s = buehne.story.schritt;
+      const i = schrittIndex(g, buehne.story) + 1;
+      const n = schritte(g, buehne.story.kurz).length;
+      if (s.ort === 'station') {
+        const st = station(g, s.station);
+        return `${W.story} · ${st?.nr ?? ''} ${st?.kurztitel ?? ''} · ${W.geschichte.teile[s.teil] ?? ''} · ${i}/${n}`;
       }
+      return `${W.story} · ${s.ort === 'prolog' ? W.geschichte.prolog : W.geschichte.ende} · ${i}/${n}`;
     }
-    ersetze(notizInhalt, teile.length > 0 ? teile : h('p', { class: 'regie-leise' }, w.keineNotiz));
+    if (buehne.bereich === 'theorie') return `${W.rahmen.theorie} · ${buehne.thema !== null ? themaSeite(inhalte, buehne.thema)?.kurztitel ?? '' : w.themenUebersicht}`;
+    if (buehne.bereich === 'explore') return `${W.rahmen.explore} · ${inhalte.werkzeuge?.[werkzeugAus(buehne.werkzeug)].titel ?? ''}`;
+    return w.start;
   };
 
-  const zeichne = (z: Zustand, aktion: Aktion | null): void => {
-    const oz = oeffentlich(z);
-    anzeige.setze(oz, aktion);
+  const zeichne = (): void => {
+    anzeige.setze(buehne);
     massstab();
-    // Ort
-    const st = aktuelleStation(oz, inhalte);
-    if (oz.bereich === 'story' && st !== null) {
-      const schritte = sichtbareSchritte(st, oz.rolle);
-      text(ort, `${st.kurztitel || st.titel} · ${kicker(schritte, oz.schritt)} · ${tafelTitel(schritte, oz.schritt)}`);
-    } else if (oz.bereich === 'theorie') {
-      text(ort, oz.theorie.kapitel !== null ? `${w.theorie} · ${W.theorie.kapitelVon(String(oz.theorie.kapitel))}` : w.theorie);
-    } else {
-      text(ort, w.start);
-    }
-    attr(weiterKnopf, 'disabled', weiterAktion(oz, inhalte) === null);
-    attr(zurueckKnopf, 'disabled', zurueckAktion(oz, inhalte) === null);
-    const aktiv = oz.bereich === 'story' && oz.station !== null ? 'story' : oz.bereich === 'theorie' ? 'theorie' : 'start';
-    for (const b of bereiche) attr(b, 'aria-pressed', b.dataset['bereich'] === aktiv ? 'true' : 'false');
-    for (const b of kapitelKnoepfe) attr(b, 'aria-pressed', aktiv === 'theorie' && Number(b.dataset['kapitel']) === oz.theorie.kapitel ? 'true' : 'false');
-    // Eingriffe
-    const liste = eingriffe(oz, inhalte);
-    ersetze(eingriffListe, liste.length > 0
-      ? liste.map((e) => h('button', {
-        type: 'button', class: 'regie-chip', 'aria-pressed': e.gedrueckt ? 'true' : 'false', 'data-pruef': e.pruef,
-        onclick: () => tue(e.aktion.art === 'waehle' ? { ...e.aktion, zeit: Date.now() } : e.aktion),
-      }, e.beschriftung))
+    text(ort, ortText());
+    attr(weiterKnopf, 'disabled', naechste(buehne, 1) === null);
+    attr(zurueckKnopf, 'disabled', naechste(buehne, -1) === null);
+    for (const b of bereiche) attr(b, 'aria-pressed', b.dataset['bereich'] === buehne.bereich ? 'true' : 'false');
+    attr(kurzKnopf, 'aria-pressed', buehne.story.kurz ? 'true' : 'false');
+    themaWahl.value = buehne.thema ?? '';
+    werkzeugWahl.value = werkzeugAus(buehne.werkzeug);
+    // Kundenwahl: die Optionen der Vorlage am Schritt „Vorlage“
+    const s = buehne.story.schritt;
+    const st = g !== null && buehne.bereich === 'story' && s.ort === 'station' && s.teil === 'vorlage' ? station(g, s.station) : null;
+    ersetze(eingriffListe, st !== null && g !== null
+      ? st.vorlage.optionen.map((x) => h('button', {
+        type: 'button', class: 'regie-chip', 'aria-pressed': buehne.story.wahlen[st.id] === x.id ? 'true' : 'false', 'data-pruef': `regie-wahl-${x.id}`,
+        onclick: () => setze({ ...buehne, story: waehle(g, buehne.story, st.id, x.id) }),
+      }, `${x.id} · ${x.titel}${x.id === empfohlen(g, buehne.story, st) ? ` (${W.geschichte.empfohlen})` : ''}`))
       : h('p', { class: 'regie-leise' }, w.keineEingriffe));
-    zeichneNotiz(oz);
-    // Protokoll
-    ersetze(protokollListe, z.regie.protokoll.slice(-6).reverse().map((p) => h('li', null,
-      h('span', { class: 'regie-zeit mono' }, new Date(p.zeit).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' })), ' ', p.text)));
+    zeichneNotiz();
   };
 
-  const abSitzung = sitzung.abonniere((neu, _alt, aktion) => {
-    zeichne(neu, aktion);
-    sende(neu);
-  });
-  zeichne(sitzung.zustand(), null);
+  function setze(neu: Buehne): void {
+    buehne = neu;
+    speichere();
+    zeichne();
+    sende();
+  }
+
+  zeichne();
+  zeichneProtokoll();
 
   /* ------------------------------------------------------------- Verbindung -- */
   let letztesZeichen = 0;
@@ -202,7 +347,10 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     text(verbindung, an ? w.verbunden : w.nichtVerbunden);
   };
   const abKanal = o.kanal?.abonnieren((n) => {
-    if (n.art === 'hallo') sende(sitzung.zustand());
+    if (n.art === 'hallo') {
+      sende();
+      sendeAnzeige();
+    }
     if (n.art === 'lebenszeichen' || n.art === 'hallo') {
       letztesZeichen = Date.now();
       setzeVerbindung(true);
@@ -212,27 +360,28 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     if (letztesZeichen > 0 && Date.now() - letztesZeichen > 3500) setzeVerbindung(false);
   }, o.takt ?? 1000);
   o.kanal?.senden({ art: 'hallo' });
-  sende(sitzung.zustand());
+  sende();
+  sendeAnzeige();
 
   return {
     element,
     taste(e) {
       const ziel = e.target instanceof HTMLElement ? e.target : null;
-      if (ziel !== null && (ziel instanceof HTMLTextAreaElement || ziel instanceof HTMLInputElement)) return false;
+      if (ziel !== null && (ziel instanceof HTMLTextAreaElement || ziel instanceof HTMLInputElement || ziel instanceof HTMLSelectElement)) return false;
       if (e.altKey || e.ctrlKey || e.metaKey) return false;
-      if (e.key === 'ArrowRight' || e.key === 'PageDown') {
-        schritt(1);
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') { schritt(1); return true; }
+      if (e.key === 'ArrowLeft' || e.key === 'PageUp') { schritt(-1); return true; }
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        if (buehne.bereich === 'start') return false;
+        rolleTafel(e.key === 'ArrowDown' ? 1 : -1);
         return true;
       }
-      if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-        schritt(-1);
-        return true;
-      }
-      if (/^[a-dA-D]$/.test(e.key) && !e.shiftKey) {
-        const z = oeffentlich(sitzung.zustand());
-        const e0 = eingriffe(z, inhalte).find((x) => x.aktion.art === 'waehle' && x.aktion.option === e.key.toUpperCase());
-        if (e0 !== undefined) {
-          tue({ art: 'waehle', option: e.key.toUpperCase(), zeit: Date.now() });
+      const s = buehne.story.schritt;
+      if (g !== null && buehne.bereich === 'story' && s.ort === 'station' && s.teil === 'vorlage' && /^[a-zA-Z]$/.test(e.key) && !e.shiftKey) {
+        const st = station(g, s.station);
+        const opt = st?.vorlage.optionen.find((x) => x.id === e.key.toUpperCase());
+        if (st !== null && opt !== undefined) {
+          setze({ ...buehne, story: waehle(g, buehne.story, st.id, opt.id) });
           return true;
         }
       }
@@ -240,7 +389,6 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     },
     entferne() {
       clearInterval(pruefer);
-      abSitzung();
       abKanal?.();
       beobachter?.disconnect();
       anzeige.entferne();
@@ -248,3 +396,4 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     },
   };
 }
+

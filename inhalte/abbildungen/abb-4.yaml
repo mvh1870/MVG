@@ -1,0 +1,18 @@
+id: abb-4
+quelle: bilder/image4.png
+titel: Wo Vorbereitung endet und eigene Entscheidung beginnt
+alt: >-
+  Drei Spalten. Links unter dem Kopf „Delegierbare Arbeit“ sechs Kacheln, je mit Piktogramm: Analyse, Vorbereitung,
+  Berichterstattung, Koordination, Dokumentation, Befähigung. In der Mitte eine schmale Spalte „Mandatsschwelle“,
+  oben „Vorbereitung endet“, unten „Entscheidung beginnt“, dazwischen auf ihrem linken Rand ein Schild mit Schloss;
+  je ein Pfeil führt von links hinein und nach rechts hinaus, dahinter blasse Brücken- und Tormotive. Rechts unter
+  dem Kopf „Bauherrenverantwortung“ sechs solche Kacheln: Zielpriorität, Mandat, Entscheidung, Freigabe, Datenstand,
+  Nachweis.
+angeglichen: []
+abweichungen:
+  - text: 'Die rechte Spalte zeigt sechs Kacheln – Zielpriorität, Mandat, Entscheidung, Freigabe, Datenstand, Nachweis – ohne Risikoannahme; der Text nennt als sechs Verantwortungsfelder Ziel, Mandat, wesentliche Entscheidung, Risikoannahme, Freigabe sowie Datenstand und Nachweis, wobei Datenstand und Nachweis im Text ein gemeinsames Feld sind, im Bild zwei Kacheln.'
+    beleg: k3.1-p2 k4.6-p1
+  - text: 'Der rechte Kopf heißt nur „Bauherrenverantwortung“; der Text stellt der delegierbaren Arbeit die nichtdelegierbare Bauherrenverantwortung gegenüber, seine Tabelle überschreibt diese Spalte mit „Nicht delegierbar“.'
+    beleg: k3-p1 k3-p2 k3.2-t1
+  - text: 'Die Mittelspalte heißt „Mandatsschwelle“ („Vorbereitung endet“, „Entscheidung beginnt“); der Text zieht hier die Linie, wo Vorbereitung endet und eigene Entscheidung beginnt, und kennt Mandatsschwellen nur als Eskalationsschwellen entlang der Mandatsleiter – innerhalb ihres Mandats entscheidet die zuständige Stelle des Bauherrn selbst.'
+    beleg: k3.2-p1 k6.4.5-p1 k3.3-p2

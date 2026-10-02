@@ -1,0 +1,102 @@
+id: s3
+nr: 3
+titel: Lieferzeit Holzbau
+kurztitel: Lieferzeit
+datum: März 2026
+monat: 3
+lph: 5
+kurzfassung: true
+# Bandbreite statt Einzelzahl bei unsicheren Mengen und Preisen (v24:hb-2); Option B rechnet mit dem erwarteten Wert der Bandbreite.
+# RIS-009 Auswirkung 4 (inhalte/fall.md, Grenzen der Risikobewertung): Termin nach Abzug des Puffers bis 28 Tage = Stufe 2; maßgeblich ist
+# die höchste belegte Auswirkung – Qualität/Funktion Stufe 4 (Schulbetrieb zum Schuljahresbeginn erheblich eingeschränkt), v24:hb-2.
+# Option C weicht vom Ratsbeschluss zum Klimaziel ab – wesentliche Änderung, nicht delegierbar (k3.2-t1, k4.3-p1): zusätzlich Beschluss des Bauherrn.
+belege: [v24:hb-1.2, v24:hb-1.3, v24:hb-2, v24:hb-3, v24:hb-3.1, v24:hb-1.6, v24:tlb-2, k4.4-p2, k3.2-t1, k4.3-p1]
+lage: |
+  Anfang März ruft Lena Hoffmeister von der Generalplanung an: Ein Hersteller nennt für die Holzbauelemente 26 statt 16 Wochen Lieferzeit. Noch am selben Tag steht der Hinweis als Frühwarnung im Register; eine Woche später ist er geklärt.
+# Bei s2 = C war die Freigabe LPH 4 vertagt (offen +1); sie wird im März erteilt – der Bericht meldet es, der Status baut ab.
+lage-folgen-bedingt:
+  - { wenn: "s2=C", folgen: { offen: -1 } }
+bericht:
+  titel: Monatsbericht · März 2026
+  zeilen:
+    - FRW-002 Lieferzeit Holzbauelemente geklärt am 11. März – weitergeführt als Risiko RIS-009, aktiv · vorrangig bearbeiten.
+    - Vorlage zur Lieferzeit liegt vor; Entscheidung bis 25. März.
+    - text: Freigabe LPH 4 am 17. März erteilt, nach der Marktabfrage für die Holzbauelemente; die Ausführungsplanung läuft seitdem.
+      wenn: s2=C
+    - text: Freigabe LPH 4 im Februar mit Auflage erteilt – die Marktabfrage für die Holzbauelemente liegt bis Ende März vor.
+      wenn: kurz & s2=B
+    - text: Neue Änderung AEN-012 Mensa – eigene Vorlage folgt.
+      wenn: lang
+  reaktion: Was empfehlen Sie dem Änderungsgremium zur Lieferzeit?
+vorgaenge:
+  - art: fruehwarnung
+    kennung: FRW-002
+    titel: Lieferzeit Holzbauelemente
+    text: Hinweis der Generalplanung vom 4. März. Prüffrage – gilt das für den Markt oder einen Hersteller? Ergebnis – drei von vier Anbietern nennen 24 bis 26 Wochen.
+    verantwortlich: Lena Hoffmeister, Generalplanung
+    termin: 11. März
+    stand: geklärt → RIS-009
+  - art: risiko
+    kennung: RIS-009
+    titel: Holzbauelemente kommen zu spät
+    text: Ursache – Lieferzeiten bis 26 Wochen. Mögliche Folge – Montagebeginn bis rund 70 Tage später, mehr als der Terminpuffer; zum Schuljahr 2028/29 bliebe der Schulbetrieb erheblich eingeschränkt. Zeitraum bis zur Montage.
+    verantwortlich: Projektsteuerung mit Generalplanung
+    termin: Wiedervorlage wöchentlich
+    stand: aktiv · vorrangig bearbeiten
+    matrix: { w: 4, a: 4 }
+vorlage:
+  art: optionen
+  frage: Wie sichern wir die Holzbauelemente rechtzeitig?
+  grund: |
+    4 × 4 = 16 – vorrangig. Ohne Gegenmaßnahme ist die Inbetriebnahme zum Schuljahr 2028/29 gefährdet; jeder Weg kostet Geld, Puffer oder Klimaziel.
+  stelle: Änderungsgremium – Vorsitz Frank Deppe, Geschäftsführer der GML; für C zusätzlich der Bauherr (Abweichung vom Ratsbeschluss zum Klimaziel); Mehrkosten aus der Reserve gibt der Bauherr frei
+  termin: 25. März 2026
+  verzug: Jede Woche ohne Entscheidung verkürzt die Zeit für eine vorgezogene Vergabe.
+  muss: Alle drei Optionen erfüllen Brandschutz und Genehmigung.
+  optionen:
+    - id: A
+      titel: Holzbau vorziehen
+      text: Die Holzbauelemente werden vorab ausgeschrieben und früh bestellt.
+      punkte:
+        kosten: [3, "+0,15 Mio. € Planungsbeschleunigung"]
+        termin: [5, "Liefertermin gesichert"]
+        qualitaet: [4, "unverändert"]
+        klima: [4, "Holzbau wie geplant"]
+      folgen: { kosten: 0.15 }
+      konsequenz: Die Projektsteuerung legt die Maßnahme MAS-007 an – vorgezogene Vergabe, verantwortlich die Generalplanung, Vergabeunterlagen bis 15. April. Die Bewertung von RIS-009 sinkt erst, wenn der vertragliche Liefertermin belegt ist.
+    - id: B
+      titel: Abwarten
+      text: Den Puffer nutzen und bei der Vergabe auf kürzere Lieferzeiten hoffen.
+      punkte:
+        kosten: [5, "keine Mehrkosten"]
+        termin: [1, "35 bis 70 Tage Verzug, je nach Markt"]
+        qualitaet: [4, "unverändert"]
+        klima: [4, "Holzbau wie geplant"]
+      folgen: { puffer: -35, offen: 1 }
+      konsequenz: Das Risiko bleibt vorrangig im Register. Die Generalplanung erwartet, dass sich die Lieferzeiten bis zur Vergabe bei rund 21 Wochen einpendeln – das kostet rund 35 Tage Puffer. Bleibt es bei 26 Wochen, sind es rund 70.
+    - id: C
+      titel: Sporthalle in Stahlbeton
+      text: Nur die Sporthalle wird umgeplant; Gesamt- und Grundschule bleiben in Holz.
+      punkte:
+        kosten: [2, "+0,25 Mio. € Umplanung"]
+        termin: [5, "rund 7 Tage Umplanung"]
+        qualitaet: [3, "Änderung der Planung"]
+        klima: [1, "weniger Holz als im Ratsbeschluss zum Klimaziel"]
+      folgen: { kosten: 0.25, puffer: -7 }
+      konsequenz: Der Bauherr stimmt der Abweichung vom Klimaziel zu. Die Projektsteuerung legt die Änderung AEN-013 an und verknüpft sie mit dem Risiko. Weniger Elemente heißt kürzere Lieferzeit – ob sie reicht, zeigt die Vergabe.
+  empfehlung:
+    option: A
+    text: Die Projektsteuerung empfiehlt, den Holzbau vorzuziehen – er sichert Termin und Klimaziel. Nachteil – 0,15 Mio. € Mehrkosten, bevor feststeht, ob der Markt sich entspannt. Mit „Kosten vor Termin“ bleibt A knapp vorn (50 zu 48).
+folge: |
+  Eine geplante Maßnahme senkt die Bewertung eines Risikos noch nicht. Erst wenn Umsetzung und Wirkung belegt sind, wird sie fortgeschrieben.
+so-laeuft-es-oft: |
+  Der Anruf landet in einer Notiz, drei Monate später steht im Statusbericht eine gelbe Ampel. Entschieden wird, wenn die Montage wackelt – dann bleibt nur der teure Weg.
+einwand:
+  frage: „Lieferzeiten sind doch Sache der Planung.“
+  antwort: Die Fachplanung bleibt bei der Generalplanung. Die Projektsteuerung klärt, bewertet und bereitet vor. Entscheiden muss die Bauherrenseite – hier das Änderungsgremium, mit Ihrer Empfehlung; es geht um Geld und Termin.
+theorie: vorgaenge
+regie:
+  notiz: Den Weg Frühwarnung → Risiko → Vorlage → Maßnahme zeigen. Die Matrix (4 × 4 = 16, vorrangig) kurz erklären. Bei „Abwarten“ die Bandbreite ansprechen – 35 Tage, wenn sich der Markt etwas entspannt, sonst rund 70. Mit „Kosten vor Termin“ liegt Abwarten nur zwei Punkte zurück (48 zu 50) – der Puffer zeigt, was das für die Förderfrist hieße. Option C weicht vom Ratsbeschluss zum Klimaziel ab und braucht deshalb zusätzlich einen Beschluss des Bauherrn.
+  leitfragen:
+    - Wo landet bei Ihnen ein solcher Anruf?
+    - Wer würde die Optionen ausarbeiten?

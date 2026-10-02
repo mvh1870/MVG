@@ -2,7 +2,8 @@
 /**
  * Prüfkette `npm run pruefe` (P0.4; docs/ARCHITEKTUR.md „Prüfkette“).
  *
- *   node werkzeuge/kette.mjs [--ohne-oberflaeche] [--nur <schritt>[,<schritt>…]]
+ *   node werkzeuge/kette.mjs [--ohne-oberflaeche] [--voll] [--nur <schritt>[,<schritt>…]]
+ *   (--voll: Browserprüfung mit allen Rollen und Größen; ohne: schneller Satz vor jedem Commit, L-44)
  *
  * Schritte in fester Reihenfolge: inhalte → typen → test → begriffe → bau → oberflaeche.
  * `inhalte` steht vorn, weil `typen` und `test` die erzeugte src/generiert/inhalte.json lesen und
@@ -30,6 +31,8 @@ export const WURZEL = path.resolve(path.dirname(fileURLToPath(import.meta.url)),
 export const MITSCHNITT = path.join(WURZEL, 'tmp', 'kette');
 /** Zeitlimit je Schritt; ein hängender Schritt ist ein Befund, kein Stillstand. */
 export const ZEITLIMIT_MS = 20 * 60_000;
+/** --voll (GitHub-Aktion, alle Rollen und Größen): mehr Zeit – seit den Breitenproben (L-166 ff.) reichten 20 min dort nicht (CI 241–244, L-169); die Aktion selbst endet nach 45 min */
+export const ZEITLIMIT_VOLL_MS = 35 * 60_000;
 
 /**
  * @typedef {object} Schritt
@@ -144,7 +147,7 @@ export async function laufe(liste, optionen = {}) {
   const o = {
     wurzel: optionen.wurzel ?? WURZEL,
     still: optionen.still ?? false,
-    zeitlimitMs: optionen.zeitlimitMs ?? ZEITLIMIT_MS,
+    zeitlimitMs: optionen.zeitlimitMs ?? (process.env['MVG_VOLL'] === '1' ? ZEITLIMIT_VOLL_MS : ZEITLIMIT_MS),
   };
   const mitschnitt = optionen.mitschnitt ?? MITSCHNITT;
   const nur = optionen.nur ?? null;
@@ -202,9 +205,12 @@ export async function laufe(liste, optionen = {}) {
 function leseArgumente(argv, bekannt) {
   /** @type {{ ohneOberflaeche: boolean, nur: string[] | null }} */
   const a = { ohneOberflaeche: false, nur: null };
+  // --voll: Browserprüfung mit allen Rollen und Größen (Phasenende, GitHub-Aktion; L-44) – über die Umgebung an oberflaeche
+  if (argv.includes('--voll')) process.env['MVG_VOLL'] = '1';
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i] ?? '';
     if (arg === '--ohne-oberflaeche') a.ohneOberflaeche = true;
+    else if (arg === '--voll') continue;
     else if (arg === '--nur' || arg.startsWith('--nur=')) {
       const wert = arg === '--nur' ? argv[(i += 1)] : arg.slice('--nur='.length);
       if (!wert) throw new Error('--nur braucht einen Schritt');
@@ -212,7 +218,7 @@ function leseArgumente(argv, bekannt) {
       const falsch = namen.filter((n) => !bekannt.includes(n));
       if (falsch.length > 0) throw new Error(`unbekannter Schritt ${falsch.join(', ')} (bekannt: ${bekannt.join(', ')})`);
       a.nur = [...(a.nur ?? []), ...namen];
-    } else throw new Error(`unbekannte Option ${arg} (erlaubt: --ohne-oberflaeche, --nur <schritt>)`);
+    } else throw new Error(`unbekannte Option ${arg} (erlaubt: --ohne-oberflaeche, --voll, --nur <schritt>)`);
   }
   return a;
 }

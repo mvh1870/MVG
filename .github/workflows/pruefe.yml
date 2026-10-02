@@ -1,4 +1,4 @@
-# Prüfkette in GitHub Actions (P0.4): dieselbe Kette wie lokal, `npm run pruefe`.
+# Prüfkette in GitHub Actions (P0.4): dieselbe Kette wie lokal, hier mit voller Browserprüfung (`npm run pruefe:voll`, L-44).
 # Bilder der Oberflächenprüfung und der Mitschnitt der Kette werden als Artefakte abgelegt.
 name: pruefe
 
@@ -17,7 +17,7 @@ concurrency:
 jobs:
   kette:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v5
 
@@ -35,7 +35,7 @@ jobs:
       - name: Kette
         env:
           MVG_BROWSER_PFLICHT: '1'
-        run: npm run pruefe
+        run: npm run pruefe:voll
 
       - name: Bilder der Oberflächenprüfung
         if: always()

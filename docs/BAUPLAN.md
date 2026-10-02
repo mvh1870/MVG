@@ -2,6 +2,8 @@
 
 Stand 2026-09-26 · Grundlage: Whitepaper Bauherr Mentoren V1.2 · Owner-Entscheide aus 8 Fragerunden
 
+> **Abgelöst in Teilen (O-36 bis O-50, Stand 2026-10-02):** Story-Struktur (Welten, Rollen, Rückspulen, mehrere Enden), Explore-Umfang (Simulator, Selbstdiagnose), Theorie mit Originaltext und Kundenfassung gelten nicht mehr. Maßgeblich sind PLAN.md (Phase P16), docs/DREHBUCH.md, docs/ABNAHME.md und die O-Entscheide. Dieser Bauplan bleibt als Vorgeschichte stehen (L-213).
+
 ## 1 Zielbild in fünf Sätzen
 1. Aus dem Whitepaper wird eine klickbare, animierte Geschichte: Management-Simulator mit Whitepaper-Tiefe, für Selbstlernen und Kundentermine gleichermaßen.
 2. Der Leser erlebt einen fiktiven Schulcampus der Stadt Lindenhall zuerst in **Welt A** (ohne MVG) bis zur Eskalation, versteht am **Wendepunkt** die Ursachen, spult zurück und spielt dieselben Stationen in **Welt B** (mit MVG). Ein Schieberegler vergleicht beide Welten an jeder Station.

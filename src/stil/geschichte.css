@@ -1,0 +1,325 @@
+/* =============================================================================================
+   MVG · Story (P16.6, O-40): ein Fluss mit schlanker Fortschrittslinie, kleiner Statusanzeige und
+   Vertiefungen zum Aufklappen; dahinter der Campus im Bau, sehr dezent (O-45).
+   Nur Tokens aus tokens.css, keine Farbwerte.
+   ============================================================================================= */
+
+.seite-story { background: var(--grund); }
+.seite-story .seiten-haupt {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 var(--a-6) var(--a-8);
+}
+
+/* Hintergrund: Campus im Bau, sehr dezent */
+.gs-hintergrund {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .16;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 8vh 2vw 2vh 30vw;
+}
+.gs-hintergrund .bauplan { max-height: 82vh; }
+
+/* R67 (WCAG 2.4.11): beim Rollen zum Fokus bleiben die klebenden Leisten frei; Höhen setzt geschichte.ts */
+html:has(.seite-story) { scroll-padding: var(--gs-oben, 0px) 0 var(--gs-unten, 0px); }
+
+/* ------------------------------------------------------------------ Leiste oben */
+.gs-leiste {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--a-1) var(--a-6);
+  align-items: center;
+  padding: var(--a-2) 0;
+  background: var(--grund);
+  border-bottom: 1px solid var(--linie);
+}
+
+.gs-punkte, .gs-linie { display: flex; align-items: center; gap: 3px; }
+.gs-punkte li { flex: 1 1 0; min-width: 24px; display: flex; }
+.gs-punkt-schritt {
+  display: block;
+  width: 100%;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  position: relative;
+}
+/* sichtbar ist nur die schmale Linie; die Fläche bleibt 24 px hoch (WCAG 2.5.8) */
+.gs-punkt-schritt::before, .gs-linie > span {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 9px;
+  height: 6px;
+  border-radius: var(--radius-rund);
+  background: var(--spur);
+}
+.gs-linie > span { position: static; display: block; flex: 1 1 0; }
+.gs-punkt-schritt[data-teil="lage"], .gs-linie > span[data-teil="lage"],
+.gs-punkt-schritt[data-ort="ende"], .gs-linie > span[data-ort="ende"] { margin-left: 5px; }
+.gs-punkt-schritt[data-zustand="erledigt"]::before, .gs-linie > span[data-zustand="erledigt"] { background: var(--navy-soft); }
+.gs-punkt-schritt[data-zustand="jetzt"]::before, .gs-linie > span[data-zustand="jetzt"] { background: var(--gold); top: 8px; height: 8px; }
+button.gs-punkt-schritt:hover::before { background: var(--gold-hell); }
+.gs-linie { display: none; }
+@media (max-width: 760px) {
+  .gs-punkte { display: none; }
+  .gs-linie { display: flex; }
+}
+.gs-fortschritt-text { font: var(--typo-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
+
+.gs-fortschritt { grid-column: 1 / -1; }
+.gs-status { display: flex; gap: var(--a-2); flex-wrap: wrap; justify-content: flex-end; }
+.gs-status > div {
+  padding: var(--a-1) var(--a-3);
+  border: 1px solid var(--linie);
+  border-left: 3px solid var(--status-gruen);
+  border-radius: var(--radius-s);
+  background: var(--weiss);
+  min-width: 0;
+}
+.gs-status > div[data-lage="mittel"] { border-left-color: var(--status-gelb-symbol); }
+.gs-status > div[data-lage="kritisch"] { border-left-color: var(--status-rot); }
+.gs-status dt { font: var(--typo-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); white-space: nowrap; }
+.gs-status dd { margin: 0; font-weight: 700; color: var(--tinte); white-space: nowrap; }
+.gs-status small { font-weight: 400; color: var(--tinte-2); }
+/* R67: Form der Lage vor dem Wert (Wort als .nur-sr) – die Kante allein trüge nur Farbe */
+.gs-status .status-symbol { margin-right: var(--a-1); vertical-align: -2px; }
+
+/* ------------------------------------------------------------------ Schritt */
+.gs-buehne { padding-top: var(--a-8); }
+.gs-schritt {
+  background: var(--weiss);
+  border: 1px solid var(--linie);
+  border-radius: var(--radius-l);
+  box-shadow: var(--schatten-karte);
+  padding: var(--a-8) var(--a-10);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--a-6);
+}
+.gs-schritt.ist-neu { animation: gs-ein var(--dauer-mittel) var(--kurve-aus) both; }
+@keyframes gs-ein { from { opacity: 0; transform: translateY(8px); } }
+
+.gs-kicker { font: var(--typo-kicker); letter-spacing: var(--sperrung-kicker); text-transform: uppercase; color: var(--gold-text); }
+.gs-titel { margin-top: var(--a-2); font: var(--typo-anzeige); letter-spacing: var(--sperrung-titel); color: var(--navy); outline: none; }
+.gs-text { font: var(--typo-lese); max-width: 68ch; }
+.gs-text > * + * { margin-top: var(--a-3); }
+.gs-leise { color: var(--tinte-2); font: var(--typo-klein); }
+.gs-hinweis-titel { display: flex; align-items: center; gap: var(--a-2); font: var(--typo-kicker); letter-spacing: var(--sperrung-kicker); text-transform: uppercase; color: var(--navy-soft); }
+.gs-hinweis-titel .symbol { width: 18px; height: 18px; }
+.gs-zahl { margin-left: var(--a-2); font: var(--typo-label); background: var(--flaeche-4); border-radius: var(--radius-rund); padding: 1px var(--a-2); }
+
+/* Bericht der Projektsteuerung */
+.gs-bericht {
+  border-left: 3px solid var(--petrol);
+  background: var(--flaeche-3);
+  border-radius: 0 var(--radius-m) var(--radius-m) 0;
+  padding: var(--a-4) var(--a-6);
+  display: grid;
+  gap: var(--a-3);
+}
+.gs-bericht-titel { display: flex; gap: var(--a-2); align-items: center; font: var(--typo-reiter); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--rolle-ps-text); }
+.gs-bericht-titel .symbol { width: 18px; height: 18px; }
+.gs-bericht-zeilen { display: grid; gap: var(--a-2); }
+.gs-bericht-zeilen li { padding-left: var(--a-4); position: relative; }
+.gs-bericht-zeilen li::before { content: ""; position: absolute; left: 0; top: .6em; width: 6px; height: 6px; border-radius: 50%; background: var(--petrol); }
+.gs-bericht-reaktion { font-weight: 600; color: var(--navy); }
+
+/* Vertiefungen */
+.gs-vertiefung { border: 1px solid var(--linie); border-radius: var(--radius-m); background: var(--flaeche-1); }
+.gs-vertiefung > summary {
+  cursor: pointer;
+  padding: var(--a-3) var(--a-4);
+  font-weight: 600;
+  color: var(--navy);
+  list-style-position: inside;
+}
+.gs-vertiefung[open] > summary { border-bottom: 1px solid var(--linie); }
+.gs-vertiefung > :not(summary) { margin: var(--a-3) var(--a-4); }
+.gs-vertiefung > :last-child { margin-bottom: var(--a-4); }
+.gs-einwand-frage { font-weight: 700; }
+
+/* Vorgänge */
+.gs-vorgaenge { display: grid; gap: var(--a-3); }
+.gs-vorgang { background: var(--weiss); border: 1px solid var(--linie); border-radius: var(--radius-m); padding: var(--a-3) var(--a-4); display: grid; gap: var(--a-2); }
+.gs-vorgang-kopf { display: flex; flex-wrap: wrap; gap: var(--a-2); align-items: baseline; }
+.gs-vorgang-art { font: var(--typo-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
+.gs-vorgang-daten { display: flex; flex-wrap: wrap; gap: var(--a-1) var(--a-6); font: var(--typo-klein); }
+.gs-vorgang-daten div { display: flex; gap: var(--a-1); }
+.gs-vorgang-daten dt { color: var(--tinte-2); }
+.gs-vorgang-daten dt::after { content: ":"; }
+.gs-vorgang-daten dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.gs-vorgang, .gs-vorgang-kopf, .gs-vorgang-daten div { min-width: 0; }
+.gs-vorgang-kopf > * { min-width: 0; overflow-wrap: anywhere; }
+.gs-vorgang .id-marke {
+  font: var(--typo-mono);
+  font-weight: 600;
+  padding: 1px var(--a-2);
+  border-radius: var(--radius-xs);
+  background: var(--id-ent-grund);
+  color: var(--id-ent-text);
+}
+.gs-vorgang .id-marke[data-art="risiko"] { background: var(--id-ris-grund); color: var(--id-ris-text); }
+.gs-vorgang .id-marke[data-art="fruehwarnung"] { background: var(--id-frw-grund); color: var(--id-frw-text); }
+.gs-vorgang .id-marke[data-art="aenderung"] { background: var(--id-aen-grund); color: var(--id-aen-text); }
+.gs-vorgang .id-marke[data-art="massnahme"] { background: var(--id-mas-grund); color: var(--id-mas-text); }
+.gs-vorgang .id-marke[data-art="problem"] { background: var(--id-prb-grund); color: var(--id-prb-text); }
+
+/* Vorlage */
+.gs-vorlage { border: 1px solid var(--gold-soft-kante); background: var(--gold-soft); border-radius: var(--radius-l); padding: var(--a-6); display: grid; gap: var(--a-4); }
+.gs-vorlage-art { display: flex; gap: var(--a-2); align-items: center; font: var(--typo-kicker); letter-spacing: var(--sperrung-kicker); text-transform: uppercase; color: var(--gold-text); }
+.gs-vorlage-art .symbol { width: 18px; height: 18px; }
+.gs-frage { font: var(--typo-tafeltitel); color: var(--navy); }
+.gs-vorlage-daten { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--a-3) var(--a-6); }
+.gs-vorlage-daten dt { font: var(--typo-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
+.gs-vorlage-daten dd { margin: 0; }
+.gs-unvollstaendig { border: 1px dashed var(--status-gelb-kante); background: var(--weiss); border-radius: var(--radius-m); padding: var(--a-3) var(--a-4); display: grid; gap: var(--a-2); }
+.gs-unvollstaendig .gs-hinweis-titel { color: var(--status-gelb-text); }
+
+.gs-mcda, .gs-gewichte { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--a-3); }
+.gs-vergleich-ort { min-width: 0; }
+.gs-mcda h3, .gs-gewichte h3, .gs-kipp h3, .gs-naechste h3 { font: var(--typo-reiter); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy); }
+.gs-vergleich { overflow-x: auto; }
+.gs-tabelle { width: 100%; font: var(--typo-klein); }
+.gs-tabelle th, .gs-tabelle td { text-align: left; vertical-align: top; padding: var(--a-2) var(--a-3); border-bottom: 1px solid var(--linie); }
+.gs-tabelle thead th { background: var(--flaeche-1); font-weight: 700; color: var(--navy); }
+.gs-tabelle .gs-zahl-spalte { text-align: center; width: 4.5em; }
+.gs-tabelle td small { display: block; color: var(--tinte-2); }
+.gs-punkt { font: var(--typo-kennzahl); font-size: var(--gr-2xl); color: var(--navy); }
+.gs-tabelle tfoot td, .gs-tabelle tfoot th { border-bottom: 0; padding-top: var(--a-3); }
+.gs-tabelle tfoot td b { font: var(--typo-kennzahl); color: var(--navy); }
+.gs-tabelle tfoot td.ist-vorn b { color: var(--gold-text); }
+.gs-balken { display: block; margin-top: var(--a-2); height: 6px; border-radius: var(--radius-rund); background: linear-gradient(90deg, var(--navy-soft) var(--anteil, 0%), var(--spur) var(--anteil, 0%)); }
+.ist-vorn .gs-balken { background: linear-gradient(90deg, var(--gold) var(--anteil, 0%), var(--spur) var(--anteil, 0%)); }
+.gs-kipp { display: grid; gap: var(--a-2); font: var(--typo-klein); }
+.gs-kipp ul { padding-left: var(--a-5); }
+
+.gs-regler { display: grid; gap: var(--a-2); max-width: 560px; }
+.gs-regler-zeile { display: grid; grid-template-columns: minmax(0, 1fr) minmax(120px, 220px) 2ch; gap: var(--a-3); align-items: center; }
+.gs-regler-zeile input[type="range"] { width: 100%; accent-color: var(--navy-soft); }
+.gs-regler-text .gs-regler-zeile { grid-template-columns: minmax(0, 1fr) 2ch; }
+.gs-regler-text dd { margin: 0; }
+.gs-regler-wert { font: var(--typo-kennzahl); font-size: var(--gr-xl); color: var(--navy); text-align: right; }
+
+.gs-empfehlung { border-left: 3px solid var(--gold); padding: var(--a-2) var(--a-4); display: grid; gap: var(--a-2); }
+.gs-empfehlung .gs-hinweis-titel { color: var(--gold-text); }
+
+.gs-optionen { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--a-4); }
+.gs-option {
+  text-align: left;
+  display: grid;
+  gap: var(--a-2);
+  align-content: start;
+  padding: var(--a-4);
+  border: 1px solid var(--linie-2);
+  border-radius: var(--radius-xl);
+  background: var(--weiss);
+  box-shadow: var(--schatten-knopf);
+  transition: transform var(--dauer-sofort) var(--kurve-aus), box-shadow var(--dauer-sofort) var(--kurve-aus);
+}
+button.gs-option:hover { transform: translateY(-2px); box-shadow: var(--schatten-knopf-hover); }
+button.gs-option:active { transform: translateY(2px); box-shadow: var(--schatten-knopf-druck); }
+.gs-option[aria-pressed="true"] { border-color: var(--gold); background: var(--gold-soft); box-shadow: inset 0 0 0 2px var(--gold), var(--schatten-karte); }
+.gs-option-kopf { display: flex; flex-wrap: wrap; gap: var(--a-2); align-items: baseline; }
+.gs-option-id { font: var(--typo-kennzahl); font-size: var(--gr-2xl); color: var(--gold-text); }
+.gs-option-kopf b { font-size: var(--gr-l); color: var(--navy); }
+.gs-marke { font: var(--typo-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; background: var(--gold-soft); border: 1px solid var(--gold-soft-kante); color: var(--gold-text); border-radius: var(--radius-rund); padding: 0 var(--a-2); }
+.gs-marke-klaerung { background: var(--status-gelb-soft); border-color: var(--status-gelb-kante); color: var(--status-gelb-text); }
+.gs-option-text { display: block; }
+.gs-option-gewichte, .gs-option-folgen { display: flex; flex-wrap: wrap; gap: var(--a-1) var(--a-3); font: var(--typo-klein); color: var(--tinte-2); }
+.gs-option-los { display: inline-flex; align-items: center; gap: var(--a-1); font: var(--typo-reiter); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy-soft); margin-top: var(--a-1); }
+.gs-option-los .symbol { width: 16px; height: 16px; }
+
+/* Folge */
+.gs-entscheidung { border: 1px solid var(--linie); border-left: 3px solid var(--navy-soft); border-radius: 0 var(--radius-m) var(--radius-m) 0; padding: var(--a-4) var(--a-6); display: grid; gap: var(--a-3); }
+.gs-folgen { font: var(--typo-klein); color: var(--tinte-2); }
+.gs-merksatz { font: var(--typo-lese); font-weight: 600; color: var(--navy); border-top: 1px solid var(--linie); padding-top: var(--a-4); }
+.gs-thema { font: var(--typo-klein); }
+.gs-takt { display: flex; gap: var(--a-3); align-items: flex-start; background: var(--flaeche-3); padding: var(--a-3) var(--a-4); border-radius: var(--radius-m); }
+.gs-takt .symbol { flex: none; width: 22px; height: 22px; color: var(--petrol); }
+.gs-hinweis { color: var(--tinte-2); }
+
+/* Prolog: Fassung wählen */
+.gs-fassungen { border: 0; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--a-3); }
+.gs-fassungen legend { font: var(--typo-kicker); letter-spacing: var(--sperrung-kicker); text-transform: uppercase; color: var(--tinte-2); margin-bottom: var(--a-2); padding: 0; }
+.gs-fassung { display: grid; gap: var(--a-1); text-align: left; padding: var(--a-3) var(--a-4); border: 1px solid var(--linie-2); border-radius: var(--radius-m); background: var(--weiss); }
+.gs-fassung b { color: var(--navy); }
+.gs-fassung span { font: var(--typo-klein); color: var(--tinte-2); }
+.gs-fassung[aria-pressed="true"] { border-color: var(--gold); box-shadow: inset 0 0 0 1px var(--gold); background: var(--gold-soft); }
+
+/* Ende */
+.gs-urteil { font: var(--typo-tafeltitel); color: var(--status-gruen-text); }
+.gs-urteil[data-urteil="knapp"] { color: var(--status-gelb-text); }
+.gs-urteil[data-urteil="schlecht"] { color: var(--status-rot); }
+.gs-endstand { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--a-3); }
+.gs-endstand > div { border: 1px solid var(--linie); border-radius: var(--radius-m); padding: var(--a-3) var(--a-4); }
+.gs-endstand dt { font: var(--typo-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
+.gs-endstand dd { margin: 0; font: var(--typo-kennzahl); color: var(--navy); }
+.gs-bilanz { display: grid; gap: var(--a-3); }
+.gs-bilanz h2 { font: var(--typo-reiter); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy); }
+.gs-bilanz-liste { display: grid; gap: var(--a-1); }
+.gs-bilanz-liste li { display: grid; grid-template-columns: minmax(8em, 14em) minmax(0, 1fr) auto; gap: var(--a-3); padding: var(--a-2) 0; border-bottom: 1px solid var(--linie); align-items: baseline; }
+.gs-bilanz-station { color: var(--tinte-2); }
+.gs-bilanz-liste small { color: var(--tinte-2); }
+.gs-ende-wege { display: flex; flex-wrap: wrap; gap: var(--a-3) var(--a-6); }
+
+/* ------------------------------------------------------------------ Navigation unten */
+.gs-unten { position: sticky; bottom: 0; z-index: 3; padding: var(--a-6) 0 var(--a-3); background: linear-gradient(transparent, var(--grund) 55%); pointer-events: none; }
+.gs-unten > * { pointer-events: auto; }
+.gs-navi { display: flex; justify-content: space-between; gap: var(--a-4); }
+.gs-navi-hinweis { text-align: right; color: var(--status-gelb-text); font-weight: 600; min-height: 1.4em; }
+.gs-knopf {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--a-2);
+  padding: var(--a-3) var(--a-6);
+  border-radius: var(--radius-m);
+  border: 1px solid var(--gold-kante);
+  background: var(--gold);
+  color: var(--navy);
+  font: var(--typo-reiter);
+  letter-spacing: var(--sperrung-label);
+  text-transform: uppercase;
+  box-shadow: var(--schatten-karte);
+}
+.gs-knopf:hover { background: var(--gold-hover); }
+.gs-knopf .symbol { width: 18px; height: 18px; }
+.gs-knopf-zurueck { background: var(--weiss); border-color: var(--linie-2); color: var(--navy-soft); }
+.gs-knopf-zurueck:hover { background: var(--flaeche-2); }
+.gs-leiser-knopf { border: 0; background: none; padding: 0; color: var(--navy-soft); text-decoration: underline; text-underline-offset: 3px; font: inherit; }
+.gs-leiser-knopf:hover { color: var(--navy); }
+
+@media (max-width: 760px) {
+  .seite-story .seiten-haupt { padding: 0 var(--a-4) var(--a-6); }
+  .gs-leiste { grid-template-columns: minmax(0, 1fr); }
+  .gs-status { flex-wrap: wrap; }
+  .gs-schritt { padding: var(--a-6) var(--a-4); }
+  .gs-titel { font-size: var(--gr-4xl); }
+  .gs-hintergrund { padding: 30vh 0 0 0; }
+  .gs-bilanz-liste li { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .gs-regler-zeile { grid-template-columns: minmax(0, 1fr) 2ch; }
+  .gs-regler-zeile input[type="range"] { grid-column: 1 / -1; grid-row: 2; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gs-schritt.ist-neu { animation: none; }
+  .gs-option { transition: none; }
+}
+
+/* R70: niedrige Fenster (z. B. 200 % Zoom) – die obere Leiste klebt nicht, das Polster unten wird kleiner */
+@media (max-height: 480px), (max-width: 480px) and (max-height: 600px) {
+  .gs-leiste { position: static; }
+  html:has(.seite-story) { scroll-padding-top: 0; }
+  .gs-unten { padding-top: var(--a-2); background: linear-gradient(transparent, var(--grund) 30%); }
+}

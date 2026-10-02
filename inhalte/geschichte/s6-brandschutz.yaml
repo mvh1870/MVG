@@ -1,0 +1,96 @@
+id: s6
+nr: 6
+titel: Brandschutzauflagen
+kurztitel: Brandschutz
+datum: Juli 2026
+monat: 7
+lph: 5
+kurzfassung: false
+# Gutachten beauftragt der Auftraggeber gesondert (v24:hb-3). Bei K bleiben die 0,4 Mio. € der Auflage in der Prognose,
+# weil sie der einzige zulässige Weg ist; s7 berichtet, dass die Behörde die Alternative abgelehnt hat.
+# Bei s3 = A: Elementzuschlag im Juli 2026, die 0,6 Mio. € Marktpreise gibt der Bauherr aus der Reserve frei (k3.2-t1; nicht delegierbar).
+belege: [v24:hb-1.4, v24:hb-1.5, v24:hb-3.1, v24:hb-3, k4.2-p3, k3.2-t1, k13-t1]
+lage: |
+  Im Juni kommt die Baugenehmigung – mit Auflagen zum Holzbau. Die Behörde verlangt eine zusätzliche Kapselung der Holzbauteile in den Fluren. Die Generalplanung schätzt rund 0,4 Mio. € und eine Woche Umplanung.
+
+  Die Auflage ist eingetreten, nicht nur möglich. Die Projektsteuerung führt sie deshalb als Problem, nicht als Risiko – eine Eintrittswahrscheinlichkeit gibt es hier nicht mehr.
+bericht:
+  titel: Monatsbericht · Juli 2026
+  zeilen:
+    - Baugenehmigung erteilt am 12. Juni, mit Brandschutzauflagen zum Holzbau – geführt als Problem PRB-002.
+    - Zwischenmaßnahme MAS-011 – die Generalplanung plant die Flure vorläufig mit Kapselung weiter.
+    - Die Vorlage ist unvollständig – eine zweite zulässige Option ist noch nicht belegt.
+    - text: MAS-007 wirksam – Zuschlag für die Holzbauelemente erteilt, Liefertermin vertraglich gesichert; RIS-009 herabgestuft auf gezielt bearbeiten. Der Preis liegt im Rahmen der 0,6 Mio. € Marktpreise aus Version 3; diesen Betrag hat der Bauherr für den Zuschlag aus der Risikoreserve freigegeben.
+      wenn: s3=A
+    - text: RIS-009 Lieferzeit Holzbau weiter aktiv · vorrangig bearbeiten; die Entscheidung bleibt offen, bis die Vergabe sie klärt.
+      wenn: s3=B
+    - text: AEN-013 Sporthalle in Stahlbeton – Ausführungsplanung angepasst; die Wirkung auf die Lieferzeit zeigt die Vergabe.
+      wenn: s3=C
+    - text: Neufestlegung der Projektbasis – die Vorlage liegt vor; der Bauherr hat den Beschluss im Lenkungskreis zurückgestellt, bis die Hauptvergaben abgeschlossen sind. Es gilt die bisherige Basis, Mehrkosten laufen über die vorgesehene Reserve; die Entscheidung bleibt offen.
+      wenn: s5=C
+    # Grenze Basis plus Reserve (R70): Lage höchstens 60,98; die Auflage (+0,4) bzw. Auflage mit Gutachten (+0,43) höbe die Prognose
+    # über 61,3 genau bei Lage > 60,9 bzw. > 60,87 (s4 = A, s5 != A und s3 = C bzw. s3 = A) – nachgerechnet, tests/geschichte-reserve.test.ts.
+    - text: Achtung – mit der Auflage (+0,4 Mio. €) läge die Prognose über Basis plus Reserve (61,3 Mio. €). Was darüber hinausgeht, deckt die Reserve nicht; dafür braucht es die Neufestlegung der Projektbasis.
+      wenn: kosten>60.9
+    - text: Achtung – mit der Auflage (+0,4 Mio. €) bliebe die Prognose knapp unter Basis plus Reserve (61,3 Mio. €); kommt das Gutachten dazu (+0,03 Mio. €), läge sie darüber. Was darüber hinausgeht, deckt die Reserve nicht; dafür braucht es die Neufestlegung der Projektbasis.
+      wenn: kosten>60.87 & kosten<=60.9
+    - text: Terminpuffer überschritten – die Inbetriebnahme zum Schuljahr 2028/29 ist nach heutigem Stand gefährdet, damit auch die Förderfrist.
+      wenn: puffer<0
+  reaktion: Was empfehlen Sie dem Änderungsgremium – die Auflage jetzt umsetzen oder die Klärung abwarten?
+vorgaenge:
+  - art: problem
+    kennung: PRB-002
+    titel: Brandschutzauflagen zum Holzbau
+    text: Eingetretener Zustand – Auflage der Baugenehmigung. Bekannte Folgen – rund 0,4 Mio. € und eine Woche Umplanung. Unsicher – ob ein Brandschutzgutachten eine schlankere Lösung trägt.
+    verantwortlich: Projektsteuerung; Fachbeitrag Generalplanung und Brandschutzplanung
+    termin: 24. Juli
+    stand: in Bearbeitung
+  - art: massnahme
+    kennung: MAS-011
+    titel: Flure vorläufig mit Kapselung planen
+    text: Zwischenmaßnahme, damit die Ausführungsplanung weiterläuft. Umgesetzt; ob sie wirkt, zeigt erst die Prüfung durch die Behörde.
+    verantwortlich: Lena Hoffmeister, Generalplanung
+    termin: 10. Juli
+    stand: umgesetzt, Wirkung offen
+vorlage:
+  art: optionen
+  unvollstaendig: Die Brandschutzplanung hält eine alternative Nachweisführung mit einem Gutachten für möglich. Ob die Behörde sie annimmt, ist offen – solange ist sie keine zulässige Option. Die Projektsteuerung baut deshalb keine zweite Option zum Schein, sondern legt den Klärungsbedarf offen – Anfrage an die Behörde, Antwort in rund zwei Wochen.
+  frage: Wird die Auflage jetzt umgesetzt?
+  grund: |
+    Die Kosten liegen über 100 TEUR – es entscheidet das Änderungsgremium. Zulässig ist im Moment nur ein Weg. Die Alternative braucht eine Antwort der Behörde. Mehrkosten gehen zulasten der Risikoreserve, soweit sie reicht; darüber hinaus braucht es die Neufestlegung der Projektbasis durch den Bauherrn.
+  stelle: Änderungsgremium – Vorsitz Frank Deppe; Mehrkosten aus der Reserve gibt der Bauherr frei
+  termin: 24. Juli 2026
+  verzug: Jede Woche Warten verschiebt den Abschluss der Flurplanung.
+  muss: Brandschutz nach Genehmigung – Option A erfüllt ihn; die Alternative ist noch nicht belegt.
+  optionen:
+    - id: A
+      titel: Auflage umsetzen
+      text: Die Flure werden wie gefordert gekapselt.
+      punkte:
+        kosten: [2, "+0,4 Mio. €"]
+        termin: [5, "rund 7 Tage, um die Planung abzuschließen und prüfen zu lassen"]
+        qualitaet: [5, "Genehmigung sicher erfüllt"]
+        klima: [4, "Holzbau bleibt"]
+      folgen: { kosten: 0.4, puffer: -7 }
+      konsequenz: Die Projektsteuerung legt die Änderung an und verfolgt die Umplanung. Das Problem wird geschlossen, wenn die geänderten Pläne vorliegen und die Behörde sie bestätigt hat.
+    - id: K
+      titel: Klärung abwarten
+      klaerung: true
+      text: Keine Entscheidung in der Sache – erst die Antwort der Behörde, dann eine vollständige Vorlage.
+      folgen: { kosten: 0.43, puffer: -14, offen: 1 }
+      konsequenz: Die Projektsteuerung bereitet die Anfrage an die Behörde vor; das Gutachten (rund 0,03 Mio. €) beauftragt die GML gesondert. Die Flure werden vorläufig mit Kapselung weitergeplant (MAS-011), und die 0,4 Mio. € der Auflage bleiben in der Prognose, bis die Behörde antwortet. Abschließen lässt sich die Flurplanung erst danach – rund zwei Wochen später.
+  empfehlung:
+    option: A
+    text: Die Projektsteuerung empfiehlt, die Auflage umzusetzen. Die Alternative könnte Geld sparen, ist aber nicht belegt – und das Warten kostet sicher Zeit.
+folge: |
+  Fehlt eine zweite zulässige Option, ist die Vorlage unvollständig – und das steht drauf. Eine Scheinoption, die nur der Form halber daneben steht, hilft niemandem.
+so-laeuft-es-oft: |
+  Die Auflage wird als „Risiko Brandschutz, Ampel gelb“ eingetragen, obwohl sie längst eingetreten ist. Damit die Vorlage zwei Optionen hat, steht daneben „Auflage nicht umsetzen“ – eine Option, die niemand ernsthaft wählen darf.
+einwand:
+  frage: „Ohne zwei Optionen kann ich doch nicht abwägen.“
+  antwort: Richtig – deshalb sagt die Vorlage offen, dass sie unvollständig ist, und was fehlt. Abwägen können Sie zwischen „jetzt umsetzen“ und „Klärung abwarten“. Eine erfundene Alternative würde die Abwägung nur vortäuschen.
+theorie: vorgaenge
+regie:
+  notiz: Unvollständige Vorlage zeigen. Problem statt Risiko – eingetreten heißt keine Wahrscheinlichkeit mehr. Bei „Klärung abwarten“ läuft die Zwischenmaßnahme weiter; die Prognose behält die 0,4 Mio. €, bis die Behörde geantwortet hat.
+  leitfragen:
+    - Wie oft sehen Sie Vorlagen mit einer Scheinoption?

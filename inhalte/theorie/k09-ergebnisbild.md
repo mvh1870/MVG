@@ -1,0 +1,523 @@
+---
+# Thema „Ergebnisbild“ (P12.3, O-30; an V2.4 angepasst P16.4, O-36, O-38): erklärender Lesetext mit kleinen
+# interaktiven Grafiken. Kein Bezug zur Vorlage auf der Seite (O-38).
+# Tafel k9.3-t1 bleibt: Freigabefragen im Wortlaut (der Regler zeigt sie einzeln je Leistungsphase).
+# Keine neuen Fachaussagen – Belege je Abschnitt (nur intern):
+# Belege Einleitung/Kernaussage/Nachweiskette: k9-p1, k9.1-p1, k9.1-l1, k9.3-p1, k9.4-p1, k9.4-l1;
+#   Beschluss getrennt von der Vorlage, mit Quelle, Datum und Bedingungen: v24:hb-3.1, v24:va-3.5
+# Belege k9.1: k9.1-p1, k9.1-p2, k9.1-l1, k9.2-p2; ganze Vorbereitung bei der Projektsteuerung: v24:hb-1, v24:hb-3, v24:tlb-2.1
+# Belege k9.2: k9.2-p1, k9.2-p2, k9.2-p3, k9.2-p4
+# Belege k9.3 (Wissenscheck-Zitat k9.3-p1): k9.3-p1, k9.3-p2, k9.3-p3, k9.3-t1; Vorlage durch die Projektsteuerung, Freigabe bei der befugten
+#   Stelle des Bauherrn (ändert k9.3-p3 „auf Vorlage der Bauherren-PL“): v24:hb-1, v24:hb-3, v24:hb-3.1, v24:tlb-3
+# Belege k9.4: k9.4-p1, k9.4-p2, k9.4-l1, k9.4-p3; zwei zulässige Optionen, MCDA mit vorab abgestimmten Kriterien und
+#   Gewichten, Gewichtungsprüfung, Empfehlung mit Nachteilen, Entscheidungstermin, Status kein Beschluss: v24:hb-3.1,
+#   v24:tlb-2.1, v24:va-3.3, v24:va-3.4
+# Belege k9.5: k9.5-p1, k9.5-p2, k9.5-l1, k9.5-p3, k9.4-l1 (Sortierübung); Projektsteuerung bearbeitet alle
+#   Vorgänge, wöchentliche Prüfung, Monatstermin bis 60 Minuten: v24:hb-1, v24:hb-4, v24:as-2
+kapitel: 9
+thema: ergebnisbild
+reihe: 9
+titel: Ergebnisbild und Ergebnisse
+kurztitel: Ergebnisbild
+---
+Dieses Thema beschreibt, was am Ende eines Mandats zur Einführung von Minimum Viable Governance (MVG) tatsächlich vorliegt. Es stellt die Ergebnisobjekte in fünf Teilen vor: das Mandats- und Verantwortungsmodell, den RACI-Prozess, das [[Leistungsphasen- und Freigabemodell LPH 0–9]], den Standard für Entscheidungsvorlagen und das Betriebshandbuch; die eindeutige Entscheidungs-ID ist Teil des Standards für Entscheidungsvorlagen. Für den Bauherrn zählt dabei weniger das einzelne Dokument als der Zusammenhang: Die Objekte verweisen aufeinander, sodass sich eine wesentliche Entscheidung auch später noch nachvollziehen lässt.
+
+::: kernaussage
+Die Ergebnisse eines MVG-Mandats sind Führungs- und Entscheidungsobjekte, keine Sammlung isolierter Vorlagen. Ihr Wert liegt in der Kette, die sie bilden: vom Mandat über Freigabe, Entscheidungs-ID, Datenstand und Nachweis bis zur Beschlusslage.
+:::
+
+::: etappen
+---
+titel: Die Nachweiskette – ein Objekt verweist auf das nächste
+---
+So hängen die Ergebnisobjekte zusammen – aus diesem Zusammenhang entsteht ihr Wert. Mehr zum Begriff: [[Nachweiskette]].
+
+::: etappe 1
+---
+titel: Mandat
+---
+Wer darf bis zu welcher Schwelle entscheiden, und wann wird eskaliert? Das regelt das Mandats- und Verantwortungsmodell. Das Mandat verweist auf die **Freigabe**, um die es geht.
+:::
+
+::: etappe 2
+---
+titel: Freigabe
+---
+Die Entscheidung des Bauherrn am Abschluss einer Leistungsphase. Sie beruht unter anderem auf Mandat und Datenstand und verweist auf eine **Entscheidungs-ID**.
+:::
+
+::: etappe 3
+---
+titel: Entscheidungs-ID
+---
+Kennzeichnet eine wesentliche Entscheidung eindeutig – sie steht an erster Stelle des Standards für Entscheidungsvorlagen. Die ID verweist auf den **Datenstand**.
+:::
+
+::: etappe 4
+---
+titel: Datenstand
+---
+Die Grundlage, auf der entschieden wird; in der Entscheidungsvorlage steht er zusammen mit den zentralen Annahmen. Er verweist auf den **Nachweis**.
+:::
+
+::: etappe 5
+---
+titel: Nachweis
+---
+Wo die Entscheidung belegt ist. Wo der Nachweis geführt wird, gehört zu den Fragen, die das Mandats- und Verantwortungsmodell beantwortet. Der Nachweis verweist auf die **Beschlusslage**.
+:::
+
+::: etappe 6
+---
+titel: Beschlusslage
+---
+Was tatsächlich beschlossen ist – getrennt von der Vorlage festgehalten, mit Quelle, Datum und Bedingungen. Danach folgt die Nachverfolgung.
+:::
+:::
+
+::: abschnitt k9.1
+---
+titel: Bauherren-Mandats- und Verantwortungsmodell
+---
+Für eine Grundfrage jeder Bauherrenorganisation ist das Mandats- und Verantwortungsmodell das zentrale Ergebnisobjekt: Was verbleibt beim Bauherrn, und was kann vorbereitet werden? Dazu verbindet es sechs Dinge: Verantwortungsfelder, Rollen, [[Mandat|Mandate]], Schwellen, Freigaben und Eskalation.
+
+Praktisch wird das Modell an konkreten Fragen. Steht eine Entscheidung an, lässt sich mit ihm klären, welche Bauherrenverantwortung betroffen ist, welche Vorbereitung delegiert werden kann und wer letztverantwortlich ist. Es zeigt, wer ausführungsverantwortlich ist, wer konsultiert und wer informiert wird, welche Schwelle eine Eskalation auslöst und welche Grundlagen vorliegen müssen. Schließlich verbindet es die Entscheidung mit ihrer Entscheidungs-ID, der betroffenen Freigabe und dem Ort, an dem der Nachweis geführt wird.
+
+Ein Beispiel: Im Standard übernimmt die Projektsteuerung die ganze Vorbereitung einer Entscheidung – Frage, Optionen, gewichteter Vergleich, Empfehlung. Das Modell zeigt, wer letztverantwortlich ist und auf welcher Stufe entschieden wird.
+
+::: etappen
+---
+titel: Acht Fragen, die das Modell insbesondere beantwortet
+---
+Die acht Fragen, paarweise geordnet. [[bedienung:Klicken Sie sich durch.]]
+
+::: etappe 1
+---
+titel: Verantwortung
+---
+**Welche Bauherrenverantwortung ist betroffen?** Und: **Welche Vorbereitung kann delegiert werden?** Das trennt, was beim Bauherrn bleibt, von dem, was andere zuarbeiten dürfen.
+:::
+
+::: etappe 2
+---
+titel: Rollen
+---
+**Wer ist letztverantwortlich?** Und: **Wer ist ausführungsverantwortlich, wer wird konsultiert, wer informiert?** Hier setzt der RACI-Prozess an.
+:::
+
+::: etappe 3
+---
+titel: Schwelle und Grundlagen
+---
+**Welche Schwelle löst eine Eskalation aus?** Und: **Welche Pflichtgrundlagen müssen vorliegen?** So ist vor der Entscheidung klar, wer sie treffen darf und worauf sie beruhen muss.
+:::
+
+::: etappe 4
+---
+titel: Bezug und Nachweis
+---
+**Welche Entscheidungs-ID und welche Freigabe sind betroffen?** Und: **Wo wird der Nachweis geführt?** Damit ist die Entscheidung in die Nachweiskette eingehängt.
+:::
+:::
+:::
+
+::: abschnitt k9.2
+---
+titel: RACI-Prozess
+---
+[[RACI]] ist vielen als Matrix bekannt, die Rollen und Zuständigkeiten gegenüberstellt. Sie übersetzt komplexe Rollenbilder in eine transparente Verantwortungslogik – reicht in MVG aber nicht aus. Erst wenn die Rollen an Mandate, Freigabeschwellen, Stellvertretungen und Eskalationspfade gekoppelt sind, wird aus einer Kommunikationsmatrix ein Führungsinstrument.
+
+So verstanden schützt RACI die Bauherrenorganisation vor stillschweigender Verantwortungsverlagerung. Es macht sichtbar, wann Projektsteuerung, [[PMO]], Planung oder Fachberatung unterstützen und wann die Entscheidung an die letztverantwortliche Bauherrenrolle zurückfallen muss. Die Kernfrage lautet: [[zitat:k9.2-p3|Wer bereitet vor, wer entscheidet, wer liefert belastbare Entscheidungsgrundlagen, wer wird konsultiert und wer muss informiert werden?]] Diese Rollenlogik gehört in Freigaben, Änderungssteuerung, Risikoprüfung und Berichterstattung.
+
+Das Standard-Rollenmodell umfasst 13 Arbeitsrollen – vom Bauherrn/Projektauftraggeber über Bauherren-PL, PMO, Projektsteuerung, Lenkungskreis/Vorstand, Controlling/Finanzen, Einkauf/Vergabe und Planung/Fachplanung bis zu externen Beratern, Auftragnehmern/Lieferanten, Administration, Ausführung und Gebäudemanagement (FM)/Betrieb. Dazu kommt die Sonderrolle „BM-Mentor“ nur für die Einführung.
+
+::: umschalter
+---
+titel: Was aus RACI ein Führungsinstrument macht
+links: Nur Matrix
+rechts: Gekoppelt
+---
+::: ansicht links
+**Kommunikationsmatrix.** Sie zeigt, wer ausführungsverantwortlich und wer letztverantwortlich ist und wer konsultiert oder informiert wird – transparent, aber ohne Mandate, Schwellen, Stellvertretungen und Eskalationspfade. Vor stillschweigender Verantwortungsverlagerung schützt erst die Kopplung.
+:::
+
+::: ansicht rechts
+**Führungsinstrument.** Die Rollen sind an Mandate, Freigabeschwellen, Stellvertretungen und Eskalationspfade gekoppelt. Damit ist sichtbar, wann andere Rollen unterstützen – und wann die Entscheidung an die letztverantwortliche Bauherrenrolle zurückfallen muss.
+:::
+:::
+
+::: sortieren
+---
+titel: Eigene Arbeitsrolle oder nicht?
+links: Arbeitsrolle im Standardmodell
+rechts: Keine eigene Arbeitsrolle
+---
+Was zählt im Standard-Rollenmodell als eigene Arbeitsrolle? [[bedienung:Ordnen Sie jeden Posten zu.]]
+
+::: posten pl
+---
+seite: links
+---
+Bauherren-PL
+
+### Erklärung
+Eine der 13 Arbeitsrollen.
+:::
+
+::: posten mentor
+---
+seite: rechts
+---
+BM-Mentor
+
+### Erklärung
+Eine Sonderrolle nur für die Einführung: Sie hat im MVG Companion Vollzugriff, erscheint in keinem Prozess-RACI und wird nach der Einführung deaktiviert.
+:::
+
+::: posten lenkungskreis
+---
+seite: links
+---
+Lenkungskreis/Vorstand
+
+### Erklärung
+Eine der 13 Arbeitsrollen.
+:::
+
+::: posten projektauftraggeber
+---
+seite: rechts
+---
+Projektauftraggeber als zusätzliche Rolle neben dem Bauherrn
+
+### Erklärung
+Die Funktion des Projektauftraggebers ist keine zusätzliche Arbeitsrolle; „Bauherr/Projektauftraggeber“ bezeichnet eine Facette des Bauherrn.
+:::
+
+::: posten fm
+---
+seite: links
+---
+Gebäudemanagement (FM)/Betrieb
+
+### Erklärung
+Eine der 13 Arbeitsrollen.
+:::
+:::
+:::
+
+::: abschnitt k9.3
+---
+titel: Leistungsphasen- und Freigabemodell LPH 0–9
+---
+Das Leistungsphasen- und Freigabemodell verbindet den Projektfortschritt mit der Entscheidungsvorbereitung. Die Leistungsphasen LPH 0 bis LPH 9 bilden den verbindlichen Projektverlauf, und jede von ihnen endet mit einer [[Freigabe]] des Bauherrn. Erst diese Freigabe gibt die nächste Phase frei. Nach der Freigabe zum Abschluss von LPH 9 folgt der Regelbetrieb.
+
+Eine Freigabe hat feste Grundlagen. Sie beruht auf einer Kernfrage, auf Mindestgrundlagen, einem Mandat, einem Datenstand und einem dokumentierten Ergebnis. Letztverantwortlich ist der Bauherr: Er erteilt jede Freigabe selbst; die Projektsteuerung bereitet sie vollständig vor. Weder die Projektsteuerung noch der Lenkungskreis erteilen sie; der Lenkungskreis berät.
+
+Zwei Abgrenzungen helfen beim Lesen. Die Freigaben sind keine Meilensteine der MVG-Einführung – sie gehören zum Projektverlauf LPH 0–9, nicht zur Einführung von MVG. Und die Übergabe des Bauherren-Führungsmodells ist ein Befähigungsschritt, keine Freigabe in diesem Modell. Welche Freigabe inhaltlich welcher Leistungsphase zugeordnet ist, kann projektspezifisch angepasst werden.
+
+::: etappen
+---
+titel: Der Weg einer Freigabe
+---
+::: etappe 1
+---
+titel: Vorbereiten
+---
+Die Projektsteuerung bereitet die Freigabe vor und legt sie dem Bauherrn vor; der Lenkungskreis berät. Die Freigabe beruht auf der Kernfrage der Phase, den Mindestgrundlagen, dem Mandat, dem Datenstand und einem dokumentierten Ergebnis.
+:::
+
+::: etappe 2
+---
+titel: Erteilen
+---
+Der Bauherr erteilt die Freigabe selbst. Er ist dafür letztverantwortlich – nicht die Projektsteuerung und nicht der Lenkungskreis.
+:::
+
+::: etappe 3
+---
+titel: Nächste Phase
+---
+Die Freigabe am Abschluss einer Leistungsphase gibt die nächste frei. Nach der Freigabe zum Abschluss von LPH 9 folgt der Regelbetrieb.
+:::
+:::
+
+::: regler
+---
+titel: Welche Frage die Freigabe am Ende jeder Leistungsphase stellt
+---
+Die Freigabefragen je Leistungsphase im Wortlaut; die Tafel darunter stellt die zehn Leistungsphasen nebeneinander. Nach der Freigabe zum Abschluss von LPH 9 folgt der Regelbetrieb. Die Zuordnung kann projektspezifisch angepasst werden.
+
+::: stufe lph0
+---
+titel: LPH 0
+marke: Bedarfsplanung
+---
+Sind Bedarf, Zielbild und Auftrag geklärt – gibt es eine legitimierte Grundlage für den Planungsstart?
+:::
+
+::: stufe lph1
+---
+titel: LPH 1
+marke: Grundlagenermittlung
+---
+Sind Aufgabenstellung, Standort- und Rahmenbedingungen so geklärt, dass die Vorplanung mit klarem Auftrag starten kann?
+:::
+
+::: stufe lph2
+---
+titel: LPH 2
+marke: Vorplanung
+---
+Ist auf Basis der Kostenschätzung eine Vorzugsvariante gewählt – und trägt der [[Business Case]] die Weiterplanung?
+:::
+
+::: stufe lph3
+---
+titel: LPH 3
+marke: Entwurfsplanung
+---
+Tragen Entwurf und Kostenberechnung eine belastbare Investitionsentscheidung ([[Finale Investitionsentscheidung (FID)|FID]]) – inklusive Risiken, Terminen und Finanzierung?
+:::
+
+::: stufe lph4
+---
+titel: LPH 4
+marke: Genehmigungsplanung
+---
+Sind die Genehmigungsunterlagen eingereicht beziehungsweise die Genehmigungslage gesichert – und sind Auflagen und Risiken bewertet?
+:::
+
+::: stufe lph5
+---
+titel: LPH 5
+marke: Ausführungsplanung
+---
+Ist die Ausführungsplanung so vollständig und koordiniert, dass Vergabe und Ausführung ohne Planungsvorbehalte starten können?
+:::
+
+::: stufe lph6
+---
+titel: LPH 6
+marke: Vorbereitung Vergabe
+---
+Sind Leistungsverzeichnisse und Vergabeunterlagen vollständig – und ist die Vergabestrategie mit Losen, Verfahren und Terminen beschlossen?
+:::
+
+::: stufe lph7
+---
+titel: LPH 7
+marke: Vergabe
+---
+Ist das Vergabeergebnis geprüft und im Budgetrahmen – können Bauverträge geschlossen und Komponenten mit langer Lieferzeit gebunden werden?
+:::
+
+::: stufe lph8
+---
+titel: LPH 8
+marke: Ausführung
+---
+Ist das Vorhaben vertragsgerecht fertiggestellt und abgenommen – sind Mängel, Dokumentation und Restleistungen sauber geführt?
+:::
+
+::: stufe lph9
+---
+titel: LPH 9
+marke: Übergabe
+---
+Kann das Vorhaben geordnet in Betrieb und Verantwortung des Bauherrn übergehen – mit vollständiger Nachweislage und geklärten Betriebsverantwortungen?
+:::
+:::
+
+::: tafel k9.3-t1
+---
+form: phasen
+---
+:::
+
+::: wissenscheck freigabe-lph
+### Frage
+Am Ende von LPH 5 steht die Freigabe an – wer erteilt sie?
+
+### Erklärung
+Jede Leistungsphase endet mit einer Freigabe des Bauherrn. Er erteilt jede Freigabe selbst, auf Vorlage der Projektsteuerung; der Lenkungskreis berät.
+
+::: antwort a
+---
+titel: Der Bauherr selbst, auf Vorlage der Projektsteuerung
+praefix: "Genau:"
+---
+Der Bauherr ist für die Freigaben zum Abschluss der Leistungsphasen letztverantwortlich und erteilt sie selbst.
+:::
+
+::: antwort b
+---
+titel: Der Lenkungskreis
+praefix: "Nicht ganz:"
+---
+Seine Rolle liegt vor der Freigabe, nicht in ihr.
+:::
+
+::: antwort c
+---
+titel: Die Projektsteuerung
+praefix: "Nicht ganz:"
+---
+Die Projektsteuerung erteilt die Freigabe ausdrücklich nicht.
+:::
+
+::: zitat k9.3-p1
+Jede Leistungsphase endet mit einer Freigabe des Bauherrn. Diese Freigabe beruht auf einer Kernfrage, Mindestgrundlagen, Mandat, Datenstand und einem dokumentierten Ergebnis.
+:::
+:::
+:::
+
+::: abschnitt k9.4
+---
+titel: Standard für Entscheidungsvorlagen als Nachweislogik
+---
+Die [[Entscheidungsvorlage]] beschreibt, welche Nachweislogik eine wesentliche Bauherrenentscheidung braucht. Das Ziel: Auch spätere Dritte sollen nachvollziehen können, welche Frage entschieden wurde, auf welchem Datenstand, mit welchen Optionen, Annahmen, Risiken, Empfehlungen und Freigaben. Solche Dritten können zum Beispiel eine neue Projektleitung sein oder Prüfende, die Jahre nach dem Beschluss auf die Entscheidung schauen.
+
+Dafür bildet die Vorlage dreizehn Punkte ab – von der eindeutigen Entscheidungs-ID bis zur Nachverfolgung. Dazu gehört auch ein eigener Freigabeprozess mit sechs Stufen, von denen jede signiert wird: offen, in Prüfung, vorbereitet, freigegeben und am Ende beschlossen oder abgelehnt. Der Status zeigt den Stand der Vorlage; den Beschluss selbst ersetzt er nicht.
+
+Das klingt nach mehr Aufwand, macht die Entscheidung aber nicht schwerer, sondern belastbarer. Ein guter Standard reduziert Unklarheit, weil er früh festlegt, welche Informationen wirklich entscheidungsrelevant sind. Im Standard erstellt die Projektsteuerung die Vorlage für jede erforderliche Bauherrenentscheidung; wie sie Optionen gewichtet vergleicht, zeigt das Thema „Entscheidungsvorlage“.
+
+::: etappen
+---
+titel: Was eine Entscheidungsvorlage abbildet
+---
+Die dreizehn Punkte des Standards in vier Gruppen, in ihrer Reihenfolge – ergänzt um das, was jede Vorlage im Standard zusätzlich braucht: Entscheidungstermin, eine zweite zulässige Option und den gewichteten Vergleich.
+
+::: etappe 1
+---
+titel: Frage und Einordnung
+---
+Eine **eindeutige Entscheidungs-ID**, die **Entscheidungsfrage**, die **betroffene Freigabe** und das **Verantwortungsfeld**. Dazu kommen der **Entscheidungstermin** und die Folgen einer Verzögerung. Damit ist klar, worüber bis wann entschieden wird und wo die Entscheidung hingehört.
+:::
+
+::: etappe 2
+---
+titel: Mandat und Grundlage
+---
+**Mandat und letztverantwortliche Rolle** sowie **Datenstand und zentrale Annahmen**. Damit ist klar, wer entscheiden darf und worauf die Entscheidung beruht.
+:::
+
+::: etappe 3
+---
+titel: Abwägung
+---
+**Mindestens zwei zulässige Optionen** mit ihren Konsequenzen, die **Wirkung auf Kosten, Termin, Qualität, Projektumfang, Risiko und ESG/LCC**, ein **gewichteter Vergleich (MCDA)** mit vorab abgestimmten Kriterien und Gewichten samt Prüfung, ob andere vertretbare Gewichte die Rangfolge ändern, und eine begründete **Empfehlung** mit Nachteilen und Voraussetzungen.
+:::
+
+::: etappe 4
+---
+titel: Weg und Beschluss
+---
+Der **Freigabe- oder Eskalationsweg**, der **Freigabeprozess** in sechs Stufen (offen → in Prüfung → vorbereitet → freigegeben → beschlossen oder abgelehnt; jede Stufe wird signiert), die **Beschlusslage** – der Beschluss selbst wird getrennt festgehalten – und die **Nachverfolgung**.
+:::
+:::
+:::
+
+::: abschnitt k9.5
+---
+titel: Betriebshandbuch
+---
+Das [[Betriebshandbuch]] ist das verbindliche abschließende Ergebnisdokument. Es beschreibt, wie MVG nach dem Ende des Mandats weiter betrieben wird – also im Regelbetrieb des Bauherren-Führungsmodells.
+
+Typischerweise regelt es, welche Rollen im Regelbetrieb wofür zuständig sind, in welchem Takt die Governance-Termine stattfinden und wer das Entscheidungsregister führt. Im Standard bearbeitet die Projektsteuerung alle Vorgänge einschließlich der Entscheidungsvorbereitungen; geprüft wird in aktiven Zeiten wöchentlich, besprochen monatlich in höchstens 60 Minuten (Thema „Takt und Bericht“). Das Handbuch beschreibt, wie Freigaben und der Managementbericht zur Freigabe vorbereitet werden, wie Datenstände und Nachweise geführt werden, welche Eskalationswege gelten und wie mit Risiken, Änderungen und Maßnahmen umgegangen wird. Dazu kommen Prüfroutinen, ein Verbesserungsvorrat und die Logik für Übergabe und Abnahme.
+
+Der Unterschied zur Entscheidungsvorlage: Die Vorlage gilt einer einzelnen Entscheidung, das Handbuch dem laufenden Betrieb. Der Wert des Handbuchs liegt darin, dass MVG nicht als Beratungsprodukt endet, sondern als wiederholbare Routine des Bauherrn weiterläuft. Wie die Ergebnisobjekte in unterschiedlichen Bauherrenkonstellationen wirken, zeigt das Thema „Anwendungssituationen“.
+
+::: sortieren
+---
+titel: Vorlage oder Handbuch?
+links: Entscheidungsvorlage
+rechts: Betriebshandbuch
+---
+Wohin gehört jeder Punkt – in die Vorlage für eine einzelne Entscheidung oder in das Handbuch für den Regelbetrieb?
+
+::: posten frage
+---
+seite: links
+---
+Entscheidungsfrage
+
+### Erklärung
+Sie ist ein Punkt des Standards für Entscheidungsvorlagen.
+:::
+
+::: posten takt
+---
+seite: rechts
+---
+Taktung von Governance-Terminen
+
+### Erklärung
+Den Takt legt das Betriebshandbuch fest – im Standard in aktiven Zeiten wöchentliche Prüfung und ein Monatstermin.
+:::
+
+::: posten optionen
+---
+seite: links
+---
+Optionen und Konsequenzen
+
+### Erklärung
+Die Abwägung der Optionen gehört in die Entscheidungsvorlage.
+:::
+
+::: posten register
+---
+seite: rechts
+---
+Zuständigkeit für das Entscheidungsregister
+
+### Erklärung
+Wer das Register führt, regelt das Betriebshandbuch; im Standard bearbeitet die Projektsteuerung alle Vorgänge.
+:::
+
+::: posten empfehlung
+---
+seite: links
+---
+Empfehlung
+
+### Erklärung
+Die Empfehlung ist Teil der Entscheidungsvorlage.
+:::
+
+::: posten pruefroutinen
+---
+seite: rechts
+---
+Prüfroutinen und Verbesserungsvorrat
+
+### Erklärung
+Beides gehört zum Betriebshandbuch.
+:::
+
+::: posten beschlusslage
+---
+seite: links
+---
+Bezug zum Beschluss
+
+### Erklärung
+Die Vorlage verweist auf den Beschluss; festgehalten wird er getrennt, mit Quelle, Datum und Bedingungen.
+:::
+:::
+
+::: merksatz
+Das Betriebshandbuch sorgt dafür, dass MVG nach dem Mandat nicht endet, sondern als wiederholbare Bauherrenroutine weiterläuft.
+:::
+:::
+
+::: regie
+### Notiz
+Das Thema zeigt die Ergebnisobjekte; ihr Wert liegt im Zusammenhang – die Etappen „Nachweiskette“ oben führen Mandat, Freigabe, Entscheidungs-ID, Datenstand, Nachweis und Beschlusslage der Reihe nach vor. Im Termin tragen der Weg einer Freigabe und der Regler über LPH 0–9: Der Bauherr erteilt jede Freigabe selbst auf Vorlage der Projektsteuerung, der Lenkungskreis berät. Der Regler zeigt die Freigabefrage je Leistungsphase, die Tafel darunter die zehn Leistungsphasen nebeneinander. RACI nicht als Werkzeug erklären, sondern die Kopplung an Mandate und Schwellen zeigen (Umschalter). Die Zuordnung der Freigaben zu den Leistungsphasen kann projektspezifisch angepasst werden – nicht als starr darstellen.
+
+### Leitfragen
+- Welche Kernfrage stand bei Ihrer letzten Freigabe zum Abschluss einer Leistungsphase im Raum?
+- Könnte ein Dritter nachvollziehen, auf welchem Datenstand Ihre letzte wesentliche Entscheidung getroffen wurde?
+- Was sagt Ihre RACI-Matrix heute über Schwellen und Stellvertretungen?
+:::

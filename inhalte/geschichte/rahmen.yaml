@@ -1,0 +1,39 @@
+# Rahmen der Story (P16.5, O-40): Status, Kriterien, Prolog und Ende. Format: docs/INHALTSFORMAT.md
+titel: Vom Bauantrag bis zum Schulstart
+status:
+  kosten: { start: 58.4, einheit: Mio. €, titel: Kostenprognose, basis: 58.4 }
+  puffer: { start: 42, einheit: Tage, titel: Terminpuffer }
+  offen: { start: 0, einheit: '', titel: Offene Entscheidungen }
+kriterien:
+  - { id: kosten, titel: Kosten }
+  - { id: termin, titel: Termin }
+  - { id: qualitaet, titel: Qualität und Funktion }
+  - { id: klima, titel: Klima und Betrieb }
+prolog:
+  titel: Sie vertreten den Bauherrn
+  text: |
+    Die Stadt Lindenhall baut einen Schulcampus: Gesamtschule, Grundschule, Dreifeldsporthalle, als Holzhybridbau. Projektbasis 58,4 Mio. € brutto, dazu 2,9 Mio. € Risikoreserve, die nur der Bauherr freigibt. Der Förderbescheid verlangt die Inbetriebnahme zum Schuljahr 2028/29.
+
+    Sie übernehmen im Januar 2026 die Projektleitung auf Bauherrenseite (Bauherren-PL) bei der Gebäudemanagement Lindenhall GmbH (GML). Listen pflegen Sie nicht – das macht die Projektsteuerung um Jonas Brenner: Sie erfasst jeden Vorgang, prüft jede Woche den offenen Bestand und bereitet jede erforderliche Entscheidung als Vorlage vor, mit mindestens zwei Optionen und gewichtetem Vergleich.
+
+    Sie entscheiden – oder tragen die Vorlage mit Ihrer Empfehlung zur befugten Stelle: zum Bauherrn (Dr. Miriam Olbers, im Lenkungskreis) oder ins Änderungsgremium. Hier folgt sie Ihrer Empfehlung.
+  takt: |
+    Dringliches meldet die Projektsteuerung sofort. Monatlich: ein Online-Termin von höchstens 60 Minuten, ein Bericht von höchstens einer Seite.
+ende:
+  titel: Schulstart
+  text: |
+    August 2028 – das Schuljahr 2028/29 beginnt. Jede Frage, jede Option, jeder Beschluss steht mit Datum in der Software der GML – und was daraus geworden ist. Ihr Aufwand: ein Termin im Monat, eine Seite Bericht, die Vorlagen.
+  puffer-gut: Der Schulstart zum Schuljahr 2028/29 ist gehalten – die Schulleitung bekommt die Schlüssel.
+  puffer-knapp: Der Schulstart ist gehalten, mit kaum noch Puffer – die Schulleitung bekommt die Schlüssel.
+  puffer-schlecht: Die Inbetriebnahme zum Schuljahr 2028/29 ist nicht zu halten; die Förderfrist ist gefährdet.
+  # R69: auf den Wegen, auf denen die Prognose am Ende über Basis plus Reserve liegt, sagt es das Ende.
+  # R70: Offen kann am Ende nur die Neufestlegung der Projektbasis sein (höchstens 1, tests/geschichte-reserve.test.ts) – das Ende nennt sie.
+  # Über 61,3 ohne offene Entscheidung endet nur der Weg s3 = C, s4 = B, s5 = B, s6 = K, s7 = A, s8 = A (61,31): erst das Ersatzgerät hebt
+  # die Prognose über die Grenze; eine Vorlage zur Neufestlegung liegt dort noch nicht vor. Die drei Zeilen schließen einander aus.
+  zeilen:
+    - wenn: kosten>61.3 & offen>=1
+      text: Die Prognose liegt über Basis plus Reserve (61,3 Mio. €) – was darüber hinausgeht, deckt nur die Neufestlegung der Projektbasis. Sie ist die offene Entscheidung – die Vorlage liegt beim Lenkungskreis, der Beschluss des Bauherrn steht noch aus.
+    - wenn: kosten<=61.3 & offen>=1
+      text: Offen bleibt die Neufestlegung der Projektbasis – die Vorlage liegt beim Lenkungskreis, der Beschluss des Bauherrn steht noch aus.
+    - wenn: kosten>61.3 & offen<1
+      text: Mit dem Ersatzgerät liegt die Prognose knapp über Basis plus Reserve (61,3 Mio. €). Was darüber hinausgeht, deckt die Reserve nicht; dafür bereitet die Projektsteuerung eine Neufestlegung der Projektbasis vor.

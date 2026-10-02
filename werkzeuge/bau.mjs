@@ -1,15 +1,18 @@
 #!/usr/bin/env node
 /**
- * Bau der Einzeldatei `dist/mvg.html` (P0.4; docs/ARCHITEKTUR.md „Einzeldatei und Sicherheit“).
+ * Bau des Webseitenordners `dist/` (P0.4, P16.13; O-42, O-47; docs/ARCHITEKTUR.md):
+ *   index.html (Hauptseite, alles eingebettet), impressum.html, datenschutz.html, robots.txt, sitemap.xml,
+ *   .htaccess (HTTPS, Sicherheitsköpfe) und vorschau.png (Vorschaubild für geteilte Links).
  *
- *   node werkzeuge/bau.mjs                 baut und schreibt dist/mvg.html
+ *   node werkzeuge/bau.mjs                 baut und schreibt dist/
  *   node werkzeuge/bau.mjs --pruefe        baut zweimal nach tmp/bau-pruefe/, verlangt Byte-Gleichheit
- *                                          und vergleicht mit dist/mvg.html (schreibt dist/ NICHT)
- *   node werkzeuge/bau.mjs --ziel <pfad>   anderer Zielpfad (relativ zum Arbeitsverzeichnis)
+ *                                          und vergleicht mit dist/ (schreibt dist/ NICHT)
+ *   node werkzeuge/bau.mjs --ziel <pfad>   andere Hauptseite (relativ zum Arbeitsverzeichnis), nur sie
  *
- * Ablauf: Inhalte kompilieren (werkzeuge/inhalte.mjs) → Schriften erzeugen (werkzeuge/schriften.mjs)
+ * Ablauf der Hauptseite: Inhalte kompilieren (werkzeuge/inhalte.mjs) → Schriften erzeugen (werkzeuge/schriften.mjs)
  * → esbuild (JS aus src/main.ts als IIFE, CSS aus src/stil/index.css) → Einsetzen in die Hülle
- * werkzeuge/huelle.html → CSP mit dem sha256 des Inline-Skripts → Größenbudget → schreiben.
+ * werkzeuge/huelle.html → CSP mit dem sha256 des Inline-Skripts → Größenbudget → schreiben. Die übrigen
+ * Dateien entstehen aus inhalte/rechtliches/*.md, werkzeuge/rechtliches.html und quellen/marke/.
  *
  * Als Modul: `import { baue } from './bau.mjs'`. Alle Optionen außer `ziel`/`pruefe` sind für Tests
  * und Fixturen da (andere Wurzel, andere Hülle, Vorstufen aus, kleines Budget).
@@ -24,6 +27,7 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import vm from 'node:vm';
 import * as esbuild from 'esbuild';
+import { Marked } from 'marked';
 import { istHauptmodul } from './haupt.mjs';
 
 /** Wurzel des Repos (eine Ebene über werkzeuge/). */
@@ -38,6 +42,9 @@ export const ANKER = Object.freeze({
   stil: '<!--mvg:stil-->',
   skript: '<!--mvg:skript-->',
 });
+
+/** Freiwilliger Anker der Hülle für das Favicon */
+export const FAVICON_ANKER = '<!--mvg:favicon-->';
 
 export class BauFehler extends Error {
   /** @param {string} nachricht */
@@ -127,9 +134,12 @@ export function cspZeile(skriptText) {
  * @param {string} huelle
  * @param {string} cssRoh
  * @param {string} jsRoh
+ * @param {string} [favicon]  data:-URL des Favicons (leer: kein Favicon)
  */
-export function setzeZusammen(huelle, cssRoh, jsRoh) {
-  const text = huelle.replace(/\r\n?/g, () => '\n');
+export function setzeZusammen(huelle, cssRoh, jsRoh, favicon = '') {
+  let text = huelle.replace(/\r\n?/g, () => '\n');
+  // Favicon (P16.13): freiwilliger Anker, höchstens einmal
+  if (text.includes(FAVICON_ANKER)) text = ersetzeEinmal(text, FAVICON_ANKER, favicon === '' ? '' : `<link rel="icon" href="${favicon}">`);
   if (/<script\b/i.test(text)) {
     throw new BauFehler('Die Hülle enthält ein eigenes <script> – die CSP erlaubt nur das eine eingesetzte Skript');
   }
@@ -183,7 +193,7 @@ function esbuildWarnungen(liste, was) {
  * @param {string} eintrag
  * @param {string} version
  */
-async function baueSkript(wurzel, eintrag, version) {
+async function baueSkript(wurzel, eintrag, version, inhalte = null) {
   if (!existsSync(path.resolve(wurzel, eintrag))) throw new BauFehler(`Einstieg ${eintrag} fehlt`);
   try {
     const erg = await esbuild.build({
@@ -201,6 +211,13 @@ async function baueSkript(wurzel, eintrag, version) {
       sourcemap: false,
       loader: { '.svg': 'text' },
       define: { __MVG_VERSION__: JSON.stringify(version) },
+      // Andere Inhalte (Entwurfs-Vorschau, L-29): die generierte inhalte.json wird umgeleitet
+      plugins: inhalte === null ? [] : [{
+        name: 'mvg-inhalte',
+        setup(b) {
+          b.onResolve({ filter: /generiert\/inhalte\.json$/ }, () => ({ path: inhalte }));
+        },
+      }],
       logLevel: 'silent',
     });
     return { text: erg.outputFiles[0]?.text ?? '', warnungen: esbuildWarnungen(erg.warnings, 'Skript') };
@@ -282,7 +299,7 @@ export function formatiereGroesse(bytes) {
 
 /**
  * @typedef {object} BauOptionen
- * @property {string} [ziel]      Zieldatei (relativ zu `wurzel`), Vorgabe dist/mvg.html
+ * @property {string} [ziel]      Hauptseite (relativ zu `wurzel`), Vorgabe dist/index.html
  * @property {boolean} [pruefe]   zweimal bauen, Byte-Gleichheit verlangen, mit `ziel` vergleichen; schreibt `ziel` nicht
  * @property {string} [wurzel]    Basis für alle relativen Pfade, Vorgabe die Repo-Wurzel
  * @property {string} [eintrag]   JS-Einstieg, Vorgabe src/main.ts
@@ -292,6 +309,7 @@ export function formatiereGroesse(bytes) {
  * @property {number} [budget]    Größenbudget in Bytes, Vorgabe BUDGET
  * @property {string} [version]   Wert für __MVG_VERSION__, Vorgabe aus package.json
  * @property {string} [zwischen]  Arbeitsverzeichnis für --pruefe, Vorgabe tmp/bau-pruefe
+ * @property {string} [inhalte]   andere inhalte.json statt src/generiert/inhalte.json (Entwurfs-Vorschau)
  */
 
 /**
@@ -301,7 +319,7 @@ function vollOptionen(optionen) {
   const wurzel = path.resolve(optionen.wurzel ?? WURZEL);
   return {
     wurzel,
-    ziel: path.resolve(wurzel, optionen.ziel ?? 'dist/mvg.html'),
+    ziel: path.resolve(wurzel, optionen.ziel ?? HAUPTSEITE),
     eintrag: optionen.eintrag ?? 'src/main.ts',
     stil: optionen.stil ?? 'src/stil/index.css',
     huelle: path.resolve(wurzel, optionen.huelle ?? 'werkzeuge/huelle.html'),
@@ -309,7 +327,64 @@ function vollOptionen(optionen) {
     budget: optionen.budget ?? BUDGET,
     version: optionen.version,
     zwischen: path.resolve(wurzel, optionen.zwischen ?? path.join(WURZEL, 'tmp', 'bau-pruefe')),
+    inhalte: optionen.inhalte !== undefined ? path.resolve(wurzel, optionen.inhalte) : null,
   };
+}
+
+/** Hauptseite im Webseitenordner (O-42) */
+export const HAUPTSEITE = 'dist/index.html';
+
+/** Adresse der Internetseite (O-47); kanonisch klein geschrieben. */
+export const ADRESSE = 'https://www.governancekompass.de/';
+
+/** Die Beigaben des Webseitenordners neben der Hauptseite (O-42, O-47). */
+export const BEIGABEN = Object.freeze(['impressum.html', 'datenschutz.html', 'robots.txt', 'sitemap.xml', '.htaccess', 'vorschau.png']);
+
+/** Bildmarke als data:-URL (Favicon der Rechtsseiten; die Hauptseite trägt dieselbe in der Hülle). */
+export function faviconUrl(svg) {
+  const rein = svg.replace(/<title>[^<]*<\/title>/u, '').replace(/\s+(role|aria-label)="[^"]*"/gu, '').replace(/fill="currentColor"/u, 'fill="#0C1C33"').replace(/\r?\n/gu, '').trim();
+  return `data:image/svg+xml,${encodeURIComponent(rein)}`;
+}
+
+/**
+ * Impressum und Datenschutz (O-43) aus inhalte/rechtliches/*.md in die Vorlage werkzeuge/rechtliches.html; dazu
+ * robots.txt, sitemap.xml, .htaccess und das Vorschaubild. Rein bis auf das Lesen der Quellen; deterministisch.
+ * @param {string} wurzel
+ * @returns {Promise<Map<string, Buffer>>}
+ */
+export async function baueBeigaben(wurzel) {
+  /** @type {Map<string, Buffer>} */
+  const aus = new Map();
+  const vorlage = (await readFile(path.join(wurzel, 'werkzeuge', 'rechtliches.html'), 'utf8')).replace(/\r\n?/g, '\n');
+  const bildmarke = await readFile(path.join(wurzel, 'quellen', 'marke', 'logo-bm-bildmarke.svg'), 'utf8');
+  const svgInline = bildmarke.replace(/<title>[^<]*<\/title>/u, '').replace(/\s+(role|aria-label|width|height)="[^"]*"/gu, '').replace('<svg ', '<svg aria-hidden="true" focusable="false" ').replace(/\r?\n/gu, '').trim();
+  const marked = new Marked({ gfm: true, breaks: false, async: false });
+  for (const name of ['impressum', 'datenschutz']) {
+    const md = (await readFile(path.join(wurzel, 'inhalte', 'rechtliches', `${name}.md`), 'utf8')).replace(/<!--[\s\S]*?-->/gu, '').trim();
+    if (/<(?!br>)[a-z]/iu.test(md)) throw new BauFehler(`inhalte/rechtliches/${name}.md enthält HTML – nur Markdown`);
+    const titel = /^# (.+)$/mu.exec(md)?.[1] ?? name;
+    // GFM verlinkt nackte „www.…“ mit http:// – auf der Seite nur verschlüsselt (R67)
+    const html = String(marked.parse(md)).trim().replaceAll('href="http://', 'href="https://');
+    let seite = vorlage;
+    for (const [anker, wert] of [['<!--mvg:titel-->', titel], ['<!--mvg:inhalt-->', html], ['<!--mvg:bildmarke-->', svgInline], ['<!--mvg:favicon-->', faviconUrl(bildmarke)]]) {
+      seite = ersetzeEinmal(seite, anker, wert);
+    }
+    if (/<!--mvg:/u.test(seite)) throw new BauFehler(`Unbekannter Anker in werkzeuge/rechtliches.html`);
+    aus.set(`${name}.html`, Buffer.from(seite, 'utf8'));
+  }
+  aus.set('robots.txt', Buffer.from(`User-agent: *\nAllow: /\n\nSitemap: ${ADRESSE}sitemap.xml\n`, 'utf8'));
+  aus.set('sitemap.xml', Buffer.from([
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ...['', 'impressum.html', 'datenschutz.html'].map((s) => `  <url><loc>${ADRESSE}${s}</loc></url>`),
+    '</urlset>',
+    '',
+  ].join('\n'), 'utf8'));
+  aus.set('.htaccess', Buffer.from((await readFile(path.join(wurzel, 'werkzeuge', 'htaccess.txt'), 'utf8')).replace(/\r\n?/g, '\n'), 'utf8'));
+  const bild = path.join(wurzel, 'quellen', 'marke', 'vorschau.png');
+  if (!existsSync(bild)) throw new BauFehler('quellen/marke/vorschau.png fehlt – node werkzeuge/vorschaubild.mjs');
+  aus.set('vorschau.png', await readFile(bild));
+  return aus;
 }
 
 /**
@@ -322,10 +397,18 @@ export async function baueText(optionen = {}) {
   const version = o.version ?? String(JSON.parse(await readFile(path.join(WURZEL, 'package.json'), 'utf8')).version);
   if (!existsSync(o.huelle)) throw new BauFehler(`Hülle ${path.relative(o.wurzel, o.huelle).split(path.sep).join('/')} fehlt`);
   const huelle = await readFile(o.huelle, 'utf8');
-  const [skript, stil] = await Promise.all([baueSkript(o.wurzel, o.eintrag, version), baueStil(o.wurzel, o.stil)]);
+  const [skript, stil] = await Promise.all([baueSkript(o.wurzel, o.eintrag, version, o.inhalte), baueStil(o.wurzel, o.stil)]);
   warnungen.push(...skript.warnungen, ...stil.warnungen);
-  const { html, skript: skriptText } = setzeZusammen(huelle, stil.text, skript.text);
+  const marke = path.join(o.wurzel, 'quellen', 'marke', 'logo-bm-bildmarke.svg');
+  const favicon = existsSync(marke) ? faviconUrl(await readFile(marke, 'utf8')) : '';
+  const { html, skript: skriptText } = setzeZusammen(huelle, stil.text, skript.text, favicon);
   const bytes = Buffer.byteLength(html, 'utf8');
+  // O-29: kein „Whitepaper“ im Text der Datei (Eigenschaftsnamen im Code sind klein geschrieben und unsichtbar)
+  const wort = html.match(/.{0,40}(?:Whitepaper|WHITEPAPER|White[ -]Paper).{0,40}/u);
+  if (wort !== null) throw new BauFehler(`„Whitepaper“ im Text der Datei (O-29): „${wort[0]}“`);
+  // O-33 (R49): der alte Arbeitstitel kommt nicht zurück
+  const alt = html.match(/.{0,40}MVG interaktiv.{0,40}/u);
+  if (alt !== null) throw new BauFehler(`alter Name „MVG interaktiv“ im Text der Datei (O-33): „${alt[0]}“`);
   if (bytes > o.budget) {
     throw new BauFehler(`Größenbudget überschritten: ${formatiereGroesse(bytes)} (${bytes} Bytes) > ${formatiereGroesse(o.budget)} (${o.budget} Bytes)`);
   }
@@ -345,11 +428,15 @@ export async function baueText(optionen = {}) {
  */
 export async function baue(optionen = {}) {
   const o = vollOptionen(optionen);
+  // Mit der Hauptseite im Ordner dist/ entstehen auch die Beigaben (nicht bei einem anderen Ziel oder einer anderen Wurzel)
+  const mitBeigaben = optionen.ziel === undefined && optionen.wurzel === undefined;
+  const ordner = path.dirname(o.ziel);
   if (!optionen.pruefe) {
     const erg = await baueText(optionen);
-    await mkdir(path.dirname(o.ziel), { recursive: true });
+    await mkdir(ordner, { recursive: true });
     await writeFile(o.ziel, erg.html, 'utf8');
-    return { ziel: o.ziel, bytes: erg.bytes, skriptHash: erg.skriptHash, sha256: erg.sha256, warnungen: erg.warnungen, geprueft: false };
+    if (mitBeigaben) for (const [name, inhalt] of await baueBeigaben(o.wurzel)) await writeFile(path.join(ordner, name), inhalt);
+    return { ziel: o.ziel, bytes: erg.bytes, skriptHash: erg.skriptHash, sha256: erg.sha256, warnungen: erg.warnungen, geprueft: false, beigaben: mitBeigaben ? BEIGABEN.length : 0 };
   }
 
   const erster = await baueText(optionen);
@@ -368,7 +455,16 @@ export async function baue(optionen = {}) {
   if (!vorhanden.equals(Buffer.from(erster.html, 'utf8'))) {
     throw new BauFehler(`${zielName} ist veraltet (weicht vom frischen Bau ab) – bitte 'npm run bau' ausführen und das Ergebnis committen`);
   }
-  return { ziel: o.ziel, bytes: erster.bytes, skriptHash: erster.skriptHash, sha256: erster.sha256, warnungen: erster.warnungen, geprueft: true };
+  if (mitBeigaben) {
+    const a = await baueBeigaben(o.wurzel);
+    const b = await baueBeigaben(o.wurzel);
+    for (const [name, inhalt] of a) {
+      if (!inhalt.equals(b.get(name) ?? Buffer.alloc(0))) throw new BauFehler(`Beigabe ${name} nicht deterministisch`);
+      const datei = path.join(ordner, name);
+      if (!existsSync(datei) || !(await readFile(datei)).equals(inhalt)) throw new BauFehler(`dist/${name} fehlt oder ist veraltet – bitte 'npm run bau' ausführen und das Ergebnis committen`);
+    }
+  }
+  return { ziel: o.ziel, bytes: erster.bytes, skriptHash: erster.skriptHash, sha256: erster.sha256, warnungen: erster.warnungen, geprueft: true, beigaben: mitBeigaben ? BEIGABEN.length : 0 };
 }
 
 /**
@@ -397,21 +493,25 @@ async function hauptprogramm() {
     /** @type {BauOptionen} */
     const optionen = { pruefe: a.pruefe };
     if (a.ziel) optionen.ziel = a.ziel;
-    const erg = await baue(optionen);
-    for (const w of erg.warnungen) console.log(`bau: Warnung – ${w}`);
-    const name = path.relative(process.cwd(), erg.ziel).split(path.sep).join('/');
-    const anteil = Math.round((erg.bytes / BUDGET) * 100);
-    if (erg.geprueft) {
-      console.log(`bau --pruefe: zweimal gebaut, byte-gleich und identisch mit ${name} – ${formatiereGroesse(erg.bytes)} (${anteil} % des Budgets), sha256 ${erg.sha256.slice(0, 16)}`);
-    } else {
-      console.log(`bau: ${name} geschrieben – ${formatiereGroesse(erg.bytes)} (${anteil} % des Budgets), sha256 ${erg.sha256.slice(0, 16)}`);
-    }
-    if (anteil >= 90) console.log(`bau: Warnung – ${anteil} % des Größenbudgets belegt`);
+    melde(await baue(optionen));
   } catch (fehler) {
     const text = fehler instanceof BauFehler ? fehler.message : fehler instanceof Error ? (fehler.stack ?? fehler.message) : String(fehler);
     console.error(`bau: FEHLER – ${text}`);
     process.exitCode = 1;
   }
+}
+
+/** @param {Awaited<ReturnType<typeof baue>>} erg */
+function melde(erg) {
+  for (const w of erg.warnungen) console.log(`bau: Warnung – ${w}`);
+  const name = path.relative(process.cwd(), erg.ziel).split(path.sep).join('/');
+  const anteil = Math.round((erg.bytes / BUDGET) * 100);
+  if (erg.geprueft) {
+    console.log(`bau --pruefe: zweimal gebaut, byte-gleich und identisch mit ${name}${erg.beigaben > 0 ? ` und ${erg.beigaben} Beigaben` : ''} – ${formatiereGroesse(erg.bytes)} (${anteil} % des Budgets), sha256 ${erg.sha256.slice(0, 16)}`);
+  } else {
+    console.log(`bau: ${name}${erg.beigaben > 0 ? ` und ${erg.beigaben} Beigaben` : ''} geschrieben – ${formatiereGroesse(erg.bytes)} (${anteil} % des Budgets), sha256 ${erg.sha256.slice(0, 16)}`);
+  }
+  if (anteil >= 90) console.log(`bau: Warnung – ${anteil} % des Größenbudgets belegt`);
 }
 
 /** Direkt aufgerufen (nicht importiert)? Auch über Links (werkzeuge/haupt.mjs). */

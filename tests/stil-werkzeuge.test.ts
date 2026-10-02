@@ -57,7 +57,7 @@ test('Schriften: nur die Schnitte der Variante B, latin + latin-ext, unicode-ran
   assert.equal(css.match(/@font-face/g)?.length, erwartet);
   assert.deepEqual(
     SCHRIFTEN.map((s) => `${s.familie}:${s.gewichte.map((g) => g.gewicht).join(',')}`),
-    ['Big Shoulders Display:800', 'Barlow Condensed:500,600,700', 'IBM Plex Sans:400,500,600,700', 'IBM Plex Mono:500,600', 'Caveat:700'],
+    ['Big Shoulders Display:800', 'Barlow Condensed:500,600,700', 'IBM Plex Sans:400,500,600,700', 'IBM Plex Mono:500,600'],
   );
   assert.doesNotMatch(css, /url\((?!data:font\/woff2;base64,)/);
   assert.doesNotMatch(css, /font-style:\s*italic/);

@@ -1,13 +1,15 @@
 # Inhaltsformat
 
-Stand P0.5 (2026-09-26). Verbindlich für alle Dateien unter `inhalte/` (O-18: Inhalte ohne Programmierung änderbar). Das Werkzeug `werkzeuge/inhalte.mjs` liest sie, prüft sie und schreibt `src/generiert/inhalte.json`; die Typen dieser Datei stehen in `src/inhalte/typen.ts`.
+Stand P16.14 (2026-10-02, Neuausrichtung O-36 bis O-49). Verbindlich für alle Dateien unter `inhalte/` (O-18: Inhalte ohne Programmierung änderbar). Das Werkzeug `werkzeuge/inhalte.mjs` liest sie, prüft sie und schreibt `src/generiert/inhalte.json`; die Story übersetzt dabei `werkzeuge/geschichte.mjs`, die Explore-Texte `werkzeuge/explore.mjs`. Die Typen der Ausgabe stehen in `src/inhalte/typen.ts` und `src/geschichte/typen.ts`.
 
-Kurz: **normales Markdown**, oben **Kopfdaten** (YAML zwischen `---`), dazu **Container** mit `:::` für alles, was eine feste Form hat (Option, Mail, Zitat …). Innerhalb eines Containers gliedern `###`-Überschriften die **Felder**.
+Kurz: Themen der Theorie, Startseite und Begriffs-Kompass sind **normales Markdown** mit **Kopfdaten** (YAML zwischen `---`) und **Containern** mit `:::` für alles, was eine feste Form hat; innerhalb eines Containers gliedern `###`-Überschriften die **Felder**. Story und Explore-Texte sind **YAML**-Dateien, deren Textfelder Markdown enthalten.
 
 ```
 node werkzeuge/inhalte.mjs            # kompilieren (schreibt src/generiert/inhalte.json)
 node werkzeuge/inhalte.mjs --pruefe   # kompilieren und alles prüfen; Exitcode 1 bei Fehlern
 ```
+
+**Auf der Seite kein Bezug zur Vorlage** (O-38): Absatz-IDs aus V1.2 und Stellen aus V2.4 (`v24:hb-3.1`) belegen jede Fachaussage, stehen aber nur intern – in Kopfdaten, YAML-Kommentaren, Feldern `belege`/`beleg`/`deckt` und Container-Kennungen. Sie erscheinen nie im sichtbaren Text.
 
 ---
 
@@ -15,38 +17,41 @@ node werkzeuge/inhalte.mjs --pruefe   # kompilieren und alles prüfen; Exitcode 
 
 | Datei | Inhalt | Kennung |
 |---|---|---|
-| `inhalte/start.md` | Startseite: Kicker, Leitsatz (wörtlich, mit Absatz-ID), These | – |
-| `inhalte/fall.md` | Fall-Bibel: Stadt, GML, Projekt, Zahlen, Gremien, Figuren | – |
-| `inhalte/rollen/<id>.md` | eine der sechs spielbaren Rollen | Dateiname: `gf`, `bauherr`, `pl`, `ps`, `planung`, `controlling` |
-| `inhalte/story/<station>/station.md` | gemeinsames Rückgrat einer Station (alle Rollen) | Ordnername, z. B. `A3`, `B3`, `prolog`, `A3-B3-vergleich` |
-| `inhalte/story/<station>/<rolle>.md` | Rollenszene dieser Station (Entscheidung, Optionen, Rückbezug, Regie) | Ordner + Rolle, z. B. `A3/pl` |
-| `inhalte/theorie/kNN-<name>.md` | Lernseite zu Kapitel NN (01–13) | `kNN`, z. B. `k02` |
-| `inhalte/einwaende.md` | Einwand-Karten (E6) | je Karte eine ID |
-| `inhalte/abdeckung.yaml` | Absatz-ID → Theorie-Seite / Story-Station | Absatz-ID |
+| `inhalte/start.md` | Startseite: Kicker, Leitsatz, These (4.1) | – |
+| `inhalte/theorie/kNN-<name>.md` | ein Thema der Theorie (4.2) | `kNN`, z. B. `k04`; Adresse über `thema` |
+| `inhalte/geschichte/rahmen.yaml` | Rahmen der Story: Status, Kriterien, Prolog, Ende (3) | – |
+| `inhalte/geschichte/sN-<name>.yaml` | eine Station der Story (3) | `id`, z. B. `s3` |
+| `inhalte/werkzeuge.yaml` | Texte der fünf Explore-Werkzeuge (4.5) | – |
+| `inhalte/glossar.yaml` | Glossar der Seite: Änderungen, Streichungen, neue Einträge (4.4) | `g-…` |
+| `inhalte/begriffs-kompass.md` | Begriffs-Kompass (4.3) | je Eintrag eine Kennung |
+| `inhalte/abdeckung.yaml` | Absatz-ID → Thema (4.6) | Absatz-ID |
+| `inhalte/abbildungen/abb-N.yaml` | Beschreibung einer Abbildung der DOCX; daneben `abb-N.webp` und `stand.json` von `werkzeuge/abbildungen.mjs` (4.7) | `abb-N` wie in `whitepaper.json` |
+| `inhalte/rechtliches/*.md` | Impressum und Datenschutz, gebaut von `werkzeuge/bau.mjs` (4.8) | – |
+| `inhalte/fall.md` | Fall-Bibel: Nachschlagewerk der Autoren, wird nicht kompiliert (4.9) | – |
 
-Kennungen (Stationen, Schritte, Optionen, Figuren …) bestehen aus Buchstaben, Ziffern und Bindestrich, **ohne Umlaute** (`A3-B3-vergleich`, `ueberblick`). Sichtbarer Text darf alles.
+Kennungen (Stationen, Themen, Optionen, Container …) bestehen aus Buchstaben, Ziffern und Bindestrich, **ohne Umlaute** (`entscheidungsvorlage`, `ueberblick`). Sichtbarer Text darf alles.
 
-Zeichensatz UTF-8, Zeilenenden egal (werden zu LF). Dateien, die mit `_` beginnen, werden ignoriert (Entwürfe).
+Zeichensatz UTF-8, Zeilenenden egal (werden zu LF). Dateien, die mit `_` oder `.` beginnen, werden ignoriert (Entwürfe). Eine andere `.md`- oder `.yaml`-Datei unter `inhalte/` meldet das Werkzeug als Warnung und ignoriert sie.
 
 ---
 
-## 2 Grundbausteine
+## 2 Grundbausteine (Markdown-Dateien)
 
 ### 2.1 Kopfdaten (YAML)
 Am Dateianfang zwischen zwei Zeilen `---`. **Alle Werte werden als Text gelesen** und erst vom Werkzeug nach Schema umgewandelt (Zahl, Liste, ja/nein). Damit gibt es keine YAML-Fallen wie `no` → falsch oder `08:30` → Zahl.
 
 ```yaml
 ---
-id: A3
-monat: 5
-whitepaper-bezug: [k2.4-p2, k4.6-p2]
-ende: nein
+kapitel: 4
+thema: verantwortung
+reihe: 4
+titel: Verantwortungsfelder des Bauherrn
 ---
 ```
 
 Zu beachten:
-- Schlüssel in Kleinbuchstaben mit Bindestrich (`status-start`, `whitepaper-bezug`); im JSON werden daraus camelCase-Namen (`statusStart`).
-- **`#` beginnt in YAML einen Kommentar.** Farben deshalb in Anführungszeichen: `farbe: "#3866A8"`. Das Werkzeug meldet eine leere Farbe als Fehler.
+- Schlüssel in Kleinbuchstaben mit Bindestrich (`titel-quelle`); im JSON werden daraus camelCase-Namen (`titelQuelle`).
+- **`#` beginnt in YAML einen Kommentar** – dort stehen die internen Belege eines Themas.
 - Ein Wert, der mit `[`, `{`, `*`, `&`, `!`, `|`, `>`, `@` oder `` ` `` beginnt, braucht Anführungszeichen. Text mit Glossarbezügen (`[[…]]`) gehört **nicht** in die Kopfdaten, sondern in ein Feld (2.3).
 - ja/nein-Werte: `ja`, `nein` (auch `true`, `false`).
 
@@ -59,213 +64,149 @@ schluessel: wert
 Text des Containers …
 :::
 ```
-- Öffnen: eine Zeile mit mindestens drei Doppelpunkten, dem **Art-Namen** und – je nach Art – einer oder mehreren **Kennungen** (`::: option A`, `::: zitat k2.4-p2`).
+- Öffnen: eine Zeile mit mindestens drei Doppelpunkten, dem **Art-Namen** und – je nach Art – einer oder mehreren **Kennungen** (`::: abschnitt k4.2`, `::: zitat k2.4-p2`).
 - Schließen: eine Zeile **nur** aus Doppelpunkten (`:::`). Sie schließt immer den innersten offenen Container.
-- Container dürfen verschachtelt werden (z. B. eine `mail` in einem `schritt`); jede Art hat feste erlaubte Orte (Abschnitt 4).
+- Container dürfen verschachtelt werden (z. B. `etappe` in `etappen`); jede Art hat feste erlaubte Orte (4.2, 4.3).
 - Direkt nach der Öffnungszeile dürfen Kopfdaten des Containers zwischen zwei `---`-Zeilen stehen (gleiche Regeln wie 2.1).
 - Innerhalb von Code-Blöcken (```` ``` ````) werden `:::`-Zeilen nicht ausgewertet.
 
 ### 2.3 Felder
-Innerhalb eines Containers (und auf oberster Ebene einer Datei) teilen `###`-Überschriften den Text in Felder. Text vor der ersten Feldüberschrift ist das Feld `text`. Aus der Überschrift wird der Feldname: Umlaute umgeschrieben, Wörter zusammengezogen (`### Was fehlt` → `wasFehlt`, `### Governance-Frage` → `governanceFrage`, `### Rückmeldung` → `rueckmeldung`). Welche Felder eine Art kennt, steht in Abschnitt 4; unbekannte Felder sind ein Fehler. Andere Überschriften (`#`, `##`, `####`) bleiben normaler Text.
+Innerhalb eines Containers (und auf oberster Ebene einer Datei) teilen `###`-Überschriften den Text in Felder. Text vor der ersten Feldüberschrift ist das Feld `text`. Aus der Überschrift wird der Feldname: Umlaute umgeschrieben, Wörter zusammengezogen (`### Rückseite` → `rueckseite`, `### Erklärung` → `erklaerung`). Welche Felder eine Art kennt, steht in Abschnitt 4; unbekannte Felder sind ein Fehler. Andere Überschriften (`#`, `##`, `####`) bleiben normaler Text.
 
-Felder werden zur Bauzeit mit `marked` (GFM) zu HTML. Rohes HTML im Markdown wird **nicht** übernommen, sondern als Text angezeigt. Inline-Code (`` `ENT-017` ``) wird `<code>` und so in Monospace gesetzt – so werden IDs geschrieben.
+Felder werden zur Bauzeit mit `marked` (GFM) zu HTML. Rohes HTML im Markdown wird **nicht** übernommen, sondern als Text angezeigt. Inline-Code (`` `RIS-009` ``) wird `<code>` und so in Monospace gesetzt – so werden Kennungen geschrieben.
 
-### 2.4 Listen mit Kennung und Checklisten
-- Listenpunkt mit Kennung: `- Terminwirkung {#terminwirkung}` (Kennung am Zeilenende).
-- Checklisten-Punkte (nur im Feld `checkliste` einer `vorlage`): `- [x]` erfüllt · `- [-]` fehlt · `- [ ]` noch offen.
+Das Feld `leitfragen` eines `regie`-Blocks ist eine Markdown-Liste (jeder Punkt beginnt mit `- `); Text außerhalb der Liste ist ein Fehler.
 
-### 2.5 Glossarbezüge
-`[[Begriff]]` oder `[[Begriff|angezeigter Text]]` verweist auf einen Eintrag im Glossar des Whitepapers (`quellen/whitepaper/v1.2/whitepaper.json`, Feld `glossar`). Der Vergleich ignoriert Groß-/Kleinschreibung, weiche Trennzeichen und einen Klammerzusatz (`[[MVG]]` und `[[Minimum Viable Governance]]` treffen beide „Minimum Viable Governance (MVG)“).
+### 2.4 Glossarbezüge
+`[[Begriff]]` oder `[[Begriff|angezeigter Text]]` verweist auf einen Eintrag im Glossar der Seite (Einträge aus `quellen/whitepaper/v1.2/whitepaper.json`, angepasst durch `inhalte/glossar.yaml`, 4.4). Der Vergleich ignoriert Groß-/Kleinschreibung, weiche Trennzeichen und einen Klammerzusatz (`[[MVG]]` und `[[Minimum Viable Governance]]` treffen beide „Minimum Viable Governance (MVG)“). Glossarbezüge wirken in allen Markdown-Feldern, auch in den Textfeldern der Story und der Explore-Texte.
 
 Ergebnis im HTML: `<span class="mvg-glossar" data-glossar="g-mandat" data-begriff="Mandat">Mandat</span>`. Die Oberfläche macht daraus den Mouseover/Fokus-Hinweis mit der Definition aus `inhalte.json → glossar`.
 
-### 2.6 Zitate (wortgleich, O-17)
-- **Blockzitat:** `::: zitat k2.4-p2` … `:::` – der Text im Container muss wortgleich im Absatz stehen. Mehrere Absätze: `::: zitat k2.4-p1 k2.4-p2` (werden mit Leerzeichen verbunden). Auslassungen mit `[…]` sind erlaubt; jedes Stück muss dann in dieser Reihenfolge im Absatz stehen.
+### 2.5 Zitate und Bedienhinweise
+- **Blockzitat:** `::: zitat k2.4-p2` … `:::` – der Text im Container muss wortgleich im Absatz stehen (O-17). Mehrere Absätze: `::: zitat k2.4-p1 k2.4-p2` (werden mit Leerzeichen verbunden). Auslassungen mit `[…]` sind erlaubt; jedes Stück muss dann in dieser Reihenfolge im Absatz stehen, an Wortgrenzen beginnen und enden und zwischen zwei `[…]` mindestens zwei Wörter tragen. Ein Zitat als Markdown-Liste ist nur erlaubt, wenn der Absatz eine Liste ist und jeder Punkt ein ganzer Punkt der Quelle ist (in ihrer Reihenfolge).
 - **Inline-Zitat:** `[[zitat:k4.2-p3|die Bauherren-PL gibt bis einschließlich 100 TEUR eigenständig frei]]`.
-- **Originaltext einbinden:** `::: original k2.4-p1 k2.4-p2` (oder ganzer Abschnitt `::: original k2.4`, oder Bereich `::: original k2.4-p1..k2.4-p3`) – der Container bleibt leer, das Werkzeug setzt den Text aus `whitepaper.json` ein. Das ist der bevorzugte Weg im Theorie-Teil: wortgetreu durch Bauart. Umfasst der Auszug mehrere Abschnitte (z. B. `::: original k1`), steht vor dem ersten Absatz jedes Unterabschnitts dessen Überschrift (`<h4 class="mvg-original-titel" data-abschnitt="k1.1">1.1 Leitthese</h4>`) – der Originaltext bleibt in der Gliederung des Whitepapers (O-20).
+- **Bedienhinweis:** `[[bedienung:Ziehen Sie den Regler.]]` – ein ganzer Satz, der nur gilt, wo das Werkzeug bedienbar ist; im Druck und auf der Leinwand ausgeblendet (R41, L-121).
 
-„Wortgleich“ heißt: gleich nach Normalisierung von Leerraum und Silbentrennung (`normalisiere()` aus `werkzeuge/whitepaper-lib.mjs`); Anführungszeichen, Striche, Groß-/Kleinschreibung zählen. Absatz-IDs: `k<abschnitt>-<p|l|t|b><n>`, z. B. `k2.4-p2` (Kapitel 2.4, zweiter Absatz), `k3.2-t1` (erste Tabelle in 3.2).
+„Wortgleich“ heißt: gleich nach Normalisierung von Leerraum und Silbentrennung (`normalisiere()` aus `werkzeuge/whitepaper-lib.mjs`, geprüft gegen die Anzeigefassung aus `werkzeuge/anzeige-fassung.mjs`); Anführungszeichen, Striche, Groß-/Kleinschreibung zählen. Absatz-IDs: `k<abschnitt>-<p|l|t|b><n>`, z. B. `k2.4-p2` (zweiter Absatz in 2.4), `k3.2-t1` (erste Tabelle in 3.2).
 
-HTML: `<blockquote class="mvg-zitat" data-absatz="k2.4-p2">…</blockquote>` bzw. `<q class="mvg-zitat" data-absatz="…">…</q>`; die Quelle („Whitepaper V1.2, Kap. 2.4“) steht im Block unter `kopf.quelle`.
-
-### 2.7 Statuswerte und Statuswirkung
-Fünf Werte (Statusbereich des Leitstands):
-
-| Schlüssel | Werte |
-|---|---|
-| `entscheidungsfaehigkeit` | Zahl 0–5 |
-| `kostenunsicherheit` | Stufe: `niedrig` · `mittel` · `hoch` · `sehr hoch` |
-| `offene-risiken` | Zahl ≥ 0 |
-| `ungeklaerte-entscheidungen` | Zahl ≥ 0 |
-| `terminrisiko` | Stufe: `niedrig` · `mittel` · `hoch` · `sehr hoch` |
-
-Schreibweise eines Werts: `4` (setzen) · `+1` / `-1` (ändern um; bei Stufen um Stufen – **das Vorzeichen entscheidet**: `1` setzt, `+1` ändert; Anführungszeichen sind möglich, aber nicht nötig) · `sehr hoch` (Stufe setzen) · Zusatz in Klammern wird als Hinweis angezeigt: `7 (1 neu bewertet)`. Ein Wert wird auf seinen Bereich begrenzt (0–5, niedrig … sehr hoch, ≥ 0).
-
-- `status-start` (Station) setzt beim Betreten den Stand der Welt dieser Station; er muss **alle fünf** Werte setzen.
-- `status` (Option, Zeitsprung) wirkt auf die Welt der Station. Eine Option **muss** eine Statuswirkung haben; „keine Wirkung“ schreibt man ausdrücklich: `status: keine`.
-
-Die Engine rechnet den Status jedes Mal aus dem Verlauf neu (Stationen in Reihenfolge: `status-start`, dann angeforderte Informationen, dann die Wahl). Eine geänderte Wahl verschiebt den Status also sauber zurück.
-
-### 2.8 Bedingungen
-Für `weiter` (Abschnitt 3.3). Eine Bedingung je Zeile; eine Liste unter `wenn` heißt „alle“, unter `wenn-eine` heißt „mindestens eine“.
-
-| Form | Bedeutung |
-|---|---|
-| `wahl A3 = A` · `wahl A3 = A\|D` · `wahl A3/pl != B` | frühere Wahl (ohne `/rolle`: die gerade gespielte Rolle) |
-| `antwort B3/pl/reife = nein` | Antwort auf eine Frage |
-| `rolle = pl\|ps` | gespielte Rolle |
-| `welt = B` | aktuelle Welt |
-| `interesse kosten` | im Prolog gewähltes Interesse |
-| `info A3/info` | Information angefordert (Zeitsprung) |
-| `besucht A4` | Station schon besucht |
-| `freigeschaltet welt-b` · `freigeschaltet explore` | Freischaltung |
-| `status A kostenunsicherheit >= hoch` · `status B offene-risiken < 5` | Statusvergleich (`=`, `!=`, `<`, `<=`, `>`, `>=`) |
-| `nicht …` | Verneinung jeder Form |
+Die Absatz-ID steht im HTML nur als Attribut (`<blockquote class="mvg-zitat" data-absatz="k2.4-p2">`); sichtbar erscheint keine Quellenangabe (O-38).
 
 ---
 
-## 3 Story
+## 3 Story (P16.6, O-40): `inhalte/geschichte/`
 
-### 3.1 Aufbau
-Die Story ist ein Graph aus **Stationen** (Knoten) mit Kanten `weiter`. Jede Station hat eine Folge von **Schritten** (Klicks). Das **Rückgrat** (`station.md`) gilt für alle Rollen; die **Rollenszene** (`<rolle>.md`) liefert Entscheidung, Optionen, Fragen, Rückbezüge und Regie-Material für genau eine Rolle. Schritte der Arten `entscheidung`, `konsequenz` und `rueckbezug` werden nur gezeigt, wenn die gespielte Rolle dafür eine Szene hat.
+Eine durchgehende Geschichte aus Sicht des Bauherrn. Übersetzer: `werkzeuge/geschichte.mjs` (aus `werkzeuge/inhalte.mjs` aufgerufen), Typen: `src/geschichte/typen.ts`, Ablauf: `src/geschichte/engine.ts`, Vergleich: `src/geschichte/mcda.ts`. Alle Dateien sind reines YAML; Textfelder sind Markdown (Glossarbezüge erlaubt) und werden mit `|` als Block geschrieben.
 
-Welt B ist gesperrt, bis eine Station mit `schaltet-frei: [welt-b]` betreten wurde (im fertigen Produkt der Wendepunkt/Rückspulen; im Durchstich die Vergleichsstation). Der Prüfer verlangt, dass keine Welt-B-Station ohne diese Freischaltung erreichbar ist.
+**`rahmen.yaml`:** `titel`; `status` mit `kosten`, `puffer`, `offen` (je `start`, `einheit`, `titel`, optional `basis`); `kriterien` (Liste `{ id, titel }`, mindestens zwei); `prolog` (`titel`, `text`, `takt`); `ende` (`titel`, `text`, `puffer-gut`, `puffer-knapp`, `puffer-schlecht`, optional `zeilen`). **Endzeilen** (`ende.zeilen`, R69/R70): Liste `{ text, wenn }` – Zeilen des Endes, die nur gelten, wenn die Bedingung gilt (ohne `wenn` immer); sie stehen unter dem Puffer-Urteil. Ihre Bedingungen dürfen Wahlen aller Stationen, den Weg und Statusbedingungen enthalten; der Status ist der **Endstand** (alle Lage-Folgen und alle Entscheidungen). Beispiel: `- { wenn: "kosten>61.3 & offen>=1", text: "Die Prognose liegt über Basis plus Reserve …" }`.
 
-### 3.2 `station.md` – Kopfdaten
-| Schlüssel | Pflicht | Wert |
-|---|---|---|
-| `id` | ja | gleich dem Ordnernamen |
-| `art` | nein | `station` (Vorgabe) · `prolog` · `vergleich` · `wendepunkt` · `rueckspulen` · `wirklichkeit` · `ende` · `epilog` |
-| `welt` | nein | `A` · `B`; leer = neutral (Prolog, Wendepunkt, Vergleich) |
-| `monat` | nein | Zahl 0–12 |
-| `titel` | ja | z. B. `Kosten +8 %` |
-| `kurztitel` | nein | für die Story-Karte; Vorgabe `titel` |
-| `lph` | nein | 0–9 (LPH-Zeitband) |
-| `uhr` | nein | Tagesuhr, z. B. `Montag, 08:30 Uhr` |
-| `whitepaper-bezug` | nein | Liste von Absatz-IDs (Pflicht-Prüfung: existieren) |
-| `status-start` | nein | alle fünf Statuswerte (2.7) |
-| `weiter` | ja, außer `ende: ja` | Station-ID oder Liste von Kanten `{ziel, wenn, wenn-eine}`; die erste passende Kante gilt |
-| `ende` | nein | `ja` = Ende der Geschichte (keine Kante nötig) |
-| `schaltet-frei` | nein | Liste: `welt-b`, `explore` |
-| `partner` | nein | dieselbe Station in der anderen Welt (für den Schieberegler A ↔ B) |
-| `vergleich` | bei `art: vergleich` | `{a: A3, b: B3}` |
+**`sN-<name>.yaml`** (eine Datei je Station, `nr` lückenlos ab 1, zeitlich aufsteigend):
 
-Kanten mit Bedingung:
-```yaml
-weiter:
-  - ziel: ende-auflagen
-    wenn: [status B entscheidungsfaehigkeit < 3]
-  - ziel: ende-steuerbar
-```
+| Feld | Inhalt |
+|---|---|
+| `id`, `nr`, `titel`, `kurztitel`, `datum`, `monat`, `lph` (0–9) | Kopf (Pflicht) |
+| `kurzfassung` | `true` = gehört zur Kurzfassung (Station 1 immer) |
+| `belege` | interne Belege (`v24:hb-3.1`, Absatz-IDs; Pflicht, mindestens einer) – nie in der Ausgabe (O-38) |
+| `lage` | Markdown (Pflicht) |
+| `lage-folgen` | optional `{ kosten, puffer, offen }` (Zahlen), gilt ab dem Lesen der Lage |
+| `lage-folgen-bedingt` | optional, Liste `{ wenn, folgen: { kosten, puffer, offen } }` – wie `lage-folgen`, aber nur, wenn die Bedingung gilt (z. B. `{ wenn: "s2=C", folgen: { offen: -1 } }`: die vertagte Freigabe ist erteilt). `wenn` ist Pflicht und zeigt nur auf frühere Stationen; Statusbedingungen (`puffer<0` …) sind hier nicht erlaubt (der Status entsteht ja erst daraus) |
+| `bericht` | `titel`, `zeilen` (Text oder `{ text, wenn }`), `reaktion` |
+| `vorgaenge` | Liste `{ art, kennung, titel, text, verantwortlich, termin, stand, matrix: { w, a }, wenn }`; Art: `aufgabe`, `massnahme`, `fruehwarnung`, `risiko`, `problem`, `aenderung`; ein Risiko, dessen `stand` nicht mit „geschlossen“ beginnt, braucht die Matrix (`w`, `a` je 1–5) |
+| `vorlage` | `art` (`gewichte` oder `optionen`), `frage`, `grund`, `stelle`, `termin`, `verzug`, `muss`, optional `unvollstaendig`, `optionen`, `empfehlung { option, text }` |
+| `folge`, `so-laeuft-es-oft`, `einwand { frage, antwort }` | Markdown (Pflicht) |
+| `theorie` | Kennung (`thema`) des passenden Themas – „In der Story erlebt“ auf der Themenseite |
+| `regie` | `notiz` (Markdown), `leitfragen` (Liste) – nur für die Regie (geht nach `geschichteRegie`) |
 
-### 3.3 `station.md` – Container
+**Optionen:** `id` (ein Großbuchstabe), `titel`, `text`, `folgen` (`{ kosten, puffer, offen }`), `konsequenz`, optional `naechste`. Bei `optionen`: `punkte` je Kriterium `[1–5, "Begründung"]` (Begründung in Anführungszeichen, wenn sie ein Komma enthält). Bei `gewichte`: `gewichte` je Kriterium 1–5. `klaerung: true` = keine Entscheidung in der Sache (nur in einer unvollständigen Vorlage, geht nicht in den Vergleich). Weniger als zwei zulässige Optionen ⇒ `unvollstaendig` ist Pflicht, und eine unvollständige Vorlage braucht eine Klärungsoption. `empfehlung.option` muss eine Option der Vorlage sein.
+
+**Bedingungen** (`wenn` an Berichtszeilen, Vorgängen, `lage-folgen-bedingt` und Endzeilen): ein Teil oder mehrere, mit `&` verknüpft – alle müssen gelten. Je Teil `s3=A` oder `s3!=A` (eine frühere Wahl; zeigt nur auf frühere Stationen – in Endzeilen auf jede – und auf Optionen, die es dort gibt; ohne Wahl gilt keine der beiden Formen), `kurz` (Kurzfassung) oder `lang` (ganze Geschichte). Beispiel: `wenn: "s4=A & s5!=A"`, `wenn: "kurz & s4=B"`. Stationen außerhalb der Kurzfassung zählen dort mit der Option, die mit den geltenden Gewichten vorn liegt – auch in Bedingungen. Mit `kurz` lassen sich Berichtszeilen schreiben, die in der Kurzfassung erklären, was auf den übersprungenen Stationen geschehen ist.
+
+**Statusbedingungen** (nur an Berichtszeilen, Vorgängen und Endzeilen, R68): Ein Teil kann auch den Status prüfen – `kosten`, `puffer` oder `offen`, ein Vergleich `<`, `>`, `<=` oder `>=` und eine Zahl (Punkt als Dezimalzeichen, Minus erlaubt): `wenn: "puffer<0"`, `wenn: "kosten>61.3"`, `wenn: "offen>=1"`. Verknüpfbar mit Wahlen und Weg: `wenn: "s3=B & puffer<0"`. Ausgewertet wird der Status bei der **Lage dieser Station** – also mit ihren Lage-Folgen (auch den bedingten) und allen Entscheidungen davor, ohne die Entscheidung der Station selbst; das ist der Stand, über den ihr Bericht spricht. In Endzeilen gilt der Endstand. In `lage-folgen-bedingt` meldet der Übersetzer eine Statusbedingung als Fehler. Beispiel: Ist der Terminpuffer negativ, nennt der Monatsbericht die gefährdete Inbetriebnahme (`- { text: "Terminpuffer überschritten – …", wenn: "puffer<0" }`).
+
+**Status und Text gehören zusammen:** Jede Erhöhung von „offen“ (eine vertagte Entscheidung) wird an der Station abgebaut (`lage-folgen-bedingt`, `offen: -1`), deren Bericht die Erledigung meldet – oder sie bleibt bis zum Ende offen, und der letzte Bericht sagt das. Eine Berichtszeile, die eine offene Entscheidung nennt, sagt „bleibt offen“ oder „steht/stehen noch aus“ – und genau dann zählt der Status bei der Lage dieser Station offen ≥ 1. Grenzen des Status (z. B. Basis plus Reserve) prüfen Berichtszeilen mit Statusbedingungen statt mit Wahlen. `tests/geschichte.test.ts` rechnet alle Wege nach.
+
+**Ganze Geschichte:** Die erste Station legt die Gewichte fest (`art: gewichte`) und gehört zur Kurzfassung; jede Station liegt zeitlich (`monat`) nicht vor der vorigen.
+
+**Regie-Material ist nicht geheim:** `regie` steht im JSON getrennt (`geschichteRegie`, bei Themen `regie`), damit die Leinwand es nie zeichnet (docs/ARCHITEKTUR.md, „Regie und Leinwand“). Regie und Leinwand sind aber dieselbe Hauptseite; Notizen und Leitfragen stehen im Klartext in `dist/index.html`. In `regie` gehört nur, was ein Kunde lesen dürfte – nichts Vertrauliches, keine internen Einschätzungen von Kunden oder Personen.
+
+---
+
+## 4 Theorie und weitere Dateien
+
+### 4.1 `inhalte/start.md`
+Kopfdaten: `kicker` (Pflicht), `titel` (Pflicht: Leitsatz der Startseite), `titel-quelle` (Absatz-ID, intern; dann muss der Leitsatz wortgleich in diesem Absatz stehen, O-17). Text der Datei (Pflicht) = These unter dem Leitsatz, Inline-Markdown (`**…**` hebt hervor). Ausgabe: `startseite` (`kicker`, `titel`, `titelQuelle`, `these`); fehlt die Datei, ist `startseite` null. Fachliche Sätze der Startseite stehen hier, nicht im Code (O-18).
+
+### 4.2 `inhalte/theorie/kNN-<name>.md` (Thema, P16.3, O-38)
+Kopfdaten: `kapitel` (Pflicht, 1–16, passt zum Dateinamen; intern, bestimmt Abdeckung und Abbildungen), `titel` (Pflicht), `kurztitel`, `thema` (Kennung in der Adresse `#theorie/<thema>`, Vorgabe die Dateikennung), `reihe` (1–30, Reihenfolge der Themen; Vorgabe `kapitel`), `deckt` (Liste von Absatz-IDs oder Abschnitten, die dieses Thema zusätzlich zu `zitat` und `tafel` abdeckt). `thema` und `reihe` sind über alle Themen eindeutig. Text der Datei = Einleitung. Interne Belege stehen als YAML-Kommentare in den Kopfdaten.
+
 | Art | Ort | Kennung | Kopfdaten | Felder / Inhalt |
 |---|---|---|---|---|
-| `schritt` | oben | Pflicht (`einstieg`) | `art` (s. u.), `titel` (Pflicht), `kurz`, `gruppe`, `uhr`, `knopf` (Beschriftung des Weiter-Knopfs, z. B. „Jetzt entscheiden“), bei `rollenwahl`: `folgt` (Liste Rollen ohne Szenen) | `text`, bei `vergleich`: `weltA`, `weltB` (Bildbeschreibung je Seite) |
-| `ebenen` | oben | – | – | enthält `ebene 1` … `ebene 4` |
-| `ebene` | in `ebenen` | `1`–`4` | `titel` | `text`; Ebene 4 enthält ein `zitat` |
-| `standpunkt` | oben | Rolle (`controlling`) | `figur` (Pflicht) | `text` = was diese Figur im selben Moment denkt („Standpunkt wechseln“) |
-| `regie` | oben | – | – | `notiz`, `leitfragen` (Liste) – **nur Regie**, landet nie in den Leinwand-Daten |
+| `kernaussage` | oben | – | – | `text` (Pflicht) |
+| `abschnitt` | oben | Abschnitts-ID (`k4.2`, intern) | `titel` | `text`; enthält die Bausteine, die „abschnitt“ als Ort erlauben |
+| `ebenen` / `ebene` | oben, `abschnitt` / in `ebenen` | – / `1`–`4` | – / `titel` | `text`; vier aufklappbare Stufen (Ebene 1 offen); Ebene 4 braucht ein `zitat` |
+| `karten` / `karte` | oben, `abschnitt` / in `karten` | – / optional | `titel` / `titel` (Pflicht), `symbol` | `text` / `text`, `rueckseite` |
+| `etappen` / `etappe` | oben, `abschnitt` / in `etappen` | – / Pflicht (`1`, `2` …) | `titel` / `titel` (Pflicht) | `text` – Abfolge zum Durchklicken (P12.3) |
+| `umschalter` / `ansicht` | oben, `abschnitt` / in `umschalter` | – / `links` oder `rechts` | `titel`, `links`, `rechts` (Pflicht) / – | `text` – zwei Ansichten, z. B. „Ohne MVG“ / „Mit MVG“ |
+| `sortieren` / `posten` | oben, `abschnitt` / in `sortieren` | – / Pflicht | `titel`, `links`, `rechts` (Pflicht) / `seite` (`links`/`rechts`, Pflicht) | `text`, `erklaerung` – Zuordnungsübung ohne Punkte |
+| `regler` / `stufe` | oben, `abschnitt` / in `regler` | – / Pflicht | `titel` / `titel` (Pflicht), `marke` | `text` – Schieberegler über geordnete Stufen |
+| `wissenscheck` | oben, `abschnitt` | Pflicht | – | `frage`, `erklaerung` (Pflicht); enthält mindestens zwei `antwort` und ein `zitat` als Beleg (P11.6) |
+| `antwort` | in `wissenscheck` | Pflicht | `titel` (Pflicht), `praefix`, `symbol` | `text` |
+| `tafel` | oben, `abschnitt`, `ebene` | Tabellen-ID (`k4-t1`) | `form` (Pflicht), `hervor` (Liste von Zeilennummern) | `text` – Tabelle als Grafik, Zellen wortgleich aus `whitepaper.json` (L-32) |
+| `abbildung` | oben, `abschnitt` | `abb-N` (Pflicht) | – | leer – Abbildung der DOCX mit Bildunterschrift (4.7) |
+| `merksatz`, `hinweis` | oben, `abschnitt`, `ebene` | – | – | `text` (Pflicht) |
+| `zitat` | oben, `abschnitt`, `ebene`, `karte`, `wissenscheck` | Absatz-ID(s) | – | `text` (2.5) |
+| `glossar` | oben | – | – | leer – durchsuchbare Liste aller Glossarbegriffe mit „Kommt vor in“ (Themen mit Glossarbezug, vom Compiler gesammelt; L-47) |
+| `regie` | oben | – | – | `notiz`, `leitfragen` – **nur Regie**, höchstens einer je Thema (Schlüssel `theorie/k<kapitel>`) |
 
-Schrittarten (`art` im `schritt`): `text` (Vorgabe) · `lage` (Bekannt/Unbekannt) · `entscheidung` · `konsequenz` · `rueckbezug` · `vergleich` (Schieberegler) · `rollenwahl` · `interessenwahl` · `ebenen`. Schritte mit gleicher `gruppe` zeigt die Oberfläche als Teile eines Schritts (z. B. die sechs Teile von B3).
+Formen der `tafel`: `ketten` (mindestens vier Spalten) · `schwelle` (genau zwei Spalten) · `pyramide` · `felder` (mindestens fünf Spalten) · `bausteine` · `phasen` · `rhythmus` · `karten` · `zeitachse` (Regler über die Zeiträume der ersten Spalte). `hervor` nennt Zeilen, die hervorgehoben bzw. vorgewählt sind.
 
-Bausteine in einem `schritt`:
+Darstellung: Tafeln, Merksätze und Hinweise stehen auch auf Seitenebene zwischen den Abschnitten. Etappen, Umschalter, Sortieren und Regler zeichnet `src/ui/bausteine/lernwerkzeuge.ts`; auf der Leinwand und im Druck zeigen sie ihren ganzen Inhalt aufgelöst.
 
-| Art | Kennung | Kopfdaten | Felder / Inhalt |
-|---|---|---|---|
-| `mail` | – | `von` (Figur, Pflicht), `betreff` (Pflicht), `zeit`, `anhang` | `text` |
-| `chat` | – | `von` (Pflicht), `zeit` | `text` |
-| `anruf` | – | `von` (Pflicht), `zeit` | `text` |
-| `notiz` | – | `farbe`: `gelb` · `rosa` · `lila` · `limette`; `symbol` | `text` (Haftnotiz, Welt A) |
-| `datei` | – | `name` (Pflicht), `quelle`, `wert` | `text` (z. B. Excel-Stand) |
-| `bekannt` | – | – | `text` = Liste |
-| `unbekannt` | – | – | `text` = Liste mit Kennungen `{#id}` |
-| `zeitsprung` | Pflicht (`info`) | `knopf`, `kosten`, `dauer`, `status` (2.7), `loest` (Kennung → Hinweis), `bleibt` (Kennung → Hinweis) | `text`, `neuBekannt` |
-| `grafik` | Pflicht (Name im Grafik-Baukasten) | `titel`, `untertitel` | `text` = Beschreibung für Screenreader |
-| `kette` | – | – | enthält `glied` |
-| `glied` | optional (`FRW-003`) | `art`: `fruehwarnung` · `bestaetigung` · `risiko` · `aenderung` · `entscheidung` · `freigabe` · `massnahme` · `bericht`; `von` | `titel`, `text` |
-| `datenstand` | – | `name` (Pflicht), `abweichung`, `betrag`, `basis`, `versionen` (Liste `- Version 3: gilt` → `{name, stand}`) | `text`, `vergleich` |
-| `mandatsleiter` | – | `betrag`, `betrag-teur` (Zahl), `stufen` (Liste von `{wer, bereich, bis-teur, hinweis}`) | `text` (Frage zur Leiter) |
-| `mandatsoption` | Pflicht (`1`) | `titel` (Pflicht), `detail`, `zustaendig` (Pflicht), `stufe` (Zahl) | `text` = Begründung |
-| `vorlage` | Pflicht (`ENT-017`) | `titel`, `datenstand` | `frage`, `checkliste` (2.4) |
-| `fluss` | – | `position`: `fruehwarnung` · `bestaetigt` · `risiko` · `entscheidung` · `freigabe` · `massnahme` · `managementbericht` | `text` |
-| `paar` | – | `a` (Art des Welt-A-Stücks: `mail` · `chat` · `notiz` · `datei`), `von`, `b` (Art im Fluss), `kennung`, `fluss` (Position wie oben) | `weltA`, `weltB` |
-| `kennzahl` | – | `a` (Zahl), `b` (Zahl) | `text` = Bezeichnung |
-| `interesse` | Pflicht (`kosten`) | `titel` (Pflicht) | `text` |
-| `merksatz` | – | – | `text` |
-| `hinweis` | – | – | `text` |
-| `zitat`, `original` | Absatz-ID(s) | – | siehe 2.6 |
+Jeder Absatz aus V1.2 soll einem Thema zugeordnet sein (O-20): über `zitat`, `tafel`, `deckt` oder `abdeckung.yaml` (4.6).
 
-### 3.4 Rollenszene `<rolle>.md`
-Kopfdaten: `station` (Pflicht, = Ordner), `rolle` (Pflicht, = Dateiname), `frage` (Pflicht, sobald es Optionen gibt), `entscheidung` (Kennung, Vorgabe `<station>/<rolle>`), `rueckbezug-auf` (Station oder Entscheidung, auf deren Wahl sich die Rückbezüge beziehen).
+### 4.3 `inhalte/begriffs-kompass.md` (P10.5, E7)
+Kopfdaten: keine. Container `kompass <kennung>` (nur oben) mit Kopfdaten `begriff` (Pflicht, MVG-Begriff), `andere` (Pflicht, Liste gängiger anderer Wörter), `beleg` (Pflicht, intern: genau eine Absatz-ID, in der der Begriff als eigenes Wort steht, oder ein V2.4-Verweis `v24:hb-3.1`) und Feld `### Hinweis` (optional). Steht der Begriff im Glossar, verweist der Eintrag dorthin. Die Datei nennt alte Begriffe absichtlich (Ausnahme in `werkzeuge/begriffe.json`).
 
-| Art | Kennung | Kopfdaten | Felder |
-|---|---|---|---|
-| `option` | Pflicht, `A`–`F` | `titel` (Pflicht), `kurz` (Pflicht, für Rückbezug und Spur), `symbol`, `status` (Pflicht, 2.7) | `konsequenz`, `wasFehlt`, `neuesRisiko`, `governanceFrage` – alle Pflicht (Überschriften `### Konsequenz`, `### Was fehlt`, `### Neues Risiko`, `### Governance-Frage`) |
-| `nachsatz` | – | – | `text` (steht unter jeder Konsequenz) |
-| `frage` | Pflicht (`reife`) | `schritt` (in welchem Schritt sie erscheint) | `frage`, `rueckmeldung`; enthält `antwort` |
-| `antwort` | Pflicht (`ja`) | `titel` (Pflicht), `praefix`, `symbol` | `text` |
-| `rueckbezug` | Option (`A`) oder `ohne` | – | `text` – Welt B zitiert die frühere Wahl („Damals haben Sie …“); `ohne` gilt, wenn keine Wahl vorliegt |
-| `regie` | – | – | `notiz`, `leitfragen` – nur Regie |
+### 4.4 `inhalte/glossar.yaml` (P16.4, O-36)
+Passt die Glossareinträge aus `whitepaper.json` an V2.4 an: `aendern: { g-…: { begriff?, definition, belege } }`, `entfernen: [g-…]`, `neu: [{ id: g-…, begriff, definition, belege }]`. Jede Änderung und jeder neue Eintrag braucht `belege` (Absatz-ID oder `v24:…`, intern). Definitionen in eigenen Worten, keine Vertragstexte (O-37).
 
-Der Prüfer verlangt: jede Option hat alle vier Konsequenz-Felder und eine Statuswirkung; zu jeder Option der Entscheidung, auf die `rueckbezug-auf` zeigt, gibt es einen `rueckbezug`.
+### 4.5 `inhalte/werkzeuge.yaml` (P16.8, O-46)
+Texte der fünf Explore-Werkzeuge, reines YAML: `einleitung`; je Werkzeug `mcda`, `matrix`, `vorgaenge`, `takt`, `glossar` ein Teil mit `titel` (Pflicht), `kurz`, `text` und – außer `glossar` – `belege` (Pflicht, intern). Dazu:
+- `mcda.hinweis`;
+- `matrix.stufen` (`{ id, titel, von, bis, text }`, jeder Wert 1–25 in genau einer Stufe), `regel`, `sonder`, `wahrscheinlichkeit` und `qualitaet` (je fünf Stufen), `beispiele` (`{ kennung, titel, w, a }`, je 1–5);
+- `vorgaenge.arten` (genau die sechs Vorgangsarten, je `id`, `titel`, `text`, `beispiel`, `abschluss`, `wege` – Vorgangsarten oder `entscheidung`), `vorgaenge.entscheidung` (`titel`, `text`);
+- `takt.stufen` (`{ id, titel, wer, text, beispiel }`).
 
-### 3.5 Vergleichsstation (Welt A ↔ B)
-Eine Station mit `art: vergleich`, `vergleich: {a: A3, b: B3}` und einem Schritt `art: vergleich`. Ihre `paar`-Container beschreiben, welches Welt-A-Stück an welche Stelle des Governance-Flusses „fliegt“, die `kennzahl`-Container die Zähler unter dem Regler (Welt A → Welt B). Nach dem Wendepunkt tragen alle Stationen einer Welt ihren `partner`; der Schieberegler steht dann an jeder Station bereit.
-
-### 3.6 Ebenen 1–4 (progressive Information)
-`ebene 1` Kernaussage · `ebene 2` Warum relevant · `ebene 3` Vertiefung (Tabellen als GFM-Tabelle) · `ebene 4` Nachweis = `zitat` mit Absatz-ID (wortgleich). Stationen und Theorie-Seiten nutzen dieselbe Form.
-
----
-
-## 4 Weitere Dateien
-
-### 4.0 `inhalte/start.md`
-Kopfdaten: `kicker` (Pflicht), `titel` (Pflicht: Leitsatz der Startseite), `titel-quelle` (Absatz-ID; dann muss der Leitsatz wortgleich in diesem Absatz stehen, O-17). Text der Datei (Pflicht) = These unter dem Leitsatz, Inline-Markdown (`**…**` hebt hervor). Ausgabe: `startseite` (`kicker`, `titel`, `titelQuelle`, `these`); fehlt die Datei, ist `startseite` null. Fachliche Sätze der Startseite stehen hier, nicht im Code (O-18).
-
-### 4.1 `inhalte/fall.md`
-Kopfdaten: `stadt`, `bauherr`, `vertretung`, `vertretung-kurz`, `projekt`, `bauteile` (Liste), `bauweise`, `projektbasis` (Text, z. B. `58,4 Mio. € brutto`), `projektbasis-mio` (Zahl), `gremien` (Liste), `hinweis` (Pflicht: Kennzeichnung als fiktiv, O-3). Text der Datei = Beschreibung des Falls.
-
-| Art | Kennung | Kopfdaten | Felder |
-|---|---|---|---|
-| `figur` | Pflicht (`brenner`) | `name` (Pflicht), `rolle` (Rollen-ID oder leer), `funktion` (Pflicht), `farbe` (Pflicht, `"#RRGGBB"`), `spieler` (ja/nein) | `kurzbeschreibung`, `stimme` |
-
-### 4.2 `inhalte/rollen/<id>.md`
-Kopfdaten: `titel` (Pflicht), `kurztitel`, `farbe` (Pflicht), `textfarbe` (wenn die Farbe als Text zu hell ist), `figur` (Figur aus `fall.md`), `whitepaper-bezug`. Felder (oberste Ebene): `text` (Einleitung), `### Linse` (Pflicht: worauf die Rolle schaut), `### Delegierbar` (Arbeit, die diese Rolle trägt oder weitergeben kann), `### Nicht delegierbar` (was beim Bauherrn bzw. außerhalb ihres Mandats bleibt – die Grenze der Rolle), je als Liste. Die Begriffe folgen der Tabelle in Kap. 3.2; jede Aussage muss sich auf Kap. 3.2/3.3/4.2/6.4/9.3 zurückführen lassen (Absatz-IDs in `whitepaper-bezug`).
-
-Ob eine Rolle spielbar ist, steht im Prolog (`schritt` mit `art: rollenwahl`, Liste `folgt`).
-
-### 4.3 `inhalte/theorie/kNN-<name>.md` (Lernseite)
-Kopfdaten: `kapitel` (Pflicht, 1–13), `titel` (Pflicht, wie im Whitepaper), `kurztitel`, `grafik` (Name im Grafik-Baukasten), `story` (Liste von Stationen: „In der Story erlebt“), `deckt` (Liste von Absatz-IDs oder Abschnitten, die diese Seite abdeckt, zusätzlich zu `original`/`zitat`). Text der Datei = Einleitung.
-
-| Art | Ort | Kennung | Kopfdaten | Felder |
-|---|---|---|---|---|
-| `kernaussage` | oben | – | – | `text` |
-| `abschnitt` | oben | Abschnitts-ID (`k2.4`) | `titel` | `text`; enthält alle Bausteine unten |
-| `karten` | oben, `abschnitt` | – | `titel` | enthält `karte` |
-| `karte` | `karten` | optional | `titel` (Pflicht), `symbol` | `text`, `rueckseite` |
-| `grafik` | überall | Pflicht | `titel`, `untertitel` | `text` |
-| `original` | überall | Absatz-ID(s) | – | leer (2.6) |
-| `zitat` | überall | Absatz-ID(s) | – | `text` (2.6) |
-| `ebenen`/`ebene` | oben, `abschnitt` | wie 3.3 | | |
-| `querverweis` | überall | Station (`A3`) | `text` (Knopfbeschriftung) | `text` |
-| `merksatz`, `hinweis` | überall | – | – | `text` |
-
-Jeder Absatz des Whitepapers soll einer Seite zugeordnet sein (O-20): über `original`, `zitat`, `deckt` oder `abdeckung.yaml`.
-
-### 4.4 `inhalte/einwaende.md`
-Kopfdaten: keine Pflicht. Container `einwand <id>` mit Kopfdaten `stationen` (Liste), `kapitel` (Liste) und Feldern `### Einwand`, `### Antwort`; darin ein `zitat` oder `original` als Beleg (Pflicht – die Antwort kommt aus dem Whitepaper).
-
-### 4.5 `inhalte/abdeckung.yaml`
+### 4.6 `inhalte/abdeckung.yaml`
 ```yaml
-# Absatz-ID: wohin sie gehört
+# Absatz-ID: zu welchem Thema sie gehört
 k2.4-p2:
   theorie: k02
-  story: [A3, B3]
 k4.2-p3:
-  story: B3
+  theorie: [k04, k14]
 ```
-`theorie` und `story` sind eine Kennung oder eine Liste. Der Prüfer rechnet die Abdeckung aus dieser Datei **und** aus den Theorie-Seiten (`original`, `zitat`, `deckt`) zusammen. In P0 ist eine unvollständige Abdeckung nur eine Warnung, ab P1.1/P6.15 ein Fehler.
+Einziger Schlüssel ist `theorie` (eine Dateikennung `kNN` oder eine Liste). Er darf auch ein Kapitel nennen, für das es noch keine Datei gibt. Der Prüfer rechnet die Abdeckung aus dieser Datei **und** aus den Themen (`zitat`, `tafel`, `deckt`) zusammen. Eine Abdeckung unter 100 % ist ein **Fehler** (mit den ersten Absätzen ohne Thema), ebenso ein Absatz, der nicht (auch) auf dem Thema seines eigenen Kapitels steht.
+
+### 4.7 `inhalte/abbildungen/abb-N.yaml` (P14, O-32, L-77)
+Die 13 Inhaltsabbildungen der DOCX V1.2 (`abb-2` … `abb-14`, Ort und Prüfsumme in `whitepaper.json`) erscheinen auf dem Thema ihres Kapitels mit `::: abbildung abb-N` (P16.3: der Originaltext entfällt; jede Abbildung mit Bild muss auf genau einem Thema stehen).
+```yaml
+id: abb-6
+quelle: bilder/image6.png          # wie „datei“ in whitepaper.json
+titel: Sechs Verantwortungsfelder um den MVG-Kern
+alt: Sechs Karten um einen Kreis „MVG-Kern“ …   # höchstens 600 Zeichen; beschreibt das Bild nach der Angleichung
+angeglichen:                       # Beschriftungen mit verbotenem Begriff (docs/BEGRIFFE.md), im Bild überdeckt
+  - { x: 360, y: 259, b: 174, h: 34, text: Freigabelogik für LPH 0–2, beleg: k4-t1, schrift: barlow }
+abweichungen:                      # was danach noch vom Text abweicht – steht aufklappbar in der Bildunterschrift
+  - text: Im Kern steht „ausübbar“; der Text nennt sichtbar, prüfbar und gestaltbar.
+    beleg: k4-p1
+```
+Überdeckung: Rechteck in Pixeln des Originals, mit der Hintergrundfarbe gefüllt (Median des Rands oder `hintergrund`), Text in IBM Plex Sans (`schrift: plex`, Vorgabe) oder Barlow Condensed (`barlow`), `gewicht` 400–700, `groesse` (sonst passend gerechnet), `ausrichtung` links/mitte/rechts, `farbe`; `\n` im Text trennt Zeilen. Der neue Text ist ein Begriff des Texts, als ganzer Begriff wortgleich im Absatz `beleg`. Alte Beschriftungen mit verbotenem Begriff stehen nie in der Datei (sie wird von `npm run begriffe` geprüft).
+Bilder erzeugen: `node werkzeuge/abbildungen.mjs [abb-N …]` (Chromium; schreibt `abb-N.webp` und `stand.json`, deterministisch). Vermessen: `--raster abb-N x y b h [--nach]` (Ausschnitt mit Koordinatenraster), Sichtprüfung: `--vorschau abb-N` (nur `tmp/abbildungen/`). `inhalte` meldet ein Bild als **veraltet** (harter Fehler, auch im Bau), wenn Quelle oder Überdeckungen nicht mehr zu `stand.json` passen; Titel, Alternativtext und Abweichungen ändern kein Bild. Die Bilder gehen als data:-URL nach `src/generiert/abbildungen.json` (nur `src/main.ts` lädt sie).
+
+### 4.8 `inhalte/rechtliches/*.md`
+`impressum.md` und `datenschutz.md`: normales Markdown ohne Container. `inhalte.mjs` übergeht sie; `werkzeuge/bau.mjs` setzt sie mit `werkzeuge/rechtliches.html` zu `dist/impressum.html` und `dist/datenschutz.html` zusammen (O-42, O-43).
+
+### 4.9 `inhalte/fall.md` (Nachschlagewerk)
+Die Fall-Bibel (Stadt, GML, Projekt, Zahlen, Zeitachse, Gremien, Figuren) bleibt als internes Nachschlagewerk der Autoren, damit Story, Themen und Explore denselben fiktiven Fall erzählen (O-3, L-5, O-45). Seit P16.14 wird sie **nicht** kompiliert und erscheint nicht auf der Seite; ihr Format wird nicht geprüft. Fachliche Sätze, die auf der Seite stehen sollen, gehören in die Story oder in ein Thema.
 
 ---
 
@@ -273,214 +214,45 @@ k4.2-p3:
 
 | Prüfung | Fehler, wenn … |
 |---|---|
-| Form | Container nicht geschlossen, unbekannte Art/Feld/Kopfdaten, Art am falschen Ort, Kennung fehlt |
-| Schema | Pflichtfeld fehlt, Wert nicht erlaubt (Stufe, Zahl außerhalb des Bereichs, Farbe) |
-| Verweise | Figur, Rolle, Station, Schritt, Folgeknoten, Partner, Frage-Schritt existiert nicht |
-| Graph | Station vom Prolog nicht erreichbar · Sackgasse (keine Kante, kein Ende) · Welt B ohne Freischaltung erreichbar · spielbare Rolle ohne Szene an einer Station mit Entscheidung · Rückbezug fehlt für eine Option |
-| Zitate | Absatz-ID unbekannt oder Text nicht wortgleich |
-| Glossar | `[[Begriff]]` nicht im Glossar |
-| Abdeckung | Anteil zugeordneter Absätze (P0: Warnung) |
+| Form | Container nicht geschlossen, unbekannte Art/Feld/Kopfdaten, Art am falschen Ort, Kennung fehlt oder unzulässig, YAML unlesbar |
+| Schema | Pflichtfeld fehlt, Wert nicht erlaubt (Zahl außerhalb des Bereichs, Form der Tafel, Wahlwert) |
+| Themen | `kapitel` fehlt oder passt nicht zum Dateinamen · `thema` oder `reihe` doppelt · zweiter Regie-Block · Wissenscheck ohne zwei Antworten oder ohne Beleg · Ebene 4 ohne Zitat |
+| Story (3) | Pflichtfeld oder interne Belege fehlen · `nr` nicht lückenlos · Kennung doppelt · LPH außerhalb 0–9 · Punkte/Gewichte nicht 1–5 · Vorlage mit weniger als zwei zulässigen Optionen ohne `unvollstaendig` · Empfehlung keine Option · Vorgangsart unbekannt · offenes Risiko ohne Matrix · Bedingung unlesbar (je Teil `s3=A`, `s3!=A`, `kurz`, `lang`), Option fehlt oder nicht auf eine frühere Station · `lage-folgen-bedingt` ohne `wenn` oder mit Statusbedingung · erste Station legt die Gewichte nicht fest oder gehört nicht zur Kurzfassung · Stationen zeitlich rückwärts |
+| Explore (4.5) | Titel oder interne Belege fehlen · Matrix-Stufen decken 1–25 nicht genau einmal · nicht je fünf Stufen · Vorgangsart oder Weg unbekannt |
+| Zitate | Absatz-ID unbekannt oder Text nicht wortgleich (2.5) |
+| Glossar | `[[Begriff]]` nicht im Glossar · `glossar.yaml` ändert/entfernt Unbekanntes oder ohne Beleg |
+| Kompass | Begriff steht nicht im Beleg-Absatz · mehr als eine Absatz-ID · `andere` leer · Eintrag doppelt |
+| Abdeckung | Abdeckung < 100 % · Absatz nicht auf dem Thema seines Kapitels · Thema unbekannt |
+| Abbildungen (4.7) | Beschreibung verletzt das Schema (Felder, Rechteck, Beleg keine Absatz-ID, `alt` > 600 Zeichen) · Bild veraltet gegenüber `stand.json` oder WebP passt nicht (auch ohne `--pruefe`, harter Fehler) · `::: abbildung` ohne Beschreibung, im fremden Kapitel oder auf zwei Themen · Abbildung mit Bild steht auf keinem Thema · Überdeckungstext nicht als ganzer Begriff wortgleich im Absatz `beleg` |
+| Begriffe | verbotener Begriff (docs/BEGRIFFE.md) irgendwo in der fertigen JSON – auch in Glossar und Kapiteltiteln (der Kompass ausgenommen) |
 
-Fehlt `whitepaper.json` noch, sind Zitat-, Glossar- und Abdeckungsprüfung **Warnungen** (sonst Fehler). Ohne `--pruefe` meldet das Werkzeug nur Formfehler, die das Kompilieren verhindern.
+Fehlt `whitepaper.json` noch, sind Zitat-, Glossar- und Abdeckungsprüfung **Warnungen** (sonst Fehler). Ohne `--pruefe` meldet das Werkzeug nur Fehler, die das Kompilieren verhindern.
 
----
-
-## 6 Vollständiges Beispiel
-
-(Ein lauffähiges Gesamtbeispiel mit Prolog, Vergleichsstation, Welt B, Theorie-Seite und Einwand steht als `BEISPIEL` in `tests/inhalte.test.ts`; die echten Dateien des Durchstichs liegen unter `inhalte/story/`.)
-
-`inhalte/story/X1/station.md`
-```markdown
----
-id: X1
-welt: A
-monat: 5
-titel: Kosten +8 %
-uhr: Montag, 08:30 Uhr
-lph: 5
-whitepaper-bezug: [k2.4-p2]
-status-start:
-  entscheidungsfaehigkeit: 2
-  kostenunsicherheit: hoch
-  offene-risiken: 7
-  ungeklaerte-entscheidungen: 3
-  terminrisiko: mittel
-weiter: X2
-partner: Y1
----
-
-::: schritt einstieg
----
-titel: Montag, 08:30 Uhr. Monat 5 nach Ihrer Übernahme.
-kurz: Einstieg
----
-::: mail
----
-von: brenner
-betreff: Kostenprognose Mai – bitte kurzfristig ansehen
-zeit: "08:12"
-anhang: Prognose_Mai_v3_final_NEU.xlsx
----
-„Die aktualisierte Kostenprognose liegt 8 % über der Projektbasis …“
-:::
-
-::: notiz
----
-farbe: gelb
----
-v3 oder v4??
-:::
-:::
-
-::: schritt lage
----
-art: lage
-titel: Was Sie wissen, und was nicht
----
-::: bekannt
-- Zwei [[Datenstand|Datenstände]]: +8 % und +5,9 %.
-:::
-
-::: unbekannt
-- Ursache {#ursache}
-- Terminwirkung {#terminwirkung}
-:::
-
-::: zeitsprung info
----
-knopf: Weitere Informationen anfordern
-kosten: "Kostet Zeit: zwei Wochen"
-dauer: Zwei Wochen später
-status:
-  terminrisiko: hoch
-loest:
-  ursache: jetzt bekannt
-bleibt:
-  terminwirkung: bleibt unbekannt
----
-Terminrisiko steigt auf hoch.
-
-### Neu bekannt
-Ursache überwiegend Preissteigerung Holzbauelemente.
-:::
-:::
-
-::: schritt entscheidung
----
-art: entscheidung
-titel: Was tun Sie?
----
-:::
-
-::: schritt konsequenz
----
-art: konsequenz
-titel: Was Ihre Wahl auslöst
----
-:::
-
-::: ebenen
-::: ebene 1
----
-titel: Kernaussage
----
-Berichte erzeugen Information. Führung entsteht erst, wenn Information mit Mandat, Entscheidung und Datenstand verbunden wird.
-:::
-::: ebene 4
----
-titel: Nachweis
----
-::: zitat k2.4-p2
-Berichterstattung erzeugt Information.
-:::
-:::
-:::
-```
-
-`inhalte/story/X1/pl.md`
-```markdown
----
-station: X1
-rolle: pl
-frage: Was tun Sie?
----
-
-::: option A
----
-titel: Weiterarbeiten und Ursachenanalyse parallel
-kurz: Weiterarbeiten
-status:
-  ungeklaerte-entscheidungen: "+1"
-  kostenunsicherheit: sehr hoch
----
-### Konsequenz
-Die Arbeit läuft weiter …
-
-### Was fehlt
-Wer entscheidet über Änderungen am Projektumfang – und ab welcher Summe?
-
-### Neues Risiko
-Schleichende Änderung des Projektumfangs.
-
-### Governance-Frage
-[[Mandat]]: Welche Schwelle löst eine Entscheidung des Bauherrn aus?
-:::
-
-::: nachsatz
-Die Geschichte merkt sich Ihre Wahl.
-:::
-
-::: regie
-### Notiz
-Die Wahl nicht bewerten.
-
-### Leitfragen
-- Wer entscheidet bei Ihnen, welche Prognose gilt?
-:::
-```
-
-Daraus entsteht (gekürzt) in `src/generiert/inhalte.json`:
-```json
-{
-  "stationen": {
-    "X1": {
-      "id": "X1", "art": "station", "welt": "A", "monat": 5, "lph": 5,
-      "weiter": [{ "ziel": "X2", "wenn": null }],
-      "statusStart": [{ "schluessel": "entscheidungsfaehigkeit", "art": "setze", "wert": 2, "hinweis": null }, "…"],
-      "schritte": [{ "id": "einstieg", "art": "text", "titel": "Montag, 08:30 Uhr. …", "bloecke": [{ "art": "mail", "kopf": { "von": "brenner", "…": "…" }, "felder": { "text": "<p>„Die aktualisierte …“</p>" } }] }, "…"],
-      "infos": [{ "id": "info", "wirkung": [{ "schluessel": "terminrisiko", "art": "setze", "wert": "hoch", "hinweis": null }] }],
-      "szenen": { "pl": { "entscheidung": { "id": "X1/pl", "optionen": [{ "id": "A", "kurz": "Weiterarbeiten", "felder": { "konsequenz": "<p>…</p>" }, "wirkung": ["…"] }] } } }
-    }
-  },
-  "regie": { "X1/pl": { "notiz": "<p>Die Wahl nicht bewerten.</p>", "leitfragen": ["Wer entscheidet bei Ihnen, welche Prognose gilt?"] } }
-}
-```
-
-Regie-Material (`regie`) steht im JSON **getrennt** von den Stationen: die Leinwand-Zeichnung greift nur auf `stationen` zu und kann Notizen und Leitfragen gar nicht erreichen (docs/ARCHITEKTUR.md, „Regie und Leinwand“).
-
-**Nicht geheim:** Die Trennung schützt vor dem *Anzeigen* auf der Leinwand, nicht vor dem *Lesen*. Regie und Leinwand sind dieselbe Einzeldatei (`#regie`, `#leinwand`); Notizen und Leitfragen stehen deshalb im Klartext in `dist/mvg.html` und in jeder weitergegebenen Kopie. In `regie`-Blöcke gehört nur, was ein Kunde lesen dürfte – nichts Vertrauliches, keine internen Einschätzungen von Kunden oder Personen. Eine spätere Einbettungsvariante (Website) soll das Regie-Material weglassen.
+Ein lauffähiges kleines Beispiel (Thema, Abdeckung, Startseite) steht als `BEISPIEL` in `tests/inhalte.test.ts`; die Story prüft `tests/geschichte.test.ts`. Für eine neue Station ist die nächstliegende vorhandene Station unter `inhalte/geschichte/` die beste Vorlage.
 
 ---
 
-## 7 Ausgabe `src/generiert/inhalte.json` (Kurzreferenz, Typen: `src/inhalte/typen.ts`)
+## 6 Ausgabe `src/generiert/inhalte.json` (Kurzreferenz, Typen: `src/inhalte/typen.ts`, `src/geschichte/typen.ts`)
 
 | Schlüssel | Inhalt |
 |---|---|
-| `start`, `stationsFolge` | Startstation (`prolog`) und Reihenfolge für die Story-Karte (Breitensuche entlang `weiter`) |
-| `stationen.<id>` | Kopfdaten (camelCase), `schritte[]` (`id`, `art`, `titel`, `kurz`, `gruppe`, `uhr`, `kopf`, `felder`, `bloecke`), `infos[]` (Zeitsprünge mit `wirkung`), `ebenen[]`, `standpunkte[]`, `szenen.<rolle>` |
-| `stationen.<id>.szenen.<rolle>` | `entscheidung` (`id`, `frage`, `optionen[]` mit `titel`, `kurz`, `symbol`, `felder`, `wirkung`; `nachsatz`), `fragen[]`, `rueckbezug` (`auf` = aufgelöste Entscheidungs-ID, `texte`, `ohne`) |
-| Block (`bloecke[]`, `kinder[]`) | `art`, `kennungen`, `id`, `kopf` (umgewandelte Kopfdaten), `felder` (HTML), `liste` (bei `bekannt`/`unbekannt`/`vorlage`: `{id, stand, html}`), `kinder`. `zitat`: `kopf.quelle`, `kopf.vollstaendig`; `original`: `kopf.absaetze`, `kopf.quelle` |
-| `rollen.<id>` | `titel`, `kurztitel`, `farbe`, `textfarbe`, `figur`, `whitepaper`, `felder`, `spielbar` (aus `folgt` im Prolog); `rollenFolge` = Anzeige-Reihenfolge |
-| `interessen[]` | aus dem Prolog (`id`, `titel`, `html`) |
-| `fall` | Kopfdaten, `einleitung`, `figuren.<id>` |
+| `version` | Formatversion (1) |
+| `whitepaper` | `fassung`, `titel`, `kapitel` (Gliederung, intern), `abbildungen[]` (je Abbildung `id`, `nr`, `kapitel`, `ort`, `bild` mit `titel`, `alt`, `breite`, `hoehe`, `angeglichen[]`, `abweichungen[]` – oder `null`) |
 | `startseite` | `kicker`, `titel`, `titelQuelle`, `these` (Inline-HTML) aus `inhalte/start.md`, sonst null |
-| `glossar.<id>` | alle Glossareinträge des Whitepapers (`begriff`, `definition`) |
-| `theorie.<kNN>`, `einwaende[]`, `abdeckung` | Lernseiten, Einwand-Karten, Abdeckung (`gesamt`, `zugeordnet`, `anteil`, `ziele`) |
-| `regie` | **nur Regie**: `<station>` bzw. `<station>/<rolle>` → `notiz` (HTML), `leitfragen` (Inline-HTML). `src/inhalte/index.ts` gibt es nur über `regieInhalte()`/`regieFuer()` heraus; `inhalte` enthält es nicht. |
+| `glossar.<id>` | Glossar der Seite (`begriff`, `definition`, `vorkommen.kapitel[]`) |
+| `theorie.<kNN>` | Themen: `id`, `kapitel`, `thema`, `reihe`, `titel`, `kurztitel`, `deckt`, `einleitung` (HTML), `bloecke[]`, `quelle` |
+| Block (`bloecke[]`, `kinder[]`) | `art`, `kennungen`, `id`, `kopf` (umgewandelte Kopfdaten; `zitat`: `quelle`, `vollstaendig`; `tafel`: `quelle`, `tabelle`, `hervor`), `felder` (HTML), `kinder`; `ebenen`-Blöcke tragen `ebenen[]` (`nr`, `titel`, `felder`, `bloecke`) |
+| `kompass[]` | `id`, `begriff`, `andere`, `beleg`, `glossar`, `hinweis` |
+| `abdeckung` | `gesamt`, `zugeordnet`, `anteil`, `ziele` (Absatz-ID → `{ theorie[] }`) |
+| `geschichte` | `titel`, `status`, `kriterien`, `prolog` (`titel`, `html`, `taktHtml`), `ende` (`titel`, `html`, `pufferGut`, `pufferKnapp`, `pufferSchlecht`, `zeilen[]` mit `html`, `wenn`), `stationen[]` (Kopf, `lageHtml`, `lageFolgen`, `lageFolgenBedingt`, `bericht`, `vorgaenge`, `vorlage` mit `optionen[]` und `empfehlung`, `folgeHtml`, `soLaeuftHtml`, `einwand`, `theorie`); ohne `belege` |
+| `werkzeuge` | Explore-Texte (`einleitungHtml`, `mcda`, `matrix`, `vorgaenge`, `takt`, `glossar`); ohne `belege` |
+| `regie` | **nur Regie**: `theorie/k<kapitel>` → `notiz` (HTML), `leitfragen` (Inline-HTML) |
+| `geschichteRegie` | **nur Regie**: Station (`s3`) → `notizHtml`, `leitfragen` |
+| `src/generiert/abbildungen.json` (eigene Datei) | `abb-N` → Bild als `data:image/webp;base64,…`; nur `src/main.ts` lädt sie (P14, L-77) |
 
-Statuswirkungen stehen überall als Liste `{schluessel, art: 'setze' | 'aendere', wert, hinweis}`; Bedingungen als Datenform (`src/engine/typen.ts`, Typ `Bedingung`).
+`src/inhalte/index.ts` gibt `regie` und `geschichteRegie` nur über `regieKapitel()`, `regieInhalte()` und `regieGeschichte()` heraus; das öffentliche `inhalte` enthält sie nicht.
 
 ---
 
-## 8 Mehrsprachigkeit (vorbereitet)
-Alle sichtbaren Texte stehen in `inhalte/`; Kennungen, Schlüssel und Art-Namen sind sprachneutral. Eine spätere Übersetzung legt `inhalte/<sprache>/…` mit denselben Kennungen an; das Werkzeug erhält dafür einen Parameter. In P0 gibt es nur Deutsch.
+## 7 Mehrsprachigkeit (vorbereitet)
+Alle sichtbaren Texte stehen in `inhalte/`; Kennungen, Schlüssel und Art-Namen sind sprachneutral. Eine spätere Übersetzung legt `inhalte/<sprache>/…` mit denselben Kennungen an; das Werkzeug erhält dafür einen Parameter. Derzeit gibt es nur Deutsch.

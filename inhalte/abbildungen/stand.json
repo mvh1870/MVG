@@ -1,0 +1,83 @@
+{
+  "werkzeug": 1,
+  "abbildungen": {
+    "abb-2": {
+      "eingabe": "ca079c3778346c00fc0e7f8436b27522324887915af88e7f1f33168f25a23ea6",
+      "webp": "b182a7fd14ee0aa91a6f640d5b051b60fc38648323faa2e7c77100a4643610e5",
+      "breite": 1200,
+      "hoehe": 805
+    },
+    "abb-3": {
+      "eingabe": "b327122295be6deed35023b725db46575f98ad191c53d7e09912787fb0f86a21",
+      "webp": "42433296be5a72a31166afda63b544233aae790eef4015f593958feac8311c82",
+      "breite": 1200,
+      "hoehe": 900
+    },
+    "abb-4": {
+      "eingabe": "887293216eb99b0e6c94f2a12e2b30a1fe919b6e8c0538e3136cd9379264877c",
+      "webp": "40da3bd49f79dde9df19c14d8bec2f4567c50ce23b6102761cfabed5bac73bb7",
+      "breite": 1116,
+      "hoehe": 810
+    },
+    "abb-5": {
+      "eingabe": "861847faafe8f6a7ee71b37e4d5ee595b63f993b65c75c90f6530205c14e0bb0",
+      "webp": "f81236b36c2bcb2092e22a29ddfd917bdb4b6f50e9c65b3949ea29fa4bcc5e01",
+      "breite": 1200,
+      "hoehe": 896
+    },
+    "abb-6": {
+      "eingabe": "8fefe79e69bf000d18f6d531b11306c3284d6a87d6a36d888dc30498bf706705",
+      "webp": "df8267ac386851d7d99fe34f35e00898ed9d6855a15dd3389d764570a5080328",
+      "breite": 1200,
+      "hoehe": 886
+    },
+    "abb-7": {
+      "eingabe": "e8dc6470f084ce6ebe56113a68c1ae338d52cb58211f50e05c3cb611eb39351c",
+      "webp": "71e8922edc24d2d8abb51f5d24dbad5ff344d83f1fb84983aed8a943dfc505c9",
+      "breite": 1152,
+      "hoehe": 928
+    },
+    "abb-8": {
+      "eingabe": "28375cb9104e01a963cd34cc464eaee643da59e9e7ca2066161d657fdd18c7d2",
+      "webp": "d4cc8efdd03c1bacab0abf53b87f196dc4db41c0c9624be60cc7569fa29e3ea4",
+      "breite": 1152,
+      "hoehe": 928
+    },
+    "abb-9": {
+      "eingabe": "56a80fddfe5bfcace1c96278d54924e91b63a8ea699eddf7b71c9d53db4397f1",
+      "webp": "79e34d9fc2f34b6f571351247f145448914911f2e4d2dc82c3865035dbf76637",
+      "breite": 1200,
+      "hoehe": 670
+    },
+    "abb-10": {
+      "eingabe": "665f1db51a9c951baafe053b2399f3e10ec255cc113569f17e82e43d0d60ae21",
+      "webp": "812071a3fd6f557bb24ec760237631117d8b3b8d683ae730a857e98608c23561",
+      "breite": 1200,
+      "hoehe": 670
+    },
+    "abb-11": {
+      "eingabe": "bc935a7e8c002b801286e343c878ef36fd4bff75b3be4d6bc6029c6d554c6883",
+      "webp": "600cbd626fb12c690efab0bbfc495ac728d7a98154d61ac4c7a5886c2baa21f0",
+      "breite": 1200,
+      "hoehe": 670
+    },
+    "abb-12": {
+      "eingabe": "d74bbba4e1702be302b30ab50414bb49ad9e5670248fe32743795bb188ca9d88",
+      "webp": "31acf5ae757e9539ad5e4127b3f1167d7e3936d47e4d9f58249697d939fceb50",
+      "breite": 1200,
+      "hoehe": 670
+    },
+    "abb-13": {
+      "eingabe": "81a72de529877d201e1067ed974a99cc8eb0c398bb5182758c84f2d9b4835ed7",
+      "webp": "9bc1a4536d8fc92ec4152404b44d804ca50ae6e915c4fdd6486e07b23f1c1be6",
+      "breite": 1200,
+      "hoehe": 805
+    },
+    "abb-14": {
+      "eingabe": "2027e8498c2cd598d559834789d3640566494d4bcc36976a48d22b23d8ac318c",
+      "webp": "b6674ba38b92a30aef174011f856b9d5a5793d528ca90143ea7f43c00b3da51b",
+      "breite": 1200,
+      "hoehe": 896
+    }
+  }
+}

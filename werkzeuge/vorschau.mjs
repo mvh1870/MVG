@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Kleiner Vorschau-Server für dist/ (nur 127.0.0.1): `node werkzeuge/vorschau.mjs [--port 8301]`.
- * `/` liefert dist/mvg.html. Kein Zwischenspeicher, damit ein neuer Bau sofort sichtbar ist.
+ * `/` liefert dist/index.html. Kein Zwischenspeicher, damit ein neuer Bau sofort sichtbar ist.
  * Die Einzeldatei läuft auch direkt über file:// – der Server ist nur Bequemlichkeit (z. B. für
  * .claude/launch.json und zwei Fenster Regie/Leinwand im selben Ursprung).
  */
@@ -47,7 +47,7 @@ export function aufloesen(urlPfad) {
   } catch {
     return null;
   }
-  if (pfad === '/' || pfad === '') pfad = '/mvg.html';
+  if (pfad === '/' || pfad === '') pfad = '/index.html';
   const voll = path.resolve(DIST, `.${pfad}`);
   if (voll !== DIST && !voll.startsWith(DIST + path.sep)) return null;
   return voll;
@@ -68,7 +68,7 @@ function starte() {
       if (anfrage.method === 'HEAD') antwort.end();
       else createReadStream(datei).pipe(antwort);
     } catch {
-      const hinweis = datei?.endsWith('mvg.html') ? 'dist/mvg.html fehlt – bitte zuerst npm run bau' : 'nicht gefunden';
+      const hinweis = datei?.endsWith('index.html') ? 'dist/index.html fehlt – bitte zuerst npm run bau' : 'nicht gefunden';
       antwort.writeHead(404, { ...kopf, 'Content-Type': 'text/plain; charset=utf-8' }).end(`${hinweis}\n`);
     }
   });
@@ -77,7 +77,7 @@ function starte() {
     process.exitCode = 1;
   });
   server.listen(port, '127.0.0.1', () => {
-    console.log(`vorschau: http://127.0.0.1:${port}/ (dist/mvg.html) – beenden mit Strg+C`);
+    console.log(`vorschau: http://127.0.0.1:${port}/ (dist/index.html) – beenden mit Strg+C`);
   });
 }
 

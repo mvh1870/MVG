@@ -36,6 +36,8 @@ export const SYMBOLE = {
   bericht: '<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 16v-3M12 16V9M16 16v-5"/>',
   stempel: '<path d="M9.5 3.5h5l-.8 6.5h-3.4z"/><path d="M5 13.5h14v3.5H5z"/><path d="M7 20.5h10"/>',
   griff: '<path d="M9 7v10M12 7v10M15 7v10"/>',
+  fenster: '<rect x="3" y="4.5" width="18" height="15" rx="2"/><path d="M3 9h18"/>',
+  beamer: '<rect x="2.5" y="8" width="19" height="9" rx="2"/><circle cx="15.5" cy="12.5" r="2.5"/><path d="M6 12.5h4"/><path d="M6 17v2.5M18 17v2.5"/>',
   diagramm: '<path d="M4 4v16h16"/><path d="M7.5 15l4-4.5 3 3 5.5-6.5"/>',
   buch: '<path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H20v15H5.5A1.5 1.5 0 0 0 4 19.5z"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H20"/>',
   person: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
@@ -66,10 +68,4 @@ const STATUS_FORMEN: Readonly<Record<StatusStufe, string>> = {
 /** Status-Symbol (16 × 16). Nie allein verwenden: immer mit Wort oder nur-sr-Text. */
 export function statusSymbol(stufe: StatusStufe): string {
   return `<svg class="status-symbol" data-status="${stufe}" viewBox="0 0 16 16" aria-hidden="true" focusable="false">${STATUS_FORMEN[stufe]}</svg>`;
-}
-
-/** Trendpfeil für Instrumente (gefüllt, Farbe über .trend[data-trend]). */
-export function trendPfeil(richtung: 'hoch' | 'runter'): string {
-  const d = richtung === 'hoch' ? 'M8 2l6 9H2z' : 'M8 14L2 5h12z';
-  return `<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="${d}"/></svg>`;
 }

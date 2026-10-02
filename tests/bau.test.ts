@@ -3,7 +3,7 @@
 import { after, before, describe, test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdtemp, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import vm from 'node:vm';
 import {
@@ -113,13 +113,13 @@ describe('bau: Einzeldatei aus der Fixtur', () => {
     assert.notEqual(cspZeile(skript + ' '), csp);
   });
 
-  test('dist/mvg.html trägt die CSP wörtlich, mit dem Hash ihres einen Skripts', async (t) => {
-    const datei = path.join(WURZEL, 'dist', 'mvg.html');
+  test('dist/index.html trägt die CSP wörtlich, mit dem Hash ihres einen Skripts', async (t) => {
+    const datei = path.join(WURZEL, 'dist', 'index.html');
     let html: string;
     try {
       html = await readFile(datei, 'utf8');
     } catch {
-      t.skip('dist/mvg.html fehlt (noch nicht gebaut)');
+      t.skip('dist/index.html fehlt (noch nicht gebaut)');
       return;
     }
     const metas = [...html.matchAll(/<meta http-equiv="Content-Security-Policy" content="([^"]+)">/g)];
@@ -166,6 +166,12 @@ describe('bau: Einzeldatei aus der Fixtur', () => {
       baue(optionen(path.join(ablage, 'doppelt.html'), { huelle: 'huelle-doppelt.html' })),
       /<!--mvg:stil--> steht 2-mal/,
     );
+  });
+
+  test('der alte Name „MVG interaktiv“ im Text ist ein Fehler (O-33, R49)', async () => {
+    const alt = path.join(ablage, 'huelle-alter-name.html');
+    await writeFile(alt, (await readFile(HUELLE, 'utf8')).replace('<title>Governance Kompass', '<title>MVG interaktiv'));
+    await assert.rejects(baue(optionen(path.join(ablage, 'alter-name.html'), { huelle: alt })), /alter Name „MVG interaktiv“/);
   });
 
   test('fehlender Anker in der Hülle ist ein Fehler', async () => {
@@ -251,10 +257,59 @@ describe('bau: Bausteine', () => {
     assert.ok(huelle.includes('<html lang="de">'));
     assert.ok(huelle.includes('<meta charset="utf-8">'));
     assert.ok(huelle.includes('viewport-fit=cover'));
-    assert.ok(huelle.includes('<title>Minimum Viable Governance – interaktives Whitepaper</title>'));
+    assert.ok(huelle.includes('<title>Governance Kompass – Minimum Viable Governance</title>'));
     assert.ok(/<meta name="description" content="[^"]+">/.test(huelle));
     assert.ok(/<noscript>[\s\S]+<\/noscript>/.test(huelle));
+    // R49 (Architektur): Beschreibung und noscript tragen den Namen (O-33), nicht den Absender (O-34)
+    assert.match(/<meta name="description" content="([^"]+)">/.exec(huelle)?.[1] ?? '', /^Governance Kompass/u);
+    assert.match(/<noscript>([\s\S]+)<\/noscript>/.exec(huelle)?.[1] ?? '', /Governance Kompass/u);
+    assert.doesNotMatch(huelle, /Bauherr Mentoren|MVG interaktiv/u);
     // Die CSP steht direkt hinter charset, damit sie vor allem anderen gilt.
     assert.ok(huelle.indexOf(ANKER.csp) < huelle.indexOf('<title>'));
   });
+});
+
+test('Webseitenordner (P16.13, O-42, O-43, O-47): Hauptseite, Impressum, Datenschutz, robots, sitemap, Vorschaubild', async () => {
+  const dist = path.join(WURZEL, 'dist');
+  const { BEIGABEN, ADRESSE } = await import('../werkzeuge/bau.mjs');
+  const { sichtbarVerboten } = await import('../werkzeuge/sichtbar.mjs');
+  const dateien = (await readdir(dist)).sort();
+  assert.deepEqual(dateien, ['index.html', ...BEIGABEN].sort(), 'genau die Dateien des Ordners – keine Kundenfassung, keine Reste');
+  const index = await readFile(path.join(dist, 'index.html'), 'utf8');
+  for (const m of ['<link rel="canonical" href="https://www.governancekompass.de/">', 'property="og:image" content="https://www.governancekompass.de/vorschau.png"', 'name="description"', '<link rel="icon" href="data:image/svg+xml,']) {
+    assert.ok(index.includes(m), m);
+  }
+  // Auch im Quelltext der Seite (eingebettete Daten) kein Bezug zur Quelle und keine Reste der alten Story (O-38, O-41)
+  for (const verboten of [/Whitepaper/iu, /MVG V1/u, /Kap\. \d/u, /\bKapitel\b/u, /Welt [AB]\b/u, /ungeprüft/u, /Originaltext/u]) {
+    assert.doesNotMatch(index, verboten, `dist/index.html enthält ${String(verboten)}`);
+  }
+  for (const name of ['impressum.html', 'datenschutz.html']) {
+    const html = await readFile(path.join(dist, name), 'utf8');
+    assert.match(html, /Bauherr Mentoren GmbH i\. G\./u, name);
+    assert.match(html, /Martin Mohr/u, name);
+    assert.match(html, /kontakt@bauherr-mentoren\.com/u, name);
+    assert.doesNotMatch(html, /Telefon|Tel\.|\+49|Marc Heinz/u, `${name}: keine Telefonnummer, nur Martin Mohr (O-43)`);
+    assert.doesNotMatch(html, /<script\b/iu, `${name}: kein Skript`);
+    assert.match(html, /<meta http-equiv="Content-Security-Policy" content="default-src 'none'/u, name);
+    assert.ok(html.includes('href="https://www.bauherr-mentoren.com/"'), `${name}: Link zu bauherr-mentoren.com (O-44)`);
+    assert.ok(html.includes('href="./"'), `${name}: zurück zur Startseite`);
+    // Nichts wird nachgeladen: keine externen Quellen außer Links
+    assert.doesNotMatch(html.replace(/<a [^>]*>/gu, ''), /(?:src|href)="https?:/u, `${name}: externe Quelle`);
+    assert.doesNotMatch(html, /href="http:/u, `${name}: Links nur mit https`);
+    // Sichtbar verbotene Wörter (O-42) auch auf den Rechtsseiten (R67); Gegenprobe: ein „Datei“ wird gefunden
+    const text = html.replace(/<style[\s\S]*?<\/style>|<head[\s\S]*?<\/head>/gu, ' ').replace(/<[^>]+>/gu, ' ').replace(/&nbsp;/gu, ' ');
+    assert.deepEqual(sichtbarVerboten(text), [], `${name}: sichtbar verbotene Wörter`);
+    assert.ok(sichtbarVerboten(`${text} Datei`).length > 0, 'Gegenprobe');
+    // Jede im Impressum genannte Schrift ist eingebettet
+    for (const m of html.matchAll(/(IBM Plex Sans|IBM Plex Mono|Big Shoulders Display|Barlow Condensed|Caveat)/gu)) assert.ok(index.includes(`font-family: '${m[1]}'`) || index.includes(`font-family:'${m[1]}'`) || index.includes(`"${m[1]}"`), `${name}: Schrift ${m[1]} nicht eingebettet`);
+  }
+  const datenschutz = await readFile(path.join(dist, 'datenschutz.html'), 'utf8');
+  for (const w of ['keine Cookies', 'IONOS', 'Fortschritt löschen', 'BayLDA', 'Local Storage']) assert.ok(datenschutz.includes(w), `Datenschutz nennt ${w}`);
+  assert.equal(await readFile(path.join(dist, 'robots.txt'), 'utf8'), `User-agent: *\nAllow: /\n\nSitemap: ${ADRESSE}sitemap.xml\n`);
+  const sitemap = await readFile(path.join(dist, 'sitemap.xml'), 'utf8');
+  assert.deepEqual([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/gu)].map((m) => m[1]), [ADRESSE, `${ADRESSE}impressum.html`, `${ADRESSE}datenschutz.html`]);
+  const png = await readFile(path.join(dist, 'vorschau.png'));
+  assert.equal(png.readUInt32BE(16), 1200);
+  assert.equal(png.readUInt32BE(20), 630);
+  assert.match(await readFile(path.join(dist, '.htaccess'), 'utf8'), /frame-ancestors 'none'/u);
 });

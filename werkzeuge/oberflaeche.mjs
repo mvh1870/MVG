@@ -2,11 +2,13 @@
 /**
  * Browser-Prüfung der Einzeldatei (P0.4; docs/ARCHITEKTUR.md „Prüfkette“).
  *
- *   node werkzeuge/oberflaeche.mjs [--szenario <name>] [--nur-desktop] [--datei <html>] [--szenarien <verzeichnis>]
+ *   node werkzeuge/oberflaeche.mjs [--szenario <name>] [--nur-desktop] [--datei <html>] [--szenarien <verzeichnis>] [--parallel <n>]
  *
- * Lädt dist/mvg.html als file://-URL in Chromium (Playwright) und führt alle
+ * Lädt dist/index.html als file://-URL in Chromium (Playwright) und führt alle
  * tests/oberflaeche/*.szenario.mjs aus. Ein Szenario-Modul exportiert
- *   name: string, viewports?: Array<{ breite, hoehe }>, hash?: string (z. B. '#regie'),
+ *   name: string, viewports?: Array<{ breite, hoehe }>, hash?: string (z. B. '#regie'), seite?: string (andere
+ *   HTML-Datei), testHerkunft?: 'http://<name>.test/' (nur .test nach RFC 6761; das Szenario beantwortet sie
+ *   selbst per seite.route, L-86),
  *   async lauf(seite, h)
  * (benannte Exporte oder ein Default-Objekt). `seite` ist eine Playwright-Page, `h` der Helfer unten.
  *
@@ -20,19 +22,30 @@
  * Popup (z. B. die Leinwand über `window.open`), Etikett „[Fenster n]“.
  *
  * Browser: Playwright-Chromium → Chrome (channel) → Edge (channel) → in der Cloud
- * (CLAUDE_CODE_REMOTE=true) einmal `npx playwright install chromium` und erneut → sonst
+ * (CLAUDE_CODE_REMOTE=true) das vorinstallierte Chromium unter PLAYWRIGHT_BROWSERS_PATH/chromium, danach
+ * einmal `npx playwright install chromium` und erneut → sonst
  * „ÜBERSPRUNGEN: kein Browser – <Grund>“. Wo der Browser Pflicht ist (MVG_BROWSER_PFLICHT=1 oder
  * in der GitHub-Aktion, GITHUB_ACTIONS=true), ist „kein Browser“ ein Befund (Exitcode 1), kein Übersprung.
  *
  * Exitcodes: 0 = alles grün, 1 = Befunde, 3 = übersprungen (kein Browser).
  */
 import { spawnSync } from 'node:child_process';
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { mkdir, readdir, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { chromium } from 'playwright';
 import { istHauptmodul } from './haupt.mjs';
+import { createRequire } from 'node:module';
+
+/** Quelltext von axe-core (Entwicklungsabhängigkeit, L-24), einmal gelesen. */
+let axeText = '';
+function axeQuelle() {
+  if (axeText === '') axeText = readFileSync(createRequire(import.meta.url).resolve('axe-core/axe.min.js'), 'utf8');
+  return axeText;
+}
+/** Leichte axe-Hinweise (moderate/minor) – im Protokoll, kein Befund. */
+const axeHinweise = [];
 
 export const WURZEL = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 export const STANDARD_VIEWPORTS = Object.freeze([
@@ -40,7 +53,8 @@ export const STANDARD_VIEWPORTS = Object.freeze([
   { breite: 1024, hoehe: 768 },
   { breite: 400, hoehe: 800 },
 ]);
-export const BILDER = path.join(WURZEL, 'tmp', 'oberflaeche');
+// MVG_BILDER: eigener Bilderordner (parallele Läufe, z. B. Messungen der Lesezeit)
+export const BILDER = process.env['MVG_BILDER'] ? path.resolve(process.env['MVG_BILDER']) : path.join(WURZEL, 'tmp', 'oberflaeche');
 export const UEBERSPRUNGEN = 3;
 
 /** Zeitlimit je Helfer-Schritt (Klick, Erwartung) in ms. */
@@ -96,6 +110,16 @@ export async function starteBrowser(optionen = {}) {
     }
   }
   if (umgebung['CLAUDE_CODE_REMOTE'] === 'true') {
+    // Die Cloud bringt oft ein vorinstalliertes Chromium mit (PLAYWRIGHT_BROWSERS_PATH/chromium);
+    // es passt nicht immer zur Playwright-Version, trägt die Oberflächenprüfung aber ohne Download.
+    const vorhanden = umgebung['PLAYWRIGHT_BROWSERS_PATH'] ? path.join(umgebung['PLAYWRIGHT_BROWSERS_PATH'], 'chromium') : null;
+    if (vorhanden !== null && existsSync(vorhanden)) {
+      try {
+        return { browser: await chromium.launch({ headless: true, timeout: LADEN_MS, executablePath: vorhanden }), name: `Chromium (vorinstalliert, ${vorhanden})` };
+      } catch (fehler) {
+        gruende.push(`vorinstalliert: ${kurz(fehler).slice(0, 200)}`);
+      }
+    }
     console.log('oberflaeche: kein Browser gefunden – Cloud: einmal „npx playwright install chromium“');
     const install = installiere();
     if (install.status === 0 && install.fehler === null) {
@@ -113,16 +137,18 @@ export async function starteBrowser(optionen = {}) {
 
 /**
  * @typedef {{ breite: number, hoehe: number }} Viewport
- * @typedef {{ name: string, datei: string, viewports: Viewport[], hash: string, lauf: (seite: import('playwright').Page, h: Helfer) => Promise<void> }} Szenario
+ * @typedef {{ name: string, datei: string, viewports: Viewport[], hash: string, seite?: string, testHerkunft?: string, lauf: (seite: import('playwright').Page, h: Helfer) => Promise<void> }} Szenario  seite: andere HTML-Datei (relativ zur Wurzel), z. B. die Entwurfs-Vorschau
  * @typedef {object} Helfer
  * @property {import('playwright').Page} seite
  * @property {string} url
  * @property {Viewport} viewport
+ * @property {boolean} voll  alle Rollen und Größen (MVG_VOLL=1 bzw. `kette --voll`); sonst der schnelle Satz (L-44)
  * @property {(selektor: string, fenster?: import('playwright').Page) => Promise<void>} klick
  * @property {(selektor: string, fenster?: import('playwright').Page) => Promise<import('playwright').Locator>} erwarte
  * @property {(selektor: string, fenster?: import('playwright').Page) => Promise<void>} erwarteNicht
  * @property {(taste: string, fenster?: import('playwright').Page) => Promise<void>} taste
  * @property {(name: string, fenster?: import('playwright').Page) => Promise<string>} bild
+ * @property {(name: string, fenster?: import('playwright').Page) => Promise<void>} axe  Barrierefreiheit (axe-core, WCAG 2.x A/AA): ernste und kritische Verstöße sind Befunde
  * @property {(ms: number) => Promise<void>} warte
  * @property {(hash?: string) => Promise<import('playwright').Page>} zweitesFenster
  * @property {(text: string) => void} befund
@@ -133,6 +159,12 @@ export async function starteBrowser(optionen = {}) {
  * @param {string} verzeichnis
  * @returns {Promise<Szenario[]>}
  */
+/** @param {unknown} wert @param {string} datei @returns {string} */
+function pruefeTestHerkunft(wert, datei) {
+  if (typeof wert !== 'string' || !/^http:\/\/[a-z-]+\.test\/$/u.test(wert)) throw new Error(`${datei}: testHerkunft muss http://<name>.test/ sein`);
+  return wert;
+}
+
 export async function ladeSzenarien(verzeichnis) {
   if (!existsSync(verzeichnis)) return [];
   const namen = (await readdir(verzeichnis)).filter((n) => n.endsWith('.szenario.mjs')).sort();
@@ -151,6 +183,8 @@ export async function ladeSzenarien(verzeichnis) {
       datei,
       viewports,
       hash: typeof s.hash === 'string' ? s.hash : '',
+      ...(typeof s.seite === 'string' ? { seite: s.seite } : {}),
+      ...(s.testHerkunft !== undefined ? { testHerkunft: pruefeTestHerkunft(s.testHerkunft, datei) } : {}),
       lauf: s.lauf,
     });
   }
@@ -163,14 +197,16 @@ export async function ladeSzenarien(verzeichnis) {
  * @param {string[]} befunde
  * @param {string} etikett
  */
-function beobachte(seite, befunde, etikett) {
+function beobachte(seite, befunde, etikett, testHerkunft = null) {
   seite.on('console', (m) => {
     if (m.type() === 'error') befunde.push(`${etikett}console.error: ${m.text()}`);
   });
   seite.on('pageerror', (e) => befunde.push(`${etikett}pageerror: ${kurz(e)}`));
   seite.on('request', (r) => {
     const u = r.url();
-    if (!/^(file|data|blob|about):/.test(u)) befunde.push(`${etikett}Netzzugriff: ${u}`);
+    // Ein Szenario kann eine Testherkunft anmelden (`export const testHerkunft = 'http://mvg.test/'`, reservierter Name
+    // nach RFC 6761); es beantwortet sie selbst per seite.route aus dem Repo – nur dort ist sie kein Netzzugriff (L-86)
+    if (!/^(file|data|blob|about):/.test(u) && !(testHerkunft !== null && u.startsWith(testHerkunft))) befunde.push(`${etikett}Netzzugriff: ${u}`);
   });
 }
 
@@ -231,13 +267,15 @@ export async function fuehreAus(browser, szenario, viewport, url, bilder = BILDE
     deviceScaleFactor: 1,
     locale: 'de-DE',
     colorScheme: 'light',
+    // P11.2 (P2-Befund V6): ganzer Lauf mit reduzierter Bewegung, MVG_BEWEGUNG=reduziert
+    ...(process.env['MVG_BEWEGUNG'] === 'reduziert' ? { reducedMotion: /** @type {const} */ ('reduce') } : {}),
   });
   // Jedes Fenster des Kontexts wird beobachtet – auch Popups aus window.open (Leinwand), die der
   // Helfer nicht selbst öffnet. Das erste Fenster ist das Hauptfenster (ohne Etikett).
   let fenster = 0;
   kontext.on('page', (p) => {
     fenster += 1;
-    beobachte(p, befunde, fenster === 1 ? '' : `[Fenster ${fenster}] `);
+    beobachte(p, befunde, fenster === 1 ? '' : `[Fenster ${fenster}] `, szenario.testHerkunft ?? null);
   });
   try {
     const seite = await kontext.newPage();
@@ -248,6 +286,7 @@ export async function fuehreAus(browser, szenario, viewport, url, bilder = BILDE
       seite,
       url,
       viewport,
+      voll: process.env['MVG_VOLL'] === '1',
       async klick(selektor, f) {
         await auf(f).locator(selektor).first().click({ timeout: SCHRITT_MS });
       },
@@ -261,6 +300,8 @@ export async function fuehreAus(browser, szenario, viewport, url, bilder = BILDE
         return l;
       },
       async erwarteNicht(selektor, f) {
+        // kurz Ruhe abwarten: unter Last (parallele Läufe) erscheint ein Element sonst womöglich erst nach der Zählung
+        await auf(f).waitForTimeout(150);
         const sichtbar = await auf(f).locator(selektor).filter({ visible: true }).count();
         if (sichtbar > 0) befunde.push(`darf nicht sichtbar sein: ${selektor} (${sichtbar}×)`);
       },
@@ -271,6 +312,45 @@ export async function fuehreAus(browser, szenario, viewport, url, bilder = BILDE
         const ziel = path.join(bilder, `${dateiname(szenario.name)}-${vpName}-${dateiname(name)}.png`);
         await auf(f).screenshot({ path: ziel, fullPage: true });
         return ziel;
+      },
+      async axe(name, f) {
+        const p = auf(f);
+        // O-29: das Wort „Whitepaper“ erscheint nirgends – weder im Text noch in Titel, Beschriftungen, Tooltips
+        const wp = await p.evaluate(() => {
+          const texte = [document.title, document.body.innerText];
+          for (const el of document.querySelectorAll('[aria-label],[title],[alt],[placeholder]')) {
+            for (const a of ['aria-label', 'title', 'alt', 'placeholder']) texte.push(el.getAttribute(a) ?? '');
+          }
+          return texte.join('\n').match(/.{0,30}white\s*-?\s*paper.{0,30}/iu)?.[0] ?? null;
+        });
+        if (wp !== null) befunde.push(`${name}: „Whitepaper“ sichtbar (O-29): „${wp}“`);
+        // Über evaluate statt Skript-Tag: die strenge CSP der Datei bleibt unangetastet.
+        if (!(await p.evaluate(() => 'axe' in window))) await p.evaluate(axeQuelle());
+        /** @type {{ id: string, impact: string | null, help: string, ziele: string[] }[]} */
+        const verstoesse = await p.evaluate(async () => {
+          // Klebende Leisten (Fußleiste bei schmaler Breite) für die Messung in den Fluss legen: axe misst
+          // sonst bei target-size nur den unverdeckten Teil eines Ziels, das zufällig gerade unter der
+          // Leiste liegt – ein Artefakt der Scrollposition (L-62). Verdeckten Fokus verhindert scroll-padding.
+          /** @type {[HTMLElement, string][]} */
+          const klebend = [];
+          for (const el of document.querySelectorAll('body *')) {
+            if (el instanceof HTMLElement && getComputedStyle(el).position === 'sticky') {
+              klebend.push([el, el.style.position]);
+              el.style.position = 'static';
+            }
+          }
+          try {
+            const erg = await /** @type {any} */ (window).axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] }, resultTypes: ['violations'] });
+            return erg.violations.map((/** @type {any} */ v) => ({ id: v.id, impact: v.impact, help: v.help, ziele: v.nodes.slice(0, 3).map((/** @type {any} */ n) => String(n.target)) }));
+          } finally {
+            for (const [el, alt] of klebend) el.style.position = alt;
+          }
+        });
+        for (const v of verstoesse) {
+          const zeile = `${name}: axe ${v.impact ?? '?'} ${v.id} – ${v.help} (${v.ziele.join(' | ')})`;
+          if (v.impact === 'serious' || v.impact === 'critical') befunde.push(zeile);
+          else axeHinweise.push(zeile);
+        }
       },
       async warte(ms) {
         await seite.waitForTimeout(ms);
@@ -310,10 +390,12 @@ export async function fuehreAus(browser, szenario, viewport, url, bilder = BILDE
  * @param {string[]} argv
  */
 function leseArgumente(argv) {
-  /** @type {{ szenario?: string, nurDesktop: boolean, datei: string, szenarien: string }} */
+  /** @type {{ szenario?: string, nurDesktop: boolean, datei: string, szenarien: string, parallel: number }} */
   const a = {
     nurDesktop: false,
-    datei: path.join(WURZEL, 'dist', 'mvg.html'),
+    // parallele Browser-Kontexte: Vorgabe 3 (4 Kerne im Cloud-Rechner und im GitHub-Läufer), 1 = nacheinander
+    parallel: Number(process.env['MVG_PARALLEL'] ?? 3),
+    datei: path.join(WURZEL, 'dist', 'index.html'),
     szenarien: path.join(WURZEL, 'tests', 'oberflaeche'),
   };
   for (let i = 0; i < argv.length; i += 1) {
@@ -328,8 +410,10 @@ function leseArgumente(argv) {
     else if (arg === '--szenario') a.szenario = wert();
     else if (arg === '--datei') a.datei = path.resolve(wert());
     else if (arg === '--szenarien') a.szenarien = path.resolve(wert());
-    else throw new Error(`unbekannte Option ${arg} (erlaubt: --szenario <name>, --nur-desktop, --datei <html>, --szenarien <verzeichnis>)`);
+    else if (arg === '--parallel') a.parallel = Number(wert());
+    else throw new Error(`unbekannte Option ${arg} (erlaubt: --szenario <name>, --nur-desktop, --datei <html>, --szenarien <verzeichnis>, --parallel <n>)`);
   }
+  if (!Number.isInteger(a.parallel) || a.parallel < 1) throw new Error(`--parallel/MVG_PARALLEL: ganze Zahl ≥ 1 erwartet, nicht „${a.parallel}“`);
   return a;
 }
 
@@ -384,30 +468,60 @@ async function hauptprogramm() {
   await rm(BILDER, { recursive: true, force: true });
   await mkdir(BILDER, { recursive: true });
   const url = pathToFileURL(a.datei).href;
-  console.log(`oberflaeche: ${start.name} ${browser.version()} · ${anzeige} · ${szenarien.length} Szenario${szenarien.length === 1 ? '' : 's'}`);
+  // Szenarien auf der Entwurfs-Vorschau (L-29): Vorschau frisch bauen
+  if (szenarien.some((s) => s.seite !== undefined)) {
+    const { baueVorschau } = await import('./entwurf.mjs');
+    await baueVorschau();
+  }
+  console.log(`oberflaeche: ${start.name} ${browser.version()} · ${anzeige} · ${szenarien.length} Szenario${szenarien.length === 1 ? '' : 's'} · ${process.env['MVG_VOLL'] === '1' ? 'voll' : 'schnell (voll: MVG_VOLL=1)'}${process.env['MVG_BEWEGUNG'] === 'reduziert' ? ' · reduzierte Bewegung' : ''}`);
 
   let laeufe = 0;
   let roteLaeufe = 0;
   let befundZahl = 0;
-  try {
-    for (const s of szenarien) {
-      for (const v of a.nurDesktop ? nurDesktop(s.viewports) : s.viewports) {
-        laeufe += 1;
-        const befunde = await fuehreAus(browser, s, v, url);
-        const etikett = `${s.name} @ ${v.breite}×${v.hoehe}`;
-        if (befunde.length === 0) console.log(`  ✓ ${etikett}`);
-        else {
-          roteLaeufe += 1;
-          befundZahl += befunde.length;
-          console.log(`  ✗ ${etikett}`);
-          for (const b of befunde) console.log(`      - ${b}`);
-        }
+  // Läufe (Szenario × Viewport) in einem kleinen Pool paralleler Browser-Kontexte; jeder Kontext ist
+  // eigenständig (eigene Seite, eigener Speicher). Ausgabe in fester Reihenfolge, sobald ein Lauf und
+  // alle vor ihm fertig sind – das Ergebnis hängt nicht von der Reihenfolge des Fertigwerdens ab.
+  const auftraege = szenarien.flatMap((s) => (a.nurDesktop ? nurDesktop(s.viewports) : s.viewports).map((v) => ({ s, v })));
+  /** @type {(string[] | undefined)[]} */
+  const ergebnisse = [];
+  let naechster = 0;
+  let gedruckt = 0;
+  const drucke = () => {
+    while (gedruckt < auftraege.length && ergebnisse[gedruckt] !== undefined) {
+      const { s, v } = /** @type {{ s: Szenario, v: Viewport }} */ (auftraege[gedruckt]);
+      const befunde = /** @type {string[]} */ (ergebnisse[gedruckt]);
+      laeufe += 1;
+      const etikett = `${s.name} @ ${v.breite}×${v.hoehe}`;
+      if (befunde.length === 0) console.log(`  ✓ ${etikett}`);
+      else {
+        roteLaeufe += 1;
+        befundZahl += befunde.length;
+        console.log(`  ✗ ${etikett}`);
+        for (const b of befunde) console.log(`      - ${b}`);
       }
+      gedruckt += 1;
     }
+  };
+  const arbeiter = async () => {
+    while (naechster < auftraege.length) {
+      const i = naechster++;
+      const { s, v } = /** @type {{ s: Szenario, v: Viewport }} */ (auftraege[i]);
+      ergebnisse[i] = await fuehreAus(browser, s, v, s.seite !== undefined ? pathToFileURL(path.join(WURZEL, s.seite)).href : url);
+      drucke();
+    }
+  };
+  try {
+    await Promise.all(Array.from({ length: Math.max(1, Math.min(a.parallel, auftraege.length)) }, () => arbeiter()));
   } finally {
     await browser.close();
   }
+  if (laeufe !== auftraege.length) {
+    console.log(`oberflaeche: nur ${laeufe} von ${auftraege.length} Läufen ausgewertet`);
+    return 1;
+  }
   const bilder = path.relative(WURZEL, BILDER).split(path.sep).join('/');
+  const hinweise = [...new Set(axeHinweise.map((z) => z.replace(/^[^:]*: /u, '')))];
+  if (hinweise.length > 0) console.log(`oberflaeche: axe-Hinweise (moderat/gering, kein Befund):\n${hinweise.map((z) => `  · ${z}`).join('\n')}`);
   if (befundZahl > 0) {
     console.log(`oberflaeche: ${befundZahl} Befund${befundZahl === 1 ? '' : 'e'} in ${roteLaeufe} von ${laeufe} Läufen · Bilder in ${bilder}/`);
     return 1;

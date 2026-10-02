@@ -12,7 +12,7 @@ const WURZEL = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const lies = (datei: string) => readFileSync(resolve(WURZEL, 'src/stil', datei), 'utf8');
 const ohneKommentare = (css: string) => css.replace(/\/\*[\s\S]*?\*\//g, '');
 
-const KOMPONENTEN = ['basis.css', 'leitstand.css', 'start.css', 'theorie.css'] as const;
+const KOMPONENTEN = ['basis.css', 'tafeln.css', 'regie.css', 'start.css', 'theorie.css', 'rahmen.css', 'geschichte.css', 'explore.css'] as const;
 const tokensCss = lies('tokens.css');
 const tokens = liesTokens(tokensCss);
 
@@ -45,7 +45,7 @@ test('jede var(--x) ist in tokens.css oder in den Stildateien deklariert oder ha
 
 test('index.css bindet Schriften zuerst und dann in fester Reihenfolge ein', () => {
   const importe = [...ohneKommentare(lies('index.css')).matchAll(/@import\s+"([^"]+)"/g)].map((m) => m[1]);
-  assert.deepEqual(importe, ['../generiert/schriften.css', './tokens.css', './basis.css', './leitstand.css', './start.css', './theorie.css']);
+  assert.deepEqual(importe, ['../generiert/schriften.css', './tokens.css', './basis.css', './tafeln.css', './regie.css', './start.css', './theorie.css', './rahmen.css', './geschichte.css', './explore.css']);
 });
 
 test('tokens.css: Farbtoken sind Hex- oder rgba-Werte bzw. Verweise, Schriftstapel nennen die eingebetteten Familien', () => {
@@ -54,7 +54,7 @@ test('tokens.css: Farbtoken sind Hex- oder rgba-Werte bzw. Verweise, Schriftstap
       assert.match(wert, /^(#[0-9A-Fa-f]{6}|var\(--[\w-]+\))$/, `${name}: ${wert}`);
     }
   }
-  for (const [token, familie] of [['--schrift-text', 'IBM Plex Sans'], ['--schrift-anzeige', 'Big Shoulders Display'], ['--schrift-label', 'Barlow Condensed'], ['--schrift-mono', 'IBM Plex Mono'], ['--schrift-hand', 'Caveat']] as const) {
+  for (const [token, familie] of [['--schrift-text', 'IBM Plex Sans'], ['--schrift-anzeige', 'Big Shoulders Display'], ['--schrift-label', 'Barlow Condensed'], ['--schrift-mono', 'IBM Plex Mono']] as const) {
     assert.ok(tokens.get(token)?.startsWith(`"${familie}"`), token);
   }
 });

@@ -73,8 +73,7 @@ strong, b { font-weight: 700; }
   hyphens: auto;
 }
 /* Labels, Titel, Kürzel und IDs werden nie getrennt. */
-:lang(de) h1, :lang(de) h2, :lang(de) h3, :lang(de) h4,
-.t-label, .t-kicker, .t-anzeige, .mono, .id-marke, .badge, kbd {
+:lang(de) h1, :lang(de) h2, :lang(de) h3, :lang(de) h4, .t-label, .mono, .id-marke, kbd {
   -webkit-hyphens: manual;
   hyphens: manual;
 }
@@ -85,24 +84,22 @@ strong, b { font-weight: 700; }
   outline: 3px solid var(--fokus);
   outline-offset: 2px;
 }
-/* Auf Navy trägt Gold den Ring; auf hellen Tafeln Navy mit Gold-Hof (wie Prototyp). */
-.auf-navy { --fokus: var(--gold-hell); }
-.flaeche-hell :focus-visible { box-shadow: 0 0 0 6px var(--fokus-hof); }
 
-/* Sprunglink */
-.sprunglink {
-  position: absolute;
-  left: var(--a-4);
-  top: -80px;
-  z-index: 200;
-  padding: var(--a-2) 14px;
-  border-radius: var(--radius-s);
-  background: var(--gold-hell);
-  color: var(--navy);
-  font-weight: 600;
-  text-decoration: none;
+/* Hochkontrastmodus (R28): der Browser entfernt Hintergründe und Schatten – Knöpfe behalten eine Grenze,
+   der gewählte Zustand (aria-pressed) zeigt sich in Systemfarben. !important nur hier: die Regel muss jede
+   Knopfklasse schlagen, und sie wirkt nur mit forced-colors. Glossarbegriffe bleiben Text. */
+@media (forced-colors: active) {
+  button:not(.begriff) { border: 1px solid ButtonText !important; }
+  button:is([aria-pressed="true"], [aria-selected="true"], [aria-current]:not([aria-current="false"])) { forced-color-adjust: none; background: Highlight !important; color: HighlightText !important; border-color: Highlight !important; }
+  button:is([aria-pressed="true"], [aria-selected="true"], [aria-current]:not([aria-current="false"])) * { color: inherit !important; }
+  /* R30: Unterelemente gewählter Knöpfe ohne eigene Fläche (sonst HighlightText auf Autorfarbe, z. B. Etappen-Ziffer) */
+  button:is([aria-pressed="true"], [aria-selected="true"], [aria-current]:not([aria-current="false"])) *:not(svg, svg *) { background-color: transparent !important; box-shadow: none !important; }
+  /* aktuelle Stelle ohne Knopf (R32), z. B. Verzeichnis-Links */
+  :is(li, span, div)[aria-current]:not([aria-current="false"]) { outline: 2px solid Highlight; outline-offset: -2px; }
+  a[aria-current]:not([aria-current="false"]) { outline: 2px solid Highlight; outline-offset: -2px; }
+  /* R29: SVG-Füllungen erzwingt der Browser nicht – das Logo folgt der Textfarbe */
+  .marke-logo, .marke-logo * { fill: CanvasText !important; }
 }
-.sprunglink:focus { top: var(--a-2); }
 
 /* ------------------------------------------------------------------ Hilfsklassen */
 .nur-sr {
@@ -119,23 +116,12 @@ strong, b { font-weight: 700; }
 }
 
 /* Typorollen */
-.t-anzeige { font: var(--typo-anzeige); letter-spacing: .01em; }
-.t-titel { font: var(--typo-titel); letter-spacing: var(--sperrung-titel); text-transform: uppercase; }
 .t-label {
   font: var(--typo-label);
   letter-spacing: var(--sperrung-label);
   text-transform: uppercase;
   color: var(--tinte-2);
 }
-.t-kicker {
-  font: var(--typo-kicker);
-  letter-spacing: var(--sperrung-kicker);
-  text-transform: uppercase;
-  color: var(--tinte-2);
-}
-.t-hand { font: var(--typo-hand); }
-.t-klein { font: var(--typo-klein); }
-.t-leise { color: var(--tinte-2); }
 
 /* IDs, Dateinamen, Zeitstempel */
 .mono {
@@ -145,12 +131,6 @@ strong, b { font-weight: 700; }
   font-variant-numeric: tabular-nums;
 }
 span.mono { white-space: nowrap; }
-
-/* Markierung wie Ebene 1 im Prototyp (`.e-big em`) */
-.markiert {
-  font-style: normal;
-  background: linear-gradient(transparent 62%, var(--gold-hell-a45) 62%);
-}
 
 /* Ikonen: Inline-SVG im 24er-Raster, Strich 1,8, currentColor (docs/STIL.md → Ikonen) */
 .symbol {
@@ -168,8 +148,7 @@ span.mono { white-space: nowrap; }
 .symbol.gefuellt { fill: currentColor; stroke: none; }
 
 /* Tastenkappe (Hinweise „A–D wählen“) */
-kbd,
-.taste {
+kbd {
   display: inline-grid;
   place-items: center;
   min-width: 22px;
@@ -193,42 +172,13 @@ kbd,
 [data-status="kritisch"] { --status-farbe: var(--status-rot); --status-soft: var(--status-rot-soft); --status-text: var(--status-rot); }
 [data-status="neutral"] { --status-farbe: var(--status-neutral); --status-soft: var(--status-neutral-soft); --status-text: var(--status-neutral); }
 
-/* Welten (O-2): A Koralle, B Türkis, AB = Vergleich */
-[data-welt="a"] { --welt-farbe: var(--koralle); --welt-text: var(--koralle-text); --welt-soft: var(--koralle-soft); }
-[data-welt="b"] { --welt-farbe: var(--tuerkis); --welt-text: var(--tuerkis-text); --welt-soft: var(--tuerkis-soft); }
-[data-welt="ab"] { --welt-farbe: var(--gold-hell); --welt-text: var(--navy-soft); --welt-soft: var(--flaeche-2); }
-
-/* Rollen (O-4): Farbe, textsichere Farbe, Fläche, Kante */
-[data-rolle="gf"] { --rollen-farbe: var(--rolle-gf); --rollen-text: var(--rolle-gf-text); --rollen-soft: var(--rolle-gf-soft); --rollen-kante: var(--rolle-gf-kante); }
-[data-rolle="bh"] { --rollen-farbe: var(--rolle-bh); --rollen-text: var(--rolle-bh-text); --rollen-soft: var(--rolle-bh-soft); --rollen-kante: var(--rolle-bh-kante); }
-[data-rolle="pl"] { --rollen-farbe: var(--rolle-pl); --rollen-text: var(--rolle-pl-text); --rollen-soft: var(--rolle-pl-soft); --rollen-kante: var(--rolle-pl-kante); }
-[data-rolle="ps"] { --rollen-farbe: var(--rolle-ps); --rollen-text: var(--rolle-ps-text); --rollen-soft: var(--rolle-ps-soft); --rollen-kante: var(--rolle-ps-kante); }
-[data-rolle="plan"] { --rollen-farbe: var(--rolle-plan); --rollen-text: var(--rolle-plan-text); --rollen-soft: var(--rolle-plan-soft); --rollen-kante: var(--rolle-plan-kante); }
-[data-rolle="ctl"] { --rollen-farbe: var(--rolle-ctl); --rollen-text: var(--rolle-ctl-text); --rollen-soft: var(--rolle-ctl-soft); --rollen-kante: var(--rolle-ctl-kante); }
-
 /* ------------------------------------------------------------------ Bewegung: gemeinsame Keyframes */
 /* Verzögerung je Element über --verzug (Prototyp: --d). */
 @keyframes einblenden { from { opacity: 0; } }
 @keyframes auftauchen { from { opacity: 0; transform: translateY(14px) scale(.97); } }
 @keyframes szene-ein { from { opacity: 0; transform: translateY(10px); } }
-@keyframes von-rechts { from { opacity: 0; transform: translateX(40px); } }
-@keyframes von-oben { from { opacity: 0; transform: translateY(-12px); } }
-@keyframes feder-ein { from { opacity: 0; transform: scale(.3); } }
-@keyframes ping { 0% { transform: scale(.6); opacity: 1; } 100% { transform: scale(1.9); opacity: 0; } }
-@keyframes zeichnen { to { stroke-dashoffset: 0; } }
-@keyframes wackeln { 50% { transform: scale(1.18) rotate(-6deg); } }
-@keyframes led-puls { 50% { opacity: .55; } }
-@keyframes blitz {
-  0% { opacity: 1; box-shadow: inset 0 0 0 3px var(--gold-hell); background: var(--gold-hell-a28); }
-  100% { opacity: 0; box-shadow: inset 0 0 0 3px var(--gold-hell); background: transparent; }
-}
-@keyframes schubsen { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
-@keyframes waehlen { 30% { transform: scale(1.03); } 100% { transform: scale(1); } }
 
 .anim-einblenden { animation: einblenden var(--dauer-mittel) ease both; animation-delay: var(--verzug, 0ms); }
-.anim-auftauchen { animation: auftauchen var(--dauer-mittel) var(--kurve-pop) both; animation-delay: var(--verzug, 0ms); }
-.anim-szene { animation: szene-ein 450ms var(--kurve-aus) both; animation-delay: var(--verzug, 0ms); }
-.anim-feder { animation: feder-ein var(--dauer-mittel) var(--kurve-feder) both; animation-delay: var(--verzug, 0ms); }
 
 /* ------------------------------------------------------------------ Reduzierte Bewegung */
 /* Wie im Prototyp: Endzustände sofort, Schleifen aus. Zustände hängen nie an Animationen. */
@@ -243,5 +193,4 @@ kbd,
     transition-delay: 0ms !important;
     scroll-behavior: auto !important;
   }
-  .schleife { animation: none !important; }
 }

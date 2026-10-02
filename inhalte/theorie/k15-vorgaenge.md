@@ -186,14 +186,14 @@ seite: links
 Die Haustechnikplanung kündigt einen Nachtrag von bis zu 1,2 Mio. € an.
 
 ### Erklärung
-Angekündigt, aber nicht eingetreten. Er gehört nicht in die Prognose, sondern als Risiko ins Register.
+Angekündigt, aber nicht eingetreten – ein Risiko mit Bandbreite. Ist ein Betrag schon in der Prognose enthalten, wird er kenntlich gemacht und nicht doppelt gezählt.
 :::
 
 ::: posten 4
 ---
 seite: rechts
 ---
-Der Hersteller bestätigt: Das Lüftungsgerät der Gesamtschule kommt fünf Wochen später.
+Der Hersteller bestätigt: Das Lüftungsgerät der Gesamtschule kommt vier Wochen später.
 
 ### Erklärung
 Ein ausgefallener Liefertermin ist ein Problem. Jetzt geht es um Folgen und Lösungswege, nicht mehr um die Eintrittswahrscheinlichkeit.
@@ -228,7 +228,7 @@ Die Maßnahme ist umgesetzt, also wird sie abgehakt. Die Aufgabe hat einen neuen
 :::
 
 ::: ansicht rechts
-Eine **Aufgabe** schließt, wenn das vereinbarte Ergebnis vorliegt und verwendbar ist; ein neuer Termin ersetzt nicht die Erklärung der Verzögerung. Eine **Maßnahme** schließt erst, wenn ihre Wirkung nachgewiesen ist. Ein **Problem** schließt mit dem Nachweis der Lösung – offene Folgen bleiben sichtbar. Eine **Änderung** gilt erst mit der Freigabe; bis dahin bleibt die bisherige Grundlage maßgeblich, und eine fachliche Freigabe ist noch keine Vertragsänderung oder Bestellung.
+Eine **Aufgabe** schließt, wenn das vereinbarte Ergebnis vorliegt und verwendbar ist; ein neuer Termin ersetzt nicht die Erklärung der Verzögerung. Eine **Maßnahme** schließt mit belegtem Umsetzungs- und Wirkungsstand; wirkt sie nicht, folgt eine Anpassung. Ein **Problem** schließt mit dem Nachweis der Lösung – offene Folgen bleiben sichtbar. Eine **Änderung** gilt erst mit der Freigabe; bis dahin bleibt die bisherige Grundlage maßgeblich, und eine fachliche Freigabe ist noch keine Vertragsänderung oder Bestellung.
 :::
 :::
 :::
@@ -302,10 +302,10 @@ W steht für die Wahrscheinlichkeit, A für die höchste belegte Auswirkung.
 ---
 seite: links
 ---
-W 2 · A 5
+W 1 · A 5
 
 ### Erklärung
-Das Produkt ist nur 10 – aber Auswirkung 5 ist immer vorrangig. Eine geringe Wahrscheinlichkeit blendet eine schwere Folge nicht aus.
+Das Produkt ist nur 5 – aber Auswirkung 5 ist immer vorrangig. Eine geringe Wahrscheinlichkeit blendet eine schwere Folge nicht aus.
 :::
 
 ::: posten 2
@@ -398,7 +398,7 @@ Ein Vorgang verschwindet nicht, weil ihn jemand abhakt – er schließt, wenn de
 
 ::: regie
 ### Notiz
-Das Thema ordnet die sechs Vorgangsarten und die Entscheidungsvorbereitung. Die Karten mit den Lindenhall-Beispielen eignen sich zum gemeinsamen Umdrehen. In der Matrix den Fall „W 2 · A 5“ ansprechen: Auswirkung 5 ist immer vorrangig. Die Zahlen und Namen sind fiktiv.
+Das Thema ordnet die sechs Vorgangsarten und die Entscheidungsvorbereitung. Die Karten mit den Lindenhall-Beispielen eignen sich zum gemeinsamen Umdrehen. In der Matrix den Fall „W 1 · A 5“ ansprechen: Auswirkung 5 ist immer vorrangig. Die Zahlen und Namen sind fiktiv.
 
 ### Leitfragen
 - Welcher Hinweis in Ihrem Projekt steht als Risiko im Register, obwohl er längst eingetreten ist?

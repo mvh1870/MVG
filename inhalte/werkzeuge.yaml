@@ -50,13 +50,13 @@ vorgaenge:
     - id: fruehwarnung
       titel: Frühwarnung
       text: Ein Hinweis ist noch nicht ausreichend geklärt. Quelle sichern, Prüffrage und Wiedervorlage festlegen.
-      beispiel: FRW-002 – der Holzbauer meldet längere Lieferzeiten für Brettsperrholz.
+      beispiel: FRW-002 – die Generalplanung meldet 26 statt 16 Wochen Lieferzeit für die Holzbauelemente.
       abschluss: Ein Klärungsergebnis liegt vor – oder der Hinweis wird mit Begründung geschlossen.
       wege: [risiko, problem, aufgabe]
     - id: risiko
       titel: Risiko
       text: Ein mögliches nachteiliges Ereignis kann Projektziele beeinträchtigen. Bewerten, Gegenmaßnahmen verfolgen, verbleibende Unsicherheit sichtbar halten.
-      beispiel: RIS-009 – Lieferzeit der Holzbauelemente gefährdet den Rohbautermin.
+      beispiel: RIS-009 – die Lieferzeit der Holzbauelemente gefährdet Montagebeginn und Inbetriebnahme.
       abschluss: Das Ereignis ist eingetreten (weiter als Problem), die Eintrittsmöglichkeit ist entfallen oder die Wirkung ist nachweisbar beseitigt.
       wege: [massnahme, problem, entscheidung]
     - id: problem
@@ -75,7 +75,7 @@ vorgaenge:
       titel: Maßnahme
       text: Gezielte Handlung, um einen Zustand zu klären, zu verbessern oder einen Beschluss umzusetzen. Umgesetzt und wirksam sind nicht dasselbe.
       beispiel: MAS-007 – vorgezogene Vergabe der Holzbauelemente.
-      abschluss: Umsetzung und Wirkung sind nachgewiesen.
+      abschluss: Umsetzungs- und Wirkungsstand sind belegt; wirkt sie nicht, folgt eine Anpassung.
       wege: [aufgabe, entscheidung]
   entscheidung:
     titel: Entscheidung vorbereiten
@@ -106,7 +106,7 @@ takt:
       titel: In Ruhezeiten
       wer: Projektsteuerung
       text: Wenn ausdrücklich vereinbart – monatliche Gesamtprüfung, neue nicht dringliche Hinweise binnen fünf Arbeitstagen, Termin nur bei Bedarf; der Kurzbericht bleibt.
-      beispiel: Während der Ausschreibungsfristen ruht der Wochentakt; der Monatsbericht kommt trotzdem.
+      beispiel: In der vereinbarten Nachlaufzeit nach der Übergabe wird monatlich geprüft; der Monatsbericht kommt trotzdem.
 glossar:
   titel: Glossar
   kurz: Die Begriffe der Governance auf einen Blick.

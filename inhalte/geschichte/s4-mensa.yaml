@@ -2,22 +2,26 @@ id: s4
 nr: 4
 titel: Größere Mensa
 kurztitel: Mensa
-datum: März 2026
-monat: 3
+datum: April 2026
+monat: 4
 lph: 5
 kurzfassung: false
 belege: [v24:hb-1.5, v24:hb-3.1, v24:tlb-2, k4.2-p3, k6.4.4-t1]
 lage: |
-  Sabine Roth, künftige Schulleiterin der Gesamtschule, war beim Geschäftsführer. Für den Ganztag brauche die Schule eine Mensa für rund 450 statt 300 Essen. Frank Deppe hat im Flur gesagt: „Das kriegen wir hin.“
+  Sabine Roth, künftige Schulleiterin der Gesamtschule, war im März bei Frank Deppe, dem Geschäftsführer der GML: Für den Ganztag brauche die Schule eine Mensa für rund 450 statt 300 Essen. Er hat im Flur gesagt: „Das kriegen wir hin.“
 
   Für die Projektsteuerung ist das eine Änderung – kein Risiko, kein Problem. Sie hat sie erfasst, ohne vorher einen Risikoeintrag zu verlangen. Die Zusage im Flur ist kein Beschluss: Bis zur Freigabe gilt die bisherige Planung.
 bericht:
-  titel: Bericht der Projektsteuerung · März 2026 (Fortsetzung)
+  titel: Monatsbericht · April 2026
   zeilen:
     - Änderung AEN-012 Mensa erfasst – Antragstellerin Sabine Roth, bisherige Grundlage Mensa für 300 Essen.
     - Fachbeitrag der Generalplanung – 0,6 Mio. €, Umplanung rund vier Wochen.
-    - Fachbeitrag des Controllings – Förderung deckt die größere Mensa nicht.
-    - Vorlage liegt vor; Entscheidung im Änderungsgremium am 31. März.
+    - Fachbeitrag des Controllings – die Förderung deckt die größere Mensa nicht.
+    - Vorlage liegt vor; Entscheidung im Änderungsgremium am 28. April.
+    - text: Maßnahme MAS-007 vorgezogene Vergabe Holzbau – Vergabeunterlagen am 15. April versandt.
+      wenn: s3=A
+    - text: Änderung AEN-013 Sporthalle in Stahlbeton – Umplanung läuft.
+      wenn: s3=C
   reaktion: Bitte entscheiden Sie über die Mensa.
 vorgaenge:
   - art: aenderung
@@ -25,16 +29,16 @@ vorgaenge:
     titel: Mensa für 450 statt 300 Essen
     text: Anlass – Ganztag. Bisherige Grundlage – Mensa für 300 Essen. Gewünschte Anpassung – Küche und Speiseraum für 450 Essen. Auswirkungen auf Kosten, Termin, Funktion und Förderung ermittelt.
     verantwortlich: Projektsteuerung; Fachbeiträge Generalplanung und Controlling
-    termin: 31. März
-    stand: Vorlage liegt vor
+    termin: 28. April
+    stand: In Prüfung
 vorlage:
   art: optionen
   frage: Wird die Mensa vergrößert?
   grund: |
     Der Wunsch ist nachvollziehbar, die Kosten liegen über 100 TEUR – damit entscheidet nach dem Mandat das Änderungsgremium. Die Projektsteuerung hat drei zulässige Wege ausgearbeitet.
   stelle: Änderungsgremium – Vorsitz Frank Deppe
-  termin: 31. März 2026
-  verzug: Nach Ende April lässt sich die Küche nur noch mit Umplanung der Haustechnik ändern.
+  termin: 28. April 2026
+  verzug: Nach Mitte Mai lässt sich die Küche nur noch mit Umplanung der Haustechnik ändern.
   muss: Alle Optionen halten die Vorgaben der Förderung ein.
   optionen:
     - id: A
@@ -69,7 +73,7 @@ vorlage:
       konsequenz: Die Änderung wird mit Begründung abgelehnt und bleibt nachvollziehbar im Register. Der Wunsch der Schule ist nicht erledigt, nur entschieden.
   empfehlung:
     option: B
-    text: Die Projektsteuerung empfiehlt, die Mensa erweiterbar vorzubereiten. Nachteil – die Schule bekommt die größere Mensa nicht sofort. Achtung – B und C liegen dicht beieinander. Wer Kosten stärker gewichtet, landet bei C.
+    text: Die Projektsteuerung empfiehlt, die Mensa erweiterbar vorzubereiten. Nachteil – die Schule bekommt die größere Mensa nicht sofort. Achtung – B und C liegen dicht beieinander; auch mit „Kosten vor Termin“ bleibt B knapp vorn (53 zu 52). C liegt erst vorn, wenn die Kosten mehr als doppelt so schwer wiegen wie Qualität und Funktion.
 folge: |
   Abgelehnte oder zurückgezogene Änderungen bleiben mit Begründung nachvollziehbar. Nach einer Freigabe informiert die Projektsteuerung die Beteiligten, veranlasst die Anpassung der Unterlagen und verfolgt die Umsetzung.
 so-laeuft-es-oft: |
@@ -79,6 +83,6 @@ einwand:
   antwort: Eine Zusage ist ein Wunsch mit Gewicht, kein Beschluss. Bis das Änderungsgremium entschieden hat, gilt die bisherige Planung – sonst plant die Generalplanung auf eigenes Risiko.
 theorie: verantwortung
 regie:
-  notiz: Die knappe Rangfolge B/C am Regler zeigen. Die Mensa ist die Änderung ohne Risiko – ein Klassiker.
+  notiz: Die knappe Rangfolge B/C am Regler zeigen – B bleibt auch bei „Kosten vor Termin“ knapp vorn; C erst, wenn das Kostengewicht mehr als doppelt so hoch ist wie das für Qualität und Funktion. Die Mensa ist die Änderung ohne Risiko – ein Klassiker.
   leitfragen:
     - Wie viele Zusagen im Flur stecken in Ihren laufenden Projekten?

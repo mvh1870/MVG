@@ -12,7 +12,7 @@ lage: |
 
   Das Controlling hat die Prüffrage zur Baupreissteigerung beantwortet: Die Annahme in der Kostenberechnung ist zu niedrig. Die Projektsteuerung hat aus der Frühwarnung ein bewertetes Risiko gemacht.
 bericht:
-  titel: Bericht der Projektsteuerung · Februar 2026
+  titel: Monatsbericht · Februar 2026
   zeilen:
     - Bauantrag eingereicht am 29. Januar; Genehmigungsplanung vollständig.
     - Frühwarnung FRW-001 geklärt – weitergeführt als Risiko RIS-005 Baupreissteigerung.
@@ -33,7 +33,7 @@ vorgaenge:
     text: Ursache – Marktpreise für Holzbauelemente steigen schneller als angenommen. Mögliche Folge – höhere Kosten bei der Vergabe in LPH 7. Zeitraum bis zur Vergabe.
     verantwortlich: Projektsteuerung mit Controlling
     termin: Wiedervorlage monatlich
-    stand: bewertet
+    stand: aktiv · gezielt bearbeiten
     matrix: { w: 3, a: 3 }
   - art: aufgabe
     kennung: AUF-002
@@ -47,7 +47,7 @@ vorlage:
   frage: Wird LPH 4 abgeschlossen und LPH 5 freigegeben?
   grund: |
     Die Freigabe legitimiert den nächsten Schritt. Sie erteilt der Bauherr selbst – nicht die Projektsteuerung und nicht der Lenkungskreis. Die Projektsteuerung hat geprüft, ob die Grundlagen vorliegen: Genehmigungsunterlagen eingereicht, Kostenprognose 2026-01 · Version 1, Terminplan. Offen ist das Risiko Baupreissteigerung.
-  stelle: Bauherr – Dr. Miriam Olbers im Lenkungskreis
+  stelle: Bauherr – Dr. Miriam Olbers (der Lenkungskreis berät)
   termin: 24. Februar 2026
   verzug: Ohne Freigabe darf die Generalplanung nicht mit der Ausführungsplanung beginnen; jede Woche Verzug kostet Puffer.
   muss: Genehmigungsunterlagen vollständig eingereicht – erfüllt.
@@ -71,7 +71,7 @@ vorlage:
         qualitaet: [4, "Auflage mit Frist"]
         klima: [3, "unverändert"]
       folgen: {}
-      konsequenz: LPH 5 beginnt. Die Auflage wird zur Maßnahme mit Termin Ende April – die Projektsteuerung verfolgt sie und legt das Ergebnis vor.
+      konsequenz: LPH 5 beginnt. Die Auflage wird zur Maßnahme mit Termin Ende April – die Projektsteuerung fordert die Marktabfrage bei der Generalplanung an, verfolgt sie und legt das Ergebnis vor.
     - id: C
       titel: Keine Freigabe
       text: Erst Marktabfrage und neue Kostenprognose, dann die Freigabe.
@@ -81,7 +81,7 @@ vorlage:
         qualitaet: [4, "Grundlagen gesichert"]
         klima: [3, "unverändert"]
       folgen: { puffer: -21, offen: 1 }
-      konsequenz: Die Ausführungsplanung wartet. Die Projektsteuerung beauftragt die Marktabfrage und legt die Freigabe in drei Wochen erneut vor.
+      konsequenz: Die Ausführungsplanung wartet. Die Projektsteuerung fordert die Marktabfrage bei der Generalplanung an und legt die Freigabe in drei Wochen erneut vor.
   empfehlung:
     option: B
     text: Die Projektsteuerung empfiehlt die Freigabe mit Auflagen. Sie hält den Termin und macht das Preisrisiko bis April belastbar. Nachteil – bis dahin plant die Generalplanung mit einer Zahl, die noch steigen kann.

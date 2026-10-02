@@ -61,7 +61,7 @@ Einmal im Monat ein Online-Termin von höchstens 60 Minuten mit dem Bauherrn und
 titel: In ausdrücklich vereinbarten Ruhe- oder Nachlaufzeiten
 marke: Ruhezeit
 ---
-Der gesamte offene Bestand wird monatlich geprüft. Neue Hinweise kommen binnen fünf Arbeitstagen hinein. Einen Termin gibt es nur bei konkretem Abstimmungs- oder Entscheidungsbedarf – der Bericht bleibt.
+Der gesamte offene Bestand wird monatlich geprüft. Neue, nicht dringliche Hinweise kommen binnen fünf Arbeitstagen hinein. Einen Termin gibt es nur bei konkretem Abstimmungs- oder Entscheidungsbedarf – der Bericht bleibt.
 :::
 :::
 
@@ -95,7 +95,7 @@ In aktiven Zeiten der Planung und Ausführung prüft die Projektsteuerung jede W
 
 Kurz heißt dabei wirklich kurz: Vertieft wird nur, was sich verändert hat oder besonders geklärt werden muss. Unveränderte Texte schreibt niemand neu. Ein gemeinsamer Prüfvermerk mit Datum und Bearbeiter hält fest, dass der Durchgang stattgefunden hat.
 
-In Ruhe- oder Nachlaufzeiten gilt ein anderer Takt – aber nur, wenn er ausdrücklich vereinbart ist: monatliche Gesamtprüfung, neue Hinweise binnen fünf Arbeitstagen, ein Termin nur bei konkretem Bedarf. Der Monatsbericht bleibt auch dann.
+In Ruhe- oder Nachlaufzeiten gilt ein anderer Takt – aber nur, wenn er ausdrücklich vereinbart ist: monatliche Gesamtprüfung, neue, nicht dringliche Hinweise binnen fünf Arbeitstagen, ein Termin nur bei konkretem Bedarf. Der Monatsbericht bleibt auch dann.
 :::
 
 ::: abschnitt k16.3
@@ -117,8 +117,8 @@ Der Bericht nutzt denselben Informationsstand wie die Software und verweist auf 
 
 So kann eine Seite aussehen – ein fiktives Beispiel vom Schulcampus Lindenhall-Süd, Mai 2026:
 
-> **Bericht der Projektsteuerung · Mai 2026**
-> - Kostenprognose nach dem geltenden Datenstand: 61,8 Mio. € gegen die Projektbasis von 58,4 Mio. €; die Risikoreserve ist darin noch nicht eingesetzt.
+> **Monatsbericht · Mai 2026**
+> - Kostenprognose nach dem geltenden Datenstand: 60,4 Mio. € gegen die Projektbasis von 58,4 Mio. € (+3,4 %); die Risikoreserve von 2,9 Mio. € deckt das, eingesetzt ist sie noch nicht.
 > - Differenz zur früheren Zahl geklärt: angekündigter Nachtrag der Haustechnikplanung, bis 1,2 Mio. €, als Risiko `RIS-014` geführt.
 > - Auflage aus der Freigabe LPH 4 erfüllt – die Marktabfrage liegt vor.
 > - Offene Entscheidung: Umgang mit der Prognose. Benötigt wird Ihre Entscheidung; der Bauausschuss tagt am 21. Mai.

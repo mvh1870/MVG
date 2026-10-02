@@ -21,7 +21,7 @@ Maßgeblich sind der Text des Whitepapers V1.2 (O-15) und der Standard „Aufgab
 | Takt | jede Woche alle offenen Vorgänge prüfen; Dringliches sofort, am selben Arbeitstag dokumentiert; Monatstermin online bis 60 Minuten; Monatsbericht höchstens eine Seite | V2.4 HB 4 |
 | Freigabeprozess der Entscheidungsvorlage | offen → in Prüfung → vorbereitet → freigegeben → beschlossen \| abgelehnt (jede Stufe signiert) | Kap. 9.4 |
 | Entscheidungs-Status | Offen · In Bearbeitung · Entscheidungsreif · Entschieden · Verworfen | Kap. 6.4.4 |
-| Risiko-Status | aktiv · beobachtet · gemindert · geschlossen | Kap. 6.4.4 |
+| Risiko-Status | aktiv · beobachtet · gemindert · geschlossen; in der Story getrennt von der Matrixstufe geschrieben: „aktiv · gezielt bearbeiten“, „aktiv · vorrangig bearbeiten“ | Kap. 6.4.4, V2.4 HB 3 |
 | Änderungs-Status | Beantragt · In Prüfung · Beschlossen · Abgelehnt · Umgesetzt | Kap. 6.4.4 |
 | Wege der Vorgänge | Frühwarnung → nach der Klärung Risiko, Problem oder Aufgabe, oder begründet geschlossen; ein eingetretenes Risiko wird Problem; Aufgaben, Probleme und Änderungen auch ohne Risiko; die Herkunft bleibt verknüpft (ersetzt den V1.2-Fluss „bestätigt → Risiko“) | V2.4 HB 1, 1.2, 1.3 |
 | Frühwarnung | noch nicht ausreichend geklärter Hinweis mit Quelle, Prüffrage und Wiedervorlage; CTC- oder Schwellenwertverletzungen erzeugen **neue** Frühwarnungen | Kap. 6.4.3, V2.4 HB 1.2 |
@@ -32,8 +32,8 @@ Maßgeblich sind der Text des Whitepapers V1.2 (O-15) und der Standard „Aufgab
 | MVG-Neuinitialisierung | Sonderformat für laufende Projekte mit eingeschränkter Steuerbarkeit; keine Freigabe | Kap. 7.5, 11 |
 | MVG-Reifegradanalyse | 10 Domänen, 49 Fragen, 0–100; < 55 kritisch, 55–79 mit Lücken, ≥ 80 steuerbar (nur als Methode erwähnen, O-8) | Kap. 7.1 |
 | 30/60/90-Tage-Logik | Orientierungsrahmen nach Reifegradanalyse und bei Neuinitialisierung, **kein** allgemeiner Einführungsrhythmus | Kap. 8.2 |
-| Rollen (Standardmodell) | 13 Arbeitsrollen + Sonderrolle BM-Mentor (Kap. 9.2); in der Story „Bauherren-PL“ für Bauherren-Projektleitung | Kap. 9.2 |
-| ID-Kürzel in der Story | ENT- (Entscheidung), RIS- (Risiko), FRW- (Frühwarnung), AEN- (Änderung), MAS- (Maßnahme), NAC- (Nachweis), PRB- (Problem, L-18); Freigaben ohne Kürzel („Freigabe LPH 5“); Form in der Story kurz: `ENT-017` | Companion §3 (Whitepaper schweigt) |
+| Rollen (Standardmodell) | 13 Arbeitsrollen + Sonderrolle BM-Mentor (Kap. 9.2); in der Story führt der Prolog einmal „Projektleitung auf Bauherrenseite (Bauherren-PL)“ ein, danach nur „Bauherren-PL“ oder „Sie“ (nie „Projektleitung der GML“) | Kap. 9.2 |
+| ID-Kürzel in der Story | ENT- (Entscheidung), RIS- (Risiko), FRW- (Frühwarnung), AEN- (Änderung), MAS- (Maßnahme), AUF- (Aufgabe), NAC- (Nachweis), PRB- (Problem, L-18); Freigaben ohne Kürzel („Freigabe LPH 5“); Form in der Story kurz: `ENT-017` | Companion §3 (Whitepaper schweigt) |
 
 ## Sichtbar verbotene Wörter (P16.1, geprüft von `tests/sichtbar.test.ts` und den Browser-Szenarien, Liste in `werkzeuge/sichtbar.mjs`)
 Auf der Seite nie: „Whitepaper“, „Kapitel“, „Kap. <Nr>“, Absatz-IDs (`k4.2-p3`), „MVG V1.2“ / „V1.2“, „Originaltext“, „ungeprüft“ (O-38, O-39); die Seite heißt nie „Datei“, „Einzeldatei“, „App“, „Programm“, „HTML“, „Kundenfassung“ (O-42); nie „G0–G5“ (O-14). Ausnahmen: keine. Interne Kommentare, Belege und Dokumente sind nicht betroffen.

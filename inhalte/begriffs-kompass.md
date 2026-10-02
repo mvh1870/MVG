@@ -33,7 +33,7 @@ andere: [Steering Committee, Lenkungsausschuss, Steuerungskreis]
 beleg: k4.2-p3
 ---
 ### Hinweis
-Auf der obersten Stufe der Muster-Mandatsleiter (über 5 Mio. €) beschließt der Bauherr im Lenkungskreis. Er entscheidet als befugte Stelle auf Vorlage der Projektsteuerung.
+Auf der obersten Stufe der Muster-Mandatsleiter (über 5 Mio. €) beschließt der Bauherr im Lenkungskreis. Der Lenkungskreis berät; der Bauherr entscheidet dort als befugte Stelle auf Vorlage der Projektsteuerung.
 :::
 
 ::: kompass entscheidungsvorlage
@@ -81,7 +81,7 @@ andere: [Decision Log, Entscheidungsprotokoll]
 beleg: k6.4.1-p3
 ---
 ### Hinweis
-Im Standard führt die Projektsteuerung offene Entscheidungen als eigene Vorgangsart, getrennt vom späteren Beschluss.
+Im Standard führt die Projektsteuerung offene Entscheidungen als Entscheidungsvorbereitung neben den sechs Vorgangsarten, getrennt vom späteren Beschluss.
 :::
 
 ::: kompass entscheidungsreife

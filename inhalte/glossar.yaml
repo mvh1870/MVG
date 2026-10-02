@@ -162,8 +162,8 @@ neu:
   - id: g-ruhezeit
     begriff: Ruhezeit
     definition: >-
-      Ausdrücklich vereinbarte Zeit mit geringerer Aktivität: Der offene Bestand wird monatlich geprüft, neue Hinweise
-      werden binnen fünf Arbeitstagen erfasst, und der Monatstermin findet nur bei Bedarf statt.
+      Ausdrücklich vereinbarte Zeit mit geringerer Aktivität: Der offene Bestand wird monatlich geprüft, neue, nicht
+      dringliche Hinweise werden binnen fünf Arbeitstagen erfasst, und der Monatstermin findet nur bei Bedarf statt.
     belege: [v24:hb-4]
   - id: g-dringlicher-sachverhalt
     begriff: Dringlicher Sachverhalt

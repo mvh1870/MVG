@@ -49,7 +49,7 @@ Diese Internetseite wird bei der IONOS SE gehostet. Der Hosting-Anbieter verarbe
 
 Damit Sie in der Geschichte dort weiterlesen können, wo Sie aufgehört haben, speichert die Seite Ihren Stand im lokalen Speicher Ihres Browsers (Local Storage): den Schritt der Geschichte, Ihre Entscheidungen, Ihre Gewichte und ob Sie die Kurzfassung lesen. Wer die Seite zum Präsentieren nutzt, speichert dort zusätzlich den Stand der Präsentation und die selbst eingetragenen Notizen zum Gespräch.
 
-Diese Angaben verlassen Ihr Gerät nicht und werden nicht an uns oder Dritte übertragen. Der Zugriff auf den Speicher ist für die von Ihnen gewünschte Funktion unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG). Den Stand der Geschichte entfernen Sie jederzeit mit „Fortschritt löschen“ am Fuß der Geschichte, die Notizen und den gespeicherten Stand der Präsentation mit „Protokoll löschen“ in der Präsentationsansicht (solange die Präsentation offen ist, hält der Browser nur die aktuelle Anzeige für die Leinwand, ohne Notizen); alles zusammen auch über die Einstellungen Ihres Browsers.
+Diese Angaben verlassen Ihr Gerät nicht und werden nicht an uns oder Dritte übertragen. Der Zugriff auf den Speicher ist für die von Ihnen gewünschte Funktion unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG). Den Stand der Geschichte entfernen Sie jederzeit mit „Fortschritt löschen“ am Fuß der Geschichte, die Notizen und den gespeicherten Stand der Präsentation mit „Protokoll löschen“ in der Präsentationsansicht (für die Leinwand hält der Browser außerdem die zuletzt gezeigte Anzeige, ohne Notizen; auch sie entfernt „Protokoll löschen“); alles zusammen auch über die Einstellungen Ihres Browsers.
 
 ## 6. Links zu bauherr-mentoren.com
 

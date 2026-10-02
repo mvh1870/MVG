@@ -189,9 +189,10 @@ test('Offene Entscheidungen: jede vertagte Entscheidung wird erledigt – am End
   let neufestlegungOhneC = 0;
   for (const { stand, w } of wege) {
     const ende = status(g, { ...stand, schritt: { ort: 'ende' } });
-    // offen bleibt nur die Neufestlegung: vorbereitet (s5 = C) oder nötig geworden, weil die Prognose über Basis plus Reserve liegt (R69)
+    // offen bleibt nur die Neufestlegung: vorbereitet (s5 = C) oder nötig geworden, weil die Prognose über Basis plus Reserve liegt (R69) –
+    // oder nur so knapp darunter, dass schon das Ersatzgerät (+0,08) sie wieder darüber höbe (R70: Vorlage bleibt beim Lenkungskreis)
     const s8 = status(g, stand, { ort: 'station', station: 's8', teil: 'lage' }).kosten;
-    const noetig = w['s5'] === 'B' && s8 > 58.4 + 2.9;
+    const noetig = w['s4'] === 'A' && w['s5'] === 'B' && s8 > 58.4 + 2.9 - 0.08;
     if (noetig) neufestlegungOhneC++;
     assert.equal(ende.offen, w['s5'] === 'C' || noetig ? 1 : 0, JSON.stringify(w));
     for (const x of g.stationen) assert.ok(status(g, stand, { ort: 'station', station: x.id, teil: 'lage' }).offen >= 0, `${x.id} ${JSON.stringify(w)}`);
@@ -385,7 +386,11 @@ test('Station 8: die Mehrkosten kommen aus der Reserve – Freigabe des Bauherrn
   assert.match(a?.konsequenzHtml ?? '', /Freigabe der 0,08 Mio\. €/u);
   // R69: wegneutral – die Prognose liegt auf manchen Wegen schon über Basis plus Reserve
   assert.match(s8.vorlage.grundHtml, /soweit sie reicht; darüber hinaus braucht es die Neufestlegung der Projektbasis/u);
-  for (const o of s8.vorlage.optionen) assert.doesNotMatch(`${o.html} ${o.konsequenzHtml}`, /aus der Reserve/u, `s8 ${o.id}`);
+  // R70: die Konsequenzen nennen die Reserve nur mit Vorbehalt („soweit sie reicht, sonst als Teil der Neufestlegung“)
+  for (const o of s8.vorlage.optionen) {
+    assert.doesNotMatch(`${o.html} ${o.konsequenzHtml}`.replaceAll('aus der Reserve, soweit sie reicht, sonst als Teil der Neufestlegung der Projektbasis', ''), /aus der Reserve/u, `s8 ${o.id}`);
+    assert.match(o.konsequenzHtml, /soweit sie reicht, sonst als Teil der Neufestlegung der Projektbasis/u, `s8 ${o.id}`);
+  }
 });
 
 test('Reserve-Vorbehalt als allgemeine Regel (R69): s1 nennt sie, jede Vorlage mit Mehrkosten außerhalb des Bauherrn nennt den Vorbehalt', () => {
@@ -420,7 +425,7 @@ test('Vertagte Entscheidungen stehen im nächsten Bericht: s3 = B in s4, s5 = C 
 });
 
 test('Ende nennt die Überschreitung von Basis plus Reserve genau dann, wenn der Endstand darüber liegt (R69)', () => {
-  const zeile = g.ende.zeilen.find((z) => z.wenn === 'kosten>61.3');
+  const zeile = g.ende.zeilen.find((z) => z.wenn === 'kosten>61.3 & offen>=1');
   assert.ok(zeile, 'Endzeile mit Statusbedingung');
   let teuer = neuerStand();
   for (const [s, o] of [['s3', 'C'], ['s4', 'A'], ['s6', 'K']] as const) teuer = waehle(g, teuer, s, o);

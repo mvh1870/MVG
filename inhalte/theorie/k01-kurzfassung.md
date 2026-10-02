@@ -264,7 +264,7 @@ Befähigung ist Pflichtbestandteil – der Blick auf beide Zeitpunkte zeigt, war
 
 ::: regie
 ### Notiz
-Der Überblick ist der Einstieg: die Leitthese mit der Sortierübung „Arbeit oder Legitimation?“ – den Kunden selbst zuordnen lassen –, dann die fünf Managementaussagen als Karten und die Kette der Entscheidungssicherheit. Im Termin tragen die Leitthese und die Karte „Projektsteuerung“: Sie bearbeitet alles und bereitet jede erforderliche Entscheidung vor, entscheidet aber nie selbst; das ist keine Kritik an der Projektsteuerung des Kunden. Das Ergebnisbild nur anreißen, die Objekte kommen im Thema „Ergebnisbild“.
+Der Überblick ist der Einstieg: die Leitthese mit der Sortierübung „Arbeit oder Legitimation?“ – den Kunden selbst zuordnen lassen –, dann die fünf Managementaussagen als Karten und die Kette der Entscheidungssicherheit. Im Termin tragen die Leitthese und die Karte „Projektsteuerung“: Sie bearbeitet alle Vorgänge und bereitet jede erforderliche Entscheidung vor; die Entscheidung des Bauherrn trifft sie nicht; das ist keine Kritik an der Projektsteuerung des Kunden. Das Ergebnisbild nur anreißen, die Objekte kommen im Thema „Ergebnisbild“.
 
 ### Leitfragen
 - Welche Entscheidungen in Ihrem Projekt können Sie nicht abgeben – und wo ist das festgehalten?

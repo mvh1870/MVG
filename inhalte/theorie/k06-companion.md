@@ -399,7 +399,7 @@ seite: rechts
 Ein Gerüstfeld an der Sporthalle ist nicht gesichert.
 
 ### Erklärung
-Eingetreten, also ein Problem.
+Eingetreten, also ein Problem – und dringlich: Die Projektsteuerung meldet es sofort und dokumentiert es noch am selben Arbeitstag, sobald die unmittelbare Reaktion gesichert ist.
 :::
 
 ::: posten 4
@@ -415,7 +415,7 @@ Angekündigt, aber nicht eingetreten – ein Risiko mit Bandbreite.
 
 ::: karten
 ---
-titel: Vorgangsarten und ihr nächster Schritt
+titel: Vorgangsarten, Entscheidungsvorbereitung, Freigabe und Monatsbericht – der jeweils nächste Schritt
 ---
 ::: karte aufgabe
 ---

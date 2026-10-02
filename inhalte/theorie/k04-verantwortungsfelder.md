@@ -33,7 +33,7 @@ Die sechs Felder sind keine juristische Vollständigkeitsliste. Sie sind eine Ar
 
 Jedes Feld hat denselben Aufbau. Es gibt einen **nichtdelegierbaren Kern** – das, was nur der Bauherr festlegen, annehmen oder freigeben kann. Daneben steht die **delegierbare Vorbereitung**: Analysen, Varianten, Vorlagen, Register und Protokolle, die andere Beteiligte erarbeiten können. Und es gibt eine **typische Fehlstelle**, an der es in diesem Feld hakt, und die Antwort, die [[Minimum Viable Governance (MVG)]] darauf gibt.
 
-Die Tafel zeigt alle sechs Felder nebeneinander. [[bedienung:Mit der Übung darunter können Sie prüfen, ob Sie Kern und Vorbereitung auseinanderhalten: Wohin gehört die jeweilige Tätigkeit?]]
+Die Tafel zeigt alle sechs Felder auf einen Blick. [[bedienung:Mit der Übung darunter können Sie prüfen, ob Sie Kern und Vorbereitung auseinanderhalten: Wohin gehört die jeweilige Tätigkeit?]]
 
 ::: tafel k4-t1
 ---
@@ -221,7 +221,7 @@ Darüber beschließt der Bauherr im Lenkungskreis.
 Eine Änderung hat einen Wert von 250 TEUR – wer entscheidet nach der Muster-Mandatsleiter?
 
 ### Erklärung
-Nach dem Muster gibt die Bauherren-PL bis einschließlich 100 TEUR eigenständig frei; oberhalb von 100 TEUR bis einschließlich 5 Mio. € entscheidet das Änderungsgremium; darüber beschließt der Bauherr im Lenkungskreis.
+Nach dem Muster gibt die Bauherren-PL bis einschließlich 100 TEUR eigenständig frei; oberhalb von 100 TEUR bis einschließlich 5 Mio. € entscheidet das Änderungsgremium; darüber beschließt der Bauherr im Lenkungskreis. Gehen die Mehrkosten zulasten der Risikoreserve, gibt deren Einsatz der Bauherr frei – auch wenn in der Sache eine andere Stelle entscheidet.
 
 ::: antwort a
 ---

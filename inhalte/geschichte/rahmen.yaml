@@ -26,7 +26,14 @@ ende:
   puffer-gut: Der Schulstart zum Schuljahr 2028/29 ist gehalten – die Schulleitung bekommt die Schlüssel.
   puffer-knapp: Der Schulstart ist gehalten, mit kaum noch Puffer – die Schulleitung bekommt die Schlüssel.
   puffer-schlecht: Die Inbetriebnahme zum Schuljahr 2028/29 ist nicht zu halten; die Förderfrist ist gefährdet.
-  # R69: auf den Wegen, auf denen die Prognose am Ende über Basis plus Reserve liegt, sagt es das Ende
+  # R69: auf den Wegen, auf denen die Prognose am Ende über Basis plus Reserve liegt, sagt es das Ende.
+  # R70: Offen kann am Ende nur die Neufestlegung der Projektbasis sein (höchstens 1, tests/geschichte-reserve.test.ts) – das Ende nennt sie.
+  # Über 61,3 ohne offene Entscheidung endet nur der Weg s3 = C, s4 = B, s5 = B, s6 = K, s7 = A, s8 = A (61,31): erst das Ersatzgerät hebt
+  # die Prognose über die Grenze; eine Vorlage zur Neufestlegung liegt dort noch nicht vor. Die drei Zeilen schließen einander aus.
   zeilen:
-    - wenn: kosten>61.3
-      text: Die Prognose liegt über Basis plus Reserve (61,3 Mio. €) – was darüber hinausgeht, deckt nur eine Neufestlegung der Projektbasis durch den Bauherrn.
+    - wenn: kosten>61.3 & offen>=1
+      text: Die Prognose liegt über Basis plus Reserve (61,3 Mio. €) – was darüber hinausgeht, deckt nur die Neufestlegung der Projektbasis. Sie ist die offene Entscheidung – die Vorlage liegt beim Lenkungskreis, der Beschluss des Bauherrn steht noch aus.
+    - wenn: kosten<=61.3 & offen>=1
+      text: Offen bleibt die Neufestlegung der Projektbasis – die Vorlage liegt beim Lenkungskreis, der Beschluss des Bauherrn steht noch aus.
+    - wenn: kosten>61.3 & offen<1
+      text: Mit dem Ersatzgerät liegt die Prognose knapp über Basis plus Reserve (61,3 Mio. €). Was darüber hinausgeht, deckt die Reserve nicht; dafür bereitet die Projektsteuerung eine Neufestlegung der Projektbasis vor.

@@ -159,7 +159,9 @@ button.gs-punkt-schritt:hover::before { background: var(--gold-hell); }
 .gs-vorgang-daten div { display: flex; gap: var(--a-1); }
 .gs-vorgang-daten dt { color: var(--tinte-2); }
 .gs-vorgang-daten dt::after { content: ":"; }
-.gs-vorgang-daten dd { margin: 0; }
+.gs-vorgang-daten dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.gs-vorgang, .gs-vorgang-kopf, .gs-vorgang-daten div { min-width: 0; }
+.gs-vorgang-kopf > * { min-width: 0; overflow-wrap: anywhere; }
 .gs-vorgang .id-marke {
   font: var(--typo-mono);
   font-weight: 600;
@@ -313,4 +315,11 @@ button.gs-option:active { transform: translateY(2px); box-shadow: var(--schatten
 @media (prefers-reduced-motion: reduce) {
   .gs-schritt.ist-neu { animation: none; }
   .gs-option { transition: none; }
+}
+
+/* R70: niedrige Fenster (z. B. 200 % Zoom) – die obere Leiste klebt nicht, das Polster unten wird kleiner */
+@media (max-height: 480px) {
+  .gs-leiste { position: static; }
+  html:has(.seite-story) { scroll-padding-top: 0; }
+  .gs-unten { padding-top: var(--a-2); background: linear-gradient(transparent, var(--grund) 30%); }
 }

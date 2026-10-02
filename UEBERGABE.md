@@ -3,10 +3,10 @@
 Kopf ≤ 100 Zeilen. Oben JETZT (überschreiben), darunter FRÜHER (anhängen, knapp).
 
 ## JETZT
-- **Stand 2026-10-02 (Block, Nachmittag UTC): P16.15 Prüfrunden laufen.** P16.1–P16.14 erledigt. Runden der Neuausrichtung (neun Prüffelder je Runde aus `docs/pruefrunde.workflow.js` über `werkzeuge/pruefrunde-auftraege.mjs`, Ergebnisse in `tmp/r<n>-ergebnisse/`): R67 (7a9aea3) 2 schwer / 29 mittel / 54 leicht – eingearbeitet (L-205–L-209); R68 (bf8db0f) 4 schwer (k10 Stadtrat, s1 Zielpriorität, Gegenprobe rechnet falsch, Tastaturfalle) / 21 mittel – eingearbeitet bzw. in Arbeit (L-210–L-213); R69 (e174322) bisher 1 schwer (s8 Bericht meldet offene Neufestlegung, Status zählt sie nicht) – in Arbeit. O-35-Zähler: 0 Runden ohne schweren Befund in Folge.
-- **Prüfung P16.15:** Befunde je Runde in `docs/ABNAHME-MITTEL.md`; alle schweren und mittleren eingearbeitet oder mit L-Eintrag entschieden.
-- **Als Nächstes:** R69 fertig einarbeiten, Kette grün, committen; Runde 70 und 71 – zwei hintereinander ohne schweren Befund; dann P16.16 (CI lesen, Merge nach `main`, Push-Nachricht, Ampel rot „fertig“).
-- Rechner: Node 22.22, Chromium 141 unter `/opt/pw-browsers/chromium`. Kette ≈ 70–100 s. CI (GitHub-Aktion) bis Lauf 283 grün gelesen.
+- **Stand 2026-10-02 17:05 UTC: P16.15 Prüfrunden laufen.** P16.1–P16.14 erledigt. Runden der Neuausrichtung (neun Prüffelder je Runde aus `docs/pruefrunde.workflow.js` über `werkzeuge/pruefrunde-auftraege.mjs`, Ergebnisse in `tmp/r<n>-ergebnisse/`): R67 (7a9aea3) 2/29/54 – L-205–L-209; R68 (bf8db0f) 4/21/25 – L-210–L-212, L-214; R69 (e174322) 2/13/28 – L-213–L-217; **R70 (68cc561) 0 schwer / 8 mittel / 20 leicht – eingearbeitet (L-218–L-220).** O-35-Zähler: 1 Runde ohne schweren Befund.
+- **Prüfung P16.15 R70:** 28 Befunde, 27 behoben, 1 bewusst gelassen (k14-Tafel bei 320 px mit WCAG-1.4.12-Abständen, L-219); alle Gegenproben rot. Tabelle in `docs/ABNAHME-MITTEL.md`.
+- **Als Nächstes:** Runde 71 auf dem R70-Commit; ohne schweren Befund ist P16.15 fertig (offene mittlere nach ABNAHME-MITTEL „Offen beim Abschluss“), dann P16.16 (CI lesen, Merge nach `main`, Push-Nachricht, Ampel rot „fertig“). Mit schwerem Befund: einarbeiten, R72 usw.
+- Rechner: Node 22.22, Chromium 141 unter `/opt/pw-browsers/chromium`. Kette ≈ 60–100 s. CI (GitHub-Aktion) bis Lauf 283 grün gelesen.
 
 ## FRÜHER
 - 2026-10-02 (11:03–13:20 UTC): Neuausrichtung P16 (O-36 bis O-50): neuer Plan; Umschalten auf neue Story, Themen, Explore, Regie (L-184 bis L-191); Theorie an V2.4, Impressum, Datenschutz, Webseitenordner (L-192 bis L-195).

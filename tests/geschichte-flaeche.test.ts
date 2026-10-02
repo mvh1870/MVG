@@ -18,7 +18,7 @@ after(() => dom.window.close());
 
 const { inhalte } = await import('../src/inhalte/index.ts');
 const { baueSchritt, erzeugeGeschichte, statusLeiste } = await import('../src/ui/flaechen/geschichte.ts');
-const { empfohlen, geheZu, gilt, neuerStand, pufferUrteil, status, waehle } = await import('../src/geschichte/engine.ts');
+const { empfohlen, geheZu, gewichte, gilt, neuerStand, pufferUrteil, status, waehle } = await import('../src/geschichte/engine.ts');
 const { kipppunkte, rangfolge } = await import('../src/geschichte/mcda.ts');
 const { inhaltInline } = await import('../src/ui/bausteine/inhalt.ts');
 const { W } = await import('../src/ui/woerter.ts');
@@ -381,4 +381,109 @@ test('Lage (R69): der Titel des Monatsberichts bricht nicht vor „·“ (gesch�
   const titel = ohneBedienung(geschichte, an(neuerStand(), st.id, 'lage')).querySelector('.gs-bericht-titel')?.textContent ?? '';
   assert.ok(titel.includes(' · '), `geschütztes Leerzeichen vor „·“: ${JSON.stringify(titel)}`);
   assert.ok(!titel.includes(' · '), 'kein gewöhnliches Leerzeichen vor „·“');
+});
+
+/* ------------------------------------------------------------------ R70 -- */
+
+test('Ende (R70): die Endzeilen erscheinen genau auf ihren Wegen – je eine, und ohne Grenze und Offenes keine', () => {
+  const ids = geschichte.stationen.map((st) => st.id);
+  /** Wahlen s1–s8 als Buchstabenfolge; Endzeile als Index in ende.zeilen (null = keine). Gerechnet über alle Wege (R70). */
+  const wege: Array<[string, number | null, (s: { kosten: number; offen: number }) => boolean]> = [
+    ['AAAABAAA', 0, (s) => s.kosten > 61.3 && s.offen >= 1],
+    ['AAAABABB', 1, (s) => s.kosten <= 61.3 && s.offen >= 1],
+    ['AACBBKAA', 2, (s) => s.kosten > 61.3 && s.offen < 1],
+    ['AAAAAAAA', null, (s) => s.kosten <= 61.3 && s.offen < 1],
+  ];
+  assert.equal(geschichte.ende.zeilen.length, 3);
+  for (const [weg, zeile, lage] of wege) {
+    const wahlen = Object.fromEntries([...weg].map((x, i) => [ids[i], x]));
+    const stand: Stand = { ...neuerStand(), wahlen, schritt: { ort: 'ende' } };
+    const s = status(geschichte, stand, { ort: 'ende' });
+    assert.ok(lage(s), `${weg}: Kosten ${s.kosten}, offen ${s.offen} passen nicht zur erwarteten Zeile`);
+    const el = ohneBedienung(geschichte, stand);
+    const texte = [...el.querySelectorAll('[data-pruef="gs-ende-zeile"]')].map((p) => p.textContent);
+    const soll = zeile === null ? [] : [h1(geschichte.ende.zeilen[zeile]?.html ?? '')];
+    assert.deepEqual(texte, soll, `${weg} (Kosten ${s.kosten}, offen ${s.offen})`);
+  }
+});
+
+/** Story-Fläche auf der Vorlage einer Station, mit Helfern für die Gegenprobe. */
+function aufVorlage(id: string) {
+  const f = erzeugeGeschichte({ g: geschichte, speicher: null, themaTitel: () => null });
+  document.body.replaceChildren(f.element);
+  f.zuStation(id);
+  f.element.querySelector<HTMLButtonElement>('[data-pruef="weiter"]')?.click();
+  assert.deepEqual(f.stand().schritt, { ort: 'station', station: id, teil: 'vorlage' });
+  const st = station(id);
+  const spalte = (): number[] => [...f.element.querySelectorAll('[data-pruef="gs-vergleich"] tbody td.gs-zahl-spalte')].map((td) => Number(td.textContent));
+  const summen = (): string[] => [...f.element.querySelectorAll<HTMLElement>('[data-pruef="gs-vergleich"] [data-pruef^="summe-"]')].map((td) => `${td.dataset['pruef']?.slice(6)}:${td.querySelector('b')?.textContent}`);
+  const regler = (k: string): HTMLInputElement => {
+    const r = f.element.querySelector<HTMLInputElement>(`[data-pruef="gs-gegenprobe"] input[data-kriterium="${k}"]`);
+    assert.ok(r, k);
+    return r;
+  };
+  const stelle = (k: string, wert: number): void => {
+    const r = regler(k);
+    r.value = String(wert);
+    r.dispatchEvent(new Event('input', { bubbles: true }));
+  };
+  const zurueck = (): HTMLButtonElement => {
+    const b = f.element.querySelector<HTMLButtonElement>('[data-pruef="gegenprobe-zurueck"]');
+    assert.ok(b, 'Knopf „zurücksetzen“');
+    return b;
+  };
+  const offen = (): boolean => f.element.querySelector('[data-pruef="gs-gegenprobe"]')?.hasAttribute('open') ?? false;
+  return { f, st, spalte, summen, regler, stelle, zurueck, offen };
+}
+
+test('Gegenprobe (R70): „zurücksetzen“ zeigt wieder die geltenden Gewichte – Gewichtsspalte, Summen, Kipppunkte und Regler', () => {
+  const { f, st, spalte, summen, regler, stelle, zurueck } = aufVorlage('s3');
+  const gew = gewichte(geschichte, f.stand());
+  const soll = geschichte.kriterien.map((k) => gew[k.id]);
+  const sollSummen = rangfolge(st.vorlage.optionen, geschichte.kriterien, gew).map((p) => `${p.option.id}:${p.summe}`);
+  const kipp = (): string[] => [...f.element.querySelectorAll('[data-pruef="gs-kipp"] li')].map((li) => li.textContent ?? '');
+  const sollKipp = kipp();
+  assert.deepEqual(spalte(), soll);
+  assert.deepEqual(summen(), sollSummen);
+  stelle('kosten', gew['kosten'] === 5 ? 1 : 5);
+  stelle('termin', gew['termin'] === 1 ? 5 : 1);
+  assert.notDeepEqual(spalte(), soll, 'die Gegenprobe verschiebt die Gewichtsspalte');
+  assert.notDeepEqual(summen(), sollSummen, 'die Gegenprobe verschiebt die Summen');
+  zurueck().click();
+  assert.deepEqual(spalte(), soll, 'Gewichtsspalte nach „zurücksetzen“');
+  assert.deepEqual(summen(), sollSummen, 'Summen nach „zurücksetzen“');
+  assert.deepEqual(kipp(), sollKipp, 'Kipppunkte nach „zurücksetzen“');
+  assert.deepEqual(geschichte.kriterien.map((k) => Number(regler(k.id).value)), soll, 'Regler nach „zurücksetzen“');
+  // und von dort aus rechnet die nächste Gegenprobe wieder mit den geltenden Gewichten
+  stelle('qualitaet', gew['qualitaet'] === 5 ? 4 : 5);
+  assert.deepEqual(spalte(), geschichte.kriterien.map((k) => (k.id === 'qualitaet' ? (gew['qualitaet'] === 5 ? 4 : 5) : gew[k.id])));
+});
+
+test('Tastatur (R70): nach „zurücksetzen“ bleibt die Gegenprobe offen, der Fokus auf dem Knopf, Pfeil rechts blättert nicht', () => {
+  const { f, st, stelle, zurueck, offen } = aufVorlage('s3');
+  // mit gewählter Option: Pfeil rechts ginge sonst zur Folge
+  const opt = st.vorlage.optionen.find((o) => !o.klaerung);
+  assert.ok(opt);
+  f.element.querySelector<HTMLButtonElement>(`[data-pruef="option-${opt.id}"]`)?.click();
+  // aufklappen wie mit dem summary, dann einen Regler verschieben
+  const details = f.element.querySelector<HTMLDetailsElement>('[data-pruef="gs-gegenprobe"]');
+  assert.ok(details);
+  details.open = true;
+  stelle('kosten', 5);
+  assert.equal(offen(), true);
+  zurueck().focus();
+  zurueck().click();
+  assert.equal(offen(), true, 'Gegenprobe bleibt nach „zurücksetzen“ offen');
+  assert.notEqual(document.activeElement, document.body, 'Fokus fällt nicht auf <body>');
+  assert.equal(document.activeElement, zurueck(), 'Fokus bleibt auf dem Knopf');
+  const schritt = f.stand().schritt;
+  const e = new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true, cancelable: true });
+  zurueck().dispatchEvent(e);
+  assert.equal(f.taste(e), false, 'Pfeil am Knopf der Gegenprobe blättert nicht');
+  assert.deepEqual(f.stand().schritt, schritt);
+  // ein Schrittwechsel klappt sie wieder zu
+  f.element.querySelector<HTMLButtonElement>('[data-pruef="zurueck"]')?.click();
+  f.element.querySelector<HTMLButtonElement>('[data-pruef="weiter"]')?.click();
+  assert.deepEqual(f.stand().schritt, schritt);
+  assert.equal(offen(), false, 'nach dem Schrittwechsel wieder zu');
 });

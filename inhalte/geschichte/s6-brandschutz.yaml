@@ -9,7 +9,7 @@ kurzfassung: false
 # Gutachten beauftragt der Auftraggeber gesondert (v24:hb-3). Bei K bleiben die 0,4 Mio. € der Auflage in der Prognose,
 # weil sie der einzige zulässige Weg ist; s7 berichtet, dass die Behörde die Alternative abgelehnt hat.
 # Bei s3 = A: Elementzuschlag im Juli 2026, die 0,6 Mio. € Marktpreise gibt der Bauherr aus der Reserve frei (k3.2-t1; nicht delegierbar).
-belege: [v24:hb-1.4, v24:hb-1.5, v24:hb-3.1, v24:hb-3, k4.2-p3, k3.2-t1]
+belege: [v24:hb-1.4, v24:hb-1.5, v24:hb-3.1, v24:hb-3, k4.2-p3, k3.2-t1, k13-t1]
 lage: |
   Im Juni kommt die Baugenehmigung – mit Auflagen zum Holzbau. Die Behörde verlangt eine zusätzliche Kapselung der Holzbauteile in den Fluren. Die Generalplanung schätzt rund 0,4 Mio. € und eine Woche Umplanung.
 
@@ -28,6 +28,12 @@ bericht:
       wenn: s3=C
     - text: Neufestlegung der Projektbasis – die Vorlage liegt vor; der Bauherr hat den Beschluss im Lenkungskreis zurückgestellt, bis die Hauptvergaben abgeschlossen sind. Es gilt die bisherige Basis, Mehrkosten laufen über die vorgesehene Reserve; die Entscheidung bleibt offen.
       wenn: s5=C
+    # Grenze Basis plus Reserve (R70): Lage höchstens 60,98; die Auflage (+0,4) bzw. Auflage mit Gutachten (+0,43) höbe die Prognose
+    # über 61,3 genau bei Lage > 60,9 bzw. > 60,87 (s4 = A, s5 != A und s3 = C bzw. s3 = A) – nachgerechnet, tests/geschichte-reserve.test.ts.
+    - text: Achtung – mit der Auflage (+0,4 Mio. €) läge die Prognose über Basis plus Reserve (61,3 Mio. €). Was darüber hinausgeht, deckt die Reserve nicht; dafür braucht es die Neufestlegung der Projektbasis.
+      wenn: kosten>60.9
+    - text: Achtung – mit der Auflage (+0,4 Mio. €) bliebe die Prognose knapp unter Basis plus Reserve (61,3 Mio. €); kommt das Gutachten dazu (+0,03 Mio. €), läge sie darüber. Was darüber hinausgeht, deckt die Reserve nicht; dafür braucht es die Neufestlegung der Projektbasis.
+      wenn: kosten>60.87 & kosten<=60.9
     - text: Terminpuffer überschritten – die Inbetriebnahme zum Schuljahr 2028/29 ist nach heutigem Stand gefährdet, damit auch die Förderfrist.
       wenn: puffer<0
   reaktion: Was empfehlen Sie dem Änderungsgremium – die Auflage jetzt umsetzen oder die Klärung abwarten?
@@ -51,7 +57,7 @@ vorlage:
   unvollstaendig: Die Brandschutzplanung hält eine alternative Nachweisführung mit einem Gutachten für möglich. Ob die Behörde sie annimmt, ist offen – solange ist sie keine zulässige Option. Die Projektsteuerung baut deshalb keine zweite Option zum Schein, sondern legt den Klärungsbedarf offen – Anfrage an die Behörde, Antwort in rund zwei Wochen.
   frage: Wird die Auflage jetzt umgesetzt?
   grund: |
-    Die Kosten liegen über 100 TEUR – es entscheidet das Änderungsgremium. Zulässig ist im Moment nur ein Weg. Die Alternative braucht eine Antwort der Behörde.
+    Die Kosten liegen über 100 TEUR – es entscheidet das Änderungsgremium. Zulässig ist im Moment nur ein Weg. Die Alternative braucht eine Antwort der Behörde. Mehrkosten gehen zulasten der Risikoreserve, soweit sie reicht; darüber hinaus braucht es die Neufestlegung der Projektbasis durch den Bauherrn.
   stelle: Änderungsgremium – Vorsitz Frank Deppe; Mehrkosten aus der Reserve gibt der Bauherr frei
   termin: 24. Juli 2026
   verzug: Jede Woche Warten verschiebt den Abschluss der Flurplanung.

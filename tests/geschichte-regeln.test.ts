@@ -121,3 +121,18 @@ test('kipppunkte() (R69): s3 mit {kosten 2, termin 1, qualität 1, klima 1} – 
   assert.deepEqual(spitze(v.optionen, g.kriterien, { ...gew, kosten: 1 }), ['A']);
   assert.deepEqual(spitze(v.optionen, g.kriterien, { ...gew, kosten: 3 }), ['B']);
 });
+
+test('kipppunkte() (R70): s4 mit den Gewichten der Variante B aus Station 1 – Kipppunkt am oberen Rand (Gewicht 5)', () => {
+  const b = st('s1').vorlage.optionen.find((o) => o.id === 'B');
+  assert.ok(b && b.gewichte, 'Variante B mit Gewichten');
+  const gew = b.gewichte;
+  assert.deepEqual(gew, { kosten: 5, termin: 3, qualitaet: 3, klima: 2 });
+  const v = st('s4').vorlage;
+  assert.deepEqual(spitze(v.optionen, g.kriterien, gew), ['C']);
+  // Qualität 4 ändert noch nichts, erst 5 bringt B und C gleichauf – die obere Grenze zählt mit
+  assert.deepEqual(spitze(v.optionen, g.kriterien, { ...gew, qualitaet: 4 }), ['C']);
+  assert.deepEqual(kipppunkte(v.optionen, g.kriterien, gew), [
+    { kriterium: 'kosten', gewicht: 3, spitze: ['B', 'C'] },
+    { kriterium: 'qualitaet', gewicht: 5, spitze: ['B', 'C'] },
+  ]);
+});

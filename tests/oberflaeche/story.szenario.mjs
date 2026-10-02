@@ -128,6 +128,28 @@ export async function lauf(seite, h) {
     await seite.setViewportSize(vp); await h.warte(100);
   }
   await h.klick('[data-pruef="option-B"]');
+  // R70 (WCAG 2.4.3): „zurücksetzen“ per Tastatur – Vergleich wieder mit den geltenden Gewichten, der Fokus bleibt auf
+  // dem Knopf (nicht <body>), die Gegenprobe bleibt offen, Pfeil rechts blättert dort nicht
+  {
+    if (!(await seite.locator('[data-pruef="gs-gegenprobe"]').evaluate((d) => /** @type {HTMLDetailsElement} */ (d).open))) await h.klick('[data-pruef="gs-gegenprobe"] summary');
+    await seite.locator('[data-pruef="gegenprobe"] input[data-kriterium="termin"]').fill('1');
+    await h.warte(100);
+    await seite.locator('[data-pruef="gegenprobe-zurueck"]').focus();
+    await h.taste('Enter');
+    await h.warte(100);
+    const r = await seite.evaluate(() => ({
+      fokus: document.activeElement === document.body ? 'BODY' : document.activeElement?.getAttribute('data-pruef') ?? document.activeElement?.tagName ?? '',
+      offen: /** @type {HTMLDetailsElement | null} */ (document.querySelector('[data-pruef="gs-gegenprobe"]'))?.open ?? false,
+      a: document.querySelector('[data-pruef="summe-A"]')?.textContent?.trim() ?? '',
+    }));
+    if (r.fokus !== 'gegenprobe-zurueck') h.befund(`S3 Gegenprobe zurücksetzen: Fokus auf ${r.fokus}, erwartet der Knopf`);
+    if (!r.offen) h.befund('S3 Gegenprobe zurücksetzen: Gegenprobe zugeklappt');
+    if (!r.a.startsWith('54')) h.befund(`S3 Gegenprobe zurücksetzen: Summe A ${r.a}, erwartet wieder 54`);
+    await h.taste('ArrowRight');
+    await h.warte(150);
+    const teil = await seite.evaluate(() => document.body.dataset['teil'] ?? '');
+    if (teil !== 'vorlage') h.befund(`S3 Gegenprobe zurücksetzen: Pfeil rechts am Knopf hat geblättert (Teil ${teil})`);
+  }
   await weiter();
   const puffer = await seite.locator('[data-pruef="gs-status"] [data-status="puffer"] dd').innerText();
   if (!/7\sTage/u.test(puffer)) h.befund(`S3 Folge: Puffer „${puffer}“, erwartet 7 Tage`);

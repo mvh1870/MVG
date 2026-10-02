@@ -1,0 +1,112 @@
+# Explore-Werkzeuge (P16.8, O-46). Belege intern, nie sichtbar (O-38). Beispielprojekt: Schulcampus Lindenhall-Süd (O-50).
+einleitung: |
+  Fünf Werkzeuge zum Ausprobieren – alle am fiktiven Schulcampus Lindenhall-Süd. Nichts wird gesendet; was Sie einstellen, bleibt in diesem Browser.
+mcda:
+  titel: MCDA-Rechner
+  kurz: Optionen gewichtet vergleichen und sehen, wann sich die Rangfolge dreht.
+  belege: [v24:hb-3.1, v24:hb-3.2]
+  text: |
+    Die Projektsteuerung vergleicht mindestens zwei zulässige Optionen anhand derselben gewichteten Kriterien. Gewichte und Punkte liegen je zwischen 1 und 5; Gewicht mal Punkt ergibt je Kriterium ein Produkt, die Summe die Gesamtpunktzahl. Kriterien und Gewichte werden vor der Bewertung mit dem Bauherrn abgestimmt.
+  hinweis: |
+    Eine hohe Punktzahl ersetzt kein fachliches Urteil. Zwingende Anforderungen an Sicherheit, Genehmigung und Funktion werden vor dem Vergleich geprüft – eine unzulässige Option gewinnt nicht durch Punkte.
+matrix:
+  titel: Risikomatrix 5×5
+  kurz: Wahrscheinlichkeit mal Auswirkung – und was daraus für die Bearbeitung folgt.
+  belege: [v24:hb-2, v24:hb-3]
+  text: |
+    Die Matrix gilt nur für Risiken. Wahrscheinlichkeit 1 bis 5 mal die höchste belegte Auswirkung 1 bis 5 ergibt die Bearbeitungspriorität. Die Einzelbewertungen für Kosten, Termine und Qualität bleiben daneben sichtbar.
+  stufen:
+    - { id: beobachten, titel: Beobachten, von: 1, bis: 4, text: "Verantwortliche Person, nächster Prüftermin und die Veränderungen, die eine neue Bewertung auslösen, werden benannt." }
+    - { id: gezielt, titel: Gezielt bearbeiten, von: 5, bis: 9, text: "Die Projektsteuerung schlägt eine Maßnahme vor, klärt Verantwortung und Termin und verfolgt die Umsetzung." }
+    - { id: vorrangig, titel: Vorrangig bearbeiten, von: 10, bis: 25, text: "Die Projektsteuerung holt die fachliche Einschätzung ein, informiert den Bauherrn und bereitet notwendige Handlungen oder Entscheidungen rechtzeitig vor." }
+  regel: Auswirkung 5 ist immer vorrangig. Die Punkte sind keine Geldwerte und keine Freigabe.
+  sonder: Fragen zur Sicherheit oder Genehmigung, fehlende Befugnisse und der drohende Verlust einer Handlungsoption werden unabhängig von der Matrix behandelt.
+  wahrscheinlichkeit: [sehr gering, gering, mittel, hoch, sehr hoch]
+  qualitaet:
+    - Eine geringe Abweichung schränkt die Nutzung nicht ein.
+    - Nacharbeit ist erforderlich; die vorgesehene Nutzung bleibt möglich.
+    - Die Nutzung ist vorübergehend eingeschränkt.
+    - Eine wichtige Teilfunktion bleibt erheblich eingeschränkt.
+    - Eine wesentliche Funktion oder die vorgesehene Hauptnutzung fällt aus.
+  beispiele:
+    - { kennung: RIS-005, titel: Baupreissteigerung Holzbau, w: 3, a: 3 }
+    - { kennung: RIS-009, titel: Lieferzeit Holzbauelemente, w: 4, a: 4 }
+    - { kennung: RIS-014, titel: Nachtrag der Haustechnikplanung, w: 3, a: 3 }
+    - { kennung: RIS-021, titel: Kampfmittelverdacht im Baufeld der Sporthalle, w: 1, a: 5 }
+    - { kennung: RIS-022, titel: Verzögerte Möbellieferung Mensa, w: 2, a: 2 }
+vorgaenge:
+  titel: Vorgangsarten und Wege
+  kurz: Sechs Arten von Vorgängen – und wohin ein Vorgang als Nächstes führt.
+  belege: [v24:hb-1, v24:hb-1.1, v24:hb-1.2, v24:hb-1.3, v24:hb-1.4, v24:hb-1.5, v24:hb-1.6, v24:hb-5]
+  text: |
+    Die Projektsteuerung erfasst und bearbeitet alle Vorgänge; der Bauherr pflegt keine Liste. Nicht jeder Hinweis wird zum Risiko, und nicht jeder Vorgang durchläuft alle Arten. Zusammengehörige Einträge werden verknüpft – die Herkunft geht nicht verloren.
+  arten:
+    - id: aufgabe
+      titel: Aufgabe
+      text: Geplante Arbeit mit vereinbartem Ergebnis, verantwortlicher Person und Termin.
+      beispiel: AUF-001 – Haushaltsansatz 2027 für die Kämmerei bis Freitag.
+      abschluss: Das vereinbarte Ergebnis liegt vor und ist verwendbar.
+      wege: [risiko, problem, entscheidung]
+    - id: fruehwarnung
+      titel: Frühwarnung
+      text: Ein Hinweis ist noch nicht ausreichend geklärt. Quelle sichern, Prüffrage und Wiedervorlage festlegen.
+      beispiel: FRW-002 – der Holzbauer meldet längere Lieferzeiten für Brettsperrholz.
+      abschluss: Ein Klärungsergebnis liegt vor – oder der Hinweis wird mit Begründung geschlossen.
+      wege: [risiko, problem, aufgabe]
+    - id: risiko
+      titel: Risiko
+      text: Ein mögliches nachteiliges Ereignis kann Projektziele beeinträchtigen. Bewerten, Gegenmaßnahmen verfolgen, verbleibende Unsicherheit sichtbar halten.
+      beispiel: RIS-009 – Lieferzeit der Holzbauelemente gefährdet den Rohbautermin.
+      abschluss: Das Ereignis ist eingetreten (weiter als Problem), die Eintrittsmöglichkeit ist entfallen oder die Wirkung ist nachweisbar beseitigt.
+      wege: [massnahme, problem, entscheidung]
+    - id: problem
+      titel: Problem
+      text: Ein nachteiliger Zustand ist bereits eingetreten. Folgen klären, Lösung organisieren, Ergebnis nachweisen – eine Wahrscheinlichkeit gibt es nicht mehr.
+      beispiel: PRB-002 – Brandschutzauflagen zum Holzbau aus der Baugenehmigung.
+      abschluss: Die vereinbarte Lösung ist umgesetzt und fachlich bestätigt; offene Folgen bleiben sichtbar.
+      wege: [massnahme, aenderung, entscheidung]
+    - id: aenderung
+      titel: Änderung
+      text: Eine geltende Vorgabe soll bewusst angepasst werden. Ausgangsstand und Auswirkungen vergleichen; bis zur Freigabe gilt die bisherige Grundlage.
+      beispiel: AEN-012 – die Schulleitung wünscht eine größere Mensa.
+      abschluss: Der beschlossene neue Stand ist umgesetzt; abgelehnte Anträge bleiben mit Begründung nachvollziehbar.
+      wege: [entscheidung, massnahme]
+    - id: massnahme
+      titel: Maßnahme
+      text: Gezielte Handlung, um einen Zustand zu klären, zu verbessern oder einen Beschluss umzusetzen. Umgesetzt und wirksam sind nicht dasselbe.
+      beispiel: MAS-007 – vorgezogene Vergabe der Holzbauelemente.
+      abschluss: Umsetzung und Wirkung sind nachgewiesen.
+      wege: [aufgabe, entscheidung]
+  entscheidung:
+    titel: Entscheidung vorbereiten
+    text: Mindestens zwei zulässige Optionen, gewichteter Vergleich, Empfehlung und Entscheidungstermin. Der Beschluss bleibt davon getrennt – er liegt beim Bauherrn.
+takt:
+  titel: Takt
+  kurz: Was jede Woche, jeden Monat und sofort geschieht.
+  belege: [v24:hb-4]
+  text: |
+    Der Takt gilt in aktiven Zeiten von Planung und Ausführung. Die regelmäßige Prüfung ersetzt keine dringliche Meldung.
+  stufen:
+    - id: sofort
+      titel: Sofort
+      wer: Projektsteuerung
+      text: Dringliches wird sofort über den vereinbarten Meldeweg gemeldet und noch am selben Arbeitstag dokumentiert, sobald die unmittelbare Reaktion gesichert ist.
+      beispiel: Ein nicht gesichertes Gerüstfeld an der Sporthalle – gemeldet, gesperrt, am selben Tag dokumentiert.
+    - id: woche
+      titel: Jede Woche
+      wer: Projektsteuerung
+      text: Alle offenen Vorgänge kurz prüfen – neue Informationen, fehlende Rückmeldungen, überfällige Ergebnisse, Wirkung von Maßnahmen, ausstehende Freigaben. Nur Verändertes wird vertieft; ein Prüfvermerk mit Datum dokumentiert den Durchgang.
+      beispiel: Montag – 46 offene Vorgänge durchgesehen, drei verändert, eine Frühwarnung neu.
+    - id: monat
+      titel: Jeden Monat
+      wer: Bauherr und Projektsteuerung
+      text: Ein Online-Termin von höchstens 60 Minuten und eine Zusammenfassung von höchstens einer Seite – wesentliche Veränderungen, blockierte Aufgaben, kritische Maßnahmen, ungeklärte Frühwarnungen, offene Entscheidungen und die benötigte Reaktion.
+      beispiel: Monatstermin der GML – zwei Vorlagen zur Entscheidung, der Bericht verweist auf die Einträge in der Software.
+    - id: ruhe
+      titel: In Ruhezeiten
+      wer: Projektsteuerung
+      text: Wenn ausdrücklich vereinbart – monatliche Gesamtprüfung, neue nicht dringliche Hinweise binnen fünf Arbeitstagen, Termin nur bei Bedarf; der Kurzbericht bleibt.
+      beispiel: Während der Ausschreibungsfristen ruht der Wochentakt; der Monatsbericht kommt trotzdem.
+glossar:
+  titel: Glossar
+  kurz: Die Begriffe der Governance auf einen Blick.

@@ -428,7 +428,7 @@ titel: Bauherren-PL
 ---
 **Kann leisten:** Koordination auf Bauherrenseite, Entscheidung innerhalb der eigenen Schwelle, Eskalation.
 
-**Darf nicht ersetzen:** Entscheidung des Bauherrn oberhalb der eigenen Schwelle.
+**Darf nicht ersetzen:** Entscheidung des Bauherrn oberhalb der eigenen Schwelle und die Freigabe des Einsatzes der Risikoreserve.
 :::
 
 ::: karte ps

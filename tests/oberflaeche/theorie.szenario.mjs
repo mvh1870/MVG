@@ -1,7 +1,7 @@
 // Browser-Szenario Theorie (P16.3, O-38): Übersicht der Themen, ein Thema mit Grafiken, Glossar; nirgends Kapitel,
 // Absatz-IDs, Originaltext oder Zitierangaben; am Ende leise der Kontakt über bauherr-mentoren.com.
 import { pruefer, sichtbarVerboten } from './hilfen.mjs';
-import { pdfSeiten, seitenMitUeberschriftAmEnde } from './pdf.mjs';
+import { pdfSeiten, seitenMitUeberschriftAmEnde, wortbrueche } from './pdf.mjs';
 
 export const name = 'theorie';
 export const hash = '#theorie';
@@ -25,7 +25,8 @@ export async function lauf(seite, h) {
     for (const f of sichtbarVerboten(await seite.locator('body').innerText())) h.befund(`${t}: ${f}`);
     await pruefe(t);
   }
-  // R67: „Thema drucken“ im echten PDF – kein Kopf allein am Seitenende, keine leere Seite, kein weiches Trennzeichen im Text
+  // R67: „Thema drucken“ im echten PDF – kein Kopf allein am Seitenende, keine leere Seite; R70: keine Trennstelle als Zeichen
+  // sichtbar, kein Wortbruch ohne Trennstrich, erste Seite gefüllt
   const druckThemen = h.voll ? themen : themen.filter((t) => ['leistungen', 'takt', 'arbeitsweise', 'begriffe'].includes(t));
   for (const t of druckThemen) {
     await seite.goto(h.url.replace(/#.*$/u, '') + `#theorie/${t}`);
@@ -40,6 +41,22 @@ export async function lauf(seite, h) {
     // R68: genau ein sichtbarer Titel im Bogen
     const titel = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen h1')].filter((x) => getComputedStyle(x).display !== 'none').length);
     if (titel !== 1) h.befund(`Druck ${t}: ${titel} sichtbare h1 im Bogen`);
+    // R70: Wortbrüche ohne Trennstrich bei der Satzbreite des Drucks (A4, Ränder 14 mm: 688 px)
+    await seite.evaluate(() => { const st = document.createElement('style'); st.id = 'pruef-satzbreite'; st.textContent = '.druck-bogen { width: 688px !important; }'; document.head.append(st); });
+    const brueche = await wortbrueche(seite, '.druck-bogen');
+    await seite.evaluate(() => document.getElementById('pruef-satzbreite')?.remove());
+    if (brueche.length > 0) h.befund(`Druck ${t}: ${brueche.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(brueche.slice(0, 6))}`);
+    // R70: weiche Trennstellen nur zwischen zwei Buchstaben – am Wortrand ergäbe ein Umbruch dort einen losen Strich
+    const randTrenner = await seite.evaluate(() => {
+      /** @type {string[]} */
+      const aus = [];
+      const gang = document.createTreeWalker(document.querySelector('.druck-bogen') ?? document.body, NodeFilter.SHOW_TEXT);
+      for (let n = gang.nextNode(); n !== null; n = gang.nextNode()) {
+        for (const m of (n.textContent ?? '').matchAll(/(?:^|[^\p{L}])\u00ad|\u00ad(?:[^\p{L}]|$)/gu)) aus.push((n.textContent ?? '').slice(Math.max(0, (m.index ?? 0) - 12), (m.index ?? 0) + 12).replace(/\u00ad/gu, '|'));
+      }
+      return aus;
+    });
+    if (randTrenner.length > 0) h.befund(`Druck ${t}: weiche Trennstelle am Wortrand ${JSON.stringify(randTrenner.slice(0, 4))}`);
     const pdf = await pdfSeiten(await seite.pdf({ format: 'A4' }));
     // R68: kein Kopf in den letzten drei Zeilen einer halbleeren Seite (außer der letzten)
     const flach = (/** @type {string} */ x) => x.replace(/[\s\u00ad\u2060-]+/gu, '').toLowerCase();
@@ -51,7 +68,12 @@ export async function lauf(seite, h) {
     const amEnde = seitenMitUeberschriftAmEnde(pdf, koepfe);
     if (amEnde.length > 0) h.befund(`Druck ${t}: Überschrift am Seitenende ${JSON.stringify(amEnde.slice(0, 4))}`);
     if (pdf.some((x) => x.zeilen.length === 0)) h.befund(`Druck ${t}: leere Seite`);
-    if (pdf.some((x) => x.zeilen.some((z) => z.includes('\u00ad')))) h.befund(`Druck ${t}: weiches Trennzeichen im PDF-Text`);
+    // R70: Chromium schreibt U+00AD nie in den PDF-Text (die Probe darauf blieb immer grün) – sichtbar wird eine Trennstelle nur,
+    // wenn sie als Zeichenfolge im Text steht (doppelt maskiert: „&shy;“, „&#173;“, „\u00ad“)
+    const maskiert = pdf.flatMap((x, i) => x.zeilen.filter((z) => /&shy;|&#173;|&#x0*ad;|\\u00ad|\u00ad/iu.test(z)).map((z) => `S. ${i + 1}: ${z.slice(0, 60)}`));
+    if (maskiert.length > 0) h.befund(`Druck ${t}: Trennstelle als Zeichen im PDF-Text ${JSON.stringify(maskiert.slice(0, 3))}`);
+    // R70: die erste Seite trägt Kopf, Einleitung, Kernaussage und die erste Abbildung – nicht halb leer (vorher 52–62 %)
+    if (pdf.length > 1 && (pdf[0]?.fuellung ?? 1) < 0.7) h.befund(`Druck ${t}: erste Seite nur zu ${Math.round((pdf[0]?.fuellung ?? 0) * 100)} % gefüllt`);
     await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
   }
   // Glossar sucht

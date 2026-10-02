@@ -323,7 +323,20 @@ a.glossar-ort:hover { text-decoration: underline; }
   .druck-bogen :is(.querverweis-block, .wissenscheck) > .t-label { break-after: avoid; }
   /* aufgelöste Sortierübung: beide Körbe als Ganzes (die Körbe stehen nebeneinander, geteilt fehlten die Spaltenköpfe) */
   .druck-bogen .lw-sortieren.ist-aufgeloest .lw-nebeneinander { break-inside: avoid; }
-  .druck-bogen .abbildung-bild { width: auto; max-width: 100%; max-height: 170mm; margin-inline: auto; object-fit: contain; }
+  /* R70: Abbildungen im Druck höchstens 120 mm hoch, ohne Kartenrand (auf Papier nur weißer Leerraum). Die erste Abbildung
+     steht direkt unter der Kernaussage: mit 170 mm passte sie nicht mehr auf S. 1 und ließ sie halb leer (7 von 16 Themen) –
+     dort 60 mm, damit Kopf, Einleitung, Kernaussage und Bild zusammen auf die erste Seite passen (Füllungsprobe im Szenario) */
+  .druck-bogen .abbildung-bild { width: auto; max-width: 100%; max-height: 120mm; margin-inline: auto; object-fit: contain; }
+  .druck-bogen .abbildung-rahmen { padding: 0; }
+  .druck-bogen .kernaussage + figure.abbildung { margin-block: 0; }
+  .druck-bogen .kernaussage + figure.abbildung .abbildung-bild { max-height: 60mm; }
+  /* R70: Die Feldertafel (k4) im Druck kompakt – mit Bildschirmschrift (15,5 px) war jede Reihe aus drei Karten eine halbe
+     Seite hoch, die Tafel lief über zwei halbleere Seiten. Der Satz davor geht mit der Tafel auf die Seite */
+  .druck-bogen figure.tafel[data-form="felder"] .tafel-karte { padding: 2mm 3mm; gap: 1mm; }
+  .druck-bogen figure.tafel[data-form="felder"] .tafel-detail { gap: 1.5mm; }
+  .druck-bogen figure.tafel[data-form="felder"] .tafel-detail dt { font-size: 7pt; }
+  .druck-bogen figure.tafel[data-form="felder"] .tafel-detail dd { font-size: 9pt; line-height: 1.35; }
+  .druck-bogen .lesetext:has(+ figure.tafel) > p:last-child { break-after: avoid; }
   .druck-bogen a { color: inherit; text-decoration: none; }
   .druck-bogen * { box-shadow: none !important; animation: none !important; transition: none !important; }
   /* R47: Chrome druckt ohne Hintergrundgrafiken und dunkelt helle Schrift nur auf Grau ab (Zitatblöcke, Tabellenköpfe,

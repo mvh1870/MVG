@@ -57,6 +57,8 @@ export interface SchrittOptionen {
   themaTitel: (id: string) => string | null;
   /** Gegenprobe-Gewichte (nur Anzeige) */
   gegenprobe: Gewichte | null;
+  /** R70: Gegenprobe aufgeklappt, obwohl sie gerade nichts verschiebt (nach „zurücksetzen“ – der Fokus bleibt auf dem Knopf) */
+  gegenprobeOffen?: boolean;
   tue: (neu: Stand) => void;
   setzeGegenprobe: (g: Gewichte | null) => void;
 }
@@ -208,7 +210,7 @@ function vorlage(o: SchrittOptionen, st: Station): HTMLElement {
       h('h3', { id: 'gs-vergleich-titel' }, w.vergleich),
       h('p', { class: 'gs-leise' }, w.vergleichHinweis),
       tabelle,
-      h('details', { class: 'gs-vertiefung gs-gegenprobe', open: o.gegenprobe !== null, 'data-pruef': 'gs-gegenprobe' },
+      h('details', { class: 'gs-vertiefung gs-gegenprobe', open: o.gegenprobe !== null || o.gegenprobeOffen === true, 'data-pruef': 'gs-gegenprobe' },
         h('summary', null, w.gegenprobe),
         h('p', { class: 'gs-leise' }, w.gegenprobeHinweis),
         regler(o, anzeige, (k, wert) => {
@@ -440,6 +442,8 @@ export function erzeugeGeschichte(o: { g: Geschichte; speicher: SpeicherGriff | 
   const { g } = o;
   let stand: Stand = ladeStand(g, o.speicher) ?? neuerStand();
   let gegenprobe: Gewichte | null = null;
+  // R70 (WCAG 2.4.3): nach „zurücksetzen“ bleibt die Gegenprobe offen – sonst läge der Knopf zugeklappt und der Fokus fiele auf <body>
+  let gegenprobeOffen = false;
   let zuhoerer: ((s: Stand) => void) | null = null;
   const leiste = h('div', { class: 'gs-leiste' });
   const buehne = h('div', { class: 'gs-buehne' });
@@ -450,6 +454,7 @@ export function erzeugeGeschichte(o: { g: Geschichte; speicher: SpeicherGriff | 
   const loeschen = h('button', { type: 'button', class: 'gs-leiser-knopf', 'data-pruef': 'fortschritt-loeschen', title: w.fortschrittHinweis, onclick: () => {
     try { o.speicher?.removeItem(SPEICHER_SCHLUESSEL); } catch { /* Speicher gesperrt: nichts zu löschen */ }
     gegenprobe = null;
+    gegenprobeOffen = false;
     // R68: gelöscht bleibt gelöscht – der frische Stand wird erst mit dem nächsten Schritt wieder gespeichert
     setze(neuerStand(), true, false);
   } }, w.fortschrittLoeschen);
@@ -469,7 +474,8 @@ export function erzeugeGeschichte(o: { g: Geschichte; speicher: SpeicherGriff | 
   const zeichne = (schrittNeu: boolean): void => {
     const fokusId = (document.activeElement as HTMLElement | null)?.dataset['pruef'] ?? null;
     ersetze(leiste, leisteOben(g, stand, true, (n) => setze(n, true)));
-    ersetze(buehne, baueSchritt({ g, stand, bedienbar: true, themaTitel: o.themaTitel, gegenprobe, tue: (n) => setze(n, !gleicherSchritt(n.schritt, stand.schritt)), setzeGegenprobe: (x) => { gegenprobe = x; if (x === null) zeichne(false); } }));
+    ersetze(buehne, baueSchritt({ g, stand, bedienbar: true, themaTitel: o.themaTitel, gegenprobe, gegenprobeOffen, tue: (n) => setze(n, !gleicherSchritt(n.schritt, stand.schritt)),
+      setzeGegenprobe: (x) => { gegenprobe = x; if (x === null) { gegenprobeOffen = true; zeichne(false); } } }));
     const lph = lphAm(g, stand.schritt);
     const stufe = String(stufeAusLph(lph));
     if (hintergrund.dataset['stufe'] !== stufe) {
@@ -499,7 +505,7 @@ export function erzeugeGeschichte(o: { g: Geschichte; speicher: SpeicherGriff | 
   };
 
   function setze(neu: Stand, schrittNeu: boolean, merken = true): void {
-    if (!gleicherSchritt(neu.schritt, stand.schritt)) gegenprobe = null;
+    if (!gleicherSchritt(neu.schritt, stand.schritt)) { gegenprobe = null; gegenprobeOffen = false; }
     stand = neu;
     if (merken) speichere();
     zeichne(schrittNeu);
@@ -530,7 +536,8 @@ export function erzeugeGeschichte(o: { g: Geschichte; speicher: SpeicherGriff | 
     stand: () => stand,
     taste(e: KeyboardEvent): boolean {
       const ziel = e.target as HTMLElement | null;
-      if (ziel?.closest('input, textarea, select, summary, [contenteditable]') || e.altKey || e.ctrlKey || e.metaKey) return false;
+      // R70: in der Gegenprobe blättern Pfeiltasten nie (auch nicht am Knopf „zurücksetzen“)
+      if (ziel?.closest('input, textarea, select, summary, [contenteditable], .gs-gegenprobe') || e.altKey || e.ctrlKey || e.metaKey) return false;
       if (e.key === 'ArrowRight') { weiterKlick(); return true; }
       if (e.key === 'ArrowLeft') { setze(zurueck(g, stand), true); return true; }
       return false;

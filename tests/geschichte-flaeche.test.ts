@@ -34,7 +34,7 @@ function lagen(start: { kosten?: number; puffer?: number; offen?: number }): Rec
   if (start.offen !== undefined) g.status.offen.start = start.offen;
   const el = statusLeiste(g, neuerStand());
   const aus: Record<string, string | undefined> = {};
-  for (const d of el.querySelectorAll<HTMLElement>('[data-status]')) aus[d.dataset['status'] ?? ''] = d.dataset['lage'];
+  for (const d of el.querySelectorAll<HTMLElement>(':scope > [data-status]')) aus[d.dataset['status'] ?? ''] = d.dataset['lage'];
   return aus;
 }
 
@@ -47,6 +47,37 @@ test('Statusleiste: Kosten – über der Basis mittel, mehr als die Reserve (2,9
   assert.equal(lagen({ kosten: basis + 2.9 })['kosten'], 'mittel');
   assert.equal(lagen({ kosten: basis + 2.91 })['kosten'], 'kritisch');
   assert.equal(lagen({ kosten: basis + 3 })['kosten'], 'kritisch');
+});
+
+test('Statusleiste (R67): je Kachel Form und Lagewort passend zu data-lage – nie nur Farbe', () => {
+  const basis = geschichte.status.kosten.basis;
+  assert.ok(basis !== null);
+  const faelle: Array<{ kosten?: number; puffer?: number; offen?: number }> = [
+    { kosten: basis, puffer: 8, offen: 0 }, { kosten: basis + 1, puffer: 7, offen: 1 }, { kosten: basis + 3, puffer: -1, offen: 2 },
+  ];
+  const gesehen = new Set<string>();
+  for (const f of faelle) {
+    const g = structuredClone(geschichte);
+    g.status.kosten.start = f.kosten ?? g.status.kosten.start;
+    g.status.puffer.start = f.puffer ?? g.status.puffer.start;
+    g.status.offen.start = f.offen ?? g.status.offen.start;
+    const el = statusLeiste(g, neuerStand());
+    const kacheln = [...el.querySelectorAll<HTMLElement>(':scope > [data-lage]')];
+    assert.equal(kacheln.length, 3);
+    for (const k of kacheln) {
+      const lage = k.dataset['lage'] as 'ok' | 'mittel' | 'kritisch';
+      gesehen.add(lage);
+      const symbole = k.querySelectorAll('svg.status-symbol');
+      assert.equal(symbole.length, 1, `${k.dataset['status']}: ein Symbol`);
+      assert.equal(symbole[0]?.getAttribute('data-status'), lage, `${k.dataset['status']}: Form zur Lage ${lage}`);
+      const wort = k.querySelector('[data-pruef="gs-lagewort"]')?.textContent ?? '';
+      assert.ok(wort.includes(W.geschichte.lagen[lage]), `${k.dataset['status']}: Lagewort „${W.geschichte.lagen[lage]}“ fehlt („${wort}“)`);
+      assert.ok((k.querySelector('dd')?.textContent ?? '').includes(W.geschichte.lagen[lage]), 'Lagewort im Wert (für Screenreader)');
+    }
+  }
+  assert.deepEqual([...gesehen].sort(), ['kritisch', 'mittel', 'ok']);
+  // drei verschiedene Wörter
+  assert.equal(new Set(Object.values(W.geschichte.lagen)).size, 3);
 });
 
 test('Statusleiste: Puffer – 8 Tage gut, 7 knapp, unter 0 kritisch; offene Entscheidungen 0/1/2', () => {

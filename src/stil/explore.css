@@ -144,6 +144,8 @@ button.ex-zelle:hover { border-color: var(--navy-soft); }
   .ex-werkzeuge { grid-template-columns: minmax(0, 1fr); }
   .ex-monat { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ex-zelle { width: 48px; height: 44px; font-size: var(--gr-l); }
+  /* R67: in schmalen Zellen sitzt der Beispiel-Punkt als Marke auf der Ecke – nie über der Zahl */
+  .ex-zelle-punkt { top: -6px; right: -6px; min-width: 16px; height: 16px; font-size: 10px; line-height: 16px; box-shadow: 0 0 0 2px var(--weiss); }
 }
 @media (max-width: 380px) {
   .ex-zelle { width: 40px; height: 40px; }

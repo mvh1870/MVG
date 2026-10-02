@@ -174,7 +174,9 @@ function matrix(o: ExploreOptionen, w: Werkzeuge): HTMLElement {
         raster,
         h('p', { class: 't-label ex-achse-w' }, E.wahrscheinlichkeit)),
       detail),
-    h('ul', { class: 'ex-stufen' }, m.stufen.map((s) => h('li', { 'data-stufe': s.id }, h('b', null, `${s.titel} (${s.von}–${s.bis})`), ' ', inhaltInline(s.html)))),
+    // R67: die Legende nennt die Ausnahme selbst – die beiden Fünfen unterscheiden sich sonst nur in der Farbe
+    h('ul', { class: 'ex-stufen' }, m.stufen.map((s, i) => h('li', { 'data-stufe': s.id },
+      h('b', null, `${s.titel} (${s.von}–${s.bis}${i === m.stufen.length - 1 ? `; ${E.immerVorrangig}` : ''})`), ' ', inhaltInline(s.html)))),
     h('p', null, h('b', null, m.regel)),
     h('div', { class: 'ex-hinweis' }, sym('warnung'), h('p', null, m.sonder)));
 }

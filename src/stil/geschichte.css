@@ -26,6 +26,9 @@
 }
 .gs-hintergrund .bauplan { max-height: 82vh; }
 
+/* R67 (WCAG 2.4.11): beim Rollen zum Fokus bleiben die klebenden Leisten frei; Höhen setzt geschichte.ts */
+html:has(.seite-story) { scroll-padding: var(--gs-oben, 0px) 0 var(--gs-unten, 0px); }
+
 /* ------------------------------------------------------------------ Leiste oben */
 .gs-leiste {
   position: sticky;
@@ -90,6 +93,8 @@ button.gs-punkt-schritt:hover::before { background: var(--gold-hell); }
 .gs-status dt { font: var(--typo-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); white-space: nowrap; }
 .gs-status dd { margin: 0; font-weight: 700; color: var(--tinte); white-space: nowrap; }
 .gs-status small { font-weight: 400; color: var(--tinte-2); }
+/* R67: Form der Lage vor dem Wert (Wort als .nur-sr) – die Kante allein trüge nur Farbe */
+.gs-status .status-symbol { margin-right: var(--a-1); vertical-align: -2px; }
 
 /* ------------------------------------------------------------------ Schritt */
 .gs-buehne { padding-top: var(--a-8); }

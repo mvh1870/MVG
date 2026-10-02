@@ -1,6 +1,7 @@
 /*
  * Explore bedienen (src/ui/flaechen/explore.ts, jsdom): MCDA-Rechner rechnet nach einer Punkte-Änderung um und
- * kehrt mit „Zurücksetzen“ zur Ausgangslage zurück; der Vorgang „Entscheidung“ zeigt sein Detail.
+ * kehrt mit „Zurücksetzen“ zur Ausgangslage zurück; der Vorgang „Entscheidung“ zeigt sein Detail; die Legende der
+ * Risikomatrix nennt die Ausnahme „Auswirkung 5“ (R67).
  */
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
@@ -18,6 +19,7 @@ after(() => dom.window.close());
 const { inhalte } = await import('../src/inhalte/index.ts');
 const { baueExplore } = await import('../src/ui/flaechen/explore.ts');
 const { rangfolge } = await import('../src/geschichte/mcda.ts');
+const { W } = await import('../src/ui/woerter.ts');
 
 const summeIm = (el: HTMLElement, id: string): number => {
   const td = el.querySelector(`[data-pruef="ex-summe-${id}"] b`);
@@ -75,4 +77,18 @@ test('Vorgangsarten: „Entscheidung“ zeigt Titel und Text im Detail', () => {
   assert.equal(detail.querySelector('h3')?.textContent, w.vorgaenge.entscheidung.titel);
   assert.ok((detail.querySelector('p')?.textContent ?? '').length > 0, 'Text der Entscheidung');
   assert.equal(knopf.getAttribute('aria-pressed'), 'true');
+});
+
+test('Risikomatrix (R67): die Legende nennt bei der höchsten Stufe die Ausnahme „Auswirkung 5 ist immer vorrangig“', () => {
+  const el = baueExplore({ inhalte, werkzeug: 'matrix', bedienbar: true });
+  document.body.replaceChildren(el);
+  const stufen = [...el.querySelectorAll<HTMLElement>('.ex-stufen > li')];
+  assert.ok(stufen.length >= 2);
+  const letzte = stufen.at(-1);
+  assert.equal(letzte?.dataset['stufe'], 'vorrangig');
+  assert.ok(letzte?.querySelector('b')?.textContent?.includes(W.werkzeuge.immerVorrangig), letzte?.textContent ?? '');
+  for (const s of stufen.slice(0, -1)) assert.ok(!(s.textContent ?? '').includes(W.werkzeuge.immerVorrangig));
+  // die Zelle W 1 / A 5 steht in dieser Stufe, die Zelle W 5 / A 1 nicht
+  assert.equal(el.querySelector<HTMLElement>('.ex-zelle[data-w="1"][data-a="5"]')?.dataset['stufe'], 'vorrangig');
+  assert.equal(el.querySelector<HTMLElement>('.ex-zelle[data-w="5"][data-a="1"]')?.dataset['stufe'], 'gezielt');
 });

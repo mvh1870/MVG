@@ -158,6 +158,8 @@ export const W = {
     kurzMeta: (n: number) => `${n} Stationen · etwa 10 Minuten`,
     fassung: 'Umfang',
     status: 'Stand des Projekts',
+    // Lagewort je Kachel der Statusanzeige (R67, STIL Grundsatz 7: Form und Wort, nie nur Farbe)
+    lagen: { ok: 'im Rahmen', mittel: 'knapp', kritisch: 'kritisch' },
     fiktiv: 'Fiktiver Fall',
     lph: (n: number) => `LPH ${n}`,
     vorgaenge: 'Aus dem Bestand der Projektsteuerung',

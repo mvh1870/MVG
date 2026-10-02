@@ -15,7 +15,8 @@ import {
 } from '../../geschichte/engine.ts';
 import { GEWICHT_MAX, GEWICHT_MIN, kipppunkte, rangfolge, type Gewichte } from '../../geschichte/mcda.ts';
 import { campus, stufeAusLph } from '../../grafik/bauplan.ts';
-import { attr, ersetze, h, vonHtml, type Kind } from '../h.ts';
+import { attr, elementAus, ersetze, h, vonHtml, type Kind } from '../h.ts';
+import { statusSymbol } from '../../stil/symbole.ts';
 import { inhalt, inhaltInline } from '../bausteine/inhalt.ts';
 import { sym } from '../bausteine/bloecke.ts';
 import { bmLink, seitenRahmen } from '../bausteine/seite.ts';
@@ -342,14 +343,18 @@ export function statusLeiste(g: Geschichte, stand: Stand): HTMLElement {
   const t = statusText(g, s);
   const basis = g.status.kosten.basis;
   const ueber = basis !== null ? Math.round((s.kosten - basis) * 100) / 100 : 0;
+  // R67 (STIL Grundsatz 7): die Lage steht nie nur in der Farbe – je Kachel Form (statusSymbol) und Wort
+  const kachel = (art: string, lage: Lage, titel: string, ...wert: Kind[]): HTMLElement =>
+    h('div', { 'data-status': art, 'data-lage': lage },
+      h('dt', null, titel),
+      h('dd', null, elementAus(statusSymbol(lage)), wert, h('span', { class: 'nur-sr', 'data-pruef': 'gs-lagewort' }, ` (${w.lagen[lage]})`)));
   return h('dl', { class: 'gs-status', 'aria-label': w.status, 'data-pruef': 'gs-status' },
-    h('div', { 'data-status': 'kosten', 'data-lage': ueber > 2.9 ? 'kritisch' : ueber > 0 ? 'mittel' : 'ok' },
-      h('dt', null, g.status.kosten.titel), h('dd', null, t.kosten, basis !== null && ueber !== 0 ? h('small', null, ` (${mitVorzeichen(ueber)})`) : null)),
-    h('div', { 'data-status': 'puffer', 'data-lage': s.puffer < 0 ? 'kritisch' : s.puffer <= 7 ? 'mittel' : 'ok' },
-      h('dt', null, g.status.puffer.titel), h('dd', null, t.puffer)),
-    h('div', { 'data-status': 'offen', 'data-lage': s.offen > 1 ? 'kritisch' : s.offen > 0 ? 'mittel' : 'ok' },
-      h('dt', null, g.status.offen.titel), h('dd', null, t.offen)));
+    kachel('kosten', ueber > 2.9 ? 'kritisch' : ueber > 0 ? 'mittel' : 'ok', g.status.kosten.titel, t.kosten, basis !== null && ueber !== 0 ? h('small', null, ` (${mitVorzeichen(ueber)})`) : null),
+    kachel('puffer', s.puffer < 0 ? 'kritisch' : s.puffer <= 7 ? 'mittel' : 'ok', g.status.puffer.titel, t.puffer),
+    kachel('offen', s.offen > 1 ? 'kritisch' : s.offen > 0 ? 'mittel' : 'ok', g.status.offen.titel, t.offen));
 }
+
+type Lage = 'ok' | 'mittel' | 'kritisch';
 
 /** Leistungsphase am Schritt (für die Zeichnung im Hintergrund). */
 export function lphAm(g: Geschichte, s: Schritt): number | null {
@@ -387,6 +392,45 @@ export interface GeschichteFlaeche {
   beiAenderung(fn: (s: Stand) => void): void;
 }
 
+/**
+ * R67 (WCAG 2.4.11): Der Fokus liegt nie unter den klebenden Leisten. Ihre Höhen stehen als --gs-oben/--gs-unten
+ * auf <html> (scroll-padding in geschichte.css); bleibt ein fokussiertes Element trotzdem unter einer Leiste, rollt
+ * die Seite ohne Animation (prefers-reduced-motion gilt damit von selbst) gerade so weit, dass es frei steht.
+ */
+function haltFokusFrei(element: HTMLElement, leiste: HTMLElement, unten: HTMLElement, hinweis: HTMLElement): void {
+  const RAND = 8;
+  const masse = (): void => {
+    const wurzel = document.documentElement.style;
+    wurzel.setProperty('--gs-oben', `${Math.ceil(leiste.getBoundingClientRect().height) + RAND}px`);
+    wurzel.setProperty('--gs-unten', `${Math.ceil(unten.getBoundingClientRect().bottom - hinweis.getBoundingClientRect().top) + RAND}px`);
+  };
+  if (typeof ResizeObserver === 'function') {
+    const beobachter = new ResizeObserver(masse);
+    beobachter.observe(leiste);
+    beobachter.observe(unten);
+  }
+  const frei = (ziel: HTMLElement): void => {
+    // nur der Schritt liegt zwischen den Leisten; Kopf, Leisten und Fuß stehen nie darunter
+    if (!ziel.isConnected || ziel.closest('.gs-buehne') === null) return;
+    const q = ziel.getBoundingClientRect();
+    if (q.height === 0) return;
+    // oben endet die Leiste; unten deckt der Verlauf ab dem Hinweis (darüber ist er durchsichtig)
+    const oben = leiste.getBoundingClientRect().bottom + RAND;
+    const grenze = hinweis.getBoundingClientRect().top - RAND;
+    let um = 0;
+    if (q.top < oben) um = q.top - oben;
+    else if (q.bottom > grenze) um = Math.min(q.bottom - grenze, q.top - oben);
+    if (Math.abs(um) >= 1) window.scrollBy({ top: um, behavior: 'instant' });
+  };
+  // nach dem eigenen Rollen des Browsers prüfen (das folgt dem Fokusereignis)
+  element.addEventListener('focusin', (e) => {
+    const ziel = e.target;
+    if (!(ziel instanceof HTMLElement)) return;
+    masse();
+    requestAnimationFrame(() => frei(ziel));
+  });
+}
+
 export function erzeugeGeschichte(o: { g: Geschichte; speicher: SpeicherGriff | null; themaTitel: (id: string) => string | null }): GeschichteFlaeche {
   const { g } = o;
   let stand: Stand = ladeStand(g, o.speicher) ?? neuerStand();
@@ -397,6 +441,7 @@ export function erzeugeGeschichte(o: { g: Geschichte; speicher: SpeicherGriff | 
   const navi = h('nav', { class: 'gs-navi', 'aria-label': w.fortschritt });
   const hinweis = h('p', { class: 'gs-navi-hinweis', 'aria-live': 'polite' });
   const hintergrund = h('div', { class: 'gs-hintergrund', 'aria-hidden': 'true' });
+  const unten = h('div', { class: 'gs-unten' }, hinweis, navi);
   const loeschen = h('button', { type: 'button', class: 'gs-leiser-knopf', 'data-pruef': 'fortschritt-loeschen', title: w.fortschrittHinweis, onclick: () => {
     try { o.speicher?.removeItem(SPEICHER_SCHLUESSEL); } catch { /* Speicher gesperrt: nichts zu löschen */ }
     gegenprobe = null;
@@ -406,9 +451,10 @@ export function erzeugeGeschichte(o: { g: Geschichte; speicher: SpeicherGriff | 
     bereich: 'story',
     klasse: 'seite-story',
     hintergrund,
-    inhalt: [leiste, buehne, h('div', { class: 'gs-unten' }, hinweis, navi)],
+    inhalt: [leiste, buehne, unten],
     fussZusatz: h('p', { class: 'fuss-zusatz' }, `${w.fiktiv} · ${w.fortschrittHinweis} `, loeschen),
   });
+  haltFokusFrei(element, leiste, unten, hinweis);
 
   const speichere = (): void => {
     try { o.speicher?.setItem(SPEICHER_SCHLUESSEL, JSON.stringify(stand)); } catch { /* Speicher voll oder gesperrt */ }

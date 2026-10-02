@@ -6,6 +6,54 @@ export const name = 'story';
 export const hash = '#story';
 
 /**
+ * R67 (WCAG 2.4.11 Fokus nicht verdeckt): von oben per Tab und von unten per Shift+Tab durch den Schritt; jedes
+ * fokussierte Element außerhalb der Leisten ist zu mindestens 50 % frei sichtbar – nicht unter .gs-leiste und nicht
+ * unter dem deckenden Teil von .gs-unten (ab dem Hinweis bzw. 55 % des Verlaufs, was höher liegt).
+ * @param {import('playwright').Page} seite
+ * @param {import('../../werkzeuge/oberflaeche.mjs').Helfer} h
+ * @param {string} wo
+ */
+async function fokusFrei(seite, h, wo) {
+  for (const richtung of ['Tab', 'Shift+Tab']) {
+    // Tab beginnt am Titel des Schritts (oben), Shift+Tab hinter dem Schritt in der Fußzeile
+    await seite.evaluate((vor) => {
+      window.scrollTo(0, vor ? 0 : document.documentElement.scrollHeight);
+      /** @type {HTMLElement | null} */ (document.querySelector(vor ? '.gs-titel' : '[data-pruef="fortschritt-loeschen"]'))?.focus({ preventScroll: true });
+    }, richtung === 'Tab');
+    const gesehen = new Set();
+    let gemessen = 0;
+    for (let i = 0; i < 80; i++) {
+      await h.taste(richtung);
+      await h.warte(40);
+      const r = await seite.evaluate(() => {
+        const e = document.activeElement;
+        if (!(e instanceof HTMLElement) || e === document.body) return null;
+        if (e.closest('.gs-leiste, .gs-unten, .seiten-kopf, .seiten-fuss, footer')) return { aussen: true, id: '' };
+        if (e.closest('.gs-buehne') === null) return { aussen: true, id: '' };
+        const q = e.getBoundingClientRect();
+        const oben = document.querySelector('.gs-leiste')?.getBoundingClientRect();
+        const unten = document.querySelector('.gs-unten')?.getBoundingClientRect();
+        const hinweis = document.querySelector('.gs-navi-hinweis')?.getBoundingClientRect();
+        const deckOben = oben ? oben.bottom : 0;
+        const deckUnten = unten && hinweis ? Math.min(hinweis.top, unten.top + unten.height * 0.55) : innerHeight;
+        const band = Math.max(0, Math.min(innerHeight, deckUnten) - Math.max(0, deckOben));
+        const frei = Math.max(0, Math.min(q.bottom, deckUnten, innerHeight) - Math.max(q.top, deckOben, 0));
+        const name = (e.getAttribute('aria-label') ?? e.textContent ?? '').trim().slice(0, 30) || (e.closest('label, .gs-regler-zeile')?.textContent ?? '').trim().slice(0, 30);
+        const id = `${[...document.querySelectorAll('*')].indexOf(e)} ${e.tagName.toLowerCase()}[${e.getAttribute('data-pruef') ?? ''}] „${name}“`;
+        return { aussen: false, id, frei: Math.round(frei), hoehe: Math.round(Math.min(q.height, band)) };
+      });
+      if (r === null) continue;
+      if (r.aussen) { if (gemessen > 0) break; continue; }
+      if (gesehen.has(r.id)) break;
+      gesehen.add(r.id);
+      gemessen += 1;
+      if (r.frei < r.hoehe * 0.5) h.befund(`${wo} ${richtung}: Fokus verdeckt ${r.id} (frei ${r.frei}/${r.hoehe} px)`);
+    }
+    if (gemessen < 5) h.befund(`${wo} ${richtung}: nur ${gemessen} Elemente im Schritt per Tastatur erreicht`);
+  }
+}
+
+/**
  * @param {import('playwright').Page} seite
  * @param {import('../../werkzeuge/oberflaeche.mjs').Helfer} h
  */
@@ -51,6 +99,14 @@ export async function lauf(seite, h) {
   const vorn = await seite.locator('.gs-tabelle .ist-vorn').first().getAttribute('data-pruef');
   if (vorn !== 'summe-B') h.befund(`S3 Gegenprobe Termin 1: vorn ${vorn}, erwartet summe-B`);
   await pruefe('s3-vorlage');
+  // R67 (WCAG 2.4.11): Tab und Shift+Tab durch die Vorlage mit offener Gegenprobe – kein Fokus unter den klebenden Leisten
+  await fokusFrei(seite, h, 's3-vorlage');
+  const vp = seite.viewportSize();
+  if (vp !== null && vp.width <= 400) {
+    await seite.setViewportSize({ width: 320, height: 640 }); await h.warte(150);
+    await fokusFrei(seite, h, 's3-vorlage @320×640');
+    await seite.setViewportSize(vp); await h.warte(100);
+  }
   await h.klick('[data-pruef="option-B"]');
   await weiter();
   const puffer = await seite.locator('[data-pruef="gs-status"] [data-status="puffer"] dd').innerText();

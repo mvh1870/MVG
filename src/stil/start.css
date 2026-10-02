@@ -83,7 +83,8 @@
 
 @media (max-width: 960px) {
   .tueren { grid-template-columns: minmax(0, 1fr); }
-  .start-hintergrund { padding: 60px 0 0 20vw; opacity: .35; }
+  /* R67: schmal läuft die Zeichnung durch den Leittext – so leise wie in der Story, Kontrast ≥ 4,5 : 1 */
+  .start-hintergrund { padding: 60px 0 0 20vw; opacity: .16; }
 }
 
 @media (prefers-reduced-motion: reduce) {

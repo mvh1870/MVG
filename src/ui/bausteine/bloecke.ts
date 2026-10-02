@@ -3,7 +3,7 @@
  * dazu die Ikonen. Jede Funktion zeichnet genau einen Block; Texte kommen aus dem Block.
  */
 
-import { h, elementAus } from '../h.ts';
+import { h, elementAus, schuetzeEinheiten } from '../h.ts';
 import { symbol, type SymbolName } from '../../stil/symbole.ts';
 import type { Block } from '../../inhalte/typen.ts';
 import { kopfText, istKarte } from '../anzeige.ts';
@@ -58,8 +58,9 @@ export function tafel(b: Block, stufe: TitelStufe = 'h4'): HTMLElement | null {
   const form = kopfText(b.kopf, 'form') ?? '';
   const t = b.kopf['tabelle'];
   if (!istTafelForm(form) || b.id === null || !istKarte(t)) return null;
-  const zeilen = Array.isArray(t['zeilen']) ? t['zeilen'].map((z) => (Array.isArray(z) ? z.map(String) : [])) : [];
-  const kopf = Array.isArray(t['kopf']) ? t['kopf'].map(String) : [];
+  // R68: Zahl und Einheit, Zahlenbereiche auch in Tafelzellen nicht trennen (nur Anzeige)
+  const zeilen = Array.isArray(t['zeilen']) ? t['zeilen'].map((z) => (Array.isArray(z) ? z.map((x) => schuetzeEinheiten(String(x))) : [])) : [];
+  const kopf = Array.isArray(t['kopf']) ? t['kopf'].map((x) => schuetzeEinheiten(String(x))) : [];
   const h0 = b.kopf['hervor'];
   const hervor = Array.isArray(h0) ? h0.map(Number) : [];
   return mitEinleitung(b, tafelGrafik({ form, absatz: b.id, quelle: '', kopf, zeilen, hervor, stufe }));

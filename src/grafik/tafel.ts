@@ -16,7 +16,7 @@
  * - zeitachse schiebbare Zeitachse (Kap. 8.2, 30/60/90): der Regler wählt den Tag, die Tafel zeigt den Zeitraum
  */
 
-import { h, attr, ersetze, elementAus } from '../ui/h.ts';
+import { h, attr, ersetze, elementAus, mitTrennstellen } from '../ui/h.ts';
 import { symbol } from '../stil/symbole.ts';
 
 export const TAFEL_FORMEN = ['ketten', 'schwelle', 'pyramide', 'felder', 'bausteine', 'phasen', 'rhythmus', 'karten', 'zeitachse'] as const;
@@ -192,7 +192,7 @@ function felder(d: TafelDaten): HTMLElement {
 /** MVG-Bausteine: Karten setzen sich nacheinander zusammen; aufklappbar Funktion und Wirkung. */
 function bausteine(d: TafelDaten): HTMLElement {
   return h('ol', { class: 'tafel-bausteine' }, d.zeilen.map((z, i) => h('li', { class: 'baustein-karte', style: `--i:${i}`, 'data-pruef': `baustein-${i + 1}` },
-    h('details', null, h('summary', null, h('i', null, String(i + 1)), h('b', null, z[0] ?? '')), detailListe(d.kopf, z, 1)))));
+    h('details', null, h('summary', null, h('i', null, String(i + 1)), h('b', null, mitTrennstellen(z[0] ?? ''))), detailListe(d.kopf, z, 1)))));
 }
 
 /** Auswahlleiste mit Detail: gemeinsamer Aufbau für Phasen und Rhythmus. */

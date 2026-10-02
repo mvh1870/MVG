@@ -303,6 +303,14 @@ a.glossar-ort:hover { text-decoration: underline; }
   /* Glossareinträge, Tabellenzeilen: Begriff nicht ohne Erklärung, Zeile nicht mitten im Wort geteilt */
   .druck-bogen :is(.glossar-eintrag, tr) { break-inside: avoid; }
   .druck-bogen dt { break-after: avoid; }
+  /* R68: der Druckkopf trägt den Titel – Kicker und zweiter Titel des Themas entfallen (ein h1 im Bogen) */
+  .druck-bogen .druck-kapitel .kapitel-kopf :is(.kapitel-kicker, .kapitel-titel) { display: none; }
+  /* R68: aufgelöste Listen als Block – im Raster hielt Chromium Kopf und erste Etappe nicht zusammen (halbleere Seite) */
+  .druck-bogen .lernwerkzeug.ist-aufgeloest .lw-aufgeloest-liste { display: block; }
+  .druck-bogen .lernwerkzeug.ist-aufgeloest .lw-aufgeloest-liste > li + li { margin-top: var(--a-3); }
+  /* R68: Bedienzeichen nicht auf Papier */
+  .druck-bogen .begriff { border-bottom: 0; text-decoration: none; }
+  .druck-bogen .querverweis-symbol { display: none; }
   /* R67: Abschnittsköpfe nie allein am Seitenende – als Block (an Flex-Kindern hält Chromium break-after nicht) */
   .druck-bogen .abschnitt-titel { display: block; break-after: avoid; break-inside: avoid; }
   .druck-bogen .abbildung-abweichungen summary { break-after: avoid; break-inside: avoid; }

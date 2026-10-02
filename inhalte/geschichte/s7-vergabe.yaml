@@ -52,6 +52,8 @@ bericht:
       wenn: s4=A & s5=B
     - text: Mit dem neuen Mehrbetrag liegt die Prognose über Basis plus Reserve (61,3 Mio. €) – die zurückgestellte Neufestlegung der Projektbasis wird nötig; die Projektsteuerung bereitet die Vorlage für den Lenkungskreis vor.
       wenn: s4=A & s5=C
+    - text: Terminpuffer überschritten – die Inbetriebnahme zum Schuljahr 2028/29 ist nach heutigem Stand gefährdet, damit auch die Förderfrist.
+      wenn: puffer<0
     - Der Einsatz der Risikoreserve braucht die Freigabe des Bauherrn.
   reaktion: Wie soll der Bauherr über die Reserve für den Holzbau entscheiden? Ihre Empfehlung geht an Dr. Olbers.
 vorgaenge:

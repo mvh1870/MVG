@@ -7,6 +7,8 @@ monat: 3
 lph: 5
 kurzfassung: true
 # Bandbreite statt Einzelzahl bei unsicheren Mengen und Preisen (v24:hb-2); Option B rechnet mit dem erwarteten Wert der Bandbreite.
+# RIS-009 Auswirkung 4 (inhalte/fall.md, Grenzen der Risikobewertung): Termin nach Abzug des Puffers bis 28 Tage = Stufe 2; maßgeblich ist
+# die höchste belegte Auswirkung – Qualität/Funktion Stufe 4 (Schulbetrieb zum Schuljahresbeginn erheblich eingeschränkt), v24:hb-2.
 # Option C weicht vom Ratsbeschluss zum Klimaziel ab – wesentliche Änderung, nicht delegierbar (k3.2-t1, k4.3-p1): zusätzlich Beschluss des Bauherrn.
 belege: [v24:hb-1.2, v24:hb-1.3, v24:hb-2, v24:hb-3, v24:hb-3.1, v24:hb-1.6, v24:tlb-2, k4.4-p2, k3.2-t1, k4.3-p1]
 lage: |
@@ -34,7 +36,7 @@ vorgaenge:
   - art: risiko
     kennung: RIS-009
     titel: Holzbauelemente kommen zu spät
-    text: Ursache – Lieferzeiten bis 26 Wochen. Mögliche Folge – Montagebeginn bis rund 70 Tage später, mehr als der Terminpuffer. Zeitraum bis zur Montage.
+    text: Ursache – Lieferzeiten bis 26 Wochen. Mögliche Folge – Montagebeginn bis rund 70 Tage später, mehr als der Terminpuffer; zum Schuljahr 2028/29 bliebe der Schulbetrieb erheblich eingeschränkt. Zeitraum bis zur Montage.
     verantwortlich: Projektsteuerung mit Generalplanung
     termin: Wiedervorlage wöchentlich
     stand: aktiv · vorrangig bearbeiten

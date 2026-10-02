@@ -1,6 +1,7 @@
 # Station 1 (P16.7a). Belege intern, nie sichtbar (O-38).
 # Projektblatt vor der Ausschreibung von der befugten Stelle des Auftraggebers festgelegt, mit Grenzen und Schwellen
 # (v24:hb-projektblatt, v24:va-7.1); Kriterien, Gewichte und Bewertungsstufen vor der Bewertung mit dem Auftraggeber abgestimmt (v24:hb-3.1).
+# Die Zielpriorität (Gewichte) legt der Bauherr fest – nicht delegierbar (k3.2-t1, k4.1-p1, k4-t1; v24:hb-1); die Bauherren-PL empfiehlt (R68).
 # Skalen (L-Eintrag): Termin wie die Beispielskala aus v24:hb-3.2 (7/14/21/28 Tage → 5/4/3/2, sonst 1); Kosten auf die Größe des
 # Projekts gestuft (20/50/150/500 TEUR → 5/4/3/2, sonst 1; Einsparung = keine Mehrkosten). Jeder Punkt für Kosten und Termin
 # folgt aus den Folgen der Option (geprüft in tests/geschichte.test.ts).
@@ -12,7 +13,7 @@ datum: Januar 2026
 monat: 1
 lph: 4
 kurzfassung: true
-belege: [v24:hb-1, v24:hb-3.1, v24:hb-4, v24:hb-projektblatt, v24:va-7.1, v24:tlb-2, k4.2-p3, k4.6-p2]
+belege: [v24:hb-1, v24:hb-3.1, v24:hb-4, v24:hb-projektblatt, v24:va-7.1, v24:tlb-2, k4.2-p3, k4.6-p2, k3.2-t1, k4.1-p1, k4-t1]
 lage: |
   Ihr erster Tag. Die Vorgängerin ist weg, die Unterlagen liegen in drei Ablagen, die Kämmerei will bis Freitag den Haushaltsansatz 2027.
 
@@ -24,7 +25,7 @@ bericht:
     - Erster abgestimmter Bestand bis 30. Januar.
     - Haushaltsansatz 2027 bis Freitag, aus der Kostenprognose 2026-01 · Version 1.
     - Annahme zur Baupreissteigerung – das Controlling klärt bis 20. Januar.
-  reaktion: Bitte legen Sie die Gewichte für künftige Vorlagen fest.
+  reaktion: Welche Gewichte soll der Bauherr festlegen? Ihre Empfehlung geht an Dr. Olbers.
 vorgaenge:
   - art: aufgabe
     kennung: AUF-001
@@ -51,9 +52,9 @@ vorlage:
   art: gewichte
   frage: Nach welchen Zielen werden künftige Vorlagen abgewogen?
   grund: |
-    Kriterien und Gewichte stimmt die Projektsteuerung vor jeder Bewertung mit dem Bauherrn ab. Jede spätere Vorlage sagt, ob andere vertretbare Gewichte die Rangfolge ändern würden.
-  stelle: GML – Sie als Bauherren-PL
-  termin: 30. Januar 2026
+    Kriterien und Gewichte stimmt die Projektsteuerung vor jeder Bewertung mit dem Bauherrn ab. Welches Ziel Vorrang hat, legt der Bauherr fest – das ist nicht delegierbar. Jede spätere Vorlage sagt, ob andere vertretbare Gewichte die Rangfolge ändern würden.
+  stelle: Bauherr – Dr. Miriam Olbers (der Lenkungskreis berät)
+  termin: 20. Januar 2026 (Lenkungskreis)
   verzug: Ohne Festlegung begründet jede Vorlage ihre Gewichte selbst – und wird angreifbar.
   optionen:
     - id: A
@@ -78,7 +79,7 @@ vorlage:
     option: A
     text: Die Projektsteuerung empfiehlt „Termin vor Kosten“ – der Förderbescheid verlangt die Inbetriebnahme zum Schuljahr 2028/29. Nachteil – teurere Wege werden leichter akzeptiert; die Kosten bleiben mit Gewicht 3 im Spiel.
 folge: |
-  Die Projektsteuerung dokumentiert die Gewichte in der Software; mit dem Projektblatt gelten sie für alle weiteren Vorlagen.
+  Der Bauherr legt die Gewichte fest; die Projektsteuerung dokumentiert den Beschluss in der Software. Mit dem Projektblatt gelten sie für alle weiteren Vorlagen.
 so-laeuft-es-oft: |
   Die Ziele stehen im Projekthandbuch, ohne Rangfolge. Erst wenn zwei kollidieren, wird verhandelt – und oft setzt sich die Sicht durch, die gerade am Tisch sitzt.
 einwand:
@@ -86,7 +87,7 @@ einwand:
   antwort: Deshalb sagt jede Vorlage offen, ob andere vertretbare Gewichte die Rangfolge ändern würden. Feste Gewichte verhindern nur, dass man sie nachträglich der gewünschten Option anpasst.
 theorie: entscheidungsvorlage
 regie:
-  notiz: Hier wird der Rahmen gesetzt. Das Projektblatt mit Grenzen, Schwellen und Skalen hat die GML vor der Beauftragung der Projektsteuerung festgelegt; die Projektsteuerung bringt nur die Gewichte zur Abstimmung. Die drei Vorschläge ruhig zeigen – die gewählten Gewichte gelten ab jetzt für jede Vorlage; frei verschieben lassen sie sich in der Story selbst. Betonen, dass der Bauherr keine Liste pflegt.
+  notiz: Hier wird der Rahmen gesetzt. Das Projektblatt mit Grenzen, Schwellen und Skalen hat die GML vor der Beauftragung der Projektsteuerung festgelegt; die Projektsteuerung bringt nur die Gewichte zur Abstimmung. Festlegen muss sie der Bauherr (Dr. Olbers) – die Zielpriorität ist nicht delegierbar; die Bauherren-PL empfiehlt. Die drei Vorschläge ruhig zeigen – die festgelegten Gewichte gelten ab jetzt für jede Vorlage; frei verschieben lassen sie sich in der Story selbst. Betonen, dass der Bauherr keine Liste pflegt.
   leitfragen:
     - Wie würden Sie die Ziele Ihres aktuellen Projekts gewichten?
     - Wer entscheidet bei Ihnen heute, wenn Kosten und Termin kollidieren?

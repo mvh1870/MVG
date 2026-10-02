@@ -31,6 +31,13 @@ export async function lauf(seite, h) {
   await h.erwarte('.anzeige [data-thema="verantwortung"]', leinwand);
   await seite.locator('[data-pruef="regie-werkzeug"]').selectOption('matrix');
   await h.erwarte('.anzeige [data-werkzeug="matrix"]', leinwand);
+  // R68: die Vorschau zeigt die Leinwand mit deren Schrift – axe misst sie nicht (aria-hidden); Text gegen Weiß ≥ 4,5:1
+  const blass = await seite.evaluate(() => {
+    const lum = (/** @type {string} */ c) => { const m = c.match(/[\d.]+/gu)?.map(Number) ?? [0, 0, 0]; const f = (/** @type {number} */ v) => { const x = v / 255; return x <= 0.03928 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; }; return 0.2126 * f(m[0] ?? 0) + 0.7152 * f(m[1] ?? 0) + 0.0722 * f(m[2] ?? 0); };
+    return [...document.querySelectorAll('.vorschau-buehne p, .vorschau-buehne li')].filter((el) => (el.textContent ?? '').trim() !== '')
+      .filter((el) => 1.05 / (lum(getComputedStyle(el).color) + 0.05) < 4.5).length;
+  });
+  if (blass > 0) h.befund(`regie: ${blass} Absätze der Vorschau mit heller Schrift`);
   for (const fund of await seite.evaluate(pruefeLayout)) h.befund(`regie: ${fund}`);
   await h.axe('regie');
   await h.axe('leinwand', leinwand);

@@ -518,7 +518,7 @@ test('Wissenschecks (P11.6): je Lernseite 2–12 einer; Wahl zeigt Rückmeldung,
 });
 
 test('Druck und Leinwand (R48): jede Tafel zeigt alle Zellen ihrer Tabelle – auch Formen mit Auswahl (aufgelöst)', () => {
-  const norm = (t: string): string => t.replace(/[\u00ad\u200b]/gu, '').replace(/\s+/gu, ' ').trim();
+  const norm = (t: string): string => t.replace(/[\u00ad\u200b\u2060]/gu, '').replace(/\s+/gu, ' ').trim();
   // gegen die Anzeigefassung (L-66, L-208: Satzfehler der Quelle berichtigt)
   const wp = anzeigeFassung(JSON.parse(readFileSync(join(WURZEL, 'quellen/whitepaper/v1.2/whitepaper.json'), 'utf8')) as unknown);
   const finde = (o: unknown, id: string): { zeilen: string[][] } | null => {

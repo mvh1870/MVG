@@ -12,7 +12,7 @@
 import { tafelnAufgeloest, type TitelStufe } from '../../grafik/tafel.ts';
 import { grundriss } from '../../grafik/bauplan.ts';
 import type { Block, Ebene, OeffentlicheInhalte, TheorieSeite } from '../../inhalte/typen.ts';
-import { h, ersetze, laengstesWort, mitTrennstellen, umbruchNachSchraegstrich, vonHtml } from '../h.ts';
+import { h, ersetze, laengstesWort, mitTrennstellen, schuetzeEinheitenIn, umbruchNachSchraegstrich, vonHtml } from '../h.ts';
 import { sym, symbolAusInhalt, tafel as tafelBlock, merksatz, hinweis } from '../bausteine/bloecke.ts';
 import { inhalt } from '../bausteine/inhalt.ts';
 import { etappen, regler, sortieren, umschalter } from '../bausteine/lernwerkzeuge.ts';
@@ -231,7 +231,7 @@ export function glossarListe(o: { inhalte: OeffentlicheInhalte; bedienbar: boole
       .map((t) => link(`#theorie/${t?.thema ?? ''}`, { class: 'glossar-ort' }, t?.kurztitel ?? ''));
     return h('div', { class: 'glossar-eintrag', id: g.id, 'data-pruef': 'glossar-eintrag', 'data-suche': `${g.begriff} ${g.definition}`.toLocaleLowerCase('de') },
       h('dt', null, g.begriff),
-      h('dd', null, (() => { const p = h('p', null, g.definition); umbruchNachSchraegstrich(p); return p; })(),
+      h('dd', null, (() => { const p = h('p', null, g.definition); umbruchNachSchraegstrich(p); schuetzeEinheitenIn(p); return p; })(),
         orte.length > 0 ? h('p', { class: 'glossar-orte' }, h('span', { class: 't-label' }, T.kommtVor), ...orte) : null));
   });
   const feld = h('input', { type: 'search', class: 'glossar-feld', id: 'glossar-suche', 'data-pruef': 'glossar-suche', autocomplete: 'off', spellcheck: 'false' }) as HTMLInputElement;

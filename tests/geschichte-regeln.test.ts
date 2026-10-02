@@ -8,7 +8,7 @@ import assert from 'node:assert/strict';
 
 import { kompiliere } from '../werkzeuge/inhalte.mjs';
 import { begrenzeGewicht, kipppunkte, spitze } from '../src/geschichte/mcda.ts';
-import { empfohlen, empfehlungstextGilt, gewichte, leseStand, neuerStand } from '../src/geschichte/engine.ts';
+import { empfohlen, empfehlungstextGilt, gewichte, gilt, leseStand, neuerStand, status, waehle } from '../src/geschichte/engine.ts';
 import type { Geschichte, Option, Station } from '../src/geschichte/typen.ts';
 
 const erg = await kompiliere({ pruefe: true, ziel: null });
@@ -88,4 +88,16 @@ test('leseStand(): gespeicherte Gewichte werden auf 1–5 begrenzt', () => {
   // ein fehlendes Kriterium verwirft die Gewichte ganz
   const ohne = leseStand(g, { v: 1, schritt: { ort: 'prolog' }, wahlen: {}, gewichte: { kosten: 3, termin: 3, qualitaet: 3 }, kurz: false });
   assert.equal(ohne?.gewichte, null);
+});
+
+test('Statusbedingung „puffer<0“ gilt bei der Lage der Station, ohne Station nie (R68)', () => {
+  const s4 = st('s4');
+  let z = neuerStand();
+  z = waehle(g, z, 's3', 'B');
+  const puffer = status(g, { ...z, schritt: { ort: 'station', station: 's4', teil: 'lage' } }).puffer;
+  assert.equal(gilt(g, z, `puffer<${puffer + 1}`, s4), true);
+  assert.equal(gilt(g, z, `puffer<${puffer}`, s4), false);
+  assert.equal(gilt(g, z, `puffer>=${puffer}`, s4), true);
+  assert.equal(gilt(g, z, `puffer<${puffer + 1}`), false);
+  assert.equal(gilt(g, z, 's3=B & offen>=1', s4), true);
 });

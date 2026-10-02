@@ -16,7 +16,7 @@
 
 import type { Block } from '../../inhalte/typen.ts';
 import type { TitelStufe } from '../../grafik/tafel.ts';
-import { h, ersetze } from '../h.ts';
+import { h, ersetze, mitTrennstellen } from '../h.ts';
 import { inhalt } from './inhalt.ts';
 import { kopfText } from '../anzeige.ts';
 import { W } from '../woerter.ts';
@@ -60,7 +60,7 @@ export function etappen(b: Block, stufe: TitelStufe = 'h3', bedienbar = true): H
       zeige(ziel, true);
       knoepfe[ziel]?.focus();
     },
-  }, h('span', { class: 'lw-etappe-nr', 'aria-hidden': 'true' }, String(i + 1)), h('span', { class: 'lw-etappe-name' }, kopfText(e.kopf, 'titel') ?? '')));
+  }, h('span', { class: 'lw-etappe-nr', 'aria-hidden': 'true' }, String(i + 1)), h('span', { class: 'lw-etappe-name' }, mitTrennstellen(kopfText(e.kopf, 'titel') ?? ''))));
   const zurueck = h('button', { type: 'button', class: 'knopf knopf-still lw-blaettern', 'data-pruef': 'etappe-zurueck', onclick: () => zeige(jetzt - 1, true) }, L.zurueck);
   const weiter = h('button', { type: 'button', class: 'knopf knopf-still lw-blaettern', 'data-pruef': 'etappe-weiter', onclick: () => zeige(jetzt + 1, true) }, L.weiter);
   function zeige(i: number, melden: boolean): void {
@@ -112,7 +112,7 @@ export function umschalter(b: Block, stufe: TitelStufe = 'h3', bedienbar = true)
   const knoepfe = seiten.map((x, i) => h('button', {
     type: 'button', class: `lw-schalter-seite lw-seite-${x.s}`, 'aria-pressed': i === 0 ? 'true' : 'false', 'data-pruef': `umschalter-${x.s}`,
     onclick: () => zeige(i),
-  }, x.name));
+  }, mitTrennstellen(x.name)));
   const schalter = h('div', { class: 'lw-schalter', role: 'group', 'aria-label': kopfText(b.kopf, 'titel') ?? L.umschalter }, h('span', { class: 'lw-schalter-marke', 'aria-hidden': 'true' }), knoepfe);
   function zeige(i: number): void {
     const x = seiten[i];

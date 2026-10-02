@@ -19,6 +19,8 @@
 .vorschau-rahmen { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: var(--radius-l); background: var(--navy-2); box-shadow: 0 0 0 1px var(--navy-linie), var(--schatten-rahmen); }
 .vorschau-buehne { position: absolute; left: 0; top: 0; overflow: hidden; transform-origin: 0 0; pointer-events: none; }
 .vorschau-buehne .anzeige { height: 100%; }
+/* R68: die Vorschau zeigt die Leinwand – mit deren dunkler Schrift, nicht der hellen des Pults */
+.vorschau-buehne { color: var(--tinte); }
 .vorschau-buehne .startseite, .vorschau-buehne .lernseite { height: 100%; min-height: 0; overflow: hidden; }
 /* Die Bühne ist 1280 × 720, unabhängig vom Regie-Fenster: Höhen aus der Bühne, nicht aus vh (P12.5 R7) */
 .vorschau-buehne { --vh: 7.2px; }

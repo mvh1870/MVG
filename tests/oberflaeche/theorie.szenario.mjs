@@ -37,7 +37,16 @@ export async function lauf(seite, h) {
     const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen :is(h1, h2, h3, h4, dt, .lw-titel, summary, .lw-etappe-titel, .querverweis-text), .druck-bogen .lw-aufgeloest-liste > li > b:first-child, .druck-bogen :is(.querverweis-block, .wissenscheck) > .t-label')]
       .map((x) => ({ text: x.textContent ?? '', pt: Math.max(...[x, ...x.querySelectorAll('*')].filter((e) => [...e.childNodes].some((k) => k.nodeType === 3 && (k.textContent ?? '').trim() !== ''))
         .map((e) => parseFloat(getComputedStyle(e).fontSize))) * 0.75 })));
+    // R68: genau ein sichtbarer Titel im Bogen
+    const titel = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen h1')].filter((x) => getComputedStyle(x).display !== 'none').length);
+    if (titel !== 1) h.befund(`Druck ${t}: ${titel} sichtbare h1 im Bogen`);
     const pdf = await pdfSeiten(await seite.pdf({ format: 'A4' }));
+    // R68: kein Kopf in den letzten drei Zeilen einer halbleeren Seite (außer der letzten)
+    const flach = (/** @type {string} */ x) => x.replace(/[\s\u00ad\u2060-]+/gu, '').toLowerCase();
+    const kopfFlach = koepfe.map((k) => flach(k.text)).filter((k) => k.length >= 6);
+    const halb = pdf.slice(0, -1).map((x, i) => ({ s: i + 1, f: x.fuellung ?? 1, z: x.zeilen.slice(-3) }))
+      .filter((x) => x.f < 0.6 && x.z.some((z) => kopfFlach.includes(flach(z))));
+    if (halb.length > 0) h.befund(`Druck ${t}: Kopf am Ende einer halbleeren Seite ${JSON.stringify(halb.slice(0, 3))}`);
     if (koepfe.length < 3) h.befund(`Druck ${t}: nur ${koepfe.length} Köpfe gelesen`);
     const amEnde = seitenMitUeberschriftAmEnde(pdf, koepfe);
     if (amEnde.length > 0) h.befund(`Druck ${t}: Überschrift am Seitenende ${JSON.stringify(amEnde.slice(0, 4))}`);

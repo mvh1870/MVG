@@ -9,7 +9,9 @@ kurzfassung: true
 # Beträge und Tage wie im fiktiven Beispiel des Standards (L-193): 80.000 € / 7 Tage gegen 20.000 € / 28 Tage. Punkte nach den
 # Skalen des Projektblatts (s1): Kosten 80 TEUR → 3, 20 TEUR → 5; Termin 7 Tage → 5, 28 Tage → 2.
 # Dringliches sofort melden, am selben Arbeitstag dokumentieren (v24:hb-4); ein eingetretener Zustand ist ein Problem (v24:hb-1.4).
-belege: [v24:hb-1.4, v24:hb-3, v24:hb-3.1, v24:hb-3.2, v24:hb-4]
+# Die Prognose liegt in s8 auf jedem Weg über der Projektbasis (Lage ≥ 58,83): Mehrkosten gehen zulasten der Risikoreserve, deren Einsatz
+# nur der Bauherr freigibt (k3.2-t1; benötigte Freigaben in der Vorlage, v24:hb-3.1, v24:hb-3.2). Sachentscheidung im Mandat der PL (k4.2-p3).
+belege: [v24:hb-1.4, v24:hb-3, v24:hb-3.1, v24:hb-3.2, v24:hb-4, k3.2-t1, k4.2-p3]
 lage: |
   Januar 2028. Das zentrale Lüftungsgerät der Gesamtschule kommt vier Wochen später; ein gleichwertiges Ersatzgerät wäre in einer Woche lieferbar.
 
@@ -56,6 +58,8 @@ bericht:
       wenn: s3=A & s4=A & s5!=A & s6=A & s7=B
     - text: Achtung – mit dem Ersatzgerät (+0,08 Mio. €) läge die Prognose über Basis plus Reserve (61,3 Mio. €); dann braucht es die Neufestlegung der Projektbasis.
       wenn: s3=C & s4=B & s5!=A & s6=K & s7=A
+    - text: Terminpuffer überschritten – die Inbetriebnahme zum Schuljahr 2028/29 ist nach heutigem Stand nicht zu halten, die Förderfrist gefährdet.
+      wenn: puffer<0
   reaktion: Bitte entscheiden Sie zwischen Ersatzgerät und Abwarten.
 vorgaenge:
   - art: problem
@@ -76,22 +80,22 @@ vorlage:
   art: optionen
   frage: Ersatzgerät oder Lieferung abwarten?
   grund: |
-    Beide Wege erfüllen die Anforderungen – die Haustechnikplanung hat die Gleichwertigkeit des Ersatzgeräts bestätigt. Es geht um Geld gegen Zeit.
-  stelle: Sie als Bauherren-PL – im Mandat bis 100 TEUR
+    Beide Wege erfüllen die Anforderungen – die Haustechnikplanung hat die Gleichwertigkeit des Ersatzgeräts bestätigt. Es geht um Geld gegen Zeit. Die Prognose liegt über der Projektbasis; Mehrkosten gehen deshalb zulasten der Risikoreserve, und deren Einsatz gibt nur der Bauherr frei. Die Sachentscheidung bleibt in Ihrem Mandat.
+  stelle: Sie als Bauherren-PL – im Mandat bis 100 TEUR; die Mehrkosten aus der Reserve gibt zusätzlich der Bauherr frei (Dr. Olbers)
   termin: 19. Januar 2028
   verzug: Nach dem 19. Januar ist das Ersatzgerät nicht mehr in einer Woche lieferbar.
   muss: Beide Optionen erfüllen Funktion, Brandschutz und Hygieneanforderungen.
   optionen:
     - id: A
       titel: Ersatzgerät
-      text: Das gleichwertige Gerät eines anderen Herstellers wird bestellt.
+      text: Das gleichwertige Gerät eines anderen Herstellers wird bestellt; die 0,08 Mio. € kommen aus der Reserve, freigegeben vom Bauherrn.
       punkte:
         kosten: [3, "+0,08 Mio. €"]
         termin: [5, "rund 7 Tage Verzug"]
         qualitaet: [5, "volle Funktion"]
         klima: [4, "gleiche Effizienz"]
       folgen: { kosten: 0.08, puffer: -7 }
-      konsequenz: Die Bestellung läuft über den Vertragsweg der Haustechnik; die Projektsteuerung verfolgt Lieferung und Einbau und schließt das Problem mit der Inbetriebnahme.
+      konsequenz: Die Projektsteuerung bereitet die Freigabe der 0,08 Mio. € aus der Reserve vor, die noch am selben Tag an Dr. Olbers geht, und dokumentiert sie getrennt vom Beschluss. Danach läuft die Bestellung über den Vertragsweg der Haustechnik; die Projektsteuerung verfolgt Lieferung und Einbau und schließt das Problem mit der Inbetriebnahme.
     - id: B
       titel: Abwarten
       text: Die ursprüngliche Lieferung wird abgewartet.
@@ -101,7 +105,7 @@ vorlage:
         qualitaet: [5, "volle Funktion"]
         klima: [4, "gleiche Effizienz"]
       folgen: { kosten: 0.02, puffer: -28 }
-      konsequenz: Die Baustelle stellt um. Die Projektsteuerung führt das Terminrisiko für den Schulstart im Register und legt es im nächsten Monatstermin vor.
+      konsequenz: Die Baustelle stellt um; die 0,02 Mio. € Vorhaltekosten gibt der Bauherr aus der Reserve frei. Die Projektsteuerung führt das Terminrisiko für den Schulstart im Register und legt es im nächsten Monatstermin vor.
   empfehlung:
     option: A
     text: Die Projektsteuerung empfiehlt das Ersatzgerät – mit „Termin vor Kosten“ 57 zu 48, mit „Ausgewogen“ 59 zu 55. Achtung – bei „Kosten vor Termin“ dreht sich die Rangfolge knapp (53 zu 54); das muss sichtbar bleiben.

@@ -12,6 +12,9 @@ kurzfassung: true
 # Auf jedem Weg liegt die Prognose zwischen 60,13 und 60,98 – über der Basis, unter Basis plus Reserve (61,3);
 # mit dem vollen Nachtrag (1,2) läge sie auf jedem Weg darüber. Beträge in der Prognose kenntlich, nicht doppelt (v24:hb-2).
 # Neufestlegung der Projektbasis: der Bauherr im Lenkungskreis (k13-t1, wie das Glossar); der Stadtrat bestätigt (Fall: die Stadt bewilligt die Mittel).
+# Option C (R68): so gefasst, wie der Weg verläuft – die Projektsteuerung bereitet die Neufestlegung vor, der Bauherr entscheidet, wann,
+# und stellt sie bis nach den Hauptvergaben zurück (Berichte s6, s7, s8). Bis dahin trägt die vorgesehene Reserve, kein Auftrag wartet:
+# kein Verzug, Termin 5. B und C sind damit in jeder Gewichtung gleichauf; die Empfehlung begründet B (v24:hb-3.1, Urteil statt Punktzahl).
 belege: [v24:hb-2, v24:hb-3, v24:hb-4, v24:tlb-3, v24:tlb-2, k4.6-p2, k3.2-t1]
 lage: |
   Montag, 11. Mai. Zwei Prognosen liegen auf dem Tisch, 1,2 Mio. € auseinander: die Kostenberechnung von Holger Stein, Kostenplaner der Generalplanung, und die Rechnung von Aylin Kaya vom Controlling.
@@ -45,6 +48,8 @@ bericht:
     - text: Im April entschieden – Mensa bleibt wie geplant (AEN-012 mit Begründung abgelehnt).
       wenn: kurz & s4=C
     - Bauausschuss am 21. Mai – er braucht eine klare Frage.
+    - text: Terminpuffer überschritten – die Inbetriebnahme zum Schuljahr 2028/29 ist nach heutigem Stand gefährdet, damit auch die Förderfrist.
+      wenn: puffer<0
   reaktion: Wie soll der Bauherr mit der Prognose umgehen? Ihre Empfehlung geht an Dr. Olbers.
 vorgaenge:
   - art: risiko
@@ -80,7 +85,7 @@ vorlage:
         kosten: [5, "−1,5 Mio. €"]
         termin: [5, "rund 7 Tage Umplanung"]
         qualitaet: [2, "weniger Ausstattung"]
-        klima: [3, "unverändert"]
+        klima: [4, "unverändert"]
       folgen: { kosten: -1.5, puffer: -7 }
       konsequenz: Die Generalplanung arbeitet das Paket aus. Die Projektsteuerung legt es als Änderung an und verfolgt, ob die Einsparung tatsächlich eintritt.
     - id: B
@@ -94,18 +99,18 @@ vorlage:
       folgen: {}
       konsequenz: Der Bauausschuss nimmt den Bericht zur Kenntnis. Freigegeben wird die Reserve erst, wenn Mehrkosten eintreten – vom Bauherrn selbst.
     - id: C
-      titel: Projektbasis neu festlegen lassen
-      text: Eine neue Projektbasis mit den bekannten Mehrkosten, vom Bauherrn beschlossen und vom Stadtrat bestätigt; die Reserve bliebe für Unvorhergesehenes.
+      titel: Neufestlegung der Projektbasis vorbereiten
+      text: Die Projektsteuerung bereitet eine neue Projektbasis mit den bekannten Mehrkosten vor; wann sie beschlossen wird, entscheidet der Bauherr im Lenkungskreis, der Stadtrat bestätigt. Bis dahin gilt die bisherige Basis, Mehrkosten laufen über die vorgesehene Reserve.
       punkte:
-        kosten: [5, "keine Mehrkosten; Basis steigt"]
-        termin: [3, "rund 21 Tage bis zur Bestätigung"]
+        kosten: [5, "keine Mehrkosten"]
+        termin: [5, "kein Verzug"]
         qualitaet: [4, "unverändert"]
         klima: [4, "unverändert"]
-      folgen: { puffer: -21, offen: 1 }
-      konsequenz: Die Projektsteuerung bereitet die Vorlage für den Lenkungskreis vor; die GML lässt den Beschluss vom Stadtrat bestätigen. Bis dahin gilt die bisherige Basis; Aufträge, die über sie hinausgehen, warten so lange – rund drei Wochen.
+      folgen: { offen: 1 }
+      konsequenz: Die Projektsteuerung legt die Vorlage zur Neufestlegung im Lenkungskreis vor. Der Bauherr stellt den Beschluss zurück, bis die Hauptvergaben abgeschlossen sind. Bis dahin gilt die bisherige Basis, Mehrkosten laufen über die vorgesehene Reserve – und die Entscheidung bleibt offen.
   empfehlung:
     option: B
-    text: Die Projektsteuerung empfiehlt, die Reserve vorzusehen und offen zu berichten – vorn mit jeder der drei vorgeschlagenen Gewichtungen. Nachteil – tritt der Nachtrag voll ein, reicht die Reserve nicht ganz. Das Einsparpaket holt keinen Kostenpunkt mehr, weil auch B keine Mehrkosten verursacht, und kostet Ausstattung und eine Woche.
+    text: Die Projektsteuerung empfiehlt, die Reserve vorzusehen und offen zu berichten. Achtung – B und C liegen mit jeder Gewichtung gleichauf; in Kosten, Termin und Funktion unterscheiden sie sich nicht. Für B spricht, dass eine neue Basis vor den Hauptvergaben nur auf Schätzungen stünde – C bereitet eine Entscheidung vor, die deshalb lange offen bliebe. B lässt nichts offen; reicht die Reserve später nicht, legt die Projektsteuerung die Neufestlegung dann vor. Nachteil – tritt der Nachtrag voll ein, reicht die Reserve nicht ganz. Das Einsparpaket holt keinen Kostenpunkt mehr, weil auch B keine Mehrkosten verursacht, und kostet Ausstattung und eine Woche.
 folge: |
   Ein Datenstand für alle: Bericht, Software und Vorlage nennen dieselbe Zahl. Der Bericht passt auf eine Seite, weil er auf die Einträge verweist.
 so-laeuft-es-oft: |
@@ -115,7 +120,7 @@ einwand:
   antwort: Die Details stehen in der Software, jeder Eintrag mit Verweis. Die eine Seite zeigt, was sich geändert hat und welche Reaktion gebraucht wird.
 theorie: takt
 regie:
-  notiz: Der Monatstermin ist der Kern – 60 Minuten, eine Seite. Den Unterschied zwischen Prognose und Risiko (Bandbreite) erklären; die 0,6 Mio. € Marktpreise stehen in der Prognose und sind im Risiko vermerkt, damit nichts doppelt zählt. Auf dem empfohlenen Weg zeigt der Status 60,4 Mio. € (+2,0 Mio. €, 3,4 %).
+  notiz: Der Monatstermin ist der Kern – 60 Minuten, eine Seite. Den Unterschied zwischen Prognose und Risiko (Bandbreite) erklären; die 0,6 Mio. € Marktpreise stehen in der Prognose und sind im Risiko vermerkt, damit nichts doppelt zählt. Auf dem empfohlenen Weg zeigt der Status 60,4 Mio. € (+2,0 Mio. €, 3,4 %). B und C sind punktgleich – hier entscheidet das Urteil, nicht die Zahl.
   leitfragen:
     - Wie lang ist Ihr letzter Monatsbericht?
     - Wer klärt bei Ihnen widersprüchliche Zahlen, bevor sie ins Gremium gehen?

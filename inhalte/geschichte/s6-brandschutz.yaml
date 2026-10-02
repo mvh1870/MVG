@@ -26,6 +26,10 @@ bericht:
       wenn: s3=B
     - text: AEN-013 Sporthalle in Stahlbeton – Ausführungsplanung angepasst; die Wirkung auf die Lieferzeit zeigt die Vergabe.
       wenn: s3=C
+    - text: Neufestlegung der Projektbasis – die Vorlage liegt vor; der Bauherr hat den Beschluss im Lenkungskreis zurückgestellt, bis die Hauptvergaben abgeschlossen sind. Es gilt die bisherige Basis, Mehrkosten laufen über die vorgesehene Reserve; die Entscheidung bleibt offen.
+      wenn: s5=C
+    - text: Terminpuffer überschritten – die Inbetriebnahme zum Schuljahr 2028/29 ist nach heutigem Stand gefährdet, damit auch die Förderfrist.
+      wenn: puffer<0
   reaktion: Bitte entscheiden Sie, ob die Auflage jetzt umgesetzt oder die Klärung abgewartet wird.
 vorgaenge:
   - art: problem

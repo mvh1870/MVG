@@ -66,9 +66,12 @@ test('MCDA: Summen und Gewichtungsaussagen der Empfehlungstexte', () => {
   assert.deepEqual(spitze(st('s4').vorlage.optionen, g.kriterien, { ...STANDARD, kosten: 4 }), ['C'], 's4: ein Punkt mehr auf Kosten');
   for (const gew of [STANDARD, KOSTEN_ZUERST, AUSGEWOGEN]) {
     assert.deepEqual(spitze(st('s2').vorlage.optionen, g.kriterien, gew), ['B']);
-    assert.deepEqual(spitze(st('s5').vorlage.optionen, g.kriterien, gew), ['B']);
+    // s5: B und C in jeder Gewichtung punktgleich (C „Neufestlegung vorbereiten“ kostet weder Geld noch Zeit, R68)
+    assert.deepEqual([...spitze(st('s5').vorlage.optionen, g.kriterien, gew)].sort(), ['B', 'C']);
     assert.deepEqual(spitze(st('s7').vorlage.optionen, g.kriterien, gew), ['A']);
   }
+  assert.deepEqual(summen('s5', STANDARD), { B: 60, C: 60, A: 54 });
+  assert.deepEqual(summen('s5', AUSGEWOGEN), { B: 64, C: 64, A: 58 });
   assert.deepEqual(summen('s8', STANDARD), { A: 57, B: 48 });
   assert.deepEqual(summen('s8', AUSGEWOGEN), { A: 59, B: 55 });
   assert.deepEqual(summen('s8', KOSTEN_ZUERST), { B: 54, A: 53 });
@@ -283,4 +286,80 @@ test('Kipppunkte: je Kriterium beide Richtungen, Gleichstand als mehrere an der 
   const kosten = k.filter((x) => x.kriterium === 'kosten');
   assert.ok(kosten.some((x) => x.gewicht < (STANDARD['kosten'] ?? 0)) || kosten.some((x) => x.gewicht > (STANDARD['kosten'] ?? 0)));
   for (const x of k) assert.notDeepEqual(x.spitze, spitze(v.optionen, g.kriterien, STANDARD));
+});
+
+test('MCDA: gleiche Begründung heißt gleicher Punkt – innerhalb jeder Vorlage (R68)', () => {
+  for (const x of g.stationen) {
+    const je = new Map<string, number>();
+    for (const o of x.vorlage.optionen) {
+      if (o.punkte === null) continue;
+      for (const [k, p] of Object.entries(o.punkte)) {
+        if (p === undefined) continue;
+        const schl = `${k}|${p[1]}`;
+        const vorher = je.get(schl);
+        if (vorher !== undefined) assert.equal(p[0], vorher, `${x.id} ${o.id} ${k} „${p[1]}“`);
+        je.set(schl, p[0]);
+      }
+    }
+  }
+});
+
+test('Empfehlungstexte nennen die Gewichtung beim Namen – s4 bleibt mit verschobenen Gewichten richtig (R68)', () => {
+  const t = st('s4').vorlage.empfehlung.html;
+  assert.match(t, /mit „Termin vor Kosten“ liegen B und C gleichauf \(52 zu 52\)/u);
+  assert.doesNotMatch(t, /mit den festgelegten Gewichten/u);
+  // „ein Punkt mehr auf Kosten“ gilt von „Termin vor Kosten“ aus
+  assert.deepEqual(spitze(st('s4').vorlage.optionen, g.kriterien, { ...STANDARD, kosten: 4 }), ['C']);
+});
+
+test('Station 1: die Gewichte legt der Bauherr fest, die Bauherren-PL empfiehlt (R68)', () => {
+  const s1 = st('s1');
+  assert.match(s1.vorlage.stelle, /^Bauherr – Dr\. Miriam Olbers/u);
+  assert.match(s1.bericht.reaktion, /Ihre Empfehlung geht an Dr\. Olbers/u);
+});
+
+test('Station 8: die Mehrkosten kommen aus der Reserve – Freigabe des Bauherrn als Vorbehalt (R68)', () => {
+  const s8 = st('s8');
+  assert.match(s8.vorlage.stelle, /im Mandat bis 100 TEUR.*Reserve.*Bauherr/u);
+  for (const { stand } of alleWege()) assert.ok(status(g, stand, { ort: 'station', station: 's8', teil: 'lage' }).kosten > 58.4);
+  const a = s8.vorlage.optionen.find((o) => o.id === 'A');
+  assert.match(a?.konsequenzHtml ?? '', /Freigabe der 0,08 Mio\. € aus der Reserve/u);
+});
+
+/** Berichtszeilen einer Station, die beim Stand gelten (Statusbedingungen bei ihrer Lage). */
+const berichtBei = (stand: Stand, id: string): string => st(id).bericht.zeilen.filter((z) => gilt(g, stand, z.wenn, st(id))).map((z) => z.html).join(' ');
+
+/** Alle Wege der Kurzfassung (Station 1 mit den vorgeschlagenen Gewichten). */
+function alleKurzWege(): Stand[] {
+  const ids = g.stationen.filter((x) => x.kurzfassung && x.vorlage.art === 'optionen').map((x) => x.id);
+  const aus: Stand[] = [];
+  const geh = (i: number, s: Stand): void => {
+    const id = ids[i];
+    if (id === undefined) { aus.push(s); return; }
+    for (const o of st(id).vorlage.optionen) geh(i + 1, waehle(g, s, id, o.id));
+  };
+  geh(0, neuerStand(true));
+  return aus;
+}
+
+test('Negativer Terminpuffer: Die Berichte in s4–s8 nennen ihn auf jedem Weg genau dann, wenn der Status negativ ist (R68)', () => {
+  const MELDUNG = /Terminpuffer überschritten – die Inbetriebnahme zum Schuljahr 2028\/29/u;
+  let negativ = 0;
+  const pruefe = (stand: Stand, ids: string[], wo: string): void => {
+    for (const id of ids) {
+      const puffer = status(g, stand, { ort: 'station', station: id, teil: 'lage' }).puffer;
+      if (puffer < 0) negativ++;
+      assert.equal(MELDUNG.test(berichtBei(stand, id)), puffer < 0, `${id} Puffer ${puffer} ${wo}`);
+    }
+  };
+  for (const { stand, w } of alleWege()) pruefe(stand, ['s4', 's5', 's6', 's7', 's8'], JSON.stringify(w));
+  for (const stand of alleKurzWege()) pruefe(stand, ['s5', 's8'], `kurz ${JSON.stringify(stand.wahlen)}`);
+  assert.ok(negativ > 0);
+});
+
+test('Vertagte Entscheidungen stehen im nächsten Bericht: s3 = B in s4, s5 = C in s6 (R68)', () => {
+  for (const { stand, w } of alleWege()) {
+    if (w['s3'] === 'B') assert.match(berichtBei(stand, 's4'), /RIS-009.*Entscheidung im März vertagt/u, JSON.stringify(w));
+    if (w['s5'] === 'C') assert.match(berichtBei(stand, 's6'), /Neufestlegung der Projektbasis.*zurückgestellt.*Entscheidung bleibt offen/u, JSON.stringify(w));
+  }
 });

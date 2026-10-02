@@ -22,8 +22,12 @@ bericht:
       wenn: s2=B
     - text: Maßnahme MAS-007 vorgezogene Vergabe Holzbau – Vergabeunterlagen am 15. April versandt.
       wenn: s3=A
+    - text: RIS-009 Lieferzeit Holzbau weiter aktiv · vorrangig bearbeiten – die Entscheidung im März vertagt, geklärt wird sie mit der Vergabe; im Terminpuffer sind dafür rund 35 Tage berücksichtigt.
+      wenn: s3=B
     - text: Änderung AEN-013 Sporthalle in Stahlbeton – Umplanung läuft.
       wenn: s3=C
+    - text: Terminpuffer überschritten – die Inbetriebnahme zum Schuljahr 2028/29 ist nach heutigem Stand gefährdet, damit auch die Förderfrist.
+      wenn: puffer<0
   reaktion: Bitte entscheiden Sie über die Mensa.
 vorgaenge:
   - art: aenderung
@@ -75,7 +79,7 @@ vorlage:
       konsequenz: Die Änderung wird mit Begründung abgelehnt und bleibt nachvollziehbar im Register. Der Wunsch der Schule ist nicht erledigt, nur entschieden.
   empfehlung:
     option: B
-    text: Die Projektsteuerung empfiehlt, die Mensa erweiterbar vorzubereiten. Achtung – B und C liegen mit den festgelegten Gewichten gleichauf (52 zu 52); die Punktzahl entscheidet hier nicht. Für B spricht, dass die Schule die größere Mensa später ohne Umbau bekommen kann – für 0,12 Mio. € jetzt statt 0,6 Mio. € für die große Mensa. Nachteil – die größere Mensa kommt nicht sofort. Ein Punkt mehr Gewicht auf Kosten bringt C nach vorn, ebenso „Kosten vor Termin“ und „Ausgewogen“.
+    text: Die Projektsteuerung empfiehlt, die Mensa erweiterbar vorzubereiten. Achtung – mit „Termin vor Kosten“ liegen B und C gleichauf (52 zu 52); die Punktzahl entscheidet hier nicht. Für B spricht, dass die Schule die größere Mensa später ohne Umbau bekommen kann – für 0,12 Mio. € jetzt statt 0,6 Mio. € für die große Mensa. Nachteil – die größere Mensa kommt nicht sofort. Mit „Kosten vor Termin“ und „Ausgewogen“ liegt C vorn – und schon ein Punkt mehr Gewicht auf Kosten als bei „Termin vor Kosten“ bringt C nach vorn.
 folge: |
   Abgelehnte oder zurückgezogene Änderungen bleiben mit Begründung nachvollziehbar. Nach einer Freigabe informiert die Projektsteuerung die Beteiligten, veranlasst die Anpassung der Unterlagen und verfolgt die Umsetzung.
 so-laeuft-es-oft: |
@@ -85,6 +89,6 @@ einwand:
   antwort: Eine Zusage ist ein Wunsch mit Gewicht, kein Beschluss. Bis das Änderungsgremium entschieden hat, gilt die bisherige Planung – sonst plant die Generalplanung auf eigenes Risiko.
 theorie: verantwortung
 regie:
-  notiz: Den Gleichstand B/C am Regler zeigen – ein Punkt mehr auf Kosten bringt C nach vorn, einer mehr auf Qualität und Funktion B. Bei Gleichstand entscheidet keine Zahl; die Empfehlung braucht eine Begründung. Die Mensa ist die Änderung ohne Risiko – ein Klassiker.
+  notiz: Mit „Termin vor Kosten“ den Gleichstand B/C in der Gegenprobe zeigen – von dort bringt ein Punkt mehr auf Kosten C nach vorn, einer mehr auf Qualität und Funktion B. Bei Gleichstand entscheidet keine Zahl; die Empfehlung braucht eine Begründung. Die Mensa ist die Änderung ohne Risiko – ein Klassiker.
   leitfragen:
     - Wie viele Zusagen im Flur stecken in Ihren laufenden Projekten?

@@ -82,13 +82,13 @@ function vorgangKarte(v: Vorgang): HTMLElement {
 }
 
 function lage(o: SchrittOptionen, st: Station): HTMLElement {
-  const zeilen = st.bericht.zeilen.filter((z) => gilt(o.g, o.stand, z.wenn));
-  const vorgaenge = st.vorgaenge.filter((v) => gilt(o.g, o.stand, v.wenn));
+  const zeilen = st.bericht.zeilen.filter((z) => gilt(o.g, o.stand, z.wenn, st));
+  const vorgaenge = st.vorgaenge.filter((v) => gilt(o.g, o.stand, v.wenn, st));
   return h('article', { class: 'gs-schritt', 'data-teil': 'lage' },
     kopf(st, w.teile['lage'] ?? ''),
     h('div', { class: 'gs-text' }, inhalt(st.lageHtml)),
     h('section', { class: 'gs-bericht', 'aria-label': st.bericht.titel, 'data-pruef': 'gs-bericht' },
-      h('h2', { class: 'gs-bericht-titel' }, sym('bericht'), st.bericht.titel),
+      h('h2', { class: 'gs-bericht-titel' }, sym('bericht'), st.bericht.titel.replace(' · ', '\u00a0· ')),
       h('ul', { class: 'gs-bericht-zeilen' }, zeilen.map((z) => h('li', null, inhaltInline(z.html)))),
       h('p', { class: 'gs-bericht-reaktion' }, st.bericht.reaktion)),
     vorgaenge.length > 0 ? h('details', { class: 'gs-vertiefung gs-bestand', 'data-pruef': 'gs-bestand' },

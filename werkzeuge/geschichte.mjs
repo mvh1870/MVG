@@ -63,10 +63,15 @@ export function baueGeschichte(c, dateien) {
   const optionenJe = new Map(roh.map((x) => [text(x.y.id), (x.y.vorlage?.optionen ?? []).map((/** @type {any} */ o) => text(o.id))]));
 
   // Bedingung: Teile mit „&“ verknüpft, je Teil „s3=A“, „s3!=A“ (frühere Wahl), „kurz“ oder „lang“ (Weg)
-  const bedingung = (/** @type {unknown} */ w, /** @type {string} */ ort, /** @type {number} */ nr) => {
+  // R68: dazu Statusbedingungen „puffer<0“, „kosten>61.3“, „offen>=1“ – nur in Berichtszeilen und Vorgängen (`mitStatus`)
+  const bedingung = (/** @type {unknown} */ w, /** @type {string} */ ort, /** @type {number} */ nr, mitStatus = false) => {
     if (w === undefined || w === null) return null;
     for (const teil of text(w).split('&').map((x) => x.trim())) {
       if (teil === 'kurz' || teil === 'lang') continue;
+      if (/^(kosten|puffer|offen)(<=|>=|<|>)(-?\d+(?:\.\d+)?)$/u.test(teil)) {
+        if (!mitStatus) c.fehler(ort, `Bedingung „${text(w)}“: Statusbedingung „${teil}“ nur in Berichtszeilen und Vorgängen`);
+        continue;
+      }
       const m = BEDINGUNG.exec(teil);
       if (m === null) { c.fehler(ort, `Bedingung „${text(w)}“ unlesbar (Form s3=A, s3!=A, kurz, lang; verknüpft mit &)`); return null; }
       const st = roh.find((x) => x.y.id === m[1]);
@@ -150,7 +155,7 @@ export function baueGeschichte(c, dateien) {
         termin: text(g.termin),
         stand: text(g.stand),
         matrix: m === undefined ? null : { w: Number(m.w), a: Number(m.a) },
-        wenn: bedingung(g.wenn, go, nr),
+        wenn: bedingung(g.wenn, go, nr, true),
       };
     });
     return {
@@ -175,7 +180,7 @@ export function baueGeschichte(c, dateien) {
             c.fehler(ort, `Berichtszeile unlesbar (Text oder { text, wenn }; Text mit „: “ in Anführungszeichen): ${JSON.stringify(z).slice(0, 60)}`);
             return { html: '', wenn: null };
           }
-          return { html: c.inline(z.text, ort), wenn: bedingung(z.wenn, ort, nr) };
+          return { html: c.inline(z.text, ort), wenn: bedingung(z.wenn, ort, nr, true) };
         }),
         reaktion: text(bericht.reaktion),
       },

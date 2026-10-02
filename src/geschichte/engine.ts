@@ -149,16 +149,32 @@ export function gewaehlteOption(g: Geschichte, stand: Stand, st: Station): Optio
   return st.vorlage.optionen.find((o) => o.id === id) ?? null;
 }
 
+/** Statusbedingung „puffer<0“, „kosten>61.3“, „offen>=1“ (R68: nur für Berichtszeilen und Vorgänge einer Station) */
+export const STATUS_BEDINGUNG = /^(kosten|puffer|offen)(<=|>=|<|>)(-?\d+(?:\.\d+)?)$/u;
+
 /**
  * Bedingung: Teile mit „&“ verknüpft, alle müssen gelten; null gilt immer. „s3=A“ / „s3!=A“ – ohne Wahl gilt keine
- * der beiden Formen; „kurz“ / „lang“ – der gewählte Weg.
+ * der beiden Formen; „kurz“ / „lang“ – der gewählte Weg; „puffer<0“ usw. – der Status bei der Lage der Station `bei`
+ * (ohne `bei` gilt eine Statusbedingung nie).
  */
-export function gilt(g: Geschichte, stand: Stand, wenn: string | null): boolean {
+export function gilt(g: Geschichte, stand: Stand, wenn: string | null, bei: Station | null = null): boolean {
   if (wenn === null) return true;
   return wenn.split('&').every((roh) => {
     const teil = roh.trim();
     if (teil === 'kurz') return stand.kurz;
     if (teil === 'lang') return !stand.kurz;
+    const sb = STATUS_BEDINGUNG.exec(teil);
+    if (sb !== null) {
+      if (bei === null) return false;
+      const wert = status(g, stand, { ort: 'station', station: bei.id, teil: 'lage' })[sb[1] as StatusSchluessel];
+      const grenze = Number(sb[3]);
+      switch (sb[2]) {
+        case '<': return wert < grenze;
+        case '>': return wert > grenze;
+        case '<=': return wert <= grenze;
+        default: return wert >= grenze;
+      }
+    }
     const m = /^(s\d+)(!?=)([A-Z])$/u.exec(teil);
     if (m === null) return false;
     const st = station(g, m[1] ?? '');

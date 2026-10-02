@@ -59,7 +59,9 @@ test('schuetzeEinheiten: geschützte Leerzeichen zwischen Zahl und Einheit, LPH 
   assert.equal(schuetzeEinheiten('bis 100 TEUR frei'), `bis 100${n}TEUR frei`);
   assert.equal(schuetzeEinheiten('über 5 Mio. €'), `über 5${n}Mio.${n}€`);
   assert.equal(schuetzeEinheiten('5 Mio. EUR'), `5${n}Mio.${n}EUR`);
-  assert.equal(schuetzeEinheiten('31–60 Tage'), `31–60${n}Tage`);
+  // R68: auch der Zahlenbereich bleibt zusammen (Wortverbinder um den Strich)
+  assert.equal(schuetzeEinheiten('31–60 Tage'), `31\u2060–\u206060${n}Tage`);
+  assert.equal(schuetzeEinheiten('LPH 0–9'), `LPH${n}0\u2060–\u20609`);
   assert.equal(schuetzeEinheiten('LPH 0 und Kap. 6.4.3'), `LPH${n}0 und Kap.${n}6.4.3`);
   assert.equal(schuetzeEinheiten('3 Tagessätze, 2 Wochenenden'), '3 Tagessätze, 2 Wochenenden');
 });

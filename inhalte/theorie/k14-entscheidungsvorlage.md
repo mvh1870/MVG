@@ -50,7 +50,7 @@ Die künftige Schulleitung wünscht eine Mensa für 450 statt 300 Essen. Das än
 ---
 titel: Wer was tut
 ---
-Die Rollen sind klar getrennt. Die **Projektsteuerung** formuliert die Frage, entwickelt die Optionen, vergleicht sie und empfiehlt eine davon. Sie trifft die Entscheidung nicht, sie genehmigt sie nicht und sie bestätigt sie auch nicht. Die **befugte Stelle des Bauherrn** entscheidet – je nach Mandat zum Beispiel die Projektleitung, ein Gremium oder der Bauherr selbst.
+Die Rollen sind klar getrennt. Die **Projektsteuerung** formuliert die Frage, entwickelt die Optionen, vergleicht sie und empfiehlt eine davon. Sie trifft die Entscheidung nicht, sie genehmigt sie nicht und sie bestätigt sie auch nicht. Die **befugte Stelle des Bauherrn** entscheidet – je nach Mandat zum Beispiel die Bauherren-PL, ein Gremium wie das Änderungsgremium oder der Bauherr selbst.
 
 So bleibt die Vorbereitung abgebbar und die Entscheidung dort, wo sie hingehört. Der Bauherr pflegt keine Listen und schreibt keine Vorlagen. Er bekommt sie rechtzeitig und vollständig – und entscheidet.
 
@@ -210,7 +210,7 @@ Gewicht mal Punktwert ergibt je Kriterium ein Produkt; die Summe der Produkte is
 Das Rechnen hat Grenzen. Muss-Anforderungen zu Sicherheit, Genehmigung und Funktion werden **vor** dem Punktevergleich geprüft: Eine unzulässige Option kann nicht gewinnen, egal wie günstig sie ist. Die Projektsteuerung prüft außerdem, ob andere vertretbare Gewichte die Rangfolge ändern würden. Eine hohe Punktzahl ersetzt kein fachliches Urteil. Die Empfehlung nennt deshalb auch Nachteile, Unsicherheiten und Voraussetzungen.
 
 ::: merksatz
-Erst die Muss-Anforderungen, dann die Punkte. Und jede Empfehlung sagt, bei welchen Gewichten sie kippen würde.
+Erst die Muss-Anforderungen, dann die Punkte. Und jede Empfehlung sagt, ob andere vertretbare Gewichte die Rangfolge ändern würden.
 :::
 :::
 

@@ -118,7 +118,7 @@ Der Bericht nutzt denselben Informationsstand wie die Software und verweist auf 
 So kann eine Seite aussehen – ein fiktives Beispiel vom Schulcampus Lindenhall-Süd, Mai 2026:
 
 > **Monatsbericht · Mai 2026**
-> - Kostenprognose nach dem geltenden Datenstand: 60,4 Mio. € gegen die Projektbasis von 58,4 Mio. € (+3,4 %); die Risikoreserve von 2,9 Mio. € deckt das, eingesetzt ist sie noch nicht.
+> - Kostenprognose nach dem geltenden Datenstand: 60,4 Mio. € gegen die Projektbasis von 58,4 Mio. € (+3,4 %); die Risikoreserve von 2,9 Mio. € deckt das; für die bekannten Mehrkosten ist sie vorgesehen, ihren Einsatz gibt der Bauherr frei.
 > - Differenz der beiden Rechnungen (Kostenplanung und Controlling) geklärt: angekündigter Nachtrag der Haustechnikplanung, bis 1,2 Mio. €, als Risiko `RIS-014` geführt, nicht in der Prognose.
 > - Die Marktabfrage aus der Auflage zur Freigabe LPH 4 ist in die Prognose eingerechnet.
 > - Offene Entscheidung: Umgang mit der Prognose – entscheiden muss der Bauherr im Lenkungskreis am 19. Mai; der Bauausschuss tagt am 21. Mai.

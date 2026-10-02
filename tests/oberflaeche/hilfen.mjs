@@ -213,6 +213,42 @@ export async function rollenChipSchmal(seite, h, name) {
   if (zu) { await h.klick('[data-pruef="seitenleiste-zu"]'); await h.warte(200); }
 }
 
+/**
+ * R64 (Stil): Tabellen der Ebenen im Reiter „Ebenen“ (Ebene 3) – die Klappe (overflow hidden) schnitt sie bei 320–480 px rechts
+ * ab, ohne Rollbereich. Öffnet den Reiter mit allen Ebenen, misst bei 320, 400 und 480 px: keine Tabelle ragt über einen
+ * Vorfahren mit verstecktem Überlauf hinaus, außer in einem Rollbereich; jeder Rollbereich ist per Tastatur erreichbar.
+ * @param {import('playwright').Page} seite
+ * @param {import('../../werkzeuge/oberflaeche.mjs').Helfer} h
+ * @param {string} name
+ */
+export async function ebenenTabellenSchmal(seite, h, name) {
+  const vp = seite.viewportSize();
+  if (vp === null || vp.width < 1280) return;
+  await h.klick('[data-pruef="seitenleiste-ebenen"]'); await h.warte(250);
+  await seite.evaluate(() => { for (const d of document.querySelectorAll('.seitenleiste details.klapp')) /** @type {HTMLDetailsElement} */ (d).open = true; });
+  if (await seite.locator('.seitenleiste .klapp-inhalt table').count() === 0) h.befund(`${name}: keine Ebenen-Tabelle zu messen`);
+  for (const breite of [320, 400, 480]) {
+    await seite.setViewportSize({ width: breite, height: vp.height }); await h.warte(150);
+    const funde = await seite.evaluate(() => {
+      const aus = [];
+      for (const t of document.querySelectorAll('.seitenleiste .klapp-inhalt table')) {
+        if (t.getClientRects().length === 0) continue;
+        const r = t.getBoundingClientRect();
+        for (let a = t.parentElement; a !== null && !a.classList.contains('seitenleiste'); a = a.parentElement) {
+          const ox = getComputedStyle(a).overflowX;
+          if (ox === 'auto' || ox === 'scroll') break;
+          if (ox !== 'visible' && r.right > a.getBoundingClientRect().right + 1.5) { aus.push(`Tabelle ${Math.round(r.width)} px abgeschnitten von ${a.tagName.toLowerCase()}.${String(a.className).split(' ')[0]} (${Math.round(a.getBoundingClientRect().width)} px)`); break; }
+        }
+      }
+      return aus;
+    });
+    for (const f of funde) h.befund(`${name} @${breite}: ${f}`);
+    for (const f of await seite.evaluate(rollbarOhneTastatur)) h.befund(`${name} @${breite}: rollbar ohne Tastatur ${f}`);
+  }
+  await seite.setViewportSize(vp); await h.warte(100);
+  await h.klick('[data-pruef="seitenleiste-zu"]'); await h.warte(200);
+}
+
 /** R47: Bauteile, deren Wörter am Bildschirm nie mitten im Wort brechen dürfen */
 // R48: dazu der Kopf der Zeitmaschinen-Tabelle („MO|NAT“, „KOSTENUN|SICHERHEI|T“) und der Beamer-Status („SEHR HOC“)
 // R50: dazu der Dateiname im Mail-Anhang und Kennungen in der Hilfe
@@ -664,5 +700,20 @@ export async function schritttitelBreit(seite, h, name) {
     for (const f of funde) if (f.text > f.platz + 0.5) h.befund(`${name} @${breite}: Schritttitel „${f.t}“ ${Math.round(f.text)} px auf ${f.platz} px`);
   }
   if (gemessen === 0) h.befund(`${name}: keine Schritttitel ab 1440 px sichtbar`);
+  // R64 (Stil): mit offener Seitenleiste ist die Schrittleiste schmaler – dort kappten die Titel bei 1440–1680 px mitten im Wort
+  const zu = await seite.locator('.leitstand[data-seitenleiste="offen"]').count() === 0;
+  if (zu && await seite.locator('[data-pruef="seitenleiste-raum"]').filter({ visible: true }).count() > 0) {
+    await h.klick('[data-pruef="seitenleiste-raum"]'); await h.warte(250);
+    for (const breite of [1440, 1680, 1800, 1920]) {
+      await seite.setViewportSize({ width: breite, height: vp.height }); await h.warte(150);
+      const funde = await seite.evaluate(() => [...document.querySelectorAll('.fs-titel')].filter((el) => el.getClientRects().length > 0).map((el) => {
+        const r = document.createRange();
+        r.selectNodeContents(el);
+        return { t: (el.textContent ?? '').replaceAll('\u00ad', ''), text: r.getBoundingClientRect().width, platz: el.clientWidth };
+      }));
+      for (const f of funde) if (f.text > f.platz + 0.5) h.befund(`${name} @${breite} (Seitenleiste offen): Schritttitel „${f.t}“ ${Math.round(f.text)} px auf ${f.platz} px`);
+    }
+    await h.klick('[data-pruef="seitenleiste-zu"]'); await h.warte(200);
+  }
   await seite.setViewportSize(vp); await h.warte(150);
 }

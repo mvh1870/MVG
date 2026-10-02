@@ -1217,6 +1217,10 @@ test('Resümee (P7.7): Ende, Richtung und erste Vertiefung aus der Spur; Zwische
   assert.ok(bogen);
   assert.match(bogen.querySelector('.druck-kopf')?.textContent ?? '', /Fiktiver Fall · fachlich ungeprüft/u);
   assert.equal(bogen.querySelectorAll('.druck-teil ol li').length, z.spur.length);
+  // R64 (Architektur): der Weg nennt jede besuchte Station einmal, in der Reihenfolge des Verlaufs (Mutant weg.slice(-1) war grün)
+  const wegDruck = (bogen.querySelector('.druck-teil > p')?.textContent ?? '').split(' → ');
+  assert.equal(wegDruck.length, new Set(z.verlauf).size, `Weg: ${wegDruck.join(' → ')}`);
+  assert.ok(wegDruck.length >= 3 && new Set(wegDruck).size === wegDruck.length, `Weg: ${wegDruck.join(' → ')}`);
   assert.ok(bogen.querySelector('.resuemee [data-pruef="resuemee-weg"]'));
   assert.equal(bogen.querySelector('.resuemee [data-pruef="dossier-drucken"]'), null);
   const kapitel = [...bogen.querySelectorAll('.druck-kapitel')].map((x) => x.getAttribute('data-kapitel'));

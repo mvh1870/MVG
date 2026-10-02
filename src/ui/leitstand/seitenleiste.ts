@@ -67,7 +67,16 @@ export function glossarDerStation(st: Station, rolle: string | null): string[] {
 
 function ebenenInhalt(e: Ebene, w: SeitenWoerter, inhalte: OeffentlicheInhalte): Node[] {
   const teile: Node[] = [];
-  if (e.felder['text']) teile.push(inhalt(e.felder['text']));
+  if (e.felder['text']) {
+    const text = inhalt(e.felder['text']);
+    // R64 (Stil): eine breite Tabelle (Ebene 3) rollt in einem eigenen, per Tastatur erreichbaren Bereich – die Klappe schnitt sie ab
+    for (const t of [...text.querySelectorAll('table')]) {
+      const rahmen = h('div', { class: 'quell-tabelle', tabindex: 0, role: 'region', 'aria-label': `${w.ebene} ${e.nr} · ${e.titel}` });
+      t.replaceWith(rahmen);
+      rahmen.append(t);
+    }
+    teile.push(text);
+  }
   for (const b of e.bloecke as Block[]) if (b.art === 'zitat' || b.art === 'original') teile.push(zitat(b, 'zitat-klein', w.zitatWort));
   void inhalte;
   return teile;

@@ -1306,6 +1306,8 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
   .tafel-inhalt { padding: var(--a-3) 18px 14px; }
 }
 @media (max-width: 1439px) { .fs-titel { display: none; } }
+/* R64: mit offener Seitenleiste ist die Schrittleiste schmaler – Titel erst ab 1800 px (frei gemessen ab 1680 px, Reserve für Chrome 153) */
+@media (max-width: 1799px) { .leitstand[data-seitenleiste="offen"] .fs-titel { display: none; } }
 
 /* Gestapelt: schmale Fenster, Tablet hochkant, Smartphone (lesbar, nicht optimiert – O-10) */
 @media (max-width: 980px) {

@@ -587,6 +587,8 @@ a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
   .druck-bogen .absatz:has(table) > :is(.absatz-kopf, .absatz-id) { display: block; width: fit-content; break-after: avoid; }
   .druck-bogen .absatz-block thead { break-after: avoid; }
   .druck-bogen .absatz-block tbody tr:first-child { break-before: avoid; }
+  /* R65: die letzte Zeile steht nie allein unter dem wiederholten Kopf (k1.3-t1, k10.5-t1; wie R63 in der Hilfe) */
+  .druck-bogen .absatz-block tbody tr:last-child:not(:first-child) { break-before: avoid; }
   /* R48: Aufklappzeichen sind auf Papier Bedienzeichen ohne Funktion */
   .druck-bogen summary { list-style: none; }
   .druck-bogen summary::-webkit-details-marker { display: none; }

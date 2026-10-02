@@ -236,7 +236,7 @@ Die Wirkung von MVG entsteht durch Kopplung: Ein Zielsystem allein reicht nicht 
 titel: Erst, wenn die Elemente verbunden sind
 praefix: "Genau:"
 ---
-Die Wirkung entsteht durch Kopplung, nicht durch das einzelne Element.
+Erst die Verbindung der Elemente lässt MVG wirken.
 :::
 
 ::: antwort b
@@ -244,7 +244,7 @@ Die Wirkung entsteht durch Kopplung, nicht durch das einzelne Element.
 titel: Ja, jedes Element wirkt schon für sich
 praefix: "Nicht ganz:"
 ---
-Ein Zielsystem allein reicht nicht – ebenso wenig eine RACI-Matrix oder ein Freigabekalender.
+Vorhanden heißt noch nicht verbunden – für sich bleibt jedes Element ohne diese Wirkung.
 :::
 
 ::: zitat k5.3-p1

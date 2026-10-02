@@ -909,6 +909,12 @@ export const GLAETTUNGEN = /** @type {[RegExp, string | ((...teile: string[]) =>
   // R64: die Mandatsleiter kennt nur Beträge (k4.2-p3) – kein zweites Kriterium „strategisch“ (k6.4.5-p1 nennt keins)
   [/&gt; 5[ \u00a0]Mio\.[ \u00a0]€ oder strategisch: Beschlussfassung/gu, 'über 5\u00a0Mio.\u00a0€: Beschlussfassung'],
   [/Gremium für Changes über 5[ \u00a0]Mio\.[ \u00a0]€ oder mit strategischer Wirkung/gu, 'Gremium für Changes über 5\u00a0Mio.\u00a0€'],
+  // R65: nach dem Streichen von „strategisch“ (R64) sagt die Zeile dasselbe wie „Gremium für Changes über 5 Mio. €“ – nur einmal
+  [/<li>Gremium, in dem der Bauherr Änderungen über 5[  ]Mio\.[  ]€ beschließt \(nach Mandat\)<\/li>|<tr><td>Verantwortung<\/td><td>Gremium, in dem der Bauherr Änderungen über 5[  ]Mio\.[  ]€ beschließt \(nach Mandat\)<\/td><\/tr>/gu, ''],
+  // R65: wer über eine Änderung entscheidet, hängt vom Betrag ab (k4.2-p3) – nicht immer das Änderungsgremium
+  [/Sie ist die Beschlussgrundlage für das Änderungsgremium\./gu, 'Sie ist die Beschlussgrundlage für die Entscheidung nach Mandat (Bauherren-PL, Änderungsgremium oder Beschlussfassung durch den Bauherrn im Lenkungskreis).'],
+  // R65: 11 Domänen × 3 Min sind 33 Minuten
+  [/<li>30 Minuten pro Sitzung einplanen \(11 Domänen × 3 Min\)<\/li>/gu, '<li>Gut 30 Minuten pro Sitzung einplanen (11 Domänen × 3 Min)</li>'],
   // R64: das Glossar hat nach dem Streichen der doppelten Zeile 129 Begriffe (der Verweis ist zuvor gesetzt, VERWEISE)
   [/Vollständiges Glossar mit 130 Begriffen/gu, 'Vollständiges Glossar mit 129 Begriffen'],
   // R55: „Glossar A-Z“ nach den Angleichungen wieder alphabetisch (Intl.Collator de)

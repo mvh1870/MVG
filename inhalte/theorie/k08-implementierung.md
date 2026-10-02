@@ -190,7 +190,7 @@ Sie gilt nicht in jedem Projekt, sondern für zwei bestimmte Anlässe.
 titel: Als festen Projektplan
 praefix: "Nicht ganz:"
 ---
-Sie ist kein starrer Projektplan; der verbindliche Verlauf der Einführung folgt dem Vorgehensmodell.
+Einen festen Ablauf mit Terminen gibt sie nicht vor – dafür steht das Vorgehensmodell.
 :::
 
 ::: zitat k8.2-p1

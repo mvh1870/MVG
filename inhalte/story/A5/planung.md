@@ -74,7 +74,7 @@ Im Juli haben Sie ‚Varianten für den Ausschuss‘ gewählt; entschieden wurde
 :::
 
 ::: rueckbezug C
-Im Juli haben Sie ‚Entscheidung anmahnen‘ gewählt. Über die Deckung der Auflagen hat bis heute niemand entschieden. Jetzt kommt der Mensa-Nachtrag auf dieselbe offene Liste.
+Im Juli haben Sie ‚Entscheidung anmahnen‘ gewählt und die Brandschutzplanung angehalten. Über die Deckung der Auflagen hat bis heute niemand entschieden. Jetzt kommt der Mensa-Nachtrag auf dieselbe offene Liste.
 :::
 
 ::: rueckbezug ohne

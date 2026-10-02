@@ -282,5 +282,17 @@
  [
   "(aria-label=\"Tabelle: Glossar A-Z\"><table>\\s*<thead>[\\s\\S]*?<\\/thead>\\s*<tbody>)([\\s\\S]*?)(<\\/tbody>)",
   "(_, vor, zeilen, nach) => {\n    const liste = zeilen.match(/<tr>[\\s\\S]*?<\\/tr>/gu) ?? [];\n    const wort = (/** @type {string} */ z) => (z.match(/<td>(?:<b>)?([^<]*)/u)?.[1] ?? '').trim();\n    const ordnung = new Intl.Collator('de');\n    // R64: gleichlautende Zeilen nur einmal („Nachweis-Belege“ stand zweimal in der Quelle)\n    return vor + [...new Set(liste)].sort((x, y) => ordnung.compare(wort(x), wort(y))).join('') + nach;\n  }"
+ ],
+ [
+  "<li>Gremium, in dem der Bauherr Änderungen über 5[  ]Mio\\.[  ]€ beschließt \\(nach Mandat\\)<\\/li>|<tr><td>Verantwortung<\\/td><td>Gremium, in dem der Bauherr Änderungen über 5[  ]Mio\\.[  ]€ beschließt \\(nach Mandat\\)<\\/td><\\/tr>",
+  ""
+ ],
+ [
+  "Sie ist die Beschlussgrundlage für das Änderungsgremium\\.",
+  "Sie ist die Beschlussgrundlage für die Entscheidung nach Mandat (Bauherren-PL, Änderungsgremium oder Beschlussfassung durch den Bauherrn im Lenkungskreis)."
+ ],
+ [
+  "<li>30 Minuten pro Sitzung einplanen \\(11 Domänen × 3 Min\\)<\\/li>",
+  "<li>Gut 30 Minuten pro Sitzung einplanen (11 Domänen × 3 Min)</li>"
  ]
 ]

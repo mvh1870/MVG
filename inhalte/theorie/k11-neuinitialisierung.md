@@ -248,7 +248,7 @@ Fachlich von vorn aufgerollt wird das Projekt dabei gerade nicht.
 titel: Die Abfolge der Leistungsphasen
 praefix: "Nicht ganz:"
 ---
-Einzelne Freigaben können nachgeholt oder wiederholt werden; die Abfolge LPH 0–9 bleibt unverändert.
+Die Abfolge der Leistungsphasen bleibt, wie sie ist – neu geordnet wird etwas anderes.
 :::
 
 ::: zitat k11.2-p1

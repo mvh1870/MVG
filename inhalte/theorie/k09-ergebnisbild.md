@@ -351,7 +351,7 @@ Der Bauherr ist für die Freigaben zum Abschluss der Leistungsphasen letztverant
 titel: Der Lenkungskreis
 praefix: "Nicht ganz:"
 ---
-Der Lenkungskreis berät und bereitet vor; die Freigabe erteilt er nicht.
+Seine Rolle liegt vor der Freigabe, nicht in ihr.
 :::
 
 ::: antwort c

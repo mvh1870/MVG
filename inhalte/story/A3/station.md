@@ -97,7 +97,7 @@ wert: +5,9 %
 ::: bekannt
 - Zwei Zahlen, kein geltender [[Datenstand]].
 - Beide ohne Einsatz der Risikoreserve (2,9 Mio. €).
-- Seit März ohne Beschluss: Mensa-Zusage (0,6 Mio. €); unbewertet: Lieferzeit Holz, Förderfrist.
+- Seit März ohne Beschluss: Mensa-Zusage (0,6 Mio. €); ohne Entscheidung: Lieferzeit Holz, Förderfrist.
 :::
 
 ::: unbekannt
@@ -174,7 +174,7 @@ Die Fragen der Datenstandslogik (Kap. 4.6) – an diesem Montag:
 | Frage | An diesem Montag |
 |---|---|
 | Welche Version gilt? | „v3_final_NEU“ gegen die [[CTC]] des Controllings |
-| Welche Annahmen sind offen? | Ursache, Terminwirkung, Nachtragsrisiko; die Lieferzeit Holz ist nicht bewertet |
+| Welche Annahmen sind offen? | Ursache, Terminwirkung, Nachtragsrisiko; über die Lieferzeit Holz ist nicht entschieden |
 | Welche Änderungen wurden seit der letzten Freigabe aufgenommen? | Mensa-Zusage – ob sie in einer der beiden Zahlen steckt, ist nirgends festgehalten |
 | Welche Beschlusslage besteht? | keine zur Abweichung |
 | Wo wird die Nachweiskette geführt? | in Mails und Excel-Dateien |
@@ -208,7 +208,7 @@ Projektsteuerung und Controlling rechnen jeweils eine eigene Prognose. Die Tabel
 ---
 titel: Seit März liegen geblieben
 ---
-Die längere Lieferzeit der Holzbauelemente ist seit März bekannt und nicht bewertet, die Mensa im Flur zugesagt, nicht beschlossen; die Ursache der Abweichung ist ungeklärt, das Nachtragsrisiko offen. Kap. 2.5 beschreibt dieses Muster: [[zitat:k2.5-t1|Risiken und Änderungen laufen parallel, ohne gemeinsame Priorisierung, Auswirkungsbewertung und Freigabeschwelle.]]
+Die längere Lieferzeit der Holzbauelemente ist seit März bekannt und nicht entschieden, die Mensa im Flur zugesagt, nicht beschlossen; die Ursache der Abweichung ist ungeklärt, das Nachtragsrisiko offen. Kap. 2.5 beschreibt dieses Muster: [[zitat:k2.5-t1|Risiken und Änderungen laufen parallel, ohne gemeinsame Priorisierung, Auswirkungsbewertung und Freigabeschwelle.]]
 :::
 
 ::: vertiefung freigaben

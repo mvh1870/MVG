@@ -58,7 +58,7 @@ Holger Stein rechnet neu: jetzt +9,1 %, rund 5,3 Mio. €. Das Controlling rechn
 Ein benannter Datenstand, der die alte Version nachvollziehbar ersetzt.
 
 ### Neues Risiko
-Über 5 Mio. € läge eine Entscheidung darüber nach dem Muster bei der Beschlussfassung durch den Bauherrn im Lenkungskreis – in Welt A ohne Folge: Es gibt keine Schwelle.
+Eine Option über 5 Mio. € läge nach dem Muster bei der Beschlussfassung durch den Bauherrn im Lenkungskreis – in Welt A ohne Folge: Es gibt keine Schwelle.
 
 ### Governance-Frage
 [[Mandat]]: Ab welcher Summe muss der Bauherr selbst entscheiden?

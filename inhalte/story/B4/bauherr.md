@@ -69,7 +69,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Sie legen die Deckungsfrage, die bei Ihnen liegt, mit Frist auf September. Der Ausschuss erfährt Frage und Termin aus dem Managementbericht.
+Sie legen die Frage, ob die Deckung aus der Risikoreserve kommt, mit Frist auf September. Der Ausschuss erfährt Frage und Termin aus dem Managementbericht.
 
 ### Was fehlt
 Nichts in der Struktur; die Vorlage entsteht im Rhythmus.

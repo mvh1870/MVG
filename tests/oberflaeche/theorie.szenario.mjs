@@ -472,6 +472,9 @@ export async function lauf(seite, h) {
   if (!koepfeAlle.some((x) => /^Quelle: MVG/u.test(x.text))) h.befund('Alles drucken: Quellzeilen der Kartentafeln fehlen in der Kopfliste');
   const allesPdf = await pdfSeiten(await seite.pdf({ format: 'A4' }));
   const allesEnde = seitenMitUeberschriftAmEnde(allesPdf, koepfeAlle);
+  // R65: keine Seite besteht nur aus dem wiederholten Tabellenkopf und der letzten Zeile (k1.3-t1, k10.5-t1; wie R63 in der Hilfe)
+  const nurKopf = allesPdf.map((x, i) => ({ s: i + 1, z: x.zeilen })).filter((x) => x.z.length <= 4 && /^[A-ZÄÖÜ][A-ZÄÖÜ /–-]{5,}$/u.test((x.z[0] ?? '').trim()));
+  if (nurKopf.length > 0) h.befund(`Alles drucken: Seite nur Tabellenkopf und Rest ${JSON.stringify(nurKopf.slice(0, 4))}`);
   if (allesEnde.length > 0) h.befund(`Alles drucken: Überschrift am Seitenende ${JSON.stringify(allesEnde.slice(0, 6))}`);
   if (quelleOben(allesPdf, untenAlle).length > 0) h.befund(`Alles drucken: Quellzeile am Seitenanfang ${JSON.stringify(quelleOben(allesPdf, untenAlle).slice(0, 6))}`);
   // R49: keine fast leere Seite in allen Kapiteln – außer der letzten und der vor einem Kapitelbeginn oder dem Impressum (erzwungener Umbruch)

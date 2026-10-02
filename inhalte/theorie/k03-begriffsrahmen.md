@@ -129,7 +129,7 @@ Analyse, Vorbereitung, Koordination und Dokumentation können Dritte übernehmen
 titel: Der Bauherr selbst
 praefix: "Genau:"
 ---
-Auch wenn Dritte vorbereiten, muss der Bauherr die wesentliche Entscheidung selbst legitimieren.
+Die Projektsteuerung hat vorbereitet – legitimieren kann die wesentliche Entscheidung nur der Bauherr.
 :::
 
 ::: antwort b
@@ -137,7 +137,7 @@ Auch wenn Dritte vorbereiten, muss der Bauherr die wesentliche Entscheidung selb
 titel: Die Projektsteuerung, weil sie die Vorlage erarbeitet hat
 praefix: "Nicht ganz:"
 ---
-Vorbereitung kann delegiert werden; die Legitimation der wesentlichen Entscheidung bleibt beim Bauherrn.
+Wer die Vorlage erarbeitet, bereitet vor – entscheiden darf er damit nicht.
 :::
 
 ::: zitat k3.2-p1

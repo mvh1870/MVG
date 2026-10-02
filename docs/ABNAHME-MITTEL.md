@@ -8,6 +8,7 @@ Die Runden vor der Neuausrichtung (bis Runde 66, alter Aufbau mit Welten, Rollen
 
 | Runde | Commit | schwer | mittel | leicht | Stand |
 |---|---|---|---|---|---|
+| 71 | 22152a2 | 0 | 9 (Freigabe-Zuständigkeit k04; Monatsbericht Mai; Glossar LPH 0; Ersatzsatz der Empfehlung; Montagebeginn 35/42 Tage; Gegenprobe ohne Statusmeldung; Leinwand-Summen ungetestet; Fokus bei Etappen und Explore-Wegen) | 18 | eingearbeitet (L-221, L-222) |
 | 70 | 68cc561 | 0 | 8 (Reservegrenze schon in s6; s8-Konsequenzen; U+00AD-Probe ohne Wirkung; vier Testlücken bzw. Fokus nach „Gegenprobe zurücksetzen“) | 20 | eingearbeitet (L-218–L-220) |
 | 69 | e174322 | 2 (s8 meldet offene Neufestlegung ohne Status; Zeitachse nach L-210 nicht bedienbar) | 13 | 28 | eingearbeitet (L-213–L-216) |
 | 68 | bf8db0f | 4 (Neufestlegung im Beispiel k10 beim Stadtrat; Zielpriorität in s1 bei der Bauherren-PL; Gegenprobe mit zwei Reglern falsch; Tastaturfalle am Regler in s1) | 21 | 25 | eingearbeitet (L-210–L-212, L-214) |
@@ -17,3 +18,4 @@ Die Runden vor der Neuausrichtung (bis Runde 66, alter Aufbau mit Welten, Rollen
 
 | Runde | Ort | Befund | Vorschlag | Stand |
 |---|---|---|---|---|
+| – | – | Keine: alle mittleren Befunde aus R67–R71 sind eingearbeitet (L-223). Leicht und bewusst gelassen: die Tafel „Gewichtete Summe“ in k14 ist bei 320 px mit erweiterten Textabständen nach WCAG 1.4.12 um 3 % zu breit (L-219). | – | – |

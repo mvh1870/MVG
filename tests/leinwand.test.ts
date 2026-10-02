@@ -186,3 +186,32 @@ test('Anzeige (R68): kein Bedienelement und kein Link – Start, Story (Vorlage,
     anzeige.entferne();
   }
 });
+
+test('Anzeige (R71): eine Vergleichsvorlage rechnet mit den geltenden Gewichten, die Gegenprobe bleibt zu', async () => {
+  const { storyAnzeige } = await import('../src/regie/leinwand.ts');
+  const { pruefeBuehne } = await import('../src/regie/buehne.ts');
+  const { gewichte, setzeGewicht } = await import('../src/geschichte/engine.ts');
+  const { summe, gewertete } = await import('../src/geschichte/mcda.ts');
+  const st = g.stationen.find((s) => s.id === 's4') ?? g.stationen.find((s) => s.vorlage.art === 'optionen' && gewertete(s.vorlage.optionen).length > 1);
+  assert.ok(st, 'eine Vergleichsvorlage');
+  // Vorgabe-Gewichte und selbst eingestellte (ungleich, damit jede Abweichung die Summen ändert)
+  let eigen = neuerStand();
+  for (const [k, wert] of [['kosten', 1], ['termin', 4], ['qualitaet', 2], ['klima', 5]] as const) eigen = setzeGewicht(g, eigen, k, wert);
+  for (const [wo, stand0] of [['Vorgabe', neuerStand()], ['eigene Gewichte', eigen]] as const) {
+    const stand = { ...stand0, schritt: { ort: 'station' as const, station: st.id, teil: 'vorlage' as const } };
+    const b = pruefeBuehne(buehne({ bereich: 'story', story: stand }), g);
+    assert.ok(b, `${wo}: gültiger Bühnenstand`);
+    const el = storyAnzeige(inhalte, b);
+    const gew = gewichte(g, b.story);
+    const optionen = gewertete(st.vorlage.optionen);
+    assert.ok(optionen.length > 1, `${wo}: mehrere gewertete Optionen`);
+    for (const opt of optionen) {
+      const zelle = el.querySelector(`[data-pruef="summe-${opt.id}"] b`);
+      assert.ok(zelle, `${wo}: Summe ${opt.id} gezeichnet`);
+      assert.equal(zelle.textContent, String(summe(opt, g.kriterien, gew)), `${wo}: Summe ${opt.id}`);
+    }
+    const probe = el.querySelector<HTMLDetailsElement>('[data-pruef="gs-gegenprobe"]');
+    assert.ok(probe, `${wo}: Gegenprobe gezeichnet`);
+    assert.equal(probe.hasAttribute('open'), false, `${wo}: Gegenprobe zu`);
+  }
+});

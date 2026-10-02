@@ -149,7 +149,7 @@ export function gewaehlteOption(g: Geschichte, stand: Stand, st: Station): Optio
   return st.vorlage.optionen.find((o) => o.id === id) ?? null;
 }
 
-/** Statusbedingung „puffer<0“, „kosten>61.3“, „offen>=1“ (R68: nur für Berichtszeilen und Vorgänge einer Station) */
+/** Statusbedingung „puffer<0“, „kosten>61.3“, „offen>=1“ (R68: nur für Berichtszeilen und Vorgänge einer Station und für Endzeilen) */
 export const STATUS_BEDINGUNG = /^(kosten|puffer|offen)(<=|>=|<|>)(-?\d+(?:\.\d+)?)$/u;
 
 /**

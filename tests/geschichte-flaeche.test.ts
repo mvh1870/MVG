@@ -511,3 +511,21 @@ test('Empfehlung bei anderen Gewichten (R71): der Ersatzsatz nennt die Gewichte,
   }
   assert.equal(ersetzt, 2);
 });
+
+test('Gegenprobe (R71): die Statuszeile nennt die Spitze und folgt jedem Regler', () => {
+  const { f, st, stelle } = aufVorlage('s3');
+  const vorn = (): HTMLElement | null => f.element.querySelector<HTMLElement>('[data-pruef="gegenprobe-vorn"]');
+  const erwartet = (gew: Record<string, number>): string => {
+    const p = rangfolge(st.vorlage.optionen, geschichte.kriterien, gew).filter((x) => x.rang === 1);
+    return `Mit diesen Gewichten vorn: ${p.map((x) => `„${x.option.titel}“`).join(' und ')} (${p[0]?.summe} Punkte).`;
+  };
+  const gew = { ...gewichte(geschichte, f.stand()) };
+  assert.equal(vorn()?.getAttribute('role'), 'status');
+  assert.equal(vorn()?.textContent, erwartet(gew));
+  stelle('termin', 1);
+  gew['termin'] = 1;
+  assert.equal(vorn()?.textContent, erwartet(gew), 'nach dem Regler „Termin“');
+  stelle('kosten', 5);
+  gew['kosten'] = 5;
+  assert.equal(vorn()?.textContent, erwartet(gew), 'nach dem zweiten Regler');
+});

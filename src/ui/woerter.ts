@@ -186,6 +186,7 @@ export const W = {
     gewichteHinweis: 'Diese Gewichte gelten für alle folgenden Vorlagen. Verschieben Sie sie – die Varianten oben sind nur Vorschläge.',
     gegenprobe: 'Gegenprobe: andere Gewichte ausprobieren',
     gegenprobeHinweis: 'Ändert nur die Anzeige hier; entschieden wird mit den festgelegten Gewichten.',
+    gegenprobeVorn: (titel: readonly string[], punkte: number): string => `Mit diesen Gewichten vorn: ${titel.map((t) => `„${t}“`).join(' und ')} (${punkte} Punkte).`,
     gegenprobeZurueck: 'Auf die festgelegten Gewichte zurücksetzen',
     kipppunkte: 'Wann sich die Spitze dreht',
     keinKipppunkt: 'Kein einzelnes Gewicht zwischen 1 und 5 dreht die Spitze.',

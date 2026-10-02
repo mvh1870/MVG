@@ -3,12 +3,13 @@
 Kopf ≤ 100 Zeilen. Oben JETZT (überschreiben), darunter FRÜHER (anhängen, knapp).
 
 ## JETZT
-- **Stand 2026-10-02 17:05 UTC: P16.15 Prüfrunden laufen.** P16.1–P16.14 erledigt. Runden der Neuausrichtung (neun Prüffelder je Runde aus `docs/pruefrunde.workflow.js` über `werkzeuge/pruefrunde-auftraege.mjs`, Ergebnisse in `tmp/r<n>-ergebnisse/`): R67 (7a9aea3) 2/29/54 – L-205–L-209; R68 (bf8db0f) 4/21/25 – L-210–L-212, L-214; R69 (e174322) 2/13/28 – L-213–L-217; **R70 (68cc561) 0 schwer / 8 mittel / 20 leicht – eingearbeitet (L-218–L-220).** O-35-Zähler: 1 Runde ohne schweren Befund.
-- **Prüfung P16.15 R70:** 28 Befunde, 27 behoben, 1 bewusst gelassen (k14-Tafel bei 320 px mit WCAG-1.4.12-Abständen, L-219); alle Gegenproben rot. Tabelle in `docs/ABNAHME-MITTEL.md`.
-- **Als Nächstes:** Runde 71 auf dem R70-Commit; ohne schweren Befund ist P16.15 fertig (offene mittlere nach ABNAHME-MITTEL „Offen beim Abschluss“), dann P16.16 (CI lesen, Merge nach `main`, Push-Nachricht, Ampel rot „fertig“). Mit schwerem Befund: einarbeiten, R72 usw.
+- **Stand 2026-10-02 17:26 UTC: P16.15 erledigt, P16.16 Abschluss läuft.** Runden der Neuausrichtung: R67 2/29/54, R68 4/21/25, R69 2/13/28, R70 0/8/20 (L-218–L-220), R71 0/9/18 (L-221, L-222) – zwei Runden hintereinander ohne schweren Befund (O-35, L-223); alle mittleren eingearbeitet, „Offen beim Abschluss“ in `docs/ABNAHME-MITTEL.md` leer bis auf einen bewusst gelassenen leichten Punkt.
+- **Prüfung P16.15 R71:** 27 Befunde, 27 eingearbeitet, keiner verworfen (abb-12 und Ersatzsatz anders als vorgeschlagen, weil der Vorschlag selbst ungenau war); jede Code-Korrektur mit Gegenprobe rot.
+- **Als Nächstes (P16.16):** CI auf dem letzten Commit lesen, `claude/haus` einmal per Merge nach `main` (ohne --force), Push-Nachricht an den Owner, Ampel rot „fertig“. Danach ist das Planblatt leer; für den Owner bleiben `docs/ABNAHME.md` und `docs/LAUNCH.md`.
 - Rechner: Node 22.22, Chromium 141 unter `/opt/pw-browsers/chromium`. Kette ≈ 60–100 s. CI (GitHub-Aktion) bis Lauf 283 grün gelesen.
 
 ## FRÜHER
+- 2026-10-02 (13:20–17:26 UTC): P16.15 Prüfrunden R67–R71 (L-205–L-223), Statusbedingungen der Story, Reservegrenze auf allen Wegen.
 - 2026-10-02 (11:03–13:20 UTC): Neuausrichtung P16 (O-36 bis O-50): neuer Plan; Umschalten auf neue Story, Themen, Explore, Regie (L-184 bis L-191); Theorie an V2.4, Impressum, Datenschutz, Webseitenordner (L-192 bis L-195).
 - 2026-10-02 (bis 09:09 UTC): alter Plan leer (R65, R66 ohne schweren Befund, L-181, L-182), CI 269 grün.
 - 2026-09-30 (Cloud, ab 09:09 UTC): CI 204 rot gelesen, L-129; Runde 45 (L-130, L-132), Vorsorge L-131; CI 208 grün; Runde 46 (L-133), CI 209 rot → L-133, CI 210 grün; Runde 47 als Workflow (L-134–L-139).

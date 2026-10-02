@@ -69,13 +69,13 @@ export function baueGeschichte(c, dateien) {
   const optionenJe = new Map(roh.map((x) => [text(x.y.id), (x.y.vorlage?.optionen ?? []).map((/** @type {any} */ o) => text(o.id))]));
 
   // Bedingung: Teile mit „&“ verknüpft, je Teil „s3=A“, „s3!=A“ (frühere Wahl), „kurz“ oder „lang“ (Weg)
-  // R68: dazu Statusbedingungen „puffer<0“, „kosten>61.3“, „offen>=1“ – nur in Berichtszeilen und Vorgängen (`mitStatus`)
+  // R68: dazu Statusbedingungen „puffer<0“, „kosten>61.3“, „offen>=1“ – nur in Berichtszeilen, Vorgängen und Endzeilen (`mitStatus`)
   const bedingung = (/** @type {unknown} */ w, /** @type {string} */ ort, /** @type {number} */ nr, mitStatus = false) => {
     if (w === undefined || w === null) return null;
     for (const teil of text(w).split('&').map((x) => x.trim())) {
       if (teil === 'kurz' || teil === 'lang') continue;
       if (/^(kosten|puffer|offen)(<=|>=|<|>)(-?\d+(?:\.\d+)?)$/u.test(teil)) {
-        if (!mitStatus) c.fehler(ort, `Bedingung „${text(w)}“: Statusbedingung „${teil}“ nur in Berichtszeilen und Vorgängen`);
+        if (!mitStatus) c.fehler(ort, `Bedingung „${text(w)}“: Statusbedingung „${teil}“ nur in Berichtszeilen, Vorgängen und Endzeilen`);
         continue;
       }
       const m = BEDINGUNG.exec(teil);

@@ -208,7 +208,11 @@ function vorgaenge(o: ExploreOptionen, w: Werkzeuge): HTMLElement {
         h('div', null, h('dt', null, E.abschluss), h('dd', null, inhaltInline(a.abschluss)))),
       h('p', { class: 't-label' }, E.wege),
       h('div', { class: 'ex-wege' }, a.wege.map((z) => o.bedienbar
-        ? h('button', { type: 'button', class: 'ex-weg', 'data-ziel': z, onclick: () => zeige(z) }, sym('pfeilRechts'), name(z))
+        ? h('button', { type: 'button', class: 'ex-weg', 'data-ziel': z, onclick: () => {
+          zeige(z);
+          // R71: der Knopf selbst ist mit dem Detail ersetzt – der Fokus geht an den Art-Knopf des Ziels (sonst <body>)
+          knoepfe.find((k) => k.dataset['art'] === z)?.focus();
+        } }, sym('pfeilRechts'), name(z))
         : h('span', { class: 'ex-weg' }, sym('pfeilRechts'), name(z)))));
   };
   const leiste = h('div', { class: 'ex-arten', role: 'group', 'aria-label': v.titel }, [...v.arten.map((a) => ({ id: a.id, titel: a.titel })), { id: 'entscheidung', titel: v.entscheidung.titel }].map((a) => {

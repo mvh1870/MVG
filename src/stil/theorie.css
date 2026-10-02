@@ -469,7 +469,7 @@ html:has(.lernseite) { scroll-padding-top: 72px; }
   .lw-etappen-leiste { grid-template-columns: repeat(auto-fit, minmax(34px, 1fr)); row-gap: var(--a-2); }
   .lw-etappen-linie { display: none; }
   .lw-etappe-nr { width: 34px; height: 34px; }
-  .lw-posten-wahl > * { flex: 1 1 0; }
+  .lw-posten-wahl > * { flex: 1 1 auto; }
   .lw-posten-wahl { flex: 1 1 100%; min-width: 0; flex-direction: column; }
   .lw-regler-marke { display: none; }
   .lw-regler-marke.ist-aktiv { display: block; grid-column: 1 / -1; text-align: center; }

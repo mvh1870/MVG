@@ -242,11 +242,11 @@ test('Erste Station nicht in der Kurzfassung: Fehler', () => {
   assert.deepEqual(fehler, ['inhalte/geschichte/rahmen.yaml: die erste Station gehört zur Kurzfassung']);
 });
 
-/* R69: Statusbedingungen nur in Berichtszeilen und Vorgängen; Berichtszeilen in YAML-Falle */
+/* R69: Statusbedingungen nur in Berichtszeilen, Vorgängen und Endzeilen; Berichtszeilen in YAML-Falle */
 
 test('Statusbedingung in einer bedingten Lage-Folge: Fehler (wörtlich)', () => {
   const { fehler } = baue((_r, st) => { s(st, 2)['lage-folgen-bedingt'][0].wenn = 'puffer<0'; });
-  assert.deepEqual(fehler, [`${DATEI(2)}: Bedingung „puffer<0“: Statusbedingung „puffer<0“ nur in Berichtszeilen und Vorgängen`]);
+  assert.deepEqual(fehler, [`${DATEI(2)}: Bedingung „puffer<0“: Statusbedingung „puffer<0“ nur in Berichtszeilen, Vorgängen und Endzeilen`]);
 });
 
 test('Statusbedingung an einem Vorgang und in einer Berichtszeile: zulässig und unverändert übernommen', () => {

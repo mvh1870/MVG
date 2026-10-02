@@ -79,6 +79,15 @@ export function etappen(b: Block, stufe: TitelStufe = 'h3', bedienbar = true): H
     detail.classList.remove('ist-neu');
     void detail.offsetWidth;
     detail.classList.add('ist-neu');
+    // R71: Ein Blätterknopf, der sich gerade selbst deaktiviert, gibt den Fokus vorher ab – an den anderen
+    // Blätterknopf, sonst an den Knopf der aktuellen Etappe (sonst fiele er auf <body>, WCAG 2.4.3)
+    const fokus = typeof document !== 'undefined' ? document.activeElement : null;
+    if ((fokus === zurueck && i === 0) || (fokus === weiter && i === n - 1)) {
+      const anderer = fokus === zurueck ? weiter : zurueck;
+      const andererAus = anderer === zurueck ? i === 0 : i === n - 1;
+      if (!andererAus) anderer.toggleAttribute('disabled', false);
+      (andererAus ? knoepfe[i] : anderer)?.focus();
+    }
     zurueck.toggleAttribute('disabled', i === 0);
     weiter.toggleAttribute('disabled', i === n - 1);
     if (melden) ansage.textContent = L.etappeAnsage(i + 1, n, kopfText(e?.kopf ?? {}, 'titel') ?? '');

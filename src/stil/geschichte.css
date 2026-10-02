@@ -318,7 +318,7 @@ button.gs-option:active { transform: translateY(2px); box-shadow: var(--schatten
 }
 
 /* R70: niedrige Fenster (z. B. 200 % Zoom) – die obere Leiste klebt nicht, das Polster unten wird kleiner */
-@media (max-height: 480px) {
+@media (max-height: 480px), (max-width: 480px) and (max-height: 600px) {
   .gs-leiste { position: static; }
   html:has(.seite-story) { scroll-padding-top: 0; }
   .gs-unten { padding-top: var(--a-2); background: linear-gradient(transparent, var(--grund) 30%); }

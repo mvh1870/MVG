@@ -156,6 +156,12 @@ function kippText(o: SchrittOptionen, st: Station, gew: Gewichte): HTMLElement {
       : h('ul', null, k.map((x) => h('li', null, w.kipppunkt(o.g.kriterien.find((c) => c.id === x.kriterium)?.titel ?? x.kriterium, x.gewicht, x.spitze.map(titel))))));
 }
 
+/** R71: die Spitze der Gegenprobe in einer Zeile – sichtbar neben den Reglern und als Statusmeldung (WCAG 4.1.3). */
+function vornText(o: SchrittOptionen, st: Station, gew: Gewichte): string {
+  const vorn = rangfolge(st.vorlage.optionen, o.g.kriterien, gew).filter((p) => p.rang === 1);
+  return w.gegenprobeVorn(vorn.map((p) => p.option.titel), vorn[0]?.summe ?? 0);
+}
+
 function optionKarte(o: SchrittOptionen, st: Station, opt: Option, empf: string): HTMLElement {
   const gewaehlt = o.stand.wahlen[st.id] === opt.id;
   const inhaltKarte: Kind[] = [
@@ -213,6 +219,7 @@ function vorlage(o: SchrittOptionen, st: Station): HTMLElement {
     const anzeige = o.gegenprobe ?? gew;
     let aktuell: Gewichte = anzeige;
     const tabelle = h('div', { class: 'gs-vergleich-ort' }, vergleichTabelle(o, st, anzeige), kippText(o, st, anzeige));
+    const vorn = h('p', { class: 'gs-leise', role: 'status', 'data-pruef': 'gegenprobe-vorn' }, vornText(o, st, anzeige));
     teile.push(h('section', { class: 'gs-mcda', 'aria-labelledby': 'gs-vergleich-titel' },
       h('h3', { id: 'gs-vergleich-titel' }, w.vergleich),
       h('p', { class: 'gs-leise' }, w.vergleichHinweis),
@@ -225,7 +232,9 @@ function vorlage(o: SchrittOptionen, st: Station): HTMLElement {
           aktuell = { ...aktuell, [k]: wert };
           o.setzeGegenprobe(aktuell);
           ersetze(tabelle, vergleichTabelle(o, st, aktuell), kippText(o, st, aktuell));
+          vorn.textContent = vornText(o, st, aktuell);
         }, 'gegenprobe'),
+        vorn,
         o.bedienbar ? h('button', { type: 'button', class: 'gs-leiser-knopf', 'data-pruef': 'gegenprobe-zurueck', onclick: () => o.setzeGegenprobe(null) }, w.gegenprobeZurueck) : null)));
     teile.push(h('section', { class: 'gs-empfehlung', 'aria-label': w.empfehlung, 'data-pruef': 'gs-empfehlung' },
       h('p', { class: 'gs-hinweis-titel' }, sym('stempel'), w.empfehlung), empfText));

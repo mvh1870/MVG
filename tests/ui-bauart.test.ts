@@ -268,8 +268,15 @@ test('Explore: fünf Werkzeuge; Rechner rechnet um, Matrix ordnet ein, Vorgänge
   assert.match(matrix.querySelector('[data-pruef="ex-matrix-detail"]')?.textContent ?? '', /Beobachten/u);
   const vorg = baueExplore({ inhalte, werkzeug: 'vorgaenge', bedienbar: true });
   (vorg.querySelector('[data-pruef="ex-art-fruehwarnung"]') as HTMLElement).click();
-  (vorg.querySelector('.ex-weg[data-ziel="risiko"]') as HTMLElement).click();
+  // R71: der Wege-Knopf verschwindet mit dem Detail – der Fokus geht an den Art-Knopf des Ziels, nicht auf body
+  document.body.replaceChildren(vorg);
+  const weg = vorg.querySelector<HTMLElement>('.ex-weg[data-ziel="risiko"]');
+  assert.ok(weg);
+  weg.focus();
+  weg.click();
   assert.equal(vorg.querySelector('.ex-art[aria-pressed="true"]')?.getAttribute('data-art'), 'risiko');
+  assert.notEqual(document.activeElement, document.body);
+  assert.equal(document.activeElement, vorg.querySelector('[data-pruef="ex-art-risiko"]'), 'Fokus auf dem Art-Knopf des Ziels');
   const glossar = baueExplore({ inhalte, werkzeug: 'glossar', bedienbar: true });
   const feld = glossar.querySelector<HTMLInputElement>('[data-pruef="glossar-suche"]');
   assert.ok(feld);
@@ -434,6 +441,27 @@ test('Lernwerkzeuge (P12.3): Etappen blättern per Klick und Pfeiltaste, Anfang 
   assert.equal(el.querySelectorAll('.lw-etappe.ist-erreicht').length, 3);
   assert.ok(el.querySelector<HTMLButtonElement>('[data-pruef="etappe-weiter"]')?.disabled);
   assert.match(el.querySelector('.nur-sr')?.textContent ?? '', /Etappe 3 von 3: T3/u);
+});
+
+test('Lernwerkzeuge (R71): Weiter bis zum Ende und Zurück bis zum Anfang – der Fokus fällt nie auf body', () => {
+  const b = blk('etappen', null, { titel: 'Weg' }, {}, [1, 2, 3].map((i) => blk('etappe', String(i), { titel: `T${i}` }, { text: `<p>Text ${i}</p>` })));
+  const el = lw.etappen(b as never);
+  document.body.replaceChildren(el);
+  const zurueck = el.querySelector<HTMLButtonElement>('[data-pruef="etappe-zurueck"]');
+  const weiter = el.querySelector<HTMLButtonElement>('[data-pruef="etappe-weiter"]');
+  assert.ok(zurueck && weiter);
+  weiter.focus();
+  weiter.click();
+  assert.equal(document.activeElement, weiter, 'mitten im Weg bleibt der Fokus auf Weiter');
+  weiter.click();
+  assert.ok(weiter.disabled);
+  assert.notEqual(document.activeElement, document.body);
+  assert.equal(document.activeElement, zurueck, 'am Ende wandert der Fokus auf Zurück');
+  zurueck.click();
+  zurueck.click();
+  assert.ok(zurueck.disabled);
+  assert.notEqual(document.activeElement, document.body);
+  assert.equal(document.activeElement, weiter, 'am Anfang wandert der Fokus auf Weiter');
 });
 
 test('Lernwerkzeuge (P12.3): Umschalter wechselt die Ansicht, Sortieren gibt Rückmeldung ohne Punkte, Regler zeigt die Stufe', () => {

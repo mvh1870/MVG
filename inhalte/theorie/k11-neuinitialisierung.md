@@ -240,7 +240,7 @@ Neu geordnet wird, wie geführt und entschieden wird, nicht das gesamte Projekt 
 titel: Das gesamte Projekt, fachlich von vorn
 praefix: "Nicht ganz:"
 ---
-Die MVG-Neuinitialisierung ordnet nicht das gesamte Projekt fachlich neu.
+Fachlich von vorn aufgerollt wird das Projekt dabei gerade nicht.
 :::
 
 ::: antwort c

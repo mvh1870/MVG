@@ -10,7 +10,7 @@ rueckbezug-auf: A4
 titel: AEN-031 wie vorgelegt beschließen
 kurz: Wie vorgelegt beschließen
 status:
-  ungeklaerte-entscheidungen: -1
+  entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
 Das Gremium beschließt `AEN-031`; die Beschlusslage steht im Änderungsregister und im Managementbericht an den Bauausschuss.

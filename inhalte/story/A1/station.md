@@ -21,7 +21,7 @@ weiter: A2
 titel: Montag, 09:00 Uhr. Monat 1.
 kurz: Einstieg
 ---
-Montag, 5. Januar. Die bisherige Projektleiterin der GML ist zum Jahresende gegangen. Übergeben hat sie drei Ablagen: GML, Projektsteuerung, Generalplanung.
+Montag, 5. Januar. Die bisherige Projektleiterin der GML ist zum Jahresende gegangen. Hinterlassen hat sie drei Ablagen: GML, Projektsteuerung, Generalplanung.
 
 ::: akten
 ---

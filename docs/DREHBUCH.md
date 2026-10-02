@@ -103,7 +103,7 @@ Umsetzung (L-20): drei Stationen `ende-steuerbar`, `ende-auflagen`, `ende-neufes
 
 ## 4 Statusverlauf
 
-Welt A (Startstände A1–A6) verliert Entscheidungsfähigkeit von 3 auf 0; Kostenunsicherheit steigt von mittel auf sehr hoch; offene Risiken 4 → 10; ungeklärte Entscheidungen 1 → 7; Terminrisiko niedrig → sehr hoch. Welt B hält die Entscheidungsfähigkeit bei 4–5, die ungeklärten Entscheidungen bei 1–2, jeweils mit Frist, die Risiken steigen bis B3 und sinken danach, weil sie bewertet und gemindert werden. Beide Welten erleben dieselben Ereignisse; der Unterschied ist der Umgang. Die Werte sind `status-start` je Station; die Wahl des Lesers verschiebt sie innerhalb der Station (P1.4).
+Welt A (Startstände A1–A6) verliert Entscheidungsfähigkeit von 3 auf 0; Kostenunsicherheit steigt von mittel auf sehr hoch; offene Risiken 4 → 10; ungeklärte Entscheidungen 1 → 7; Terminrisiko niedrig → sehr hoch. Welt B hält die Entscheidungsfähigkeit bei 3–4 (B1 4), die ungeklärten Entscheidungen bei 1–2, jeweils mit Frist, die Risiken steigen bis B3 und sinken danach, weil sie bewertet und gemindert werden. Beide Welten erleben dieselben Ereignisse; der Unterschied ist der Umgang. Die Werte sind `status-start` je Station; die Wahl des Lesers verschiebt sie innerhalb der Station (P1.4).
 
 ## 5 Kapitel ↔ Stationen
 

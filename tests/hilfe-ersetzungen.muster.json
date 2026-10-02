@@ -497,7 +497,7 @@
  ],
  [
   "^Bestätigt CTC-Neurechnungen mit Abweichung > 5 %$",
-  "Berät bei CTC-Abweichungen über 5 % die Entscheidung des Bauherrn (Eskalation entlang der Mandatsleiter)"
+  "Berät die Entscheidung des Bauherrn, wenn eine CTC-Abweichung über 5 % entlang der Mandatsleiter bei ihm ankommt"
  ],
  [
   "^Beschlüsse mit klaren Bedingungen fassen$",
@@ -505,7 +505,7 @@
  ],
  [
   "^Gremium für strategische Change-Beschlüsse$",
-  "Gremium, in dem der Bauherr strategische Änderungen beschließt"
+  "Gremium, in dem der Bauherr Änderungen über 5 Mio. € beschließt (nach Mandat)"
  ],
  [
   "Managementbericht lesen, Top-Entscheidungen treffen",

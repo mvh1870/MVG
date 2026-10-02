@@ -423,7 +423,7 @@ BM liefert Struktur und Entscheidungsreife, ersetzt die Bauherrenentscheidung ab
 titel: Die Begleitung, stellvertretend
 praefix: "Nicht ganz:"
 ---
-Die Bauherrenentscheidung bleibt beim Bauherrn – auch BM ersetzt sie nicht.
+Eine Begleitung entscheidet nicht stellvertretend – die Entscheidung bleibt beim Bauherrn.
 :::
 
 ::: zitat k7.6-p1

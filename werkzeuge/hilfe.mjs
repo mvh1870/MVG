@@ -159,9 +159,9 @@ export const ERSETZUNGEN = /** @type {[RegExp, string][]} */ ([
   // R47: kanonischer Governance-Fluss (k6.4.3-p1) – Maßnahme vor Managementbericht
   [/Frühwarnung → Risiko → Entscheidung \(Entscheidungsvorlage\) → Freigabe → Managementbericht → Maßnahme/gu, 'Frühwarnung → Risiko → Entscheidung (Entscheidungsvorlage) → Freigabe → Maßnahme → Managementbericht'],
   // R47: der Lenkungskreis berät, der Bauherr beschließt und erteilt Freigaben (k9.3-p3, k13-t1)
-  [/^Bestätigt CTC-Neurechnungen mit Abweichung > 5 %$/gu, 'Berät bei CTC-Abweichungen über 5 % die Entscheidung des Bauherrn (Eskalation entlang der Mandatsleiter)'],
+  [/^Bestätigt CTC-Neurechnungen mit Abweichung > 5 %$/gu, 'Berät die Entscheidung des Bauherrn, wenn eine CTC-Abweichung über 5 % entlang der Mandatsleiter bei ihm ankommt'],
   [/^Beschlüsse mit klaren Bedingungen fassen$/gu, 'Beschlüsse des Bauherrn mit klaren Bedingungen vorbereiten'],
-  [/^Gremium für strategische Change-Beschlüsse$/gu, 'Gremium, in dem der Bauherr strategische Änderungen beschließt'],
+  [/^Gremium für strategische Change-Beschlüsse$/gu, 'Gremium, in dem der Bauherr Änderungen über 5 Mio. € beschließt (nach Mandat)'],
   [/Managementbericht lesen, Top-Entscheidungen treffen/gu, 'Managementbericht lesen, Top-Entscheidungen des Bauherrn beraten'],
   [/Managementbericht entgegennehmen und Beschlüsse fassen/gu, 'Managementbericht entgegennehmen und die Beschlussfassung des Bauherrn beraten'],
   [/Nutzen Sie den Approval-Workflow in der Entscheidungsvorlage für signierte Freigaben\. Verlangen Sie vor jeder Freigabe/gu, 'Achten Sie darauf, dass der Bauherr die Freigabe im Freigabeprozess der Entscheidungsvorlage signiert, und verlangen Sie vor jeder Freigabe'],
@@ -906,12 +906,18 @@ export const GLAETTUNGEN = /** @type {[RegExp, string | ((...teile: string[]) =>
   [/<li>importJson \/ exportJson – /gu, '<li><code>importJson</code> / <code>exportJson</code> – '],
   // R57: Fortführung oder Stopp ist eine wesentliche Entscheidung, kein Sonderformat (k4.3-p1, k13-t1)
   [/Neufestlegung der Projektbasis \/ Fortführen\/(?:<wbr>)?Stoppen als Sonderformat außerhalb der Freigabereihe beschließen/gu, 'Neufestlegung der Projektbasis als Sonderformat außerhalb der Freigabereihe sowie Fortführung oder Stopp als wesentliche Entscheidung beschließen'],
+  // R64: die Mandatsleiter kennt nur Beträge (k4.2-p3) – kein zweites Kriterium „strategisch“ (k6.4.5-p1 nennt keins)
+  [/&gt; 5[ \u00a0]Mio\.[ \u00a0]€ oder strategisch: Beschlussfassung/gu, 'über 5\u00a0Mio.\u00a0€: Beschlussfassung'],
+  [/Gremium für Changes über 5[ \u00a0]Mio\.[ \u00a0]€ oder mit strategischer Wirkung/gu, 'Gremium für Changes über 5\u00a0Mio.\u00a0€'],
+  // R64: das Glossar hat nach dem Streichen der doppelten Zeile 129 Begriffe (der Verweis ist zuvor gesetzt, VERWEISE)
+  [/Vollständiges Glossar mit 130 Begriffen/gu, 'Vollständiges Glossar mit 129 Begriffen'],
   // R55: „Glossar A-Z“ nach den Angleichungen wieder alphabetisch (Intl.Collator de)
   [/(aria-label="Tabelle: Glossar A-Z"><table>\s*<thead>[\s\S]*?<\/thead>\s*<tbody>)([\s\S]*?)(<\/tbody>)/gu, (_, vor, zeilen, nach) => {
     const liste = zeilen.match(/<tr>[\s\S]*?<\/tr>/gu) ?? [];
     const wort = (/** @type {string} */ z) => (z.match(/<td>(?:<b>)?([^<]*)/u)?.[1] ?? '').trim();
     const ordnung = new Intl.Collator('de');
-    return vor + [...liste].sort((x, y) => ordnung.compare(wort(x), wort(y))).join('') + nach;
+    // R64: gleichlautende Zeilen nur einmal („Nachweis-Belege“ stand zweimal in der Quelle)
+    return vor + [...new Set(liste)].sort((x, y) => ordnung.compare(wort(x), wort(y))).join('') + nach;
   }],
 ]);
 

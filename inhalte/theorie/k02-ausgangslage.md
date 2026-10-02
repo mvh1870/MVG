@@ -126,7 +126,7 @@ So werden Zielkonflikte nicht erst sichtbar, wenn die Planungsstände schon weit
 ---
 titel: Wissensverlust und Schlüsselrollen
 ---
-In vielen Bauherrenorganisationen hängt in kritischen Momenten viel an wenigen erfahrenen Personen. Das geht gut, solange diese Personen da sind. Riskant wird es, wenn sie ausfallen, wenn Rollen nicht sauber delegiert wurden oder wenn ihr Wissen nie in Unterlagen und Routinen übersetzt wurde. Dann steigt die Verletzlichkeit der Organisation. Der Engpass liegt dann darin, dass Entscheidungen nicht wiederholbar sind.
+In vielen Bauherrenorganisationen hängt in kritischen Momenten viel an wenigen erfahrenen Personen. Das geht gut, solange diese Personen da sind. Riskant wird es, wenn sie ausfallen, wenn Rollen nicht sauber delegiert wurden oder wenn ihr Wissen nie in Unterlagen und Routinen übersetzt wurde. Dann steigt die Verletzlichkeit der Organisation, und der Engpass liegt darin, dass Entscheidungen nicht wiederholbar sind.
 
 Ein belastbares [[Bauherren-Führungsmodell]] verringert diese Abhängigkeit. Es macht nicht jede Organisation automatisch leistungsfähig. Aber es schafft einen gemeinsamen Standard, der fünf Fragen beantwortet. So wird Erfahrung nicht ersetzt, sondern in wiederholbare Führungslogik überführt.
 

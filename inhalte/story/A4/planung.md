@@ -53,7 +53,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Die Bauherren-PL verweist auf die Sitzung im September. Die Planung hält den Brandschutz an.
+Die Bauherren-PL verweist auf die Sitzung im September. Sie halten die Brandschutzplanung an.
 
 ### Was fehlt
 Ein Gremium mit Mandat für Änderungen; in Welt A ist nicht festgelegt, wer zwischen zwei Ausschusssitzungen entscheidet.

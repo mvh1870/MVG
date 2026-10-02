@@ -268,7 +268,19 @@
   "Neufestlegung der Projektbasis als Sonderformat außerhalb der Freigabereihe sowie Fortführung oder Stopp als wesentliche Entscheidung beschließen"
  ],
  [
+  "&gt; 5[ \\u00a0]Mio\\.[ \\u00a0]€ oder strategisch: Beschlussfassung",
+  "über 5 Mio. €: Beschlussfassung"
+ ],
+ [
+  "Gremium für Changes über 5[ \\u00a0]Mio\\.[ \\u00a0]€ oder mit strategischer Wirkung",
+  "Gremium für Changes über 5 Mio. €"
+ ],
+ [
+  "Vollständiges Glossar mit 130 Begriffen",
+  "Vollständiges Glossar mit 129 Begriffen"
+ ],
+ [
   "(aria-label=\"Tabelle: Glossar A-Z\"><table>\\s*<thead>[\\s\\S]*?<\\/thead>\\s*<tbody>)([\\s\\S]*?)(<\\/tbody>)",
-  "(_, vor, zeilen, nach) => {\n    const liste = zeilen.match(/<tr>[\\s\\S]*?<\\/tr>/gu) ?? [];\n    const wort = (/** @type {string} */ z) => (z.match(/<td>(?:<b>)?([^<]*)/u)?.[1] ?? '').trim();\n    const ordnung = new Intl.Collator('de');\n    return vor + [...liste].sort((x, y) => ordnung.compare(wort(x), wort(y))).join('') + nach;\n  }"
+  "(_, vor, zeilen, nach) => {\n    const liste = zeilen.match(/<tr>[\\s\\S]*?<\\/tr>/gu) ?? [];\n    const wort = (/** @type {string} */ z) => (z.match(/<td>(?:<b>)?([^<]*)/u)?.[1] ?? '').trim();\n    const ordnung = new Intl.Collator('de');\n    // R64: gleichlautende Zeilen nur einmal („Nachweis-Belege“ stand zweimal in der Quelle)\n    return vor + [...new Set(liste)].sort((x, y) => ordnung.compare(wort(x), wort(y))).join('') + nach;\n  }"
  ]
 ]

@@ -459,7 +459,7 @@ Die Beispiele sind allgemein gehalten.
 ---
 seite: links
 ---
-Beispiel: Eine bestätigte und bewertete Lieferverzögerung könnte den Termin gefährden.
+Beispiel: Eine bestätigte und bewertete Frühwarnung – eine längere Lieferzeit könnte den Termin gefährden.
 
 ### Erklärung
 Ein bewertetes mögliches Ereignis gehört ins Risikoregister.

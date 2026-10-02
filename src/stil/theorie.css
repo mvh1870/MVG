@@ -753,6 +753,7 @@ html:has(.lernseite) { scroll-padding-top: 72px; }
 .abbildung-abweichungen ul { margin: var(--a-1) 0 0; padding-left: 1.2em; list-style: disc; }
 .abbildung-abweichungen li + li { margin-top: var(--a-1); }
 .abbildung-belege { white-space: normal; font: 500 var(--gr-s)/1.3 var(--schrift-mono); }
+.abbildung-beleg { white-space: nowrap; } /* R64: eine Absatz-ID bricht nie am Bindestrich („k13-“ / „t1)“) */
 a.abbildung-beleg { color: var(--navy); }
 .abbildung-gross { margin-top: var(--a-1); }
 .original-abbildung { margin: var(--a-4) 0; }

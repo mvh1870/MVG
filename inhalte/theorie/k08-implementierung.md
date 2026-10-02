@@ -182,7 +182,7 @@ Für diese beiden Anlässe ist sie als Orientierungsrahmen gedacht.
 titel: Als allgemeinen Einführungsrhythmus in jedem Projekt
 praefix: "Nicht ganz:"
 ---
-Ein allgemeiner Einführungsrhythmus ist sie ausdrücklich nicht.
+Sie gilt nicht in jedem Projekt, sondern für zwei bestimmte Anlässe.
 :::
 
 ::: antwort c

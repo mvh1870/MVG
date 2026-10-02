@@ -53,7 +53,7 @@ status:
   terminrisiko: +1
 ---
 ### Konsequenz
-Der Ausschuss erfährt im Mai nichts. Die Sitzung im Juli erbt das Thema – mit zwei Monaten mehr Abweichung und ohne Vorlage.
+Der Ausschuss erfährt im Mai nichts. Die Sitzung im Juli erbt das Thema – zwei Monate später und ohne Vorlage.
 
 ### Was fehlt
 Eine [[Entscheidungsvorlage]], die bis Juli entstehen muss, und jemand, der sie verantwortet.

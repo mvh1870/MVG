@@ -3,10 +3,10 @@
 Kopf ≤ 100 Zeilen. Oben JETZT (überschreiben), darunter FRÜHER (anhängen, knapp).
 
 ## JETZT
-- **Stand 2026-10-02 17:26 UTC: P16.15 erledigt, P16.16 Abschluss läuft.** Runden der Neuausrichtung: R67 2/29/54, R68 4/21/25, R69 2/13/28, R70 0/8/20 (L-218–L-220), R71 0/9/18 (L-221, L-222) – zwei Runden hintereinander ohne schweren Befund (O-35, L-223); alle mittleren eingearbeitet, „Offen beim Abschluss“ in `docs/ABNAHME-MITTEL.md` leer bis auf einen bewusst gelassenen leichten Punkt.
-- **Prüfung P16.15 R71:** 27 Befunde, 27 eingearbeitet, keiner verworfen (abb-12 und Ersatzsatz anders als vorgeschlagen, weil der Vorschlag selbst ungenau war); jede Code-Korrektur mit Gegenprobe rot.
-- **Als Nächstes (P16.16):** CI auf dem letzten Commit lesen, `claude/haus` einmal per Merge nach `main` (ohne --force), Push-Nachricht an den Owner, Ampel rot „fertig“. Danach ist das Planblatt leer; für den Owner bleiben `docs/ABNAHME.md` und `docs/LAUNCH.md`.
-- Rechner: Node 22.22, Chromium 141 unter `/opt/pw-browsers/chromium`. Kette ≈ 60–100 s. CI (GitHub-Aktion) bis Lauf 283 grün gelesen.
+- **Stand 2026-10-02 17:30 UTC: Planblatt leer, fertig (L-224).** P16.1–P16.16 erledigt. Prüfrunden R67–R71, zuletzt R70 und R71 ohne schweren Befund (L-223); alle mittleren eingearbeitet. CI-Lauf 295 auf 2a15119 grün. `claude/haus` per Merge nach `main` geführt und gepusht (O-49).
+- **Für den Owner:** fachliche Abnahme nach `docs/ABNAHME.md`, Upload nach `docs/LAUNCH.md` (Inhalt von `dist/` auf den IONOS-Webspace). Bewusst gelassen (leicht): k14-Tafel bei 320 px mit WCAG-1.4.12-Abständen 3 % zu breit (L-219).
+- **Als Nächstes:** nichts – neue Arbeit nur mit neuen Owner-Entscheiden im Planblatt. Die Routine hält nur der Owner an.
+- Rechner: Node 22.22, Chromium 141 unter `/opt/pw-browsers/chromium`. Kette ≈ 60 s.
 
 ## FRÜHER
 - 2026-10-02 (13:20–17:26 UTC): P16.15 Prüfrunden R67–R71 (L-205–L-223), Statusbedingungen der Story, Reservegrenze auf allen Wegen.

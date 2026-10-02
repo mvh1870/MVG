@@ -163,7 +163,7 @@ Grundlage: `ENTSCHEIDE.md` O-36 bis O-49, Quellen `quellen/v2.4/`. Jeder Posten 
 - [x] P16.13 (L-194) · Webseiten-Bau (O-42, O-47): `dist/` als Webseitenordner (`index.html`, `impressum.html`, `datenschutz.html`, `robots.txt`, `sitemap.xml`, Vorschaubild, Favicon, Titel/Beschreibung/Open-Graph); Kundenfassung `mvg-kunde.html` und alles dafür gelöscht; Kette und GitHub-Aktion angepasst; `docs/LAUNCH.md` mit Upload-Anleitung für IONOS (Webspace, Domain auf den Ordner, HTTPS) und Checkliste vor dem Launch — Abnahme: Bau deterministisch, ohne Nachladen von Dritten, Kette grün.
 - [x] P16.14 (L-196–L-199, L-201) · Aufräumen (O-41): verwaiste Inhalte, Code, Stile, Tests, Werkzeuge, Proben und Dokumente der entfallenen Teile gelöscht (Suche nach Welt A, Rollen, Vergleich, Enden, Originaltext, Zitieren, Kundenfassung, Hilfe, Simulator, Diagnose, Vermerk); `docs/ARCHITEKTUR.md`, `docs/INHALTSFORMAT.md`, `docs/ABNAHME.md` und Übergabe auf den neuen Stand — Abnahme: keine toten Exporte, keine unbenutzten Dateien (Prüfung in der Kette), Kette grün.
 - [x] P16.15 (L-205–L-223) · Prüf-Agenten Neuausrichtung (alle Rollen aus `docs/PRUEFAGENTEN.md`, Fachtreue gegen V1.2 + V2.4) + Korrekturschleife — Abnahme: zwei Runden ohne schwere Befunde, offene mittlere in `docs/ABNAHME-MITTEL.md` (O-35, O-48).
-- [ ] P16.16 · Abschluss (O-49): Übergabe, `docs/LAUNCH.md` final, CI auf dem letzten Commit grün gelesen, `claude/haus` einmal per Merge nach `main` gepusht, Push-Nachricht an den Owner, Ampel rot „fertig“.
+- [x] P16.16 (L-224) · Abschluss (O-49): Übergabe, `docs/LAUNCH.md` final, CI auf dem letzten Commit grün gelesen, `claude/haus` einmal per Merge nach `main` gepusht, Push-Nachricht an den Owner, Ampel rot „fertig“.
 
 ## Erledigt
 (noch nichts)

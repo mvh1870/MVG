@@ -112,7 +112,6 @@
   --schrift-anzeige: "Big Shoulders Display", "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
   --schrift-label: "Barlow Condensed", "Roboto Condensed", "Arial Narrow", "Segoe UI", sans-serif;
   --schrift-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Consolas, "Courier New", monospace;
-  --schrift-hand: "Caveat", "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
 
   /* Größenskala in px wie im Prototyp. */
   --gr-xs: 12px;

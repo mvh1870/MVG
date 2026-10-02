@@ -54,7 +54,7 @@ Fünf Familien, eingebettet als woff2 (latin + latin-ext), nur diese Schnitte (L
 | Reiter | Barlow Condensed 700, 14 px, Versalien | `--typo-reiter` | Kopf-Bereiche, Feldtitel, Marken |
 | Mono | IBM Plex Mono 500/600 | `--typo-mono`, `.mono`, `.id-marke` | IDs (`ENT-017`), Zeiten, Versionen |
 
-Barlow Condensed 500 ist eingebettet für schmale Schrift ohne eigenes Gewicht (Achsen, Zeitlineal). Caveat ist noch eingebettet (`--schrift-hand`, geprüft in `tests/stil-tokens.test.ts`), wird aber auf keiner Fläche mehr gesetzt. Größenskala: `--gr-xs` 12 · `--gr-s` 13 · `--gr-m` 14 · `--gr-text` 15 · `--gr-l` 16 · `--gr-xl` 18 · `--gr-2xl` 21 · `--gr-3xl` 24 · `--gr-4xl` 28 · `--gr-5xl` 34 · `--gr-7xl` 64 (px); `--gr-lese` 17. Kleinste Schrift 11,5 px – nur für Versal-Labels sowie Kennungen in Mono; Nebentext nie unter 12 px; Fließtext nie unter 13 px. Deutsche Silbentrennung (`hyphens: auto`) für Absätze, Listen, Zitate und Tabellenzellen unter `lang="de"`; Titel, Labels, IDs und Tasten werden nie getrennt.
+Barlow Condensed 500 ist eingebettet für schmale Schrift ohne eigenes Gewicht (Achsen, Zeitlineal). Größenskala: `--gr-xs` 12 · `--gr-s` 13 · `--gr-m` 14 · `--gr-text` 15 · `--gr-l` 16 · `--gr-xl` 18 · `--gr-2xl` 21 · `--gr-3xl` 24 · `--gr-4xl` 28 · `--gr-5xl` 34 · `--gr-7xl` 64 (px); `--gr-lese` 17. Kleinste Schrift 11,5 px – nur für Versal-Labels sowie Kennungen in Mono; Nebentext nie unter 12 px; Fließtext nie unter 13 px. Deutsche Silbentrennung (`hyphens: auto`) für Absätze, Listen, Zitate und Tabellenzellen unter `lang="de"`; Titel, Labels, IDs und Tasten werden nie getrennt.
 
 ## Farben
 
@@ -319,7 +319,7 @@ Weiße Karte wie `.lern-grafik`, Bild auf ganzer Spaltenbreite; Klick aufs Bild 
 - Keine Emojis, keine Clipart, keine Stockfotos, keine Figuren; Illustration nur als feine Linienzeichnung im Stil „Bauplan“ (O-45).
 - Keine lila-blauen Verläufe, keine Neon- oder Glaseffekte, keine Schlagschatten auf Text.
 - Keine Farben außerhalb von `tokens.css`; keine Ampelfarbe als Dekoration (O-11).
-- Keine Kursivschrift (nicht eingebettet), keine weiteren Schriftschnitte, keine Systemschrift als Gestaltungsmittel; Caveat wird nicht gesetzt.
+- Keine Kursivschrift (nicht eingebettet), keine weiteren Schriftschnitte, keine Systemschrift als Gestaltungsmittel.
 - Kein Logo als Rastergrafik, nicht gestaucht, nicht umgefärbt; keine Wortmarke unter 96 px Höhe.
 - Keine Bedienelemente auf der Startseite außer den drei Türen und den leisen Links (O-21).
 - Sichtbar nie „Datei“, „HTML“, „App“, „Programm“, „Kundenfassung“ (O-42), kein Bezug zum Whitepaper (O-38).

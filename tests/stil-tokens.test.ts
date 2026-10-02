@@ -54,7 +54,7 @@ test('tokens.css: Farbtoken sind Hex- oder rgba-Werte bzw. Verweise, Schriftstap
       assert.match(wert, /^(#[0-9A-Fa-f]{6}|var\(--[\w-]+\))$/, `${name}: ${wert}`);
     }
   }
-  for (const [token, familie] of [['--schrift-text', 'IBM Plex Sans'], ['--schrift-anzeige', 'Big Shoulders Display'], ['--schrift-label', 'Barlow Condensed'], ['--schrift-mono', 'IBM Plex Mono'], ['--schrift-hand', 'Caveat']] as const) {
+  for (const [token, familie] of [['--schrift-text', 'IBM Plex Sans'], ['--schrift-anzeige', 'Big Shoulders Display'], ['--schrift-label', 'Barlow Condensed'], ['--schrift-mono', 'IBM Plex Mono']] as const) {
     assert.ok(tokens.get(token)?.startsWith(`"${familie}"`), token);
   }
 });

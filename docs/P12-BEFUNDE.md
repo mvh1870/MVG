@@ -257,3 +257,4 @@ Nicht sauber – als Nächstes Runde 64.
 - **Runde 63b auf 808f372** (zweiter Block, parallel): 3 mittel, 14 leicht; Überschneidungen mit L-177 entfallen, Rest L-178; offen für R64: glaette-Gegenstücke (Architektur), Rollen-Linse bei 1024 px (Stil).
 - **Rest R63b (2026-10-02):** glaette-Gegenstücke (Glättungen eingefroren) und Rollen-Linse bei 990–1190 px erledigt – L-179. Als Nächstes Runde 64.
 - **Runde 64 auf 99fd48e:** 0 schwer, 5 mittel, 15 leicht – L-180 (Stil: Ebenen-Tabellen, Schritttitel bei offener Leiste; Architektur: Dossier-Weg). Nicht sauber – als Nächstes Runde 65.
+- **Runde 65 auf 6baaf1c:** 0 schwer, 4 mittel, 15 leicht – L-181 (Story: Mandatsmaß A3/ps, B5-Regie an die Anzeige; Architektur: Ebenen-Probe an A1; Stil: Pfeiltasten in rollenden Tabellen). Nicht sauber – als Nächstes Runde 66.

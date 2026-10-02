@@ -247,6 +247,17 @@ export async function ebenenTabellenSchmal(seite, h, name) {
     });
     for (const f of funde) h.befund(`${name} @${breite}: ${f}`);
     for (const f of await seite.evaluate(rollbarOhneTastatur)) h.befund(`${name} @${breite}: rollbar ohne Tastatur ${f}`);
+    // R65 (Stil): fokussierbar reicht nicht – → muss den Bereich rollen, nicht die Story weiterblättern
+    const rahmen = seite.locator('.seitenleiste .klapp-inhalt .quell-tabelle').filter({ visible: true });
+    let gerollt = -1;
+    for (let i = 0; i < await rahmen.count(); i++) {
+      const r = rahmen.nth(i);
+      if (!await r.evaluate((e) => e.scrollWidth > e.clientWidth + 1)) continue;
+      await r.evaluate((e) => { e.scrollLeft = 0; }); await r.focus(); await seite.keyboard.press('ArrowRight'); await h.warte(150);
+      gerollt = await r.evaluate((e) => e.scrollLeft).catch(() => 0);
+      break;
+    }
+    if (gerollt === 0) h.befund(`${name} @${breite}: → rollt die Ebenen-Tabelle nicht`);
   }
   await seite.setViewportSize(vp); await h.warte(100);
   await h.klick('[data-pruef="seitenleiste-zu"]'); await h.warte(200);
@@ -716,6 +727,10 @@ export async function schritttitelBreit(seite, h, name) {
       }));
       for (const f of funde) if (f.text > f.platz + 0.5) h.befund(`${name} @${breite} (Seitenleiste offen): Schritttitel „${f.t}“ ${Math.round(f.text)} px auf ${f.platz} px`);
     }
+    // R65: die Reserve für Chrome 153 (frei ab 1680 px, sichtbar erst ab 1800 px, L-129) – unter 1800 px bleiben die Titel verborgen
+    await seite.setViewportSize({ width: 1760, height: vp.height }); await h.warte(150);
+    const sichtbar = await seite.locator('.fs-titel').filter({ visible: true }).count();
+    if (sichtbar > 0) h.befund(`${name} @1760 (Seitenleiste offen): ${sichtbar} Schritttitel sichtbar – Reserve bis 1800 px fehlt`);
     await h.klick('[data-pruef="seitenleiste-zu"]'); await h.warte(200);
   }
   await seite.setViewportSize(vp); await h.warte(150);

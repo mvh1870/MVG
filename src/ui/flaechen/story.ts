@@ -70,6 +70,14 @@ function istEingabe(el: Element | null): boolean {
   return el instanceof HTMLElement && (el.isContentEditable || el.getAttribute('role') === 'slider');
 }
 
+/** R65: in einem waagerecht rollenden Bereich (Tabellen der Seitenleiste) gehören ← und → dem Bereich (WCAG 2.1.1) */
+function inRollbereich(el: Element | null): boolean {
+  for (let a = el; a !== null; a = a.parentElement) {
+    if (a instanceof HTMLElement && a.scrollWidth > a.clientWidth + 1 && /^(?:auto|scroll)$/u.test(getComputedStyle(a).overflowX)) return true;
+  }
+  return false;
+}
+
 export function erzeugeStory(o: StoryOptionen): StoryFlaeche {
   const { inhalte } = o;
   const bedienbar = o.tue !== null;
@@ -357,6 +365,7 @@ export function erzeugeStory(o: StoryOptionen): StoryFlaeche {
       if (e.altKey || e.ctrlKey || e.metaKey) return false;
       const ziel = e.target instanceof Element ? e.target : null;
       if (istEingabe(ziel)) return false;
+      if ((e.key === 'ArrowRight' || e.key === 'ArrowLeft') && inRollbereich(ziel)) return false;
       if (e.key === 'ArrowRight') {
         schritt(1);
         return true;

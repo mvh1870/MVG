@@ -56,7 +56,8 @@ export async function lauf(seite, h) {
         await mittelbreit(seite, h, `${rolle}/${st}`);
         await leitstandSchmal(seite, h, `${rolle}/${st}`);
         if (st === 'A1') await rollenChipSchmal(seite, h, `${rolle}/${st}`);
-        if (st === 'A4' && rolle === rollen[0]) await ebenenTabellenSchmal(seite, h, `${rolle}/${st}`);
+        // R65: auch A1 – dort hat die Tabelle keinen fokussierbaren Inhalt, nur der Rahmen trägt den Tastaturzugang
+        if ((st === 'A4' || st === 'A1') && rolle === rollen[0]) await ebenenTabellenSchmal(seite, h, `${rolle}/${st}`);
         if (rolle === 'pl') await h.bild(`${st}-einstieg`);
       }
       if (STATIONEN.includes(st) && !vertieft.has(st) && await seite.locator('[data-pruef="ebene-1"]').filter({ visible: true }).count() > 0) {

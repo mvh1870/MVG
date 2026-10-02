@@ -21,7 +21,7 @@ export async function lauf(seite, h) {
     // P16.4 macht die Inhalte frei von Kapitel-Bezügen; die Bauart (Nummern, Originaltext, Zitieren) prüft schon jetzt
     for (const sel of ['.originaltext', '[data-pruef="zitieren"]', '.absatz-id', '.kapitel-nr', '.abschnitt-nr', '.tafel-quelle']) await h.erwarteNicht(sel);
     await h.erwarte('[data-pruef="lern-kontakt"] [data-pruef="bm-link"]');
-    if (process.env['MVG_THEMEN_WORTE'] === '1') for (const f of sichtbarVerboten(await seite.locator('body').innerText())) h.befund(`${t}: ${f}`);
+    for (const f of sichtbarVerboten(await seite.locator('body').innerText())) h.befund(`${t}: ${f}`);
     await pruefe(t);
   }
   // Glossar sucht

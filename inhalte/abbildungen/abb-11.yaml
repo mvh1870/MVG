@@ -6,7 +6,7 @@ angeglichen:
   - { x: 326, y: 28, b: 207, h: 40, text: MVG-Konzeption, beleg: k7.2-p1, schrift: barlow, gewicht: 700, groesse: 27, ausrichtung: mitte }
   - { x: 331, y: 630, b: 160, h: 52, text: "MVG-\nNeuinitialisierung", beleg: k7.5-p1, schrift: barlow, gewicht: 500, groesse: 24, ausrichtung: mitte, farbe: '#050c14' }
 abweichungen:
-  - text: 'Der Regelbetrieb steht im Bild als fünfte Spalte mit eigenen Kacheln wie ein weiteres Leistungspaket, und die Kachel „Betriebsverantwortung“ nennt niemanden; im Text ist er kein Leistungspaket, sondern das Ziel des Umsetzungspfads und fehlt in der Aufzählung zu Beginn von Kapitel 7, die Betriebsverantwortung übernimmt der Bauherr, und Bauherr Mentoren darf die Projektsteuerung im Regelbetrieb nicht ersetzen.'
+  - text: 'Der Regelbetrieb steht im Bild als fünfte Spalte mit eigenen Kacheln wie ein weiteres Leistungspaket, und die Kachel „Betriebsverantwortung“ nennt niemanden; im Text ist er kein Leistungspaket, sondern das Ziel des Umsetzungspfads und fehlt in der Aufzählung der Leistungspakete, die Betriebsverantwortung übernimmt der Bauherr, und Bauherr Mentoren darf die Projektsteuerung im Regelbetrieb nicht ersetzen.'
     beleg: k7-p2 k7-l1 k7.4-t1 k7.6-t1
   - text: 'Die untere Reihe zweigt aus der Reifegradanalyse ab; im Text ist die MVG-Neuinitialisierung ein eigenes Sonderformat für laufende Projekte mit eingeschränkter Steuerbarkeit, neben dem frühen Einstieg über die MVG-Reifegradanalyse.'
     beleg: k7-p2 k7.5-p1 k11.3-p2

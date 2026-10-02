@@ -1,24 +1,22 @@
 ---
-# Lernseite Kapitel 4 (P6, O-20; neu aufbereitet P12.3, O-30): erklärender Lesetext mit kleinen
-# interaktiven Grafiken, kaum Zitate. Der vollständige Originaltext kommt über „::: original k4“
-# aus whitepaper.json (wortgetreu durch Bauart, zugeklappt am Seitenende).
-# Belege (O-17, jede MVG-Regel im Lesetext und in den Grafiken):
+# Thema „Verantwortungsfelder“ (P6, O-20; neu aufbereitet P12.3, O-30; an V2.4 angepasst P16.4, O-36, O-38):
+# erklärender Lesetext mit kleinen interaktiven Grafiken, kaum Zitate. Kein Bezug zur Vorlage auf der Seite (O-38).
+# Belege (O-17, jede MVG-Regel im Lesetext und in den Grafiken; nur intern):
 # Belege Einleitung/Kernaussage: k4-p1, k4-t1
-# Belege k4 (Überblick, Sortierübung): k4-p1, k4-t1
-# Belege k4.1: k4.1-p1, k4.1-p2, k4-t1 (Zeile Ziel)
-# Belege k4.2: k4.2-p1, k4.2-p2, k4.2-p3, k4-t1 (Zeile Mandat)
-# Belege k4.3: k4.3-p1, k4.3-p2, k4-t1 (Zeile Wesentliche Entscheidung), k13-t1 (FID am Abschluss von LPH 3, Neufestlegung der Projektbasis), k2.5-t1 (Neufestlegung außerhalb der regulären Freigabereihe)
-# Belege k4.4: k4.4-p1, k4.4-p2, k4-t1 (Zeile Risikoannahme)
-# Belege k4.5: k4.5-p1, k4.5-p2, k4-t1 (Zeile Freigabe)
-# Belege k4.6: k4.6-p1, k4.6-p2, k4-t1 (Zeile Datenstand und Nachweis)
+# Belege k4 (Überblick, Sortierübung): k4-p1, k4-t1; Posten 5, 7, 10: v24:hb-1, v24:hb-1.3, v24:hb-3, v24:hb-3.1, v24:hb-5, v24:tlb-2.1
+# Belege k4.1: k4.1-p1, k4.1-p2, k4-t1 (Zeile Ziel); Zielsystem → MCDA-Kriterien, Muss-Prüfung vorab: v24:hb-3.1
+# Belege k4.2: k4.2-p1, k4.2-p2, k4.2-p3, k4-t1 (Zeile Mandat); Vorlage auf jeder Stufe, Bauherr pflegt nicht: v24:hb-1, v24:hb-3.1, v24:tlb-3
+# Belege k4.3: k4.3-p1, k4.3-p2, k4-t1 (Zeile Wesentliche Entscheidung), k13-t1 (FID am Abschluss von LPH 3, Neufestlegung der Projektbasis), k2.5-t1 (Neufestlegung außerhalb der regulären Freigabereihe); Vorbereitung durch die Projektsteuerung: v24:hb-3, v24:hb-3.1, v24:tlb-2.1
+# Belege k4.4: k4.4-p1, k4.4-p2, k4-t1 (Zeile Risikoannahme); Matrix und Prioritäten, Warnanlässe, Restrisiko als Entscheidung: v24:hb-1.3, v24:hb-2, v24:hb-3
+# Belege k4.5: k4.5-p1, k4.5-p2, k4-t1 (Zeile Freigabe); Vorbereitung durch die Projektsteuerung: v24:hb-1
+# Belege k4.6: k4.6-p1, k4.6-p2, k4-t1 (Zeile Datenstand und Nachweis); Pflege in der bereitgestellten Software, Monatsbericht: v24:hb-4, v24:hb-5, v24:tlb-2
 kapitel: 4
 thema: verantwortung
 reihe: 4
 titel: Verantwortungsfelder des Bauherrn
 kurztitel: Verantwortungsfelder
-story: [A2, A3, A4, A5, wendepunkt, B1, B2, B3, B4, B5, B6]
 ---
-Arbeit lässt sich delegieren, die Verantwortung des Bauherrn nicht – das ist die Grundlage aus den vorigen Kapiteln. Kapitel 4 fragt, wo diese Verantwortung im Alltag eines Bauherrn konkret liegt. Die Antwort sind sechs Felder: Ziel, Mandat, wesentliche Entscheidung, Risikoannahme, Freigabe sowie Datenstand und Nachweis. Wer sie kennt, sieht schneller, an welcher Stelle ein Projekt die Führung des Bauherrn braucht – und wo gute Vorbereitung durch andere genügt.
+Arbeit lässt sich delegieren, die Verantwortung des Bauherrn nicht – das ist die Grundlage aus den vorigen Themen. Dieses Thema fragt, wo diese Verantwortung im Alltag eines Bauherrn konkret liegt. Die Antwort sind sechs Felder: Ziel, Mandat, wesentliche Entscheidung, Risikoannahme, Freigabe sowie Datenstand und Nachweis. Wer sie kennt, sieht schneller, an welcher Stelle ein Projekt die Führung des Bauherrn braucht – und wo gute Vorbereitung durch andere genügt.
 
 ::: kernaussage
 In sechs Feldern muss der Bauherr selbst entscheidungsfähig bleiben. Die Vorbereitung darf er in jedem Feld abgeben, den Kern nicht.
@@ -98,7 +96,7 @@ seite: links
 Entscheidungsvorlagen und Auswirkungsanalysen erarbeiten
 
 ### Erklärung
-Feld Wesentliche Entscheidung: Vorlagen, Optionen und Empfehlungen sind delegierbar.
+Feld Wesentliche Entscheidung: Vorlagen mit mindestens zwei Optionen, gewichtetem Vergleich und Empfehlung erarbeitet die Projektsteuerung.
 :::
 
 ::: posten 6
@@ -115,10 +113,10 @@ Feld Wesentliche Entscheidung: Das gehört zum nichtdelegierbaren Kern.
 ---
 seite: links
 ---
-Das Risikoregister führen und Risikominderung vorschlagen
+Risiken bewerten, Gegenmaßnahmen vorschlagen und ihre Wirkung verfolgen
 
 ### Erklärung
-Feld Risikoannahme: Register, Bewertung und Vorschläge sind Vorbereitung.
+Feld Risikoannahme: Das übernimmt die Projektsteuerung – Bewertung und Vorschläge sind Vorbereitung.
 :::
 
 ::: posten 8
@@ -148,7 +146,7 @@ seite: rechts
 Den verbindlichen Datenstand bestimmen
 
 ### Erklärung
-Feld Datenstand und Nachweis: Datenpflege ist delegierbar, der verbindliche Datenstand nicht.
+Feld Datenstand und Nachweis: Die Pflege übernimmt die Projektsteuerung in der vom Bauherrn bereitgestellten Software; welcher Datenstand verbindlich gilt, bestimmt der Bauherr.
 :::
 :::
 :::
@@ -161,7 +159,7 @@ Zielverantwortung heißt: Der Bauherr entscheidet, **was** gebaut wird, **warum*
 
 Woran merkt man, dass diese Verantwortung fehlt? Das Projekt weicht schleichend ab. Jede Rolle optimiert aus ihrer fachlichen Sicht – zum Beispiel die eine auf Qualität, die andere auf Kosten –, aber niemand hält den Zielkonflikt zusammen. Konflikte werden dann von Fall zu Fall gelöst, und spätere Änderungen erscheinen wie ein Sachzwang, obwohl sie eine Entscheidung wären.
 
-MVG setzt dem ein **Zielsystem** entgegen: Muss-Kriterien, verhandelbare Kriterien, Abwägungsregeln und eine klare Entscheidungslogik. Damit ist vorher festgelegt, was Vorrang hat, wenn Ziele kollidieren. Zur Antwort von MVG gehören außerdem Entscheidungsgrundsätze und eine Freigabelogik für LPH 0–2.
+MVG setzt dem ein **Zielsystem** entgegen: Muss-Kriterien, verhandelbare Kriterien, Abwägungsregeln und eine klare Entscheidungslogik. Damit ist vorher festgelegt, was Vorrang hat, wenn Ziele kollidieren. Zur Antwort von MVG gehören außerdem Entscheidungsgrundsätze und eine Freigabelogik für LPH 0–2. Aus diesem Zielsystem leitet die Projektsteuerung später die Kriterien ihres gewichteten Optionenvergleichs ab; Muss-Kriterien prüft sie vor jedem Punktevergleich.
 
 ::: umschalter
 ---
@@ -185,7 +183,7 @@ titel: Mandat
 ---
 Mit dem [[Mandat]] legt der Bauherr fest, wer welche Entscheidung vorbereiten, treffen, freigeben oder eskalieren darf. Eine [[RACI]]-Zuordnung unterscheidet zwar ausführungsverantwortliche, letztverantwortliche, konsultierte und informierte Rollen. Sie genügt aber nicht, solange Freigabeschwellen, Stellvertretungen und Eskalationswege fehlen. Die typische Fehlstelle: Rollen sind beschrieben, aber nicht so mandatiert, dass sie entscheiden können.
 
-Ein wirksames Mandatsmodell beantwortet fünf Fragen: Was darf auf Projektebene entschieden werden? Ab welcher Schwelle entscheidet der Bauherr oder beschließt er im Lenkungskreis? Wer darf Kosten, Projektumfang, Termin, Risiko oder Vergabe beeinflussen? Welche Unterlagen müssen vorliegen? Welche Rolle ist letztverantwortlich? MVG verbindet diese Antworten mit den Freigaben und den Entscheidungs-IDs.
+Ein wirksames Mandatsmodell beantwortet fünf Fragen: Was darf auf Projektebene entschieden werden? Ab welcher Schwelle entscheidet der Bauherr oder beschließt er im Lenkungskreis? Wer darf Kosten, Projektumfang, Termin, Risiko oder Vergabe beeinflussen? Welche Unterlagen müssen vorliegen? Welche Rolle ist letztverantwortlich? MVG verbindet diese Antworten mit den Freigaben und den Entscheidungs-IDs. Auf jeder Stufe entscheidet die befugte Stelle auf eine Vorlage der Projektsteuerung mit mindestens zwei Optionen und gewichtetem Vergleich; selbst pflegen muss keine Stufe etwas.
 
 Wie eine solche Schwelle aussehen kann, zeigt die **Muster-Mandatsleiter**. Sie ist ein Muster, keine feste Vorgabe: Die Freigabeschwellen selbst legt der Bauherr fest – sie gehören zum Kern des Feldes Mandat. [[bedienung:Ziehen Sie den Regler, um zu sehen, wer nach dem Muster bei welchem Betrag entscheidet.]]
 
@@ -263,7 +261,7 @@ Nicht jede operative Entscheidung ist für den Bauherrn wesentlich. Wesentlich i
 
 Die typische Fehlstelle: Solche Entscheidungen werden vertagt, informell getroffen oder ohne klare Entscheidungsfrage vorbereitet. Sie verschwinden dann in Protokollen, E-Mails, Fachrunden oder Abstimmungen am Rande – und niemand kann später sagen, wann und auf welcher Grundlage entschieden wurde.
 
-MVG macht wesentliche Entscheidungen deshalb sichtbar. Jede erhält eine eindeutige Kennung – die [[Entscheidungs-ID]] –, einen Datenstand, eine verantwortliche Rolle, eine Entscheidungsfrage und einen Nachverfolgungsstatus. Vorbereiten dürfen andere – Entscheidungsvorlagen, Auswirkungsanalysen, Optionen, Empfehlungen und Fachbewertungen sind delegierbar.
+MVG macht wesentliche Entscheidungen deshalb sichtbar. Jede erhält eine eindeutige Kennung – die [[Entscheidungs-ID]] –, einen Datenstand, eine verantwortliche Rolle, eine Entscheidungsfrage und einen Nachverfolgungsstatus. Vorbereitet wird sie von der Projektsteuerung: Frage, Entscheidungstermin, mindestens zwei zulässige Optionen, gewichteter Vergleich und Empfehlung. Fachbewertungen liefern die zuständigen Fachleute zu. Mehr dazu im Thema „Die Entscheidungsvorlage“.
 
 Die Leiste zeigt, an welchen Punkten im Projektverlauf solche Entscheidungen typischerweise anstehen.
 
@@ -325,6 +323,8 @@ Die typische Fehlstelle: Das Risikoregister ist gepflegt, aber die Risiken werde
 
 MVG verknüpft deshalb Risiken mit Entscheidungen. Ein Risiko ist dann mehr als ein Eintrag: Es hat eine verantwortliche Rolle, eine Frist, eine beschriebene Wirkung, eine Risikominderung, ein Restrisiko, einen Entscheidungsbedarf und eine Eskalationsschwelle. Erst mit dieser Verbindung wird Risikoarbeit führungswirksam – sie führt dorthin, wo entschieden wird.
 
+Die Projektsteuerung bewertet jedes Risiko nach Wahrscheinlichkeit und höchster Auswirkung: 1 bis 4 Punkte heißt beobachten, 5 bis 9 gezielt bearbeiten, ab 10 – und bei schwerster Auswirkung immer – vorrangig. Ob ein wesentliches Restrisiko getragen wird, legt sie dem Bauherrn als Entscheidung vor. Mehr dazu im Thema „Vorgangsarten und Risikobewertung“.
+
 ::: umschalter
 ---
 titel: Ein Risiko im Register
@@ -336,7 +336,7 @@ Das Risiko steht mit einer Bewertung im Register. Wer es verantwortet, bis wann 
 :::
 
 ::: ansicht rechts
-Das Risiko hat eine verantwortliche Rolle, eine Frist, eine Wirkung, eine Risikominderung und ein Restrisiko. Der Entscheidungsbedarf ist benannt, und eine Eskalationsschwelle sagt, wann es eskaliert wird. Wesentliche Risikoexposition nimmt der Bauherr an – oder nicht.
+Das Risiko hat eine verantwortliche Rolle, eine Frist, eine Wirkung, eine Risikominderung und ein Restrisiko. Der Entscheidungsbedarf ist benannt, und eine Eskalationsschwelle sagt, wann es eskaliert wird. Vorrangige Risiken meldet die Projektsteuerung dem Bauherrn und bereitet die Entscheidung vor; Fragen der Sicherheit oder Genehmigung warten auf keine Bewertung. Wesentliche Risikoexposition nimmt der Bauherr an – oder nicht.
 :::
 :::
 :::
@@ -349,7 +349,7 @@ Eine Freigabe ist mehr als eine Unterschrift. Mit ihr legitimiert der Bauherr de
 
 Die typische Fehlstelle: Es wird freigegeben, obwohl unklar ist, welcher Datenstand gilt, oder ohne dass jemand geprüft hat, ob das Mandat reicht.
 
-MVG bindet jede Freigabe an die Freigabelogik. Vor der Freigabe müssen fünf Dinge klar sein. Die Vorbereitung – Unterlagenpakete, Prüfvermerke, Planungsstände, Freigabevorschläge, Gremienberichte – kann delegiert werden; die Freigabe selbst nicht. [[bedienung:Klicken Sie die fünf Punkte durch.]]
+MVG bindet jede Freigabe an die Freigabelogik. Vor der Freigabe müssen fünf Dinge klar sein. Die Vorbereitung – Unterlagenpakete, Prüfvermerke, Planungsstände, Freigabevorschläge, Gremienberichte – übernimmt die Projektsteuerung; die Freigabe selbst erteilt der Bauherr. [[bedienung:Klicken Sie die fünf Punkte durch.]]
 
 ::: etappen
 ---
@@ -400,7 +400,7 @@ titel: Datenstand und Nachweis
 
 Ein Beispiel (allgemein): Im Gremium liegen zwei Kostenstände vor, einer aus der Planung und einer aus dem Controlling. Wird auf dieser Grundlage beschlossen, lässt sich später kaum sagen, welche Zahl gemeint war. Die typische Fehlstelle heißt deshalb: parallele Datenstände und Entscheidungsgrundlagen, die sich nicht reproduzieren lassen.
 
-MVG verlangt eine klare Datenstandslogik mit fünf Fragen: Welche Version gilt? Welche Annahmen sind offen? Welche Änderungen sind seit der letzten Freigabe dazugekommen? Welche Beschlusslage besteht? Wo wird die [[Nachweiskette]] geführt? Der Bauherr muss die Daten nicht selbst pflegen – Datenpflege, Dokumentation, Protokolle und Annahmenregister kann er abgeben. Er muss aber sicherstellen, dass Entscheidungen auf belastbaren, benannten und reproduzierbaren Grundlagen beruhen.
+MVG verlangt eine klare Datenstandslogik mit fünf Fragen: Welche Version gilt? Welche Annahmen sind offen? Welche Änderungen sind seit der letzten Freigabe dazugekommen? Welche Beschlusslage besteht? Wo wird die [[Nachweiskette]] geführt? Der Bauherr pflegt die Daten nicht selbst: Die Projektsteuerung führt alle Vorgänge in der vom Bauherrn bereitgestellten Software. Das ist der eine maßgebliche Stand, aus dem auch der Monatsbericht entsteht. Der Bauherr muss aber sicherstellen, dass Entscheidungen auf belastbaren, benannten und reproduzierbaren Grundlagen beruhen.
 
 ::: umschalter
 ---
@@ -418,86 +418,9 @@ Es ist klar, welche Version gilt, welche Annahmen offen sind, was sich seit der 
 :::
 :::
 
-::: querverweis A2
----
-text: "In der Story erlebt: A2 · Zusage im Flur"
----
-Welt A, Monat 3: Die längere Lieferzeit der Holzbauelemente gefährdet die Förderfrist, die größere Mensa wird im Flur zugesagt – ohne Schwelle, ohne Bewertung, ohne Beschluss.
-:::
-
-::: querverweis A3
----
-text: "In der Story erlebt: A3 · Kosten +8 %"
----
-Welt A, Monat 5: zwei Kostenzahlen, kein benannter Datenstand, keine Entscheidung.
-:::
-
-::: querverweis A4
----
-text: "In der Story erlebt: A4 · Ausschuss vertagt"
----
-Welt A, Monat 7: Der Bauausschuss bekommt einen Statusbericht ohne Entscheidungsfrage und vertagt.
-:::
-
-::: querverweis A5
----
-text: "In der Story erlebt: A5 · Folgekosten"
----
-Welt A, Monat 9: Nachträge und Auflagen werden gegen die Risikoreserve gehalten, deren Einsatz niemand freigegeben hat.
-:::
-
-::: querverweis wendepunkt
----
-text: "In der Story erlebt: Wendepunkt"
----
-Welt A steht still: die Muster-Mandatsleiter neben den Beträgen aus Welt A, unter „Tiefer gehen“ die sechs Verantwortungsfelder vom Chaos zur Ordnung.
-:::
-
-::: querverweis B1
----
-text: "In der Story erlebt: B1 · Übernahme ohne Übergabe – mit MVG"
----
-Welt B, Monat 1: Zielsystem, Mandatsleiter, Rhythmus und Register mit verantwortlicher Rolle sind angelegt; die Zielpriorität legt der Bauherr fest.
-:::
-
-::: querverweis B2
----
-text: "In der Story erlebt: B2 · Zusage im Flur – mit MVG"
----
-Welt B, Monat 3: Die Lieferzeit wird Frühwarnung `FRW-002`, der Mensa-Wunsch wird Änderung `AEN-012` mit Freigabeweg.
-:::
-
-::: querverweis B3
----
-text: "In der Story erlebt: B3 · Kosten +8 %"
----
-Welt B, Monat 5, derselbe Montag: ein Datenstand, eine Mandatsprüfung, eine Entscheidungsvorlage.
-:::
-
-::: querverweis B4
----
-text: "In der Story erlebt: B4 · Ausschussreif"
----
-Welt B, Monat 7: Das Änderungsgremium entscheidet über `AEN-031`, weil es nach der Mandatsleiter das Mandat hat – auf einer Vorlage mit Frage und Datenstand.
-:::
-
-::: querverweis B5
----
-text: "In der Story erlebt: B5 · Folgekosten – mit MVG"
----
-Welt B, Monat 9: Aus dem Nachtrag wird das Problem `PRB-004` und eine Vorlage zum Einsatz der Risikoreserve, den nur der Bauherr freigibt.
-:::
-
-::: querverweis B6
----
-text: "In der Story erlebt: B6 · Freigabe LPH 5"
----
-Welt B, Monat 11: Die Freigabe zum Abschluss von LPH 5 steht an – der Bauherr erteilt sie auf Vorlage der Bauherren-PL, für den ausgefallenen Kostenplaner der Projektsteuerung ist eine Stellvertretung benannt.
-:::
-
 ::: regie
 ### Notiz
-Kapitel 4 macht die Linie aus Kap. 3 greifbar: sechs Felder, je Feld Kern (beim Bauherrn), Vorbereitung (delegierbar) und typische Fehlstelle. Die Sortierübung im Überblick eignet sich zum gemeinsamen Durchgehen. Die sechs Felder sind keine juristische Vollständigkeitsliste. Der Regler der Muster-Mandatsleiter (4.2) zeigt ein Muster – keine Empfehlung für die Schwellen des Kunden. Datenstand und Nachweis (4.6) nicht als Verwaltung abtun: MVG führt sie als eigenes Verantwortungsfeld.
+Dieses Thema macht die Linie aus dem Begriffsrahmen greifbar: sechs Felder, je Feld Kern (beim Bauherrn), Vorbereitung (delegierbar) und typische Fehlstelle. Die Sortierübung im Überblick eignet sich zum gemeinsamen Durchgehen. Die sechs Felder sind keine juristische Vollständigkeitsliste. Der Regler der Muster-Mandatsleiter (Feld Mandat) zeigt ein Muster – keine Empfehlung für die Schwellen des Kunden. Datenstand und Nachweis nicht als Verwaltung abtun: MVG führt sie als eigenes Verantwortungsfeld. Entscheidungen bereitet die Projektsteuerung vor; der Bauherr pflegt nichts, er entscheidet.
 
 ### Leitfragen
 - In welchem der sechs Felder erkennen Sie bei sich die typische Fehlstelle am ehesten?
@@ -505,5 +428,3 @@ Kapitel 4 macht die Linie aus Kap. 3 greifbar: sechs Felder, je Feld Kern (beim 
 - Welcher Datenstand lag Ihrer letzten Freigabe zugrunde?
 :::
 
-::: original k4
-:::

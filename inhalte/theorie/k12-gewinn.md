@@ -1,19 +1,18 @@
 ---
-# Lernseite Kapitel 12 (P6, O-20; neu aufbereitet P12.3, O-30). Lesetext in eigenen Worten, ohne neue
-# Fachaussagen (O-17); der vollständige Originaltext kommt über „::: original k12“ (zugeklappt am Ende).
-# Beschreiben, was das Kapitel sagt – kein Vertrieb, keine Aufforderung, keine Wirkungszahlen (O-1).
-# Story: DREHBUCH §5 nennt „ausgang“; Kap. 12 berührt davon ende-steuerbar (k12-p1), laut whitepaper-bezug.
+# Thema „Was Bauherren gewinnen“ (P6, O-20; P12.3, O-30; P16.4, O-36, O-38). Lesetext in eigenen Worten, ohne
+# neue Fachaussagen; Belege nur intern. Kein Bezug zur Vorlage auf der Seite (O-38).
+# Beschreiben, was MVG sagt – kein Vertrieb, keine Aufforderung, keine Wirkungszahlen (O-1).
+# V24-ABGLEICH: k12-E1 (Geringere Zusatzlast konkret), k12-H1 (Querverweis entfällt).
 # Belege Einleitung/Kernaussage: k12-p1, k12.1-p1
-# Belege k12 (Bilanz): k12-p1, k12-t1, k12-p2
+# Belege k12 (Bilanz): k12-p1, k12-t1, k12-p2, v24:hb-4, v24:tlb-3 (Bauherr pflegt nichts: O-36; Monatstermin, Bericht eine Seite)
 # Belege k12.1: k12.1-p1, k12.1-t1
 kapitel: 12
 thema: nutzen
-reihe: 15
+reihe: 12
 titel: Was Bauherren mit MVG und MVG Companion gewinnen
 kurztitel: Was Bauherren gewinnen
-story: [ende-steuerbar]
 ---
-Kapitel 12 zieht Bilanz. Es fragt, was Minimum Viable Governance (MVG) und der MVG Companion für Bauherren bewirken sollen, und beschreibt, wie ein Einstieg aussieht. Damit schließt sich der Bogen zur Leitthese vom Anfang: Arbeit lässt sich delegieren, die Legitimation des Bauherrn nicht.
+Dieses Thema zieht Bilanz. Es fragt, was Minimum Viable Governance (MVG) und der MVG Companion für Bauherren bewirken sollen, und beschreibt, wie ein Einstieg aussieht. Damit schließt sich der Bogen zur Leitthese vom Anfang: Arbeit lässt sich delegieren, die Legitimation des Bauherrn nicht.
 
 ::: kernaussage
 Am Ende zählt nicht, wie viele Governance-Artefakte es gibt, sondern ob der Bauherr damit besser führen kann. Arbeit lässt sich delegieren, die Legitimation des Bauherrn nicht.
@@ -25,9 +24,9 @@ titel: Führungswirkung statt Artefakte
 ---
 Man könnte den Nutzen von Governance an der Menge messen: an Registern, Vorlagen und Berichten. MVG legt einen anderen Maßstab an. Entscheidend ist nicht die **Zahl** der Governance-Artefakte, sondern ihre **Führungswirkung** – also die Frage, ob der Bauherr durch sie besser führen kann.
 
-MVG und der [[MVG Companion]] sollen dafür eine pragmatische Architektur schaffen. Sie bereitet Entscheidungen schneller vor, macht Mandate klarer, erhöht die Gremienfähigkeit und führt Nachweise belastbarer. Die Tafel nennt fünf Gewinne und ihre Wirkung – von klareren Entscheidungen bis zu einer geringeren Zusatzlast, weil der Mindeststandard auf führungsrelevante Entscheidungen konzentriert bleibt. MVG nennt sie für die Kombination aus beiden.
+MVG und der [[MVG Companion]] sollen dafür eine pragmatische Architektur schaffen. Sie bereitet Entscheidungen schneller vor, macht Mandate klarer, erhöht die Gremienfähigkeit und führt Nachweise belastbarer. Die Tafel nennt fünf Gewinne und ihre Wirkung – von klareren Entscheidungen bis zu einer geringeren Zusatzlast, weil der Mindeststandard auf führungsrelevante Entscheidungen konzentriert bleibt. MVG nennt sie für die Kombination aus beiden. Für den Bauherrn heißt das konkret: Er pflegt nichts; ihn erreichen ein Monatstermin von höchstens 60 Minuten, ein Bericht von höchstens einer Seite und die Vorlagen, über die er entscheiden muss.
 
-Das Schlussbild ordnet die Rollen: MVG ist als schlankes [[Bauherren-Führungsmodell]] gedacht, der MVG Companion als anwendungsnaher Beschleuniger. Zusammen sollen sie Bauherrenverantwortung nicht abstrakter machen, sondern praktischer – vorbereitet, mandatiert, nachvollziehbar und im Regelbetrieb nutzbar. [[bedienung:Der Umschalter unter der Tafel stellt beide Rollen nebeneinander.]]
+Am Schluss stehen zwei Rollen: MVG ist als schlankes [[Bauherren-Führungsmodell]] gedacht, der MVG Companion als anwendungsnaher Beschleuniger. Zusammen sollen sie Bauherrenverantwortung nicht abstrakter machen, sondern praktischer – vorbereitet, mandatiert, nachvollziehbar und im Regelbetrieb nutzbar. [[bedienung:Der Umschalter unter der Tafel stellt beide Rollen nebeneinander.]]
 
 ::: umschalter
 ---
@@ -59,16 +58,16 @@ form: karten
 
 ::: umschalter
 ---
-titel: Zwei Rollen im Schlussbild
+titel: Zwei Rollen
 links: MVG
 rechts: MVG Companion
 ---
 ::: ansicht links
-**Ein schlankes Bauherren-Führungsmodell.** So ordnet das Schlussbild MVG ein.
+**Ein schlankes Bauherren-Führungsmodell.** Das ist MVG.
 :::
 
 ::: ansicht rechts
-**Ein anwendungsnaher Beschleuniger.** So ordnet das Schlussbild den MVG Companion ein. Beim Einstieg kann er die Einführung beschleunigen.
+**Ein anwendungsnaher Beschleuniger.** Das ist der MVG Companion. Beim Einstieg kann er die Einführung beschleunigen.
 :::
 :::
 
@@ -150,19 +149,9 @@ form: karten
 :::
 :::
 
-::: original k12
-:::
-
-::: querverweis ende-steuerbar
----
-text: "In der Story erlebt: Steuerbar übergeben"
----
-Nach der MVG-Neuinitialisierung ist das Projekt wieder steuerbar: Das Bauherren-Führungsmodell wird übergeben – ein Befähigungsschritt, keine Freigabe; das Projekt läuft steuerbar in LPH 5 weiter.
-:::
-
 ::: regie
 ### Notiz
-Kapitel 12 zieht Bilanz; hier ist die Nähe zum Vertrieb am größten – nur wiedergeben, was MVG sagt, keine Aufforderung, kein Angebot, keine Wirkungszahlen. Es tragen der Umschalter „Woran MVG gemessen wird“ und die fünf Gewinne in der Tafel, besonders „Geringere Zusatzlast“: Der Mindeststandard bleibt auf führungsrelevante Entscheidungen konzentriert. Mit der Leitthese schließen.
+Dieses Thema zieht Bilanz; hier ist die Nähe zum Vertrieb am größten – nur wiedergeben, was MVG sagt, keine Aufforderung, kein Angebot, keine Wirkungszahlen. Es tragen der Umschalter „Woran MVG gemessen wird“ und die fünf Gewinne in der Tafel, besonders „Geringere Zusatzlast“: Der Mindeststandard bleibt auf führungsrelevante Entscheidungen konzentriert – der Bauherr pflegt nichts, er entscheidet. Mit der Leitthese schließen.
 
 ### Leitfragen
 - Welche Register, Vorlagen oder Berichte haben in Ihrem Projekt heute Führungswirkung – und welche nicht?

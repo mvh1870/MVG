@@ -1,21 +1,20 @@
 ---
-# Lernseite Kapitel 2 (P6, O-20; neu aufbereitet P12.3, O-30). Lesetext in eigenen Worten, keine neuen
-# Fachaussagen (O-17); der vollständige Originaltext kommt zugeklappt über „::: original k2“.
+# Thema „Ausgangslage“ (P6, O-20; neu aufbereitet P12.3, O-30; an V2.4 angepasst P16.4, O-36, O-38). Lesetext in
+# eigenen Worten, keine neuen Fachaussagen (O-17); Belege nur hier, nie sichtbar (O-38).
 # Belege Einleitung/Kernaussage: k2-p1, k2-p2, k2.4-p2
-# Belege Grauzonen (Seitenebene): k2-p1, k2-p2
+# Belege Grauzonen (Seitenebene): k2-p1, k2-p2; rechte Ansicht Risiken (V2.4): bloße Liste genügt nicht, Bewertung ergibt Priorität v24:hb-1.3, v24:hb-2, v24:hb-3
 # Belege k2.1: k2.1-p1, k2.1-p2
 # Belege k2.2: k2.2-p1, k2.2-p2, k2-p1 (Kosten, Termine, Qualität als weitere Ziele)
-# Belege k2.3: k2.3-p1, k2.3-p2
-# Belege k2.4: k2.4-p1, k2.4-p2, k2.4-p3
-# Belege k2.5: k2.5-t1, k2.5-p1
+# Belege k2.3: k2.3-p1, k2.3-p2; Beispiel Vertretung (V2.4): Eintrag zeigt auch bei Bearbeiterwechsel, was bekannt und was offen ist v24:hb-2; ein maßgeblicher Stand v24:hb-5
+# Belege k2.4: k2.4-p1, k2.4-p2, k2.4-p3; Monatsbericht höchstens eine Seite mit offenen Entscheidungen und benötigter Reaktion (V2.4): v24:hb-4, v24:as-2
+# Belege k2.5: k2.5-t1, k2.5-p1; Vorlage der Projektsteuerung mit Frage, zwei zulässigen Optionen, MCDA, Empfehlung (V2.4): v24:hb-3, v24:hb-3.1, v24:tlb-2.1
 kapitel: 2
 thema: ausgangslage
 reihe: 2
 titel: Ausgangslage und Kernproblem
 kurztitel: Ausgangslage
-story: [A1, A3, A4, A6, wendepunkt, B3, B6]
 ---
-Kapitel 2 beschreibt, unter welchem Druck komplexe Bauvorhaben heute stehen, und benennt das Kernproblem, auf das [[Minimum Viable Governance (MVG)]] antwortet. Kosten, Termine, Qualität, Risiken, [[ESG]], [[LCC]], Nutzerbedarfe und Gremienfähigkeit wirken nicht isoliert – sie treffen in konkreten Entscheidungen zusammen. Für den [[Bauherr|Bauherrn]] heißt das: Nicht die Menge an Information entscheidet, sondern ob klar ist, wer auf welcher Grundlage entscheiden darf und muss.
+Dieses Thema beschreibt, unter welchem Druck komplexe Bauvorhaben heute stehen, und benennt das Kernproblem, auf das [[Minimum Viable Governance (MVG)]] antwortet. Kosten, Termine, Qualität, Risiken, [[ESG]], [[LCC]], Nutzerbedarfe und Gremienfähigkeit wirken nicht isoliert – sie treffen in konkreten Entscheidungen zusammen. Für den [[Bauherr|Bauherrn]] heißt das: Nicht die Menge an Information entscheidet, sondern ob klar ist, wer auf welcher Grundlage entscheiden darf und muss.
 
 ::: kernaussage
 Mehr Berichte lösen das Kernproblem nicht. Entscheidend ist, ob der Bauherr eine klare Führungs- und Entscheidungsarchitektur hat – sonst bleibt die Verantwortung formal bei ihm, wird praktisch aber diffus.
@@ -42,7 +41,7 @@ Ohne Führungs- und Entscheidungsarchitektur entstehen Grauzonen. Auf dem Papier
 
 ::: ansicht rechts
 - Die Rollen haben kein [[Mandat]].
-- Die Risiken sind nicht entscheidungsreif.
+- Die Risiken stehen in einer Liste, aber niemand hat bewertet, welche vorrangig sind und welche Entscheidung sie brauchen.
 - Die Änderungen sind nicht mit Freigabeschwellen verbunden.
 - Mehrere [[Datenstand|Datenstände]] existieren parallel.
 - Die Gremien bekommen keine klare Entscheidungsfrage.
@@ -132,7 +131,7 @@ In vielen Bauherrenorganisationen hängt in kritischen Momenten viel an wenigen 
 
 Ein belastbares [[Bauherren-Führungsmodell]] verringert diese Abhängigkeit. Es macht nicht jede Organisation automatisch leistungsfähig. Aber es schafft einen gemeinsamen Standard, der fünf Fragen beantwortet. So wird Erfahrung nicht ersetzt, sondern in wiederholbare Führungslogik überführt.
 
-Ein Beispiel (allgemein): Vor einer wichtigen Freigabe fällt die Person aus, die die Kostenstände als Einzige vollständig kennt. Mit einem gemeinsamen Standard findet die Vertretung vor, wer entscheidet, welche Unterlagen erforderlich sind und welche Annahmen gelten.
+Ein Beispiel (allgemein): Vor einer wichtigen Freigabe fällt die Person aus, die die Kostenstände als Einzige vollständig kennt. Mit einem gemeinsamen Standard findet die Vertretung vor, wer entscheidet, welche Unterlagen erforderlich sind und welche Annahmen gelten. Im Standard steht dieses Wissen nicht in persönlichen Arbeitsständen, sondern in den Einträgen der Projektsteuerung – so, dass auch eine Vertretung erkennt, was bekannt ist und was noch geklärt werden muss.
 
 ::: umschalter
 ---
@@ -228,6 +227,8 @@ Daraus folgen:
 4. Welche Schwellen lösen Eskalation aus?
 5. Welcher Datenstand gilt?
 6. Wie wird der Beschluss später nachvollzogen?
+
+Im Standard genügt ein Monatsbericht von höchstens einer Seite – entscheidend ist, dass er die offenen Entscheidungen und die benötigte Reaktion zeigt.
 :::
 :::
 
@@ -236,7 +237,7 @@ Daraus folgen:
 Ihr Gremium erhält jeden Monat einen ausführlichen Ampelbericht, aber keine Entscheidungsfrage – wird damit schon geführt?
 
 ### Erklärung
-Ein Bericht, der keine Entscheidung verlangt, bleibt beim Beobachten. Geführt wird erst, wenn seine Information unter anderem an Mandat, Schwelle, Datenstand und Freigabe anschließt.
+Ein Bericht, der keine Entscheidung verlangt, bleibt beim Beobachten. Geführt wird erst, wenn seine Information unter anderem an Mandat, Schwelle, Datenstand und Freigabe anschließt. Ein kurzer Monatsbericht, der offene Entscheidungen und die benötigte Reaktion nennt, leistet mehr als ein langer ohne Frage.
 
 ::: antwort a
 ---
@@ -264,13 +265,13 @@ Berichterstattung erzeugt Information. Führung entsteht erst, wenn Information 
 ---
 titel: Symptome fehlender Ausübungsfähigkeit
 ---
-Woran erkennt man, dass ein Bauherr seine Verantwortung nicht mehr wirksam ausüben kann? Das Kapitel nennt acht Symptome – von unklaren Zielprioritäten über parallele Datenstände bis zur Eskalation, die nur Verzögerung erzeugt.
+Woran erkennt man, dass ein Bauherr seine Verantwortung nicht mehr wirksam ausüben kann? Es gibt acht typische Symptome – von unklaren Zielprioritäten über parallele Datenstände bis zur Eskalation, die nur Verzögerung erzeugt.
 
-Jedes Symptom folgt demselben Muster: Es zeigt sich in einer typischen Situation im Projekt, hat eine Konsequenz für den Bauherrn und hat eine Antwort im MVG-Modell. Ein Beispiel ist die Eskalation ohne Entscheidung: Themen werden nach oben gegeben, aber ohne klare Optionen, Empfehlung oder Konsequenzen. Die Folge ist Verzögerung statt Führung. Die Antwort ist ein verbindlicher Standard für [[Entscheidungsvorlage|Entscheidungsvorlagen]] mit einer Entscheidungsfrage je Eskalation.
+Jedes Symptom folgt demselben Muster: Es zeigt sich in einer typischen Situation im Projekt, hat eine Konsequenz für den Bauherrn und hat eine Antwort im MVG-Modell. Ein Beispiel ist die Eskalation ohne Entscheidung: Themen werden nach oben gegeben, aber ohne klare Optionen, Empfehlung oder Konsequenzen. Die Folge ist Verzögerung statt Führung. Die Antwort ist ein verbindlicher Standard für [[Entscheidungsvorlage|Entscheidungsvorlagen]]: Zu jeder Eskalation legt die Projektsteuerung eine Vorlage mit Entscheidungsfrage, mindestens zwei zulässigen Optionen, gewichtetem Vergleich und Empfehlung vor.
 
 [[bedienung:Wählen Sie in der Grafik ein Symptom und verfolgen Sie die Kette von Muster über Konsequenz bis zur Reaktion.]] Fragen Sie sich, welche dieser Symptome Sie aus eigenen Projekten kennen.
 
-Die acht Symptome sind zugleich das, was die MVG-Reifegradanalyse (Kapitel 7.1) systematisch erhebt, bewertet und priorisiert. Bevor daraus ein [[Bauherren-Führungsmodell]] werden kann, braucht es aber begriffliche Klarheit: Was ist delegierbar – und was nicht? Diese Linie zieht Kapitel 3.
+Die acht Symptome sind zugleich das, was die MVG-Reifegradanalyse (Thema „Leistungsarchitektur“) systematisch erhebt, bewertet und priorisiert. Bevor daraus ein [[Bauherren-Führungsmodell]] werden kann, braucht es aber begriffliche Klarheit: Was ist delegierbar – und was nicht? Diese Linie zieht das Thema „Begriffsrahmen“.
 
 ::: tafel k2.5-t1
 ---
@@ -279,61 +280,9 @@ form: ketten
 :::
 :::
 
-::: querverweis A1
----
-text: "In der Story erlebt: A1 · Übernahme ohne Übergabe"
----
-Welt A, Monat 1: keine Übergabe, Unterlagen in drei Ablagen, eine Frage der Kämmerei ohne Antwort; Kosten, Termin, ESG und LCC gleichrangig nebeneinander.
-:::
-
-::: querverweis A3
----
-text: "In der Story erlebt: A3 · Kosten +8 %"
----
-Welt A, Monat 5: +8 % bei der Projektsteuerung, +5,9 % beim Controlling – zwei Zahlen, kein geltender Datenstand.
-:::
-
-::: querverweis A4
----
-text: "In der Story erlebt: A4 · Ausschuss vertagt"
----
-Welt A, Monat 7: 40 Seiten Statusbericht, Ampeln auf Gelb und Rot, keine Entscheidungsfrage – der Bauausschuss vertagt.
-:::
-
-::: querverweis A6
----
-text: "In der Story erlebt: A6 · Eskalation"
----
-Welt A, Monat 11: Die Freigabe zum Abschluss von LPH 5 steht an, Holger Stein, Kostenplaner der Projektsteuerung, fällt aus, und seine Excel-Stände versteht niemand vollständig.
-:::
-
-::: querverweis wendepunkt
----
-text: "In der Story erlebt: Wendepunkt"
----
-Welt A steht still: Symptom-Radar und Wirkungsketten aus Kap. 2.5, bezogen auf Ihre Spur.
-:::
-
-::: querverweis B3
----
-text: "In der Story erlebt: B3 · Kosten +8 %"
----
-Welt B, Monat 5, derselbe Montag: ein Datenstand, eine Mandatsprüfung, eine Entscheidungsvorlage.
-:::
-
-::: querverweis B6
----
-text: "In der Story erlebt: B6 · Freigabe LPH 5"
----
-Welt B, Monat 11: Holger Stein fällt auch hier aus – für ihn ist eine Stellvertretung benannt, die Freigabe zum Abschluss von LPH 5 steht an.
-:::
-
-::: original k2
-:::
-
 ::: regie
 ### Notiz
-Kapitel 2 holt den Kunden bei seinen eigenen Erfahrungen ab. Einstieg über den Umschalter „Auf dem Papier / In der Praxis“ (Grauzonen). Es trägt die Tafel der acht Symptome (2.5): den Kunden selbst wählen lassen, was er kennt – ohne Punktzahl und ohne Urteil über seine Organisation. Der Kern steht in 2.4: Berichterstattung erzeugt Information, Führung entsteht erst, wenn Information unter anderem mit Mandat, Entscheidung, Schwelle, Datenstand, Freigabe und Nachweis verbunden wird. Nicht behaupten, mehr Berichte schadeten – laut 2.4 können sie in einzelnen Situationen helfen.
+Die Ausgangslage holt den Kunden bei seinen eigenen Erfahrungen ab. Einstieg über den Umschalter „Auf dem Papier / In der Praxis“ (Grauzonen). Tragend ist die Tafel der acht Symptome: den Kunden selbst wählen lassen, was er kennt – ohne Punktzahl und ohne Urteil über seine Organisation. Der Kern: Berichterstattung erzeugt Information, Führung entsteht erst, wenn Information unter anderem mit Mandat, Entscheidung, Schwelle, Datenstand, Freigabe und Nachweis verbunden wird. Nicht behaupten, mehr Berichte schadeten – sie können in einzelnen Situationen helfen. Im Standard genügt ein Monatsbericht von höchstens einer Seite, der offene Entscheidungen und die benötigte Reaktion zeigt.
 
 ### Leitfragen
 - Welche der acht Symptome erkennen Sie in einem Ihrer laufenden Projekte wieder?

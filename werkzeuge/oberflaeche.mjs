@@ -4,7 +4,7 @@
  *
  *   node werkzeuge/oberflaeche.mjs [--szenario <name>] [--nur-desktop] [--datei <html>] [--szenarien <verzeichnis>] [--parallel <n>]
  *
- * Lädt dist/mvg.html als file://-URL in Chromium (Playwright) und führt alle
+ * Lädt dist/index.html als file://-URL in Chromium (Playwright) und führt alle
  * tests/oberflaeche/*.szenario.mjs aus. Ein Szenario-Modul exportiert
  *   name: string, viewports?: Array<{ breite, hoehe }>, hash?: string (z. B. '#regie'), seite?: string (andere
  *   HTML-Datei), testHerkunft?: 'http://<name>.test/' (nur .test nach RFC 6761; das Szenario beantwortet sie
@@ -395,7 +395,7 @@ function leseArgumente(argv) {
     nurDesktop: false,
     // parallele Browser-Kontexte: Vorgabe 3 (4 Kerne im Cloud-Rechner und im GitHub-Läufer), 1 = nacheinander
     parallel: Number(process.env['MVG_PARALLEL'] ?? 3),
-    datei: path.join(WURZEL, 'dist', 'mvg.html'),
+    datei: path.join(WURZEL, 'dist', 'index.html'),
     szenarien: path.join(WURZEL, 'tests', 'oberflaeche'),
   };
   for (let i = 0; i < argv.length; i += 1) {

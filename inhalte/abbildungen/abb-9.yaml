@@ -1,6 +1,6 @@
 id: abb-9
 quelle: bilder/image9.jpeg
-titel: MVG Companion als Umsetzungsbeschleuniger
+titel: Der MVG Companion zwischen MVG-Logik und Anwendung
 alt: >-
   Links der Block „MVG-Logik“ (Gebäude, Organigramm); ein Pfeil führt in einen breiten Block mit Rundzeichen
   „Companion“ (Brücke) und dem Balken „Anwendung“, darunter sieben Kacheln: Entscheidung, Freigabe, Mandat,
@@ -18,5 +18,8 @@ abweichungen:
     beleg: k6.2-p1 k6.2-t1
   - text: 'Die Leiste unten zeigt „Bauherr entscheidet“, „Freigabe bleibt“, „Rollenrechte“, „Nachweiskette“ und „Prüfung-Takt“; laut Text bleiben verbindlich: freigegebene Datenstände, definierte Rollenrechte, Datenschutzanforderungen und die bauherrenseitige Legitimation der Entscheidung. Freigegebene Datenstände und Datenschutzanforderungen fehlen in der Leiste.'
     beleg: k6.3-b1
+  # P16.4 (O-36, V2.4 HB 5): Der Companion ist optional; maßgeblich bleibt die Software des Bauherrn.
+  - text: 'Das Bild zeigt den Companion als zentralen Block zwischen MVG-Logik, Befähigung und Regelbetrieb; nach dem Text ist er ein optionales Arbeitsmittel. Maßgeblich bleibt die Software, die der Bauherr bereitstellt; dort führt die Projektsteuerung alle Vorgänge, und der Companion ersetzt diese Einträge nicht.'
+    beleg: k6.3-p1 k6.3-p2
   - text: '„Prüfung-Takt“ ist kein Begriff des Texts; er spricht bei der Übergabe vom Prüfrhythmus und beim MVG-Übergabeassistenten von Prüfzyklen.'
     beleg: k6.2-t1 k6.1-t1

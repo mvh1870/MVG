@@ -7,7 +7,7 @@ angeglichen:
 abweichungen:
   - text: 'Die Spalte „Bauherr“ zeigt sieben Kacheln mit „Datenstand“ und „Nachweis“ getrennt; der Text nennt sechs Verantwortungsfelder und fasst „Datenstand und Nachweis“ zu einem Feld zusammen.'
     beleg: k3.1-p2
-  - text: 'In der Spalte „Bauherr“ steht „Entscheidung“ ohne Zusatz; die Leitthese (1.1) und die Arbeitsdefinition (3.1) sprechen von der wesentlichen Entscheidung, und Abschnitt 4.3 hält fest, dass nicht jede operative Entscheidung bauherrenseitig wesentlich ist.'
+  - text: 'In der Spalte „Bauherr“ steht „Entscheidung“ ohne Zusatz; die Leitthese und die Arbeitsdefinition sprechen von der wesentlichen Entscheidung, und das Thema „Verantwortungsfelder“ hält fest, dass nicht jede operative Entscheidung bauherrenseitig wesentlich ist.'
     beleg: k1.1-p1 k3.1-p1 k4.3-p1
-  - text: 'Die MVG-Kacheln heißen „Datenstand“ und „Nachweis“; die Kurzfassung nennt an dieser Stelle Datenstandslogik und Nachweisführung.'
+  - text: 'Die MVG-Kacheln heißen „Datenstand“ und „Nachweis“; der Text nennt an dieser Stelle Datenstandslogik und Nachweisführung.'
     beleg: k1-p2

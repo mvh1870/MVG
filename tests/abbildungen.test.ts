@@ -62,27 +62,9 @@ test('Repo: jede Inhaltsabbildung hat eine gültige Beschreibung, und jedes Bild
   assert.deepEqual(fehler, []);
 });
 
-test('Originaltext: jede Abbildung steht an ihrer Stelle der DOCX (nach Überschrift bzw. Absatz), die Lernseite zeigt sie höchstens einmal', () => {
+test('Themen (O-38): jede der 13 Abbildungen steht genau einmal auf dem Thema ihres Teils, mit Bilddaten', () => {
   const inhalte = JSON.parse(readFileSync(join(WURZEL, 'src', 'generiert', 'inhalte.json'), 'utf8'));
   const bilder = JSON.parse(readFileSync(join(WURZEL, 'src', 'generiert', 'abbildungen.json'), 'utf8')) as Record<string, string>;
-  /** Kennungen (Absatz, Abschnitt, Abbildung) im Originaltext in Lesereihenfolge */
-  const folge: string[] = [];
-  for (const t of Object.values(inhalte.theorie) as { bloecke: { art: string; felder: Record<string, string> }[] }[]) {
-    for (const b of t.bloecke) {
-      if (b.art !== 'original') continue;
-      for (const m of (b.felder['text'] ?? '').matchAll(/data-(absatz|abschnitt|abbildung)="([^"]+)"/gu)) folge.push(m[2] ?? '');
-    }
-  }
-  for (const a of inhalte.whitepaper.abbildungen as { id: string; ort: string; bild: unknown }[]) {
-    assert.ok(a.bild !== null, `${a.id} ohne Bild`);
-    assert.match(bilder[a.id] ?? '', /^data:image\/webp;base64,/u, `${a.id}: Bilddaten`);
-    const i = folge.indexOf(a.id);
-    assert.ok(i > -1, `${a.id} fehlt im Originaltext`);
-    // Kapitelanfang: vor dem ersten Absatz; sonst direkt nach der Überschrift bzw. dem Absatz des Orts
-    if (/^k\d+$/u.test(a.ort)) assert.ok(i === 0 || !folge.slice(0, i).some((x) => x.startsWith(`${a.ort}-`) || x.startsWith(`${a.ort}.`)), `${a.id}: nicht am Kapitelanfang`);
-    else assert.equal(folge[i - 1], a.ort, `${a.id} steht nicht nach ${a.ort}`);
-  }
-  // Lernseiten: jede Abbildung höchstens einmal (strukturell über die Blöcke gezählt)
   const zahl = new Map<string, number>();
   const gehe = (bloecke: { art: string; id: string | null; kinder?: unknown[] }[]): void => {
     for (const b of bloecke) {
@@ -91,13 +73,16 @@ test('Originaltext: jede Abbildung steht an ihrer Stelle der DOCX (nach Übersch
     }
   };
   for (const t of Object.values(inhalte.theorie) as { bloecke: { art: string; id: string | null; kinder?: unknown[] }[] }[]) gehe(t.bloecke);
-  assert.equal(zahl.size, 10, 'zehn Abbildungen auf Lernseiten (abb-10, abb-12, abb-13 nur im Originaltext, L-77, L-82)');
-  for (const [id, n] of zahl) assert.equal(n, 1, `${id} ${n}× auf Lernseiten`);
-  // R13: welche – nicht nur wie viele (L-82: die drei widersprechen einer Regel ihrer Lernseite)
-  for (const id of ['abb-10', 'abb-12', 'abb-13']) assert.ok(!zahl.has(id), `${id} steht auf einer Lernseite – nur im Originaltext (L-82)`);
+  const alle = inhalte.whitepaper.abbildungen as { id: string; bild: unknown }[];
+  assert.equal(alle.length, 13);
+  for (const a of alle) {
+    assert.ok(a.bild !== null, `${a.id} ohne Bild`);
+    assert.match(bilder[a.id] ?? '', /^data:image\/webp;base64,/u, `${a.id}: Bilddaten`);
+    assert.equal(zahl.get(a.id), 1, `${a.id} steht ${zahl.get(a.id) ?? 0}× auf den Themen`);
+  }
 });
 
-test('Compiler (baueAbbildungen): veraltetes Bild, fremdes WebP, fremdes Kapitel, doppelt, ohne Originaltext → Fehler (Prüfagent R11)', () => {
+test('Compiler (baueAbbildungen): veraltetes Bild, fremdes WebP, fremdes Kapitel, doppelt, auf keinem Thema → Fehler (Prüfagent R11)', () => {
   const sha = (x: string | Buffer): string => createHash('sha256').update(x).digest('hex');
   const quelle = {
     abbildungen: [{ id: 'abb-6', kapitel: '4', ort: 'k4', datei: 'bilder/image6.png', sha256: 'q' }],
@@ -119,13 +104,12 @@ test('Compiler (baueAbbildungen): veraltetes Bild, fremdes WebP, fremdes Kapitel
     aendere(w);
     return w;
   };
-  const lauf = (w: string, theorie: Record<string, unknown>, imOriginal = true): { fehler: string[]; erg: { liste: { bild: unknown }[]; daten: Record<string, string> } } => {
+  const lauf = (w: string, theorie: Record<string, unknown>): { fehler: string[]; erg: { liste: { bild: unknown }[]; daten: Record<string, string> } } => {
     const fehler: string[] = [];
     const c = {
       b: { fehler: (ort: string, text: string) => fehler.push(`${ort}: ${text}`) },
       fehler: (ort: string, text: string) => fehler.push(`${ort}: ${text}`),
       inline: (t: string) => t,
-      abbImOriginal: new Set(imOriginal ? ['abb-6'] : []),
     };
     return { fehler, erg: baueAbbildungen(c, quelle, w, theorie, true) };
   };
@@ -140,5 +124,5 @@ test('Compiler (baueAbbildungen): veraltetes Bild, fremdes WebP, fremdes Kapitel
   assert.match(lauf(wurzel(fremd), { k04: seite(4, 'k04.md') }).fehler.join('\n'), /passt nicht zu stand\.json/u);
   assert.match(lauf(wurzel(), { k05: seite(5, 'k05.md') }).fehler.join('\n'), /gehört zu Kapitel 4, nicht 5/u);
   assert.match(lauf(wurzel(), { k04: seite(4, 'k04.md'), k04b: seite(4, 'k04b.md') }).fehler.join('\n'), /steht schon auf k04\.md/u);
-  assert.match(lauf(wurzel(), { k04: seite(4, 'k04.md') }, false).fehler.join('\n'), /steht in keinem Originaltext/u);
+  assert.match(lauf(wurzel(), {}).fehler.join('\n'), /steht auf keinem Thema/u);
 });

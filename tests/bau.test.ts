@@ -3,7 +3,7 @@
 import { after, before, describe, test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdtemp, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import vm from 'node:vm';
 import {
@@ -113,13 +113,13 @@ describe('bau: Einzeldatei aus der Fixtur', () => {
     assert.notEqual(cspZeile(skript + ' '), csp);
   });
 
-  test('dist/mvg.html trägt die CSP wörtlich, mit dem Hash ihres einen Skripts', async (t) => {
-    const datei = path.join(WURZEL, 'dist', 'mvg.html');
+  test('dist/index.html trägt die CSP wörtlich, mit dem Hash ihres einen Skripts', async (t) => {
+    const datei = path.join(WURZEL, 'dist', 'index.html');
     let html: string;
     try {
       html = await readFile(datei, 'utf8');
     } catch {
-      t.skip('dist/mvg.html fehlt (noch nicht gebaut)');
+      t.skip('dist/index.html fehlt (noch nicht gebaut)');
       return;
     }
     const metas = [...html.matchAll(/<meta http-equiv="Content-Security-Policy" content="([^"]+)">/g)];
@@ -269,27 +269,35 @@ describe('bau: Bausteine', () => {
   });
 });
 
-test('Kundenfassung (P10.8, L-7): dist/mvg-kunde.html enthält kein Regie-Material, dist/mvg.html schon', async () => {
-  const json = JSON.parse(await readFile(path.join(WURZEL, 'src', 'generiert', 'inhalte.json'), 'utf8')) as { regie: Record<string, { notiz: string | null; leitfragen: string[] }>; einwaende: { felder: { einwand?: string } }[] };
-  const kunde = await readFile(path.join(WURZEL, 'dist', 'mvg-kunde.html'), 'utf8');
-  const voll = await readFile(path.join(WURZEL, 'dist', 'mvg.html'), 'utf8');
-  assert.ok(Buffer.byteLength(kunde, 'utf8') < BUDGET);
-  // Proben: je Eintrag die Leitfragen und ein Stück der Notiz ohne Zeichen, die JSON/JS maskieren
-  const proben: string[] = [];
-  for (const e of Object.values(json.regie)) {
-    proben.push(...e.leitfragen.filter((f) => !/["\\<>]/u.test(f)));
-    const text = (e.notiz ?? '').replace(/<[^>]+>/gu, ' ').split(/["\\]/u).map((s) => s.trim()).find((s) => s.length >= 40);
-    if (text !== undefined) proben.push(text.slice(0, 40));
+test('Webseitenordner (P16.13, O-42, O-43, O-47): Hauptseite, Impressum, Datenschutz, robots, sitemap, Vorschaubild', async () => {
+  const dist = path.join(WURZEL, 'dist');
+  const { BEIGABEN, ADRESSE } = await import('../werkzeuge/bau.mjs');
+  const dateien = (await readdir(dist)).sort();
+  assert.deepEqual(dateien, ['index.html', ...BEIGABEN].sort(), 'genau die Dateien des Ordners – keine Kundenfassung, keine Reste');
+  const index = await readFile(path.join(dist, 'index.html'), 'utf8');
+  for (const m of ['<link rel="canonical" href="https://www.governancekompass.de/">', 'property="og:image" content="https://www.governancekompass.de/vorschau.png"', 'name="description"', '<link rel="icon" href="data:image/svg+xml,']) {
+    assert.ok(index.includes(m), m);
   }
-  // Nur Proben, die allein im Regie-Material stehen (manche Notiz zitiert das Whitepaper oder die Story)
-  const oeffentlich = JSON.stringify({ ...json, regie: {} });
-  proben.splice(0, proben.length, ...proben.filter((p) => !oeffentlich.includes(p)));
-  assert.ok(proben.length > 100, `zu wenige Proben: ${proben.length}`);
-  const inVoll = proben.filter((p) => voll.includes(p)).length;
-  assert.ok(inVoll > proben.length * 0.9, `Gegenprobe: nur ${inVoll}/${proben.length} Proben in dist/mvg.html`);
-  const inKunde = proben.filter((p) => kunde.includes(p));
-  assert.deepEqual(inKunde, [], 'Regie-Material in der Kundenfassung');
-  // Einwände sind öffentlich (L-54) und bleiben
-  const einwand = json.einwaende[0]?.felder.einwand?.replace(/<[^>]+>/gu, '').trim() ?? '';
-  assert.ok(einwand.length > 10 && kunde.includes(einwand));
+  for (const name of ['impressum.html', 'datenschutz.html']) {
+    const html = await readFile(path.join(dist, name), 'utf8');
+    assert.match(html, /Bauherr Mentoren GmbH i\. G\./u, name);
+    assert.match(html, /Martin Mohr/u, name);
+    assert.match(html, /kontakt@bauherr-mentoren\.com/u, name);
+    assert.doesNotMatch(html, /Telefon|Tel\.|\+49|Marc Heinz/u, `${name}: keine Telefonnummer, nur Martin Mohr (O-43)`);
+    assert.doesNotMatch(html, /<script\b/iu, `${name}: kein Skript`);
+    assert.match(html, /<meta http-equiv="Content-Security-Policy" content="default-src 'none'/u, name);
+    assert.ok(html.includes('href="https://www.bauherr-mentoren.com/"'), `${name}: Link zu bauherr-mentoren.com (O-44)`);
+    assert.ok(html.includes('href="./"'), `${name}: zurück zur Startseite`);
+    // Nichts wird nachgeladen: keine externen Quellen außer Links
+    assert.doesNotMatch(html.replace(/<a [^>]*>/gu, ''), /(?:src|href)="https?:/u, `${name}: externe Quelle`);
+  }
+  const datenschutz = await readFile(path.join(dist, 'datenschutz.html'), 'utf8');
+  for (const w of ['keine Cookies', 'IONOS', 'Fortschritt löschen', 'BayLDA', 'Local Storage']) assert.ok(datenschutz.includes(w), `Datenschutz nennt ${w}`);
+  assert.equal(await readFile(path.join(dist, 'robots.txt'), 'utf8'), `User-agent: *\nAllow: /\n\nSitemap: ${ADRESSE}sitemap.xml\n`);
+  const sitemap = await readFile(path.join(dist, 'sitemap.xml'), 'utf8');
+  assert.deepEqual([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/gu)].map((m) => m[1]), [ADRESSE, `${ADRESSE}impressum.html`, `${ADRESSE}datenschutz.html`]);
+  const png = await readFile(path.join(dist, 'vorschau.png'));
+  assert.equal(png.readUInt32BE(16), 1200);
+  assert.equal(png.readUInt32BE(20), 630);
+  assert.match(await readFile(path.join(dist, '.htaccess'), 'utf8'), /frame-ancestors 'none'/u);
 });

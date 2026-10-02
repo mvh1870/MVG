@@ -233,7 +233,7 @@ const DATEI_ARTEN = {
   },
   '@theorie': {
     kopf: {
-      kapitel: { typ: 'zahl', pflicht: true, min: 1, max: 13 }, titel: { typ: 'text', pflicht: true }, kurztitel: { typ: 'text' },
+      kapitel: { typ: 'zahl', pflicht: true, min: 1, max: 16 }, titel: { typ: 'text', pflicht: true }, kurztitel: { typ: 'text' },
       // P16.3 (O-38): Kennung des Themas in der Adresse (#theorie/<thema>) und Reihenfolge der Themen
       thema: { typ: 'kennung' }, reihe: { typ: 'zahl', min: 1, max: 30 },
       story: { typ: 'liste' }, deckt: { typ: 'liste' },
@@ -1734,7 +1734,10 @@ function baueKompass(c, rel, text) {
     if (aus.some((e) => e.id === bl.id)) c.fehler(ort, `Kompass-Eintrag ${bl.id} doppelt`);
     const begriff = String(bl.kopf.begriff ?? '');
     const beleg = String(bl.kopf.beleg ?? '');
-    const ids = c.expandiere(beleg, ort);
+    // P16.4: Begriffe aus V2.4 belegt ein interner V2.4-Verweis (v24:hb-3.1); die Wortprüfung gilt nur für V1.2-Absätze
+    const v24 = /^v24:[a-z]+(?:-[\w.]+)?$/u.test(beleg);
+    if (beleg.startsWith('v24:') && !v24) c.fehler(ort, `Kompass ${bl.id}: Beleg „${beleg}“ unlesbar (v24:hb-3.1)`);
+    const ids = v24 ? [] : c.expandiere(beleg, ort);
     if (ids.length > 1) c.fehler(ort, `Kompass ${bl.id}: genau eine Absatz-ID als Beleg`);
     const block = c.quelle?.nachId.get(ids[0] ?? '');
     // als eigenes Wort (Wortanfang und -ende, Plural-/Fugen-s und -n zugelassen), nicht nur als Teilstring
@@ -1811,6 +1814,9 @@ export async function kompiliere(optionen = {}) {
   } catch (e) {
     b.fehler(path.relative(wurzel, wpPfad).replace(/\\/gu, '/'), `whitepaper.json unlesbar: ${String(e)}`, true);
   }
+  // Eigene Glossarquelle (P16.4, O-36): ändert, entfernt und ergänzt Einträge; Belege bleiben intern
+  const glossarPfad = path.join(wurzel, 'inhalte', 'glossar.yaml');
+  if (quelle !== null && existsSync(glossarPfad)) quelle = { ...quelle, glossar: wendeGlossarAn(quelle.glossar, readFileSync(glossarPfad, 'utf8'), b) };
   if (quelle === null) b.warnung('whitepaper', `${path.relative(wurzel, wpPfad).replace(/\\/gu, '/')} fehlt – Zitate, Glossar und Abdeckung nur eingeschränkt geprüft`, true);
 
   const c = new Kompilierer(b, quelle, pruefe);
@@ -1864,6 +1870,8 @@ export async function kompiliere(optionen = {}) {
     else if (/^abbildungen\/abb-\d+\.yaml$/u.test(r)) { /* baueAbbildungen (P14) */ }
     else if (/^geschichte\/[^/]+\.yaml$/u.test(r)) geschichteDateien.push({ rel, text: lies(r) });
     else if (r === 'werkzeuge.yaml') werkzeuge = baueWerkzeuge(c, rel, lies(r));
+    else if (r === 'glossar.yaml') { /* vor dem Kompilierer angewandt (wendeGlossarAn) */ }
+    else if (/^rechtliches\/[^/]+\.md$/u.test(r)) { /* Impressum und Datenschutz: werkzeuge/bau.mjs (baueBeigaben) */ }
     else if (r.endsWith('.md') || r.endsWith('.yaml')) c.warnung(rel, 'Datei gehört zu keiner bekannten Art (docs/INHALTSFORMAT.md Abschnitt 1) – ignoriert');
   }
 
@@ -1990,6 +1998,47 @@ export async function kompiliere(optionen = {}) {
 }
 
 /**
+ * Glossar der Seite (P16.4): Einträge aus whitepaper.json, geändert, entfernt und ergänzt nach inhalte/glossar.yaml
+ * (`aendern: { id: { begriff?, definition, belege } }`, `entfernen: [id]`, `neu: [{ id, begriff, definition, belege }]`).
+ * Jede Änderung und jeder neue Eintrag braucht interne Belege (V1.2-Absatz-ID oder `v24:…`).
+ * @param {{ id: string, begriff: string, definition: string }[]} glossar
+ * @param {string} text
+ * @param {Befunde} b
+ */
+export function wendeGlossarAn(glossar, text, b) {
+  const ort = 'inhalte/glossar.yaml';
+  /** @type {any} */
+  let y = {};
+  try {
+    y = YAML.parse(text) ?? {};
+  } catch (e) {
+    b.fehler(ort, `YAML unlesbar: ${String(/** @type {Error} */ (e).message ?? e).split('\n')[0]}`, true);
+    return glossar;
+  }
+  const belegt = (/** @type {any} */ x, /** @type {string} */ id) => {
+    if (!Array.isArray(x?.belege) || x.belege.length === 0) b.fehler(ort, `${id}: interne Belege fehlen`);
+  };
+  const entfernen = new Set((y.entfernen ?? []).map(String));
+  for (const id of entfernen) if (!glossar.some((g) => g.id === id)) b.fehler(ort, `entfernen: ${id} gibt es nicht`);
+  const aus = glossar.filter((g) => !entfernen.has(g.id)).map((g) => {
+    const a = y.aendern?.[g.id];
+    if (a === undefined) return g;
+    belegt(a, g.id);
+    return { ...g, begriff: a.begriff !== undefined ? String(a.begriff) : g.begriff, definition: a.definition !== undefined ? String(a.definition).trim() : g.definition };
+  });
+  for (const id of Object.keys(y.aendern ?? {})) if (!glossar.some((g) => g.id === id)) b.fehler(ort, `aendern: ${id} gibt es nicht`);
+  for (const n of y.neu ?? []) {
+    const id = String(n.id ?? '');
+    if (!/^g-[a-z0-9-]+$/u.test(id)) b.fehler(ort, `neu: Kennung „${id}“ (g-…)`);
+    if (aus.some((g) => g.id === id)) b.fehler(ort, `neu: ${id} doppelt`);
+    if (!n.begriff || !n.definition) b.fehler(ort, `neu: ${id} ohne Begriff oder Definition`);
+    belegt(n, id);
+    aus.push({ id, begriff: String(n.begriff ?? ''), definition: String(n.definition ?? '').trim() });
+  }
+  return aus;
+}
+
+/**
  * Abbildungen der DOCX V1.2 (P14, O-32, L-77): Beschreibung aus inhalte/abbildungen/abb-N.yaml, Bild als WebP
  * (erzeugt von werkzeuge/abbildungen.mjs, Stand in stand.json). Eine Abbildung ohne Beschreibung bleibt reiner
  * Verzeichniseintrag (`bild: null`). Veraltete oder fehlende Bilder sind harte Fehler – der Bau hielte sonst an
@@ -2094,8 +2143,8 @@ export function baueAbbildungen(c, quelle, wurzel, theorie, pruefe) {
     }
   };
   for (const t of Object.values(theorie)) gehe(t.bloecke ?? [], t);
-  // Jede Abbildung mit Bild steht im Originaltext ihres Kapitels (an ihrer DOCX-Stelle)
-  if (pruefe) for (const a of aus) if (a.bild !== null && !c.abbImOriginal.has(a.id)) c.fehler(ABB_ORDNER, `${a.id} (Ort ${a.ort}) steht in keinem Originaltext einer Lernseite`);
+  // P16.3 (O-38): der Originaltext entfällt – jede Abbildung mit Bild steht auf dem Thema ihres Teils (alle 13 bleiben)
+  if (pruefe) for (const a of aus) if (a.bild !== null && !benutzt.has(a.id)) c.fehler(ABB_ORDNER, `${a.id} steht auf keinem Thema (::: abbildung ${a.id})`);
   return { liste: aus, daten };
 }
 

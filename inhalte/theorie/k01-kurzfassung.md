@@ -1,18 +1,18 @@
 ---
-# Lernseite Kapitel 1 (P6, O-20; neu aufbereitet P12.3, O-30). Lesetext in eigenen Worten, keine neuen
-# Fachaussagen (O-17); der vollständige Originaltext kommt zugeklappt über „::: original k1“.
+# Thema „Überblick“ (P6, O-20; neu aufbereitet P12.3, O-30; an V2.4 angepasst P16.4, O-36, O-38). Lesetext in
+# eigenen Worten, keine neuen Fachaussagen (O-17); Belege nur hier, nie sichtbar (O-38).
 # Belege Einleitung/Kernaussage: k1-p1, k1-p2, k1.1-p1
 # Belege k1.1: k1-p1, k1.1-p1 (Sortierübung: Analyse, Koordination, Dokumentation delegierbar; Zielpriorisierung, Mandat, Freigabe, Risikoannahme, Nachweisfähigkeit nicht)
-# Belege k1.2: k1.2-l1 (fünf Aussagen, Kette Zielsystem–Mandat–Datenstand–Risiko–Freigabe–Nachweis), k1-p2, k1.3-p1, k1.3-t1 (Datenstand, Freigabeweg je Entscheidungs-ID)
-# Belege k1.3: k1.3-p1, k1.3-t1, k1-p2, k1-p3, k1.2-l1 (Befähigung nach Übergabe), k9.3-p2 (Übergabe des Modells ist Befähigungsschritt, keine Freigabe)
+# Belege k1.1 (V2.4): Posten 1 Optionenvergleich mit MCDA und Empfehlung v24:hb-3, v24:hb-3.1, v24:tlb-2.1; Posten 3 Projektsteuerung bearbeitet alle Vorgänge v24:hb-1, v24:tlb-1; Posten 4 Bewertung und vorbereitete Risikoannahme v24:hb-1.3, v24:hb-2; Posten 5 Beschluss getrennt mit Quelle, Datum, Bedingungen v24:hb-3.1
+# Belege k1.2: k1.2-l1 (fünf Aussagen, Kette Zielsystem–Mandat–Datenstand–Risiko–Freigabe–Nachweis), k1-p2, k1.3-p1, k1.3-t1 (Datenstand, Freigabeweg je Entscheidungs-ID); Karte 1 (V2.4): v24:hb-1, v24:hb-3, v24:tlb-1, v24:tlb-2.1
+# Belege k1.3: k1.3-p1, k1.3-t1, k1-p2, k1-p3, k1.2-l1 (Befähigung nach Übergabe), k9.3-p2 (Übergabe des Modells ist Befähigungsschritt, keine Freigabe); Hinweis unter der Tafel (V2.4): v24:hb-3.1, v24:hb-5, v24:tlb-2.1
 kapitel: 1
 thema: ueberblick
 reihe: 1
-titel: Kurzfassung
-kurztitel: Kurzfassung
-story: [prolog]
+titel: Überblick – Arbeit abgeben, Legitimation behalten
+kurztitel: Überblick
 ---
-Kapitel 1 fasst [[Minimum Viable Governance (MVG)]] auf einer Seite zusammen. Es beantwortet drei Fragen: Was kann ein [[Bauherr]] abgeben, und was nicht? Was folgt daraus für die Führung eines Projekts? Und was hat die Bauherrenorganisation in der Hand, wenn das Modell eingeführt ist? MVG versteht sich dabei als kleinster funktionsfähiger Governance-Standard. Sein Nutzen liegt nicht in mehr Bürokratie, sondern in weniger Entscheidungsstau, klareren Eskalationswegen, belastbarer Gremienfähigkeit und einer nachvollziehbaren [[Nachweiskette]].
+Dieses Thema fasst [[Minimum Viable Governance (MVG)]] in wenigen Schritten zusammen. Es beantwortet drei Fragen: Was kann ein [[Bauherr]] abgeben, und was nicht? Was folgt daraus für die Führung eines Projekts? Und was hat die Bauherrenorganisation in der Hand, wenn das Modell eingeführt ist? MVG versteht sich dabei als kleinster funktionsfähiger Governance-Standard. Sein Nutzen liegt nicht in mehr Bürokratie, sondern in weniger Entscheidungsstau, klareren Eskalationswegen, belastbarer Gremienfähigkeit und einer nachvollziehbaren [[Nachweiskette]].
 
 ::: kernaussage
 Der Bauherr kann Arbeit weitgehend abgeben – an Planer, Projektsteuerung, Gutachter oder Berater. Die Legitimation bleibt bei ihm: Ziel, Mandat, wesentliche Entscheidung, Risikoannahme, Freigabe und Nachweis muss er selbst tragen. MVG macht das im Alltag handhabbar.
@@ -50,7 +50,7 @@ seite: links
 Kosten- und Terminfolgen zweier Varianten durchrechnen
 
 ### Erklärung
-Analyse ist Arbeit. Planer oder Projektsteuerung können sie übernehmen.
+Analyse ist Arbeit. Die Projektsteuerung vergleicht mindestens zwei zulässige Optionen nach gewichteten Kriterien und empfiehlt eine – gewählt wird beim Bauherrn.
 :::
 
 ::: posten 2
@@ -70,7 +70,7 @@ seite: links
 Termine, Unterlagen und Sitzungen koordinieren
 
 ### Erklärung
-Koordination ist klassische Zuarbeit, etwa durch die Projektsteuerung oder ein PMO.
+Koordination ist Zuarbeit. Im Standard führt die Projektsteuerung dazu alle offenen Vorgänge an einer Stelle.
 :::
 
 ::: posten 4
@@ -80,7 +80,7 @@ seite: rechts
 Ein bekanntes Risiko bewusst in Kauf nehmen
 
 ### Erklärung
-Die Risikoannahme ist Legitimation. Andere können das Risiko bewerten, annehmen muss es der Bauherr.
+Die Risikoannahme ist Legitimation. Die Projektsteuerung bewertet das Risiko und legt die Annahme als Entscheidung vor – annehmen muss es der Bauherr.
 :::
 
 ::: posten 5
@@ -90,7 +90,7 @@ seite: links
 Besprechungen und Beschlüsse protokollieren
 
 ### Erklärung
-Dokumentation ist delegierbar. Dass die Beschlusslage nachweisbar bleibt, verantwortet dagegen der Bauherr.
+Dokumentation ist delegierbar. Dass die Beschlusslage nachweisbar bleibt, verantwortet dagegen der Bauherr. Den Beschluss hält die Projektsteuerung getrennt von der Vorlage fest – mit Quelle, Datum und Bedingungen.
 :::
 
 ::: posten 6
@@ -119,7 +119,7 @@ Die wesentliche Freigabe bleibt beim Bauherrn, auch wenn die Unterlagen von Drit
 ---
 titel: Managementaussagen
 ---
-Das Kapitel verdichtet MVG in fünf Aussagen für die Leitungsebene. Sie beschreiben, was die Projektsteuerung leistet, wie MVG die Verantwortung in Rollen, Mandate, Freigaben und Entscheidungs-IDs übersetzt, woraus Entscheidungssicherheit entsteht, warum Befähigung dazugehört und welche Rolle die frühe Projektphase spielt.
+Für die Leitungsebene lässt sich MVG in fünf Aussagen verdichten. Sie beschreiben, was die Projektsteuerung leistet, wie MVG die Verantwortung in Rollen, Mandate, Freigaben und Entscheidungs-IDs übersetzt, woraus Entscheidungssicherheit entsteht, warum Befähigung dazugehört und welche Rolle die frühe Projektphase spielt.
 
 Die dritte Aussage erklärt, woraus Entscheidungssicherheit entsteht: nicht aus einem einzelnen guten Dokument, sondern aus dem verbindlichen Zusammenhang von Zielsystem, Mandat, Datenstand, Risiko, Freigabe und Nachweis. Fehlt ein Glied, fehlt dieser Zusammenhang – etwa wenn niemand sagen kann, auf welchem Datenstand eine Entscheidung beruht.
 
@@ -134,7 +134,7 @@ titel: Fünf Aussagen in Kürze
 titel: Projektsteuerung
 symbol: kompass
 ---
-Sie unterstützt bei Kosten, Terminen, Qualität, Koordination und Berichten. Die Entscheidung des Bauherrn ersetzt sie nicht.
+Sie bearbeitet alle Vorgänge – Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Probleme, Änderungen – und bereitet jede Entscheidung mit mindestens zwei Optionen vor. Die Entscheidung des Bauherrn ersetzt sie nicht.
 :::
 
 ::: karte 2
@@ -174,7 +174,7 @@ Ein wichtiger früher Hebel – entscheidend ist aber die Entscheidungs- und Nac
 ---
 titel: Die Kette der Entscheidungssicherheit
 ---
-Sechs Glieder, die zusammengehören – die Reihenfolge folgt der Aufzählung im Kapitel und ist kein Ablauf. [[bedienung:Klicken Sie sich durch.]]
+Sechs Glieder, die zusammengehören – die Reihenfolge ist eine Aufzählung, kein Ablauf. [[bedienung:Klicken Sie sich durch.]]
 
 ::: etappe 1
 ---
@@ -226,7 +226,7 @@ titel: Ergebnisbild
 ---
 Was hat die Bauherrenorganisation in der Hand, wenn MVG umgesetzt ist? Keine lose Sammlung einzelner Methoden, sondern ein zusammenhängendes Führungs- und Entscheidungsmodell. Es zeigt, welche Entscheidungen beim Bauherrn bleiben und welche Vorbereitung delegierbar ist. Es zeigt auch, welche Mandate und Schwellen gelten und welche Unterlagen entscheidungsreif sein müssen. Und es zeigt, wie Entscheidungen nachvollziehbar in der [[Nachweiskette]] verankert werden.
 
-Das Kapitel nennt sechs Elemente dieses Modells, jedes mit seinem Ergebnis. Die Karten unten zeigen sie im Wortlaut der Tabelle. Mehrere davon werden in späteren Kapiteln ausführlich behandelt.
+Das Modell hat sechs Elemente, jedes mit seinem Ergebnis. Die Karten unten zeigen sie. Mehrere davon vertiefen andere Themen.
 
 Wichtig ist das letzte Element, die [[Befähigung]]. Der Bauherr muss das Modell nach der Übergabe selbst anwenden können. Wer die Einführung begleitet, übernimmt dabei keine Bauherrenrolle, sondern schafft Struktur, [[Entscheidungsreife]], Mandatsklarheit und Befähigung, damit die Bauherrenorganisation ihre Verantwortung selbst wirksam ausüben kann. Das [[Betriebshandbuch]] übergibt Routinen und Rollen in den Regelbetrieb.
 
@@ -234,6 +234,10 @@ Wichtig ist das letzte Element, die [[Befähigung]]. Der Bauherr muss das Modell
 ---
 form: karten
 ---
+:::
+
+::: hinweis
+Zum Standard für Entscheidungsvorlagen gehören mindestens zwei zulässige Optionen und ein gewichteter Kriterienvergleich (MCDA) mit begründeter Empfehlung. Die Vorlage bereitet die Projektsteuerung vor; der Beschluss wird getrennt von ihr festgehalten.
 :::
 
 ::: umschalter
@@ -258,19 +262,9 @@ Befähigung ist Pflichtbestandteil – der Blick auf beide Zeitpunkte zeigt, war
 :::
 :::
 
-::: querverweis prolog
----
-text: "In der Story erlebt: Prolog"
----
-Sie übernehmen eine Rolle im Schulcampus Lindenhall-Süd und erleben dasselbe Projekt zuerst in Welt A ohne MVG, dann in Welt B mit MVG.
-:::
-
-::: original k1
-:::
-
 ::: regie
 ### Notiz
-Kapitel 1 ist der Einstieg: die Leitthese (1.1) mit der Sortierübung „Arbeit oder Legitimation?“ – den Kunden selbst zuordnen lassen –, dann die fünf Managementaussagen als Karten und die Kette der Entscheidungssicherheit. Im Termin tragen die Leitthese und die Karte „Projektsteuerung“: Sie unterstützt, ersetzt aber keine bauherrenseitige Entscheidung; das ist keine Kritik an der Projektsteuerung des Kunden. Das Ergebnisbild (1.3) nur anreißen, die Objekte kommen in Kap. 9.
+Der Überblick ist der Einstieg: die Leitthese mit der Sortierübung „Arbeit oder Legitimation?“ – den Kunden selbst zuordnen lassen –, dann die fünf Managementaussagen als Karten und die Kette der Entscheidungssicherheit. Im Termin tragen die Leitthese und die Karte „Projektsteuerung“: Sie bearbeitet alles und bereitet jede Entscheidung vor, entscheidet aber nie selbst; das ist keine Kritik an der Projektsteuerung des Kunden. Das Ergebnisbild nur anreißen, die Objekte kommen im Thema „Ergebnisbild“.
 
 ### Leitfragen
 - Welche Entscheidungen in Ihrem Projekt können Sie nicht abgeben – und wo ist das festgehalten?

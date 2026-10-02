@@ -16,10 +16,10 @@ reihe: 15
 titel: Takt und Monatsbericht
 kurztitel: Takt und Bericht
 ---
-Ein gutes Register nützt nur, wenn es regelmäßig angesehen wird – und wenn Dringendes nicht darauf wartet. Dieses Thema zeigt den Takt, in dem die Projektsteuerung die offenen Vorgänge prüft, was sofort gemeldet wird und was der Bauherr jeden Monat bekommt: einen Termin von höchstens 60 Minuten und einen Bericht von höchstens einer Seite.
+Ein gutes Register nützt nur, wenn es regelmäßig angesehen wird – und wenn Dringendes nicht darauf wartet. Dieses Thema zeigt den Takt, in dem die Projektsteuerung die offenen Vorgänge prüft, was sofort gemeldet wird und was der Bauherr jeden Monat bekommt: in aktiven Zeiten einen Termin von höchstens 60 Minuten und immer einen Bericht von höchstens einer Seite.
 
 ::: kernaussage
-Dringliches meldet die Projektsteuerung sofort. Jede Woche prüft sie alle offenen Vorgänge. Einmal im Monat gibt es einen [[Monatstermin|Online-Termin]] von höchstens 60 Minuten und einen Bericht von höchstens einer Seite. Die regelmäßige Prüfung ersetzt nie die dringliche Meldung.
+Dringliches meldet die Projektsteuerung sofort. In aktiven Zeiten prüft sie jede Woche alle offenen Vorgänge, und einmal im Monat gibt es einen [[Monatstermin|Online-Termin]] von höchstens 60 Minuten. Den Bericht von höchstens einer Seite gibt es jeden Monat. Die regelmäßige Prüfung ersetzt nie die dringliche Meldung.
 :::
 
 ::: abschnitt k16.1

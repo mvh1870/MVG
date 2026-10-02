@@ -8,7 +8,7 @@ aendern:
   g-fruehwarnung:
     definition: >-
       Hinweis auf eine mögliche Beeinträchtigung, der noch nicht ausreichend geklärt ist. Die Projektsteuerung
-      hält Quelle und Eingang fest und legt Prüffrage, Verantwortlichen und Wiedervorlage fest. Nach der Klärung
+      erfasst Quelle und Eingang und legt Prüffrage, Verantwortlichen und Wiedervorlage fest. Nach der Klärung
       wird daraus ein Risiko, ein Problem oder eine Aufgabe, oder die Frühwarnung wird begründet geschlossen.
       CTC- oder Schwellenwertverletzungen erzeugen neue Frühwarnungen.
     belege: [v24:hb-1, v24:hb-1.2, v24:hb-5, k6.4.3-p2]
@@ -163,8 +163,9 @@ neu:
   - id: g-ruhezeit
     begriff: Ruhezeit
     definition: >-
-      Ausdrücklich vereinbarte Zeit mit geringerer Aktivität: Der offene Bestand wird monatlich geprüft, neue, nicht
-      dringliche Hinweise werden binnen fünf Arbeitstagen erfasst, und der Monatstermin findet nur bei Bedarf statt.
+      Ausdrücklich vereinbarte Ruhe- oder Nachlaufzeit: Der offene Bestand wird monatlich geprüft, neue, nicht
+      dringliche Hinweise werden binnen fünf Arbeitstagen erfasst, der Monatstermin findet nur bei Bedarf statt; der
+      Monatsbericht bleibt.
     belege: [v24:hb-4]
   - id: g-dringlicher-sachverhalt
     begriff: Dringlicher Sachverhalt

@@ -15,7 +15,7 @@ export async function lauf(seite, h) {
   await h.erwarte('[data-pruef="themen-liste"]');
   await pruefe('uebersicht');
   const themen = await seite.locator('[data-pruef^="thema-"]').evaluateAll((els) => els.map((e) => (e.getAttribute('href') ?? '').replace('#theorie/', '')));
-  const auswahl = h.voll ? themen : themen.filter((t) => ['verantwortung', 'fuehrungsmodell', 'glossar'].includes(t));
+  const auswahl = h.voll ? themen : themen.filter((t) => ['verantwortung', 'fuehrungsmodell', 'glossar', 'einfuehrung'].includes(t));
   for (const t of auswahl) {
     await seite.goto(h.url.replace(/#.*$/u, '') + `#theorie/${t}`);
     await h.erwarte(`[data-thema="${t}"]`);

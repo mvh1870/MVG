@@ -18,7 +18,9 @@ after(() => dom.window.close());
 
 const { inhalte } = await import('../src/inhalte/index.ts');
 const { baueSchritt, erzeugeGeschichte, statusLeiste } = await import('../src/ui/flaechen/geschichte.ts');
-const { empfohlen, neuerStand, pufferUrteil, waehle } = await import('../src/geschichte/engine.ts');
+const { empfohlen, geheZu, gilt, neuerStand, pufferUrteil, status, waehle } = await import('../src/geschichte/engine.ts');
+const { kipppunkte, rangfolge } = await import('../src/geschichte/mcda.ts');
+const { inhaltInline } = await import('../src/ui/bausteine/inhalt.ts');
 const { W } = await import('../src/ui/woerter.ts');
 type Geschichte = NonNullable<typeof inhalte.geschichte>;
 
@@ -169,4 +171,214 @@ test('Gegenprobe: bleibt bei einer Wahl im selben Schritt, fällt beim Schrittwe
   assert.deepEqual(f.stand().schritt, { ort: 'station', station: st.id, teil: 'vorlage' });
   assert.deepEqual(summen(), vorher);
   assert.equal(gegenprobeOffen(), false);
+});
+
+/* ------------------------------------------------------------------ R68 -- */
+
+type Stand = ReturnType<typeof neuerStand>;
+const ohneBedienung = (g: Geschichte, stand: Stand): HTMLElement =>
+  baueSchritt({ g, stand, bedienbar: false, themaTitel: () => 'Thema', gegenprobe: null, tue: () => undefined, setzeGegenprobe: () => undefined });
+const station = (id: string): Geschichte['stationen'][number] => {
+  const st = geschichte.stationen.find((x) => x.id === id);
+  assert.ok(st, id);
+  return st;
+};
+const an = (stand: Stand, id: string, teil: 'lage' | 'vorlage' | 'folge'): Stand => geheZu(geschichte, stand, { ort: 'station', station: id, teil });
+
+test('Gegenprobe (R68): zwei und drei Regler nacheinander – Gewichtsspalte, Summen und Kipppunkte rechnen mit allen', () => {
+  const f = erzeugeGeschichte({ g: geschichte, speicher: null, themaTitel: () => null });
+  document.body.replaceChildren(f.element);
+  const st = station('s3');
+  f.zuStation(st.id);
+  f.element.querySelector<HTMLButtonElement>('[data-pruef="weiter"]')?.click();
+  const regler = (k: string): HTMLInputElement => {
+    const r = f.element.querySelector<HTMLInputElement>(`[data-pruef="gs-gegenprobe"] input[data-kriterium="${k}"]`);
+    assert.ok(r, k);
+    return r;
+  };
+  const stelle = (k: string, wert: number): void => {
+    const r = regler(k);
+    r.value = String(wert);
+    r.dispatchEvent(new Event('input', { bubbles: true }));
+  };
+  const reglerWerte = (): Record<string, number> => Object.fromEntries(geschichte.kriterien.map((k) => [k.id, Number(regler(k.id).value)]));
+  const pruefe = (wo: string): void => {
+    const gew = reglerWerte();
+    const spalte = [...f.element.querySelectorAll('.gs-vergleich tbody td.gs-zahl-spalte')].map((td) => Number(td.textContent));
+    assert.deepEqual(spalte, geschichte.kriterien.map((k) => gew[k.id]), `${wo}: Gewichtsspalte`);
+    const summen = [...f.element.querySelectorAll<HTMLElement>('.gs-vergleich [data-pruef^="summe-"]')].map((td) => `${td.dataset['pruef']?.slice(6)}:${td.querySelector('b')?.textContent}`);
+    assert.deepEqual(summen, rangfolge(st.vorlage.optionen, geschichte.kriterien, gew).map((p) => `${p.option.id}:${p.summe}`), `${wo}: Summen`);
+    const kipp = [...f.element.querySelectorAll('[data-pruef="gs-kipp"] li')].map((li) => li.textContent);
+    const titel = (id: string): string => st.vorlage.optionen.find((x) => x.id === id)?.titel ?? id;
+    assert.deepEqual(kipp, kipppunkte(st.vorlage.optionen, geschichte.kriterien, gew)
+      .map((x) => W.geschichte.kipppunkt(geschichte.kriterien.find((c) => c.id === x.kriterium)?.titel ?? x.kriterium, x.gewicht, x.spitze.map(titel))), `${wo}: Kipppunkte`);
+  };
+  pruefe('Ausgang');
+  stelle('kosten', 5);
+  pruefe('Kosten 5');
+  stelle('termin', 1);
+  assert.deepEqual([reglerWerte()['kosten'], reglerWerte()['termin']], [5, 1]);
+  pruefe('Kosten 5, Termin 1');
+  stelle('qualitaet', 4);
+  pruefe('Kosten 5, Termin 1, Qualität 4');
+});
+
+test('Tastatur (R68): der Fokus bleibt nach einer Änderung auf dem Regler – Gewichte (Station 1) und Gegenprobe; Pfeiltasten blättern dort nicht', () => {
+  const f = erzeugeGeschichte({ g: geschichte, speicher: null, themaTitel: () => null });
+  document.body.replaceChildren(f.element);
+  const erste = geschichte.stationen[0];
+  assert.ok(erste && erste.vorlage.art === 'gewichte');
+  f.zuStation(erste.id);
+  f.element.querySelector<HTMLButtonElement>('[data-pruef="weiter"]')?.click();
+  const pfeil = (ziel: HTMLElement, key: string): boolean => {
+    const e = new KeyboardEvent('keydown', { key, bubbles: true, cancelable: true });
+    ziel.dispatchEvent(e);
+    return f.taste(e);
+  };
+  for (const [ort, kriterium] of [['gewichte', 'termin'], ['gegenprobe', 'kosten']] as const) {
+    if (ort === 'gegenprobe') {
+      f.zuStation('s3');
+      f.element.querySelector<HTMLButtonElement>('[data-pruef="weiter"]')?.click();
+    }
+    const schritt = f.stand().schritt;
+    const hole = (): HTMLInputElement => {
+      const r = f.element.querySelector<HTMLInputElement>(`[data-pruef="${ort}"] input[data-kriterium="${kriterium}"]`);
+      assert.ok(r, `${ort} ${kriterium}`);
+      return r;
+    };
+    hole().focus();
+    for (const wert of [4, 3]) {
+      const r = hole();
+      assert.equal(document.activeElement, r, `${ort}: Fokus vor ${wert}`);
+      r.value = String(wert);
+      r.dispatchEvent(new Event('input', { bubbles: true }));
+      r.dispatchEvent(new Event('change', { bubbles: true }));
+      assert.equal(document.activeElement, hole(), `${ort}: Fokus bleibt auf dem Regler (nach ${wert})`);
+      assert.equal(hole().value, String(wert));
+      assert.equal(pfeil(hole(), 'ArrowLeft'), false, `${ort}: Pfeil am Regler blättert nicht`);
+      assert.deepEqual(f.stand().schritt, schritt);
+    }
+    if (ort === 'gewichte') assert.equal(f.stand().gewichte?.[kriterium], 3, 'beide Änderungen kommen im Stand an');
+  }
+});
+
+test('Lage (R68): Berichtszeilen und Vorgänge nur mit erfüllter Bedingung', () => {
+  // Station 8: viele bedingte Zeilen; Weg mit Empfehlungen (lang)
+  let stand = neuerStand();
+  for (const st of geschichte.stationen.slice(0, 7)) stand = waehle(geschichte, stand, st.id, empfohlen(geschichte, stand, st));
+  const s8 = station('s8');
+  const zeilen = [...ohneBedienung(geschichte, an(stand, 's8', 'lage')).querySelectorAll('[data-pruef="gs-bericht"] li')].map((li) => li.textContent);
+  const erwartet = s8.bericht.zeilen.filter((z) => gilt(geschichte, stand, z.wenn, s8)).map((z) => h1(z.html));
+  assert.ok(erwartet.length < s8.bericht.zeilen.length, 'nicht alle Zeilen gelten');
+  assert.deepEqual(zeilen, erwartet);
+  // Station 7: Vorgänge je nach Wahl in Station 3
+  const s7 = station('s7');
+  for (const wahl3 of ['A', 'B']) {
+    const st = waehle(geschichte, stand, 's3', wahl3);
+    const el = ohneBedienung(geschichte, an(st, 's7', 'lage'));
+    const titel = [...el.querySelectorAll('[data-pruef^="vorgang-"] .gs-vorgang-kopf b')].map((b) => b.textContent);
+    const soll = s7.vorgaenge.filter((v) => gilt(geschichte, st, v.wenn, s7)).map((v) => v.titel);
+    assert.ok(soll.length < s7.vorgaenge.length, `s3=${wahl3}: nicht alle Vorgänge gelten`);
+    assert.deepEqual(titel, soll, `s3=${wahl3}`);
+  }
+});
+
+/** Text eines Inline-HTML-Stücks, wie die Fläche es zeigt. */
+function h1(html: string): string {
+  const p = document.createElement('p');
+  p.append(inhaltInline(html));
+  return p.textContent ?? '';
+}
+
+test('Folge (R68): „Wirkung auf den Stand“ nennt die Folgen der gewählten Option', () => {
+  // eine Option, die Puffer kostet und eine Entscheidung offen lässt
+  const st = geschichte.stationen.find((x) => x.vorlage.optionen.some((o) => (o.folgen.puffer ?? 0) < 0 && (o.folgen.offen ?? 0) > 0));
+  const b = st?.vorlage.optionen.find((o) => (o.folgen.puffer ?? 0) < 0 && (o.folgen.offen ?? 0) > 0);
+  assert.ok(st && b && b.folgen.puffer !== undefined && b.folgen.offen !== undefined);
+  const el = ohneBedienung(geschichte, an(waehle(geschichte, neuerStand(), st.id, b.id), st.id, 'folge'));
+  const text = (el.querySelector('.gs-folgen')?.textContent ?? '').replace(/\s/gu, ' ');
+  assert.ok(text.includes(`${geschichte.status.puffer.titel} −${Math.abs(b.folgen.puffer)} ${geschichte.status.puffer.einheit}`), text);
+  assert.ok(text.includes(`${geschichte.status.offen.titel} +${b.folgen.offen}`), text);
+  assert.ok(!text.includes(W.geschichte.keineFolgen), text);
+});
+
+test('Ende (R68): das Urteil passt zum Puffer – gut, knapp, schlecht', () => {
+  const ende: Stand = { ...neuerStand(), schritt: { ort: 'ende' } };
+  const wirkung = status(geschichte, ende, { ort: 'ende' }).puffer - geschichte.status.puffer.start;
+  const texte = { gut: geschichte.ende.pufferGut, knapp: geschichte.ende.pufferKnapp, schlecht: geschichte.ende.pufferSchlecht };
+  assert.equal(new Set(Object.values(texte)).size, 3);
+  for (const [puffer, urteil] of [[8, 'gut'], [7, 'knapp'], [-1, 'schlecht']] as const) {
+    const g = structuredClone(geschichte);
+    g.status.puffer.start = puffer - wirkung;
+    const el = ohneBedienung(g, ende);
+    const p = el.querySelector<HTMLElement>('[data-pruef="gs-urteil"]');
+    assert.equal(p?.dataset['urteil'], urteil, `Puffer ${puffer}`);
+    assert.equal(p?.textContent, h1(texte[urteil]), `Puffer ${puffer}: Text`);
+  }
+});
+
+test('Tastatur (R68): Pfeil rechts auf einer Vorlage ohne Wahl bleibt stehen und bittet um eine Wahl', () => {
+  const f = erzeugeGeschichte({ g: geschichte, speicher: null, themaTitel: () => null });
+  document.body.replaceChildren(f.element);
+  f.zuStation('s3');
+  f.element.querySelector<HTMLButtonElement>('[data-pruef="weiter"]')?.click();
+  const vorher = f.stand().schritt;
+  assert.deepEqual(vorher, { ort: 'station', station: 's3', teil: 'vorlage' });
+  const e = new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true, cancelable: true });
+  document.body.dispatchEvent(e);
+  assert.equal(f.taste(e), true);
+  assert.deepEqual(f.stand().schritt, vorher);
+  assert.equal(f.element.querySelector('.gs-navi-hinweis')?.textContent, W.geschichte.nochKeineWahl);
+});
+
+test('Statusleiste (R68): Abstand zur Basis mit Vorzeichen („+2,0“, „−1,5“), negativer Puffer mit „−“ (U+2212)', () => {
+  const basis = geschichte.status.kosten.basis;
+  assert.ok(basis !== null);
+  const leiste = (kosten: number, puffer: number): HTMLElement => {
+    const g = structuredClone(geschichte);
+    g.status.kosten.start = kosten;
+    g.status.puffer.start = puffer;
+    return statusLeiste(g, neuerStand());
+  };
+  const ueber = leiste(basis + 2, 10);
+  assert.equal(ueber.querySelector('[data-status="kosten"] small')?.textContent, ' (+2,0)');
+  assert.equal(leiste(basis - 1.5, 10).querySelector('[data-status="kosten"] small')?.textContent, ' (−1,5)');
+  assert.equal(leiste(basis, 10).querySelector('[data-status="kosten"] small'), null, 'auf der Basis kein Abstand');
+  const puffer = leiste(basis, -3).querySelector('[data-status="puffer"] dd')?.textContent ?? '';
+  // zwischen Zahl und Einheit steht ein geschütztes Leerzeichen
+  assert.match(puffer, new RegExp(`−3\\s${geschichte.status.puffer.einheit}`, 'u'));
+  assert.ok(!puffer.includes('-'), `kein Bindestrich als Minus: ${puffer}`);
+});
+
+/* ------------------------------------------------------------------ R69 -- */
+
+test('Lage (R69): die Statusbedingung „puffer<0“ wird mit der Station ausgewertet – Meldung genau bei negativem Puffer', () => {
+  const s4 = station('s4');
+  const meldung = s4.bericht.zeilen.find((z) => z.wenn !== null && /puffer</u.test(z.wenn));
+  assert.ok(meldung, 's4 hat eine Berichtszeile mit Statusbedingung „puffer<…“');
+  // alle Wege durch die Stationen vor s4, je mit dem Puffer bei der Lage von s4
+  const vorher = geschichte.stationen.slice(0, geschichte.stationen.indexOf(s4));
+  let staende: Stand[] = [neuerStand()];
+  for (const st of vorher) staende = staende.flatMap((z) => st.vorlage.optionen.filter((o) => !o.klaerung).map((o) => waehle(geschichte, z, st.id, o.id)));
+  const pufferBei = (z: Stand): number => status(geschichte, an(z, 's4', 'lage')).puffer;
+  const negativ = staende.find((z) => pufferBei(z) < 0);
+  const positiv = staende.find((z) => pufferBei(z) >= 0);
+  assert.ok(negativ && positiv, 'ein Weg mit negativem und einer mit nicht negativem Puffer');
+  const bericht = (z: Stand): string => {
+    const el = ohneBedienung(geschichte, an(z, 's4', 'lage')).querySelector('[data-pruef="gs-bericht"]');
+    assert.ok(el, 'Bericht gezeichnet');
+    return el.textContent ?? '';
+  };
+  const text = h1(meldung.html);
+  assert.ok(text.length > 10);
+  assert.ok(bericht(negativ).includes(text), `Puffer ${pufferBei(negativ)}: Meldung fehlt im Bericht`);
+  assert.ok(!bericht(positiv).includes(text), `Puffer ${pufferBei(positiv)}: Meldung steht im Bericht`);
+});
+
+test('Lage (R69): der Titel des Monatsberichts bricht nicht vor „·“ (geschütztes Leerzeichen)', () => {
+  const st = geschichte.stationen.find((x) => x.bericht.titel.includes(' · '));
+  assert.ok(st, 'ein Berichtstitel mit „ · “');
+  const titel = ohneBedienung(geschichte, an(neuerStand(), st.id, 'lage')).querySelector('.gs-bericht-titel')?.textContent ?? '';
+  assert.ok(titel.includes(' · '), `geschütztes Leerzeichen vor „·“: ${JSON.stringify(titel)}`);
+  assert.ok(!titel.includes(' · '), 'kein gewöhnliches Leerzeichen vor „·“');
 });

@@ -225,13 +225,13 @@ andere: [Management-Report, Steering-Report, Lenkungskreisbericht]
 beleg: k6.4.3-p1
 ---
 ### Hinweis
-Im Standard ist das der Monatsbericht: höchstens eine Seite, aus demselben Informationsstand wie die Einträge.
+Im Standard geht der regelmäßige Bericht als Monatsbericht an den Bauherrn: höchstens eine Seite, aus demselben Informationsstand wie die Einträge. Der Managementbericht zur Freigabe bleibt Teil der Freigabevorbereitung.
 :::
 
 ::: kompass monatsbericht
 ---
 begriff: Monatsbericht
-andere: [One-Pager, Monatsreport, Statusbericht]
+andere: [One-Pager, Monatsreport]
 beleg: v24:hb-4
 ---
 ### Hinweis

@@ -99,7 +99,7 @@ MVG verlangt keine Risikofreiheit: Entscheidungssicherheit bedeutet ausdrücklic
 ---
 seite: links
 ---
-Eine klare Entscheidungsfrage und mindestens zwei verglichene Optionen
+Eine klare Entscheidungsfrage und mindestens zwei zulässige, verglichene Optionen
 :::
 
 ::: posten 4
@@ -295,7 +295,7 @@ Zielprioritäten bleiben unklar, Mandate sind nicht definiert, Gremien- und Proj
 ---
 titel: Abgrenzung und rechtlicher Hinweis
 ---
-MVG deckt nicht alle Pflichten ab, die ein Bauherr hat. Es konzentriert sich auf das, was die vorigen Abschnitte beschreiben: dass der Bauherr führen, entscheiden und seine Entscheidungen nachweisen kann. Eine bauordnungsrechtliche Pflichtenmatrix, eine arbeitsschutzrechtliche Vertiefung, eine Vergaberechtsprüfung oder eine technische Betreiberberatung leistet MVG nicht. MVG steckt damit seinen Rahmen selbst ab. Weil es um eine Leistungsgrenze geht, steht der Hinweis hier ausdrücklich. [[bedienung:Mit der Übung darunter können Sie prüfen, was in den Rahmen fällt.]] Wie MVG im Alltag der beteiligten Rollen ankommt, zeigt das Thema zum MVG Companion.
+MVG deckt nicht alle Pflichten ab, die ein Bauherr hat. Es konzentriert sich auf das, was die vorigen Abschnitte beschreiben: dass der Bauherr führen, entscheiden und seine Entscheidungen nachweisen kann. Eine bauordnungsrechtliche Pflichtenmatrix, eine arbeitsschutzrechtliche Vertiefung, eine Vergaberechtsprüfung oder eine technische Betreiberberatung leistet MVG nicht. MVG steckt damit seinen Rahmen selbst ab. Weil es um eine Leistungsgrenze geht, steht der Hinweis hier ausdrücklich. [[bedienung:Mit der Übung darunter können Sie prüfen, was in den Rahmen fällt.]] Wie MVG im Alltag der beteiligten Rollen ankommt, zeigt das Thema „Arbeitsweise“.
 
 ::: zitat k5.5-p1
 MVG behandelt nicht alle denkbaren Bauherrenpflichten. Es ist keine bauordnungsrechtliche Pflichtenmatrix, keine arbeitsschutzrechtliche Vertiefung, keine Vergaberechtsprüfung und keine technische Betreiberberatung. Der Fokus liegt auf Führungs-, Entscheidungs- und Nachweisfähigkeit.

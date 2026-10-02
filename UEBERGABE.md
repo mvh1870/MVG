@@ -3,10 +3,10 @@
 Kopf ≤ 100 Zeilen. Oben JETZT (überschreiben), darunter FRÜHER (anhängen, knapp).
 
 ## JETZT
-- **Stand 2026-10-02 14:30 UTC (+00:00): P16.14 Aufräumen weitgehend fertig, P16.4/P16.5 Befunde eingearbeitet (L-196 bis L-200).** Compiler nur noch Themen/Story/Explore/Kompass/Glossar; alte Story, Engine, Figuren, Story-Grafiken, Stilreferenz, Caveat, ~2.200 Zeilen CSS und 102 Tokens gelöscht; Seitenquelltext ohne Quellbezug (Prüfung in `tests/bau.test.ts`); neue Kettenprüfung `tests/aufgeraeumt.test.ts` (jede Datei geladen, kein toter Export); Mutanten-Probe auf die Story-Engine 6/6 rot. `dist/index.html` 2,05 MB.
-- **Prüfung P16.4/P16.5 (Runde 1):** Fachtreue 18 Befunde (2 schwer), Begriffe+Dramaturgie 26 Befunde (3 schwer) – alle eingearbeitet (Rechenmodell L-200, Fall-Bibel auf V2.4, Drehbuch neu, Kurzfassung gestrafft auf ≈ 10 Min.). Runde 2 (Nachprüfung) läuft.
-- **Als Nächstes:** Nachprüfung auswerten → P16.4, P16.5, P16.7a/b abhaken; P16.14 abhaken; P16.15 mit neun Prüffeldern aus `docs/pruefrunde.workflow.js` (neu für P16.15) über `werkzeuge/pruefrunde-auftraege.mjs` und das Agent-Werkzeug, zwei Runden ohne schwere Befunde; P16.16 Abschluss (CI lesen, Merge nach `main`, Push-Nachricht).
-- Rechner: Node 22.22, Chromium 141 unter `/opt/pw-browsers/chromium`. Kette ≈ 60–75 s.
+- **Stand 2026-10-02 (Block, Nachmittag UTC): P16.15 Prüfrunden laufen.** P16.1–P16.14 erledigt. Runden der Neuausrichtung (neun Prüffelder je Runde aus `docs/pruefrunde.workflow.js` über `werkzeuge/pruefrunde-auftraege.mjs`, Ergebnisse in `tmp/r<n>-ergebnisse/`): R67 (7a9aea3) 2 schwer / 29 mittel / 54 leicht – eingearbeitet (L-205–L-209); R68 (bf8db0f) 4 schwer (k10 Stadtrat, s1 Zielpriorität, Gegenprobe rechnet falsch, Tastaturfalle) / 21 mittel – eingearbeitet bzw. in Arbeit (L-210–L-213); R69 (e174322) bisher 1 schwer (s8 Bericht meldet offene Neufestlegung, Status zählt sie nicht) – in Arbeit. O-35-Zähler: 0 Runden ohne schweren Befund in Folge.
+- **Prüfung P16.15:** Befunde je Runde in `docs/ABNAHME-MITTEL.md`; alle schweren und mittleren eingearbeitet oder mit L-Eintrag entschieden.
+- **Als Nächstes:** R69 fertig einarbeiten, Kette grün, committen; Runde 70 und 71 – zwei hintereinander ohne schweren Befund; dann P16.16 (CI lesen, Merge nach `main`, Push-Nachricht, Ampel rot „fertig“).
+- Rechner: Node 22.22, Chromium 141 unter `/opt/pw-browsers/chromium`. Kette ≈ 70–100 s. CI (GitHub-Aktion) bis Lauf 283 grün gelesen.
 
 ## FRÜHER
 - 2026-10-02 (11:03–13:20 UTC): Neuausrichtung P16 (O-36 bis O-50): neuer Plan; Umschalten auf neue Story, Themen, Explore, Regie (L-184 bis L-191); Theorie an V2.4, Impressum, Datenschutz, Webseitenordner (L-192 bis L-195).

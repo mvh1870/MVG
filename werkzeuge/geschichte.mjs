@@ -218,7 +218,8 @@ export function baueGeschichte(c, dateien) {
     status,
     kriterien,
     prolog: { titel: text(p.titel), html: c.html(text(p.text), rel), taktHtml: c.html(text(p.takt), rel) },
-    ende: { titel: text(e.titel), html: c.html(text(e.text), rel), pufferGut: c.inline(text(e['puffer-gut']), rel), pufferKnapp: c.inline(text(e['puffer-knapp']), rel), pufferSchlecht: c.inline(text(e['puffer-schlecht']), rel) },
+    ende: { titel: text(e.titel), html: c.html(text(e.text), rel), pufferGut: c.inline(text(e['puffer-gut']), rel), pufferKnapp: c.inline(text(e['puffer-knapp']), rel), pufferSchlecht: c.inline(text(e['puffer-schlecht']), rel),
+      zeilen: (e.zeilen ?? []).map((/** @type {any} */ z) => ({ html: c.inline(text(z.text), rel), wenn: bedingung(z.wenn, rel, Number.POSITIVE_INFINITY, true) })) },
     stationen,
   };
   return { geschichte, regie };

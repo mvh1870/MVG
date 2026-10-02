@@ -167,27 +167,73 @@ function alleWege(): { stand: Stand; w: Record<string, string> }[] {
   return aus;
 }
 
-test('Offene Entscheidungen: jede vertagte Entscheidung wird erledigt – am Ende offen bleibt nur die Neufestlegung der Projektbasis (s5 = C)', () => {
+/** Berichtszeilen einer Station, die beim Stand gelten (Statusbedingungen bei ihrer Lage). */
+const berichtBei = (stand: Stand, id: string): string => st(id).bericht.zeilen.filter((z) => gilt(g, stand, z.wenn, st(id))).map((z) => z.html).join(' ');
+
+/** Alle Wege der Kurzfassung (Station 1 mit den vorgeschlagenen Gewichten). */
+function alleKurzWege(): Stand[] {
+  const ids = g.stationen.filter((x) => x.kurzfassung && x.vorlage.art === 'optionen').map((x) => x.id);
+  const aus: Stand[] = [];
+  const geh = (i: number, s: Stand): void => {
+    const id = ids[i];
+    if (id === undefined) { aus.push(s); return; }
+    for (const o of st(id).vorlage.optionen) geh(i + 1, waehle(g, s, id, o.id));
+  };
+  geh(0, neuerStand(true));
+  return aus;
+}
+
+test('Offene Entscheidungen: jede vertagte Entscheidung wird erledigt – am Ende offen bleibt nur die Neufestlegung der Projektbasis', () => {
   const wege = alleWege();
   assert.equal(wege.length, 3 * 3 * 3 * 3 * 2 * 3 * 2);
+  let neufestlegungOhneC = 0;
   for (const { stand, w } of wege) {
     const ende = status(g, { ...stand, schritt: { ort: 'ende' } });
-    assert.equal(ende.offen, w['s5'] === 'C' ? 1 : 0, JSON.stringify(w));
+    // offen bleibt nur die Neufestlegung: vorbereitet (s5 = C) oder nötig geworden, weil die Prognose über Basis plus Reserve liegt (R69)
+    const s8 = status(g, stand, { ort: 'station', station: 's8', teil: 'lage' }).kosten;
+    const noetig = w['s5'] === 'B' && s8 > 58.4 + 2.9;
+    if (noetig) neufestlegungOhneC++;
+    assert.equal(ende.offen, w['s5'] === 'C' || noetig ? 1 : 0, JSON.stringify(w));
     for (const x of g.stationen) assert.ok(status(g, stand, { ort: 'station', station: x.id, teil: 'lage' }).offen >= 0, `${x.id} ${JSON.stringify(w)}`);
   }
+  assert.ok(neufestlegungOhneC > 0);
 });
 
-test('Grenze Basis plus Reserve: Die Berichte sagen auf jedem Weg, ob die Prognose darüber liegt', () => {
+/** Eine Berichtszeile nennt eine offene Entscheidung (R69: Status „offen“ und Text gehören zusammen). */
+const NENNT_OFFEN = /bleibt offen|steh(?:t|en) noch aus/u;
+
+test('Offene Entscheidungen (R69): Der Bericht nennt eine offene Entscheidung genau dann, wenn der Status sie zählt – an jeder Station und am Ende, auf allen Wegen', () => {
+  const pruefe = (stand: Stand, ids: string[], wo: string): void => {
+    for (const id of ids) {
+      const offen = status(g, stand, { ort: 'station', station: id, teil: 'lage' }).offen;
+      assert.equal(NENNT_OFFEN.test(berichtBei(stand, id)), offen >= 1, `${id} offen ${offen} ${wo}`);
+    }
+    // am Ende: offen genau dann, wenn der letzte Bericht eine offene Entscheidung nennt
+    const ende = status(g, { ...stand, schritt: { ort: 'ende' } }).offen;
+    assert.equal(ende >= 1, NENNT_OFFEN.test(berichtBei(stand, 's8')), `Ende offen ${ende} ${wo}`);
+  };
+  let mitOffen = 0;
+  for (const { stand, w } of alleWege()) {
+    pruefe(stand, ['s2', 's3', 's4', 's5', 's6', 's7', 's8'], JSON.stringify(w));
+    if (status(g, { ...stand, schritt: { ort: 'ende' } }).offen >= 1) mitOffen++;
+  }
+  for (const stand of alleKurzWege()) pruefe(stand, ['s3', 's5', 's8'], `kurz ${JSON.stringify(stand.wahlen)}`);
+  assert.ok(mitOffen > 0);
+});
+
+test('Grenze Basis plus Reserve: Die Berichte in s7 und s8 sagen auf jedem Weg, ob die Prognose darüber liegt (R69: Statusbedingungen)', () => {
   const GRENZE = 58.4 + 2.9;
+  const UEBER = /liegt (die Prognose )?über Basis plus Reserve|weil die Prognose über Basis plus Reserve/u;
   for (const { stand, w } of alleWege()) {
     const s7 = status(g, stand, { ort: 'station', station: 's7', teil: 'lage' }).kosten;
     assert.equal(s7 > GRENZE, gilt(g, stand, 's4=A & s5!=A'), `s7 ${s7} ${JSON.stringify(w)}`);
+    assert.equal(UEBER.test(berichtBei(stand, 's7')), s7 > GRENZE, `s7 ${s7} ${JSON.stringify(w)}`);
     const s8 = status(g, stand, { ort: 'station', station: 's8', teil: 'lage' }).kosten;
-    const zeilen = st('s8').bericht.zeilen.filter((z) => z.wenn !== null && gilt(g, stand, z.wenn)).map((z) => z.html).join(' ');
-    if (w['s5'] === 'B' && w['s4'] === 'A') {
-      assert.equal(/nötig, weil die Prognose über/u.test(zeilen), s8 > GRENZE, `s8 ${s8} ${JSON.stringify(w)}`);
-      assert.equal(/unter Basis plus Reserve/u.test(zeilen), s8 <= GRENZE, `s8 ${s8} ${JSON.stringify(w)}`);
-    }
+    const zeilen = berichtBei(stand, 's8');
+    assert.equal(UEBER.test(zeilen), s8 > GRENZE, `s8 ${s8} ${JSON.stringify(w)}`);
+    // „wieder unter“ genau dort, wo s7 darüber lag und s8 nicht mehr
+    assert.equal(/wieder unter Basis plus Reserve/u.test(zeilen), s7 > GRENZE && s8 <= GRENZE, `s8 ${s8} ${JSON.stringify(w)}`);
+    if (w['s5'] === 'B') assert.equal(/nötig, weil die Prognose über/u.test(zeilen), s8 > GRENZE, `s8 ${s8} ${JSON.stringify(w)}`);
   }
 });
 
@@ -198,13 +244,13 @@ test('Grenze Basis plus Reserve am Ende: Liegt die Prognose darüber, sagt es de
   for (const { stand, w } of alleWege()) {
     const s8 = status(g, stand, { ort: 'station', station: 's8', teil: 'lage' }).kosten;
     const ende = status(g, { ...stand, schritt: { ort: 'ende' } }).kosten;
-    const zeilen = st('s8').bericht.zeilen.filter((z) => z.wenn !== null && gilt(g, stand, z.wenn)).map((z) => z.html).join(' ');
+    const zeilen = berichtBei(stand, 's8');
     const warnung = /mit dem Ersatzgerät \(\+0,08 Mio\. €\) läge die Prognose über/u.test(zeilen);
     // die Warnung steht genau dort, wo die Lage noch darunter liegt und das Ersatzgerät die Grenze überschreiten würde
     assert.equal(warnung, s8 <= GRENZE && Math.round((s8 + ersatz) * 100) / 100 > GRENZE, `s8 ${s8} ${JSON.stringify(w)}`);
     if (ende > GRENZE) {
       ueber++;
-      assert.match(zeilen, /nötig, weil die Prognose über|mit dem Ersatzgerät \(\+0,08 Mio\. €\) läge die Prognose über|Neufestlegung der Projektbasis – seit Mai 2026 offen/u, `Ende ${ende} ${JSON.stringify(w)}`);
+      assert.match(zeilen, /nötig, weil die Prognose über|Die Prognose liegt über Basis plus Reserve|mit dem Ersatzgerät \(\+0,08 Mio\. €\) läge die Prognose über/u, `Ende ${ende} ${JSON.stringify(w)}`);
     }
   }
   assert.ok(ueber > 0);
@@ -251,6 +297,19 @@ test('Speichern: gültiger Stand kommt zurück, Unpassendes fällt weg', () => {
   assert.deepEqual(kaputt, neuerStand());
   assert.equal(leseStand(g, { v: 2 }), null);
   assert.equal(leseStand(g, 'x'), null);
+});
+
+test('Speichern (R68): die Kurzfassung bleibt nach dem Neuladen Kurzfassung – samt Weg und Status', () => {
+  let s = waehle(g, neuerStand(true), 's1', 'A');
+  s = geheZu(g, s, { ort: 'station', station: 's3', teil: 'vorlage' });
+  const zurueck = leseStand(g, JSON.parse(JSON.stringify(s)));
+  assert.ok(zurueck);
+  assert.equal(zurueck.kurz, true);
+  assert.deepEqual(zurueck, s);
+  assert.equal(schritte(g, zurueck.kurz).length, schritte(g, true).length);
+  // übersprungene Stationen gelten mit der Empfehlung – der Status ist der der Kurzfassung
+  assert.deepEqual(status(g, zurueck, { ort: 'ende' }), status(g, s, { ort: 'ende' }));
+  assert.equal(leseStand(g, { ...JSON.parse(JSON.stringify(s)), kurz: 'ja' })?.kurz, false, 'nur true zählt');
 });
 
 test('Puffer-Urteil: über eine Woche gut, bis null knapp, darunter schlecht', () => {
@@ -323,24 +382,20 @@ test('Station 8: die Mehrkosten kommen aus der Reserve – Freigabe des Bauherrn
   assert.match(s8.vorlage.stelle, /im Mandat bis 100 TEUR.*Reserve.*Bauherr/u);
   for (const { stand } of alleWege()) assert.ok(status(g, stand, { ort: 'station', station: 's8', teil: 'lage' }).kosten > 58.4);
   const a = s8.vorlage.optionen.find((o) => o.id === 'A');
-  assert.match(a?.konsequenzHtml ?? '', /Freigabe der 0,08 Mio\. € aus der Reserve/u);
+  assert.match(a?.konsequenzHtml ?? '', /Freigabe der 0,08 Mio\. €/u);
+  // R69: wegneutral – die Prognose liegt auf manchen Wegen schon über Basis plus Reserve
+  assert.match(s8.vorlage.grundHtml, /soweit sie reicht; darüber hinaus braucht es die Neufestlegung der Projektbasis/u);
+  for (const o of s8.vorlage.optionen) assert.doesNotMatch(`${o.html} ${o.konsequenzHtml}`, /aus der Reserve/u, `s8 ${o.id}`);
 });
 
-/** Berichtszeilen einer Station, die beim Stand gelten (Statusbedingungen bei ihrer Lage). */
-const berichtBei = (stand: Stand, id: string): string => st(id).bericht.zeilen.filter((z) => gilt(g, stand, z.wenn, st(id))).map((z) => z.html).join(' ');
-
-/** Alle Wege der Kurzfassung (Station 1 mit den vorgeschlagenen Gewichten). */
-function alleKurzWege(): Stand[] {
-  const ids = g.stationen.filter((x) => x.kurzfassung && x.vorlage.art === 'optionen').map((x) => x.id);
-  const aus: Stand[] = [];
-  const geh = (i: number, s: Stand): void => {
-    const id = ids[i];
-    if (id === undefined) { aus.push(s); return; }
-    for (const o of st(id).vorlage.optionen) geh(i + 1, waehle(g, s, id, o.id));
-  };
-  geh(0, neuerStand(true));
-  return aus;
-}
+test('Reserve-Vorbehalt als allgemeine Regel (R69): s1 nennt sie, jede Vorlage mit Mehrkosten außerhalb des Bauherrn nennt den Vorbehalt', () => {
+  assert.match(st('s1').lageHtml, /Mehrkosten über der Projektbasis gehen zulasten der Risikoreserve; ihren Einsatz gibt der Bauherr frei/u);
+  for (const id of ['s3', 's4', 's6', 's8']) assert.match(st(id).vorlage.stelle, /Mehrkosten aus der Reserve gibt der Bauherr frei$/u, id);
+  // wo das Änderungsgremium entscheidet, fragt die Reaktion nach Ihrer Empfehlung
+  for (const id of ['s3', 's4', 's6']) assert.match(st(id).bericht.reaktion, /^Was empfehlen Sie dem Änderungsgremium/u, id);
+  assert.doesNotMatch(st('s2').lageHtml, /die Sie verantworten/u);
+  assert.doesNotMatch(berichtBei(waehle(g, waehle(g, neuerStand(), 's3', 'B'), 's5', 'B'), 's7'), /freigegeben ist noch nichts/u);
+});
 
 test('Negativer Terminpuffer: Die Berichte in s4–s8 nennen ihn auf jedem Weg genau dann, wenn der Status negativ ist (R68)', () => {
   const MELDUNG = /Terminpuffer überschritten – die Inbetriebnahme zum Schuljahr 2028\/29/u;
@@ -362,4 +417,17 @@ test('Vertagte Entscheidungen stehen im nächsten Bericht: s3 = B in s4, s5 = C 
     if (w['s3'] === 'B') assert.match(berichtBei(stand, 's4'), /RIS-009.*Entscheidung im März vertagt/u, JSON.stringify(w));
     if (w['s5'] === 'C') assert.match(berichtBei(stand, 's6'), /Neufestlegung der Projektbasis.*zurückgestellt.*Entscheidung bleibt offen/u, JSON.stringify(w));
   }
+});
+
+test('Ende nennt die Überschreitung von Basis plus Reserve genau dann, wenn der Endstand darüber liegt (R69)', () => {
+  const zeile = g.ende.zeilen.find((z) => z.wenn === 'kosten>61.3');
+  assert.ok(zeile, 'Endzeile mit Statusbedingung');
+  let teuer = neuerStand();
+  for (const [s, o] of [['s3', 'C'], ['s4', 'A'], ['s6', 'K']] as const) teuer = waehle(g, teuer, s, o);
+  for (const st of g.stationen) if (teuer.wahlen[st.id] === undefined) teuer = waehle(g, teuer, st.id, st.vorlage.empfehlung.option);
+  assert.ok(status(g, { ...teuer, schritt: { ort: 'ende' } }).kosten > 61.3);
+  assert.equal(gilt(g, teuer, zeile.wenn, 'ende'), true);
+  let empf = neuerStand();
+  for (const st of g.stationen) empf = waehle(g, empf, st.id, st.vorlage.empfehlung.option);
+  assert.equal(gilt(g, empf, zeile.wenn, 'ende'), status(g, { ...empf, schritt: { ort: 'ende' } }).kosten > 61.3);
 });

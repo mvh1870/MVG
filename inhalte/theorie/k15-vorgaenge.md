@@ -118,7 +118,7 @@ Was zusammengehört, wird verknüpft – ohne dieselbe Wirkung doppelt zu zähle
 
 ::: etappen
 ---
-titel: Ein Vorgang auf dem Schulcampus Lindenhall-Süd
+titel: Vorgänge auf dem Schulcampus Lindenhall-Süd
 ---
 ::: etappe 1
 ---

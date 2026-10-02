@@ -336,7 +336,7 @@ Das Risiko steht mit einer Bewertung im Register. Wer es verantwortet, bis wann 
 :::
 
 ::: ansicht rechts
-Das Risiko hat eine verantwortliche Rolle, eine Frist, eine Wirkung, eine Risikominderung und ein Restrisiko. Der Entscheidungsbedarf ist benannt, und eine Eskalationsschwelle sagt, wann es eskaliert wird. Vorrangige Risiken meldet die Projektsteuerung dem Bauherrn und bereitet die Entscheidung vor; Fragen der Sicherheit oder Genehmigung behandelt sie unabhängig von der Matrix; Dringliches wartet nicht auf eine vollständige Bewertung. Wesentliche Risikoexposition nimmt der Bauherr an – oder nicht.
+Das Risiko hat eine verantwortliche Rolle, eine Frist, eine Wirkung, eine Risikominderung und ein Restrisiko. Der Entscheidungsbedarf ist benannt, und eine Eskalationsschwelle sagt, wann es eskaliert wird. Bei vorrangigen Risiken holt die Projektsteuerung die fachliche Einschätzung ein, informiert den Bauherrn und bereitet notwendige Handlungen oder Entscheidungen vor; Fragen der Sicherheit oder Genehmigung behandelt sie unabhängig von der Matrix; Dringliches wartet nicht auf eine vollständige Bewertung. Wesentliche Risikoexposition nimmt der Bauherr an – oder nicht.
 :::
 :::
 :::

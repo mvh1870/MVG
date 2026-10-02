@@ -19,17 +19,16 @@ belege: [v24:hb-2, v24:hb-3, v24:hb-4, v24:tlb-3, v24:tlb-2, k4.6-p2, k3.2-t1]
 lage: |
   Montag, 11. Mai. Zwei Prognosen liegen auf dem Tisch, 1,2 Mio. € auseinander: die Kostenberechnung von Holger Stein, Kostenplaner der Generalplanung, und die Rechnung von Aylin Kaya vom Controlling.
 
-  Die Projektsteuerung hat beide angefordert und klärt vor dem Monatstermin: Die Differenz ist ein angekündigter Nachtrag der Haustechnikplanung – nicht eingetreten, also ein Risiko mit Bandbreite.
+  Die Projektsteuerung hat beide angefordert und klärt vorab: Die Differenz ist ein angekündigter Nachtrag der Haustechnikplanung – nicht eingetreten, also ein Risiko mit Bandbreite.
 lage-folgen: { kosten: 1.73 }
 bericht:
   titel: Monatsbericht · Mai 2026
   zeilen:
-    - „Kostenprognose 2026-05 · Version 3“ – ohne die Beschlüsse zu Holzbau und Mensa 1,73 Mio. € über Version 1 – Baupreissteigerung 1,13 Mio. €, Marktpreise Holzbau 0,6 Mio. € (in RIS-005 vermerkt, nicht doppelt gezählt).
-    - Über der Projektbasis, unter Basis plus Reserve (61,3 Mio. €); die Reserve ist nicht eingesetzt.
-    - Differenz der Rechnungen – angekündigter Nachtrag Haustechnik, bis 1,2 Mio. €, als Risiko RIS-014 geführt.
+    - „Kostenprognose 2026-05 · Version 3“ – ohne die Beschlüsse zu Holzbau und Mensa 1,73 Mio. € über Version 1 – Baupreise 1,13 Mio. €, Marktpreise Holzbau 0,6 Mio. € (in RIS-005 vermerkt, nicht doppelt).
+    - Über der Projektbasis, unter Basis plus Reserve (61,3 Mio. €).
     - text: MAS-007 vorgezogene Vergabe Holzbau läuft.
       wenn: s3=A
-    - text: RIS-009 Lieferzeit Holzbau weiter vorrangig.
+    - text: RIS-009 Lieferzeit Holzbau weiter vorrangig; die Entscheidung bleibt offen bis zur Vergabe.
       wenn: s3=B
     - text: AEN-013 Sporthalle in Stahlbeton eingeplant.
       wenn: s3=C
@@ -37,7 +36,7 @@ bericht:
       wenn: s2=A
     - text: Die Marktabfrage aus der Auflage zur Freigabe LPH 4 ist in Version 3 eingerechnet.
       wenn: lang & s2=B
-    - text: Die Marktabfrage für die Holzbauelemente vom 27. März ist in Version 3 eingerechnet.
+    - text: Die Marktabfrage vom 27. März ist in Version 3 eingerechnet.
       wenn: kurz & s2=B
     - text: Die Marktabfrage vom März, vor der Freigabe LPH 4, ist in Version 3 eingerechnet.
       wenn: s2=C
@@ -47,7 +46,6 @@ bericht:
       wenn: kurz & s4=B
     - text: Im April entschieden – Mensa bleibt wie geplant (AEN-012 mit Begründung abgelehnt).
       wenn: kurz & s4=C
-    - Bauausschuss am 21. Mai – er braucht eine klare Frage.
     - text: Terminpuffer überschritten – die Inbetriebnahme zum Schuljahr 2028/29 ist nach heutigem Stand gefährdet, damit auch die Förderfrist.
       wenn: puffer<0
   reaktion: Wie soll der Bauherr mit der Prognose umgehen? Ihre Empfehlung geht an Dr. Olbers.
@@ -72,11 +70,11 @@ vorlage:
   art: optionen
   frage: Wie gehen wir mit der gestiegenen Prognose um?
   grund: |
-    Die Reserve deckt die Abweichung; tritt der Nachtrag voll ein, reicht sie nicht. Eine neue Projektbasis beschließt der Bauherr im Lenkungskreis; weil die Stadt die Mittel bewilligt, bestätigt der Stadtrat.
+    Die Reserve deckt die Abweichung; tritt der Nachtrag voll ein, reicht sie nicht. Eine neue Projektbasis beschließt der Bauherr im Lenkungskreis, der Stadtrat bestätigt sie.
   stelle: Bauherr – Dr. Miriam Olbers (der Lenkungskreis berät)
   termin: 19. Mai 2026 (Lenkungskreis)
-  verzug: Sonst geht der Bauausschuss am 21. Mai ohne Frage in die Sitzung – und vertagt.
-  muss: Alle Optionen halten die Vorgaben der Förderung und der Genehmigung ein.
+  verzug: Sonst fehlt dem Bauausschuss am 21. Mai die klare Frage.
+  muss: Alle Optionen halten Förderung und Genehmigung ein.
   optionen:
     - id: A
       titel: Einsparpaket
@@ -90,7 +88,7 @@ vorlage:
       konsequenz: Die Generalplanung arbeitet das Paket aus. Die Projektsteuerung legt es als Änderung an und verfolgt, ob die Einsparung tatsächlich eintritt.
     - id: B
       titel: Reserve vorsehen und offen berichten
-      text: Die Reserve wird für die bekannten Mehrkosten vorgesehen, nicht freigegeben; Stadtrat und Bauausschuss bekommen die Lage auf einer Seite.
+      text: Die Reserve wird für die bekannten Mehrkosten vorgesehen, nicht freigegeben; Stadtrat und Bauausschuss erhalten die Lage auf einer Seite.
       punkte:
         kosten: [5, "keine Mehrkosten"]
         termin: [5, "kein Verzug"]
@@ -100,7 +98,7 @@ vorlage:
       konsequenz: Der Bauausschuss nimmt den Bericht zur Kenntnis. Freigegeben wird die Reserve erst, wenn Mehrkosten eintreten – vom Bauherrn selbst.
     - id: C
       titel: Neufestlegung der Projektbasis vorbereiten
-      text: Die Projektsteuerung bereitet eine neue Projektbasis mit den bekannten Mehrkosten vor; wann sie beschlossen wird, entscheidet der Bauherr im Lenkungskreis, der Stadtrat bestätigt. Bis dahin gilt die bisherige Basis, Mehrkosten laufen über die vorgesehene Reserve.
+      text: Die Projektsteuerung bereitet eine neue Projektbasis mit den bekannten Mehrkosten vor; wann sie beschlossen wird, entscheidet der Bauherr. Bis dahin trägt die vorgesehene Reserve.
       punkte:
         kosten: [5, "keine Mehrkosten"]
         termin: [5, "kein Verzug"]
@@ -110,7 +108,7 @@ vorlage:
       konsequenz: Die Projektsteuerung legt die Vorlage zur Neufestlegung im Lenkungskreis vor. Der Bauherr stellt den Beschluss zurück, bis die Hauptvergaben abgeschlossen sind. Bis dahin gilt die bisherige Basis, Mehrkosten laufen über die vorgesehene Reserve – und die Entscheidung bleibt offen.
   empfehlung:
     option: B
-    text: Die Projektsteuerung empfiehlt, die Reserve vorzusehen und offen zu berichten. Achtung – B und C liegen mit jeder Gewichtung gleichauf; in Kosten, Termin und Funktion unterscheiden sie sich nicht. Für B spricht, dass eine neue Basis vor den Hauptvergaben nur auf Schätzungen stünde – C bereitet eine Entscheidung vor, die deshalb lange offen bliebe. B lässt nichts offen; reicht die Reserve später nicht, legt die Projektsteuerung die Neufestlegung dann vor. Nachteil – tritt der Nachtrag voll ein, reicht die Reserve nicht ganz. Das Einsparpaket holt keinen Kostenpunkt mehr, weil auch B keine Mehrkosten verursacht, und kostet Ausstattung und eine Woche.
+    text: Die Projektsteuerung empfiehlt, die Reserve vorzusehen und offen zu berichten. Achtung – B und C liegen mit jeder Gewichtung gleichauf. Für B spricht, dass eine neue Basis vor den Hauptvergaben nur auf Schätzungen stünde; reicht die Reserve später nicht, legt die Projektsteuerung die Neufestlegung dann vor. Nachteil – tritt der Nachtrag voll ein, reicht die Reserve nicht ganz.
 folge: |
   Ein Datenstand für alle: Bericht, Software und Vorlage nennen dieselbe Zahl. Der Bericht passt auf eine Seite, weil er auf die Einträge verweist.
 so-laeuft-es-oft: |

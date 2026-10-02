@@ -24,7 +24,7 @@ E-Mail: kontakt@bauherr-mentoren.com
 
 Der Governance Kompass ist eine Internetseite zum Lesen und Ausprobieren. Es gibt keine Registrierung, kein Konto, kein Formular und keine Eingabe, die an uns gesendet wird. Wir setzen keine Cookies, keine Analyse- oder Reichweitenmessung und keine Dienste Dritter ein. Schriften und Bilder sind in die Seite eingebettet und werden nicht von anderen Servern nachgeladen.
 
-Verarbeitet werden nur die technisch erforderlichen Zugriffsdaten beim Aufruf der Seite (Abschnitt 3). Was Sie in der Geschichte entscheiden oder in den Werkzeugen einstellen, bleibt in Ihrem Browser (Abschnitt 5).
+Verarbeitet werden nur die technisch erforderlichen Zugriffsdaten beim Aufruf der Seite (Abschnitt 3). Was Sie in der Geschichte entscheiden, bleibt in Ihrem Browser (Abschnitt 5); was Sie in den Werkzeugen einstellen, wird weder gespeichert noch gesendet.
 
 ## 3. Zugriffsdaten und Server-Logfiles
 

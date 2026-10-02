@@ -181,3 +181,88 @@ test('Bedingte Lage-Folge ohne „wenn“: Fehler', () => {
   const { fehler } = baue((_r, st) => { delete s(st, 2)['lage-folgen-bedingt'][0].wenn; });
   assert.deepEqual(fehler, [`${DATEI(2)}: Feld „wenn“ fehlt`]);
 });
+
+/* R68: Prüfungen, die bisher kein Test verlangte – je eine verfälschte Stelle, die erwartete Meldung */
+
+test('Kennung doppelt: Fehler', () => {
+  const { fehler } = baue((_r, st) => { s(st, 3)['id'] = 's2'; });
+  assert.deepEqual(fehler, [`${DATEI(3)}: Kennung „s2“ doppelt`]);
+});
+
+test('Folge, die keine Zahl ist: Fehler', () => {
+  const { fehler } = baue((_r, st) => { s(st, 2)['vorlage'].optionen[1].folgen = { puffer: 'viel' }; });
+  assert.deepEqual(fehler, [`${DATEI(2)} Option B: Folge „puffer“ ist keine Zahl`]);
+});
+
+test('LPH außerhalb 0–9: Fehler; 0 und 9 sind zulässig', () => {
+  assert.deepEqual(baue((_r, st) => { s(st, 2)['lph'] = 10; }).fehler, [`${DATEI(2)}: LPH 10 außerhalb 0–9`]);
+  assert.deepEqual(baue((_r, st) => { s(st, 2)['lph'] = -1; }).fehler, [`${DATEI(2)}: LPH -1 außerhalb 0–9`]);
+  assert.deepEqual(baue((_r, st) => { s(st, 2)['lph'] = 0; s(st, 3)['lph'] = 9; }).fehler, []);
+});
+
+test('Vorlage mit nur einer zulässigen Option ohne Kennzeichen „unvollständig“: Fehler', () => {
+  const { fehler } = baue((_r, st) => { s(st, 3)['vorlage'].optionen.pop(); s(st, 3)['vorlage'].empfehlung.option = 'A'; });
+  assert.deepEqual(fehler, [`${DATEI(3)}: Vorlage mit weniger als zwei zulässigen Optionen muss als unvollständig gekennzeichnet sein`]);
+});
+
+test('Unvollständige Vorlage ohne Klärungsoption: Fehler; mit Klärung zulässig', () => {
+  const ohne = baue((_r, st) => { s(st, 3)['vorlage'].unvollstaendig = 'Es fehlt etwas'; });
+  assert.deepEqual(ohne.fehler, [`${DATEI(3)}: unvollständige Vorlage ohne Klärungsoption`]);
+  const mit = baue((_r, st) => {
+    const v = s(st, 3)['vorlage'];
+    v.unvollstaendig = 'Es fehlt etwas';
+    v.optionen = [v.optionen[0], { id: 'K', titel: 'Klären', text: 'T', konsequenz: 'K', klaerung: true }];
+    v.empfehlung.option = 'K';
+  });
+  assert.deepEqual(mit.fehler, []);
+});
+
+test('Empfehlung, die keine Option ist: Fehler', () => {
+  const { fehler } = baue((_r, st) => { s(st, 2)['vorlage'].empfehlung.option = 'Z'; });
+  assert.deepEqual(fehler, [`${DATEI(2)}: Empfehlung „Z“ ist keine Option`]);
+});
+
+test('Erste Station legt die Gewichte nicht fest: Fehler', () => {
+  // Station 1 wird eine gewöhnliche Vorlage, Station 2 legt die Gewichte fest
+  const { fehler } = baue((_r, st) => {
+    const v1 = s(st, 1)['vorlage'];
+    const v2 = s(st, 2)['vorlage'];
+    s(st, 1)['vorlage'] = v2;
+    s(st, 2)['vorlage'] = v1;
+    delete s(st, 2)['lage-folgen-bedingt'];
+    for (const v of s(st, 2)['vorgaenge']) delete v.wenn;
+    s(st, 3)['bericht'].zeilen[1].wenn = 'lang';
+  });
+  assert.deepEqual(fehler, ['inhalte/geschichte/rahmen.yaml: die erste Station muss die Gewichte festlegen']);
+});
+
+test('Erste Station nicht in der Kurzfassung: Fehler', () => {
+  const { fehler } = baue((_r, st) => { s(st, 1)['kurzfassung'] = false; });
+  assert.deepEqual(fehler, ['inhalte/geschichte/rahmen.yaml: die erste Station gehört zur Kurzfassung']);
+});
+
+/* R69: Statusbedingungen nur in Berichtszeilen und Vorgängen; Berichtszeilen in YAML-Falle */
+
+test('Statusbedingung in einer bedingten Lage-Folge: Fehler (wörtlich)', () => {
+  const { fehler } = baue((_r, st) => { s(st, 2)['lage-folgen-bedingt'][0].wenn = 'puffer<0'; });
+  assert.deepEqual(fehler, [`${DATEI(2)}: Bedingung „puffer<0“: Statusbedingung „puffer<0“ nur in Berichtszeilen und Vorgängen`]);
+});
+
+test('Statusbedingung an einem Vorgang und in einer Berichtszeile: zulässig und unverändert übernommen', () => {
+  const { fehler, erg } = baue((_r, st) => {
+    s(st, 2)['vorgaenge'][0].wenn = 'offen>=1';
+    s(st, 3)['bericht'].zeilen[1].wenn = 's2=A & puffer<0';
+  });
+  assert.deepEqual(fehler, []);
+  assert.equal(erg.geschichte.stationen[1].vorgaenge[0].wenn, 'offen>=1');
+  assert.equal(erg.geschichte.stationen[2].bericht.zeilen[1].wenn, 's2=A & puffer<0');
+});
+
+test('Berichtszeile als Objekt ohne { text, wenn } (YAML „Text: mit Doppelpunkt“, Tippfehler „wann“): Fehler', () => {
+  const doppelpunkt = baue((_r, st) => { s(st, 3)['bericht'].zeilen[1] = { Monatsbericht: 'x' }; });
+  assert.deepEqual(doppelpunkt.fehler,
+    [`${DATEI(3)}: Berichtszeile unlesbar (Text oder { text, wenn }; Text mit „: “ in Anführungszeichen): {"Monatsbericht":"x"}`]);
+  const wann = baue((_r, st) => { s(st, 3)['bericht'].zeilen[1] = { text: 'x', wann: 's1=A' }; });
+  assert.deepEqual(wann.fehler,
+    [`${DATEI(3)}: Berichtszeile unlesbar (Text oder { text, wenn }; Text mit „: “ in Anführungszeichen): {"text":"x","wann":"s1=A"}`]);
+});

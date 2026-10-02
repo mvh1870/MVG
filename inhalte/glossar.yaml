@@ -54,8 +54,8 @@ aendern:
   g-betriebshandbuch:
     definition: >-
       Betriebslogik für den Regelbetrieb von MVG mit Rollen, Routinen, Taktung, Eskalation und Prüfmechanismen.
-      Im Standard gehören dazu die Prüfung aller offenen Vorgänge, in aktiven Zeiten wöchentlich, ein monatlicher
-      Termin von bis zu 60 Minuten und ein Monatsbericht von höchstens einer Seite.
+      Im Standard gehören dazu in aktiven Zeiten die wöchentliche Prüfung aller offenen Vorgänge und ein monatlicher
+      Termin von bis zu 60 Minuten, dazu jeden Monat ein Monatsbericht von höchstens einer Seite.
     belege: [k13-t1, v24:hb-4]
   # k13-E5 (HB 1, HB 3: die Projektsteuerung bereitet vor, der Bauherr entscheidet)
   g-freigabe:
@@ -171,5 +171,6 @@ neu:
     begriff: Dringlicher Sachverhalt
     definition: >-
       Ein Sachverhalt, der nicht auf die nächste Prüfung oder Sitzung warten kann. Die Projektsteuerung meldet ihn
-      sofort und dokumentiert ihn noch am selben Arbeitstag.
+      sofort über den vereinbarten Meldeweg; sobald die unmittelbare Reaktion gesichert ist, dokumentiert sie ihn noch am
+      selben Arbeitstag.
     belege: [v24:hb-4]

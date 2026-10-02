@@ -22,13 +22,13 @@ bericht:
       wenn: s2=B
     - text: Maßnahme MAS-007 vorgezogene Vergabe Holzbau – Vergabeunterlagen am 15. April versandt.
       wenn: s3=A
-    - text: RIS-009 Lieferzeit Holzbau weiter aktiv · vorrangig bearbeiten – die Entscheidung im März vertagt, geklärt wird sie mit der Vergabe; im Terminpuffer sind dafür rund 35 Tage berücksichtigt.
+    - text: RIS-009 Lieferzeit Holzbau weiter aktiv · vorrangig bearbeiten – die Entscheidung im März vertagt; sie bleibt offen, bis die Vergabe sie klärt; im Terminpuffer sind dafür rund 35 Tage berücksichtigt.
       wenn: s3=B
     - text: Änderung AEN-013 Sporthalle in Stahlbeton – Umplanung läuft.
       wenn: s3=C
     - text: Terminpuffer überschritten – die Inbetriebnahme zum Schuljahr 2028/29 ist nach heutigem Stand gefährdet, damit auch die Förderfrist.
       wenn: puffer<0
-  reaktion: Bitte entscheiden Sie über die Mensa.
+  reaktion: Was empfehlen Sie dem Änderungsgremium zur Mensa?
 vorgaenge:
   - art: aenderung
     kennung: AEN-012
@@ -42,7 +42,7 @@ vorlage:
   frage: Wird die Mensa vergrößert?
   grund: |
     Der Wunsch ist nachvollziehbar, die Kosten liegen über 100 TEUR – damit entscheidet nach dem Mandat das Änderungsgremium. Die Projektsteuerung hat drei zulässige Wege ausgearbeitet.
-  stelle: Änderungsgremium – Vorsitz Frank Deppe
+  stelle: Änderungsgremium – Vorsitz Frank Deppe; Mehrkosten aus der Reserve gibt der Bauherr frei
   termin: 28. April 2026
   verzug: Nach Mitte Mai lässt sich die Küche nur noch mit Umplanung der Haustechnik ändern.
   muss: Alle Optionen halten die Vorgaben der Förderung ein.

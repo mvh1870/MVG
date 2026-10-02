@@ -26,3 +26,7 @@ ende:
   puffer-gut: Der Schulstart zum Schuljahr 2028/29 ist gehalten – die Schulleitung bekommt die Schlüssel.
   puffer-knapp: Der Schulstart ist gehalten, mit kaum noch Puffer – die Schulleitung bekommt die Schlüssel.
   puffer-schlecht: Die Inbetriebnahme zum Schuljahr 2028/29 ist nicht zu halten; die Förderfrist ist gefährdet.
+  # R69: auf den Wegen, auf denen die Prognose am Ende über Basis plus Reserve liegt, sagt es das Ende
+  zeilen:
+    - wenn: kosten>61.3
+      text: Die Prognose liegt über Basis plus Reserve (61,3 Mio. €) – was darüber hinausgeht, deckt nur eine Neufestlegung der Projektbasis durch den Bauherrn.

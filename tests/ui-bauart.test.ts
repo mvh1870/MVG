@@ -302,40 +302,47 @@ test('Regie: Notiz und Leitfragen, Kundenwahl, „weiter“ sendet den öffentli
   const sp = speicher();
   const r = erzeugeRegie({ inhalte, kanal, version: VERSION, speicher: sp, regieGeschichte, regieKapitel, oeffneLeinwand: () => undefined, takt: 100000 });
   document.body.replaceChildren(r.element);
-  (r.element.querySelector('[data-pruef="regie-bereich-story"]') as HTMLElement).click();
-  const sprung = r.element.querySelector<HTMLSelectElement>('[data-pruef="regie-sprung"]');
-  assert.ok(sprung);
-  sprung.value = 's8';
-  sprung.dispatchEvent(new Event('change'));
-  assert.match(r.element.querySelector('[data-pruef="regie-notiz"]')?.textContent ?? '', /Kosten vor Termin/u);
-  assert.ok(r.element.querySelector('[data-pruef="regie-leitfragen"]'));
-  (r.element.querySelector('[data-pruef="regie-weiter"]') as HTMLElement).click();
-  (r.element.querySelector('[data-pruef="regie-wahl-B"]') as HTMLElement).click();
-  const letzte = gesendet.filter((n) => n.art === 'zustand').at(-1);
-  assert.ok(letzte && letzte.art === 'zustand');
-  assert.equal(letzte.zustand.story.wahlen['s8'], 'B');
-  const text = JSON.stringify(gesendet);
-  assert.ok(!text.includes(regieGeschichte('s8')?.notizHtml.slice(3, 40) ?? 'x'), 'keine Notiz im Kanal');
-  // Protokoll bleibt in der Regie
-  const feld = r.element.querySelector<HTMLTextAreaElement>('[data-pruef="regie-protokoll-feld"]');
-  assert.ok(feld);
-  feld.value = 'Frage zur Reserve';
-  (r.element.querySelector('[data-pruef="regie-protokoll-sichern"]') as HTMLElement).click();
-  assert.match(r.element.querySelector('.regie-protokoll-liste')?.textContent ?? '', /Frage zur Reserve/u);
-  assert.ok(!JSON.stringify(gesendet).includes('Frage zur Reserve'));
-  // R67: „Protokoll löschen“ leert die Liste und entfernt den gespeicherten Stand der Regie
-  assert.ok((sp.getItem('gk.regie') ?? '').includes('Frage zur Reserve'));
-  (r.element.querySelector('[data-pruef="regie-protokoll-loeschen"]') as HTMLElement).click();
-  assert.equal(sp.getItem('gk.regie'), null);
-  assert.equal(sp.getItem('mvg.kanal.regie'), null);
-  assert.doesNotMatch(r.element.querySelector('.regie-protokoll-liste')?.textContent ?? '', /Frage zur Reserve/u);
-  // Theorie: Thema wählen, Notiz des Themas (falls vorhanden)
-  const thema = r.element.querySelector<HTMLSelectElement>('[data-pruef="regie-thema"]');
-  assert.ok(thema);
-  thema.value = themaVon(4);
-  thema.dispatchEvent(new Event('change'));
-  assert.equal(gesendet.filter((n) => n.art === 'zustand').at(-1)?.art === 'zustand' && (gesendet.filter((n) => n.art === 'zustand').at(-1) as { zustand: { thema: string } }).zustand.thema, themaVon(4));
-  r.entferne();
+  // R69: auch bei einem Fehlschlag abbauen – sonst hält der Takt der Regie den Testlauf offen
+  try {
+    (r.element.querySelector('[data-pruef="regie-bereich-story"]') as HTMLElement).click();
+    const sprung = r.element.querySelector<HTMLSelectElement>('[data-pruef="regie-sprung"]');
+    assert.ok(sprung);
+    sprung.value = 's8';
+    sprung.dispatchEvent(new Event('change'));
+    assert.match(r.element.querySelector('[data-pruef="regie-notiz"]')?.textContent ?? '', /Kosten vor Termin/u);
+    assert.ok(r.element.querySelector('[data-pruef="regie-leitfragen"]'));
+    (r.element.querySelector('[data-pruef="regie-weiter"]') as HTMLElement).click();
+    (r.element.querySelector('[data-pruef="regie-wahl-B"]') as HTMLElement).click();
+    const letzte = gesendet.filter((n) => n.art === 'zustand').at(-1);
+    assert.ok(letzte && letzte.art === 'zustand');
+    assert.equal(letzte.zustand.story.wahlen['s8'], 'B');
+    const text = JSON.stringify(gesendet);
+    assert.ok(!text.includes(regieGeschichte('s8')?.notizHtml.slice(3, 40) ?? 'x'), 'keine Notiz im Kanal');
+    // Protokoll bleibt in der Regie
+    const feld = r.element.querySelector<HTMLTextAreaElement>('[data-pruef="regie-protokoll-feld"]');
+    assert.ok(feld);
+    feld.value = 'Frage zur Reserve';
+    (r.element.querySelector('[data-pruef="regie-protokoll-sichern"]') as HTMLElement).click();
+    assert.match(r.element.querySelector('.regie-protokoll-liste')?.textContent ?? '', /Frage zur Reserve/u);
+    assert.ok(!JSON.stringify(gesendet).includes('Frage zur Reserve'));
+    // R67: „Protokoll löschen“ leert die Liste und entfernt den gespeicherten Stand der Regie
+    assert.ok((sp.getItem('gk.regie') ?? '').includes('Frage zur Reserve'));
+    // R69: der Kanal oben ist ein Stub ohne Speicher – den zuletzt gesendeten Bühnenstand hier selbst ablegen
+    sp.setItem('mvg.kanal.regie', '{"x":1}');
+    assert.equal(sp.getItem('mvg.kanal.regie'), '{"x":1}');
+    (r.element.querySelector('[data-pruef="regie-protokoll-loeschen"]') as HTMLElement).click();
+    assert.equal(sp.getItem('gk.regie'), null);
+    assert.equal(sp.getItem('mvg.kanal.regie'), null);
+    assert.doesNotMatch(r.element.querySelector('.regie-protokoll-liste')?.textContent ?? '', /Frage zur Reserve/u);
+    // Theorie: Thema wählen, Notiz des Themas (falls vorhanden)
+    const thema = r.element.querySelector<HTMLSelectElement>('[data-pruef="regie-thema"]');
+    assert.ok(thema);
+    thema.value = themaVon(4);
+    thema.dispatchEvent(new Event('change'));
+    assert.equal(gesendet.filter((n) => n.art === 'zustand').at(-1)?.art === 'zustand' && (gesendet.filter((n) => n.art === 'zustand').at(-1) as { zustand: { thema: string } }).zustand.thema, themaVon(4));
+  } finally {
+    r.entferne();
+  }
 });
 
 test('Tafeln (P4, L-32): Schwellen-Spiel prüft gegen die Spalte der Tabelle', async () => {
@@ -576,4 +583,23 @@ test('Lernseite (P6.1): Tafel, Merksatz und Ebenen 1–4 werden auf Seiten- und 
   assert.equal(e.length, 4);
   assert.equal(e[0]?.hasAttribute('open'), true);
   assert.equal(e[3]?.hasAttribute('open'), false);
+});
+
+test('Leinwand (R69): Strg+P druckt den Ersatzbogen ohne Regie-Hinweis; die Seite behält ihn', async () => {
+  const { ersatzBogenFuerLeinwand, ersatzDruck } = await import('../src/ui/druck.ts');
+  const regieWeg = W.druck.ersatzWege.find((x) => x.startsWith('Regie'));
+  assert.ok(regieWeg, 'die Seite nennt den Druckweg der Regie');
+  const text = (teile: Node[]): string => teile.map((t) => t.textContent ?? '').join(' ');
+  assert.ok(text(ersatzDruck(VERSION).teile).includes(regieWeg), 'Seite: mit Regie-Weg');
+  ersatzBogenFuerLeinwand(VERSION);
+  document.body.replaceChildren();
+  window.dispatchEvent(new Event('beforeprint'));
+  const bogen = document.querySelector('.druck-bogen');
+  assert.ok(bogen, 'Ersatzbogen angehängt');
+  const inhalt = bogen.textContent ?? '';
+  assert.ok(inhalt.includes(W.druck.ersatzTitel), inhalt);
+  assert.ok(inhalt.includes(W.druck.ersatzWege[0] ?? 'x'), 'der Theorie-Weg bleibt');
+  assert.doesNotMatch(inhalt, /Regie/u);
+  window.dispatchEvent(new Event('afterprint'));
+  assert.equal(document.querySelector('.druck-bogen'), null, 'nach dem Druck abgebaut');
 });

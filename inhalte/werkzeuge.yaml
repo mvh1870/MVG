@@ -1,6 +1,6 @@
 # Explore-Werkzeuge (P16.8, O-46). Belege intern, nie sichtbar (O-38). Beispielprojekt: Schulcampus Lindenhall-Süd (O-50).
 einleitung: |
-  Fünf Werkzeuge zum Ausprobieren – alle am fiktiven Schulcampus Lindenhall-Süd. Nichts wird gesendet; was Sie einstellen, bleibt in diesem Browser.
+  Fünf Werkzeuge zum Ausprobieren – alle am fiktiven Schulcampus Lindenhall-Süd. Nichts wird gesendet oder gespeichert; Ihre Einstellungen gelten, solange das Werkzeug offen ist.
 mcda:
   titel: MCDA-Rechner
   kurz: Optionen gewichtet vergleichen und sehen, wann sich die Rangfolge dreht.

@@ -235,7 +235,8 @@ function karten(d: TafelDaten): HTMLElement {
 
 /** Zeitraum „0–30 Tage“ → [0, 30]; ohne Zahlenpaar null. */
 export function zeitraum(zelle: string): [number, number] | null {
-  const m = /(\d+)\s*[–-]\s*(\d+)/u.exec(zelle);
+  // R69: auch mit geschütztem Leerzeichen und Wortverbinder (schuetzeEinheiten, R68) um den Strich
+  const m = /(\d+)[\s\u2060]*[–-][\s\u2060]*(\d+)/u.exec(zelle);
   return m === null ? null : [Number(m[1] ?? 0), Number(m[2] ?? 0)];
 }
 

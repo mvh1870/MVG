@@ -147,3 +147,42 @@ test('Rollen: um 80 % der Fensterhöhe, nur wenn der Inhalt höher ist als das F
     ende();
   }
 });
+
+test('Anzeige (R68): kein Bedienelement und kein Link – Start, Story (Vorlage, Folge mit Thema), jedes Thema, jedes Werkzeug', async () => {
+  const { erzeugeAnzeige } = await import('../src/regie/leinwand.ts');
+  const { themen } = await import('../src/ui/flaechen/theorie.ts');
+  const { WERKZEUGE } = await import('../src/ui/flaechen/explore.ts');
+  const { pruefeBuehne } = await import('../src/regie/buehne.ts');
+  const anzeige = erzeugeAnzeige(inhalte, 'Test', true);
+  document.body.replaceChildren(anzeige.element);
+  const mitThema = g.stationen.find((s) => s.theorie !== null && s.vorlage.art === 'optionen');
+  assert.ok(mitThema, 'eine Station mit Thema');
+  const opt = mitThema.vorlage.optionen[0];
+  assert.ok(opt);
+  const gewaehlt = waehle(g, neuerStand(), mitThema.id, opt.id);
+  const faelle: Array<[string, ReturnType<typeof buehne>]> = [
+    ['start', buehne({})],
+    ['story s1 Vorlage', buehne({ bereich: 'story', story: { ...neuerStand(), schritt: { ort: 'station', station: s1.id, teil: 'vorlage' } } })],
+    [`story ${mitThema.id} Vorlage`, buehne({ bereich: 'story', story: { ...gewaehlt, schritt: { ort: 'station', station: mitThema.id, teil: 'vorlage' } } })],
+    [`story ${mitThema.id} Folge`, buehne({ bereich: 'story', story: { ...gewaehlt, schritt: { ort: 'station', station: mitThema.id, teil: 'folge' } } })],
+    ['story Ende', buehne({ bereich: 'story', story: { ...gewaehlt, schritt: { ort: 'ende' } } })],
+    ['theorie', buehne({ bereich: 'theorie' })],
+    ...themen(inhalte).map((t): [string, ReturnType<typeof buehne>] => [`theorie ${t.id}`, buehne({ bereich: 'theorie', thema: t.id })]),
+    ...WERKZEUGE.map((w): [string, ReturnType<typeof buehne>] => [`explore ${w}`, buehne({ bereich: 'explore', werkzeug: w })]),
+  ];
+  try {
+    for (const [wo, roh] of faelle) {
+      const b = pruefeBuehne(roh, g);
+      assert.ok(b, `${wo}: gültiger Bühnenstand`);
+      anzeige.setze(b);
+      const bedienbar = [...anzeige.element.querySelectorAll('button, select, input, textarea, a[href], [contenteditable], [data-pruef="gs-thema"]')]
+        .map((e) => `${e.tagName.toLowerCase()}[${e.getAttribute('data-pruef') ?? e.getAttribute('href') ?? ''}]`);
+      assert.deepEqual(bedienbar, [], `${wo}: Bedienelemente auf der Leinwand`);
+    }
+    // die Folge kennt ihr Thema – auf der Leinwand ohne Link
+    anzeige.setze(pruefeBuehne(faelle[3]![1], g)!);
+    assert.ok(anzeige.element.querySelector('[data-pruef="gs-entscheidung"]'), 'Folge gezeichnet');
+  } finally {
+    anzeige.entferne();
+  }
+});

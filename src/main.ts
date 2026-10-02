@@ -19,8 +19,8 @@ import { erzeugeKanal } from './regie/kanal.ts';
 import { setzeMarke } from './ui/marke.ts';
 import { setzeAbbildungsBilder } from './ui/bausteine/abbildung.ts';
 import { istAbbildungsId, leseRoute, routeHash, type Route } from './ui/route.ts';
-import { ersetze, h } from './ui/h.ts';
-import { bogenKopf, ersatzBogenFuerStrgP } from './ui/druck.ts';
+import { ersetze } from './ui/h.ts';
+import { ersatzBogenFuerLeinwand, ersatzBogenFuerStrgP, ersatzDruck } from './ui/druck.ts';
 import { installiereTooltips, type Tooltips } from './ui/bausteine/tooltip.ts';
 import { erzeugeGeschichte, ladeStand, type GeschichteFlaeche, type SpeicherGriff } from './ui/flaechen/geschichte.ts';
 import { baueStart } from './ui/flaechen/start.ts';
@@ -37,18 +37,6 @@ const VERSION = fassungText();
 const KANAL = 'regie';
 
 type Betriebsart = 'seite' | 'regie' | 'leinwand';
-
-/** Ersatzbogen für Strg+P ohne eigenen Druckweg; auf der Leinwand ohne den Hinweis auf die Regie (R67) */
-function ersatzDruck(mitRegie = true): { titel: string; teile: HTMLElement[] } {
-  const wege = mitRegie ? W.druck.ersatzWege : W.druck.ersatzWege.slice(0, 1);
-  return {
-    titel: W.druck.ersatzTitel,
-    teile: [
-      bogenKopf(W.druck.ersatzTitel, VERSION, false),
-      h('section', { class: 'druck-teil' }, h('p', null, W.druck.ersatzText), h('ul', null, wege.map((x) => h('li', null, x)))),
-    ],
-  };
-}
 
 function betriebsart(r: Route): Betriebsart {
   return r.flaeche === 'regie' ? 'regie' : r.flaeche === 'leinwand' ? 'leinwand' : 'seite';
@@ -71,7 +59,7 @@ function starteSeite(wurzel: HTMLElement): void {
   let story: GeschichteFlaeche | null = null;
   let tipps: Tooltips | null = null;
   let flaeche = '';
-  ersatzBogenFuerStrgP(() => ['start', 'story', 'explore'].includes(document.body.dataset['flaeche'] ?? '') || document.querySelector('[data-pruef="thema-drucken"]') === null, () => ersatzDruck());
+  ersatzBogenFuerStrgP(() => ['start', 'story', 'explore'].includes(document.body.dataset['flaeche'] ?? '') || document.querySelector('[data-pruef="thema-drucken"]') === null, () => ersatzDruck(VERSION));
 
   const raeume = (): void => {
     for (const d of document.querySelectorAll<HTMLDialogElement>('dialog[open]')) d.close();
@@ -194,7 +182,7 @@ function starteLeinwandFenster(wurzel: HTMLElement): void {
   starteLeinwand(wurzel, { inhalte, kanal, version: VERSION });
   document.body.dataset['flaeche'] = 'leinwand';
   document.title = `${W.leinwand.titel} · ${TITEL}`;
-  ersatzBogenFuerStrgP(() => true, () => ersatzDruck(false));
+  ersatzBogenFuerLeinwand(VERSION);
   window.addEventListener('hashchange', () => {
     if (betriebsart(leseRoute(location.hash)) !== 'leinwand') location.reload();
   });

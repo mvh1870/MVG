@@ -283,7 +283,7 @@ Die abgestimmte Gewichtung: A liegt vorn, die Projektsteuerung empfiehlt das Ers
 
 Die Stufen des Termingewichts zeigen, warum die Gewichtungsprüfung Pflicht ist: Bei einem Termingewicht von 3 statt 5 steht es 31 : 31. Die Empfehlung für A gilt also nur unter der vereinbarten Terminpriorität – und genau das muss in der Vorlage stehen.
 
-Zur Vorlage gehören außerdem der Stand von Kosten- und Terminplan, die Nachweise für Gleichwertigkeit und Lieferbarkeit des Ersatzgeräts, die verbleibenden Risiken beider Wege, die nötigen Freigaben, die befugte Stelle und der Entscheidungstermin. Im Beispiel liegt die Entscheidung im Mandat der Bauherren-PL. Getroffen wird sie hier nicht: Das Beispiel zeigt nur die Vorbereitung.
+Zur Vorlage gehören außerdem der Stand von Kosten- und Terminplan, die Nachweise für Gleichwertigkeit und Lieferbarkeit des Ersatzgeräts, die verbleibenden Risiken beider Wege, die nötigen Freigaben, die befugte Stelle und der Entscheidungstermin. Im Beispiel liegt die Sachentscheidung im Mandat der Bauherren-PL; gehen die Mehrkosten zulasten der Risikoreserve, gibt deren Einsatz der Bauherr frei – auch das gehört zu den nötigen Freigaben. Getroffen wird sie hier nicht: Das Beispiel zeigt nur die Vorbereitung.
 :::
 
 ::: abschnitt k14.6

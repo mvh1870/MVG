@@ -18,7 +18,7 @@ after(() => dom.window.close());
 
 const { inhalte } = await import('../src/inhalte/index.ts');
 const { baueExplore } = await import('../src/ui/flaechen/explore.ts');
-const { rangfolge } = await import('../src/geschichte/mcda.ts');
+const { kipppunkte, rangfolge } = await import('../src/geschichte/mcda.ts');
 const { W } = await import('../src/ui/woerter.ts');
 
 const summeIm = (el: HTMLElement, id: string): number => {
@@ -91,4 +91,76 @@ test('Risikomatrix (R67): die Legende nennt bei der höchsten Stufe die Ausnahme
   // die Zelle W 1 / A 5 steht in dieser Stufe, die Zelle W 5 / A 1 nicht
   assert.equal(el.querySelector<HTMLElement>('.ex-zelle[data-w="1"][data-a="5"]')?.dataset['stufe'], 'vorrangig');
   assert.equal(el.querySelector<HTMLElement>('.ex-zelle[data-w="5"][data-a="1"]')?.dataset['stufe'], 'gezielt');
+});
+
+test('MCDA-Rechner (R68): der Fokus bleibt nach einer Änderung auf derselben Auswahl (Gewicht und Punkte)', () => {
+  const g = inhalte.geschichte;
+  assert.ok(g);
+  const el = baueExplore({ inhalte, werkzeug: 'mcda', bedienbar: true });
+  document.body.replaceChildren(el);
+  const k = g.kriterien[1];
+  assert.ok(k);
+  const gewicht = `${W.geschichte.gewicht} ${k.titel}`;
+  const ersteOption = el.querySelector<HTMLSelectElement>('select.ex-punkt-wahl:not([aria-label^="Gewicht"])');
+  assert.ok(ersteOption);
+  const punkte = ersteOption.getAttribute('aria-label') ?? '';
+  for (const name of [gewicht, punkte]) {
+    const hole = (): HTMLSelectElement => {
+      const s = el.querySelector<HTMLSelectElement>(`select[aria-label="${name}"]`);
+      assert.ok(s, name);
+      return s;
+    };
+    hole().focus();
+    for (const wert of ['1', '4']) {
+      const s = hole();
+      s.value = wert;
+      s.dispatchEvent(new Event('change', { bubbles: true }));
+      assert.notEqual(hole(), s, 'die Tabelle ist neu gezeichnet');
+      assert.equal(document.activeElement, hole(), `${name}: Fokus bleibt (nach ${wert})`);
+      assert.equal(hole().value, wert);
+    }
+  }
+});
+
+test('MCDA-Rechner (R68): Beispiele sind genau die vollständigen Vorlagen mit Optionen – die unvollständige fehlt', () => {
+  const g = inhalte.geschichte;
+  assert.ok(g);
+  const el = baueExplore({ inhalte, werkzeug: 'mcda', bedienbar: true });
+  const ids = [...el.querySelectorAll<HTMLOptionElement>('[data-pruef="ex-beispiel"] option')].map((o) => o.value);
+  const unvollstaendig = g.stationen.filter((s) => s.vorlage.unvollstaendigHtml !== null).map((s) => s.id);
+  assert.ok(unvollstaendig.length > 0, 'es gibt eine unvollständige Vorlage');
+  for (const id of unvollstaendig) assert.ok(!ids.includes(id), `${id} ist kein Beispiel`);
+  assert.deepEqual(ids, g.stationen.filter((s) => s.vorlage.art === 'optionen' && s.vorlage.unvollstaendigHtml === null).map((s) => s.id));
+});
+
+test('MCDA-Rechner (R69): ein Kipppunkt mit Gleichstand nennt alle an der Spitze („Gleichstand – … und …“)', () => {
+  const g = inhalte.geschichte;
+  assert.ok(g);
+  const el = baueExplore({ inhalte, werkzeug: 'mcda', bedienbar: true });
+  document.body.replaceChildren(el);
+  const wahl = el.querySelector<HTMLSelectElement>('[data-pruef="ex-beispiel"]');
+  assert.ok(wahl);
+  const gewichte = (): Record<string, number> => Object.fromEntries(g.kriterien.map((k) => {
+    const s = el.querySelector<HTMLSelectElement>(`[data-pruef="ex-gewicht-${k.id}"]`);
+    assert.ok(s, k.id);
+    return [k.id, Number(s.value)];
+  }));
+  // das erste Beispiel, dessen Ausgangslage einen Kipppunkt mit Gleichstand hat
+  let fund: { titel: string[]; kriterium: string; gewicht: number } | null = null;
+  for (const id of [...wahl.options].map((o) => o.value)) {
+    wahl.value = id;
+    wahl.dispatchEvent(new Event('change', { bubbles: true }));
+    const st = g.stationen.find((x) => x.id === id);
+    assert.ok(st);
+    const opts = st.vorlage.optionen.filter((o) => !o.klaerung);
+    const k = kipppunkte(opts, g.kriterien, gewichte()).find((x) => x.spitze.length > 1);
+    if (k === undefined) continue;
+    fund = { titel: k.spitze.map((x) => opts.find((o) => o.id === x)?.titel ?? x), kriterium: g.kriterien.find((c) => c.id === k.kriterium)?.titel ?? k.kriterium, gewicht: k.gewicht };
+    break;
+  }
+  assert.ok(fund, 'ein Beispiel mit Gleichstand an einem Kipppunkt');
+  const zeilen = [...el.querySelectorAll('.gs-kipp li')].map((li) => li.textContent ?? '');
+  const soll = `${fund.kriterium} auf ${fund.gewicht}: Gleichstand – ${fund.titel.join(' und ')}`;
+  assert.ok(fund.titel.length >= 2);
+  assert.ok(zeilen.includes(soll), `„${soll}“ fehlt in ${JSON.stringify(zeilen)}`);
 });

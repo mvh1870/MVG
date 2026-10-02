@@ -157,7 +157,7 @@ export const STATUS_BEDINGUNG = /^(kosten|puffer|offen)(<=|>=|<|>)(-?\d+(?:\.\d+
  * der beiden Formen; „kurz“ / „lang“ – der gewählte Weg; „puffer<0“ usw. – der Status bei der Lage der Station `bei`
  * (ohne `bei` gilt eine Statusbedingung nie).
  */
-export function gilt(g: Geschichte, stand: Stand, wenn: string | null, bei: Station | null = null): boolean {
+export function gilt(g: Geschichte, stand: Stand, wenn: string | null, bei: Station | 'ende' | null = null): boolean {
   if (wenn === null) return true;
   return wenn.split('&').every((roh) => {
     const teil = roh.trim();
@@ -166,7 +166,7 @@ export function gilt(g: Geschichte, stand: Stand, wenn: string | null, bei: Stat
     const sb = STATUS_BEDINGUNG.exec(teil);
     if (sb !== null) {
       if (bei === null) return false;
-      const wert = status(g, stand, { ort: 'station', station: bei.id, teil: 'lage' })[sb[1] as StatusSchluessel];
+      const wert = status(g, stand, bei === 'ende' ? { ort: 'ende' } : { ort: 'station', station: bei.id, teil: 'lage' })[sb[1] as StatusSchluessel];
       const grenze = Number(sb[3]);
       switch (sb[2]) {
         case '<': return wert < grenze;

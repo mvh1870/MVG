@@ -81,6 +81,26 @@ export async function lauf(seite, h) {
   // Vorlage ohne Wahl: kein Weiter
   await weiter();
   await h.erwarte('.gs-navi-hinweis:has-text("wählen")');
+  // R68 (WCAG 2.1.1, 3.2.2): Pfeiltasten am Gewichte-Regler ändern das Gewicht – der Fokus bleibt, die Story blättert nicht
+  {
+    const regler = '.gs-gewichte input[data-kriterium="termin"]';
+    await seite.locator(regler).focus();
+    const vorher = Number(await seite.locator(regler).inputValue());
+    await h.taste('ArrowLeft');
+    await h.warte(60);
+    await h.taste('ArrowLeft');
+    await h.warte(60);
+    const r = await seite.evaluate((sel) => ({
+      fokus: document.activeElement?.getAttribute('data-pruef') ?? document.activeElement?.tagName ?? '',
+      teil: document.body.dataset['teil'] ?? '',
+      wert: /** @type {HTMLInputElement | null} */ (document.querySelector(sel))?.value ?? null,
+    }), regler);
+    const nachher = Number(r.wert);
+    if (r.fokus !== 'gewichte-termin') h.befund(`S1 Gewichte: Fokus nach zwei Pfeiltasten auf ${r.fokus}, erwartet der Regler`);
+    if (r.teil !== 'vorlage') h.befund(`S1 Gewichte: Pfeiltaste am Regler hat geblättert (Teil ${r.teil})`);
+    if (nachher !== vorher - 2) h.befund(`S1 Gewichte: Termin ${nachher}, erwartet ${vorher - 2}`);
+  }
+  // die Wahl setzt die Gewichte auf die gewählte Variante zurück
   await h.klick('[data-pruef="option-A"]');
   await pruefe('s1-vorlage');
   await weiter();

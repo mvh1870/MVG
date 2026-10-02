@@ -44,13 +44,19 @@ export function schuetzeEinheiten(text: string): string {
     .replace(/(\d)–(?=\d)/gu, '$1\u2060–\u2060');
 }
 
+/** Weiche Trennstellen an Kompositum-Fugen, ohne den Umbruch nach „/“ (kein unsichtbares Zeichen im Text, R12/R13). */
+export function nurFugen(text: string): string {
+  return mitTrennstellen(text).replace(/\u200b/gu, '');
+}
+
 /** R60/R68: schützt Zahl und Einheit in allen Textknoten unter `wurzel` (nur Anzeige). */
 export function schuetzeEinheitenIn(wurzel: Node): void {
   const doc = wurzel.ownerDocument ?? document;
   const gang = doc.createTreeWalker(wurzel, 4);
   for (let n = gang.nextNode(); n !== null; n = gang.nextNode()) {
     const alt = n.nodeValue ?? '';
-    const neu = schuetzeEinheiten(alt);
+    // R69: dazu weiche Trennstellen an den Fugen langer Komposita (Browser ohne deutsches Trennwörterbuch)
+    const neu = nurFugen(schuetzeEinheiten(alt));
     if (neu !== alt) n.nodeValue = neu;
   }
 }
@@ -164,7 +170,7 @@ export function mitTrennstellen(text: string): string {
   return text.replace(/(?<=[\p{L}-])\/(?=\p{L})/gu, '/\u200b').replace(/\p{L}{12,}/gu, (wort) => wort.replace(/(?<=\p{L}(?:ungs|heits|keits|schafts|tions|täts|stands|ßnahmen|agement|umenten|triebs|utzen|ister|tritts|ketten|lagen|gabe|schutz|ohbau|struktur|upreis|osten))(?!(?<=agement)s)(?!(?<=gabe)n[^aeiouäöü])(?=\p{Ll}{4})/gu, '\u00ad'))
     // R56: „Daten|anforderung“ (Tabelle k8.1-t1 im Druck) – die Fuge liegt vor dem Grundwort, nicht hinter einer Endung der Liste; R61: „Status|bericht“ (Datei-Karte B4)
     // R64: „Folge|kosten“ (Stationstitel A5 stand bei 1008–1088 px über 93 % seiner Zeile)
-    .replace(/(?<=\p{L}{4})(?=anforderung|bericht|kosten)/gu, '\u00ad')
+    .replace(/(?<=\p{L}{4})(?=anforderung|bericht|kosten|verknüpfung|bewertung)/gu, '\u00ad')
     // R68: Fugen, die die Liste oben nicht kennt (Etappen, Umschalter, Bausteine in schmalen Spalten)
     .replace(/(?<=Mandats|Beschluss)(?=\p{Ll}{4})/gu, '\u00ad')
     .replace(/Entscheidungs-/gu, 'Entschei\u00addungs-');

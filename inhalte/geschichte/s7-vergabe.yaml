@@ -19,10 +19,14 @@ lage: |
   Und Holger Stein, der Kostenplaner der Generalplanung, fällt für Wochen aus. In vielen Projekten hieße das: Der Kostenstand liegt auf seinem Rechner. Hier übernimmt eine Kollegin aus seinem Büro – der Datenstand, auf den sich Register und Vorlagen beziehen, liegt in der Software der GML.
 lage-folgen: { kosten: 0.3 }
 # Vertagte Entscheidungen, die dieser Bericht als erledigt meldet: Lieferzeit (s3 = B) und Brandschutz (s6 = K).
-# Über Basis plus Reserve liegt die Prognose nach der Lage genau auf den Wegen s4 = A und s5 != A (nachgerechnet, tests/geschichte.test.ts).
+# Über Basis plus Reserve liegt die Prognose nach der Lage genau auf den Wegen s4 = A und s5 != A (nachgerechnet, tests/geschichte.test.ts);
+# die Berichtszeilen dazu prüfen den Status (kosten>61.3). Bei s5 = B wird damit die Neufestlegung der Projektbasis nötig – eine offene
+# Entscheidung des Bauherrn (offen +1, als Wahlbedingung, weil lage-folgen-bedingt keine Statusbedingung kennt); s8 baut sie ab, wo die
+# Prognose wieder darunter liegt. Bei s5 = C zählt die Neufestlegung schon seit Mai 2026.
 lage-folgen-bedingt:
   - { wenn: "s3=B", folgen: { offen: -1 } }
   - { wenn: "s6=K", folgen: { offen: -1 } }
+  - { wenn: "s4=A & s5=B", folgen: { offen: 1 } }
 bericht:
   titel: Monatsbericht · März 2027
   zeilen:
@@ -34,24 +38,25 @@ bericht:
       wenn: s3=B
     - text: Holzbau für Gesamt- und Grundschule; mit der Sporthalle in Stahlbeton passt die Lieferzeit zum Montagebeginn – RIS-009 geschlossen.
       wenn: s3=C
+    - Freigaben zum Abschluss von LPH 5 (Dezember 2026) und LPH 6 (Februar 2027) vom Bauherrn erteilt.
     - RIS-014 geschlossen – die GML hat geprüft, die angekündigten Mehrleistungen gehören zum Planungsvertrag; kein Nachtrag.
     - Holger Stein vertreten ab 8. März – der Kostenstand liegt in der Software der GML, keine Übergabelücke.
     - text: Brandschutz – die Behörde hat die geänderten Pläne bestätigt; PRB-002 geschlossen.
       wenn: s6=A
     - text: Brandschutz – die Behörde hat die Lösung mit Gutachten im August 2026 abgelehnt; die Auflage ist umgesetzt wie vorläufig geplant (MAS-011), die 0,4 Mio. € standen schon in der Prognose; PRB-002 geschlossen, die vertagte Entscheidung erledigt.
       wenn: s6=K
-    - text: Risikoreserve – seit Mai 2026 für die bekannten Mehrkosten vorgesehen; freigegeben ist noch nichts.
+    - text: Risikoreserve – seit Mai 2026 für die bekannten Mehrkosten vorgesehen; freigegeben hat der Bauherr bisher die Mehrkosten aus den Beschlüssen des Änderungsgremiums.
       wenn: s5=B & s3!=A
-    - text: Risikoreserve – seit Mai 2026 für die bekannten Mehrkosten vorgesehen; freigegeben sind bisher die 0,6 Mio. € für den Elementzuschlag.
+    - text: Risikoreserve – seit Mai 2026 für die bekannten Mehrkosten vorgesehen; freigegeben hat der Bauherr bisher die Mehrkosten aus den Beschlüssen des Änderungsgremiums und die 0,6 Mio. € für den Elementzuschlag.
       wenn: s5=B & s3=A
     - text: Einsparpaket aus dem Mai 2026 umgesetzt – 1,5 Mio. € weniger für Ausstattung und Außenanlagen.
       wenn: s5=A
     - text: Neufestlegung der Projektbasis – der Bauherr hat sie im Lenkungskreis zurückgestellt, bis die Hauptvergaben abgeschlossen sind; es gilt die bisherige Basis. Die Entscheidung bleibt offen.
-      wenn: s5=C
-    - text: Mit dem neuen Mehrbetrag liegt die Prognose über Basis plus Reserve (61,3 Mio. €) – die Reserve reicht nicht mehr. Nötig wird eine Neufestlegung der Projektbasis; die Projektsteuerung bereitet die Vorlage für den Lenkungskreis vor.
-      wenn: s4=A & s5=B
-    - text: Mit dem neuen Mehrbetrag liegt die Prognose über Basis plus Reserve (61,3 Mio. €) – die zurückgestellte Neufestlegung der Projektbasis wird nötig; die Projektsteuerung bereitet die Vorlage für den Lenkungskreis vor.
-      wenn: s4=A & s5=C
+      wenn: s5=C & kosten<=61.3
+    - text: Mit dem neuen Mehrbetrag liegt die Prognose über Basis plus Reserve (61,3 Mio. €) – die Reserve reicht nicht mehr. Nötig wird eine Neufestlegung der Projektbasis; die Projektsteuerung bereitet die Vorlage für den Lenkungskreis vor, der Beschluss des Bauherrn steht noch aus.
+      wenn: s5=B & kosten>61.3
+    - text: Mit dem neuen Mehrbetrag liegt die Prognose über Basis plus Reserve (61,3 Mio. €) – die Reserve reicht nicht mehr. Die zurückgestellte Neufestlegung der Projektbasis wird jetzt nötig; die Projektsteuerung schreibt die vorliegende Vorlage mit dem Vergabeergebnis fort und legt sie dem Lenkungskreis erneut vor. Die Entscheidung bleibt offen.
+      wenn: s5=C & kosten>61.3
     - text: Terminpuffer überschritten – die Inbetriebnahme zum Schuljahr 2028/29 ist nach heutigem Stand gefährdet, damit auch die Förderfrist.
       wenn: puffer<0
     - Der Einsatz der Risikoreserve braucht die Freigabe des Bauherrn.
@@ -116,9 +121,9 @@ vorlage:
   optionen:
     - id: A
       titel: Reserve freigeben und beauftragen
-      text: Die Reserve deckt den Mehrbetrag des Holzbaus von zusammen 0,9 Mio. €; der Auftrag geht an das günstigste wertbare Angebot.
+      text: Die Reserve deckt den Mehrbetrag des Holzbaus von zusammen 0,9 Mio. €, soweit sie reicht; der Auftrag geht an das günstigste wertbare Angebot.
       punkte:
-        kosten: [5, "keine Mehrkosten über die Prognose hinaus; der Mehrbetrag kommt aus der Reserve"]
+        kosten: [5, "keine Mehrkosten über die Prognose hinaus"]
         termin: [5, "kein Verzug"]
         qualitaet: [4, "wie geplant"]
         klima: [4, "Holzbau wie geplant"]

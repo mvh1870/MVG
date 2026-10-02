@@ -453,7 +453,7 @@ seite: rechts
 Taktung von Governance-Terminen
 
 ### Erklärung
-Den Takt legt das Betriebshandbuch fest – im Standard wöchentliche Prüfung und ein Monatstermin.
+Den Takt legt das Betriebshandbuch fest – im Standard in aktiven Zeiten wöchentliche Prüfung und ein Monatstermin.
 :::
 
 ::: posten optionen

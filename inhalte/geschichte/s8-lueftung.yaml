@@ -10,26 +10,34 @@ kurzfassung: true
 # Skalen des Projektblatts (s1): Kosten 80 TEUR → 3, 20 TEUR → 5; Termin 7 Tage → 5, 28 Tage → 2.
 # Dringliches sofort melden, am selben Arbeitstag dokumentieren (v24:hb-4); ein eingetretener Zustand ist ein Problem (v24:hb-1.4).
 # Die Prognose liegt in s8 auf jedem Weg über der Projektbasis (Lage ≥ 58,83): Mehrkosten gehen zulasten der Risikoreserve, deren Einsatz
-# nur der Bauherr freigibt (k3.2-t1; benötigte Freigaben in der Vorlage, v24:hb-3.1, v24:hb-3.2). Sachentscheidung im Mandat der PL (k4.2-p3).
+# nur der Bauherr freigibt (k3.2-t1; benötigte Freigaben in der Vorlage, v24:hb-3.1, v24:hb-3.2) – allgemeine Regel aus s1, wie in s3, s4, s6.
+# Liegt die Prognose schon über Basis plus Reserve, deckt die Reserve nichts mehr; darüber braucht es die Neufestlegung der Projektbasis
+# (k13-t1). Grund und Optionen sind deshalb wegneutral gefasst. Sachentscheidung im Mandat der PL (k4.2-p3).
 belege: [v24:hb-1.4, v24:hb-3, v24:hb-3.1, v24:hb-3.2, v24:hb-4, k3.2-t1, k4.2-p3]
 lage: |
-  Januar 2028. Das zentrale Lüftungsgerät der Gesamtschule kommt vier Wochen später; ein gleichwertiges Ersatzgerät wäre in einer Woche lieferbar.
+  Das zentrale Lüftungsgerät der Gesamtschule kommt vier Wochen später; ein gleichwertiges Ersatzgerät wäre in einer Woche lieferbar.
 
-  In derselben Woche ist ein Gerüstfeld an der Sporthalle nicht gesichert. Die Projektsteuerung meldet es sofort an Bauleitung und Sicherheitskoordination; eine Stunde später ist das Feld gesperrt, dokumentiert am selben Tag. Schutz wartet nicht auf einen Vergleich.
-# Die Neuausschreibung (s7 = B) war vertagt (offen +1); der Bericht meldet den Zuschlag. Offen bleibt am Ende nur die
-# Neufestlegung der Projektbasis (s5 = C) – der Bericht sagt es.
+  In derselben Woche ist ein Gerüstfeld an der Sporthalle nicht gesichert. Die Projektsteuerung meldet es sofort an Bauleitung und Sicherheitskoordination; eine Stunde später ist das Feld gesperrt, dokumentiert am selben Tag.
+# Die Neuausschreibung (s7 = B) war vertagt (offen +1); der Bericht meldet den Zuschlag. Die in s7 nötig gewordene Neufestlegung
+# (s4 = A, s5 = B, offen +1) entfällt, wo die Prognose nach der Lage wieder unter Basis plus Reserve liegt – genau auf diesen Wegen
+# (nachgerechnet, tests/geschichte.test.ts); sonst bleibt sie offen, wie bei s5 = C. Der Bericht sagt es jeweils.
 lage-folgen-bedingt:
   - { wenn: "s7=B", folgen: { offen: -1 } }
+  - { wenn: "s4=A & s5=B & s7=C", folgen: { offen: -1 } }
+  - { wenn: "s4=A & s5=B & s7=B & s3=B", folgen: { offen: -1 } }
+  - { wenn: "s4=A & s5=B & s7=B & s3=A & s6=A", folgen: { offen: -1 } }
 bericht:
   titel: Monatsbericht · Januar 2028
   zeilen:
-    - Dringliche Meldung am 11. Januar – Gerüstfeld Sporthalle gesperrt, Problem PRB-018.
+    - Dringliche Meldung am 11. Januar – Gerüstfeld gesperrt, Problem PRB-018.
     - Neues Problem PRB-019 – Lüftungsgerät vier Wochen später; Entscheidung bis 19. Januar.
-    - text: Seit Mai 2026 – Brandschutzauflage zum Holzbau umgesetzt (0,4 Mio. €, 7 Tage); Vergabe Holzbau 0,3 Mio. € über der Prognose.
+    - text: Seit Mai 2026 – Brandschutzauflage umgesetzt (0,4 Mio. €, 7 Tage); Vergabe Holzbau 0,3 Mio. € über der Prognose; Freigaben zum Abschluss von LPH 5 bis 7 erteilt.
       wenn: kurz
     - text: Seit März 2027 – Lieferzeit Holzbau mit der Vergabe geklärt, 21 Wochen; der Montagebeginn liegt rund 35 Tage später (PRB-008). Die vertagte Entscheidung ist erledigt.
       wenn: kurz & s3=B
-    - text: Risikoreserve – 0,9 Mio. € für den Holzbau freigegeben; über 61,3 Mio. € (Basis plus Reserve) hinaus deckt sie nichts mehr.
+    - text: Freigabe zum Abschluss von LPH 7 im Mai 2027 vom Bauherrn erteilt.
+      wenn: lang
+    - text: Risikoreserve – 0,9 Mio. € für den Holzbau freigegeben; über 61,3 Mio. € hinaus deckt sie nichts.
       wenn: s7=A
     - text: Neuausschreibung Holzbau – Zuschlag im Mai 2027, rund 0,3 Mio. € unter dem ersten Angebot; der Montagebeginn liegt rund 42 Tage später, wie seit März 2027 im Terminpuffer. PRB-007 geschlossen, die vertagte Entscheidung erledigt.
       wenn: s7=B
@@ -39,25 +47,18 @@ bericht:
       wenn: s7=C & s3=A
     - text: Neufestlegung der Projektbasis – seit Mai 2026 offen. Die Hauptvergaben sind abgeschlossen, die Vorlage liegt beim Lenkungskreis; der Beschluss des Bauherrn und die Bestätigung durch den Stadtrat stehen noch aus.
       wenn: s5=C
-    # Große Mensa ohne Einsparpaket (s4 = A, s5 = B): ob die Prognose jetzt über 61,3 liegt, hängt an s7, bei B auch an s3/s6 (nachgerechnet).
+    # Grenze Basis plus Reserve: über den Status der Lage (Statusbedingung), nicht über Wahlen – nachgerechnet über alle Wege.
+    - text: Die Prognose liegt über Basis plus Reserve (61,3 Mio. €) – die Reserve reicht nicht mehr.
+      wenn: s5=C & kosten>61.3
+    - text: Die Prognose liegt wieder unter Basis plus Reserve (61,3 Mio. €); der Spielraum ist klein.
+      wenn: s4=A & s5=C & kosten<=61.3
     - text: Neufestlegung der Projektbasis – nötig, weil die Prognose über Basis plus Reserve (61,3 Mio. €) liegt; die Vorlage liegt beim Lenkungskreis, der Beschluss des Bauherrn steht noch aus.
-      wenn: s4=A & s5=B & s7=A
-    - text: Neufestlegung der Projektbasis – nötig, weil die Prognose über Basis plus Reserve (61,3 Mio. €) liegt; die Vorlage liegt beim Lenkungskreis, der Beschluss des Bauherrn steht noch aus.
-      wenn: s4=A & s5=B & s7=B & s3=C
-    - text: Neufestlegung der Projektbasis – nötig, weil die Prognose über Basis plus Reserve (61,3 Mio. €) liegt; die Vorlage liegt beim Lenkungskreis, der Beschluss des Bauherrn steht noch aus.
-      wenn: s4=A & s5=B & s7=B & s3=A & s6=K
-    - text: Mit dem Ergebnis der Neuausschreibung liegt die Prognose knapp unter Basis plus Reserve (61,3 Mio. €); der Spielraum ist klein – was darüber hinausgeht, braucht eine Neufestlegung der Projektbasis.
-      wenn: s4=A & s5=B & s7=B & s3=B
-    - text: Mit dem Ergebnis der Neuausschreibung liegt die Prognose knapp unter Basis plus Reserve (61,3 Mio. €); der Spielraum ist klein – was darüber hinausgeht, braucht eine Neufestlegung der Projektbasis.
-      wenn: s4=A & s5=B & s7=B & s3=A & s6=A
-    - text: Mit der Einsparung im Ausbau liegt die Prognose wieder unter Basis plus Reserve (61,3 Mio. €); der Spielraum ist klein – was darüber hinausgeht, braucht eine Neufestlegung der Projektbasis.
-      wenn: s4=A & s5=B & s7=C
-    # Wege, auf denen erst das Ersatzgerät (+0,08) die Prognose über Basis plus Reserve hebt (nachgerechnet, tests/geschichte.test.ts):
-    # Lage s8 61,28 (s3=A, s4=A, s6=A, s7=B) bzw. 61,23 (s3=C, s4=B, s6=K, s7=A), jeweils s5=B oder C.
-    - text: Achtung – mit dem Ersatzgerät (+0,08 Mio. €) läge die Prognose über Basis plus Reserve (61,3 Mio. €); dann braucht es die Neufestlegung der Projektbasis.
-      wenn: s3=A & s4=A & s5!=A & s6=A & s7=B
-    - text: Achtung – mit dem Ersatzgerät (+0,08 Mio. €) läge die Prognose über Basis plus Reserve (61,3 Mio. €); dann braucht es die Neufestlegung der Projektbasis.
-      wenn: s3=C & s4=B & s5!=A & s6=K & s7=A
+      wenn: s5=B & kosten>61.3
+    - text: Die Prognose liegt wieder unter Basis plus Reserve (61,3 Mio. €) – die Neufestlegung der Projektbasis ist nicht mehr nötig, die Vorlage zurückgezogen. Der Spielraum ist klein.
+      wenn: s4=A & s5=B & kosten<=61.3
+    # Erst das Ersatzgerät (+0,08) höbe die Prognose über die Grenze: Lage über 61,22 und höchstens 61,3.
+    - text: Achtung – mit dem Ersatzgerät (+0,08 Mio. €) läge die Prognose über Basis plus Reserve (61,3 Mio. €); dann reicht die Reserve nicht mehr.
+      wenn: kosten>61.22 & kosten<=61.3
     - text: Terminpuffer überschritten – die Inbetriebnahme zum Schuljahr 2028/29 ist nach heutigem Stand nicht zu halten, die Förderfrist gefährdet.
       wenn: puffer<0
   reaktion: Bitte entscheiden Sie zwischen Ersatzgerät und Abwarten.
@@ -80,22 +81,22 @@ vorlage:
   art: optionen
   frage: Ersatzgerät oder Lieferung abwarten?
   grund: |
-    Beide Wege erfüllen die Anforderungen – die Haustechnikplanung hat die Gleichwertigkeit des Ersatzgeräts bestätigt. Es geht um Geld gegen Zeit. Die Prognose liegt über der Projektbasis; Mehrkosten gehen deshalb zulasten der Risikoreserve, und deren Einsatz gibt nur der Bauherr frei. Die Sachentscheidung bleibt in Ihrem Mandat.
-  stelle: Sie als Bauherren-PL – im Mandat bis 100 TEUR; die Mehrkosten aus der Reserve gibt zusätzlich der Bauherr frei (Dr. Olbers)
+    Beide Wege sind gleichwertig, bestätigt von der Haustechnikplanung; es geht um Geld gegen Zeit. Mehrkosten gehen zulasten der Risikoreserve, soweit sie reicht; darüber hinaus braucht es die Neufestlegung der Projektbasis durch den Bauherrn.
+  stelle: Sie als Bauherren-PL – im Mandat bis 100 TEUR; Mehrkosten aus der Reserve gibt der Bauherr frei
   termin: 19. Januar 2028
   verzug: Nach dem 19. Januar ist das Ersatzgerät nicht mehr in einer Woche lieferbar.
   muss: Beide Optionen erfüllen Funktion, Brandschutz und Hygieneanforderungen.
   optionen:
     - id: A
       titel: Ersatzgerät
-      text: Das gleichwertige Gerät eines anderen Herstellers wird bestellt; die 0,08 Mio. € kommen aus der Reserve, freigegeben vom Bauherrn.
+      text: Das gleichwertige Gerät eines anderen Herstellers wird bestellt.
       punkte:
         kosten: [3, "+0,08 Mio. €"]
         termin: [5, "rund 7 Tage Verzug"]
         qualitaet: [5, "volle Funktion"]
         klima: [4, "gleiche Effizienz"]
       folgen: { kosten: 0.08, puffer: -7 }
-      konsequenz: Die Projektsteuerung bereitet die Freigabe der 0,08 Mio. € aus der Reserve vor, die noch am selben Tag an Dr. Olbers geht, und dokumentiert sie getrennt vom Beschluss. Danach läuft die Bestellung über den Vertragsweg der Haustechnik; die Projektsteuerung verfolgt Lieferung und Einbau und schließt das Problem mit der Inbetriebnahme.
+      konsequenz: Die Projektsteuerung legt die Freigabe der 0,08 Mio. € noch am selben Tag Dr. Olbers vor und dokumentiert sie getrennt vom Beschluss. Bestellt wird über den Vertragsweg der Haustechnik; die Projektsteuerung verfolgt Lieferung und Einbau.
     - id: B
       titel: Abwarten
       text: Die ursprüngliche Lieferung wird abgewartet.
@@ -105,10 +106,10 @@ vorlage:
         qualitaet: [5, "volle Funktion"]
         klima: [4, "gleiche Effizienz"]
       folgen: { kosten: 0.02, puffer: -28 }
-      konsequenz: Die Baustelle stellt um; die 0,02 Mio. € Vorhaltekosten gibt der Bauherr aus der Reserve frei. Die Projektsteuerung führt das Terminrisiko für den Schulstart im Register und legt es im nächsten Monatstermin vor.
+      konsequenz: Die Baustelle stellt um; die 0,02 Mio. € Vorhaltekosten gibt der Bauherr frei. Die Projektsteuerung führt das Terminrisiko für den Schulstart im Register und legt es im nächsten Monatstermin vor.
   empfehlung:
     option: A
-    text: Die Projektsteuerung empfiehlt das Ersatzgerät – mit „Termin vor Kosten“ 57 zu 48, mit „Ausgewogen“ 59 zu 55. Achtung – bei „Kosten vor Termin“ dreht sich die Rangfolge knapp (53 zu 54); das muss sichtbar bleiben.
+    text: Die Projektsteuerung empfiehlt das Ersatzgerät – mit „Termin vor Kosten“ 57 zu 48, mit „Ausgewogen“ 59 zu 55. Achtung – bei „Kosten vor Termin“ dreht sich die Rangfolge knapp (53 zu 54).
 folge: |
   Eine hohe Punktzahl ersetzt kein Urteil. Deshalb nennt die Empfehlung, bei welchen Gewichten sie kippt.
 so-laeuft-es-oft: |

@@ -17,7 +17,7 @@ abweichungen:
   # (nur hier, nie sichtbar): Wege der Vorgänge v24:hb-1.2, v24:hb-1.3, v24:hb-1 (Abs. 6); Maßnahme und Wirkung v24:hb-1.6,
   # v24:hb-3; Problem v24:hb-1.4; Änderung v24:hb-1.5; Monatsbericht v24:hb-4; Fachbeiträge v24:hb-1 (Abs. 1).
   # Die Felder „beleg“ nennen die nächstliegenden V1.2-Absätze (das Schema verlangt Absatz-IDs).
-  - text: 'Im Bild führt aus der Frühwarnung nur die Kante „wird zu, bestätigt“ zum Risiko. Nach dem Text wird eine Frühwarnung nach ihrer Klärung als Risiko bewertet, als Problem bearbeitet, als Aufgabe weitergeführt oder begründet geschlossen; die Herkunft bleibt verknüpft.'
+  - text: 'Im Bild führt aus der Frühwarnung nur die Kante „wird zu (bestätigt)“ zum Risiko. Nach dem Text wird eine Frühwarnung nach ihrer Klärung als Risiko bewertet, als Problem bearbeitet, als Aufgabe weitergeführt oder begründet geschlossen; die Herkunft bleibt verknüpft.'
     beleg: k6.4.3-p2
   - text: 'Ein gestrichelter Pfeil „Indicator“ führt vom Risiko zurück zur Frühwarnung; der Text schließt diese Richtung aus. Eine überschrittene Schwelle ist ein neuer Hinweis und wird als neue Frühwarnung geklärt; ändern sich die Grundlagen eines bestehenden Risikos, wird seine Bewertung begründet fortgeschrieben.'
     beleg: k6.4.3-p2

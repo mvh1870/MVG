@@ -78,10 +78,13 @@ function mcda(o: ExploreOptionen, w: Werkzeuge): HTMLElement {
     const max = Math.max(1, ...plaetze.map((p) => p.summe));
     const kipp = kipppunkte(opts, g.kriterien, r.gewichte);
     const titel = (id: string): string => opts.find((x) => x.id === id)?.titel ?? id;
-    const auswahl = (wert: number, beimAendern: (n: number) => void, name: string): HTMLElement => o.bedienbar
-      ? h('select', { class: 'ex-punkt-wahl', 'aria-label': name, onchange: (e: Event) => beimAendern(Number((e.target as HTMLSelectElement).value)) },
+    const auswahl = (wert: number, beimAendern: (n: number) => void, name: string, pruef: string): HTMLElement => o.bedienbar
+      ? h('select', { class: 'ex-punkt-wahl', 'aria-label': name, 'data-pruef': pruef, onchange: (e: Event) => beimAendern(Number((e.target as HTMLSelectElement).value)) },
         [1, 2, 3, 4, 5].map((n) => h('option', { value: n, selected: n === wert }, String(n))))
       : h('b', null, String(wert));
+    // R68: die Tabelle wird neu gezeichnet – der Fokus bleibt auf derselben Auswahl (sonst fiele er auf <body>)
+    const aktiv = typeof document !== 'undefined' ? document.activeElement : null;
+    const fokus = aktiv instanceof HTMLElement && ort.contains(aktiv) ? aktiv.dataset['pruef'] ?? null : null;
     ersetze(ort,
       h('p', { class: 'ex-frage' }, h('b', null, st.vorlage.frage), ' ', h('small', null, `${st.datum} · ${st.kurztitel}`)),
       h('div', { class: 'ex-tabelle-rahmen', tabindex: 0, role: 'region', 'aria-label': E.mcdaTabelle },
@@ -90,9 +93,9 @@ function mcda(o: ExploreOptionen, w: Werkzeuge): HTMLElement {
             opts.map((x) => h('th', { scope: 'col' }, `${x.id} · ${x.titel}`)))),
           h('tbody', null, g.kriterien.map((k) => h('tr', null,
             h('th', { scope: 'row' }, k.titel),
-            h('td', null, auswahl(r.gewichte[k.id] ?? 3, (n) => { r = { ...r, gewichte: { ...r.gewichte, [k.id]: n } }; zeichne(); }, `${W.geschichte.gewicht} ${k.titel}`)),
+            h('td', null, auswahl(r.gewichte[k.id] ?? 3, (n) => { r = { ...r, gewichte: { ...r.gewichte, [k.id]: n } }; zeichne(); }, `${W.geschichte.gewicht} ${k.titel}`, `ex-gewicht-${k.id}`)),
             opts.map((x) => h('td', null,
-              auswahl(r.punkte[x.id]?.[k.id] ?? 3, (n) => { r = { ...r, punkte: { ...r.punkte, [x.id]: { ...r.punkte[x.id], [k.id]: n } } }; zeichne(); }, `${x.titel}: ${k.titel}`),
+              auswahl(r.punkte[x.id]?.[k.id] ?? 3, (n) => { r = { ...r, punkte: { ...r.punkte, [x.id]: { ...r.punkte[x.id], [k.id]: n } } }; zeichne(); }, `${x.titel}: ${k.titel}`, `ex-punkt-${x.id}-${k.id}`),
               h('small', null, x.punkte?.[k.id]?.[1] ?? '')))))),
           h('tfoot', null, h('tr', null, h('th', { scope: 'row', colspan: 2 }, W.geschichte.summe),
             opts.map((x) => {
@@ -105,6 +108,7 @@ function mcda(o: ExploreOptionen, w: Werkzeuge): HTMLElement {
         h('h3', null, W.geschichte.kipppunkte),
         kipp.length === 0 ? h('p', null, W.geschichte.keinKipppunkt)
           : h('ul', null, kipp.map((x) => h('li', null, W.geschichte.kipppunkt(g.kriterien.find((c) => c.id === x.kriterium)?.titel ?? x.kriterium, x.gewicht, x.spitze.map(titel)))))));
+    if (fokus !== null) (ort.querySelector(`[data-pruef="${fokus}"]`) as HTMLElement | null)?.focus({ preventScroll: true });
   };
 
   const wahl = o.bedienbar ? h('label', { class: 'ex-beispiel' }, h('span', { class: 't-label' }, E.beispiel),

@@ -109,6 +109,7 @@ export interface Geschichte {
   status: Record<StatusSchluessel, StatusDef>;
   kriterien: Kriterium[];
   prolog: { titel: string; html: string; taktHtml: string };
-  ende: { titel: string; html: string; pufferGut: string; pufferKnapp: string; pufferSchlecht: string };
+  /** `zeilen`: Sätze mit Bedingung (auch Statusbedingungen beim Endstand, R69) */
+  ende: { titel: string; html: string; pufferGut: string; pufferKnapp: string; pufferSchlecht: string; zeilen: Bedingt[] };
   stationen: Station[];
 }

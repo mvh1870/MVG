@@ -108,7 +108,9 @@ function regler(o: SchrittOptionen, gew: Gewichte, beimAendern: (k: string, wert
       const ausgabe = h('output', { class: 'gs-regler-wert', for: id }, String(gew[k.id] ?? 3));
       const feld = h('input', {
         type: 'range', id, min: GEWICHT_MIN, max: GEWICHT_MAX, step: 1, value: gew[k.id] ?? 3,
-        'data-kriterium': k.id,
+        // R68: data-pruef wie die id – zeichnet die Fläche nach einer Änderung neu, setzt zeichne() den Fokus zurück
+        // (sonst fiele er auf <body>, und die nächste Pfeiltaste blätterte die Story)
+        'data-kriterium': k.id, 'data-pruef': id,
         oninput: (e: Event) => {
           const wert = Number((e.target as HTMLInputElement).value);
           ausgabe.textContent = String(wert);
@@ -200,6 +202,7 @@ function vorlage(o: SchrittOptionen, st: Station): HTMLElement {
       regler(o, gew, (k, wert) => o.tue(setzeGewicht(o.g, o.stand, k, wert)), 'gewichte')));
   } else {
     const anzeige = o.gegenprobe ?? gew;
+    let aktuell: Gewichte = anzeige;
     const tabelle = h('div', { class: 'gs-vergleich-ort' }, vergleichTabelle(o, st, anzeige), kippText(o, st, anzeige));
     teile.push(h('section', { class: 'gs-mcda', 'aria-labelledby': 'gs-vergleich-titel' },
       h('h3', { id: 'gs-vergleich-titel' }, w.vergleich),
@@ -209,11 +212,12 @@ function vorlage(o: SchrittOptionen, st: Station): HTMLElement {
         h('summary', null, w.gegenprobe),
         h('p', { class: 'gs-leise' }, w.gegenprobeHinweis),
         regler(o, anzeige, (k, wert) => {
-          const neu = { ...anzeige, [k]: wert };
-          o.setzeGegenprobe(neu);
-          ersetze(tabelle, vergleichTabelle(o, st, neu), kippText(o, st, neu));
+          // R68: von der gerade geltenden Gegenprobe ausgehen – sonst zählte nur der zuletzt bewegte Regler
+          aktuell = { ...aktuell, [k]: wert };
+          o.setzeGegenprobe(aktuell);
+          ersetze(tabelle, vergleichTabelle(o, st, aktuell), kippText(o, st, aktuell));
         }, 'gegenprobe'),
-        o.bedienbar ? h('button', { type: 'button', class: 'gs-leiser-knopf', onclick: () => o.setzeGegenprobe(null) }, w.gegenprobeZurueck) : null)));
+        o.bedienbar ? h('button', { type: 'button', class: 'gs-leiser-knopf', 'data-pruef': 'gegenprobe-zurueck', onclick: () => o.setzeGegenprobe(null) }, w.gegenprobeZurueck) : null)));
     teile.push(h('section', { class: 'gs-empfehlung', 'aria-label': w.empfehlung, 'data-pruef': 'gs-empfehlung' },
       h('p', { class: 'gs-hinweis-titel' }, sym('stempel'), w.empfehlung), empfText));
     teile.push(h('div', { class: 'gs-optionen', role: 'group', 'aria-label': v.frage }, v.optionen.map((x) => optionKarte(o, st, x, empf))));
@@ -273,6 +277,7 @@ function ende(o: SchrittOptionen): HTMLElement {
       h('h1', { class: 'gs-titel', tabindex: -1, 'data-pruef': 'gs-titel' }, o.g.ende.titel)),
     h('div', { class: 'gs-text' }, inhalt(o.g.ende.html)),
     h('p', { class: 'gs-urteil', 'data-urteil': urteil, 'data-pruef': 'gs-urteil' }, inhaltInline(urteilText)),
+    ...o.g.ende.zeilen.filter((z) => gilt(o.g, o.stand, z.wenn, 'ende')).map((z) => h('p', { class: 'gs-urteil', 'data-pruef': 'gs-ende-zeile' }, inhaltInline(z.html))),
     h('dl', { class: 'gs-endstand' },
       h('div', null, h('dt', null, o.g.status.kosten.titel), h('dd', null, t.kosten)),
       h('div', null, h('dt', null, o.g.status.puffer.titel), h('dd', null, t.puffer)),

@@ -22,7 +22,7 @@ bericht:
     - Die Vorlage ist unvollständig – eine zweite zulässige Option ist noch nicht belegt.
     - text: MAS-007 wirksam – Zuschlag für die Holzbauelemente erteilt, Liefertermin vertraglich gesichert; RIS-009 herabgestuft auf gezielt bearbeiten. Der Preis liegt im Rahmen der 0,6 Mio. € Marktpreise aus Version 3; diesen Betrag hat der Bauherr für den Zuschlag aus der Risikoreserve freigegeben.
       wenn: s3=A
-    - text: RIS-009 Lieferzeit Holzbau weiter aktiv · vorrangig bearbeiten; geklärt wird sie mit der Vergabe.
+    - text: RIS-009 Lieferzeit Holzbau weiter aktiv · vorrangig bearbeiten; die Entscheidung bleibt offen, bis die Vergabe sie klärt.
       wenn: s3=B
     - text: AEN-013 Sporthalle in Stahlbeton – Ausführungsplanung angepasst; die Wirkung auf die Lieferzeit zeigt die Vergabe.
       wenn: s3=C
@@ -30,7 +30,7 @@ bericht:
       wenn: s5=C
     - text: Terminpuffer überschritten – die Inbetriebnahme zum Schuljahr 2028/29 ist nach heutigem Stand gefährdet, damit auch die Förderfrist.
       wenn: puffer<0
-  reaktion: Bitte entscheiden Sie, ob die Auflage jetzt umgesetzt oder die Klärung abgewartet wird.
+  reaktion: Was empfehlen Sie dem Änderungsgremium – die Auflage jetzt umsetzen oder die Klärung abwarten?
 vorgaenge:
   - art: problem
     kennung: PRB-002
@@ -52,7 +52,7 @@ vorlage:
   frage: Wird die Auflage jetzt umgesetzt?
   grund: |
     Die Kosten liegen über 100 TEUR – es entscheidet das Änderungsgremium. Zulässig ist im Moment nur ein Weg. Die Alternative braucht eine Antwort der Behörde.
-  stelle: Änderungsgremium – Vorsitz Frank Deppe
+  stelle: Änderungsgremium – Vorsitz Frank Deppe; Mehrkosten aus der Reserve gibt der Bauherr frei
   termin: 24. Juli 2026
   verzug: Jede Woche Warten verschiebt den Abschluss der Flurplanung.
   muss: Brandschutz nach Genehmigung – Option A erfüllt ihn; die Alternative ist noch nicht belegt.

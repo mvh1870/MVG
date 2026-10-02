@@ -142,7 +142,7 @@ Sie bearbeitet alle Vorgänge – Aufgaben, Maßnahmen, Frühwarnungen, Risiken,
 titel: Übersetzung
 symbol: wechsel
 ---
-MVG übersetzt Bauherrenverantwortung in Rollen, Mandate, Freigaben, [[Entscheidungs-ID|Entscheidungs-IDs]], Datenstandslogik, Eskalation, [[Betriebshandbuch]] und [[Befähigung]].
+MVG übersetzt Bauherrenverantwortung in Rollen, Mandate, Freigaben, [[Entscheidungs-ID|Entscheidungs-IDs]], Datenstandslogik, Risiko- und Änderungssteuerung, Eskalation, [[Betriebshandbuch]] und [[Befähigung]].
 :::
 
 ::: karte 3

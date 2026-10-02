@@ -17,12 +17,11 @@ belege: [v24:hb-1, v24:hb-3.1, v24:hb-4, v24:hb-projektblatt, v24:va-7.1, v24:tl
 lage: |
   Ihr erster Tag. Die Vorgängerin ist weg, die Unterlagen liegen in drei Ablagen, die Kämmerei will bis Freitag den Haushaltsansatz 2027.
 
-  Jonas Brenner von der Projektsteuerung bringt das Projektblatt mit, von der GML vor seiner Beauftragung festgelegt – mit Grenzen, Schwellen und Skalen: Mehrkosten bis 20, 50, 150 oder 500 TEUR und Verzug bis 7, 14, 21 oder 28 Tage geben 5, 4, 3 oder 2 Punkte, mehr gibt 1; Einsparungen zählen wie keine Mehrkosten. Offen sind nur die Gewichte.
+  Jonas Brenner von der Projektsteuerung bringt das Projektblatt mit, von der GML vor seiner Beauftragung festgelegt – mit Grenzen, Schwellen und Skalen: Mehrkosten bis 20, 50, 150 oder 500 TEUR und Verzug bis 7, 14, 21 oder 28 Tage geben 5, 4, 3 oder 2 Punkte, mehr gibt 1; Einsparungen zählen wie keine Mehrkosten. Mehrkosten über der Projektbasis gehen zulasten der Risikoreserve; ihren Einsatz gibt der Bauherr frei, auch wenn eine andere Stelle in der Sache entscheidet. Offen sind nur die Gewichte.
 bericht:
   titel: Monatsbericht · Januar 2026 (Auftakt)
   zeilen:
     - Alle Vorgänge ab heute in der Software der GML – eine Ablage statt drei.
-    - Erster abgestimmter Bestand bis 30. Januar.
     - Haushaltsansatz 2027 bis Freitag, aus der Kostenprognose 2026-01 · Version 1.
     - Annahme zur Baupreissteigerung – das Controlling klärt bis 20. Januar.
   reaktion: Welche Gewichte soll der Bauherr festlegen? Ihre Empfehlung geht an Dr. Olbers.
@@ -52,7 +51,7 @@ vorlage:
   art: gewichte
   frage: Nach welchen Zielen werden künftige Vorlagen abgewogen?
   grund: |
-    Kriterien und Gewichte stimmt die Projektsteuerung vor jeder Bewertung mit dem Bauherrn ab. Welches Ziel Vorrang hat, legt der Bauherr fest – das ist nicht delegierbar. Jede spätere Vorlage sagt, ob andere vertretbare Gewichte die Rangfolge ändern würden.
+    Welches Ziel Vorrang hat, legt der Bauherr fest – das ist nicht delegierbar; die Projektsteuerung schlägt nur vor. Jede spätere Vorlage sagt, ob andere vertretbare Gewichte die Rangfolge ändern würden.
   stelle: Bauherr – Dr. Miriam Olbers (der Lenkungskreis berät)
   termin: 20. Januar 2026 (Lenkungskreis)
   verzug: Ohne Festlegung begründet jede Vorlage ihre Gewichte selbst – und wird angreifbar.
@@ -77,9 +76,9 @@ vorlage:
       konsequenz: Kosten und Termin wiegen gleich. Manche Vorlagen gehen dann anders aus als mit „Termin vor Kosten“ – umso wichtiger, dass die Projektsteuerung sagt, wann eine kleine Verschiebung die Rangfolge kippt.
   empfehlung:
     option: A
-    text: Die Projektsteuerung empfiehlt „Termin vor Kosten“ – der Förderbescheid verlangt die Inbetriebnahme zum Schuljahr 2028/29. Nachteil – teurere Wege werden leichter akzeptiert; die Kosten bleiben mit Gewicht 3 im Spiel.
+    text: Die Projektsteuerung schlägt „Termin vor Kosten“ vor – der Förderbescheid verlangt die Inbetriebnahme zum Schuljahr 2028/29. Nachteil – teurere Wege werden leichter akzeptiert; die Kosten bleiben mit Gewicht 3 im Spiel. Die Empfehlung an den Bauherrn geben Sie; festlegen muss er.
 folge: |
-  Der Bauherr legt die Gewichte fest; die Projektsteuerung dokumentiert den Beschluss in der Software. Mit dem Projektblatt gelten sie für alle weiteren Vorlagen.
+  Der Bauherr legt die Gewichte fest, die Projektsteuerung dokumentiert den Beschluss; sie gelten für alle weiteren Vorlagen.
 so-laeuft-es-oft: |
   Die Ziele stehen im Projekthandbuch, ohne Rangfolge. Erst wenn zwei kollidieren, wird verhandelt – und oft setzt sich die Sicht durch, die gerade am Tisch sitzt.
 einwand:

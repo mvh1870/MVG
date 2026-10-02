@@ -98,6 +98,26 @@ test('Statusbedingung „puffer<0“ gilt bei der Lage der Station, ohne Station
   assert.equal(gilt(g, z, `puffer<${puffer + 1}`, s4), true);
   assert.equal(gilt(g, z, `puffer<${puffer}`, s4), false);
   assert.equal(gilt(g, z, `puffer>=${puffer}`, s4), true);
+  // R69: auch „>“ und „<=“ an der Grenze
+  assert.equal(gilt(g, z, `puffer>${puffer}`, s4), false);
+  assert.equal(gilt(g, z, `puffer>${puffer - 1}`, s4), true);
+  assert.equal(gilt(g, z, `puffer<=${puffer}`, s4), true);
+  assert.equal(gilt(g, z, `puffer<=${puffer - 1}`, s4), false);
   assert.equal(gilt(g, z, `puffer<${puffer + 1}`), false);
   assert.equal(gilt(g, z, 's3=B & offen>=1', s4), true);
+});
+
+test('kipppunkte() (R69): s3 mit {kosten 2, termin 1, qualität 1, klima 1} – Gleichstand, Kipppunkt bei Gewicht 1', () => {
+  const v = st('s3').vorlage;
+  const gew = { kosten: 2, termin: 1, qualitaet: 1, klima: 1 };
+  // A und B gleichauf; Kosten 1 → A vorn, Kosten 3 → B vorn; Termin kann nur steigen (2 → A); Qualität und Klima ändern nichts
+  assert.deepEqual(spitze(v.optionen, g.kriterien, gew), ['A', 'B']);
+  assert.deepEqual(kipppunkte(v.optionen, g.kriterien, gew), [
+    { kriterium: 'kosten', gewicht: 1, spitze: ['A'] },
+    { kriterium: 'kosten', gewicht: 3, spitze: ['B'] },
+    { kriterium: 'termin', gewicht: 2, spitze: ['A'] },
+  ]);
+  // Plausibilität aus den Punkten: bei Kosten 1 und 3 die genannte Spitze
+  assert.deepEqual(spitze(v.optionen, g.kriterien, { ...gew, kosten: 1 }), ['A']);
+  assert.deepEqual(spitze(v.optionen, g.kriterien, { ...gew, kosten: 3 }), ['B']);
 });

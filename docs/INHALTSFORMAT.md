@@ -128,6 +128,32 @@ Für `weiter` (Abschnitt 3.3). Eine Bedingung je Zeile; eine Liste unter `wenn` 
 
 ---
 
+## 3a Story (P16.6, O-40): `inhalte/geschichte/`
+
+Eine durchgehende Geschichte aus Sicht des Bauherrn. Übersetzer: `werkzeuge/geschichte.mjs` (aus `werkzeuge/inhalte.mjs` aufgerufen), Typen: `src/geschichte/typen.ts`, Ablauf: `src/geschichte/engine.ts`, Vergleich: `src/geschichte/mcda.ts`.
+
+**`rahmen.yaml`:** `titel`; `status` mit `kosten`, `puffer`, `offen` (je `start`, `einheit`, `titel`, optional `basis`); `kriterien` (Liste `{ id, titel }`, mindestens zwei); `prolog` (`titel`, `text`, `takt`); `ende` (`titel`, `text`, `puffer-gut`, `puffer-knapp`, `puffer-schlecht`).
+
+**`sN-<name>.yaml`** (eine Datei je Station, `nr` lückenlos ab 1, zeitlich aufsteigend):
+
+| Feld | Inhalt |
+|---|---|
+| `id`, `nr`, `titel`, `kurztitel`, `datum`, `monat`, `lph` (0–9) | Kopf |
+| `kurzfassung` | `true` = gehört zur Kurzfassung (Station 1 immer) |
+| `belege` | interne Belege (`v24:hb-3.1`, Absatz-IDs) – nie in der Ausgabe (O-38) |
+| `lage` | Markdown |
+| `lage-folgen` | optional `{ kosten, puffer, offen }`, gilt ab dem Lesen der Lage |
+| `bericht` | `titel`, `zeilen` (Text oder `{ text, wenn }`), `reaktion` |
+| `vorgaenge` | Liste `{ art, kennung, titel, text, verantwortlich, termin, stand, matrix: { w, a }, wenn }`; Art: aufgabe, massnahme, fruehwarnung, risiko, problem, aenderung; ein offenes Risiko braucht die Matrix |
+| `vorlage` | `art` (`gewichte` oder `optionen`), `frage`, `grund`, `stelle`, `termin`, `verzug`, `muss`, optional `unvollstaendig`, `optionen`, `empfehlung { option, text }` |
+| `folge`, `so-laeuft-es-oft`, `einwand { frage, antwort }` | Markdown |
+| `theorie` | Kennung des passenden Themas |
+| `regie` | `notiz`, `leitfragen` – nur für die Regie (geht nach `geschichteRegie`) |
+
+**Optionen:** `id` (ein Großbuchstabe), `titel`, `text`, `folgen`, `konsequenz`, optional `naechste`. Bei `optionen`: `punkte` je Kriterium `[1–5, "Begründung"]` (Begründung in Anführungszeichen, wenn sie ein Komma enthält). Bei `gewichte`: `gewichte` je Kriterium 1–5. `klaerung: true` = keine Entscheidung in der Sache (nur in einer unvollständigen Vorlage, geht nicht in den Vergleich). Weniger als zwei zulässige Optionen ⇒ `unvollstaendig` ist Pflicht.
+
+**Bedingungen** `wenn: s3=A` oder `s3!=A` zeigen nur auf frühere Stationen. Stationen außerhalb der Kurzfassung zählen dort mit der Option, die mit den geltenden Gewichten vorn liegt.
+
 ## 3 Story
 
 ### 3.1 Aufbau

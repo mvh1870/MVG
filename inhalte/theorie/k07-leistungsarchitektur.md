@@ -12,6 +12,8 @@
 # Belege k7.5: k7.5-p1, k7.5-t1
 # Belege k7.6: k7.6-p1, k7.6-t1, k7.6-p2
 kapitel: 7
+thema: leistungen
+reihe: 10
 titel: Leistungsarchitektur von Bauherr Mentoren
 kurztitel: Leistungsarchitektur
 story: [wirklichkeit, epilog]

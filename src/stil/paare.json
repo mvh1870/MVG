@@ -113,6 +113,7 @@
     { "text": "--rolle-ctl-text", "grund": "--rolle-ctl-soft", "wo": "Blickwinkel Controlling" },
     { "text": "--id-ent-text", "grund": "--id-ent-grund", "wo": "ID-Marke ENT-" },
     { "text": "--id-ris-text", "grund": "--id-ris-grund", "wo": "ID-Marke RIS-" },
+    { "text": "--id-prb-text", "grund": "--id-prb-grund", "wo": "ID-Marke PRB- (Story)" },
     { "text": "--id-frw-text", "grund": "--id-frw-grund", "wo": "ID-Marke FRW-" },
     { "text": "--id-aen-text", "grund": "--id-aen-grund", "wo": "ID-Marke AEN-" },
     { "text": "--id-mas-text", "grund": "--id-mas-grund", "wo": "ID-Marke MAS-" },

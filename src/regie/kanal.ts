@@ -13,7 +13,7 @@
  * zwei Fenster auf verschiedenen Ständen.
  *
  * DER KANAL PRÜFT KEINEN INHALT. Er liefert den Zustand als `unknown`; die Leinwand muss ihn durch
- * `pruefeOeffentlich()` schicken. Er entscheidet auch nicht, wer antwortet: auf ein „hallo“ sendet
+ * `pruefeBuehne()` schicken. Er entscheidet auch nicht, wer antwortet: auf ein „hallo“ sendet
  * die Regie ihren Zustand, nicht der Kanal.
  *
  * VERALTETES FÄLLT WEG. Je Nachrichtenart merkt sich der Empfänger die höchste Nummer; eine
@@ -25,18 +25,18 @@
  * leerer aussieht.
  */
 
-import type { OeffentlicherZustand } from '../engine/typen.ts';
+import type { Buehne } from './buehne.ts';
 
 /** Was gesendet wird. */
 export type KanalNachricht =
-  | { art: 'zustand'; nr: number; zustand: OeffentlicherZustand }
+  | { art: 'zustand'; nr: number; zustand: Buehne }
   | { art: 'lebenszeichen'; nr: number }
   | { art: 'anzeige'; nr: number; beamer: boolean }
   /** Tafel rollen (P12.5 R8): Inhalt höher als die Tafel – die inerte Leinwand rollt auf Anweisung der Regie */
   | { art: 'rollen'; nr: number; schritt: -1 | 1 }
   | { art: 'hallo' };
 
-/** Was ankommt: der Zustand ist ungeprüft (→ `pruefeOeffentlich`). */
+/** Was ankommt: der Zustand ist ungeprüft (→ `pruefeBuehne`). */
 export type EingehendeNachricht =
   | { art: 'zustand'; nr: number; zustand: unknown }
   | { art: 'lebenszeichen'; nr: number }

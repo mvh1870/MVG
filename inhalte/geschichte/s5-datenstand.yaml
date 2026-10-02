@@ -1,0 +1,98 @@
+id: s5
+nr: 5
+titel: Zwei Zahlen, ein Datenstand
+kurztitel: Datenstand
+datum: Mai 2026
+monat: 5
+lph: 5
+kurzfassung: true
+belege: [v24:hb-2, v24:hb-3, v24:hb-4, v24:tlb-3, v24:tlb-2, k4.6-p2, k3.2-t1]
+lage: |
+  Montag, 11. Mai. Holger Stein, Kostenplaner im Team der Projektsteuerung, rechnet mit Mehrkosten von 8 %. Aylin Kaya vom Controlling kommt auf 5,9 %. Früher wären beide Zahlen in den Lenkungskreis gewandert – mit der Frage, welche gilt.
+
+  Diesmal klärt die Projektsteuerung den Widerspruch vor dem Monatstermin. Ergebnis: Die Differenz von rund 1,2 Mio. € ist ein angekündigter Nachtrag der Haustechnikplanung. Er ist noch nicht eingetreten und gehört deshalb nicht in die Prognose, sondern ins Risikoregister.
+lage-folgen: { kosten: 3.4 }
+bericht:
+  titel: Monatsbericht · Mai 2026 (eine Seite)
+  zeilen:
+    - Datenstand „Kostenprognose 2026-05 · Version 3“ – 61,8 Mio. € gegen die Projektbasis von 58,4 Mio. € (+5,9 %), darin die Risikoreserve von 2,9 Mio. € noch nicht eingesetzt.
+    - Differenz zur früheren Zahl geklärt – angekündigter Nachtrag der Haustechnikplanung, bis 1,2 Mio. €, geführt als Risiko RIS-014.
+    - text: Maßnahme vorgezogene Vergabe Holzbau – Vergabeunterlagen fristgerecht versandt; Wirkung steht erst mit dem Liefertermin fest.
+      wenn: s3=A
+    - text: Risiko Lieferzeit Holzbau weiter vorrangig – der Puffer schrumpft.
+      wenn: s3=B
+    - Auflage aus der Freigabe LPH 4 erfüllt – Marktabfrage liegt vor.
+    - Bauausschuss am 21. Mai – er braucht eine klare Frage, keinen Stapel.
+  reaktion: Bitte entscheiden Sie, wie mit der Prognose umgegangen wird.
+vorgaenge:
+  - art: risiko
+    kennung: RIS-014
+    titel: Nachtrag der Haustechnikplanung
+    text: Ursache – angekündigte Mehrleistungen der Haustechnikplanung. Mögliche Folge – bis 1,2 Mio. € Mehrkosten. Noch nicht eingetreten; Bandbreite statt einer einzelnen Zahl.
+    verantwortlich: Projektsteuerung mit Controlling
+    termin: Wiedervorlage wöchentlich
+    stand: gezielt bearbeiten
+    matrix: { w: 3, a: 3 }
+  - art: aufgabe
+    kennung: AUF-014
+    titel: Widerspruch der Prognosen klären
+    text: Erledigt am 13. Mai – ein Datenstand, Differenz begründet, beide Rechenwege nachvollziehbar dokumentiert.
+    verantwortlich: Projektsteuerung mit Controlling
+    termin: 13. Mai
+    stand: erledigt
+vorlage:
+  art: optionen
+  frage: Wie gehen wir mit der Prognose von 61,8 Mio. € um?
+  grund: |
+    Die Prognose liegt 3,4 Mio. € über der Projektbasis; die Risikoreserve von 2,9 Mio. € ist darin noch nicht eingesetzt. Dazu kommt das Risiko aus dem Nachtrag. Über die Projektbasis entscheidet der Stadtrat, über den Umgang damit der Bauherr.
+  stelle: Bauherr – Dr. Miriam Olbers im Lenkungskreis
+  termin: 19. Mai 2026 (Lenkungskreis)
+  verzug: Ohne Entscheidung geht der Bauausschuss am 21. Mai ohne Frage in die Sitzung – und vertagt.
+  muss: Alle Optionen halten die Vorgaben der Förderung und der Genehmigung ein.
+  optionen:
+    - id: A
+      titel: Einsparpaket
+      text: Ausstattung und Außenanlagen werden reduziert, rund 1,5 Mio. €.
+      punkte:
+        kosten: [5, "−1,5 Mio. €"]
+        termin: [4, "rund 7 Tage Umplanung"]
+        qualitaet: [2, "weniger Ausstattung"]
+        klima: [3, "unverändert"]
+      folgen: { kosten: -1.5, puffer: -7 }
+      konsequenz: Die Generalplanung arbeitet das Paket aus. Die Projektsteuerung legt es als Änderung an und verfolgt, ob die Einsparung tatsächlich eintritt.
+    - id: B
+      titel: Reserve einplanen und offen berichten
+      text: Die Reserve wird für die bekannten Mehrkosten vorgesehen, nicht freigegeben. Stadtrat und Bauausschuss bekommen die Lage auf einer Seite – mit Bandbreite.
+      punkte:
+        kosten: [3, "Reserve vorgesehen, Basis hält vorerst"]
+        termin: [5, "kein Verzug"]
+        qualitaet: [4, "unverändert"]
+        klima: [4, "unverändert"]
+      folgen: {}
+      konsequenz: Der Bauausschuss bekommt eine klare Frage und nimmt den Bericht zur Kenntnis. Freigegeben wird die Reserve erst, wenn die Mehrkosten eintreten – und dann vom Bauherrn selbst.
+    - id: C
+      titel: Projektbasis neu festlegen lassen
+      text: Der Stadtrat soll eine neue Projektbasis beschließen.
+      punkte:
+        kosten: [3, "Basis steigt, Ehrlichkeit gewinnt"]
+        termin: [3, "rund 21 Tage bis zum Beschluss"]
+        qualitaet: [4, "unverändert"]
+        klima: [4, "unverändert"]
+      folgen: { puffer: -21, offen: 1 }
+      konsequenz: Die Projektsteuerung bereitet die Ratsvorlage vor. Bis zum Beschluss gilt die bisherige Basis.
+  empfehlung:
+    option: B
+    text: Die Projektsteuerung empfiehlt, die Reserve einzuplanen und offen zu berichten. Nachteil – ist das Risiko aus dem Nachtrag voll eingetreten, reicht die Reserve nicht ganz. Mit „Kosten vor Termin“ liegen A und B fast gleichauf.
+folge: |
+  Ein Datenstand für alle: Bericht, Software und Vorlage nennen dieselbe Zahl. Der Bericht passt auf eine Seite, weil er auf die Einträge in der Software verweist, statt sie zu wiederholen.
+so-laeuft-es-oft: |
+  Zwei Zahlen gehen in den Lenkungskreis. Eine Stunde lang wird diskutiert, welche stimmt. Der Bauausschuss bekommt einen 40-Seiten-Bericht mit Ampeln – und vertagt, weil niemand sagt, worüber er entscheiden soll.
+einwand:
+  frage: „Ein Bericht von einer Seite? Unsere Gremien wollen Details.“
+  antwort: Die Details stehen in der Software, jeder Eintrag mit Verweis. Die eine Seite zeigt, was sich geändert hat und welche Reaktion gebraucht wird. Wer tiefer will, folgt dem Verweis.
+theorie: takt
+regie:
+  notiz: Der Monatstermin ist der Kern – 60 Minuten, eine Seite. Den Unterschied zwischen Prognose und Risiko (Bandbreite) erklären.
+  leitfragen:
+    - Wie lang ist Ihr letzter Monatsbericht?
+    - Wer klärt bei Ihnen widersprüchliche Zahlen, bevor sie ins Gremium gehen?

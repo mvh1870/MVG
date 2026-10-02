@@ -12,6 +12,8 @@
 # Belege k4.5: k4.5-p1, k4.5-p2, k4-t1 (Zeile Freigabe)
 # Belege k4.6: k4.6-p1, k4.6-p2, k4-t1 (Zeile Datenstand und Nachweis)
 kapitel: 4
+thema: verantwortung
+reihe: 4
 titel: Verantwortungsfelder des Bauherrn
 kurztitel: Verantwortungsfelder
 story: [A2, A3, A4, A5, wendepunkt, B1, B2, B3, B4, B5, B6]

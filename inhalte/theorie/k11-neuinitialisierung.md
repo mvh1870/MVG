@@ -9,6 +9,8 @@
 # Belege k11.2: k11.2-p1, k11.2-l1, k11.2-p2, k11-p1 (Abfolge LPH 0–9 bleibt)
 # Belege k11.3: k11.3-p1, k11.3-t1, k11.3-p2
 kapitel: 11
+thema: neuausrichtung
+reihe: 14
 titel: MVG-Neuinitialisierung als Vertiefungsformat
 kurztitel: MVG-Neuinitialisierung
 story: [wirklichkeit, ende-steuerbar, ende-neufestlegung]

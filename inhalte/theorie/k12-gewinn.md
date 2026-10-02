@@ -7,6 +7,8 @@
 # Belege k12 (Bilanz): k12-p1, k12-t1, k12-p2
 # Belege k12.1: k12.1-p1, k12.1-t1
 kapitel: 12
+thema: nutzen
+reihe: 15
 titel: Was Bauherren mit MVG und MVG Companion gewinnen
 kurztitel: Was Bauherren gewinnen
 story: [ende-steuerbar]

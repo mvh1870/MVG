@@ -1,0 +1,94 @@
+id: s3
+nr: 3
+titel: Lieferzeit Holzbau
+kurztitel: Lieferzeit
+datum: März 2026
+monat: 3
+lph: 5
+kurzfassung: true
+belege: [v24:hb-1.2, v24:hb-1.3, v24:hb-2, v24:hb-3, v24:hb-3.1, v24:hb-1.6, v24:tlb-2, k4.4-p2]
+lage: |
+  Anfang März ruft Lena Hoffmeister von der Generalplanung an: Ein Hersteller nennt für die Holzbauelemente 26 statt 16 Wochen Lieferzeit. Ob das für alle Anbieter gilt, weiß noch niemand.
+
+  Am selben Tag steht der Hinweis als Frühwarnung im Register – mit Quelle, Eingangsdatum und einer Prüffrage an die Generalplanung. Eine Woche später ist er geklärt.
+bericht:
+  titel: Bericht der Projektsteuerung · März 2026
+  zeilen:
+    - Neue Frühwarnung FRW-002 Lieferzeit Holzbauelemente, geklärt am 11. März – weitergeführt als Risiko RIS-009.
+    - RIS-009 vorrangig – Wahrscheinlichkeit hoch, Auswirkung auf den Zieltermin hoch.
+    - Vorlage zur Lieferzeit liegt vor; Entscheidung bis 25. März.
+    - Neue Änderung AEN-012 Mensa – eigene Vorlage folgt.
+  reaktion: Bitte entscheiden Sie, wie die Holzbauelemente rechtzeitig gesichert werden.
+vorgaenge:
+  - art: fruehwarnung
+    kennung: FRW-002
+    titel: Lieferzeit Holzbauelemente
+    text: Hinweis der Generalplanung vom 4. März. Prüffrage – gilt die längere Lieferzeit für den Markt oder nur für einen Hersteller? Geklärt am 11. März – drei von vier Anbietern bestätigen 24 bis 26 Wochen.
+    verantwortlich: Lena Hoffmeister, Generalplanung
+    termin: 11. März
+    stand: geklärt → RIS-009
+  - art: risiko
+    kennung: RIS-009
+    titel: Holzbauelemente kommen zu spät
+    text: Ursache – Lieferzeiten von bis zu 26 Wochen. Mögliche Folge – Montagebeginn verschiebt sich um rund 70 Tage, der Puffer bis zur Inbetriebnahme beträgt 42 Tage. Zeitraum bis zur Montage.
+    verantwortlich: Projektsteuerung mit Generalplanung
+    termin: Wiedervorlage wöchentlich
+    stand: vorrangig
+    matrix: { w: 4, a: 4 }
+vorlage:
+  art: optionen
+  frage: Wie sichern wir die Holzbauelemente rechtzeitig?
+  grund: |
+    Das Risiko ist vorrangig: Wahrscheinlichkeit 4 mal Auswirkung 4 ergibt 16. Ohne Gegenmaßnahme ist die Inbetriebnahme zum Schuljahr 2028/29 gefährdet. Alle drei Wege kosten etwas – Geld, Puffer oder Klimaziel.
+  stelle: Änderungsgremium – Vorsitz Frank Deppe
+  termin: 25. März 2026
+  verzug: Jede Woche ohne Entscheidung verkürzt die Zeit für eine vorgezogene Vergabe.
+  muss: Alle drei Optionen erfüllen Brandschutz und Genehmigung.
+  optionen:
+    - id: A
+      titel: Holzbau vorziehen
+      text: Die Holzbauelemente werden vorab ausgeschrieben und früh bestellt. Die Generalplanung zieht die dafür nötigen Pläne vor.
+      punkte:
+        kosten: [3, "+0,15 Mio. € Planungsbeschleunigung"]
+        termin: [5, "Liefertermin gesichert"]
+        qualitaet: [4, "unverändert"]
+        klima: [4, "Holzbau wie geplant"]
+      folgen: { kosten: 0.15 }
+      konsequenz: Die Projektsteuerung legt eine Maßnahme an – vorgezogene Vergabe, Verantwortlich Generalplanung, Vergabeunterlagen bis 15. April. Die Bewertung des Risikos bleibt, bis der Liefertermin vertraglich steht.
+      naechste: Maßnahme MAS-007 mit Termin; Wirkung wird mit dem Liefertermin nachgewiesen.
+    - id: B
+      titel: Abwarten
+      text: Den Puffer nutzen und bei der Vergabe auf kürzere Lieferzeiten hoffen.
+      punkte:
+        kosten: [5, "keine Mehrkosten"]
+        termin: [1, "rund 35 Tage Puffer verloren"]
+        qualitaet: [4, "unverändert"]
+        klima: [4, "Holzbau wie geplant"]
+      folgen: { puffer: -35, offen: 1 }
+      konsequenz: Das Risiko bleibt vorrangig im Register. Die Projektsteuerung prüft es jede Woche und legt es Ihnen im nächsten Monatstermin wieder vor.
+    - id: C
+      titel: Sporthalle in Stahlbeton
+      text: Nur die Sporthalle wird umgeplant; Gesamt- und Grundschule bleiben in Holz.
+      punkte:
+        kosten: [2, "+0,25 Mio. € Umplanung"]
+        termin: [4, "rund 7 Tage Umplanung"]
+        qualitaet: [3, "Änderung der Planung"]
+        klima: [1, "weniger Holz als im Ratsbeschluss zum Klimaziel"]
+      folgen: { kosten: 0.25, puffer: -7 }
+      konsequenz: Die Sporthalle wird umgeplant. Die Projektsteuerung legt die Änderung an und verknüpft sie mit dem Risiko.
+  empfehlung:
+    option: A
+    text: Die Projektsteuerung empfiehlt, den Holzbau vorzuziehen. Er sichert den Termin und das Klimaziel. Nachteil – 0,15 Mio. € Mehrkosten, bevor feststeht, ob der Markt sich wieder entspannt. Bei den festgelegten Gewichten liegt A klar vorn; auch mit „Kosten vor Termin“ bleibt A knapp vor B.
+folge: |
+  Eine geplante Maßnahme senkt die Bewertung eines Risikos noch nicht. Erst wenn Umsetzung und Wirkung belegt sind – hier der vertraglich gesicherte Liefertermin –, schreibt die Projektsteuerung die Bewertung fort.
+so-laeuft-es-oft: |
+  Der Anruf der Planerin landet in einer Notiz. Drei Monate später steht im Statusbericht eine gelbe Ampel „Lieferzeiten angespannt“. Entschieden wird, wenn die Montage schon wackelt – und dann bleibt nur noch der teure Weg.
+einwand:
+  frage: „Lieferzeiten sind doch Sache der Planung.“
+  antwort: Die Fachplanung bleibt bei der Generalplanung. Die Projektsteuerung klärt den Hinweis, bewertet die Folgen für das Projekt und bereitet die Entscheidung vor. Entscheiden müssen Sie – denn es geht um Geld und um den Termin.
+theorie: vorgaenge
+regie:
+  notiz: Den Weg Frühwarnung → Risiko → Vorlage → Maßnahme zeigen. Die Matrix (4 × 4 = 16, vorrangig) kurz erklären.
+  leitfragen:
+    - Wo landet bei Ihnen ein solcher Anruf?
+    - Wer würde die Optionen ausarbeiten?

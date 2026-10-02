@@ -11,7 +11,7 @@
 
 import daten from '../generiert/inhalte.json' with { type: 'json' };
 import type {
-  Figur, GlossarEintrag, Inhalte, OeffentlicheInhalte, RegieEintrag, Rolle, Station, Szene, TheorieSeite,
+  Figur, GeschichteRegie, GlossarEintrag, Inhalte, OeffentlicheInhalte, RegieEintrag, Rolle, Station, Szene, TheorieSeite,
 } from './typen.ts';
 
 export type * from './typen.ts';
@@ -37,7 +37,14 @@ export const inhalte: OeffentlicheInhalte = {
   kompass: alle.kompass ?? [],
   abdeckung: alle.abdeckung,
   quellen: alle.quellen,
+  geschichte: alle.geschichte ?? null,
+  werkzeuge: alle.werkzeuge ?? null,
 };
+
+/** Nur für die Regie: Notiz und Leitfragen je Story-Station (`s3`). */
+export function regieGeschichte(id: string): GeschichteRegie | null {
+  return alle.geschichteRegie?.[id] ?? null;
+}
 
 /** Nur für die Regie: Notiz und Leitfragen je Station (`A3`) bzw. Rollenszene (`A3/pl`). */
 export function regieInhalte(): Readonly<Record<string, RegieEintrag>> {

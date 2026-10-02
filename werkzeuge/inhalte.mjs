@@ -13,6 +13,8 @@
  * Die Engine-Regeln (Statuswerte, Bedingungen, Graph) kommen aus src/engine/*.ts – eine Lesart für
  * Bauzeit und Laufzeit. Deterministisch: Dateien sortiert, Schlüssel sortiert, keine Zeitstempel.
  */
+import { baueGeschichte } from './geschichte.mjs';
+import { baueWerkzeuge } from './explore.mjs';
 import { anzeigeFassung } from './anzeige-fassung.mjs';
 import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
@@ -232,6 +234,8 @@ const DATEI_ARTEN = {
   '@theorie': {
     kopf: {
       kapitel: { typ: 'zahl', pflicht: true, min: 1, max: 13 }, titel: { typ: 'text', pflicht: true }, kurztitel: { typ: 'text' },
+      // P16.3 (O-38): Kennung des Themas in der Adresse (#theorie/<thema>) und Reihenfolge der Themen
+      thema: { typ: 'kennung' }, reihe: { typ: 'zahl', min: 1, max: 30 },
       story: { typ: 'liste' }, deckt: { typ: 'liste' },
     },
     felder: ['text'],
@@ -1674,6 +1678,8 @@ function baueTheorie(c, rel, id, text, regie) {
   return {
     id,
     kapitel: kopf.kapitel ?? 0,
+    thema: kopf.thema ?? id,
+    reihe: kopf.reihe ?? kopf.kapitel ?? 0,
     titel: kopf.titel ?? '',
     kurztitel: kopf.kurztitel ?? kopf.titel ?? '',
     story: kopf.story ?? [],
@@ -1834,6 +1840,10 @@ export async function kompiliere(optionen = {}) {
   const regie = {};
   /** @type {Record<string, unknown> | null} */
   let abdeckungRoh = null;
+  /** @type {{ rel: string, text: string }[]} */
+  const geschichteDateien = [];
+  /** @type {any} */
+  let werkzeuge = null;
 
   for (const r of dateien) {
     const rel = `inhalte/${r}`;
@@ -1852,7 +1862,17 @@ export async function kompiliere(optionen = {}) {
     else if (r === 'begriffs-kompass.md') kompass = baueKompass(c, rel, lies(r));
     else if (r === 'abdeckung.yaml') abdeckungRoh = leseYaml(lies(r), rel, 1, b);
     else if (/^abbildungen\/abb-\d+\.yaml$/u.test(r)) { /* baueAbbildungen (P14) */ }
+    else if (/^geschichte\/[^/]+\.yaml$/u.test(r)) geschichteDateien.push({ rel, text: lies(r) });
+    else if (r === 'werkzeuge.yaml') werkzeuge = baueWerkzeuge(c, rel, lies(r));
     else if (r.endsWith('.md') || r.endsWith('.yaml')) c.warnung(rel, 'Datei gehört zu keiner bekannten Art (docs/INHALTSFORMAT.md Abschnitt 1) – ignoriert');
+  }
+
+  // Themen (P16.3): Kennung und Reihenfolge eindeutig
+  for (const [i, a] of Object.values(theorie).entries()) {
+    for (const b of Object.values(theorie).slice(i + 1)) {
+      if (a.thema === b.thema) c.fehler(b.quelle, `Thema „${b.thema}“ doppelt (auch ${a.quelle})`);
+      if (a.reihe === b.reihe) c.fehler(b.quelle, `Reihe ${b.reihe} doppelt (auch ${a.quelle})`);
+    }
   }
 
   // Szenen in ihre Stationen
@@ -1922,6 +1942,7 @@ export async function kompiliere(optionen = {}) {
 
   const abb = baueAbbildungen(c, quelle, wurzel, theorie, pruefe);
 
+  const gesch = baueGeschichte(c, geschichteDateien);
   const inhalte = {
     version: 1,
     whitepaper: { fassung: quelle?.fassung ?? null, titel: quelle?.titel ?? null, kapitel: quelle?.gliederung ?? [], lph: lphPhasen(quelle), abbildungen: abb.liste },
@@ -1941,6 +1962,9 @@ export async function kompiliere(optionen = {}) {
     abdeckung,
     quellen: baueQuellen(c, quelle, stationen),
     regie,
+    geschichte: gesch.geschichte,
+    geschichteRegie: gesch.regie,
+    werkzeuge,
   };
 
   const json = stabilesJson(inhalte);

@@ -1,0 +1,151 @@
+/* =============================================================================================
+   MVG · Explore (P16.8, O-46): fünf Werkzeuge am Schulcampus – Rechner, Matrix, Vorgänge, Takt, Glossar.
+   Nur Tokens aus tokens.css, keine Farbwerte.
+   ============================================================================================= */
+
+.seite-explore { --fokus: var(--navy); }
+.seite-explore :focus-visible { box-shadow: 0 0 0 6px var(--fokus-hof); }
+.ex-rahmen { width: 100%; max-width: 1080px; margin: 0 auto; padding: var(--a-8) var(--a-6) var(--a-12); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--a-6); position: relative; }
+.ex-kopf { display: grid; gap: var(--a-2); }
+.ex-titel:focus { outline: none; box-shadow: none; }
+.ex-einleitung { max-width: 72ch; }
+
+.ex-werkzeuge { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--a-3); }
+.ex-werkzeug-link {
+  display: grid;
+  gap: var(--a-1);
+  align-content: start;
+  padding: var(--a-3) var(--a-4);
+  border: 1px solid var(--linie);
+  border-radius: var(--radius-m);
+  background: var(--weiss);
+  color: var(--tinte-2);
+  text-decoration: none;
+  font: var(--typo-klein);
+}
+.ex-werkzeug-link b { font: var(--typo-reiter); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy); }
+a.ex-werkzeug-link:hover { border-color: var(--linie-3); color: var(--tinte); text-decoration: none; }
+.ex-werkzeug-link[aria-current="page"] { border-color: var(--gold); box-shadow: inset 0 -3px 0 var(--gold); background: var(--gold-soft); }
+
+.ex-buehne { background: var(--weiss); border: 1px solid var(--linie); border-radius: var(--radius-l); box-shadow: var(--schatten-karte); padding: var(--a-8); }
+.ex-werkzeug { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--a-5); }
+.ex-buehne { min-width: 0; }
+.ex-leiste { display: flex; flex-wrap: wrap; gap: var(--a-3) var(--a-6); align-items: end; }
+.ex-beispiel { display: grid; gap: var(--a-1); min-width: 0; max-width: 100%; }
+.ex-beispiel select { width: 100%; }
+.ex-beispiel .t-label { font: var(--typo-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
+.ex-beispiel select, .ex-punkt-wahl {
+  min-height: 36px;
+  padding: var(--a-1) var(--a-2);
+  border: 1px solid var(--linie-3);
+  border-radius: var(--radius-s);
+  background: var(--weiss);
+  max-width: 100%;
+}
+.ex-punkt-wahl { min-width: 56px; font-weight: 700; color: var(--navy); }
+.ex-frage small { color: var(--tinte-2); }
+.ex-tabelle-rahmen { overflow-x: auto; }
+.ex-tabelle td small { margin-top: var(--a-1); }
+.ex-hinweis { display: flex; gap: var(--a-3); align-items: flex-start; padding: var(--a-3) var(--a-4); border-radius: var(--radius-m); background: var(--flaeche-3); }
+.ex-hinweis .symbol { flex: none; width: 20px; height: 20px; color: var(--petrol); }
+
+/* Matrix */
+.ex-matrix-rahmen { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--a-8); align-items: start; }
+.ex-matrix-achsen { display: grid; grid-template-columns: auto auto; grid-template-rows: auto auto; gap: var(--a-2); }
+.ex-achse-a { writing-mode: vertical-rl; transform: rotate(180deg); align-self: center; }
+.ex-achse-w { grid-column: 2; text-align: center; }
+.ex-matrix th { font: var(--typo-label); color: var(--tinte-2); padding: var(--a-1); text-align: center; }
+.ex-matrix th small { display: block; font-weight: 400; text-transform: none; }
+.ex-matrix td { padding: 2px; }
+.ex-zelle {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 52px;
+  border: 1px solid var(--linie-2);
+  border-radius: var(--radius-s);
+  background: var(--status-gruen-soft);
+  color: var(--status-gruen-text);
+  font: var(--typo-kennzahl);
+  font-size: var(--gr-xl);
+}
+.ex-zelle[data-stufe="gezielt"] { background: var(--status-gelb-soft); color: var(--status-gelb-text); }
+.ex-zelle[data-stufe="vorrangig"] { background: var(--status-rot-soft); color: var(--status-rot); }
+.ex-zelle[aria-pressed="true"] { box-shadow: inset 0 0 0 3px var(--navy); }
+button.ex-zelle:hover { border-color: var(--navy-soft); }
+.ex-zelle-punkt { position: absolute; top: 3px; right: 4px; min-width: 18px; height: 18px; border-radius: var(--radius-rund); background: var(--navy); color: var(--weiss); font: 700 11px/18px var(--schrift-text); text-align: center; }
+.ex-matrix-detail { display: grid; gap: var(--a-2); }
+.ex-matrix-wert b { font: var(--typo-kennzahl); color: var(--navy); }
+.ex-matrix-stufe b { font-size: var(--gr-l); }
+.ex-matrix-beispiele { display: grid; gap: var(--a-1); }
+.ex-stufen { display: grid; gap: var(--a-2); }
+.ex-stufen li { padding-left: var(--a-3); border-left: 3px solid var(--status-gruen); }
+.ex-stufen li[data-stufe="gezielt"] { border-left-color: var(--status-gelb-symbol); }
+.ex-stufen li[data-stufe="vorrangig"] { border-left-color: var(--status-rot); }
+.ex-id {
+  font: var(--typo-mono);
+  font-weight: 600;
+  padding: 1px var(--a-2);
+  border-radius: var(--radius-xs);
+  background: var(--id-ent-grund);
+  color: var(--id-ent-text);
+}
+.ex-id[data-art="risiko"] { background: var(--id-ris-grund); color: var(--id-ris-text); }
+.ex-id[data-art="fruehwarnung"] { background: var(--id-frw-grund); color: var(--id-frw-text); }
+.ex-id[data-art="aenderung"] { background: var(--id-aen-grund); color: var(--id-aen-text); }
+.ex-id[data-art="massnahme"] { background: var(--id-mas-grund); color: var(--id-mas-text); }
+.ex-id[data-art="problem"] { background: var(--id-prb-grund); color: var(--id-prb-text); }
+
+/* Vorgänge */
+.ex-arten { display: flex; flex-wrap: wrap; gap: var(--a-2); }
+.ex-art, .ex-weg {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--a-1);
+  min-height: 40px;
+  padding: var(--a-2) var(--a-4);
+  border: 1px solid var(--linie-2);
+  border-radius: var(--radius-rund);
+  background: var(--weiss);
+  color: var(--navy);
+  font-weight: 600;
+}
+.ex-art[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: var(--weiss); }
+.ex-weg .symbol { width: 16px; height: 16px; }
+.ex-wege { display: flex; flex-wrap: wrap; gap: var(--a-2); }
+.ex-art-detail { display: grid; gap: var(--a-3); padding: var(--a-4) var(--a-5); border: 1px solid var(--linie); border-radius: var(--radius-m); background: var(--flaeche-1); }
+.ex-art-detail h3 { font: var(--typo-tafeltitel); }
+.ex-art-daten { display: grid; gap: var(--a-2); }
+.ex-art-daten dt { font: var(--typo-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
+.ex-art-daten dd { margin: 0; }
+
+/* Takt */
+.ex-monat { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--a-2); }
+.ex-woche { display: grid; gap: var(--a-1); align-content: start; padding: var(--a-3); border-top: 4px solid var(--petrol); background: var(--flaeche-3); border-radius: 0 0 var(--radius-s) var(--radius-s); min-height: 120px; }
+.ex-marke { display: inline-flex; align-items: center; gap: var(--a-1); font: var(--typo-klein); padding: 2px var(--a-2); border-radius: var(--radius-s); background: var(--weiss); border: 1px solid var(--linie); }
+.ex-marke[data-takt="sofort"] { border-color: var(--status-rot); color: var(--status-rot); }
+.ex-marke[data-takt="monat"] { border-color: var(--gold); color: var(--gold-text); font-weight: 600; }
+.ex-marke .symbol { width: 14px; height: 14px; }
+.ex-takt { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--a-4); }
+.ex-takt-karte { display: grid; gap: var(--a-2); align-content: start; padding: var(--a-4); border: 1px solid var(--linie); border-radius: var(--radius-m); }
+.ex-takt-karte h3 { font: var(--typo-reiter); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy); }
+.ex-takt-karte[data-takt="sofort"] { border-top: 3px solid var(--status-rot); }
+.ex-takt-karte[data-takt="monat"] { border-top: 3px solid var(--gold); }
+.ex-beispiel-text { font: var(--typo-klein); color: var(--tinte-2); }
+
+@media (max-width: 900px) {
+  .ex-werkzeuge { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ex-matrix-rahmen { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 600px) {
+  .ex-rahmen { padding: var(--a-6) var(--a-4) var(--a-10); }
+  .ex-buehne { padding: var(--a-5) var(--a-4); }
+  .ex-werkzeuge { grid-template-columns: minmax(0, 1fr); }
+  .ex-monat { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ex-zelle { width: 48px; height: 44px; font-size: var(--gr-l); }
+}
+@media (max-width: 380px) {
+  .ex-zelle { width: 40px; height: 40px; }
+  .ex-matrix th small { display: none; }
+}

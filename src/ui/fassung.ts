@@ -9,5 +9,5 @@ declare const __MVG_VERSION__: string | undefined;
 
 export const STORY_VERSION = (typeof __MVG_VERSION__ === 'string' ? __MVG_VERSION__ : '0.0').split('.').slice(0, 2).join('.');
 
-/** „Whitepaper V1.2 · Story 0.1“ */
-export const fassungText = (whitepaper: string): string => W.version(whitepaper, STORY_VERSION);
+/** „Fassung 0.2“ (O-38: ohne Bezug auf eine Vorlage) */
+export const fassungText = (): string => W.version(STORY_VERSION);

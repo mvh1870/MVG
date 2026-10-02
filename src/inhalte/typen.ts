@@ -12,6 +12,8 @@ import type {
   Freischaltung, Kante, ModellEntscheidung, ModellFrage, ModellInfo, ModellOption, ModellRolle, ModellRueckbezug,
   ModellSchritt, ModellStation, ModellSzene, SchrittArt, StationArt, StoryModell, Welt, WirkEintrag,
 } from '../engine/typen.ts';
+import type { Geschichte, GeschichteRegie } from '../geschichte/typen.ts';
+export type { Geschichte, GeschichteRegie };
 
 /** Kopfdaten nach Umwandlung (Zahlen, Listen, ja/nein, verschachtelte Karten). Schlüssel in camelCase. */
 export type KopfWert = string | number | boolean | null | KopfWert[] | { [schluessel: string]: KopfWert };
@@ -217,6 +219,10 @@ export interface GlossarEintrag {
 export interface TheorieSeite {
   id: string;
   kapitel: number;
+  /** Kennung in der Adresse (#theorie/<thema>, P16.3) */
+  thema: string;
+  /** Reihenfolge der Themen */
+  reihe: number;
   titel: string;
   kurztitel: string;
   story: string[];
@@ -353,10 +359,38 @@ export interface Inhalte extends StoryModell {
   quellen: Record<string, QuellAbsatz>;
   /** Schlüssel `A3` (Station) oder `A3/pl` (Rollenszene) */
   regie: Record<string, RegieEintrag>;
+  /** Story (P16.6, O-40) */
+  geschichte: Geschichte | null;
+  /** Regie-Notizen der Story je Station */
+  geschichteRegie: Record<string, GeschichteRegie>;
+  /** Texte der Explore-Werkzeuge (P16.8) */
+  werkzeuge: Werkzeuge | null;
+}
+
+interface WerkzeugTeil { titel: string; kurz: string; html: string }
+
+/** Explore-Werkzeuge (inhalte/werkzeuge.yaml, P16.8, O-46) */
+export interface Werkzeuge {
+  einleitungHtml: string;
+  mcda: WerkzeugTeil & { hinweisHtml: string };
+  matrix: WerkzeugTeil & {
+    stufen: { id: string; titel: string; von: number; bis: number; html: string }[];
+    regel: string;
+    sonder: string;
+    wahrscheinlichkeit: string[];
+    qualitaet: string[];
+    beispiele: { kennung: string; titel: string; w: number; a: number }[];
+  };
+  vorgaenge: WerkzeugTeil & {
+    arten: { id: string; titel: string; html: string; beispiel: string; abschluss: string; wege: string[] }[];
+    entscheidung: { titel: string; html: string };
+  };
+  takt: WerkzeugTeil & { stufen: { id: string; titel: string; wer: string; html: string; beispiel: string }[] };
+  glossar: WerkzeugTeil;
 }
 
 /**
  * Was jede Fläche (auch die Leinwand) sehen darf. `regie?: never` macht den Typ streng: Ein volles
  * `Inhalte` (mit Regie-Material) ist NICHT zuweisbar, strukturell wie als Objektliteral.
  */
-export type OeffentlicheInhalte = Omit<Inhalte, 'regie'> & { regie?: never };
+export type OeffentlicheInhalte = Omit<Inhalte, 'regie' | 'geschichteRegie'> & { regie?: never; geschichteRegie?: never };

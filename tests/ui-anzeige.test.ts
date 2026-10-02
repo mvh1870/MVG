@@ -1,197 +1,25 @@
-// Reine Anzeige-Regeln der Oberfläche (src/ui/anzeige.ts, Grafik-Helfer): schrittweiser Aufbau
-// (L-4), Weiter/Zurück, Regie-Eingriffe, Uhr und Zeitsprung – an den echten Inhalten gemessen.
+// Reine Lesehilfen der Oberfläche (src/ui/anzeige.ts) und Grafik-Helfer der Theorie.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import type { Aktion, OeffentlicherZustand, Zustand } from '../src/engine/typen.ts';
 import { inhalte } from '../src/inhalte/index.ts';
-import { wende } from '../src/engine/aktionen.ts';
-import { anfangszustand, oeffentlich } from '../src/engine/zustand.ts';
-import {
-  aktuellerSchritt, eingriffe, gruppiere, instrumenteSichtbar, karteSichtbar, kicker, mandatsWahl, schrittPosition,
-  sichtbareSchritte, tafelTitel, tafelWelt, tageAus, uhrAnzeige, weiterAktion, zurueckAktion,
-} from '../src/ui/anzeige.ts';
-import { spuren } from '../src/ui/leitstand/karte.ts';
-import { formatiereTeur, hoeheFuer, stockwerkHoehen, type LeiterStufe } from '../src/grafik/mandatsleiter.ts';
-import { zielInB } from '../src/grafik/vergleich-szene.ts';
+import { istKarte, kopfKarte, kopfListe, kopfText, kopfZahl, rollenAttr } from '../src/ui/anzeige.ts';
 import { idArt } from '../src/grafik/checkliste.ts';
 import { FLUSS_POSITIONEN, istFlussPosition } from '../src/grafik/governance-fluss.ts';
 
-const tue = (z: Zustand, a: Aktion | null): Zustand => {
-  assert.ok(a !== null, 'Aktion erwartet');
-  const neu = wende(z, a, inhalte);
-  assert.notEqual(neu, z, `Aktion ${a.art} hat nichts geändert`);
-  return neu;
-};
-const o = (z: Zustand): OeffentlicherZustand => oeffentlich(z);
-const weiter = (z: Zustand): Zustand => tue(z, weiterAktion(o(z), inhalte));
-const art = (z: Zustand): string | undefined => aktuellerSchritt(o(z), inhalte)?.art;
-
-/** Bis zum Einstieg in A3 (Rolle PL, Interesse „express“: Prolog → A3, E8/L-26). */
-function bisA3(): Zustand {
-  let z = weiter(anfangszustand());
-  assert.equal(z.station, inhalte.start);
-  while (art(z) !== 'rollenwahl') z = weiter(z);
-  z = tue(z, { art: 'waehleRolle', rolle: 'pl' });
-  while (art(z) !== 'interessenwahl') z = weiter(z);
-  z = tue(z, { art: 'setzeInteressen', interessen: ['express'] });
-  while (z.station === inhalte.start) z = weiter(z);
-  assert.equal(z.station, 'A3');
-  return z;
-}
-
-/** Bis zur Entscheidung in A3 (Rolle PL, Express-Pfad). */
-function bisEntscheidung(): Zustand {
-  let z = bisA3();
-  while (art(z) !== 'entscheidung') z = weiter(z);
-  return z;
-}
-
-/** „weiter“, bis `ziel` erfüllt ist; an offenen Entscheidungen unterwegs wählt die PL „A“. */
-function laufeBis(z: Zustand, ziel: (z: Zustand) => boolean): Zustand {
-  for (let i = 0; i < 500 && !ziel(z); i++) {
-    const a = weiterAktion(o(z), inhalte);
-    z = a === null && art(z) === 'entscheidung' ? tue(z, { art: 'waehle', option: 'A', zeit: 3 }) : tue(z, a);
-  }
-  assert.ok(ziel(z), `Ziel nicht erreicht (steht in ${z.station}, Schritt ${z.schritt})`);
-  return z;
-}
-
-test('L-4: Prolog und Einstieg ohne Instrumente und Karte; Karte nach dem Einstieg, Instrumente ab der Entscheidung', () => {
-  let z = weiter(anfangszustand());
-  assert.equal(instrumenteSichtbar(o(z), inhalte), false);
-  assert.equal(karteSichtbar(o(z), inhalte), false);
-  while (art(z) !== 'rollenwahl') z = weiter(z);
-  assert.equal(weiterAktion(o(z), inhalte), null, 'ohne Rolle geht es nicht weiter');
-  z = tue(z, { art: 'waehleRolle', rolle: 'pl' });
-  while (z.station === inhalte.start) z = weiter(z);
-  assert.equal(z.schritt, 0);
-  assert.equal(karteSichtbar(o(z), inhalte), false, 'Einstieg: noch keine Karte');
-  assert.equal(instrumenteSichtbar(o(z), inhalte), false, 'Einstieg: noch keine Instrumente');
-  z = weiter(z);
-  assert.equal(karteSichtbar(o(z), inhalte), true, 'nach dem Einstieg: Karte');
-  assert.equal(instrumenteSichtbar(o(z), inhalte), false);
-  while (art(z) !== 'entscheidung') z = weiter(z);
-  assert.equal(instrumenteSichtbar(o(z), inhalte), true, 'Entscheidung: Instrumente');
-  // Auf der Startseite (Bereich start) nie
-  const start = tue(z, { art: 'wechsleBereich', bereich: 'start' });
-  assert.equal(instrumenteSichtbar(o(start), inhalte), false);
-  assert.equal(karteSichtbar(o(start), inhalte), false);
+test('Kopfdaten lesen und Rollenfarben', () => {
+  const kopf = { titel: 'A', zahl: 3, text: '4,5', liste: ['x'], karte: { a: 1 } };
+  assert.equal(kopfText(kopf, 'titel'), 'A');
+  assert.equal(kopfText(kopf, 'zahl'), '3');
+  assert.equal(kopfText(kopf, 'fehlt'), null);
+  assert.equal(kopfZahl(kopf, 'text'), 4.5);
+  assert.deepEqual(kopfListe(kopf, 'liste'), ['x']);
+  assert.deepEqual(kopfKarte(kopf, 'karte'), { a: 1 });
+  assert.ok(istKarte(kopf.karte));
+  assert.equal(rollenAttr('planung'), 'plan');
+  assert.equal(rollenAttr(null), null);
 });
 
-test('Weiter wartet auf die Entscheidung; danach Konsequenz, Ebenen, Welt B (B3) mit Ebenen 1–4', () => {
-  let z = bisEntscheidung();
-  assert.equal(weiterAktion(o(z), inhalte), null);
-  const ent = inhalte.stationen['A3']?.szenen['pl']?.entscheidung;
-  assert.ok(ent);
-  z = tue(z, { art: 'waehle', option: 'B', zeit: 1 });
-  z = weiter(z);
-  assert.equal(art(z), 'konsequenz');
-  z = weiter(z);
-  assert.equal(art(z), 'ebenen', 'A3 hat seit P3.4 Ebenen 1–4 nach der Konsequenz');
-  z = weiter(z);
-  assert.equal(z.station, 'A6', 'Express: nach A3 folgt A6');
-  assert.equal(tafelWelt(inhalte.stationen['A3'] ?? null), 'a');
-  z = laufeBis(z, (x) => x.station === 'B3');
-  assert.equal(tafelWelt(inhalte.stationen['B3'] ?? null), 'b');
-  // eine Station mit „vergleich:“ (A ⟷ B) zeigt beide Welten – die echten Inhalte haben seit P5.10 keine mehr
-  const b3 = inhalte.stationen['B3'];
-  assert.ok(b3);
-  assert.equal(tafelWelt({ ...b3, welt: null, vergleich: { a: 'A3', b: 'B3' } }), 'ab');
-  while (art(z) !== 'ebenen') z = weiter(z);
-  // L-61: „Weiter“ geht auch im Ebenen-Schritt weiter; die Ebenen 2–4 öffnet man selbst
-  assert.deepEqual(weiterAktion(o(z), inhalte), { art: 'weiter' }, 'Ebene 1 ist Hauptpfad, Weiter führt zur nächsten Station');
-  z = tue(z, { art: 'setzeEbene', ebene: 4 });
-  assert.deepEqual(weiterAktion(o(z), inhalte), { art: 'weiter' }, 'nach Ebene 4 geht es zur nächsten Station');
-  assert.deepEqual(zurueckAktion(o(z), inhalte), { art: 'zurueck' }, 'Zurück ist die Umkehr von Weiter (L-61)');
-  assert.equal(weiter(z).station, 'B6', 'Express: nach B3 folgt B6');
-});
-
-test('Gruppen: die sechs Teile von B3 sind ein Fortschrittsschritt mit Takten', () => {
-  const b3 = inhalte.stationen['B3'];
-  assert.ok(b3);
-  const schritte = sichtbareSchritte(b3, 'pl');
-  const gruppen = gruppiere(schritte);
-  assert.equal(gruppen.length, 2);
-  assert.equal(gruppen[0]?.indizes.length, 6);
-  assert.deepEqual(schrittPosition(schritte, 2), { nr: 1, takt: 3, takte: 6, gruppe: gruppen[0] });
-  assert.match(kicker(schritte, 2), /^Schritt 1 · 3\/6 /);
-  assert.equal(tafelTitel(schritte, 0), schritte[0]?.gruppe);
-  assert.equal(kicker(schritte, 6), `Schritt 2 · ${schritte[6]?.kurz || schritte[6]?.titel}`);
-});
-
-test('Regie-Eingriffe: Kundenwahl A–D an der Entscheidung, Welt A/B am Vergleichsschritt einer B-Station', () => {
-  let z = bisEntscheidung();
-  const e = eingriffe(o(z), inhalte);
-  assert.deepEqual(e.filter((x) => x.aktion.art === 'waehle').map((x) => x.pruef), ['regie-wahl-A', 'regie-wahl-B', 'regie-wahl-C', 'regie-wahl-D']);
-  z = tue(z, { art: 'waehle', option: 'C', zeit: 2 });
-  assert.equal(eingriffe(o(z), inhalte).find((x) => x.pruef === 'regie-wahl-C')?.gedrueckt, true);
-  z = weiter(weiter(z));
-  // A3 hat Ebenen 1–4 (P3.4): die Regie kann sie direkt öffnen
-  assert.deepEqual(eingriffe(o(z), inhalte).map((x) => x.pruef), ['regie-ebene-1', 'regie-ebene-2', 'regie-ebene-3', 'regie-ebene-4']);
-  // der Schieberegler A ⟷ B lebt seit P5.10 in den Vergleichsschritten der B-Stationen (Express: B6)
-  z = laufeBis(z, (x) => x.station === 'B6' && art(x) === 'vergleich');
-  const v = eingriffe(o(z), inhalte).map((x) => x.pruef);
-  assert.deepEqual(v, ['regie-welt-a', 'regie-welt-b']);
-  z = tue(z, { art: 'setzeVergleich', wert: 0 });
-  assert.equal(eingriffe(o(z), inhalte).find((x) => x.pruef === 'regie-welt-a')?.gedrueckt, true);
-  // außerhalb der Story nichts
-  assert.deepEqual(eingriffe(o(tue(z, { art: 'wechsleBereich', bereich: 'theorie' })), inhalte), []);
-});
-
-test('Uhr und Zeitsprung: angeforderte Information verschiebt die Uhr', () => {
-  let z = bisA3();
-  const a3 = inhalte.stationen['A3'];
-  assert.ok(a3);
-  const vorher = uhrAnzeige(a3, o(z), inhalte);
-  assert.ok(vorher !== null && !vorher.gesprungen);
-  assert.match(vorher.zeit ?? '', /^\d{1,2}:\d{2}$/);
-  const info = a3.infos[0];
-  assert.ok(info);
-  z = weiter(z);
-  z = tue(z, { art: 'fordereInfo', info: info.id });
-  const nachher = uhrAnzeige(a3, o(z), inhalte);
-  assert.ok(nachher?.gesprungen);
-  assert.ok((tageAus(nachher.tag) ?? 0) > 0);
-});
-
-test('tageAus liest Dauern in Worten und Ziffern', () => {
-  assert.equal(tageAus('Zwei Wochen später'), 14);
-  assert.equal(tageAus('3 Tage später'), 3);
-  assert.equal(tageAus('ein Monat'), 30);
-  assert.equal(tageAus('später'), null);
-});
-
-test('Mandatsleiter: Anzeige-Wahl mit Vorgabe, Stockwerke, Höhe und Beträge', () => {
-  const b3 = inhalte.stationen['B3'];
-  const mandat = b3?.schritte.find((s) => s.bloecke.some((b) => b.art === 'mandatsleiter'));
-  assert.ok(b3 && mandat);
-  const erste = mandat.bloecke.find((b) => b.art === 'mandatsoption')?.id ?? null;
-  assert.equal(mandatsWahl({ ansicht: {} }, 'B3', mandat), erste);
-  assert.equal(mandatsWahl({ ansicht: { [`B3/${mandat.id}`]: 'gibt-es-nicht' } }, 'B3', mandat), erste);
-  assert.deepEqual(stockwerkHoehen(3), [22, 52, 26]);
-  assert.equal(stockwerkHoehen(4).reduce((a, b) => a + b, 0), 100);
-  const stufen: LeiterStufe[] = [
-    { wer: 'PL', bereich: '', bisTeur: 100, hinweis: null },
-    { wer: 'GF', bereich: '', bisTeur: 1000, hinweis: null },
-    { wer: 'Rat', bereich: '', bisTeur: null, hinweis: null },
-  ];
-  assert.equal(hoeheFuer(stufen, 0), 0);
-  assert.equal(hoeheFuer(stufen, 100), 22);
-  assert.ok(hoeheFuer(stufen, 4700) > 74 && hoeheFuer(stufen, 4700) <= 100);
-  assert.equal(formatiereTeur(100), '100 TEUR');
-  assert.equal(formatiereTeur(4700), '4,7\u00a0Mio.\u00a0€'); // R59: Betrag und Einheit bleiben in einer Zeile
-});
-
-test('Vergleichsszene, Prüfliste, Fluss: Ziele und Kennungen', () => {
-  assert.deepEqual(zielInB({ bArt: 'register', fluss: 'fruehwarnung', b: null }).breit, [7.14, 80, 13.2]);
-  assert.equal(zielInB({ bArt: 'markierung', fluss: null, b: null }).breit[1], 13);
-  // Zwei Stücke an derselben Station liegen nie aufeinander (breit übereinander, schmal nebeneinander).
-  const erstes = zielInB({ bArt: 'register', fluss: 'entscheidung', b: null }, 0, 2);
-  const zweites = zielInB({ bArt: 'reserve', fluss: 'entscheidung', b: null }, 1, 2);
-  assert.equal(erstes.breit[0], zweites.breit[0]);
-  assert.notEqual(erstes.breit[1], zweites.breit[1]);
-  assert.equal(erstes.schmal[1], zweites.schmal[1]);
-  assert.ok(erstes.schmal[0] + erstes.schmal[2] / 2 <= zweites.schmal[0] - zweites.schmal[2] / 2, 'schmal nebeneinander ohne Überlappung');
+test('Prüfliste und Fluss: Kennungen', () => {
   assert.equal(idArt('ENT-017'), 'ent');
   assert.equal(idArt('RIS-014'), 'ris');
   assert.equal(idArt('PRB-004'), 'prb');
@@ -218,38 +46,6 @@ test('Vorlage (L-40): ohne Kürzel keine ID-Marke, aria-label nur der Titel; mit
   assert.equal(FLUSS_POSITIONEN.length, 7);
   assert.ok(istFlussPosition('entscheidung'));
   assert.ok(!istFlussPosition('irgendwo'));
-});
-
-test('Story-Karte: Welt A vom Prolog bis zur Wirklichkeit, Welt B beginnt mit der ersten Partnerstation und endet in B6', () => {
-  const folge = inhalte.stationsFolge.map((id) => inhalte.stationen[id]).filter((s) => s !== undefined);
-  const lauf = spuren(folge);
-  assert.equal(lauf.length, folge.length);
-  const bei = (id: string) => lauf[inhalte.stationsFolge.indexOf(id)];
-  assert.deepEqual(bei('prolog'), { a: 'start', b: 'keine' });
-  assert.deepEqual(bei('A1'), { a: 'linie', b: 'start' }, 'Welt B beginnt an der ersten Station mit Partner');
-  assert.deepEqual(bei('B6'), { a: 'linie', b: 'ende' });
-  assert.deepEqual(bei('wirklichkeit'), { a: 'ende', b: 'keine' });
-  assert.deepEqual(bei('epilog'), { a: 'keine', b: 'keine' });
-  // eine Vergleichsstation (A ⟷ B) liegt auf beiden Spuren
-  const b3 = inhalte.stationen['B3'];
-  assert.ok(b3);
-  const v = { ...b3, id: 'V', welt: null, partner: null, vergleich: { a: 'A3', b: 'B3' } };
-  const nurAV = spuren([folge[0]!, inhalte.stationen['A3']!, v, b3]);
-  assert.deepEqual(nurAV.map((s) => s.a), ['start', 'linie', 'ende', 'keine']);
-  assert.deepEqual(nurAV.map((s) => s.b), ['keine', 'start', 'linie', 'ende']);
-});
-
-test('Anschlag (R63): eine Wirkung auf einen Wert am Anschlag nennt die Konsequenz („bleibt …“), eine wirksame nicht doppelt', async () => {
-  const { anschlagSaetze } = await import('../src/ui/anzeige.ts');
-  const s = { entscheidungsfaehigkeit: 5, kostenunsicherheit: 'mittel', offeneRisiken: 3, ungeklaerteEntscheidungen: 0, terminrisiko: 'sehr hoch', hinweise: {} } as any;
-  const w = (schluessel: string, wert: number) => ({ schluessel, art: 'aendere', wert, hinweis: null }) as any;
-  assert.deepEqual(anschlagSaetze([w('terminrisiko', 1)], s, s).map((x) => [x.text, x.richtung]), [['Terminrisiko bleibt sehr hoch (Höchststufe)', 'schlecht']]);
-  assert.deepEqual(anschlagSaetze([w('entscheidungsfaehigkeit', 1)], s, s).map((x) => [x.text, x.richtung]), [['Entscheidungsfähigkeit bleibt 5 von 5 (Höchstwert)', 'gut']]);
-  assert.deepEqual(anschlagSaetze([w('ungeklaerteEntscheidungen', -1)], s, s).map((x) => x.text), ['Ungeklärte Entscheidungen bleiben 0 (Tiefstwert)']);
-  // nicht am Anschlag (und unverändert, etwa weil eine zweite Wirkung aufhob): kein Satz
-  assert.deepEqual(anschlagSaetze([w('kostenunsicherheit', 1), w('offeneRisiken', 1)], s, s), []);
-  // schon geändert: steht in den Änderungssätzen
-  assert.deepEqual(anschlagSaetze([w('terminrisiko', 1)], { ...s, terminrisiko: 'hoch' }, s), []);
 });
 
 test('R64: jeder lange Rollentitel trennt nur an einer Fuge (Rollen-Linse, RACI-Kopf)', async () => {

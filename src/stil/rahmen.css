@@ -1,0 +1,120 @@
+/* =============================================================================================
+   MVG · Rahmen aller Bereiche (P16.11): Kopf, Fuß, Sprunglink, Bauplan-Hintergründe (O-45).
+   Nur Tokens aus tokens.css, keine Farbwerte.
+   ============================================================================================= */
+
+.seite {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--grund);
+  isolation: isolate;
+}
+
+.sprung-inhalt {
+  position: absolute;
+  left: var(--a-4);
+  top: -100px;
+  z-index: 20;
+  padding: var(--a-2) var(--a-4);
+  background: var(--navy);
+  color: var(--auf-navy);
+  border-radius: var(--radius-m);
+}
+.sprung-inhalt:focus { top: var(--a-2); color: var(--auf-navy); }
+
+/* ------------------------------------------------------------------ Kopf */
+.seiten-kopf {
+  display: flex;
+  align-items: center;
+  gap: var(--a-3);
+  padding: var(--a-3) var(--a-6);
+  background: var(--weiss-a85);
+  border-bottom: 1px solid var(--linie);
+  backdrop-filter: blur(6px);
+  position: relative;
+  z-index: 2;
+}
+.kopf-marke { display: inline-flex; color: var(--navy); flex: none; }
+.kopf-marke .marke-logo { width: 34px; height: 34px; color: var(--navy); }
+.kopf-name {
+  font: var(--typo-reiter);
+  font-size: var(--gr-xl);
+  letter-spacing: var(--sperrung-titel);
+  color: var(--navy);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.kopf-name:hover { color: var(--navy-soft); }
+.kopf-bereiche { display: flex; gap: var(--a-1); margin-left: auto; flex-wrap: wrap; }
+.kopf-bereich {
+  font: var(--typo-reiter);
+  letter-spacing: var(--sperrung-label);
+  text-transform: uppercase;
+  color: var(--tinte-2);
+  text-decoration: none;
+  padding: var(--a-2) var(--a-3);
+  border-radius: var(--radius-m);
+}
+.kopf-bereich:hover { color: var(--navy); background: var(--flaeche-2); text-decoration: none; }
+.kopf-bereich[aria-current="page"] { color: var(--navy); box-shadow: inset 0 -2px 0 var(--gold); }
+
+/* ------------------------------------------------------------------ Haupt und Fuß */
+.seiten-haupt { flex: 1; position: relative; z-index: 1; outline: none; }
+
+.seiten-fuss {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--a-2) var(--a-6);
+  padding: var(--a-4) var(--a-6);
+  border-top: 1px solid var(--linie);
+  background: var(--weiss-a85);
+  color: var(--tinte-2);
+  font: var(--typo-klein);
+}
+.fuss-absender b { color: var(--tinte); }
+.fuss-links { display: flex; gap: var(--a-4); margin-left: auto; flex-wrap: wrap; }
+.fuss-links a, .bm-link { color: var(--tinte-2); }
+.fuss-links a:hover, .bm-link:hover { color: var(--navy); }
+.fuss-zusatz { display: flex; flex-wrap: wrap; gap: var(--a-2); align-items: baseline; }
+
+/* ------------------------------------------------------------------ Bauplan (O-45) */
+.bauplan { width: 100%; height: 100%; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.bauplan path, .bauplan circle { vector-effect: non-scaling-stroke; }
+.bp-feld { stroke: var(--linie-3); stroke-width: 1; stroke-dasharray: 6 5; }
+.bp-achse { stroke: var(--linie-2); stroke-width: .6; stroke-dasharray: 2 4; }
+.bp-plan { stroke: var(--navy-soft); stroke-width: 1; }
+.bp-plan.gestrichelt { stroke-dasharray: 4 4; }
+.bp-plan.fein, .bp-bau.fein { stroke-width: .6; }
+.bp-platte { stroke: var(--navy-soft); stroke-width: 1.4; }
+.bp-bau { stroke: var(--navy); stroke-width: 1.1; }
+.bp-bau.fenster { stroke-width: 1.6; stroke: var(--navy-soft); }
+.bp-kran { stroke: var(--gold-text); stroke-width: 1.2; }
+.bp-kran.fein { stroke-width: .7; }
+.bp-baum { stroke: var(--gruen); stroke-width: 1; }
+.bp-mass-linie { stroke: var(--gold); stroke-width: 1.2; }
+
+/* Rasterpapier unter jeder Bauplan-Fläche */
+.bauplan-papier {
+  background-color: var(--grund);
+  background-image:
+    linear-gradient(var(--gitter) 1px, transparent 1px),
+    linear-gradient(90deg, var(--gitter) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+@media (max-width: 720px) {
+  .seiten-kopf { padding: var(--a-2) var(--a-4); flex-wrap: wrap; }
+  .kopf-bereiche { margin-left: 0; width: 100%; }
+  .seiten-fuss { padding: var(--a-4); }
+  .fuss-links { margin-left: 0; }
+}
+
+@media print {
+  .seiten-kopf, .seiten-fuss, .sprung-inhalt { display: none; }
+}

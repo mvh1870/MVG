@@ -11,6 +11,8 @@
 # Belege k10.4: k10.4-p1
 # Belege k10.5: k10.5-t1
 kapitel: 10
+thema: anwendung
+reihe: 13
 titel: Anwendungssituationen und Praxislogik
 kurztitel: Anwendungssituationen
 story: [epilog, ende-neufestlegung]

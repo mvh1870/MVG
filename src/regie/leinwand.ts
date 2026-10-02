@@ -1,110 +1,100 @@
 /*
- * Leinwand (O-9): zeigt nur, was die Regie über den Kanal schickt – den öffentlichen Zustand.
- *
- * SCHUTZ DURCH KONSTRUKTION. Dieses Modul importiert nur die öffentlichen Inhalte (`inhalte`, ohne
- * Regie-Material) und bekommt nur `OeffentlicherZustand` (ohne Protokoll). Notizen und Leitfragen
- * kann die Leinwand deshalb nicht zeichnen, auch nicht aus Versehen. Sie ist nicht bedienbar
- * (`inert`), zeichnet dieselben Flächen wie das Hauptfenster und sendet Lebenszeichen, damit die Regie
- * „Leinwand verbunden“ anzeigen kann.
- *
+ * Leinwand (O-9, P16.9): zeigt nur, was über den Kanal kommt – geprüft mit `pruefeBuehne` – und
+ * zeichnet ohne Bedienung: Start, Story-Schritt, Thema oder Werkzeug. Regie-Material erreicht sie nie.
  * `erzeugeAnzeige` ist dieselbe Zeichnung für die Vorschau in der Regie.
  */
 
-import type { Aktion, OeffentlicherZustand } from '../engine/typen.ts';
 import type { OeffentlicheInhalte } from '../inhalte/typen.ts';
-import { pruefeOeffentlich } from '../engine/zustand.ts';
 import type { Kanal } from './kanal.ts';
-import { h, ersetze } from '../ui/h.ts';
+import { pruefeBuehne, type Buehne } from './buehne.ts';
+import { h, ersetze, vonHtml } from '../ui/h.ts';
 import { bildmarke } from '../ui/marke.ts';
-import { erzeugeStory, type StoryFlaeche } from '../ui/flaechen/story.ts';
 import { baueStart } from '../ui/flaechen/start.ts';
-import { baueTheorie, kapitelListe, zeigeAktuellenEintrag } from '../ui/flaechen/theorie.ts';
+import { baueTheorie, themaTitel, themen, zeigeAktuellenEintrag } from '../ui/flaechen/theorie.ts';
+import { baueExplore, WERKZEUGE } from '../ui/flaechen/explore.ts';
+import { baueSchritt, leisteOben, lphAm } from '../ui/flaechen/geschichte.ts';
+import { seitenRahmen } from '../ui/bausteine/seite.ts';
+import { campus, stufeAusLph } from '../grafik/bauplan.ts';
+import { wegStationen } from '../geschichte/engine.ts';
 import { W } from '../ui/woerter.ts';
 
 export interface Anzeige {
   element: HTMLElement;
-  /**
-   * Um knapp eine Höhe rollen (−1 hoch, +1 runter): in der Story die Tafel, sonst die Seite (Lernseite) –
-   * auf der Leinwand das Fenster, in der Regie-Vorschau die Seite in der Bühne. false, wenn nichts zu rollen ist.
-   */
+  /** Um knapp eine Höhe rollen (−1 hoch, +1 runter); false, wenn nichts zu rollen ist. */
   rolle(schritt: -1 | 1): boolean;
-  setze(z: OeffentlicherZustand, aktion: Aktion | null): void;
+  setze(b: Buehne): void;
   entferne(): void;
 }
 
-/** Nicht bedienbare Zeichnung eines öffentlichen Zustands (Leinwand, Regie-Vorschau). */
+/** Story-Schritt ohne Bedienung (Leinwand, Vorschau). */
+export function storyAnzeige(inhalte: OeffentlicheInhalte, b: Buehne): HTMLElement {
+  const g = inhalte.geschichte;
+  if (g === null) return h('div');
+  const stand = b.story;
+  return seitenRahmen({
+    bereich: 'story',
+    klasse: 'seite-story',
+    bedienbar: false,
+    hintergrund: h('div', { class: 'gs-hintergrund', 'aria-hidden': 'true' }, vonHtml(campus(stufeAusLph(lphAm(g, stand.schritt)), 'bauplan bauplan-story'))),
+    inhalt: [
+      h('div', { class: 'gs-leiste' }, leisteOben(g, stand, false, () => undefined)),
+      h('div', { class: 'gs-buehne' }, baueSchritt({ g, stand, bedienbar: false, themaTitel: (id) => themaTitel(inhalte, id), gegenprobe: null, tue: () => undefined, setzeGegenprobe: () => undefined })),
+    ],
+  });
+}
+
+/** Nicht bedienbare Zeichnung eines Bühnenstands (Leinwand, Regie-Vorschau). */
 export function erzeugeAnzeige(inhalte: OeffentlicheInhalte, version: string, eingebettet: boolean): Anzeige {
   const element = h('div', { class: 'anzeige', inert: true });
-  let story: StoryFlaeche | null = null;
-  let bereichJetzt = '';
-  let theorieJetzt: number | null | undefined;
-  // neue Seite auf der Leinwand: oben beginnen wie im Hauptfenster (nicht in der Regie-Vorschau, die im Regie-Fenster sitzt)
+  let schluessel = '';
   const nachOben = (): void => {
-    if (!eingebettet && typeof window !== 'undefined') window.scrollTo(0, 0);
+    if (eingebettet) element.scrollTop = 0;
+    else if (typeof window !== 'undefined') window.scrollTo(0, 0);
   };
-
   return {
     element,
     rolle(schritt) {
-      const t = element.querySelector<HTMLElement>('.tafel-inhalt');
-      if (t !== null) {
-        if (t.scrollHeight <= t.clientHeight + 1) return false;
-        t.scrollTop += schritt * Math.round(t.clientHeight * 0.8);
-        return true;
-      }
-      // Lernseite (P12.5 R9): die Seite selbst – in der Vorschau rollt die Seite in der Bühne, auf der Leinwand das Fenster
       if (eingebettet) {
-        const s = element.querySelector<HTMLElement>('.lernseite');
-        if (s === null || s.scrollHeight <= s.clientHeight + 1) return false;
-        s.scrollTop += schritt * Math.round(s.clientHeight * 0.8);
+        if (element.scrollHeight <= element.clientHeight + 1) return false;
+        element.scrollTop += schritt * Math.round(element.clientHeight * 0.8);
         return true;
       }
-      if (typeof window === 'undefined' || element.querySelector('.lernseite') === null) return false;
+      if (typeof window === 'undefined') return false;
       const d = document.scrollingElement ?? document.documentElement;
       if (d.scrollHeight <= window.innerHeight + 1) return false;
       window.scrollBy(0, schritt * Math.round(window.innerHeight * 0.8));
       return true;
     },
-    setze(z, aktion) {
-      const bereich = z.bereich === 'story' && z.station !== null ? 'story' : z.bereich === 'theorie' ? 'theorie' : 'start';
-      if (bereich === 'story') {
-        if (story === null || bereichJetzt !== 'story') {
-          story?.entferne();
-          story = erzeugeStory({ inhalte, tue: null, eingebettet });
-          ersetze(element, story.element);
-          nachOben();
-        }
-        story.setze(z, bereichJetzt === 'story' ? aktion : null);
-      } else if (bereich === 'theorie') {
-        if (bereichJetzt !== 'theorie' || theorieJetzt !== z.theorie.kapitel) {
-          story?.entferne();
-          story = null;
-          const seite = baueTheorie({ inhalte, kapitel: z.theorie.kapitel, version, bedienbar: false });
-          ersetze(element, seite);
-          nachOben();
-          // die Leinwand ist inert: niemand kann das Verzeichnis rollen – der aktuelle Eintrag muss von selbst sichtbar sein
-          zeigeAktuellenEintrag(seite);
-          theorieJetzt = z.theorie.kapitel;
-        }
-      } else if (bereichJetzt !== 'start') {
-        story?.entferne();
-        story = null;
-        ersetze(element, baueStart({
+    setze(b) {
+      const neu = JSON.stringify(b);
+      if (neu === schluessel) return;
+      const gleicherOrt = schluessel !== '' && (() => {
+        const alt = JSON.parse(schluessel) as Buehne;
+        return alt.bereich === b.bereich && alt.thema === b.thema && alt.werkzeug === b.werkzeug && JSON.stringify(alt.story.schritt) === JSON.stringify(b.story.schritt);
+      })();
+      schluessel = neu;
+      let seite: HTMLElement;
+      if (b.bereich === 'story') seite = storyAnzeige(inhalte, b);
+      else if (b.bereich === 'theorie') seite = baueTheorie({ inhalte, thema: b.thema, version, bedienbar: false });
+      else if (b.bereich === 'explore') seite = baueExplore({ inhalte, werkzeug: b.werkzeug, bedienbar: false });
+      else {
+        seite = baueStart({
           startseite: inhalte.startseite,
-          kapitelAnzahl: kapitelListe(inhalte).length,
-          rollenAnzahl: inhalte.rollenFolge.length,
+          themenAnzahl: themen(inhalte).length,
+          stationenAnzahl: inhalte.geschichte !== null ? wegStationen(inhalte.geschichte, false).length : 0,
+          werkzeugAnzahl: WERKZEUGE.length,
           weiterlesen: false,
-          fassung: inhalte.whitepaper.fassung ?? '',
-          version,
           bedienbar: false,
-        }));
-        nachOben();
+        });
       }
-      if (bereich !== 'theorie') theorieJetzt = undefined;
-      bereichJetzt = bereich;
+      const oben = element.scrollTop;
+      ersetze(element, seite);
+      if (b.bereich === 'theorie') zeigeAktuellenEintrag(seite);
+      // Eine Wahl im selben Schritt lässt die Leinwand stehen; ein neuer Ort beginnt oben
+      if (gleicherOrt && eingebettet) element.scrollTop = oben;
+      else if (!gleicherOrt) nachOben();
     },
     entferne() {
-      story?.entferne();
       element.remove();
     },
   };
@@ -121,10 +111,9 @@ export interface LeinwandOptionen {
 /** Startet die Leinwand in `wurzel`; gibt eine Abmeldung zurück. */
 export function starteLeinwand(wurzel: HTMLElement, o: LeinwandOptionen): () => void {
   const anzeige = erzeugeAnzeige(o.inhalte, o.version, false);
-  // R27: die Warteansicht ist die main der Leinwand (mit h1); die Hülle ist keine Landmarke, damit die main der Story-Tafel oben liegt
   const warten = h('main', { class: 'leinwand-warten', 'data-pruef': 'leinwand-warten', 'aria-label': W.leinwand.titel },
     bildmarke('marke-logo'),
-    h('p', { class: 'leinwand-warten-name' }, W.produkt),
+    h('p', { class: 'leinwand-warten-name' }, W.name),
     h('h1', { class: 'leinwand-warten-titel' }, W.leinwand.warten),
     h('p', null, W.leinwand.wartenHinweis));
   const element = h('div', { class: 'leinwand', 'data-pruef': 'leinwand' }, warten);
@@ -142,42 +131,28 @@ export function starteLeinwand(wurzel: HTMLElement, o: LeinwandOptionen): () => 
       return;
     }
     if (n.art !== 'zustand') return;
-    const z = pruefeOeffentlich(n.zustand);
-    if (z === null) return;
+    const b = pruefeBuehne(n.zustand, o.inhalte.geschichte);
+    if (b === null) return;
     if (!empfangen) {
       empfangen = true;
       ersetze(element, anzeige.element);
     }
-    anzeige.setze(z, null);
+    anzeige.setze(b);
   });
-  // Direkt an der Leinwand: Mausrad und Tasten rollen die Tafel bzw. die Lernseite (die Anzeige ist inert, das Fenster nicht)
-  const rad = (e: WheelEvent): void => {
-    const t = anzeige.element.querySelector<HTMLElement>('.tafel-inhalt');
-    if (t === null || t.scrollHeight <= t.clientHeight + 1) return;
-    t.scrollTop += e.deltaY;
-    e.preventDefault();
-  };
   const taste = (e: KeyboardEvent): void => {
     const s = e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ' ? 1 : e.key === 'ArrowUp' || e.key === 'PageUp' ? -1 : 0;
     if (s !== 0 && anzeige.rolle(s)) e.preventDefault();
   };
-  if (typeof window !== 'undefined') {
-    window.addEventListener('wheel', rad, { passive: false });
-    window.addEventListener('keydown', taste);
-  }
+  if (typeof window !== 'undefined') window.addEventListener('keydown', taste);
   o.kanal.senden({ art: 'hallo' });
   const lebenszeichen = setInterval(() => {
     nr += 1;
     o.kanal.senden({ art: 'lebenszeichen', nr });
-    // Solange nichts kam, erneut grüßen (die Regie kann später geöffnet worden sein).
     if (!empfangen && nr % 3 === 0) o.kanal.senden({ art: 'hallo' });
   }, o.takt ?? 1000);
 
   return () => {
-    if (typeof window !== 'undefined') {
-      window.removeEventListener('wheel', rad);
-      window.removeEventListener('keydown', taste);
-    }
+    if (typeof window !== 'undefined') window.removeEventListener('keydown', taste);
     clearInterval(lebenszeichen);
     ab();
     anzeige.entferne();

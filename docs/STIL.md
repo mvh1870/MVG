@@ -195,6 +195,7 @@ Nur diese Paare dürfen Text (bzw. bei „Grafik“ Symbole, Ränder, Fokusringe
 | `--rolle-ctl-text` #7A5C22 | `--rolle-ctl-soft` #F5F0E8 | 5,5:1 | Text | Blickwinkel Controlling |
 | `--id-ent-text` #1D3258 | `--id-ent-grund` #E8EDF6 | 10,8:1 | Text | ID-Marke ENT- |
 | `--id-ris-text` #0B7A77 | `--id-ris-grund` #E6F5F4 | 4,6:1 | Text | ID-Marke RIS- |
+| `--id-prb-text` #8A2E12 | `--id-prb-grund` #FDEBE5 | 7,3:1 | Text | ID-Marke PRB- (Story) |
 | `--id-frw-text` #6A5208 | `--id-frw-grund` #FFF3C4 | 6,7:1 | Text | ID-Marke FRW- |
 | `--id-aen-text` #7A5C22 | `--id-aen-grund` #FFF7E3 | 5,8:1 | Text | ID-Marke AEN- |
 | `--id-mas-text` #1D5B33 | `--id-mas-grund` #EAF5EE | 7,2:1 | Text | ID-Marke MAS- |

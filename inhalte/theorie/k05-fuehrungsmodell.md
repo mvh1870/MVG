@@ -11,6 +11,8 @@
 # Belege k5.4: k5.4-p1, k5.4-p2
 # Belege k5.5: k5.5-p1 (rechtlicher Hinweis wortgleich als Zitat)
 kapitel: 5
+thema: fuehrungsmodell
+reihe: 5
 titel: Minimum Viable Governance als Bauherren-Führungsmodell
 kurztitel: Führungsmodell
 story: [rueckspulen, B1]

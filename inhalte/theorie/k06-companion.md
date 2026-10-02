@@ -17,6 +17,8 @@
 # Belege k6.4.4: k6.4.4-t1, k6.4.4-p1
 # Belege k6.4.5: k6.4.5-t1, k6.4.5-p1
 kapitel: 6
+thema: arbeitsweise
+reihe: 6
 titel: MVG Companion als Umsetzungsbeschleuniger
 kurztitel: MVG Companion
 story: [B1, B2, B3, B4, B5, B6, ende-auflagen]

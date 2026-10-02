@@ -1,84 +1,60 @@
 /*
- * Fläche „Start“ (O-21): ruhiger Einstieg mit genau zwei Wegen – Erklärt (Theorie) und Erlebt
- * (Story). Keine Instrumente, keine Statusfläche; „Präsentieren“ (Regie) nur leise im Fuß.
- * Aufbau nach der Stilreferenz (werkzeuge/stilreferenz.mjs → startseite): im Kopf die Bildmarke mit
- * dem Absender als Text (STIL Grundsatz 8), damit beide Türen samt „Öffnen/Beginnen“ auch bei
- * 1280×720 (Beamer) auf den ersten Blick sichtbar sind. Kicker, Leitsatz und These kommen aus
- * inhalte/start.md (O-18); hier stehen nur Bedienwörter.
+ * Startseite (O-21, P16.11): ruhiger Einstieg mit drei Wegen – Story, Theorie, Explore – und leise
+ * „Wer steht dahinter“ mit dem Link zu bauherr-mentoren.com (O-44). Hintergrund: der Schulcampus als
+ * Linien-Axonometrie mit goldenen Maßlinien, deutlich sichtbar (O-45). Kicker, Leitsatz und These
+ * kommen aus inhalte/start.md; hier stehen nur Bedienwörter.
  */
 
 import type { Startseite } from '../../inhalte/typen.ts';
-import { h, s } from '../h.ts';
-import { bildmarke } from '../marke.ts';
+import { campus, STUFE_MAX } from '../../grafik/bauplan.ts';
+import { h, vonHtml } from '../h.ts';
 import { sym } from '../bausteine/bloecke.ts';
 import { inhaltInline } from '../bausteine/inhalt.ts';
+import { bmLink, seitenRahmen } from '../bausteine/seite.ts';
 import { W } from '../woerter.ts';
 
 export interface StartOptionen {
-  /** Kicker, Leitsatz und These (inhalte/start.md); null = nur die zwei Wege */
   startseite: Startseite | null;
-  kapitelAnzahl: number;
-  rollenAnzahl: number;
+  themenAnzahl: number;
+  stationenAnzahl: number;
+  werkzeugAnzahl: number;
   /** Stand der Story vorhanden → „Weiterlesen“ statt „Beginnen“ */
   weiterlesen: boolean;
-  /** Fassung des Whitepapers, z. B. „V1.2“ */
-  fassung: string;
-  /** „Whitepaper V1.2 · Story 0.1“ */
-  version: string;
   /** false = nur Anzeige (Leinwand) */
   bedienbar: boolean;
-  /** false = eingebettet: Regie und Leinwand sind von außen gesperrt (L-58), also kein „Präsentieren“ */
-  praesentierbar?: boolean;
-}
-
-function theorieBild(): SVGSVGElement {
-  const hoehen = [16, 8, 20, 4, 12, 0, 14, 6, 18, 10, 22, 8, 26];
-  return s('svg', { class: 'tuer-bild kapitel-striche', viewBox: '0 0 320 92', 'aria-hidden': 'true' },
-    s('g', { transform: 'translate(0,20)' }, hoehen.map((y, i) => s('rect', {
-      x: i * 24, y, width: 16, height: 52 - y, rx: 4, class: i === 0 ? 'ist-an' : null, style: `--verzug:${i * 50}ms`,
-    }))));
-}
-
-function storyBild(): SVGSVGElement {
-  return s('svg', { class: 'tuer-bild', viewBox: '0 0 320 92', 'aria-hidden': 'true' },
-    s('circle', { class: 'weg-start', cx: 14, cy: 46, r: 7 }),
-    s('path', { class: 'weg-a', d: 'M22 46 C 60 46, 70 14, 110 22 S 150 70, 185 50 S 230 8, 262 30 S 290 74, 306 64' }),
-    s('path', { class: 'weg-b', d: 'M22 46 C 90 46, 200 46, 306 46' }),
-    s('text', { class: 'weg-text', 'data-welt': 'b', x: 306, y: 84, 'text-anchor': 'end' }, W.start.weltB),
-    s('text', { class: 'weg-text', 'data-welt': 'a', x: 306, y: 14, 'text-anchor': 'end' }, W.start.weltA));
 }
 
 export function baueStart(o: StartOptionen): HTMLElement {
   const w = W.start;
-  const tuer = (weg: 'theorie' | 'story', inhalt: Node[]): HTMLElement => o.bedienbar
-    ? h('a', { class: 'tuer', 'data-weg': weg, 'data-pruef': `weg-${weg}`, href: `#${weg}` }, inhalt)
-    : h('div', { class: 'tuer', 'data-weg': weg }, inhalt);
-  const seite = h('div', { class: 'startseite', 'data-pruef': 'startseite' },
-    h('header', { class: 'start-kopf' },
-      bildmarke('marke-logo'),
-      // O-33: der Name des Programms, darunter der Absender mit der Fassung
-      h('div', { class: 'start-absender', 'data-pruef': 'start-name' }, h('b', null, W.name), h('span', null, `${W.langname} · ${W.whitepaper} ${o.fassung}`))),
-    h('main', { class: 'start-haupt' },
-      h('div', null,
-        o.startseite !== null ? h('p', { class: 'start-kicker' }, o.startseite.kicker) : null,
-        h('h1', { class: 'start-titel', 'data-pruef': 'start-titel', tabindex: -1 }, o.startseite?.titel ?? W.name),
-        h('p', { class: 'start-these' }, o.startseite !== null ? inhaltInline(o.startseite.these) : null, o.startseite !== null ? ' ' : null, w.wegWaehlen)),
-      h('nav', { class: 'tueren', 'aria-label': w.wege },
-        tuer('theorie', [
-          theorieBild(),
-          h('h2', { class: 'tuer-titel' }, h('span', { class: 'tuer-kicker' }, w.theorieKicker), w.theorieTitel),
-          h('p', { class: 'tuer-text' }, w.theorieText),
-          h('span', { class: 'tuer-meta' }, h('span', null, w.theorieMeta(o.kapitelAnzahl)), h('span', { class: 'tuer-los' }, w.theorieLos, sym('pfeilRechts'))),
-        ]),
-        tuer('story', [
-          storyBild(),
-          h('h2', { class: 'tuer-titel' }, h('span', { class: 'tuer-kicker' }, w.storyKicker), w.storyTitel),
-          h('p', { class: 'tuer-text' }, w.storyText),
-          h('span', { class: 'tuer-meta' }, h('span', null, w.storyMeta(o.rollenAnzahl)), h('span', { class: 'tuer-los' }, o.weiterlesen ? w.storyWeiter : w.storyLos, sym('pfeilRechts'))),
-        ]))),
-    h('footer', { class: 'start-fuss', 'data-pruef': 'fuss' },
-      // der Name steht im Kopf; der Fuß nennt Adresse und Herausgeber (O-34)
-      h('span', null, `${W.adresse} · ${W.herausgeber} · ${W.fiktiv} · `, h('span', { 'data-pruef': 'version' }, o.version)),
-      o.bedienbar ? h('span', { class: 'leise-links' }, o.praesentierbar === false ? null : h('a', { class: 'leise-link', href: '#regie', 'data-pruef': 'praesentieren' }, w.praesentieren)) : null));
-  return seite;
+  const tuer = (weg: 'story' | 'theorie' | 'explore', kicker: string, titel: string, text: string, meta: string, los: string): HTMLElement => {
+    const inhalt = [
+      h('h2', { class: 'tuer-titel' }, h('span', { class: 'tuer-kicker' }, kicker), titel),
+      h('p', { class: 'tuer-text' }, text),
+      h('span', { class: 'tuer-meta' }, h('span', null, meta), h('span', { class: 'tuer-los' }, los, sym('pfeilRechts'))),
+    ];
+    return o.bedienbar
+      ? h('a', { class: 'tuer', 'data-weg': weg, 'data-pruef': `weg-${weg}`, href: `#${weg}` }, inhalt)
+      : h('div', { class: 'tuer', 'data-weg': weg }, inhalt);
+  };
+  return seitenRahmen({
+    bereich: 'start',
+    klasse: 'seite-start',
+    bedienbar: o.bedienbar,
+    hintergrund: h('div', { class: 'start-hintergrund', 'aria-hidden': 'true' }, vonHtml(campus(STUFE_MAX, 'bauplan bauplan-start'))),
+    inhalt: h('div', { class: 'startseite', 'data-pruef': 'startseite' },
+      h('div', { class: 'start-haupt' },
+        h('div', { class: 'start-einstieg' },
+          o.startseite !== null ? h('p', { class: 'start-kicker' }, o.startseite.kicker) : null,
+          h('h1', { class: 'start-titel', 'data-pruef': 'start-titel', tabindex: -1 }, o.startseite?.titel ?? W.name),
+          h('p', { class: 'start-these' }, o.startseite !== null ? inhaltInline(o.startseite.these) : null),
+          h('p', { class: 'start-internetseite' }, w.internetseite)),
+        h('nav', { class: 'tueren', 'aria-label': w.wege },
+          tuer('story', w.storyKicker, w.storyTitel, w.storyText, w.storyMeta(o.stationenAnzahl), o.weiterlesen ? w.storyWeiter : w.storyLos),
+          tuer('theorie', w.theorieKicker, w.theorieTitel, w.theorieText, w.theorieMeta(o.themenAnzahl), w.theorieLos),
+          tuer('explore', w.exploreKicker, w.exploreTitel, w.exploreText, w.exploreMeta(o.werkzeugAnzahl), w.exploreLos))),
+      h('section', { class: 'start-dahinter', 'aria-labelledby': 'start-dahinter-titel', 'data-pruef': 'start-dahinter' },
+        h('h2', { id: 'start-dahinter-titel', class: 't-label' }, w.dahinter),
+        h('p', null, w.dahinterText, ' ', o.bedienbar ? bmLink() : W.rahmen.kontaktBm)),
+      h('p', { class: 'start-fiktiv' }, w.fiktiv)),
+  });
 }

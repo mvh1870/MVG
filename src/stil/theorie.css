@@ -804,3 +804,15 @@ a.abbildung-beleg { color: var(--navy); }
 @media (min-width: 481px) { .galerie-verzeichnis td.galerie-stelle { white-space: nowrap; } }
 /* R58: ein Quellen-Eintrag des Impressums (Station und ihre Absatz-IDs) reißt nicht über die Seitengrenze */
 @media print { .druck-bogen .impressum-quellen li { break-inside: avoid; } }
+
+/* ------------------------------------------------------------------ Themen im Seitenrahmen (P16.3, O-45) */
+.seite-theorie { --fokus: var(--navy); }
+.seite-theorie :focus-visible { box-shadow: 0 0 0 6px var(--fokus-hof); }
+.lern-hintergrund { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .12; }
+.lern-hintergrund .bauplan { width: 100%; height: 100%; }
+.seite-theorie .kapitel-verzeichnis { top: var(--a-4); max-height: calc(100vh - var(--a-8)); }
+.seite-theorie .kapitel-karte { grid-template-columns: minmax(0, 1fr); grid-template-rows: 1fr auto; }
+.lern-kontakt { padding-top: var(--a-4); border-top: 1px solid var(--linie); color: var(--tinte-2); font: var(--typo-klein); }
+.seite-theorie .kapitel-liste > li > :is(a, span) { grid-template-columns: minmax(0, 1fr); }
+.seite-theorie .kapitel-kopf { display: flex; flex-direction: column; align-items: flex-start; }
+.seite-theorie .kapitel-titel:focus { box-shadow: none; }

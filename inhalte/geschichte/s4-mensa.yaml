@@ -1,0 +1,84 @@
+id: s4
+nr: 4
+titel: Größere Mensa
+kurztitel: Mensa
+datum: März 2026
+monat: 3
+lph: 5
+kurzfassung: false
+belege: [v24:hb-1.5, v24:hb-3.1, v24:tlb-2, k4.2-p3, k6.4.4-t1]
+lage: |
+  Sabine Roth, künftige Schulleiterin der Gesamtschule, war beim Geschäftsführer. Für den Ganztag brauche die Schule eine Mensa für rund 450 statt 300 Essen. Frank Deppe hat im Flur gesagt: „Das kriegen wir hin.“
+
+  Für die Projektsteuerung ist das eine Änderung – kein Risiko, kein Problem. Sie hat sie erfasst, ohne vorher einen Risikoeintrag zu verlangen. Die Zusage im Flur ist kein Beschluss: Bis zur Freigabe gilt die bisherige Planung.
+bericht:
+  titel: Bericht der Projektsteuerung · März 2026 (Fortsetzung)
+  zeilen:
+    - Änderung AEN-012 Mensa erfasst – Antragstellerin Sabine Roth, bisherige Grundlage Mensa für 300 Essen.
+    - Fachbeitrag der Generalplanung – 0,6 Mio. €, Umplanung rund vier Wochen.
+    - Fachbeitrag des Controllings – Förderung deckt die größere Mensa nicht.
+    - Vorlage liegt vor; Entscheidung im Änderungsgremium am 31. März.
+  reaktion: Bitte entscheiden Sie über die Mensa.
+vorgaenge:
+  - art: aenderung
+    kennung: AEN-012
+    titel: Mensa für 450 statt 300 Essen
+    text: Anlass – Ganztag. Bisherige Grundlage – Mensa für 300 Essen. Gewünschte Anpassung – Küche und Speiseraum für 450 Essen. Auswirkungen auf Kosten, Termin, Funktion und Förderung ermittelt.
+    verantwortlich: Projektsteuerung; Fachbeiträge Generalplanung und Controlling
+    termin: 31. März
+    stand: Vorlage liegt vor
+vorlage:
+  art: optionen
+  frage: Wird die Mensa vergrößert?
+  grund: |
+    Der Wunsch ist nachvollziehbar, die Kosten liegen über 100 TEUR – damit entscheidet nach dem Mandat das Änderungsgremium. Die Projektsteuerung hat drei zulässige Wege ausgearbeitet.
+  stelle: Änderungsgremium – Vorsitz Frank Deppe
+  termin: 31. März 2026
+  verzug: Nach Ende April lässt sich die Küche nur noch mit Umplanung der Haustechnik ändern.
+  muss: Alle Optionen halten die Vorgaben der Förderung ein.
+  optionen:
+    - id: A
+      titel: Große Mensa jetzt
+      text: Küche und Speiseraum werden für 450 Essen geplant.
+      punkte:
+        kosten: [2, "+0,6 Mio. €"]
+        termin: [3, "rund 14 Tage Verzug in der Planung"]
+        qualitaet: [5, "Ganztag voll versorgt"]
+        klima: [3, "unverändert"]
+      folgen: { kosten: 0.6, puffer: -14 }
+      konsequenz: Die Generalplanung plant um. Die Projektsteuerung passt die Kostenprognose an und verfolgt die Umplanung als Teil der Änderung.
+    - id: B
+      titel: Erweiterbar vorbereiten
+      text: Die Mensa bleibt bei 300 Essen; Küche und Speiseraum werden so geplant, dass eine Erweiterung später ohne Umbau möglich ist.
+      punkte:
+        kosten: [4, "+0,12 Mio. €"]
+        termin: [5, "kein Verzug"]
+        qualitaet: [4, "Erweiterung später möglich"]
+        klima: [3, "unverändert"]
+      folgen: { kosten: 0.12 }
+      konsequenz: Die Generalplanung sieht Anschlüsse und Flächen für eine spätere Erweiterung vor. Sabine Roth bekommt eine klare Antwort mit Begründung.
+    - id: C
+      titel: Wie geplant
+      text: Die Mensa bleibt bei 300 Essen, ohne Vorbereitung.
+      punkte:
+        kosten: [5, "keine Mehrkosten"]
+        termin: [5, "kein Verzug"]
+        qualitaet: [2, "Ganztag knapp versorgt"]
+        klima: [3, "unverändert"]
+      folgen: {}
+      konsequenz: Die Änderung wird mit Begründung abgelehnt und bleibt nachvollziehbar im Register. Der Wunsch der Schule ist nicht erledigt, nur entschieden.
+  empfehlung:
+    option: B
+    text: Die Projektsteuerung empfiehlt, die Mensa erweiterbar vorzubereiten. Nachteil – die Schule bekommt die größere Mensa nicht sofort. Achtung – B und C liegen dicht beieinander. Wer Kosten stärker gewichtet, landet bei C.
+folge: |
+  Abgelehnte oder zurückgezogene Änderungen bleiben mit Begründung nachvollziehbar. Nach einer Freigabe informiert die Projektsteuerung die Beteiligten, veranlasst die Anpassung der Unterlagen und verfolgt die Umsetzung.
+so-laeuft-es-oft: |
+  Die Zusage im Flur wird zum Planungsauftrag, ohne dass jemand die Kosten kennt. Im Herbst taucht die größere Mensa als Nachtrag der Generalplanung auf – und niemand weiß mehr, wer sie beschlossen hat.
+einwand:
+  frage: „Wenn der Geschäftsführer es zusagt, ist das doch entschieden.“
+  antwort: Eine Zusage ist ein Wunsch mit Gewicht, kein Beschluss. Bis das Änderungsgremium entschieden hat, gilt die bisherige Planung – sonst plant die Generalplanung auf eigenes Risiko.
+theorie: verantwortung
+regie:
+  notiz: Die knappe Rangfolge B/C am Regler zeigen. Die Mensa ist die Änderung ohne Risiko – ein Klassiker.
+  leitfragen:
+    - Wie viele Zusagen im Flur stecken in Ihren laufenden Projekten?

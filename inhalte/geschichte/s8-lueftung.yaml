@@ -1,0 +1,82 @@
+id: s8
+nr: 8
+titel: Das Lüftungsgerät kommt später
+kurztitel: Lüftungsgerät
+datum: Januar 2028
+monat: 25
+lph: 8
+kurzfassung: true
+belege: [v24:hb-1.4, v24:hb-3, v24:hb-3.1, v24:hb-3.2, v24:hb-4]
+lage: |
+  Januar 2028, die Bauarbeiten laufen. Der Hersteller meldet: Das zentrale Lüftungsgerät der Gesamtschule kommt fünf Wochen später als vereinbart. Ein technisch gleichwertiges Ersatzgerät eines anderen Herstellers wäre in einer Woche lieferbar.
+
+  In derselben Woche gab es einen dringlichen Fall – ein nicht gesichertes Gerüstfeld an der Sporthalle. Die Projektsteuerung hat es sofort an Bauleitung und Sicherheitskoordination gemeldet; das Feld war in einer Stunde gesperrt. Dokumentiert hat sie es noch am selben Tag. Eine Vorlage gab es dafür nicht – Schutzmaßnahmen warten nicht auf einen Vergleich.
+bericht:
+  titel: Bericht der Projektsteuerung · Januar 2028
+  zeilen:
+    - Dringliche Meldung am 11. Januar – Gerüstfeld Sporthalle gesperrt, gesichert, dokumentiert am selben Tag.
+    - Neues Problem PRB-019 – Lüftungsgerät Gesamtschule fünf Wochen später.
+    - Vorlage Ersatzgerät oder Abwarten liegt vor; Entscheidung bis 19. Januar.
+    - text: Restreserve rund 2 Mio. €.
+      wenn: s7=A
+  reaktion: Bitte entscheiden Sie zwischen Ersatzgerät und Abwarten.
+vorgaenge:
+  - art: aufgabe
+    kennung: AUF-112
+    titel: Dringliche Meldung Gerüstfeld
+    text: Sofort gemeldet an Bauleitung und Sicherheitskoordination, Feld gesperrt; noch am selben Arbeitstag dokumentiert. Erledigt.
+    verantwortlich: Bauleitung; Dokumentation Projektsteuerung
+    termin: 11. Januar
+    stand: erledigt
+  - art: problem
+    kennung: PRB-019
+    titel: Lüftungsgerät fünf Wochen später
+    text: Eingetreten – neuer Liefertermin des Herstellers. Folge ohne Gegenmaßnahme – Inbetriebnahme der Lüftung und damit die Abnahme der Gesamtschule verschieben sich um rund 35 Tage.
+    verantwortlich: Projektsteuerung; Fachbeitrag Haustechnikplanung
+    termin: 19. Januar
+    stand: Vorlage liegt vor
+vorlage:
+  art: optionen
+  frage: Ersatzgerät oder Lieferung abwarten?
+  grund: |
+    Beide Wege erfüllen die Anforderungen – die Haustechnikplanung hat die Gleichwertigkeit des Ersatzgeräts bestätigt. Es geht um Geld gegen Zeit.
+  stelle: Sie, Projektleitung der GML – im Mandat bis 100 TEUR
+  termin: 19. Januar 2028
+  verzug: Nach dem 19. Januar ist das Ersatzgerät nicht mehr in einer Woche lieferbar.
+  muss: Beide Optionen erfüllen Funktion, Brandschutz und Hygieneanforderungen.
+  optionen:
+    - id: A
+      titel: Ersatzgerät
+      text: Das gleichwertige Gerät eines anderen Herstellers wird bestellt.
+      punkte:
+        kosten: [2, "+0,08 Mio. €"]
+        termin: [5, "rund 7 Tage Verzug"]
+        qualitaet: [5, "volle Funktion"]
+        klima: [4, "gleiche Effizienz"]
+      folgen: { kosten: 0.08, puffer: -7 }
+      konsequenz: Die Bestellung läuft über den Vertragsweg der Haustechnik. Die Projektsteuerung verfolgt Lieferung und Einbau und schließt das Problem mit der Inbetriebnahme.
+    - id: B
+      titel: Abwarten
+      text: Die ursprüngliche Lieferung wird abgewartet.
+      punkte:
+        kosten: [5, "+0,02 Mio. € Vorhaltekosten"]
+        termin: [2, "rund 35 Tage Verzug"]
+        qualitaet: [5, "volle Funktion"]
+        klima: [4, "gleiche Effizienz"]
+      folgen: { kosten: 0.02, puffer: -35 }
+      konsequenz: Die Baustelle stellt um. Die Projektsteuerung führt das Terminrisiko für den Schulstart im Register und legt es im nächsten Monatstermin vor.
+  empfehlung:
+    option: A
+    text: Mit den festgelegten Gewichten empfiehlt die Projektsteuerung das Ersatzgerät. Achtung – bei „Kosten vor Termin“ dreht sich die Rangfolge. Das muss sichtbar bleiben.
+folge: |
+  Eine hohe Punktzahl ersetzt kein Urteil. Die Empfehlung nennt deshalb, bei welchen Gewichten sie kippt – damit Sie wissen, worüber Sie wirklich entscheiden.
+so-laeuft-es-oft: |
+  Die Lieferverzögerung wird auf der Baustelle gelöst – irgendwie. Der Bauherr erfährt davon, wenn die Abnahme platzt. Und die Gerüstmeldung? Sie steht im Bautagebuch, drei Wochen später.
+einwand:
+  frage: „So eine Entscheidung trifft doch die Bauleitung.“
+  antwort: Die Bauleitung sagt, was technisch geht. Ob Sie 80.000 € für fünf Wochen ausgeben, ist eine Entscheidung des Bauherrn – im Mandat Ihre. Die Projektsteuerung sorgt dafür, dass sie rechtzeitig und vollständig auf dem Tisch liegt.
+theorie: entscheidungsvorlage
+regie:
+  notiz: Den Regler auf „Kosten vor Termin“ schieben – die Rangfolge dreht sich. Die dringliche Meldung zeigt – Sicherheit wartet nicht auf eine Vorlage.
+  leitfragen:
+    - Welche Rangfolge hätten Sie hier gewählt?

@@ -9,7 +9,10 @@ import assert from 'node:assert/strict';
 import {
   erzeugeKanal, kanalSchluessel, type EingehendeNachricht, type Kanal, type KanalUmgebung, type RundfunkGriff,
 } from '../src/regie/kanal.ts';
-import { anfangszustand, oeffentlich, pruefeOeffentlich } from '../src/engine/zustand.ts';
+import { neueBuehne as anfangszustand, pruefeBuehne } from '../src/regie/buehne.ts';
+import { inhalte } from '../src/inhalte/index.ts';
+const oeffentlich = <T>(x: T): T => x;
+const pruefeOeffentlich = (x: unknown) => pruefeBuehne(x, inhalte.geschichte);
 
 /** Mehrere „Fenster“ über einem gemeinsamen Speicher: ein Schreiben meldet sich bei allen ANDEREN (wie `storage`). */
 function fensterHub() {
@@ -147,7 +150,7 @@ test('Dieselbe Serialisierung auf beiden Wegen (JSON-Rundlauf)', async () => {
   try {
     const a = sammle(nurRundfunk);
     const b = sammle(nurSpeicher);
-    const zustand = { ...oeffentlich(anfangszustand()), extra: undefined, datum: new Date(0) } as unknown as ReturnType<typeof oeffentlich>;
+    const zustand = { ...oeffentlich(anfangszustand()), extra: undefined, datum: new Date(0) } as unknown as ReturnType<typeof anfangszustand>;
     regie.senden({ art: 'zustand', nr: 1, zustand });
     await bis(() => a.length === 1 && b.length === 1);
     assert.deepEqual(a, b);

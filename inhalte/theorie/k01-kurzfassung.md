@@ -6,6 +6,8 @@
 # Belege k1.2: k1.2-l1 (fünf Aussagen, Kette Zielsystem–Mandat–Datenstand–Risiko–Freigabe–Nachweis), k1-p2, k1.3-p1, k1.3-t1 (Datenstand, Freigabeweg je Entscheidungs-ID)
 # Belege k1.3: k1.3-p1, k1.3-t1, k1-p2, k1-p3, k1.2-l1 (Befähigung nach Übergabe), k9.3-p2 (Übergabe des Modells ist Befähigungsschritt, keine Freigabe)
 kapitel: 1
+thema: ueberblick
+reihe: 1
 titel: Kurzfassung
 kurztitel: Kurzfassung
 story: [prolog]

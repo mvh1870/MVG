@@ -6,6 +6,8 @@
 # Belege k3.2: k3.2-t1, k3.2-p1 (Beispiel CTC/Risikoreserve aus Zeile 4 der Tabelle), k6.4.2-t1 (CTC und Prognose beim Controlling)
 # Belege k3.3: k3.3-p1, k3.3-t1, k3.3-p2
 kapitel: 3
+thema: begriffe
+reihe: 3
 titel: Begriffsrahmen – delegierbare Arbeit, Mandat und nichtdelegierbare Verantwortung
 kurztitel: Begriffsrahmen
 story: [wendepunkt, B5, ende-neufestlegung]

@@ -134,6 +134,11 @@ export function kontrastQuellen(selektor = '.zitat-block .quelle b') {
  */
 export function pruefer(seite, h) {
   return async (name) => {
+    // Einblendungen abwarten (endliche Animationen): axe misst sonst Kontrast im Übergang
+    await seite.evaluate(() => Promise.race([
+      Promise.all(document.getAnimations().filter((a) => a.effect?.getTiming().iterations !== Infinity).map((a) => a.finished.catch(() => undefined))),
+      new Promise((r) => setTimeout(r, 3000)),
+    ]));
     for (const fund of await seite.evaluate(kontrastQuellen)) h.befund(`${name}: ${fund}`);
     await seite.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
     await h.warte(150);
@@ -745,4 +750,35 @@ export async function schritttitelBreit(seite, h, name) {
     await h.klick('[data-pruef="seitenleiste-zu"]'); await h.warte(200);
   }
   await seite.setViewportSize(vp); await h.warte(150);
+}
+
+/**
+ * P16.1 (O-38, O-39, O-42): Wörter, die sichtbar nie vorkommen – kein Bezug auf eine Vorlage (Whitepaper, Kapitel,
+ * Absatz-IDs, Fassung „MVG V1.2“, Originaltext), kein Vermerk „ungeprüft“, und die Seite heißt nie Datei, App,
+ * Programm, HTML oder Kundenfassung. Rückgabe: Befundtexte.
+ * @param {string} text
+ * @returns {string[]}
+ */
+export function sichtbarVerboten(text) {
+  const muster = [
+    [/white\s*-?\s*paper/iu, 'Whitepaper'],
+    [/\bKapitel\b/u, 'Kapitel'],
+    [/\bKap\.\s*\d/u, 'Kap. <Nr>'],
+    [/\bk\d{1,2}(?:\.\d{1,2}){0,3}-[pltb]\d{1,3}\b/u, 'Absatz-ID'],
+    [/\bMVG\s+V\d/u, 'MVG V<Fassung>'],
+    [/Originaltext/iu, 'Originaltext'],
+    [/ungeprüft/iu, 'ungeprüft'],
+    [/\b(?:Einzel)?[Dd]atei\b/u, 'Datei'],
+    [/\bApp\b/u, 'App'],
+    [/\bProgramm\b/u, 'Programm'],
+    [/\bHTML\b/u, 'HTML'],
+    [/Kundenfassung/iu, 'Kundenfassung'],
+    [/\bG[0-5]\b/u, 'G0–G5'],
+  ];
+  const aus = [];
+  for (const [re, name] of muster) {
+    const m = re.exec(text);
+    if (m !== null) aus.push(`verbotenes Wort sichtbar (${name}): „${text.slice(Math.max(0, m.index - 30), m.index + m[0].length + 30).replace(/\s+/gu, ' ')}“`);
+  }
+  return aus;
 }

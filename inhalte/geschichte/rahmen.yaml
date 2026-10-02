@@ -1,0 +1,30 @@
+# Rahmen der Story (P16.5, O-40): Status, Kriterien, Prolog und Ende. Format: docs/INHALTSFORMAT.md
+titel: Ein Jahr Bauherrenseite – und noch ein bisschen mehr
+status:
+  kosten: { start: 58.4, einheit: Mio. €, titel: Kostenprognose, basis: 58.4 }
+  puffer: { start: 42, einheit: Tage, titel: Terminpuffer }
+  offen: { start: 0, einheit: '', titel: Offene Entscheidungen }
+kriterien:
+  - { id: kosten, titel: Kosten }
+  - { id: termin, titel: Termin }
+  - { id: qualitaet, titel: Qualität und Funktion }
+  - { id: klima, titel: Klima und Betrieb }
+prolog:
+  titel: Sie vertreten den Bauherrn
+  text: |
+    Die Stadt Lindenhall baut einen Schulcampus: Gesamtschule, Grundschule, Dreifeldsporthalle, als Holzhybridbau. Die Projektbasis liegt bei 58,4 Mio. € brutto, darin 2,9 Mio. € Risikoreserve. Der Campus soll zum Schuljahr 2028/29 in Betrieb gehen – so verlangt es der Förderbescheid.
+
+    Sie übernehmen im Januar 2026 die Projektleitung auf Bauherrenseite bei der Gebäudemanagement Lindenhall GmbH (GML). Sie pflegen kein Register und schreiben keine Listen. Das übernimmt die Projektsteuerung, Jonas Brenner und sein Team: Sie erfasst jeden Vorgang, prüft jede Woche den ganzen offenen Bestand und bereitet jede Entscheidung als Vorlage vor – mit mindestens zwei Optionen und einem gewichteten Vergleich.
+
+    Ihre Aufgabe ist eine andere: entscheiden. Wo das Mandat eine andere Stelle vorsieht, den Lenkungskreis mit Dr. Miriam Olbers oder das Änderungsgremium, tragen Sie die Vorlage dorthin. In dieser Geschichte treffen Sie die Entscheidung.
+  takt: |
+    Jede Woche prüft die Projektsteuerung alle offenen Vorgänge. Dringliches meldet sie sofort. Einmal im Monat gibt es einen Online-Termin von höchstens 60 Minuten und einen Bericht von höchstens einer Seite.
+ende:
+  titel: Schulstart
+  text: |
+    August 2028. Die Schulleitung bekommt die Schlüssel. Was Sie in den vergangenen Monaten entschieden haben, steht nachvollziehbar in der Software der GML: jede Frage, jede Option, jede Gewichtung, jeder Beschluss mit Datum und Bedingungen – und was daraus geworden ist.
+
+    Ihr Aufwand bestand aus Entscheidungen, nicht aus Listen: ein Termin im Monat, eine Seite Bericht, dazu die Vorlagen, wenn eine Entscheidung anstand.
+  puffer-gut: Der Schulstart zum Schuljahr 2028/29 ist gehalten.
+  puffer-knapp: Der Schulstart ist gehalten – ohne jeden Puffer.
+  puffer-schlecht: Der Schulstart wackelt. Der Förderbescheid verlangt die Inbetriebnahme zum Schuljahr 2028/29.

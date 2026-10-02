@@ -9,6 +9,8 @@
 # Belege k2.4: k2.4-p1, k2.4-p2, k2.4-p3
 # Belege k2.5: k2.5-t1, k2.5-p1
 kapitel: 2
+thema: ausgangslage
+reihe: 2
 titel: Ausgangslage und Kernproblem
 kurztitel: Ausgangslage
 story: [A1, A3, A4, A6, wendepunkt, B3, B6]

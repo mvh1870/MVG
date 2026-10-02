@@ -3,6 +3,8 @@
 # kommen wortgleich aus whitepaper.json (Tabelle k13-t1, O-17); „Kommt vor in“ berechnet der
 # Compiler aus den Glossarbezügen [[…]] in Stationen und Lernseiten.
 kapitel: 13
+thema: glossar
+reihe: 16
 titel: "Anhang: Glossar"
 kurztitel: Glossar
 story: [epilog]

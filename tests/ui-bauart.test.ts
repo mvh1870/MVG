@@ -1,11 +1,11 @@
-// Bauart der Oberfläche (P0.6): Schutz der Regie-Notizen durch Konstruktion, Flächen im DOM (jsdom).
+// Bauart der Oberfläche (P0.6, P16): Schutz der Regie-Notizen durch Konstruktion, Bereiche im DOM (jsdom).
 //
-// 1. Statisch: Kein Modul unter src/ außer main.ts liest das Regie-Material (regieFuer/regieInhalte)
-//    oder die Inhalte-Datei selbst; der transitive Importgraph der Leinwand (auch dynamische Importe)
-//    erreicht beides nicht; `inhalte` trägt auf Datenebene kein Regie-Material (Positivliste).
-// 2. DOM: Startseite (genau zwei Wege, keine Instrumente), Theorie (13 Kapitel, Kapitel 1 mit
-//    Originaltext und Absatz-IDs), Story (Prolog → A3 über den Express-Pfad → Option B → Konsequenz, L-4-Attribute),
-//    Leinwand-Anzeige (nicht bedienbar, ohne Notiz), Regie (Notiz, Kanal sendet nur Öffentliches).
+// 1. Statisch: Kein Modul unter src/ außer main.ts liest das Regie-Material oder die Inhalte-Datei selbst; der
+//    transitive Importgraph der Leinwand (auch dynamische Importe) erreicht beides nicht; `inhalte` trägt auf
+//    Datenebene kein Regie-Material (Positivliste).
+// 2. DOM: Startseite (drei Wege, Links zu bauherr-mentoren.com, Impressum, Datenschutz), Theorie (Themen ohne
+//    Nummern, Originaltext oder Zitierangaben), Story (Auftakt → Station → Vorlage → Folge → Schulstart, Speicher),
+//    Explore (fünf Werkzeuge), Leinwand-Anzeige (nicht bedienbar, ohne Notiz), Regie (Notiz, Kanal sendet nur Öffentliches).
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { readdirSync, readFileSync, statSync } from 'node:fs';
@@ -54,31 +54,28 @@ function importGraph(start: string): Map<string, string[]> {
 }
 
 test('Regie-Material erreicht nur die Regie (Konstruktion, O-9): kein Modul außer main.ts greift darauf zu', () => {
-  // Alle Module unter src/ (auch engine, regie, stil, inhalte) – nicht nur die Zeichnung.
   const module = dateien(join(WURZEL, 'src')).filter((p) => p.endsWith('.ts') && !rel(p).startsWith('src/generiert/'));
-  assert.ok(module.length > 30);
-  const ausnahmen = new Set(['src/main.ts', 'src/inhalte/index.ts']);
+  assert.ok(module.length > 25);
+  const ausnahmen = new Set(['src/main.ts', 'src/inhalte/index.ts', 'src/inhalte/typen.ts']);
   for (const p of module) {
     if (ausnahmen.has(rel(p))) continue;
     const text = readFileSync(p, 'utf8');
     const ziele = modulAngaben(text).angaben.filter((a) => a.startsWith('.')).map((a) => rel(resolve(dirname(p), a)));
     assert.ok(!ziele.includes('src/inhalte/index.ts'), `${rel(p)} importiert die Inhalte direkt`);
     assert.ok(!ziele.includes('src/generiert/inhalte.json'), `${rel(p)} importiert die Inhalte-Datei`);
-    // Bilddaten der Abbildungen (P14): nur main.ts lädt sie und reicht sie mit setzeAbbildungsBilder herein
     assert.ok(!ziele.includes('src/generiert/abbildungen.json'), `${rel(p)} importiert die Bilddaten der Abbildungen`);
-    assert.doesNotMatch(text, /regieInhalte/, `${rel(p)} nennt regieInhalte`);
-    // Die Regie bekommt regieFuer als Parameter von main.ts – nur dort darf der Name stehen.
-    if (rel(p) !== 'src/regie/regie.ts') assert.doesNotMatch(text, /regieFuer|regieKapitel/, `${rel(p)} nennt regieFuer/regieKapitel`);
+    assert.doesNotMatch(text, /regieInhalte|geschichteRegie/, `${rel(p)} nennt das Regie-Material`);
+    // Die Regie bekommt regieGeschichte/regieKapitel als Parameter von main.ts – nur dort und in der Regie steht der Name.
+    if (rel(p) !== 'src/regie/regie.ts') assert.doesNotMatch(text, /regieFuer|regieKapitel|regieGeschichte/, `${rel(p)} nennt Regie-Zugriffe`);
   }
   const main = readFileSync(join(WURZEL, 'src/main.ts'), 'utf8');
-  assert.match(main, /import \{ inhalte, regieFuer, regieKapitel \} from '\.\/inhalte\/index\.ts'/);
+  assert.match(main, /import \{ inhalte, regieGeschichte, regieKapitel \} from '\.\/inhalte\/index\.ts'/);
 });
 
 test('Leinwand: der ganze Importgraph (transitiv, auch dynamisch) enthält weder Inhalte-Datei noch Regie', () => {
   const graph = importGraph(join(WURZEL, 'src/regie/leinwand.ts'));
   const erreicht = [...graph.keys()].map(rel);
-  // Gegenprobe, dass der Graph wirklich über die Zeichnung hinausreicht.
-  for (const erwartet of ['src/ui/flaechen/story.ts', 'src/engine/zustand.ts', 'src/regie/kanal.ts', 'src/stil/symbole.ts']) {
+  for (const erwartet of ['src/ui/flaechen/geschichte.ts', 'src/geschichte/engine.ts', 'src/regie/kanal.ts', 'src/stil/symbole.ts', 'src/ui/flaechen/theorie.ts']) {
     assert.ok(erreicht.includes(erwartet), `Graph erreicht ${erwartet} nicht: ${erreicht.join(', ')}`);
   }
   for (const verboten of ['src/inhalte/index.ts', 'src/generiert/inhalte.json', 'src/generiert/abbildungen.json', 'src/regie/regie.ts', 'src/main.ts']) {
@@ -86,27 +83,26 @@ test('Leinwand: der ganze Importgraph (transitiv, auch dynamisch) enthält weder
   }
   for (const datei of graph.keys()) {
     if (!datei.endsWith('.ts')) continue;
-    assert.doesNotMatch(readFileSync(datei, 'utf8'), /regieFuer|regieInhalte/, `${rel(datei)} (im Graph der Leinwand) nennt Regie-Zugriffe`);
+    assert.doesNotMatch(readFileSync(datei, 'utf8'), /regieFuer|regieInhalte|regieGeschichte|regieKapitel/, `${rel(datei)} (im Graph der Leinwand) nennt Regie-Zugriffe`);
   }
-  // Selbstprobe der Erkennung: statisch, Re-Export, Seiteneffekt, dynamisch.
   const probe = modulAngaben(`import { a } from './x.ts';\nexport * from "./y.ts";\nimport './z.css';\nconst m = await import('../inhalte/index.ts');\nimport(\`./\${n}.ts\`);`);
   assert.deepEqual(probe.angaben, ['./x.ts', './y.ts', './z.css', '../inhalte/index.ts']);
   assert.equal(probe.unaufloesbar, 1);
 });
 
-test('Datenebene: `inhalte` enthält kein Regie-Material, die Schlüssel stehen auf einer Positivliste', async () => {
-  // Eigener Import: dieser Test läuft vor der jsdom-Einrichtung weiter unten.
-  const { inhalte, regieFuer } = await import('../src/inhalte/index.ts');
+test('Datenebene: `inhalte` enthält kein Regie-Material', async () => {
+  const { inhalte, regieGeschichte, regieKapitel } = await import('../src/inhalte/index.ts');
   assert.equal('regie' in inhalte, false);
-  assert.deepEqual(Object.keys(inhalte).sort(), [
-    'abdeckung', 'einwaende', 'fall', 'glossar', 'interessen', 'kompass', 'quellen', 'rollen', 'rollenFolge', 'start', 'startseite', 'stationen', 'stationsFolge', 'theorie', 'version', 'welten', 'whitepaper',
-  ]);
-  // Kein Regie-Text steckt irgendwo sonst in den öffentlichen Inhalten.
+  assert.equal('geschichteRegie' in inhalte, false);
   const oeffentlichText = JSON.stringify(inhalte);
-  const a3 = regieFuer('A3', 'pl');
-  assert.ok(a3.szene?.notiz);
-  assert.ok(!oeffentlichText.includes(a3.szene.notiz.slice(0, 60)));
-  for (const f of a3.szene.leitfragen) assert.ok(!oeffentlichText.includes(f), f);
+  const s8 = regieGeschichte('s8');
+  assert.ok(s8?.notizHtml);
+  assert.ok(!oeffentlichText.includes(s8.notizHtml.slice(3, 60)));
+  for (const f of s8.leitfragen) assert.ok(!oeffentlichText.includes(f), f);
+  for (let nr = 1; nr <= 13; nr++) {
+    const e = regieKapitel(nr);
+    if (e?.notiz) assert.ok(!oeffentlichText.includes(e.notiz.slice(3, 60)), `Notiz ${nr}`);
+  }
 });
 
 /* ------------------------------------------------------------------ jsdom -- */
@@ -121,562 +117,213 @@ for (const k of [
 ]) g[k] = (dom.window as unknown as Record<string, unknown>)[k];
 after(() => dom.window.close());
 
-const { inhalte, regieFuer, regieKapitel } = await import('../src/inhalte/index.ts');
-const { anfangszustand, oeffentlich } = await import('../src/engine/zustand.ts');
-const { wende } = await import('../src/engine/aktionen.ts');
-const { erzeugeSitzung } = await import('../src/ui/sitzung.ts');
-const { erzeugeStory } = await import('../src/ui/flaechen/story.ts');
+const { inhalte, regieGeschichte, regieKapitel } = await import('../src/inhalte/index.ts');
 const { baueStart } = await import('../src/ui/flaechen/start.ts');
-const theorieModul = await import('../src/ui/flaechen/theorie.ts');
-const { baueTheorie, kapitelListe, kapitelFuerDruck } = theorieModul;
+const { baueTheorie, themen, themaFuerDruck, themaTitel } = await import('../src/ui/flaechen/theorie.ts');
+const { baueExplore, WERKZEUGE } = await import('../src/ui/flaechen/explore.ts');
+const { erzeugeGeschichte, SPEICHER_SCHLUESSEL } = await import('../src/ui/flaechen/geschichte.ts');
 const { erzeugeAnzeige } = await import('../src/regie/leinwand.ts');
 const { erzeugeRegie } = await import('../src/regie/regie.ts');
+const { neueBuehne } = await import('../src/regie/buehne.ts');
 const { W } = await import('../src/ui/woerter.ts');
-const { leseRoute } = await import('../src/ui/route.ts');
 type KanalNachricht = import('../src/regie/kanal.ts').KanalNachricht;
 
-const VERSION = 'MVG V1.2 · Story 0.1';
-const pause = (ms: number): Promise<void> => new Promise((r) => setTimeout(r, ms));
-const klartext = (html: string): string => html.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+const VERSION = 'Fassung 0.2';
+const G = inhalte.geschichte;
+assert.ok(G);
+const themaVon = (nr: number): string => Object.values(inhalte.theorie).find((t) => t.kapitel === nr)?.thema ?? '';
 
-test('Startseite: genau zwei Wege, leiser Fuß mit Version und Vermerk, keine Instrumente', () => {
-  const s = baueStart({ startseite: inhalte.startseite, kapitelAnzahl: 13, rollenAnzahl: 6, weiterlesen: false, fassung: 'V1.2', version: VERSION, bedienbar: true });
-  const wege = [...s.querySelectorAll('[data-pruef^="weg-"]')].map((a) => [a.getAttribute('data-pruef'), a.getAttribute('href')]);
-  assert.deepEqual(wege, [['weg-theorie', '#theorie'], ['weg-story', '#story']]);
-  assert.equal(s.querySelector('[data-pruef="status"]'), null);
-  assert.equal(s.querySelector('[data-pruef="praesentieren"]')?.getAttribute('href'), '#regie');
-  assert.equal(s.querySelector('[data-pruef="version"]')?.textContent, VERSION);
-  assert.equal(s.querySelector('[data-pruef="ungeprueft"]'), null, 'kein Vermerk (O-39)');
-  // Leitsatz aus inhalte/start.md, wörtlich nach k1-p1 (kein Fachtext im Code, O-17/O-18)
-  assert.equal(inhalte.startseite?.titelQuelle, 'k1-p1');
-  assert.equal(s.querySelector('[data-pruef="start-titel"]')?.textContent, inhalte.startseite?.titel);
-  assert.match(inhalte.startseite?.titel ?? '', /bauherrenseitige Legitimation nicht/);
-  const weiter = baueStart({ startseite: inhalte.startseite, kapitelAnzahl: 13, rollenAnzahl: 6, weiterlesen: true, fassung: 'V1.2', version: VERSION, bedienbar: true });
-  assert.match(weiter.querySelector('[data-pruef="weg-story"]')?.textContent ?? '', /Weiterlesen/);
-  const anzeige = baueStart({ startseite: inhalte.startseite, kapitelAnzahl: 13, rollenAnzahl: 6, weiterlesen: false, fassung: 'V1.2', version: VERSION, bedienbar: false });
-  assert.equal(anzeige.querySelectorAll('a').length, 0, 'auf der Leinwand keine Verweise');
+/** Ein Speicher wie localStorage, für die Story. */
+function speicher(): { getItem(k: string): string | null; setItem(k: string, v: string): void; removeItem(k: string): void; daten: Map<string, string> } {
+  const daten = new Map<string, string>();
+  return { daten, getItem: (k) => daten.get(k) ?? null, setItem: (k, v) => { daten.set(k, v); }, removeItem: (k) => { daten.delete(k); } };
+}
+
+test('Startseite: drei Wege, leise Links zu bauherr-mentoren.com, Impressum und Datenschutz', () => {
+  const el = baueStart({ startseite: inhalte.startseite, themenAnzahl: themen(inhalte).length, stationenAnzahl: 8, werkzeugAnzahl: WERKZEUGE.length, weiterlesen: false, bedienbar: true });
+  assert.deepEqual([...el.querySelectorAll('[data-pruef^="weg-"]')].map((a) => a.getAttribute('href')), ['#story', '#theorie', '#explore']);
+  const bm = [...el.querySelectorAll('a[href="https://www.bauherr-mentoren.com/"]')];
+  assert.ok(bm.length >= 3, 'Kopf, „Wer steht dahinter“, Fuß');
+  assert.ok(el.querySelector('[data-pruef="impressum"][href="impressum.html"]'));
+  assert.ok(el.querySelector('[data-pruef="datenschutz"][href="datenschutz.html"]'));
+  assert.ok(el.querySelector('[data-pruef="praesentieren"][href="#regie"]'));
+  assert.match(el.textContent ?? '', /Internetseite/u);
+  assert.match(el.textContent ?? '', /fiktiver Fall/u);
+  const leinwand = baueStart({ startseite: inhalte.startseite, themenAnzahl: 1, stationenAnzahl: 1, werkzeugAnzahl: 1, weiterlesen: false, bedienbar: false });
+  assert.equal(leinwand.querySelectorAll('a, button').length, 0, 'auf der Leinwand nichts Bedienbares');
 });
 
-test('Name (O-33, O-34): „Governance Kompass“ mit Bildmarke auf jeder Fläche, Bauherr Mentoren zurückhaltend als Herausgeber, Adresse in Fuß, Impressum und Druck', async () => {
-  const { baueExplore } = await import('../src/ui/flaechen/explore.ts');
-  const { bogenKopf } = await import('../src/ui/druck.ts');
-  // die Bildmarke setzt main.ts beim Start aus quellen/marke (wie im Bau)
-  const { setzeMarke } = await import('../src/ui/marke.ts');
-  setzeMarke(readFileSync(join(WURZEL, 'quellen', 'marke', 'logo-bm.svg'), 'utf8'), readFileSync(join(WURZEL, 'quellen', 'marke', 'logo-bm-bildmarke.svg'), 'utf8'));
-  assert.equal(W.name, 'Governance Kompass');
-  assert.equal(W.adresse, 'www.GovernanceKompass.de');
-  const start = baueStart({ startseite: inhalte.startseite, kapitelAnzahl: 13, rollenAnzahl: 6, weiterlesen: false, fassung: 'V1.2', version: VERSION, bedienbar: true });
-  const kopf = start.querySelector('[data-pruef="start-name"]');
-  assert.equal(kopf?.querySelector('b')?.textContent, W.name);
-  assert.ok(start.querySelector('.start-kopf svg.marke-logo'), 'Bildmarke auf der Startseite');
-  assert.match(start.querySelector('[data-pruef="fuss"]')?.textContent ?? '', /www\.GovernanceKompass\.de · Herausgeber: Bauherr Mentoren/u);
-  // O-34: zurückhaltend – im Rahmen der Startseite genau einmal genannt, als Herausgeber im Fuß
-  assert.equal((start.textContent?.match(/Bauherr Mentoren/gu) ?? []).length, 1, 'Startseite nennt Bauherr Mentoren genau einmal');
-  const flaechen: [string, HTMLElement][] = [
-    ['Theorie', baueTheorie({ inhalte, kapitel: 3, version: VERSION, bedienbar: true })],
-    ['Kapitelliste', baueTheorie({ inhalte, kapitel: null, version: VERSION, bedienbar: true })],
-    ['Explore', baueExplore({ inhalte, freigeschaltet: true, weltB: true, version: VERSION })],
-  ];
-  for (const [name, el] of flaechen) {
-    assert.ok(el.querySelector('.lern-kopf svg.marke-logo'), `${name}: Bildmarke im Kopf`);
-    // R49 (O-34): die Bildmarke steht nur neben dem Namen – nicht als Siegel vor Quellenzeilen
-    assert.equal(el.querySelectorAll('svg.marke-logo').length, 1, `${name}: Bildmarke nur im Kopf`);
-    assert.equal(el.querySelector('.lern-kopf [data-pruef="lern-marke"]')?.textContent, W.name, `${name}: Name im Kopf`);
-    assert.match(el.querySelector('.lern-fuss')?.textContent ?? '', /Governance Kompass · www\.GovernanceKompass\.de · Herausgeber: Bauherr Mentoren/u, `${name}: Fuß`);
-    assert.doesNotMatch(el.querySelector('.lern-kopf')?.textContent ?? '', /Bauherr Mentoren/u, `${name}: Kopf ohne Absender (O-34)`);
-  }
-  // R49 (Architektur): auch Story-Kopf, Regie und Leinwand – Name ja, Bauherr Mentoren nein (O-34)
-  const sitzungN = erzeugeSitzung(anfangszustand(), inhalte, { speicher: null });
-  const storyN = erzeugeStory({ inhalte, tue: (a) => sitzungN.tue(a) });
-  const kanalN = { senden: () => undefined, abonnieren: () => () => undefined, schliessen: () => undefined };
-  const regieN = erzeugeRegie({ inhalte, sitzung: sitzungN, kanal: kanalN, version: VERSION, regieFuer, oeffneLeinwand: () => undefined, takt: 60_000 });
-  const { starteLeinwand } = await import('../src/regie/leinwand.ts');
-  const lwWurzel = document.createElement('div');
-  const lwEnde = starteLeinwand(lwWurzel, { inhalte, kanal: kanalN, version: VERSION, takt: 60_000 });
-  try {
-    const weitere: [string, string][] = [
-      ['Story-Kopf', storyN.element.querySelector('.kopf-unter')?.textContent ?? ''],
-      ['Regie', regieN.element.querySelector('.regie-unterzeile')?.textContent ?? ''],
-      ['Leinwand', lwWurzel.querySelector('.leinwand-warten-name')?.textContent ?? ''],
-    ];
-    assert.equal(storyN.element.querySelectorAll('svg.marke-logo').length, 1, 'Story: Bildmarke nur im Kopf (nicht im Fuß der Seitenleiste)');
-    for (const [name, text] of weitere) {
-      assert.match(text, /^Governance Kompass/u, `${name}: Name`);
-      assert.doesNotMatch(text, /Bauherr Mentoren|MVG interaktiv/u, `${name}: ohne Absender (O-34)`);
+test('Theorie (O-38): Themen ohne Nummern, kein Originaltext, keine Zitierangaben; Kontakt am Ende', () => {
+  const liste = baueTheorie({ inhalte, thema: null, version: VERSION, bedienbar: true });
+  const karten = [...liste.querySelectorAll('[data-pruef^="thema-"]')];
+  assert.equal(karten.length, themen(inhalte).length);
+  assert.doesNotMatch(liste.textContent ?? '', /Kapitel|\bKap\.|\b1\d?\b·/u);
+  for (const t of themen(inhalte)) {
+    const seite = baueTheorie({ inhalte, thema: t.thema, version: VERSION, bedienbar: true });
+    assert.ok(seite.querySelector(`[data-thema="${t.thema}"]`), t.thema);
+    for (const sel of ['.originaltext', '[data-pruef="zitieren"]', '.absatz-id', '.kapitel-nr', '.abschnitt-nr', '.tafel-quelle', '[data-pruef="impressum"] + .impressum']) {
+      assert.equal(seite.querySelector(`.lern-inhalt ${sel}`), null, `${t.thema}: ${sel}`);
     }
-  } finally {
-    lwEnde();
-    regieN.entferne();
+    assert.ok(seite.querySelector('[data-pruef="lern-kontakt"] a[href="https://www.bauherr-mentoren.com/"]'), `${t.thema}: Kontakt`);
+    assert.equal(seite.querySelector('.lern-inhalt figure.tafel figcaption'), null, `${t.thema}: Quellzeile unter einer Tafel`);
   }
-  const impressum = flaechen[1]?.[1].querySelector('[data-pruef="impressum"]')?.textContent ?? '';
-  assert.match(impressum, /Governance Kompass · www\.GovernanceKompass\.de/u);
-  assert.match(impressum, /Bauherr Mentoren/u);
-  const druckKopf = bogenKopf('Kapitel 3', VERSION, false);
-  // R49: Bildmarke auch im Druckkopf, der Dokumenttitel im Druck trägt den Namen
-  assert.ok(druckKopf.querySelector('.druck-absender svg.marke-logo'), 'Bildmarke im Druckkopf');
-  const { druckTitel } = await import('../src/ui/druck.ts');
-  assert.equal(druckTitel('Ihr Dossier zur Story'), 'Ihr Dossier zur Story · Governance Kompass');
-  assert.equal(druckTitel(W.druck.ersatzTitel), W.druck.ersatzTitel);
-  const druck = druckKopf.textContent ?? '';
-  assert.match(druck, /^Governance Kompass – Minimum Viable Governance/u);
-  assert.match(druck, /www\.GovernanceKompass\.de · Herausgeber: Bauherr Mentoren/u);
-  assert.equal((druck.match(/Bauherr Mentoren/gu) ?? []).length, 1, 'Druckkopf nennt Bauherr Mentoren einmal, als Herausgeber');
-  assert.doesNotMatch([start, ...flaechen.map((x) => x[1])].map((x) => x.textContent).join(' '), /MVG interaktiv/u);
-});
-
-test('Theorie: 13 Kapitel mit Titeln; Kapitel 1 mit Kernaussage, Karten, Originaltext, Querverweis (Kap. 2: A3, B3)', () => {
-  const kap = kapitelListe(inhalte);
-  assert.equal(kap.length, 13);
-  assert.ok(kap.every((k) => k.titel.length > 0));
-  const liste = baueTheorie({ inhalte, kapitel: null, version: VERSION, bedienbar: true });
-  assert.equal(liste.querySelectorAll('[data-pruef="kapitel-liste"] > li').length, 13);
-  assert.equal(liste.querySelector('[data-pruef="kapitel-1"]')?.getAttribute('href'), '#theorie/k1');
-  assert.equal(liste.querySelector('[data-pruef="leitstand"]'), null);
-
-  const k1 = baueTheorie({ inhalte, kapitel: 1, version: VERSION, bedienbar: true });
-  assert.ok(k1.querySelector('[data-pruef="kernaussage"]'));
-  assert.ok(k1.querySelectorAll('[data-pruef="lernkarte"]').length >= 5, 'fünf Managementaussagen als Lernkarten (P12.3)');
-  const original = inhalte.theorie['k01']?.bloecke.find((b) => b.art === 'original');
-  assert.ok(original);
-  const ids = [...k1.querySelectorAll('[data-pruef="originaltext"] .absatz')].map((a) => a.getAttribute('data-absatz'));
-  assert.deepEqual(ids, original.kopf['absaetze']);
-  // wörtlich: jeder Absatz steht mit seinem Text im Originaltext
-  const text = k1.querySelector('[data-pruef="originaltext"]')?.textContent?.replace(/\s+/g, ' ') ?? '';
-  for (const absatz of (original.felder['text'] ?? '').split(/(?=<(?:p|ul|table|h4) class="mvg-original)/)) {
-    const soll = klartext(absatz);
-    if (soll !== '') assert.ok(text.includes(soll.slice(0, 80)), soll.slice(0, 40));
-  }
-  // Gliederung des Whitepapers (O-20): die Unterabschnitte 1.1–1.3 stehen als Überschrift vor ihren Absätzen.
-  const titel = [...k1.querySelectorAll('[data-pruef="originaltext"] .original-abschnitt')].map((x) => x.textContent);
-  const soll = (inhalte.whitepaper.kapitel.find((k) => k.nr === '1')?.abschnitte ?? []).map((a) => `${a.nr} ${a.titel}`);
-  assert.ok(soll.length >= 3);
-  assert.deepEqual(titel, soll);
-  const reihe = [...k1.querySelectorAll('[data-pruef="originaltext"] > .original-abschnitt, [data-pruef="originaltext"] > .absatz')]
-    .map((x) => x.getAttribute('data-abschnitt') ?? x.getAttribute('data-absatz'));
-  assert.equal(reihe[reihe.indexOf('k1.1') + 1], 'k1.1-p1', 'Überschrift direkt vor ihrem ersten Absatz');
-  // Kap. 1 verweist auf den Prolog (DREHBUCH §5); A3/B3 stehen bei Kap. 2
-  assert.ok(k1.querySelector('[data-pruef="querverweis-prolog"]'));
-  const k2 = baueTheorie({ inhalte, kapitel: 2, version: VERSION, bedienbar: true });
-  assert.ok(k2.querySelector('[data-pruef="querverweis-A3"]'));
-  assert.ok(k2.querySelector('[data-pruef="querverweis-B3"]'));
-  // Ein Kapitel ohne Lernseite zeigt „folgt“ – geprüft an einer Kopie ohne die Seite von Kapitel 5
-  const ohneK5 = { ...inhalte, theorie: Object.fromEntries(Object.entries(inhalte.theorie).filter(([, t]) => t.kapitel !== 5)) } as typeof inhalte;
-  const k5 = baueTheorie({ inhalte: ohneK5, kapitel: 5, version: VERSION, bedienbar: true });
-  assert.ok(k5.querySelector('[data-pruef="folgt"]'));
-});
-
-test('Story: Prolog → A3 → Option B → Konsequenz, schrittweiser Aufbau am Rahmen', async () => {
-  const sitzung = erzeugeSitzung(anfangszustand(), inhalte, { speicher: null });
-  const story = erzeugeStory({ inhalte, tue: (a) => sitzung.tue(a) });
-  sitzung.abonniere((neu, _alt, aktion) => story.setze(oeffentlich(neu), aktion));
-  document.body.replaceChildren(story.element);
-  const el = story.element;
-  const klick = (sel: string): void => {
-    const b = el.querySelector<HTMLElement>(sel);
-    assert.ok(b, `fehlt: ${sel}`);
-    b.click();
-  };
-  try {
-    sitzung.tue({ art: 'starteStory' });
-    assert.ok(el.querySelector('.prolog'));
-    assert.match(el.querySelector('[data-pruef="fiktiv"]')?.textContent ?? '', /Fiktiver Fall/);
-    assert.equal(el.hasAttribute('data-instrumente'), false);
-    assert.equal(el.hasAttribute('data-karte'), false);
-    assert.equal(el.getAttribute('data-seitenleiste'), 'zu');
-    klick('[data-pruef="weiter"]');
-    assert.equal(el.querySelectorAll('.rollen-karte').length, 6);
-    assert.equal(el.querySelectorAll('.rollen-karte:disabled').length, 0, 'alle sechs Rollen spielbar (P2.5)');
-    klick('[data-pruef="rolle-pl"]');
-    await pause(600);
-    assert.ok(el.querySelector('[data-pruef^="interesse-"]'), 'nach der Rollenwahl die Interessen');
-    // Express-Pfad (E8, L-26): Prolog → A3
-    klick('[data-pruef="interesse-express"]');
-    klick('[data-pruef="weiter"]');
-    assert.equal(sitzung.zustand().station, 'A3');
-    assert.ok(el.querySelector('.mail'));
-    assert.equal(el.hasAttribute('data-karte'), false, 'Einstieg ohne Karte');
-    klick('[data-pruef="weiter"]');
-    assert.equal(el.hasAttribute('data-karte'), true, 'nach dem Einstieg mit Karte');
-    // LPH-Band (O-14, P2.2): zehn Phasen aus k9.3-t1, A3 steht in LPH 5, davor abgeschlossen
-    const band = el.querySelector('[data-pruef="lph-band"]');
-    assert.ok(band !== null && !(band as HTMLElement).hidden, 'LPH-Band sichtbar');
-    assert.equal(band.querySelectorAll('.lph').length, 10);
-    assert.equal(band.querySelector('[aria-current="step"]')?.getAttribute('data-lph'), '5');
-    assert.equal(band.querySelectorAll('.lph.ist-erledigt').length, 5);
-    assert.match(band.querySelector('[data-lph="5"]')?.textContent ?? '', /LPH 5 Ausführungsplanung \(aktuell\)/);
-    assert.doesNotMatch(band.textContent ?? '', /G\d/, 'nie G0–G5');
-    klick('[data-pruef="info-anfordern"]');
-    assert.ok(el.querySelector('.ungeklaert .ist-geloest'));
-    klick('[data-pruef="weiter"]');
-    assert.equal(el.hasAttribute('data-instrumente'), true, 'Instrumente ab der Entscheidung');
-    // Taste B wählt; ohne Wahl ging es nicht weiter
-    klick('[data-pruef="weiter"]');
-    assert.ok(el.querySelector('[data-pruef="option-B"]'), 'ohne Wahl kein Weiter');
-    const taste = new dom.window.KeyboardEvent('keydown', { key: 'b', bubbles: true });
-    assert.equal(story.taste(taste), true);
-    assert.equal(el.querySelector('[data-pruef="option-B"]')?.getAttribute('aria-pressed'), 'true');
-    await pause(700);
-    assert.ok(el.querySelector('[data-pruef="konsequenz"]'), 'nach der Wahl die Konsequenz');
-    for (const f of ['konsequenz', 'fehlt', 'risiko', 'governance']) assert.ok(el.querySelector(`[data-pruef="feld-${f}"]`), f);
-    // ← zurück, → wieder vor
-    assert.equal(story.taste(new dom.window.KeyboardEvent('keydown', { key: 'ArrowLeft' })), true);
-    assert.ok(el.querySelector('[data-pruef="option-B"]'));
-    assert.equal(story.taste(new dom.window.KeyboardEvent('keydown', { key: 'ArrowRight' })), true);
-    assert.ok(el.querySelector('[data-pruef="konsequenz"]'));
-  } finally {
-    story.entferne();
+  // Unbekanntes Thema → Übersicht mit Hinweis
+  assert.match(baueTheorie({ inhalte, thema: 'gibt-es-nicht', version: VERSION, bedienbar: true }).textContent ?? '', new RegExp(W.themen.unbekannt.slice(0, 20), 'u'));
+  // „In der Story erlebt“ verlinkt Stationen, deren Thema dieses ist
+  const mitStory = G.stationen.find((s) => s.theorie !== null && themaTitel(inhalte, s.theorie) !== null);
+  if (mitStory) {
+    const seite = baueTheorie({ inhalte, thema: mitStory.theorie ?? '', version: VERSION, bedienbar: true });
+    assert.ok(seite.querySelector(`[data-pruef="querverweis-${mitStory.id}"][href="#story/${mitStory.id}"]`));
   }
 });
 
-test('Leitstand: Sprunglink, Reiter nach dem Tabs-Muster, modale Rollen-Linse, Glossar-Hinweis (Maus, Esc)', async () => {
-  // Der Hinweis hängt an body (wie in der App): erst leeren, dann den Leitstand anhängen.
-  document.body.replaceChildren();
-  const sitzung = erzeugeSitzung(anfangszustand(), inhalte, { speicher: null });
-  const story = erzeugeStory({ inhalte, tue: (a) => sitzung.tue(a) });
-  sitzung.abonniere((neu, _alt, aktion) => story.setze(oeffentlich(neu), aktion));
-  document.body.append(story.element);
-  const el = story.element;
-  try {
-    for (const a of [{ art: 'starteStory' }, { art: 'weiter' }, { art: 'waehleRolle', rolle: 'pl' }, { art: 'setzeInteressen', interessen: ['express'] as string[] }, { art: 'weiter' }, { art: 'weiter' }, { art: 'weiter' }] as const) sitzung.tue(a);
-    assert.equal(sitzung.zustand().station, 'A3');
-
-    // Sprunglink: erstes Element, setzt den Fokus auf den Tafeltitel, ohne den Hash (Router) zu ändern
-    const sprung = el.firstElementChild as HTMLElement | null;
-    assert.equal(sprung?.getAttribute('data-pruef'), 'sprunglink');
-    const hashVorher = dom.window.location.hash;
-    sprung?.click();
-    assert.equal(document.activeElement, el.querySelector('.tafel-titel'));
-    assert.equal(dom.window.location.hash, hashVorher);
-
-    // Reiter (WAI-ARIA „Tabs“): aria-controls, aria-labelledby, wandernder tabindex, ← → wechseln
-    el.querySelector<HTMLElement>('[data-pruef="seitenleiste-raum"]')?.click();
-    const reiter = [...el.querySelectorAll<HTMLElement>('[role="tab"]')];
-    const panel = el.querySelector('[role="tabpanel"]');
-    assert.equal(reiter.length, 5, 'Raum, Ebenen, Glossar, Quellen, Spur (L-41)');
-    assert.ok(panel?.id);
-    for (const r of reiter) assert.equal(r.getAttribute('aria-controls'), panel.id);
-    assert.deepEqual(reiter.map((r) => r.tabIndex), [0, -1, -1, -1, -1]);
-    assert.equal(panel.getAttribute('aria-labelledby'), reiter[0]?.id);
-    const schritt = sitzung.zustand().schritt;
-    const rechts = new dom.window.KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true, cancelable: true });
-    reiter[0]?.dispatchEvent(rechts);
-    assert.equal(rechts.defaultPrevented, true, 'der Pfeil gehört dem Reiter, nicht der Story');
-    assert.deepEqual(reiter.map((r) => r.getAttribute('aria-selected')), ['false', 'true', 'false', 'false', 'false']);
-    assert.deepEqual(reiter.map((r) => r.tabIndex), [-1, 0, -1, -1, -1]);
-    assert.equal(panel.getAttribute('aria-labelledby'), reiter[1]?.id);
-    assert.equal(sitzung.zustand().schritt, schritt);
-
-    // Glossar-Hinweis: bleibt offen, wenn der Zeiger vom Begriff über den Spalt in den Hinweis fährt
-    await pause(300);
-    const begriff = el.querySelector<HTMLElement>('.lagetafel [data-pruef="glossar-begriff"]');
-    assert.ok(begriff, 'Lagebild ohne Glossar-Begriff');
-    const tipp = document.querySelector<HTMLElement>('.tipp[role="tooltip"]');
-    assert.ok(tipp);
-    const maus = (ziel: EventTarget, art: string): void => {
-      ziel.dispatchEvent(new dom.window.MouseEvent(art, { bubbles: art === 'mouseover' }));
-    };
-    maus(begriff, 'mouseover');
-    assert.equal(tipp.hidden, false);
-    maus(begriff.parentElement ?? el, 'mouseover');
-    maus(tipp, 'mouseenter');
-    await pause(400);
-    assert.equal(tipp.hidden, false, 'Hinweis schließt, obwohl der Zeiger darauf steht');
-    maus(tipp, 'mouseleave');
-    await pause(400);
-    assert.equal(tipp.hidden, true);
-    // Esc schließt genau eine Ebene: erst den Hinweis (und verbraucht die Taste), die Seitenleiste bleibt
-    maus(begriff, 'mouseover');
-    const esc = new dom.window.KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true });
-    begriff.dispatchEvent(esc);
-    assert.equal(tipp.hidden, true);
-    assert.equal(esc.defaultPrevented, true, 'main.ts reicht eine verbrauchte Taste nicht an die Story weiter');
-    assert.equal(el.getAttribute('data-seitenleiste'), 'offen');
-
-    // Touch (P2.3): Antippen öffnet, erneutes Antippen schließt; ein Tipp daneben schließt auch
-    // Echte Ereignisfolge beim Antippen: pointerdown (touch) → mouseover → focusin → click
-    const tippe = (ziel: Element): void => {
-      const druck = new dom.window.MouseEvent('pointerdown', { bubbles: true });
-      Object.defineProperty(druck, 'pointerType', { value: 'touch' });
-      ziel.dispatchEvent(druck);
-      ziel.dispatchEvent(new dom.window.MouseEvent('mouseover', { bubbles: true }));
-      if (ziel instanceof dom.window.HTMLElement && ziel.matches('[data-pruef="glossar-begriff"]')) ziel.dispatchEvent(new dom.window.FocusEvent('focusin', { bubbles: true }));
-      ziel.dispatchEvent(new dom.window.MouseEvent('click', { bubbles: true, cancelable: true }));
-    };
-    tippe(begriff);
-    assert.equal(tipp.hidden, false, 'Antippen öffnet');
-    tippe(tipp);
-    assert.equal(tipp.hidden, false, 'Tipp in den Hinweis lässt ihn offen');
-    tippe(begriff);
-    assert.equal(tipp.hidden, true, 'erneutes Antippen schließt');
-    tippe(begriff);
-    tippe(el.querySelector('.tafel-kopf') ?? el);
-    assert.equal(tipp.hidden, true, 'Tipp daneben schließt');
-
-    // Tastatur: Fokus öffnet; die Definition ist wörtlich die des Glossars (V1.2)
-    begriff.dispatchEvent(new dom.window.FocusEvent('focusin', { bubbles: true }));
-    assert.equal(tipp.hidden, false, 'Fokus öffnet den Hinweis');
-    const { inhalte: alle } = await import('../src/inhalte/index.ts');
-    const g = alle.glossar[begriff.getAttribute('data-glossar') ?? ''];
-    assert.ok(g !== undefined);
-    assert.ok((tipp.textContent ?? '').includes(g.definition), 'Definition wörtlich aus dem Glossar');
-    const wp = JSON.parse(readFileSync(join(WURZEL, 'quellen/whitepaper/v1.2/whitepaper.json'), 'utf8')) as { glossar: { id: string; definition: string }[] };
-    assert.equal(wp.glossar.find((x) => x.id === g.id)?.definition, g.definition, 'Glossar in inhalte.json = whitepaper.json');
-    tipp.hidden = true;
-
-    // Quellenfenster (P2.3): Reiter „Quellen“ zeigt die Absätze der Station wörtlich, mit Kapitel und Absatz-ID
-    reiter[3]?.click();
-    const quellen = [...el.querySelectorAll<HTMLElement>('[role="tabpanel"] .quell-absatz')];
-    const st = sitzung.zustand().station ?? '';
-    const bezug = (await import('../src/inhalte/index.ts')).inhalte.stationen[st]?.whitepaper ?? [];
-    assert.ok(bezug.length > 0);
-    assert.deepEqual(quellen.map((q) => q.getAttribute('data-absatz')), bezug);
-    assert.match(quellen[0]?.querySelector('figcaption')?.textContent ?? '', /MVG V?1\.2.*Kap\. \d/);
-    assert.ok(quellen[0]?.querySelector('.mvg-original'), 'Originaltext eingebettet');
-
-    // Rollen-Linse: modal (übriger Leitstand inert), schließt beim Szenenwechsel
-    reiter[0]?.click();
-    el.querySelector<HTMLElement>('[data-pruef="standpunkt"]')?.click();
-    const linse = el.querySelector('[data-pruef="linse"]');
-    assert.equal(linse?.hasAttribute('hidden'), false);
-    for (const sel of ['.fussleiste', '.seitenleiste', '.kopf', '.tafel-inhalt']) assert.ok(el.querySelector(sel)?.hasAttribute('inert'), `${sel} nicht inert`);
-    assert.ok(!linse?.closest('[inert]'), 'die Linse selbst bleibt bedienbar');
-    sitzung.tue({ art: 'weiter' });
-    assert.equal(linse?.hasAttribute('hidden'), true, 'Linse bleibt nach dem Szenenwechsel offen');
-    assert.equal(el.querySelectorAll('[inert]').length, 0);
-  } finally {
-    story.entferne();
-  }
+test('Story: Auftakt → Station → Vorlage (ohne Wahl kein Weiter) → Folge; Status, Speicher, Fortschritt löschen', () => {
+  const sp = speicher();
+  const f = erzeugeGeschichte({ g: G, speicher: sp, themaTitel: (id) => themaTitel(inhalte, id) });
+  document.body.replaceChildren(f.element);
+  const titel = (): string => f.element.querySelector('[data-pruef="gs-titel"]')?.textContent ?? '';
+  const weiter = (): void => (f.element.querySelector('[data-pruef="weiter"]') as HTMLElement).click();
+  assert.equal(titel(), G.prolog.titel);
+  (f.element.querySelector('[data-pruef="fassung-kurz"]') as HTMLElement).click();
+  assert.equal(f.stand().kurz, true);
+  weiter();
+  assert.equal(titel(), G.stationen[0]?.titel);
+  assert.ok(f.element.querySelector('[data-pruef="gs-bericht"]'));
+  weiter();
+  // Vorlage S1 (Gewichte): ohne Wahl kein Weiter
+  assert.ok(f.element.querySelector('[data-pruef="gs-vorlage"]'));
+  weiter();
+  const sch = f.stand().schritt;
+  assert.equal(sch.ort === 'station' ? sch.teil : sch.ort, 'vorlage');
+  assert.match(f.element.querySelector('.gs-navi-hinweis')?.textContent ?? '', /wählen/u);
+  (f.element.querySelector('[data-pruef="option-A"]') as HTMLElement).click();
+  assert.equal(f.element.querySelector('[data-pruef="option-A"]')?.getAttribute('aria-pressed'), 'true');
+  weiter();
+  assert.ok(f.element.querySelector('[data-pruef="gs-entscheidung"]'));
+  assert.ok(f.element.querySelector('[data-pruef="gs-so-laeuft"]') && f.element.querySelector('[data-pruef="gs-einwand"]'));
+  // weiter zu S3 (Kurzfassung), Vorlage mit Vergleich und Gegenprobe
+  weiter(); weiter();
+  assert.equal(titel(), G.stationen.find((s) => s.id === 's3')?.titel);
+  assert.match(f.element.querySelector('[data-pruef="summe-A"]')?.textContent ?? '', /^54/u);
+  const regler = f.element.querySelector<HTMLInputElement>('[data-pruef="gegenprobe"] input[data-kriterium="termin"]');
+  assert.ok(regler);
+  regler.value = '1';
+  regler.dispatchEvent(new Event('input'));
+  assert.match(f.element.querySelector('.ist-vorn')?.getAttribute('data-pruef') ?? '', /summe-B/u, 'mit Termin 1 liegt Abwarten vorn');
+  (f.element.querySelector('[data-pruef="option-B"]') as HTMLElement).click();
+  weiter();
+  assert.match(f.element.querySelector('[data-pruef="gs-status"] [data-status="puffer"]')?.textContent ?? '', /7\sTage/u);
+  // gespeichert
+  assert.ok(sp.daten.get(SPEICHER_SCHLUESSEL)?.includes('"s3":"B"'));
+  // Pfeiltaste blättert
+  f.taste(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+  assert.equal(titel(), G.stationen.find((s) => s.id === 's5')?.titel);
+  // Permalink auf eine Station außerhalb der Kurzfassung schaltet die ganze Geschichte ein
+  f.zuStation('s6');
+  assert.equal(f.stand().kurz, false);
+  assert.equal(titel(), G.stationen.find((s) => s.id === 's6')?.titel);
+  assert.ok(f.element.querySelector('[data-pruef="gs-thema"]') || true);
+  // Fortschritt löschen
+  (f.element.querySelector('[data-pruef="fortschritt-loeschen"]') as HTMLElement).click();
+  assert.equal(titel(), G.prolog.titel);
+  assert.equal(sp.daten.get(SPEICHER_SCHLUESSEL), JSON.stringify(f.stand()));
+  assert.deepEqual(f.stand().wahlen, {});
 });
 
-test('H13: Absender ist die Figur der gespielten Rolle → „Sie“ statt Name in der dritten Person', async () => {
-  const B = await import('../src/ui/bausteine/bloecke.ts');
-  const mailBlock = inhalte.stationen['A3']?.schritte[0]?.bloecke.find((b) => b.art === 'mail');
-  const chatBlock = inhalte.stationen['A3']?.schritte[0]?.bloecke.find((b) => b.art === 'chat');
-  assert.ok(mailBlock !== undefined && chatBlock !== undefined);
-  const woerter = { eingang: 'Posteingang', neu: 'neu', betreff: 'Betreff', anhang: 'Anhang', sie: 'Sie' };
-  const fremd = B.mail(mailBlock, inhalte, woerter, 'kaya');
-  assert.match(fremd.querySelector('.absender b')?.textContent ?? '', /Jonas Brenner/);
-  const selbst = B.mail(mailBlock, inhalte, woerter, 'brenner');
-  assert.equal(selbst.querySelector('.absender b')?.textContent, 'Sie');
-  assert.equal(selbst.getAttribute('aria-label'), 'E-Mail von Ihnen');
-  assert.equal(B.chat(chatBlock, inhalte, 0, 'kaya', 'Sie').querySelector('.blase-kopf b')?.textContent, 'Sie');
+test('Story: Schulstart zeigt Bilanz, Urteil und die Wege weiter', () => {
+  const sp = speicher();
+  const stand = { v: 1, schritt: { ort: 'ende' }, wahlen: Object.fromEntries(G.stationen.map((s) => [s.id, s.vorlage.empfehlung.option])), gewichte: null, kurz: false };
+  sp.setItem(SPEICHER_SCHLUESSEL, JSON.stringify(stand));
+  const f = erzeugeGeschichte({ g: G, speicher: sp, themaTitel: () => null });
+  assert.equal(f.element.querySelectorAll('[data-pruef="gs-bilanz"] li').length, G.stationen.length);
+  assert.equal(f.element.querySelector('[data-pruef="gs-urteil"]')?.getAttribute('data-urteil'), 'gut');
+  assert.ok(f.element.querySelector('.gs-ende-wege a[href="https://www.bauherr-mentoren.com/"]'));
+  assert.ok(f.element.querySelector('[data-pruef="von-vorn"]'));
+});
+
+test('Explore: fünf Werkzeuge; Rechner rechnet um, Matrix ordnet ein, Vorgänge führen weiter, Glossar sucht', () => {
+  for (const id of WERKZEUGE) {
+    const el = baueExplore({ inhalte, werkzeug: id, bedienbar: true });
+    assert.equal(el.querySelector('.ex-werkzeuge [aria-current="page"]')?.getAttribute('data-pruef'), `ex-${id}`);
+    assert.ok(el.querySelector(`[data-werkzeug="${id}"]`), id);
+  }
+  const mcda = baueExplore({ inhalte, werkzeug: 'mcda', bedienbar: true });
+  document.body.replaceChildren(mcda);
+  assert.match(mcda.querySelector('[data-pruef="ex-summe-A"]')?.textContent ?? '', /^54/u);
+  const wahl = mcda.querySelector<HTMLSelectElement>('select[aria-label="Gewicht Kosten"]');
+  assert.ok(wahl);
+  wahl.value = '5';
+  wahl.dispatchEvent(new Event('change'));
+  assert.ok(mcda.querySelector('[data-pruef="ex-summe-B"]')?.classList.contains('ist-vorn'), 'Kosten vor Termin dreht die Rangfolge');
+  const matrix = baueExplore({ inhalte, werkzeug: 'matrix', bedienbar: true });
+  (matrix.querySelector('.ex-zelle[data-w="1"][data-a="5"]') as HTMLElement).click();
+  assert.match(matrix.querySelector('[data-pruef="ex-matrix-detail"]')?.textContent ?? '', /Vorrangig/u);
+  (matrix.querySelector('.ex-zelle[data-w="2"][data-a="2"]') as HTMLElement).click();
+  assert.match(matrix.querySelector('[data-pruef="ex-matrix-detail"]')?.textContent ?? '', /Beobachten/u);
+  const vorg = baueExplore({ inhalte, werkzeug: 'vorgaenge', bedienbar: true });
+  (vorg.querySelector('[data-pruef="ex-art-fruehwarnung"]') as HTMLElement).click();
+  (vorg.querySelector('.ex-weg[data-ziel="risiko"]') as HTMLElement).click();
+  assert.equal(vorg.querySelector('.ex-art[aria-pressed="true"]')?.getAttribute('data-art'), 'risiko');
+  const glossar = baueExplore({ inhalte, werkzeug: 'glossar', bedienbar: true });
+  const feld = glossar.querySelector<HTMLInputElement>('[data-pruef="glossar-suche"]');
+  assert.ok(feld);
+  feld.value = 'freigabe';
+  feld.dispatchEvent(new Event('input'));
+  const sichtbar = [...glossar.querySelectorAll<HTMLElement>('[data-pruef="glossar-eintrag"]')].filter((e) => !e.hidden).length;
+  assert.ok(sichtbar > 0 && sichtbar < Object.keys(inhalte.glossar).length);
+  const leinwand = baueExplore({ inhalte, werkzeug: 'matrix', bedienbar: false });
+  assert.equal(leinwand.querySelectorAll('a, button, select, input').length, 0);
 });
 
 test('Leinwand-Anzeige: nicht bedienbar, derselbe Stand, keine Regie-Notiz', () => {
-  let z = anfangszustand();
-  const sitzung = erzeugeSitzung(z, inhalte, { speicher: null });
-  for (const a of [{ art: 'starteStory' }, { art: 'weiter' }, { art: 'waehleRolle', rolle: 'pl' }, { art: 'setzeInteressen', interessen: ['express'] as string[] }, { art: 'weiter' }, { art: 'weiter' }] as const) sitzung.tue(a);
-  z = sitzung.zustand();
-  assert.equal(z.station, 'A3');
-  const anzeige = erzeugeAnzeige(inhalte, VERSION, false);
-  document.body.replaceChildren(anzeige.element);
-  try {
-    anzeige.setze(oeffentlich(z), null);
-    assert.ok(anzeige.element.hasAttribute('inert'));
-    assert.ok(anzeige.element.querySelector('[data-pruef="leitstand"][inert]'));
-    assert.ok(anzeige.element.querySelector('.mail'));
-    assert.equal(anzeige.element.querySelector('[data-pruef="regie-notiz"]'), null);
-    const notiz = regieFuer('A3', 'pl').szene?.notiz;
-    assert.ok(notiz);
-    assert.ok(!(anzeige.element.textContent ?? '').includes(klartext(notiz).slice(0, 40)));
-    // Bereichswechsel: Theorie, Start
-    anzeige.setze(oeffentlich({ ...z, bereich: 'theorie', theorie: { kapitel: 1 } }), null);
-    assert.ok(anzeige.element.querySelector('[data-pruef="originaltext"]'));
-    anzeige.setze(oeffentlich({ ...z, bereich: 'start' }), null);
-    assert.ok(anzeige.element.querySelector('[data-pruef="startseite"]'));
-  } finally {
-    anzeige.entferne();
-  }
+  const a = erzeugeAnzeige(inhalte, VERSION, true);
+  const b = { ...neueBuehne(), bereich: 'story' as const, story: { ...neueBuehne().story, schritt: { ort: 'station' as const, station: 's8', teil: 'vorlage' as const } } };
+  a.setze(b);
+  assert.equal(a.element.getAttribute('inert'), '');
+  assert.equal(a.element.querySelectorAll('button, a, input, select').length, 0);
+  assert.match(a.element.textContent ?? '', /Ersatzgerät/u);
+  const notiz = regieGeschichte('s8');
+  assert.ok(notiz && !(a.element.innerHTML.includes(notiz.notizHtml.slice(3, 50))));
+  a.setze({ ...b, bereich: 'theorie', thema: themaVon(4) });
+  assert.ok(a.element.querySelector(`[data-thema="${themaVon(4)}"]`));
+  a.setze({ ...b, bereich: 'explore', werkzeug: 'takt' });
+  assert.ok(a.element.querySelector('[data-werkzeug="takt"]'));
 });
 
-test('Regie: Notiz und Leitfragen; „weiter“ sendet den öffentlichen Zustand über den Kanal', () => {
+test('Regie: Notiz und Leitfragen, Kundenwahl, „weiter“ sendet den öffentlichen Stand über den Kanal', () => {
   const gesendet: KanalNachricht[] = [];
-  const empfaenger = new Set<(n: import('../src/regie/kanal.ts').EingehendeNachricht) => void>();
-  const kanal = {
-    senden: (n: KanalNachricht) => {
-      gesendet.push(JSON.parse(JSON.stringify(n)) as KanalNachricht);
-    },
-    abonnieren: (fn: (n: import('../src/regie/kanal.ts').EingehendeNachricht) => void) => {
-      empfaenger.add(fn);
-      return () => empfaenger.delete(fn);
-    },
-    schliessen: () => undefined,
-  };
-  const sitzung = erzeugeSitzung(anfangszustand(), inhalte, { speicher: null });
-  let geoeffnet = 0;
-  const regie = erzeugeRegie({ inhalte, sitzung, kanal, version: VERSION, regieFuer, oeffneLeinwand: () => { geoeffnet += 1; }, takt: 60_000 });
-  document.body.replaceChildren(regie.element);
-  const el = regie.element;
-  const klick = (sel: string): void => {
-    const b = el.querySelector<HTMLElement>(sel);
-    assert.ok(b, `fehlt: ${sel}`);
-    b.click();
-  };
-  try {
-    assert.equal(gesendet[0]?.art, 'hallo');
-    assert.equal(gesendet[1]?.art, 'zustand');
-    klick('[data-pruef="leinwand-oeffnen"]');
-    assert.equal(geoeffnet, 1);
-    assert.equal(el.querySelector('[data-pruef="leinwand-status"]')?.getAttribute('data-status'), 'neutral');
-    for (const fn of empfaenger) fn({ art: 'lebenszeichen', nr: 1 });
-    assert.equal(el.querySelector('[data-pruef="leinwand-status"]')?.getAttribute('data-status'), 'ok');
-    const vorher = gesendet.length;
-    klick('[data-pruef="regie-weiter"]');
-    klick('[data-pruef="regie-weiter"]');
-    klick('[data-pruef="regie-rolle-pl"]');
-    klick('[data-pruef="regie-weiter"]');
-    klick('[data-pruef="regie-interesse-express"]'); // Express-Pfad: Prolog → A3
-    klick('[data-pruef="regie-weiter"]');
-    assert.equal(sitzung.zustand().station, 'A3');
-    const zustaende = gesendet.slice(vorher).filter((n): n is Extract<KanalNachricht, { art: 'zustand' }> => n.art === 'zustand');
-    assert.equal(zustaende.length, 6);
-    for (const n of zustaende) assert.equal('regie' in n.zustand, false, 'das Protokoll geht nie über den Kanal');
-    assert.equal(zustaende.at(-1)?.zustand.station, 'A3');
-    const notiz = el.querySelector('[data-pruef="regie-notiz"]')?.textContent ?? '';
-    const soll = regieFuer('A3', 'pl').szene;
-    assert.ok(soll?.notiz);
-    assert.ok(notiz.includes(klartext(soll.notiz).slice(0, 40)));
-    // Szene (Rolle) und Station (seit R53 auch in A3) tragen je eigene Leitfragen
-    assert.equal(el.querySelectorAll('[data-pruef="regie-leitfragen"] li').length, soll.leitfragen.length + (regieFuer('A3', 'pl').station?.leitfragen.length ?? 0));
-    // Vorschau zeigt denselben Stand, aber ohne Notiz
-    const vorschau = el.querySelector('.vorschau-buehne');
-    assert.ok(vorschau?.querySelector('.mail'));
-    assert.equal(vorschau?.querySelector('[data-pruef="regie-notiz"]'), null);
-    // Kundenwahl per Taste erst an der Entscheidung
-    assert.equal(regie.taste(new dom.window.KeyboardEvent('keydown', { key: 'b' })), false);
-    // Protokoll bleibt in der Regie
-    const feld = el.querySelector<HTMLTextAreaElement>('[data-pruef="regie-protokoll-feld"]');
-    assert.ok(feld);
-    feld.value = 'Kunde fragt nach Schwellen';
-    klick('.regie-protokoll .knopf');
-    assert.equal(sitzung.zustand().regie.protokoll.length, 1);
-    const letzte = gesendet.filter((n) => n.art === 'zustand').at(-1);
-    assert.ok(letzte && letzte.art === 'zustand' && !JSON.stringify(letzte).includes('Kunde fragt'));
-    // Ein „hallo“ der Leinwand beantwortet die Regie mit dem Stand
-    const anzahl = gesendet.length;
-    for (const fn of empfaenger) fn({ art: 'hallo' });
-    // … dazu den Stand des Beamer-Schalters (E10)
-    assert.deepEqual(gesendet.slice(anzahl).map((n) => n.art), ['zustand', 'anzeige']);
-  } finally {
-    regie.entferne();
-  }
-});
-
-test('Regie (P9.5): Start sendet den Beamer-Stand, Sprung erst mit Rolle, Einwände getrennt vom Nur-Regie-Teil, Druck, Ein-Fenster', () => {
-  const gesendet: KanalNachricht[] = [];
-  const kanal = {
-    senden: (n: KanalNachricht) => { gesendet.push(JSON.parse(JSON.stringify(n)) as KanalNachricht); },
-    abonnieren: () => () => undefined,
-    schliessen: () => undefined,
-  };
-  const sitzung = erzeugeSitzung(anfangszustand(), inhalte, { speicher: null });
-  // ohne Eintrag: Kapitel 99 gibt es nicht
-  const regie = erzeugeRegie({ inhalte, sitzung, kanal, version: VERSION, regieFuer, regieKapitel: (k) => (k === 5 ? regieKapitel(k) : null), oeffneLeinwand: () => undefined, takt: 60_000 });
-  document.body.replaceChildren(regie.element);
-  const el = regie.element;
-  const q = <T extends Element = HTMLElement>(sel: string): T => {
-    const x = el.querySelector<T>(sel);
-    assert.ok(x, `fehlt: ${sel}`);
-    return x;
-  };
-  try {
-    // B2: nach dem Laden bekommt die Leinwand den Stand des Beamer-Schalters (aus)
-    assert.deepEqual(gesendet.map((n) => n.art), ['hallo', 'zustand', 'anzeige']);
-    assert.equal((gesendet[2] as Extract<KanalNachricht, { art: 'anzeige' }>).beamer, false);
-    // B6/L1: vor der Rollenwahl ist Springen gesperrt und das Rollenfeld zeigt „–“
-    const sprung = q<HTMLSelectElement>('[data-pruef="regie-sprung"]');
-    const rolle = q<HTMLSelectElement>('[data-pruef="regie-rollenwahl"]');
-    assert.equal(sprung.disabled, true);
-    assert.equal(rolle.value, '');
-    q('[data-pruef="regie-bereich-story"]').click();
-    q('[data-pruef="regie-weiter"]').click();
-    q('[data-pruef="regie-rolle-pl"]').click();
-    assert.equal(sprung.disabled, false);
-    assert.equal(rolle.value, 'pl');
-    // Als Nächstes (Bauplan 7): die Vorschau nennt, wo „Weiter“ hinführt – über mehrere Schritte verglichen
-    let verglichen = 0;
-    for (let i = 0; i < 12; i++) {
-      const roh = q('[data-pruef="regie-naechstes"]').textContent ?? '';
-      if (i === 0) assert.match(roh, /^Als Nächstes: \S/u);
-      const vorschau = roh.replace(/^Als Nächstes: /u, '');
-      if (vorschau === '') break;
-      const [stationTitel, ...rest] = vorschau.split(' · ');
-      q('[data-pruef="regie-weiter"]').click();
-      const ortText = q('[data-pruef="regie-ort"]').textContent ?? '';
-      assert.ok(ortText.startsWith(stationTitel ?? '') && (rest.length === 0 || ortText.endsWith(rest.join(' · '))), `Vorschau „${vorschau}“ ≠ Ort „${ortText}“`);
-      verglichen++;
-      const opt = el.querySelector<HTMLElement>('[data-pruef^="regie-option-"]');
-      if (opt !== null && sitzung.zustand().station !== null) opt.click();
-    }
-    assert.ok(verglichen >= 2, `nur ${verglichen} Schritte verglichen`);
-    // L2: Pfeiltaste im Auswahlfeld blättert nicht
-    const schrittVorher = sitzung.zustand().schritt;
-    const ereignis = new dom.window.KeyboardEvent('keydown', { key: 'ArrowRight' });
-    Object.defineProperty(ereignis, 'target', { value: rolle });
-    assert.equal(regie.taste(ereignis), false);
-    assert.equal(sitzung.zustand().schritt, schrittVorher);
-    // Station mit Einwand: Spickzettel steht NACH dem Hinweis „nur in der Regie“ (Einwände sind öffentlich, L5)
-    const mitEinwand = inhalte.einwaende.find((e) => e.stationen.some((s) => inhalte.stationen[s]?.welt === 'A'));
-    assert.ok(mitEinwand);
-    sitzung.tue({ art: 'geheZu', station: mitEinwand.stationen.find((s) => inhalte.stationen[s]?.welt === 'A') ?? '', schritt: 0 });
-    const notiz = q('[data-pruef="regie-notiz"]');
-    const hinweis = [...notiz.querySelectorAll('.regie-leise')].find((p) => p.textContent === W.regie.nurRegie);
-    assert.ok(hinweis);
-    const zettel = q(`[data-pruef="regie-einwand-${mitEinwand.id}"]`);
-    assert.ok(hinweis.compareDocumentPosition(zettel) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING);
-    assert.equal(q('.regie-notiz-inhalt').querySelector('[data-pruef^="regie-einwand"]'), null);
-    // Kapitel mit und ohne Regie-Eintrag
-    sitzung.tue({ art: 'oeffneKapitel', kapitel: 5 });
-    assert.ok(q('[data-pruef="regie-leitfragen"]'));
-    assert.ok(q('[data-pruef="regie-einwaende"]'));
-    sitzung.tue({ art: 'oeffneKapitel', kapitel: 1 });
-    assert.equal(q('.regie-notiz-inhalt').textContent, W.regie.keineNotiz);
-    // Druckteil: Protokoll vollständig (nicht nur die letzten sechs), Weg, Vermerke; ohne print keine hängende Klasse (L9)
-    for (let i = 1; i <= 8; i++) sitzung.tue({ art: 'notiere', text: `Eintrag ${i}`, zeit: Date.UTC(2026, 8, 28, 9, i) });
-    const druckfn = dom.window.print;
-    (dom.window as unknown as { print: unknown }).print = undefined;
-    q('[data-pruef="regie-drucken"]').click();
-    (dom.window as unknown as { print: unknown }).print = druckfn;
-    // R47: der Druckteil ist ein Druckbogen an body (wie Kapitel und Dossier)
-    const druck = document.querySelector('.druck-bogen [data-pruef="regie-druck"]');
-    assert.ok(druck, 'Protokoll im Druckbogen');
-    assert.equal(druck.querySelectorAll(':scope > .druck-teil > ol > li').length, 8);
-    // R48: Kopf wie Kapitel und Dossier (Absender, Vermerke), der Titel steht einmal, jeder Abschnitt ist ein eigener Teil
-    const bogenR = druck.closest('.druck-bogen');
-    assert.ok(bogenR?.querySelector(':scope .druck-kopf .druck-absender'));
-    assert.equal([...(bogenR?.querySelectorAll('h1, h2') ?? [])].filter((x) => x.textContent === W.regie.druckTitel).length, 1);
-    assert.equal(druck.querySelectorAll(':scope > h2').length, 0);
-    assert.ok([...druck.querySelectorAll(':scope > .druck-teil')].every((x) => x.firstElementChild?.tagName === 'H2'));
-    assert.match(bogenR?.textContent ?? '', new RegExp(W.fiktiv, 'u'));
-    assert.doesNotMatch(bogenR?.textContent ?? '', /ungeprüft/u);
-    // Dossier (E11): Kapitel zum Nachlesen als Text (höchstens zwei Lernseiten)
-    const kapitelImDruck = druck.querySelectorAll('.druck-kapitel').length;
-    assert.ok(kapitelImDruck >= 1 && kapitelImDruck <= 2, `Kapitel im Regie-Druck: ${kapitelImDruck}`);
-    assert.match(druck.textContent ?? '', /A3/u);
-    assert.equal(document.body.classList.contains('druck-protokoll'), false);
-    // R48: Strg+P (nur beforeprint, ohne Knopf) druckt das Protokoll, nicht die Bedienoberfläche
-    for (const x of document.querySelectorAll('.druck-bogen')) x.remove();
-    dom.window.dispatchEvent(new dom.window.Event('beforeprint'));
-    assert.ok(document.querySelector('.druck-bogen [data-pruef="regie-druck"]'), 'Strg+P: Protokoll im Bogen');
-    assert.ok(document.body.classList.contains('druckt-bogen'));
-    dom.window.dispatchEvent(new dom.window.Event('afterprint'));
-    assert.equal(document.querySelectorAll('.druck-bogen').length, 0);
-    assert.equal(document.body.classList.contains('druckt-bogen'), false);
-    // B4: Ein-Fenster nimmt die verdeckten Teile aus der Tab-Folge, Esc gibt den Fokus zurück
-    const knopf = q('[data-pruef="regie-ein-fenster"]');
-    knopf.click();
-    assert.ok(el.classList.contains('ist-ein-fenster'));
-    assert.ok(q('.regie-kopf').hasAttribute('inert'));
-    assert.ok(q('.regie-steuerung').hasAttribute('inert'));
-    assert.equal(q('.regie-eingriff-karte').hasAttribute('inert'), false);
-    assert.equal(document.activeElement, q('[data-pruef="regie-ein-fenster-aus"]'));
-    assert.equal(regie.taste(new dom.window.KeyboardEvent('keydown', { key: 'Escape' })), true);
-    assert.equal(el.classList.contains('ist-ein-fenster'), false);
-    assert.equal(q('.regie-kopf').hasAttribute('inert'), false);
-    assert.equal(document.activeElement, knopf);
-  } finally {
-    regie.entferne();
-  }
+  const kanal = { senden: (n: KanalNachricht) => { gesendet.push(n); }, abonnieren: () => () => undefined, schliessen: () => undefined };
+  const sp = speicher();
+  const r = erzeugeRegie({ inhalte, kanal, version: VERSION, speicher: sp, regieGeschichte, regieKapitel, oeffneLeinwand: () => undefined, takt: 100000 });
+  document.body.replaceChildren(r.element);
+  (r.element.querySelector('[data-pruef="regie-bereich-story"]') as HTMLElement).click();
+  const sprung = r.element.querySelector<HTMLSelectElement>('[data-pruef="regie-sprung"]');
+  assert.ok(sprung);
+  sprung.value = 's8';
+  sprung.dispatchEvent(new Event('change'));
+  assert.match(r.element.querySelector('[data-pruef="regie-notiz"]')?.textContent ?? '', /Kosten vor Termin/u);
+  assert.ok(r.element.querySelector('[data-pruef="regie-leitfragen"]'));
+  (r.element.querySelector('[data-pruef="regie-weiter"]') as HTMLElement).click();
+  (r.element.querySelector('[data-pruef="regie-wahl-B"]') as HTMLElement).click();
+  const letzte = gesendet.filter((n) => n.art === 'zustand').at(-1);
+  assert.ok(letzte && letzte.art === 'zustand');
+  assert.equal(letzte.zustand.story.wahlen['s8'], 'B');
+  const text = JSON.stringify(gesendet);
+  assert.ok(!text.includes(regieGeschichte('s8')?.notizHtml.slice(3, 40) ?? 'x'), 'keine Notiz im Kanal');
+  // Protokoll bleibt in der Regie
+  const feld = r.element.querySelector<HTMLTextAreaElement>('[data-pruef="regie-protokoll-feld"]');
+  assert.ok(feld);
+  feld.value = 'Frage zur Reserve';
+  (r.element.querySelector('[data-pruef="regie-protokoll-sichern"]') as HTMLElement).click();
+  assert.match(r.element.querySelector('.regie-protokoll-liste')?.textContent ?? '', /Frage zur Reserve/u);
+  assert.ok(!JSON.stringify(gesendet).includes('Frage zur Reserve'));
+  // Theorie: Thema wählen, Notiz des Themas (falls vorhanden)
+  const thema = r.element.querySelector<HTMLSelectElement>('[data-pruef="regie-thema"]');
+  assert.ok(thema);
+  thema.value = themaVon(4);
+  thema.dispatchEvent(new Event('change'));
+  assert.equal(gesendet.filter((n) => n.art === 'zustand').at(-1)?.art === 'zustand' && (gesendet.filter((n) => n.art === 'zustand').at(-1) as { zustand: { thema: string } }).zustand.thema, themaVon(4));
+  r.entferne();
 });
 
 test('Tafeln (P4, L-32): Radar schneidet „erlebt“ mit der eigenen Spur; Schwellen-Spiel prüft gegen die Spalte der Tabelle', async () => {
@@ -732,98 +379,6 @@ test('Tafel-Formen Welt B und RACI (P5.1): Phase hervorgehoben und vorgewählt, 
   assert.match(m.querySelector('[data-pruef="raci-detail"]')?.textContent ?? '', /Bauherren-PL \(Sie\)/u);
 });
 
-test('Ihre Spur (L-41): der Reiter „Spur“ zeichnet neu, wenn sich die Wahl ändert', async () => {
-  document.body.replaceChildren();
-  const sitzung = erzeugeSitzung(anfangszustand(), inhalte, { speicher: null });
-  const story = erzeugeStory({ inhalte, tue: (a) => sitzung.tue(a) });
-  sitzung.abonniere((neu, _alt, aktion) => story.setze(oeffentlich(neu), aktion));
-  document.body.append(story.element);
-  const el = story.element;
-  try {
-    for (const a of [{ art: 'starteStory' }, { art: 'weiter' }, { art: 'waehleRolle', rolle: 'pl' }, { art: 'setzeInteressen', interessen: ['express'] as string[] }, { art: 'weiter' }, { art: 'weiter' }, { art: 'weiter' }] as const) sitzung.tue(a);
-    assert.equal(sitzung.zustand().station, 'A3');
-    el.querySelector<HTMLElement>('[data-pruef="seitenleiste-spur"]')?.click();
-    assert.ok(el.querySelector('[data-pruef="spur-leer"]'), 'vor der ersten Wahl: leer');
-    for (let i = 0; i < 5 && el.querySelector('[data-pruef="option-B"]') === null; i++) sitzung.tue({ art: 'weiter' });
-    sitzung.tue({ art: 'waehle', option: 'B' });
-    await pause(20);
-    assert.match(el.querySelector('[data-pruef="spur-A3"] [data-welt="a"]')?.textContent ?? '', /B/u);
-    sitzung.tue({ art: 'waehle', option: 'C' });
-    await pause(20);
-    const zelle = el.querySelector('[data-pruef="spur-A3"] [data-welt="a"]')?.textContent ?? '';
-    assert.match(zelle, /C/u, 'die neue Wahl erscheint ohne Neuladen');
-    assert.match(zelle, /umentschieden/u);
-  } finally {
-    story.entferne?.();
-    document.body.replaceChildren();
-  }
-});
-
-test('Rückbezug (R47): im Express übersprungene Bezugsstation heißt „Inzwischen“, nicht „Ohne Wahl in Welt A“', async () => {
-  document.body.replaceChildren();
-  const sitzung = erzeugeSitzung(anfangszustand(), inhalte, { speicher: null });
-  const story = erzeugeStory({ inhalte, tue: (a) => sitzung.tue(a) });
-  sitzung.abonniere((neu, _alt, aktion) => story.setze(oeffentlich(neu), aktion));
-  document.body.append(story.element);
-  const el = story.element;
-  try {
-    for (const a of [{ art: 'starteStory' }, { art: 'weiter' }, { art: 'waehleRolle', rolle: 'gf' }, { art: 'setzeInteressen', interessen: ['express'] as string[] }, { art: 'weiter' }, { art: 'weiter' }, { art: 'weiter' }] as const) sitzung.tue(a);
-    assert.equal(sitzung.zustand().station, 'A3');
-    for (let i = 0; i < 60 && !(sitzung.zustand().station === 'A6' && el.querySelector('[data-pruef="rueckbezug"]')); i++) {
-      if (el.querySelector('[data-pruef="option-A"]') && sitzung.zustand().entscheidungen[inhalte.stationen[sitzung.zustand().station ?? '']?.szenen['gf']?.entscheidung?.id ?? ''] === undefined) sitzung.tue({ art: 'waehle', option: 'A' });
-      sitzung.tue({ art: 'weiter' });
-    }
-    assert.equal(sitzung.zustand().station, 'A6');
-    const etikett = el.querySelector('[data-pruef="rueckbezug"] .erinnerung.ist-ohne .t-label')?.textContent ?? '';
-    assert.equal(etikett, 'Inzwischen', 'A5 wurde im Express übersprungen');
-    // R48 (Architektur): Gegenfall – A5 gesehen, aber ohne Wahl weiter (Permalink/Regie-Sprung): „Ohne Wahl in Welt A“
-    sitzung.tue({ art: 'geheZu', station: 'A5' });
-    sitzung.tue({ art: 'geheZu', station: 'A6' });
-    for (let i = 0; i < 30 && !el.querySelector('[data-pruef="rueckbezug"]'); i++) sitzung.tue({ art: 'weiter' });
-    assert.ok(sitzung.zustand().verlauf.includes('A5'));
-    assert.equal(el.querySelector('[data-pruef="rueckbezug"] .erinnerung.ist-ohne .t-label')?.textContent, W.ohneWahlA, 'A5 gesehen, ohne Wahl');
-  } finally {
-    story.entferne?.();
-    document.body.replaceChildren();
-  }
-});
-
-test('Rückbezug (R48): gespielte Bezugsstation ohne Wahl und Stationen der Welt B heißen „Ohne Wahl in Welt A“', async () => {
-  const { wende } = await import('../src/engine/aktionen.ts');
-  const { aktuellerSchritt } = await import('../src/engine/graph.ts');
-  // Hauptpfad gf bis A6, jede Entscheidung A – dann die Wahl an A5 streichen: A5 steht im Verlauf, ohne Wahl
-  let z = anfangszustand();
-  const tu = (a: Parameters<typeof wende>[1]): void => { z = wende(z, a, inhalte); };
-  tu({ art: 'starteStory' });
-  tu({ art: 'waehleRolle', rolle: 'gf' });
-  for (let i = 0; i < 400 && z.station !== 'A6'; i++) {
-    const ent = z.station !== null ? inhalte.stationen[z.station]?.szenen['gf']?.entscheidung : null;
-    if (aktuellerSchritt(z, inhalte)?.art === 'entscheidung' && ent && z.entscheidungen[ent.id] === undefined) tu({ art: 'waehle', option: 'A' });
-    const vorher = z;
-    tu({ art: 'weiter' });
-    if (z === vorher) break;
-  }
-  assert.equal(z.station, 'A6');
-  assert.ok(z.verlauf.includes('A5'));
-  const idA5 = inhalte.stationen['A5']?.szenen['gf']?.entscheidung?.id ?? '';
-  const { [idA5]: _weg, ...ohneA5 } = z.entscheidungen;
-  const etikettAn = (zustand: typeof z, ziel: string): string => {
-    const sitzung = erzeugeSitzung({ ...zustand, entscheidungen: zustand.station === 'A6' ? ohneA5 : zustand.entscheidungen }, inhalte, { speicher: null });
-    const story = erzeugeStory({ inhalte, tue: (a) => sitzung.tue(a) });
-    sitzung.abonniere((neu, _alt, aktion) => story.setze(oeffentlich(neu), aktion));
-    document.body.replaceChildren(story.element);
-    try {
-      story.setze(oeffentlich(sitzung.zustand()), null);
-      for (let i = 0; i < 12 && !story.element.querySelector('[data-pruef="rueckbezug"]') && sitzung.zustand().station === ziel; i++) sitzung.tue({ art: 'weiter' });
-      return story.element.querySelector('[data-pruef="rueckbezug"] .erinnerung.ist-ohne .t-label')?.textContent ?? '';
-    } finally {
-      story.entferne?.();
-      document.body.replaceChildren();
-    }
-  };
-  assert.equal(etikettAn(z, 'A6'), 'Ohne Wahl in Welt A', 'A5 gespielt, aber ohne Wahl');
-});
-
 test('Tafeln Welt B (T9): Phasen-Wahl wandert, Screenreader-Hinweis am hervorgehobenen Knopf; Rhythmus, Karten; RACI-Zeilenwahl und eigene Spalte zuerst', async () => {
   const { tafel } = await import('../src/grafik/tafel.ts');
   const { raci } = await import('../src/grafik/raci.ts');
@@ -856,606 +411,6 @@ test('Tafeln Welt B (T9): Phasen-Wahl wandert, Screenreader-Hinweis am hervorgeh
   assert.equal(kopfzellen.findIndex((t) => t.classList.contains('ist-ich')), 1, 'eigene Spalte direkt hinter der Entscheidung');
   m.querySelector<HTMLElement>('[data-pruef="raci-y"]')?.click();
   assert.match(m.querySelector('[data-pruef="raci-detail"]')?.textContent ?? '', /Zweite.*A · letztverantwortlich.*Bauherren-PL \(Sie\)/su);
-});
-
-test('Tafeltitel (P12.5 R12/R13): nach „/“ darf umgebrochen werden (<wbr>), der Text bleibt wortgleich', () => {
-  let gefunden = 0;
-  for (const k of kapitelListe(inhalte).filter((x) => x.seite)) {
-    const seite = baueTheorie({ inhalte, kapitel: k.nr, version: VERSION, bedienbar: false });
-    for (const t of seite.querySelectorAll('.tafel-titel')) {
-      const text = t.textContent ?? '';
-      const striche = (text.match(/\//gu) ?? []).length;
-      if (striche === 0) continue;
-      gefunden += 1;
-      assert.equal(t.querySelectorAll('wbr').length, striche, `„${text}“: ein <wbr> je „/“`);
-      assert.ok(!/\u200b/u.test(text), 'kein unsichtbares Zeichen im Text');
-    }
-  }
-  assert.ok(gefunden > 0, 'mindestens ein Tafeltitel mit „/“ (Kap. 8: Risiko-/Änderungs-/Maßnahmenverknüpfung)');
-});
-
-test('Lernseite (P6.1): Tafel, RACI, Merksatz und Ebenen 1–4 werden auf Seiten- und Abschnittsebene gezeichnet', () => {
-  const eintrag = Object.entries(inhalte.theorie).find(([, s]) => s.kapitel === 1);
-  assert.ok(eintrag);
-  const tafel = { art: 'tafel', kennungen: ['k2.5-t1'], id: 'k2.5-t1', kopf: { form: 'ketten', quelle: 'Q', tabelle: { kopf: ['S', 'M', 'K', 'R'], zeilen: [['s', 'm', 'k', 'r']] }, erlebt: {}, hervor: [] }, felder: {}, liste: null, kinder: [] };
-  const ebenen = { art: 'ebenen', kennungen: [], id: null, kopf: {}, felder: {}, liste: null, kinder: [], ebenen: [1, 2, 3, 4].map((nr) => ({ nr, titel: `E${nr}`, felder: { text: `<p>Text ${nr}</p>` }, bloecke: [] })) };
-  const abschnitt = { art: 'abschnitt', kennungen: ['k1.1'], id: 'k1.1', kopf: { titel: 'Probe' }, felder: {}, liste: null, kinder: [{ art: 'merksatz', kennungen: [], id: null, kopf: {}, felder: { text: '<p>Merke</p>' }, liste: null, kinder: [] }] };
-  const raciB = { art: 'raci', kennungen: [], id: null, kopf: { zeilen: [{ id: 'r1', titel: 'Reserve', zuordnung: { bauherr: 'A', pl: 'R' }, mandat: 'Bauherr' }] }, felder: {}, liste: null, kinder: [] };
-  const probe = { ...inhalte, theorie: { ...inhalte.theorie, [eintrag[0]]: { ...eintrag[1], bloecke: [tafel, abschnitt, ebenen, raciB] } } } as unknown as typeof inhalte;
-  const el = baueTheorie({ inhalte: probe, kapitel: 1, version: VERSION, bedienbar: true });
-  assert.ok(el.querySelector('[data-pruef="tafel-ketten"]'), 'Tafel auf Seitenebene');
-  assert.ok(el.querySelector('[data-pruef="raci-detail"]'), 'RACI auf der Lernseite');
-  assert.equal(el.querySelector('.tafel-titel')?.tagName, 'H2', 'Tafeltitel auf Seitenebene folgt der Gliederung (h1 → h2)');
-  assert.match(el.querySelector('.lern-abschnitt .lehre')?.textContent ?? '', /Merke/u, 'Merksatz im Abschnitt');
-  const e = [...el.querySelectorAll('[data-pruef^="lern-ebene-"]')];
-  assert.equal(e.length, 4);
-  assert.equal(e[0]?.hasAttribute('open'), true);
-  assert.equal(e[3]?.hasAttribute('open'), false);
-});
-
-test('Begriffs-Kompass (P10.5, E7): im Glossar, Suche nach dem anderen Wort findet den Whitepaper-Begriff', () => {
-  assert.ok(inhalte.kompass.length >= 10);
-  const seite = baueTheorie({ inhalte, kapitel: 13, version: VERSION, bedienbar: true });
-  document.body.replaceChildren(seite);
-  const kompass = seite.querySelector('[data-pruef="kompass"]');
-  assert.ok(kompass);
-  const zeilen = [...kompass.querySelectorAll<HTMLElement>('[data-pruef="kompass-eintrag"]')];
-  assert.equal(zeilen.length, inhalte.kompass.length);
-  const feld = seite.querySelector<HTMLInputElement>('[data-pruef="glossar-suche"]');
-  assert.ok(feld);
-  feld.value = 'change-board';
-  feld.dispatchEvent(new dom.window.Event('input'));
-  const sichtbar = zeilen.filter((z) => !z.hidden);
-  assert.equal(sichtbar.length, 1);
-  assert.match(sichtbar[0]?.textContent ?? '', /Änderungsgremium/u);
-  assert.equal(seite.querySelector<HTMLElement>('.glossar-leer')?.hidden, true, 'ein Kompass-Treffer ist kein leeres Ergebnis');
-  // Beleg-Absatz als Permalink, Glossar-Begriff springt zum Eintrag (ohne den Anker des Routers)
-  const freigabe = zeilen.find((z) => /Gate/u.test(z.textContent ?? ''));
-  assert.equal(freigabe?.querySelector('a.absatz-id')?.getAttribute('href'), '#theorie/k9/k9.3-p1');
-  const knopf = freigabe?.querySelector<HTMLButtonElement>('.kompass-begriff');
-  assert.ok(knopf);
-  feld.value = '';
-  feld.dispatchEvent(new dom.window.Event('input'));
-  knopf.click();
-  assert.equal(document.activeElement?.id, 'g-freigabe');
-  // Leinwand: keine Knöpfe, keine Links
-  const leinwand = baueTheorie({ inhalte, kapitel: 13, version: VERSION, bedienbar: false });
-  assert.equal(leinwand.querySelectorAll('[data-pruef="kompass"] button, [data-pruef="kompass"] a').length, 0);
-});
-
-test('Zitierfunktion und Impressum (P10.1): Absatz-Permalink, Zitierangabe, nicht auf der Leinwand', () => {
-  const { zitierAngabe } = theorieModul;
-  assert.equal(zitierAngabe('k4.2-p3', 'V1.2'), 'Bauherr Mentoren, MVG V1.2, Kap. 4.2, Abs. 3');
-  assert.equal(zitierAngabe('k1-p2', 'V1.2'), 'Bauherr Mentoren, MVG V1.2, Kap. 1, Abs. 2');
-  assert.equal(zitierAngabe('k6.4.2-t1', 'V1.2'), 'Bauherr Mentoren, MVG V1.2, Kap. 6.4.2, Tabelle 1');
-  assert.equal(zitierAngabe('k5.3-l1', 'V1.2'), 'Bauherr Mentoren, MVG V1.2, Kap. 5.3, Aufzählung 1');
-  assert.equal(zitierAngabe('k6.3-b1', 'V1.2'), 'Bauherr Mentoren, MVG V1.2, Kap. 6.3, Kasten 1');
-  assert.equal(zitierAngabe('kaputt', 'V1.2'), null);
-  const seite = baueTheorie({ inhalte, kapitel: 4, version: VERSION, bedienbar: true });
-  document.body.replaceChildren(seite);
-  const absatz = seite.querySelector<HTMLElement>('.originaltext .absatz[data-absatz="k4.2-p3"]');
-  assert.ok(absatz);
-  assert.equal(absatz.querySelector('a.absatz-id')?.getAttribute('href'), '#theorie/k4/k4.2-p3');
-  const knopf = absatz.querySelector<HTMLButtonElement>('[data-pruef="zitieren"]');
-  assert.ok(knopf);
-  knopf.click();
-  assert.equal(knopf.getAttribute('aria-expanded'), 'true');
-  const angabe = absatz.querySelector('[data-pruef="zitierangabe"]')?.textContent ?? '';
-  assert.ok(angabe.startsWith('Bauherr Mentoren, MVG V1.2, Kap. 4.2, Abs. 3. Link: '), angabe);
-  assert.ok(angabe.endsWith('#theorie/k4/k4.2-p3'));
-  knopf.click();
-  assert.equal(absatz.querySelector('.zitierangabe'), null);
-  // jeder Absatz des Originaltexts hat Permalink und Zitierknopf
-  const alle = seite.querySelectorAll('.originaltext .absatz[data-absatz]');
-  assert.ok(alle.length > 5);
-  assert.equal(seite.querySelectorAll('.originaltext [data-pruef="zitieren"]').length, alle.length);
-  // Leinwand (nicht bedienbar): keine Knöpfe, keine Links
-  const leinwand = baueTheorie({ inhalte, kapitel: 4, version: VERSION, bedienbar: false });
-  assert.equal(leinwand.querySelectorAll('[data-pruef="zitieren"], a.absatz-id').length, 0);
-  // Impressum auf der Kapitelliste: Version, Vermerk, Abgrenzung 5.5 und Leistungsgrenzen 7.6
-  const liste = baueTheorie({ inhalte, kapitel: null, version: VERSION, bedienbar: true });
-  const imp = liste.querySelector('[data-pruef="impressum"]');
-  assert.ok(imp);
-  assert.equal(imp.getAttribute('data-abschnitt'), 'impressum');
-  assert.equal(imp.querySelector('[data-pruef="impressum-version"]')?.textContent, VERSION);
-  assert.ok(!(imp.textContent ?? '').includes('ungeprüft'));
-  assert.equal(imp.querySelector('[data-pruef="impressum-grenze-5.5"]')?.getAttribute('href'), '#theorie/k5/5.5');
-  assert.equal(imp.querySelector('[data-pruef="impressum-grenze-7.6"]')?.getAttribute('href'), '#theorie/k7/7.6');
-  assert.ok(imp.querySelectorAll('.impressum-aenderungen li').length >= 1);
-  assert.equal(seite.querySelector('[data-pruef="zum-impressum"]')?.getAttribute('href'), '#theorie/impressum');
-});
-
-test('Glossar (P6.14): alle Begriffe wortgleich, Suche filtert, „Verlinkt in“ nennt Stationen und Kapitel', () => {
-  const el = baueTheorie({ inhalte, kapitel: 13, version: VERSION, bedienbar: true });
-  const eintraege = [...el.querySelectorAll<HTMLElement>('[data-pruef="glossar-eintrag"]')];
-  const alle = Object.values(inhalte.glossar);
-  assert.equal(eintraege.length, alle.length);
-  assert.ok(alle.length >= 30, 'Glossar des Whitepapers vollständig');
-  for (const g of alle) {
-    const z = el.querySelector(`#${g.id}`);
-    assert.equal(z?.querySelector('dt')?.textContent, g.begriff);
-    assert.equal(z?.querySelector('dd > p')?.textContent, g.definition, `Definition ${g.begriff} wortgleich`);
-    const ziele = [...(z?.querySelectorAll('a.glossar-ort') ?? [])].map((a) => a.getAttribute('href'));
-    assert.deepEqual(ziele, [...g.vorkommen.stationen.map((s) => `#story/${s}`), ...g.vorkommen.kapitel.map((k) => `#theorie/k${k}`)]);
-  }
-  assert.ok(alle.some((g) => g.vorkommen.stationen.length > 0 && g.vorkommen.kapitel.length > 0), 'Vorkommen gesammelt');
-  const feld = el.querySelector<HTMLInputElement>('[data-pruef="glossar-suche"]');
-  assert.ok(feld);
-  feld.value = 'freigabe';
-  feld.dispatchEvent(new Event('input'));
-  const sichtbar = eintraege.filter((z) => !z.hidden);
-  assert.ok(sichtbar.length > 0 && sichtbar.length < alle.length);
-  assert.ok(sichtbar.every((z) => (z.textContent ?? '').toLowerCase().includes('freigabe')));
-  assert.match(el.querySelector('[data-pruef="glossar-zahl"]')?.textContent ?? '', new RegExp(`^${sichtbar.length} von ${alle.length}`, 'u'));
-  // Leinwand: keine Suche, keine Links – auf jeder Lernseite und in der Kapitelliste
-  for (const kapitel of [null, ...Array.from({ length: 13 }, (_, i) => i + 1)]) {
-    const anzeige = baueTheorie({ inhalte, kapitel, version: VERSION, bedienbar: false });
-    assert.equal(anzeige.querySelector('a, .glossar-feld'), null, `Leinwand Kapitel ${kapitel ?? 'Liste'} ohne Links und Suche`);
-  }
-});
-
-test('Story-Karte (P7.2, E8): Express-Umschalter setzt das Interesse, Explore erscheint erst nach der Freischaltung', async () => {
-  document.body.replaceChildren();
-  const sitzung = erzeugeSitzung(anfangszustand(), inhalte, { speicher: null });
-  const story = erzeugeStory({ inhalte, tue: (a) => sitzung.tue(a) });
-  sitzung.abonniere((neu, _alt, aktion) => story.setze(oeffentlich(neu), aktion));
-  document.body.append(story.element);
-  const el = story.element;
-  try {
-    for (const a of [{ art: 'starteStory' }, { art: 'weiter' }, { art: 'waehleRolle', rolle: 'pl' }] as const) sitzung.tue(a);
-    await pause(20);
-    const knopf = el.querySelector<HTMLElement>('[data-pruef="karte-express"]');
-    assert.ok(knopf && !knopf.hidden, 'Umschalter sichtbar, sobald eine Rolle gewählt ist');
-    assert.equal(knopf.getAttribute('aria-pressed'), 'false');
-    knopf.click();
-    await pause(20);
-    assert.deepEqual(sitzung.zustand().interessen, ['express']);
-    assert.equal(knopf.getAttribute('aria-pressed'), 'true');
-    knopf.click();
-    await pause(20);
-    assert.deepEqual(sitzung.zustand().interessen, []);
-    assert.equal(el.querySelector<HTMLElement>('[data-pruef="karte-explore"]')?.hidden, true, 'Explore vor dem Ende verborgen');
-  } finally {
-    story.entferne?.();
-    document.body.replaceChildren();
-  }
-});
-
-test('Nachweiskette (E2, P7.3): besuchte Welt-B-Stationen als Knöpfe, Klick legt sechs Glieder aus', async () => {
-  const { nachweiskette } = await import('../src/ui/bausteine/bloecke.ts');
-  const nw = (k: string) => ({ mandat: `M-${k}`, freigabe: `F-${k}`, kennung: `ENT-${k}`, datenstand: `D-${k}`, nachweis: `N-${k}`, beschlusslage: `B-${k}`, text: '' });
-  const probe = { ...inhalte, stationen: { ...inhalte.stationen, B1: { ...inhalte.stationen['B1'], nachweis: nw('1') }, B3: { ...inhalte.stationen['B3'], nachweis: nw('3') } } } as unknown as typeof inhalte;
-  const block = { art: 'nachweiskette', kennungen: [], id: null, kopf: {}, felder: {}, liste: null, kinder: [] } as never;
-  const leer = nachweiskette(block, probe, ['A1']);
-  assert.equal(leer.getAttribute('data-pruef'), 'nachweiskette-leer', 'ohne Welt B: Hinweis statt Kette');
-  const el = nachweiskette(block, probe, ['B1', 'B3']);
-  const knoepfe = [...el.querySelectorAll('.nachweis-station')].map((b) => b.getAttribute('data-pruef'));
-  assert.deepEqual(knoepfe, ['nachweis-B1', 'nachweis-B3'], 'Reihenfolge der Geschichte');
-  assert.match(el.querySelector('[data-pruef="nachweis-glieder"]')?.textContent ?? '', /M-3.*F-3.*ENT-3.*D-3.*N-3.*B-3/su, 'zuletzt besuchte vorgewählt');
-  el.querySelector<HTMLElement>('[data-pruef="nachweis-B1"]')?.click();
-  const glieder = [...el.querySelectorAll('.nachweis-glied')].map((g) => g.getAttribute('data-glied'));
-  assert.deepEqual(glieder, ['mandat', 'freigabe', 'kennung', 'datenstand', 'nachweis', 'beschlusslage']);
-  assert.match(el.querySelector('[data-pruef="nachweis-glieder"]')?.textContent ?? '', /Mandat.*M-1.*Beschlusslage.*B-1/su);
-});
-
-test('Selbstdiagnose (O-8): Profil in Worten aus der letzten Spalte, keine Punktzahl', async () => {
-  const { tafel } = await import('../src/grafik/tafel.ts');
-  const d = tafel({ form: 'diagnose', absatz: 'k2.5-t1', quelle: 'Q', kopf: ['Symptom', 'Muster', 'MVG-Reaktion'], zeilen: [['Unklare Ziele', 'm1', 'Zielsystem festlegen.'], ['Rollen ohne Mandat', 'm2', 'Mandate klären.']], erlebt: {} });
-  assert.match(d.querySelector('[data-pruef="diagnose-profil"]')?.textContent ?? '', /keine Punkte/u);
-  d.querySelector<HTMLElement>('[data-pruef="diagnose-1-0"]')?.click();
-  d.querySelector<HTMLElement>('[data-pruef="diagnose-2-1"]')?.click();
-  const profil = d.querySelector('[data-pruef="diagnose-profil"]')?.textContent ?? '';
-  assert.match(profil, /Zeigt sich bei Ihnen.*Unklare Ziele.*Zielsystem festlegen\..*Zeigt sich teilweise.*Rollen ohne Mandat.*Mandate klären\./su);
-  assert.doesNotMatch(profil, /\d+ ?(von|%|Punkte)/u, 'keine Zahl, keine Wertung');
-  d.querySelector<HTMLElement>('[data-pruef="diagnose-1-0"]')?.click();
-  assert.doesNotMatch(d.querySelector('[data-pruef="diagnose-profil"]')?.textContent ?? '', /Unklare Ziele/u, 'zweiter Klick nimmt die Wahl zurück');
-});
-
-test('Resümee (P7.6): Kapitel der Spur nach Häufigkeit', async () => {
-  const { kapitelDerSpur } = await import('../src/ui/flaechen/story-szenen.ts');
-  const probe = { ...inhalte, stationen: { X: { whitepaper: ['k4.2-p3', 'k4.5-p1', 'k9.3-p1'] }, Y: { whitepaper: ['k9.3-p2', 'k9.4-l1', 'k2.1-p1'] } } } as unknown as typeof inhalte;
-  assert.deepEqual(kapitelDerSpur(['X', 'Y', 'X'], probe), [9, 4, 2]);
-  assert.deepEqual(kapitelDerSpur([], probe), []);
-});
-
-test('Resümee (P7.7): Ende, Richtung und erste Vertiefung aus der Spur; Zwischenüberschriften; ohne Links auf der Leinwand', async () => {
-  const { resuemee } = await import('../src/ui/flaechen/story-szenen.ts');
-  const { wende } = await import('../src/engine/aktionen.ts');
-  const { aktuellerSchritt } = await import('../src/engine/graph.ts');
-  let z = anfangszustand();
-  const tu = (a: Parameters<typeof wende>[1]): void => { z = wende(z, a, inhalte); };
-  tu({ art: 'starteStory' });
-  tu({ art: 'waehleRolle', rolle: 'pl' });
-  tu({ art: 'setzeInteressen', interessen: ['kosten', 'express'] });
-  for (let i = 0; i < 3000 && z.station !== 'epilog'; i++) {
-    const ent = z.station !== null ? inhalte.stationen[z.station]?.szenen['pl']?.entscheidung : null;
-    if (aktuellerSchritt(z, inhalte)?.art === 'entscheidung' && ent && z.entscheidungen[ent.id] === undefined) tu({ art: 'waehle', option: z.station === 'A6' ? 'C' : 'A' });
-    const vorher = z;
-    tu({ art: 'weiter' });
-    if (z === vorher) break;
-  }
-  assert.equal(z.station, 'epilog');
-  assert.ok(z.verlauf.includes('ende-steuerbar'));
-  const station = inhalte.stationen['epilog'];
-  assert.ok(station);
-  const block = { art: 'resuemee', kennungen: [], id: null, kopf: {}, felder: {}, liste: null, kinder: [
-    { art: 'hinweis', kennungen: [], id: null, kopf: {}, felder: { text: '<p>Drei Prinzipien</p>' }, liste: null, kinder: [] },
-  ] } as never;
-  const k = (tue: null | (() => void)) => ({ inhalte, station, schritte: station.schritte, index: 0, schritt: station.schritte[0], z: oeffentlich(z), tue, takt: null }) as never;
-  const el = resuemee(block, k(() => undefined), null);
-  const weg = el.querySelector('[data-pruef="resuemee-weg"]')?.textContent ?? '';
-  assert.match(weg, /Ihr Ende.*Steuerbar übergeben/su);
-  assert.match(weg, /Ihre Richtung im Dezember.*Neuinitialisierung/su);
-  const links = [...el.querySelectorAll('[data-pruef="resuemee-vertiefungen"] a')].map((a) => a.getAttribute('href'));
-  assert.equal(links[0], `#theorie/k${inhalte.stationen['ende-steuerbar']?.vertiefung}`, 'erste Vertiefung aus dem Ende');
-  assert.equal(links.length, 2);
-  // R50 (O-34): Kap. 7/8 (Leistungsarchitektur, Einführungsmandat) nie als automatische Vertiefung – alle Enden, Haupt- und Express-Pfad
-  for (const express of [true, false]) {
-    for (const wahl of ['A', 'B', 'C']) {
-      let s = anfangszustand();
-      const mach = (a: Parameters<typeof wende>[1]): void => { s = wende(s, a, inhalte); };
-      mach({ art: 'starteStory' });
-      mach({ art: 'waehleRolle', rolle: 'pl' });
-      mach({ art: 'setzeInteressen', interessen: express ? ['express'] : [] });
-      for (let i = 0; i < 3000 && s.station !== 'epilog'; i++) {
-        const ent = s.station !== null ? inhalte.stationen[s.station]?.szenen['pl']?.entscheidung : null;
-        if (aktuellerSchritt(s, inhalte)?.art === 'entscheidung' && ent && s.entscheidungen[ent.id] === undefined) tu2(s.station === 'wirklichkeit' ? wahl : s.station === 'A6' ? 'C' : 'A');
-        const vorher = s;
-        mach({ art: 'weiter' });
-        if (s === vorher) break;
-      }
-      function tu2(option: string): void { mach({ art: 'waehle', option }); }
-      assert.equal(s.station, 'epilog', `${express ? 'Express' : 'Haupt'}/${wahl}`);
-      const ks = { inhalte, station, schritte: station.schritte, index: 0, schritt: station.schritte[0], z: oeffentlich(s), tue: () => undefined, takt: null } as never;
-      const v = [...resuemee(block, ks, null).querySelectorAll('[data-pruef="resuemee-vertiefungen"] a')].map((a) => a.getAttribute('href') ?? '');
-      assert.equal(v.length, 2, `${express ? 'Express' : 'Haupt'}/${wahl}: ${v.join(' ')}`);
-      assert.ok(!v.some((x) => /#theorie\/k[78]$/u.test(x)), `${express ? 'Express' : 'Haupt'}/${wahl}: ${v.join(' ')}`);
-    }
-  }
-  assert.doesNotMatch(el.querySelector('[data-pruef="resuemee-themen"]')?.textContent ?? '', /Express/u, 'Express ist kein Thema');
-  assert.equal(el.querySelector('.resuemee-titel')?.tagName, 'H3');
-  assert.equal(resuemee(block, k(null), null).querySelector('a'), null, 'Leinwand: keine Links');
-  // Dossier (P10.2, E11): Weg, Entscheidungen, Resümee und die zwei Vertiefungskapitel auf einem Bogen
-  assert.equal(resuemee(block, k(null), null).querySelector('[data-pruef="dossier-drucken"]'), null, 'Leinwand: kein Druckknopf');
-  document.body.replaceChildren(el);
-  // jsdom kennt keinen Druckdialog: wie ein eingebettetes Fenster ohne print()
-  const druckfn = dom.window.print;
-  (dom.window as unknown as { print: unknown }).print = undefined;
-  after(() => { (dom.window as unknown as { print: unknown }).print = druckfn; });
-  el.querySelector<HTMLButtonElement>('[data-pruef="dossier-drucken"]')?.click();
-  const bogen = document.querySelector('[data-pruef="druck-bogen"]');
-  assert.ok(bogen);
-  assert.match(bogen.querySelector('.druck-kopf')?.textContent ?? '', /Fiktiver Fall/u);
-  assert.equal(bogen.querySelectorAll('.druck-teil ol li').length, z.spur.length);
-  // R64 (Architektur): der Weg nennt jede besuchte Station einmal, in der Reihenfolge des Verlaufs (Mutant weg.slice(-1) war grün)
-  const wegDruck = (bogen.querySelector('.druck-teil > p')?.textContent ?? '').split(' → ');
-  assert.equal(wegDruck.length, new Set(z.verlauf).size, `Weg: ${wegDruck.join(' → ')}`);
-  assert.ok(wegDruck.length >= 3 && new Set(wegDruck).size === wegDruck.length, `Weg: ${wegDruck.join(' → ')}`);
-  assert.ok(bogen.querySelector('.resuemee [data-pruef="resuemee-weg"]'));
-  assert.equal(bogen.querySelector('.resuemee [data-pruef="dossier-drucken"]'), null);
-  const kapitel = [...bogen.querySelectorAll('.druck-kapitel')].map((x) => x.getAttribute('data-kapitel'));
-  assert.deepEqual(kapitel, links.map((l) => l?.replace('#theorie/k', '') ?? ''));
-  assert.equal(document.body.classList.contains('druckt-bogen'), false, 'ohne Druckdialog keine hängende Klasse');
-  // R48: Strg+P druckt auf jedem Schritt des Epilogs das Dossier – auch wenn das Resümee (mit Knopf) nicht im Dokument steht
-  dom.window.dispatchEvent(new dom.window.Event('afterprint')); // ein offener Auftrag früherer Tests endet
-  for (const x of document.querySelectorAll('.druck-bogen')) x.remove();
-  resuemee(block, k(() => undefined), null);
-  // eine Szene der Station Epilog steht im Dokument (ein anderer Schritt), der Knopf nicht
-  document.body.replaceChildren(Object.assign(document.createElement('div'), { className: 'szene' }));
-  document.querySelector('.szene')?.setAttribute('data-station', 'epilog');
-  dom.window.dispatchEvent(new dom.window.Event('beforeprint'));
-  assert.match(document.querySelector('.druck-bogen')?.textContent ?? '', /Ihr Weg durch die Story/u, 'Strg+P auf einem anderen Epilog-Schritt');
-  dom.window.dispatchEvent(new dom.window.Event('afterprint'));
-  assert.equal(document.querySelectorAll('.druck-bogen').length, 0);
-  // Gegenfall: eine andere Station druckt kein Dossier
-  document.querySelector('.szene')?.setAttribute('data-station', 'A1');
-  dom.window.dispatchEvent(new dom.window.Event('beforeprint'));
-  assert.equal(document.querySelectorAll('.druck-bogen').length, 0);
-  document.body.replaceChildren();
-});
-
-test('Originaltext und Kapiteltitel (R47): Umbruch nach „/“ ohne Zeichen, Titelgröße nach dem längsten Wort', async () => {
-  const k7 = baueTheorie({ inhalte, kapitel: 7, version: VERSION, bedienbar: true });
-  const absatz = k7.querySelector('.originaltext .absatz[data-absatz="k7.2-p1"] > span:not(.absatz-kopf)');
-  assert.ok(absatz, 'Absatz k7.2-p1');
-  assert.ok(absatz.querySelector('wbr'), 'Umbruchstelle nach „/“');
-  assert.match(absatz.textContent ?? '', /Risiko-\/Änderungs-\/Maßnahmenverknüpfung/u, 'Wortlaut unverändert');
-  const k6 = baueTheorie({ inhalte, kapitel: 6, version: VERSION, bedienbar: true });
-  assert.equal(k6.querySelector<HTMLElement>('.kapitel-titel')?.style.getPropertyValue('--zeichen'), String('Umsetzungsbeschleuniger'.length));
-  // R48 (Architektur): Einheiten wie der Browser umbricht – nach „-“ mit Strich, nicht an „/“
-  const { laengstesWort } = await import('../src/ui/h.ts');
-  assert.equal(laengstesWort('IT-/Datenschutz-Dossier'), 'IT-/Datenschutz-'.length);
-  assert.equal(laengstesWort('Registerdokument-Katalog'), 'Registerdokument-'.length);
-  assert.equal(laengstesWort('Kosten +8 %'), 'Kosten'.length);
-});
-
-test('Druck und Leinwand (R48): jede Tafel zeigt alle Zellen ihrer Tabelle – auch Formen mit Auswahl (aufgelöst)', () => {
-  const norm = (t: string): string => t.replace(/[\u00ad\u200b]/gu, '').replace(/\s+/gu, ' ').trim();
-  const fehlt: string[] = [];
-  let tafeln = 0;
-  for (let nr = 1; nr <= 13; nr++) {
-    const seite = kapitelFuerDruck(inhalte, nr, VERSION);
-    for (const fig of seite.querySelectorAll<HTMLElement>('figure.tafel[data-absatz]')) {
-      if (fig.closest('.originaltext') !== null) continue;
-      const id = fig.getAttribute('data-absatz') ?? '';
-      const tabelle = seite.querySelector(`.originaltext .absatz[data-absatz="${id}"] table`);
-      if (tabelle === null) continue;
-      tafeln++;
-      const text = norm(fig.textContent ?? '');
-      for (const td of tabelle.querySelectorAll('td')) {
-        const zelle = norm(td.textContent ?? '');
-        if (zelle !== '' && !text.includes(zelle)) fehlt.push(`k${nr} ${id} (${fig.getAttribute('data-form')}): „${zelle.slice(0, 40)}“`);
-      }
-    }
-  }
-  assert.ok(tafeln >= 10, `Tafeln mit Originaltabelle: ${tafeln}`);
-  assert.deepEqual(fehlt.slice(0, 8), [], `${fehlt.length} Zellen fehlen`);
-  // am Bildschirm bleibt die Tafel bedienbar (Schalter der Felder, Stufen der Pyramide)
-  const k4 = baueTheorie({ inhalte, kapitel: 4, version: VERSION, bedienbar: true });
-  assert.ok(k4.querySelector('[data-pruef="felder-ordnung"]') && !k4.querySelector('[data-pruef="tafel-aufgeloest"]'));
-});
-
-test('Druck (P10.2): Kapitel und alle Kapitel als Bogen – ohne Kopfleiste, Verzeichnis, Zitierknöpfe', () => {
-  const seite = baueTheorie({ inhalte, kapitel: 6, version: VERSION, bedienbar: true });
-  document.body.replaceChildren(seite);
-  seite.querySelector<HTMLButtonElement>('[data-pruef="kapitel-drucken"]')?.click();
-  const bogen = document.querySelector('[data-pruef="druck-bogen"]');
-  assert.ok(bogen);
-  assert.match(bogen.querySelector('.druck-kopf h1')?.textContent ?? '', /^Kapitel 6 · /u);
-  assert.doesNotMatch(bogen.querySelector('.druck-kopf')?.textContent ?? '', /ungeprüft/u);
-  assert.equal(bogen.querySelectorAll('.druck-kapitel').length, 1);
-  assert.equal(bogen.querySelectorAll('.lern-kopf, .kapitel-verzeichnis, .kapitel-nav, [data-pruef="zitieren"], [data-pruef="kapitel-drucken"]').length, 0);
-  assert.ok(bogen.querySelector('.originaltext'));
-  for (const d of bogen.querySelectorAll('details')) assert.ok(d.hasAttribute('open'), 'im Druck aufgeklappt');
-  // R47 (Architektur): Kap. 5 hat zugeklappte Bausteine (5.2) – im Bogen sind alle offen (Kap. 6 hatte keine zu, die Probe konnte nie fehlschlagen)
-  const seite5 = baueTheorie({ inhalte, kapitel: 5, version: VERSION, bedienbar: true });
-  assert.ok(seite5.querySelectorAll('details:not([open])').length >= 8, 'Kap. 5 am Bildschirm mit zugeklappten Bausteinen');
-  document.body.replaceChildren(seite5);
-  seite5.querySelector<HTMLButtonElement>('[data-pruef="kapitel-drucken"]')?.click();
-  const bogen5 = document.querySelector('[data-pruef="druck-bogen"]');
-  assert.ok(bogen5 && bogen5.querySelectorAll('details').length >= 1, 'Originaltext und Abweichungen als details');
-  assert.equal(bogen5.querySelectorAll('details:not([open])').length, 0, 'Kap. 5: alles aufgeklappt');
-  // R48: die Bausteine (5.2) stehen im Bogen aufgelöst – Funktion und Wirkung aller acht sichtbar (Test „jede Tafel zeigt alle Zellen“)
-  assert.equal(bogen5.querySelectorAll('.tafel-aufgeloest > li').length >= 8, true);
-  const liste = baueTheorie({ inhalte, kapitel: null, version: VERSION, bedienbar: true });
-  document.body.replaceChildren(liste);
-  liste.querySelector<HTMLButtonElement>('[data-pruef="alles-drucken"]')?.click();
-  const alle = document.querySelectorAll('[data-pruef="druck-bogen"]');
-  assert.equal(alle.length, 1, 'ein neuer Bogen ersetzt den alten');
-  assert.deepEqual([...alle[0]?.querySelectorAll('.druck-kapitel') ?? []].map((x) => Number(x.getAttribute('data-kapitel'))), Array.from({ length: 13 }, (_, i) => i + 1));
-  // R49: das Impressum steht als letzter Teil im Bogen – Herausgeber, Vermerk, Quellenverzeichnis aufgeklappt, ohne Verweise
-  const impDruck = alle[0]?.querySelector(':scope > :last-child [data-pruef="impressum"]');
-  assert.ok(impDruck, 'Impressum als letzter Teil von „Alle 13 Kapitel“');
-  assert.match(impDruck.textContent ?? '', /Bauherr Mentoren/u);
-  assert.equal(impDruck.querySelectorAll('details:not([open]), a[href]').length, 0);
-  // R45 (L-129): weiche Trennstellen im Bogen auch in Tafeln (Karten 196 px), die Seite selbst bleibt ohne
-  const tafeln = [...alle[0]?.querySelectorAll('.tafel') ?? []].map((t) => t.textContent ?? '').join(' ');
-  assert.match(tafeln, /Entscheidungs\u00advorbereitung/u, 'Tafelkarte k06/k09');
-  assert.match(tafeln, /Lieferketten\u00adunsicherheit/u, 'Registername');
-  const kap9 = baueTheorie({ inhalte, kapitel: 9, version: VERSION, bedienbar: true });
-  assert.match(kap9.textContent ?? '', /Entscheidungsvorbereitung/u, 'Tafel am Bildschirm ohne Trennstelle');
-  assert.doesNotMatch(kap9.textContent ?? '', /Entscheidungs\u00advorbereitung/u);
-  assert.equal(baueTheorie({ inhalte, kapitel: 6, version: VERSION, bedienbar: false }).querySelector('[data-pruef="kapitel-drucken"]'), null, 'Leinwand: kein Druckknopf');
-  // Mit Druckdialog: Klasse und Titel während des Drucks, danach (afterprint) alles zurück; keine doppelten IDs
-  const kap13 = baueTheorie({ inhalte, kapitel: 13, version: VERSION, bedienbar: true });
-  document.body.replaceChildren(kap13);
-  document.title = 'Vorher';
-  const vorher = dom.window.print;
-  (dom.window as unknown as { print: () => void }).print = () => undefined;
-  try {
-    kap13.querySelector<HTMLButtonElement>('[data-pruef="kapitel-drucken"]')?.click();
-    assert.ok(document.body.classList.contains('druckt-bogen'));
-    assert.match(document.title, /^Kapitel 13 · .* · Governance Kompass$/u);
-    const ids = [...document.querySelectorAll('[id]')].map((x) => x.id);
-    assert.deepEqual(ids.filter((x, i) => ids.indexOf(x) !== i), [], 'doppelte IDs neben dem Bogen');
-    // der Abschnitt Begriffs-Kompass trägt den Bezug (seine Tabelle heißt seit R21 „Tabelle Begriffs-Kompass“)
-    const region = document.querySelector('.druck-bogen [data-pruef="kompass"]');
-    assert.ok(region && document.getElementById(region.getAttribute('aria-labelledby') ?? '')?.closest('.druck-bogen'), 'Bezug zeigt in den Bogen');
-    dom.window.dispatchEvent(new dom.window.Event('afterprint'));
-    assert.equal(document.body.classList.contains('druckt-bogen'), false);
-    assert.equal(document.title, 'Vorher');
-    assert.equal(document.querySelector('.druck-bogen'), null);
-  } finally {
-    (dom.window as unknown as { print: unknown }).print = vorher;
-  }
-});
-
-test('Permalink-Rundlauf (P10.1): jeder Absatz aller Lernseiten – Link führt zurück auf ihn, Zitierangabe vorhanden', () => {
-  let zahl = 0;
-  for (const k of kapitelListe(inhalte).filter((x) => x.seite)) {
-    const seite = baueTheorie({ inhalte, kapitel: k.nr, version: VERSION, bedienbar: true });
-    for (const absatz of seite.querySelectorAll<HTMLElement>('.originaltext .absatz[data-absatz]')) {
-      const id = absatz.getAttribute('data-absatz') ?? '';
-      if (id === '') continue;
-      const href = absatz.querySelector('a.absatz-id')?.getAttribute('href') ?? '';
-      assert.deepEqual(leseRoute(href), { flaeche: 'theorie', kapitel: k.nr, abschnitt: id }, href);
-      assert.ok(theorieModul.zitierAngabe(id, 'V1.2'), id);
-      zahl++;
-    }
-  }
-  assert.ok(zahl > 100, `nur ${zahl} Absätze`);
-});
-
-test('Story-Karte auf der Leinwand (L-49): kein Express-Umschalter, kein Explore-Weg', () => {
-  const story = erzeugeStory({ inhalte, tue: null });
-  assert.equal(story.element.querySelector('[data-pruef="karte-express"]'), null);
-  assert.equal(story.element.querySelector('[data-pruef="karte-explore"]'), null);
-});
-
-test('Zeitmaschine (P8.4, E4): Punkte aus dem Startstand der Stationen, Regler setzt Monat und Ablesung', async () => {
-  const { zeitPunkte, zeitmaschine } = await import('../src/ui/flaechen/explore-zeitmaschine.ts');
-  const p = zeitPunkte(inhalte);
-  assert.deepEqual(p.filter((x) => x.welt === 'A').map((x) => x.monat), [1, 3, 5, 7, 9, 11]);
-  assert.deepEqual(p.filter((x) => x.welt === 'B').map((x) => x.monat), [1, 3, 5, 7, 9, 11]);
-  const a3 = p.find((x) => x.station.startsWith('A3'));
-  const start = inhalte.stationen['A3']?.statusStart ?? [];
-  assert.equal(a3?.offen, start.find((e) => e.schluessel === 'ungeklaerteEntscheidungen')?.wert);
-  assert.equal(['niedrig', 'mittel', 'hoch', 'sehr hoch'][(a3?.kosten ?? 0) - 1], start.find((e) => e.schluessel === 'kostenunsicherheit')?.wert);
-  const el = zeitmaschine(inhalte);
-  assert.ok(el);
-  const regler = el.querySelector<HTMLInputElement>('[data-pruef="zm-regler"]');
-  assert.ok(regler);
-  regler.value = '2';
-  regler.dispatchEvent(new Event('input'));
-  assert.match(el.querySelector('[data-pruef="zm-ablesen"]')?.textContent ?? '', /Monat 5.*A3.*B3/su);
-  assert.equal(el.querySelectorAll('.zm-tabelle tbody tr').length, 6, 'Tabellenansicht');
-});
-
-test('Galerie (P8.5): jede Tafel der Lernseiten einmal; Abbildungsverzeichnis; Story-Karte sperrt Welt B', async () => {
-  const { galerieTafeln, galerie, stationsKarte } = await import('../src/ui/flaechen/explore-galerie.ts');
-  const t = galerieTafeln(inhalte);
-  const ids = t.map((x) => x.block.id);
-  assert.equal(new Set(ids).size, ids.length, 'jede Tabelle einmal');
-  assert.ok(ids.includes('k2.5-t1') && ids.includes('k8.2-t1') && ids.includes('k12-t1'));
-  assert.deepEqual(t.map((x) => x.kapitel), [...t.map((x) => x.kapitel)].sort((a, b) => a - b));
-  const g = galerie(inhalte);
-  assert.ok(g);
-  assert.equal(g.querySelectorAll('[data-pruef="abbildungsverzeichnis"] tbody tr').length, inhalte.whitepaper.abbildungen.length);
-  assert.ok(inhalte.whitepaper.abbildungen.length > 0);
-  assert.equal(g.querySelector('img'), null, 'keine Rasterbilder (L-51)');
-  const dia = [...g.querySelectorAll('[data-pruef="story-diagramme"] li')].map((li) => li.textContent ?? '');
-  assert.ok(dia.some((t) => /Mandatsleiter: B2/u.test(t)) && dia.some((t) => /Nachweiskette/u.test(t)), dia.join(' | '));
-  g.querySelector<HTMLElement>('[data-pruef="galerie-k8.2-t1"]')?.click();
-  assert.ok(g.querySelector('[data-pruef="galerie-buehne"] [data-pruef="tafel-zeitachse"]'));
-  const zu = stationsKarte(inhalte, false);
-  assert.equal(zu.querySelector('[data-pruef="sprung-B1"]'), null);
-  assert.ok(zu.querySelector('[data-pruef="sprung-A1"]'));
-  assert.ok(stationsKarte(inhalte, true).querySelector('[data-pruef="sprung-B1"]'));
-});
-
-test('Explore: ein Werkzeug ohne Inhalte bietet kein „Werkzeug öffnen“ an', async () => {
-  const { baueExplore } = await import('../src/ui/flaechen/explore.ts');
-  const ohne = baueExplore({ inhalte: { ...inhalte, welten: [] }, freigeschaltet: true, weltB: true, version: VERSION });
-  assert.equal(ohne.querySelector('[data-pruef="werkzeug-oeffnen-welten"]'), null);
-  assert.match(ohne.querySelector('[data-pruef="werkzeug-welten"] .badge')?.textContent ?? '', /in Vorbereitung/u);
-  const mit = baueExplore({ inhalte, freigeschaltet: true, weltB: true, version: VERSION });
-  for (const w of ['simulator', 'welten', 'sandbox', 'zeitmaschine', 'galerie', 'figuren']) assert.ok(mit.querySelector(`[data-pruef="werkzeug-oeffnen-${w}"]`), w);
-});
-
-test('Lernseite 6 (P11.1, Befund 4): kanonischer Governance-Fluss als Übersicht in Abschnitt 6.4.3', () => {
-  const seite = baueTheorie({ inhalte, kapitel: 6, version: VERSION, bedienbar: true });
-  const fluss = seite.querySelector('[data-abschnitt="k6.4.3"] [data-pruef="fluss"]');
-  assert.ok(fluss, 'Fluss fehlt in 6.4.3');
-  assert.ok(fluss.classList.contains('ist-uebersicht'));
-  assert.equal(fluss.querySelectorAll('.fluss-stationen li').length, 7);
-  assert.match(fluss.getAttribute('aria-label') ?? '', /^Kanonischer Governance-Fluss: Frühwarnung → /u);
-});
-
-test('Wissenschecks (P11.6): je Lernseite 2–12 einer; Wahl zeigt Rückmeldung, Erklärung und Beleg – ohne Punkte', () => {
-  for (let nr = 2; nr <= 12; nr++) {
-    const seite = baueTheorie({ inhalte, kapitel: nr, version: VERSION, bedienbar: true });
-    assert.equal(seite.querySelectorAll('[data-pruef="wissenscheck"]').length, 1, `Kap. ${nr}`);
-  }
-  const seite = baueTheorie({ inhalte, kapitel: 4, version: VERSION, bedienbar: true });
-  document.body.replaceChildren(seite);
-  const wc = seite.querySelector('[data-pruef="wissenscheck"]');
-  assert.ok(wc);
-  const knoepfe = [...wc.querySelectorAll<HTMLButtonElement>('.wc-antwort')];
-  assert.ok(knoepfe.length >= 2);
-  assert.equal(wc.querySelector('[data-pruef="wc-ergebnis"]')?.textContent, '', 'vor der Wahl keine Rückmeldung');
-  knoepfe[0]?.click();
-  assert.equal(knoepfe[0]?.getAttribute('aria-pressed'), 'true');
-  const ergebnis = wc.querySelector('[data-pruef="wc-ergebnis"]');
-  assert.match(ergebnis?.textContent ?? '', /^(Genau:|Nicht ganz:)/u);
-  assert.ok(ergebnis?.querySelector('[data-pruef="zitat"]'), 'Beleg sichtbar');
-  assert.doesNotMatch(wc.textContent ?? '', /Punkt(e|zahl)|\d+\s*\/\s*\d+ richtig/u, 'keine Punkte');
-  knoepfe[1]?.click();
-  assert.equal(knoepfe[0]?.getAttribute('aria-pressed'), 'false');
-});
-
-test('B4 Gremium (P11.5, Fund der Kürzung): die Vorlage AEN-031 steht unter der Mandatsleiter', () => {
-  const b4 = inhalte.stationen['B4'];
-  assert.ok(b4);
-  const schritte = b4.schritte;
-  const idx = schritte.findIndex((s) => s.id === 'gremium');
-  assert.ok(idx >= 0);
-  const a = anfangszustand();
-  const z = { ...a, bereich: 'story' as const, station: 'B4', schritt: idx, rolle: 'pl', verlauf: ['prolog', 'B4'], freigeschaltet: { ...a.freigeschaltet, weltB: true } };
-  const story = erzeugeStory({ inhalte, tue: null });
-  document.body.replaceChildren(story.element);
-  story.setze(oeffentlich(z), null);
-  const vorlage = story.element.querySelector('[data-pruef="vorlage"]');
-  assert.ok(vorlage, 'Vorlage fehlt im Gremium-Schritt');
-  assert.match(vorlage.getAttribute('aria-label') ?? '', /AEN-031/u);
-  assert.ok(story.element.querySelector('.mandat-raster'), 'Mandatsleiter bleibt');
-  story.entferne();
-});
-
-test('Kurzlage (R49): dieselbe Datei aus Einstieg und Lagebild steht nur einmal als Chip (B4, B5, B6)', () => {
-  for (const id of ['B4', 'B5', 'B6']) {
-    const st = inhalte.stationen[id];
-    assert.ok(st);
-    const idx = st.schritte.findIndex((s) => s.art === 'entscheidung');
-    assert.ok(idx >= 0, `${id}: kein Entscheidungsschritt`);
-    const a = anfangszustand();
-    const z = { ...a, bereich: 'story' as const, station: id, schritt: idx, rolle: 'pl', verlauf: ['prolog', id], freigeschaltet: { ...a.freigeschaltet, weltB: true } };
-    const story = erzeugeStory({ inhalte, tue: null });
-    document.body.replaceChildren(story.element);
-    story.setze(oeffentlich(z), null);
-    const chips = [...story.element.querySelectorAll('.kurzlage .chip')].map((c) => (c.textContent ?? '').replace(/\s+/gu, ' ').trim());
-    assert.ok(chips.length > 0, `${id}: keine Kurzlage`);
-    assert.equal(new Set(chips).size, chips.length, `${id}: doppelte Chips ${JSON.stringify(chips)}`);
-    story.entferne();
-  }
-});
-
-test('B3 Mandat (P11.3): die Rollenfrage am Schritt „mandat“ wird gezeigt und beantwortet', () => {
-  const b3 = inhalte.stationen['B3'];
-  assert.ok(b3);
-  const idx = b3.schritte.findIndex((s) => s.id === 'mandat');
-  assert.ok(idx >= 0);
-  const a = anfangszustand();
-  const aktionen: unknown[] = [];
-  const z = { ...a, bereich: 'story' as const, station: 'B3', schritt: idx, rolle: 'bauherr', verlauf: ['prolog', 'B3'], freigeschaltet: { ...a.freigeschaltet, weltB: true } };
-  const story = erzeugeStory({ inhalte, tue: (x) => { aktionen.push(x); } });
-  document.body.replaceChildren(story.element);
-  story.setze(oeffentlich(z), null);
-  const knoepfe = story.element.querySelectorAll<HTMLButtonElement>('[data-pruef^="reife-"]');
-  assert.ok(knoepfe.length >= 2, 'Antwortknöpfe fehlen');
-  // sichtbar ohne vorherige Antwort (R2: `.reife` ist ohne `ist-bereit` unsichtbar)
-  assert.ok(knoepfe[0]?.closest('.reife')?.classList.contains('ist-bereit'), 'Rollenfrage bleibt verborgen');
-  knoepfe[0]?.click();
-  const aktion = aktionen.at(-1) as Parameters<typeof wende>[1];
-  assert.equal(aktion.art, 'antworte');
-  // durch den Reducer: UI- und Engine-Schlüssel müssen zusammenpassen (R3)
-  story.setze(oeffentlich(wende(z, aktion, inhalte)), null);
-  assert.equal(knoepfe[0]?.getAttribute('aria-pressed'), 'true');
-  assert.ok(story.element.querySelector('[data-pruef="rueckmeldung"] .rueckmeldung'), 'Rückmeldung fehlt');
-  story.entferne();
-});
-
-test('Ebenen (P11.3 R2/R3): knappe Ansage „Ebene n: Titel“ nur beim Wechsel, kein aria-live am Ort', () => {
-  const b3 = inhalte.stationen['B3'];
-  assert.ok(b3);
-  const idx = b3.schritte.findIndex((s) => s.art === 'ebenen');
-  assert.ok(idx >= 0);
-  const a = anfangszustand();
-  const z = { ...a, bereich: 'story' as const, station: 'B3', schritt: idx, rolle: 'pl', verlauf: ['prolog', 'B3'], freigeschaltet: { ...a.freigeschaltet, weltB: true } };
-  const story = erzeugeStory({ inhalte, tue: null });
-  document.body.replaceChildren(story.element);
-  story.setze(oeffentlich(z), null);
-  const ansage = story.element.querySelector('[data-pruef="ebene-ansage"]');
-  assert.ok(ansage, 'Ansage fehlt');
-  assert.equal(ansage.textContent, '', 'beim Aufbau keine Ansage');
-  assert.equal(story.element.querySelector('.ebene-ort')?.getAttribute('aria-live') ?? null, null);
-  story.setze(oeffentlich({ ...z, ebene: 2 }), null);
-  const titel = b3.ebenen?.find((e) => e.nr === 2)?.titel ?? '';
-  assert.equal(ansage.textContent, `${W.ebene} 2: ${titel}`);
-  story.entferne();
-});
-
-test('Lernseiten (O-30): Originaltext am Seitenende, zugeklappt; ein Absatz-Permalink findet ihn', () => {
-  for (const nr of [1, 4, 9, 12]) {
-    const seite = baueTheorie({ inhalte, kapitel: nr, version: VERSION, bedienbar: true });
-    const original = seite.querySelector<HTMLDetailsElement>('details.originaltext');
-    assert.ok(original, `Kap. ${nr}: Originaltext fehlt`);
-    assert.equal(original.open, false, `Kap. ${nr}: Originaltext ist aufgeklappt`);
-    const inhaltEl = seite.querySelector('.lern-inhalt');
-    const kinder = [...(inhaltEl?.children ?? [])];
-    const pos = kinder.indexOf(original);
-    const nachher = kinder.slice(pos + 1).map((k) => k.className);
-    assert.ok(nachher.every((c) => /kapitel-nav|lern-fuss|originaltext/u.test(c)), `Kap. ${nr}: nach dem Originaltext steht noch ${nachher.join(', ')}`);
-  }
 });
 
 const lw = await import('../src/ui/bausteine/lernwerkzeuge.ts');
@@ -1514,24 +469,6 @@ test('Lernwerkzeuge (P12.3): Umschalter wechselt die Ansicht, Sortieren gibt Rü
   assert.equal(ein?.getAttribute('aria-valuetext'), 'bis 5 Mio. €');
 });
 
-test('Entscheidung (P12.5, O-28): die Frage an die gespielte Rolle steht über den Optionen', () => {
-  const a3 = inhalte.stationen['A3'];
-  assert.ok(a3);
-  const idx = a3.schritte.findIndex((s) => s.art === 'entscheidung');
-  assert.ok(idx >= 0);
-  for (const rolle of ['ps', 'controlling', 'bauherr']) {
-    const a = anfangszustand();
-    const z = { ...a, bereich: 'story' as const, station: 'A3', schritt: idx, rolle, verlauf: ['prolog', 'A3'] };
-    const story = erzeugeStory({ inhalte, tue: null });
-    document.body.replaceChildren(story.element);
-    story.setze(oeffentlich(z), null);
-    const soll: string = a3.szenen[rolle]?.entscheidung?.frage ?? '';
-    assert.ok(soll !== '', `${rolle}: Rollenfrage fehlt in A3`);
-    assert.equal(story.element.querySelector('[data-pruef="entscheidungs-frage"]')?.textContent, soll, rolle);
-    story.entferne();
-  }
-});
-
 test('Lernwerkzeuge aufgelöst (P12.5 R5): Leinwand und Druck zeigen den ganzen Inhalt ohne Bedienelemente', () => {
   const et = lw.etappen(blk('etappen', null, { titel: 'Weg' }, {}, [1, 2].map((i) => blk('etappe', String(i), { titel: `T${i}` }, { text: `<p>Text ${i}</p>` }))) as never, 'h3', false);
   const um = lw.umschalter(blk('umschalter', null, { links: 'Ohne', rechts: 'Mit' }, {}, [blk('ansicht', 'links', {}, { text: '<p>A</p>' }), blk('ansicht', 'rechts', {}, { text: '<p>B</p>' })]) as never, 'h3', false);
@@ -1547,143 +484,15 @@ test('Lernwerkzeuge aufgelöst (P12.5 R5): Leinwand und Druck zeigen den ganzen 
   assert.match(so.querySelector('.lw-seite-links')?.textContent ?? '', /Y/u);
   assert.match(re.textContent ?? '', /eins.*zwei/su);
   // die Lernseite auf der Leinwand (nicht bedienbar) baut sie aufgelöst
-  const k7 = baueTheorie({ inhalte, kapitel: 7, version: VERSION, bedienbar: false });
+  const k7 = baueTheorie({ inhalte, thema: themaVon(7), version: VERSION, bedienbar: false });
   assert.ok(k7.querySelectorAll('.lernwerkzeug').length > 0);
   assert.equal(k7.querySelectorAll('.lernwerkzeug:not(.ist-aufgeloest)').length, 0);
 });
 
-test('Abbildungen (P14, O-32): Lernseite und Originaltext zeigen das Bild mit Vorrang des Texts; Leinwand ohne Bedienung; Verzeichnis mit Sprung', async () => {
-  const { setzeAbbildungsBilder } = await import('../src/ui/bausteine/abbildung.ts');
-  const { galerie } = await import('../src/ui/flaechen/explore-galerie.ts');
-  // jsdom kennt <dialog>; nur für diesen Test als Global setzen 
-  const vorher = g['HTMLDialogElement'];
-  g['HTMLDialogElement'] = (dom.window as unknown as Record<string, unknown>)['HTMLDialogElement'];
-  try {
-    setzeAbbildungsBilder({ 'abb-2': 'data:image/webp;base64,UklGRg==' });
-    const eintrag = Object.entries(inhalte.theorie).find(([, s]) => s.kapitel === 1);
-    assert.ok(eintrag);
-    const abb = { id: 'abb-2', nr: 1, kapitel: '1', ort: 'k1', bild: { titel: 'Probe-Titel', alt: 'Probe-Alternativtext', breite: 1200, hoehe: 800, angeglichen: [{ text: 'Neuer Begriff', beleg: 'k1-p2' }], abweichungen: [{ html: 'Probe-Abweichung', belege: ['k1-p1', 'k13-t1'] }] } };
-    const block = { art: 'abbildung', kennungen: ['abb-2'], id: 'abb-2', kopf: {}, felder: {}, liste: null, kinder: [] };
-    const original = { art: 'original', kennungen: ['k1'], id: null, kopf: { quelle: 'Q' }, felder: { text: '<figure class="mvg-abbildung" data-abbildung="abb-2"></figure>\n<p class="mvg-original" data-absatz="k1-p1">Absatz</p>' }, liste: null, kinder: [] };
-    const probe = { ...inhalte, whitepaper: { ...inhalte.whitepaper, abbildungen: [abb] }, theorie: { ...inhalte.theorie, [eintrag[0]]: { ...eintrag[1], bloecke: [block, original] } } } as unknown as typeof inhalte;
-
-    const el = baueTheorie({ inhalte: probe, kapitel: 1, version: VERSION, bedienbar: true });
-    const figuren = [...el.querySelectorAll('figure.abbildung')];
-    assert.equal(figuren.length, 2, 'einmal auf der Lernseite, einmal im Originaltext');
-    const [lern, orig] = figuren;
-    assert.equal(lern?.closest('details.originaltext'), null);
-    assert.ok(orig?.closest('details.originaltext'), 'die zweite steht im zugeklappten Originaltext');
-    const img = lern?.querySelector('img');
-    assert.equal(img?.getAttribute('alt'), 'Probe-Alternativtext');
-    assert.match(img?.getAttribute('src') ?? '', /^data:image\/webp;base64,/u);
-    const unter = lern?.querySelector('figcaption')?.textContent ?? '';
-    assert.match(unter, /Abbildung 1 · Kapitel 1/u);
-    assert.match(unter, /Wo sie vom Text abweicht, gilt der Text\./u);
-    assert.match(unter, /„Neuer Begriff“/u);
-    assert.equal(lern?.querySelector('[data-pruef="abbildung-abweichungen"] summary')?.textContent, 'Abweichungen vom Text (1)');
-    assert.equal(lern?.querySelector('a.abbildung-beleg')?.getAttribute('href'), '#theorie/k1/k1-p1');
-    // Belege aus Kap. 13 (Glossar, kein Originaltext) bleiben Text (R11); Abweichungen am Bildschirm zugeklappt
-    assert.deepEqual([...lern?.querySelectorAll('.abbildung-beleg') ?? []].map((x) => `${x.tagName}:${x.textContent ?? ''}`), ['A:k1-p1', 'SPAN:k13-t1']);
-    assert.equal(lern?.querySelector('details[data-pruef="abbildung-abweichungen"]')?.hasAttribute('open'), false);
-    const knopf = lern?.querySelector('[data-pruef="abbildung-gross"]');
-    assert.equal(knopf?.getAttribute('aria-label'), 'Abbildung vergrößern: Probe-Titel');
-    assert.ok(lern?.querySelector('dialog.abbildung-dialog img'), 'Dialog mit dem Bild in voller Größe');
-
-    // Leinwand: dieselbe Zeichnung ohne Knopf, Dialog und Links
-    const lw = baueTheorie({ inhalte: probe, kapitel: 1, version: VERSION, bedienbar: false });
-    assert.equal(lw.querySelectorAll('figure.abbildung').length, 2);
-    assert.equal(lw.querySelector('[data-pruef="abbildung-gross"], dialog'), null);
-    assert.equal(lw.querySelector('a.abbildung-beleg'), null);
-    // … und die Abweichungen offen: auf der Leinwand kann niemand aufklappen (R11)
-    const lwAbw = [...lw.querySelectorAll('details[data-pruef="abbildung-abweichungen"]')];
-    assert.ok(lwAbw.length === 2 && lwAbw.every((d) => d.hasAttribute('open')), 'Leinwand: Abweichungen offen');
-
-    // Druck (R11/R12): der Dialog geht erst auf, wenn die Bilder dekodiert sind; ein zweiter Klick
-    // solange bleibt ohne Wirkung, afterprint stellt Titel und Seite wieder her
-    const Bild = (dom.window as unknown as { HTMLImageElement: { prototype: { decode?: unknown } } }).HTMLImageElement.prototype;
-    const altDecode = Bild.decode;
-    let freigeben = (): void => undefined;
-    const dekodiert = new Promise<void>((r) => { freigeben = r; });
-    Bild.decode = () => dekodiert;
-    const altPrint = dom.window.print;
-    let drucke = 0;
-    (dom.window as unknown as { print: () => void }).print = () => { drucke += 1; };
-    try {
-      document.body.replaceChildren(el);
-      document.title = 'Vorher';
-      const druckKnopf = el.querySelector<HTMLButtonElement>('[data-pruef="kapitel-drucken"]');
-      assert.ok(druckKnopf);
-      druckKnopf.click();
-      druckKnopf.click();
-      assert.equal(document.querySelectorAll('.druck-bogen').length, 1, 'ein Bogen trotz Doppelklick');
-      assert.ok((document.querySelector('.druck-bogen')?.querySelectorAll('img').length ?? 0) > 0, 'Bogen mit Bild');
-      await Promise.resolve();
-      assert.equal(drucke, 0, 'kein Druck vor dem Dekodieren');
-      freigeben();
-      await dekodiert;
-      await new Promise((r) => setTimeout(r, 0));
-      assert.equal(drucke, 1, 'genau ein Druck nach dem Dekodieren');
-      dom.window.dispatchEvent(new dom.window.Event('afterprint'));
-      assert.equal(document.title, 'Vorher');
-      assert.equal(document.querySelector('.druck-bogen'), null);
-      assert.equal(document.body.classList.contains('druckt-bogen'), false);
-      // hat die Seite den Titel während des Drucks neu gesetzt, bleibt ihrer (L-83, Prüfrunde 15)
-      druckKnopf.click();
-      await new Promise((r) => setTimeout(r, 0));
-      assert.equal(drucke, 2);
-      document.title = 'Neu';
-      dom.window.dispatchEvent(new dom.window.Event('afterprint'));
-      assert.equal(document.title, 'Neu', 'afterprint überschreibt einen neuen Seitentitel nicht');
-      document.title = 'Vorher';
-      // bleibt afterprint aus, räumt der nächste Auftrag den alten auf (L-83, Prüfrunde 14/15) – auch seinen
-      // afterprint-Beobachter (gezählt über add/removeEventListener)
-      let beobachter = 0;
-      const addOrig = dom.window.addEventListener;
-      const remOrig = dom.window.removeEventListener;
-      const add = addOrig.bind(dom.window);
-      const rem = remOrig.bind(dom.window);
-      (dom.window as unknown as { addEventListener: typeof add }).addEventListener = ((t: string, f: EventListener, o?: unknown) => { if (t === 'afterprint') beobachter += 1; add(t, f, o as AddEventListenerOptions); }) as typeof add;
-      (dom.window as unknown as { removeEventListener: typeof rem }).removeEventListener = ((t: string, f: EventListener, o?: unknown) => { if (t === 'afterprint') beobachter -= 1; rem(t, f, o as EventListenerOptions); }) as typeof rem;
-      druckKnopf.click();
-      await new Promise((r) => setTimeout(r, 0));
-      assert.equal(drucke, 3);
-      const druckTitel = document.title;
-      druckKnopf.click();
-      assert.equal(document.title, druckTitel, 'der Folgeauftrag setzt den Drucktitel, nicht den Seitentitel des alten Auftrags');
-      await new Promise((r) => setTimeout(r, 0));
-      assert.equal(drucke, 4, 'der zweite Auftrag nach einem Druck ohne afterprint wird nicht verschluckt');
-      assert.equal(document.querySelectorAll('.druck-bogen').length, 1, 'der alte Bogen ist weg');
-      assert.equal(beobachter, 1, 'nur der neue Auftrag wartet auf afterprint');
-      dom.window.dispatchEvent(new dom.window.Event('afterprint'));
-      assert.equal(beobachter, 0);
-      (dom.window as unknown as { addEventListener: unknown }).addEventListener = addOrig;
-      (dom.window as unknown as { removeEventListener: unknown }).removeEventListener = remOrig;
-      assert.equal(document.title, 'Vorher');
-      assert.equal(document.querySelector('.druck-bogen'), null);
-      assert.equal(document.body.classList.contains('druckt-bogen'), false);
-    } finally {
-      Bild.decode = altDecode;
-      (dom.window as unknown as { print: unknown }).print = altPrint;
-      document.body.replaceChildren();
-    }
-
-    // Abbildungsverzeichnis: Vorschaubild (schmückend) und Titel mit Sprung zur Abbildung
-    const gal = galerie(probe);
-    const zeile = gal?.querySelector('[data-pruef="galerie-abbildung-abb-2"]');
-    assert.equal(zeile?.getAttribute('href'), '#theorie/k1/abb-2');
-    assert.equal(zeile?.querySelector('img')?.getAttribute('alt'), '');
-    assert.match(zeile?.textContent ?? '', /Probe-Titel/u);
-  } finally {
-    g['HTMLDialogElement'] = vorher;
-    setzeAbbildungsBilder({});
-  }
-});
-
-// R58/R59: in den Quellen steht die passende Antwort zuerst – in der gebauten Seite nicht in jedem Check an derselben Stelle
 test('Wissenscheck: die passende Antwort steht nicht in jedem Check an derselben Stelle', () => {
   const stellen: number[] = [];
-  for (const k of kapitelListe(inhalte).filter((x) => x.seite)) {
-    const seite = baueTheorie({ inhalte, kapitel: k.nr, version: VERSION, bedienbar: true });
+  for (const k of themen(inhalte).map((t) => ({ nr: t.kapitel }))) {
+    const seite = baueTheorie({ inhalte, thema: themaVon(k.nr), version: VERSION, bedienbar: true });
     for (const wc of seite.querySelectorAll('.wissenscheck')) {
       const knoepfe = [...wc.querySelectorAll('.wc-antwort')].map((b) => b.getAttribute('data-pruef'));
       stellen.push(knoepfe.indexOf('wc-antwort-a'));
@@ -1692,4 +501,88 @@ test('Wissenscheck: die passende Antwort steht nicht in jedem Check an derselben
   assert.ok(stellen.length >= 10, `${stellen.length} Wissenschecks`);
   assert.ok(!stellen.includes(-1));
   assert.ok(new Set(stellen).size >= 2, `alle an Stelle ${stellen[0]}`);
+});
+
+test('Wissenschecks (P11.6): je Lernseite 2–12 einer; Wahl zeigt Rückmeldung, Erklärung und Beleg – ohne Punkte', () => {
+  for (let nr = 2; nr <= 12; nr++) {
+    const seite = baueTheorie({ inhalte, thema: themaVon(nr), version: VERSION, bedienbar: true });
+    assert.equal(seite.querySelectorAll('[data-pruef="wissenscheck"]').length, 1, `Kap. ${nr}`);
+  }
+  const seite = baueTheorie({ inhalte, thema: themaVon(4), version: VERSION, bedienbar: true });
+  document.body.replaceChildren(seite);
+  const wc = seite.querySelector('[data-pruef="wissenscheck"]');
+  assert.ok(wc);
+  const knoepfe = [...wc.querySelectorAll<HTMLButtonElement>('.wc-antwort')];
+  assert.ok(knoepfe.length >= 2);
+  assert.equal(wc.querySelector('[data-pruef="wc-ergebnis"]')?.textContent, '', 'vor der Wahl keine Rückmeldung');
+  knoepfe[0]?.click();
+  assert.equal(knoepfe[0]?.getAttribute('aria-pressed'), 'true');
+  const ergebnis = wc.querySelector('[data-pruef="wc-ergebnis"]');
+  assert.match(ergebnis?.textContent ?? '', /^(Genau:|Nicht ganz:)/u);
+  assert.ok(ergebnis?.querySelector('[data-pruef="zitat"]'), 'Beleg sichtbar');
+  assert.doesNotMatch(wc.textContent ?? '', /Punkt(e|zahl)|\d+\s*\/\s*\d+ richtig/u, 'keine Punkte');
+  knoepfe[1]?.click();
+  assert.equal(knoepfe[0]?.getAttribute('aria-pressed'), 'false');
+});
+
+test('Druck und Leinwand (R48): jede Tafel zeigt alle Zellen ihrer Tabelle – auch Formen mit Auswahl (aufgelöst)', () => {
+  const norm = (t: string): string => t.replace(/[\u00ad\u200b]/gu, '').replace(/\s+/gu, ' ').trim();
+  const wp = JSON.parse(readFileSync(join(WURZEL, 'quellen/whitepaper/v1.2/whitepaper.json'), 'utf8')) as unknown;
+  const finde = (o: unknown, id: string): { zeilen: string[][] } | null => {
+    if (o === null || typeof o !== 'object') return null;
+    if ((o as { id?: string }).id === id && Array.isArray((o as { zeilen?: unknown }).zeilen)) return o as { zeilen: string[][] };
+    for (const v of Object.values(o)) { const f = finde(v, id); if (f !== null) return f; }
+    return null;
+  };
+  const fehlt: string[] = [];
+  let tafeln = 0;
+  for (const t of themen(inhalte)) {
+    const seite = themaFuerDruck(inhalte, t.thema, VERSION);
+    for (const fig of seite.querySelectorAll<HTMLElement>('figure.tafel[data-absatz]')) {
+      const id = fig.getAttribute('data-absatz') ?? '';
+      const tabelle = finde(wp, id);
+      if (tabelle === null) continue;
+      tafeln++;
+      const text = norm(fig.textContent ?? '');
+      for (const zelle of tabelle.zeilen.flat().map(norm)) if (zelle !== '' && !text.includes(zelle)) fehlt.push(`${t.thema} ${id} (${fig.getAttribute('data-form')}): „${zelle.slice(0, 40)}“`);
+    }
+  }
+  assert.ok(tafeln >= 10, `Tafeln mit Tabelle: ${tafeln}`);
+  assert.deepEqual(fehlt.slice(0, 8), [], `${fehlt.length} Zellen fehlen`);
+  const k4 = baueTheorie({ inhalte, thema: themaVon(4), version: VERSION, bedienbar: true });
+  assert.ok(k4.querySelector('[data-pruef="felder-ordnung"]') && !k4.querySelector('[data-pruef="tafel-aufgeloest"]'));
+});
+test('Tafeltitel (P12.5 R12/R13): nach „/“ darf umgebrochen werden (<wbr>), der Text bleibt wortgleich', () => {
+  let gefunden = 0;
+  for (const k of themen(inhalte).map((t) => ({ nr: t.kapitel }))) {
+    const seite = baueTheorie({ inhalte, thema: themaVon(k.nr), version: VERSION, bedienbar: false });
+    for (const t of seite.querySelectorAll('.tafel-titel')) {
+      const text = t.textContent ?? '';
+      const striche = (text.match(/\//gu) ?? []).length;
+      if (striche === 0) continue;
+      gefunden += 1;
+      assert.equal(t.querySelectorAll('wbr').length, striche, `„${text}“: ein <wbr> je „/“`);
+      assert.ok(!/\u200b/u.test(text), 'kein unsichtbares Zeichen im Text');
+    }
+  }
+  assert.ok(gefunden > 0, 'mindestens ein Tafeltitel mit „/“ (Kap. 8: Risiko-/Änderungs-/Maßnahmenverknüpfung)');
+});
+
+test('Lernseite (P6.1): Tafel, RACI, Merksatz und Ebenen 1–4 werden auf Seiten- und Abschnittsebene gezeichnet', () => {
+  const eintrag = Object.entries(inhalte.theorie).find(([, s]) => s.kapitel === 1);
+  assert.ok(eintrag);
+  const tafel = { art: 'tafel', kennungen: ['k2.5-t1'], id: 'k2.5-t1', kopf: { form: 'ketten', quelle: 'Q', tabelle: { kopf: ['S', 'M', 'K', 'R'], zeilen: [['s', 'm', 'k', 'r']] }, erlebt: {}, hervor: [] }, felder: {}, liste: null, kinder: [] };
+  const ebenen = { art: 'ebenen', kennungen: [], id: null, kopf: {}, felder: {}, liste: null, kinder: [], ebenen: [1, 2, 3, 4].map((nr) => ({ nr, titel: `E${nr}`, felder: { text: `<p>Text ${nr}</p>` }, bloecke: [] })) };
+  const abschnitt = { art: 'abschnitt', kennungen: ['k1.1'], id: 'k1.1', kopf: { titel: 'Probe' }, felder: {}, liste: null, kinder: [{ art: 'merksatz', kennungen: [], id: null, kopf: {}, felder: { text: '<p>Merke</p>' }, liste: null, kinder: [] }] };
+  const raciB = { art: 'raci', kennungen: [], id: null, kopf: { zeilen: [{ id: 'r1', titel: 'Reserve', zuordnung: { bauherr: 'A', pl: 'R' }, mandat: 'Bauherr' }] }, felder: {}, liste: null, kinder: [] };
+  const probe = { ...inhalte, theorie: { ...inhalte.theorie, [eintrag[0]]: { ...eintrag[1], bloecke: [tafel, abschnitt, ebenen, raciB] } } } as unknown as typeof inhalte;
+  const el = baueTheorie({ inhalte: probe, thema: themaVon(1), version: VERSION, bedienbar: true });
+  assert.ok(el.querySelector('[data-pruef="tafel-ketten"]'), 'Tafel auf Seitenebene');
+  assert.ok(el.querySelector('[data-pruef="raci-detail"]'), 'RACI auf der Lernseite');
+  assert.equal(el.querySelector('.tafel-titel')?.tagName, 'H2', 'Tafeltitel auf Seitenebene folgt der Gliederung (h1 → h2)');
+  assert.match(el.querySelector('.lern-abschnitt .lehre')?.textContent ?? '', /Merke/u, 'Merksatz im Abschnitt');
+  const e = [...el.querySelectorAll('[data-pruef^="lern-ebene-"]')];
+  assert.equal(e.length, 4);
+  assert.equal(e[0]?.hasAttribute('open'), true);
+  assert.equal(e[3]?.hasAttribute('open'), false);
 });

@@ -12,6 +12,8 @@
 # Belege k9.4: k9.4-p1, k9.4-p2, k9.4-l1, k9.4-p3
 # Belege k9.5: k9.5-p1, k9.5-p2, k9.5-l1, k9.5-p3, k9.4-l1 (Sortierübung)
 kapitel: 9
+thema: ergebnisbild
+reihe: 12
 titel: Ergebnisbild und Ergebnisse
 kurztitel: Ergebnisbild
 story: [B1, B3, B4, B6, ende-steuerbar, ende-auflagen]

@@ -50,8 +50,6 @@ export interface TafelDaten {
 }
 
 export const WORT = {
-  quelle: 'Quelle',
-  wortgleich: 'Tabelle wortgleich aus dem Originaltext',
   erlebtIn: 'erlebt in',
   ihreSpur: 'auf Ihrer Spur',
   nichtErlebt: 'auf Ihrer Spur nicht erlebt',
@@ -98,9 +96,6 @@ export function mische<T>(a: readonly T[], b: readonly T[]): T[] {
   return aus;
 }
 
-function quellZeile(d: TafelDaten): HTMLElement {
-  return h('p', { class: 'tafel-quelle' }, `${WORT.quelle}: ${d.quelle} · ${WORT.wortgleich}`);
-}
 
 function detailListe(kopf: readonly string[], zeile: readonly string[], ab: number): HTMLElement {
   return h('dl', { class: 'tafel-detail' }, kopf.slice(ab).map((k, i) => h('div', null, h('dt', null, k), h('dd', null, zeile[ab + i] ?? ''))));
@@ -398,7 +393,7 @@ function aufgeloesteKarten(d: TafelDaten): HTMLElement {
 /** Zeichnet eine Tafel; `besucht` = Stationen der eigenen Spur (für das Radar). */
 export function tafel(d: TafelDaten, besucht: readonly string[] = []): HTMLElement {
   let bild: HTMLElement;
-  if (aufgeloest && MIT_AUSWAHL.has(d.form)) return h('figure', { class: 'tafel', 'data-form': d.form, 'data-absatz': d.absatz, 'data-pruef': `tafel-${d.form}` }, aufgeloesteKarten(d), h('figcaption', null, quellZeile(d)));
+  if (aufgeloest && MIT_AUSWAHL.has(d.form)) return h('figure', { class: 'tafel', 'data-form': d.form, 'data-absatz': d.absatz, 'data-pruef': `tafel-${d.form}` }, aufgeloesteKarten(d));
   switch (d.form) {
     case 'radar': bild = radar(d, besucht); break;
     case 'ketten': bild = ketten(d); break;
@@ -413,5 +408,5 @@ export function tafel(d: TafelDaten, besucht: readonly string[] = []): HTMLEleme
     case 'zeitachse': bild = zeitachse(d); break;
     case 'diagnose': bild = diagnose(d); break;
   }
-  return h('figure', { class: 'tafel', 'data-form': d.form, 'data-absatz': d.absatz, 'data-pruef': `tafel-${d.form}` }, bild, h('figcaption', null, quellZeile(d)));
+  return h('figure', { class: 'tafel', 'data-form': d.form, 'data-absatz': d.absatz, 'data-pruef': `tafel-${d.form}` }, bild);
 }

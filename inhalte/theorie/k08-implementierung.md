@@ -9,6 +9,8 @@
 # Belege k8.3: k8.3-p1, k8.3-p2, k8.3-l1, k8.4-p2
 # Belege k8.4: k8.4-p1, k8.4-p2, k8.4-t1, k8.4-p3
 kapitel: 8
+thema: einfuehrung
+reihe: 11
 titel: Implementierung – von Diagnose zu Regelbetrieb
 kurztitel: Implementierung
 story: [wirklichkeit]

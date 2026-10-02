@@ -53,3 +53,18 @@ test('Kein toter Export in src/', () => {
   }
   assert.deepEqual(tot, []);
 });
+
+test('Jedes Bedienwort in src/ui/woerter.ts wird benutzt', async () => {
+  const { W } = await import('../src/ui/woerter.ts');
+  const text = quellen.filter((f) => !f.endsWith(path.join('ui', 'woerter.ts'))).map(lies).join('\n');
+  const tot: string[] = [];
+  const lauf = (o: Record<string, unknown>, pfad: string[]): void => {
+    for (const [k, v] of Object.entries(o)) {
+      const p = [...pfad, k];
+      if (!new RegExp(`\\b${k}\\b`, 'u').test(text)) tot.push(p.join('.'));
+      else if (v !== null && typeof v === 'object' && !Array.isArray(v)) lauf(v as Record<string, unknown>, p);
+    }
+  };
+  lauf(W as unknown as Record<string, unknown>, ['W']);
+  assert.deepEqual(tot, []);
+});

@@ -19,7 +19,7 @@ kurztitel: Takt und Bericht
 Ein gutes Register nützt nur, wenn es regelmäßig angesehen wird – und wenn Dringendes nicht darauf wartet. Dieses Thema zeigt den Takt, in dem die Projektsteuerung die offenen Vorgänge prüft, was sofort gemeldet wird und was der Bauherr jeden Monat bekommt: einen Termin von höchstens 60 Minuten und einen Bericht von höchstens einer Seite.
 
 ::: kernaussage
-Dringliches meldet die Projektsteuerung sofort. Jede Woche prüft sie alle offenen Vorgänge. Einmal im Monat gibt es einen Online-Termin von höchstens 60 Minuten und einen Bericht von höchstens einer Seite. Die regelmäßige Prüfung ersetzt nie die dringliche Meldung.
+Dringliches meldet die Projektsteuerung sofort. Jede Woche prüft sie alle offenen Vorgänge. Einmal im Monat gibt es einen [[Monatstermin|Online-Termin]] von höchstens 60 Minuten und einen Bericht von höchstens einer Seite. Die regelmäßige Prüfung ersetzt nie die dringliche Meldung.
 :::
 
 ::: abschnitt k16.1
@@ -95,7 +95,7 @@ In aktiven Zeiten der Planung und Ausführung prüft die Projektsteuerung jede W
 
 Kurz heißt dabei wirklich kurz: Vertieft wird nur, was sich verändert hat oder besonders geklärt werden muss. Unveränderte Texte schreibt niemand neu. Ein gemeinsamer Prüfvermerk mit Datum und Bearbeiter hält fest, dass der Durchgang stattgefunden hat.
 
-In Ruhe- oder Nachlaufzeiten gilt ein anderer Takt – aber nur, wenn er ausdrücklich vereinbart ist: monatliche Gesamtprüfung, neue, nicht dringliche Hinweise binnen fünf Arbeitstagen, ein Termin nur bei konkretem Bedarf. Der Monatsbericht bleibt auch dann.
+In Ruhe- oder Nachlaufzeiten gilt ein anderer Takt – aber nur, wenn er ausdrücklich vereinbart ist: monatliche Gesamtprüfung, neue, nicht dringliche Hinweise binnen fünf Arbeitstagen, ein Termin nur bei konkretem Bedarf. Der [[Monatsbericht]] bleibt auch dann.
 :::
 
 ::: abschnitt k16.3
@@ -104,7 +104,7 @@ titel: Der Monatstermin
 ---
 In aktiven Zeiten organisiert die Projektsteuerung jeden Monat einen eigenen Online-Termin von höchstens 60 Minuten. Bauherr und Projektsteuerung besprechen die relevanten Vorgänge; Fachleute kommen dazu, wenn es nötig ist. Ergebnisse und nächste Schritte werden kurz festgehalten.
 
-Vor- und Nachbereitung gehören zur Leistung der Projektsteuerung – die Zeitgrenze gilt für den Termin selbst. Zusätzliche Workshopreihen gibt es nicht.
+Vor- und Nachbereitung gehören zur Leistung der Projektsteuerung – die Zeitgrenze gilt für den Termin selbst. Zusätzliche Workshopreihen gehören nicht dazu.
 :::
 
 ::: abschnitt k16.4
@@ -119,9 +119,9 @@ So kann eine Seite aussehen – ein fiktives Beispiel vom Schulcampus Lindenhall
 
 > **Monatsbericht · Mai 2026**
 > - Kostenprognose nach dem geltenden Datenstand: 60,4 Mio. € gegen die Projektbasis von 58,4 Mio. € (+3,4 %); die Risikoreserve von 2,9 Mio. € deckt das, eingesetzt ist sie noch nicht.
-> - Differenz zur früheren Zahl geklärt: angekündigter Nachtrag der Haustechnikplanung, bis 1,2 Mio. €, als Risiko `RIS-014` geführt.
+> - Differenz der beiden Rechnungen (Kostenplanung und Controlling) geklärt: angekündigter Nachtrag der Haustechnikplanung, bis 1,2 Mio. €, als Risiko `RIS-014` geführt, nicht in der Prognose.
 > - Die Marktabfrage aus der Auflage zur Freigabe LPH 4 ist in die Prognose eingerechnet.
-> - Offene Entscheidung: Umgang mit der Prognose. Benötigt wird Ihre Entscheidung; der Bauausschuss tagt am 21. Mai.
+> - Offene Entscheidung: Umgang mit der Prognose – benötigt wird Ihre Entscheidung bis 19. Mai; der Bauausschuss tagt am 21. Mai.
 
 [[bedienung:Ordnen Sie zu: Gehört das in den Monatsbericht?]]
 

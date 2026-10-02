@@ -1,4 +1,4 @@
-// Anzeigefassung des Originaltexts (O-29, L-66): Das Wort „Whitepaper“ kommt im Produkt nirgends vor.
+// Anzeigefassung der Quelle V1.2 (O-29, L-66): Das Wort „Whitepaper“ kommt im Produkt nirgends vor, Satzfehler der Quelle auch nicht (R67).
 // Die Quelle unter quellen/ bleibt unverändert; beim Kompilieren ersetzt diese Liste die wenigen Stellen
 // des Originaltexts, die das Wort enthalten, und lässt den Glossarbegriff „Whitepaper“ weg. Zitate in
 // inhalte/ werden gegen diese Fassung geprüft (wortgleich wie angezeigt).
@@ -10,6 +10,10 @@ export const ERSETZUNGEN = /** @type {const} */ ([
   ['Leitthese dieses Whitepapers', 'Leitthese von MVG'],
   ['Das Whitepaper setzt', 'MVG setzt'],
   ['im Whitepaper als', 'in MVG als'],
+  // R67 (hebt L-14 für die Anzeige auf): Satzfehler der Quelle erschienen in Tafeln als Tippfehler, seit O-38 ohne Originaltext
+  ['Wissens-abhängigkeit', 'Wissensabhängigkeit'],
+  ['Maßnahmenverknüp-fung', 'Maßnahmenverknüpfung'],
+  ['Auftraggeber Logik', 'Auftraggeberlogik'],
 ]);
 
 /** Glossarbegriffe, die entfallen */

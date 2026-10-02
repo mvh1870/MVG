@@ -363,7 +363,8 @@ export async function baueBeigaben(wurzel) {
     const md = (await readFile(path.join(wurzel, 'inhalte', 'rechtliches', `${name}.md`), 'utf8')).replace(/<!--[\s\S]*?-->/gu, '').trim();
     if (/<(?!br>)[a-z]/iu.test(md)) throw new BauFehler(`inhalte/rechtliches/${name}.md enthält HTML – nur Markdown`);
     const titel = /^# (.+)$/mu.exec(md)?.[1] ?? name;
-    const html = String(marked.parse(md)).trim();
+    // GFM verlinkt nackte „www.…“ mit http:// – auf der Seite nur verschlüsselt (R67)
+    const html = String(marked.parse(md)).trim().replaceAll('href="http://', 'href="https://');
     let seite = vorlage;
     for (const [anker, wert] of [['<!--mvg:titel-->', titel], ['<!--mvg:inhalt-->', html], ['<!--mvg:bildmarke-->', svgInline], ['<!--mvg:favicon-->', faviconUrl(bildmarke)]]) {
       seite = ersetzeEinmal(seite, anker, wert);

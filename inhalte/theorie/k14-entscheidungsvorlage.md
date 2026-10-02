@@ -165,7 +165,7 @@ Eine echte Alternative zum sofortigen Ausbau: zulässig, mit eigenen Kosten, Ter
 ---
 titel: Der gewichtete Vergleich (MCDA)
 ---
-MCDA steht für Multi-Criteria Decision Analysis: Alle Optionen werden an denselben gewichteten Kriterien gemessen. Das macht den Vergleich nachvollziehbar – auch für jemanden, der später fragt, warum so entschieden wurde.
+[[MCDA (Multikriterien-Entscheidungsanalyse)|MCDA]] steht für Multi-Criteria Decision Analysis: Alle Optionen werden an denselben gewichteten Kriterien gemessen. Das macht den Vergleich nachvollziehbar – auch für jemanden, der später fragt, warum so entschieden wurde.
 
 ::: etappen
 ---
@@ -281,7 +281,7 @@ Die abgestimmte Gewichtung: A liegt vorn, die Projektsteuerung empfiehlt das Ers
 :::
 :::
 
-Der Regler zeigt, warum die Gewichtungsprüfung Pflicht ist: Bei einem Termingewicht von 3 statt 5 steht es 31 : 31. Die Empfehlung für A gilt also nur unter der vereinbarten Terminpriorität – und genau das muss in der Vorlage stehen.
+Die Stufen des Termingewichts zeigen, warum die Gewichtungsprüfung Pflicht ist: Bei einem Termingewicht von 3 statt 5 steht es 31 : 31. Die Empfehlung für A gilt also nur unter der vereinbarten Terminpriorität – und genau das muss in der Vorlage stehen.
 
 Zur Vorlage gehören außerdem der Stand von Kosten- und Terminplan, die Nachweise für Gleichwertigkeit und Lieferbarkeit des Ersatzgeräts, die verbleibenden Risiken beider Wege, die nötigen Freigaben, die befugte Stelle und der Entscheidungstermin. Im Beispiel liegt die Entscheidung im Mandat der Bauherren-PL. Getroffen wird sie hier nicht: Das Beispiel zeigt nur die Vorbereitung.
 :::
@@ -294,7 +294,7 @@ Eine Vorlage nennt ihren Datenstand und ihre Quellen und ist mit dem Vorgang ver
 
 Fehlt eine zweite zulässige Option oder eine andere wesentliche Grundlage, wird nichts erfunden. Die Projektsteuerung kennzeichnet die Vorlage als unvollständig und sagt, was noch geprüft oder geklärt werden muss. Dringliche Meldungen und notwendige Schutzmaßnahmen warten nicht auf den fertigen Vergleich.
 
-Der Beschluss selbst wird getrennt festgehalten: mit Quelle, Datum und Bedingungen, so wie die befugte Stelle ihn tatsächlich gefasst hat. Danach verfolgt die Projektsteuerung die Folgemaßnahmen bis zur nachgewiesenen Umsetzung.
+Der [[Beschluss]] selbst wird getrennt festgehalten: mit Quelle, Datum und Bedingungen, so wie die befugte Stelle ihn tatsächlich gefasst hat. Danach verfolgt die Projektsteuerung die Folgemaßnahmen bis zur nachgewiesenen Umsetzung.
 
 ::: umschalter
 ---

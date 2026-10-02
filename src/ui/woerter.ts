@@ -54,7 +54,6 @@ export const W = {
       'Regie: „Protokoll drucken“ – Notizen und Entscheidungen des Gesprächs.',
     ],
   },
-  nachweiskette: { mandat: 'Mandat', freigabe: 'Freigabe', kennung: 'Entscheidungs-ID', datenstand: 'Datenstand', nachweis: 'Nachweis', beschlusslage: 'Beschlusslage', waehlen: 'Station wählen', leer: 'Noch keine Station.' },
   ebene: 'Ebene',
   // Theorie
   // Kleine interaktive Grafiken der Lernseiten (P12.3, O-30)
@@ -75,7 +74,6 @@ export const W = {
   theorie: {
     wissenscheck: 'Kurz geprüft',
     wissenscheckAntworten: 'Ihre Einschätzung',
-    flussUebersicht: (stationen: string) => `Kanonischer Governance-Fluss: ${stationen}`,
   },
   // Abbildungen der DOCX V1.2 im Fachtext (P14, O-32, L-77)
   abbildung: {
@@ -107,6 +105,7 @@ export const W = {
     beamer: 'Beamer: groß und kontrastreich',
     sprung: 'Springen zu',
     protokollDrucken: 'Protokoll drucken',
+    protokollLoeschen: 'Protokoll löschen',
     druckTitel: 'Gesprächsprotokoll',
     druckEintraege: 'Notizen aus dem Gespräch',
     druckLeer: 'Keine Einträge.',
@@ -188,7 +187,7 @@ export const W = {
     gegenprobeZurueck: 'Auf Ihre Gewichte zurücksetzen',
     kipppunkte: 'Wann sich die Rangfolge dreht',
     keinKipppunkt: 'Kein einzelnes Gewicht zwischen 1 und 5 dreht die Spitze.',
-    kipppunkt: (kriterium: string, gewicht: number, wer: string) => `${kriterium} auf ${gewicht}: vorn läge ${wer}`,
+    kipppunkt: (kriterium: string, gewicht: number, wer: string[]) => wer.length > 1 ? `${kriterium} auf ${gewicht}: Gleichstand – ${wer.join(' und ')}` : `${kriterium} auf ${gewicht}: vorn läge ${wer[0] ?? ''}`,
     empfehlung: 'Empfehlung der Projektsteuerung',
     empfehlungAllgemein: (titel: string) => `Mit Ihren Gewichten liegt „${titel}“ vorn. Die begründete Empfehlung der Projektsteuerung galt für die vorgeschlagenen Gewichte – für Ihre würde sie neu begründet. Eine Punktzahl allein ersetzt kein Urteil.`,
     empfohlen: 'empfohlen',

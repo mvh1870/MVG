@@ -7,7 +7,8 @@ monat: 3
 lph: 5
 kurzfassung: true
 # Bandbreite statt Einzelzahl bei unsicheren Mengen und Preisen (v24:hb-2); Option B rechnet mit dem erwarteten Wert der Bandbreite.
-belege: [v24:hb-1.2, v24:hb-1.3, v24:hb-2, v24:hb-3, v24:hb-3.1, v24:hb-1.6, v24:tlb-2, k4.4-p2]
+# Option C weicht vom Ratsbeschluss zum Klimaziel ab – wesentliche Änderung, nicht delegierbar (k3.2-t1, k4.3-p1): zusätzlich Beschluss des Bauherrn.
+belege: [v24:hb-1.2, v24:hb-1.3, v24:hb-2, v24:hb-3, v24:hb-3.1, v24:hb-1.6, v24:tlb-2, k4.4-p2, k3.2-t1, k4.3-p1]
 lage: |
   Anfang März ruft Lena Hoffmeister von der Generalplanung an: Ein Hersteller nennt für die Holzbauelemente 26 statt 16 Wochen Lieferzeit. Noch am selben Tag steht der Hinweis als Frühwarnung im Register; eine Woche später ist er geklärt.
 # Bei s2 = C war die Freigabe LPH 4 vertagt (offen +1); sie wird im März erteilt – der Bericht meldet es, der Status baut ab.
@@ -42,22 +43,22 @@ vorlage:
   art: optionen
   frage: Wie sichern wir die Holzbauelemente rechtzeitig?
   grund: |
-    4 × 4 = 16 – vorrangig. Ohne Gegenmaßnahme ist die Inbetriebnahme zum Schuljahr 2028/29 gefährdet. Jeder Weg kostet etwas: Geld, Puffer oder Klimaziel.
-  stelle: Änderungsgremium – Vorsitz Frank Deppe, Geschäftsführer der GML
+    4 × 4 = 16 – vorrangig. Ohne Gegenmaßnahme ist die Inbetriebnahme zum Schuljahr 2028/29 gefährdet; jeder Weg kostet Geld, Puffer oder Klimaziel.
+  stelle: Änderungsgremium – Vorsitz Frank Deppe, Geschäftsführer der GML; für Option C zusätzlich der Bauherr (Abweichung vom Ratsbeschluss zum Klimaziel)
   termin: 25. März 2026
   verzug: Jede Woche ohne Entscheidung verkürzt die Zeit für eine vorgezogene Vergabe.
   muss: Alle drei Optionen erfüllen Brandschutz und Genehmigung.
   optionen:
     - id: A
       titel: Holzbau vorziehen
-      text: Die Holzbauelemente werden vorab ausgeschrieben und früh bestellt; die Generalplanung zieht die nötigen Pläne vor.
+      text: Die Holzbauelemente werden vorab ausgeschrieben und früh bestellt; die Generalplanung zieht die Pläne vor.
       punkte:
         kosten: [3, "+0,15 Mio. € Planungsbeschleunigung"]
         termin: [5, "Liefertermin gesichert"]
         qualitaet: [4, "unverändert"]
         klima: [4, "Holzbau wie geplant"]
       folgen: { kosten: 0.15 }
-      konsequenz: Die Projektsteuerung legt die Maßnahme MAS-007 an – vorgezogene Vergabe, verantwortlich die Generalplanung, Vergabeunterlagen bis 15. April. Die Risikobewertung bleibt, bis der Liefertermin vertraglich steht.
+      konsequenz: Die Projektsteuerung legt die Maßnahme MAS-007 an – vorgezogene Vergabe, verantwortlich die Generalplanung, Vergabeunterlagen bis 15. April.
     - id: B
       titel: Abwarten
       text: Den Puffer nutzen und bei der Vergabe auf kürzere Lieferzeiten hoffen.
@@ -77,20 +78,20 @@ vorlage:
         qualitaet: [3, "Änderung der Planung"]
         klima: [1, "weniger Holz als im Ratsbeschluss zum Klimaziel"]
       folgen: { kosten: 0.25, puffer: -7 }
-      konsequenz: Die Projektsteuerung legt die Änderung AEN-013 an und verknüpft sie mit dem Risiko. Weniger Elemente heißt kürzere Lieferzeit – ob sie reicht, zeigt die Vergabe.
+      konsequenz: Der Bauherr stimmt der Abweichung vom Klimaziel zu. Die Projektsteuerung legt die Änderung AEN-013 an und verknüpft sie mit dem Risiko. Weniger Elemente heißt kürzere Lieferzeit – ob sie reicht, zeigt die Vergabe.
   empfehlung:
     option: A
-    text: Die Projektsteuerung empfiehlt, den Holzbau vorzuziehen – er sichert Termin und Klimaziel. Nachteil – 0,15 Mio. € Mehrkosten, bevor feststeht, ob der Markt sich entspannt. Auch mit „Kosten vor Termin“ bleibt A vorn, aber knapp – 50 zu 48 vor dem Abwarten.
+    text: Die Projektsteuerung empfiehlt, den Holzbau vorzuziehen – er sichert Termin und Klimaziel. Nachteil – 0,15 Mio. € Mehrkosten, bevor feststeht, ob der Markt sich entspannt. Mit „Kosten vor Termin“ bleibt A knapp vorn (50 zu 48).
 folge: |
   Eine geplante Maßnahme senkt die Bewertung noch nicht. Erst wenn Umsetzung und Wirkung belegt sind – hier der vertragliche Liefertermin –, wird sie fortgeschrieben.
 so-laeuft-es-oft: |
   Der Anruf landet in einer Notiz, drei Monate später steht im Statusbericht eine gelbe Ampel. Entschieden wird, wenn die Montage wackelt – dann bleibt nur der teure Weg.
 einwand:
   frage: „Lieferzeiten sind doch Sache der Planung.“
-  antwort: Die Fachplanung bleibt bei der Generalplanung. Die Projektsteuerung klärt, bewertet und bereitet vor. Entscheiden müssen Sie – es geht um Geld und Termin.
+  antwort: Die Fachplanung bleibt bei der Generalplanung. Die Projektsteuerung klärt, bewertet und bereitet vor. Entscheiden muss die Bauherrenseite – hier das Änderungsgremium, mit Ihrer Empfehlung; es geht um Geld und Termin.
 theorie: vorgaenge
 regie:
-  notiz: Den Weg Frühwarnung → Risiko → Vorlage → Maßnahme zeigen. Die Matrix (4 × 4 = 16, vorrangig) kurz erklären. Bei „Abwarten“ die Bandbreite ansprechen – 35 Tage, wenn sich der Markt etwas entspannt, sonst rund 70. Mit „Kosten vor Termin“ liegt Abwarten nur zwei Punkte zurück (48 zu 50) – der Puffer zeigt, was das für die Förderfrist hieße.
+  notiz: Den Weg Frühwarnung → Risiko → Vorlage → Maßnahme zeigen. Die Matrix (4 × 4 = 16, vorrangig) kurz erklären. Bei „Abwarten“ die Bandbreite ansprechen – 35 Tage, wenn sich der Markt etwas entspannt, sonst rund 70. Mit „Kosten vor Termin“ liegt Abwarten nur zwei Punkte zurück (48 zu 50) – der Puffer zeigt, was das für die Förderfrist hieße. Option C weicht vom Ratsbeschluss zum Klimaziel ab und braucht deshalb zusätzlich einen Beschluss des Bauherrn.
   leitfragen:
     - Wo landet bei Ihnen ein solcher Anruf?
     - Wer würde die Optionen ausarbeiten?

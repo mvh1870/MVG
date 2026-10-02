@@ -370,13 +370,13 @@ titel: Möglich oder eingetreten?
 links: Risiko
 rechts: Problem
 ---
-Die Beispiele sind allgemein gehalten.
+Die Beispiele stammen vom Schulcampus Lindenhall-Süd.
 
 ::: posten 1
 ---
 seite: links
 ---
-Beispiel: Die Klärung einer Frühwarnung ergibt, dass eine längere Lieferzeit den Termin gefährden könnte.
+Die Klärung der Frühwarnung FRW-002 ergibt: Drei von vier Anbietern nennen 24 bis 26 Wochen Lieferzeit für die Holzbauelemente – der Montagebeginn könnte sich deutlich verschieben.
 
 ### Erklärung
 Ein mögliches Ereignis wird als Risiko bewertet.
@@ -386,7 +386,7 @@ Ein mögliches Ereignis wird als Risiko bewertet.
 ---
 seite: rechts
 ---
-Beispiel: Ein zugesagter Liefertermin ist verstrichen, das Bauteil fehlt auf der Baustelle.
+Der Hersteller des Lüftungsgeräts für die Gesamtschule nennt einen neuen Liefertermin, vier Wochen später als zugesagt.
 
 ### Erklärung
 Das Problem ist eingetreten – die Lösung wird organisiert; für einen eingetretenen Zustand wird keine Wahrscheinlichkeit mehr geschätzt.
@@ -396,7 +396,7 @@ Das Problem ist eingetreten – die Lösung wird organisiert; für einen eingetr
 ---
 seite: rechts
 ---
-Beispiel: Ein Bauteil ist beschädigt angeliefert worden.
+Ein Gerüstfeld an der Sporthalle ist nicht gesichert.
 
 ### Erklärung
 Eingetreten, also ein Problem.
@@ -406,10 +406,10 @@ Eingetreten, also ein Problem.
 ---
 seite: links
 ---
-Beispiel: Die Genehmigung steht noch aus; eine mögliche Auflage zum Brandschutz könnte zusätzliche Kosten auslösen.
+Die Haustechnikplanung kündigt Mehrleistungen an – bis 1,2 Mio. € könnten als Nachtrag kommen.
 
 ### Erklärung
-Noch nicht eingetreten – ein Risiko.
+Angekündigt, aber nicht eingetreten – ein Risiko mit Bandbreite.
 :::
 :::
 
@@ -559,7 +559,7 @@ Dringliche Sachverhalte meldet die Projektsteuerung über den vereinbarten Melde
 ---
 titel: Wöchentlich
 ---
-In aktiven Zeiten prüft die Projektsteuerung alle offenen Vorgänge – Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Probleme, Änderungen und offene Entscheidungen – und hält das mit Datum und Bearbeiter fest. Vertieft wird nur, was sich verändert hat.
+In aktiven Zeiten prüft die Projektsteuerung alle offenen Vorgänge – Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Probleme, Änderungen und offene Entscheidungen – und hält das mit Datum und Bearbeiter fest. Vertieft wird, was sich verändert hat oder besonders klärungsbedürftig ist.
 :::
 
 ::: karte monatlich
@@ -715,7 +715,7 @@ Technisch ist der Companion ein lokal lauffähiges, browserbasiertes Governance-
 
 Der Companion kann vorhandene Strukturen abbilden oder auf sie verweisen – etwa Entscheidungsvorlagen, Vorgänge wie Risiken, Frühwarnungen, Änderungen und Maßnahmen, Freigaben, [[RACI]] und Mandate, den Governance-Kalender sowie Übergabe und Betriebshandbuch. **Maßgeblich bleibt** dabei die Software, die der Bauherr bereitstellt: Dort führt die Projektsteuerung alle Vorgänge. Wer zusätzlich mit dem Companion arbeitet, überträgt die Inhalte fristgerecht dorthin; eine zweite Liste entsteht nicht, und der Companion ersetzt die Einträge dort nicht.
 
-Auch für den Companion gilt eine klare Datenstandslogik: Er arbeitet mit benannten, versionierten und zugriffsberechtigten Informationen. Was er liefert, ist Entscheidungsunterstützung – bevor es in eine Freigabe oder ein Gremium geht, prüfen es die zuständigen Rollen. Seine Grenzen im Wortlaut:
+Auch für den Companion gilt eine klare Datenstandslogik: Er arbeitet mit benannten, versionierten und zugriffsberechtigten Informationen. Was er liefert, ist Entscheidungsunterstützung – bevor es in eine Freigabe oder ein Gremium geht, prüfen es die zuständigen Rollen. Seine Grenzen:
 
 ::: zitat k6.3-b1
 Der MVG Companion ersetzt keine Bauherrenentscheidung, keine Gremienfreigabe, keine Rechtsberatung, keine Fachplanung und keine Projektsteuerung. Seine Funktion liegt in Strukturierung, Orientierung, Anwendungshilfe und Befähigung. Verbindlich bleiben freigegebene Datenstände, definierte Rollenrechte, Datenschutzanforderungen und die bauherrenseitige Legitimation der Entscheidung.

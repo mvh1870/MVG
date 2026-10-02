@@ -134,7 +134,7 @@ titel: Fünf Aussagen in Kürze
 titel: Projektsteuerung
 symbol: kompass
 ---
-Sie bearbeitet alle Vorgänge – Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Probleme, Änderungen – und bereitet jede Entscheidung mit mindestens zwei Optionen vor. Die Entscheidung des Bauherrn ersetzt sie nicht.
+Sie bearbeitet alle Vorgänge – Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Probleme, Änderungen – und bereitet jede erforderliche Entscheidung mit mindestens zwei Optionen vor; Dringliches meldet sie vorab sofort. Die Entscheidung des Bauherrn ersetzt sie nicht.
 :::
 
 ::: karte 2
@@ -264,7 +264,7 @@ Befähigung ist Pflichtbestandteil – der Blick auf beide Zeitpunkte zeigt, war
 
 ::: regie
 ### Notiz
-Der Überblick ist der Einstieg: die Leitthese mit der Sortierübung „Arbeit oder Legitimation?“ – den Kunden selbst zuordnen lassen –, dann die fünf Managementaussagen als Karten und die Kette der Entscheidungssicherheit. Im Termin tragen die Leitthese und die Karte „Projektsteuerung“: Sie bearbeitet alles und bereitet jede Entscheidung vor, entscheidet aber nie selbst; das ist keine Kritik an der Projektsteuerung des Kunden. Das Ergebnisbild nur anreißen, die Objekte kommen im Thema „Ergebnisbild“.
+Der Überblick ist der Einstieg: die Leitthese mit der Sortierübung „Arbeit oder Legitimation?“ – den Kunden selbst zuordnen lassen –, dann die fünf Managementaussagen als Karten und die Kette der Entscheidungssicherheit. Im Termin tragen die Leitthese und die Karte „Projektsteuerung“: Sie bearbeitet alles und bereitet jede erforderliche Entscheidung vor, entscheidet aber nie selbst; das ist keine Kritik an der Projektsteuerung des Kunden. Das Ergebnisbild nur anreißen, die Objekte kommen im Thema „Ergebnisbild“.
 
 ### Leitfragen
 - Welche Entscheidungen in Ihrem Projekt können Sie nicht abgeben – und wo ist das festgehalten?

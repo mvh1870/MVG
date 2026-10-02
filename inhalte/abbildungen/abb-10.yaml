@@ -23,7 +23,7 @@ abweichungen:
     beleg: k6.4.3-p2
   - text: 'Vom Band „Schwellenwert löst Frühwarnung aus“ zeigt ein gestrichelter Pfeil in „CTC / Prognose“ hinein; im Text ist die überschrittene Schwelle der Ausgangspunkt, aus dem eine neue Frühwarnung entsteht.'
     beleg: k6.4.3-p2
-  - text: 'Aufgaben kommen im Bild nicht vor. Nach dem Text ist die Aufgabe eine eigene Vorgangsart; auch aus ihr kann Entscheidungsbedarf entstehen, und Aufgaben, Probleme und Änderungen werden ohne Risikoeintrag bearbeitet.'
+  - text: 'Aufgaben kommen im Bild nicht vor. Nach dem Text ist die Aufgabe eine eigene Vorgangsart; auch aus ihr kann Entscheidungsbedarf entstehen, und Aufgaben, Probleme und Änderungen werden auch ohne Risikoeintrag bearbeitet.'
     beleg: k6.4.3-p2
   - text: 'Vom Problem führt nur „eskaliert“ ins Entscheidungsregister, und vom Risiko führt keine Kante zum Problem. Nach dem Text wird aus einem eingetretenen Risiko ein Problem; beim Problem werden Folgen geklärt, die Lösung organisiert und nachgewiesen und gegebenenfalls eine Entscheidung vorbereitet.'
     beleg: k6.4.4-t1
@@ -31,12 +31,14 @@ abweichungen:
     beleg: k6.4.4-t1
   - text: 'Den „Managementbericht“ erreicht im Bild nur die gestrichelte Berichtskante aus der Freigabe. Der Text nennt den Monatsbericht: höchstens eine Seite über alle Vorgangsarten, aus demselben Informationsstand wie die Software, ohne zweite Liste.'
     beleg: k6.4.3-p1
-  - text: 'Die Maßnahme trägt den Zusatz „Maßnahme mit Frist“ und entsteht im Bild neben den „Auflagen“ der Freigabe auch direkt aus der Entscheidungsvorlage („erzeugt“). Nach dem Text folgt die Maßnahme dem Beschluss der befugten Stelle, nicht der Vorlage; sie wird mit Verantwortlichem und Frist verfolgt, bis die Wirkung belegt ist.'
+  - text: 'Die Maßnahme trägt den Zusatz „Maßnahme mit Frist“ und entsteht im Bild neben den „Auflagen“ der Freigabe auch direkt aus der Entscheidungsvorlage („erzeugt“). Nach dem Text folgt eine Maßnahme aus einer Entscheidung dem Beschluss der befugten Stelle, nicht der Vorlage; sie wird mit Verantwortlichem und Frist verfolgt, bis die Wirkung belegt ist.'
     beleg: k6.4.3-p2
   - text: 'Von der Entscheidungsvorlage führt eine Lebenszyklus-Kante „führt zu“ zur Änderung; der Text nennt nur die Gegenrichtung – aus Änderungen kann Entscheidungsbedarf entstehen. Eine Änderung wird gegen den geltenden Stand aufbereitet; bis zur Freigabe gilt die bisherige Grundlage.'
     beleg: k6.4.3-p2 k6.4.4-t1
-  - text: 'Die Zusätze an den Knoten weichen vom Text ab: „schwaches Signal“ (Text: noch ungeklärter Hinweis), „bewertet (P-A)“ (mögliches Ereignis, bewertet nach Wahrscheinlichkeit und Auswirkung), „akutes Problem“ (eingetretener Zustand), „Änderungsantrag“ (bewusste Anpassung einer geltenden Vorgabe), „Gremienbericht“ (Monatsbericht).'
+  - text: 'Die Zusätze an den Knoten weichen vom Text ab: „schwaches Signal“ (Text: noch ungeklärter Hinweis), „bewertet (P-A)“ (mögliches Ereignis, bewertet nach Wahrscheinlichkeit und Auswirkung), „akutes Problem“ (eingetretener Zustand) und „Änderungsantrag“ (bewusste Anpassung einer geltenden Vorgabe).'
     beleg: k6.4.4-t1
+  - text: 'Aus der Entscheidungsvorlage führt im Bild nur „reif“ zur „Freigabe (LPH 0–9)“. Nach dem Text entscheidet die befugte Stelle nach ihrem Mandat – Bauherren-PL, Änderungsgremium oder Bauherr im Lenkungskreis. Die Freigabe am Abschluss einer Leistungsphase ist nur einer dieser Beschlüsse und wird vom Bauherrn selbst erteilt.'
+    beleg: k6.4.5-p1 k13-t1
   - text: 'Der Knoten heißt „CTC / Prognose – Kostenprognose“; der Text führt Kostenprognose und Restkosten (CTC) als Fachbeiträge, die die Projektsteuerung bei den zuständigen Stellen anfordert.'
     beleg: k6.4.2-t1 k13-t1
   - text: 'Der Knoten „Entscheidungsvorlage“ ist im Bild als „Entscheidung-svorlage“ falsch getrennt.'

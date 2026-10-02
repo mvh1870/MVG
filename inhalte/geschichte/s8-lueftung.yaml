@@ -11,9 +11,9 @@ kurzfassung: true
 # Dringliches sofort melden, am selben Arbeitstag dokumentieren (v24:hb-4); ein eingetretener Zustand ist ein Problem (v24:hb-1.4).
 belege: [v24:hb-1.4, v24:hb-3, v24:hb-3.1, v24:hb-3.2, v24:hb-4]
 lage: |
-  Januar 2028, die Bauarbeiten laufen. Das zentrale Lüftungsgerät der Gesamtschule kommt vier Wochen später; ein gleichwertiges Ersatzgerät eines anderen Herstellers wäre in einer Woche lieferbar.
+  Januar 2028. Das zentrale Lüftungsgerät der Gesamtschule kommt vier Wochen später; ein gleichwertiges Ersatzgerät wäre in einer Woche lieferbar.
 
-  In derselben Woche: ein nicht gesichertes Gerüstfeld an der Sporthalle. Die Projektsteuerung meldet es sofort an Bauleitung und Sicherheitskoordination, eine Stunde später ist das Feld gesperrt, dokumentiert am selben Tag. Schutzmaßnahmen warten nicht auf einen Vergleich.
+  In derselben Woche ist ein Gerüstfeld an der Sporthalle nicht gesichert. Die Projektsteuerung meldet es sofort an Bauleitung und Sicherheitskoordination; eine Stunde später ist das Feld gesperrt, dokumentiert am selben Tag. Schutz wartet nicht auf einen Vergleich.
 # Die Neuausschreibung (s7 = B) war vertagt (offen +1); der Bericht meldet den Zuschlag. Offen bleibt am Ende nur die
 # Neufestlegung der Projektbasis (s5 = C) – der Bericht sagt es.
 lage-folgen-bedingt:
@@ -21,26 +21,28 @@ lage-folgen-bedingt:
 bericht:
   titel: Monatsbericht · Januar 2028
   zeilen:
-    - Dringliche Meldung am 11. Januar – Gerüstfeld Sporthalle gesperrt; Problem PRB-018, am selben Tag dokumentiert.
-    - Neues Problem PRB-019 – Lüftungsgerät Gesamtschule vier Wochen später; Entscheidung bis 19. Januar.
+    - Dringliche Meldung am 11. Januar – Gerüstfeld Sporthalle gesperrt, Problem PRB-018.
+    - Neues Problem PRB-019 – Lüftungsgerät vier Wochen später; Entscheidung bis 19. Januar.
     - text: Seit Mai 2026 – Brandschutzauflage zum Holzbau umgesetzt (0,4 Mio. €, 7 Tage); Vergabe Holzbau 0,3 Mio. € über der Prognose.
       wenn: kurz
     - text: Seit März 2027 – Lieferzeit Holzbau mit der Vergabe geklärt, 21 Wochen; der Montagebeginn liegt rund 35 Tage später (PRB-008). Die vertagte Entscheidung ist erledigt.
       wenn: kurz & s3=B
-    - text: Risikoreserve – 0,9 Mio. € für den Holzbau freigegeben; was die Prognose über 61,3 Mio. € (Basis plus Reserve) hinausgeht, deckt sie nicht mehr.
+    - text: Risikoreserve – 0,9 Mio. € für den Holzbau freigegeben; über 61,3 Mio. € (Basis plus Reserve) hinaus deckt sie nichts mehr.
       wenn: s7=A
     - text: Neuausschreibung Holzbau – Zuschlag im Mai 2027, rund 0,3 Mio. € unter dem ersten Angebot; der Montagebeginn liegt rund 42 Tage später, wie seit März 2027 im Terminpuffer. PRB-007 geschlossen, die vertagte Entscheidung erledigt.
       wenn: s7=B
     - text: Risikoreserve – 0,4 Mio. € für den Holzbau freigegeben; Bodenbeläge und Einbaumöbel einfacher vergeben, rund 0,5 Mio. € weniger. PRB-007 geschlossen.
-      wenn: s7=C
-    - text: Neufestlegung der Projektbasis – seit Mai 2026 offen. Die Hauptvergaben sind abgeschlossen, die Vorlage liegt beim Lenkungskreis; der Beschluss des Stadtrats steht noch aus.
+      wenn: s7=C & s3!=A
+    - text: Risikoreserve – für den Holzbau bleibt es bei den 0,6 Mio. € für den Elementzuschlag (Juli 2026); Montage und Ausbau brauchten keine weitere Freigabe, weil Bodenbeläge und Einbaumöbel rund 0,5 Mio. € günstiger vergeben wurden. PRB-007 geschlossen.
+      wenn: s7=C & s3=A
+    - text: Neufestlegung der Projektbasis – seit Mai 2026 offen. Die Hauptvergaben sind abgeschlossen, die Vorlage liegt beim Lenkungskreis; der Beschluss des Bauherrn und die Bestätigung durch den Stadtrat stehen noch aus.
       wenn: s5=C
     # Große Mensa ohne Einsparpaket (s4 = A, s5 = B): ob die Prognose jetzt über 61,3 liegt, hängt an s7, bei B auch an s3/s6 (nachgerechnet).
-    - text: Neufestlegung der Projektbasis – nötig, weil die Prognose über Basis plus Reserve (61,3 Mio. €) liegt; die Vorlage liegt beim Lenkungskreis, der Beschluss des Stadtrats steht noch aus.
+    - text: Neufestlegung der Projektbasis – nötig, weil die Prognose über Basis plus Reserve (61,3 Mio. €) liegt; die Vorlage liegt beim Lenkungskreis, der Beschluss des Bauherrn steht noch aus.
       wenn: s4=A & s5=B & s7=A
-    - text: Neufestlegung der Projektbasis – nötig, weil die Prognose über Basis plus Reserve (61,3 Mio. €) liegt; die Vorlage liegt beim Lenkungskreis, der Beschluss des Stadtrats steht noch aus.
+    - text: Neufestlegung der Projektbasis – nötig, weil die Prognose über Basis plus Reserve (61,3 Mio. €) liegt; die Vorlage liegt beim Lenkungskreis, der Beschluss des Bauherrn steht noch aus.
       wenn: s4=A & s5=B & s7=B & s3=C
-    - text: Neufestlegung der Projektbasis – nötig, weil die Prognose über Basis plus Reserve (61,3 Mio. €) liegt; die Vorlage liegt beim Lenkungskreis, der Beschluss des Stadtrats steht noch aus.
+    - text: Neufestlegung der Projektbasis – nötig, weil die Prognose über Basis plus Reserve (61,3 Mio. €) liegt; die Vorlage liegt beim Lenkungskreis, der Beschluss des Bauherrn steht noch aus.
       wenn: s4=A & s5=B & s7=B & s3=A & s6=K
     - text: Mit dem Ergebnis der Neuausschreibung liegt die Prognose knapp unter Basis plus Reserve (61,3 Mio. €); der Spielraum ist klein – was darüber hinausgeht, braucht eine Neufestlegung der Projektbasis.
       wenn: s4=A & s5=B & s7=B & s3=B
@@ -48,6 +50,12 @@ bericht:
       wenn: s4=A & s5=B & s7=B & s3=A & s6=A
     - text: Mit der Einsparung im Ausbau liegt die Prognose wieder unter Basis plus Reserve (61,3 Mio. €); der Spielraum ist klein – was darüber hinausgeht, braucht eine Neufestlegung der Projektbasis.
       wenn: s4=A & s5=B & s7=C
+    # Wege, auf denen erst das Ersatzgerät (+0,08) die Prognose über Basis plus Reserve hebt (nachgerechnet, tests/geschichte.test.ts):
+    # Lage s8 61,28 (s3=A, s4=A, s6=A, s7=B) bzw. 61,23 (s3=C, s4=B, s6=K, s7=A), jeweils s5=B oder C.
+    - text: Achtung – mit dem Ersatzgerät (+0,08 Mio. €) läge die Prognose über Basis plus Reserve (61,3 Mio. €); dann braucht es die Neufestlegung der Projektbasis.
+      wenn: s3=A & s4=A & s5!=A & s6=A & s7=B
+    - text: Achtung – mit dem Ersatzgerät (+0,08 Mio. €) läge die Prognose über Basis plus Reserve (61,3 Mio. €); dann braucht es die Neufestlegung der Projektbasis.
+      wenn: s3=C & s4=B & s5!=A & s6=K & s7=A
   reaktion: Bitte entscheiden Sie zwischen Ersatzgerät und Abwarten.
 vorgaenge:
   - art: problem
@@ -83,7 +91,7 @@ vorlage:
         qualitaet: [5, "volle Funktion"]
         klima: [4, "gleiche Effizienz"]
       folgen: { kosten: 0.08, puffer: -7 }
-      konsequenz: Die Bestellung läuft über den Vertragsweg der Haustechnik. Die Projektsteuerung verfolgt Lieferung und Einbau und schließt das Problem mit der Inbetriebnahme.
+      konsequenz: Die Bestellung läuft über den Vertragsweg der Haustechnik; die Projektsteuerung verfolgt Lieferung und Einbau und schließt das Problem mit der Inbetriebnahme.
     - id: B
       titel: Abwarten
       text: Die ursprüngliche Lieferung wird abgewartet.
@@ -96,9 +104,9 @@ vorlage:
       konsequenz: Die Baustelle stellt um. Die Projektsteuerung führt das Terminrisiko für den Schulstart im Register und legt es im nächsten Monatstermin vor.
   empfehlung:
     option: A
-    text: Mit den festgelegten Gewichten empfiehlt die Projektsteuerung das Ersatzgerät (57 zu 48); auch mit „Ausgewogen“ bleibt es vorn (59 zu 55). Achtung – bei „Kosten vor Termin“ dreht sich die Rangfolge, knapp (53 zu 54). Das muss sichtbar bleiben.
+    text: Die Projektsteuerung empfiehlt das Ersatzgerät – mit „Termin vor Kosten“ 57 zu 48, mit „Ausgewogen“ 59 zu 55. Achtung – bei „Kosten vor Termin“ dreht sich die Rangfolge knapp (53 zu 54); das muss sichtbar bleiben.
 folge: |
-  Eine hohe Punktzahl ersetzt kein Urteil. Die Empfehlung nennt deshalb, bei welchen Gewichten sie kippt – damit Sie wissen, worüber Sie entscheiden.
+  Eine hohe Punktzahl ersetzt kein Urteil. Deshalb nennt die Empfehlung, bei welchen Gewichten sie kippt.
 so-laeuft-es-oft: |
   Die Lieferverzögerung wird auf der Baustelle gelöst – irgendwie; der Bauherr erfährt davon, wenn die Abnahme platzt. Vom ungesicherten Gerüstfeld erfährt der Bauherr erst aus dem Bautagebuch.
 einwand:

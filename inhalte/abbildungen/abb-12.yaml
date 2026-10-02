@@ -13,7 +13,7 @@ angeglichen:
   - { x: 341, y: 411, b: 195, h: 22, text: Änderungsregister, beleg: k6.4.4-t1, schrift: barlow, gewicht: 500, groesse: 19 }
   - { x: 110, y: 553, b: 222, h: 27, text: Bewertungsmatrix, beleg: k7.1-p1, schrift: barlow, gewicht: 700, groesse: 23, ausrichtung: mitte }
 abweichungen:
-  - text: 'Zeigerinstrument und Regler zeigen eine Skala von 0 bis 5 mit einem Beispielwert je Kasten; der Text bewertet mit 49 Fragen in der Logik Ja = 100, Teilweise = 50 und Nein = 0 auf einer Skala von 0–100 und liest das Ergebnis als < 55 kritisch, 55–79 mit Lücken, ≥ 80 steuerbar.'
+  - text: 'Das Bild zeigt eine Skala von 0 bis 5; der Text nennt zehn Domänen mit 49 Fragen, ohne Punkteskala.'
     beleg: k7.1-p2
   - text: 'Das Bild zeigt fünf benannte Kästen; der Text bewertet die 10 MVG-Domänen, die mitsamt ihren Prüffragen im Erhebungsinstrument der MVG-Reifegradanalyse dokumentiert sind, und nennt weder ihre Namen noch Nachweise je Domäne; einzelne Einträge der Nachweislisten (etwa „QA-Plan“, „Defect-Logik“, „Wiederholfehler-Auswertung“) kommen im Text nicht vor.'
     beleg: k7.1-p2

@@ -38,13 +38,14 @@ const KANAL = 'regie';
 
 type Betriebsart = 'seite' | 'regie' | 'leinwand';
 
-/** Ersatzbogen für Strg+P ohne eigenen Druckweg */
-function ersatzDruck(): { titel: string; teile: HTMLElement[] } {
+/** Ersatzbogen für Strg+P ohne eigenen Druckweg; auf der Leinwand ohne den Hinweis auf die Regie (R67) */
+function ersatzDruck(mitRegie = true): { titel: string; teile: HTMLElement[] } {
+  const wege = mitRegie ? W.druck.ersatzWege : W.druck.ersatzWege.slice(0, 1);
   return {
     titel: W.druck.ersatzTitel,
     teile: [
       bogenKopf(W.druck.ersatzTitel, VERSION, false),
-      h('section', { class: 'druck-teil' }, h('p', null, W.druck.ersatzText), h('ul', null, W.druck.ersatzWege.map((x) => h('li', null, x)))),
+      h('section', { class: 'druck-teil' }, h('p', null, W.druck.ersatzText), h('ul', null, wege.map((x) => h('li', null, x)))),
     ],
   };
 }
@@ -70,7 +71,7 @@ function starteSeite(wurzel: HTMLElement): void {
   let story: GeschichteFlaeche | null = null;
   let tipps: Tooltips | null = null;
   let flaeche = '';
-  ersatzBogenFuerStrgP(() => ['start', 'story', 'explore'].includes(document.body.dataset['flaeche'] ?? '') || document.querySelector('[data-pruef="thema-drucken"]') === null, ersatzDruck);
+  ersatzBogenFuerStrgP(() => ['start', 'story', 'explore'].includes(document.body.dataset['flaeche'] ?? '') || document.querySelector('[data-pruef="thema-drucken"]') === null, () => ersatzDruck());
 
   const raeume = (): void => {
     for (const d of document.querySelectorAll<HTMLDialogElement>('dialog[open]')) d.close();
@@ -193,7 +194,7 @@ function starteLeinwandFenster(wurzel: HTMLElement): void {
   starteLeinwand(wurzel, { inhalte, kanal, version: VERSION });
   document.body.dataset['flaeche'] = 'leinwand';
   document.title = `${W.leinwand.titel} · ${TITEL}`;
-  ersatzBogenFuerStrgP(() => true, ersatzDruck);
+  ersatzBogenFuerStrgP(() => true, () => ersatzDruck(false));
   window.addEventListener('hashchange', () => {
     if (betriebsart(leseRoute(location.hash)) !== 'leinwand') location.reload();
   });

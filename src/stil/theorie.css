@@ -303,6 +303,9 @@ a.glossar-ort:hover { text-decoration: underline; }
   /* Glossareinträge, Tabellenzeilen: Begriff nicht ohne Erklärung, Zeile nicht mitten im Wort geteilt */
   .druck-bogen :is(.glossar-eintrag, tr) { break-inside: avoid; }
   .druck-bogen dt { break-after: avoid; }
+  /* R67: Abschnittsköpfe nie allein am Seitenende – als Block (an Flex-Kindern hält Chromium break-after nicht) */
+  .druck-bogen .abschnitt-titel { display: block; break-after: avoid; break-inside: avoid; }
+  .druck-bogen .abbildung-abweichungen summary { break-after: avoid; break-inside: avoid; }
   /* R42: Chromium wertet im Druck die Media Queries bei ≈ 794 px aus, setzt aber 688 px – die schmale Absatzform (≤ 700 px)
      griff nicht, die Kennspalte blieb und schnitt wortgleiche Tabellen ab. Im Druck immer einspaltig, nichts rollt */
   .druck-bogen .absatz-block { overflow: visible; }

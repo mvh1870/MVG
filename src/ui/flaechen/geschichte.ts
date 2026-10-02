@@ -25,7 +25,9 @@ const w = W.geschichte;
 
 /* ----------------------------------------------------------- Zahlen -- */
 
-const zahl = (n: number, stellen = 2): string => new Intl.NumberFormat('de-DE', { maximumFractionDigits: stellen }).format(n);
+// Beträge mit mindestens einer Nachkommastelle („+2,0“ neben „+0,15“), Minus als „−“ (U+2212) wie in den Texten (R67)
+const zahl = (n: number, stellen = 2): string =>
+  new Intl.NumberFormat('de-DE', { minimumFractionDigits: stellen > 0 ? 1 : 0, maximumFractionDigits: stellen }).format(n).replace('-', '−');
 const mitVorzeichen = (n: number, stellen = 2): string => (n > 0 ? '+' : n < 0 ? '−' : '±') + zahl(Math.abs(n), stellen);
 
 export function statusText(g: Geschichte, s: Status): { kosten: string; puffer: string; offen: string } {
@@ -146,7 +148,7 @@ function kippText(o: SchrittOptionen, st: Station, gew: Gewichte): HTMLElement {
   return h('div', { class: 'gs-kipp', 'data-pruef': 'gs-kipp' },
     h('h3', null, w.kipppunkte),
     k.length === 0 ? h('p', null, w.keinKipppunkt)
-      : h('ul', null, k.map((x) => h('li', null, w.kipppunkt(o.g.kriterien.find((c) => c.id === x.kriterium)?.titel ?? x.kriterium, x.gewicht, x.spitze.map(titel).join(' / '))))));
+      : h('ul', null, k.map((x) => h('li', null, w.kipppunkt(o.g.kriterien.find((c) => c.id === x.kriterium)?.titel ?? x.kriterium, x.gewicht, x.spitze.map(titel))))));
 }
 
 function optionKarte(o: SchrittOptionen, st: Station, opt: Option, empf: string): HTMLElement {

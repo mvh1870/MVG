@@ -145,7 +145,7 @@ beleg: k5.3-p2
 ::: kompass risikominderung
 ---
 begriff: Risikominderung
-andere: [Mitigation, Gegenmaßnahme]
+andere: [Mitigation]
 beleg: k4.4-p2
 ---
 :::
@@ -211,7 +211,7 @@ Wird gegen den geltenden Stand aufbereitet; bis zur Freigabe gilt die bisherige 
 ::: kompass massnahme
 ---
 begriff: Maßnahme
-andere: [Action, Gegenmaßnahme]
+andere: [Action]
 beleg: k6.4.3-p1
 ---
 ### Hinweis

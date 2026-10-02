@@ -2,7 +2,7 @@
   "name": "mvg-story",
   "version": "0.1.0",
   "private": true,
-  "description": "Minimum Viable Governance – interaktives Whitepaper von Bauherr Mentoren (Story · Theorie · Explore), gebaut als eine HTML-Datei",
+  "description": "Governance Kompass – Internetseite zu Minimum Viable Governance von Bauherr Mentoren (Story · Theorie · Explore)",
   "type": "module",
   "engines": {
     "node": ">=22.18.0"

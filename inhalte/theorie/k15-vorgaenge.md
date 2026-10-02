@@ -21,7 +21,7 @@ kurztitel: Vorgänge und Risiken
 Im Projektalltag kommt vieles gleichzeitig an: ein Anruf, eine Auflage, ein Wunsch, eine Verzögerung. Nicht jeder Hinweis ist ein Risiko. Manches ist schon eingetreten, manches ist eine gewollte Änderung, manches einfach eine Arbeit, die erledigt werden muss. Dieses Thema zeigt die Vorgangsarten, die Wege zwischen ihnen und wie ein Risiko nachvollziehbar bewertet wird.
 
 ::: kernaussage
-Die Projektsteuerung ordnet jeden Hinweis der passenden Vorgangsart zu, bewertet Risiken in einer 5×5-Matrix und leitet daraus den nächsten Schritt ab. Ob ein wesentliches Restrisiko getragen wird, entscheidet der Bauherr.
+Die Projektsteuerung ordnet jeden Hinweis der passenden Vorgangsart zu, bewertet Risiken in einer [[Risikomatrix (5×5)|5×5-Matrix]] und leitet daraus den nächsten Schritt ab. Ob ein wesentliches Restrisiko getragen wird, entscheidet der Bauherr.
 :::
 
 ::: abschnitt k15.1

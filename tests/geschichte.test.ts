@@ -188,6 +188,25 @@ test('Grenze Basis plus Reserve: Die Berichte sagen auf jedem Weg, ob die Progno
   }
 });
 
+test('Grenze Basis plus Reserve am Ende: Liegt die Prognose darüber, sagt es der Bericht in Station 8 – auch wenn erst das Ersatzgerät sie hebt', () => {
+  const GRENZE = 58.4 + 2.9;
+  const ersatz = st('s8').vorlage.optionen.find((o) => o.id === 'A')?.folgen.kosten ?? 0;
+  let ueber = 0;
+  for (const { stand, w } of alleWege()) {
+    const s8 = status(g, stand, { ort: 'station', station: 's8', teil: 'lage' }).kosten;
+    const ende = status(g, { ...stand, schritt: { ort: 'ende' } }).kosten;
+    const zeilen = st('s8').bericht.zeilen.filter((z) => z.wenn !== null && gilt(g, stand, z.wenn)).map((z) => z.html).join(' ');
+    const warnung = /mit dem Ersatzgerät \(\+0,08 Mio\. €\) läge die Prognose über/u.test(zeilen);
+    // die Warnung steht genau dort, wo die Lage noch darunter liegt und das Ersatzgerät die Grenze überschreiten würde
+    assert.equal(warnung, s8 <= GRENZE && Math.round((s8 + ersatz) * 100) / 100 > GRENZE, `s8 ${s8} ${JSON.stringify(w)}`);
+    if (ende > GRENZE) {
+      ueber++;
+      assert.match(zeilen, /nötig, weil die Prognose über|mit dem Ersatzgerät \(\+0,08 Mio\. €\) läge die Prognose über|Neufestlegung der Projektbasis – seit Mai 2026 offen/u, `Ende ${ende} ${JSON.stringify(w)}`);
+    }
+  }
+  assert.ok(ueber > 0);
+});
+
 test('Kurzfassung: der Bericht in Station 8 erklärt den Sprung seit Mai 2026', () => {
   let s: Stand = neuerStand(true);
   for (const id of ['s1', 's3', 's5', 's8']) s = waehle(g, s, id, st(id).vorlage.empfehlung.option);
@@ -256,4 +275,12 @@ test('Bedingungen mit „&“, „kurz“, „lang“ und bedingte Lage-Folgen',
   assert.equal(mit - ohne, 5);
   st = waehle(g, st, 's2', 'A');
   assert.equal(status(g, { ...st, schritt: { ort: 'station', station: s3.id, teil: 'lage' } }).offen, status(g0, { ...st, schritt: { ort: 'station', station: s3.id, teil: 'lage' } }).offen);
+});
+
+test('Kipppunkte: je Kriterium beide Richtungen, Gleichstand als mehrere an der Spitze', () => {
+  const v = st('s4').vorlage;
+  const k = kipppunkte(v.optionen, g.kriterien, STANDARD);
+  const kosten = k.filter((x) => x.kriterium === 'kosten');
+  assert.ok(kosten.some((x) => x.gewicht < (STANDARD['kosten'] ?? 0)) || kosten.some((x) => x.gewicht > (STANDARD['kosten'] ?? 0)));
+  for (const x of k) assert.notDeepEqual(x.spitze, spitze(v.optionen, g.kriterien, STANDARD));
 });

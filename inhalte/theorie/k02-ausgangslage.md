@@ -96,7 +96,7 @@ Nachhaltigkeits-, Energie- und Klimaziele werden für Bauherren zunehmend zu Ent
 
 Was folgt daraus für die Steuerung? [[ESG]] und LCC dürfen nicht erst als späte Nachweise auftauchen. Sie gehören früh in das Zielsystem, in die Abwägungsregeln, in die Variantenentscheidungen und in die Freigaben – die verbindlichen Entscheidungspunkte des Projekts.
 
-Geschieht das nicht, zeigen sich Zielkonflikte erst spät. Ein allgemeines Beispiel: Erst bei fortgeschrittener Planung stellt sich heraus, dass die gewählte Variante ein Nachhaltigkeitsziel verfehlt. Dann sind Änderungen teuer.
+Geschieht das nicht, zeigen sich Zielkonflikte erst spät. Ein Beispiel vom Schulcampus Lindenhall-Süd: Der Stadtrat hat den Holzhybridbau als Klimaziel beschlossen. Stünde dieses Ziel nicht von Anfang an in den Abwägungsregeln, fiele womöglich erst bei fortgeschrittener Planung auf, dass eine Sporthalle in Stahlbeton – gewählt, um die lange Lieferzeit der Holzbauelemente aufzufangen – das Ziel verfehlt. Dann sind Änderungen teuer.
 
 ::: umschalter
 ---
@@ -131,7 +131,7 @@ In vielen Bauherrenorganisationen hängt in kritischen Momenten viel an wenigen 
 
 Ein belastbares [[Bauherren-Führungsmodell]] verringert diese Abhängigkeit. Es macht nicht jede Organisation automatisch leistungsfähig. Aber es schafft einen gemeinsamen Standard, der fünf Fragen beantwortet. So wird Erfahrung nicht ersetzt, sondern in wiederholbare Führungslogik überführt.
 
-Ein Beispiel (allgemein): Vor einer wichtigen Freigabe fällt die Person aus, die die Kostenstände als Einzige vollständig kennt. Mit einem gemeinsamen Standard findet die Vertretung vor, wer entscheidet, welche Unterlagen erforderlich sind und welche Annahmen gelten. Im Standard steht dieses Wissen nicht in persönlichen Arbeitsständen, sondern in den Einträgen der Projektsteuerung – so, dass auch eine Vertretung erkennt, was bekannt ist und was noch geklärt werden muss.
+Ein Beispiel vom Schulcampus Lindenhall-Süd: Kurz vor der Freigabe der Risikoreserve für den Holzbau fällt Holger Stein, der Kostenplaner der Generalplanung, für Wochen aus – der Einzige, der die Kostenstände vollständig kennt. Mit einem gemeinsamen Standard findet die Vertretung vor, wer entscheidet, welche Unterlagen erforderlich sind und welche Annahmen gelten. Im Standard steht dieses Wissen nicht in persönlichen Arbeitsständen, sondern in den Einträgen der Projektsteuerung – so, dass auch eine Vertretung erkennt, was bekannt ist und was noch geklärt werden muss.
 
 ::: umschalter
 ---
@@ -228,7 +228,7 @@ Daraus folgen:
 5. Welcher Datenstand gilt?
 6. Wie wird der Beschluss später nachvollzogen?
 
-Im Standard genügt ein Monatsbericht von höchstens einer Seite – entscheidend ist, dass er die offenen Entscheidungen und die benötigte Reaktion zeigt.
+Im Standard erhält der Bauherr monatlich einen Bericht von höchstens einer Seite – entscheidend ist, dass er die offenen Entscheidungen und die benötigte Reaktion zeigt.
 :::
 :::
 
@@ -267,7 +267,7 @@ titel: Symptome fehlender Ausübungsfähigkeit
 ---
 Woran erkennt man, dass ein Bauherr seine Verantwortung nicht mehr wirksam ausüben kann? Es gibt acht typische Symptome – von unklaren Zielprioritäten über parallele Datenstände bis zur Eskalation, die nur Verzögerung erzeugt.
 
-Jedes Symptom folgt demselben Muster: Es zeigt sich in einer typischen Situation im Projekt, hat eine Konsequenz für den Bauherrn und hat eine Antwort im MVG-Modell. Ein Beispiel ist die Eskalation ohne Entscheidung: Themen werden nach oben gegeben, aber ohne klare Optionen, Empfehlung oder Konsequenzen. Die Folge ist Verzögerung statt Führung. Die Antwort ist ein verbindlicher Standard für [[Entscheidungsvorlage|Entscheidungsvorlagen]]: Zu jeder Eskalation legt die Projektsteuerung eine Vorlage mit Entscheidungsfrage, mindestens zwei zulässigen Optionen, gewichtetem Vergleich und Empfehlung vor.
+Jedes Symptom folgt demselben Muster: Es zeigt sich in einer typischen Situation im Projekt, hat eine Konsequenz für den Bauherrn und hat eine Antwort im MVG-Modell. Ein Beispiel ist die Eskalation ohne Entscheidung: Themen werden nach oben gegeben, aber ohne klare Optionen, Empfehlung oder Konsequenzen. Die Folge ist Verzögerung statt Führung. Die Antwort ist ein verbindlicher Standard für [[Entscheidungsvorlage|Entscheidungsvorlagen]]: Für jede Eskalation, die eine Bauherrenentscheidung erfordert, legt die Projektsteuerung eine Vorlage mit Entscheidungsfrage, mindestens zwei zulässigen Optionen, gewichtetem Vergleich und Empfehlung vor; Dringliches wird vorab sofort gemeldet.
 
 [[bedienung:Wählen Sie in der Grafik ein Symptom und verfolgen Sie die Kette von Muster über Konsequenz bis zur Reaktion.]] Fragen Sie sich, welche dieser Symptome Sie aus eigenen Projekten kennen.
 
@@ -282,7 +282,7 @@ form: ketten
 
 ::: regie
 ### Notiz
-Die Ausgangslage holt den Kunden bei seinen eigenen Erfahrungen ab. Einstieg über den Umschalter „Auf dem Papier / In der Praxis“ (Grauzonen). Tragend ist die Tafel der acht Symptome: den Kunden selbst wählen lassen, was er kennt – ohne Punktzahl und ohne Urteil über seine Organisation. Der Kern: Berichterstattung erzeugt Information, Führung entsteht erst, wenn Information unter anderem mit Mandat, Entscheidung, Schwelle, Datenstand, Freigabe und Nachweis verbunden wird. Nicht behaupten, mehr Berichte schadeten – sie können in einzelnen Situationen helfen. Im Standard genügt ein Monatsbericht von höchstens einer Seite, der offene Entscheidungen und die benötigte Reaktion zeigt.
+Die Ausgangslage holt den Kunden bei seinen eigenen Erfahrungen ab. Einstieg über den Umschalter „Auf dem Papier / In der Praxis“ (Grauzonen). Tragend ist die Tafel der acht Symptome: den Kunden selbst wählen lassen, was er kennt – ohne Punktzahl und ohne Urteil über seine Organisation. Der Kern: Berichterstattung erzeugt Information, Führung entsteht erst, wenn Information unter anderem mit Mandat, Entscheidung, Schwelle, Datenstand, Freigabe und Nachweis verbunden wird. Nicht behaupten, mehr Berichte schadeten – sie können in einzelnen Situationen helfen. Im Standard erhält der Bauherr monatlich einen Bericht von höchstens einer Seite, der offene Entscheidungen und die benötigte Reaktion zeigt.
 
 ### Leitfragen
 - Welche der acht Symptome erkennen Sie in einem Ihrer laufenden Projekte wieder?

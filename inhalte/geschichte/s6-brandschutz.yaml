@@ -8,7 +8,8 @@ lph: 5
 kurzfassung: false
 # Gutachten beauftragt der Auftraggeber gesondert (v24:hb-3). Bei K bleiben die 0,4 Mio. € der Auflage in der Prognose,
 # weil sie der einzige zulässige Weg ist; s7 berichtet, dass die Behörde die Alternative abgelehnt hat.
-belege: [v24:hb-1.4, v24:hb-1.5, v24:hb-3.1, v24:hb-3, k4.2-p3]
+# Bei s3 = A: Elementzuschlag im Juli 2026, die 0,6 Mio. € Marktpreise gibt der Bauherr aus der Reserve frei (k3.2-t1; nicht delegierbar).
+belege: [v24:hb-1.4, v24:hb-1.5, v24:hb-3.1, v24:hb-3, k4.2-p3, k3.2-t1]
 lage: |
   Im Juni kommt die Baugenehmigung – mit Auflagen zum Holzbau. Die Behörde verlangt eine zusätzliche Kapselung der Holzbauteile in den Fluren. Die Generalplanung schätzt rund 0,4 Mio. € und eine Woche Umplanung.
 
@@ -19,7 +20,7 @@ bericht:
     - Baugenehmigung erteilt am 12. Juni, mit Brandschutzauflagen zum Holzbau – geführt als Problem PRB-002.
     - Zwischenmaßnahme MAS-011 – die Generalplanung plant die Flure vorläufig mit Kapselung weiter.
     - Die Vorlage ist unvollständig – eine zweite zulässige Option ist noch nicht belegt.
-    - text: MAS-007 wirksam – Zuschlag für die Holzbauelemente erteilt, Liefertermin vertraglich gesichert, Preis im Rahmen der Marktpreise aus Version 3; RIS-009 herabgestuft auf gezielt bearbeiten.
+    - text: MAS-007 wirksam – Zuschlag für die Holzbauelemente erteilt, Liefertermin vertraglich gesichert; RIS-009 herabgestuft auf gezielt bearbeiten. Der Preis liegt im Rahmen der 0,6 Mio. € Marktpreise aus Version 3; diesen Betrag hat der Bauherr für den Zuschlag aus der Risikoreserve freigegeben.
       wenn: s3=A
     - text: RIS-009 Lieferzeit Holzbau weiter aktiv · vorrangig bearbeiten; geklärt wird sie mit der Vergabe.
       wenn: s3=B

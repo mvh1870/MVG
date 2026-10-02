@@ -32,7 +32,7 @@ Beim Aufruf dieser Internetseite verarbeitet der Webserver technisch erforderlic
 
 - IP-Adresse des zugreifenden Endgeräts
 - Datum und Uhrzeit des Zugriffs
-- aufgerufene Seite oder Datei
+- aufgerufene Seite (Adresse)
 - Referrer-URL
 - verwendeter Browser und verwendetes Betriebssystem
 - übertragene Datenmenge und HTTP-Statuscode
@@ -49,7 +49,7 @@ Diese Internetseite wird bei der IONOS SE gehostet. Der Hosting-Anbieter verarbe
 
 Damit Sie in der Geschichte dort weiterlesen können, wo Sie aufgehört haben, speichert die Seite Ihren Stand im lokalen Speicher Ihres Browsers (Local Storage): den Schritt der Geschichte, Ihre Entscheidungen, Ihre Gewichte und ob Sie die Kurzfassung lesen. Wer die Seite zum Präsentieren nutzt, speichert dort zusätzlich den Stand der Präsentation und die selbst eingetragenen Notizen zum Gespräch.
 
-Diese Angaben verlassen Ihr Gerät nicht und werden nicht an uns oder Dritte übertragen. Der Zugriff auf den Speicher ist für die von Ihnen gewünschte Funktion unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG). Sie können den Stand jederzeit mit „Fortschritt löschen“ am Fuß der Geschichte entfernen oder über die Einstellungen Ihres Browsers löschen.
+Diese Angaben verlassen Ihr Gerät nicht und werden nicht an uns oder Dritte übertragen. Der Zugriff auf den Speicher ist für die von Ihnen gewünschte Funktion unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG). Den Stand der Geschichte entfernen Sie jederzeit mit „Fortschritt löschen“ am Fuß der Geschichte, die Notizen und den Stand der Präsentation mit „Protokoll löschen“ in der Präsentationsansicht; alles zusammen auch über die Einstellungen Ihres Browsers.
 
 ## 6. Links zu bauherr-mentoren.com
 

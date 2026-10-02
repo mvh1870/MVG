@@ -183,7 +183,7 @@ titel: Mandat
 ---
 Mit dem [[Mandat]] legt der Bauherr fest, wer welche Entscheidung vorbereiten, treffen, freigeben oder eskalieren darf. Eine [[RACI]]-Zuordnung unterscheidet zwar ausführungsverantwortliche, letztverantwortliche, konsultierte und informierte Rollen. Sie genügt aber nicht, solange Freigabeschwellen, Stellvertretungen und Eskalationswege fehlen. Die typische Fehlstelle: Rollen sind beschrieben, aber nicht so mandatiert, dass sie entscheiden können.
 
-Ein wirksames Mandatsmodell beantwortet fünf Fragen: Was darf auf Projektebene entschieden werden? Ab welcher Schwelle entscheidet der Bauherr oder beschließt er im Lenkungskreis? Wer darf Kosten, Projektumfang, Termin, Risiko oder Vergabe beeinflussen? Welche Unterlagen müssen vorliegen? Welche Rolle ist letztverantwortlich? MVG verbindet diese Antworten mit den Freigaben und den Entscheidungs-IDs. Auf jeder Stufe entscheidet die befugte Stelle auf eine Vorlage der Projektsteuerung mit mindestens zwei Optionen und gewichtetem Vergleich; selbst pflegen muss keine Stufe etwas.
+Ein wirksames Mandatsmodell beantwortet fünf Fragen: Was darf auf Projektebene entschieden werden? Ab welcher Schwelle entscheidet der Bauherr oder beschließt er im Lenkungskreis? Wer darf Kosten, Projektumfang, Termin, Risiko oder Vergabe beeinflussen? Welche Unterlagen müssen vorliegen? Welche Rolle ist letztverantwortlich? MVG verbindet diese Antworten mit den Freigaben und den Entscheidungs-IDs. Wo eine Entscheidung erforderlich ist, entscheidet die befugte Stelle auf eine Vorlage der Projektsteuerung mit mindestens zwei Optionen und gewichtetem Vergleich; selbst pflegen muss keine Stufe etwas.
 
 Wie eine solche Schwelle aussehen kann, zeigt die **Muster-Mandatsleiter**. Sie ist ein Muster, keine feste Vorgabe: Die Freigabeschwellen selbst legt der Bauherr fest – sie gehören zum Kern des Feldes Mandat. [[bedienung:Ziehen Sie den Regler, um zu sehen, wer nach dem Muster bei welchem Betrag entscheidet.]]
 
@@ -336,7 +336,7 @@ Das Risiko steht mit einer Bewertung im Register. Wer es verantwortet, bis wann 
 :::
 
 ::: ansicht rechts
-Das Risiko hat eine verantwortliche Rolle, eine Frist, eine Wirkung, eine Risikominderung und ein Restrisiko. Der Entscheidungsbedarf ist benannt, und eine Eskalationsschwelle sagt, wann es eskaliert wird. Vorrangige Risiken meldet die Projektsteuerung dem Bauherrn und bereitet die Entscheidung vor; Fragen der Sicherheit oder Genehmigung warten auf keine Bewertung. Wesentliche Risikoexposition nimmt der Bauherr an – oder nicht.
+Das Risiko hat eine verantwortliche Rolle, eine Frist, eine Wirkung, eine Risikominderung und ein Restrisiko. Der Entscheidungsbedarf ist benannt, und eine Eskalationsschwelle sagt, wann es eskaliert wird. Vorrangige Risiken meldet die Projektsteuerung dem Bauherrn und bereitet die Entscheidung vor; Fragen der Sicherheit oder Genehmigung behandelt sie unabhängig von der Matrix; Dringliches wartet nicht auf eine vollständige Bewertung. Wesentliche Risikoexposition nimmt der Bauherr an – oder nicht.
 :::
 :::
 :::
@@ -349,7 +349,7 @@ Eine Freigabe ist mehr als eine Unterschrift. Mit ihr legitimiert der Bauherr de
 
 Die typische Fehlstelle: Es wird freigegeben, obwohl unklar ist, welcher Datenstand gilt, oder ohne dass jemand geprüft hat, ob das Mandat reicht.
 
-MVG bindet jede Freigabe an die Freigabelogik. Vor der Freigabe müssen fünf Dinge klar sein. Die Vorbereitung – Unterlagenpakete, Prüfvermerke, Planungsstände, Freigabevorschläge, Gremienberichte – übernimmt die Projektsteuerung; die Freigabe selbst erteilt der Bauherr. [[bedienung:Klicken Sie die fünf Punkte durch.]]
+MVG bindet jede Freigabe an die Freigabelogik. Vor der Freigabe müssen fünf Dinge klar sein. Die Vorbereitung – Unterlagenpakete, Prüfvermerke, Planungsstände, Freigabevorschläge, Gremienberichte – liefern Projektsteuerung und Fachleute; die Projektsteuerung führt sie zur Vorlage zusammen, die Freigabe selbst erteilt der Bauherr. [[bedienung:Klicken Sie die fünf Punkte durch.]]
 
 ::: etappen
 ---
@@ -398,7 +398,7 @@ titel: Datenstand und Nachweis
 ---
 [[Datenstand]] und Nachweis wirken auf den ersten Blick wie Verwaltung. MVG führt sie aber als eigenes Verantwortungsfeld. Der Grund: Eine formal richtige Entscheidung kann praktisch unbrauchbar werden, wenn unklar ist, welche Zahlen, Planstände, Annahmen, Risiken oder Protokolle ihr zugrunde lagen.
 
-Ein Beispiel (allgemein): Im Gremium liegen zwei Kostenstände vor, einer aus der Planung und einer aus dem Controlling. Wird auf dieser Grundlage beschlossen, lässt sich später kaum sagen, welche Zahl gemeint war. Die typische Fehlstelle heißt deshalb: parallele Datenstände und Entscheidungsgrundlagen, die sich nicht reproduzieren lassen.
+Ein Beispiel vom Schulcampus Lindenhall-Süd: Im Mai 2026 liegen zwei Kostenstände vor, 1,2 Mio. € auseinander – die Kostenberechnung der Generalplanung und die Rechnung des Controllings. Würde auf dieser Grundlage beschlossen, ließe sich später kaum sagen, welche Zahl gemeint war. Die typische Fehlstelle heißt deshalb: parallele Datenstände und Entscheidungsgrundlagen, die sich nicht reproduzieren lassen.
 
 MVG verlangt eine klare Datenstandslogik mit fünf Fragen: Welche Version gilt? Welche Annahmen sind offen? Welche Änderungen sind seit der letzten Freigabe dazugekommen? Welche Beschlusslage besteht? Wo wird die [[Nachweiskette]] geführt? Der Bauherr pflegt die Daten nicht selbst: Die Projektsteuerung führt alle Vorgänge in der vom Bauherrn bereitgestellten Software. Das ist der eine maßgebliche Stand, aus dem auch der Monatsbericht entsteht. Der Bauherr muss aber sicherstellen, dass Entscheidungen auf belastbaren, benannten und reproduzierbaren Grundlagen beruhen.
 

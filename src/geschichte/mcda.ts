@@ -57,23 +57,21 @@ export interface Kipppunkt {
 }
 
 /**
- * Für jedes Kriterium das nächstgelegene Gewicht (1–5), bei dem sich die Spitze ändert – bei sonst
- * gleichen Gewichten. Leer, wenn keine einzelne Verschiebung die Rangfolge an der Spitze kippt.
+ * Für jedes Kriterium je Richtung (weniger, dann mehr Gewicht) das nächstgelegene Gewicht (1–5), bei dem sich die
+ * Spitze ändert – bei sonst gleichen Gewichten. Leer, wenn keine einzelne Verschiebung die Spitze ändert.
  */
 export function kipppunkte(optionen: readonly Option[], kriterien: readonly Kriterium[], g: Gewichte): Kipppunkt[] {
   const jetzt = spitze(optionen, kriterien, g).join(',');
   const aus: Kipppunkt[] = [];
   for (const k of kriterien) {
     const basis = g[k.id] ?? GEWICHT_MIN;
-    const kandidaten: number[] = [];
-    for (let d = 1; d <= GEWICHT_MAX - GEWICHT_MIN; d++) {
-      for (const w of [basis - d, basis + d]) if (w >= GEWICHT_MIN && w <= GEWICHT_MAX) kandidaten.push(w);
-    }
-    for (const w of kandidaten) {
-      const s = spitze(optionen, kriterien, { ...g, [k.id]: w });
-      if (s.join(',') !== jetzt) {
-        aus.push({ kriterium: k.id, gewicht: w, spitze: s });
-        break;
+    for (const richtung of [-1, 1]) {
+      for (let w = basis + richtung; w >= GEWICHT_MIN && w <= GEWICHT_MAX; w += richtung) {
+        const s = spitze(optionen, kriterien, { ...g, [k.id]: w });
+        if (s.join(',') !== jetzt) {
+          aus.push({ kriterium: k.id, gewicht: w, spitze: s });
+          break;
+        }
       }
     }
   }

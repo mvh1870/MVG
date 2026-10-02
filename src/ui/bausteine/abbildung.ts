@@ -66,7 +66,7 @@ export function abbildung(a: Abbildung, o: AbbildungsOptionen): HTMLElement | nu
     h('span', { class: 'abbildung-vorrang' }, A.vorrang),
     bild.angeglichen.length > 0
       // jeder Begriff einmal, auch wenn er im Bild mehrfach steht (abb-7)
-      ? h('span', { class: 'abbildung-angeglichen' }, `${A.angeglichen} `, [...new Set(bild.angeglichen.map((x) => x.text))].map((t, i) => [i > 0 ? ', ' : null, `„${t}“`]).flat())
+      ? h('span', { class: 'abbildung-angeglichen' }, `${A.angeglichen} `, [...new Set(bild.angeglichen.map((x) => x.text.replace(/^\((.*)\)$/u, '$1')))].map((t, i) => [i > 0 ? ', ' : null, `„${t}“`]).flat())
       : null,
     bild.abweichungen.length > 0
       // auf Leinwand und im Druck offen: dort kann niemand aufklappen (P12.5 R11, wie L-68)

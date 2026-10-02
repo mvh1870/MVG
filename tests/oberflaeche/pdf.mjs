@@ -2,6 +2,47 @@
 // mit einer Überschrift endet – der berechnete CSS-Wert allein sagt nicht, was Chromium im Druck daraus macht.
 import { getDocument } from 'pdfjs-dist/legacy/build/pdf.mjs';
 
+/**
+ * Zeilen je Seite, von oben nach unten (Textstücke gleicher Grundlinie zusammengefasst), je Zeile mit der größten
+ * Schriftgröße in pt (R42: Überschriften werden auch an ihrer Größe erkannt, nicht nur am Wortlaut).
+ * @param {Uint8Array} daten
+ * @returns {Promise<Seite[]>}
+ */
+export async function pdfSeiten(daten) {
+  const aufgabe = getDocument({ data: new Uint8Array(daten), useSystemFonts: false, isEvalSupported: false, disableFontFace: true, verbosity: 0 });
+  const dok = await aufgabe.promise;
+  /** @type {Seite[]} */
+  const seiten = [];
+  for (let n = 1; n <= dok.numPages; n++) {
+    const seite = await dok.getPage(n);
+    const [, , breite, hoehe] = seite.view;
+    const inhalt = await seite.getTextContent();
+    let tiefste = Number(hoehe);
+    /** @type {Map<number, { x: number, s: string, pt: number }[]>} */
+    const nachY = new Map();
+    for (const it of inhalt.items) {
+      if (!('str' in it) || it.str.trim() === '') continue;
+      const y = Math.round(it.transform[5]);
+      tiefste = Math.min(tiefste, y);
+      const schon = [...nachY.keys()].find((k) => Math.abs(k - y) <= 2);
+      const liste = nachY.get(schon ?? y) ?? [];
+      liste.push({ x: it.transform[4], s: it.str, pt: Math.hypot(it.transform[2], it.transform[3]) });
+      nachY.set(schon ?? y, liste);
+    }
+    const sortiert = [...nachY.entries()].sort((a, b) => b[0] - a[0]).map(([, teile]) => teile.sort((a, b) => a.x - b.x));
+    seiten.push({
+      breite: Number(breite), hoehe: Number(hoehe),
+      zeilen: sortiert.map((teile) => teile.map((t) => t.s).join(' ').replace(/\s+/gu, ' ').trim()),
+      groessen: sortiert.map((teile) => Math.max(...teile.map((t) => t.pt))),
+      // Anteil der Seite bis zur tiefsten Textzeile (Rand oben eingerechnet) – für „fast leere Seite“
+      fuellung: fuellung(Number(hoehe), tiefste),
+    });
+  }
+  await aufgabe.destroy();
+  return seiten;
+}
+
+
 /** @typedef {{ breite: number, hoehe: number, zeilen: string[], groessen?: number[], fuellung?: number }} Seite */
 
 /**

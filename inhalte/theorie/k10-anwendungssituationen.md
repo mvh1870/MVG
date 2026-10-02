@@ -65,7 +65,7 @@ titel: Öffentliche Bauherren
 ---
 Ein öffentlicher Bauherr steht häufig unter hoher Komplexität bei Nachweis, Gremien und Vergabe. Für ihn reicht es nicht, dass eine Entscheidung sachlich plausibel ist. Sie muss zusätzlich **nachvollziehbar** sein (Wie kam sie zustande?), **prüfbar** (Lässt sich der Weg später kontrollieren?) und **beschlussfähig** (Kann das zuständige Gremium darüber tatsächlich beschließen?).
 
-Ein Beispiel: Ein Ausschuss soll über zusätzliche Mittel für ein Schulgebäude beschließen. Dass die Mehrkosten fachlich begründet sind, genügt nicht. Der Ausschuss braucht eine Vorlage, die zeigt, wer was vorbereitet hat, auf welchem Stand die Zahlen beruhen, worüber genau er entscheidet und zwischen welchen mindestens zwei zulässigen Wegen er wählt.
+Ein Beispiel vom Schulcampus Lindenhall-Süd: Reicht die Risikoreserve nicht mehr, muss die Projektbasis neu festgelegt werden – und weil die Stadt die Mittel bewilligt, befasst sich auch der Stadtrat damit. Dass die Mehrkosten fachlich begründet sind, genügt nicht. Der Stadtrat braucht eine Vorlage, die zeigt, wer was vorbereitet hat, auf welchem Stand die Zahlen beruhen, worüber genau er entscheidet und zwischen welchen mindestens zwei zulässigen Wegen er wählt.
 
 Genau hier liegt der Nutzen des MVG-Ansatzes für öffentliche Bauherren: in klaren [[Mandat|Mandaten]], in [[Entscheidungsvorlage|Entscheidungsvorlagen]], in einer Freigabelogik, in einem Protokollstandard, in der Anbindung an die Vergabe und in Eskalationen, die belastbar dokumentiert sind. [[bedienung:Schalten Sie um: Links sehen Sie die Anforderungen, rechts die Antwort.]]
 
@@ -382,7 +382,7 @@ Sie gehört – mit Änderungsregister und verbindlicher Auswirkungsbewertung �
 
 ::: regie
 ### Notiz
-Dieses Thema ordnet MVG nach Bauherrentypen und Situationen. Mit den Überblick-Karten beginnen, dann nur den Abschnitt öffnen, der zum Kunden passt (öffentliche, private und institutionelle Bauherren, Energieversorger und Infrastrukturträger). Es tragen die Karten der typischen Entscheidungsprobleme: Der Kunde wählt ein Problem, das er kennt. Keine Erfahrungen, Referenzen oder Kundenbeispiele von BM behaupten; die Beispiele im Lesetext sind allgemein.
+Dieses Thema ordnet MVG nach Bauherrentypen und Situationen. Mit den Überblick-Karten beginnen, dann nur den Abschnitt öffnen, der zum Kunden passt (öffentliche, private und institutionelle Bauherren, Energieversorger und Infrastrukturträger). Es tragen die Karten der typischen Entscheidungsprobleme: Der Kunde wählt ein Problem, das er kennt. Keine Erfahrungen, Referenzen oder Kundenbeispiele von BM behaupten; das Beispiel für öffentliche Bauherren stammt aus dem fiktiven Schulcampus Lindenhall-Süd, die übrigen sind allgemein.
 
 ### Leitfragen
 - Welches der typischen Entscheidungsprobleme kennen Sie aus Ihren Projekten?

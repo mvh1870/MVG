@@ -34,13 +34,15 @@ Die Statusanzeige rechnet additiv (`src/geschichte/engine.ts`): Lage-Folgen gelt
 | s6 (Jul 2026) | A: Brandschutzauflage umsetzen (PRB-002) | +0,40 · −7 Tage | 60,80 · 35 Tage |
 | s7 (Feb 2027) | RIS-014 geschlossen – Mehrleistungen gehören laut Prüfung der GML zum Planungsvertrag | 0 | – |
 | s7 (Mär 2027) | Lage: Submission Holzbau 0,9 über dem Kostenansatz; 0,6 davon seit Mai in der Prognose, neu 0,3 | +0,30 | 61,10 (+2,70) |
-| s7 | A: 0,9 Mio. € aus der Reserve freigegeben | 0 (schon in der Prognose) | 61,10; frei bis Basis plus Reserve 0,2 |
+| s7 | A: Reserve für den Mehrbetrag von 0,9 Mio. € freigegeben (bei s3 = A: 0,6 davon schon im Juli 2026 für den Elementzuschlag, s6; in s7 nur die neuen 0,3) | 0 (schon in der Prognose) | 61,10; frei bis Basis plus Reserve 0,2 |
 | s8 (Jan 2028) | A: Ersatzgerät Lüftung (PRB-019) | +0,08 · −7 Tage | 61,18 · 28 Tage |
 | Ende (Aug 2028) | Schulstart | – | **61,18 Mio. €** (+2,78), Reserve frei 0,12 · **28 Tage** Puffer · 0 offene Entscheidungen |
 
-Auf jedem Weg liegt der Stand im Mai 2026 zwischen 60,13 und 60,98 Mio. € – über der Basis, unter Basis plus Reserve; mit dem vollen Nachtrag (1,2) läge er auf jedem Weg darüber. Nach der Lage in s7 (März 2027) liegt die Prognose genau auf den Wegen mit großer Mensa ohne Einsparpaket (s4 = A, s5 ≠ A) über Basis plus Reserve (61,43–61,71 Mio. €); der Bericht sagt dort, dass die Reserve nicht reicht und eine Neufestlegung der Projektbasis nötig wird, und s8 sagt je nach Weg, ob die Prognose noch darüber oder wieder darunter liegt.
+Auf jedem Weg liegt der Stand im Mai 2026 zwischen 60,13 und 60,98 Mio. € – über der Basis, unter Basis plus Reserve; mit dem vollen Nachtrag (1,2) läge er auf jedem Weg darüber. Nach der Lage in s7 (März 2027) liegt die Prognose genau auf den Wegen mit großer Mensa ohne Einsparpaket (s4 = A, s5 ≠ A) über Basis plus Reserve (61,43–61,71 Mio. €); der Bericht sagt dort, dass die Reserve nicht reicht und eine Neufestlegung der Projektbasis nötig wird, und s8 sagt je nach Weg, ob die Prognose noch darüber oder wieder darunter liegt. Auf den Wegen, auf denen erst das Ersatzgerät in s8 (+0,08) die Grenze überschreitet (s8-Lage 61,28 bei s3 = A, s4 = A, s5 ≠ A, s6 = A, s7 = B; 61,23 bei s3 = C, s4 = B, s5 ≠ A, s6 = K, s7 = A), sagt der s8-Bericht das vor der Entscheidung („Achtung – mit dem Ersatzgerät läge die Prognose über …“).
 
-**Offene Entscheidungen** (vertagte Entscheidungen): +1 bei s2 = C, s3 = B, s5 = C, s6 = K, s7 = B. Abgebaut, wenn der Bericht die Erledigung meldet: s2 = C in s3 (Freigabe LPH 4 am 17. März 2026), s3 = B in s7 (Lieferzeit mit der Vergabe geklärt, PRB-008), s6 = K in s7 (Behörde lehnt die Alternative ab, PRB-002 geschlossen), s7 = B in s8 (Zuschlag der Neuausschreibung im Mai 2027). Offen bis zum Ende bleibt die Neufestlegung der Projektbasis (s5 = C, vom Stadtrat zurückgestellt; s8: „der Beschluss des Stadtrats steht noch aus“) – am Ende also 1 offen, sonst 0.
+**Reserve bei vorgezogener Vergabe (s3 = A):** Der Elementzuschlag im Juli 2026 liegt im Rahmen der 0,6 Mio. € Marktpreise aus Version 3; diesen Betrag gibt der Bauherr dafür aus der Reserve frei (Bericht s6). In s7 stehen deshalb nur die neuen 0,3 Mio. € zur Freigabe; die Optionen nennen den Mehrbetrag „von zusammen 0,9 Mio. €“, s8 meldet bei s7 = C, dass es bei den 0,6 Mio. € bleibt. Die Prognose ändert sich durch Freigaben nicht (Status = Prognose).
+
+**Offene Entscheidungen** (vertagte Entscheidungen): +1 bei s2 = C, s3 = B, s5 = C, s6 = K, s7 = B. Abgebaut, wenn der Bericht die Erledigung meldet: s2 = C in s3 (Freigabe LPH 4 am 17. März 2026), s3 = B in s7 (Lieferzeit mit der Vergabe geklärt, PRB-008), s6 = K in s7 (Behörde lehnt die Alternative ab, PRB-002 geschlossen), s7 = B in s8 (Zuschlag der Neuausschreibung im Mai 2027). Offen bis zum Ende bleibt die Neufestlegung der Projektbasis (s5 = C, vom Bauherrn im Lenkungskreis zurückgestellt; s8: „der Beschluss des Bauherrn und die Bestätigung durch den Stadtrat stehen noch aus“) – am Ende also 1 offen, sonst 0.
 
 Andere Wege (nachgerechnet mit der Engine): s3 = B, s6 = K, s8 = B → 61,00 Mio. €, −35 Tage, 0 offen; s2 = C, s3 = C, s4 = A, s5 = A, s7 = C → 59,76 Mio. €, −28 Tage, 0 offen; alles vertagt (s2 = C, s3 = B, s5 = C, s6 = K, s7 = B) → 60,76 Mio. €, −98 Tage, 1 offen; s3 = B, s4 = A, s5 = C → 61,51 Mio. €, −42 Tage, 1 offen. Der teuerste Weg (s3 = C, s4 = A, s6 = K, sonst empfohlen) endet bei 61,79 Mio. € – die Reserve reicht dort nicht; s7 und s8 sagen das und nennen die nötige Neufestlegung der Projektbasis. Die Kurzfassung mit den empfohlenen Optionen endet wie der empfohlene Weg (61,18 Mio. €, 28 Tage, 0 offen).
 
@@ -50,15 +52,16 @@ Weitere Zahlen:
 |---|---|---|
 | Lieferzeit Holzbauelemente (Mär 2026) | 26 statt 16 Wochen; drei von vier Anbietern 24–26 Wochen | RIS-009, W 4 · A 4; ohne Gegenmaßnahme Montagebeginn bis rund 70 Tage später (mehr als der Puffer) |
 | Abwarten (s3 = B) | rund 35 Tage Puffer, wenn sich die Lieferzeit bei rund 21 Wochen einpendelt; sonst rund 70 | Bandbreite statt Einzelzahl (V2.4 HB 2); Status rechnet mit 35; in s7 bestätigt (PRB-008) |
-| Mensa (Apr 2026) | 450 statt 300 Essen, 0,6 Mio. €, rund vier Wochen Umplanung; Förderung deckt sie nicht | AEN-012, Antragstellerin Sabine Roth; Zusage von Frank Deppe im Flur (März) ist kein Beschluss |
-| Brandschutz (Jun/Jul 2026) | Kapselung der Holzbauteile in den Fluren, 0,4 Mio. €, eine Woche Umplanung; Gutachten 0,03 Mio. € (von der GML gesondert beauftragt) | PRB-002, MAS-011; bei „Klärung abwarten“ bleiben die 0,4 in der Prognose, die Behörde lehnt die Alternative ab |
+| Mensa (Apr 2026) | 450 statt 300 Essen, 0,6 Mio. €, rund vier Wochen Umplanung, davon rund zwei Wochen auf dem kritischen Weg (Puffer −14); Förderung deckt sie nicht | AEN-012, Antragstellerin Sabine Roth; Zusage von Frank Deppe im Flur (März) ist kein Beschluss |
+| Brandschutz (Jun/Jul 2026) | Kapselung der Holzbauteile in den Fluren, 0,4 Mio. €, eine Woche Umplanung; Gutachten 0,03 Mio. € (von der GML gesondert beauftragt) | PRB-002, MAS-011; bei „Klärung abwarten“ bleiben die 0,4 in der Prognose, die Behörde lehnt die Alternative im August 2026 ab |
 | Lüftungsgerät (Jan 2028) | vier Wochen später; Ersatzgerät 80.000 € / 7 Tage, Abwarten 20.000 € / 28 Tage | Beträge und Tage wie das fiktive Beispiel des Standards (L-193). Punkte nach den Skalen des Projektblatts: Kosten 3 / 5, Termin 5 / 2 → 57 : 48 bei 3/5/3/2, 59 : 55 bei „Ausgewogen“, 53 : 54 bei „Kosten vor Termin“. Das Thema „Entscheidungsvorlage“ rechnet mit den vereinfachten Skalen des Standards (41 : 35 bei 3/5/2) |
 | Skalen für den Vergleich (Projektblatt, s1) | Kosten: Mehrkosten bis 20 / 50 / 150 / 500 TEUR → 5 / 4 / 3 / 2 Punkte, mehr 1; Einsparung zählt wie keine Mehrkosten. Termin: Verzug bis 7 / 14 / 21 / 28 Tage → 5 / 4 / 3 / 2, mehr 1 | Terminskala wie die Beispielskala des Standards; Kostenskala auf die Größe des Projekts gestuft. Jeder Kosten- und Terminpunkt folgt aus den Folgen der Option (`tests/geschichte.test.ts`) |
-| Ratsbeschluss zum Klimaziel | Der Stadtrat hat den Holzhybridbau für alle drei Bauteile beschlossen | fiktiv; Grund für „weniger Holz als im Ratsbeschluss zum Klimaziel“ (s3, Sporthalle in Stahlbeton, Klima 1 Punkt) |
+| Ratsbeschluss zum Klimaziel | Der Stadtrat hat den Holzhybridbau für alle drei Bauteile beschlossen | fiktiv; Grund für „weniger Holz als im Ratsbeschluss zum Klimaziel“ (s3, Sporthalle in Stahlbeton, Klima 1 Punkt). Die Abweichung ist eine wesentliche Änderung: Option C braucht zusätzlich zum Änderungsgremium einen Beschluss des Bauherrn (s3: befugte Stelle und Konsequenz) |
+| Grenzen für die Risikobewertung (Projektblatt) | Auswirkung Kosten: bis 0,1 / 0,5 / 1,5 / 3,0 Mio. € → Stufe 1 / 2 / 3 / 4, darüber 5. Auswirkung Termin: bis 14 / 28 / 42 / 70 Tage → Stufe 1 / 2 / 3 / 4, darüber 5. Ein Grenzwert gehört zur niedrigeren Stufe | eigene Grenzen der Risikomatrix, getrennt von den Skalen des Vergleichs (MCDA). Passend dazu: RIS-005 (0,6 Mio. €) und RIS-014 (bis 1,2 Mio. €) Auswirkung 3, RIS-009 (bis rund 70 Tage) Auswirkung 4. Nicht auf der Seite genannt |
 | Marktabfrage Holzbauelemente | s2 = B: Auflage bis Ende März 2026, liegt am 27. März vor; s2 = C: vor der Freigabe, Freigabe LPH 4 am 17. März | Ergebnis in „Kostenprognose 2026-05 · Version 3“ eingerechnet (0,6 Mio. € Marktpreise) |
 | Förderfrist | Inbetriebnahme zum Schuljahr 2028/29 | fiktiv wie der ganze Fall |
 
-Mandat (Muster-Mandatsleiter, k4.2-p3): Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium über 100 TEUR bis einschließlich 5 Mio. €, darüber der Bauherr im Lenkungskreis. Eine neue Projektbasis beschließt der Bauherr – hier vertreten durch den Stadtrat – auf Vorlage aus dem Lenkungskreis. Das Projektblatt hat die GML vor der Beauftragung der Projektsteuerung festgelegt (Bewertungsgrenzen, Entscheidungsschwellen); die MCDA-Gewichte stimmt die Projektsteuerung in Station 1 ab, festgelegt werden sie von der GML.
+Mandat (Muster-Mandatsleiter, k4.2-p3): Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium über 100 TEUR bis einschließlich 5 Mio. €, darüber der Bauherr im Lenkungskreis. Eine neue Projektbasis beschließt der Bauherr im Lenkungskreis (Dr. Olbers) auf Vorlage der Projektsteuerung (wie das Glossar, k13-t1); weil die Stadt die Mittel bewilligt, lässt die GML den Beschluss vom Stadtrat bestätigen (s5, s7, s8). Das Projektblatt hat die GML vor der Beauftragung der Projektsteuerung festgelegt (Bewertungsgrenzen, Entscheidungsschwellen); die MCDA-Gewichte stimmt die Projektsteuerung in Station 1 ab, festgelegt werden sie von der GML.
 
 ## Zeitachse
 
@@ -72,7 +75,7 @@ Monat 1 ist Januar 2026, Monat 32 August 2028. LPH-Stand: LPH 4 bis Februar 2026
 | 4 | Apr 2026 | 5 | Änderungsgremium entscheidet über die Mensa (28. April); MAS-007 Vergabeunterlagen am 15. April. | s4 |
 | 5 | Mai 2026 | 5 | Zwei Prognosen, ein Datenstand (Version 3); Lenkungskreis 19. Mai, Bauausschuss 21. Mai. | s5 |
 | 6 | Jun 2026 | 5 | Baugenehmigung am 12. Juni mit Brandschutzauflagen. | – |
-| 7 | Jul 2026 | 5 | Problem PRB-002, Zwischenmaßnahme MAS-011, unvollständige Vorlage; Zuschlag für die vorab ausgeschriebenen Holzbauelemente (bei s3 = A). | s6 |
+| 7 | Jul 2026 | 5 | Problem PRB-002, Zwischenmaßnahme MAS-011, unvollständige Vorlage; Zuschlag für die vorab ausgeschriebenen Holzbauelemente mit Freigabe von 0,6 Mio. € aus der Reserve durch den Bauherrn (bei s3 = A). | s6 |
 | 13–14 | Jan–Feb 2027 | 6 | Vorbereitung der Vergabe; RIS-014 geschlossen (19. Februar). | – |
 | 15 | Mär 2027 | 7 | Submission Holzbau (2. März), Ausfall Holger Stein (ab 8. März), Freigabe der Reserve bis 24. März. | s7 |
 | 18 | Jun 2027 | 8 | Objektüberwachung; die Bauarbeiten laufen. | – |
@@ -83,7 +86,7 @@ Monat 1 ist Januar 2026, Monat 32 August 2028. LPH-Stand: LPH 4 bis Februar 2026
 
 | Gremium | Wer | Takt | Rolle im Fall |
 |---|---|---|---|
-| Stadtrat | Rat der Stadt Lindenhall | monatlich, Sommerpause im August | hat Projektbasis und Reserve beschlossen; beschließt als Bauherr eine neue Projektbasis auf Vorlage aus dem Lenkungskreis |
+| Stadtrat | Rat der Stadt Lindenhall | monatlich, Sommerpause im August | hat Projektbasis und Reserve beschlossen; bestätigt eine neue Projektbasis, die der Bauherr im Lenkungskreis beschlossen hat (die Stadt bewilligt die Mittel) |
 | Bauausschuss | Ausschuss des Stadtrats, Vorsitz Bernd Kowalski | zweimonatlich, donnerstags | wird berichtet |
 | Lenkungskreis | Dr. Miriam Olbers (Bauherr), Frank Deppe (GML), Vertretung der Kämmerei; die Bauherren-PL berichtet | monatlich, dritter Dienstag | berät; entschieden wird vom Bauherrn als befugter Stelle auf Vorlage der Projektsteuerung |
 | Änderungsgremium | Vorsitz Frank Deppe, Bauherren-PL, Aylin Kaya; Sabine Roth bei Nutzerthemen; die Projektsteuerung bereitet vor | monatlich, zzgl. anlassbezogener Sondersitzungen | entscheidet über 100 TEUR bis einschließlich 5 Mio. € |
@@ -120,7 +123,7 @@ funktion: Projektsteuerung, extern
 farbe: "#146878"
 ---
 ### Kurzbeschreibung
-Leitet die Projektsteuerung. Er und sein Team erfassen und pflegen alle Vorgänge, prüfen jede Woche den offenen Bestand und bereiten jede Entscheidung als Vorlage mit mindestens zwei Optionen und gewichtetem Vergleich vor. Er entscheidet nie selbst.
+Leitet die Projektsteuerung. Er und sein Team erfassen und pflegen alle Vorgänge, prüfen jede Woche den offenen Bestand und bereiten jede erforderliche Entscheidung als Vorlage mit mindestens zwei Optionen und gewichtetem Vergleich vor. Er entscheidet nie selbst.
 
 ### Stimme
 Sachlich, knapp, mit Verweis auf den Eintrag in der Software.

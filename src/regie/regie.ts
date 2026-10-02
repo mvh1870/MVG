@@ -27,6 +27,7 @@ import { W } from '../ui/woerter.ts';
 export interface SpeicherGriff {
   getItem(k: string): string | null;
   setItem(k: string, v: string): void;
+  removeItem(k: string): void;
 }
 
 export interface RegieOptionen {
@@ -188,7 +189,13 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
         zeichneProtokoll();
       } }, w.protokollSichern)),
     protokollListe,
-    druckKnopf);
+    h('div', { class: 'regie-zeile' }, druckKnopf,
+      // R67: Notizen bleiben nicht ungefragt im Browser – löscht Protokoll und gespeicherten Stand der Präsentation
+      h('button', { type: 'button', class: 'knopf knopf-still', 'data-pruef': 'regie-protokoll-loeschen', onclick: () => {
+        protokoll = [];
+        try { o.speicher?.removeItem(REGIE_SCHLUESSEL); } catch { /* Speicher gesperrt */ }
+        zeichneProtokoll();
+      } }, w.protokollLoeschen)));
   const uhr = (zeit: number): string => new Date(zeit).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
   const zeichneProtokoll = (): void => {
     ersetze(protokollListe, protokoll.slice(-6).reverse().map((p) => h('li', null, h('span', { class: 'regie-zeit mono' }, uhr(p.zeit)), ' ', p.text)));

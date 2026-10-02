@@ -58,4 +58,4 @@ Diese Internetseite enthält Links zur Internetseite der Bauherr Mentoren GmbH i
 
 Die auf dieser Internetseite veröffentlichten Inhalte, Texte, Grafiken, Abbildungen, Visualisierungen und sonstigen Darstellungen unterliegen dem Urheberrecht und gegebenenfalls weiteren Schutzrechten. Jede Vervielfältigung, Bearbeitung, Verbreitung, öffentliche Zugänglichmachung oder sonstige Verwertung außerhalb der gesetzlich zulässigen Grenzen bedarf der vorherigen schriftlichen Zustimmung der jeweiligen Rechteinhaber.
 
-Die eingebetteten Schriften IBM Plex Sans, IBM Plex Mono, Big Shoulders Display, Barlow Condensed und Caveat stehen unter der SIL Open Font License 1.1.
+Die eingebetteten Schriften IBM Plex Sans, IBM Plex Mono, Big Shoulders Display und Barlow Condensed stehen unter der SIL Open Font License 1.1.

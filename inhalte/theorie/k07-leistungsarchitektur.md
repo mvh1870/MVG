@@ -320,9 +320,9 @@ form: karten
 ---
 titel: Leistungsgrenzen
 ---
-Die Grenzen der Leistungen sind ausdrücklich gezogen, und der Wortlaut zählt – deshalb steht der Absatz hier vollständig. Für den Bauherrn ist das keine Formalie: Es geht in MVG gerade um seine nichtdelegierbaren Verantwortungen. Deshalb liefert die Begleitung Struktur, Entscheidungsreife und Befähigung, trifft aber keine Bauherrenentscheidung.
+Die Grenzen der Leistungen sind ausdrücklich gezogen, und jede Formulierung zählt. Für den Bauherrn ist das keine Formalie: Es geht in MVG gerade um seine nichtdelegierbaren Verantwortungen. Deshalb liefert die Begleitung Struktur, Entscheidungsreife und Befähigung, trifft aber keine Bauherrenentscheidung.
 
-Dieselbe Logik gilt für alle Beteiligten. Jede Rolle kann etwas Bestimmtes leisten – und darf etwas Bestimmtes nicht ersetzen. Die Projektsteuerung bearbeitet alle Vorgänge, bereitet jede Entscheidung mit mindestens zwei Optionen und gewichtetem Vergleich vor, verfolgt die Umsetzung und berichtet monatlich auf einer Seite; Zielpriorisierung, Risikoannahme und Freigabe ersetzt sie nicht. Die Bauherren-PL entscheidet innerhalb ihrer Schwelle; darüber legt die Projektsteuerung die Vorlage der befugten Stelle vor. Planung, Fachberatung sowie Recht und Vergabe liefern Grundlagen und Einschätzungen; die Abwägung bleibt beim Bauherrn. Mehr dazu in den Themen „Die Entscheidungsvorlage“ und „Takt und Monatsbericht“.
+Dieselbe Logik gilt für alle Beteiligten. Jede Rolle kann etwas Bestimmtes leisten – und darf etwas Bestimmtes nicht ersetzen. Die Projektsteuerung bearbeitet alle Vorgänge, bereitet jede erforderliche Entscheidung mit mindestens zwei Optionen und gewichtetem Vergleich vor, verfolgt die Umsetzung und berichtet monatlich auf einer Seite; Zielpriorisierung, Risikoannahme und Freigabe ersetzt sie nicht. Die Bauherren-PL entscheidet innerhalb ihrer Schwelle; darüber legt die Projektsteuerung die Vorlage der befugten Stelle vor. Planung, Fachberatung sowie Recht und Vergabe liefern Grundlagen und Einschätzungen; die Abwägung bleibt beim Bauherrn. Mehr dazu in den Themen „Die Entscheidungsvorlage“ und „Takt und Monatsbericht“.
 
 Wie die Leistungspakete zeitlich ineinandergreifen und woran ihr Erfolg gemessen wird, zeigt das Thema „Implementierung“.
 
@@ -464,7 +464,7 @@ titel: Recht / Vergabe
 Wer trifft die Bauherrenentscheidung, wenn eine externe Begleitung das Projekt unterstützt?
 
 ### Erklärung
-BM ersetzt keine Bauherrenentscheidung und keine Gremienentscheidung. BM liefert Struktur, Entscheidungsreife, Mandatsklarheit, Nachweislogik, Befähigung und Übergang in den Regelbetrieb.
+Eine externe Begleitung bereitet vor und befähigt; die Entscheidung gehört zu den nichtdelegierbaren Verantwortungen des Bauherrn.
 
 ::: antwort a
 ---
@@ -483,7 +483,7 @@ Eine Begleitung entscheidet nicht stellvertretend – die Entscheidung bleibt be
 :::
 
 ::: zitat k7.6-p1
-Bauherr Mentoren übernimmt keine operative Dauer-Projektsteuerung und keine Linienfunktion. BM ersetzt keine Bauherrenentscheidung, keine Gremienentscheidung, keine Fachplanung, keine Bauleitung, keine Objektüberwachung und keine Rechtsberatung. […] BM liefert Struktur, Entscheidungsreife, Mandatsklarheit, Nachweislogik, Befähigung und Übergang in den Regelbetrieb.
+BM ersetzt keine Bauherrenentscheidung, keine Gremienentscheidung, keine Fachplanung, keine Bauleitung, keine Objektüberwachung und keine Rechtsberatung.
 :::
 :::
 :::

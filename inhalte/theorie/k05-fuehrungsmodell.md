@@ -229,7 +229,7 @@ Es ist geregelt, ob freigegeben oder eskaliert wird.
 ---
 titel: Nachweis der Beschlusslage
 ---
-Der tatsächliche Beschluss ist getrennt von der Vorlage festgehalten, die Umsetzung wird verfolgt. Bis dahin gilt die bisherige Grundlage. Erst jetzt ist die Änderung ein führbares Bauherrenthema.
+Bis zur wirksamen Freigabe gilt die bisherige Grundlage; danach ist der Beschluss getrennt von der Vorlage festgehalten, und die Umsetzung wird verfolgt. Erst jetzt ist die Änderung ein führbares Bauherrenthema.
 :::
 :::
 
@@ -295,7 +295,7 @@ Zielprioritäten bleiben unklar, Mandate sind nicht definiert, Gremien- und Proj
 ---
 titel: Abgrenzung und rechtlicher Hinweis
 ---
-MVG deckt nicht alle Pflichten ab, die ein Bauherr hat. Es konzentriert sich auf das, was die vorigen Abschnitte beschreiben: dass der Bauherr führen, entscheiden und seine Entscheidungen nachweisen kann. Eine bauordnungsrechtliche Pflichtenmatrix, eine arbeitsschutzrechtliche Vertiefung, eine Vergaberechtsprüfung oder eine technische Betreiberberatung leistet MVG nicht. MVG steckt damit seinen Rahmen selbst ab. Weil es um eine Leistungsgrenze geht, steht der Hinweis hier im Wortlaut. [[bedienung:Mit der Übung darunter können Sie prüfen, was in den Rahmen fällt.]] Wie MVG im Alltag der beteiligten Rollen ankommt, zeigt das Thema zum MVG Companion.
+MVG deckt nicht alle Pflichten ab, die ein Bauherr hat. Es konzentriert sich auf das, was die vorigen Abschnitte beschreiben: dass der Bauherr führen, entscheiden und seine Entscheidungen nachweisen kann. Eine bauordnungsrechtliche Pflichtenmatrix, eine arbeitsschutzrechtliche Vertiefung, eine Vergaberechtsprüfung oder eine technische Betreiberberatung leistet MVG nicht. MVG steckt damit seinen Rahmen selbst ab. Weil es um eine Leistungsgrenze geht, steht der Hinweis hier ausdrücklich. [[bedienung:Mit der Übung darunter können Sie prüfen, was in den Rahmen fällt.]] Wie MVG im Alltag der beteiligten Rollen ankommt, zeigt das Thema zum MVG Companion.
 
 ::: zitat k5.5-p1
 MVG behandelt nicht alle denkbaren Bauherrenpflichten. Es ist keine bauordnungsrechtliche Pflichtenmatrix, keine arbeitsschutzrechtliche Vertiefung, keine Vergaberechtsprüfung und keine technische Betreiberberatung. Der Fokus liegt auf Führungs-, Entscheidungs- und Nachweisfähigkeit.

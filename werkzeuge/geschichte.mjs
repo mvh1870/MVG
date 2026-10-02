@@ -168,7 +168,15 @@ export function baueGeschichte(c, dateien) {
       lageFolgenBedingt: (y['lage-folgen-bedingt'] ?? []).map((/** @type {any} */ b) => ({ wenn: bedingung(pflicht(b, 'wenn', ort), ort, nr) ?? '', folgen: folgen(b.folgen, ort) })),
       bericht: {
         titel: text(bericht.titel),
-        zeilen: (bericht.zeilen ?? []).map((/** @type {any} */ z) => (typeof z === 'string' ? { html: c.inline(z, ort), wenn: null } : { html: c.inline(text(z.text), ort), wenn: bedingung(z.wenn, ort, nr) })),
+        zeilen: (bericht.zeilen ?? []).map((/** @type {any} */ z) => {
+          if (typeof z === 'string') return { html: c.inline(z, ort), wenn: null };
+          // R67: „Text: mit Doppelpunkt“ ohne Anführungszeichen wird in YAML stillschweigend zu einem Objekt
+          if (typeof z !== 'object' || z === null || typeof z.text !== 'string' || Object.keys(z).some((k) => k !== 'text' && k !== 'wenn')) {
+            c.fehler(ort, `Berichtszeile unlesbar (Text oder { text, wenn }; Text mit „: “ in Anführungszeichen): ${JSON.stringify(z).slice(0, 60)}`);
+            return { html: '', wenn: null };
+          }
+          return { html: c.inline(z.text, ort), wenn: bedingung(z.wenn, ort, nr) };
+        }),
         reaktion: text(bericht.reaktion),
       },
       vorgaenge,

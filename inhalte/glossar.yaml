@@ -54,8 +54,8 @@ aendern:
   g-betriebshandbuch:
     definition: >-
       Betriebslogik für den Regelbetrieb von MVG mit Rollen, Routinen, Taktung, Eskalation und Prüfmechanismen.
-      Im Standard gehören dazu die wöchentliche Prüfung aller offenen Vorgänge, ein monatlicher Termin von bis zu
-      60 Minuten und ein Monatsbericht von höchstens einer Seite.
+      Im Standard gehören dazu die Prüfung aller offenen Vorgänge, in aktiven Zeiten wöchentlich, ein monatlicher
+      Termin von bis zu 60 Minuten und ein Monatsbericht von höchstens einer Seite.
     belege: [k13-t1, v24:hb-4]
   # k13-E5 (HB 1, HB 3: die Projektsteuerung bereitet vor, der Bauherr entscheidet)
   g-freigabe:
@@ -75,8 +75,8 @@ neu:
     begriff: MCDA (Multikriterien-Entscheidungsanalyse)
     definition: >-
       Vergleich von Handlungsoptionen anhand derselben gewichteten Kriterien. Kriterien, Gewichte und Skalen werden
-      vor der Bewertung mit dem Bauherrn abgestimmt; Gewichte und Punkte reichen von 1 bis 5, und Gewicht mal Punkte
-      ergibt die Summe. Euro, Termine und offene Fragen bleiben neben den Punkten sichtbar. Eine Punktzahl ersetzt
+      vor der Bewertung mit dem Bauherrn abgestimmt; Gewichte und Punkte reichen von 1 bis 5. Gewicht mal Punkte je
+      Kriterium, die Produkte addiert, ergibt die Gesamtpunktzahl. Euro, Termine und offene Fragen bleiben neben den Punkten sichtbar. Eine Punktzahl ersetzt
       kein Urteil.
     belege: [v24:hb-3.1, v24:hb-3.2, v24:tlb-2.1]
   - id: g-vorgangsart
@@ -90,7 +90,7 @@ neu:
     begriff: Aufgabe
     definition: >-
       Geplante Arbeit mit vereinbartem Ergebnis, Verantwortlichem und Termin. Sie gilt erst als erledigt, wenn das
-      vereinbarte Ergebnis vorliegt.
+      vereinbarte Ergebnis vorliegt und verwendbar ist.
     belege: [v24:hb-1, v24:hb-1.1]
   - id: g-massnahme
     begriff: Maßnahme
@@ -108,7 +108,8 @@ neu:
     begriff: Problem
     definition: >-
       Ein nachteiliger Zustand, der bereits eingetreten ist. Für ihn wird keine Wahrscheinlichkeit mehr geschätzt;
-      es geht um Folgen, Lösung und den Nachweis, dass die Lösung umgesetzt ist.
+      es geht um Folgen, Lösung und den Nachweis, dass die Lösung umgesetzt und fachlich bestätigt ist – oder dass
+      die weitere Bearbeitung ausdrücklich übernommen wurde.
     belege: [v24:hb-1, v24:hb-1.4]
   - id: g-aenderung
     begriff: Änderung

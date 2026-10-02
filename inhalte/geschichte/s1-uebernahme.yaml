@@ -14,16 +14,16 @@ lph: 4
 kurzfassung: true
 belege: [v24:hb-1, v24:hb-3.1, v24:hb-4, v24:hb-projektblatt, v24:va-7.1, v24:tlb-2, k4.2-p3, k4.6-p2]
 lage: |
-  Ihr erster Tag. Die Vorgängerin ist weg, die Unterlagen liegen in drei Ablagen, die Kämmerei braucht bis Freitag den Haushaltsansatz 2027.
+  Ihr erster Tag. Die Vorgängerin ist weg, die Unterlagen liegen in drei Ablagen, die Kämmerei will bis Freitag den Haushaltsansatz 2027.
 
-  Jonas Brenner von der Projektsteuerung bringt das Projektblatt mit, das die GML vor seiner Beauftragung festgelegt hat – mit Bewertungsgrenzen und Entscheidungsschwellen. Auch die Skalen stehen vorab fest: Mehrkosten bis 20, 50, 150 oder 500 TEUR und Verzug bis 7, 14, 21 oder 28 Tage geben je 5, 4, 3 oder 2 Punkte, mehr gibt 1; Einsparungen zählen wie keine Mehrkosten. Offen sind nur die Gewichte.
+  Jonas Brenner von der Projektsteuerung bringt das Projektblatt mit, von der GML vor seiner Beauftragung festgelegt – mit Grenzen, Schwellen und Skalen: Mehrkosten bis 20, 50, 150 oder 500 TEUR und Verzug bis 7, 14, 21 oder 28 Tage geben 5, 4, 3 oder 2 Punkte, mehr gibt 1; Einsparungen zählen wie keine Mehrkosten. Offen sind nur die Gewichte.
 bericht:
   titel: Monatsbericht · Januar 2026 (Auftakt)
   zeilen:
-    - Alle Vorgänge stehen ab heute in der Software der GML – eine Ablage statt drei.
+    - Alle Vorgänge ab heute in der Software der GML – eine Ablage statt drei.
     - Erster abgestimmter Bestand bis 30. Januar.
     - Haushaltsansatz 2027 bis Freitag, aus der Kostenprognose 2026-01 · Version 1.
-    - Die Annahme zur Baupreissteigerung klärt das Controlling bis 20. Januar.
+    - Annahme zur Baupreissteigerung – das Controlling klärt bis 20. Januar.
   reaktion: Bitte legen Sie die Gewichte für künftige Vorlagen fest.
 vorgaenge:
   - art: aufgabe
@@ -51,26 +51,26 @@ vorlage:
   art: gewichte
   frage: Nach welchen Zielen werden künftige Vorlagen abgewogen?
   grund: |
-    Kriterien und Gewichte stimmt die Projektsteuerung mit dem Bauherrn ab, bevor sie eine Option bewertet. Grenzen, Schwellen und Skalen stehen schon im Projektblatt. Jede spätere Vorlage sagt, ob andere vertretbare Gewichte die Rangfolge ändern würden.
+    Kriterien und Gewichte stimmt die Projektsteuerung vor jeder Bewertung mit dem Bauherrn ab. Jede spätere Vorlage sagt, ob andere vertretbare Gewichte die Rangfolge ändern würden.
   stelle: GML – Sie als Bauherren-PL
   termin: 30. Januar 2026
   verzug: Ohne Festlegung begründet jede Vorlage ihre Gewichte selbst – und wird angreifbar.
   optionen:
     - id: A
       titel: Termin vor Kosten
-      text: Die Förderfrist zählt am meisten. Gewichte Kosten 3, Termin 5, Qualität und Funktion 3, Klima und Betrieb 2.
+      text: Die Förderfrist zählt am meisten.
       gewichte: { kosten: 3, termin: 5, qualitaet: 3, klima: 2 }
       folgen: {}
-      konsequenz: Der Termin wiegt am schwersten. Wer teurer, aber pünktlich ist, hat einen Vorteil – die Vorlagen zeigen es.
+      konsequenz: Der Termin wiegt am schwersten – wer teurer, aber pünktlich ist, hat einen Vorteil.
     - id: B
       titel: Kosten vor Termin
-      text: Die Zahl des Ratsbeschlusses zählt am meisten. Gewichte Kosten 5, Termin 3, Qualität und Funktion 3, Klima und Betrieb 2.
+      text: Die Zahl des Ratsbeschlusses zählt am meisten.
       gewichte: { kosten: 5, termin: 3, qualitaet: 3, klima: 2 }
       folgen: {}
       konsequenz: Die Kosten wiegen am schwersten. Optionen, die Geld sparen und Zeit kosten, rücken nach vorn – die Vorlagen zeigen, wann das die Förderfrist gefährdet.
     - id: C
       titel: Ausgewogen
-      text: Kosten und Termin gleich wichtig. Gewichte Kosten 4, Termin 4, Qualität und Funktion 3, Klima und Betrieb 3.
+      text: Kosten und Termin sind gleich wichtig.
       gewichte: { kosten: 4, termin: 4, qualitaet: 3, klima: 3 }
       folgen: {}
       konsequenz: Kosten und Termin wiegen gleich. Manche Vorlagen gehen dann anders aus als mit „Termin vor Kosten“ – umso wichtiger, dass die Projektsteuerung sagt, wann eine kleine Verschiebung die Rangfolge kippt.
@@ -78,7 +78,7 @@ vorlage:
     option: A
     text: Die Projektsteuerung empfiehlt „Termin vor Kosten“ – der Förderbescheid verlangt die Inbetriebnahme zum Schuljahr 2028/29. Nachteil – teurere Wege werden leichter akzeptiert; die Kosten bleiben mit Gewicht 3 im Spiel.
 folge: |
-  Die Projektsteuerung dokumentiert die festgelegten Gewichte in der Software. Mit den Grenzen und Schwellen des Projektblatts gelten sie für alle weiteren Vorlagen.
+  Die Projektsteuerung dokumentiert die Gewichte in der Software; mit dem Projektblatt gelten sie für alle weiteren Vorlagen.
 so-laeuft-es-oft: |
   Die Ziele stehen im Projekthandbuch, ohne Rangfolge. Erst wenn zwei kollidieren, wird verhandelt – und oft setzt sich die Sicht durch, die gerade am Tisch sitzt.
 einwand:

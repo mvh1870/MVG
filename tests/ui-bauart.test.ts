@@ -8,6 +8,7 @@
 //    Explore (fünf Werkzeuge), Leinwand-Anzeige (nicht bedienbar, ohne Notiz), Regie (Notiz, Kanal sendet nur Öffentliches).
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
+import { anzeigeFassung } from '../werkzeuge/anzeige-fassung.mjs';
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { dirname, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -319,6 +320,11 @@ test('Regie: Notiz und Leitfragen, Kundenwahl, „weiter“ sendet den öffentli
   (r.element.querySelector('[data-pruef="regie-protokoll-sichern"]') as HTMLElement).click();
   assert.match(r.element.querySelector('.regie-protokoll-liste')?.textContent ?? '', /Frage zur Reserve/u);
   assert.ok(!JSON.stringify(gesendet).includes('Frage zur Reserve'));
+  // R67: „Protokoll löschen“ leert die Liste und entfernt den gespeicherten Stand der Regie
+  assert.ok((sp.getItem('gk.regie') ?? '').includes('Frage zur Reserve'));
+  (r.element.querySelector('[data-pruef="regie-protokoll-loeschen"]') as HTMLElement).click();
+  assert.equal(sp.getItem('gk.regie'), null);
+  assert.doesNotMatch(r.element.querySelector('.regie-protokoll-liste')?.textContent ?? '', /Frage zur Reserve/u);
   // Theorie: Thema wählen, Notiz des Themas (falls vorhanden)
   const thema = r.element.querySelector<HTMLSelectElement>('[data-pruef="regie-thema"]');
   assert.ok(thema);
@@ -509,7 +515,8 @@ test('Wissenschecks (P11.6): je Lernseite 2–12 einer; Wahl zeigt Rückmeldung,
 
 test('Druck und Leinwand (R48): jede Tafel zeigt alle Zellen ihrer Tabelle – auch Formen mit Auswahl (aufgelöst)', () => {
   const norm = (t: string): string => t.replace(/[\u00ad\u200b]/gu, '').replace(/\s+/gu, ' ').trim();
-  const wp = JSON.parse(readFileSync(join(WURZEL, 'quellen/whitepaper/v1.2/whitepaper.json'), 'utf8')) as unknown;
+  // gegen die Anzeigefassung (L-66, L-208: Satzfehler der Quelle berichtigt)
+  const wp = anzeigeFassung(JSON.parse(readFileSync(join(WURZEL, 'quellen/whitepaper/v1.2/whitepaper.json'), 'utf8')) as unknown);
   const finde = (o: unknown, id: string): { zeilen: string[][] } | null => {
     if (o === null || typeof o !== 'object') return null;
     if ((o as { id?: string }).id === id && Array.isArray((o as { zeilen?: unknown }).zeilen)) return o as { zeilen: string[][] };

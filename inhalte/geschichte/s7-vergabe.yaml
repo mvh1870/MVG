@@ -9,6 +9,8 @@ kurzfassung: false
 # Rechnung (inhalte/fall.md, „Kosten und Reserve“): Mehrbetrag 0,9 Mio. € gegen den Kostenansatz Holzbau; 0,6 davon stehen
 # seit s5 in der Prognose (kenntlich in RIS-005, nicht doppelt gezählt, v24:hb-2) – die Lage bringt nur die neuen 0,3.
 # Freigabe der Reserve nicht delegierbar (k3.2-t1). Option C spart in noch nicht vergebenen Leistungen.
+# Bei s3 = A hat der Bauherr die 0,6 Mio. € für den Elementzuschlag schon im Juli 2026 freigegeben (Bericht s6); hier stehen nur
+# die neuen 0,3 zur Freigabe. Optionen und Empfehlung sind deshalb wegneutral gefasst („Mehrbetrag von zusammen 0,9 Mio. €“).
 # Holger Stein ist Kostenplaner der Generalplanung; die Projektsteuerung fordert den Kostenstand an und plausibilisiert ihn (v24:tlb-3, v24:tlb-5).
 belege: [v24:hb-1.3, v24:hb-1.4, v24:hb-1.6, v24:hb-2, v24:hb-3.1, v24:hb-5, v24:tlb-3, v24:tlb-5, k3.2-t1]
 lage: |
@@ -26,7 +28,7 @@ bericht:
   zeilen:
     - text: Submission Holzbau am 2. März – günstigstes wertbares Angebot 0,9 Mio. € über dem Kostenansatz, davon 0,6 Mio. € schon in der Prognose; geführt als Problem PRB-007.
       wenn: s3!=A
-    - text: Submission Montage und Ausbau Holzbau am 2. März – 0,3 Mio. € über dem Ansatz. Die Holzbauelemente sind seit Juli 2026 vergeben (MAS-007), im Rahmen der 0,6 Mio. € Marktpreise aus Version 3. Zusammen liegt der Holzbau 0,9 Mio. € über dem Kostenansatz; geführt als Problem PRB-007.
+    - text: Submission Montage und Ausbau Holzbau am 2. März – 0,3 Mio. € über dem Ansatz. Die Holzbauelemente sind seit Juli 2026 vergeben (MAS-007), mit 0,6 Mio. € aus der Reserve, die der Bauherr damals freigegeben hat. Zusammen liegt der Holzbau 0,9 Mio. € über dem Kostenansatz; geführt als Problem PRB-007. Zur Freigabe stehen die neuen 0,3 Mio. €.
       wenn: s3=A
     - text: RIS-009 eingetreten – weitergeführt als Problem PRB-008. Lieferzeit im Angebot 21 Wochen, Montagebeginn rund 35 Tage später; im Terminpuffer seit März 2026 berücksichtigt. Die im März 2026 vertagte Entscheidung ist damit erledigt.
       wenn: s3=B
@@ -36,13 +38,15 @@ bericht:
     - Holger Stein vertreten ab 8. März – der Kostenstand liegt in der Software der GML, keine Übergabelücke.
     - text: Brandschutz – die Behörde hat die geänderten Pläne bestätigt; PRB-002 geschlossen.
       wenn: s6=A
-    - text: Brandschutz – die Behörde hat die Lösung mit Gutachten abgelehnt; die Auflage ist umgesetzt wie vorläufig geplant (MAS-011), die 0,4 Mio. € standen schon in der Prognose; PRB-002 geschlossen, die vertagte Entscheidung erledigt.
+    - text: Brandschutz – die Behörde hat die Lösung mit Gutachten im August 2026 abgelehnt; die Auflage ist umgesetzt wie vorläufig geplant (MAS-011), die 0,4 Mio. € standen schon in der Prognose; PRB-002 geschlossen, die vertagte Entscheidung erledigt.
       wenn: s6=K
     - text: Risikoreserve – seit Mai 2026 für die bekannten Mehrkosten vorgesehen; freigegeben ist noch nichts.
-      wenn: s5=B
-    - text: Einsparpaket aus dem Mai 2026 umgesetzt – 1,5 Mio. € weniger für Ausstattung und Außenanlagen; die Reserve ist unberührt.
+      wenn: s5=B & s3!=A
+    - text: Risikoreserve – seit Mai 2026 für die bekannten Mehrkosten vorgesehen; freigegeben sind bisher die 0,6 Mio. € für den Elementzuschlag.
+      wenn: s5=B & s3=A
+    - text: Einsparpaket aus dem Mai 2026 umgesetzt – 1,5 Mio. € weniger für Ausstattung und Außenanlagen.
       wenn: s5=A
-    - text: Neufestlegung der Projektbasis – der Stadtrat hat sie zurückgestellt, bis die Hauptvergaben abgeschlossen sind; es gilt die bisherige Basis, die Reserve ist unberührt. Die Entscheidung bleibt offen.
+    - text: Neufestlegung der Projektbasis – der Bauherr hat sie im Lenkungskreis zurückgestellt, bis die Hauptvergaben abgeschlossen sind; es gilt die bisherige Basis. Die Entscheidung bleibt offen.
       wenn: s5=C
     - text: Mit dem neuen Mehrbetrag liegt die Prognose über Basis plus Reserve (61,3 Mio. €) – die Reserve reicht nicht mehr. Nötig wird eine Neufestlegung der Projektbasis; die Projektsteuerung bereitet die Vorlage für den Lenkungskreis vor.
       wenn: s4=A & s5=B
@@ -110,9 +114,9 @@ vorlage:
   optionen:
     - id: A
       titel: Reserve freigeben und beauftragen
-      text: 0,9 Mio. € aus der Risikoreserve; der Auftrag geht an das günstigste wertbare Angebot.
+      text: Die Reserve deckt den Mehrbetrag des Holzbaus von zusammen 0,9 Mio. €; der Auftrag geht an das günstigste wertbare Angebot.
       punkte:
-        kosten: [5, "keine Mehrkosten über die Prognose hinaus; 0,9 Mio. € aus der Reserve"]
+        kosten: [5, "keine Mehrkosten über die Prognose hinaus; der Mehrbetrag kommt aus der Reserve"]
         termin: [5, "kein Verzug"]
         qualitaet: [4, "wie geplant"]
         klima: [4, "Holzbau wie geplant"]
@@ -130,14 +134,14 @@ vorlage:
       konsequenz: Die Projektsteuerung bereitet die neue Ausschreibung mit der Generalplanung vor und führt das Terminrisiko neu im Register.
     - id: C
       titel: Beauftragen und an anderer Stelle sparen
-      text: Der Auftrag geht an das günstigste wertbare Angebot. Bodenbeläge und Einbaumöbel, noch nicht vergeben, werden einfacher ausgeführt – rund 0,5 Mio. €; aus der Reserve kommen nur 0,4 Mio. €.
+      text: Der Auftrag geht an das günstigste wertbare Angebot. Bodenbeläge und Einbaumöbel, noch nicht vergeben, werden einfacher ausgeführt – rund 0,5 Mio. €; aus der Reserve kommt nur, was die Einsparung nicht deckt.
       punkte:
         kosten: [5, "−0,5 Mio. € im Ausbau"]
         termin: [5, "rund 7 Tage Umplanung"]
         qualitaet: [3, "einfachere Ausstattung"]
         klima: [4, "Holzbau wie geplant"]
       folgen: { kosten: -0.5, puffer: -7 }
-      konsequenz: Der Auftrag geht raus. Die Projektsteuerung legt die Änderung im Ausbau an, verfolgt die Umplanung und dokumentiert die Freigabe von 0,4 Mio. € aus der Reserve.
+      konsequenz: Der Auftrag geht raus. Die Projektsteuerung legt die Änderung im Ausbau an, verfolgt die Umplanung und dokumentiert die Freigabe aus der Reserve.
   empfehlung:
     option: A
     text: Die Projektsteuerung empfiehlt, die Reserve freizugeben – dafür ist sie da. Nachteil – 0,9 Mio. € der Reserve sind danach gebunden, und bis zur Fertigstellung ist noch viel offen. Was über Basis plus Reserve (61,3 Mio. €) hinausgeht, deckt die Reserve nicht; dann braucht es eine Neufestlegung der Projektbasis. C liegt dicht dahinter, nur bei Qualität und Funktion zurück – die 0,5 Mio. € Einsparung bringen nach der Skala keinen Punkt, weil auch A keine Mehrkosten über die Prognose hinaus verursacht.
@@ -147,7 +151,7 @@ so-laeuft-es-oft: |
   Der Kostenplaner fällt aus, und mit ihm das Wissen: Welcher Stand ist der richtige? Die Reserve wird nebenbei verbraucht, ohne dass der Bauherr je ausdrücklich zugestimmt hat.
 einwand:
   frage: „Die Reserve ist doch dafür da – warum muss ich das freigeben?“
-  antwort: Genau deshalb. Die Reserve ist Geld des Bauherrn für Unvorhergesehenes. Wer sie ohne Freigabe verbraucht, nimmt Ihnen die Entscheidung, wofür sie da ist.
+  antwort: Genau deshalb. Die Reserve ist Geld des Bauherrn für Risiken und Abweichungen von der Basis. Wer sie ohne Freigabe verbraucht, nimmt Ihnen die Entscheidung, wofür sie da ist.
 theorie: verantwortung
 regie:
   notiz: Zwei Themen – Ausfall Holger Stein (kein Problem, weil der Kostenstand in der Software liegt) und die nicht delegierbare Reserve. Auf dem empfohlenen Weg steht die Prognose nach der Lage bei 61,1 Mio. € – 0,2 Mio. € unter Basis plus Reserve. Mit der großen Mensa und ohne Einsparpaket liegt sie darüber; der Bericht sagt dann, dass eine Neufestlegung der Projektbasis nötig wird.

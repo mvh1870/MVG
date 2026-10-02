@@ -104,7 +104,7 @@ function mcda(o: ExploreOptionen, w: Werkzeuge): HTMLElement {
       h('div', { class: 'gs-kipp', 'aria-live': 'polite' },
         h('h3', null, W.geschichte.kipppunkte),
         kipp.length === 0 ? h('p', null, W.geschichte.keinKipppunkt)
-          : h('ul', null, kipp.map((x) => h('li', null, W.geschichte.kipppunkt(g.kriterien.find((c) => c.id === x.kriterium)?.titel ?? x.kriterium, x.gewicht, x.spitze.map(titel).join(' / ')))))));
+          : h('ul', null, kipp.map((x) => h('li', null, W.geschichte.kipppunkt(g.kriterien.find((c) => c.id === x.kriterium)?.titel ?? x.kriterium, x.gewicht, x.spitze.map(titel)))))));
   };
 
   const wahl = o.bedienbar ? h('label', { class: 'ex-beispiel' }, h('span', { class: 't-label' }, E.beispiel),

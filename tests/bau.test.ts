@@ -272,6 +272,7 @@ describe('bau: Bausteine', () => {
 test('Webseitenordner (P16.13, O-42, O-43, O-47): Hauptseite, Impressum, Datenschutz, robots, sitemap, Vorschaubild', async () => {
   const dist = path.join(WURZEL, 'dist');
   const { BEIGABEN, ADRESSE } = await import('../werkzeuge/bau.mjs');
+  const { sichtbarVerboten } = await import('../werkzeuge/sichtbar.mjs');
   const dateien = (await readdir(dist)).sort();
   assert.deepEqual(dateien, ['index.html', ...BEIGABEN].sort(), 'genau die Dateien des Ordners – keine Kundenfassung, keine Reste');
   const index = await readFile(path.join(dist, 'index.html'), 'utf8');
@@ -294,6 +295,13 @@ test('Webseitenordner (P16.13, O-42, O-43, O-47): Hauptseite, Impressum, Datensc
     assert.ok(html.includes('href="./"'), `${name}: zurück zur Startseite`);
     // Nichts wird nachgeladen: keine externen Quellen außer Links
     assert.doesNotMatch(html.replace(/<a [^>]*>/gu, ''), /(?:src|href)="https?:/u, `${name}: externe Quelle`);
+    assert.doesNotMatch(html, /href="http:/u, `${name}: Links nur mit https`);
+    // Sichtbar verbotene Wörter (O-42) auch auf den Rechtsseiten (R67); Gegenprobe: ein „Datei“ wird gefunden
+    const text = html.replace(/<style[\s\S]*?<\/style>|<head[\s\S]*?<\/head>/gu, ' ').replace(/<[^>]+>/gu, ' ').replace(/&nbsp;/gu, ' ');
+    assert.deepEqual(sichtbarVerboten(text), [], `${name}: sichtbar verbotene Wörter`);
+    assert.ok(sichtbarVerboten(`${text} Datei`).length > 0, 'Gegenprobe');
+    // Jede im Impressum genannte Schrift ist eingebettet
+    for (const m of html.matchAll(/(IBM Plex Sans|IBM Plex Mono|Big Shoulders Display|Barlow Condensed|Caveat)/gu)) assert.ok(index.includes(`font-family: '${m[1]}'`) || index.includes(`font-family:'${m[1]}'`) || index.includes(`"${m[1]}"`), `${name}: Schrift ${m[1]} nicht eingebettet`);
   }
   const datenschutz = await readFile(path.join(dist, 'datenschutz.html'), 'utf8');
   for (const w of ['keine Cookies', 'IONOS', 'Fortschritt löschen', 'BayLDA', 'Local Storage']) assert.ok(datenschutz.includes(w), `Datenschutz nennt ${w}`);

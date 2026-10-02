@@ -30,7 +30,7 @@ matrix:
     - Eine wesentliche Funktion oder die vorgesehene Hauptnutzung fällt aus.
   beispiele:
     - { kennung: RIS-005, titel: Baupreissteigerung Holzbau, w: 3, a: 3 }
-    - { kennung: RIS-009, titel: Lieferzeit Holzbauelemente, w: 4, a: 4 }
+    - { kennung: RIS-009, titel: Holzbauelemente kommen zu spät (Auswirkung beim Termin), w: 4, a: 4 }
     - { kennung: RIS-014, titel: Nachtrag der Haustechnikplanung, w: 3, a: 3 }
     - { kennung: RIS-021, titel: Kampfmittelverdacht im Baufeld der Sporthalle, w: 1, a: 5 }
     - { kennung: RIS-022, titel: Verzögerte Möbellieferung Mensa, w: 2, a: 2 }
@@ -55,7 +55,7 @@ vorgaenge:
       wege: [risiko, problem, aufgabe]
     - id: risiko
       titel: Risiko
-      text: Ein mögliches nachteiliges Ereignis kann Projektziele beeinträchtigen. Bewerten, Gegenmaßnahmen verfolgen, verbleibende Unsicherheit sichtbar halten.
+      text: Ein mögliches nachteiliges Ereignis oder eine unsichere Größe kann Projektziele beeinträchtigen. Bewerten, Gegenmaßnahmen verfolgen, verbleibende Unsicherheit sichtbar halten.
       beispiel: RIS-009 – die Lieferzeit der Holzbauelemente gefährdet Montagebeginn und Inbetriebnahme.
       abschluss: Das Ereignis ist eingetreten (weiter als Problem), die Eintrittsmöglichkeit ist entfallen oder die Wirkung ist nachweisbar beseitigt.
       wege: [massnahme, problem, entscheidung]
@@ -63,14 +63,14 @@ vorgaenge:
       titel: Problem
       text: Ein nachteiliger Zustand ist bereits eingetreten. Folgen klären, Lösung organisieren, Ergebnis nachweisen – eine Wahrscheinlichkeit gibt es nicht mehr.
       beispiel: PRB-002 – Brandschutzauflagen zum Holzbau aus der Baugenehmigung.
-      abschluss: Die vereinbarte Lösung ist umgesetzt und fachlich bestätigt; offene Folgen bleiben sichtbar.
-      wege: [massnahme, aenderung, entscheidung]
+      abschluss: Die vereinbarte Lösung ist umgesetzt und fachlich bestätigt, oder die weitere Bearbeitung ist ausdrücklich übernommen; offene Folgen bleiben sichtbar.
+      wege: [massnahme, aenderung, risiko, entscheidung]
     - id: aenderung
       titel: Änderung
       text: Eine geltende Vorgabe soll bewusst angepasst werden. Ausgangsstand und Auswirkungen vergleichen; bis zur Freigabe gilt die bisherige Grundlage.
       beispiel: AEN-012 – die Schulleitung wünscht eine größere Mensa.
       abschluss: Der beschlossene neue Stand ist umgesetzt; abgelehnte Anträge bleiben mit Begründung nachvollziehbar.
-      wege: [entscheidung, massnahme]
+      wege: [entscheidung, massnahme, risiko, problem]
     - id: massnahme
       titel: Maßnahme
       text: Gezielte Handlung, um einen Zustand zu klären, zu verbessern oder einen Beschluss umzusetzen. Umgesetzt und wirksam sind nicht dasselbe.
@@ -79,13 +79,13 @@ vorgaenge:
       wege: [aufgabe, entscheidung]
   entscheidung:
     titel: Entscheidung vorbereiten
-    text: Mindestens zwei zulässige Optionen, gewichteter Vergleich, Empfehlung und Entscheidungstermin. Der Beschluss bleibt davon getrennt – er liegt beim Bauherrn.
+    text: Mindestens zwei zulässige Optionen, gewichteter Vergleich, Empfehlung und Entscheidungstermin. Der Beschluss bleibt davon getrennt – er liegt bei der befugten Stelle des Bauherrn.
 takt:
   titel: Takt
   kurz: Was jede Woche, jeden Monat und sofort geschieht.
   belege: [v24:hb-4]
   text: |
-    Der Takt gilt in aktiven Zeiten von Planung und Ausführung. Die regelmäßige Prüfung ersetzt keine dringliche Meldung.
+    In aktiven Zeiten von Planung und Ausführung gilt der Wochentakt; für ausdrücklich vereinbarte Ruhezeiten gilt ein eigener Rhythmus. Die regelmäßige Prüfung ersetzt keine dringliche Meldung.
   stufen:
     - id: sofort
       titel: Sofort
@@ -95,12 +95,12 @@ takt:
     - id: woche
       titel: Jede Woche
       wer: Projektsteuerung
-      text: Alle offenen Vorgänge kurz prüfen – neue Informationen, fehlende Rückmeldungen, überfällige Ergebnisse, Wirkung von Maßnahmen, ausstehende Freigaben. Nur Verändertes wird vertieft; ein Prüfvermerk mit Datum dokumentiert den Durchgang.
+      text: Alle offenen Vorgänge kurz prüfen – neue Informationen, fehlende Rückmeldungen, überfällige Ergebnisse, Wirkung von Maßnahmen, ausstehende Freigaben. Vertieft wird, was sich verändert hat oder besonders klärungsbedürftig ist; ein Prüfvermerk mit Datum dokumentiert den Durchgang.
       beispiel: Montag – 46 offene Vorgänge durchgesehen, drei verändert, eine Frühwarnung neu.
     - id: monat
       titel: Jeden Monat
       wer: Bauherr und Projektsteuerung
-      text: Ein Online-Termin von höchstens 60 Minuten und eine Zusammenfassung von höchstens einer Seite – wesentliche Veränderungen, blockierte Aufgaben, kritische Maßnahmen, ungeklärte Frühwarnungen, offene Entscheidungen und die benötigte Reaktion.
+      text: Ein Online-Termin von höchstens 60 Minuten und eine Zusammenfassung von höchstens einer Seite – wesentliche Veränderungen, blockierte Aufgaben, kritische Maßnahmen, ungeklärte Frühwarnungen, wesentliche Probleme und Änderungen, offene Entscheidungen und die benötigte Reaktion.
       beispiel: Monatstermin der GML – zwei Vorlagen zur Entscheidung, der Bericht verweist auf die Einträge in der Software.
     - id: ruhe
       titel: In Ruhezeiten

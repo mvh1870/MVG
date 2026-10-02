@@ -191,6 +191,28 @@ export async function leitstandSchmal(seite, h, name) {
   await seite.setViewportSize(vp); await h.warte(100);
 }
 
+/**
+ * R64 (Stil, L-178): der Rollentitel in der Rollen-Linse („Geschäftsführ|ung“) brach bei 990–1190 px ohne Trennstrich – die
+ * Seitenleiste ist im Lauf meist zu, keine Probe sah den Chip. Öffnet die Leiste, misst bei 1000, 1100 und 1180 px, schließt sie.
+ * @param {import('playwright').Page} seite
+ * @param {import('../../werkzeuge/oberflaeche.mjs').Helfer} h
+ * @param {string} name
+ */
+export async function rollenChipSchmal(seite, h, name) {
+  const vp = seite.viewportSize();
+  if (vp === null || vp.width < 1280) return;
+  const zu = await seite.locator('.rollen-chip').filter({ visible: true }).count() === 0;
+  if (zu) { await h.klick('[data-pruef="seitenleiste-raum"]'); await h.warte(300); }
+  if (await seite.locator('.rollen-chip b').filter({ visible: true }).count() === 0) h.befund(`${name}: Rollen-Linse ohne Rollentitel`);
+  for (const breite of [1000, 1100, 1180]) {
+    await seite.setViewportSize({ width: breite, height: vp.height }); await h.warte(150);
+    const bruch = await wortbrueche(seite, '.rollen-chip b', { bildschirm: true });
+    if (bruch.length > 0) h.befund(`${name} @${breite}: Rollentitel ohne Trennstrich gebrochen ${JSON.stringify(bruch)}`);
+  }
+  await seite.setViewportSize(vp); await h.warte(100);
+  if (zu) { await h.klick('[data-pruef="seitenleiste-zu"]'); await h.warte(200); }
+}
+
 /** R47: Bauteile, deren Wörter am Bildschirm nie mitten im Wort brechen dürfen */
 // R48: dazu der Kopf der Zeitmaschinen-Tabelle („MO|NAT“, „KOSTENUN|SICHERHEI|T“) und der Beamer-Status („SEHR HOC“)
 // R50: dazu der Dateiname im Mail-Anhang und Kennungen in der Hilfe

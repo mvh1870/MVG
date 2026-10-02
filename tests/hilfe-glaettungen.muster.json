@@ -1,0 +1,274 @@
+[
+ [
+  "&amp;amp;",
+  "&amp;"
+ ],
+ [
+  "berichtet ins <b>Managementbericht<\\/b>",
+  "berichtet in den <b>Managementbericht</b>"
+ ],
+ [
+  "werden am <span>Freigabe<\\/span> beschlossen",
+  "werden an der <span>Freigabe</span> beschlossen"
+ ],
+ [
+  "werden an der <span>Freigabe<\\/span> beschlossen \\(Freigeben \\/ Nicht freigeben \\/ Freigabe mit Auflagen\\)",
+  "werden nach Mandat beschlossen (Bauherren-PL, Änderungsgremium oder Beschlussfassung durch den Bauherrn im Lenkungskreis); betrifft eine Entscheidung eine <span>Freigabe</span>, entscheidet der Bauherr dort über Freigeben / Nicht freigeben / Freigabe mit Auflagen"
+ ],
+ [
+  "ausgearbeitet zur Entscheidungsvorlage und an der Freigabe beschlossen",
+  "ausgearbeitet zur Entscheidungsvorlage und nach Mandat beschlossen"
+ ],
+ [
+  "ausgearbeitet und an der <b>Freigabe<\\/b> beschlossen wird",
+  "ausgearbeitet und nach Mandat beschlossen wird (die <b>Freigabe</b> erteilt der Bauherr)"
+ ],
+ [
+  "mit <span>Entscheidungsvorlage<\\/span>-Vorlagen",
+  "mit Vorlagen für <span>Entscheidungsvorlagen</span>"
+ ],
+ [
+  "<li>Das Inhaltsverzeichnis ist klickbar<\\/li>",
+  ""
+ ],
+ [
+  "<b>Kein Lizenzmodell<\\/b>, keine",
+  "<b>Keine</b>"
+ ],
+ [
+  "(<td>Nachweise\\/(?:<wbr>)?Abnahmen<\\/td><td>Externe<\\/td><td>)Bauherren-PL(<\\/td>)",
+  "$1Bauherren-PL; Pflege durch das PMO$2"
+ ],
+ [
+  "<li><b>Approval-Workflow<\\/b> mit 6 signierten Stufen",
+  "<li><b>Freigabeprozess</b> mit 6 signierten Stufen"
+ ],
+ [
+  "MVG ist ein eigenständiger, schlanker Governance-Ansatz\\. Er <b>orientiert<\\/b> sich konzeptionell an etablierten Methoden",
+  "Die Konventionen der Anwendung <b>orientieren</b> sich an etablierten Methoden"
+ ],
+ [
+  "werden zu <span>Aktionen<\\/span> mit Frist",
+  "werden zu <span>Maßnahmen</span> mit Frist"
+ ],
+ [
+  "Überfällige <span>Aktionen<\\/span> &amp; neue <span>Problemregister<\\/span>",
+  "Überfällige <span>Maßnahmen</span> &amp; neue <span>Probleme</span>"
+ ],
+ [
+  "hat eine <b>Verantwortliche Rolle<\\/b>",
+  "hat eine <b>verantwortliche Rolle</b>"
+ ],
+ [
+  "\\s*Für Beratungskunden (?:<b>)?kostenfrei(?:<\\/b>)?: kein separates Lizenzentgelt, unbegrenzte Nutzungsrechte auch nach Mandatsende\\.",
+  ""
+ ],
+ [
+  "(LPH (\\d)\\b(?:[^()<]|<[^>]*>){0,80}?)\\s*\\(LPH \\2\\)",
+  "$1"
+ ],
+ [
+  "\\bLPH (\\d)-(?=[A-ZÄÖÜ])",
+  "LPH-$1-"
+ ],
+ [
+  "<b>Accountable:<\\/b> wer trägt die Letztverantwortung",
+  "<b>Letztverantwortlich (A):</b> wer trägt die Letztverantwortung"
+ ],
+ [
+  "<tr><td><b>Quartalsweise \\/ je Freigabe<\\/b><\\/td>",
+  "<tr><td><b>Monatlich, zzgl. Sondersitzungen</b></td><td>Bauherren-PL, Änderungsgremium</td><td>Änderungen bewerten und nach Mandat entscheiden</td></tr><tr><td><b>Je Freigabe</b></td>"
+ ],
+ [
+  "(<tr><td><b>Wöchentlich<\\/b><\\/td><td>Bauherren-PL, Projektsteuerung, verantwortliche Rolle<\\/td><td>)<span>Risiken<\\/span> \\/ ",
+  "$1Risikosichtung, "
+ ],
+ [
+  "(<tr><td><b>Monatlich, zzgl\\. Sondersitzungen<\\/b>)",
+  "<tr><td><b>Monatlich</b></td><td>Projektsteuerung</td><td>Formale Risikoprüfung und Bericht → <span>Managementbericht</span></td></tr>$1"
+ ],
+ [
+  "<li>approveDecision\\/(?:<wbr>)?approveGate\\/(?:<wbr>)?approveChange – Freigaben<\\/li>",
+  "<li><code>approveDecision</code>/<wbr><code>approveGate</code>/<wbr><code>approveChange</code> – Entscheidungen, Freigaben und Änderungen bestätigen (nach Mandat)</li>"
+ ],
+ [
+  "<div><div>(\\d)<\\/div><div><h3>",
+  "<div class=\"h-schritt\"><div class=\"h-schritt-nr\">$1</div><div><h3>"
+ ],
+ [
+  "<b>Projektleitung:<\\/b> steuert operativ, moderiert den Jour fixe, hält Risiken\\/(?:<wbr>)?Entscheidungen\\/(?:<wbr>)?Changes aktuell und bereitet",
+  "<b>Bauherren-PL:</b> steuert operativ, moderiert den Jour fixe, hält Entscheidungen und Changes aktuell, steuert die Risikobehandlung (Risikoregister: Projektsteuerung) und bereitet"
+ ],
+ [
+  "<b>Residual:<\\/b> verbleibendes Risiko",
+  "<b>Restrisiko:</b> verbleibendes Risiko"
+ ],
+ [
+  "einen protokollierten Override",
+  "eine protokollierte Ausnahme"
+ ],
+ [
+  "oder protokollierten Override;",
+  "oder eine protokollierte Ausnahme;"
+ ],
+ [
+  "<li>Inline-Edit für ",
+  "<li>Direktbearbeitung für "
+ ],
+ [
+  "Benachrichtigung \\(Toast\\)",
+  "Benachrichtigung (Kurzmeldung)"
+ ],
+ [
+  "ein altes, niedrig-prioritäres Item",
+  "ein alter, niedrig priorisierter Eintrag"
+ ],
+ [
+  "<li>Seed-Risiken \\(wenn definiert\\)",
+  "<li>Vorbelegte Risiken (wenn definiert)"
+ ],
+ [
+  "Auflagen-Tracker:",
+  "Auflagen-Übersicht:"
+ ],
+ [
+  "Lösung\\/(?:<wbr>)?Workaround",
+  "Lösung/<wbr>Behelfslösung"
+ ],
+ [
+  "ein tragfähiger Workaround\\.",
+  "eine tragfähige Behelfslösung."
+ ],
+ [
+  "Workaround Zusatzpumpe",
+  "Behelfslösung Zusatzpumpe"
+ ],
+ [
+  ">Forecast-Update<",
+  ">Prognose-Aktualisierung<"
+ ],
+ [
+  "<td>PMO · wöchentlich<\\/td>",
+  "<td>PMO · wöchentlich bis monatlich</td>"
+ ],
+ [
+  "(\\d) (?=(?:TEUR|EUR|€|Mio\\.|Wochen|Tage|Monate)(?![\\p{L}]))",
+  "$1 "
+ ],
+ [
+  "Mio\\. €",
+  "Mio. €"
+ ],
+ [
+  "<li>Hat Frist und Eskalationsdatum – Risiko hat keine Frist<\\/li>",
+  "<li>Hat Frist und Eskalationsdatum</li>"
+ ],
+ [
+  "Checkliste mit Pflicht-Items",
+  "Checkliste mit Pflichtpunkten"
+ ],
+ [
+  "gebundene Kosten und aktualisierter Restkostenprognose",
+  "gebundenen Kosten und aktualisierter Restkostenprognose"
+ ],
+ [
+  "und Optionen-Punktwerte \\(1-5\\)",
+  "und Optionen-Punktwerten (1-5)"
+ ],
+ [
+  "„\\+3 Risiken seit letztem Stand\\)",
+  "„+3 Risiken seit letztem Stand“)"
+ ],
+ [
+  "<td><b>Bauherren-Führungsmodell<\\/b><\\/td><td>[^<]*Risiko\\/(?:<wbr>)?Change\\/(?:<wbr>)?Maßnahme, CTC\\/(?:<wbr>)?KPI, [^<]*<\\/td>",
+  "<td><b>Bauherren-Führungsmodell</b></td><td>Das Zusammenspiel aus Zielsystem, Rollen und Mandaten, Freigaben, Entscheidungs-IDs, Datenstands- und Nachweislogik, Risiko-/Änderungs-/Maßnahmenverknüpfung, Restkostenprognose (CTC), Leistungskennzahlen (KPI), Eskalation, Betriebshandbuch und Befähigung zu einer durchgängigen Steuerungsarchitektur – das Führungsmodell, mit dem ein Bauherr ein komplexes Vorhaben steuerbar hält.</td>"
+ ],
+ [
+  "<td><b>Nachweiskette<\\/b><\\/td><td>Chronologische, fortlaufende Historie aller Änderungen mit Zeitstempel und Rolle\\.<\\/td>",
+  "<td><b>Nachweiskette</b></td><td>Nachvollziehbare Kette von Entscheidungsgrundlagen, Annahmen, Freigaben, Beschlüssen und Nachverfolgung (in der Anwendung zusätzlich die fortlaufende Historie aller Änderungen mit Zeitstempel und Rolle).</td>"
+ ],
+ [
+  "Stolperstein: Risiken ohne Eigentümer\\/(?:<wbr>)?Frist verpuffen - jedes Top-Risiko braucht beides\\.",
+  "Stolperstein: Risiken ohne verantwortliche Rolle und Frist verpuffen – jedes Top-Risiko braucht beides."
+ ],
+ [
+  "Bei Trend-Drift: Eskalation an Projektleitung",
+  "Bei Trend-Drift: Eskalation an die Bauherren-PL"
+ ],
+ [
+  "<b>Hoch:<\\/b> innerhalb 7[ \\u00a0]Tage handeln",
+  "<b>Hoch:</b> innerhalb von 7 Tagen handeln"
+ ],
+ [
+  "<b>Mittel:<\\/b> innerhalb 30[ \\u00a0]Tage<",
+  "<b>Mittel:</b> innerhalb von 30 Tagen<"
+ ],
+ [
+  " · Freigabebeschluss \\(Freigeben\\/",
+  " · Freigabeentscheidung des Bauherrn (Freigeben/"
+ ],
+ [
+  "<b>PMO:<\\/b> hütet Methodik und Datenqualität, pflegt Kalender\\/(?:<wbr>)?Managementberichte, hält überfällige Punkte nach\\.",
+  "<b>PMO:</b> hütet Methodik und Datenqualität, pflegt Maßnahmen- und Problemregister, Governance-Kalender und Protokolle, wirkt am Managementbericht mit und hält überfällige Punkte nach."
+ ],
+ [
+  "verantwortliche Rolle und PL entscheiden",
+  "verantwortliche Rolle und Bauherren-PL entscheiden"
+ ],
+ [
+  "eskaliert es an die PL\\.",
+  "eskaliert es an die Bauherren-PL."
+ ],
+ [
+  "<td>PL\\/(<wbr>)?(verantwortliche Rolle|PMO) ·",
+  "<td>Bauherren-PL/$1$2 ·"
+ ],
+ [
+  "<td>PL<\\/td>",
+  "<td>Bauherren-PL</td>"
+ ],
+ [
+  "Risiken materialisieren sich, ohne dass der Lenkungskreis es weiß\\.",
+  "Risiken materialisieren sich, ohne dass die nächste Stufe der Mandatsleiter davon erfährt."
+ ],
+ [
+  "Optionen ohne ehrliche Nachteile - der Lenkungskreis braucht die ganze Wahrheit\\.",
+  "Optionen ohne ehrliche Nachteile – wer nach Mandat entscheidet, braucht die ganze Wahrheit."
+ ],
+ [
+  "kein Vorfall-Register — der <b>Beschluss-Meilenstein<\\/b>",
+  "kein Vorfall-Register — die <b>Entscheidung des Bauherrn</b> am Abschluss der Leistungsphase"
+ ],
+ [
+  "ausgearbeitete Akte zu <b>einer<\\/b> wesentlichen Entscheidung",
+  "ausgearbeitete Nachweislogik zu <b>einer</b> wesentlichen Entscheidung"
+ ],
+ [
+  "Pflichtfelder fehlen:<\\/b> Title, verantwortliche Rolle, dueDate etc\\.",
+  "Pflichtfelder fehlen:</b> Titel, verantwortliche Rolle, Fälligkeit usw."
+ ],
+ [
+  "<li><b>FTC – Forecast to Complete:<\\/b> verbleibende Restkosten",
+  "<li><b>CTC – Restkostenprognose:</b> verbleibende Restkosten"
+ ],
+ [
+  "<li><b>EAC – Estimate at Completion:<\\/b> Ist-Kosten \\+ FTC<",
+  "<li><b>EAC – Estimate at Completion:</b> Ist-Kosten + CTC<"
+ ],
+ [
+  "<li>(createXxx|deleteXxx|editXxx|clearAudit) – ",
+  "<li><code>$1</code> – "
+ ],
+ [
+  "<li>importJson \\/ exportJson – ",
+  "<li><code>importJson</code> / <code>exportJson</code> – "
+ ],
+ [
+  "Neufestlegung der Projektbasis \\/ Fortführen\\/(?:<wbr>)?Stoppen als Sonderformat außerhalb der Freigabereihe beschließen",
+  "Neufestlegung der Projektbasis als Sonderformat außerhalb der Freigabereihe sowie Fortführung oder Stopp als wesentliche Entscheidung beschließen"
+ ],
+ [
+  "(aria-label=\"Tabelle: Glossar A-Z\"><table>\\s*<thead>[\\s\\S]*?<\\/thead>\\s*<tbody>)([\\s\\S]*?)(<\\/tbody>)",
+  "(_, vor, zeilen, nach) => {\n    const liste = zeilen.match(/<tr>[\\s\\S]*?<\\/tr>/gu) ?? [];\n    const wort = (/** @type {string} */ z) => (z.match(/<td>(?:<b>)?([^<]*)/u)?.[1] ?? '').trim();\n    const ordnung = new Intl.Collator('de');\n    return vor + [...liste].sort((x, y) => ordnung.compare(wort(x), wort(y))).join('') + nach;\n  }"
+ ]
+]

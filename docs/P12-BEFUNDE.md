@@ -255,3 +255,4 @@ Nicht sauber – als Nächstes Runde 63.
 - Theorie, Story, Abbildungen, Hilfe, Druck, Architektur, Stil: 4 mittel (zwei gleich), 13 leicht – L-177; dazu ein vorbestehender Fehler (RACI unter 400 px in Buchstabensäulen) selbst gefunden.
 Nicht sauber – als Nächstes Runde 64.
 - **Runde 63b auf 808f372** (zweiter Block, parallel): 3 mittel, 14 leicht; Überschneidungen mit L-177 entfallen, Rest L-178; offen für R64: glaette-Gegenstücke (Architektur), Rollen-Linse bei 1024 px (Stil).
+- **Rest R63b (2026-10-02):** glaette-Gegenstücke (Glättungen eingefroren) und Rollen-Linse bei 990–1190 px erledigt – L-179. Als Nächstes Runde 64.

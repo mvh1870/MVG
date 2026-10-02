@@ -807,112 +807,118 @@ function letzteUeberschrift(/** @type {Element} */ el) {
   return text;
 }
 
-/** Nach den Ersetzungen: doppelte Angaben „LPH 7: Vergabe (LPH 7)“, Kopplung „LPH-0-Vorlage“ */
+/** Nach den Ersetzungen (auf dem HTML): doppelte Angaben „LPH 7: Vergabe (LPH 7)“, Kopplung „LPH-0-Vorlage“, fachliche Glättungen.
+ * R64: als Liste exportiert und wie ERSETZUNGEN eingefroren (tests/hilfe-glaettungen.muster.json) – keine Regel fällt still weg */
+export const GLAETTUNGEN = /** @type {[RegExp, string | ((...teile: string[]) => string)][]} */ ([
+  [/&amp;amp;/gu, '&amp;'],
+  [/berichtet ins <b>Managementbericht<\/b>/gu, 'berichtet in den <b>Managementbericht</b>'],
+  [/werden am <span>Freigabe<\/span> beschlossen/gu, 'werden an der <span>Freigabe</span> beschlossen'],
+  // R51: nach Mandat beschlossen; an einer Freigabe entscheidet der Bauherr (k4.2-p3, k6.4.5-p1, k9.3-p3)
+  [/werden an der <span>Freigabe<\/span> beschlossen \(Freigeben \/ Nicht freigeben \/ Freigabe mit Auflagen\)/gu, 'werden nach Mandat beschlossen (Bauherren-PL, Änderungsgremium oder Beschlussfassung durch den Bauherrn im Lenkungskreis); betrifft eine Entscheidung eine <span>Freigabe</span>, entscheidet der Bauherr dort über Freigeben / Nicht freigeben / Freigabe mit Auflagen'],
+  // (auch in der Beschreibung der Grafik – <desc> geht nicht durch ersetze)
+  [/ausgearbeitet zur Entscheidungsvorlage und an der Freigabe beschlossen/gu, 'ausgearbeitet zur Entscheidungsvorlage und nach Mandat beschlossen'],
+  [/ausgearbeitet und an der <b>Freigabe<\/b> beschlossen wird/gu, 'ausgearbeitet und nach Mandat beschlossen wird (die <b>Freigabe</b> erteilt der Bauherr)'],
+  [/mit <span>Entscheidungsvorlage<\/span>-Vorlagen/gu, 'mit Vorlagen für <span>Entscheidungsvorlagen</span>'],
+  // das Inhaltsverzeichnis ist hier eine Liste ohne Verweise
+  [/<li>Das Inhaltsverzeichnis ist klickbar<\/li>/gu, ''],
+  [/<b>Kein Lizenzmodell<\/b>, keine/gu, '<b>Keine</b>'],
+  // R52: Nachweise nimmt die Bauherren-PL entgegen, gepflegt werden sie vom PMO mit den Fachrollen (k6.4.2-t1)
+  [/(<td>Nachweise\/(?:<wbr>)?Abnahmen<\/td><td>Externe<\/td><td>)Bauherren-PL(<\/td>)/gu, '$1Bauherren-PL; Pflege durch das PMO$2'],
+  // R54: im Fließtext der Freigabeprozess (das Glossar-Stichwort „Approval-Workflow“ bleibt)
+  [/<li><b>Approval-Workflow<\/b> mit 6 signierten Stufen/gu, '<li><b>Freigabeprozess</b> mit 6 signierten Stufen'],
+  // R50: nicht MVG orientiert sich an Frameworks, sondern die Konventionen der Anwendung (O-17)
+  [/MVG ist ein eigenständiger, schlanker Governance-Ansatz\. Er <b>orientiert<\/b> sich konzeptionell an etablierten Methoden/gu, 'Die Konventionen der Anwendung <b>orientieren</b> sich an etablierten Methoden'],
+  // R49: Beschlüsse werden als Maßnahmen nachverfolgt (k6.4.3-p2), Probleme im Problemregister
+  [/werden zu <span>Aktionen<\/span> mit Frist/gu, 'werden zu <span>Maßnahmen</span> mit Frist'],
+  [/Überfällige <span>Aktionen<\/span> &amp; neue <span>Problemregister<\/span>/gu, 'Überfällige <span>Maßnahmen</span> &amp; neue <span>Probleme</span>'],
+  [/hat eine <b>Verantwortliche Rolle<\/b>/gu, 'hat eine <b>verantwortliche Rolle</b>'],
+  // O-1: Angebotsaussage über BM (im Quelltext mit Hervorhebung, daher auf dem HTML)
+  [/\s*Für Beratungskunden (?:<b>)?kostenfrei(?:<\/b>)?: kein separates Lizenzentgelt, unbegrenzte Nutzungsrechte auch nach Mandatsende\./gu, ''],
+  [/(LPH (\d)\b(?:[^()<]|<[^>]*>){0,80}?)\s*\(LPH \2\)/gu, '$1'],
+  [/\bLPH (\d)-(?=[A-ZÄÖÜ])/gu, 'LPH-$1-'],
+  // R55: Feldname im Entscheidungsregister wie die übrigen Stellen der Hilfe (letztverantwortliche Rolle, k4.2-p1)
+  [/<b>Accountable:<\/b> wer trägt die Letztverantwortung/gu, '<b>Letztverantwortlich (A):</b> wer trägt die Letztverantwortung'],
+  // R55: Rhythmus nach k6.4.5-t1 – Freigaben je Freigabe, Änderungsgremium monatlich und anlassbezogen
+  [/<tr><td><b>Quartalsweise \/ je Freigabe<\/b><\/td>/gu, '<tr><td><b>Monatlich, zzgl. Sondersitzungen</b></td><td>Bauherren-PL, Änderungsgremium</td><td>Änderungen bewerten und nach Mandat entscheiden</td></tr><tr><td><b>Je Freigabe</b></td>'],
+  // R56: Rhythmus vollständig nach k6.4.5-t1 – wöchentliche Risikosichtung, monatliche formale Risikoprüfung der Projektsteuerung
+  [/(<tr><td><b>Wöchentlich<\/b><\/td><td>Bauherren-PL, Projektsteuerung, verantwortliche Rolle<\/td><td>)<span>Risiken<\/span> \/ /gu, '$1Risikosichtung, '],
+  [/(<tr><td><b>Monatlich, zzgl\. Sondersitzungen<\/b>)/gu, '<tr><td><b>Monatlich</b></td><td>Projektsteuerung</td><td>Formale Risikoprüfung und Bericht → <span>Managementbericht</span></td></tr>$1'],
+  // R56: Rechte-Kennungen als Feldnamen (L-69); Entscheidungen und Änderungen sind keine Freigaben
+  [/<li>approveDecision\/(?:<wbr>)?approveGate\/(?:<wbr>)?approveChange – Freigaben<\/li>/gu, '<li><code>approveDecision</code>/<wbr><code>approveGate</code>/<wbr><code>approveChange</code> – Entscheidungen, Freigaben und Änderungen bestätigen (nach Mandat)</li>'],
+  // R59: Schritte „Nummer + Überschrift“ mit Klassen, damit der Druck die Nummer beim Schritt hält
+  [/<div><div>(\d)<\/div><div><h3>/gu, '<div class="h-schritt"><div class="h-schritt-nr">$1</div><div><h3>'],
+  // R60: Registerpflege nach MVG Kap. 6.4.2 – die Bauherren-PL steuert, Risikoregister pflegt die Projektsteuerung
+  [/<b>Projektleitung:<\/b> steuert operativ, moderiert den Jour fixe, hält Risiken\/(?:<wbr>)?Entscheidungen\/(?:<wbr>)?Changes aktuell und bereitet/gu, '<b>Bauherren-PL:</b> steuert operativ, moderiert den Jour fixe, hält Entscheidungen und Changes aktuell, steuert die Risikobehandlung (Risikoregister: Projektsteuerung) und bereitet'],
+  // R60: deutsche Wörter im Fließtext (L-69), Kennungen in code bleiben
+  [/<b>Residual:<\/b> verbleibendes Risiko/gu, '<b>Restrisiko:</b> verbleibendes Risiko'],
+  [/einen protokollierten Override/gu, 'eine protokollierte Ausnahme'],
+  [/oder protokollierten Override;/gu, 'oder eine protokollierte Ausnahme;'],
+  [/<li>Inline-Edit für /gu, '<li>Direktbearbeitung für '],
+  [/Benachrichtigung \(Toast\)/gu, 'Benachrichtigung (Kurzmeldung)'],
+  [/ein altes, niedrig-prioritäres Item/gu, 'ein alter, niedrig priorisierter Eintrag'],
+  [/<li>Seed-Risiken \(wenn definiert\)/gu, '<li>Vorbelegte Risiken (wenn definiert)'],
+  [/Auflagen-Tracker:/gu, 'Auflagen-Übersicht:'],
+  [/Lösung\/(?:<wbr>)?Workaround/gu, 'Lösung/<wbr>Behelfslösung'],
+  [/ein tragfähiger Workaround\./gu, 'eine tragfähige Behelfslösung.'],
+  [/Workaround Zusatzpumpe/gu, 'Behelfslösung Zusatzpumpe'],
+  [/>Forecast-Update</gu, '>Prognose-Aktualisierung<'],
+  // R60: der Governance-Kalender wird laufend geführt, gepflegt monatlich (Register-Pflege derselben Seite)
+  [/<td>PMO · wöchentlich<\/td>/gu, '<td>PMO · wöchentlich bis monatlich</td>'],
+  // R60: Zahl und Einheit nicht am Zeilenende trennen (außerhalb von Tags)
+  [/(\d) (?=(?:TEUR|EUR|€|Mio\.|Wochen|Tage|Monate)(?![\p{L}]))/gu, '$1\u00a0'],
+  [/Mio\. €/gu, 'Mio.\u00a0€'],
+  // R61: Ein Risiko trägt nach MVG eine Frist (k4.4) – der Gegensatz zur Frühwarnung entfällt
+  [/<li>Hat Frist und Eskalationsdatum – Risiko hat keine Frist<\/li>/gu, '<li>Hat Frist und Eskalationsdatum</li>'],
+  [/Checkliste mit Pflicht-Items/gu, 'Checkliste mit Pflichtpunkten'],
+  [/gebundene Kosten und aktualisierter Restkostenprognose/gu, 'gebundenen Kosten und aktualisierter Restkostenprognose'],
+  [/und Optionen-Punktwerte \(1-5\)/gu, 'und Optionen-Punktwerten (1-5)'],
+  [/„\+3 Risiken seit letztem Stand\)/gu, '„+3 Risiken seit letztem Stand“)'],
+  // R59: Glossar „Bauherren-Führungsmodell“ und „Nachweiskette“ im Wortlaut von k13-t1
+  [/<td><b>Bauherren-Führungsmodell<\/b><\/td><td>[^<]*Risiko\/(?:<wbr>)?Change\/(?:<wbr>)?Maßnahme, CTC\/(?:<wbr>)?KPI, [^<]*<\/td>/gu, '<td><b>Bauherren-Führungsmodell</b></td><td>Das Zusammenspiel aus Zielsystem, Rollen und Mandaten, Freigaben, Entscheidungs-IDs, Datenstands- und Nachweislogik, Risiko-/Änderungs-/Maßnahmenverknüpfung, Restkostenprognose (CTC), Leistungskennzahlen (KPI), Eskalation, Betriebshandbuch und Befähigung zu einer durchgängigen Steuerungsarchitektur – das Führungsmodell, mit dem ein Bauherr ein komplexes Vorhaben steuerbar hält.</td>'],
+  [/<td><b>Nachweiskette<\/b><\/td><td>Chronologische, fortlaufende Historie aller Änderungen mit Zeitstempel und Rolle\.<\/td>/gu, '<td><b>Nachweiskette</b></td><td>Nachvollziehbare Kette von Entscheidungsgrundlagen, Annahmen, Freigaben, Beschlüssen und Nachverfolgung (in der Anwendung zusätzlich die fortlaufende Historie aller Änderungen mit Zeitstempel und Rolle).</td>'],
+  // R59/R62: ein Risiko trägt eine verantwortliche Rolle und eine Frist (k4.4-p2)
+  [/Stolperstein: Risiken ohne Eigentümer\/(?:<wbr>)?Frist verpuffen - jedes Top-Risiko braucht beides\./gu, 'Stolperstein: Risiken ohne verantwortliche Rolle und Frist verpuffen – jedes Top-Risiko braucht beides.'],
+  // R62: welche Projektleitung gemeint ist – die Bauherren-PL (k4.2-p3, k6.4.5-p1); Freigabe erteilt der Bauherr (k9.3-p3); PMO-Register (k6.4.2-t1, k6.4.5-t1)
+  [/Bei Trend-Drift: Eskalation an Projektleitung/gu, 'Bei Trend-Drift: Eskalation an die Bauherren-PL'],
+  [/<b>Hoch:<\/b> innerhalb 7[ \u00a0]Tage handeln/gu, '<b>Hoch:</b> innerhalb von 7\u00a0Tagen handeln'],
+  [/<b>Mittel:<\/b> innerhalb 30[ \u00a0]Tage</gu, '<b>Mittel:</b> innerhalb von 30\u00a0Tagen<'],
+  [/ · Freigabebeschluss \(Freigeben\//gu, ' · Freigabeentscheidung des Bauherrn (Freigeben/'],
+  [/<b>PMO:<\/b> hütet Methodik und Datenqualität, pflegt Kalender\/(?:<wbr>)?Managementberichte, hält überfällige Punkte nach\./gu, '<b>PMO:</b> hütet Methodik und Datenqualität, pflegt Maßnahmen- und Problemregister, Governance-Kalender und Protokolle, wirkt am Managementbericht mit und hält überfällige Punkte nach.'],
+  [/verantwortliche Rolle und PL entscheiden/gu, 'verantwortliche Rolle und Bauherren-PL entscheiden'],
+  [/eskaliert es an die PL\./gu, 'eskaliert es an die Bauherren-PL.'],
+  [/<td>PL\/(<wbr>)?(verantwortliche Rolle|PMO) ·/gu, '<td>Bauherren-PL/$1$2 ·'],
+  [/<td>PL<\/td>/gu, '<td>Bauherren-PL</td>'],
+  // R63: Eskalation entlang der Mandatsleiter (k4.2-p3, k6.4.5-p1; k9.3-p3: der Lenkungskreis berät)
+  [/Risiken materialisieren sich, ohne dass der Lenkungskreis es weiß\./gu, 'Risiken materialisieren sich, ohne dass die nächste Stufe der Mandatsleiter davon erfährt.'],
+  // R63: Optionen gehen an die Stelle, die nach Mandat entscheidet – der Lenkungskreis berät (k4.2-p3, k9.3-p3); die Freigabe ist
+  // kein Meilenstein, sondern die Entscheidung des Bauherrn am Abschluss der Leistungsphase (k6.4.4-t1, k9.3-p2)
+  [/Optionen ohne ehrliche Nachteile - der Lenkungskreis braucht die ganze Wahrheit\./gu, 'Optionen ohne ehrliche Nachteile – wer nach Mandat entscheidet, braucht die ganze Wahrheit.'],
+  [/kein Vorfall-Register — der <b>Beschluss-Meilenstein<\/b>/gu, 'kein Vorfall-Register — die <b>Entscheidung des Bauherrn</b> am Abschluss der Leistungsphase'],
+  // R59: Entscheidungsvorlage = Nachweislogik einer wesentlichen Entscheidung (k13-t1)
+  [/ausgearbeitete Akte zu <b>einer<\/b> wesentlichen Entscheidung/gu, 'ausgearbeitete Nachweislogik zu <b>einer</b> wesentlichen Entscheidung'],
+  // R59: Feldnamen deutsch (L-69)
+  [/Pflichtfelder fehlen:<\/b> Title, verantwortliche Rolle, dueDate etc\./gu, 'Pflichtfelder fehlen:</b> Titel, verantwortliche Rolle, Fälligkeit usw.'],
+  // R58: CTC statt FTC in den Methoden (Glossar: CTC = Restkostenprognose)
+  [/<li><b>FTC – Forecast to Complete:<\/b> verbleibende Restkosten/gu, '<li><b>CTC – Restkostenprognose:</b> verbleibende Restkosten'],
+  [/<li><b>EAC – Estimate at Completion:<\/b> Ist-Kosten \+ FTC</gu, '<li><b>EAC – Estimate at Completion:</b> Ist-Kosten + CTC<'],
+  // R57: alle Rechte-Kennungen der Liste als Feldnamen (L-69)
+  [/<li>(createXxx|deleteXxx|editXxx|clearAudit) – /gu, '<li><code>$1</code> – '],
+  [/<li>importJson \/ exportJson – /gu, '<li><code>importJson</code> / <code>exportJson</code> – '],
+  // R57: Fortführung oder Stopp ist eine wesentliche Entscheidung, kein Sonderformat (k4.3-p1, k13-t1)
+  [/Neufestlegung der Projektbasis \/ Fortführen\/(?:<wbr>)?Stoppen als Sonderformat außerhalb der Freigabereihe beschließen/gu, 'Neufestlegung der Projektbasis als Sonderformat außerhalb der Freigabereihe sowie Fortführung oder Stopp als wesentliche Entscheidung beschließen'],
+  // R55: „Glossar A-Z“ nach den Angleichungen wieder alphabetisch (Intl.Collator de)
+  [/(aria-label="Tabelle: Glossar A-Z"><table>\s*<thead>[\s\S]*?<\/thead>\s*<tbody>)([\s\S]*?)(<\/tbody>)/gu, (_, vor, zeilen, nach) => {
+    const liste = zeilen.match(/<tr>[\s\S]*?<\/tr>/gu) ?? [];
+    const wort = (/** @type {string} */ z) => (z.match(/<td>(?:<b>)?([^<]*)/u)?.[1] ?? '').trim();
+    const ordnung = new Intl.Collator('de');
+    return vor + [...liste].sort((x, y) => ordnung.compare(wort(x), wort(y))).join('') + nach;
+  }],
+]);
+
 function glaette(/** @type {string} */ html) {
-  return html
-    .replace(/&amp;amp;/gu, '&amp;')
-    .replace(/berichtet ins <b>Managementbericht<\/b>/gu, 'berichtet in den <b>Managementbericht</b>')
-    .replace(/werden am <span>Freigabe<\/span> beschlossen/gu, 'werden an der <span>Freigabe</span> beschlossen')
-    // R51: nach Mandat beschlossen; an einer Freigabe entscheidet der Bauherr (k4.2-p3, k6.4.5-p1, k9.3-p3)
-    .replace(/werden an der <span>Freigabe<\/span> beschlossen \(Freigeben \/ Nicht freigeben \/ Freigabe mit Auflagen\)/gu, 'werden nach Mandat beschlossen (Bauherren-PL, Änderungsgremium oder Beschlussfassung durch den Bauherrn im Lenkungskreis); betrifft eine Entscheidung eine <span>Freigabe</span>, entscheidet der Bauherr dort über Freigeben / Nicht freigeben / Freigabe mit Auflagen')
-    // (auch in der Beschreibung der Grafik – <desc> geht nicht durch ersetze)
-    .replace(/ausgearbeitet zur Entscheidungsvorlage und an der Freigabe beschlossen/gu, 'ausgearbeitet zur Entscheidungsvorlage und nach Mandat beschlossen')
-    .replace(/ausgearbeitet und an der <b>Freigabe<\/b> beschlossen wird/gu, 'ausgearbeitet und nach Mandat beschlossen wird (die <b>Freigabe</b> erteilt der Bauherr)')
-    .replace(/mit <span>Entscheidungsvorlage<\/span>-Vorlagen/gu, 'mit Vorlagen für <span>Entscheidungsvorlagen</span>')
-    // das Inhaltsverzeichnis ist hier eine Liste ohne Verweise
-    .replace(/<li>Das Inhaltsverzeichnis ist klickbar<\/li>/gu, '')
-    .replace(/<b>Kein Lizenzmodell<\/b>, keine/gu, '<b>Keine</b>')
-    // R52: Nachweise nimmt die Bauherren-PL entgegen, gepflegt werden sie vom PMO mit den Fachrollen (k6.4.2-t1)
-    .replace(/(<td>Nachweise\/(?:<wbr>)?Abnahmen<\/td><td>Externe<\/td><td>)Bauherren-PL(<\/td>)/gu, '$1Bauherren-PL; Pflege durch das PMO$2')
-    // R54: im Fließtext der Freigabeprozess (das Glossar-Stichwort „Approval-Workflow“ bleibt)
-    .replace(/<li><b>Approval-Workflow<\/b> mit 6 signierten Stufen/gu, '<li><b>Freigabeprozess</b> mit 6 signierten Stufen')
-    // R50: nicht MVG orientiert sich an Frameworks, sondern die Konventionen der Anwendung (O-17)
-    .replace(/MVG ist ein eigenständiger, schlanker Governance-Ansatz\. Er <b>orientiert<\/b> sich konzeptionell an etablierten Methoden/gu, 'Die Konventionen der Anwendung <b>orientieren</b> sich an etablierten Methoden')
-    // R49: Beschlüsse werden als Maßnahmen nachverfolgt (k6.4.3-p2), Probleme im Problemregister
-    .replace(/werden zu <span>Aktionen<\/span> mit Frist/gu, 'werden zu <span>Maßnahmen</span> mit Frist')
-    .replace(/Überfällige <span>Aktionen<\/span> &amp; neue <span>Problemregister<\/span>/gu, 'Überfällige <span>Maßnahmen</span> &amp; neue <span>Probleme</span>')
-    .replace(/hat eine <b>Verantwortliche Rolle<\/b>/gu, 'hat eine <b>verantwortliche Rolle</b>')
-    // O-1: Angebotsaussage über BM (im Quelltext mit Hervorhebung, daher auf dem HTML)
-    .replace(/\s*Für Beratungskunden (?:<b>)?kostenfrei(?:<\/b>)?: kein separates Lizenzentgelt, unbegrenzte Nutzungsrechte auch nach Mandatsende\./gu, '')
-    .replace(/(LPH (\d)\b(?:[^()<]|<[^>]*>){0,80}?)\s*\(LPH \2\)/gu, '$1')
-    .replace(/\bLPH (\d)-(?=[A-ZÄÖÜ])/gu, 'LPH-$1-')
-    // R55: Feldname im Entscheidungsregister wie die übrigen Stellen der Hilfe (letztverantwortliche Rolle, k4.2-p1)
-    .replace(/<b>Accountable:<\/b> wer trägt die Letztverantwortung/gu, '<b>Letztverantwortlich (A):</b> wer trägt die Letztverantwortung')
-    // R55: Rhythmus nach k6.4.5-t1 – Freigaben je Freigabe, Änderungsgremium monatlich und anlassbezogen
-    .replace(/<tr><td><b>Quartalsweise \/ je Freigabe<\/b><\/td>/gu, '<tr><td><b>Monatlich, zzgl. Sondersitzungen</b></td><td>Bauherren-PL, Änderungsgremium</td><td>Änderungen bewerten und nach Mandat entscheiden</td></tr><tr><td><b>Je Freigabe</b></td>')
-    // R56: Rhythmus vollständig nach k6.4.5-t1 – wöchentliche Risikosichtung, monatliche formale Risikoprüfung der Projektsteuerung
-    .replace(/(<tr><td><b>Wöchentlich<\/b><\/td><td>Bauherren-PL, Projektsteuerung, verantwortliche Rolle<\/td><td>)<span>Risiken<\/span> \/ /gu, '$1Risikosichtung, ')
-    .replace(/(<tr><td><b>Monatlich, zzgl\. Sondersitzungen<\/b>)/gu, '<tr><td><b>Monatlich</b></td><td>Projektsteuerung</td><td>Formale Risikoprüfung und Bericht → <span>Managementbericht</span></td></tr>$1')
-    // R56: Rechte-Kennungen als Feldnamen (L-69); Entscheidungen und Änderungen sind keine Freigaben
-    .replace(/<li>approveDecision\/(?:<wbr>)?approveGate\/(?:<wbr>)?approveChange – Freigaben<\/li>/gu, '<li><code>approveDecision</code>/<wbr><code>approveGate</code>/<wbr><code>approveChange</code> – Entscheidungen, Freigaben und Änderungen bestätigen (nach Mandat)</li>')
-    // R59: Schritte „Nummer + Überschrift“ mit Klassen, damit der Druck die Nummer beim Schritt hält
-    .replace(/<div><div>(\d)<\/div><div><h3>/gu, '<div class="h-schritt"><div class="h-schritt-nr">$1</div><div><h3>')
-    // R60: Registerpflege nach MVG Kap. 6.4.2 – die Bauherren-PL steuert, Risikoregister pflegt die Projektsteuerung
-    .replace(/<b>Projektleitung:<\/b> steuert operativ, moderiert den Jour fixe, hält Risiken\/(?:<wbr>)?Entscheidungen\/(?:<wbr>)?Changes aktuell und bereitet/gu, '<b>Bauherren-PL:</b> steuert operativ, moderiert den Jour fixe, hält Entscheidungen und Changes aktuell, steuert die Risikobehandlung (Risikoregister: Projektsteuerung) und bereitet')
-    // R60: deutsche Wörter im Fließtext (L-69), Kennungen in code bleiben
-    .replace(/<b>Residual:<\/b> verbleibendes Risiko/gu, '<b>Restrisiko:</b> verbleibendes Risiko')
-    .replace(/einen protokollierten Override/gu, 'eine protokollierte Ausnahme')
-    .replace(/oder protokollierten Override;/gu, 'oder eine protokollierte Ausnahme;')
-    .replace(/<li>Inline-Edit für /gu, '<li>Direktbearbeitung für ')
-    .replace(/Benachrichtigung \(Toast\)/gu, 'Benachrichtigung (Kurzmeldung)')
-    .replace(/ein altes, niedrig-prioritäres Item/gu, 'ein alter, niedrig priorisierter Eintrag')
-    .replace(/<li>Seed-Risiken \(wenn definiert\)/gu, '<li>Vorbelegte Risiken (wenn definiert)')
-    .replace(/Auflagen-Tracker:/gu, 'Auflagen-Übersicht:')
-    .replace(/Lösung\/(?:<wbr>)?Workaround/gu, 'Lösung/<wbr>Behelfslösung')
-    .replace(/ein tragfähiger Workaround\./gu, 'eine tragfähige Behelfslösung.')
-    .replace(/Workaround Zusatzpumpe/gu, 'Behelfslösung Zusatzpumpe')
-    .replace(/>Forecast-Update</gu, '>Prognose-Aktualisierung<')
-    // R60: der Governance-Kalender wird laufend geführt, gepflegt monatlich (Register-Pflege derselben Seite)
-    .replace(/<td>PMO · wöchentlich<\/td>/gu, '<td>PMO · wöchentlich bis monatlich</td>')
-    // R60: Zahl und Einheit nicht am Zeilenende trennen (außerhalb von Tags)
-    .replace(/(\d) (?=(?:TEUR|EUR|€|Mio\.|Wochen|Tage|Monate)(?![\p{L}]))/gu, '$1\u00a0')
-    .replace(/Mio\. €/gu, 'Mio.\u00a0€')
-    // R61: Ein Risiko trägt nach MVG eine Frist (k4.4) – der Gegensatz zur Frühwarnung entfällt
-    .replace(/<li>Hat Frist und Eskalationsdatum – Risiko hat keine Frist<\/li>/gu, '<li>Hat Frist und Eskalationsdatum</li>')
-    .replace(/Checkliste mit Pflicht-Items/gu, 'Checkliste mit Pflichtpunkten')
-    .replace(/gebundene Kosten und aktualisierter Restkostenprognose/gu, 'gebundenen Kosten und aktualisierter Restkostenprognose')
-    .replace(/und Optionen-Punktwerte \(1-5\)/gu, 'und Optionen-Punktwerten (1-5)')
-    .replace(/„\+3 Risiken seit letztem Stand\)/gu, '„+3 Risiken seit letztem Stand“)')
-    // R59: Glossar „Bauherren-Führungsmodell“ und „Nachweiskette“ im Wortlaut von k13-t1
-    .replace(/<td><b>Bauherren-Führungsmodell<\/b><\/td><td>[^<]*Risiko\/(?:<wbr>)?Change\/(?:<wbr>)?Maßnahme, CTC\/(?:<wbr>)?KPI, [^<]*<\/td>/gu, '<td><b>Bauherren-Führungsmodell</b></td><td>Das Zusammenspiel aus Zielsystem, Rollen und Mandaten, Freigaben, Entscheidungs-IDs, Datenstands- und Nachweislogik, Risiko-/Änderungs-/Maßnahmenverknüpfung, Restkostenprognose (CTC), Leistungskennzahlen (KPI), Eskalation, Betriebshandbuch und Befähigung zu einer durchgängigen Steuerungsarchitektur – das Führungsmodell, mit dem ein Bauherr ein komplexes Vorhaben steuerbar hält.</td>')
-    .replace(/<td><b>Nachweiskette<\/b><\/td><td>Chronologische, fortlaufende Historie aller Änderungen mit Zeitstempel und Rolle\.<\/td>/gu, '<td><b>Nachweiskette</b></td><td>Nachvollziehbare Kette von Entscheidungsgrundlagen, Annahmen, Freigaben, Beschlüssen und Nachverfolgung (in der Anwendung zusätzlich die fortlaufende Historie aller Änderungen mit Zeitstempel und Rolle).</td>')
-    // R59/R62: ein Risiko trägt eine verantwortliche Rolle und eine Frist (k4.4-p2)
-    .replace(/Stolperstein: Risiken ohne Eigentümer\/(?:<wbr>)?Frist verpuffen - jedes Top-Risiko braucht beides\./gu, 'Stolperstein: Risiken ohne verantwortliche Rolle und Frist verpuffen – jedes Top-Risiko braucht beides.')
-    // R62: welche Projektleitung gemeint ist – die Bauherren-PL (k4.2-p3, k6.4.5-p1); Freigabe erteilt der Bauherr (k9.3-p3); PMO-Register (k6.4.2-t1, k6.4.5-t1)
-    .replace(/Bei Trend-Drift: Eskalation an Projektleitung/gu, 'Bei Trend-Drift: Eskalation an die Bauherren-PL')
-    .replace(/<b>Hoch:<\/b> innerhalb 7[ \u00a0]Tage handeln/gu, '<b>Hoch:</b> innerhalb von 7\u00a0Tagen handeln')
-    .replace(/<b>Mittel:<\/b> innerhalb 30[ \u00a0]Tage</gu, '<b>Mittel:</b> innerhalb von 30\u00a0Tagen<')
-    .replace(/ · Freigabebeschluss \(Freigeben\//gu, ' · Freigabeentscheidung des Bauherrn (Freigeben/')
-    .replace(/<b>PMO:<\/b> hütet Methodik und Datenqualität, pflegt Kalender\/(?:<wbr>)?Managementberichte, hält überfällige Punkte nach\./gu, '<b>PMO:</b> hütet Methodik und Datenqualität, pflegt Maßnahmen- und Problemregister, Governance-Kalender und Protokolle, wirkt am Managementbericht mit und hält überfällige Punkte nach.')
-    .replace(/verantwortliche Rolle und PL entscheiden/gu, 'verantwortliche Rolle und Bauherren-PL entscheiden')
-    .replace(/eskaliert es an die PL\./gu, 'eskaliert es an die Bauherren-PL.')
-    .replace(/<td>PL\/(<wbr>)?(verantwortliche Rolle|PMO) ·/gu, '<td>Bauherren-PL/$1$2 ·')
-    .replace(/<td>PL<\/td>/gu, '<td>Bauherren-PL</td>')
-    // R63: Eskalation entlang der Mandatsleiter (k4.2-p3, k6.4.5-p1; k9.3-p3: der Lenkungskreis berät)
-    .replace(/Risiken materialisieren sich, ohne dass der Lenkungskreis es weiß\./gu, 'Risiken materialisieren sich, ohne dass die nächste Stufe der Mandatsleiter davon erfährt.')
-    // R63: Optionen gehen an die Stelle, die nach Mandat entscheidet – der Lenkungskreis berät (k4.2-p3, k9.3-p3); die Freigabe ist
-    // kein Meilenstein, sondern die Entscheidung des Bauherrn am Abschluss der Leistungsphase (k6.4.4-t1, k9.3-p2)
-    .replace(/Optionen ohne ehrliche Nachteile - der Lenkungskreis braucht die ganze Wahrheit\./gu, 'Optionen ohne ehrliche Nachteile – wer nach Mandat entscheidet, braucht die ganze Wahrheit.')
-    .replace(/kein Vorfall-Register — der <b>Beschluss-Meilenstein<\/b>/gu, 'kein Vorfall-Register — die <b>Entscheidung des Bauherrn</b> am Abschluss der Leistungsphase')
-    // R59: Entscheidungsvorlage = Nachweislogik einer wesentlichen Entscheidung (k13-t1)
-    .replace(/ausgearbeitete Akte zu <b>einer<\/b> wesentlichen Entscheidung/gu, 'ausgearbeitete Nachweislogik zu <b>einer</b> wesentlichen Entscheidung')
-    // R59: Feldnamen deutsch (L-69)
-    .replace(/Pflichtfelder fehlen:<\/b> Title, verantwortliche Rolle, dueDate etc\./gu, 'Pflichtfelder fehlen:</b> Titel, verantwortliche Rolle, Fälligkeit usw.')
-    // R58: CTC statt FTC in den Methoden (Glossar: CTC = Restkostenprognose)
-    .replace(/<li><b>FTC – Forecast to Complete:<\/b> verbleibende Restkosten/gu, '<li><b>CTC – Restkostenprognose:</b> verbleibende Restkosten')
-    .replace(/<li><b>EAC – Estimate at Completion:<\/b> Ist-Kosten \+ FTC</gu, '<li><b>EAC – Estimate at Completion:</b> Ist-Kosten + CTC<')
-    // R57: alle Rechte-Kennungen der Liste als Feldnamen (L-69)
-    .replace(/<li>(createXxx|deleteXxx|editXxx|clearAudit) – /gu, '<li><code>$1</code> – ')
-    .replace(/<li>importJson \/ exportJson – /gu, '<li><code>importJson</code> / <code>exportJson</code> – ')
-    // R57: Fortführung oder Stopp ist eine wesentliche Entscheidung, kein Sonderformat (k4.3-p1, k13-t1)
-    .replace(/Neufestlegung der Projektbasis \/ Fortführen\/(?:<wbr>)?Stoppen als Sonderformat außerhalb der Freigabereihe beschließen/gu, 'Neufestlegung der Projektbasis als Sonderformat außerhalb der Freigabereihe sowie Fortführung oder Stopp als wesentliche Entscheidung beschließen')
-    // R55: „Glossar A-Z“ nach den Angleichungen wieder alphabetisch (Intl.Collator de)
-    .replace(/(aria-label="Tabelle: Glossar A-Z"><table>\s*<thead>[\s\S]*?<\/thead>\s*<tbody>)([\s\S]*?)(<\/tbody>)/gu, (_, vor, zeilen, nach) => {
-      const liste = zeilen.match(/<tr>[\s\S]*?<\/tr>/gu) ?? [];
-      const wort = (/** @type {string} */ z) => (z.match(/<td>(?:<b>)?([^<]*)/u)?.[1] ?? '').trim();
-      const ordnung = new Intl.Collator('de');
-      return vor + [...liste].sort((x, y) => ordnung.compare(wort(x), wort(y))).join('') + nach;
-    });
+  let t = html;
+  for (const [muster, statt] of GLAETTUNGEN) t = typeof statt === 'string' ? t.replace(muster, statt) : t.replace(muster, statt);
+  return t;
 }
 
 /** Klassen der Hilfe erhalten den Vorsatz „h-“: keine Kollision mit Klassen der übrigen Flächen (.tag, .card …) */

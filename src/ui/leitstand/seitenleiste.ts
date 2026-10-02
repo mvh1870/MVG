@@ -7,7 +7,7 @@
 import { spurTafel, type SpurWoerter } from './spur.ts';
 import type { OeffentlicherZustand } from '../../engine/typen.ts';
 import type { Block, Ebene, OeffentlicheInhalte, Station } from '../../inhalte/typen.ts';
-import { h, attr, ersetze } from '../h.ts';
+import { h, attr, ersetze, mitRollenfugen } from '../h.ts';
 import { alleBloecke, aktuelleStation, kopfText, rollenAttr } from '../anzeige.ts';
 import { inhalt, personFigur, personName, personFunktion } from '../bausteine/inhalt.ts';
 import { sym, zitat } from '../bausteine/bloecke.ts';
@@ -171,7 +171,7 @@ export function erzeugeSeitenleiste(o: SeitenOptionen): Seitenleiste {
       h('span', { class: 't-label' }, w.rollenLinse),
       h('div', { class: 'rollen-box-zeile' },
         rolle?.figur ? personFigur(rolle.figur, 50, o.inhalte) : null,
-        rolle !== null ? h('span', { class: 'rollen-chip', 'data-rolle': rollenAttr(rolle.id) }, `${w.siespielen}: `, h('b', null, rolle.titel)) : null),
+        rolle !== null ? h('span', { class: 'rollen-chip', 'data-rolle': rollenAttr(rolle.id) }, `${w.siespielen}: `, h('b', null, mitRollenfugen(rolle.titel))) : null),
       standpunkte.length > 0 && o.oeffneLinse !== null ? h('button', {
         type: 'button', class: 'knopf-linse', 'aria-haspopup': 'dialog', 'data-pruef': 'standpunkt', onclick: () => o.oeffneLinse?.(),
       }, sym('wechsel'), w.standpunkt) : null);

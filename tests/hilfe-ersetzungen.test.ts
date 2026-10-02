@@ -3,7 +3,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { ERSETZUNGEN, baueHilfe } from '../werkzeuge/hilfe.mjs';
+import { ERSETZUNGEN, GLAETTUNGEN, baueHilfe } from '../werkzeuge/hilfe.mjs';
 
 /** Regeln, deren Ergebnis bewusst nicht im Text steht: eine frühere Regel oder ein anderer Schritt fasst dieselbe Stelle */
 const AUSNAHMEN = new Set([
@@ -178,4 +178,42 @@ test('Hilfe (R48): jede Ersetzung mit festem Ersatz steht im Ergebnis – außer
   assert.ok((roh.match(/<thead>/gu) ?? []).length >= 30, 'Tabellenköpfe als thead');
   // die Ausnahmen gibt es noch (sonst gehört der Eintrag weg)
   for (const a of AUSNAHMEN) assert.ok((ERSETZUNGEN as [RegExp, string][]).some(([m]) => m.source === a), a);
+});
+
+// R64 (Architektur, L-178): die Glättungen auf dem HTML (glaette) sind wie ERSETZUNGEN eingefroren – Muster und Ersatz;
+// jede mit festem Ersatz wirkt (Ersatz steht im HTML) und ihr Muster passt nirgends mehr
+/** Glättungen, deren Ersatz eine spätere Stelle weiterführt oder die nur Zeichen ersetzen */
+const GLAETT_AUSNAHMEN = new Set<string>([
+  'werden am <span>Freigabe<\\/span> beschlossen', // die folgende Regel (R51) fasst denselben Satz neu
+]);
+
+test('Hilfe (R64): jede Glättung wirkt und ist eingefroren', () => {
+  const { hilfe, fehler } = baueHilfe({ ziel: null });
+  assert.deepEqual(fehler, []);
+  const teile: string[] = [];
+  const sammle = (o: unknown): void => {
+    if (typeof o === 'string') teile.push(o);
+    else if (Array.isArray(o)) o.forEach(sammle);
+    else if (o !== null && typeof o === 'object') Object.values(o).forEach(sammle);
+  };
+  sammle(hilfe);
+  const roh = teile.join(' ');
+  const regeln = GLAETTUNGEN as [RegExp, unknown][];
+  const fest = regeln.filter(([m, statt]) => typeof statt === 'string' && !/\$[\d&]/u.test(statt) && !GLAETT_AUSNAHMEN.has(m.source)) as [RegExp, string][];
+  assert.deepEqual(fest.filter(([, statt]) => !roh.includes(statt)).map(([m]) => m.source), [], 'Glättung ohne Wirkung');
+  assert.deepEqual(fest.filter(([m, statt]) => !new RegExp(m.source, m.flags.replace('g', '')).test(statt))
+    .filter(([m]) => new RegExp(m.source, m.flags.replace('g', '')).test(roh)).map(([m]) => m.source), [], 'Muster einer Glättung steht noch im HTML');
+  // auch Regeln mit Rückbezug ($1) und die Sortierung: ein zweiter Durchgang ändert am fertigen HTML nichts mehr
+  const nachmals = (m: RegExp, statt: unknown): string => (typeof statt === 'string' ? roh.replace(m, statt) : roh.replace(m, statt as (...t: string[]) => string));
+  // (außer einfügenden Regeln: sie setzen eine Zeile VOR ihr Muster; ihr Ergebnis hält FEST „Formale Risikoprüfung …“)
+  const einfuegend = new Set(['(<tr><td><b>Monatlich, zzgl\\. Sondersitzungen<\\/b>)']);
+  assert.deepEqual(regeln.filter(([m, statt]) => !einfuegend.has(m.source) && nachmals(m, statt) !== roh).map(([m]) => m.source), [], 'Glättung würde am fertigen HTML noch wirken');
+  // L-178: die Zuständigkeit der Nachweis-Pflege (Regel mit Rückbezug, k6.4.2-t1)
+  assert.ok(roh.includes('<td>Externe</td><td>Bauherren-PL; Pflege durch das PMO</td>'), 'Nachweise/Abnahmen: Pflege durch das PMO');
+  const aktuell = regeln.map(([m, statt]) => [m.source, typeof statt === 'string' ? statt : String(statt)]);
+  const eingefroren: [string, string][] = JSON.parse(readFileSync(new URL('./hilfe-glaettungen.muster.json', import.meta.url), 'utf8'));
+  const jetzt = new Set(aktuell.map((x) => JSON.stringify(x)));
+  assert.deepEqual(eingefroren.filter((e) => !jetzt.has(JSON.stringify(e))).map((e) => e[0]), [], 'Glättung entfernt oder ihr Ersatz geändert');
+  assert.equal(regeln.length, eingefroren.length, 'neue Glättung: Muster und Ersatz in tests/hilfe-glaettungen.muster.json aufnehmen');
+  for (const a of [...GLAETT_AUSNAHMEN, ...einfuegend]) assert.ok(regeln.some(([m]) => m.source === a), a);
 });

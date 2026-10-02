@@ -251,3 +251,15 @@ test('Anschlag (R63): eine Wirkung auf einen Wert am Anschlag nennt die Konseque
   // schon geändert: steht in den Änderungssätzen
   assert.deepEqual(anschlagSaetze([w('terminrisiko', 1)], { ...s, terminrisiko: 'hoch' }, s), []);
 });
+
+test('R64: jeder lange Rollentitel trennt nur an einer Fuge (Rollen-Linse, RACI-Kopf)', async () => {
+  const { mitRollenfugen } = await import('../src/ui/h.ts');
+  const titel = Object.values(inhalte.rollen).flatMap((r) => [r.titel, r.kurztitel]);
+  assert.ok(titel.length >= 12);
+  // ein Wort ab 13 Buchstaben bräche in der schmalen Rollen-Linse (Chip 100 px) mitten im Wort
+  const ohneFuge = titel.flatMap((t) => mitRollenfugen(t).split(/[^\p{L}­]+/u)).filter((w) => w.length >= 13 && !w.includes('­'));
+  assert.deepEqual(ohneFuge, []);
+  assert.equal(mitRollenfugen('Geschäftsführung (GML)'), 'Geschäfts­führung (GML)');
+  assert.equal(mitRollenfugen('Bauherren-Projektleitung'), 'Bauherren-Projekt­leitung');
+  for (const t of titel) assert.equal(mitRollenfugen(t).replace(/­/gu, ''), t);
+});

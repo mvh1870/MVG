@@ -522,7 +522,7 @@ button.station[aria-current="step"] { background: var(--gold-hell-a18); color: v
   font-size: 12.5px;
   line-height: 1.25;
 }
-.rollen-chip b { font-size: 14.5px; line-height: 1.2; }
+.rollen-chip b { font-size: 14.5px; line-height: 1.2; hyphens: manual; } /* R64: Trennung nur an den Fugen (mitRollenfugen) */
 .knopf-linse {
   display: flex;
   align-items: center;

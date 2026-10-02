@@ -7,7 +7,7 @@
  * ordnet nur an. Jeder Buchstabe steht mit Wort im Tooltip/aria-Label da, nie nur als Farbe.
  */
 
-import { h, attr, ersetze, mitTrennstellen } from '../ui/h.ts';
+import { h, attr, ersetze, mitRollenfugen, mitTrennstellen } from '../ui/h.ts';
 
 export const RACI_BUCHSTABEN = ['R', 'A', 'C', 'I'] as const;
 export type RaciBuchstabe = (typeof RACI_BUCHSTABEN)[number];
@@ -67,7 +67,7 @@ export function raci(d0: RaciDaten): HTMLElement {
   const kopf = h('tr', null,
     h('th', { scope: 'col' }, d.beschriftung.entscheidung),
     // R62: „Geschäfts|führung“, „Projekt|steuerung“ dürfen trennen – sonst ist die Matrix auf der Leinwand (1024 px, Beamer 1280 px) breiter als die Tafel
-    d.rollen.map((r) => h('th', { scope: 'col', class: r.id === d.ich ? 'ist-ich' : null }, r.titel.replace(/^(Geschäfts|Projekt)(?=\p{Ll}{4})/u, '$1\u00ad'))),
+    d.rollen.map((r) => h('th', { scope: 'col', class: r.id === d.ich ? 'ist-ich' : null }, mitRollenfugen(r.titel))),
     h('th', { scope: 'col' }, d.beschriftung.mandat));
   const zeilen = d.zeilen.map((z, i) => {
     const knopf = h('button', { type: 'button', class: 'raci-zeile-knopf', 'aria-pressed': 'false', 'data-pruef': `raci-${z.id}`, onclick: () => zeige(i) }, z.titel);

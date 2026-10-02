@@ -341,7 +341,7 @@ Aufgaben, Probleme und Änderungen werden auch ohne Risikoeintrag bearbeitet. En
 titel: Sie wird direkt als Änderung bearbeitet
 praefix: "Genau:"
 ---
-Die Projektsteuerung lässt die Auswirkungen gegen den geltenden Stand ermitteln und bereitet die Entscheidung mit mindestens zwei Optionen vor. Bis zur Freigabe gilt die bisherige Grundlage.
+Die Projektsteuerung lässt die Auswirkungen gegen den geltenden Stand ermitteln und bereitet die Entscheidung mit mindestens zwei zulässigen Optionen vor. Bis zur Freigabe gilt die bisherige Grundlage.
 :::
 
 ::: antwort b
@@ -456,7 +456,7 @@ Ein nachteiliger Zustand ist *eingetreten*. Nächster Schritt: Folgen klären, L
 ---
 titel: Änderung
 ---
-Eine geltende Vorgabe soll *bewusst* angepasst werden. Nächster Schritt: Auswirkungen gegen den geltenden Stand, Vorlage mit mindestens zwei Optionen; bis zur Freigabe gilt die bisherige Grundlage.
+Eine geltende Vorgabe soll *bewusst* angepasst werden. Nächster Schritt: Auswirkungen gegen den geltenden Stand, Vorlage mit mindestens zwei zulässigen Optionen; bis zur Freigabe gilt die bisherige Grundlage.
 :::
 
 ::: karte entscheidung

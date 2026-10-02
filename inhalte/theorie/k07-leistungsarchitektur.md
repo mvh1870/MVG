@@ -322,7 +322,7 @@ titel: Leistungsgrenzen
 ---
 Die Grenzen der Leistungen sind ausdrücklich gezogen, und jede Formulierung zählt. Für den Bauherrn ist das keine Formalie: Es geht in MVG gerade um seine nichtdelegierbaren Verantwortungen. Deshalb liefert die Begleitung Struktur, Entscheidungsreife und Befähigung, trifft aber keine Bauherrenentscheidung.
 
-Dieselbe Logik gilt für alle Beteiligten. Jede Rolle kann etwas Bestimmtes leisten – und darf etwas Bestimmtes nicht ersetzen. Die Projektsteuerung bearbeitet alle Vorgänge, bereitet jede erforderliche Entscheidung mit mindestens zwei Optionen und gewichtetem Vergleich vor, verfolgt die Umsetzung und berichtet monatlich auf einer Seite; Zielpriorisierung, Risikoannahme und Freigabe ersetzt sie nicht. Die Bauherren-PL entscheidet innerhalb ihrer Schwelle; darüber legt die Projektsteuerung die Vorlage der befugten Stelle vor. Planung, Fachberatung sowie Recht und Vergabe liefern Grundlagen und Einschätzungen; die Abwägung bleibt beim Bauherrn. Mehr dazu in den Themen „Die Entscheidungsvorlage“ und „Takt und Monatsbericht“.
+Dieselbe Logik gilt für alle Beteiligten. Jede Rolle kann etwas Bestimmtes leisten – und darf etwas Bestimmtes nicht ersetzen. Die Projektsteuerung bearbeitet alle Vorgänge, bereitet jede erforderliche Entscheidung mit mindestens zwei zulässigen Optionen und gewichtetem Vergleich vor, verfolgt die Umsetzung und berichtet monatlich auf einer Seite; Zielpriorisierung, Risikoannahme und Freigabe ersetzt sie nicht. Die Bauherren-PL entscheidet innerhalb ihrer Schwelle; darüber legt die Projektsteuerung die Vorlage der befugten Stelle vor. Planung, Fachberatung sowie Recht und Vergabe liefern Grundlagen und Einschätzungen; die Abwägung bleibt beim Bauherrn. Mehr dazu in den Themen „Die Entscheidungsvorlage“ und „Takt und Monatsbericht“.
 
 Wie die Leistungspakete zeitlich ineinandergreifen und woran ihr Erfolg gemessen wird, zeigt das Thema „Implementierung“.
 
@@ -471,7 +471,7 @@ Eine externe Begleitung bereitet vor und befähigt; die Entscheidung gehört zu 
 titel: Der Bauherr selbst
 praefix: "Genau:"
 ---
-BM liefert Struktur und Entscheidungsreife, ersetzt die Bauherrenentscheidung aber nicht.
+Bauherr Mentoren liefert Struktur und Entscheidungsreife, ersetzt die Bauherrenentscheidung aber nicht.
 :::
 
 ::: antwort b

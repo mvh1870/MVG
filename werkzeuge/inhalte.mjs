@@ -1329,8 +1329,20 @@ export function baueAbbildungen(c, quelle, wurzel, theorie, pruefe) {
   if (existsSync(standPfad)) stand = JSON.parse(readFileSync(standPfad, 'utf8'));
   /** @type {Record<string, string>} */
   const daten = {};
-  const aus = liste.map((a, i) => {
-    const basis = { id: a.id, nr: i + 1, kapitel: a.kapitel, ort: a.ort };
+  // R68: Nummern in der Reihenfolge auf der Seite (Themen nach „reihe“, darin die Stellen der Blöcke), nicht nach der Quelle
+  /** @type {string[]} */
+  const folge = [];
+  const sammle = (/** @type {any[]} */ bloecke) => {
+    for (const bl of bloecke ?? []) {
+      if (bl.art === 'abbildung' && bl.id !== null && !folge.includes(bl.id)) folge.push(bl.id);
+      sammle(bl.kinder);
+      for (const e of bl.ebenen ?? []) sammle(e.bloecke);
+    }
+  };
+  for (const t of Object.values(theorie).sort((x, y) => /** @type {any} */ (x).reihe - /** @type {any} */ (y).reihe)) sammle(/** @type {any} */ (t).bloecke);
+  for (const a of liste) if (!folge.includes(a.id)) folge.push(a.id);
+  const aus = liste.map((a) => {
+    const basis = { id: a.id, nr: folge.indexOf(a.id) + 1, kapitel: a.kapitel, ort: a.ort };
     const e = nachId.get(a.id);
     if (e === undefined) return { ...basis, bild: null };
     const st = stand.abbildungen?.[a.id];

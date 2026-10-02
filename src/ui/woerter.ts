@@ -25,7 +25,7 @@ export const W = {
     internetseite: 'Der Governance Kompass ist eine Internetseite – zum Lesen und Ausprobieren, ohne Anmeldung, ohne Konto.',
     storyKicker: 'Erlebt',
     storyTitel: 'Als Geschichte',
-    storyText: 'Ein Schulcampus, Sie vertreten den Bauherrn. Die Projektsteuerung bereitet jede Entscheidung vor – Sie entscheiden.',
+    storyText: 'Ein Schulcampus, Sie vertreten den Bauherrn. Die Projektsteuerung bereitet jede erforderliche Entscheidung vor – Sie entscheiden oder empfehlen.',
     storyMeta: (n: number) => `${n} Stationen · etwa 25 Minuten, kurz 10`,
     storyLos: 'Beginnen',
     storyWeiter: 'Weiterlesen',

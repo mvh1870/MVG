@@ -13,7 +13,7 @@ angeglichen:
   - { x: 377, y: 817, b: 171, h: 37, text: "Leistungsphasen- und\nFreigabemodell LPH 0–9", beleg: k4-t1, schrift: barlow, groesse: 17, gewicht: 600 }
   - { x: 1034, y: 817, b: 159, h: 37, text: "Risiko-/Änderungs-/\nMaßnahmenverknüpfung", beleg: k4-t1, schrift: barlow, groesse: 17, gewicht: 600 }
 abweichungen:
-  - text: 'Mittig steht ein „MVG-Kern“ mit „ausübbar“, „prüfbar“, „gestaltbar“ und „nachweisfähig“; einen MVG-Kern in der Mitte kennt der Text nicht; er nennt die sechs Felder selbst das Kernmodell der Bauherrenverantwortung und eine Arbeitsstruktur, mit der die Ausübungsfähigkeit des Bauherrn sichtbar, prüfbar und gestaltbar wird.'
+  - text: 'Mittig steht ein „MVG-Kern“ mit „ausübbar“, „prüfbar“, „gestaltbar“ und „nachweisfähig“; einen MVG-Kern in der Mitte kennt der Text nicht; er nennt die sechs Felder selbst die Struktur der Bauherrenverantwortung und eine Arbeitsstruktur, mit der die Ausübungsfähigkeit des Bauherrn sichtbar, prüfbar und gestaltbar wird.'
     beleg: k4-p1 k7.1-p2
   - text: 'Das Feld heißt im Bild nur „Entscheidung“, seine Zeilen „Entscheidung ID“ und „Reifegrad“; der Text nennt das Feld „Wesentliche Entscheidung“ und als Antwort von MVG das System der Entscheidungs-IDs und die Entscheidungsreife.'
     beleg: k4-t1 k4.3-p2

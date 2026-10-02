@@ -25,7 +25,7 @@ Der Bauherr kann Arbeit weitgehend abgeben – an Planer, Projektsteuerung, Guta
 ---
 titel: Leitthese
 ---
-Große Bauvorhaben kommen ohne Fachleute nicht aus. Planer rechnen Varianten durch, die Projektsteuerung koordiniert Termine und Unterlagen, ein [[PMO]] führt Protokolle und Listen. Diese Arbeit darf und soll abgegeben werden.
+Große Bauvorhaben kommen ohne Fachleute nicht aus. Planer rechnen Varianten durch, die Projektsteuerung koordiniert Termine und Unterlagen, ein [[PMO]] führt Protokolle und bereitet Sitzungen vor. Diese Arbeit darf und soll abgegeben werden.
 
 Etwas anderes ist die Legitimation. Wenn ein Ziel Vorrang bekommt, ein Risiko bewusst in Kauf genommen oder eine wesentliche Freigabe erteilt wird, braucht es jemanden, der dafür einsteht. Das kann nur der Bauherr sein. Die beste Vorlage der Projektsteuerung ändert daran nichts: Sie bereitet die Entscheidung vor, sie ersetzt sie nicht.
 
@@ -134,7 +134,7 @@ titel: Fünf Aussagen in Kürze
 titel: Projektsteuerung
 symbol: kompass
 ---
-Sie bearbeitet alle Vorgänge – Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Probleme, Änderungen – und bereitet jede erforderliche Entscheidung mit mindestens zwei Optionen vor; Dringliches meldet sie vorab sofort. Die Entscheidung des Bauherrn ersetzt sie nicht.
+Sie bearbeitet alle Vorgänge – Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Probleme, Änderungen – und bereitet jede erforderliche Entscheidung mit mindestens zwei zulässigen Optionen vor; Dringliches meldet sie vorab sofort. Die Entscheidung des Bauherrn ersetzt sie nicht.
 :::
 
 ::: karte 2

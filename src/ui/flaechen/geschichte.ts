@@ -445,7 +445,8 @@ export function erzeugeGeschichte(o: { g: Geschichte; speicher: SpeicherGriff | 
   const loeschen = h('button', { type: 'button', class: 'gs-leiser-knopf', 'data-pruef': 'fortschritt-loeschen', title: w.fortschrittHinweis, onclick: () => {
     try { o.speicher?.removeItem(SPEICHER_SCHLUESSEL); } catch { /* Speicher gesperrt: nichts zu löschen */ }
     gegenprobe = null;
-    setze(neuerStand(), true);
+    // R68: gelöscht bleibt gelöscht – der frische Stand wird erst mit dem nächsten Schritt wieder gespeichert
+    setze(neuerStand(), true, false);
   } }, w.fortschrittLoeschen);
   const element = seitenRahmen({
     bereich: 'story',
@@ -492,10 +493,10 @@ export function erzeugeGeschichte(o: { g: Geschichte; speicher: SpeicherGriff | 
     }
   };
 
-  function setze(neu: Stand, schrittNeu: boolean): void {
+  function setze(neu: Stand, schrittNeu: boolean, merken = true): void {
     if (!gleicherSchritt(neu.schritt, stand.schritt)) gegenprobe = null;
     stand = neu;
-    speichere();
+    if (merken) speichere();
     zeichne(schrittNeu);
     zuhoerer?.(stand);
   }

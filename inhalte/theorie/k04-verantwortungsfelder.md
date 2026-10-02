@@ -96,7 +96,7 @@ seite: links
 Entscheidungsvorlagen und Auswirkungsanalysen erarbeiten
 
 ### Erklärung
-Feld Wesentliche Entscheidung: Vorlagen mit mindestens zwei Optionen, gewichtetem Vergleich und Empfehlung erarbeitet die Projektsteuerung.
+Feld Wesentliche Entscheidung: Vorlagen mit mindestens zwei zulässigen Optionen, gewichtetem Vergleich und Empfehlung erarbeitet die Projektsteuerung.
 :::
 
 ::: posten 6
@@ -183,7 +183,7 @@ titel: Mandat
 ---
 Mit dem [[Mandat]] legt der Bauherr fest, wer welche Entscheidung vorbereiten, treffen, freigeben oder eskalieren darf. Eine [[RACI]]-Zuordnung unterscheidet zwar ausführungsverantwortliche, letztverantwortliche, konsultierte und informierte Rollen. Sie genügt aber nicht, solange Freigabeschwellen, Stellvertretungen und Eskalationswege fehlen. Die typische Fehlstelle: Rollen sind beschrieben, aber nicht so mandatiert, dass sie entscheiden können.
 
-Ein wirksames Mandatsmodell beantwortet fünf Fragen: Was darf auf Projektebene entschieden werden? Ab welcher Schwelle entscheidet der Bauherr oder beschließt er im Lenkungskreis? Wer darf Kosten, Projektumfang, Termin, Risiko oder Vergabe beeinflussen? Welche Unterlagen müssen vorliegen? Welche Rolle ist letztverantwortlich? MVG verbindet diese Antworten mit den Freigaben und den Entscheidungs-IDs. Wo eine Entscheidung erforderlich ist, entscheidet die befugte Stelle auf eine Vorlage der Projektsteuerung mit mindestens zwei Optionen und gewichtetem Vergleich; selbst pflegen muss keine Stufe etwas.
+Ein wirksames Mandatsmodell beantwortet fünf Fragen: Was darf auf Projektebene entschieden werden? Ab welcher Schwelle entscheidet der Bauherr oder beschließt er im Lenkungskreis? Wer darf Kosten, Projektumfang, Termin, Risiko oder Vergabe beeinflussen? Welche Unterlagen müssen vorliegen? Welche Rolle ist letztverantwortlich? MVG verbindet diese Antworten mit den Freigaben und den Entscheidungs-IDs. Wo eine Entscheidung erforderlich ist, entscheidet die befugte Stelle auf eine Vorlage der Projektsteuerung mit mindestens zwei zulässigen Optionen und gewichtetem Vergleich; selbst pflegen muss keine Stufe etwas.
 
 Wie eine solche Schwelle aussehen kann, zeigt die **Muster-Mandatsleiter**. Sie ist ein Muster, keine feste Vorgabe: Die Freigabeschwellen selbst legt der Bauherr fest – sie gehören zum Kern des Feldes Mandat. [[bedienung:Ziehen Sie den Regler, um zu sehen, wer nach dem Muster bei welchem Betrag entscheidet.]]
 

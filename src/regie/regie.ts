@@ -12,7 +12,7 @@
 
 import type { GeschichteRegie, OeffentlicheInhalte, RegieEintrag } from '../inhalte/typen.ts';
 import { empfohlen, geheZu, neuerStand, schritte, schrittIndex, setzeKurz, station, waehle, weiter, zurueck } from '../geschichte/engine.ts';
-import type { Kanal } from './kanal.ts';
+import { kanalSchluessel, type Kanal } from './kanal.ts';
 import { neueBuehne, pruefeBuehne, BUEHNEN_BEREICHE, type Buehne, type BuehnenBereich } from './buehne.ts';
 import { h, attr, text, ersetze } from '../ui/h.ts';
 import { bildmarke } from '../ui/marke.ts';
@@ -23,6 +23,7 @@ import { themen, themaSeite } from '../ui/flaechen/theorie.ts';
 import { WERKZEUGE, werkzeugAus } from '../ui/flaechen/explore.ts';
 import { bogenFuerStrgP, bogenKopf, druckeBogen } from '../ui/druck.ts';
 import { W } from '../ui/woerter.ts';
+import { bmLink, DATENSCHUTZ_SEITE, IMPRESSUM_SEITE } from '../ui/bausteine/seite.ts';
 
 export interface SpeicherGriff {
   getItem(k: string): string | null;
@@ -193,7 +194,7 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
       // R67: Notizen bleiben nicht ungefragt im Browser – löscht Protokoll und gespeicherten Stand der Präsentation
       h('button', { type: 'button', class: 'knopf knopf-still', 'data-pruef': 'regie-protokoll-loeschen', onclick: () => {
         protokoll = [];
-        try { o.speicher?.removeItem(REGIE_SCHLUESSEL); } catch { /* Speicher gesperrt */ }
+        try { o.speicher?.removeItem(REGIE_SCHLUESSEL); o.speicher?.removeItem(kanalSchluessel('regie')); } catch { /* Speicher gesperrt */ }
         zeichneProtokoll();
       } }, w.protokollLoeschen)));
   const uhr = (zeit: number): string => new Date(zeit).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
@@ -226,7 +227,11 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
         h('section', { class: 'regie-vorschau', 'aria-label': w.vorschau }, h('span', { class: 't-label' }, w.vorschau), ort, rahmen),
         steuerung),
       h('div', { class: 'regie-rechts' }, eingriffKarte, notiz, protokollKarte)),
-    h('footer', { class: 'regie-fuss' }, h('span', null, o.version)));
+    // R68: Impressum, Datenschutz und der leise Link auch hier (P16.12 „aus jeder Fläche erreichbar“)
+    h('footer', { class: 'regie-fuss' }, h('span', null, o.version),
+      h('a', { href: IMPRESSUM_SEITE, 'data-pruef': 'impressum' }, W.rahmen.impressum),
+      h('a', { href: DATENSCHUTZ_SEITE, 'data-pruef': 'datenschutz' }, W.rahmen.datenschutz),
+      bmLink()));
 
   /* -------------------------------------------------------------- Handeln -- */
   const themenListe = themen(inhalte).map((t) => t.thema);

@@ -21,7 +21,7 @@ Zum Abhaken beim Durchsehen der Internetseite (lokal: `dist/index.html` im Brows
 
 ## C. Termin mit Regie und Leinwand (O-9)
 - [ ] Zwei Fenster: Regie am Laptop, Leinwand am Beamer; Leinwand zeigt nie Notizen oder Leitfragen.
-- [ ] Sprung je Station, Wahl und Gewichte aus der Regie, Gewichte auf der Leinwand sichtbar; Themen und Werkzeuge zeigen.
+- [ ] Sprung je Station, Wahl aus der Regie (Gewichte über die drei Vorschläge in Station 1), Gewichte und Vergleich auf der Leinwand sichtbar; Themen und Werkzeuge zeigen.
 
 ## D. Geräte (O-10)
 - [ ] Chrome oder Edge, Safari, Firefox: Start, eine Station, ein Thema, ein Werkzeug.

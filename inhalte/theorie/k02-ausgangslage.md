@@ -131,7 +131,7 @@ In vielen Bauherrenorganisationen hängt in kritischen Momenten viel an wenigen 
 
 Ein belastbares [[Bauherren-Führungsmodell]] verringert diese Abhängigkeit. Es macht nicht jede Organisation automatisch leistungsfähig. Aber es schafft einen gemeinsamen Standard, der fünf Fragen beantwortet. So wird Erfahrung nicht ersetzt, sondern in wiederholbare Führungslogik überführt.
 
-Ein Beispiel vom Schulcampus Lindenhall-Süd: Kurz vor der Freigabe der Risikoreserve für den Holzbau fällt Holger Stein, der Kostenplaner der Generalplanung, für Wochen aus – der Einzige, der die Kostenstände vollständig kennt. Mit einem gemeinsamen Standard findet die Vertretung vor, wer entscheidet, welche Unterlagen erforderlich sind und welche Annahmen gelten. Im Standard steht dieses Wissen nicht in persönlichen Arbeitsständen, sondern in den Einträgen der Projektsteuerung – so, dass auch eine Vertretung erkennt, was bekannt ist und was noch geklärt werden muss.
+Ein Beispiel vom Schulcampus Lindenhall-Süd: Kurz vor der Freigabe der Risikoreserve für den Holzbau fällt die Bauherren-PL für Wochen aus – die Person, die den Weg der Vorlage bis dahin begleitet hat. Mit einem gemeinsamen Standard findet die Vertretung vor, wer entscheidet, welche Unterlagen erforderlich sind und welche Annahmen gelten. Dieses Wissen steht nicht in persönlichen Arbeitsständen, sondern in den Einträgen der Projektsteuerung und im Datenstand der GML – so, dass auch eine Vertretung erkennt, was bekannt ist und was noch geklärt werden muss.
 
 ::: umschalter
 ---

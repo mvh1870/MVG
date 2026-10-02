@@ -227,8 +227,11 @@ test('Story: Auftakt → Station → Vorlage (ohne Wahl kein Weiter) → Folge; 
   // Fortschritt löschen
   (f.element.querySelector('[data-pruef="fortschritt-loeschen"]') as HTMLElement).click();
   assert.equal(titel(), G.prolog.titel);
-  assert.equal(sp.daten.get(SPEICHER_SCHLUESSEL), JSON.stringify(f.stand()));
+  // R68: gelöscht bleibt gelöscht, bis der nächste Schritt wieder speichert
+  assert.equal(sp.daten.get(SPEICHER_SCHLUESSEL), undefined);
   assert.deepEqual(f.stand().wahlen, {});
+  f.taste(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+  assert.equal(sp.daten.get(SPEICHER_SCHLUESSEL), JSON.stringify(f.stand()));
 });
 
 test('Story: Schulstart zeigt Bilanz, Urteil und die Wege weiter', () => {
@@ -324,6 +327,7 @@ test('Regie: Notiz und Leitfragen, Kundenwahl, „weiter“ sendet den öffentli
   assert.ok((sp.getItem('gk.regie') ?? '').includes('Frage zur Reserve'));
   (r.element.querySelector('[data-pruef="regie-protokoll-loeschen"]') as HTMLElement).click();
   assert.equal(sp.getItem('gk.regie'), null);
+  assert.equal(sp.getItem('mvg.kanal.regie'), null);
   assert.doesNotMatch(r.element.querySelector('.regie-protokoll-liste')?.textContent ?? '', /Frage zur Reserve/u);
   // Theorie: Thema wählen, Notiz des Themas (falls vorhanden)
   const thema = r.element.querySelector<HTMLSelectElement>('[data-pruef="regie-thema"]');

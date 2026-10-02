@@ -37,7 +37,7 @@ ist. Das ist gewollt, das ist die Kette: du sollst nicht auf einen Anstoß warte
 Obergrenze an Zügen oder nach einer Blockzeit —, und danach bekommst du KEINEN Zug mehr. Was
 dann nicht gepusht ist, ist weg: der Rechner wird abgeräumt, und der nächste Block beginnt auf
 einem frischen.
-⛔ NIE --force, nie Geschichte umschreiben, nie in den Standardzweig. Scheitert ein Push an
+⛔ NIE --force, nie Geschichte umschreiben, nie in den Standardzweig. (Einzige Ausnahme, Owner-Entscheid O-49 in ENTSCHEIDE.md: Ist das Planblatt leer und die Kette grün, führt der letzte Block claude/haus EINMAL per Merge nach main zusammen und pusht – ohne --force.) Scheitert ein Push an
 einem Konflikt: pull --rebase, Konflikt lösen, erneut pushen. Gelingt das nicht, schreib es
 in die Übergabe und als Frage.
 ⛔ DIE KETTE IST KEIN FREIBRIEF. Drehst du dich im Kreis, misslingt dasselbe zum dritten

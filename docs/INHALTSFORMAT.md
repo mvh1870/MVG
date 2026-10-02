@@ -108,6 +108,7 @@ Eine durchgehende Geschichte aus Sicht des Bauherrn. Übersetzer: `werkzeuge/ges
 | `belege` | interne Belege (`v24:hb-3.1`, Absatz-IDs; Pflicht, mindestens einer) – nie in der Ausgabe (O-38) |
 | `lage` | Markdown (Pflicht) |
 | `lage-folgen` | optional `{ kosten, puffer, offen }` (Zahlen), gilt ab dem Lesen der Lage |
+| `lage-folgen-bedingt` | optional, Liste `{ wenn, folgen: { kosten, puffer, offen } }` – wie `lage-folgen`, aber nur, wenn die Bedingung gilt (z. B. `{ wenn: "s2=C", folgen: { offen: -1 } }`: die vertagte Freigabe ist erteilt). `wenn` ist Pflicht und zeigt nur auf frühere Stationen |
 | `bericht` | `titel`, `zeilen` (Text oder `{ text, wenn }`), `reaktion` |
 | `vorgaenge` | Liste `{ art, kennung, titel, text, verantwortlich, termin, stand, matrix: { w, a }, wenn }`; Art: `aufgabe`, `massnahme`, `fruehwarnung`, `risiko`, `problem`, `aenderung`; ein Risiko, dessen `stand` nicht mit „geschlossen“ beginnt, braucht die Matrix (`w`, `a` je 1–5) |
 | `vorlage` | `art` (`gewichte` oder `optionen`), `frage`, `grund`, `stelle`, `termin`, `verzug`, `muss`, optional `unvollstaendig`, `optionen`, `empfehlung { option, text }` |
@@ -117,7 +118,9 @@ Eine durchgehende Geschichte aus Sicht des Bauherrn. Übersetzer: `werkzeuge/ges
 
 **Optionen:** `id` (ein Großbuchstabe), `titel`, `text`, `folgen` (`{ kosten, puffer, offen }`), `konsequenz`, optional `naechste`. Bei `optionen`: `punkte` je Kriterium `[1–5, "Begründung"]` (Begründung in Anführungszeichen, wenn sie ein Komma enthält). Bei `gewichte`: `gewichte` je Kriterium 1–5. `klaerung: true` = keine Entscheidung in der Sache (nur in einer unvollständigen Vorlage, geht nicht in den Vergleich). Weniger als zwei zulässige Optionen ⇒ `unvollstaendig` ist Pflicht, und eine unvollständige Vorlage braucht eine Klärungsoption. `empfehlung.option` muss eine Option der Vorlage sein.
 
-**Bedingungen** (`wenn` an Berichtszeilen und Vorgängen): `s3=A` oder `s3!=A` – zeigen nur auf frühere Stationen und auf Optionen, die es dort gibt. Stationen außerhalb der Kurzfassung zählen dort mit der Option, die mit den geltenden Gewichten vorn liegt.
+**Bedingungen** (`wenn` an Berichtszeilen, Vorgängen und `lage-folgen-bedingt`): ein Teil oder mehrere, mit `&` verknüpft – alle müssen gelten. Je Teil `s3=A` oder `s3!=A` (eine frühere Wahl; zeigt nur auf frühere Stationen und auf Optionen, die es dort gibt; ohne Wahl gilt keine der beiden Formen), `kurz` (Kurzfassung) oder `lang` (ganze Geschichte). Beispiel: `wenn: "s4=A & s5!=A"`, `wenn: "kurz & s4=B"`. Stationen außerhalb der Kurzfassung zählen dort mit der Option, die mit den geltenden Gewichten vorn liegt – auch in Bedingungen. Mit `kurz` lassen sich Berichtszeilen schreiben, die in der Kurzfassung erklären, was auf den übersprungenen Stationen geschehen ist.
+
+**Status und Text gehören zusammen:** Jede Erhöhung von „offen“ (eine vertagte Entscheidung) wird an der Station abgebaut (`lage-folgen-bedingt`, `offen: -1`), deren Bericht die Erledigung meldet – oder sie bleibt bis zum Ende offen, und der letzte Bericht sagt das. `tests/geschichte.test.ts` rechnet alle Wege nach.
 
 **Ganze Geschichte:** Die erste Station legt die Gewichte fest (`art: gewichte`) und gehört zur Kurzfassung; jede Station liegt zeitlich (`monat`) nicht vor der vorigen.
 
@@ -212,7 +215,7 @@ Die Fall-Bibel (Stadt, GML, Projekt, Zahlen, Zeitachse, Gremien, Figuren) bleibt
 | Form | Container nicht geschlossen, unbekannte Art/Feld/Kopfdaten, Art am falschen Ort, Kennung fehlt oder unzulässig, YAML unlesbar |
 | Schema | Pflichtfeld fehlt, Wert nicht erlaubt (Zahl außerhalb des Bereichs, Form der Tafel, Wahlwert) |
 | Themen | `kapitel` fehlt oder passt nicht zum Dateinamen · `thema` oder `reihe` doppelt · zweiter Regie-Block · Wissenscheck ohne zwei Antworten oder ohne Beleg · Ebene 4 ohne Zitat |
-| Story (3) | Pflichtfeld oder interne Belege fehlen · `nr` nicht lückenlos · Kennung doppelt · LPH außerhalb 0–9 · Punkte/Gewichte nicht 1–5 · Vorlage mit weniger als zwei zulässigen Optionen ohne `unvollstaendig` · Empfehlung keine Option · Vorgangsart unbekannt · offenes Risiko ohne Matrix · Bedingung unlesbar oder nicht auf eine frühere Station · erste Station legt die Gewichte nicht fest oder gehört nicht zur Kurzfassung · Stationen zeitlich rückwärts |
+| Story (3) | Pflichtfeld oder interne Belege fehlen · `nr` nicht lückenlos · Kennung doppelt · LPH außerhalb 0–9 · Punkte/Gewichte nicht 1–5 · Vorlage mit weniger als zwei zulässigen Optionen ohne `unvollstaendig` · Empfehlung keine Option · Vorgangsart unbekannt · offenes Risiko ohne Matrix · Bedingung unlesbar (je Teil `s3=A`, `s3!=A`, `kurz`, `lang`), Option fehlt oder nicht auf eine frühere Station · `lage-folgen-bedingt` ohne `wenn` · erste Station legt die Gewichte nicht fest oder gehört nicht zur Kurzfassung · Stationen zeitlich rückwärts |
 | Explore (4.5) | Titel oder interne Belege fehlen · Matrix-Stufen decken 1–25 nicht genau einmal · nicht je fünf Stufen · Vorgangsart oder Weg unbekannt |
 | Zitate | Absatz-ID unbekannt oder Text nicht wortgleich (2.5) |
 | Glossar | `[[Begriff]]` nicht im Glossar · `glossar.yaml` ändert/entfernt Unbekanntes oder ohne Beleg |
@@ -239,7 +242,7 @@ Ein lauffähiges kleines Beispiel (Thema, Abdeckung, Startseite) steht als `BEIS
 | Block (`bloecke[]`, `kinder[]`) | `art`, `kennungen`, `id`, `kopf` (umgewandelte Kopfdaten; `zitat`: `quelle`, `vollstaendig`; `tafel`: `quelle`, `tabelle`, `hervor`), `felder` (HTML), `kinder`; `ebenen`-Blöcke tragen `ebenen[]` (`nr`, `titel`, `felder`, `bloecke`) |
 | `kompass[]` | `id`, `begriff`, `andere`, `beleg`, `glossar`, `hinweis` |
 | `abdeckung` | `gesamt`, `zugeordnet`, `anteil`, `ziele` (Absatz-ID → `{ theorie[] }`) |
-| `geschichte` | `titel`, `status`, `kriterien`, `prolog` (`titel`, `html`, `taktHtml`), `ende` (`titel`, `html`, `pufferGut`, `pufferKnapp`, `pufferSchlecht`), `stationen[]` (Kopf, `lageHtml`, `lageFolgen`, `bericht`, `vorgaenge`, `vorlage` mit `optionen[]` und `empfehlung`, `folgeHtml`, `soLaeuftHtml`, `einwand`, `theorie`); ohne `belege` |
+| `geschichte` | `titel`, `status`, `kriterien`, `prolog` (`titel`, `html`, `taktHtml`), `ende` (`titel`, `html`, `pufferGut`, `pufferKnapp`, `pufferSchlecht`), `stationen[]` (Kopf, `lageHtml`, `lageFolgen`, `lageFolgenBedingt`, `bericht`, `vorgaenge`, `vorlage` mit `optionen[]` und `empfehlung`, `folgeHtml`, `soLaeuftHtml`, `einwand`, `theorie`); ohne `belege` |
 | `werkzeuge` | Explore-Texte (`einleitungHtml`, `mcda`, `matrix`, `vorgaenge`, `takt`, `glossar`); ohne `belege` |
 | `regie` | **nur Regie**: `theorie/k<kapitel>` → `notiz` (HTML), `leitfragen` (Inline-HTML) |
 | `geschichteRegie` | **nur Regie**: Station (`s3`) → `notizHtml`, `leitfragen` |

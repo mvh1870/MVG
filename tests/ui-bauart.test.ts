@@ -249,11 +249,13 @@ test('Explore: fünf Werkzeuge; Rechner rechnet um, Matrix ordnet ein, Vorgänge
   }
   const mcda = baueExplore({ inhalte, werkzeug: 'mcda', bedienbar: true });
   document.body.replaceChildren(mcda);
-  assert.match(mcda.querySelector('[data-pruef="ex-summe-A"]')?.textContent ?? '', /^54/u);
-  const wahl = mcda.querySelector<HTMLSelectElement>('select[aria-label="Gewicht Kosten"]');
-  assert.ok(wahl);
-  wahl.value = '5';
-  wahl.dispatchEvent(new Event('change'));
+  assert.match(mcda.querySelector('[data-pruef="ex-summe-A"]')?.textContent ?? '', /^57/u);
+  for (const [kriterium, wert] of [['Kosten', '5'], ['Termin', '3']] as const) {
+    const wahl = mcda.querySelector<HTMLSelectElement>(`select[aria-label="Gewicht ${kriterium}"]`);
+    assert.ok(wahl, kriterium);
+    wahl.value = wert;
+    wahl.dispatchEvent(new Event('change'));
+  }
   assert.ok(mcda.querySelector('[data-pruef="ex-summe-B"]')?.classList.contains('ist-vorn'), 'Kosten vor Termin dreht die Rangfolge');
   const matrix = baueExplore({ inhalte, werkzeug: 'matrix', bedienbar: true });
   (matrix.querySelector('.ex-zelle[data-w="1"][data-a="5"]') as HTMLElement).click();

@@ -6,21 +6,21 @@ datum: Mai 2026
 monat: 5
 lph: 5
 kurzfassung: true
-# Rechnung (inhalte/fall.md, „Kosten und Reserve“): Version 3 liegt 1,73 Mio. € über dem Stand vom März (allgemeine
-# Baupreissteigerung 1,13 + Marktpreise Holzbauelemente 0,6). Die Beschlüsse aus s3/s4 stehen schon über deren Folgen im
+# Rechnung (inhalte/fall.md, „Kosten und Reserve“): Version 3 liegt ohne die Beschlüsse aus s3/s4 1,73 Mio. € über Version 1
+# (allgemeine Baupreissteigerung 1,13 + Marktpreise Holzbauelemente 0,6). Die Beschlüsse aus s3/s4 stehen schon über deren Folgen im
 # Status, deshalb bringt die Lage nur die 1,73. Empfohlener Weg: 58,4 + 0,15 + 0,12 + 1,73 = 60,4 (+2,0 = 3,4 %).
 # Auf jedem Weg liegt die Prognose zwischen 60,13 und 60,98 – über der Basis, unter Basis plus Reserve (61,3);
 # mit dem vollen Nachtrag (1,2) läge sie auf jedem Weg darüber. Beträge in der Prognose kenntlich, nicht doppelt (v24:hb-2).
 belege: [v24:hb-2, v24:hb-3, v24:hb-4, v24:tlb-3, v24:tlb-2, k4.6-p2, k3.2-t1]
 lage: |
-  Montag, 11. Mai. Holger Stein, Kostenplaner im Team der Projektsteuerung, und Aylin Kaya vom Controlling legen zwei Prognosen vor, 1,2 Mio. € auseinander.
+  Montag, 11. Mai. Zwei Prognosen liegen auf dem Tisch, 1,2 Mio. € auseinander: die Kostenberechnung von Holger Stein, Kostenplaner der Generalplanung, und die Rechnung von Aylin Kaya vom Controlling.
 
-  Die Projektsteuerung klärt den Widerspruch vor dem Monatstermin: Die Differenz ist ein angekündigter Nachtrag der Haustechnikplanung. Angekündigt, aber nicht eingetreten – ein Risiko mit Bandbreite. Ist ein Betrag schon in der Prognose enthalten, wird er kenntlich gemacht und nicht doppelt gezählt.
+  Die Projektsteuerung hat beide angefordert und klärt den Widerspruch vor dem Monatstermin: Die Differenz ist ein angekündigter Nachtrag der Haustechnikplanung. Angekündigt, aber nicht eingetreten – ein Risiko mit Bandbreite. Ist ein Betrag schon in der Prognose enthalten, wird er kenntlich gemacht und nicht doppelt gezählt.
 lage-folgen: { kosten: 1.73 }
 bericht:
   titel: Monatsbericht · Mai 2026
   zeilen:
-    - „Kostenprognose 2026-05 · Version 3“ – 1,73 Mio. € mehr als im März, vor allem Baupreissteigerung und 0,6 Mio. € Marktpreise Holzbau (in RIS-005 vermerkt).
+    - „Kostenprognose 2026-05 · Version 3“ – ohne die Beschlüsse zu Holzbau und Mensa 1,73 Mio. € mehr als Version 1 vom Januar – Baupreissteigerung 1,13 Mio. € und 0,6 Mio. € Marktpreise Holzbau (in RIS-005 vermerkt).
     - Damit über der Projektbasis von 58,4 Mio. €, unter Basis plus Reserve (61,3 Mio. €); die Reserve ist nicht eingesetzt.
     - Differenz der Rechnungen – angekündigter Nachtrag Haustechnik, bis 1,2 Mio. €, Risiko RIS-014.
     - text: MAS-007 vorgezogene Vergabe Holzbau läuft.
@@ -29,12 +29,18 @@ bericht:
       wenn: s3=B
     - text: AEN-013 Sporthalle in Stahlbeton eingeplant.
       wenn: s3=C
-    - text: Auflage aus der Freigabe LPH 4 erfüllt – die Marktabfrage liegt vor.
+    - text: Die Marktabfrage aus der Auflage zur Freigabe LPH 4 ist in Version 3 eingerechnet.
       wenn: s2=B
-    - text: Freigabe LPH 4 nach der Marktabfrage im März erteilt.
+    - text: Die Marktabfrage vom März, vor der Freigabe LPH 4, ist in Version 3 eingerechnet.
       wenn: s2=C
+    - text: Im April entschieden – Mensa für 450 Essen (AEN-012, +0,6 Mio. €, rund 14 Tage).
+      wenn: kurz & s4=A
+    - text: Im April entschieden – Mensa erweiterbar vorbereitet (AEN-012, +0,12 Mio. €).
+      wenn: kurz & s4=B
+    - text: Im April entschieden – Mensa bleibt wie geplant (AEN-012 mit Begründung abgelehnt).
+      wenn: kurz & s4=C
     - Bauausschuss am 21. Mai – er braucht eine klare Frage.
-  reaktion: Bitte entscheiden Sie, wie mit der Prognose umgegangen wird.
+  reaktion: Wie soll der Bauherr mit der Prognose umgehen? Ihre Empfehlung geht an Dr. Olbers.
 vorgaenge:
   - art: risiko
     kennung: RIS-014
@@ -56,7 +62,7 @@ vorlage:
   art: optionen
   frage: Wie gehen wir mit der gestiegenen Prognose um?
   grund: |
-    Die Reserve deckt die Abweichung von der Projektbasis, eingesetzt ist sie nicht. Tritt der Nachtrag voll ein, reicht sie nicht mehr. Eine neue Projektbasis beschließt der Bauherr – hier der Stadtrat – auf Vorlage aus dem Lenkungskreis.
+    Die Reserve deckt die Abweichung von der Projektbasis, eingesetzt ist sie nicht. Tritt der Nachtrag voll ein, reicht sie nicht mehr. Eine neue Projektbasis beschließt der Bauherr – hier vertreten durch den Stadtrat – auf Vorlage aus dem Lenkungskreis.
   stelle: Bauherr – Dr. Miriam Olbers (der Lenkungskreis berät)
   termin: 19. Mai 2026 (Lenkungskreis)
   verzug: Ohne Entscheidung geht der Bauausschuss am 21. Mai ohne Frage in die Sitzung – und vertagt.
@@ -67,7 +73,7 @@ vorlage:
       text: Ausstattung und Außenanlagen werden reduziert, rund 1,5 Mio. €.
       punkte:
         kosten: [5, "−1,5 Mio. €"]
-        termin: [4, "rund 7 Tage Umplanung"]
+        termin: [5, "rund 7 Tage Umplanung"]
         qualitaet: [2, "weniger Ausstattung"]
         klima: [3, "unverändert"]
       folgen: { kosten: -1.5, puffer: -7 }
@@ -76,7 +82,7 @@ vorlage:
       titel: Reserve vorsehen und offen berichten
       text: Die Reserve wird für die bekannten Mehrkosten vorgesehen, nicht freigegeben. Stadtrat und Bauausschuss bekommen die Lage auf einer Seite, mit Bandbreite.
       punkte:
-        kosten: [3, "Reserve deckt die Abweichung, nicht den vollen Nachtrag"]
+        kosten: [5, "keine Mehrkosten; die Reserve deckt die Abweichung, nicht den vollen Nachtrag"]
         termin: [5, "kein Verzug"]
         qualitaet: [4, "unverändert"]
         klima: [4, "unverändert"]
@@ -86,7 +92,7 @@ vorlage:
       titel: Projektbasis neu festlegen lassen
       text: Der Stadtrat soll eine neue Projektbasis mit den bekannten Mehrkosten beschließen; die Reserve bliebe für Unvorhergesehenes.
       punkte:
-        kosten: [3, "Basis steigt, Reserve bleibt unberührt"]
+        kosten: [5, "keine Mehrkosten; die Basis steigt, die Reserve bleibt unberührt"]
         termin: [3, "rund 21 Tage bis zum Beschluss"]
         qualitaet: [4, "unverändert"]
         klima: [4, "unverändert"]
@@ -94,7 +100,7 @@ vorlage:
       konsequenz: Die Projektsteuerung bereitet die Ratsvorlage vor. Bis zum Beschluss gilt die bisherige Basis.
   empfehlung:
     option: B
-    text: Die Projektsteuerung empfiehlt, die Reserve vorzusehen und offen zu berichten. Nachteil – tritt der Nachtrag voll ein, reicht die Reserve nicht ganz. Mit „Kosten vor Termin“ liegen A und B fast gleichauf.
+    text: Die Projektsteuerung empfiehlt, die Reserve vorzusehen und offen zu berichten; B liegt mit jeder der drei vorgeschlagenen Gewichtungen vorn. Nachteil – tritt der Nachtrag voll ein, reicht die Reserve nicht ganz. Das Einsparpaket senkt die Prognose um 1,5 Mio. €, holt bei den Kosten aber keinen Punkt mehr – die Skala bewertet Mehrkosten, und B verursacht keine. Es kostet Ausstattung und eine Woche.
 folge: |
   Ein Datenstand für alle: Bericht, Software und Vorlage nennen dieselbe Zahl. Der Bericht passt auf eine Seite, weil er auf die Einträge verweist.
 so-laeuft-es-oft: |

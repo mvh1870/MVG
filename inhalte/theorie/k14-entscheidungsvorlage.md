@@ -37,7 +37,7 @@ links: Keine Vorlage nötig
 rechts: Vorlage nötig
 ---
 ::: ansicht links
-Die Generalplanung soll bis Monatsende eine Marktabfrage für die Holzbauelemente vorlegen. Das ist eine Aufgabe mit Ergebnis, Verantwortlicher und Termin. Die Projektsteuerung verfolgt sie nach – eine Entscheidung des Bauherrn braucht es dafür nicht.
+Die Kämmerei braucht bis Freitag den Haushaltsansatz 2027, abgeleitet aus dem geltenden Datenstand. Das ist eine Aufgabe mit Ergebnis, Verantwortlichem und Termin. Die Projektsteuerung erledigt sie und hält das Ergebnis fest – eine Entscheidung des Bauherrn braucht es dafür nicht.
 :::
 
 ::: ansicht rechts
@@ -223,7 +223,7 @@ Ein fiktives Beispiel vom Schulcampus Lindenhall-Süd, mit vereinfachten Zahlen:
 - **A · Ersatzgerät:** 80.000 € Zusatzkosten, Zieltermin 7 Kalendertage später, volle Funktion.
 - **B · Abwarten:** 20.000 € Zusatzkosten, Zieltermin 28 Kalendertage später, volle Funktion.
 
-Die Skalen stehen vorab fest. Kosten bis 20.000, 40.000, 60.000 oder 80.000 € geben 5, 4, 3 oder 2 Punkte, mehr gibt 1 Punkt. Terminfolgen bis 7, 14, 21 oder 28 Kalendertage geben ebenso 5, 4, 3 oder 2 Punkte, mehr gibt 1 Punkt. Volle Funktion gibt 5 Punkte. Die Gewichte: Kosten 3, Zieltermin 5, Funktion 2.
+Für das Beispiel stehen vereinfachte Skalen vorab fest. Kosten bis 20.000, 40.000, 60.000 oder 80.000 € geben 5, 4, 3 oder 2 Punkte, mehr gibt 1 Punkt. Terminfolgen bis 7, 14, 21 oder 28 Kalendertage geben ebenso 5, 4, 3 oder 2 Punkte, mehr gibt 1 Punkt. Volle Funktion gibt 5 Punkte. Die Gewichte: Kosten 3, Zieltermin 5, Funktion 2.
 
 | Kriterium | Gewicht | A: Punkte | B: Punkte |
 |---|---|---|---|

@@ -41,7 +41,7 @@ titel: Aufgabe
 Geplante Arbeit mit vereinbartem Ergebnis, Verantwortlichem und Termin.
 
 ### Rückseite
-Die Generalplanung legt bis Monatsende eine Marktabfrage für die Holzbauelemente vor.
+Die Projektsteuerung stellt bis Freitag den Haushaltsansatz 2027 für die Kämmerei zusammen.
 :::
 
 ::: karte massnahme

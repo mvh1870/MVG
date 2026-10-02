@@ -10,11 +10,16 @@ kurzfassung: true
 belege: [v24:hb-1.2, v24:hb-1.3, v24:hb-2, v24:hb-3, v24:hb-3.1, v24:hb-1.6, v24:tlb-2, k4.4-p2]
 lage: |
   Anfang März ruft Lena Hoffmeister von der Generalplanung an: Ein Hersteller nennt für die Holzbauelemente 26 statt 16 Wochen Lieferzeit. Noch am selben Tag steht der Hinweis als Frühwarnung im Register; eine Woche später ist er geklärt.
+# Bei s2 = C war die Freigabe LPH 4 vertagt (offen +1); sie wird im März erteilt – der Bericht meldet es, der Status baut ab.
+lage-folgen-bedingt:
+  - { wenn: "s2=C", folgen: { offen: -1 } }
 bericht:
   titel: Monatsbericht · März 2026
   zeilen:
     - FRW-002 Lieferzeit Holzbauelemente geklärt am 11. März – weitergeführt als Risiko RIS-009, aktiv · vorrangig bearbeiten.
     - Vorlage zur Lieferzeit liegt vor; Entscheidung bis 25. März.
+    - text: Freigabe LPH 4 am 17. März erteilt, nach der Marktabfrage für die Holzbauelemente; die Ausführungsplanung läuft seitdem.
+      wenn: s2=C
     - Neue Änderung AEN-012 Mensa – eigene Vorlage folgt.
   reaktion: Bitte entscheiden Sie, wie die Holzbauelemente rechtzeitig gesichert werden.
 vorgaenge:
@@ -68,14 +73,14 @@ vorlage:
       text: Nur die Sporthalle wird umgeplant; Gesamt- und Grundschule bleiben in Holz.
       punkte:
         kosten: [2, "+0,25 Mio. € Umplanung"]
-        termin: [4, "rund 7 Tage Umplanung"]
+        termin: [5, "rund 7 Tage Umplanung"]
         qualitaet: [3, "Änderung der Planung"]
         klima: [1, "weniger Holz als im Ratsbeschluss zum Klimaziel"]
       folgen: { kosten: 0.25, puffer: -7 }
       konsequenz: Die Projektsteuerung legt die Änderung AEN-013 an und verknüpft sie mit dem Risiko. Weniger Elemente heißt kürzere Lieferzeit – ob sie reicht, zeigt die Vergabe.
   empfehlung:
     option: A
-    text: Die Projektsteuerung empfiehlt, den Holzbau vorzuziehen – er sichert Termin und Klimaziel. Nachteil – 0,15 Mio. € Mehrkosten, bevor feststeht, ob der Markt sich entspannt. Auch mit „Kosten vor Termin“ bleibt A knapp vorn.
+    text: Die Projektsteuerung empfiehlt, den Holzbau vorzuziehen – er sichert Termin und Klimaziel. Nachteil – 0,15 Mio. € Mehrkosten, bevor feststeht, ob der Markt sich entspannt. Auch mit „Kosten vor Termin“ bleibt A vorn, aber knapp – 50 zu 48 vor dem Abwarten.
 folge: |
   Eine geplante Maßnahme senkt die Bewertung noch nicht. Erst wenn Umsetzung und Wirkung belegt sind – hier der vertragliche Liefertermin –, wird sie fortgeschrieben.
 so-laeuft-es-oft: |
@@ -85,7 +90,7 @@ einwand:
   antwort: Die Fachplanung bleibt bei der Generalplanung. Die Projektsteuerung klärt, bewertet und bereitet vor. Entscheiden müssen Sie – es geht um Geld und Termin.
 theorie: vorgaenge
 regie:
-  notiz: Den Weg Frühwarnung → Risiko → Vorlage → Maßnahme zeigen. Die Matrix (4 × 4 = 16, vorrangig) kurz erklären. Bei „Abwarten“ die Bandbreite ansprechen – 35 Tage, wenn sich der Markt etwas entspannt, sonst rund 70.
+  notiz: Den Weg Frühwarnung → Risiko → Vorlage → Maßnahme zeigen. Die Matrix (4 × 4 = 16, vorrangig) kurz erklären. Bei „Abwarten“ die Bandbreite ansprechen – 35 Tage, wenn sich der Markt etwas entspannt, sonst rund 70. Mit „Kosten vor Termin“ liegt Abwarten nur zwei Punkte zurück (48 zu 50) – der Puffer zeigt, was das für die Förderfrist hieße.
   leitfragen:
     - Wo landet bei Ihnen ein solcher Anruf?
     - Wer würde die Optionen ausarbeiten?

@@ -149,16 +149,24 @@ export function gewaehlteOption(g: Geschichte, stand: Stand, st: Station): Optio
   return st.vorlage.optionen.find((o) => o.id === id) ?? null;
 }
 
-/** Bedingung „s3=A“ / „s3!=A“; null gilt immer. Ohne Wahl gilt keine der beiden Formen. */
+/**
+ * Bedingung: Teile mit „&“ verknüpft, alle müssen gelten; null gilt immer. „s3=A“ / „s3!=A“ – ohne Wahl gilt keine
+ * der beiden Formen; „kurz“ / „lang“ – der gewählte Weg.
+ */
 export function gilt(g: Geschichte, stand: Stand, wenn: string | null): boolean {
   if (wenn === null) return true;
-  const m = /^(s\d+)(!?=)([A-Z])$/u.exec(wenn);
-  if (m === null) return false;
-  const st = station(g, m[1] ?? '');
-  if (st === null) return false;
-  const w = wahl(g, stand, st);
-  if (w === null) return false;
-  return m[2] === '=' ? w === m[3] : w !== m[3];
+  return wenn.split('&').every((roh) => {
+    const teil = roh.trim();
+    if (teil === 'kurz') return stand.kurz;
+    if (teil === 'lang') return !stand.kurz;
+    const m = /^(s\d+)(!?=)([A-Z])$/u.exec(teil);
+    if (m === null) return false;
+    const st = station(g, m[1] ?? '');
+    if (st === null) return false;
+    const w = wahl(g, stand, st);
+    if (w === null) return false;
+    return m[2] === '=' ? w === m[3] : w !== m[3];
+  });
 }
 
 /* --------------------------------------------------------------- Status -- */
@@ -178,6 +186,7 @@ export function status(g: Geschichte, stand: Stand, schritt: Schritt = stand.sch
   for (const st of g.stationen) {
     if (st.nr > bisNr) break;
     addiere(s, st.lageFolgen);
+    for (const b of st.lageFolgenBedingt) if (gilt(g, stand, b.wenn)) addiere(s, b.folgen);
     const o = gewaehlteOption(g, stand, st);
     // die eigene Entscheidung zählt ab der Folge, nicht schon beim Lesen der Vorlage
     if (st.nr === bisNr && schritt.ort === 'station' && schritt.teil !== 'folge') continue;

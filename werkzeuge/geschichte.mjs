@@ -62,15 +62,19 @@ export function baueGeschichte(c, dateien) {
   /** @type {Map<string, string[]>} */
   const optionenJe = new Map(roh.map((x) => [text(x.y.id), (x.y.vorlage?.optionen ?? []).map((/** @type {any} */ o) => text(o.id))]));
 
+  // Bedingung: Teile mit „&“ verknüpft, je Teil „s3=A“, „s3!=A“ (frühere Wahl), „kurz“ oder „lang“ (Weg)
   const bedingung = (/** @type {unknown} */ w, /** @type {string} */ ort, /** @type {number} */ nr) => {
     if (w === undefined || w === null) return null;
-    const m = BEDINGUNG.exec(text(w));
-    if (m === null) { c.fehler(ort, `Bedingung „${text(w)}“ unlesbar (Form s3=A oder s3!=A)`); return null; }
-    const st = roh.find((x) => x.y.id === m[1]);
-    if (st === undefined) c.fehler(ort, `Bedingung „${text(w)}“: Station ${m[1]} fehlt`);
-    else {
-      if (Number(st.y.nr) >= nr) c.fehler(ort, `Bedingung „${text(w)}“ zeigt nicht auf eine frühere Station`);
-      if (!(optionenJe.get(m[1] ?? '') ?? []).includes(m[3] ?? '')) c.fehler(ort, `Bedingung „${text(w)}“: Option ${m[3]} fehlt`);
+    for (const teil of text(w).split('&').map((x) => x.trim())) {
+      if (teil === 'kurz' || teil === 'lang') continue;
+      const m = BEDINGUNG.exec(teil);
+      if (m === null) { c.fehler(ort, `Bedingung „${text(w)}“ unlesbar (Form s3=A, s3!=A, kurz, lang; verknüpft mit &)`); return null; }
+      const st = roh.find((x) => x.y.id === m[1]);
+      if (st === undefined) c.fehler(ort, `Bedingung „${text(w)}“: Station ${m[1]} fehlt`);
+      else {
+        if (Number(st.y.nr) >= nr) c.fehler(ort, `Bedingung „${text(w)}“ zeigt nicht auf eine frühere Station`);
+        if (!(optionenJe.get(m[1] ?? '') ?? []).includes(m[3] ?? '')) c.fehler(ort, `Bedingung „${text(w)}“: Option ${m[3]} fehlt`);
+      }
     }
     return text(w);
   };
@@ -160,6 +164,8 @@ export function baueGeschichte(c, dateien) {
       kurzfassung: y.kurzfassung === true,
       lageHtml: c.html(text(y.lage), ort),
       lageFolgen: folgen(y['lage-folgen'], ort),
+      // Lage-Folgen, die nur auf bestimmten Wegen gelten (z. B. eine vertagte Entscheidung wird erledigt: offen −1)
+      lageFolgenBedingt: (y['lage-folgen-bedingt'] ?? []).map((/** @type {any} */ b) => ({ wenn: bedingung(pflicht(b, 'wenn', ort), ort, nr) ?? '', folgen: folgen(b.folgen, ort) })),
       bericht: {
         titel: text(bericht.titel),
         zeilen: (bericht.zeilen ?? []).map((/** @type {any} */ z) => (typeof z === 'string' ? { html: c.inline(z, ort), wenn: null } : { html: c.inline(text(z.text), ort), wenn: bedingung(z.wenn, ort, nr) })),

@@ -34,16 +34,50 @@ test('Übersetzer: keine Befunde, acht Stationen, Belege bleiben intern', () => 
 
 test('MCDA: Summen und Rangfolge wie in den Stationen', () => {
   const v = st('s3').vorlage;
-  assert.deepEqual(rangfolge(v.optionen, g.kriterien, STANDARD).map((p) => [p.option.id, p.summe]), [['A', 54], ['B', 40], ['C', 37]]);
+  assert.deepEqual(rangfolge(v.optionen, g.kriterien, STANDARD).map((p) => [p.option.id, p.summe]), [['A', 54], ['C', 42], ['B', 40]]);
   const o = v.optionen.find((x) => x.id === 'A');
   assert.ok(o);
   assert.equal(summe(o, g.kriterien, STANDARD), 54);
 });
 
+const KOSTEN_ZUERST = { kosten: 5, termin: 3, qualitaet: 3, klima: 2 };
+const AUSGEWOGEN = { kosten: 4, termin: 4, qualitaet: 3, klima: 3 };
+const summen = (id: string, gew: Record<string, number>) => Object.fromEntries(rangfolge(st(id).vorlage.optionen, g.kriterien, gew).map((p) => [p.option.id, p.summe]));
+
+test('MCDA: Skalen des Projektblatts – Kosten- und Terminpunkte folgen aus den Folgen jeder Option (s1)', () => {
+  // Mehrkosten bis 20/50/150/500 TEUR → 5/4/3/2, sonst 1 (Einsparung = keine Mehrkosten); Verzug bis 7/14/21/28 Tage → 5/4/3/2, sonst 1
+  const kosten = (mio: number) => { const t = Math.max(0, mio) * 1000; return t <= 20 ? 5 : t <= 50 ? 4 : t <= 150 ? 3 : t <= 500 ? 2 : 1; };
+  const termin = (tage: number) => (tage <= 7 ? 5 : tage <= 14 ? 4 : tage <= 21 ? 3 : tage <= 28 ? 2 : 1);
+  for (const x of g.stationen) {
+    for (const o of x.vorlage.optionen) {
+      if (o.punkte === null) continue;
+      assert.equal(o.punkte['kosten']?.[0], kosten(o.folgen.kosten ?? 0), `${x.id} ${o.id} Kosten`);
+      assert.equal(o.punkte['termin']?.[0], termin(-(o.folgen.puffer ?? 0)), `${x.id} ${o.id} Termin`);
+    }
+  }
+});
+
+test('MCDA: Summen und Gewichtungsaussagen der Empfehlungstexte', () => {
+  assert.deepEqual(summen('s2', STANDARD), { B: 58, A: 55, C: 48 });
+  assert.deepEqual(summen('s3', KOSTEN_ZUERST), { A: 50, B: 48, C: 36 }, 's3: „Kosten vor Termin“ – A knapp vorn, 50 zu 48');
+  assert.deepEqual(summen('s4', STANDARD), { B: 52, C: 52, A: 44 }, 's4: B und C gleichauf');
+  assert.deepEqual(spitze(st('s4').vorlage.optionen, g.kriterien, KOSTEN_ZUERST), ['C']);
+  assert.deepEqual(spitze(st('s4').vorlage.optionen, g.kriterien, AUSGEWOGEN), ['C']);
+  assert.deepEqual(spitze(st('s4').vorlage.optionen, g.kriterien, { ...STANDARD, kosten: 4 }), ['C'], 's4: ein Punkt mehr auf Kosten');
+  for (const gew of [STANDARD, KOSTEN_ZUERST, AUSGEWOGEN]) {
+    assert.deepEqual(spitze(st('s2').vorlage.optionen, g.kriterien, gew), ['B']);
+    assert.deepEqual(spitze(st('s5').vorlage.optionen, g.kriterien, gew), ['B']);
+    assert.deepEqual(spitze(st('s7').vorlage.optionen, g.kriterien, gew), ['A']);
+  }
+  assert.deepEqual(summen('s8', STANDARD), { A: 57, B: 48 });
+  assert.deepEqual(summen('s8', AUSGEWOGEN), { A: 59, B: 55 });
+  assert.deepEqual(summen('s8', KOSTEN_ZUERST), { B: 54, A: 53 });
+});
+
 test('MCDA: Lüftungsgerät kippt bei „Kosten vor Termin“', () => {
   const v = st('s8').vorlage;
   assert.deepEqual(spitze(v.optionen, g.kriterien, STANDARD), ['A']);
-  assert.deepEqual(spitze(v.optionen, g.kriterien, { kosten: 5, termin: 3, qualitaet: 3, klima: 2 }), ['B']);
+  assert.deepEqual(spitze(v.optionen, g.kriterien, KOSTEN_ZUERST), ['B']);
   const k = kipppunkte(v.optionen, g.kriterien, STANDARD);
   assert.ok(k.some((x) => x.kriterium === 'kosten' || x.kriterium === 'termin'));
 });
@@ -117,6 +151,54 @@ test('Zahlen der Story: Status und Bericht passen auf dem empfohlenen Weg zusamm
   }
 });
 
+/** Alle Wege der ganzen Geschichte (Station 1 mit den vorgeschlagenen Gewichten). */
+function alleWege(): { stand: Stand; w: Record<string, string> }[] {
+  const ids = g.stationen.filter((x) => x.vorlage.art === 'optionen').map((x) => x.id);
+  const aus: { stand: Stand; w: Record<string, string> }[] = [];
+  const geh = (i: number, s: Stand, w: Record<string, string>): void => {
+    const id = ids[i];
+    if (id === undefined) { aus.push({ stand: s, w }); return; }
+    for (const o of st(id).vorlage.optionen) geh(i + 1, waehle(g, s, id, o.id), { ...w, [id]: o.id });
+  };
+  geh(0, neuerStand(), {});
+  return aus;
+}
+
+test('Offene Entscheidungen: jede vertagte Entscheidung wird erledigt – am Ende offen bleibt nur die Neufestlegung der Projektbasis (s5 = C)', () => {
+  const wege = alleWege();
+  assert.equal(wege.length, 3 * 3 * 3 * 3 * 2 * 3 * 2);
+  for (const { stand, w } of wege) {
+    const ende = status(g, { ...stand, schritt: { ort: 'ende' } });
+    assert.equal(ende.offen, w['s5'] === 'C' ? 1 : 0, JSON.stringify(w));
+    for (const x of g.stationen) assert.ok(status(g, stand, { ort: 'station', station: x.id, teil: 'lage' }).offen >= 0, `${x.id} ${JSON.stringify(w)}`);
+  }
+});
+
+test('Grenze Basis plus Reserve: Die Berichte sagen auf jedem Weg, ob die Prognose darüber liegt', () => {
+  const GRENZE = 58.4 + 2.9;
+  for (const { stand, w } of alleWege()) {
+    const s7 = status(g, stand, { ort: 'station', station: 's7', teil: 'lage' }).kosten;
+    assert.equal(s7 > GRENZE, gilt(g, stand, 's4=A & s5!=A'), `s7 ${s7} ${JSON.stringify(w)}`);
+    const s8 = status(g, stand, { ort: 'station', station: 's8', teil: 'lage' }).kosten;
+    const zeilen = st('s8').bericht.zeilen.filter((z) => z.wenn !== null && gilt(g, stand, z.wenn)).map((z) => z.html).join(' ');
+    if (w['s5'] === 'B' && w['s4'] === 'A') {
+      assert.equal(/nötig, weil die Prognose über/u.test(zeilen), s8 > GRENZE, `s8 ${s8} ${JSON.stringify(w)}`);
+      assert.equal(/unter Basis plus Reserve/u.test(zeilen), s8 <= GRENZE, `s8 ${s8} ${JSON.stringify(w)}`);
+    }
+  }
+});
+
+test('Kurzfassung: der Bericht in Station 8 erklärt den Sprung seit Mai 2026', () => {
+  let s: Stand = neuerStand(true);
+  for (const id of ['s1', 's3', 's5', 's8']) s = waehle(g, s, id, st(id).vorlage.empfehlung.option);
+  const vorher = status(g, s, { ort: 'station', station: 's5', teil: 'folge' });
+  const nachher = status(g, s, { ort: 'station', station: 's8', teil: 'lage' });
+  // Brandschutzauflage 0,4 Mio. € / 7 Tage, Vergabe Holzbau +0,3 Mio. €
+  assert.equal(Math.round((nachher.kosten - vorher.kosten) * 100) / 100, 0.7);
+  assert.equal(vorher.puffer - nachher.puffer, 7);
+  assert.ok(st('s8').bericht.zeilen.some((z) => z.wenn === 'kurz' && gilt(g, s, z.wenn)));
+});
+
 test('Bedingungen und offene Stationen', () => {
   let s = neuerStand();
   assert.equal(gilt(g, s, 's3=A'), false);
@@ -155,4 +237,23 @@ test('Puffer-Urteil: über eine Woche gut, bis null knapp, darunter schlecht', (
   assert.equal(pufferUrteil(1), 'knapp');
   assert.equal(pufferUrteil(0), 'knapp');
   assert.equal(pufferUrteil(-1), 'schlecht');
+});
+
+test('Bedingungen mit „&“, „kurz“, „lang“ und bedingte Lage-Folgen', async () => {
+  const { inhalte: i } = await kompiliere({ ziel: null });
+  const g0 = i.geschichte as Geschichte;
+  const g: Geschichte = { ...g0, stationen: g0.stationen.map((s) => (s.nr === 3 ? { ...s, lageFolgenBedingt: [{ wenn: 's1=A & s2=B', folgen: { offen: 5 } }] } : s)) };
+  let st = neuerStand();
+  st = waehle(g, st, 's1', 'A');
+  st = waehle(g, st, 's2', 'B');
+  assert.equal(gilt(g, st, 's1=A & s2=B'), true);
+  assert.equal(gilt(g, st, 's1=A & s2!=B'), false);
+  assert.equal(gilt(g, st, 'lang'), true);
+  assert.equal(gilt(g, { ...st, kurz: true }, 'kurz & s1=A'), true);
+  const s3 = g.stationen.find((s) => s.nr === 3) as Station;
+  const ohne = status(g0, { ...st, schritt: { ort: 'station', station: s3.id, teil: 'lage' } }).offen;
+  const mit = status(g, { ...st, schritt: { ort: 'station', station: s3.id, teil: 'lage' } }).offen;
+  assert.equal(mit - ohne, 5);
+  st = waehle(g, st, 's2', 'A');
+  assert.equal(status(g, { ...st, schritt: { ort: 'station', station: s3.id, teil: 'lage' } }).offen, status(g0, { ...st, schritt: { ort: 'station', station: s3.id, teil: 'lage' } }).offen);
 });

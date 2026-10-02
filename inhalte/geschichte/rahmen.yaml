@@ -16,15 +16,15 @@ prolog:
 
     Sie übernehmen im Januar 2026 die Projektleitung auf Bauherrenseite (Bauherren-PL) bei der Gebäudemanagement Lindenhall GmbH (GML). Listen pflegen Sie nicht – das macht die Projektsteuerung, Jonas Brenner und sein Team. Sie erfasst jeden Vorgang, prüft jede Woche den offenen Bestand und bereitet jede Entscheidung als Vorlage vor: mindestens zwei Optionen, gewichteter Vergleich.
 
-    Ihre Aufgabe: entscheiden. Sieht das Mandat eine andere Stelle vor – den Bauherrn mit Dr. Miriam Olbers im Lenkungskreis oder das Änderungsgremium –, tragen Sie die Vorlage dorthin. Hier treffen Sie die Entscheidung.
+    Ihre Aufgabe: entscheiden. Sieht das Mandat eine andere Stelle vor – den Bauherrn mit Dr. Miriam Olbers im Lenkungskreis oder das Änderungsgremium –, tragen Sie die Vorlage mit Ihrer Empfehlung dorthin. Hier wählen Sie die Option; die befugte Stelle folgt Ihrer Empfehlung.
   takt: |
     Jede Woche prüft die Projektsteuerung alle offenen Vorgänge, Dringliches meldet sie sofort. Einmal im Monat: ein Online-Termin von höchstens 60 Minuten und ein Bericht von höchstens einer Seite.
 ende:
   titel: Schulstart
   text: |
-    August 2028. Die Schulleitung bekommt die Schlüssel. Jede Frage, jede Option, jede Gewichtung, jeder Beschluss steht mit Datum und Bedingungen in der Software der GML – und was daraus geworden ist.
+    August 2028, Schulstart. Jede Frage, jede Option, jede Gewichtung, jeder Beschluss steht mit Datum und Bedingungen in der Software der GML – und was daraus geworden ist.
 
     Ihr Aufwand: Entscheidungen statt Listen – ein Termin im Monat, eine Seite Bericht, dazu die Vorlagen.
-  puffer-gut: Der Schulstart zum Schuljahr 2028/29 ist gehalten.
-  puffer-knapp: Der Schulstart ist gehalten – ohne jeden Puffer.
+  puffer-gut: Der Schulstart zum Schuljahr 2028/29 ist gehalten – die Schulleitung bekommt die Schlüssel.
+  puffer-knapp: Der Schulstart ist gehalten, mit kaum noch Puffer – die Schulleitung bekommt die Schlüssel.
   puffer-schlecht: Der Schulstart wackelt. Der Förderbescheid verlangt die Inbetriebnahme zum Schuljahr 2028/29.

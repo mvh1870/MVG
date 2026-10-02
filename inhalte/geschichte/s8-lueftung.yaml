@@ -6,20 +6,48 @@ datum: Januar 2028
 monat: 25
 lph: 8
 kurzfassung: true
-# Zahlen wie im fiktiven Beispiel des Standards (L-193): 80.000 € / 7 Tage gegen 20.000 € / 28 Tage, 41 : 35 bei 3/5/2.
+# Beträge und Tage wie im fiktiven Beispiel des Standards (L-193): 80.000 € / 7 Tage gegen 20.000 € / 28 Tage. Punkte nach den
+# Skalen des Projektblatts (s1): Kosten 80 TEUR → 3, 20 TEUR → 5; Termin 7 Tage → 5, 28 Tage → 2.
 # Dringliches sofort melden, am selben Arbeitstag dokumentieren (v24:hb-4); ein eingetretener Zustand ist ein Problem (v24:hb-1.4).
 belege: [v24:hb-1.4, v24:hb-3, v24:hb-3.1, v24:hb-3.2, v24:hb-4]
 lage: |
   Januar 2028, die Bauarbeiten laufen. Das zentrale Lüftungsgerät der Gesamtschule kommt vier Wochen später; ein gleichwertiges Ersatzgerät eines anderen Herstellers wäre in einer Woche lieferbar.
 
   In derselben Woche: ein nicht gesichertes Gerüstfeld an der Sporthalle. Die Projektsteuerung meldet es sofort an Bauleitung und Sicherheitskoordination, eine Stunde später ist das Feld gesperrt, dokumentiert am selben Tag. Schutzmaßnahmen warten nicht auf einen Vergleich.
+# Die Neuausschreibung (s7 = B) war vertagt (offen +1); der Bericht meldet den Zuschlag. Offen bleibt am Ende nur die
+# Neufestlegung der Projektbasis (s5 = C) – der Bericht sagt es.
+lage-folgen-bedingt:
+  - { wenn: "s7=B", folgen: { offen: -1 } }
 bericht:
   titel: Monatsbericht · Januar 2028
   zeilen:
     - Dringliche Meldung am 11. Januar – Gerüstfeld Sporthalle gesperrt; Problem PRB-018, am selben Tag dokumentiert.
     - Neues Problem PRB-019 – Lüftungsgerät Gesamtschule vier Wochen später; Entscheidung bis 19. Januar.
+    - text: Seit Mai 2026 – Brandschutzauflage zum Holzbau umgesetzt (0,4 Mio. €, 7 Tage); Vergabe Holzbau 0,3 Mio. € über der Prognose.
+      wenn: kurz
+    - text: Seit März 2027 – Lieferzeit Holzbau mit der Vergabe geklärt, 21 Wochen; der Montagebeginn liegt rund 35 Tage später (PRB-008). Die vertagte Entscheidung ist erledigt.
+      wenn: kurz & s3=B
     - text: Risikoreserve – 0,9 Mio. € für den Holzbau freigegeben; was die Prognose über 61,3 Mio. € (Basis plus Reserve) hinausgeht, deckt sie nicht mehr.
       wenn: s7=A
+    - text: Neuausschreibung Holzbau – Zuschlag im Mai 2027, rund 0,3 Mio. € unter dem ersten Angebot; der Montagebeginn liegt rund 42 Tage später, wie seit März 2027 im Terminpuffer. PRB-007 geschlossen, die vertagte Entscheidung erledigt.
+      wenn: s7=B
+    - text: Risikoreserve – 0,4 Mio. € für den Holzbau freigegeben; Bodenbeläge und Einbaumöbel einfacher vergeben, rund 0,5 Mio. € weniger. PRB-007 geschlossen.
+      wenn: s7=C
+    - text: Neufestlegung der Projektbasis – seit Mai 2026 offen. Die Hauptvergaben sind abgeschlossen, die Vorlage liegt beim Lenkungskreis; der Beschluss des Stadtrats steht noch aus.
+      wenn: s5=C
+    # Große Mensa ohne Einsparpaket (s4 = A, s5 = B): ob die Prognose jetzt über 61,3 liegt, hängt an s7, bei B auch an s3/s6 (nachgerechnet).
+    - text: Neufestlegung der Projektbasis – nötig, weil die Prognose über Basis plus Reserve (61,3 Mio. €) liegt; die Vorlage liegt beim Lenkungskreis, der Beschluss des Stadtrats steht noch aus.
+      wenn: s4=A & s5=B & s7=A
+    - text: Neufestlegung der Projektbasis – nötig, weil die Prognose über Basis plus Reserve (61,3 Mio. €) liegt; die Vorlage liegt beim Lenkungskreis, der Beschluss des Stadtrats steht noch aus.
+      wenn: s4=A & s5=B & s7=B & s3=C
+    - text: Neufestlegung der Projektbasis – nötig, weil die Prognose über Basis plus Reserve (61,3 Mio. €) liegt; die Vorlage liegt beim Lenkungskreis, der Beschluss des Stadtrats steht noch aus.
+      wenn: s4=A & s5=B & s7=B & s3=A & s6=K
+    - text: Mit dem Ergebnis der Neuausschreibung liegt die Prognose knapp unter Basis plus Reserve (61,3 Mio. €); der Spielraum ist klein – was darüber hinausgeht, braucht eine Neufestlegung der Projektbasis.
+      wenn: s4=A & s5=B & s7=B & s3=B
+    - text: Mit dem Ergebnis der Neuausschreibung liegt die Prognose knapp unter Basis plus Reserve (61,3 Mio. €); der Spielraum ist klein – was darüber hinausgeht, braucht eine Neufestlegung der Projektbasis.
+      wenn: s4=A & s5=B & s7=B & s3=A & s6=A
+    - text: Mit der Einsparung im Ausbau liegt die Prognose wieder unter Basis plus Reserve (61,3 Mio. €); der Spielraum ist klein – was darüber hinausgeht, braucht eine Neufestlegung der Projektbasis.
+      wenn: s4=A & s5=B & s7=C
   reaktion: Bitte entscheiden Sie zwischen Ersatzgerät und Abwarten.
 vorgaenge:
   - art: problem
@@ -50,7 +78,7 @@ vorlage:
       titel: Ersatzgerät
       text: Das gleichwertige Gerät eines anderen Herstellers wird bestellt.
       punkte:
-        kosten: [2, "+0,08 Mio. €"]
+        kosten: [3, "+0,08 Mio. €"]
         termin: [5, "rund 7 Tage Verzug"]
         qualitaet: [5, "volle Funktion"]
         klima: [4, "gleiche Effizienz"]
@@ -68,16 +96,16 @@ vorlage:
       konsequenz: Die Baustelle stellt um. Die Projektsteuerung führt das Terminrisiko für den Schulstart im Register und legt es im nächsten Monatstermin vor.
   empfehlung:
     option: A
-    text: Mit den festgelegten Gewichten empfiehlt die Projektsteuerung das Ersatzgerät. Achtung – bei „Kosten vor Termin“ dreht sich die Rangfolge. Das muss sichtbar bleiben.
+    text: Mit den festgelegten Gewichten empfiehlt die Projektsteuerung das Ersatzgerät (57 zu 48); auch mit „Ausgewogen“ bleibt es vorn (59 zu 55). Achtung – bei „Kosten vor Termin“ dreht sich die Rangfolge, knapp (53 zu 54). Das muss sichtbar bleiben.
 folge: |
   Eine hohe Punktzahl ersetzt kein Urteil. Die Empfehlung nennt deshalb, bei welchen Gewichten sie kippt – damit Sie wissen, worüber Sie entscheiden.
 so-laeuft-es-oft: |
-  Die Lieferverzögerung wird auf der Baustelle gelöst – irgendwie; der Bauherr erfährt davon, wenn die Abnahme platzt. Das Gerüstfeld steht drei Wochen später im Bautagebuch.
+  Die Lieferverzögerung wird auf der Baustelle gelöst – irgendwie; der Bauherr erfährt davon, wenn die Abnahme platzt. Vom ungesicherten Gerüstfeld erfährt der Bauherr erst aus dem Bautagebuch.
 einwand:
   frage: „So eine Entscheidung trifft doch die Bauleitung.“
   antwort: Die Bauleitung sagt, was technisch geht. Ob rund 60.000 € mehr drei Wochen Vorsprung wert sind, entscheidet der Bauherr – im Mandat Sie. Die Projektsteuerung legt es rechtzeitig und vollständig vor.
 theorie: entscheidungsvorlage
 regie:
-  notiz: Den Regler auf „Kosten vor Termin“ schieben – die Rangfolge dreht sich. Die dringliche Meldung zeigt, dass Sicherheit nicht auf eine Vorlage wartet; der Vorgang ist ein Problem, weil der Zustand schon eingetreten war.
+  notiz: Den Regler auf „Kosten vor Termin“ schieben – die Rangfolge dreht sich, knapp (53 zu 54). Die dringliche Meldung zeigt, dass Sicherheit nicht auf eine Vorlage wartet; der Vorgang ist ein Problem, weil der Zustand schon eingetreten war.
   leitfragen:
     - Welche Rangfolge hätten Sie hier gewählt?

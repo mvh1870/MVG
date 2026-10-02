@@ -42,7 +42,7 @@ export async function lauf(seite, h) {
   await pruefe('s1-folge');
   await weiter();
   await weiter();
-  // Station 3: Vergleich 54/40/37, Gegenprobe dreht die Spitze
+  // Station 3: Vergleich 54/42/40, Gegenprobe dreht die Spitze
   const a = (await seite.locator('[data-pruef="summe-A"]').innerText()).trim();
   if (!a.startsWith('54')) h.befund(`S3: Summe A ${a}, erwartet 54`);
   await h.klick('[data-pruef="gs-gegenprobe"] summary');

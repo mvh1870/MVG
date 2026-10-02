@@ -22,7 +22,7 @@ export interface Kriterium {
   titel: string;
 }
 
-/** Text mit Bedingung: `wenn` ist null oder „s3=A“ bzw. „s3!=A“ (eine frühere Wahl). */
+/** Text mit Bedingung: `wenn` ist null oder Teile mit „&“ verknüpft – „s3=A“, „s3!=A“ (eine frühere Wahl), „kurz“, „lang“ (Weg). */
 export interface Bedingt {
   html: string;
   wenn: string | null;
@@ -86,6 +86,8 @@ export interface Station {
   kurzfassung: boolean;
   lageHtml: string;
   lageFolgen: Folgen;
+  /** Lage-Folgen nur auf bestimmten Wegen (Bedingung wie bei `Bedingt`) */
+  lageFolgenBedingt: { wenn: string; folgen: Folgen }[];
   bericht: { titel: string; zeilen: Bedingt[]; reaktion: string };
   vorgaenge: Vorgang[];
   vorlage: Vorlage;

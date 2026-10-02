@@ -18,7 +18,7 @@ bericht:
     - Frühwarnung FRW-001 geklärt – weitergeführt als Risiko RIS-005 Baupreissteigerung.
     - Erster abgestimmter Bestand liegt vor – 23 Vorgänge, alle mit Verantwortlichem und Termin.
     - Freigabevorlage LPH 4 liegt vor; Entscheidung bis 24. Februar.
-  reaktion: Bitte entscheiden Sie über die Freigabe zum Abschluss von LPH 4.
+  reaktion: Wie soll der Bauherr über die Freigabe zum Abschluss von LPH 4 entscheiden? Ihre Empfehlung geht an Dr. Olbers.
 vorgaenge:
   - art: fruehwarnung
     kennung: FRW-001
@@ -56,35 +56,35 @@ vorlage:
       titel: Freigabe
       text: LPH 5 beginnt sofort. Das Risiko Baupreissteigerung läuft im Register weiter.
       punkte:
-        kosten: [2, "Preisrisiko ohne Auflage"]
+        kosten: [5, "keine Mehrkosten"]
         termin: [5, "kein Verzug"]
-        qualitaet: [3, "Grundlagen vollständig"]
+        qualitaet: [3, "Grundlagen vollständig, Preisrisiko unbelegt"]
         klima: [3, "unverändert"]
       folgen: {}
       konsequenz: LPH 5 beginnt. Das Risiko Baupreissteigerung bleibt offen, ohne dass jemand bis zur Vergabe nachweisen muss, wie groß es ist.
     - id: B
       titel: Freigabe mit Auflagen
-      text: LPH 5 beginnt sofort. Auflage – bis Ende April eine Marktabfrage für die Holzbauelemente und eine fortgeschriebene Kostenprognose.
+      text: LPH 5 beginnt sofort. Auflage – bis Ende März eine Marktabfrage für die Holzbauelemente; ihr Ergebnis geht in die nächste Kostenprognose ein.
       punkte:
-        kosten: [4, "Preisrisiko wird bis April belegt"]
+        kosten: [5, "keine Mehrkosten"]
         termin: [5, "kein Verzug"]
-        qualitaet: [4, "Auflage mit Frist"]
+        qualitaet: [4, "Preisrisiko bis Ende März belegt"]
         klima: [3, "unverändert"]
       folgen: {}
-      konsequenz: LPH 5 beginnt. Die Auflage wird zur Maßnahme mit Termin Ende April – die Projektsteuerung fordert die Marktabfrage bei der Generalplanung an, verfolgt sie und legt das Ergebnis vor.
+      konsequenz: LPH 5 beginnt. Die Auflage wird zur Maßnahme mit Termin Ende März – die Projektsteuerung fordert die Marktabfrage bei der Generalplanung an, verfolgt sie und legt das Ergebnis vor.
     - id: C
       titel: Keine Freigabe
-      text: Erst Marktabfrage und neue Kostenprognose, dann die Freigabe.
+      text: Erst die Marktabfrage, dann die Freigabe – rund drei Wochen.
       punkte:
-        kosten: [4, "Preisrisiko vor dem Start belegt"]
-        termin: [1, "rund drei Wochen Verzug"]
-        qualitaet: [4, "Grundlagen gesichert"]
+        kosten: [5, "keine Mehrkosten"]
+        termin: [3, "rund 21 Tage Verzug"]
+        qualitaet: [4, "Preisrisiko vor dem Start belegt"]
         klima: [3, "unverändert"]
       folgen: { puffer: -21, offen: 1 }
       konsequenz: Die Ausführungsplanung wartet. Die Projektsteuerung fordert die Marktabfrage bei der Generalplanung an und legt die Freigabe in drei Wochen erneut vor.
   empfehlung:
     option: B
-    text: Die Projektsteuerung empfiehlt die Freigabe mit Auflagen. Sie hält den Termin und macht das Preisrisiko bis April belastbar. Nachteil – bis dahin plant die Generalplanung mit einer Zahl, die noch steigen kann.
+    text: Die Projektsteuerung empfiehlt die Freigabe mit Auflagen. Sie hält den Termin und macht das Preisrisiko bis Ende März belastbar; sie liegt mit jeder der drei vorgeschlagenen Gewichtungen vorn. Nachteil – bis dahin plant die Generalplanung mit einer Zahl, die noch steigen kann.
 folge: |
   Die Projektsteuerung dokumentiert den Beschluss getrennt von der Vorlage – mit Datum, Wortlaut und Bedingungen. Eine Auflage wird zur Maßnahme mit Verantwortlichem und Termin. Die Freigabe selbst ist keine Bestellung und keine Vertragsänderung.
 so-laeuft-es-oft: |

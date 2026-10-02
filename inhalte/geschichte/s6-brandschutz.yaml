@@ -19,7 +19,7 @@ bericht:
     - Baugenehmigung erteilt am 12. Juni, mit Brandschutzauflagen zum Holzbau – geführt als Problem PRB-002.
     - Zwischenmaßnahme MAS-011 – die Generalplanung plant die Flure vorläufig mit Kapselung weiter.
     - Die Vorlage ist unvollständig – eine zweite zulässige Option ist noch nicht belegt.
-    - text: MAS-007 wirksam – Zuschlag für die Holzbauelemente erteilt, Liefertermin vertraglich gesichert; RIS-009 herabgestuft auf gezielt bearbeiten.
+    - text: MAS-007 wirksam – Zuschlag für die Holzbauelemente erteilt, Liefertermin vertraglich gesichert, Preis im Rahmen der Marktpreise aus Version 3; RIS-009 herabgestuft auf gezielt bearbeiten.
       wenn: s3=A
     - text: RIS-009 Lieferzeit Holzbau weiter aktiv · vorrangig bearbeiten; geklärt wird sie mit der Vergabe.
       wenn: s3=B
@@ -56,8 +56,8 @@ vorlage:
       titel: Auflage umsetzen
       text: Die Flure werden wie gefordert gekapselt.
       punkte:
-        kosten: [3, "+0,4 Mio. €"]
-        termin: [4, "rund 7 Tage Umplanung"]
+        kosten: [2, "+0,4 Mio. €"]
+        termin: [5, "rund 7 Tage, um die Planung abzuschließen und prüfen zu lassen"]
         qualitaet: [5, "Genehmigung sicher erfüllt"]
         klima: [4, "Holzbau bleibt"]
       folgen: { kosten: 0.4, puffer: -7 }

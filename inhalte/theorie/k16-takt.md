@@ -120,7 +120,7 @@ So kann eine Seite aussehen – ein fiktives Beispiel vom Schulcampus Lindenhall
 > **Monatsbericht · Mai 2026**
 > - Kostenprognose nach dem geltenden Datenstand: 60,4 Mio. € gegen die Projektbasis von 58,4 Mio. € (+3,4 %); die Risikoreserve von 2,9 Mio. € deckt das, eingesetzt ist sie noch nicht.
 > - Differenz zur früheren Zahl geklärt: angekündigter Nachtrag der Haustechnikplanung, bis 1,2 Mio. €, als Risiko `RIS-014` geführt.
-> - Auflage aus der Freigabe LPH 4 erfüllt – die Marktabfrage liegt vor.
+> - Die Marktabfrage aus der Auflage zur Freigabe LPH 4 ist in die Prognose eingerechnet.
 > - Offene Entscheidung: Umgang mit der Prognose. Benötigt wird Ihre Entscheidung; der Bauausschuss tagt am 21. Mai.
 
 [[bedienung:Ordnen Sie zu: Gehört das in den Monatsbericht?]]

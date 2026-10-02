@@ -28,8 +28,8 @@ Die Statusanzeige rechnet additiv (`src/geschichte/engine.ts`): Lage-Folgen gelt
 | Start | Projektbasis | 58,4 Mio. € | 58,40 · 42 Tage Puffer |
 | s3 (Mär 2026) | A: Holzbau vorziehen (MAS-007) | +0,15 | 58,55 |
 | s4 (Apr 2026) | B: Mensa erweiterbar vorbereiten (AEN-012) | +0,12 | 58,67 |
-| s5 (Mai 2026) | Lage: „Kostenprognose 2026-05 · Version 3“ – allgemeine Baupreissteigerung 1,13 + Marktpreise Holzbauelemente 0,6 (in RIS-005 als enthalten vermerkt) | +1,73 | **60,40** (+2,00 = 3,4 %) |
-| s5 | Zwei Rechnungen: Projektsteuerung (Holger Stein) rechnet den angekündigten Nachtrag der Haustechnik mit ein, Controlling (Aylin Kaya) nicht | Differenz 1,2 (2,1 Prozentpunkte) | Nachtrag nicht eingetreten → RIS-014, nicht in der Prognose |
+| s5 (Mai 2026) | Lage: „Kostenprognose 2026-05 · Version 3“ – ohne die Beschlüsse zu Holzbau und Mensa 1,73 über Version 1: allgemeine Baupreissteigerung 1,13 + Marktpreise Holzbauelemente 0,6 (in RIS-005 als enthalten vermerkt) | +1,73 | **60,40** (+2,00 = 3,4 %) |
+| s5 | Zwei Rechnungen: Generalplanung (Holger Stein, Kostenplaner) rechnet den angekündigten Nachtrag der Haustechnik mit ein, Controlling (Aylin Kaya) nicht; die Projektsteuerung hat beide angefordert und klärt den Widerspruch | Differenz 1,2 (2,1 Prozentpunkte) | Nachtrag nicht eingetreten → RIS-014, nicht in der Prognose |
 | s5 | B: Reserve vorsehen und offen berichten | 0 | 60,40; vorgesehen 2,0, frei 0,9; mit vollem Nachtrag fehlten 0,3 |
 | s6 (Jul 2026) | A: Brandschutzauflage umsetzen (PRB-002) | +0,40 · −7 Tage | 60,80 · 35 Tage |
 | s7 (Feb 2027) | RIS-014 geschlossen – Mehrleistungen gehören laut Prüfung der GML zum Planungsvertrag | 0 | – |
@@ -38,7 +38,11 @@ Die Statusanzeige rechnet additiv (`src/geschichte/engine.ts`): Lage-Folgen gelt
 | s8 (Jan 2028) | A: Ersatzgerät Lüftung (PRB-019) | +0,08 · −7 Tage | 61,18 · 28 Tage |
 | Ende (Aug 2028) | Schulstart | – | **61,18 Mio. €** (+2,78), Reserve frei 0,12 · **28 Tage** Puffer · 0 offene Entscheidungen |
 
-Auf jedem Weg liegt der Stand im Mai 2026 zwischen 60,13 und 60,98 Mio. € – über der Basis, unter Basis plus Reserve; mit dem vollen Nachtrag (1,2) läge er auf jedem Weg darüber. Andere Wege (nachgerechnet): s3 = B, s6 = K, s8 = B → 61,00 Mio. €, −35 Tage, 2 offen; s2 = C, s3 = C, s4 = A, s5 = A, s7 = C → 59,76 Mio. €, −28 Tage, 1 offen. Der teuerste Weg (s3 = C, s4 = A, s6 = K, sonst empfohlen) endet bei 61,79 Mio. € – die Reserve reicht dort nicht; die Story sagt das, ohne eine Zahl zu behaupten („was über 61,3 Mio. € hinausgeht, deckt sie nicht mehr“).
+Auf jedem Weg liegt der Stand im Mai 2026 zwischen 60,13 und 60,98 Mio. € – über der Basis, unter Basis plus Reserve; mit dem vollen Nachtrag (1,2) läge er auf jedem Weg darüber. Nach der Lage in s7 (März 2027) liegt die Prognose genau auf den Wegen mit großer Mensa ohne Einsparpaket (s4 = A, s5 ≠ A) über Basis plus Reserve (61,43–61,71 Mio. €); der Bericht sagt dort, dass die Reserve nicht reicht und eine Neufestlegung der Projektbasis nötig wird, und s8 sagt je nach Weg, ob die Prognose noch darüber oder wieder darunter liegt.
+
+**Offene Entscheidungen** (vertagte Entscheidungen): +1 bei s2 = C, s3 = B, s5 = C, s6 = K, s7 = B. Abgebaut, wenn der Bericht die Erledigung meldet: s2 = C in s3 (Freigabe LPH 4 am 17. März 2026), s3 = B in s7 (Lieferzeit mit der Vergabe geklärt, PRB-008), s6 = K in s7 (Behörde lehnt die Alternative ab, PRB-002 geschlossen), s7 = B in s8 (Zuschlag der Neuausschreibung im Mai 2027). Offen bis zum Ende bleibt die Neufestlegung der Projektbasis (s5 = C, vom Stadtrat zurückgestellt; s8: „der Beschluss des Stadtrats steht noch aus“) – am Ende also 1 offen, sonst 0.
+
+Andere Wege (nachgerechnet mit der Engine): s3 = B, s6 = K, s8 = B → 61,00 Mio. €, −35 Tage, 0 offen; s2 = C, s3 = C, s4 = A, s5 = A, s7 = C → 59,76 Mio. €, −28 Tage, 0 offen; alles vertagt (s2 = C, s3 = B, s5 = C, s6 = K, s7 = B) → 60,76 Mio. €, −98 Tage, 1 offen; s3 = B, s4 = A, s5 = C → 61,51 Mio. €, −42 Tage, 1 offen. Der teuerste Weg (s3 = C, s4 = A, s6 = K, sonst empfohlen) endet bei 61,79 Mio. € – die Reserve reicht dort nicht; s7 und s8 sagen das und nennen die nötige Neufestlegung der Projektbasis. Die Kurzfassung mit den empfohlenen Optionen endet wie der empfohlene Weg (61,18 Mio. €, 28 Tage, 0 offen).
 
 Weitere Zahlen:
 
@@ -48,20 +52,23 @@ Weitere Zahlen:
 | Abwarten (s3 = B) | rund 35 Tage Puffer, wenn sich die Lieferzeit bei rund 21 Wochen einpendelt; sonst rund 70 | Bandbreite statt Einzelzahl (V2.4 HB 2); Status rechnet mit 35; in s7 bestätigt (PRB-008) |
 | Mensa (Apr 2026) | 450 statt 300 Essen, 0,6 Mio. €, rund vier Wochen Umplanung; Förderung deckt sie nicht | AEN-012, Antragstellerin Sabine Roth; Zusage von Frank Deppe im Flur (März) ist kein Beschluss |
 | Brandschutz (Jun/Jul 2026) | Kapselung der Holzbauteile in den Fluren, 0,4 Mio. €, eine Woche Umplanung; Gutachten 0,03 Mio. € (von der GML gesondert beauftragt) | PRB-002, MAS-011; bei „Klärung abwarten“ bleiben die 0,4 in der Prognose, die Behörde lehnt die Alternative ab |
-| Lüftungsgerät (Jan 2028) | vier Wochen später; Ersatzgerät 80.000 € / 7 Tage, Abwarten 20.000 € / 28 Tage | wie das fiktive Beispiel des Standards (L-193); 41 : 35 bei Gewichten 3/5/2 |
+| Lüftungsgerät (Jan 2028) | vier Wochen später; Ersatzgerät 80.000 € / 7 Tage, Abwarten 20.000 € / 28 Tage | Beträge und Tage wie das fiktive Beispiel des Standards (L-193). Punkte nach den Skalen des Projektblatts: Kosten 3 / 5, Termin 5 / 2 → 57 : 48 bei 3/5/3/2, 59 : 55 bei „Ausgewogen“, 53 : 54 bei „Kosten vor Termin“. Das Thema „Entscheidungsvorlage“ rechnet mit den vereinfachten Skalen des Standards (41 : 35 bei 3/5/2) |
+| Skalen für den Vergleich (Projektblatt, s1) | Kosten: Mehrkosten bis 20 / 50 / 150 / 500 TEUR → 5 / 4 / 3 / 2 Punkte, mehr 1; Einsparung zählt wie keine Mehrkosten. Termin: Verzug bis 7 / 14 / 21 / 28 Tage → 5 / 4 / 3 / 2, mehr 1 | Terminskala wie die Beispielskala des Standards; Kostenskala auf die Größe des Projekts gestuft. Jeder Kosten- und Terminpunkt folgt aus den Folgen der Option (`tests/geschichte.test.ts`) |
+| Ratsbeschluss zum Klimaziel | Der Stadtrat hat den Holzhybridbau für alle drei Bauteile beschlossen | fiktiv; Grund für „weniger Holz als im Ratsbeschluss zum Klimaziel“ (s3, Sporthalle in Stahlbeton, Klima 1 Punkt) |
+| Marktabfrage Holzbauelemente | s2 = B: Auflage bis Ende März 2026, liegt am 27. März vor; s2 = C: vor der Freigabe, Freigabe LPH 4 am 17. März | Ergebnis in „Kostenprognose 2026-05 · Version 3“ eingerechnet (0,6 Mio. € Marktpreise) |
 | Förderfrist | Inbetriebnahme zum Schuljahr 2028/29 | fiktiv wie der ganze Fall |
 
-Mandat (Muster-Mandatsleiter, k4.2-p3): Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium über 100 TEUR bis einschließlich 5 Mio. €, darüber der Bauherr im Lenkungskreis. Eine neue Projektbasis beschließt der Bauherr – hier der Stadtrat – auf Vorlage aus dem Lenkungskreis. Das Projektblatt hat die GML vor der Beauftragung der Projektsteuerung festgelegt (Bewertungsgrenzen, Entscheidungsschwellen); die MCDA-Gewichte stimmt die Projektsteuerung in Station 1 ab, festgelegt werden sie von der GML.
+Mandat (Muster-Mandatsleiter, k4.2-p3): Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium über 100 TEUR bis einschließlich 5 Mio. €, darüber der Bauherr im Lenkungskreis. Eine neue Projektbasis beschließt der Bauherr – hier vertreten durch den Stadtrat – auf Vorlage aus dem Lenkungskreis. Das Projektblatt hat die GML vor der Beauftragung der Projektsteuerung festgelegt (Bewertungsgrenzen, Entscheidungsschwellen); die MCDA-Gewichte stimmt die Projektsteuerung in Station 1 ab, festgelegt werden sie von der GML.
 
 ## Zeitachse
 
-Monat 1 ist Januar 2026, Monat 32 August 2028. LPH-Stand: LPH 4 bis Februar 2026, LPH 5 März–Dezember 2026, LPH 6 Januar–Februar 2027, LPH 7 März–Mai 2027, LPH 8 ab Juni 2027.
+Monat 1 ist Januar 2026, Monat 32 August 2028. LPH-Stand: LPH 4 bis Februar 2026, LPH 5 März–Dezember 2026, LPH 6 Januar–Februar 2027, LPH 7 März–Mai 2027, LPH 8 Juni 2027 – Juli 2028, mit der Übergabe im August 2028 beginnt LPH 9 (die Zeichnung am Ende zeigt den fertigen Campus).
 
 | Monat | Kalender | LPH | Ereignis | Station |
 |---|---|---|---|---|
 | 1 | Jan 2026 | 4 | Übernahme ohne Übergabe: Unterlagen in drei Ablagen, Haushaltsansatz 2027 bis Freitag, Baupreissteigerung nicht belegt (FRW-001). Projektblatt liegt vor; Gewichte festgelegt. Bauantrag am 29. Januar eingereicht. | s1 |
-| 2 | Feb 2026 | 4 | FRW-001 → RIS-005; erster abgestimmter Bestand (23 Vorgänge); Freigabe zum Abschluss von LPH 4 (empfohlen mit Auflage Marktabfrage bis Ende April). | s2 |
-| 3 | Mär 2026 | 5 | Lieferzeit Holzbauelemente (FRW-002 → RIS-009); Wunsch größere Mensa (AEN-012). | s3 |
+| 2 | Feb 2026 | 4 | FRW-001 → RIS-005; erster abgestimmter Bestand (23 Vorgänge); Freigabe zum Abschluss von LPH 4 (empfohlen mit Auflage Marktabfrage bis Ende März). | s2 |
+| 3 | Mär 2026 | 5 | Lieferzeit Holzbauelemente (FRW-002 → RIS-009); Wunsch größere Mensa (AEN-012); Marktabfrage Holzbauelemente (bei s2 = C Freigabe LPH 4 am 17. März). | s3 |
 | 4 | Apr 2026 | 5 | Änderungsgremium entscheidet über die Mensa (28. April); MAS-007 Vergabeunterlagen am 15. April. | s4 |
 | 5 | Mai 2026 | 5 | Zwei Prognosen, ein Datenstand (Version 3); Lenkungskreis 19. Mai, Bauausschuss 21. Mai. | s5 |
 | 6 | Jun 2026 | 5 | Baugenehmigung am 12. Juni mit Brandschutzauflagen. | – |
@@ -70,7 +77,7 @@ Monat 1 ist Januar 2026, Monat 32 August 2028. LPH-Stand: LPH 4 bis Februar 2026
 | 15 | Mär 2027 | 7 | Submission Holzbau (2. März), Ausfall Holger Stein (ab 8. März), Freigabe der Reserve bis 24. März. | s7 |
 | 18 | Jun 2027 | 8 | Objektüberwachung; die Bauarbeiten laufen. | – |
 | 25 | Jan 2028 | 8 | Dringliche Gerüstmeldung (PRB-018, 11. Januar); Lüftungsgerät vier Wochen später (PRB-019). | s8 |
-| 32 | Aug 2028 | 8 | Schulstart, Schlüsselübergabe. | Ende |
+| 32 | Aug 2028 | 9 | Schulstart, Übergabe, Beginn LPH 9; Schlüsselübergabe, wenn der Puffer gehalten hat. | Ende |
 
 ## Gremien und Takte
 
@@ -127,7 +134,7 @@ funktion: Controlling der GML
 farbe: "#A8823C"
 ---
 ### Kurzbeschreibung
-Rechnet für die GML die Restkostenprognose (CTC) und liefert Fachbeiträge zu Kosten. Im Mai 2026 liegt ihre Zahl 1,2 Mio. € unter der der Projektsteuerung – sie rechnet den angekündigten Nachtrag nicht ein.
+Rechnet für die GML die Restkostenprognose (CTC) und liefert Fachbeiträge zu Kosten. Im Mai 2026 liegt ihre Zahl 1,2 Mio. € unter der Kostenberechnung der Generalplanung – sie rechnet den angekündigten Nachtrag nicht ein.
 
 ### Stimme
 Präzise, ungeduldig mit Versionsnummern.
@@ -178,11 +185,11 @@ Verbindlich, zuversichtlich, kurze Sätze.
 ::: figur stein
 ---
 name: Holger Stein
-funktion: Kostenplaner im Team der Projektsteuerung
+funktion: Kostenplaner der Generalplanung
 farbe: "#5B6770"
 ---
 ### Kurzbeschreibung
-Kennt jede Zeile der Kostenprognose. Fällt im März 2027 für Wochen aus; eine Kollegin übernimmt aus dem Bestand in der Software, ohne Übergabelücke.
+Rechnet für die Generalplanung die Kostenberechnung; die Projektsteuerung fordert sie an und plausibilisiert sie (Fachplanung macht die Projektsteuerung nicht). Kennt jede Zeile. Fällt im März 2027 für Wochen aus; eine Kollegin aus seinem Büro übernimmt, der Datenstand liegt in der Software der GML – keine Übergabelücke.
 
 ### Stimme
 Leise, genau, spricht in Zellbezügen.

@@ -84,9 +84,8 @@ test('docs/STIL.md führt genau die Paare aus paare.json mit dem gemessenen Wert
 test('CSS setzt Text nur in Farben, die als Textfarbe eines erlaubten Paars geführt sind', async () => {
   const { readdirSync } = await import('node:fs');
   const erlaubt = new Set(paare.map((p) => p.text));
-  // Kontext-Aliase: lösen je Ort auf eine Farbe aus der Paarliste auf (Welt, Rolle, Status, ID-Marke, Leiterstufe);
-  // --tabelle-symbol färbt nur Symbole im Excel-Stand.
-  const aliase = new Set(['--welt-text', '--welt-farbe', '--rollen-text', '--status-text', '--leiter-farbe', '--id-text', '--tabelle-symbol']);
+  // Kontext-Aliase: lösen je Ort auf eine Farbe aus der Paarliste auf (Querverweis, Status, ID-Marke).
+  const aliase = new Set(['--welt-text', '--welt-farbe', '--status-text', '--id-text']);
   const funde: string[] = [];
   for (const datei of readdirSync(resolve(WURZEL, 'src/stil')).filter((n) => n.endsWith('.css'))) {
     const zeilen = readFileSync(resolve(WURZEL, 'src/stil', datei), 'utf8').split('\n');

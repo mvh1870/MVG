@@ -6,32 +6,33 @@ datum: Januar 2028
 monat: 25
 lph: 8
 kurzfassung: true
+# Zahlen wie im fiktiven Beispiel des Standards (L-193): 80.000 € / 7 Tage gegen 20.000 € / 28 Tage, 41 : 35 bei 3/5/2.
+# Dringliches sofort melden, am selben Arbeitstag dokumentieren (v24:hb-4); ein eingetretener Zustand ist ein Problem (v24:hb-1.4).
 belege: [v24:hb-1.4, v24:hb-3, v24:hb-3.1, v24:hb-3.2, v24:hb-4]
 lage: |
-  Januar 2028, die Bauarbeiten laufen. Der Hersteller meldet: Das zentrale Lüftungsgerät der Gesamtschule kommt vier Wochen später als vereinbart. Ein technisch gleichwertiges Ersatzgerät eines anderen Herstellers wäre in einer Woche lieferbar.
+  Januar 2028, die Bauarbeiten laufen. Das zentrale Lüftungsgerät der Gesamtschule kommt vier Wochen später; ein gleichwertiges Ersatzgerät eines anderen Herstellers wäre in einer Woche lieferbar.
 
-  In derselben Woche gab es einen dringlichen Fall – ein nicht gesichertes Gerüstfeld an der Sporthalle. Die Projektsteuerung hat es sofort an Bauleitung und Sicherheitskoordination gemeldet; das Feld war in einer Stunde gesperrt. Dokumentiert hat sie es noch am selben Tag. Eine Vorlage gab es dafür nicht – Schutzmaßnahmen warten nicht auf einen Vergleich.
+  In derselben Woche: ein nicht gesichertes Gerüstfeld an der Sporthalle. Die Projektsteuerung meldet es sofort an Bauleitung und Sicherheitskoordination, eine Stunde später ist das Feld gesperrt, dokumentiert am selben Tag. Schutzmaßnahmen warten nicht auf einen Vergleich.
 bericht:
-  titel: Bericht der Projektsteuerung · Januar 2028
+  titel: Monatsbericht · Januar 2028
   zeilen:
-    - Dringliche Meldung am 11. Januar – Gerüstfeld Sporthalle gesperrt, gesichert, dokumentiert am selben Tag.
-    - Neues Problem PRB-019 – Lüftungsgerät Gesamtschule vier Wochen später.
-    - Vorlage Ersatzgerät oder Abwarten liegt vor; Entscheidung bis 19. Januar.
-    - text: Restreserve rund 2 Mio. €.
+    - Dringliche Meldung am 11. Januar – Gerüstfeld Sporthalle gesperrt; Problem PRB-018, am selben Tag dokumentiert.
+    - Neues Problem PRB-019 – Lüftungsgerät Gesamtschule vier Wochen später; Entscheidung bis 19. Januar.
+    - text: Risikoreserve – 0,9 Mio. € für den Holzbau freigegeben; was die Prognose über 61,3 Mio. € (Basis plus Reserve) hinausgeht, deckt sie nicht mehr.
       wenn: s7=A
   reaktion: Bitte entscheiden Sie zwischen Ersatzgerät und Abwarten.
 vorgaenge:
-  - art: aufgabe
-    kennung: AUF-112
-    titel: Dringliche Meldung Gerüstfeld
-    text: Sofort gemeldet an Bauleitung und Sicherheitskoordination, Feld gesperrt; noch am selben Arbeitstag dokumentiert. Erledigt.
-    verantwortlich: Bauleitung; Dokumentation Projektsteuerung
+  - art: problem
+    kennung: PRB-018
+    titel: Gerüstfeld Sporthalle nicht gesichert
+    text: Sofort an Bauleitung und Sicherheitskoordination gemeldet, Feld gesperrt, am selben Arbeitstag dokumentiert. Geschlossen, als die Bauleitung die Sicherung bestätigt hat.
+    verantwortlich: Bauleitung; Meldung und Dokumentation Projektsteuerung
     termin: 11. Januar
-    stand: erledigt
+    stand: geschlossen
   - art: problem
     kennung: PRB-019
     titel: Lüftungsgerät vier Wochen später
-    text: Eingetreten – neuer Liefertermin des Herstellers. Folge ohne Gegenmaßnahme – Inbetriebnahme der Lüftung und damit die Abnahme der Gesamtschule verschieben sich um rund 28 Tage.
+    text: Neuer Liefertermin des Herstellers. Ohne Gegenmaßnahme verschieben sich Inbetriebnahme der Lüftung und Abnahme der Gesamtschule um rund 28 Tage.
     verantwortlich: Projektsteuerung; Fachbeitrag Haustechnikplanung
     termin: 19. Januar
     stand: Vorlage liegt vor
@@ -40,7 +41,7 @@ vorlage:
   frage: Ersatzgerät oder Lieferung abwarten?
   grund: |
     Beide Wege erfüllen die Anforderungen – die Haustechnikplanung hat die Gleichwertigkeit des Ersatzgeräts bestätigt. Es geht um Geld gegen Zeit.
-  stelle: Sie, Projektleitung der GML – im Mandat bis 100 TEUR
+  stelle: Sie als Bauherren-PL – im Mandat bis 100 TEUR
   termin: 19. Januar 2028
   verzug: Nach dem 19. Januar ist das Ersatzgerät nicht mehr in einer Woche lieferbar.
   muss: Beide Optionen erfüllen Funktion, Brandschutz und Hygieneanforderungen.
@@ -69,14 +70,14 @@ vorlage:
     option: A
     text: Mit den festgelegten Gewichten empfiehlt die Projektsteuerung das Ersatzgerät. Achtung – bei „Kosten vor Termin“ dreht sich die Rangfolge. Das muss sichtbar bleiben.
 folge: |
-  Eine hohe Punktzahl ersetzt kein Urteil. Die Empfehlung nennt deshalb, bei welchen Gewichten sie kippt – damit Sie wissen, worüber Sie wirklich entscheiden.
+  Eine hohe Punktzahl ersetzt kein Urteil. Die Empfehlung nennt deshalb, bei welchen Gewichten sie kippt – damit Sie wissen, worüber Sie entscheiden.
 so-laeuft-es-oft: |
-  Die Lieferverzögerung wird auf der Baustelle gelöst – irgendwie. Der Bauherr erfährt davon, wenn die Abnahme platzt. Und die Gerüstmeldung? Sie steht im Bautagebuch, drei Wochen später.
+  Die Lieferverzögerung wird auf der Baustelle gelöst – irgendwie; der Bauherr erfährt davon, wenn die Abnahme platzt. Das Gerüstfeld steht drei Wochen später im Bautagebuch.
 einwand:
   frage: „So eine Entscheidung trifft doch die Bauleitung.“
-  antwort: Die Bauleitung sagt, was technisch geht. Ob Sie 80.000 € für drei Wochen Vorsprung ausgeben, ist eine Entscheidung des Bauherrn – im Mandat Ihre. Die Projektsteuerung sorgt dafür, dass sie rechtzeitig und vollständig auf dem Tisch liegt.
+  antwort: Die Bauleitung sagt, was technisch geht. Ob rund 60.000 € mehr drei Wochen Vorsprung wert sind, entscheidet der Bauherr – im Mandat Sie. Die Projektsteuerung legt es rechtzeitig und vollständig vor.
 theorie: entscheidungsvorlage
 regie:
-  notiz: Den Regler auf „Kosten vor Termin“ schieben – die Rangfolge dreht sich. Die dringliche Meldung zeigt – Sicherheit wartet nicht auf eine Vorlage.
+  notiz: Den Regler auf „Kosten vor Termin“ schieben – die Rangfolge dreht sich. Die dringliche Meldung zeigt, dass Sicherheit nicht auf eine Vorlage wartet; der Vorgang ist ein Problem, weil der Zustand schon eingetreten war.
   leitfragen:
     - Welche Rangfolge hätten Sie hier gewählt?

@@ -573,7 +573,7 @@ Ein Online-Termin von Bauherr und Projektsteuerung, bis zu 60 Minuten, Fachleute
 ---
 titel: In Ruhezeiten
 ---
-Monatliche Gesamtprüfung; neue Hinweise binnen fünf Arbeitstagen. Der Termin findet nur bei Bedarf statt, der Bericht bleibt.
+Monatliche Gesamtprüfung; neue, nicht dringliche Hinweise binnen fünf Arbeitstagen. Der Termin findet nur bei Bedarf statt, der Bericht bleibt.
 :::
 :::
 

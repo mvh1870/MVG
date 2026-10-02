@@ -83,8 +83,8 @@ test('Status: Lage-Folgen, Entscheidungen erst ab der Folge, Kurzfassung mit Emp
   assert.equal(status(g, s, { ort: 'station', station: 's3', teil: 'vorlage' }).puffer, 42);
   assert.equal(status(g, s, { ort: 'station', station: 's3', teil: 'folge' }).puffer, 7);
   assert.equal(status(g, s, { ort: 'station', station: 's3', teil: 'folge' }).offen, 1);
-  // s5 bringt eine Kostenänderung aus der Lage
-  assert.equal(status(g, neuerStand(), { ort: 'station', station: 's5', teil: 'lage' }).kosten, 61.8);
+  // s5 bringt eine Kostenänderung aus der Lage (nur das, was die Beschlüsse aus s3/s4 noch nicht gebucht haben)
+  assert.equal(status(g, neuerStand(), { ort: 'station', station: 's5', teil: 'lage' }).kosten, 60.13);
   // Kurzfassung: übersprungene Stationen zählen mit ihrer Empfehlung
   const kurz = { ...neuerStand(true), schritt: { ort: 'ende' } as const };
   const lang = { ...neuerStand(), schritt: { ort: 'ende' } as const };
@@ -93,6 +93,28 @@ test('Status: Lage-Folgen, Entscheidungen erst ab der Folge, Kurzfassung mit Emp
   const kurzEmpfohlen = ['s1', 's3', 's5', 's8'].reduce((a, id) => waehle(g, a, id, st(id).vorlage.empfehlung.option), kurz as Stand);
   assert.deepEqual(status(g, kurzEmpfohlen), status(g, alleEmpfohlen));
   assert.equal(pufferUrteil(status(g, alleEmpfohlen).puffer), 'gut');
+});
+
+test('Zahlen der Story: Status und Bericht passen auf dem empfohlenen Weg zusammen (inhalte/fall.md)', () => {
+  let s: Stand = neuerStand();
+  for (const x of g.stationen) s = waehle(g, s, x.id, x.vorlage.empfehlung.option);
+  const bei = (id: string, teil: 'lage' | 'folge') => status(g, s, { ort: 'station', station: id, teil });
+  // Monatsbericht Mai: Version 3 = 60,4 Mio. € (+2,0 Mio. € = 3,4 % über der Basis), unter Basis plus Reserve (61,3)
+  assert.equal(bei('s5', 'lage').kosten, 60.4);
+  assert.equal(Math.round(((60.4 - 58.4) / 58.4) * 1000) / 10, 3.4);
+  // Vergabe: nur die neuen 0,3 Mio. € kommen dazu, die 0,6 Mio. € Marktpreise stehen seit Mai in der Prognose
+  assert.equal(bei('s7', 'lage').kosten, 61.1);
+  assert.equal(bei('s7', 'folge').kosten, 61.1, 'die Freigabe der Reserve ändert die Prognose nicht');
+  const ende = status(g, { ...s, schritt: { ort: 'ende' } });
+  assert.deepEqual(ende, { kosten: 61.18, puffer: 28, offen: 0 });
+  assert.ok(ende.kosten <= 58.4 + 2.9, 'Basis plus Reserve hält auf dem empfohlenen Weg');
+  // Auf jedem Weg liegt der Mai-Stand über der Basis und unter Basis plus Reserve; mit dem vollen Nachtrag (1,2) darüber
+  const wege: Stand[] = [];
+  for (const a of ['A', 'B', 'C']) for (const b of ['A', 'B', 'C']) wege.push(waehle(g, waehle(g, neuerStand(), 's3', a), 's4', b));
+  for (const w of wege) {
+    const k = status(g, w, { ort: 'station', station: 's5', teil: 'lage' }).kosten;
+    assert.ok(k > 58.4 && k < 61.3 && k + 1.2 > 61.3, String(k));
+  }
 });
 
 test('Bedingungen und offene Stationen', () => {

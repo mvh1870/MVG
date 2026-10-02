@@ -1,6 +1,6 @@
 ---
-# Fall-Bibel (P1.2, L-5, L-17). Maßgeblich für alle Stationen: Zahlen, Zeitachse, Gremien, Takte, Figuren.
-# Zeitachse: Monat → LPH-Stand; der Prüfer gleicht „monat“/„lph“ jeder Station damit ab.
+# Fall-Bibel (P16.5, O-50): internes Nachschlagewerk für Story (inhalte/geschichte/), Theorie-Beispiele und Werkzeuge.
+# Wird nicht auf der Seite gezeigt. Eine Welt, eine Geschichte (O-40). Zeitachse mit LPH-Stand im Abschnitt „Zeitachse“ (Monat 1 = Januar 2026).
 stadt: Lindenhall
 bauherr: Stadt Lindenhall (Eigentümerin; Rückkopplung über Stadtrat und Bauausschuss)
 vertretung: Gebäudemanagement Lindenhall GmbH
@@ -8,86 +8,87 @@ vertretung-kurz: GML
 projekt: Schulcampus Lindenhall-Süd
 bauteile: [Gesamtschule, Grundschule, Dreifeldsporthalle]
 bauweise: Holzhybridbau
-projektbasis: 58,4 Mio. € brutto
+projektbasis: 58,4 Mio. € brutto, dazu 2,9 Mio. € Risikoreserve
 projektbasis-mio: 58,4
-gremien: [Stadtrat, Bauausschuss, Lenkungskreis, Änderungsgremium (Welt B)]
+gremien: [Stadtrat, Bauausschuss, Lenkungskreis, Änderungsgremium]
 monat-0: 2025-12
-lph-stand:
-  "0": "4"
-  "1": "4"
-  "2": "5"
-  "3": "5"
-  "4": "5"
-  "5": "5"
-  "6": "5"
-  "7": "5"
-  "8": "5"
-  "9": "5"
-  "10": "5"
-  "11": "5"
-  "12": "5"
 hinweis: Fiktiver Fall. Stadt, Gesellschaft, Projekt und Personen sind erfunden.
 ---
 
-Die Stadt Lindenhall baut im Süden der Stadt einen Schulcampus: eine Gesamtschule, eine Grundschule und eine Dreifeldsporthalle, als Holzhybridbau. Eigentümerin ist die Stadt; Stadtrat und Bauausschuss legen den Rahmen fest. Als Bauherr wird sie von der Gebäudemanagement Lindenhall GmbH (GML) vertreten. Die Projektbasis liegt bei 58,4 Mio. € brutto.
+Die Stadt Lindenhall baut im Süden der Stadt einen Schulcampus: eine Gesamtschule, eine Grundschule und eine Dreifeldsporthalle, als Holzhybridbau. Eigentümerin ist die Stadt; Stadtrat und Bauausschuss legen den Rahmen fest. Als Bauherr wird sie von der Gebäudemanagement Lindenhall GmbH (GML) vertreten. Der Stadtrat hat eine Projektbasis von 58,4 Mio. € brutto beschlossen und zusätzlich eine Risikoreserve von 2,9 Mio. € bereitgestellt (Basis plus Reserve: 61,3 Mio. €).
 
-Die Geschichte beginnt mit der Übernahme der Projektleitung auf Bauherrenseite (Monat 0). In Monat 5 steht das Projekt in LPH 5 Ausführungsplanung.
+Es gibt eine Welt und eine Geschichte (O-40): die Arbeitsweise nach dem Standard „Aufgaben- und Risikomanagement V2.4“. Die Projektsteuerung bearbeitet und pflegt alle Vorgänge; der Bauherr und die GML pflegen keine. Die Geschichte beginnt im Januar 2026 mit der Übernahme der Projektleitung auf Bauherrenseite (Bauherren-PL) und endet im August 2028 mit dem Schulstart.
 
-## Zahlen
+## Kosten und Reserve (Rechnung der Story)
+
+Die Statusanzeige rechnet additiv (`src/geschichte/engine.ts`): Lage-Folgen gelten ab dem Lesen der Lage, die Folgen der gewählten Option ab der Folge. Eine Lage bucht deshalb nur, was noch nicht über eine frühere Entscheidung im Status steht. Die Kostenprognose wird gegen die Projektbasis (58,4) gezeigt; die Risikoreserve steht zusätzlich bereit und deckt Abweichungen bis 61,3 Mio. €. Freigegeben wird sie nur vom Bauherrn (nicht delegierbar, k3.2-t1); „vorgesehen“ heißt: für bekannte Mehrkosten eingeplant, nicht freigegeben.
+
+| Station | Ereignis | Betrag | Status auf dem empfohlenen Weg |
+|---|---|---|---|
+| Start | Projektbasis | 58,4 Mio. € | 58,40 · 42 Tage Puffer |
+| s3 (Mär 2026) | A: Holzbau vorziehen (MAS-007) | +0,15 | 58,55 |
+| s4 (Apr 2026) | B: Mensa erweiterbar vorbereiten (AEN-012) | +0,12 | 58,67 |
+| s5 (Mai 2026) | Lage: „Kostenprognose 2026-05 · Version 3“ – allgemeine Baupreissteigerung 1,13 + Marktpreise Holzbauelemente 0,6 (in RIS-005 als enthalten vermerkt) | +1,73 | **60,40** (+2,00 = 3,4 %) |
+| s5 | Zwei Rechnungen: Projektsteuerung (Holger Stein) rechnet den angekündigten Nachtrag der Haustechnik mit ein, Controlling (Aylin Kaya) nicht | Differenz 1,2 (2,1 Prozentpunkte) | Nachtrag nicht eingetreten → RIS-014, nicht in der Prognose |
+| s5 | B: Reserve vorsehen und offen berichten | 0 | 60,40; vorgesehen 2,0, frei 0,9; mit vollem Nachtrag fehlten 0,3 |
+| s6 (Jul 2026) | A: Brandschutzauflage umsetzen (PRB-002) | +0,40 · −7 Tage | 60,80 · 35 Tage |
+| s7 (Feb 2027) | RIS-014 geschlossen – Mehrleistungen gehören laut Prüfung der GML zum Planungsvertrag | 0 | – |
+| s7 (Mär 2027) | Lage: Submission Holzbau 0,9 über dem Kostenansatz; 0,6 davon seit Mai in der Prognose, neu 0,3 | +0,30 | 61,10 (+2,70) |
+| s7 | A: 0,9 Mio. € aus der Reserve freigegeben | 0 (schon in der Prognose) | 61,10; frei bis Basis plus Reserve 0,2 |
+| s8 (Jan 2028) | A: Ersatzgerät Lüftung (PRB-019) | +0,08 · −7 Tage | 61,18 · 28 Tage |
+| Ende (Aug 2028) | Schulstart | – | **61,18 Mio. €** (+2,78), Reserve frei 0,12 · **28 Tage** Puffer · 0 offene Entscheidungen |
+
+Auf jedem Weg liegt der Stand im Mai 2026 zwischen 60,13 und 60,98 Mio. € – über der Basis, unter Basis plus Reserve; mit dem vollen Nachtrag (1,2) läge er auf jedem Weg darüber. Andere Wege (nachgerechnet): s3 = B, s6 = K, s8 = B → 61,00 Mio. €, −35 Tage, 2 offen; s2 = C, s3 = C, s4 = A, s5 = A, s7 = C → 59,76 Mio. €, −28 Tage, 1 offen. Der teuerste Weg (s3 = C, s4 = A, s6 = K, sonst empfohlen) endet bei 61,79 Mio. € – die Reserve reicht dort nicht; die Story sagt das, ohne eine Zahl zu behaupten („was über 61,3 Mio. € hinausgeht, deckt sie nicht mehr“).
+
+Weitere Zahlen:
 
 | Größe | Wert | Anmerkung |
 |---|---|---|
-| Projektbasis | 58,4 Mio. € brutto | Kostenberechnung aus LPH 3, vom Stadtrat vor Monat 0 beschlossen |
-| darin Risikoreserve | 2,9 Mio. € (rund 5 %) | Freigabe des Einsatzes nur durch den Bauherrn (nicht delegierbar, k3.2-t1) |
-| Abweichung Monat 5, Projektsteuerung | +8 %, rund +4,7 Mio. € | Prognose Mai, Datei „v3_final_NEU“; in Welt B der verbindliche Datenstand „Kostenprognose 2026-05 · Version 3“ |
-| Datenstand ab Oktober (nur Welt B) | „Kostenprognose 2026-10 · Version 4“ | ersetzt Version 3; enthält die beschlossenen Änderungen `AEN-012`, `AEN-022`, `AEN-031` (L-42); in B5 (September) ist sie in Arbeit |
-| aktualisierte Prognose (nur Welt A) | +9,1 %, rund +5,3 Mio. € | A3, Optionen „Prognose aktualisieren lassen“ (pl) und „Prognose aktualisieren“ (ps, mit Betrag); nach dem Muster läge eine Option über 5 Mio. € beim Bauherrn im Lenkungskreis – wer entscheidet, hängt von der Option ab |
-| Abweichung Monat 5, Controlling | +5,9 %, rund +3,4 Mio. € | eigene CTC-Rechnung der GML |
-| Differenz Monat 5 | 2,1 Prozentpunkte, rund 1,2 Mio. € | 2,1 % von 58,4 Mio. €; nicht aus den gerundeten Werten 4,7 − 3,4 rechnen (L-82) |
-| Abweichung und Reserve | Abweichungen gegen die Projektbasis gerechnet, Risikoreserve darin noch nicht eingesetzt | ganz eingesetzt, blieben nach Projektsteuerung rund 1,8 Mio. €, nach Controlling rund 0,5 Mio. € Überschreitung |
-| Ursache (nach Klärung) | überwiegend Preissteigerung Holzbauelemente laut Marktabfrage; Nachtrag der TGA-Fachplanung angekündigt | A3; Bauverträge gibt es erst nach LPH 7 |
-| Nutzerwunsch Mensa (Monat 3) | Ganztag: Mensa für rund 450 statt 300 Essen, grob 0,6 Mio. € | Schätzung der Generalplanung, noch ohne Termin- und Risikowirkung |
-| Förderfrist (Monat 3) | Förderbescheid Ganztag: Inbetriebnahme zum Schuljahr 2028/29 | fiktiv wie der ganze Fall; kein reales Förderprogramm |
-| Lieferzeit Holzbauelemente (Monat 3) | von rund 16 auf 26 Wochen | Auskunft der Generalplanung auf Nachfrage der Bauherren-PL |
-| Brandschutzauflagen (Monat 6) | Auflagen der Baugenehmigung zum Holzbau, grob 0,4 Mio. € | Welt A: Folgekosten in A5; Welt B: Änderung `AEN-031` im Änderungsgremium (B4) |
+| Lieferzeit Holzbauelemente (Mär 2026) | 26 statt 16 Wochen; drei von vier Anbietern 24–26 Wochen | RIS-009, W 4 · A 4; ohne Gegenmaßnahme Montagebeginn bis rund 70 Tage später (mehr als der Puffer) |
+| Abwarten (s3 = B) | rund 35 Tage Puffer, wenn sich die Lieferzeit bei rund 21 Wochen einpendelt; sonst rund 70 | Bandbreite statt Einzelzahl (V2.4 HB 2); Status rechnet mit 35; in s7 bestätigt (PRB-008) |
+| Mensa (Apr 2026) | 450 statt 300 Essen, 0,6 Mio. €, rund vier Wochen Umplanung; Förderung deckt sie nicht | AEN-012, Antragstellerin Sabine Roth; Zusage von Frank Deppe im Flur (März) ist kein Beschluss |
+| Brandschutz (Jun/Jul 2026) | Kapselung der Holzbauteile in den Fluren, 0,4 Mio. €, eine Woche Umplanung; Gutachten 0,03 Mio. € (von der GML gesondert beauftragt) | PRB-002, MAS-011; bei „Klärung abwarten“ bleiben die 0,4 in der Prognose, die Behörde lehnt die Alternative ab |
+| Lüftungsgerät (Jan 2028) | vier Wochen später; Ersatzgerät 80.000 € / 7 Tage, Abwarten 20.000 € / 28 Tage | wie das fiktive Beispiel des Standards (L-193); 41 : 35 bei Gewichten 3/5/2 |
+| Förderfrist | Inbetriebnahme zum Schuljahr 2028/29 | fiktiv wie der ganze Fall |
 
-Mandatsleiter in Welt B: die Muster-Mandatsleiter von MVG (k4.2-p3) – Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium über 100 TEUR bis einschließlich 5 Mio. €, darüber Beschlussfassung durch den Bauherrn im Lenkungskreis. In Welt A gibt es keine festgelegten Schwellen.
+Mandat (Muster-Mandatsleiter, k4.2-p3): Bauherren-PL bis einschließlich 100 TEUR, Änderungsgremium über 100 TEUR bis einschließlich 5 Mio. €, darüber der Bauherr im Lenkungskreis. Eine neue Projektbasis beschließt der Bauherr – hier der Stadtrat – auf Vorlage aus dem Lenkungskreis. Das Projektblatt hat die GML vor der Beauftragung der Projektsteuerung festgelegt (Bewertungsgrenzen, Entscheidungsschwellen); die MCDA-Gewichte stimmt die Projektsteuerung in Station 1 ab, festgelegt werden sie von der GML.
 
 ## Zeitachse
 
-Monat 0 ist Dezember 2025; Monat 5 ist Mai 2026 („Kostenprognose 2026-05“). Die Stationen A1–A6 und B1–B6 erzählen dieselben Ereignisse; nur der Umgang damit unterscheidet sich.
+Monat 1 ist Januar 2026, Monat 32 August 2028. LPH-Stand: LPH 4 bis Februar 2026, LPH 5 März–Dezember 2026, LPH 6 Januar–Februar 2027, LPH 7 März–Mai 2027, LPH 8 ab Juni 2027.
 
-| Monat | Kalender | LPH-Stand | Ereignis | Station |
+| Monat | Kalender | LPH | Ereignis | Station |
 |---|---|---|---|---|
-| 0 | Dez 2025 | LPH 4 Genehmigungsplanung | Sie übernehmen die Projektleitung auf Bauherrenseite. Kostenberechnung und Projektbasis liegen vor. | Prolog |
-| 1 | Jan 2026 | LPH 4 | Übernahme ohne Übergabe: Die Vorgängerin ist weg; die Kämmerei braucht bis Freitag den Haushaltsansatz 2027 (Mittelabfluss, Gesamtkosten) und fragt, ob Baupreissteigerungen eingepreist sind; aus dem Stadtrat kommt die Frage, ob die Zahl des Ratsbeschlusses noch gilt. Unterlagen in drei Ablagen; Zielkonflikt Kosten, Schuljahresbeginn 2028, Holzbau (Klimaziel des Rats) und Betriebskosten (LCC) nie priorisiert. Der Bauantrag wird eingereicht. | A1/B1 |
-| 2 | Feb 2026 | LPH 4 → LPH 5 | Freigabe zum Abschluss von LPH 4 (Genehmigungsunterlagen eingereicht, vgl. Freigabefrage LPH 4 in k9.3-t1); LPH 5 beginnt. Welt A: stillschweigend „weiter so“. | – |
-| 3 | Mär 2026 | LPH 5 Ausführungsplanung | Zusage im Flur, Frist im Förderbescheid: Schulleitung und Schulverwaltung wollen eine größere Mensa, Frank Deppe hat im Flur zugesagt; der Förderbescheid Ganztag verlangt die Inbetriebnahme zum Schuljahr 2028/29, und auf Nachfrage der Bauherren-PL meldet die Generalplanung 26 statt 16 Wochen Lieferzeit für die Holzbauelemente. | A2/B2 |
-| 5 | Mai 2026 | LPH 5 | Montag, 11. Mai: Kostenprognose +8 % gegen +5,9 %; Lenkungskreis am 19. Mai, Bauausschuss am 21. Mai. | A3/B3 |
-| 6 | Jun 2026 | LPH 5 | Baugenehmigung mit Brandschutzauflagen zum Holzbau. | – |
-| 7 | Jul 2026 | LPH 5 | Bauausschuss vertagt (Welt A: 40-Seiten-Bericht ohne Entscheidungsfrage). | A4/B4 |
-| 8 | Aug 2026 | LPH 5 | Sommerpause von Stadtrat und Bauausschuss. | – |
-| 9 | Sep 2026 | LPH 5 | Folgekosten: Auflagen, Mensa-Umplanung mit Nachtrag der Generalplanung, Nachtrag der TGA-Fachplanung; Frage nach der Risikoreserve. | A5/B5 |
-| 11 | Nov 2026 | LPH 5 | Die Freigabe zum Abschluss von LPH 5 steht an; Holger Stein fällt für Wochen aus; eine Fraktion im Stadtrat fragt nach Kosten und Termin. | A6/B6 |
-| 12 | Dez 2026 | LPH 5 | Zurück in Welt A: Wirklichkeit, drei mögliche Ausgänge. | Wirklichkeit |
+| 1 | Jan 2026 | 4 | Übernahme ohne Übergabe: Unterlagen in drei Ablagen, Haushaltsansatz 2027 bis Freitag, Baupreissteigerung nicht belegt (FRW-001). Projektblatt liegt vor; Gewichte festgelegt. Bauantrag am 29. Januar eingereicht. | s1 |
+| 2 | Feb 2026 | 4 | FRW-001 → RIS-005; erster abgestimmter Bestand (23 Vorgänge); Freigabe zum Abschluss von LPH 4 (empfohlen mit Auflage Marktabfrage bis Ende April). | s2 |
+| 3 | Mär 2026 | 5 | Lieferzeit Holzbauelemente (FRW-002 → RIS-009); Wunsch größere Mensa (AEN-012). | s3 |
+| 4 | Apr 2026 | 5 | Änderungsgremium entscheidet über die Mensa (28. April); MAS-007 Vergabeunterlagen am 15. April. | s4 |
+| 5 | Mai 2026 | 5 | Zwei Prognosen, ein Datenstand (Version 3); Lenkungskreis 19. Mai, Bauausschuss 21. Mai. | s5 |
+| 6 | Jun 2026 | 5 | Baugenehmigung am 12. Juni mit Brandschutzauflagen. | – |
+| 7 | Jul 2026 | 5 | Problem PRB-002, Zwischenmaßnahme MAS-011, unvollständige Vorlage; Zuschlag für die vorab ausgeschriebenen Holzbauelemente (bei s3 = A). | s6 |
+| 13–14 | Jan–Feb 2027 | 6 | Vorbereitung der Vergabe; RIS-014 geschlossen (19. Februar). | – |
+| 15 | Mär 2027 | 7 | Submission Holzbau (2. März), Ausfall Holger Stein (ab 8. März), Freigabe der Reserve bis 24. März. | s7 |
+| 18 | Jun 2027 | 8 | Objektüberwachung; die Bauarbeiten laufen. | – |
+| 25 | Jan 2028 | 8 | Dringliche Gerüstmeldung (PRB-018, 11. Januar); Lüftungsgerät vier Wochen später (PRB-019). | s8 |
+| 32 | Aug 2028 | 8 | Schulstart, Schlüsselübergabe. | Ende |
 
 ## Gremien und Takte
 
 | Gremium | Wer | Takt | Rolle im Fall |
 |---|---|---|---|
-| Stadtrat | Rat der Stadt Lindenhall | monatlich, Sommerpause im August | hat die Projektbasis beschlossen; fragt in Monat 11 nach |
-| Bauausschuss | Ausschuss des Stadtrats, Vorsitz Bernd Kowalski | zweimonatlich (Jan, Mär, Mai, Jul, Sep, Nov), donnerstags | wird berichtet; vertagt in Monat 7 |
-| Lenkungskreis | Dr. Miriam Olbers (Bauherr), Frank Deppe (GML), Vertretung der Kämmerei; Bauherren-PL berichtet | monatlich, dritter Dienstag | Welt B: berät und bereitet vor; die Beschlussfassung liegt beim Bauherrn |
-| Änderungsgremium (nur Welt B) | Vorsitz Frank Deppe, Bauherren-PL, Aylin Kaya; Sabine Roth bei Nutzerthemen; Projektsteuerung und Planung bereiten vor | monatlich, zzgl. anlassbezogener Sondersitzungen (k6.4.5-t1) | entscheidet oberhalb von 100 TEUR bis einschließlich 5 Mio. € (k4.2-p3) |
-| Jour fixe | Bauherren-PL, Projektsteuerung, Planung als verantwortliche Rolle | wöchentlich, Dienstag | Welt A: Themenliste ohne Register; Welt B: Fokus wie in k6.4.5-t1 – wöchentliche Risikosichtung, offene Entscheidungen und Maßnahmen |
+| Stadtrat | Rat der Stadt Lindenhall | monatlich, Sommerpause im August | hat Projektbasis und Reserve beschlossen; beschließt als Bauherr eine neue Projektbasis auf Vorlage aus dem Lenkungskreis |
+| Bauausschuss | Ausschuss des Stadtrats, Vorsitz Bernd Kowalski | zweimonatlich, donnerstags | wird berichtet |
+| Lenkungskreis | Dr. Miriam Olbers (Bauherr), Frank Deppe (GML), Vertretung der Kämmerei; die Bauherren-PL berichtet | monatlich, dritter Dienstag | berät; entschieden wird vom Bauherrn als befugter Stelle auf Vorlage der Projektsteuerung |
+| Änderungsgremium | Vorsitz Frank Deppe, Bauherren-PL, Aylin Kaya; Sabine Roth bei Nutzerthemen; die Projektsteuerung bereitet vor | monatlich, zzgl. anlassbezogener Sondersitzungen | entscheidet über 100 TEUR bis einschließlich 5 Mio. € |
+| Monatstermin | Bauherren-PL und Projektsteuerung, Fachleute nach Bedarf | monatlich, online, höchstens 60 Minuten | dazu der Monatsbericht von höchstens einer Seite |
 
-Welt A: Die Projektsteuerung schreibt einen monatlichen Statusbericht mit Ampeln; das Controlling rechnet seine CTC getrennt; Excel-Stände wandern per Mail. Welt B: Register mit verantwortlicher Rolle und Turnus nach k6.4.2-t1, ein Managementbericht als Sammelpunkt für die Gremien, benannte Datenstände mit Version.
+Die Projektsteuerung prüft jede Woche alle offenen Vorgänge und meldet Dringliches sofort (am selben Arbeitstag dokumentiert). Alle Vorgänge stehen in der Software der GML.
 
-Kennungen in Welt B (docs/BEGRIFFE.md): `ENT-` Entscheidung, `AEN-` Änderung, `RIS-` Risiko, `FRW-` Frühwarnung, `PRB-` Problem, `MAS-` Maßnahme, `NAC-` Nachweis. Freigaben tragen kein Kürzel, sondern heißen „Freigabe LPH 5“. Bekannt aus B3: `ENT-017`, `AEN-022`, `RIS-014`, `FRW-003`; Datenstand „Kostenprognose 2026-05 · Version 3“, ab Oktober „Kostenprognose 2026-10 · Version 4“ (L-42). Vergeben im Drehbuch: `FRW-002` und `RIS-009` (Lieferzeit Holzbau, B2; `FRW-001` bleibt frei für die offene Preisannahme aus B1, je nach Wahl), `AEN-012` (Mensa, B2), `AEN-031` (Brandschutzauflagen, B4), `PRB-004` (Nachtrag der TGA-Fachplanung, B5); in den Rollenszenen der Planung zusätzlich `AEN-036` (B5) und `AEN-041` (B6).
+Kennungen (docs/BEGRIFFE.md): `AUF-` Aufgabe, `MAS-` Maßnahme, `FRW-` Frühwarnung, `RIS-` Risiko, `PRB-` Problem, `AEN-` Änderung, `ENT-` Entscheidung, `NAC-` Nachweis. Freigaben tragen kein Kürzel („Freigabe LPH 4“). Vergeben: `AUF-001`, `AUF-002`, `FRW-001` → `RIS-005` → `PRB-007`; `FRW-002` → `RIS-009` (bei Abwarten → `PRB-008`); `MAS-007`; `AEN-012` (Mensa), `AEN-013` (Sporthalle in Stahlbeton); `RIS-014`; `PRB-002`, `MAS-011`; `PRB-018` (Gerüst), `PRB-019` (Lüftungsgerät). Für die Risikomatrix im Werkzeug zusätzlich `RIS-021` und `RIS-022`. Datenstände: „Kostenprognose 2026-01 · Version 1“, „Kostenprognose 2026-05 · Version 3“.
 
 ## Figuren
 
-Sechs Figuren tragen die sechs Rollen (O-4); vier weitere treten auf. Die Bauherren-PL ist die Spielerrolle (Name frei wählbar, Vorgabe „Sie“). Wer eine andere Rolle spielt, sieht die Bauherren-PL als Figur „Bauherren-PL“.
+Die Leserin oder der Leser ist die Bauherren-PL („Sie“). Die übrigen Figuren treten in der Story auf; ihre Kopfdaten bleiben in der Form, die das Prüfwerkzeug kennt.
 
 ::: figur sie
 ---
@@ -98,7 +99,7 @@ farbe: "#3866A8"
 spieler: ja
 ---
 ### Kurzbeschreibung
-Die Spielerrolle: Sie leiten das Projekt seit Monat 0 auf Bauherrenseite, zwischen Stadt, GML, Planung, Projektsteuerung und Controlling.
+Die Leserin oder der Leser: Sie leiten das Projekt ab Januar 2026 auf Bauherrenseite bei der GML. Sie pflegen keine Vorgänge, Sie entscheiden – oder tragen die Vorlage zur befugten Stelle.
 
 ### Stimme
 Ihre eigene.
@@ -112,10 +113,10 @@ funktion: Projektsteuerung, extern
 farbe: "#146878"
 ---
 ### Kurzbeschreibung
-Externer Projektsteuerer, gründlich und immer etwas in Eile. Seine Mails haben Anhänge und Betreffzeilen mit „bitte kurzfristig“.
+Leitet die Projektsteuerung. Er und sein Team erfassen und pflegen alle Vorgänge, prüfen jede Woche den offenen Bestand und bereiten jede Entscheidung als Vorlage mit mindestens zwei Optionen und gewichtetem Vergleich vor. Er entscheidet nie selbst.
 
 ### Stimme
-Sachlich, knapp, lieber eine Mail als ein Anruf.
+Sachlich, knapp, mit Verweis auf den Eintrag in der Software.
 :::
 
 ::: figur kaya
@@ -126,10 +127,10 @@ funktion: Controlling der GML
 farbe: "#A8823C"
 ---
 ### Kurzbeschreibung
-Rechnet für die GML die Restkostenprognose (CTC). Hat meistens eine eigene Zahl – und fragt, welche gilt.
+Rechnet für die GML die Restkostenprognose (CTC) und liefert Fachbeiträge zu Kosten. Im Mai 2026 liegt ihre Zahl 1,2 Mio. € unter der der Projektsteuerung – sie rechnet den angekündigten Nachtrag nicht ein.
 
 ### Stimme
-Präzise, ungeduldig mit Versionsnummern, schreibt im Chat.
+Präzise, ungeduldig mit Versionsnummern.
 :::
 
 ::: figur hoffmeister
@@ -140,7 +141,7 @@ funktion: Generalplanung
 farbe: "#D9822B"
 ---
 ### Kurzbeschreibung
-Leitet die Generalplanung. Denkt in Varianten und hat oft schon etwas durchgerechnet, bevor jemand fragt.
+Leitet die Generalplanung und liefert Fachbeiträge zu Planung, Terminen und Angeboten. Meldet im März 2026 die längere Lieferzeit der Holzbauelemente.
 
 ### Stimme
 Lösungsfreudig, ruft lieber an, als zu schreiben.
@@ -154,7 +155,7 @@ funktion: Dezernentin, Bauherr
 farbe: "#1D3258"
 ---
 ### Kurzbeschreibung
-Dezernentin der Stadt Lindenhall und für das Projekt die Stimme des Bauherrn. Sie steht Stadtrat und Bauausschuss Rede und Antwort.
+Dezernentin der Stadt Lindenhall und für das Projekt die Stimme des Bauherrn. Entscheidet als befugte Stelle (Freigaben, Reserve), der Lenkungskreis berät; steht Stadtrat und Bauausschuss Rede und Antwort.
 
 ### Stimme
 Ruhig; fragt zuerst nach der Entscheidungsfrage, dann nach den Details.
@@ -168,7 +169,7 @@ funktion: Geschäftsführung GML
 farbe: "#6A4CA5"
 ---
 ### Kurzbeschreibung
-Geschäftsführer der GML. Hat viele Projekte zugleich im Blick und nimmt Themen gern in den Lenkungskreis mit.
+Geschäftsführer der GML und Vorsitzender des Änderungsgremiums. Sagt im Flur gern zu – eine Zusage ist aber kein Beschluss.
 
 ### Stimme
 Verbindlich, zuversichtlich, kurze Sätze.
@@ -181,7 +182,7 @@ funktion: Kostenplaner im Team der Projektsteuerung
 farbe: "#5B6770"
 ---
 ### Kurzbeschreibung
-Kennt jede Zeile der Kostenprognose, weil er sie gebaut hat. In Welt A liegt das Wissen in seinen Excel-Dateien; in Monat 11 fällt er für Wochen aus.
+Kennt jede Zeile der Kostenprognose. Fällt im März 2027 für Wochen aus; eine Kollegin übernimmt aus dem Bestand in der Software, ohne Übergabelücke.
 
 ### Stimme
 Leise, genau, spricht in Zellbezügen.
@@ -194,7 +195,7 @@ funktion: Projektassistenz der GML
 farbe: "#7A5C3E"
 ---
 ### Kurzbeschreibung
-In Welt A schreibt sie Protokolle und sucht Anhänge. In Welt B pflegt sie als PMO Maßnahmen, Probleme, Governance-Kalender und Protokolle.
+Organisiert Termine und Unterlagen der Bauherren-PL. Vorgänge pflegt sie nicht – das tut die Projektsteuerung.
 
 ### Stimme
 Freundlich, organisiert, fragt nach der Version.
@@ -207,7 +208,7 @@ funktion: Nutzervertretung, künftige Schulleiterin der Gesamtschule
 farbe: "#B04A5A"
 ---
 ### Kurzbeschreibung
-Spricht für Nutzer und Schulverwaltung. Ihr Anliegen in Monat 3: eine größere Mensa für den Ganztag.
+Spricht für Nutzer und Schulverwaltung. Ihr Anliegen im März 2026: eine größere Mensa für den Ganztag (AEN-012).
 
 ### Stimme
 Herzlich und hartnäckig; sagt „die Kinder“, wenn sie „der Bedarf“ meint.

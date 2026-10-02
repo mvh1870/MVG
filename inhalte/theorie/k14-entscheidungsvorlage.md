@@ -8,7 +8,7 @@
 # Belege k14.2 (Wer was tut): v24:hb-3, v24:hb-1 (Abs. 5), v24:hb-3.1 (Beschluss getrennt), v24:tlb-2.1, k1.2-l1 (Wissenscheck), k3.2-t1 (Vorbereitung von Entscheidungsvorlagen delegierbar)
 # Belege k14.3 (Frage und Rahmen, Optionen): v24:hb-3.1 (Entscheidungsbedarf klären, Mindestens zwei Optionen ausarbeiten), v24:hb-1.5 (zwei ernsthafte, zulässige Optionen)
 # Belege k14.4 (MCDA): v24:hb-3.1 (MCDA anwenden, Punkte nachvollziehbar begründen, Grenzen und Empfehlung offenlegen)
-# Belege k14.5 (Beispiel Lüftungsgerät): v24:hb-3.2, v24:as-2; Fall: inhalte/geschichte/s8-lueftung.yaml (Mandat der Projektleitung der GML bis 100 TEUR)
+# Belege k14.5 (Beispiel Lüftungsgerät): v24:hb-3.2, v24:as-2; Fall: inhalte/geschichte/s8-lueftung.yaml (Mandat der Bauherren-PL bis 100 TEUR)
 # Belege k14.6 (Vorlegen, nachhalten, Beschluss): v24:hb-3.1 (Vorlegen und nachhalten, Beschluss getrennt dokumentieren), v24:hb-5 (Tabelle, Zeile Entscheidung), v24:hb-3 (Dringliches wartet nicht)
 kapitel: 14
 thema: entscheidungsvorlage
@@ -283,7 +283,7 @@ Die abgestimmte Gewichtung: A liegt vorn, die Projektsteuerung empfiehlt das Ers
 
 Der Regler zeigt, warum die Gewichtungsprüfung Pflicht ist: Bei einem Termingewicht von 3 statt 5 steht es 31 : 31. Die Empfehlung für A gilt also nur unter der vereinbarten Terminpriorität – und genau das muss in der Vorlage stehen.
 
-Zur Vorlage gehören außerdem der Stand von Kosten- und Terminplan, die Nachweise für Gleichwertigkeit und Lieferbarkeit des Ersatzgeräts, die verbleibenden Risiken beider Wege, die nötigen Freigaben, die befugte Stelle und der Entscheidungstermin. Im Beispiel liegt die Entscheidung im Mandat der Projektleitung der GML. Getroffen wird sie hier nicht: Das Beispiel zeigt nur die Vorbereitung.
+Zur Vorlage gehören außerdem der Stand von Kosten- und Terminplan, die Nachweise für Gleichwertigkeit und Lieferbarkeit des Ersatzgeräts, die verbleibenden Risiken beider Wege, die nötigen Freigaben, die befugte Stelle und der Entscheidungstermin. Im Beispiel liegt die Entscheidung im Mandat der Bauherren-PL. Getroffen wird sie hier nicht: Das Beispiel zeigt nur die Vorbereitung.
 :::
 
 ::: abschnitt k14.6

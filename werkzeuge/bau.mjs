@@ -261,7 +261,7 @@ async function ladeVorstufe(wurzel, datei, funktion, posten) {
 }
 
 /**
- * Vorstufen: Inhalte kompilieren (src/generiert/inhalte.json), Hilfe übernehmen (hilfe.json), Schriften erzeugen.
+ * Vorstufen: Inhalte kompilieren (src/generiert/inhalte.json), Schriften erzeugen.
  * @param {string} wurzel
  */
 async function vorstufen(wurzel) {
@@ -272,10 +272,6 @@ async function vorstufen(wurzel) {
   const fehler = Array.isArray(inhalte?.fehler) ? inhalte.fehler.map(String) : [];
   if (Array.isArray(inhalte?.warnungen)) warnungen.push(...inhalte.warnungen.map((w) => `inhalte: ${String(w)}`));
   if (fehler.length > 0) throw new BauFehler(`inhalte meldet ${fehler.length} Fehler:\n  ${fehler.join('\n  ')}`);
-
-  const baueHilfe = await ladeVorstufe(wurzel, 'werkzeuge/hilfe.mjs', 'baueHilfe', 'P13');
-  const hilfe = /** @type {{ fehler: string[] }} */ (/** @type {unknown} */ (baueHilfe({ wurzel })));
-  if (hilfe.fehler.length > 0) throw new BauFehler(`hilfe meldet ${hilfe.fehler.length} Fehler:\n  ${hilfe.fehler.join('\n  ')}`);
 
   const erzeugeSchriften = await ladeVorstufe(wurzel, 'werkzeuge/schriften.mjs', 'erzeugeSchriften', 'P0.3');
   await erzeugeSchriften({});

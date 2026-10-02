@@ -59,7 +59,6 @@ function kopfleiste(o: TheorieOptionen): HTMLElement {
     bildmarke('marke-logo'),
     h('span', { class: 'lern-marke', 'data-pruef': 'lern-marke' }, W.name),
     h('p', { class: 'lern-bereich' }, `${W.theorie.bereich} `, h('span', null, W.theorie.bereichZusatz)),
-    o.bedienbar ? h('a', { class: 'lern-kopf-link lern-kopf-leise', href: '#hilfe', 'data-pruef': 'zur-hilfe' }, W.hilfe.link) : null,
     verweis(o, '#start', { class: 'lern-kopf-link', 'data-pruef': 'zur-start' }, sym('pfeilLinks'), W.theorie.start));
 }
 
@@ -81,8 +80,7 @@ function fuss(o: TheorieOptionen): HTMLElement {
   return h('footer', { class: 'lern-fuss' },
     verweis(o, '#explore', { class: 'lern-kopf-link', 'data-pruef': 'zu-explore' }, sym('pfeilRechts'), W.explore.selbstAusprobieren),
     h('span', null, `${W.start.fuss} · `, h('span', { 'data-pruef': 'version' }, o.version)),
-    verweis(o, `#theorie/${IMPRESSUM}`, { class: 'lern-fuss-link', 'data-pruef': 'zum-impressum' }, W.theorie.impressumLink),
-    h('span', { class: 'vermerk-hell', 'data-pruef': 'ungeprueft' }, sym('info'), W.ungeprueft));
+    verweis(o, `#theorie/${IMPRESSUM}`, { class: 'lern-fuss-link', 'data-pruef': 'zum-impressum' }, W.theorie.impressumLink));
 }
 
 function verzeichnis(o: TheorieOptionen, aktuell: number | null): HTMLElement {
@@ -163,7 +161,6 @@ function impressum(o: TheorieOptionen): HTMLElement {
       zeile(T.impressumFassung, h('span', { 'data-pruef': 'impressum-version' }, o.version)),
       zeile(T.impressumQuelle, T.impressumQuelleText(o.inhalte.whitepaper.titel ?? 'Minimum Viable Governance', fassung)),
       zeile(T.impressumFall, T.impressumFallText),
-      zeile(T.impressumStatus, h('span', { class: 'vermerk-hell' }, sym('info'), W.ungeprueft), ' ', T.impressumStatusText),
       zeile(T.impressumFussnoten, T.impressumFussnotenText),
       zeile(T.impressumGrenzen, h('span', { class: 'impressum-grenzen' }, grenzen.map((a) =>
         verweis(o, `#theorie/k${a.kapitel}/${a.nr}`, { class: 'glossar-ort', 'data-pruef': `impressum-grenze-${a.nr}` }, `${a.nr} ${a.titel}`))))),
@@ -541,7 +538,7 @@ function lernseite(o: TheorieOptionen, nr: number): HTMLElement {
   if (drucken !== null) bogenFuerStrgP(drucken, () => ({ titel: W.druck.kapitelTitel(nr, titel), teile: [bogenKopf(W.druck.kapitelTitel(nr, titel), o.version, false), kapitelFuerDruck(o.inhalte, nr, o.version)] }));
   /** Originaltext: ans Seitenende (O-30) */
   const unten: HTMLElement[] = [];
-  const teile: Node[] = [kopf, h('p', { class: 'kapitel-vermerk' }, h('span', { class: 'vermerk-hell' }, sym('info'), W.ungeprueft), drucken)];
+  const teile: Node[] = [kopf, h('p', { class: 'kapitel-vermerk' }, drucken)];
   if (seite === null) {
     teile.push(h('div', { class: 'kernaussage ist-folgt', 'data-pruef': 'folgt' }, h('span', { class: 't-label' }, W.theorie.folgt), h('p', null, W.theorie.folgtText)),
       h('p', null, verweis(o, '#theorie', { class: 'querverweis' }, h('span', { class: 'querverweis-symbol' }, sym('pfeilLinks')), W.theorie.zurListe)));

@@ -50,7 +50,6 @@ export function baueExplore(o: ExploreOptionen): HTMLElement {
       bildmarke('marke-logo'),
       h('span', { class: 'lern-marke', 'data-pruef': 'lern-marke' }, W.name),
       h('p', { class: 'lern-bereich' }, `${E.bereich} `, h('span', null, E.bereichZusatz)),
-      h('a', { class: 'lern-kopf-link lern-kopf-leise', href: '#hilfe', 'data-pruef': 'zur-hilfe' }, W.hilfe.link),
       h('a', { class: 'lern-kopf-link', href: '#start', 'data-pruef': 'zur-start' }, sym('pfeilLinks'), W.theorie.start)),
     h('div', { class: 'lern-rahmen ist-einspaltig' },
       h('main', { class: 'lern-inhalt', id: 'lern-inhalt' },
@@ -72,8 +71,7 @@ export function baueExplore(o: ExploreOptionen): HTMLElement {
           ' ',
           h('a', { class: 'querverweis', href: '#theorie', 'data-pruef': 'explore-zur-theorie' }, h('span', { class: 'querverweis-symbol' }, sym('pfeilRechts')), W.theorie.zurListe)),
         h('footer', { class: 'lern-fuss' },
-          h('span', null, `${W.start.fuss} · `, h('span', { 'data-pruef': 'version' }, o.version)),
-          h('span', { class: 'vermerk-hell', 'data-pruef': 'ungeprueft' }, sym('info'), W.ungeprueft)))));
+          h('span', null, `${W.start.fuss} · `, h('span', { 'data-pruef': 'version' }, o.version))))));
 }
 
 /** Figurengalerie (P3.1): jede Figur der Fall-Bibel in drei Mimiken, mit Funktion und Stimme. */

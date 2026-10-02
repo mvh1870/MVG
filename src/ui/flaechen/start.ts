@@ -78,7 +78,7 @@ export function baueStart(o: StartOptionen): HTMLElement {
         ]))),
     h('footer', { class: 'start-fuss', 'data-pruef': 'fuss' },
       // der Name steht im Kopf; der Fuß nennt Adresse und Herausgeber (O-34)
-      h('span', null, `${W.adresse} · ${W.herausgeber} · ${W.fiktiv} · `, h('span', { 'data-pruef': 'version' }, o.version), ' ', h('span', { class: 'start-vermerk', 'data-pruef': 'ungeprueft' }, W.ungeprueft)),
-      o.bedienbar ? h('span', { class: 'leise-links' }, h('a', { class: 'leise-link', href: '#hilfe', 'data-pruef': 'zur-hilfe' }, W.hilfe.link), o.praesentierbar === false ? null : h('a', { class: 'leise-link', href: '#regie', 'data-pruef': 'praesentieren' }, w.praesentieren)) : null));
+      h('span', null, `${W.adresse} · ${W.herausgeber} · ${W.fiktiv} · `, h('span', { 'data-pruef': 'version' }, o.version)),
+      o.bedienbar ? h('span', { class: 'leise-links' }, o.praesentierbar === false ? null : h('a', { class: 'leise-link', href: '#regie', 'data-pruef': 'praesentieren' }, w.praesentieren)) : null));
   return seite;
 }

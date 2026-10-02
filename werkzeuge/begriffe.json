@@ -11,7 +11,7 @@
   ],
   "pfade": ["inhalte/**/*.md", "inhalte/**/*.yaml", "entwurf/**/*.md", "entwurf/**/*.yaml", "src/**/*.ts", "src/**/*.css", "werkzeuge/huelle.html"],
   "ausnahmen": ["inhalte/begriffs-kompass.md", "docs/KORREKTURLISTE-V1.3.md", "src/generiert/schriften.css"],
-  "grossKleinEgal": ["inhalte/**", "entwurf/**", "werkzeuge/huelle.html", "src/generiert/inhalte.json", "src/generiert/hilfe.json"],
+  "grossKleinEgal": ["inhalte/**", "entwurf/**", "werkzeuge/huelle.html", "src/generiert/inhalte.json"],
   "verboten": [
     { "muster": "(?<![\\p{L}\\p{N}])G-?0?[0-9](?:\\s?-\\s?G?\\s?[0-9])?(?![\\p{L}\\p{N}])|(?<![\\p{L}\\p{N}])G\\s[0-9]\\s?(?:-|…|\\.\\.\\.?|bis)\\s?G?\\s?[0-9](?![\\p{L}\\p{N}])", "flags": "u", "statt": "Freigabe LPH n / LPH 0–9" },
     { "muster": "(?<!navi|dele|aggre|propa|investi|miti|irri|obli|segre|rele|interro|surro|insti|liti|conju|subju|fri|casti|fumi)gates?(?![\\p{L}\\p{N}])", "flags": "iu", "statt": "Freigabe" },

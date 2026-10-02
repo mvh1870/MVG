@@ -21,7 +21,6 @@ import { lade, type SpeicherGriff } from './engine/speicher.ts';
 import { erzeugeKanal } from './regie/kanal.ts';
 import { setzeMarke } from './ui/marke.ts';
 import { setzeAbbildungsBilder } from './ui/bausteine/abbildung.ts';
-import { setzeHostFenster, setzeZielMelder } from './ui/dialog.ts';
 import { IMPRESSUM, istAbbildungsId, istAbsatzId, leseRoute, routeHash, type Route } from './ui/route.ts';
 import { erzeugeSitzung, type Sitzung } from './ui/sitzung.ts';
 import { ersetze, h } from './ui/h.ts';
@@ -31,13 +30,11 @@ import { erzeugeStory, type StoryFlaeche } from './ui/flaechen/story.ts';
 import { baueStart } from './ui/flaechen/start.ts';
 import { baueTheorie, kapitelListe, zeigeAktuellenEintrag } from './ui/flaechen/theorie.ts';
 import { baueExplore } from './ui/flaechen/explore.ts';
-import { baueHilfe, hilfeTitel } from './ui/flaechen/hilfe.ts';
 import { erzeugeRegie } from './regie/regie.ts';
 import { starteLeinwand } from './regie/leinwand.ts';
 import { W } from './ui/woerter.ts';
 import { fassungText } from './ui/fassung.ts';
 import { erzeugeKlang } from './ui/klang.ts';
-import { istEingebettet, leseHintergrund, starteEinbettung, type Einbettung } from './ui/einbettung.ts';
 
 const TITEL = W.name;
 const VERSION = fassungText(inhalte.whitepaper.fassung ?? '');
@@ -92,25 +89,15 @@ function starteApp(wurzel: HTMLElement): void {
   const speicher = standardSpeicher();
   const sitzung: Sitzung = erzeugeSitzung(startzustand(speicher), inhalte, { speicher });
   const klang = erzeugeKlang(speicher);
-  // Einbettung (P10.6, E12): im iframe meldet die Anwendung dem Host jeden Ort und folgt „gehe“
-  const eingebettet = istEingebettet(window);
-  if (eingebettet) {
-    document.body.classList.add('ist-eingebettet');
-    document.documentElement.classList.add('ist-eingebettet');
-    // Hintergrund der Hostseite übernehmen (nur hell), damit der Rahmen nicht als Farbfläche absetzt
-    const grund = leseHintergrund(location.search);
-    if (grund !== null) document.documentElement.style.setProperty('--grund', grund);
-  }
-  let einbettung: Einbettung | null = null;
   let story: StoryFlaeche | null = null;
   let tipps: Tooltips | null = null;
   let flaeche = '';
   // R47: Strg+P auf Start, Story (vor dem Epilog), Explore und der Kapitelliste druckt die Druckwege statt der Bildschirmseite;
-  // Lernseiten und Epilog haben eigene Bögen (Vorrang), die Hilfe druckt ihre Seite
+  // Lernseiten und Epilog haben eigene Bögen (Vorrang)
   ersatzBogenFuerStrgP(() => ['start', 'story', 'explore', 'theorie'].includes(document.body.dataset['flaeche'] ?? ''), ersatzDruck);
 
   const raeume = (): void => {
-    // offene Dialoge (Abbildung, Hilfe-Grafik) schließen, bevor die Fläche wechselt: so räumen Rad- und
+    // offene Dialoge (Abbildung) schließen, bevor die Fläche wechselt: so räumen Rad- und
     // Fenster-Beobachter über 'close' auf (P12.5 R23)
     for (const d of document.querySelectorAll<HTMLDialogElement>('dialog[open]')) d.close();
     story?.entferne();
@@ -130,15 +117,14 @@ function starteApp(wurzel: HTMLElement): void {
         else tue({ art: 'wechsleBereich', bereich: 'story' });
         if (flaeche !== 'story') {
           raeume();
-          story = erzeugeStory({ inhalte, tue, zurStart: () => navigiere({ flaeche: 'start' }), klang, meldeZiel: eingebettet ? (y) => einbettung?.meldeZiel(y) : null });
+          story = erzeugeStory({ inhalte, tue, zurStart: () => navigiere({ flaeche: 'start' }), klang });
           ersetze(wurzel, story.element);
           story.setze(oeffentlich(sitzung.zustand()), null);
           window.scrollTo(0, 0);
-          // wie Theorie, Explore und Hilfe: der Fokus sitzt nach dem Wechsel auf dem Titel (Screenreader hören den Wechsel)
+          // wie Theorie und Explore: der Fokus sitzt nach dem Wechsel auf dem Titel (Screenreader hören den Wechsel)
           (story.element.querySelector('.tafel-titel') as HTMLElement | null)?.focus({ preventScroll: true });
         }
-        // vor dem Permalink-Sprung: sonst zeichnet das Abo ihn nicht (P11.3 R3), und die Ortsmeldung der
-        // Einbettung aus dem Abo trüge die alte Fläche (R4)
+        // vor dem Permalink-Sprung: sonst zeichnet das Abo ihn nicht (P11.3 R3)
         flaeche = 'story';
         document.body.dataset['flaeche'] = 'story';
         document.title = `${W.story} · ${TITEL}`;
@@ -176,11 +162,7 @@ function starteApp(wurzel: HTMLElement): void {
           abschnitt.classList.add('ist-ziel');
           // Permalink auf einen Abschnitt (P2.4): dorthin, Fokus für Screenreader
           abschnitt.tabIndex = -1;
-          // eingebettet scrollt nicht der Rahmen, sondern die Hostseite: nur ihr die Lage des Ziels melden (ein Sprung)
-          const ausrichten = (): void => {
-            if (einbettung !== null) einbettung.meldeZiel(abschnitt.getBoundingClientRect().top + window.scrollY);
-            else abschnitt.scrollIntoView({ block: 'start' });
-          };
+          const ausrichten = (): void => abschnitt.scrollIntoView({ block: 'start' });
           ausrichten();
           abschnitt.focus({ preventScroll: true });
           // Schriften verschieben das Layout nach dem ersten Zeichnen: danach noch einmal ausrichten
@@ -206,20 +188,6 @@ function starteApp(wurzel: HTMLElement): void {
         document.title = `${W.explore.bereich} ${W.explore.bereichZusatz} · ${TITEL}`;
         break;
       }
-      case 'hilfe': {
-        // Hilfe (P13, O-31): eigene Fläche ohne Zustand der Story; eine unbekannte Seite zeigt die Übersicht
-        raeume();
-        const seite = baueHilfe({ seite: r.seite, version: VERSION });
-        ersetze(wurzel, seite);
-        zeigeAktuellenEintrag(seite);
-        window.scrollTo(0, 0);
-        (seite.querySelector('.kapitel-titel') as HTMLElement | null)?.focus({ preventScroll: true });
-        flaeche = `hilfe-${r.seite ?? ''}`;
-        document.body.dataset['flaeche'] = 'hilfe';
-        const t = hilfeTitel(r.seite);
-        document.title = `${t !== null ? `${t} · ` : ''}${W.hilfe.bereich} · ${TITEL}`;
-        break;
-      }
       default: {
         tue({ art: 'wechsleBereich', bereich: 'start' });
         raeume();
@@ -231,7 +199,7 @@ function starteApp(wurzel: HTMLElement): void {
           fassung: inhalte.whitepaper.fassung ?? '',
           version: VERSION,
           bedienbar: true,
-          praesentierbar: !eingebettet,
+          praesentierbar: true,
         }));
         window.scrollTo(0, 0);
         if (flaeche !== '' && flaeche !== 'start') (wurzel.querySelector('.start-titel') as HTMLElement | null)?.focus({ preventScroll: true });
@@ -258,7 +226,6 @@ function starteApp(wurzel: HTMLElement): void {
       // Adresszeile zeigt den Permalink der Station (ohne hashchange: replaceState)
       if (neu.station !== null && neu.station !== alt.station) {
         history.replaceState(null, '', routeHash({ flaeche: 'story', station: neu.station }));
-        einbettung?.meldeOrt();
       }
     }
   });
@@ -276,23 +243,7 @@ function starteApp(wurzel: HTMLElement): void {
     if (story.taste(e)) e.preventDefault();
   });
 
-  einbettung = eingebettet ? starteEinbettung({
-    fenster: window,
-    version: VERSION,
-    gehe: (hash) => { if (location.hash !== hash) location.hash = hash; },
-    ort: () => ({ hash: location.hash || '#start', flaeche: document.body.dataset['flaeche'] ?? '', titel: document.title }),
-    // Story (Leitstand) braucht eine feste Höhe; alle anderen Flächen fließen mit ihrem Inhalt
-    // gemessen am Körper, nicht am Dokument: scrollHeight wird nie kleiner als der Rahmen, der Rahmen schrumpfte nie
-    // Story: fester Leitstand erst ab 981 px; darunter fließt sie wie die übrigen Flächen (P12.5 R3)
-    hostFenster: setzeHostFenster,
-    hoehe: () => (document.body.dataset['flaeche'] === 'story' && window.matchMedia('(min-width: 981px)').matches ? null : document.body.getBoundingClientRect().height),
-  }) : null;
-  // Dialoge (Abbildung, Grafik der Hilfe) öffnen eingebettet an ihrer Figur; die Hostseite rollt dorthin (P12.5 R11)
-  if (einbettung !== null) setzeZielMelder((y) => einbettung?.meldeZiel(y));
-  window.addEventListener('hashchange', () => einbettung?.meldeOrt());
-
   zeige(leseRoute(location.hash));
-  einbettung?.meldeOrt();
 }
 
 /* ------------------------------------------------------------------- Regie -- */
@@ -349,8 +300,6 @@ setzeMarke(logoSvg, bildmarkeSvg);
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 setzeAbbildungsBilder(abbildungsBilder as Record<string, string>);
 const wurzel = document.getElementById('mvg') ?? document.body;
-// Im iframe (P10.6) gibt es weder Regie noch Leinwand: eine fremde Seite soll keine Regie einbetten
-if (istEingebettet(window) && betriebsart(leseRoute(location.hash)) !== 'app') history.replaceState(null, '', '#start');
 switch (betriebsart(leseRoute(location.hash))) {
   case 'regie':
     starteRegie(wurzel);

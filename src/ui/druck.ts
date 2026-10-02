@@ -19,7 +19,7 @@ export function bogenKopf(titel: string, version: string, mitFiktiv: boolean): H
     h('p', { class: 'druck-absender' }, bildmarke('marke-logo'), h('span', null, W.produkt)),
     h('h1', null, titel),
     h('p', { class: 'druck-meta' }, `${version} · ${W.druck.stand(datum)} · ${W.adresse} · ${W.herausgeber}`),
-    h('p', { class: 'druck-meta' }, [mitFiktiv ? `${W.fiktiv} · ` : '', W.ungeprueft].join('')));
+    mitFiktiv ? h('p', { class: 'druck-meta' }, W.fiktiv) : null);
 }
 
 /** R49: Dokumenttitel im Druck (PDF-Metadaten, vorgeschlagener Dateiname) mit dem Namen des Programms (O-33) */

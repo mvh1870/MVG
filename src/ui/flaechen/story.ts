@@ -114,7 +114,7 @@ export function erzeugeStory(o: StoryOptionen): StoryFlaeche {
         h('h1', { class: 'kopf-titel' }, fall?.projekt ?? W.kopfTitelFallback),
         h('p', { class: 'kopf-unter' }, W.produkt))),
     bedienbar && o.klang ? klangKnopf(o.klang) : null,
-    h('p', { class: 'vermerk', 'data-pruef': 'fiktiv' }, `${W.fiktiv} · ${W.ungeprueft}`));
+    h('p', { class: 'vermerk', 'data-pruef': 'fiktiv' }, W.fiktiv));
 
   /* ------------------------------------------------------------ Bausteine -- */
   const instrumente = erzeugeInstrumente();

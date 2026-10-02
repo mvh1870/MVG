@@ -2246,10 +2246,6 @@ if (istHaupt) {
   const optionen = { pruefe };
   if (w > 0 && process.argv[w + 1] !== undefined) optionen.wurzel = path.resolve(/** @type {string} */ (process.argv[w + 1]));
   const { fehler, warnungen, inhalte } = await kompiliere(optionen);
-  // Hilfe (P13, O-31) gehört zu den generierten Inhalten: vor typen und test erzeugt, Begriffe geprüft
-  const { baueHilfe } = await import('./hilfe.mjs');
-  const hilfe = baueHilfe({ wurzel: optionen.wurzel ?? WURZEL });
-  fehler.push(...hilfe.fehler.map((f) => `hilfe: ${f}`));
   const st = Object.keys(inhalte.stationen).length;
   const sz = Object.values(inhalte.stationen).reduce((n, s) => n + Object.keys(/** @type {any} */ (s).szenen).length, 0);
   const th = Object.keys(inhalte.theorie).length;

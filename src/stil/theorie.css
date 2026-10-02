@@ -207,7 +207,7 @@ a.absatz-id:hover { background: var(--weiss); box-shadow: inset 0 0 0 1px var(--
 .querverweis small { font-weight: 400; color: var(--tinte-2); }
 .querverweise { display: flex; flex-wrap: wrap; gap: var(--a-2); }
 
-/* Vermerk „fachlich ungeprüft“ (O-24) */
+/* heller Vermerk (Hinweiszeile mit Symbol) */
 .vermerk-hell {
   display: inline-flex;
   align-items: center;

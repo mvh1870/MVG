@@ -70,7 +70,7 @@
 }
 .kopf-unter { margin-top: 2px; font-size: 12.5px; line-height: 1.3; color: var(--auf-navy-2); }
 
-/* Vermerk „Fall fiktiv · fachlich ungeprüft“ (O-3, O-24) – bleibt sichtbar. */
+/* Vermerk „Fiktiver Fall“ (O-3, O-45) – bleibt sichtbar. */
 .vermerk {
   flex: none;
   max-width: 48%;

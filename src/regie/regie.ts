@@ -245,7 +245,7 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     massstab();
   }
 
-  const fussleiste = h('footer', { class: 'regie-fuss' }, h('span', null, o.version), h('span', { class: 'start-vermerk' }, W.ungeprueft));
+  const fussleiste = h('footer', { class: 'regie-fuss' }, h('span', null, o.version));
   const element = h('div', { class: 'regie', 'data-pruef': 'regie' },
     kopf,
     // Hauptbereich der Regie als main (R21); die Vorschau bettet die Leinwand ohne eigene main ein

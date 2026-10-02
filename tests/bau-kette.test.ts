@@ -310,7 +310,6 @@ describe('frischer Checkout (ohne src/generiert)', () => {
     const wp = path.join('quellen', 'whitepaper', 'v1.2', 'whitepaper.json');
     await mkdir(path.dirname(path.join(kopie, wp)), { recursive: true });
     await cp(path.join(WURZEL, wp), path.join(kopie, wp));
-    await cp(path.join(WURZEL, 'quellen', 'hilfe'), path.join(kopie, 'quellen', 'hilfe'), { recursive: true });
     await symlink(path.join(WURZEL, 'node_modules'), path.join(kopie, 'node_modules'), 'junction');
     const generiert = path.join(kopie, 'src', 'generiert', 'inhalte.json');
     assert.ok(!existsSync(generiert), 'Kopie enthält schon src/generiert');

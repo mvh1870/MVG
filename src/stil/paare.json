@@ -62,7 +62,7 @@
     { "text": "--gold-hell", "grund": "--navy-soft", "wo": "aktuelle Station" },
     { "text": "--gold-text", "grund": "--weiss", "wo": "Kernaussage-Label" },
     { "text": "--gold-text", "grund": "--grund", "wo": "Kicker der Startseite" },
-    { "text": "--gold-text", "grund": "--gold-soft", "wo": "Vermerk „fachlich ungeprüft“ (hell)" },
+    { "text": "--gold-text", "grund": "--gold-soft", "wo": "heller Vermerk" },
     { "text": "--petrol", "grund": "--weiss", "wo": "Kicker der Theorie-Tür, Kapitelnummer" },
     { "text": "--petrol", "grund": "--grund", "wo": "Kapitelnummer, Bereich" },
     { "text": "--koralle", "grund": "--navy", "wo": "Welt-Name A in der Welt-Anzeige (27 px, 800)" },

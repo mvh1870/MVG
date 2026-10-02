@@ -129,7 +129,6 @@ const { erzeugeStory } = await import('../src/ui/flaechen/story.ts');
 const { baueStart } = await import('../src/ui/flaechen/start.ts');
 const theorieModul = await import('../src/ui/flaechen/theorie.ts');
 const { baueTheorie, kapitelListe, kapitelFuerDruck } = theorieModul;
-const { baueHilfe, hilfeSeiten, HILFE } = await import('../src/ui/flaechen/hilfe.ts');
 const { erzeugeAnzeige } = await import('../src/regie/leinwand.ts');
 const { erzeugeRegie } = await import('../src/regie/regie.ts');
 const { W } = await import('../src/ui/woerter.ts');
@@ -147,7 +146,7 @@ test('Startseite: genau zwei Wege, leiser Fuß mit Version und Vermerk, keine In
   assert.equal(s.querySelector('[data-pruef="status"]'), null);
   assert.equal(s.querySelector('[data-pruef="praesentieren"]')?.getAttribute('href'), '#regie');
   assert.equal(s.querySelector('[data-pruef="version"]')?.textContent, VERSION);
-  assert.equal(s.querySelector('[data-pruef="ungeprueft"]')?.textContent, 'fachlich ungeprüft');
+  assert.equal(s.querySelector('[data-pruef="ungeprueft"]'), null, 'kein Vermerk (O-39)');
   // Leitsatz aus inhalte/start.md, wörtlich nach k1-p1 (kein Fachtext im Code, O-17/O-18)
   assert.equal(inhalte.startseite?.titelQuelle, 'k1-p1');
   assert.equal(s.querySelector('[data-pruef="start-titel"]')?.textContent, inhalte.startseite?.titel);
@@ -177,7 +176,6 @@ test('Name (O-33, O-34): „Governance Kompass“ mit Bildmarke auf jeder Fläch
     ['Theorie', baueTheorie({ inhalte, kapitel: 3, version: VERSION, bedienbar: true })],
     ['Kapitelliste', baueTheorie({ inhalte, kapitel: null, version: VERSION, bedienbar: true })],
     ['Explore', baueExplore({ inhalte, freigeschaltet: true, weltB: true, version: VERSION })],
-    ['Hilfe', baueHilfe({ seite: 'standards', version: VERSION })],
   ];
   for (const [name, el] of flaechen) {
     assert.ok(el.querySelector('.lern-kopf svg.marke-logo'), `${name}: Bildmarke im Kopf`);
@@ -224,95 +222,6 @@ test('Name (O-33, O-34): „Governance Kompass“ mit Bildmarke auf jeder Fläch
   assert.match(druck, /www\.GovernanceKompass\.de · Herausgeber: Bauherr Mentoren/u);
   assert.equal((druck.match(/Bauherr Mentoren/gu) ?? []).length, 1, 'Druckkopf nennt Bauherr Mentoren einmal, als Herausgeber');
   assert.doesNotMatch([start, ...flaechen.map((x) => x[1])].map((x) => x.textContent).join(' '), /MVG interaktiv/u);
-});
-
-test('Hilfe (P13, O-31): gleiche Aufteilung wie die Companion-Hilfe, leiser Zugang, Blättern, Vermerk', () => {
-  const s = baueStart({ startseite: inhalte.startseite, kapitelAnzahl: 13, rollenAnzahl: 6, weiterlesen: false, fassung: 'V1.2', version: VERSION, bedienbar: true });
-  assert.equal(s.querySelector('[data-pruef="zur-hilfe"]')?.getAttribute('href'), '#hilfe');
-  assert.deepEqual(HILFE.kapitel.map((k) => k.titel), ['MVG-Vorgehensmodell', 'Hilfe-Hub', 'Handbuch', 'Standards', 'Registerdokument-Katalog', 'Rollen-Anleitungen',
-    'Kollaboration', 'FAQ & Glossar', 'Kundenanpassung', 'Datenmanagement', 'IT-/Datenschutz-Dossier']);
-  const rollen = HILFE.kapitel.find((k) => k.id === 'rollen-anleitungen');
-  assert.equal(rollen?.unter.length, 13);
-  assert.equal(rollen?.unter[0]?.titel, 'Bauherr / Auftraggeber');
-  const uebersicht = baueHilfe({ seite: null, version: VERSION });
-  assert.equal(uebersicht.querySelectorAll('[data-pruef="hilfe-liste"] > li').length, 11);
-  assert.ok(uebersicht.querySelector('[data-pruef="hilfe-suche"]'));
-  assert.equal(uebersicht.querySelector('[data-pruef="ungeprueft"]')?.textContent, 'fachlich ungeprüft');
-  const alle = hilfeSeiten();
-  assert.equal(alle.length, 24);
-  const seite = baueHilfe({ seite: 'rollen-anleitungen-bauherr-auftraggeber', version: VERSION });
-  assert.equal(seite.querySelector('.kapitel-titel')?.textContent, 'Bauherr / Auftraggeber');
-  assert.equal(seite.querySelector('[data-pruef="hilfe-verzeichnis"] [aria-current="page"]')?.getAttribute('href'), '#hilfe/rollen-anleitungen-bauherr-auftraggeber');
-  assert.equal(seite.querySelectorAll('.hilfe-unterliste li').length, 13);
-  assert.equal(seite.querySelector('.kapitel-nav a[rel="prev"]')?.getAttribute('href'), '#hilfe/rollen-anleitungen');
-  // Inhalt ohne Bedienteile der Anwendung, Begriffe nach MVG
-  const text = alle.map((e) => e.seite.html).join(' ');
-  assert.doesNotMatch(text, /<(?:button|input|select|textarea|script|form)\b|\son[a-z]+=|white\s*paper|Stage-Gate|(?<![-.\w])G[0-9]\b/iu);
-  // Prüfagent Begriffe (P13.3): FAQ vollständig, Kennungen wörtlich, keine Bedienreste, Rollenkarten verlinkt
-  // R45: FAQ „ROI“ (Wirkungszahlen nicht in V1.2) entfernt, Eskalation entlang der Mandatsleiter, kein Feldname in Überschriften
-  assert.doesNotMatch(text, /ROI von MVG|spart 3-6 Monate|an den Lenkungskreis eskaliert|automatisch an den Lenkungskreis|Eskalation an (?:den )?Lenkungskreis|Lenkungskreis-Eskalation|darüber Lenkungskreis|<h\d>[^<]*<code>\(/u);
-  assert.match(text, /Was ist MVG\?|FAQ/u);
-  // R47: Governance-Fluss, Lenkungskreis berät, Eskalation und Registerzuständigkeit nach MVG, keine Wirkungsversprechen, kein Englisch im Fließtext
-  assert.doesNotMatch(text, /Freigabe → Managementbericht → Maßnahme|Top-Entscheidungen treffen|Nutzen Sie den Approval-Workflow in der Entscheidungsvorlage für signierte Freigaben|sogar besser als bei einem Neustart|sonst Lenkungskreis|Eigenfreigabe bis 100 TEUR|<b>Verantwortungsdreieck<\/b>|Berichts-Sink|timeboxed|Late Claims|Threshold-Regeln|Das im Monatslauf|<b>EW Log:<\/b> Bauherren-PL|<b>Änderungsregister:<\/b> PMO/u);
-  assert.match(text, /Freigabe → Maßnahme → Managementbericht/u);
-  // R47 (Architektur): die Ersetzungen zur Beschlusszuständigkeit (L-107 (2), L-130 (5)) sind gesichert
-  assert.doesNotMatch(text, /formal durch Lenkungskreis|(?<!Bauherrn )im Lenkungskreis (?:verabschiedet|beschlossen)|Bauherr \/ Lenkungskreis|MVG-Reifegrad-Modell/u);
-  assert.match(text, /Bauherr \(Lenkungskreis berät\)/u);
-  // R47: Schrägstrich-Ketten brechen nach „/“ (Umbruchstelle ohne Zeichen), nicht mitten im Wort
-  assert.match(text, /Rollen\/<wbr>Freigaben/u);
-  assert.match(text, /<td>Risiko-\/(?:<wbr>)?Mandats-Eskalation<\/td><td>Bauherren-PL<\/td><td>nächste Stufe der Mandatsleiter \(Änderungsgremium bzw\. Bauherr im Lenkungskreis\)/u);
-  assert.match(text, /<td>Freigabeentscheidung<\/td><td>Bauherr \(im Lenkungskreis\)<\/td>/u);
-  assert.match(text, /<td>Maßnahmenregister · Problemregister · Governance-Kalender · Protokolle<\/td><td>PMO<\/td>/u);
-  assert.match(text, /GATE-NETZNORD-G2/u);
-  assert.doesNotMatch(text, /Ansicht öffnen|Schnell starten|Meine Rolle|LPH (\d)[^<(]{0,40}\(LPH \1\)|englisch: Nachweis|Audit-PaketeAudit-Pakete/u);
-  assert.equal(rollen?.html.match(/href="#hilfe\/rollen-anleitungen-/gu)?.length, 13);
-  // Prüfrunde 2: Fünf-Stufen-Modell der Anwendung nicht als LPH, Ausführungsplanung ist LPH 5, Grammatik der Ersetzungen
-  assert.doesNotMatch(text, /LPH \d LPH\d|LPH 3 \(Ausführungsplanung\)|LPH 4<\/td><td>Pilot|Projektbasiss/u);
-  assert.match(text, /Freigabestufe 0 LPH 0, Freigabestufe 1 LPH 1–2/u);
-  // Prüfrunde 4: Termintypen im Fünf-Stufen-Modell, doppelte Maskierung, Kontrast der Grafikfarben
-  assert.match(text, /Freigabebesprechung<\/b> – Freigabestufe 0 bis 4/u);
-  assert.doesNotMatch(text, /&amp;amp;|finales Managementbericht|fill:var\(--gold\)/u);
-  // Prüfrunde 5: keine MVG-Aussage über die Namen der Anwendung, Kennungen wörtlich, keine Umschrift im Fließtext
-  assert.doesNotMatch(text, /Der MVG-Standard beschreibt den Companion|GCT-LPH 3|Zulaessige|Gedaechtnis|<span>1 - Über das Programm/u);
-  assert.match(text, /GCT-LPH3/u);
-  // Prüfrunde 6: gleichrangige Überschriften der Quelle bleiben gleichrangig (alle Rollenkarten auf einer Ebene)
-  const ebenen = [...(rollen?.html.matchAll(/<div class="h-role-pick-card"><(h\d)>/gu) ?? [])].map((m) => m[1]);
-  assert.equal(ebenen.length, 14, "13 Rollen mit Unterseite und die Rolle BM-Mentor");
-  assert.equal(new Set(ebenen).size, 1, ebenen.join(' '));
-  // Prüfrunde 7: Abschnitte des Handbuchs sind Überschriften; keine Momentaufnahmen des Browsers; Freigabestufen eindeutig
-  const handbuch = HILFE.kapitel.find((k) => k.id === 'handbuch')?.html ?? '';
-  assert.ok((handbuch.match(/<summary><h2 class="h-summary-titel">/gu) ?? []).length >= 6);
-  assert.doesNotMatch(text, /Belegt gesamt|Speicher-Ebenen-Audit|Status noch nicht geprüft|Stufe 0 LPH/u);
-  assert.match(text, /Freigabestufe 0 LPH 0/u);
-  // Prüfrunde 8: alle Abschnitte der Reihe als Überschrift, ohne sichtbare Nummer; keine Angebotsaussage (O-1)
-  assert.doesNotMatch(handbuch, /<summary>\d+ - /u);
-  assert.equal((handbuch.match(/class="h-summary-titel"/gu) ?? []).length, 17, '16 Abschnitte des Inhaltsverzeichnisses und das Terminmodell');
-  const standards = HILFE.kapitel.find((k) => k.id === 'standards')?.html ?? '';
-  assert.equal((standards.match(/class="h-summary-titel"/gu) ?? []).length, 7, 'alle 7 Abschnitte der Standards');
-  assert.doesNotMatch(text, /Lizenzentgelt|Lizenzmodell|Beratungspraxis|Sparringspartner|Re-Start|Freigabe-Adherence/u);
-  // Prüfrunde 9: eingebettetes Dossier unter seinem Abschnitt (keine h2 im Aufklapper)
-  const dm = HILFE.kapitel.find((k) => k.id === 'datenmanagement')?.html ?? '';
-  // das Dossier steht in der Quelle auf Seitenebene (nach Abschnitt 6): Titel h2, Inhalt h3
-  assert.match(dm, /<h2 class="h-summary-titel">IT-\/(?:<wbr>)?Datenschutz-Dossier<\/h2>/u);
-  assert.match(dm, /<h3>Kurzfassung \(Überblick\)/u);
-  // Prüfrunde 10: keine Selbstdarstellung/Akquise (O-1), keine Verweise ohne Ziel, keine Instanz-Momentaufnahme
-  assert.doesNotMatch(text, /Über Bauherr Mentoren|Akquise|Print-Center →|Speicher-Modus dieser Instanz|Modul 1 oder 2|einen strukturierten MVG|Wie wir arbeiten|>→ Portfolio-Manager/u);
-  assert.match(HILFE.kapitel.find((k) => k.id === 'registerdokument-katalog')?.html ?? '', /aria-label="Tabelle: Registerdokument-Katalog"/u);
-  // Prüfrunde 12: Zeitpunkt „vor Freigabe LPH n“, kein Leitprinzip als MVG-Aussage, Genus
-  assert.doesNotMatch(text, /vor LPH \d|nach LPH \d|MVG-Leitprinzip|Erstes Managementbericht|ins <b>Managementbericht/u);
-  assert.match(text, /vor Freigabe LPH 0/u);
-  // Prüfrunde 13: Freigabe-Zeitpunkte auch in Vorbereitung, Meilenstein und Zeitachse
-  assert.doesNotMatch(text, /Vorbereitung LPH \d|LPH \d Freigabe|Freigabe-Zeitachse: LPH|fließen aus/u);
-  assert.match(text, /Vorbereitung Freigabe LPH 2/u);
-  assert.match(text, /Freigaben LPH 0–9 als Stationen/u);
-  assert.doesNotMatch(text, /LPH-0-Vorlage/u);
-  // Prüfrunde 15: Kundenbeispiel nicht tautologisch, Trenner als Überschrift, keine doppelten IDs im Dialog
-  assert.match(text, /Freigabe → Qualitätstor/u);
-  assert.match(HILFE.kapitel[0]?.html ?? '', /<h2 class="h-section-divider">Werkzeugübersicht<\/h2>/u);
-  const vorgehen = baueHilfe({ seite: 'mvg-vorgehensmodell', version: VERSION });
-  const idListe = [...vorgehen.querySelectorAll('[id]')].map((el) => el.id);
-  assert.equal(new Set(idListe).size, idListe.length, idListe.join(' '));
-  assert.equal(baueHilfe({ seite: 'gibt-es-nicht', version: VERSION }).querySelector('[data-pruef="hilfe-uebersicht"]') !== null, true);
 });
 
 test('Theorie: 13 Kapitel mit Titeln; Kapitel 1 mit Kernaussage, Karten, Originaltext, Querverweis (Kap. 2: A3, B3)', () => {
@@ -738,7 +647,8 @@ test('Regie (P9.5): Start sendet den Beamer-Stand, Sprung erst mit Rolle, Einwä
     assert.equal([...(bogenR?.querySelectorAll('h1, h2') ?? [])].filter((x) => x.textContent === W.regie.druckTitel).length, 1);
     assert.equal(druck.querySelectorAll(':scope > h2').length, 0);
     assert.ok([...druck.querySelectorAll(':scope > .druck-teil')].every((x) => x.firstElementChild?.tagName === 'H2'));
-    assert.match(bogenR?.textContent ?? '', new RegExp(`${W.fiktiv}.*${W.ungeprueft}`, 'u'));
+    assert.match(bogenR?.textContent ?? '', new RegExp(W.fiktiv, 'u'));
+    assert.doesNotMatch(bogenR?.textContent ?? '', /ungeprüft/u);
     // Dossier (E11): Kapitel zum Nachlesen als Text (höchstens zwei Lernseiten)
     const kapitelImDruck = druck.querySelectorAll('.druck-kapitel').length;
     assert.ok(kapitelImDruck >= 1 && kapitelImDruck <= 2, `Kapitel im Regie-Druck: ${kapitelImDruck}`);
@@ -1048,7 +958,7 @@ test('Zitierfunktion und Impressum (P10.1): Absatz-Permalink, Zitierangabe, nich
   assert.ok(imp);
   assert.equal(imp.getAttribute('data-abschnitt'), 'impressum');
   assert.equal(imp.querySelector('[data-pruef="impressum-version"]')?.textContent, VERSION);
-  assert.ok((imp.textContent ?? '').includes('fachlich ungeprüft'));
+  assert.ok(!(imp.textContent ?? '').includes('ungeprüft'));
   assert.equal(imp.querySelector('[data-pruef="impressum-grenze-5.5"]')?.getAttribute('href'), '#theorie/k5/5.5');
   assert.equal(imp.querySelector('[data-pruef="impressum-grenze-7.6"]')?.getAttribute('href'), '#theorie/k7/7.6');
   assert.ok(imp.querySelectorAll('.impressum-aenderungen li').length >= 1);
@@ -1215,7 +1125,7 @@ test('Resümee (P7.7): Ende, Richtung und erste Vertiefung aus der Spur; Zwische
   el.querySelector<HTMLButtonElement>('[data-pruef="dossier-drucken"]')?.click();
   const bogen = document.querySelector('[data-pruef="druck-bogen"]');
   assert.ok(bogen);
-  assert.match(bogen.querySelector('.druck-kopf')?.textContent ?? '', /Fiktiver Fall · fachlich ungeprüft/u);
+  assert.match(bogen.querySelector('.druck-kopf')?.textContent ?? '', /Fiktiver Fall/u);
   assert.equal(bogen.querySelectorAll('.druck-teil ol li').length, z.spur.length);
   // R64 (Architektur): der Weg nennt jede besuchte Station einmal, in der Reihenfolge des Verlaufs (Mutant weg.slice(-1) war grün)
   const wegDruck = (bogen.querySelector('.druck-teil > p')?.textContent ?? '').split(' → ');
@@ -1292,7 +1202,7 @@ test('Druck (P10.2): Kapitel und alle Kapitel als Bogen – ohne Kopfleiste, Ver
   const bogen = document.querySelector('[data-pruef="druck-bogen"]');
   assert.ok(bogen);
   assert.match(bogen.querySelector('.druck-kopf h1')?.textContent ?? '', /^Kapitel 6 · /u);
-  assert.match(bogen.querySelector('.druck-kopf')?.textContent ?? '', /fachlich ungeprüft/u);
+  assert.doesNotMatch(bogen.querySelector('.druck-kopf')?.textContent ?? '', /ungeprüft/u);
   assert.equal(bogen.querySelectorAll('.druck-kapitel').length, 1);
   assert.equal(bogen.querySelectorAll('.lern-kopf, .kapitel-verzeichnis, .kapitel-nav, [data-pruef="zitieren"], [data-pruef="kapitel-drucken"]').length, 0);
   assert.ok(bogen.querySelector('.originaltext'));
@@ -1645,7 +1555,7 @@ test('Lernwerkzeuge aufgelöst (P12.5 R5): Leinwand und Druck zeigen den ganzen 
 test('Abbildungen (P14, O-32): Lernseite und Originaltext zeigen das Bild mit Vorrang des Texts; Leinwand ohne Bedienung; Verzeichnis mit Sprung', async () => {
   const { setzeAbbildungsBilder } = await import('../src/ui/bausteine/abbildung.ts');
   const { galerie } = await import('../src/ui/flaechen/explore-galerie.ts');
-  // jsdom kennt <dialog>; nur für diesen Test als Global setzen (die Hilfe-Tests prüfen den Fall ohne)
+  // jsdom kennt <dialog>; nur für diesen Test als Global setzen 
   const vorher = g['HTMLDialogElement'];
   g['HTMLDialogElement'] = (dom.window as unknown as Record<string, unknown>)['HTMLDialogElement'];
   try {

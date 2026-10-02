@@ -270,11 +270,3 @@ kbd,
   }
   .schleife { animation: none !important; }
 }
-
-/* Eingebettet (P12, Owner: ohne Springen): die Höhe folgt dem Inhalt, die Hostseite passt den Rahmen an –
-   keine Mindesthöhe aus dem Fenster, sonst wüchse der Rahmen nur und schrumpfte nie. */
-html.ist-eingebettet, body.ist-eingebettet { min-height: 0; }
-body.ist-eingebettet .startseite, body.ist-eingebettet .lernseite { min-height: 0; }
-/* eingebettet ist 1vh die Rahmenhöhe: feste Einheit, sonst schaukeln Inhalts- und Rahmenhöhe sich auf (P12.5 R3) */
-html.ist-eingebettet { --vh: 8px; }
-@media (max-width: 980px) { html.ist-eingebettet .leitstand { min-height: 0; } }

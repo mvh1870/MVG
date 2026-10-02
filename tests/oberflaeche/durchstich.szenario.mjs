@@ -53,7 +53,7 @@ export async function lauf(seite, h) {
   /* ------------------------------------------------------------ Start → Story -- */
   await h.erwarte('[data-pruef="weg-story"]');
   const fuss = await text('[data-pruef="fuss"]');
-  if (!fuss.toLowerCase().includes('fachlich ungeprüft')) h.befund('Startseite: Fuß ohne „fachlich ungeprüft“');
+  if (fuss.toLowerCase().includes('ungeprüft')) h.befund('Startseite: Fuß mit Vermerk „ungeprüft“ (O-39)');
   if (!/MVG V\d+\.\d+ · Story \d+\.\d+/.test(fuss)) h.befund(`Startseite: Version fehlt im Fuß („${fuss}“)`);
   await h.erwarte('[data-pruef="praesentieren"]');
   await h.klick('[data-pruef="weg-story"]');

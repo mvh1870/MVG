@@ -160,19 +160,6 @@
 }
 .leise-link:hover { color: var(--navy); }
 a.leise-link { display: inline-flex; align-items: center; justify-content: center; min-width: 36px; min-height: 36px; }
-.start-vermerk {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 2px var(--a-2);
-  border-radius: var(--radius-xs);
-  background: var(--gold-soft);
-  color: var(--gold-text);
-  font: 600 var(--gr-xs)/1.4 var(--schrift-label);
-  letter-spacing: .06em;
-  text-transform: uppercase;
-}
-
 /* Sanftes Erscheinen der Startseite (einmal, ruhig) */
 /* Startet sichtbar (O-21: die Seite ist schon im ersten Bild vollständig), nur ein leichtes Aufsetzen. */
 @keyframes start-ein { from { opacity: .45; transform: translateY(8px); } }

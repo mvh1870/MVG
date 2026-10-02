@@ -72,9 +72,11 @@ test('Kein Bericht schreibt die Überschreitung von Basis plus Reserve dem neuen
       if (MEHRBETRAG.test(text)) assert.ok(vor <= GRENZE, `${x.id}: vorher ${vor} – ${wo}`);
       if (x.id === 's7' && vor > GRENZE) {
         schonVorher++;
-        // Ursache ist die Brandschutzentscheidung: Lage s6 noch darunter, Folge s6 darüber
+        // Ursache ist die Brandschutzauflage in der Prognose: Lage s6 noch darunter, Folge s6 darüber. R71: wegneutral –
+        // bei s6 = K gab es keine Entscheidung in der Sache, die Auflage stand vorsorglich in der Prognose
         assert.ok(lage(stand, 's6').kosten <= GRENZE, wo);
-        assert.match(text, /liegt über Basis plus Reserve \(61,3 Mio\. €\), schon seit der Brandschutzentscheidung/u, wo);
+        assert.match(text, /liegt über Basis plus Reserve \(61,3 Mio\. €\), schon seit Juli 2026, als die Brandschutzauflage in die Prognose kam/u, wo);
+        assert.doesNotMatch(text, /Brandschutzentscheidung/u, wo);
       }
     }
   };
@@ -148,4 +150,26 @@ test('Das Ende nennt die offene Entscheidung, wenn offen ≥ 1 – sie ist immer
   for (const stand of alleKurzWege()) pruefe(stand, `kurz ${JSON.stringify(stand.wahlen)}`);
   assert.ok(offenEnde > 0);
   assert.equal(ueberOhneOffen, 3, 'nur s3 = C, s4 = B, s5 = B, s6 = K, s7 = A, s8 = A (× 3 für s2)');
+});
+
+test('s8 nennt den späteren Montagebeginn so, wie der Puffer ihn zählt – bei s3 = B und s7 = B beide Verschiebungen (R71)', () => {
+  const tage = (id: string, opt: string): number => -(st(id).vorlage.optionen.find((o) => o.id === opt)?.folgen.puffer ?? 0);
+  const lieferzeit = tage('s3', 'B');
+  const neuAusschreibung = tage('s7', 'B');
+  assert.deepEqual([lieferzeit, neuAusschreibung], [35, 42]);
+  let beide = 0;
+  for (const { stand, w } of alleWege()) {
+    if (w['s7'] !== 'B') continue;
+    const text = bericht(stand, 's8');
+    const wo = JSON.stringify(w);
+    if (w['s3'] === 'B') {
+      beide++;
+      assert.match(text, new RegExp(`um weitere rund ${neuAusschreibung} Tage, zusammen mit PRB-008 rund ${lieferzeit + neuAusschreibung} Tage`, 'u'), wo);
+      assert.doesNotMatch(text, /Montagebeginn liegt rund \d+ Tage später/u, wo);
+    } else {
+      assert.match(text, new RegExp(`Montagebeginn liegt rund ${neuAusschreibung} Tage später`, 'u'), wo);
+      assert.doesNotMatch(text, /PRB-008/u, wo);
+    }
+  }
+  assert.equal(beide, 3 * 3 * 3 * 2 * 2, 's2 × s4 × s5 × s6 × s8 bei s3 = B, s7 = B');
 });

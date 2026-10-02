@@ -8,7 +8,7 @@
 # Belege k4.2: k4.2-p1, k4.2-p2, k4.2-p3, k4-t1 (Zeile Mandat); Vorlage auf jeder Stufe, Bauherr pflegt nicht: v24:hb-1, v24:hb-3.1, v24:tlb-3
 # Belege k4.3: k4.3-p1, k4.3-p2, k4-t1 (Zeile Wesentliche Entscheidung), k13-t1 (FID am Abschluss von LPH 3, Neufestlegung der Projektbasis), k2.5-t1 (Neufestlegung außerhalb der regulären Freigabereihe); Vorbereitung durch die Projektsteuerung: v24:hb-3, v24:hb-3.1, v24:tlb-2.1
 # Belege k4.4: k4.4-p1, k4.4-p2, k4-t1 (Zeile Risikoannahme); Matrix und Prioritäten, Warnanlässe, Restrisiko als Entscheidung: v24:hb-1.3, v24:hb-2, v24:hb-3
-# Belege k4.5: k4.5-p1, k4.5-p2, k4-t1 (Zeile Freigabe); Vorbereitung durch die Projektsteuerung: v24:hb-1
+# Belege k4.5: k4.5-p1, k4.5-p2, k4-t1 (Zeile Freigabe), k9.3-p3 (Freigabe zum Abschluss der LPH durch den Bauherrn selbst), k4.2-p3; Vorbereitung durch die Projektsteuerung, befugte Stelle: v24:hb-1, v24:tlb-3
 # Belege k4.6: k4.6-p1, k4.6-p2, k4-t1 (Zeile Datenstand und Nachweis); Pflege in der bereitgestellten Software, Monatsbericht: v24:hb-4, v24:hb-5, v24:tlb-2
 kapitel: 4
 thema: verantwortung
@@ -261,7 +261,7 @@ Nicht jede operative Entscheidung ist für den Bauherrn wesentlich. Wesentlich i
 
 Die typische Fehlstelle: Solche Entscheidungen werden vertagt, informell getroffen oder ohne klare Entscheidungsfrage vorbereitet. Sie verschwinden dann in Protokollen, E-Mails, Fachrunden oder Abstimmungen am Rande – und niemand kann später sagen, wann und auf welcher Grundlage entschieden wurde.
 
-MVG macht wesentliche Entscheidungen deshalb sichtbar. Jede erhält eine eindeutige Kennung – die [[Entscheidungs-ID]] –, einen Datenstand, eine verantwortliche Rolle, eine Entscheidungsfrage und einen Nachverfolgungsstatus. Vorbereitet wird sie von der Projektsteuerung: Frage, Entscheidungstermin, mindestens zwei zulässige Optionen, gewichteter Vergleich und Empfehlung. Fachbewertungen liefern die zuständigen Fachleute zu. Mehr dazu im Thema „Die Entscheidungsvorlage“.
+MVG macht wesentliche Entscheidungen deshalb sichtbar. Jede erhält eine eindeutige Kennung – die [[Entscheidungs-ID]] –, einen Datenstand, eine verantwortliche Rolle, eine Entscheidungsfrage und einen Nachverfolgungsstatus. Vorbereitet wird sie von der Projektsteuerung: Frage, Entscheidungstermin, mindestens zwei zulässige Optionen, gewichteter Vergleich und Empfehlung. Fachbewertungen liefern die zuständigen Fachleute zu. Mehr dazu im Thema „Entscheidungsvorlage“.
 
 Die Leiste zeigt, an welchen Punkten im Projektverlauf solche Entscheidungen typischerweise anstehen.
 
@@ -323,7 +323,7 @@ Die typische Fehlstelle: Das Risikoregister ist gepflegt, aber die Risiken werde
 
 MVG verknüpft deshalb Risiken mit Entscheidungen. Ein Risiko ist dann mehr als ein Eintrag: Es hat eine verantwortliche Rolle, eine Frist, eine beschriebene Wirkung, eine Risikominderung, ein Restrisiko, einen Entscheidungsbedarf und eine Eskalationsschwelle. Erst mit dieser Verbindung wird Risikoarbeit führungswirksam – sie führt dorthin, wo entschieden wird.
 
-Die Projektsteuerung bewertet jedes Risiko nach Wahrscheinlichkeit und höchster Auswirkung: 1 bis 4 Punkte heißt beobachten, 5 bis 9 gezielt bearbeiten, ab 10 – und bei schwerster Auswirkung immer – vorrangig. Ob ein wesentliches Restrisiko getragen wird, legt sie dem Bauherrn als Entscheidung vor. Mehr dazu im Thema „Vorgangsarten und Risikobewertung“.
+Die Projektsteuerung bewertet jedes Risiko nach Wahrscheinlichkeit und höchster Auswirkung: 1 bis 4 Punkte heißt beobachten, 5 bis 9 gezielt bearbeiten, ab 10 – und bei schwerster Auswirkung immer – vorrangig. Ob ein wesentliches Restrisiko getragen wird, legt sie dem Bauherrn als Entscheidung vor. Mehr dazu im Thema „Vorgänge und Risiken“.
 
 ::: umschalter
 ---
@@ -345,11 +345,11 @@ Das Risiko hat eine verantwortliche Rolle, eine Frist, eine Wirkung, eine Risiko
 ---
 titel: Freigabe
 ---
-Eine Freigabe ist mehr als eine Unterschrift. Mit ihr legitimiert der Bauherr den nächsten Schritt – und zwar auf einem benannten Datenstand. Freigaben können Planung, Vergabe, Budget, Änderungen, eine Neufestlegung der Projektbasis, die Bindung einer Komponente mit langer Lieferzeit, die Übergabe des Vorhabens oder den Regelbetrieb betreffen; dazu gehört auch die [[Freigabe]] zum Abschluss einer Leistungsphase.
+Eine Freigabe ist mehr als eine Unterschrift. Mit ihr legitimiert die Bauherrenseite den nächsten Schritt – und zwar auf einem benannten Datenstand. Freigaben können Planung, Vergabe, Budget, Änderungen, eine Neufestlegung der Projektbasis, die Bindung einer Komponente mit langer Lieferzeit, die Übergabe des Vorhabens oder den Regelbetrieb betreffen; dazu gehört auch die [[Freigabe]] zum Abschluss einer Leistungsphase.
 
 Die typische Fehlstelle: Es wird freigegeben, obwohl unklar ist, welcher Datenstand gilt, oder ohne dass jemand geprüft hat, ob das Mandat reicht.
 
-MVG bindet jede Freigabe an die Freigabelogik. Vor der Freigabe müssen fünf Dinge klar sein. Die Vorbereitung – Unterlagenpakete, Prüfvermerke, Planungsstände, Freigabevorschläge, Gremienberichte – liefern Projektsteuerung und Fachleute; die Projektsteuerung führt sie zur Vorlage zusammen, die Freigabe selbst erteilt der Bauherr. [[bedienung:Klicken Sie die fünf Punkte durch.]]
+MVG bindet jede Freigabe an die Freigabelogik. Vor der Freigabe müssen fünf Dinge klar sein. Die Vorbereitung – Unterlagenpakete, Prüfvermerke, Planungsstände, Freigabevorschläge, Gremienberichte – liefern Projektsteuerung und Fachleute; die Projektsteuerung führt sie zur Vorlage zusammen. Freigeben darf die nach dem Mandat befugte Stelle des Bauherrn; die Freigabe zum Abschluss einer Leistungsphase erteilt der Bauherr selbst. [[bedienung:Klicken Sie die fünf Punkte durch.]]
 
 ::: etappen
 ---

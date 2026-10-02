@@ -24,6 +24,7 @@
 | k8.2-p2 · k8.2-p3 · k8.2-p4 | 30/60/90-Tage-Logik: „**In den ersten 30 Tagen** geht es um Sichtbarkeit: …“ · „Bis Tag 60 wird das Mindestmodell aufgebaut: …“ · „Bis Tag 90 ist das Modell in Anwendung: …“ | uneinheitliche Fettung (L-14): in p2 nur der Satzanfang fett, p3 und p4 als ganzer Absatz fett | einheitlich nur den Satzanfang fett: „**In den ersten 30 Tagen**“ · „**Bis Tag 60**“ · „**Bis Tag 90**“ |
 | k10.3-p1 | „… Entscheidungen über Fortführung oder Stopp, Neu Priorisierung im Projektportfolio, …“ | Getrenntschreibung (beim Nachschlagen gefunden, nicht in L-14) | „Neupriorisierung im Projektportfolio“ |
 | k3.1-p2 | „… nachvollziehbar und organisationsfest werden. ⏎ Zugleich benennt sie die sechs Verantwortungsfelder …“ | manueller Zeilenumbruch mitten im Absatz, davor ein Leerzeichen (beim Nachschlagen gefunden) | Zeilenumbruch und Leerzeichen entfernen, ein durchgehender Absatz |
+| k13-t1 · k5.4-p1 | Glossar „Leistungsphasen- und Freigabemodell LPH 0–9“: „Zehn HOAI-Leistungsphasen … LPH 0 · Bedarfsplanung; …“ gegen k5.4-p1: „LPH 0 – die Bedarfsplanung im Sinne der DIN 18205, die den HOAI-Leistungsphasen 1–9 vorgelagert ist“ | Widerspruch im Text: LPH 0 ist keine HOAI-Leistungsphase (Prüfrunde 71; die Seite folgt k5.4-p1, inhalte/glossar.yaml) | „Zehn Leistungsphasen – LPH 0 · Bedarfsplanung nach DIN 18205, den HOAI-Leistungsphasen 1–9 vorgelagert; …“ |
 
 ## Abbildungen
 

@@ -13,7 +13,7 @@ angeglichen:
   - { x: 341, y: 411, b: 195, h: 22, text: Änderungsregister, beleg: k6.4.4-t1, schrift: barlow, gewicht: 500, groesse: 19 }
   - { x: 110, y: 553, b: 222, h: 27, text: Bewertungsmatrix, beleg: k7.1-p1, schrift: barlow, gewicht: 700, groesse: 23, ausrichtung: mitte }
 abweichungen:
-  - text: 'Das Bild zeigt eine Skala von 0 bis 5; der Text nennt zehn Domänen mit 49 Fragen, ohne Punkteskala.'
+  - text: 'Das Bild zeigt oben und in jedem Kasten Punktwerte von 0 bis 5; diese Skala kennt der Text nicht – er bewertet zehn Domänen mit 49 Fragen.'
     beleg: k7.1-p2
   - text: 'Das Bild zeigt fünf benannte Kästen; der Text bewertet die zehn MVG-Domänen mit 49 Fragen und nennt weder ihre Namen noch Nachweise je Domäne; einzelne Einträge der Nachweislisten (etwa „QA-Plan“, „Defect-Logik“, „Wiederholfehler-Auswertung“) kommen im Text nicht vor.'
     beleg: k7.1-p2

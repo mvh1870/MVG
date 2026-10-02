@@ -35,7 +35,7 @@ abweichungen:
     beleg: k6.4.3-p2
   - text: 'Von der Entscheidungsvorlage führt eine Lebenszyklus-Kante „führt zu“ zur Änderung; der Text nennt nur die Gegenrichtung – aus Änderungen kann Entscheidungsbedarf entstehen. Eine Änderung wird gegen den geltenden Stand aufbereitet; bis zur Freigabe gilt die bisherige Grundlage.'
     beleg: k6.4.3-p2 k6.4.4-t1
-  - text: 'Die Zusätze an den Knoten weichen vom Text ab: „schwaches Signal“ (Text: noch ungeklärter Hinweis), „bewertet (P-A)“ (mögliches Ereignis, bewertet nach Wahrscheinlichkeit und Auswirkung), „akutes Problem“ (eingetretener Zustand) und „Änderungsantrag“ (bewusste Anpassung einer geltenden Vorgabe).'
+  - text: 'Die Zusätze „bewertet (P-A)“ und „akutes Problem“ weichen vom Text ab: Ein Risiko ist ein mögliches Ereignis, bewertet nach Wahrscheinlichkeit und Auswirkung; ein Problem ist ein eingetretener Zustand. „Schwaches Signal“ und „Änderungsantrag“ sind andere Bezeichnungen für Frühwarnung und Änderung; maßgeblich ist der Text: ein noch ungeklärter Hinweis bzw. die bewusste Anpassung einer geltenden Vorgabe.'
     beleg: k6.4.4-t1
   - text: 'Aus der Entscheidungsvorlage führt im Bild nur „reif“ zur „Freigabe (LPH 0–9)“. Nach dem Text entscheidet die befugte Stelle nach ihrem Mandat – Bauherren-PL, Änderungsgremium oder Bauherr im Lenkungskreis. Die Freigabe am Abschluss einer Leistungsphase ist nur einer dieser Beschlüsse und wird vom Bauherrn selbst erteilt.'
     beleg: k6.4.5-p1 k13-t1

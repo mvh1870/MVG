@@ -65,11 +65,11 @@ bericht:
     # „Mit dem neuen Mehrbetrag“ nur, wo die Prognose vor der Lage (Lage − 0,3) höchstens 61,3 war (R70)
     - text: Mit dem neuen Mehrbetrag liegt die Prognose über Basis plus Reserve (61,3 Mio. €) – die Reserve reicht nicht mehr. Nötig wird eine Neufestlegung der Projektbasis; die Projektsteuerung bereitet die Vorlage für den Lenkungskreis vor, der Beschluss des Bauherrn steht noch aus.
       wenn: s5=B & kosten>61.3 & kosten<=61.6
-    - text: Die Prognose liegt über Basis plus Reserve (61,3 Mio. €), schon seit der Brandschutzentscheidung im Juli 2026; mit dem neuen Mehrbetrag wächst der Abstand. Die Reserve reicht nicht mehr – nötig ist eine Neufestlegung der Projektbasis. Die Projektsteuerung legt die Vorlage mit dem Vergabeergebnis dem Lenkungskreis vor; der Beschluss des Bauherrn steht noch aus.
+    - text: Die Prognose liegt über Basis plus Reserve (61,3 Mio. €), schon seit Juli 2026, als die Brandschutzauflage in die Prognose kam; mit dem neuen Mehrbetrag wächst der Abstand. Die Reserve reicht nicht mehr – nötig ist eine Neufestlegung der Projektbasis. Die Projektsteuerung legt die Vorlage mit dem Vergabeergebnis dem Lenkungskreis vor; der Beschluss des Bauherrn steht noch aus.
       wenn: s5=B & kosten>61.6
     - text: Mit dem neuen Mehrbetrag liegt die Prognose über Basis plus Reserve (61,3 Mio. €) – die Reserve reicht nicht mehr. Die zurückgestellte Neufestlegung der Projektbasis wird jetzt nötig; die Projektsteuerung schreibt die vorliegende Vorlage mit dem Vergabeergebnis fort und legt sie dem Lenkungskreis erneut vor. Die Entscheidung bleibt offen.
       wenn: s5=C & kosten>61.3 & kosten<=61.6
-    - text: Die Prognose liegt über Basis plus Reserve (61,3 Mio. €), schon seit der Brandschutzentscheidung im Juli 2026; mit dem neuen Mehrbetrag wächst der Abstand. Die Reserve reicht nicht mehr – die zurückgestellte Neufestlegung der Projektbasis ist nötig. Die Projektsteuerung schreibt die vorliegende Vorlage mit dem Vergabeergebnis fort und legt sie dem Lenkungskreis erneut vor. Die Entscheidung bleibt offen.
+    - text: Die Prognose liegt über Basis plus Reserve (61,3 Mio. €), schon seit Juli 2026, als die Brandschutzauflage in die Prognose kam; mit dem neuen Mehrbetrag wächst der Abstand. Die Reserve reicht nicht mehr – die zurückgestellte Neufestlegung der Projektbasis ist nötig. Die Projektsteuerung schreibt die vorliegende Vorlage mit dem Vergabeergebnis fort und legt sie dem Lenkungskreis erneut vor. Die Entscheidung bleibt offen.
       wenn: s5=C & kosten>61.6
     - text: Terminpuffer überschritten – die Inbetriebnahme zum Schuljahr 2028/29 ist nach heutigem Stand gefährdet, damit auch die Förderfrist.
       wenn: puffer<0

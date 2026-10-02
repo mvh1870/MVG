@@ -23,6 +23,8 @@ bericht:
     - Vorlage zur Lieferzeit liegt vor; Entscheidung bis 25. März.
     - text: Freigabe LPH 4 am 17. März erteilt, nach der Marktabfrage für die Holzbauelemente; die Ausführungsplanung läuft seitdem.
       wenn: s2=C
+    - text: Freigabe LPH 4 im Februar mit Auflage erteilt – die Marktabfrage für die Holzbauelemente liegt bis Ende März vor.
+      wenn: kurz & s2=B
     - text: Neue Änderung AEN-012 Mensa – eigene Vorlage folgt.
       wenn: lang
   reaktion: Was empfehlen Sie dem Änderungsgremium zur Lieferzeit?
@@ -61,7 +63,7 @@ vorlage:
         qualitaet: [4, "unverändert"]
         klima: [4, "Holzbau wie geplant"]
       folgen: { kosten: 0.15 }
-      konsequenz: Die Projektsteuerung legt die Maßnahme MAS-007 an – vorgezogene Vergabe, verantwortlich die Generalplanung, Vergabeunterlagen bis 15. April.
+      konsequenz: Die Projektsteuerung legt die Maßnahme MAS-007 an – vorgezogene Vergabe, verantwortlich die Generalplanung, Vergabeunterlagen bis 15. April. Die Bewertung von RIS-009 sinkt erst, wenn der vertragliche Liefertermin belegt ist.
     - id: B
       titel: Abwarten
       text: Den Puffer nutzen und bei der Vergabe auf kürzere Lieferzeiten hoffen.
@@ -86,7 +88,7 @@ vorlage:
     option: A
     text: Die Projektsteuerung empfiehlt, den Holzbau vorzuziehen – er sichert Termin und Klimaziel. Nachteil – 0,15 Mio. € Mehrkosten, bevor feststeht, ob der Markt sich entspannt. Mit „Kosten vor Termin“ bleibt A knapp vorn (50 zu 48).
 folge: |
-  Eine geplante Maßnahme senkt die Bewertung noch nicht. Erst wenn Umsetzung und Wirkung belegt sind – hier der vertragliche Liefertermin –, wird sie fortgeschrieben.
+  Eine geplante Maßnahme senkt die Bewertung eines Risikos noch nicht. Erst wenn Umsetzung und Wirkung belegt sind, wird sie fortgeschrieben.
 so-laeuft-es-oft: |
   Der Anruf landet in einer Notiz, drei Monate später steht im Statusbericht eine gelbe Ampel. Entschieden wird, wenn die Montage wackelt – dann bleibt nur der teure Weg.
 einwand:

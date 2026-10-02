@@ -17,7 +17,7 @@ belege: [v24:hb-1.4, v24:hb-3, v24:hb-3.1, v24:hb-3.2, v24:hb-4, k3.2-t1, k4.2-p
 lage: |
   Das zentrale Lüftungsgerät der Gesamtschule kommt vier Wochen später; ein gleichwertiges Ersatzgerät wäre in einer Woche lieferbar.
 
-  In derselben Woche ist ein Gerüstfeld an der Sporthalle nicht gesichert. Die Projektsteuerung meldet es sofort an Bauleitung und Sicherheitskoordination; eine Stunde später ist das Feld gesperrt, dokumentiert am selben Tag.
+  In derselben Woche ist ein Gerüstfeld an der Sporthalle nicht gesichert. Die Projektsteuerung meldet es sofort an Bauleitung und Sicherheitskoordination und informiert Sie; eine Stunde später ist das Feld gesperrt, dokumentiert am selben Tag.
 # Die Neuausschreibung (s7 = B) war vertagt (offen +1); der Bericht meldet den Zuschlag. Die in s7 nötig gewordene Neufestlegung
 # (s4 = A, s5 = B, offen +1) entfällt, wo die Prognose nach der Lage mit Spielraum für das Ersatzgerät wieder unter Basis plus Reserve
 # liegt (Lage höchstens 61,22) – genau auf diesen Wegen (nachgerechnet, tests/geschichte.test.ts); sonst bleibt sie offen, wie bei s5 = C.
@@ -44,7 +44,10 @@ bericht:
     - text: Risikoreserve – für den Holzbau freigegeben, soweit sie reichte; über 61,3 Mio. € hinaus deckt sie nichts.
       wenn: s7=A & kosten>61.3
     - text: Neuausschreibung Holzbau – Zuschlag im Mai 2027, rund 0,3 Mio. € unter dem ersten Angebot; der Montagebeginn liegt rund 42 Tage später, wie seit März 2027 im Terminpuffer. PRB-007 geschlossen, die vertagte Entscheidung erledigt.
-      wenn: s7=B
+      wenn: s7=B & s3!=B
+    # R71: bei s3 = B lag der Montagebeginn schon rund 35 Tage später (PRB-008); der Puffer zählt beides
+    - text: Neuausschreibung Holzbau – Zuschlag im Mai 2027, rund 0,3 Mio. € unter dem ersten Angebot; der Montagebeginn verschiebt sich um weitere rund 42 Tage, zusammen mit PRB-008 rund 77 Tage, wie seit März 2027 im Terminpuffer. PRB-007 geschlossen, die vertagte Entscheidung erledigt.
+      wenn: s7=B & s3=B
     - text: Risikoreserve – 0,4 Mio. € für den Holzbau freigegeben; Bodenbeläge und Einbaumöbel einfacher vergeben, rund 0,5 Mio. € weniger. PRB-007 geschlossen.
       wenn: s7=C & s3!=A
     - text: Risikoreserve – für den Holzbau bleibt es bei den 0,6 Mio. € für den Elementzuschlag (Juli 2026); Montage und Ausbau brauchten keine weitere Freigabe, weil Bodenbeläge und Einbaumöbel rund 0,5 Mio. € günstiger vergeben wurden. PRB-007 geschlossen.
@@ -125,6 +128,6 @@ einwand:
   antwort: Die Bauleitung sagt, was technisch geht. Ob rund 60.000 € mehr drei Wochen Vorsprung wert sind, entscheidet der Bauherr – im Mandat Sie. Die Projektsteuerung legt es rechtzeitig und vollständig vor.
 theorie: entscheidungsvorlage
 regie:
-  notiz: Den Regler auf „Kosten vor Termin“ schieben – die Rangfolge dreht sich, knapp (53 zu 54). Die dringliche Meldung zeigt, dass Sicherheit nicht auf eine Vorlage wartet; der Vorgang ist ein Problem, weil der Zustand schon eingetreten war.
+  notiz: In der Gegenprobe Kosten auf 5 und Termin auf 3 stellen („Kosten vor Termin“) – die Rangfolge dreht sich knapp (53 zu 54). Die dringliche Meldung zeigt, dass Sicherheit nicht auf eine Vorlage wartet; der Vorgang ist ein Problem, weil der Zustand schon eingetreten war.
   leitfragen:
     - Welche Rangfolge hätten Sie hier gewählt?

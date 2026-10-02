@@ -8,7 +8,7 @@ Die Startseite bietet drei Wege und darunter „Wer steht dahinter“ mit einem 
 
 1. **Story** (`#story`): eine Geschichte aus Sicht der Bauherren-PL am fiktiven Schulcampus Lindenhall-Süd – acht Stationen von Januar 2026 bis August 2028, etwa 25 Minuten, als **Kurzfassung** etwa 10 Minuten.
    - Je Station: Lage und Monatsbericht der Projektsteuerung, die Vorlage mit mindestens zwei Optionen und gewichtetem Vergleich, die Entscheidung und ihre Folgen. Die Statusanzeige zeigt Kosten, Terminpuffer und offene Entscheidungen.
-   - In Station 1 legen Sie die Gewichte fest; sie gelten für alle folgenden Vorlagen. Die **Gegenprobe** probiert andere Gewichte aus, ohne die Entscheidung zu ändern; „Wann sich die Rangfolge dreht“ zeigt die Kipppunkte.
+   - In Station 1 legen Sie die Gewichte fest; sie gelten für alle folgenden Vorlagen. Die **Gegenprobe** probiert andere Gewichte aus, ohne die Entscheidung zu ändern; „Wann sich die Spitze dreht“ zeigt die Kipppunkte.
    - Aufklappbar: „So läuft es oft“, „Typischer Einwand“ und die Vorgänge der Station.
    - Blättern mit **Weiter/Zurück** oder den Pfeiltasten ← →; die Fortschrittslinie springt zu jedem Schritt.
    - Der Stand bleibt im Browser gespeichert; **Fortschritt löschen** am Fuß entfernt ihn.

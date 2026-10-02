@@ -64,6 +64,16 @@ aendern:
       Leistungsphase frei und verbindet Freigabereife, Mandat, Datenstand und Nachweis. Die Freigabe erteilt der
       Bauherr selbst – nicht Projektsteuerung oder Lenkungskreis. Vorbereitet wird sie von der Projektsteuerung.
     belege: [k13-t1, v24:hb-1, v24:hb-3]
+  # R71: k13-t1 nennt „Zehn HOAI-Leistungsphasen“, k5.4-p1 stellt LPH 0 (Bedarfsplanung nach DIN 18205) vor die
+  # HOAI-Leistungsphasen 1–9 – die Seite folgt k5.4-p1 wie das Thema „Führungsmodell“ (Korrekturliste V1.3)
+  g-leistungsphasen-und-freigabemodell-lph-0-9:
+    definition: >-
+      Zehn Leistungsphasen mit einer Freigabe des Bauherrn am jeweiligen Abschluss: LPH 0 · Bedarfsplanung nach
+      DIN 18205, vor den HOAI-Leistungsphasen 1–9; LPH 1 · Grundlagenermittlung; LPH 2 · Vorplanung; LPH 3 ·
+      Entwurfsplanung; LPH 4 · Genehmigungsplanung; LPH 5 · Ausführungsplanung; LPH 6 · Vorbereitung Vergabe;
+      LPH 7 · Vergabe; LPH 8 · Ausführung; LPH 9 · Übergabe. Der Regelbetrieb folgt nach der Freigabe zum
+      Abschluss von LPH 9.
+    belege: [k13-t1, k5.4-p1]
 
 # k13-H2 (O-38): Der Begriff „Whitepaper“ fällt schon beim Laden weg (werkzeuge/anzeige-fassung.mjs, OHNE_BEGRIFF),
 # ebenso „im Whitepaper als“ bei CTC und KPI (→ „in MVG als“); hier ist darum nichts zu entfernen.

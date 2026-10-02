@@ -277,9 +277,11 @@ beleg: k1.1-p1
 ::: kompass bauherren-pl
 ---
 begriff: Bauherren-Projektleitung
-andere: [Client Project Manager, Projektleitung auf Bauherrenseite]
+andere: [Client Project Manager]
 beleg: k5.3-l1
 ---
+### Hinweis
+Die Projektleitung auf Bauherrenseite, auf dieser Seite kurz Bauherren-PL.
 :::
 
 ::: kompass leistungsphase

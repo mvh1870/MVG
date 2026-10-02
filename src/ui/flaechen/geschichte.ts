@@ -177,12 +177,19 @@ function optionKarte(o: SchrittOptionen, st: Station, opt: Option, empf: string)
     : h('div', { class: 'gs-option', 'aria-pressed': gewaehlt ? 'true' : 'false', 'data-option': opt.id }, inhaltKarte);
 }
 
+/** Titel der Gewichte, mit denen die Empfehlungstexte begründet sind: die empfohlene Variante der Gewichte-Station. */
+function grundlageDerEmpfehlungen(g: Geschichte): string {
+  const gs = g.stationen.find((x) => x.vorlage.art === 'gewichte');
+  const id = gs?.vorlage.empfehlung.option ?? '';
+  return gs?.vorlage.optionen.find((x) => x.id === id)?.titel ?? id;
+}
+
 function vorlage(o: SchrittOptionen, st: Station): HTMLElement {
   const v = st.vorlage;
   const gew = geltendeGewichte(o.g, o.stand);
   const empf = empfohlen(o.g, o.stand, st);
   const empfOption = v.optionen.find((x) => x.id === empf);
-  const empfText = empfehlungstextGilt(o.g, o.stand, st) ? inhalt(v.empfehlung.html) : h('p', null, w.empfehlungAllgemein(empfOption?.titel ?? empf));
+  const empfText = empfehlungstextGilt(o.g, o.stand, st) ? inhalt(v.empfehlung.html) : h('p', null, w.empfehlungAllgemein(empfOption?.titel ?? empf, grundlageDerEmpfehlungen(o.g)));
   const teile: Kind[] = [
     kopf(st, w.teile['vorlage'] ?? ''),
     h('section', { class: 'gs-vorlage', 'aria-label': w.vorlage, 'data-pruef': 'gs-vorlage' },

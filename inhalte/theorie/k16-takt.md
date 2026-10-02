@@ -34,32 +34,32 @@ titel: Wann wird geprüft und gemeldet?
 ---
 ::: stufe 1
 ---
-titel: Dringlich
-marke: Sofort
+titel: Sofort
+marke: Dringlich
 ---
 Die Projektsteuerung meldet den Sachverhalt sofort über den vereinbarten Meldeweg. Sobald die unmittelbare Reaktion gesichert ist, dokumentiert sie ihn noch am selben Arbeitstag. Eine zusätzliche Rufbereitschaft ist damit nicht verbunden – eine erkannte akute Gefahr bleibt aber nicht liegen.
 :::
 
 ::: stufe 2
 ---
-titel: In aktiven Zeiten
-marke: Wöchentlich
+titel: Wöchentlich
+marke: In aktiven Zeiten
 ---
 Jede Woche geht die Projektsteuerung alle offenen Einträge kurz durch: Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Probleme, Änderungen und offene Entscheidungen. Neue, nicht dringliche Hinweise trägt sie spätestens bei dieser Prüfung ein.
 :::
 
 ::: stufe 3
 ---
-titel: In aktiven Zeiten
-marke: Monatlich
+titel: Monatlich
+marke: In aktiven Zeiten
 ---
 Einmal im Monat ein Online-Termin von höchstens 60 Minuten mit dem Bauherrn und ein Bericht von höchstens einer Seite.
 :::
 
 ::: stufe 4
 ---
-titel: In ausdrücklich vereinbarten Ruhe- oder Nachlaufzeiten
-marke: Ruhezeit
+titel: Ruhezeit
+marke: In ausdrücklich vereinbarten Ruhe- oder Nachlaufzeiten
 ---
 Der gesamte offene Bestand wird monatlich geprüft. Neue, nicht dringliche Hinweise kommen binnen fünf Arbeitstagen hinein. Einen Termin gibt es nur bei konkretem Abstimmungs- oder Entscheidungsbedarf – der Bericht bleibt.
 :::
@@ -118,10 +118,10 @@ Der Bericht nutzt denselben Informationsstand wie die Software und verweist auf 
 So kann eine Seite aussehen – ein fiktives Beispiel vom Schulcampus Lindenhall-Süd, Mai 2026:
 
 > **Monatsbericht · Mai 2026**
-> - Kostenprognose nach dem geltenden Datenstand: 60,4 Mio. € gegen die Projektbasis von 58,4 Mio. € (+3,4 %); die Risikoreserve von 2,9 Mio. € deckt das; für die bekannten Mehrkosten ist sie vorgesehen, ihren Einsatz gibt der Bauherr frei.
-> - Differenz der beiden Rechnungen (Kostenplanung und Controlling) geklärt: angekündigter Nachtrag der Haustechnikplanung, bis 1,2 Mio. €, als Risiko `RIS-014` geführt, nicht in der Prognose.
+> - Kostenprognose nach dem geltenden Datenstand: 60,4 Mio. € gegen die Projektbasis von 58,4 Mio. € (+3,4 %); die Risikoreserve von 2,9 Mio. € deckt das; ihren Einsatz gibt der Bauherr frei.
+> - Differenz der beiden Rechnungen (Kostenplanung und Controlling) geklärt: angekündigter Nachtrag der Haustechnikplanung, bis 1,2 Mio. €, als Risiko `RIS-014` geführt, nicht in der Prognose; tritt er voll ein, läge die Prognose über Basis plus Reserve (61,3 Mio. €).
 > - Die Marktabfrage aus der Auflage zur Freigabe LPH 4 ist in die Prognose eingerechnet.
-> - Offene Entscheidung: Umgang mit der Prognose – entscheiden muss der Bauherr im Lenkungskreis am 19. Mai; der Bauausschuss tagt am 21. Mai.
+> - Offene Entscheidung: Umgang mit der Prognose – die Projektsteuerung empfiehlt, die Reserve für die bekannten Mehrkosten vorzusehen; entscheiden muss der Bauherr im Lenkungskreis am 19. Mai; der Bauausschuss tagt am 21. Mai.
 
 [[bedienung:Ordnen Sie zu: Gehört das in den Monatsbericht?]]
 
@@ -220,7 +220,7 @@ Die Farbe sagt nichts darüber, ob der Bauherr etwas entscheiden muss. Offene En
 titel: Ja – die Entscheidung kommt im Monatstermin ohnehin zur Sprache
 praefix: "Nicht ganz:"
 ---
-Der Termin ersetzt den Bericht nicht. Der Bauherr soll schon vorher sehen, was von ihm gebraucht wird.
+Der Termin ersetzt den Bericht nicht: Der Bericht zeigt jeden Monat, welche Entscheidungen offen sind und welche Reaktion gebraucht wird – auch in Monaten ohne Termin.
 :::
 
 ::: zitat k2.4-p2

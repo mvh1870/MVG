@@ -380,7 +380,7 @@ Die [[Entscheidungsvorlage]] beschreibt, welche Nachweislogik eine wesentliche B
 
 Dafür bildet die Vorlage dreizehn Punkte ab – von der eindeutigen Entscheidungs-ID bis zur Nachverfolgung. Dazu gehört auch ein eigener Freigabeprozess mit sechs Stufen, von denen jede signiert wird: offen, in Prüfung, vorbereitet, freigegeben und am Ende beschlossen oder abgelehnt. Der Status zeigt den Stand der Vorlage; den Beschluss selbst ersetzt er nicht.
 
-Das klingt nach mehr Aufwand, macht die Entscheidung aber nicht schwerer, sondern belastbarer. Ein guter Standard reduziert Unklarheit, weil er früh festlegt, welche Informationen wirklich entscheidungsrelevant sind. Im Standard erstellt die Projektsteuerung die Vorlage für jede erforderliche Bauherrenentscheidung; wie sie Optionen gewichtet vergleicht, zeigt das Thema „Die Entscheidungsvorlage“.
+Das klingt nach mehr Aufwand, macht die Entscheidung aber nicht schwerer, sondern belastbarer. Ein guter Standard reduziert Unklarheit, weil er früh festlegt, welche Informationen wirklich entscheidungsrelevant sind. Im Standard erstellt die Projektsteuerung die Vorlage für jede erforderliche Bauherrenentscheidung; wie sie Optionen gewichtet vergleicht, zeigt das Thema „Entscheidungsvorlage“.
 
 ::: etappen
 ---
@@ -424,7 +424,7 @@ titel: Betriebshandbuch
 ---
 Das [[Betriebshandbuch]] ist das verbindliche abschließende Ergebnisdokument. Es beschreibt, wie MVG nach dem Ende des Mandats weiter betrieben wird – also im Regelbetrieb des Bauherren-Führungsmodells.
 
-Typischerweise regelt es, welche Rollen im Regelbetrieb wofür zuständig sind, in welchem Takt die Governance-Termine stattfinden und wer das Entscheidungsregister führt. Im Standard bearbeitet die Projektsteuerung alle Vorgänge einschließlich der Entscheidungsvorbereitungen; geprüft wird in aktiven Zeiten wöchentlich, besprochen monatlich in höchstens 60 Minuten (Thema „Takt und Monatsbericht“). Das Handbuch beschreibt, wie Freigaben und der Managementbericht zur Freigabe vorbereitet werden, wie Datenstände und Nachweise geführt werden, welche Eskalationswege gelten und wie mit Risiken, Änderungen und Maßnahmen umgegangen wird. Dazu kommen Prüfroutinen, ein Verbesserungsvorrat und die Logik für Übergabe und Abnahme.
+Typischerweise regelt es, welche Rollen im Regelbetrieb wofür zuständig sind, in welchem Takt die Governance-Termine stattfinden und wer das Entscheidungsregister führt. Im Standard bearbeitet die Projektsteuerung alle Vorgänge einschließlich der Entscheidungsvorbereitungen; geprüft wird in aktiven Zeiten wöchentlich, besprochen monatlich in höchstens 60 Minuten (Thema „Takt und Bericht“). Das Handbuch beschreibt, wie Freigaben und der Managementbericht zur Freigabe vorbereitet werden, wie Datenstände und Nachweise geführt werden, welche Eskalationswege gelten und wie mit Risiken, Änderungen und Maßnahmen umgegangen wird. Dazu kommen Prüfroutinen, ein Verbesserungsvorrat und die Logik für Übergabe und Abnahme.
 
 Der Unterschied zur Entscheidungsvorlage: Die Vorlage gilt einer einzelnen Entscheidung, das Handbuch dem laufenden Betrieb. Der Wert des Handbuchs liegt darin, dass MVG nicht als Beratungsprodukt endet, sondern als wiederholbare Routine des Bauherrn weiterläuft. Wie die Ergebnisobjekte in unterschiedlichen Bauherrenkonstellationen wirken, zeigt das Thema „Anwendungssituationen“.
 

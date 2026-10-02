@@ -83,7 +83,7 @@ Monat 1 ist Januar 2026, Monat 32 August 2028. LPH-Stand: LPH 4 bis Februar 2026
 | 15 | Mär 2027 | 7 | Submission Holzbau (2. März), Ausfall Holger Stein (ab 8. März), Freigabe der Reserve bis 24. März. | s7 |
 | 17 | Mai 2027 | 7 | Freigabe zum Abschluss von LPH 7 durch den Bauherrn (Bericht s8). | – |
 | 18 | Jun 2027 | 8 | Objektüberwachung; die Bauarbeiten laufen. | – |
-| 25 | Jan 2028 | 8 | Dringliche Gerüstmeldung (PRB-018, 11. Januar); Lüftungsgerät vier Wochen später (PRB-019). | s8 |
+| 25 | Jan 2028 | 8 | Dringliche Gerüstmeldung (PRB-018, 11. Januar; sofort an Bauleitung und Sicherheitskoordination, die Bauherren-PL wird informiert); Lüftungsgerät vier Wochen später (PRB-019). | s8 |
 | 32 | Aug 2028 | 9 | Schulstart, Übergabe, Beginn LPH 9; Schlüsselübergabe, wenn der Puffer gehalten hat. | Ende |
 
 ## Gremien und Takte

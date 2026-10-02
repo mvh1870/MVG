@@ -18,6 +18,12 @@ const text = (x) => (x === undefined || x === null ? '' : String(x));
  * @param {{ rel: string, text: string }[]} dateien alle Dateien aus inhalte/geschichte/
  */
 export function baueGeschichte(c, dateien) {
+  // R71: Eine fremde Datei im Ordner (etwa eine liegengebliebene Kopie) würde sonst stumm übergangen
+  for (const d of dateien) {
+    if (!d.rel.endsWith('/rahmen.yaml') && !/\/s\d+-[^/]+\.yaml$/u.test(d.rel)) {
+      c.fehler(d.rel, 'unbekannte Datei im Ordner der Story – erwartet rahmen.yaml oder s<n>-<name>.yaml');
+    }
+  }
   const rahmenDatei = dateien.find((d) => d.rel.endsWith('/rahmen.yaml'));
   if (rahmenDatei === undefined) return { geschichte: null, regie: {} };
   const lies = (/** @type {{ rel: string, text: string }} */ d) => {

@@ -81,13 +81,14 @@ function stationen(): Roh[] {
 const DATEI = (nr: number): string => `inhalte/geschichte/s${nr}-station.yaml`;
 
 /** Baut die Geschichte; `aendere` verfälscht Rahmen oder Stationen vorher. */
-function baue(aendere: (r: Roh, s: Roh[]) => void = () => undefined): { fehler: string[]; erg: any } {
+function baue(aendere: (r: Roh, s: Roh[]) => void = () => undefined, weitere: { rel: string; text: string }[] = []): { fehler: string[]; erg: any } {
   const r = structuredClone(RAHMEN);
   const s = stationen();
   aendere(r, s);
   const dateien = [
     { rel: 'inhalte/geschichte/rahmen.yaml', text: YAML.stringify(r) },
     ...s.map((x, i) => ({ rel: DATEI(i + 1), text: YAML.stringify(x) })),
+    ...weitere,
   ];
   const { c, fehler } = stub();
   const erg = baueGeschichte(c, dateien);
@@ -265,4 +266,11 @@ test('Berichtszeile als Objekt ohne { text, wenn } (YAML „Text: mit Doppelpunk
   const wann = baue((_r, st) => { s(st, 3)['bericht'].zeilen[1] = { text: 'x', wann: 's1=A' }; });
   assert.deepEqual(wann.fehler,
     [`${DATEI(3)}: Berichtszeile unlesbar (Text oder { text, wenn }; Text mit „: “ in Anführungszeichen): {"text":"x","wann":"s1=A"}`]);
+});
+
+test('Unbekannte Datei im Ordner der Story (R71): Fehler statt stillem Übergehen', () => {
+  const fremd = { rel: 'inhalte/geschichte/werkzeuge.yaml', text: YAML.stringify({ matrix: { titel: 'alt' } }) };
+  const { fehler, erg } = baue(undefined, [fremd]);
+  assert.deepEqual(fehler, ['inhalte/geschichte/werkzeuge.yaml: unbekannte Datei im Ordner der Story – erwartet rahmen.yaml oder s<n>-<name>.yaml']);
+  assert.equal(erg.geschichte.stationen.length, 3, 'die übrigen Stationen bleiben gebaut');
 });

@@ -36,7 +36,7 @@ bericht:
       wenn: s2=A
     - text: Die Marktabfrage aus der Auflage zur Freigabe LPH 4 ist in Version 3 eingerechnet.
       wenn: lang & s2=B
-    - text: Die Marktabfrage vom 27. März ist in Version 3 eingerechnet.
+    - text: Die Marktabfrage für die Holzbauelemente vom 27. März – Auflage aus der Freigabe LPH 4 – ist in Version 3 eingerechnet.
       wenn: kurz & s2=B
     - text: Die Marktabfrage vom März, vor der Freigabe LPH 4, ist in Version 3 eingerechnet.
       wenn: s2=C

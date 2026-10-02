@@ -159,7 +159,7 @@ form: bausteine
 ---
 :::
 
-Die Verknüpfung in der Tafel reicht über Risiken, Änderungen und Maßnahmen hinaus: Sie umfasst alle Vorgangsarten. Mehr dazu im Thema „Vorgangsarten und Risikobewertung“.
+Die Verknüpfung in der Tafel reicht über Risiken, Änderungen und Maßnahmen hinaus: Sie umfasst alle Vorgangsarten. Mehr dazu im Thema „Vorgänge und Risiken“.
 :::
 
 ::: abschnitt k5.3

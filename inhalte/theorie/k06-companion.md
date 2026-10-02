@@ -182,6 +182,9 @@ Eine Änderung gegen den geltenden Stand aufbereiten
 seite: rechts
 ---
 Eine Änderung freigeben
+
+### Erklärung
+Die Projektsteuerung bereitet die Änderung auf; freigegeben wird von der nach dem Mandat befugten Stelle des Bauherrn.
 :::
 
 ::: posten 7
@@ -542,7 +545,7 @@ Unabhängig vom Status zeigt die Bewertung eines Risikos seine Priorität – be
 ---
 titel: Takt und Eskalation
 ---
-Zur Zusammenarbeit gehört ein fester Takt. In aktiven Zeiten prüft die Projektsteuerung **jede Woche alle offenen Vorgänge**; Dringliches meldet sie **sofort**. Einmal im Monat gibt es einen Online-Termin von bis zu 60 Minuten und einen Bericht von höchstens einer Seite. Die Einzelheiten stehen im Thema „Takt und Monatsbericht“.
+Zur Zusammenarbeit gehört ein fester Takt. In aktiven Zeiten prüft die Projektsteuerung **jede Woche alle offenen Vorgänge**; Dringliches meldet sie **sofort**. Einmal im Monat gibt es einen Online-Termin von bis zu 60 Minuten und einen Bericht von höchstens einer Seite. Die Einzelheiten stehen im Thema „Takt und Bericht“.
 
 ::: karten
 ---

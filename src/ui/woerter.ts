@@ -187,11 +187,13 @@ export const W = {
     gegenprobe: 'Gegenprobe: andere Gewichte ausprobieren',
     gegenprobeHinweis: 'Ändert nur die Anzeige hier; entschieden wird mit den festgelegten Gewichten.',
     gegenprobeZurueck: 'Auf die festgelegten Gewichte zurücksetzen',
-    kipppunkte: 'Wann sich die Rangfolge dreht',
+    kipppunkte: 'Wann sich die Spitze dreht',
     keinKipppunkt: 'Kein einzelnes Gewicht zwischen 1 und 5 dreht die Spitze.',
     kipppunkt: (kriterium: string, gewicht: number, wer: string[]) => wer.length > 1 ? `${kriterium} auf ${gewicht}: Gleichstand – ${wer.join(' und ')}` : `${kriterium} auf ${gewicht}: vorn läge ${wer[0] ?? ''}`,
     empfehlung: 'Empfehlung der Projektsteuerung',
-    empfehlungAllgemein: (titel: string) => `Mit den eingestellten Gewichten liegt „${titel}“ vorn. Die begründete Empfehlung der Projektsteuerung galt für die vorgeschlagenen Gewichte – für diese würde sie neu begründet. Eine Punktzahl allein ersetzt kein Urteil.`,
+    // R71: nicht „die vorgeschlagenen Gewichte“ – alle drei Varianten aus Station 1 sind Vorschläge; die Texte der
+    // Empfehlungen sind mit den Gewichten der empfohlenen Variante begründet (tests/geschichte.test.ts, STANDARD)
+    empfehlungAllgemein: (titel: string, grundlage: string) => `Mit den eingestellten Gewichten liegt „${titel}“ vorn. Die Projektsteuerung hatte ihre Empfehlung mit den Gewichten „${grundlage}“ begründet – für die eingestellten Gewichte würde sie neu begründet. Eine Punktzahl allein ersetzt kein Urteil.`,
     empfohlen: 'empfohlen',
     waehlen: 'Diese Option wählen',
     gewaehlt: 'Ihre Wahl',

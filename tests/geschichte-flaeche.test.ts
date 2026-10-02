@@ -487,3 +487,27 @@ test('Tastatur (R70): nach „zurücksetzen“ bleibt die Gegenprobe offen, der 
   assert.deepEqual(f.stand().schritt, schritt);
   assert.equal(offen(), false, 'nach dem Schrittwechsel wieder zu');
 });
+
+test('Empfehlung bei anderen Gewichten (R71): der Ersatzsatz nennt die Gewichte, mit denen die Empfehlung begründet ist – nicht „die vorgeschlagenen“', () => {
+  const s1 = geschichte.stationen.find((x) => x.vorlage.art === 'gewichte');
+  assert.ok(s1);
+  const grundlage = s1.vorlage.optionen.find((o) => o.id === s1.vorlage.empfehlung.option)?.titel;
+  assert.equal(grundlage, 'Termin vor Kosten');
+  const andere = s1.vorlage.optionen.find((o) => o.id !== s1.vorlage.empfehlung.option && o.titel === 'Kosten vor Termin');
+  assert.ok(andere);
+  let ersetzt = 0;
+  for (const id of ['s4', 's8']) {
+    const stand = an(waehle(geschichte, neuerStand(), s1.id, andere.id), id, 'vorlage');
+    const el = ohneBedienung(geschichte, stand);
+    const text = el.querySelector('[data-pruef="gs-empfehlung"]')?.textContent ?? '';
+    const vorn = station(id).vorlage.optionen.find((o) => o.id === empfohlen(geschichte, stand, station(id)));
+    assert.ok(vorn);
+    assert.notEqual(vorn.id, station(id).vorlage.empfehlung.option, `${id}: mit „Kosten vor Termin“ liegt eine andere Option vorn`);
+    ersetzt++;
+    assert.ok(text.includes(W.geschichte.empfehlungAllgemein(vorn.titel, grundlage)), `${id}: Ersatzsatz fehlt („${text}“)`);
+    assert.ok(text.includes(`mit den Gewichten „${grundlage}“ begründet`), id);
+    // „Kosten vor Termin“ ist selbst einer der drei Vorschläge aus Station 1
+    assert.doesNotMatch(text, /vorgeschlagenen Gewichte/u, id);
+  }
+  assert.equal(ersetzt, 2);
+});

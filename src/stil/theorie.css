@@ -1,6 +1,6 @@
 /* =============================================================================================
    MVG · Theorie: ruhige Lernseiten im Leitstand-Stil, ohne Leitstand-Rahmen (L-4, O-20)
-   Kapitelkopf · Kernaussage · Lesetext · Lernkarten · Originaltext mit Absatz-ID · Querverweis
+   Kapitelkopf · Kernaussage · Lesetext · Lernkarten · Querverweis · Glossar · Lernwerkzeuge · Abbildungen · Druck
    Nur Tokens aus tokens.css, keine Farbwerte.
    ============================================================================================= */
 
@@ -12,30 +12,6 @@
   color: var(--tinte);
 }
 .lernseite :focus-visible { box-shadow: 0 0 0 6px var(--fokus-hof); }
-
-/* Kopfleiste: Marke, Bereich, Rückweg zur Startseite */
-.lern-kopf {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  gap: var(--a-3);
-  padding: 10px max(var(--a-4), 3vw);
-  border-bottom: 1px solid var(--linie);
-  background: var(--weiss);
-}
-.lern-kopf .marke-logo { height: 30px; color: var(--navy); }
-/* O-33: der Name des Programms neben der Bildmarke; schmal steht er im Dokumenttitel und im Fuß */
-.lern-marke { flex: none; padding-right: var(--a-3); border-right: 1px solid var(--linie); font: 800 var(--gr-m)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-kicker); text-transform: uppercase; color: var(--navy); white-space: nowrap; }
-@media (max-width: 640px) { .lern-marke { display: none; } }
-.lern-bereich { flex: 1; min-width: 0; font: 700 var(--gr-m)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-kicker); text-transform: uppercase; color: var(--petrol); }
-.lern-bereich span { color: var(--tinte-2); font-weight: 600; }
-.lern-kopf-link { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; font: 600 var(--gr-m)/1.2 var(--schrift-label); letter-spacing: .06em; text-transform: uppercase; color: var(--navy); text-decoration: none; }
-.lern-kopf-link:hover { text-decoration: underline; }
-/* leiser Zugang zur Hilfe (P13): unterstrichen wie die leisen Links der Startseite */
-.lern-kopf-leise { justify-content: center; min-width: 36px; color: var(--tinte-2); text-decoration: underline; text-underline-offset: 3px; }
-.lern-kopf-leise:hover { color: var(--navy); }
 
 /* Rahmen: Kapitelverzeichnis links (ab 1100 px), Inhalt als Lesespalte */
 .lern-rahmen {
@@ -75,7 +51,6 @@
 .kapitel-liste > li > :is(a, span) b { font: 800 var(--gr-l)/1.1 var(--schrift-anzeige); color: var(--navy-soft); }
 .kapitel-liste a:hover { background: var(--weiss); color: var(--tinte); }
 .kapitel-liste :is(a, span)[aria-current="page"] { background: var(--weiss); color: var(--tinte); font-weight: 600; box-shadow: inset 3px 0 0 var(--petrol); }
-.kapitel-liste .ist-gelesen b { color: var(--petrol); }
 @media (max-width: 1099px) {
   .kapitel-verzeichnis { position: static; max-height: none; overflow: visible; }
   .kapitel-verzeichnis:not([open]) .kapitel-liste { display: none; }
@@ -83,13 +58,10 @@
 
 /* Kapitelkopf */
 .kapitel-kopf { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: end; gap: var(--a-1) var(--a-5); padding-bottom: var(--a-6); border-bottom: 1px solid var(--linie-2); }
-.kapitel-nr { grid-row: span 2; font: 800 var(--gr-8xl)/.8 var(--schrift-anzeige); color: var(--petrol); }
 .kapitel-kicker { font: var(--typo-kicker); letter-spacing: var(--sperrung-kicker); text-transform: uppercase; color: var(--tinte-2); }
 .kapitel-titel { font: 800 clamp(30px, 3.6vw, 44px)/1.02 var(--schrift-anzeige); letter-spacing: .01em; color: var(--navy); }
 /* R47: Titel nie mitten im Wort gebrochen – das längste Wort (--zeichen, gesetzt beim Bauen) bestimmt die Höchstgröße im Schmalen */
 .kapitel-titel[style*="--zeichen"] { font-size: min(clamp(30px, 3.6vw, 44px), calc((100vw - 40px) * 2 / var(--zeichen, 1))); }
-/* R47: Absätze des Originaltexts stehen als span (Kopf und Text im Raster) – sie trennen wie Absätze */
-.absatz > span:not(.absatz-kopf):not(.absatz-id) { hyphens: auto; }
 .kapitel-einstieg { grid-column: 1 / -1; max-width: 60ch; margin-top: var(--a-3); font-size: var(--gr-xl); line-height: 1.5; color: var(--tinte-2); }
 
 /* Kernaussage (entspricht Ebene 1) */
@@ -131,59 +103,10 @@
 .lernkarte::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--welt-farbe, var(--rollen-farbe, var(--petrol))); }
 .lernkarte-titel { display: flex; align-items: center; gap: var(--a-2); margin-bottom: var(--a-2); font: 700 var(--gr-text)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy); }
 .lernkarte-titel .symbol { font-size: 18px; color: var(--petrol); }
-.lernkarte-nr { font: 800 var(--gr-4xl)/1 var(--schrift-anzeige); color: var(--petrol); }
 .lernkarte p { font-size: var(--gr-text); line-height: 1.5; color: var(--tinte); }
 button.lernkarte { border: 0; font: inherit; text-align: left; cursor: pointer; transition: transform var(--dauer-sofort), box-shadow var(--dauer-sofort); }
 button.lernkarte:hover { transform: translateY(-2px); box-shadow: var(--schatten-karte-hoch); }
 button.lernkarte[aria-expanded="true"] { box-shadow: 0 0 0 2px var(--gold-hell), var(--schatten-karte-hoch); }
-
-/* Grafik (native SVG aus src/grafik/) */
-.lern-grafik { padding: var(--a-5); border-radius: var(--radius-l); background: var(--weiss); box-shadow: var(--schatten-karte); }
-.lern-grafik figcaption { margin-top: var(--a-3); font-size: var(--gr-s); color: var(--tinte-2); }
-
-/* Originaltext V1.2, wörtlich (O-17) – jeder Absatz mit seiner ID */
-.originaltext {
-  margin-top: var(--a-6);
-  padding: var(--a-5) var(--a-6);
-  border-radius: var(--radius-l);
-  background: var(--flaeche-3);
-  box-shadow: inset 0 0 0 1px var(--linie), inset 4px 0 0 var(--navy-soft);
-}
-.originaltext-kopf { display: flex; flex-wrap: wrap; align-items: baseline; min-height: 36px; align-content: center; justify-content: space-between; gap: var(--a-1) var(--a-4); cursor: pointer; list-style: none; }
-.originaltext-kopf::-webkit-details-marker { display: none; }
-.originaltext[open] > .originaltext-kopf { margin-bottom: var(--a-4); padding-bottom: var(--a-3); border-bottom: 1px solid var(--linie); }
-.originaltext-hinweis { flex-basis: 100%; font-size: var(--gr-s); color: var(--tinte-2); }
-.originaltext-hinweis::before { content: '▸ '; }
-.originaltext[open] .originaltext-hinweis { display: none; }
-.originaltext-kopf:focus-visible { outline: 3px solid var(--navy); outline-offset: 4px; border-radius: 4px; }
-.originaltext-kopf .t-label { color: var(--navy-soft); }
-.originaltext-quelle { font-size: var(--gr-s); color: var(--tinte-2); }
-.absatz { display: grid; grid-template-columns: 5.5em minmax(0, 1fr); gap: var(--a-3); font: var(--typo-lese); }
-.absatz + .absatz { margin-top: var(--a-4); }
-.original-abschnitt { margin: var(--a-6) 0 var(--a-3); color: var(--navy); font: 700 var(--gr-l)/1.25 var(--schrift-text); }
-.originaltext-kopf + .original-abschnitt { margin-top: var(--a-4); }
-.absatz-id {
-  justify-self: start;
-  align-self: start;
-  margin-top: .2em;
-  padding: 2px 6px;
-  border-radius: var(--radius-xs);
-  background: var(--id-ent-grund);
-  color: var(--id-ent-text);
-  font: 500 var(--gr-xs)/1.3 var(--schrift-mono);
-  text-decoration: none;
-  white-space: nowrap;
-}
-a.absatz-id:hover { background: var(--weiss); box-shadow: inset 0 0 0 1px var(--navy-soft); }
-/* Zitierfunktion (P10.1): ID als Permalink, darunter „Zitieren“; die Angabe erscheint über die ganze Breite */
-.absatz-kopf { display: flex; flex-direction: column; align-items: flex-start; gap: var(--a-1); }
-.absatz-zitieren { display: inline-flex; align-items: center; gap: 4px; min-height: 36px; padding: 2px 6px; border: 0; border-radius: var(--radius-xs); background: none; color: var(--tinte-2); font: 500 var(--gr-xs)/1.2 var(--schrift-text); cursor: pointer; }
-.absatz-zitieren:hover, .absatz-zitieren[aria-expanded="true"] { color: var(--navy); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
-.absatz-zitieren .symbol { width: 14px; height: 14px; }
-.zitierangabe { grid-column: 1 / -1; display: grid; gap: 2px; margin: 0; padding: var(--a-2) var(--a-3); border-radius: var(--radius-s); background: var(--weiss); box-shadow: inset 3px 0 0 var(--gold); font-size: var(--gr-s); overflow-wrap: anywhere; }
-.zitierangabe-status { color: var(--tinte-2); font-size: var(--gr-xs); }
-.absatz.ist-ziel, .absatz:target { border-radius: var(--radius-s); background: var(--gold-soft); box-shadow: 0 0 0 var(--a-2) var(--gold-soft); }
-.originaltext ul.absatz-liste { padding-left: 1.3em; list-style: disc; }
 
 /* Querverweis in die Story (Chip) */
 .querverweis {
@@ -207,21 +130,6 @@ a.absatz-id:hover { background: var(--weiss); box-shadow: inset 0 0 0 1px var(--
 .querverweis small { font-weight: 400; color: var(--tinte-2); }
 .querverweise { display: flex; flex-wrap: wrap; gap: var(--a-2); }
 
-/* heller Vermerk (Hinweiszeile mit Symbol) */
-.vermerk-hell {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 3px var(--a-2);
-  border-radius: var(--radius-xs);
-  background: var(--gold-soft);
-  box-shadow: inset 0 0 0 1px var(--gold-soft-kante);
-  color: var(--gold-text);
-  font: 600 var(--gr-xs)/1.4 var(--schrift-label);
-  letter-spacing: .06em;
-  text-transform: uppercase;
-}
-
 /* Kapitel vor / zurück */
 .kapitel-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--a-4); padding-top: var(--a-6); border-top: 1px solid var(--linie-2); }
 .kapitel-nav > :is(a, span) {
@@ -243,26 +151,19 @@ a.absatz-id:hover { background: var(--weiss); box-shadow: inset 0 0 0 1px var(--
 @media (max-width: 700px) {
   .lern-rahmen { padding-top: var(--a-6); gap: var(--a-6); }
   .kapitel-kopf { grid-template-columns: minmax(0, 1fr); }
-  .kapitel-nr { grid-row: auto; font-size: var(--gr-7xl); }
   .kernaussage { padding: var(--a-5) var(--a-4) var(--a-5) var(--a-6); }
   .kernaussage p { font-size: 19px; }
-  .originaltext { padding: var(--a-4); }
-  .absatz { grid-template-columns: minmax(0, 1fr); gap: var(--a-1); }
-  .absatz-kopf { flex-direction: row; align-items: center; }
   .kapitel-nav { grid-template-columns: minmax(0, 1fr); }
   /* R61: auf der Leinwand sind die Blätterkarten span[rel] (keine Links) */
   .kapitel-nav > :is(a, span)[rel="next"] { grid-column: auto; }
 }
 
 /* =============================================================================================
-   Durchstich P0.6: Kapitelliste, Abschnitte, Zitate, Originaltext als Blöcke, Fuß
+   Durchstich P0.6: Kapitelliste, Abschnitte, Zitate, Tabellen als Blöcke
    ============================================================================================= */
 .lern-rahmen.ist-einspaltig { grid-template-columns: minmax(0, 1fr); max-width: calc(var(--breite-lesen) + 2 * max(var(--a-4), 3vw)); }
 .lern-inhalt > .lernkarten + *, .lern-abschnitt > * + * { margin-top: var(--a-4); }
 .kapitel-titel:focus { outline: none; }
-.kapitel-liste a.ist-folgt { color: var(--tinte-2); }
-.kapitel-liste a.ist-folgt b { color: var(--tinte-2); font-weight: 600; }
-.kapitel-liste span.ist-folgt, .kapitel-liste span.ist-gelesen { display: grid; grid-template-columns: 28px 1fr; gap: var(--a-2); padding: 6px var(--a-2); font-size: var(--gr-m); line-height: 1.3; color: var(--tinte-2); }
 
 /* Kapitelliste (#theorie) */
 .kapitel-karten { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--a-3); }
@@ -283,17 +184,12 @@ a.absatz-id:hover { background: var(--weiss); box-shadow: inset 0 0 0 1px var(--
 }
 a.kapitel-karte { box-shadow: inset 0 3px 0 var(--petrol), var(--schatten-karte); transition: transform var(--dauer-sofort), box-shadow var(--dauer-sofort); }
 a.kapitel-karte:hover { color: var(--tinte); transform: translateY(-2px); box-shadow: inset 0 3px 0 var(--petrol), var(--schatten-karte-hoch); }
-.kapitel-karte.ist-folgt { background: var(--flaeche-1); box-shadow: inset 0 0 0 1px var(--linie); color: var(--tinte-2); }
-.kapitel-karte-nr { grid-row: span 2; font: 800 var(--gr-5xl)/.9 var(--schrift-anzeige); color: var(--petrol); }
-.kapitel-karte.ist-folgt .kapitel-karte-nr { color: var(--tinte-2); }
 .kapitel-karte-titel { font-size: var(--gr-l); font-weight: 600; line-height: 1.3; }
 .kapitel-karte-los { display: inline-flex; align-items: center; gap: var(--a-1); font: 700 var(--gr-s)/1.2 var(--schrift-label); letter-spacing: .08em; text-transform: uppercase; color: var(--navy); }
-.kapitel-karte .badge { justify-self: start; }
 
 /* Abschnitte, Zitate, Karten */
 .lern-abschnitt { display: flex; flex-direction: column; gap: var(--a-4); }
 .abschnitt-titel { display: flex; align-items: baseline; gap: var(--a-3); font: 700 var(--gr-3xl)/1.25 var(--schrift-text); color: var(--navy); }
-.abschnitt-nr { font: 800 var(--gr-2xl)/1 var(--schrift-anzeige); color: var(--petrol); }
 .lern-zitat-rahmen { padding: var(--a-5) var(--a-6); border-radius: var(--radius-l); background: var(--weiss); box-shadow: var(--schatten-karte); }
 .lern-zitat { position: relative; padding-left: 30px; font: var(--typo-lese); }
 .lern-zitat::before { content: "„"; position: absolute; left: -2px; top: -14px; font: 800 var(--gr-7xl)/1 var(--schrift-anzeige); color: var(--gold-hell); }
@@ -306,47 +202,21 @@ q.mvg-zitat { font-weight: 500; }
 :is(.leinwand, .vorschau-buehne) .bedienhinweis { display: none; }
 @media print { .bedienhinweis { display: none; } }
 
-/* Originaltext: Listen und Tabellen als eigene Absätze */
+/* Tabellen als eigene Blöcke, die in ihrem Bereich rollen */
 .absatz-block { min-width: 0; overflow-x: auto; }
 .absatz-block .register-tabelle { font-size: var(--gr-m); }
-.absatz-block .absatz-liste li + li { margin-top: var(--a-1); }
 
 /* Querverweis in die Story */
 .querverweis-block { display: flex; flex-direction: column; gap: var(--a-2); }
 .querverweis-text { display: flex; flex-direction: column; gap: 2px; }
 .querverweis-text small { font-size: var(--gr-s); line-height: 1.35; }
 .querverweise .querverweis { align-items: flex-start; padding: var(--a-2) var(--a-4) var(--a-2) var(--a-2); border-radius: var(--radius-l); }
-.kernaussage.ist-folgt { background: var(--flaeche-1); box-shadow: inset 0 0 0 1px var(--linie); }
-.kernaussage.ist-folgt p { font-size: var(--gr-xl); font-weight: 500; }
-
-/* Fuß der Lernseiten: Version und Vermerk */
-.lern-fuss { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--a-2) var(--a-4); padding-top: var(--a-4); border-top: 1px solid var(--linie); font-size: var(--gr-s); color: var(--tinte-2); }
 
 @media (max-width: 700px) {
   .abschnitt-titel { font-size: var(--gr-2xl); }
   .lern-zitat-rahmen { padding: var(--a-4); }
   .kapitel-karten { grid-template-columns: minmax(0, 1fr); }
 }
-
-/* =============================================================================================
-   Explore (P2.4): Rahmen für die Werkzeuge; gleiche Lernseiten-Hülle, eigene Karten
-   ============================================================================================= */
-.explore-kopf { display: grid; gap: var(--a-2); margin-bottom: var(--a-5); padding-bottom: var(--a-4); border-bottom: 1px solid var(--linie); }
-.explore-karten { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--a-3); margin: 0 0 var(--a-5); padding: 0; list-style: none; }
-.explore-karte { display: flex; flex-direction: column; align-items: flex-start; gap: var(--a-2); min-width: 0; padding: var(--a-4); border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
-.explore-karte-titel { font: 700 var(--gr-l)/1.2 var(--schrift-label); letter-spacing: .02em; color: var(--tinte); }
-.explore-karte p { font-size: var(--gr-text); line-height: 1.45; color: var(--tinte-2); }
-
-/* Besetzung (P3.1): Figurengalerie auf der Explore-Seite */
-.besetzung-galerie { margin: 0 0 var(--a-5); }
-.besetzung-karten { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--a-3); margin-top: var(--a-3); padding: 0; list-style: none; }
-.besetzung-karte { display: grid; gap: 6px; align-content: start; min-width: 0; padding: var(--a-4); border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
-.besetzung-gesichter { display: flex; gap: var(--a-2); }
-.besetzung-gesichter figure { display: grid; justify-items: center; gap: 2px; margin: 0; }
-.besetzung-gesichter figcaption { font: 600 12px/1.2 var(--schrift-label); letter-spacing: .04em; text-transform: uppercase; color: var(--tinte-2); }
-.besetzung-karte h3 { font: 700 var(--gr-l)/1.2 var(--schrift-label); color: var(--tinte); }
-.besetzung-funktion { font-size: var(--gr-text); color: var(--tinte-2); }
-.besetzung-stimme { font-size: 14.5px; line-height: 1.45; color: var(--tinte); }
 
 /* Ebenen 1–4 auf Lernseiten (P6.1) */
 .lern-ebenen { display: grid; gap: 8px; margin: var(--a-4) 0; }
@@ -362,7 +232,7 @@ q.mvg-zitat { font-weight: 500; }
 .lern-ebene[data-ebene="4"] > summary small { color: var(--gold-hell); }
 .lern-ebene-nr { flex: none; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--flaeche-3); color: var(--tinte); font: 700 13px var(--schrift-label); }
 .lern-ebene > :not(summary) { padding: 0 16px 14px; }
-.lern-inhalt .tafel, .lern-inhalt .raci { margin: var(--a-4) 0; }
+.lern-inhalt .tafel { margin: var(--a-4) 0; }
 
 /* Glossar (P6.14): Suchfeld, Begriffe wortgleich, „Kommt vor in“ */
 .glossar-suche { display: grid; gap: var(--a-2); margin-bottom: var(--a-5); }
@@ -377,122 +247,8 @@ q.mvg-zitat { font-weight: 500; }
 .glossar-orte { display: flex; flex-wrap: wrap; align-items: center; gap: var(--a-2); }
 .glossar-orte .t-label { color: var(--tinte-2); }
 .glossar-ort { display: inline-flex; align-items: center; min-height: 36px; padding: 2px var(--a-3); border-radius: 999px; background: var(--flaeche-2); font-size: var(--gr-s); color: var(--navy); text-decoration: none; }
-.glossar-ort[data-welt="a"], .glossar-ort[data-welt="b"] { background: var(--welt-soft); color: var(--welt-text); }
 a.glossar-ort:hover { text-decoration: underline; }
-.glossar-leer, .glossar-quelle { margin-top: var(--a-4); font-size: var(--gr-s); color: var(--tinte-2); }
-
-/* Explore · Szenario-Simulator (P8.1): Eingabe links, Ergebnis rechts; schmal untereinander */
-.badge.ist-bereit { background: var(--tuerkis-soft); color: var(--tuerkis-text); }
-.werkzeug { display: grid; gap: var(--a-3); margin: var(--a-6) 0; padding-top: var(--a-5); border-top: 1px solid var(--linie); }
-.sim-raster { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--a-5); align-items: start; }
-@media (max-width: 899px) { .sim-raster { grid-template-columns: minmax(0, 1fr); } }
-.sim-eingabe { display: grid; gap: var(--a-4); padding: var(--a-4); border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
-.sim-feld { display: grid; gap: 6px; }
-.sim-regler-zeile { display: flex; align-items: center; gap: var(--a-3); }
-.sim-regler { flex: 1 1 auto; min-width: 0; min-height: 36px; accent-color: var(--navy); }
-.sim-wert { flex: none; min-width: 6.5em; font: 700 var(--gr-m)/1.2 var(--schrift-text); font-variant-numeric: tabular-nums; color: var(--navy); text-align: right; }
-.sim-gruppe { display: grid; gap: 6px; margin: 0; padding: 0; border: 0; }
-.sim-gruppe legend { margin-bottom: 6px; }
-.sim-schalter { display: flex; align-items: flex-start; gap: 8px; min-height: 36px; font-size: var(--gr-text); line-height: 1.4; color: var(--tinte); cursor: pointer; }
-.sim-schalter input { flex: none; width: 20px; height: 20px; margin-top: 1px; accent-color: var(--navy); }
-.sim-auswahl { min-height: 40px; padding: 6px 10px; border: 1px solid var(--tinte-2); border-radius: var(--radius-m); background: var(--weiss); font: inherit; color: var(--tinte); }
-.sim-ausgabe { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--a-3); min-width: 0; }
-.sim-ergebnis { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--a-3); min-width: 0; }
-.sim-teil { display: grid; grid-template-columns: minmax(0, 1fr); min-width: 0; gap: 6px; padding: var(--a-4); border-radius: var(--radius-l); background: var(--weiss); box-shadow: var(--schatten-karte); }
-.sim-teil-titel { font: 700 var(--gr-text)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy); }
-.sim-wer-name { font: 700 var(--gr-2xl)/1.2 var(--schrift-text); color: var(--navy); }
-.sim-leiter { display: flex; gap: 4px; margin: 0; padding: 0; list-style: none; }
-.sim-stufe { flex: 1 1 0; min-width: 0; overflow-wrap: normal; hyphens: manual; padding: 6px 4px; border-radius: var(--radius-m); background: var(--flaeche-2); font-size: var(--gr-s); color: var(--tinte-2); text-align: center; }
-.sim-stufe.ist-aktiv { background: var(--navy); color: var(--weiss); font-weight: 700; }
-.sim-wesentlich { font-size: var(--gr-s); color: var(--tinte-2); }
-.sim-liste { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--a-2); margin: 0; padding: 0; list-style: none; }
-.sim-liste li { display: grid; grid-template-columns: minmax(0, 1fr); min-width: 0; gap: 4px; }
-.sim-liste p { font-size: var(--gr-text); line-height: 1.5; color: var(--tinte); }
-.sim-quelle summary { display: flex; align-items: center; min-height: 36px; font-size: var(--gr-s); color: var(--tuerkis-text); cursor: pointer; }
-.sim-zitat { overflow-x: auto; min-width: 0; margin-top: 6px; padding: 8px 10px; border-left: 3px solid var(--tuerkis); font-size: var(--gr-s); color: var(--tinte-2); }
-.sim-hinweis { font-size: var(--gr-s); color: var(--tinte-2); }
-
-/* Explore · Vorher/Nachher-Welten (P8.2) */
-.wahl-leiste { display: flex; flex-wrap: wrap; gap: 6px; }
-.wahl-knopf { min-height: 40px; padding: 6px 12px; border: 0; border-radius: var(--radius-m); background: var(--weiss); color: var(--tinte); font: 600 14px/1.2 var(--schrift-text); box-shadow: inset 0 0 0 1px var(--linie); }
-.wahl-knopf[aria-pressed="true"] { background: var(--navy); color: var(--weiss); box-shadow: none; }
-.welten-buehne { display: grid; gap: var(--a-4); }
-.welten-aspekt { display: grid; gap: var(--a-3); padding: var(--a-4); border-radius: var(--radius-l); background: var(--weiss); box-shadow: var(--schatten-karte); }
-.welten-titel { font: 700 var(--gr-l)/1.2 var(--schrift-text); color: var(--navy); }
-.welten-paar { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--a-3); }
-@media (max-width: 599px) { .welten-paar { grid-template-columns: minmax(0, 1fr); } }
-.welten-seite { display: grid; align-content: start; gap: 6px; padding: 10px 12px; border-radius: var(--radius-m); background: var(--welt-soft); box-shadow: inset 3px 0 0 var(--welt-farbe); font-size: var(--gr-text); line-height: 1.5; color: var(--tinte); }
-.welten-seite .t-label { color: var(--welt-text); }
-.welten-stationen { font-size: var(--gr-s); color: var(--tinte-2); }
-
-/* Explore · Governance-Fluss-Sandbox (P8.3) */
-.sandbox-einwuerfe { display: flex; flex-wrap: wrap; gap: 6px; }
-.sandbox-einwurf { min-height: 40px; padding: 6px 12px; border: 0; border-radius: var(--radius-m); background: var(--navy); color: var(--weiss); font: 600 14px/1.2 var(--schrift-text); }
-.sandbox-einwurf.ist-leise { background: var(--weiss); color: var(--navy); box-shadow: inset 0 0 0 1px var(--linie); }
-.sandbox-spalten { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--a-3); }
-.sandbox-spalte, .sandbox-bericht { display: grid; align-content: start; gap: 6px; min-width: 0; padding: var(--a-3); border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
-.sandbox-spalte-titel { font: 700 var(--gr-text)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy); }
-.sandbox-bedeutung { display: grid; gap: 2px; font-size: var(--gr-s); color: var(--tinte-2); }
-.sandbox-leer { font-size: var(--gr-s); color: var(--tinte-2); font-style: italic; }
-.sandbox-liste { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
-.sandbox-eintrag { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; padding: 6px 8px; border-radius: var(--radius-m); background: var(--flaeche-2); }
-.sandbox-eintrag.ist-neu { animation: szene-ein 300ms var(--kurve-aus) both; }
-.sandbox-status { font-size: 14px; font-weight: 600; color: var(--tinte); }
-.sandbox-aus { width: 100%; font-size: 12.5px; color: var(--tinte-2); }
-.sandbox-schritte { display: flex; flex-wrap: wrap; gap: 4px; width: 100%; }
-.sandbox-schritt { min-height: 36px; padding: 4px 8px; border: 0; border-radius: var(--radius-m); background: var(--weiss); color: var(--navy); font: 600 13px/1.2 var(--schrift-text); box-shadow: inset 0 0 0 1px var(--linie); }
-.sandbox-summe { display: grid; gap: 4px; margin: 0; }
-.sandbox-summe div { display: grid; grid-template-columns: minmax(0, 12em) minmax(0, 1fr); gap: 8px; font-size: var(--gr-s); }
-.sandbox-summe dt { font-weight: 600; color: var(--tinte); }
-.sandbox-summe dd { margin: 0; color: var(--tinte-2); }
-.welten-aspekt > .zitat-block .zitat { font-size: 16.5px; }
-
-/* Explore · Zeitmaschine (P8.4): zwei Diagramme mit je einer Achse; Welt A Kreis, Welt B Quadrat */
-.zeitmaschine { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--a-3); }
-.zm-legende { display: flex; flex-wrap: wrap; gap: var(--a-4); font-size: var(--gr-s); color: var(--tinte); }
-.zm-legende span, .zm-ablesen p { display: inline-flex; align-items: center; gap: 6px; }
-.zm-marke { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--welt-farbe); }
-.zm-marke.ist-quadrat, .zm-ablesen p[data-welt="b"] .zm-marke { border-radius: 2px; }
-.zm-diagramme { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--a-4); }
-.zm-diagramme figure { display: grid; gap: 4px; margin: 0; padding: var(--a-3); border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
-.zm-diagramm { width: 100%; height: auto; overflow: visible; touch-action: pan-y; }
-.zm-raster { stroke: var(--linie); stroke-width: 1; }
-.zm-achse { font: 13px var(--schrift-text); fill: var(--tinte-2); }
-.zm-reihe[data-welt="a"] { --farbe: var(--koralle); }
-.zm-reihe[data-welt="b"] { --farbe: var(--tuerkis); }
-.zm-linie { fill: none; stroke: var(--farbe); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
-.zm-punkt { fill: var(--farbe); stroke: var(--weiss); stroke-width: 2; }
-.zm-punkt.ist-ring { fill: none; stroke: var(--farbe); stroke-width: 2.5; }
-.zm-name { font: 600 13px var(--schrift-text); fill: var(--tinte); }
-.zm-faden { stroke: var(--navy); stroke-width: 1.5; stroke-dasharray: 3 3; }
-.zm-steuer { display: grid; gap: 6px; max-width: 480px; }
-.zm-regler { width: 100%; min-height: 36px; accent-color: var(--navy); }
-.zm-ablesen { display: grid; gap: 4px; font-size: var(--gr-text); color: var(--tinte); }
-.zm-tabelle summary { display: flex; align-items: center; min-height: 36px; font-size: var(--gr-s); color: var(--navy); cursor: pointer; }
-/* R48: Köpfe brechen nie mitten im Wort („MO|NAT“) – die Tabelle rollt schmal waagerecht (per Tastatur erreichbar) */
-.zm-tabelle { min-width: 0; }
-.zm-tabelle-rahmen { overflow-x: auto; }
-.zm-tabelle .register-tabelle :is(th, td) { overflow-wrap: normal; hyphens: manual; }
-
-/* Explore · Galerie und Story-Karte (P8.5) */
-.galerie-buehne { display: grid; gap: var(--a-3); min-width: 0; }
-.galerie-quelle { font-size: var(--gr-s); color: var(--tinte-2); }
-.galerie-quelle a, .galerie-verzeichnis a { color: var(--navy); font-weight: 600; }
-.galerie-verzeichnis { display: grid; gap: var(--a-2); margin-top: var(--a-4); overflow-x: auto; }
-.explore-stationen { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 6px; margin: 0; padding: 0; list-style: none; }
-.explore-station { display: flex; align-items: center; min-height: 40px; padding: 6px 12px; border-radius: var(--radius-m); background: var(--weiss); color: var(--tinte); font-size: var(--gr-text); text-decoration: none; box-shadow: inset 3px 0 0 var(--welt-farbe, var(--linie)), inset 0 0 0 1px var(--linie); }
-a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
-.explore-station.ist-gesperrt { color: var(--tinte-2); background: var(--flaeche-2); }
-.zm-legende [data-welt="a"] .zm-marke, .zm-ablesen p[data-welt="a"] .zm-marke { background: none; box-shadow: inset 0 0 0 2.5px var(--welt-farbe); }
-
-/* Impressum (P10.1) auf der Kapitelliste */
-.impressum { margin-top: var(--a-8); padding-top: var(--a-6); border-top: 1px solid var(--linie); }
-.impressum-liste { display: grid; grid-template-columns: minmax(8em, 14em) minmax(0, 1fr); gap: var(--a-2) var(--a-4); margin: var(--a-4) 0; font-size: var(--gr-m); }
-.impressum-liste dt { font-weight: 600; color: var(--tinte); }
-.impressum-liste dd { margin: 0; color: var(--tinte-2); }
-.impressum-grenzen { display: flex; flex-wrap: wrap; gap: var(--a-2); }
-.impressum-aenderungen { display: grid; gap: var(--a-2); margin-top: var(--a-2); padding-left: 1.3em; font-size: var(--gr-m); color: var(--tinte-2); }
-@media (max-width: 700px) { .impressum-liste { grid-template-columns: minmax(0, 1fr); gap: 2px; } .impressum-liste dd { margin-bottom: var(--a-2); } }
+.glossar-leer { margin-top: var(--a-4); font-size: var(--gr-s); color: var(--tinte-2); }
 
 /* Druckbogen (P10.2, E11): Kapitel, alle Kapitel, Dossier. Auf dem Bildschirm unsichtbar; im Druck
    ist nur er da. Die Lernseiten behalten ihre Klassen, Rahmen und Bildschirmhöhen fallen weg. */
@@ -514,8 +270,8 @@ a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
   .druck-absender .marke-logo { height: 8mm; color: var(--navy); }
   .druck-teil { margin-bottom: 6mm; }
   .druck-teil h2 { margin: 0 0 2mm; font: 700 13pt/1.25 var(--schrift-text); color: var(--navy); }
-  .druck-teil.ist-neue-seite, .druck-bogen .druck-kapitel { break-before: page; }
-  .druck-teil.ist-neue-seite + .druck-kapitel, .druck-kopf + .druck-kapitel { break-before: avoid; }
+  .druck-bogen .druck-kapitel { break-before: page; }
+  .druck-kopf + .druck-kapitel { break-before: avoid; }
   /* Karten- und Registertafeln: lange Wörter umbrechen statt über den Satzspiegel hinauszulaufen */
   /* R42: höchstens drei Karten nebeneinander (≥ 210 px) – bei 160 px brachen Wörter wie „Entscheidungsregister“ mitten
      im Wort; umbrochen wird nur noch, was allein nicht in die Zeile passt */
@@ -523,19 +279,11 @@ a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
   .druck-bogen .tafel-karten, .druck-bogen .tafel-register { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
   /* R43: Tafeltitel im Druck 11 pt – in 13,5 pt passten lange Titelwörter nicht in eine Karte */
   .druck-bogen .tafel-titel { font-size: 11pt; }
-  /* R44: die große Kapitelziffer (Zeilenhöhe .8) ragte über ihre Zeile – am Seitenanfang oben gekappt, der Rest als Fleck unten auf der Vorseite */
-  .druck-bogen .kapitel-nr { line-height: 1.05; }
   .druck-bogen .lernseite { min-height: 0; background: none; }
   .druck-bogen .lern-rahmen { display: block; padding: 0; max-width: none; }
   .druck-bogen .lern-inhalt { max-width: none; gap: 6mm; }
-  .druck-bogen .druck-knopf, .druck-bogen .absatz-zitieren { display: none !important; }
-  .druck-bogen .absatz, .druck-bogen figure, .druck-bogen .lernkarte, .druck-bogen .kernaussage { break-inside: avoid; }
-  /* R39: Absätze mit Tabelle oder Abbildung dürfen umbrechen (sonst bleibt die Überschrift allein auf der Seite); Überschriften bleiben beim Folgenden */
-  .druck-bogen .absatz:has(table, figure, .original-abbildung) { break-inside: auto; }
-  .druck-bogen :is(h1, h2, h3, h4, .original-abschnitt, summary) { break-after: avoid; }
-  /* R40: eine Überschrift reißt nie über zwei Seiten, und eine Abbildung passt samt Überschrift auf eine Seite –
-     sonst schob die hohe Abbildung (Pyramide k3) die Überschrift zerrissen ans Seitenende */
-  .druck-bogen :is(h1, h2, h3, h4, .original-abschnitt) { break-inside: avoid; }
+  .druck-bogen .druck-knopf { display: none !important; }
+  .druck-bogen figure, .druck-bogen .lernkarte, .druck-bogen .kernaussage { break-inside: avoid; }
   /* R41: der Kopf eines Lernwerkzeugs (Titel als letztes Kind eines Rasters) und aufgelöste Karten bleiben beim Folgenden */
   .druck-bogen :is(.lw-kopf, .lw-titel) { break-after: avoid; break-inside: avoid; }
   .druck-bogen .lernwerkzeug { display: block; }
@@ -543,11 +291,6 @@ a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
   /* R42: eine Tafel darf zwischen ihren Karten umbrechen – ganz verschoben ließ sie fast leere Seiten zurück (k5, k7);
      die Quellzeile bleibt bei der letzten Karte */
   .druck-bogen figure.tafel { break-inside: auto; }
-  /* R50 (Druck): die Quellzeile eines Zitatkastens (Resümee „Sechs Kernfragen“) steht nie allein auf der Folgeseite */
-  .druck-bogen .zitat-block > .quelle { break-before: avoid; }
-  .druck-bogen .zitat-block blockquote li { break-inside: avoid; }
-  /* R51: kurze Listenzitate (Kernfragen) ungeteilt – sonst blieb ein Blatt mit einer Frage und der Quellzeile */
-  .druck-bogen .zitat-block:has(blockquote > ul) { break-inside: avoid; }
   /* R50 (Druck): aufgelöst trägt jede Karte ihre Seite – die Achse „Delegierbar · Grenze · Nicht delegierbar“ läse sich als Spalten */
   .druck-bogen .schwelle-kopf { display: none; }
   .druck-bogen figure.tafel > figcaption { break-before: avoid; }
@@ -562,7 +305,6 @@ a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
   .druck-bogen dt { break-after: avoid; }
   /* R42: Chromium wertet im Druck die Media Queries bei ≈ 794 px aus, setzt aber 688 px – die schmale Absatzform (≤ 700 px)
      griff nicht, die Kennspalte blieb und schnitt wortgleiche Tabellen ab. Im Druck immer einspaltig, nichts rollt */
-  .druck-bogen .absatz { grid-template-columns: minmax(0, 1fr); gap: 1mm; }
   .druck-bogen .absatz-block { overflow: visible; }
   .druck-bogen .absatz-block table { width: 100%; table-layout: fixed; font-size: 8.5pt; }
   .druck-bogen .absatz-block :is(th, td) { overflow-wrap: break-word; hyphens: auto; padding: 3px 4px; }
@@ -580,11 +322,7 @@ a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
      Label und Text trennen; Einleitungssätze bleiben bei ihrer Liste */
   .druck-bogen :is(.wirkungskette li, .querverweis, .wc-druck-antworten li) { break-inside: avoid; }
   .druck-bogen :is(.felder-schalter, .felder-ansicht) { break-after: avoid; break-inside: avoid; }
-  .druck-bogen .absatz:has(+ .absatz .absatz-liste) { break-after: avoid; }
-  /* R48: die Absatz-ID einer wortgleichen Tabelle stand allein am Seitenende (k6.1-t1, k7.3-t1) – im Raster wirkt
-     `break-after` am Kopf nicht, daher als Block; Tabellenkopf und erste Zeile bleiben zusammen */
-  .druck-bogen .absatz:has(table) { display: block; }
-  .druck-bogen .absatz:has(table) > :is(.absatz-kopf, .absatz-id) { display: block; width: fit-content; break-after: avoid; }
+  /* R48: Tabellenkopf und erste Zeile bleiben zusammen */
   .druck-bogen .absatz-block thead { break-after: avoid; }
   .druck-bogen .absatz-block tbody tr:first-child { break-before: avoid; }
   /* R65: die letzte Zeile steht nie allein unter dem wiederholten Kopf (k1.3-t1, k10.5-t1; wie R63 in der Hilfe) */
@@ -604,13 +342,6 @@ a.explore-station:hover { background: var(--welt-soft, var(--flaeche-2)); }
 .kompass-begriff:hover { text-decoration-thickness: 2px; }
 .kompass-hinweis { margin-top: 2px; font-size: var(--gr-s); color: var(--tinte-2); }
 .kompass-hinweis p { margin: 0; }
-.impressum-quellen { margin: var(--a-4) 0; }
-.impressum-quellen summary { box-sizing: border-box; min-height: 36px; padding-block: 8px; cursor: pointer; }
-.impressum-quellen ul { display: grid; gap: var(--a-2); margin-top: var(--a-2); padding-left: 0; list-style: none; font-size: var(--gr-s); }
-.impressum-quellen li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 6px; }
-.impressum-quellen-text { margin: var(--a-2) 0; font-size: var(--gr-s); color: var(--tinte-2); }
-/* Permalink-Ziele nicht hinter der festen Kopfleiste (WCAG 2.4.11) */
-.lernseite .absatz, .lernseite [data-abschnitt], .lernseite .impressum { scroll-margin-top: 72px; }
 
 /* Wissenscheck (P11.6): Frage, Antworten, Rückmeldung mit Erklärung und Beleg – ohne Punkte */
 .wissenscheck { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--a-3); padding: var(--a-5); border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 4px 0 0 var(--petrol), inset 0 0 0 1px var(--linie); }
@@ -754,12 +485,7 @@ html:has(.lernseite) { scroll-padding-top: 72px; }
 .abbildung-abweichungen summary:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; border-radius: 4px; }
 .abbildung-abweichungen ul { margin: var(--a-1) 0 0; padding-left: 1.2em; list-style: disc; }
 .abbildung-abweichungen li + li { margin-top: var(--a-1); }
-.abbildung-belege { white-space: normal; font: 500 var(--gr-s)/1.3 var(--schrift-mono); }
-.abbildung-beleg { white-space: nowrap; } /* R64: eine Absatz-ID bricht nie am Bindestrich („k13-“ / „t1)“) */
-a.abbildung-beleg { color: var(--navy); }
 .abbildung-gross { margin-top: var(--a-1); }
-.original-abbildung { margin: var(--a-4) 0; }
-.original-abbildung .abbildung { margin: 0; }
 /* Innenabstand am Bild statt am Dialog: der klebende Kopf schließt oben bündig ab und bleibt beim waagrechten Rollen stehen;
    Breite aus dem Platz neben den Rollleisten (100 %), nicht aus dem Fenster (vw) – P12.5 R11 */
 .abbildung-dialog { width: min(calc(100% - 16px), 1480px); max-width: none; max-height: 94vh; padding: 0; overflow: auto; overscroll-behavior: contain; border: 0; border-radius: var(--radius-l); background: var(--weiss); color: var(--tinte); box-shadow: var(--schatten-schwebend); }
@@ -786,24 +512,8 @@ a.abbildung-beleg { color: var(--navy); }
   .druck-bogen .abbildung-druckkopf { display: grid; gap: 1mm; margin: 0 0 2mm; break-inside: avoid; break-after: avoid; }
   .abbildung-gross, .abbildung-dialog { display: none; }
 }
-/* Abbildungsverzeichnis in Explore (P14): Vorschaubild und Titel als Sprung zur Abbildung */
-.galerie-abbildung { display: flex; align-items: center; gap: var(--a-3); min-height: 36px; hyphens: manual; }
-.galerie-abbildung img { flex: none; width: 96px; height: auto; border-radius: var(--radius-xs); box-shadow: inset 0 0 0 1px var(--linie), var(--schatten-karte); }
-@media (max-width: 700px) { .galerie-abbildung img { width: 64px; } }
-/* schmal: Vorschaubild über dem Titel, damit lange Titelwörter („Verantwortungspyramide“) in die Zeile passen */
-@media (max-width: 480px) { .galerie-abbildung { flex-direction: column; align-items: flex-start; gap: var(--a-2); } }
-.galerie-verzeichnis .galerie-nr { width: 1%; white-space: nowrap; }
-/* Verzeichnisse brechen nie im Wort (CI, L-98): Tabellenzellen tragen sonst overflow-wrap:anywhere – dann darf die
-   Tabelle eine Spalte schmaler als ihr längstes Wort machen, und Chrome 153 bricht bei 320 px „Verantwortungs|felder“ */
-.galerie-verzeichnis :is(th, td) { overflow-wrap: normal; hyphens: manual; }
 /* Navigation um das Kapitelverzeichnis (R21): nur Landmarke, keine eigene Box im Raster der Lernseite */
 .kapitel-verzeichnis-nav { display: contents; }
-/* Stelle im Text nie mitten im Wort (R12): die schmale Tabelle bricht sonst „Abs|chnitt“ (overflow-wrap der Tabellen bei 400 px);
-   umbrechen darf sie zwischen „Abschnitt“ und „3.3“ – so bleibt der Spalte der Titel genug Platz */
-.galerie-verzeichnis .galerie-stelle { overflow-wrap: normal; hyphens: manual; }
-@media (min-width: 481px) { .galerie-verzeichnis td.galerie-stelle { white-space: nowrap; } }
-/* R58: ein Quellen-Eintrag des Impressums (Station und ihre Absatz-IDs) reißt nicht über die Seitengrenze */
-@media print { .druck-bogen .impressum-quellen li { break-inside: avoid; } }
 
 /* ------------------------------------------------------------------ Themen im Seitenrahmen (P16.3, O-45) */
 .seite-theorie { --fokus: var(--navy); }

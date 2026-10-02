@@ -1,0 +1,96 @@
+/* =============================================================================================
+   MVG · Regie und Leinwand (O-9): Steuerpult mit Vorschau, Notiz, Leitfragen, Protokoll und
+   Einwänden (src/regie/regie.ts); Leinwand nur als Anzeige (src/regie/leinwand.ts); Beamer-Schalter.
+   Nur Tokens aus tokens.css, keine Farbwerte.
+   ============================================================================================= */
+.regie { --fokus: var(--gold-hell); min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; background: var(--navy); color: var(--auf-navy); }
+.regie-kopf { display: flex; flex-wrap: wrap; align-items: center; gap: var(--a-2) var(--a-4); padding: 10px var(--a-4); border-bottom: 1px solid var(--navy-linie); }
+.regie-kopf .marke-logo { height: 34px; color: var(--weiss); }
+.regie-titel { flex: 1 1 240px; min-width: 0; font: 800 var(--gr-3xl)/1.1 var(--schrift-anzeige); letter-spacing: var(--sperrung-titel); text-transform: uppercase; color: var(--weiss); }
+.regie-titel .regie-unterzeile { display: block; margin-top: 2px; font: 400 var(--gr-s)/1.3 var(--schrift-text); letter-spacing: 0; text-transform: none; color: var(--auf-navy-2); }
+.regie-verbindung { display: inline-flex; align-items: center; gap: 6px; padding: var(--a-1) 10px; border-radius: var(--radius-rund); background: var(--status-soft); color: var(--status-text); font: 700 var(--gr-s)/1.2 var(--schrift-label); letter-spacing: .06em; text-transform: uppercase; }
+.regie-verbindung::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--status-farbe); }
+.regie-oeffnen { min-height: 44px; padding: 6px 14px; --fokus: var(--weiss); }
+.regie-raster { flex: 1; display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: var(--a-4); padding: var(--a-4); align-items: start; }
+.regie-links, .regie-rechts { display: flex; flex-direction: column; gap: var(--a-4); min-width: 0; }
+.regie-vorschau { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.regie-vorschau > .t-label { color: var(--auf-navy-2); }
+.regie-ort { min-height: 1.4em; font-size: var(--gr-m); color: var(--weiss); }
+.vorschau-rahmen { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: var(--radius-l); background: var(--navy-2); box-shadow: 0 0 0 1px var(--navy-linie), var(--schatten-rahmen); }
+.vorschau-buehne { position: absolute; left: 0; top: 0; overflow: hidden; transform-origin: 0 0; pointer-events: none; }
+.vorschau-buehne .anzeige { height: 100%; }
+.vorschau-buehne .startseite, .vorschau-buehne .lernseite { height: 100%; min-height: 0; overflow: hidden; }
+/* Die Bühne ist 1280 × 720, unabhängig vom Regie-Fenster: Höhen aus der Bühne, nicht aus vh (P12.5 R7) */
+.vorschau-buehne { --vh: 7.2px; }
+.vorschau-buehne.ist-beamer .anzeige { --vh: calc(7.2px / 1.15); }
+.vorschau-buehne .kapitel-verzeichnis { max-height: calc(720px - 136px); }
+.vorschau-buehne.ist-beamer .anzeige .kapitel-verzeichnis { max-height: calc(720px / 1.15 - 136px); }
+.vorschau-buehne.ist-beamer .anzeige .startseite { min-height: 0; }
+.regie-karte { min-width: 0; padding: var(--a-3) var(--a-4) 14px; border-radius: var(--radius-l); background: var(--weiss); color: var(--tinte); box-shadow: var(--schatten-karte); --fokus: var(--navy); }
+.regie-h2 { display: flex; align-items: center; gap: var(--a-2); margin-bottom: var(--a-2); font: 700 var(--gr-text)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy); }
+.regie-h2 .symbol { font-size: 18px; color: var(--gold-kante); }
+.regie-h3 { margin: var(--a-3) 0 6px; font: 700 var(--gr-s)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
+.regie-steuerung { display: flex; flex-direction: column; gap: var(--a-3); }
+.regie-blaettern { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: var(--a-3); }
+.regie-blaettern .knopf { justify-content: center; }
+.regie-zeile { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.regie-zeile .t-label { margin-right: var(--a-1); }
+.regie-chip { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: var(--a-1) var(--a-3); border: 0; border-radius: var(--radius-rund); background: var(--weiss); color: var(--tinte); font-size: var(--gr-m); font-weight: 600; box-shadow: inset 0 0 0 1.5px var(--linie-2); }
+.regie-chip:hover { background: var(--flaeche-1); }
+.regie-chip[aria-pressed="true"] { background: var(--navy); color: var(--weiss); box-shadow: 0 0 0 2px var(--gold-hell); }
+.regie-eingriffe { display: flex; flex-wrap: wrap; gap: 6px; }
+.regie-notiz { box-shadow: inset 4px 0 0 var(--gold-hell), var(--schatten-karte); }
+.regie-notiz-text { font-size: var(--gr-text); line-height: 1.5; }
+.regie-notiz-text p + p { margin-top: var(--a-2); }
+.regie-leitfragen { display: flex; flex-direction: column; gap: 6px; counter-reset: frage; }
+.regie-leitfragen li { position: relative; padding-left: 28px; font-size: var(--gr-text); line-height: 1.4; counter-increment: frage; }
+.regie-leitfragen li::before { content: counter(frage); position: absolute; left: 0; top: 1px; display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--navy); color: var(--gold-hell); font: 800 12px/1 var(--schrift-anzeige); }
+.regie-leise { margin-top: var(--a-2); font-size: var(--gr-s); color: var(--tinte-2); }
+.regie-protokoll-eingabe { display: flex; flex-wrap: wrap; gap: var(--a-2); align-items: stretch; }
+.regie-feld::placeholder { color: var(--tinte-2); opacity: 1; }
+.regie-feld { flex: 1 1 220px; min-width: 0; padding: var(--a-2) 10px; border: 0; border-radius: var(--radius-m); background: var(--flaeche-1); box-shadow: inset 0 0 0 1.5px var(--linie-2); resize: vertical; }
+.regie-protokoll-liste { display: flex; flex-direction: column; gap: var(--a-1); margin-top: var(--a-2); font-size: var(--gr-m); }
+.regie-zeit { color: var(--tinte-2); }
+.regie-fuss { display: flex; flex-wrap: wrap; align-items: center; gap: var(--a-2) var(--a-4); padding: var(--a-2) var(--a-4) var(--a-3); font-size: var(--gr-s); color: var(--auf-navy-2); }
+/* Auswahl Springen/Thema/Werkzeug (P9) */
+.regie-auswahl { max-width: 100%; min-width: 0; min-height: 36px; padding: 4px 10px; border: 1px solid var(--linie-2); border-radius: var(--radius-m); background: var(--weiss); font: inherit; color: var(--tinte); }
+
+/* Einwand-Karten (E6, P9.2): Spickzettel in der Regie */
+.regie-einwand { border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
+.regie-einwand > summary { display: flex; align-items: center; gap: 10px; min-height: 40px; padding: 8px 14px; font-weight: 600; color: var(--tinte); cursor: pointer; }
+.regie-einwand > summary::-webkit-details-marker { display: none; }
+/* flex nimmt das Aufklapp-Dreieck: eigener Winkel, gedreht, wenn offen */
+.regie-einwand > summary::after { content: ""; flex: none; width: 8px; height: 8px; margin-left: auto; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg); }
+.regie-einwand[open] > summary::after { transform: rotate(-135deg); }
+@media (prefers-reduced-motion: no-preference) { .regie-einwand > summary::after { transition: transform .15s ease; } }
+.regie-einwand-antwort { display: grid; gap: 10px; padding: 0 14px 12px; }
+
+@media (max-width: 1100px) {
+  .regie-raster { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 700px) {
+  .regie-blaettern { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+
+/* Leinwand: nur Anzeige, bildschirmfüllend */
+.leinwand { min-height: 100vh; min-height: 100dvh; background: var(--navy); }
+.leinwand-warten { min-height: 100vh; min-height: 100dvh; display: grid; place-content: center; justify-items: center; gap: 14px; padding: var(--a-6); color: var(--auf-navy); text-align: center; }
+.leinwand-warten .marke-logo { height: 64px; color: var(--weiss); }
+.leinwand-warten-name { margin: 0; font: 700 var(--gr-l)/1.3 var(--schrift-label); letter-spacing: var(--sperrung-kicker); color: var(--auf-navy); }
+.leinwand-warten-titel { font: 800 var(--gr-5xl)/1.1 var(--schrift-anzeige); letter-spacing: var(--sperrung-titel); text-transform: uppercase; color: var(--weiss); }
+
+/* Beamer-Schalter (E10, P9.4): größer (wie Browser-Zoom, das Layout bricht dann um) und kontrastreicher –
+   Nebenschrift wird Hauptschrift, Linien kräftiger. Gilt auf der Leinwand und in der Regie-Vorschau. */
+/* R48: erst ab 1280 px – darunter (XGA-Projektor 1024 × 768) brach „Entscheidungsfähigkeit“ und „sehr hoch“ wurde abgeschnitten.
+   zoom vergrößert auch die Fensterhöhe: --vh rechnet auf 1/1.15 zurück, sonst fehlt unten ein Siebtel. */
+@media (min-width: 1280px) {
+  .ist-beamer .anzeige { zoom: 1.15; }
+  .ist-beamer .anzeige { --vh: calc(1vh / 1.15); }
+  /* Startseite und Kapitelverzeichnis: Maße aus der gezoomten Höhe (Kopfleiste 72 und Rahmenabstand 64 sind gezoomt) */
+  .ist-beamer .anzeige .startseite { min-height: calc(100vh / 1.15); min-height: calc(100dvh / 1.15); }
+  .ist-beamer .anzeige .kapitel-verzeichnis { max-height: calc(100vh / 1.15 - 136px); max-height: calc(100dvh / 1.15 - 136px); }
+}
+/* R48: die Regie-Vorschau zeigt die Leinwand auf ihrer Bühne von 1280 px – dort gilt der Zoom unabhängig vom Regie-Fenster.
+   In der Vorschau gilt height: 100 % der Bühne (bereits im Zoom-Maßstab gerechnet). */
+.vorschau-buehne.ist-beamer .anzeige { zoom: 1.15; }
+.ist-beamer { --tinte-2: var(--tinte); --tinte-leise: var(--tinte-instrument); --linie: var(--linie-3); --auf-navy-2: var(--auf-navy); }

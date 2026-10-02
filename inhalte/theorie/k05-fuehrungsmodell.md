@@ -229,7 +229,7 @@ Die Beschlusslage ist nachgewiesen. Erst jetzt ist die Änderung ein führbares 
 Zielsystem, RACI-Matrix und Freigabekalender liegen vor – wirkt MVG damit schon?
 
 ### Erklärung
-Die Wirkung von MVG entsteht durch Kopplung: Ein Zielsystem allein reicht nicht – ebenso wenig eine RACI-Matrix, ein Freigabekalender oder eine einzelne Entscheidungsvorlage. MVG wirkt erst, wenn diese Elemente miteinander verbunden werden.
+Dass Zielsystem, RACI-Matrix und Freigabekalender vorliegen, sagt noch nichts darüber, ob sie ineinandergreifen.
 
 ::: antwort a
 ---
@@ -244,7 +244,7 @@ Erst die Verbindung der Elemente lässt MVG wirken.
 titel: Ja, jedes Element wirkt schon für sich
 praefix: "Nicht ganz:"
 ---
-Vorhanden heißt noch nicht verbunden – für sich bleibt jedes Element ohne diese Wirkung.
+Jedes Element für sich reicht nicht.
 :::
 
 ::: zitat k5.3-p1

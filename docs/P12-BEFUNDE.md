@@ -259,5 +259,5 @@ Nicht sauber – als Nächstes Runde 64.
 - **Runde 64 auf 99fd48e:** 0 schwer, 5 mittel, 15 leicht – L-180 (Stil: Ebenen-Tabellen, Schritttitel bei offener Leiste; Architektur: Dossier-Weg). Nicht sauber – als Nächstes Runde 65.
 - **Runde 65 auf 6baaf1c:** 0 schwer, 4 mittel, 15 leicht – L-181 (Story: Mandatsmaß A3/ps, B5-Regie an die Anzeige; Architektur: Ebenen-Probe an A1; Stil: Pfeiltasten in rollenden Tabellen). Nicht sauber – als Nächstes Runde 66.
 ## Runde 66 (P12.5, zugleich P14.3 und P15.2) – volle Runde auf 43329ae
-- Theorie, Story, Abbildungen, Hilfe, Druck, Architektur, Stil: 3 mittel, 15 leicht – Befunde in `docs/R66-BEFUNDE.md`, Einarbeitung offen.
+- Theorie, Story, Abbildungen, Hilfe, Druck, Architektur, Stil: 3 mittel, 15 leicht – Befunde in `docs/R66-BEFUNDE.md`, alle eingearbeitet (L-182; B5-Regie gegen die Anzeige mit Unit-Test, Hilfe „Zieldimensionen der Anwendung“, Druckprobe Tabellenkopf aus dem DOM). Nicht sauber – als Nächstes Runde 67 voll.
 Nicht sauber.

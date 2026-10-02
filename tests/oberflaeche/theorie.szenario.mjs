@@ -470,10 +470,31 @@ export async function lauf(seite, h) {
   if (!koepfeAlle.some((x) => /^k\d+(?:\.\d+)*-t\d+$/u.test(x.text.trim()))) h.befund('Alles drucken: Absatz-IDs fehlen in der Kopfliste');
   const untenAlle = await quellenUnten();
   if (!koepfeAlle.some((x) => /^Quelle: MVG/u.test(x.text))) h.befund('Alles drucken: Quellzeilen der Kartentafeln fehlen in der Kopfliste');
+  // R66: Kopf und letzte Zeile jeder Drucktabelle aus dem DOM (vor page.pdf) – der Kopf von k10.5-t1 („… BZW. ROUTINE“) fiel durch
+  // ein Zeichenmuster; normiert ohne Leerraum, Trennzeichen und Bindestrich, in Großschrift wie im Druck
+  const tabellenAlle = await seite.evaluate(() => {
+    const norm = (/** @type {string} */ t) => t.replace(/[\s\u00ad-]+/gu, '').toUpperCase();
+    return [...document.querySelectorAll('.druck-bogen table')].filter((t) => t.querySelector('thead') !== null && t.querySelectorAll('tbody tr').length >= 2)
+      .map((t) => ({ kopf: norm(t.querySelector('thead')?.textContent ?? ''), rest: norm([...t.querySelectorAll('tbody tr')].at(-1)?.textContent ?? '') }));
+  });
+  if (tabellenAlle.length < 2) h.befund(`Alles drucken: nur ${tabellenAlle.length} Tabellen mit Kopf im Druck gefunden`);
   const allesPdf = await pdfSeiten(await seite.pdf({ format: 'A4' }));
   const allesEnde = seitenMitUeberschriftAmEnde(allesPdf, koepfeAlle);
   // R65: keine Seite besteht nur aus dem wiederholten Tabellenkopf und der letzten Zeile (k1.3-t1, k10.5-t1; wie R63 in der Hilfe)
-  const nurKopf = allesPdf.map((x, i) => ({ s: i + 1, z: x.zeilen })).filter((x) => x.z.length <= 4 && /^[A-ZÄÖÜ][A-ZÄÖÜ /–-]{5,}$/u.test((x.z[0] ?? '').trim()));
+  // R66: die Seite beginnt mit einem Tabellenkopf, und gleich darunter steht nur die letzte Zeile derselben Tabelle (Zeichen als
+  // Menge verglichen – mehrzeilige Zellen kommen im PDF verschränkt heraus); vorher ein Zeichenmuster mit höchstens 4 Zeilen
+  const normPdf = (/** @type {string} */ t) => t.replace(/[\s\u00ad-]+/gu, '').toUpperCase();
+  const sortiert = (/** @type {string} */ t) => [...t].sort().join('');
+  const nurKopf = allesPdf.map((x, i) => ({ s: i + 1, z: x.zeilen })).filter((x) => {
+    for (let k = 1; k <= Math.min(4, x.z.length - 1); k++) {
+      const kopf = normPdf(x.z.slice(0, k).join(''));
+      for (const t of tabellenAlle.filter((u) => u.kopf === kopf)) {
+        const ziel = sortiert(t.rest);
+        for (let n = 1; n <= Math.min(16, x.z.length - k); n++) if (sortiert(normPdf(x.z.slice(k, k + n).join(''))) === ziel) return true;
+      }
+    }
+    return false;
+  }).map((x) => ({ s: x.s, n: x.z.length, z0: x.z[0] }));
   if (nurKopf.length > 0) h.befund(`Alles drucken: Seite nur Tabellenkopf und Rest ${JSON.stringify(nurKopf.slice(0, 4))}`);
   if (allesEnde.length > 0) h.befund(`Alles drucken: Überschrift am Seitenende ${JSON.stringify(allesEnde.slice(0, 6))}`);
   if (quelleOben(allesPdf, untenAlle).length > 0) h.befund(`Alles drucken: Quellzeile am Seitenanfang ${JSON.stringify(quelleOben(allesPdf, untenAlle).slice(0, 6))}`);

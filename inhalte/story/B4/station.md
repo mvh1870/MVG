@@ -214,7 +214,7 @@ datenstand: Kostenprognose 2026-05 · Version 3 · Schätzung der Generalplanung
 ::: schritt bericht
 ---
 titel: Vom Gremium in den Managementbericht
-kurz: Beschlusslage
+kurz: Bericht
 ---
 Beschluss oder Zurückstellung stehen im Protokoll; der Managementbericht sammelt sie für den Bauausschuss.
 

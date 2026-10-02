@@ -917,6 +917,9 @@ export const GLAETTUNGEN = /** @type {[RegExp, string | ((...teile: string[]) =>
   [/<li>30 Minuten pro Sitzung einplanen \(11 Domänen × 3 Min\)<\/li>/gu, '<li>Gut 30 Minuten pro Sitzung einplanen (11 Domänen × 3 Min)</li>'],
   // R64: das Glossar hat nach dem Streichen der doppelten Zeile 129 Begriffe (der Verweis ist zuvor gesetzt, VERWEISE)
   [/Vollständiges Glossar mit 130 Begriffen/gu, 'Vollständiges Glossar mit 129 Begriffen'],
+  // R66: V1.2 legt das Zielsystem nicht auf fünf Dimensionen fest (k4.3-p1 nennt sechs, k5.2-t1 sieben) – die fünf sind Zielgrößen der Anwendung
+  [/über die fünf Dimensionen Kosten, Termine, Qualität, Risiko und ESG/gu, 'über die Zieldimensionen der Anwendung (Kosten, Termine, Qualität, Risiko, ESG)'],
+  [/Begründete Rangfolge der fünf Zieldimensionen/gu, 'Begründete Rangfolge der Zieldimensionen der Anwendung'],
   // R55: „Glossar A-Z“ nach den Angleichungen wieder alphabetisch (Intl.Collator de)
   [/(aria-label="Tabelle: Glossar A-Z"><table>\s*<thead>[\s\S]*?<\/thead>\s*<tbody>)([\s\S]*?)(<\/tbody>)/gu, (_, vor, zeilen, nach) => {
     const liste = zeilen.match(/<tr>[\s\S]*?<\/tr>/gu) ?? [];

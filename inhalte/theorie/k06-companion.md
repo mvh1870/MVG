@@ -414,7 +414,7 @@ Die Verletzung ist ein neues, unbewertetes Signal – keine Rückstufung des bes
 titel: Eine neue Frühwarnung
 praefix: "Genau:"
 ---
-Ein bewertetes Risiko wird aus ihr erst, wenn sie bestätigt wird.
+Ein bewertetes Risiko wird aus der neuen Frühwarnung erst, wenn sie bestätigt wird.
 :::
 
 ::: antwort b
@@ -422,7 +422,7 @@ Ein bewertetes Risiko wird aus ihr erst, wenn sie bestätigt wird.
 titel: Das bestehende Risiko wird zur Frühwarnung zurückgestuft
 praefix: "Nicht ganz:"
 ---
-Das bestehende Risiko bleibt, wie es ist; die Verletzung kommt als eigene Frühwarnung hinzu.
+Eine Rückrichtung vom Risiko zur Frühwarnung gibt es nicht.
 :::
 
 ::: zitat k6.4.3-p2

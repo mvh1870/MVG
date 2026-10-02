@@ -190,7 +190,7 @@ Sie gilt nicht in jedem Projekt, sondern für zwei bestimmte Anlässe.
 titel: Als festen Projektplan
 praefix: "Nicht ganz:"
 ---
-Einen festen Ablauf mit Terminen gibt sie nicht vor – dafür steht das Vorgehensmodell.
+Einen festen Plan gibt die 30/60/90-Logik nicht vor; sie priorisiert die ersten Wirkungen.
 :::
 
 ::: zitat k8.2-p1

@@ -41,7 +41,7 @@ Die Geschichte beginnt mit der Übernahme der Projektleitung auf Bauherrenseite 
 | darin Risikoreserve | 2,9 Mio. € (rund 5 %) | Freigabe des Einsatzes nur durch den Bauherrn (nicht delegierbar, k3.2-t1) |
 | Abweichung Monat 5, Projektsteuerung | +8 %, rund +4,7 Mio. € | Prognose Mai, Datei „v3_final_NEU“; in Welt B der verbindliche Datenstand „Kostenprognose 2026-05 · Version 3“ |
 | Datenstand ab Oktober (nur Welt B) | „Kostenprognose 2026-10 · Version 4“ | ersetzt Version 3; enthält die beschlossenen Änderungen `AEN-012`, `AEN-022`, `AEN-031` (L-42); in B5 (September) ist sie in Arbeit |
-| aktualisierte Prognose (nur Welt A) | +9,1 %, rund +5,3 Mio. € | A3, Option „Prognose aktualisieren lassen“; eine Option dieser Größe läge nach dem Muster auf der Stufe des Bauherrn im Lenkungskreis |
+| aktualisierte Prognose (nur Welt A) | +9,1 %, rund +5,3 Mio. € | A3, Optionen „Prognose aktualisieren lassen“ (pl) und „Prognose aktualisieren“ (ps, mit Betrag); nach dem Muster läge eine Option über 5 Mio. € beim Bauherrn im Lenkungskreis – wer entscheidet, hängt von der Option ab |
 | Abweichung Monat 5, Controlling | +5,9 %, rund +3,4 Mio. € | eigene CTC-Rechnung der GML |
 | Differenz Monat 5 | 2,1 Prozentpunkte, rund 1,2 Mio. € | 2,1 % von 58,4 Mio. €; nicht aus den gerundeten Werten 4,7 − 3,4 rechnen (L-82) |
 | Abweichung und Reserve | Abweichungen gegen die Projektbasis gerechnet, Risikoreserve darin noch nicht eingesetzt | ganz eingesetzt, blieben nach Projektsteuerung rund 1,8 Mio. €, nach Controlling rund 0,5 Mio. € Überschreitung |

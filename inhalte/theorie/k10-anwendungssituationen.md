@@ -201,7 +201,7 @@ Die FID steht bei der Freigabereife zum Abschluss von LPH 3.
 titel: Abschluss LPH 2
 praefix: "Nicht ganz:"
 ---
-Zum Abschluss von LPH 2 geht es um Variantenwahl und Business Case.
+An LPH 2 hängt eine frühere Entscheidung als die FID.
 :::
 
 ::: antwort c
@@ -209,7 +209,7 @@ Zum Abschluss von LPH 2 geht es um Variantenwahl und Business Case.
 titel: Abschluss LPH 7
 praefix: "Nicht ganz:"
 ---
-LPH 7 betrifft Vergabe oder die Bindung einer Komponente mit langer Lieferzeit.
+LPH 7 liegt deutlich nach der FID.
 :::
 
 ::: zitat k10.3-p1

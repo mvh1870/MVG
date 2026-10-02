@@ -393,7 +393,7 @@ seite: rechts
 Fachplanung, Bauleitung und Objektüberwachung
 
 ### Erklärung
-Keine davon ersetzt Bauherr Mentoren.
+Bauherr Mentoren ersetzt keine davon.
 :::
 :::
 

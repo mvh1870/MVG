@@ -1,6 +1,6 @@
-# Runde 66 – Befunde (Prüfung auf 43329ae, Einarbeitung offen)
+# Runde 66 – Befunde (Prüfung auf 43329ae, eingearbeitet 2026-10-02, L-182)
 Geprüft am 2026-10-02 05:05–06:10 UTC in einer parallelen Sitzung (Workflow `docs/pruefrunde.workflow.js`, zehn Agenten, ohne Gegenprüfung – Gegenprüfung beim Einarbeiten, L-154). Zählung: 0 schwer, 3 mittel, 15 leicht.
-**Für den nächsten Block:** diese Befunde einarbeiten (L-182), nicht Runde 66 neu prüfen. Danach Runde 67 voll.
+**Stand:** alle 18 Befunde eingearbeitet (L-182). Als Nächstes Runde 67 voll.
 
 ## 1. [leicht] fach-theorie-1 · `inhalte/theorie/k05-fuehrungsmodell.md`
 **Ort:** Z. 232 (Wissenscheck „kopplung“, ### Erklärung) gegen Z. 251 (zitat k5.3-p1)

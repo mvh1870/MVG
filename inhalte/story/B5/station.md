@@ -263,7 +263,7 @@ wert: eingetretenes Problem · Maßnahme · Entscheidungsbedarf
 
 ::: unbekannt
 - Ob der Nachtrag in voller Höhe berechtigt ist {#hoehe}
-- Was von den 2,9 Mio. € beansprucht, freigegeben und frei ist {#reservestand}
+- Was von den 2,9 Mio. € schon beansprucht ist und was danach frei bliebe {#reservestand}
 - Welche Restrisiken die Reserve danach noch tragen muss {#restrisiko}
 - Was der Nachtrag für Termin und Ausführungsplanung bedeutet {#terminwirkung}
 :::
@@ -429,7 +429,7 @@ beschlusslage: Wird mit der Entscheidung des Bauherrn dokumentiert; der Lenkungs
 
 ::: regie
 ### Notiz
-B5 zeigt dasselbe Ereignis wie A5 – dieselben Folgekosten, dieselbe Reserve. In Welt B steht der Nachtrag der TGA-Fachplanung als Problem `PRB-004` im Problemregister, mit Maßnahme und Entscheidungsbedarf; die Mensa-Kosten stehen in der Auswirkung von `AEN-012`. Die Vorlage trägt die Kennung des Problems als Bezug; eine eigene Entscheidungs-ID ist nicht vergeben – deshalb ist der Punkt offen. Offen bleiben mit Absicht: die Prüfung des Nachtrags, der Stand der Reserve je Posten, Restrisiken, Terminwirkung und fachliche Auswirkung – das lösen erst die Optionen aus. Ob die Deckung von `AEN-031` aus der Reserve kommt und ob sie in dieselbe Vorlage gehört, ist offen. Bei den ungeklärten Entscheidungen zeigt der Regler je nach Spur aus B1–B4 zwischen 1 und 3: Zur Reserve und – falls aus ihr gedeckt – zur Deckung von `AEN-031` stehen Entscheidungen an, die Dr. Olbers selbst trifft; wer die Deckung in B4 schon als Frage gestellt hat, sieht sie dort mitgezählt. „Freigabe“ meint hier den Einsatz der Risikoreserve, nicht die Freigabe zum Abschluss einer LPH. Zuerst den Regler zeigen, dann Kette und Vorlage.
+B5 zeigt dasselbe Ereignis wie A5 – dieselben Folgekosten, dieselbe Reserve. In Welt B steht der Nachtrag der TGA-Fachplanung als Problem `PRB-004` im Problemregister, mit Maßnahme und Entscheidungsbedarf; die Mensa-Kosten stehen in der Auswirkung von `AEN-012`. Die Vorlage trägt die Kennung des Problems als Bezug; eine eigene Entscheidungs-ID ist nicht vergeben – deshalb ist der Punkt offen. Offen bleiben mit Absicht: die Prüfung des Nachtrags, der Stand der Reserve je Posten, Restrisiken, Terminwirkung und fachliche Auswirkung – das lösen erst die Optionen aus. Ob die Deckung von `AEN-031` aus der Reserve kommt und ob sie in dieselbe Vorlage gehört, ist offen. Bei den ungeklärten Entscheidungen zeigt der Regler je nach Spur aus B1–B4 zwischen 1 und 3: Zur Reserve und – falls aus ihr gedeckt – zur Deckung von `AEN-031` stehen Entscheidungen an, die Dr. Olbers selbst trifft; wer die Deckung in B4 schon als Frage gestellt hat, sieht sie dort mitgezählt (mehr als 3 zeigt der Regler nicht). „Freigabe“ meint hier den Einsatz der Risikoreserve, nicht die Freigabe zum Abschluss einer LPH. Zuerst den Regler zeigen, dann Kette und Vorlage.
 
 ### Leitfragen
 - Wo steht bei Ihnen ein eingetretenes Problem – und wer führt es?

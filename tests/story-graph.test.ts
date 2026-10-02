@@ -378,3 +378,28 @@ test('Regie-Notiz „steuerbar“ (R63): die A6-Wahlen, die bei Richtung A immer
   const notiz = readFileSync(new URL('../inhalte/story/ende-steuerbar/station.md', import.meta.url), 'utf8');
   assert.match(notiz, /Mit Option C in A6 gelingt das immer[^.]*bei der Projektsteuerung auch mit B/u);
 });
+
+test('Regie-Notiz B5 (R66): wer die Deckung in B4 als Frage stellt, sieht sie am B5-Regler mitgezählt – in jeder Rolle, die das kann', () => {
+  // die Notiz sagt „wer die Deckung in B4 schon als Frage gestellt hat, sieht sie dort mitgezählt“; R66: B4/bauherr C legte
+  // die Frage mit Frist, zählte aber nur als Terminrisiko
+  const m = erg.inhalte as StoryModell;
+  const weg = ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'wendepunkt', 'rueckspulen', 'B1', 'B2', 'B3', 'B4', 'B5'];
+  const fragen: Record<string, string> = { bauherr: 'C', ps: 'C', gf: 'A', controlling: 'A' };
+  const fehlt: string[] = [];
+  for (const [r, opt] of Object.entries(fragen)) {
+    const ents = weg.map((id) => (m.stationen[id] as any)?.szenen?.[r]?.entscheidung ?? null);
+    const b4 = ents[11];
+    assert.match(b4.optionen.find((p: any) => p.id === opt).titel.replace(/\u00ad/gu, ''), /Deckung|[Rr]eserve/u, `${r} ${opt}: Option zur Deckung`);
+    let kombis: Record<string, string>[] = [{}];
+    for (const f of ents.slice(8, 11)) if (f !== null) kombis = kombis.flatMap((k) => f.optionen.map((p: any) => ({ ...k, [f.id]: p.id })));
+    for (const k of kombis) {
+      const ungeklaert = (o: string) => (berechneStatus({ ...anfangszustand(), rolle: r, verlauf: weg, entscheidungen: { ...k, [b4.id]: o }, info: [] } as any, m).B as any).ungeklaerteEntscheidungen;
+      const andere = b4.optionen.filter((p: any) => p.id !== opt && !p.wirkung.some((w: any) => w.schluessel === 'ungeklaerteEntscheidungen'));
+      // am oberen Rand (Start 2 + Spur-Grenze 1, L-21) zählt der Regler nicht weiter – das sagt die Notiz
+      for (const p of andere) if (ungeklaert(opt) <= ungeklaert(p.id) && ungeklaert(opt) < 3) fehlt.push(`${r} ${opt} gegen ${p.id} (${JSON.stringify(k)})`);
+    }
+  }
+  assert.deepEqual(fehlt, []);
+  const notiz = readFileSync(new URL('../inhalte/story/B5/station.md', import.meta.url), 'utf8');
+  assert.match(notiz, /wer die Deckung in B4 schon als Frage gestellt hat, sieht sie dort mitgezählt \(mehr als 3 zeigt der Regler nicht\)/u);
+});

@@ -234,14 +234,14 @@ Daraus folgen:
 Ihr Gremium erhält jeden Monat einen ausführlichen Ampelbericht, aber keine Entscheidungsfrage – wird damit schon geführt?
 
 ### Erklärung
-Berichte erzeugen Information. Führung entsteht erst, wenn diese Information mit Mandat, Entscheidung, Schwelle, Risikoannahme, Datenstand, Freigabe und Nachweis verbunden wird. Ohne Entscheidungsfrage bleibt ein Ampelbericht Beobachtung.
+Ein Bericht, der keine Entscheidung verlangt, bleibt beim Beobachten. Geführt wird erst, wenn seine Information unter anderem an Mandat, Schwelle, Datenstand und Freigabe anschließt.
 
 ::: antwort a
 ---
 titel: Noch nicht – der Bericht bleibt Beobachtung
 praefix: "Genau:"
 ---
-Ohne Entscheidungsfrage liefert der Ampelbericht Information, aber noch keine Führung.
+Ausführlichkeit ersetzt keine Entscheidungsfrage.
 :::
 
 ::: antwort b

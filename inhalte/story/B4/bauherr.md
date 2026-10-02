@@ -66,7 +66,7 @@ Eine Zusage im Ausschuss, die die eigene Freigabe vorwegnimmt.
 titel: Die Deckungsfrage mit Frist auf September legen und den Ausschuss darüber informieren
 kurz: Deckung mit Frist legen
 status:
-  terminrisiko: +1
+  ungeklaerte-entscheidungen: +1 (mit Frist)
 ---
 ### Konsequenz
 Sie legen die Frage, ob die Deckung aus der Risikoreserve kommt, mit Frist auf September. Der Ausschuss erfährt Frage und Termin aus dem Managementbericht.

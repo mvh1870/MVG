@@ -707,11 +707,22 @@ export async function schritttitelBreit(seite, h, name) {
       const r = document.createRange();
       r.selectNodeContents(el);
       const text = r.getBoundingClientRect().width;
-      return { t: (el.textContent ?? '').replaceAll('\u00ad', ''), text, platz: el.clientWidth };
+      // R66: der Platz ist der Knopf ohne Innenabstand, Nummer und Lücke – der Titel selbst schrumpft auf seinen Text
+      const knopf = el.closest('.fortschritt-schritt');
+      const zeile = el.closest('.fs-zeile');
+      const nr = zeile?.querySelector('.fs-nr');
+      let raum = el.clientWidth;
+      if (knopf !== null && zeile !== null && nr instanceof HTMLElement) {
+        const k = getComputedStyle(knopf);
+        raum = knopf.clientWidth - parseFloat(k.paddingLeft) - parseFloat(k.paddingRight) - nr.getBoundingClientRect().width - (parseFloat(getComputedStyle(zeile).columnGap) || 0);
+      }
+      return { t: (el.textContent ?? '').replaceAll('\u00ad', ''), text, platz: el.clientWidth, raum };
     }));
     gemessen += funde.length;
     // der Titel schrumpft auf seinen Text, wo Platz ist – gekappt ist er, wo der Text breiter ist als sein Kasten
     for (const f of funde) if (f.text > f.platz + 0.5) h.befund(`${name} @${breite}: Schritttitel „${f.t}“ ${Math.round(f.text)} px auf ${f.platz} px`);
+    // R66 (L-129): ein ungeteiltes Wort über 93 % seines Platzes bricht unter Chrome 153 – B4 „Beschlusslage“ stand bei 96,9 %
+    for (const f of funde) if (f.text > 0.93 * f.raum) h.befund(`${name} @${breite}: Schritttitel „${f.t}“ ${Math.round(f.text)} px auf ${Math.round(f.raum)} px Platz (über 93 %)`);
   }
   if (gemessen === 0) h.befund(`${name}: keine Schritttitel ab 1440 px sichtbar`);
   // R64 (Stil): mit offener Seitenleiste ist die Schrittleiste schmaler – dort kappten die Titel bei 1440–1680 px mitten im Wort

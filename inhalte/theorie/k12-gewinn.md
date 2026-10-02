@@ -94,7 +94,7 @@ Entscheidend ist, ob der Bauherr durch die Artefakte besser führen kann.
 titel: An der Zahl neuer Governance-Artefakte
 praefix: "Nicht ganz:"
 ---
-Die Zahl der Artefakte zählt am Ende gerade nicht.
+Mehr Artefakte heißen nicht mehr Führung.
 :::
 
 ::: zitat k12-p1

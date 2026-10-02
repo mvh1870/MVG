@@ -13,7 +13,7 @@ status:
   entscheidungsfaehigkeit: +1
 ---
 ### Konsequenz
-Die Vorlage zeigt, was von 2,9 Mio. € beansprucht, freigegeben und frei ist, auf dem geltenden Datenstand. Dr. Olbers entscheidet selbst.
+Die Vorlage zeigt, was von 2,9 Mio. € beansprucht und was frei ist, auf dem geltenden Datenstand. Dr. Olbers entscheidet selbst.
 
 ### Was fehlt
 Die Wirkung auf die offenen Risiken, die die Reserve noch tragen soll.

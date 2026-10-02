@@ -499,7 +499,7 @@ seite: links
 Beschlusslage
 
 ### Erklärung
-Die Beschlusslage hält die Entscheidungsvorlage fest.
+Die Entscheidungsvorlage hält die Beschlusslage fest.
 :::
 :::
 

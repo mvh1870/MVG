@@ -182,11 +182,14 @@ export async function mittelbreit(seite, h, name) {
 export async function leitstandSchmal(seite, h, name) {
   const vp = seite.viewportSize();
   if (vp === null || vp.width < 1280) return;
-  for (const breite of [981, 1000]) {
+  for (const breite of [981, 1000, 1040]) {
     await seite.setViewportSize({ width: breite, height: vp.height }); await h.warte(150);
     for (const fund of await seite.evaluate(pruefeLayout)) h.befund(`${name} @${breite}: ${fund}`);
     const bruch = await wortbrueche(seite, BAUTEILE_UNGETEILT, { bildschirm: true });
     if (bruch.length > 0) h.befund(`${name} @${breite}: ${bruch.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(bruch.slice(0, 6))}`);
+    // R64 (Stil): Stationstitel der Story-Karte („Folgekosten“ 93–95 % bei 1008–1088 px) – Bruchrisiko unter Chrome 153 (L-129)
+    const knappTitel = await knappeWoerter(seite, '.story-karte .station-titel');
+    if (knappTitel.length > 0) h.befund(`${name} @${breite}: Stationstitel knapp ${JSON.stringify(knappTitel.slice(0, 4))}`);
   }
   await seite.setViewportSize(vp); await h.warte(100);
 }

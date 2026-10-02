@@ -147,25 +147,6 @@
 .tafel-spur .symbol { width: 18px; height: 18px; }
 .tafel button { font: inherit; cursor: pointer; }
 
-/* Radar */
-.tafel-radar { display: grid; grid-template-columns: minmax(200px, 300px) minmax(0, 1fr); gap: var(--a-4); align-items: start; }
-.radar-bild { width: 100%; height: auto; }
-.radar-ring { fill: none; stroke: var(--linie); stroke-width: 1; }
-.radar-achse { stroke: var(--linie); stroke-width: 1; }
-.radar-flaeche { fill: var(--koralle-a25); stroke: var(--koralle); stroke-width: 2; stroke-linejoin: round; }
-.radar-nr { font: 700 13px var(--schrift-label); fill: var(--tinte-2); }
-.radar-nr.ist-gewaehlt { fill: var(--koralle-text); font-size: 16px; }
-.radar-rechts { display: grid; gap: var(--a-3); min-width: 0; }
-.radar-liste { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
-.radar-knopf { display: flex; align-items: center; gap: 8px; min-height: 48px; padding: 6px 10px; border: 0; border-radius: var(--radius-m); background: var(--weiss); color: var(--tinte); text-align: left; box-shadow: inset 0 0 0 1px var(--linie); }
-.radar-knopf i { flex: none; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--flaeche-3); font: 700 12px var(--schrift-label); font-style: normal; }
-.radar-knopf.ist-erlebt i { background: var(--koralle-text); color: var(--weiss); }
-.radar-legende { margin: 4px 0 0; font-size: 12.5px; color: var(--tinte-leise); text-align: center; }
-.radar-knopf span { display: grid; min-width: 0; }
-.radar-knopf b { font-size: 14px; line-height: 1.25; }
-.radar-knopf small { font-size: 12px; color: var(--tinte-leise); }
-.radar-knopf[aria-pressed="true"] { box-shadow: inset 0 0 0 2px var(--navy); background: var(--flaeche-2); }
-
 /* Wirkungsketten */
 .tafel-ketten { display: grid; gap: var(--a-3); }
 .ausloeser-wahl { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
@@ -225,21 +206,11 @@
 .baustein-karte summary i { flex: none; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--gold-text); color: var(--weiss); font: 700 12px var(--schrift-label); font-style: normal; }
 .baustein-karte .tafel-detail { padding: 0 12px 12px; }
 
-/* R48: Radar-Knöpfe einspaltig bis 800 px – zweispaltig lief „Änderungsentwicklung“ (761–780 px) aus der Karte */
-@media (max-width: 800px) {
-  .radar-liste { grid-template-columns: minmax(0, 1fr); }
-}
-/* R49: zwischen 981 und 1100 px ebenso – „Ausführungsplanung“ lief bei 981 px aus der Notiz,
-   „Änderungsentwicklung“ füllte den Radar-Knopf zu 100 % */
-@media (min-width: 981px) and (max-width: 1100px) {
-  .radar-liste { grid-template-columns: minmax(0, 1fr); }
-}
 @media (max-width: 760px) {
-  .tafel-radar, .tafel-pyramide, .wirkungskette, .schwelle-karten, .felder-karten, .tafel-bausteine, .radar-liste { grid-template-columns: minmax(0, 1fr); }
-  .radar-links { max-width: 260px; justify-self: center; width: 100%; }
+  .tafel-pyramide, .wirkungskette, .schwelle-karten, .felder-karten, .tafel-bausteine { grid-template-columns: minmax(0, 1fr); }
 }
 
-/* Phasenleiste, Rhythmus, Register, Karten (P5.1) */
+/* Phasenleiste, Rhythmus, Karten (P5.1) */
 .tafel-leiste { display: grid; gap: var(--a-3); }
 .leiste { display: flex; flex-wrap: wrap; gap: 6px; }
 .leiste-knopf { display: grid; justify-items: start; gap: 1px; min-height: 48px; padding: 6px 10px; border: 0; border-radius: var(--radius-m); background: var(--weiss); color: var(--tinte); text-align: left; box-shadow: inset 0 0 0 1px var(--linie); }
@@ -248,15 +219,8 @@
 .leiste-knopf.ist-hervor { box-shadow: inset 0 0 0 2px var(--gold); }
 .leiste-knopf[aria-pressed="true"] { background: var(--navy); color: var(--weiss); }
 .leiste-knopf[aria-pressed="true"] small { color: var(--auf-navy); }
-.tafel-register, .tafel-karten { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 8px; margin: 0; padding: 0; list-style: none; }
-.register-karte, .tafel-karte { display: grid; align-content: start; gap: 6px; min-width: 0; padding: 12px 14px; border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
-.register-karte { animation: szene-ein 420ms var(--kurve-aus) both; animation-delay: calc(var(--i, 0) * 140ms); }
-.register-name { font-size: 16px; }
-.register-karte p { display: grid; gap: 2px; margin: 0; font-size: 14px; line-height: 1.4; }
-.register-weiter { padding-top: 6px; border-top: 1px dashed var(--linie-2); }
-.register-karte.ist-hervor { box-shadow: inset 0 0 0 2px var(--gold); }
-.register-marke { display: inline-flex; align-items: center; gap: 4px; font-size: 12.5px; font-weight: 600; color: var(--gold-text); }
-.register-marke .symbol { width: 14px; height: 14px; }
+.tafel-karten { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 8px; margin: 0; padding: 0; list-style: none; }
+.tafel-karte { display: grid; align-content: start; gap: 6px; min-width: 0; padding: 12px 14px; border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
 
 /* Zeitachse 30/60/90 (P7.1): Zeiträume als Abschnitte, darunter der Regler */
 .tafel-zeitachse { display: grid; gap: var(--a-3); }
@@ -271,20 +235,10 @@
 .zeitachse-tag { font-variant-numeric: tabular-nums; }
 @media (max-width: 599px) { .zeitachse-leiste { flex-direction: column; } }
 
-/* Selbstdiagnose ohne Punktzahl (P7.4) */
-.tafel-diagnose { display: grid; gap: var(--a-3); }
-.diagnose-liste { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
-.diagnose-zeile { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 12px; padding: 8px 12px; border-radius: var(--radius-m); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
-.diagnose-muster { flex: 1 1 14em; min-width: 0; font-weight: 600; font-size: 14.5px; }
-.diagnose-wahl { display: flex; gap: 4px; }
-.diagnose-knopf { min-height: 36px; padding: 4px 10px; border: 0; border-radius: var(--radius-m); background: var(--flaeche-2); color: var(--tinte); font: 600 13px/1.2 var(--schrift-text); box-shadow: inset 0 0 0 1px var(--linie); }
-.diagnose-knopf[aria-pressed="true"] { background: var(--navy); color: var(--weiss); box-shadow: none; }
-.diagnose-profil { display: grid; gap: var(--a-2); padding: 12px 14px; border-radius: var(--radius-l); background: var(--flaeche-3); box-shadow: inset 0 0 0 1px var(--linie); }
-
 /* R33: Text bleibt in seiner Fläche – Karten der Tafeln, schmale Fenster */
 .tafel-karten { grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr)); }
-.register-karte, .tafel-karte { grid-template-columns: minmax(0, 1fr); }
-.register-karte > *, .tafel-karte > * { overflow-wrap: anywhere; }
+.tafel-karte { grid-template-columns: minmax(0, 1fr); }
+.tafel-karte > * { overflow-wrap: anywhere; }
 @media (max-width: 400px) {
   .baustein-karte { min-width: 0; overflow-wrap: anywhere; }
 }

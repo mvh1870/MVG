@@ -10,7 +10,7 @@
  */
 
 import daten from '../generiert/inhalte.json' with { type: 'json' };
-import type { GeschichteRegie, GlossarEintrag, Inhalte, OeffentlicheInhalte, RegieEintrag, TheorieSeite } from './typen.ts';
+import type { GeschichteRegie, GlossarEintrag, Inhalte, OeffentlicheInhalte, RegieEintrag } from './typen.ts';
 
 export type * from './typen.ts';
 
@@ -46,8 +46,4 @@ export function regieKapitel(nr: number): RegieEintrag | null {
 
 export function glossar(id: string): GlossarEintrag | null {
   return inhalte.glossar[id] ?? null;
-}
-
-export function theorieSeite(kapitel: number): TheorieSeite | null {
-  return inhalte.theorie[`k${String(kapitel).padStart(2, '0')}`] ?? null;
 }

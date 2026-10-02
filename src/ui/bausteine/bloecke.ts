@@ -62,7 +62,7 @@ export function tafel(b: Block, stufe: TitelStufe = 'h4'): HTMLElement | null {
   const kopf = Array.isArray(t['kopf']) ? t['kopf'].map(String) : [];
   const h0 = b.kopf['hervor'];
   const hervor = Array.isArray(h0) ? h0.map(Number) : [];
-  return mitEinleitung(b, tafelGrafik({ form, absatz: b.id, quelle: '', kopf, zeilen, erlebt: {}, namen: {}, hervor, stufe }, []));
+  return mitEinleitung(b, tafelGrafik({ form, absatz: b.id, quelle: '', kopf, zeilen, hervor, stufe }));
 }
 
 /** Einleitungstext eines Blocks (falls vorhanden) über seiner Grafik. */

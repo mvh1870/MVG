@@ -275,8 +275,8 @@ a.glossar-ort:hover { text-decoration: underline; }
   /* Karten- und Registertafeln: lange Wörter umbrechen statt über den Satzspiegel hinauszulaufen */
   /* R42: höchstens drei Karten nebeneinander (≥ 210 px) – bei 160 px brachen Wörter wie „Entscheidungsregister“ mitten
      im Wort; umbrochen wird nur noch, was allein nicht in die Zeile passt */
-  .druck-bogen .tafel-karten > *, .druck-bogen .tafel-register > *, .druck-bogen .lernkarte { min-width: 0; overflow-wrap: break-word; hyphens: auto; }
-  .druck-bogen .tafel-karten, .druck-bogen .tafel-register { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
+  .druck-bogen .tafel-karten > *, .druck-bogen .lernkarte { min-width: 0; overflow-wrap: break-word; hyphens: auto; }
+  .druck-bogen .tafel-karten { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
   /* R43: Tafeltitel im Druck 11 pt – in 13,5 pt passten lange Titelwörter nicht in eine Karte */
   .druck-bogen .tafel-titel { font-size: 11pt; }
   .druck-bogen .lernseite { min-height: 0; background: none; }
@@ -287,7 +287,7 @@ a.glossar-ort:hover { text-decoration: underline; }
   /* R41: der Kopf eines Lernwerkzeugs (Titel als letztes Kind eines Rasters) und aufgelöste Karten bleiben beim Folgenden */
   .druck-bogen :is(.lw-kopf, .lw-titel) { break-after: avoid; break-inside: avoid; }
   .druck-bogen .lernwerkzeug { display: block; }
-  .druck-bogen :is(.lw-aufgeloest-liste > li, .lernwerkzeug li, .tafel-karte, .feld-karte, .register-karte, .baustein-karte, .schwelle-karte, .diagnose-zeile) { break-inside: avoid; }
+  .druck-bogen :is(.lw-aufgeloest-liste > li, .lernwerkzeug li, .tafel-karte, .feld-karte, .baustein-karte, .schwelle-karte) { break-inside: avoid; }
   /* R42: eine Tafel darf zwischen ihren Karten umbrechen – ganz verschoben ließ sie fast leere Seiten zurück (k5, k7);
      die Quellzeile bleibt bei der letzten Karte */
   .druck-bogen figure.tafel { break-inside: auto; }

@@ -126,11 +126,6 @@ export function ersetze(el: Element, ...kinder: Kind[]): void {
   haengeAn(el, kinder);
 }
 
-/** Text ohne Tags aus vertrauenswürdigem HTML (für aria-Beschriftungen). */
-export function textAus(html: string): string {
-  return (vonHtml(html).textContent ?? '').replace(/\s+/g, ' ').trim();
-}
-
 /** Setzt oder entfernt ein Attribut, nur wenn es sich ändert (spart Stil-Neuberechnungen). */
 export function attr(el: Element, name: string, wert: AttributWert): void {
   if (wert === false || wert === null || wert === undefined) {

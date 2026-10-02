@@ -69,9 +69,3 @@ const STATUS_FORMEN: Readonly<Record<StatusStufe, string>> = {
 export function statusSymbol(stufe: StatusStufe): string {
   return `<svg class="status-symbol" data-status="${stufe}" viewBox="0 0 16 16" aria-hidden="true" focusable="false">${STATUS_FORMEN[stufe]}</svg>`;
 }
-
-/** Trendpfeil für Instrumente (gefüllt, Farbe über .trend[data-trend]). */
-export function trendPfeil(richtung: 'hoch' | 'runter'): string {
-  const d = richtung === 'hoch' ? 'M8 2l6 9H2z' : 'M8 14L2 5h12z';
-  return `<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="${d}"/></svg>`;
-}

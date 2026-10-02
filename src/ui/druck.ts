@@ -113,23 +113,6 @@ function setzeTrennstellen(el: Element): () => void {
   return () => { for (const [t, vorher] of alt) t.textContent = vorher; };
 }
 
-/**
- * R44: Seiten ohne Druckbogen (Hilfe) – beim Drucken bekommen die Elemente unter `selektor` Trennstellen,
- * danach steht wieder der Originaltext (Suche, Kopieren am Bildschirm unverändert).
- */
-let druckTrennung: string[] | null = null;
-export function trennstellenImDruck(selektor: string): void {
-  if (druckTrennung !== null) { if (!druckTrennung.includes(selektor)) druckTrennung.push(selektor); return; }
-  druckTrennung = [selektor];
-  let zurueck: (() => void)[] = [];
-  window.addEventListener('beforeprint', () => {
-    for (const z of zurueck.reverse()) z();
-    zurueck = [...document.querySelectorAll((druckTrennung ?? []).join(', '))].map(setzeTrennstellen);
-  });
-  // verschachtelte Elemente (li > p): in umgekehrter Reihenfolge zurück, sonst bliebe ein Zwischenstand stehen
-  window.addEventListener('afterprint', () => { for (const z of zurueck.reverse()) z(); zurueck = []; });
-}
-
 /** Baut den Bogen (Details offen, IDs eindeutig) und hängt ihn unsichtbar an `body`. */
 function haengeBogenAn(teile: Node[]): HTMLElement {
   for (const alt of document.querySelectorAll('.druck-bogen')) alt.remove();

@@ -326,7 +326,7 @@ test('Regie: Notiz und Leitfragen, Kundenwahl, „weiter“ sendet den öffentli
   r.entferne();
 });
 
-test('Tafeln (P4, L-32): Radar schneidet „erlebt“ mit der eigenen Spur; Schwellen-Spiel prüft gegen die Spalte der Tabelle', async () => {
+test('Tafeln (P4, L-32): Schwellen-Spiel prüft gegen die Spalte der Tabelle', async () => {
   const { tafel } = await import('../src/grafik/tafel.ts');
   const wp = JSON.parse(readFileSync(join(WURZEL, 'quellen/whitepaper/v1.2/whitepaper.json'), 'utf8')) as unknown;
   const finde = (o: unknown, id: string): { kopf: string[]; zeilen: string[][] } | null => {
@@ -335,17 +335,12 @@ test('Tafeln (P4, L-32): Radar schneidet „erlebt“ mit der eigenen Spur; Schw
     for (const v of Object.values(o)) { const f = finde(v, id); if (f !== null) return f; }
     return null;
   };
-  const sym = finde(wp, 'k2.5-t1');
-  assert.ok(sym);
-  // Express-Spur A3, A6: nur Symptome dieser beiden Stationen gelten als erlebt
-  const radar = tafel({ form: 'radar', absatz: 'k2.5-t1', quelle: 'Q', kopf: sym.kopf, zeilen: sym.zeilen, erlebt: { 1: ['A1', 'A2'], 4: ['A3', 'A4'], 7: ['A6'] } }, ['prolog', 'A3', 'A6']);
-  assert.deepEqual([...radar.querySelectorAll('.radar-knopf.ist-erlebt')].map((b) => b.getAttribute('data-pruef')), ['symptom-4', 'symptom-7']);
   // Schwelle: Spalte 0 = delegierbar, Spalte 1 = nicht delegierbar
   const t = finde(wp, 'k3.2-t1');
   assert.ok(t);
   const spalte = new Map<string, number>();
   for (const z of t.zeilen) z.forEach((zelle, i) => { if (zelle !== '') spalte.set(zelle, i); });
-  const el = tafel({ form: 'schwelle', absatz: 'k3.2-t1', quelle: 'Q', kopf: t.kopf, zeilen: t.zeilen, erlebt: {} });
+  const el = tafel({ form: 'schwelle', absatz: 'k3.2-t1', quelle: 'Q', kopf: t.kopf, zeilen: t.zeilen });
   const karten = [...el.querySelectorAll<HTMLElement>('.schwelle-karte')];
   assert.equal(karten.length, spalte.size);
   const folge = karten.map((k) => spalte.get(k.querySelector('p')?.textContent ?? ''));
@@ -361,33 +356,29 @@ test('Tafeln (P4, L-32): Radar schneidet „erlebt“ mit der eigenen Spur; Schw
   assert.match(el.querySelector('[data-pruef="schwelle-stand"]')?.textContent ?? '', new RegExp(`^${spalte.size} von ${spalte.size} richtig`, 'u'));
 });
 
-test('Tafel-Formen (P5.1): Phase hervorgehoben und vorgewählt, Register als Karten', async () => {
+test('Tafel-Formen (P5.1): Phase hervorgehoben und vorgewählt', async () => {
   const { tafel } = await import('../src/grafik/tafel.ts');
   const kopf = ['LPH', 'Leistungsphase', 'Freigabefrage'];
   const zeilen = [['LPH 4', 'Genehmigungsplanung', 'Frage 4?'], ['LPH 5', 'Ausführungsplanung', 'Frage 5?']];
-  const ph = tafel({ form: 'phasen', absatz: 'k9.3-t1', quelle: 'Q', kopf, zeilen, erlebt: {}, hervor: [2] });
+  const ph = tafel({ form: 'phasen', absatz: 'k9.3-t1', quelle: 'Q', kopf, zeilen, hervor: [2] });
   assert.equal(ph.querySelector('[aria-pressed="true"]')?.getAttribute('data-pruef'), 'phase-2');
   assert.match(ph.querySelector('.tafel-auswahl')?.textContent ?? '', /Frage 5\?/u);
-  const rg = tafel({ form: 'register', absatz: 'k6.4.4-t1', quelle: 'Q', kopf: ['Register', 'Bedeutung', 'Nächster Schritt'], zeilen: [['Frühwarnung', 'unbewertetes Signal', 'bestätigen']], erlebt: {} });
-  assert.equal(rg.querySelectorAll('.register-karte').length, 1);
-  const rh = tafel({ form: 'register', absatz: 'k6.4.4-t1', quelle: 'Q', kopf: ['Register', 'Bedeutung', 'Nächster Schritt'], zeilen: [['A', 'a', 'x'], ['B', 'b', 'y']], erlebt: {}, hervor: [2] });
-  assert.deepEqual([...rh.querySelectorAll('.register-karte.ist-hervor')].map((k) => k.getAttribute('data-pruef')), ['register-2']);
 });
 
 test('Tafeln (T9): Phasen-Wahl wandert, Screenreader-Hinweis am hervorgehobenen Knopf; Rhythmus, Zeitachse, Karten', async () => {
   const { tafel } = await import('../src/grafik/tafel.ts');
   const kopf = ['LPH', 'Leistungsphase', 'Freigabefrage'];
   const zeilen = [['LPH 4', 'Genehmigungsplanung', 'Frage 4?'], ['LPH 5', 'Ausführungsplanung', 'Frage 5?']];
-  const ph = tafel({ form: 'phasen', absatz: 'k9.3-t1', quelle: 'Q', kopf, zeilen, erlebt: {}, hervor: [2] });
+  const ph = tafel({ form: 'phasen', absatz: 'k9.3-t1', quelle: 'Q', kopf, zeilen, hervor: [2] });
   assert.match(ph.querySelector('[data-pruef="phase-2"] .nur-sr')?.textContent ?? '', /hier steht der Fall/u);
   assert.equal(ph.querySelector('[data-pruef="phase-1"] .nur-sr'), null);
   ph.querySelector<HTMLElement>('[data-pruef="phase-1"]')?.click();
   assert.equal(ph.querySelector('[aria-pressed="true"]')?.getAttribute('data-pruef'), 'phase-1');
   assert.match(ph.querySelector('.tafel-auswahl')?.textContent ?? '', /Frage 4\?/u);
-  const rh = tafel({ form: 'rhythmus', absatz: 'k6.4.5-t1', quelle: 'Q', kopf: ['Rhythmus', 'Beteiligte', 'Fokus'], zeilen: [['täglich', 'PMO', 'Fristen'], ['wöchentlich', 'PS', 'Risiken']], erlebt: {}, hervor: [2] });
+  const rh = tafel({ form: 'rhythmus', absatz: 'k6.4.5-t1', quelle: 'Q', kopf: ['Rhythmus', 'Beteiligte', 'Fokus'], zeilen: [['täglich', 'PMO', 'Fristen'], ['wöchentlich', 'PS', 'Risiken']], hervor: [2] });
   assert.equal(rh.querySelector('[aria-pressed="true"]')?.getAttribute('data-pruef'), 'rhythmus-2');
   assert.match(rh.querySelector('.tafel-auswahl')?.textContent ?? '', /Risiken/u);
-  const za = tafel({ form: 'zeitachse', absatz: 'k8.2-t1', quelle: 'Q', kopf: ['Zeitraum', 'Fokus'], zeilen: [['0–30 Tage', 'Diagnose'], ['31–60 Tage', 'Konzeption'], ['61–90 Tage', 'Anwendung']], erlebt: {} });
+  const za = tafel({ form: 'zeitachse', absatz: 'k8.2-t1', quelle: 'Q', kopf: ['Zeitraum', 'Fokus'], zeilen: [['0–30 Tage', 'Diagnose'], ['31–60 Tage', 'Konzeption'], ['61–90 Tage', 'Anwendung']] });
   const regler = za.querySelector<HTMLInputElement>('[data-pruef="zeitachse-regler"]');
   assert.equal(regler?.max, '90');
   assert.equal(za.querySelector('[aria-pressed="true"]')?.getAttribute('data-pruef'), 'zeitachse-1');
@@ -397,7 +388,7 @@ test('Tafeln (T9): Phasen-Wahl wandert, Screenreader-Hinweis am hervorgehobenen 
   assert.equal(regler?.getAttribute('aria-valuetext'), 'Tag 45 · 31–60 Tage');
   za.querySelector<HTMLElement>('[data-pruef="zeitachse-3"]')?.click();
   assert.equal(regler?.value, '61');
-  const ka = tafel({ form: 'karten', absatz: 'k6.4.2-t1', quelle: 'Q', kopf: ['Gruppe', 'Rolle', 'Turnus'], zeilen: [['Register', 'PL', 'laufend']], erlebt: {} });
+  const ka = tafel({ form: 'karten', absatz: 'k6.4.2-t1', quelle: 'Q', kopf: ['Gruppe', 'Rolle', 'Turnus'], zeilen: [['Register', 'PL', 'laufend']] });
   assert.equal(ka.querySelectorAll('.tafel-karte').length, 1);
   assert.match(ka.querySelector('.tafel-karte')?.textContent ?? '', /Rolle.*PL.*Turnus.*laufend/u);
 });

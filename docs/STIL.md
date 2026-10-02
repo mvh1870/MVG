@@ -70,7 +70,7 @@ Alle Werte stehen in `src/stil/tokens.css` (Quelle je Wert im Kommentar). Kompon
 | Status (BM-Ampel; nur für Status, O-11) | `--status-rot` #9A3030 · `--status-rot-soft` #F1D8D8 · `--status-gelb-soft` #F3E9C8 · `--status-gelb-text` #7F620F · `--status-gelb-symbol` #A47E1E · `--status-gruen` #3A7A43 · `--status-gruen-soft` #DFEADF · `--status-gruen-text` #2B5C33 · `--status-neutral` #5A6B82 · `--status-neutral-soft` #E8EDF6 · `--status-gelb-kante` #D9C27A · `--status-gruen-kante` #A9C8AD |
 | Gold-Flächen | `--gold-soft` #FFF7E3 · `--gold-soft-kante` #E8CF97 |
 | ID-Marken (Kürzel der Vorgangsarten, O-15) | `--id-ent-grund` #E8EDF6 · `--id-ent-text` #1D3258 · `--id-ris-grund` #E6F5F4 · `--id-ris-text` #0B7A77 · `--id-frw-grund` #FFF3C4 · `--id-frw-text` #6A5208 · `--id-aen-grund` #FFF7E3 · `--id-aen-text` #7A5C22 · `--id-mas-grund` #EAF5EE · `--id-mas-text` #1D5B33 · `--id-nac-grund` #EDEAF4 · `--id-nac-text` #5B3F93 · `--id-prb-grund` #FDEBE5 · `--id-prb-text` #8A2E12 |
-| Transparente Töne | `--gold-hell-a18` rgba(198, 157, 82, .18) · `--gold-hell-a28` rgba(198, 157, 82, .28) · `--gold-hell-a45` rgba(198, 157, 82, .45) · `--gold-hell-a60` rgba(198, 157, 82, .6) · `--koralle-a25` rgba(228, 87, 46, .25) · `--navy-a42` rgba(12, 28, 51, .42) · `--weiss-a85` rgba(255, 255, 255, .85) |
+| Transparente Töne | `--gold-hell-a18` rgba(198, 157, 82, .18) · `--gold-hell-a28` rgba(198, 157, 82, .28) · `--gold-hell-a45` rgba(198, 157, 82, .45) · `--gold-hell-a60` rgba(198, 157, 82, .6) · `--navy-a42` rgba(12, 28, 51, .42) · `--weiss-a85` rgba(255, 255, 255, .85) |
 | Fokus | `--fokus` #0C1C33 · `--fokus-hof` rgba(198, 157, 82, .6) |
 
 **Semantik über Attribute** (in `basis.css`), damit Komponenten keine Farben kennen müssen:
@@ -224,7 +224,7 @@ Klassennamen deutsch. Zustände über `ist-…`-Klassen oder ARIA (`aria-current
 `span.begriff[role=button]` im Fließtext (gepunktete Unterstreichung, `cursor: help`), Tooltip `div.tipp[role=tooltip] > b + Text + small` (fest positioniert, erscheint bei Maus **und** Tastaturfokus, bleibt offen, solange der Zeiger auf Begriff oder Tooltip steht). In `tafeln.css`, Verhalten in `src/ui/bausteine/tooltip.ts`.
 
 ### Tafeln
-`figure.tafel[data-form]` aus `src/grafik/tafel.ts` mit gemeinsamen Teilen `.tafel-titel`, `.tafel-auswahl`, `.tafel-detail`, `.tafel-einleitung`; Formen u. a. Radar, Wirkungsketten, Mandatsschwelle, Pyramide, Verantwortungsfelder, Bausteine, Phasen und Rhythmus, Register und Karten, Zeitachse. In `tafeln.css`.
+`figure.tafel[data-form]` aus `src/grafik/tafel.ts` mit gemeinsamen Teilen `.tafel-titel`, `.tafel-auswahl`, `.tafel-detail`, `.tafel-einleitung`; Formen: Wirkungsketten, Mandatsschwelle, Pyramide, Verantwortungsfelder, Bausteine, Phasen und Rhythmus, Karten, Zeitachse. In `tafeln.css`.
 
 ### Startseite
 ```html

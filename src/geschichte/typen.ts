@@ -29,7 +29,6 @@ export interface Bedingt {
 }
 
 export type Vorgangsart = 'aufgabe' | 'massnahme' | 'fruehwarnung' | 'risiko' | 'problem' | 'aenderung';
-export const VORGANGSARTEN: readonly Vorgangsart[] = ['aufgabe', 'massnahme', 'fruehwarnung', 'risiko', 'problem', 'aenderung'];
 
 export interface Vorgang {
   art: Vorgangsart;

@@ -2,27 +2,24 @@
  * Grafik-Baukasten: Whitepaper-Tabellen als klickbare Grafiken (P4, L-32).
  *
  * Eine `::: tafel <Tabellen-ID>` holt die Tabelle zur Bauzeit wörtlich aus whitepaper.json (Kopf und
- * Zeilen); diese Datei zeichnet sie in einer von sechs Formen. Alle Texte sind Tabellenzellen – die
+ * Zeilen); diese Datei zeichnet sie in einer von neun Formen. Alle Texte sind Tabellenzellen – die
  * Grafik ordnet sie nur an und fügt keine Aussage hinzu. Eigene Wörter sind Bedienung (WORT).
  *
- * - radar     Symptom-Radar (Kap. 2.5): acht Achsen, erlebte Symptome aus der eigenen Spur markiert
  * - ketten    „Was passiert, wenn …?“: Muster → Konsequenz → MVG-Reaktion je Auslöser (Kap. 2.5)
  * - schwelle  Mandatsschwellen-Spiel: Aufgaben delegierbar / nicht delegierbar zuordnen (Kap. 3.2)
  * - pyramide  Verantwortungspyramide (Kap. 3.3), Ebenen klickbar
  * - felder    Verantwortungsfelder: Chaos (typische Fehlstelle) → Ordnung (MVG-Antwort) (Kap. 4)
  * - bausteine Die MVG-Bausteine setzen sich zusammen (Kap. 5.2)
  * - phasen    LPH-0–9-Freigabemodell (Kap. 9.3): Phasen als Leiste, Auswahl zeigt die Freigabefrage
- * - register   Register-Karten (Kap. 6.4.4): Bedeutung → nächster Schritt
  * - rhythmus  Governance-Rhythmus (Kap. 6.4.5): vom täglichen bis zum seltenen Termin
  * - karten    allgemeine Karten: erste Spalte als Titel, die übrigen als Angaben (z. B. Kap. 6.4.2)
  * - zeitachse schiebbare Zeitachse (Kap. 8.2, 30/60/90): der Regler wählt den Tag, die Tafel zeigt den Zeitraum
- * - diagnose  qualitative Selbstdiagnose (Epilog, O-8): je Zeile „zeigt sich / teilweise / nicht“, Profil in Worten, keine Punktzahl
  */
 
-import { h, s, attr, ersetze, elementAus, mitTrennstellen } from '../ui/h.ts';
+import { h, attr, ersetze, elementAus } from '../ui/h.ts';
 import { symbol } from '../stil/symbole.ts';
 
-export const TAFEL_FORMEN = ['radar', 'ketten', 'schwelle', 'pyramide', 'felder', 'bausteine', 'phasen', 'register', 'rhythmus', 'karten', 'zeitachse', 'diagnose'] as const;
+export const TAFEL_FORMEN = ['ketten', 'schwelle', 'pyramide', 'felder', 'bausteine', 'phasen', 'rhythmus', 'karten', 'zeitachse'] as const;
 export type TafelForm = (typeof TAFEL_FORMEN)[number];
 
 export function istTafelForm(x: string): x is TafelForm {
@@ -39,10 +36,6 @@ export interface TafelDaten {
   quelle: string;
   kopf: string[];
   zeilen: string[][];
-  /** Zeilennummer (1-basiert) → Stationen, in denen das Muster erlebt wurde (nur `radar`) */
-  erlebt: Record<string, string[]>;
-  /** Station → Kurztitel, für „erlebt in …“ (sonst die Kennung) */
-  namen?: Record<string, string>;
   /** hervorgehobene Zeilen (1-basiert), z. B. die aktuelle LPH */
   hervor?: number[];
   /** Überschriftenstufe der Tafeltitel (Gliederung der umgebenden Seite; Standard h4) */
@@ -50,10 +43,6 @@ export interface TafelDaten {
 }
 
 export const WORT = {
-  erlebtIn: 'erlebt in',
-  ihreSpur: 'auf Ihrer Spur',
-  nichtErlebt: 'auf Ihrer Spur nicht erlebt',
-  waehlen: 'Wählen Sie ein Symptom.',
   wennPassiert: 'Was passiert, wenn …',
   wenn: 'Wenn',
   dann: 'dann',
@@ -63,21 +52,12 @@ export const WORT = {
   stand: (r: number, n: number, g: number) => `${r} von ${g} richtig · ${n} zugeordnet`,
   aufloesen: 'Alle zeigen',
   grenze: 'Grenze',
-  legende: 'Ausschlag: Stationen Ihrer Spur mit diesem Symptom (bis drei)',
   ansicht: (w: string, spalte: string) => `Ansicht: ${w} – ${spalte}`,
   hier: 'hier steht der Fall',
-  imFall: 'kommt hier vor',
   chaos: 'Chaos',
   ordnung: 'Ordnung',
   mehr: 'Mehr zum Feld',
   tag: (n: number) => `Tag ${n}`,
-  antworten: ['zeigt sich', 'teilweise', 'nicht'] as const,
-  profil: 'Ihr Profil in Worten',
-  profilLeer: 'Wählen Sie bei jeder Zeile, ob sich das Muster bei Ihnen zeigt. Es gibt keine Punkte.',
-  deutlich: 'Zeigt sich bei Ihnen',
-  teils: 'Zeigt sich teilweise',
-  dazu: 'Dazu nennt MVG',
-  keineWahl: 'keine Markierung',
   schieben: 'Tag wählen',
 } as const;
 
@@ -96,46 +76,8 @@ export function mische<T>(a: readonly T[], b: readonly T[]): T[] {
   return aus;
 }
 
-
 function detailListe(kopf: readonly string[], zeile: readonly string[], ab: number): HTMLElement {
   return h('dl', { class: 'tafel-detail' }, kopf.slice(ab).map((k, i) => h('div', null, h('dt', null, k), h('dd', null, zeile[ab + i] ?? ''))));
-}
-
-/** Symptom-Radar: SVG mit acht Achsen, daneben die Symptome als Knöpfe; Auswahl zeigt die Zeile. */
-function radar(d: TafelDaten, besucht: readonly string[]): HTMLElement {
-  const n = d.zeilen.length;
-  const r = 118;
-  const mitte = 150;
-  const punkt = (i: number, f: number): [number, number] => {
-    const w = (Math.PI * 2 * i) / n - Math.PI / 2;
-    return [mitte + Math.cos(w) * r * f, mitte + Math.sin(w) * r * f];
-  };
-  const eigene = d.zeilen.map((_, i) => (d.erlebt[String(i + 1)] ?? []).filter((st) => besucht.includes(st)).map((st) => d.namen?.[st] ?? st));
-  const wert = (i: number): number => Math.min(3, eigene[i]?.length ?? 0) / 3;
-  const ringe = [1 / 3, 2 / 3, 1].map((f) => s('polygon', { class: 'radar-ring', points: d.zeilen.map((_, i) => punkt(i, f).join(',')).join(' ') }));
-  const achsen = d.zeilen.map((_, i) => s('line', { class: 'radar-achse', x1: mitte, y1: mitte, x2: punkt(i, 1)[0], y2: punkt(i, 1)[1] }));
-  const flaeche = s('polygon', { class: 'radar-flaeche', points: d.zeilen.map((_, i) => punkt(i, Math.max(0.06, wert(i))).join(',')).join(' ') });
-  const nummern = d.zeilen.map((_, i) => {
-    const [x, y] = punkt(i, 1.13);
-    return s('text', { class: 'radar-nr', x, y, 'text-anchor': 'middle', 'dominant-baseline': 'central', 'data-nr': i + 1 }, String(i + 1));
-  });
-  const svg = s('svg', { class: 'radar-bild', viewBox: '0 0 300 300', 'aria-hidden': 'true', focusable: 'false' }, ringe, achsen, flaeche, nummern);
-  const detail = h('div', { class: 'tafel-auswahl', 'aria-live': 'polite' }, h('p', { class: 'tafel-hinweis' }, WORT.waehlen));
-  const knoepfe = d.zeilen.map((z, i) => {
-    const e = eigene[i] ?? [];
-    return h('button', {
-      type: 'button', class: `radar-knopf${e.length > 0 ? ' ist-erlebt' : ''}`, 'aria-pressed': 'false', 'data-pruef': `symptom-${i + 1}`,
-      onclick: () => waehle(i),
-    }, h('i', null, String(i + 1)), h('span', null, h('b', null, mitTrennstellen(z[0] ?? '')), h('small', null, e.length > 0 ? `${WORT.erlebtIn} ${e.join(', ')}` : WORT.nichtErlebt)));
-  });
-  const waehle = (i: number): void => {
-    knoepfe.forEach((b, j) => attr(b, 'aria-pressed', i === j ? 'true' : 'false'));
-    for (const t of svg.querySelectorAll('.radar-nr')) t.classList.toggle('ist-gewaehlt', t.getAttribute('data-nr') === String(i + 1));
-    const z = d.zeilen[i] ?? [];
-    const e = eigene[i] ?? [];
-    ersetze(detail, h(d.stufe ?? 'h4', { class: 'tafel-titel' }, titelMitUmbruch(z[0] ?? '')), e.length > 0 ? h('p', { class: 'tafel-spur' }, elementAus(symbol('haken')), `${WORT.ihreSpur}: ${e.join(', ')}`) : null, detailListe(d.kopf, z, 1));
-  };
-  return h('div', { class: 'tafel-radar' }, h('div', { class: 'radar-links' }, svg, h('p', { class: 'radar-legende' }, WORT.legende)), h('div', { class: 'radar-rechts' }, h('div', { class: 'radar-liste', role: 'group', 'aria-label': d.kopf[0] ?? '' }, knoepfe), detail));
 }
 
 /** „Was passiert, wenn …?“: Auslöser wählen, die Kette baut sich auf. */
@@ -278,16 +220,6 @@ function rhythmus(d: TafelDaten): HTMLElement {
   return leisteMitDetail(d, 'rhythmus', (z) => [h('b', null, z[0] ?? '')], 1);
 }
 
-/** Register-Karten: Name, Bedeutung, Pfeil, nächster Schritt. */
-function register(d: TafelDaten): HTMLElement {
-  const hervor = d.hervor ?? [];
-  return h('ol', { class: 'tafel-register' }, d.zeilen.map((z, i) => h('li', { class: `register-karte${hervor.includes(i + 1) ? ' ist-hervor' : ''}`, style: `--i:${i}`, 'data-pruef': `register-${i + 1}` },
-    h('b', { class: 'register-name' }, z[0] ?? ''),
-    hervor.includes(i + 1) ? h('span', { class: 'register-marke' }, elementAus(symbol('haken')), WORT.imFall) : null,
-    h('p', null, h('span', { class: 't-label' }, d.kopf[1] ?? ''), h('span', null, z[1] ?? '')),
-    h('p', { class: 'register-weiter' }, h('span', { class: 't-label' }, d.kopf[2] ?? ''), h('span', null, z[2] ?? '')))));
-}
-
 /**
  * Tafeltitel dürfen nach „/“ umbrechen: „Risiko-/Änderungs-/Maßnahmenverknüpfung“ bliebe sonst ein
  * einziges Wort und schöbe die Karte bei 400 px im Beamer-Zoom über den Rand (P12.5 R12).
@@ -335,47 +267,11 @@ function zeitachse(d: TafelDaten): HTMLElement {
 }
 
 /**
- * Qualitative Selbstdiagnose (O-8): erste Spalte = Muster, letzte Spalte = Antwort des Whitepapers.
- * Keine Punktzahl, keine Summe: das Profil nennt nur die Muster in Worten und die Zellen dazu.
- */
-function diagnose(d: TafelDaten): HTMLElement {
-  const wahl = new Map<number, number>();
-  const profil = h('div', { class: 'diagnose-profil', 'data-pruef': 'diagnose-profil' });
-  // kurze Rückmeldung je Markierung statt des ganzen, wachsenden Profils (Screenreader)
-  const meldung = h('p', { class: 'nur-sr', 'aria-live': 'polite', 'data-pruef': 'diagnose-meldung' });
-  const letzte = d.kopf.length - 1;
-  const zeichne = (): void => {
-    const gruppe = (a: number): string[][] => d.zeilen.filter((_, i) => wahl.get(i) === a);
-    const teil = (titel: string, zeilen: string[][]): HTMLElement | null => zeilen.length === 0 ? null : h('section', null, h(d.stufe ?? 'h4', { class: 'tafel-titel' }, titel),
-      h('dl', { class: 'tafel-detail' }, zeilen.map((z) => h('div', null, h('dt', null, z[0] ?? ''), h('dd', null, h('span', { class: 't-label' }, `${WORT.dazu} (${d.kopf[letzte] ?? ''}): `), z[letzte] ?? '')))));
-    const a = teil(WORT.deutlich, gruppe(0));
-    const b = teil(WORT.teils, gruppe(1));
-    ersetze(profil, h('p', { class: 't-label' }, WORT.profil), a === null && b === null ? h('p', null, WORT.profilLeer) : null, a, b);
-  };
-  const zeilen = d.zeilen.map((z, i) => {
-    const knoepfe = WORT.antworten.map((w, a) => h('button', {
-      type: 'button', class: 'diagnose-knopf', 'aria-pressed': 'false', 'data-pruef': `diagnose-${i + 1}-${a}`,
-      onclick: () => {
-        if (wahl.get(i) === a) wahl.delete(i); else wahl.set(i, a);
-        knoepfe.forEach((k, j) => attr(k, 'aria-pressed', wahl.get(i) === j ? 'true' : 'false'));
-        const jetzt = wahl.get(i);
-        meldung.textContent = `${z[0] ?? ''}: ${jetzt !== undefined ? WORT.antworten[jetzt] ?? '' : WORT.keineWahl}`;
-        zeichne();
-      },
-    }, w));
-    return h('li', { class: 'diagnose-zeile' }, h('span', { class: 'diagnose-muster' }, z[0] ?? ''),
-      h('span', { class: 'diagnose-wahl', role: 'group', 'aria-label': z[0] ?? '' }, knoepfe));
-  });
-  zeichne();
-  return h('div', { class: 'tafel-diagnose' }, h('ol', { class: 'diagnose-liste' }, zeilen), meldung, profil);
-}
-
-/**
  * R48: Formen, die immer nur eine gewählte Zeile oder Ansicht zeigen (oder Teile zuklappen). Nicht bedienbar – im
  * Druckbogen und auf der Leinwand – fehlte der Rest (k4-t1: Spalte „MVG-Antwort“, k2.5-t1: sieben von acht Ketten);
  * dort stehen sie aufgelöst als Karten mit allen Spalten (L-68, L-100: aufgelöst statt scheinbar bedienbar).
  */
-const MIT_AUSWAHL: ReadonlySet<TafelForm> = new Set<TafelForm>(['radar', 'ketten', 'pyramide', 'felder', 'bausteine', 'phasen', 'rhythmus', 'zeitachse']);
+const MIT_AUSWAHL: ReadonlySet<TafelForm> = new Set<TafelForm>(['ketten', 'pyramide', 'felder', 'bausteine', 'phasen', 'rhythmus', 'zeitachse']);
 let aufgeloest = false;
 /** Beim Bau einer nicht bedienbaren Lernseite (Leinwand, Druck, Regie-Vorschau) setzen, danach zurücksetzen. */
 export function tafelnAufgeloest(ja: boolean): void {
@@ -390,23 +286,20 @@ function aufgeloesteKarten(d: TafelDaten): HTMLElement {
     h(d.stufe ?? 'h4', { class: 'tafel-titel' }, titelMitUmbruch(z.slice(0, ab).join(' · '))), detailListe(d.kopf, z, ab))));
 }
 
-/** Zeichnet eine Tafel; `besucht` = Stationen der eigenen Spur (für das Radar). */
-export function tafel(d: TafelDaten, besucht: readonly string[] = []): HTMLElement {
+/** Zeichnet eine Tafel. */
+export function tafel(d: TafelDaten): HTMLElement {
   let bild: HTMLElement;
   if (aufgeloest && MIT_AUSWAHL.has(d.form)) return h('figure', { class: 'tafel', 'data-form': d.form, 'data-absatz': d.absatz, 'data-pruef': `tafel-${d.form}` }, aufgeloesteKarten(d));
   switch (d.form) {
-    case 'radar': bild = radar(d, besucht); break;
     case 'ketten': bild = ketten(d); break;
     case 'schwelle': bild = schwelle(d); break;
     case 'pyramide': bild = pyramide(d); break;
     case 'felder': bild = felder(d); break;
     case 'bausteine': bild = bausteine(d); break;
     case 'phasen': bild = phasen(d); break;
-    case 'register': bild = register(d); break;
     case 'rhythmus': bild = rhythmus(d); break;
     case 'karten': bild = karten(d); break;
     case 'zeitachse': bild = zeitachse(d); break;
-    case 'diagnose': bild = diagnose(d); break;
   }
   return h('figure', { class: 'tafel', 'data-form': d.form, 'data-absatz': d.absatz, 'data-pruef': `tafel-${d.form}` }, bild);
 }

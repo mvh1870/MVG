@@ -46,7 +46,7 @@ const BLOCK_ID = /^k\d+(?:\.\d+)*-[pltb]\d+$/u;
 const ABSCHNITT_ID = /^k\d+(?:\.\d+)*$/u;
 const FARBE = /^#[0-9A-Fa-f]{6}$/u;
 
-const TAFEL_FORMEN = ['radar', 'ketten', 'schwelle', 'pyramide', 'felder', 'bausteine', 'phasen', 'register', 'rhythmus', 'karten', 'zeitachse', 'diagnose'];
+const TAFEL_FORMEN = ['ketten', 'schwelle', 'pyramide', 'felder', 'bausteine', 'phasen', 'rhythmus', 'karten', 'zeitachse'];
 
 /* ============================================================== Schema == */
 

@@ -152,7 +152,7 @@ Kopfdaten: `kapitel` (Pflicht, 1–16, passt zum Dateinamen; intern, bestimmt Ab
 | `glossar` | oben | – | – | leer – durchsuchbare Liste aller Glossarbegriffe mit „Kommt vor in“ (Themen mit Glossarbezug, vom Compiler gesammelt; L-47) |
 | `regie` | oben | – | – | `notiz`, `leitfragen` – **nur Regie**, höchstens einer je Thema (Schlüssel `theorie/k<kapitel>`) |
 
-Formen der `tafel`: `radar` · `ketten` (mindestens vier Spalten) · `schwelle` (genau zwei Spalten) · `pyramide` · `felder` (mindestens fünf Spalten) · `bausteine` · `phasen` · `register` · `rhythmus` · `karten` · `zeitachse` (Regler über die Zeiträume der ersten Spalte) · `diagnose` (qualitative Selbstdiagnose ohne Punktzahl, O-8). `hervor` nennt Zeilen, die hervorgehoben bzw. vorgewählt sind.
+Formen der `tafel`: `ketten` (mindestens vier Spalten) · `schwelle` (genau zwei Spalten) · `pyramide` · `felder` (mindestens fünf Spalten) · `bausteine` · `phasen` · `rhythmus` · `karten` · `zeitachse` (Regler über die Zeiträume der ersten Spalte). `hervor` nennt Zeilen, die hervorgehoben bzw. vorgewählt sind.
 
 Darstellung: Tafeln, Merksätze und Hinweise stehen auch auf Seitenebene zwischen den Abschnitten. Etappen, Umschalter, Sortieren und Regler zeichnet `src/ui/bausteine/lernwerkzeuge.ts`; auf der Leinwand und im Druck zeigen sie ihren ganzen Inhalt aufgelöst.
 

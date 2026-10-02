@@ -13,14 +13,13 @@ import { tafelnAufgeloest, type TitelStufe } from '../../grafik/tafel.ts';
 import { grundriss } from '../../grafik/bauplan.ts';
 import type { Block, Ebene, OeffentlicheInhalte, TheorieSeite } from '../../inhalte/typen.ts';
 import { h, ersetze, laengstesWort, mitTrennstellen, umbruchNachSchraegstrich, vonHtml } from '../h.ts';
-import { sym, symbolAusInhalt, tafel as tafelBlock, raci as raciBlock, merksatz, hinweis } from '../bausteine/bloecke.ts';
+import { sym, symbolAusInhalt, tafel as tafelBlock, merksatz, hinweis } from '../bausteine/bloecke.ts';
 import { inhalt } from '../bausteine/inhalt.ts';
 import { etappen, regler, sortieren, umschalter } from '../bausteine/lernwerkzeuge.ts';
 import { abbildung } from '../bausteine/abbildung.ts';
 import { bmLink, seitenRahmen } from '../bausteine/seite.ts';
 import { kopfText } from '../anzeige.ts';
 import { W } from '../woerter.ts';
-import { governanceFluss, FLUSS_BESCHRIFTUNG, FLUSS_POSITIONEN } from '../../grafik/governance-fluss.ts';
 import { bogenFuerStrgP, bogenKopf, druckeBogen } from '../druck.ts';
 
 const T = W.themen;
@@ -178,13 +177,8 @@ function bloeckeIn(bloecke: readonly Block[], inhalte: OeffentlicheInhalte, stuf
         aus.push(regler(b, stufe, lwBedienbar));
         break;
       case 'tafel': {
-        const t = tafelBlock(b, [], inhalte, stufe);
+        const t = tafelBlock(b, stufe);
         if (t !== null) aus.push(t);
-        break;
-      }
-      case 'raci': {
-        const r = raciBlock(b, inhalte, null, stufe);
-        if (r !== null) aus.push(r);
         break;
       }
       case 'merksatz':
@@ -193,21 +187,11 @@ function bloeckeIn(bloecke: readonly Block[], inhalte: OeffentlicheInhalte, stuf
       case 'wissenscheck':
         aus.push(wissenscheck(b));
         break;
-      case 'governancefluss': {
-        const g = governanceFluss({ position: 'managementbericht', marken: {}, hier: '' });
-        g.setze();
-        g.element.classList.add('ist-uebersicht');
-        g.element.classList.remove('ist-lebendig');
-        for (const li of g.element.querySelectorAll('.ist-hier')) { li.classList.remove('ist-hier'); li.classList.add('ist-passiert'); }
-        g.element.setAttribute('aria-label', W.theorie.flussUebersicht(FLUSS_POSITIONEN.map((p) => FLUSS_BESCHRIFTUNG[p].replace('­', '')).join(' → ')));
-        aus.push(h('figure', { class: 'lern-fluss' }, g.element, b.felder['text'] ? h('figcaption', null, inhalt(b.felder['text'])) : null));
-        break;
-      }
       case 'hinweis':
         aus.push(hinweis(b));
         break;
       case 'abbildung': {
-        const a = inhalte.whitepaper.abbildungen.find((x) => x.id === b.id);
+        const a = inhalte.abbildungen.find((x) => x.id === b.id);
         const f = a !== undefined ? abbildung(a, { bedienbar: lwBedienbar }) : null;
         if (f !== null) aus.push(f);
         break;

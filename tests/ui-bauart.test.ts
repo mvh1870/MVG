@@ -361,9 +361,8 @@ test('Tafeln (P4, L-32): Radar schneidet „erlebt“ mit der eigenen Spur; Schw
   assert.match(el.querySelector('[data-pruef="schwelle-stand"]')?.textContent ?? '', new RegExp(`^${spalte.size} von ${spalte.size} richtig`, 'u'));
 });
 
-test('Tafel-Formen Welt B und RACI (P5.1): Phase hervorgehoben und vorgewählt, Register als Karten, RACI mit eigener Spalte', async () => {
+test('Tafel-Formen (P5.1): Phase hervorgehoben und vorgewählt, Register als Karten', async () => {
   const { tafel } = await import('../src/grafik/tafel.ts');
-  const { raci } = await import('../src/grafik/raci.ts');
   const kopf = ['LPH', 'Leistungsphase', 'Freigabefrage'];
   const zeilen = [['LPH 4', 'Genehmigungsplanung', 'Frage 4?'], ['LPH 5', 'Ausführungsplanung', 'Frage 5?']];
   const ph = tafel({ form: 'phasen', absatz: 'k9.3-t1', quelle: 'Q', kopf, zeilen, erlebt: {}, hervor: [2] });
@@ -373,15 +372,10 @@ test('Tafel-Formen Welt B und RACI (P5.1): Phase hervorgehoben und vorgewählt, 
   assert.equal(rg.querySelectorAll('.register-karte').length, 1);
   const rh = tafel({ form: 'register', absatz: 'k6.4.4-t1', quelle: 'Q', kopf: ['Register', 'Bedeutung', 'Nächster Schritt'], zeilen: [['A', 'a', 'x'], ['B', 'b', 'y']], erlebt: {}, hervor: [2] });
   assert.deepEqual([...rh.querySelectorAll('.register-karte.ist-hervor')].map((k) => k.getAttribute('data-pruef')), ['register-2']);
-  const m = raci({ rollen: [{ id: 'bauherr', titel: 'Bauherr' }, { id: 'pl', titel: 'Bauherren-PL' }], zeilen: [{ id: 'x', titel: 'Reserve', zuordnung: { bauherr: 'A', pl: 'R' }, mandat: 'Bauherr' }], ich: 'pl', beschriftung: { entscheidung: 'E', mandat: 'M', legende: 'L', sie: 'Sie' } });
-  assert.equal(m.querySelectorAll('td.ist-ich').length, 1);
-  assert.equal(m.querySelector('td.ist-ich .raci-marke')?.textContent, 'R');
-  assert.match(m.querySelector('[data-pruef="raci-detail"]')?.textContent ?? '', /Bauherren-PL \(Sie\)/u);
 });
 
-test('Tafeln Welt B (T9): Phasen-Wahl wandert, Screenreader-Hinweis am hervorgehobenen Knopf; Rhythmus, Karten; RACI-Zeilenwahl und eigene Spalte zuerst', async () => {
+test('Tafeln (T9): Phasen-Wahl wandert, Screenreader-Hinweis am hervorgehobenen Knopf; Rhythmus, Zeitachse, Karten', async () => {
   const { tafel } = await import('../src/grafik/tafel.ts');
-  const { raci } = await import('../src/grafik/raci.ts');
   const kopf = ['LPH', 'Leistungsphase', 'Freigabefrage'];
   const zeilen = [['LPH 4', 'Genehmigungsplanung', 'Frage 4?'], ['LPH 5', 'Ausführungsplanung', 'Frage 5?']];
   const ph = tafel({ form: 'phasen', absatz: 'k9.3-t1', quelle: 'Q', kopf, zeilen, erlebt: {}, hervor: [2] });
@@ -406,11 +400,6 @@ test('Tafeln Welt B (T9): Phasen-Wahl wandert, Screenreader-Hinweis am hervorgeh
   const ka = tafel({ form: 'karten', absatz: 'k6.4.2-t1', quelle: 'Q', kopf: ['Gruppe', 'Rolle', 'Turnus'], zeilen: [['Register', 'PL', 'laufend']], erlebt: {} });
   assert.equal(ka.querySelectorAll('.tafel-karte').length, 1);
   assert.match(ka.querySelector('.tafel-karte')?.textContent ?? '', /Rolle.*PL.*Turnus.*laufend/u);
-  const m = raci({ rollen: [{ id: 'bauherr', titel: 'Bauherr' }, { id: 'pl', titel: 'Bauherren-PL' }], zeilen: [{ id: 'x', titel: 'Reserve', zuordnung: { bauherr: 'A', pl: 'R' }, mandat: 'Bauherr' }, { id: 'y', titel: 'Zweite', zuordnung: { bauherr: 'I', pl: 'A' }, mandat: 'PL' }], ich: 'pl', beschriftung: { entscheidung: 'E', mandat: 'M', legende: 'L', sie: 'Sie' } });
-  const kopfzellen = [...m.querySelectorAll('thead th')];
-  assert.equal(kopfzellen.findIndex((t) => t.classList.contains('ist-ich')), 1, 'eigene Spalte direkt hinter der Entscheidung');
-  m.querySelector<HTMLElement>('[data-pruef="raci-y"]')?.click();
-  assert.match(m.querySelector('[data-pruef="raci-detail"]')?.textContent ?? '', /Zweite.*A · letztverantwortlich.*Bauherren-PL \(Sie\)/su);
 });
 
 const lw = await import('../src/ui/bausteine/lernwerkzeuge.ts');
@@ -568,17 +557,15 @@ test('Tafeltitel (P12.5 R12/R13): nach „/“ darf umgebrochen werden (<wbr>), 
   assert.ok(gefunden > 0, 'mindestens ein Tafeltitel mit „/“ (Kap. 8: Risiko-/Änderungs-/Maßnahmenverknüpfung)');
 });
 
-test('Lernseite (P6.1): Tafel, RACI, Merksatz und Ebenen 1–4 werden auf Seiten- und Abschnittsebene gezeichnet', () => {
+test('Lernseite (P6.1): Tafel, Merksatz und Ebenen 1–4 werden auf Seiten- und Abschnittsebene gezeichnet', () => {
   const eintrag = Object.entries(inhalte.theorie).find(([, s]) => s.kapitel === 1);
   assert.ok(eintrag);
-  const tafel = { art: 'tafel', kennungen: ['k2.5-t1'], id: 'k2.5-t1', kopf: { form: 'ketten', quelle: 'Q', tabelle: { kopf: ['S', 'M', 'K', 'R'], zeilen: [['s', 'm', 'k', 'r']] }, erlebt: {}, hervor: [] }, felder: {}, liste: null, kinder: [] };
+  const tafel = { art: 'tafel', kennungen: ['k2.5-t1'], id: 'k2.5-t1', kopf: { form: 'karten', tabelle: { kopf: ['Gruppe', 'Rolle'], zeilen: [['g', 'r']] }, hervor: [] }, felder: {}, liste: null, kinder: [] };
   const ebenen = { art: 'ebenen', kennungen: [], id: null, kopf: {}, felder: {}, liste: null, kinder: [], ebenen: [1, 2, 3, 4].map((nr) => ({ nr, titel: `E${nr}`, felder: { text: `<p>Text ${nr}</p>` }, bloecke: [] })) };
   const abschnitt = { art: 'abschnitt', kennungen: ['k1.1'], id: 'k1.1', kopf: { titel: 'Probe' }, felder: {}, liste: null, kinder: [{ art: 'merksatz', kennungen: [], id: null, kopf: {}, felder: { text: '<p>Merke</p>' }, liste: null, kinder: [] }] };
-  const raciB = { art: 'raci', kennungen: [], id: null, kopf: { zeilen: [{ id: 'r1', titel: 'Reserve', zuordnung: { bauherr: 'A', pl: 'R' }, mandat: 'Bauherr' }] }, felder: {}, liste: null, kinder: [] };
-  const probe = { ...inhalte, theorie: { ...inhalte.theorie, [eintrag[0]]: { ...eintrag[1], bloecke: [tafel, abschnitt, ebenen, raciB] } } } as unknown as typeof inhalte;
+  const probe = { ...inhalte, theorie: { ...inhalte.theorie, [eintrag[0]]: { ...eintrag[1], bloecke: [tafel, abschnitt, ebenen] } } } as unknown as typeof inhalte;
   const el = baueTheorie({ inhalte: probe, thema: themaVon(1), version: VERSION, bedienbar: true });
-  assert.ok(el.querySelector('[data-pruef="tafel-ketten"]'), 'Tafel auf Seitenebene');
-  assert.ok(el.querySelector('[data-pruef="raci-detail"]'), 'RACI auf der Lernseite');
+  assert.ok(el.querySelector('[data-pruef="tafel-karten"]'), 'Tafel auf Seitenebene');
   assert.equal(el.querySelector('.tafel-titel')?.tagName, 'H2', 'Tafeltitel auf Seitenebene folgt der Gliederung (h1 → h2)');
   assert.match(el.querySelector('.lern-abschnitt .lehre')?.textContent ?? '', /Merke/u, 'Merksatz im Abschnitt');
   const e = [...el.querySelectorAll('[data-pruef^="lern-ebene-"]')];

@@ -10,9 +10,7 @@
  */
 
 import daten from '../generiert/inhalte.json' with { type: 'json' };
-import type {
-  Figur, GeschichteRegie, GlossarEintrag, Inhalte, OeffentlicheInhalte, RegieEintrag, Rolle, Station, Szene, TheorieSeite,
-} from './typen.ts';
+import type { GeschichteRegie, GlossarEintrag, Inhalte, OeffentlicheInhalte, RegieEintrag, TheorieSeite } from './typen.ts';
 
 export type * from './typen.ts';
 
@@ -21,22 +19,12 @@ const alle = daten as unknown as Inhalte;
 /** Alle Inhalte ohne Regie-Material (Felder aufgezählt, nicht weggelassen). */
 export const inhalte: OeffentlicheInhalte = {
   version: alle.version,
-  whitepaper: alle.whitepaper,
-  fall: alle.fall,
+  abbildungen: alle.abbildungen,
   startseite: alle.startseite,
-  rollen: alle.rollen,
-  rollenFolge: alle.rollenFolge,
-  interessen: alle.interessen,
-  start: alle.start,
-  stationen: alle.stationen,
-  stationsFolge: alle.stationsFolge,
   glossar: alle.glossar,
   theorie: alle.theorie,
-  einwaende: alle.einwaende,
-  welten: alle.welten,
   kompass: alle.kompass ?? [],
   abdeckung: alle.abdeckung,
-  quellen: alle.quellen,
   geschichte: alle.geschichte ?? null,
   werkzeuge: alle.werkzeuge ?? null,
 };
@@ -46,39 +34,14 @@ export function regieGeschichte(id: string): GeschichteRegie | null {
   return alle.geschichteRegie?.[id] ?? null;
 }
 
-/** Nur für die Regie: Notiz und Leitfragen je Station (`A3`) bzw. Rollenszene (`A3/pl`). */
+/** Nur für die Regie: das ganze Regie-Material der Themen. */
 export function regieInhalte(): Readonly<Record<string, RegieEintrag>> {
   return alle.regie;
 }
 
-/** Regie-Material einer Lernseite (P9.2): Notiz und Leitfragen zu Kapitel `nr`. */
+/** Regie-Material eines Themas (P9.2): Notiz und Leitfragen zu Kapitel `nr`. */
 export function regieKapitel(nr: number): RegieEintrag | null {
   return alle.regie[`theorie/k${nr}`] ?? null;
-}
-
-/** Regie-Material für Station und Rolle: erst die Szene, dann die Station. */
-export function regieFuer(station: string, rolle: string | null): { station: RegieEintrag | null; szene: RegieEintrag | null } {
-  return {
-    station: alle.regie[station] ?? null,
-    szene: rolle !== null ? alle.regie[`${station}/${rolle}`] ?? null : null,
-  };
-}
-
-export function station(id: string): Station | null {
-  return inhalte.stationen[id] ?? null;
-}
-
-export function szene(stationId: string, rolle: string | null): Szene | null {
-  if (rolle === null) return null;
-  return inhalte.stationen[stationId]?.szenen[rolle] ?? null;
-}
-
-export function rolle(id: string): Rolle | null {
-  return inhalte.rollen[id] ?? null;
-}
-
-export function figur(id: string): Figur | null {
-  return inhalte.fall?.figuren[id] ?? null;
 }
 
 export function glossar(id: string): GlossarEintrag | null {

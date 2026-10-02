@@ -126,3 +126,11 @@ test('Speichern: gültiger Stand kommt zurück, Unpassendes fällt weg', () => {
   assert.equal(leseStand(g, { v: 2 }), null);
   assert.equal(leseStand(g, 'x'), null);
 });
+
+test('Puffer-Urteil: über eine Woche gut, bis null knapp, darunter schlecht', () => {
+  assert.equal(pufferUrteil(8), 'gut');
+  assert.equal(pufferUrteil(7), 'knapp');
+  assert.equal(pufferUrteil(1), 'knapp');
+  assert.equal(pufferUrteil(0), 'knapp');
+  assert.equal(pufferUrteil(-1), 'schlecht');
+});

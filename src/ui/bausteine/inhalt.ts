@@ -10,9 +10,6 @@
  */
 
 import { schuetzeEinheiten, vonHtml } from '../h.ts';
-import { figur, type Mimik } from '../../figuren/figur.ts';
-import { rollenAttr } from '../anzeige.ts';
-import type { OeffentlicheInhalte } from '../../inhalte/typen.ts';
 
 /** Ersetzt Glossarbezüge durch Begriff-Knöpfe. */
 export function aktiviereGlossar(wurzel: ParentNode): void {
@@ -64,19 +61,4 @@ export function inhaltInline(html: string): DocumentFragment {
     return g;
   }
   return f;
-}
-
-/** Figur einer Kennung aus fall.md in ihrer Rollenfarbe. */
-export function personFigur(id: string, groesse: number, inhalte: OeffentlicheInhalte, mimik: Mimik = 'neutral'): SVGSVGElement {
-  const f = inhalte.fall?.figuren[id] ?? null;
-  return figur(id, { rolle: rollenAttr(f?.rolle ?? null), groesse, mimik });
-}
-
-/** Name einer Figur (oder die Kennung, wenn es sie nicht gibt). */
-export function personName(id: string, inhalte: OeffentlicheInhalte): string {
-  return inhalte.fall?.figuren[id]?.name ?? id;
-}
-
-export function personFunktion(id: string, inhalte: OeffentlicheInhalte): string {
-  return inhalte.fall?.figuren[id]?.funktion ?? '';
 }

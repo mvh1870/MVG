@@ -73,7 +73,7 @@ test('Themen (O-38): jede der 13 Abbildungen steht genau einmal auf dem Thema ih
     }
   };
   for (const t of Object.values(inhalte.theorie) as { bloecke: { art: string; id: string | null; kinder?: unknown[] }[] }[]) gehe(t.bloecke);
-  const alle = inhalte.whitepaper.abbildungen as { id: string; bild: unknown }[];
+  const alle = inhalte.abbildungen as { id: string; bild: unknown }[];
   assert.equal(alle.length, 13);
   for (const a of alle) {
     assert.ok(a.bild !== null, `${a.id} ohne Bild`);

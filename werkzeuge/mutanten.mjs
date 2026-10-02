@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Mutanten-Probe der Engine (P2.1/P2.6): verfälscht je eine Stelle in src/engine, lässt die
- * Engine-Tests laufen und erwartet ROT. Ein Mutant, der grün bleibt, ist ein Befund: die Tests
+ * Mutanten-Probe der Story-Engine (P2.1/P2.6, seit P16.14 src/geschichte): verfälscht je eine Stelle, lässt die
+ * Story-Tests laufen und erwartet ROT. Ein Mutant, der grün bleibt, ist ein Befund: die Tests
  * prüfen diese Regel nicht wirklich. Die Datei wird danach immer wiederhergestellt.
  *
  *   node werkzeuge/mutanten.mjs      → „n/n Mutanten rot“; Exitcode 1, wenn einer grün bleibt
@@ -15,21 +15,16 @@ import { fileURLToPath } from 'node:url';
 import { istHauptmodul } from './haupt.mjs';
 
 const WURZEL = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const TESTS = ['tests/engine.test.ts', 'tests/engine-graph.test.ts', 'tests/engine-spur.test.ts', 'tests/story-graph.test.ts'];
+const TESTS = ['tests/geschichte.test.ts'];
 
 /** [Datei, alt, neu, was] – `alt` muss genau einmal vorkommen. */
 export const MUTANTEN = [
-  ['src/engine/status.ts', 'export const SPUR_GRENZE = 1;', 'export const SPUR_GRENZE = 2;', 'Kappung des Spur-Deltas'],
-  ['src/engine/status.ts', 'basis = mitDelta(wendeWirkung(null, st.statusStart), delta);', 'basis = wendeWirkung(null, st.statusStart);', 'Nachwirkung früherer Wahlen'],
-  ['src/engine/status.ts', 'return jetzt === undefined ? weg : weg.slice(0, weg.indexOf(jetzt) + 1);', 'return [...verlauf];', 'Sprünge zählen einmal'],
-  ['src/engine/status.ts', '  let s = vorher;\n  let basis', '  let s: Status | null = null;\n  let basis', 'Station ohne Startstand übernimmt den Stand (L-19)'],
-  ['src/engine/bedingungen.ts', 'case \'interesse\': return z.interessen.includes(b.interesse);', 'case \'interesse\': return !z.interessen.includes(b.interesse);', 'Bedingung „interesse“'],
-  ['src/engine/bedingungen.ts', 'return wahl !== undefined && b.optionen.includes(wahl);', 'return wahl !== undefined;', 'Bedingung „wahl“'],
-  ['src/engine/bedingungen.ts', "case 'info': return z.info.includes(b.info);", "case 'info': return true;", 'Bedingung „info“ (R49)'],
-  ['src/engine/graph.ts', '  if (st.ende) return null;\n', '', 'Ende hält die Geschichte an'],
-  ['src/engine/aktionen.ts', "return z.freigeschaltet.weltB || st.schaltetFrei.includes('weltB');", 'return true;', 'Sperre für Welt B'],
-  ['src/engine/speicher.ts', '(roh as { version?: unknown }).version !== ZUSTAND_VERSION', 'false', 'Versionsprüfung beim Weiterlesen'],
-  ['src/engine/gedaechtnis.ts', 'const html = rb.texte[wahl.option.id];', "const html = rb.texte['A'];", 'Rückbezug passt zur früheren Wahl'],
+  ['src/geschichte/engine.ts', '    addiere(s, st.lageFolgen);\n', '', 'Lage-Folgen zählen im Status'],
+  ['src/geschichte/engine.ts', "    if (st.nr === bisNr && schritt.ort === 'station' && schritt.teil !== 'folge') continue;\n", '', 'Eigene Entscheidung zählt erst ab der Folge'],
+  ['src/geschichte/engine.ts', "return m[2] === '=' ? w === m[3] : w !== m[3];", 'return w === m[3];', 'Bedingung „s3!=A“'],
+  ['src/geschichte/engine.ts', '  if (stand.kurz && !st.kurzfassung) return empfohlen(g, stand, st);\n', '', 'Kurzfassung: übersprungene Stationen zählen mit der Empfehlung'],
+  ['src/geschichte/engine.ts', "  if (st.vorlage.art === 'gewichte') neu.gewichte = null;\n", '', 'Neue Gewichte-Variante verwirft die Feineinstellung'],
+  ['src/geschichte/engine.ts', "return puffer > 7 ? 'gut'", "return puffer > 0 ? 'gut'", 'Puffer-Urteil „knapp“'],
 ];
 
 function testsRot() {

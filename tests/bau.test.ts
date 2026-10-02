@@ -278,6 +278,10 @@ test('Webseitenordner (P16.13, O-42, O-43, O-47): Hauptseite, Impressum, Datensc
   for (const m of ['<link rel="canonical" href="https://www.governancekompass.de/">', 'property="og:image" content="https://www.governancekompass.de/vorschau.png"', 'name="description"', '<link rel="icon" href="data:image/svg+xml,']) {
     assert.ok(index.includes(m), m);
   }
+  // Auch im Quelltext der Seite (eingebettete Daten) kein Bezug zur Quelle und keine Reste der alten Story (O-38, O-41)
+  for (const verboten of [/Whitepaper/iu, /MVG V1/u, /Kap\. \d/u, /\bKapitel\b/u, /Welt [AB]\b/u, /ungeprüft/u, /Originaltext/u]) {
+    assert.doesNotMatch(index, verboten, `dist/index.html enthält ${String(verboten)}`);
+  }
   for (const name of ['impressum.html', 'datenschutz.html']) {
     const html = await readFile(path.join(dist, name), 'utf8');
     assert.match(html, /Bauherr Mentoren GmbH i\. G\./u, name);

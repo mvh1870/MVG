@@ -147,14 +147,6 @@ export function text(el: Node, wert: string): void {
 }
 
 /**
- * Rollentitel dürfen an ihrer Fuge trennen: „Geschäfts|führung“, „Projekt|steuerung“, „General|planung“ (R62 RACI-Kopf,
- * R64 Rollen-Linse – dort brachen sie bei 990–1190 px ohne Strich mitten im Wort).
- */
-export function mitRollenfugen(titel: string): string {
-  return titel.replace(/(?<!\p{L})(Geschäfts|Projekt|General)(?=\p{Ll}{4})/gu, '$1\u00ad');
-}
-
-/**
  * Weiche Trennstellen (U+00AD) in langen Wörtern nach einer Fuge („Entscheidungs|grundlagen“, „Maßnahmen|verknüpfung“).
  * Sichtbar wird der Strich nur, wo die Zeile tatsächlich dort umbricht; der Wortlaut bleibt gleich (dazu ein
  * Umbruch ohne Breite nach „/“ zwischen Wörtern).

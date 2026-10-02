@@ -10,8 +10,7 @@
  * Als Modul: `const { fehler, warnungen, inhalte } = await kompiliere({ pruefe: true })`.
  * Weitere Optionen (für Tests): `wurzel`, `whitepaperPfad`, `ziel` (null = nicht schreiben).
  *
- * Die Engine-Regeln (Statuswerte, Bedingungen, Graph) kommen aus src/engine/*.ts – eine Lesart für
- * Bauzeit und Laufzeit. Deterministisch: Dateien sortiert, Schlüssel sortiert, keine Zeitstempel.
+ * Deterministisch: Dateien sortiert, Schlüssel sortiert, keine Zeitstempel.
  */
 import { baueGeschichte } from './geschichte.mjs';
 import { baueWerkzeuge } from './explore.mjs';
@@ -25,16 +24,10 @@ import { istHauptmodul } from './haupt.mjs';
 import { formatiereFund, pruefeText } from './begriffe.mjs';
 import { ORDNER as ABB_ORDNER, STAND as ABB_STAND, WERKZEUG_VERSION as ABB_VERSION, eingabeSumme, leseBeschreibungen, pruefeBeschreibung } from './abbildungen.mjs';
 import { createHash } from 'node:crypto';
-import { istVollstaendigerStart, leseWirkEintrag } from '../src/engine/status.ts';
-import { leseBedingungen, verweiseIn } from '../src/engine/bedingungen.ts';
-import { findeEntscheidung, loeseEntscheidung, pruefeGraph, stationsFolge } from '../src/engine/graph.ts';
 
 export const WURZEL = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 export const STANDARD_ZIEL = path.join('src', 'generiert', 'inhalte.json');
 export const STANDARD_WHITEPAPER = path.join('quellen', 'whitepaper', 'v1.2', 'whitepaper.json');
-
-/** Die sechs spielbaren Rollen (O-4), in Anzeige-Reihenfolge. */
-export const ROLLEN = ['gf', 'bauherr', 'pl', 'ps', 'planung', 'controlling'];
 
 const KENNUNG = /^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/u;
 /**
@@ -53,125 +46,37 @@ const BLOCK_ID = /^k\d+(?:\.\d+)*-[pltb]\d+$/u;
 const ABSCHNITT_ID = /^k\d+(?:\.\d+)*$/u;
 const FARBE = /^#[0-9A-Fa-f]{6}$/u;
 
-const SCHRITT_ARTEN = ['text', 'lage', 'entscheidung', 'konsequenz', 'rueckbezug', 'vergleich', 'rollenwahl', 'interessenwahl', 'ebenen'];
-const STATION_ARTEN = ['prolog', 'station', 'vergleich', 'wendepunkt', 'rueckspulen', 'wirklichkeit', 'ende', 'epilog'];
-const FLUSS = ['fruehwarnung', 'bestaetigt', 'risiko', 'entscheidung', 'freigabe', 'massnahme', 'managementbericht'];
 const TAFEL_FORMEN = ['radar', 'ketten', 'schwelle', 'pyramide', 'felder', 'bausteine', 'phasen', 'register', 'rhythmus', 'karten', 'zeitachse', 'diagnose'];
-const GLIED_ARTEN = ['fruehwarnung', 'bestaetigung', 'risiko', 'aenderung', 'entscheidung', 'freigabe', 'massnahme', 'problem', 'bericht'];
 
 /* ============================================================== Schema == */
 
 /**
  * Kopfdaten-Typen: text, zahl (ganz), dezimal, bool, liste, karte (Text → Text), farbe, kennung,
- * wahl (werte), raci (RACI-Zeilen), status (Statuswirkung), kanten (weiter), paar ({a, b}), stufen, versionen, ids.
+ * wahl (werte), versionen, ids.
  * @typedef {{ typ: string, pflicht?: boolean, werte?: string[], min?: number, max?: number }} KopfDef
  * @typedef {{ in: string[], kennung: 'pflicht' | 'optional' | 'keine' | 'mehrere', muster?: RegExp,
  *   kopf?: Record<string, KopfDef>, felder?: string[], pflichtFelder?: string[] }} ArtDef
  */
 
-const ZITAT_ORTE = ['schritt', 'ebene', '@theorie', 'abschnitt', 'karte', 'einwand', '@station', 'resuemee', 'welt', 'wissenscheck'];
-const TEXT_ORTE = ['schritt', 'ebene', '@theorie', 'abschnitt', 'resuemee'];
+const ZITAT_ORTE = ['ebene', '@theorie', 'abschnitt', 'karte', 'wissenscheck'];
+const TEXT_ORTE = ['ebene', '@theorie', 'abschnitt'];
 
 /** @type {Record<string, ArtDef>} */
 const ARTEN = {
-  // Story: Rückgrat
-  schritt: {
-    in: ['@station'], kennung: 'pflicht',
-    kopf: {
-      art: { typ: 'wahl', werte: SCHRITT_ARTEN }, titel: { typ: 'text', pflicht: true }, kurz: { typ: 'text' },
-      gruppe: { typ: 'text' }, uhr: { typ: 'text' }, knopf: { typ: 'text' }, folgt: { typ: 'liste' },
-    },
-    felder: ['text', 'weltA', 'weltB'],
-  },
-  ebenen: { in: ['@station', '@theorie', 'abschnitt'], kennung: 'keine', felder: [] },
+  // Ebenen 1–4 (Kurz bis Nachweis)
+  ebenen: { in: ['@theorie', 'abschnitt'], kennung: 'keine', felder: [] },
   ebene: { in: ['ebenen'], kennung: 'pflicht', muster: /^[1-4]$/u, kopf: { titel: { typ: 'text' } }, felder: ['text'] },
-  standpunkt: { in: ['@station'], kennung: 'pflicht', kopf: { figur: { typ: 'kennung', pflicht: true } }, felder: ['text'], pflichtFelder: ['text'] },
-  // Express-Karte „Was dazwischen geschah“ (P5.9, L-43): nur für Leser auf dem Express-Pfad, über dem ersten Schritt
-  express: { in: ['@station'], kennung: 'keine', felder: ['text'], pflichtFelder: ['text'] },
-  // Nachweis einer Welt-B-Station (P7.3, E2): die Kette Mandat → Freigabe → Entscheidungs-ID → Datenstand → Nachweis → Beschlusslage (Kap. 9)
-  nachweis: {
-    in: ['@station'], kennung: 'keine',
-    kopf: {
-      mandat: { typ: 'text', pflicht: true }, freigabe: { typ: 'text', pflicht: true }, kennung: { typ: 'text', pflicht: true },
-      datenstand: { typ: 'text', pflicht: true }, nachweis: { typ: 'text', pflicht: true }, beschlusslage: { typ: 'text', pflicht: true },
-    },
-    felder: ['text'],
-  },
-  // Nachweiskette zum Anfassen (E2): zeigt die Nachweise der besuchten Welt-B-Stationen, Klick legt die Kette aus
-  nachweiskette: { in: ['schritt'], kennung: 'keine', felder: ['text'] },
-  // Epilog (P7.6): A-Spur gegen B-Spur; persönliches Resümee (Themen und Vertiefungen aus der Spur, Prinzipien und Checkliste als Kinder)
-  spurvergleich: { in: ['schritt'], kennung: 'keine', felder: ['text'] },
-  resuemee: { in: ['schritt'], kennung: 'keine', felder: ['text'] },
-  // Vertiefung je Interesse (P3.9, O-19): Zusatzkarte im Ebenen-Schritt, nur für Leser mit diesem Interesse
-  vertiefung: { in: ['@station'], kennung: 'pflicht', kopf: { titel: { typ: 'text', pflicht: true } }, felder: ['text'], pflichtFelder: ['text'] },
-  regie: { in: ['@station', '@szene', '@theorie'], kennung: 'keine', felder: ['notiz', 'leitfragen'] },
-  // Bausteine in Schritten
-  mail: { in: ['schritt'], kennung: 'keine', kopf: { von: { typ: 'kennung', pflicht: true }, betreff: { typ: 'text', pflicht: true }, zeit: { typ: 'text' }, anhang: { typ: 'text' } }, felder: ['text'], pflichtFelder: ['text'] },
-  chat: { in: ['schritt'], kennung: 'keine', kopf: { von: { typ: 'kennung', pflicht: true }, zeit: { typ: 'text' } }, felder: ['text'], pflichtFelder: ['text'] },
-  anruf: { in: ['schritt'], kennung: 'keine', kopf: { von: { typ: 'kennung', pflicht: true }, zeit: { typ: 'text' } }, felder: ['text'] },
-  notiz: { in: ['schritt'], kennung: 'keine', kopf: { farbe: { typ: 'wahl', werte: ['gelb', 'rosa', 'lila', 'limette'] }, symbol: { typ: 'text' } }, felder: ['text'], pflichtFelder: ['text'] },
-  // Requisiten der Welt A (P3.1): Protokoll (Blatt mit Punkten) und Aktenstapel (Ordner mit Beschriftung)
-  protokoll: { in: ['schritt'], kennung: 'keine', kopf: { titel: { typ: 'text', pflicht: true }, datum: { typ: 'text' }, von: { typ: 'kennung' } }, felder: ['text'], pflichtFelder: ['text'] },
-  akten: { in: ['schritt'], kennung: 'keine', kopf: { beschriftung: { typ: 'text', pflicht: true }, anzahl: { typ: 'zahl', min: 1, max: 12 } }, felder: ['text'] },
-  datei: { in: ['schritt'], kennung: 'keine', kopf: { name: { typ: 'text', pflicht: true }, quelle: { typ: 'text' }, wert: { typ: 'text' } }, felder: ['text'] },
-  bekannt: { in: ['schritt'], kennung: 'keine', felder: ['text'], pflichtFelder: ['text'] },
-  unbekannt: { in: ['schritt'], kennung: 'keine', felder: ['text'], pflichtFelder: ['text'] },
-  zeitsprung: {
-    in: ['schritt'], kennung: 'pflicht',
-    kopf: { knopf: { typ: 'text', pflicht: true }, kosten: { typ: 'text' }, dauer: { typ: 'text' }, status: { typ: 'status' }, loest: { typ: 'karte' }, bleibt: { typ: 'karte' } },
-    felder: ['text', 'neuBekannt'],
-  },
-  grafik: { in: ['schritt'], kennung: 'pflicht', kopf: { titel: { typ: 'text' }, untertitel: { typ: 'text' } }, felder: ['text'] },
-  kette: { in: ['schritt'], kennung: 'keine', felder: [] },
+  regie: { in: ['@theorie'], kennung: 'keine', felder: ['notiz', 'leitfragen'] },
   // Glossarseite (P6.14): alle Begriffe aus whitepaper.json, durchsuchbar, mit „Kommt vor in“
   glossar: { in: ['@theorie'], kennung: 'keine', felder: ['text'] },
-  // RACI mit Mandat (P5.1, Kap. 9.2), Zuordnungen des fiktiven Falls
-  raci: { in: ['schritt', '@theorie', 'abschnitt', 'ebene'], kennung: 'keine', kopf: { zeilen: { typ: 'raci', pflicht: true } }, felder: ['text'] },
   // Whitepaper-Tabelle als Grafik (P4, L-32): Zellen wörtlich aus whitepaper.json, Form aus src/grafik/tafel.ts
-  tafel: { in: ['schritt', '@theorie', 'abschnitt', 'ebene', 'resuemee'], kennung: 'pflicht', muster: /^k\d+(?:\.\d+)*-t\d+$/u, kopf: { form: { typ: 'wahl', werte: TAFEL_FORMEN, pflicht: true }, erlebt: { typ: 'karte' }, hervor: { typ: 'liste' } }, felder: ['text'] },
-  glied: { in: ['kette'], kennung: 'optional', kopf: { art: { typ: 'wahl', werte: GLIED_ARTEN, pflicht: true }, von: { typ: 'kennung' } }, felder: ['titel', 'text'] },
-  datenstand: {
-    in: ['schritt'], kennung: 'keine',
-    kopf: { name: { typ: 'text', pflicht: true }, abweichung: { typ: 'text' }, betrag: { typ: 'text' }, basis: { typ: 'text' }, versionen: { typ: 'versionen' } },
-    felder: ['text', 'vergleich'],
-  },
-  mandatsleiter: { in: ['schritt'], kennung: 'keine', kopf: { betrag: { typ: 'text' }, 'betrag-teur': { typ: 'zahl', min: 0 }, stufen: { typ: 'stufen', pflicht: true } }, felder: ['text'] },
-  mandatsoption: { in: ['schritt'], kennung: 'pflicht', muster: /^\d+$/u, kopf: { titel: { typ: 'text', pflicht: true }, detail: { typ: 'text' }, zustaendig: { typ: 'text', pflicht: true }, stufe: { typ: 'zahl', min: 1 } }, felder: ['text'], pflichtFelder: ['text'] },
-  // Kennung optional (L-40): Freigaben führen kein Kürzel („Freigabe LPH 5“)
-  vorlage: { in: ['schritt'], kennung: 'optional', kopf: { titel: { typ: 'text' }, datenstand: { typ: 'text' } }, felder: ['frage', 'checkliste'], pflichtFelder: ['frage', 'checkliste'] },
-  // Governance-Fluss als Übersicht auf einer Lernseite (P11, Kap. 6.4.3): alle Stationen, ohne Markierung
-  governancefluss: { in: ['@theorie', 'abschnitt'], kennung: 'keine', felder: ['text'] },
-  fluss: { in: ['schritt'], kennung: 'keine', kopf: { position: { typ: 'wahl', werte: FLUSS, pflicht: true } }, felder: ['text'] },
-  paar: {
-    in: ['schritt'], kennung: 'keine',
-    kopf: { a: { typ: 'wahl', werte: ['mail', 'chat', 'notiz', 'datei'], pflicht: true }, von: { typ: 'kennung' }, farbe: { typ: 'wahl', werte: ['gelb', 'rosa', 'lila', 'limette'] }, b: { typ: 'text' }, kennung: { typ: 'text' }, fluss: { typ: 'wahl', werte: FLUSS } },
-    felder: ['weltA', 'weltB'], pflichtFelder: ['weltA'],
-  },
-  kennzahl: { in: ['schritt'], kennung: 'keine', kopf: { a: { typ: 'zahl', pflicht: true, min: 0 }, b: { typ: 'zahl', pflicht: true, min: 0 } }, felder: ['text'], pflichtFelder: ['text'] },
-  interesse: { in: ['schritt'], kennung: 'pflicht', kopf: { titel: { typ: 'text', pflicht: true } }, felder: ['text'] },
+  tafel: { in: ['@theorie', 'abschnitt', 'ebene'], kennung: 'pflicht', muster: /^k\d+(?:\.\d+)*-t\d+$/u, kopf: { form: { typ: 'wahl', werte: TAFEL_FORMEN, pflicht: true }, hervor: { typ: 'liste' } }, felder: ['text'] },
   merksatz: { in: TEXT_ORTE, kennung: 'keine', felder: ['text'], pflichtFelder: ['text'] },
   hinweis: { in: TEXT_ORTE, kennung: 'keine', felder: ['text'], pflichtFelder: ['text'] },
   zitat: { in: ZITAT_ORTE, kennung: 'mehrere', felder: ['text'], pflichtFelder: ['text'] },
-  original: { in: ZITAT_ORTE, kennung: 'mehrere', felder: [] },
-  // Rollenszene
-  option: {
-    in: ['@szene'], kennung: 'pflicht', muster: /^[A-F]$/u,
-    kopf: { titel: { typ: 'text', pflicht: true }, kurz: { typ: 'text', pflicht: true }, symbol: { typ: 'text' }, status: { typ: 'status', pflicht: true } },
-    felder: ['konsequenz', 'wasFehlt', 'neuesRisiko', 'governanceFrage'],
-    pflichtFelder: ['konsequenz', 'wasFehlt', 'neuesRisiko', 'governanceFrage'],
-  },
-  nachsatz: { in: ['@szene'], kennung: 'keine', felder: ['text'], pflichtFelder: ['text'] },
-  frage: { in: ['@szene'], kennung: 'pflicht', kopf: { schritt: { typ: 'kennung' } }, felder: ['frage', 'rueckmeldung'], pflichtFelder: ['frage'] },
   // Wissenscheck auf einer Lernseite (P11.6): Frage mit Antworten und Erklärung statt Punkten, Beleg als zitat
   wissenscheck: { in: ['@theorie', 'abschnitt'], kennung: 'pflicht', felder: ['frage', 'erklaerung'], pflichtFelder: ['frage', 'erklaerung'] },
   antwort: { in: ['frage', 'wissenscheck'], kennung: 'pflicht', kopf: { titel: { typ: 'text', pflicht: true }, praefix: { typ: 'text' }, symbol: { typ: 'text' } }, felder: ['text'] },
-  rueckbezug: { in: ['@szene'], kennung: 'pflicht', muster: /^(?:[A-F]|ohne)$/u, felder: ['text'], pflichtFelder: ['text'] },
-  // Fall
-  figur: {
-    in: ['@fall'], kennung: 'pflicht',
-    kopf: { name: { typ: 'text', pflicht: true }, rolle: { typ: 'kennung' }, funktion: { typ: 'text', pflicht: true }, farbe: { typ: 'farbe', pflicht: true }, spieler: { typ: 'bool' } },
-    felder: ['kurzbeschreibung', 'stimme'], pflichtFelder: ['kurzbeschreibung'],
-  },
   // Theorie
   kernaussage: { in: ['@theorie'], kennung: 'keine', felder: ['text'], pflichtFelder: ['text'] },
   abschnitt: { in: ['@theorie'], kennung: 'pflicht', muster: ABSCHNITT_ID, kopf: { titel: { typ: 'text' } }, felder: ['text'] },
@@ -186,62 +91,23 @@ const ARTEN = {
   posten: { in: ['sortieren'], kennung: 'pflicht', kopf: { seite: { typ: 'wahl', werte: ['links', 'rechts'], pflicht: true } }, felder: ['text', 'erklaerung'], pflichtFelder: ['text'] },
   regler: { in: ['@theorie', 'abschnitt'], kennung: 'keine', kopf: { titel: { typ: 'text' } }, felder: ['text'] },
   stufe: { in: ['regler'], kennung: 'pflicht', kopf: { titel: { typ: 'text', pflicht: true }, marke: { typ: 'text' } }, felder: ['text'], pflichtFelder: ['text'] },
-  querverweis: { in: ['@theorie', 'abschnitt', 'ebene'], kennung: 'pflicht', kopf: { text: { typ: 'text' } }, felder: ['text'] },
   // Abbildung aus der DOCX V1.2 auf der Lernseite (P14, O-32): Beschreibung in inhalte/abbildungen/abb-N.yaml
   abbildung: { in: ['@theorie', 'abschnitt'], kennung: 'pflicht', muster: /^abb-\d+$/u, felder: [] },
-  // Einwände
-  // Vorher/Nachher-Welten (P8.2): je Aspekt Welt A und Welt B nebeneinander, mit Beleg aus dem Whitepaper
-  welt: { in: ['@welten'], kennung: 'pflicht', kopf: { titel: { typ: 'text', pflicht: true }, stationen: { typ: 'liste' } }, felder: ['weltA', 'weltB'], pflichtFelder: ['weltA', 'weltB'] },
   // Begriffs-Kompass (P10.5, E7): Whitepaper-Begriff ↔ gängige andere Wörter, mit Beleg
   kompass: { in: ['@kompass'], kennung: 'pflicht', kopf: { begriff: { typ: 'text', pflicht: true }, andere: { typ: 'liste', pflicht: true }, beleg: { typ: 'text', pflicht: true } }, felder: ['hinweis'] },
-  einwand: { in: ['@einwaende'], kennung: 'pflicht', kopf: { stationen: { typ: 'liste' }, kapitel: { typ: 'liste' } }, felder: ['einwand', 'antwort'], pflichtFelder: ['einwand', 'antwort'] },
 };
 
 /** Kopfdaten und Felder der Dateien selbst (oberste Ebene). */
 const DATEI_ARTEN = {
-  '@fall': {
-    kopf: {
-      stadt: { typ: 'text', pflicht: true }, bauherr: { typ: 'text', pflicht: true }, vertretung: { typ: 'text', pflicht: true },
-      'vertretung-kurz': { typ: 'text' }, projekt: { typ: 'text', pflicht: true }, bauteile: { typ: 'liste' }, bauweise: { typ: 'text' },
-      projektbasis: { typ: 'text', pflicht: true }, 'projektbasis-mio': { typ: 'dezimal' }, gremien: { typ: 'liste' }, hinweis: { typ: 'text', pflicht: true },
-      'monat-0': { typ: 'text' }, 'lph-stand': { typ: 'karte' },
-    },
-    felder: ['text'],
-  },
-  '@rolle': {
-    kopf: {
-      id: { typ: 'kennung' }, titel: { typ: 'text', pflicht: true }, kurztitel: { typ: 'text' }, farbe: { typ: 'farbe', pflicht: true },
-      textfarbe: { typ: 'farbe' }, figur: { typ: 'kennung' }, 'whitepaper-bezug': { typ: 'ids' },
-    },
-    felder: ['text', 'linse', 'delegierbar', 'nichtDelegierbar'],
-    pflichtFelder: ['linse'],
-  },
-  '@station': {
-    kopf: {
-      id: { typ: 'kennung', pflicht: true }, art: { typ: 'wahl', werte: STATION_ARTEN }, welt: { typ: 'wahl', werte: ['A', 'B'] },
-      monat: { typ: 'zahl', min: 0, max: 12 }, titel: { typ: 'text', pflicht: true }, kurztitel: { typ: 'text' }, lph: { typ: 'zahl', min: 0, max: 9 },
-      uhr: { typ: 'text' }, 'whitepaper-bezug': { typ: 'ids' }, 'status-start': { typ: 'status' }, weiter: { typ: 'kanten' },
-      ende: { typ: 'bool' }, 'schaltet-frei': { typ: 'liste' }, partner: { typ: 'kennung' }, vergleich: { typ: 'paar' },
-      // Enden (P7.7): Kapitel, das das Resümee als erste Vertiefung nennt
-      vertiefung: { typ: 'zahl', min: 1, max: 13 },
-    },
-    felder: ['text'],
-  },
-  '@szene': {
-    kopf: { station: { typ: 'kennung', pflicht: true }, rolle: { typ: 'kennung', pflicht: true }, frage: { typ: 'text' }, entscheidung: { typ: 'text' }, 'rueckbezug-auf': { typ: 'text' } },
-    felder: ['text'],
-  },
   '@theorie': {
     kopf: {
       kapitel: { typ: 'zahl', pflicht: true, min: 1, max: 16 }, titel: { typ: 'text', pflicht: true }, kurztitel: { typ: 'text' },
       // P16.3 (O-38): Kennung des Themas in der Adresse (#theorie/<thema>) und Reihenfolge der Themen
       thema: { typ: 'kennung' }, reihe: { typ: 'zahl', min: 1, max: 30 },
-      story: { typ: 'liste' }, deckt: { typ: 'liste' },
+      deckt: { typ: 'liste' },
     },
     felder: ['text'],
   },
-  '@einwaende': { kopf: {}, felder: ['text'] },
-  '@welten': { kopf: {}, felder: ['text'] },
   '@kompass': { kopf: {}, felder: ['text'] },
   '@start': {
     kopf: { kicker: { typ: 'text', pflicht: true }, titel: { typ: 'text', pflicht: true }, 'titel-quelle': { typ: 'text' } },
@@ -514,12 +380,6 @@ async function ladeQuelle(pfad) {
   };
 }
 
-/** Abschnittsnummer aus einer Absatz-ID („k2.4-p2“ → „2.4“). @param {string} id */
-function abschnittAusId(id) {
-  const m = /^k(\d+(?:\.\d+)*)/u.exec(id);
-  return m?.[1] ?? '?';
-}
-
 /* ====================================================== Kompilierer == */
 
 /**
@@ -541,11 +401,9 @@ class Kompilierer {
     /** Platzhalter für Glossar/Zitat-Spannen */
     /** @type {string[]} */ this.spannen = [];
     /** Verweise, die nach dem Einlesen gegen alles geprüft werden */
-    /** @type {{ art: string, wert: string, ort: string }[]} */ this.verweise = [];
     /** Absatz-IDs, die Theorie-Seiten abdecken */
     /** @type {Map<string, Set<string>>} */ this.theorieDeckt = new Map();
     this.glossarFehltGemeldet = false;
-    /** Abbildungen, die ein Originaltext einer Lernseite schon einsetzt (P14) @type {Set<string>} */ this.abbImOriginal = new Set();
     this.zitatUngeprueftGemeldet = false;
     /** @type {Map<string, { id: string, begriff: string, definition: string }>} */
     this.glossarNachBegriff = new Map();
@@ -682,13 +540,6 @@ class Kompilierer {
     return [ref];
   }
 
-  /** Quellenangabe „Whitepaper V1.2, Kap. 2.4“. @param {string[]} ids */
-  quellenangabe(ids) {
-    const fassung = this.quelle?.fassung ?? 'V1.2';
-    const abschnitte = [...new Set(ids.map((id) => this.quelle?.nachId.get(id)?.abschnitt ?? abschnittAusId(id)))];
-    return `MVG ${fassung}, Kap. ${abschnitte.join(', ')}`;
-  }
-
   /**
    * Wortgleichheit (O-17). Auslassungen „[…]“ teilen das Zitat in Stücke, die in Reihenfolge stehen müssen.
    * @param {string[]} ids
@@ -763,62 +614,6 @@ class Kompilierer {
       pos = i + s.length;
     }
     return { ok: true, vollstaendig: stuecke.length === 1 && stuecke[0] === original };
-  }
-
-  /** Originaltext eines Blocks als HTML. @param {FlacherBlock} bl */
-  /**
-   * Originaltext in der Gliederung des Whitepapers (O-20): vor den ersten Absatz eines Unterabschnitts
-   * kommt dessen Überschrift „1.1 Leitthese“ (die Kapitelüberschrift trägt die Seite selbst).
-   * @param {string[]} ids
-   */
-  originalMitGliederung(ids, mitAbbildungen = false) {
-    /** @type {string[]} */
-    const teile = [];
-    let abschnitt = '';
-    // Nur wenn der Auszug mehrere Abschnitte umfasst; sonst nennt die Quellenangabe den Abschnitt schon.
-    const mehrere = new Set(ids.map((id) => this.quelle?.nachId.get(id)?.abschnitt)).size > 1;
-    // Abbildungen (P14, O-32) stehen, wo sie in der DOCX stehen: nach der Kapitel- oder Abschnittsüberschrift
-    // (Ort „k3“, „k3.3“) bzw. nach einem Absatz (Ort „k7.1-p1“). Die Oberfläche setzt das Bild ein.
-    /** @type {Map<string, string[]>} */
-    const abbNach = new Map();
-    if (mitAbbildungen) for (const a of this.quelle?.abbildungen ?? []) abbNach.set(a.ort, [...(abbNach.get(a.ort) ?? []), a.id]);
-    /** @type {Set<string>} */
-    const betreten = new Set();
-    const abbildungen = (/** @type {string} */ ort) => {
-      for (const id of abbNach.get(ort) ?? []) {
-        teile.push(`<figure class="mvg-abbildung" data-abbildung="${esc(id)}"></figure>`);
-        this.abbImOriginal.add(id);
-      }
-    };
-    for (const id of ids) {
-      const bl = /** @type {FlacherBlock} */ (this.quelle?.nachId.get(id));
-      if (bl.abschnitt !== abschnitt) {
-        abschnitt = bl.abschnitt;
-        // übergeordnete Anfänge (Kapitel „6“, Abschnitt „6.4“ vor „6.4.1“) zuerst
-        const stufen = abschnitt.split('.').map((_, i, a) => a.slice(0, i + 1).join('.'));
-        for (const p of stufen.slice(0, -1)) if (!betreten.has(p)) { betreten.add(p); abbildungen(`k${p}`); }
-        if (mehrere && abschnitt.includes('.')) teile.push(`<h4 class="mvg-original-titel" data-abschnitt="k${esc(abschnitt)}">${esc(`${abschnitt} ${bl.abschnittTitel}`)}</h4>`);
-        if (!betreten.has(abschnitt)) { betreten.add(abschnitt); abbildungen(`k${abschnitt}`); }
-      }
-      teile.push(this.originalHtml(bl));
-      abbildungen(bl.id);
-    }
-    return teile.join('\n');
-  }
-
-  originalHtml(bl) {
-    const a = `data-absatz="${esc(bl.id)}"`;
-    switch (bl.art) {
-      case 'fett': return `<p class="mvg-original fett" ${a}><strong>${esc(bl.text)}</strong></p>`;
-      case 'liste': return `<ul class="mvg-original" ${a}>${(bl.punkte ?? bl.text.split('\n')).map((p) => `<li>${esc(p)}</li>`).join('')}</ul>`;
-      case 'tabelle': {
-        const kopf = (bl.kopf ?? []).map((z) => `<th>${esc(z)}</th>`).join('');
-        const zeilen = (bl.zeilen ?? []).map((r) => `<tr>${r.map((z) => `<td>${esc(z)}</td>`).join('')}</tr>`).join('');
-        return `<table class="mvg-original" ${a}>${kopf ? `<thead><tr>${kopf}</tr></thead>` : ''}<tbody>${zeilen}</tbody></table>`;
-      }
-      case 'kasten': return `<div class="mvg-original kasten" ${a}>${bl.text.split('\n').map((p) => `<p>${esc(p)}</p>`).join('')}</div>`;
-      default: return `<p class="mvg-original" ${a}>${esc(bl.text)}</p>`;
-    }
   }
 
   /* ------------------------------------------------ Kopfdaten -- */
@@ -923,94 +718,6 @@ class Kompilierer {
         }
         return aus;
       }
-      case 'status': {
-        if (t === 'keine') return [];
-        if (typeof wert !== 'object' || wert === null || Array.isArray(wert)) { this.fehler(ort, `„${k}“ muss Statuswerte enthalten (oder „keine“)`); return undefined; }
-        const aus = [];
-        for (const [a, v] of Object.entries(wert)) {
-          if (typeof v !== 'string') { this.fehler(ort, `„${k}.${a}“ muss ein Wert sein`); continue; }
-          const e = leseWirkEintrag(a, v);
-          if (e.ok) aus.push(e.wert); else this.fehler(ort, `„${k}“: ${e.fehler}`);
-        }
-        return aus;
-      }
-      case 'kanten': {
-        const liste = Array.isArray(wert) ? wert : [wert];
-        const aus = [];
-        for (const x of liste) {
-          if (typeof x === 'string') { aus.push({ ziel: x.trim(), wenn: null }); continue; }
-          if (typeof x !== 'object' || x === null || Array.isArray(x)) { this.fehler(ort, `„${k}“: Kante unlesbar`); continue; }
-          const o = /** @type {Record<string, unknown>} */ (x);
-          for (const s of Object.keys(o)) if (!['ziel', 'wenn', 'wenn-eine'].includes(s)) this.fehler(ort, `„${k}“: unbekannter Schlüssel „${s}“ (ziel, wenn, wenn-eine)`);
-          const ziel = text(o['ziel']);
-          if (ziel === null || !KENNUNG.test(ziel)) { this.fehler(ort, `„${k}“: Kante ohne gültiges „ziel“`); continue; }
-          /** @type {any} */
-          let wenn = null;
-          for (const [schluessel, art] of /** @type {const} */ ([['wenn', 'alle'], ['wenn-eine', 'eine']])) {
-            const w = o[schluessel];
-            if (w === undefined || w === '') continue;
-            const texte = (Array.isArray(w) ? w : [w]).map(String);
-            const e = leseBedingungen(texte, art);
-            if (!e.ok) { this.fehler(ort, e.fehler); continue; }
-            wenn = wenn === null ? e.wert : { art: 'alle', bedingungen: [wenn, e.wert], nicht: false };
-          }
-          if (wenn !== null) {
-            const v = verweiseIn(wenn);
-            for (const s of v.stationen) this.verweise.push({ art: 'station', wert: s, ort });
-            for (const s of v.entscheidungen) this.verweise.push({ art: 'entscheidung', wert: s, ort });
-            for (const s of v.rollen) this.verweise.push({ art: 'rolle', wert: s, ort });
-            for (const s of v.interessen) this.verweise.push({ art: 'interesse', wert: s, ort });
-            for (const s of v.infos) this.verweise.push({ art: 'info', wert: s, ort });
-            for (const s of v.fragen) this.verweise.push({ art: 'frage', wert: s, ort });
-          }
-          aus.push({ ziel, wenn });
-        }
-        return aus;
-      }
-      case 'paar': {
-        if (typeof wert !== 'object' || wert === null || Array.isArray(wert)) { this.fehler(ort, `„${k}“ muss {a: …, b: …} sein`); return undefined; }
-        const o = /** @type {Record<string, unknown>} */ (wert);
-        const a = text(o['a']);
-        const bb = text(o['b']);
-        if (a === null || bb === null || !KENNUNG.test(a) || !KENNUNG.test(bb)) { this.fehler(ort, `„${k}“ braucht a und b (Station-IDs)`); return undefined; }
-        return { a, b: bb };
-      }
-      case 'stufen': {
-        if (!Array.isArray(wert)) { this.fehler(ort, `„${k}“ muss eine Liste sein`); return undefined; }
-        const aus = [];
-        for (const x of wert) {
-          if (typeof x !== 'object' || x === null || Array.isArray(x)) { this.fehler(ort, `„${k}“: Stufe unlesbar`); continue; }
-          aus.push(this.kopf(/** @type {Record<string, unknown>} */ (x), {
-            wer: { typ: 'text', pflicht: true }, bereich: { typ: 'text', pflicht: true }, 'bis-teur': { typ: 'zahl', min: 0 }, hinweis: { typ: 'text' },
-          }, `${ort} (${k})`));
-        }
-        return aus;
-      }
-      case 'raci': {
-        // RACI mit Mandat (P5.1, Kap. 9.2): je Zeile genau eine Rolle „A“, jede Rolle höchstens ein Buchstabe
-        if (!Array.isArray(wert)) { this.fehler(ort, `„${k}“ muss eine Liste sein`); return undefined; }
-        const aus = [];
-        for (const x of wert) {
-          if (typeof x !== 'object' || x === null || Array.isArray(x)) { this.fehler(ort, `„${k}“: Zeile unlesbar`); continue; }
-          const z = this.kopf(/** @type {Record<string, unknown>} */ (x), {
-            id: { typ: 'kennung', pflicht: true }, titel: { typ: 'text', pflicht: true }, R: { typ: 'liste' }, A: { typ: 'kennung', pflicht: true }, C: { typ: 'liste' }, I: { typ: 'liste' }, mandat: { typ: 'text', pflicht: true },
-          }, `${ort} (${k})`);
-          /** @type {Record<string, string>} */
-          const zuordnung = {};
-          for (const b of ['A', 'R', 'C', 'I']) {
-            // this.kopf() legt Schlüssel in camelCase ab („A“ → „a“)
-            const w = z[b.toLowerCase()];
-            const rollen = b === 'A' ? (w ? [w] : []) : (w ?? []);
-            for (const r of rollen) {
-              if (!ROLLEN.includes(r)) this.fehler(`${ort} (${k})`, `RACI „${z.id}“: Rolle „${r}“ gibt es nicht`);
-              if (zuordnung[r] !== undefined) this.fehler(`${ort} (${k})`, `RACI „${z.id}“: Rolle „${r}“ hat zwei Buchstaben`);
-              zuordnung[r] = b;
-            }
-          }
-          aus.push({ id: z.id ?? '', titel: z.titel ?? '', zuordnung, mandat: z.mandat ?? '' });
-        }
-        return aus;
-      }
       case 'versionen': {
         const liste = Array.isArray(wert) ? wert : [wert];
         const aus = [];
@@ -1086,15 +793,6 @@ class Kompilierer {
     const kopf = { ...r.kopf };
     for (const [name, f] of Object.entries(r.rohFelder)) {
       const ortF = `${rel}:${f.zeile}`;
-      if ((r.art === 'bekannt' || r.art === 'unbekannt') && name === 'text') {
-        liste = this.liste(f.text, ortF, { ids: r.art === 'unbekannt', haken: false });
-        continue;
-      }
-      if (r.art === 'vorlage' && name === 'checkliste') {
-        liste = this.liste(f.text, ortF, { ids: false, haken: true });
-        continue;
-      }
-      if (r.art === 'glied' && name === 'titel') { felder[name] = this.inline(f.text, ortF); continue; }
       felder[name] = this.html(f.text, ortF);
     }
     if (r.art === 'zitat') {
@@ -1122,40 +820,16 @@ class Kompilierer {
           }
         }
       }
-      kopf['quelle'] = this.quellenangabe(r.kennungen);
       kopf['vollstaendig'] = erg.vollstaendig;
       const absaetze = r.kennungen.join(' ');
       const innen = this.html(text, r.ort);
       felder['text'] = `<blockquote class="mvg-zitat" data-absatz="${esc(absaetze)}">${innen}</blockquote>`;
       this.merkeDeckung(eltern, r.kennungen, rel);
     }
-    if (r.art === 'original') {
-      const ids = r.kennungen.flatMap((ref) => this.expandiere(ref, r.ort));
-      kopf['absaetze'] = ids;
-      kopf['quelle'] = this.quellenangabe(ids.length > 0 ? ids : r.kennungen);
-      if (this.quelle === null) {
-        felder['text'] = '';
-        this.warnung(r.ort, 'Originaltext nicht eingesetzt: whitepaper.json fehlt');
-      } else {
-        // Abbildungen nur im Originaltext einer Lernseite (ganzes Kapitel), an ihrer Stelle in der DOCX
-        felder['text'] = this.originalMitGliederung(ids, eltern === '@theorie');
-      }
-      this.merkeDeckung(eltern, ids, rel);
-    }
     if (r.art === 'tafel' && r.id !== null) {
       const t = this.quelle?.nachId.get(r.id);
       if (this.quelle !== null && (t === undefined || t.art !== 'tabelle')) this.fehler(r.ort, `Tafel: „${r.id}“ ist keine Tabelle im Whitepaper`);
-      kopf['quelle'] = this.quellenangabe([r.id]);
       kopf['tabelle'] = { kopf: t?.kopf ?? [], zeilen: t?.zeilen ?? [] };
-      /** @type {Record<string, string[]>} */
-      const erlebt = {};
-      for (const [nr, liste] of Object.entries(kopf['erlebt'] ?? {})) {
-        const n = Number(nr);
-        if (!Number.isInteger(n) || n < 1 || n > (t?.zeilen?.length ?? 0)) this.fehler(r.ort, `Tafel ${r.id}: „erlebt.${nr}“ – die Tabelle hat ${t?.zeilen?.length ?? 0} Zeilen`);
-        erlebt[nr] = String(liste).split(',').map((x) => x.trim()).filter(Boolean);
-        for (const st of erlebt[nr]) this.verweise.push({ art: 'station', wert: st, ort: r.ort });
-      }
-      kopf['erlebt'] = erlebt;
       const hervor = (kopf['hervor'] ?? []).map(Number);
       for (const n of hervor) if (!Number.isInteger(n) || n < 1 || n > (t?.zeilen?.length ?? 0)) this.fehler(r.ort, `Tafel ${r.id}: „hervor: ${n}“ – die Tabelle hat ${t?.zeilen?.length ?? 0} Zeilen`);
       kopf['hervor'] = hervor;
@@ -1165,9 +839,6 @@ class Kompilierer {
       this.merkeDeckung(eltern, [r.id], rel);
     }
     const kinder = k.kinder.map((kind) => this.block(kind, r.art, rel)).filter((x) => x !== null);
-    // Verweise für die spätere Prüfung
-    for (const s of ['von', 'figur']) if (typeof kopf[s] === 'string') this.verweise.push({ art: 'figur', wert: kopf[s], ort: r.ort });
-    if (r.art === 'querverweis' && r.id !== null) this.verweise.push({ art: 'station', wert: r.id, ort: r.ort });
     return { art: r.art, kennungen: r.kennungen, id: r.id, kopf, felder, liste, kinder };
   }
 
@@ -1260,59 +931,6 @@ function leseDateiKopf(c, rel, art, text) {
  * @param {string} rel
  * @param {string} text
  */
-/**
- * Zeitachse der Fall-Bibel: Monat (0–12) → LPH (0–9).
- * @param {Kompilierer} c @param {string} rel @param {Record<string, string> | undefined} roh
- * @returns {Record<string, number>}
- */
-function lphStand(c, rel, roh) {
-  /** @type {Record<string, number>} */
-  const aus = {};
-  for (const [m, l] of Object.entries(roh ?? {})) {
-    if (!/^(?:\d|1[0-2])$/u.test(m) || !/^\d$/u.test(l)) { c.fehler(`${rel}:1`, `„lph-stand“: „${m}: ${l}“ – erwartet Monat 0–12 und LPH 0–9`); continue; }
-    aus[m] = Number(l);
-  }
-  return aus;
-}
-
-function baueFall(c, rel, text) {
-  const { kopf, wurzel, rohFelder } = leseDateiKopf(c, rel, '@fall', text);
-  /** @type {Record<string, any>} */
-  const figuren = {};
-  for (const k of wurzel.kinder) {
-    const bl = c.block(k, '@fall', rel);
-    if (bl === null || bl.art !== 'figur') continue;
-    if (bl.id === null) continue;
-    if (figuren[bl.id] !== undefined) c.fehler(`${rel}:${k.zeile}`, `Figur „${bl.id}“ doppelt`);
-    figuren[bl.id] = {
-      id: bl.id,
-      name: bl.kopf.name ?? '',
-      rolle: bl.kopf.rolle ?? null,
-      funktion: bl.kopf.funktion ?? '',
-      farbe: bl.kopf.farbe ?? '#000000',
-      spieler: bl.kopf.spieler ?? false,
-      felder: bl.felder,
-    };
-    if (bl.kopf.rolle) c.verweise.push({ art: 'rolle', wert: bl.kopf.rolle, ort: `${rel}:${k.zeile}` });
-  }
-  return {
-    hinweis: kopf.hinweis ?? '',
-    stadt: kopf.stadt ?? '',
-    bauherr: kopf.bauherr ?? '',
-    vertretung: kopf.vertretung ?? '',
-    vertretungKurz: kopf.vertretungKurz ?? null,
-    projekt: kopf.projekt ?? '',
-    bauteile: kopf.bauteile ?? [],
-    bauweise: kopf.bauweise ?? null,
-    projektbasis: kopf.projektbasis ?? '',
-    projektbasisMio: kopf.projektbasisMio ?? null,
-    gremien: kopf.gremien ?? [],
-    monat0: kopf.monat0 ?? null,
-    lphStand: lphStand(c, rel, kopf.lphStand),
-    einleitung: c.html(rohFelder['text']?.text ?? '', `${rel}:1`),
-    figuren,
-  };
-}
 
 /**
  * Startseite (O-21): Kicker, Leitsatz, These. Steht beim Leitsatz eine Absatz-ID (`titel-quelle`),
@@ -1335,184 +953,6 @@ function baueStartseite(c, rel, text) {
 
 /**
  * @param {Kompilierer} c
- * @param {string} rel
- * @param {string} id
- * @param {string} text
- */
-function baueRolle(c, rel, id, text) {
-  const { kopf, wurzel, rohFelder } = leseDateiKopf(c, rel, '@rolle', text);
-  if (kopf.id !== undefined && kopf.id !== id) c.fehler(`${rel}:1`, `id „${kopf.id}“ passt nicht zum Dateinamen „${id}“`);
-  for (const k of wurzel.kinder) c.fehler(`${rel}:${k.zeile}`, `Container „${k.art}“ ist in Rollendateien nicht erlaubt`);
-  if (kopf.figur) c.verweise.push({ art: 'figur', wert: kopf.figur, ort: `${rel}:1` });
-  /** @type {Record<string, string>} */
-  const felder = {};
-  for (const [name, f] of Object.entries(rohFelder)) felder[name] = c.html(f.text, `${rel}:${f.zeile}`);
-  return {
-    id,
-    spielbar: true,
-    titel: kopf.titel ?? id,
-    kurztitel: kopf.kurztitel ?? kopf.titel ?? id,
-    farbe: kopf.farbe ?? '#000000',
-    textfarbe: kopf.textfarbe ?? null,
-    figur: kopf.figur ?? null,
-    whitepaper: kopf.whitepaperBezug ?? [],
-    felder,
-    quelle: rel,
-  };
-}
-
-/**
- * @param {Kompilierer} c
- * @param {string} rel
- * @param {string} ordner
- * @param {string} text
- * @param {Record<string, any>} regie
- */
-function baueStation(c, rel, ordner, text, regie) {
-  const { kopf, wurzel, rohFelder } = leseDateiKopf(c, rel, '@station', text);
-  const ort = `${rel}:1`;
-  if (kopf.id !== undefined && kopf.id !== ordner) c.fehler(ort, `id „${kopf.id}“ passt nicht zum Ordner „${ordner}“`);
-  const art = kopf.art ?? 'station';
-  if (kopf.statusStart !== undefined && !istVollstaendigerStart(kopf.statusStart)) {
-    c.fehler(ort, '„status-start“ muss alle fünf Werte setzen (entscheidungsfaehigkeit, kostenunsicherheit, offene-risiken, ungeklaerte-entscheidungen, terminrisiko)');
-  }
-  if (art === 'vergleich' && kopf.vergleich === undefined) c.fehler(ort, 'Vergleichsstation ohne „vergleich: {a: …, b: …}“');
-  if (!kopf.ende && (kopf.weiter ?? []).length === 0) c.fehler(ort, 'weder „weiter“ noch „ende: ja“');
-  /** @type {('weltB' | 'explore')[]} */
-  const schaltetFrei = [];
-  for (const s of kopf.schaltetFrei ?? []) {
-    if (s === 'welt-b' || s === 'weltB') schaltetFrei.push('weltB');
-    else if (s === 'explore') schaltetFrei.push('explore');
-    else c.fehler(ort, `„schaltet-frei“: „${s}“ unbekannt (welt-b, explore)`);
-  }
-
-  const schritte = [];
-  const infos = [];
-  /** @type {any[] | null} */
-  let ebenen = null;
-  const standpunkte = [];
-  const vertiefungen = [];
-  /** @type {string | null} */
-  let express = null;
-  /** @type {Record<string, string> | null} */
-  let nachweis = null;
-  /** @type {Set<string>} */
-  const schrittIds = new Set();
-  for (const k of wurzel.kinder) {
-    if (k.art === 'regie') {
-      const r = c.lies(k, '@station', rel);
-      if (r !== null) regie[ordner] = baueRegie(c, r.rohFelder, rel);
-      continue;
-    }
-    if (k.art === 'ebenen') {
-      if (ebenen !== null) c.fehler(`${rel}:${k.zeile}`, '„ebenen“ doppelt');
-      ebenen = baueEbenen(c, k, '@station', rel);
-      continue;
-    }
-    const bl = c.block(k, '@station', rel);
-    if (bl === null) continue;
-    if (bl.art === 'standpunkt') {
-      standpunkte.push({ rolle: bl.id ?? '', figur: bl.kopf.figur ?? '', html: bl.felder.text ?? '' });
-      if (bl.id) c.verweise.push({ art: 'rolle', wert: bl.id, ort: `${rel}:${k.zeile}` });
-      continue;
-    }
-    if (bl.art === 'express') {
-      if (express !== null) c.fehler(`${rel}:${k.zeile}`, '„express“ doppelt');
-      express = bl.felder.text ?? '';
-      continue;
-    }
-    if (bl.art === 'nachweis') {
-      if (nachweis !== null) c.fehler(`${rel}:${k.zeile}`, '„nachweis“ doppelt');
-      if (kopf.welt !== 'B') c.fehler(`${rel}:${k.zeile}`, '„nachweis“ nur an Stationen der Welt B (E2)');
-      nachweis = {
-        mandat: String(bl.kopf.mandat ?? ''), freigabe: String(bl.kopf.freigabe ?? ''), kennung: String(bl.kopf.kennung ?? ''),
-        datenstand: String(bl.kopf.datenstand ?? ''), nachweis: String(bl.kopf.nachweis ?? ''), beschlusslage: String(bl.kopf.beschlusslage ?? ''),
-        text: bl.felder.text ?? '',
-      };
-      continue;
-    }
-    if (bl.art === 'vertiefung') {
-      if (vertiefungen.some((v) => v.interesse === bl.id)) c.fehler(`${rel}:${k.zeile}`, `Vertiefung „${bl.id}“ doppelt`);
-      if (bl.id === 'express') c.fehler(`${rel}:${k.zeile}`, 'Vertiefung „express“ gibt es nicht (Express ist ein Weg, kein Thema, L-26)');
-      const zitate = (bl.felder.text ?? '').split('class="mvg-zitat"').length - 1;
-      if (zitate !== 1) c.fehler(`${rel}:${k.zeile}`, `Vertiefung „${bl.id}“: genau ein wortgleiches Zitat erwartet, gefunden ${zitate} (L-31)`);
-      vertiefungen.push({ interesse: bl.id ?? '', titel: bl.kopf.titel ?? '', html: bl.felder.text ?? '' });
-      if (bl.id) c.verweise.push({ art: 'interesse', wert: bl.id, ort: `${rel}:${k.zeile}` });
-      continue;
-    }
-    if (bl.art !== 'schritt' || bl.id === null) continue;
-    if (schrittIds.has(bl.id)) c.fehler(`${rel}:${k.zeile}`, `Schritt „${bl.id}“ doppelt`);
-    schrittIds.add(bl.id);
-    const schrittArt = bl.kopf.art ?? 'text';
-    const { art: _a, titel, kurz, gruppe, uhr, ...restKopf } = bl.kopf;
-    void _a;
-    schritte.push({
-      id: bl.id,
-      art: schrittArt,
-      titel: titel ?? '',
-      kurz: kurz ?? titel ?? '',
-      gruppe: gruppe ?? null,
-      uhr: uhr ?? null,
-      kopf: restKopf,
-      felder: bl.felder,
-      bloecke: bl.kinder,
-    });
-    if (schrittArt === 'rollenwahl' && restKopf.folgt === undefined) restKopf.folgt = [];
-    if (schrittArt !== 'rollenwahl' && bl.kopf.folgt !== undefined) c.fehler(`${rel}:${k.zeile}`, '„folgt“ gibt es nur im Schritt „rollenwahl“');
-    // Zeitsprünge → anforderbare Informationen; Unbekanntes → Kennungen für loest/bleibt
-    /** @type {Set<string>} */
-    const unbekannt = new Set();
-    for (const kind of bl.kinder) if (kind.art === 'unbekannt') for (const p of kind.liste ?? []) if (p.id) unbekannt.add(p.id);
-    for (const kind of bl.kinder) {
-      if (kind.art !== 'zeitsprung' || kind.id === null) continue;
-      if (infos.some((i) => i.id === kind.id)) c.fehler(`${rel}:${k.zeile}`, `Zeitsprung „${kind.id}“ doppelt`);
-      infos.push({ id: kind.id, schritt: bl.id, wirkung: kind.kopf.status ?? [] });
-      for (const feld of ['loest', 'bleibt']) {
-        for (const u of Object.keys(kind.kopf[feld] ?? {})) {
-          if (!unbekannt.has(u)) c.fehler(`${rel}:${k.zeile}`, `Zeitsprung ${kind.id}: „${feld}.${u}“ steht nicht in der Liste „unbekannt“ dieses Schritts`);
-        }
-      }
-    }
-  }
-  for (const s of schritte) {
-    if (!SCHRITT_ARTEN.includes(s.art)) continue;
-    if (s.art === 'ebenen' && ebenen === null) c.fehler(ort, `Schritt „${s.id}“ zeigt Ebenen, aber die Station hat keine „ebenen“`);
-  }
-  if (schritte.length === 0) c.fehler(ort, 'Station ohne Schritte');
-  if (vertiefungen.length > 0 && !schritte.some((s) => s.art === 'ebenen')) c.fehler(ort, 'Vertiefungen brauchen einen Schritt „ebenen“ (dort erscheinen sie)');
-
-  return {
-    id: ordner,
-    art,
-    welt: kopf.welt ?? null,
-    monat: kopf.monat ?? null,
-    titel: kopf.titel ?? ordner,
-    kurztitel: kopf.kurztitel ?? kopf.titel ?? ordner,
-    lph: kopf.lph ?? null,
-    uhr: kopf.uhr ?? null,
-    whitepaper: kopf.whitepaperBezug ?? [],
-    statusStart: kopf.statusStart ?? null,
-    weiter: kopf.weiter ?? [],
-    ende: kopf.ende ?? false,
-    schaltetFrei,
-    vergleich: kopf.vergleich ?? null,
-    partner: kopf.partner ?? null,
-    einleitung: c.html(rohFelder['text']?.text ?? '', ort),
-    schritte,
-    infos,
-    ebenen,
-    standpunkte,
-    vertiefungen,
-    express,
-    nachweis,
-    vertiefung: kopf.vertiefung ?? null,
-    szenen: {},
-    quelle: rel,
-  };
-}
-
-/**
- * @param {Kompilierer} c
  * @param {Knoten} k
  * @param {string} eltern
  * @param {string} rel
@@ -1526,8 +966,8 @@ function baueEbenen(c, k, eltern, rel) {
     if (bl === null || bl.art !== 'ebene') continue;
     const nr = Number(bl.id);
     if (aus.some((e) => e.nr === nr)) c.fehler(`${rel}:${kind.zeile}`, `Ebene ${nr} doppelt`);
-    if (nr === 4 && !bl.kinder.some((/** @type {any} */ x) => x.art === 'zitat' || x.art === 'original')) {
-      c.fehler(`${rel}:${kind.zeile}`, 'Ebene 4 (Nachweis) braucht ein „zitat“ oder „original“ mit Absatz-ID');
+    if (nr === 4 && !bl.kinder.some((/** @type {any} */ x) => x.art === 'zitat')) {
+      c.fehler(`${rel}:${kind.zeile}`, 'Ebene 4 (Nachweis) braucht ein „zitat“ mit Absatz-ID');
     }
     aus.push({ nr, titel: bl.kopf.titel ?? '', felder: bl.felder, bloecke: bl.kinder });
   }
@@ -1546,81 +986,6 @@ function baueRegie(c, rohFelder, rel) {
   return {
     notiz: n ? c.html(n.text, `${rel}:${n.zeile}`) : null,
     leitfragen: l ? c.punkte(l.text, `${rel}:${l.zeile}`) : [],
-  };
-}
-
-/**
- * @param {Kompilierer} c
- * @param {string} rel
- * @param {string} ordner
- * @param {string} rolle
- * @param {string} text
- * @param {Record<string, any>} regie
- */
-function baueSzene(c, rel, ordner, rolle, text, regie) {
-  const { kopf, wurzel } = leseDateiKopf(c, rel, '@szene', text);
-  const ort = `${rel}:1`;
-  if (kopf.station !== undefined && kopf.station !== ordner) c.fehler(ort, `station „${kopf.station}“ passt nicht zum Ordner „${ordner}“`);
-  if (kopf.rolle !== undefined && kopf.rolle !== rolle) c.fehler(ort, `rolle „${kopf.rolle}“ passt nicht zum Dateinamen „${rolle}“`);
-  const optionen = [];
-  const fragen = [];
-  /** @type {Record<string, string>} */
-  const texte = {};
-  /** @type {string | null} */
-  let ohne = null;
-  /** @type {string | null} */
-  let nachsatz = null;
-  for (const k of wurzel.kinder) {
-    if (k.art === 'regie') {
-      const r = c.lies(k, '@szene', rel);
-      if (r !== null) regie[`${ordner}/${rolle}`] = baueRegie(c, r.rohFelder, rel);
-      continue;
-    }
-    const bl = c.block(k, '@szene', rel);
-    if (bl === null) continue;
-    const kOrt = `${rel}:${k.zeile}`;
-    if (bl.art === 'option' && bl.id !== null) {
-      if (optionen.some((o) => o.id === bl.id)) c.fehler(kOrt, `Option ${bl.id} doppelt`);
-      optionen.push({
-        id: bl.id,
-        titel: bl.kopf.titel ?? '',
-        kurz: bl.kopf.kurz ?? '',
-        symbol: bl.kopf.symbol ?? null,
-        wirkung: bl.kopf.status ?? [],
-        felder: bl.felder,
-      });
-    } else if (bl.art === 'nachsatz') {
-      nachsatz = bl.felder.text ?? '';
-    } else if (bl.art === 'frage' && bl.id !== null) {
-      const antworten = bl.kinder.filter((/** @type {any} */ x) => x.art === 'antwort').map((/** @type {any} */ x) => ({
-        id: x.id ?? '', titel: x.kopf.titel ?? '', praefix: x.kopf.praefix ?? null, symbol: x.kopf.symbol ?? null, html: x.felder.text ?? '',
-      }));
-      if (antworten.length < 2) c.fehler(kOrt, `Frage ${bl.id} braucht mindestens zwei Antworten`);
-      fragen.push({ id: bl.id, schritt: bl.kopf.schritt ?? null, felder: bl.felder, antworten });
-    } else if (bl.art === 'rueckbezug' && bl.id !== null) {
-      if (bl.id === 'ohne') ohne = bl.felder.text ?? '';
-      else {
-        if (texte[bl.id] !== undefined) c.fehler(kOrt, `Rückbezug ${bl.id} doppelt`);
-        texte[bl.id] = bl.felder.text ?? '';
-      }
-    }
-  }
-  if (optionen.length > 0 && !kopf.frage) c.fehler(ort, 'Kopfdaten „frage“ fehlen (Pflicht, sobald es Optionen gibt)');
-  optionen.sort((a, b) => a.id.localeCompare(b.id));
-  const hatRueckbezug = Object.keys(texte).length > 0 || ohne !== null;
-  if (hatRueckbezug && !kopf.rueckbezugAuf) c.fehler(ort, 'Rückbezüge ohne „rueckbezug-auf“');
-  return {
-    station: ordner,
-    rolle,
-    entscheidung: optionen.length > 0 ? {
-      id: kopf.entscheidung ?? `${ordner}/${rolle}`,
-      frage: kopf.frage ?? '',
-      optionen,
-      nachsatz,
-    } : null,
-    fragen,
-    rueckbezug: hatRueckbezug ? { auf: kopf.rueckbezugAuf ?? '', texte, ohne } : null,
-    quelle: rel,
   };
 }
 
@@ -1661,13 +1026,12 @@ function baueTheorie(c, rel, id, text, regie) {
       if (b.art === 'wissenscheck') {
         const antworten = b.kinder.filter((/** @type {any} */ x) => x.art === 'antwort').length;
         if (antworten < 2) c.fehler(rel, `Wissenscheck ${b.id}: mindestens zwei Antworten`);
-        if (!b.kinder.some((/** @type {any} */ x) => x.art === 'zitat' || x.art === 'original')) c.fehler(rel, `Wissenscheck ${b.id}: Beleg fehlt (zitat oder original)`);
+        if (!b.kinder.some((/** @type {any} */ x) => x.art === 'zitat')) c.fehler(rel, `Wissenscheck ${b.id}: Beleg fehlt (zitat)`);
       }
       pruefeCheck(b.kinder ?? []);
     }
   };
   pruefeCheck(bloecke);
-  for (const s of kopf.story ?? []) c.verweise.push({ art: 'station', wert: s, ort });
   const deckt = [];
   for (const ref of kopf.deckt ?? []) {
     const ids = c.expandiere(ref, ort);
@@ -1682,39 +1046,11 @@ function baueTheorie(c, rel, id, text, regie) {
     reihe: kopf.reihe ?? kopf.kapitel ?? 0,
     titel: kopf.titel ?? '',
     kurztitel: kopf.kurztitel ?? kopf.titel ?? '',
-    story: kopf.story ?? [],
     deckt,
     einleitung: c.html(rohFelder['text']?.text ?? '', ort),
     bloecke,
     quelle: rel,
   };
-}
-
-/**
- * @param {Kompilierer} c
- * @param {string} rel
- * @param {string} text
- */
-function baueEinwaende(c, rel, text) {
-  const { wurzel } = leseDateiKopf(c, rel, '@einwaende', text);
-  const aus = [];
-  for (const k of wurzel.kinder) {
-    const bl = c.block(k, '@einwaende', rel);
-    if (bl === null || bl.art !== 'einwand') continue;
-    if (!bl.kinder.some((/** @type {any} */ x) => x.art === 'zitat' || x.art === 'original')) {
-      c.fehler(`${rel}:${k.zeile}`, `Einwand ${bl.id}: Beleg fehlt (ein „zitat“ oder „original“ aus dem Whitepaper)`);
-    }
-    if (aus.some((e) => e.id === bl.id)) c.fehler(`${rel}:${k.zeile}`, `Einwand ${bl.id} doppelt`);
-    for (const s of bl.kopf.stationen ?? []) c.verweise.push({ art: 'station', wert: s, ort: `${rel}:${k.zeile}` });
-    const gl = c.quelle?.gliederung ?? [];
-    for (const nr of bl.kopf.kapitel ?? []) {
-      if (gl.length > 0 && !gl.some((/** @type {GliederungsKapitel} */ g) => g.nr === String(nr) || g.abschnitte.some((a) => a.nr === String(nr)))) {
-        c.fehler(`${rel}:${k.zeile}`, `Einwand ${bl.id}: Kapitel „${nr}“ gibt es im Whitepaper nicht`);
-      }
-    }
-    aus.push({ id: bl.id ?? '', stationen: bl.kopf.stationen ?? [], kapitel: bl.kopf.kapitel ?? [], felder: bl.felder, bloecke: bl.kinder });
-  }
-  return aus;
 }
 
 /**
@@ -1749,28 +1085,6 @@ function baueKompass(c, rel, text) {
     if (andere.length === 0) c.fehler(ort, `Kompass ${bl.id}: „andere“ ist leer`);
     const g = c.quelle !== null ? c.glossarNachBegriff.get(c.quelle.normalisiere(begriff).toLowerCase()) ?? null : null;
     aus.push({ id: bl.id ?? '', begriff, andere, beleg, glossar: g?.id ?? null, hinweis: bl.felder.hinweis ?? null });
-  }
-  return aus;
-}
-
-/**
- * Vorher/Nachher-Welten (P8.2).
- * @param {Kompilierer} c
- * @param {string} rel
- * @param {string} text
- */
-function baueWelten(c, rel, text) {
-  const { wurzel } = leseDateiKopf(c, rel, '@welten', text);
-  const aus = [];
-  for (const k of wurzel.kinder) {
-    const bl = c.block(k, '@welten', rel);
-    if (bl === null || bl.art !== 'welt') continue;
-    if (!bl.kinder.some((/** @type {any} */ x) => x.art === 'zitat' || x.art === 'original')) {
-      c.fehler(`${rel}:${k.zeile}`, `Welt ${bl.id}: Beleg fehlt (ein „zitat“ oder „original“ aus dem Whitepaper)`);
-    }
-    if (aus.some((e) => e.id === bl.id)) c.fehler(`${rel}:${k.zeile}`, `Welt ${bl.id} doppelt`);
-    for (const s of bl.kopf.stationen ?? []) c.verweise.push({ art: 'station', wert: s, ort: `${rel}:${k.zeile}` });
-    aus.push({ id: bl.id ?? '', titel: bl.kopf.titel ?? '', stationen: bl.kopf.stationen ?? [], weltA: bl.felder.weltA ?? '', weltB: bl.felder.weltB ?? '', bloecke: bl.kinder });
   }
   return aus;
 }
@@ -1825,21 +1139,9 @@ export async function kompiliere(optionen = {}) {
   const lies = (/** @type {string} */ r) => readFileSync(path.join(inhaltOrdner, r), 'utf8');
 
   /** @type {any} */
-  let fall = null;
-  /** @type {any} */
   let startseite = null;
   /** @type {Record<string, any>} */
-  const rollen = {};
-  /** @type {Record<string, any>} */
-  const stationen = {};
-  /** @type {any[]} */
-  const szenen = [];
-  /** @type {Record<string, any>} */
   const theorie = {};
-  /** @type {any[]} */
-  let einwaende = [];
-  /** @type {any[]} */
-  let welten = [];
   /** @type {any[]} */
   let kompass = [];
   /** @type {Record<string, any>} */
@@ -1854,23 +1156,18 @@ export async function kompiliere(optionen = {}) {
   for (const r of dateien) {
     const rel = `inhalte/${r}`;
     let m;
-    if (r === 'fall.md') fall = baueFall(c, rel, lies(r));
-    else if (r === 'start.md') startseite = baueStartseite(c, rel, lies(r));
-    else if ((m = /^rollen\/([^/]+)\.md$/u.exec(r))) rollen[m[1] ?? ''] = baueRolle(c, rel, m[1] ?? '', lies(r));
-    else if ((m = /^story\/([^/]+)\/station\.md$/u.exec(r))) stationen[m[1] ?? ''] = baueStation(c, rel, m[1] ?? '', lies(r), regie);
-    else if ((m = /^story\/([^/]+)\/([^/]+)\.md$/u.exec(r))) szenen.push({ ordner: m[1] ?? '', rolle: m[2] ?? '', rel, text: lies(r) });
+    if (r === 'start.md') startseite = baueStartseite(c, rel, lies(r));
     else if ((m = /^theorie\/(k\d\d)-[^/]+\.md$/u.exec(r))) {
       const id = m[1] ?? '';
       if (theorie[id] !== undefined) c.fehler(rel, `zweite Lernseite für ${id}`);
       theorie[id] = baueTheorie(c, rel, id, lies(r), regie);
-    } else if (r === 'einwaende.md') einwaende = baueEinwaende(c, rel, lies(r));
-    else if (r === 'welten.md') welten = baueWelten(c, rel, lies(r));
-    else if (r === 'begriffs-kompass.md') kompass = baueKompass(c, rel, lies(r));
+    } else if (r === 'begriffs-kompass.md') kompass = baueKompass(c, rel, lies(r));
     else if (r === 'abdeckung.yaml') abdeckungRoh = leseYaml(lies(r), rel, 1, b);
     else if (/^abbildungen\/abb-\d+\.yaml$/u.test(r)) { /* baueAbbildungen (P14) */ }
     else if (/^geschichte\/[^/]+\.yaml$/u.test(r)) geschichteDateien.push({ rel, text: lies(r) });
     else if (r === 'werkzeuge.yaml') werkzeuge = baueWerkzeuge(c, rel, lies(r));
     else if (r === 'glossar.yaml') { /* vor dem Kompilierer angewandt (wendeGlossarAn) */ }
+    else if (r === 'fall.md') { /* Fall-Bibel: Nachschlagewerk der Autoren, nicht auf der Seite (P16.14) */ }
     else if (/^rechtliches\/[^/]+\.md$/u.test(r)) { /* Impressum und Datenschutz: werkzeuge/bau.mjs (baueBeigaben) */ }
     else if (r.endsWith('.md') || r.endsWith('.yaml')) c.warnung(rel, 'Datei gehört zu keiner bekannten Art (docs/INHALTSFORMAT.md Abschnitt 1) – ignoriert');
   }
@@ -1883,92 +1180,28 @@ export async function kompiliere(optionen = {}) {
     }
   }
 
-  // Szenen in ihre Stationen
-  for (const s of szenen) {
-    const st = stationen[s.ordner];
-    const szene = baueSzene(c, s.rel, s.ordner, s.rolle, s.text, regie);
-    if (st === undefined) {
-      c.fehler(s.rel, `Rollenszene ohne station.md im Ordner „${s.ordner}“`);
-      continue;
-    }
-    if (!ROLLEN.includes(s.rolle)) c.fehler(s.rel, `„${s.rolle}“ ist keine Rolle (${ROLLEN.join(', ')})`);
-    st.szenen[s.rolle] = szene;
-  }
-
-  // Prolog: spielbare Rollen und Interessen
-  const start = stationen['prolog'] !== undefined ? 'prolog' : (Object.values(stationen).find((st) => st.art === 'prolog')?.id ?? 'prolog');
-  /** @type {any[]} */
-  const interessen = [];
-  /** @type {string[]} */
-  let folgt = [];
-  for (const st of Object.values(stationen)) {
-    for (const s of st.schritte) {
-      if (s.art === 'rollenwahl') folgt = [...folgt, ...(s.kopf.folgt ?? [])];
-      for (const bl of s.bloecke) {
-        if (bl.art === 'interesse' && bl.id !== null) {
-          if (s.art !== 'interessenwahl') c.fehler(st.quelle, `Interesse „${bl.id}“ steht nicht in einem Schritt „interessenwahl“`);
-          if (interessen.some((i) => i.id === bl.id)) c.fehler(st.quelle, `Interesse „${bl.id}“ doppelt`);
-          interessen.push({ id: bl.id, titel: bl.kopf.titel ?? bl.id, html: bl.felder.text ?? '' });
-        }
-      }
-    }
-  }
-  for (const f of folgt) if (!ROLLEN.includes(f)) c.fehler(`inhalte/story/${start}/station.md`, `„folgt“: „${f}“ ist keine Rolle`);
-  for (const id of Object.keys(rollen)) rollen[id].spielbar = !folgt.includes(id);
-
-  // Rückbezüge auflösen (braucht alle Szenen)
-  const modell = { start, stationen, rollen, interessen };
-  for (const st of Object.values(stationen)) {
-    for (const szene of Object.values(st.szenen)) {
-      const rb = /** @type {any} */ (szene).rueckbezug;
-      if (rb === null) continue;
-      const id = loeseEntscheidung(/** @type {any} */ (modell), rb.auf, /** @type {any} */ (szene).rolle);
-      if (id === null) c.fehler(/** @type {any} */ (szene).quelle, `„rueckbezug-auf“: Entscheidung „${rb.auf}“ nicht gefunden`);
-      else rb.auf = id;
-    }
-  }
-
   // Glossar (alle Einträge, für Mouseover)
   /** @type {Record<string, any>} */
   const glossar = {};
-  for (const g of quelle?.glossar ?? []) glossar[g.id] = { id: g.id, begriff: g.begriff, definition: g.definition, vorkommen: { stationen: [], kapitel: [] } };
-  // Wo ein Begriff vorkommt (P6.14, Glossarseite „Kommt vor in“): Stationen in Story-Reihenfolge, Kapitel aufsteigend
+  for (const g of quelle?.glossar ?? []) glossar[g.id] = { id: g.id, begriff: g.begriff, definition: g.definition, vorkommen: { kapitel: [] } };
+  // Wo ein Begriff vorkommt (P6.14, Glossar „Kommt vor in“): Kapitel aufsteigend
   const inText = (/** @type {unknown} */ x) => new Set([...JSON.stringify(x).matchAll(/data-glossar=\\"([^"\\]+)\\"/gu)].map((m) => m[1]));
-  for (const id of stationsFolge(/** @type {any} */ (modell))) {
-    const st = stationen[id];
-    if (st === undefined) continue;
-    for (const g of inText(st)) if (glossar[g] !== undefined) glossar[g].vorkommen.stationen.push(id);
-  }
   for (const t of Object.values(theorie).sort((a, b) => /** @type {any} */ (a).kapitel - /** @type {any} */ (b).kapitel)) {
     for (const g of inText(t)) if (glossar[g] !== undefined && !glossar[g].vorkommen.kapitel.includes(/** @type {any} */ (t).kapitel)) glossar[g].vorkommen.kapitel.push(/** @type {any} */ (t).kapitel);
   }
 
-  // Abdeckung
-  const abdeckung = baueAbdeckung(c, quelle, abdeckungRoh, stationen, theorie, pruefe);
-
-  if (pruefe) pruefeAlles(c, { fall, rollen, stationen, theorie, interessen, modell });
-
+  const abdeckung = baueAbdeckung(c, quelle, abdeckungRoh, theorie, pruefe);
   const abb = baueAbbildungen(c, quelle, wurzel, theorie, pruefe);
-
   const gesch = baueGeschichte(c, geschichteDateien);
   const inhalte = {
     version: 1,
-    whitepaper: { fassung: quelle?.fassung ?? null, titel: quelle?.titel ?? null, kapitel: quelle?.gliederung ?? [], lph: lphPhasen(quelle), abbildungen: abb.liste },
-    fall,
+    // von der Quelle nur die Abbildungen; Titel, Fassung und Gliederung bleiben intern (O-38)
+    abbildungen: abb.liste,
     startseite,
-    rollen,
-    rollenFolge: ROLLEN.filter((r) => rollen[r] !== undefined),
-    interessen,
-    start,
-    stationen,
-    stationsFolge: stationsFolge(/** @type {any} */ (modell)),
     glossar,
     theorie,
-    einwaende,
-    welten,
     kompass,
     abdeckung,
-    quellen: baueQuellen(c, quelle, stationen),
     regie,
     geschichte: gesch.geschichte,
     geschichteRegie: gesch.regie,
@@ -2149,84 +1382,34 @@ export function baueAbbildungen(c, quelle, wurzel, theorie, pruefe) {
 }
 
 /**
- * Quellenfenster (P2.3): der Originaltext jedes Absatzes, auf den eine Station verweist
- * („whitepaper-bezug“), wörtlich aus whitepaper.json, mit Abschnitt für die Zitierangabe.
- * @param {Kompilierer} c @param {any} quelle @param {Record<string, any>} stationen
- * @returns {Record<string, { id: string, abschnitt: string, abschnittTitel: string, html: string }>}
- */
-function baueQuellen(c, quelle, stationen) {
-  /** @type {Record<string, { id: string, abschnitt: string, abschnittTitel: string, html: string }>} */
-  const aus = {};
-  if (quelle === null) return aus;
-  const ids = [...new Set(Object.values(stationen).flatMap((st) => st.whitepaper ?? []))].sort();
-  for (const id of ids) {
-    const bl = quelle.nachId.get(id);
-    if (bl === undefined) continue;
-    aus[id] = { id, abschnitt: bl.abschnitt, abschnittTitel: bl.abschnittTitel, html: c.originalHtml(bl) };
-  }
-  return aus;
-}
-
-/**
- * Leistungsphasen LPH 0–9 aus der Tabelle k9.3-t1 (wörtlich: Name und Freigabefrage) für das LPH-Band.
- * @param {any} quelle
- * @returns {{ nr: number, name: string, freigabefrage: string }[]}
- */
-function lphPhasen(quelle) {
-  const t = quelle?.nachId.get('k9.3-t1');
-  if (t === undefined) return [];
-  /** @type {{ nr: number, name: string, freigabefrage: string }[]} */
-  const aus = [];
-  for (const zeile of String(t.text).split('\n').slice(1)) {
-    const [lph = '', name = '', frage = ''] = zeile.split('|').map((x) => x.trim());
-    const m = /^LPH (\d)$/u.exec(lph);
-    if (m !== null) aus.push({ nr: Number(m[1]), name, freigabefrage: frage });
-  }
-  return aus;
-}
-
-/**
  * @param {Kompilierer} c
  * @param {Quelle | null} quelle
  * @param {Record<string, unknown> | null} roh
- * @param {Record<string, any>} stationen
  * @param {Record<string, any>} theorie
  * @param {boolean} pruefe
  */
-function baueAbdeckung(c, quelle, roh, stationen, theorie, pruefe) {
+function baueAbdeckung(c, quelle, roh, theorie, pruefe) {
   const rel = 'inhalte/abdeckung.yaml';
-  /** @type {Record<string, { theorie: string[], story: string[] }>} */
+  /** @type {Record<string, { theorie: string[] }>} */
   const ziele = {};
-  const ziel = (/** @type {string} */ id) => (ziele[id] ??= { theorie: [], story: [] });
+  const ziel = (/** @type {string} */ id) => (ziele[id] ??= { theorie: [] });
   // Je Kapitel gibt es eine Lernseite kNN (O-20); bis sie gebaut ist (P6), gilt sie als geplant.
   const kapitelSeite = (/** @type {string} */ nr) => `k${nr.padStart(2, '0')}`;
   const kapitelSeiten = new Set((quelle?.bloecke ?? []).map((bl) => kapitelSeite(bl.kapitel)));
   for (const [id, wert] of Object.entries(roh ?? {})) {
     if (!BLOCK_ID.test(id)) { c.fehler(rel, `„${id}“ ist keine Absatz-ID`); continue; }
     if (quelle !== null && !quelle.nachId.has(id)) c.fehler(rel, `Absatz-ID „${id}“ gibt es im Whitepaper nicht`);
-    if (typeof wert !== 'object' || wert === null || Array.isArray(wert)) { c.fehler(rel, `${id}: erwartet „theorie:“ und/oder „story:“`); continue; }
+    if (typeof wert !== 'object' || wert === null || Array.isArray(wert)) { c.fehler(rel, `${id}: erwartet „theorie:“`); continue; }
     const o = /** @type {Record<string, unknown>} */ (wert);
-    for (const k of Object.keys(o)) if (k !== 'theorie' && k !== 'story') c.fehler(rel, `${id}: unbekannter Schlüssel „${k}“`);
+    for (const k of Object.keys(o)) if (k !== 'theorie') c.fehler(rel, `${id}: unbekannter Schlüssel „${k}“`);
     const liste = (/** @type {unknown} */ x) => (Array.isArray(x) ? x : x === undefined || x === '' ? [] : [x]).map(String);
     for (const t of liste(o['theorie'])) {
       if (theorie[t] === undefined && !kapitelSeiten.has(t)) c.fehler(rel, `${id}: Theorie-Seite „${t}“ gibt es nicht (weder Lernseite noch Kapitel des Whitepapers)`);
       ziel(id).theorie.push(t);
     }
-    for (const s of liste(o['story'])) {
-      if (stationen[s] === undefined) c.fehler(rel, `${id}: Station „${s}“ gibt es nicht`);
-      ziel(id).story.push(s);
-    }
   }
   for (const [id, seiten] of c.theorieDeckt) for (const s of seiten) if (!ziel(id).theorie.includes(s)) ziel(id).theorie.push(s);
-  // Die Karte trägt jeden „whitepaper-bezug“ einer Station als Story-Bezug (L-20; seit P5.10 im Prüfer statt im Entwurfswerkzeug)
-  if (pruefe && roh !== null) {
-    for (const st of Object.values(stationen)) {
-      for (const id of st.whitepaper ?? []) {
-        if (!(ziele[id]?.story ?? []).includes(st.id)) c.fehler(rel, `${id} ohne Story-Bezug auf ${st.id} (steht in dessen whitepaper-bezug)`);
-      }
-    }
-  }
-  for (const z of Object.values(ziele)) { z.theorie.sort(); z.story.sort(); }
+  for (const z of Object.values(ziele)) z.theorie.sort();
   const gesamt = quelle?.bloecke.length ?? 0;
   const zugeordnet = quelle === null ? 0 : quelle.bloecke.filter((bl) => (ziele[bl.id]?.theorie.length ?? 0) > 0).length;
   const anteil = gesamt === 0 ? 0 : Math.round((zugeordnet / gesamt) * 10000) / 10000;
@@ -2244,69 +1427,6 @@ function baueAbdeckung(c, quelle, roh, stationen, theorie, pruefe) {
   return { gesamt, zugeordnet, anteil, ziele };
 }
 
-/**
- * Verweise und Graph (nur mit --pruefe).
- * @param {Kompilierer} c
- * @param {{ fall: any, rollen: Record<string, any>, stationen: Record<string, any>, theorie: Record<string, any>, interessen: any[], modell: any }} x
- */
-function pruefeAlles(c, x) {
-  if (x.fall === null) c.fehler('inhalte/fall.md', 'fehlt');
-  for (const r of ROLLEN) if (x.rollen[r] === undefined) c.fehler(`inhalte/rollen/${r}.md`, 'fehlt (sechs Rollen, O-4)');
-  for (const r of Object.keys(x.rollen)) if (!ROLLEN.includes(r)) c.fehler(`inhalte/rollen/${r}.md`, `„${r}“ ist keine der sechs Rollen (${ROLLEN.join(', ')})`);
-  const figuren = x.fall?.figuren ?? {};
-  for (const v of c.verweise) {
-    switch (v.art) {
-      case 'figur': if (figuren[v.wert] === undefined) c.fehler(v.ort, `Figur „${v.wert}“ steht nicht in inhalte/fall.md`); break;
-      case 'rolle': if (!ROLLEN.includes(v.wert)) c.fehler(v.ort, `Rolle „${v.wert}“ gibt es nicht`); break;
-      case 'station': if (x.stationen[v.wert] === undefined) c.fehler(v.ort, `Station „${v.wert}“ gibt es nicht`); break;
-      case 'interesse': if (!x.interessen.some((i) => i.id === v.wert)) c.fehler(v.ort, `Interesse „${v.wert}“ gibt es nicht`); break;
-      case 'entscheidung': {
-        const teile = v.wert.split('/');
-        const gefunden = findeEntscheidung(x.modell, v.wert) !== null
-          || (teile.length === 1 && Object.values(x.stationen[v.wert]?.szenen ?? {}).some((s) => /** @type {any} */ (s).entscheidung !== null));
-        if (!gefunden) c.fehler(v.ort, `Entscheidung „${v.wert}“ gibt es nicht`);
-        break;
-      }
-      case 'info': {
-        const [st = '', info = ''] = v.wert.split('/');
-        if (!(x.stationen[st]?.infos ?? []).some((/** @type {any} */ i) => i.id === info)) c.fehler(v.ort, `Information „${v.wert}“ gibt es nicht`);
-        break;
-      }
-      case 'frage': {
-        const teile = v.wert.split('/');
-        const st = x.stationen[teile[0] ?? ''];
-        const fid = teile[teile.length - 1] ?? '';
-        const szenen = teile.length === 3 ? [st?.szenen[teile[1] ?? '']] : Object.values(st?.szenen ?? {});
-        if (!szenen.some((s) => (s?.fragen ?? []).some((/** @type {any} */ f) => f.id === fid))) c.fehler(v.ort, `Frage „${v.wert}“ gibt es nicht`);
-        break;
-      }
-      default: break;
-    }
-  }
-  // Stationen ↔ Zeitachse der Fall-Bibel (P1.2): Monat und LPH müssen zusammenpassen
-  const stand = x.fall?.lphStand ?? {};
-  for (const st of Object.values(x.stationen)) {
-    if (st.monat === null || st.lph === null || Object.keys(stand).length === 0) continue;
-    const soll = stand[String(st.monat)];
-    if (soll === undefined) c.fehler(st.quelle ?? `inhalte/story/${st.id}/station.md`, `Monat ${st.monat} fehlt in der Zeitachse (inhalte/fall.md, lph-stand)`);
-    else if (soll !== st.lph) c.fehler(st.quelle ?? `inhalte/story/${st.id}/station.md`, `LPH ${st.lph} passt nicht zu Monat ${st.monat} – laut Fall-Bibel LPH ${soll}`);
-  }
-  // Rollen ↔ Figuren
-  for (const r of Object.values(x.rollen)) if (r.figur !== null && figuren[r.figur] === undefined) c.fehler(r.quelle, `Figur „${r.figur}“ steht nicht in inhalte/fall.md`);
-  // Stationen: Frage-Schritte, Standpunkt-Figuren
-  for (const st of Object.values(x.stationen)) {
-    for (const szene of Object.values(st.szenen)) {
-      for (const f of /** @type {any} */ (szene).fragen) {
-        if (f.schritt !== null && !st.schritte.some((/** @type {any} */ s) => s.id === f.schritt)) c.fehler(/** @type {any} */ (szene).quelle, `Frage ${f.id}: Schritt „${f.schritt}“ gibt es in ${st.id} nicht`);
-      }
-    }
-  }
-  // Graph
-  const g = pruefeGraph(x.modell);
-  for (const f of g.fehler) c.fehler('graph', f);
-  for (const w of g.warnungen) c.warnung('graph', w);
-}
-
 /* ============================================================ CLI == */
 
 /** Direkt aufgerufen (nicht importiert)? Auch über Links (werkzeuge/haupt.mjs). */
@@ -2319,12 +1439,10 @@ if (istHaupt) {
   const optionen = { pruefe };
   if (w > 0 && process.argv[w + 1] !== undefined) optionen.wurzel = path.resolve(/** @type {string} */ (process.argv[w + 1]));
   const { fehler, warnungen, inhalte } = await kompiliere(optionen);
-  const st = Object.keys(inhalte.stationen).length;
-  const sz = Object.values(inhalte.stationen).reduce((n, s) => n + Object.keys(/** @type {any} */ (s).szenen).length, 0);
   const th = Object.keys(inhalte.theorie).length;
   for (const w of warnungen) console.log(`Warnung  ${w}`);
   for (const f of fehler) console.log(`FEHLER   ${f}`);
-  console.log(`inhalte: ${st} Stationen, ${sz} Rollenszenen, ${Object.keys(inhalte.rollen).length} Rollen, ${th} Theorie-Seiten, ${inhalte.einwaende.length} Einwände, ${inhalte.welten.length} Welten-Aspekte → ${STANDARD_ZIEL.replace(/\\/gu, '/')}`);
+  console.log(`inhalte: ${th} Themen, ${inhalte.geschichte?.stationen.length ?? 0} Story-Stationen, ${inhalte.kompass.length} Kompass-Einträge → ${STANDARD_ZIEL.replace(/\\/gu, '/')}`);
   console.log(`${pruefe ? 'Prüfung' : 'Kompilieren'}: ${fehler.length} Fehler, ${warnungen.length} Warnungen`);
   process.exitCode = fehler.length > 0 ? 1 : 0;
 }

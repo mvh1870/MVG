@@ -1,9 +1,5 @@
 // Gemeinsame Hilfen der Browser-Szenarien (kein Szenario: Dateiname ohne .szenario.mjs).
 
-import { readFileSync } from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { mitTrennstellen } from '../../src/ui/h.ts';
 import { wortbrueche } from './pdf.mjs';
 
 /** Läuft im Browser: horizontales Scrollen und abgeschnittener Text (wie im Szenario „durchstich“). */
@@ -515,59 +511,6 @@ export async function weltB(seite, h, station, pruefe, optionen = {}) {
   }
   await pruefe('spur');
   await h.taste('Escape');
-}
-
-/**
- * R51 (Stil): die Optionstitel ALLER Rollen bei 320 px – `.option-text` ist dort 168 px breit, und lange Komposita
- * („Verantwortungsmodell“) brachen ohne Strich, obwohl die Szenarien bei 320 px nur die Rolle pl spielen. Gemessen
- * werden Klone der sichtbaren Option mit jedem Titel aus inhalte.json; vorher muss der echte Titel so stehen, wie die
- * Story ihn setzt (mitTrennstellen), sonst mäße die Probe etwas anderes als die Anwendung.
- * @param {import('playwright').Page} seite
- * @param {import('../../werkzeuge/oberflaeche.mjs').Helfer} h
- * @param {string} name
- * @returns {Promise<boolean>} gemessen (false: keine Option mit Trennstelle sichtbar)
- */
-export async function optionstitelSchmal(seite, h, name) {
-  const vp = seite.viewportSize();
-  if (vp === null) return false;
-  const datei = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..', 'src', 'generiert', 'inhalte.json');
-  /** @type {{ stationen: Record<string, { szenen?: Record<string, { entscheidung?: { optionen?: { titel: string }[] } | null }> }> }} */
-  const inhalte = JSON.parse(readFileSync(datei, 'utf8'));
-  const titel = new Set();
-  for (const st of Object.values(inhalte.stationen)) for (const sz of Object.values(st.szenen ?? {})) for (const o of sz.entscheidung?.optionen ?? []) titel.add(o.titel);
-  if (titel.size < 100) { h.befund(`${name}: nur ${titel.size} Optionstitel in inhalte.json gefunden`); return true; }
-  const gesetzt = [...titel].map((t) => mitTrennstellen(t));
-  await seite.setViewportSize({ width: 320, height: vp.height }); await h.warte(150);
-  const echt = await seite.evaluate(() => [...document.querySelectorAll('.option .option-text')].filter((x) => x.getClientRects().length > 0).map((el) => {
-    const k = /** @type {HTMLElement} */ (el.cloneNode(true));
-    for (const sr of k.querySelectorAll('.nur-sr')) sr.remove();
-    return k.textContent ?? '';
-  }));
-  // erst an einer Entscheidung messen, deren Titel eine Trennstelle bekommt – sonst sähe die Probe nicht, ob die Story sie setzt
-  if (!echt.some((t) => mitTrennstellen(t.replaceAll('\u00ad', '')).includes('\u00ad'))) { await seite.setViewportSize(vp); await h.warte(100); return false; }
-  const anders = echt.filter((t) => !gesetzt.includes(t));
-  if (anders.length > 0) h.befund(`${name}: Optionstitel ${JSON.stringify(anders)} stehen nicht so, wie mitTrennstellen sie setzt`);
-  else {
-    await seite.evaluate((liste) => {
-      const vorbild = [...document.querySelectorAll('.option')].find((x) => x.getClientRects().length > 0);
-      if (vorbild === undefined || vorbild.parentElement === null) return;
-      for (const t of liste) {
-        const k = /** @type {HTMLElement} */ (vorbild.cloneNode(true));
-        k.classList.add('pruef-klon');
-        k.removeAttribute('data-pruef');
-        const text = k.querySelector('.option-text');
-        if (text !== null) text.textContent = t;
-        vorbild.parentElement.append(k);
-      }
-    }, gesetzt);
-    const bruch = await wortbrueche(seite, '.pruef-klon .option-text', { bildschirm: true });
-    if (bruch.length > 0) h.befund(`${name} @320: ${bruch.length} Wörter in Optionstiteln ohne Trennstrich gebrochen ${JSON.stringify(bruch.slice(0, 6))}`);
-    const knapp = await knappeWoerter(seite, '.pruef-klon .option-text');
-    if (knapp.length > 0) h.befund(`${name} @320: ungeteilte Wörter in Optionstiteln über 93 % der Zeile ${JSON.stringify(knapp.slice(0, 6))}`);
-    await seite.evaluate(() => { for (const k of document.querySelectorAll('.pruef-klon')) k.remove(); });
-  }
-  await seite.setViewportSize(vp); await h.warte(100);
-  return true;
 }
 
 /**

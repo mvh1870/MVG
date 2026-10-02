@@ -41,23 +41,23 @@ test('IDs als ganze Wörter; nur geänderte und entfallene zählen', () => {
   assert.deepEqual(stellen.map((s) => `${s.zeile}:${s.id}:${s.art}`), ['2:k4.2-p3:geaendert', '3:k5.3-l1:entfallen', '3:k4.2:geaendert']);
 });
 
-test('veränderte Fassung: Einwand-Karte und Zitate werden als betroffen gemeldet; Bericht', () => {
+test('veränderte Fassung: Themen und Zitate werden als betroffen gemeldet; Bericht', () => {
   const alt = ladeWhitepaper();
   const neu = veraendert();
   const v = vergleiche(alt, neu);
   assert.ok(v.geaendert.some((a) => a.id === 'k4.2-p3'));
   assert.ok(v.entfallen.includes('k5.3-l1'));
   const dateien = dateienMitIds();
-  assert.ok(dateien.includes('inhalte/einwaende.md'));
+  assert.ok(dateien.includes('inhalte/theorie/k05-fuehrungsmodell.md'));
   assert.ok(!dateien.some((d) => d.startsWith('src/generiert/')), 'die erzeugte Datei zählt nicht');
   const text = (d: string): string => readFileSync(path.join(import.meta.dirname, '..', d), 'utf8');
   const stellen = betroffeneStellen(v, dateien.map((datei) => ({ datei, text: text(datei) })));
-  assert.ok(stellen.some((s) => s.datei === 'inhalte/einwaende.md' && s.id === 'k5.3-l1' && s.art === 'entfallen'));
+  assert.ok(stellen.some((s) => s.datei === 'inhalte/theorie/k05-fuehrungsmodell.md' && s.id === 'k5.3-l1' && s.art === 'entfallen'));
   assert.ok(stellen.some((s) => s.id === 'k4.2-p3' && s.art === 'geaendert'));
   const b = bericht(alt, neu, v, stellen);
   assert.match(b, /^# Re-Import V1\.2 → V1\.3$/mu);
   assert.match(b, /## Abschnittstitel geändert\n\n- 4\.2: „Mandat“ → „Mandat \(neu\)“/u);
-  assert.match(b, /\| inhalte\/einwaende\.md \| \d+ \| k5\.3-l1 \| entfallen \|/u);
+  assert.match(b, /\| inhalte\/theorie\/k05-fuehrungsmodell\.md \| \d+ \| k5\.3-l1 \| entfallen \|/u);
   assert.match(b, /150 TEUR/u);
 });
 

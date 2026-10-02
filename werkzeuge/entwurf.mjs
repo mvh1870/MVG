@@ -3,7 +3,7 @@
  * Story-Entwurf (P1.4, L-20, L-45): prüft Entwürfe gegen den spielbaren Stand, ohne `inhalte/` zu ändern.
  *
  * Baut unter tmp/entwurf-<pid>/ eine Wurzel aus `inhalte/` plus allen Dateien unter `entwurf/`
- * (gleicher Pfad = ersetzt, z. B. `entwurf/story/A1/pl.md` → `inhalte/story/A1/pl.md`), wendet die
+ * (gleicher Pfad = ersetzt, z. B. `entwurf/theorie/k03-begriffsrahmen.md` → `inhalte/theorie/k03-begriffsrahmen.md`), wendet die
  * ANPASSUNGEN an (derzeit keine) und kompiliert mit `--pruefe` (Graph, Zitate, Begriffe, Abdeckung …).
  *
  *   node werkzeuge/entwurf.mjs         Exitcode 1 bei Fehlern
@@ -94,8 +94,8 @@ if (istHauptmodul(import.meta.url)) {
   }
   for (const w of warnungen) console.log(`Warnung  ${w}`);
   for (const f of fehler) console.log(`FEHLER   ${f}`);
-  const st = Object.keys(inhalte?.stationen ?? {}).length;
-  const sz = Object.values(inhalte?.stationen ?? {}).reduce((n, s) => n + Object.keys(/** @type {any} */ (s).szenen).length, 0);
-  console.log(`entwurf: ${ueberlagert.length} Dateien aus entwurf/, ${st} Stationen, ${sz} Rollenszenen – ${fehler.length} Fehler, ${warnungen.length} Warnungen`);
+  const th = Object.keys(inhalte?.theorie ?? {}).length;
+  const st = inhalte?.geschichte?.stationen.length ?? 0;
+  console.log(`entwurf: ${ueberlagert.length} Dateien aus entwurf/, ${th} Themen, ${st} Story-Stationen – ${fehler.length} Fehler, ${warnungen.length} Warnungen`);
   process.exitCode = fehler.length > 0 ? 1 : 0;
 }

@@ -192,7 +192,7 @@ button.gs-feld:hover { border-color: var(--gold); }
   box-shadow: var(--schatten-karte-hoch);
 }
 .gs-frage-figur { position: relative; }
-.gs-gegenstand-frage { position: absolute; right: -26px; bottom: -14px; }
+.gs-gegenstand-frage { position: absolute; right: -6px; bottom: -14px; } /* R72: nicht in den Fragetext ragen */
 .gs-kicker-gold { color: var(--gold-text); }
 .gs-frage-block .gs-kicker-gold { color: var(--gold-hell); }
 .gs-frage-text { margin-top: var(--a-2); font: 700 var(--gr-3xl)/1.25 var(--schrift-text); color: var(--weiss); text-wrap: pretty; }
@@ -250,6 +250,8 @@ button.gs-antwort:active { transform: translateY(2px); box-shadow: var(--schatte
   animation: gs-auftritt var(--dauer-mittel) var(--kurve-aus) both;
 }
 .gs-folge-titel { outline: none; font-size: var(--gr-3xl); }
+/* R72: nach einer Antwort per Tastatur sichtbar, wo der Fokus steht */
+.gs-folge-titel:focus-visible { box-shadow: inset 4px 0 0 var(--gold); padding-left: 12px; }
 .gs-folge-szene { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--a-5); align-items: start; font: var(--typo-lese); }
 .gs-folge-text > * + * { margin-top: var(--a-3); }
 .gs-wirkung { display: grid; gap: var(--a-3); padding: var(--a-5); border-radius: var(--radius-xl); background: var(--flaeche-3); }

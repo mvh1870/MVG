@@ -4,6 +4,12 @@ Nach O-35 und P16.15 schließen die Prüfrunden der Neuausrichtung, wenn zwei Ru
 
 Die Runden vor der Neuausrichtung (bis Runde 66, alter Aufbau mit Welten, Rollen und Hilfe) sind abgeschlossen und hier nicht mehr geführt; ihr Verlauf steht in `docs/P12-BEFUNDE.md` und `docs/R66-BEFUNDE.md`.
 
+## Runden der Neugestaltung (P17.12)
+
+| Runde | Commit | schwer | mittel | leicht | Stand |
+|---|---|---|---|---|---|
+| 72 | 0d1a565 | 5 (Abbildungen 8 und 11 lehren Falsches ohne die Abweichungen; „Ruhig ins Ziel“ und Geld-Satz passen nicht auf allen Wegen) | 30 | 51 | eingearbeitet (L-237–L-240) |
+
 ## Runden der Neuausrichtung (P16.15)
 
 | Runde | Commit | schwer | mittel | leicht | Stand |

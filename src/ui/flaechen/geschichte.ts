@@ -97,7 +97,7 @@ function balkenTafel(g: Geschichte, jetzt: Balkenstand, o: { vorher?: Balkenstan
         h('span', { class: 'gs-stand-spur', 'aria-hidden': 'true' },
           h('span', { class: `gs-stand-fuellung${o.vorher !== undefined && d !== 0 ? ' ist-bewegt' : ''}`, style: `--von:${von * 10}%;--nach:${wert * 10}%` })),
         wort !== null
-          ? h('span', { class: 'gs-stand-wort', 'data-pruef': `wort-${id}` }, h('span', { class: 'gs-pfeil', 'aria-hidden': 'true' }, d > 0 ? '▲' : d < 0 ? '▼' : '●'), wort.slice(wort.indexOf(':') + 2))
+          ? h('span', { class: 'gs-stand-wort', 'data-pruef': `wort-${id}`, 'aria-hidden': 'true' }, h('span', { class: 'gs-pfeil', 'aria-hidden': 'true' }, d > 0 ? '▲' : d < 0 ? '▼' : '●'), wort.slice(wort.indexOf(':') + 2))
           : null,
         h('span', { class: 'nur-sr' }, ` ${w.fuellstand[stufe(wert)] ?? ''}${wort !== null ? `; ${wort}` : ''}`));
     }));

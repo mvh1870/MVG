@@ -3,10 +3,10 @@
 Kopf ≤ 100 Zeilen. Oben JETZT (überschreiben), darunter FRÜHER (anhängen, knapp).
 
 ## JETZT
-- **Stand 2026-10-02 17:30 UTC: Planblatt leer, fertig (L-224).** P16.1–P16.16 erledigt. Prüfrunden R67–R71, zuletzt R70 und R71 ohne schweren Befund (L-223); alle mittleren eingearbeitet. CI-Lauf 295 auf 2a15119 grün. `claude/haus` per Merge nach `main` geführt und gepusht (O-49).
-- **Für den Owner:** fachliche Abnahme nach `docs/ABNAHME.md`, Upload nach `docs/LAUNCH.md` (Inhalt von `dist/` auf den IONOS-Webspace). Bewusst gelassen (leicht): k14-Tafel bei 320 px mit WCAG-1.4.12-Abständen 3 % zu breit (L-219).
-- **Als Nächstes:** nichts – neue Arbeit nur mit neuen Owner-Entscheiden im Planblatt. Die Routine hält nur der Owner an.
-- Rechner: Node 22.22, Chromium 141 unter `/opt/pw-browsers/chromium`. Kette ≈ 60–90 s. Block 2026-10-03 09:10 UTC: Plan leer, nichts zu tun, Kette grün (91 s), hingelegt.
+- **Stand 2026-10-03 10:59 UTC: P17 Neugestaltung beginnt** (O-51 bis O-58, Owner hat den Plan nach zwei Fragerunden freigegeben). Story als Spiel neu (fünf Figuren, acht Kapitel, drei Antworten, Balken Geld/Zeit/Vertrauen, Mini-Aufgaben, isometrischer Campus), Themen als Buch (vier Teile, nummeriert, Fortschritt), interne Bemerkungen raus, Texte kürzer, Verständnisfragen halbiert.
+- **Als Nächstes:** P17.1 Drehbuch, dann P17.2 Format/Engine. Reihenfolge im Planblatt.
+- P16 ist abgeschlossen und nach `main` geführt (25c6e26).
+- Rechner: Node 22.22, Chromium unter `/opt/pw-browsers/chromium`. Kette ≈ 60 s.
 
 ## FRÜHER
 - 2026-10-02 (13:20–17:26 UTC): P16.15 Prüfrunden R67–R71 (L-205–L-223), Statusbedingungen der Story, Reservegrenze auf allen Wegen.

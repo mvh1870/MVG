@@ -24,7 +24,7 @@ teil: 2
 kurzsatz: Was am Ende einer Einführung vorliegt – vom Mandat bis zur Beschlusslage.
 symbol: stempel
 ---
-Was liegt am Ende einer Einführung von Minimum Viable Governance (MVG) tatsächlich vor? Fünf Ergebnisobjekte:
+Was liegt am Ende einer Einführung von Minimum Viable Governance (MVG) tatsächlich vor? Das Thema stellt fünf Ergebnisobjekte vor:
 
 - das Mandats- und Verantwortungsmodell,
 - der RACI-Prozess,
@@ -32,7 +32,7 @@ Was liegt am Ende einer Einführung von Minimum Viable Governance (MVG) tatsäch
 - der Standard für Entscheidungsvorlagen, samt eindeutiger Entscheidungs-ID,
 - das Betriebshandbuch.
 
-Befähigung und Entscheidungs-IDs, die das Thema „Überblick“ als eigene Elemente nennt, stecken hier in Betriebshandbuch und Vorlagenstandard. Für den Bauherrn zählt weniger das einzelne Dokument als der Zusammenhang.
+Die Entscheidungs-ID ist Teil jeder Entscheidungsvorlage; die Befähigung behandelt das Thema „Leistungsarchitektur“. Für den Bauherrn zählt weniger das einzelne Dokument als der Zusammenhang.
 
 ::: kernaussage
 ---

@@ -16,7 +16,7 @@ teil: 1
 kurzsatz: Was der Bauherr abgeben kann – und was er selbst tragen muss.
 symbol: kompass
 ---
-Was kann ein [[Bauherr]] abgeben, was nicht? [[Minimum Viable Governance (MVG)]] bildet dafür den kleinsten funktionsfähigen Governance-Standard. Sein Nutzen ist nicht mehr Bürokratie, sondern weniger Entscheidungsstau, klarere Eskalationswege, belastbare Gremienfähigkeit und eine nachvollziehbare [[Nachweiskette]].
+Was kann ein [[Bauherr]] abgeben, was nicht? [[Minimum Viable Governance (MVG)]] bildet dafür den kleinsten funktionsfähigen Governance-Standard. Sein Nutzen liegt nicht in mehr Bürokratie, sondern in weniger Entscheidungsstau, klareren Eskalationswegen, belastbarer Gremienfähigkeit und einer nachvollziehbaren [[Nachweiskette]].
 
 ::: kernaussage
 ---

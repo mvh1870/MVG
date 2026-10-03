@@ -173,7 +173,7 @@ Jede Rolle optimiert aus ihrer Fachsicht – etwa auf Qualität oder auf Kosten 
 :::
 
 ::: ansicht rechts
-Ein **Zielsystem** liegt vor: Muss-Kriterien, verhandelbare Kriterien, Abwägungsregeln und eine klare Entscheidungslogik, dazu Entscheidungsgrundsätze und eine Freigabelogik für die Leistungsphasen ([[Leistungsphasen- und Freigabemodell LPH 0–9|LPH]]) 0–2. Die Priorität setzt der Bauherr. Aus dem Zielsystem leitet die Projektsteuerung die Kriterien ihres gewichteten Vergleichs ab; Muss-Kriterien prüft sie vor jedem Punktevergleich.
+Ein **Zielsystem** liegt vor: Muss-Kriterien, verhandelbare Kriterien, Abwägungsregeln und eine klare Entscheidungslogik, dazu Entscheidungsgrundsätze und eine Freigabelogik für die Leistungsphasen ([[Leistungsphasen- und Freigabemodell LPH 0–9|LPH]]) 0–2. Die Priorität setzt der Bauherr. Aus dem Zielsystem leitet die Projektsteuerung die Kriterien ihres gewichteten Vergleichs ab und stimmt sie samt Gewichten vorab mit dem Bauherrn ab; zwingende Anforderungen prüft sie vor jedem Punktevergleich.
 :::
 :::
 :::
@@ -184,7 +184,7 @@ titel: Mandat
 ---
 Mit dem [[Mandat]] legt der Bauherr fest, wer welche Entscheidung vorbereiten, treffen, freigeben oder eskalieren darf. Eine [[RACI]]-Zuordnung (ausführungs- und letztverantwortlich, konsultiert, informiert) genügt nicht ohne Freigabeschwellen, Stellvertretungen und Eskalationswege.
 
-Wo eine Entscheidung nötig ist, entscheidet die befugte Stelle auf eine Vorlage der Projektsteuerung mit mindestens zwei zulässigen Optionen und gewichtetem Vergleich; fehlt eine zweite zulässige Option, kennzeichnet die Projektsteuerung die Vorlage als unvollständig. Selbst pflegen muss keine Stufe etwas. Die **Muster-Mandatsleiter** ist ein Muster, keine Vorgabe: Die Freigabeschwellen legt der Bauherr selbst fest.
+Wo eine Entscheidung nötig ist, entscheidet die befugte Stelle auf eine Vorlage der Projektsteuerung mit mindestens zwei zulässigen Optionen und gewichtetem Vergleich; fehlt eine zweite zulässige Option, kennzeichnet die Projektsteuerung die Vorlage als unvollständig. Die Vorgänge pflegt auf keiner Stufe die entscheidende Stelle selbst, sondern die Projektsteuerung. Die **Muster-Mandatsleiter** ist ein Muster, keine Vorgabe: Die Freigabeschwellen legt der Bauherr selbst fest.
 
 ::: karten
 ::: karte
@@ -212,9 +212,9 @@ titel: Muster-Mandatsleiter – wer entscheidet?
 ::: stufe 1
 ---
 titel: bis einschließlich 100.000 €
-marke: Projektleitung des Bauherrn
+marke: Bauherren-PL
 ---
-Die Projektleitung des Bauherrn gibt eigenständig frei.
+Die Projektleitung des Bauherrn (Bauherren-PL) gibt eigenständig frei.
 :::
 
 ::: stufe 2
@@ -251,10 +251,10 @@ praefix: "Genau:"
 
 ::: antwort b
 ---
-titel: Die Projektleitung des Bauherrn eigenständig
+titel: Die Bauherren-PL eigenständig
 praefix: "Nicht ganz:"
 ---
-Die Projektleitung des Bauherrn gibt nur bis einschließlich 100.000 € eigenständig frei.
+Die Bauherren-PL gibt nur bis einschließlich 100.000 € eigenständig frei.
 :::
 
 ::: antwort c

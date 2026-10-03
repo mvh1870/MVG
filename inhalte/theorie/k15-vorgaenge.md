@@ -1,9 +1,11 @@
 ---
 # Thema „Vorgänge und Risiken“ (P16.4, O-36, O-38; P17.11, O-55): neues Thema nach docs/V24-ABGLEICH.md Abschnitt 9, Thema B.
 # Inhalt aus dem Standard „Aufgaben- und Risikomanagement V2.4“ (Handbuch), in eigenen Sätzen (O-37).
-# Beispiele aus dem fiktiven Schulcampus Lindenhall-Süd (O-50): inhalte/geschichte/s3-lieferzeit.yaml (FRW-002 → RIS-009, W 4 · A 4),
-# s4-mensa.yaml (AEN-012), s5-datenstand.yaml (RIS-014 Nachtrag Haustechnik), s6-brandschutz.yaml (PRB-002, MAS-011),
-# s7-vergabe.yaml (RIS-005 → PRB-007), s8-lueftung.yaml (PRB-019).
+# Beispiele aus dem fiktiven Schulcampus Lindenhall-Süd (O-50): Fundus-Tabelle in inhalte/fall.md (Lieferzeit FRW-002 → RIS-009, W 4 · A 4;
+# Mensa AEN-012; Brandschutzauflage PRB-002, MAS-011; Kennungen der früheren Story) und die Story-Kapitel
+# inhalte/geschichte/k2-warnsignal.yaml und k3-risiko.yaml (Frühwarnung März, Risiko einen Monat später), k4-mensa.yaml,
+# k5-zahlen.yaml (Mehrkosten der Haustechnikfirma, gut eine Million, als Risiko), k7-entscheidung.yaml (Lüftungsanlage vier Monate später);
+# die Wendekarte „Entscheidung vorbereiten“ nimmt das Wärmepumpen-Beispiel aus dem Thema „Entscheidungsvorlage“ (k14.5).
 # Belege Einleitung/Kernaussage: v24:hb-1 (Tabelle, „Nicht jeder Hinweis wird zum Risiko“), v24:hb-2, v24:hb-3
 # Belege k15.1 (sieben Sachverhalte): v24:hb-1 (Tabelle), v24:hb-1.1 bis v24:hb-1.6
 # Belege k15.2 (Wege): v24:hb-1.2, v24:hb-1.3, v24:hb-1 (Abs. 3, 5: verknüpfen, nicht doppelt zählen, Zahl der Risiken unbegrenzt; Aufgaben, Probleme, Änderungen ohne Risikoeintrag), v24:tlb-1
@@ -77,7 +79,7 @@ titel: Risiko
 Ein mögliches nachteiliges Ereignis oder eine unsichere Größe, die Projektziele beeinträchtigen kann.
 
 ### Rückseite
-Die Haustechnikplanung kündigt einen Nachtrag bis 1,2 Mio. € an – noch nicht eingetreten.
+Die Haustechnikfirma kündigt Mehrkosten von gut einer Million Euro an – noch nicht eingetreten.
 :::
 
 ::: karte problem
@@ -107,7 +109,7 @@ titel: Entscheidung vorbereiten
 Eine erforderliche Entscheidung des Bauherrn vorbereiten: mindestens zwei zulässige Optionen, gewichteter Vergleich, Empfehlung und Termin.
 
 ### Rückseite
-Ersatzgerät oder Abwarten, als das Lüftungsgerät der Gesamtschule später kommt.
+Ersatzgerät oder Abwarten, als die Wärmepumpe der Grundschule später kommt.
 :::
 :::
 :::
@@ -142,14 +144,14 @@ Ein Hersteller nennt 26 statt 16 Wochen für die Holzbauelemente; der Hinweis st
 
 ::: etappe 2
 ---
-titel: Eine Woche später – geklärt, jetzt ein Risiko
+titel: Einen Monat später – geklärt, jetzt ein Risiko
 ---
 Drei von vier Anbietern bestätigen 24 bis 26 Wochen. Daraus wird ein Risiko; die Frühwarnung verweist darauf.
 :::
 
 ::: etappe 3
 ---
-titel: März 2027 – eingetreten, jetzt ein Problem
+titel: Mai 2026 – ein anderes Risiko tritt ein
 ---
 Die Holzbau-Angebote liegen über dem Kostenansatz. Ein zweites Risiko desselben Gewerks, die Baupreissteigerung, ist eingetreten: Es wird geschlossen und als Problem weitergeführt.
 :::
@@ -185,7 +187,7 @@ Die Auflage ist da. Für einen eingetretenen Zustand wird keine Wahrscheinlichke
 ---
 seite: links
 ---
-Die Haustechnikplanung kündigt einen Nachtrag von bis zu 1,2 Mio. € an.
+Die Haustechnikfirma kündigt Mehrkosten an, gut eine Million Euro.
 
 ### Erklärung
 Angekündigt, aber nicht eingetreten – ein Risiko mit Bandbreite. Was schon in der Prognose steckt, wird nicht doppelt gezählt.
@@ -195,7 +197,7 @@ Angekündigt, aber nicht eingetreten – ein Risiko mit Bandbreite. Was schon in
 ---
 seite: rechts
 ---
-Der Hersteller bestätigt: Das Lüftungsgerät der Gesamtschule kommt vier Wochen später.
+Der Hersteller bestätigt: Die Lüftungsanlage der Gesamtschule kommt vier Monate später.
 
 ### Erklärung
 Ein ausgefallener Liefertermin ist ein Problem. Jetzt geht es um Folgen und Lösungswege.

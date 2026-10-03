@@ -290,6 +290,7 @@ button.gs-antwort:active { transform: translateY(2px); box-shadow: var(--schatte
 .gs-start-knoepfe { display: flex; flex-wrap: wrap; align-items: center; gap: var(--a-3) var(--a-6); }
 .gs-figuren, .gs-stand-erklaert { display: grid; gap: var(--a-4); }
 .gs-figuren-liste { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--a-4); }
+.gs-figuren-sie-titel { margin-top: var(--a-5); }
 .gs-steckbrief {
   display: grid; justify-items: center; align-content: start; gap: var(--a-2);
   padding: var(--a-5) var(--a-5) var(--a-6);
@@ -352,6 +353,23 @@ button.gs-antwort:active { transform: translateY(2px); box-shadow: var(--schatte
 .gs-mini-symbol { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 16px; background: var(--weiss); color: var(--akzent-orange-text); }
 .gs-mini-symbol .symbol { width: 30px; height: 30px; }
 .gs-mini-auftrag { font: 600 var(--gr-xl)/1.4 var(--schrift-text); color: var(--tinte); }
+.gs-mini-aufgabe:has(.gs-mini-bild) { grid-template-columns: auto minmax(0, 1fr) auto; }
+.gs-mini-karte { display: flex; gap: var(--a-3); align-items: center; }
+.gs-mini-posten-bild { flex: none; }
+.gs-mini-zuordnen-mit-ablagen { display: grid; gap: var(--a-4); }
+.gs-mini-ablagen { display: flex; flex-wrap: wrap; gap: var(--a-3); margin: 0; padding: 0; list-style: none; }
+.gs-mini-ablage {
+  display: flex; gap: var(--a-3); align-items: center; padding: var(--a-2) var(--a-4) var(--a-2) var(--a-2);
+  border-radius: var(--radius-xl); border: 2px dashed var(--linie-3); background: var(--weiss);
+}
+.gs-mini-ablage > span { display: grid; }
+.gs-mini-ablage-zahl { font: var(--typo-klein); color: var(--tinte-2); }
+.gs-mini-reihe.ist-pfad { position: relative; }
+.gs-mini-reihe.ist-pfad::before {
+  content: ''; position: absolute; left: calc(var(--a-5) + 21px); top: var(--a-6); bottom: var(--a-6);
+  border-left: 3px solid var(--akzent-orange-text); z-index: 0;
+}
+.gs-mini-reihe.ist-pfad > .gs-mini-posten { position: relative; z-index: 1; }
 .gs-mini-liste { display: grid; gap: var(--a-3); }
 .gs-mini-zuordnen[data-wahlen="2"], .gs-mini-zuordnen[data-wahlen="3"] { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
 .gs-mini-posten {
@@ -386,7 +404,7 @@ button.gs-mini-wahl:hover { border-color: var(--navy-soft); }
 [data-lage="falsch"] .gs-mini-rueck b { color: var(--koralle-text); }
 .gs-mini-rueck .symbol { width: 16px; height: 16px; }
 .gs-reihe-knopf {
-  display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: var(--a-4); align-items: center;
+  display: grid; grid-template-columns: 44px auto minmax(0, 1fr); gap: var(--a-4); align-items: center;
   width: 100%; padding: 0; border: 0; background: none; text-align: left; color: var(--tinte);
   font: var(--typo-lese);
 }
@@ -580,6 +598,9 @@ button.gs-stufe:hover:not([aria-pressed="true"]) { background: var(--weiss); }
   .gs-stand-gross .gs-stand-wort { grid-row: 1; grid-column: 2; justify-self: end; text-align: right; }
   .gs-kasten, .gs-mini-aufgabe, .gs-mandat, .gs-vgl-empfehlung { grid-template-columns: minmax(0, 1fr); padding: var(--a-4); }
   .gs-kasten-symbol, .gs-mini-symbol { width: 44px; height: 44px; }
+  .gs-mini-aufgabe:has(.gs-mini-bild) { grid-template-columns: minmax(0, 1fr); }
+  .gs-mini-bild { display: none; }
+  .gs-mini-posten-bild svg { width: 36px; height: 36px; }
   .gs-mandat dl > div { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .gs-mandat-bild { display: none; }
   .gs-mini-zuordnen[data-wahlen="2"], .gs-mini-zuordnen[data-wahlen="3"] { grid-template-columns: minmax(0, 1fr); }

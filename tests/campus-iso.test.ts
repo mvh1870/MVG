@@ -52,8 +52,51 @@ test('campusIso: keine fremden Ressourcen, keine Farbwerte, keine Bewegung', () 
     assert.doesNotMatch(svg, /<image|<script|<foreignObject|https?:\/\/(?!www\.w3\.org\/2000\/svg)/);
     assert.doesNotMatch(svg, /#[0-9a-f]{3,8}\b|rgba?\(|\bstyle=/i, 'Farben nur über Klassen (tokens.css)');
     assert.doesNotMatch(svg, /<animate|@keyframes/);
-    for (const m of svg.matchAll(/url\(([^)]*)\)/g)) assert.match(m[1] ?? '', /^#ci-[\w-]+$/);
   }
+});
+
+test('campusIso (R72): kein id= und kein url(# – mehrere Campus-Bilder auf einer Ansicht stören sich nicht', () => {
+  for (const s of STUFEN) for (const j of JAHRESZEITEN) for (const l of LICHTER) {
+    const svg = campusIso(s, { jahreszeit: j, licht: l });
+    assert.doesNotMatch(svg, /\sid="|url\(#|<clipPath|<linearGradient|<defs/, `Stufe ${s} ${j} ${l}`);
+  }
+  assert.doesNotMatch(campusIso(4, { jahreszeit: 'winter', wetter: 'sturm' }), /\sid="|url\(#/);
+  // der Himmel ist da, auch ohne Verweis: Bänder in den Tönen des Lichts
+  assert.match(campusIso(3, { licht: 'abend' }), /class="ci-h-abend-1"/);
+  assert.match(campusIso(3, { licht: 'abend' }), /class="ci-h-abend-3"/);
+});
+
+test('campusIso (R72): Schatten im Grundriss auf die Insel beschnitten', async () => {
+  const { beschneide } = await import('../src/grafik/campus-iso.ts');
+  assert.deepEqual(beschneide([[10, 10], [20, 10], [20, 20], [10, 20]], 100, 100), [[10, 10], [20, 10], [20, 20], [10, 20]]);
+  const halb = beschneide([[90, 10], [110, 10], [110, 20], [90, 20]], 100, 100);
+  assert.ok(halb.every(([x]) => x <= 100), JSON.stringify(halb));
+  assert.ok(halb.some(([x]) => x === 100));
+  assert.deepEqual(beschneide([[120, 10], [130, 10], [130, 20]], 100, 100), []);
+});
+
+test('campusIso (R72): Sturm – grauer Himmel ohne Sonne, Gerüst an der Sporthalle, Planen, umgekipptes Zaunfeld', () => {
+  const sturm = campusIso(4, { jahreszeit: 'winter', licht: 'tag', wetter: 'sturm' });
+  const ruhig = campusIso(4, { jahreszeit: 'winter', licht: 'tag' });
+  assert.match(sturm, /data-wetter="sturm"/);
+  assert.doesNotMatch(ruhig, /data-wetter/);
+  assert.match(sturm, /class="ci-h-sturm-1"/);
+  assert.doesNotMatch(sturm, /ci-sonne|ci-h-tag-/);
+  assert.match(ruhig, /ci-sonne/);
+  assert.match(sturm, /ci-wolke-sturm/);
+  assert.match(sturm, /ci-boe/);
+  assert.doesNotMatch(sturm, /ci-flocke/);
+  assert.match(sturm, /ci-plane/);
+  assert.doesNotMatch(ruhig, /ci-plane/);
+  // das Gerüst steht in Stufe 4 an der Sporthalle (auch ohne Sturm): mehr Gerüststangen als nur am Kran
+  assert.ok((ruhig.match(/class="ci-geruest"/g) ?? []).length >= 1);
+  assert.doesNotMatch(campusIso(5, { jahreszeit: 'winter' }), /ci-plane/);
+  assert.match(campusIsoText(4, 'winter', 'tag', 'sturm'), /Sturm unter grauem Himmel/);
+  assert.match(campusIsoText(4, 'winter', 'tag', 'sturm'), /Bauzaunfeld ist umgekippt/);
+  assert.match(campusIsoText(4), /Gerüst/);
+  // jede Klasse des Sturmbilds ist gestaltet
+  for (const m of sturm.matchAll(/class="([^"]+)"/g)) for (const k of (m[1] ?? '').split(/\s+/)) if (!/^k[0-2]$/.test(k)) assert.match(grafikCss, new RegExp(`\\.${k}(?![\\w-])`), k);
+
 });
 
 test('campusIso: Bauschild nur während des Baus, Kinder und Schulbus erst am Schluss', () => {
@@ -64,7 +107,7 @@ test('campusIso: Bauschild nur während des Baus, Kinder und Schulbus erst am Sc
   assert.doesNotMatch(campusIso(7), /ci-tuer-glas/);
   assert.match(campusIso(3, { jahreszeit: 'winter' }), /ci-schneehaube/);
   assert.doesNotMatch(campusIso(3, { jahreszeit: 'sommer' }), /ci-schneehaube/);
-  assert.doesNotMatch(campusIso(4, { himmel: false }), /linearGradient/);
+  assert.doesNotMatch(campusIso(4, { himmel: false }), /ci-h-|ci-sonne/);
 });
 
 test('campusIso: jede verwendete Klasse ist in grafik.css gestaltet', () => {

@@ -155,7 +155,7 @@ export interface Inhalte {
   regie: Record<string, RegieEintrag>;
   /** Story (P16.6, O-40) */
   geschichte: Geschichte | null;
-  /** Regie-Notizen der Story je Station */
+  /** Regie-Notizen der Story je Kapitel */
   geschichteRegie: Record<string, GeschichteRegie>;
   /** Texte der Explore-Werkzeuge (P16.8) */
   werkzeuge: Werkzeuge | null;

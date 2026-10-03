@@ -7,7 +7,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { AKZENTE } from '../src/stil/akzente.ts';
 import {
-  FIGUREN, FIGUR_AKZENT, FIGUR_NAME, GIMMICKS, gimmick, gimmickText, portraet, portraetText,
+  FIGUREN, FIGUR_AKZENT, FIGUR_NAME, GIMMICKS, MATRIX_FARBE, gimmick, gimmickText, matrixFeldKlasse, portraet, portraetText,
   type Figur, type GimmickName, type Stimmung,
 } from '../src/grafik/figuren.ts';
 
@@ -115,4 +115,24 @@ test('jede verwendete Klasse ist in grafik.css gestaltet', () => {
   const fehlen = [...klassen].filter((k) => !new RegExp(`\\.${k}(?![\\w-])`).test(grafikCss));
   assert.deepEqual(fehlen, []);
   assert.ok(klassen.has('fig-portraet') && klassen.has('fig-gimmick'));
+});
+
+test('Risikomatrix-Bild (R72): 25 Felder in drei Klassen nach dem Produkt, Auswirkung 5 immer vorrangig – wie die Explore-Matrix', () => {
+  // Erwartung Zeile für Zeile von oben (Auswirkung 5) nach unten, links Wahrscheinlichkeit 1 (B beobachten, G gezielt, V vorrangig)
+  const erwartet = ['VVVVV', 'BGVVV', 'BGGVV', 'BBGGV', 'BBBBG'];
+  // dieselben Grenzen wie die Stufen der Explore-Matrix (inhalte/werkzeuge.yaml → src/generiert/inhalte.json)
+  const stufen = (JSON.parse(readFileSync(resolve(WURZEL, 'src/generiert/inhalte.json'), 'utf8')) as { werkzeuge: { matrix: { stufen: { id: string; von: number; bis: number }[] } } }).werkzeuge.matrix.stufen;
+  const kurz = { beobachten: 'B', gezielt: 'G', vorrangig: 'V' } as const;
+  const svg = gimmick('matrix');
+  const felder = [...svg.matchAll(/<rect class="([^"]+)"/gu)].map((m) => m[1]);
+  for (let r = 0; r < 5; r++) for (let c = 0; c < 5; c++) {
+    const w = c + 1, a = 5 - r;
+    const k = matrixFeldKlasse(w, a);
+    assert.equal(kurz[k], erwartet[r]?.[c], `W ${w} × A ${a}`);
+    const ausDaten = a === 5 ? stufen[stufen.length - 1]?.id : stufen.find((s) => s.von <= w * a && w * a <= s.bis)?.id;
+    assert.equal(k, ausDaten, `W ${w} × A ${a} wie Explore`);
+    assert.equal(felder[r * 5 + c], MATRIX_FARBE[k], `Farbe W ${w} × A ${a}`);
+  }
+  assert.equal(new Set(Object.values(MATRIX_FARBE)).size, 3, 'drei verschiedene Töne');
+  assert.equal(matrixFeldKlasse(4, 4), 'vorrangig', 'das markierte Feld (16) ist vorrangig');
 });

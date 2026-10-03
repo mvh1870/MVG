@@ -181,12 +181,34 @@ export function stufe(wert: number): BalkenStufe {
   return wert <= 3 ? 'niedrig' : wert <= 6 ? 'mittel' : 'hoch';
 }
 
-/** Bilanz-Typ – die erste zutreffende Regel gilt (Drehbuch Abschnitt 3). */
-export function bilanzTyp(b: Balkenstand): BilanzTyp {
+/** Ob auf dem Weg eine Falle zählt (in der Kurzfassung zählen übersprungene Kapitel wie die gute Antwort). */
+export function falleGewaehlt(g: Geschichte, stand: Stand): boolean {
+  return wegKapitel(g, stand.kurz).some((k) => gewaehlteAntwort(stand, k)?.wertung === 'falle');
+}
+
+/**
+ * Bilanz-Typ – die erste zutreffende Regel gilt (Drehbuch Abschnitt 3). „Ruhig ins Ziel“ verlangt zusätzlich, dass keine
+ * Falle gewählt ist: Sein Text sagt, dass jede große Entscheidung bei der Bürgermeisterin lag und sie alles wusste – das
+ * stimmt nach keiner Falle (L-239). Ein solcher Weg mit guten Balken endet „mit Umwegen“.
+ */
+export function bilanzTyp(b: Balkenstand, falle: boolean): BilanzTyp {
   if (stufe(b.vertrauen) === 'niedrig') return 'nicht-getragen';
   if (stufe(b.zeit) === 'niedrig') return 'letzte-meter';
-  if (stufe(b.zeit) === 'hoch' && stufe(b.vertrauen) === 'hoch' && stufe(b.geld) !== 'niedrig') return 'ruhig';
+  if (!falle && stufe(b.zeit) === 'hoch' && stufe(b.vertrauen) === 'hoch' && stufe(b.geld) !== 'niedrig') return 'ruhig';
   return 'umwege';
+}
+
+/** Bilanz-Typ am Ende des Wegs. */
+export function bilanzAmEnde(g: Geschichte, stand: Stand): BilanzTyp {
+  return bilanzTyp(balken(g, stand, { ort: 'ende' }), falleGewaehlt(g, stand));
+}
+
+/** Welche Fassung der Schlusszeilen gilt: Vertrauen niedrig vor „nach einer Falle“ vor der Grundfassung (L-239). */
+export type EndeFassung = 'grund' | 'nach-falle' | 'vertrauen-niedrig';
+
+export function endeFassung(g: Geschichte, stand: Stand): EndeFassung {
+  if (stufe(balken(g, stand, { ort: 'ende' }).vertrauen) === 'niedrig') return 'vertrauen-niedrig';
+  return falleGewaehlt(g, stand) ? 'nach-falle' : 'grund';
 }
 
 /** Kapitel des Wegs, in denen noch keine Antwort gewählt ist. */

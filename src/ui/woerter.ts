@@ -9,6 +9,15 @@
 /** Kleine Anzahlen als Wort am Satzanfang (Startseite). */
 const ZAHLWORT: Record<number, string> = { 2: 'Zwei', 3: 'Drei', 4: 'Vier', 5: 'Fünf', 6: 'Sechs', 7: 'Sieben', 8: 'Acht', 9: 'Neun', 10: 'Zehn', 11: 'Elf', 12: 'Zwölf' };
 
+/** Die drei Stufen „Was ist wichtiger?“ im Vergleich der Story. */
+const STUFEN_WORT: Record<number, string> = { 5: 'sehr wichtig', 3: 'wichtig', 1: 'weniger wichtig' };
+
+/** Aufzählung mit Komma und „und“ vor dem letzten Glied: „A“, „A und B“, „A, B und C“. */
+export function aufzaehlung(teile: readonly string[]): string {
+  if (teile.length <= 1) return teile[0] ?? '';
+  return `${teile.slice(0, -1).join(', ')} und ${teile.at(-1) ?? ''}`;
+}
+
 export const W = {
   // O-33: Der Name des Programms; Bauherr Mentoren bleibt mit Bildmarke und als Herausgeber genannt –
   // O-34: zurückhaltend, an der Sache orientiert (im Rahmen nur als Herausgeber, nicht im Produktnamen)
@@ -20,17 +29,16 @@ export const W = {
   herausgeber: 'Herausgeber: Bauherr Mentoren',
   fiktiv: 'Fiktiver Fall',
   story: 'Story',
-  version: (fassung: string) => `Fassung ${fassung}`,
   // Start
   start: {
     // Kicker, Leitsatz und These stehen in inhalte/start.md.
     wege: 'Drei Wege',
-    internetseite: 'Der Governance Kompass ist eine Internetseite – zum Lesen und Ausprobieren, ohne Anmeldung, ohne Konto.',
+    internetseite: 'Spielen Sie es als Geschichte durch, lesen Sie es in Themen nach oder probieren Sie die Werkzeuge aus. Der Governance Kompass ist eine Internetseite, ohne Anmeldung, ohne Konto.',
     storyKicker: 'Erlebt',
     storyTitel: 'Als Geschichte',
     storyText: 'Sie leiten für die Stadt Lindenhall den Bau eines Schulcampus. Unterwegs entscheiden Sie achtmal – und sehen gleich, was jede Wahl für Geld, Zeit und Vertrauen bedeutet.',
     // Anzahl als Wort; sichtbar nie „Kapitel“ (O-38, L-225)
-    storyMeta: (n: number) => `${ZAHLWORT[n] ?? String(n)} Entscheidungen · etwa 25 Minuten, kurz etwa 10`,
+    storyMeta: (n: number) => `${ZAHLWORT[n] ?? String(n)} Entscheidungen · etwa 25 Minuten, kurz etwa 11`,
     storyLos: 'Beginnen',
     storyWeiter: 'Weiterlesen',
     figuren: 'Mit dabei',
@@ -56,6 +64,8 @@ export const W = {
     ersatzText: 'Diese Ansicht ist für den Bildschirm gedacht. Gedruckt wird über diese Wege:',
     ersatzWege: [
       'Theorie: „Thema drucken“ auf jeder Seite eines Themas.',
+      // r72: der Story-Druckbogen (L-232) hat keinen Knopf – ohne diese Zeile kennt den Weg niemand; auf der Leinwand entfällt sie
+      'Story: Strg+P in der Geschichte druckt Ihre Antworten mit „So macht man es gut“, am Ende auch Ihre Bilanz.',
       'Präsentieren: „Protokoll drucken“ – Notizen und Entscheidungen des Gesprächs.',
     ],
   },
@@ -163,7 +173,8 @@ export const W = {
     kurzfassung: 'Kurzfassung',
     fiktiv: 'Fiktiver Fall',
     sie: 'Sie',
-    sieRolle: 'Projektleitung der Stadt',
+    sieRolle: 'Projektleitung des Bauherrn',
+    undSie: 'Und Sie:',
     steckbrief: 'Steckbrief',
     balkenTitel: 'Drei Balken begleiten Sie',
     balkenLeiste: 'Stand von Geld, Zeit und Vertrauen',
@@ -194,22 +205,27 @@ export const W = {
     miniErgebnis: (richtig: number, n: number) => `${richtig} von ${n} richtig.`,
     miniNochmal: 'Noch einmal',
     miniNoch: (n: number) => `Noch ${n} offen.`,
+    miniKarten: (n: number) => n === 1 ? '1 Karte' : `${n} Karten`,
     vergleichKicker: 'Der Vergleich',
     vergleichTitel: 'Drei Wege, vier Gesichtspunkte',
     wasWichtiger: 'Was ist wichtiger?',
-    stufen: { 5: 'sehr wichtig', 3: 'wichtig', 1: 'weniger wichtig' } as Record<number, string>,
+    stufen: STUFEN_WORT,
     abgestimmt: 'abgestimmt',
     abgestimmteGewichte: 'Abgestimmte Gewichte',
     platz: (n: number) => `Platz ${n}`,
     punkteVon: (n: number) => `${n} von 5 Punkten`,
     punkte: (n: number) => `${n} Punkte`,
     vorn: (titel: string, punkte: number) => `Vorn liegt „${titel}“ mit ${punkte} Punkten.`,
-    gleichauf: (titel: readonly string[], punkte: number) => `Gleichauf vorn: ${titel.map((t) => `„${t}“`).join(' und ')} mit je ${punkte} Punkten.`,
+    gleichauf: (titel: readonly string[], punkte: number) => `Gleichauf vorn: ${aufzaehlung(titel.map((t) => `„${t}“`))} mit je ${punkte} Punkten.`,
     kippTitel: 'Wann kippt die Rangfolge?',
     kippKeiner: 'Keine einzelne andere Stufe ändert, wer vorn liegt.',
-    kipp: (kriterium: string, stufe: string, wer: readonly string[]) => wer.length > 1
-      ? `Wäre ${kriterium} ${stufe}, lägen ${wer.map((t) => `„${t}“`).join(' und ')} gleichauf.`
-      : `Wäre ${kriterium} ${stufe}, läge „${wer[0] ?? ''}“ vorn.`,
+    // „Wäre der Schulstart nur „wichtig“ statt „sehr wichtig“, …“ – Mehrzahl, wenn der Gesichtspunkt zwei Dinge nennt
+    kipp: (kriterium: string, neu: number, jetzt: number, wer: readonly string[]) => {
+      const stufe = (n: number): string => `„${STUFEN_WORT[n] ?? String(n)}“`;
+      const verb = /\sund\s/u.test(kriterium) ? 'Wären' : 'Wäre';
+      const wenn = `${verb} ${kriterium} ${neu < jetzt ? 'nur ' : ''}${stufe(neu)} statt ${stufe(jetzt)}`;
+      return wer.length > 1 ? `${wenn}, lägen ${aufzaehlung(wer.map((t) => `„${t}“`))} gleichauf.` : `${wenn}, läge „${wer[0] ?? ''}“ vorn.`;
+    },
     projektsteuerinSagt: 'Die Projektsteuerin',
     bilanzTitel: 'Ihre Bilanz',
     offen: (n: number) => n === 1 ? 'Eine Entscheidung haben Sie noch nicht getroffen – sie zählt hier nicht mit.' : `${n} Entscheidungen haben Sie noch nicht getroffen – sie zählen hier nicht mit.`,
@@ -219,6 +235,7 @@ export const W = {
     druckAntwort: 'Ihre Antwort',
     druckOffen: 'noch offen',
     druckBruecke: 'in der Kurzfassung erzählt',
+    druckBilanzSpaeter: 'Die Bilanz steht am Ende der Geschichte.',
     // Rechner in Explore (gewichteter Vergleich mit Gewichten 1–5)
     kriterium: 'Kriterium',
     gewicht: 'Gewicht',
@@ -226,7 +243,7 @@ export const W = {
     rang: (r: number) => `Rang ${r}`,
     kipppunkte: 'Wann sich die Spitze dreht',
     keinKipppunkt: 'Kein einzelnes Gewicht zwischen 1 und 5 dreht die Spitze.',
-    kipppunkt: (kriterium: string, gewicht: number, wer: string[]) => wer.length > 1 ? `${kriterium} auf ${gewicht}: Gleichstand – ${wer.join(' und ')}` : `${kriterium} auf ${gewicht}: vorn läge ${wer[0] ?? ''}`,
+    kipppunkt: (kriterium: string, gewicht: number, wer: string[]) => wer.length > 1 ? `${kriterium} auf ${gewicht}: Gleichstand – ${aufzaehlung(wer)}` : `${kriterium} auf ${gewicht}: vorn läge ${wer[0] ?? ''}`,
   },
   // Theorie als Themen (P16.3, O-38)
   themen: {
@@ -263,7 +280,7 @@ export const W = {
     glossarLeer: 'Kein Begriff passt zur Suche.',
     kommtVor: 'Mehr dazu in',
     kompass: 'Begriffs-Kompass',
-    kompassText: 'Andere Organisationen sagen oft anders, was hier gemeint ist. Die Tabelle ist eine Lesehilfe: links gängige Bezeichnungen, rechts der Begriff des Governance Kompass. Die Zuordnung ist keine Gleichsetzung im Detail.',
+    kompassText: 'Andere Organisationen sagen oft anders, was hier gemeint ist. Die Zuordnung ist keine Gleichsetzung im Detail.',
     kompassAndere: 'Andernorts oft',
     kompassBegriff: 'Hier',
     tabelle: (titel: string) => `Tabelle: ${titel}`,
@@ -277,7 +294,7 @@ export const W = {
     beispiel: 'Beispiel aus der Story',
     zuruecksetzen: 'Auf die Werte der Vorlage zurücksetzen',
     mcdaTabelle: 'Gewichteter Vergleich, Punkte und Gewichte einstellbar',
-    punkteHinweis: (min: number, max: number) => `Gewichte und Punkte je ${min} bis ${max}. Die Begründung unter jedem Punkt ist die der Vorlage; wer Punkte ändert, muss sie neu begründen.`,
+    punkteHinweis: (min: number, max: number) => `Gewichte und Punkte je ${min} bis ${max}. Unter jedem Punkt steht die Folge aus der Vorlage; wer Punkte ändert, muss sie neu begründen.`,
     wahrscheinlichkeit: 'Wahrscheinlichkeit',
     auswirkung: 'Auswirkung',
     immerVorrangig: 'Auswirkung 5 ist immer vorrangig',

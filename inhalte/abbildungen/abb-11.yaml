@@ -1,7 +1,9 @@
 id: abb-11
 quelle: bilder/image11.jpeg
 titel: Leistungspakete von der Reifegradanalyse bis zum Regelbetrieb
-alt: 'Fünf Spalten mit Pfeilen: „Reifegradanalyse“ (Lagebild, Mandate, Datenstand, 30/60/90 Plan), „MVG-Konzeption“ (Zielsystem, Freigabe-Set, Entscheidungs-IDs, Betriebshandbuch), „Pilot & Kalibrierung“ („Echte Entscheidung“, Schwellen, Managementbericht), „Befähigung & Übergabe“ (Rollenkarten, Routinen, Abnahme) und grün „Regelbetrieb“ (Steuerbarkeit, Nachweis, Betriebsverantwortung). Aus der Reifegradanalyse führt eine Linie zur unteren Reihe „MVG-Neuinitialisierung“, „Bewertung“, „Stabilisierung“; ein gestrichelter Doppelpfeil verbindet Stabilisierung und Regelbetrieb.'
+alt: 'Fünf Spalten mit Pfeilen: „Reifegradanalyse“ (Lagebild, Mandate, Datenstand, 30/60/90 Plan), „MVG-Konzeption“ (Zielsystem, Freigabe-Set, Entscheidungs-IDs, Betriebshandbuch), „Pilotierung und Kalibrierung“ (echte Entscheidungen, Schwellen, Managementbericht), „Befähigung & Übergabe“ (Rollenkarten, Routinen, Abnahme) und grün „Regelbetrieb“ (Steuerbarkeit, Nachweis, Betriebsverantwortung). Aus der Reifegradanalyse führt eine Linie zur unteren Reihe „MVG-Neuinitialisierung“, „Bewertung“, „Stabilisierung“; ein gestrichelter Doppelpfeil verbindet Stabilisierung und Regelbetrieb.'
 angeglichen:
   - { x: 326, y: 28, b: 207, h: 40, text: MVG-Konzeption, beleg: k7.2-p1, schrift: barlow, gewicht: 700, groesse: 27, ausrichtung: mitte }
   - { x: 331, y: 630, b: 160, h: 52, text: "MVG-\nNeuinitialisierung", beleg: k7.5-p1, schrift: barlow, gewicht: 500, groesse: 24, ausrichtung: mitte, farbe: '#050c14' }
+  - { x: 604, y: 22, b: 211, h: 53, text: "Pilotierung und\nKalibrierung", beleg: k7-l1, schrift: barlow, gewicht: 700, groesse: 22, ausrichtung: mitte, farbe: "#eefcfc" }
+  - { x: 676, y: 288, b: 132, h: 56, text: "echte\nEntscheidungen", beleg: k6.4.1-p4, schrift: barlow, gewicht: 500, groesse: 21, farbe: "#15191c" }

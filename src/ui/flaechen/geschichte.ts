@@ -12,7 +12,7 @@
 import type { Antwort, BalkenId, CampusBild, Geschichte, Kapitel, Mini, Vergleich, Zeile } from '../../geschichte/typen.ts';
 import { BALKEN } from '../../geschichte/typen.ts';
 import {
-  abgestimmteGewichte, balken, balkenBis, beginne, bilanzTyp, bruecken, gemischt, gewaehlteAntwort, geheZu, gewichte,
+  abgestimmteGewichte, balken, balkenBis, beginne, bilanzAmEnde, bruecken, endeFassung, gemischt, gewaehlteAntwort, geheZu, gewichte,
   gleicherSchritt, kapitel as kapitelVon, klickeReihe, leseStand, miniVonVorn, neuerStand, offeneKapitel, ordneZu,
   schrittIndex, setzeAbgestimmt, setzeGewicht, stufe, STUFEN_GEWICHT, vergleichLage, waehle,
   wegKapitel, werteMiniAus, weiter, zurueck, zaehlendePlatz, type Balkenstand, type Schritt, type Stand,
@@ -46,7 +46,7 @@ function gegenstand(name: string | null, groesse = 96, klasse = 'gs-gegenstand')
 
 /** Campus der Stufe mit Jahreszeit und Licht, groß; dekorativ (Drehbuch Abschnitt 7), Zusatz der Szene darüber. */
 function campus(c: CampusBild, klasse: string, zusatz: string | null = null): HTMLElement {
-  const bild = vonHtml(campusIso(c.stufe, { jahreszeit: c.jahreszeit, licht: c.licht }));
+  const bild = vonHtml(campusIso(c.stufe, { jahreszeit: c.jahreszeit, licht: c.licht, ...(c.wetter ? { wetter: c.wetter } : {}) }));
   // füllt den Rahmen (Seitenverhältnis aus dem CSS); Himmel und Vordergrund werden dafür knapp beschnitten
   bild.firstElementChild?.setAttribute('preserveAspectRatio', 'xMidYMid slice');
   return h('div', { class: `gs-campus ${klasse}`, 'aria-hidden': 'true', 'data-stufe': c.stufe },
@@ -218,7 +218,10 @@ function auftakt(o: SchrittOptionen): HTMLElement {
           bildnis(f.id as Figur, 120),
           h('h3', { class: 'gs-steckbrief-name' }, f.name),
           h('p', { class: 'gs-steckbrief-rolle' }, f.rolle),
-          steckbriefText(o, f.name, f.steckbriefHtml))),
+          steckbriefText(o, f.name, f.steckbriefHtml)))),
+      // „Sie“ ist keine der fünf Begleitfiguren: eigene Zeile darunter (R72)
+      h('h2', { class: 'gs-h2 gs-figuren-sie-titel' }, w.undSie),
+      h('ul', { class: 'gs-figuren-liste gs-figuren-sie' },
         h('li', { class: 'gs-steckbrief gs-steckbrief-sie', 'data-akzent': 'marke', 'data-pruef': 'figur-sie' },
           bildnis('sie', 120),
           h('h3', { class: 'gs-steckbrief-name' }, w.sie),
@@ -293,14 +296,22 @@ function frage(o: SchrittOptionen, k: Kapitel): HTMLElement {
 function miniZuordnen(o: SchrittOptionen, k: Kapitel, m: Mini): HTMLElement {
   const antworten = o.stand.mini[k.id];
   const aus = werteMiniAus(m, antworten);
-  return h('ol', { class: 'gs-mini-liste gs-mini-zuordnen', 'data-wahlen': m.wahlen.length },
+  // Ablagen (z. B. „zu Recht geschlossen“ · „übergeben“): wo die Wahlen ein Bild haben, oben je Ablage Bild und Zahl der Karten
+  const ablagen = m.wahlen.some((x) => x.bild !== null)
+    ? h('ul', { class: 'gs-mini-ablagen', 'data-pruef': 'mini-ablagen' }, m.wahlen.map((x, j) => {
+      const n = m.posten.filter((_, i) => (antworten?.[i] ?? -1) === j).length;
+      return h('li', { class: 'gs-mini-ablage', 'data-pruef': `ablage-${x.id}` }, gegenstand(x.bild, 56, 'gs-gegenstand gs-mini-ablage-bild'),
+        h('span', null, h('b', null, x.titel), h('span', { class: 'gs-mini-ablage-zahl' }, w.miniKarten(n))));
+    }))
+    : null;
+  const liste = h('ol', { class: 'gs-mini-liste gs-mini-zuordnen', 'data-wahlen': m.wahlen.length },
     m.posten.map((p, i) => {
       const gewaehlt = antworten?.[i] ?? -1;
       const lage = aus.je[i] ?? 'offen';
       const loesung = m.wahlen.find((x) => x.id === p.loesung);
       const falsch = gewaehlt >= 0 ? m.wahlen[gewaehlt] ?? null : null;
       return h('li', { class: 'gs-mini-posten', 'data-lage': lage, 'data-pruef': `posten-${i + 1}` },
-        h('p', { class: 'gs-mini-text', id: `gs-posten-${k.id}-${i}` }, inhaltInline(p.html)),
+        h('div', { class: 'gs-mini-karte' }, gegenstand(p.bild, 48, 'gs-gegenstand gs-mini-posten-bild'), h('p', { class: 'gs-mini-text', id: `gs-posten-${k.id}-${i}` }, inhaltInline(p.html))),
         h('div', { class: 'gs-mini-wahlen', role: 'group', 'aria-labelledby': `gs-posten-${k.id}-${i}` },
           m.wahlen.map((x, j) => {
             const an = gewaehlt === j;
@@ -314,18 +325,22 @@ function miniZuordnen(o: SchrittOptionen, k: Kapitel, m: Mini): HTMLElement {
           lage === 'falsch' && falsch?.falschHtml ? [inhaltInline(falsch.falschHtml), ' '] : null,
           inhaltInline(p.erklaerungHtml)));
     }));
+  return ablagen === null ? liste : h('div', { class: 'gs-mini-zuordnen-mit-ablagen' }, ablagen, liste);
 }
 
 function miniReihe(o: SchrittOptionen, k: Kapitel, m: Mini): HTMLElement {
   const folge = o.stand.mini[k.id] ?? [];
   const aus = werteMiniAus(m, folge);
-  return h('ol', { class: 'gs-mini-liste gs-mini-reihe' },
-    gemischt(m.posten.length).map((i) => {
+  // fertig: die Karten stehen in der richtigen Reihenfolge, verbunden zu einem Pfad (Drehbuch Abschnitt 7)
+  const ordnung = aus.fertig ? m.posten.map((_, i) => i) : gemischt(m.posten.length);
+  return h('ol', { class: `gs-mini-liste gs-mini-reihe${aus.fertig ? ' ist-pfad' : ''}`, 'data-pruef': 'mini-reihe' },
+    ordnung.map((i) => {
       const p = m.posten[i];
       const stelle = folge.indexOf(i);
       const lage = aus.fertig ? aus.je[i] ?? 'offen' : 'offen';
       const kinder: Kind[] = [
         h('span', { class: 'gs-reihe-nr', 'aria-hidden': stelle < 0 ? 'true' : null }, stelle < 0 ? '' : String(stelle + 1)),
+        gegenstand(p?.bild ?? null, 44, 'gs-gegenstand gs-mini-posten-bild'),
         h('span', { class: 'gs-reihe-text' }, inhaltInline(p?.html ?? '')),
         stelle >= 0 ? h('span', { class: 'nur-sr' }, `, ${w.miniStelle(stelle + 1)}`) : null,
       ];
@@ -350,7 +365,8 @@ function miniSchritt(o: SchrittOptionen, k: Kapitel): HTMLElement {
     kopf(k, `${w.miniKicker} · ${m.titel}`),
     h('section', { class: 'gs-mini-aufgabe', 'aria-labelledby': 'gs-mini-aufgabe' },
       h('span', { class: 'gs-mini-symbol', 'aria-hidden': 'true' }, sym('puzzle')),
-      h('p', { id: 'gs-mini-aufgabe', class: 'gs-mini-auftrag' }, inhaltInline(m.aufgabeHtml))),
+      h('p', { id: 'gs-mini-aufgabe', class: 'gs-mini-auftrag' }, inhaltInline(m.aufgabeHtml)),
+      gegenstand(m.bild, 96, 'gs-gegenstand gs-mini-bild')),
     zuordnen ? miniZuordnen(o, k, m) : miniReihe(o, k, m),
     h('div', { class: 'gs-mini-fuss' },
       h('p', { class: 'gs-mini-stand', role: 'status', 'data-pruef': 'mini-stand' }, stand),
@@ -372,13 +388,13 @@ function vergleichSchritt(o: SchrittOptionen, k: Kapitel): HTMLElement {
   const lage = vergleichLage(v, gew);
   const max = Math.max(1, ...lage.plaetze.map((p) => p.summe));
   const titel = (id: string): string => v.optionen.find((x) => x.id === id)?.titel ?? id;
-  const krit = (id: string): string => v.kriterien.find((x) => x.id === id)?.titel ?? id;
+  const krit = (id: string): string => v.kriterien.find((x) => x.id === id)?.imSatz ?? id;
   const vornTexte = lage.vorn.map(titel);
   const vornSumme = lage.plaetze[0]?.summe ?? 0;
   const statusText = lage.vorn.length > 1 ? w.gleichauf(vornTexte, vornSumme) : w.vorn(vornTexte[0] ?? '', vornSumme);
   const eigen = o.stand.gewichte !== null;
   const kippListe = lage.kipp.length === 0 ? h('p', null, w.kippKeiner)
-    : h('ul', null, lage.kipp.map((x) => h('li', null, w.kipp(krit(x.kriterium), w.stufen[x.gewicht] ?? '', x.spitze.map(titel)))));
+    : h('ul', null, lage.kipp.map((x) => h('li', null, w.kipp(krit(x.kriterium), x.gewicht, gew[x.kriterium] ?? x.gewicht, x.spitze.map(titel)))));
   return h('article', { class: 'gs-schritt gs-vergleich', 'data-teil': 'vergleich' },
     kopf(k, `${w.vergleichKicker} · ${w.vergleichTitel}`),
     h('div', { class: 'gs-vgl-einleitung' }, bildnis('faden', 64), h('div', { class: 'gs-blase', 'data-akzent': 'lagune' }, inhalt(v.einleitungHtml)), gegenstand('waage', 96, 'gs-gegenstand gs-gegenstand-waage')),
@@ -414,7 +430,7 @@ function vergleichSchritt(o: SchrittOptionen, k: Kapitel): HTMLElement {
         o.bedienbar ? h('button', { type: 'button', class: 'gs-leiser-knopf', 'data-pruef': 'gewichte-abgestimmt', disabled: !eigen, onclick: () => o.tue(setzeAbgestimmt(o.stand)) }, sym('zurueckspulen'), w.abgestimmteGewichte) : null)),
     h('div', { class: 'gs-vgl-satz' }, bildnis('faden', 56),
       h('div', { class: 'gs-blase', 'data-akzent': 'lagune' }, h('p', { class: 'gs-sprecher' }, w.projektsteuerinSagt), h('p', { 'data-pruef': 'gs-vgl-satz' }, inhaltInline(v.saetze[lage.satz] ?? '')))),
-    // Kipppunkte: auf dem ganzen Weg offen; in der bedienbaren Kurzfassung aufklappbar (P17.5 – die Empfehlung nennt sie)
+    // Kipppunkte: auf dem ganzen Weg offen; in der bedienbaren Kurzfassung aufklappbar (P17.5 – die Empfehlung nennt den nächstliegenden)
     o.stand.kurz && o.bedienbar
       ? h('details', { class: 'gs-vgl-kipp gs-vgl-kipp-auf', 'data-pruef': 'gs-kipp' }, h('summary', { class: 'gs-h3' }, w.kippTitel), kippListe)
       : h('section', { class: 'gs-vgl-kipp', 'aria-labelledby': 'gs-kipp-titel', 'data-pruef': 'gs-kipp' }, h('h3', { id: 'gs-kipp-titel', class: 'gs-h3' }, w.kippTitel), kippListe),
@@ -430,13 +446,18 @@ const BILANZ_BILD: Record<string, string> = { ruhig: 'sonne', umwege: 'wegweiser
 function ende(o: SchrittOptionen): HTMLElement {
   const { g, stand } = o;
   const b = balken(g, stand, { ort: 'ende' });
-  const typ = bilanzTyp(b);
+  const typ = bilanzAmEnde(g, stand);
   const e = g.ende;
-  const vertrauenNiedrig = stufe(b.vertrauen) === 'niedrig';
-  const zeilen = zeilenDesWegs(stand, e.szene).map((z) => (vertrauenNiedrig && z.figur === e.vertrauenNiedrig.figur ? e.vertrauenNiedrig : z));
+  const fassung = endeFassung(g, stand);
+  const ersatz = fassung === 'vertrauen-niedrig' ? e.vertrauenNiedrig : fassung === 'nach-falle' ? e.nachFalle : [];
+  // eine Ersatzzeile steht auf denselben Wegen wie die ersetzte (L-239)
+  const zeilen = zeilenDesWegs(stand, e.szene).map((z) => {
+    const neu = ersatz.find((x) => x.figur === z.figur);
+    return neu === undefined ? z : { ...neu, kurzfassung: z.kurzfassung };
+  });
   const einstieg = stand.kurz && e.einstiegKurzHtml !== null ? e.einstiegKurzHtml : e.einstiegHtml;
   const offen = offeneKapitel(g, stand).length;
-  return h('article', { class: 'gs-schritt gs-ende', 'data-teil': 'ende', 'data-bilanz': typ },
+  return h('article', { class: 'gs-schritt gs-ende', 'data-teil': 'ende', 'data-bilanz': typ, 'data-fassung': fassung },
     stand.kurz ? brueckenKarten(g, null) : null,
     h('header', { class: 'gs-kopf gs-kopf-ende' },
       h('span', { class: 'gs-nummer gs-nummer-ende', 'aria-hidden': 'true' }, gegenstand('schulglocke', 56, 'gs-nummer-bild')),
@@ -520,7 +541,12 @@ export function leisteOben(g: Geschichte, stand: Stand, bedienbar: boolean, tue:
 /** Druckbogen der Story (Strg+P): je Kapitel des Wegs Ihre Antwort und „So macht man es gut“, dazu die Bilanz. */
 export function storyDruck(g: Geschichte, stand: Stand, version: string): { titel: string; teile: Node[] } {
   const b = balken(g, stand, { ort: 'ende' });
-  const typ = bilanzTyp(b);
+  const typ = bilanzAmEnde(g, stand);
+  const s = stand.schritt;
+  const amEnde = s.ort === 'ende';
+  // bis wohin der Weg reicht: ein übersprungenes Kapitel ist „erzählt“, sobald seine Brücke (im nächsten Kapitel) erreicht ist
+  const hier = amEnde ? Number.POSITIVE_INFINITY : s.ort === 'kapitel' ? (kapitelVon(g, s.kapitel)?.nr ?? 0) : 0;
+  const offen = offeneKapitel(g, stand).length;
   return {
     titel: w.druckTitel,
     teile: [
@@ -531,13 +557,17 @@ export function storyDruck(g: Geschichte, stand: Stand, version: string): { tite
           const erzaehlt = stand.kurz && !k.kurzfassung;
           return h('section', { class: 'druck-teil' },
             h('h2', null, `${k.nr} · ${k.titel}`, h('small', null, ` · ${k.zeit}`)),
-            h('p', null, h('b', null, `${w.druckAntwort}: `), erzaehlt ? w.druckBruecke : a !== null ? inhaltInline(a.html) : w.druckOffen),
+            h('p', null, h('b', null, `${w.druckAntwort}: `), erzaehlt ? (hier > k.nr ? w.druckBruecke : w.druckOffen) : a !== null ? inhaltInline(a.html) : w.druckOffen),
             h('h3', null, w.gutTitel), inhalt(k.gutHtml));
         }),
-        h('section', { class: 'druck-teil' },
-          h('h2', null, `${w.bilanzTitel}: ${g.bilanz[typ].titel}`),
-          h('p', null, inhaltInline(g.bilanz[typ].html)),
-          h('ul', null, g.balken.map((x) => h('li', null, h('b', null, `${x.titel}: `), inhaltInline(x.bilanz[stufe(b[x.id])]))))))],
+        // die Bilanz nur, wenn das Ende erreicht ist – wie am Bildschirm, samt Hinweis auf offene Entscheidungen
+        h('section', { class: 'druck-teil', 'data-pruef': 'druck-bilanz' }, amEnde
+          ? [
+            h('h2', null, `${w.bilanzTitel}: ${g.bilanz[typ].titel}`),
+            h('p', null, inhaltInline(g.bilanz[typ].html)),
+            h('ul', null, g.balken.map((x) => h('li', null, h('b', null, `${x.titel}: `), inhaltInline(x.bilanz[stufe(b[x.id])])))),
+            offen > 0 ? h('p', null, w.offen(offen)) : null]
+          : [h('h2', null, w.bilanzTitel), h('p', null, w.druckBilanzSpaeter)]))],
   };
 }
 

@@ -34,22 +34,23 @@
   width: 100%;
   max-width: var(--breite-start);
   margin-inline: auto;
-  padding: clamp(24px, 6vh, 64px) max(var(--a-4), 4vw) var(--a-8);
+  /* r72: Kopf knapp genug, dass „Beginnen“ der Story-Karte bei 1280 × 720 im ersten Bildschirm steht */
+  padding: clamp(16px, 3vh, 48px) max(var(--a-4), 4vw) var(--a-8);
 }
-.start-haupt { display: grid; gap: clamp(24px, 5vh, 56px); }
+.start-haupt { display: grid; gap: clamp(20px, 3vh, 48px); }
 .start-kicker { font: 600 var(--gr-m)/1.2 var(--schrift-label); letter-spacing: .18em; text-transform: uppercase; color: var(--gold-text); }
 .start-titel:focus { outline: none; }
 .start-titel {
-  max-width: 24ch;
+  max-width: 30ch;
   margin-top: var(--a-2);
-  font: 800 clamp(34px, 5vw, 72px)/.98 var(--schrift-anzeige);
+  font: 800 clamp(30px, 3.6vw, 56px)/.98 var(--schrift-anzeige);
   letter-spacing: .01em;
   text-transform: uppercase;
   color: var(--navy);
 }
 .start-these { max-width: 46ch; margin-top: var(--a-4); font-size: clamp(17px, 1.6vw, 20px); line-height: 1.5; color: var(--tinte-2); }
 .start-these strong { color: var(--tinte); font-weight: 600; }
-.start-internetseite { max-width: 52ch; margin-top: var(--a-3); font: var(--typo-klein); color: var(--tinte-2); }
+.start-internetseite { max-width: 70ch; margin-top: var(--a-3); font: var(--typo-klein); color: var(--tinte-2); }
 
 /* ------------------------------------------------------------------------------------ drei Wege */
 .tueren { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); }

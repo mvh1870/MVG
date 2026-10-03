@@ -142,3 +142,21 @@ test('MCDA-Rechner (R69): ein Kipppunkt mit Gleichstand nennt alle an der Spitze
   const zeilen = [...el.querySelectorAll('.gs-kipp li')].map((li) => li.textContent ?? '');
   assert.ok(zeilen.includes(soll), `„${soll}“ fehlt in ${JSON.stringify(zeilen)}`);
 });
+
+test('MCDA (r72): über der Tabelle steht die Lage aus dem Kapitel des Vergleichs – wörtlich die erste Szenenzeile, mit Figur und Monat', () => {
+  const el = baueExplore({ inhalte, werkzeug: 'mcda', bedienbar: true });
+  const k = inhalte.geschichte?.kapitel.find((x) => x.vergleich !== null);
+  assert.ok(k);
+  const lage = el.querySelector('[data-pruef="ex-lage"]');
+  assert.ok(lage, 'Lage fehlt');
+  const satz = vonHtmlText(k.szene[0]?.html ?? '');
+  assert.ok((lage.textContent ?? '').replace(/­/gu, '').includes(satz), lage.textContent ?? '');
+  assert.match(lage.textContent ?? '', new RegExp(`${k.zeit}$`, 'u'));
+  assert.ok(lage.compareDocumentPosition(el.querySelector('[data-pruef="ex-mcda-tabelle"]') as Node) & Node.DOCUMENT_POSITION_FOLLOWING, 'Lage steht über der Tabelle');
+});
+
+function vonHtmlText(html: string): string {
+  const d = document.createElement('div');
+  d.innerHTML = html;
+  return (d.textContent ?? '').replace(/­/gu, '');
+}

@@ -56,18 +56,19 @@ Geld auf dem guten Weg (intern, nie als Zahl auf der Seite): Prognose ohne die a
 
 Steckbriefe, Sprechweisen, Sorgen, Bögen und Porträts: docs/DREHBUCH.md, Abschnitt 2. Weitere Stellen ohne Porträt: Stadtrat, Lenkungskreis, Kämmerei, Schulamt, Vergabestelle, Sicherheitskoordination, Gebäudemanagement der Stadt, Hersteller und Firmen.
 
-## Fundus für Themen und Explore (bis zur Überarbeitung in P17.11 unverändert)
+## Fundus für Themen und Explore
 
-Theorie-Beispiele und Explore-Werkzeuge (O-50, O-57: Explore-Inhalt bleibt) nutzen noch Angaben aus der früheren Story. Sie widersprechen der neuen Story nicht, sind aber genauer. Bei Überarbeitungen gilt: neue Figurennamen verwenden, Zahlen gerundet wie in der Story.
+Theorie-Beispiele und Explore-Werkzeuge (O-50, O-57: Explore-Inhalt bleibt) nutzen zum Teil Angaben aus der früheren Story. Bis r72 widersprachen einige davon der neuen Story (Lüftungsgerät, Kostenstände, Monatsbericht); sie sind seither entweder an die Story angeglichen oder ausdrücklich vom Story-Ereignis gelöst (anderes Gerät, anderer Gegenstand). Regel: Ein Themenbeispiel erzählt kein Story-Ereignis mit anderen Zahlen – entweder gleiche Eckdaten wie die Story oder ein anderer Gegenstand; neue Figurennamen bzw. namenlose Rollen, Zahlen gerundet wie in der Story.
 
 | Angabe | Wert | genutzt in |
 |---|---|---|
 | Budget und Reserve | 58,4 Mio. € brutto, Reserve 2,9 Mio. € (Basis plus Reserve 61,3 Mio. €) | Theorie-Beispiele |
-| Lieferzeit Holzbauelemente | 26 statt 16 Wochen, drei von vier Anbietern; Risiko W 4 · A 4 = vorrangig (höchste belegte Auswirkung: Qualität/Funktion Stufe 4, Schulstart ohne neue Gebäude) | Thema „Vorgänge und Risiken“, Explore Risikomatrix |
+| Lieferzeit Holzbauelemente | 26 statt 16 Wochen (Story: ein halbes Jahr statt vier Monate), drei von vier Anbietern; Frühwarnung März 2026, Risiko einen Monat später; Risiko W 4 · A 4 = vorrangig (höchste belegte Auswirkung: Qualität/Funktion Stufe 4, Schulstart ohne neue Gebäude) | Thema „Vorgänge und Risiken“, Explore Risikomatrix |
 | Mensa | 450 statt 300 Essen, 0,6 Mio. €, rund vier Wochen Umplanung; Änderung ohne Risikoeintrag; eine Zusage im Flur ist kein Beschluss | Thema „Vorgänge und Risiken“, Explore Vorgangsarten |
-| Zwei Kostenrechnungen | Differenz 1,2 Mio. € durch einen angekündigten Nachtrag der Haustechnik (Risiko, nicht in der Prognose) | Thema „Vorgänge und Risiken“, „Takt und Bericht“ |
+| Zwei Kostenrechnungen (an Kapitel 5 angeglichen) | Oktober 2026; Kämmerei und Architekt rund eine Million auseinander; Mehrkosten der Haustechnikfirma, gut eine Million, als Risiko RIS-014 (nicht in der Prognose); Monatsbericht Oktober 2026: Prognose 59,4 Mio. € (+1,7 %), mit den Mehrkosten weiter innerhalb von 61,3 Mio. € | Themen „Verantwortungsfelder“, „Arbeitsweise“, „Vorgänge und Risiken“, „Takt und Bericht“; Explore Risikomatrix (RIS-014) |
 | Brandschutzauflage | Kapselung der Holzbauteile in den Fluren, 0,4 Mio. €; Problem mit Zwischenmaßnahme | Thema „Vorgänge und Risiken“ |
-| Lüftungsgerät (Beispiel des Standards) | Ersatzgerät 80.000 € / 7 Tage, Abwarten 20.000 € / 28 Tage; mit den vereinfachten Skalen des Standards 41 : 35 bei Gewichten 3 / 5 / 2, Gleichstand 31 : 31 bei Termingewicht 3 | Thema „Entscheidungsvorlage“, Explore Vergleichsrechner |
+| Wärmepumpe der Grundschule (Beispiel des Standards, HB 3.2 „verspätete Anlagenlieferung“) | bewusst ein anderes Gerät als die Lüftungsanlage aus Kapitel 7; Ersatzgerät 80.000 € / 7 Tage, Abwarten 20.000 € / 28 Tage; mit den vereinfachten Skalen des Standards 41 : 35 bei Gewichten 3 / 5 / 2, Gleichstand 31 : 31 bei Termingewicht 3; liegt im Mandat der Projektleitung (bis 100.000 € ohne Reserve) | Thema „Entscheidungsvorlage“, Wendekarte in „Vorgänge und Risiken“ (der Explore-Vergleichsrechner rechnet seit L-232 mit Kapitel 7) |
 | Grenzen der Risikobewertung (Projektblatt) | Kosten bis 0,1 / 0,5 / 1,5 / 3,0 Mio. € → Stufe 1–4, darüber 5; Termin bis 14 / 28 / 42 / 70 Tage → Stufe 1–4, darüber 5; ein Grenzwert gehört zur niedrigeren Stufe | Explore Risikomatrix |
 | Kennungen der früheren Story | RIS-005, RIS-009, RIS-014, RIS-021, RIS-022, AEN-012, AEN-013, PRB-002, MAS-007, MAS-011, PRB-019 | Theorie-Kommentare, Explore; die neue Story verwendet sichtbar keine Kennungen |
+| Lüftungsanlage der Gesamtschule (Kapitel 7) | vier Monate später; drei Wege, Ersatzgerät rund 400.000 €, Entscheidung der Bürgermeisterin | Themen „Arbeitsweise“ und „Vorgänge und Risiken“ (Sortierposten, an die Story angeglichen), Explore Vergleichsrechner |
 | Förderfrist | Inbetriebnahme zum Schuljahr 2028/29 | Theorie-Beispiele |

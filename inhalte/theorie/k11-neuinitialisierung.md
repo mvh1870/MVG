@@ -88,7 +88,7 @@ rechts: Was fehlt
 :::
 :::
 
-Im Standard liefert die Projektsteuerung stattdessen Entscheidungsvorlagen mit mindestens zwei Optionen und einen Monatsbericht von höchstens einer Seite.
+In MVG liefert die Projektsteuerung stattdessen Entscheidungsvorlagen mit mindestens zwei zulässigen Optionen und einen Monatsbericht von höchstens einer Seite.
 
 Die übrigen drei Signale betreffen die **Grundlagen**:
 

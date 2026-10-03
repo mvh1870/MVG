@@ -8,7 +8,8 @@
 # Belege k14.2 (Wer was tut): v24:hb-3, v24:hb-1 (Abs. 5), v24:hb-3.1 (Beschluss getrennt), v24:tlb-2.1, k1.2-l1 (Wissenscheck), k3.2-t1 (Vorbereitung von Entscheidungsvorlagen delegierbar)
 # Belege k14.3 (Frage und Rahmen, Optionen): v24:hb-3.1 (Entscheidungsbedarf klären, Mindestens zwei Optionen ausarbeiten), v24:hb-1.5 (zwei ernsthafte, zulässige Optionen)
 # Belege k14.4 (MCDA): v24:hb-3.1 (MCDA anwenden, Punkte nachvollziehbar begründen, Grenzen und Empfehlung offenlegen)
-# Belege k14.5 (Beispiel Lüftungsgerät): v24:hb-3.2, v24:as-2; Fall: inhalte/geschichte/s8-lueftung.yaml (Mandat der Bauherren-PL bis 100 TEUR)
+# Belege k14.5 (Beispiel Wärmepumpe): v24:hb-3.2, v24:as-2 (dort „verspätete Anlagenlieferung“ ohne Gerätenamen); Fall: inhalte/fall.md, Abschnitt „Wer entscheidet was“ (Sie bis 100.000 € ohne Reserve)
+# Bewusst ein anderes Gerät als die Lüftungsanlage aus Story-Kapitel 7 (inhalte/geschichte/k7-entscheidung.yaml), damit Thema und Story sich nicht widersprechen (r72).
 # Belege k14.6 (Vorlegen, nachhalten, Beschluss): v24:hb-3.1 (Vorlegen und nachhalten, Beschluss getrennt dokumentieren), v24:hb-5 (Tabelle, Zeile Entscheidung), v24:hb-3 (Dringliches wartet nicht)
 kapitel: 14
 thema: entscheidungsvorlage
@@ -138,7 +139,7 @@ rechts: Scheinoption
 ---
 seite: links
 ---
-Ein Ersatzgerät für die Lüftung, dessen Gleichwertigkeit die Haustechnikplanung bestätigt hat.
+Eine Ersatz-Wärmepumpe, deren Gleichwertigkeit die Haustechnikplanung bestätigt hat.
 
 ### Erklärung
 Die Muss-Anforderungen sind erfüllt, Kosten und Terminfolge lassen sich angeben.
@@ -236,9 +237,9 @@ Eine unzulässige Option kann nicht gewinnen, egal wie günstig sie ist. Eine ho
 
 ::: abschnitt k14.5
 ---
-titel: Beispiel – das Lüftungsgerät der Gesamtschule
+titel: Beispiel – die Wärmepumpe der Grundschule
 ---
-Ein fiktives Beispiel mit vereinfachten Zahlen: Das zentrale Lüftungsgerät der Gesamtschule kommt später als vereinbart. Die Frage an die befugte Stelle: **Technisch gleichwertiges Ersatzgerät oder die ursprüngliche Lieferung abwarten?** Beide Optionen erfüllen die Muss-Anforderungen.
+Ein fiktives Beispiel mit vereinfachten Zahlen: Die Wärmepumpe der Grundschule kommt später als vereinbart. Die Frage an die befugte Stelle: **Technisch gleichwertiges Ersatzgerät oder die ursprüngliche Lieferung abwarten?** Beide Optionen erfüllen die Muss-Anforderungen.
 
 - **A · Ersatzgerät:** 80.000 € Zusatzkosten, Zieltermin 7 Kalendertage später, volle Funktion.
 - **B · Abwarten:** 20.000 € Zusatzkosten, Zieltermin 28 Kalendertage später, volle Funktion.
@@ -326,7 +327,7 @@ Dringliche Meldungen und notwendige Schutzmaßnahmen warten nicht auf den fertig
 
 ::: umschalter
 ---
-titel: Die Gerüstmeldung und das Lüftungsgerät
+titel: Die Gerüstmeldung und die Wärmepumpe
 links: Dringlich
 rechts: Entscheidungsbedarf
 ---
@@ -335,7 +336,7 @@ An der Sporthalle ist ein Gerüstfeld nicht gesichert. Die Projektsteuerung meld
 :::
 
 ::: ansicht rechts
-Das Lüftungsgerät braucht eine Entscheidung zwischen zwei zulässigen Wegen – mit Vorlage und danach dem [[Beschluss]], getrennt festgehalten.
+Die Wärmepumpe braucht eine Entscheidung zwischen zwei zulässigen Wegen – mit Vorlage und danach dem [[Beschluss]], getrennt festgehalten.
 :::
 :::
 :::

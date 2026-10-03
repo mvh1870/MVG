@@ -28,6 +28,8 @@ export interface CampusBild {
   stufe: number;
   jahreszeit: Jahreszeit;
   licht: Licht;
+  /** Besonderes Wetter (R72): „sturm“ – grauer Himmel, Böen, abgerissene Planen */
+  wetter?: 'sturm';
 }
 
 export interface Figur {
@@ -82,6 +84,8 @@ export interface MiniPosten {
   /** zuordnen: Kennung der richtigen Wahl; reihenfolge: leer (die Reihenfolge der Liste ist die richtige) */
   loesung: string;
   erklaerungHtml: string;
+  /** kleine Grafik auf der Karte (Name für `gimmick`) */
+  bild: string | null;
 }
 
 export interface MiniWahl {
@@ -91,12 +95,16 @@ export interface MiniWahl {
   figur: FigurId | 'sie' | null;
   /** feste Rückmeldung, wenn diese Wahl falsch ist (bei jedem Posten gleich) */
   falschHtml: string | null;
+  /** kleine Grafik der Ablage (Name für `gimmick`), z. B. „übergeben“ → Mappe */
+  bild: string | null;
 }
 
 export interface Mini {
   art: MiniArt;
   titel: string;
   aufgabeHtml: string;
+  /** Grafik des Schritts (Name für `gimmick`, O-53) */
+  bild: string;
   /** nur zuordnen: die Möglichkeiten je Posten */
   wahlen: MiniWahl[];
   posten: MiniPosten[];
@@ -105,6 +113,8 @@ export interface Mini {
 export interface VergleichKriterium {
   id: string;
   titel: string;
+  /** wie der Gesichtspunkt mitten im Satz heißt, mit Artikel („der Schulstart“, „Klima und Betrieb“) */
+  imSatz: string;
   /** abgestimmte Stufe: 5 sehr wichtig · 3 wichtig · 1 weniger wichtig */
   gewicht: number;
 }
@@ -172,8 +182,10 @@ export interface Ende {
   szene: Zeile[];
   /** zusätzlich nach dem Einstieg, wenn Zeit niedrig */
   zeitNiedrigHtml: string;
-  /** statt der Zeile dieser Figur, wenn Vertrauen niedrig */
-  vertrauenNiedrig: Zeile;
+  /** Ersatzzeilen (je Figur), wenn Vertrauen niedrig – geht „nach einer Falle“ vor (src/geschichte/engine.ts, endeFassung) */
+  vertrauenNiedrig: Zeile[];
+  /** Ersatzzeilen (je Figur), wenn eine Falle gewählt ist und Vertrauen nicht niedrig (L-239) */
+  nachFalle: Zeile[];
 }
 
 export interface Geschichte {

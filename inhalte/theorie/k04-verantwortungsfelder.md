@@ -6,11 +6,11 @@
 # Belege k4 (Überblick, Sortierübung): k4-p1, k4-t1; Posten 5, 7, 10: v24:hb-1, v24:hb-1.3, v24:hb-3, v24:hb-3.1, v24:hb-5, v24:tlb-2.1
 # Gekürzt und gegliedert P17.11 (O-55): je Feld Kern im Lesetext, Fehlstelle und MVG-Antwort als Karten (Mandat, Wesentliche Entscheidung, Freigabe) oder im Umschalter ohne/mit (Ziel, Risikoannahme, Datenstand und Nachweis); Fehlstellen und Antworten aus k4-t1.
 # Belege k4.1: k4.1-p1, k4.1-p2, k4-t1 (Zeile Ziel); Zielsystem → MCDA-Kriterien, Muss-Prüfung vorab: v24:hb-3.1
-# Belege k4.2: k4.2-p1, k4.2-p2, k4.2-p3, k4-t1 (Zeile Mandat); Vorlage auf jeder Stufe, Bauherr pflegt nicht: v24:hb-1, v24:hb-3.1, v24:tlb-3
+# Belege k4.2: k4.2-p1, k4.2-p2, k4.2-p3, k4-t1 (Zeile Mandat); Vorlage auf jeder Stufe, Bauherr pflegt nicht: v24:hb-1, v24:hb-3.1, v24:tlb-3; unvollständige Vorlage: v24:hb-3.1 (Vorlegen und nachhalten), v24:va-3.4
 # Belege k4.3: k4.3-p1, k4.3-p2, k4-t1 (Zeile Wesentliche Entscheidung), k13-t1 (FID am Abschluss von LPH 3, Neufestlegung der Projektbasis), k2.5-t1 (Neufestlegung außerhalb der regulären Freigabereihe); Vorbereitung durch die Projektsteuerung: v24:hb-3, v24:hb-3.1, v24:tlb-2.1
 # Belege k4.4: k4.4-p1, k4.4-p2, k4-t1 (Zeile Risikoannahme); Matrix und Prioritäten, Warnanlässe, Restrisiko als Entscheidung: v24:hb-1.3, v24:hb-2, v24:hb-3
 # Belege k4.5: k4.5-p1, k4.5-p2, k4-t1 (Zeile Freigabe), k9.3-p3 (Freigabe zum Abschluss der LPH durch den Bauherrn selbst), k4.2-p3; Vorbereitung durch die Projektsteuerung, befugte Stelle: v24:hb-1, v24:tlb-3
-# Belege k4.6: k4.6-p1, k4.6-p2, k4-t1 (Zeile Datenstand und Nachweis); Pflege in der bereitgestellten Software, Monatsbericht: v24:hb-4, v24:hb-5, v24:tlb-2
+# Belege k4.6: k4.6-p1, k4.6-p2, k4-t1 (Zeile Datenstand und Nachweis); Pflege in der bereitgestellten Software, Monatsbericht: v24:hb-4, v24:hb-5, v24:tlb-2; Beispiel an Story-Kapitel 5 angeglichen (inhalte/geschichte/k5-zahlen.yaml: Oktober 2026, Kämmerei und Architekt, eine gegen zwei Millionen)
 kapitel: 4
 thema: verantwortung
 reihe: 4
@@ -36,7 +36,7 @@ In sechs Feldern muss der Bauherr selbst entscheidungsfähig bleiben. Die Vorber
 ---
 titel: Sechs Felder im Überblick
 ---
-Die Felder sind keine juristische Vollständigkeitsliste, sondern eine Arbeitsstruktur: Sie machen die Ausübungsfähigkeit des Bauherrn sichtbar, prüfbar und gestaltbar. Jedes Feld hat denselben Aufbau:
+Die sechs Felder sind kein Gesetzestext, sondern eine Arbeitshilfe: Sie zeigen, wo der Bauherr selbst führen muss – sichtbar, prüfbar und gestaltbar. Jedes Feld hat denselben Aufbau:
 
 - **Nichtdelegierbarer Kern:** was nur der Bauherr festlegen, annehmen oder freigeben kann.
 - **Delegierbare Vorbereitung:** Analysen, Varianten, Vorlagen, Register, Protokolle.
@@ -160,7 +160,7 @@ Feld Datenstand und Nachweis: Die Projektsteuerung pflegt die Daten; welcher Dat
 ---
 titel: Ziel
 ---
-Der Bauherr entscheidet, **was** gebaut wird, **warum** und **wie** Zielkonflikte aufgelöst werden. Varianten, Kostenmodelle, Nutzeranalysen, ESG- und LCC-Bewertungen und technische Alternativen lassen sich vorbereiten. Die Priorisierung bleibt beim Bauherrn.
+Der Bauherr entscheidet, **was** gebaut wird, **warum** und **wie** Zielkonflikte aufgelöst werden. Varianten, Kostenmodelle, Nutzeranalysen, Bewertungen zu Nachhaltigkeit ([[ESG]]) und Lebenszykluskosten ([[LCC]]) und technische Alternativen lassen sich vorbereiten. Die Priorisierung bleibt beim Bauherrn.
 
 ::: umschalter
 ---
@@ -173,7 +173,7 @@ Jede Rolle optimiert aus ihrer Fachsicht – etwa auf Qualität oder auf Kosten 
 :::
 
 ::: ansicht rechts
-Ein **Zielsystem** liegt vor: Muss-Kriterien, verhandelbare Kriterien, Abwägungsregeln und eine klare Entscheidungslogik, dazu Entscheidungsgrundsätze und eine Freigabelogik für LPH 0–2. Die Priorität setzt der Bauherr. Aus dem Zielsystem leitet die Projektsteuerung die Kriterien ihres gewichteten Vergleichs ab; Muss-Kriterien prüft sie vor jedem Punktevergleich.
+Ein **Zielsystem** liegt vor: Muss-Kriterien, verhandelbare Kriterien, Abwägungsregeln und eine klare Entscheidungslogik, dazu Entscheidungsgrundsätze und eine Freigabelogik für die Leistungsphasen ([[Leistungsphasen- und Freigabemodell LPH 0–9|LPH]]) 0–2. Die Priorität setzt der Bauherr. Aus dem Zielsystem leitet die Projektsteuerung die Kriterien ihres gewichteten Vergleichs ab; Muss-Kriterien prüft sie vor jedem Punktevergleich.
 :::
 :::
 :::
@@ -184,7 +184,7 @@ titel: Mandat
 ---
 Mit dem [[Mandat]] legt der Bauherr fest, wer welche Entscheidung vorbereiten, treffen, freigeben oder eskalieren darf. Eine [[RACI]]-Zuordnung (ausführungs- und letztverantwortlich, konsultiert, informiert) genügt nicht ohne Freigabeschwellen, Stellvertretungen und Eskalationswege.
 
-Wo eine Entscheidung nötig ist, entscheidet die befugte Stelle auf eine Vorlage der Projektsteuerung mit mindestens zwei zulässigen Optionen und gewichtetem Vergleich; selbst pflegen muss keine Stufe etwas. Die **Muster-Mandatsleiter** ist ein Muster, keine Vorgabe: Die Freigabeschwellen legt der Bauherr selbst fest.
+Wo eine Entscheidung nötig ist, entscheidet die befugte Stelle auf eine Vorlage der Projektsteuerung mit mindestens zwei zulässigen Optionen und gewichtetem Vergleich; fehlt eine zweite zulässige Option, kennzeichnet die Projektsteuerung die Vorlage als unvollständig. Selbst pflegen muss keine Stufe etwas. Die **Muster-Mandatsleiter** ist ein Muster, keine Vorgabe: Die Freigabeschwellen legt der Bauherr selbst fest.
 
 ::: karten
 ::: karte
@@ -211,18 +211,18 @@ titel: Muster-Mandatsleiter – wer entscheidet?
 ---
 ::: stufe 1
 ---
-titel: bis einschließlich 100 TEUR
-marke: Bauherren-PL
+titel: bis einschließlich 100.000 €
+marke: Projektleitung des Bauherrn
 ---
-Die Bauherren-PL gibt eigenständig frei.
+Die Projektleitung des Bauherrn gibt eigenständig frei.
 :::
 
 ::: stufe 2
 ---
-titel: über 100 TEUR bis einschließlich 5 Mio. €
+titel: über 100.000 € bis einschließlich 5 Mio. €
 marke: Änderungsgremium
 ---
-Oberhalb von 100 TEUR entscheidet das Änderungsgremium.
+Oberhalb von 100.000 € entscheidet das Änderungsgremium.
 :::
 
 ::: stufe 3
@@ -236,25 +236,25 @@ Darüber beschließt der Bauherr im Lenkungskreis.
 
 ::: wissenscheck mandatsleiter
 ### Frage
-Eine Änderung hat einen Wert von 250 TEUR – wer entscheidet nach der Muster-Mandatsleiter?
+Eine Änderung hat einen Wert von 250.000 € – wer entscheidet nach der Muster-Mandatsleiter?
 
 ### Erklärung
-Gehen die Mehrkosten zulasten der Risikoreserve, gibt deren Einsatz trotzdem der Bauherr frei – auch wenn in der Sache das Änderungsgremium entscheidet.
+250.000 € liegen über 100.000 € und unter 5 Mio. € – nach der Muster-Mandatsleiter entscheidet das Änderungsgremium. Gehen die Mehrkosten zulasten der Risikoreserve, gibt deren Einsatz trotzdem der Bauherr frei – auch wenn in der Sache das Änderungsgremium entscheidet. In der Story hat die Bürgermeisterin die Schwellen anders festgelegt – genau das darf der Bauherr: Die Mandatsleiter ist ein Muster, keine Vorgabe.
 
 ::: antwort a
 ---
 titel: Das Änderungsgremium
 praefix: "Genau:"
 ---
-250 TEUR liegen oberhalb von 100 TEUR und unterhalb von 5 Mio. € – das ist der Rahmen des Änderungsgremiums.
+250.000 € liegen oberhalb von 100.000 € und unterhalb von 5 Mio. € – das ist der Rahmen des Änderungsgremiums.
 :::
 
 ::: antwort b
 ---
-titel: Die Bauherren-PL eigenständig
+titel: Die Projektleitung des Bauherrn eigenständig
 praefix: "Nicht ganz:"
 ---
-Die Bauherren-PL gibt nur bis einschließlich 100 TEUR eigenständig frei.
+Die Projektleitung des Bauherrn gibt nur bis einschließlich 100.000 € eigenständig frei.
 :::
 
 ::: antwort c
@@ -310,7 +310,7 @@ Variantenwahl und [[Business Case]].
 
 ::: etappe 3
 ---
-titel: LPH 3 – FID
+titel: LPH 3 – finale Investitionsentscheidung
 ---
 Die finale Investitionsentscheidung ([[FID]]) am Abschluss von LPH 3.
 :::
@@ -452,7 +452,7 @@ links: Parallele Datenstände
 rechts: Benannter Datenstand
 ---
 ::: ansicht links
-Ein fiktives Beispiel vom Schulcampus Lindenhall-Süd: Im Mai 2026 liegen zwei Kostenstände 1,2 Mio. € auseinander – die Kostenberechnung der Generalplanung und die Rechnung des Controllings. Offene Annahmen und Änderungen seit der letzten Freigabe sind nicht erkennbar. Würde so beschlossen, ließe sich später kaum sagen, welche Zahl gemeint war.
+Ein fiktives Beispiel vom Schulcampus Lindenhall-Süd: Im Herbst 2026 nennen Kämmerei und Architekt zwei Zahlen, rund eine Million Euro auseinander. Offene Annahmen und Änderungen seit der letzten Freigabe sind nicht erkennbar. Würde so beschlossen, ließe sich später kaum sagen, welche Zahl gemeint war.
 :::
 
 ::: ansicht rechts

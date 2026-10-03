@@ -7,15 +7,17 @@ campus: { stufe: 0, jahreszeit: winter, licht: morgen }
 kurzfassung: true
 thema: begriffe
 belege: [k3.2-t1, k3.2-p1, k4.1-p1, k4.2-p1, k4.2-p2, k4.2-p3, k9.3-p3, v24:hb-1, v24:hb-projektblatt, v24:tlb-3, v24:va-4.1]
-bild-szene: bauzaun
+bild-szene: kalender
 mandat-nach-folge: true
 
 einstieg: |
-  Januar 2026. Auf dem Grundstück im Süden von Lindenhall liegt Schnee, am Zaun lehnt ein Bauschild. Seit heute leiten Sie das Projekt für die Stadt. Der Stadtrat hat das Geld bewilligt: ein Budget von rund 58 Millionen Euro und dazu eine Reserve von 3 Millionen für Unvorhergesehenes. Die Planung ist schon weit; jetzt beginnt die Zeit, in der jede Woche etwas entschieden werden muss. Ihr erster Termin findet im kleinen Baucontainer am Rand des Grundstücks statt – die Heizung brummt, auf dem Tisch stehen vier Tassen Kaffee.
+  Januar 2026. Auf dem Grundstück im Süden von Lindenhall liegt Schnee, am Zaun lehnt ein Bauschild.
+
+  Seit heute leiten Sie das Projekt für die Stadt. Der Stadtrat hat das Geld bewilligt: ein Budget von rund 58 Millionen Euro und dazu eine Reserve von 3 Millionen für Unvorhergesehenes. Ihr erster Termin findet im kleinen Baucontainer am Rand des Grundstücks statt – die Heizung brummt, auf dem Tisch stehen vier Tassen Kaffee.
 
 # Kurzfassung (P17.5): derselbe Sachstand in kürzer – Budget und Reserve bleiben, weil das Mandat darauf aufbaut
 einstieg-kurz: |
-  Januar 2026, Schnee auf dem Grundstück. Seit heute leiten Sie das Projekt für die Stadt. Bewilligt sind rund 58 Millionen Euro und eine Reserve von 3 Millionen für Unvorhergesehenes. Ihr erster Termin: im Baucontainer am Rand des Grundstücks.
+  Januar 2026. Seit heute leiten Sie das Projekt für die Stadt. Bewilligt sind rund 58 Millionen Euro und eine Reserve von 3 Millionen für Unvorhergesehenes.
 
 szene:
   - { figur: grundstein, text: "Schön, dass Sie da sind. Eins vorweg: Im Sommer 2028 ziehen hier die Kinder ein. Das ist mir das Wichtigste – danach kommt das Geld." }
@@ -30,19 +32,21 @@ frage: Die Projektsteuerin wartet auf Ihren Auftrag, die Bürgermeisterin schaut
 # Reihenfolge der Seite (Platz 1–3); die Wertung erscheint nie
 antworten:
   - wertung: vertretbar
-    text: "Sicher ist sicher: Alles, was Geld oder Zeit kostet, geht an die Bürgermeisterin."
+    text: "Sicher ist sicher: Alles, was Geld oder Zeit kostet, legen Sie der Bürgermeisterin vor."
     balken: { geld: 0, zeit: -1, vertrauen: 1 }
     bild: notizzettel
     folge: |
-      In den ersten zwei Wochen landen elf Fragen bei der Bürgermeisterin, darunter die Farbe der Fassadenplatten. Beim zwölften Mal ruft sie an: „Ich bin Bürgermeisterin, nicht Bauleiterin.“ Clara Faden schreibt eine Seite mit klaren Grenzen, die Bürgermeisterin unterschreibt – und der Architekt hat eine Woche verloren.
+      In den ersten zwei Wochen landen elf Fragen bei der Bürgermeisterin, darunter die Farbe der Fassadenplatten. Beim zwölften Mal ruft sie an, halb verärgert, halb beruhigt: „Ich weiß jetzt wenigstens, was hier läuft. Aber ich bin Bürgermeisterin, nicht Bauleiterin.“ Clara Faden schreibt eine Seite mit klaren Grenzen, die Bürgermeisterin unterschreibt – und der Architekt hat eine Woche verloren.
   - wertung: gut
-    text: "Die Projektsteuerin schreibt einen Vorschlag auf eine Seite: was Sie entscheiden, was die Bürgermeisterin entscheidet. Die Bürgermeisterin legt es fest."
+    text: "Die Projektsteuerin entwirft eine Seite, wer was entscheidet – festlegen muss es die Bürgermeisterin selbst."
     balken: { geld: 0, zeit: 0, vertrauen: 2 }
     bild: projektblatt
     folge: |
-      Eine Woche später liegt eine Seite auf dem Tisch der Bürgermeisterin. Sie liest sie zweimal, streicht ein Wort und unterschreibt: „Gut. Dann weiß ich, wann Sie zu mir kommen – und wann nicht.“ Konrad Schwung bekommt sein Ja zu den Fassadenplatten am Freitag von Ihnen, denn sie kosten nicht mehr als geplant. Clara Faden legt die Seite dort ab, wo alle Beteiligten sie finden.
+      Eine Woche später liegt eine Seite auf dem Tisch der Bürgermeisterin. Sie liest sie zweimal, streicht ein Wort und unterschreibt: „Gut. Dann weiß ich, wann Sie zu mir kommen – und wann nicht.“
+
+      Konrad Schwung bekommt sein Ja zu den Fassadenplatten am Freitag von Ihnen, denn sie kosten nicht mehr als geplant. Clara Faden legt die Seite dort ab, wo alle Beteiligten sie finden.
   - wertung: falle
-    text: Die Bürgermeisterin vertraut Ihnen. Sie entscheiden alles und halten sie auf dem Laufenden.
+    text: Die Bürgermeisterin will nicht behelligt werden. Also entscheiden Sie alles und halten sie auf dem Laufenden.
     balken: { geld: 0, zeit: 1, vertrauen: -2 }
     bild: rednerpult
     folge: |

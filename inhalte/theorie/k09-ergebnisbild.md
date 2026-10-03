@@ -4,7 +4,7 @@
 # was Etappen, Regler, Umschalter und Sortierübungen zeigen, steht nicht noch einmal im Fließtext.
 # Tafel k9.3-t1 bleibt: Freigabefragen im Wortlaut (der Regler zeigt sie einzeln je Leistungsphase).
 # Keine neuen Fachaussagen – Belege je Abschnitt (nur intern):
-# Belege Einleitung/Kernaussage/Nachweiskette: k9-p1, k9.1-p1, k9.1-l1, k9.3-p1, k9.4-p1, k9.4-l1;
+# Belege Einleitung/Kernaussage/Nachweiskette: k9-p1, k9.1-p1, k9.1-l1, k9.3-p1, k9.4-p1, k9.4-l1; (Satz zu Befähigung und Entscheidungs-IDs: k1.3-t1 gegen k9.1–k9.5);
 #   Beschluss getrennt von der Vorlage, mit Quelle, Datum und Bedingungen: v24:hb-3.1, v24:va-3.5
 # Belege k9.1: k9.1-p1, k9.1-p2, k9.1-l1, k9.2-p2; ganze Vorbereitung bei der Projektsteuerung: v24:hb-1, v24:hb-3, v24:tlb-2.1
 # Belege k9.2: k9.2-p1, k9.2-p2, k9.2-p3, k9.2-p4
@@ -21,10 +21,10 @@ reihe: 7
 titel: Ergebnisbild und Ergebnisse
 kurztitel: Ergebnisbild
 teil: 2
-kurzsatz: Was am Ende vorliegt – vom Mandat bis zur Beschlusslage.
+kurzsatz: Was am Ende einer Einführung vorliegt – vom Mandat bis zur Beschlusslage.
 symbol: stempel
 ---
-Was liegt am Ende eines Mandats zur Einführung von Minimum Viable Governance (MVG) tatsächlich vor? Fünf Ergebnisobjekte:
+Was liegt am Ende einer Einführung von Minimum Viable Governance (MVG) tatsächlich vor? Fünf Ergebnisobjekte:
 
 - das Mandats- und Verantwortungsmodell,
 - der RACI-Prozess,
@@ -32,13 +32,13 @@ Was liegt am Ende eines Mandats zur Einführung von Minimum Viable Governance (M
 - der Standard für Entscheidungsvorlagen, samt eindeutiger Entscheidungs-ID,
 - das Betriebshandbuch.
 
-Für den Bauherrn zählt weniger das einzelne Dokument als der Zusammenhang.
+Befähigung und Entscheidungs-IDs, die das Thema „Überblick“ als eigene Elemente nennt, stecken hier in Betriebshandbuch und Vorlagenstandard. Für den Bauherrn zählt weniger das einzelne Dokument als der Zusammenhang.
 
 ::: kernaussage
 ---
 symbol: lesezeichen
 ---
-Die Ergebnisse eines MVG-Mandats sind Führungs- und Entscheidungsobjekte, keine Sammlung isolierter Vorlagen. Ihr Wert liegt in der Kette, die sie bilden: vom Mandat über Freigabe, Entscheidungs-ID, Datenstand und Nachweis bis zur Beschlusslage – so bleibt eine wesentliche Entscheidung auch später nachvollziehbar.
+Die Ergebnisse einer MVG-Einführung sind Führungs- und Entscheidungsobjekte, keine Sammlung isolierter Vorlagen. Ihr Wert liegt in der Kette, die sie bilden: vom Mandat über Freigabe, Entscheidungs-ID, Datenstand und Nachweis bis zur Beschlusslage – so bleibt eine wesentliche Entscheidung auch später nachvollziehbar.
 :::
 
 ::: etappen
@@ -100,7 +100,7 @@ Das zentrale Ergebnisobjekt für die Grundfrage: Was verbleibt beim Bauherrn, wa
 ---
 symbol: lesezeichen
 ---
-Ein Beispiel: Im Standard übernimmt die Projektsteuerung die ganze Vorbereitung einer Entscheidung – Frage, Optionen, gewichteter Vergleich, Empfehlung. Das Modell zeigt, wer letztverantwortlich ist und auf welcher Stufe entschieden wird.
+Ein Beispiel: In MVG übernimmt die Projektsteuerung die ganze Vorbereitung einer Entscheidung – Frage, Optionen, gewichteter Vergleich, Empfehlung. Das Modell zeigt, wer letztverantwortlich ist und auf welcher Stufe entschieden wird.
 :::
 
 ::: etappen
@@ -401,7 +401,7 @@ titel: Standard für Entscheidungsvorlagen als Nachweislogik
 ---
 Die [[Entscheidungsvorlage]] beschreibt, welche Nachweislogik eine wesentliche Bauherrenentscheidung braucht. Auch spätere Dritte – etwa eine neue Projektleitung oder Prüfende Jahre danach – sollen nachvollziehen können, welche Frage entschieden wurde, auf welchem Datenstand, mit welchen Optionen, Annahmen, Risiken, Empfehlungen und Freigaben.
 
-Das macht die Entscheidung nicht schwerer, sondern belastbarer: Ein guter Standard legt früh fest, welche Informationen wirklich entscheidungsrelevant sind. Im Standard erstellt die Projektsteuerung die Vorlage für jede erforderliche Bauherrenentscheidung (mehr im Thema „Entscheidungsvorlage“). Der Status der Vorlage ersetzt den Beschluss nicht.
+Das macht die Entscheidung nicht schwerer, sondern belastbarer: Ein guter Standard legt früh fest, welche Informationen wirklich entscheidungsrelevant sind. In MVG erstellt die Projektsteuerung die Vorlage für jede erforderliche Bauherrenentscheidung (mehr im Thema „Entscheidungsvorlage“). Der Status der Vorlage ersetzt den Beschluss nicht.
 
 ::: etappen
 ---
@@ -443,9 +443,9 @@ Der **Freigabe- oder Eskalationsweg**, der **Freigabeprozess** in sechs Stufen (
 ---
 titel: Betriebshandbuch
 ---
-Das [[Betriebshandbuch]] ist das verbindliche abschließende Ergebnisdokument. Es beschreibt, wie MVG nach dem Mandat im Regelbetrieb weiterläuft. Die Vorlage gilt einer einzelnen Entscheidung, das Handbuch dem laufenden Betrieb. Typischerweise regelt es:
+Das [[Betriebshandbuch]] ist das verbindliche abschließende Ergebnisdokument. Es beschreibt, wie MVG nach der Einführung im Regelbetrieb weiterläuft. Die Vorlage gilt einer einzelnen Entscheidung, das Handbuch dem laufenden Betrieb. Typischerweise regelt es:
 
-- Rollen und Zuständigkeiten, den Takt der Governance-Termine und wer das Entscheidungsregister führt – im Standard bearbeitet die Projektsteuerung alle Vorgänge, geprüft wird in aktiven Zeiten wöchentlich, besprochen monatlich in höchstens 60 Minuten;
+- Rollen und Zuständigkeiten, den Takt der Governance-Termine und wer das Entscheidungsregister führt – in MVG bearbeitet die Projektsteuerung alle Vorgänge, geprüft wird in aktiven Zeiten wöchentlich, besprochen monatlich in höchstens 60 Minuten;
 - Freigabevorbereitung und Managementbericht zur Freigabe, Datenstände und Nachweise, Eskalationswege, Umgang mit Risiken, Änderungen und Maßnahmen;
 - Prüfroutinen, Verbesserungsvorrat und die Logik für Übergabe und Abnahme.
 
@@ -527,7 +527,7 @@ Die Vorlage verweist auf den Beschluss; festgehalten wird er getrennt, mit Quell
 :::
 
 ::: merksatz
-Das Betriebshandbuch sorgt dafür, dass MVG nach dem Mandat nicht endet, sondern als wiederholbare Bauherrenroutine weiterläuft.
+Das Betriebshandbuch sorgt dafür, dass MVG nach der Einführung nicht endet, sondern als wiederholbare Bauherrenroutine weiterläuft.
 :::
 :::
 

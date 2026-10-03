@@ -325,7 +325,7 @@ Klassennamen deutsch. Zustände über `ist-…`-Klassen oder ARIA (`aria-current
     <div class="start-einstieg"><p class="start-kicker">…</p><h1 class="start-titel">…</h1><p class="start-these">…</p><p class="start-internetseite">…</p></div>
     <nav class="tueren" aria-label="…">
       <a class="tuer" data-weg="story" href="#story"><h2 class="tuer-titel"><span class="tuer-kicker">…</span>…</h2><p class="tuer-text">…</p>
-        <span class="tuer-meta"><span>8 Stationen</span><span class="tuer-los">Beginnen symbol('pfeilRechts')</span></span></a>
+        <span class="tuer-meta"><span>Acht Entscheidungen · etwa 25 Minuten, kurz etwa 10</span><span class="tuer-los">Beginnen symbol('pfeilRechts')</span></span></a>
       <a class="tuer" data-weg="theorie" …>…</a>
       <a class="tuer" data-weg="explore" …>…</a>
     </nav>

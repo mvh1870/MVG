@@ -21,7 +21,7 @@ after(() => dom.window.close());
 
 const { inhalte } = await import('../src/inhalte/index.ts');
 const { baueSchritt, erzeugeGeschichte, SPEICHER_SCHLUESSEL, storyDruck, aenderungWort } = await import('../src/ui/flaechen/geschichte.ts');
-const { neuerStand, waehle, kapitel } = await import('../src/geschichte/engine.ts');
+const { neuerStand, waehle, kapitel, balkenBis } = await import('../src/geschichte/engine.ts');
 const { W } = await import('../src/ui/woerter.ts');
 type Stand = ReturnType<typeof neuerStand>;
 
@@ -173,7 +173,56 @@ test('Vergleich: Stufe ändern ordnet die Karten neu, meldet die Spitze und beh�
   assert.equal(f.stand().gewichte, null);
   assert.equal($(f, '[data-pruef="summe-A"]').textContent, '49 Punkte');
   assert.notEqual(aktiv(), 'BODY');
-  assert.match($(f, '[data-pruef="gs-kipp"]').textContent ?? '', /Wäre Klima und Betrieb wichtig, lägen „Ersatzgerät“ und „Später einziehen“ gleichauf\./u);
+  // Kipppunkte mit Artikel, klein, Herabstufung als „nur … statt …“, Mehrzahl bei „Klima und Betrieb“ (R72)
+  const kipp = $(f, '[data-pruef="gs-kipp"]').textContent ?? '';
+  assert.match(kipp, /Wären Klima und Betrieb „wichtig“ statt „weniger wichtig“, lägen „Ersatzgerät“ und „Später einziehen“ gleichauf\./u);
+  assert.match(kipp, /Wäre der Schulstart nur „wichtig“ statt „sehr wichtig“, läge „Später einziehen“ vorn\./u);
+  assert.match(kipp, /Wäre gute Luft im Unterricht nur „weniger wichtig“ statt „wichtig“, läge „Leihgeräte“ vorn\./u);
+});
+
+test('Aufzählung: drei im Gleichstand mit Komma und „und“ vor dem letzten (Story und Explore)', () => {
+  assert.equal(W.geschichte.gleichauf(['A', 'B', 'C'], 9), 'Gleichauf vorn: „A“, „B“ und „C“ mit je 9 Punkten.');
+  assert.equal(W.geschichte.gleichauf(['A', 'B'], 9), 'Gleichauf vorn: „A“ und „B“ mit je 9 Punkten.');
+  assert.equal(W.geschichte.kipp('das Geld', 5, 3, ['A', 'B', 'C']), 'Wäre das Geld „sehr wichtig“ statt „wichtig“, lägen „A“, „B“ und „C“ gleichauf.');
+  assert.equal(W.geschichte.kipppunkt('Geld', 2, ['A', 'B', 'C']), 'Geld auf 2: Gleichstand – A, B und C');
+  // Gegenprobe: kein „A und B und C“
+  assert.doesNotMatch(W.geschichte.kipppunkt('Geld', 2, ['A', 'B', 'C']), / und .* und /u);
+});
+
+test('Folge eines späteren Kapitels: jede Balkenfüllung läuft vom Stand vor dem Kapitel zum Stand danach, das Wort passt', () => {
+  // k4 nach k1–k3 mit Fallen: vorher ≠ Start, so fällt ein falscher Ausgangspunkt auf
+  let s = weg('falle');
+  s = an('k4', 'frage', s);
+  const f = flaeche(s);
+  const vorher = balkenBis(g, s, 3);
+  const nachher = balkenBis(g, s, 4);
+  assert.notDeepEqual(vorher, balkenBis(g, s, 0), 'Gegenprobe: vor Kapitel 4 ist nicht der Start');
+  for (const id of ['geld', 'zeit', 'vertrauen'] as const) {
+    const fuellung = $(f, `[data-pruef="gs-stand-folge"] [data-balken="${id}"] .gs-stand-fuellung`).getAttribute('style') ?? '';
+    assert.match(fuellung, new RegExp(`--von:${vorher[id] * 10}%;--nach:${nachher[id] * 10}%`, 'u'), id);
+    const k4 = kapitel(g, 'k4');
+    const wirkung = k4?.antworten[s.wahlen['k4'] ?? 0]?.wirkung[id] ?? 0;
+    const wort = aenderungWort(g, id, vorher[id], nachher[id], wirkung);
+    assert.equal($(f, `[data-pruef="wort-${id}"]`).textContent?.slice(1), wort.slice(wort.indexOf(':') + 2), id);
+  }
+});
+
+test('Mini-Aufgaben: Grafik auf dem Schritt, kleine Gegenstände auf den Karten; k8 mit zwei Ablagen; k6 gelöst als Pfad in richtiger Reihenfolge', () => {
+  for (const id of ['k2', 'k4', 'k6', 'k8']) assert.ok($(flaeche(an(id, 'mini')), '.gs-mini-bild svg'), id);
+  const f8 = flaeche(an('k8', 'mini'));
+  assert.equal(f8.element.querySelectorAll('[data-pruef="mini-ablagen"] .gs-mini-ablage').length, 2);
+  assert.ok(f8.element.querySelectorAll('.gs-mini-posten-bild svg').length >= 5);
+  $(f8, '[data-pruef="wahl-1-uebergeben"]').click();
+  assert.match($(f8, '[data-pruef="ablage-uebergeben"]').textContent ?? '', /1 Karte/u);
+  // k2 hat keine Ablagen (Wahlen ohne Bild) – Gegenprobe
+  assert.equal(flaeche(an('k2', 'mini')).element.querySelector('[data-pruef="mini-ablagen"]'), null);
+  const f6 = flaeche(an('k6', 'mini'));
+  const reihe = (): string[] => [...f6.element.querySelectorAll<HTMLElement>('[data-pruef="mini-reihe"] > li')].map((x) => x.dataset['pruef'] ?? '');
+  const gemischt = reihe();
+  assert.notDeepEqual(gemischt, ['posten-1', 'posten-2', 'posten-3', 'posten-4', 'posten-5', 'posten-6'], 'vor dem Lösen gemischt');
+  for (const n of [1, 2, 3, 4, 6, 5]) $(f6, `[data-pruef="reihe-${n}"]`).click();
+  assert.deepEqual(reihe(), ['posten-1', 'posten-2', 'posten-3', 'posten-4', 'posten-5', 'posten-6']);
+  assert.ok($(f6, '[data-pruef="mini-reihe"]').classList.contains('ist-pfad'));
 });
 
 test('Kurzfassung: Brücken vor 3, vor 7 und vor dem Schulstart; übersprungene Kapitel zählen wie die gute Antwort', () => {
@@ -200,7 +249,7 @@ test('Kurzfassung kürzer (P17.5): kurzer Einstieg, Zeilen weggelassen, „Das s
   assert.equal($(kurz, '[data-pruef="gs-einstieg"]').querySelector('p')?.outerHTML, k1.einstiegKurzHtml.trim());
   assert.equal(kurz.element.querySelectorAll('.gs-dialog > li').length, zeilenKurz);
   const lang = flaeche(an('k1', 'szene'));
-  assert.equal($(lang, '[data-pruef="gs-einstieg"]').querySelector('p')?.outerHTML, k1.einstiegHtml.trim());
+  assert.equal([...$(lang, '[data-pruef="gs-einstieg"]').querySelectorAll('p')].map((p) => p.outerHTML).join('\n'), k1.einstiegHtml.trim());
   assert.equal(lang.element.querySelectorAll('.gs-dialog > li').length, k1.szene.length);
   // Folge: in der Kurzfassung „Das steckt dahinter“ zugeklappt, der Link zum Thema bleibt sichtbar
   const fk = flaeche(an('k1', 'frage', waehle(g, neuerStand(true), 'k1', 1)));
@@ -252,12 +301,23 @@ test('Ende: Bilanz je Weg, Varianten bei niedriger Zeit und niedrigem Vertrauen,
   assert.equal($(gut, '[data-pruef="gs-bilanz-titel"]').textContent, 'Ruhig ins Ziel');
   assert.equal(gut.element.querySelector('[data-pruef="gs-zeit-niedrig"]'), null);
   assert.match(gut.element.textContent ?? '', /Ich wusste jedes Mal, worüber ich entscheide\./u);
+  assert.equal(gut.element.querySelector('.gs-ende')?.getAttribute('data-fassung'), 'grund');
+  // L-239: eine Falle in 8, sonst gut – Balken hoch, aber „mit Umwegen“ und die Zeile nach einer Falle
+  const k8 = kapitel(g, 'k8');
+  assert.ok(k8);
+  const einmal = flaeche({ ...waehle(g, weg('gut'), 'k8', k8.antworten.findIndex((a) => a.wertung === 'falle')), schritt: { ort: 'ende' } });
+  assert.equal($(einmal, '[data-pruef="gs-bilanz-titel"]').textContent, 'Geschafft – mit Umwegen');
+  assert.doesNotMatch(einmal.element.textContent ?? '', /Ich wusste jedes Mal/u);
+  assert.match(einmal.element.textContent ?? '', /nicht jedes Mal lief es so, wie es hätte laufen sollen/u);
   assert.ok(gut.element.querySelector('.gs-abbinder a[href="https://www.bauherr-mentoren.com/"]'));
   const falle = flaeche({ ...weg('falle'), schritt: { ort: 'ende' } });
   assert.equal($(falle, '[data-pruef="gs-bilanz-titel"]').textContent, 'Gebaut, aber nicht getragen');
   assert.ok($(falle, '[data-pruef="gs-zeit-niedrig"]'));
   assert.match(falle.element.textContent ?? '', /Beim nächsten Projekt reden wir früher miteinander\./u);
   assert.doesNotMatch(falle.element.textContent ?? '', /Ich wusste jedes Mal/u);
+  // Vertrauen niedrig: auch der Bauleiter spricht anders
+  assert.match(falle.element.textContent ?? '', /Hätten wir mal früher damit angefangen\./u);
+  assert.doesNotMatch(falle.element.textContent ?? '', /dass ich das mal gut finde/u);
   const vertretbar = flaeche({ ...weg('vertretbar'), schritt: { ort: 'ende' } });
   assert.equal($(vertretbar, '[data-pruef="gs-bilanz-titel"]').textContent, 'Auf den letzten Metern');
   // ohne Entscheidungen: Hinweis, dass sie nicht mitzählen
@@ -295,13 +355,26 @@ test('Speicher: ein alter Stand (Stationen, v 1) wird verworfen; jede Änderung 
 });
 
 test('Druckbogen (Strg+P): je Kapitel Ihre Antwort und „So macht man es gut“, dazu die Bilanz', () => {
+  const druck = (st: Stand): string => {
+    const el = document.createElement('div');
+    el.append(...storyDruck(g, st, 'Fassung').teile);
+    return el.textContent ?? '';
+  };
   const s = waehle(g, neuerStand(), 'k1', 1);
-  const bogen = storyDruck(g, s, 'Fassung');
-  const el = document.createElement('div');
-  el.append(...bogen.teile);
-  const text = el.textContent ?? '';
+  const text = druck(s);
   for (const k of g.kapitel) assert.match(text, new RegExp(`${k.nr} · ${k.titel.replace('?', '\\?')}`, 'u'));
-  assert.match(text, /Ihre Antwort: Die Projektsteuerin schreibt einen Vorschlag/u);
+  assert.match(text, /Ihre Antwort: Die Projektsteuerin entwirft eine Seite/u);
   assert.match(text, /Ihre Antwort: noch offen/u);
-  assert.match(text, /Ihre Bilanz: /u);
+  // vor dem Ende keine Bilanz (R72): nur der Hinweis, wo sie steht
+  assert.doesNotMatch(text, /Ihre Bilanz: /u);
+  assert.match(text, /Die Bilanz steht am Ende der Geschichte\./u);
+  // am Ende die Bilanz – mit dem Hinweis auf offene Entscheidungen wie am Bildschirm
+  const ende = druck({ ...s, schritt: { ort: 'ende' } });
+  assert.match(ende, /Ihre Bilanz: /u);
+  assert.match(ende, /7 Entscheidungen haben Sie noch nicht getroffen/u);
+  assert.match(druck({ ...weg('gut'), schritt: { ort: 'ende' } }), /Ihre Bilanz: Ruhig ins Ziel/u);
+  // Kurzfassung: ein übersprungenes Kapitel ist erst „erzählt“, wenn seine Brücke erreicht ist
+  const kurzVorn = druck(an('k3', 'szene', neuerStand(true)));
+  assert.match(kurzVorn, /2 · Ein erstes Warnsignal · März 2026Ihre Antwort: in der Kurzfassung erzählt/u);
+  assert.match(kurzVorn, /5 · Zwei Zahlen, zwei Wahrheiten · Oktober 2026Ihre Antwort: noch offen/u);
 });

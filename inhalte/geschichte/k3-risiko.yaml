@@ -15,7 +15,7 @@ einstieg: |
   April 2026. Die Bagger sind da, die Baugrube wird jeden Tag tiefer, und die Linden am Rand treiben aus. Die Antwort der Hersteller liegt auf dem Tisch: eine Mappe mit drei Schreiben, daneben ein Kalender, auf dem jemand den Sommer 2028 dick eingekreist hat.
 
 einstieg-kurz: |
-  April 2026. Die Baugrube wird jeden Tag tiefer. Auf dem Tisch liegt die Antwort der Hersteller auf die Prüffrage, daneben ein Kalender mit dem dick eingekreisten Sommer 2028.
+  April 2026. Auf dem Tisch liegt die Antwort der Hersteller auf die Prüffrage.
 
 szene:
   - { figur: schwung, text: "Drei von vier Herstellern brauchen jetzt ein halbes Jahr statt vier Monate. Vielleicht wird es ja wieder besser." }
@@ -34,19 +34,25 @@ antworten:
     balken: { geld: -1, zeit: -1, vertrauen: -1 }
     bild: kalender
     folge: |
-      Die Bürgermeisterin weiß Bescheid und wartet auf die Vorlage. Einen Monat später ist die Lage dieselbe, nur die Zeit ist knapper. Sie entscheidet im Lenkungskreis wie empfohlen: früher ausschreiben, das Geld kommt aus der Reserve. Dann fragt sie: „Warum nicht gleich mit Vorlage? Ein Monat ist bei so etwas viel.“ Die Holzelemente werden ausgeschrieben – einen Monat später, als es möglich gewesen wäre.
+      Die Bürgermeisterin weiß Bescheid und wartet auf die Vorlage. Einen Monat später ist die Lage dieselbe, nur die Zeit ist knapper. Sie entscheidet im Lenkungskreis wie empfohlen: früher ausschreiben, das Geld kommt aus der Reserve.
+
+      Dann fragt sie: „Warum nicht gleich mit Vorlage? Ein Monat ist bei so etwas viel.“ Die Holzelemente werden ausgeschrieben – einen Monat später, als es möglich gewesen wäre.
   - wertung: falle
-    text: Sie bitten die Projektsteuerin, das Risiko vorerst kleiner darzustellen. Die Bürgermeisterin soll sich nicht unnötig sorgen.
+    text: Sie warten mit der Meldung, bis ein zweiter Holzbauer die Einschätzung bestätigt – vielleicht entspannt sich die Lage.
     balken: { geld: -2, zeit: -2, vertrauen: -2 }
     bild: telefon
     folge: |
-      Clara Faden schüttelt freundlich den Kopf: „Ich bewerte, wie es ist. Kleiner machen kann ich es nicht.“ Sie führt das Risiko als vorrangig, wie es ist, und setzt es auf die Tagesordnung des Lenkungskreises; die Bürgermeisterin ruft an, bevor Sie es ihr erklären konnten. „Wenn man mir das kleiner verkaufen wollte – was weiß ich sonst noch nicht?“ Sie lässt die Einschätzung erst von einem zweiten Holzbauer bestätigen. Drei Wochen später entscheidet sie auf Vorlage der Projektsteuerin: früher ausschreiben, aus der Reserve – nur kostet es jetzt mehr, weil die Ausschreibung eilt.
+      Clara Faden schüttelt freundlich den Kopf: „Was vorrangig ist, melde ich gleich – nicht erst, wenn es bestätigt ist.“ Sie setzt das Risiko auf die Tagesordnung des Lenkungskreises, und die Bürgermeisterin ruft an, bevor Sie es ihr erklären konnten: „Sie wollten damit warten? Was weiß ich sonst noch nicht?“
+
+      Nun will sie selbst erst die Bestätigung eines zweiten Holzbauers. Sechs Wochen später entscheidet sie auf Vorlage der Projektsteuerin: früher ausschreiben, aus der Reserve – nur kostet es jetzt mehr, weil die Ausschreibung eilt.
   - wertung: gut
-    text: "Sie informieren die Bürgermeisterin noch diese Woche. Die Projektsteuerin legt ihr eine Vorlage vor: früher ausschreiben oder abwarten."
+    text: "Sie sagen der Bürgermeisterin sofort Bescheid; die Vorlage – früher ausschreiben oder abwarten – liegt ihr diese Woche vor."
     balken: { geld: -1, zeit: 2, vertrauen: 1 }
     bild: stempel
     folge: |
-      Die Bürgermeisterin liest die Vorlage am Abend: zwei Wege, nach den abgestimmten Gesichtspunkten verglichen, jeweils mit Kosten, Zeit und dem, was an Risiko übrig bleibt, dazu die Empfehlung, früher auszuschreiben. Im Lenkungskreis wird kurz beraten, dann entscheidet sie: früher ausschreiben, das Geld kommt aus der Reserve. „Abwarten hieße, ich trage das Risiko. Das will ich nicht.“ Zwei Wochen später sind die Holzelemente ausgeschrieben, und Theo Lot streicht im Kalender ein dickes Fragezeichen durch.
+      Die Bürgermeisterin liest die Vorlage am Abend: zwei Wege, nach den abgestimmten Gesichtspunkten verglichen, jeweils mit Kosten, Zeit und dem, was an Risiko übrig bleibt, dazu die Empfehlung, früher auszuschreiben.
+
+      Im Lenkungskreis wird kurz beraten, dann entscheidet sie: früher ausschreiben, das Geld kommt aus der Reserve. „Abwarten hieße, ich trage das Risiko. Das will ich nicht.“ Zwei Wochen später sind die Holzelemente ausgeschrieben, und Theo Lot streicht im Kalender ein dickes Fragezeichen durch.
 
 gut: |
   Ein Risiko wird danach eingestuft, wie wahrscheinlich es ist und wie schwer die schlimmste belegte Folge wiegt; was vorrangig ist, erfährt der Bauherr umgehend, nicht erst im nächsten Bericht. Ob die Stadt ein großes Risiko trägt oder Geld aus der Reserve dagegen einsetzt, entscheidet die Bürgermeisterin – nicht der Architekt, nicht die Projektsteuerin und auch nicht Sie.

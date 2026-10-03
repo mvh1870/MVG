@@ -164,7 +164,7 @@ Erfahrung wird nicht ersetzt, aber in wiederholbare Führungslogik überführt.
 ---
 symbol: person
 ---
-Kurz vor der Freigabe der Risikoreserve fällt Holger Stein, Kostenplaner der Generalplanung, für Wochen aus. Dank des gemeinsamen Standards findet seine Kollegin vor, auf welchem Datenstand Register und Vorlagen beruhen, welche Unterlagen erforderlich sind und welche Annahmen gelten – in den Einträgen der Projektsteuerung und im Datenstand der GML, nicht in persönlichen Arbeitsständen.
+Kurz vor der Entscheidung über die Reserve fällt der Kostenplaner des Architekturbüros für Wochen aus. Dank des gemeinsamen Standards findet seine Kollegin vor, auf welchem Datenstand Register und Vorlagen beruhen, welche Unterlagen erforderlich sind und welche Annahmen gelten – in den Einträgen der Projektsteuerung in der Software der Stadt, nicht in persönlichen Arbeitsständen.
 :::
 :::
 
@@ -219,7 +219,7 @@ bleibt Beschlussformalismus.
 
 ::: umschalter
 ---
-titel: MVG setzt eine Stufe früher an
+titel: Minimum Viable Governance (MVG) setzt eine Stufe früher an
 links: Die Berichtsfrage
 rechts: Die MVG-Frage
 ---
@@ -271,7 +271,7 @@ Themen gehen ohne klare Optionen, Empfehlung oder Konsequenzen nach oben – die
 
 ::: regie
 ### Notiz
-Die Ausgangslage holt den Kunden bei seinen eigenen Erfahrungen ab. Einstieg über den Umschalter „Auf dem Papier / In der Praxis“ (Grauzonen). Tragend ist die Tafel der acht Symptome: den Kunden selbst wählen lassen, was er kennt – ohne Punktzahl und ohne Urteil über seine Organisation. Der Kern: Berichterstattung erzeugt Information, Führung entsteht erst, wenn Information unter anderem mit Mandat, Entscheidung, Schwelle, Datenstand, Freigabe und Nachweis verbunden wird. Nicht behaupten, mehr Berichte schadeten – sie können in einzelnen Situationen helfen. Im Standard erhält der Bauherr monatlich einen Bericht von höchstens einer Seite, der offene Entscheidungen und die benötigte Reaktion zeigt.
+Die Ausgangslage holt den Kunden bei seinen eigenen Erfahrungen ab. Einstieg über den Umschalter „Auf dem Papier / In der Praxis“ (Grauzonen). Tragend ist die Tafel der acht Symptome: den Kunden selbst wählen lassen, was er kennt – ohne Punktzahl und ohne Urteil über seine Organisation. Der Kern: Berichterstattung erzeugt Information, Führung entsteht erst, wenn Information unter anderem mit Mandat, Entscheidung, Schwelle, Datenstand, Freigabe und Nachweis verbunden wird. Nicht behaupten, mehr Berichte schadeten – sie können in einzelnen Situationen helfen. In MVG erhält der Bauherr monatlich einen Bericht von höchstens einer Seite, der offene Entscheidungen und die benötigte Reaktion zeigt.
 
 ### Leitfragen
 - Welche der acht Symptome erkennen Sie in einem Ihrer laufenden Projekte wieder?

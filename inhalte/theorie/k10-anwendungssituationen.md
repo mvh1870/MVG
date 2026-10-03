@@ -76,7 +76,7 @@ Für einen öffentlichen Bauherrn reicht es nicht, dass eine Entscheidung sachli
 ---
 symbol: lesezeichen
 ---
-Ein fiktives Beispiel vom Schulcampus Lindenhall-Süd: Reicht die Risikoreserve nicht mehr, muss die Projektbasis neu festgelegt werden. Der Bauherr beschließt sie im Lenkungskreis auf Vorlage der Projektsteuerung; weil die Stadt die Mittel bewilligt, bestätigt der Stadtrat. Fachlich begründete Mehrkosten genügen nicht. Die Vorlage muss zeigen, wer was vorbereitet hat, auf welchem Stand die Zahlen beruhen, worüber genau entschieden wird und zwischen welchen mindestens zwei zulässigen Wegen der Bauherr wählt – so kann der Stadtrat nachvollziehen, was er bestätigt.
+Angenommen, auf dem Schulcampus Lindenhall-Süd reicht die Risikoreserve nicht mehr: Dann muss die Projektbasis neu festgelegt werden. Der Bauherr beschließt sie im Lenkungskreis auf Vorlage der Projektsteuerung; weil die Stadt die Mittel bewilligt, bestätigt der Stadtrat. Fachlich begründete Mehrkosten genügen nicht. Die Vorlage muss zeigen, wer was vorbereitet hat, auf welchem Stand die Zahlen beruhen, worüber genau entschieden wird und zwischen welchen mindestens zwei zulässigen Wegen der Bauherr wählt – so kann der Stadtrat nachvollziehen, was er bestätigt.
 :::
 
 ::: umschalter
@@ -185,6 +185,42 @@ titel: Abschluss LPH 7
 marke: Vergabe oder Komponente mit langer Lieferzeit
 ---
 Die Vergabe oder die verbindliche Bindung einer Komponente mit langer Lieferzeit.
+:::
+:::
+
+::: wissenscheck infrastruktur-fid
+### Frage
+Als Infrastrukturträger bereiten Sie die finale Investitionsentscheidung (FID) vor – mit welcher Freigabe gehört sie zusammen?
+
+### Erklärung
+Für Energieversorger und Infrastrukturträger ist die Freigabereife besonders relevant: zum Abschluss von LPH 2 für Variantenwahl und Business Case, von LPH 3 für die FID nach Entwurfsplanung und Kostenberechnung und von LPH 7 für Vergabe oder die Bindung einer Komponente mit langer Lieferzeit.
+
+::: antwort a
+---
+titel: Abschluss LPH 3, nach Entwurfsplanung und Kostenberechnung
+praefix: "Genau:"
+---
+Die FID steht bei der Freigabereife zum Abschluss von LPH 3.
+:::
+
+::: antwort b
+---
+titel: Abschluss LPH 2
+praefix: "Nicht ganz:"
+---
+An LPH 2 hängt eine frühere Entscheidung als die FID.
+:::
+
+::: antwort c
+---
+titel: Abschluss LPH 7
+praefix: "Nicht ganz:"
+---
+LPH 7 liegt deutlich nach der FID.
+:::
+
+::: zitat k10.3-p1
+Besonders relevant sind […] die Freigabereife zum Abschluss von LPH 2 für Variantenwahl und Business Case, von LPH 3 für die FID nach Entwurfsplanung und Kostenberechnung und von LPH 7 für Vergabe oder die Bindung einer Komponente mit langer Lieferzeit.
 :::
 :::
 

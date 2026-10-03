@@ -156,7 +156,7 @@ MVG besteht aus acht Bausteinen, jeder mit einer Funktion und einer minimalen Wi
 ---
 symbol: puzzle
 ---
-Die Verknüpfung umfasst alle Vorgangsarten – Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Probleme und Änderungen. Zusammengehöriges wird verknüpft, nichts doppelt gezählt (Thema „Vorgänge und Risiken“). Die Bausteine kehren als Funktionslogiken des [[MVG Companion]] und als Ergebnisse eines MVG-Mandats wieder.
+Die Verknüpfung umfasst alle Vorgangsarten – Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Probleme und Änderungen. Zusammengehöriges wird verknüpft, nichts doppelt gezählt (Thema „Vorgänge und Risiken“). Die Bausteine kehren als Funktionslogiken des [[MVG Companion]] und als Ergebnisse einer MVG-Einführung wieder.
 :::
 
 ::: tafel k5.2-t1
@@ -208,7 +208,7 @@ Benannt ist, auf welchem Datenstand bewertet wird.
 ---
 titel: Auswirkungsbewertung
 ---
-Die Auswirkung auf Kosten, Termin, Qualität, Projektumfang, Risiko und ESG/LCC ist bewertet.
+Die Auswirkung auf Kosten, Termin, Qualität, Projektumfang, Risiko, Nachhaltigkeit ([[ESG]]) und Lebenszykluskosten ([[LCC]]) ist bewertet.
 :::
 
 ::: etappe 4
@@ -220,9 +220,9 @@ Geprüft ist, wer über diese Änderung entscheiden darf.
 
 ::: etappe 5
 ---
-titel: Optionen und MCDA
+titel: Optionen und gewichteter Vergleich
 ---
-Mindestens zwei zulässige Optionen werden mit vorab abgestimmten Gewichten verglichen; geprüft wird, ob andere vertretbare Gewichte die Rangfolge ändern.
+Mindestens zwei zulässige Optionen werden mit vorab abgestimmten Gewichten verglichen ([[MCDA (Multikriterien-Entscheidungsanalyse)|MCDA]]); geprüft wird, ob andere vertretbare Gewichte die Rangfolge ändern.
 :::
 
 ::: etappe 6
@@ -246,41 +246,13 @@ titel: Nachweis der Beschlusslage
 Bis zur wirksamen Freigabe gilt die bisherige Grundlage; danach steht der Beschluss getrennt von der Vorlage fest, und die Umsetzung wird verfolgt. Erst jetzt ist die Änderung ein führbares Bauherrenthema.
 :::
 :::
-
-::: wissenscheck kopplung
-### Frage
-Zielsystem, RACI-Matrix und Freigabekalender liegen vor – wirkt MVG damit schon?
-
-### Erklärung
-Dass Zielsystem, RACI-Matrix und Freigabekalender vorliegen, sagt noch nichts darüber, ob sie ineinandergreifen.
-
-::: antwort a
----
-titel: Erst, wenn die Elemente verbunden sind
-praefix: "Genau:"
----
-Erst die Verbindung der Elemente lässt MVG wirken.
-:::
-
-::: antwort b
----
-titel: Ja, jedes Element wirkt schon für sich
-praefix: "Nicht ganz:"
----
-Jedes Element für sich reicht nicht.
-:::
-
-::: zitat k5.3-p1
-Die Wirkung von MVG entsteht durch Kopplung. Ein Zielsystem allein reicht nicht – ebenso wenig eine RACI-Matrix, ein Freigabekalender oder eine einzelne Entscheidungsvorlage. MVG wirkt erst, wenn diese Elemente miteinander verbunden werden.
-:::
-:::
 :::
 
 ::: abschnitt k5.4
 ---
 titel: LPH 0 als früher Wirkungsraum
 ---
-LPH 0 ist die Bedarfsplanung nach DIN 18205, vor den HOAI-Leistungsphasen 1–9. Hier kann spätere Steuerbarkeit vorbereitet werden. Trotzdem ist LPH 0 nicht das Hauptthema: Entscheidend ist, ob der Bauherr seine nichtdelegierbare Verantwortung ausüben kann.
+[[Leistungsphasen- und Freigabemodell LPH 0–9|LPH 0]] ist die Bedarfsplanung nach der Norm DIN 18205, vor den Leistungsphasen 1–9 der Honorarordnung für Architekten und Ingenieure (HOAI). Hier kann spätere Steuerbarkeit vorbereitet werden. Trotzdem ist LPH 0 nicht das Hauptthema: Entscheidend ist, ob der Bauherr seine nichtdelegierbare Verantwortung ausüben kann.
 
 ::: aufklapper Und in laufenden Projekten?
 ---

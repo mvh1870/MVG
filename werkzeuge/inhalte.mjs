@@ -1389,6 +1389,8 @@ export function baueAbbildungen(c, quelle, wurzel, theorie, pruefe) {
     if (quelle !== null && f.length === 0) {
       (e.roh.angeglichen ?? []).forEach((/** @type {any} */ u, /** @type {number} */ i) => {
         const norm = typeof quelle.normalisiere === 'function' ? quelle.normalisiere : (/** @type {string} */ t) => t.replace(/\s+/gu, ' ').trim();
+        // R72: eine reine Abdeckung (text: "") schreibt nichts – der Beleg nennt nur den Absatz, der das Entfernte ausschließt
+        if (u.text === '') return;
         const bl = quelle.nachId?.get(String(u.beleg));
         if (bl === undefined) return;
         const volltext = norm([bl?.text ?? '', ...(bl?.punkte ?? []), ...(bl?.kopf ?? []), ...(bl?.zeilen ?? []).flat()].join(' '));

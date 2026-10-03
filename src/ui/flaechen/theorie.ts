@@ -427,13 +427,16 @@ function bloeckeIn(bloecke: readonly Block[], inhalte: OeffentlicheInhalte, stuf
   return aus;
 }
 
-/** „In der Story erlebt“: Stationen, die auf dieses Thema verweisen. */
-function inDerStory(o: TheorieOptionen, thema: string): HTMLElement | null {
+/**
+ * „In der Story erlebt“: Kapitel der Story, die auf dieses Thema verweisen. Die Marke „Fiktiver Fall“ steht nur,
+ * wenn die Seite „fiktiv“ nicht schon im Text nennt (L-227: einmal je Seite, eine natürliche Nennung zählt; r72).
+ */
+function inDerStory(o: TheorieOptionen, thema: string, mitMarke: boolean): HTMLElement | null {
   // Schnittstelle der neuen Story (P17.4): Liste `kapitel`, je Eintrag `id`, `nr`, `titel`, `thema`, `zeit`
   const st = (o.inhalte.geschichte?.kapitel ?? []).filter((s) => s.thema === thema);
   if (st.length === 0) return null;
   return h('section', { class: 'querverweis-block', 'aria-label': T.inDerStory },
-    h('span', { class: 't-label' }, T.inDerStory, h('span', { class: 'querverweis-fiktiv' }, ` · ${W.fiktiv}`)),
+    h('span', { class: 't-label' }, T.inDerStory, mitMarke ? h('span', { class: 'querverweis-fiktiv' }, ` · ${W.fiktiv}`) : null),
     h('div', { class: 'querverweise' }, st.map((s) => verweis(o, `#story/${s.id}`, { class: 'querverweis', 'data-pruef': `querverweis-${s.id}` },
       h('span', { class: 'querverweis-symbol' }, sym('pfeilRechts')),
       h('span', { class: 'querverweis-text' }, T.nummer(s.nr, s.titel), h('small', null, s.zeit))))));
@@ -539,18 +542,24 @@ function themaInhalt(o: TheorieOptionen, seite: TheorieSeite): Node[] {
       teile.push(...bloeckeIn([b], o.inhalte, 'h2'));
     }
   }
-  const qv = inDerStory(o, seite.thema);
+  const qv = inDerStory(o, seite.thema, !teile.some((t) => /fiktiv/iu.test(t.textContent ?? '')));
   if (qv !== null) teile.push(qv);
   return teile;
+}
+
+/** r72: Druckkopf eines Themas mit Teil und Nummer als kleiner Zeile über dem Titel („Teil IV · 14“, „Anhang · 16“). */
+function druckKopf(o: TheorieOptionen, seite: TheorieSeite): HTMLElement {
+  const teil = seite.teil === 'anhang' ? T.anhang : T.teil(seite.teil);
+  return bogenKopf(seite.titel, o.version, false, { text: `${teil} · ${seite.nr}`, teil: String(seite.teil) });
 }
 
 function themaSeiteBauen(o: TheorieOptionen, seite: TheorieSeite): HTMLElement {
   const drucken = o.bedienbar
     ? h('button', { type: 'button', class: 'knopf knopf-still druck-knopf', 'data-pruef': 'thema-drucken', onclick: () => {
-      druckeBogen(seite.titel, [bogenKopf(seite.titel, o.version, false), themaFuerDruck(o.inhalte, seite.thema, o.version)]);
+      druckeBogen(seite.titel, [druckKopf(o, seite), themaFuerDruck(o.inhalte, seite.thema, o.version)]);
     } }, sym('dokument'), T.drucken)
     : null;
-  if (drucken !== null) bogenFuerStrgP(drucken, () => ({ titel: seite.titel, teile: [bogenKopf(seite.titel, o.version, false), themaFuerDruck(o.inhalte, seite.thema, o.version)] }));
+  if (drucken !== null) bogenFuerStrgP(drucken, () => ({ titel: seite.titel, teile: [druckKopf(o, seite), themaFuerDruck(o.inhalte, seite.thema, o.version)] }));
   // Fortschritt (P17.8): jede Antwort wird vermerkt; ohne Verständnisfragen zählt das erreichte Seitenende
   const speicher = speicherVon(o);
   let wurzel: HTMLElement | null = null;

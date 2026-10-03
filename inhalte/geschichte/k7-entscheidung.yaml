@@ -17,7 +17,7 @@ einstieg: |
   Mai 2027. Gesamtschule und Sporthalle sind außen fertig, daneben wächst die Grundschule. Morgens fällt das Licht schräg über den künftigen Schulhof. Bis zum Schulstart sind es noch fünfzehn Monate, und zum ersten Mal fühlt sich das gar nicht mehr so lang an. Dann kommt eine Nachricht, die niemand hören will.
 
 einstieg-kurz: |
-  Mai 2027. Gesamtschule und Sporthalle sind geschlossen, daneben wächst die Grundschule. Bis zum Schulstart sind es noch fünfzehn Monate. Dann kommt eine Nachricht, die niemand hören will.
+  Mai 2027, noch fünfzehn Monate bis zum Schulstart. Dann kommt eine Nachricht, die niemand hören will.
 
 szene:
   - { figur: schwung, text: "Ich sag's lieber gleich und nicht erst, wenn's brennt: Der Hersteller der Lüftungsanlage für die Gesamtschule liefert vier Monate später." }
@@ -28,12 +28,12 @@ szene:
 
 vergleich:
   einleitung: |
-    Die Projektsteuerin vergleicht die drei Wege nach vier Gesichtspunkten. Wie wichtig jeder ist, hat sie vorher mit Ihnen abgestimmt – abgeleitet aus dem Ziel der Bürgermeisterin: zuerst der Schulstart, dann das Geld.
+    Die Projektsteuerin vergleicht die drei Wege nach vier Gesichtspunkten. Wie wichtig jeder ist, hat sie vorher mit Ihnen abgestimmt – abgeleitet aus dem Ziel der Bürgermeisterin: zuerst der Schulstart, dann das Geld. Je mehr Punkte, desto besser passt der Weg – beim Geld heißt das: desto günstiger.
   # Gewicht: 5 sehr wichtig · 3 wichtig · 1 weniger wichtig (abgestimmte Ausgangsstellung)
   kriterien:
-    - { id: geld, titel: Geld, gewicht: 3 }
-    - { id: schulstart, titel: Schulstart, gewicht: 5 }
-    - { id: luft, titel: Gute Luft im Unterricht, gewicht: 3 }
+    - { id: geld, titel: Geld, im-satz: das Geld, gewicht: 3 }
+    - { id: schulstart, titel: Schulstart, im-satz: der Schulstart, gewicht: 5 }
+    - { id: luft, titel: Gute Luft im Unterricht, im-satz: gute Luft im Unterricht, gewicht: 3 }
     - { id: klima, titel: Klima und Betrieb, gewicht: 1 }
   optionen:
     - id: A
@@ -57,7 +57,7 @@ vergleich:
     C: "Der spätere Einzug liegt vorn: Wenn Geld oder Klima so viel zählen wie der Schulstart, lohnt sich das Warten."
     gleichauf: Gleichauf – jetzt entscheidet das fachliche Urteil, nicht die Punktzahl.
   empfehlung: |
-    **Empfehlung:** das Ersatzgerät. Es kostet am meisten, aber nur damit ziehen alle Kinder pünktlich in Räume mit guter Luft – und das ist das Ziel, das die Bürgermeisterin gesetzt hat. Wichtig für die Entscheidung: Schon wenn Klima und Betrieb „wichtig“ wären, lägen Ersatzgerät und späterer Einzug gleichauf. Wäre der Schulstart nur so wichtig wie das Geld oder wären Klima und Betrieb sehr wichtig, läge der spätere Einzug vorn. Die Leihgeräte liegen nur vorn, wenn gute Luft kaum zählt.
+    **Empfehlung:** das Ersatzgerät. Es kostet am meisten, aber nur damit ziehen alle Kinder pünktlich in Räume mit guter Luft – das Ziel der Bürgermeisterin. Knapp ist es trotzdem: Wären Klima und Betrieb „wichtig“, läge der spätere Einzug gleichauf.
   wer: |
     **Wer entscheidet:** die Bürgermeisterin – mehr als 100.000 Euro, und das Geld käme aus der Reserve. Der Lenkungskreis berät. Entscheiden muss sie bis Ende Mai, sonst ist auch das Ersatzgerät nicht mehr rechtzeitig da.
 
@@ -65,23 +65,29 @@ frage: Die Vorlage geht an die Bürgermeisterin. Was legen Sie ihr vor?
 
 antworten:
   - wertung: falle
-    text: Es eilt. Sie entscheiden selbst für das Ersatzgerät und holen die Zustimmung der Bürgermeisterin danach ein.
+    text: Nur das Ersatzgerät, mit Preis und Liefertermin – je kürzer die Vorlage, desto schneller kann sie entscheiden.
     balken: { geld: -2, zeit: 1, vertrauen: -2 }
     bild: rednerpult
     folge: |
-      Die Haustechnikfirma bestellt sofort – zu ihrem Preis, denn verhandelt hat niemand. Clara Faden sieht die Bestellung noch am selben Tag und ruft die Bürgermeisterin an: Hier wurde ohne Befugnis entschieden. Die Bürgermeisterin: „Mehr als 100.000 Euro und Geld aus der Reserve – das ist meine Entscheidung. So steht es auf der Seite, die wir vereinbart haben.“ Sie stimmt nachträglich zu, weil es in der Sache richtig ist. Aber der Stadtrat fragt nach.
+      Die Bürgermeisterin unterschreibt noch am selben Tag – es eilt ja. Die Haustechnikfirma bestellt zu ihrem Preis; verglichen hat ihn niemand. Dann fragt jemand im Stadtrat, ob es keinen günstigeren Weg gab, und die Bürgermeisterin hört zum ersten Mal von den Leihgeräten und vom späteren Einzug.
+
+      „Ich habe entschieden, ohne zu wissen, dass ich eine Wahl hatte“, sagt sie. „Das darf nicht noch einmal passieren.“ Clara Faden legt den Vergleich nachträglich vor; in der Sache bleibt es beim Ersatzgerät.
   - wertung: gut
-    text: Alle drei Wege mit dem Vergleich und der Empfehlung für das Ersatzgerät – samt dem Hinweis, wann der spätere Einzug vorn läge.
+    text: Alle drei Wege, den Vergleich und die Empfehlung fürs Ersatzgerät – samt Hinweis, wann der spätere Einzug vorn läge.
     balken: { geld: -1, zeit: 1, vertrauen: 1 }
     bild: stempel
     folge: |
-      Im Lenkungskreis beraten Kämmerei und Schulamt. Die Bürgermeisterin stellt nur eine Frage: „Wenn mir der Schulstart wichtiger ist als das Geld – bleibt es beim Ersatzgerät?“ Clara Faden: „Ja – solange Klima und Betrieb weniger wichtig bleiben. Sonst wird es knapp.“ Die Bürgermeisterin entscheidet: Ersatzgerät, das Geld kommt aus der Reserve. Clara Faden hält den Beschluss fest, mit Datum und einer Auflage: Das Gerät muss vor dem Schulstart eingebaut und eingestellt sein. Hanna Klingel atmet hörbar aus.
+      Im Lenkungskreis beraten Kämmerei und Schulamt. Die Bürgermeisterin stellt nur eine Frage: „Wenn mir Klima und Betrieb wichtiger würden – bliebe es beim Ersatzgerät?“ Clara Faden: „Schon bei ‚wichtig‘ läge der spätere Einzug gleichauf; dann zählt Ihr Urteil.“
+
+      Die Bürgermeisterin entscheidet: Ersatzgerät, das Geld kommt aus der Reserve. Clara Faden hält den Beschluss fest, mit Datum und einer Auflage: Das Gerät muss vor dem Schulstart eingebaut und eingestellt sein. Hanna Klingel atmet hörbar aus.
   - wertung: vertretbar
-    text: Alle drei Wege mit dem Vergleich und der Empfehlung der Projektsteuerin – und dazu Ihre eigene Empfehlung für den späteren Einzug, weil er am wenigsten kostet.
-    balken: { geld: -1, zeit: 0, vertrauen: 0 }
+    text: Alle drei Wege mit Vergleich, Empfehlung der Projektsteuerin – und Ihrer eigenen für den späteren Einzug, weil er am wenigsten kostet.
+    balken: { geld: -1, zeit: -1, vertrauen: 0 }
     bild: stoppuhr
     folge: |
-      Die Bürgermeisterin liest beide Empfehlungen und dann den Vergleich. „Sie empfehlen das Günstigste. Aber mein Ziel war der Schulstart.“ Sie vertagt um eine Woche, hört die Schule an und entscheidet dann: Ersatzgerät, aus der Reserve. Ihre Empfehlung war ehrlich begründet – sie passte nur nicht zu dem Ziel, das die Bürgermeisterin gesetzt hatte. Die Woche fehlt dem Einbau am Ende.
+      Die Bürgermeisterin liest beide Empfehlungen und dann den Vergleich. „Sie empfehlen das Günstigste. Aber mein Ziel war der Schulstart.“
+
+      Sie vertagt um eine Woche, hört die Schule an und entscheidet dann: Ersatzgerät, aus der Reserve. Ihre Empfehlung war ehrlich begründet – sie passte nur nicht zu dem Ziel, das die Bürgermeisterin gesetzt hatte. Die Woche fehlt dem Einbau am Ende.
 
 gut: |
   Eine Entscheidung des Bauherrn kommt als Vorlage mit mindestens zwei zulässigen Wegen, einem gewichteten Vergleich nach vorher abgestimmten Gewichten und einer begründeten Empfehlung – samt dem Hinweis, bei welchen anderen Gewichten die Rangfolge kippt. Entschieden wird von der Stelle, die es darf, und der Beschluss wird getrennt festgehalten: Empfehlung und Punktzahl sind noch keine Entscheidung.

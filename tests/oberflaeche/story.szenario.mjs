@@ -63,6 +63,11 @@ export async function lauf(seite, h) {
   const fokus = () => seite.evaluate(() => (document.activeElement === document.body ? 'BODY' : document.activeElement?.getAttribute('data-pruef') ?? document.activeElement?.tagName ?? ''));
   const teil = () => seite.evaluate(() => document.body.dataset['teil'] ?? '');
   const breit = seite.viewportSize()?.width === 1280;
+  // O-53 (R72): auch der Schritt der Mini-Aufgabe zeigt eine Grafik – breit die große, schmal die kleinen auf den Karten
+  const grafikDa = async (wo) => {
+    const mass = await seite.evaluate(() => Math.max(0, ...[...document.querySelectorAll('article.gs-schritt .gs-gegenstand svg')].map((x) => x.getBoundingClientRect().width)));
+    if (mass < (breit ? 60 : 32)) h.befund(`${wo}: keine Grafik (größte ${Math.round(mass)} px)`);
+  };
 
   // Auftakt: Figuren und Balken
   await h.erwarte('[data-pruef="figur-faden"] svg');
@@ -108,6 +113,7 @@ export async function lauf(seite, h) {
   if (lage2 !== 'falsch') h.befund(`Mini zuordnen: nach Umentscheiden per Tastatur Lage „${lage2}“, erwartet falsch`);
   await h.erwarte('[data-pruef="rueck-1"]:has-text("Nicht ganz")');
   await verboten('2 Mini');
+  await grafikDa('2 Mini');
   await pruefe('k2-mini');
 
   // Kapitel 6: Reihenfolge
@@ -120,6 +126,10 @@ export async function lauf(seite, h) {
   const stand6 = (await seite.locator('[data-pruef="mini-stand"]').innerText()).trim();
   if (stand6 !== '4 von 6 richtig.') h.befund(`Mini Reihenfolge: „${stand6}“, erwartet „4 von 6 richtig.“`);
   if ((await fokus()) !== 'reihe-5') h.befund(`Mini Reihenfolge: Fokus auf ${await fokus()}`);
+  await grafikDa('6 Mini');
+  // gelöst: die Karten stehen in der richtigen Reihenfolge, als Pfad verbunden
+  const folge6 = await seite.locator('[data-pruef="mini-reihe"] > li').evaluateAll((l) => l.map((x) => x.getAttribute('data-pruef')).join(','));
+  if (folge6 !== 'posten-1,posten-2,posten-3,posten-4,posten-5,posten-6') h.befund(`Mini Reihenfolge gelöst: Karten in der Folge ${folge6}`);
   await pruefe('k6-mini');
 
   // Kapitel 7: Vergleich

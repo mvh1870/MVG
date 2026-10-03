@@ -500,7 +500,7 @@ Berichterstattung erzeugt Information.
   assert.ok(f3.some((f) => /Zitat nicht wortgleich/u.test(f)), f3.join('\n'));
 });
 
-test('Eigentext (R49): „EW“ und „Mio. EUR“ nur im wortgleichen Zitat; Schwellen der Mandatsleiter überall 100 TEUR / 5 Mio.', async () => {
+test('Eigentext (R49): „EW“ und „Mio. EUR“ nur im wortgleichen Zitat; Schwellen der Mandatsleiter überall 100 TEUR bzw. 100.000 € / 5 Mio.', async () => {
   const { readdirSync, statSync } = await import('node:fs');
   const dateien: string[] = [];
   const sammle = (d: string): void => {
@@ -519,9 +519,10 @@ test('Eigentext (R49): „EW“ und „Mio. EUR“ nur im wortgleichen Zitat; Sc
     // Zitate: Container „::: zitat …“, eingebettete [[zitat:…|…]] und in Anführung „…“ wiedergegebener Quelltext
     const eigen = roh.replace(/^::: zitat [^\n]*\n[\s\S]*?\n:::$/gmu, ' ').replace(/\[\[zitat:[^|\]]+\|[^\]]*\]\]/gu, ' ').replace(/„[^“]*“/gu, ' ');
     for (const m of eigen.matchAll(/\bEW\b|Mio\. EUR/gu)) funde.push(`${path.relative(WURZEL, p)}: „${m[0]}“`);
-    for (const m of roh.matchAll(/einschließlich ([\d.,]+) (TEUR|Mio\.)/gu)) {
+    // r72: in Eigentext ausgeschrieben („100.000 €“), im wortgleichen Zitat „100 TEUR“
+    for (const m of roh.matchAll(/einschließlich ([\d.,]+) (TEUR|Mio\.|€)/gu)) {
       schwellen += 1;
-      const soll = m[2] === 'TEUR' ? '100' : '5';
+      const soll = m[2] === 'TEUR' ? '100' : m[2] === '€' ? '100.000' : '5';
       if (m[1] !== soll) funde.push(`${path.relative(WURZEL, p)}: Schwelle „einschließlich ${m[1]} ${m[2]}“`);
     }
   }

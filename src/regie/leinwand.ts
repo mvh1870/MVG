@@ -118,7 +118,7 @@ export function erzeugeAnzeige(inhalte: OeffentlicheInhalte, version: string, ei
         seite = baueStart({
           startseite: inhalte.startseite,
           themenAnzahl: themen(inhalte).length,
-          stationenAnzahl: inhalte.geschichte?.kapitel.length ?? 0,
+          kapitelAnzahl: inhalte.geschichte?.kapitel.length ?? 0,
           werkzeugAnzahl: WERKZEUGE.length,
           weiterlesen: false,
           bedienbar: false,

@@ -85,12 +85,12 @@ function starteSeite(wurzel: HTMLElement): void {
           story = erzeugeGeschichte({ g, speicher, themaTitel: (id) => themaTitel(inhalte, id) });
           story.beiAenderung((s) => {
             const id = s.schritt.ort === 'kapitel' ? s.schritt.kapitel : null;
-            history.replaceState(null, '', routeHash({ flaeche: 'story', station: id }));
+            history.replaceState(null, '', routeHash({ flaeche: 'story', kapitel: id }));
           });
         }
         if (flaeche !== 'story') zeigeSeite(story.element, 'story', `${W.story} · ${TITEL}`, '.gs-titel');
         tipps ??= installiereTooltips(story.element, inhalte, W.themen.glossar);
-        if (r.station !== null) story.zuKapitel(r.station);
+        if (r.kapitel !== null) story.zuKapitel(r.kapitel);
         break;
       }
       case 'theorie': {
@@ -122,7 +122,7 @@ function starteSeite(wurzel: HTMLElement): void {
         zeigeSeite(baueStart({
           startseite: inhalte.startseite,
           themenAnzahl: themen(inhalte).length,
-          stationenAnzahl: g !== null ? g.kapitel.length : 0,
+          kapitelAnzahl: g !== null ? g.kapitel.length : 0,
           werkzeugAnzahl: WERKZEUGE.length,
           weiterlesen: g !== null && ladeStand(g, speicher) !== null,
           bedienbar: true,

@@ -6,7 +6,7 @@
  */
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { sichtbarVerboten } from '../werkzeuge/sichtbar.mjs';
+import { SICHTBAR_ARBEITSSTAND, sichtbarVerboten } from '../werkzeuge/sichtbar.mjs';
 
 type Fenster = Window & typeof globalThis;
 const { JSDOM } = (await import(String('jsdom'))) as { JSDOM: new (html: string, o?: object) => { window: Fenster } };
@@ -44,7 +44,7 @@ function pruefe(funde: string[], wo: string, el: Element): void {
 
 test('Start und Rahmen', () => {
   const funde: string[] = [];
-  pruefe(funde, 'start', baueStart({ startseite: inhalte.startseite, themenAnzahl: 16, stationenAnzahl: 8, werkzeugAnzahl: 5, weiterlesen: false, bedienbar: true }));
+  pruefe(funde, 'start', baueStart({ startseite: inhalte.startseite, themenAnzahl: 16, kapitelAnzahl: 8, werkzeugAnzahl: 5, weiterlesen: false, bedienbar: true }));
   assert.deepEqual(funde, []);
 });
 
@@ -110,13 +110,25 @@ test('Bedienwörter (src/ui/woerter.ts)', () => {
 });
 
 test('Arbeitsstand (P17.10, O-56): die Probe schlägt bei Werkstatt-Resten an, nicht bei Fachtext', () => {
-  // Gegenprobe: jede Art, die P17.10 entfernt hat, wird gefunden
-  for (const rest of [
-    'Abweichungen vom Text (8)', 'Wo die Abbildung vom Text abweicht, gilt der Text.', 'der Text nennt acht Bausteine', 'Im Bild steht „Steuerungslogik“.',
-    'Das Bild zeigt fünf Spalten.', 'Im Bild an die Begriffe des Texts angeglichen: „LPH 0–2“', 'nach L-121', 'O-56', 'R41', 'P17.10', 'vom Prüf-Agenten gesehen',
-    'Beleg k5.2-t1', 'Quelle: Handbuch', 'nach V2.4', 'HB 3.2', 'nur intern', 'interne Notiz', 'TODO', 'Platzhalter', 'Hinweis zur Bedienung',
-    'Klicken Sie sich durch.', 'Ziehen Sie den Regler.', 'Schalten Sie um und sehen Sie, was fehlt.',
-  ]) assert.ok(sichtbarVerboten(`Text davor. ${rest} Text danach.`).length > 0, `nicht gefunden: ${rest}`);
+  // Gegenprobe: jede Art, die P17.10 entfernt hat, wird gefunden – und zwar genau von ihrem Muster (r72: jede Probe
+  // trifft nur ein Muster, damit keines ungetestet bleibt, weil ein anderes zugleich anschlägt)
+  const proben: [string, string][] = [
+    ['Abweichungen vom Text (8)', 'Abweichung vom Text'], ['Wo die Abbildung vom Text abweicht, gilt der Text.', 'Abweichung vom Text'],
+    ['der Text nennt acht Bausteine', 'Meta-Satz „der Text …“'], ['Im Bild steht „Steuerungslogik“.', 'Meta-Satz „das Bild …“'],
+    ['Das Bild zeigt fünf Spalten.', 'Meta-Satz „das Bild …“'], ['Im Bild an die Begriffe des Texts angeglichen: „LPH 0–2“', 'Angleichung des Bilds'],
+    ['nach L-121', 'Entscheidungskennung L-/O-'], ['O-56', 'Entscheidungskennung L-/O-'], ['R41', 'Prüfrunde R…'], ['P17.10', 'Posten P…'],
+    ['vom Prüf-Agenten gesehen', 'Prüf-Agent'], ['Belegstelle im Handbuch', 'Beleg'], ['mit zwei Belegen', 'Beleg'], ['Quelle: Handbuch', 'Quelle:'],
+    ['nach V2.4', 'Quellenhinweis auf den Standard'], ['HB 3.2', 'Quellenhinweis auf den Standard'], ['nur intern', 'intern'], ['interne Notiz', 'intern'],
+    ['TODO', 'TODO'], ['Platzhalter', 'Platzhalter'], ['Hinweis zur Bedienung', 'Bedienhinweis'],
+    ['Klicken Sie sich durch.', 'Bedienungs-Anleitung'], ['Ziehen Sie den Regler.', 'Bedienungs-Anleitung'], ['Schalten Sie um und sehen Sie, was fehlt.', 'Bedienungs-Anleitung'],
+  ];
+  const getroffen = (text: string): string[] => [...new Set(sichtbarVerboten(text).map((f) => /^verbotenes Wort sichtbar \((.+?)\): „/u.exec(f)?.[1] ?? f))];
+  for (const [rest, muster] of proben) assert.deepEqual(getroffen(`Text davor. ${rest} Text danach.`), [muster], rest);
+  // jedes Muster der Liste hat mindestens eine eigene Probe
+  assert.deepEqual([...new Set(SICHTBAR_ARBEITSSTAND.map(([, n]) => n))].filter((n) => !proben.some(([, m]) => m === n)), []);
+  // Gegenprobe rot: ein Text ohne Rest trifft nichts, eine Probe mit zwei Resten trifft zwei Muster
+  assert.deepEqual(getroffen('Text davor. Text danach.'), []);
+  assert.equal(getroffen('Beleg k5.2-t1').length, 2);
   // Fachtext bleibt unbehelligt
   for (const fach of [
     'von 1 (geringe Abweichung, Nutzung nicht eingeschränkt)', 'getrennt festgehalten, mit Quelle, Datum und Bedingungen', 'Ein gemeinsamer Prüfvermerk mit Datum',

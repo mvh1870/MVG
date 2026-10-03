@@ -444,6 +444,16 @@ export function portraet(figur: Figur, optionen: PortraetOptionen = {}): string 
 }
 
 // ------------------------------------------------------------------------------------------- Gegenstände
+/** Klasse eines Felds der Risikomatrix 5 × 5 nach V2.4 (Handbuch Abschnitt 2): Produkt 1–4 beobachten, 5–9 gezielt
+ *  bearbeiten, 10–25 vorrangig; Auswirkung 5 ist immer vorrangig – wie matrixStufe in der Explore-Matrix. */
+export function matrixFeldKlasse(wahrscheinlichkeit: number, auswirkung: number): 'beobachten' | 'gezielt' | 'vorrangig' {
+  const wert = wahrscheinlichkeit * auswirkung;
+  if (auswirkung === 5 || wert >= 10) return 'vorrangig';
+  return wert >= 5 ? 'gezielt' : 'beobachten';
+}
+/** Farben der drei Klassen in den Tönen der Explore-Matrix (grün · gelb · rot) */
+export const MATRIX_FARBE = { beobachten: 'gm-a-gruen', gezielt: 'gm-a-sonne', vorrangig: 'gm-a-beere' } as const;
+
 export const GIMMICKS = [
   'bauzaun', 'warnschild', 'kostenzettel', 'zahlenzettel', 'lieferwagen', 'holzstapel', 'lupe', 'waage',
   'mensateller', 'grundriss', 'geruest-sturm', 'lueftung', 'schulglocke', 'schulbus', 'kaertchen', 'pokal',
@@ -695,10 +705,10 @@ const GIMMICK_SVG: Record<GimmickName, () => string> = {
     + re('gm-papier gm-kante', 26, 16, 34, 44, 3) + re('gm-s-lagune gm-kante-lagune', 54, 12, 34, 44, 3) + re('gm-linie-flaeche', 60, 20, 18, 3, 1.5)
     + pf('gm-d-violett', 'M12,40H44L50,34H108V98H12Z') + pf('gm-a-violett', 'M12,48H108V98H12Z') + re('gm-papier', 46, 64, 28, 12, 2),
   matrix: () => {
+    // R72: dieselben drei Klassen wie die Explore-Matrix (matrixFeldKlasse); oben Auswirkung 5, links Wahrscheinlichkeit 1
     let s = '';
-    const stufe = ['gm-s-gruen', 'gm-a-gruen', 'gm-a-sonne', 'gm-a-orange', 'gm-a-beere'];
-    for (let r = 0; r < 5; r++) for (let c = 0; c < 5; c++) s += re(stufe[Math.min(4, Math.max(0, Math.round((c + (4 - r)) / 2)))] ?? 'gm-s-gruen', 14 + c * 19, 12 + r * 19, 16, 16, 3);
-    s += re('gm-markierung', 69, 28, 22, 22, 5);
+    for (let r = 0; r < 5; r++) for (let c = 0; c < 5; c++) s += re(MATRIX_FARBE[matrixFeldKlasse(c + 1, 5 - r)], 14 + c * 19, 12 + r * 19, 16, 16, 3);
+    s += re('gm-markierung', 69, 28, 22, 22, 5); // W 4 × A 4 = 16: vorrangig
     return s;
   },
   sonne: () => {

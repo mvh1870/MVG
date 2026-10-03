@@ -1,8 +1,10 @@
 ---
 # Thema „Takt und Bericht“ (P16.4, O-36, O-38; P17.11, O-55): neues Thema nach docs/V24-ABGLEICH.md Abschnitt 9, Thema C.
 # Inhalt aus dem Standard „Aufgaben- und Risikomanagement V2.4“ (Handbuch, Ausschreibung), in eigenen Sätzen (O-37).
-# Beispiele aus dem fiktiven Schulcampus Lindenhall-Süd (O-50): inhalte/geschichte/rahmen.yaml (Takt), s5-datenstand.yaml
-# (Monatsbericht Mai 2026), s8-lueftung.yaml (Gerüstmeldung, Bericht Januar 2028).
+# Beispiele aus dem fiktiven Schulcampus Lindenhall-Süd (O-50): inhalte/fall.md (Budget, Reserve, Fundus RIS-014),
+# inhalte/geschichte/k5-zahlen.yaml (Monatsbericht Oktober 2026: rund eine Million über dem Budget, Mehrkosten der
+# Haustechnikfirma gut eine Million als Risiko, Prüfung der Vergabestelle), k6-sturm.yaml (Gerüstmeldung).
+# Rechnung Monatsbericht: 58,4 + 1,0 = 59,4 Mio. € (+1,7 %); mit den angekündigten Mehrkosten rund 60,5 Mio. €, unter 61,3 Mio. €.
 # Belege Einleitung/Kernaussage: v24:hb-4 (Schaubild, Abs. 1–6), v24:as-2, O-36
 # Belege k16.1 (Grundsatz, sofort): v24:hb-4 (Abs. 1, 4), v24:hb-3 (Warnanlässe, Dringliches wartet nicht)
 # Belege k16.2 (wöchentlich, Ruhezeiten): v24:hb-4 (Schaubild, Abs. 2–3)
@@ -128,16 +130,16 @@ Der [[Monatsbericht]] zeigt auf höchstens einer Seite die wesentlichen Verände
 
 Er nutzt denselben Informationsstand wie die Software und verweist auf deren Einträge – eine zweite Liste braucht es nicht. Er ersetzt weder die vollständigen Einträge noch die sofortige Meldung.
 
-::: aufklapper Ein fiktives Beispiel: Monatsbericht Mai 2026
+::: aufklapper Ein fiktives Beispiel: Monatsbericht Oktober 2026
 ---
 symbol: bericht
 ---
-So kann eine Seite aussehen – ein fiktives Beispiel vom Schulcampus Lindenhall-Süd, Mai 2026:
+So kann eine Seite aussehen – vom Schulcampus Lindenhall-Süd, Oktober 2026:
 
-> **Monatsbericht · Mai 2026**
-> - Kostenprognose nach dem geltenden Datenstand: 60,4 Mio. € gegen die Projektbasis von 58,4 Mio. € (+3,4 %); die Risikoreserve von 2,9 Mio. € deckt das; ihren Einsatz gibt der Bauherr frei.
-> - Angekündigter Nachtrag der Haustechnikplanung bis 1,2 Mio. € als Risiko `RIS-014` geführt, nicht in der Prognose; tritt er voll ein, läge die Prognose über Basis plus Reserve (61,3 Mio. €).
-> - Offene Entscheidung: Umgang mit der Prognose – die Projektsteuerung empfiehlt, die Reserve für die bekannten Mehrkosten vorzusehen; entscheiden muss der Bauherr im Lenkungskreis am 19. Mai.
+> **Monatsbericht · Oktober 2026**
+> - Kostenprognose nach dem geltenden Datenstand: 59,4 Mio. € gegen die Projektbasis von 58,4 Mio. € (+1,7 %); die Risikoreserve von 2,9 Mio. € deckt das; ihren Einsatz gibt der Bauherr frei.
+> - Angekündigte Mehrkosten der Haustechnikfirma, gut eine Million Euro, als Risiko `RIS-014` geführt, nicht in der Prognose; die Vergabestelle prüft die Forderung. Träten sie voll ein, bliebe die Prognose innerhalb von Basis plus Reserve (61,3 Mio. €).
+> - Offene Entscheidung: Umgang mit der Prognose – die Projektsteuerung empfiehlt, die Reserve für die bekannten Mehrkosten vorzusehen; entscheiden muss der Bauherr im Lenkungskreis am 19. Oktober.
 :::
 
 ::: sortieren

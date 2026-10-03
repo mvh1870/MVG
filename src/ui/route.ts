@@ -1,17 +1,17 @@
 /*
  * Hash-Router (rein, ohne DOM): welcher Bereich ein Adress-Anker meint.
  *
- *   #start · #story · #story/s3 (Station) · #theorie · #theorie/<thema> · #theorie/<thema>/<abschnitt>
+ *   #start · #story · #story/k3 (Kapitel) · #theorie · #theorie/<thema> · #theorie/<thema>/<abschnitt>
  *   · #explore · #explore/<werkzeug> · #regie · #leinwand
  *
  * Alles andere – auch ein leerer Anker – führt zur Startseite (ruhiger Einstieg, O-21). Groß- und
- * Kleinschreibung zählt nicht; Thema, Abschnitt und Station kommen klein zurück und werden von der
+ * Kleinschreibung zählt nicht; Thema, Abschnitt und Kapitel kommen klein zurück und werden von der
  * Oberfläche gegen die Inhalte aufgelöst (Unbekanntes → Übersicht des Bereichs).
  */
 
 export type Route =
   | { flaeche: 'start' }
-  | { flaeche: 'story'; station: string | null }
+  | { flaeche: 'story'; kapitel: string | null }
   | { flaeche: 'theorie'; thema: string | null; abschnitt: string | null }
   | { flaeche: 'explore'; werkzeug: string | null }
   | { flaeche: 'regie' }
@@ -38,7 +38,7 @@ export function leseRoute(hash: string): Route {
   if ([zweites, drittes].some((t) => t !== undefined && !KENNUNG.test(t))) return START;
   switch (kopf) {
     case 'story':
-      return drittes === undefined ? { flaeche: 'story', station: zweites ?? null } : START;
+      return drittes === undefined ? { flaeche: 'story', kapitel: zweites ?? null } : START;
     case 'explore':
       return drittes === undefined ? { flaeche: 'explore', werkzeug: zweites ?? null } : START;
     case 'regie':
@@ -54,7 +54,7 @@ export function leseRoute(hash: string): Route {
 export function routeHash(r: Route): string {
   switch (r.flaeche) {
     case 'story':
-      return r.station === null ? '#story' : `#story/${r.station}`;
+      return r.kapitel === null ? '#story' : `#story/${r.kapitel}`;
     case 'explore':
       return r.werkzeug === null ? '#explore' : `#explore/${r.werkzeug}`;
     case 'theorie':

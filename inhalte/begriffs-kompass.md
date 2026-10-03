@@ -43,7 +43,7 @@ andere: [Decision File, Entscheidungsakte, Beschlussvorlage]
 beleg: k9.4-p1
 ---
 ### Hinweis
-Im Standard erarbeitet sie die Projektsteuerung – mit mindestens zwei zulässigen Optionen und gewichtetem Vergleich.
+In MVG erarbeitet sie die Projektsteuerung – mit mindestens zwei zulässigen Optionen und gewichtetem Vergleich.
 :::
 
 ::: kompass mcda
@@ -81,7 +81,7 @@ andere: [Decision Log, Entscheidungsprotokoll]
 beleg: k6.4.1-p3
 ---
 ### Hinweis
-Im Standard führt die Projektsteuerung offene Entscheidungen als Entscheidungsvorbereitung neben den sechs Vorgangsarten, getrennt vom späteren Beschluss.
+In MVG führt die Projektsteuerung offene Entscheidungen als Entscheidungsvorbereitung neben den sechs Vorgangsarten, getrennt vom späteren Beschluss.
 :::
 
 ::: kompass entscheidungsreife
@@ -201,7 +201,7 @@ Ein nachteiliger Zustand, der bereits eingetreten ist; tritt ein Risiko ein, wir
 ::: kompass aenderung
 ---
 begriff: Änderung
-andere: [Change Request, Änderungsantrag]
+andere: [Change Request, Änderungswunsch]
 beleg: k2-p1
 ---
 ### Hinweis
@@ -225,7 +225,7 @@ andere: [Management-Report, Steering-Report, Lenkungskreisbericht]
 beleg: k6.4.3-p1
 ---
 ### Hinweis
-Im Standard geht der regelmäßige Bericht als Monatsbericht an den Bauherrn: höchstens eine Seite, aus demselben Informationsstand wie die Einträge. Der Managementbericht zur Freigabe bleibt Teil der Freigabevorbereitung.
+In MVG geht der regelmäßige Bericht als Monatsbericht an den Bauherrn: höchstens eine Seite, aus demselben Informationsstand wie die Einträge. Der Managementbericht zur Freigabe bleibt Teil der Freigabevorbereitung.
 :::
 
 ::: kompass monatsbericht
@@ -269,7 +269,7 @@ Kein vollständiger Projektneustart, sondern eine gezielte Neuordnung der Steuer
 ::: kompass mandat
 ---
 begriff: Mandat
-andere: [Befugnis, Kompetenzregelung]
+andere: [Kompetenzregelung, Entscheidungsbefugnis eines Gremiums]
 beleg: k1.1-p1
 ---
 :::

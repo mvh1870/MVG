@@ -31,7 +31,7 @@ matrix:
   beispiele:
     - { kennung: RIS-005, titel: Baupreissteigerung Holzbau, w: 3, a: 3 }
     - { kennung: RIS-009, titel: Holzbauelemente kommen zu spät (Auswirkung auf den Schulbetrieb), w: 4, a: 4 }
-    - { kennung: RIS-014, titel: Nachtrag der Haustechnikplanung, w: 3, a: 3 }
+    - { kennung: RIS-014, titel: Angekündigte Mehrkosten der Haustechnikfirma, w: 3, a: 3 }
     - { kennung: RIS-021, titel: Kampfmittelverdacht im Baufeld der Sporthalle, w: 1, a: 5 }
     - { kennung: RIS-022, titel: Verzögerte Möbellieferung Mensa, w: 2, a: 2 }
 vorgaenge:
@@ -101,7 +101,7 @@ takt:
       titel: Jeden Monat
       wer: Bauherr und Projektsteuerung
       text: Ein Online-Termin von höchstens 60 Minuten und eine Zusammenfassung von höchstens einer Seite – wesentliche Veränderungen, blockierte Aufgaben, kritische Maßnahmen, ungeklärte Frühwarnungen, wesentliche Probleme und Änderungen, offene Entscheidungen und die benötigte Reaktion.
-      beispiel: Monatstermin der GML – zwei offene Entscheidungen und die benötigte Reaktion besprochen; der Bericht verweist auf die Einträge in der Software.
+      beispiel: Monatstermin mit der Stadt – zwei offene Entscheidungen und die benötigte Reaktion besprochen; der Bericht verweist auf die Einträge in der Software.
     - id: ruhe
       titel: In Ruhezeiten
       wer: Projektsteuerung

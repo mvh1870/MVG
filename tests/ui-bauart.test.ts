@@ -4,7 +4,7 @@
 //    transitive Importgraph der Leinwand (auch dynamische Importe) erreicht beides nicht; `inhalte` trägt auf
 //    Datenebene kein Regie-Material (Positivliste).
 // 2. DOM: Startseite (drei Wege, Links zu bauherr-mentoren.com, Impressum, Datenschutz), Theorie (Themen ohne
-//    Nummern, Originaltext oder Zitierangaben), Story (Auftakt → Station → Vorlage → Folge → Schulstart, Speicher),
+//    Nummern, Originaltext oder Zitierangaben), Story (Auftakt → Kapitel → Vorlage → Folge → Schulstart, Speicher),
 //    Explore (fünf Werkzeuge), Leinwand-Anzeige (nicht bedienbar, ohne Notiz), Regie (Notiz, Kanal sendet nur Öffentliches).
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
@@ -141,7 +141,7 @@ function speicher(): { getItem(k: string): string | null; setItem(k: string, v: 
 }
 
 test('Startseite: drei Wege, leise Links zu bauherr-mentoren.com, Impressum und Datenschutz', () => {
-  const el = baueStart({ startseite: inhalte.startseite, themenAnzahl: themen(inhalte).length, stationenAnzahl: 8, werkzeugAnzahl: WERKZEUGE.length, weiterlesen: false, bedienbar: true });
+  const el = baueStart({ startseite: inhalte.startseite, themenAnzahl: themen(inhalte).length, kapitelAnzahl: 8, werkzeugAnzahl: WERKZEUGE.length, weiterlesen: false, bedienbar: true });
   assert.deepEqual([...el.querySelectorAll('[data-pruef^="weg-"]')].map((a) => a.getAttribute('href')), ['#story', '#theorie', '#explore']);
   const bm = [...el.querySelectorAll('a[href="https://www.bauherr-mentoren.com/"]')];
   assert.ok(bm.length >= 3, 'Kopf, „Wer steht dahinter“, Fuß');
@@ -150,12 +150,12 @@ test('Startseite: drei Wege, leise Links zu bauherr-mentoren.com, Impressum und 
   assert.ok(el.querySelector('[data-pruef="praesentieren"][href="#regie"]'));
   assert.match(el.textContent ?? '', /Internetseite/u);
   assert.match(el.textContent ?? '', /fiktiver Fall/u);
-  const leinwand = baueStart({ startseite: inhalte.startseite, themenAnzahl: 1, stationenAnzahl: 1, werkzeugAnzahl: 1, weiterlesen: false, bedienbar: false });
+  const leinwand = baueStart({ startseite: inhalte.startseite, themenAnzahl: 1, kapitelAnzahl: 1, werkzeugAnzahl: 1, weiterlesen: false, bedienbar: false });
   assert.equal(leinwand.querySelectorAll('a, button').length, 0, 'auf der Leinwand nichts Bedienbares');
 });
 
 test('Startseite (O-57, P17.7): Story-Karte mit Campus und den Figuren der Story, Theorie mit vier Teilen, Explore mit Gegenständen', () => {
-  const el = baueStart({ startseite: inhalte.startseite, themenAnzahl: themen(inhalte).length, stationenAnzahl: G.kapitel.length, werkzeugAnzahl: WERKZEUGE.length, weiterlesen: false, bedienbar: true });
+  const el = baueStart({ startseite: inhalte.startseite, themenAnzahl: themen(inhalte).length, kapitelAnzahl: G.kapitel.length, werkzeugAnzahl: WERKZEUGE.length, weiterlesen: false, bedienbar: true });
   const story = el.querySelector('[data-pruef="weg-story"]');
   assert.ok(story);
   assert.ok(story.querySelector('.tuer-bild[aria-hidden="true"] svg.campus-iso'), 'Campus im Bild, als Schmuck');
@@ -172,14 +172,14 @@ test('Startseite (O-57, P17.7): Story-Karte mit Campus und den Figuren der Story
   const ids = (story.getAttribute('aria-labelledby') ?? '').split(' ');
   assert.deepEqual(ids.map((id) => el.querySelector(`#${id}`)?.textContent), [`${W.start.storyKicker}${W.start.storyTitel}`, W.start.storyLos]);
   for (const id of (story.getAttribute('aria-describedby') ?? '').split(' ')) assert.ok(el.querySelector(`#${id}`), id);
-  assert.match(story.textContent ?? '', /Acht Entscheidungen · etwa 25 Minuten, kurz etwa 10/u);
+  assert.match(story.textContent ?? '', /Acht Entscheidungen · etwa 25 Minuten, kurz etwa 11/u);
   assert.doesNotMatch(el.textContent ?? '', /Kapitel|Station/u);
   // Theorie: vier Teile in Lesereihenfolge
   assert.deepEqual([...el.querySelectorAll('[data-pruef="weg-theorie"] .tuer-teile li')].map((li) => li.getAttribute('data-teil')), ['1', '2', '3', '4']);
   // Explore: ein Gegenstand je Werkzeug, als Schmuck
   assert.equal(el.querySelectorAll('[data-pruef="weg-explore"] .tuer-werkzeuge[aria-hidden="true"] svg.fig-gimmick').length, WERKZEUGE.length);
   // Leinwand: keine doppelten Kennungen aus den Karten
-  const leinwand = baueStart({ startseite: inhalte.startseite, themenAnzahl: 16, stationenAnzahl: 8, werkzeugAnzahl: 5, weiterlesen: false, bedienbar: false });
+  const leinwand = baueStart({ startseite: inhalte.startseite, themenAnzahl: 16, kapitelAnzahl: 8, werkzeugAnzahl: 5, weiterlesen: false, bedienbar: false });
   assert.equal(leinwand.querySelector('[id^="tuer-"]'), null);
 });
 
@@ -199,7 +199,7 @@ test('Theorie (O-38, O-54): eigene Nummern statt Vorlagennummern, kein Originalt
   }
   // Unbekanntes Thema → Übersicht mit Hinweis
   assert.match(baueTheorie({ inhalte, thema: 'gibt-es-nicht', version: VERSION, bedienbar: true }).textContent ?? '', new RegExp(W.themen.unbekannt.slice(0, 20), 'u'));
-  // „In der Story erlebt“ verlinkt Stationen, deren Thema dieses ist
+  // „In der Story erlebt“ verlinkt Kapitel, deren Thema dieses ist
   const mitStory = G.kapitel.find((s) => themaTitel(inhalte, s.thema) !== null);
   if (mitStory) {
     const seite = baueTheorie({ inhalte, thema: mitStory.thema, version: VERSION, bedienbar: true });
@@ -601,7 +601,7 @@ test('Wissenscheck: die passende Antwort steht nicht in jedem Check an derselben
 });
 
 test('Wissenschecks (P11.6, P17.11): genau die verbliebenen Themen haben einen; Wahl zeigt Rückmeldung, Erklärung und Beleg – ohne Punkte', () => {
-  for (const nr of [4, 5, 6, 9, 14, 15, 16]) {
+  for (const nr of [4, 6, 9, 10, 14, 15, 16]) {
     const seite = baueTheorie({ inhalte, thema: themaVon(nr), version: VERSION, bedienbar: true });
     assert.equal(seite.querySelectorAll('[data-pruef="wissenscheck"]').length, 1, `Kap. ${nr}`);
   }
@@ -689,6 +689,9 @@ test('Leinwand (R69): Strg+P druckt den Ersatzbogen ohne Regie-Hinweis; die Seit
   assert.ok(regieWeg, 'die Seite nennt den Druckweg der Regie');
   const text = (teile: Node[]): string => teile.map((t) => t.textContent ?? '').join(' ');
   assert.ok(text(ersatzDruck(VERSION).teile).includes(regieWeg), 'Seite: mit Regie-Weg');
+  // r72: der Story-Druckbogen (Strg+P in der Geschichte, L-232) steht unter den Wegen; auf der Leinwand nicht
+  const storyWeg = W.druck.ersatzWege.find((x) => x.startsWith('Story'));
+  assert.ok(storyWeg !== undefined && text(ersatzDruck(VERSION).teile).includes(storyWeg), 'Seite: mit Story-Weg');
   ersatzBogenFuerLeinwand(VERSION);
   document.body.replaceChildren();
   window.dispatchEvent(new Event('beforeprint'));
@@ -698,6 +701,57 @@ test('Leinwand (R69): Strg+P druckt den Ersatzbogen ohne Regie-Hinweis; die Seit
   assert.ok(inhalt.includes(W.druck.ersatzTitel), inhalt);
   assert.ok(inhalt.includes(W.druck.ersatzWege[0] ?? 'x'), 'der Theorie-Weg bleibt');
   assert.doesNotMatch(inhalt, /Regie/u);
+  assert.ok(!inhalt.includes(storyWeg), 'Leinwand: ohne Story-Weg');
   window.dispatchEvent(new Event('afterprint'));
   assert.equal(document.querySelector('.druck-bogen'), null, 'nach dem Druck abgebaut');
+});
+
+test('Fassung (r72, O-56): keine sichtbare Fassungsnummer – Druckkopf beginnt mit dem Druckdatum, ohne leeres Trennzeichen', async () => {
+  const { fassungText } = await import('../src/ui/fassung.ts');
+  const { bogenKopf } = await import('../src/ui/druck.ts');
+  assert.equal(fassungText(), '');
+  const meta = bogenKopf('Titel', fassungText(), false).querySelector('.druck-meta')?.textContent ?? '';
+  assert.doesNotMatch(meta, /Fassung|^\s*·/u, meta);
+  assert.match(meta, /^Druck vom /u, meta);
+});
+
+test('Druckbogen (r72): weiche Trennstellen nur in schmalen Spalten; Druckkopf mit Teil und Nummer als kleiner Zeile', async () => {
+  const { bogenKopf, druckeBogen } = await import('../src/ui/druck.ts');
+  const { h } = await import('../src/ui/h.ts');
+  document.body.replaceChildren();
+  const bogen = druckeBogen('T', [
+    h('p', { class: 'fliess' }, 'Die Beschluss\u00adlage bleibt nachweisbar.'),
+    h('table', null, h('tbody', null, h('tr', null, h('td', null, 'Beschluss\u00adlage')))),
+    h('div', { class: 'lernkarte' }, h('span', { class: 'lernkarte-titel' }, 'Entscheidungs\u00adstau'), h('p', { class: 'karten-text' }, 'Entscheidungs\u00adstau')),
+  ]);
+  assert.doesNotMatch(bogen.querySelector('.fliess')?.textContent ?? '', /\u00ad/u, 'Fließtext ohne');
+  assert.doesNotMatch(bogen.querySelector('.karten-text')?.textContent ?? '', /\u00ad/u, 'Kartentext ohne');
+  assert.match(bogen.querySelector('td')?.textContent ?? '', /\u00ad/u, 'Tabellenzelle mit');
+  assert.match(bogen.querySelector('.lernkarte-titel')?.textContent ?? '', /\u00ad/u, 'Kartentitel mit');
+  window.dispatchEvent(new Event('afterprint'));
+  assert.equal(document.querySelector('.druck-bogen'), null, 'nach dem Druck abgebaut');
+  const kopf = bogenKopf('Vorgangsarten und Risikobewertung', '', false, { text: 'Teil IV · 14', teil: '4' });
+  const kicker = kopf.querySelector('[data-pruef="druck-kicker"]');
+  assert.equal(kicker?.textContent, 'Teil IV · 14');
+  assert.equal(kicker?.getAttribute('data-teil'), '4');
+  assert.equal(kicker?.nextElementSibling?.tagName, 'H1', 'die Zeile steht über dem Titel');
+  assert.equal(bogenKopf('Titel', '', false).querySelector('[data-pruef="druck-kicker"]'), null, 'ohne Angabe keine Zeile');
+});
+
+test('„fiktiv“ einmal je Themenseite (L-227, r72): die Marke im Story-Verweis nur ohne natürliche Nennung im Text', () => {
+  let mitMarke = 0;
+  let ohneMarke = 0;
+  for (const t of themen(inhalte)) {
+    const seite = baueTheorie({ inhalte, thema: t.thema, version: VERSION, bedienbar: true });
+    const anzahl = [...(seite.textContent ?? '').matchAll(/fiktiv/giu)].length;
+    assert.ok(anzahl <= 1, `${t.thema}: „fiktiv“ ${anzahl}-mal`);
+    const block = seite.querySelector('.querverweis-block');
+    if (block === null) continue;
+    if (block.querySelector('.querverweis-fiktiv') !== null) mitMarke += 1;
+    else {
+      ohneMarke += 1;
+      assert.equal(anzahl, 1, `${t.thema}: ohne Marke muss der Text „fiktiv“ selbst nennen`);
+    }
+  }
+  assert.ok(mitMarke > 0 && ohneMarke > 0, `Marke ${mitMarke}, ohne ${ohneMarke} – beide Fälle kommen vor`);
 });

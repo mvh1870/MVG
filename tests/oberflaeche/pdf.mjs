@@ -1,5 +1,6 @@
 // Echte PDF-Messung für die Druckwege (R41): Text je Seite mit Lage, damit ein Szenario prüfen kann, ob eine Seite
 // mit einer Überschrift endet – der berechnete CSS-Wert allein sagt nicht, was Chromium im Druck daraus macht.
+import { inflateSync } from 'node:zlib';
 import { getDocument } from 'pdfjs-dist/legacy/build/pdf.mjs';
 
 /**
@@ -145,4 +146,74 @@ export async function wortbrueche(seite, wurzel, o = {}) {
     ohneAuto.remove();
     return aus;
   }, /** @type {[string, boolean]} */ ([wurzel, o.bildschirm === true]));
+}
+
+/**
+ * r72: Weiche Trennzeichen (U+00AD) im Textlayer des PDF. pdf.js sieht sie nicht: `getTextContent` überspringt jedes Zeichen
+ * der Klasse Cf, und Chromium (Skia) schreibt eine Trennstelle, an der die Zeile nicht bricht, ohnehin als Leerzeichen-Glyphe
+ * mit `/Span <</ActualText <FEFF00AD>>> BDC … EMC` – Kopieren und Suchen in einem PDF-Betrachter liefern dort U+00AD. Gelesen
+ * werden deshalb die Inhaltsströme selbst (Seitenbaum, FlateDecode); den Wortlaut davor und danach liefert pdf.js an seinen
+ * Markierungen (`includeMarkedContent`): die n-te Span-Markierung einer Seite ist der n-te Span-BDC ihres Inhaltsstroms.
+ * @param {Uint8Array} daten
+ * @returns {Promise<{ seite: number, vor: string, nach: string }[]>}
+ */
+export async function pdfWeicheTrenner(daten) {
+  const roh = Buffer.from(daten);
+  const text = roh.toString('latin1');
+  /** @type {Map<number, number>} Objektnummer → Lage von „n 0 obj“ */
+  const lage = new Map();
+  for (const m of text.matchAll(/(?<![\d])(\d+) 0 obj\b/gu)) lage.set(Number(m[1]), m.index ?? 0);
+  const objekt = (/** @type {number} */ n) => { const a = lage.get(n); return a === undefined ? '' : text.slice(a, text.indexOf('endobj', a)); };
+  const strom = (/** @type {number} */ n) => {
+    const a = lage.get(n);
+    if (a === undefined) return '';
+    const kopf = text.indexOf('stream', a);
+    const start = kopf + (text[kopf + 6] === '\r' ? 8 : 7);
+    const ende = text.indexOf('endstream', start);
+    const daten = roh.subarray(start, ende);
+    return /\/FlateDecode/u.test(text.slice(a, kopf)) ? inflateSync(daten, { finishFlush: 2 }).toString('latin1') : daten.toString('latin1');
+  };
+  const verweise = (/** @type {string} */ s) => [...s.matchAll(/(\d+) 0 R/gu)].map((m) => Number(m[1]));
+  /** @type {number[]} Seitenobjekte in Leserichtung */
+  const seiten = [];
+  const besuche = (/** @type {number} */ n) => {
+    const o = objekt(n);
+    if (/\/Type\s*\/Pages\b/u.test(o)) for (const k of verweise(o.match(/\/Kids\s*\[([^\]]*)\]/u)?.[1] ?? '')) besuche(k);
+    else if (/\/Type\s*\/Page\b/u.test(o)) seiten.push(n);
+  };
+  const katalog = [...lage.keys()].find((n) => /\/Type\s*\/Catalog\b/u.test(objekt(n)));
+  const wurzel = katalog === undefined ? undefined : Number(objekt(katalog).match(/\/Pages\s+(\d+) 0 R/u)?.[1]);
+  if (wurzel !== undefined) besuche(wurzel);
+  const aufgabe = getDocument({ data: new Uint8Array(daten), useSystemFonts: false, isEvalSupported: false, disableFontFace: true, verbosity: 0 });
+  const dok = await aufgabe.promise;
+  /** @type {{ seite: number, vor: string, nach: string }[]} */
+  const aus = [];
+  for (const [i, n] of seiten.entries()) {
+    const o = objekt(n);
+    const inhalt = o.match(/\/Contents\s*(\[[^\]]*\]|\d+ 0 R)/u)?.[1] ?? '';
+    const ops = verweise(inhalt).map(strom).join('\n');
+    // Span-BDCs in Reihenfolge, je mit ihrem ActualText (UTF-16BE als Hex oder Literal)
+    const spans = [...ops.matchAll(/\/Span\s*(<<[\s\S]*?>>|\/\w+)\s*BDC/gu)].map((m) => {
+      const hex = m[1]?.match(/\/ActualText\s*<([0-9A-Fa-f\s]*)>/u)?.[1]?.replace(/\s/gu, '');
+      if (hex !== undefined) return String.fromCharCode(...(hex.match(/..../gu) ?? []).map((x) => parseInt(x, 16))).replace(/^\ufeff/u, '');
+      return m[1]?.match(/\/ActualText\s*\(((?:\\.|[^\\)])*)\)/u)?.[1] ?? '';
+    });
+    if (!spans.some((t) => t.includes('\u00ad'))) continue;
+    const marken = (await (await dok.getPage(i + 1)).getTextContent({ includeMarkedContent: true })).items;
+    let k = -1;
+    marken.forEach((it, j) => {
+      if (!('type' in it) || it.type !== 'beginMarkedContentProps' || it.tag !== 'Span') return;
+      k += 1;
+      if (!(spans[k] ?? '').includes('\u00ad')) return;
+      // bricht die Zeile an der Trennstelle, steht im Span der sichtbare Strich – der Wortlaut geht in der nächsten Zeile weiter
+      const ohne = /^[\s\-\u2010\u2011]*$/u;
+      const str = (/** @type {number} */ d) => { for (let x = j + d; x >= 0 && x < marken.length; x += d) { const m = marken[x]; if (m !== undefined && 'str' in m && !ohne.test(m.str)) return m.str; } return ''; };
+      aus.push({ seite: i + 1, vor: str(-1).match(/\p{L}*$/u)?.[0] ?? '', nach: str(1).match(/^[\s\-\u2010\u2011]*(\p{L}*)/u)?.[1] ?? '' });
+    });
+    // weniger Markierungen als Span-BDCs: die Stelle zählt trotzdem (ohne Wortlaut)
+    const fehlend = spans.slice(k + 1).filter((t) => t.includes('\u00ad')).length;
+    for (let f = 0; f < fehlend; f++) aus.push({ seite: i + 1, vor: '', nach: '' });
+  }
+  await aufgabe.destroy();
+  return aus;
 }

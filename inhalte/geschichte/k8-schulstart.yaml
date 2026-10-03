@@ -6,14 +6,16 @@ titel: Schulstart
 zeit: Juli 2028
 campus: { stufe: 6, jahreszeit: sommer, licht: tag }
 campus-nachher: { stufe: 7, jahreszeit: sommer, licht: tag }
-bruecke: Im Juli 2028 erteilt die Bürgermeisterin auf Ihre Empfehlung die Freigabe mit Auflagen, und zwei kleine Restarbeiten gehen mit Termin und Zuständigen an das Gebäudemanagement der Stadt.
+bruecke: Im Juli 2028 erteilt die Bürgermeisterin die Freigabe mit Auflagen; zwei kleine Restarbeiten gehen mit Termin und Namen an das Gebäudemanagement.
 thema: ergebnisbild
 belege: [k9.3-p3, k6.4.4-p1, k4.5-p1, v24:hb-1, v24:hb-1.2, v24:hb-1.4, v24:hb-1.6, v24:hb-5, v24:tlb-2]
 bild-szene: lupe
 bild-frage: schluessel
 
 einstieg: |
-  Juli 2028. Der Kran ist fort, auf dem Schulhof wird Rasen gesät und werden junge Bäume gepflanzt, die Fenster glänzen. In drei Wochen beginnt das Schuljahr. Theo Lot geht mit einer langen Liste durch die Räume, Konrad Schwung prüft jede Tür, und Hanna Klingel hat die ersten Stundenpläne schon an die Wand geheftet. Vorher steht die letzte große Freigabe an: die am Ende der Bauzeit.
+  Juli 2028. Der Kran ist fort, auf dem Schulhof wird Rasen gesät und werden junge Bäume gepflanzt, die Fenster glänzen. In drei Wochen beginnt das Schuljahr.
+
+  Theo Lot geht mit einer langen Liste durch die Räume, Konrad Schwung prüft jede Tür, und Hanna Klingel hat die ersten Stundenpläne schon an die Wand geheftet. Vorher steht die letzte große Freigabe an: die am Ende der Bauzeit.
 
 szene:
   - { figur: lot, text: "Fast alles fertig. Nur der Hallenboden: An zwei Stellen sind Fugen offen. Die Firma bessert bis zu den Herbstferien nach." }
@@ -26,19 +28,19 @@ frage: Die Schule will einziehen, und auf der Liste stehen noch zwei Zeilen. Was
 
 antworten:
   - wertung: falle
-    text: Freigabe ohne Einschränkung – zwei Kleinigkeiten müssen nicht in den Bericht.
+    text: Freigabe ohne Einschränkung. Die zwei Punkte sind Kleinigkeiten – die müssen nicht extra in die Vorlage.
     balken: { geld: 0, zeit: 0, vertrauen: -2 }
-    bild: kostenzettel
+    bild: projektblatt
     folge: |
-      Clara Faden schüttelt den Kopf: „Offenes zeige ich als offen.“ In ihrem Bericht stehen die zwei Punkte, und die Bürgermeisterin liest ihn, bevor sie unterschreibt. „Warum wollten Sie mir das nicht sagen?“ Sie erteilt die Freigabe mit Auflagen; die Punkte werden erledigt – das Gespräch aber bleibt Ihnen im Gedächtnis.
+      Clara Faden schüttelt den Kopf: „Offenes zeige ich als offen.“ In ihrem Bericht stehen die zwei Punkte, und die Bürgermeisterin liest ihn, bevor sie unterschreibt. „Warum sollte ich das nicht erfahren?“ Sie erteilt die Freigabe mit Auflagen; die Punkte werden erledigt – das Gespräch aber bleibt Ihnen im Gedächtnis.
   - wertung: vertretbar
-    text: Freigabe. Die zwei Punkte klärt der Architekt mit den Firmen.
+    text: Freigabe. Die zwei Punkte klärt der Architekt mit den Firmen – das gehört ohnehin zu seiner Aufgabe.
     balken: { geld: 0, zeit: 0, vertrauen: 0 }
     bild: notizzettel
     folge: |
       Die Bürgermeisterin erteilt die Freigabe. Clara Faden übergibt die zwei Punkte trotzdem an das Gebäudemanagement – verschwinden lässt sie nichts. Weil die Freigabe sie aber nicht nennt, fühlt sich die Firma für den Hallenboden nicht gedrängt: Die Fugen sind erst im Frühjahr geschlossen.
   - wertung: gut
-    text: "Freigabe mit Auflagen: Die Schule zieht ein, die zwei offenen Punkte gehen mit Termin und Zuständigen an das Gebäudemanagement der Stadt."
+    text: "Freigabe mit Auflagen: Die Schule zieht ein, die zwei offenen Punkte gehen mit Termin und Namen ans Gebäudemanagement."
     balken: { geld: 0, zeit: 0, vertrauen: 1 }
     bild: mappe
     folge: |
@@ -51,15 +53,17 @@ mini:
   art: zuordnen
   titel: Zu Recht geschlossen oder übergeben?
   aufgabe: Vor der Übergabe geht die Projektsteuerin alle Einträge noch einmal durch. Welche sind zu Recht geschlossen, welche übergibt sie an das Gebäudemanagement?
+  bild: schluessel
   wahlen:
-    - { id: geschlossen, titel: zu Recht geschlossen }
-    - { id: uebergeben, titel: übergeben }
+    - { id: geschlossen, titel: zu Recht geschlossen, bild: stempel }
+    - { id: uebergeben, titel: übergeben, bild: mappe }
+  # gemischt, damit die Lösung nicht schon in der Reihenfolge steht; der Kartentext nennt den Stand, nicht die Lösung
   posten:
-    - { text: "Das Risiko langer Lieferzeiten für die Holzelemente – das Holz ist verbaut.", loesung: geschlossen, erklaerung: "Die Gefahr ist entfallen – ein nachgewiesener Grund zum Schließen." }
-    - { text: "Die angekündigten Mehrkosten der Haustechnik – im Herbst 2026 geprüft: Sie gehören zum bestehenden Vertrag.", loesung: geschlossen, erklaerung: "Ein Risiko wird nur mit nachgewiesenem Grund geschlossen – den gab es schon damals." }
-    - { text: "Die losen Gerüstanker aus dem Februar 2027 – erneuert und von der Sicherheitskoordination bestätigt.", loesung: geschlossen, erklaerung: "Die Lösung ist umgesetzt und fachlich bestätigt; geschlossen wurde gleich danach." }
-    - { text: "Die offenen Fugen im Hallenboden – Nachbesserung beauftragt, noch nicht fertig.", loesung: uebergeben, erklaerung: "Beauftragt ist nicht erledigt. Der Punkt geht mit Termin und Zuständigen weiter." }
-    - { text: "Die Feineinstellung der Lüftung im ersten Winter", loesung: uebergeben, erklaerung: "Das kommt erst noch. Wer sich darum kümmert und bis wann, wird bei der Übergabe festgehalten." }
+    - { text: "Die Fugen im Hallenboden – die Firma hat zugesagt, bis zu den Herbstferien nachzubessern.", loesung: uebergeben, bild: kalender, erklaerung: "Zugesagt ist nicht erledigt. Der Punkt geht mit Termin und Zuständigen weiter." }
+    - { text: "Das Risiko langer Lieferzeiten für die Holzelemente – alle Holzelemente sind eingebaut.", loesung: geschlossen, bild: holzstapel, erklaerung: "Die Gefahr ist entfallen – ein nachgewiesener Grund zum Schließen." }
+    - { text: "Die Feineinstellung der Lüftung – vorgesehen für den ersten Winter.", loesung: uebergeben, bild: lueftung, erklaerung: "Das kommt erst noch. Wer sich darum kümmert und bis wann, wird bei der Übergabe festgehalten." }
+    - { text: "Die losen Gerüstanker aus dem Februar 2027 – erneuert, die Sicherheitskoordination hat das Gerüst abgenommen.", loesung: geschlossen, bild: geruest-sturm, erklaerung: "Die Lösung ist umgesetzt und fachlich bestätigt; geschlossen wurde gleich danach." }
+    - { text: "Die angekündigten Mehrkosten der Haustechnik – die Prüfung im Herbst 2026 ergab: Die Leistungen gehören zum bestehenden Vertrag.", loesung: geschlossen, bild: kostenzettel, erklaerung: "Ein Risiko wird nur mit nachgewiesenem Grund geschlossen – den gab es schon damals." }
 
 dahinter: "Am Ende zählt, was sich nachweisen lässt: welche Entscheidung wer auf welchem Stand getroffen hat – und was noch offen ist, mit Namen und Termin."
 

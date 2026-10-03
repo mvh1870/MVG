@@ -119,7 +119,7 @@ Sicherstellen, dass auf belastbarer Grundlage entschieden wird und die Beschluss
 ---
 titel: Delegierbar und nicht delegierbar
 ---
-Nicht jede Tätigkeit muss beim Bauherrn liegen – im Gegenteil: Professionelle Projekte brauchen Vorbereitung durch Fachrollen. Der Bauherr muss aber wissen, wo Vorbereitung endet und seine Entscheidung beginnt. Die Tabelle stellt sechs Paare gegenüber: links die Leistung der Fachrollen, rechts die Verantwortung des Bauherrn.
+Nicht jede Tätigkeit muss beim Bauherrn liegen – im Gegenteil: Professionelle Projekte brauchen Vorbereitung durch Fachrollen. Der Bauherr muss aber wissen, wo Vorbereitung endet und seine Entscheidung beginnt. Zwölf Karten aus sechs Paaren: Jede Aufgabe gehört entweder zur Leistung der Fachrollen oder zur Verantwortung des Bauherrn.
 
 ::: tafel k3.2-t1
 ---
@@ -192,7 +192,7 @@ Die Arbeit und die Ausübung des Mandats innerhalb der Schwellen lassen sich ges
 
 ::: regie
 ### Notiz
-Der Begriffsrahmen zieht die Linie, auf der alles andere steht. Tragend ist die Tafel „delegierbar – nicht delegierbar“; die Pyramide und der Regler zeigen die drei Ebenen. Betonen, dass es ein Governance- und Führungsbegriff ist, kein juristischer Pflichtenkatalog (Umschalter „Was der Begriff fragt – und was nicht“) – keine rechtliche Einschätzung abgeben. Die Festlegung des Mandats bleibt beim Bauherrn, die Ausübung innerhalb klar definierter Schwellen kann übertragen werden. Die Vorlage erarbeitet im Standard die Projektsteuerung – mit mindestens zwei zulässigen Optionen und gewichtetem Vergleich; entscheiden muss der Bauherr.
+Der Begriffsrahmen zieht die Linie, auf der alles andere steht. Tragend ist die Tafel „delegierbar – nicht delegierbar“; die Pyramide und der Regler zeigen die drei Ebenen. Betonen, dass es ein Governance- und Führungsbegriff ist, kein juristischer Pflichtenkatalog (Umschalter „Was der Begriff fragt – und was nicht“) – keine rechtliche Einschätzung abgeben. Die Festlegung des Mandats bleibt beim Bauherrn, die Ausübung innerhalb klar definierter Schwellen kann übertragen werden. Die Vorlage erarbeitet in MVG die Projektsteuerung – mit mindestens zwei zulässigen Optionen und gewichtetem Vergleich; entscheiden muss der Bauherr.
 
 ### Leitfragen
 - Bei welcher nicht delegierbaren Verantwortung aus der Gegenüberstellung sind Sie unsicher, wer sie in Ihrem Projekt tatsächlich ausübt?

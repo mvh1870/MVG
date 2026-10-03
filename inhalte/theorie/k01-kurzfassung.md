@@ -156,7 +156,7 @@ titel: Fünf Aussagen in Kürze
 titel: Projektsteuerung
 symbol: kompass
 ---
-Sie bearbeitet alle Vorgänge – Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Probleme, Änderungen – und bereitet jede erforderliche Entscheidung mit mindestens zwei zulässigen Optionen vor; Dringliches meldet sie vorab sofort. Die Entscheidung des Bauherrn ersetzt sie nicht.
+Sie bearbeitet alle Vorgänge – Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Probleme, Änderungen – und bereitet jede erforderliche Entscheidung mit mindestens zwei zulässigen Optionen vor; Dringliches meldet sie vorab sofort. Sie ersetzt die Entscheidung des Bauherrn nicht.
 :::
 
 ::: karte 2

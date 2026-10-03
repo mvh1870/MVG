@@ -257,6 +257,8 @@ a.glossar-ort:hover { text-decoration: underline; }
   .druck-absender, .druck-meta { margin: 0; font-size: 9pt; color: var(--tinte-2); }
   .druck-absender { display: flex; align-items: center; gap: 3mm; }
   .druck-absender .marke-logo { height: 8mm; color: var(--navy); }
+  /* r72: Teil und Nummer des Themas als kleine Zeile über dem Titel, in der Textfarbe des Teils */
+  .druck-kicker { margin: 3mm 0 0; font: var(--typo-kicker); font-size: 8.5pt; letter-spacing: var(--sperrung-kicker); text-transform: uppercase; color: var(--teil-text, var(--tinte-2)); }
   .druck-teil { margin-bottom: 6mm; }
   .druck-teil h2 { margin: 0 0 2mm; font: 700 13pt/1.25 var(--schrift-text); color: var(--navy); }
   .druck-bogen .druck-kapitel { break-before: page; }
@@ -297,7 +299,7 @@ a.glossar-ort:hover { text-decoration: underline; }
   /* Glossareinträge, Tabellenzeilen: Begriff nicht ohne Erklärung, Zeile nicht mitten im Wort geteilt */
   .druck-bogen :is(.glossar-eintrag, tr) { break-inside: avoid; }
   .druck-bogen dt { break-after: avoid; }
-  /* R68: der Druckkopf trägt den Titel – Kicker und zweiter Titel des Themas entfallen (ein h1 im Bogen) */
+  /* R68: der Druckkopf trägt den Titel, r72 darüber Teil und Nummer – Kicker und zweiter Titel des Themas entfallen (ein h1 im Bogen) */
   .druck-bogen .druck-kapitel .kapitel-kopf :is(.kapitel-kicker, .kapitel-titel) { display: none; }
   /* R68: aufgelöste Listen als Block – im Raster hielt Chromium Kopf und erste Etappe nicht zusammen (halbleere Seite) */
   .druck-bogen .lernwerkzeug.ist-aufgeloest .lw-aufgeloest-liste { display: block; }
@@ -307,6 +309,9 @@ a.glossar-ort:hover { text-decoration: underline; }
   .druck-bogen .querverweis-symbol { display: none; }
   /* R67: Abschnittsköpfe nie allein am Seitenende – als Block (an Flex-Kindern hält Chromium break-after nicht) */
   .druck-bogen .abschnitt-titel { display: block; break-after: avoid; break-inside: avoid; }
+  /* r72: der Abschnitt als Block – als Flex-Spalte schob Chromium ein Kind, das nicht mehr passte, mit dem ganzen Rest auf die
+     nächste Seite (Überblick S. 5 nur zu 12 % gefüllt); die Abstände trägt `.lern-abschnitt > * + *` (oben) */
+  .druck-bogen .lern-abschnitt { display: block; }
   /* R42: Chromium wertet im Druck die Media Queries bei ≈ 794 px aus, setzt aber 688 px – die schmale Absatzform (≤ 700 px)
      griff nicht, die Kennspalte blieb und schnitt wortgleiche Tabellen ab. Im Druck immer einspaltig, nichts rollt */
   .druck-bogen .absatz-block { overflow: visible; }
@@ -783,7 +788,8 @@ a.buch-zeile:hover .buch-titel { text-decoration: underline; text-underline-offs
   .druck-bogen .aufklapper { break-inside: avoid; }
   .druck-bogen .aufklapper-zeichen { display: none; }
   .druck-bogen .aufklapper-kopf { min-height: 0; break-after: avoid; }
-  /* Der Druckkopf trägt Titel und Teil: Bauplan und Illustration bleiben am Bildschirm, die Flächen bleiben hell */
+  /* Der Druckkopf trägt Titel, Teil und Nummer (r72: „Teil IV · 14“ über dem Titel): Bauplan und Illustration bleiben am
+     Bildschirm, die Flächen bleiben hell */
   .druck-bogen .kopf-band { display: none; }
   .druck-bogen .thema-kopf > .kapitel-einstieg { padding-inline: 0; }
   .druck-bogen figure.abbildung { padding: 3mm; border-radius: 3mm; box-shadow: none; }

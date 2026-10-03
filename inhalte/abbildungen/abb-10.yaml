@@ -3,12 +3,16 @@ quelle: bilder/image10.jpeg
 titel: Verknüpfungen zwischen Frühwarnung, Risiko, Entscheidung, Freigabe und Maßnahme
 alt: >-
   Legende „Lebenszyklus / ‚wird zu‘“: Risiko (wesentlich) → Entscheidungsregister (ausarbeiten) →
-  Entscheidungsvorlage (reif) → „Freigabe (LPH 0–9)“; Frühwarnung (wird zu, bestätigt) → Risiko; Problem
+  Entscheidungsvorlage (reif) → Freigabe (LPH 0–9, Freigabeentscheidung); Frühwarnung (wird zu, bestätigt) → Risiko; Problem
   (eskaliert), Änderung (erfordert) → Register; Vorlage (führt zu) → Änderung (beeinflusst) → CTC / Prognose;
   Vorlage (erzeugt), Freigabe (Auflagen) → Maßnahme. „Überwachung / Indikator“: „Schwellenwert löst
-  Frühwarnung aus“ → Frühwarnung, CTC; Risiko (Indicator) → Frühwarnung; Maßnahme (Risikominderung, Regelkreis schließt) →
+  Frühwarnung aus“ → Frühwarnung, CTC; Maßnahme (Risikominderung, Regelkreis schließt) →
   Risiko. „Bericht in den Managementbericht“: Freigabe → Managementbericht.
 angeglichen:
-  - { x: 1291, y: 343, b: 62, h: 23, text: (LPH 0–9), beleg: k13-t1, schrift: barlow, gewicht: 700, groesse: 16, ausrichtung: rechts }
-  - { x: 1232, y: 368, b: 122, h: 24, text: Freigabeentscheidung, beleg: k6.4.4-t1, schrift: barlow, gewicht: 500, groesse: 15, farbe: '#081114' }
+  - { x: 1291, y: 343, b: 62, h: 23, text: "", beleg: k13-t1 }
+  - { x: 1219, y: 364, b: 136, h: 28, text: LPH 0–9, beleg: k13-t1, schrift: barlow, gewicht: 600, groesse: 20 }
+  - { x: 1219, y: 390, b: 137, h: 23, text: Freigabeentscheidung, beleg: k6.4.4-t1, schrift: barlow, gewicht: 500, groesse: 17, farbe: '#081114' }
   - { x: 355, y: 553, b: 156, h: 30, text: Risikominderung, beleg: k6.4.4-t1, schrift: barlow, gewicht: 700, groesse: 24, ausrichtung: rechts }
+  - { x: 4, y: 236, b: 98, h: 52, text: "", beleg: k6.4.3-p2, hintergrund: "#f6f9fc" }
+  - { x: 40, y: 200, b: 22, h: 162, text: "", beleg: k6.4.3-p2, hintergrund: "#f6f9fc" }
+  - { x: 45, y: 194, b: 12, h: 6, text: "", beleg: k6.4.3-p2, hintergrund: "#e3e6eb" }

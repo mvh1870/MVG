@@ -182,7 +182,7 @@ symbol: person
 Gebraucht werden vor allem:
 
 - eine verbindliche verantwortliche Rolle auf Bauherrenseite,
-- Zugang zu den Kernunterlagen – Projektauftrag, Zielsystem, Rollen, Kosten- und Terminstand, Risiko- und Änderungsinformationen; im Standard der Bearbeitungsstand aller Vorgänge in der Software des Bauherrn,
+- Zugang zu den Kernunterlagen – Projektauftrag, Zielsystem, Rollen, Kosten- und Terminstand, Risiko- und Änderungsinformationen; dazu der Bearbeitungsstand aller Vorgänge in der Software des Bauherrn,
 - Gespräche mit Bauherren-Projektleitung, Auftraggeberlogik, [[PMO]], Projektsteuerung und Fachrollen,
 - Entscheidungen zu Zielprioritäten, Mandaten, Schwellen und Freigaben,
 - Teilnahme an Managementberichten, Pilotentscheidungen und Befähigungsmaßnahmen,

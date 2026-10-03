@@ -7,7 +7,8 @@ alt: >-
   Datenstand, Nachweis, Betriebshandbuch, Übergabe. Pfeile führen zu „Befähigung“ (Personen, steigende Balken)
   und „Regelbetrieb“ (Bildschirm, Diagramme). Gegenläufige Pfeile „Wiederkehrende Anwendungshilfe“ verbinden
   Regelbetrieb und Companion-Block. Von diesem führen gepunktete Pfeile zu fünf Plaketten: Bauherr entscheidet,
-  Freigabe bleibt, Rollenrechte, Nachweiskette, Prüfung-Takt.
+  Freigabe bleibt, Rollenrechte, Nachweiskette, Prüfrhythmus.
 angeglichen:
   - { x: 308, y: 480, b: 148, h: 28, text: Nachweis, beleg: k6.1-t1, schrift: barlow, gewicht: 500, groesse: 24, ausrichtung: mitte }
   - { x: 895, y: 520, b: 352, h: 34, text: Wiederkehrende Anwendungshilfe, beleg: k6.2-t1, schrift: barlow, gewicht: 700, groesse: 25, ausrichtung: mitte }
+  - { x: 1198, y: 680, b: 154, h: 34, text: Prüfrhythmus, beleg: k6.2-t1, schrift: barlow, gewicht: 700, groesse: 27, farbe: "#0d1114" }

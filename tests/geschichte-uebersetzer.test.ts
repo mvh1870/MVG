@@ -39,7 +39,7 @@ function rahmen(): Roh {
     mandat: { titel: 'Wer entscheidet was', zeilen: [{ wer: 'Sie', text: 'bis 100.000 Euro' }] },
     ende: {
       zeit: 'August', campus: { stufe: 8, jahreszeit: 'sommer', licht: 'morgen' }, einstieg: 'Morgens.',
-      szene: [zeile('klingel', 'Guten Morgen!'), zeile('grundstein', 'Gut.')], 'zeit-niedrig': 'Halle zu.', 'vertrauen-niedrig': zeile('grundstein', 'Früher reden.'),
+      szene: [zeile('klingel', 'Guten Morgen!'), zeile('grundstein', 'Gut.')], 'zeit-niedrig': 'Halle zu.', 'vertrauen-niedrig': [zeile('grundstein', 'Früher reden.')], 'nach-falle': [zeile('grundstein', 'Nicht immer gut.')],
     },
   };
 }
@@ -67,7 +67,7 @@ function kapitel2(): Roh {
     belege: ['v24:tlb-2'], einstieg: 'Einstieg', szene: [zeile('lot', 'Holz')], frage: 'Und?',
     antworten: [antwort('gut'), antwort('falle'), antwort('vertretbar')], gut: 'Gut.', dahinter: 'Dahinter.',
     mini: {
-      art: 'zuordnen', titel: 'Wer?', aufgabe: 'Zuordnen.',
+      art: 'zuordnen', titel: 'Wer?', aufgabe: 'Zuordnen.', bild: 'kaertchen',
       wahlen: [{ id: 'sie', titel: 'Sie', figur: 'sie' }, { id: 'bm', titel: 'Bürgermeisterin', figur: 'grundstein' }, { id: 'ps', titel: 'Projektsteuerin', falsch: 'Nie.' }],
       posten: [{ text: 'Eins', loesung: 'sie', erklaerung: 'E' }, { text: 'Zwei', loesung: 'bm', erklaerung: 'E' }, { text: 'Drei', loesung: 'bm', erklaerung: 'E' }],
     },
@@ -183,8 +183,35 @@ test('Bilder nur aus dem Bestand von src/grafik/figuren.ts; Figuren nur die fün
   assert.deepEqual(lauf(({ k2 }) => { k2.szene[0].figur = 'stadtrat'; }).fehler, [`${K2} szene Zeile 1: Figur „stadtrat“ unbekannt (grundstein, faden, schwung, klingel, lot)`]);
 });
 
-test('Ende: die Variante „Vertrauen niedrig“ ersetzt die Zeile einer Figur, die dort spricht', () => {
-  assert.deepEqual(lauf(({ r }) => { r.ende['vertrauen-niedrig'].figur = 'lot'; }).fehler, [`${R} ende.vertrauen-niedrig: ersetzt die Zeile einer Figur, die in der Szene des Endes spricht – Figur fehlt oder spricht dort nicht`]);
+test('Ende: die Ersatzzeilen „Vertrauen niedrig“ und „nach einer Falle“ ersetzen Zeilen von Figuren, die dort sprechen (L-239)', () => {
+  assert.deepEqual(lauf(({ r }) => { r.ende['vertrauen-niedrig'][0].figur = 'lot'; }).fehler, [`${R} ende.vertrauen-niedrig: ersetzt die Zeile einer Figur, die in der Szene des Endes spricht – „lot“ spricht dort nicht`]);
+  assert.deepEqual(lauf(({ r }) => { r.ende['nach-falle'].push(zeile('grundstein', 'Noch einmal.')); }).fehler, [`${R} ende.nach-falle: eine Figur hat zwei Ersatzzeilen`]);
+  assert.deepEqual(lauf(({ r }) => { delete r.ende['nach-falle']; }).fehler, [`${R} ende: Feld „nach-falle“ fehlt`]);
+  assert.deepEqual(lauf(({ r }) => { r.ende['nach-falle'] = zeile('grundstein', 'Einzeln.'); }).fehler, [`${R} ende.nach-falle: Liste von Ersatzzeilen { figur, text } erwartet`]);
+});
+
+test('Mini-Aufgabe: Pflichtbild für den Schritt (O-53), Bilder an Karten und Ablagen nur aus dem Bestand', () => {
+  assert.deepEqual(lauf(({ k2 }) => { delete k2.mini.bild; }).fehler, [`${K2} mini: Feld „bild“ fehlt`]);
+  assert.deepEqual(lauf(({ k2 }) => { k2.mini.posten[0].bild = 'einhorn'; }).fehler, [`${K2} mini posten 1: Bild „einhorn“ gibt es nicht (src/grafik/figuren.ts, GIMMICKS)`]);
+  assert.deepEqual(lauf(({ k2 }) => { k2.mini.wahlen[0].bild = 'einhorn'; }).fehler, [`${K2} mini wahlen 1: Bild „einhorn“ gibt es nicht (src/grafik/figuren.ts, GIMMICKS)`]);
+  assert.deepEqual(lauf(({ k2 }) => { k2.mini.posten[0].bild = 'mappe'; k2.mini.wahlen[0].bild = 'stempel'; }).fehler, []);
+});
+
+test('Kurze sichtbare Felder (Titel, Kriterien, Namen) laufen durch die Sichtbar-Probe', () => {
+  const titel = lauf(({ k1 }) => { k1.titel = 'Kapitel 1'; }).fehler;
+  assert.ok(titel.length > 0 && titel.every((f) => f.startsWith(`${K1}:`) && /Kapitel/u.test(f)), titel.join('\n'));
+  const krit = lauf(({ k1 }) => { k1.vergleich.kriterien[0]['im-satz'] = 'das Whitepaper'; }).fehler;
+  assert.ok(krit.length > 0 && krit.every((f) => /kriterien 1/u.test(f)), krit.join('\n'));
+  // Gegenprobe: ein harmloser Titel ist fehlerfrei
+  assert.deepEqual(lauf(({ k1 }) => { k1.titel = 'Der erste Schritt'; }).fehler, []);
+});
+
+test('Campus: Wetter optional und nur „sturm“', () => {
+  assert.deepEqual(lauf(({ k2 }) => { k2.campus.wetter = 'regen'; }).fehler, [`${K2} campus: Wetter „regen“ – erwartet sturm`]);
+  // Gegenprobe: „sturm“ ist erlaubt und kommt im Ergebnis an
+  const ok = lauf(({ k2 }) => { k2.campus.wetter = 'sturm'; });
+  assert.deepEqual(ok.fehler, []);
+  assert.equal(ok.erg.geschichte.kapitel[1].campus.wetter, 'sturm');
 });
 
 test('Campus: Stufe 0–8, bekannte Jahreszeit und bekanntes Licht', () => {
@@ -221,8 +248,6 @@ test('Kurzfassung kürzer (P17.5): „einstieg-kurz“ nur in Kapiteln der Kurzf
   // zu wenig bleibt stehen; kein Wahrheitswert
   assert.deepEqual(lauf(({ k1 }) => { k1.szene = [zeile('faden', 'Eins'), { ...zeile('lot', 'Zwei'), kurzfassung: false }]; }).fehler, [`${K1} szene: in der Kurzfassung blieben 1 Zeilen – mindestens zwei`]);
   assert.deepEqual(lauf(({ k1 }) => { k1.szene[0].kurzfassung = 'nein bitte'; }).fehler, [`${K1} szene Zeile 1: „kurzfassung“ muss ja oder nein sein`]);
-  // die Zeile, die „Vertrauen niedrig“ ersetzt, bleibt in der Kurzfassung; die Variante selbst kennt das Feld nicht
-  assert.deepEqual(lauf(({ r }) => { r.ende.szene = [zeile('klingel', 'Guten Morgen!'), zeile('faden', 'Alles da.'), { ...zeile('grundstein', 'Gut.'), kurzfassung: false }]; }).fehler,
-    [`${R} ende.vertrauen-niedrig: die Zeile, die diese Variante ersetzt, fehlt in der Kurzfassung (kurzfassung: nein)`]);
-  assert.deepEqual(lauf(({ r }) => { r.ende['vertrauen-niedrig'].kurzfassung = false; }).fehler, [`${R} ende.vertrauen-niedrig: unbekanntes Feld „kurzfassung“ (erlaubt: text, figur, zusatz)`]);
+  // eine Ersatzzeile übernimmt den Weg der ersetzten Zeile und kennt das Feld deshalb nicht
+  assert.deepEqual(lauf(({ r }) => { r.ende['vertrauen-niedrig'][0].kurzfassung = false; }).fehler, [`${R} ende.vertrauen-niedrig 1: unbekanntes Feld „kurzfassung“ (erlaubt: text, figur, zusatz)`]);
 });

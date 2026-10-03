@@ -14,10 +14,10 @@ auftakt:
     Unterwegs müssen Sie sich achtmal entscheiden. Ihre Antworten bewegen drei Balken: Geld, Zeit und Vertrauen. Am Ende sehen Sie, wie Ihr Projekt ausgegangen ist.
   vorstellung: "Diese fünf Menschen begleiten Sie:"
   los: Los geht's
-  kurz: Kurzfassung (etwa 10 Minuten)
+  kurz: Kurzfassung (etwa 11 Minuten)
 
 sie:
-  steckbrief: Sie leiten das Projekt für die Stadt. Sie pflegen keine Listen – Sie entscheiden, was in Ihrem Rahmen liegt, und bringen alles andere rechtzeitig zur Bürgermeisterin.
+  steckbrief: Sie leiten das Projekt für die Stadt als Bauherrn. Sie pflegen keine Listen – Sie entscheiden, was in Ihrem Rahmen liegt, und bringen alles andere rechtzeitig zur Bürgermeisterin.
 
 figuren:
   - id: grundstein
@@ -56,8 +56,8 @@ balken:
     weniger: weniger übrig
     bilanz:
       hoch: Die Reserve wurde dort eingesetzt, wo sie gebraucht wurde – jedes Mal von der Bürgermeisterin entschieden –, und ein guter Teil ist übrig.
-      mittel: Ein großer Teil der Reserve ist verbraucht; manches wurde teurer, weil es spät entschieden wurde.
-      niedrig: Die Reserve ist fast aufgebraucht – Eile, Umwege und eine halb eingerechnete Forderung haben sie aufgezehrt.
+      mittel: Ein großer Teil der Reserve ist verbraucht; manches wurde teurer als nötig.
+      niedrig: Die Reserve ist fast aufgebraucht; jeder Umweg hat sie ein Stück kleiner gemacht.
   zeit:
     titel: Zeit
     text: Wie viel Luft bis zum Schulstart im Sommer 2028 bleibt.
@@ -66,7 +66,7 @@ balken:
     weniger: weniger Luft
     bilanz:
       hoch: Der Puffer hat gehalten; das Projekt hatte bis zum Schluss Luft.
-      mittel: Der Puffer ist dünn geworden, aber er hat gereicht.
+      mittel: Der Puffer war am Ende dünn, aber er hat gereicht.
       niedrig: Der Puffer ist aufgebraucht; die Sporthalle öffnet erst nach den Herbstferien.
   vertrauen:
     titel: Vertrauen
@@ -75,24 +75,25 @@ balken:
     mehr: gestiegen
     weniger: gesunken
     bilanz:
-      hoch: Bürgermeisterin, Schule und Stadtrat haben sich auf Ihre Vorlagen verlassen können.
+      hoch: Bürgermeisterin, Schule und Stadtrat verlassen sich inzwischen auf Ihre Vorlagen.
       mittel: Man vertraut Ihnen – fragt aber gern noch einmal nach.
       niedrig: Die Bürgermeisterin lässt sich inzwischen jede Zahl zweimal zeigen.
 
-# Prüfreihenfolge fest in src/geschichte/engine.ts (bilanzTyp): Vertrauen niedrig · Zeit niedrig · ruhig · alle anderen
+# Prüfreihenfolge fest in src/geschichte/engine.ts (bilanzTyp): Vertrauen niedrig · Zeit niedrig · ruhig (nur ohne Falle, L-239) · alle anderen
+# Jeder Text hier muss auf jedem Weg stimmen, auf dem er erscheint – tests/geschichte-wege.test.ts rechnet alle Wege durch.
 bilanz:
   nicht-getragen:
     titel: Gebaut, aber nicht getragen
-    text: "Die Gebäude stehen, doch das Vertrauen hat gelitten: Zu oft hat die Bürgermeisterin Dinge zu spät oder auf Umwegen erfahren. Ein Projekt braucht nicht nur Holz und Beton, sondern Entscheidungen, auf die sich alle verlassen können."
+    text: "Die Gebäude stehen, doch das Vertrauen hat gelitten: Zu oft lief es anders, als die Bürgermeisterin es von Ihnen erwarten durfte. Ein Projekt braucht nicht nur Holz und Beton, sondern Entscheidungen, auf die sich alle verlassen können."
   letzte-meter:
     titel: Auf den letzten Metern
-    text: Die Schule hat geöffnet, aber der Puffer war am Ende aufgebraucht. Abwarten fühlt sich vorsichtig an – auf einer Baustelle kostet es fast immer Zeit.
+    text: Die Schule hat geöffnet, aber der Puffer war am Ende aufgebraucht. Wer eine Frage liegen lässt oder auf Umwegen löst, bezahlt auf der Baustelle fast immer mit Zeit.
   ruhig:
     titel: Ruhig ins Ziel
-    text: Die Kinder sind pünktlich eingezogen, und jede große Entscheidung lag dort, wo sie hingehört. Sie haben früh gefragt, vollständig vorgelegt und nichts versteckt – so bleibt ein Projekt steuerbar, auch wenn es stürmt.
+    text: Die Kinder sind pünktlich eingezogen, und jede große Entscheidung hat die Bürgermeisterin selbst getroffen – mit allem, was sie dafür wissen musste. So bleibt ein Projekt steuerbar, auch wenn es stürmt.
   umwege:
     titel: Geschafft – mit Umwegen
-    text: Der Campus steht, die Kinder sind da – aber manches hat länger gedauert oder mehr gekostet als nötig. Wo eine Frage später als möglich an die richtige Stelle kam, hat das Projekt dafür bezahlt.
+    text: Der Campus steht, die Kinder sind da – aber nicht jede Ihrer Antworten war der gerade Weg, und jeder Umweg hat etwas gekostet, ob Zeit, Geld oder Vertrauen.
 
 mandat:
   titel: Wer entscheidet was
@@ -106,14 +107,21 @@ ende:
   zeit: Ende August 2028
   campus: { stufe: 8, jahreszeit: sommer, licht: morgen }
   einstieg: |
-    Ende August 2028, halb acht am Morgen. Der erste Schulbus hält an der neuen Haltestelle, die Sonne steht noch tief über den Linden. Kinder mit Schultüten und viel zu großen Ranzen laufen über den Schulhof, die Eltern hinterher. Am gemeinsamen Haupteingang des Campus hängen Luftballons, und neben der Tür stehen die fünf, die diesen Campus zweieinhalb Jahre lang begleitet haben – und Sie.
+    Ende August 2028, halb acht am Morgen. Der erste Schulbus hält an der neuen Haltestelle, die Sonne steht noch tief über den Linden. Kinder mit Schultüten und viel zu großen Ranzen laufen über den Schulhof, die Eltern hinterher.
+
+    Am gemeinsamen Haupteingang des Campus hängen Luftballons, und neben der Tür stehen die fünf, die diesen Campus zweieinhalb Jahre lang begleitet haben – und Sie.
   einstieg-kurz: |
-    Ende August 2028, halb acht am Morgen. Der erste Schulbus hält an der neuen Haltestelle, Kinder mit Schultüten laufen über den Schulhof. Am Haupteingang stehen die fünf, die den Campus begleitet haben – und Sie.
+    Ende August 2028, der erste Schultag. Am Haupteingang stehen die fünf, die den Campus begleitet haben – und Sie.
   szene:
     - { figur: klingel, zusatz: läutet ihre Glocke, text: "Guten Morgen! Willkommen in eurer Schule!" }
     - { figur: lot, kurzfassung: false, text: "Steht alles drin, was wir hier gemacht haben. Hätte ich vor zwei Jahren nicht gedacht, dass ich das mal gut finde." }
     - { figur: schwung, kurzfassung: false, text: "Und beim nächsten Mal sag ich's gleich, wenn was klemmt. Ehrenwort." }
-    - { figur: faden, text: "Alles Offene ist übergeben, mit Namen und Termin. Verschwunden ist nichts." }
+    - { figur: faden, kurzfassung: false, text: "Alles Offene ist übergeben, mit Namen und Termin. Verschwunden ist nichts." }
     - { figur: grundstein, text: "Wissen Sie, was das Beste war? Ich wusste jedes Mal, worüber ich entscheide." }
   zeit-niedrig: Nur die Sporthalle bleibt noch zu – sie wird erst nach den Herbstferien fertig. Bis dahin turnen die Kinder in der alten Halle.
-  vertrauen-niedrig: { figur: grundstein, text: "Beim nächsten Projekt reden wir früher miteinander. Versprochen?" }
+  # Ersatzzeilen (L-239): Vertrauen niedrig geht vor; „nach-falle“ gilt, sobald auf dem Weg eine Falle gewählt ist
+  vertrauen-niedrig:
+    - { figur: lot, text: "Steht inzwischen alles drin. Hätten wir mal früher damit angefangen." }
+    - { figur: grundstein, text: "Beim nächsten Projekt reden wir früher miteinander. Versprochen?" }
+  nach-falle:
+    - { figur: grundstein, text: "Geschafft haben wir es. Aber nicht jedes Mal lief es so, wie es hätte laufen sollen – das machen wir beim nächsten Projekt besser." }

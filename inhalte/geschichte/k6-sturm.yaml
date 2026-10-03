@@ -5,9 +5,9 @@
 nr: 6
 titel: Ärger auf der Baustelle
 zeit: Februar 2027
-campus: { stufe: 4, jahreszeit: winter, licht: tag }
+campus: { stufe: 4, jahreszeit: winter, licht: tag, wetter: sturm }
 zusatz: geruest-sturm
-bruecke: Im Februar lockert ein Sturm das Gerüst an der Sporthalle. Der Bauleiter sperrt sofort, die Projektsteuerin meldet es und hält es am selben Tag fest – deshalb ist später klar, dass die Gerüstfirma zahlt.
+bruecke: Im Februar lockert ein Sturm das Gerüst. Der Bauleiter sperrt sofort, die Projektsteuerin hält es am selben Tag fest.
 thema: takt
 belege: [v24:hb-4, v24:hb-3, v24:hb-1.4, v24:hb-3.1, v24:hb-1.6, v24:tlb-5, v24:va-5.2, v24:hb-5]
 bild-szene: telefon
@@ -17,7 +17,7 @@ einstieg: |
   Februar 2027. Die Gesamtschule ist außen fast fertig, an der Sporthalle richten die Zimmerleute das Holztragwerk auf; rundum ragt ein Gerüst in den grauen Himmel. In der Nacht ist ein Sturm über Lindenhall gezogen. Auf der Baustelle liegen abgerissene Planen im Matsch, ein Bauzaunfeld ist umgekippt. Freitag, kurz nach drei, klingelt Ihr Telefon.
 
 szene:
-  - { figur: lot, text: "Das Gerüst an der Sporthalle hat seit heute Nacht zwei lose Anker. Wenn ich sperre, stehen die Zimmerleute bis Dienstag herum." }
+  - { figur: lot, text: "Das Gerüst an der Sporthalle hat seit heute Nacht zwei lose Anker. Wenn ich sperre, muss die Sicherheitskoordination ran – die wacht hier über den Arbeitsschutz –, und die Zimmerleute stehen bis Dienstag herum." }
   - { figur: schwung, text: "Zwei Tage Stillstand im Februar – das tut weh." }
   - { figur: lot, text: "Ich dachte, wir besprechen das am Montag in Ruhe. Die Projektsteuerin ist heute sowieso nicht auf der Baustelle." }
   - { figur: schwung, text: "Vielleicht reicht es ja, nur die eine Seite abzusperren." }
@@ -27,19 +27,23 @@ frage: Draußen pfeift noch der Wind, und der Bauleiter wartet am Telefon. Was s
 
 antworten:
   - wertung: gut
-    text: Sperren Sie sofort und holen Sie die Sicherheitskoordination. Ich sage gleich der Projektsteuerin Bescheid – sie meldet es und hält es noch heute fest.
+    text: Sperren Sie sofort, holen Sie die Sicherheitskoordination. Ich rufe die Projektsteuerin an – sie meldet und hält es heute fest.
     balken: { geld: 0, zeit: -1, vertrauen: 1 }
     bild: notizzettel
     folge: |
-      Um halb vier ist der Bereich abgesperrt, die Sicherheitskoordination ist vor Ort. Clara Faden meldet den Schaden über den vereinbarten Weg, sagt der Bürgermeisterin in zwei Sätzen Bescheid und legt noch am Abend einen Eintrag an: was passiert ist, wann, wer gesperrt hat, mit Fotos. Am Dienstag sind die Anker erneuert, und weil der Eintrag genau zeigt, was war, übernimmt die Gerüstfirma die Kosten. Theo Lot brummt: „Ganz schön praktisch, so ein Eintrag.“
+      Um halb vier ist der Bereich abgesperrt, die Sicherheitskoordination ist vor Ort. Clara Faden meldet den Schaden über den vereinbarten Weg, sagt der Bürgermeisterin in zwei Sätzen Bescheid und legt noch am Abend einen Eintrag an: was passiert ist, wann, wer gesperrt hat, mit Fotos.
+
+      Am Dienstag sind die Anker erneuert, und weil der Eintrag genau zeigt, was war, übernimmt die Gerüstfirma die Kosten. Theo Lot brummt: „Ganz schön praktisch, so ein Eintrag.“
   - wertung: vertretbar
     text: Sperren Sie sofort. Ich schreibe der Projektsteuerin kurz, was los ist – den Rest klären wir am Montag.
     balken: { geld: 0, zeit: -1, vertrauen: 0 }
     bild: kalender
     folge: |
-      Gesperrt wird sofort, niemand kommt zu Schaden. Clara Faden liest Ihre Nachricht am Abend, meldet den Schaden und legt noch am selben Tag den Eintrag an. Aber vor Ort hat niemand Uhrzeit und Fotos festgehalten, und die Sicherheitskoordination war nicht da – so bestreitet die Gerüstfirma, dass der Sturm schuld ist. Nach einer Woche ist geklärt, wer zahlt. Theo Lot murmelt: „Hätten wir's mal gleich aufgeschrieben.“
+      Gesperrt wird sofort, niemand kommt zu Schaden. Clara Faden liest Ihre Nachricht am Abend, meldet den Schaden und legt noch am selben Tag den Eintrag an.
+
+      Aber vor Ort hat niemand Uhrzeit und Fotos festgehalten, und die Sicherheitskoordination war nicht da – so bestreitet die Gerüstfirma, dass der Sturm schuld ist. Nach einer Woche ist geklärt, wer zahlt. Theo Lot murmelt: „Hätten wir's mal gleich aufgeschrieben.“
   - wertung: falle
-    text: Arbeiten Sie an der anderen Seite weiter, bis der Gerüstbauer am Montag kommt.
+    text: Sperren Sie nur die Seite mit den losen Ankern. An der anderen wird weitergearbeitet, bis der Gerüstbauer kommt.
     balken: { geld: -1, zeit: -2, vertrauen: -2 }
     bild: warnschild
     folge: |
@@ -52,14 +56,15 @@ mini:
   art: reihenfolge
   titel: Was kommt wann?
   aufgabe: Bringen Sie die Schritte nach dem Sturm in die richtige Reihenfolge.
+  bild: geruest-sturm
   # in der richtigen Reihenfolge; die Seite zeigt sie fest gemischt (src/geschichte/engine.ts, gemischt)
   posten:
-    - { text: "Der Bauleiter sperrt den Bereich ab.", erklaerung: "Schutz zuerst – vor jeder Besprechung." }
-    - { text: "Sicherheitskoordination und Projektsteuerin werden informiert; die Projektsteuerin meldet über den vereinbarten Weg.", erklaerung: "Dringliches wird sofort gemeldet, nicht erst in der nächsten Sitzung." }
-    - { text: "Noch am selben Tag entsteht ein Eintrag mit Uhrzeit, Fotos und Zuständigen.", erklaerung: "Festgehalten wird, sobald die erste Reaktion gesichert ist – am selben Arbeitstag." }
-    - { text: "Die Fachleute klären die Ursache.", erklaerung: "Erst verstehen, dann reparieren." }
-    - { text: "Die Lösung wird vorbereitet; braucht sie Geld oder eine Änderung, entscheidet die Stelle, die es darf.", erklaerung: "Auch in Eile gilt: Dringlichkeit ersetzt keine Entscheidung der Stelle, die es darf." }
-    - { text: "Erst wenn die Reparatur nachweislich wirkt, wird der Eintrag geschlossen.", erklaerung: "Umgesetzt und wirksam sind nicht dasselbe." }
+    - { text: "Der Bauleiter sperrt den Bereich ab.", bild: absperrband, erklaerung: "Schutz zuerst – vor jeder Besprechung." }
+    - { text: "Sicherheitskoordination und Projektsteuerin werden informiert; die Projektsteuerin meldet über den vereinbarten Weg.", bild: telefon, erklaerung: "Dringliches wird sofort gemeldet, nicht erst in der nächsten Sitzung." }
+    - { text: "Noch am selben Tag entsteht ein Eintrag mit Uhrzeit, Fotos und Zuständigen.", bild: notizzettel, erklaerung: "Festgehalten wird, sobald die erste Reaktion gesichert ist – am selben Arbeitstag." }
+    - { text: "Die Fachleute klären die Ursache.", bild: lupe, erklaerung: "Erst verstehen, dann reparieren." }
+    - { text: "Die Lösung wird vorbereitet; braucht sie Geld oder eine Änderung, entscheidet die Stelle, die es darf.", bild: kaertchen, erklaerung: "Auch in Eile gilt: Dringlichkeit ersetzt keine Entscheidung der Stelle, die es darf." }
+    - { text: "Erst wenn die Reparatur nachweislich wirkt, wird der Eintrag geschlossen.", bild: stempel, erklaerung: "Umgesetzt und wirksam sind nicht dasselbe." }
 
 dahinter: "Neben dem festen Takt – jede Woche alles Offene prüfen, einmal im Monat ein kurzer Termin und eine Seite Bericht – gilt eine Regel immer: Dringliches wird sofort gemeldet und noch am selben Tag festgehalten."
 

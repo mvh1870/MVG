@@ -8,10 +8,10 @@
  * Die Texte stehen in inhalte/werkzeuge.yaml; die Beispiele des Rechners sind die Vorlagen der Story.
  */
 
-import type { Vergleich, VergleichOption } from '../../geschichte/typen.ts';
+import type { Kapitel, Vergleich, VergleichOption } from '../../geschichte/typen.ts';
 import { abgestimmteGewichte } from '../../geschichte/engine.ts';
 import { GEWICHT_MAX, GEWICHT_MIN, kipppunkte, rangfolge, type Gewichte } from '../../geschichte/mcda.ts';
-import { gimmick, type GimmickName } from '../../grafik/figuren.ts';
+import { FIGUR_NAME, gimmick, type GimmickName } from '../../grafik/figuren.ts';
 import type { Akzent } from '../../stil/akzente.ts';
 import type { OeffentlicheInhalte, Werkzeuge } from '../../inhalte/typen.ts';
 import { ersetze, h, vonHtml } from '../h.ts';
@@ -50,8 +50,21 @@ const E = W.werkzeuge;
 interface Rechner { gewichte: Gewichte; punkte: Record<string, Record<string, number>> }
 
 /** Beispiel des Rechners: der Vergleich aus der Story (drei Wege, vier Gesichtspunkte). */
+function vergleichsKapitel(o: ExploreOptionen): Kapitel | null {
+  return o.inhalte.geschichte?.kapitel.find((k) => k.vergleich !== null) ?? null;
+}
+
 function beispiel(o: ExploreOptionen): Vergleich | null {
-  return o.inhalte.geschichte?.kapitel.find((k) => k.vergleich !== null)?.vergleich ?? null;
+  return vergleichsKapitel(o)?.vergleich ?? null;
+}
+
+/** r72: die Lage aus dem Kapitel des Vergleichs (erste Szenenzeile, wörtlich) über der Tabelle – keine eigene Aussage */
+function lage(o: ExploreOptionen): HTMLElement | null {
+  const k = vergleichsKapitel(o);
+  const z = k?.szene[0];
+  if (k === undefined || k === null || z === undefined) return null;
+  const wer = z.figur === null ? '' : `${FIGUR_NAME[z.figur].name} · `;
+  return h('p', { class: 'ex-frage', 'data-pruef': 'ex-lage' }, '„', inhaltInline(z.html), '“ ', h('small', null, `${wer}${k.zeit}`));
 }
 
 function startRechner(v: Vergleich): Rechner {
@@ -117,6 +130,7 @@ function mcda(o: ExploreOptionen, w: Werkzeuge): HTMLElement {
   zeichne();
   return h('div', { class: 'ex-werkzeug', 'data-werkzeug': 'mcda' },
     h('div', { class: 'gs-text' }, inhalt(w.mcda.html)),
+    lage(o),
     h('div', { class: 'ex-leiste' }, zuruecksetzen),
     ort,
     h('div', { class: 'ex-hinweis' }, sym('info'), h('div', null, inhalt(w.mcda.hinweisHtml))),

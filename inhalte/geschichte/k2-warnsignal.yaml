@@ -4,14 +4,16 @@ nr: 2
 titel: Ein erstes Warnsignal
 zeit: März 2026
 campus: { stufe: 0, jahreszeit: fruehling, licht: tag }
-bruecke: Im März erwähnt der Architekt beiläufig, Holzelemente könnten knapp werden; die Projektsteuerin hält es als Frühwarnung mit Prüffrage, Namen und Termin fest.
+bruecke: "Im März erwähnt der Architekt beiläufig, Holz könnte knapp werden. Die Projektsteuerin hält es als Frühwarnung fest: was zu prüfen ist (die Prüffrage), wer nachfragt, bis wann."
 thema: arbeitsweise
 belege: [v24:hb-1, v24:hb-1.1, v24:hb-1.2, v24:hb-1.3, v24:hb-1.4, v24:hb-1.5, v24:hb-1.6, v24:hb-2, v24:hb-4, v24:tlb-2, v24:tlb-3]
 bild-szene: holzstapel
 bild-frage: notizzettel
 
 einstieg: |
-  März 2026. Der Schnee ist weg, der Bauzaun steht, und an der Baustraße blühen die ersten Krokusse. Im Büro des Architekten wird jetzt die Ausführung geplant – Wand für Wand, Holzbauteil für Holzbauteil. Clara Faden geht jede Woche alle offenen Vorgänge durch: Aufgaben, Termine, Fragen ohne Antwort. Heute sitzt sie mit dem Architekten und dem Bauleiter im Container, um die nächsten Wochen abzustimmen.
+  März 2026. Der Schnee ist weg, der Bauzaun steht, und an der Baustraße blühen die ersten Krokusse. Im Büro des Architekten wird jetzt die Ausführung geplant – Wand für Wand, Holzbauteil für Holzbauteil.
+
+  Clara Faden geht jede Woche alle offenen Vorgänge durch: Aufgaben, Termine, Fragen ohne Antwort. Heute sitzt sie mit dem Architekten und dem Bauleiter im Container, um die nächsten Wochen abzustimmen.
 
 szene:
   - { figur: schwung, text: "Übrigens, nur am Rande: Ein Holzbauer hat erzählt, dass die Lieferzeiten für Holzelemente gerade länger werden." }
@@ -19,13 +21,13 @@ szene:
   - { figur: schwung, text: "Weiß ich nicht genau. Das war nur ein Gespräch auf einer Messe. Das pendelt sich ein, glauben Sie mir." }
   - { figur: lot, text: "Holz kommt, wenn es kommt. Ich hab noch keinen Bau erlebt, wo's nicht irgendwann kam." }
   - { figur: lot, text: "Und überhaupt: Ich bau, ich schreib nicht. Listen sind Ihr Job." }
-  - { figur: faden, text: "Kann sein. Aber wenn nicht, sollten wir es früh wissen." }
+  - { figur: faden, text: "Kann sein. Aber wenn das Holz diesmal nicht kommt, sollten wir es früh wissen." }
 
 frage: Noch ist nichts passiert, und niemand weiß, ob überhaupt etwas passieren wird. Alle schauen Sie an. Was sagen Sie?
 
 antworten:
   - wertung: gut
-    text: "Halten wir das als Frühwarnung fest: woher der Hinweis kommt, was zu prüfen ist und wer bis wann bei den Herstellern nachfragt."
+    text: "Halten wir es als Frühwarnung fest: was zu prüfen ist und wer bis wann nachfragt."
     balken: { geld: 0, zeit: 1, vertrauen: 1 }
     bild: kalender
     folge: |
@@ -41,7 +43,9 @@ antworten:
     balken: { geld: 0, zeit: 1, vertrauen: 0 }
     bild: lupe
     folge: |
-      Clara Faden trägt ein Risiko ein – aber ohne Zahl: „Eine Zahl ohne Grundlage schreibe ich nicht hin.“ Daneben steht: Bewertung vorläufig, Antwort der Hersteller abwarten. Weil der Eintrag schon als Risiko im Bericht steht, fragt die Kämmerei nach, bevor jemand weiß, ob da überhaupt etwas ist. Immerhin fragt der Architekt bis Ende des Monats bei den Herstellern nach.
+      Clara Faden trägt ein Risiko ein – aber ohne Zahl: „Eine Zahl ohne Grundlage schreibe ich nicht hin.“ Daneben steht: Bewertung vorläufig, Antwort der Hersteller abwarten.
+
+      Weil der Eintrag schon als Risiko im Bericht steht, fragt die Kämmerei – die Finanzabteilung der Stadt – nach, bevor jemand weiß, ob da überhaupt etwas ist. Immerhin fragt der Architekt bis Ende des Monats bei den Herstellern nach.
 
 gut: |
   Ein unklarer Hinweis wird gleich festgehalten, spätestens bei der nächsten Wochendurchsicht – mit seiner Herkunft, einer klaren Prüffrage, einem Namen und einem Termin. Bewertet wird erst, wenn die Antwort da ist; bis dahin bleibt er offen und wird jede Woche angeschaut.
@@ -50,6 +54,7 @@ mini:
   art: zuordnen
   titel: Was ist was?
   aufgabe: "Auf einer Baustelle passiert vieles gleichzeitig. Ordnen Sie jedem Satz zu, was er ist: Frühwarnung, Risiko, Problem, Änderung, Maßnahme oder Aufgabe."
+  bild: notizzettel
   wahlen:
     - { id: fruehwarnung, titel: Frühwarnung }
     - { id: risiko, titel: Risiko }
@@ -58,12 +63,12 @@ mini:
     - { id: massnahme, titel: Maßnahme }
     - { id: aufgabe, titel: Aufgabe }
   posten:
-    - { text: "Ein Hersteller erwähnt am Telefon, dass Holz knapp werden könnte.", loesung: fruehwarnung, erklaerung: "Ein Hinweis, der noch nicht geklärt ist. Erst einmal wird geprüft, was dran ist." }
-    - { text: "Drei Hersteller bestätigen ein halbes Jahr Lieferzeit. Ob der Holzbau deshalb später beginnt, ist noch offen.", loesung: risiko, erklaerung: "Etwas Nachteiliges kann eintreten, ist aber noch nicht passiert. Das wird bewertet." }
-    - { text: "Nach dem Starkregen steht die Baugrube unter Wasser.", loesung: problem, erklaerung: "Das ist schon passiert. Jetzt geht es um die Folgen und die Lösung, nicht mehr um die Wahrscheinlichkeit." }
-    - { text: "Die Schule wünscht sich eine größere Mensa.", loesung: aenderung, erklaerung: "Etwas, das bisher gilt, soll bewusst anders werden. Das braucht eine Entscheidung." }
+    - { text: "Ein Hersteller erwähnt am Telefon, dass Holz knapp werden könnte.", bild: telefon, loesung: fruehwarnung, erklaerung: "Ein Hinweis, der noch nicht geklärt ist. Erst einmal wird geprüft, was dran ist." }
+    - { text: "Drei Hersteller bestätigen ein halbes Jahr Lieferzeit. Ob der Holzbau deshalb später beginnt, ist noch offen.", bild: lieferwagen, loesung: risiko, erklaerung: "Etwas Nachteiliges kann eintreten, ist aber noch nicht passiert. Das wird bewertet." }
+    - { text: "Nach dem Starkregen steht die Baugrube unter Wasser.", bild: warnschild, loesung: problem, erklaerung: "Das ist schon passiert. Jetzt geht es um die Folgen und die Lösung, nicht mehr um die Wahrscheinlichkeit." }
+    - { text: "Die Schule wünscht sich eine größere Mensa.", bild: mensateller, loesung: aenderung, erklaerung: "Etwas, das bisher gilt, soll bewusst anders werden. Das braucht eine Entscheidung." }
     - { text: "Eine Pumpe wird aufgestellt, damit die Baugrube wieder trocken wird.", loesung: massnahme, erklaerung: "Eine gezielte Handlung, die einen Zustand verbessert. Ob sie wirkt, wird nachgeprüft." }
-    - { text: "Der Architekt schätzt bis Freitag die Kosten für den Fahrradkeller.", loesung: aufgabe, erklaerung: "Eine geplante Arbeit mit Ergebnis, Namen und Termin." }
+    - { text: "Der Architekt schätzt bis Freitag die Kosten für den Fahrradkeller.", bild: kostenzettel, loesung: aufgabe, erklaerung: "Eine geplante Arbeit mit Ergebnis, Namen und Termin." }
 
 dahinter: Nicht jeder Hinweis wird zum Risiko – aber jeder wird geklärt, bis feststeht, ob daraus ein Risiko, ein Problem oder eine Aufgabe wird oder ob er begründet geschlossen werden kann.
 

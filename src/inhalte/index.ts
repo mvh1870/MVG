@@ -29,7 +29,7 @@ export const inhalte: OeffentlicheInhalte = {
   werkzeuge: alle.werkzeuge ?? null,
 };
 
-/** Nur für die Regie: Notiz und Leitfragen je Story-Station (`s3`). */
+/** Nur für die Regie: Notiz und Leitfragen je Story-Kapitel (`k3`). */
 export function regieGeschichte(id: string): GeschichteRegie | null {
   return alle.geschichteRegie?.[id] ?? null;
 }

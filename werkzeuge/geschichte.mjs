@@ -75,12 +75,14 @@ export function baueGeschichte(c, dateien, themen = null) {
   };
   const klar = (/** @type {unknown} */ t, /** @type {string} */ ort) => sicht(t, ort).trim();
   const campus = (/** @type {any} */ x, /** @type {string} */ ort) => {
-    const o = form(x, ['stufe', 'jahreszeit', 'licht'], [], ort);
+    const o = form(x, ['stufe', 'jahreszeit', 'licht'], ['wetter'], ort);
     const stufe = Number(o.stufe);
     if (!Number.isInteger(stufe) || stufe < 0 || stufe > 8) c.fehler(ort, `Campus-Stufe „${text(o.stufe)}“ – erwartet 0–8`);
     if (!JAHRESZEITEN.includes(o.jahreszeit)) c.fehler(ort, `Jahreszeit „${text(o.jahreszeit)}“ – erwartet ${JAHRESZEITEN.join(', ')}`);
     if (!LICHTER.includes(o.licht)) c.fehler(ort, `Licht „${text(o.licht)}“ – erwartet ${LICHTER.join(', ')}`);
-    return { stufe: Number.isInteger(stufe) ? stufe : 0, jahreszeit: text(o.jahreszeit), licht: text(o.licht) };
+    // R72: besonderes Wetter (heute nur „sturm“: grauer Himmel, Böen, Planen) – ohne Angabe gilt die Jahreszeit
+    if (o.wetter !== undefined && o.wetter !== 'sturm') c.fehler(ort, `Wetter „${text(o.wetter)}“ – erwartet sturm`);
+    return { stufe: Number.isInteger(stufe) ? stufe : 0, jahreszeit: text(o.jahreszeit), licht: text(o.licht), ...(o.wetter === 'sturm' ? { wetter: 'sturm' } : {}) };
   };
   const kennung = (/** @type {unknown} */ x, /** @type {string} */ ort, /** @type {string} */ was) => {
     if (x === undefined || x === null) return null;
@@ -170,7 +172,7 @@ export function baueGeschichte(c, dateien, themen = null) {
     }),
   };
   if (mandat.zeilen.length === 0) c.fehler(`${rel} mandat`, 'keine Zeilen');
-  const en = form(r.ende ?? {}, ['zeit', 'campus', 'einstieg', 'szene', 'zeit-niedrig', 'vertrauen-niedrig'], ['einstieg-kurz'], `${rel} ende`);
+  const en = form(r.ende ?? {}, ['zeit', 'campus', 'einstieg', 'szene', 'zeit-niedrig', 'vertrauen-niedrig', 'nach-falle'], ['einstieg-kurz'], `${rel} ende`);
   const endeSzene = szene(en.szene, `${rel} ende.szene`);
   const ende = {
     zeit: klar(en.zeit, `${rel} ende`),
@@ -179,11 +181,22 @@ export function baueGeschichte(c, dateien, themen = null) {
     einstiegKurzHtml: kuerzung(en, endeSzene, true, `${rel} ende`),
     szene: endeSzene,
     zeitNiedrigHtml: html(en['zeit-niedrig'], `${rel} ende.zeit-niedrig`),
-    vertrauenNiedrig: zeile(en['vertrauen-niedrig'] ?? {}, `${rel} ende.vertrauen-niedrig`),
+    vertrauenNiedrig: ersatz(en['vertrauen-niedrig'], `${rel} ende.vertrauen-niedrig`),
+    nachFalle: ersatz(en['nach-falle'], `${rel} ende.nach-falle`),
   };
-  const vn = ende.vertrauenNiedrig.figur;
-  if (vn === null || !ende.szene.some((/** @type {any} */ z) => z.figur === vn)) c.fehler(`${rel} ende.vertrauen-niedrig`, 'ersetzt die Zeile einer Figur, die in der Szene des Endes spricht – Figur fehlt oder spricht dort nicht');
-  else if (!ende.szene.some((/** @type {any} */ z) => z.figur === vn && z.kurzfassung)) c.fehler(`${rel} ende.vertrauen-niedrig`, 'die Zeile, die diese Variante ersetzt, fehlt in der Kurzfassung (kurzfassung: nein)');
+  /**
+   * Ersatzzeilen des Endes (L-239): je Zeile die Figur, deren Zeile sie ersetzt – die Figur spricht in der Szene des Endes,
+   * jede höchstens einmal; die Ersatzzeile steht auf denselben Wegen wie die ersetzte (ganze Geschichte bzw. Kurzfassung).
+   */
+  function ersatz(/** @type {unknown} */ roh, /** @type {string} */ ort) {
+    if (roh === undefined) return []; // fehlt das Feld, meldet es schon form
+    if (!Array.isArray(roh) || roh.length === 0) { c.fehler(ort, 'Liste von Ersatzzeilen { figur, text } erwartet'); return []; }
+    const liste = roh.map((z, i) => zeile(z, `${ort} ${i + 1}`));
+    const figuren = liste.map((z) => z.figur);
+    if (new Set(figuren).size !== figuren.length) c.fehler(ort, 'eine Figur hat zwei Ersatzzeilen');
+    for (const f of figuren) if (f === null || !endeSzene.some((/** @type {any} */ z) => z.figur === f)) c.fehler(ort, `ersetzt die Zeile einer Figur, die in der Szene des Endes spricht – „${f ?? 'ohne Figur'}“ spricht dort nicht`);
+    return liste;
+  }
 
   /* ------------------------------------------------------------- Kapitel -- */
   const roh = dateien.filter((d) => KAPITEL_DATEI.test(d.rel)).map((d) => ({ d, y: lies(d), dateiNr: Number(KAPITEL_DATEI.exec(d.rel)?.[1]) }))
@@ -272,27 +285,28 @@ export function baueGeschichte(c, dateien, themen = null) {
 
   /** Mini-Aufgabe */
   function mini(/** @type {any} */ m, /** @type {string} */ ort) {
-    const o = form(m, ['art', 'titel', 'aufgabe', 'posten'], ['wahlen'], ort);
+    const o = form(m, ['art', 'titel', 'aufgabe', 'bild', 'posten'], ['wahlen'], ort);
     const art = text(o.art);
     if (art !== 'zuordnen' && art !== 'reihenfolge') c.fehler(ort, `Art „${art}“ – erwartet zuordnen oder reihenfolge`);
     const wahlen = (Array.isArray(o.wahlen) ? o.wahlen : []).map((/** @type {any} */ w, /** @type {number} */ i) => {
       const wo = `${ort} wahlen ${i + 1}`;
-      const x = form(w, ['id', 'titel'], ['figur', 'falsch'], wo);
+      const x = form(w, ['id', 'titel'], ['figur', 'falsch', 'bild'], wo);
       if (x.figur !== undefined && x.figur !== 'sie' && !FIGUREN.includes(x.figur)) c.fehler(wo, `Figur „${text(x.figur)}“ unbekannt`);
-      return { id: kennung(x.id, wo, 'Wahl') ?? '', titel: klar(x.titel, wo), figur: x.figur === undefined ? null : text(x.figur), falschHtml: x.falsch === undefined ? null : inline(x.falsch, wo) };
+      return { id: kennung(x.id, wo, 'Wahl') ?? '', titel: klar(x.titel, wo), figur: x.figur === undefined ? null : text(x.figur), falschHtml: x.falsch === undefined ? null : inline(x.falsch, wo), bild: bild(x.bild, wo) };
     });
     if (art === 'zuordnen' && wahlen.length < 2) c.fehler(ort, 'zuordnen braucht mindestens zwei Wahlen');
     if (art === 'reihenfolge' && o.wahlen !== undefined) c.fehler(ort, 'eine Reihenfolge hat keine Wahlen');
     if (new Set(wahlen.map((/** @type {any} */ w) => w.id)).size !== wahlen.length) c.fehler(ort, 'Wahl doppelt');
     const posten = (Array.isArray(o.posten) ? o.posten : []).map((/** @type {any} */ p, /** @type {number} */ i) => {
       const po = `${ort} posten ${i + 1}`;
-      const x = form(p, art === 'zuordnen' ? ['text', 'loesung', 'erklaerung'] : ['text', 'erklaerung'], [], po);
+      const x = form(p, art === 'zuordnen' ? ['text', 'loesung', 'erklaerung'] : ['text', 'erklaerung'], ['bild'], po);
       if (art === 'zuordnen' && !wahlen.some((/** @type {any} */ w) => w.id === text(x.loesung))) c.fehler(po, `Lösung „${text(x.loesung)}“ ist keine der Wahlen`);
-      return { html: inline(x.text, po), loesung: art === 'zuordnen' ? text(x.loesung) : '', erklaerungHtml: inline(x.erklaerung, po) };
+      return { html: inline(x.text, po), loesung: art === 'zuordnen' ? text(x.loesung) : '', erklaerungHtml: inline(x.erklaerung, po), bild: bild(x.bild, po) };
     });
     if (posten.length < 3) c.fehler(ort, 'mindestens drei Posten');
     if (art === 'zuordnen') for (const w of wahlen) if (w.falschHtml !== null && posten.some((/** @type {any} */ p) => p.loesung === w.id)) c.fehler(ort, `Wahl „${w.id}“ hat eine feste Rückmeldung „falsch“, ist aber bei einem Posten richtig`);
-    return { art, titel: klar(o.titel, ort), aufgabeHtml: inline(o.aufgabe, ort), wahlen, posten };
+    // O-53: auch der Schritt der Mini-Aufgabe zeigt eine Grafik – „bild“ ist Pflichtfeld (form meldet, wenn es fehlt)
+    return { art, titel: klar(o.titel, ort), aufgabeHtml: inline(o.aufgabe, ort), bild: bild(o.bild, ort) ?? '', wahlen, posten };
   }
 
   /** Gewichteter Vergleich (nur ein Kapitel) */
@@ -300,9 +314,10 @@ export function baueGeschichte(c, dateien, themen = null) {
     const o = form(v, ['einleitung', 'kriterien', 'optionen', 'saetze', 'empfehlung', 'wer'], [], ort);
     const kriterien = (Array.isArray(o.kriterien) ? o.kriterien : []).map((/** @type {any} */ k, /** @type {number} */ i) => {
       const ko = `${ort} kriterien ${i + 1}`;
-      const x = form(k, ['id', 'titel', 'gewicht'], [], ko);
+      const x = form(k, ['id', 'titel', 'gewicht'], ['im-satz'], ko);
       if (!GEWICHTE.includes(x.gewicht)) c.fehler(ko, `Gewicht „${text(x.gewicht)}“ – erwartet 5 (sehr wichtig), 3 (wichtig) oder 1 (weniger wichtig)`);
-      return { id: kennung(x.id, ko, 'Kriterium') ?? '', titel: klar(x.titel, ko), gewicht: GEWICHTE.includes(x.gewicht) ? x.gewicht : 3 };
+      // „im-satz“: wie der Gesichtspunkt mitten im Satz heißt („der Schulstart“), für die Kipppunkt-Sätze
+      return { id: kennung(x.id, ko, 'Kriterium') ?? '', titel: klar(x.titel, ko), imSatz: x['im-satz'] === undefined ? klar(x.titel, ko) : klar(x['im-satz'], ko), gewicht: GEWICHTE.includes(x.gewicht) ? x.gewicht : 3 };
     });
     if (kriterien.length < 2) c.fehler(ort, 'mindestens zwei Kriterien');
     const kids = kriterien.map((/** @type {any} */ k) => k.id);

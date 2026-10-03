@@ -2,10 +2,15 @@ id: abb-13
 quelle: bilder/image13.jpeg
 titel: Sequenziertes Vorgehen von der Einrichtung bis zum Regelbetrieb
 alt: >-
-  Sechs Spalten mit Pfeilen: „Setup“ (verantwortliche Rolle, Umfang klären, Datenzugang, Beteiligte), „Diagnose“
-  (Gap-Map, Bewertungsmatrix, Entscheidungsliste), „Design“ (Zielsystem, Mandatsmodell, Freigabe-Set,
-  Entscheidungs-IDs, Datenstandslogik), „Pilot“ (echte Entscheidungen, Kalibrierung, Prüfung), „Befähigung“
-  (Rollen, Training, Routinen), „Übergabe“ (Betriebshandbuch, Prüfung-Takt, Betriebsstart). Pfeil und
-  gestrichelte Linie führen zu „Regelbetrieb“ (Abnahmefähig, Betriebsstart). Unten eine Zeitleiste: 0-30 Tage
-  Sichtbarkeit, 31-60 Tage Mindestmodell, 61-90 Tage Anwendung.
-angeglichen: []
+  Sechs Spalten mit Pfeilen: „Einrichtung“ (verantwortliche Rolle, Umfang klären, Datenzugang, Beteiligte),
+  „Diagnose“ (Governance-Lücken, Bewertungsmatrix, Entscheidungsliste), „Konzeption“ (Zielsystem, Mandatsmodell,
+  Freigabe-Set, Entscheidungs-IDs, Datenstandslogik), „Pilotierung“ (echte Entscheidungen, Kalibrierung,
+  Prüfung), „Befähigung“ (Rollen, Training, Routinen), „Übergabe“ (Betriebshandbuch, Prüfrhythmus,
+  Betriebsstart). Pfeil und gestrichelte Linie führen zu „Regelbetrieb“ (Abnahmefähig, Betriebsstart).
+angeglichen:
+  - { x: 38, y: 42, b: 166, h: 38, text: Einrichtung, beleg: k8.1-t1, schrift: barlow, gewicht: 700, groesse: 29, ausrichtung: mitte, farbe: "#f2fbfa" }
+  - { x: 425, y: 42, b: 190, h: 38, text: Konzeption, beleg: k8.1-t1, schrift: barlow, gewicht: 700, groesse: 29, ausrichtung: mitte, farbe: "#f2fbfa" }
+  - { x: 649, y: 42, b: 127, h: 38, text: Pilotierung, beleg: k8.1-t1, schrift: barlow, gewicht: 700, groesse: 28, ausrichtung: mitte, farbe: "#f2fbfa" }
+  - { x: 252, y: 222, b: 126, h: 48, text: "Governance-\nLücken", beleg: k8.1-t1, schrift: barlow, gewicht: 500, groesse: 23, ausrichtung: mitte, farbe: "#15191c" }
+  - { x: 962, y: 424, b: 116, h: 28, text: Prüfrhythmus, beleg: k8.1-t1, schrift: barlow, gewicht: 500, groesse: 23, ausrichtung: mitte, farbe: "#15191c" }
+  - { x: 0, y: 700, b: 1264, h: 148, text: "", beleg: k8.2-p1, hintergrund: "#ffffff" }

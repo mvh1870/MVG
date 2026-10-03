@@ -6,4 +6,4 @@ titel: Arbeit kann delegiert werden; bauherrenseitige Legitimation nicht.
 titel-quelle: k1-p1
 ---
 
-Wie Bauherren komplexe Projekte **entscheidungsfähig, mandatiert und nachweisbar** führen.
+Wie Bauherren große Projekte führen: was sie abgeben können – und was sie **selbst entscheiden** müssen.

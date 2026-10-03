@@ -200,3 +200,11 @@ test('Fortschritt im DOM: ohne Verständnisfragen zählt das Seitenende; gesperr
     delete g['IntersectionObserver'];
   }
 });
+
+test('Verständnisfragen (r72, L-230 fortgeschrieben): sieben Fragen, jeder der vier Teile trägt mindestens eine', () => {
+  const alle = themen(inhalte).filter((t) => t.teil !== 'anhang');
+  assert.equal(alle.reduce((n, t) => n + verstaendnisfragen(t).length, 0), 7);
+  for (const teil of [1, 2, 3, 4]) {
+    assert.ok(alle.some((t) => t.teil === teil && verstaendnisfragen(t).length > 0), `Teil ${teil} ohne Frage`);
+  }
+});

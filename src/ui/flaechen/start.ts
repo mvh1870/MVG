@@ -22,7 +22,7 @@ export interface StartOptionen {
   startseite: Startseite | null;
   themenAnzahl: number;
   /** Anzahl der Kapitel der Story (sichtbar als Entscheidungen, nie „Kapitel“) */
-  stationenAnzahl: number;
+  kapitelAnzahl: number;
   werkzeugAnzahl: number;
   /** Stand der Story vorhanden → „Weiterlesen“ statt „Beginnen“ */
   weiterlesen: boolean;
@@ -89,7 +89,7 @@ export function baueStart(o: StartOptionen): HTMLElement {
           h('p', { class: 'start-these' }, o.startseite !== null ? inhaltInline(o.startseite.these) : null),
           h('p', { class: 'start-internetseite' }, w.internetseite)),
         h('nav', { class: 'tueren', 'aria-label': w.wege },
-          tuer('story', w.storyKicker, w.storyTitel, w.storyText, w.storyMeta(o.stationenAnzahl), o.weiterlesen ? w.storyWeiter : w.storyLos, figurenListe(), campusBild),
+          tuer('story', w.storyKicker, w.storyTitel, w.storyText, w.storyMeta(o.kapitelAnzahl), o.weiterlesen ? w.storyWeiter : w.storyLos, figurenListe(), campusBild),
           tuer('theorie', w.theorieKicker, w.theorieTitel, w.theorieText, w.theorieMeta(o.themenAnzahl), w.theorieLos, teileListe()),
           tuer('explore', w.exploreKicker, w.exploreTitel, w.exploreText, w.exploreMeta(o.werkzeugAnzahl), w.exploreLos, werkzeugBilder()))),
       h('section', { class: 'start-dahinter', 'aria-labelledby': 'start-dahinter-titel', 'data-pruef': 'start-dahinter' },

@@ -15,7 +15,7 @@ import { fileURLToPath } from 'node:url';
 import { istHauptmodul } from './haupt.mjs';
 
 const WURZEL = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const TESTS = ['tests/geschichte.test.ts'];
+const TESTS = ['tests/geschichte.test.ts', 'tests/geschichte-wege.test.ts'];
 
 /** [Datei, alt, neu, was] – `alt` muss genau einmal vorkommen. */
 export const MUTANTEN = [
@@ -24,6 +24,8 @@ export const MUTANTEN = [
   ['src/geschichte/engine.ts', "  if (stufe(b.vertrauen) === 'niedrig') return 'nicht-getragen';\n", '', 'Bilanz: Vertrauen niedrig zuerst'],
   ['src/geschichte/engine.ts', "return wert <= 3 ? 'niedrig'", "return wert < 3 ? 'niedrig'", 'Stufe: 3 ist niedrig'],
   ['src/geschichte/engine.ts', " && stufe(b.geld) !== 'niedrig') return 'ruhig';", ") return 'ruhig';", 'Bilanz „ruhig“ verlangt Geld mindestens mittel'],
+  ['src/geschichte/engine.ts', "  if (!falle && stufe(b.zeit)", "  if (stufe(b.zeit)", 'Bilanz „ruhig“ nur ohne Falle (L-239)'],
+  ['src/geschichte/engine.ts', "return falleGewaehlt(g, stand) ? 'nach-falle' : 'grund';", "return 'grund';", 'Schlusszeilen nach einer Falle (L-239)'],
   ['src/geschichte/engine.ts', "return stelle === i ? 'richtig' : 'falsch';", "return 'richtig';", 'Reihenfolge: falsche Stelle ist falsch'],
   ['src/geschichte/engine.ts', 'kipppunkte(v.optionen, v.kriterien, gew, STUFEN_GEWICHT)', 'kipppunkte(v.optionen, v.kriterien, gew)', 'Kipppunkte nur über die drei Stufen'],
   ['src/geschichte/engine.ts', '  if (r[\'v\'] !== STAND_VERSION) return null;\n', '', 'Älterer Stand wird verworfen'],

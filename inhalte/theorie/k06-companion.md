@@ -351,7 +351,7 @@ Ein mögliches Ereignis wird als Risiko bewertet.
 ---
 seite: rechts
 ---
-Der Hersteller des Lüftungsgeräts für die Gesamtschule nennt einen neuen Liefertermin, vier Wochen später als zugesagt.
+Der Hersteller der Lüftungsanlage für die Gesamtschule nennt einen neuen Liefertermin, vier Monate später als zugesagt.
 
 ### Erklärung
 Eingetreten – die Lösung wird organisiert; eine Wahrscheinlichkeit wird nicht mehr geschätzt.
@@ -371,7 +371,7 @@ Eingetreten und dringlich: Die Projektsteuerung meldet es sofort und dokumentier
 ---
 seite: links
 ---
-Die Haustechnikplanung kündigt Mehrleistungen an – bis 1,2 Mio. € könnten als Nachtrag kommen.
+Die Haustechnikfirma kündigt Mehrkosten an – gut eine Million Euro könnten als Nachtrag kommen.
 
 ### Erklärung
 Angekündigt, aber nicht eingetreten – ein Risiko mit Bandbreite.
@@ -524,7 +524,7 @@ titel: Sofort
 ---
 
 ### Rückseite
-Dringliches meldet die Projektsteuerung über den vereinbarten Meldeweg und dokumentiert es am selben Arbeitstag. Die regelmäßige Prüfung ersetzt keine dringliche Meldung.
+Dringliches meldet die Projektsteuerung über den vereinbarten Meldeweg und dokumentiert es noch am selben Arbeitstag, sobald die unmittelbare Reaktion gesichert ist. Die regelmäßige Prüfung ersetzt keine dringliche Meldung.
 :::
 
 ::: karte woechentlich

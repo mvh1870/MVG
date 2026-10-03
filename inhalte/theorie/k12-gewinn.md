@@ -52,7 +52,7 @@ Wie viele Register, Vorlagen oder Berichte es gibt, sagt nichts darüber, ob der
 :::
 :::
 
-Die Tafel nennt fünf Gewinne aus der Kombination von beiden – bis zur geringeren Zusatzlast, weil der Mindeststandard auf führungsrelevante Entscheidungen konzentriert bleibt.
+Fünf Gewinne aus der Kombination von beiden:
 
 ::: tafel k12-t1
 ---
@@ -127,7 +127,7 @@ Darauf aufbauend entscheidet der Bauherr, welche MVG-Bausteine sofort wirksam we
 :::
 :::
 
-Drei Einstiegspunkte, je mit Kernfrage und Ergebnis – bis zur Pilotierung an einer echten Entscheidung mit Freigabefrage, [[Entscheidungs-ID]], Datenstand und Nachweislogik:
+Drei mögliche Einstiege:
 
 ::: tafel k12.1-t1
 ---

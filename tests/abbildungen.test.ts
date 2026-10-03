@@ -36,6 +36,19 @@ test('Beschreibung: gültige Datei ohne Fehler, jede Abweichung vom Schema wird 
   assert.match(fehler({ ...GUT, abweichungen: [{ text: 'x', beleg: 'k4-p1' }] }), /unbekanntes Feld „abweichungen“/u);
 });
 
+test('Reine Abdeckung (R72): text "" füllt nur die Fläche – mit Beleg, ohne Schriftangaben; Leerraum allein ist kein Text', () => {
+  const fehler = (u: Record<string, unknown>): string => pruefeBeschreibung({ ...GUT, angeglichen: [{ x: 1, y: 2, b: 30, h: 12, beleg: 'k4-t1', ...u }] }, 'inhalte/abbildungen/abb-6.yaml', KONTEXT).join('\n');
+  assert.equal(fehler({ text: '' }), '');
+  assert.equal(fehler({ text: '', hintergrund: '#ffffff' }), '');
+  assert.match(fehler({ text: '', beleg: 'k9-p9' }), /keine Absatz-ID/u, 'auch die Abdeckung braucht den Absatz, der das Entfernte ausschließt');
+  assert.match(fehler({ text: '', groesse: 12 }), /„groesse“ bei einer reinen Abdeckung/u);
+  assert.match(fehler({ text: '', farbe: '#000000' }), /„farbe“ bei einer reinen Abdeckung/u);
+  assert.match(fehler({ text: '   ' }), /nur Leerraum/u);
+  assert.match(fehler({}), /„text“ fehlt/u);
+  // eine Abdeckung ändert die Pixel: andere Prüfsumme als dieselbe Fläche mit Text
+  assert.notEqual(eingabeSumme({ ...GUT, angeglichen: [{ ...GUT.angeglichen[0], text: '' }] }, 'q1'), eingabeSumme(GUT, 'q1'));
+});
+
 test('Prüfsumme der Eingabe: ändert sich mit Quelle und Überdeckung, nicht mit Titel und Alternativtext', () => {
   const a = eingabeSumme(GUT, 'q1');
   assert.equal(eingabeSumme({ ...GUT, titel: 'anders', alt: 'anders' }, 'q1'), a);

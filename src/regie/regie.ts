@@ -2,7 +2,7 @@
  * Regie (O-9, O-46, P16.9): die Moderation steuert, die Leinwand zeigt.
  *
  *   Kopf (Leinwand öffnen, Verbindung, Beamer) · Vorschau der Leinwand · Zurück/Weiter · Bereich,
- *   Thema, Werkzeug, Station · Kundenwahl · Regie-Notiz und Leitfragen · Gesprächsprotokoll
+ *   Thema, Werkzeug, Story-Kapitel · Kundenwahl · Regie-Notiz und Leitfragen · Gesprächsprotokoll
  *
  * Die Regie hält den Bühnenstand (eigener Speicher) und schickt nach jeder Änderung den öffentlichen
  * Stand (`Buehne`) über den Kanal. Notizen und Leitfragen kommen aus `regieGeschichte()` bzw.
@@ -245,7 +245,7 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
         steuerung),
       h('div', { class: 'regie-rechts' }, eingriffKarte, notiz, protokollKarte)),
     // R68: Impressum, Datenschutz und der leise Link auch hier (P16.12 „aus jeder Fläche erreichbar“)
-    h('footer', { class: 'regie-fuss' }, h('span', null, o.version),
+    h('footer', { class: 'regie-fuss' }, o.version === '' ? null : h('span', null, o.version),
       h('a', { href: IMPRESSUM_SEITE, 'data-pruef': 'impressum' }, W.rahmen.impressum),
       h('a', { href: DATENSCHUTZ_SEITE, 'data-pruef': 'datenschutz' }, W.rahmen.datenschutz),
       bmLink()));

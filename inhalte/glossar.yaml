@@ -24,7 +24,7 @@ aendern:
   g-pmo:
     definition: >-
       Projektmanagementbüro; unterstützt unter anderem Koordination, Gremienarbeit und Protokolle. Die Bearbeitung,
-      Pflege und Nachverfolgung aller Vorgänge liegt im Standard bei der Projektsteuerung.
+      Pflege und Nachverfolgung aller Vorgänge liegt bei der Projektsteuerung.
     belege: [k13-t1, k1-p1, v24:hb-1, v24:hb-5]
   # k13-E1 (HB 3.1: zwei zulässige Optionen, MCDA, Kennzeichnung als unvollständig)
   g-entscheidungsreife:
@@ -38,7 +38,7 @@ aendern:
     definition: >-
       Sonderformat außerhalb der regulären Freigabereihe zur erneuten Legitimation von Kosten-, Termin-,
       Projektumfangs- oder Risikogrundlagen. Es wird über eine Entscheidungsvorlage der Projektsteuerung mit
-      mindestens zwei Optionen vorbereitet und durch den Bauherrn im Lenkungskreis beschlossen; betroffene Freigaben
+      mindestens zwei zulässigen Optionen vorbereitet und durch den Bauherrn im Lenkungskreis beschlossen; betroffene Freigaben
       können anschließend nachgeholt oder wiederholt werden.
     belege: [k13-t1, v24:hb-3, v24:hb-3.1]
   # k13-E3 (HB 1: Vorgangsarten und ihre Verknüpfung)
@@ -54,7 +54,7 @@ aendern:
   g-betriebshandbuch:
     definition: >-
       Betriebslogik für den Regelbetrieb von MVG mit Rollen, Routinen, Taktung, Eskalation und Prüfmechanismen.
-      Im Standard gehören dazu in aktiven Zeiten die wöchentliche Prüfung aller offenen Vorgänge und ein monatlicher
+      Dazu gehören in aktiven Zeiten die wöchentliche Prüfung aller offenen Vorgänge und ein monatlicher
       Termin von bis zu 60 Minuten, dazu jeden Monat ein Monatsbericht von höchstens einer Seite.
     belege: [k13-t1, v24:hb-4]
   # k13-E5 (HB 1, HB 3: die Projektsteuerung bereitet vor, der Bauherr entscheidet)

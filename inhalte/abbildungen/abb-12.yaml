@@ -2,13 +2,27 @@ id: abb-12
 quelle: bilder/image12.jpeg
 titel: MVG-Reifegradanalyse mit Bewertungsmatrix und 30/60/90-Tage-Plan
 alt: >-
-  Oben ein Zeigerinstrument (Skala 0 bis 5), beschriftet „Maturity Assessment“. Pfeile führen zu fünf
-  nummerierten Kästen: „Governance & Organisation“, „Risiko & Änderungssteuerung“, „Ressourcen & Rollenfähigkeit“,
-  „Informationsmanagement & Entscheidungsreife“, „QA/QM & Qualitätssteuerung“, je mit einer Liste „Nachweise“ (etwa
-  Risikoregister, Änderungsregister) und einem Regler „Punktwert: 0 … 5“. Darunter, mit
-  Pfeilen verbunden: „Bewertungsmatrix“ (Farbraster), „Roadmap für 30/60/90 Tage“ und „Klare
-  Verantwortungszuordnungen“ (RACI-Matrix: Projektauftraggeber, Manager, Team).
+  Oben „MVG-Reifegradanalyse“; Pfeile führen zu fünf nummerierten Kästen (Governance & Organisation, Risiko &
+  Änderungssteuerung, Ressourcen & Rollenfähigkeit, Informationsmanagement & Entscheidungsreife, QA/QM &
+  Qualitätssteuerung), je mit Symbol und einer Liste „Nachweise“, etwa Risikoregister, Frühwarnungsregister,
+  Rollenprofile, Prüfstatus. Darunter: „Bewertungsmatrix“ (Farbraster), „30/60/90-Tage-Plan“ (Diagnose und
+  Priorisierung, Konzeption und Mindeststandard, Modell in Anwendung und Kalibrierung) und eine RACI-Matrix
+  mit Projektauftraggeber, Bauherren-PL und Team.
 angeglichen:
-  - { x: 617, y: 301, b: 41, h: 15, text: Risiko, beleg: k4.4-p2, schrift: barlow, gewicht: 600, groesse: 16, ausrichtung: mitte }
+  - { x: 580, y: 0, b: 218, h: 171, text: "MVG-\nReifegradanalyse", beleg: k7.1-p1, hintergrund: "#ffffff", farbe: "#14303d", schrift: barlow, gewicht: 700, groesse: 27, ausrichtung: mitte }
+  - { x: 622, y: 170, b: 58, h: 9, text: "", beleg: k7.1-p2, hintergrund: "#ffffff" }
+  - { x: 699, y: 170, b: 58, h: 9, text: "", beleg: k7.1-p2, hintergrund: "#ffffff" }
+  - { x: 610, y: 295, b: 157, h: 27, text: "", beleg: k9.2-p4 }
   - { x: 341, y: 411, b: 195, h: 22, text: Änderungsregister, beleg: k6.4.4-t1, schrift: barlow, gewicht: 500, groesse: 19 }
+  - { x: 341, y: 393, b: 195, h: 18, text: Frühwarnungsregister, beleg: k6.4.2-t1, schrift: barlow, gewicht: 500, groesse: 19, farbe: "#212629" }
+  - { x: 35, y: 443, b: 227, h: 52, text: "", beleg: k7.1-p2 }
+  - { x: 305, y: 443, b: 227, h: 52, text: "", beleg: k7.1-p2 }
+  - { x: 575, y: 443, b: 227, h: 52, text: "", beleg: k7.1-p2 }
+  - { x: 845, y: 443, b: 226, h: 52, text: "", beleg: k7.1-p2 }
+  - { x: 1115, y: 443, b: 227, h: 52, text: "", beleg: k7.1-p2 }
   - { x: 110, y: 553, b: 222, h: 27, text: Bewertungsmatrix, beleg: k7.1-p1, schrift: barlow, gewicht: 700, groesse: 23, ausrichtung: mitte }
+  - { x: 555, y: 553, b: 265, h: 28, text: 30/60/90-Tage-Plan, beleg: k7.1-p1, schrift: barlow, gewicht: 700, groesse: 23, ausrichtung: mitte }
+  - { x: 497, y: 729, b: 126, h: 25, text: "Diagnose und\nPriorisierung", beleg: k8.2-t1, schrift: barlow, gewicht: 500, groesse: 12, ausrichtung: mitte }
+  - { x: 626, y: 729, b: 126, h: 25, text: "Konzeption und\nMindeststandard", beleg: k8.2-t1, schrift: barlow, gewicht: 500, groesse: 12, ausrichtung: mitte }
+  - { x: 756, y: 729, b: 123, h: 25, text: "Modell in Anwendung\nund Kalibrierung", beleg: k8.2-t1, schrift: barlow, gewicht: 500, groesse: 12, ausrichtung: mitte }
+  - { x: 1026, y: 660, b: 140, h: 28, text: Bauherren-PL, beleg: k9.2-p4, schrift: barlow, gewicht: 500, groesse: 22, farbe: "#15191c" }

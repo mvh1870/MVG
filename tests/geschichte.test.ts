@@ -10,7 +10,7 @@ import assert from 'node:assert/strict';
 
 import { inhalte } from '../src/inhalte/index.ts';
 import {
-  abgestimmteGewichte, balken, balkenBis, beginne, bilanzTyp, bruecken, gemischt, geheZu, gewichte, gutePlatz, kapitel,
+  abgestimmteGewichte, balken, balkenBis, beginne, bilanzAmEnde, bilanzTyp, bruecken, endeFassung, falleGewaehlt, gemischt, geheZu, gewichte, gutePlatz, kapitel,
   klickeReihe, leseStand, miniVonVorn, neuerStand, offeneKapitel, ordneZu, schritte, setzeAbgestimmt, setzeGewicht,
   setzeKurz, stufe, vergleichKapitel, vergleichLage, waehle, wegKapitel, werteMiniAus, weiter, zurueck, type Stand,
 } from '../src/geschichte/engine.ts';
@@ -34,15 +34,15 @@ test('Balken: Start Geld 9, Zeit 6, Vertrauen 4 (Auftakt)', () => {
   assert.deepEqual(balken(G, neuerStand()), { geld: 9, zeit: 6, vertrauen: 4 });
 });
 
-test('Nachgerechnete Wege (Drehbuch Abschnitt 3): gut 7/9/10 · vertretbar 5/2/4 · Falle 1/2/0 · Kurzfassung gut 7/9/10', () => {
+test('Nachgerechnete Wege (Drehbuch Abschnitt 3): gut 7/9/10 · vertretbar 5/1/4 · Falle 1/2/0 · Kurzfassung gut 7/9/10', () => {
   assert.deepEqual(balken(G, weg('gut')), { geld: 7, zeit: 9, vertrauen: 10 });
-  assert.deepEqual(balken(G, weg('vertretbar')), { geld: 5, zeit: 2, vertrauen: 4 });
+  assert.deepEqual(balken(G, weg('vertretbar')), { geld: 5, zeit: 1, vertrauen: 4 });
   assert.deepEqual(balken(G, weg('falle')), { geld: 1, zeit: 2, vertrauen: 0 });
   assert.deepEqual(balken(G, weg('gut', true)), { geld: 7, zeit: 9, vertrauen: 10 });
-  assert.equal(bilanzTyp(balken(G, weg('gut'))), 'ruhig');
-  assert.equal(bilanzTyp(balken(G, weg('vertretbar'))), 'letzte-meter');
-  assert.equal(bilanzTyp(balken(G, weg('falle'))), 'nicht-getragen');
-  assert.equal(bilanzTyp(balken(G, weg('gut', true))), 'ruhig');
+  assert.equal(bilanzAmEnde(G, weg('gut')), 'ruhig');
+  assert.equal(bilanzAmEnde(G, weg('vertretbar')), 'letzte-meter');
+  assert.equal(bilanzAmEnde(G, weg('falle')), 'nicht-getragen');
+  assert.equal(bilanzAmEnde(G, weg('gut', true)), 'ruhig');
 });
 
 test('Begrenzung nach JEDER Antwort: voll bleibt voll, und die nächste Senkung wirkt sofort (Gegenprobe: erst am Ende begrenzt wäre anders)', () => {
@@ -76,13 +76,31 @@ test('Stufen: niedrig 0–3, mittel 4–6, hoch 7–10 (Grenzen)', () => {
 });
 
 test('Bilanz-Typ: erste zutreffende Regel gilt – Vertrauen niedrig vor Zeit niedrig vor „ruhig“, sonst „Umwege“', () => {
-  assert.equal(bilanzTyp({ geld: 9, zeit: 1, vertrauen: 3 }), 'nicht-getragen');
-  assert.equal(bilanzTyp({ geld: 9, zeit: 3, vertrauen: 4 }), 'letzte-meter');
-  assert.equal(bilanzTyp({ geld: 4, zeit: 7, vertrauen: 7 }), 'ruhig');
-  assert.equal(bilanzTyp({ geld: 3, zeit: 7, vertrauen: 7 }), 'umwege');
-  assert.equal(bilanzTyp({ geld: 9, zeit: 6, vertrauen: 10 }), 'umwege');
-  assert.equal(bilanzTyp({ geld: 9, zeit: 10, vertrauen: 6 }), 'umwege');
-  assert.equal(bilanzTyp({ geld: 9, zeit: 4, vertrauen: 4 }), 'umwege');
+  assert.equal(bilanzTyp({ geld: 9, zeit: 1, vertrauen: 3 }, false), 'nicht-getragen');
+  assert.equal(bilanzTyp({ geld: 9, zeit: 3, vertrauen: 4 }, false), 'letzte-meter');
+  assert.equal(bilanzTyp({ geld: 4, zeit: 7, vertrauen: 7 }, false), 'ruhig');
+  assert.equal(bilanzTyp({ geld: 3, zeit: 7, vertrauen: 7 }, false), 'umwege');
+  assert.equal(bilanzTyp({ geld: 9, zeit: 6, vertrauen: 10 }, false), 'umwege');
+  assert.equal(bilanzTyp({ geld: 9, zeit: 10, vertrauen: 6 }, false), 'umwege');
+  assert.equal(bilanzTyp({ geld: 9, zeit: 4, vertrauen: 4 }, false), 'umwege');
+  // L-239: nach einer Falle nie „ruhig“, auch bei vollen Balken
+  assert.equal(bilanzTyp({ geld: 9, zeit: 10, vertrauen: 10 }, true), 'umwege');
+  assert.equal(bilanzTyp({ geld: 9, zeit: 1, vertrauen: 3 }, true), 'nicht-getragen');
+});
+
+test('Falle auf dem Weg (L-239): ein einziger Falle-Klick macht aus „ruhig“ „Umwege“ und tauscht die Schlusszeile', () => {
+  const gut = weg('gut');
+  assert.equal(falleGewaehlt(G, gut), false);
+  assert.equal(endeFassung(G, gut), 'grund');
+  const k8 = kapitel(G, 'k8');
+  assert.ok(k8);
+  const mitFalle = waehle(G, gut, 'k8', k8.antworten.findIndex((a) => a.wertung === 'falle'));
+  assert.equal(falleGewaehlt(G, mitFalle), true);
+  assert.equal(bilanzAmEnde(G, mitFalle), 'umwege');
+  assert.equal(endeFassung(G, mitFalle), 'nach-falle');
+  assert.equal(endeFassung(G, weg('falle')), 'vertrauen-niedrig');
+  // Kurzfassung: eine gespeicherte Falle in einem übersprungenen Kapitel zählt nicht
+  assert.equal(falleGewaehlt(G, { ...mitFalle, kurz: true }), false);
 });
 
 /* ------------------------------------------------------------- Kurzfassung -- */
@@ -246,7 +264,7 @@ test('Kipppunkte (drei Stufen): Geld sehr wichtig → C, Schulstart wichtig → 
 
 test('Kipppunkte der Story springen nur auf zulässige Stufen (Gegenprobe zum Rechner mit 1–5)', () => {
   // X liegt vorn; schon bei Gewicht 2 läge Y vorn – die Story kennt aber nur 1, 3, 5 und nennt deshalb 3
-  const v = { ...V, kriterien: [{ id: 'a', titel: 'A', gewicht: 1 }, { id: 'b', titel: 'B', gewicht: 5 }],
+  const v = { ...V, kriterien: [{ id: 'a', titel: 'A', imSatz: 'A', gewicht: 1 }, { id: 'b', titel: 'B', imSatz: 'B', gewicht: 5 }],
     optionen: [{ id: 'X', titel: 'X', punkte: { a: 1, b: 4 }, worte: {} }, { id: 'Y', titel: 'Y', punkte: { a: 4, b: 3 }, worte: {} }] };
   assert.deepEqual(vergleichLage(v, { a: 1, b: 5 }).kipp.find((x) => x.kriterium === 'a'), { kriterium: 'a', gewicht: 3, spitze: ['Y'] });
   assert.deepEqual(kipppunkte(v.optionen, v.kriterien, { a: 1, b: 5 }).find((x) => x.kriterium === 'a'), { kriterium: 'a', gewicht: 2, spitze: ['Y'] });

@@ -85,6 +85,13 @@ export async function lauf(seite, h) {
     if (href !== ziel) h.befund(`Fuß: ${sel} führt nach ${href}`);
   }
   await h.erwarte('[data-pruef="praesentieren"]');
+  // r72 (Erlebnis): „Beginnen“ der Story-Karte steht ab 1024 × 720 im ersten Bildschirm, ohne zu scrollen
+  const los = await seite.evaluate(() => {
+    const e = document.querySelector('[data-pruef="weg-story"] .tuer-los');
+    return e === null ? null : { unten: e.getBoundingClientRect().bottom + scrollY, breite: innerWidth, hoehe: innerHeight };
+  });
+  if (los === null) h.befund('Story-Karte ohne „Beginnen“');
+  else if (los.breite >= 1024 && los.hoehe >= 720 && los.unten > los.hoehe) h.befund(`„Beginnen“ erst unter dem ersten Bildschirm (unten ${Math.round(los.unten)} px bei ${los.hoehe} px)`);
 
   // Alle drei Wege per Tastatur erreichbar
   const erreicht = new Set();

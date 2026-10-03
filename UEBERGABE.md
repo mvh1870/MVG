@@ -3,10 +3,10 @@
 Kopf ≤ 100 Zeilen. Oben JETZT (überschreiben), darunter FRÜHER (anhängen, knapp).
 
 ## JETZT
-- **Stand 2026-10-03 21:20 UTC: P18.1–P18.5 erledigt** (L-253–L-259), CI 321 (ea42fd9) und 322 grün. Jetzt **P18.6 Prüfrunden**: R77 mit sechs Prüf-Agenten (Fachtreue A+B, Fachtreue C+D, Begriffe/Verknüpfung/Datenschutz, Stil+Druck, Architektur+Mutanten, Erlebnis+Vollständigkeit) über Agent-Werkzeug auf Worktree `tmp/r77`; Auftragsrahmen `tmp/r77/tmp/GEMEINSAM.txt` (nicht committet). Abnahme: zwei Runden ohne schweren Befund (O-35), dann P18.7 Merge nach `main` (O-49/O-59) und Nachricht.
-- **Lesezeit:** `node werkzeuge/lesezeit.mjs`; Kurzfassung 10,4 Minuten („etwa 10“, O-51, L-252) – Ergänzungen in der Kurzfassung ausgleichen.
-- Rechner: Node 22.22, `npm ci` 8 s, Chromium unter `/opt/pw-browsers/chromium`, Kette 111 s grün.
-- Commit 76c5450 (Ampel) trägt versehentlich Autor „Claude“ statt L-6 – gepusht, nicht umgeschrieben; `git config user.*` danach gesetzt.
+- **Stand 2026-10-03 ~21:35 UTC: P18.1–P18.5 erledigt, P18.6 läuft.** R77 (ea42fd9): 1 schwer (Leinwand zeigte bei den neuen Werkzeugen die ganze Explore-Seite) / 19 mittel / 40 leicht – **eingearbeitet (L-260), Kette voll grün**; als Nächstes R78 auf diesem Stand, dann R79; zwei Runden hintereinander ohne schweren Befund, danach P18.7 (Merge nach `main`, Nachricht).
+- **Achtung zwei Sitzungen:** Eine zweite Sitzung (Routine, Ampel 21:13 UTC) hat parallel R77 gestartet (76c5450, ada0e9b). Ihr R77 ist durch die eingearbeiteten Befunde überholt; bitte nicht doppelt einarbeiten – vor jedem Push `git fetch` und mergen (kein Rebase, kein `--force`).
+- **Lesezeit:** `node werkzeuge/lesezeit.mjs`; Kurzfassung 10,4 Minuten ohne Puffer („etwa 10“, O-51, L-252) – Ergänzungen in der Kurzfassung ausgleichen.
+- Rechner: Node 22.22, Chromium unter `/opt/pw-browsers/chromium`, Kette ≈ 100 s (voll ≈ 130 s).
 
 ## FRÜHER
 - 2026-10-03 (18:45–19:45 UTC): P17 abgeschlossen und nach `main` (O-58); P18.1–P18.5 (L-253–L-259).

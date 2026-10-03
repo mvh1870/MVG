@@ -314,7 +314,7 @@ Die Empfehlung für A gilt nur unter der vereinbarten Terminpriorität – das m
 ---
 symbol: dokument
 ---
-Zur Vorlage gehören außerdem der Stand von Kosten- und Terminplan, Nachweise für Gleichwertigkeit und Lieferbarkeit, Restrisiken beider Wege, nötige Freigaben, befugte Stelle und Entscheidungstermin. Die Sachentscheidung liegt hier im Mandat der Projektleitung des Bauherrn; gehen die Mehrkosten zulasten der Risikoreserve, gibt deren Einsatz der Bauherr frei. Entschieden wird im Beispiel nicht.
+Zur Vorlage gehören außerdem der Stand von Kosten- und Terminplan, Nachweise für Gleichwertigkeit und Lieferbarkeit, Restrisiken beider Wege, nötige Freigaben, befugte Stelle und Entscheidungstermin. Trägt das Budget die 80.000 € ohne Reserve, liegt die Entscheidung im Mandat der Projektleitung des Bauherrn; braucht es die Risikoreserve, entscheidet der Bauherr. Entschieden wird im Beispiel nicht.
 :::
 :::
 

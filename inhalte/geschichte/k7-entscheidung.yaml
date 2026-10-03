@@ -49,17 +49,18 @@ vergleich:
     - id: C
       titel: Später einziehen
       punkte: { geld: 5, schulstart: 2, luft: 5, klima: 5 }
-      worte: { geld: rund 50.000 Euro für längere Container, schulstart: "Grundschule pünktlich, Gesamtschule erst nach den Herbstferien", luft: "volle Lüftung, sobald die Kinder kommen", klima: "das bestellte, sparsamste Gerät" }
+      worte: { geld: "rund 50.000 Euro: Die Gesamtschule bleibt länger in ihren Containern", schulstart: "Grundschule pünktlich, Gesamtschule erst nach den Herbstferien", luft: "volle Lüftung, sobald die Kinder kommen", klima: "das bestellte, sparsamste Gerät" }
       begruendung: 50.000 → 5; Gesamtschule rund acht Wochen später → 2; volle Funktion ab Einzug → 5; bestelltes, sparsamstes Gerät → 5
   saetze:
-    A: "Das Ersatzgerät liegt vorn: Hier zählt vor allem, dass alle Kinder pünktlich in Räume mit guter Luft einziehen."
+    # R76: ohne „gute Luft“ – A liegt auch vorn, wenn Luft „weniger wichtig“ ist, aber nie ohne Schulstart ≥ „wichtig“ (81 Stellungen gerechnet)
+    A: "Das Ersatzgerät liegt vorn: Hier zählt vor allem, dass alle Kinder pünktlich einziehen."
     B: Die Leihgeräte liegen vorn – aber nur, weil gute Luft im Unterricht hier kaum zählt. Passt das zu Ihrer Schule?
     C: "Der spätere Einzug liegt vorn: Wenn Geld oder Klima so viel zählen wie der Schulstart, lohnt sich das Warten."
     gleichauf: Gleichauf – jetzt entscheidet das fachliche Urteil, nicht die Punktzahl.
   empfehlung: |
     **Empfehlung:** das Ersatzgerät. Es kostet am meisten, aber nur damit ziehen alle Kinder pünktlich in Räume mit guter Luft – das Ziel der Bürgermeisterin. Knapp ist es trotzdem: Wären Klima und Betrieb „wichtig“, läge der spätere Einzug gleichauf.
   wer: |
-    **Wer entscheidet:** die Bürgermeisterin – mehr als 100.000 Euro, und das Geld käme aus der Reserve. Der Lenkungskreis berät. Entscheiden muss sie bis Ende Mai, sonst ist auch das Ersatzgerät nicht mehr rechtzeitig da.
+    **Wer entscheidet:** die Bürgermeisterin – mehr als 100.000 Euro, und das Geld käme aus der Reserve. Der Lenkungskreis berät. Entscheiden muss sie bis Ende Mai – danach kommt auch das Ersatzgerät zu spät.
 
 frage: Die Vorlage geht an die Bürgermeisterin. Was legen Sie ihr vor?
 

@@ -95,6 +95,19 @@
 .lesetext li + li { margin-top: var(--a-1); }
 .lesetext li::marker { color: var(--petrol); }
 .lesetext strong { font-weight: 600; }
+/* R76: Tabellen im Lesetext (Beispiel Wärmepumpe, k14.5) mit Zellenabstand, Kopflinie und Zahlen rechtsbündig –
+   vorher liefen die Köpfe zu „Gewicht A: Punkte B: Punkte“ zusammen (1 px Abstand, keine Linien) */
+.lesetext table:not([class]) { border-collapse: collapse; font-size: var(--gr-m); line-height: 1.4; }
+.lesetext table:not([class]) :is(th, td) { padding: 6px 14px 6px 0; border-bottom: 1px solid var(--linie); text-align: left; vertical-align: top; }
+.lesetext table:not([class]) th { border-bottom: 2px solid var(--navy); font-weight: 700; color: var(--navy); }
+.lesetext table:not([class]) :is(th, td):not(:first-child) { padding-left: 14px; text-align: right; font-variant-numeric: tabular-nums; }
+.lesetext table:not([class]) tr:last-child td { border-bottom: 0; }
+@media (max-width: 400px) {
+  /* R76: die k14-Tabelle passt bei 320 px ohne waagerechtes Rollen */
+  .lesetext table:not([class]) { font-size: var(--gr-s); width: 100%; table-layout: fixed; overflow-wrap: anywhere; }
+  .lesetext table:not([class]) :is(th, td) { padding: 4px 6px 4px 0; }
+  .lesetext table:not([class]) :is(th, td):not(:first-child) { padding-left: 6px; }
+}
 
 /* Lernkarten */
 /* R48: Spalten ab 270 px – bei 220 px liefen Versaltitel („ENTSCHEIDUNGSSICHERHEIT“) zwischen 488 und 568 px aus der Karte */
@@ -364,13 +377,25 @@ a.glossar-ort:hover { text-decoration: underline; }
      falsch, die letzte Zeile der Erklärung stand halb abgeschnitten oben auf der Folgeseite (verantwortung); Abstände per margin */
   .druck-bogen :is(.wissenscheck, .wc-ergebnis) { display: block; }
   .druck-bogen :is(.wissenscheck, .wc-ergebnis) > * + * { margin-top: var(--a-3); }
+  /* R76: die Verständnisfrage ist höchstens eine Drittelseite lang und bleibt ganz beisammen (takt, arbeitsweise: Frage und
+     erste Antwort unten, die übrigen Antworten oben auf der Folgeseite) */
+  .druck-bogen .wissenscheck { break-inside: avoid; }
+  /* R76: kurze Absätze und Listenpunkte nicht teilen – Chromium hält widows/orphans hier nicht ein (eine Zeile unter der
+     Überschrift am Seitenende, ein einzelnes Wort oben auf der Folgeseite); die Seitenzahl bleibt gleich (Gegenprobe R76) */
+  .druck-bogen :is(p, li) { break-inside: avoid; }
+  .druck-bogen .lesetext table:not([class]) { font-size: 9pt; break-inside: avoid; }
+  .druck-bogen .lesetext table:not([class]) :is(th, td) { padding: 2px 8px 2px 0; }
+  .druck-bogen .lesetext table:not([class]) :is(th, td):not(:first-child) { padding-left: 8px; }
   /* R74: ein Einleitungssatz bleibt bei seiner Aufzählung oder seinen Karten (takt: „… was er zum Entscheiden braucht:“ allein
-     am Seitenende, die Karten erst auf der Folgeseite) */
-  .druck-bogen .lesetext > p:has(+ :is(ul, ol)), .druck-bogen .lesetext:has(+ .lernkarten-gruppe) > p:last-child { break-after: avoid; }
+     am Seitenende, die Karten erst auf der Folgeseite); ebenso bei einem Lernwerkzeug (arbeitsweise: Kopf und Satz zu
+     „Abgrenzung der Vorgangsarten“ unten auf einer halbleeren Seite, die Zuordnung ganz auf der Folgeseite) */
+  .druck-bogen .lesetext > p:has(+ :is(ul, ol)), .druck-bogen .lesetext:has(+ :is(.lernkarten-gruppe, .lernwerkzeug)) > p:last-child { break-after: avoid; }
   /* R74: der Story-Verweis am Bogenende in einer Zeile und beim vorigen Block – drei Zeilen allein füllten eine letzte Seite zu 11 % */
   .druck-bogen .querverweis-block { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 1mm 3mm; break-before: avoid; break-inside: avoid; }
   .druck-bogen .querverweis-text { flex-direction: row; flex-wrap: wrap; gap: 0 2mm; }
-  .druck-bogen .querverweise .querverweis { padding: 0; }
+  /* R76: ohne die Mindesthöhe des Klickziels (36 px) – die leere halbe Zeile unter dem Verweis ragte über den Seitenrand und
+     erzeugte eine leere letzte Seite (arbeitsweise) */
+  .druck-bogen .querverweise .querverweis { padding: 0; min-height: 0; }
   /* R47: ein Fokus-Hof (Tastaturbedienung vor dem Druck) gehört nicht aufs Papier */
   :focus-visible { box-shadow: none !important; outline: none !important; }
 }

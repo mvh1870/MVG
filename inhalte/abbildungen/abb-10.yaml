@@ -3,11 +3,11 @@ quelle: bilder/image10.jpeg
 titel: Verknüpfungen zwischen Frühwarnung, Risiko, Entscheidung, Freigabe und Maßnahme
 alt: >-
   Legende „Lebenszyklus / ‚wird zu‘“: Risiko (bewertet, wesentlich) → Entscheidungsregister (ausarbeiten) →
-  Entscheidungsvorlage (reif) → Freigabe (LPH 0–9, Freigabeentscheidung); Problem (eingetreten, eskaliert),
-  Änderung (erfordert) → Register; Vorlage (führt zu) → Änderung (beeinflusst) → CTC / Prognose; Vorlage
-  (erzeugt), Freigabe (Auflagen) → Maßnahme. „Überwachung / Indikator“: „Schwellenwert löst Frühwarnung aus“ →
-  Frühwarnung (unbewertetes Signal), CTC; Maßnahme (Risikominderung, Regelkreis schließt) → Risiko. „Bericht in
-  den Managementbericht“: Freigabe → Managementbericht.
+  Entscheidungsvorlage (reif) → Freigabe (LPH 0–9); Problem (eskaliert), Änderung (erfordert) → Register;
+  Vorlage (führt zu) → Änderung (beeinflusst) → CTC / Prognose (Restkostenprognose); Freigabe (Auflagen) →
+  Maßnahme. „Überwachung / Indikator“: „Schwellenwert löst Frühwarnung aus“ → Frühwarnung (unbewertetes
+  Signal); Maßnahme (Risikominderung, Regelkreis schließt) → Risiko. „Bericht in den Managementbericht“:
+  Freigabe → Managementbericht.
 angeglichen:
   - { x: 1291, y: 343, b: 62, h: 23, text: "", beleg: k13-t1 }
   - { x: 1219, y: 364, b: 136, h: 28, text: LPH 0–9, beleg: k13-t1, schrift: barlow, gewicht: 600, groesse: 20 }
@@ -26,3 +26,19 @@ angeglichen:
   - { x: 172, y: 368, b: 88, h: 26, text: bewertet, beleg: k4.4-p1, schrift: barlow, gewicht: 500, groesse: 20, ausrichtung: links }
   - { x: 462, y: 141, b: 128, h: 46, text: "eingetretenes\nProblem", beleg: k6.4.4-t1, schrift: barlow, gewicht: 500, groesse: 20, ausrichtung: links }
   - { x: 862, y: 322, b: 128, h: 54, text: "Entschei-\ndungsvorlage", beleg: k6.4.4-t1, schrift: barlow, gewicht: 700, groesse: 24 }
+  # R76: Reste der R75-Abdeckung (Pfeilstummel unter dem Frühwarnungskasten) mit abdecken (L-250)
+  - { x: 138, y: 192, b: 9, h: 6, text: "", beleg: k6.4.3-p2, hintergrund: "#f6f9fc" }
+  - { x: 218, y: 192, b: 9, h: 6, text: "", beleg: k6.4.3-p2, hintergrund: "#f6f9fc" }
+  - { x: 156, y: 193, b: 13, h: 6, text: "", beleg: k6.4.3-p2, hintergrund: "#f6f9fc" }
+  # R76: Der rechte Ast des Banners zeigte vom Schwellenwert IN „CTC / Prognose“ – verkehrt herum: eine CTC- oder
+  # Schwellenwertverletzung erzeugt eine neue Frühwarnung (k6.4.3-p2, V2.4 HB 1.2), wie der Aufklapper darunter sagt.
+  # Ohne Werkzeug für Pfeile entfällt der Ast; es bleibt Schwellenwert → Frühwarnung.
+  - { x: 936, y: 22, b: 317, h: 60, text: "", beleg: k6.4.3-p2 }
+  # R76: Der Pfeil „erzeugt“ ließ aus der Vorlage direkt eine Maßnahme entstehen, ohne Beschluss. Die befugte Stelle
+  # entscheidet, der Beschluss wird getrennt festgehalten, erst dann folgen Maßnahmen (k6.4.3-p2; V2.4 HB 3.1).
+  # Es bleibt der Weg Freigabe → „Auflagen“ → Maßnahme.
+  - { x: 866, y: 419, b: 12, h: 6, text: "", beleg: k6.4.3-p2 }
+  - { x: 828, y: 423, b: 90, h: 85, text: "", beleg: k6.4.3-p2 }
+  # R76: Unterzeile wie im Register und in den Begriffen der Seite (k6.4.4-t1 „gewollte Änderung“)
+  - { x: 812, y: 144, b: 142, h: 27, text: gewollte Änderung, beleg: k6.4.4-t1, schrift: barlow, gewicht: 500, ausrichtung: links }
+  - { x: 1222, y: 144, b: 134, h: 27, text: Restkostenprognose, beleg: k13-t1, schrift: barlow, gewicht: 500, groesse: 18, ausrichtung: links }

@@ -149,7 +149,13 @@ const SPERRFLAECHEN: Record<string, { x: number; y: number; b: number; h: number
   'abb-10': [
     { x: 132, y: 195, b: 20, h: 105, grund: 'Pfeil Frühwarnung → Risiko (V2.4 HB 1.2: vier Ausgänge)' },
     { x: 172, y: 195, b: 98, h: 76, grund: 'Etikett „wird zu (bestätigt)“ (V2.4 HB 1.2)' },
+    // R76: Pfeil Schwellenwert → CTC / Prognose zeigte verkehrt herum (k6.4.3-p2: CTC-Verletzungen erzeugen Frühwarnungen)
+    { x: 940, y: 25, b: 310, h: 55, grund: 'rechter Ast des Banners „Schwellenwert löst Frühwarnung aus“ in CTC / Prognose (k6.4.3-p2)' },
+    // R76: Pfeil „erzeugt“ Vorlage → Maßnahme ohne Beschluss (V2.4 HB 3.1, k6.4.3-p2)
+    { x: 832, y: 425, b: 80, h: 80, grund: 'Pfeil „erzeugt“ von der Vorlage zur Maßnahme (V2.4 HB 3.1)' },
   ],
+  // R76: zwei Rollen „A“ in derselben Spalte – je Prozess eine letztverantwortliche Rolle (k6.4.1-p2)
+  'abb-8': [{ x: 795, y: 172, b: 20, h: 20, grund: 'zweiter Punkt in Spalte A der RACI-Matrix (k6.4.1-p2)' }],
 };
 
 test('Sperrflächen (R74): eine erfundene Gliederung im Bild bleibt ganz überdeckt; Alternativtext ohne fremde Domänenzahl', () => {
@@ -170,5 +176,9 @@ test('Sperrflächen (R74): eine erfundene Gliederung im Bild bleibt ganz überde
     for (const m of text.matchAll(/([\p{L}\p{N}]+)\s+(?:nummerierte[nr]?\s+)?(?:[\p{L}\p{N}]+-)?Domänen/gu)) assert.match(m[1] ?? '', /^(10|zehn|die|der|den)$/iu, `${datei}: „${m[0]}“`);
     assert.doesNotMatch(text, /nummerierte[nr]? Kästen/u, `${datei}: nummerierte Kästen im Alternativtext`);
     assert.doesNotMatch(text, /Frühwarnung \([^)]*wird zu/u, `${datei}: Frühwarnung „wird zu“ Risiko im Alternativtext (V2.4 HB 1.2)`);
+    // R76: keine Maßnahme direkt aus der Vorlage, kein Pfeil vom Schwellenwert in CTC; Begriffe wie im Text (O-14)
+    assert.doesNotMatch(text, /\(erzeugt\)/u, `${datei}: Vorlage „erzeugt“ Maßnahme im Alternativtext (V2.4 HB 3.1)`);
+    assert.doesNotMatch(text, /Frühwarnung \([^)]*\), CTC/u, `${datei}: Schwellenwert → CTC im Alternativtext (k6.4.3-p2)`);
+    assert.doesNotMatch(text, /Freigabe-Set|30\/60\/90 Plan|Reifegrad,/u, `${datei}: Bildbegriff statt Begriff des Texts im Alternativtext`);
   }
 });

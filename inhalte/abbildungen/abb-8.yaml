@@ -10,3 +10,6 @@ alt: >-
   Diagramme und „Nachweisführung“.
 angeglichen:
   - { x: 466, y: 438, b: 224, h: 84, text: LPH 0, beleg: k1.2-l1, schrift: plex, gewicht: 700, groesse: 68, ausrichtung: mitte }
+  # R76: Die Mini-Matrix gab zwei Rollen zugleich „A“ (letztverantwortlich). Je Prozess gibt es eine letztverantwortliche
+  # Rolle (k6.4.1-p2, k4.3-p2); der Punkt in Zeile 1 entfällt (Zeile 1 behält ihr „R“).
+  - { x: 793, y: 170, b: 24, h: 24, text: "", beleg: k6.4.1-p2 }

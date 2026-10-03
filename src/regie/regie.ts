@@ -222,13 +222,14 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     const teil = (...kinder: (Node | null)[]): HTMLElement => h('section', { class: 'druck-teil' }, kinder);
     const entscheidungen = g === null ? [] : g.kapitel.filter((k) => buehne.story.wahlen[k.id] !== undefined).map((k) => {
       const a = k.antworten[buehne.story.wahlen[k.id] ?? 0];
-      return h('li', null, `${k.nr} · ${k.titel}: `, inhaltInline(a?.html ?? ''));
+      // R76: „?:“ vermeiden – Titel und Antwort mit Gedankenstrich getrennt
+      return h('li', null, `${k.nr} · ${k.titel} – `, inhaltInline(a?.html ?? ''));
     });
     return {
       titel: w.druckTitel,
       teile: [bogenKopf(w.druckTitel, o.version, true), h('div', { class: 'regie-druck-inhalt', 'data-pruef': 'regie-druck' },
         teil(h('h2', null, w.druckEintraege), protokoll.length > 0 ? h('ol', null, protokoll.map((p) => h('li', null, h('span', { class: 'mono' }, uhr(p.zeit)), ' ', p.text))) : h('p', null, w.druckLeer)),
-        teil(h('h2', null, w.druckEntscheidungen), entscheidungen.length > 0 ? h('ul', null, entscheidungen) : h('p', null, '–')))],
+        teil(h('h2', null, w.druckEntscheidungen), entscheidungen.length > 0 ? h('ul', null, entscheidungen) : h('p', null, w.druckKeineEntscheidung)))],
     };
   };
   const drucke = (): void => {

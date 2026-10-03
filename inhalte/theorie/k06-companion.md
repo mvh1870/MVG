@@ -299,7 +299,7 @@ Höchstens eine Seite für den Bauherrn: was sich verändert hat und welche Ents
 stelle: 2
 ---
 ### Frage
-Der Nutzer wünscht eine größere Mensa. Zu diesem Thema ist kein Risiko erfasst. Was gilt für die Änderung?
+Die Schule – die künftige Nutzerin – wünscht eine größere Mensa. Zu diesem Thema ist kein Risiko erfasst. Was gilt für die Änderung?
 
 ### Erklärung
 Aufgaben, Probleme und Änderungen werden auch ohne Risikoeintrag bearbeitet. Entscheidungsbedarf kann aus jeder dieser Vorgangsarten entstehen.
@@ -383,7 +383,7 @@ Angekündigt, aber nicht eingetreten – ein Risiko mit Bandbreite.
 
 ::: karten
 ---
-titel: Jede Art und ihr nächster Schritt
+titel: Jede Vorgangsart und ihr nächster Schritt
 ---
 ::: karte aufgabe
 ---
@@ -433,7 +433,12 @@ titel: Entscheidung vorbereiten
 ---
 Offener Entscheidungsbedarf im Entscheidungsregister. **Weiter:** die Entscheidungsvorlage; der Beschluss bleibt davon getrennt.
 :::
+:::
 
+::: karten
+---
+titel: Dazu gehören, sind aber keine Vorgangsarten
+---
 ::: karte freigabe
 ---
 titel: Freigabe
@@ -568,7 +573,7 @@ titel: Eskalation entlang der Mandatsleiter
 ---
 titel: Im Mandat
 ---
-Innerhalb ihres Mandats entscheidet die zuständige Stelle des Bauherrn selbst; die Projektsteuerung hat vorbereitet und hält den Beschluss getrennt fest.
+Innerhalb des Mandats entscheiden die verantwortliche Rolle und die Projektleitung des Bauherrn im festgelegten Rahmen; die Projektsteuerung hat vorbereitet und hält den Beschluss getrennt fest.
 :::
 
 ::: etappe 2

@@ -5,7 +5,7 @@
 # Mensa AEN-012; Brandschutzauflage PRB-002, MAS-011; Kennungen der früheren Story) und die Story-Kapitel
 # inhalte/geschichte/k2-warnsignal.yaml und k3-risiko.yaml (Frühwarnung März, Risiko einen Monat später), k4-mensa.yaml,
 # k5-zahlen.yaml (Mehrkosten der Haustechnikfirma, gut eine Million, als Risiko), k7-entscheidung.yaml (Lüftungsanlage vier Monate später);
-# die Wendekarte „Entscheidung vorbereiten“ nimmt das Wärmepumpen-Beispiel aus dem Thema „Entscheidungsvorlage“ (k14.5).
+# die Wendekarte „Entscheidung vorbereiten“ nimmt die Lüftungsanlage aus k7-entscheidung.yaml (R76, gleich wie die Story).
 # Belege Einleitung/Kernaussage: v24:hb-1 (Tabelle, „Nicht jeder Hinweis wird zum Risiko“), v24:hb-2, v24:hb-3
 # Belege k15.1 (sieben Sachverhalte): v24:hb-1 (Tabelle), v24:hb-1.1 bis v24:hb-1.6
 # Belege k15.2 (Wege): v24:hb-1.2, v24:hb-1.3, v24:hb-1 (Abs. 3, 5: verknüpfen, nicht doppelt zählen, Zahl der Risiken unbegrenzt; Aufgaben, Probleme, Änderungen ohne Risikoeintrag), v24:tlb-1
@@ -109,7 +109,7 @@ titel: Entscheidung vorbereiten
 Eine erforderliche Entscheidung des Bauherrn vorbereiten: mindestens zwei zulässige Optionen, gewichteter Vergleich, Empfehlung und Termin.
 
 ### Rückseite
-Ersatzgerät oder Abwarten, als die Wärmepumpe der Grundschule später kommt.
+Ersatzgerät, Leihgeräte oder späterer Einzug, als die Lüftungsanlage der Gesamtschule vier Monate später kommt.
 :::
 :::
 :::
@@ -120,7 +120,7 @@ titel: Wege zwischen den Arten
 ---
 Vorgänge wechseln ihre Art, wenn sich der Sachverhalt klärt oder ändert:
 
-- Eine **Frühwarnung** wird geklärt: Ein mögliches Ereignis wird als [[Risiko]] bewertet, ein eingetretener Zustand als [[Problem]] bearbeitet, eine konkrete Arbeit als [[Aufgabe]] weitergeführt; ein unbegründeter Hinweis wird mit Begründung geschlossen. Die Herkunft bleibt verknüpft.
+- Eine **[[Frühwarnung]]** wird geklärt: Ein mögliches Ereignis wird als [[Risiko]] bewertet, ein eingetretener Zustand als [[Problem]] bearbeitet, eine konkrete Arbeit als [[Aufgabe]] weitergeführt; ein unbegründeter Hinweis wird mit Begründung geschlossen. Die Herkunft bleibt verknüpft.
 - Tritt ein **Risiko** ein, beginnt die Problembearbeitung. Noch unsichere Folgen bleiben getrennt sichtbar.
 - **Aufgaben, Probleme und Änderungen** brauchen keinen vorherigen Risikoeintrag.
 

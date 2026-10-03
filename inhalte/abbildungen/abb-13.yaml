@@ -4,7 +4,7 @@ titel: Sequenziertes Vorgehen von der Einrichtung bis zum Regelbetrieb
 alt: >-
   Sechs Spalten mit Pfeilen: „Einrichtung“ (verantwortliche Rolle, Umfang klären, Datenzugang, Beteiligte),
   „Diagnose“ (Governance-Lücken, Bewertungsmatrix, Entscheidungsliste), „Konzeption“ (Zielsystem, Mandatsmodell,
-  Freigabe-Set, Entscheidungs-IDs, Datenstandslogik), „Pilotierung“ (echte Entscheidungen, Kalibrierung,
+  Freigabemodell, Entscheidungs-IDs, Datenstandslogik), „Pilotierung“ (echte Entscheidungen, Kalibrierung,
   Prüfung), „Befähigung“ (Rollen, Training, Routinen), „Übergabe“ (Betriebshandbuch, Prüfrhythmus,
   Betriebsstart). Pfeil und gestrichelte Linie führen zu „Regelbetrieb“ (Abnahmefähig, Betriebsstart).
 angeglichen:
@@ -15,3 +15,6 @@ angeglichen:
   - { x: 962, y: 424, b: 116, h: 28, text: Prüfrhythmus, beleg: k8.1-t1, schrift: barlow, gewicht: 500, groesse: 23, ausrichtung: mitte, farbe: "#15191c" }
   - { x: 0, y: 700, b: 1264, h: 148, text: "", beleg: k8.2-p1, hintergrund: "#ffffff" }
   - { x: 506, y: 456, b: 106, h: 60, text: "Entschei-\ndungs-IDs", beleg: k8.1-t1, schrift: barlow, gewicht: 500, groesse: 23, farbe: "#15191c" }
+  # R76: „Freigabemodell“ wie im Text (k8.1-t1) statt „Freigabe-Set“ (O-14, L-250)
+  - { x: 501, y: 356, b: 117, h: 24, text: Freigabemodell, beleg: k8.1-t1, schrift: barlow, gewicht: 500, groesse: 21, farbe: "#15191c" }
+  - { x: 535, y: 379, b: 22, h: 6, text: "", beleg: k8.1-t1 }

@@ -722,12 +722,11 @@ test('Lernseite (P6.1): Tafel, Merksatz und Ebenen 1–4 werden auf Seiten- und 
   assert.equal(e[3]?.hasAttribute('open'), false);
 });
 
-test('Leinwand (R69): Strg+P druckt den Ersatzbogen ohne Regie-Hinweis; die Seite behält ihn', async () => {
+test('Leinwand (R69): Strg+P druckt den Ersatzbogen nur mit dem Theorie-Weg; nirgends ein Regie-Hinweis (R76, O-56)', async () => {
   const { ersatzBogenFuerLeinwand, ersatzDruck } = await import('../src/ui/druck.ts');
-  const regieWeg = W.druck.ersatzWege.find((x) => x.startsWith('Präsentieren'));
-  assert.ok(regieWeg, 'die Seite nennt den Druckweg der Regie');
   const text = (teile: Node[]): string => teile.map((t) => t.textContent ?? '').join(' ');
-  assert.ok(text(ersatzDruck(VERSION).teile).includes(regieWeg), 'Seite: mit Regie-Weg');
+  // R76: die Seite nennt die Präsentationsansicht nicht mehr (Gegenprobe gegen den alten Weg „Präsentieren: „Protokoll drucken““)
+  assert.doesNotMatch(text(ersatzDruck(VERSION).teile), /Präsentieren|Protokoll|Regie/u, 'Seite: ohne Regie-Weg');
   // r72: der Story-Druckbogen (Strg+P in der Geschichte, L-232) steht unter den Wegen; auf der Leinwand nicht
   const storyWeg = W.druck.ersatzWege.find((x) => x.startsWith('Story'));
   assert.ok(storyWeg !== undefined && text(ersatzDruck(VERSION).teile).includes(storyWeg), 'Seite: mit Story-Weg');

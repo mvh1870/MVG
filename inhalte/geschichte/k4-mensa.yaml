@@ -16,16 +16,17 @@ einstieg: |
   Jetzt kommt Hanna Klingel mit roten Wangen in den Container, in der Hand einen Stapel Zettel mit den neuen Zahlen für den Ganztag.
 
 einstieg-kurz: |
-  Juni 2026. Hanna Klingel bringt neue Zahlen für den Ganztag.
+  Juni 2026. Nach dem Schulfest bringt Hanna Klingel neue Zahlen für den Ganztag.
 
 szene:
   - { figur: klingel, text: "Ich habe wunderbare Nachrichten: Der Ganztag wächst! Wir brauchen eine größere Mensa – für 450 Essen statt 300." }
   - { figur: schwung, text: "Hab ich ihr beim Schulfest schon gesagt: Das kriegen wir hin." }
   - { figur: faden, text: "Eine größere Mensa kostet rund 600.000 Euro und vier Wochen Umplanung. Es gibt einen zweiten Weg: die Mensa jetzt so bauen, dass sie später wachsen kann – für etwa 150.000 Euro." }
   - { figur: klingel, kurzfassung: false, text: "Später ist immer zu spät. Die Kinder essen jetzt." }
-  - { figur: lot, kurzfassung: false, text: "Wenn umgeplant wird, will ich es wissen, bevor ich Beton gieße – nicht danach." }
+  # R76: bleibt in der Kurzfassung – die gute und die vertretbare Folge greifen den Beton auf (L-234)
+  - { figur: lot, text: "Wenn umgeplant wird, dann bevor ich Beton gieße – nicht danach." }
 
-frage: Die Schule hat gute Gründe, das Budget hat Grenzen, und der Architekt hat schon „Das kriegen wir hin“ gesagt. Wie gehen Sie mit dem Wunsch der Schule um?
+frage: Die Schule hat gute Gründe, das Budget hat Grenzen, und der Architekt hat schon „Das kriegen wir hin“ gesagt. Was tun Sie?
 
 antworten:
   - wertung: falle
@@ -51,7 +52,7 @@ antworten:
     folge: |
       Clara Faden hat den Antrag aufgenommen und warnt, dass die Fundamente bald gegossen werden – aber entschieden wird erst im Herbst. Dann bestätigen die Anmeldezahlen den Bedarf. Inzwischen ist die Planung weiter, und die Pläne für die Fundamente müssen noch einmal überarbeitet werden – das kostet Wochen.
 
-      Die Bürgermeisterin entscheidet auf Vorlage der Projektsteuerin für die Mensa, die später wachsen kann, aus der Reserve. Die Schule hat ein halbes Jahr auf eine Antwort gewartet, und Theo Lot muss mit dem Betonieren warten, bis die neuen Pläne da sind.
+      Die Bürgermeisterin entscheidet auf Vorlage der Projektsteuerin für die Mensa, die später wachsen kann, aus der Reserve. Die Schule hat einen ganzen Sommer lang auf eine Antwort gewartet, und Theo Lot muss mit dem Betonieren warten, bis die neuen Pläne da sind.
 
 gut: |
   Ein Wunsch, der den geltenden Stand ändert, wird als Änderung aufgenommen: wer ihn stellt, was bisher gilt, was er kostet und wie viel Zeit er braucht – und er wird mit mindestens zwei Wegen der Stelle vorgelegt, die entscheiden darf. Bis entschieden ist, gilt die bisherige Planung; eine Zusage im Flur oder beim Schulfest ersetzt keinen Beschluss.

@@ -3,13 +3,14 @@
 Kopf ≤ 100 Zeilen. Oben JETZT (überschreiben), darunter FRÜHER (anhängen, knapp).
 
 ## JETZT
-- **Stand 2026-10-03 14:09 UTC: P17.12 Prüfrunden laufen.** P17.1–P17.11 erledigt (Drehbuch nach drei Prüfrunden, neue Story als Spiel mit fünf Figuren, Campus, Balken, Mini-Aufgaben, Vergleich in Kapitel 7; Themen als Buch mit Fortschritt; Themen-Optik; Texte gekürzt, sieben Verständnisfragen; Start/Explore; Regie/Leinwand). Entscheide L-225–L-240.
-- **Prüfrunden P17.12** (zehn Felder inkl. „erlebnis“, L-236): R72 (0d1a565) 5 schwer / 30 mittel / 51 leicht – eingearbeitet (L-237–L-240). R73 (8d07401) läuft; bisher 2 schwer (abb-12 RACI „A“ überall; Bilanz auf unvollständigen Wegen). O-35-Zähler: 0.
-- **Als Nächstes:** R73 fertig einarbeiten (Story-Agent: Bilanz bei offenen Kapiteln, Lesezeit-Skript ins Repo und „etwa 10 Minuten“, Druck „So macht man es gut“; Doku ANLEITUNGEN/STIL), dann R74, R75 – zwei Runden ohne schwer; dann P17.13 (ABNAHME neu, CI, Merge nach main, Nachricht).
-- **Offen beim Owner:** Auswahl von vier neuen Explore-Werkzeugen (Klickseite gesendet, Vorschläge A–J); bei Antwort vor den letzten Runden einbauen.
-- Rechner: Node 22.22, Chromium unter `/opt/pw-browsers/chromium`. Kette ≈ 80–150 s.
+- **Stand 2026-10-03 ~18:30 UTC: P17.12 erledigt, P17.13 läuft.** R75 (c03ddde) und R76 (d27be55) ohne schweren Befund (O-35/O-58 erfüllt); R76-Befunde (12 mittel, 42 leicht) werden eingearbeitet, danach Merge `claude/haus` → `main` und Nachricht an den Owner.
+- **Prüfrunden P17.12:** R72 5/30/51, R73 2/19/42, R74 1/8/41, R75 0/12/40, R76 0/12/42 (schwer/mittel/leicht) – Tabelle in `docs/ABNAHME-MITTEL.md`, Entscheide L-237–L-252.
+- **Lesezeit:** `node werkzeuge/lesezeit.mjs` (L-246, L-249); Kurzfassung 10,4 Minuten ohne Puffer („etwa 10“, O-51, L-252) – jede Ergänzung in der Kurzfassung ausgleichen.
+- **Als Nächstes:** P18 (O-59, Owner-Auswahl A–D, Rahmen 1c 2a 3a 4a 5b 6a): vier neue Explore-Werkzeuge; Konzept `docs/WERKZEUGE-P18.md` (L-253) in Fachtreue-Prüfung, dann P18.2 Rechenkerne.
+- CI auf `claude/haus` bis ddb5b42 grün. Rechner: Node 22.22, Chromium unter `/opt/pw-browsers/chromium`. Kette ≈ 90 s.
 
 ## FRÜHER
+- 2026-10-03 (ab 09:00 UTC): P17 Neugestaltung (O-51–O-58): Drehbuch, Story als Spiel, Themen als Buch, Explore-Kopf; Prüfrunden R72–R76 (L-225–L-252); Owner wählt vier neue Werkzeuge (O-59).
 - 2026-10-02 (13:20–17:26 UTC): P16.15 Prüfrunden R67–R71 (L-205–L-223), Statusbedingungen der Story, Reservegrenze auf allen Wegen.
 - 2026-10-02 (11:03–13:20 UTC): Neuausrichtung P16 (O-36 bis O-50): neuer Plan; Umschalten auf neue Story, Themen, Explore, Regie (L-184 bis L-191); Theorie an V2.4, Impressum, Datenschutz, Webseitenordner (L-192 bis L-195).
 - 2026-10-02 (bis 09:09 UTC): alter Plan leer (R65, R66 ohne schweren Befund, L-181, L-182), CI 269 grün.

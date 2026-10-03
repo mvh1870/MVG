@@ -590,7 +590,10 @@ export function storyDruck(g: Geschichte, stand: Stand, version: string): { tite
             h('h2', null, `${k.nr} · ${k.titel}`, h('small', null, ` · ${k.zeit}`)),
             // die Frage gibt der Antwort auf Papier ihren Bezug (R75); sie ist keine Wertung
             erzaehlt ? null : h('p', { class: 'druck-frage' }, inhaltInline(k.frageHtml)),
-            h('p', null, h('b', null, `${w.druckAntwort}: `), erzaehlt ? (hier > k.nr ? w.druckBruecke : w.druckOffen) : a !== null ? inhaltInline(a.html) : w.druckOffen),
+            // R76: ein erzähltes Kapitel trägt seinen Brückensatz – eine Antwort gab es dort nicht
+            erzaehlt && hier > k.nr
+              ? h('p', { class: 'druck-bruecke' }, h('b', null, `${w.druckBruecke}: `), inhaltInline(k.brueckeHtml ?? ''))
+              : h('p', null, h('b', null, `${w.druckAntwort}: `), !erzaehlt && a !== null ? inhaltInline(a.html) : w.druckOffen),
             gewaehlt ? h('div', { class: 'druck-gut' }, h('h3', null, w.gutTitel), inhalt(k.gutHtml)) : null);
         }),
         // die Bilanz nur, wenn das Ende erreicht ist – wie am Bildschirm, samt Hinweis auf offene Entscheidungen

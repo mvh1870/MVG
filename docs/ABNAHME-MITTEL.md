@@ -12,6 +12,7 @@ Die Runden vor der Neuausrichtung (bis Runde 66, alter Aufbau mit Welten, Rollen
 | 73 | 8d07401 | 2 (abb-12 lehrt die RACI-Matrix; Bilanz urteilt auf Wegen mit offenen Entscheidungen) | 19 | 42 | eingearbeitet (L-241–L-246) |
 | 74 | d0df1b2 | 1 (abb-12 zeigt fünf erfundene Domänen gegen „zehn Domänen“ im Text) | 8 | 41 | eingearbeitet (L-247–L-250) |
 | 75 | c03ddde | 0 | 12 | 40 | eingearbeitet (L-251–L-252); erste Runde ohne schweren Befund |
+| 76 | d27be55 | 0 | 12 | 42 | eingearbeitet (L-255–L-256); zweite Runde ohne schweren Befund – O-35/O-58 erfüllt |
 
 ## Runden der Neuausrichtung (P16.15)
 

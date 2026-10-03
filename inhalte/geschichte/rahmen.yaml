@@ -70,7 +70,8 @@ balken:
       niedrig: Der Puffer ist aufgebraucht; die Sporthalle öffnet erst nach den Herbstferien.
   vertrauen:
     titel: Vertrauen
-    text: Wie sehr sich Bürgermeisterin, Schule und Stadtrat auf Sie verlassen.
+    # R76: der Start unter der Hälfte braucht einen Grund
+    text: Wie sehr sich Bürgermeisterin, Schule und Stadtrat auf Sie verlassen. Sie sind neu – das muss erst wachsen.
     start: 4
     mehr: gestiegen
     weniger: gesunken

@@ -10,6 +10,7 @@ alt: >-
   „Governance-Kern“: Entscheidungsvorlage, darunter Freigabelogik und Eskalationspfad.
 angeglichen:
   - { x: 522, y: 450, b: 156, h: 25, text: Entscheidungsvorlage, beleg: k10.5-t1, schrift: barlow, gewicht: 500, groesse: 19, ausrichtung: mitte }
-  - { x: 203, y: 812, b: 128, h: 41, text: "Komponenten mit\nlanger Lieferzeit", beleg: k10.3-p1, schrift: barlow, gewicht: 600, groesse: 17, ausrichtung: mitte }
+  # R76: in der Größe der Nachbarzeile „Freigabereife“ (L-250)
+  - { x: 199, y: 809, b: 136, h: 48, text: "Komponenten mit\nlanger Lieferzeit", beleg: k10.3-p1, schrift: barlow, gewicht: 500, groesse: 20, ausrichtung: mitte }
   - { x: 355, y: 824, b: 134, h: 28, text: Freigabereife, beleg: k10.3-p1, schrift: barlow, gewicht: 500, groesse: 20, ausrichtung: mitte }
   - { x: 1031, y: 820, b: 122, h: 36, text: "MVG-\nNeuinitialisierung", beleg: k10.4-p1, schrift: barlow, gewicht: 600, groesse: 17, ausrichtung: mitte }

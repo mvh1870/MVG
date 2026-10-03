@@ -385,7 +385,9 @@ test('Druckbogen (Strg+P): je Kapitel Ihre Antwort und „So macht man es gut“
   assert.match(druck({ ...weg('gut'), schritt: { ort: 'ende' } }), /Ihre Bilanz: Ruhig ins Ziel/u);
   // Kurzfassung: ein übersprungenes Kapitel ist erst „erzählt“, wenn seine Brücke erreicht ist
   const kurzVorn = druck(an('k3', 'szene', neuerStand(true)));
-  assert.match(kurzVorn, /2 · Ein erstes Warnsignal · März 2026Ihre Antwort: in der Kurzfassung erzählt/u);
+  // R76: statt „Ihre Antwort: …“ steht der Brückensatz des Kapitels auf dem Papier
+  assert.match(kurzVorn, /2 · Ein erstes Warnsignal · März 2026In der Kurzfassung nur erzählt: Im März erwähnt der Architekt/u);
+  assert.doesNotMatch(kurzVorn, /Warnsignal · März 2026Ihre Antwort/u);
   assert.match(kurzVorn, /5 · Zwei Zahlen, zwei Wahrheiten · Oktober 2026Ihre Antwort: noch offen/u);
   // R73: „So macht man es gut“ nur für Kapitel mit eigener Wahl – vor der Frage stünde sonst die Lösung auf dem Papier
   const bogen = (st: Stand): HTMLElement => { const el = document.createElement('div'); el.append(...storyDruck(g, st, 'Fassung').teile); return el; };

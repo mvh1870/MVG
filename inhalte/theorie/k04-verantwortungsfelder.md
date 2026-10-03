@@ -128,10 +128,10 @@ Feld Risikoannahme: Bewertung und Vorschläge sind Vorbereitung – das übernim
 ---
 seite: rechts
 ---
-Den Einsatz der Risikoreserve akzeptieren
+Den Einsatz der Risikoreserve freigeben
 
 ### Erklärung
-Feld Risikoannahme: Restrisiko und Einsatz der Risikoreserve nimmt der Bauherr an.
+Feld Risikoannahme: Das Restrisiko nimmt der Bauherr an, den Einsatz der Risikoreserve gibt er frei.
 :::
 
 ::: posten 9
@@ -336,7 +336,7 @@ Die [[Übergabe]] des Vorhabens.
 ---
 titel: Außerhalb der Reihe
 ---
-Eine [[Neufestlegung der Projektbasis]] steht außerhalb der regulären Freigabereihe; ebenso Fortführung oder Stopp – ohne feste Leistungsphase.
+Eine [[Neufestlegung der Projektbasis]] steht außerhalb der regulären Freigabereihe. Fortführung oder Stopp ist an keine feste Leistungsphase gebunden.
 :::
 :::
 :::

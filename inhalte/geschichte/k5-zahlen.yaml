@@ -17,7 +17,7 @@ szene:
   - { figur: grundstein, text: "Die Kämmerei, unsere Finanzabteilung, sagt, wir liegen eine Million über dem Budget. Der Architekt sagt zwei. Was stimmt denn nun?" }
   - { figur: schwung, text: "Meine Zahl. Die Haustechnikfirma hat Mehrkosten angekündigt, gut eine Million. Die habe ich schon drin. Ich rechne lieber zu viel als zu wenig." }
   - { figur: grundstein, text: "Und warum steht davon nichts in der Rechnung der Kämmerei?" }
-  - { figur: faden, text: "Ich habe beide Rechnungen angefordert und Zeile für Zeile verglichen. Der Unterschied ist genau diese Ankündigung. Angekündigt heißt aber nicht berechtigt – die Vergabestelle der Stadt prüft gerade, ob die Firma das überhaupt extra berechnen darf." }
+  - { figur: faden, text: "Erstens: Ich habe beide Rechnungen angefordert und Zeile für Zeile verglichen. Zweitens: Der Unterschied ist genau diese Ankündigung. Und drittens: Angekündigt heißt nicht berechtigt – die Vergabestelle der Stadt prüft gerade, ob die Firma das überhaupt extra berechnen darf." }
   - { figur: grundstein, text: "Ich brauche eine Zahl, die ich im Stadtrat vertreten kann. Nicht zwei." }
   - { figur: faden, text: "Beide Zahlen liegen innerhalb der Reserve. Aber welche Sie nennen, sollten Sie wissen – nicht raten." }
 

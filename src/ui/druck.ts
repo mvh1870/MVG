@@ -77,9 +77,9 @@ export function ersatzBogenFuerStrgP(aktiv: () => boolean, bauer: () => { titel:
   bereiteStrgP();
 }
 
-/** Ersatzbogen für Strg+P ohne eigenen Druckweg; auf der Leinwand nur der Theorie-Weg – ohne Regie (R67) und Story (r72) */
-export function ersatzDruck(version: string, mitRegie = true): { titel: string; teile: HTMLElement[] } {
-  const wege = mitRegie ? W.druck.ersatzWege : W.druck.ersatzWege.slice(0, 1);
+/** Ersatzbogen für Strg+P ohne eigenen Druckweg; auf der Leinwand nur der Theorie-Weg – ohne Story (r72); einen Regie-Weg nennt er nirgends mehr (R76, O-56) */
+export function ersatzDruck(version: string, mitStory = true): { titel: string; teile: HTMLElement[] } {
+  const wege = mitStory ? W.druck.ersatzWege : W.druck.ersatzWege.slice(0, 1);
   return {
     titel: W.druck.ersatzTitel,
     teile: [
@@ -89,7 +89,7 @@ export function ersatzDruck(version: string, mitRegie = true): { titel: string; 
   };
 }
 
-/** Leinwand (R69: aus main.ts, damit prüfbar): jeder Strg+P bekommt den Ersatzbogen ohne Regie-Hinweis */
+/** Leinwand (R69: aus main.ts, damit prüfbar): jeder Strg+P bekommt den Ersatzbogen nur mit dem Theorie-Weg */
 export function ersatzBogenFuerLeinwand(version: string): void {
   ersatzBogenFuerStrgP(() => true, () => ersatzDruck(version, false));
 }

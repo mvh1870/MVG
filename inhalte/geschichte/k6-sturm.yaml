@@ -42,7 +42,7 @@ antworten:
     folge: |
       Gesperrt wird sofort, niemand kommt zu Schaden. Clara Faden liest Ihre Nachricht am Abend, meldet den Schaden und legt noch am selben Tag den Eintrag an.
 
-      Aber vor Ort hat niemand Uhrzeit und Fotos festgehalten, und die Sicherheitskoordination hat niemand gleich gerufen – so bestreitet die Gerüstfirma, dass der Sturm schuld ist. Nach einer Woche ist geklärt, wer zahlt. Theo Lot murmelt: „Hätten wir's mal gleich aufgeschrieben.“
+      Aber die Sicherheitskoordination kommt erst am Montag, und vor Ort hat niemand Uhrzeit und Fotos festgehalten – so bestreitet die Gerüstfirma, dass der Sturm schuld ist. Nach einer Woche ist geklärt, wer zahlt. Theo Lot murmelt: „Hätten wir's mal gleich aufgeschrieben.“
   - wertung: falle
     text: Sperren Sie die Seite mit den losen Ankern. Die andere Seite steht fest – dort arbeiten die Zimmerleute weiter, bis der Gerüstbauer kommt.
     balken: { geld: -1, zeit: -2, vertrauen: -2 }

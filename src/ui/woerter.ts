@@ -67,7 +67,7 @@ export const W = {
       'Theorie: „Thema drucken“ auf jeder Seite eines Themas.',
       // r72: der Story-Druckbogen (L-232) hat keinen Knopf – ohne diese Zeile kennt den Weg niemand; auf der Leinwand entfällt sie
       'Story: Der Druckbefehl des Browsers druckt in der Geschichte Ihre Antworten mit „So macht man es gut“, am Ende auch Ihre Bilanz.',
-      'Präsentieren: „Protokoll drucken“ – Notizen und Entscheidungen des Gesprächs.',
+      // R76 (O-56): kein Hinweis auf die Präsentationsansicht mehr – sie druckt ihr Protokoll über den eigenen Knopf
     ],
   },
   ebene: 'Ebene',
@@ -120,6 +120,8 @@ export const W = {
     druckEintraege: 'Notizen aus dem Gespräch',
     druckLeer: 'Keine Einträge.',
     druckEntscheidungen: 'Entscheidungen in der Geschichte',
+    // R76: der leere Fall ausgeschrieben wie bei den Notizen (statt eines einzelnen Strichs)
+    druckKeineEntscheidung: 'Noch keine Entscheidung.',
     sprungWaehlen: 'Schritt wählen …',
     schritteHier: 'Schritte',
     wertung: { gut: 'gut', vertretbar: 'vertretbar', falle: 'Falle' } as Record<string, string>,
@@ -241,7 +243,8 @@ export const W = {
     druckTitel: 'Ihre Geschichte',
     druckAntwort: 'Ihre Antwort',
     druckOffen: 'noch offen',
-    druckBruecke: 'in der Kurzfassung erzählt',
+    // R76: übersprungene Kapitel der Kurzfassung tragen auf Papier ihren Brückensatz statt „Ihre Antwort: …“
+    druckBruecke: 'In der Kurzfassung nur erzählt',
     druckBilanzSpaeter: 'Die Bilanz steht am Ende der Geschichte.',
     // Rechner in Explore (gewichteter Vergleich mit Gewichten 1–5)
     kriterium: 'Kriterium',

@@ -112,7 +112,7 @@ Sechs Porträts (Sie als Spielfigur plus fünf Figuren), flach, als Vektorgrafik
 | Alter, Typ | 61, Bauleiter vor Ort für das Büro des Architekten; erfahren, brummig, verlässlich |
 | Steckbrief (sichtbar) | Er ist jeden Tag auf der Baustelle und kennt jede Schraube. Schreiben findet er lästig – bauen nicht. |
 | Sprechweise | knapp, handfest, Sätze ohne Schnörkel |
-| Beispielsätze | „Holz kommt, wenn es kommt.“ · „Wenn umgeplant wird, will ich es wissen, bevor ich Beton gieße – nicht danach.“ |
+| Beispielsätze | „Holz kommt, wenn es kommt.“ · „Wenn umgeplant wird, dann bevor ich Beton gieße – nicht danach.“ |
 | Sorge | Stillstand: Leute, die herumstehen, und Zeit, die keiner zurückgibt |
 | Bogen | vom „Ich bau, ich schreib nicht“ (2) über den Sturm (6), nach dem ein sauberer Eintrag zeigt, wer zahlt, zu „Steht alles drin. Hätte ich nicht gedacht, dass ich das mal gut finde“ (Ende) |
 | Porträt | grauer Schnurrbart, wettergegerbtes Gesicht, weißer Helm, orangefarbene Warnweste (#F08A1C) über kariertem Hemd. Erkennungszeichen: ein gelber Zollstock in der Brusttasche. |
@@ -127,7 +127,7 @@ Sechs Porträts (Sie als Spielfigur plus fünf Figuren), flach, als Vektorgrafik
 |---|---|---|
 | **Geld** | > Wie viel vom Budget und von der Reserve noch für Unvorhergesehenes übrig ist. | gut gefüllt |
 | **Zeit** | > Wie viel Luft bis zum Schulstart im Sommer 2028 bleibt. | halb gefüllt |
-| **Vertrauen** | > Wie sehr sich Bürgermeisterin, Schule und Stadtrat auf Sie verlassen. | knapp unter der Mitte – Sie sind neu |
+| **Vertrauen** | > Wie sehr sich Bürgermeisterin, Schule und Stadtrat auf Sie verlassen. Sie sind neu – das muss erst wachsen. | knapp unter der Mitte – Sie sind neu |
 
 **Rechnung (intern, nie als Zahl auf der Seite):** Stufen 0 bis 10. Start Geld 9, Zeit 6, Vertrauen 4. Jede Antwort bewegt jeden Balken um −2, −1, 0, +1 oder +2; das Ergebnis wird auf 0 bis 10 begrenzt. Auf der Seite: Balken mit Füllstand, beim Wechsel ein Pfeil und ein Wort („Zeit: etwas mehr Luft“, „Vertrauen: deutlich gesunken“; ±1 = „etwas“, ±2 = „deutlich“), bei 0 „unverändert“. Nie nur Farbe: Pfeil + Wort + Füllstand.
 
@@ -261,7 +261,9 @@ Knopf: > Los geht's · daneben leise: > Kurzfassung (etwa 10 Minuten)
 > **Konrad Schwung:** Weiß ich nicht genau. Das war nur ein Gespräch auf einer Messe. Das pendelt sich ein, glauben Sie mir.
 > **Theo Lot:** Holz kommt, wenn es kommt. Ich hab noch keinen Bau erlebt, wo's nicht irgendwann kam.
 > **Theo Lot:** Und überhaupt: Ich bau, ich schreib nicht. Listen sind Ihr Job.
-> **Clara Faden:** Kann sein. Aber wenn das Holz diesmal nicht kommt, sollten wir es früh wissen. So einen Hinweis halte ich als Frühwarnung fest – und kläre, was dran ist.
+> **Clara Faden:** Kann sein. Aber wenn das Holz diesmal nicht kommt, sollten wir es früh wissen.
+
+(R76: Die Zeile nennt das Problem, nicht die Lösung – sonst verriete sie die gute Antwort. Das Wort „Frühwarnung“ erklärt die gute Folge und „So macht man es gut“.)
 
 **Frage**
 > Noch ist nichts passiert, und niemand weiß, ob überhaupt etwas passieren wird. Alle schauen Sie an. Was sagen Sie?
@@ -275,7 +277,9 @@ Knopf: > Los geht's · daneben leise: > Kurzfassung (etwa 10 Minuten)
 **Folge-Szenen**
 
 *A · gut*
-> Clara Faden schreibt drei Zeilen: Hinweis des Architekten aus einem Gespräch auf einer Messe. Prüffrage: Wie lang sind die Lieferzeiten bei den Herstellern, die für uns infrage kommen? Konrad Schwung fragt bis Ende des Monats nach. Mehr braucht es noch nicht – in zwei Wochen gibt es eine Antwort. Theo Lot zuckt mit den Schultern: „Papierkram.“ Clara Faden lächelt nur.
+> „So einen Hinweis halte ich als Frühwarnung fest“, sagt Clara Faden und schreibt drei Zeilen: Hinweis des Architekten aus einem Gespräch auf einer Messe. Prüffrage: Wie lang sind die Lieferzeiten bei den Herstellern, die für uns infrage kommen? Konrad Schwung fragt bis Ende des Monats nach.
+>
+> Mehr braucht es noch nicht – in zwei Wochen gibt es eine Antwort. Theo Lot zuckt mit den Schultern: „Papierkram.“ Clara Faden lächelt nur.
 
 *B · vertretbar*
 > Clara Faden trägt ein Risiko ein – aber ohne Zahl: „Eine Zahl ohne Grundlage schreibe ich nicht hin.“ Daneben steht: Bewertung vorläufig, Antwort der Hersteller abwarten.
@@ -286,17 +290,17 @@ Knopf: > Los geht's · daneben leise: > Kurzfassung (etwa 10 Minuten)
 > Clara Faden hält den Hinweis trotzdem vollständig fest: Prüffrage, der Architekt fragt bis Ende des Monats nach. Aber Konrad Schwung hat Ihren Satz gehört – es hat ja Zeit. Der Monat vergeht ohne Nachfrage; bei ihrer Wochendurchsicht meldet Clara Faden die Prüffrage als überfällig, und erst drei Wochen später als nötig fragt er bei den Herstellern nach.
 
 **So macht man es gut**
-> Ein unklarer Hinweis wird gleich festgehalten, spätestens bei der nächsten Wochendurchsicht – mit seiner Herkunft, einer klaren Prüffrage, einem Namen und einem Termin. Bewertet wird erst, wenn die Antwort da ist; bis dahin bleibt er offen und wird jede Woche angeschaut.
+> Ein unklarer Hinweis wird gleich als Frühwarnung festgehalten, spätestens bei der nächsten Wochendurchsicht – mit seiner Herkunft, einer klaren Prüffrage, einem Namen und einem Termin. Bewertet wird erst, wenn die Antwort da ist; bis dahin bleibt er offen und wird jede Woche angeschaut.
 
 **Mini-Aufgabe 1 · Was ist was?** (zuordnen)
 > Auf einer Baustelle passiert vieles gleichzeitig. Ordnen Sie jedem Satz zu, was er ist: Frühwarnung, Risiko, Problem, Änderung, Maßnahme oder Aufgabe.
 
-Über den Karten steht eine kleine Legende (R75, wortgleich aus den Erklärungen): Frühwarnung – ein Hinweis, der noch nicht geklärt ist · Risiko – kann eintreten, ist aber noch nicht passiert · Problem – ist schon passiert · Änderung – etwas, das bisher gilt, soll bewusst anders werden · Maßnahme – eine gezielte Handlung, die einen Zustand verbessert · Aufgabe – eine geplante Arbeit mit Ergebnis, Namen und Termin.
+Über den Karten steht eine kleine Legende (R75, wortgleich aus den Erklärungen; R76 mit dem Unterschied ungeklärt/geklärt): Frühwarnung – ein Hinweis, bei dem noch nicht geklärt ist, ob etwas dran ist · Risiko – geklärt: etwas Nachteiliges kann eintreten, ist aber noch nicht passiert · Problem – ist schon passiert · Änderung – etwas, das bisher gilt, soll bewusst anders werden · Maßnahme – eine gezielte Handlung, die einen Zustand verbessert · Aufgabe – eine geplante Arbeit mit Ergebnis, Namen und Termin.
 
 | Posten (sichtbar) | Lösung | Erklärung (sichtbar, nach der Antwort) |
 |---|---|---|
-| > Ein Hersteller erwähnt am Telefon, dass Holz knapp werden könnte. | Frühwarnung | > Ein Hinweis, der noch nicht geklärt ist. Erst einmal wird geprüft, was dran ist. |
-| > Drei Hersteller bestätigen ein halbes Jahr Lieferzeit. Ob der Holzbau deshalb später beginnt, ist noch offen. | Risiko | > Etwas Nachteiliges kann eintreten, ist aber noch nicht passiert. Das wird bewertet. |
+| > Ein Hersteller erwähnt nebenbei am Telefon, Holz werde vielleicht knapp. Genaues weiß er nicht. | Frühwarnung | > Ein Hinweis, bei dem noch nicht geklärt ist, ob etwas dran ist. Erst einmal wird das geprüft. |
+| > Drei Hersteller bestätigen schriftlich ein halbes Jahr Lieferzeit. Damit kann der Holzbau später beginnen. | Risiko | > Geklärt: Etwas Nachteiliges kann eintreten, ist aber noch nicht passiert. Das wird bewertet. |
 | > Nach dem Starkregen steht die Baugrube unter Wasser. | Problem | > Das ist schon passiert. Jetzt geht es um die Folgen und die Lösung, nicht mehr um die Wahrscheinlichkeit. |
 | > Die Schule wünscht sich eine größere Mensa. | Änderung | > Etwas, das bisher gilt, soll bewusst anders werden. Das braucht eine Entscheidung. |
 | > Eine Pumpe wird aufgestellt und die Baugrube abgesperrt, bis sie wieder trocken ist. | Maßnahme | > Eine gezielte Handlung, die einen Zustand verbessert. Ob sie wirkt, wird nachgeprüft. |
@@ -333,13 +337,13 @@ Fachliche Einordnung (intern): Die Frühwarnung aus Kapitel 2 ist geklärt und w
 > **Theo Lot:** Zehn Wochen. Die holt keiner rein, ich auch nicht.
 > **Konrad Schwung:** Wir könnten auch einfach hoffen. Hat schon oft geklappt.
 > **Clara Faden:** Hoffen ist kein Weg. Abwarten schon – aber dann muss die Bürgermeisterin entscheiden, dass die Stadt das Risiko trägt.
-> **Clara Faden:** Hoch und schwer zusammen heißt: vorrangig bearbeiten. Es gibt einen Ausweg – die Holzelemente in einem eigenen Paket früher ausschreiben. Das kostet rund 150.000 Euro.
+> **Clara Faden:** Hoch und schwer zusammen heißt: vorrangig bearbeiten. Ein Ausweg: die Holzelemente in einem eigenen Paket früher ausschreiben, für rund 150.000 Euro. Oder abwarten – dann trägt die Stadt das Risiko.
 > **Hanna Klingel:** Bitte sagen Sie mir nicht, dass meine Schule im Sommer 2028 noch in Containern sitzt.
 
 Grafik zur Szene: kleine Matrix aus 5 × 5 Feldern ohne Zahlen, Achsen „wie wahrscheinlich“ und „wie schlimm“, markiert ist das Feld in der zweiten Reihe von oben, zweite Spalte von rechts (hoch × schwer), im vorrangigen Bereich; Beschriftung > vorrangig.
 
 **Frage**
-> Die Projektsteuerin hat bewertet, was sich bewerten lässt. Was jetzt geschieht, liegt bei Ihnen: Was machen Sie mit dieser Einschätzung?
+> Die Projektsteuerin hat bewertet. Was machen Sie damit?
 
 | Platz | Wertung | Antwort (sichtbar) | Geld | Zeit | Vertrauen |
 |---|---|---|---|---|---|
@@ -391,10 +395,10 @@ Grafik zur Szene: kleine Matrix aus 5 × 5 Feldern ohne Zahlen, Achsen „wie wa
 > **Konrad Schwung:** Hab ich ihr beim Schulfest schon gesagt: Das kriegen wir hin.
 > **Clara Faden:** Eine größere Mensa kostet rund 600.000 Euro und vier Wochen Umplanung. Es gibt einen zweiten Weg: die Mensa jetzt so bauen, dass sie später wachsen kann – für etwa 150.000 Euro.
 > **Hanna Klingel:** Später ist immer zu spät. Die Kinder essen jetzt.
-> **Theo Lot:** Wenn umgeplant wird, will ich es wissen, bevor ich Beton gieße – nicht danach.
+> **Theo Lot:** Wenn umgeplant wird, dann bevor ich Beton gieße – nicht danach.
 
 **Frage**
-> Die Schule hat gute Gründe, das Budget hat Grenzen, und der Architekt hat schon „Das kriegen wir hin“ gesagt. Wie gehen Sie mit dem Wunsch der Schule um?
+> Die Schule hat gute Gründe, das Budget hat Grenzen, und der Architekt hat schon „Das kriegen wir hin“ gesagt. Was tun Sie?
 
 | Platz | Wertung | Antwort (sichtbar) | Geld | Zeit | Vertrauen |
 |---|---|---|---|---|---|
@@ -412,7 +416,7 @@ Grafik zur Szene: kleine Matrix aus 5 × 5 Feldern ohne Zahlen, Achsen „wie wa
 *B · vertretbar*
 > Clara Faden hat den Antrag aufgenommen und warnt, dass die Fundamente bald gegossen werden – aber entschieden wird erst im Herbst. Dann bestätigen die Anmeldezahlen den Bedarf. Inzwischen ist die Planung weiter, und die Pläne für die Fundamente müssen noch einmal überarbeitet werden – das kostet Wochen.
 >
-> Die Bürgermeisterin entscheidet auf Vorlage der Projektsteuerin für die Mensa, die später wachsen kann, aus der Reserve. Die Schule hat ein halbes Jahr auf eine Antwort gewartet, und Theo Lot muss mit dem Betonieren warten, bis die neuen Pläne da sind.
+> Die Bürgermeisterin entscheidet auf Vorlage der Projektsteuerin für die Mensa, die später wachsen kann, aus der Reserve. Die Schule hat einen ganzen Sommer lang auf eine Antwort gewartet, und Theo Lot muss mit dem Betonieren warten, bis die neuen Pläne da sind.
 
 *C · Falle*
 > Konrad Schwung fängt sofort an, die große Mensa zu planen. Clara Faden nimmt den Wunsch als Änderung auf und meldet der Bürgermeisterin noch in derselben Woche: Hier wird ohne Beschluss umgeplant. Die Bürgermeisterin fragt, wer das beschlossen hat – niemand. Eine Zusage am Rand eines Schulfests ist kein Beschluss.
@@ -464,7 +468,7 @@ Fachliche Einordnung (intern): Die angekündigten Mehrkosten sind ein Risiko (no
 > **Gisela Grundstein:** Die Kämmerei, unsere Finanzabteilung, sagt, wir liegen eine Million über dem Budget. Der Architekt sagt zwei. Was stimmt denn nun?
 > **Konrad Schwung:** Meine Zahl. Die Haustechnikfirma hat Mehrkosten angekündigt, gut eine Million. Die habe ich schon drin. Ich rechne lieber zu viel als zu wenig.
 > **Gisela Grundstein:** Und warum steht davon nichts in der Rechnung der Kämmerei?
-> **Clara Faden:** Ich habe beide Rechnungen angefordert und Zeile für Zeile verglichen. Der Unterschied ist genau diese Ankündigung. Angekündigt heißt aber nicht berechtigt – die Vergabestelle der Stadt prüft gerade, ob die Firma das überhaupt extra berechnen darf.
+> **Clara Faden:** Erstens: Ich habe beide Rechnungen angefordert und Zeile für Zeile verglichen. Zweitens: Der Unterschied ist genau diese Ankündigung. Und drittens: Angekündigt heißt nicht berechtigt – die Vergabestelle der Stadt prüft gerade, ob die Firma das überhaupt extra berechnen darf.
 > **Gisela Grundstein:** Ich brauche eine Zahl, die ich im Stadtrat vertreten kann. Nicht zwei.
 > **Clara Faden:** Beide Zahlen liegen innerhalb der Reserve. Aber welche Sie nennen, sollten Sie wissen – nicht raten.
 
@@ -542,7 +546,7 @@ Fachliche Einordnung (intern): Sperren ist Sache der Bauleitung vor Ort mit der 
 *B · vertretbar*
 > Gesperrt wird sofort, niemand kommt zu Schaden. Clara Faden liest Ihre Nachricht am Abend, meldet den Schaden und legt noch am selben Tag den Eintrag an.
 >
-> Aber vor Ort hat niemand Uhrzeit und Fotos festgehalten, und die Sicherheitskoordination hat niemand gleich gerufen – so bestreitet die Gerüstfirma, dass der Sturm schuld ist. Nach einer Woche ist geklärt, wer zahlt. Theo Lot murmelt: „Hätten wir's mal gleich aufgeschrieben.“
+> Aber die Sicherheitskoordination kommt erst am Montag, und vor Ort hat niemand Uhrzeit und Fotos festgehalten – so bestreitet die Gerüstfirma, dass der Sturm schuld ist. Nach einer Woche ist geklärt, wer zahlt. Theo Lot murmelt: „Hätten wir's mal gleich aufgeschrieben.“
 
 *C · Falle*
 > Am Samstag kommt die Sicherheitskoordination vorbei und stoppt die ganze Baustelle, bis das Gerüst geprüft ist. Verletzt wurde niemand – zum Glück. Clara Faden erfährt erst jetzt davon, meldet den Vorfall sofort und hält ihn noch am selben Tag fest. Die Prüfung dauert eine Woche, und die Bürgermeisterin fragt, warum am Freitag weitergearbeitet wurde.
@@ -602,7 +606,7 @@ Was die Wege bedeuten (sichtbar, in Worten neben den Punkten):
 |---|---|---|---|---|
 | > **A · Ersatzgerät** | > rund 400.000 Euro mehr | > alle Kinder ziehen pünktlich ein | > volle Lüftung ab dem ersten Tag | > braucht etwas mehr Strom als das bestellte Gerät |
 | > **B · Leihgeräte** | > rund 150.000 Euro Miete | > alle pünktlich | > laut, oft Fenster auf, bis die Anlage läuft | > viel Strom, später zweimal umbauen |
-| > **C · Später einziehen** | > rund 50.000 Euro für längere Container | > Grundschule pünktlich, Gesamtschule erst nach den Herbstferien | > volle Lüftung, sobald die Kinder kommen | > das bestellte, sparsamste Gerät |
+| > **C · Später einziehen** | > rund 50.000 Euro: Die Gesamtschule bleibt länger in ihren Containern | > Grundschule pünktlich, Gesamtschule erst nach den Herbstferien | > volle Lüftung, sobald die Kinder kommen | > das bestellte, sparsamste Gerät |
 
 Punkte 1 bis 5 (höher = besser; sichtbar als fünf Punkte je Feld, keine Ziffern nötig):
 
@@ -620,7 +624,7 @@ Satz der Projektsteuerin unter dem Vergleich, je nach aktueller Rangfolge (sicht
 
 | Lage | Satz |
 |---|---|
-| A vorn | > Das Ersatzgerät liegt vorn: Hier zählt vor allem, dass alle Kinder pünktlich in Räume mit guter Luft einziehen. |
+| A vorn | > Das Ersatzgerät liegt vorn: Hier zählt vor allem, dass alle Kinder pünktlich einziehen. (R76: ohne „gute Luft“ – A liegt auch bei Luft „weniger wichtig“ vorn, nie aber bei Schulstart „weniger wichtig“) |
 | B vorn | > Die Leihgeräte liegen vorn – aber nur, weil gute Luft im Unterricht hier kaum zählt. Passt das zu Ihrer Schule? |
 | C vorn | > Der spätere Einzug liegt vorn: Wenn Geld oder Klima so viel zählen wie der Schulstart, lohnt sich das Warten. |
 | zwei oder drei gleichauf vorn | > Gleichauf – jetzt entscheidet das fachliche Urteil, nicht die Punktzahl. |
@@ -628,7 +632,7 @@ Satz der Projektsteuerin unter dem Vergleich, je nach aktueller Rangfolge (sicht
 Empfehlung der Projektsteuerin (sichtbar, fest, für die abgestimmten Gewichte):
 > **Empfehlung:** das Ersatzgerät. Es kostet am meisten, aber nur damit ziehen alle Kinder pünktlich in Räume mit guter Luft – das Ziel der Bürgermeisterin. Knapp ist es trotzdem: Wären Klima und Betrieb „wichtig“, läge der spätere Einzug gleichauf.
 > *(Die übrigen Kipppunkte stehen in der Liste „Wann kippt die Rangfolge?“ darüber, R72: keine Wiederholung im Empfehlungstext.)*
-> **Wer entscheidet:** die Bürgermeisterin – mehr als 100.000 Euro, und das Geld käme aus der Reserve. Der Lenkungskreis berät. Entscheiden muss sie bis Ende Mai, sonst ist auch das Ersatzgerät nicht mehr rechtzeitig da.
+> **Wer entscheidet:** die Bürgermeisterin – mehr als 100.000 Euro, und das Geld käme aus der Reserve. Der Lenkungskreis berät. Entscheiden muss sie bis Ende Mai – danach kommt auch das Ersatzgerät zu spät.
 
 **Frage**
 > Die Vorlage geht an die Bürgermeisterin. Was legen Sie ihr vor?
@@ -751,6 +755,8 @@ Gezeigt werden **Kapitel 1, 3, 4 und 7** vollständig (Einstieg, Szene, Frage, F
 
 **Kürzung R75 (2026-10-03, O-51 „Kurzfassung etwa 10“):** Nur über `kurzfassung: false` und kürzere `einstieg-kurz`, ohne neue Inhalte und ohne Zeilen, die eine spätere Folge trägt: nur auf dem ganzen Weg stehen jetzt in 3 Konrad Schwung „Wir könnten auch einfach hoffen …“, Clara Faden „Hoffen ist kein Weg …“ (die Regel zum Tragen eines Risikos steht in „So macht man es gut“) und Hanna Klingel „Bitte sagen Sie mir nicht …“, in 4 Theo Lot „Wenn umgeplant wird …“, in 7 Theo Lot „Vier Monate …“ und Hanna Klingel „Leihgeräte in jedem Klassenraum? …“; kürzere `einstieg-kurz` in 3, 4, 7 und am Ende. Gemessen mit `node werkzeuge/lesezeit.mjs`: Kurzfassung 2.083 Wörter ≈ 10,4 Minuten → „etwa 10 Minuten“; ganzer Weg 4.558 Wörter ≈ 22,8 Minuten (mit dem Ausprobieren „etwa 25 Minuten“).
 
+**Ergänzung R76 (2026-10-03, Verständlichkeit der Kurzfassung):** Was eine Folge trägt, steht wieder vor der Frage: in 3 Clara Fadens Zeile „… Oder abwarten – dann trägt die Stadt das Risiko.“, in 4 das Schulfest im `einstieg-kurz` und Theo Lots Betonzeile (gekürzt, auf beiden Wegen), in 7 die Container in Weg C. Ausgeglichen durch kürzere Fragen in 3 und 4, kürzere `einstieg-kurz` in 1 und 3, Satz A des Vergleichs und den Entscheidungstermin in 7. Gemessen mit `node werkzeuge/lesezeit.mjs`: Kurzfassung 2.080 Wörter ≈ 10,4 Minuten → „etwa 10 Minuten“.
+
 Lesezeit-Schätzung (nachgezählt am Drehbuch, 2026-10-03, vor P17.5): rund 2.400 sichtbare Wörter auf dem Weg der Kurzfassung (vier Kapitel mit je einer Folge, Vergleich, Brücken, Auftakt, Ende, Bilanz) – etwa 10 Minuten. Hauptweg: rund 4.400 sichtbare Wörter mit je einer Folge-Szene, dazu vier Mini-Aufgaben und der Vergleich zum Ausprobieren – etwa 25 Minuten. P17.5 misst nach.
 
 ---
@@ -798,7 +804,7 @@ Bildstil (O-53): isometrischer Campus, flach, farbenfroh, selbst gezeichnete Vek
 | Kapitel | Kapitelbeginn | Szene | Frage | Folge |
 |---|---|---|---|---|
 | Auftakt | Campus Stufe 0 Winter Morgen, groß; Marke „Fiktiver Fall“ | fünf Figurenkarten mit Porträt, darunter eigens „Und Sie:“ mit der Karte der Spielfigur | – | – |
-| 1 | Campus Stufe 0 (Winter, Morgen, Bauschild) | Grundstein, Faden, Schwung; Gegenstand: Fassadenplatten-Muster in Schwungs Hand | Spielfigur „Sie“ mit Mappe; Gegenstand: leeres Blatt mit Stift | Projektblatt mit Unterschrift (A), Stapel aus elf Zetteln (B), Stadtrat-Mikrofon mit Fragezeichen (C); danach Kärtchen „Wer entscheidet was“ |
+| 1 | Campus Stufe 0 (Winter, Morgen, Bauschild) | Grundstein, Faden, Schwung; Gegenstand: Fassadenplatten-Muster in Schwungs Hand | Spielfigur „Sie“ mit Mappe; Gegenstand: Notizzettel mit Fragezeichen (`bild-frage: notizzettel`, R76) | Projektblatt mit Unterschrift (A), Stapel aus elf Zetteln (B), Stadtrat-Mikrofon mit Fragezeichen (C); danach Kärtchen „Wer entscheidet was“ |
 | 2 | Campus Stufe 0 (Frühling, Tag, Krokusse) | Schwung, Faden, Lot; Gegenstand: Messe-Visitenkarte, Sprechblase mit Holzstapel | Notizzettel mit Fragezeichen | Zettel mit drei Zeilen und Kalenderblatt (A), Risikozettel mit Vermerk „vorläufig“ statt Zahl (B), Kalenderblatt mit rotem Vermerk „überfällig“ (C) |
 | 2 · Mini | Notizzettel als Bild des Schritts; Karten mit kleinem Gegenstand, wo der Bestand einen passenden hat (Telefon, Lastwagen mit Holz, Warnschild, Mensatablett, Kostenzettel; Pumpe ohne Bild) | – | – | Häkchen bzw. Hinweis je Karte |
 | 3 | Campus Stufe 1 (Frühling, Tag, Baugrube) | Schwung, Faden, Lot, Klingel; kleine Matrix 5 × 5 ohne Zahlen mit markiertem Feld „vorrangig“; Lkw mit Holzelementen | Warnschild (Dreieck mit Ausrufezeichen) | Vorlage mit zwei Spalten und Stempel „beschlossen“ (A), Kalender mit umgeblättertem Monat (B), Tagesordnung des Lenkungskreises mit rot markierter Zeile und klingelndem Telefon (C) |

@@ -8,6 +8,8 @@ kurzfassung: true
 thema: begriffe
 belege: [k3.2-t1, k3.2-p1, k4.1-p1, k4.2-p1, k4.2-p2, k4.2-p3, k9.3-p3, v24:hb-1, v24:hb-projektblatt, v24:tlb-3, v24:va-4.1]
 bild-szene: kalender
+# R76: auch der Frage-Schritt hat einen Gegenstand neben dem Porträt (O-53)
+bild-frage: notizzettel
 mandat-nach-folge: true
 
 einstieg: |
@@ -17,7 +19,7 @@ einstieg: |
 
 # Kurzfassung (P17.5): derselbe Sachstand in kürzer – Budget und Reserve bleiben, weil das Mandat darauf aufbaut
 einstieg-kurz: |
-  Januar 2026. Seit heute leiten Sie das Projekt für die Stadt. Bewilligt sind rund 58 Millionen Euro und eine Reserve von 3 Millionen für Unvorhergesehenes.
+  Januar 2026, Ihr erster Tag im Projekt. Bewilligt sind rund 58 Millionen Euro und eine Reserve von 3 Millionen für Unvorhergesehenes.
 
 szene:
   - { figur: grundstein, text: "Schön, dass Sie da sind. Eins vorweg: Im Sommer 2028 ziehen hier die Kinder ein. Das ist mir das Wichtigste – danach kommt das Geld." }

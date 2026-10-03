@@ -3,8 +3,8 @@ quelle: bilder/image6.png
 titel: Sechs Verantwortungsfelder des Bauherrn
 alt: >-
   Mittig steht der „MVG-Kern“ mit „ausübbar“, „prüfbar“, „gestaltbar“, „nachweisfähig“. Ringsum im Uhrzeigersinn ab oben
-  links sechs Karten mit je vier Zeilen, etwa: „Ziel“ (Zielsystem, Freigabelogik), „Mandat“
-  (Mandatsmodell, Schwellen, Eskalation), „Entscheidung“ (Entscheidungs-IDs, Reifegrad, Entscheidungsfrage),
+  links sechs Karten mit je vier Zeilen, etwa: „Ziel“ (Zielsystem, Abwägungsregeln, Freigabelogik), „Mandat“
+  (Mandatsmodell, Schwellen, Eskalation), „Entscheidung“ (Entscheidungs-IDs, Entscheidungsreife, Entscheidungsfrage),
   „Risikoannahme“ (Verknüpfungen, Restrisiko, Risikominderung), „Freigabe“
   (Freigabemodell LPH 0–9, Datenstandsbezug), „Datenstand & Nachweis“ (Beschlusslage,
   Nachweiskette, Betriebshandbuch, teils verdeckt). Dazu Haftnotizen.
@@ -14,3 +14,7 @@ angeglichen:
   - { x: 1034, y: 817, b: 159, h: 37, text: Verknüpfungen, beleg: k4-t1, schrift: barlow, groesse: 23, gewicht: 500, farbe: "#1b1b1b" }
   - { x: 1186, y: 462, b: 158, h: 33, text: Entscheidungs-IDs, beleg: k4-t1, schrift: barlow, gewicht: 500 }
   - { x: 789, y: 748, b: 118, h: 62, text: Fachrunden, beleg: k4.3-p2, schrift: barlow, gewicht: 600, groesse: 25, ausrichtung: mitte, farbe: "#1b1b1b" }
+  # R76: Die MVG-Antwort im Feld heißt „Entscheidungsreife“ (k4-t1); „Reifegrad“ steht auf der Seite für die Reifegradanalyse.
+  # „Kompromiss-Regeln“ heißen im Text „Abwägungsregeln“ (k4-t1, k4.1-p2). Größe wie die Nachbarzeilen (L-250).
+  - { x: 375, y: 209, b: 162, h: 34, text: Abwägungsregeln, beleg: k4.1-p2, schrift: barlow, groesse: 23, gewicht: 500, farbe: "#1b1b1b" }
+  - { x: 1186, y: 512, b: 158, h: 33, text: Entscheidungsreife, beleg: k4-t1, schrift: barlow, gewicht: 500 }

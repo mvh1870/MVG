@@ -33,7 +33,7 @@ Sie leiten für die Stadt Lindenhall den Bau eines Schulcampus, und im Sommer 20
 | 1 | Wer was entscheiden darf, wird vorab schriftlich festgelegt, mit Schwellen; welches Ziel zuerst kommt, legt der Bauherr selbst fest. | 1 | k4.2-p1, k4.2-p2, k4.2-p3 (Muster), k4.1-p1, k3.2-t1, v24:hb-projektblatt (Befugnisse und Schwellen), v24:va-4.1 |
 | 2 | Die Projektsteuerung bearbeitet und pflegt alle Vorgänge, bereitet jede Entscheidung vor und empfiehlt – entscheiden, genehmigen oder bestätigen darf sie nicht; der Bauherr pflegt nichts, er entscheidet. | alle | v24:hb-1 (Abs. 1 und „befugte Stelle“), v24:hb-3, v24:tlb-1, v24:tlb-2.1, v24:va-4.1, v24:va-4.2, O-36 |
 | 3 | Ein unklarer Hinweis ist eine Frühwarnung: Quelle, Prüffrage, wer bis wann prüft; nach der Klärung wird er Risiko, Problem oder Aufgabe oder wird begründet geschlossen. | 2 | v24:hb-1 (Tabelle), v24:hb-1.2, v24:hb-4 (Abs. 3), v24:tlb-2 |
-| 4 | Ein Risiko wird nach Wahrscheinlichkeit und höchster belegter Auswirkung eingestuft; was vorrangig ist, erfährt der Bauherr sofort; ob ein großes Risiko getragen oder Reserve dagegen eingesetzt wird, entscheidet der Bauherr. | 3 | v24:hb-2, v24:hb-3 (Tabelle Prioritäten, wesentliche Risiken), v24:hb-1.3, k4.4-p1, k3.2-t1 |
+| 4 | Ein Risiko wird nach Wahrscheinlichkeit und höchster belegter Auswirkung eingestuft; was vorrangig ist, erfährt der Bauherr umgehend, nicht erst im nächsten Bericht; ob ein großes Risiko getragen oder Reserve dagegen eingesetzt wird, entscheidet der Bauherr. | 3 | v24:hb-2, v24:hb-3 (Tabelle Prioritäten, wesentliche Risiken), v24:hb-1.3, k4.4-p1, k3.2-t1 |
 | 5 | Ein Wunsch, der den geltenden Stand ändert, ist eine Änderung: Antrag, Vergleich mit dem geltenden Stand, mindestens zwei Wege, Entscheidung der befugten Stelle; bis dahin gilt die bisherige Planung; eine Zusage im Flur ist kein Beschluss. | 4 | v24:hb-1.5, v24:hb-3.1 (letzter Absatz), v24:va-4.2, k4.3-p2 |
 | 6 | Es gibt einen maßgeblichen Datenstand; unterschiedliche Zahlen werden begründet, nicht gemittelt; Unsicheres steht als Risiko mit Spanne daneben und wird nicht doppelt gezählt. | 5 | v24:hb-2 (Abs. 3, 6), v24:hb-3 (Abs. „Unterschiedliche Einschätzungen“), v24:hb-5, v24:tlb-3, k4.6-p1, k4.6-p2 |
 | 7 | Dringliches wird sofort gemeldet und am selben Arbeitstag festgehalten; Schutz wartet nicht auf eine Vorlage; Dringlichkeit ersetzt keine Freigabe. | 6 | v24:hb-4, v24:hb-3 (Sicherheit unabhängig von der Matrix), v24:hb-1.4, v24:hb-3.1 (Vorlegen und nachhalten), v24:tlb-5 |
@@ -257,13 +257,13 @@ Knopf: > Los geht's · daneben leise: > Kurzfassung (etwa 10 Minuten)
 > **Clara Faden:** Kann sein. Aber wenn nicht, sollten wir es früh wissen.
 
 **Frage**
-> Noch ist nichts passiert, und niemand weiß, ob überhaupt etwas passieren wird. Was soll mit dem Hinweis passieren?
+> Noch ist nichts passiert, und niemand weiß, ob überhaupt etwas passieren wird. Alle schauen Sie an. Was sagen Sie?
 
 | Platz | Wertung | Antwort (sichtbar) | Geld | Zeit | Vertrauen |
 |---|---|---|---|---|---|
-| 1 | A · gut | > Die Projektsteuerin hält ihn als Frühwarnung fest: woher er kommt, was zu prüfen ist und wer bis wann nachfragt. | 0 | +1 | +1 |
-| 3 | B · vertretbar | > Gleich als Risiko eintragen und eine Zahl schätzen – lieber zu früh als zu spät. | 0 | +1 | 0 |
-| 2 | C · Falle | > Abwarten, bis der Architekt Genaueres weiß, und dann im nächsten Monatstermin darüber sprechen. | 0 | −1 | −1 |
+| 1 | A · gut | > Halten wir das als Frühwarnung fest: woher der Hinweis kommt, was zu prüfen ist und wer bis wann bei den Herstellern nachfragt. | 0 | +1 | +1 |
+| 3 | B · vertretbar | > Tragen wir es gleich als Risiko ein – lieber zu früh als zu spät. | 0 | +1 | 0 |
+| 2 | C · Falle | > Das hat Zeit bis zum Monatstermin. Bis dahin weiß der Architekt sicher Genaueres. | 0 | −1 | −1 |
 
 **Folge-Szenen**
 
@@ -271,10 +271,10 @@ Knopf: > Los geht's · daneben leise: > Kurzfassung (etwa 10 Minuten)
 > Clara Faden schreibt drei Zeilen: Hinweis des Architekten aus einem Gespräch auf einer Messe. Prüffrage: Wie lang sind die Lieferzeiten bei den Herstellern, die für uns infrage kommen? Konrad Schwung fragt bis Ende des Monats nach. Mehr braucht es noch nicht – in zwei Wochen gibt es eine Antwort. Theo Lot zuckt mit den Schultern: „Papierkram.“ Clara Faden lächelt nur.
 
 *B · vertretbar*
-> Clara Faden trägt ein Risiko ein und schreibt eine geschätzte Verzögerung dazu. Nur weiß noch niemand, was genau zu schätzen ist – da steht eine Zahl ohne Grundlage. Immerhin fragt der Architekt bis Ende des Monats bei den Herstellern nach, und die Antwort wird die Schätzung ersetzen.
+> Clara Faden trägt ein Risiko ein – aber ohne Zahl: „Eine Zahl ohne Grundlage schreibe ich nicht hin.“ Daneben steht: Bewertung vorläufig, Antwort der Hersteller abwarten. Weil der Eintrag schon als Risiko im Bericht steht, fragt die Kämmerei nach, bevor jemand weiß, ob da überhaupt etwas ist. Immerhin fragt der Architekt bis Ende des Monats bei den Herstellern nach.
 
 *C · Falle*
-> Clara Faden hält den Hinweis trotzdem fest – bei ihr geht nichts verloren. Nur eine Prüffrage und einen Termin bekommt er nicht, weil Sie abwarten wollten, und so wartet der Architekt auf einen Anruf, der nicht kommt. Erst im Monatstermin drei Wochen später fragt er bei den Herstellern nach.
+> Clara Faden hält den Hinweis trotzdem vollständig fest: Prüffrage, der Architekt fragt nach, bis Ende des Monats. Aber Konrad Schwung hat Ihren Satz gehört – es hat ja Zeit bis zum Monatstermin. Bei ihrer Wochendurchsicht meldet Clara Faden die Prüffrage als überfällig, und erst drei Wochen später als nötig fragt er bei den Herstellern nach.
 
 **So macht man es gut**
 > Ein unklarer Hinweis wird sofort festgehalten – mit seiner Herkunft, einer klaren Prüffrage, einem Namen und einem Termin. Bewertet wird erst, wenn die Antwort da ist; bis dahin bleibt er offen und wird jede Woche angeschaut.
@@ -319,11 +319,11 @@ Fachliche Einordnung (intern): Die Frühwarnung aus Kapitel 2 ist geklärt und w
 > **Clara Faden:** Ich habe es als Risiko bewertet. Wie wahrscheinlich ist es? Hoch. Wie schlimm, wenn es so kommt? Dann fangen die Holzbauer bis zu zehn Wochen später an, und der Schulstart wackelt.
 > **Theo Lot:** Zehn Wochen. Die holt keiner rein, ich auch nicht.
 > **Konrad Schwung:** Wir könnten auch einfach hoffen. Hat schon oft geklappt.
-> **Clara Faden:** Hoffen ist kein Weg, den ich vorlegen kann.
+> **Clara Faden:** Hoffen ist kein Weg. Abwarten schon – aber dann muss die Bürgermeisterin entscheiden, dass die Stadt das Risiko trägt.
 > **Clara Faden:** Beides zusammen heißt: vorrangig bearbeiten. Es gibt einen Ausweg – die Holzelemente in einem eigenen Paket früher ausschreiben. Das kostet rund 150.000 Euro.
 > **Hanna Klingel:** Bitte sagen Sie mir nicht, dass meine Schule im Sommer 2028 noch in Containern sitzt.
 
-Grafik zur Szene: kleine Matrix aus 5 × 5 Feldern ohne Zahlen, Achsen „wie wahrscheinlich“ und „wie schlimm“, ein Feld oben rechts markiert, Beschriftung > vorrangig.
+Grafik zur Szene: kleine Matrix aus 5 × 5 Feldern ohne Zahlen, Achsen „wie wahrscheinlich“ und „wie schlimm“, markiert ist das Feld in der zweiten Reihe von oben, zweite Spalte von rechts (hoch × schwer), im vorrangigen Bereich; Beschriftung > vorrangig.
 
 **Frage**
 > Die Projektsteuerin hat bewertet, was sich bewerten lässt. Was jetzt geschieht, liegt bei Ihnen: Was machen Sie mit dieser Einschätzung?
@@ -331,22 +331,22 @@ Grafik zur Szene: kleine Matrix aus 5 × 5 Feldern ohne Zahlen, Achsen „wie wa
 | Platz | Wertung | Antwort (sichtbar) | Geld | Zeit | Vertrauen |
 |---|---|---|---|---|---|
 | 3 | A · gut | > Sie informieren die Bürgermeisterin noch diese Woche. Die Projektsteuerin legt ihr eine Vorlage vor: früher ausschreiben oder abwarten. | −1 | +2 | +1 |
-| 1 | B · vertretbar | > Sie beobachten das Risiko noch einen Monat und legen es dann im Lenkungskreis vor. | −1 | −1 | −1 |
+| 1 | B · vertretbar | > Sie sagen der Bürgermeisterin sofort in zwei Sätzen Bescheid. Die Vorlage kommt in einem Monat in den regulären Lenkungskreis. | −1 | −1 | −1 |
 | 2 | C · Falle | > Sie bitten die Projektsteuerin, das Risiko vorerst kleiner darzustellen. Die Bürgermeisterin soll sich nicht unnötig sorgen. | −2 | −2 | −2 |
 
 **Folge-Szenen**
 
 *A · gut*
-> Die Bürgermeisterin liest die Vorlage am Abend: zwei Wege, jeweils mit Kosten, Zeit und dem, was an Risiko übrig bleibt, dazu die Empfehlung, früher auszuschreiben. Im Lenkungskreis wird kurz beraten, dann entscheidet sie: früher ausschreiben, das Geld kommt aus der Reserve. „Abwarten hieße, ich trage das Risiko. Das will ich nicht.“ Zwei Wochen später sind die Holzelemente ausgeschrieben, und Theo Lot streicht im Kalender ein dickes Fragezeichen durch.
+> Die Bürgermeisterin liest die Vorlage am Abend: zwei Wege, nach den abgestimmten Gesichtspunkten verglichen, jeweils mit Kosten, Zeit und dem, was an Risiko übrig bleibt, dazu die Empfehlung, früher auszuschreiben. Im Lenkungskreis wird kurz beraten, dann entscheidet sie: früher ausschreiben, das Geld kommt aus der Reserve. „Abwarten hieße, ich trage das Risiko. Das will ich nicht.“ Zwei Wochen später sind die Holzelemente ausgeschrieben, und Theo Lot streicht im Kalender ein dickes Fragezeichen durch.
 
 *B · vertretbar*
-> Einen Monat später ist die Lage dieselbe, nur die Zeit ist knapper. Die Bürgermeisterin entscheidet im Lenkungskreis wie empfohlen: früher ausschreiben, das Geld kommt aus der Reserve. Dann fragt sie: „Warum höre ich das erst jetzt?“ Die Holzelemente werden ausgeschrieben – einen Monat später, als es möglich gewesen wäre.
+> Die Bürgermeisterin weiß Bescheid und wartet auf die Vorlage. Einen Monat später ist die Lage dieselbe, nur die Zeit ist knapper. Sie entscheidet im Lenkungskreis wie empfohlen: früher ausschreiben, das Geld kommt aus der Reserve. Dann fragt sie: „Warum nicht gleich mit Vorlage? Ein Monat ist bei so etwas viel.“ Die Holzelemente werden ausgeschrieben – einen Monat später, als es möglich gewesen wäre.
 
 *C · Falle*
-> Clara Faden schüttelt freundlich den Kopf: „Ich bewerte, wie es ist. Kleiner machen kann ich es nicht.“ Im nächsten Monatsbericht steht das Risiko als vorrangig, und die Bürgermeisterin ruft an, bevor Sie es ihr erklären konnten. Sie entscheidet sofort: früher ausschreiben, aus der Reserve – nur kostet es jetzt mehr, weil die Ausschreibung eilt.
+> Clara Faden schüttelt freundlich den Kopf: „Ich bewerte, wie es ist. Kleiner machen kann ich es nicht.“ Sie führt das Risiko als vorrangig, wie es ist, und setzt es auf die Tagesordnung des Lenkungskreises; die Bürgermeisterin ruft an, bevor Sie es ihr erklären konnten. Sie entscheidet sofort: früher ausschreiben, aus der Reserve – nur kostet es jetzt mehr, weil die Ausschreibung eilt.
 
 **So macht man es gut**
-> Ein Risiko wird danach eingestuft, wie wahrscheinlich es ist und wie schwer die schlimmste belegte Folge wiegt; was vorrangig ist, erfährt der Bauherr sofort. Ob die Stadt ein großes Risiko trägt oder Geld aus der Reserve dagegen einsetzt, entscheidet die Bürgermeisterin – nicht der Architekt, nicht die Projektsteuerin und auch nicht Sie.
+> Ein Risiko wird danach eingestuft, wie wahrscheinlich es ist und wie schwer die schlimmste belegte Folge wiegt; was vorrangig ist, erfährt der Bauherr umgehend, nicht erst im nächsten Bericht. Ob die Stadt ein großes Risiko trägt oder Geld aus der Reserve dagegen einsetzt, entscheidet die Bürgermeisterin – nicht der Architekt, nicht die Projektsteuerin und auch nicht Sie.
 
 **Das steckt dahinter** → Thema `vorgaenge`
 > Die Bewertung macht aus einer Sorge eine Rangfolge: Was vorrangig ist, wird zuerst bearbeitet – und wer ein Risiko tragen will, muss das ausdrücklich entscheiden.
@@ -386,7 +386,7 @@ Grafik zur Szene: kleine Matrix aus 5 × 5 Feldern ohne Zahlen, Achsen „wie wa
 **Folge-Szenen**
 
 *A · gut*
-> Clara Faden schreibt den Antrag auf: wer was will, was bisher gilt, was sich ändern würde. Im Lenkungskreis hört die Bürgermeisterin die Schule und die Kämmerei und entscheidet: Die Mensa wird so gebaut, dass sie später wachsen kann; das Geld kommt aus der Reserve. Hanna Klingel ist nicht ganz zufrieden, aber sie weiß, woran sie ist – und Theo Lot gießt die Fundamente gleich richtig.
+> Clara Faden schreibt den Antrag auf: wer was will, was bisher gilt, was sich ändern würde – und vergleicht beide Wege nach den abgestimmten Gesichtspunkten. Im Lenkungskreis hört die Bürgermeisterin die Schule und die Kämmerei und entscheidet: Die Mensa wird so gebaut, dass sie später wachsen kann; das Geld kommt aus der Reserve. Hanna Klingel ist nicht ganz zufrieden, aber sie weiß, woran sie ist – und Theo Lot gießt die Fundamente gleich richtig.
 
 *B · vertretbar*
 > Im Herbst bestätigen die Anmeldezahlen den Bedarf. Inzwischen ist die Planung weiter, und ein Fundament muss nachträglich verstärkt werden. Die Bürgermeisterin entscheidet auf Vorlage der Projektsteuerin für die Mensa, die später wachsen kann, aus der Reserve. Die Schule hat ein halbes Jahr auf eine Antwort gewartet, und Theo Lot fragt, warum man ihm das nicht vor dem Betonieren gesagt hat.
@@ -406,7 +406,7 @@ Grafik zur Szene: kleine Matrix aus 5 × 5 Feldern ohne Zahlen, Achsen „wie wa
 | > Die größere Mensa für 600.000 Euro | Bürgermeisterin | > Mehr als 100.000 Euro, und das Geld käme aus der Reserve. Der Lenkungskreis berät sie. |
 | > 150.000 Euro aus der Reserve für die früher ausgeschriebenen Holzelemente | Bürgermeisterin | > Über die Reserve entscheidet immer die Bürgermeisterin – egal wie klein der Betrag ist. |
 | > Die Freigabe am Ende der Ausführungsplanung | Bürgermeisterin | > Jede Freigabe am Ende eines großen Abschnitts erteilt der Bauherr selbst. Der Lenkungskreis berät nur. |
-| > Ob die Stadt längere Lieferzeiten einfach in Kauf nimmt | Bürgermeisterin | > Ein großes Risiko bewusst zu tragen, ist eine Entscheidung des Bauherrn. |
+| > Ob die Stadt längere Lieferzeiten in Kauf nimmt, die den Schulstart gefährden | Bürgermeisterin | > Ein großes Risiko bewusst zu tragen, ist eine Entscheidung des Bauherrn. |
 | > Welche von zwei gleich teuren Farben die Fassadenplatten bekommen | Sie | > Kein Mehrbetrag, kein Risiko, keine Freigabe – das entscheiden Sie. |
 
 Rückmeldung, wenn „Projektsteuerin“ gewählt wird (bei jedem Posten gleich):
@@ -581,7 +581,7 @@ Punkte 1 bis 5 (höher = besser; sichtbar als fünf Punkte je Feld, keine Ziffer
 
 **„Was ist wichtiger?“** – je Gesichtspunkt drei Stufen: > sehr wichtig · wichtig · weniger wichtig (intern 5 · 3 · 1). Abgestimmt (Ausgangsstellung): Schulstart sehr wichtig, Geld wichtig, Gute Luft wichtig, Klima und Betrieb weniger wichtig. Die Leserin oder der Leser darf die Stufen umstellen; die Rangfolge (Platz + Balken + Summe klein daneben) ändert sich sofort; ein Knopf > Abgestimmte Gewichte stellt die Ausgangsstellung wieder her. Die Frage danach gilt immer für die abgestimmten Gewichte.
 
-Rechnung mit den abgestimmten Gewichten: A = 5·5 + 3·2 + 3·5 + 1·3 = **49** · B = 5·5 + 3·4 + 3·2 + 1·2 = **45** · C = 5·2 + 3·5 + 3·5 + 1·5 = **45**. Gegenproben (nachgerechnet): Schulstart nur „wichtig“ → A 39, B 35, C 41 (C vorn); Klima „sehr wichtig“ → A 61, B 53, C 65 (C vorn); Geld „sehr wichtig“ → A 53, B 53, C 55 (C vorn); Gute Luft „weniger wichtig“ → A 39, B 41, C 35 (B vorn). B liegt nie vorn, solange Gute Luft mindestens „wichtig“ ist (B − A = 2·Geld − 3·Luft − Klima ≤ 0).
+Rechnung mit den abgestimmten Gewichten: A = 5·5 + 3·2 + 3·5 + 1·3 = **49** · B = 5·5 + 3·4 + 3·2 + 1·2 = **45** · C = 5·2 + 3·5 + 3·5 + 1·5 = **45**. Gegenproben (nachgerechnet): Klima „wichtig“ → A 55, B 49, C 55 (A und C gleichauf); Schulstart nur „wichtig“ → A 39, B 35, C 41 (C vorn); Klima „sehr wichtig“ → A 61, B 53, C 65 (C vorn); Geld „sehr wichtig“ → A 53, B 53, C 55 (C vorn); Gute Luft „weniger wichtig“ → A 39, B 41, C 35 (B vorn). B liegt nie vorn, solange Gute Luft mindestens „wichtig“ ist (B − A = 2·Geld − 3·Luft − Klima ≤ 0).
 
 Satz der Projektsteuerin unter dem Vergleich, je nach aktueller Rangfolge (sichtbar):
 
@@ -593,7 +593,7 @@ Satz der Projektsteuerin unter dem Vergleich, je nach aktueller Rangfolge (sicht
 | zwei oder drei gleichauf vorn | > Gleichauf – jetzt entscheidet das fachliche Urteil, nicht die Punktzahl. |
 
 Empfehlung der Projektsteuerin (sichtbar, fest, für die abgestimmten Gewichte):
-> **Empfehlung:** das Ersatzgerät. Es kostet am meisten, aber nur damit ziehen alle Kinder pünktlich in Räume mit guter Luft – und das ist das Ziel, das die Bürgermeisterin gesetzt hat. Wichtig für die Entscheidung: Wäre der Schulstart nur so wichtig wie das Geld oder wären Klima und Betrieb sehr wichtig, läge der spätere Einzug vorn. Die Leihgeräte liegen nur vorn, wenn gute Luft kaum zählt.
+> **Empfehlung:** das Ersatzgerät. Es kostet am meisten, aber nur damit ziehen alle Kinder pünktlich in Räume mit guter Luft – und das ist das Ziel, das die Bürgermeisterin gesetzt hat. Wichtig für die Entscheidung: Schon wenn Klima und Betrieb „wichtig“ wären, lägen Ersatzgerät und späterer Einzug gleichauf. Wäre der Schulstart nur so wichtig wie das Geld oder wären Klima und Betrieb sehr wichtig, läge der spätere Einzug vorn. Die Leihgeräte liegen nur vorn, wenn gute Luft kaum zählt.
 > **Wer entscheidet:** die Bürgermeisterin – mehr als 100.000 Euro, und das Geld käme aus der Reserve. Der Lenkungskreis berät. Entscheiden muss sie bis Ende Mai, sonst ist auch das Ersatzgerät nicht mehr rechtzeitig da.
 
 **Frage**
@@ -602,7 +602,7 @@ Empfehlung der Projektsteuerin (sichtbar, fest, für die abgestimmten Gewichte):
 | Platz | Wertung | Antwort (sichtbar) | Geld | Zeit | Vertrauen |
 |---|---|---|---|---|---|
 | 2 | A · gut | > Alle drei Wege mit dem Vergleich und der Empfehlung für das Ersatzgerät – samt dem Hinweis, wann der spätere Einzug vorn läge. | −1 | +1 | +1 |
-| 3 | B · vertretbar | > Alle drei Wege – aber mit Ihrer eigenen Empfehlung für den späteren Einzug, weil er am wenigsten kostet. | −1 | 0 | 0 |
+| 3 | B · vertretbar | > Alle drei Wege mit dem Vergleich und der Empfehlung der Projektsteuerin – und dazu Ihre eigene Empfehlung für den späteren Einzug, weil er am wenigsten kostet. | −1 | 0 | 0 |
 | 1 | C · Falle | > Es eilt. Sie geben das Ersatzgerät selbst frei und holen die Zustimmung der Bürgermeisterin danach ein. | −2 | +1 | −2 |
 
 **Folge-Szenen**
@@ -611,13 +611,13 @@ Empfehlung der Projektsteuerin (sichtbar, fest, für die abgestimmten Gewichte):
 > Im Lenkungskreis beraten Kämmerei und Schulamt. Die Bürgermeisterin stellt nur eine Frage: „Wenn mir der Schulstart wichtiger ist als das Geld – bleibt es beim Ersatzgerät?“ Clara Faden nickt. Die Bürgermeisterin entscheidet: Ersatzgerät, das Geld kommt aus der Reserve. Clara Faden hält den Beschluss fest, mit Datum und einer Auflage: Das Gerät muss bis zum Herbst eingebaut sein. Hanna Klingel atmet hörbar aus.
 
 *B · vertretbar*
-> Die Bürgermeisterin liest Ihre Empfehlung und dann den Vergleich. „Sie empfehlen das Günstigste. Aber mein Ziel war der Schulstart.“ Sie vertagt um eine Woche, hört die Schule an und entscheidet dann: Ersatzgerät, aus der Reserve. Ihre Empfehlung war ehrlich begründet – sie passte nur nicht zu dem Ziel, das die Bürgermeisterin gesetzt hatte. Die Woche fehlt dem Einbau am Ende.
+> Die Bürgermeisterin liest beide Empfehlungen und dann den Vergleich. „Sie empfehlen das Günstigste. Aber mein Ziel war der Schulstart.“ Sie vertagt um eine Woche, hört die Schule an und entscheidet dann: Ersatzgerät, aus der Reserve. Ihre Empfehlung war ehrlich begründet – sie passte nur nicht zu dem Ziel, das die Bürgermeisterin gesetzt hatte. Die Woche fehlt dem Einbau am Ende.
 
 *C · Falle*
 > Die Haustechnikfirma bestellt sofort – zu ihrem Preis, denn verhandelt hat niemand. Die Bürgermeisterin erfährt es aus dem Monatsbericht: „Mehr als 100.000 Euro und Geld aus der Reserve – das ist meine Entscheidung. So steht es auf der Seite, die wir vereinbart haben.“ Sie stimmt nachträglich zu, weil es in der Sache richtig ist. Aber der Stadtrat fragt nach.
 
 **So macht man es gut**
-> Eine große Entscheidung kommt als Vorlage mit mindestens zwei zulässigen Wegen, einem gewichteten Vergleich nach vorher abgestimmten Gewichten und einer begründeten Empfehlung – samt dem Hinweis, bei welchen anderen Gewichten die Rangfolge kippt. Entschieden wird von der Stelle, die es darf, und der Beschluss wird getrennt festgehalten: Empfehlung und Punktzahl sind noch keine Entscheidung.
+> Eine Entscheidung des Bauherrn kommt als Vorlage mit mindestens zwei zulässigen Wegen, einem gewichteten Vergleich nach vorher abgestimmten Gewichten und einer begründeten Empfehlung – samt dem Hinweis, bei welchen anderen Gewichten die Rangfolge kippt. Entschieden wird von der Stelle, die es darf, und der Beschluss wird getrennt festgehalten: Empfehlung und Punktzahl sind noch keine Entscheidung.
 
 **Das steckt dahinter** → Thema `entscheidungsvorlage`
 > Der gewichtete Vergleich nimmt niemandem die Entscheidung ab; er zeigt, welcher Weg zu den gesetzten Zielen passt und wie sehr das Ergebnis an den Gewichten hängt.
@@ -670,14 +670,14 @@ Fachliche Einordnung (intern): Freigabe am Ende der Bauzeit (Abschluss der Objek
 **So macht man es gut**
 > Die Freigabe erteilt der Bauherr selbst – als Freigabe, keine Freigabe oder Freigabe mit Auflagen; der Lenkungskreis berät. Was noch offen ist, wird mit Termin und Zuständigen übergeben und nie als erledigt ausgegeben: Ein Vorgang verschwindet nicht durch die Übergabe.
 
-**Mini-Aufgabe 4 · Schließen oder übergeben?** (zuordnen, zwei Knöpfe je Posten)
-> Die Projektsteuerin räumt auf. Was kann sie schließen, was übergibt sie an das Gebäudemanagement?
+**Mini-Aufgabe 4 · Zu Recht geschlossen oder übergeben?** (zuordnen, zwei Knöpfe je Posten: > zu Recht geschlossen · übergeben)
+> Vor der Übergabe geht die Projektsteuerin alle Einträge noch einmal durch. Welche sind zu Recht geschlossen, welche übergibt sie an das Gebäudemanagement?
 
 | Posten (sichtbar) | Lösung | Erklärung (sichtbar) |
 |---|---|---|
-| > Die Frühwarnung zu den Lieferzeiten aus dem Frühjahr 2026 – geklärt, das Holz ist verbaut. | schließen | > Die Frage ist beantwortet, das Ergebnis liegt vor. |
-| > Die angekündigten Mehrkosten der Haustechnik – geprüft: Sie gehören zum bestehenden Vertrag. | schließen | > Ein Risiko wird nur mit nachgewiesenem Grund geschlossen – den gibt es hier. |
-| > Die losen Gerüstanker – erneuert und von der Sicherheitskoordination bestätigt. | schließen | > Die Lösung ist umgesetzt und fachlich bestätigt. |
+| > Das Risiko langer Lieferzeiten für die Holzelemente – das Holz ist verbaut. | zu Recht geschlossen | > Die Gefahr ist entfallen – ein nachgewiesener Grund zum Schließen. |
+| > Die angekündigten Mehrkosten der Haustechnik – im Herbst 2026 geprüft: Sie gehören zum bestehenden Vertrag. | zu Recht geschlossen | > Ein Risiko wird nur mit nachgewiesenem Grund geschlossen – den gab es schon damals. |
+| > Die losen Gerüstanker aus dem Februar 2027 – erneuert und von der Sicherheitskoordination bestätigt. | zu Recht geschlossen | > Die Lösung ist umgesetzt und fachlich bestätigt; geschlossen wurde gleich danach. |
 | > Die offenen Fugen im Hallenboden – Nachbesserung beauftragt, noch nicht fertig. | übergeben | > Beauftragt ist nicht erledigt. Der Punkt geht mit Termin und Zuständigen weiter. |
 | > Die Feineinstellung der Lüftung im ersten Winter | übergeben | > Das kommt erst noch. Wer sich darum kümmert und bis wann, wird bei der Übergabe festgehalten. |
 
@@ -694,10 +694,10 @@ Gezeigt werden **Kapitel 1, 3, 4 und 7** vollständig (Einstieg, Szene, Frage, F
 
 | Übersprungen | Brückensatz (sichtbar) | Balken (wie gut) |
 |---|---|---|
-| 2 · Ein erstes Warnsignal | > Im März erwähnt der Architekt beiläufig, dass Holzelemente knapp werden könnten. Die Projektsteuerin hält den Hinweis als Frühwarnung fest – mit Prüffrage, Namen und Termin – und zwei Wochen später ist die Antwort da. | Zeit +1, Vertrauen +1 |
-| 5 · Zwei Zahlen, zwei Wahrheiten | > Im Herbst nennen Kämmerei und Architekt zwei verschiedene Zahlen. Die Projektsteuerin klärt den Unterschied – angekündigte Mehrkosten, die noch geprüft werden –, und die Bürgermeisterin nennt dem Stadtrat eine Zahl mit Begründung; die Mehrkosten erweisen sich als unberechtigt. | Geld +1, Vertrauen +2 |
-| 6 · Ärger auf der Baustelle | > Im Februar lockert ein Sturm das Gerüst an der Sporthalle. Der Bauleiter sperrt sofort, die Projektsteuerin meldet es und hält es noch am selben Tag fest – so ist später klar, dass die Gerüstfirma zahlt. | Zeit −1, Vertrauen +1 |
-| 8 · Schulstart | > Im Juli 2028 empfehlen Sie die Freigabe mit Auflagen. Die Bürgermeisterin erteilt sie, und zwei kleine Restarbeiten gehen mit Termin und Zuständigen an das Gebäudemanagement der Stadt. | Vertrauen +1 |
+| 2 · Ein erstes Warnsignal | > Im März erwähnt der Architekt beiläufig, dass Holzelemente knapp werden könnten, und die Projektsteuerin hält den Hinweis als Frühwarnung mit Prüffrage, Namen und Termin fest. | Zeit +1, Vertrauen +1 |
+| 5 · Zwei Zahlen, zwei Wahrheiten | > Im Herbst nennen Kämmerei und Architekt zwei verschiedene Zahlen, die Bürgermeisterin nennt dem Stadtrat eine Zahl mit Begründung und die angekündigten Mehrkosten als Risiko daneben – und die Forderung erweist sich als unberechtigt, weil die Leistungen zum bestehenden Vertrag gehören. | Geld +1, Vertrauen +2 |
+| 6 · Ärger auf der Baustelle | > Im Februar lockert ein Sturm das Gerüst an der Sporthalle; der Bauleiter sperrt sofort, die Projektsteuerin meldet es und hält es noch am selben Tag fest, sodass später klar ist, dass die Gerüstfirma zahlt. | Zeit −1, Vertrauen +1 |
+| 8 · Schulstart | > Im Juli 2028 erteilt die Bürgermeisterin auf Ihre Empfehlung die Freigabe mit Auflagen, und zwei kleine Restarbeiten gehen mit Termin und Zuständigen an das Gebäudemanagement der Stadt. | Vertrauen +1 |
 
 Lesezeit-Schätzung (nachgezählt am Drehbuch, 2026-10-03): rund 2.400 sichtbare Wörter auf dem Weg der Kurzfassung (vier Kapitel mit je einer Folge, Vergleich, Brücken, Auftakt, Ende, Bilanz) – etwa 10 Minuten. Hauptweg: rund 4.400 sichtbare Wörter mit je einer Folge-Szene, dazu vier Mini-Aufgaben und der Vergleich zum Ausprobieren – etwa 25 Minuten. P17.5 misst nach.
 
@@ -708,11 +708,11 @@ Lesezeit-Schätzung (nachgezählt am Drehbuch, 2026-10-03): rund 2.400 sichtbare
 | Feld | Inhalt |
 |---|---|
 | Zeit | Ende August 2028, erster Schultag |
-| Campus | **Stufe 8 · Sommer · Morgen** – fertiger Campus, dazu: Schulbus an der neuen Haltestelle, Kinder mit Schultüten und Ranzen, Eltern, Fahrräder in den Ständern, Luftballons am Eingang der Grundschule, die Handglocke in Hanna Klingels Hand; Licht: früher Morgen, warmes Gold, lange Schatten unter den Linden. Bei reduzierter Bewegung stehen die Kinder still im Bild; sonst laufen sie in einer kurzen, ruhigen Bewegung über den Schulhof. |
+| Campus | **Stufe 8 · Sommer · Morgen** – fertiger Campus, dazu: Schulbus an der neuen Haltestelle, Kinder mit Schultüten und Ranzen, Eltern, Fahrräder in den Ständern, Luftballons am gemeinsamen Haupteingang des Campus, die Handglocke in Hanna Klingels Hand; Licht: früher Morgen, warmes Gold, lange Schatten unter den Linden. Bei reduzierter Bewegung stehen die Kinder still im Bild; sonst laufen sie in einer kurzen, ruhigen Bewegung über den Schulhof. |
 | Beleg | – (Erzählung; die Bilanz wertet nur die Balken) |
 
 **Szene**
-> Ende August 2028, halb acht am Morgen. Der erste Schulbus hält an der neuen Haltestelle, die Sonne steht noch tief über den Linden. Kinder mit Schultüten und viel zu großen Ranzen laufen über den Schulhof, die Eltern hinterher. Am Eingang der Grundschule hängen Luftballons, und neben der Tür stehen die fünf, die diesen Campus zweieinhalb Jahre lang begleitet haben – und Sie.
+> Ende August 2028, halb acht am Morgen. Der erste Schulbus hält an der neuen Haltestelle, die Sonne steht noch tief über den Linden. Kinder mit Schultüten und viel zu großen Ranzen laufen über den Schulhof, die Eltern hinterher. Am gemeinsamen Haupteingang des Campus hängen Luftballons, und neben der Tür stehen die fünf, die diesen Campus zweieinhalb Jahre lang begleitet haben – und Sie.
 > **Hanna Klingel** *(läutet ihre Glocke)*: Guten Morgen! Willkommen in eurer Schule!
 > **Theo Lot:** Steht alles drin, was wir hier gemacht haben. Hätte ich vor zwei Jahren nicht gedacht, dass ich das mal gut finde.
 > **Konrad Schwung:** Und beim nächsten Mal sag ich's gleich, wenn was klemmt. Ehrenwort.
@@ -746,7 +746,7 @@ Bildstil (O-53): isometrischer Campus, flach, farbenfroh, selbst gezeichnete Vek
 |---|---|---|---|---|
 | Auftakt | Campus Stufe 0 Winter Morgen, groß; Marke „Fiktiver Fall“ | fünf Figurenkarten mit Porträt | – | – |
 | 1 | Campus Stufe 0 (Winter, Morgen, Bauschild) | Grundstein, Faden, Schwung; Gegenstand: Fassadenplatten-Muster in Schwungs Hand | Spielfigur „Sie“ mit Mappe; Gegenstand: leeres Blatt mit Stift | Projektblatt mit Unterschrift (A), Stapel aus elf Zetteln (B), Stadtrat-Mikrofon mit Fragezeichen (C); danach Kärtchen „Wer entscheidet was“ |
-| 2 | Campus Stufe 0 (Frühling, Tag, Krokusse) | Schwung, Faden, Lot; Gegenstand: Messe-Visitenkarte, Sprechblase mit Holzstapel | Notizzettel mit Fragezeichen | Zettel mit drei Zeilen und Kalenderblatt (A), Zettel mit durchgestrichener Schätzzahl (B), Telefon, das nicht klingelt (C) |
+| 2 | Campus Stufe 0 (Frühling, Tag, Krokusse) | Schwung, Faden, Lot; Gegenstand: Messe-Visitenkarte, Sprechblase mit Holzstapel | Notizzettel mit Fragezeichen | Zettel mit drei Zeilen und Kalenderblatt (A), Risikozettel mit Vermerk „vorläufig“ statt Zahl (B), Kalenderblatt mit rotem Vermerk „überfällig“ (C) |
 | 2 · Mini | sechs Karten (Telefon, Holzstapel, Pfütze in Baugrube, Mensatablett, Pumpe, Fahrrad) | – | – | Häkchen bzw. Hinweis je Karte |
 | 3 | Campus Stufe 1 (Frühling, Tag, Baugrube) | Schwung, Faden, Lot, Klingel; kleine Matrix 5 × 5 ohne Zahlen mit markiertem Feld „vorrangig“; Lkw mit Holzelementen | Warnschild (Dreieck mit Ausrufezeichen) | Vorlage mit zwei Spalten und Stempel „beschlossen“ (A), Kalender mit umgeblättertem Monat (B), Monatsbericht mit rot markierter Zeile und klingelndem Telefon (C) |
 | 4 | Campus Stufe 2 (Sommer, Abend, Kran, Wimpel) | Klingel, Schwung, Faden, Lot; Gegenstand: Mensatablett mit Teller, Wimpelkette | zwei Mensa-Grundrisse nebeneinander (klein / mit gestrichelter Erweiterung) | Grundriss mit gestrichelter Erweiterung und Stempel (A), Anmeldeformulare und verstärktes Fundament (B), zerknüllte Planrolle (C) |
@@ -757,7 +757,7 @@ Bildstil (O-53): isometrischer Campus, flach, farbenfroh, selbst gezeichnete Vek
 | 7 | Campus Stufe 5 (Frühling, Morgen, Grundschule wächst) | alle fünf; Gegenstand: Lüftungsgerät mit Kalender „+4 Monate“ als Symbol (Pfeil, keine Zahl) | Waage mit drei Schalen (A, B, C) | Beschluss mit Stempel und Datum (A), Uhr mit einer Woche (B), Stadtrat-Mikrofon und Monatsbericht (C) |
 | 7 · Vergleich | – | Tabelle mit Punkten als Kreise, Gewichte als drei Stufenknöpfe je Gesichtspunkt, Rangbalken in den Farben A/B/C; Porträt der Projektsteuerin neben dem Empfehlungssatz | – | – |
 | 8 | Campus Stufe 6, nach der Folge Stufe 7 (Sommer, Tag) | Lot, Schwung, Klingel, Faden, Grundstein; Gegenstand: Hallenboden mit zwei markierten Fugen, Thermometer an der Lüftung | Schlüsselbund mit Anhänger | Übergabemappe mit zwei Karteikarten (A), zwei Karteikarten in der Mappe des Architekten (B), Bericht mit zwei hervorgehobenen Zeilen (C) |
-| 8 · Mini | fünf Karteikarten, zwei Ablagen („schließen“, „übergeben“) | – | – | Karten in der richtigen Ablage |
+| 8 · Mini | fünf Karteikarten, zwei Ablagen („zu Recht geschlossen“, „übergeben“) | – | – | Karten in der richtigen Ablage |
 | Ende | Campus Stufe 8 (Sommer, Morgen; Kinder, Schulbus, Schultüten, Luftballons) | alle fünf Porträts lächelnd; Handglocke | – | Bilanz: drei Balken groß, Titel; dazu je Bilanz-Typ ein kleines Bild: Sonne über dem Campus (Ruhig ins Ziel), Wegweiser mit Umweg (Mit Umwegen), Stoppuhr (Letzte Meter), Brücke mit Riss (Nicht getragen) |
 
 ---

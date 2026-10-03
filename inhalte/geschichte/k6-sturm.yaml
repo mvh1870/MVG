@@ -7,7 +7,7 @@ titel: Ärger auf der Baustelle
 zeit: Februar 2027
 campus: { stufe: 4, jahreszeit: winter, licht: tag }
 zusatz: geruest-sturm
-bruecke: Im Februar lockert ein Sturm das Gerüst an der Sporthalle; der Bauleiter sperrt sofort, die Projektsteuerin meldet es und hält es noch am selben Tag fest, sodass später klar ist, dass die Gerüstfirma zahlt.
+bruecke: Im Februar lockert ein Sturm das Gerüst an der Sporthalle. Der Bauleiter sperrt sofort, die Projektsteuerin meldet es und hält es am selben Tag fest – deshalb ist später klar, dass die Gerüstfirma zahlt.
 thema: takt
 belege: [v24:hb-4, v24:hb-3, v24:hb-1.4, v24:hb-3.1, v24:hb-1.6, v24:tlb-5, v24:va-5.2, v24:hb-5]
 bild-szene: telefon
@@ -64,5 +64,7 @@ mini:
 dahinter: "Neben dem festen Takt – jede Woche alles Offene prüfen, einmal im Monat ein kurzer Termin und eine Seite Bericht – gilt eine Regel immer: Dringliches wird sofort gemeldet und noch am selben Tag festgehalten."
 
 regie:
+  notiz: "Kern: Wo es um Sicherheit geht, wird sofort gehandelt und sofort gemeldet; noch am selben Arbeitstag wird festgehalten, was passiert ist. In der Mini-Aufgabe die Runde die Reihenfolge ansagen lassen und Schritt für Schritt anklicken."
   leitfragen:
     - Wer erfährt bei Ihnen am selben Tag von einem Schaden – und wer hält ihn fest?
+    - Was darf die Baustelle sofort tun – und was braucht trotzdem eine Entscheidung?

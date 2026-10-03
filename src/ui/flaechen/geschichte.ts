@@ -149,11 +149,20 @@ function kasten(art: 'gut' | 'dahinter', titel: string, symbol: Kind, ...inhaltK
     h('div', { class: 'gs-kasten-text' }, h('h2', { class: 'gs-kasten-titel' }, titel), inhaltKinder));
 }
 
+/**
+ * „Das steckt dahinter“: auf dem ganzen Weg offen; in der bedienbaren Kurzfassung steht der Satz in einem Aufklapper
+ * (P17.5 – die Regel steht vollständig in „So macht man es gut“), der Link zum Thema bleibt sichtbar.
+ */
 function dahinter(o: SchrittOptionen, k: Kapitel): HTMLElement {
   const thema = o.themaTitel(k.thema);
-  return kasten('dahinter', w.dahinterTitel, gegenstand('buch', 56),
-    h('p', null, inhaltInline(k.dahinterHtml)),
-    thema !== null && o.bedienbar ? h('p', { class: 'gs-thema' }, h('a', { href: `#theorie/${k.thema}`, 'data-pruef': 'gs-thema' }, `${w.zumThema}: ${thema}`, sym('pfeilRechts'))) : null);
+  const satz = h('p', null, inhaltInline(k.dahinterHtml));
+  const link = thema !== null && o.bedienbar ? h('p', { class: 'gs-thema' }, h('a', { href: `#theorie/${k.thema}`, 'data-pruef': 'gs-thema' }, `${w.zumThema}: ${thema}`, sym('pfeilRechts'))) : null;
+  if (!(o.stand.kurz && o.bedienbar)) return kasten('dahinter', w.dahinterTitel, gegenstand('buch', 56), satz, link);
+  return h('section', { class: 'gs-kasten gs-kasten-dahinter gs-kasten-auf', 'aria-label': w.dahinterTitel, 'data-pruef': 'gs-dahinter' },
+    h('span', { class: 'gs-kasten-symbol', 'aria-hidden': 'true' }, gegenstand('buch', 56)),
+    h('div', { class: 'gs-kasten-text' },
+      h('details', { class: 'gs-dahinter-auf', 'data-pruef': 'gs-dahinter-auf' }, h('summary', { class: 'gs-kasten-titel' }, w.dahinterTitel), satz),
+      link));
 }
 
 function mandatKarte(g: Geschichte): HTMLElement {
@@ -177,6 +186,16 @@ function brueckenKarten(g: Geschichte, vor: Kapitel | null): HTMLElement | null 
 
 /* ---------------------------------------------------------------- Schritte -- */
 
+/**
+ * Steckbrief einer Figur im Auftakt (P17.5): Porträt, Name und Rolle stehen offen, der Text in einem Aufklapper – der
+ * Auftakt steht vor der Wahl des Wegs und zählt so auch für die Kurzfassung. Auf der Leinwand offen.
+ */
+function steckbriefText(o: SchrittOptionen, name: string, html: string): HTMLElement {
+  return h('details', { class: 'gs-steckbrief-auf', open: !o.bedienbar },
+    h('summary', null, w.steckbrief, h('span', { class: 'nur-sr' }, `: ${name}`)),
+    h('p', { class: 'gs-steckbrief-text' }, inhaltInline(html)));
+}
+
 function auftakt(o: SchrittOptionen): HTMLElement {
   const { g } = o;
   const knopf = (kurz: boolean, text: string, klasse: string): HTMLElement => o.bedienbar
@@ -199,25 +218,31 @@ function auftakt(o: SchrittOptionen): HTMLElement {
           bildnis(f.id as Figur, 120),
           h('h3', { class: 'gs-steckbrief-name' }, f.name),
           h('p', { class: 'gs-steckbrief-rolle' }, f.rolle),
-          h('p', { class: 'gs-steckbrief-text' }, inhaltInline(f.steckbriefHtml)))),
+          steckbriefText(o, f.name, f.steckbriefHtml))),
         h('li', { class: 'gs-steckbrief gs-steckbrief-sie', 'data-akzent': 'marke', 'data-pruef': 'figur-sie' },
           bildnis('sie', 120),
           h('h3', { class: 'gs-steckbrief-name' }, w.sie),
           h('p', { class: 'gs-steckbrief-rolle' }, w.sieRolle),
-          h('p', { class: 'gs-steckbrief-text' }, inhaltInline(g.sieHtml))))),
+          steckbriefText(o, w.sie, g.sieHtml)))),
     h('section', { class: 'gs-stand-erklaert', 'aria-labelledby': 'gs-stand-titel' },
       h('h2', { id: 'gs-stand-titel', class: 'gs-h2' }, w.balkenTitel),
       balkenTafel(g, start, { gross: true, pruef: 'gs-stand-start' }),
       h('dl', { class: 'gs-stand-texte' }, g.balken.map((b) => h('div', { 'data-balken': b.id }, h('dt', null, b.titel), h('dd', null, inhaltInline(b.html)))))));
 }
 
+/** Zeilen einer Szene auf diesem Weg: die Kurzfassung lässt Zeilen mit `kurzfassung: false` weg (P17.5). */
+function zeilenDesWegs(stand: Stand, zeilen: readonly Zeile[]): Zeile[] {
+  return stand.kurz ? zeilen.filter((z) => z.kurzfassung) : [...zeilen];
+}
+
 function szene(o: SchrittOptionen, k: Kapitel): HTMLElement {
+  const einstieg = o.stand.kurz && k.einstiegKurzHtml !== null ? k.einstiegKurzHtml : k.einstiegHtml;
   return h('article', { class: 'gs-schritt gs-szene', 'data-teil': 'szene' },
     o.stand.kurz ? brueckenKarten(o.g, k) : null,
     kopf(k, k.zeit),
     h('div', { class: 'gs-buehnenbild' }, campus(k.campus, 'gs-campus-gross', k.zusatz)),
-    h('div', { class: 'gs-einstieg' }, inhalt(k.einstiegHtml), gegenstand(k.bildSzene, 104, 'gs-gegenstand gs-gegenstand-einstieg')),
-    dialog(o.g, k.szene));
+    h('div', { class: 'gs-einstieg', 'data-pruef': 'gs-einstieg' }, inhalt(einstieg), gegenstand(k.bildSzene, 104, 'gs-gegenstand gs-gegenstand-einstieg')),
+    dialog(o.g, zeilenDesWegs(o.stand, k.szene)));
 }
 
 function antwortKarte(o: SchrittOptionen, k: Kapitel, a: Antwort, platz: number): HTMLElement {
@@ -352,6 +377,8 @@ function vergleichSchritt(o: SchrittOptionen, k: Kapitel): HTMLElement {
   const vornSumme = lage.plaetze[0]?.summe ?? 0;
   const statusText = lage.vorn.length > 1 ? w.gleichauf(vornTexte, vornSumme) : w.vorn(vornTexte[0] ?? '', vornSumme);
   const eigen = o.stand.gewichte !== null;
+  const kippListe = lage.kipp.length === 0 ? h('p', null, w.kippKeiner)
+    : h('ul', null, lage.kipp.map((x) => h('li', null, w.kipp(krit(x.kriterium), w.stufen[x.gewicht] ?? '', x.spitze.map(titel)))));
   return h('article', { class: 'gs-schritt gs-vergleich', 'data-teil': 'vergleich' },
     kopf(k, `${w.vergleichKicker} · ${w.vergleichTitel}`),
     h('div', { class: 'gs-vgl-einleitung' }, bildnis('faden', 64), h('div', { class: 'gs-blase', 'data-akzent': 'lagune' }, inhalt(v.einleitungHtml)), gegenstand('waage', 96, 'gs-gegenstand gs-gegenstand-waage')),
@@ -387,10 +414,10 @@ function vergleichSchritt(o: SchrittOptionen, k: Kapitel): HTMLElement {
         o.bedienbar ? h('button', { type: 'button', class: 'gs-leiser-knopf', 'data-pruef': 'gewichte-abgestimmt', disabled: !eigen, onclick: () => o.tue(setzeAbgestimmt(o.stand)) }, sym('zurueckspulen'), w.abgestimmteGewichte) : null)),
     h('div', { class: 'gs-vgl-satz' }, bildnis('faden', 56),
       h('div', { class: 'gs-blase', 'data-akzent': 'lagune' }, h('p', { class: 'gs-sprecher' }, w.projektsteuerinSagt), h('p', { 'data-pruef': 'gs-vgl-satz' }, inhaltInline(v.saetze[lage.satz] ?? '')))),
-    h('section', { class: 'gs-vgl-kipp', 'aria-labelledby': 'gs-kipp-titel', 'data-pruef': 'gs-kipp' },
-      h('h3', { id: 'gs-kipp-titel', class: 'gs-h3' }, w.kippTitel),
-      lage.kipp.length === 0 ? h('p', null, w.kippKeiner)
-        : h('ul', null, lage.kipp.map((x) => h('li', null, w.kipp(krit(x.kriterium), w.stufen[x.gewicht] ?? '', x.spitze.map(titel)))))),
+    // Kipppunkte: auf dem ganzen Weg offen; in der bedienbaren Kurzfassung aufklappbar (P17.5 – die Empfehlung nennt sie)
+    o.stand.kurz && o.bedienbar
+      ? h('details', { class: 'gs-vgl-kipp gs-vgl-kipp-auf', 'data-pruef': 'gs-kipp' }, h('summary', { class: 'gs-h3' }, w.kippTitel), kippListe)
+      : h('section', { class: 'gs-vgl-kipp', 'aria-labelledby': 'gs-kipp-titel', 'data-pruef': 'gs-kipp' }, h('h3', { id: 'gs-kipp-titel', class: 'gs-h3' }, w.kippTitel), kippListe),
     h('section', { class: 'gs-vgl-empfehlung', 'data-pruef': 'gs-empfehlung' },
       gegenstand('stempel', 64, 'gs-gegenstand'),
       h('div', null, inhalt(v.empfehlungHtml), inhalt(v.werHtml))));
@@ -406,7 +433,8 @@ function ende(o: SchrittOptionen): HTMLElement {
   const typ = bilanzTyp(b);
   const e = g.ende;
   const vertrauenNiedrig = stufe(b.vertrauen) === 'niedrig';
-  const zeilen = e.szene.map((z) => (vertrauenNiedrig && z.figur === e.vertrauenNiedrig.figur ? e.vertrauenNiedrig : z));
+  const zeilen = zeilenDesWegs(stand, e.szene).map((z) => (vertrauenNiedrig && z.figur === e.vertrauenNiedrig.figur ? e.vertrauenNiedrig : z));
+  const einstieg = stand.kurz && e.einstiegKurzHtml !== null ? e.einstiegKurzHtml : e.einstiegHtml;
   const offen = offeneKapitel(g, stand).length;
   return h('article', { class: 'gs-schritt gs-ende', 'data-teil': 'ende', 'data-bilanz': typ },
     stand.kurz ? brueckenKarten(g, null) : null,
@@ -416,7 +444,7 @@ function ende(o: SchrittOptionen): HTMLElement {
         h('p', { class: 'gs-kicker' }, e.zeit),
         h('h1', { class: 'gs-titel', tabindex: -1, 'data-pruef': 'gs-titel' }, w.ende))),
     h('div', { class: 'gs-buehnenbild' }, campus(e.campus, 'gs-campus-gross gs-campus-ende')),
-    h('div', { class: 'gs-einstieg' }, inhalt(e.einstiegHtml), stufe(b.zeit) === 'niedrig' ? h('div', { 'data-pruef': 'gs-zeit-niedrig' }, inhalt(e.zeitNiedrigHtml)) : null, gegenstand('schulbus', 104, 'gs-gegenstand gs-gegenstand-einstieg')),
+    h('div', { class: 'gs-einstieg', 'data-pruef': 'gs-einstieg' }, inhalt(einstieg), stufe(b.zeit) === 'niedrig' ? h('div', { 'data-pruef': 'gs-zeit-niedrig' }, inhalt(e.zeitNiedrigHtml)) : null, gegenstand('schulbus', 104, 'gs-gegenstand gs-gegenstand-einstieg')),
     dialog(g, zeilen),
     h('section', { class: 'gs-bilanz', 'aria-labelledby': 'gs-bilanz-titel', 'data-pruef': 'gs-bilanz' },
       h('div', { class: 'gs-bilanz-kopf' },

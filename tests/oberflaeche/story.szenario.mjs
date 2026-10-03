@@ -1,5 +1,5 @@
 // Browser-Szenario Story (P17.4, O-51/O-52): Hauptweg mit Szene, Frage, Folge und Balken, Mini-Aufgaben per Tastatur,
-// Vergleich mit Stufen, Schulstart mit Bilanz; Kurzfassung mit Brücken; Fokus nie auf <body>, axe, Layout bei
+// Vergleich mit Stufen, Schulstart mit Bilanz; Kurzfassung mit Brücken und Aufklappern (P17.5); Fokus nie auf <body>, axe, Layout bei
 // 320/400/1024/1280 px (pruefer misst schmal auch bei 320 px), keine verbotenen Wörter, Fortschritt löschen.
 import { pruefer, sichtbarVerboten } from './hilfen.mjs';
 
@@ -160,10 +160,26 @@ export async function lauf(seite, h) {
   await h.klick('[data-pruef="von-vorn"]');
   await h.erwarte('[data-pruef="fassung-kurz"]');
   await h.klick('[data-pruef="fassung-kurz"]');
+  // Kurzfassung kürzer (P17.5): „Das steckt dahinter“ und Kipppunkte zugeklappt, per Tastatur aufklappbar
+  const zu = (sel) => seite.evaluate((s) => { const d = document.querySelector(s); return d instanceof HTMLDetailsElement ? !d.open : null; }, sel);
+  let folgeGeprueft = false;
   for (let i = 0; i < 14; i++) {
     const t = await teil();
     if (t === 'ende') break;
     if (t === 'frage') await h.klick('[data-pruef="antwort-1"]');
+    if (t === 'frage' && !folgeGeprueft) {
+      folgeGeprueft = true;
+      if ((await zu('[data-pruef="gs-dahinter-auf"]')) !== true) h.befund('Kurzfassung: „Das steckt dahinter“ nicht zugeklappt');
+      await seite.locator('[data-pruef="gs-dahinter-auf"] > summary').focus();
+      await h.taste('Enter');
+      await h.warte(60);
+      if ((await zu('[data-pruef="gs-dahinter-auf"]')) !== false) h.befund('Kurzfassung: „Das steckt dahinter“ per Enter nicht aufgeklappt');
+      await pruefe('kurz-folge');
+    }
+    if (t === 'vergleich') {
+      if ((await zu('[data-pruef="gs-kipp"]')) !== true) h.befund('Kurzfassung: Kipppunkte nicht zugeklappt');
+      await pruefe('kurz-vergleich');
+    }
     await weiter();
   }
   await h.erwarte('[data-pruef="bruecke-k8"]');

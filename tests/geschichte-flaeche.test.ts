@@ -1,7 +1,7 @@
 /*
  * Story-Fläche (src/ui/flaechen/geschichte.ts, jsdom): Auftakt mit Figuren und Wahl des Wegs, Dialog, Antwort →
  * Folge-Szene mit Balken und Ansage, Fokusführung nach jedem Neuzeichnen (nie <body>), Mini-Aufgaben per Tastatur,
- * Vergleich mit Stufen und Statusmeldung, Brücken der Kurzfassung, Ende mit Bilanz und Varianten, Leinwand ohne
+ * Vergleich mit Stufen und Statusmeldung, Brücken und Kürzungen der Kurzfassung (P17.5), Ende mit Bilanz und Varianten, Leinwand ohne
  * Bedienelemente, Speicher (alter Stand verworfen), Druckbogen.
  */
 import { test, after } from 'node:test';
@@ -187,6 +187,64 @@ test('Kurzfassung: Brücken vor 3, vor 7 und vor dem Schulstart; übersprungene 
   // ohne Kurzfassung keine Brücken
   const fl = flaeche(an('k3', 'szene'));
   assert.equal(fl.element.querySelector('[data-pruef^="bruecke-"]'), null);
+});
+
+test('Kurzfassung kürzer (P17.5): kurzer Einstieg, Zeilen weggelassen, „Das steckt dahinter“ und Kipppunkte aufklappbar – der ganze Weg unverändert', () => {
+  const k1 = kapitel(g, 'k1');
+  const k7 = kapitel(g, 'k7');
+  assert.ok(k1 && k7 && k1.einstiegKurzHtml !== null && g.ende.einstiegKurzHtml !== null);
+  const zeilenKurz = k1.szene.filter((z) => z.kurzfassung).length;
+  assert.ok(zeilenKurz < k1.szene.length && zeilenKurz >= 2);
+  // Szene: Kurzfassung mit kurzem Einstieg und weniger Zeilen, ganzer Weg mit allem
+  const kurz = flaeche(an('k1', 'szene', neuerStand(true)));
+  assert.equal($(kurz, '[data-pruef="gs-einstieg"]').querySelector('p')?.outerHTML, k1.einstiegKurzHtml.trim());
+  assert.equal(kurz.element.querySelectorAll('.gs-dialog > li').length, zeilenKurz);
+  const lang = flaeche(an('k1', 'szene'));
+  assert.equal($(lang, '[data-pruef="gs-einstieg"]').querySelector('p')?.outerHTML, k1.einstiegHtml.trim());
+  assert.equal(lang.element.querySelectorAll('.gs-dialog > li').length, k1.szene.length);
+  // Folge: in der Kurzfassung „Das steckt dahinter“ zugeklappt, der Link zum Thema bleibt sichtbar
+  const fk = flaeche(an('k1', 'frage', waehle(g, neuerStand(true), 'k1', 1)));
+  const auf = $(fk, '[data-pruef="gs-dahinter-auf"]');
+  assert.equal(auf.tagName, 'DETAILS');
+  assert.equal(auf.hasAttribute('open'), false);
+  assert.equal(auf.querySelector('summary')?.textContent, W.geschichte.dahinterTitel);
+  assert.equal(auf.querySelector('[data-pruef="gs-thema"]'), null);
+  assert.equal($(fk, '[data-pruef="gs-thema"]').getAttribute('href'), '#theorie/begriffe');
+  const fl = flaeche(an('k1', 'frage', waehle(g, neuerStand(), 'k1', 1)));
+  assert.equal(fl.element.querySelector('[data-pruef="gs-dahinter-auf"]'), null);
+  assert.ok($(fl, '[data-pruef="gs-dahinter"]').textContent?.includes(W.geschichte.dahinterTitel));
+  // Vergleich: Kipppunkte in der Kurzfassung zugeklappt, auf dem ganzen Weg offen
+  const vk = $(flaeche(an('k7', 'vergleich', neuerStand(true))), '[data-pruef="gs-kipp"]');
+  assert.equal(vk.tagName, 'DETAILS');
+  assert.equal(vk.hasAttribute('open'), false);
+  assert.equal(vk.querySelector('summary')?.textContent, W.geschichte.kippTitel);
+  assert.ok(vk.querySelector('li'));
+  assert.equal($(flaeche(an('k7', 'vergleich')), '[data-pruef="gs-kipp"]').tagName, 'SECTION');
+  // Ende: kurzer Einstieg, weniger Zeilen; die Variante „Vertrauen niedrig“ greift auch in der Kurzfassung
+  const ek = flaeche({ ...weg('gut', true), schritt: { ort: 'ende' } });
+  assert.equal($(ek, '[data-pruef="gs-einstieg"]').querySelector('p')?.outerHTML, g.ende.einstiegKurzHtml.trim());
+  assert.equal(ek.element.querySelectorAll('.gs-dialog > li').length, g.ende.szene.filter((z) => z.kurzfassung).length);
+  const ef = flaeche({ ...weg('falle', true), schritt: { ort: 'ende' } });
+  assert.match(ef.element.textContent ?? '', /Beim nächsten Projekt reden wir früher miteinander\./u);
+  // Leinwand: nichts zugeklappt, auch in der Kurzfassung
+  for (const [kap, teil] of [['k1', 'frage'], ['k7', 'vergleich']] as const) {
+    const el = baueSchritt({ g, stand: an(kap, teil, weg('gut', true)), bedienbar: false, themaTitel: () => 'Thema', tue: () => undefined });
+    assert.equal(el.querySelector('details:not([open])'), null, `${kap} ${teil}`);
+  }
+});
+
+test('Auftakt: Steckbriefe zugeklappt unter Porträt, Name und Rolle; auf der Leinwand offen', () => {
+  const f = flaeche();
+  for (const id of ['grundstein', 'faden', 'schwung', 'klingel', 'lot', 'sie']) {
+    const karte = $(f, `[data-pruef="figur-${id}"]`);
+    const auf = karte.querySelector('details.gs-steckbrief-auf');
+    assert.ok(auf && !auf.hasAttribute('open'), id);
+    assert.match(auf.querySelector('summary')?.textContent ?? '', new RegExp(`^${W.geschichte.steckbrief}: `, 'u'));
+    assert.ok(auf.querySelector('.gs-steckbrief-text')?.textContent, id);
+    assert.ok(karte.querySelector('.gs-steckbrief-name')?.textContent && karte.querySelector('.gs-steckbrief-rolle')?.textContent, id);
+  }
+  const el = baueSchritt({ g, stand: neuerStand(), bedienbar: false, themaTitel: () => 'Thema', tue: () => undefined });
+  assert.equal(el.querySelectorAll('details.gs-steckbrief-auf[open]').length, 6);
 });
 
 test('Ende: Bilanz je Weg, Varianten bei niedriger Zeit und niedrigem Vertrauen, leiser Link, „Noch einmal von vorn“', () => {

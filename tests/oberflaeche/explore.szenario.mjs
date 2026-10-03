@@ -52,6 +52,17 @@ export async function lauf(seite, h) {
     for (const fund of await seite.evaluate(punktUeberZahl)) h.befund(`matrix @${breite}: ${fund}`);
   }
   if (vp !== null) { await seite.setViewportSize(vp); await h.warte(100); }
+  // O-57, P17.7: Kacheln mit Gegenstand im Ton des Werkzeugs; bei 320 px läuft nichts quer
+  const kacheln = await seite.locator('.ex-werkzeug-link .ex-kachel-bild svg').filter({ visible: true }).count();
+  if (kacheln !== 5) h.befund(`Werkzeugleiste: erwartet fünf Gegenstände, gefunden ${kacheln}`);
+  if (vp !== null && vp.width <= 400) {
+    await seite.setViewportSize({ width: 320, height: vp.height });
+    await h.warte(150);
+    const quer = await seite.evaluate(() => document.documentElement.scrollWidth - innerWidth);
+    if (quer > 0) h.befund(`matrix @320: Seite ${quer} px breiter als das Fenster`);
+    await seite.setViewportSize(vp);
+    await h.warte(100);
+  }
   await h.klick('[data-pruef="ex-vorgaenge"]');
   await h.klick('[data-pruef="ex-art-problem"]');
   await h.klick('.ex-weg[data-ziel="aenderung"]');

@@ -62,6 +62,8 @@ export interface Zeile {
   /** Regieanweisung in Klammern („läutet ihre Glocke“) */
   zusatz: string | null;
   html: string;
+  /** false = die Kurzfassung lässt die Zeile weg (P17.5); auf dem ganzen Weg steht sie immer */
+  kurzfassung: boolean;
 }
 
 export interface Antwort {
@@ -144,6 +146,8 @@ export interface Kapitel {
   /** Kennung des passenden Themas (#theorie/<thema>) */
   thema: string;
   einstiegHtml: string;
+  /** kürzerer Einstieg nur für die Kurzfassung (P17.5); null = dort steht `einstiegHtml` */
+  einstiegKurzHtml: string | null;
   szene: Zeile[];
   /** kleine Grafik zur Szene bzw. zur Frage (Name für `gimmick`) */
   bildSzene: string | null;
@@ -163,6 +167,8 @@ export interface Ende {
   zeit: string;
   campus: CampusBild;
   einstiegHtml: string;
+  /** kürzerer Einstieg nur für die Kurzfassung (P17.5); null = dort steht `einstiegHtml` */
+  einstiegKurzHtml: string | null;
   szene: Zeile[];
   /** zusätzlich nach dem Einstieg, wenn Zeit niedrig */
   zeitNiedrigHtml: string;

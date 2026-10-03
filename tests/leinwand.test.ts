@@ -200,3 +200,69 @@ test('Anzeige (R71): der Vergleich rechnet mit den Gewichten aus der Regie – o
     assert.equal(el.querySelectorAll('button').length, 0, wo);
   }
 });
+
+test('P17.6: die Leinwand zeigt nie die Wertung der Antworten und nie Notiz oder Leitfragen – an keinem Schritt, bei keiner Wahl', async () => {
+  const { erzeugeAnzeige } = await import('../src/regie/leinwand.ts');
+  const { pruefeBuehne } = await import('../src/regie/buehne.ts');
+  const { schritte } = await import('../src/geschichte/engine.ts');
+  const { loeseMini } = await import('../src/regie/eingriffe.ts');
+  const { regieGeschichte } = await import('../src/inhalte/index.ts');
+  const { W } = await import('../src/ui/woerter.ts');
+  const anzeige = erzeugeAnzeige(inhalte, 'Test', true);
+  document.body.replaceChildren(anzeige.element);
+  // Regie-Material aller Kapitel: Notizen (als Text) und Leitfragen
+  const geheim: string[] = [];
+  for (const k of g.kapitel) {
+    const r = regieGeschichte(k.id);
+    assert.ok(r, `${k.id}: Regie-Material`);
+    assert.ok(r.leitfragen.length > 0, `${k.id}: Leitfragen`);
+    assert.ok(r.notizHtml.length > 0, `${k.id}: Notiz`);
+    geheim.push(...r.leitfragen, r.notizHtml.replace(/<[^>]*>/gu, '').slice(0, 60));
+  }
+  const wertungWorte = Object.values(W.regie.wertung).filter((x) => x !== 'gut');
+  try {
+    for (const platz of [0, 1, 2]) {
+      let stand = neuerStand();
+      for (const k of g.kapitel) stand = loeseMini(g, waehle(g, stand, k.id, platz), k.id);
+      const alle: ReturnType<typeof schritte> = schritte(g, false);
+      for (const schritt of alle) {
+        const b = pruefeBuehne(buehne({ bereich: 'story', story: { ...stand, schritt } }), g);
+        assert.ok(b);
+        anzeige.setze(b);
+        const wo: string = `${JSON.stringify(schritt)} Platz ${platz + 1}`;
+        const textInhalt = anzeige.element.textContent ?? '';
+        assert.equal(anzeige.element.querySelectorAll('[data-wertung], .regie-wertung').length, 0, `${wo}: Wertung im DOM`);
+        for (const wort of wertungWorte) assert.ok(!new RegExp(`\\b${wort}\\b`, 'u').test(textInhalt), `${wo}: „${wort}“ auf der Leinwand`);
+        for (const x of geheim) assert.ok(!textInhalt.includes(x), `${wo}: Regie-Material „${x.slice(0, 30)}“ auf der Leinwand`);
+      }
+    }
+    // Gegenprobe (Regie zeigt Wertung und Leitfragen): tests/ui-bauart.test.ts, „Regie: … Mini-Aufgabe, Wertung“
+  } finally {
+    anzeige.entferne();
+  }
+});
+
+test('P17.6: die Leinwand rollt zur Folge einer neuen Wahl und zu den Karten bei neuen Gewichten – sonst nicht', async () => {
+  const { setzeGewicht } = await import('../src/geschichte/engine.ts');
+  const { kanal, ende } = starte();
+  try {
+    const frage = { ...neuerStand(), schritt: { ort: 'kapitel' as const, kapitel: k1.id, teil: 'frage' as const } };
+    kanal.bringe({ art: 'zustand', nr: 1, zustand: buehne({ bereich: 'story', story: frage }) });
+    gerollt.length = 0;
+    // Gegenprobe: derselbe Stand noch einmal – kein Rollen
+    kanal.bringe({ art: 'zustand', nr: 2, zustand: buehne({ bereich: 'story', story: frage }) });
+    assert.equal(gerollt.length, 0);
+    kanal.bringe({ art: 'zustand', nr: 3, zustand: buehne({ bereich: 'story', story: waehle(g, frage, k1.id, 1) }) });
+    assert.equal(gerollt.length, 1, 'neue Wahl: zur Folge');
+    // Gegenprobe: dieselbe Wahl erneut gesendet – kein zweites Rollen
+    kanal.bringe({ art: 'zustand', nr: 4, zustand: buehne({ bereich: 'story', story: { ...waehle(g, frage, k1.id, 1), kurz: false } }) });
+    assert.equal(gerollt.length, 1);
+    const vgl = { ...neuerStand(), schritt: { ort: 'kapitel' as const, kapitel: 'k7', teil: 'vergleich' as const } };
+    kanal.bringe({ art: 'zustand', nr: 5, zustand: buehne({ bereich: 'story', story: vgl }) });
+    assert.equal(gerollt.length, 1, 'neuer Ort: oben, kein Rollen zum Ziel');
+    kanal.bringe({ art: 'zustand', nr: 6, zustand: buehne({ bereich: 'story', story: setzeGewicht(g, vgl, 'klima', 3) }) });
+    assert.equal(gerollt.length, 2, 'neue Gewichte: zu den Karten');
+  } finally {
+    ende();
+  }
+});

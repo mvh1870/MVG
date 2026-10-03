@@ -93,14 +93,34 @@ export function baueGeschichte(c, dateien, themen = null) {
     if (!(/** @type {readonly string[]} */ (GIMMICKS)).includes(text(x))) c.fehler(ort, `Bild „${text(x)}“ gibt es nicht (src/grafik/figuren.ts, GIMMICKS)`);
     return text(x);
   };
-  const zeile = (/** @type {any} */ z, /** @type {string} */ ort) => {
-    const o = form(z, ['text'], ['figur', 'zusatz'], ort);
+  /** Zeile einer Szene; `kurzfassung: false` (nur in Szenen, `mitKurz`) = die Kurzfassung lässt die Zeile weg (P17.5). */
+  const zeile = (/** @type {any} */ z, /** @type {string} */ ort, mitKurz = false) => {
+    const o = form(z, ['text'], mitKurz ? ['figur', 'zusatz', 'kurzfassung'] : ['figur', 'zusatz'], ort);
     if (o.figur !== undefined && !FIGUREN.includes(o.figur)) c.fehler(ort, `Figur „${text(o.figur)}“ unbekannt (${FIGUREN.join(', ')})`);
-    return { figur: o.figur === undefined ? null : text(o.figur), zusatz: o.zusatz === undefined ? null : klar(o.zusatz, ort), html: inline(o.text, ort) };
+    if (o.kurzfassung !== undefined && typeof o.kurzfassung !== 'boolean') c.fehler(ort, '„kurzfassung“ muss ja oder nein sein');
+    return { figur: o.figur === undefined ? null : text(o.figur), zusatz: o.zusatz === undefined ? null : klar(o.zusatz, ort), html: inline(o.text, ort), kurzfassung: o.kurzfassung !== false };
   };
   const szene = (/** @type {unknown} */ s, /** @type {string} */ ort) => {
     if (!Array.isArray(s) || s.length === 0) { c.fehler(ort, 'Szene: Liste von Zeilen { figur, text } erwartet'); return []; }
-    return s.map((z, i) => zeile(z, `${ort} Zeile ${i + 1}`));
+    return s.map((z, i) => zeile(z, `${ort} Zeile ${i + 1}`, true));
+  };
+  /**
+   * Kürzungen der Kurzfassung (P17.5): `einstieg-kurz` nur dort, wo die Kurzfassung den Schritt zeigt, und kürzer als
+   * `einstieg`; Zeilen mit `kurzfassung: false` nur dort, und dann bleiben mindestens zwei Zeilen stehen.
+   */
+  const kuerzung = (/** @type {any} */ o, /** @type {any[]} */ zeilen, /** @type {boolean} */ inKurz, /** @type {string} */ ort) => {
+    const weg = zeilen.filter((z) => !z.kurzfassung).length;
+    const roh = o['einstieg-kurz'];
+    if (!inKurz) {
+      if (roh !== undefined) c.fehler(ort, '„einstieg-kurz“ nur in Kapiteln der Kurzfassung');
+      if (weg > 0) c.fehler(`${ort} szene`, '„kurzfassung: nein“ an einer Zeile nur in Kapiteln der Kurzfassung');
+      return null;
+    }
+    if (weg > 0 && zeilen.length - weg < 2) c.fehler(`${ort} szene`, `in der Kurzfassung blieben ${zeilen.length - weg} Zeilen – mindestens zwei`);
+    if (roh === undefined || roh === null) return null;
+    const woerter = (/** @type {unknown} */ t) => text(t).split(/\s+/u).filter((x) => /\p{L}/u.test(x)).length;
+    if (woerter(roh) >= woerter(o.einstieg)) c.fehler(ort, `„einstieg-kurz“ hat ${woerter(roh)} Wörter, „einstieg“ ${woerter(o.einstieg)} – die Kurzfassung muss kürzer sein`);
+    return html(roh, `${ort} einstieg-kurz`);
   };
   const belege = (/** @type {unknown} */ b, /** @type {string} */ ort) => {
     if (!Array.isArray(b) || b.length === 0) { c.fehler(ort, 'interne Belege fehlen (Feld „belege“)'); return; }
@@ -150,17 +170,20 @@ export function baueGeschichte(c, dateien, themen = null) {
     }),
   };
   if (mandat.zeilen.length === 0) c.fehler(`${rel} mandat`, 'keine Zeilen');
-  const en = form(r.ende ?? {}, ['zeit', 'campus', 'einstieg', 'szene', 'zeit-niedrig', 'vertrauen-niedrig'], [], `${rel} ende`);
+  const en = form(r.ende ?? {}, ['zeit', 'campus', 'einstieg', 'szene', 'zeit-niedrig', 'vertrauen-niedrig'], ['einstieg-kurz'], `${rel} ende`);
+  const endeSzene = szene(en.szene, `${rel} ende.szene`);
   const ende = {
     zeit: klar(en.zeit, `${rel} ende`),
     campus: campus(en.campus, `${rel} ende.campus`),
     einstiegHtml: html(en.einstieg, `${rel} ende`),
-    szene: szene(en.szene, `${rel} ende.szene`),
+    einstiegKurzHtml: kuerzung(en, endeSzene, true, `${rel} ende`),
+    szene: endeSzene,
     zeitNiedrigHtml: html(en['zeit-niedrig'], `${rel} ende.zeit-niedrig`),
     vertrauenNiedrig: zeile(en['vertrauen-niedrig'] ?? {}, `${rel} ende.vertrauen-niedrig`),
   };
   const vn = ende.vertrauenNiedrig.figur;
   if (vn === null || !ende.szene.some((/** @type {any} */ z) => z.figur === vn)) c.fehler(`${rel} ende.vertrauen-niedrig`, 'ersetzt die Zeile einer Figur, die in der Szene des Endes spricht – Figur fehlt oder spricht dort nicht');
+  else if (!ende.szene.some((/** @type {any} */ z) => z.figur === vn && z.kurzfassung)) c.fehler(`${rel} ende.vertrauen-niedrig`, 'die Zeile, die diese Variante ersetzt, fehlt in der Kurzfassung (kurzfassung: nein)');
 
   /* ------------------------------------------------------------- Kapitel -- */
   const roh = dateien.filter((d) => KAPITEL_DATEI.test(d.rel)).map((d) => ({ d, y: lies(d), dateiNr: Number(KAPITEL_DATEI.exec(d.rel)?.[1]) }))
@@ -170,7 +193,7 @@ export function baueGeschichte(c, dateien, themen = null) {
   const kapitel = roh.map(({ d, y, dateiNr }, i) => {
     const ort = d.rel;
     const o = form(y, ['nr', 'titel', 'zeit', 'campus', 'thema', 'belege', 'einstieg', 'szene', 'frage', 'antworten', 'gut', 'dahinter'],
-      ['kurzfassung', 'bruecke', 'campus-nachher', 'zusatz', 'bild-szene', 'bild-frage', 'mandat-nach-folge', 'mini', 'vergleich', 'regie'], ort);
+      ['kurzfassung', 'bruecke', 'einstieg-kurz', 'campus-nachher', 'zusatz', 'bild-szene', 'bild-frage', 'mandat-nach-folge', 'mini', 'vergleich', 'regie'], ort);
     const nr = Number(o.nr);
     if (nr !== i + 1) c.fehler(ort, `Nummer ${text(o.nr)} – erwartet ${i + 1} (lückenlos ab 1)`);
     if (nr !== dateiNr) c.fehler(ort, `Nummer ${text(o.nr)} passt nicht zum Dateinamen (k${dateiNr}-…)`);
@@ -212,6 +235,9 @@ export function baueGeschichte(c, dateien, themen = null) {
       regie[id] = { notizHtml: c.html(text(rg.notiz), ort), leitfragen: (Array.isArray(rg.leitfragen) ? rg.leitfragen : []).map(text) };
     }
 
+    const kapSzene = szene(o.szene, `${ort} szene`);
+    const einstiegKurzHtml = kuerzung(o, kapSzene, kurz, ort);
+
     return {
       id,
       nr,
@@ -224,7 +250,8 @@ export function baueGeschichte(c, dateien, themen = null) {
       brueckeHtml: kurz ? null : html(o.bruecke, `${ort} bruecke`),
       thema,
       einstiegHtml: html(o.einstieg, `${ort} einstieg`),
-      szene: szene(o.szene, `${ort} szene`),
+      einstiegKurzHtml,
+      szene: kapSzene,
       bildSzene: bild(o['bild-szene'], ort),
       bildFrage: bild(o['bild-frage'], ort),
       frageHtml: inline(o.frage, `${ort} frage`),

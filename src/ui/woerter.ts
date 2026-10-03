@@ -6,6 +6,9 @@
  * Story- oder Fachtext im Code steckt. Mehrsprachig später: diese Datei je Sprache.
  */
 
+/** Kleine Anzahlen als Wort am Satzanfang (Startseite). */
+const ZAHLWORT: Record<number, string> = { 2: 'Zwei', 3: 'Drei', 4: 'Vier', 5: 'Fünf', 6: 'Sechs', 7: 'Sieben', 8: 'Acht', 9: 'Neun', 10: 'Zehn', 11: 'Elf', 12: 'Zwölf' };
+
 export const W = {
   // O-33: Der Name des Programms; Bauherr Mentoren bleibt mit Bildmarke und als Herausgeber genannt –
   // O-34: zurückhaltend, an der Sache orientiert (im Rahmen nur als Herausgeber, nicht im Produktnamen)
@@ -25,13 +28,15 @@ export const W = {
     internetseite: 'Der Governance Kompass ist eine Internetseite – zum Lesen und Ausprobieren, ohne Anmeldung, ohne Konto.',
     storyKicker: 'Erlebt',
     storyTitel: 'Als Geschichte',
-    storyText: 'Ein Schulcampus, Sie vertreten den Bauherrn. Die Projektsteuerung bereitet jede erforderliche Entscheidung vor – Sie entscheiden oder empfehlen.',
-    storyMeta: (n: number) => `${n} Stationen · etwa 25 Minuten, kurz 10`,
+    storyText: 'Sie leiten für die Stadt Lindenhall den Bau eines Schulcampus. Unterwegs entscheiden Sie achtmal – und sehen gleich, was jede Wahl für Geld, Zeit und Vertrauen bedeutet.',
+    // Anzahl als Wort; sichtbar nie „Kapitel“ (O-38, L-225)
+    storyMeta: (n: number) => `${ZAHLWORT[n] ?? String(n)} Entscheidungen · etwa 25 Minuten, kurz etwa 10`,
     storyLos: 'Beginnen',
     storyWeiter: 'Weiterlesen',
+    figuren: 'Mit dabei',
     theorieKicker: 'Erklärt',
     theorieTitel: 'In Themen',
-    theorieText: 'Was Minimum Viable Governance ausmacht – Verantwortung, Entscheidungsvorlagen, Vorgänge, Takt –, mit Grafiken zum Anklicken.',
+    theorieText: 'Was Minimum Viable Governance ausmacht – wie ein Buch in vier Teilen, mit Grafiken zum Anklicken.',
     theorieMeta: (n: number) => `${n} Themen · einzeln lesbar`,
     theorieLos: 'Öffnen',
     exploreKicker: 'Ausprobiert',
@@ -104,7 +109,16 @@ export const W = {
     druckEintraege: 'Notizen aus dem Gespräch',
     druckLeer: 'Keine Einträge.',
     druckEntscheidungen: 'Entscheidungen in der Geschichte',
-    sprungWaehlen: 'Station wählen …',
+    sprungWaehlen: 'Schritt wählen …',
+    schritteHier: 'Schritte',
+    wertung: { gut: 'gut', vertretbar: 'vertretbar', falle: 'Falle' } as Record<string, string>,
+    wertungTitel: 'Wertung (nur in der Regie)',
+    antwortNr: (nr: number) => `Antwort ${nr}`,
+    wahlZurueck: 'Wahl zurücknehmen',
+    miniAufloesen: 'Auflösen',
+    miniLeeren: 'Zurücksetzen',
+    miniLoesung: 'richtig',
+    miniReiheHinweis: 'Schritte in der Reihenfolge anklicken, die die Runde ansagt; ein zweiter Klick löst den Schritt und alle danach.',
     keineNotiz: 'Für diesen Schritt gibt es keine Notiz.',
     kundenwahl: 'Kundenwahl und Eingriffe',
     keineEingriffe: 'An diesem Schritt gibt es nichts zu wählen.',
@@ -150,6 +164,7 @@ export const W = {
     fiktiv: 'Fiktiver Fall',
     sie: 'Sie',
     sieRolle: 'Projektleitung der Stadt',
+    steckbrief: 'Steckbrief',
     balkenTitel: 'Drei Balken begleiten Sie',
     balkenLeiste: 'Stand von Geld, Zeit und Vertrauen',
     // Füllstand in Worten (nie nur Farbe; ohne Zahlen)

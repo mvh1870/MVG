@@ -107,10 +107,12 @@ ende:
   campus: { stufe: 8, jahreszeit: sommer, licht: morgen }
   einstieg: |
     Ende August 2028, halb acht am Morgen. Der erste Schulbus hält an der neuen Haltestelle, die Sonne steht noch tief über den Linden. Kinder mit Schultüten und viel zu großen Ranzen laufen über den Schulhof, die Eltern hinterher. Am gemeinsamen Haupteingang des Campus hängen Luftballons, und neben der Tür stehen die fünf, die diesen Campus zweieinhalb Jahre lang begleitet haben – und Sie.
+  einstieg-kurz: |
+    Ende August 2028, halb acht am Morgen. Der erste Schulbus hält an der neuen Haltestelle, Kinder mit Schultüten laufen über den Schulhof. Am Haupteingang stehen die fünf, die den Campus begleitet haben – und Sie.
   szene:
     - { figur: klingel, zusatz: läutet ihre Glocke, text: "Guten Morgen! Willkommen in eurer Schule!" }
-    - { figur: lot, text: "Steht alles drin, was wir hier gemacht haben. Hätte ich vor zwei Jahren nicht gedacht, dass ich das mal gut finde." }
-    - { figur: schwung, text: "Und beim nächsten Mal sag ich's gleich, wenn was klemmt. Ehrenwort." }
+    - { figur: lot, kurzfassung: false, text: "Steht alles drin, was wir hier gemacht haben. Hätte ich vor zwei Jahren nicht gedacht, dass ich das mal gut finde." }
+    - { figur: schwung, kurzfassung: false, text: "Und beim nächsten Mal sag ich's gleich, wenn was klemmt. Ehrenwort." }
     - { figur: faden, text: "Alles Offene ist übergeben, mit Namen und Termin. Verschwunden ist nichts." }
     - { figur: grundstein, text: "Wissen Sie, was das Beste war? Ich wusste jedes Mal, worüber ich entscheide." }
   zeit-niedrig: Nur die Sporthalle bleibt noch zu – sie wird erst nach den Herbstferien fertig. Bis dahin turnen die Kinder in der alten Halle.

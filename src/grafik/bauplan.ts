@@ -4,7 +4,6 @@
  * Dreifeldsporthalle. Rein (Zeichenketten), damit Seite, Leinwand und Tests dieselbe Zeichnung nutzen.
  *
  *   campus(stufe)  – Axonometrie; Stufe 0 (Lageplan) bis 6 (fertig) – Startseite und Vorschaubild
- *   grundriss()    – heller Grundriss mit Achsraster (Theorie, sehr dezent)
  */
 
 /** Isometrische Projektion: Grundriss (x, y) und Höhe z → Zeichenebene. */
@@ -116,7 +115,8 @@ export function campus(stufe: number, klasse = 'bauplan'): string {
   if (s === 2) for (const b of BAUTEN) for (let g = 1; g <= b.geschosse; g++) teile.push(umriss(b, (b.h / b.geschosse) * g, 'bp-plan gestrichelt'));
   if (s === 4) for (const b of BAUTEN) teile.push(stuetzen(b, b.h, 'bp-bau'));
   if (s === 4) for (const b of BAUTEN) teile.push(umriss(b, b.h / b.geschosse, 'bp-bau'));
-  if (s >= 5) for (const b of BAUTEN) teile.push(koerper(b, 'bp-bau'));
+  // je Bau eine eigene Klasse (bp-b0 Gesamtschule, bp-b1/bp-b2 Grundschule, bp-b3 Sporthalle): die Startseite färbt sie
+  if (s >= 5) BAUTEN.forEach((b, i) => teile.push(koerper(b, `bp-bau bp-b${i}`)));
   if (s === 4 || s === 5) teile.push(kran('bp-kran'));
   if (s === STUFE_MAX) {
     for (const [x, y] of [[-20, 120], [-20, 160], [340, 40], [340, 80], [150, 320], [190, 320], [-20, 260]] as const) teile.push(baum(x, y, 'bp-baum'));
@@ -127,22 +127,4 @@ export function campus(stufe: number, klasse = 'bauplan'): string {
   const [, y0] = p(-40, -40, 140);
   const [, y1] = p(360, 340);
   return `<svg class="${klasse}" data-stufe="${s}" viewBox="${x0 - 10} ${y0 - 10} ${x1 - x0 + 20} ${y1 - y0 + 20}" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">${teile.join('')}</svg>`;
-}
-
-/** Grundriss mit Achsraster (Theorie, sehr dezent). */
-export function grundriss(klasse = 'bauplan bauplan-grundriss'): string {
-  const teile: string[] = [];
-  for (let x = 0; x <= 600; x += 40) teile.push(`<path class="bp-achse" d="M${x},-20 V420"/>`);
-  for (let y = 0; y <= 400; y += 40) teile.push(`<path class="bp-achse" d="M-20,${y} H620"/>`);
-  // Riegel mit Flur und Klassenräumen
-  teile.push('<path class="bp-plan" d="M40,40 H560 V160 H40 Z"/>');
-  teile.push('<path class="bp-plan fein" d="M40,92 H560 M40,108 H560"/>');
-  for (let x = 120; x < 560; x += 80) teile.push(`<path class="bp-plan fein" d="M${x},40 V92 M${x},108 V160"/>`);
-  // Türbögen
-  for (let x = 60; x < 560; x += 80) teile.push(`<path class="bp-plan fein" d="M${x},92 a14,14 0 0 1 14,-14"/>`);
-  // Halle
-  teile.push('<path class="bp-plan" d="M320,220 H560 V380 H320 Z"/><path class="bp-plan fein" d="M400,220 V380 M480,220 V380"/>');
-  // Grundschule im Winkel
-  teile.push('<path class="bp-plan" d="M40,220 H240 V300 H140 V380 H40 Z"/>');
-  return `<svg class="${klasse}" viewBox="-20 -20 640 440" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">${teile.join('')}</svg>`;
 }

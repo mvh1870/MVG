@@ -11,7 +11,8 @@
 import type { Vergleich, VergleichOption } from '../../geschichte/typen.ts';
 import { abgestimmteGewichte } from '../../geschichte/engine.ts';
 import { GEWICHT_MAX, GEWICHT_MIN, kipppunkte, rangfolge, type Gewichte } from '../../geschichte/mcda.ts';
-import { grundriss } from '../../grafik/bauplan.ts';
+import { gimmick, type GimmickName } from '../../grafik/figuren.ts';
+import type { Akzent } from '../../stil/akzente.ts';
 import type { OeffentlicheInhalte, Werkzeuge } from '../../inhalte/typen.ts';
 import { ersetze, h, vonHtml } from '../h.ts';
 import { inhalt, inhaltInline } from '../bausteine/inhalt.ts';
@@ -22,6 +23,15 @@ import { W } from '../woerter.ts';
 
 export const WERKZEUGE = ['mcda', 'matrix', 'vorgaenge', 'takt', 'glossar'] as const;
 export type Werkzeug = (typeof WERKZEUGE)[number];
+
+/** Gegenstand und Akzentton je Werkzeug (O-57): Kachel, Kopf und Bühne tragen den Ton; der Name trägt die Bedeutung. Die Matrix bekommt bewusst keinen Rot- oder Gelbton (die Ampel bleibt Status, O-11). */
+export const WERKZEUG_BILD: Record<Werkzeug, { bild: GimmickName; ton: Akzent }> = {
+  mcda: { bild: 'waage', ton: 'violett' },
+  matrix: { bild: 'matrix', ton: 'blau' },
+  vorgaenge: { bild: 'wegweiser', ton: 'lagune' },
+  takt: { bild: 'kalender', ton: 'sonne' },
+  glossar: { bild: 'buch', ton: 'gruen' },
+};
 
 export function werkzeugAus(id: string | null): Werkzeug {
   return (WERKZEUGE as readonly string[]).includes(id ?? '') ? id as Werkzeug : 'mcda';
@@ -246,20 +256,25 @@ export function baueExplore(o: ExploreOptionen): HTMLElement {
     : aktiv === 'vorgaenge' ? vorgaenge(o, w)
     : aktiv === 'takt' ? takt(o, w)
     : h('div', { class: 'ex-werkzeug', 'data-werkzeug': 'glossar' }, glossarListe(o));
+  const kachel = (id: Werkzeug): Node[] => [
+    h('span', { class: 'ex-kachel-bild', 'aria-hidden': 'true' }, vonHtml(gimmick(WERKZEUG_BILD[id].bild, { groesse: 40, dekorativ: true }))),
+    h('span', { class: 'ex-kachel-text' }, h('b', null, titel(id)), h('small', null, kurz(id))),
+  ];
   return seitenRahmen({
     bereich: 'explore',
     klasse: 'seite-explore',
     bedienbar: o.bedienbar,
-    hintergrund: h('div', { class: 'lern-hintergrund', 'aria-hidden': 'true' }, vonHtml(grundriss())),
-    inhalt: h('div', { class: 'ex-rahmen', 'data-pruef': 'explore' },
+    inhalt: h('div', { class: 'ex-rahmen', 'data-pruef': 'explore', 'data-ton': WERKZEUG_BILD[aktiv].ton },
       h('header', { class: 'ex-kopf' },
-        h('p', { class: 'gs-kicker' }, E.bereich),
-        h('h1', { class: 'gs-titel ex-titel', tabindex: -1, 'data-pruef': 'ex-titel' }, titel(aktiv)),
-        w !== null ? h('div', { class: 'gs-leise ex-einleitung' }, inhalt(w.einleitungHtml)) : null),
+        h('div', { class: 'ex-kopf-text' },
+          h('p', { class: 'gs-kicker' }, E.bereich),
+          h('h1', { class: 'gs-titel ex-titel', tabindex: -1, 'data-pruef': 'ex-titel' }, titel(aktiv)),
+          w !== null ? h('div', { class: 'gs-leise ex-einleitung' }, inhalt(w.einleitungHtml)) : null),
+        h('div', { class: 'ex-kopf-bild', 'aria-hidden': 'true' }, vonHtml(gimmick(WERKZEUG_BILD[aktiv].bild, { groesse: 112, dekorativ: true })))),
       h('nav', { class: 'ex-werkzeuge', 'aria-label': E.werkzeuge },
         WERKZEUGE.map((id) => o.bedienbar
-          ? h('a', { class: 'ex-werkzeug-link', href: `#explore/${id}`, 'aria-current': id === aktiv ? 'page' : null, 'data-pruef': `ex-${id}` }, h('b', null, titel(id)), h('small', null, kurz(id)))
-          : h('span', { class: 'ex-werkzeug-link', 'aria-current': id === aktiv ? 'page' : null }, h('b', null, titel(id)), h('small', null, kurz(id))))),
+          ? h('a', { class: 'ex-werkzeug-link', href: `#explore/${id}`, 'aria-current': id === aktiv ? 'page' : null, 'data-pruef': `ex-${id}`, 'data-ton': WERKZEUG_BILD[id].ton }, kachel(id))
+          : h('span', { class: 'ex-werkzeug-link', 'aria-current': id === aktiv ? 'page' : null, 'data-ton': WERKZEUG_BILD[id].ton }, kachel(id)))),
       h('section', { class: 'ex-buehne', 'aria-label': titel(aktiv) }, werkzeugEl)),
   });
 }

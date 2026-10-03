@@ -303,6 +303,30 @@ button.gs-antwort:active { transform: translateY(2px); box-shadow: var(--schatte
 .gs-steckbrief-rolle { font: var(--typo-reiter); letter-spacing: var(--sperrung-label); text-transform: uppercase; }
 .gs-steckbrief-text { font: var(--typo-text); color: var(--tinte); text-align: left; }
 .gs-steckbrief-sie { border-color: var(--gold-soft-kante); }
+.gs-steckbrief-auf { justify-self: stretch; }
+.gs-steckbrief-auf > summary,
+.gs-dahinter-auf > summary,
+.gs-vgl-kipp-auf > summary {
+  display: flex; align-items: center; gap: var(--a-2); min-height: 32px; width: fit-content;
+  list-style: none; cursor: pointer;
+}
+.gs-steckbrief-auf > summary { margin-inline: auto; color: var(--navy); font-weight: 600; }
+.gs-steckbrief-auf > summary::-webkit-details-marker,
+.gs-dahinter-auf > summary::-webkit-details-marker,
+.gs-vgl-kipp-auf > summary::-webkit-details-marker { display: none; }
+.gs-steckbrief-auf > summary::after,
+.gs-dahinter-auf > summary::after,
+.gs-vgl-kipp-auf > summary::after {
+  content: ""; flex: none; width: 7px; height: 7px; margin-top: -3px;
+  border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg);
+}
+:is(.gs-steckbrief-auf, .gs-dahinter-auf, .gs-vgl-kipp-auf)[open] > summary::after { margin-top: 3px; transform: rotate(-135deg); }
+.gs-steckbrief-auf[open] > summary,
+.gs-dahinter-auf[open] > summary,
+.gs-vgl-kipp-auf[open] > summary { margin-bottom: var(--a-2); }
+@media (prefers-reduced-motion: no-preference) {
+  :is(.gs-steckbrief-auf, .gs-dahinter-auf, .gs-vgl-kipp-auf) > summary::after { transition: transform .15s ease; }
+}
 .gs-stand-erklaert { padding: var(--a-6); border-radius: 20px; background: var(--weiss); box-shadow: var(--schatten-karte); }
 .gs-stand-texte { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--a-4); }
 .gs-stand-texte dt { font-weight: 700; }
@@ -519,6 +543,7 @@ button.gs-stufe:hover:not([aria-pressed="true"]) { background: var(--weiss); }
   .gs-steckbrief .gs-bildnis { grid-row: 1 / span 3; align-self: start; }
   .gs-steckbrief .gs-bildnis svg { width: 64px; height: 64px; }
   .gs-steckbrief > :not(.gs-bildnis) { grid-column: 2; }
+  .gs-steckbrief-auf > summary { margin-inline: 0; }
   .seite-story .seiten-haupt { padding: 0 var(--a-4) var(--a-6); }
   .gs-leiste, .gs-unten { margin-left: calc(-1 * var(--a-4)); margin-right: calc(-1 * var(--a-4)); padding-left: var(--a-4); padding-right: var(--a-4); }
   .gs-leiste { grid-template-columns: minmax(0, 1fr) auto; }

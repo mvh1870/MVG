@@ -4,7 +4,7 @@ nr: 5
 titel: Zwei Zahlen, zwei Wahrheiten
 zeit: Oktober 2026
 campus: { stufe: 3, jahreszeit: herbst, licht: abend }
-bruecke: Im Herbst nennen Kämmerei und Architekt zwei verschiedene Zahlen, die Bürgermeisterin nennt dem Stadtrat eine Zahl mit Begründung und die angekündigten Mehrkosten als Risiko daneben – und die Forderung erweist sich als unberechtigt, weil die Leistungen zum bestehenden Vertrag gehören.
+bruecke: "Im Herbst nennen Kämmerei und Architekt verschiedene Zahlen; die Bürgermeisterin nennt dem Stadtrat eine begründete Zahl, die angekündigten Mehrkosten als Risiko daneben. Die Forderung erweist sich als unberechtigt: Die Leistungen gehören zum bestehenden Vertrag."
 thema: verantwortung
 belege: [v24:hb-2, v24:hb-3, v24:hb-5, v24:tlb-3, v24:hb-1.5, k4.6-p1, k4.6-p2, k2.4-p2]
 bild-szene: zahlenzettel
@@ -49,5 +49,7 @@ gut: |
 dahinter: Eine Entscheidung ist nur so gut wie die Zahlen, auf denen sie steht – deshalb sorgt der Bauherr dafür, dass es einen belastbaren Stand gibt, auch wenn er ihn nicht selbst pflegt.
 
 regie:
+  notiz: "Kern: Es gibt einen maßgeblichen Stand der Zahlen, jede Zahl mit Datum und Begründung; unterschiedliche Einschätzungen werden erklärt, nicht gemittelt, Unsicheres steht als Risiko mit Spanne daneben."
   leitfragen:
     - Welche Zahl würde Ihre Bürgermeisterin, Ihr Vorstand oder Ihre Geschäftsführung heute nennen – und woher käme sie?
+    - Wie gehen Sie mit zwei Zahlen um, die nicht zusammenpassen?

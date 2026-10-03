@@ -4,7 +4,7 @@ nr: 2
 titel: Ein erstes Warnsignal
 zeit: März 2026
 campus: { stufe: 0, jahreszeit: fruehling, licht: tag }
-bruecke: Im März erwähnt der Architekt beiläufig, dass Holzelemente knapp werden könnten, und die Projektsteuerin hält den Hinweis als Frühwarnung mit Prüffrage, Namen und Termin fest.
+bruecke: Im März erwähnt der Architekt beiläufig, Holzelemente könnten knapp werden; die Projektsteuerin hält es als Frühwarnung mit Prüffrage, Namen und Termin fest.
 thema: arbeitsweise
 belege: [v24:hb-1, v24:hb-1.1, v24:hb-1.2, v24:hb-1.3, v24:hb-1.4, v24:hb-1.5, v24:hb-1.6, v24:hb-2, v24:hb-4, v24:tlb-2, v24:tlb-3]
 bild-szene: holzstapel
@@ -68,5 +68,7 @@ mini:
 dahinter: Nicht jeder Hinweis wird zum Risiko – aber jeder wird geklärt, bis feststeht, ob daraus ein Risiko, ein Problem oder eine Aufgabe wird oder ob er begründet geschlossen werden kann.
 
 regie:
+  notiz: "Kern: Ein unklarer Hinweis ist eine Frühwarnung – Herkunft, Prüffrage, Name und Termin; bewertet wird erst, wenn die Antwort da ist. Die Mini-Aufgabe gemeinsam lösen: erst die Runde raten lassen, dann je Satz die Zuordnung setzen oder am Ende auflösen."
   leitfragen:
     - Wo landen bei Ihnen Hinweise, die „nur am Rande“ fallen?
+    - Wer fragt bei Ihnen nach – und bis wann?

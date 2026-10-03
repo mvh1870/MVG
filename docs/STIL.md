@@ -12,11 +12,11 @@ Stand P17.9 (2026-10-03). Verbindlich für alle Flächen der Seite (ARCHITEKTUR.
 | `src/stil/basis.css` | Grundstellung (Browser-Vorgaben zurückgesetzt), Typografie, Silbentrennung, Fokus, Hochkontrast, Hilfsklassen, Semantik-Attribut `data-status`, gemeinsame Keyframes, reduzierte Bewegung |
 | `src/stil/tafeln.css` | gemeinsame Bausteine (Knöpfe, Status-Symbol, ID-Marke, Merksatz, Hinweis, Glossar-Begriff mit Tooltip, Tabelle) und die Tafeln aus `src/grafik/tafel.ts` |
 | `src/stil/regie.css` | Regie (Steuerpult mit Vorschau, Notiz, Leitfragen, Protokoll), Leinwand, Beamer-Schalter |
-| `src/stil/start.css` | Startseite mit drei Wegen und Campus-Hintergrund |
+| `src/stil/start.css` | Startseite mit drei Wegen (Story breit mit isometrischem Campus und den Figuren, Theorie mit den vier Teilen, Explore mit den Gegenständen der Werkzeuge) und Campus-Hintergrund, Baukörper in den Akzenttönen (P17.7) |
 | `src/stil/theorie.css` | ruhige Lernseiten der Themen; Verzeichnis ab 1100 px klebend und in sich rollend, Glossar, Lernwerkzeuge, Abbildungen, Druckbogen |
 | `src/stil/rahmen.css` | Seitenrahmen (Kopf, Fuß, Sprunglink) und Bauplan-Hintergründe |
 | `src/stil/geschichte.css` | Story (Fluss, Fortschrittslinie, Statusanzeige, Vorlage mit gewichtetem Vergleich, Vertiefungen) |
-| `src/stil/explore.css` | Explore-Werkzeuge |
+| `src/stil/explore.css` | Explore-Werkzeuge; je Werkzeug Akzentton (`data-ton`, `WERKZEUG_BILD` in explore.ts: Rechner Violett, Matrix Blau, Vorgänge Lagune, Takt Sonne, Glossar Grün) und Gegenstand aus figuren.ts; Kopf auf Rasterpapier im Ton des aktiven Werkzeugs (P17.7) |
 | `src/stil/grafik.css` | isometrischer Campus (`src/grafik/campus-iso.ts`): Flächen je Material, Jahreszeit und Licht über `data-jahreszeit`/`data-licht`; Figuren und Gegenstände (`src/grafik/figuren.ts`, `fig-*`, `gm-*`) |
 | `src/stil/index.css` | Einstieg für esbuild: `../generiert/schriften.css` → tokens → basis → tafeln → regie → start → theorie → rahmen → geschichte → explore → grafik |
 | `src/stil/paare.json` | erlaubte Text/Grund-Paare (Quelle der Tabelle unten) |

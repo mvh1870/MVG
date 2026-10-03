@@ -287,8 +287,13 @@ a.glossar-ort:hover { text-decoration: underline; }
      Folgeseite wie der Kopf des nächsten Blocks. Bei Kartentafeln steht sie im Druck deshalb über den Karten */
   .druck-bogen figure.tafel:has(> .tafel-karten) { display: flex; flex-direction: column; }
   .druck-bogen figure.tafel:has(> .tafel-karten) > figcaption { order: -1; break-before: auto; break-after: avoid; }
-  /* Umschalter: zwei kurze Ansichten nebeneinander – als Ganzes auf einer Seite, sonst blieb der Titel allein zurück */
-  .druck-bogen .lw-umschalter { break-inside: avoid; }
+  /* Umschalter: im Druck die beiden Ansichten untereinander, teilbar zwischen den Punkten. Als Ganzes nebeneinander war er
+     bis zu einer halben Seite hoch, passte nicht mehr in den Rest und ließ Abschnittskopf und Einleitung am Ende einer halbleeren
+     Seite zurück (vorgaenge). Der Titel bleibt bei der ersten Ansicht, jede Ansichtsmarke bei ihrem ersten Punkt */
+  .druck-bogen .lw-umschalter, .druck-bogen .lw-umschalter > .lw-nebeneinander, .druck-bogen .lw-umschalter .lw-ansicht { break-inside: auto; }
+  .druck-bogen .lw-umschalter > .lw-nebeneinander, .druck-bogen .lw-umschalter .lw-ansicht { display: block; }
+  .druck-bogen .lw-umschalter .lw-ansicht + .lw-ansicht { margin-top: var(--a-3); }
+  .druck-bogen .lw-umschalter .lw-ansicht > .t-label { display: block; margin-bottom: var(--a-2); break-after: avoid; break-inside: avoid; }
   /* Glossareinträge, Tabellenzeilen: Begriff nicht ohne Erklärung, Zeile nicht mitten im Wort geteilt */
   .druck-bogen :is(.glossar-eintrag, tr) { break-inside: avoid; }
   .druck-bogen dt { break-after: avoid; }
@@ -314,7 +319,7 @@ a.glossar-ort:hover { text-decoration: underline; }
      früheren Umbruch; Titel und Einleitung blieben am Ende einer halbleeren Seite (fuehrungsmodell). Gilt für jedes
      Lernwerkzeug, dessen Inhalt aus solchen nebeneinanderstehenden Ansichten besteht */
   .druck-bogen .lw-sortieren.ist-aufgeloest .lw-nebeneinander { break-inside: avoid; }
-  .druck-bogen .lernwerkzeug:has(> .lw-kopf + .lw-nebeneinander:last-child) { break-inside: avoid; }
+  .druck-bogen .lernwerkzeug:not(.lw-umschalter):has(> .lw-kopf + .lw-nebeneinander:last-child) { break-inside: avoid; }
   /* R70: Abbildungen im Druck höchstens 120 mm hoch, ohne Kartenrand (auf Papier nur weißer Leerraum). Die erste Abbildung
      steht direkt unter der Kernaussage: mit 170 mm passte sie nicht mehr auf S. 1 und ließ sie halb leer (7 von 16 Themen) –
      dort 60 mm, damit Kopf, Einleitung, Kernaussage und Bild zusammen auf die erste Seite passen (Füllungsprobe im Szenario) */

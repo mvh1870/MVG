@@ -13,13 +13,17 @@ mandat-nach-folge: true
 einstieg: |
   Januar 2026. Auf dem Grundstück im Süden von Lindenhall liegt Schnee, am Zaun lehnt ein Bauschild. Seit heute leiten Sie das Projekt für die Stadt. Der Stadtrat hat das Geld bewilligt: ein Budget von rund 58 Millionen Euro und dazu eine Reserve von 3 Millionen für Unvorhergesehenes. Die Planung ist schon weit; jetzt beginnt die Zeit, in der jede Woche etwas entschieden werden muss. Ihr erster Termin findet im kleinen Baucontainer am Rand des Grundstücks statt – die Heizung brummt, auf dem Tisch stehen vier Tassen Kaffee.
 
+# Kurzfassung (P17.5): derselbe Sachstand in kürzer – Budget und Reserve bleiben, weil das Mandat darauf aufbaut
+einstieg-kurz: |
+  Januar 2026, Schnee auf dem Grundstück. Seit heute leiten Sie das Projekt für die Stadt. Bewilligt sind rund 58 Millionen Euro und eine Reserve von 3 Millionen für Unvorhergesehenes. Ihr erster Termin: im Baucontainer am Rand des Grundstücks.
+
 szene:
   - { figur: grundstein, text: "Schön, dass Sie da sind. Eins vorweg: Im Sommer 2028 ziehen hier die Kinder ein. Das ist mir das Wichtigste – danach kommt das Geld." }
   - { figur: faden, text: "Dann schreibe ich das genau so auf, als Ihre Festlegung. Was noch fehlt: Wer darf hier was entscheiden?" }
   - { figur: grundstein, text: "Ach, das regeln Sie beide. Ich will nicht mit jeder Kleinigkeit behelligt werden." }
   - { figur: schwung, text: "Ich bräuchte übrigens bis Freitag ein Ja zu den Fassadenplatten. Wer gibt mir das?" }
   - { figur: faden, text: "Genau darum geht es. Ich bereite alles vor, was entschieden werden muss. Entscheiden darf ich nichts – das muss vorher feststehen." }
-  - { figur: grundstein, text: "Na gut. Aber bitte so, dass ich nicht jede Woche einen Anruf bekomme." }
+  - { figur: grundstein, kurzfassung: false, text: "Na gut. Aber bitte so, dass ich nicht jede Woche einen Anruf bekomme." }
 
 frage: Die Projektsteuerin wartet auf Ihren Auftrag, die Bürgermeisterin schaut auf die Uhr. Wie regeln Sie, wer was entscheidet?
 
@@ -50,6 +54,7 @@ gut: |
 dahinter: Arbeit kann man abgeben, die Verantwortung für die großen Entscheidungen nicht – deshalb braucht jedes Projekt ein Mandat, das vor dem ersten Streit feststeht.
 
 regie:
+  notiz: "Erst die Leitfragen an die Runde, dann wählen lassen. Kern: Wer was entscheiden darf, steht vorab schriftlich fest, mit klaren Grenzen; welches Ziel zuerst kommt, legt der Bauherr selbst fest. Das Kärtchen „Wer entscheidet was“ nach der Folge kurz vorlesen – es bleibt danach an jeder Frage aufrufbar."
   leitfragen:
     - Wer entscheidet bei Ihnen heute über 100.000 Euro?
     - Steht das irgendwo geschrieben – und weiß es jeder im Projekt?

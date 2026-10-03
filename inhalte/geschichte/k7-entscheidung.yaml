@@ -16,9 +16,12 @@ bild-frage: waage
 einstieg: |
   Mai 2027. Gesamtschule und Sporthalle sind geschlossen, daneben wächst die Grundschule. Morgens fällt das Licht schräg über den künftigen Schulhof. Bis zum Schulstart sind es noch fünfzehn Monate, und zum ersten Mal fühlt sich das gar nicht mehr so lang an. Dann kommt eine Nachricht, die niemand hören will.
 
+einstieg-kurz: |
+  Mai 2027. Gesamtschule und Sporthalle sind geschlossen, daneben wächst die Grundschule. Bis zum Schulstart sind es noch fünfzehn Monate. Dann kommt eine Nachricht, die niemand hören will.
+
 szene:
   - { figur: schwung, text: "Ich sag's lieber gleich und nicht erst, wenn's brennt: Der Hersteller der Lüftungsanlage für die Gesamtschule liefert vier Monate später." }
-  - { figur: lot, text: "Vier Monate. Dann bauen wir die Anlage ein, wenn die Kinder schon da sein sollen." }
+  - { figur: lot, kurzfassung: false, text: "Vier Monate. Dann bauen wir die Anlage ein, wenn die Kinder schon da sein sollen." }
   - { figur: faden, text: "Ich habe drei Wege ausgearbeitet, und alle drei sind zulässig: ein Ersatzgerät eines anderen Herstellers, Leihgeräte in den Klassenräumen bis zur Lieferung – oder die Gesamtschule zieht erst nach den Herbstferien ein; ein Teil der vier Monate steckt im Puffer." }
   - { figur: klingel, text: "Leihgeräte in jedem Klassenraum? Die brummen. Und nach den Herbstferien … das erkläre ich den Eltern nicht gern." }
   - { figur: grundstein, text: "Zeigen Sie mir alle drei Wege. Und was Sie empfehlen. Entscheiden tue ich." }
@@ -86,6 +89,7 @@ gut: |
 dahinter: Der gewichtete Vergleich nimmt niemandem die Entscheidung ab; er zeigt, welcher Weg zu den gesetzten Zielen passt und wie sehr das Ergebnis an den Gewichten hängt.
 
 regie:
-  notiz: Die Gewichte gemeinsam mit der Runde einstellen; danach mit „Abgestimmte Gewichte“ zurück, bevor gewählt wird.
+  notiz: "Die Gewichte gemeinsam mit der Runde einstellen – die Leinwand ordnet die drei Wege sofort um; danach mit „Abgestimmte Gewichte“ zurück, bevor gewählt wird. Kern: Der Vergleich nimmt niemandem die Entscheidung ab; er zeigt, welcher Weg zu den gesetzten Zielen passt und wie sehr das Ergebnis an den Gewichten hängt."
   leitfragen:
     - Was ist Ihnen wichtiger – Schulstart oder Geld?
+    - Ändert sich Ihre Wahl, wenn Sie die Gewichte anders setzen?

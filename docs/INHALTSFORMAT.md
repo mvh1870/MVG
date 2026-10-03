@@ -111,7 +111,7 @@ Eine lineare Geschichte in acht Kapiteln aus Sicht der Projektleitung des Bauher
 | `balken` | `geld`, `zeit`, `vertrauen` – je `titel`, `text` (Kurztext beim ersten Auftritt), `start` (0–10), `mehr`/`weniger` (Wort der Änderung: „mehr Luft“, „gesunken“), `bilanz` (`hoch`, `mittel`, `niedrig`: je ein Satz) |
 | `bilanz` | `nicht-getragen`, `letzte-meter`, `ruhig`, `umwege` – je `titel`, `text` |
 | `mandat` | Kärtchen „Wer entscheidet was“: `titel`, `zeilen` (`{ wer, text }`) |
-| `ende` | `zeit`, `campus`, `einstieg`, `szene` (Zeilen wie im Kapitel), `zeit-niedrig` (Absatz zusätzlich bei niedriger Zeit), `vertrauen-niedrig` (`{ figur, text }`: ersetzt bei niedrigem Vertrauen die Zeile dieser Figur; sie muss in der Szene sprechen) |
+| `ende` | `zeit`, `campus`, `einstieg`, optional `einstieg-kurz` (wie im Kapitel), `szene` (Zeilen wie im Kapitel; die Zeile, die `vertrauen-niedrig` ersetzt, darf nicht `kurzfassung: false` tragen), `zeit-niedrig` (Absatz zusätzlich bei niedriger Zeit), `vertrauen-niedrig` (`{ figur, text }`: ersetzt bei niedrigem Vertrauen die Zeile dieser Figur; sie muss in der Szene sprechen) |
 
 **`k<n>-<name>.yaml`** (eine Datei je Kapitel, `nr` lückenlos ab 1 und wie im Dateinamen; Adresse `#story/k<n>`):
 
@@ -123,7 +123,8 @@ Eine lineare Geschichte in acht Kapiteln aus Sicht der Projektleitung des Bauher
 | `thema` | Kennung des passenden Themas (`#theorie/<thema>`, muss es geben) – Link im Kasten „Das steckt dahinter“ und „In der Story erlebt“ auf der Themenseite |
 | `belege` | Pflicht, **nur intern**: Absatz-IDs aus V1.2 (`k4.2-p3`) oder Stellen aus V2.4 (`v24:hb-3.1`, `v24:tlb-2`, `v24:va-4.1`, `v24:hb-projektblatt`); Erläuterungen als YAML-Kommentar |
 | `einstieg` | erzählender Absatz unter dem Campus |
-| `szene` | Liste `{ figur, text }` (optional `zusatz`: Regieanweisung in Klammern; ohne `figur` erzählt) |
+| `einstieg-kurz` | optional, nur in Kapiteln der Kurzfassung (P17.5): derselbe Sachstand kürzer – die Kurzfassung zeigt ihn statt `einstieg`; muss weniger Wörter haben als `einstieg`; keine neue Fachaussage |
+| `szene` | Liste `{ figur, text }` (optional `zusatz`: Regieanweisung in Klammern; ohne `figur` erzählt; `kurzfassung: false` = die Kurzfassung lässt die Zeile weg – nur in Kapiteln der Kurzfassung und im Ende, danach bleiben mindestens zwei Zeilen; auf dem ganzen Weg steht jede Zeile) |
 | `bild-szene`, `bild-frage` | optional, kleine Grafik aus `GIMMICKS` |
 | `frage` | die Frage an Sie (ein Absatz) |
 | `antworten` | **genau drei**, in der Reihenfolge der Seite; jede Wertung (`gut`, `vertretbar`, `falle`) genau einmal – nie sichtbar; je `text`, `balken` (`{ geld, zeit, vertrauen }`, ganze Zahlen −2 … +2), `folge` (Folge-Szene), optional `bild` |
@@ -133,6 +134,8 @@ Eine lineare Geschichte in acht Kapiteln aus Sicht der Projektleitung des Bauher
 | `mini` | optional, Mini-Aufgabe (nur auf dem langen Weg): `art` (`zuordnen` oder `reihenfolge`), `titel`, `aufgabe`, `posten` (mindestens drei; `{ text, loesung, erklaerung }` bzw. bei `reihenfolge` `{ text, erklaerung }` in der richtigen Folge – die Seite mischt sie fest), bei `zuordnen` `wahlen` (`{ id, titel }`, optional `figur` für ein Porträt auf dem Knopf und `falsch`: feste Rückmeldung, nur für Wahlen, die nie richtig sind) |
 | `vergleich` | genau ein Kapitel: `einleitung`, `kriterien` (`{ id, titel, gewicht }`, Gewicht 5 sehr wichtig · 3 wichtig · 1 weniger wichtig = abgestimmte Stellung), `optionen` (`{ id: A…, titel, punkte, worte }` je Kriterium Punkte 1–5 und Worte; `begruendung` intern), `saetze` (je Option und `gleichauf`), `empfehlung`, `wer` |
 | `regie` | optional `notiz`, `leitfragen` – nur für die Regie (geht nach `geschichteRegie`) |
+
+**Kurzfassung (P17.5, etwa 10 Minuten):** Die Kurzfassung zeigt dieselben Texte wie der ganze Weg, mit vier Kürzungen: `einstieg-kurz` statt `einstieg`, ohne Zeilen mit `kurzfassung: false`, „Das steckt dahinter“ zugeklappt (der Link zum Thema bleibt offen; die Regel steht in „So macht man es gut“) und im Vergleich die Kipppunkte zugeklappt (die Empfehlung nennt sie). Im Auftakt – er steht vor der Wahl des Wegs – sind die Steckbriefe auf beiden Wegen zugeklappt; Porträt, Name und Rolle stehen offen. Auf der Leinwand ist nichts zugeklappt.
 
 **Rechnung (Engine, nie als Zahl auf der Seite):** Balken starten mit `start` (Drehbuch: Geld 9, Zeit 6, Vertrauen 4); jede zählende Antwort wird der Reihe nach angewandt und das Ergebnis **jedes Mal** auf 0–10 begrenzt. Stufen: niedrig 0–3, mittel 4–6, hoch 7–10. Bilanz in fester Prüfreihenfolge: Vertrauen niedrig → `nicht-getragen`; Zeit niedrig → `letzte-meter`; Zeit hoch, Vertrauen hoch, Geld mindestens mittel → `ruhig`; sonst `umwege`. In der Kurzfassung zählt jedes übersprungene Kapitel wie seine gute Antwort; auf dem langen Weg zählt ein Kapitel ohne Wahl nicht. Folge-Szenen laufen zum Sachstand der guten Antwort zusammen; Bedingungen gibt es nicht (außer den Varianten des Endes nach Balkenstand). `tests/geschichte.test.ts` rechnet die Wege des Drehbuchs nach.
 

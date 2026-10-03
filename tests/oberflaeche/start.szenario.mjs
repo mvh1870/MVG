@@ -105,6 +105,24 @@ export async function lauf(seite, h) {
   }
   if (vp !== null) { await seite.setViewportSize(vp); await h.warte(100); }
   await pruefer(seite, h)('start');
+  // O-57, P17.7: die Story-Karte zeigt die Figuren mit Namen und Rolle; nichts läuft quer über den Rand (bis 320 px)
+  const figuren = await seite.locator('[data-pruef="start-figuren"] li').filter({ visible: true }).count();
+  if (figuren !== 6) h.befund(`Story-Karte: erwartet sechs sichtbare Figuren („Sie“ und fünf), gefunden ${figuren}`);
+  for (const breite of vp !== null && vp.width <= 400 ? [vp.width, 320] : [vp?.width ?? 0]) {
+    if (vp !== null && breite !== vp.width) { await seite.setViewportSize({ width: breite, height: vp.height }); await h.warte(150); }
+    const quer = await seite.evaluate(() => {
+      const funde = [];
+      if (document.documentElement.scrollWidth > innerWidth) funde.push(`Seite ${document.documentElement.scrollWidth - innerWidth} px breiter als das Fenster`);
+      for (const el of document.querySelectorAll('.tuer, .tuer *')) {
+        const r = el.getBoundingClientRect();
+        const karte = el.closest('.tuer')?.getBoundingClientRect();
+        if (karte && r.width > 0 && (r.right > karte.right + 1 || r.left < karte.left - 1) && !el.closest('.tuer-bild')) funde.push(`${el.className || el.tagName} ragt aus der Karte`);
+      }
+      return funde.slice(0, 5);
+    });
+    for (const f of quer) h.befund(`Start @${breite}: ${f}`);
+  }
+  if (vp !== null) { await seite.setViewportSize(vp); await h.warte(100); }
   // der Weg in die Story führt dorthin
   await h.klick('[data-pruef="weg-story"]');
   await h.erwarte('[data-pruef="gs-titel"]');

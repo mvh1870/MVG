@@ -694,12 +694,14 @@ Gezeigt werden **Kapitel 1, 3, 4 und 7** vollständig (Einstieg, Szene, Frage, F
 
 | Übersprungen | Brückensatz (sichtbar) | Balken (wie gut) |
 |---|---|---|
-| 2 · Ein erstes Warnsignal | > Im März erwähnt der Architekt beiläufig, dass Holzelemente knapp werden könnten, und die Projektsteuerin hält den Hinweis als Frühwarnung mit Prüffrage, Namen und Termin fest. | Zeit +1, Vertrauen +1 |
-| 5 · Zwei Zahlen, zwei Wahrheiten | > Im Herbst nennen Kämmerei und Architekt zwei verschiedene Zahlen, die Bürgermeisterin nennt dem Stadtrat eine Zahl mit Begründung und die angekündigten Mehrkosten als Risiko daneben – und die Forderung erweist sich als unberechtigt, weil die Leistungen zum bestehenden Vertrag gehören. | Geld +1, Vertrauen +2 |
-| 6 · Ärger auf der Baustelle | > Im Februar lockert ein Sturm das Gerüst an der Sporthalle; der Bauleiter sperrt sofort, die Projektsteuerin meldet es und hält es noch am selben Tag fest, sodass später klar ist, dass die Gerüstfirma zahlt. | Zeit −1, Vertrauen +1 |
+| 2 · Ein erstes Warnsignal | > Im März erwähnt der Architekt beiläufig, Holzelemente könnten knapp werden; die Projektsteuerin hält es als Frühwarnung mit Prüffrage, Namen und Termin fest. | Zeit +1, Vertrauen +1 |
+| 5 · Zwei Zahlen, zwei Wahrheiten | > Im Herbst nennen Kämmerei und Architekt verschiedene Zahlen; die Bürgermeisterin nennt dem Stadtrat eine begründete Zahl, die angekündigten Mehrkosten als Risiko daneben. Die Forderung erweist sich als unberechtigt: Die Leistungen gehören zum bestehenden Vertrag. | Geld +1, Vertrauen +2 |
+| 6 · Ärger auf der Baustelle | > Im Februar lockert ein Sturm das Gerüst an der Sporthalle. Der Bauleiter sperrt sofort, die Projektsteuerin meldet es und hält es am selben Tag fest – deshalb ist später klar, dass die Gerüstfirma zahlt. | Zeit −1, Vertrauen +1 |
 | 8 · Schulstart | > Im Juli 2028 erteilt die Bürgermeisterin auf Ihre Empfehlung die Freigabe mit Auflagen, und zwei kleine Restarbeiten gehen mit Termin und Zuständigen an das Gebäudemanagement der Stadt. | Vertrauen +1 |
 
-Lesezeit-Schätzung (nachgezählt am Drehbuch, 2026-10-03): rund 2.400 sichtbare Wörter auf dem Weg der Kurzfassung (vier Kapitel mit je einer Folge, Vergleich, Brücken, Auftakt, Ende, Bilanz) – etwa 10 Minuten. Hauptweg: rund 4.400 sichtbare Wörter mit je einer Folge-Szene, dazu vier Mini-Aufgaben und der Vergleich zum Ausprobieren – etwa 25 Minuten. P17.5 misst nach.
+**Kürzungen der Kurzfassung (P17.5, 2026-10-03):** Die gemessene Kurzfassung war mit rund 2.530 Wörtern Lesetext (≈ 12,7 Minuten bei 200 Wörtern je Minute) zu lang. Ohne den ganzen Weg zu ändern, zeigt sie deshalb kürzere Einstiege (`einstieg-kurz` in 1, 3, 4, 7 und am Ende), lässt reine Stimmungszeilen weg (1: „Na gut …“; 3: Theo Lot „Zehn Wochen …“, Hanna Klingel „Bitte sagen Sie mir nicht …“; 7: Theo Lot „Vier Monate …“; Ende: Theo Lot und Konrad Schwung), klappt „Das steckt dahinter“ und die Kipppunkte des Vergleichs zu und hat knappere Brückensätze (oben). Im Auftakt sind die Steckbriefe auf beiden Wegen zugeklappt (Porträt, Name, Rolle offen). Gemessen danach: Kurzfassung rund 2.030 Wörter ≈ 10 Minuten, ganzer Weg rund 4.240 Wörter ≈ 21 Minuten Lesen, dazu vier Mini-Aufgaben und der Vergleich zum Ausprobieren.
+
+Lesezeit-Schätzung (nachgezählt am Drehbuch, 2026-10-03, vor P17.5): rund 2.400 sichtbare Wörter auf dem Weg der Kurzfassung (vier Kapitel mit je einer Folge, Vergleich, Brücken, Auftakt, Ende, Bilanz) – etwa 10 Minuten. Hauptweg: rund 4.400 sichtbare Wörter mit je einer Folge-Szene, dazu vier Mini-Aufgaben und der Vergleich zum Ausprobieren – etwa 25 Minuten. P17.5 misst nach.
 
 ---
 

@@ -1,7 +1,8 @@
 /* =============================================================================================
-   MVG · Startseite (O-21, P16.11): ruhiger Einstieg mit drei Wegen, leise „Wer steht dahinter“,
-   dahinter der Schulcampus als Linienzeichnung mit goldenen Maßlinien (O-45, deutlich sichtbar).
-   Nur Tokens aus tokens.css, keine Farbwerte.
+   MVG · Startseite (O-21, O-57, P17.7): ruhiger Einstieg mit drei Wegen, leise „Wer steht dahinter“,
+   dahinter der Schulcampus als Linienzeichnung mit goldenen Maßlinien (O-45, deutlich sichtbar), die
+   Baukörper in den Akzenttönen. Die Story-Karte steht breit oben (Campus und Figuren), darunter Theorie
+   (vier Teile in ihren Farben) und Explore (Gegenstände der Werkzeuge). Nur Tokens aus tokens.css.
    ============================================================================================= */
 
 .seite-start { --fokus: var(--navy); }
@@ -16,10 +17,16 @@
   align-items: flex-start;
   justify-content: flex-end;
   padding: 72px 2vw 0 38vw;
-  opacity: .55;
+  opacity: .6;
   overflow: hidden;
 }
 .start-hintergrund .bauplan { width: 100%; max-height: 58vh; }
+/* Baukörper in den Akzenttönen: Gesamtschule Blau, Grundschule Orange, Sporthalle Grün; Bäume Grün */
+.bauplan-start .bp-b0, .bauplan-start .bp-b0.fenster { stroke: var(--akzent-blau-text); fill: var(--akzent-blau-soft); }
+.bauplan-start :is(.bp-b1, .bp-b2), .bauplan-start :is(.bp-b1, .bp-b2).fenster { stroke: var(--akzent-orange-text); fill: var(--akzent-orange-soft); }
+.bauplan-start .bp-b3, .bauplan-start .bp-b3.fenster { stroke: var(--akzent-gruen-text); fill: var(--akzent-gruen-soft); }
+.bauplan-start .bp-baum { stroke: var(--akzent-gruen); }
+.bauplan-start .bp-feld { stroke: var(--akzent-lagune); }
 
 .startseite {
   display: grid;
@@ -44,34 +51,61 @@
 .start-these strong { color: var(--tinte); font-weight: 600; }
 .start-internetseite { max-width: 52ch; margin-top: var(--a-3); font: var(--typo-klein); color: var(--tinte-2); }
 
-.tueren { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); }
+/* ------------------------------------------------------------------------------------ drei Wege */
+.tueren { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); }
 .tuer {
+  --ton: var(--akzent-lagune); --ton-soft: var(--akzent-lagune-soft); --ton-text: var(--akzent-lagune-text);
   position: relative;
   display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: var(--a-3);
-  padding: var(--a-6) var(--a-6) var(--a-5);
+  grid-template-columns: minmax(0, 1fr);
   overflow: hidden;
   border-radius: var(--radius-xl);
   background: var(--weiss);
-  box-shadow: var(--schatten-rahmen);
+  box-shadow: var(--schatten-rahmen), var(--schatten-weich);
   color: inherit;
   text-decoration: none;
   transition: transform var(--dauer-sofort) ease, box-shadow var(--dauer-sofort) ease;
 }
+.tuer[data-weg="story"] { --ton: var(--akzent-sonne); --ton-soft: var(--akzent-sonne-soft); --ton-text: var(--akzent-sonne-text); grid-column: 1 / -1; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
+.tuer[data-weg="explore"] { --ton: var(--akzent-blau); --ton-soft: var(--akzent-blau-soft); --ton-text: var(--akzent-blau-text); }
 .tuer:hover { transform: translateY(-3px); box-shadow: var(--schatten-rahmen), var(--schatten-tuer); color: inherit; text-decoration: none; }
-.tuer::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--petrol); }
-.tuer[data-weg="story"]::after { background: var(--gold); }
-.tuer[data-weg="explore"]::after { background: var(--navy-soft); }
+.tuer::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 5px; background: var(--ton); }
+/* Theorie: die vier Teile des Buchs als Farbband (O-54) */
+.tuer[data-weg="theorie"]::after {
+  background: linear-gradient(90deg, var(--akzent-gruen) 0 25%, var(--akzent-lagune) 25% 50%, var(--akzent-orange) 50% 75%, var(--akzent-violett) 75%);
+}
+.tuer-inhalt { display: grid; grid-template-rows: auto auto 1fr auto; gap: var(--a-3); padding: var(--a-6) var(--a-6) var(--a-5); min-width: 0; }
 .tuer-titel { font: 800 clamp(26px, 2.4vw, 34px)/1 var(--schrift-anzeige); letter-spacing: .01em; text-transform: uppercase; color: var(--navy); }
-.tuer-kicker { display: block; margin-bottom: var(--a-2); font: 700 var(--gr-s)/1.2 var(--schrift-label); letter-spacing: .16em; text-transform: uppercase; color: var(--petrol); }
-.tuer[data-weg="story"] .tuer-kicker { color: var(--gold-text); }
-.tuer[data-weg="explore"] .tuer-kicker { color: var(--navy-soft); }
-.tuer-text { font-size: var(--gr-text); line-height: 1.5; color: var(--tinte-2); }
+.tuer-kicker { display: block; margin-bottom: var(--a-2); font: 700 var(--gr-s)/1.2 var(--schrift-label); letter-spacing: .16em; text-transform: uppercase; color: var(--ton-text); }
+.tuer-text { max-width: 56ch; font-size: var(--gr-text); line-height: 1.5; color: var(--tinte-2); }
 .tuer-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--a-2) var(--a-3); padding-top: var(--a-3); border-top: 1px solid var(--linie); font-size: var(--gr-s); color: var(--tinte-2); }
-.tuer-los { display: inline-flex; align-items: center; gap: var(--a-2); font: 700 var(--gr-m)/1 var(--schrift-label); letter-spacing: .08em; text-transform: uppercase; color: var(--navy); }
+.tuer-los { display: inline-flex; align-items: center; gap: var(--a-2); padding: var(--a-2) var(--a-3); border-radius: var(--radius-rund); background: var(--ton-soft); font: 700 var(--gr-m)/1 var(--schrift-label); letter-spacing: .08em; text-transform: uppercase; color: var(--navy); }
 .tuer-los .symbol { width: 18px; height: 18px; transition: transform var(--dauer-sofort) ease; }
 .tuer:hover .tuer-los .symbol { transform: translateX(4px); }
+
+/* Story: Campus rechts, Figuren unter dem Text */
+.tuer-bild { order: 2; position: relative; min-height: 100%; overflow: hidden; background: var(--ton-soft); }
+.tuer-bild .tuer-campus { position: absolute; inset: 0; width: 100%; height: 100%; max-height: none; aspect-ratio: auto; display: block; overflow: hidden; }
+.tuer-figuren { display: grid; gap: var(--a-2); align-content: start; }
+.tuer-figuren-titel { font: var(--typo-kicker); letter-spacing: var(--sperrung-kicker); text-transform: uppercase; color: var(--tinte-2); }
+.tuer-figuren ul { padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--a-3) var(--a-4); }
+.tuer-figuren li { display: flex; align-items: center; gap: var(--a-2); min-width: 0; }
+.tuer-figuren li > span { display: grid; min-width: 0; line-height: 1.25; hyphens: manual; }
+.tuer-figuren b { font-size: var(--gr-s); font-weight: 600; color: var(--tinte); }
+.tuer-figuren small { font-size: var(--gr-xs); color: var(--tinte-2); }
+
+/* Theorie: vier Teile */
+.tuer-teile { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--a-2); align-content: start; }
+.tuer-teile li { display: flex; align-items: center; gap: var(--a-2); min-width: 0; font-size: var(--gr-s); line-height: 1.25; color: var(--tinte); }
+.tuer-teil-marke { flex: none; display: grid; place-items: center; min-width: 34px; height: 28px; padding: 0 var(--a-1); border-radius: var(--radius-s); font: 800 var(--gr-l)/1 var(--schrift-anzeige); }
+.tuer-teile [data-teil="1"] .tuer-teil-marke { background: var(--akzent-gruen-soft); color: var(--akzent-gruen-text); }
+.tuer-teile [data-teil="2"] .tuer-teil-marke { background: var(--akzent-lagune-soft); color: var(--akzent-lagune-text); }
+.tuer-teile [data-teil="3"] .tuer-teil-marke { background: var(--akzent-orange-soft); color: var(--akzent-orange-text); }
+.tuer-teile [data-teil="4"] .tuer-teil-marke { background: var(--akzent-violett-soft); color: var(--akzent-violett-text); }
+
+/* Explore: Gegenstände der Werkzeuge */
+.tuer-werkzeuge { display: flex; flex-wrap: wrap; gap: var(--a-2); align-content: start; }
+.tuer-werkzeuge li { display: grid; place-items: center; width: 56px; height: 56px; border-radius: var(--radius-rund); background: var(--ton-soft); }
 
 .start-dahinter { max-width: 72ch; display: grid; gap: var(--a-2); padding: var(--a-4) var(--a-5); border-radius: var(--radius-l); background: var(--weiss-a85); border: 1px solid var(--linie); }
 .start-dahinter .t-label { font: var(--typo-kicker); letter-spacing: var(--sperrung-kicker); text-transform: uppercase; color: var(--tinte-2); }
@@ -82,12 +116,26 @@
 .start-haupt > *:nth-child(2) { animation-delay: 150ms; }
 
 @media (max-width: 960px) {
-  .tueren { grid-template-columns: minmax(0, 1fr); }
+  .tuer[data-weg="story"] { grid-template-columns: minmax(0, 1fr); }
+  .tuer-bild { order: 0; min-height: 0; aspect-ratio: 16 / 9; }
   /* R67: schmal läuft die Zeichnung durch den Leittext – so leise wie in der Story, Kontrast ≥ 4,5 : 1 */
   .start-hintergrund { padding: 60px 0 0 20vw; opacity: .16; }
+}
+@media (max-width: 760px) {
+  .tueren { grid-template-columns: minmax(0, 1fr); }
+  .tuer-figuren ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 420px) {
+  .tuer-inhalt { padding: var(--a-5) var(--a-4) var(--a-5); }
+  .tuer-teile { grid-template-columns: minmax(0, 1fr); }
+  .tuer-figuren ul { gap: var(--a-3) var(--a-2); }
+  .tuer-figuren .fig-portraet { width: 36px; height: 36px; }
+  .tuer-werkzeuge li { width: 44px; height: 44px; }
+  .tuer-werkzeuge .fig-gimmick { width: 36px; height: 36px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .start-haupt > * { animation: none; }
   .tuer, .tuer-los .symbol { transition: none; }
+  .tuer:hover { transform: none; }
 }

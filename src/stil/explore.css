@@ -1,33 +1,76 @@
 /* =============================================================================================
-   MVG · Explore (P16.8, O-46): fünf Werkzeuge am Schulcampus – Rechner, Matrix, Vorgänge, Takt, Glossar.
+   MVG · Explore (P16.8, O-46, O-57/P17.7): fünf Werkzeuge am Schulcampus – Rechner, Matrix, Vorgänge, Takt,
+   Glossar. Jedes Werkzeug hat einen Akzentton (`data-ton`) und einen Gegenstand aus figuren.ts; Kopf, Kachel und
+   Bühne tragen den Ton des aktiven Werkzeugs. Ampelfarben der Matrix bleiben Status (O-11).
    Nur Tokens aus tokens.css, keine Farbwerte.
    ============================================================================================= */
 
 .seite-explore { --fokus: var(--navy); }
 .seite-explore :focus-visible { box-shadow: 0 0 0 6px var(--fokus-hof); }
-.ex-rahmen { width: 100%; max-width: 1080px; margin: 0 auto; padding: var(--a-8) var(--a-6) var(--a-12); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--a-6); position: relative; }
-.ex-kopf { display: grid; gap: var(--a-2); }
-.ex-titel:focus { outline: none; box-shadow: none; }
-.ex-einleitung { max-width: 72ch; }
 
+/* Akzenttöne (Explore-Werkzeuge, auch die Explore-Karte der Startseite) */
+:is(.seite-explore, .seite-start) [data-ton="sonne"] { --ton: var(--akzent-sonne); --ton-soft: var(--akzent-sonne-soft); --ton-text: var(--akzent-sonne-text); }
+:is(.seite-explore, .seite-start) [data-ton="orange"] { --ton: var(--akzent-orange); --ton-soft: var(--akzent-orange-soft); --ton-text: var(--akzent-orange-text); }
+:is(.seite-explore, .seite-start) [data-ton="beere"] { --ton: var(--akzent-beere); --ton-soft: var(--akzent-beere-soft); --ton-text: var(--akzent-beere-text); }
+:is(.seite-explore, .seite-start) [data-ton="violett"] { --ton: var(--akzent-violett); --ton-soft: var(--akzent-violett-soft); --ton-text: var(--akzent-violett-text); }
+:is(.seite-explore, .seite-start) [data-ton="blau"] { --ton: var(--akzent-blau); --ton-soft: var(--akzent-blau-soft); --ton-text: var(--akzent-blau-text); }
+:is(.seite-explore, .seite-start) [data-ton="lagune"] { --ton: var(--akzent-lagune); --ton-soft: var(--akzent-lagune-soft); --ton-text: var(--akzent-lagune-text); }
+:is(.seite-explore, .seite-start) [data-ton="gruen"] { --ton: var(--akzent-gruen); --ton-soft: var(--akzent-gruen-soft); --ton-text: var(--akzent-gruen-text); }
+
+.ex-rahmen { width: 100%; max-width: 1080px; margin: 0 auto; padding: var(--a-8) var(--a-6) var(--a-12); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--a-6); position: relative; }
+
+/* Kopf: Rasterpapier im Ton des Werkzeugs, rechts sein Gegenstand auf einer Scheibe */
+.ex-kopf {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--a-4) var(--a-6);
+  padding: var(--a-6) var(--a-8) var(--a-6) calc(var(--a-8) + 2px);
+  overflow: hidden;
+  border-radius: var(--radius-l);
+  background:
+    linear-gradient(90deg, var(--ton-soft) 30%, transparent 85%),
+    repeating-linear-gradient(0deg, transparent 0 19px, var(--linie) 19px 20px),
+    repeating-linear-gradient(90deg, transparent 0 19px, var(--linie) 19px 20px),
+    var(--ton-soft);
+  box-shadow: var(--schatten-karte);
+}
+.ex-kopf::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--ton); }
+.ex-kopf-text { display: grid; gap: var(--a-2); min-width: 0; }
+.seite-explore .ex-kopf .gs-kicker { color: var(--ton-text); }
+.ex-kopf-bild { display: grid; place-items: center; width: 148px; height: 148px; border-radius: var(--radius-rund); background: var(--weiss); box-shadow: inset 0 0 0 3px var(--ton), 0 0 0 8px var(--weiss-a85); }
+.ex-titel:focus { outline: none; box-shadow: none; }
+.ex-einleitung { max-width: 72ch; color: var(--tinte-2); }
+
+/* Werkzeug-Kacheln mit Gegenstand */
 .ex-werkzeuge { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--a-3); }
 .ex-werkzeug-link {
+  position: relative;
   display: grid;
-  gap: var(--a-1);
-  align-content: start;
-  padding: var(--a-3) var(--a-4);
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--a-1) var(--a-3);
+  align-items: start;
+  padding: var(--a-3) var(--a-3) var(--a-4);
+  overflow: hidden;
   border: 1px solid var(--linie);
   border-radius: var(--radius-m);
   background: var(--weiss);
   color: var(--tinte-2);
   text-decoration: none;
   font: var(--typo-klein);
+  transition: transform var(--dauer-sofort) ease, box-shadow var(--dauer-sofort) ease;
 }
-.ex-werkzeug-link b { font: var(--typo-reiter); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy); }
-a.ex-werkzeug-link:hover { border-color: var(--linie-3); color: var(--tinte); text-decoration: none; }
-.ex-werkzeug-link[aria-current="page"] { border-color: var(--gold); box-shadow: inset 0 -3px 0 var(--gold); background: var(--gold-soft); }
+.ex-werkzeug-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--ton); opacity: .55; }
+.ex-kachel-bild { display: grid; place-items: center; width: 48px; height: 48px; border-radius: var(--radius-rund); background: var(--ton-soft); }
+.ex-kachel-text { display: grid; gap: var(--a-1); min-width: 0; }
+.ex-werkzeug-link b { font: var(--typo-reiter); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy); overflow-wrap: anywhere; hyphens: auto; }
+a.ex-werkzeug-link:hover { border-color: var(--ton); color: var(--tinte); text-decoration: none; transform: translateY(-2px); box-shadow: var(--schatten-karte-hoch); }
+.ex-werkzeug-link[aria-current="page"] { border-color: var(--ton); background: var(--ton-soft); color: var(--tinte); box-shadow: inset 0 0 0 1px var(--ton); }
+.ex-werkzeug-link[aria-current="page"]::after { height: 5px; opacity: 1; }
+.ex-werkzeug-link[aria-current="page"] .ex-kachel-bild { background: var(--weiss); }
 
-.ex-buehne { background: var(--weiss); border: 1px solid var(--linie); border-radius: var(--radius-l); box-shadow: var(--schatten-karte); padding: var(--a-8); }
+.ex-buehne { position: relative; background: var(--weiss); border: 1px solid var(--linie); border-radius: var(--radius-l); box-shadow: inset 0 5px 0 var(--ton), var(--schatten-karte); padding: var(--a-8); }
 .ex-werkzeug { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--a-5); }
 .ex-buehne { min-width: 0; }
 .ex-leiste { display: flex; flex-wrap: wrap; gap: var(--a-3) var(--a-6); align-items: end; }
@@ -43,11 +86,12 @@ a.ex-werkzeug-link:hover { border-color: var(--linie-3); color: var(--tinte); te
   max-width: 100%;
 }
 .ex-punkt-wahl { min-width: 56px; font-weight: 700; color: var(--navy); }
+.ex-punkt-wahl:hover { border-color: var(--ton); }
 .ex-frage small { color: var(--tinte-2); }
 .ex-tabelle-rahmen { overflow-x: auto; }
 .ex-tabelle td small { margin-top: var(--a-1); }
-.ex-hinweis { display: flex; gap: var(--a-3); align-items: flex-start; padding: var(--a-3) var(--a-4); border-radius: var(--radius-m); background: var(--flaeche-3); }
-.ex-hinweis .symbol { flex: none; width: 20px; height: 20px; color: var(--petrol); }
+.ex-hinweis { display: flex; gap: var(--a-3); align-items: flex-start; padding: var(--a-3) var(--a-4); border-radius: var(--radius-m); background: var(--ton-soft); }
+.ex-hinweis .symbol { flex: none; width: 20px; height: 20px; color: var(--ton-text); }
 
 /* Matrix */
 .ex-matrix-rahmen { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--a-8); align-items: start; }
@@ -111,10 +155,11 @@ button.ex-zelle:hover { border-color: var(--navy-soft); }
   color: var(--navy);
   font-weight: 600;
 }
-.ex-art[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: var(--weiss); }
+.ex-art[aria-pressed="true"] { background: var(--ton-text); border-color: var(--ton-text); color: var(--weiss); }
+button.ex-art:hover, button.ex-weg:hover { border-color: var(--ton); }
 .ex-weg .symbol { width: 16px; height: 16px; }
 .ex-wege { display: flex; flex-wrap: wrap; gap: var(--a-2); }
-.ex-art-detail { display: grid; gap: var(--a-3); padding: var(--a-4) var(--a-5); border: 1px solid var(--linie); border-radius: var(--radius-m); background: var(--flaeche-1); }
+.ex-art-detail { display: grid; gap: var(--a-3); padding: var(--a-4) var(--a-5); border: 1px solid var(--linie); border-left: 4px solid var(--ton); border-radius: var(--radius-m); background: var(--flaeche-1); }
 .ex-art-detail h3 { font: var(--typo-tafeltitel); }
 .ex-art-daten { display: grid; gap: var(--a-2); }
 .ex-art-daten dt { font: var(--typo-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
@@ -122,24 +167,33 @@ button.ex-zelle:hover { border-color: var(--navy-soft); }
 
 /* Takt */
 .ex-monat { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--a-2); }
-.ex-woche { display: grid; gap: var(--a-1); align-content: start; padding: var(--a-3); border-top: 4px solid var(--petrol); background: var(--flaeche-3); border-radius: 0 0 var(--radius-s) var(--radius-s); min-height: 120px; }
+.ex-woche { display: grid; gap: var(--a-1); align-content: start; padding: var(--a-3); border-top: 4px solid var(--ton); background: var(--ton-soft); border-radius: 0 0 var(--radius-s) var(--radius-s); min-height: 120px; }
 .ex-marke { display: inline-flex; align-items: center; gap: var(--a-1); font: var(--typo-klein); padding: 2px var(--a-2); border-radius: var(--radius-s); background: var(--weiss); border: 1px solid var(--linie); }
 .ex-marke[data-takt="sofort"] { border-color: var(--status-rot); color: var(--status-rot); }
 .ex-marke[data-takt="monat"] { border-color: var(--gold); color: var(--gold-text); font-weight: 600; }
 .ex-marke .symbol { width: 14px; height: 14px; }
 .ex-takt { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--a-4); }
-.ex-takt-karte { display: grid; gap: var(--a-2); align-content: start; padding: var(--a-4); border: 1px solid var(--linie); border-radius: var(--radius-m); }
+.ex-takt-karte { display: grid; gap: var(--a-2); align-content: start; padding: var(--a-4); border: 1px solid var(--linie); border-top: 3px solid var(--ton); border-radius: var(--radius-m); }
 .ex-takt-karte h3 { font: var(--typo-reiter); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy); }
 .ex-takt-karte[data-takt="sofort"] { border-top: 3px solid var(--status-rot); }
 .ex-takt-karte[data-takt="monat"] { border-top: 3px solid var(--gold); }
 .ex-beispiel-text { font: var(--typo-klein); color: var(--tinte-2); }
 
+@media (max-width: 1060px) {
+  .ex-werkzeug-link { grid-template-columns: minmax(0, 1fr); }
+}
 @media (max-width: 900px) {
   .ex-werkzeuge { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ex-werkzeug-link { grid-template-columns: auto minmax(0, 1fr); }
+  .ex-kopf-bild { width: 112px; height: 112px; }
+  .ex-kopf-bild .fig-gimmick { width: 84px; height: 84px; }
   .ex-matrix-rahmen { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 600px) {
   .ex-rahmen { padding: var(--a-6) var(--a-4) var(--a-10); }
+  .ex-kopf { grid-template-columns: minmax(0, 1fr); padding: var(--a-5) var(--a-4) var(--a-5) var(--a-6); }
+  .ex-kopf-bild { order: -1; width: 80px; height: 80px; box-shadow: inset 0 0 0 2px var(--ton); }
+  .ex-kopf-bild .fig-gimmick { width: 60px; height: 60px; }
   .ex-buehne { padding: var(--a-5) var(--a-4); }
   .ex-werkzeuge { grid-template-columns: minmax(0, 1fr); }
   .ex-monat { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -150,4 +204,9 @@ button.ex-zelle:hover { border-color: var(--navy-soft); }
 @media (max-width: 380px) {
   .ex-zelle { width: 40px; height: 40px; }
   .ex-matrix th small { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ex-werkzeug-link { transition: none; }
+  a.ex-werkzeug-link:hover { transform: none; }
 }

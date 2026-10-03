@@ -13,6 +13,9 @@ bild-frage: grundriss
 einstieg: |
   Juni 2026. Die Bodenplatte der Gesamtschule ist gegossen, die ersten Wände stehen, ein gelber Kran dreht sich über der Baustelle. Am Bauzaun hängen noch die Wimpel vom Schulfest, bei dem die künftigen Schülerinnen und Schüler ihre Baustelle besucht haben. Jetzt kommt Hanna Klingel mit roten Wangen in den Container, in der Hand einen Stapel Zettel mit den neuen Zahlen für den Ganztag.
 
+einstieg-kurz: |
+  Juni 2026. Die ersten Wände der Gesamtschule stehen, ein Kran dreht sich über der Baustelle. Hanna Klingel kommt mit roten Wangen in den Container, in der Hand die neuen Zahlen für den Ganztag.
+
 szene:
   - { figur: klingel, text: "Ich habe wunderbare Nachrichten: Der Ganztag wächst! Wir brauchen eine größere Mensa – für 450 Essen statt 300." }
   - { figur: schwung, text: "Hab ich ihr beim Schulfest schon gesagt: Das kriegen wir hin." }
@@ -64,5 +67,7 @@ mini:
 dahinter: Eine Änderung braucht einen sauberen Weg vom Antrag bis zum Beschluss – sonst entscheiden am Ende Gespräche am Rand über Geld, über das niemand entschieden hat.
 
 regie:
+  notiz: "Kern: Ein Wunsch, der den geltenden Stand ändert, ist eine Änderung – mit mindestens zwei Wegen vor der Stelle, die entscheiden darf; bis dahin gilt die bisherige Planung. Die Mini-Aufgabe „Wer entscheidet das?“ greift das Kärtchen „Wer entscheidet was“ auf."
   leitfragen:
     - Was gilt bei Ihnen eine Zusage, die am Rand eines Termins fällt?
+    - Was gilt bei Ihnen, solange über eine Änderung nicht entschieden ist?

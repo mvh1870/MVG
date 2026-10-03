@@ -109,7 +109,7 @@ test('Grundlage: fehlerfrei; Belege und Begründungen bleiben intern, die Regie 
 });
 
 test('Unbekanntes Feld – im Kapitel, in einer Antwort, im Rahmen: Fehler', () => {
-  assert.deepEqual(lauf(({ k1 }) => { k1.lph = 3; }).fehler, [`${K1}: unbekanntes Feld „lph“ (erlaubt: nr, titel, zeit, campus, thema, belege, einstieg, szene, frage, antworten, gut, dahinter, kurzfassung, bruecke, campus-nachher, zusatz, bild-szene, bild-frage, mandat-nach-folge, mini, vergleich, regie)`]);
+  assert.deepEqual(lauf(({ k1 }) => { k1.lph = 3; }).fehler, [`${K1}: unbekanntes Feld „lph“ (erlaubt: nr, titel, zeit, campus, thema, belege, einstieg, szene, frage, antworten, gut, dahinter, kurzfassung, bruecke, einstieg-kurz, campus-nachher, zusatz, bild-szene, bild-frage, mandat-nach-folge, mini, vergleich, regie)`]);
   assert.deepEqual(lauf(({ k1 }) => { k1.antworten[0].punkte = 3; }).fehler, [`${K1} Antwort 1: unbekanntes Feld „punkte“ (erlaubt: wertung, text, balken, folge, bild)`]);
   assert.deepEqual(lauf(({ r }) => { r.prolog = {}; }).fehler, [`${R}: unbekanntes Feld „prolog“ (erlaubt: titel, auftakt, sie, figuren, balken, bilanz, mandat, ende)`]);
 });
@@ -193,4 +193,36 @@ test('Campus: Stufe 0–8, bekannte Jahreszeit und bekanntes Licht', () => {
     `${K2} campus: Jahreszeit „regen“ – erwartet fruehling, sommer, herbst, winter`,
     `${K2} campus: Licht „nacht“ – erwartet morgen, tag, abend`,
   ]);
+});
+
+test('Kurzfassung kürzer (P17.5): „einstieg-kurz“ nur in Kapiteln der Kurzfassung und kürzer; Zeilen mit „kurzfassung: nein“ nur dort, mindestens zwei bleiben', () => {
+  // gültig: kürzerer Einstieg und eine weggelassene Zeile; die Ausgabe trägt beides, die Grundlage hat keines
+  const grund = lauf().erg.geschichte;
+  assert.equal(grund.kapitel[0].einstiegKurzHtml, null);
+  assert.equal(grund.ende.einstiegKurzHtml, null);
+  assert.deepEqual(grund.kapitel[0].szene.map((z: Roh) => z.kurzfassung), [true]);
+  const gut = lauf(({ r, k1 }) => {
+    k1.einstieg = 'Ein langer Einstieg mit vielen Wörtern.';
+    k1['einstieg-kurz'] = 'Kurz und knapp.';
+    k1.szene = [zeile('faden', 'Eins'), { ...zeile('lot', 'Zwei'), kurzfassung: false }, zeile('grundstein', 'Drei')];
+    r.ende.einstieg = 'Morgens am ersten Schultag.';
+    r.ende['einstieg-kurz'] = 'Morgens.';
+  });
+  assert.deepEqual(gut.fehler, []);
+  assert.equal(gut.erg.geschichte.kapitel[0].einstiegKurzHtml, 'Kurz und knapp.');
+  assert.deepEqual(gut.erg.geschichte.kapitel[0].szene.map((z: Roh) => z.kurzfassung), [true, false, true]);
+  assert.equal(gut.erg.geschichte.ende.einstiegKurzHtml, 'Morgens.');
+  // nicht kürzer
+  assert.deepEqual(lauf(({ k1 }) => { k1['einstieg-kurz'] = 'Ein anderer Einstieg'; }).fehler, [`${K1}: „einstieg-kurz“ hat 3 Wörter, „einstieg“ 1 – die Kurzfassung muss kürzer sein`]);
+  // außerhalb der Kurzfassung
+  assert.deepEqual(lauf(({ k2 }) => { k2.einstieg = 'Ein langer Einstieg'; k2['einstieg-kurz'] = 'Kurz'; }).fehler, [`${K2}: „einstieg-kurz“ nur in Kapiteln der Kurzfassung`]);
+  assert.deepEqual(lauf(({ k2 }) => { k2.szene = [zeile('lot', 'Holz'), { ...zeile('faden', 'Ja'), kurzfassung: false }, zeile('lot', 'Gut')]; }).fehler,
+    [`${K2} szene: „kurzfassung: nein“ an einer Zeile nur in Kapiteln der Kurzfassung`]);
+  // zu wenig bleibt stehen; kein Wahrheitswert
+  assert.deepEqual(lauf(({ k1 }) => { k1.szene = [zeile('faden', 'Eins'), { ...zeile('lot', 'Zwei'), kurzfassung: false }]; }).fehler, [`${K1} szene: in der Kurzfassung blieben 1 Zeilen – mindestens zwei`]);
+  assert.deepEqual(lauf(({ k1 }) => { k1.szene[0].kurzfassung = 'nein bitte'; }).fehler, [`${K1} szene Zeile 1: „kurzfassung“ muss ja oder nein sein`]);
+  // die Zeile, die „Vertrauen niedrig“ ersetzt, bleibt in der Kurzfassung; die Variante selbst kennt das Feld nicht
+  assert.deepEqual(lauf(({ r }) => { r.ende.szene = [zeile('klingel', 'Guten Morgen!'), zeile('faden', 'Alles da.'), { ...zeile('grundstein', 'Gut.'), kurzfassung: false }]; }).fehler,
+    [`${R} ende.vertrauen-niedrig: die Zeile, die diese Variante ersetzt, fehlt in der Kurzfassung (kurzfassung: nein)`]);
+  assert.deepEqual(lauf(({ r }) => { r.ende['vertrauen-niedrig'].kurzfassung = false; }).fehler, [`${R} ende.vertrauen-niedrig: unbekanntes Feld „kurzfassung“ (erlaubt: text, figur, zusatz)`]);
 });

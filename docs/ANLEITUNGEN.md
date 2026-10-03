@@ -23,10 +23,11 @@ Die Startseite bietet drei Wege und darunter „Wer steht dahinter“ mit einem 
    - **Fläche**: Start, Story, Theorie oder Explore.
    - **Zurück/Weiter** oder ← →: in der Story Schritt für Schritt.
    - ↑ ↓: rollt die Leinwand, wenn der Inhalt länger ist als der Bildschirm.
-   - **Springen zu** einer Station, **Kurzfassung** ein/aus, **Von vorn beginnen**.
-   - An einer Vorlage übernehmen die Tasten **a, b, c** (oder die Knöpfe unter „Kundenwahl und Eingriffe“) die Wahl des Kunden; die Gewichte und der gewichtete Vergleich sind auf der Leinwand sichtbar.
+   - **Springen zu** jedem Schritt (Auswahl oder Knöpfe Auftakt · 1–8 · Schulstart, darunter die Schritte des Kapitels: Szene, Vergleich, Frage, Mini-Aufgabe), **Kurzfassung** ein/aus, **Von vorn beginnen**. Ein Schritt außerhalb der Kurzfassung schaltet auf die ganze Geschichte.
+   - **Kundenwahl und Eingriffe** je Schritt: an der Frage „Antwort 1–3“ mit den ersten Wörtern (Tasten **1, 2, 3**) und dezent die Wertung gut · vertretbar · Falle – nur in der Regie; „Wahl zurücknehmen“. Im Vergleich (Kapitel 7) die Gewichte je Gesichtspunkt mit Rangfolge; die Leinwand ordnet die drei Wege um. In der Mini-Aufgabe je Posten die Zuordnung (die richtige mit ✓ markiert) bzw. die Reihenfolge anklicken, **Auflösen** oder **Zurücksetzen**.
+   - Die Leinwand rollt nach einer Wahl von selbst zur Folge, nach neuen Gewichten zu den Karten und in der Mini-Aufgabe zum gesetzten Posten.
    - **Theorie** und **Explore**: ein Thema oder Werkzeug wählen und auf der Leinwand zeigen.
-4. **Regie-Notiz**: Notiz und Leitfragen zur Station oder zum Thema, darunter der typische Einwand mit Antwort.
+4. **Regie-Notiz**: Notiz (Kern des Kapitels, Hinweis zur Moderation) und Leitfragen an die Runde je Kapitel bzw. zum Thema.
 5. **Beamer: groß und kontrastreich** vergrößert Schrift und Linien auf der Leinwand.
 6. **Gesprächsprotokoll**: Notizen während des Termins festhalten; **Protokoll drucken** erzeugt einen Bogen mit Protokoll und Entscheidungen; **Protokoll löschen** entfernt Notizen und gespeicherten Stand der Präsentation aus dem Browser.
 

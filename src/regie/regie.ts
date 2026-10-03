@@ -12,9 +12,11 @@
 
 import type { GeschichteRegie, OeffentlicheInhalte, RegieEintrag } from '../inhalte/typen.ts';
 import {
-  abgestimmteGewichte, geheZu, gewichte, kapitel, neuerStand, schritte, schrittIndex, setzeAbgestimmt, setzeGewicht, setzeKurz, STUFEN_GEWICHT,
-  waehle, weiter, zurueck,
+  abgestimmteGewichte, gemischt, gewichte, kapitel, klickeReihe, miniVonVorn, neuerStand, ordneZu, schritte, schrittIndex, setzeAbgestimmt,
+  setzeGewicht, setzeKurz, STUFEN_GEWICHT, teileVon, vergleichLage, waehle, werteMiniAus, weiter, zurueck, type Schritt, type Stand,
 } from '../geschichte/engine.ts';
+import type { Kapitel, Mini } from '../geschichte/typen.ts';
+import { ersteWorte, loeseMini, nurText, ohneWahl, schrittAus, schrittWert, springe, sprungZiele } from './eingriffe.ts';
 import { ortText as storyOrt } from '../ui/flaechen/geschichte.ts';
 import { kanalSchluessel, type Kanal } from './kanal.ts';
 import { neueBuehne, pruefeBuehne, BUEHNEN_BEREICHE, type Buehne, type BuehnenBereich } from './buehne.ts';
@@ -132,18 +134,28 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
   const werkzeugWahl = h('select', { class: 'regie-auswahl', id: 'regie-werkzeug', 'data-pruef': 'regie-werkzeug' },
     WERKZEUGE.map((id) => h('option', { value: id }, inhalte.werkzeuge?.[id].titel ?? id))) as HTMLSelectElement;
   werkzeugWahl.addEventListener('change', () => setze({ ...buehne, bereich: 'explore', werkzeug: werkzeugWahl.value }));
-  const sprung = h('select', { class: 'regie-auswahl', id: 'regie-sprung', 'data-pruef': 'regie-sprung' },
+  // Sprung je Schritt (P17.6): Auftakt, je Kapitel Szene · Vergleich · Frage · Mini-Aufgabe, Schulstart
+  const teilName = (s: Schritt): string => s.ort === 'kapitel' ? W.geschichte.teile[s.teil] ?? s.teil : s.ort === 'auftakt' ? W.geschichte.auftakt : W.geschichte.ende;
+  const sprung = h('select', { class: 'regie-auswahl regie-sprung', id: 'regie-sprung', 'data-pruef': 'regie-sprung' },
     h('option', { value: '' }, w.sprungWaehlen),
-    (g?.kapitel ?? []).map((k) => h('option', { value: k.id }, `${k.nr} · ${k.titel}`))) as HTMLSelectElement;
+    g === null ? null : [
+      h('option', { value: 'auftakt' }, W.geschichte.auftakt),
+      g.kapitel.map((k) => h('optgroup', { label: `${k.nr} · ${k.titel}` },
+        sprungZiele(g).filter((z) => z.schritt.ort === 'kapitel' && z.schritt.kapitel === k.id)
+          .map((z) => h('option', { value: z.wert }, `${k.nr} · ${teilName(z.schritt)}`)))),
+      h('option', { value: 'ende' }, W.geschichte.ende),
+    ]) as HTMLSelectElement;
+  const springeZu = (ziel: Schritt): void => {
+    if (g !== null) setze({ ...buehne, bereich: 'story', story: springe(g, buehne.story, ziel) });
+  };
   sprung.addEventListener('change', () => {
-    if (g !== null && sprung.value !== '') {
-      const k = kapitel(g, sprung.value);
-      let s = buehne.story;
-      if (k !== null && s.kurz && !k.kurzfassung) s = setzeKurz(g, s, false);
-      setze({ ...buehne, bereich: 'story', story: geheZu(g, s, { ort: 'kapitel', kapitel: sprung.value, teil: 'szene' }) });
-    }
-    sprung.value = '';
+    const ziel = g !== null ? schrittAus(g, sprung.value) : null;
+    if (ziel !== null) springeZu(ziel);
+    else zeichne();
   });
+  // Schnellsprung: Auftakt, 1–8, Schulstart; darunter die Schritte des Kapitels, in dem die Leinwand steht
+  const kapitelKnoepfe = h('div', { class: 'regie-kapitel', role: 'group', 'aria-label': w.sprung, 'data-pruef': 'regie-kapitel' });
+  const teilKnoepfe = h('div', { class: 'regie-teile', role: 'group', 'aria-label': w.schritteHier, 'data-pruef': 'regie-teile' });
   const kurzKnopf = h('button', { type: 'button', class: 'regie-chip', 'aria-pressed': 'false', 'data-pruef': 'regie-kurz', onclick: () => {
     if (g !== null) setze({ ...buehne, story: setzeKurz(g, buehne.story, !buehne.story.kurz) });
   } }, W.geschichte.kurzfassung);
@@ -165,6 +177,8 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     h('div', { class: 'regie-zeile' }, h('span', { class: 't-label' }, w.bereich), bereiche),
     h('div', { class: 'regie-zeile' },
       h('label', { for: 'regie-sprung', class: 't-label' }, w.sprung), sprung, kurzKnopf, neuKnopf),
+    kapitelKnoepfe,
+    teilKnoepfe,
     h('div', { class: 'regie-zeile' },
       h('label', { for: 'regie-thema', class: 't-label' }, W.rahmen.theorie), themaWahl,
       h('label', { for: 'regie-werkzeug', class: 't-label' }, W.rahmen.explore), werkzeugWahl));
@@ -305,6 +319,125 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     return w.start;
   };
 
+  /** Schnellsprung: Auftakt, Kapitel 1–8, Schulstart; dazu die Schritte des aktuellen Kapitels. */
+  const zeichneSprung = (): void => {
+    if (g === null) return;
+    const s = buehne.story.schritt;
+    const inStory = buehne.bereich === 'story';
+    const hier = (ziel: Schritt): boolean => inStory && (ziel.ort === 'kapitel' && s.ort === 'kapitel' ? ziel.kapitel === s.kapitel : ziel.ort === s.ort);
+    const knopf = (ziel: Schritt, inhaltText: string, name: string, pruef: string, aus = false): HTMLElement => h('button', {
+      type: 'button', class: `regie-chip regie-chip-klein${aus ? ' ist-aus' : ''}`, 'aria-pressed': hier(ziel) ? 'true' : 'false', 'aria-label': name, title: name, 'data-pruef': pruef,
+      onclick: () => springeZu(ziel),
+    }, inhaltText);
+    ersetze(kapitelKnoepfe,
+      knopf({ ort: 'auftakt' }, W.geschichte.auftakt, W.geschichte.auftakt, 'regie-kapitel-auftakt'),
+      g.kapitel.map((k) => knopf({ ort: 'kapitel', kapitel: k.id, teil: 'szene' }, String(k.nr), `${k.nr} · ${k.titel}`, `regie-kapitel-${k.id}`, buehne.story.kurz && !k.kurzfassung)),
+      knopf({ ort: 'ende' }, W.geschichte.ende, W.geschichte.ende, 'regie-kapitel-ende'));
+    const k = inStory && s.ort === 'kapitel' ? kapitel(g, s.kapitel) : null;
+    if (k === null) {
+      ersetze(teilKnoepfe);
+      teilKnoepfe.hidden = true;
+      return;
+    }
+    teilKnoepfe.hidden = false;
+    const weg = schritte(g, buehne.story.kurz);
+    ersetze(teilKnoepfe, h('span', { class: 't-label' }, `${k.nr} · ${w.schritteHier}`),
+      teileVon(k, false).map((teil) => {
+        const ziel: Schritt = { ort: 'kapitel', kapitel: k.id, teil };
+        const aufWeg = weg.some((x) => x.ort === 'kapitel' && x.kapitel === k.id && x.teil === teil);
+        return h('button', {
+          type: 'button', class: `regie-chip regie-chip-klein${aufWeg ? '' : ' ist-aus'}`, 'aria-pressed': s.ort === 'kapitel' && s.teil === teil ? 'true' : 'false',
+          'data-pruef': `regie-teil-${teil}`, onclick: () => springeZu(ziel),
+        }, W.geschichte.teile[teil] ?? teil);
+      }));
+  };
+
+  /** Kundenwahl und Eingriffe je Schritt: Antworten (mit Wertung, nur hier), Gewichte im Vergleich, Mini-Aufgabe. */
+  const zeichneEingriffe = (): void => {
+    const s = buehne.story.schritt;
+    const k = g !== null && buehne.bereich === 'story' && s.ort === 'kapitel' ? kapitel(g, s.kapitel) : null;
+    if (g === null || k === null || s.ort !== 'kapitel') {
+      ersetze(eingriffListe, h('p', { class: 'regie-leise' }, w.keineEingriffe));
+      return;
+    }
+    if (s.teil === 'frage') ersetze(eingriffListe, antwortEingriffe(k));
+    else if (s.teil === 'vergleich' && k.vergleich !== null) ersetze(eingriffListe, vergleichEingriffe(k));
+    else if (s.teil === 'mini' && k.mini !== null) ersetze(eingriffListe, miniEingriffe(k, k.mini));
+    else ersetze(eingriffListe, h('p', { class: 'regie-leise' }, w.keineEingriffe));
+  };
+
+  const neueStory = (story: Stand): void => setze({ ...buehne, story });
+
+  const antwortEingriffe = (k: Kapitel): Node[] => {
+    const gewaehlt = buehne.story.wahlen[k.id];
+    return [
+      h('ol', { class: 'regie-antworten' }, k.antworten.map((a, i) => h('li', null, h('button', {
+        type: 'button', class: 'regie-antwort', 'aria-pressed': gewaehlt === i ? 'true' : 'false', 'data-pruef': `regie-wahl-${i + 1}`,
+        title: nurText(a.html), onclick: () => neueStory(waehle(g!, buehne.story, k.id, i)),
+      },
+      h('span', { class: 'regie-antwort-nr', 'aria-hidden': 'true' }, String(i + 1)),
+      h('span', { class: 'regie-antwort-text' }, h('b', null, w.antwortNr(i + 1)), h('span', { class: 'regie-antwort-anfang' }, ersteWorte(a.html, 7))),
+      h('span', { class: 'regie-wertung', 'data-wertung': a.wertung, 'data-pruef': `regie-wertung-${i + 1}`, title: w.wertungTitel }, w.wertung[a.wertung] ?? a.wertung))))),
+      h('div', { class: 'regie-zeile' },
+        h('button', { type: 'button', class: 'regie-chip regie-chip-klein', 'data-pruef': 'regie-wahl-weg', disabled: gewaehlt === undefined, onclick: () => neueStory(ohneWahl(buehne.story, k.id)) },
+          sym('zurueckspulen'), w.wahlZurueck)),
+    ];
+  };
+
+  const vergleichEingriffe = (k: Kapitel): Node[] => {
+    const v = k.vergleich!;
+    const gew = gewichte(g!, buehne.story);
+    const ab = abgestimmteGewichte(v);
+    const lage = vergleichLage(v, gew);
+    const titel = (id: string): string => v.optionen.find((x) => x.id === id)?.titel ?? id;
+    const summe = lage.plaetze[0]?.summe ?? 0;
+    return [
+      h('div', { class: 'regie-gewichte' }, v.kriterien.map((c) => h('div', { class: 'regie-gewicht', role: 'group', 'aria-label': c.titel },
+        h('span', { class: 'regie-gewicht-name' }, c.titel),
+        h('span', { class: 'regie-stufen' }, STUFEN_GEWICHT.map((st) => h('button', {
+          type: 'button', class: 'regie-chip regie-chip-klein', 'aria-pressed': gew[c.id] === st ? 'true' : 'false', 'data-pruef': `regie-stufe-${c.id}-${st}`,
+          onclick: () => neueStory(setzeGewicht(g!, buehne.story, c.id, st)),
+        }, W.geschichte.stufen[st] ?? String(st), ab[c.id] === st ? h('span', { class: 'regie-abgestimmt', title: W.geschichte.abgestimmt }, ' ●', h('span', { class: 'nur-sr' }, ` (${W.geschichte.abgestimmt})`)) : null)))))),
+      h('ol', { class: 'regie-rang', 'data-pruef': 'regie-rang' }, lage.plaetze.map((p) => h('li', null, h('b', null, `${W.geschichte.platz(p.rang)}: `), `${p.option.id} · ${p.option.titel} – ${W.geschichte.punkte(p.summe)}`))),
+      h('p', { class: 'regie-leise', role: 'status' }, lage.vorn.length > 1 ? W.geschichte.gleichauf(lage.vorn.map(titel), summe) : W.geschichte.vorn(titel(lage.vorn[0] ?? ''), summe)),
+      h('div', { class: 'regie-zeile' },
+        h('button', { type: 'button', class: 'regie-chip regie-chip-klein', 'data-pruef': 'regie-abgestimmt', disabled: buehne.story.gewichte === null, onclick: () => neueStory(setzeAbgestimmt(buehne.story)) },
+          sym('zurueckspulen'), W.geschichte.abgestimmteGewichte)),
+    ];
+  };
+
+  const miniEingriffe = (k: Kapitel, m: Mini): Node[] => {
+    const antworten = buehne.story.mini[k.id];
+    const aus = werteMiniAus(m, antworten);
+    const kopfzeile = h('p', { class: 'regie-mini-titel' }, h('b', null, m.titel), ` · ${aus.je.filter((x) => x !== 'offen').length}/${m.posten.length}`);
+    const fuss = h('div', { class: 'regie-zeile' },
+      h('button', { type: 'button', class: 'regie-chip regie-chip-klein', 'data-pruef': 'regie-mini-aufloesen', onclick: () => neueStory(loeseMini(g!, buehne.story, k.id)) }, sym('haken'), w.miniAufloesen),
+      h('button', { type: 'button', class: 'regie-chip regie-chip-klein', 'data-pruef': 'regie-mini-leeren', disabled: antworten === undefined, onclick: () => neueStory(miniVonVorn(buehne.story, k.id)) }, sym('zurueckspulen'), w.miniLeeren));
+    if (m.art === 'zuordnen') {
+      return [kopfzeile, h('ol', { class: 'regie-mini' }, m.posten.map((p, i) => {
+        const gewaehlt = antworten?.[i] ?? -1;
+        return h('li', { class: 'regie-mini-posten', 'data-lage': aus.je[i] ?? 'offen' },
+          h('span', { class: 'regie-mini-text', id: `regie-posten-${i}`, title: nurText(p.html) }, `${i + 1} · ${ersteWorte(p.html, 8)}`),
+          h('span', { class: 'regie-stufen', role: 'group', 'aria-labelledby': `regie-posten-${i}` }, m.wahlen.map((x, j) => h('button', {
+            type: 'button', class: `regie-chip regie-chip-klein${x.id === p.loesung ? ' ist-loesung' : ''}`, 'aria-pressed': gewaehlt === j ? 'true' : 'false',
+            'data-pruef': `regie-mini-${i + 1}-${x.id}`, onclick: () => neueStory(ordneZu(g!, buehne.story, k.id, i, j)),
+          }, x.titel, x.id === p.loesung ? h('span', { class: 'regie-loesung', 'aria-hidden': 'true' }, ' ✓') : null, x.id === p.loesung ? h('span', { class: 'nur-sr' }, ` (${w.miniLoesung})`) : null))));
+      })), fuss];
+    }
+    const folge = antworten ?? [];
+    return [kopfzeile, h('p', { class: 'regie-leise' }, w.miniReiheHinweis),
+      h('ol', { class: 'regie-mini regie-mini-reihe' }, gemischt(m.posten.length).map((i) => {
+        const p = m.posten[i];
+        const stelle = folge.indexOf(i);
+        return h('li', { class: 'regie-mini-posten', 'data-lage': aus.fertig ? aus.je[i] ?? 'offen' : 'offen' }, h('button', {
+          type: 'button', class: 'regie-chip regie-chip-klein regie-reihe', 'aria-pressed': stelle >= 0 ? 'true' : 'false', 'data-pruef': `regie-reihe-${i + 1}`,
+          title: nurText(p?.html ?? ''), onclick: () => neueStory(klickeReihe(g!, buehne.story, k.id, i)),
+        }, h('span', { class: 'regie-reihe-nr', 'aria-hidden': stelle < 0 ? 'true' : null }, stelle < 0 ? '·' : String(stelle + 1)),
+        h('span', null, ersteWorte(p?.html ?? '', 8)),
+        h('span', { class: 'regie-loesung' }, ` (${w.miniLoesung}: ${i + 1})`)));
+      })), fuss];
+  };
+
   const zeichne = (): void => {
     anzeige.setze(buehne);
     massstab();
@@ -315,26 +448,9 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     attr(kurzKnopf, 'aria-pressed', buehne.story.kurz ? 'true' : 'false');
     themaWahl.value = buehne.thema ?? '';
     werkzeugWahl.value = werkzeugAus(buehne.werkzeug);
-    // Kundenwahl: an der Frage die drei Antworten (Tasten 1–3), im Vergleich die Stufen „Was ist wichtiger?“
-    const s = buehne.story.schritt;
-    const k = g !== null && buehne.bereich === 'story' && s.ort === 'kapitel' ? kapitel(g, s.kapitel) : null;
-    if (g !== null && k !== null && s.ort === 'kapitel' && s.teil === 'frage') {
-      ersetze(eingriffListe, k.antworten.map((a, i) => h('button', {
-        type: 'button', class: 'regie-chip regie-antwort', 'aria-pressed': buehne.story.wahlen[k.id] === i ? 'true' : 'false', 'data-pruef': `regie-wahl-${i + 1}`,
-        onclick: () => setze({ ...buehne, story: waehle(g, buehne.story, k.id, i) }),
-      }, h('b', null, `${i + 1} · `), inhaltInline(a.html))));
-    } else if (g !== null && k !== null && k.vergleich !== null && s.ort === 'kapitel' && s.teil === 'vergleich') {
-      const v = k.vergleich;
-      const gew = gewichte(g, buehne.story);
-      const ab = abgestimmteGewichte(v);
-      ersetze(eingriffListe,
-        v.kriterien.map((c) => h('div', { class: 'regie-zeile', role: 'group', 'aria-label': c.titel }, h('span', { class: 't-label' }, c.titel),
-          STUFEN_GEWICHT.map((st) => h('button', {
-            type: 'button', class: 'regie-chip', 'aria-pressed': gew[c.id] === st ? 'true' : 'false', 'data-pruef': `regie-stufe-${c.id}-${st}`,
-            onclick: () => setze({ ...buehne, story: setzeGewicht(g, buehne.story, c.id, st) }),
-          }, `${W.geschichte.stufen[st] ?? st}${ab[c.id] === st ? ` (${W.geschichte.abgestimmt})` : ''}`)))),
-        h('button', { type: 'button', class: 'regie-chip', 'data-pruef': 'regie-abgestimmt', onclick: () => setze({ ...buehne, story: setzeAbgestimmt(buehne.story) }) }, W.geschichte.abgestimmteGewichte));
-    } else ersetze(eingriffListe, h('p', { class: 'regie-leise' }, w.keineEingriffe));
+    sprung.value = buehne.bereich === 'story' && g !== null ? schrittWert(buehne.story.schritt) : '';
+    zeichneSprung();
+    zeichneEingriffe();
     zeichneNotiz();
   };
 

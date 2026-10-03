@@ -14,7 +14,7 @@ import { GIMMICKS } from '../src/grafik/figuren.ts';
 const FIGUREN = ['grundstein', 'faden', 'schwung', 'klingel', 'lot'];
 const BALKEN = ['geld', 'zeit', 'vertrauen'];
 const STUFEN = ['hoch', 'mittel', 'niedrig'];
-const BILANZ = ['nicht-getragen', 'letzte-meter', 'ruhig', 'umwege'];
+const BILANZ = ['nicht-getragen', 'letzte-meter', 'ruhig', 'umwege', 'offen'];
 const WERTUNGEN = ['gut', 'vertretbar', 'falle'];
 const JAHRESZEITEN = ['fruehling', 'sommer', 'herbst', 'winter'];
 const LICHTER = ['morgen', 'tag', 'abend'];
@@ -172,7 +172,7 @@ export function baueGeschichte(c, dateien, themen = null) {
     }),
   };
   if (mandat.zeilen.length === 0) c.fehler(`${rel} mandat`, 'keine Zeilen');
-  const en = form(r.ende ?? {}, ['zeit', 'campus', 'einstieg', 'szene', 'zeit-niedrig', 'vertrauen-niedrig', 'nach-falle'], ['einstieg-kurz'], `${rel} ende`);
+  const en = form(r.ende ?? {}, ['zeit', 'campus', 'einstieg', 'szene', 'zeit-niedrig', 'vertrauen-niedrig', 'nach-falle', 'offen'], ['einstieg-kurz'], `${rel} ende`);
   const endeSzene = szene(en.szene, `${rel} ende.szene`);
   const ende = {
     zeit: klar(en.zeit, `${rel} ende`),
@@ -183,6 +183,7 @@ export function baueGeschichte(c, dateien, themen = null) {
     zeitNiedrigHtml: html(en['zeit-niedrig'], `${rel} ende.zeit-niedrig`),
     vertrauenNiedrig: ersatz(en['vertrauen-niedrig'], `${rel} ende.vertrauen-niedrig`),
     nachFalle: ersatz(en['nach-falle'], `${rel} ende.nach-falle`),
+    offen: ersatz(en.offen, `${rel} ende.offen`),
   };
   /**
    * Ersatzzeilen des Endes (L-239): je Zeile die Figur, deren Zeile sie ersetzt – die Figur spricht in der Szene des Endes,
@@ -321,6 +322,8 @@ export function baueGeschichte(c, dateien, themen = null) {
     });
     if (kriterien.length < 2) c.fehler(ort, 'mindestens zwei Kriterien');
     const kids = kriterien.map((/** @type {any} */ k) => k.id);
+    // ein doppeltes Kriterium überschriebe Punkte und Gewichte still und erschiene zweimal (R73)
+    if (new Set(kids).size !== kids.length) c.fehler(ort, 'Kriterium doppelt');
     const optionen = (Array.isArray(o.optionen) ? o.optionen : []).map((/** @type {any} */ p, /** @type {number} */ i) => {
       const po = `${ort} optionen ${i + 1}`;
       const x = form(p, ['id', 'titel', 'punkte', 'worte'], ['begruendung'], po);

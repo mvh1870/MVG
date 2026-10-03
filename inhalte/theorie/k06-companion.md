@@ -109,9 +109,9 @@ Liefern die vereinbarten Beiträge zu – etwa Kostenprognose und Restkosten ([[
 
 ::: karte gremien
 ---
-titel: Bauherren-PL und Gremien
+titel: Projektleitung des Bauherrn und Gremien
 ---
-Bauherren-PL und Änderungsgremium entscheiden im Rahmen ihres Mandats auf Vorlage; der Lenkungskreis berät. Eigene Listen neben der Software brauchen sie nicht.
+Die Projektleitung des Bauherrn und das Änderungsgremium entscheiden im Rahmen ihres Mandats auf Vorlage; der Lenkungskreis berät. Eigene Listen neben der Software brauchen sie nicht.
 :::
 
 ::: karte bauherr
@@ -295,6 +295,9 @@ Höchstens eine Seite für den Bauherrn: was sich verändert hat und welche Ents
 :::
 
 ::: wissenscheck aenderung-ohne-risiko
+---
+stelle: 2
+---
 ### Frage
 Der Nutzer wünscht eine größere Mensa. Zu diesem Thema ist kein Risiko erfasst. Was gilt für die Änderung?
 
@@ -341,7 +344,7 @@ Beispiele vom fiktiven Schulcampus Lindenhall-Süd.
 ---
 seite: links
 ---
-Die Klärung der Frühwarnung FRW-002 ergibt: Drei von vier Anbietern nennen 24 bis 26 Wochen Lieferzeit für die Holzbauelemente – der Montagebeginn könnte sich deutlich verschieben.
+Die Klärung der Frühwarnung zu den Holzelementen ergibt: Drei von vier Anbietern nennen 24 bis 26 Wochen Lieferzeit – der Montagebeginn könnte sich deutlich verschieben.
 
 ### Erklärung
 Ein mögliches Ereignis wird als Risiko bewertet.
@@ -361,10 +364,10 @@ Eingetreten – die Lösung wird organisiert; eine Wahrscheinlichkeit wird nicht
 ---
 seite: rechts
 ---
-Ein Gerüstfeld an der Sporthalle ist nicht gesichert.
+Nach dem Sturm hat das Gerüst an der Sporthalle zwei lose Anker.
 
 ### Erklärung
-Eingetreten und dringlich: Die Projektsteuerung meldet es sofort und dokumentiert es noch am selben Arbeitstag, sobald die unmittelbare Reaktion gesichert ist.
+Eingetreten und dringlich: Die Bauleitung sperrt sofort; die Projektsteuerung meldet über den vereinbarten Meldeweg und dokumentiert es noch am selben Arbeitstag.
 :::
 
 ::: posten 4
@@ -570,9 +573,9 @@ Innerhalb ihres Mandats entscheidet die zuständige Stelle des Bauherrn selbst; 
 
 ::: etappe 2
 ---
-titel: Bauherren-PL
+titel: Projektleitung des Bauherrn
 ---
-Eine Schwelle ist überschritten. Liegt das Thema im Mandat der Bauherren-PL, geht es an sie.
+Eine Schwelle ist überschritten. Liegt das Thema im Mandat der Projektleitung des Bauherrn, geht es an sie.
 :::
 
 ::: etappe 3
@@ -635,7 +638,7 @@ form: karten
 ---
 titel: Befähigung mit Unterstützung des MVG Companion
 ---
-[[Befähigung]] heißt: Die Bauherrenorganisation kann das Modell selbst anwenden. Mit dem Companion wird aus der einmaligen Schulung eine **wiederholbare Anwendungskette**: Die Rollen arbeiten mit Entscheidungs-IDs, Freigabefragen, Mandatslogik, Datenstandsprüfung und Routinen des Betriebshandbuchs – in echten Entscheidungssituationen des eigenen Projekts.
+[[Befähigung]] heißt: Die Bauherrenorganisation kann das Modell selbst anwenden. Mit dem Companion wird aus der einmaligen Schulung eine **wiederholbare Anwendungskette**: Die Rollen arbeiten mit [[Entscheidungs-ID|Entscheidungs-IDs]], Freigabefragen, Mandatslogik, Datenstandsprüfung und Routinen des Betriebshandbuchs – in echten Entscheidungssituationen des eigenen Projekts.
 
 ::: etappen
 ---

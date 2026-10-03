@@ -26,7 +26,7 @@ import { inhalt } from '../bausteine/inhalt.ts';
 import { etappen, regler, sortieren, umschalter } from '../bausteine/lernwerkzeuge.ts';
 import { abbildung } from '../bausteine/abbildung.ts';
 import { bmLink, seitenRahmen } from '../bausteine/seite.ts';
-import { kopfText } from '../anzeige.ts';
+import { kopfText, kopfZahl } from '../anzeige.ts';
 import { W } from '../woerter.ts';
 import { bogenFuerStrgP, bogenKopf, druckeBogen } from '../druck.ts';
 
@@ -194,7 +194,7 @@ function verzeichnis(o: TheorieOptionen, aktuell: string | null): HTMLElement {
       h('ol', { class: 'kapitel-liste themen-liste' }, liste.map((t) => h('li', null, verweis(o, `#theorie/${t.thema}`, {
         'data-pruef': `verzeichnis-${t.thema}`,
         ...(t.thema === aktuell ? { 'aria-current': 'page' } : {}),
-      }, h('span', { class: 'verzeichnis-nr' }, String(t.nr)), h('span', { class: 'verzeichnis-titel' }, t.kurztitel), o.bedienbar ? haken(t) : null))))))));
+      }, h('span', { class: 'verzeichnis-nr' }, String(t.nr)), h('span', { class: 'verzeichnis-titel' }, mitTrennstellen(t.kurztitel)), o.bedienbar ? haken(t) : null))))))));
 }
 
 /* ------------------------------------------------------------- Übersicht -- */
@@ -214,7 +214,7 @@ function buchTeil(o: TheorieOptionen, teil: TheorieTeil, liste: readonly Theorie
       verweis(o, `#theorie/${t.thema}`, { class: 'buch-zeile', 'data-pruef': `thema-${t.thema}` },
         h('span', { class: 'buch-nr' }, String(t.nr)),
         h('span', { class: 'buch-symbol' }, themaSymbol(t)),
-        h('span', { class: 'buch-text' }, h('span', { class: 'buch-titel' }, t.kurztitel), h('span', { class: 'buch-satz' }, t.kurzsatz)),
+        h('span', { class: 'buch-text' }, h('span', { class: 'buch-titel' }, mitTrennstellen(t.kurztitel)), h('span', { class: 'buch-satz' }, t.kurzsatz)),
         o.bedienbar ? h('span', { class: 'buch-marke' }, haken(t)) : null)))));
 }
 
@@ -277,10 +277,18 @@ function kartenRaster(b: Block): HTMLElement {
  * nur ohne prefers-reduced-motion zu sehen (CSS). Auf Leinwand und im Druck stehen beide Seiten untereinander.
  */
 function wendekarte(kopf: HTMLElement | null, vorne: HTMLElement, hinten: HTMLElement, titel: string): HTMLElement {
-  const marke = (text: string): HTMLElement => h('span', { class: 't-label lernkarte-seite' }, text);
+  if (!lwBedienbar) {
+    // aufgelöst (Leinwand, Druck; R73): eine Karte – Titel, Vorderseite, Rückseite; keine Bedienmarke, bei leerer
+    // Vorderseite auch keine Trennlinie
+    const leer = (vorne.textContent ?? '').trim() === '';
+    return h('div', { class: 'lernkarte ist-wendekarte ist-aufgeloest', 'data-pruef': 'lernkarte' },
+      h('div', { class: 'lernkarte-flaeche ist-vorne', 'data-pruef': 'karte-vorne' }, kopf, leer ? null : vorne),
+      h('div', { class: leer ? 'lernkarte-flaeche ist-hinten ist-direkt' : 'lernkarte-flaeche ist-hinten', 'data-pruef': 'karte-hinten' }, hinten));
+  }
+  // Rückseite trägt den Titel der Vorderseite als Kicker (R73), damit klar bleibt, worauf sie antwortet
+  const marke = h('span', { class: 't-label lernkarte-seite' }, titel !== '' ? titel : T.karteRueckseite);
   const vorderseite = h('div', { class: 'lernkarte-flaeche ist-vorne', 'data-pruef': 'karte-vorne' }, kopf, vorne);
-  const rueckseite = h('div', { class: 'lernkarte-flaeche ist-hinten', 'data-pruef': 'karte-hinten' }, marke(T.karteRueckseite), hinten);
-  if (!lwBedienbar) return h('div', { class: 'lernkarte ist-wendekarte ist-aufgeloest', 'data-pruef': 'lernkarte' }, vorderseite, rueckseite);
+  const rueckseite = h('div', { class: 'lernkarte-flaeche ist-hinten', 'data-pruef': 'karte-hinten' }, marke, hinten);
   const ansage = h('span', { class: 'nur-sr', 'aria-live': 'polite' });
   const karte = h('div', { class: 'lernkarte ist-wendekarte', 'data-pruef': 'lernkarte', 'data-seite': 'vorne' });
   const knopf = h('button', { type: 'button', class: 'knopf knopf-still lernkarte-wenden', 'aria-pressed': 'false', 'data-pruef': 'karte-wenden', onclick: () => {
@@ -296,9 +304,13 @@ function wendekarte(kopf: HTMLElement | null, vorne: HTMLElement, hinten: HTMLEl
   return karte;
 }
 
-/** Feste Verschiebung der Antworten je Wissenscheck (deterministisch aus der Kennung, 0 … n−1). */
-export function wcVerschiebung(id: string, n: number): number {
+/**
+ * Feste Verschiebung der Antworten je Wissenscheck (0 … n−1). Mit `stelle` (Kopf, 1 … n; R73) rückt die erste, richtige
+ * Antwort genau an diese Stelle – die Inhalte verteilen sie so über alle Fragen. Ohne `stelle` deterministisch aus der Kennung.
+ */
+export function wcVerschiebung(id: string, n: number, stelle: number | null = null): number {
   if (n < 2) return 0;
+  if (stelle !== null && Number.isInteger(stelle) && stelle >= 1 && stelle <= n) return (n - (stelle - 1)) % n;
   let s = 0;
   for (const z of id) s = (s * 31 + (z.codePointAt(0) ?? 0)) % 9973;
   return s % n;
@@ -323,7 +335,7 @@ function wissenscheck(b: Block): HTMLElement {
     },
   }, kopfText(a.kopf, 'titel') ?? a.id ?? ''));
   const knopf = (a: Block): HTMLElement | undefined => knoepfe[antworten.indexOf(a)];
-  const v = wcVerschiebung(b.id ?? '', knoepfe.length);
+  const v = wcVerschiebung(b.id ?? '', knoepfe.length, kopfZahl(b.kopf, 'stelle'));
   const reihe = [...knoepfe.slice(v), ...knoepfe.slice(0, v)];
   return h('section', { class: 'wissenscheck', 'data-pruef': 'wissenscheck', 'aria-label': W.theorie.wissenscheck },
     h('span', { class: 't-label' }, W.theorie.wissenscheck),

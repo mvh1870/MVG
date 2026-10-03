@@ -57,6 +57,8 @@ export interface BalkenDef {
 
 /** Bilanz-Typen in fester Prüfreihenfolge (src/geschichte/engine.ts, `bilanzTyp`) */
 export type BilanzTyp = 'nicht-getragen' | 'letzte-meter' | 'ruhig' | 'umwege';
+/** Was die Bilanz am Ende zeigt: einen Bilanz-Typ – oder, solange auf dem Weg Entscheidungen offen sind, den neutralen Text „offen“ (R73) */
+export type BilanzSicht = BilanzTyp | 'offen';
 
 export interface Zeile {
   /** sprechende Figur; null = Erzählung (kursiv, ohne Porträt) */
@@ -186,6 +188,8 @@ export interface Ende {
   vertrauenNiedrig: Zeile[];
   /** Ersatzzeilen (je Figur), wenn eine Falle gewählt ist und Vertrauen nicht niedrig (L-239) */
   nachFalle: Zeile[];
+  /** Ersatzzeilen (je Figur), wenn auf dem Weg Entscheidungen offen sind, keine Falle gewählt und Vertrauen nicht niedrig (R73) */
+  offen: Zeile[];
 }
 
 export interface Geschichte {
@@ -195,7 +199,7 @@ export interface Geschichte {
   sieHtml: string;
   figuren: Figur[];
   balken: BalkenDef[];
-  bilanz: Record<BilanzTyp, { titel: string; html: string }>;
+  bilanz: Record<BilanzSicht, { titel: string; html: string }>;
   mandat: { titel: string; zeilen: { wer: string; html: string }[] };
   kapitel: Kapitel[];
   ende: Ende;

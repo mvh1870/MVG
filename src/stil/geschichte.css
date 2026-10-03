@@ -14,7 +14,7 @@
 .gs-leise { color: var(--tinte-2); font: var(--typo-klein); }
 .gs-leiser-knopf {
   display: inline-flex; align-items: center; gap: var(--a-1);
-  border: 0; background: none; padding: var(--a-1) 0; min-height: 24px;
+  border: 0; background: none; padding: var(--a-1) 0; min-height: 36px;
   color: var(--navy-soft); text-decoration: underline; text-underline-offset: 3px; font: inherit;
 }
 .gs-leiser-knopf:hover { color: var(--navy); }
@@ -85,7 +85,9 @@ html:has(.seite-story) { scroll-padding: var(--gs-oben, 0px) 0 var(--gs-unten, 0
 .gs-feld[data-zustand="erledigt"] { background: var(--navy-soft); border-color: var(--navy-soft); color: var(--weiss); }
 .gs-feld[data-zustand="jetzt"] { background: var(--gold-hell); border-color: var(--gold-kante); color: var(--navy); transform: scale(1.12); }
 button.gs-feld:hover { border-color: var(--gold); }
-.gs-ort { font: var(--typo-reiter); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy); min-width: 0; }
+.gs-ort { font: var(--typo-reiter); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy); min-width: 0; overflow-wrap: normal; }
+/* R73: ganz schmal hat die Ortszeile eine eigene volle Zeile – sonst brächen die großen Wörter mitten im Wort */
+@media (max-width: 360px) { .gs-ort { grid-column: 1 / -1; } }
 
 /* ------------------------------------------------------------ Balken (Stand) */
 .gs-stand { display: grid; gap: var(--a-2); }
@@ -200,7 +202,7 @@ button.gs-feld:hover { border-color: var(--gold); }
 .gs-mandat-auf { max-width: 860px; }
 .gs-mandat-auf > summary {
   display: inline-flex; align-items: center; gap: var(--a-2);
-  min-height: 32px; padding: var(--a-1) var(--a-3);
+  min-height: 36px; padding: var(--a-1) var(--a-3);
   border-radius: var(--radius-rund); background: var(--weiss); border: 1px solid var(--linie-2);
   color: var(--navy); font-weight: 600; cursor: pointer;
 }
@@ -310,7 +312,7 @@ button.gs-antwort:active { transform: translateY(2px); box-shadow: var(--schatte
 .gs-steckbrief-auf > summary,
 .gs-dahinter-auf > summary,
 .gs-vgl-kipp-auf > summary {
-  display: flex; align-items: center; gap: var(--a-2); min-height: 32px; width: fit-content;
+  display: flex; align-items: center; gap: var(--a-2); min-height: 36px; width: fit-content;
   list-style: none; cursor: pointer;
 }
 .gs-steckbrief-auf > summary { margin-inline: auto; color: var(--navy); font-weight: 600; }
@@ -490,6 +492,7 @@ button.gs-stufe:hover:not([aria-pressed="true"]) { background: var(--weiss); }
 [data-bilanz="umwege"] { --bil: var(--akzent-sonne); --bil-soft: var(--akzent-sonne-soft); }
 [data-bilanz="letzte-meter"] { --bil: var(--akzent-blau); --bil-soft: var(--akzent-blau-soft); }
 [data-bilanz="nicht-getragen"] { --bil: var(--akzent-beere); --bil-soft: var(--akzent-beere-soft); }
+[data-bilanz="offen"] { --bil: var(--akzent-lagune); --bil-soft: var(--akzent-lagune-soft); }
 .gs-bilanz-kopf { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--a-6); align-items: center; }
 .gs-bilanz-bild { display: grid; place-items: center; padding: var(--a-3); border-radius: 50%; background: var(--bil-soft); }
 .gs-bilanz-titel { margin-top: var(--a-1); font: var(--typo-anzeige); font-size: 44px; color: var(--navy); }
@@ -629,4 +632,9 @@ button.gs-stufe:hover:not([aria-pressed="true"]) { background: var(--weiss); }
 }
 @media print {
   .gs-leiste, .gs-unten { display: none; }
+  /* Story-Druckbogen (R73): ein Kapitel bleibt möglichst beisammen, kein Kopf allein am Seitenende */
+  .druck-story .druck-teil { break-inside: avoid; }
+  .druck-story :is(h2, h3) { break-after: avoid; }
+  .druck-story .druck-gut { break-inside: avoid; }
+  .druck-story .druck-gut > h3 { margin: 2mm 0 1mm; font: 700 11pt/1.3 var(--schrift-text); color: var(--navy); }
 }

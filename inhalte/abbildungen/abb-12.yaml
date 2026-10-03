@@ -5,13 +5,11 @@ alt: >-
   Oben „MVG-Reifegradanalyse“; Pfeile führen zu fünf nummerierten Kästen (Governance & Organisation, Risiko &
   Änderungssteuerung, Ressourcen & Rollenfähigkeit, Informationsmanagement & Entscheidungsreife, QA/QM &
   Qualitätssteuerung), je mit Symbol und einer Liste „Nachweise“, etwa Risikoregister, Frühwarnungsregister,
-  Rollenprofile, Prüfstatus. Darunter: „Bewertungsmatrix“ (Farbraster), „30/60/90-Tage-Plan“ (Diagnose und
-  Priorisierung, Konzeption und Mindeststandard, Modell in Anwendung und Kalibrierung) und eine RACI-Matrix
-  mit Projektauftraggeber, Bauherren-PL und Team.
+  Rollenprofile, Prüfstatus. Darunter führt die „Bewertungsmatrix“ (Farbraster) mit einem Pfeil zum
+  „30/60/90-Tage-Plan“, einer steigenden Linie über die Stufen 30, 60 und 90 Tage.
 angeglichen:
   - { x: 580, y: 0, b: 218, h: 171, text: "MVG-\nReifegradanalyse", beleg: k7.1-p1, hintergrund: "#ffffff", farbe: "#14303d", schrift: barlow, gewicht: 700, groesse: 27, ausrichtung: mitte }
-  - { x: 622, y: 170, b: 58, h: 9, text: "", beleg: k7.1-p2, hintergrund: "#ffffff" }
-  - { x: 699, y: 170, b: 58, h: 9, text: "", beleg: k7.1-p2, hintergrund: "#ffffff" }
+  - { x: 622, y: 170, b: 135, h: 18, text: "", beleg: k7.1-p2, hintergrund: "#ffffff" }
   - { x: 610, y: 295, b: 157, h: 27, text: "", beleg: k9.2-p4 }
   - { x: 341, y: 411, b: 195, h: 22, text: Änderungsregister, beleg: k6.4.4-t1, schrift: barlow, gewicht: 500, groesse: 19 }
   - { x: 341, y: 393, b: 195, h: 18, text: Frühwarnungsregister, beleg: k6.4.2-t1, schrift: barlow, gewicht: 500, groesse: 19, farbe: "#212629" }
@@ -22,7 +20,7 @@ angeglichen:
   - { x: 1115, y: 443, b: 227, h: 52, text: "", beleg: k7.1-p2 }
   - { x: 110, y: 553, b: 222, h: 27, text: Bewertungsmatrix, beleg: k7.1-p1, schrift: barlow, gewicht: 700, groesse: 23, ausrichtung: mitte }
   - { x: 555, y: 553, b: 265, h: 28, text: 30/60/90-Tage-Plan, beleg: k7.1-p1, schrift: barlow, gewicht: 700, groesse: 23, ausrichtung: mitte }
-  - { x: 497, y: 729, b: 126, h: 25, text: "Diagnose und\nPriorisierung", beleg: k8.2-t1, schrift: barlow, gewicht: 500, groesse: 12, ausrichtung: mitte }
-  - { x: 626, y: 729, b: 126, h: 25, text: "Konzeption und\nMindeststandard", beleg: k8.2-t1, schrift: barlow, gewicht: 500, groesse: 12, ausrichtung: mitte }
-  - { x: 756, y: 729, b: 123, h: 25, text: "Modell in Anwendung\nund Kalibrierung", beleg: k8.2-t1, schrift: barlow, gewicht: 500, groesse: 12, ausrichtung: mitte }
-  - { x: 1026, y: 660, b: 140, h: 28, text: Bauherren-PL, beleg: k9.2-p4, schrift: barlow, gewicht: 500, groesse: 22, farbe: "#15191c" }
+  - { x: 494, y: 730, b: 388, h: 25, text: "", beleg: k7.1-p1 }
+  - { x: 1146, y: 529, b: 28, h: 20, text: "", beleg: k7.1-p1, hintergrund: "#ffffff" }
+  - { x: 889, y: 616, b: 74, h: 75, text: "", beleg: k7.1-p1 }
+  - { x: 962, y: 545, b: 414, h: 223, text: "", beleg: k7.1-p1 }

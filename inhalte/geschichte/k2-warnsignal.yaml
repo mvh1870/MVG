@@ -37,7 +37,7 @@ antworten:
     balken: { geld: 0, zeit: -1, vertrauen: -1 }
     bild: stoppuhr
     folge: |
-      Clara Faden hält den Hinweis trotzdem vollständig fest: Prüffrage, der Architekt fragt nach, bis Ende des Monats. Aber Konrad Schwung hat Ihren Satz gehört – es hat ja Zeit bis zum Monatstermin. Bei ihrer Wochendurchsicht meldet Clara Faden die Prüffrage als überfällig, und erst drei Wochen später als nötig fragt er bei den Herstellern nach.
+      Clara Faden hält den Hinweis trotzdem vollständig fest: Prüffrage, der Architekt fragt bis Ende nächster Woche nach. Aber Konrad Schwung hat Ihren Satz gehört – es hat ja Zeit bis zum Monatstermin. Bei ihrer Wochendurchsicht meldet Clara Faden die Prüffrage als überfällig, und erst drei Wochen später als nötig fragt er bei den Herstellern nach.
   - wertung: vertretbar
     text: Tragen wir es gleich als Risiko ein – lieber zu früh als zu spät.
     balken: { geld: 0, zeit: 1, vertrauen: 0 }
@@ -62,13 +62,14 @@ mini:
     - { id: aenderung, titel: Änderung }
     - { id: massnahme, titel: Maßnahme }
     - { id: aufgabe, titel: Aufgabe }
+  # Reihenfolge der Sätze bewusst gemischt (R73): nicht in der Reihenfolge der Knöpfe, damit sich die Lösung nicht durch die Stellung verrät
   posten:
-    - { text: "Ein Hersteller erwähnt am Telefon, dass Holz knapp werden könnte.", bild: telefon, loesung: fruehwarnung, erklaerung: "Ein Hinweis, der noch nicht geklärt ist. Erst einmal wird geprüft, was dran ist." }
-    - { text: "Drei Hersteller bestätigen ein halbes Jahr Lieferzeit. Ob der Holzbau deshalb später beginnt, ist noch offen.", bild: lieferwagen, loesung: risiko, erklaerung: "Etwas Nachteiliges kann eintreten, ist aber noch nicht passiert. Das wird bewertet." }
-    - { text: "Nach dem Starkregen steht die Baugrube unter Wasser.", bild: warnschild, loesung: problem, erklaerung: "Das ist schon passiert. Jetzt geht es um die Folgen und die Lösung, nicht mehr um die Wahrscheinlichkeit." }
+    - { text: "Eine Pumpe wird aufgestellt und die Baugrube abgesperrt, bis sie wieder trocken ist.", bild: absperrband, loesung: massnahme, erklaerung: "Eine gezielte Handlung, die einen Zustand verbessert. Ob sie wirkt, wird nachgeprüft." }
     - { text: "Die Schule wünscht sich eine größere Mensa.", bild: mensateller, loesung: aenderung, erklaerung: "Etwas, das bisher gilt, soll bewusst anders werden. Das braucht eine Entscheidung." }
-    - { text: "Eine Pumpe wird aufgestellt, damit die Baugrube wieder trocken wird.", loesung: massnahme, erklaerung: "Eine gezielte Handlung, die einen Zustand verbessert. Ob sie wirkt, wird nachgeprüft." }
+    - { text: "Ein Hersteller erwähnt am Telefon, dass Holz knapp werden könnte.", bild: telefon, loesung: fruehwarnung, erklaerung: "Ein Hinweis, der noch nicht geklärt ist. Erst einmal wird geprüft, was dran ist." }
     - { text: "Der Architekt schätzt bis Freitag die Kosten für den Fahrradkeller.", bild: kostenzettel, loesung: aufgabe, erklaerung: "Eine geplante Arbeit mit Ergebnis, Namen und Termin." }
+    - { text: "Nach dem Starkregen steht die Baugrube unter Wasser.", bild: warnschild, loesung: problem, erklaerung: "Das ist schon passiert. Jetzt geht es um die Folgen und die Lösung, nicht mehr um die Wahrscheinlichkeit." }
+    - { text: "Drei Hersteller bestätigen ein halbes Jahr Lieferzeit. Ob der Holzbau deshalb später beginnt, ist noch offen.", bild: lieferwagen, loesung: risiko, erklaerung: "Etwas Nachteiliges kann eintreten, ist aber noch nicht passiert. Das wird bewertet." }
 
 dahinter: Nicht jeder Hinweis wird zum Risiko – aber jeder wird geklärt, bis feststeht, ob daraus ein Risiko, ein Problem oder eine Aufgabe wird oder ob er begründet geschlossen werden kann.
 

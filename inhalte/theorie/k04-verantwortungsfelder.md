@@ -195,7 +195,7 @@ symbol: warnung
 Rollen sind beschrieben, aber nicht so mandatiert, dass sie entscheiden können.
 
 ### Rückseite
-**Antwort von MVG:** Ein Mandatsmodell, das fünf Fragen beantwortet und mit Freigaben und Entscheidungs-IDs verbindet:
+**Antwort von MVG:** Ein Mandatsmodell, das fünf Fragen beantwortet und mit Freigaben und [[Entscheidungs-ID|Entscheidungs-IDs]] verbindet:
 
 1. Was darf auf Projektebene entschieden werden?
 2. Ab welcher Schwelle entscheidet der Bauherr oder beschließt er im Lenkungskreis?
@@ -235,6 +235,9 @@ Darüber beschließt der Bauherr im Lenkungskreis.
 :::
 
 ::: wissenscheck mandatsleiter
+---
+stelle: 3
+---
 ### Frage
 Eine Änderung hat einen Wert von 250.000 € – wer entscheidet nach der Muster-Mandatsleiter?
 

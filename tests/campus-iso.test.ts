@@ -119,3 +119,20 @@ test('campusIso: jede verwendete Klasse ist in grafik.css gestaltet', () => {
   assert.deepEqual(fehlen, []);
   for (const k of ['k0', 'k1', 'k2']) assert.match(grafikCss, new RegExp(`\\.ci-krone\\.${k}\\b`));
 });
+
+test('campusIso: Wimpelkette nur in Stufe 2, Luftballons nur in Stufe 8, Stufe 2 ohne Decke und Gerüst (R73)', () => {
+  for (let s = 0; s <= CAMPUS_STUFE_MAX; s++) {
+    const svg = campusIso(s);
+    if (s === 2) assert.match(svg, /ci-wimpelschnur/); else assert.doesNotMatch(svg, /ci-wimpelschnur/, `Stufe ${s}`);
+    if (s === 8) assert.match(svg, /ci-ballonschnur/); else assert.doesNotMatch(svg, /ci-ballonschnur/, `Stufe ${s}`);
+  }
+  // „Die Bodenplatte ist gegossen, die ersten Wände stehen“: kein Rohbau-Inneres (Decke), kein Gerüst
+  assert.doesNotMatch(campusIso(2), /class="ci-roh"|class="ci-geruest"/);
+  assert.match(campusIsoText(2), /Bodenplatte/);
+  assert.match(campusIsoText(2), /Wimpelkette/);
+  assert.match(campusIsoText(8), /Luftballons/);
+  for (const svg of [campusIso(2), campusIso(8)]) {
+    for (const m of svg.matchAll(/class="([^"]+)"/g)) for (const k of (m[1] ?? '').split(/\s+/)) if (!/^k[0-2]$/.test(k)) assert.match(grafikCss, new RegExp(`\\.${k}(?![\\w-])`), k);
+    assert.doesNotMatch(svg, /\sid="|url\(/);
+  }
+});

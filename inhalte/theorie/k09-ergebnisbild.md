@@ -359,6 +359,9 @@ form: phasen
 :::
 
 ::: wissenscheck freigabe-lph
+---
+stelle: 1
+---
 ### Frage
 Am Ende von LPH 5 steht die Freigabe an – wer erteilt sie?
 
@@ -367,7 +370,7 @@ Jede Leistungsphase endet mit einer Freigabe des Bauherrn. Er erteilt jede Freig
 
 ::: antwort a
 ---
-titel: Der Bauherr selbst, auf Vorlage der Projektsteuerung
+titel: Der Bauherr – auf Vorlage der Projektsteuerung
 praefix: "Genau:"
 ---
 Der Bauherr ist für die Freigaben zum Abschluss der Leistungsphasen letztverantwortlich und erteilt sie selbst.
@@ -375,18 +378,18 @@ Der Bauherr ist für die Freigaben zum Abschluss der Leistungsphasen letztverant
 
 ::: antwort b
 ---
-titel: Der Lenkungskreis
+titel: Der Lenkungskreis – nach seiner Beratung
 praefix: "Nicht ganz:"
 ---
-Seine Rolle liegt vor der Freigabe, nicht in ihr.
+Der Lenkungskreis berät; seine Rolle liegt vor der Freigabe, nicht in ihr.
 :::
 
 ::: antwort c
 ---
-titel: Die Projektsteuerung
+titel: Die Projektsteuerung – als Verfasserin der Vorlage
 praefix: "Nicht ganz:"
 ---
-Die Projektsteuerung erteilt die Freigabe ausdrücklich nicht.
+Wer die Vorlage erstellt, erteilt die Freigabe ausdrücklich nicht.
 :::
 
 ::: zitat k9.3-p1

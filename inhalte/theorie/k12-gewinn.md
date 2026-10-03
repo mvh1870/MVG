@@ -85,7 +85,7 @@ rechts: MVG Companion
 :::
 
 ::: ansicht rechts
-**Ein anwendungsnaher Beschleuniger.** Er kann die Einführung beschleunigen.
+**Ein anwendungsnaher Beschleuniger** für Einführung, Schulung und Übergabe.
 :::
 :::
 

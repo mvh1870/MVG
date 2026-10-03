@@ -62,7 +62,7 @@ Sechs Porträts (Sie als Spielfigur plus fünf Figuren), flach, als Vektorgrafik
 | Feld | Inhalt |
 |---|---|
 | Alter, Typ | 58, seit acht Jahren Bürgermeisterin; ruhig, direkt, mag keine Umwege |
-| Steckbrief (sichtbar) | Sie entscheidet für die Stadt die großen Dinge: was zuerst kommt, jede Freigabe, jeden Griff in die Reserve. Der Lenkungskreis berät sie – entscheiden tut sie. |
+| Steckbrief (sichtbar) | Sie entscheidet für die Stadt die großen Dinge: was zuerst kommt, jede Freigabe, jeden Griff in die Reserve. Der Lenkungskreis, eine feste Runde mit der Finanzabteilung und dem Schulamt, berät sie – entscheiden tut sie. |
 | Sprechweise | kurze Sätze, fragt zuerst nach der Frage, dann nach den Details; trockener Humor |
 | Beispielsätze | „Was genau soll ich entscheiden – und bis wann?“ · „Ich bin Bürgermeisterin, nicht Bauleiterin.“ |
 | Sorge | im Stadtrat eine Zahl vertreten zu müssen, die sie nicht versteht |
@@ -127,7 +127,7 @@ Sechs Porträts (Sie als Spielfigur plus fünf Figuren), flach, als Vektorgrafik
 |---|---|---|
 | **Geld** | > Wie viel vom Budget und von der Reserve noch für Unvorhergesehenes übrig ist. | gut gefüllt |
 | **Zeit** | > Wie viel Luft bis zum Schulstart im Sommer 2028 bleibt. | halb gefüllt |
-| **Vertrauen** | > Wie sehr sich Bürgermeisterin, Schule und Stadtrat auf Ihre Vorlagen verlassen. | knapp unter der Mitte – Sie sind neu |
+| **Vertrauen** | > Wie sehr sich Bürgermeisterin, Schule und Stadtrat auf Sie verlassen. | knapp unter der Mitte – Sie sind neu |
 
 **Rechnung (intern, nie als Zahl auf der Seite):** Stufen 0 bis 10. Start Geld 9, Zeit 6, Vertrauen 4. Jede Antwort bewegt jeden Balken um −2, −1, 0, +1 oder +2; das Ergebnis wird auf 0 bis 10 begrenzt. Auf der Seite: Balken mit Füllstand, beim Wechsel ein Pfeil und ein Wort („Zeit: etwas mehr Luft“, „Vertrauen: deutlich gesunken“; ±1 = „etwas“, ±2 = „deutlich“), bei 0 „unverändert“. Nie nur Farbe: Pfeil + Wort + Füllstand.
 
@@ -141,6 +141,9 @@ Sechs Porträts (Sie als Spielfigur plus fünf Figuren), flach, als Vektorgrafik
 | Zeit niedrig | **Auf den letzten Metern** | > Die Schule hat geöffnet, aber der Puffer war am Ende aufgebraucht. Wer eine Frage liegen lässt oder auf Umwegen löst, bezahlt auf der Baustelle fast immer mit Zeit. |
 | Zeit hoch, Vertrauen hoch, Geld mindestens mittel, **keine Falle gewählt** | **Ruhig ins Ziel** | > Die Kinder sind pünktlich eingezogen, und jede große Entscheidung hat die Bürgermeisterin selbst getroffen – mit allem, was sie dafür wissen musste. So bleibt ein Projekt steuerbar, auch wenn es stürmt. |
 | alle anderen | **Geschafft – mit Umwegen** | > Der Campus steht, die Kinder sind da – aber nicht jede Ihrer Antworten war der gerade Weg, und jeder Umweg hat etwas gekostet, ob Zeit, Geld oder Vertrauen. |
+| **vor allen anderen:** auf dem Weg ist noch eine Entscheidung offen (Sprung ans Ende über die Fortschrittslinie, R73) | **Noch nicht alle Entscheidungen getroffen** | > Der Campus steht, die Kinder sind da. Ein Urteil über Ihren Weg gibt es erst, wenn Sie alle Entscheidungen getroffen haben; die Balken zeigen den Stand nach den Antworten, die Sie schon gegeben haben. |
+
+Bei offenen Entscheidungen entfallen die Sätze je Balken (sie urteilen über den ganzen Weg); die Balken selbst und der Hinweis „n Entscheidungen haben Sie noch nicht getroffen“ stehen da. Die Bürgermeisterin sagt dann, wenn keine Falle gewählt ist und das Vertrauen nicht niedrig: > Geschafft haben wir es – und was unterwegs offen geblieben ist, schauen wir uns noch einmal gemeinsam an.
 
 **Je Balken ein Satz unter dem Bilanz-Titel** (sichtbar):
 
@@ -148,7 +151,7 @@ Sechs Porträts (Sie als Spielfigur plus fünf Figuren), flach, als Vektorgrafik
 |---|---|---|---|
 | Geld | > Die Reserve wurde dort eingesetzt, wo sie gebraucht wurde – jedes Mal von der Bürgermeisterin entschieden –, und ein guter Teil ist übrig. | > Ein großer Teil der Reserve ist verbraucht; manches wurde teurer als nötig. | > Die Reserve ist fast aufgebraucht; jeder Umweg hat sie ein Stück kleiner gemacht. |
 | Zeit | > Der Puffer hat gehalten; das Projekt hatte bis zum Schluss Luft. | > Der Puffer war am Ende dünn, aber er hat gereicht. | > Der Puffer ist aufgebraucht; die Sporthalle öffnet erst nach den Herbstferien. |
-| Vertrauen | > Bürgermeisterin, Schule und Stadtrat verlassen sich inzwischen auf Ihre Vorlagen. | > Man vertraut Ihnen – fragt aber gern noch einmal nach. | > Die Bürgermeisterin lässt sich inzwischen jede Zahl zweimal zeigen. |
+| Vertrauen | > Bürgermeisterin, Schule und Stadtrat verlassen sich inzwischen auf das, was Sie vorlegen. | > Man vertraut Ihnen – fragt aber gern noch einmal nach. | > Die Bürgermeisterin lässt sich inzwischen jede Zahl zweimal zeigen. |
 
 **Jeder Text muss auf jedem Weg stimmen** (R72): Bilanz- und Ende-Texte sagen nichts über eine bestimmte Wahl, die auf dem Weg fehlen kann; `tests/geschichte-wege.test.ts` rechnet alle 6.561 Wege der ganzen Geschichte und 81 der Kurzfassung durch und hält je Text fest, was er voraussetzt.
 
@@ -175,7 +178,7 @@ Campus Stufe 0 · Winter · Morgen (wie Kapitel 1), groß. Marke „Fiktiver Fal
 > Unterwegs müssen Sie sich achtmal entscheiden. Ihre Antworten bewegen drei Balken: Geld, Zeit und Vertrauen. Am Ende sehen Sie, wie Ihr Projekt ausgegangen ist.
 > Diese fünf Menschen begleiten Sie:
 
-Knopf: > Los geht's · daneben leise: > Kurzfassung (etwa 10 Minuten)
+Knopf: > Los geht's · daneben leise: > Kurzfassung (etwa 11 Minuten)
 
 ---
 
@@ -227,7 +230,7 @@ Knopf: > Los geht's · daneben leise: > Kurzfassung (etwa 10 Minuten)
 > **Wer entscheidet was**
 > **Sie:** Entscheidungen bis 100.000 Euro, wenn das Budget sie ohne Reserve trägt.
 > **Bürgermeisterin:** alles darüber · jeder Griff in die Reserve · ob die Stadt ein großes Risiko trägt · jede Freigabe am Ende eines großen Planungs- oder Bauabschnitts (Fachleute sagen: Leistungsphase) · was zuerst kommt: der Schulstart, dann das Geld.
-> **Lenkungskreis:** berät die Bürgermeisterin.
+> **Lenkungskreis:** feste Runde aus Bürgermeisterin, Finanzabteilung und Schulamt · berät die Bürgermeisterin.
 > **Projektsteuerin:** bereitet alles vor, pflegt alle Vorgänge, empfiehlt – entscheidet nie.
 
 **So macht man es gut**
@@ -280,7 +283,7 @@ Knopf: > Los geht's · daneben leise: > Kurzfassung (etwa 10 Minuten)
 > Weil der Eintrag schon als Risiko im Bericht steht, fragt die Kämmerei – die Finanzabteilung der Stadt – nach, bevor jemand weiß, ob da überhaupt etwas ist. Immerhin fragt der Architekt bis Ende des Monats bei den Herstellern nach.
 
 *C · Falle*
-> Clara Faden hält den Hinweis trotzdem vollständig fest: Prüffrage, der Architekt fragt nach, bis Ende des Monats. Aber Konrad Schwung hat Ihren Satz gehört – es hat ja Zeit bis zum Monatstermin. Bei ihrer Wochendurchsicht meldet Clara Faden die Prüffrage als überfällig, und erst drei Wochen später als nötig fragt er bei den Herstellern nach.
+> Clara Faden hält den Hinweis trotzdem vollständig fest: Prüffrage, der Architekt fragt bis Ende nächster Woche nach. Aber Konrad Schwung hat Ihren Satz gehört – es hat ja Zeit bis zum Monatstermin. Bei ihrer Wochendurchsicht meldet Clara Faden die Prüffrage als überfällig, und erst drei Wochen später als nötig fragt er bei den Herstellern nach.
 
 **So macht man es gut**
 > Ein unklarer Hinweis wird gleich festgehalten, spätestens bei der nächsten Wochendurchsicht – mit seiner Herkunft, einer klaren Prüffrage, einem Namen und einem Termin. Bewertet wird erst, wenn die Antwort da ist; bis dahin bleibt er offen und wird jede Woche angeschaut.
@@ -294,8 +297,10 @@ Knopf: > Los geht's · daneben leise: > Kurzfassung (etwa 10 Minuten)
 | > Drei Hersteller bestätigen ein halbes Jahr Lieferzeit. Ob der Holzbau deshalb später beginnt, ist noch offen. | Risiko | > Etwas Nachteiliges kann eintreten, ist aber noch nicht passiert. Das wird bewertet. |
 | > Nach dem Starkregen steht die Baugrube unter Wasser. | Problem | > Das ist schon passiert. Jetzt geht es um die Folgen und die Lösung, nicht mehr um die Wahrscheinlichkeit. |
 | > Die Schule wünscht sich eine größere Mensa. | Änderung | > Etwas, das bisher gilt, soll bewusst anders werden. Das braucht eine Entscheidung. |
-| > Eine Pumpe wird aufgestellt, damit die Baugrube wieder trocken wird. | Maßnahme | > Eine gezielte Handlung, die einen Zustand verbessert. Ob sie wirkt, wird nachgeprüft. |
+| > Eine Pumpe wird aufgestellt und die Baugrube abgesperrt, bis sie wieder trocken ist. | Maßnahme | > Eine gezielte Handlung, die einen Zustand verbessert. Ob sie wirkt, wird nachgeprüft. |
 | > Der Architekt schätzt bis Freitag die Kosten für den Fahrradkeller. | Aufgabe | > Eine geplante Arbeit mit Ergebnis, Namen und Termin. |
+
+Auf der Seite stehen die Sätze gemischt (R73: Maßnahme, Änderung, Frühwarnung, Aufgabe, Problem, Risiko), nicht in der Reihenfolge der Knöpfe; jeder Satz hat ein Bild.
 
 Beleg Mini-Aufgabe: v24:hb-1 (Tabelle der Sachverhalte), v24:hb-1.1 bis v24:hb-1.6.
 
@@ -355,7 +360,7 @@ Grafik zur Szene: kleine Matrix aus 5 × 5 Feldern ohne Zahlen, Achsen „wie wa
 *C · Falle*
 > Clara Faden schüttelt freundlich den Kopf: „Was vorrangig ist, melde ich gleich – nicht erst, wenn es bestätigt ist.“ Sie setzt das Risiko auf die Tagesordnung des Lenkungskreises, und die Bürgermeisterin ruft an, bevor Sie es ihr erklären konnten: „Sie wollten damit warten? Was weiß ich sonst noch nicht?“
 >
-> Nun will sie selbst erst die Bestätigung eines zweiten Holzbauers. Sechs Wochen später entscheidet sie auf Vorlage der Projektsteuerin: früher ausschreiben, aus der Reserve – nur kostet es jetzt mehr, weil die Ausschreibung eilt.
+> Die Vorlage aber fehlt noch, weil Sie die Bestätigung abwarten wollten. Sie liegt erst sechs Wochen später auf dem Tisch. Dann entscheidet die Bürgermeisterin: früher ausschreiben, aus der Reserve – nur kostet es jetzt mehr, weil die Ausschreibung eilt.
 
 **So macht man es gut**
 > Ein Risiko wird danach eingestuft, wie wahrscheinlich es ist und wie schwer die schlimmste belegte Folge wiegt; was vorrangig ist, erfährt der Bauherr umgehend, nicht erst im nächsten Bericht. Ob die Stadt ein großes Risiko trägt oder Geld aus der Reserve dagegen einsetzt, entscheidet die Bürgermeisterin – nicht der Architekt, nicht die Projektsteuerin und auch nicht Sie.
@@ -373,7 +378,7 @@ Grafik zur Szene: kleine Matrix aus 5 × 5 Feldern ohne Zahlen, Achsen „wie wa
 | Campus | **Stufe 2 · Sommer · Abend** – Rohbau der Gesamtschule über der Bodenplatte, gelber Turmdrehkran, Fahrmischer; als Zusatz der Szenen-Grafik eine bunte Wimpelkette vom Schulfest und Kinderzeichnungen am Zaun; warmes, tiefes Licht, lange Schatten |
 | Figuren | Klingel, Schwung, Faden, Lot |
 | Kurzfassung | ja |
-| Thema | `anwendung` |
+| Thema | `vorgaenge` (R73: dort steht der Mensa-Fall) |
 | Beleg | v24:hb-1.5 (Änderung: Anlass, Antragsteller, bisherige Grundlage, Auswirkungen; zwei ernsthafte, zulässige Optionen; bis zur Freigabe bleibt die bisherige Grundlage maßgeblich; abgelehnte Anträge nachvollziehbar), v24:hb-1 (Änderungen auch ohne Risikoeintrag), v24:hb-3.1 (letzter Absatz: Schweigen, Empfehlung, Softwarestatus sind kein Beschluss), v24:va-4.2, k4.3-p2 (Entscheidungen verschwinden nicht in informellen Abstimmungen), k3.2-t1 (wesentliche Änderung), k10.5-t1 (Änderungsantrag mit unvollständiger Auswirkungsbewertung) |
 
 **Einstieg**
@@ -403,9 +408,9 @@ Grafik zur Szene: kleine Matrix aus 5 × 5 Feldern ohne Zahlen, Achsen „wie wa
 > Im Lenkungskreis hört die Bürgermeisterin die Schule und die Kämmerei, die Finanzabteilung der Stadt, und entscheidet: Die Mensa wird so gebaut, dass sie später wachsen kann; das Geld kommt aus der Reserve. Hanna Klingel ist nicht ganz zufrieden, aber sie weiß, woran sie ist – und Theo Lot gießt die Fundamente gleich richtig.
 
 *B · vertretbar*
-> Clara Faden hat den Antrag aufgenommen und warnt, dass die Fundamente bald gegossen werden – aber entschieden wird erst im Herbst. Dann bestätigen die Anmeldezahlen den Bedarf. Inzwischen ist die Planung weiter, und ein Fundament muss nachträglich verstärkt werden.
+> Clara Faden hat den Antrag aufgenommen und warnt, dass die Fundamente bald gegossen werden – aber entschieden wird erst im Herbst. Dann bestätigen die Anmeldezahlen den Bedarf. Inzwischen ist die Planung weiter, und die Pläne für die Fundamente müssen noch einmal überarbeitet werden – das kostet Wochen.
 >
-> Die Bürgermeisterin entscheidet auf Vorlage der Projektsteuerin für die Mensa, die später wachsen kann, aus der Reserve. Die Schule hat ein halbes Jahr auf eine Antwort gewartet, und Theo Lot fragt, warum man ihm das nicht vor dem Betonieren gesagt hat.
+> Die Bürgermeisterin entscheidet auf Vorlage der Projektsteuerin für die Mensa, die später wachsen kann, aus der Reserve. Die Schule hat ein halbes Jahr auf eine Antwort gewartet, und Theo Lot muss mit dem Betonieren warten, bis die neuen Pläne da sind.
 
 *C · Falle*
 > Konrad Schwung fängt sofort an, die große Mensa zu planen. Clara Faden nimmt den Wunsch als Änderung auf und meldet der Bürgermeisterin noch in derselben Woche: Hier wird ohne Beschluss umgeplant. Die Bürgermeisterin fragt, wer das beschlossen hat – niemand. Eine Zusage am Rand eines Schulfests ist kein Beschluss.
@@ -432,7 +437,7 @@ Rückmeldung, wenn „Projektsteuerin“ gewählt wird (bei jedem Posten gleich)
 
 Beleg Mini-Aufgabe: k4.2-p3 (Schwelle 100 TEUR), k3.2-t1 (Reserve, Risikoannahme, wesentliche Freigabe nicht delegierbar), k9.3-p3 (Freigabe selbst, Lenkungskreis berät), v24:hb-1 (Abs. „befugte Stelle“), v24:va-4.1 (keine Entscheidungsbefugnis der Projektsteuerung).
 
-**Das steckt dahinter** → Thema `anwendung`
+**Das steckt dahinter** → Thema `vorgaenge`
 > Eine Änderung braucht einen sauberen Weg vom Antrag bis zum Beschluss – sonst entscheiden am Ende Gespräche am Rand über Geld, über das niemand entschieden hat.
 
 ---
@@ -505,10 +510,12 @@ Fachliche Einordnung (intern): Die angekündigten Mehrkosten sind ein Risiko (no
 Fachliche Einordnung (intern): Sperren ist Sache der Bauleitung vor Ort mit der Sicherheitskoordination; Sie stoßen nur an. Die Projektsteuerin meldet über den vereinbarten Weg und dokumentiert am selben Arbeitstag – dafür muss sie davon erfahren (deshalb ist sie in der Szene nicht dabei). Die Kosten der Reparatur trägt die Gerüstfirma; es entsteht keine Entscheidung über Geld.
 
 **Einstieg**
-> Februar 2027. Die Gesamtschule ist außen fast fertig, an der Sporthalle richten die Zimmerleute das Holztragwerk auf; rundum ragt ein Gerüst in den grauen Himmel. In der Nacht ist ein Sturm über Lindenhall gezogen. Auf der Baustelle liegen abgerissene Planen im Matsch, ein Bauzaunfeld ist umgekippt. Freitag, kurz nach drei, klingelt Ihr Telefon.
+> Februar 2027. Die Gesamtschule ist außen fast fertig, an der Sporthalle richten die Zimmerleute das Holztragwerk auf; rundum ragt ein Gerüst in den grauen Himmel. In der Nacht ist ein Sturm über Lindenhall gezogen. Auf der Baustelle liegen abgerissene Planen im Matsch, ein Bauzaunfeld ist umgekippt.
+>
+> Über den Arbeitsschutz auf der Baustelle wacht eine eigene Stelle, die Sicherheitskoordination. Freitag, kurz nach drei, klingelt Ihr Telefon.
 
 **Szene**
-> **Theo Lot:** Das Gerüst an der Sporthalle hat seit heute Nacht zwei lose Anker. Wenn ich sperre, muss die Sicherheitskoordination ran – die wacht hier über den Arbeitsschutz –, und die Zimmerleute stehen bis Dienstag herum.
+> **Theo Lot:** Gerüst an der Sporthalle, zwei Anker lose. Seit heute Nacht. Sperr ich, muss die Sicherheitskoordination ran. Dann stehen die Zimmerleute bis Dienstag rum.
 > **Konrad Schwung:** Zwei Tage Stillstand im Februar – das tut weh.
 > **Theo Lot:** Ich dachte, wir besprechen das am Montag in Ruhe. Die Projektsteuerin ist heute sowieso nicht auf der Baustelle.
 > **Konrad Schwung:** Vielleicht reicht es ja, nur die eine Seite abzusperren.
@@ -669,7 +676,7 @@ Empfehlung der Projektsteuerin (sichtbar, fest, für die abgestimmten Gewichte):
 Fachliche Einordnung (intern): Freigabe am Ende der Bauzeit (Abschluss der Objektüberwachung, Übergabe; intern Freigabe zum Abschluss von LPH 8). Sichtbar heißt sie „die Freigabe am Ende der Bauzeit“ – keine Phasennummer. Die Projektsteuerin übergibt offene Vorgänge an das Gebäudemanagement der Stadt.
 
 **Einstieg**
-> Juli 2028. Der Kran ist fort, auf dem Schulhof wird Rasen gesät und werden junge Bäume gepflanzt, die Fenster glänzen. In drei Wochen beginnt das Schuljahr. Theo Lot geht mit einer langen Liste durch die Räume, Konrad Schwung prüft jede Tür, und Hanna Klingel hat die ersten Stundenpläne schon an die Wand geheftet. Vorher steht die letzte große Freigabe an: die am Ende der Bauzeit.
+> Juli 2028. Der Kran ist fort, auf dem Schulhof wird Rasen gesät und werden junge Bäume gepflanzt, die Fenster glänzen. In drei Wochen beginnt das Schuljahr. Theo Lot geht mit einer langen Liste durch die Räume, Konrad Schwung prüft jede Tür, und Hanna Klingel hat die ersten Stundenpläne schon an die Wand geheftet. Vorher steht die letzte große Freigabe an: die am Ende der Bauzeit. Danach übernimmt das Gebäudemanagement der Stadt den Betrieb des Campus.
 
 **Szene**
 > **Theo Lot:** Fast alles fertig. Nur der Hallenboden: An zwei Stellen sind Fugen offen. Die Firma bessert bis zu den Herbstferien nach.
@@ -730,11 +737,13 @@ Gezeigt werden **Kapitel 1, 3, 4 und 7** vollständig (Einstieg, Szene, Frage, F
 | 2 · Ein erstes Warnsignal | > Im März erwähnt der Architekt beiläufig, Holz könnte knapp werden. Die Projektsteuerin hält es als Frühwarnung fest: was zu prüfen ist (die Prüffrage), wer nachfragt, bis wann. | Zeit +1, Vertrauen +1 |
 | 5 · Zwei Zahlen, zwei Wahrheiten | > Im Herbst nennt die Bürgermeisterin dem Stadtrat eine begründete Zahl, die angekündigten Mehrkosten der Haustechnik als Risiko daneben – sie erweisen sich als unberechtigt. | Geld +1, Vertrauen +2 |
 | 6 · Ärger auf der Baustelle | > Im Februar lockert ein Sturm das Gerüst. Der Bauleiter sperrt sofort, die Projektsteuerin hält es am selben Tag fest. | Zeit −1, Vertrauen +1 |
-| 8 · Schulstart | > Im Juli 2028 erteilt die Bürgermeisterin die Freigabe mit Auflagen; zwei kleine Restarbeiten gehen mit Termin und Namen an das Gebäudemanagement. | Vertrauen +1 |
+| 8 · Schulstart | > Im Juli 2028 erteilt die Bürgermeisterin die Freigabe mit Auflagen; zwei kleine Restarbeiten gehen mit Termin und Namen an das Gebäudemanagement der Stadt, das den Campus nun betreibt. | Vertrauen +1 |
 
 **Kürzungen der Kurzfassung (P17.5, 2026-10-03):** Die gemessene Kurzfassung war mit rund 2.530 Wörtern Lesetext (≈ 12,7 Minuten bei 200 Wörtern je Minute) zu lang. Ohne den ganzen Weg zu ändern, zeigt sie deshalb kürzere Einstiege (`einstieg-kurz` in 1, 3, 4, 7 und am Ende), lässt reine Stimmungszeilen weg (1: „Na gut …“; 3: Theo Lot „Zehn Wochen …“; 4: Hanna Klingel „Später ist immer zu spät …“; Ende: Theo Lot, Konrad Schwung und Clara Faden). Hanna Klingel „Bitte sagen Sie mir nicht …“ (3) und Theo Lot „Vier Monate …“ (7) bleiben bewusst stehen: Sie tragen den Sachbezug (Schulstart in Gefahr, Einbau nach Schulbeginn), klappt „Das steckt dahinter“ und die Kipppunkte des Vergleichs zu und hat knappere Brückensätze (oben). Im Auftakt sind die Steckbriefe auf beiden Wegen zugeklappt (Porträt, Name, Rolle offen). Gemessen danach: Kurzfassung rund 2.030 Wörter ≈ 10 Minuten, ganzer Weg rund 4.240 Wörter ≈ 21 Minuten Lesen, dazu vier Mini-Aufgaben und der Vergleich zum Ausprobieren.
 
 **Nachmessung R72 (2026-10-03, Zählweise in L-234):** sichtbarer Text je Schritt im Browser, alle drei Antworten mitgezählt, zugeklappte Aufklapper nur mit Titelzeile, ohne Bildtexte, Balkentafel und Kicker; 200 Wörter je Minute. Vorher 2.373 Wörter ≈ 11,9 Minuten. Nach weiteren Kürzungen (Brücken 5, 6, 8; kürzere `einstieg-kurz` in 1, 3, 4, 7 und am Ende; Stimmungszeilen oben) 2.230 Wörter ≈ 11,2 Minuten – angekündigt als „etwa 11 Minuten“. Ganzer Weg 4.541 Wörter ≈ 22,7 Minuten plus Mini-Aufgaben und Vergleich (≈ 25 Minuten).
+
+**Messung R73 (2026-10-03, reproduzierbar):** `node werkzeuge/lesezeit.mjs` baut jeden Schritt so, wie die Seite ihn zeichnet, und zählt nach der dort festgehaltenen Zählregel (die von L-234, dazu: Wörter enden auch an Blockgrenzen, sonst verschmelzen Sprechername und Satz). Ergebnis: Kurzfassung 2.161 Wörter ≈ 10,8 Minuten → „etwa 11 Minuten“; ganzer Weg 4.422 Wörter ≈ 22 Minuten Lesen einschließlich der Texte von Mini-Aufgaben und Vergleich, mit dem Ausprobieren „etwa 25 Minuten“. `tests/lesezeit.test.ts` koppelt den Knopf im Auftakt, die Zeile der Startseite und die Angaben hier an die Messung. Die Zahlen oben sind ältere Zählungen.
 
 Lesezeit-Schätzung (nachgezählt am Drehbuch, 2026-10-03, vor P17.5): rund 2.400 sichtbare Wörter auf dem Weg der Kurzfassung (vier Kapitel mit je einer Folge, Vergleich, Brücken, Auftakt, Ende, Bilanz) – etwa 10 Minuten. Hauptweg: rund 4.400 sichtbare Wörter mit je einer Folge-Szene, dazu vier Mini-Aufgaben und der Vergleich zum Ausprobieren – etwa 25 Minuten. P17.5 misst nach.
 
@@ -752,7 +761,7 @@ Lesezeit-Schätzung (nachgezählt am Drehbuch, 2026-10-03, vor P17.5): rund 2.40
 > Ende August 2028, halb acht am Morgen. Der erste Schulbus hält an der neuen Haltestelle, die Sonne steht noch tief über den Linden. Kinder mit Schultüten und viel zu großen Ranzen laufen über den Schulhof, die Eltern hinterher. Am gemeinsamen Haupteingang des Campus hängen Luftballons, und neben der Tür stehen die fünf, die diesen Campus zweieinhalb Jahre lang begleitet haben – und Sie.
 > **Hanna Klingel** *(läutet ihre Glocke)*: Guten Morgen! Willkommen in eurer Schule!
 > **Theo Lot:** Steht alles drin, was wir hier gemacht haben. Hätte ich vor zwei Jahren nicht gedacht, dass ich das mal gut finde.
-> **Konrad Schwung:** Und beim nächsten Mal sag ich's gleich, wenn was klemmt. Ehrenwort.
+> **Konrad Schwung:** Seit dem Holz sag ich's gleich, wenn was klemmt. Hat sich gelohnt.
 > **Clara Faden:** Alles Offene ist übergeben, mit Namen und Termin. Verschwunden ist nichts.
 > **Gisela Grundstein:** Wissen Sie, was das Beste war? Ich wusste jedes Mal, worüber ich entscheide.
 
@@ -774,7 +783,7 @@ Danach die **Bilanz** (Abschnitt 3): drei Balken im Endstand, Titel des Bilanz-T
 Bildstil (O-53): isometrischer Campus, flach, farbenfroh, selbst gezeichnete Vektorgrafik, keine fremden Bilder; Porträts wie in Abschnitt 2. Auf jedem Schritt ist eine kleinere oder größere Grafik zu sehen. Alle Grafiken sind dekorativ (`aria-hidden`), außer Vergleich und Balken (mit Text-Alternative). Reduzierte Bewegung: keine Animation, Endzustände sofort.
 
 **Wiederkehrende Elemente**
-- **Campus**, isometrisch, gleiche Kamera in allen Stufen, Stufen 0–8 mit Jahreszeit (Frühling, Sommer, Herbst, Winter) und Licht (Morgen, Tag, Abend) wie `src/grafik/campus-iso.ts` (P17.3): gebaut wird nacheinander Gesamtschule → Sporthalle → Grundschule → Außenanlagen. Zuordnung: Kapitel 1 Stufe 0 Winter Morgen · 2 Stufe 0 Frühling Tag · 3 Stufe 1 Frühling Tag · 4 Stufe 2 Sommer Abend · 5 Stufe 3 Herbst Abend · 6 Stufe 4 Winter Tag (Sturm als Zusatz) · 7 Stufe 5 Frühling Morgen · 8 Stufe 6, nach der Folge Stufe 7, Sommer Tag · Ende Stufe 8 Sommer Morgen. Zusätze je Szene (Wimpel, Gerüst im Sturm, Luftballons) zeichnet die Szenen-Grafik über den Campus.
+- **Campus**, isometrisch, gleiche Kamera in allen Stufen, Stufen 0–8 mit Jahreszeit (Frühling, Sommer, Herbst, Winter) und Licht (Morgen, Tag, Abend) wie `src/grafik/campus-iso.ts` (P17.3): gebaut wird nacheinander Gesamtschule → Sporthalle → Grundschule → Außenanlagen. Zuordnung: Kapitel 1 Stufe 0 Winter Morgen · 2 Stufe 0 Frühling Tag · 3 Stufe 1 Frühling Tag · 4 Stufe 2 Sommer Abend · 5 Stufe 3 Herbst Abend · 6 Stufe 4 Winter Tag (`wetter: sturm`, Gerüst an der Sporthalle) · 7 Stufe 5 Frühling Morgen · 8 Stufe 6, nach der Folge Stufe 7, Sommer Tag · Ende Stufe 8 Sommer Morgen. Die wiederkehrenden Zusätze zeichnet der Campus selbst (R73): Stufe 2 die Bodenplatte mit den ersten Wänden des Erdgeschosses und die Wimpelkette am Bauzaun, Stufe 4 mit `wetter: sturm` Böen, abgerissene Planen am Gerüst der Sporthalle und ein umgekipptes Zaunfeld, Stufe 8 die Luftballons am Haupteingang. Das Gerüst im Sturm mit Wolke und Blitz bleibt nur das Bild der Mini-Aufgabe in Kapitel 6.
 - **Porträts** der fünf Figuren und die Spielfigur „Sie“; in der Szene groß links neben der Sprechblase der sprechenden Figur, die anderen klein in einer Reihe.
 - **Balken** Geld · Zeit · Vertrauen: kleine Leiste oben unter der Fortschrittslinie; bei der Folge groß mit Pfeilen und Wort.
 - **Kärtchen „Wer entscheidet was“** (Projektblatt mit Büroklammer) – ab Kapitel 1 als kleines Symbol aufrufbar.

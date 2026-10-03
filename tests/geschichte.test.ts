@@ -177,15 +177,20 @@ test('Mini zuordnen: richtig, falsch, offen; „noch einmal“ setzt zurück', (
   assert.ok(k2?.mini);
   const m = k2.mini;
   const i = (id: string): number => m.wahlen.findIndex((w) => w.id === id);
-  let s = ordneZu(G, neuerStand(), 'k2', 0, i('fruehwarnung'));
-  s = ordneZu(G, s, 'k2', 1, i('problem'));
+  // die Sätze stehen gemischt (R73) – gesucht wird der Posten über seine Lösung
+  const p = (id: string): number => m.posten.findIndex((x) => x.loesung === id);
+  const fw = p('fruehwarnung');
+  const ri = p('risiko');
+  const dritter = m.posten.findIndex((_, n) => n !== fw && n !== ri);
+  let s = ordneZu(G, neuerStand(), 'k2', fw, i('fruehwarnung'));
+  s = ordneZu(G, s, 'k2', ri, i('problem'));
   const a = werteMiniAus(m, s.mini['k2']);
-  assert.deepEqual(a.je.slice(0, 3), ['richtig', 'falsch', 'offen']);
+  assert.deepEqual([a.je[fw], a.je[ri], a.je[dritter]], ['richtig', 'falsch', 'offen']);
   assert.equal(a.richtig, 1);
   assert.equal(a.fertig, false);
   // Umentscheiden zählt
-  s = ordneZu(G, s, 'k2', 1, i('risiko'));
-  assert.equal(werteMiniAus(m, s.mini['k2']).je[1], 'richtig');
+  s = ordneZu(G, s, 'k2', ri, i('risiko'));
+  assert.equal(werteMiniAus(m, s.mini['k2']).je[ri], 'richtig');
   // alle richtig → fertig
   m.posten.forEach((p, n) => { s = ordneZu(G, s, 'k2', n, i(p.loesung)); });
   assert.deepEqual(werteMiniAus(m, s.mini['k2']), { je: m.posten.map(() => 'richtig'), richtig: m.posten.length, fertig: true });

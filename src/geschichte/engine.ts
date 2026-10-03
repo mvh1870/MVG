@@ -6,7 +6,7 @@
  */
 import { kipppunkte, rangfolge, spitze, type Gewichte, type Kipppunkt, type Platz } from './mcda.ts';
 import {
-  BALKEN, type Antwort, type BalkenId, type BalkenStufe, type BilanzTyp, type Geschichte, type Kapitel, type Mini,
+  BALKEN, type Antwort, type BalkenId, type BalkenStufe, type BilanzSicht, type BilanzTyp, type Geschichte, type Kapitel, type Mini,
   type Vergleich, type VergleichOption,
 } from './typen.ts';
 
@@ -198,17 +198,26 @@ export function bilanzTyp(b: Balkenstand, falle: boolean): BilanzTyp {
   return 'umwege';
 }
 
-/** Bilanz-Typ am Ende des Wegs. */
-export function bilanzAmEnde(g: Geschichte, stand: Stand): BilanzTyp {
+/**
+ * Bilanz am Ende des Wegs. Sind auf dem Weg noch Entscheidungen offen (über die Fortschrittslinie ans Ende gesprungen,
+ * L-232), gibt es kein Urteil über den Weg, sondern den neutralen Text „offen“ (R73) – jeder Bilanz-Typ spricht über
+ * Antworten, die es dann nicht alle gibt.
+ */
+export function bilanzAmEnde(g: Geschichte, stand: Stand): BilanzSicht {
+  if (offeneKapitel(g, stand).length > 0) return 'offen';
   return bilanzTyp(balken(g, stand, { ort: 'ende' }), falleGewaehlt(g, stand));
 }
 
-/** Welche Fassung der Schlusszeilen gilt: Vertrauen niedrig vor „nach einer Falle“ vor der Grundfassung (L-239). */
-export type EndeFassung = 'grund' | 'nach-falle' | 'vertrauen-niedrig';
+/**
+ * Welche Fassung der Schlusszeilen gilt: Vertrauen niedrig vor „nach einer Falle“ vor „offen“ (Entscheidungen offen,
+ * R73) vor der Grundfassung (L-239).
+ */
+export type EndeFassung = 'grund' | 'nach-falle' | 'vertrauen-niedrig' | 'offen';
 
 export function endeFassung(g: Geschichte, stand: Stand): EndeFassung {
   if (stufe(balken(g, stand, { ort: 'ende' }).vertrauen) === 'niedrig') return 'vertrauen-niedrig';
-  return falleGewaehlt(g, stand) ? 'nach-falle' : 'grund';
+  if (falleGewaehlt(g, stand)) return 'nach-falle';
+  return offeneKapitel(g, stand).length > 0 ? 'offen' : 'grund';
 }
 
 /** Kapitel des Wegs, in denen noch keine Antwort gewählt ist. */

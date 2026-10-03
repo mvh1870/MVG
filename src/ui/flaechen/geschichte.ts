@@ -441,7 +441,7 @@ function vergleichSchritt(o: SchrittOptionen, k: Kapitel): HTMLElement {
 
 /* ------------------------------------------------------------------- Ende -- */
 
-const BILANZ_BILD: Record<string, string> = { ruhig: 'sonne', umwege: 'wegweiser', 'letzte-meter': 'stoppuhr', 'nicht-getragen': 'bruecke' };
+const BILANZ_BILD: Record<string, string> = { ruhig: 'sonne', umwege: 'wegweiser', 'letzte-meter': 'stoppuhr', 'nicht-getragen': 'bruecke', offen: 'notizzettel' };
 
 function ende(o: SchrittOptionen): HTMLElement {
   const { g, stand } = o;
@@ -449,7 +449,7 @@ function ende(o: SchrittOptionen): HTMLElement {
   const typ = bilanzAmEnde(g, stand);
   const e = g.ende;
   const fassung = endeFassung(g, stand);
-  const ersatz = fassung === 'vertrauen-niedrig' ? e.vertrauenNiedrig : fassung === 'nach-falle' ? e.nachFalle : [];
+  const ersatz = fassung === 'vertrauen-niedrig' ? e.vertrauenNiedrig : fassung === 'nach-falle' ? e.nachFalle : fassung === 'offen' ? e.offen : [];
   // eine Ersatzzeile steht auf denselben Wegen wie die ersetzte (L-239)
   const zeilen = zeilenDesWegs(stand, e.szene).map((z) => {
     const neu = ersatz.find((x) => x.figur === z.figur);
@@ -475,7 +475,8 @@ function ende(o: SchrittOptionen): HTMLElement {
           h('h2', { id: 'gs-bilanz-titel', class: 'gs-bilanz-titel', 'data-pruef': 'gs-bilanz-titel' }, g.bilanz[typ].titel),
           h('p', { class: 'gs-bilanz-text' }, inhaltInline(g.bilanz[typ].html)))),
       balkenTafel(g, b, { gross: true, pruef: 'gs-stand-ende' }),
-      h('ul', { class: 'gs-bilanz-saetze' }, g.balken.map((x) => h('li', { 'data-balken': x.id }, h('b', null, `${x.titel}: `), inhaltInline(x.bilanz[stufe(b[x.id])])))),
+      // die Sätze je Balken urteilen über den ganzen Weg – bei offenen Entscheidungen nur die Balken (R73)
+      typ === 'offen' ? null : h('ul', { class: 'gs-bilanz-saetze' }, g.balken.map((x) => h('li', { 'data-balken': x.id }, h('b', null, `${x.titel}: `), inhaltInline(x.bilanz[stufe(b[x.id])])))),
       offen > 0 ? h('p', { class: 'gs-leise', 'data-pruef': 'gs-offen' }, w.offen(offen)) : null),
     o.bedienbar ? h('nav', { class: 'gs-ende-wege', 'aria-label': w.ende },
       h('button', { type: 'button', class: 'gs-knopf', 'data-pruef': 'von-vorn', onclick: () => o.tue(neuerStand()) }, sym('zurueckspulen'), w.vonVorn),
@@ -555,17 +556,19 @@ export function storyDruck(g: Geschichte, stand: Stand, version: string): { tite
         g.kapitel.map((k) => {
           const a = gewaehlteAntwort(stand, k);
           const erzaehlt = stand.kurz && !k.kurzfassung;
-          return h('section', { class: 'druck-teil' },
+          // „So macht man es gut“ wie am Bildschirm erst nach der eigenen Wahl – sonst stünde die Lösung vor der Frage (R73)
+          const gewaehlt = !erzaehlt && a !== null;
+          return h('section', { class: 'druck-teil', 'data-pruef': `druck-${k.id}` },
             h('h2', null, `${k.nr} · ${k.titel}`, h('small', null, ` · ${k.zeit}`)),
             h('p', null, h('b', null, `${w.druckAntwort}: `), erzaehlt ? (hier > k.nr ? w.druckBruecke : w.druckOffen) : a !== null ? inhaltInline(a.html) : w.druckOffen),
-            h('h3', null, w.gutTitel), inhalt(k.gutHtml));
+            gewaehlt ? h('div', { class: 'druck-gut' }, h('h3', null, w.gutTitel), inhalt(k.gutHtml)) : null);
         }),
         // die Bilanz nur, wenn das Ende erreicht ist – wie am Bildschirm, samt Hinweis auf offene Entscheidungen
         h('section', { class: 'druck-teil', 'data-pruef': 'druck-bilanz' }, amEnde
           ? [
             h('h2', null, `${w.bilanzTitel}: ${g.bilanz[typ].titel}`),
             h('p', null, inhaltInline(g.bilanz[typ].html)),
-            h('ul', null, g.balken.map((x) => h('li', null, h('b', null, `${x.titel}: `), inhaltInline(x.bilanz[stufe(b[x.id])])))),
+            typ === 'offen' ? null : h('ul', null, g.balken.map((x) => h('li', null, h('b', null, `${x.titel}: `), inhaltInline(x.bilanz[stufe(b[x.id])])))),
             offen > 0 ? h('p', null, w.offen(offen)) : null]
           : [h('h2', null, w.bilanzTitel), h('p', null, w.druckBilanzSpaeter)]))],
   };

@@ -35,11 +35,11 @@ function rahmen(): Roh {
     sie: { steckbrief: 'Sie leiten.' },
     figuren: ['grundstein', 'faden', 'schwung', 'klingel', 'lot'].map((id) => ({ id, name: id, rolle: 'Rolle', akzent: 'blau', steckbrief: 'Text' })),
     balken: { geld: balken(9), zeit: balken(6), vertrauen: balken(4) },
-    bilanz: Object.fromEntries(['nicht-getragen', 'letzte-meter', 'ruhig', 'umwege'].map((k) => [k, { titel: k, text: 'Text' }])),
+    bilanz: Object.fromEntries(['nicht-getragen', 'letzte-meter', 'ruhig', 'umwege', 'offen'].map((k) => [k, { titel: k, text: 'Text' }])),
     mandat: { titel: 'Wer entscheidet was', zeilen: [{ wer: 'Sie', text: 'bis 100.000 Euro' }] },
     ende: {
       zeit: 'August', campus: { stufe: 8, jahreszeit: 'sommer', licht: 'morgen' }, einstieg: 'Morgens.',
-      szene: [zeile('klingel', 'Guten Morgen!'), zeile('grundstein', 'Gut.')], 'zeit-niedrig': 'Halle zu.', 'vertrauen-niedrig': [zeile('grundstein', 'Früher reden.')], 'nach-falle': [zeile('grundstein', 'Nicht immer gut.')],
+      szene: [zeile('klingel', 'Guten Morgen!'), zeile('grundstein', 'Gut.')], 'zeit-niedrig': 'Halle zu.', 'vertrauen-niedrig': [zeile('grundstein', 'Früher reden.')], 'nach-falle': [zeile('grundstein', 'Nicht immer gut.')], offen: [zeile('grundstein', 'Noch offen.')],
     },
   };
 }
@@ -166,6 +166,9 @@ test('Vergleich: genau einer; Gewichte nur 5/3/1; Punkte 1–5; zu jeder Option 
   assert.deepEqual(lauf(({ k1 }) => { delete k1.vergleich; }).fehler, [`${R}: genau ein Kapitel mit Vergleich erwartet, nicht 0`]);
   assert.deepEqual(lauf(({ k1, k2 }) => { k2.vergleich = structuredClone(k1.vergleich); }).fehler, [`${R}: genau ein Kapitel mit Vergleich erwartet, nicht 2`]);
   assert.deepEqual(lauf(({ k1 }) => { k1.vergleich.kriterien[0].gewicht = 4; }).fehler, [`${K1} vergleich kriterien 1: Gewicht „4“ – erwartet 5 (sehr wichtig), 3 (wichtig) oder 1 (weniger wichtig)`]);
+  // Gegenprobe Kriterium doppelt (R73); die Folgefehler bei Punkten und Worten zeigen, was sonst still überschrieben würde
+  assert.deepEqual(lauf(({ k1 }) => { k1.vergleich.kriterien[1].id = 'geld'; }).fehler[0], `${K1} vergleich: Kriterium doppelt`);
+  assert.ok(!lauf().fehler.some((f) => f.includes('Kriterium doppelt')));
   assert.deepEqual(lauf(({ k1 }) => { k1.vergleich.optionen[1].punkte.zeit = 6; }).fehler, [`${K1} vergleich optionen 2 punkte: zeit = 6 – erwartet 1–5`]);
   assert.deepEqual(lauf(({ k1 }) => { delete k1.vergleich.saetze.gleichauf; }).fehler, [`${K1} vergleich saetze: Feld „gleichauf“ fehlt`]);
   assert.deepEqual(lauf(({ k1 }) => { k1.vergleich.optionen.pop(); }).fehler, [`${K1} vergleich: mindestens zwei zulässige Optionen`, `${K1} vergleich saetze: unbekanntes Feld „B“ (erlaubt: A, gleichauf)`]);

@@ -120,7 +120,7 @@ after(() => dom.window.close());
 
 const { inhalte, regieGeschichte, regieKapitel } = await import('../src/inhalte/index.ts');
 const { baueStart } = await import('../src/ui/flaechen/start.ts');
-const { baueTheorie, themen, themaFuerDruck, themaTitel } = await import('../src/ui/flaechen/theorie.ts');
+const { baueTheorie, themen, themaFuerDruck, themaTitel, wcVerschiebung } = await import('../src/ui/flaechen/theorie.ts');
 const { baueExplore, WERKZEUGE } = await import('../src/ui/flaechen/explore.ts');
 const { erzeugeGeschichte, SPEICHER_SCHLUESSEL } = await import('../src/ui/flaechen/geschichte.ts');
 const { erzeugeAnzeige } = await import('../src/regie/leinwand.ts');
@@ -586,18 +586,57 @@ test('Lernwerkzeuge aufgelöst (P12.5 R5): Leinwand und Druck zeigen den ganzen 
   assert.equal(k7.querySelectorAll('.lernwerkzeug:not(.ist-aufgeloest)').length, 0);
 });
 
-test('Wissenscheck: die passende Antwort steht nicht in jedem Check an derselben Stelle', () => {
+/** Angezeigte Stelle (0 …) der richtigen Antwort a in jeder Verständnisfrage aller Themen. */
+function stellenDerRichtigen(inh: typeof inhalte): number[] {
   const stellen: number[] = [];
-  for (const k of themen(inhalte).map((t) => ({ nr: t.kapitel }))) {
-    const seite = baueTheorie({ inhalte, thema: themaVon(k.nr), version: VERSION, bedienbar: true });
+  for (const k of themen(inh).map((t) => ({ nr: t.kapitel }))) {
+    const seite = baueTheorie({ inhalte: inh, thema: themaVon(k.nr), version: VERSION, bedienbar: true });
     for (const wc of seite.querySelectorAll('.wissenscheck')) {
       const knoepfe = [...wc.querySelectorAll('.wc-antwort')].map((b) => b.getAttribute('data-pruef'));
       stellen.push(knoepfe.indexOf('wc-antwort-a'));
     }
   }
+  return stellen;
+}
+
+/** Stelle, an der die richtige Antwort bei mehr als der Hälfte der Fragen steht – sonst null (R73). */
+function ueberwiegendeStelle(stellen: readonly number[]): number | null {
+  for (const s of new Set(stellen)) if (stellen.filter((x) => x === s).length * 2 > stellen.length) return s;
+  return null;
+}
+
+test('Wissenscheck: die passende Antwort steht nicht in jedem Check an derselben Stelle', () => {
+  const stellen = stellenDerRichtigen(inhalte);
   assert.ok(stellen.length >= 7, `${stellen.length} Wissenschecks`); // P17.11: halbiert (O-55)
   assert.ok(!stellen.includes(-1));
-  assert.ok(new Set(stellen).size >= 2, `alle an Stelle ${stellen[0]}`);
+  // R73: keine Stelle ist bei mehr als der Hälfte der Fragen die richtige, und jede der drei Stellen kommt vor
+  assert.equal(ueberwiegendeStelle(stellen), null, `Stellen der richtigen Antwort: ${stellen.join(', ')}`);
+  assert.deepEqual([...new Set(stellen)].sort(), [0, 1, 2], `Stellen der richtigen Antwort: ${stellen.join(', ')}`);
+});
+
+test('Wissenscheck (Gegenprobe R73): Kopffeld stelle setzt die richtige Antwort; gleiche Stelle überall fällt auf', () => {
+  for (let n = 2; n <= 3; n++) {
+    for (let stelle = 1; stelle <= n; stelle++) {
+      const v = wcVerschiebung('egal', n, stelle);
+      const reihe = [...Array(n).keys()].map((i) => (v + i) % n);
+      assert.equal(reihe.indexOf(0), stelle - 1, `n=${n}, stelle=${stelle}`);
+    }
+  }
+  assert.equal(wcVerschiebung('egal', 3, 7), wcVerschiebung('egal', 3), 'unzulässige Stelle: Rückfall auf die Kennung');
+  // die frühere Lage (fünf von sieben Fragen an Stelle 2) und überall dieselbe Stelle werden erkannt
+  assert.equal(ueberwiegendeStelle([1, 1, 1, 1, 1, 0, 0]), 1);
+  assert.equal(ueberwiegendeStelle([2, 1, 0, 2, 1, 0, 2]), null);
+  // Gegenprobe an den echten Inhalten: steht überall stelle 2, fällt die Probe
+  const gleich = structuredClone(inhalte);
+  const setze = (bloecke: readonly { art: string; kopf: Record<string, unknown>; kinder: readonly unknown[] }[]): void => {
+    for (const b of bloecke) {
+      if (b.art === 'wissenscheck') b.kopf['stelle'] = 2;
+      setze(b.kinder as typeof bloecke);
+    }
+  };
+  for (const t of Object.values(gleich.theorie)) setze(t.bloecke as unknown as Parameters<typeof setze>[0]);
+  const stellen = stellenDerRichtigen(gleich);
+  assert.equal(ueberwiegendeStelle(stellen), 1, `Gegenprobe: ${stellen.join(', ')}`);
 });
 
 test('Wissenschecks (P11.6, P17.11): genau die verbliebenen Themen haben einen; Wahl zeigt Rückmeldung, Erklärung und Beleg – ohne Punkte', () => {

@@ -6,7 +6,7 @@ titel: Schulstart
 zeit: Juli 2028
 campus: { stufe: 6, jahreszeit: sommer, licht: tag }
 campus-nachher: { stufe: 7, jahreszeit: sommer, licht: tag }
-bruecke: Im Juli 2028 erteilt die Bürgermeisterin die Freigabe mit Auflagen; zwei kleine Restarbeiten gehen mit Termin und Namen an das Gebäudemanagement.
+bruecke: Im Juli 2028 erteilt die Bürgermeisterin die Freigabe mit Auflagen; zwei kleine Restarbeiten gehen mit Termin und Namen an das Gebäudemanagement der Stadt, das den Campus nun betreibt.
 thema: ergebnisbild
 belege: [k9.3-p3, k6.4.4-p1, k4.5-p1, v24:hb-1, v24:hb-1.2, v24:hb-1.4, v24:hb-1.6, v24:hb-5, v24:tlb-2]
 bild-szene: lupe
@@ -15,7 +15,7 @@ bild-frage: schluessel
 einstieg: |
   Juli 2028. Der Kran ist fort, auf dem Schulhof wird Rasen gesät und werden junge Bäume gepflanzt, die Fenster glänzen. In drei Wochen beginnt das Schuljahr.
 
-  Theo Lot geht mit einer langen Liste durch die Räume, Konrad Schwung prüft jede Tür, und Hanna Klingel hat die ersten Stundenpläne schon an die Wand geheftet. Vorher steht die letzte große Freigabe an: die am Ende der Bauzeit.
+  Theo Lot geht mit einer langen Liste durch die Räume, Konrad Schwung prüft jede Tür, und Hanna Klingel hat die ersten Stundenpläne schon an die Wand geheftet. Vorher steht die letzte große Freigabe an: die am Ende der Bauzeit. Danach übernimmt das Gebäudemanagement der Stadt den Betrieb des Campus.
 
 szene:
   - { figur: lot, text: "Fast alles fertig. Nur der Hallenboden: An zwei Stellen sind Fugen offen. Die Firma bessert bis zu den Herbstferien nach." }

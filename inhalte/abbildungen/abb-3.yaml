@@ -4,9 +4,10 @@ titel: Vom Entscheidungsdruck über Grauzonen zur diffusen Verantwortung
 alt: >-
   Kaskade von oben nach unten. Von drei Karten „Volatile Märkte – Kippende Annahmen“, „ESG & LCC – Späte
   Zielkonflikte“ und „Schlüsselrollen – Wissensverlust“ führen Pfeile ins Band „Entscheidungsdruck“, von dort ein
-  Pfeil zum Feld „Fehlende Architektur“ mit den Symbolen Entscheidung, Freigabe, Dokumentation und Gremium.
-  Gestrichelte Pfeile führen zu fünf Karten: „Rollen ohne Mandat“, „Risiken nicht entscheidungsreif“, „Changes ohne
-  Schwellen“, „Parallele Datenstände“, „Gremien ohne Entscheidungsreife“. Alle außer der vierten Karte münden ins
+  Pfeil zum Feld „Fehlende Architektur“ (Entscheidung, Freigabe, Dokumentation, Gremium).
+  Gestrichelte Pfeile führen zu fünf Karten: „Rollen ohne Mandat“, „Risiken nicht entscheidungsreif“, „Änderungsregister
+  ohne Schwellenlogik“, „Parallele Datenstände“, „Gremien ohne Entscheidungsreife“. Alle außer der vierten Karte münden ins
   Band „Diffuse Verantwortung und Steuerbarkeit“.
 angeglichen:
   - { x: 1165, y: 885, b: 236, h: 56, text: "Gremien ohne\nEntscheidungsreife", beleg: k2.5-t1, schrift: plex, gewicht: 700, groesse: 23, ausrichtung: mitte }
+  - { x: 592, y: 881, b: 246, h: 58, text: "Änderungsregister\nohne Schwellenlogik", beleg: k2.4-p2, schrift: plex, gewicht: 700, groesse: 22, ausrichtung: mitte }

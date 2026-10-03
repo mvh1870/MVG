@@ -377,4 +377,58 @@ test('Druckbogen (Strg+P): je Kapitel Ihre Antwort und „So macht man es gut“
   const kurzVorn = druck(an('k3', 'szene', neuerStand(true)));
   assert.match(kurzVorn, /2 · Ein erstes Warnsignal · März 2026Ihre Antwort: in der Kurzfassung erzählt/u);
   assert.match(kurzVorn, /5 · Zwei Zahlen, zwei Wahrheiten · Oktober 2026Ihre Antwort: noch offen/u);
+  // R73: „So macht man es gut“ nur für Kapitel mit eigener Wahl – vor der Frage stünde sonst die Lösung auf dem Papier
+  const bogen = (st: Stand): HTMLElement => { const el = document.createElement('div'); el.append(...storyDruck(g, st, 'Fassung').teile); return el; };
+  const mitte = bogen(s);
+  assert.match(mitte.querySelector('[data-pruef="druck-k1"]')?.textContent ?? '', /So macht man es gut/u);
+  for (const k of g.kapitel.slice(1)) assert.doesNotMatch(mitte.querySelector(`[data-pruef="druck-${k.id}"]`)?.textContent ?? '', /So macht man es gut/u, k.id);
+  assert.equal(bogen(neuerStand()).querySelectorAll('.druck-gut').length, 0, 'am Auftakt keine Lösung im Druck');
+  assert.equal(bogen({ ...weg('gut'), schritt: { ort: 'ende' } }).querySelectorAll('.druck-gut').length, g.kapitel.length);
+  // offene Entscheidungen am Ende: neutrale Bilanz, keine Sätze je Balken
+  const lueckeEnde = druck({ ...s, schritt: { ort: 'ende' } });
+  assert.match(lueckeEnde, new RegExp(`Ihre Bilanz: ${g.bilanz.offen.titel}`, 'u'));
+  assert.doesNotMatch(lueckeEnde, /Geschafft – mit Umwegen/u);
+});
+
+test('Ende mit offenen Entscheidungen (R73): neutrale Bilanz statt Urteil, keine Sätze je Balken, Schlusszeile „offen“', () => {
+  // nur Kapitel 1 gut gewählt, dann über die Fortschrittslinie ans Ende
+  const gutK1 = g.kapitel[0]!.antworten.findIndex((a) => a.wertung === 'gut');
+  const f = flaeche({ ...waehle(g, neuerStand(), 'k1', gutK1), schritt: { ort: 'ende' } });
+  const ende = $(f, 'article.gs-ende');
+  assert.equal(ende.dataset['bilanz'], 'offen');
+  assert.equal(ende.dataset['fassung'], 'offen');
+  assert.equal($(f, '[data-pruef="gs-bilanz-titel"]').textContent, g.bilanz.offen.titel);
+  assert.equal(ende.querySelector('.gs-bilanz-saetze'), null);
+  assert.match($(f, '[data-pruef="gs-offen"]').textContent ?? '', /7 Entscheidungen/u);
+  const dialogText = ende.querySelector('.gs-dialog')?.textContent ?? '';
+  assert.doesNotMatch(dialogText, /Ich wusste jedes Mal/u);
+  assert.match(dialogText, /was unterwegs offen geblieben ist/u);
+});
+
+test('r73: „Nur die Sporthalle bleibt noch zu“ genau bei Zeit „niedrig“ am Ende, mit Gegenprobe „mittel“', async () => {
+  const { balken: balkenVon, stufe: stufeVon } = await import('../src/geschichte/engine.ts');
+  const gesehen = new Set<string>();
+  const wege: Stand[] = [weg('gut'), weg('vertretbar'), weg('falle')];
+  for (const k of g.kapitel) for (let p = 0; p < k.antworten.length; p++) {
+    wege.push(waehle(g, weg('gut'), k.id, p), waehle(g, weg('vertretbar'), k.id, p), waehle(g, weg('falle'), k.id, p));
+  }
+  for (const s of wege) {
+    const st = { ...s, schritt: { ort: 'ende' } } as Stand;
+    const z = stufeVon(balkenVon(g, st).zeit);
+    gesehen.add(z);
+    const el = baueSchritt({ g, stand: st, bedienbar: true, themaTitel: () => 'Thema', tue: () => undefined });
+    assert.equal(el.querySelector('[data-pruef="gs-zeit-niedrig"]') !== null, z === 'niedrig', `Zeit ${z}`);
+  }
+  assert.ok(gesehen.has('mittel') && gesehen.has('niedrig') && gesehen.has('hoch'), [...gesehen].join(','));
+});
+
+test('r73: Kurzfassung – Kapitel mit Mini-Aufgabe tragen „Das steckt dahinter“ am Frageschritt, der ganze Weg nicht', () => {
+  const mitMini = g.kapitel.filter((k) => k.mini !== null && k.kurzfassung);
+  assert.ok(mitMini.length > 0);
+  for (const k of mitMini) {
+    const kurz = flaeche(an(k.id, 'frage', waehle(g, neuerStand(true), k.id, 0)));
+    assert.ok(kurz.element.querySelector('[data-pruef="gs-dahinter-auf"]'), `${k.id} kurz`);
+    const lang = flaeche(an(k.id, 'frage', waehle(g, neuerStand(), k.id, 0)));
+    assert.equal(lang.element.querySelector('[data-pruef="gs-dahinter-auf"], [data-pruef="gs-dahinter"]'), null, `${k.id} lang`);
+  }
 });

@@ -9,6 +9,7 @@ Die Runden vor der Neuausrichtung (bis Runde 66, alter Aufbau mit Welten, Rollen
 | Runde | Commit | schwer | mittel | leicht | Stand |
 |---|---|---|---|---|---|
 | 72 | 0d1a565 | 5 (Abbildungen 8 und 11 lehren Falsches ohne die Abweichungen; „Ruhig ins Ziel“ und Geld-Satz passen nicht auf allen Wegen) | 30 | 51 | eingearbeitet (L-237–L-240) |
+| 73 | 8d07401 | 2 (abb-12 lehrt die RACI-Matrix; Bilanz urteilt auf Wegen mit offenen Entscheidungen) | 19 | 42 | eingearbeitet (L-241–L-246) |
 
 ## Runden der Neuausrichtung (P16.15)
 

@@ -64,6 +64,7 @@
 .ex-werkzeug-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--ton); opacity: .55; }
 .ex-kachel-bild { display: grid; place-items: center; width: 48px; height: 48px; border-radius: var(--radius-rund); background: var(--ton-soft); }
 .ex-kachel-text { display: grid; gap: var(--a-1); min-width: 0; }
+.ex-werkzeug-link small { font-size: var(--gr-xs); }
 .ex-werkzeug-link b { font: var(--typo-reiter); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy); overflow-wrap: anywhere; hyphens: auto; }
 a.ex-werkzeug-link:hover { border-color: var(--ton); color: var(--tinte); text-decoration: none; transform: translateY(-2px); box-shadow: var(--schatten-karte-hoch); }
 .ex-werkzeug-link[aria-current="page"] { border-color: var(--ton); background: var(--ton-soft); color: var(--tinte); box-shadow: inset 0 0 0 1px var(--ton); }
@@ -118,7 +119,7 @@ a.ex-werkzeug-link:hover { border-color: var(--ton); color: var(--tinte); text-d
 .ex-zelle[data-stufe="vorrangig"] { background: var(--status-rot-soft); color: var(--status-rot); }
 .ex-zelle[aria-pressed="true"] { box-shadow: inset 0 0 0 3px var(--navy); }
 button.ex-zelle:hover { border-color: var(--navy-soft); }
-.ex-zelle-punkt { position: absolute; top: 3px; right: 4px; min-width: 18px; height: 18px; border-radius: var(--radius-rund); background: var(--navy); color: var(--weiss); font: 700 11px/18px var(--schrift-text); text-align: center; }
+.ex-zelle-punkt { position: absolute; top: 3px; right: 4px; min-width: 18px; height: 18px; border-radius: var(--radius-rund); background: var(--navy); color: var(--weiss); font: 700 12px/18px var(--schrift-text); text-align: center; }
 .ex-matrix-detail { display: grid; gap: var(--a-2); }
 .ex-matrix-wert b { font: var(--typo-kennzahl); color: var(--navy); }
 .ex-matrix-stufe b { font-size: var(--gr-l); }
@@ -199,7 +200,7 @@ button.ex-art:hover, button.ex-weg:hover { border-color: var(--ton); }
   .ex-monat { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ex-zelle { width: 48px; height: 44px; font-size: var(--gr-l); }
   /* R67: in schmalen Zellen sitzt der Beispiel-Punkt als Marke auf der Ecke – nie über der Zahl */
-  .ex-zelle-punkt { top: -6px; right: -6px; min-width: 16px; height: 16px; font-size: 10px; line-height: 16px; box-shadow: 0 0 0 2px var(--weiss); }
+  .ex-zelle-punkt { top: -6px; right: -6px; min-width: 16px; height: 16px; font-size: 11.5px; line-height: 16px; box-shadow: 0 0 0 2px var(--weiss); }
 }
 @media (max-width: 380px) {
   .ex-zelle { width: 40px; height: 40px; }

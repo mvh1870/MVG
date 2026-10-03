@@ -49,7 +49,7 @@ titel: Aufgabe
 Geplante Arbeit mit vereinbartem Ergebnis, Verantwortlichem und Termin.
 
 ### Rückseite
-Die Projektsteuerung stellt bis Freitag den Haushaltsansatz 2027 für die Kämmerei zusammen.
+Die Projektsteuerung stellt bis Freitag aus dem geltenden Kostenstand die Kostenübersicht für den Haushaltsansatz 2027 der Kämmerei zusammen.
 :::
 
 ::: karte massnahme
@@ -69,7 +69,7 @@ titel: Frühwarnung
 Ein Hinweis, der noch nicht ausreichend geklärt ist.
 
 ### Rückseite
-Ein Hersteller nennt 26 statt 16 Wochen Lieferzeit für die Holzbauelemente – ob das für alle gilt, ist offen.
+Der Architekt hört beiläufig, dass die Lieferzeiten für Holzelemente länger werden – wie viel und bei wem, ist offen.
 :::
 
 ::: karte risiko
@@ -139,7 +139,7 @@ titel: Vorgänge auf dem Schulcampus Lindenhall-Süd
 ---
 titel: März 2026 – Frühwarnung
 ---
-Ein Hersteller nennt 26 statt 16 Wochen für die Holzbauelemente; der Hinweis steht am selben Tag mit Quelle, Eingangsdatum und Prüffrage im Register.
+Der Architekt hört beiläufig, dass die Lieferzeiten für Holzelemente länger werden – wie viel und bei wem, ist offen. Der Hinweis steht am selben Tag mit Quelle, Eingangsdatum und Prüffrage im Register.
 :::
 
 ::: etappe 2
@@ -360,6 +360,9 @@ Die Projektsteuerung prüft ihre Angaben selbst und zieht bei wesentlichen, stri
 :::
 
 ::: wissenscheck restrisiko
+---
+stelle: 1
+---
 ### Frage
 Nach allen Maßnahmen bleibt ein wesentliches Restrisiko. Wer entscheidet, ob das Projekt es trägt?
 

@@ -3,10 +3,11 @@
 Kopf ≤ 100 Zeilen. Oben JETZT (überschreiben), darunter FRÜHER (anhängen, knapp).
 
 ## JETZT
-- **Stand 2026-10-03 10:59 UTC: P17 Neugestaltung beginnt** (O-51 bis O-58, Owner hat den Plan nach zwei Fragerunden freigegeben). Story als Spiel neu (fünf Figuren, acht Kapitel, drei Antworten, Balken Geld/Zeit/Vertrauen, Mini-Aufgaben, isometrischer Campus), Themen als Buch (vier Teile, nummeriert, Fortschritt), interne Bemerkungen raus, Texte kürzer, Verständnisfragen halbiert.
-- **Als Nächstes:** P17.1 Drehbuch, dann P17.2 Format/Engine. Reihenfolge im Planblatt.
-- P16 ist abgeschlossen und nach `main` geführt (25c6e26).
-- Rechner: Node 22.22, Chromium unter `/opt/pw-browsers/chromium`. Kette ≈ 60 s.
+- **Stand 2026-10-03 14:09 UTC: P17.12 Prüfrunden laufen.** P17.1–P17.11 erledigt (Drehbuch nach drei Prüfrunden, neue Story als Spiel mit fünf Figuren, Campus, Balken, Mini-Aufgaben, Vergleich in Kapitel 7; Themen als Buch mit Fortschritt; Themen-Optik; Texte gekürzt, sieben Verständnisfragen; Start/Explore; Regie/Leinwand). Entscheide L-225–L-240.
+- **Prüfrunden P17.12** (zehn Felder inkl. „erlebnis“, L-236): R72 (0d1a565) 5 schwer / 30 mittel / 51 leicht – eingearbeitet (L-237–L-240). R73 (8d07401) läuft; bisher 2 schwer (abb-12 RACI „A“ überall; Bilanz auf unvollständigen Wegen). O-35-Zähler: 0.
+- **Als Nächstes:** R73 fertig einarbeiten (Story-Agent: Bilanz bei offenen Kapiteln, Lesezeit-Skript ins Repo und „etwa 10 Minuten“, Druck „So macht man es gut“; Doku ANLEITUNGEN/STIL), dann R74, R75 – zwei Runden ohne schwer; dann P17.13 (ABNAHME neu, CI, Merge nach main, Nachricht).
+- **Offen beim Owner:** Auswahl von vier neuen Explore-Werkzeugen (Klickseite gesendet, Vorschläge A–J); bei Antwort vor den letzten Runden einbauen.
+- Rechner: Node 22.22, Chromium unter `/opt/pw-browsers/chromium`. Kette ≈ 80–150 s.
 
 ## FRÜHER
 - 2026-10-02 (13:20–17:26 UTC): P16.15 Prüfrunden R67–R71 (L-205–L-223), Statusbedingungen der Story, Reservegrenze auf allen Wegen.

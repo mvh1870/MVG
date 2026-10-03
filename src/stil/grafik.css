@@ -417,4 +417,10 @@
 .gm-streifen { fill: none; stroke: var(--navy-soft); stroke-width: 1.6; }
 .gm-teilung { fill: none; stroke: var(--navy-soft); stroke-width: 2.4; stroke-linecap: round; }
 .gm-zeiger { fill: none; stroke: var(--navy-soft); stroke-width: 3.4; stroke-linecap: round; }
+.gm-zeiger-fein { fill: none; stroke: var(--navy-soft); stroke-width: 2; stroke-linecap: round; }
+.gm-haken-gruen { fill: none; stroke: var(--akzent-gruen-text); stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; }
 .gm-riss { fill: none; stroke: var(--weiss); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+/* Wimpelkette (Stufe 2) und Luftballons am Haupteingang (Stufe 8) */
+.ci-wimpelschnur { fill: none; stroke: var(--navy-soft); stroke-width: .45; }
+.ci-ballonschnur { fill: none; stroke: var(--navy-soft); stroke-width: .35; opacity: .8; }
+.ci-ballonglanz { fill: var(--weiss); opacity: .7; }

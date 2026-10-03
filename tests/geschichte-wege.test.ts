@@ -10,7 +10,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
 import { inhalte } from '../src/inhalte/index.ts';
-import { balken, bilanzTyp, endeFassung, falleGewaehlt, gewaehlteAntwort, neuerStand, stufe, waehle, wegKapitel, type Balkenstand, type EndeFassung, type Stand } from '../src/geschichte/engine.ts';
+import { balken, bilanzAmEnde, bilanzTyp, endeFassung, falleGewaehlt, gewaehlteAntwort, neuerStand, stufe, waehle, wegKapitel, type Balkenstand, type EndeFassung, type Stand } from '../src/geschichte/engine.ts';
 import type { Antwort, BalkenId, BilanzTyp, Geschichte, Kapitel, Wertung } from '../src/geschichte/typen.ts';
 import { BALKEN } from '../src/geschichte/typen.ts';
 
@@ -78,7 +78,7 @@ function proben(): Probe[] {
     { was: 'Zeit hoch', text: bl('zeit').bilanz.hoch, anfang: 'Der Puffer hat gehalten', erscheint: (w) => stufe(w.b.zeit) === 'hoch', setztVoraus: () => true },
     { was: 'Zeit mittel', text: bl('zeit').bilanz.mittel, anfang: 'Der Puffer war am Ende dünn, aber er hat gereicht.', erscheint: (w) => stufe(w.b.zeit) === 'mittel', setztVoraus: (w) => teurerAlsGut(w, 'zeit') },
     { was: 'Zeit niedrig', text: bl('zeit').bilanz.niedrig, anfang: 'Der Puffer ist aufgebraucht; die Sporthalle öffnet erst nach den Herbstferien.', erscheint: (w) => stufe(w.b.zeit) === 'niedrig', setztVoraus: () => true },
-    { was: 'Vertrauen hoch', text: bl('vertrauen').bilanz.hoch, anfang: 'Bürgermeisterin, Schule und Stadtrat verlassen sich inzwischen auf Ihre Vorlagen.', erscheint: (w) => stufe(w.b.vertrauen) === 'hoch', setztVoraus: () => true },
+    { was: 'Vertrauen hoch', text: bl('vertrauen').bilanz.hoch, anfang: 'Bürgermeisterin, Schule und Stadtrat verlassen sich inzwischen auf das, was Sie vorlegen.', erscheint: (w) => stufe(w.b.vertrauen) === 'hoch', setztVoraus: () => true },
     { was: 'Vertrauen mittel', text: bl('vertrauen').bilanz.mittel, anfang: 'Man vertraut Ihnen – fragt aber gern noch einmal nach.', erscheint: (w) => stufe(w.b.vertrauen) === 'mittel', setztVoraus: () => true },
     { was: 'Vertrauen niedrig', text: bl('vertrauen').bilanz.niedrig, anfang: 'Die Bürgermeisterin lässt sich inzwischen jede Zahl zweimal zeigen.', erscheint: (w) => stufe(w.b.vertrauen) === 'niedrig', setztVoraus: () => true },
     // Schlusszeilen
@@ -138,6 +138,56 @@ test('Musterwege behalten ihre Bilanz: gut → ruhig, vertretbar → letzte Mete
   // jeder Typ kommt auf langen Wegen vor
   const typen = new Set(WEGE.filter((w) => !w.stand.kurz).map(echterTyp));
   assert.deepEqual([...typen].sort(), ['letzte-meter', 'nicht-getragen', 'ruhig', 'umwege']);
+});
+
+/* ------------------------------------------------- Wege mit offenen Kapiteln -- */
+
+/**
+ * R73: Über die Fortschrittslinie kommt man ohne alle Antworten ans Ende (L-232). Je Kapitel offen, gut, vertretbar oder
+ * Falle: 4^8 = 65.536 lange Wege und 4^4 = 256 der Kurzfassung. Mit offenem Kapitel gibt es kein Urteil über den Weg
+ * (Bilanz „offen“, keine Grundzeile „Ich wusste jedes Mal …“); vollständige Wege behalten ihren Bilanz-Typ.
+ */
+test('Wege mit offenen Kapiteln: Bilanz „offen“, nie ein Urteil über Antworten, die es nicht gibt', () => {
+  const MIT_OFFEN = ['offen', ...WERTUNGEN] as const;
+  let geprueft = 0;
+  for (const kurz of [false, true]) {
+    const liste = wegKapitel(G, kurz);
+    for (let i = 0; i < 4 ** liste.length; i++) {
+      let s = neuerStand(kurz);
+      let x = i;
+      let offen = 0;
+      for (const k of liste) {
+        const w = MIT_OFFEN[x % 4] ?? 'offen';
+        x = Math.floor(x / 4);
+        if (w === 'offen') { offen += 1; continue; }
+        s = waehle(G, s, k.id, k.antworten.findIndex((a) => a.wertung === w));
+      }
+      s = { ...s, schritt: { ort: 'ende' } };
+      const typ = bilanzAmEnde(G, s);
+      const f = endeFassung(G, s);
+      const b = balken(G, s, { ort: 'ende' });
+      const falle = falleGewaehlt(G, s);
+      if (offen > 0) {
+        assert.equal(typ, 'offen', `Weg ${i} (${kurz ? 'kurz' : 'lang'}): ${offen} offen, Bilanz ${typ}`);
+        assert.notEqual(f, 'grund', `Weg ${i}: Grundzeile trotz offener Kapitel`);
+        if (!falle && stufe(b.vertrauen) !== 'niedrig') assert.equal(f, 'offen');
+      } else {
+        assert.equal(typ, bilanzTyp(b, falle));
+      }
+      geprueft += 1;
+    }
+  }
+  assert.equal(geprueft, 4 ** 8 + 4 ** 4);
+  // der neutrale Text urteilt nicht und ist festgehalten
+  assert.ok(G.bilanz.offen.html.startsWith('Der Campus steht, die Kinder sind da. Ein Urteil über Ihren Weg gibt es erst'));
+  assert.ok((G.ende.offen.find((z) => z.figur === 'grundstein')?.html ?? '').startsWith('Geschafft haben wir es – und was unterwegs offen geblieben ist'));
+});
+
+test('Gegenprobe offene Kapitel: ohne die Regel zeigte „nur Kapitel 1 gut“ ein Urteil („mit Umwegen“)', () => {
+  const k1 = G.kapitel[0] as Kapitel;
+  const s = { ...waehle(G, neuerStand(), k1.id, k1.antworten.findIndex((a) => a.wertung === 'gut')), schritt: { ort: 'ende' as const } };
+  assert.equal(bilanzTyp(balken(G, s, { ort: 'ende' }), falleGewaehlt(G, s)), 'umwege', 'die alte Rechnung hätte geurteilt');
+  assert.equal(bilanzAmEnde(G, s), 'offen');
 });
 
 /* ---------------------------------------------------------- Antwortlängen -- */

@@ -24,7 +24,7 @@ figuren:
     name: Gisela Grundstein
     rolle: Bürgermeisterin
     akzent: violett
-    steckbrief: "Sie entscheidet für die Stadt die großen Dinge: was zuerst kommt, jede Freigabe, jeden Griff in die Reserve. Der Lenkungskreis berät sie – entscheiden tut sie."
+    steckbrief: "Sie entscheidet für die Stadt die großen Dinge: was zuerst kommt, jede Freigabe, jeden Griff in die Reserve. Der Lenkungskreis, eine feste Runde mit der Finanzabteilung und dem Schulamt, berät sie – entscheiden tut sie."
   - id: faden
     name: Clara Faden
     rolle: Projektsteuerin
@@ -70,16 +70,17 @@ balken:
       niedrig: Der Puffer ist aufgebraucht; die Sporthalle öffnet erst nach den Herbstferien.
   vertrauen:
     titel: Vertrauen
-    text: Wie sehr sich Bürgermeisterin, Schule und Stadtrat auf Ihre Vorlagen verlassen.
+    text: Wie sehr sich Bürgermeisterin, Schule und Stadtrat auf Sie verlassen.
     start: 4
     mehr: gestiegen
     weniger: gesunken
     bilanz:
-      hoch: Bürgermeisterin, Schule und Stadtrat verlassen sich inzwischen auf Ihre Vorlagen.
+      hoch: Bürgermeisterin, Schule und Stadtrat verlassen sich inzwischen auf das, was Sie vorlegen.
       mittel: Man vertraut Ihnen – fragt aber gern noch einmal nach.
       niedrig: Die Bürgermeisterin lässt sich inzwischen jede Zahl zweimal zeigen.
 
-# Prüfreihenfolge fest in src/geschichte/engine.ts (bilanzTyp): Vertrauen niedrig · Zeit niedrig · ruhig (nur ohne Falle, L-239) · alle anderen
+# Prüfreihenfolge fest in src/geschichte/engine.ts (bilanzTyp): Vertrauen niedrig · Zeit niedrig · ruhig (nur ohne Falle, L-239) · alle anderen;
+# sind auf dem Weg Entscheidungen offen, gilt immer „offen“ (bilanzAmEnde, R73)
 # Jeder Text hier muss auf jedem Weg stimmen, auf dem er erscheint – tests/geschichte-wege.test.ts rechnet alle Wege durch.
 bilanz:
   nicht-getragen:
@@ -94,13 +95,17 @@ bilanz:
   umwege:
     titel: Geschafft – mit Umwegen
     text: Der Campus steht, die Kinder sind da – aber nicht jede Ihrer Antworten war der gerade Weg, und jeder Umweg hat etwas gekostet, ob Zeit, Geld oder Vertrauen.
+  # R73: solange auf dem Weg Entscheidungen offen sind (Sprung ans Ende über die Fortschrittslinie), kein Urteil über den Weg
+  offen:
+    titel: Noch nicht alle Entscheidungen getroffen
+    text: Der Campus steht, die Kinder sind da. Ein Urteil über Ihren Weg gibt es erst, wenn Sie alle Entscheidungen getroffen haben; die Balken zeigen den Stand nach den Antworten, die Sie schon gegeben haben.
 
 mandat:
   titel: Wer entscheidet was
   zeilen:
     - { wer: Sie, text: "Entscheidungen bis 100.000 Euro, wenn das Budget sie ohne Reserve trägt." }
     - { wer: Bürgermeisterin, text: "alles darüber · jeder Griff in die Reserve · ob die Stadt ein großes Risiko trägt · jede Freigabe am Ende eines großen Planungs- oder Bauabschnitts (Fachleute sagen: Leistungsphase) · was zuerst kommt: der Schulstart, dann das Geld." }
-    - { wer: Lenkungskreis, text: "berät die Bürgermeisterin." }
+    - { wer: Lenkungskreis, text: "feste Runde aus Bürgermeisterin, Finanzabteilung und Schulamt · berät die Bürgermeisterin." }
     - { wer: Projektsteuerin, text: "bereitet alles vor, pflegt alle Vorgänge, empfiehlt – entscheidet nie." }
 
 ende:
@@ -115,7 +120,7 @@ ende:
   szene:
     - { figur: klingel, zusatz: läutet ihre Glocke, text: "Guten Morgen! Willkommen in eurer Schule!" }
     - { figur: lot, kurzfassung: false, text: "Steht alles drin, was wir hier gemacht haben. Hätte ich vor zwei Jahren nicht gedacht, dass ich das mal gut finde." }
-    - { figur: schwung, kurzfassung: false, text: "Und beim nächsten Mal sag ich's gleich, wenn was klemmt. Ehrenwort." }
+    - { figur: schwung, kurzfassung: false, text: "Seit dem Holz sag ich's gleich, wenn was klemmt. Hat sich gelohnt." }
     - { figur: faden, kurzfassung: false, text: "Alles Offene ist übergeben, mit Namen und Termin. Verschwunden ist nichts." }
     - { figur: grundstein, text: "Wissen Sie, was das Beste war? Ich wusste jedes Mal, worüber ich entscheide." }
   zeit-niedrig: Nur die Sporthalle bleibt noch zu – sie wird erst nach den Herbstferien fertig. Bis dahin turnen die Kinder in der alten Halle.
@@ -125,3 +130,6 @@ ende:
     - { figur: grundstein, text: "Beim nächsten Projekt reden wir früher miteinander. Versprochen?" }
   nach-falle:
     - { figur: grundstein, text: "Geschafft haben wir es. Aber nicht jedes Mal lief es so, wie es hätte laufen sollen – das machen wir beim nächsten Projekt besser." }
+  # R73: Entscheidungen offen, keine Falle, Vertrauen nicht niedrig – die Schlusszeile „Ich wusste jedes Mal …“ stimmte dann nicht
+  offen:
+    - { figur: grundstein, text: "Geschafft haben wir es – und was unterwegs offen geblieben ist, schauen wir uns noch einmal gemeinsam an." }

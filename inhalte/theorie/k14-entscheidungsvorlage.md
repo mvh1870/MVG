@@ -42,7 +42,7 @@ links: Keine Vorlage nötig
 rechts: Vorlage nötig
 ---
 ::: ansicht links
-Die Kämmerei braucht bis Freitag den Haushaltsansatz 2027. Das ist eine Aufgabe mit Ergebnis, Verantwortlichem und Termin – die Projektsteuerung erledigt sie ohne Entscheidung des Bauherrn.
+Die Kämmerei braucht bis Freitag die Kostenübersicht für den Haushaltsansatz 2027. Das ist eine Aufgabe mit Ergebnis, Verantwortlichem und Termin – die Projektsteuerung stellt sie aus dem geltenden Kostenstand zusammen, ohne dass dafür eine neue Entscheidung nötig ist.
 :::
 
 ::: ansicht rechts
@@ -74,13 +74,16 @@ titel: Die befugte Stelle entscheidet
 ---
 
 ### Rückseite
-Je nach Mandat die Bauherren-PL, ein Gremium wie das Änderungsgremium oder der Bauherr selbst.
+Entscheiden darf, wer nach dem Mandat dafür zuständig ist: die Projektleitung des Bauherrn, ein Gremium wie das Änderungsgremium oder der Bauherr selbst.
 :::
 :::
 
 Der Bauherr pflegt keine Listen und schreibt keine Vorlagen. Er bekommt sie rechtzeitig und vollständig – und entscheidet.
 
 ::: wissenscheck schweigen
+---
+stelle: 2
+---
 ### Frage
 Die Projektsteuerung empfiehlt Option A. Der Entscheidungstermin verstreicht, der Bauherr hat sich nicht geäußert. Ist Option A damit beschlossen?
 
@@ -89,7 +92,7 @@ Beschließen kann nur die befugte Stelle. Schweigen, eine Empfehlung oder ein St
 
 ::: antwort a
 ---
-titel: Nein – es gibt noch keinen Beschluss
+titel: Nein – ohne Beschluss bleibt die Entscheidung offen
 praefix: "Genau:"
 ---
 Weder die Empfehlung noch das Schweigen ist ein Beschluss.
@@ -97,15 +100,15 @@ Weder die Empfehlung noch das Schweigen ist ein Beschluss.
 
 ::: antwort b
 ---
-titel: Ja – wer schweigt, stimmt zu
+titel: Ja – wer schweigt, stimmt der Empfehlung zu
 praefix: "Nicht ganz:"
 ---
-Schweigen gilt nicht als Zustimmung. Ohne Beschluss bleibt die Entscheidung offen.
+Schweigen gilt nicht als Zustimmung – auch nicht zu einer Empfehlung.
 :::
 
 ::: antwort c
 ---
-titel: Ja – die Projektsteuerung darf nach Fristablauf selbst entscheiden
+titel: Ja – nach der Frist entscheidet die Projektsteuerung
 praefix: "Nicht ganz:"
 ---
 Treffen, genehmigen oder bestätigen darf die Projektsteuerung eine Bauherrenentscheidung nie.
@@ -311,7 +314,7 @@ Die Empfehlung für A gilt nur unter der vereinbarten Terminpriorität – das m
 ---
 symbol: dokument
 ---
-Zur Vorlage gehören außerdem der Stand von Kosten- und Terminplan, Nachweise für Gleichwertigkeit und Lieferbarkeit, Restrisiken beider Wege, nötige Freigaben, befugte Stelle und Entscheidungstermin. Die Sachentscheidung liegt hier im Mandat der Bauherren-PL; gehen die Mehrkosten zulasten der Risikoreserve, gibt deren Einsatz der Bauherr frei. Entschieden wird im Beispiel nicht.
+Zur Vorlage gehören außerdem der Stand von Kosten- und Terminplan, Nachweise für Gleichwertigkeit und Lieferbarkeit, Restrisiken beider Wege, nötige Freigaben, befugte Stelle und Entscheidungstermin. Die Sachentscheidung liegt hier im Mandat der Projektleitung des Bauherrn; gehen die Mehrkosten zulasten der Risikoreserve, gibt deren Einsatz der Bauherr frei. Entschieden wird im Beispiel nicht.
 :::
 :::
 
@@ -321,7 +324,7 @@ titel: Vorlegen, nachhalten, Beschluss getrennt festhalten
 ---
 - **Vorlegen:** mit Datenstand, Quellen und Verknüpfung zum auslösenden Vorgang, rechtzeitig abgelegt in der Software des Bauherrn oder dort eindeutig verwiesen.
 - **Nichts erfinden:** Fehlt eine zweite zulässige Option oder eine andere wesentliche Grundlage, heißt die Vorlage „unvollständig“ und nennt, was noch zu klären ist.
-- **Beschluss getrennt festhalten:** mit Quelle, Datum und Bedingungen, so wie die befugte Stelle ihn tatsächlich gefasst hat. Die Folgemaßnahmen verfolgt die Projektsteuerung bis zur nachgewiesenen Umsetzung.
+- **Beschluss getrennt festhalten:** mit Quelle, Datum und Bedingungen, so wie die befugte Stelle ihn tatsächlich gefasst hat. Die Folgemaßnahmen verfolgt die Projektsteuerung bis zum nachgewiesenen Ergebnis – Umsetzung und Wirkung.
 
 Dringliche Meldungen und notwendige Schutzmaßnahmen warten nicht auf den fertigen Vergleich.
 
@@ -332,7 +335,7 @@ links: Dringlich
 rechts: Entscheidungsbedarf
 ---
 ::: ansicht links
-An der Sporthalle ist ein Gerüstfeld nicht gesichert. Die Projektsteuerung meldet das sofort an Bauleitung und Sicherheitskoordination; das Feld wird gesperrt, der Vorgang am selben Arbeitstag dokumentiert.
+Nach dem Sturm hat das Gerüst an der Sporthalle zwei lose Anker. Die Bauleitung sperrt sofort und holt die Sicherheitskoordination; die Projektsteuerung meldet über den vereinbarten Meldeweg und dokumentiert den Vorgang noch am selben Arbeitstag.
 :::
 
 ::: ansicht rechts

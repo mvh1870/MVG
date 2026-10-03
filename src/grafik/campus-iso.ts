@@ -34,13 +34,13 @@ export const CAMPUS_STUFE_MAX = 8;
 const STUFEN_TEXT: readonly string[] = [
   'Das leere Grundstück, eingefasst von einem Bauzaun; am Zaun die Tafel „Hier baut die Stadt Lindenhall“.',
   'Die Baugrube für die Gesamtschule ist ausgehoben; ein Bagger arbeitet, daneben stehen die Baucontainer.',
-  'Der Rohbau der Gesamtschule wächst Geschoss für Geschoss; ein Turmdrehkran und ein Gerüst stehen am Bau.',
+  'Die Bodenplatte der Gesamtschule ist gegossen, die ersten Wände des Erdgeschosses stehen; ein Turmdrehkran dreht sich, am Bauzaun hängt eine bunte Wimpelkette.',
   'Holzbau: Der Kran hebt Holzelemente an die Gesamtschule, die unteren Geschosse sind schon verkleidet.',
   'Die Gesamtschule steht fertig; daneben richten Zimmerleute das Holztragwerk der Dreifeldsporthalle auf, rundum steht ein Gerüst.',
   'Die Sporthalle ist geschlossen; jetzt wächst die Grundschule im Winkel, eingerüstet und mit dem Kran.',
   'Alle drei Gebäude stehen; Wege, Schulhof, Rasen und junge Bäume werden angelegt.',
   'Der Campus ist fertig: Schulhof, Sportfeld, Bäume, Fahrradständer und Bushaltestelle, noch ohne Kinder.',
-  'Schulstart: Kinder kommen zu Fuß, mit dem Rad und mit dem Schulbus auf den fertigen Campus.',
+  'Schulstart: Kinder kommen zu Fuß, mit dem Rad und mit dem Schulbus auf den fertigen Campus; am Haupteingang hängen Luftballons.',
 ];
 const JAHRESZEIT_TEXT: Record<Jahreszeit, string> = { fruehling: 'Frühling', sommer: 'Sommer', herbst: 'Herbst', winter: 'Winter mit Schnee' };
 const LICHT_TEXT: Record<Licht, string> = { morgen: 'Morgenlicht', tag: 'Tageslicht', abend: 'Abendlicht' };
@@ -314,6 +314,27 @@ function rohbau(b: Bau, geschosse: number, naechstesBis = 0): string {
   return s;
 }
 
+/**
+ * Erste Wände (Stufe 2): Bodenplatte, das Erdgeschoss hinten und links schon gemauert, zwei Querwände, vorn die
+ * Wand bis `xBis` mit Fensteröffnungen, dahinter nur Stützen – noch ohne Decke.
+ */
+function ersteWaende(b: Bau, xBis: number): string {
+  const { x1, y1, x2, y2 } = b;
+  const z1 = 1.5;
+  const z2 = GH;
+  let s = quader(x1, y1, x2, y2, 0, z1, 'ci-beton');
+  s += quader(x1, y1, x2, y1 + 2, z1, z2, 'ci-beton');
+  s += quader(x1, y1, x1 + 2, y2, z1, z2, 'ci-beton');
+  for (const x of [100, 160]) if (x < xBis) s += quader(x, y1 + 2, x + 2, y2, z1, z2, 'ci-beton');
+  s += quader(x1, y2 - 2, xBis, y2, z1, z2, 'ci-beton');
+  let loch = '';
+  for (let u = x1 + 7; u + 8 <= xBis - 4; u += 14) loch += wandL(y2, u, u + 8, z1 + 4, z1 + 11);
+  s += pfad('ci-dunkel-voll', loch);
+  for (let x = xBis + 16; x <= x2 - 2; x += 18) s += quader(x, y2 - 2, x + 2, y2, z1, z2, 'ci-beton');
+  for (let y = y1 + 16; y <= y2 - 4; y += 18) s += quader(x2 - 2, y, x2, y + 2, z1, z2, 'ci-beton');
+  return s;
+}
+
 function stuetzenReihe(b: Bau, z1: number, z2: number, xBis: number): string {
   let s = '';
   for (let x = b.x1; x <= Math.min(xBis, b.x2) - 2; x += 18) s += quader(x, b.y2 - 2, x + 2, b.y2, z1, z2, 'ci-beton');
@@ -491,8 +512,32 @@ function figur(buehne: Buehne, x: number, y: number, art: FigurArt, farbe: Akzen
   buehne.ding(x - 1, y - 1, x + 1, y + 1, s);
 }
 
-/** Bauzaun als Gitterflächen; vorne mit Lücke für die Zufahrt. */
-function bauzaun(buehne: Buehne): void {
+/**
+ * Wimpelkette vom Schulfest (Stufe 2) am vorderen Zaun von u1 bis u2 (Ebene y): Schnur leicht durchhängend zwischen den
+ * Pfosten, daran Dreiecke in fünf Akzenttönen.
+ */
+function wimpelkette(y: number, u1: number, u2: number, h: number): string {
+  const toene: readonly Akzent[] = ['beere', 'sonne', 'lagune', 'gruen', 'blau'];
+  const durchhang = (u: number): number => {
+    const t = ((u - u1) % 28) / 28;
+    return h + 2.5 - 3 * Math.sin(Math.PI * t);
+  };
+  let schnur = '';
+  const d: Map<Akzent, string> = new Map();
+  for (let u = u1, i = 0; u + 4.6 <= u2; u += 6, i++) {
+    const a = toene[i % toene.length] as Akzent;
+    const z = durchhang(u);
+    const z2 = durchhang(u + 4.6);
+    d.set(a, (d.get(a) ?? '') + zug([[u, y, z], [u + 4.6, y, z2], [u + 2.3, y, (z + z2) / 2 - 7]]));
+  }
+  for (let u = u1; u < u2; u += 1) schnur += `${u === u1 ? 'M' : 'L'}${P(u, y, durchhang(u))}`;
+  let s = pfad('ci-wimpelschnur', schnur);
+  for (const [a, dd] of d) s += pfad(`ci-a-${a}`, dd);
+  return s;
+}
+
+/** Bauzaun als Gitterflächen; vorne mit Lücke für die Zufahrt; auf Wunsch mit Wimpelkette vorn. */
+function bauzaun(buehne: Buehne, wimpel = false): void {
   const { x1, y1, x2, y2 } = ZAUN;
   const h = 11;
   const feld = (a: V3, b: V3): string => {
@@ -513,13 +558,13 @@ function bauzaun(buehne: Buehne): void {
   buehne.ding(x1, y1, x2, y1, feld([x1, y1, 0], [x2, y1, 0]));
   buehne.ding(x1, y1, x1, y2, feld([x1, y1, 0], [x1, y2, 0]));
   buehne.ding(x2, y1, x2, y2, feld([x2, y1, 0], [x2, y2, 0]));
-  buehne.ding(x1, y2, 214, y2, feld([x1, y2, 0], [214, y2, 0]));
+  buehne.ding(x1, y2, 214, y2, feld([x1, y2, 0], [214, y2, 0]) + (wimpel ? wimpelkette(y2, x1 + 4, 112, h) : ''));
   if (buehne.sturm) {
     // ein Feld vorn rechts liegt umgekippt nach vorn im Gras
     buehne.ding(250, y2, 292, y2 + h, flaeche('ci-zaun', [[250, y2, 0.6], [292, y2, 0.6], [292, y2 + h, 0.3], [250, y2 + h, 0.3]])
       + pfad('ci-zaunrahmen', strich([250, y2, 0.6], [292, y2, 0.6]) + strich([250, y2 + h, 0.3], [292, y2 + h, 0.3]) + strich([250, y2, 0.6], [250, y2 + h, 0.3]) + strich([271, y2, 0.6], [271, y2 + h, 0.3]) + strich([292, y2, 0.6], [292, y2 + h, 0.3])));
     buehne.ding(292, y2, x2, y2, feld([292, y2, 0], [x2, y2, 0]));
-  } else buehne.ding(250, y2, x2, y2, feld([250, y2, 0], [x2, y2, 0]));
+  } else buehne.ding(250, y2, x2, y2, feld([250, y2, 0], [x2, y2, 0]) + (wimpel ? wimpelkette(y2, 252, x2 - 4, h) : ''));
 }
 
 /** Bauschild am Zaun: „Hier baut die Stadt Lindenhall“ (fiktiv). */
@@ -602,6 +647,29 @@ function palette(buehne: Buehne, x: number, y: number, ladung: 'holz' | 'pflaste
   if (ladung === 'pflaster') s += quader(x + 0.5, y + 0.5, x + 9.5, y + 9.5, 1.5, 7, 'ci-pflasterstapel');
   else for (let z = 1.5; z < 8; z += 2.2) s += quader(x - 6, y + 1, x + 16, y + 9, z, z + 2, 'ci-holz');
   buehne.ding(x - 6, y, x + 16, y + 10, s);
+}
+
+/**
+ * Luftballons am Haupteingang (Stufe 8): zwei Trauben links und rechts vor dem Vordach der Gesamtschule, an Schnüren
+ * vom Boden aus, in Akzenttönen mit Glanzpunkt.
+ */
+function luftballons(buehne: Buehne): void {
+  const y = GESAMTSCHULE.y2 + 12;
+  for (const [x, versatz] of [[144, 0], [186, 2]] as const) {
+    const [bx, by] = [px(x, y), py(x, y, 0)];
+    const trauben: readonly [number, number, Akzent][] = [[-4.2, -30, 'beere'], [3.6, -31.5, 'sonne'], [-0.4, -36, 'lagune'], [5.4, -37.5, 'violett'], [-5.6, -38.5, 'gruen']];
+    let schnur = '';
+    let ballons = '';
+    trauben.forEach(([dx, dy], i) => {
+      const ton = (trauben[(i + versatz) % trauben.length] as [number, number, Akzent])[2];
+      const cx = r1(bx + dx);
+      const cy = r1(by + dy);
+      schnur += `M${bx},${by - 6}L${cx},${r1(cy + 3.6)}`;
+      ballons += `<ellipse class="ci-a-${ton}" cx="${cx}" cy="${cy}" rx="3" ry="3.6"/><circle class="ci-ballonglanz" cx="${r1(cx - 1)}" cy="${r1(cy - 1.3)}" r=".8"/>`;
+    });
+    const s = `<path class="ci-ballonschnur" d="M${bx},${by}V${by - 6}${schnur}"/>${ballons}`;
+    buehne.ding(x - 1, y, x + 1, y + 1, s);
+  }
 }
 
 /** Schulbus an der Haltestelle (gelb, Fensterband, Räder). */
@@ -852,13 +920,13 @@ const NEUE_BAEUME: readonly [number, number][] = [
 function szene(buehne: Buehne, s: number): void {
   boden(buehne, s);
   BESTAND.forEach(([x, y, art], i) => baum(buehne, x, y, art, i, art === 'nadel' ? 1 : 1.05));
-  if (s <= 6) bauzaun(buehne);
+  if (s <= 6) bauzaun(buehne, s === 2);
   if (s <= 5) bauschild(buehne);
   if (s >= 1 && s <= 5) { container(buehne, 334, 252); container(buehne, 334, 252, 12); container(buehne, 370, 252); toilette(buehne, 318, 258); }
 
   const gs = GESAMTSCHULE;
   const gsH = hoehe(gs);
-  if (s >= 2) buehne.schattenQuader(gs.x1, gs.y1, gs.x2, gs.y2, s === 2 ? 2 * GH : gsH);
+  if (s >= 2) buehne.schattenQuader(gs.x1, gs.y1, gs.x2, gs.y2, s === 2 ? GH : gsH);
   if (s >= 4) buehne.schattenQuader(SPORTHALLE.x1, SPORTHALLE.y1, SPORTHALLE.x2, SPORTHALLE.y2, SH_HOEHE);
   if (s >= 5) { buehne.schattenQuader(GRUNDSCHULE_A.x1, GRUNDSCHULE_A.y1, GRUNDSCHULE_A.x2, GRUNDSCHULE_A.y2, 32); buehne.schattenQuader(GRUNDSCHULE_B.x1, GRUNDSCHULE_B.y1, GRUNDSCHULE_B.x2, GRUNDSCHULE_B.y2, 32); }
 
@@ -881,8 +949,8 @@ function szene(buehne: Buehne, s: number): void {
     figur(buehne, 236, 118, 'arbeiter', 'orange', 2);
   }
   if (s === 2) {
-    buehne.ding(gs.x1, gs.y1, gs.x2 + 4, gs.y2 + 4, rohbau(gs, 2, 170) + geruest(gs, 2 * GH, 40, true));
-    kran(buehne, 186, 124, 'y', 30, { a: 62, z: 50, holz: false });
+    buehne.ding(gs.x1, gs.y1, gs.x2, gs.y2, ersteWaende(gs, 170));
+    kran(buehne, 186, 124, 'y', 30, { a: 62, z: 34, holz: false });
     erdhaufen(buehne, 340, 74, 16);
     lkw(buehne, 120, 120, 'mischer');
     stapel(buehne, 300, 120, 'ci-holz');
@@ -954,6 +1022,7 @@ function szene(buehne: Buehne, s: number): void {
     figur(buehne, 162, 102, 'erwachsen', 'violett', 4);
     figur(buehne, 210, 252, 'erwachsen', 'lagune', 5);
     figur(buehne, 132, 288, 'erwachsen', 'blau', 3);
+    luftballons(buehne);
   }
   if (s === 7) figur(buehne, 166, 104, 'erwachsen', 'lagune', 2);
 }
@@ -965,7 +1034,7 @@ export function campusIsoText(stufe: number, jahreszeit: Jahreszeit = 'sommer', 
 }
 
 /**
- * Der Campus als isometrische Illustration. Stufe 0 Grundstück mit Bauzaun · 1 Baugrube · 2 Rohbau Gesamtschule ·
+ * Der Campus als isometrische Illustration. Stufe 0 Grundstück mit Bauzaun · 1 Baugrube · 2 Bodenplatte und erste Wände ·
  * 3 Holzbau · 4 Sporthalle im Bau · 5 Grundschule im Bau · 6 Außenanlagen · 7 fertig · 8 fertig mit Kindern.
  */
 export function campusIso(stufe: number, optionen: CampusIsoOptionen = {}): string {

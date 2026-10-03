@@ -5,7 +5,7 @@ titel: Die Schule will mehr
 zeit: Juni 2026
 campus: { stufe: 2, jahreszeit: sommer, licht: abend }
 kurzfassung: true
-thema: anwendung
+thema: vorgaenge
 belege: [v24:hb-1.5, v24:hb-1, v24:hb-3.1, v24:va-4.2, k4.3-p2, k3.2-t1, k10.5-t1, k4.2-p3, k9.3-p3, v24:va-4.1]
 bild-szene: mensateller
 bild-frage: grundriss
@@ -49,9 +49,9 @@ antworten:
     balken: { geld: -1, zeit: -1, vertrauen: 0 }
     bild: kalender
     folge: |
-      Clara Faden hat den Antrag aufgenommen und warnt, dass die Fundamente bald gegossen werden – aber entschieden wird erst im Herbst. Dann bestätigen die Anmeldezahlen den Bedarf. Inzwischen ist die Planung weiter, und ein Fundament muss nachträglich verstärkt werden.
+      Clara Faden hat den Antrag aufgenommen und warnt, dass die Fundamente bald gegossen werden – aber entschieden wird erst im Herbst. Dann bestätigen die Anmeldezahlen den Bedarf. Inzwischen ist die Planung weiter, und die Pläne für die Fundamente müssen noch einmal überarbeitet werden – das kostet Wochen.
 
-      Die Bürgermeisterin entscheidet auf Vorlage der Projektsteuerin für die Mensa, die später wachsen kann, aus der Reserve. Die Schule hat ein halbes Jahr auf eine Antwort gewartet, und Theo Lot fragt, warum man ihm das nicht vor dem Betonieren gesagt hat.
+      Die Bürgermeisterin entscheidet auf Vorlage der Projektsteuerin für die Mensa, die später wachsen kann, aus der Reserve. Die Schule hat ein halbes Jahr auf eine Antwort gewartet, und Theo Lot muss mit dem Betonieren warten, bis die neuen Pläne da sind.
 
 gut: |
   Ein Wunsch, der den geltenden Stand ändert, wird als Änderung aufgenommen: wer ihn stellt, was bisher gilt, was er kostet und wie viel Zeit er braucht – und er wird mit mindestens zwei Wegen der Stelle vorgelegt, die entscheiden darf. Bis entschieden ist, gilt die bisherige Planung; eine Zusage im Flur oder beim Schulfest ersetzt keinen Beschluss.

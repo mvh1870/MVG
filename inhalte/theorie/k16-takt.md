@@ -77,16 +77,16 @@ Was dringlich ist, wartet weder auf die nächste Sitzung noch auf eine fertige B
 
 ::: umschalter
 ---
-titel: Ein ungesichertes Gerüstfeld an der Sporthalle
+titel: Zwei lose Gerüstanker an der Sporthalle
 links: Auf den Takt warten
 rechts: Sofort melden
 ---
 ::: ansicht links
-Der Hinweis wird für die nächste Wochenprüfung notiert. Bis dahin bleibt das Gerüstfeld, wie es ist.
+Nach dem Sturm hat das Gerüst zwei lose Anker. Der Hinweis wird für die nächste Wochenprüfung notiert; bis dahin bleibt das Gerüst, wie es ist.
 :::
 
 ::: ansicht rechts
-Die Projektsteuerung meldet es sofort an Bauleitung und Sicherheitskoordination. Das Feld ist in einer Stunde gesperrt, der Vorgang am selben Arbeitstag dokumentiert.
+Die Bauleitung sperrt sofort und holt die Sicherheitskoordination. Die Projektsteuerung meldet den Schaden über den vereinbarten Meldeweg und dokumentiert den Vorgang noch am selben Arbeitstag.
 :::
 :::
 :::
@@ -191,6 +191,9 @@ Der Bericht verweist auf die Einträge in der Software. Eine zweite Liste hätte
 :::
 
 ::: wissenscheck ampelbericht
+---
+stelle: 3
+---
 ### Frage
 Der Monatsbericht zeigt zwölf grüne und gelbe Ampeln, aber keine offene Entscheidung und keine benötigte Reaktion – obwohl in drei Wochen eine Vergabe ansteht. Erfüllt er seinen Zweck?
 
@@ -199,7 +202,7 @@ Der Bericht zeigt, welche Entscheidungen mit welcher Reaktion des Bauherrn offen
 
 ::: antwort a
 ---
-titel: Nein – die offene Entscheidung und die benötigte Reaktion fehlen
+titel: Nein – offene Entscheidung und benötigte Reaktion fehlen
 praefix: "Genau:"
 ---
 Eine anstehende Entscheidung gehört mit Termin und benötigter Reaktion hinein.
@@ -207,7 +210,7 @@ Eine anstehende Entscheidung gehört mit Termin und benötigter Reaktion hinein.
 
 ::: antwort b
 ---
-titel: Ja – solange keine Ampel rot ist
+titel: Ja – solange keine der zwölf Ampeln auf Rot steht
 praefix: "Nicht ganz:"
 ---
 Die Farbe sagt nichts darüber, ob der Bauherr etwas entscheiden muss.
@@ -294,7 +297,7 @@ Mit mindestens zwei zulässigen Optionen, gewichtetem Vergleich, Empfehlung und 
 
 ::: regie
 ### Notiz
-Das Thema zeigt den Takt aus Sicht des Bauherrn: Er pflegt nichts, er bekommt einen Termin, eine Seite und – wenn nötig – eine sofortige Meldung. Den Regler gemeinsam durchgehen; beim Gerüstfeld betonen, dass Dringliches nie auf den Takt wartet. Das Berichtsbeispiel ist fiktiv.
+Das Thema zeigt den Takt aus Sicht des Bauherrn: Er pflegt nichts, er bekommt einen Termin, eine Seite und – wenn nötig – eine sofortige Meldung. Den Regler gemeinsam durchgehen; bei den losen Gerüstankern betonen, dass Dringliches nie auf den Takt wartet. Das Berichtsbeispiel ist fiktiv.
 
 ### Leitfragen
 - Wie viele Seiten hat Ihr letzter Monatsbericht – und welche Entscheidung stand darin?

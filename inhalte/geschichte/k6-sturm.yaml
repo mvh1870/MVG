@@ -6,7 +6,6 @@ nr: 6
 titel: Ärger auf der Baustelle
 zeit: Februar 2027
 campus: { stufe: 4, jahreszeit: winter, licht: tag, wetter: sturm }
-zusatz: geruest-sturm
 bruecke: Im Februar lockert ein Sturm das Gerüst. Der Bauleiter sperrt sofort, die Projektsteuerin hält es am selben Tag fest.
 thema: takt
 belege: [v24:hb-4, v24:hb-3, v24:hb-1.4, v24:hb-3.1, v24:hb-1.6, v24:tlb-5, v24:va-5.2, v24:hb-5]
@@ -14,10 +13,12 @@ bild-szene: telefon
 bild-frage: absperrband
 
 einstieg: |
-  Februar 2027. Die Gesamtschule ist außen fast fertig, an der Sporthalle richten die Zimmerleute das Holztragwerk auf; rundum ragt ein Gerüst in den grauen Himmel. In der Nacht ist ein Sturm über Lindenhall gezogen. Auf der Baustelle liegen abgerissene Planen im Matsch, ein Bauzaunfeld ist umgekippt. Freitag, kurz nach drei, klingelt Ihr Telefon.
+  Februar 2027. Die Gesamtschule ist außen fast fertig, an der Sporthalle richten die Zimmerleute das Holztragwerk auf; rundum ragt ein Gerüst in den grauen Himmel. In der Nacht ist ein Sturm über Lindenhall gezogen. Auf der Baustelle liegen abgerissene Planen im Matsch, ein Bauzaunfeld ist umgekippt.
+
+  Über den Arbeitsschutz auf der Baustelle wacht eine eigene Stelle, die Sicherheitskoordination. Freitag, kurz nach drei, klingelt Ihr Telefon.
 
 szene:
-  - { figur: lot, text: "Das Gerüst an der Sporthalle hat seit heute Nacht zwei lose Anker. Wenn ich sperre, muss die Sicherheitskoordination ran – die wacht hier über den Arbeitsschutz –, und die Zimmerleute stehen bis Dienstag herum." }
+  - { figur: lot, text: "Gerüst an der Sporthalle, zwei Anker lose. Seit heute Nacht. Sperr ich, muss die Sicherheitskoordination ran. Dann stehen die Zimmerleute bis Dienstag rum." }
   - { figur: schwung, text: "Zwei Tage Stillstand im Februar – das tut weh." }
   - { figur: lot, text: "Ich dachte, wir besprechen das am Montag in Ruhe. Die Projektsteuerin ist heute sowieso nicht auf der Baustelle." }
   - { figur: schwung, text: "Vielleicht reicht es ja, nur die eine Seite abzusperren." }
@@ -29,7 +30,7 @@ antworten:
   - wertung: gut
     text: Sperren Sie sofort, holen Sie die Sicherheitskoordination. Ich rufe die Projektsteuerin an – sie meldet und hält es heute fest.
     balken: { geld: 0, zeit: -1, vertrauen: 1 }
-    bild: notizzettel
+    bild: eintrag
     folge: |
       Um halb vier ist der Bereich abgesperrt, die Sicherheitskoordination ist vor Ort. Clara Faden meldet den Schaden über den vereinbarten Weg, sagt der Bürgermeisterin in zwei Sätzen Bescheid und legt noch am Abend einen Eintrag an: was passiert ist, wann, wer gesperrt hat, mit Fotos.
 
@@ -61,7 +62,7 @@ mini:
   posten:
     - { text: "Der Bauleiter sperrt den Bereich ab.", bild: absperrband, erklaerung: "Schutz zuerst – vor jeder Besprechung." }
     - { text: "Sicherheitskoordination und Projektsteuerin werden informiert; die Projektsteuerin meldet über den vereinbarten Weg.", bild: telefon, erklaerung: "Dringliches wird sofort gemeldet, nicht erst in der nächsten Sitzung." }
-    - { text: "Noch am selben Tag entsteht ein Eintrag mit Uhrzeit, Fotos und Zuständigen.", bild: notizzettel, erklaerung: "Festgehalten wird, sobald die erste Reaktion gesichert ist – am selben Arbeitstag." }
+    - { text: "Noch am selben Tag entsteht ein Eintrag mit Uhrzeit, Fotos und Zuständigen.", bild: eintrag, erklaerung: "Festgehalten wird, sobald die erste Reaktion gesichert ist – am selben Arbeitstag." }
     - { text: "Die Fachleute klären die Ursache.", bild: lupe, erklaerung: "Erst verstehen, dann reparieren." }
     - { text: "Die Lösung wird vorbereitet; braucht sie Geld oder eine Änderung, entscheidet die Stelle, die es darf.", bild: kaertchen, erklaerung: "Auch in Eile gilt: Dringlichkeit ersetzt keine Entscheidung der Stelle, die es darf." }
     - { text: "Erst wenn die Reparatur nachweislich wirkt, wird der Eintrag geschlossen.", bild: stempel, erklaerung: "Umgesetzt und wirksam sind nicht dasselbe." }

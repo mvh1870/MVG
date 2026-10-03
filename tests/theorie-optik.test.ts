@@ -116,6 +116,7 @@ test('Karte mit Rückseite: Knopf dreht um (aria-pressed, Ansage), ohne Rücksei
   assert.equal(knopf.getAttribute('aria-pressed'), 'false');
   assert.equal(wende.dataset['seite'], 'vorne');
   assert.equal(wende.querySelector<HTMLElement>('.ist-hinten')?.inert, true, 'Rückseite nicht im Tabulatorweg');
+  assert.equal(wende.querySelector('.ist-hinten .lernkarte-seite')?.textContent, 'Frage', 'Rückseite nennt den Titel der Vorderseite (R73)');
   knopf.click();
   assert.equal(knopf.getAttribute('aria-pressed'), 'true');
   assert.equal(wende.dataset['seite'], 'hinten');
@@ -128,7 +129,8 @@ test('Karte mit Rückseite: Knopf dreht um (aria-pressed, Ansage), ohne Rücksei
     const k = aufgeloest.querySelector('.lernkarte.ist-wendekarte');
     assert.ok(k?.classList.contains('ist-aufgeloest'));
     assert.equal(k?.querySelector('button'), null);
-    assert.match(k?.textContent ?? '', /Vorn\..*Rückseite.*Hinten\./su);
+    assert.match(k?.textContent ?? '', /Vorn\..*Hinten\./su);
+    assert.equal(k?.querySelector('.lernkarte-seite'), null, 'aufgelöst ohne Bedienmarke „Rückseite“ (R73)');
   }
   dom.window.document.body.replaceChildren();
 });

@@ -220,6 +220,20 @@ test('P17.6: die Leinwand zeigt nie die Wertung der Antworten und nie Notiz oder
     geheim.push(...r.leitfragen, r.notizHtml.replace(/<[^>]*>/gu, '').slice(0, 60));
   }
   const wertungWorte = Object.values(W.regie.wertung).filter((x) => x !== 'gut');
+  // R73: auch Attribute, die man sieht oder hört (Tooltip, Vorlesetext, Bildtext) – „gut“ zählt dort als ganzer Attributwert;
+  // data-* bleibt intern (z. B. data-fassung="nach-falle")
+  const attributFunde = (wurzel: Element, wo: string): string[] => {
+    const aus: string[] = [];
+    for (const el of [wurzel, ...wurzel.querySelectorAll('*')]) {
+      for (const at of [...el.attributes]) {
+        if (!(at.name === 'title' || at.name === 'alt' || at.name.startsWith('aria-'))) continue;
+        const v = at.value.trim();
+        if (Object.values(W.regie.wertung).some((x) => v.toLowerCase() === x.toLowerCase()) || wertungWorte.some((x) => new RegExp(`\\b${x}\\b`, 'iu').test(v))) aus.push(`${wo}: ${el.tagName.toLowerCase()}[${at.name}="${v.slice(0, 40)}"]`);
+      }
+    }
+    return aus;
+  };
+  const { baueSchritt } = await import('../src/ui/flaechen/geschichte.ts');
   try {
     for (const platz of [0, 1, 2]) {
       let stand = neuerStand();
@@ -234,9 +248,18 @@ test('P17.6: die Leinwand zeigt nie die Wertung der Antworten und nie Notiz oder
         assert.equal(anzeige.element.querySelectorAll('[data-wertung], .regie-wertung').length, 0, `${wo}: Wertung im DOM`);
         for (const wort of wertungWorte) assert.ok(!new RegExp(`\\b${wort}\\b`, 'u').test(textInhalt), `${wo}: „${wort}“ auf der Leinwand`);
         for (const x of geheim) assert.ok(!textInhalt.includes(x), `${wo}: Regie-Material „${x.slice(0, 30)}“ auf der Leinwand`);
+        assert.deepEqual(attributFunde(anzeige.element, `Leinwand ${wo}`), []);
+        // die bedienbare Story-Fläche desselben Schritts: Wertung weder als Text noch in Attributen
+        const flaeche = baueSchritt({ g, stand: { ...stand, schritt }, bedienbar: true, themaTitel: () => 'Thema', tue: () => undefined });
+        assert.deepEqual(attributFunde(flaeche, `Story ${wo}`), []);
+        for (const wort of wertungWorte) assert.ok(!new RegExp(`\\b${wort}\\b`, 'u').test(flaeche.textContent ?? ''), `${wo}: „${wort}“ auf der Story-Fläche`);
       }
     }
     // Gegenprobe (Regie zeigt Wertung und Leitfragen): tests/ui-bauart.test.ts, „Regie: … Mini-Aufgabe, Wertung“
+    // Gegenprobe Attribute: ein Tooltip mit der Wertung wird gefunden
+    const probe = document.createElement('div');
+    probe.innerHTML = '<button title="Falle">1</button><span aria-label="gut"></span><span aria-label="So macht man es gut"></span>';
+    assert.equal(attributFunde(probe, 'Probe').length, 2);
   } finally {
     anzeige.entferne();
   }

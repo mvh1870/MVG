@@ -1,6 +1,6 @@
 # Explore-Werkzeuge (P16.8, O-46). Belege intern, nie sichtbar (O-38). Beispielprojekt: Schulcampus Lindenhall-Süd (O-50).
 einleitung: |
-  Fünf Werkzeuge zum Ausprobieren – alle am fiktiven Schulcampus Lindenhall-Süd. Nichts wird gesendet oder gespeichert; Ihre Einstellungen gelten, solange das Werkzeug offen ist.
+  Fünf Werkzeuge zum Ausprobieren – alle am fiktiven Schulcampus Lindenhall-Süd.
 mcda:
   titel: MCDA-Rechner
   kurz: Optionen gewichtet vergleichen und sehen, wann sich die Spitze dreht.
@@ -44,13 +44,13 @@ vorgaenge:
     - id: aufgabe
       titel: Aufgabe
       text: Geplante Arbeit mit vereinbartem Ergebnis, verantwortlicher Person und Termin.
-      beispiel: AUF-001 – Haushaltsansatz 2027 für die Kämmerei bis Freitag.
+      beispiel: AUF-001 – Kostenübersicht für den Haushaltsansatz 2027 an die Kämmerei bis Freitag.
       abschluss: Das vereinbarte Ergebnis liegt vor und ist verwendbar.
       wege: [risiko, problem, entscheidung]
     - id: fruehwarnung
       titel: Frühwarnung
       text: Ein Hinweis ist noch nicht ausreichend geklärt. Quelle sichern, Prüffrage und Wiedervorlage festlegen.
-      beispiel: FRW-002 – die Generalplanung meldet 26 statt 16 Wochen Lieferzeit für die Holzbauelemente.
+      beispiel: FRW-002 – ein Holzbauer erwähnt gegenüber der Generalplanung, dass die Lieferzeiten für Holzelemente länger werden; Prüffrage an die Hersteller.
       abschluss: Ein Klärungsergebnis liegt vor – oder der Hinweis wird mit Begründung geschlossen.
       wege: [risiko, problem, aufgabe]
     - id: risiko

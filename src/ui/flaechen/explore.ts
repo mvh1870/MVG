@@ -1,6 +1,6 @@
 /*
  * Bereich „Explore“ (P16.8, O-46): fünf Werkzeuge zum Ausprobieren, alle am fiktiven Schulcampus
- * Lindenhall-Süd (O-50). Nichts wird gesendet; Einstellungen gelten nur für diese Ansicht.
+ * Lindenhall-Süd (O-50). Nichts wird gesendet; Einstellungen gelten nur für diese Ansicht (Hinweis sichtbar nur im Datenschutz, O-56).
  *
  *   #explore            → MCDA-Rechner (erstes Werkzeug), darüber die Werkzeugleiste
  *   #explore/<werkzeug> → mcda · matrix · vorgaenge · takt · glossar
@@ -63,8 +63,8 @@ function lage(o: ExploreOptionen): HTMLElement | null {
   const k = vergleichsKapitel(o);
   const z = k?.szene[0];
   if (k === undefined || k === null || z === undefined) return null;
-  const wer = z.figur === null ? '' : `${FIGUR_NAME[z.figur].name} · `;
-  return h('p', { class: 'ex-frage', 'data-pruef': 'ex-lage' }, '„', inhaltInline(z.html), '“ ', h('small', null, `${wer}${k.zeit}`));
+  const wer = z.figur === null ? '' : `${FIGUR_NAME[z.figur].name}, ${FIGUR_NAME[z.figur].rolle} · `;
+  return h('p', { class: 'ex-frage', 'data-pruef': 'ex-lage' }, h('strong', null, `${k.titel}: `), '„', inhaltInline(z.html), '“ ', h('small', null, `${wer}${k.zeit}`));
 }
 
 function startRechner(v: Vergleich): Rechner {

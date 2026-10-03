@@ -498,6 +498,15 @@ Berichterstattung erzeugt Information.
   assert.ok(f2.some((f) => /Wissenscheck berichte: Beleg fehlt/u.test(f)), f2.join('\n'));
   const f3 = (await kompiliere({ pruefe: true, wurzel: neueWurzel(mitBloecken(falscherBeleg)), ziel: null })).fehler;
   assert.ok(f3.some((f) => /Zitat nicht wortgleich/u.test(f)), f3.join('\n'));
+  // R73: Kopffeld stelle – gültig 1 … Zahl der Antworten
+  const mitStelle = (n: string): string => gut.replace('::: wissenscheck berichte\n', `::: wissenscheck berichte\n---\nstelle: ${n}\n---\n`);
+  const s2 = await kompiliere({ pruefe: true, wurzel: neueWurzel(mitBloecken(mitStelle('2'))), ziel: null });
+  assert.deepEqual(s2.fehler, []);
+  assert.deepEqual((s2.inhalte as Inhalte).theorie['k02']?.bloecke.find((b) => b.art === 'wissenscheck')?.kopf, { stelle: 2 });
+  const s3 = (await kompiliere({ pruefe: true, wurzel: neueWurzel(mitBloecken(mitStelle('3'))), ziel: null })).fehler;
+  assert.ok(s3.some((f) => /Wissenscheck berichte: stelle 3, aber nur 2 Antworten/u.test(f)), s3.join('\n'));
+  const s0 = (await kompiliere({ pruefe: true, wurzel: neueWurzel(mitBloecken(mitStelle('0'))), ziel: null })).fehler;
+  assert.ok(s0.some((f) => /„stelle“ = 0 liegt außerhalb/u.test(f)), s0.join('\n'));
 });
 
 test('Eigentext (R49): „EW“ und „Mio. EUR“ nur im wortgleichen Zitat; Schwellen der Mandatsleiter überall 100 TEUR bzw. 100.000 € / 5 Mio.', async () => {

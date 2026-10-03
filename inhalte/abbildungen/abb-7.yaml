@@ -1,10 +1,12 @@
 id: abb-7
 quelle: bilder/image7.jpeg
 titel: MVG als Bauherren-Führungsmodell
-alt: 'Fünf Spalten mit Pfeilen: „Zielsystem“ (Zielsystem, Prioritäten, Datenstand, Dokumentierte Optionen), „Rollen & Mandate“ (Rollen, Verantwortung, Mandate, Mandatskarte), „Freigaben & Files“ (Freigabe, Entscheidungsvorlagen, Auswirkungsbewertung, Nachverfolgung), „Steuerungslogik“ (KPIs, Managementberichte, Datenstand, Nachverfolgung), „Betriebshandbuch & Aktive Führung“ („Betriebshandbuch“: Input – Entscheidung – Umsetzung, Governance-Routinen; „Aktive Entscheidungsführung“: vier abgehakte Punkte). Leiste unten (Minimum first, Auswirkungsbewertung, Entscheidungsreife, Evidenz, Auditierbarkeit).'
+alt: 'Fünf Spalten mit Pfeilen: „Zielsystem“ (Zielsystem, Prioritäten, Datenstand, Dokumentierte Optionen), „Rollen & Mandate“ (Rollen, Verantwortung, Mandate, Mandatskarte), „Freigabelogik“ (Freigabe, Entscheidungsvorlagen, Auswirkungsbewertung, Nachverfolgung), „Steuerungslogik“ (KPIs, Managementberichte, Datenstand, Nachverfolgung), „Betriebshandbuch & Aktive Führung“ („Betriebshandbuch“: Input – Entscheidung – Umsetzung, Governance-Routinen; „Aktive Entscheidungsführung“: vier abgehakte Punkte). Leiste unten (Minimum first, Auswirkungsbewertung, Entscheidungsreife, Nachweis, Auditierbarkeit).'
 angeglichen:
   - { x: 944, y: 88, b: 178, h: 26, text: Betriebshandbuch, beleg: k5.2-t1, schrift: barlow, gewicht: 600, groesse: 25, ausrichtung: mitte }
   - { x: 938, y: 166, b: 162, h: 28, text: Betriebshandbuch, beleg: k5.2-t1, schrift: barlow, gewicht: 700, groesse: 22, ausrichtung: mitte }
   - { x: 546, y: 405, b: 99, h: 44, text: "Auswirkungs-\nbewertung", beleg: k5.3-p2, schrift: barlow, gewicht: 700, groesse: 18 }
   - { x: 956, y: 556, b: 126, h: 46, text: "Auswirkungs-\nbewertung", beleg: k5.3-p2, schrift: barlow, gewicht: 700, groesse: 18, farbe: "#0b0d11" }
   - { x: 261, y: 850, b: 190, h: 31, text: Auswirkungsbewertung, beleg: k5.3-p2, schrift: barlow, gewicht: 700, ausrichtung: mitte }
+  - { x: 486, y: 86, b: 164, h: 52, text: Freigabelogik, beleg: k5.2-t1, schrift: barlow, gewicht: 700, groesse: 25, farbe: "#ffffff", ausrichtung: mitte }
+  - { x: 745, y: 851, b: 102, h: 28, text: Nachweis, beleg: k3.1-p1, schrift: barlow, gewicht: 700, groesse: 24, ausrichtung: mitte }

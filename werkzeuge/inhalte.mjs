@@ -81,7 +81,8 @@ const ARTEN = {
   hinweis: { in: TEXT_ORTE, kennung: 'keine', felder: ['text'], pflichtFelder: ['text'] },
   zitat: { in: ZITAT_ORTE, kennung: 'mehrere', felder: ['text'], pflichtFelder: ['text'] },
   // Wissenscheck auf einer Lernseite (P11.6): Frage mit Antworten und Erklärung statt Punkten, Beleg als zitat
-  wissenscheck: { in: ['@theorie', 'abschnitt'], kennung: 'pflicht', felder: ['frage', 'erklaerung'], pflichtFelder: ['frage', 'erklaerung'] },
+  // `stelle` (R73): an welcher Stelle (1 …) die richtige Antwort a erscheint – über alle Fragen verteilt (tests/ui-bauart.test.ts)
+  wissenscheck: { in: ['@theorie', 'abschnitt'], kennung: 'pflicht', kopf: { stelle: { typ: 'zahl', min: 1, max: 3 } }, felder: ['frage', 'erklaerung'], pflichtFelder: ['frage', 'erklaerung'] },
   antwort: { in: ['wissenscheck'], kennung: 'pflicht', kopf: { titel: { typ: 'text', pflicht: true }, praefix: { typ: 'text' }, symbol: { typ: 'text' } }, felder: ['text'] },
   // Theorie
   // P17.9 (O-55): optional `symbol:` (Name aus src/stil/symbole.ts), sonst das Symbol des Themas
@@ -771,7 +772,7 @@ class Kompilierer {
   /**
    * Prüft Art, Ort, Kennung und wandelt Kopfdaten und Felder. Liefert das Rohmaterial für Bauer.
    * @param {Knoten} k
-   * @param {string} eltern  Art des Eltern-Containers oder Dateiart (@station …)
+   * @param {string} eltern  Art des Eltern-Containers oder Dateiart (@theorie, @start …)
    * @param {string} rel
    */
   lies(k, eltern, rel) {
@@ -1096,6 +1097,9 @@ function baueTheorie(c, rel, id, text, regie) {
       if (b.art === 'wissenscheck') {
         const antworten = b.kinder.filter((/** @type {any} */ x) => x.art === 'antwort').length;
         if (antworten < 2) c.fehler(rel, `Wissenscheck ${b.id}: mindestens zwei Antworten`);
+        const stelle = b.kopf?.stelle;
+        if (typeof stelle === 'number' && stelle > antworten) c.fehler(rel, `Wissenscheck ${b.id}: stelle ${stelle}, aber nur ${antworten} Antworten`);
+        if (typeof stelle === 'number' && !b.kinder.some((/** @type {any} */ x) => x.art === 'antwort' && x.id === 'a')) c.fehler(rel, `Wissenscheck ${b.id}: stelle braucht die richtige Antwort a`);
         if (!b.kinder.some((/** @type {any} */ x) => x.art === 'zitat')) c.fehler(rel, `Wissenscheck ${b.id}: Beleg fehlt (zitat)`);
       }
       pruefeCheck(b.kinder ?? []);

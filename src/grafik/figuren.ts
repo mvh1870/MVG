@@ -458,7 +458,7 @@ export const GIMMICKS = [
   'bauzaun', 'warnschild', 'kostenzettel', 'zahlenzettel', 'lieferwagen', 'holzstapel', 'lupe', 'waage',
   'mensateller', 'grundriss', 'geruest-sturm', 'lueftung', 'schulglocke', 'schulbus', 'kaertchen', 'pokal',
   'projektblatt', 'notizzettel', 'telefon', 'kalender', 'absperrband', 'stempel', 'rednerpult', 'schluessel',
-  'buch', 'mappe', 'matrix', 'sonne', 'wegweiser', 'stoppuhr', 'bruecke',
+  'buch', 'mappe', 'matrix', 'sonne', 'wegweiser', 'stoppuhr', 'bruecke', 'eintrag',
 ] as const;
 export type GimmickName = (typeof GIMMICKS)[number];
 
@@ -494,6 +494,7 @@ const GIMMICK_TEXT: Record<GimmickName, string> = {
   wegweiser: 'Ein Wegweiser mit Umweg.',
   stoppuhr: 'Eine Stoppuhr.',
   bruecke: 'Eine Brücke mit einem Riss.',
+  eintrag: 'Ein ausgefüllter Eintrag mit Uhr, Kamera, Zeilen und Häkchen.',
 };
 
 export interface GimmickOptionen {
@@ -732,6 +733,13 @@ const GIMMICK_SVG: Record<GimmickName, () => string> = {
     + pf('gm-teilung', 'M60,33V39M60,81V87M33,60H39M81,60H87')
     + pf('gm-a-beere', 'M60,60L60,33A27,27 0 0 1 83.4,46.5Z')
     + pf('gm-zeiger', 'M60,60L76,44') + kr('gm-tinte', 60, 60, 4),
+  eintrag: () => boden(58, 34)
+    // Blatt auf dem Klemmbrett, oben links die Uhr (Uhrzeit), rechts die Kamera (Fotos), darunter Zeilen mit Häkchen
+    + re('gm-tinte', 18, 12, 80, 92, 6) + re('gm-papier gm-kante', 24, 20, 68, 78, 3) + re('gm-stahl', 44, 8, 28, 10, 3)
+    + kr('gm-d-blau', 40, 38, 10) + kr('gm-papier', 40, 38, 7.4) + pf('gm-zeiger-fein', 'M40,38V33M40,38L44,40')
+    + re('gm-a-lagune', 58, 30, 26, 17, 3) + re('gm-d-lagune', 62, 27, 8, 4, 1.5) + kr('gm-d-lagune', 71, 38.5, 6) + kr('gm-glas-hell', 71, 38.5, 3.6)
+    + re('gm-linie-flaeche', 32, 58, 32, 3.4, 1.7) + re('gm-linie-flaeche-hell', 32, 68, 40, 3, 1.5) + re('gm-linie-flaeche-hell', 32, 78, 36, 3, 1.5)
+    + pf('gm-haken-gruen', 'M72,82L77,87L86,74'),
   bruecke: () => {
     let boegen = 'M8,58H112V98H8Z';
     for (const x of [26, 60, 94]) boegen += `M${x - 12},98V82A12,12 0 0 1 ${x + 12},82V98Z`;

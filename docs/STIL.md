@@ -15,7 +15,7 @@ Stand P17.9 (2026-10-03). Verbindlich für alle Flächen der Seite (ARCHITEKTUR.
 | `src/stil/start.css` | Startseite mit drei Wegen (Story breit mit isometrischem Campus und den Figuren, Theorie mit den vier Teilen, Explore mit den Gegenständen der Werkzeuge) und Campus-Hintergrund, Baukörper in den Akzenttönen (P17.7) |
 | `src/stil/theorie.css` | ruhige Lernseiten der Themen; Verzeichnis ab 1100 px klebend und in sich rollend, Glossar, Lernwerkzeuge, Abbildungen, Druckbogen |
 | `src/stil/rahmen.css` | Seitenrahmen (Kopf, Fuß, Sprunglink) und Bauplan-Hintergründe |
-| `src/stil/geschichte.css` | Story (Fluss, Fortschrittslinie, Statusanzeige, Vorlage mit gewichtetem Vergleich, Vertiefungen) |
+| `src/stil/geschichte.css` | Story als Spiel (Auftakt mit Figuren, Kapitel mit Szene, Frage mit drei Antworten, Folge, Balken Geld · Zeit · Vertrauen, „So macht man es gut“, Mini-Aufgaben, Vergleich in Kapitel 7, „Das steckt dahinter“, Bilanz, Story-Druckbogen) |
 | `src/stil/explore.css` | Explore-Werkzeuge; je Werkzeug Akzentton (`data-ton`, `WERKZEUG_BILD` in explore.ts: Rechner Violett, Matrix Blau, Vorgänge Lagune, Takt Sonne, Glossar Grün) und Gegenstand aus figuren.ts; Kopf auf Rasterpapier im Ton des aktiven Werkzeugs (P17.7) |
 | `src/stil/grafik.css` | isometrischer Campus (`src/grafik/campus-iso.ts`): Flächen je Material, Jahreszeit und Licht über `data-jahreszeit`/`data-licht`; Figuren und Gegenstände (`src/grafik/figuren.ts`, `fig-*`, `gm-*`) |
 | `src/stil/index.css` | Einstieg für esbuild: `../generiert/schriften.css` → tokens → basis → tafeln → regie → start → theorie → rahmen → geschichte → explore → grafik |
@@ -325,7 +325,7 @@ Klassennamen deutsch. Zustände über `ist-…`-Klassen oder ARIA (`aria-current
     <div class="start-einstieg"><p class="start-kicker">…</p><h1 class="start-titel">…</h1><p class="start-these">…</p><p class="start-internetseite">…</p></div>
     <nav class="tueren" aria-label="…">
       <a class="tuer" data-weg="story" href="#story"><h2 class="tuer-titel"><span class="tuer-kicker">…</span>…</h2><p class="tuer-text">…</p>
-        <span class="tuer-meta"><span>Acht Entscheidungen · etwa 25 Minuten, kurz etwa 10</span><span class="tuer-los">Beginnen symbol('pfeilRechts')</span></span></a>
+        <span class="tuer-meta"><span>Acht Entscheidungen · etwa 25 Minuten, kurz etwa 11</span><span class="tuer-los">Beginnen symbol('pfeilRechts')</span></span></a>
       <a class="tuer" data-weg="theorie" …>…</a>
       <a class="tuer" data-weg="explore" …>…</a>
     </nav>
@@ -337,23 +337,7 @@ Klassennamen deutsch. Zustände über `ist-…`-Klassen oder ARIA (`aria-current
 Hintergrund `.start-hintergrund` mit dem Campus (`src/grafik/bauplan.ts`, `campus()`), in `start.css`.
 
 ### Story
-```html
-<header class="gs-leiste"><ol class="gs-punkte">(Fortschrittslinie, je Schritt 24 px Trefferfläche)</ol><div class="gs-status">Kosten · Termin · offene Entscheidungen</div></header>
-<section class="gs-schritt">
-  <header class="gs-kopf"><p class="gs-kicker">…</p><h1 class="gs-titel">…</h1></header>
-  <div class="gs-text">Lage</div>
-  <section class="gs-vorlage">Vorlage der Projektsteuerung: <p class="gs-frage">…</p>
-    <div class="gs-optionen"><button class="gs-option" aria-pressed="false">…</button>…</div>
-    <section class="gs-gewichte"><div class="gs-regler">(Gewichte je Kriterium)</div></section>
-    <section class="gs-mcda"><div class="gs-vergleich">(Rangfolge)</div><div class="gs-kipp">…</div></section>
-    <section class="gs-empfehlung">…</section></section>
-  <section class="gs-entscheidung">Folge · <div class="gs-merksatz">…</div></section>
-  <details class="gs-vertiefung"><summary>So läuft es oft</summary>…</details>
-  <details class="gs-vertiefung"><summary>Typischer Einwand und Antwort</summary>…</details>
-  <nav class="gs-navi">Zurück · Weiter</nav>
-</section>
-```
-Hintergrund `.gs-hintergrund` mit dem Campus im Bau (`stufeAusLph`), sehr dezent. In `geschichte.css`.
+Ein Fluss mit „Weiter“, Schritt für Schritt (L-232): Auftakt (Figuren, Balken, Wahl ganze Geschichte oder Kurzfassung) · je Kapitel Szene (`gs-buehne`, Campus und Dialog in Sprechblasen `gs-blase`), in Kapitel 7 der Vergleich (`gs-gewicht`), Frage mit drei Antworten (`gs-antworten`), nach der Wahl im selben Schritt Folge (`gs-folge`), Balken und „So macht man es gut“, in jedem zweiten Kapitel die Mini-Aufgabe, am Kapitelende der Kasten „Das steckt dahinter“ (`gs-kasten-dahinter`) · Ende mit Bilanz (`gs-bilanz`). Brückensätze der Kurzfassung oben im nächsten Schritt (`gs-bruecke`). Aufbau und Klassen im Einzelnen: `src/ui/flaechen/geschichte.ts`; Campus `src/grafik/campus-iso.ts`. In `geschichte.css`.
 
 ### Theorie-Lernseite
 ```html

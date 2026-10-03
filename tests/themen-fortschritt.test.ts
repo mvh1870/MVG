@@ -45,6 +45,9 @@ test('Fortschritt: geschafft erst, wenn alle Verständnisfragen beantwortet sind
   assert.equal(istGeschafft(EBENE, f), false, 'Antworten gelten nur für ihr Thema');
   // das Seitenende zählt nicht für Themen mit Fragen
   assert.equal(istGeschafft(EBENE, mitGelesen(f, EBENE)), false);
+  // r73: und speichert nichts (Datenschutz nennt nur Themen ohne Fragen)
+  assert.equal(mitGelesen(f, EBENE), f, 'Thema mit Fragen: Stand unverändert');
+  assert.equal(mitGelesen(f, ZWEI), f, 'Thema mit Fragen: Stand unverändert');
 });
 
 test('Fortschritt: Themen ohne Verständnisfragen gelten mit dem Seitenende als geschafft; der Anhang zählt nie', () => {

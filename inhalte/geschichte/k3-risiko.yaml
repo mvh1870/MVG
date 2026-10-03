@@ -44,7 +44,7 @@ antworten:
     folge: |
       Clara Faden schüttelt freundlich den Kopf: „Was vorrangig ist, melde ich gleich – nicht erst, wenn es bestätigt ist.“ Sie setzt das Risiko auf die Tagesordnung des Lenkungskreises, und die Bürgermeisterin ruft an, bevor Sie es ihr erklären konnten: „Sie wollten damit warten? Was weiß ich sonst noch nicht?“
 
-      Nun will sie selbst erst die Bestätigung eines zweiten Holzbauers. Sechs Wochen später entscheidet sie auf Vorlage der Projektsteuerin: früher ausschreiben, aus der Reserve – nur kostet es jetzt mehr, weil die Ausschreibung eilt.
+      Die Vorlage aber fehlt noch, weil Sie die Bestätigung abwarten wollten. Sie liegt erst sechs Wochen später auf dem Tisch. Dann entscheidet die Bürgermeisterin: früher ausschreiben, aus der Reserve – nur kostet es jetzt mehr, weil die Ausschreibung eilt.
   - wertung: gut
     text: "Sie sagen der Bürgermeisterin sofort Bescheid; die Vorlage – früher ausschreiben oder abwarten – liegt ihr diese Woche vor."
     balken: { geld: -1, zeit: 2, vertrauen: 1 }

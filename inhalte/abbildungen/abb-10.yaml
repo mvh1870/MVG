@@ -3,7 +3,7 @@ quelle: bilder/image10.jpeg
 titel: Verknüpfungen zwischen Frühwarnung, Risiko, Entscheidung, Freigabe und Maßnahme
 alt: >-
   Legende „Lebenszyklus / ‚wird zu‘“: Risiko (wesentlich) → Entscheidungsregister (ausarbeiten) →
-  Entscheidungsvorlage (reif) → Freigabe (LPH 0–9, Freigabeentscheidung); Frühwarnung (wird zu, bestätigt) → Risiko; Problem
+  Entscheidungsvorlage (reif) → Freigabe (LPH 0–9, Freigabeentscheidung); Frühwarnung (unbewertetes Signal, wird zu) → Risiko; Problem
   (eskaliert), Änderung (erfordert) → Register; Vorlage (führt zu) → Änderung (beeinflusst) → CTC / Prognose;
   Vorlage (erzeugt), Freigabe (Auflagen) → Maßnahme. „Überwachung / Indikator“: „Schwellenwert löst
   Frühwarnung aus“ → Frühwarnung, CTC; Maßnahme (Risikominderung, Regelkreis schließt) →
@@ -16,3 +16,6 @@ angeglichen:
   - { x: 4, y: 236, b: 98, h: 52, text: "", beleg: k6.4.3-p2, hintergrund: "#f6f9fc" }
   - { x: 40, y: 200, b: 22, h: 162, text: "", beleg: k6.4.3-p2, hintergrund: "#f6f9fc" }
   - { x: 45, y: 194, b: 12, h: 6, text: "", beleg: k6.4.3-p2, hintergrund: "#e3e6eb" }
+  - { x: 138, y: 143, b: 146, h: 24, text: unbewertetes Signal, beleg: k6.4.3-p2, schrift: barlow, gewicht: 500 }
+  # „(bestätigt)“ entfällt: nach V2.4 (HB 1.2) führt eine geklärte Frühwarnung zu Risiko, Problem oder Aufgabe oder wird begründet geschlossen
+  - { x: 180, y: 242, b: 82, h: 23, text: "", beleg: k6.4.3-p2 }

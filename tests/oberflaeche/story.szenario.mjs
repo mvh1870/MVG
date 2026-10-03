@@ -2,6 +2,7 @@
 // Vergleich mit Stufen, Schulstart mit Bilanz; Kurzfassung mit Brücken und Aufklappern (P17.5); Fokus nie auf <body>, axe, Layout bei
 // 320/400/1024/1280 px (pruefer misst schmal auch bei 320 px), keine verbotenen Wörter, Fortschritt löschen.
 import { pruefer, sichtbarVerboten } from './hilfen.mjs';
+import { pdfSeiten, seitenMitUeberschriftAmEnde } from './pdf.mjs';
 
 export const name = 'story';
 export const hash = '#story';
@@ -165,6 +166,21 @@ export async function lauf(seite, h) {
   await h.erwarte('[data-pruef="gs-bilanz-titel"]');
   await verboten('Schulstart');
   await pruefe('schulstart');
+  // R73: Strg+P am Ende des langen Wegs als echtes PDF (page.pdf löst beforeprint aus) – kein Kopf allein am Seitenende,
+  // keine fast leere Seite; „So macht man es gut“ steht nur bei Kapiteln mit Wahl
+  if (breit) {
+    const koepfe = await seite.evaluate(() => ['So macht man es gut', ...[...document.querySelectorAll('[data-pruef="gs-fortschritt"] [data-art="kapitel"]')].map((x) => (x.getAttribute('title') ?? '').replace(/^\d+ von \d+ · /u, ''))]);
+    await seite.emulateMedia({ media: 'print', reducedMotion: 'reduce' });
+    const pdf = await pdfSeiten(await seite.pdf({ format: 'A4' }));
+    await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
+    const amEnde = seitenMitUeberschriftAmEnde(pdf, koepfe);
+    if (amEnde.length > 0) h.befund(`Story-Druck: Überschrift am Seitenende ${JSON.stringify(amEnde.slice(0, 4))}`);
+    const fastLeer = pdf.slice(0, -1).map((x, i) => ({ s: i + 1, f: x.fuellung ?? 1 })).filter((x) => x.f < 0.25);
+    if (fastLeer.length > 0) h.befund(`Story-Druck: fast leere Seite ${JSON.stringify(fastLeer)}`);
+    const text = pdf.flatMap((x) => x.zeilen).join(' ');
+    if (!/Ihre Bilanz/u.test(text)) h.befund('Story-Druck am Ende ohne Bilanz');
+    if (koepfe.length < 9) h.befund(`Story-Druck: nur ${koepfe.length - 1} Kapiteltitel gelesen`);
+  }
 
   // Kurzfassung: Brücken und Bilanz
   await h.klick('[data-pruef="von-vorn"]');

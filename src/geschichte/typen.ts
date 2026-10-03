@@ -97,6 +97,8 @@ export interface MiniWahl {
   figur: FigurId | 'sie' | null;
   /** feste Rückmeldung, wenn diese Wahl falsch ist (bei jedem Posten gleich) */
   falschHtml: string | null;
+  /** kurze Bedeutung der Wahl, oben als Legende gezeigt (R75: lösbar ohne Fachwissen) */
+  heisstHtml: string | null;
   /** kleine Grafik der Ablage (Name für `gimmick`), z. B. „übergeben“ → Mappe */
   bild: string | null;
 }

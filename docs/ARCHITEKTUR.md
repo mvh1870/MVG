@@ -1,6 +1,6 @@
 # Architektur
 
-Stand P17 (2026-10-03, Neugestaltung O-50 bis O-58 auf der Neuausrichtung O-36 bis O-49; Prüfrunde r72). Verbindlich für alle Posten; Abweichungen nur mit L-Eintrag.
+Stand P17 (2026-10-03, Neugestaltung O-50 bis O-58 auf der Neuausrichtung O-36 bis O-49; Prüfrunden bis R75). Verbindlich für alle Posten; Abweichungen nur mit L-Eintrag.
 
 ## Fluss
 ```
@@ -28,7 +28,7 @@ quellen/ + inhalte/  ──werkzeuge (Node)──►  src/generiert/ (ignoriert)
 | `src/ui/bausteine/` | `seite.ts` (gemeinsamer Rahmen: Kopf mit Bildmarke und den drei Bereichen, Fuß mit Absender, Impressum, Datenschutz, „Präsentieren“), `inhalt.ts` (Inhalts-HTML aufbereiten, Glossarbezüge), `bloecke.ts` (Hinweis, Merksatz, Tafel), `lernwerkzeuge.ts` (Etappen, Umschalter, Sortieren, Regler; Karten und Wissenscheck zeichnet `flaechen/theorie.ts`), `abbildung.ts` (Figur mit Bild, Marke und Titel – kein Vergrößern, keine Abweichungen; O-55, O-56), `tooltip.ts` (Glossar-Hinweis) |
 | `src/grafik/` | `tafel.ts` (Tabellen als klickbare Grafiken, `::: tafel`), `bauplan.ts` (Hintergründe im Stil „Bauplan“ für Start, Theorie und Vorschaubild, O-45), `campus-iso.ts` (isometrischer Campus der Story, Stufen 0–8, Jahreszeit, Licht; O-53), `figuren.ts` (Porträts der Figuren und kleine Gegenstände der Szenen), `themen-bilder.ts` (16 Kapitel-Illustrationen der Themen als Schmuck, `aria-hidden`; L-231). Regel für alle Grafiken: SVG als Text, ohne `id` und `url()` (mehrere Bilder je Seite, L-229), deterministisch (kein Zufall, keine Uhr; gleiche Eingabe → gleiches SVG) |
 | `src/regie/` | `kanal.ts` (BroadcastChannel + storage-Rückfall), `buehne.ts` (öffentlicher Stand der Bühne und `pruefeBuehne`), `regie.ts` (Regie-Fläche, Stand unter `gk.regie`), `eingriffe.ts` (rein: Sprung je Schritt, Wahl zurücknehmen, Mini-Aufgabe auflösen, kurze Knopftexte), `leinwand.ts` (Leinwand und Vorschau-Zeichnung; rollt zur Folge, zu den Karten, zum gesetzten Posten) |
-| `src/stil/` | `tokens.css`, `basis.css`, Bereichs-CSS (`leitstand`, `start`, `theorie`, `rahmen`, `geschichte`, `explore`), Einstieg `index.css`; `farben.ts`, `symbole.ts`, `paare.json` für Prüfungen; `src/generiert/schriften.css` wird erzeugt |
+| `src/stil/` | `tokens.css`, `basis.css`, Bereichs-CSS in der Reihenfolge von `index.css` (`tafeln`, `regie`, `start`, `theorie`, `rahmen`, `geschichte`, `explore`, `grafik`), Einstieg `index.css`; `farben.ts`, `akzente.ts`, `symbole.ts`, `paare.json` für Prüfungen; `src/generiert/schriften.css` wird erzeugt |
 | `werkzeuge/` | siehe „Werkzeuge“ |
 | `tests/` | `*.test.ts` (node:test, jsdom wo nötig); Browser-Szenarien unter `tests/oberflaeche/` (Start, Story, Theorie, Explore, Regie, PDF) |
 | `dist/` | der ausgelieferte Webseitenordner (committet) |

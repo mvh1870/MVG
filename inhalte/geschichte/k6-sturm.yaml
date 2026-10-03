@@ -6,7 +6,7 @@ nr: 6
 titel: Ärger auf der Baustelle
 zeit: Februar 2027
 campus: { stufe: 4, jahreszeit: winter, licht: tag, wetter: sturm }
-bruecke: Im Februar lockert ein Sturm das Gerüst. Der Bauleiter sperrt sofort, die Projektsteuerin hält es am selben Tag fest.
+bruecke: Im Februar lockert ein Sturm das Gerüst; der Bauleiter sperrt sofort, und die Projektsteuerin hält es am selben Tag fest.
 thema: takt
 belege: [v24:hb-4, v24:hb-3, v24:hb-1.4, v24:hb-3.1, v24:hb-1.6, v24:tlb-5, v24:va-5.2, v24:hb-5]
 bild-szene: telefon
@@ -42,9 +42,9 @@ antworten:
     folge: |
       Gesperrt wird sofort, niemand kommt zu Schaden. Clara Faden liest Ihre Nachricht am Abend, meldet den Schaden und legt noch am selben Tag den Eintrag an.
 
-      Aber vor Ort hat niemand Uhrzeit und Fotos festgehalten, und die Sicherheitskoordination war nicht da – so bestreitet die Gerüstfirma, dass der Sturm schuld ist. Nach einer Woche ist geklärt, wer zahlt. Theo Lot murmelt: „Hätten wir's mal gleich aufgeschrieben.“
+      Aber vor Ort hat niemand Uhrzeit und Fotos festgehalten, und die Sicherheitskoordination hat niemand gleich gerufen – so bestreitet die Gerüstfirma, dass der Sturm schuld ist. Nach einer Woche ist geklärt, wer zahlt. Theo Lot murmelt: „Hätten wir's mal gleich aufgeschrieben.“
   - wertung: falle
-    text: Sperren Sie nur die Seite mit den losen Ankern. An der anderen wird weitergearbeitet, bis der Gerüstbauer kommt.
+    text: Sperren Sie die Seite mit den losen Ankern. Die andere Seite steht fest – dort arbeiten die Zimmerleute weiter, bis der Gerüstbauer kommt.
     balken: { geld: -1, zeit: -2, vertrauen: -2 }
     bild: warnschild
     folge: |
@@ -56,7 +56,7 @@ gut: |
 mini:
   art: reihenfolge
   titel: Was kommt wann?
-  aufgabe: Bringen Sie die Schritte nach dem Sturm in die richtige Reihenfolge.
+  aufgabe: Bringen Sie die Schritte nach dem Sturm in die richtige Reihenfolge. Wählen Sie sie dazu nacheinander an – zuerst den Schritt, der als Erstes kommt.
   bild: geruest-sturm
   # in der richtigen Reihenfolge; die Seite zeigt sie fest gemischt (src/geschichte/engine.ts, gemischt)
   posten:

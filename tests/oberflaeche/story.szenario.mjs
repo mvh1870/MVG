@@ -2,7 +2,7 @@
 // Vergleich mit Stufen, Schulstart mit Bilanz; Kurzfassung mit Brücken und Aufklappern (P17.5); Fokus nie auf <body>, axe, Layout bei
 // 320/400/1024/1280 px (pruefer misst schmal auch bei 320 px), keine verbotenen Wörter, Fortschritt löschen.
 import { pruefer, sichtbarVerboten } from './hilfen.mjs';
-import { pdfSeiten, seitenMitUeberschriftAmEnde } from './pdf.mjs';
+import { flach, pdfSeiten, seitenMitUeberschriftAmEnde } from './pdf.mjs';
 
 export const name = 'story';
 export const hash = '#story';
@@ -64,6 +64,43 @@ export async function lauf(seite, h) {
   const fokus = () => seite.evaluate(() => (document.activeElement === document.body ? 'BODY' : document.activeElement?.getAttribute('data-pruef') ?? document.activeElement?.tagName ?? ''));
   const teil = () => seite.evaluate(() => document.body.dataset['teil'] ?? '');
   const breit = seite.viewportSize()?.width === 1280;
+  /**
+   * Strg+P als echtes PDF (R73, R75): kein Kopf allein am Seitenende, keine fast leere Seite, die Bilanz steht da, und
+   * „So macht man es gut“ beginnt nie oben auf einer Seite, deren Vorgängerin mit der Antwort endet (Paar bleibt beisammen).
+   * @param {string} wo @returns {Promise<number>} Zahl der gelesenen Kapiteltitel
+   */
+  // R75: der Campus ist oben nie abgeschnitten (Kran, Dächer) – Oberkante der Szene ohne Himmel im Rahmen
+  const campusGanz = async (wo) => {
+    const r = await seite.evaluate(() => {
+      const rahmen = document.querySelector('article.gs-schritt .gs-campus-gross');
+      const szene = rahmen?.querySelector('.ci-szene');
+      if (!rahmen || !szene) return null;
+      const text = document.querySelector('article.gs-schritt [data-pruef="gs-einstieg"]');
+      return { rahmen: rahmen.getBoundingClientRect().top, szene: szene.getBoundingClientRect().top, text: text ? text.getBoundingClientRect().top + scrollY : null };
+    });
+    if (r === null) { h.befund(`${wo}: kein großer Campus`); return; }
+    if (r.szene < r.rahmen - 0.5) h.befund(`${wo}: Campus oben abgeschnitten (Szene ${Math.round(r.szene)}, Rahmen ${Math.round(r.rahmen)})`);
+    // bei 1280×720 beginnt der Text der Szene über der Falz (R75)
+    const hoehe = seite.viewportSize()?.height ?? 0;
+    if (breit && r.text !== null && r.text > hoehe - 60) h.befund(`${wo}: Text der Szene beginnt erst bei ${Math.round(r.text)} px`);
+  };
+  const druckProbe = async (wo) => {
+    const titel = await seite.evaluate(() => [...document.querySelectorAll('[data-pruef="gs-fortschritt"] [data-art="kapitel"]')].map((x) => (x.getAttribute('title') ?? '').replace(/^\d+ von \d+ · /u, '')));
+    await seite.emulateMedia({ media: 'print', reducedMotion: 'reduce' });
+    const pdf = await pdfSeiten(await seite.pdf({ format: 'A4' }));
+    await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
+    const amEnde = seitenMitUeberschriftAmEnde(pdf, ['So macht man es gut', 'Ihre Bilanz', ...titel]);
+    if (amEnde.length > 0) h.befund(`${wo}: Überschrift am Seitenende ${JSON.stringify(amEnde.slice(0, 4))}`);
+    const fastLeer = pdf.slice(0, -1).map((x, i) => ({ s: i + 1, f: x.fuellung ?? 1 })).filter((x) => x.f < 0.25);
+    if (fastLeer.length > 0) h.befund(`${wo}: fast leere Seite ${JSON.stringify(fastLeer)}`);
+    const gut = flach('So macht man es gut');
+    pdf.forEach((x, i) => { if (i > 0 && flach(x.zeilen[0] ?? '') === gut) h.befund(`${wo}: „So macht man es gut“ oben auf Seite ${i + 1}, getrennt von der Antwort`); });
+    // ein Kapitel bleibt beisammen: jede weitere Seite beginnt mit einem Kapitelkopf („7 · …“) oder der Bilanz
+    pdf.forEach((x, i) => { if (i > 0 && !/^(\d+ · |Ihre Bilanz)/u.test(x.zeilen[0] ?? '')) h.befund(`${wo}: Seite ${i + 1} beginnt mitten in einem Kapitel („${(x.zeilen[0] ?? '').slice(0, 40)}“)`); });
+    const text = pdf.flatMap((x) => x.zeilen).join(' ');
+    if (!/Ihre Bilanz/u.test(text)) h.befund(`${wo}: am Ende ohne Bilanz`);
+    return titel.length;
+  };
   // O-53 (R72): auch der Schritt der Mini-Aufgabe zeigt eine Grafik – breit die große, schmal die kleinen auf den Karten
   const grafikDa = async (wo) => {
     const mass = await seite.evaluate(() => Math.max(0, ...[...document.querySelectorAll('article.gs-schritt .gs-gegenstand svg')].map((x) => x.getBoundingClientRect().width)));
@@ -78,6 +115,7 @@ export async function lauf(seite, h) {
   await h.erwarte('.gs-dialog .gs-zeile[data-figur="grundstein"]');
   if ((await fokus()) !== 'gs-titel') h.befund(`Kapitel 1: Fokus nach dem Start auf ${await fokus()}`);
   await verboten('1 Szene');
+  await campusGanz('1 Szene');
   await pruefe('k1-szene');
   await weiter();
   // ohne Wahl kein Weiter – Hinweis, Fokus auf der ersten Antwort
@@ -120,6 +158,7 @@ export async function lauf(seite, h) {
   // Kapitel 6: Reihenfolge
   await seite.goto(h.url.replace(/#.*$/u, '') + '#story/k6');
   await h.erwarte('[data-pruef="gs-titel"]:has-text("Ärger auf der Baustelle")');
+  await campusGanz('6 Szene');
   await weiter();
   await h.klick('[data-pruef="antwort-1"]');
   await weiter();
@@ -135,6 +174,8 @@ export async function lauf(seite, h) {
 
   // Kapitel 7: Vergleich
   await seite.goto(h.url.replace(/#.*$/u, '') + '#story/k7');
+  await h.erwarte('[data-pruef="gs-titel"]:has-text("Die große Entscheidung")');
+  await campusGanz('7 Szene');
   await weiter();
   if ((await teil()) !== 'vergleich') h.befund(`Kapitel 7: Schritt „${await teil()}“, erwartet der Vergleich`);
   const vorn = async () => (await seite.locator('[data-pruef="gs-vgl-vorn"]').innerText()).trim();
@@ -169,17 +210,8 @@ export async function lauf(seite, h) {
   // R73: Strg+P am Ende des langen Wegs als echtes PDF (page.pdf löst beforeprint aus) – kein Kopf allein am Seitenende,
   // keine fast leere Seite; „So macht man es gut“ steht nur bei Kapiteln mit Wahl
   if (breit) {
-    const koepfe = await seite.evaluate(() => ['So macht man es gut', ...[...document.querySelectorAll('[data-pruef="gs-fortschritt"] [data-art="kapitel"]')].map((x) => (x.getAttribute('title') ?? '').replace(/^\d+ von \d+ · /u, ''))]);
-    await seite.emulateMedia({ media: 'print', reducedMotion: 'reduce' });
-    const pdf = await pdfSeiten(await seite.pdf({ format: 'A4' }));
-    await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
-    const amEnde = seitenMitUeberschriftAmEnde(pdf, koepfe);
-    if (amEnde.length > 0) h.befund(`Story-Druck: Überschrift am Seitenende ${JSON.stringify(amEnde.slice(0, 4))}`);
-    const fastLeer = pdf.slice(0, -1).map((x, i) => ({ s: i + 1, f: x.fuellung ?? 1 })).filter((x) => x.f < 0.25);
-    if (fastLeer.length > 0) h.befund(`Story-Druck: fast leere Seite ${JSON.stringify(fastLeer)}`);
-    const text = pdf.flatMap((x) => x.zeilen).join(' ');
-    if (!/Ihre Bilanz/u.test(text)) h.befund('Story-Druck am Ende ohne Bilanz');
-    if (koepfe.length < 9) h.befund(`Story-Druck: nur ${koepfe.length - 1} Kapiteltitel gelesen`);
+    const koepfe = await druckProbe('Story-Druck lang');
+    if (koepfe < 8) h.befund(`Story-Druck: nur ${koepfe} Kapiteltitel gelesen`);
   }
 
   // Kurzfassung: Brücken und Bilanz
@@ -212,6 +244,8 @@ export async function lauf(seite, h) {
   const ort = (await seite.locator('[data-pruef="gs-ort"]').textContent()) ?? '';
   if (!/Ende/u.test(ort)) h.befund(`Kurzfassung: Ort am Ende „${ort}“`);
   await pruefe('kurz-ende');
+  // R75: Druck auch am Ende der Kurzfassung (Auftrag: „nach langem Weg und nach Kurzfassung“)
+  if (breit) await druckProbe('Story-Druck kurz');
 
   // Fortschritt löschen → Auftakt, Fokus nicht auf <body>
   await h.klick('[data-pruef="fortschritt-loeschen"]');

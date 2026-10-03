@@ -11,6 +11,7 @@ Die Runden vor der Neuausrichtung (bis Runde 66, alter Aufbau mit Welten, Rollen
 | 72 | 0d1a565 | 5 (Abbildungen 8 und 11 lehren Falsches ohne die Abweichungen; „Ruhig ins Ziel“ und Geld-Satz passen nicht auf allen Wegen) | 30 | 51 | eingearbeitet (L-237–L-240) |
 | 73 | 8d07401 | 2 (abb-12 lehrt die RACI-Matrix; Bilanz urteilt auf Wegen mit offenen Entscheidungen) | 19 | 42 | eingearbeitet (L-241–L-246) |
 | 74 | d0df1b2 | 1 (abb-12 zeigt fünf erfundene Domänen gegen „zehn Domänen“ im Text) | 8 | 41 | eingearbeitet (L-247–L-250) |
+| 75 | c03ddde | 0 | 12 | 40 | eingearbeitet (L-251–L-252); erste Runde ohne schweren Befund |
 
 ## Runden der Neuausrichtung (P16.15)
 

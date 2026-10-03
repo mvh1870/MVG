@@ -24,7 +24,7 @@ Die Startseite bietet drei Wege und darunter „Wer steht dahinter“ mit einem 
    - **Fläche**: Start, Story, Theorie oder Explore.
    - **Zurück/Weiter** oder ← →: in der Story Schritt für Schritt.
    - ↑ ↓: rollt die Leinwand, wenn der Inhalt länger ist als der Bildschirm.
-   - **Springen zu** jedem Schritt (Auswahl oder Knöpfe Auftakt · 1–8 · Schulstart, darunter die Schritte des Kapitels: Szene, Vergleich, Frage, Mini-Aufgabe), **Kurzfassung** ein/aus, **Von vorn beginnen**. Ein Schritt außerhalb der Kurzfassung schaltet auf die ganze Geschichte.
+   - **Springen zu** jedem Schritt (Auswahl oder Knöpfe Auftakt · 1–8 · Ende, darunter die Schritte des Kapitels: Szene, Vergleich, Frage, Mini-Aufgabe), **Kurzfassung** ein/aus, **Von vorn beginnen**. Ein Schritt außerhalb der Kurzfassung schaltet auf die ganze Geschichte.
    - **Kundenwahl und Eingriffe** je Schritt: an der Frage „Antwort 1–3“ mit den ersten Wörtern (Tasten **1, 2, 3**) und dezent die Wertung gut · vertretbar · Falle – nur in der Regie; „Wahl zurücknehmen“. Im Vergleich (Kapitel 7) die Gewichte je Gesichtspunkt mit Rangfolge; die Leinwand ordnet die drei Wege um. In der Mini-Aufgabe je Posten die Zuordnung (die richtige mit ✓ markiert) bzw. die Reihenfolge anklicken, **Auflösen** oder **Zurücksetzen**.
    - Die Leinwand rollt nach einer Wahl von selbst zur Folge, nach neuen Gewichten zu den Karten und in der Mini-Aufgabe zum gesetzten Posten.
    - **Theorie** und **Explore**: ein Thema oder Werkzeug wählen und auf der Leinwand zeigen.

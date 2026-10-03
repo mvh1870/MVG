@@ -62,6 +62,8 @@
 .kapitel-titel { font: 800 clamp(30px, 3.6vw, 44px)/1.02 var(--schrift-anzeige); letter-spacing: .01em; color: var(--navy); }
 /* R47: Titel nie mitten im Wort gebrochen – das längste Wort (--zeichen, gesetzt beim Bauen) bestimmt die Höchstgröße im Schmalen */
 .kapitel-titel[style*="--zeichen"] { font-size: min(clamp(30px, 3.6vw, 44px), calc((100vw - 40px) * 2 / var(--zeichen, 1))); }
+/* R75: Nummer und erstes Wort des Titels bleiben zusammen (theorie.ts, themaKopfTitel) */
+.thema-anfang { white-space: nowrap; }
 .kapitel-einstieg { grid-column: 1 / -1; max-width: 60ch; margin-top: var(--a-3); font-size: var(--gr-xl); line-height: 1.5; color: var(--tinte-2); }
 
 /* Kernaussage (entspricht Ebene 1; P17.9: groß, mit dem Symbol des Themas in der Farbe des Teils) */
@@ -545,7 +547,8 @@ html:has(.lernseite) { scroll-padding-top: 72px; }
 .seite-theorie :focus-visible { box-shadow: 0 0 0 6px var(--fokus-hof); }
 .lern-hintergrund { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .12; }
 .lern-hintergrund .bauplan { width: 100%; height: 100%; }
-.seite-theorie .kapitel-verzeichnis { top: var(--a-4); max-height: calc(100vh - var(--a-8)); }
+/* R75: nur breit klebend und begrenzt – unter 1100 px läuft das geöffnete Verzeichnis sonst aus seiner Box unter die Kopfgrafik */
+@media (min-width: 1100px) { .seite-theorie .kapitel-verzeichnis { top: var(--a-4); max-height: calc(100vh - var(--a-8)); } }
 .lern-kontakt { padding-top: var(--a-4); border-top: 1px solid var(--linie); color: var(--tinte-2); font: var(--typo-klein); }
 .seite-theorie .kapitel-kopf { display: flex; flex-direction: column; align-items: flex-start; }
 .seite-theorie .kapitel-titel:focus { box-shadow: none; }

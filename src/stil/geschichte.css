@@ -141,6 +141,8 @@ button.gs-feld:hover { border-color: var(--gold); }
 
 /* Campus: groß, mit Rahmen und weichem Schatten */
 .gs-buehnenbild { position: relative; }
+/* R75: bei geringer Fensterhöhe nicht höher als gut die Hälfte des Fensters – der Text der Szene beginnt über der Falz */
+.gs-buehnenbild:has(> .gs-campus-gross) { width: 100%; max-width: calc(50vh * 2.2); margin-inline: auto; }
 .gs-campus { position: relative; overflow: hidden; border-radius: 24px; box-shadow: 0 2px 0 var(--linie), var(--schatten-tuer); background: var(--flaeche-4); }
 .gs-campus > svg { width: 100%; height: 100%; }
 .gs-campus-gross { aspect-ratio: 2.2 / 1; }
@@ -235,6 +237,11 @@ button.gs-antwort:active { transform: translateY(2px); box-shadow: var(--schatte
 }
 .gs-antwort[aria-pressed="true"] { border-color: var(--gold); background: var(--gold-soft); box-shadow: 0 0 0 4px var(--gold-hell-a45), var(--schatten-karte-hoch); }
 .gs-antwort.ist-andere { background: var(--flaeche-2); box-shadow: none; }
+/* R75: nach der Wahl treten die anderen beiden Antworten zurück – kleiner, damit die Folge näher rückt */
+.gs-antworten:has(.ist-andere) { align-items: start; }
+.gs-antworten:has(.ist-andere) .gs-antwort { padding: var(--a-3) var(--a-4) var(--a-4); gap: var(--a-2); }
+.gs-antwort.ist-andere { font: var(--typo-klein); color: var(--tinte-2); }
+.gs-antworten:has(.ist-andere) .gs-antwort-nr { width: 30px; height: 30px; font-size: var(--gr-xl); }
 .gs-antwort-marke {
   display: inline-flex; align-items: center; gap: var(--a-1); justify-self: start;
   padding: 2px var(--a-3); border-radius: var(--radius-rund);
@@ -361,7 +368,12 @@ button.gs-antwort:active { transform: translateY(2px); box-shadow: var(--schatte
 .gs-mini-aufgabe:has(.gs-mini-bild) { grid-template-columns: auto minmax(0, 1fr) auto; }
 .gs-mini-karte { display: flex; gap: var(--a-3); align-items: center; }
 .gs-mini-posten-bild { flex: none; }
-.gs-mini-zuordnen-mit-ablagen { display: grid; gap: var(--a-4); }
+.gs-mini-zuordnen-mit-ablagen, .gs-mini-zuordnen-mit-legende { display: grid; gap: var(--a-4); }
+/* R75: kurze Bedeutung je Wahl, damit die Zuordnung ohne Fachwissen lösbar ist */
+.gs-mini-legende { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: var(--a-2) var(--a-4); margin: 0; padding: var(--a-4); border-radius: var(--radius-xl); background: var(--flaeche-2); }
+.gs-mini-legende > div { display: grid; gap: 2px; }
+.gs-mini-legende dt { font-weight: 700; color: var(--navy); }
+.gs-mini-legende dd { margin: 0; font: var(--typo-klein); color: var(--tinte-2); }
 .gs-mini-ablagen { display: flex; flex-wrap: wrap; gap: var(--a-3); margin: 0; padding: 0; list-style: none; }
 .gs-mini-ablage {
   display: flex; gap: var(--a-3); align-items: center; padding: var(--a-2) var(--a-4) var(--a-2) var(--a-2);
@@ -585,7 +597,9 @@ button.gs-stufe:hover:not([aria-pressed="true"]) { background: var(--weiss); }
   .gs-kopf { gap: var(--a-3); }
   .gs-kopf .gs-titel { font-size: 30px; }
   .gs-titel-gross { font-size: 40px; }
-  .gs-campus-gross { aspect-ratio: 4 / 3; border-radius: 18px; }
+  /* 16 : 9 schneidet vom breiten Ausschnitt nur Himmel an den Seiten ab (R75) */
+  .gs-campus-gross { aspect-ratio: 16 / 9; border-radius: 18px; }
+  .gs-buehnenbild:has(> .gs-campus-gross) { max-width: calc(50vh * 16 / 9); }
   .gs-einstieg { grid-template-columns: minmax(0, 1fr); margin: calc(-1 * var(--a-6)) var(--a-2) 0; padding: var(--a-4); }
   .gs-gegenstand-einstieg { display: none; }
   .gs-zeile { grid-template-columns: 44px minmax(0, 1fr); gap: var(--a-3); }
@@ -639,5 +653,6 @@ button.gs-stufe:hover:not([aria-pressed="true"]) { background: var(--weiss); }
   .druck-story .druck-teil { break-inside: avoid; }
   .druck-story :is(h2, h3) { break-after: avoid; }
   .druck-story .druck-gut { break-inside: avoid; }
+  .druck-story .druck-frage { margin: 0 0 1mm; font-style: italic; color: var(--tinte-2); break-after: avoid; }
   .druck-story .druck-gut > h3 { margin: 2mm 0 1mm; font: 700 11pt/1.3 var(--schrift-text); color: var(--navy); }
 }

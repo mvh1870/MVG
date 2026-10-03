@@ -136,3 +136,33 @@ test('campusIso: Wimpelkette nur in Stufe 2, Luftballons nur in Stufe 8, Stufe 2
     assert.doesNotMatch(svg, /\sid="|url\(/);
   }
 });
+
+/** Oberste Kante der Szene (ohne Himmel und Wetter) in Bildeinheiten: absolute Punkte der Pfade, Kreise, Ellipsen, Rechtecke, Texte. */
+function szeneOben(svg: string): number {
+  // Bauschild-Schrift: schräg gestellte Gruppe (transform) tief im Bild – sie zählt nicht zur Oberkante
+  const sz = svg.slice(svg.indexOf('<g class="ci-szene">'), svg.lastIndexOf('</g>')).replace(/<g transform="[^"]*">.*?<\/g>/gu, '');
+  let oben = Number.POSITIVE_INFINITY;
+  for (const m of sz.matchAll(/ d="([^"]*)"/gu)) {
+    for (const p of m[1]!.matchAll(/[ML](-?[\d.]+),(-?[\d.]+)/gu)) oben = Math.min(oben, Number(p[2]));
+  }
+  for (const m of sz.matchAll(/<circle[^>]*\bcy="(-?[\d.]+)"[^>]*\br="([\d.]+)"/gu)) oben = Math.min(oben, Number(m[1]) - Number(m[2]));
+  for (const m of sz.matchAll(/<ellipse[^>]*\bcy="(-?[\d.]+)"[^>]*\bry="([\d.]+)"/gu)) oben = Math.min(oben, Number(m[1]) - Number(m[2]));
+  for (const m of sz.matchAll(/<(?:rect|text)[^>]*\by="(-?[\d.]+)"/gu)) oben = Math.min(oben, Number(m[1]) - 8);
+  return oben;
+}
+
+test('campusIso (R75): der breite Ausschnitt (2,2 : 1) zeigt jede Stufe oben ganz – Kran, Dächer, Kronen, Bauschild', async () => {
+  const { CAMPUS_VB } = await import('../src/grafik/campus-iso.ts');
+  const [, y, b, h] = CAMPUS_VB.breit;
+  assert.ok(Math.abs(b / h - 2.2) < 0.01, `Seitenverhältnis ${b / h}`);
+  for (const s of STUFEN) for (const wetter of [undefined, 'sturm'] as const) {
+    const svg = campusIso(s, { ausschnitt: 'breit', ...(wetter ? { wetter } : {}) });
+    assert.match(svg, new RegExp(`viewBox="${CAMPUS_VB.breit.join(' ')}"`, 'u'));
+    const oben = szeneOben(svg);
+    assert.ok(oben >= y + 2, `Stufe ${s}${wetter ? ' Sturm' : ''}: Szene beginnt bei ${oben.toFixed(1)}, Ausschnitt bei ${y}`);
+  }
+  // Gegenprobe: der alte Story-Rahmen (ganzer Grund, 2,2 : 1 mittig beschnitten) sah erst ab y ≈ 24,6 – Stufe 5 (Kran) läge darüber
+  const [, gy, gb, gh] = CAMPUS_VB.grund;
+  const sichtbarAb = gy + (gh - gb / 2.2) / 2;
+  assert.ok(szeneOben(campusIso(5)) < sichtbarAb, 'Gegenprobe: im alten Rahmen ist der Kran oben abgeschnitten');
+});

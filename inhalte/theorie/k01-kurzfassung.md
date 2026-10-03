@@ -281,7 +281,7 @@ rechts: Nach der Übergabe des Modells
 
 ::: ansicht rechts
 - Das [[Betriebshandbuch]] hat Routinen, Rollen, Taktung, Fristen, Eskalationswege und Betriebslogik in den Regelbetrieb übergeben.
-- Bauherren-Projektleitung, Auftraggeberlogik, PMO, Gremienrollen und Fachrollen wenden das Modell selbst an.
+- Projektleitung des Bauherrn, Auftraggeberlogik, PMO, Gremienrollen und Fachrollen wenden das Modell selbst an.
 - Die Übergabe des Modells ist ein Befähigungsschritt – nicht die Übergabe des Vorhabens in LPH 9.
 :::
 :::

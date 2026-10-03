@@ -27,7 +27,7 @@ Ein Register nützt nur, wenn es regelmäßig angesehen wird – und wenn Dringe
 ---
 symbol: blitz
 ---
-Dringliches meldet die Projektsteuerung sofort. In aktiven Zeiten prüft sie jede Woche alle offenen Vorgänge, einmal im Monat gibt es einen [[Monatstermin|Online-Termin]] von höchstens 60 Minuten. Der Bericht von höchstens einer Seite kommt jeden Monat. Die regelmäßige Prüfung ersetzt nie die dringliche Meldung.
+[[Dringlicher Sachverhalt|Dringliches]] meldet die Projektsteuerung sofort. In aktiven Zeiten prüft sie jede Woche alle offenen Vorgänge, einmal im Monat gibt es einen [[Monatstermin|Online-Termin]] von höchstens 60 Minuten. Der Bericht von höchstens einer Seite kommt jeden Monat. Die regelmäßige Prüfung ersetzt nie die dringliche Meldung.
 :::
 
 ::: abschnitt k16.1
@@ -195,14 +195,14 @@ Der Bericht verweist auf die Einträge in der Software. Eine zweite Liste hätte
 stelle: 3
 ---
 ### Frage
-Der Monatsbericht zeigt zwölf grüne und gelbe Ampeln, aber keine offene Entscheidung und keine benötigte Reaktion – obwohl in drei Wochen eine Vergabe ansteht. Erfüllt er seinen Zweck?
+Der Monatsbericht zeigt zwölf grüne und gelbe Ampeln, aber keine offene Entscheidung und keine benötigte Reaktion – obwohl in drei Wochen eine Vergabe ansteht. Wie ist der Bericht zu bewerten?
 
 ### Erklärung
 Der Bericht zeigt, welche Entscheidungen mit welcher Reaktion des Bauherrn offen sind. Ampeln ohne Entscheidungsfrage informieren, führen aber nicht.
 
 ::: antwort a
 ---
-titel: Nein – offene Entscheidung und benötigte Reaktion fehlen
+titel: Unvollständig – offene Entscheidung und benötigte Reaktion fehlen
 praefix: "Genau:"
 ---
 Eine anstehende Entscheidung gehört mit Termin und benötigter Reaktion hinein.
@@ -210,7 +210,7 @@ Eine anstehende Entscheidung gehört mit Termin und benötigter Reaktion hinein.
 
 ::: antwort b
 ---
-titel: Ja – solange keine der zwölf Ampeln auf Rot steht
+titel: Unvollständig – es fehlen rote Ampeln, die vor der Vergabe warnen
 praefix: "Nicht ganz:"
 ---
 Die Farbe sagt nichts darüber, ob der Bauherr etwas entscheiden muss.
@@ -218,7 +218,7 @@ Die Farbe sagt nichts darüber, ob der Bauherr etwas entscheiden muss.
 
 ::: antwort c
 ---
-titel: Ja – die Entscheidung kommt im Monatstermin ohnehin zur Sprache
+titel: Ausreichend – die Vergabe kommt im Monatstermin ohnehin zur Sprache
 praefix: "Nicht ganz:"
 ---
 Der Termin ersetzt den Bericht nicht – eine offene Entscheidung mit der benötigten Reaktion gehört in den Monatsbericht.
@@ -263,7 +263,7 @@ titel: Ein Termin im Monat
 ---
 
 ### Rückseite
-Online, höchstens 60 Minuten – in aktiven Zeiten; in Ruhezeiten nur bei Bedarf.
+Online, höchstens 60 Minuten – in aktiven Zeiten; in [[Ruhezeit|Ruhezeiten]] nur bei Bedarf.
 :::
 
 ::: karte bericht

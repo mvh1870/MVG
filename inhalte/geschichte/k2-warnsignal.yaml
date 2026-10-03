@@ -4,7 +4,7 @@ nr: 2
 titel: Ein erstes Warnsignal
 zeit: März 2026
 campus: { stufe: 0, jahreszeit: fruehling, licht: tag }
-bruecke: "Im März erwähnt der Architekt beiläufig, Holz könnte knapp werden. Die Projektsteuerin hält es als Frühwarnung fest: was zu prüfen ist (die Prüffrage), wer nachfragt, bis wann."
+bruecke: "Im März erwähnt der Architekt beiläufig, Holz könnte knapp werden, und die Projektsteuerin hält es als Frühwarnung fest: was zu prüfen ist (die Prüffrage), wer nachfragt, bis wann."
 thema: arbeitsweise
 belege: [v24:hb-1, v24:hb-1.1, v24:hb-1.2, v24:hb-1.3, v24:hb-1.4, v24:hb-1.5, v24:hb-1.6, v24:hb-2, v24:hb-4, v24:tlb-2, v24:tlb-3]
 bild-szene: holzstapel
@@ -21,7 +21,7 @@ szene:
   - { figur: schwung, text: "Weiß ich nicht genau. Das war nur ein Gespräch auf einer Messe. Das pendelt sich ein, glauben Sie mir." }
   - { figur: lot, text: "Holz kommt, wenn es kommt. Ich hab noch keinen Bau erlebt, wo's nicht irgendwann kam." }
   - { figur: lot, text: "Und überhaupt: Ich bau, ich schreib nicht. Listen sind Ihr Job." }
-  - { figur: faden, text: "Kann sein. Aber wenn das Holz diesmal nicht kommt, sollten wir es früh wissen." }
+  - { figur: faden, text: "Kann sein. Aber wenn das Holz diesmal nicht kommt, sollten wir es früh wissen. So einen Hinweis halte ich als Frühwarnung fest – und kläre, was dran ist." }
 
 frage: Noch ist nichts passiert, und niemand weiß, ob überhaupt etwas passieren wird. Alle schauen Sie an. Was sagen Sie?
 
@@ -55,13 +55,14 @@ mini:
   titel: Was ist was?
   aufgabe: "Auf einer Baustelle passiert vieles gleichzeitig. Ordnen Sie jedem Satz zu, was er ist: Frühwarnung, Risiko, Problem, Änderung, Maßnahme oder Aufgabe."
   bild: notizzettel
+  # heisst: Legende über den Karten, wörtlich aus den Erklärungen unten (R75; Belege v24:hb-1.1 bis hb-1.6)
   wahlen:
-    - { id: fruehwarnung, titel: Frühwarnung }
-    - { id: risiko, titel: Risiko }
-    - { id: problem, titel: Problem }
-    - { id: aenderung, titel: Änderung }
-    - { id: massnahme, titel: Maßnahme }
-    - { id: aufgabe, titel: Aufgabe }
+    - { id: fruehwarnung, titel: Frühwarnung, heisst: "ein Hinweis, der noch nicht geklärt ist" }
+    - { id: risiko, titel: Risiko, heisst: "kann eintreten, ist aber noch nicht passiert" }
+    - { id: problem, titel: Problem, heisst: "ist schon passiert" }
+    - { id: aenderung, titel: Änderung, heisst: "etwas, das bisher gilt, soll bewusst anders werden" }
+    - { id: massnahme, titel: Maßnahme, heisst: "eine gezielte Handlung, die einen Zustand verbessert" }
+    - { id: aufgabe, titel: Aufgabe, heisst: "eine geplante Arbeit mit Ergebnis, Namen und Termin" }
   # Reihenfolge der Sätze bewusst gemischt (R73): nicht in der Reihenfolge der Knöpfe, damit sich die Lösung nicht durch die Stellung verrät
   posten:
     - { text: "Eine Pumpe wird aufgestellt und die Baugrube abgesperrt, bis sie wieder trocken ist.", bild: absperrband, loesung: massnahme, erklaerung: "Eine gezielte Handlung, die einen Zustand verbessert. Ob sie wirkt, wird nachgeprüft." }

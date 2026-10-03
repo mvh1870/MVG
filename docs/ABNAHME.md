@@ -14,10 +14,11 @@ Zum Abhaken beim Durchsehen der Internetseite (lokal: `dist/index.html` im Brows
 - [ ] Offene mittlere Befunde der Prüfrunden (`docs/ABNAHME-MITTEL.md`, O-35) entschieden: übernehmen, ändern oder so lassen.
 
 ## B. Erlebnis
-- [ ] Startseite ruhig, drei Wege (Story, Theorie, Explore), „Wer steht dahinter“ mit leisem Link (O-21, O-44).
-- [ ] Story: fünf Figuren mit Steckbrief, Balken Geld · Zeit · Vertrauen ohne Zahlen; ganzer Weg etwa 25 Minuten, Kurzfassung (Kapitel 1, 3, 4, 7 mit Brückensätzen) etwa 11 Minuten; ein Fluss mit „Weiter“, Fortschrittslinie, ein Ende mit Bilanz (O-51 bis O-53, L-246).
+- [ ] Startseite ruhig, drei Wege (Story, Theorie, Explore); die Story-Karte zeigt die Figuren der Story (Sie und die fünf Figuren, O-57); „Wer steht dahinter“ mit leisem Link (O-21, O-44).
+- [ ] Story: fünf Figuren mit Steckbrief, Balken Geld · Zeit · Vertrauen ohne Zahlen; ganzer Weg etwa 25 Minuten, Kurzfassung (Kapitel 1, 3, 4, 7 mit Brückensätzen) etwa 10 Minuten; ein Fluss mit „Weiter“, Fortschrittslinie, ein Ende mit Bilanz (O-51 bis O-53, L-246, R75).
 - [ ] Theorie als Buch: vier Teile, Kapitel 1–15 mit Kurzsatz, Glossar als Anhang 16, Karten zum Umdrehen, Verständnisfragen und Fortschritt „n von 15“ (O-54, O-55).
-- [ ] Bauplan-Hintergründe: Start deutlich, Theorie und Story sehr dezent; Text bleibt gut lesbar (O-45).
+- [ ] Bauplan nur als Hintergrund der Startseite und im Kopf jedes Themas (eigenes Motiv je Teil), darunter ruhige Fläche; die Story hat keinen; Text bleibt gut lesbar (O-45, O-55).
+- [ ] Story-Optik: auf jedem Schritt eine Grafik; der isometrische Campus wächst vom leeren Grundstück bis zum Schulstart mit Kindern (O-53).
 - [ ] Farben und Schriften wie Variante B (O-11, O-12, O-22).
 - [ ] Links zu bauherr-mentoren.com sachlich und leise, kein Vertrieb (O-1, O-44).
 

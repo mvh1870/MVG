@@ -91,7 +91,7 @@ takt:
       titel: Sofort
       wer: Projektsteuerung
       text: Dringliches wird sofort über den vereinbarten Meldeweg gemeldet und noch am selben Arbeitstag dokumentiert, sobald die unmittelbare Reaktion gesichert ist.
-      beispiel: Ein nicht gesichertes Gerüstfeld an der Sporthalle – gemeldet, gesperrt, am selben Tag dokumentiert.
+      beispiel: Zwei lose Gerüstanker an der Sporthalle nach dem Sturm – sofort gesperrt, gemeldet, am selben Tag dokumentiert.
     - id: woche
       titel: Jede Woche
       wer: Projektsteuerung

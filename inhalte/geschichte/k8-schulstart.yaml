@@ -28,7 +28,7 @@ frage: Die Schule will einziehen, und auf der Liste stehen noch zwei Zeilen. Was
 
 antworten:
   - wertung: falle
-    text: Freigabe ohne Einschränkung. Die zwei Punkte sind Kleinigkeiten – die müssen nicht extra in die Vorlage.
+    text: Freigabe ohne Einschränkung. Beide Punkte sind mit den Firmen fest verabredet – damit belasten wir die Vorlage nicht.
     balken: { geld: 0, zeit: 0, vertrauen: -2 }
     bild: projektblatt
     folge: |
@@ -44,7 +44,9 @@ antworten:
     balken: { geld: 0, zeit: 0, vertrauen: 1 }
     bild: mappe
     folge: |
-      Im Lenkungskreis wird kurz beraten, dann erteilt die Bürgermeisterin die Freigabe mit Auflagen. Clara Faden übergibt alles, was noch offen ist, an das Gebäudemanagement – jeden Punkt mit Termin und Namen. Zu den Herbstferien sind die Fugen geschlossen, im Januar ist die Lüftung eingestellt, und beides ist mit Nachweis erledigt. Das Gebäudemanagement findet alles an einer Stelle – niemand muss suchen.
+      Im Lenkungskreis wird kurz beraten, dann erteilt die Bürgermeisterin die Freigabe mit Auflagen.
+
+      Clara Faden übergibt alles, was noch offen ist, an das Gebäudemanagement – jeden Punkt mit Termin und Namen. Zu den Herbstferien sind die Fugen geschlossen, im Januar ist die Lüftung eingestellt, und beides ist mit Nachweis erledigt. Das Gebäudemanagement findet alles an einer Stelle – niemand muss suchen.
 
 gut: |
   Die Freigabe erteilt der Bauherr selbst – als Freigabe, keine Freigabe oder Freigabe mit Auflagen; der Lenkungskreis berät. Was noch offen ist, wird mit Termin und Zuständigen übergeben und nie als erledigt ausgegeben: Ein Vorgang verschwindet nicht durch die Übergabe.

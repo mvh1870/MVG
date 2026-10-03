@@ -2,7 +2,7 @@
 
 Eine Internetseite von **Bauherr Mentoren** zu „Minimum Viable Governance“ für komplexe Bau- und Infrastrukturprojekte, ausgerichtet am Standard „Aufgaben- und Risikomanagement V2.4“ (www.GovernanceKompass.de).
 
-- **Story:** ein Spiel aus Sicht der Projektleitung des Bauherrn am fiktiven Schulcampus Lindenhall-Süd – fünf Figuren, acht Kapitel mit je drei Antworten, Balken Geld · Zeit · Vertrauen, vier Mini-Aufgaben, gewichteter Vergleich in Kapitel 7, Bilanz am Ende; etwa 25 Minuten, als Kurzfassung etwa 11.
+- **Story:** ein Spiel aus Sicht der Projektleitung des Bauherrn am fiktiven Schulcampus Lindenhall-Süd – fünf Figuren, acht Kapitel mit je drei Antworten, Balken Geld · Zeit · Vertrauen, vier Mini-Aufgaben, gewichteter Vergleich in Kapitel 7, Bilanz am Ende; etwa 25 Minuten, als Kurzfassung etwa 10.
 - **Theorie:** ein Buch in vier Teilen, Kapitel 1–15 mit Grafiken, Karten zum Umdrehen und Übungen, Glossar als Anhang 16, mit Fortschritt.
 - **Explore:** gewichteter Vergleich, Risikomatrix, Vorgangsarten, Takt und Monatsbericht, Glossar.
 - **Präsentieren:** Regie und Leinwand für Kundentermine.

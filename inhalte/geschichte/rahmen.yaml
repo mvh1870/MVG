@@ -14,7 +14,7 @@ auftakt:
     Unterwegs müssen Sie sich mehrmals entscheiden – achtmal auf dem ganzen Weg, viermal in der Kurzfassung. Ihre Antworten bewegen drei Balken: Geld, Zeit und Vertrauen. Am Ende sehen Sie, wie Ihr Projekt ausgegangen ist.
   vorstellung: "Diese fünf Menschen begleiten Sie:"
   los: Los geht's
-  kurz: Kurzfassung (etwa 11 Minuten)
+  kurz: Kurzfassung (etwa 10 Minuten)
 
 sie:
   steckbrief: Sie leiten das Projekt für die Stadt als Bauherrn. Sie pflegen keine Listen – Sie entscheiden, was in Ihrem Rahmen liegt, und bringen alles andere rechtzeitig zur Bürgermeisterin.
@@ -98,7 +98,7 @@ bilanz:
   # R73: solange auf dem Weg Entscheidungen offen sind (Sprung ans Ende über die Fortschrittslinie), kein Urteil über den Weg
   offen:
     titel: Noch nicht alle Entscheidungen getroffen
-    text: Der Campus steht, die Kinder sind da. Ein Urteil über Ihren Weg gibt es erst, wenn Sie alle Entscheidungen getroffen haben; die Balken zeigen den Stand nach den Antworten, die Sie schon gegeben haben.
+    text: Der Campus steht, die Kinder sind da. Ein Urteil über Ihren Weg gibt es erst, wenn Sie alle Entscheidungen getroffen haben; darunter steht der Stand nach den Antworten, die Sie schon gegeben haben.
 
 mandat:
   titel: Wer entscheidet was
@@ -116,7 +116,7 @@ ende:
 
     Am gemeinsamen Haupteingang des Campus hängen Luftballons, und neben der Tür stehen die fünf, die diesen Campus zweieinhalb Jahre lang begleitet haben – und Sie.
   einstieg-kurz: |
-    Ende August 2028, der erste Schultag. Am Haupteingang stehen die fünf, die den Campus begleitet haben – und Sie.
+    Ende August 2028, der erste Schultag. Am Haupteingang stehen die fünf – und Sie.
   szene:
     - { figur: klingel, zusatz: läutet ihre Glocke, text: "Guten Morgen! Willkommen in eurer Schule!" }
     - { figur: lot, kurzfassung: false, text: "Steht alles drin, was wir hier gemacht haben. Hätte ich vor zwei Jahren nicht gedacht, dass ich das mal gut finde." }

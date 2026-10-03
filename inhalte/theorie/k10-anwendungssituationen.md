@@ -379,10 +379,10 @@ Sie gehört – mit RACI und Entscheidungsvorlage – zur Antwort auf Gremienbes
 ---
 seite: links
 ---
-Entscheidungsvorlage zur Änderung (mindestens zwei Optionen, gewichteter Vergleich)
+Änderung gegen den geltenden Stand aufbereiten (mindestens zwei Optionen, gewichteter Vergleich)
 
 ### Erklärung
-Sie gehört – mit Änderungsregister und verbindlicher Auswirkungsbewertung – zur Antwort auf Änderungsanträge mit unvollständiger Auswirkungsbewertung.
+Das gehört – mit Änderungsregister und verbindlicher Auswirkungsbewertung – zur Antwort auf Änderungsanträge mit unvollständiger Auswirkungsbewertung.
 :::
 :::
 :::

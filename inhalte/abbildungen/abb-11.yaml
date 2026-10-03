@@ -5,5 +5,5 @@ alt: 'Fünf Spalten mit Pfeilen: „Reifegradanalyse“ (Lagebild, Mandate, Date
 angeglichen:
   - { x: 326, y: 28, b: 207, h: 40, text: MVG-Konzeption, beleg: k7.2-p1, schrift: barlow, gewicht: 700, groesse: 27, ausrichtung: mitte }
   - { x: 331, y: 630, b: 160, h: 52, text: "MVG-\nNeuinitialisierung", beleg: k7.5-p1, schrift: barlow, gewicht: 500, groesse: 24, ausrichtung: mitte, farbe: '#050c14' }
-  - { x: 604, y: 22, b: 211, h: 53, text: "Pilotierung und\nKalibrierung", beleg: k7-l1, schrift: barlow, gewicht: 700, groesse: 22, ausrichtung: mitte, farbe: "#eefcfc" }
+  - { x: 604, y: 20, b: 211, h: 57, text: "Pilotierung und\nKalibrierung", beleg: k7-l1, schrift: barlow, gewicht: 700, groesse: 26, ausrichtung: mitte, farbe: "#eefcfc" }
   - { x: 676, y: 288, b: 132, h: 56, text: "echte\nEntscheidungen", beleg: k6.4.1-p4, schrift: barlow, gewicht: 500, groesse: 21, farbe: "#15191c" }

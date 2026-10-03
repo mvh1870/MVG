@@ -39,7 +39,7 @@ export const W = {
     storyTitel: 'Als Geschichte',
     storyText: 'Sie leiten für die Stadt Lindenhall den Bau eines Schulcampus. Unterwegs entscheiden Sie achtmal – und sehen gleich, was jede Wahl für Geld, Zeit und Vertrauen bedeutet.',
     // Anzahl als Wort; sichtbar nie „Kapitel“ (O-38, L-225)
-    storyMeta: (n: number) => `${ZAHLWORT[n] ?? String(n)} Entscheidungen · etwa 25 Minuten, kurz etwa 11`,
+    storyMeta: (n: number) => `${ZAHLWORT[n] ?? String(n)} Entscheidungen · etwa 25 Minuten, kurz etwa 10`,
     storyLos: 'Beginnen',
     storyWeiter: 'Weiterlesen',
     figuren: 'Mit dabei',
@@ -54,7 +54,7 @@ export const W = {
     exploreMeta: (n: number) => `${n} Werkzeuge`,
     exploreLos: 'Ausprobieren',
     dahinter: 'Wer steht dahinter',
-    dahinterText: 'Der Governance Kompass ist ein Angebot der Bauherr Mentoren GmbH i. G. Fragen, Kontakt und alles Weitere:',
+    dahinterText: 'Der Governance Kompass ist ein Angebot der Bauherr Mentoren GmbH i. G. – bei Fragen und für alles Weitere:',
     fiktiv: 'Der Schulcampus Lindenhall-Süd ist ein fiktiver Fall; Stadt, Projekt und Personen sind erfunden.',
   },
   // Druck (P10.2, E11)
@@ -167,11 +167,15 @@ export const W = {
     ende: 'Schulstart',
     // Fortschrittslinie und Ortszeile: eindeutig neben Kapitel 8 „Schulstart“ (R74)
     endeOrt: 'Ende · Ihre Bilanz',
+    // Regie-Knopf neben 1–8 (R75)
+    endeKurz: 'Ende',
     // Teile eines Kapitels (Regie: wo die Bühne steht)
     teile: { szene: 'Szene', vergleich: 'Vergleich', frage: 'Frage', mini: 'Mini-Aufgabe' } as Record<string, string>,
     weiter: 'Weiter',
     zurueck: 'Zurück',
     vonVorn: 'Noch einmal von vorn',
+    // Ende mit offenen Entscheidungen (R75): „Zur ersten offenen Entscheidung: 2 · Ein erstes Warnsignal“
+    zurOffenen: (stelle: string, titel: string) => `Zur ersten offenen Entscheidung: ${stelle} · ${titel}`,
     zuDenThemen: 'Zu den Themen',
     kurzfassung: 'Kurzfassung',
     fiktiv: 'Fiktiver Fall',
@@ -208,6 +212,7 @@ export const W = {
     miniErgebnis: (richtig: number, n: number) => `${richtig} von ${n} richtig.`,
     miniNochmal: 'Noch einmal',
     miniNoch: (n: number) => `Noch ${n} offen.`,
+    miniGesetzt: (n: number, gesamt: number) => `${n} von ${gesamt} gesetzt.`,
     miniKarten: (n: number) => n === 1 ? '1 Karte' : `${n} Karten`,
     vergleichKicker: 'Der Vergleich',
     vergleichTitel: 'Drei Wege, vier Gesichtspunkte',
@@ -233,7 +238,6 @@ export const W = {
     bilanzTitel: 'Ihre Bilanz',
     offen: (n: number) => n === 1 ? 'Eine Entscheidung haben Sie noch nicht getroffen – sie zählt hier nicht mit.' : `${ZAHLWORT[n] ?? String(n)} Entscheidungen haben Sie noch nicht getroffen – sie zählen hier nicht mit.`,
     fortschrittLoeschen: 'Fortschritt löschen',
-    fortschrittHinweis: 'Ihr Stand liegt nur in diesem Browser.',
     druckTitel: 'Ihre Geschichte',
     druckAntwort: 'Ihre Antwort',
     druckOffen: 'noch offen',

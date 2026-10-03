@@ -23,13 +23,13 @@ teil: 4
 kurzsatz: Welche Vorgangsart ein Hinweis ist und wie ein Risiko bewertet wird.
 symbol: warnung
 ---
-Im Projektalltag kommt vieles gleichzeitig an: ein Anruf, eine Auflage, ein Wunsch, eine Verzögerung. Nicht jeder Hinweis ist ein Risiko – manches ist schon eingetreten, manches eine gewollte Änderung, manches einfach Arbeit.
+Im Projektalltag kommt vieles gleichzeitig an: ein Anruf, eine Auflage, ein Wunsch, eine Verzögerung. Nicht jeder Hinweis ist ein Risiko – manches ist schon eingetreten, manches eine gewollte [[Änderung]], manches einfach Arbeit.
 
 ::: kernaussage
 ---
 symbol: warnung
 ---
-Die Projektsteuerung ordnet jeden Hinweis der passenden Vorgangsart zu, bewertet Risiken in einer [[Risikomatrix (5×5)|5×5-Matrix]] und leitet daraus den nächsten Schritt ab. Ob ein wesentliches Restrisiko getragen wird, entscheidet der Bauherr.
+Die Projektsteuerung ordnet jeden Hinweis der passenden [[Vorgangsart]] zu, bewertet Risiken in einer [[Risikomatrix (5×5)|5×5-Matrix]] und leitet daraus den nächsten Schritt ab. Ob ein wesentliches Restrisiko getragen wird, entscheidet der Bauherr.
 :::
 
 ::: abschnitt k15.1
@@ -120,7 +120,7 @@ titel: Wege zwischen den Arten
 ---
 Vorgänge wechseln ihre Art, wenn sich der Sachverhalt klärt oder ändert:
 
-- Eine **Frühwarnung** wird geklärt: Ein mögliches Ereignis wird als Risiko bewertet, ein eingetretener Zustand als Problem bearbeitet, eine konkrete Arbeit als Aufgabe weitergeführt; ein unbegründeter Hinweis wird mit Begründung geschlossen. Die Herkunft bleibt verknüpft.
+- Eine **Frühwarnung** wird geklärt: Ein mögliches Ereignis wird als [[Risiko]] bewertet, ein eingetretener Zustand als [[Problem]] bearbeitet, eine konkrete Arbeit als [[Aufgabe]] weitergeführt; ein unbegründeter Hinweis wird mit Begründung geschlossen. Die Herkunft bleibt verknüpft.
 - Tritt ein **Risiko** ein, beginnt die Problembearbeitung. Noch unsichere Folgen bleiben getrennt sichtbar.
 - **Aufgaben, Probleme und Änderungen** brauchen keinen vorherigen Risikoeintrag.
 
@@ -128,7 +128,7 @@ Vorgänge wechseln ihre Art, wenn sich der Sachverhalt klärt oder ändert:
 ---
 symbol: puzzle
 ---
-Zusammengehöriges wird verknüpft, ohne dieselbe Wirkung doppelt zu zählen; Zusammenfassen ist erlaubt, solange Verantwortung, Maßnahmen und Entscheidungswege erkennbar bleiben. Die Zahl der Risiken ist nicht begrenzt; ein Auslöser kann mehrere haben.
+Zusammengehöriges wird verknüpft, ohne dieselbe Wirkung doppelt zu zählen; Zusammenfassen ist erlaubt, solange Verantwortung, [[Maßnahme|Maßnahmen]] und Entscheidungswege erkennbar bleiben. Die Zahl der Risiken ist nicht begrenzt; ein Auslöser kann mehrere haben.
 :::
 
 ::: etappen
@@ -226,7 +226,7 @@ rechts: Mit Grund abgeschlossen
 :::
 
 ::: ansicht rechts
-- **Aufgabe:** schließt, wenn das vereinbarte Ergebnis vorliegt und verwendbar ist. Ein neuer Termin ersetzt nicht die Erklärung der Verzögerung.
+- **Aufgabe:** schließt, wenn das vereinbarte Ergebnis vorliegt und im eigenen Prüfumfang verwendbar ist. Ein neuer Termin ersetzt nicht die Erklärung der Verzögerung.
 - **Maßnahme:** schließt mit belegtem Umsetzungs- und Wirkungsstand; wirkt sie nicht, folgt eine Anpassung.
 - **Änderung:** gilt erst mit der Freigabe, bis dahin bleibt die bisherige Grundlage maßgeblich. Eine fachliche Freigabe ist noch keine Vertragsänderung oder Bestellung.
 - **Problem:** schließt mit dem Nachweis der Lösung; offene Folgen bleiben sichtbar.
@@ -367,7 +367,7 @@ stelle: 1
 Nach allen Maßnahmen bleibt ein wesentliches Restrisiko. Wer entscheidet, ob das Projekt es trägt?
 
 ### Erklärung
-Bewerten, mindern und vorlegen ist Sache der Projektsteuerung. Ob ein wesentliches verbleibendes Risiko getragen wird, bereitet sie als Entscheidung vor; annehmen darf es nur die befugte Stelle des Bauherrn.
+Bewerten, mindern und vorlegen ist Sache der Projektsteuerung. Ob ein [[Wesentliches Risiko|wesentliches]] verbleibendes Risiko getragen wird, bereitet sie als Entscheidung vor; annehmen darf es nur die [[Befugte Stelle|befugte Stelle]] des Bauherrn.
 
 ::: antwort a
 ---

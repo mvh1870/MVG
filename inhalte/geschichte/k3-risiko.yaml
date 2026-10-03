@@ -15,16 +15,16 @@ einstieg: |
   April 2026. Die Bagger sind da, die Baugrube wird jeden Tag tiefer, und die Linden am Rand treiben aus. Die Antwort der Hersteller liegt auf dem Tisch: eine Mappe mit drei Schreiben, daneben ein Kalender, auf dem jemand den Sommer 2028 dick eingekreist hat.
 
 einstieg-kurz: |
-  April 2026. Auf dem Tisch liegt die Antwort der Hersteller auf die Prüffrage.
+  April 2026. Die Antwort der Hersteller auf die Prüffrage ist da.
 
 szene:
   - { figur: schwung, text: "Drei von vier Herstellern brauchen jetzt ein halbes Jahr statt vier Monate. Vielleicht wird es ja wieder besser." }
   - { figur: faden, text: "Ich habe es als Risiko bewertet. Wie wahrscheinlich ist es? Hoch. Wie schlimm, wenn es so kommt? Dann fangen die Holzbauer bis zu zehn Wochen später an, und der Schulstart wackelt." }
   - { figur: lot, kurzfassung: false, text: "Zehn Wochen. Die holt keiner rein, ich auch nicht." }
-  - { figur: schwung, text: "Wir könnten auch einfach hoffen. Hat schon oft geklappt." }
-  - { figur: faden, text: "Hoffen ist kein Weg. Abwarten schon – aber dann muss die Bürgermeisterin entscheiden, dass die Stadt das Risiko trägt." }
+  - { figur: schwung, kurzfassung: false, text: "Wir könnten auch einfach hoffen. Hat schon oft geklappt." }
+  - { figur: faden, kurzfassung: false, text: "Hoffen ist kein Weg. Abwarten schon – aber dann muss die Bürgermeisterin entscheiden, dass die Stadt das Risiko trägt." }
   - { figur: faden, text: "Hoch und schwer zusammen heißt: vorrangig bearbeiten. Es gibt einen Ausweg – die Holzelemente in einem eigenen Paket früher ausschreiben. Das kostet rund 150.000 Euro." }
-  - { figur: klingel, text: "Bitte sagen Sie mir nicht, dass meine Schule im Sommer 2028 noch in Containern sitzt." }
+  - { figur: klingel, kurzfassung: false, text: "Bitte sagen Sie mir nicht, dass meine Schule im Sommer 2028 noch in Containern sitzt." }
 
 frage: "Die Projektsteuerin hat bewertet, was sich bewerten lässt. Was jetzt geschieht, liegt bei Ihnen: Was machen Sie mit dieser Einschätzung?"
 
@@ -38,7 +38,7 @@ antworten:
 
       Dann fragt sie: „Warum nicht gleich mit Vorlage? Ein Monat ist bei so etwas viel.“ Die Holzelemente werden ausgeschrieben – einen Monat später, als es möglich gewesen wäre.
   - wertung: falle
-    text: Sie warten mit der Meldung, bis ein zweiter Holzbauer die Einschätzung bestätigt – vielleicht entspannt sich die Lage.
+    text: Sie warten mit der Meldung, bis ein zweiter Holzbauer die Einschätzung bestätigt – mit einer bestätigten Zahl überzeugen Sie die Bürgermeisterin eher.
     balken: { geld: -2, zeit: -2, vertrauen: -2 }
     bild: telefon
     folge: |

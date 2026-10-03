@@ -183,7 +183,7 @@ Gebraucht werden vor allem:
 
 - eine verbindliche verantwortliche Rolle auf Bauherrenseite,
 - Zugang zu den Kernunterlagen – Projektauftrag, Zielsystem, Rollen, Kosten- und Terminstand, Risiko- und Änderungsinformationen; dazu der Bearbeitungsstand aller Vorgänge in der Software des Bauherrn,
-- Gespräche mit Bauherren-Projektleitung, Auftraggeberlogik, [[PMO]], Projektsteuerung und Fachrollen,
+- Gespräche mit der Projektleitung des Bauherrn, Auftraggeberlogik, [[PMO]], Projektsteuerung und Fachrollen,
 - Entscheidungen zu Zielprioritäten, Mandaten, Schwellen und Freigaben,
 - Teilnahme an Managementberichten, Pilotentscheidungen und Befähigungsmaßnahmen,
 - die Übernahme des Regelbetriebs nach der Übergabe.

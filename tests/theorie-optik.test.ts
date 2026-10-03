@@ -116,7 +116,7 @@ test('Karte mit Rückseite: Knopf dreht um (aria-pressed, Ansage), ohne Rücksei
   assert.equal(knopf.getAttribute('aria-pressed'), 'false');
   assert.equal(wende.dataset['seite'], 'vorne');
   assert.equal(wende.querySelector<HTMLElement>('.ist-hinten')?.inert, true, 'Rückseite nicht im Tabulatorweg');
-  assert.equal(wende.querySelector('.ist-hinten .lernkarte-seite')?.textContent, 'Frage', 'Rückseite nennt den Titel der Vorderseite (R73)');
+  assert.equal(wende.querySelector('.ist-hinten .lernkarte-seite')?.textContent, 'Frage · Rückseite', 'Rückseite nennt den Titel der Vorderseite (R73) und zeigt den Wechsel (R75)');
   knopf.click();
   assert.equal(knopf.getAttribute('aria-pressed'), 'true');
   assert.equal(wende.dataset['seite'], 'hinten');

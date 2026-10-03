@@ -31,7 +31,7 @@ antworten:
     folge: |
       Der Stadtrat erschrickt über zwei Millionen und verlangt eine Liste, wo man sparen könnte; die Planung wartet vier Wochen auf die Antwort. Dann ist die Prüfung fertig: Die Leistungen gehören schon zum bestehenden Vertrag, die Zahl sinkt wieder. Nur hat die Firma gemerkt, dass ihre Forderung schon eingerechnet war – und sie verhandelt jetzt bei jeder Kleinigkeit härter.
   - wertung: falle
-    text: "Die Mitte aus beiden, anderthalb Millionen – so bekommt keiner recht, und keiner liegt ganz daneben."
+    text: "Die Mitte aus beiden, anderthalb Millionen – damit nehmen Sie Kämmerei und Architekt gleichermaßen ernst."
     balken: { geld: -1, zeit: 0, vertrauen: -2 }
     bild: lupe
     folge: |

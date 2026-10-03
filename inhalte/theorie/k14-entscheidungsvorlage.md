@@ -26,7 +26,7 @@ Viele Projektthemen enden in einer Frage an den Bauherrn: so oder anders? Gut be
 ---
 symbol: dokument
 ---
-Die Projektsteuerung bereitet jede erforderliche Bauherrenentscheidung vor: mit mindestens zwei zulässigen Optionen, einem gewichteten Vergleich, einer Empfehlung und einem Termin. Entscheiden darf nur die befugte Stelle des Bauherrn.
+Die Projektsteuerung bereitet jede erforderliche Bauherrenentscheidung vor: mit mindestens zwei zulässigen Optionen, einem gewichteten Vergleich, einer Empfehlung und einem Termin. Entscheiden darf nur die [[Befugte Stelle|befugte Stelle]] des Bauherrn.
 :::
 
 ::: abschnitt k14.1
@@ -85,14 +85,14 @@ Der Bauherr pflegt keine Listen und schreibt keine Vorlagen. Er bekommt sie rech
 stelle: 2
 ---
 ### Frage
-Die Projektsteuerung empfiehlt Option A. Der Entscheidungstermin verstreicht, der Bauherr hat sich nicht geäußert. Ist Option A damit beschlossen?
+Die Projektsteuerung empfiehlt Option A. Der Entscheidungstermin verstreicht, der Bauherr hat sich nicht geäußert. Wie ist der Stand?
 
 ### Erklärung
 Beschließen kann nur die befugte Stelle. Schweigen, eine Empfehlung oder ein Status in der Software ersetzen keinen Beschluss. Bleibt er aus, benennt die Projektsteuerung einen neuen Klärungstermin und die Folgen der Verzögerung.
 
 ::: antwort a
 ---
-titel: Nein – ohne Beschluss bleibt die Entscheidung offen
+titel: Ohne Beschluss bleibt die Entscheidung offen
 praefix: "Genau:"
 ---
 Weder die Empfehlung noch das Schweigen ist ein Beschluss.
@@ -100,7 +100,7 @@ Weder die Empfehlung noch das Schweigen ist ein Beschluss.
 
 ::: antwort b
 ---
-titel: Ja – wer schweigt, stimmt der Empfehlung zu
+titel: Option A gilt – wer schweigt, stimmt zu
 praefix: "Nicht ganz:"
 ---
 Schweigen gilt nicht als Zustimmung – auch nicht zu einer Empfehlung.
@@ -108,7 +108,7 @@ Schweigen gilt nicht als Zustimmung – auch nicht zu einer Empfehlung.
 
 ::: antwort c
 ---
-titel: Ja – nach der Frist entscheidet die Projektsteuerung
+titel: Nach der Frist entscheidet die Projektsteuerung
 praefix: "Nicht ganz:"
 ---
 Treffen, genehmigen oder bestätigen darf die Projektsteuerung eine Bauherrenentscheidung nie.
@@ -227,7 +227,7 @@ Gewicht mal Punktwert je Kriterium; die Summe ist die Gesamtpunktzahl der Option
 :::
 
 ::: merksatz
-Erst die Muss-Anforderungen zu Sicherheit, Genehmigung und Funktion, dann die Punkte. Und jede Empfehlung sagt, ob andere vertretbare Gewichte die Rangfolge ändern würden.
+Erst die Muss-Anforderungen zu Sicherheit, Genehmigung und Funktion, dann die Punkte. Und jede Empfehlung sagt, ob andere vertretbare Gewichte die Rangfolge ändern würden ([[Gewichtungsabhängigkeit]]).
 :::
 
 ::: aufklapper Was die Punktzahl nicht leistet

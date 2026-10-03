@@ -226,7 +226,7 @@ form: karten
 ---
 titel: Befähigung und Übergabe
 ---
-Befähigung und Übergabe gehören zu jedem vollständigen MVG-Mandat. Denn das Modell muss weiterlaufen, wenn das Mandat endet – in der Bauherrenorganisation selbst. [[Befähigung]] richtet sich an Bauherren-Projektleitung, Auftraggeberlogik, [[PMO]], Projektsteuerung, Gremienrollen und ausgewählte Fachrollen.
+Befähigung und Übergabe gehören zu jedem vollständigen MVG-Mandat. Denn das Modell muss weiterlaufen, wenn das Mandat endet – in der Bauherrenorganisation selbst. [[Befähigung]] richtet sich an die Projektleitung des Bauherrn, Auftraggeberlogik, [[PMO]], Projektsteuerung, Gremienrollen und ausgewählte Fachrollen.
 
 ::: umschalter
 ---
@@ -301,9 +301,9 @@ form: karten
 ---
 titel: Leistungsgrenzen
 ---
-Die Grenzen der Leistungen sind ausdrücklich gezogen. Das ist keine Formalie: In MVG geht es gerade um die nichtdelegierbaren Verantwortungen des Bauherrn. Die Begleitung liefert Struktur, Entscheidungsreife und Befähigung – eine Bauherrenentscheidung trifft sie nicht.
+Die Grenzen der Leistungen sind ausdrücklich gezogen. Das ist keine Formalie: In MVG geht es gerade um die nichtdelegierbaren Verantwortungen des Bauherrn. Die Begleitung durch Bauherr Mentoren (BM) liefert Struktur, Entscheidungsreife und Befähigung – eine Bauherrenentscheidung trifft sie nicht.
 
-Dieselbe Logik gilt für alle Beteiligten: Jede Rolle kann etwas Bestimmtes leisten und darf etwas Bestimmtes nicht ersetzen. Die Projektleitung des Bauherrn entscheidet innerhalb ihrer Schwelle; darüber legt die Projektsteuerung die Vorlage der befugten Stelle vor.
+Dieselbe Logik gilt für alle Beteiligten: Jede Rolle kann etwas Bestimmtes leisten und darf etwas Bestimmtes nicht ersetzen. Die Projektsteuerung bereitet die Vorlage vor; innerhalb ihrer Schwelle entscheidet die Projektleitung des Bauherrn, darüber die befugte Stelle.
 
 ::: zitat k7.6-p1
 Bauherr Mentoren übernimmt keine operative Dauer-Projektsteuerung und keine Linienfunktion. BM ersetzt keine Bauherrenentscheidung, keine Gremienentscheidung, keine Fachplanung, keine Bauleitung, keine Objektüberwachung und keine Rechtsberatung. BM übernimmt keine Einführung von Drittsoftware und erbringt keine SaaS-Leistungen; die Bereitstellung des MVG Companions ist ein methodisches Arbeitsmittel innerhalb der Beratung. BM liefert Struktur, Entscheidungsreife, Mandatsklarheit, Nachweislogik, Befähigung und Übergang in den Regelbetrieb.

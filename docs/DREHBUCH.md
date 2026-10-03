@@ -141,7 +141,7 @@ Sechs Porträts (Sie als Spielfigur plus fünf Figuren), flach, als Vektorgrafik
 | Zeit niedrig | **Auf den letzten Metern** | > Die Schule hat geöffnet, aber der Puffer war am Ende aufgebraucht. Wer eine Frage liegen lässt oder auf Umwegen löst, bezahlt auf der Baustelle fast immer mit Zeit. |
 | Zeit hoch, Vertrauen hoch, Geld mindestens mittel, **keine Falle gewählt** | **Ruhig ins Ziel** | > Die Kinder sind pünktlich eingezogen, und jede große Entscheidung hat die Bürgermeisterin selbst getroffen – mit allem, was sie dafür wissen musste. So bleibt ein Projekt steuerbar, auch wenn es stürmt. |
 | alle anderen | **Geschafft – mit Umwegen** | > Der Campus steht, die Kinder sind da – aber nicht jede Ihrer Antworten war der gerade Weg, und jeder Umweg hat etwas gekostet, ob Zeit, Geld oder Vertrauen. |
-| **vor allen anderen:** auf dem Weg ist noch eine Entscheidung offen (Sprung ans Ende über die Fortschrittslinie, R73) | **Noch nicht alle Entscheidungen getroffen** | > Der Campus steht, die Kinder sind da. Ein Urteil über Ihren Weg gibt es erst, wenn Sie alle Entscheidungen getroffen haben; die Balken zeigen den Stand nach den Antworten, die Sie schon gegeben haben. |
+| **vor allen anderen:** auf dem Weg ist noch eine Entscheidung offen (Sprung ans Ende über die Fortschrittslinie, R73) | **Noch nicht alle Entscheidungen getroffen** | > Der Campus steht, die Kinder sind da. Ein Urteil über Ihren Weg gibt es erst, wenn Sie alle Entscheidungen getroffen haben; darunter steht der Stand nach den Antworten, die Sie schon gegeben haben. |
 
 Bei offenen Entscheidungen entfallen die Sätze je Balken (sie urteilen über den ganzen Weg); die Balken selbst und der Hinweis „n Entscheidungen haben Sie noch nicht getroffen“ stehen da. Die Bürgermeisterin sagt dann, wenn keine Falle gewählt ist und das Vertrauen nicht niedrig: > Geschafft haben wir es – und was unterwegs offen geblieben ist, schauen wir uns noch einmal gemeinsam an.
 
@@ -178,7 +178,7 @@ Campus Stufe 0 · Winter · Morgen (wie Kapitel 1), groß. Marke „Fiktiver Fal
 > Unterwegs müssen Sie sich mehrmals entscheiden – achtmal auf dem ganzen Weg, viermal in der Kurzfassung. Ihre Antworten bewegen drei Balken: Geld, Zeit und Vertrauen. Am Ende sehen Sie, wie Ihr Projekt ausgegangen ist.
 > Diese fünf Menschen begleiten Sie:
 
-Knopf: > Los geht's · daneben leise: > Kurzfassung (etwa 11 Minuten)
+Knopf: > Los geht's · daneben leise: > Kurzfassung (etwa 10 Minuten)
 
 ---
 
@@ -187,7 +187,7 @@ Knopf: > Los geht's · daneben leise: > Kurzfassung (etwa 11 Minuten)
 | Feld | Inhalt |
 |---|---|
 | Zeit | Januar 2026, Winter |
-| Campus | **Stufe 0 · Winter · Morgen** – verschneites, leeres Grundstück im Bauzaun; Bauschild am Zaun; kahle Linden am Rand; kühles Blau, erstes Licht hinter den Bäumen |
+| Campus | **Stufe 0 · Winter · Morgen** – verschneites, leeres Grundstück im Bauzaun; Bauschild am Zaun; am Rand ein kleiner Baucontainer (R75); kahle Linden am Rand; kühles Blau, erstes Licht hinter den Bäumen |
 | Figuren | Grundstein, Faden, Schwung |
 | Kurzfassung | ja |
 | Thema | `begriffe` |
@@ -210,7 +210,7 @@ Knopf: > Los geht's · daneben leise: > Kurzfassung (etwa 11 Minuten)
 | Platz | Wertung | Antwort (sichtbar) | Geld | Zeit | Vertrauen |
 |---|---|---|---|---|---|
 | 2 | A · gut | > Die Projektsteuerin entwirft eine Seite, wer was entscheidet – festlegen muss es die Bürgermeisterin selbst. | 0 | 0 | +2 |
-| 1 | B · vertretbar | > Sicher ist sicher: Alles, was Geld oder Zeit kostet, legen Sie der Bürgermeisterin vor. | 0 | −1 | +1 |
+| 1 | B · vertretbar | > Sicher ist sicher: Sie legen der Bürgermeisterin alles vor, was Geld oder Zeit kostet. | 0 | −1 | +1 |
 | 3 | C · Falle | > Die Bürgermeisterin will nicht behelligt werden. Also entscheiden Sie alles und halten sie auf dem Laufenden. | 0 | +1 | −2 |
 
 **Folge-Szenen**
@@ -261,7 +261,7 @@ Knopf: > Los geht's · daneben leise: > Kurzfassung (etwa 11 Minuten)
 > **Konrad Schwung:** Weiß ich nicht genau. Das war nur ein Gespräch auf einer Messe. Das pendelt sich ein, glauben Sie mir.
 > **Theo Lot:** Holz kommt, wenn es kommt. Ich hab noch keinen Bau erlebt, wo's nicht irgendwann kam.
 > **Theo Lot:** Und überhaupt: Ich bau, ich schreib nicht. Listen sind Ihr Job.
-> **Clara Faden:** Kann sein. Aber wenn das Holz diesmal nicht kommt, sollten wir es früh wissen.
+> **Clara Faden:** Kann sein. Aber wenn das Holz diesmal nicht kommt, sollten wir es früh wissen. So einen Hinweis halte ich als Frühwarnung fest – und kläre, was dran ist.
 
 **Frage**
 > Noch ist nichts passiert, und niemand weiß, ob überhaupt etwas passieren wird. Alle schauen Sie an. Was sagen Sie?
@@ -290,6 +290,8 @@ Knopf: > Los geht's · daneben leise: > Kurzfassung (etwa 11 Minuten)
 
 **Mini-Aufgabe 1 · Was ist was?** (zuordnen)
 > Auf einer Baustelle passiert vieles gleichzeitig. Ordnen Sie jedem Satz zu, was er ist: Frühwarnung, Risiko, Problem, Änderung, Maßnahme oder Aufgabe.
+
+Über den Karten steht eine kleine Legende (R75, wortgleich aus den Erklärungen): Frühwarnung – ein Hinweis, der noch nicht geklärt ist · Risiko – kann eintreten, ist aber noch nicht passiert · Problem – ist schon passiert · Änderung – etwas, das bisher gilt, soll bewusst anders werden · Maßnahme – eine gezielte Handlung, die einen Zustand verbessert · Aufgabe – eine geplante Arbeit mit Ergebnis, Namen und Termin.
 
 | Posten (sichtbar) | Lösung | Erklärung (sichtbar, nach der Antwort) |
 |---|---|---|
@@ -343,7 +345,7 @@ Grafik zur Szene: kleine Matrix aus 5 × 5 Feldern ohne Zahlen, Achsen „wie wa
 |---|---|---|---|---|---|
 | 3 | A · gut | > Sie sagen der Bürgermeisterin sofort Bescheid; die Vorlage – früher ausschreiben oder abwarten – liegt ihr diese Woche vor. | −1 | +2 | +1 |
 | 1 | B · vertretbar | > Sie sagen der Bürgermeisterin sofort in zwei Sätzen Bescheid. Die Vorlage kommt in einem Monat in den regulären Lenkungskreis. | −1 | −1 | −1 |
-| 2 | C · Falle | > Sie warten mit der Meldung, bis ein zweiter Holzbauer die Einschätzung bestätigt – vielleicht entspannt sich die Lage. | −2 | −2 | −2 |
+| 2 | C · Falle | > Sie warten mit der Meldung, bis ein zweiter Holzbauer die Einschätzung bestätigt – mit einer bestätigten Zahl überzeugen Sie die Bürgermeisterin eher. | −2 | −2 | −2 |
 
 **Folge-Szenen**
 
@@ -473,7 +475,7 @@ Fachliche Einordnung (intern): Die angekündigten Mehrkosten sind ein Risiko (no
 |---|---|---|---|---|---|
 | 3 | A · gut | > Eine Million über dem Budget, mit Datum und Begründung – die angekündigten Mehrkosten als Risiko daneben. | +1 | 0 | +2 |
 | 1 | B · vertretbar | > Die höhere Zahl des Architekten – lieber dem Stadtrat einmal zu viel sagen als später nachlegen. | −1 | −1 | 0 |
-| 2 | C · Falle | > Die Mitte aus beiden, anderthalb Millionen – so bekommt keiner recht, und keiner liegt ganz daneben. | −1 | 0 | −2 |
+| 2 | C · Falle | > Die Mitte aus beiden, anderthalb Millionen – damit nehmen Sie Kämmerei und Architekt gleichermaßen ernst. | −1 | 0 | −2 |
 
 **Folge-Szenen**
 
@@ -528,7 +530,7 @@ Fachliche Einordnung (intern): Sperren ist Sache der Bauleitung vor Ort mit der 
 |---|---|---|---|---|---|
 | 1 | A · gut | > Sperren Sie sofort, holen Sie die Sicherheitskoordination. Die Projektsteuerin meldet es und hält es heute fest. | 0 | −1 | +1 |
 | 2 | B · vertretbar | > Sperren Sie sofort. Ich schreibe der Projektsteuerin kurz, was los ist – den Rest klären wir am Montag. | 0 | −1 | 0 |
-| 3 | C · Falle | > Sperren Sie nur die Seite mit den losen Ankern. An der anderen wird weitergearbeitet, bis der Gerüstbauer kommt. | −1 | −2 | −2 |
+| 3 | C · Falle | > Sperren Sie die Seite mit den losen Ankern. Die andere Seite steht fest – dort arbeiten die Zimmerleute weiter, bis der Gerüstbauer kommt. | −1 | −2 | −2 |
 
 **Folge-Szenen**
 
@@ -540,7 +542,7 @@ Fachliche Einordnung (intern): Sperren ist Sache der Bauleitung vor Ort mit der 
 *B · vertretbar*
 > Gesperrt wird sofort, niemand kommt zu Schaden. Clara Faden liest Ihre Nachricht am Abend, meldet den Schaden und legt noch am selben Tag den Eintrag an.
 >
-> Aber vor Ort hat niemand Uhrzeit und Fotos festgehalten, und die Sicherheitskoordination war nicht da – so bestreitet die Gerüstfirma, dass der Sturm schuld ist. Nach einer Woche ist geklärt, wer zahlt. Theo Lot murmelt: „Hätten wir's mal gleich aufgeschrieben.“
+> Aber vor Ort hat niemand Uhrzeit und Fotos festgehalten, und die Sicherheitskoordination hat niemand gleich gerufen – so bestreitet die Gerüstfirma, dass der Sturm schuld ist. Nach einer Woche ist geklärt, wer zahlt. Theo Lot murmelt: „Hätten wir's mal gleich aufgeschrieben.“
 
 *C · Falle*
 > Am Samstag kommt die Sicherheitskoordination vorbei und stoppt die ganze Baustelle, bis das Gerüst geprüft ist. Verletzt wurde niemand – zum Glück. Clara Faden erfährt erst jetzt davon, meldet den Vorfall sofort und hält ihn noch am selben Tag fest. Die Prüfung dauert eine Woche, und die Bürgermeisterin fragt, warum am Freitag weitergearbeitet wurde.
@@ -549,7 +551,7 @@ Fachliche Einordnung (intern): Sperren ist Sache der Bauleitung vor Ort mit der 
 > Wo es um Sicherheit geht, wird sofort gehandelt und sofort gemeldet – Schutz wartet auf keine Sitzung und keine Vorlage. Noch am selben Arbeitstag wird festgehalten, was passiert ist; danach werden Ursache und Lösung geklärt, und was Geld kostet oder etwas ändert, entscheidet weiterhin die Stelle, die es darf.
 
 **Mini-Aufgabe 3 · Was kommt wann?** (sortieren; Posten erscheinen gemischt)
-> Bringen Sie die Schritte nach dem Sturm in die richtige Reihenfolge.
+> Bringen Sie die Schritte nach dem Sturm in die richtige Reihenfolge. Wählen Sie sie dazu nacheinander an – zuerst den Schritt, der als Erstes kommt.
 
 | Richtige Stelle | Posten (sichtbar) | Erklärung (sichtbar) |
 |---|---|---|
@@ -692,12 +694,14 @@ Fachliche Einordnung (intern): Freigabe am Ende der Bauzeit (Abschluss der Objek
 |---|---|---|---|---|---|
 | 3 | A · gut | > Freigabe mit Auflagen: Die Schule zieht ein, die zwei offenen Punkte gehen mit Termin und Namen ans Gebäudemanagement. | 0 | 0 | +1 |
 | 2 | B · vertretbar | > Freigabe. Die zwei Punkte klärt der Architekt mit den Firmen – das gehört ohnehin zu seiner Aufgabe. | 0 | 0 | 0 |
-| 1 | C · Falle | > Freigabe ohne Einschränkung. Die zwei Punkte sind Kleinigkeiten – die müssen nicht extra in die Vorlage. | 0 | 0 | −2 |
+| 1 | C · Falle | > Freigabe ohne Einschränkung. Beide Punkte sind mit den Firmen fest verabredet – damit belasten wir die Vorlage nicht. | 0 | 0 | −2 |
 
 **Folge-Szenen**
 
 *A · gut*
-> Im Lenkungskreis wird kurz beraten, dann erteilt die Bürgermeisterin die Freigabe mit Auflagen. Clara Faden übergibt alles, was noch offen ist, an das Gebäudemanagement – jeden Punkt mit Termin und Namen. Zu den Herbstferien sind die Fugen geschlossen, im Januar ist die Lüftung eingestellt, und beides ist mit Nachweis erledigt. Das Gebäudemanagement findet alles an einer Stelle – niemand muss suchen.
+> Im Lenkungskreis wird kurz beraten, dann erteilt die Bürgermeisterin die Freigabe mit Auflagen.
+>
+> Clara Faden übergibt alles, was noch offen ist, an das Gebäudemanagement – jeden Punkt mit Termin und Namen. Zu den Herbstferien sind die Fugen geschlossen, im Januar ist die Lüftung eingestellt, und beides ist mit Nachweis erledigt. Das Gebäudemanagement findet alles an einer Stelle – niemand muss suchen.
 
 *B · vertretbar*
 > Die Bürgermeisterin erteilt die Freigabe. Clara Faden übergibt die zwei Punkte trotzdem an das Gebäudemanagement – verschwinden lässt sie nichts. Weil die Freigabe sie aber nicht nennt, fühlt sich die Firma für den Hallenboden nicht gedrängt: Die Fugen sind erst im Frühjahr geschlossen.
@@ -728,22 +732,24 @@ Beleg Mini-Aufgabe: v24:hb-5 (Abs. 5–7: Abschlusskriterien, Risiko nur mit nac
 
 ---
 
-## 5 · Kurzfassung (etwa 11 Minuten)
+## 5 · Kurzfassung (etwa 10 Minuten)
 
 Gezeigt werden **Kapitel 1, 3, 4 und 7** vollständig (Einstieg, Szene, Frage, Folge, So macht man es gut, Das steckt dahinter; in Kapitel 7 mit dem Vergleich), danach das **Ende**. Die Mini-Aufgaben entfallen in der Kurzfassung. Übersprungene Kapitel erscheinen als schmale Brückenkarte mit Campus-Bild der Stufe, Nummer und Titel und einem Brückensatz; ihre Balkenwirkung zählt wie die gute Antwort (der Brückensatz erzählt den guten Weg). Die Fortschrittslinie zeigt „1 von 4“ … „4 von 4“.
 
 | Übersprungen | Brückensatz (sichtbar) | Balken (wie gut) |
 |---|---|---|
-| 2 · Ein erstes Warnsignal | > Im März erwähnt der Architekt beiläufig, Holz könnte knapp werden. Die Projektsteuerin hält es als Frühwarnung fest: was zu prüfen ist (die Prüffrage), wer nachfragt, bis wann. | Zeit +1, Vertrauen +1 |
+| 2 · Ein erstes Warnsignal | > Im März erwähnt der Architekt beiläufig, Holz könnte knapp werden, und die Projektsteuerin hält es als Frühwarnung fest: was zu prüfen ist (die Prüffrage), wer nachfragt, bis wann. | Zeit +1, Vertrauen +1 |
 | 5 · Zwei Zahlen, zwei Wahrheiten | > Im Herbst nennt die Bürgermeisterin dem Stadtrat eine begründete Zahl, die angekündigten Mehrkosten der Haustechnik als Risiko daneben – sie erweisen sich als unberechtigt. | Geld +1, Vertrauen +2 |
-| 6 · Ärger auf der Baustelle | > Im Februar lockert ein Sturm das Gerüst. Der Bauleiter sperrt sofort, die Projektsteuerin hält es am selben Tag fest. | Zeit −1, Vertrauen +1 |
+| 6 · Ärger auf der Baustelle | > Im Februar lockert ein Sturm das Gerüst; der Bauleiter sperrt sofort, und die Projektsteuerin hält es am selben Tag fest. | Zeit −1, Vertrauen +1 |
 | 8 · Schulstart | > Im Juli 2028 erteilt die Bürgermeisterin die Freigabe mit Auflagen; zwei kleine Restarbeiten gehen mit Termin und Namen an das Gebäudemanagement der Stadt, das sich nun um den Campus kümmert. | Vertrauen +1 |
 
-**Kürzungen der Kurzfassung (P17.5, 2026-10-03):** Die gemessene Kurzfassung war mit rund 2.530 Wörtern Lesetext (≈ 12,7 Minuten bei 200 Wörtern je Minute) zu lang. Ohne den ganzen Weg zu ändern, zeigt sie deshalb kürzere Einstiege (`einstieg-kurz` in 1, 3, 4, 7 und am Ende), lässt reine Stimmungszeilen weg (1: „Na gut …“; 3: Theo Lot „Zehn Wochen …“; 4: Hanna Klingel „Später ist immer zu spät …“; Ende: Theo Lot, Konrad Schwung und Clara Faden). Hanna Klingel „Bitte sagen Sie mir nicht …“ (3) und Theo Lot „Vier Monate …“ (7) bleiben bewusst stehen: Sie tragen den Sachbezug (Schulstart in Gefahr, Einbau nach Schulbeginn), klappt „Das steckt dahinter“ und die Kipppunkte des Vergleichs zu und hat knappere Brückensätze (oben). Im Auftakt sind die Steckbriefe auf beiden Wegen zugeklappt (Porträt, Name, Rolle offen). Gemessen danach: Kurzfassung rund 2.030 Wörter ≈ 10 Minuten, ganzer Weg rund 4.240 Wörter ≈ 21 Minuten Lesen, dazu vier Mini-Aufgaben und der Vergleich zum Ausprobieren.
+**Kürzungen der Kurzfassung (P17.5, 2026-10-03):** Die gemessene Kurzfassung war mit rund 2.530 Wörtern Lesetext (≈ 12,7 Minuten bei 200 Wörtern je Minute) zu lang. Ohne den ganzen Weg zu ändern, zeigt sie deshalb kürzere Einstiege (`einstieg-kurz` in 1, 3, 4, 7 und am Ende), lässt reine Stimmungszeilen weg (1: „Na gut …“; 3: Theo Lot „Zehn Wochen …“; 4: Hanna Klingel „Später ist immer zu spät …“; Ende: Theo Lot, Konrad Schwung und Clara Faden). Hanna Klingel „Bitte sagen Sie mir nicht …“ (3) und Theo Lot „Vier Monate …“ (7) blieben zunächst stehen (seit R75 nur noch auf dem ganzen Weg, siehe unten), klappt „Das steckt dahinter“ und die Kipppunkte des Vergleichs zu und hat knappere Brückensätze (oben). Im Auftakt sind die Steckbriefe auf beiden Wegen zugeklappt (Porträt, Name, Rolle offen). Gemessen danach: Kurzfassung rund 2.030 Wörter ≈ 10 Minuten, ganzer Weg rund 4.240 Wörter ≈ 21 Minuten Lesen, dazu vier Mini-Aufgaben und der Vergleich zum Ausprobieren.
 
 **Nachmessung R72 (2026-10-03, Zählweise in L-234):** sichtbarer Text je Schritt im Browser, alle drei Antworten mitgezählt, zugeklappte Aufklapper nur mit Titelzeile, ohne Bildtexte, Balkentafel und Kicker; 200 Wörter je Minute. Vorher 2.373 Wörter ≈ 11,9 Minuten. Nach weiteren Kürzungen (Brücken 5, 6, 8; kürzere `einstieg-kurz` in 1, 3, 4, 7 und am Ende; Stimmungszeilen oben) 2.230 Wörter ≈ 11,2 Minuten – angekündigt als „etwa 11 Minuten“. Ganzer Weg 4.541 Wörter ≈ 22,7 Minuten plus Mini-Aufgaben und Vergleich (≈ 25 Minuten).
 
 **Messung R73 (2026-10-03, reproduzierbar):** `node werkzeuge/lesezeit.mjs` baut jeden Schritt so, wie die Seite ihn zeichnet, und zählt nach der dort festgehaltenen Zählregel (die von L-234, dazu: Wörter enden auch an Blockgrenzen, sonst verschmelzen Sprechername und Satz). Ergebnis: Kurzfassung 2.161 Wörter ≈ 10,8 Minuten → „etwa 11 Minuten“; ganzer Weg 4.422 Wörter ≈ 22 Minuten Lesen einschließlich der Texte von Mini-Aufgaben und Vergleich, mit dem Ausprobieren „etwa 25 Minuten“. `tests/lesezeit.test.ts` koppelt den Knopf im Auftakt, die Zeile der Startseite und die Angaben hier an die Messung. Die Zahlen oben sind ältere Zählungen.
+
+**Kürzung R75 (2026-10-03, O-51 „Kurzfassung etwa 10“):** Nur über `kurzfassung: false` und kürzere `einstieg-kurz`, ohne neue Inhalte und ohne Zeilen, die eine spätere Folge trägt: nur auf dem ganzen Weg stehen jetzt in 3 Konrad Schwung „Wir könnten auch einfach hoffen …“, Clara Faden „Hoffen ist kein Weg …“ (die Regel zum Tragen eines Risikos steht in „So macht man es gut“) und Hanna Klingel „Bitte sagen Sie mir nicht …“, in 4 Theo Lot „Wenn umgeplant wird …“, in 7 Theo Lot „Vier Monate …“ und Hanna Klingel „Leihgeräte in jedem Klassenraum? …“; kürzere `einstieg-kurz` in 3, 4, 7 und am Ende. Gemessen mit `node werkzeuge/lesezeit.mjs`: Kurzfassung 2.083 Wörter ≈ 10,4 Minuten → „etwa 10 Minuten“; ganzer Weg 4.558 Wörter ≈ 22,8 Minuten (mit dem Ausprobieren „etwa 25 Minuten“).
 
 Lesezeit-Schätzung (nachgezählt am Drehbuch, 2026-10-03, vor P17.5): rund 2.400 sichtbare Wörter auf dem Weg der Kurzfassung (vier Kapitel mit je einer Folge, Vergleich, Brücken, Auftakt, Ende, Bilanz) – etwa 10 Minuten. Hauptweg: rund 4.400 sichtbare Wörter mit je einer Folge-Szene, dazu vier Mini-Aufgaben und der Vergleich zum Ausprobieren – etwa 25 Minuten. P17.5 misst nach.
 

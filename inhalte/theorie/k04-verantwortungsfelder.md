@@ -239,7 +239,7 @@ Darüber beschließt der Bauherr im Lenkungskreis.
 stelle: 3
 ---
 ### Frage
-Eine Änderung hat einen Wert von 250.000 € – wer entscheidet nach der Muster-Mandatsleiter?
+Nach der Muster-Mandatsleiter oben, nicht nach den Schwellen aus der Story: Wer entscheidet über eine Änderung im Wert von 250.000 €?
 
 ### Erklärung
 250.000 € liegen über 100.000 € und unter 5 Mio. € – nach der Muster-Mandatsleiter entscheidet das Änderungsgremium. Gehen die Mehrkosten zulasten der Risikoreserve, gibt deren Einsatz trotzdem der Bauherr frei – auch wenn in der Sache das Änderungsgremium entscheidet. In der Story hat die Bürgermeisterin die Schwellen anders festgelegt – genau das darf der Bauherr: Die Mandatsleiter ist ein Muster, keine Vorgabe.
@@ -336,7 +336,7 @@ Die [[Übergabe]] des Vorhabens.
 ---
 titel: Außerhalb der Reihe
 ---
-Eine [[Neufestlegung der Projektbasis]] steht außerhalb der regulären Freigabereihe; auch Fortführung oder Stopp ordnet MVG keiner festen Leistungsphase zu.
+Eine [[Neufestlegung der Projektbasis]] steht außerhalb der regulären Freigabereihe; ebenso Fortführung oder Stopp – ohne feste Leistungsphase.
 :::
 :::
 :::

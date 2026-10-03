@@ -51,6 +51,18 @@ export async function lauf(seite, h) {
     await h.erwarte('[data-pruef="lern-kontakt"] [data-pruef="bm-link"]');
     for (const f of sichtbarVerboten(await seite.locator('body').innerText())) h.befund(`${t}: ${f}`);
     await pruefe(t);
+    // R75: unter 1100 px ist das Themenverzeichnis zugeklappt; geöffnet bleibt jeder Eintrag klickbar (vorher lief die Liste
+    // aus ihrer Box und lag unter der Kopfgrafik – die letzten Einträge fingen keinen Klick mehr)
+    const verzeichnis = seite.locator('details.kapitel-verzeichnis').first();
+    if (await verzeichnis.count() > 0 && !(await verzeichnis.evaluate((e) => /** @type {HTMLDetailsElement} */ (e).open))) {
+      await verzeichnis.locator('summary').click();
+      const letzter = verzeichnis.locator('.kapitel-liste a').last();
+      await letzter.scrollIntoViewIfNeeded();
+      try { await letzter.click({ trial: true, timeout: 2000 }); } catch { h.befund(`${t}: letzter Eintrag des geöffneten Themenverzeichnisses nicht klickbar (${h.viewport.breite}×${h.viewport.hoehe})`); }
+      const ueber = await verzeichnis.evaluate((e) => e.scrollHeight - e.clientHeight);
+      if (ueber > 1) h.befund(`${t}: geöffnetes Themenverzeichnis läuft ${ueber} px aus seiner Box`);
+      await verzeichnis.locator('summary').click();
+    }
   }
   // R67: „Thema drucken“ im echten PDF – kein Kopf allein am Seitenende, keine leere Seite; R70: keine Trennstelle als Zeichen
   // sichtbar, kein Wortbruch ohne Trennstrich, erste Seite gefüllt
@@ -73,6 +85,9 @@ export async function lauf(seite, h) {
     // R68: genau ein sichtbarer Titel im Bogen
     const titel = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen h1')].filter((x) => getComputedStyle(x).display !== 'none').length);
     if (titel !== 1) h.befund(`Druck ${t}: ${titel} sichtbare h1 im Bogen`);
+    // R75 (Vorsorge, L-231): das Kopfband des Themas steht nicht im Bogen
+    const band = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen .kopf-band')].filter((x) => x.getClientRects().length > 0).length);
+    if (band > 0) h.befund(`Druck ${t}: ${band} Kopfband sichtbar im Bogen`);
     // r72: Teil und Nummer als kleine Zeile im Druckkopf – das Blatt lässt sich im Buch einordnen
     const kicker = await seite.evaluate(() => { const k = document.querySelector('.druck-bogen .druck-kopf [data-pruef="druck-kicker"]'); return k !== null && getComputedStyle(k).display !== 'none' ? k.textContent : null; });
     if (!/^(?:Teil (?:I|II|III|IV)|Anhang) · \d+$/u.test(kicker ?? '')) h.befund(`Druck ${t}: Druckkopf ohne Teil und Nummer („${kicker}“)`);

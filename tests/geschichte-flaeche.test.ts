@@ -450,3 +450,109 @@ test('r73: Kurzfassung – Kapitel mit Mini-Aufgabe tragen „Das steckt dahinte
     assert.equal(lang.element.querySelector('[data-pruef="gs-dahinter-auf"], [data-pruef="gs-dahinter"]'), null, `${k.id} lang`);
   }
 });
+
+/* ------------------------------------------------------------------ R75 -- */
+
+const nurText = (html: string): string => { const el = document.createElement('span'); el.innerHTML = html; return (el.textContent ?? '').replace(/\u00ad/gu, ''); };
+
+/** Text jeder Antwortkarte: genau Nummer, Antworttext und – nur bei der eigenen Wahl – die Marke; sonst nichts (keine Wertung). */
+function kartenFunde(el: HTMLElement, k: (typeof g.kapitel)[number], stand: Stand): string[] {
+  const aus: string[] = [];
+  for (const karte of el.querySelectorAll<HTMLElement>('[data-pruef^="antwort-"]')) {
+    const platz = Number(karte.dataset['platz']);
+    const a = k.antworten[platz];
+    const soll = `${platz + 1}${nurText(a?.html ?? '')}${stand.wahlen[k.id] === platz ? W.geschichte.gewaehlt : ''}`;
+    if ((karte.textContent ?? '').replace(/\u00ad/gu, '') !== soll) aus.push(`${k.id} Platz ${platz + 1}: „${karte.textContent}“`);
+    for (const x of [karte, ...karte.querySelectorAll('*')]) for (const at of [...x.attributes]) {
+      if ((at.name === 'title' || at.name === 'alt' || at.name.startsWith('aria-')) && !['aria-pressed', 'aria-hidden'].includes(at.name)) aus.push(`${k.id} Platz ${platz + 1}: ${at.name}="${at.value}"`);
+    }
+  }
+  return aus;
+}
+
+test('R75: jede Antwortkarte trägt genau ihren Text (und „Ihre Wahl“) – auch kein „gut“ als Text oder Vorlesetext; Story und Leinwand', () => {
+  for (const k of g.kapitel) for (const platz of [undefined, 0, 1, 2]) for (const bedienbar of [true, false]) {
+    const stand = an(k.id, 'frage', platz === undefined ? neuerStand() : waehle(g, neuerStand(), k.id, platz));
+    const el = baueSchritt({ g, stand, bedienbar, themaTitel: () => 'Thema', tue: () => undefined });
+    assert.equal(el.querySelectorAll('[data-pruef^="antwort-"]').length, 3, k.id);
+    assert.deepEqual(kartenFunde(el, k, stand), [], `${k.id} Wahl ${platz} ${bedienbar ? 'Story' : 'Leinwand'}`);
+  }
+  // Gegenprobe (Mutation F1 aus R75): ein eingeschleustes „(gut)“ – sichtbar oder nur vorgelesen – wird gefunden
+  const k = g.kapitel[0]!;
+  const stand = an(k.id, 'frage', waehle(g, neuerStand(), k.id, 0));
+  const gutPlatz = k.antworten.findIndex((a) => a.wertung === 'gut');
+  for (const zusatz of ['<span class="nur-sr"> (gut)</span>', '<span aria-label="gut"></span>']) {
+    const el = baueSchritt({ g, stand, bedienbar: true, themaTitel: () => 'Thema', tue: () => undefined });
+    el.querySelector(`[data-pruef="antwort-${gutPlatz + 1}"] .gs-antwort-text`)?.insertAdjacentHTML('beforeend', zusatz);
+    assert.equal(kartenFunde(el, k, stand).length, 1, zusatz);
+  }
+});
+
+test('R75: bei offenen Entscheidungen keine Zeile „Nur die Sporthalle bleibt noch zu“ – auch wenn Zeit schon niedrig steht', () => {
+  const k1 = g.kapitel[0]!;
+  const k3 = g.kapitel[2]!;
+  let s = waehle(g, neuerStand(), k1.id, k1.antworten.findIndex((a) => a.wertung === 'vertretbar'));
+  s = waehle(g, s, k3.id, k3.antworten.findIndex((a) => a.wertung === 'falle'));
+  const st: Stand = { ...s, schritt: { ort: 'ende' } };
+  assert.equal(stufeVon(balkenVon(g, st).zeit), 'niedrig', 'Gegenprobe: Zeit steht niedrig');
+  const el = baueSchritt({ g, stand: st, bedienbar: true, themaTitel: () => 'Thema', tue: () => undefined });
+  assert.equal(el.dataset['bilanz'], 'offen');
+  assert.equal(el.querySelector('[data-pruef="gs-zeit-niedrig"]'), null);
+  // alle Wege mit genau einem offenen Kapitel: nie die Zeile
+  for (const offen of g.kapitel) for (const wertung of ['vertretbar', 'falle']) {
+    let t = neuerStand();
+    for (const k of g.kapitel) if (k !== offen) t = waehle(g, t, k.id, k.antworten.findIndex((a) => a.wertung === wertung));
+    const e = baueSchritt({ g, stand: { ...t, schritt: { ort: 'ende' } }, bedienbar: true, themaTitel: () => 'Thema', tue: () => undefined });
+    assert.equal(e.querySelector('[data-pruef="gs-zeit-niedrig"]'), null, `${offen.id} offen, sonst ${wertung}`);
+  }
+});
+
+test('R75: Ende mit offenen Entscheidungen führt per Knopf zur ersten offenen Frage', () => {
+  const k1 = g.kapitel[0]!;
+  const f = flaeche({ ...waehle(g, neuerStand(), k1.id, 1), schritt: { ort: 'ende' } });
+  const knopf = $(f, '[data-pruef="zur-offenen"]');
+  assert.match(knopf.textContent ?? '', /Zur ersten offenen Entscheidung: 2 · Ein erstes Warnsignal/u);
+  assert.doesNotMatch(knopf.textContent ?? '', /Kapitel/u);
+  knopf.click();
+  assert.deepEqual(f.stand().schritt, { ort: 'kapitel', kapitel: 'k2', teil: 'frage' });
+  assert.equal(aktiv(), 'gs-titel');
+  // ohne offene Entscheidung kein Knopf
+  const voll = flaeche({ ...weg('gut'), schritt: { ort: 'ende' } });
+  assert.equal(voll.element.querySelector('[data-pruef="zur-offenen"]'), null);
+});
+
+test('R75: Reihenfolge meldet nach jedem Klick den Stand („2 von 6 gesetzt.“); Zuordnen zeigt eine Legende der Wahlen', () => {
+  const f = flaeche(an('k6', 'mini'));
+  $(f, '[data-pruef="reihe-1"]').click();
+  assert.equal($(f, '[data-pruef="mini-stand"]').textContent, '1 von 6 gesetzt.');
+  $(f, '[data-pruef="reihe-2"]').click();
+  assert.equal($(f, '[data-pruef="mini-stand"]').textContent, '2 von 6 gesetzt.');
+  const k2 = flaeche(an('k2', 'mini'));
+  const legende = $(k2, '[data-pruef="mini-legende"]');
+  const k2m = kapitel(g, 'k2')!.mini!;
+  assert.deepEqual([...legende.querySelectorAll('dt')].map((x) => x.textContent), k2m.wahlen.map((x) => x.titel));
+  // die Legende erklärt nur Begriffe – sie steht wortgleich in den Rückmeldungen (keine neue Aussage)
+  const erklaert = k2m.posten.map((p) => nurText(p.erklaerungHtml).toLowerCase()).join(' ');
+  for (const x of k2m.wahlen) for (const wort of nurText(x.heisstHtml ?? '').toLowerCase().split(/[\s,]+/u).filter((w) => w.length > 4)) assert.ok(erklaert.includes(wort), `${x.id}: „${wort}“`);
+  // k4 (mit Porträts) und k8 (mit Ablagen) haben keine Legende
+  assert.equal(flaeche(an('k4', 'mini')).element.querySelector('[data-pruef="mini-legende"]'), null);
+});
+
+test('R75: Balken am Rand zeigen die Richtung der Wirkung („▲ bleibt ganz oben“)', () => {
+  const s = weg('gut');
+  const k6 = kapitel(g, 'k6')!;
+  assert.equal(balkenBis(g, s, k6.nr - 1).vertrauen, 10, 'Voraussetzung: Vertrauen voll vor Kapitel 6');
+  const el = baueSchritt({ g, stand: an('k6', 'frage', s), bedienbar: true, themaTitel: () => 'Thema', tue: () => undefined });
+  const wort = el.querySelector('[data-pruef="wort-vertrauen"]')?.textContent ?? '';
+  assert.equal(wort, `▲${W.geschichte.bleibtOben}`);
+});
+
+test('R75: Druckbogen nennt vor „Ihre Antwort“ die Frage – nicht bei Kapiteln, die die Kurzfassung nur erzählt', () => {
+  const el = document.createElement('div');
+  el.append(...storyDruck(g, { ...weg('gut'), schritt: { ort: 'ende' } }, 'Fassung').teile);
+  for (const k of g.kapitel) assert.equal(el.querySelector(`[data-pruef="druck-${k.id}"] .druck-frage`)?.textContent, nurText(k.frageHtml), k.id);
+  const kurz = document.createElement('div');
+  kurz.append(...storyDruck(g, { ...weg('gut', true), schritt: { ort: 'ende' } }, 'Fassung').teile);
+  assert.equal(kurz.querySelector('[data-pruef="druck-k2"] .druck-frage'), null);
+  assert.ok(kurz.querySelector('[data-pruef="druck-k1"] .druck-frage'));
+});

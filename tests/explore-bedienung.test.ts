@@ -160,3 +160,45 @@ function vonHtmlText(html: string): string {
   d.innerHTML = html;
   return (d.textContent ?? '').replace(/­/gu, '');
 }
+
+/*
+ * R75 (explore-begriffe): Die fachlichen Kernsätze von Explore als feste Erwartung (O-57: der Inhalt bleibt; V2.4
+ * Handbuch 1–4). Die Prüfung liefert die Abweichungen als Liste; die Gegenprobe zeigt, dass sie Mutationen erkennt.
+ */
+type Werkzeuge = NonNullable<typeof inhalte.werkzeuge>;
+function kernAbweichungen(w: Werkzeuge): string[] {
+  const fehler: string[] = [];
+  const wege = (id: string): string[] => w.vorgaenge.arten.find((a) => a.id === id)?.wege ?? [];
+  for (const z of ['risiko', 'problem', 'aufgabe']) if (!wege('fruehwarnung').includes(z)) fehler.push(`Frühwarnung ohne Weg ${z}`);
+  if (!wege('risiko').includes('problem')) fehler.push('Risiko ohne Weg Problem');
+  if (!/Beschluss[^.]*befugten Stelle des Bauherrn/u.test(w.vorgaenge.entscheidung.html)) fehler.push('Beschluss nicht bei der befugten Stelle des Bauherrn');
+  if (!/der Bauherr pflegt keine Liste/u.test(w.vorgaenge.html)) fehler.push('„der Bauherr pflegt keine Liste“ fehlt');
+  const stufe = (id: string) => w.takt.stufen.find((s) => s.id === id);
+  if (!/selben Arbeitstag/u.test(stufe('sofort')?.html ?? '')) fehler.push('Sofort: nicht „am selben Arbeitstag“');
+  if (stufe('sofort')?.wer !== 'Projektsteuerung') fehler.push('Sofort: wer');
+  if (!/höchstens 60 Minuten/u.test(stufe('monat')?.html ?? '')) fehler.push('Monat: nicht „höchstens 60 Minuten“');
+  if (stufe('monat')?.wer !== 'Bauherr und Projektsteuerung') fehler.push('Monat: wer');
+  if (!w.matrix.beispiele.some((b) => b.w === 1 && b.a === 5)) fehler.push('kein Matrix-Beispiel mit W 1 und A 5');
+  return fehler;
+}
+
+test('Explore (R75): die fachlichen Kernsätze stehen unverändert – mit Gegenprobe', () => {
+  const w = inhalte.werkzeuge;
+  assert.ok(w);
+  assert.deepEqual(kernAbweichungen(w), []);
+  const mutationen: Array<(k: Werkzeuge) => void> = [
+    (k) => { const a = k.vorgaenge.arten.find((x) => x.id === 'fruehwarnung'); if (a) a.wege = a.wege.filter((x) => x !== 'problem'); },
+    (k) => { const a = k.vorgaenge.arten.find((x) => x.id === 'risiko'); if (a) a.wege = a.wege.filter((x) => x !== 'problem'); },
+    (k) => { k.vorgaenge.entscheidung.html = k.vorgaenge.entscheidung.html.replace('befugten Stelle des Bauherrn', 'Projektsteuerung'); },
+    (k) => { k.vorgaenge.html = k.vorgaenge.html.replace('pflegt keine Liste', 'pflegt die Liste'); },
+    (k) => { const s = k.takt.stufen.find((x) => x.id === 'sofort'); if (s) s.html = s.html.replace('am selben Arbeitstag', 'binnen einer Woche'); },
+    (k) => { const s = k.takt.stufen.find((x) => x.id === 'monat'); if (s) s.html = s.html.replace('60 Minuten', '90 Minuten'); },
+    (k) => { const s = k.takt.stufen.find((x) => x.id === 'monat'); if (s) s.wer = 'Bauherr'; },
+    (k) => { for (const b of k.matrix.beispiele) if (b.a === 5) b.a = 4; },
+  ];
+  for (const [i, m] of mutationen.entries()) {
+    const kopie = structuredClone(w);
+    m(kopie);
+    assert.notDeepEqual(kernAbweichungen(kopie), [], `Mutation ${i + 1} bleibt unbemerkt`);
+  }
+});

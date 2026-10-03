@@ -145,6 +145,11 @@ test('Compiler (baueAbbildungen): veraltetes Bild, fremdes WebP, fremdes Kapitel
 // geprüft auf einem Raster von Punkten (10 px), jeder Punkt liegt in mindestens einer Überdeckung.
 const SPERRFLAECHEN: Record<string, { x: number; y: number; b: number; h: number; grund: string }[]> = {
   'abb-12': [{ x: 26, y: 188, b: 1326, h: 314, grund: 'fünf nummerierte Domänen mit Nachweislisten statt 10 Domänen (k7.1-p2)' }],
+  // R75: der einzige Weg „wird zu“ Frühwarnung → Risiko widerspricht V2.4 HB 1.2 (Risiko, Problem, Aufgabe oder geschlossen)
+  'abb-10': [
+    { x: 132, y: 195, b: 20, h: 105, grund: 'Pfeil Frühwarnung → Risiko (V2.4 HB 1.2: vier Ausgänge)' },
+    { x: 172, y: 195, b: 98, h: 76, grund: 'Etikett „wird zu (bestätigt)“ (V2.4 HB 1.2)' },
+  ],
 };
 
 test('Sperrflächen (R74): eine erfundene Gliederung im Bild bleibt ganz überdeckt; Alternativtext ohne fremde Domänenzahl', () => {
@@ -164,5 +169,6 @@ test('Sperrflächen (R74): eine erfundene Gliederung im Bild bleibt ganz überde
     const text = `${roh.titel} ${roh.alt}`;
     for (const m of text.matchAll(/([\p{L}\p{N}]+)\s+(?:nummerierte[nr]?\s+)?(?:[\p{L}\p{N}]+-)?Domänen/gu)) assert.match(m[1] ?? '', /^(10|zehn|die|der|den)$/iu, `${datei}: „${m[0]}“`);
     assert.doesNotMatch(text, /nummerierte[nr]? Kästen/u, `${datei}: nummerierte Kästen im Alternativtext`);
+    assert.doesNotMatch(text, /Frühwarnung \([^)]*wird zu/u, `${datei}: Frühwarnung „wird zu“ Risiko im Alternativtext (V2.4 HB 1.2)`);
   }
 });

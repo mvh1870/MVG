@@ -507,6 +507,11 @@ Berichterstattung erzeugt Information.
   assert.ok(s3.some((f) => /Wissenscheck berichte: stelle 3, aber nur 2 Antworten/u.test(f)), s3.join('\n'));
   const s0 = (await kompiliere({ pruefe: true, wurzel: neueWurzel(mitBloecken(mitStelle('0'))), ziel: null })).fehler;
   assert.ok(s0.some((f) => /„stelle“ = 0 liegt außerhalb/u.test(f)), s0.join('\n'));
+  // R75: das Präfix verrät keine falsche Wertung – „Genau“ nur bei a
+  const p1 = (await kompiliere({ pruefe: true, wurzel: neueWurzel(mitBloecken(gut.replace('praefix: "Nicht ganz:"', 'praefix: "Genau:"'))), ziel: null })).fehler;
+  assert.ok(p1.some((f) => /Wissenscheck berichte: Antwort b ist nicht die richtige/u.test(f)), p1.join('\n'));
+  const p2 = (await kompiliere({ pruefe: true, wurzel: neueWurzel(mitBloecken(gut.replace('praefix: "Genau:"', 'praefix: "Nicht ganz:"'))), ziel: null })).fehler;
+  assert.ok(p2.some((f) => /Wissenscheck berichte: die richtige Antwort a beginnt mit „Genau“/u.test(f)), p2.join('\n'));
 });
 
 test('Eigentext (R49): „EW“ und „Mio. EUR“ nur im wortgleichen Zitat; Schwellen der Mandatsleiter überall 100 TEUR bzw. 100.000 € / 5 Mio.', async () => {

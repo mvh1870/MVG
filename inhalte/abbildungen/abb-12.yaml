@@ -13,5 +13,5 @@ angeglichen:
   - { x: 555, y: 553, b: 265, h: 28, text: 30/60/90-Tage-Plan, beleg: k7.1-p1, schrift: barlow, gewicht: 700, groesse: 23, ausrichtung: mitte }
   - { x: 494, y: 730, b: 388, h: 25, text: "", beleg: k7.1-p1 }
   - { x: 1146, y: 529, b: 28, h: 20, text: "", beleg: k7.1-p1, hintergrund: "#ffffff" }
-  - { x: 890, y: 616, b: 73, h: 75, text: "", beleg: k7.1-p1, hintergrund: "#ffffff" }
+  - { x: 889, y: 616, b: 74, h: 75, text: "", beleg: k7.1-p1, hintergrund: "#ffffff" }
   - { x: 962, y: 545, b: 414, h: 223, text: "", beleg: k7.1-p1, hintergrund: "#ffffff" }

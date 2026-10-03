@@ -1101,6 +1101,14 @@ function baueTheorie(c, rel, id, text, regie) {
         if (typeof stelle === 'number' && stelle > antworten) c.fehler(rel, `Wissenscheck ${b.id}: stelle ${stelle}, aber nur ${antworten} Antworten`);
         if (typeof stelle === 'number' && !b.kinder.some((/** @type {any} */ x) => x.art === 'antwort' && x.id === 'a')) c.fehler(rel, `Wissenscheck ${b.id}: stelle braucht die richtige Antwort a`);
         if (!b.kinder.some((/** @type {any} */ x) => x.art === 'zitat')) c.fehler(rel, `Wissenscheck ${b.id}: Beleg fehlt (zitat)`);
+        // R75: das Präfix passt zur Richtigkeit – „Genau“ nur bei der richtigen Antwort a, bei den übrigen nie
+        for (const x of b.kinder.filter((/** @type {any} */ y) => y.art === 'antwort')) {
+          const p = x.kopf?.praefix;
+          if (typeof p !== 'string') continue;
+          const genau = /^Genau\b/u.test(p.trim());
+          if (x.id === 'a' && !genau) c.fehler(rel, `Wissenscheck ${b.id}: die richtige Antwort a beginnt mit „Genau“ (Präfix „${p}“)`);
+          if (x.id !== 'a' && genau) c.fehler(rel, `Wissenscheck ${b.id}: Antwort ${x.id} ist nicht die richtige – Präfix „${p}“ passt nicht`);
+        }
       }
       pruefeCheck(b.kinder ?? []);
     }

@@ -285,8 +285,9 @@ function wendekarte(kopf: HTMLElement | null, vorne: HTMLElement, hinten: HTMLEl
       h('div', { class: 'lernkarte-flaeche ist-vorne', 'data-pruef': 'karte-vorne' }, kopf, leer ? null : vorne),
       h('div', { class: leer ? 'lernkarte-flaeche ist-hinten ist-direkt' : 'lernkarte-flaeche ist-hinten', 'data-pruef': 'karte-hinten' }, hinten));
   }
-  // Rückseite trägt den Titel der Vorderseite als Kicker (R73), damit klar bleibt, worauf sie antwortet
-  const marke = h('span', { class: 't-label lernkarte-seite' }, titel !== '' ? titel : T.karteRueckseite);
+  // Rückseite trägt den Titel der Vorderseite als Kicker (R73), damit klar bleibt, worauf sie antwortet; R75: mit „Rückseite“
+  // dahinter, damit der Wechsel sichtbar ist (vorher stand „Typische Fehlstelle“ unverändert über der Antwort)
+  const marke = h('span', { class: 't-label lernkarte-seite' }, titel !== '' ? `${titel} · ${T.karteRueckseite}` : T.karteRueckseite);
   const vorderseite = h('div', { class: 'lernkarte-flaeche ist-vorne', 'data-pruef': 'karte-vorne' }, kopf, vorne);
   const rueckseite = h('div', { class: 'lernkarte-flaeche ist-hinten', 'data-pruef': 'karte-hinten' }, marke, hinten);
   const ansage = h('span', { class: 'nur-sr', 'aria-live': 'polite' });
@@ -526,6 +527,18 @@ function kontaktZeile(o: TheorieOptionen): HTMLElement {
   return h('p', { class: 'lern-kontakt', 'data-pruef': 'lern-kontakt' }, `${T.kontakt} `, o.bedienbar ? bmLink() : W.rahmen.kontaktBm);
 }
 
+/**
+ * Titel eines Themas mit Nummer. R75: Nummer und erstes Wort bleiben auf einer Zeile („10 ·“ stand bei 1280 px allein
+ * über „Anwendungssituationen“); die Einheit zählt darum für `--zeichen` (R47) mit.
+ */
+function themaKopfTitel(nr: number, titel: string): HTMLElement {
+  const [erstes = '', ...rest] = titel.split(' ');
+  const anfang = `${nr} · ${erstes}`;
+  return h('h1', { class: 'kapitel-titel', tabindex: -1, style: `--zeichen:${Math.max(laengstesWort(titel), [...anfang].length)}` },
+    h('span', { class: 'thema-anfang' }, h('span', { class: 'thema-nr', 'data-pruef': 'thema-nr' }, `${nr} · `), erstes),
+    rest.length > 0 ? ` ${rest.join(' ')}` : null);
+}
+
 /** Inhalt eines Themas (Kopf bis „In der Story“), ohne Rahmen – für Seite, Leinwand und Druck. */
 function themaInhalt(o: TheorieOptionen, seite: TheorieSeite): Node[] {
   lwBedienbar = o.bedienbar;
@@ -533,7 +546,7 @@ function themaInhalt(o: TheorieOptionen, seite: TheorieSeite): Node[] {
   const teile: Node[] = [h('header', { class: 'kapitel-kopf thema-kopf', 'data-teil': String(seite.teil) },
     kopfBand(String(seite.teil), seite.thema,
       h('p', { class: 'kapitel-kicker thema-kicker', 'data-pruef': 'thema-teil' }, teilText(seite.teil)),
-      h('h1', { class: 'kapitel-titel', tabindex: -1, style: `--zeichen:${laengstesWort(titel)}` }, h('span', { class: 'thema-nr', 'data-pruef': 'thema-nr' }, `${seite.nr} · `), titel)),
+      themaKopfTitel(seite.nr, titel)),
     seite.einleitung !== '' ? h('div', { class: 'kapitel-einstieg' }, inhalt(seite.einleitung)) : null)];
   const eigenes = symbolName(seite);
   symbolAktuell = eigenes;

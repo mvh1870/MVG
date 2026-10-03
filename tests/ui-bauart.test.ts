@@ -172,7 +172,7 @@ test('Startseite (O-57, P17.7): Story-Karte mit Campus und den Figuren der Story
   const ids = (story.getAttribute('aria-labelledby') ?? '').split(' ');
   assert.deepEqual(ids.map((id) => el.querySelector(`#${id}`)?.textContent), [`${W.start.storyKicker}${W.start.storyTitel}`, W.start.storyLos]);
   for (const id of (story.getAttribute('aria-describedby') ?? '').split(' ')) assert.ok(el.querySelector(`#${id}`), id);
-  assert.match(story.textContent ?? '', /Acht Entscheidungen · etwa 25 Minuten, kurz etwa 11/u);
+  assert.match(story.textContent ?? '', /Acht Entscheidungen · etwa 25 Minuten, kurz etwa 10/u);
   assert.doesNotMatch(el.textContent ?? '', /Kapitel|Station/u);
   // Theorie: vier Teile in Lesereihenfolge
   assert.deepEqual([...el.querySelectorAll('[data-pruef="weg-theorie"] .tuer-teile li')].map((li) => li.getAttribute('data-teil')), ['1', '2', '3', '4']);

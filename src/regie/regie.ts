@@ -134,8 +134,8 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
   const werkzeugWahl = h('select', { class: 'regie-auswahl', id: 'regie-werkzeug', 'data-pruef': 'regie-werkzeug' },
     WERKZEUGE.map((id) => h('option', { value: id }, inhalte.werkzeuge?.[id].titel ?? id))) as HTMLSelectElement;
   werkzeugWahl.addEventListener('change', () => setze({ ...buehne, bereich: 'explore', werkzeug: werkzeugWahl.value }));
-  // Sprung je Schritt (P17.6): Auftakt, je Kapitel Szene · Vergleich · Frage · Mini-Aufgabe, Schulstart
-  const teilName = (s: Schritt): string => s.ort === 'kapitel' ? W.geschichte.teile[s.teil] ?? s.teil : s.ort === 'auftakt' ? W.geschichte.auftakt : W.geschichte.ende;
+  // Sprung je Schritt (P17.6): Auftakt, je Kapitel Szene · Vergleich · Frage · Mini-Aufgabe, Ende (eindeutig neben Kapitel 8 „Schulstart“, R75)
+  const teilName = (s: Schritt): string => s.ort === 'kapitel' ? W.geschichte.teile[s.teil] ?? s.teil : s.ort === 'auftakt' ? W.geschichte.auftakt : W.geschichte.endeOrt;
   const sprung = h('select', { class: 'regie-auswahl regie-sprung', id: 'regie-sprung', 'data-pruef': 'regie-sprung' },
     h('option', { value: '' }, w.sprungWaehlen),
     g === null ? null : [
@@ -143,7 +143,7 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
       g.kapitel.map((k) => h('optgroup', { label: `${k.nr} · ${k.titel}` },
         sprungZiele(g).filter((z) => z.schritt.ort === 'kapitel' && z.schritt.kapitel === k.id)
           .map((z) => h('option', { value: z.wert }, `${k.nr} · ${teilName(z.schritt)}`)))),
-      h('option', { value: 'ende' }, W.geschichte.ende),
+      h('option', { value: 'ende' }, W.geschichte.endeOrt),
     ]) as HTMLSelectElement;
   const springeZu = (ziel: Schritt): void => {
     if (g !== null) setze({ ...buehne, bereich: 'story', story: springe(g, buehne.story, ziel) });
@@ -332,7 +332,7 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     ersetze(kapitelKnoepfe,
       knopf({ ort: 'auftakt' }, W.geschichte.auftakt, W.geschichte.auftakt, 'regie-kapitel-auftakt'),
       g.kapitel.map((k) => knopf({ ort: 'kapitel', kapitel: k.id, teil: 'szene' }, String(k.nr), `${k.nr} · ${k.titel}`, `regie-kapitel-${k.id}`, buehne.story.kurz && !k.kurzfassung)),
-      knopf({ ort: 'ende' }, W.geschichte.ende, W.geschichte.ende, 'regie-kapitel-ende'));
+      knopf({ ort: 'ende' }, W.geschichte.endeKurz, W.geschichte.endeOrt, 'regie-kapitel-ende'));
     const k = inStory && s.ort === 'kapitel' ? kapitel(g, s.kapitel) : null;
     if (k === null) {
       ersetze(teilKnoepfe);

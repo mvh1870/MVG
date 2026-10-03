@@ -26,13 +26,24 @@ export interface CampusIsoOptionen {
   wetter?: Wetter;
   /** Zusätzliche Klasse am `<svg>`. */
   klasse?: string;
+  /**
+   * Bildausschnitt: Vorgabe ist der ganze Grund; „breit“ ist der Ausschnitt für den Story-Rahmen 2,2 : 1 (R75) – er
+   * reicht oben über Kran und Dächer aller Stufen und unten bis zu den Containern, seitlich steht mehr Himmel.
+   */
+  ausschnitt?: 'breit';
 }
+
+/** Ausschnitte (viewBox): ganzer Grund und breit (Seitenverhältnis 2,2 : 1, R75). */
+export const CAMPUS_VB: Readonly<Record<'grund' | 'breit', readonly [number, number, number, number]>> = {
+  grund: [-296, -52, 688, 466],
+  breit: [-360, -36, 816, 371],
+};
 
 /** Höchste Stufe: der fertige Campus mit Kindern. */
 export const CAMPUS_STUFE_MAX = 8;
 
 const STUFEN_TEXT: readonly string[] = [
-  'Das leere Grundstück, eingefasst von einem Bauzaun; am Zaun die Tafel „Hier baut die Stadt Lindenhall“.',
+  'Das leere Grundstück, eingefasst von einem Bauzaun; am Zaun die Tafel „Hier baut die Stadt Lindenhall“, am Rand ein kleiner Baucontainer.',
   'Die Baugrube für die Gesamtschule ist ausgehoben; ein Bagger arbeitet, daneben stehen die Baucontainer.',
   'Die Bodenplatte der Gesamtschule ist gegossen, die ersten Wände des Erdgeschosses stehen; ein Turmdrehkran dreht sich, am Bauzaun hängt eine bunte Wimpelkette.',
   'Holzbau: Der Kran hebt Holzelemente an die Gesamtschule, die unteren Geschosse sind schon verkleidet.',
@@ -922,6 +933,8 @@ function szene(buehne: Buehne, s: number): void {
   BESTAND.forEach(([x, y, art], i) => baum(buehne, x, y, art, i, art === 'nadel' ? 1 : 1.05));
   if (s <= 6) bauzaun(buehne, s === 2);
   if (s <= 5) bauschild(buehne);
+  // R75: der kleine Baucontainer aus Kapitel 1 steht schon auf dem leeren Grundstück
+  if (s === 0) container(buehne, 370, 252);
   if (s >= 1 && s <= 5) { container(buehne, 334, 252); container(buehne, 334, 252, 12); container(buehne, 370, 252); toilette(buehne, 318, 258); }
 
   const gs = GESAMTSCHULE;
@@ -1045,7 +1058,7 @@ export function campusIso(stufe: number, optionen: CampusIsoOptionen = {}): stri
   const sturm = optionen.wetter === 'sturm';
   const buehne = new Buehne(licht, jahreszeit, sturm);
   szene(buehne, s);
-  const vb: [number, number, number, number] = [-296, -52, 688, 466];
+  const vb: [number, number, number, number] = [...CAMPUS_VB[optionen.ausschnitt ?? 'grund']];
   const text = campusIsoText(s, jahreszeit, licht, optionen.wetter);
   const teile: string[] = [];
   if (optionen.himmel !== false) teile.push(himmel(licht, jahreszeit, vb, sturm));

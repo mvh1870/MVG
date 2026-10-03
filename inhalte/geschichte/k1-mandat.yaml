@@ -32,7 +32,7 @@ frage: Die Projektsteuerin wartet auf Ihren Auftrag, die Bürgermeisterin schaut
 # Reihenfolge der Seite (Platz 1–3); die Wertung erscheint nie
 antworten:
   - wertung: vertretbar
-    text: "Sicher ist sicher: Alles, was Geld oder Zeit kostet, legen Sie der Bürgermeisterin vor."
+    text: "Sicher ist sicher: Sie legen der Bürgermeisterin alles vor, was Geld oder Zeit kostet."
     balken: { geld: 0, zeit: -1, vertrauen: 1 }
     bild: notizzettel
     folge: |

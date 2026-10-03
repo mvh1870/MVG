@@ -46,8 +46,10 @@ function gegenstand(name: string | null, groesse = 96, klasse = 'gs-gegenstand')
 
 /** Campus der Stufe mit Jahreszeit und Licht, groß; dekorativ (Drehbuch Abschnitt 7), Zusatz der Szene darüber. */
 function campus(c: CampusBild, klasse: string, zusatz: string | null = null): HTMLElement {
-  const bild = vonHtml(campusIso(c.stufe, { jahreszeit: c.jahreszeit, licht: c.licht, ...(c.wetter ? { wetter: c.wetter } : {}) }));
-  // füllt den Rahmen (Seitenverhältnis aus dem CSS); Himmel und Vordergrund werden dafür knapp beschnitten
+  // der große Rahmen (2,2 : 1) bekommt den breiten Ausschnitt – sonst schnitte er Kran und Dächer oben ab (R75)
+  const breit = klasse.includes('gs-campus-gross');
+  const bild = vonHtml(campusIso(c.stufe, { jahreszeit: c.jahreszeit, licht: c.licht, ...(c.wetter ? { wetter: c.wetter } : {}), ...(breit ? { ausschnitt: 'breit' as const } : {}) }));
+  // füllt den Rahmen (Seitenverhältnis aus dem CSS); was übersteht, wird knapp beschnitten (breit: nur Himmel an den Seiten)
   bild.firstElementChild?.setAttribute('preserveAspectRatio', 'xMidYMid slice');
   return h('div', { class: `gs-campus ${klasse}`, 'aria-hidden': 'true', 'data-stufe': c.stufe },
     bild,
@@ -80,6 +82,12 @@ export function aenderungWort(g: Geschichte, id: BalkenId, vorher: number, nachh
   return `${titel}: ${Math.abs(d) >= 2 ? w.deutlich : w.etwas} ${d > 0 ? b?.mehr ?? '' : b?.weniger ?? ''}`;
 }
 
+/** Pfeil zur Änderung; steht der Balken schon am Rand, zeigt er die Richtung der Wirkung (R75: „▲ bleibt ganz oben“). */
+function pfeil(d: number, wirkung: number): string {
+  const r = d !== 0 ? d : wirkung;
+  return r > 0 ? '▲' : r < 0 ? '▼' : '●';
+}
+
 /**
  * Drei Balken mit Füllstand, ohne Zahlen. Mit `vorher` wächst bzw. schrumpft jeder Balken vom alten Stand zum neuen
  * (CSS, bei reduzierter Bewegung sofort), daneben Pfeil und Wort; für Screenreader steht der Füllstand als Wort.
@@ -97,7 +105,7 @@ function balkenTafel(g: Geschichte, jetzt: Balkenstand, o: { vorher?: Balkenstan
         h('span', { class: 'gs-stand-spur', 'aria-hidden': 'true' },
           h('span', { class: `gs-stand-fuellung${o.vorher !== undefined && d !== 0 ? ' ist-bewegt' : ''}`, style: `--von:${von * 10}%;--nach:${wert * 10}%` })),
         wort !== null
-          ? h('span', { class: 'gs-stand-wort', 'data-pruef': `wort-${id}`, 'aria-hidden': 'true' }, h('span', { class: 'gs-pfeil', 'aria-hidden': 'true' }, d > 0 ? '▲' : d < 0 ? '▼' : '●'), wort.slice(wort.indexOf(':') + 2))
+          ? h('span', { class: 'gs-stand-wort', 'data-pruef': `wort-${id}`, 'aria-hidden': 'true' }, h('span', { class: 'gs-pfeil', 'aria-hidden': 'true' }, pfeil(d, o.wirkung?.[id] ?? 0)), wort.slice(wort.indexOf(':') + 2))
           : null,
         h('span', { class: 'nur-sr' }, ` ${w.fuellstand[stufe(wert)] ?? ''}${wort !== null ? `; ${wort}` : ''}`));
     }));
@@ -332,7 +340,12 @@ function miniZuordnen(o: SchrittOptionen, k: Kapitel, m: Mini): HTMLElement {
           lage === 'falsch' && falsch?.falschHtml ? [inhaltInline(falsch.falschHtml), ' '] : null,
           inhaltInline(p.erklaerungHtml)));
     }));
-  return ablagen === null ? liste : h('div', { class: 'gs-mini-zuordnen-mit-ablagen' }, ablagen, liste);
+  // R75: kurze Bedeutung je Wahl als Legende über den Karten – lösbar ohne Fachwissen
+  const legende = m.wahlen.some((x) => x.heisstHtml !== null)
+    ? h('dl', { class: 'gs-mini-legende', 'data-pruef': 'mini-legende' }, m.wahlen.filter((x) => x.heisstHtml !== null).map((x) => h('div', null, h('dt', null, x.titel), h('dd', null, inhaltInline(x.heisstHtml ?? '')))))
+    : null;
+  if (ablagen === null) return legende === null ? liste : h('div', { class: 'gs-mini-zuordnen-mit-legende' }, legende, liste);
+  return h('div', { class: 'gs-mini-zuordnen-mit-ablagen' }, legende, ablagen, liste);
 }
 
 function miniReihe(o: SchrittOptionen, k: Kapitel, m: Mini): HTMLElement {
@@ -367,7 +380,8 @@ function miniSchritt(o: SchrittOptionen, k: Kapitel): HTMLElement {
   const zuordnen = m.art === 'zuordnen';
   // Zuordnen gibt je Posten sofort Rückmeldung; die Reihenfolge erst, wenn alle Schritte angeklickt sind
   const stand = zuordnen ? (offen === m.posten.length ? '' : offen > 0 ? `${w.miniErgebnis(aus.richtig, m.posten.length - offen)} ${w.miniNoch(offen)}` : w.miniErgebnis(aus.richtig, m.posten.length))
-    : aus.fertig ? w.miniErgebnis(aus.richtig, m.posten.length) : '';
+    : aus.fertig ? w.miniErgebnis(aus.richtig, m.posten.length)
+      : (o.stand.mini[k.id]?.length ?? 0) > 0 ? w.miniGesetzt(o.stand.mini[k.id]?.length ?? 0, m.posten.length) : '';
   return h('article', { class: 'gs-schritt gs-mini', 'data-teil': 'mini', 'data-art': m.art },
     kopf(o, k, `${w.miniKicker} · ${m.titel}`),
     h('section', { class: 'gs-mini-aufgabe', 'aria-labelledby': 'gs-mini-aufgabe' },
@@ -464,7 +478,9 @@ function ende(o: SchrittOptionen): HTMLElement {
     return neu === undefined ? z : { ...neu, kurzfassung: z.kurzfassung };
   });
   const einstieg = stand.kurz && e.einstiegKurzHtml !== null ? e.einstiegKurzHtml : e.einstiegHtml;
-  const offen = offeneKapitel(g, stand).length;
+  const offeneListe = offeneKapitel(g, stand);
+  const offen = offeneListe.length;
+  const erstesOffen = offeneListe[0] ?? null;
   return h('article', { class: 'gs-schritt gs-ende', 'data-teil': 'ende', 'data-bilanz': typ, 'data-fassung': fassung },
     stand.kurz ? brueckenKarten(g, null) : null,
     h('header', { class: 'gs-kopf gs-kopf-ende' },
@@ -473,7 +489,9 @@ function ende(o: SchrittOptionen): HTMLElement {
         h('p', { class: 'gs-kicker' }, e.zeit),
         h('h1', { class: 'gs-titel', tabindex: -1, 'data-pruef': 'gs-titel' }, w.ende))),
     h('div', { class: 'gs-buehnenbild' }, campus(e.campus, 'gs-campus-gross gs-campus-ende')),
-    h('div', { class: 'gs-einstieg', 'data-pruef': 'gs-einstieg' }, inhalt(einstieg), stufe(b.zeit) === 'niedrig' ? h('div', { 'data-pruef': 'gs-zeit-niedrig' }, inhalt(e.zeitNiedrigHtml)) : null, gegenstand('schulbus', 104, 'gs-gegenstand gs-gegenstand-einstieg')),
+    h('div', { class: 'gs-einstieg', 'data-pruef': 'gs-einstieg' }, inhalt(einstieg),
+      // wie die Sätze je Balken ein Urteil über den ganzen Weg – bei offenen Entscheidungen nicht (R75)
+      typ !== 'offen' && stufe(b.zeit) === 'niedrig' ? h('div', { 'data-pruef': 'gs-zeit-niedrig' }, inhalt(e.zeitNiedrigHtml)) : null, gegenstand('schulbus', 104, 'gs-gegenstand gs-gegenstand-einstieg')),
     dialog(g, zeilen),
     h('section', { class: 'gs-bilanz', 'aria-labelledby': 'gs-bilanz-titel', 'data-pruef': 'gs-bilanz' },
       h('div', { class: 'gs-bilanz-kopf' },
@@ -487,6 +505,8 @@ function ende(o: SchrittOptionen): HTMLElement {
       typ === 'offen' ? null : h('ul', { class: 'gs-bilanz-saetze' }, g.balken.map((x) => h('li', { 'data-balken': x.id }, h('b', null, `${x.titel}: `), inhaltInline(x.bilanz[stufe(b[x.id])])))),
       offen > 0 ? h('p', { class: 'gs-leise', 'data-pruef': 'gs-offen' }, w.offen(offen)) : null),
     o.bedienbar ? h('nav', { class: 'gs-ende-wege', 'aria-label': w.ende },
+      // R75: von der Bilanz mit offenen Entscheidungen direkt zur ersten offenen Frage
+      erstesOffen !== null ? h('button', { type: 'button', class: 'gs-knopf', 'data-pruef': 'zur-offenen', onclick: () => o.tue(geheZu(g, stand, { ort: 'kapitel', kapitel: erstesOffen.id, teil: 'frage' })) }, w.zurOffenen(stelleAufWeg(o, erstesOffen), erstesOffen.titel), sym('pfeilRechts')) : null,
       h('button', { type: 'button', class: 'gs-knopf', 'data-pruef': 'von-vorn', onclick: () => o.tue(neuerStand()) }, sym('zurueckspulen'), w.vonVorn),
       h('a', { class: 'gs-knopf gs-knopf-still', href: '#theorie', 'data-pruef': 'ende-themen' }, w.zuDenThemen, sym('pfeilRechts'))) : null,
     h('p', { class: 'gs-abbinder' }, `${w.fiktiv}. ${W.rahmen.angebot} Bauherr Mentoren – `, o.bedienbar ? bmLink() : W.rahmen.kontaktBm));
@@ -568,6 +588,8 @@ export function storyDruck(g: Geschichte, stand: Stand, version: string): { tite
           const gewaehlt = !erzaehlt && a !== null;
           return h('section', { class: 'druck-teil', 'data-pruef': `druck-${k.id}` },
             h('h2', null, `${k.nr} · ${k.titel}`, h('small', null, ` · ${k.zeit}`)),
+            // die Frage gibt der Antwort auf Papier ihren Bezug (R75); sie ist keine Wertung
+            erzaehlt ? null : h('p', { class: 'druck-frage' }, inhaltInline(k.frageHtml)),
             h('p', null, h('b', null, `${w.druckAntwort}: `), erzaehlt ? (hier > k.nr ? w.druckBruecke : w.druckOffen) : a !== null ? inhaltInline(a.html) : w.druckOffen),
             gewaehlt ? h('div', { class: 'druck-gut' }, h('h3', null, w.gutTitel), inhalt(k.gutHtml)) : null);
         }),
@@ -668,7 +690,8 @@ export function erzeugeGeschichte(o: { g: Geschichte; speicher: SpeicherGriff | 
     bereich: 'story',
     klasse: 'seite-story',
     inhalt: [leiste, buehne, ansage, unten],
-    fussZusatz: h('p', { class: 'fuss-zusatz' }, `${w.fortschrittHinweis} `, loeschen),
+    // der Speicherhinweis steht im Datenschutz (O-56, L-242; R75)
+    fussZusatz: h('p', { class: 'fuss-zusatz' }, loeschen),
   });
   haltFokusFrei(element, leiste, unten);
 

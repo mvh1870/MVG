@@ -308,3 +308,49 @@ test('Laden: ein älterer Stand (v 1, Stationen) wird verworfen; Unpassendes fä
   const voll = { ...weg('vertretbar'), mini: { k6: [1, 0] }, gewichte: { geld: 1, schulstart: 5, luft: 3, klima: 1 } };
   assert.deepEqual(leseStand(G, JSON.parse(JSON.stringify(voll))), voll);
 });
+
+/* ------------------------------------------------------------------ R75 -- */
+
+test('R75: Lösungen der Mini-Aufgaben stehen fest (Wer eine Lösung ändert, prüft sie gegen V2.4 und hier)', () => {
+  const loesung = (id: string): string[] => (kapitel(G, id)?.mini?.posten ?? []).map((p) => p.loesung);
+  assert.deepEqual(loesung('k2'), ['massnahme', 'aenderung', 'fruehwarnung', 'aufgabe', 'problem', 'risiko']);
+  assert.deepEqual(loesung('k4'), ['sie', 'buergermeisterin', 'buergermeisterin', 'buergermeisterin', 'buergermeisterin', 'sie']);
+  assert.deepEqual(loesung('k8'), ['uebergeben', 'geschlossen', 'uebergeben', 'geschlossen', 'geschlossen']);
+  // Reihenfolge: die Liste ist die Lösung – Schutz, Meldung, Eintrag, Ursache, Lösung, Abschluss
+  assert.deepEqual((kapitel(G, 'k6')?.mini?.posten ?? []).map((p) => p.html.split(' ').slice(0, 2).join(' ')), ['Der Bauleiter', 'Sicherheitskoordination und', 'Noch am', 'Die Fachleute', 'Die Lösung', 'Erst wenn']);
+});
+
+/**
+ * Prüft einen Satz, der einen Kipppunkt nennt („Wären Klima und Betrieb ‚wichtig‘, läge der spätere Einzug gleichauf“):
+ * Stufe und Wort (gleichauf/vorn) müssen zum gerechneten Kipppunkt passen. Leer = in Ordnung.
+ */
+function kippSatzFunde(text: string, v: NonNullable<ReturnType<typeof vergleichKapitel>>['vergleich'] & object, kriterium: string, option: string): string[] {
+  const lage = vergleichLage(v, abgestimmteGewichte(v));
+  const x = lage.kipp.find((k) => k.kriterium === kriterium);
+  if (x === undefined) return [`kein Kipppunkt für ${kriterium}`];
+  const aus: string[] = [];
+  if (!x.spitze.includes(option)) aus.push(`${option} nicht an der Spitze (${x.spitze.join(',')})`);
+  const stufe = ({ 5: 'sehr wichtig', 3: 'wichtig', 1: 'weniger wichtig' } as Record<number, string>)[x.gewicht] ?? '';
+  if (!new RegExp(`[„‚]${stufe}[“‘]`, 'u').test(text)) aus.push(`Stufe „${stufe}“ fehlt`);
+  const wort = x.spitze.length > 1 ? 'gleichauf' : 'vorn';
+  if (!new RegExp(`\\b${wort}\\b`, 'u').test(text)) aus.push(`Wort „${wort}“ fehlt`);
+  if (new RegExp(`\\b${wort === 'vorn' ? 'gleichauf' : 'vorn'}\\b`, 'u').test(text)) aus.push('falsches Wort');
+  return aus;
+}
+
+test('R75: Empfehlung und gute Folge in Kapitel 7 nennen den Kipppunkt so, wie er gerechnet ist (Klima „wichtig“ → gleichauf)', () => {
+  const k = kapitel(G, 'k7');
+  assert.ok(k?.vergleich);
+  const v = k.vergleich;
+  const empfehlung = v.empfehlungHtml.replace(/<[^>]*>/gu, '');
+  const knapp = empfehlung.slice(empfehlung.indexOf('Knapp'));
+  assert.deepEqual(kippSatzFunde(knapp, v, 'klima', 'C'), []);
+  const gut = k.antworten.find((a) => a.wertung === 'gut');
+  assert.ok(gut);
+  const satz = gut.folgeHtml.replace(/<[^>]*>/gu, '').match(/Schon bei[^.“]*/u)?.[0] ?? '';
+  assert.deepEqual(kippSatzFunde(satz, v, 'klima', 'C'), []);
+  // Gegenproben (Mutationen M7/M12 aus R75): „vorn“ statt „gleichauf“ und eine falsche Stufe werden gefunden
+  assert.ok(kippSatzFunde(knapp.replace('gleichauf', 'vorn'), v, 'klima', 'C').length > 0);
+  assert.ok(kippSatzFunde(satz.replace('gleichauf', 'vorn'), v, 'klima', 'C').length > 0);
+  assert.ok(kippSatzFunde(knapp.replace('„wichtig“', '„sehr wichtig“'), v, 'klima', 'C').length > 0);
+});

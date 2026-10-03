@@ -291,9 +291,9 @@ export function baueGeschichte(c, dateien, themen = null) {
     if (art !== 'zuordnen' && art !== 'reihenfolge') c.fehler(ort, `Art „${art}“ – erwartet zuordnen oder reihenfolge`);
     const wahlen = (Array.isArray(o.wahlen) ? o.wahlen : []).map((/** @type {any} */ w, /** @type {number} */ i) => {
       const wo = `${ort} wahlen ${i + 1}`;
-      const x = form(w, ['id', 'titel'], ['figur', 'falsch', 'bild'], wo);
+      const x = form(w, ['id', 'titel'], ['figur', 'falsch', 'heisst', 'bild'], wo);
       if (x.figur !== undefined && x.figur !== 'sie' && !FIGUREN.includes(x.figur)) c.fehler(wo, `Figur „${text(x.figur)}“ unbekannt`);
-      return { id: kennung(x.id, wo, 'Wahl') ?? '', titel: klar(x.titel, wo), figur: x.figur === undefined ? null : text(x.figur), falschHtml: x.falsch === undefined ? null : inline(x.falsch, wo), bild: bild(x.bild, wo) };
+      return { id: kennung(x.id, wo, 'Wahl') ?? '', titel: klar(x.titel, wo), figur: x.figur === undefined ? null : text(x.figur), falschHtml: x.falsch === undefined ? null : inline(x.falsch, wo), heisstHtml: x.heisst === undefined ? null : inline(x.heisst, wo), bild: bild(x.bild, wo) };
     });
     if (art === 'zuordnen' && wahlen.length < 2) c.fehler(ort, 'zuordnen braucht mindestens zwei Wahlen');
     if (art === 'reihenfolge' && o.wahlen !== undefined) c.fehler(ort, 'eine Reihenfolge hat keine Wahlen');

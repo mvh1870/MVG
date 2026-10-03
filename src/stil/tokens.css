@@ -70,6 +70,51 @@
   /* ------------------------------------------------------------------ Akzent Bericht (Story) */
   --rolle-ps-text: #146878;   /* Titel des Berichts in der Story (Petrol, textsicher auf Weiß) */
 
+  /* ------------------------------------------------------------------ Akzentpalette (O-57) */
+  /* Sieben kräftige Töne für Story und Themen, je Ton: Grundton (Grafik, Flächen in Illustrationen),
+     -soft (helle Fläche, trägt --tinte und -text) und -text (textsicher auf Weiß, Grund und -soft).
+     Rollen (Teile I–IV, Balken, Figuren) und Kontraste: docs/STIL.md „Akzentpalette (O-57)“. */
+  --akzent-sonne: #E0A21B;    --akzent-sonne-soft: #FCF0D2;   --akzent-sonne-text: #7A5410;
+  --akzent-orange: #E2703A;   --akzent-orange-soft: #FCE6D9;  --akzent-orange-text: #A2441A;
+  --akzent-beere: #D6456B;    --akzent-beere-soft: #FBE2E9;   --akzent-beere-text: #A3294B;
+  --akzent-violett: #8061CC;  --akzent-violett-soft: #EEE9FA; --akzent-violett-text: #5B3FA8;
+  --akzent-blau: #3A82CF;     --akzent-blau-soft: #E2EEFA;    --akzent-blau-text: #1D5C9C;
+  --akzent-lagune: #17A096;   --akzent-lagune-soft: #DCF2EF;  --akzent-lagune-text: #0D6F68;
+  --akzent-gruen: #4E9F44;    --akzent-gruen-soft: #E4F2DF;   --akzent-gruen-text: #2E6B29;
+
+  /* ------------------------------------------------------------------ Isometrischer Campus (O-53, src/grafik/campus-iso.ts) */
+  /* Nur Flächen der Illustration, nie Text (außer dem Bauschild: --navy auf --weiss). Seiten eines Körpers:
+     -o oben (hell), -l vorne links, -r vorne rechts (Schatten). Jahreszeit und Licht schalten grafik.css. */
+  --iso-himmel-morgen-1: #B9D4EC; --iso-himmel-morgen-2: #E9E4E6; --iso-himmel-morgen-3: #FCDCC2;
+  --iso-himmel-tag-1: #8DC3E8;    --iso-himmel-tag-2: #BFDDF2;    --iso-himmel-tag-3: #EAF5FB;
+  --iso-himmel-abend-1: #33477E;  --iso-himmel-abend-2: #9C6E9C;  --iso-himmel-abend-3: #F4A877;
+  --iso-himmel-winter-1: #AFC6DA; --iso-himmel-winter-2: #D5E1EC;
+  --iso-sonne: #FFD66B;           --iso-sonne-abend: #FF9E5E;
+  --iso-rasen-fruehling: #A9D98B; --iso-rasen-sommer: #8EC770;    --iso-rasen-herbst: #BDBF72;
+  --iso-schnee: #F6F9FC;          --iso-schnee-schatten: #D8E2EC;
+  --iso-erde: #DDBF92;            --iso-erde-dunkel: #A97D52;     --iso-erde-winter: #E7E3DC;
+  --iso-sockel-l: #A67C55;        --iso-sockel-r: #87613F;
+  --iso-pflaster: #E8E1D3;        --iso-pflaster-fuge: #D3C9B6;
+  --iso-strasse: #5B6678;         --iso-markierung: #F3F0E8;
+  --iso-beton-o: #DFE2E6;         --iso-beton-l: #C6CBD2;         --iso-beton-r: #A8AEB8;
+  --iso-roh-l: #5E6573;           --iso-roh-r: #4A505C;
+  --iso-holz-o: #EEC995;          --iso-holz-l: #DDA968;          --iso-holz-r: #BC8549;
+  --iso-holz-fuge: #8E5E2E;
+  --iso-attika-o: #F3EFE7;        --iso-attika-l: #E2DCD0;        --iso-attika-r: #C8C0B1;
+  --iso-glas: #2F4C6E;            --iso-glas-licht: #7FA3C6;      --iso-glas-abend: #FFD27A;
+  --iso-solar: #2A3F66;           --iso-solar-linie: #6683B0;
+  --iso-laub-fruehling-1: #8ACB75; --iso-laub-fruehling-2: #B2DE8E; --iso-bluete: #F4B6CA;
+  --iso-laub-sommer-1: #4C9C55;   --iso-laub-sommer-2: #6FB862;   --iso-laub-sommer-3: #3E8A5A;
+  --iso-laub-herbst-1: #E2873C;   --iso-laub-herbst-2: #E9B440;   --iso-laub-herbst-3: #C8563A;
+  --iso-laub-winter-1: #DCE5ED;   --iso-laub-winter-2: #C9D5DF;
+  --iso-stamm: #87603F;           --iso-nadel: #2E6A50;           --iso-nadel-2: #3E8464;
+  --iso-haut-1: #F2CBA6;          --iso-haut-2: #D49C72;          --iso-haut-3: #96653F;
+  --iso-haar-1: #3A2A20;          --iso-haar-2: #C08A48;
+  --iso-feld: #78B866;            --iso-bahn: #D88566;
+  --iso-gelb-o: #F6C750;          --iso-gelb-r: #B5800F;
+  --iso-blau-o: #7DB0E4;          --iso-blau-r: #2B66A6;
+  --iso-geruest: #7B8799;         --iso-zaun: #C7D1DC;            --iso-zaun-rahmen: #8A97A9;
+
   /* ------------------------------------------------------------------ Status (BM-Ampel; nur für Status, O-11) */
   --status-rot: #9A3030;      --status-rot-soft: #F1D8D8;
   --status-gelb-soft: #F3E9C8; --status-gelb-text: #7F620F;  /* BM --c-warn-ink */
@@ -97,7 +142,6 @@
   --gold-hell-a28: rgba(198, 157, 82, .28);
   --gold-hell-a45: rgba(198, 157, 82, .45);
   --gold-hell-a60: rgba(198, 157, 82, .6);
-  --navy-a42: rgba(12, 28, 51, .42);
   --weiss-a85: rgba(255, 255, 255, .85);
 
   /* ------------------------------------------------------------------ Fokus */

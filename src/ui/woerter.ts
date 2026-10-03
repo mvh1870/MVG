@@ -51,7 +51,7 @@ export const W = {
     ersatzText: 'Diese Ansicht ist für den Bildschirm gedacht. Gedruckt wird über diese Wege:',
     ersatzWege: [
       'Theorie: „Thema drucken“ auf jeder Seite eines Themas.',
-      'Regie: „Protokoll drucken“ – Notizen und Entscheidungen des Gesprächs.',
+      'Präsentieren: „Protokoll drucken“ – Notizen und Entscheidungen des Gesprächs.',
     ],
   },
   ebene: 'Ebene',
@@ -75,15 +75,9 @@ export const W = {
     wissenscheck: 'Kurz geprüft',
     wissenscheckAntworten: 'Ihre Einschätzung',
   },
-  // Abbildungen der DOCX V1.2 im Fachtext (P14, O-32, L-77)
+  // Abbildungen im Fachtext (P14, O-32, L-77; nur Marke und Titel, O-56)
   abbildung: {
     marke: (nr: number) => `Abbildung ${nr}`,
-    vorrang: 'Wo die Abbildung vom Text abweicht, gilt der Text.',
-    angeglichen: 'Im Bild an die Begriffe des Texts angeglichen:',
-    abweichungen: (n: number) => `Abweichungen vom Text (${n})`,
-    gross: 'Vergrößern',
-    grossName: (titel: string) => `Abbildung vergrößern: ${titel}`,
-    schliessen: 'Schließen',
     fehlt: 'Bild nicht eingebettet',
   },
   // Regie

@@ -17,7 +17,6 @@ const KONTEXT = { ids: new Set(['k4-t1', 'k4-p1']), abbildungen: new Map([['abb-
 const GUT = {
   id: 'abb-6', quelle: 'bilder/image6.png', titel: 'Titel', alt: 'Alt',
   angeglichen: [{ x: 1, y: 2, b: 30, h: 12, text: 'LPH 0–2', beleg: 'k4-t1', schrift: 'barlow', gewicht: 600 }],
-  abweichungen: [{ text: 'Satz.', beleg: 'k4-p1 k4-t1' }],
 };
 
 test('Beschreibung: gültige Datei ohne Fehler, jede Abweichung vom Schema wird gemeldet', () => {
@@ -33,19 +32,20 @@ test('Beschreibung: gültige Datei ohne Fehler, jede Abweichung vom Schema wird 
   assert.match(fehler({ ...GUT, angeglichen: [{ ...GUT.angeglichen[0], hintergrund: 'rot' }] }), /#rrggbb/u);
   assert.match(fehler({ ...GUT, angeglichen: [{ ...GUT.angeglichen[0], schrift: 'arial' }] }), /schrift „arial“/u);
   assert.match(fehler({ ...GUT, angeglichen: [{ ...GUT.angeglichen[0], grund: 'x' }] }), /unbekanntes Feld „grund“/u);
-  assert.match(fehler({ ...GUT, abweichungen: [{ text: 'x', beleg: 'k4-p1 k0-p0' }] }), /abweichungen\[0\]: Beleg/u);
+  // O-56: „abweichungen“ gibt es nicht mehr – ein Rest in einer Beschreibung fällt auf
+  assert.match(fehler({ ...GUT, abweichungen: [{ text: 'x', beleg: 'k4-p1' }] }), /unbekanntes Feld „abweichungen“/u);
 });
 
-test('Prüfsumme der Eingabe: ändert sich mit Quelle und Überdeckung, nicht mit Titel, Alternativtext, Abweichungen', () => {
+test('Prüfsumme der Eingabe: ändert sich mit Quelle und Überdeckung, nicht mit Titel und Alternativtext', () => {
   const a = eingabeSumme(GUT, 'q1');
-  assert.equal(eingabeSumme({ ...GUT, titel: 'anders', alt: 'anders', abweichungen: [] }, 'q1'), a);
+  assert.equal(eingabeSumme({ ...GUT, titel: 'anders', alt: 'anders' }, 'q1'), a);
   assert.equal(eingabeSumme({ ...GUT, angeglichen: [{ ...GUT.angeglichen[0], beleg: 'k4-p1' }] }, 'q1'), a, 'der Beleg ändert keine Pixel');
   assert.notEqual(eingabeSumme(GUT, 'q2'), a);
   assert.notEqual(eingabeSumme({ ...GUT, angeglichen: [{ ...GUT.angeglichen[0], text: 'LPH 0–3' }] }, 'q1'), a);
   assert.notEqual(eingabeSumme({ ...GUT, angeglichen: [{ ...GUT.angeglichen[0], x: 2 }] }, 'q1'), a);
 });
 
-test('Bildunterschrift: zweizeilige Überdeckungen werden zu einem Begriff (Prüfagent abb-2)', () => {
+test('Überdeckung: zweizeilige Überdeckungen werden zu einem Begriff (Prüfagent abb-2)', () => {
   assert.equal(einzeilig('Risiko- und\nÄnderungs-\nsteuerung'), 'Risiko- und Änderungssteuerung');
   assert.equal(einzeilig('Auswirkungs-\nbewertung'), 'Auswirkungsbewertung');
   assert.equal(einzeilig('MVG-\nNeuinitialisierung'), 'MVG-Neuinitialisierung');
@@ -96,7 +96,7 @@ test('Compiler (baueAbbildungen): veraltetes Bild, fremdes WebP, fremdes Kapitel
     const w = mkdtempSync(join(tmpdir(), 'mvg-test-abb-'));
     wurzeln.push(w);
     mkdirSync(join(w, 'inhalte', 'abbildungen'), { recursive: true });
-    writeFileSync(join(w, 'inhalte', 'abbildungen', 'abb-6.yaml'), 'id: abb-6\nquelle: bilder/image6.png\ntitel: T\nalt: A\nangeglichen:\n  - { x: 1, y: 2, b: 30, h: 12, text: LPH 0–2, beleg: k4-t1 }\nabweichungen:\n  - { text: Satz, beleg: k4-p1 }\n');
+    writeFileSync(join(w, 'inhalte', 'abbildungen', 'abb-6.yaml'), 'id: abb-6\nquelle: bilder/image6.png\ntitel: T\nalt: A\nangeglichen:\n  - { x: 1, y: 2, b: 30, h: 12, text: LPH 0–2, beleg: k4-t1 }\n');
     const webp = Buffer.from('RIFF-probe');
     writeFileSync(join(w, 'inhalte', 'abbildungen', 'abb-6.webp'), webp);
     const roh = { id: 'abb-6', quelle: 'bilder/image6.png', angeglichen: [{ x: 1, y: 2, b: 30, h: 12, text: 'LPH 0–2', beleg: 'k4-t1' }] };

@@ -390,19 +390,12 @@ test('Echte Inhalte: fehlerfrei; Mutanten-Probe am Zitat k2.4-p2 im Thema Ausgan
   assert.ok(anfang.fehler.some((f) => /abb-10\.yaml.*„entscheidung“ steht nicht wortgleich/u.test(f)), anfang.fehler.join('\n'));
 });
 
-test('Bedienhinweis (R48): ein ganzer Satz mit Leerraum davor – sonst bleibt im Druck ein Satzrest', async () => {
+test('Bedienhinweis (O-56): [[bedienung:…]] gibt es nicht mehr – jeder Rest ist ein Fehler', async () => {
   const mit = (satz: string) => veraendere(BEISPIEL, K02, 'v3 oder v4??', satz);
-  const gut = await kompiliere({ pruefe: true, wurzel: neueWurzel(mit('v3 oder v4? [[bedienung:Wählen Sie eine Version.]]')), ziel: null });
+  const gut = await kompiliere({ pruefe: true, wurzel: neueWurzel(mit('v3 oder v4?')), ziel: null });
   assert.deepEqual(gut.fehler, []);
-  assert.equal((gut.inhalte as Inhalte).theorie['k02']?.bloecke[1]?.kinder[0]?.felder['text'], '<p>v3 oder v4? <span class="bedienhinweis">Wählen Sie eine Version.</span></p>');
-  for (const [satz, muster] of [
-    ['[[bedienung:Ordnen Sie zu,]] was gilt.', /kein ganzer Satz/u],
-    ['v3 oder v4?[[bedienung:Wählen Sie eine Version.]]', /ohne Leerraum/u],
-    ['v3 oder v4?[[bedienung: Wählen Sie eine Version.]]', /ohne Leerraum/u],
-  ] as [string, RegExp][]) {
-    const r = await kompiliere({ pruefe: true, wurzel: neueWurzel(mit(satz)), ziel: null });
-    assert.ok(r.fehler.some((f) => muster.test(f)), `${satz}: ${r.fehler.join('\n')}`);
-  }
+  const r = await kompiliere({ pruefe: true, wurzel: neueWurzel(mit('v3 oder v4? [[bedienung:Wählen Sie eine Version.]]')), ziel: null });
+  assert.ok(r.fehler.some((f) => /Bedienhinweise gibt es nicht mehr/u.test(f)), r.fehler.join('\n'));
 });
 
 test('Begriffs-Kompass (P10.5): Begriff muss im Beleg stehen, Glossar-Bezug, alte Wörter nur hier erlaubt', async () => {
@@ -503,5 +496,5 @@ test('Eigentext (R49): „EW“ und „Mio. EUR“ nur im wortgleichen Zitat; Sc
     }
   }
   assert.deepEqual(funde, []);
-  assert.ok(schwellen >= 10, `nur ${schwellen} Schwellen gefunden`);
+  assert.ok(schwellen >= 3, `nur ${schwellen} Schwellen gefunden`); // P17: fall.md trägt keine Schwellen mehr, die Themen schon
 });

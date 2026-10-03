@@ -110,7 +110,7 @@ Die Tabelle stellt sechs Paare gegenüber. Links steht jeweils, was Fachrollen f
 
 Ein Beispiel: Das Controlling erstellt die Prognose und berechnet die Restkostenprognose ([[CTC]]) – delegierbare Arbeit. Ob der Einsatz der Risikoreserve freigegeben wird, entscheidet der Bauherr. Ähnlich bei der Dokumentation: Protokolle und Datenstände darf ein Dritter führen; dass die Organisation auf belastbarer Grundlage entscheidet und die Beschlusslage nachweisbar bleibt, stellt der Bauherr sicher.
 
-Das heißt nicht, dass der Bauherr möglichst viel selbst tun sollte – im Gegenteil. Professionelle Projekte brauchen Vorbereitung durch Fachrollen. Der Bauherr muss aber wissen, wo diese Vorbereitung endet und seine eigene Entscheidung beginnt. [[bedienung:Probieren Sie es in der Grafik aus: Wo verläuft die Grenze?]]
+Das heißt nicht, dass der Bauherr möglichst viel selbst tun sollte – im Gegenteil. Professionelle Projekte brauchen Vorbereitung durch Fachrollen. Der Bauherr muss aber wissen, wo diese Vorbereitung endet und seine eigene Entscheidung beginnt.
 
 ::: tafel k3.2-t1
 ---
@@ -157,7 +157,7 @@ In der Mitte liegt die **Mandatsebene**: Befugnisse, Freigabegrenzen, Zeichnungs
 
 Oben steht die **Letztverantwortung**: Ziel, Grundsatzentscheidung, wesentliche Freigabe, Risikoannahme, Nachweisfähigkeit und Beschlusslage. MVG macht sichtbar, was der Bauherr hier selbst legitimieren und dokumentieren muss.
 
-Damit ist der Begriffsrahmen komplett: Die Arbeit und die Ausübung des Mandats innerhalb der Schwellen lassen sich gestalten und delegieren – die Festlegung des Mandats und die Letztverantwortung nicht. [[bedienung:Wählen Sie eine Ebene in der Pyramide, und ziehen Sie den Regler, um zu sehen, wer sie tragen kann.]]
+Damit ist der Begriffsrahmen komplett: Die Arbeit und die Ausübung des Mandats innerhalb der Schwellen lassen sich gestalten und delegieren – die Festlegung des Mandats und die Letztverantwortung nicht.
 
 ::: tafel k3.3-t1
 ---

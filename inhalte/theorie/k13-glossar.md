@@ -10,7 +10,7 @@ titel: "Anhang: Glossar"
 kurztitel: Glossar
 deckt: [k13-t1]
 ---
-Das Glossar von Minimum Viable Governance (MVG): die Begriffe und ihre Definitionen, ergänzt um die Begriffe des Standards für Aufgaben- und Risikomanagement. [[bedienung:Das Suchfeld filtert die Liste.]] Wo ein Begriff verlinkt ist, steht darunter, welche Themen auf ihn verweisen.
+Das Glossar von Minimum Viable Governance (MVG): die Begriffe und ihre Definitionen, ergänzt um die Begriffe des Standards für Aufgaben- und Risikomanagement. Wo ein Begriff verlinkt ist, steht darunter, welche Themen auf ihn verweisen.
 
 ::: glossar
 :::

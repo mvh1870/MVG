@@ -65,9 +65,9 @@ titel: Öffentliche Bauherren
 ---
 Ein öffentlicher Bauherr steht häufig unter hoher Komplexität bei Nachweis, Gremien und Vergabe. Für ihn reicht es nicht, dass eine Entscheidung sachlich plausibel ist. Sie muss zusätzlich **nachvollziehbar** sein (Wie kam sie zustande?), **prüfbar** (Lässt sich der Weg später kontrollieren?) und **beschlussfähig** (Kann das zuständige Gremium darüber tatsächlich beschließen?).
 
-Ein Beispiel vom Schulcampus Lindenhall-Süd: Reicht die Risikoreserve nicht mehr, muss die Projektbasis neu festgelegt werden. Der Bauherr beschließt sie im Lenkungskreis auf Vorlage der Projektsteuerung; weil die Stadt die Mittel bewilligt, bestätigt der Stadtrat den Beschluss. Dass die Mehrkosten fachlich begründet sind, genügt nicht. Die Vorlage muss zeigen, wer was vorbereitet hat, auf welchem Stand die Zahlen beruhen, worüber genau entschieden wird und zwischen welchen mindestens zwei zulässigen Wegen der Bauherr wählt – und der Stadtrat muss nachvollziehen können, was er bestätigt.
+Ein fiktives Beispiel vom Schulcampus Lindenhall-Süd: Reicht die Risikoreserve nicht mehr, muss die Projektbasis neu festgelegt werden. Der Bauherr beschließt sie im Lenkungskreis auf Vorlage der Projektsteuerung; weil die Stadt die Mittel bewilligt, bestätigt der Stadtrat den Beschluss. Dass die Mehrkosten fachlich begründet sind, genügt nicht. Die Vorlage muss zeigen, wer was vorbereitet hat, auf welchem Stand die Zahlen beruhen, worüber genau entschieden wird und zwischen welchen mindestens zwei zulässigen Wegen der Bauherr wählt – und der Stadtrat muss nachvollziehen können, was er bestätigt.
 
-Genau hier liegt der Nutzen des MVG-Ansatzes für öffentliche Bauherren: in klaren [[Mandat|Mandaten]], in [[Entscheidungsvorlage|Entscheidungsvorlagen]], in einer Freigabelogik, in einem Protokollstandard, in der Anbindung an die Vergabe und in Eskalationen, die belastbar dokumentiert sind. [[bedienung:Schalten Sie um: Links sehen Sie die Anforderungen, rechts die Antwort.]]
+Genau hier liegt der Nutzen des MVG-Ansatzes für öffentliche Bauherren: in klaren [[Mandat|Mandaten]], in [[Entscheidungsvorlage|Entscheidungsvorlagen]], in einer Freigabelogik, in einem Protokollstandard, in der Anbindung an die Vergabe und in Eskalationen, die belastbar dokumentiert sind.
 
 ::: umschalter
 ---
@@ -106,7 +106,7 @@ Private und institutionelle Bauherren stehen oft unter anderem Druck: Das Projek
 
 Das Problem liegt selten in einem einzelnen Ziel, sondern darin, dass die Ziele sich widersprechen. Ein Beispiel: Ein schnellerer Bauablauf kann die Finanzierung entlasten, aber eine Entscheidung über die Haustechnik vorziehen, bevor ihre Lebenszykluskosten geklärt sind.
 
-Der MVG-Ansatz hilft, solche Zielkonflikte **früh** zu klären – und operative Geschwindigkeit nicht gegen Entscheidungssicherheit auszuspielen. Beides soll nebeneinander bestehen können. [[bedienung:Der Umschalter zeigt beide Seiten.]]
+Der MVG-Ansatz hilft, solche Zielkonflikte **früh** zu klären – und operative Geschwindigkeit nicht gegen Entscheidungssicherheit auszuspielen. Beides soll nebeneinander bestehen können.
 
 ::: umschalter
 ---
@@ -155,8 +155,6 @@ Zum Abschluss von LPH 2 geht es um die Wahl der Variante und den [[Business Case
 ---
 titel: Freigabereife an drei Stellen
 ---
-[[bedienung:Schieben Sie den Regler durch die drei Stellen.]]
-
 ::: stufe lph2
 ---
 titel: Abschluss LPH 2
@@ -227,7 +225,7 @@ Manche Projekte verlieren ihre Steuerbarkeit nicht auf einen Schlag, sondern lan
 
 Aussagekräftig ist also das Muster, nicht der einzelne Ausreißer. Und wenn das Muster da ist, braucht es oft keine vollständige Neuaufsetzung des Projekts, sondern eine gezielte [[MVG-Neuinitialisierung]]. Sie sichert den Datenstand, ordnet die Entscheidungslandschaft, klärt die Mandate, holt erforderliche Freigaben nach oder wiederholt sie und nutzt den 30/60/90-Orientierungsrahmen für die Neuordnung.
 
-[[bedienung:Schalten Sie zwischen Muster und Antwort um.]] Wie eine MVG-Neuinitialisierung im Einzelnen abläuft, zeigt das Thema „MVG-Neuinitialisierung“.
+Wie eine MVG-Neuinitialisierung im Einzelnen abläuft, zeigt das Thema „MVG-Neuinitialisierung“.
 
 ::: umschalter
 ---
@@ -268,7 +266,7 @@ Fünf Entscheidungsprobleme kommen in Bauprojekten immer wieder vor – von der 
 
 Die Folgen sind ernst. Folgekosten werden spät sichtbar, oder das Projekt arbeitet mit mehreren Wahrheiten und verliert seine Wiederanlauffähigkeit.
 
-Für jedes Problem nennt MVG Werkzeuge und Routinen, die dagegen helfen – etwa die Entscheidungsvorlage mit gewichtetem Optionenvergleich, die Änderung, die die Projektsteuerung gegen den geltenden Stand aufbereitet und mit mindestens zwei Optionen zum benötigten Termin der befugten Stelle vorlegt, oder die Festschreibung des Datenstands. Die Karten zeigen alle fünf. [[bedienung:In der Übung darunter ordnen Sie Werkzeuge ihrem Problem zu.]]
+Für jedes Problem nennt MVG Werkzeuge und Routinen, die dagegen helfen – etwa die Entscheidungsvorlage mit gewichtetem Optionenvergleich, die Änderung, die die Projektsteuerung gegen den geltenden Stand aufbereitet und mit mindestens zwei Optionen zum benötigten Termin der befugten Stelle vorlegt, oder die Festschreibung des Datenstands. Die Karten zeigen alle fünf.
 
 ::: karten
 ---
@@ -326,7 +324,7 @@ titel: Welches Werkzeug gehört zu welchem Problem?
 links: Änderungsantrag
 rechts: Gremienbeschluss
 ---
-Zwei der fünf Probleme: Änderungsantrag mit unvollständiger Auswirkungsbewertung und Gremienbeschluss ohne Mandatsklarheit. [[bedienung:Ordnen Sie jedes Werkzeug einem der beiden zu.]]
+Zwei der fünf Probleme: Änderungsantrag mit unvollständiger Auswirkungsbewertung und Gremienbeschluss ohne Mandatsklarheit.
 
 ::: posten 1
 ---

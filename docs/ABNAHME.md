@@ -9,7 +9,8 @@ Zum Abhaken beim Durchsehen der Internetseite (lokal: `dist/index.html` im Brows
 - [ ] Begriffe: LPH 0–9, nie G0–G5; Entscheidungsvorlage, Freigabe / keine Freigabe / Freigabe mit Auflagen (O-14, O-15). Begriffs-Kompass im Glossar als Lesehilfe in Ordnung.
 - [ ] Explore: gewichteter Vergleich, Risikomatrix, Vorgangsarten, Takt und Glossar stimmen mit dem Standard (O-46).
 - [ ] Fall fiktiv und so gekennzeichnet; einziges Beispielprojekt ist der Schulcampus Lindenhall-Süd (O-3, O-45, O-50).
-- [ ] Abbildungen: alle 13 stehen auf ihrem Thema; Beschriftungen an die Begriffe des Texts angeglichen.
+- [ ] Abbildungen: alle 13 stehen auf ihrem Thema; Beschriftungen im Bild an die Begriffe der Seite angeglichen; darunter nur „Abbildung N“ und Titel – keine Abweichungen, kein Knopf „Vergrößern“ (O-55, O-56).
+- [ ] Nichts klingt nach Arbeitsstand: keine Bedienungs-Anleitungen („Klicken Sie …“), Prüfvermerke, Quellenhinweise, Begründungen oder Kennungen wie L-/O-/R-Nummern; „Fiktiver Fall“ nicht mehrfach auf einer Seite (O-56, O-3).
 - [ ] Offene mittlere Befunde der Prüfrunden (`docs/ABNAHME-MITTEL.md`, O-35) entschieden: übernehmen, ändern oder so lassen.
 
 ## B. Erlebnis

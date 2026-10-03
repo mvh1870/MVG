@@ -28,7 +28,10 @@ const { W } = await import('../src/ui/woerter.ts');
 
 /** Was ein Mensch liest oder hört. */
 function lesbar(el: Element): string {
-  const teile = [el.textContent ?? ''];
+  // Textknoten einzeln, mit Leerraum getrennt: textContent klebt Bildunterschrift und Nachbar zusammen („BauherrnAbweichungen“)
+  const teile: string[] = [];
+  const tw = document.createTreeWalker(el, 4 /* NodeFilter.SHOW_TEXT */);
+  for (let n = tw.nextNode(); n !== null; n = tw.nextNode()) teile.push(n.textContent ?? '');
   for (const x of el.querySelectorAll('[aria-label],[title],[alt],[placeholder]')) {
     for (const a of ['aria-label', 'title', 'alt', 'placeholder']) teile.push(x.getAttribute(a) ?? '');
   }
@@ -104,4 +107,51 @@ test('Bedienwörter (src/ui/woerter.ts)', () => {
   };
   lauf(W, 'W');
   assert.deepEqual(funde.slice(0, 40), [], `${funde.length} Funde`);
+});
+
+test('Arbeitsstand (P17.10, O-56): die Probe schlägt bei Werkstatt-Resten an, nicht bei Fachtext', () => {
+  // Gegenprobe: jede Art, die P17.10 entfernt hat, wird gefunden
+  for (const rest of [
+    'Abweichungen vom Text (8)', 'Wo die Abbildung vom Text abweicht, gilt der Text.', 'der Text nennt acht Bausteine', 'Im Bild steht „Steuerungslogik“.',
+    'Das Bild zeigt fünf Spalten.', 'Im Bild an die Begriffe des Texts angeglichen: „LPH 0–2“', 'nach L-121', 'O-56', 'R41', 'P17.10', 'vom Prüf-Agenten gesehen',
+    'Beleg k5.2-t1', 'Quelle: Handbuch', 'nach V2.4', 'HB 3.2', 'nur intern', 'interne Notiz', 'TODO', 'Platzhalter', 'Hinweis zur Bedienung',
+    'Klicken Sie sich durch.', 'Ziehen Sie den Regler.', 'Schalten Sie um und sehen Sie, was fehlt.',
+  ]) assert.ok(sichtbarVerboten(`Text davor. ${rest} Text danach.`).length > 0, `nicht gefunden: ${rest}`);
+  // Fachtext bleibt unbehelligt
+  for (const fach of [
+    'von 1 (geringe Abweichung, Nutzung nicht eingeschränkt)', 'getrennt festgehalten, mit Quelle, Datum und Bedingungen', 'Ein gemeinsamer Prüfvermerk mit Datum',
+    'höchste belegte Auswirkung', 'als internetbasierter Dienst', 'RIS-014 und MAS-011', 'LPH 4', 'Wählen Sie eine Option.', 'Abbildung 3',
+  ]) assert.deepEqual(sichtbarVerboten(fach), [], fach);
+});
+
+test('Arbeitsstand: Gegenprobe im DOM – ein Rest unter einer Abbildung macht die Probe rot', () => {
+  const t = themen(inhalte).find((x) => baueTheorie({ inhalte, thema: x.thema, version: 'Fassung', bedienbar: true }).querySelector('figure.abbildung') !== null);
+  assert.ok(t, 'ein Thema mit Abbildung');
+  const el = baueTheorie({ inhalte, thema: t.thema, version: 'Fassung', bedienbar: true });
+  const sauber: string[] = [];
+  pruefe(sauber, t.thema, el);
+  assert.deepEqual(sauber, []);
+  const unterschrift = el.querySelector('figure.abbildung figcaption');
+  assert.ok(unterschrift);
+  unterschrift.append(Object.assign(document.createElement('details'), { textContent: 'Abweichungen vom Text (3)' }));
+  const rot: string[] = [];
+  pruefe(rot, t.thema, el);
+  assert.ok(rot.some((f) => /Abweichung vom Text/u.test(f)), rot.join('\n'));
+  // auch in einem Attribut (aria-label), das nur Screenreader vorlesen
+  const el2 = baueTheorie({ inhalte, thema: t.thema, version: 'Fassung', bedienbar: true });
+  el2.querySelector('figure.abbildung')?.setAttribute('aria-label', 'Abbildung vergrößern – Prüfvermerk R11');
+  const rot2: string[] = [];
+  pruefe(rot2, t.thema, el2);
+  assert.ok(rot2.some((f) => /Prüfrunde/u.test(f)), rot2.join('\n'));
+});
+
+test('Abbildungen (O-55, O-56): nur Marke und Titel – kein „Vergrößern“, kein Dialog, keine Abweichungen', () => {
+  for (const t of themen(inhalte)) {
+    const el = baueTheorie({ inhalte, thema: t.thema, version: 'Fassung', bedienbar: true });
+    for (const f of el.querySelectorAll('figure.abbildung')) {
+      assert.equal(f.querySelectorAll('button, dialog, details').length, 0, `${t.thema}: Bedienelement in der Abbildung`);
+      assert.deepEqual([...f.querySelectorAll('figcaption > *')].map((x) => x.className), ['t-label abbildung-marke', 'abbildung-titel'], t.thema);
+      assert.doesNotMatch(f.textContent ?? '', /vergr[öo]ßer|abweich/iu, t.thema);
+    }
+  }
 });

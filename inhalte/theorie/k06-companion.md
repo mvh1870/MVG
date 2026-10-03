@@ -128,7 +128,7 @@ Alle Vorgangsarten – Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Probleme, 
 - Der **Bauherr** stellt Ziele, Bewertungsgrenzen, Befugnisse, Zugänge und Zuarbeit sicher. Er pflegt nichts – er entscheidet.
 - **Bauherren-PL**, **Änderungsgremium** und **Lenkungskreis** entscheiden oder beraten im Rahmen ihres Mandats, jeweils auf Vorlage der Projektsteuerung. Den Beschluss hält die Projektsteuerung getrennt von der Vorlage fest.
 
-[[bedienung:Prüfen Sie in der Übung, was die Projektsteuerung bearbeitet und was der Bauherr entscheidet.]] Die Karten darunter fassen die Zuständigkeiten zusammen.
+Die Karten darunter fassen die Zuständigkeiten zusammen.
 
 ::: sortieren
 ---
@@ -373,7 +373,7 @@ titel: Möglich oder eingetreten?
 links: Risiko
 rechts: Problem
 ---
-Die Beispiele stammen vom Schulcampus Lindenhall-Süd.
+Die Beispiele stammen vom fiktiven Schulcampus Lindenhall-Süd.
 
 ::: posten 1
 ---
@@ -674,7 +674,7 @@ titel: Befähigung mit Unterstützung des MVG Companion
 ---
 [[Befähigung]] heißt: Die Bauherrenorganisation soll das Modell selbst anwenden können. Mit dem Companion wird Befähigung von der einmaligen Schulung zu einer **wiederholbaren Anwendungskette**: Schulung, Pilotierung, Übergabe und Regelbetrieb greifen auf dieselbe Logik zurück.
 
-Der Unterschied liegt in der Anwendung. Die Rollen lernen nicht nur Begriffe, sondern arbeiten mit Entscheidungs-IDs, Freigabefragen, Mandatslogik, Datenstandsprüfung und den Routinen des Betriebshandbuchs – und zwar in konkreten Entscheidungssituationen des eigenen Projekts. [[bedienung:Klicken Sie die vier Schritte durch: Was trägt der Companion jeweils bei, und was kommt dabei heraus?]]
+Der Unterschied liegt in der Anwendung. Die Rollen lernen nicht nur Begriffe, sondern arbeiten mit Entscheidungs-IDs, Freigabefragen, Mandatslogik, Datenstandsprüfung und den Routinen des Betriebshandbuchs – und zwar in konkreten Entscheidungssituationen des eigenen Projekts.
 
 ::: etappen
 ---

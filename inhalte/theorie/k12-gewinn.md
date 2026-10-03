@@ -26,7 +26,7 @@ Man könnte den Nutzen von Governance an der Menge messen: an Registern, Vorlage
 
 MVG und der [[MVG Companion]] sollen dafür eine pragmatische Architektur schaffen. Sie bereitet Entscheidungen schneller vor, macht Mandate klarer, erhöht die Gremienfähigkeit und führt Nachweise belastbarer. Die Tafel nennt fünf Gewinne und ihre Wirkung – von klareren Entscheidungen bis zu einer geringeren Zusatzlast, weil der Mindeststandard auf führungsrelevante Entscheidungen konzentriert bleibt. MVG nennt sie für die Kombination aus beiden. Für den Bauherrn heißt das konkret: Er pflegt nichts; ihn erreichen in aktiven Zeiten ein Monatstermin von höchstens 60 Minuten, ein Bericht von höchstens einer Seite, die Vorlagen, über die er entscheiden muss, und bei Dringlichem die sofortige Meldung.
 
-Am Schluss stehen zwei Rollen: MVG ist als schlankes [[Bauherren-Führungsmodell]] gedacht, der MVG Companion als anwendungsnaher Beschleuniger. Zusammen sollen sie Bauherrenverantwortung nicht abstrakter machen, sondern praktischer – vorbereitet, mandatiert, nachvollziehbar und im Regelbetrieb nutzbar. [[bedienung:Der Umschalter unter der Tafel stellt beide Rollen nebeneinander.]]
+Am Schluss stehen zwei Rollen: MVG ist als schlankes [[Bauherren-Führungsmodell]] gedacht, der MVG Companion als anwendungsnaher Beschleuniger. Zusammen sollen sie Bauherrenverantwortung nicht abstrakter machen, sondern praktischer – vorbereitet, mandatiert, nachvollziehbar und im Regelbetrieb nutzbar.
 
 ::: umschalter
 ---
@@ -114,7 +114,7 @@ Auf dieser Grundlage priorisiert der Bauherr: Welche MVG-Bausteine sollen sofort
 
 MVG nennt drei Einstiegspunkte. Die **Reifegradanalyse** klärt, welche Entscheidungen, Mandate, Freigaben und Datenstände im 30/60/90-Orientierungsrahmen relevant sind, und liefert ein Lagebild, eine Entscheidungsliste und priorisierte Umsetzungsschritte. Die **Companion-Kalibrierung** klärt, welche Rollen, Entscheidungsroutinen und Teile des Betriebshandbuchs mit Unterstützung des Companion verfügbar sein sollen. Bei der **Entscheidung für die Pilotierung** wird eine echte Entscheidung gesucht, an der sich das MVG-Modell kalibrieren lässt – ein Praxistest mit Freigabefrage, [[Entscheidungs-ID]], Datenstand und Nachweislogik.
 
-[[bedienung:Klicken Sie sich durch den Ablauf.]] Die Tafel darunter zeigt die drei Einstiegspunkte mit Kernfrage und Ergebnis.
+Die Tafel darunter zeigt die drei Einstiegspunkte mit Kernfrage und Ergebnis.
 
 ::: etappen
 ---

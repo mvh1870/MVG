@@ -3,7 +3,7 @@
 //
 // Quelle: quellen/whitepaper/v1.2/bilder/imageN.* – unverändert, Prüfsumme aus whitepaper.json.
 // Beschreibung je Abbildung: inhalte/abbildungen/abb-N.yaml (docs/INHALTSFORMAT.md 4.6):
-//   id, quelle, titel, alt, angeglichen (Beschriftungen, die im Bild überdeckt werden), abweichungen.
+//   id, quelle, titel, alt, angeglichen (Beschriftungen, die im Bild überdeckt werden).
 // Ergebnis: inhalte/abbildungen/abb-N.webp und inhalte/abbildungen/stand.json (Prüfsumme der Eingabe
 // je Bild – `inhalte --pruefe` meldet ein Bild als veraltet, wenn Quelle oder Überdeckungen sich ändern).
 //
@@ -73,7 +73,6 @@ const GEWICHTE = [400, 500, 600, 700];
  * @property {string} titel
  * @property {string} alt
  * @property {Ueberdeckung[]} angeglichen
- * @property {{ text: string, beleg: string }[]} abweichungen
  */
 
 /** @param {string | Buffer} x */
@@ -95,7 +94,7 @@ export function leseBeschreibungen(wurzel = WURZEL) {
 
 /**
  * Was die Pixel bestimmt: Werkzeugversion, Quelle (Prüfsumme) und die Überdeckungen in fester Ordnung.
- * Titel, Alternativtext und Abweichungen ändern das Bild nicht.
+ * Titel und Alternativtext ändern das Bild nicht.
  * @param {any} roh
  * @param {string} quellSha
  */
@@ -120,7 +119,7 @@ export function pruefeBeschreibung(roh, datei, kontext) {
   const f = [];
   const erwartet = /abb-\d+/u.exec(datei)?.[0] ?? '';
   if (roh === null || typeof roh !== 'object') return [`${datei}: keine YAML-Zuordnung`];
-  const erlaubt = new Set(['id', 'quelle', 'titel', 'alt', 'angeglichen', 'abweichungen']);
+  const erlaubt = new Set(['id', 'quelle', 'titel', 'alt', 'angeglichen']);
   for (const k of Object.keys(roh)) if (!erlaubt.has(k)) f.push(`${datei}: unbekanntes Feld „${k}“`);
   if (roh.id !== erwartet) f.push(`${datei}: id „${roh.id}“ passt nicht zum Dateinamen (${erwartet})`);
   const abb = kontext.abbildungen.get(String(roh.id));
@@ -147,12 +146,6 @@ export function pruefeBeschreibung(roh, datei, kontext) {
       for (const k of Object.keys(u ?? {})) if (!erlaubtU.has(k)) f.push(`${o}: unbekanntes Feld „${k}“`);
     });
   }
-  const abw = roh.abweichungen ?? [];
-  if (!Array.isArray(abw)) f.push(`${datei}: „abweichungen“ ist keine Liste`);
-  else abw.forEach((/** @type {any} */ a, i) => {
-    if (typeof a?.text !== 'string' || a.text.trim() === '') f.push(`${datei}: abweichungen[${i}]: „text“ fehlt`);
-    if (typeof a?.beleg !== 'string' || !a.beleg.split(/\s+/u).every((id) => kontext.ids.has(id))) f.push(`${datei}: abweichungen[${i}]: Beleg „${a?.beleg}“ ist keine Absatz-ID`);
-  });
   return f;
 }
 

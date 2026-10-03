@@ -1,6 +1,6 @@
 # Stil-Leitfaden
 
-Stand P16.14 (2026-10-02). Verbindlich für alle Flächen der Seite (ARCHITEKTUR.md → `src/stil/`): Start, Story, Theorie, Explore, Regie und Leinwand. **Farben und Typografie** folgen dem vom Owner gewählten Prototyp **Variante B „Leitstand“** (`prototyp/variante-b-leitstand.html`, O-22); Aufbau und Bedienung folgen der Neuausrichtung O-36 bis O-49 mit ruhigem Einstieg (O-21, L-4). Farben nach O-11, Schriften nach L-2 und O-12, Hintergründe im Stil „Bauplan“ nach O-45.
+Stand P17.3 (2026-10-03). Verbindlich für alle Flächen der Seite (ARCHITEKTUR.md → `src/stil/`): Start, Story, Theorie, Explore, Regie und Leinwand. **Farben und Typografie** folgen dem vom Owner gewählten Prototyp **Variante B „Leitstand“** (`prototyp/variante-b-leitstand.html`, O-22); Aufbau und Bedienung folgen der Neuausrichtung O-36 bis O-49 mit ruhigem Einstieg (O-21, L-4). Farben nach O-11, Schriften nach L-2 und O-12, Hintergründe im Stil „Bauplan“ nach O-45, Akzentpalette nach O-57, isometrischer Campus nach O-53.
 
 **Anschauen statt lesen:** `npm run oberflaeche` legt Bildschirmfotos jeder Fläche bei 1280 × 720, 1024 × 768 und 400 px in `tmp/oberflaeche/` ab (L-197: die alte Stilreferenz ist gelöscht).
 
@@ -17,9 +17,11 @@ Stand P16.14 (2026-10-02). Verbindlich für alle Flächen der Seite (ARCHITEKTUR
 | `src/stil/rahmen.css` | Seitenrahmen (Kopf, Fuß, Sprunglink) und Bauplan-Hintergründe |
 | `src/stil/geschichte.css` | Story (Fluss, Fortschrittslinie, Statusanzeige, Vorlage mit gewichtetem Vergleich, Vertiefungen) |
 | `src/stil/explore.css` | Explore-Werkzeuge |
-| `src/stil/index.css` | Einstieg für esbuild: `../generiert/schriften.css` → tokens → basis → tafeln → regie → start → theorie → rahmen → geschichte → explore |
+| `src/stil/grafik.css` | isometrischer Campus (`src/grafik/campus-iso.ts`): Flächen je Material, Jahreszeit und Licht über `data-jahreszeit`/`data-licht` |
+| `src/stil/index.css` | Einstieg für esbuild: `../generiert/schriften.css` → tokens → basis → tafeln → regie → start → theorie → rahmen → geschichte → explore → grafik |
 | `src/stil/paare.json` | erlaubte Text/Grund-Paare (Quelle der Tabelle unten) |
 | `src/stil/symbole.ts` | Ikonen und Status-Symbole als SVG-Zeichenketten (`symbol()`, `statusSymbol()`, `trendPfeil()`) |
+| `src/stil/akzente.ts` | Namen und Rollen der Akzentpalette (`AKZENTE`, `AKZENT_ROLLEN`, O-57) |
 | `src/stil/farben.ts` | `liesTokens()`, `loese()`, `kontrast()` – für Prüfungen |
 | `src/generiert/schriften.css` | erzeugt von `werkzeuge/schriften.mjs` (`erzeugeSchriften()`), **vor jedem Bau** aufrufen |
 | `quellen/marke/` | `logo-bm.svg`, `logo-bm-bildmarke.svg` (erzeugt von `werkzeuge/logo.mjs`), `logo-original.png` |
@@ -67,10 +69,12 @@ Alle Werte stehen in `src/stil/tokens.css` (Quelle je Wert im Kommentar). Kompon
 | Koralle (offen, Risiko; O-11) | `--koralle` #E4572E · `--koralle-text` #B23E1A · `--koralle-soft` #FDEBE5 · `--koralle-hauch` #FFF4F0 · `--koralle-kante` #F4C3B2 |
 | Türkis (geklärt, mit Regel; O-11) | `--tuerkis` #12A4A0 · `--tuerkis-text` #0B7A77 · `--tuerkis-soft` #E6F5F4 · `--tuerkis-hauch` #F4FBFA · `--frischgruen` #3FB57A · `--frischgruen-text` #237A4E |
 | Akzent Bericht (Story) | `--rolle-ps-text` #146878 |
+| Akzentpalette (O-57) | `--akzent-<ton>`, `--akzent-<ton>-soft`, `--akzent-<ton>-text` für sonne · orange · beere · violett · blau · lagune · gruen (Werte und Rollen: Abschnitt „Akzentpalette (O-57)“) |
+| Isometrischer Campus (O-53) | `--iso-*` (Himmel je Licht, Rasen je Jahreszeit, Schnee, Erde, Holz, Beton, Glas, Laub, Haut, Fahrzeuge); nur Flächen der Illustration, nie Text |
 | Status (BM-Ampel; nur für Status, O-11) | `--status-rot` #9A3030 · `--status-rot-soft` #F1D8D8 · `--status-gelb-soft` #F3E9C8 · `--status-gelb-text` #7F620F · `--status-gelb-symbol` #A47E1E · `--status-gruen` #3A7A43 · `--status-gruen-soft` #DFEADF · `--status-gruen-text` #2B5C33 · `--status-neutral` #5A6B82 · `--status-neutral-soft` #E8EDF6 · `--status-gelb-kante` #D9C27A · `--status-gruen-kante` #A9C8AD |
 | Gold-Flächen | `--gold-soft` #FFF7E3 · `--gold-soft-kante` #E8CF97 |
 | ID-Marken (Kürzel der Vorgangsarten, O-15) | `--id-ent-grund` #E8EDF6 · `--id-ent-text` #1D3258 · `--id-ris-grund` #E6F5F4 · `--id-ris-text` #0B7A77 · `--id-frw-grund` #FFF3C4 · `--id-frw-text` #6A5208 · `--id-aen-grund` #FFF7E3 · `--id-aen-text` #7A5C22 · `--id-mas-grund` #EAF5EE · `--id-mas-text` #1D5B33 · `--id-nac-grund` #EDEAF4 · `--id-nac-text` #5B3F93 · `--id-prb-grund` #FDEBE5 · `--id-prb-text` #8A2E12 |
-| Transparente Töne | `--gold-hell-a18` rgba(198, 157, 82, .18) · `--gold-hell-a28` rgba(198, 157, 82, .28) · `--gold-hell-a45` rgba(198, 157, 82, .45) · `--gold-hell-a60` rgba(198, 157, 82, .6) · `--navy-a42` rgba(12, 28, 51, .42) · `--weiss-a85` rgba(255, 255, 255, .85) |
+| Transparente Töne | `--gold-hell-a18` rgba(198, 157, 82, .18) · `--gold-hell-a28` rgba(198, 157, 82, .28) · `--gold-hell-a45` rgba(198, 157, 82, .45) · `--gold-hell-a60` rgba(198, 157, 82, .6) · `--weiss-a85` rgba(255, 255, 255, .85) |
 | Fokus | `--fokus` #0C1C33 · `--fokus-hof` rgba(198, 157, 82, .6) |
 
 **Semantik über Attribute** (in `basis.css`), damit Komponenten keine Farben kennen müssen:
@@ -80,6 +84,32 @@ Alle Werte stehen in `src/stil/tokens.css` (Quelle je Wert im Kommentar). Kompon
 | `data-status` | `--status-farbe`, `--status-soft`, `--status-text` | `ok` · `mittel` · `kritisch` · `neutral` |
 
 Gelb als Grafik (Raute, Balken) ist `--status-gelb-symbol` #A47E1E (BM-Warnkante), weil #B08820 auf hellen Flächen nur 2,9:1 erreicht; gelber **Text** ist `--status-gelb-text` #7F620F.
+
+### Akzentpalette (O-57)
+
+Die Markenfarben (Navy, Gold, Petrol, Koralle, Türkis; O-11) bleiben Basis und tragen Marke, Titel und Hauptaktionen. Dazu kommen **sieben kräftige Akzenttöne** für Story und Themen – farbenfroh, aber gedeckt genug, um neben Navy und Gold ruhig zu wirken. Jeder Ton hat drei Stufen:
+
+- **Grundton** `--akzent-<ton>`: Balken, Symbole, Flächen in Illustrationen, Kanten. Als Grafik ≥ 3:1 auf Weiß (außer Sonne) und auf Navy.
+- **Fläche** `--akzent-<ton>-soft`: helle Karte oder Abbildungsgrund; trägt `--tinte` und den Textton.
+- **Textton** `--akzent-<ton>-text`: Kicker, Nummern, Labels; ≥ 4,5:1 auf Weiß, `--grund` und der eigenen Fläche; Weiß darauf ≥ 4,5:1 (Marke).
+
+| Ton | Grundton | Fläche | Textton | Text auf Weiß | Text auf Fläche | Grundton auf Weiß / Navy |
+|---|---|---|---|---|---|---|
+| Sonne | #E0A21B | #FCF0D2 | #7A5410 | 6,8:1 | 6,0:1 | 2,2:1 (nur mit Kante im Textton) / 7,6:1 |
+| Orange | #E2703A | #FCE6D9 | #A2441A | 6,2:1 | 5,2:1 | 3,2:1 / 5,4:1 |
+| Beere | #D6456B | #FBE2E9 | #A3294B | 7,1:1 | 5,8:1 | 4,3:1 / 4,0:1 |
+| Violett | #8061CC | #EEE9FA | #5B3FA8 | 7,7:1 | 6,5:1 | 4,7:1 / 3,7:1 |
+| Blau | #3A82CF | #E2EEFA | #1D5C9C | 6,9:1 | 5,8:1 | 4,0:1 / 4,3:1 |
+| Lagune | #17A096 | #DCF2EF | #0D6F68 | 6,0:1 | 5,2:1 | 3,2:1 / 5,3:1 |
+| Grün | #4E9F44 | #E4F2DF | #2E6B29 | 6,5:1 | 5,6:1 | 3,3:1 / 5,2:1 |
+
+**Feste Rollen** (`AKZENT_ROLLEN` in `src/stil/akzente.ts`, ohne Doppelung): Teile der Themen I Grundlagen = Grün · II Führungsmodell und Arbeitsweise = Lagune · III Anwendung und Einführung = Orange · IV Werkzeuge der Praxis = Violett (O-54, O-55); Balken der Story Geld = Sonne · Zeit = Blau · Vertrauen = Beere (O-52). **Figuren** (O-51) bekommen je einen Ton als Kleidungsfarbe; Vorschlag: Bürgermeisterin Violett, Projektsteuerin Lagune, Architekt Blau, Schulleiterin Orange, Bauleiter Sonne – neben den Balken nie als einzige Unterscheidung (Name und Bild tragen die Bedeutung).
+
+Regeln: Akzenttöne sind keine Statusfarben (Ampel bleibt Status, O-11) und nie die einzige Bedeutungsträgerin. Text in Akzentfarbe nur im Textton. Alle Paare stehen unten in der Tabelle; `tests/stil-akzente.test.ts` prüft Vollständigkeit und Kontrast, `tests/stil-kontrast.test.ts` jeden Wert. Kein Dunkelmodus (siehe `tokens.css`): die Seite bleibt hell mit Navy-Rahmen; „dunkel“ zeigt nur die Illustration im Abendlicht.
+
+### Isometrischer Campus (O-53)
+
+`campusIso(stufe, { jahreszeit, licht, himmel, klasse })` aus `src/grafik/campus-iso.ts` liefert den Schulcampus Lindenhall-Süd als flache isometrische Illustration (SVG-Zeichenkette, `role="img"`, `aria-label` und `<title>` je Stufe, Jahreszeit und Licht, mit „fiktiver Fall“). Stufen: 0 Grundstück mit Bauzaun, Bauschild „Hier baut die Stadt Lindenhall“ und Vermessung · 1 Baugrube mit Bagger, Kipper, Containern · 2 Rohbau Gesamtschule mit Turmdrehkran, Gerüst, Fahrmischer · 3 Holzbau (Kran hebt Holzelemente) · 4 Gesamtschule fertig, Holztragwerk der Sporthalle · 5 Sporthalle fertig, Grundschule im Rohbau · 6 Außenanlagen (Pflaster, junge Bäume, Walze) · 7 fertig ohne Menschen · 8 Schulstart mit Kindern, Fahrrädern und Schulbus. Jahreszeit (`fruehling` · `sommer` · `herbst` · `winter`) färbt Rasen, Gründächer und Laub, bringt Blüten, fallende Blätter oder Schnee; Licht (`morgen` · `tag` · `abend`) wechselt Himmel, Sonne, Schattenrichtung und Seitenlicht, abends leuchten Fenster und Laternen. Deterministisch (feste Streuung statt Zufall), keine Animation, keine fremden Ressourcen; Farben nur über Klassen aus `grafik.css` und `--iso-*`/`--akzent-*`. Ansehen: `node werkzeuge/grafik-vorschau.mjs` (PNG nach `tmp/grafik/`).
 
 ### Erlaubte Text/Grund-Paare
 
@@ -176,9 +206,57 @@ Nur diese Paare dürfen Text (bzw. bei „Grafik“ Symbole, Ränder, Fokusringe
 | `--gold-kante` #9A7736 | `--weiss` #FFFFFF | 4,1:1 | Grafik | Reiter-Unterstrich, aktuelle LPH |
 | `--koralle` #E4572E | `--weiss` #FFFFFF | 3,7:1 | Grafik | Linien und Kanten Koralle |
 | `--tuerkis` #12A4A0 | `--weiss` #FFFFFF | 3,1:1 | Grafik | Rahmen und Kanten Türkis |
+| `--akzent-sonne-text` #7A5410 | `--weiss` #FFFFFF | 6,8:1 | Text | Akzent Sonne: Kicker, Nummer, Label |
+| `--akzent-sonne-text` #7A5410 | `--grund` #EEF1F5 | 6,0:1 | Text | Akzent Sonne auf Grund |
+| `--akzent-sonne-text` #7A5410 | `--akzent-sonne-soft` #FCF0D2 | 6,0:1 | Text | Akzent Sonne: Marke auf eigener Fläche |
+| `--tinte` #0F1722 | `--akzent-sonne-soft` #FCF0D2 | 15,9:1 | Text | Fließtext auf Fläche Sonne |
+| `--weiss` #FFFFFF | `--akzent-sonne-text` #7A5410 | 6,8:1 | Text | Marke weiß auf Sonne |
+| `--akzent-sonne` #E0A21B | `--navy` #0C1C33 | 7,6:1 | Grafik | Balken und Symbol Sonne auf Navy (Leinwand) |
+| `--akzent-orange-text` #A2441A | `--weiss` #FFFFFF | 6,2:1 | Text | Akzent Orange: Kicker, Nummer, Label |
+| `--akzent-orange-text` #A2441A | `--grund` #EEF1F5 | 5,5:1 | Text | Akzent Orange auf Grund |
+| `--akzent-orange-text` #A2441A | `--akzent-orange-soft` #FCE6D9 | 5,2:1 | Text | Akzent Orange: Marke auf eigener Fläche |
+| `--tinte` #0F1722 | `--akzent-orange-soft` #FCE6D9 | 15,0:1 | Text | Fließtext auf Fläche Orange |
+| `--weiss` #FFFFFF | `--akzent-orange-text` #A2441A | 6,2:1 | Text | Marke weiß auf Orange |
+| `--akzent-orange` #E2703A | `--weiss` #FFFFFF | 3,2:1 | Grafik | Balken, Symbol, Kante Orange auf Weiß |
+| `--akzent-orange` #E2703A | `--navy` #0C1C33 | 5,4:1 | Grafik | Balken und Symbol Orange auf Navy (Leinwand) |
+| `--akzent-beere-text` #A3294B | `--weiss` #FFFFFF | 7,1:1 | Text | Akzent Beere: Kicker, Nummer, Label |
+| `--akzent-beere-text` #A3294B | `--grund` #EEF1F5 | 6,2:1 | Text | Akzent Beere auf Grund |
+| `--akzent-beere-text` #A3294B | `--akzent-beere-soft` #FBE2E9 | 5,8:1 | Text | Akzent Beere: Marke auf eigener Fläche |
+| `--tinte` #0F1722 | `--akzent-beere-soft` #FBE2E9 | 14,7:1 | Text | Fließtext auf Fläche Beere |
+| `--weiss` #FFFFFF | `--akzent-beere-text` #A3294B | 7,1:1 | Text | Marke weiß auf Beere |
+| `--akzent-beere` #D6456B | `--weiss` #FFFFFF | 4,3:1 | Grafik | Balken, Symbol, Kante Beere auf Weiß |
+| `--akzent-beere` #D6456B | `--navy` #0C1C33 | 4,0:1 | Grafik | Balken und Symbol Beere auf Navy (Leinwand) |
+| `--akzent-violett-text` #5B3FA8 | `--weiss` #FFFFFF | 7,7:1 | Text | Akzent Violett: Kicker, Nummer, Label |
+| `--akzent-violett-text` #5B3FA8 | `--grund` #EEF1F5 | 6,8:1 | Text | Akzent Violett auf Grund |
+| `--akzent-violett-text` #5B3FA8 | `--akzent-violett-soft` #EEE9FA | 6,5:1 | Text | Akzent Violett: Marke auf eigener Fläche |
+| `--tinte` #0F1722 | `--akzent-violett-soft` #EEE9FA | 15,2:1 | Text | Fließtext auf Fläche Violett |
+| `--weiss` #FFFFFF | `--akzent-violett-text` #5B3FA8 | 7,7:1 | Text | Marke weiß auf Violett |
+| `--akzent-violett` #8061CC | `--weiss` #FFFFFF | 4,7:1 | Grafik | Balken, Symbol, Kante Violett auf Weiß |
+| `--akzent-violett` #8061CC | `--navy` #0C1C33 | 3,7:1 | Grafik | Balken und Symbol Violett auf Navy (Leinwand) |
+| `--akzent-blau-text` #1D5C9C | `--weiss` #FFFFFF | 6,9:1 | Text | Akzent Blau: Kicker, Nummer, Label |
+| `--akzent-blau-text` #1D5C9C | `--grund` #EEF1F5 | 6,1:1 | Text | Akzent Blau auf Grund |
+| `--akzent-blau-text` #1D5C9C | `--akzent-blau-soft` #E2EEFA | 5,8:1 | Text | Akzent Blau: Marke auf eigener Fläche |
+| `--tinte` #0F1722 | `--akzent-blau-soft` #E2EEFA | 15,3:1 | Text | Fließtext auf Fläche Blau |
+| `--weiss` #FFFFFF | `--akzent-blau-text` #1D5C9C | 6,9:1 | Text | Marke weiß auf Blau |
+| `--akzent-blau` #3A82CF | `--weiss` #FFFFFF | 4,0:1 | Grafik | Balken, Symbol, Kante Blau auf Weiß |
+| `--akzent-blau` #3A82CF | `--navy` #0C1C33 | 4,3:1 | Grafik | Balken und Symbol Blau auf Navy (Leinwand) |
+| `--akzent-lagune-text` #0D6F68 | `--weiss` #FFFFFF | 6,0:1 | Text | Akzent Lagune: Kicker, Nummer, Label |
+| `--akzent-lagune-text` #0D6F68 | `--grund` #EEF1F5 | 5,3:1 | Text | Akzent Lagune auf Grund |
+| `--akzent-lagune-text` #0D6F68 | `--akzent-lagune-soft` #DCF2EF | 5,2:1 | Text | Akzent Lagune: Marke auf eigener Fläche |
+| `--tinte` #0F1722 | `--akzent-lagune-soft` #DCF2EF | 15,4:1 | Text | Fließtext auf Fläche Lagune |
+| `--weiss` #FFFFFF | `--akzent-lagune-text` #0D6F68 | 6,0:1 | Text | Marke weiß auf Lagune |
+| `--akzent-lagune` #17A096 | `--weiss` #FFFFFF | 3,2:1 | Grafik | Balken, Symbol, Kante Lagune auf Weiß |
+| `--akzent-lagune` #17A096 | `--navy` #0C1C33 | 5,3:1 | Grafik | Balken und Symbol Lagune auf Navy (Leinwand) |
+| `--akzent-gruen-text` #2E6B29 | `--weiss` #FFFFFF | 6,5:1 | Text | Akzent Grün: Kicker, Nummer, Label |
+| `--akzent-gruen-text` #2E6B29 | `--grund` #EEF1F5 | 5,7:1 | Text | Akzent Grün auf Grund |
+| `--akzent-gruen-text` #2E6B29 | `--akzent-gruen-soft` #E4F2DF | 5,6:1 | Text | Akzent Grün: Marke auf eigener Fläche |
+| `--tinte` #0F1722 | `--akzent-gruen-soft` #E4F2DF | 15,5:1 | Text | Fließtext auf Fläche Grün |
+| `--weiss` #FFFFFF | `--akzent-gruen-text` #2E6B29 | 6,5:1 | Text | Marke weiß auf Grün |
+| `--akzent-gruen` #4E9F44 | `--weiss` #FFFFFF | 3,3:1 | Grafik | Balken, Symbol, Kante Grün auf Weiß |
+| `--akzent-gruen` #4E9F44 | `--navy` #0C1C33 | 5,2:1 | Grafik | Balken und Symbol Grün auf Navy (Leinwand) |
 <!-- paare:ende -->
 
-Halbtransparente Flächen (`--weiss-a85` im Seitenkopf, `--navy-a42` als Abdunklung hinter Dialogen) zählen als ihr deckender Nachbar (Weiß bzw. Navy); Text liegt dort nur in den Paaren der deckenden Farbe.
+Halbtransparente Flächen (`--weiss-a85` im Seitenkopf) zählen als ihr deckender Nachbar (Weiß); Text liegt dort nur in den Paaren der deckenden Farbe.
 
 ## Abstände, Radien, Schatten
 
@@ -284,18 +362,13 @@ Die Klassennamen `kapitel-…` sind intern geblieben; sichtbar heißt es „Them
 **Abbildung (`.abbildung`, P14, O-32, L-190).** Auf der Lernseite beim Abschnitt:
 ```html
 <figure class="abbildung" data-abbildung="abb-6">
-  <div class="abbildung-rahmen"><img class="abbildung-bild ist-vergroesserbar" alt="…" width="1200" height="886"></div>
+  <div class="abbildung-rahmen"><img class="abbildung-bild" alt="…" width="1200" height="886"></div>
   <figcaption class="abbildung-unterschrift">
     <span class="t-label abbildung-marke">Abbildung 5</span><span class="abbildung-titel">…</span>
-    <span class="abbildung-vorrang">Wo die Abbildung vom Text abweicht, gilt der Text.</span>
-    <span class="abbildung-angeglichen">Im Bild an die Begriffe des Texts angeglichen: „…“</span>
-    <details class="abbildung-abweichungen"><summary>Abweichungen vom Text (n)</summary><ul><li>…</li></ul></details>
-    <button class="knopf knopf-still abbildung-gross">Vergrößern</button>
   </figcaption>
-  <dialog class="abbildung-dialog">Kopf (Titel, Schließen) + Bild in voller Breite, mindestens 900 px (schmale Fenster rollen waagrecht)</dialog>
 </figure>
 ```
-Weiße Karte wie `.lern-grafik`, Bild auf ganzer Spaltenbreite; Klick aufs Bild öffnet ebenfalls den Dialog (Tastatur: der Knopf). Auf der Leinwand und im Druck ohne Knopf und Dialog, mit aufgeklappten Abweichungen. Der Dialog hat keinen Innenabstand, der Kopf klebt bündig. Mausrad, Wischen und Rolltasten über dem offenen Dialog rollen nur ihn, nie die Seite dahinter (`halteRollenImDialog`).
+Weiße Karte wie `.lern-grafik`, Bild auf ganzer Spaltenbreite; die Bildunterschrift trägt nur Marke und Titel – keine Abweichungen, kein Vorrang-Satz, keine Angleichungsliste (O-56), kein Knopf „Vergrößern“ und kein Dialog: vergrößert wird mit der Lupe des Browsers (O-55).
 
 ### Explore
 `.ex-rahmen > .ex-kopf + nav.ex-werkzeuge (je Werkzeug .ex-werkzeug-link) + Werkzeugfläche`: Rechner für den gewichteten Vergleich, Risikomatrix 5 × 5, Vorgangsarten und Wege, Takt, Glossar (O-46). In `explore.css`.
@@ -307,7 +380,7 @@ Weiße Karte wie `.lern-grafik`, Bild auf ganzer Spaltenbreite; Klick aufs Bild 
 
 - **Kontrast** nur über die erlaubten Paare oben (≥ 4,5:1; Grafik ≥ 3:1), gemessen im Test.
 - **Fokus immer sichtbar:** 3 px Ring (`--fokus`): Navy mit Gold-Hof auf hellen Flächen (Start, Story, Theorie, Explore), Gold-hell auf Navy (Regie). Nie `outline: none` ohne Ersatz; Maus-Klicks zeigen keinen Ring (`:focus-visible`).
-- **Tastatur überall:** alle Bedienelemente sind `button`/`a`/`input`; in der Story ←/→ zum Blättern, in der Regie Buchstabentasten für die Wahl; Dialoge (Abbildungs-Dialog) halten den Fokus – Tab und Umschalt+Tab kreisen im Dialog – und geben ihn beim Schließen zurück.
+- **Tastatur überall:** alle Bedienelemente sind `button`/`a`/`input`; in der Story ←/→ zum Blättern, in der Regie Buchstabentasten für die Wahl.
 - **Nie nur Farbe:** Status = Form + Wort, Auswahl = Fläche + Ring + `aria-pressed`, Rangfolge = Platz + Zahl, Vorher/Nachher = Farbe + Wort.
 - **Sprache und Struktur:** `lang="de"`, Silbentrennung automatisch, eine `h1` je Fläche, Landmarken (`header`, `nav`, `main`, `footer`), Live-Region für Statusänderungen, `.nur-sr` für Werte, die sonst nur grafisch sind; Sprunglink `.sprung-inhalt` zum Inhalt.
 - **Bewegung:** siehe oben; kein Blinken schneller als 3 Hz.
@@ -316,7 +389,7 @@ Weiße Karte wie `.lern-grafik`, Bild auf ganzer Spaltenbreite; Klick aufs Bild 
 
 ## Tabus
 
-- Keine Emojis, keine Clipart, keine Stockfotos, keine Figuren; Illustration nur als feine Linienzeichnung im Stil „Bauplan“ (O-45).
+- Keine Emojis, keine Clipart, keine Stockfotos; Illustrationen nur selbst gezeichnet als Vektorgrafik: Bauplan-Linien (O-45, Theorie-Köpfe) sowie der isometrische Campus und die Figuren der Story (O-53).
 - Keine lila-blauen Verläufe, keine Neon- oder Glaseffekte, keine Schlagschatten auf Text.
 - Keine Farben außerhalb von `tokens.css`; keine Ampelfarbe als Dekoration (O-11).
 - Keine Kursivschrift (nicht eingebettet), keine weiteren Schriftschnitte, keine Systemschrift als Gestaltungsmittel.
@@ -330,6 +403,9 @@ Weiße Karte wie `.lern-grafik`, Bild auf ganzer Spaltenbreite; Klick aufs Bild 
 | Befehl | prüft / erzeugt |
 |---|---|
 | `node --test tests/stil-kontrast.test.ts` | Kontrast aller Paare aus `paare.json` gegen `tokens.css`; diese Tabelle = Liste; O-11-Farben unverändert |
+| `node --test tests/stil-akzente.test.ts` | Akzentpalette: je Ton Grundton, Fläche, Textton; Pflicht-Paare vorhanden und kontraststark; Rollen ohne Doppelung |
+| `node --test tests/campus-iso.test.ts` | isometrischer Campus: deterministisch, wohlgeformt, `role="img"` mit Beschreibung, keine fremden Ressourcen und Farbwerte, jede Klasse in `grafik.css` |
+| `node werkzeuge/grafik-vorschau.mjs [--alle]` | PNG-Vorschau des Campus nach `tmp/grafik/` (Stufen, Jahreszeiten, Licht; außerhalb der Kette) |
 | `node --test tests/stil-tokens.test.ts` | keine Farbwerte außerhalb der Tokens, jede `var()` definiert, Import-Reihenfolge, Schriftgewichte, Ikonen |
 | `node --test tests/stil-werkzeuge.test.ts` | PNG-Decoder, Logo neu gezeichnet = `quellen/marke`, Schriften nur Variante-B-Schnitte, unicode-range aus @fontsource, deterministisch |
 | `node werkzeuge/logo.mjs [--vergleich]` | Logo-SVGs aus dem Original-PNG (potrace, deterministisch); `--vergleich` → `tmp/logo-vergleich.png` |

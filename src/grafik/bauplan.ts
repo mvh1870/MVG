@@ -5,7 +5,12 @@
  *
  *   campus(stufe)  – Axonometrie; Stufe 0 (Lageplan) bis 6 (fertig) – die Story wächst mit der LPH
  *   grundriss()    – heller Grundriss mit Achsraster (Theorie, sehr dezent)
+ *
+ * Brücke bis P17.4: Der farbige isometrische Campus (O-53) steht in campus-iso.ts und wird hier weitergereicht,
+ * damit er von src/main.ts aus erreichbar ist (tests/aufgeraeumt.test.ts), bis die neue Story-Fläche ihn
+ * direkt einbindet. esbuild lässt ihn bis dahin aus dem Bündel (nicht benutzt).
  */
+export { campusIso } from './campus-iso.ts';
 
 /** Isometrische Projektion: Grundriss (x, y) und Höhe z → Zeichenebene. */
 function p(x: number, y: number, z = 0): [number, number] {

@@ -33,7 +33,7 @@ Der Umsetzungspfad führt von der Diagnose über Konzeption, Pilotierung und Bef
 ---
 titel: Der Umsetzungspfad auf einen Blick
 ---
-Vier Leistungspakete bauen aufeinander auf und münden in den Regelbetrieb. Die MVG-Neuinitialisierung steht als Sonderformat daneben. [[bedienung:Klicken Sie sich durch die Etappen.]]
+Vier Leistungspakete bauen aufeinander auf und münden in den Regelbetrieb. Die MVG-Neuinitialisierung steht als Sonderformat daneben.
 
 ::: etappe 1
 ---
@@ -128,8 +128,6 @@ titel: Wer tut was in der Konzeption?
 links: Entscheidet der Bauherr
 rechts: Leistet die Begleitung
 ---
-[[bedienung:Ordnen Sie jede Tätigkeit zu.]]
-
 ::: posten zielprioritaeten
 ---
 seite: links
@@ -336,8 +334,6 @@ titel: Leistung oder Grenze?
 links: Innerhalb der Leistungen
 rechts: Außerhalb der Leistungen
 ---
-[[bedienung:Ordnen Sie zu, was innerhalb und was außerhalb der Leistungen liegt.]]
-
 ::: posten diagnose
 ---
 seite: links

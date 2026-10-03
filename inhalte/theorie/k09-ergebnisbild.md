@@ -89,7 +89,7 @@ Ein Beispiel: Im Standard übernimmt die Projektsteuerung die ganze Vorbereitung
 ---
 titel: Acht Fragen, die das Modell insbesondere beantwortet
 ---
-Die acht Fragen, paarweise geordnet. [[bedienung:Klicken Sie sich durch.]]
+Die acht Fragen, paarweise geordnet.
 
 ::: etappe 1
 ---
@@ -152,7 +152,7 @@ titel: Eigene Arbeitsrolle oder nicht?
 links: Arbeitsrolle im Standardmodell
 rechts: Keine eigene Arbeitsrolle
 ---
-Was zählt im Standard-Rollenmodell als eigene Arbeitsrolle? [[bedienung:Ordnen Sie jeden Posten zu.]]
+Was zählt im Standard-Rollenmodell als eigene Arbeitsrolle?
 
 ::: posten pl
 ---

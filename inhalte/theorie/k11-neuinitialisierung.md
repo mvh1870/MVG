@@ -63,7 +63,7 @@ Fünf davon haben dieselbe Form: **Es passiert etwas, aber das Entscheidende feh
 
 Die übrigen drei Signale betreffen die **Grundlagen**: Kosten, Termine und Projektumfang laufen auseinander; die Beteiligten arbeiten mit unterschiedlichen Lagebildern; Datenstände, Annahmen und Beschlusslagen passen nicht mehr zusammen.
 
-Für den Bauherrn heißt das: Viel Aktivität ist noch kein Zeichen von Führung. [[bedienung:Prüfen Sie mit dem Umschalter, was man sieht und was fehlt.]]
+Für den Bauherrn heißt das: Viel Aktivität ist noch kein Zeichen von Führung.
 
 ::: umschalter
 ---
@@ -123,7 +123,7 @@ Der Name könnte an einen Neustart denken lassen. Das trifft es nicht. Die MVG-N
 
 Im Mittelpunkt stehen zehn Felder. Sie beginnen beim **Zielbild** und den aktuellen Zielkonflikten, gehen über **Mandate und Schwellen**, die offenen wesentlichen Entscheidungen und den **Status der Freigaben** – einschließlich der Freigaben, die nachgeholt oder wiederholt werden müssen. Dazu kommen **Datenstand und Annahmen**, die Lage aller offenen Vorgänge – Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Probleme und Änderungen – und die Auswirkungen auf Budget, Termin und Projektumfang. Schließlich gehören die **Logik zur Neufestlegung der Projektbasis**, die Eskalations- und Gremienlogik und ein [[Betriebshandbuch]] für einen stabilisierten Regelbetrieb dazu.
 
-Der Bogen ist klar: Die MVG-Neuinitialisierung beginnt mit einem Lagebild und endet mit einer stabilisierten Entscheidungsarchitektur. Dazwischen steht die zentrale Frage an den Bauherrn: Welche Entscheidungen müssen jetzt neu legitimiert werden, damit das Projekt wieder führbar wird? [[bedienung:Klicken Sie sich durch die drei Etappen und prüfen Sie danach in der Übung, was neu geordnet wird.]]
+Der Bogen ist klar: Die MVG-Neuinitialisierung beginnt mit einem Lagebild und endet mit einer stabilisierten Entscheidungsarchitektur. Dazwischen steht die zentrale Frage an den Bauherrn: Welche Entscheidungen müssen jetzt neu legitimiert werden, damit das Projekt wieder führbar wird?
 
 ::: etappen
 ---
@@ -157,8 +157,6 @@ titel: Neu geordnet oder nicht?
 links: Wird neu geordnet
 rechts: Wird nicht neu geordnet
 ---
-[[bedienung:Ordnen Sie jeden Punkt zu.]]
-
 ::: posten 1
 ---
 seite: links

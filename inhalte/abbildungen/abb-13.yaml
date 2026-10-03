@@ -9,20 +9,3 @@ alt: >-
   gestrichelte Linie führen zu „Regelbetrieb“ (Abnahmefähig, Betriebsstart). Unten eine Zeitleiste: 0-30 Tage
   Sichtbarkeit, 31-60 Tage Mindestmodell, 61-90 Tage Anwendung.
 angeglichen: []
-abweichungen:
-  - text: 'Unter der ganzen Kette von „Setup“ bis „Regelbetrieb“ liegt eine Zeitleiste „0-30 Tage Sichtbarkeit“, „31-60 Tage Mindestmodell“, „61-90 Tage Anwendung“; der Text bestimmt die 30/60/90-Tage-Logik als Orientierungsrahmen nach der MVG-Reifegradanalyse und im Rahmen einer MVG-Neuinitialisierung, nicht als allgemeinen Einführungsrhythmus, und der verbindliche Projektverlauf folgt dem Vorgehensmodell.'
-    beleg: k8.2-p1 k8.2-p5
-  - text: 'Die Abschnitte der Zeitleiste tragen nur die Kurzmarken; den Fokus je Zeitraum (Diagnose und Priorisierung, Konzeption und Mindeststandard, Modell in Anwendung und Kalibrierung) zeigt das Bild nicht.'
-    beleg: k8.2-t1
-  - text: 'Übergabe und Regelbetrieb stehen über dem Abschnitt „61-90 Tage“, die Spalte „Pilot“ über „31-60 Tage“; nach dem Text ist bis Tag 90 das Modell in Anwendung, der Bericht zur Pilotierung gehört zu 61–90 Tagen, und die Übergabe schließt erst danach an.'
-    beleg: k8.2-p4 k8.2-t1
-  - text: 'Drei Schritte heißen „Setup“, „Design“ und „Pilot“; der Text nennt sie Einrichtung, Konzeption sowie Pilotierung und Kalibrierung.'
-    beleg: k8.1-t1 k8.2-p5
-  - text: 'Die Spalte „Regelbetrieb“ zeigt „Abnahmefähig“ und noch einmal „Betriebsstart“; im Text ist der Betriebsstart ein Ergebnis der Übergabe, deren Abnahme „Regelbetrieb freigegeben“ lautet.'
-    beleg: k8.1-t1
-  - text: 'Unter „Diagnose“ stehen „Gap-Map“, „Bewertungsmatrix“ und „Entscheidungsliste“; der Text nennt als Ergebnisse Bewertungsmatrix, Governance-Lücken, wichtigste Risiken, Entscheidungsliste und 30/60/90-Tage-Plan.'
-    beleg: k8.1-t1
-  - text: 'Einzelne Kacheln weichen im Wortlaut ab: „Umfang klären“ (Text: Leistungsumfang), „Freigabe-Set“ (Leistungsphasen- und Freigabemodell), „Training“ (Schulungen) und „Prüfung-Takt“ (Prüfrhythmus); unter „Design“ fehlen die Eskalationswege und die Struktur des Betriebshandbuchs, unter „Übergabe“ der Übergabebericht.'
-    beleg: k8.1-t1
-  - text: 'In der Spalte „Design“ ist „Entscheidungs-IDs“ als „Entscheidu-ngs-IDs“ falsch getrennt.'
-    beleg: k5.2-t1 k8.1-t1

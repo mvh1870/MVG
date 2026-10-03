@@ -82,10 +82,10 @@ Das Feld `leitfragen` eines `regie`-Blocks ist eine Markdown-Liste (jeder Punkt 
 
 Ergebnis im HTML: `<span class="mvg-glossar" data-glossar="g-mandat" data-begriff="Mandat">Mandat</span>`. Die Oberfläche macht daraus den Mouseover/Fokus-Hinweis mit der Definition aus `inhalte.json → glossar`.
 
-### 2.5 Zitate und Bedienhinweise
+### 2.5 Zitate
 - **Blockzitat:** `::: zitat k2.4-p2` … `:::` – der Text im Container muss wortgleich im Absatz stehen (O-17). Mehrere Absätze: `::: zitat k2.4-p1 k2.4-p2` (werden mit Leerzeichen verbunden). Auslassungen mit `[…]` sind erlaubt; jedes Stück muss dann in dieser Reihenfolge im Absatz stehen, an Wortgrenzen beginnen und enden und zwischen zwei `[…]` mindestens zwei Wörter tragen. Ein Zitat als Markdown-Liste ist nur erlaubt, wenn der Absatz eine Liste ist und jeder Punkt ein ganzer Punkt der Quelle ist (in ihrer Reihenfolge).
 - **Inline-Zitat:** `[[zitat:k4.2-p3|die Bauherren-PL gibt bis einschließlich 100 TEUR eigenständig frei]]`.
-- **Bedienhinweis:** `[[bedienung:Ziehen Sie den Regler.]]` – ein ganzer Satz, der nur gilt, wo das Werkzeug bedienbar ist; im Druck und auf der Leinwand ausgeblendet (R41, L-121).
+- **Keine Bedienhinweise** (O-56): Die Spanne `[[bedienung:…]]` gibt es nicht mehr; der Prüfer meldet jeden Rest als Fehler. Die Lernwerkzeuge tragen ihre Beschriftung selbst (Titel, Körbe, Knöpfe, Stand). Auch im Fließtext keine Anleitungen („Klicken Sie …“, „Ziehen Sie den Regler …“) und keine Meta-Sätze über Bild, Text oder Herkunft – die Probe `werkzeuge/sichtbar.mjs` (`SICHTBAR_ARBEITSSTAND`) schlägt darauf an.
 
 „Wortgleich“ heißt: gleich nach Normalisierung von Leerraum und Silbentrennung (`normalisiere()` aus `werkzeuge/whitepaper-lib.mjs`, geprüft gegen die Anzeigefassung aus `werkzeuge/anzeige-fassung.mjs`); Anführungszeichen, Striche, Groß-/Kleinschreibung zählen. Absatz-IDs: `k<abschnitt>-<p|l|t|b><n>`, z. B. `k2.4-p2` (zweiter Absatz in 2.4), `k3.2-t1` (erste Tabelle in 3.2).
 
@@ -195,12 +195,10 @@ titel: Sechs Verantwortungsfelder um den MVG-Kern
 alt: Sechs Karten um einen Kreis „MVG-Kern“ …   # höchstens 600 Zeichen; beschreibt das Bild nach der Angleichung
 angeglichen:                       # Beschriftungen mit verbotenem Begriff (docs/BEGRIFFE.md), im Bild überdeckt
   - { x: 360, y: 259, b: 174, h: 34, text: Freigabelogik für LPH 0–2, beleg: k4-t1, schrift: barlow }
-abweichungen:                      # was danach noch vom Text abweicht – steht aufklappbar in der Bildunterschrift
-  - text: Im Kern steht „ausübbar“; der Text nennt sichtbar, prüfbar und gestaltbar.
-    beleg: k4-p1
 ```
+Weitere Felder gibt es nicht. Das frühere Feld `abweichungen` (was im Bild noch vom Text abwich) ist abgeschafft (O-56, O-41): ein Rest ist „unbekanntes Feld“. Auf der Seite trägt die Abbildung nur Marke („Abbildung N“) und Titel; Titel und `alt` beschreiben das Bild sachlich, ohne Meta-Sätze („der Text nennt …“, „im Bild steht …“). Vergrößert wird mit der Lupe des Browsers – einen Knopf „Vergrößern“ gibt es nicht (O-55).
 Überdeckung: Rechteck in Pixeln des Originals, mit der Hintergrundfarbe gefüllt (Median des Rands oder `hintergrund`), Text in IBM Plex Sans (`schrift: plex`, Vorgabe) oder Barlow Condensed (`barlow`), `gewicht` 400–700, `groesse` (sonst passend gerechnet), `ausrichtung` links/mitte/rechts, `farbe`; `\n` im Text trennt Zeilen. Der neue Text ist ein Begriff des Texts, als ganzer Begriff wortgleich im Absatz `beleg`. Alte Beschriftungen mit verbotenem Begriff stehen nie in der Datei (sie wird von `npm run begriffe` geprüft).
-Bilder erzeugen: `node werkzeuge/abbildungen.mjs [abb-N …]` (Chromium; schreibt `abb-N.webp` und `stand.json`, deterministisch). Vermessen: `--raster abb-N x y b h [--nach]` (Ausschnitt mit Koordinatenraster), Sichtprüfung: `--vorschau abb-N` (nur `tmp/abbildungen/`). `inhalte` meldet ein Bild als **veraltet** (harter Fehler, auch im Bau), wenn Quelle oder Überdeckungen nicht mehr zu `stand.json` passen; Titel, Alternativtext und Abweichungen ändern kein Bild. Die Bilder gehen als data:-URL nach `src/generiert/abbildungen.json` (nur `src/main.ts` lädt sie).
+Bilder erzeugen: `node werkzeuge/abbildungen.mjs [abb-N …]` (Chromium; schreibt `abb-N.webp` und `stand.json`, deterministisch). Vermessen: `--raster abb-N x y b h [--nach]` (Ausschnitt mit Koordinatenraster), Sichtprüfung: `--vorschau abb-N` (nur `tmp/abbildungen/`). `inhalte` meldet ein Bild als **veraltet** (harter Fehler, auch im Bau), wenn Quelle oder Überdeckungen nicht mehr zu `stand.json` passen; Titel und Alternativtext ändern kein Bild. Die Bilder gehen als data:-URL nach `src/generiert/abbildungen.json` (nur `src/main.ts` lädt sie).
 
 ### 4.8 `inhalte/rechtliches/*.md`
 `impressum.md` und `datenschutz.md`: normales Markdown ohne Container. `inhalte.mjs` übergeht sie; `werkzeuge/bau.mjs` setzt sie mit `werkzeuge/rechtliches.html` zu `dist/impressum.html` und `dist/datenschutz.html` zusammen (O-42, O-43).
@@ -237,7 +235,7 @@ Ein lauffähiges kleines Beispiel (Thema, Abdeckung, Startseite) steht als `BEIS
 | Schlüssel | Inhalt |
 |---|---|
 | `version` | Formatversion (1) |
-| `whitepaper` | `fassung`, `titel`, `kapitel` (Gliederung, intern), `abbildungen[]` (je Abbildung `id`, `nr`, `kapitel`, `ort`, `bild` mit `titel`, `alt`, `breite`, `hoehe`, `angeglichen[]`, `abweichungen[]` – oder `null`) |
+| `whitepaper` | `fassung`, `titel`, `kapitel` (Gliederung, intern), `abbildungen[]` (je Abbildung `id`, `nr`, `kapitel`, `ort`, `bild` mit `titel`, `alt`, `breite`, `hoehe` – oder `null`) |
 | `startseite` | `kicker`, `titel`, `titelQuelle`, `these` (Inline-HTML) aus `inhalte/start.md`, sonst null |
 | `glossar.<id>` | Glossar der Seite (`begriff`, `definition`, `vorkommen.kapitel[]`) |
 | `theorie.<kNN>` | Themen: `id`, `kapitel`, `thema`, `reihe`, `titel`, `kurztitel`, `deckt`, `einleitung` (HTML), `bloecke[]`, `quelle` |

@@ -615,7 +615,7 @@ test('Lernseite (P6.1): Tafel, Merksatz und Ebenen 1–4 werden auf Seiten- und 
 
 test('Leinwand (R69): Strg+P druckt den Ersatzbogen ohne Regie-Hinweis; die Seite behält ihn', async () => {
   const { ersatzBogenFuerLeinwand, ersatzDruck } = await import('../src/ui/druck.ts');
-  const regieWeg = W.druck.ersatzWege.find((x) => x.startsWith('Regie'));
+  const regieWeg = W.druck.ersatzWege.find((x) => x.startsWith('Präsentieren'));
   assert.ok(regieWeg, 'die Seite nennt den Druckweg der Regie');
   const text = (teile: Node[]): string => teile.map((t) => t.textContent ?? '').join(' ');
   assert.ok(text(ersatzDruck(VERSION).teile).includes(regieWeg), 'Seite: mit Regie-Weg');

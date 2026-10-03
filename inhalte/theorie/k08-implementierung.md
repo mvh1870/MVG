@@ -33,7 +33,7 @@ Auffällig ist die Spalte „Mitwirkung“ der Tafel: In keinem Schritt läuft d
 ::: abbildung abb-13
 :::
 
-[[bedienung:Klicken Sie sich durch die Schritte.]] Die Tafel darunter zeigt alle Spalten mit Kernaktivitäten und Ergebnissen.
+Die Tafel darunter zeigt alle Spalten mit Kernaktivitäten und Ergebnissen.
 
 ::: etappen
 ---
@@ -110,7 +110,7 @@ Bei der 30/60/90-Tage-Logik kommt es auf die Einordnung an. Sie ist ein Orientie
 
 Ihr Zweck ist, die ersten Wirkungen zu ordnen. In den ersten 30 Tagen geht es um Sichtbarkeit: Wo sind Entscheidungen kritisch, wo fehlen Mandate, wo widersprechen sich Datenstände? Bis Tag 60 steht das Mindestmodell und ist mit realen Entscheidungspunkten verbunden. Bis Tag 90 ist das Modell in Anwendung – an realen Entscheidungen und, falls im Projekt gerade eine ansteht, an einer Freigabe zum Abschluss einer Leistungsphase. Danach schließt die Übergabe an.
 
-Verbindlich bleibt das sequenzierte Vorgehen von der Einrichtung bis zur Übergabe. Die 30/60/90-Logik ersetzt es nicht; sie priorisiert die ersten Wirkungen nach der Reifegradanalyse. [[bedienung:Ziehen Sie den Regler, um zu sehen, was in welchem Zeitraum im Mittelpunkt steht.]]
+Verbindlich bleibt das sequenzierte Vorgehen von der Einrichtung bis zur Übergabe. Die 30/60/90-Logik ersetzt es nicht; sie priorisiert die ersten Wirkungen nach der Reifegradanalyse.
 
 ::: regler
 ---
@@ -221,8 +221,6 @@ titel: Wer trägt was bei?
 links: Bauherrenseite
 rechts: Begleitung
 ---
-[[bedienung:Ordnen Sie jeden Beitrag zu.]]
-
 ::: posten rolle
 ---
 seite: links

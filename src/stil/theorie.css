@@ -198,9 +198,6 @@ a.kapitel-karte:hover { color: var(--tinte); transform: translateY(-2px); box-sh
 .lernkarte-text { font-size: var(--gr-text); line-height: 1.5; }
 .lernkarte-text p + p { margin-top: var(--a-2); }
 q.mvg-zitat { font-weight: 500; }
-/* R41: Bedienhinweise gelten nur dort, wo das Werkzeug bedienbar ist – nicht im Druck, nicht auf der Leinwand (aufgelöst) */
-:is(.leinwand, .vorschau-buehne) .bedienhinweis { display: none; }
-@media print { .bedienhinweis { display: none; } }
 
 /* Tabellen als eigene Blöcke, die in ihrem Bereich rollen */
 .absatz-block { min-width: 0; overflow-x: auto; }
@@ -313,7 +310,6 @@ a.glossar-ort:hover { text-decoration: underline; }
   .druck-bogen .querverweis-symbol { display: none; }
   /* R67: Abschnittsköpfe nie allein am Seitenende – als Block (an Flex-Kindern hält Chromium break-after nicht) */
   .druck-bogen .abschnitt-titel { display: block; break-after: avoid; break-inside: avoid; }
-  .druck-bogen .abbildung-abweichungen summary { break-after: avoid; break-inside: avoid; }
   /* R42: Chromium wertet im Druck die Media Queries bei ≈ 794 px aus, setzt aber 688 px – die schmale Absatzform (≤ 700 px)
      griff nicht, die Kennspalte blieb und schnitt wortgleiche Tabellen ab. Im Druck immer einspaltig, nichts rollt */
   .druck-bogen .absatz-block { overflow: visible; }
@@ -321,8 +317,12 @@ a.glossar-ort:hover { text-decoration: underline; }
   .druck-bogen .absatz-block :is(th, td) { overflow-wrap: break-word; hyphens: auto; padding: 3px 4px; }
   .druck-bogen .absatz-block th { letter-spacing: 0; }
   .druck-bogen :is(.querverweis-block, .wissenscheck) > .t-label { break-after: avoid; }
-  /* aufgelöste Sortierübung: beide Körbe als Ganzes (die Körbe stehen nebeneinander, geteilt fehlten die Spaltenköpfe) */
+  /* aufgelöste Sortierübung: beide Körbe als Ganzes (die Körbe stehen nebeneinander, geteilt fehlten die Spaltenköpfe).
+     P17.10: Kopf und Körbe zusammen – vor einem ungeteilten Raster suchte Chromium trotz `break-after: avoid` am Kopf keinen
+     früheren Umbruch; Titel und Einleitung blieben am Ende einer halbleeren Seite (fuehrungsmodell). Gilt für jedes
+     Lernwerkzeug, dessen Inhalt aus solchen nebeneinanderstehenden Ansichten besteht */
   .druck-bogen .lw-sortieren.ist-aufgeloest .lw-nebeneinander { break-inside: avoid; }
+  .druck-bogen .lernwerkzeug:has(> .lw-kopf + .lw-nebeneinander:last-child) { break-inside: avoid; }
   /* R70: Abbildungen im Druck höchstens 120 mm hoch, ohne Kartenrand (auf Papier nur weißer Leerraum). Die erste Abbildung
      steht direkt unter der Kernaussage: mit 170 mm passte sie nicht mehr auf S. 1 und ließ sie halb leer (7 von 16 Themen) –
      dort 60 mm, damit Kopf, Einleitung, Kernaussage und Bild zusammen auf die erste Seite passen (Füllungsprobe im Szenario) */
@@ -331,11 +331,13 @@ a.glossar-ort:hover { text-decoration: underline; }
   .druck-bogen .kernaussage + figure.abbildung { margin-block: 0; }
   .druck-bogen .kernaussage + figure.abbildung .abbildung-bild { max-height: 60mm; }
   /* R70: Die Feldertafel (k4) im Druck kompakt – mit Bildschirmschrift (15,5 px) war jede Reihe aus drei Karten eine halbe
-     Seite hoch, die Tafel lief über zwei halbleere Seiten. Der Satz davor geht mit der Tafel auf die Seite */
-  .druck-bogen figure.tafel[data-form="felder"] .tafel-karte { padding: 2mm 3mm; gap: 1mm; }
-  .druck-bogen figure.tafel[data-form="felder"] .tafel-detail { gap: 1.5mm; }
-  .druck-bogen figure.tafel[data-form="felder"] .tafel-detail dt { font-size: 7pt; }
-  .druck-bogen figure.tafel[data-form="felder"] .tafel-detail dd { font-size: 9pt; line-height: 1.35; }
+     Seite hoch, die Tafel lief über zwei halbleere Seiten. Der Satz davor geht mit der Tafel auf die Seite.
+     P17.10: ebenso jede Karte mit vier und mehr Angaben (Phasen-Tafel in einfuehrung: Reihen einer halben Seite, die zweite
+     passte nicht mehr, die Seite endete bei 59 % mit dem Feld „Abnahme“) */
+  .druck-bogen :is(figure.tafel[data-form="felder"] .tafel-karte, .tafel-karte:has(> .tafel-detail > :nth-child(4))) { padding: 2mm 3mm; gap: 1mm; }
+  .druck-bogen :is(figure.tafel[data-form="felder"] .tafel-karte, .tafel-karte:has(> .tafel-detail > :nth-child(4))) .tafel-detail { gap: 1.5mm; }
+  .druck-bogen :is(figure.tafel[data-form="felder"] .tafel-karte, .tafel-karte:has(> .tafel-detail > :nth-child(4))) .tafel-detail dt { font-size: 7pt; }
+  .druck-bogen :is(figure.tafel[data-form="felder"] .tafel-karte, .tafel-karte:has(> .tafel-detail > :nth-child(4))) .tafel-detail dd { font-size: 9pt; line-height: 1.35; }
   .druck-bogen .lesetext:has(+ figure.tafel) > p:last-child { break-after: avoid; }
   .druck-bogen a { color: inherit; text-decoration: none; }
   .druck-bogen * { box-shadow: none !important; animation: none !important; transition: none !important; }
@@ -493,32 +495,15 @@ html:has(.lernseite) { scroll-padding-top: 72px; }
 .lw-nebeneinander .lw-posten-rueck { flex-basis: auto; }
 @media (max-width: 700px) { .lw-nebeneinander { grid-template-columns: minmax(0, 1fr); } }
 
-/* Abbildungen der DOCX V1.2 im Fachtext (P14, O-32, L-77): Bild auf weißer Karte, Bildunterschrift mit Vorrang
-   des Texts, Abweichungen zum Aufklappen, Vergrößern im Dialog über die ganze Fensterbreite */
+/* Abbildungen der DOCX V1.2 im Fachtext (P14, O-32, L-77): Bild auf weißer Karte mit Bildunterschrift
+   (Abweichungen und Vergrößern entfallen seit P17.10) */
 .abbildung { display: grid; gap: var(--a-3); margin: var(--a-6) 0; }
 .abbildung-rahmen { padding: var(--a-3); border-radius: var(--radius-l); background: var(--weiss); box-shadow: var(--schatten-karte); }
 .abbildung-bild { display: block; width: 100%; height: auto; border-radius: var(--radius-s); }
-.abbildung-bild.ist-vergroesserbar { cursor: zoom-in; }
 .abbildung-fehlt { display: grid; place-items: center; min-height: 120px; color: var(--tinte-2); font-size: var(--gr-s); }
 .abbildung-unterschrift { display: grid; justify-items: start; gap: var(--a-1); font-size: var(--gr-m); line-height: 1.45; color: var(--tinte-2); }
 .abbildung-marke { color: var(--navy-soft); }
 .abbildung-titel { font: 700 var(--gr-text)/1.3 var(--schrift-text); color: var(--navy); }
-.abbildung-vorrang, .abbildung-angeglichen { max-width: 72ch; }
-.abbildung-abweichungen { max-width: 72ch; }
-.abbildung-abweichungen summary { box-sizing: border-box; min-height: 36px; padding-block: 8px; cursor: pointer; font-weight: 600; color: var(--navy); }
-.abbildung-abweichungen summary:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; border-radius: 4px; }
-.abbildung-abweichungen ul { margin: var(--a-1) 0 0; padding-left: 1.2em; list-style: disc; }
-.abbildung-abweichungen li + li { margin-top: var(--a-1); }
-.abbildung-gross { margin-top: var(--a-1); }
-/* Innenabstand am Bild statt am Dialog: der klebende Kopf schließt oben bündig ab und bleibt beim waagrechten Rollen stehen;
-   Breite aus dem Platz neben den Rollleisten (100 %), nicht aus dem Fenster (vw) – P12.5 R11 */
-.abbildung-dialog { width: min(calc(100% - 16px), 1480px); max-width: none; max-height: 94vh; padding: 0; overflow: auto; overscroll-behavior: contain; border: 0; border-radius: var(--radius-l); background: var(--weiss); color: var(--tinte); box-shadow: var(--schatten-schwebend); }
-.abbildung-dialog::backdrop { background: var(--navy-a42); }
-.abbildung-dialog-kopf { position: sticky; top: 0; left: 0; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: var(--a-3); margin: 0; padding: var(--a-2) var(--a-3); background: var(--weiss); border-bottom: 1px solid var(--linie); }
-.abbildung-dialog-kopf .t-label { margin: 0; color: var(--navy); }
-.abbildung-dialog-kopf .knopf { flex: none; white-space: nowrap; }
-/* im Dialog in voller Auflösung: auf schmalen Fenstern waagrecht rollen statt winzig */
-.abbildung-dialog .abbildung-bild { box-sizing: content-box; width: calc(100% - 2 * var(--a-3)); min-width: 900px; margin: var(--a-3); }
 @media (max-width: 700px) {
   .abbildung-rahmen { padding: var(--a-2); }
 }
@@ -530,11 +515,10 @@ html:has(.lernseite) { scroll-padding-top: 72px; }
   .druck-bogen figure.abbildung { display: block; break-inside: auto; }
   .druck-bogen figure.abbildung > * + * { margin-top: var(--a-3); }
   .druck-bogen .abbildung-unterschrift { break-before: avoid; }
-  .abbildung-rahmen, .abbildung-unterschrift > span, .abbildung-abweichungen li { break-inside: avoid; }
+  .abbildung-rahmen, .abbildung-unterschrift > span { break-inside: avoid; }
   .abbildung-rahmen, .abbildung-marke { break-after: avoid; }
   /* R51: Marke und Titel stehen im Druck über dem Bild (theorie.ts, loeseFuerDruckAuf) und gehen mit ihm auf die nächste Seite */
   .druck-bogen .abbildung-druckkopf { display: grid; gap: 1mm; margin: 0 0 2mm; break-inside: avoid; break-after: avoid; }
-  .abbildung-gross, .abbildung-dialog { display: none; }
 }
 /* Navigation um das Kapitelverzeichnis (R21): nur Landmarke, keine eigene Box im Raster der Lernseite */
 .kapitel-verzeichnis-nav { display: contents; }

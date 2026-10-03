@@ -192,7 +192,7 @@ function bloeckeIn(bloecke: readonly Block[], inhalte: OeffentlicheInhalte, stuf
         break;
       case 'abbildung': {
         const a = inhalte.abbildungen.find((x) => x.id === b.id);
-        const f = a !== undefined ? abbildung(a, { bedienbar: lwBedienbar }) : null;
+        const f = a !== undefined ? abbildung(a) : null;
         if (f !== null) aus.push(f);
         break;
       }

@@ -426,7 +426,7 @@ class Kompilierer {
   /* ---------------------------------------------------- Markdown -- */
 
   /**
-   * Markdown → HTML; `[[Begriff]]`, `[[Begriff|Text]]`, `[[zitat:ID|Text]]`, `[[bedienung:Text]]` werden markierte Spannen.
+   * Markdown → HTML; `[[Begriff]]`, `[[Begriff|Text]]`, `[[zitat:ID|Text]]` werden markierte Spannen.
    * @param {string} text
    * @param {string} ort
    */
@@ -446,15 +446,9 @@ class Kompilierer {
 
   /** @param {string} text @param {string} ort */
   ersetzeSpannen(text, ort) {
-    return text.replace(/\[\[([^\[\]\n]+?)\]\]/gu, (_, innen, stelle, ganz) => {
-      // R48: ein Bedienhinweis ist ein ganzer Satz, getrennt vom Text davor – im Druck und auf der Leinwand fällt er
-      // weg, und übrig bliebe sonst ein Satzrest („was im Standard-Rollenmodell …“) oder „Wortlaut.Das Suchfeld …“
-      if (String(innen).startsWith('bedienung:')) {
-        const satz = String(innen).slice(10);
-        const davor = stelle > 0 ? String(ganz)[stelle - 1] ?? '' : '';
-        if (/^\s/u.test(satz) || (davor !== '' && !/[\s(]/u.test(davor))) this.fehler(ort, `Bedienhinweis ohne Leerraum davor – das Leerzeichen gehört vor die Spanne: „[[${String(innen).slice(0, 40)}“`);
-        if (!/[.!?]$/u.test(satz.trim())) this.fehler(ort, `Bedienhinweis ist kein ganzer Satz (endet nicht auf . ! ?): „${satz.trim().slice(0, 40)}“`);
-      }
+    return text.replace(/\[\[([^\[\]\n]+?)\]\]/gu, (_, innen) => {
+      // O-56: Bedienhinweise gibt es nicht mehr – die Lernwerkzeuge tragen ihre Beschriftung selbst
+      if (String(innen).startsWith('bedienung:')) this.fehler(ort, `Bedienhinweise gibt es nicht mehr (O-56) – Satz streichen: „[[${String(innen).slice(0, 40)}“`);
       const i = this.spannen.length;
       this.spannen.push(this.spanne(String(innen), ort));
       return `${i}`;
@@ -476,12 +470,7 @@ class Kompilierer {
       this.pruefeZitat([id], text, ort);
       return `<q class="mvg-zitat" data-absatz="${esc(id)}">${esc(text)}</q>`;
     }
-    // R41: Bedienhinweis („Ziehen Sie den Regler“) – im Druck und auf der Leinwand, wo die Werkzeuge aufgelöst sind, ausgeblendet
-    if (ziel.startsWith('bedienung:')) {
-      const text = innen.slice(10).trim();
-      if (text === '') this.fehler(ort, 'Bedienhinweis ohne Text ([[bedienung:Text]])');
-      return `<span class="bedienhinweis">${esc(text)}</span>`;
-    }
+    if (ziel.startsWith('bedienung:')) return '';
     const begriff = ziel.trim();
     const zeige = (anzeige ?? begriff).trim();
     const g = this.findeGlossar(begriff, ort);
@@ -1357,7 +1346,6 @@ export function baueAbbildungen(c, quelle, wurzel, theorie, pruefe) {
       return { ...basis, bild: null };
     }
     daten[a.id] = `data:image/webp;base64,${webp.toString('base64')}`;
-    const ort = `${e.datei}:1`;
     return {
       ...basis,
       bild: {
@@ -1365,8 +1353,6 @@ export function baueAbbildungen(c, quelle, wurzel, theorie, pruefe) {
         alt: String(e.roh.alt).trim(),
         breite: st.breite,
         hoehe: st.hoehe,
-        angeglichen: (e.roh.angeglichen ?? []).map((/** @type {any} */ u) => ({ text: einzeilig(String(u.text)), beleg: u.beleg })),
-        abweichungen: (e.roh.abweichungen ?? []).map((/** @type {any} */ x) => ({ html: c.inline(String(x.text), ort), belege: String(x.beleg).split(/\s+/u) })),
       },
     };
   });

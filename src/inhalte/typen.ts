@@ -119,10 +119,6 @@ export interface AbbildungsBild {
   alt: string;
   breite: number;
   hoehe: number;
-  /** im Bild überdeckte Beschriftungen: neuer Text (Begriff des Texts) und Beleg */
-  angeglichen: { text: string; beleg: string }[];
-  /** was nach der Angleichung noch vom Text abweicht (HTML inline) mit Belegen */
-  abweichungen: { html: string; belege: string[] }[];
 }
 
 /** Startseite (inhalte/start.md, O-21) */

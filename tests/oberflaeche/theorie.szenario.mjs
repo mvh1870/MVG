@@ -73,7 +73,10 @@ export async function lauf(seite, h) {
     const maskiert = pdf.flatMap((x, i) => x.zeilen.filter((z) => /&shy;|&#173;|&#x0*ad;|\\u00ad|\u00ad/iu.test(z)).map((z) => `S. ${i + 1}: ${z.slice(0, 60)}`));
     if (maskiert.length > 0) h.befund(`Druck ${t}: Trennstelle als Zeichen im PDF-Text ${JSON.stringify(maskiert.slice(0, 3))}`);
     // R70: die erste Seite trägt Kopf, Einleitung, Kernaussage und die erste Abbildung – nicht halb leer (vorher 52–62 %)
-    if (pdf.length > 1 && (pdf[0]?.fuellung ?? 1) < 0.7) h.befund(`Druck ${t}: erste Seite nur zu ${Math.round((pdf[0]?.fuellung ?? 0) * 100)} % gefüllt`);
+    // P17.10: endet der Text der ersten Seite mit dem Kopf einer Abbildung, füllt deren Bild den Rest (die Messung sieht nur
+    // Text; früher stand unter dem Bild noch die Bildunterschrift mit den Abweichungen, O-56)
+    const bildAmEnde = (pdf[0]?.zeilen ?? []).slice(-2).some((z) => /^abbildung\d+$/u.test(flach(z)));
+    if (pdf.length > 1 && !bildAmEnde && (pdf[0]?.fuellung ?? 1) < 0.7) h.befund(`Druck ${t}: erste Seite nur zu ${Math.round((pdf[0]?.fuellung ?? 0) * 100)} % gefüllt`);
     await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
   }
   // Glossar sucht

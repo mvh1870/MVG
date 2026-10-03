@@ -269,7 +269,7 @@ export function baueExplore(o: ExploreOptionen): HTMLElement {
     hintergrund: h('div', { class: 'lern-hintergrund', 'aria-hidden': 'true' }, vonHtml(grundriss())),
     inhalt: h('div', { class: 'ex-rahmen', 'data-pruef': 'explore' },
       h('header', { class: 'ex-kopf' },
-        h('p', { class: 'gs-kicker' }, `${E.bereich} · ${W.fiktiv}`),
+        h('p', { class: 'gs-kicker' }, E.bereich),
         h('h1', { class: 'gs-titel ex-titel', tabindex: -1, 'data-pruef': 'ex-titel' }, titel(aktiv)),
         w !== null ? h('div', { class: 'gs-leise ex-einleitung' }, inhalt(w.einleitungHtml)) : null),
       h('nav', { class: 'ex-werkzeuge', 'aria-label': E.werkzeuge },

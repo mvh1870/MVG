@@ -33,7 +33,7 @@ Die sechs Felder sind keine juristische Vollständigkeitsliste. Sie sind eine Ar
 
 Jedes Feld hat denselben Aufbau. Es gibt einen **nichtdelegierbaren Kern** – das, was nur der Bauherr festlegen, annehmen oder freigeben kann. Daneben steht die **delegierbare Vorbereitung**: Analysen, Varianten, Vorlagen, Register und Protokolle, die andere Beteiligte erarbeiten können. Und es gibt eine **typische Fehlstelle**, an der es in diesem Feld hakt, und die Antwort, die [[Minimum Viable Governance (MVG)]] darauf gibt.
 
-Die Tafel zeigt alle sechs Felder auf einen Blick. [[bedienung:Mit der Übung darunter können Sie prüfen, ob Sie Kern und Vorbereitung auseinanderhalten: Wohin gehört die jeweilige Tätigkeit?]]
+Die Tafel zeigt alle sechs Felder auf einen Blick.
 
 ::: tafel k4-t1
 ---
@@ -47,8 +47,6 @@ titel: Delegierbar oder beim Bauherrn?
 links: Delegierbare Vorbereitung
 rechts: Kern beim Bauherrn
 ---
-[[bedienung:Ordnen Sie jede Tätigkeit zu.]] Alle Zuordnungen stammen aus der Tafel der sechs Felder.
-
 ::: posten 1
 ---
 seite: links
@@ -185,7 +183,7 @@ Mit dem [[Mandat]] legt der Bauherr fest, wer welche Entscheidung vorbereiten, t
 
 Ein wirksames Mandatsmodell beantwortet fünf Fragen: Was darf auf Projektebene entschieden werden? Ab welcher Schwelle entscheidet der Bauherr oder beschließt er im Lenkungskreis? Wer darf Kosten, Projektumfang, Termin, Risiko oder Vergabe beeinflussen? Welche Unterlagen müssen vorliegen? Welche Rolle ist letztverantwortlich? MVG verbindet diese Antworten mit den Freigaben und den Entscheidungs-IDs. Wo eine Entscheidung erforderlich ist, entscheidet die befugte Stelle auf eine Vorlage der Projektsteuerung mit mindestens zwei zulässigen Optionen und gewichtetem Vergleich; selbst pflegen muss keine Stufe etwas.
 
-Wie eine solche Schwelle aussehen kann, zeigt die **Muster-Mandatsleiter**. Sie ist ein Muster, keine feste Vorgabe: Die Freigabeschwellen selbst legt der Bauherr fest – sie gehören zum Kern des Feldes Mandat. [[bedienung:Ziehen Sie den Regler, um zu sehen, wer nach dem Muster bei welchem Betrag entscheidet.]]
+Wie eine solche Schwelle aussehen kann, zeigt die **Muster-Mandatsleiter**. Sie ist ein Muster, keine feste Vorgabe: Die Freigabeschwellen selbst legt der Bauherr fest – sie gehören zum Kern des Feldes Mandat.
 
 ::: regler
 ---
@@ -349,7 +347,7 @@ Eine Freigabe ist mehr als eine Unterschrift. Mit ihr legitimiert die Bauherrens
 
 Die typische Fehlstelle: Es wird freigegeben, obwohl unklar ist, welcher Datenstand gilt, oder ohne dass jemand geprüft hat, ob das Mandat reicht.
 
-MVG bindet jede Freigabe an die Freigabelogik. Vor der Freigabe müssen fünf Dinge klar sein. Die Vorbereitung – Unterlagenpakete, Prüfvermerke, Planungsstände, Freigabevorschläge, Gremienberichte – liefern Projektsteuerung und Fachleute; die Projektsteuerung führt sie zur Vorlage zusammen. Freigeben darf die nach dem Mandat befugte Stelle des Bauherrn; die Freigabe zum Abschluss einer Leistungsphase erteilt der Bauherr selbst. [[bedienung:Klicken Sie die fünf Punkte durch.]]
+MVG bindet jede Freigabe an die Freigabelogik. Vor der Freigabe müssen fünf Dinge klar sein. Die Vorbereitung – Unterlagenpakete, Prüfvermerke, Planungsstände, Freigabevorschläge, Gremienberichte – liefern Projektsteuerung und Fachleute; die Projektsteuerung führt sie zur Vorlage zusammen. Freigeben darf die nach dem Mandat befugte Stelle des Bauherrn; die Freigabe zum Abschluss einer Leistungsphase erteilt der Bauherr selbst.
 
 ::: etappen
 ---

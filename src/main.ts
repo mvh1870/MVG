@@ -62,7 +62,6 @@ function starteSeite(wurzel: HTMLElement): void {
   ersatzBogenFuerStrgP(() => ['start', 'story', 'explore'].includes(document.body.dataset['flaeche'] ?? '') || document.querySelector('[data-pruef="thema-drucken"]') === null, () => ersatzDruck(VERSION));
 
   const raeume = (): void => {
-    for (const d of document.querySelectorAll<HTMLDialogElement>('dialog[open]')) d.close();
     tipps?.entferne();
     tipps = null;
   };

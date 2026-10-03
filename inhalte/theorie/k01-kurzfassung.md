@@ -41,8 +41,6 @@ titel: Arbeit oder Legitimation?
 links: Kann abgegeben werden
 rechts: Bleibt beim Bauherrn
 ---
-[[bedienung:Ordnen Sie jede Tätigkeit zu. Es gibt keine Punkte – nur eine kurze Erklärung.]]
-
 ::: posten 1
 ---
 seite: links
@@ -174,7 +172,7 @@ Ein wichtiger früher Hebel – entscheidend ist aber die Entscheidungs- und Nac
 ---
 titel: Die Kette der Entscheidungssicherheit
 ---
-Sechs Glieder, die zusammengehören – die Reihenfolge ist eine Aufzählung, kein Ablauf. [[bedienung:Klicken Sie sich durch.]]
+Sechs Glieder, die zusammengehören – die Reihenfolge ist eine Aufzählung, kein Ablauf.
 
 ::: etappe 1
 ---

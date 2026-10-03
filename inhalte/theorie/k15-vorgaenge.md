@@ -28,7 +28,7 @@ Die Projektsteuerung ordnet jeden Hinweis der passenden Vorgangsart zu, bewertet
 ---
 titel: Nicht jeder Hinweis wird zum Risiko
 ---
-Je nach Sachverhalt ist ein anderer nächster Schritt nötig. Es gibt sechs Vorgangsarten und dazu die Vorbereitung einer Entscheidung. Alle bearbeitet und pflegt die Projektsteuerung. [[bedienung:Drehen Sie die Karten um – auf der Rückseite steht je ein Beispiel vom Schulcampus Lindenhall-Süd.]]
+Je nach Sachverhalt ist ein anderer nächster Schritt nötig. Es gibt sechs Vorgangsarten und dazu die Vorbereitung einer Entscheidung. Alle bearbeitet und pflegt die Projektsteuerung.
 
 ::: karten
 ---
@@ -149,16 +149,12 @@ Der Wunsch nach einer größeren Mensa wird direkt als Änderung erfasst. Einen 
 :::
 :::
 
-[[bedienung:Ordnen Sie zu: Ist der Sachverhalt noch ungewiss oder schon eingetreten?]]
-
 ::: sortieren
 ---
 titel: Risiko oder Problem?
 links: Risiko – noch ungewiss
 rechts: Problem – schon eingetreten
 ---
-Alle Beispiele stammen aus dem fiktiven Schulcampus Lindenhall-Süd.
-
 ::: posten 1
 ---
 seite: links
@@ -253,7 +249,7 @@ Ein Wert genau auf einer Grenze gehört noch zur niedrigeren Stufe. Fehlende Ang
 ---
 titel: Die 5×5-Matrix und was sie auslöst
 ---
-Die Matrix gilt nur für Risiken. Die Wahrscheinlichkeit (1 bis 5) wird mit der höchsten belegten Auswirkung (1 bis 5) multipliziert. Daraus ergibt sich die Bearbeitungspriorität. Die Einzelwerte für Kosten, Termin und Qualität bleiben dabei sichtbar. Die Punkte sind keine Geldbeträge und keine Freigabe. [[bedienung:Ziehen Sie den Regler durch die drei Prioritäten.]]
+Die Matrix gilt nur für Risiken. Die Wahrscheinlichkeit (1 bis 5) wird mit der höchsten belegten Auswirkung (1 bis 5) multipliziert. Daraus ergibt sich die Bearbeitungspriorität. Die Einzelwerte für Kosten, Termin und Qualität bleiben dabei sichtbar. Die Punkte sind keine Geldbeträge und keine Freigabe.
 
 ::: regler
 ---
@@ -287,8 +283,6 @@ Die Projektsteuerung holt eine fachliche Einschätzung ein, informiert den Bauhe
 Ein Risiko ist **wesentlich**, wenn es vorrangig ist, eine Entscheidungsschwelle des Bauherrn erreicht oder einen besonderen Warnanlass betrifft. Dann ergänzt die Projektsteuerung Bandbreiten für Kosten und Termin, soweit sie sich abschätzen lassen – oder sie benennt, wer welche Frage klären muss. Eine niedrige Wahrscheinlichkeit allein ist kein Grund, eine schwere Folge auszublenden.
 
 Manche Anlässe stehen außerhalb der Matrix: Fragen der Sicherheit oder der Genehmigung, fehlende Befugnisse und der drohende Verlust einer Handlungsoption. Sie werden unabhängig von den Punkten behandelt, und dringliche Meldungen warten weder auf die nächste Sitzung noch auf eine vollständige Bewertung.
-
-[[bedienung:Ordnen Sie zu: Muss das Risiko vorrangig bearbeitet werden?]]
 
 ::: sortieren
 ---

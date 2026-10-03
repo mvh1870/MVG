@@ -39,7 +39,7 @@ Ein solches Führungsmodell muss sechs Fragen beantworten:
 5. Welcher Datenstand gilt?
 6. Wie lässt sich eine Entscheidung später nachvollziehen?
 
-Die Antworten allein genügen noch nicht. Wirksam wird MVG erst, wenn sie im Projektalltag ankommen – in Routinen, Freigaben, Entscheidungs-IDs, Datenstandslogik, Eskalationswegen, Betriebshandbuch und Befähigung. Erst dann wird aus Verantwortung eine Führungslogik, die man tatsächlich benutzen kann. [[bedienung:Der Umschalter zeigt den Unterschied.]]
+Die Antworten allein genügen noch nicht. Wirksam wird MVG erst, wenn sie im Projektalltag ankommen – in Routinen, Freigaben, Entscheidungs-IDs, Datenstandslogik, Eskalationswegen, Betriebshandbuch und Befähigung. Erst dann wird aus Verantwortung eine Führungslogik, die man tatsächlich benutzen kann.
 
 ::: umschalter
 ---
@@ -73,7 +73,7 @@ titel: Was verlangt MVG – und was nicht?
 links: Gehört zur Entscheidungssicherheit
 rechts: Verlangt MVG nicht
 ---
-Was macht eine Entscheidung entscheidungssicher, und was verlangt MVG ausdrücklich nicht? [[bedienung:Ordnen Sie jede Aussage zu.]]
+Was macht eine Entscheidung entscheidungssicher, und was verlangt MVG ausdrücklich nicht?
 
 ::: posten 1
 ---
@@ -168,7 +168,7 @@ titel: "Wirklogik: Verantwortung wird entscheidungsfähig"
 ---
 Die Wirkung von MVG entsteht durch **Kopplung**. Ein Zielsystem allein reicht nicht, eine RACI-Matrix, ein Freigabekalender oder eine einzelne Entscheidungsvorlage auch nicht. MVG wirkt erst, wenn diese Elemente miteinander verbunden sind.
 
-Ein Beispiel ist eine wesentliche Änderung. Als bloßer technischer Änderungsvorschlag ist sie für den Bauherrn nicht führbar. Führbar wird sie erst, wenn alle Elemente zusammenkommen. [[bedienung:Klicken Sie sie in der Leiste durch.]]
+Ein Beispiel ist eine wesentliche Änderung. Als bloßer technischer Änderungsvorschlag ist sie für den Bauherrn nicht führbar. Führbar wird sie erst, wenn alle Elemente zusammenkommen.
 
 Diese Kopplung verändert das Verhalten im Projekt: Zielkonflikte werden sichtbar, bevor entschieden wird. Mandate werden ausdrücklich vergeben, statt aus Hierarchie oder Gewohnheit angenommen zu werden. Freigaben hängen an einer definierten Entscheidungsreife. Risiken und Änderungen werden entscheidungsfähig. Gremien erhalten Entscheidungsunterlagen statt bloßer Statusberichte. Und die Bauherrenseite bekommt eine handhabbare Logik: Vorbereitung und Nachverfolgung übernimmt die Projektsteuerung, die befugte Stelle entscheidet.
 
@@ -295,7 +295,7 @@ Zielprioritäten bleiben unklar, Mandate sind nicht definiert, Gremien- und Proj
 ---
 titel: Abgrenzung und rechtlicher Hinweis
 ---
-MVG deckt nicht alle Pflichten ab, die ein Bauherr hat. Es konzentriert sich auf das, was die vorigen Abschnitte beschreiben: dass der Bauherr führen, entscheiden und seine Entscheidungen nachweisen kann. Eine bauordnungsrechtliche Pflichtenmatrix, eine arbeitsschutzrechtliche Vertiefung, eine Vergaberechtsprüfung oder eine technische Betreiberberatung leistet MVG nicht. MVG steckt damit seinen Rahmen selbst ab. Weil es um eine Leistungsgrenze geht, steht der Hinweis hier ausdrücklich. [[bedienung:Mit der Übung darunter können Sie prüfen, was in den Rahmen fällt.]] Wie MVG im Alltag der beteiligten Rollen ankommt, zeigt das Thema „Arbeitsweise“.
+MVG deckt nicht alle Pflichten ab, die ein Bauherr hat. Es konzentriert sich auf das, was die vorigen Abschnitte beschreiben: dass der Bauherr führen, entscheiden und seine Entscheidungen nachweisen kann. Eine bauordnungsrechtliche Pflichtenmatrix, eine arbeitsschutzrechtliche Vertiefung, eine Vergaberechtsprüfung oder eine technische Betreiberberatung leistet MVG nicht. MVG steckt damit seinen Rahmen selbst ab. Wie MVG im Alltag der beteiligten Rollen ankommt, zeigt das Thema „Arbeitsweise“.
 
 ::: zitat k5.5-p1
 MVG behandelt nicht alle denkbaren Bauherrenpflichten. Es ist keine bauordnungsrechtliche Pflichtenmatrix, keine arbeitsschutzrechtliche Vertiefung, keine Vergaberechtsprüfung und keine technische Betreiberberatung. Der Fokus liegt auf Führungs-, Entscheidungs- und Nachweisfähigkeit.

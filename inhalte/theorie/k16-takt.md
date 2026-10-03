@@ -26,7 +26,7 @@ Dringliches meldet die Projektsteuerung sofort. In aktiven Zeiten prüft sie jed
 ---
 titel: Der Takt im Überblick
 ---
-Es gibt vier Taktungen – je nachdem, wie dringend ein Sachverhalt ist und ob das Projekt gerade aktiv läuft. [[bedienung:Ziehen Sie den Regler von „sofort“ bis „Ruhezeit“.]]
+Es gibt vier Taktungen – je nachdem, wie dringend ein Sachverhalt ist und ob das Projekt gerade aktiv läuft.
 
 ::: regler
 ---
@@ -122,8 +122,6 @@ So kann eine Seite aussehen – ein fiktives Beispiel vom Schulcampus Lindenhall
 > - Differenz der beiden Rechnungen (Kostenplanung und Controlling) geklärt: angekündigter Nachtrag der Haustechnikplanung, bis 1,2 Mio. €, als Risiko `RIS-014` geführt, nicht in der Prognose; tritt er voll ein, läge die Prognose über Basis plus Reserve (61,3 Mio. €).
 > - Die Marktabfrage aus der Auflage zur Freigabe LPH 4 ist in die Prognose eingerechnet.
 > - Offene Entscheidung: Umgang mit der Prognose – die Projektsteuerung empfiehlt, die Reserve für die bekannten Mehrkosten vorzusehen; entscheiden muss der Bauherr im Lenkungskreis am 19. Mai; der Bauausschuss tagt am 21. Mai.
-
-[[bedienung:Ordnen Sie zu: Gehört das in den Monatsbericht?]]
 
 ::: sortieren
 ---

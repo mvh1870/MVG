@@ -99,16 +99,12 @@ Jede Vorlage beginnt mit dem Rahmen. Sie nennt die konkrete Frage und erklärt, 
 
 Dann folgen die Optionen – mindestens zwei, und beide müssen ernsthaft und zulässig sein. Zu jeder Option gehören das Vorgehen, die Folgen für Kosten und Termin, Qualität und Funktion, die verbleibenden Risiken, die Annahmen und die Freigaben, die sie braucht. „Weiter wie bisher“ kann eine Option sein, wenn es tatsächlich zulässig ist. Eine Scheinoption, die erkennbar nicht taugt, zählt nicht.
 
-[[bedienung:Ordnen Sie zu: Ist das eine zulässige Option oder eine Scheinoption?]]
-
 ::: sortieren
 ---
 titel: Zulässige Option oder Scheinoption?
 links: Zulässige Option
 rechts: Scheinoption
 ---
-Alle Beispiele stammen aus dem fiktiven Schulcampus Lindenhall-Süd.
-
 ::: posten 1
 ---
 seite: links
@@ -234,7 +230,7 @@ Für das Beispiel stehen vereinfachte Skalen vorab fest. Kosten bis 20.000, 40.0
 
 A erreicht 3 × 2 + 5 × 5 + 2 × 5 = 41 Punkte, B erreicht 3 × 5 + 5 × 2 + 2 × 5 = 35 Punkte. Unter dieser Terminpriorität empfiehlt die Projektsteuerung A.
 
-Jetzt die Gewichtungsprüfung: Was, wenn der Termin weniger zählt? [[bedienung:Ziehen Sie den Regler und beobachten Sie, wie sich die Rangfolge mit dem Termingewicht ändert.]] Kosten (3) und Funktion (2) bleiben gleich.
+Jetzt die Gewichtungsprüfung: Was, wenn der Termin weniger zählt? Kosten (3) und Funktion (2) bleiben gleich.
 
 ::: regler
 ---

@@ -25,7 +25,7 @@ import { installiereTooltips, type Tooltips } from './ui/bausteine/tooltip.ts';
 import { erzeugeGeschichte, ladeStand, storyDruck, type GeschichteFlaeche, type SpeicherGriff } from './ui/flaechen/geschichte.ts';
 import { baueStart } from './ui/flaechen/start.ts';
 import { baueTheorie, themaSeite, themaTitel, themen, zeigeAktuellenEintrag } from './ui/flaechen/theorie.ts';
-import { baueExplore, werkzeugAus, WERKZEUGE } from './ui/flaechen/explore.ts';
+import { baueExplore, werkzeugAus, werkzeugTitel, WERKZEUGE } from './ui/flaechen/explore.ts';
 import { erzeugeRegie } from './regie/regie.ts';
 import { starteLeinwand } from './regie/leinwand.ts';
 import { W } from './ui/woerter.ts';
@@ -114,7 +114,7 @@ function starteSeite(wurzel: HTMLElement): void {
       case 'explore': {
         raeume();
         const werkzeug = werkzeugAus(r.werkzeug);
-        zeigeSeite(baueExplore({ inhalte, werkzeug, bedienbar: true }), `explore:${werkzeug}`, `${inhalte.werkzeuge?.[werkzeug].titel ?? W.rahmen.explore} · ${W.rahmen.explore} · ${TITEL}`, '.ex-titel');
+        zeigeSeite(baueExplore({ inhalte, werkzeug, bedienbar: true }), `explore:${werkzeug}`, `${inhalte.werkzeuge !== null ? werkzeugTitel(inhalte.werkzeuge, werkzeug) : W.rahmen.explore} · ${W.rahmen.explore} · ${TITEL}`, '.ex-titel');
         break;
       }
       default: {

@@ -459,6 +459,8 @@ export const GIMMICKS = [
   'mensateller', 'grundriss', 'geruest-sturm', 'lueftung', 'schulglocke', 'schulbus', 'kaertchen', 'pokal',
   'projektblatt', 'notizzettel', 'telefon', 'kalender', 'absperrband', 'stempel', 'rednerpult', 'schluessel',
   'buch', 'mappe', 'matrix', 'sonne', 'wegweiser', 'stoppuhr', 'bruecke', 'eintrag',
+  // P18.3/P18.4 (Konzept WERKZEUGE-P18 Abschnitt 6): Kacheln der vier neuen Explore-Werkzeuge und das Ergebnis „Maßnahme“
+  'klemmbrett', 'gabelung', 'messlatte', 'berichtsblatt', 'werkzeugkasten',
 ] as const;
 export type GimmickName = (typeof GIMMICKS)[number];
 
@@ -495,6 +497,11 @@ const GIMMICK_TEXT: Record<GimmickName, string> = {
   stoppuhr: 'Eine Stoppuhr.',
   bruecke: 'Eine Brücke mit einem Riss.',
   eintrag: 'Ein ausgefüllter Eintrag mit Uhr, Kamera, Zeilen und Häkchen.',
+  klemmbrett: 'Ein Klemmbrett mit einer Liste, zwei Punkte sind abgehakt.',
+  gabelung: 'Ein Weg, der sich in zwei Pfeile teilt.',
+  messlatte: 'Eine Messlatte mit vier Kerben und einer Marke.',
+  berichtsblatt: 'Eine Seite mit drei Ampelpunkten und wenigen Zeilen.',
+  werkzeugkasten: 'Ein offener Werkzeugkasten mit Hammer und Schraubenschlüssel.',
 };
 
 export interface GimmickOptionen {
@@ -740,6 +747,31 @@ const GIMMICK_SVG: Record<GimmickName, () => string> = {
     + re('gm-a-lagune', 58, 30, 26, 17, 3) + re('gm-d-lagune', 62, 27, 8, 4, 1.5) + kr('gm-d-lagune', 71, 38.5, 6) + kr('gm-glas-hell', 71, 38.5, 3.6)
     + re('gm-linie-flaeche', 32, 58, 32, 3.4, 1.7) + re('gm-linie-flaeche-hell', 32, 68, 40, 3, 1.5) + re('gm-linie-flaeche-hell', 32, 78, 36, 3, 1.5)
     + pf('gm-haken-gruen', 'M72,82L77,87L86,74'),
+  klemmbrett: () => {
+    let s = boden(58, 34) + re('gm-holz-r', 20, 12, 78, 94, 6) + re('gm-papier gm-kante', 26, 22, 66, 78, 3) + re('gm-stahl', 43, 7, 32, 12, 3);
+    for (const y of [38, 56, 74]) s += re('gm-papier-s gm-kante', 33, y - 6, 12, 12, 2) + re(y === 74 ? 'gm-linie-flaeche-hell' : 'gm-linie-flaeche', 51, y - 2, 32, 4, 2);
+    return s + pf('gm-haken-gruen', 'M35,38L38.5,41.5L46,32') + pf('gm-haken-gruen', 'M35,56L38.5,59.5L46,50') + re('gm-s-violett', 51, 84, 26, 4, 2);
+  },
+  gabelung: () => boden(60, 32)
+    + pf('gm-a-lagune', 'M50,106V70L30,48L22,56L18,22L52,26L44,34L60,52L76,34L68,26L102,22L98,56L90,48L70,70V106Z')
+    + pf('gm-d-lagune', 'M50,94H70V106H50Z')
+    + pf('gm-umweg', 'M60,100V62'),
+  messlatte: () => {
+    let s = boden(60, 50) + re('gm-papier gm-kante', 8, 50, 104, 26, 4);
+    for (const [i, x] of [26, 46, 66, 86].entries()) s += pf('gm-teilung', `M${x},50V${i % 2 === 0 ? 64 : 60}`);
+    s += re('gm-s-blau', 10, 66, 34, 8, 2) + re('gm-a-blau', 44, 66, 22, 8, 2) + re('gm-d-blau', 66, 66, 20, 8, 2);
+    return s + pf('gm-d-sonne', 'M56,26H76L66,44Z') + re('gm-d-sonne', 64.5, 14, 3, 14, 1.5);
+  },
+  berichtsblatt: () => boden(58, 34)
+    + re('gm-papier gm-kante', 26, 10, 66, 94, 4) + re('gm-linie-flaeche', 36, 20, 34, 4, 2)
+    + kr('gm-a-gruen', 40, 38, 6) + kr('gm-a-sonne', 59, 38, 6) + kr('gm-a-gruen', 78, 38, 6)
+    + re('gm-linie-flaeche-hell', 36, 54, 46, 3, 1.5) + re('gm-linie-flaeche-hell', 36, 62, 40, 3, 1.5) + re('gm-linie-flaeche-hell', 36, 70, 44, 3, 1.5)
+    + re('gm-s-sonne gm-kante-sonne', 36, 80, 46, 14, 2) + re('gm-d-sonne', 40, 85, 22, 4, 2),
+  werkzeugkasten: () => boden(60, 50)
+    + pf('gm-stahl', 'M40,40V32C40,28 43,26 47,26H73C77,26 80,28 80,32V40H74V33H46V40Z')
+    + tr(46, 50, -30, re('gm-holz', -3, -26, 6, 30, 2) + re('gm-tinte', -9, -32, 18, 9, 2))
+    + tr(76, 46, 28, re('gm-stahl', -2.5, -22, 5, 28, 2) + kr('gm-stahl', 0, -24, 6) + kr('gm-loch', 0, -26, 3))
+    + re('gm-d-orange', 14, 44, 92, 14, 3) + re('gm-a-orange', 14, 56, 92, 46, 4) + re('gm-d-orange', 52, 52, 16, 10, 2),
   bruecke: () => {
     let boegen = 'M8,58H112V98H8Z';
     for (const x of [26, 60, 94]) boegen += `M${x - 12},98V82A12,12 0 0 1 ${x + 12},82V98Z`;

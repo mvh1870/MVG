@@ -26,7 +26,7 @@ import { sym } from '../ui/bausteine/bloecke.ts';
 import { inhalt, inhaltInline } from '../ui/bausteine/inhalt.ts';
 import { erzeugeAnzeige } from './leinwand.ts';
 import { themen, themaSeite } from '../ui/flaechen/theorie.ts';
-import { WERKZEUGE, werkzeugAus } from '../ui/flaechen/explore.ts';
+import { WERKZEUGE, werkzeugAus, werkzeugTitel } from '../ui/flaechen/explore.ts';
 import { bogenFuerStrgP, bogenKopf, druckeBogen } from '../ui/druck.ts';
 import { W } from '../ui/woerter.ts';
 import { bmLink, DATENSCHUTZ_SEITE, IMPRESSUM_SEITE } from '../ui/bausteine/seite.ts';
@@ -132,7 +132,7 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     themen(inhalte).map((t) => h('option', { value: t.thema }, t.kurztitel))) as HTMLSelectElement;
   themaWahl.addEventListener('change', () => setze({ ...buehne, bereich: 'theorie', thema: themaWahl.value === '' ? null : themaWahl.value }));
   const werkzeugWahl = h('select', { class: 'regie-auswahl', id: 'regie-werkzeug', 'data-pruef': 'regie-werkzeug' },
-    WERKZEUGE.map((id) => h('option', { value: id }, inhalte.werkzeuge?.[id].titel ?? id))) as HTMLSelectElement;
+    WERKZEUGE.map((id) => h('option', { value: id }, werkzeugTitel(inhalte.werkzeuge, id)))) as HTMLSelectElement;
   werkzeugWahl.addEventListener('change', () => setze({ ...buehne, bereich: 'explore', werkzeug: werkzeugWahl.value }));
   // Sprung je Schritt (P17.6): Auftakt, je Kapitel Szene · Vergleich · Frage · Mini-Aufgabe, Ende (eindeutig neben Kapitel 8 „Schulstart“, R75)
   const teilName = (s: Schritt): string => s.ort === 'kapitel' ? W.geschichte.teile[s.teil] ?? s.teil : s.ort === 'auftakt' ? W.geschichte.auftakt : W.geschichte.endeOrt;
@@ -316,7 +316,7 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
       return `${W.story} · ${storyOrt(g, buehne.story)}${teil} · ${i}/${n}`;
     }
     if (buehne.bereich === 'theorie') return `${W.rahmen.theorie} · ${buehne.thema !== null ? themaSeite(inhalte, buehne.thema)?.kurztitel ?? '' : w.themenUebersicht}`;
-    if (buehne.bereich === 'explore') return `${W.rahmen.explore} · ${inhalte.werkzeuge?.[werkzeugAus(buehne.werkzeug)].titel ?? ''}`;
+    if (buehne.bereich === 'explore') return `${W.rahmen.explore} · ${werkzeugTitel(inhalte.werkzeuge, werkzeugAus(buehne.werkzeug))}`;
     return w.start;
   };
 

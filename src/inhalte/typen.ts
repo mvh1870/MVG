@@ -8,6 +8,11 @@
  */
 
 import type { Geschichte, GeschichteRegie } from '../geschichte/typen.ts';
+import type { Ampel } from '../werkzeuge/gemeinsam.ts';
+import type { Antwort, Gegenstand, MandatsGrund, MandatsRegel, Stelle, WegZustand } from '../werkzeuge/vorlagen-check.ts';
+import type { Art, FrageId, Wahl, Zusatz } from '../werkzeuge/wegweiser.ts';
+import type { GrenzFehler, Wert } from '../werkzeuge/risiko-grenzen.ts';
+import type { AmpelId, Farbe } from '../werkzeuge/monatsbericht.ts';
 export type { Geschichte, GeschichteRegie };
 
 /** Kopfdaten nach Umwandlung (Zahlen, Listen, ja/nein, verschachtelte Karten). Schlüssel in camelCase. */
@@ -181,6 +186,106 @@ export interface Werkzeuge {
   };
   takt: WerkzeugTeil & { stufen: { id: string; titel: string; wer: string; html: string; beispiel: string }[] };
   glossar: WerkzeugTeil;
+  /** Vier neue Werkzeuge (P18.3/P18.4, O-59; Konzept docs/WERKZEUGE-P18.md, Rechenkerne src/werkzeuge/) */
+  vorlagencheck: VorlagenCheckTeil;
+  wegweiser: WegweiserTeil;
+  risikogrenzen: RisikoGrenzenTeil;
+  monatsbericht: MonatsberichtTeil;
+}
+
+/** A · Vorlagen-Check: Prüfpunkte je Schritt, Stellen, Wege, feste Zuordnung des Beispielprojekts (nur mit Beispiel, O-46). */
+export interface VorlagenCheckTeil extends WerkzeugTeil {
+  ampel: Record<Ampel, string>;
+  schritte: {
+    id: string;
+    titel: string;
+    punkte: { id: string; muss: boolean; art: 'zaehlung' | null; mindestens: number | null; kurz: string; frage: string; schliessen: string }[];
+  }[];
+  stellen: { id: Stelle; titel: string; ohneBeispiel: string | null; satz: string | null }[];
+  wegzustaende: { id: WegZustand; titel: string; satz: string | null }[];
+  dringlich: { frage: string; satz: string };
+  gegenstaende: { id: Gegenstand; titel: string }[];
+  mandat: MandatsRegel & {
+    saetze: {
+      falsch: string;
+      gruende: Record<MandatsGrund, string>;
+      beraet: Record<'buergermeisterin' | 'sie' | 'unbestimmt', string>;
+      unbestimmt: string;
+      selbst: string;
+    };
+  };
+  beispiele: {
+    id: string;
+    titel: string;
+    lage: string;
+    gegenstand: Gegenstand;
+    stelle: Stelle;
+    betrag: number | null;
+    reserve: boolean | null;
+    wege: { titel: string; zustand: WegZustand }[];
+    antworten: Record<string, Antwort>;
+  }[];
+}
+
+/** B · Vorgangs-Wegweiser: Texte der Fragen, Ergebnisteile je Art, Zusätze, Verwechslungen, Sachverhalte. */
+export interface WegweiserTeil extends WerkzeugTeil {
+  fragen: { id: FrageId; frage: string }[];
+  ergebnisse: { art: Art; schritt: string; festhalten: string }[];
+  zusaetze: Record<Zusatz, { titel: string; text: string }>;
+  verwechslungen: { id: string; art: Art; text: string }[];
+  beispiele: { id: string; titel: string; text: string; antworten: Partial<Record<FrageId, Wahl>> }[];
+}
+
+/** Eingabe einer Zeile im Beispiel des Risiko-Bewerters (wie `Wert` im Kern). */
+export type RisikoBeispielWert = Wert;
+
+/** C · Risiko-Bewerter mit eigenen Grenzen. */
+export interface RisikoGrenzenTeil extends WerkzeugTeil {
+  grenzen: { wahrscheinlichkeit: number[]; kosten: number[]; termin: number[] };
+  zustaende: Record<'fest' | 'vorlaeufig' | 'offen', string>;
+  warnanlaesse: { id: string; titel: string }[];
+  grenzfehler: Record<GrenzFehler, string>;
+  saetze: Record<string, string>;
+  beispiele: {
+    id: string;
+    kennung: string;
+    titel: string;
+    w: RisikoBeispielWert;
+    kosten: RisikoBeispielWert;
+    termin: RisikoBeispielWert;
+    qualitaet: RisikoBeispielWert;
+    warn: string[];
+    massnahme: 'keine' | 'geplant' | 'belegt';
+    schwelle: boolean;
+    prognose: 'ja' | 'nein' | 'teilweise';
+    puffer: boolean | null;
+    waswaere: { id: string; titel: string; w: RisikoBeispielWert | null; termin: RisikoBeispielWert | null; massnahme: 'keine' | 'geplant' | 'belegt' | null }[];
+  }[];
+}
+
+/** D · Monatsbericht-Baukasten. */
+export interface MonatsberichtTeil extends WerkzeugTeil {
+  ampel: Record<Ampel, string>;
+  ampeln: { id: AmpelId; titel: string }[];
+  farben: Record<Farbe, string>;
+  abschnitte: { id: string; titel: string; max: number }[];
+  entscheidungen: { titel: string; max: number };
+  reaktion: string;
+  /** Name des Beispielprojekts im Kopf des Berichts (nur mit Beispiel) */
+  projekt: string;
+  fuss: string;
+  saetze: Record<string, string>;
+  beispiele: {
+    id: string;
+    titel: string;
+    monat: string;
+    datenstand: string;
+    lage: string;
+    ampeln: Record<AmpelId, { farbe: Farbe; satz: string; reaktion: string | null }>;
+    eintraege: Record<string, { text: string; kennung: string }[] | 'keine'>;
+    entscheidungen: { frage: string; stelle: string; bis: string; kennung: string }[] | 'keine';
+    reaktion: string;
+  }[];
 }
 
 /**

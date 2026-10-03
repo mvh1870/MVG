@@ -22,9 +22,6 @@ const lies = (f: string): string => readFileSync(f, 'utf8');
 /** Nur von Tests benutzt, mit Absicht (Kontrastrechnung der Stilprüfung). */
 const NUR_TESTS = new Set([
   'src/stil/farben.ts',
-  // Rechenkerne der neuen Werkzeuge (P18.2); die Oberfläche bindet sie in P18.3/P18.4 ein – dann hier streichen
-  'src/werkzeuge/gemeinsam.ts', 'src/werkzeuge/vorlagen-check.ts', 'src/werkzeuge/wegweiser.ts', 'src/werkzeuge/risiko-grenzen.ts',
-  'src/werkzeuge/monatsbericht.ts',
 ]);
 
 test('Jede Quelldatei unter src/ wird von src/main.ts aus geladen', () => {

@@ -57,6 +57,9 @@ export interface GlossarEintrag {
   vorkommen: { kapitel: number[] };
 }
 
+/** Teile der Themen (O-54): 1 Grundlagen · 2 Führungsmodell und Arbeitsweise · 3 Anwendung und Einführung · 4 Werkzeuge der Praxis. */
+export type TheorieTeil = 1 | 2 | 3 | 4 | 'anhang';
+
 export interface TheorieSeite {
   id: string;
   kapitel: number;
@@ -66,6 +69,14 @@ export interface TheorieSeite {
   reihe: number;
   titel: string;
   kurztitel: string;
+  /** Nummer in Leserichtung (1 …, P17.8, O-54); vom Compiler aus `reihe` gesetzt */
+  nr: number;
+  /** Teil des Buchs: I–IV oder Anhang (O-54) */
+  teil: TheorieTeil;
+  /** ein Satz fürs Inhaltsverzeichnis (≤ 90 Zeichen) */
+  kurzsatz: string;
+  /** Name eines Symbols aus src/stil/symbole.ts */
+  symbol: string;
   deckt: string[];
   einleitung: string;
   bloecke: Block[];
@@ -119,10 +130,6 @@ export interface AbbildungsBild {
   alt: string;
   breite: number;
   hoehe: number;
-  /** im Bild überdeckte Beschriftungen: neuer Text (Begriff des Texts) und Beleg */
-  angeglichen: { text: string; beleg: string }[];
-  /** was nach der Angleichung noch vom Text abweicht (HTML inline) mit Belegen */
-  abweichungen: { html: string; belege: string[] }[];
 }
 
 /** Startseite (inhalte/start.md, O-21) */
@@ -148,7 +155,7 @@ export interface Inhalte {
   regie: Record<string, RegieEintrag>;
   /** Story (P16.6, O-40) */
   geschichte: Geschichte | null;
-  /** Regie-Notizen der Story je Station */
+  /** Regie-Notizen der Story je Kapitel */
   geschichteRegie: Record<string, GeschichteRegie>;
   /** Texte der Explore-Werkzeuge (P16.8) */
   werkzeuge: Werkzeuge | null;

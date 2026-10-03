@@ -1,39 +1,136 @@
-# Rahmen der Story (P16.5, O-40): Status, Kriterien, Prolog und Ende. Format: docs/INHALTSFORMAT.md
-titel: Vom Bauantrag bis zum Schulstart
-status:
-  kosten: { start: 58.4, einheit: Mio. €, titel: Kostenprognose, basis: 58.4 }
-  puffer: { start: 42, einheit: Tage, titel: Terminpuffer }
-  offen: { start: 0, einheit: '', titel: Offene Entscheidungen }
-kriterien:
-  - { id: kosten, titel: Kosten }
-  - { id: termin, titel: Termin }
-  - { id: qualitaet, titel: Qualität und Funktion }
-  - { id: klima, titel: Klima und Betrieb }
-prolog:
-  titel: Sie vertreten den Bauherrn
-  text: |
-    Die Stadt Lindenhall baut einen Schulcampus: Gesamtschule, Grundschule, Dreifeldsporthalle, als Holzhybridbau. Projektbasis 58,4 Mio. € brutto, dazu 2,9 Mio. € Risikoreserve, die nur der Bauherr freigibt. Der Förderbescheid verlangt die Inbetriebnahme zum Schuljahr 2028/29.
+# Rahmen der Story (P17.5, Drehbuch docs/DREHBUCH.md Abschnitte 1–3, 6): Auftakt, Figuren, Balken, Bilanz,
+# Kärtchen „Wer entscheidet was“ und Ende. Format: docs/INHALTSFORMAT.md Abschnitt 3.
+# Belege des Mandats (intern): k3.2-t1, k4.2-p1, k4.2-p3, k9.3-p3, v24:hb-1, v24:hb-projektblatt, v24:va-4.1
 
-    Sie übernehmen im Januar 2026 die Projektleitung auf Bauherrenseite (Bauherren-PL) bei der Gebäudemanagement Lindenhall GmbH (GML). Listen pflegen Sie nicht – das macht die Projektsteuerung um Jonas Brenner: Sie erfasst jeden Vorgang, prüft jede Woche den offenen Bestand und bereitet jede erforderliche Entscheidung als Vorlage vor, mit mindestens zwei Optionen und gewichtetem Vergleich.
+titel: Ein Schulcampus für Lindenhall
 
-    Sie entscheiden – oder tragen die Vorlage mit Ihrer Empfehlung zur befugten Stelle: zum Bauherrn (Dr. Miriam Olbers, im Lenkungskreis) oder ins Änderungsgremium. Hier folgt sie Ihrer Empfehlung.
-  takt: |
-    Dringliches meldet die Projektsteuerung sofort. Monatlich: ein Online-Termin von höchstens 60 Minuten, ein Bericht von höchstens einer Seite.
-ende:
-  titel: Schulstart
+auftakt:
+  campus: { stufe: 0, jahreszeit: winter, licht: morgen }
   text: |
-    August 2028 – das Schuljahr 2028/29 beginnt. Jede Frage, jede Option, jeder Beschluss steht mit Datum in der Software der GML – und was daraus geworden ist. Ihr Aufwand: ein Termin im Monat, eine Seite Bericht, die Vorlagen.
-  puffer-gut: Der Schulstart zum Schuljahr 2028/29 ist gehalten – die Schulleitung bekommt die Schlüssel.
-  puffer-knapp: Der Schulstart ist gehalten, mit kaum noch Puffer – die Schulleitung bekommt die Schlüssel.
-  puffer-schlecht: Die Inbetriebnahme zum Schuljahr 2028/29 ist nicht zu halten; die Förderfrist ist gefährdet.
-  # R69: auf den Wegen, auf denen die Prognose am Ende über Basis plus Reserve liegt, sagt es das Ende.
-  # R70: Offen kann am Ende nur die Neufestlegung der Projektbasis sein (höchstens 1, tests/geschichte-reserve.test.ts) – das Ende nennt sie.
-  # Über 61,3 ohne offene Entscheidung endet nur der Weg s3 = C, s4 = B, s5 = B, s6 = K, s7 = A, s8 = A (61,31): erst das Ersatzgerät hebt
-  # die Prognose über die Grenze; eine Vorlage zur Neufestlegung liegt dort noch nicht vor. Die drei Zeilen schließen einander aus.
+    Ein fiktiver Fall: Die Stadt Lindenhall baut im Süden der Stadt eine Gesamtschule, eine Grundschule und eine Sporthalle. Sie leiten das Projekt für die Stadt. Im Sommer 2028 sollen die Kinder einziehen.
+
+    Es ist kein echtes Projekt, aber es könnte eines sein: Die Fragen, die hier auftauchen, stellen sich auf vielen Baustellen.
+
+    Unterwegs müssen Sie sich mehrmals entscheiden – achtmal auf dem ganzen Weg, viermal in der Kurzfassung. Ihre Antworten bewegen drei Balken: Geld, Zeit und Vertrauen. Am Ende sehen Sie, wie Ihr Projekt ausgegangen ist.
+  vorstellung: "Diese fünf Menschen begleiten Sie:"
+  los: Los geht's
+  kurz: Kurzfassung (etwa 10 Minuten)
+
+sie:
+  steckbrief: Sie leiten das Projekt für die Stadt als Bauherrn. Sie pflegen keine Listen – Sie entscheiden, was in Ihrem Rahmen liegt, und bringen alles andere rechtzeitig zur Bürgermeisterin.
+
+figuren:
+  - id: grundstein
+    name: Gisela Grundstein
+    rolle: Bürgermeisterin
+    akzent: violett
+    steckbrief: "Sie entscheidet für die Stadt die großen Dinge: was zuerst kommt, jede große Freigabe, jeden Griff in die Reserve. Der Lenkungskreis, eine feste Runde mit der Finanzabteilung und dem Schulamt, berät sie – entscheiden tut sie."
+  - id: faden
+    name: Clara Faden
+    rolle: Projektsteuerin
+    akzent: lagune
+    steckbrief: "Sie hält alle Fäden zusammen: Sie erfasst und pflegt jeden Vorgang, prüft jede Woche alles Offene und bereitet jede Entscheidung vor – mit mindestens zwei Wegen und einer Empfehlung. Entscheiden darf sie nicht."
+  - id: schwung
+    name: Konrad Schwung
+    rolle: Architekt
+    akzent: blau
+    steckbrief: Er plant den Campus von der ersten Linie bis zur letzten Fuge. Er findet für alles eine Lösung – manchmal schneller, als ihm lieb sein sollte.
+  - id: klingel
+    name: Hanna Klingel
+    rolle: Schulleiterin
+    akzent: orange
+    steckbrief: Sie weiß, was die Kinder brauchen – und sie will viel davon. Jeder Wunsch hat einen guten Grund; nicht jeder passt ins Budget.
+  - id: lot
+    name: Theo Lot
+    rolle: Bauleiter
+    akzent: sonne
+    steckbrief: Er ist jeden Tag auf der Baustelle und kennt jede Schraube. Schreiben findet er lästig – bauen nicht.
+
+# Start intern: Geld 9, Zeit 6, Vertrauen 4 (L-225); Wirkung je Antwort −2 … +2, begrenzt auf 0–10
+balken:
+  geld:
+    titel: Geld
+    text: Wie viel vom Budget und von der Reserve noch für Unvorhergesehenes übrig ist.
+    start: 9
+    mehr: mehr übrig
+    weniger: weniger übrig
+    bilanz:
+      hoch: Die Reserve wurde dort eingesetzt, wo sie gebraucht wurde – jedes Mal von der Bürgermeisterin entschieden –, und ein guter Teil ist übrig.
+      mittel: Ein großer Teil der Reserve ist verbraucht; manches wurde teurer als nötig.
+      niedrig: Die Reserve ist fast aufgebraucht; jeder Umweg hat sie ein Stück kleiner gemacht.
+  zeit:
+    titel: Zeit
+    text: Wie viel Luft bis zum Schulstart im Sommer 2028 bleibt.
+    start: 6
+    mehr: mehr Luft
+    weniger: weniger Luft
+    bilanz:
+      hoch: Der Puffer hat gehalten; das Projekt hatte bis zum Schluss Luft.
+      mittel: Der Puffer war am Ende dünn, aber er hat gereicht.
+      niedrig: Der Puffer ist aufgebraucht; die Sporthalle öffnet erst nach den Herbstferien.
+  vertrauen:
+    titel: Vertrauen
+    # R76: der Start unter der Hälfte braucht einen Grund
+    text: Wie sehr sich Bürgermeisterin, Schule und Stadtrat auf Sie verlassen. Sie sind neu – das muss erst wachsen.
+    start: 4
+    mehr: gestiegen
+    weniger: gesunken
+    bilanz:
+      hoch: Bürgermeisterin, Schule und Stadtrat verlassen sich inzwischen auf das, was Sie vorlegen.
+      mittel: Man vertraut Ihnen – fragt aber gern noch einmal nach.
+      niedrig: Die Bürgermeisterin lässt sich inzwischen jede Zahl zweimal zeigen.
+
+# Prüfreihenfolge fest in src/geschichte/engine.ts (bilanzTyp): Vertrauen niedrig · Zeit niedrig · ruhig (nur ohne Falle, L-239) · alle anderen;
+# sind auf dem Weg Entscheidungen offen, gilt immer „offen“ (bilanzAmEnde, R73)
+# Jeder Text hier muss auf jedem Weg stimmen, auf dem er erscheint – tests/geschichte-wege.test.ts rechnet alle Wege durch.
+bilanz:
+  nicht-getragen:
+    titel: Gebaut, aber nicht getragen
+    text: "Die Gebäude stehen, doch das Vertrauen hat gelitten: Zu oft lief es anders, als die Bürgermeisterin es von Ihnen erwarten durfte. Ein Projekt braucht nicht nur Holz und Beton, sondern Entscheidungen, auf die sich alle verlassen können."
+  letzte-meter:
+    titel: Auf den letzten Metern
+    text: Die Schule hat geöffnet, aber der Puffer war am Ende aufgebraucht. Wer eine Frage liegen lässt oder auf Umwegen löst, bezahlt auf der Baustelle fast immer mit Zeit.
+  ruhig:
+    titel: Ruhig ins Ziel
+    text: Die Kinder sind pünktlich eingezogen, und jede große Entscheidung hat die Bürgermeisterin selbst getroffen – mit allem, was sie dafür wissen musste. So bleibt ein Projekt steuerbar, auch wenn es stürmt.
+  umwege:
+    titel: Geschafft – mit Umwegen
+    text: Der Campus steht, die Kinder sind da – aber nicht jede Ihrer Antworten war der gerade Weg, und jeder Umweg hat etwas gekostet, ob Zeit, Geld oder Vertrauen.
+  # R73: solange auf dem Weg Entscheidungen offen sind (Sprung ans Ende über die Fortschrittslinie), kein Urteil über den Weg
+  offen:
+    titel: Noch nicht alle Entscheidungen getroffen
+    text: Der Campus steht, die Kinder sind da. Ein Urteil über Ihren Weg gibt es erst, wenn Sie alle Entscheidungen getroffen haben; darunter steht der Stand nach den Antworten, die Sie schon gegeben haben.
+
+mandat:
+  titel: Wer entscheidet was
   zeilen:
-    - wenn: kosten>61.3 & offen>=1
-      text: Die Prognose liegt über Basis plus Reserve (61,3 Mio. €) – was darüber hinausgeht, deckt nur die Neufestlegung der Projektbasis. Sie ist die offene Entscheidung – die Vorlage liegt beim Lenkungskreis, der Beschluss des Bauherrn steht noch aus.
-    - wenn: kosten<=61.3 & offen>=1
-      text: Offen bleibt die Neufestlegung der Projektbasis – die Vorlage liegt beim Lenkungskreis, der Beschluss des Bauherrn steht noch aus.
-    - wenn: kosten>61.3 & offen<1
-      text: Mit dem Ersatzgerät liegt die Prognose knapp über Basis plus Reserve (61,3 Mio. €). Was darüber hinausgeht, deckt die Reserve nicht; dafür bereitet die Projektsteuerung eine Neufestlegung der Projektbasis vor.
+    - { wer: Sie, text: "Entscheidungen bis 100.000 Euro, wenn das Budget sie ohne Reserve trägt." }
+    - { wer: Bürgermeisterin, text: "alles darüber · jeder Griff in die Reserve · ob die Stadt ein großes Risiko trägt · jede Freigabe am Ende eines großen Planungs- oder Bauabschnitts (Fachleute sagen: Leistungsphase) · was zuerst kommt: der Schulstart, dann das Geld." }
+    - { wer: Lenkungskreis, text: "feste Runde aus Bürgermeisterin, Finanzabteilung und Schulamt · berät die Bürgermeisterin." }
+    - { wer: Projektsteuerin, text: "bereitet alles vor, pflegt alle Vorgänge, empfiehlt – entscheidet nie." }
+
+ende:
+  zeit: Ende August 2028
+  campus: { stufe: 8, jahreszeit: sommer, licht: morgen }
+  einstieg: |
+    Ende August 2028, halb acht am Morgen. Der erste Schulbus hält an der neuen Haltestelle, die Sonne steht noch tief über den Linden. Kinder mit Schultüten und viel zu großen Ranzen laufen über den Schulhof, die Eltern hinterher.
+
+    Am gemeinsamen Haupteingang des Campus hängen Luftballons, und neben der Tür stehen die fünf, die diesen Campus zweieinhalb Jahre lang begleitet haben – und Sie.
+  einstieg-kurz: |
+    Ende August 2028, der erste Schultag. Am Haupteingang stehen die fünf – und Sie.
+  szene:
+    - { figur: klingel, zusatz: läutet ihre Glocke, text: "Guten Morgen! Willkommen in eurer Schule!" }
+    - { figur: lot, kurzfassung: false, text: "Steht alles drin, was wir hier gemacht haben. Hätte ich vor zwei Jahren nicht gedacht, dass ich das mal gut finde." }
+    - { figur: schwung, kurzfassung: false, text: "Seit dem Holz sag ich's gleich, wenn was klemmt. Hat sich gelohnt." }
+    - { figur: faden, kurzfassung: false, text: "Alles Offene ist übergeben, mit Namen und Termin. Verschwunden ist nichts." }
+    - { figur: grundstein, text: "Wissen Sie, was das Beste war? Ich wusste jedes Mal, worüber ich entscheide." }
+  zeit-niedrig: Nur die Sporthalle bleibt noch zu – sie wird erst nach den Herbstferien fertig. Bis dahin turnen die Kinder in der alten Halle.
+  # Ersatzzeilen (L-239): Vertrauen niedrig geht vor; „nach-falle“ gilt, sobald auf dem Weg eine Falle gewählt ist
+  vertrauen-niedrig:
+    - { figur: lot, text: "Steht inzwischen alles drin. Hätten wir mal früher damit angefangen." }
+    - { figur: grundstein, text: "Beim nächsten Projekt reden wir früher miteinander. Versprochen?" }
+  nach-falle:
+    - { figur: grundstein, text: "Geschafft haben wir es. Aber nicht jedes Mal lief es so, wie es hätte laufen sollen – das machen wir beim nächsten Projekt besser." }
+  # R73: Entscheidungen offen, keine Falle, Vertrauen nicht niedrig – die Schlusszeile „Ich wusste jedes Mal …“ stimmte dann nicht
+  offen:
+    - { figur: grundstein, text: "Geschafft haben wir es – und was unterwegs offen geblieben ist, schauen wir uns noch einmal gemeinsam an." }

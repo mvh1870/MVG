@@ -15,16 +15,23 @@ import { fileURLToPath } from 'node:url';
 import { istHauptmodul } from './haupt.mjs';
 
 const WURZEL = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const TESTS = ['tests/geschichte.test.ts'];
+const TESTS = ['tests/geschichte.test.ts', 'tests/geschichte-wege.test.ts'];
 
 /** [Datei, alt, neu, was] – `alt` muss genau einmal vorkommen. */
 export const MUTANTEN = [
-  ['src/geschichte/engine.ts', '    addiere(s, st.lageFolgen);\n', '', 'Lage-Folgen zählen im Status'],
-  ['src/geschichte/engine.ts', "    if (st.nr === bisNr && schritt.ort === 'station' && schritt.teil !== 'folge') continue;\n", '', 'Eigene Entscheidung zählt erst ab der Folge'],
-  ['src/geschichte/engine.ts', "return m[2] === '=' ? w === m[3] : w !== m[3];", 'return w === m[3];', 'Bedingung „s3!=A“'],
-  ['src/geschichte/engine.ts', '  if (stand.kurz && !st.kurzfassung) return empfohlen(g, stand, st);\n', '', 'Kurzfassung: übersprungene Stationen zählen mit der Empfehlung'],
-  ['src/geschichte/engine.ts', "  if (st.vorlage.art === 'gewichte') neu.gewichte = null;\n", '', 'Neue Gewichte-Variante verwirft die Feineinstellung'],
-  ['src/geschichte/engine.ts', "return puffer > 7 ? 'gut'", "return puffer > 0 ? 'gut'", 'Puffer-Urteil „knapp“'],
+  ['src/geschichte/engine.ts', 'for (const b of BALKEN) s[b] = begrenze(s[b] + a.wirkung[b]);', 'for (const b of BALKEN) s[b] = s[b] + a.wirkung[b];', 'Balken nach jeder Antwort auf 0–10 begrenzt'],
+  ['src/geschichte/engine.ts', '  if (stand.kurz && !k.kurzfassung) return gutePlatz(k);\n', '', 'Kurzfassung: übersprungene Kapitel zählen wie die gute Antwort'],
+  ['src/geschichte/engine.ts', "  if (stufe(b.vertrauen) === 'niedrig') return 'nicht-getragen';\n", '', 'Bilanz: Vertrauen niedrig zuerst'],
+  ['src/geschichte/engine.ts', "return wert <= 3 ? 'niedrig'", "return wert < 3 ? 'niedrig'", 'Stufe: 3 ist niedrig'],
+  ['src/geschichte/engine.ts', " && stufe(b.geld) !== 'niedrig') return 'ruhig';", ") return 'ruhig';", 'Bilanz „ruhig“ verlangt Geld mindestens mittel'],
+  ['src/geschichte/engine.ts', "  if (!falle && stufe(b.zeit)", "  if (stufe(b.zeit)", 'Bilanz „ruhig“ nur ohne Falle (L-239)'],
+  ['src/geschichte/engine.ts', "  if (falleGewaehlt(g, stand)) return 'nach-falle';\n", '', 'Schlusszeilen nach einer Falle (L-239)'],
+  ['src/geschichte/engine.ts', "  if (offeneKapitel(g, stand).length > 0) return 'offen';\n", '', 'Bilanz „offen“ bei offenen Entscheidungen (R73)'],
+  ['src/geschichte/engine.ts', "return offeneKapitel(g, stand).length > 0 ? 'offen' : 'grund';", "return 'grund';", 'Schlusszeilen bei offenen Entscheidungen (R73)'],
+  ['src/geschichte/engine.ts', "return stelle === i ? 'richtig' : 'falsch';", "return 'richtig';", 'Reihenfolge: falsche Stelle ist falsch'],
+  ['src/geschichte/engine.ts', 'kipppunkte(v.optionen, v.kriterien, gew, STUFEN_GEWICHT)', 'kipppunkte(v.optionen, v.kriterien, gew)', 'Kipppunkte nur über die drei Stufen'],
+  ['src/geschichte/engine.ts', '  if (r[\'v\'] !== STAND_VERSION) return null;\n', '', 'Älterer Stand wird verworfen'],
+  ['src/geschichte/engine.ts', ' || !STUFEN_GEWICHT.includes(wert)) return stand;', ') return stand;', 'Gewichte nur 5, 3 oder 1'],
 ];
 
 function testsRot() {

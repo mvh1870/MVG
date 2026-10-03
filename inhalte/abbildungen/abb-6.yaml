@@ -3,23 +3,18 @@ quelle: bilder/image6.png
 titel: Sechs Verantwortungsfelder des Bauherrn
 alt: >-
   Mittig steht der „MVG-Kern“ mit „ausübbar“, „prüfbar“, „gestaltbar“, „nachweisfähig“. Ringsum im Uhrzeigersinn ab oben
-  links sechs Karten mit je vier Zeilen, etwa: „Ziel“ (Zielsystem, Freigabelogik für LPH 0–2), „Mandat“
-  (Mandatsmodell, Schwellen, Eskalation), „Entscheidung“ (Entscheidung ID, Reifegrad, Entscheidungsfrage),
-  „Risikoannahme“ (Risiko-/Änderungs-/Maßnahmenverknüpfung, Restrisiko, Risikominderung), „Freigabe“
-  (Leistungsphasen- und Freigabemodell LPH 0–9, Datenstandsbezug), „Datenstand & Nachweis“ (Beschlusslage,
+  links sechs Karten mit je vier Zeilen, etwa: „Ziel“ (Zielsystem, Abwägungsregeln, Freigabelogik), „Mandat“
+  (Mandatsmodell, Schwellen, Eskalation), „Entscheidung“ (Entscheidungs-IDs, Entscheidungsreife, Entscheidungsfrage),
+  „Risikoannahme“ (Verknüpfungen, Restrisiko, Risikominderung), „Freigabe“
+  (Freigabemodell LPH 0–9, Datenstandsbezug), „Datenstand & Nachweis“ (Beschlusslage,
   Nachweiskette, Betriebshandbuch, teils verdeckt). Dazu Haftnotizen.
 angeglichen:
-  - { x: 375, y: 256, b: 162, h: 34, text: Freigabelogik für LPH 0–2, beleg: k4-t1, schrift: barlow, groesse: 17, gewicht: 600 }
-  - { x: 377, y: 817, b: 171, h: 37, text: "Leistungsphasen- und\nFreigabemodell LPH 0–9", beleg: k4-t1, schrift: barlow, groesse: 17, gewicht: 600 }
-  - { x: 1034, y: 817, b: 159, h: 37, text: "Risiko-/Änderungs-/\nMaßnahmenverknüpfung", beleg: k4-t1, schrift: barlow, groesse: 17, gewicht: 600 }
-abweichungen:
-  - text: 'Mittig steht ein „MVG-Kern“ mit „ausübbar“, „prüfbar“, „gestaltbar“ und „nachweisfähig“; einen MVG-Kern in der Mitte kennt der Text nicht; er nennt die sechs Felder selbst die Struktur der Bauherrenverantwortung und eine Arbeitsstruktur, mit der die Ausübungsfähigkeit des Bauherrn sichtbar, prüfbar und gestaltbar wird.'
-    beleg: k4-p1 k7.1-p2
-  - text: 'Das Feld heißt im Bild nur „Entscheidung“, seine Zeilen „Entscheidung ID“ und „Reifegrad“; der Text nennt das Feld „Wesentliche Entscheidung“ und als Antwort von MVG das System der Entscheidungs-IDs und die Entscheidungsreife.'
-    beleg: k4-t1 k4.3-p2
-  - text: 'Die Karten reihen je vier Stichworte ohne Unterscheidung aneinander; der Text trennt je Feld den nichtdelegierbaren Kern, die delegierbare Vorbereitung, die typische Fehlstelle und die Antwort von MVG.'
-    beleg: k4-t1
-  - text: 'Um die Karten kleben Haftnotizen wie „Laufwerk“, „Vertrag“, „Telefon“, „Email“, „k. A.“, „??“ und ein Produktname, wobei „k. A.“ und „??“ Teile der Zeilen „Nachweiskette“, „Betriebshandbuch“ und „Entscheidungsfrage“ verdecken; der Text nennt Protokolle, E-Mails, Fachrunden und informelle Abstimmungen als Orte, in denen kritische Entscheidungen verschwinden können.'
-    beleg: k4.3-p2 k4-t1
-  - text: 'Einzelne Zeilen weichen im Wortlaut ab: „Muss / Kann“ und „Kompromiss-Regeln“ im Feld Ziel, „Eskalation“ und „Freigabebezug“ im Feld Mandat, „Datenstandsbezug“ im Feld Freigabe; der Text spricht von Muss-/Kann-Kriterien, Abwägungsregeln, Eskalationswegen, dem Bezug zur Freigabe und der Datenstandsreferenz.'
-    beleg: k4-t1
+  - { x: 375, y: 256, b: 162, h: 34, text: Freigabelogik, beleg: k4-t1, schrift: barlow, groesse: 23, gewicht: 500, farbe: "#1b1b1b" }
+  - { x: 361, y: 817, b: 191, h: 37, text: Freigabemodell LPH 0–9, beleg: k4-t1, schrift: barlow, groesse: 22, gewicht: 500, farbe: "#1b1b1b" }
+  - { x: 1034, y: 817, b: 159, h: 37, text: Verknüpfungen, beleg: k4-t1, schrift: barlow, groesse: 23, gewicht: 500, farbe: "#1b1b1b" }
+  - { x: 1186, y: 462, b: 158, h: 33, text: Entscheidungs-IDs, beleg: k4-t1, schrift: barlow, gewicht: 500 }
+  - { x: 789, y: 748, b: 118, h: 62, text: Fachrunden, beleg: k4.3-p2, schrift: barlow, gewicht: 600, groesse: 25, ausrichtung: mitte, farbe: "#1b1b1b" }
+  # R76: Die MVG-Antwort im Feld heißt „Entscheidungsreife“ (k4-t1); „Reifegrad“ steht auf der Seite für die Reifegradanalyse.
+  # „Kompromiss-Regeln“ heißen im Text „Abwägungsregeln“ (k4-t1, k4.1-p2). Größe wie die Nachbarzeilen (L-250).
+  - { x: 375, y: 209, b: 162, h: 34, text: Abwägungsregeln, beleg: k4.1-p2, schrift: barlow, groesse: 23, gewicht: 500, farbe: "#1b1b1b" }
+  - { x: 1186, y: 512, b: 158, h: 33, text: Entscheidungsreife, beleg: k4-t1, schrift: barlow, gewicht: 500 }

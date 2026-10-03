@@ -14,6 +14,13 @@ export const ERSETZUNGEN = /** @type {const} */ ([
   ['Wissens-abhängigkeit', 'Wissensabhängigkeit'],
   ['Maßnahmenverknüp-fung', 'Maßnahmenverknüpfung'],
   ['Auftraggeber Logik', 'Auftraggeberlogik'],
+  // R74: in eigenem Tafeltext (kein Zitat) das Kürzel ausschreiben – sonst steht in den Themen „Bauherr Mentoren“ (O-51, L-243)
+  ['ohne Dauerrolle von BM', 'ohne Dauerrolle von Bauherr Mentoren'],
+  // R76: Abkürzungen in den Karten „Delegierbar und nicht delegierbar“ (Tafel k3.2-t1) beim ersten Auftreten ausschreiben,
+  // wie im Lesetext von k04/k05 („Nachhaltigkeit (ESG) und Lebenszykluskosten (LCC)“) und BEGRIFFE („CTC (Restkostenprognose)“)
+  ['Qualität, ESG und LCC.', 'Qualität, Nachhaltigkeit (ESG) und Lebenszykluskosten (LCC).'],
+  ['CTC-Berechnung', 'Restkostenprognose (CTC)'],
+  ['Projektumfang und ESG/LCC;', 'Projektumfang, Nachhaltigkeit und Lebenszykluskosten (ESG/LCC);'],
 ]);
 
 /** Glossarbegriffe, die entfallen */

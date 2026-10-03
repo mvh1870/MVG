@@ -33,10 +33,11 @@ export async function lauf(seite, h) {
   const pruefe = pruefer(seite, h);
   const verboten = async (wo) => { for (const f of sichtbarVerboten(await seite.locator('body').innerText())) h.befund(`${wo}: ${f}`); };
   await h.erwarte('[data-werkzeug="mcda"]');
-  await seite.locator('select[aria-label="Gewicht Kosten"]').selectOption('5');
-  await seite.locator('select[aria-label="Gewicht Termin"]').selectOption('3');
+  // Beispiel ist der Vergleich der Story (Lüftung): mit Geld 5 und Schulstart 3 liegt „Später einziehen“ vorn (C 51)
+  await seite.locator('select[aria-label="Gewicht Geld"]').selectOption('5');
+  await seite.locator('select[aria-label="Gewicht Schulstart"]').selectOption('3');
   await h.warte(100);
-  if (!(await seite.locator('[data-pruef="ex-summe-B"]').evaluate((e) => e.classList.contains('ist-vorn')))) h.befund('Rechner: mit Kosten 5, Termin 3 liegt Abwarten nicht vorn');
+  if (!(await seite.locator('[data-pruef="ex-summe-C"]').evaluate((e) => e.classList.contains('ist-vorn')))) h.befund('Rechner: mit Geld 5, Schulstart 3 liegt „Später einziehen“ nicht vorn');
   await verboten('mcda');
   await pruefe('mcda');
   await h.klick('[data-pruef="ex-matrix"]');
@@ -51,6 +52,17 @@ export async function lauf(seite, h) {
     for (const fund of await seite.evaluate(punktUeberZahl)) h.befund(`matrix @${breite}: ${fund}`);
   }
   if (vp !== null) { await seite.setViewportSize(vp); await h.warte(100); }
+  // O-57, P17.7: Kacheln mit Gegenstand im Ton des Werkzeugs; bei 320 px läuft nichts quer
+  const kacheln = await seite.locator('.ex-werkzeug-link .ex-kachel-bild svg').filter({ visible: true }).count();
+  if (kacheln !== 5) h.befund(`Werkzeugleiste: erwartet fünf Gegenstände, gefunden ${kacheln}`);
+  if (vp !== null && vp.width <= 400) {
+    await seite.setViewportSize({ width: 320, height: vp.height });
+    await h.warte(150);
+    const quer = await seite.evaluate(() => document.documentElement.scrollWidth - innerWidth);
+    if (quer > 0) h.befund(`matrix @320: Seite ${quer} px breiter als das Fenster`);
+    await seite.setViewportSize(vp);
+    await h.warte(100);
+  }
   await h.klick('[data-pruef="ex-vorgaenge"]');
   await h.klick('[data-pruef="ex-art-problem"]');
   await h.klick('.ex-weg[data-ziel="aenderung"]');

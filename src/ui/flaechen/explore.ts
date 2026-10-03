@@ -1,6 +1,6 @@
 /*
  * Bereich „Explore“ (P16.8, O-46): fünf Werkzeuge zum Ausprobieren, alle am fiktiven Schulcampus
- * Lindenhall-Süd (O-50). Nichts wird gesendet; Einstellungen gelten nur für diese Ansicht.
+ * Lindenhall-Süd (O-50). Nichts wird gesendet; Einstellungen gelten nur für diese Ansicht (Hinweis sichtbar nur im Datenschutz, O-56).
  *
  *   #explore            → MCDA-Rechner (erstes Werkzeug), darüber die Werkzeugleiste
  *   #explore/<werkzeug> → mcda · matrix · vorgaenge · takt · glossar
@@ -8,9 +8,11 @@
  * Die Texte stehen in inhalte/werkzeuge.yaml; die Beispiele des Rechners sind die Vorlagen der Story.
  */
 
-import type { Option, Station } from '../../geschichte/typen.ts';
+import type { Kapitel, Vergleich, VergleichOption } from '../../geschichte/typen.ts';
+import { abgestimmteGewichte } from '../../geschichte/engine.ts';
 import { GEWICHT_MAX, GEWICHT_MIN, kipppunkte, rangfolge, type Gewichte } from '../../geschichte/mcda.ts';
-import { grundriss } from '../../grafik/bauplan.ts';
+import { FIGUR_NAME, gimmick, type GimmickName } from '../../grafik/figuren.ts';
+import type { Akzent } from '../../stil/akzente.ts';
 import type { OeffentlicheInhalte, Werkzeuge } from '../../inhalte/typen.ts';
 import { ersetze, h, vonHtml } from '../h.ts';
 import { inhalt, inhaltInline } from '../bausteine/inhalt.ts';
@@ -21,6 +23,15 @@ import { W } from '../woerter.ts';
 
 export const WERKZEUGE = ['mcda', 'matrix', 'vorgaenge', 'takt', 'glossar'] as const;
 export type Werkzeug = (typeof WERKZEUGE)[number];
+
+/** Gegenstand und Akzentton je Werkzeug (O-57): Kachel, Kopf und Bühne tragen den Ton; der Name trägt die Bedeutung. Die Matrix bekommt bewusst keinen Rot- oder Gelbton (die Ampel bleibt Status, O-11). */
+export const WERKZEUG_BILD: Record<Werkzeug, { bild: GimmickName; ton: Akzent }> = {
+  mcda: { bild: 'waage', ton: 'violett' },
+  matrix: { bild: 'matrix', ton: 'blau' },
+  vorgaenge: { bild: 'wegweiser', ton: 'lagune' },
+  takt: { bild: 'kalender', ton: 'sonne' },
+  glossar: { bild: 'buch', ton: 'gruen' },
+};
 
 export function werkzeugAus(id: string | null): Werkzeug {
   return (WERKZEUGE as readonly string[]).includes(id ?? '') ? id as Werkzeug : 'mcda';
@@ -36,47 +47,49 @@ const E = W.werkzeuge;
 
 /* ---------------------------------------------------------------- MCDA -- */
 
-interface Rechner { station: string; gewichte: Gewichte; punkte: Record<string, Record<string, number>> }
+interface Rechner { gewichte: Gewichte; punkte: Record<string, Record<string, number>> }
 
-function beispiele(o: ExploreOptionen): Station[] {
-  return (o.inhalte.geschichte?.stationen ?? []).filter((s) => s.vorlage.art === 'optionen' && s.vorlage.unvollstaendigHtml === null);
+/** Beispiel des Rechners: der Vergleich aus der Story (drei Wege, vier Gesichtspunkte). */
+function vergleichsKapitel(o: ExploreOptionen): Kapitel | null {
+  return o.inhalte.geschichte?.kapitel.find((k) => k.vergleich !== null) ?? null;
 }
 
-function startRechner(o: ExploreOptionen, st: Station): Rechner {
-  const g = o.inhalte.geschichte;
-  const s1 = g?.stationen.find((x) => x.vorlage.art === 'gewichte');
-  const vorschlag = s1?.vorlage.optionen.find((x) => x.id === s1.vorlage.empfehlung.option)?.gewichte ?? {};
-  const gewichte: Gewichte = {};
-  for (const k of g?.kriterien ?? []) gewichte[k.id] = vorschlag[k.id] ?? 3;
+function beispiel(o: ExploreOptionen): Vergleich | null {
+  return vergleichsKapitel(o)?.vergleich ?? null;
+}
+
+/** r72: die Lage aus dem Kapitel des Vergleichs (erste Szenenzeile, wörtlich) über der Tabelle – keine eigene Aussage */
+function lage(o: ExploreOptionen): HTMLElement | null {
+  const k = vergleichsKapitel(o);
+  const z = k?.szene[0];
+  if (k === undefined || k === null || z === undefined) return null;
+  const wer = z.figur === null ? '' : `${FIGUR_NAME[z.figur].name}, ${FIGUR_NAME[z.figur].rolle} · `;
+  return h('p', { class: 'ex-frage', 'data-pruef': 'ex-lage' }, h('strong', null, `${k.titel}: `), '„', inhaltInline(z.html), '“ ', h('small', null, `${wer}${k.zeit}`));
+}
+
+function startRechner(v: Vergleich): Rechner {
   const punkte: Record<string, Record<string, number>> = {};
-  for (const opt of st.vorlage.optionen) {
-    punkte[opt.id] = {};
-    for (const k of g?.kriterien ?? []) (punkte[opt.id] ?? {})[k.id] = opt.punkte?.[k.id]?.[0] ?? 3;
-  }
-  return { station: st.id, gewichte, punkte };
+  for (const opt of v.optionen) punkte[opt.id] = { ...opt.punkte };
+  return { gewichte: abgestimmteGewichte(v), punkte };
 }
 
-/** Optionen mit den eingestellten Punkten (Begründung bleibt die der Vorlage). */
-function optionenMit(st: Station, r: Rechner): Option[] {
-  return st.vorlage.optionen.filter((x) => !x.klaerung).map((x) => ({
-    ...x,
-    punkte: Object.fromEntries(Object.entries(x.punkte ?? {}).map(([k, p]) => [k, [r.punkte[x.id]?.[k] ?? p[0], p[1]] as [number, string]])),
-  }));
+/** Optionen mit den eingestellten Punkten. */
+function optionenMit(v: Vergleich, r: Rechner): VergleichOption[] {
+  return v.optionen.map((x) => ({ ...x, punkte: { ...x.punkte, ...r.punkte[x.id] } }));
 }
 
 function mcda(o: ExploreOptionen, w: Werkzeuge): HTMLElement {
-  const g = o.inhalte.geschichte;
-  const liste = beispiele(o);
+  const v = beispiel(o);
   const ort = h('div', { class: 'ex-mcda-ort' });
-  if (g === null || liste.length === 0) return h('section', null, h('p', null, E.keinBeispiel));
-  let r = startRechner(o, liste[liste.length - 1] ?? liste[0] as Station);
+  if (v === null) return h('section', null, h('p', null, E.keinBeispiel));
+  const kriterien = v.kriterien;
+  let r = startRechner(v);
 
   const zeichne = (): void => {
-    const st = liste.find((x) => x.id === r.station) ?? liste[0] as Station;
-    const opts = optionenMit(st, r);
-    const plaetze = rangfolge(opts, g.kriterien, r.gewichte);
+    const opts = optionenMit(v, r);
+    const plaetze = rangfolge(opts, kriterien, r.gewichte);
     const max = Math.max(1, ...plaetze.map((p) => p.summe));
-    const kipp = kipppunkte(opts, g.kriterien, r.gewichte);
+    const kipp = kipppunkte(opts, kriterien, r.gewichte);
     const titel = (id: string): string => opts.find((x) => x.id === id)?.titel ?? id;
     const auswahl = (wert: number, beimAendern: (n: number) => void, name: string, pruef: string): HTMLElement => o.bedienbar
       ? h('select', { class: 'ex-punkt-wahl', 'aria-label': name, 'data-pruef': pruef, onchange: (e: Event) => beimAendern(Number((e.target as HTMLSelectElement).value)) },
@@ -86,17 +99,16 @@ function mcda(o: ExploreOptionen, w: Werkzeuge): HTMLElement {
     const aktiv = typeof document !== 'undefined' ? document.activeElement : null;
     const fokus = aktiv instanceof HTMLElement && ort.contains(aktiv) ? aktiv.dataset['pruef'] ?? null : null;
     ersetze(ort,
-      h('p', { class: 'ex-frage' }, h('b', null, st.vorlage.frage), ' ', h('small', null, `${st.datum} · ${st.kurztitel}`)),
       h('div', { class: 'ex-tabelle-rahmen', tabindex: 0, role: 'region', 'aria-label': E.mcdaTabelle },
         h('table', { class: 'gs-tabelle ex-tabelle', 'data-pruef': 'ex-mcda-tabelle' },
           h('thead', null, h('tr', null, h('th', { scope: 'col' }, W.geschichte.kriterium), h('th', { scope: 'col' }, W.geschichte.gewicht),
             opts.map((x) => h('th', { scope: 'col' }, `${x.id} · ${x.titel}`)))),
-          h('tbody', null, g.kriterien.map((k) => h('tr', null,
+          h('tbody', null, kriterien.map((k) => h('tr', null,
             h('th', { scope: 'row' }, k.titel),
             h('td', null, auswahl(r.gewichte[k.id] ?? 3, (n) => { r = { ...r, gewichte: { ...r.gewichte, [k.id]: n } }; zeichne(); }, `${W.geschichte.gewicht} ${k.titel}`, `ex-gewicht-${k.id}`)),
             opts.map((x) => h('td', null,
               auswahl(r.punkte[x.id]?.[k.id] ?? 3, (n) => { r = { ...r, punkte: { ...r.punkte, [x.id]: { ...r.punkte[x.id], [k.id]: n } } }; zeichne(); }, `${x.titel}: ${k.titel}`, `ex-punkt-${x.id}-${k.id}`),
-              h('small', null, x.punkte?.[k.id]?.[1] ?? '')))))),
+              h('small', null, x.worte[k.id] ?? '')))))),
           h('tfoot', null, h('tr', null, h('th', { scope: 'row', colspan: 2 }, W.geschichte.summe),
             opts.map((x) => {
               const p = plaetze.find((y) => y.option.id === x.id);
@@ -107,23 +119,19 @@ function mcda(o: ExploreOptionen, w: Werkzeuge): HTMLElement {
       h('div', { class: 'gs-kipp', 'aria-live': 'polite' },
         h('h3', null, W.geschichte.kipppunkte),
         kipp.length === 0 ? h('p', null, W.geschichte.keinKipppunkt)
-          : h('ul', null, kipp.map((x) => h('li', null, W.geschichte.kipppunkt(g.kriterien.find((c) => c.id === x.kriterium)?.titel ?? x.kriterium, x.gewicht, x.spitze.map(titel)))))));
+          : h('ul', null, kipp.map((x) => h('li', null, W.geschichte.kipppunkt(kriterien.find((c) => c.id === x.kriterium)?.titel ?? x.kriterium, x.gewicht, x.spitze.map(titel)))))));
     if (fokus !== null) (ort.querySelector(`[data-pruef="${fokus}"]`) as HTMLElement | null)?.focus({ preventScroll: true });
   };
 
-  const wahl = o.bedienbar ? h('label', { class: 'ex-beispiel' }, h('span', { class: 't-label' }, E.beispiel),
-    h('select', { 'data-pruef': 'ex-beispiel', onchange: (e: Event) => {
-      const st = liste.find((x) => x.id === (e.target as HTMLSelectElement).value);
-      if (st !== undefined) { r = startRechner(o, st); zeichne(); }
-    } }, liste.map((st) => h('option', { value: st.id, selected: st.id === r.station }, `${st.kurztitel} – ${st.vorlage.frage}`)))) : null;
   const zuruecksetzen = o.bedienbar ? h('button', { type: 'button', class: 'gs-leiser-knopf', 'data-pruef': 'ex-zuruecksetzen', onclick: () => {
-    const st = liste.find((x) => x.id === r.station);
-    if (st !== undefined) { r = startRechner(o, st); zeichne(); }
+    r = startRechner(v);
+    zeichne();
   } }, E.zuruecksetzen) : null;
   zeichne();
   return h('div', { class: 'ex-werkzeug', 'data-werkzeug': 'mcda' },
     h('div', { class: 'gs-text' }, inhalt(w.mcda.html)),
-    h('div', { class: 'ex-leiste' }, wahl, zuruecksetzen),
+    lage(o),
+    h('div', { class: 'ex-leiste' }, zuruecksetzen),
     ort,
     h('div', { class: 'ex-hinweis' }, sym('info'), h('div', null, inhalt(w.mcda.hinweisHtml))),
     h('p', { class: 'gs-leise' }, E.punkteHinweis(GEWICHT_MIN, GEWICHT_MAX)));
@@ -262,20 +270,25 @@ export function baueExplore(o: ExploreOptionen): HTMLElement {
     : aktiv === 'vorgaenge' ? vorgaenge(o, w)
     : aktiv === 'takt' ? takt(o, w)
     : h('div', { class: 'ex-werkzeug', 'data-werkzeug': 'glossar' }, glossarListe(o));
+  const kachel = (id: Werkzeug): Node[] => [
+    h('span', { class: 'ex-kachel-bild', 'aria-hidden': 'true' }, vonHtml(gimmick(WERKZEUG_BILD[id].bild, { groesse: 40, dekorativ: true }))),
+    h('span', { class: 'ex-kachel-text' }, h('b', null, titel(id)), h('small', null, kurz(id))),
+  ];
   return seitenRahmen({
     bereich: 'explore',
     klasse: 'seite-explore',
     bedienbar: o.bedienbar,
-    hintergrund: h('div', { class: 'lern-hintergrund', 'aria-hidden': 'true' }, vonHtml(grundriss())),
-    inhalt: h('div', { class: 'ex-rahmen', 'data-pruef': 'explore' },
+    inhalt: h('div', { class: 'ex-rahmen', 'data-pruef': 'explore', 'data-ton': WERKZEUG_BILD[aktiv].ton },
       h('header', { class: 'ex-kopf' },
-        h('p', { class: 'gs-kicker' }, `${E.bereich} · ${W.fiktiv}`),
-        h('h1', { class: 'gs-titel ex-titel', tabindex: -1, 'data-pruef': 'ex-titel' }, titel(aktiv)),
-        w !== null ? h('div', { class: 'gs-leise ex-einleitung' }, inhalt(w.einleitungHtml)) : null),
+        h('div', { class: 'ex-kopf-text' },
+          h('p', { class: 'gs-kicker' }, E.bereich),
+          h('h1', { class: 'gs-titel ex-titel', tabindex: -1, 'data-pruef': 'ex-titel' }, titel(aktiv)),
+          w !== null ? h('div', { class: 'gs-leise ex-einleitung' }, inhalt(w.einleitungHtml)) : null),
+        h('div', { class: 'ex-kopf-bild', 'aria-hidden': 'true' }, vonHtml(gimmick(WERKZEUG_BILD[aktiv].bild, { groesse: 112, dekorativ: true })))),
       h('nav', { class: 'ex-werkzeuge', 'aria-label': E.werkzeuge },
         WERKZEUGE.map((id) => o.bedienbar
-          ? h('a', { class: 'ex-werkzeug-link', href: `#explore/${id}`, 'aria-current': id === aktiv ? 'page' : null, 'data-pruef': `ex-${id}` }, h('b', null, titel(id)), h('small', null, kurz(id)))
-          : h('span', { class: 'ex-werkzeug-link', 'aria-current': id === aktiv ? 'page' : null }, h('b', null, titel(id)), h('small', null, kurz(id))))),
+          ? h('a', { class: 'ex-werkzeug-link', href: `#explore/${id}`, 'aria-current': id === aktiv ? 'page' : null, 'data-pruef': `ex-${id}`, 'data-ton': WERKZEUG_BILD[id].ton }, kachel(id))
+          : h('span', { class: 'ex-werkzeug-link', 'aria-current': id === aktiv ? 'page' : null, 'data-ton': WERKZEUG_BILD[id].ton }, kachel(id)))),
       h('section', { class: 'ex-buehne', 'aria-label': titel(aktiv) }, werkzeugEl)),
   });
 }

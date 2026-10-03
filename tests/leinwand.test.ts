@@ -40,8 +40,8 @@ function testkanal(): Kanal & { bringe(n: EingehendeNachricht): void; gesendet: 
 
 const g = inhalte.geschichte;
 assert.ok(g);
-const s1 = g.stationen[0];
-assert.ok(s1);
+const k1 = g.kapitel[0];
+assert.ok(k1);
 const buehne = (b: Partial<{ bereich: string; thema: string | null; werkzeug: string | null; story: unknown }>) =>
   ({ v: 1, bereich: 'start', thema: null, werkzeug: null, story: neuerStand(), ...b });
 
@@ -100,16 +100,14 @@ test('Neuer Ort beginnt oben, eine Wahl im selben Schritt nicht', () => {
   const { kanal, ende } = starte();
   try {
     nachOben.length = 0;
-    const vorlage = { ...neuerStand(), schritt: { ort: 'station' as const, station: s1.id, teil: 'vorlage' as const } };
-    kanal.bringe({ art: 'zustand', nr: 1, zustand: buehne({ bereich: 'story', story: vorlage }) });
+    const frage = { ...neuerStand(), schritt: { ort: 'kapitel' as const, kapitel: k1.id, teil: 'frage' as const } };
+    kanal.bringe({ art: 'zustand', nr: 1, zustand: buehne({ bereich: 'story', story: frage }) });
     assert.deepEqual(nachOben, [[0, 0]]);
     // dieselbe Stelle, nur eine Wahl: bleibt stehen
-    const opt = s1.vorlage.optionen[1] ?? s1.vorlage.optionen[0];
-    assert.ok(opt);
-    kanal.bringe({ art: 'zustand', nr: 2, zustand: buehne({ bereich: 'story', story: waehle(g, vorlage, s1.id, opt.id) }) });
+    kanal.bringe({ art: 'zustand', nr: 2, zustand: buehne({ bereich: 'story', story: waehle(g, frage, k1.id, 1) }) });
     assert.deepEqual(nachOben, [[0, 0]]);
     // nächster Schritt: wieder oben
-    kanal.bringe({ art: 'zustand', nr: 3, zustand: buehne({ bereich: 'story', story: { ...waehle(g, vorlage, s1.id, opt.id), schritt: { ort: 'station', station: s1.id, teil: 'folge' } } }) });
+    kanal.bringe({ art: 'zustand', nr: 3, zustand: buehne({ bereich: 'story', story: { ...waehle(g, frage, k1.id, 1), schritt: { ort: 'kapitel', kapitel: 'k2', teil: 'szene' } } }) });
     assert.deepEqual(nachOben, [[0, 0], [0, 0]]);
     // anderer Bereich: wieder oben
     kanal.bringe({ art: 'zustand', nr: 4, zustand: buehne({ bereich: 'theorie' }) });
@@ -148,23 +146,24 @@ test('Rollen: um 80 % der Fensterhöhe, nur wenn der Inhalt höher ist als das F
   }
 });
 
-test('Anzeige (R68): kein Bedienelement und kein Link – Start, Story (Vorlage, Folge mit Thema), jedes Thema, jedes Werkzeug', async () => {
+test('Anzeige (R68): kein Bedienelement und kein Link – Start, Story (Szene, Vergleich, Frage mit Folge und Thema, Mini, Ende), jedes Thema, jedes Werkzeug', async () => {
   const { erzeugeAnzeige } = await import('../src/regie/leinwand.ts');
   const { themen } = await import('../src/ui/flaechen/theorie.ts');
   const { WERKZEUGE } = await import('../src/ui/flaechen/explore.ts');
   const { pruefeBuehne } = await import('../src/regie/buehne.ts');
   const anzeige = erzeugeAnzeige(inhalte, 'Test', true);
   document.body.replaceChildren(anzeige.element);
-  const mitThema = g.stationen.find((s) => s.theorie !== null && s.vorlage.art === 'optionen');
-  assert.ok(mitThema, 'eine Station mit Thema');
-  const opt = mitThema.vorlage.optionen[0];
-  assert.ok(opt);
-  const gewaehlt = waehle(g, neuerStand(), mitThema.id, opt.id);
+  let gewaehlt = neuerStand();
+  for (const k of g.kapitel) gewaehlt = waehle(g, gewaehlt, k.id, 0);
+  const an = (kapitel: string, teil: 'szene' | 'vergleich' | 'frage' | 'mini') => buehne({ bereich: 'story', story: { ...gewaehlt, schritt: { ort: 'kapitel', kapitel, teil } } });
   const faelle: Array<[string, ReturnType<typeof buehne>]> = [
     ['start', buehne({})],
-    ['story s1 Vorlage', buehne({ bereich: 'story', story: { ...neuerStand(), schritt: { ort: 'station', station: s1.id, teil: 'vorlage' } } })],
-    [`story ${mitThema.id} Vorlage`, buehne({ bereich: 'story', story: { ...gewaehlt, schritt: { ort: 'station', station: mitThema.id, teil: 'vorlage' } } })],
-    [`story ${mitThema.id} Folge`, buehne({ bereich: 'story', story: { ...gewaehlt, schritt: { ort: 'station', station: mitThema.id, teil: 'folge' } } })],
+    ['story Auftakt', buehne({ bereich: 'story' })],
+    ['story k1 Szene', an('k1', 'szene')],
+    ['story k1 Frage mit Folge', an('k1', 'frage')],
+    ['story k2 Mini', an('k2', 'mini')],
+    ['story k6 Mini', an('k6', 'mini')],
+    ['story k7 Vergleich', an('k7', 'vergleich')],
     ['story Ende', buehne({ bereich: 'story', story: { ...gewaehlt, schritt: { ort: 'ende' } } })],
     ['theorie', buehne({ bereich: 'theorie' })],
     ...themen(inhalte).map((t): [string, ReturnType<typeof buehne>] => [`theorie ${t.id}`, buehne({ bereich: 'theorie', thema: t.id })]),
@@ -179,39 +178,114 @@ test('Anzeige (R68): kein Bedienelement und kein Link – Start, Story (Vorlage,
         .map((e) => `${e.tagName.toLowerCase()}[${e.getAttribute('data-pruef') ?? e.getAttribute('href') ?? ''}]`);
       assert.deepEqual(bedienbar, [], `${wo}: Bedienelemente auf der Leinwand`);
     }
-    // die Folge kennt ihr Thema – auf der Leinwand ohne Link
+    // die Folge ist gezeichnet, ihr Thema auf der Leinwand ohne Link
     anzeige.setze(pruefeBuehne(faelle[3]![1], g)!);
-    assert.ok(anzeige.element.querySelector('[data-pruef="gs-entscheidung"]'), 'Folge gezeichnet');
+    assert.ok(anzeige.element.querySelector('[data-pruef="gs-folge"]'), 'Folge gezeichnet');
+    assert.ok(anzeige.element.querySelector('[data-pruef="gs-dahinter"]'), 'Kasten „Das steckt dahinter“ ohne Link');
   } finally {
     anzeige.entferne();
   }
 });
 
-test('Anzeige (R71): eine Vergleichsvorlage rechnet mit den geltenden Gewichten, die Gegenprobe bleibt zu', async () => {
+test('Anzeige (R71): der Vergleich rechnet mit den Gewichten aus der Regie – ohne Bedienelemente', async () => {
   const { storyAnzeige } = await import('../src/regie/leinwand.ts');
   const { pruefeBuehne } = await import('../src/regie/buehne.ts');
-  const { gewichte, setzeGewicht } = await import('../src/geschichte/engine.ts');
-  const { summe, gewertete } = await import('../src/geschichte/mcda.ts');
-  const st = g.stationen.find((s) => s.id === 's4') ?? g.stationen.find((s) => s.vorlage.art === 'optionen' && gewertete(s.vorlage.optionen).length > 1);
-  assert.ok(st, 'eine Vergleichsvorlage');
-  // Vorgabe-Gewichte und selbst eingestellte (ungleich, damit jede Abweichung die Summen ändert)
-  let eigen = neuerStand();
-  for (const [k, wert] of [['kosten', 1], ['termin', 4], ['qualitaet', 2], ['klima', 5]] as const) eigen = setzeGewicht(g, eigen, k, wert);
-  for (const [wo, stand0] of [['Vorgabe', neuerStand()], ['eigene Gewichte', eigen]] as const) {
-    const stand = { ...stand0, schritt: { ort: 'station' as const, station: st.id, teil: 'vorlage' as const } };
-    const b = pruefeBuehne(buehne({ bereich: 'story', story: stand }), g);
+  const { setzeGewicht } = await import('../src/geschichte/engine.ts');
+  for (const [wo, stand0, a, c] of [['abgestimmt', neuerStand(), '49', '45'], ['Klima wichtig', setzeGewicht(g, neuerStand(), 'klima', 3), '55', '55']] as const) {
+    const b = pruefeBuehne(buehne({ bereich: 'story', story: { ...stand0, schritt: { ort: 'kapitel', kapitel: 'k7', teil: 'vergleich' } } }), g);
     assert.ok(b, `${wo}: gültiger Bühnenstand`);
     const el = storyAnzeige(inhalte, b);
-    const gew = gewichte(g, b.story);
-    const optionen = gewertete(st.vorlage.optionen);
-    assert.ok(optionen.length > 1, `${wo}: mehrere gewertete Optionen`);
-    for (const opt of optionen) {
-      const zelle = el.querySelector(`[data-pruef="summe-${opt.id}"] b`);
-      assert.ok(zelle, `${wo}: Summe ${opt.id} gezeichnet`);
-      assert.equal(zelle.textContent, String(summe(opt, g.kriterien, gew)), `${wo}: Summe ${opt.id}`);
+    assert.equal(el.querySelector('[data-pruef="summe-A"]')?.textContent, `${a} Punkte`, wo);
+    assert.equal(el.querySelector('[data-pruef="summe-C"]')?.textContent, `${c} Punkte`, wo);
+    assert.equal(el.querySelectorAll('button').length, 0, wo);
+  }
+});
+
+test('P17.6: die Leinwand zeigt nie die Wertung der Antworten und nie Notiz oder Leitfragen – an keinem Schritt, bei keiner Wahl', async () => {
+  const { erzeugeAnzeige } = await import('../src/regie/leinwand.ts');
+  const { pruefeBuehne } = await import('../src/regie/buehne.ts');
+  const { schritte } = await import('../src/geschichte/engine.ts');
+  const { loeseMini } = await import('../src/regie/eingriffe.ts');
+  const { regieGeschichte } = await import('../src/inhalte/index.ts');
+  const { W } = await import('../src/ui/woerter.ts');
+  const anzeige = erzeugeAnzeige(inhalte, 'Test', true);
+  document.body.replaceChildren(anzeige.element);
+  // Regie-Material aller Kapitel: Notizen (als Text) und Leitfragen
+  const geheim: string[] = [];
+  for (const k of g.kapitel) {
+    const r = regieGeschichte(k.id);
+    assert.ok(r, `${k.id}: Regie-Material`);
+    assert.ok(r.leitfragen.length > 0, `${k.id}: Leitfragen`);
+    assert.ok(r.notizHtml.length > 0, `${k.id}: Notiz`);
+    geheim.push(...r.leitfragen, r.notizHtml.replace(/<[^>]*>/gu, '').slice(0, 60));
+  }
+  const wertungWorte = Object.values(W.regie.wertung).filter((x) => x !== 'gut');
+  // R73: auch Attribute, die man sieht oder hört (Tooltip, Vorlesetext, Bildtext) – „gut“ zählt dort als ganzer Attributwert;
+  // data-* bleibt intern (z. B. data-fassung="nach-falle")
+  const attributFunde = (wurzel: Element, wo: string): string[] => {
+    const aus: string[] = [];
+    for (const el of [wurzel, ...wurzel.querySelectorAll('*')]) {
+      for (const at of [...el.attributes]) {
+        if (!(at.name === 'title' || at.name === 'alt' || at.name.startsWith('aria-'))) continue;
+        const v = at.value.trim();
+        if (Object.values(W.regie.wertung).some((x) => v.toLowerCase() === x.toLowerCase()) || wertungWorte.some((x) => new RegExp(`\\b${x}\\b`, 'iu').test(v))) aus.push(`${wo}: ${el.tagName.toLowerCase()}[${at.name}="${v.slice(0, 40)}"]`);
+      }
     }
-    const probe = el.querySelector<HTMLDetailsElement>('[data-pruef="gs-gegenprobe"]');
-    assert.ok(probe, `${wo}: Gegenprobe gezeichnet`);
-    assert.equal(probe.hasAttribute('open'), false, `${wo}: Gegenprobe zu`);
+    return aus;
+  };
+  const { baueSchritt } = await import('../src/ui/flaechen/geschichte.ts');
+  try {
+    for (const platz of [0, 1, 2]) {
+      let stand = neuerStand();
+      for (const k of g.kapitel) stand = loeseMini(g, waehle(g, stand, k.id, platz), k.id);
+      const alle: ReturnType<typeof schritte> = schritte(g, false);
+      for (const schritt of alle) {
+        const b = pruefeBuehne(buehne({ bereich: 'story', story: { ...stand, schritt } }), g);
+        assert.ok(b);
+        anzeige.setze(b);
+        const wo: string = `${JSON.stringify(schritt)} Platz ${platz + 1}`;
+        const textInhalt = anzeige.element.textContent ?? '';
+        assert.equal(anzeige.element.querySelectorAll('[data-wertung], .regie-wertung').length, 0, `${wo}: Wertung im DOM`);
+        for (const wort of wertungWorte) assert.ok(!new RegExp(`\\b${wort}\\b`, 'u').test(textInhalt), `${wo}: „${wort}“ auf der Leinwand`);
+        for (const x of geheim) assert.ok(!textInhalt.includes(x), `${wo}: Regie-Material „${x.slice(0, 30)}“ auf der Leinwand`);
+        assert.deepEqual(attributFunde(anzeige.element, `Leinwand ${wo}`), []);
+        // die bedienbare Story-Fläche desselben Schritts: Wertung weder als Text noch in Attributen
+        const flaeche = baueSchritt({ g, stand: { ...stand, schritt }, bedienbar: true, themaTitel: () => 'Thema', tue: () => undefined });
+        assert.deepEqual(attributFunde(flaeche, `Story ${wo}`), []);
+        for (const wort of wertungWorte) assert.ok(!new RegExp(`\\b${wort}\\b`, 'u').test(flaeche.textContent ?? ''), `${wo}: „${wort}“ auf der Story-Fläche`);
+      }
+    }
+    // Gegenprobe (Regie zeigt Wertung und Leitfragen): tests/ui-bauart.test.ts, „Regie: … Mini-Aufgabe, Wertung“
+    // Gegenprobe Attribute: ein Tooltip mit der Wertung wird gefunden
+    const probe = document.createElement('div');
+    probe.innerHTML = '<button title="Falle">1</button><span aria-label="gut"></span><span aria-label="So macht man es gut"></span>';
+    assert.equal(attributFunde(probe, 'Probe').length, 2);
+  } finally {
+    anzeige.entferne();
+  }
+});
+
+test('P17.6: die Leinwand rollt zur Folge einer neuen Wahl und zu den Karten bei neuen Gewichten – sonst nicht', async () => {
+  const { setzeGewicht } = await import('../src/geschichte/engine.ts');
+  const { kanal, ende } = starte();
+  try {
+    const frage = { ...neuerStand(), schritt: { ort: 'kapitel' as const, kapitel: k1.id, teil: 'frage' as const } };
+    kanal.bringe({ art: 'zustand', nr: 1, zustand: buehne({ bereich: 'story', story: frage }) });
+    gerollt.length = 0;
+    // Gegenprobe: derselbe Stand noch einmal – kein Rollen
+    kanal.bringe({ art: 'zustand', nr: 2, zustand: buehne({ bereich: 'story', story: frage }) });
+    assert.equal(gerollt.length, 0);
+    kanal.bringe({ art: 'zustand', nr: 3, zustand: buehne({ bereich: 'story', story: waehle(g, frage, k1.id, 1) }) });
+    assert.equal(gerollt.length, 1, 'neue Wahl: zur Folge');
+    // Gegenprobe: dieselbe Wahl erneut gesendet – kein zweites Rollen
+    kanal.bringe({ art: 'zustand', nr: 4, zustand: buehne({ bereich: 'story', story: { ...waehle(g, frage, k1.id, 1), kurz: false } }) });
+    assert.equal(gerollt.length, 1);
+    const vgl = { ...neuerStand(), schritt: { ort: 'kapitel' as const, kapitel: 'k7', teil: 'vergleich' as const } };
+    kanal.bringe({ art: 'zustand', nr: 5, zustand: buehne({ bereich: 'story', story: vgl }) });
+    assert.equal(gerollt.length, 1, 'neuer Ort: oben, kein Rollen zum Ziel');
+    kanal.bringe({ art: 'zustand', nr: 6, zustand: buehne({ bereich: 'story', story: setzeGewicht(g, vgl, 'klima', 3) }) });
+    assert.equal(gerollt.length, 2, 'neue Gewichte: zu den Karten');
+  } finally {
+    ende();
   }
 });

@@ -1,0 +1,426 @@
+/* =============================================================================================
+   Isometrischer Campus (O-53, src/grafik/campus-iso.ts)
+   Flächen über Klassen; Werte nur aus tokens.css. Ein Körper setzt --o/--l/--r (oben, vorne links,
+   vorne rechts), die Seiten wählen daraus. Jahreszeit und Licht schalten über data-Attribute am <svg>.
+   ============================================================================================= */
+
+.campus-iso { display: block; width: 100%; height: auto; }
+.campus-iso text { font-family: var(--schrift-label); font-weight: 700; }
+
+/* ------------------------------------------------------------------ Jahreszeit */
+.campus-iso {
+  --ci-rasen: var(--iso-rasen-sommer);
+  --ci-erde: var(--iso-erde);
+  --ci-k0: var(--iso-laub-sommer-1);
+  --ci-k1: var(--iso-laub-sommer-2);
+  --ci-k2: var(--iso-laub-sommer-3);
+  --ci-schatten: .16;
+}
+.campus-iso[data-jahreszeit="fruehling"] { --ci-rasen: var(--iso-rasen-fruehling); --ci-k0: var(--iso-laub-fruehling-1); --ci-k1: var(--iso-laub-fruehling-2); --ci-k2: var(--iso-laub-fruehling-1); }
+.campus-iso[data-jahreszeit="herbst"] { --ci-rasen: var(--iso-rasen-herbst); --ci-k0: var(--iso-laub-herbst-1); --ci-k1: var(--iso-laub-herbst-2); --ci-k2: var(--iso-laub-herbst-3); }
+.campus-iso[data-jahreszeit="winter"] { --ci-rasen: var(--iso-schnee); --ci-erde: var(--iso-erde-winter); --ci-k0: var(--iso-laub-winter-1); --ci-k1: var(--iso-laub-winter-2); --ci-k2: var(--iso-laub-winter-1); }
+
+/* ------------------------------------------------------------------ Licht */
+.campus-iso[data-licht="morgen"] { --ci-schatten: .2; }
+.campus-iso[data-licht="abend"] { --ci-schatten: .24; }
+.ci-h-morgen-1 { fill: var(--iso-himmel-morgen-1); }
+.ci-h-morgen-2 { fill: var(--iso-himmel-morgen-2); }
+.ci-h-morgen-3 { fill: var(--iso-himmel-morgen-3); }
+.ci-h-tag-1 { fill: var(--iso-himmel-tag-1); }
+.ci-h-tag-2 { fill: var(--iso-himmel-tag-2); }
+.ci-h-tag-3 { fill: var(--iso-himmel-tag-3); }
+.ci-h-abend-1 { fill: var(--iso-himmel-abend-1); }
+.ci-h-abend-2 { fill: var(--iso-himmel-abend-2); }
+.ci-h-abend-3 { fill: var(--iso-himmel-abend-3); }
+.ci-h-sturm-1 { fill: var(--iso-himmel-sturm-1); }
+.ci-h-sturm-2 { fill: var(--iso-himmel-sturm-2); }
+.ci-h-sturm-3 { fill: var(--iso-himmel-sturm-3); }
+.ci-sonne { fill: var(--iso-sonne); }
+.ci-sonne-abend { fill: var(--iso-sonne-abend); }
+.ci-hof { opacity: .22; }
+.ci-wolke { fill: var(--weiss); opacity: .85; }
+.campus-iso[data-licht="abend"] .ci-wolke { fill: var(--iso-himmel-abend-3); opacity: .55; }
+.campus-iso[data-licht="morgen"] .ci-wolke { opacity: .7; }
+.ci-stern { fill: var(--weiss); opacity: .8; }
+.ci-vogel { fill: none; stroke: var(--navy-soft); stroke-width: .9; stroke-linecap: round; }
+.ci-flocke { fill: var(--weiss); opacity: .9; }
+/* Sturm (R72): grauer Himmel, schwere Wolken, Böen, abgerissene Planen; die Szene etwas gedämpft */
+.ci-himmel { shape-rendering: crispEdges; }
+.campus-iso .ci-wolke.ci-wolke-sturm { fill: var(--iso-wolke-sturm); opacity: .78; }
+.ci-boe { fill: none; stroke: var(--weiss); stroke-width: .9; stroke-linecap: round; opacity: .75; }
+.ci-plane { fill: var(--iso-plane); opacity: .9; }
+.campus-iso[data-wetter="sturm"] .ci-szene { filter: brightness(.92) saturate(.82); }
+.ci-blatt { fill: var(--iso-laub-herbst-1); opacity: .85; }
+/* Morgens wärmer, abends gedämpft; der Himmel bleibt unberührt (Filter nur auf der Szene). */
+.campus-iso[data-licht="morgen"] .ci-szene { filter: sepia(.12) saturate(1.08); }
+.campus-iso[data-licht="abend"] .ci-szene { filter: brightness(.84) saturate(1.08); }
+
+/* ------------------------------------------------------------------ Körper (Seiten) */
+.ci-o { fill: var(--o); }
+.ci-l { fill: var(--l); }
+.ci-r { fill: var(--r); }
+/* Abends steht die Sonne rechts: die rechte Seite wird hell, die linke dunkel. */
+.campus-iso[data-licht="abend"] .ci-l { fill: var(--r); }
+.campus-iso[data-licht="abend"] .ci-r { fill: var(--l); }
+.ci-holz { --o: var(--iso-holz-o); --l: var(--iso-holz-l); --r: var(--iso-holz-r); }
+.ci-beton { --o: var(--iso-beton-o); --l: var(--iso-beton-l); --r: var(--iso-beton-r); }
+.ci-roh { --o: var(--iso-roh-l); --l: var(--iso-roh-l); --r: var(--iso-roh-r); }
+.ci-attika { --o: var(--iso-attika-o); --l: var(--iso-attika-l); --r: var(--iso-attika-r); }
+.ci-gelb { --o: var(--iso-gelb-o); --l: var(--akzent-sonne); --r: var(--iso-gelb-r); }
+.ci-blau { --o: var(--iso-blau-o); --l: var(--akzent-blau); --r: var(--iso-blau-r); }
+.ci-dunkel { --o: var(--navy-linie); --l: var(--navy-soft); --r: var(--navy-2); }
+.ci-erdefest { --o: var(--iso-holz-o); --l: var(--iso-holz-l); --r: var(--iso-holz-r); }
+.ci-pflasterstapel { --o: var(--iso-beton-o); --l: var(--iso-pflaster-fuge); --r: var(--iso-beton-r); }
+.ci-glaswand { --o: var(--iso-glas-licht); --l: var(--iso-glas-licht); --r: var(--iso-glas-licht); opacity: .55; }
+
+/* ------------------------------------------------------------------ Fassade, Dach */
+.ci-glas { fill: var(--iso-glas); }
+.campus-iso[data-licht="abend"] .ci-glas.ci-an { fill: var(--iso-glas-abend); }
+.ci-oberlicht { fill: var(--iso-glas-licht); }
+.ci-sprosse { fill: none; stroke: var(--iso-glas-licht); stroke-width: .5; opacity: .7; }
+.ci-sprosse-hell { fill: none; stroke: var(--iso-gelb-o); stroke-width: .8; }
+.ci-lamelle { fill: none; stroke: var(--iso-holz-fuge); stroke-width: .3; opacity: .28; }
+.ci-fuge { fill: none; stroke: var(--iso-holz-fuge); stroke-width: .6; opacity: .45; }
+.ci-dach { fill: var(--ci-rasen); }
+.ci-solar { fill: var(--iso-solar); }
+.ci-solar-linie { fill: none; stroke: var(--iso-solar-linie); stroke-width: .5; }
+.ci-tafel { opacity: .95; }
+.ci-geruest { fill: none; stroke: var(--iso-geruest); stroke-width: .7; stroke-linecap: round; }
+.ci-belag { fill: var(--iso-holz-l); opacity: .9; }
+.ci-gitter { fill: none; stroke: var(--iso-gelb-r); stroke-width: .5; }
+.ci-seil { fill: none; stroke: var(--navy-soft); stroke-width: .5; }
+.ci-arm { fill: none; stroke: var(--akzent-sonne); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.ci-dunkel-voll { fill: var(--navy-soft); }
+.ci-rippe { fill: none; stroke: var(--iso-blau-r); stroke-width: .5; opacity: .6; }
+.ci-tuer { fill: var(--weiss); }
+
+/* ------------------------------------------------------------------ Boden */
+.ci-rasen { fill: var(--ci-rasen); }
+.ci-sockel-l { fill: var(--iso-sockel-l); }
+.ci-sockel-r { fill: var(--iso-sockel-r); }
+.ci-erde { fill: var(--ci-erde); }
+.ci-sand { fill: var(--iso-erde); }
+.ci-pflaster { fill: var(--iso-pflaster); }
+.ci-pflasterfuge { fill: none; stroke: var(--iso-pflaster-fuge); stroke-width: .5; }
+.ci-strasse { fill: var(--iso-strasse); }
+.ci-strasse-kante { fill: var(--navy-soft); }
+.ci-markierung { fill: var(--iso-markierung); }
+.ci-grube-sohle { fill: var(--iso-erde-dunkel); }
+.ci-grube-wand-l { fill: var(--iso-sockel-r); }
+.ci-grube-wand-r { fill: var(--iso-sockel-l); }
+.ci-spur { fill: none; stroke: var(--iso-sockel-r); stroke-width: 1.2; stroke-dasharray: 2 2; opacity: .6; }
+.ci-bahn { fill: var(--iso-bahn); }
+.ci-feld { fill: var(--iso-feld); }
+.campus-iso[data-jahreszeit="winter"] .ci-feld { fill: var(--iso-schnee-schatten); }
+.ci-feldlinie { fill: none; stroke: var(--iso-markierung); stroke-width: .8; }
+.ci-tor { fill: none; stroke: var(--weiss); stroke-width: 1.2; stroke-linecap: round; }
+.ci-schatten { fill: var(--navy); opacity: var(--ci-schatten); }
+.ci-haufen { fill: var(--iso-erde-dunkel); }
+.ci-haufen-licht { fill: var(--iso-erde); opacity: .55; }
+.campus-iso[data-jahreszeit="winter"] .ci-haufen-licht { fill: var(--iso-schnee); opacity: .9; }
+.ci-messlatte { fill: none; stroke: var(--akzent-beere); stroke-width: 1.4; stroke-linecap: round; }
+.ci-schnur { fill: none; stroke: var(--akzent-beere); stroke-width: .5; stroke-dasharray: 2 2; }
+
+/* ------------------------------------------------------------------ Pflanzen */
+.ci-stamm { fill: var(--iso-stamm); }
+.ci-pfahl { fill: none; stroke: var(--iso-holz-l); stroke-width: .8; }
+.ci-krone.k0 { fill: var(--ci-k0); }
+.ci-krone.k1 { fill: var(--ci-k1); }
+.ci-krone.k2 { fill: var(--ci-k2); }
+.ci-kronenlicht { fill: var(--weiss); opacity: .18; }
+.ci-bluete { fill: var(--iso-bluete); }
+.ci-nadel { fill: var(--iso-nadel); }
+.ci-nadel-licht { fill: var(--iso-nadel-2); }
+.ci-schneehaube { fill: var(--iso-schnee); }
+
+/* ------------------------------------------------------------------ Zaun, Schild */
+.ci-zaun { fill: var(--iso-zaun); opacity: .35; }
+.ci-zaunrahmen { fill: none; stroke: var(--iso-zaun-rahmen); stroke-width: .6; }
+.ci-pfosten { fill: none; stroke: var(--navy-soft); stroke-width: 1.2; }
+.ci-schild { fill: var(--weiss); }
+.ci-schild-band { fill: var(--petrol); }
+.ci-schild-marke { fill: var(--gold); }
+.ci-schrift { fill: var(--navy); font-size: 6px; }
+.ci-schrift-gross { font-size: 7.6px; }
+.ci-schrift-klein { fill: var(--weiss); font-size: 3.6px; font-weight: 600; letter-spacing: .04em; }
+
+/* ------------------------------------------------------------------ Figuren, Fahrzeuge, Ausstattung */
+.ci-haut-1 { fill: var(--iso-haut-1); }
+.ci-haut-2 { fill: var(--iso-haut-2); }
+.ci-haut-3 { fill: var(--iso-haut-3); }
+.ci-haar-1 { fill: var(--iso-haar-1); }
+.ci-haar-2 { fill: var(--iso-haar-2); }
+.ci-hose { fill: var(--navy-soft); }
+.ci-reflex { fill: none; stroke: var(--iso-markierung); stroke-width: .9; }
+.ci-a-sonne { fill: var(--akzent-sonne); }
+.ci-a-orange { fill: var(--akzent-orange); }
+.ci-a-beere { fill: var(--akzent-beere); }
+.ci-a-violett { fill: var(--akzent-violett); }
+.ci-a-blau { fill: var(--akzent-blau); }
+.ci-a-lagune { fill: var(--akzent-lagune); }
+.ci-a-gruen { fill: var(--akzent-gruen); }
+.ci-a-sonne-d { fill: var(--akzent-sonne-text); }
+.ci-a-orange-d { fill: var(--akzent-orange-text); }
+.ci-a-beere-d { fill: var(--akzent-beere-text); }
+.ci-a-violett-d { fill: var(--akzent-violett-text); }
+.ci-a-blau-d { fill: var(--akzent-blau-text); }
+.ci-a-lagune-d { fill: var(--akzent-lagune-text); }
+.ci-a-gruen-d { fill: var(--akzent-gruen-text); }
+.ci-rahmen-sonne, .ci-rahmen-orange, .ci-rahmen-beere, .ci-rahmen-violett, .ci-rahmen-blau, .ci-rahmen-lagune, .ci-rahmen-gruen { fill: none; stroke-width: .9; stroke-linecap: round; }
+.ci-rahmen-sonne { stroke: var(--akzent-sonne); }
+.ci-rahmen-orange { stroke: var(--akzent-orange); }
+.ci-rahmen-beere { stroke: var(--akzent-beere); }
+.ci-rahmen-violett { stroke: var(--akzent-violett); }
+.ci-rahmen-blau { stroke: var(--akzent-blau); }
+.ci-rahmen-lagune { stroke: var(--akzent-lagune); }
+.ci-rahmen-gruen { stroke: var(--akzent-gruen); }
+.ci-rad-fahrrad { fill: none; stroke: var(--navy); stroke-width: .6; }
+.ci-buegel { fill: none; stroke: var(--iso-geruest); stroke-width: .7; }
+.ci-rad { fill: var(--navy); }
+.ci-nabe { fill: var(--iso-beton-l); }
+.ci-scheinwerfer { fill: var(--weiss); }
+.ci-busstreifen { fill: none; stroke: var(--navy); stroke-width: 1; }
+.ci-tuer-glas { fill: var(--iso-glas-licht); }
+.ci-mast { fill: none; stroke: var(--navy-soft); stroke-width: 1; }
+.ci-leuchte { fill: var(--navy-soft); }
+.ci-lichtkegel { fill: var(--iso-glas-abend); opacity: 0; }
+.campus-iso[data-licht="abend"] .ci-lichtkegel { opacity: .55; }
+.campus-iso[data-licht="abend"] .ci-scheinwerfer { fill: var(--iso-glas-abend); }
+.ci-haltezeichen { fill: var(--akzent-sonne); stroke: var(--akzent-gruen-text); stroke-width: .8; }
+.ci-dach-spiel { fill: var(--akzent-beere); }
+.ci-dach-spiel-hell { fill: var(--akzent-sonne); }
+.ci-rutsche { fill: none; stroke: var(--akzent-lagune); stroke-width: 2.2; stroke-linecap: round; }
+.ci-lagune { --o: var(--akzent-lagune-soft); --l: var(--akzent-lagune); --r: var(--akzent-lagune-text); }
+.ci-haufenkiste { --o: var(--iso-erde-dunkel); --l: var(--iso-erde-dunkel); --r: var(--iso-erde-dunkel); }
+.ci-trommel { fill: var(--iso-beton-l); }
+.ci-trommel-streifen { fill: none; stroke: var(--akzent-orange); stroke-width: 1.6; }
+.ci-fahrspur { fill: none; stroke: var(--iso-erde-dunkel); stroke-width: 1.4; stroke-dasharray: 1.5 2.5; opacity: .45; }
+.ci-tupfer { fill: none; stroke: var(--iso-laub-sommer-3); stroke-width: .6; stroke-linecap: round; opacity: .45; }
+.campus-iso[data-jahreszeit="winter"] .ci-tupfer { stroke: var(--iso-schnee-schatten); opacity: 1; }
+.campus-iso[data-jahreszeit="herbst"] .ci-tupfer { stroke: var(--iso-laub-herbst-1); }
+/* Winterhimmel blasser */
+.campus-iso[data-jahreszeit="winter"] .ci-h-tag-1 { fill: var(--iso-himmel-winter-1); }
+.campus-iso[data-jahreszeit="winter"] .ci-h-tag-2 { fill: var(--iso-himmel-winter-2); }
+.campus-iso[data-jahreszeit="winter"] .ci-h-morgen-1 { fill: var(--iso-himmel-winter-1); }
+.ci-blume { opacity: .85; }
+.ci-blume-weiss { fill: var(--weiss); }
+
+/* =============================================================================================
+   Figuren und Gegenstände der Story (O-51, src/grafik/figuren.ts)
+   Ein Porträt setzt am <svg> Ton (fig-ton-*), Haut (fig-haut-1…4) und Haar (fig-haar-*); die Flächen wählen
+   daraus über --ft/--fh/--fha. Werte nur aus tokens.css; Linien in Dunkeltönen der Fläche, nie Schwarz.
+   ============================================================================================= */
+
+.fig-portraet, .fig-gimmick { display: inline-block; flex: none; vertical-align: middle; overflow: visible; }
+
+/* ------------------------------------------------------------------ Ton, Haut, Haar je Figur */
+.fig-ton-sonne { --ft: var(--akzent-sonne); --ft-soft: var(--akzent-sonne-soft); --ft-text: var(--akzent-sonne-text); }
+.fig-ton-orange { --ft: var(--akzent-orange); --ft-soft: var(--akzent-orange-soft); --ft-text: var(--akzent-orange-text); }
+.fig-ton-beere { --ft: var(--akzent-beere); --ft-soft: var(--akzent-beere-soft); --ft-text: var(--akzent-beere-text); }
+.fig-ton-violett { --ft: var(--akzent-violett); --ft-soft: var(--akzent-violett-soft); --ft-text: var(--akzent-violett-text); }
+.fig-ton-blau { --ft: var(--akzent-blau); --ft-soft: var(--akzent-blau-soft); --ft-text: var(--akzent-blau-text); }
+.fig-ton-lagune { --ft: var(--akzent-lagune); --ft-soft: var(--akzent-lagune-soft); --ft-text: var(--akzent-lagune-text); }
+.fig-ton-gruen { --ft: var(--akzent-gruen); --ft-soft: var(--akzent-gruen-soft); --ft-text: var(--akzent-gruen-text); }
+.fig-ton-marke { --ft: var(--gold-hell); --ft-soft: var(--gold-soft); --ft-text: var(--gold); }
+.fig-haut-1 { --fh: var(--fig-haut-1); --fh-s: var(--fig-haut-1-s); }
+.fig-haut-2 { --fh: var(--fig-haut-2); --fh-s: var(--fig-haut-2-s); }
+.fig-haut-3 { --fh: var(--fig-haut-3); --fh-s: var(--fig-haut-3-s); }
+.fig-haut-4 { --fh: var(--fig-haut-4); --fh-s: var(--fig-haut-4-s); }
+.fig-haar-silber { --fha: var(--fig-haar-silber); --fha-s: var(--fig-haar-silber-s); --fbr: var(--fig-haar-grau-s); }
+.fig-haar-dunkel { --fha: var(--fig-haar-dunkel); --fha-s: var(--fig-haar-dunkel-s); --fbr: var(--fig-haar-dunkel); }
+.fig-haar-grau { --fha: var(--fig-haar-grau); --fha-s: var(--fig-haar-grau-s); --fbr: var(--fig-haar-grau-s); }
+.fig-haar-rot { --fha: var(--fig-haar-rot); --fha-s: var(--fig-haar-rot-s); --fbr: var(--fig-haar-rot-s); }
+.fig-haar-braun { --fha: var(--fig-haar-braun); --fha-s: var(--fig-haar-braun-s); --fbr: var(--fig-haar-braun-s); }
+.fig-fein { --fig-strich: 1.6; }
+.fig-klein { --fig-strich: 2.6; }
+
+/* ------------------------------------------------------------------ Grund des Rundbilds */
+.fig-grund { fill: var(--ft-soft); }
+.fig-hof { fill: var(--weiss); opacity: .55; }
+.fig-bogen { fill: none; stroke: var(--ft); stroke-width: 3; stroke-linecap: round; opacity: .5; }
+.fig-punkt { fill: var(--ft); opacity: .6; }
+.fig-rand { fill: none; stroke: var(--ft); stroke-width: 2; opacity: .45; }
+
+/* ------------------------------------------------------------------ Haut, Gesicht */
+.fig-haut { fill: var(--fh); }
+.fig-haut-s { fill: var(--fh-s); }
+.fig-hauch { opacity: .55; }
+.fig-strich, .fig-strich-fein { fill: none; stroke: var(--fha-s); stroke-width: var(--fig-strich); stroke-linecap: round; stroke-linejoin: round; }
+.fig-strich-fein { stroke-width: 1.2; }
+.fig-haut-s.fig-strich-fein { stroke: var(--fh-s); }
+.fig-auge { fill: var(--fig-auge); }
+.fig-glanz { fill: var(--weiss); }
+.fig-lid { fill: none; stroke: var(--fig-auge); stroke-width: 2.4; stroke-linecap: round; }
+.fig-braue { fill: none; stroke: var(--fbr); stroke-width: 2.6; stroke-linecap: round; }
+.fig-braue-dick { stroke-width: 3.6; }
+.fig-nase { fill: none; stroke: var(--fh-s); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.fig-portraet { --fm: var(--fig-mund); }
+.fig-haut-4 { --fm: var(--fig-mund-hell); }
+.fig-mund { fill: var(--fm); }
+.fig-mund-linie { fill: none; stroke: var(--fm); stroke-width: 2.4; stroke-linecap: round; }
+.fig-zahn { fill: var(--weiss); }
+.fig-wange { fill: var(--fig-wange); opacity: .28; }
+.fig-sprosse { fill: var(--fig-haar-rot); opacity: .45; }
+.fig-falte { fill: none; stroke: var(--fh-s); stroke-width: 1.3; stroke-linecap: round; }
+
+/* ------------------------------------------------------------------ Haar */
+.fig-haar { fill: var(--fha); }
+.fig-haar-s { fill: var(--fha-s); }
+.fig-haar-s.fig-strich, .fig-haar-s.fig-strich-fein { fill: none; }
+.fig-haar-licht { fill: var(--weiss); opacity: .28; }
+.fig-straehne { fill: none; stroke: var(--fha); stroke-width: 2.6; stroke-linecap: round; }
+
+/* ------------------------------------------------------------------ Kleidung im Figurenton */
+.fig-kleid { fill: var(--ft); }
+.fig-kleid-s { fill: var(--ft-text); }
+.fig-kante { stroke: var(--ft-text); stroke-width: 1.4; stroke-linejoin: round; }
+.fig-naht { fill: none; stroke: var(--ft-text); stroke-width: 1.4; stroke-linecap: round; opacity: .5; }
+.fig-knopf { fill: var(--ft-text); }
+.fig-knopf-hell { fill: var(--ft-soft); }
+.fig-creme { fill: var(--fig-creme); }
+.fig-creme-s { fill: var(--fig-papier-s); }
+.fig-rolli { fill: var(--fig-rolli); }
+.fig-rolli-falte { fill: none; stroke: var(--navy-linie); stroke-width: 1.4; stroke-linecap: round; }
+.fig-schal { fill: var(--akzent-orange); }
+.fig-schal-s { fill: var(--akzent-orange-text); opacity: .55; }
+.fig-schal-s.fig-strich { fill: none; stroke: var(--akzent-orange-text); }
+.fig-schal-fransen { fill: none; stroke: var(--akzent-orange); stroke-width: 1.6; stroke-linecap: round; }
+.fig-jacke { fill: var(--navy-soft); }
+.fig-jacke-s { fill: var(--navy-2); }
+.fig-jacke-naht { fill: none; stroke: var(--navy); stroke-width: 1.4; stroke-linecap: round; opacity: .55; }
+.fig-hemd { fill: var(--fig-hemd); }
+.fig-karo { fill: none; stroke: var(--fig-hemd-linie); stroke-width: 1.3; opacity: .7; }
+.fig-hemd-kragen { fill: var(--fig-hemd); stroke: var(--navy-soft); stroke-width: 1; stroke-linejoin: round; }
+.fig-weste { fill: var(--akzent-sonne); }
+.fig-weste-kante { fill: none; stroke: var(--akzent-sonne-text); stroke-width: 1.4; stroke-linecap: round; opacity: .6; }
+.fig-reflex { fill: var(--fig-reflex); }
+.fig-tasche { fill: var(--fig-hemd); stroke: var(--navy-soft); stroke-width: 1; }
+.fig-tasche-klappe { fill: var(--fig-hemd); stroke: var(--navy-soft); stroke-width: 1; stroke-linejoin: round; }
+.fig-perle { stroke: var(--weiss); stroke-width: .8; }
+
+/* ------------------------------------------------------------------ Erkennungszeichen und Dinge */
+.fig-brille-gold, .fig-brille-schwarz { fill: none; stroke-width: 2.2; stroke-linecap: round; }
+.fig-brille-gold { stroke: var(--gold); }
+.fig-brille-schwarz { stroke: var(--fig-rolli); stroke-width: 2.8; }
+.fig-brille-glas { fill: var(--weiss); opacity: .16; stroke: none; }
+.fig-gold-flaeche { fill: var(--gold-hell); }
+.fig-gold-s { fill: var(--gold); }
+.fig-gold-licht { fill: var(--gold-hover); opacity: .9; }
+.fig-linde { fill: var(--akzent-gruen); }
+.fig-band { fill: var(--fig-band); }
+.fig-buch { fill: var(--navy-soft); }
+.fig-buch-schnitt { fill: var(--fig-papier); }
+.fig-buch-band { fill: var(--navy-linie); }
+.fig-tablet { fill: var(--fig-rolli); }
+.fig-tablet-glas { fill: var(--iso-glas-licht); }
+.fig-stift { fill: var(--akzent-sonne); }
+.fig-stift-kappe { fill: var(--akzent-beere); }
+.fig-stift-spitze { fill: var(--iso-holz-o); }
+.fig-zollstock { fill: var(--akzent-sonne); stroke: var(--akzent-sonne-text); stroke-width: .6; }
+.fig-zollstock-teilung { fill: none; stroke: var(--fig-auge); stroke-width: .8; }
+.fig-helm { fill: var(--fig-helm); }
+.fig-helm-s { fill: var(--fig-helm-s); }
+.fig-holz { fill: var(--fig-holz); }
+.fig-messing { fill: var(--fig-messing); }
+.fig-messing-s { fill: var(--fig-messing-s); }
+.fig-glanz-flaeche { fill: var(--weiss); opacity: .45; }
+.fig-schwingung { fill: none; stroke: var(--ft-text); stroke-width: 2; stroke-linecap: round; opacity: .7; }
+.fig-papier { fill: var(--fig-papier); }
+.fig-mappe { fill: var(--petrol); }
+.fig-mappe-s { fill: var(--rolle-ps-text); opacity: .6; }
+
+/* ------------------------------------------------------------------ Gegenstände (gm-*) */
+.gm-a-sonne { fill: var(--akzent-sonne); }
+.gm-a-orange { fill: var(--akzent-orange); }
+.gm-a-beere { fill: var(--akzent-beere); }
+.gm-a-violett { fill: var(--akzent-violett); }
+.gm-a-blau { fill: var(--akzent-blau); }
+.gm-a-lagune { fill: var(--akzent-lagune); }
+.gm-a-gruen { fill: var(--akzent-gruen); }
+.gm-d-sonne { fill: var(--akzent-sonne-text); }
+.gm-d-orange { fill: var(--akzent-orange-text); }
+.gm-d-beere { fill: var(--akzent-beere-text); }
+.gm-d-violett { fill: var(--akzent-violett-text); }
+.gm-d-blau { fill: var(--akzent-blau-text); }
+.gm-d-lagune { fill: var(--akzent-lagune-text); }
+.gm-d-gruen { fill: var(--akzent-gruen-text); }
+.gm-s-sonne { fill: var(--akzent-sonne-soft); }
+.gm-s-orange { fill: var(--akzent-orange-soft); }
+.gm-s-beere { fill: var(--akzent-beere-soft); }
+.gm-s-violett { fill: var(--akzent-violett-soft); }
+.gm-s-blau { fill: var(--akzent-blau-soft); }
+.gm-s-lagune { fill: var(--akzent-lagune-soft); }
+.gm-s-gruen { fill: var(--akzent-gruen-soft); }
+.gm-boden { fill: var(--navy); opacity: .1; }
+.gm-papier { fill: var(--fig-papier); }
+.gm-papier-s { fill: var(--fig-papier-s); }
+.gm-kante { stroke: var(--linie-3); stroke-width: 1.4; }
+.gm-kante-sonne { stroke: var(--akzent-sonne); stroke-width: 1.4; }
+.gm-kante-lagune { stroke: var(--akzent-lagune); stroke-width: 1.4; }
+.gm-tinte { fill: var(--navy-soft); }
+.gm-strich, .gm-strich-fein { fill: none; stroke: var(--linie-3); stroke-width: 2.4; stroke-linecap: round; }
+.gm-strich-fein { stroke: var(--linie-2); stroke-width: 2; }
+.gm-linie-flaeche { fill: var(--navy-linie); }
+.gm-linie-flaeche-hell { fill: var(--linie-2); }
+.gm-holz { fill: var(--iso-holz-l); }
+.gm-holz-o { fill: var(--iso-holz-o); }
+.gm-holz-r { fill: var(--iso-holz-r); }
+.gm-holz-fuge { fill: none; stroke: var(--iso-holz-fuge); stroke-width: 1.2; opacity: .5; }
+.gm-stahl { fill: var(--fig-stahl); }
+.gm-beton { fill: var(--iso-beton-r); }
+.gm-glas { fill: var(--iso-glas-licht); }
+.gm-glas-hell { fill: var(--akzent-blau-soft); opacity: .9; }
+.gm-glanz { fill: var(--weiss); opacity: .7; }
+.gm-messing { fill: var(--fig-messing); }
+.gm-messing-s { fill: var(--fig-messing-s); }
+.gm-rad { fill: var(--navy); }
+.gm-nabe { fill: var(--iso-beton-l); }
+.gm-licht { fill: var(--iso-glas-abend); }
+.gm-loch { fill: var(--weiss); }
+.gm-ring { fill: none; stroke: var(--navy-soft); stroke-width: 6; }
+.gm-griff { fill: none; stroke: var(--navy-soft); stroke-width: 10; stroke-linecap: round; }
+.gm-schnur { fill: none; stroke: var(--navy-linie); stroke-width: 1.6; stroke-linecap: round; }
+.gm-balken { fill: none; stroke: var(--navy-soft); stroke-width: 5; stroke-linecap: round; }
+.gm-schwingung { fill: none; stroke: var(--akzent-sonne-text); stroke-width: 3; stroke-linecap: round; opacity: .8; }
+.gm-zaun-netz { fill: var(--iso-zaun); opacity: .35; }
+.gm-zaun-gitter { fill: none; stroke: var(--iso-zaun-rahmen); stroke-width: 1; }
+.gm-zaun-rahmen { fill: none; stroke: var(--iso-geruest); stroke-width: 3; }
+.gm-euro { fill: none; stroke: var(--akzent-sonne-text); stroke-width: 2; stroke-linecap: round; }
+.gm-gurt { fill: none; stroke: var(--akzent-orange); stroke-width: 3; }
+.gm-stiel { fill: none; stroke: var(--iso-stamm); stroke-width: 1.8; stroke-linecap: round; }
+.gm-wand { fill: none; stroke: var(--navy-soft); stroke-width: 3.4; stroke-linejoin: round; stroke-linecap: round; }
+.gm-wand-neu { fill: var(--akzent-orange-soft); stroke: var(--akzent-orange-text); stroke-width: 2.4; stroke-dasharray: 5 4; }
+.gm-pfeil-orange, .gm-pfeil-beere, .gm-pfeil-weiss { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.gm-pfeil-orange { stroke: var(--akzent-orange-text); }
+.gm-pfeil-beere { stroke: var(--akzent-beere-text); }
+.gm-pfeil-weiss { stroke: var(--weiss); }
+.gm-umweg { fill: none; stroke: var(--weiss); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 1 5; }
+.gm-geruest { fill: none; stroke: var(--iso-geruest); stroke-width: 3.2; stroke-linecap: round; }
+.gm-wolke { fill: var(--iso-strasse); }
+.gm-wind { fill: none; stroke: var(--iso-geruest); stroke-width: 2.6; stroke-linecap: round; }
+.gm-geraet { fill: var(--iso-beton-o); }
+.gm-geraet-s { fill: var(--iso-beton-r); }
+.gm-fluegel { fill: var(--iso-beton-l); }
+.gm-klammer { fill: none; stroke: var(--fig-stahl); stroke-width: 2.4; stroke-linecap: round; }
+.gm-henkel { fill: none; stroke: var(--fig-messing-s); stroke-width: 5; stroke-linecap: round; }
+.gm-unterschrift { fill: none; stroke: var(--akzent-blau-text); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.gm-siegel { fill: var(--akzent-beere); }
+.gm-falz { fill: var(--akzent-sonne-soft); stroke: var(--akzent-sonne); stroke-width: 1; }
+.gm-fragezeichen { fill: none; stroke: var(--akzent-sonne-text); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+.gm-abdruck { fill: var(--akzent-beere-soft); }
+.gm-haken-beere { fill: none; stroke: var(--akzent-beere-text); stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; }
+.gm-linde-gross { fill: var(--akzent-violett-soft); }
+.gm-mikro-arm { fill: none; stroke: var(--navy-soft); stroke-width: 2.4; stroke-linecap: round; }
+.gm-band-kante { fill: none; stroke: var(--akzent-beere-text); stroke-width: .8; opacity: .4; }
+.gm-markierung { fill: none; stroke: var(--navy); stroke-width: 3.4; }
+.gm-strahl { fill: none; stroke: var(--akzent-sonne); stroke-width: 3.4; stroke-linecap: round; }
+.gm-streifen { fill: none; stroke: var(--navy-soft); stroke-width: 1.6; }
+.gm-teilung { fill: none; stroke: var(--navy-soft); stroke-width: 2.4; stroke-linecap: round; }
+.gm-zeiger { fill: none; stroke: var(--navy-soft); stroke-width: 3.4; stroke-linecap: round; }
+.gm-zeiger-fein { fill: none; stroke: var(--navy-soft); stroke-width: 2; stroke-linecap: round; }
+.gm-haken-gruen { fill: none; stroke: var(--akzent-gruen-text); stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; }
+.gm-riss { fill: none; stroke: var(--weiss); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+/* Wimpelkette (Stufe 2) und Luftballons am Haupteingang (Stufe 8) */
+.ci-wimpelschnur { fill: none; stroke: var(--navy-soft); stroke-width: .45; }
+.ci-ballonschnur { fill: none; stroke: var(--navy-soft); stroke-width: .35; opacity: .8; }
+.ci-ballonglanz { fill: var(--weiss); opacity: .7; }

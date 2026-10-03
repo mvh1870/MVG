@@ -1,12 +1,12 @@
 # Explore-Werkzeuge (P16.8, O-46). Belege intern, nie sichtbar (O-38). Beispielprojekt: Schulcampus Lindenhall-Süd (O-50).
 einleitung: |
-  Fünf Werkzeuge zum Ausprobieren – alle am fiktiven Schulcampus Lindenhall-Süd. Nichts wird gesendet oder gespeichert; Ihre Einstellungen gelten, solange das Werkzeug offen ist.
+  Fünf Werkzeuge zum Ausprobieren – alle am fiktiven Schulcampus Lindenhall-Süd.
 mcda:
   titel: MCDA-Rechner
-  kurz: Optionen gewichtet vergleichen und sehen, wann sich die Spitze dreht.
+  kurz: Ein gewichteter Vergleich nach mehreren Kriterien – und sehen, wann sich die Spitze dreht.
   belege: [v24:hb-3.1, v24:hb-3.2]
   text: |
-    Die Projektsteuerung vergleicht mindestens zwei zulässige Optionen anhand derselben gewichteten Kriterien. Gewichte und Punkte liegen je zwischen 1 und 5; Gewicht mal Punkt ergibt je Kriterium ein Produkt, die Summe die Gesamtpunktzahl. Kriterien und Gewichte werden vor der Bewertung mit dem Bauherrn abgestimmt.
+    MCDA steht für Multikriterien-Entscheidungsanalyse, auf Deutsch: ein gewichteter Vergleich nach mehreren Kriterien. Die Projektsteuerung vergleicht mindestens zwei zulässige Optionen anhand derselben gewichteten Kriterien. Gewichte und Punkte liegen je zwischen 1 und 5; Gewicht mal Punkt ergibt je Kriterium ein Produkt, die Summe die Gesamtpunktzahl. Kriterien und Gewichte werden vor der Bewertung mit dem Bauherrn abgestimmt.
   hinweis: |
     Eine hohe Punktzahl ersetzt kein fachliches Urteil. Zwingende Anforderungen an Sicherheit, Genehmigung und Funktion werden vor dem Vergleich geprüft – eine unzulässige Option gewinnt nicht durch Punkte.
 matrix:
@@ -31,7 +31,7 @@ matrix:
   beispiele:
     - { kennung: RIS-005, titel: Baupreissteigerung Holzbau, w: 3, a: 3 }
     - { kennung: RIS-009, titel: Holzbauelemente kommen zu spät (Auswirkung auf den Schulbetrieb), w: 4, a: 4 }
-    - { kennung: RIS-014, titel: Nachtrag der Haustechnikplanung, w: 3, a: 3 }
+    - { kennung: RIS-014, titel: Angekündigte Mehrkosten der Haustechnikfirma, w: 3, a: 3 }
     - { kennung: RIS-021, titel: Kampfmittelverdacht im Baufeld der Sporthalle, w: 1, a: 5 }
     - { kennung: RIS-022, titel: Verzögerte Möbellieferung Mensa, w: 2, a: 2 }
 vorgaenge:
@@ -44,13 +44,13 @@ vorgaenge:
     - id: aufgabe
       titel: Aufgabe
       text: Geplante Arbeit mit vereinbartem Ergebnis, verantwortlicher Person und Termin.
-      beispiel: AUF-001 – Haushaltsansatz 2027 für die Kämmerei bis Freitag.
+      beispiel: AUF-001 – Kostenübersicht für den Haushaltsansatz 2027 an die Kämmerei bis Freitag.
       abschluss: Das vereinbarte Ergebnis liegt vor und ist verwendbar.
       wege: [risiko, problem, entscheidung]
     - id: fruehwarnung
       titel: Frühwarnung
       text: Ein Hinweis ist noch nicht ausreichend geklärt. Quelle sichern, Prüffrage und Wiedervorlage festlegen.
-      beispiel: FRW-002 – die Generalplanung meldet 26 statt 16 Wochen Lieferzeit für die Holzbauelemente.
+      beispiel: FRW-002 – ein Holzbauer erwähnt gegenüber der Generalplanung, dass die Lieferzeiten für Holzelemente länger werden; Prüffrage an die Hersteller.
       abschluss: Ein Klärungsergebnis liegt vor – oder der Hinweis wird mit Begründung geschlossen.
       wege: [risiko, problem, aufgabe]
     - id: risiko
@@ -91,7 +91,7 @@ takt:
       titel: Sofort
       wer: Projektsteuerung
       text: Dringliches wird sofort über den vereinbarten Meldeweg gemeldet und noch am selben Arbeitstag dokumentiert, sobald die unmittelbare Reaktion gesichert ist.
-      beispiel: Ein nicht gesichertes Gerüstfeld an der Sporthalle – gemeldet, gesperrt, am selben Tag dokumentiert.
+      beispiel: Zwei lose Gerüstanker an der Sporthalle nach dem Sturm – der Bauleiter sperrt sofort, die Projektsteuerung meldet über den vereinbarten Weg und dokumentiert am selben Tag.
     - id: woche
       titel: Jede Woche
       wer: Projektsteuerung
@@ -101,7 +101,7 @@ takt:
       titel: Jeden Monat
       wer: Bauherr und Projektsteuerung
       text: Ein Online-Termin von höchstens 60 Minuten und eine Zusammenfassung von höchstens einer Seite – wesentliche Veränderungen, blockierte Aufgaben, kritische Maßnahmen, ungeklärte Frühwarnungen, wesentliche Probleme und Änderungen, offene Entscheidungen und die benötigte Reaktion.
-      beispiel: Monatstermin der GML – zwei offene Entscheidungen und die benötigte Reaktion besprochen; der Bericht verweist auf die Einträge in der Software.
+      beispiel: Monatstermin mit der Stadt – zwei offene Entscheidungen und die benötigte Reaktion besprochen; der Bericht verweist auf die Einträge in der Software.
     - id: ruhe
       titel: In Ruhezeiten
       wer: Projektsteuerung

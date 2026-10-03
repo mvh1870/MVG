@@ -6,13 +6,14 @@ Der Governance Kompass ist eine **Internetseite** (O-42). Gebaut wird sie als Or
 
 Die Startseite bietet drei Wege und darunter „Wer steht dahinter“ mit einem leisen Link zu bauherr-mentoren.com.
 
-1. **Story** (`#story`): eine Geschichte aus Sicht der Bauherren-PL am fiktiven Schulcampus Lindenhall-Süd – acht Stationen von Januar 2026 bis August 2028, etwa 25 Minuten, als **Kurzfassung** etwa 10 Minuten.
-   - Je Station: Lage und Monatsbericht der Projektsteuerung, die Vorlage mit mindestens zwei Optionen und gewichtetem Vergleich, die Entscheidung und ihre Folgen. Die Statusanzeige zeigt Kosten, Terminpuffer und offene Entscheidungen.
-   - In Station 1 legen Sie die Gewichte fest; sie gelten für alle folgenden Vorlagen. Die **Gegenprobe** probiert andere Gewichte aus, ohne die Entscheidung zu ändern; „Wann sich die Spitze dreht“ zeigt die Kipppunkte.
-   - Aufklappbar: „So läuft es oft“, „Typischer Einwand“ und die Vorgänge der Station.
-   - Blättern mit **Weiter/Zurück** oder den Pfeiltasten ← →; die Fortschrittslinie springt zu jedem Schritt.
+1. **Story** (`#story`, O-51 bis O-53): eine Geschichte als Spiel. Sie sind die Projektleitung des Bauherrn am fiktiven Schulcampus Lindenhall-Süd; fünf Figuren begleiten Sie (Bürgermeisterin, Projektsteuerin, Architekt, Schulleiterin, Bauleiter). Acht Kapitel von Januar 2026 bis zum Schulstart, etwa 25 Minuten.
+   - **Auftakt**: Figuren mit Steckbrief, die drei Balken, dann die Wahl: ganze Geschichte oder **Kurzfassung** (Kapitel 1, 3, 4 und 7; die übrigen in je einem Satz erzählt; Dauer steht auf dem Knopf).
+   - **Je Kapitel**: eine Szene mit dem wachsenden Campus und den Figuren, dann eine Frage mit **drei Antworten**. Nach der Wahl folgen im selben Schritt eine kurze Folge-Szene, die Balken **Geld · Zeit · Vertrauen** (ohne Zahlen) und zwei Sätze „So macht man es gut“. Die Wahl lässt sich ändern; die Balken zeigen immer die aktuelle Wahl.
+   - **Mini-Aufgaben** in den Kapiteln 2, 4, 6 und 8 (zuordnen, „Wer entscheidet das?“, sortieren). Den **gewichteten Vergleich** gibt es nur einmal, in Kapitel 7: Gewichte je Gesichtspunkt setzen, die Rangfolge der drei Wege und die Kipppunkte ansehen.
+   - Am Kapitelende der Kasten „**Das steckt dahinter**“ mit einem Satz und einem Link zum passenden Thema. Am Ende die **Bilanz** nach dem Stand der Balken.
+   - Blättern mit **Weiter/Zurück** oder den Pfeiltasten ← →. Strg+P druckt einen Bogen mit Ihren Antworten und der Bilanz.
    - Der Stand bleibt im Browser gespeichert; **Fortschritt löschen** am Fuß entfernt ihn.
-2. **Theorie** (`#theorie`): 16 Themen, jedes mit Kernaussage, Abschnitten, Grafiken, kleinen Übungen und einem Wissenscheck; am Ende die Stationen der Story, die zum Thema passen. **Thema drucken** öffnet den Druckdialog („Als PDF speichern“). Das Thema **Glossar** hat eine Suche und den Begriffs-Kompass.
+2. **Theorie** (`#theorie`, O-54, O-55): die Themen als **Buch** in vier Teilen (I Grundlagen · II Führungsmodell und Arbeitsweise · III Anwendung und Einführung · IV Werkzeuge der Praxis), Kapitel 1–15 mit Symbol und Kurzsatz, dazu das **Glossar** als Anhang 16 mit Suche und Begriffs-Kompass. Je Kapitel eine große Kernaussage, Abschnitte mit Karten (manche zum Umdrehen), Aufklappern, Abbildungen und kleinen Übungen; sieben Kapitel haben eine Verständnisfrage. **Fortschritt**: ein Kapitel ist geschafft, wenn seine Verständnisfrage beantwortet ist (ohne Frage: wenn das Seitenende erreicht ist); Häkchen und Balken „n von 15 geschafft“, im Browser gespeichert, **Fortschritt zurücksetzen** im Verzeichnis. „In der Story erlebt“ führt zu den passenden Story-Kapiteln. **Thema drucken** öffnet den Druckdialog („Als PDF speichern“).
 3. **Explore** (`#explore`): fünf Werkzeuge – gewichteter Vergleich (MCDA), Risikomatrix 5 × 5, Vorgangsarten und Wege, Takt und Monatsbericht, Glossar.
 
 ## 2. Präsentieren im Termin (Regie und Leinwand)
@@ -23,10 +24,11 @@ Die Startseite bietet drei Wege und darunter „Wer steht dahinter“ mit einem 
    - **Fläche**: Start, Story, Theorie oder Explore.
    - **Zurück/Weiter** oder ← →: in der Story Schritt für Schritt.
    - ↑ ↓: rollt die Leinwand, wenn der Inhalt länger ist als der Bildschirm.
-   - **Springen zu** einer Station, **Kurzfassung** ein/aus, **Von vorn beginnen**.
-   - An einer Vorlage übernehmen die Tasten **a, b, c** (oder die Knöpfe unter „Kundenwahl und Eingriffe“) die Wahl des Kunden; die Gewichte und der gewichtete Vergleich sind auf der Leinwand sichtbar.
+   - **Springen zu** jedem Schritt (Auswahl oder Knöpfe Auftakt · 1–8 · Ende, darunter die Schritte des Kapitels: Szene, Vergleich, Frage, Mini-Aufgabe), **Kurzfassung** ein/aus, **Von vorn beginnen**. Ein Schritt außerhalb der Kurzfassung schaltet auf die ganze Geschichte.
+   - **Kundenwahl und Eingriffe** je Schritt: an der Frage „Antwort 1–3“ mit den ersten Wörtern (Tasten **1, 2, 3**) und dezent die Wertung gut · vertretbar · Falle – nur in der Regie; „Wahl zurücknehmen“. Im Vergleich (Kapitel 7) die Gewichte je Gesichtspunkt mit Rangfolge; die Leinwand ordnet die drei Wege um. In der Mini-Aufgabe je Posten die Zuordnung (die richtige mit ✓ markiert) bzw. die Reihenfolge anklicken, **Auflösen** oder **Zurücksetzen**.
+   - Die Leinwand rollt nach einer Wahl von selbst zur Folge, nach neuen Gewichten zu den Karten und in der Mini-Aufgabe zum gesetzten Posten.
    - **Theorie** und **Explore**: ein Thema oder Werkzeug wählen und auf der Leinwand zeigen.
-4. **Regie-Notiz**: Notiz und Leitfragen zur Station oder zum Thema, darunter der typische Einwand mit Antwort.
+4. **Regie-Notiz**: Notiz (Kern des Kapitels, Hinweis zur Moderation) und Leitfragen an die Runde je Kapitel bzw. zum Thema.
 5. **Beamer: groß und kontrastreich** vergrößert Schrift und Linien auf der Leinwand.
 6. **Gesprächsprotokoll**: Notizen während des Termins festhalten; **Protokoll drucken** erzeugt einen Bogen mit Protokoll und Entscheidungen; **Protokoll löschen** entfernt Notizen und gespeicherten Stand der Präsentation aus dem Browser.
 

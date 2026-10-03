@@ -7,15 +7,13 @@
 import type { OeffentlicheInhalte } from '../inhalte/typen.ts';
 import type { Kanal } from './kanal.ts';
 import { pruefeBuehne, type Buehne } from './buehne.ts';
-import { h, ersetze, vonHtml } from '../ui/h.ts';
+import { h, ersetze } from '../ui/h.ts';
 import { bildmarke } from '../ui/marke.ts';
 import { baueStart } from '../ui/flaechen/start.ts';
 import { baueTheorie, themaTitel, themen, zeigeAktuellenEintrag } from '../ui/flaechen/theorie.ts';
 import { baueExplore, WERKZEUGE } from '../ui/flaechen/explore.ts';
-import { baueSchritt, leisteOben, lphAm } from '../ui/flaechen/geschichte.ts';
+import { baueSchritt, leisteOben } from '../ui/flaechen/geschichte.ts';
 import { seitenRahmen } from '../ui/bausteine/seite.ts';
-import { campus, stufeAusLph } from '../grafik/bauplan.ts';
-import { wegStationen } from '../geschichte/engine.ts';
 import { W } from '../ui/woerter.ts';
 
 export interface Anzeige {
@@ -35,12 +33,26 @@ export function storyAnzeige(inhalte: OeffentlicheInhalte, b: Buehne): HTMLEleme
     bereich: 'story',
     klasse: 'seite-story',
     bedienbar: false,
-    hintergrund: h('div', { class: 'gs-hintergrund', 'aria-hidden': 'true' }, vonHtml(campus(stufeAusLph(lphAm(g, stand.schritt)), 'bauplan bauplan-story'))),
     inhalt: [
-      h('div', { class: 'gs-leiste' }, leisteOben(g, stand, false, () => undefined)),
-      h('div', { class: 'gs-buehne' }, baueSchritt({ g, stand, bedienbar: false, themaTitel: (id) => themaTitel(inhalte, id), gegenprobe: null, tue: () => undefined, setzeGegenprobe: () => undefined })),
+      h('div', { class: 'gs-leiste' }, ...leisteOben(g, stand, false, () => undefined)),
+      h('div', { class: 'gs-buehne' }, baueSchritt({ g, stand, bedienbar: false, themaTitel: (id) => themaTitel(inhalte, id), tue: () => undefined })),
     ],
   });
+}
+
+/**
+ * Welcher Posten einer Mini-Aufgabe sich geändert hat (Platz in der Liste der Aufgabe): bei der Zuordnung der erste
+ * Posten mit anderer Wahl, bei der Reihenfolge der zuletzt angeklickte bzw. gelöste Posten; null = nichts geändert.
+ */
+export function geaenderterPosten(art: 'zuordnen' | 'reihenfolge', alt: readonly number[], neu: readonly number[]): number | null {
+  if (art === 'reihenfolge') {
+    if (neu.length > alt.length) return neu.at(-1) ?? null;
+    if (neu.length < alt.length) return alt[neu.length] ?? null;
+    return null;
+  }
+  const n = Math.max(alt.length, neu.length);
+  for (let i = 0; i < n; i += 1) if ((alt[i] ?? -1) !== (neu[i] ?? -1)) return i;
+  return null;
 }
 
 /** Nicht bedienbare Zeichnung eines Bühnenstands (Leinwand, Regie-Vorschau). */
@@ -50,6 +62,23 @@ export function erzeugeAnzeige(inhalte: OeffentlicheInhalte, version: string, ei
   const nachOben = (): void => {
     if (eingebettet) element.scrollTop = 0;
     else if (typeof window !== 'undefined') window.scrollTo(0, 0);
+  };
+  /** Rollt ein Element unter die klebende Leiste (Vorschau: im eigenen Rahmen, maßstabsgerecht; Leinwand: das Fenster). */
+  const zeigeUnterLeiste = (wahl: string, nurFallsVerdeckt = false): void => {
+    const ziel = element.querySelector<HTMLElement>(wahl);
+    if (ziel === null) return;
+    const leiste = element.querySelector<HTMLElement>('.gs-leiste')?.getBoundingClientRect().height ?? 0;
+    const q = ziel.getBoundingClientRect();
+    if (nurFallsVerdeckt) {
+      const r = eingebettet ? element.getBoundingClientRect() : { top: 0, bottom: typeof window !== 'undefined' ? window.innerHeight : 0 };
+      if (q.top >= r.top + leiste && q.bottom <= r.bottom) return;
+    }
+    const um = q.top - leiste - 16;
+    if (eingebettet) {
+      const r = element.getBoundingClientRect();
+      const massstab = element.offsetWidth > 0 && r.width > 0 ? r.width / element.offsetWidth : 1;
+      element.scrollTop += (um - r.top) / massstab;
+    } else if (typeof window !== 'undefined') window.scrollBy(0, Math.round(um));
   };
   return {
     element,
@@ -68,10 +97,18 @@ export function erzeugeAnzeige(inhalte: OeffentlicheInhalte, version: string, ei
     setze(b) {
       const neu = JSON.stringify(b);
       if (neu === schluessel) return;
-      const gleicherOrt = schluessel !== '' && (() => {
-        const alt = JSON.parse(schluessel) as Buehne;
-        return alt.bereich === b.bereich && alt.thema === b.thema && alt.werkzeug === b.werkzeug && JSON.stringify(alt.story.schritt) === JSON.stringify(b.story.schritt);
-      })();
+      const alt = schluessel !== '' ? JSON.parse(schluessel) as Buehne : null;
+      const gleicherOrt = alt !== null && alt.bereich === b.bereich && alt.thema === b.thema && alt.werkzeug === b.werkzeug && JSON.stringify(alt.story.schritt) === JSON.stringify(b.story.schritt);
+      // P17.6: eine neue Wahl an der Frage – die Leinwand rollt zur Folge (wie die Fläche), damit die Runde sie sieht
+      const s = b.story.schritt;
+      const neueWahl = gleicherOrt && b.bereich === 'story' && s.ort === 'kapitel' && s.teil === 'frage'
+        && b.story.wahlen[s.kapitel] !== undefined && alt.story.wahlen[s.kapitel] !== b.story.wahlen[s.kapitel];
+      // neue Gewichte im Vergleich: die Karten mit Platz und Punkten rücken ins Bild – die Runde sieht die Umordnung
+      const neueGewichte = gleicherOrt && b.bereich === 'story' && s.ort === 'kapitel' && s.teil === 'vergleich'
+        && JSON.stringify(alt.story.gewichte) !== JSON.stringify(b.story.gewichte);
+      // Mini-Aufgabe aus der Regie: der zuletzt gesetzte Posten rückt ins Bild, falls er außerhalb steht
+      const miniPosten = gleicherOrt && b.bereich === 'story' && s.ort === 'kapitel' && s.teil === 'mini'
+        ? geaenderterPosten(inhalte.geschichte?.kapitel.find((k) => k.id === s.kapitel)?.mini?.art ?? 'zuordnen', alt.story.mini[s.kapitel] ?? [], b.story.mini[s.kapitel] ?? []) : null;
       schluessel = neu;
       let seite: HTMLElement;
       if (b.bereich === 'story') seite = storyAnzeige(inhalte, b);
@@ -81,7 +118,7 @@ export function erzeugeAnzeige(inhalte: OeffentlicheInhalte, version: string, ei
         seite = baueStart({
           startseite: inhalte.startseite,
           themenAnzahl: themen(inhalte).length,
-          stationenAnzahl: inhalte.geschichte !== null ? wegStationen(inhalte.geschichte, false).length : 0,
+          kapitelAnzahl: inhalte.geschichte?.kapitel.length ?? 0,
           werkzeugAnzahl: WERKZEUGE.length,
           weiterlesen: false,
           bedienbar: false,
@@ -93,6 +130,9 @@ export function erzeugeAnzeige(inhalte: OeffentlicheInhalte, version: string, ei
       // Eine Wahl im selben Schritt lässt die Leinwand stehen; ein neuer Ort beginnt oben
       if (gleicherOrt && eingebettet) element.scrollTop = oben;
       else if (!gleicherOrt) nachOben();
+      if (neueWahl) zeigeUnterLeiste('[data-pruef="gs-folge"]');
+      else if (neueGewichte) zeigeUnterLeiste('[data-pruef="gs-vgl-karten"]');
+      else if (miniPosten !== null) zeigeUnterLeiste(`[data-pruef="posten-${miniPosten + 1}"]`, true);
     },
     entferne() {
       element.remove();

@@ -3,12 +3,14 @@
 Kopf ≤ 100 Zeilen. Oben JETZT (überschreiben), darunter FRÜHER (anhängen, knapp).
 
 ## JETZT
-- **Stand 2026-10-02 17:30 UTC: Planblatt leer, fertig (L-224).** P16.1–P16.16 erledigt. Prüfrunden R67–R71, zuletzt R70 und R71 ohne schweren Befund (L-223); alle mittleren eingearbeitet. CI-Lauf 295 auf 2a15119 grün. `claude/haus` per Merge nach `main` geführt und gepusht (O-49).
-- **Für den Owner:** fachliche Abnahme nach `docs/ABNAHME.md`, Upload nach `docs/LAUNCH.md` (Inhalt von `dist/` auf den IONOS-Webspace). Bewusst gelassen (leicht): k14-Tafel bei 320 px mit WCAG-1.4.12-Abständen 3 % zu breit (L-219).
-- **Als Nächstes:** nichts – neue Arbeit nur mit neuen Owner-Entscheiden im Planblatt. Die Routine hält nur der Owner an.
-- Rechner: Node 22.22, Chromium 141 unter `/opt/pw-browsers/chromium`. Kette ≈ 60 s.
+- **Stand 2026-10-03 ~18:45 UTC: P17 abgeschlossen** (O-58): R75 und R76 ohne schweren Befund, R76-Befunde eingearbeitet (e8964e9, Kette voll grün, CI grün), `claude/haus` einmal per Merge nach `main` gepusht, Owner benachrichtigt.
+- **Prüfrunden P17.12:** R72 5/30/51, R73 2/19/42, R74 1/8/41, R75 0/12/40, R76 0/12/42 (schwer/mittel/leicht) – `docs/ABNAHME-MITTEL.md`, Entscheide L-237–L-256.
+- **Lesezeit:** `node werkzeuge/lesezeit.mjs`; Kurzfassung 10,4 Minuten ohne Puffer („etwa 10“, O-51, L-252) – jede Ergänzung in der Kurzfassung ausgleichen.
+- **Jetzt P18** (O-59): vier neue Explore-Werkzeuge A–D. P18.1 Konzept `docs/WERKZEUGE-P18.md` abgenommen (L-253, L-254, L-256); P18.2 Rechenkerne in Arbeit. Am Ende von P18 erneut zwei saubere Runden, Merge nach `main`, Nachricht.
+- Rechner: Node 22.22, Chromium unter `/opt/pw-browsers/chromium`. Kette ≈ 90 s (voll ≈ 120 s). Der Abschluss lief in einem abgekoppelten Worktree, weil im Hauptbaum P18.2 entstand.
 
 ## FRÜHER
+- 2026-10-03 (ab 09:00 UTC): P17 Neugestaltung (O-51–O-58): Drehbuch, Story als Spiel, Themen als Buch, Explore-Kopf; Prüfrunden R72–R76 (L-225–L-252); Owner wählt vier neue Werkzeuge (O-59).
 - 2026-10-02 (13:20–17:26 UTC): P16.15 Prüfrunden R67–R71 (L-205–L-223), Statusbedingungen der Story, Reservegrenze auf allen Wegen.
 - 2026-10-02 (11:03–13:20 UTC): Neuausrichtung P16 (O-36 bis O-50): neuer Plan; Umschalten auf neue Story, Themen, Explore, Regie (L-184 bis L-191); Theorie an V2.4, Impressum, Datenschutz, Webseitenordner (L-192 bis L-195).
 - 2026-10-02 (bis 09:09 UTC): alter Plan leer (R65, R66 ohne schweren Befund, L-181, L-182), CI 269 grün.

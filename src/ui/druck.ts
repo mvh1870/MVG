@@ -11,14 +11,19 @@ import { W } from './woerter.ts';
 // R49: die Trennstellen gelten auch am Bildschirm (Story-Karte, Radar) – die Funktion steht in h.ts
 export { mitTrennstellen };
 
-/** Kopf jedes Bogens: Titel, Absender, Fassung, Druckdatum und die Vermerke. */
-export function bogenKopf(titel: string, version: string, mitFiktiv: boolean): HTMLElement {
+/**
+ * Kopf jedes Bogens: Titel, Absender, Druckdatum und die Vermerke (die Fassung nur, wenn nicht leer). r72: `kicker` ist eine kleine Zeile über dem Titel
+ * (Themendruck: „Teil IV · 14“, „Anhang · 16“), damit sich ein Blatt im Buch einordnen lässt; `teil` färbt sie wie am Bildschirm.
+ */
+export function bogenKopf(titel: string, version: string, mitFiktiv: boolean, kicker?: { text: string; teil: string }): HTMLElement {
   const datum = new Date().toLocaleDateString('de-DE', { dateStyle: 'long' });
   return h('header', { class: 'druck-kopf' },
     // R49: die Bildmarke auch im Druck (O-33), klein und neben dem Namen (O-34)
     h('p', { class: 'druck-absender' }, bildmarke('marke-logo'), h('span', null, W.produkt)),
+    kicker !== undefined ? h('p', { class: 'druck-kicker', 'data-teil': kicker.teil, 'data-pruef': 'druck-kicker' }, kicker.text) : null,
     h('h1', null, titel),
-    h('p', { class: 'druck-meta' }, `${version} · ${W.druck.stand(datum)} · ${W.adresse} · ${W.herausgeber}`),
+    // r72: eine leere Fassungsangabe entfällt (O-56)
+    h('p', { class: 'druck-meta' }, [version, W.druck.stand(datum), W.adresse, W.herausgeber].filter((t) => t !== '').join(' · ')),
     mitFiktiv ? h('p', { class: 'druck-meta' }, W.fiktiv) : null);
 }
 
@@ -57,7 +62,7 @@ let strgP: { gilt: () => boolean; bauer: () => { titel: string; teile: Node[] } 
 /** R47: Flächen ohne eigenen Bogen (Start, Story vor dem Epilog, Explore, Theorie-Übersicht) – ein kurzer Bogen mit den Druckwegen */
 let ersatz: { aktiv: () => boolean; bauer: () => { titel: string; teile: Node[] } } | null = null;
 let strgPBereit = false;
-/** R48: `gilt` ersetzt die Ankerregel, wo der Bogen auch ohne sichtbaren Knopf gilt (Epilog: jeder Schritt der Station) */
+/** R48: `gilt` ersetzt die Ankerregel, wo der Bogen auch ohne sichtbaren Knopf gilt (Ende: jeder Schritt des Kapitels) */
 export function bogenFuerStrgP(anker: HTMLElement, bauer: () => { titel: string; teile: Node[] }, gilt: () => boolean = () => anker.isConnected): void {
   strgP = { gilt, bauer };
   bereiteStrgP();
@@ -72,9 +77,9 @@ export function ersatzBogenFuerStrgP(aktiv: () => boolean, bauer: () => { titel:
   bereiteStrgP();
 }
 
-/** Ersatzbogen für Strg+P ohne eigenen Druckweg; auf der Leinwand ohne den Hinweis auf die Regie (R67) */
-export function ersatzDruck(version: string, mitRegie = true): { titel: string; teile: HTMLElement[] } {
-  const wege = mitRegie ? W.druck.ersatzWege : W.druck.ersatzWege.slice(0, 1);
+/** Ersatzbogen für Strg+P ohne eigenen Druckweg; auf der Leinwand nur der Theorie-Weg – ohne Story (r72); einen Regie-Weg nennt er nirgends mehr (R76, O-56) */
+export function ersatzDruck(version: string, mitStory = true): { titel: string; teile: HTMLElement[] } {
+  const wege = mitStory ? W.druck.ersatzWege : W.druck.ersatzWege.slice(0, 1);
   return {
     titel: W.druck.ersatzTitel,
     teile: [
@@ -84,7 +89,7 @@ export function ersatzDruck(version: string, mitRegie = true): { titel: string; 
   };
 }
 
-/** Leinwand (R69: aus main.ts, damit prüfbar): jeder Strg+P bekommt den Ersatzbogen ohne Regie-Hinweis */
+/** Leinwand (R69: aus main.ts, damit prüfbar): jeder Strg+P bekommt den Ersatzbogen nur mit dem Theorie-Weg */
 export function ersatzBogenFuerLeinwand(version: string): void {
   ersatzBogenFuerStrgP(() => true, () => ersatzDruck(version, false));
 }
@@ -130,6 +135,23 @@ function setzeTrennstellen(el: Element): () => void {
   return () => { for (const [t, vorher] of alt) t.textContent = vorher; };
 }
 
+/**
+ * r72: Wo der Bogen weiche Trennstellen behält – schmale Spalten: Tabellenzellen, Kartentafeln (R45) und Kartentitel.
+ * Chromium schreibt jede U+00AD, an der die Zeile nicht bricht, als /ActualText in den PDF-Text: wer aus dem PDF kopiert oder
+ * darin sucht, bekäme „Beschluss\u00adlage“. Fließtext auf voller Satzbreite braucht keine – ein langes Wort rückt dort in die
+ * nächste Zeile. Das Theorie-Szenario prüft beides im echten PDF.
+ */
+export const TRENNSTELLEN_IM_DRUCK = 'th, td, .tafel, .lernkarte-titel, .lw-etappe-name';
+
+/** r72: entfernt außerhalb von {@link TRENNSTELLEN_IM_DRUCK} die weichen Trennstellen aus dem Bogen (der Bogen ist eine Kopie). */
+function nurInSchmalenSpalten(bogen: Element): void {
+  const gang = bogen.ownerDocument.createTreeWalker(bogen, 4);
+  for (let t = gang.nextNode(); t !== null; t = gang.nextNode()) {
+    const text = t.nodeValue ?? '';
+    if (text.includes('\u00ad') && t.parentElement?.closest(TRENNSTELLEN_IM_DRUCK) === null) t.nodeValue = text.replace(/\u00ad/gu, '');
+  }
+}
+
 /** Baut den Bogen (Details offen, IDs eindeutig) und hängt ihn unsichtbar an `body`. */
 function haengeBogenAn(teile: Node[]): HTMLElement {
   for (const alt of document.querySelectorAll('.druck-bogen')) alt.remove();
@@ -140,6 +162,7 @@ function haengeBogenAn(teile: Node[]): HTMLElement {
   // R43: Papier hat kein Trennwörterbuch – lange Wörter in Tabellenzellen und Tafeltiteln bekommen weiche Trennstellen an ihren Fugen
   // R45: ganze Tafeln – ihre Karten sind 196 px breit (CI 204: „Entscheidungsvorbereitung“ passte unter Chrome 153 nicht mehr)
   for (const el of bogen.querySelectorAll('th, td, .tafel')) setzeTrennstellen(el);
+  nurInSchmalenSpalten(bogen);
   // keine doppelten IDs neben der Seite: umbenennen, Bezüge (aria-labelledby, for) mitziehen
   let n = 0;
   const neu = new Map<string, string>();

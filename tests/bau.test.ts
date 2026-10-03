@@ -280,7 +280,8 @@ test('Webseitenordner (P16.13, O-42, O-43, O-47): Hauptseite, Impressum, Datensc
     assert.ok(index.includes(m), m);
   }
   // Auch im Quelltext der Seite (eingebettete Daten) kein Bezug zur Quelle und keine Reste der alten Story (O-38, O-41)
-  for (const verboten of [/Whitepaper/iu, /MVG V1/u, /Kap\. \d/u, /\bKapitel\b/u, /Welt [AB]\b/u, /ungeprüft/u, /Originaltext/u]) {
+  // P17.10 (O-55, O-56): auch keine Abweichungen der Abbildungen, kein „Vergrößern“, keine Bedienhinweise in den Daten
+  for (const verboten of [/Whitepaper/iu, /MVG V1/u, /Kap\. \d/u, /\bKapitel\b/u, /Welt [AB]\b/u, /ungeprüft/u, /Originaltext/u, /"abweichungen"\s*:/u, /Abweichungen vom Text/u, /Vergrößern/u, /bedienung:/u]) {
     assert.doesNotMatch(index, verboten, `dist/index.html enthält ${String(verboten)}`);
   }
   for (const name of ['impressum.html', 'datenschutz.html']) {
@@ -304,7 +305,7 @@ test('Webseitenordner (P16.13, O-42, O-43, O-47): Hauptseite, Impressum, Datensc
     for (const m of html.matchAll(/(IBM Plex Sans|IBM Plex Mono|Big Shoulders Display|Barlow Condensed|Caveat)/gu)) assert.ok(index.includes(`font-family: '${m[1]}'`) || index.includes(`font-family:'${m[1]}'`) || index.includes(`"${m[1]}"`), `${name}: Schrift ${m[1]} nicht eingebettet`);
   }
   const datenschutz = await readFile(path.join(dist, 'datenschutz.html'), 'utf8');
-  for (const w of ['keine Cookies', 'IONOS', 'Fortschritt löschen', 'BayLDA', 'Local Storage']) assert.ok(datenschutz.includes(w), `Datenschutz nennt ${w}`);
+  for (const w of ['keine Cookies', 'IONOS', 'Fortschritt löschen', 'BayLDA', 'Local Storage', 'Lesefortschritt', 'Fortschritt zurücksetzen']) assert.ok(datenschutz.includes(w), `Datenschutz nennt ${w}`);
   assert.equal(await readFile(path.join(dist, 'robots.txt'), 'utf8'), `User-agent: *\nAllow: /\n\nSitemap: ${ADRESSE}sitemap.xml\n`);
   const sitemap = await readFile(path.join(dist, 'sitemap.xml'), 'utf8');
   assert.deepEqual([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/gu)].map((m) => m[1]), [ADRESSE, `${ADRESSE}impressum.html`, `${ADRESSE}datenschutz.html`]);

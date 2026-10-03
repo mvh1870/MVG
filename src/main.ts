@@ -1,7 +1,7 @@
 /*
  * Einstieg der Hauptseite (P16, O-42): Hash-Router und Bereiche.
  *
- *   #start · #story(/s3) · #theorie(/<thema>) · #explore(/<werkzeug>) · #regie · #leinwand   (Unbekanntes → Start)
+ *   #start · #story(/k3) · #theorie(/<thema>) · #explore(/<werkzeug>) · #regie · #leinwand   (Unbekanntes → Start)
  *
  * Ein Fenster läuft in genau einer Betriebsart, festgelegt beim Laden:
  *   Seite    – Start, Story, Theorie, Explore; der Stand der Story liegt nur in diesem Browser
@@ -22,11 +22,10 @@ import { istAbbildungsId, leseRoute, routeHash, type Route } from './ui/route.ts
 import { ersetze } from './ui/h.ts';
 import { ersatzBogenFuerLeinwand, ersatzBogenFuerStrgP, ersatzDruck } from './ui/druck.ts';
 import { installiereTooltips, type Tooltips } from './ui/bausteine/tooltip.ts';
-import { erzeugeGeschichte, ladeStand, type GeschichteFlaeche, type SpeicherGriff } from './ui/flaechen/geschichte.ts';
+import { erzeugeGeschichte, ladeStand, storyDruck, type GeschichteFlaeche, type SpeicherGriff } from './ui/flaechen/geschichte.ts';
 import { baueStart } from './ui/flaechen/start.ts';
 import { baueTheorie, themaSeite, themaTitel, themen, zeigeAktuellenEintrag } from './ui/flaechen/theorie.ts';
 import { baueExplore, werkzeugAus, WERKZEUGE } from './ui/flaechen/explore.ts';
-import { wegStationen } from './geschichte/engine.ts';
 import { erzeugeRegie } from './regie/regie.ts';
 import { starteLeinwand } from './regie/leinwand.ts';
 import { W } from './ui/woerter.ts';
@@ -59,10 +58,11 @@ function starteSeite(wurzel: HTMLElement): void {
   let story: GeschichteFlaeche | null = null;
   let tipps: Tooltips | null = null;
   let flaeche = '';
-  ersatzBogenFuerStrgP(() => ['start', 'story', 'explore'].includes(document.body.dataset['flaeche'] ?? '') || document.querySelector('[data-pruef="thema-drucken"]') === null, () => ersatzDruck(VERSION));
+  // Strg+P: die Story druckt ihren eigenen Bogen (Ihre Antworten, „So macht man es gut“, Bilanz), Start und Explore den Ersatzbogen
+  ersatzBogenFuerStrgP(() => ['start', 'story', 'explore'].includes(document.body.dataset['flaeche'] ?? '') || document.querySelector('[data-pruef="thema-drucken"]') === null,
+    () => (document.body.dataset['flaeche'] === 'story' && story !== null && g !== null ? storyDruck(g, story.stand(), VERSION) : ersatzDruck(VERSION)));
 
   const raeume = (): void => {
-    for (const d of document.querySelectorAll<HTMLDialogElement>('dialog[open]')) d.close();
     tipps?.entferne();
     tipps = null;
   };
@@ -84,13 +84,13 @@ function starteSeite(wurzel: HTMLElement): void {
         if (story === null) {
           story = erzeugeGeschichte({ g, speicher, themaTitel: (id) => themaTitel(inhalte, id) });
           story.beiAenderung((s) => {
-            const id = s.schritt.ort === 'station' ? s.schritt.station : null;
-            history.replaceState(null, '', routeHash({ flaeche: 'story', station: id }));
+            const id = s.schritt.ort === 'kapitel' ? s.schritt.kapitel : null;
+            history.replaceState(null, '', routeHash({ flaeche: 'story', kapitel: id }));
           });
         }
         if (flaeche !== 'story') zeigeSeite(story.element, 'story', `${W.story} · ${TITEL}`, '.gs-titel');
         tipps ??= installiereTooltips(story.element, inhalte, W.themen.glossar);
-        if (r.station !== null) story.zuStation(r.station);
+        if (r.kapitel !== null) story.zuKapitel(r.kapitel);
         break;
       }
       case 'theorie': {
@@ -122,7 +122,7 @@ function starteSeite(wurzel: HTMLElement): void {
         zeigeSeite(baueStart({
           startseite: inhalte.startseite,
           themenAnzahl: themen(inhalte).length,
-          stationenAnzahl: g !== null ? wegStationen(g, false).length : 0,
+          kapitelAnzahl: g !== null ? g.kapitel.length : 0,
           werkzeugAnzahl: WERKZEUGE.length,
           weiterlesen: g !== null && ladeStand(g, speicher) !== null,
           bedienbar: true,

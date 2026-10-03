@@ -17,7 +17,6 @@ const KONTEXT = { ids: new Set(['k4-t1', 'k4-p1']), abbildungen: new Map([['abb-
 const GUT = {
   id: 'abb-6', quelle: 'bilder/image6.png', titel: 'Titel', alt: 'Alt',
   angeglichen: [{ x: 1, y: 2, b: 30, h: 12, text: 'LPH 0–2', beleg: 'k4-t1', schrift: 'barlow', gewicht: 600 }],
-  abweichungen: [{ text: 'Satz.', beleg: 'k4-p1 k4-t1' }],
 };
 
 test('Beschreibung: gültige Datei ohne Fehler, jede Abweichung vom Schema wird gemeldet', () => {
@@ -33,19 +32,33 @@ test('Beschreibung: gültige Datei ohne Fehler, jede Abweichung vom Schema wird 
   assert.match(fehler({ ...GUT, angeglichen: [{ ...GUT.angeglichen[0], hintergrund: 'rot' }] }), /#rrggbb/u);
   assert.match(fehler({ ...GUT, angeglichen: [{ ...GUT.angeglichen[0], schrift: 'arial' }] }), /schrift „arial“/u);
   assert.match(fehler({ ...GUT, angeglichen: [{ ...GUT.angeglichen[0], grund: 'x' }] }), /unbekanntes Feld „grund“/u);
-  assert.match(fehler({ ...GUT, abweichungen: [{ text: 'x', beleg: 'k4-p1 k0-p0' }] }), /abweichungen\[0\]: Beleg/u);
+  // O-56: „abweichungen“ gibt es nicht mehr – ein Rest in einer Beschreibung fällt auf
+  assert.match(fehler({ ...GUT, abweichungen: [{ text: 'x', beleg: 'k4-p1' }] }), /unbekanntes Feld „abweichungen“/u);
 });
 
-test('Prüfsumme der Eingabe: ändert sich mit Quelle und Überdeckung, nicht mit Titel, Alternativtext, Abweichungen', () => {
+test('Reine Abdeckung (R72): text "" füllt nur die Fläche – mit Beleg, ohne Schriftangaben; Leerraum allein ist kein Text', () => {
+  const fehler = (u: Record<string, unknown>): string => pruefeBeschreibung({ ...GUT, angeglichen: [{ x: 1, y: 2, b: 30, h: 12, beleg: 'k4-t1', ...u }] }, 'inhalte/abbildungen/abb-6.yaml', KONTEXT).join('\n');
+  assert.equal(fehler({ text: '' }), '');
+  assert.equal(fehler({ text: '', hintergrund: '#ffffff' }), '');
+  assert.match(fehler({ text: '', beleg: 'k9-p9' }), /keine Absatz-ID/u, 'auch die Abdeckung braucht den Absatz, der das Entfernte ausschließt');
+  assert.match(fehler({ text: '', groesse: 12 }), /„groesse“ bei einer reinen Abdeckung/u);
+  assert.match(fehler({ text: '', farbe: '#000000' }), /„farbe“ bei einer reinen Abdeckung/u);
+  assert.match(fehler({ text: '   ' }), /nur Leerraum/u);
+  assert.match(fehler({}), /„text“ fehlt/u);
+  // eine Abdeckung ändert die Pixel: andere Prüfsumme als dieselbe Fläche mit Text
+  assert.notEqual(eingabeSumme({ ...GUT, angeglichen: [{ ...GUT.angeglichen[0], text: '' }] }, 'q1'), eingabeSumme(GUT, 'q1'));
+});
+
+test('Prüfsumme der Eingabe: ändert sich mit Quelle und Überdeckung, nicht mit Titel und Alternativtext', () => {
   const a = eingabeSumme(GUT, 'q1');
-  assert.equal(eingabeSumme({ ...GUT, titel: 'anders', alt: 'anders', abweichungen: [] }, 'q1'), a);
+  assert.equal(eingabeSumme({ ...GUT, titel: 'anders', alt: 'anders' }, 'q1'), a);
   assert.equal(eingabeSumme({ ...GUT, angeglichen: [{ ...GUT.angeglichen[0], beleg: 'k4-p1' }] }, 'q1'), a, 'der Beleg ändert keine Pixel');
   assert.notEqual(eingabeSumme(GUT, 'q2'), a);
   assert.notEqual(eingabeSumme({ ...GUT, angeglichen: [{ ...GUT.angeglichen[0], text: 'LPH 0–3' }] }, 'q1'), a);
   assert.notEqual(eingabeSumme({ ...GUT, angeglichen: [{ ...GUT.angeglichen[0], x: 2 }] }, 'q1'), a);
 });
 
-test('Bildunterschrift: zweizeilige Überdeckungen werden zu einem Begriff (Prüfagent abb-2)', () => {
+test('Überdeckung: zweizeilige Überdeckungen werden zu einem Begriff (Prüfagent abb-2)', () => {
   assert.equal(einzeilig('Risiko- und\nÄnderungs-\nsteuerung'), 'Risiko- und Änderungssteuerung');
   assert.equal(einzeilig('Auswirkungs-\nbewertung'), 'Auswirkungsbewertung');
   assert.equal(einzeilig('MVG-\nNeuinitialisierung'), 'MVG-Neuinitialisierung');
@@ -96,7 +109,7 @@ test('Compiler (baueAbbildungen): veraltetes Bild, fremdes WebP, fremdes Kapitel
     const w = mkdtempSync(join(tmpdir(), 'mvg-test-abb-'));
     wurzeln.push(w);
     mkdirSync(join(w, 'inhalte', 'abbildungen'), { recursive: true });
-    writeFileSync(join(w, 'inhalte', 'abbildungen', 'abb-6.yaml'), 'id: abb-6\nquelle: bilder/image6.png\ntitel: T\nalt: A\nangeglichen:\n  - { x: 1, y: 2, b: 30, h: 12, text: LPH 0–2, beleg: k4-t1 }\nabweichungen:\n  - { text: Satz, beleg: k4-p1 }\n');
+    writeFileSync(join(w, 'inhalte', 'abbildungen', 'abb-6.yaml'), 'id: abb-6\nquelle: bilder/image6.png\ntitel: T\nalt: A\nangeglichen:\n  - { x: 1, y: 2, b: 30, h: 12, text: LPH 0–2, beleg: k4-t1 }\n');
     const webp = Buffer.from('RIFF-probe');
     writeFileSync(join(w, 'inhalte', 'abbildungen', 'abb-6.webp'), webp);
     const roh = { id: 'abb-6', quelle: 'bilder/image6.png', angeglichen: [{ x: 1, y: 2, b: 30, h: 12, text: 'LPH 0–2', beleg: 'k4-t1' }] };
@@ -125,4 +138,47 @@ test('Compiler (baueAbbildungen): veraltetes Bild, fremdes WebP, fremdes Kapitel
   assert.match(lauf(wurzel(), { k05: seite(5, 'k05.md') }).fehler.join('\n'), /gehört zu Kapitel 4, nicht 5/u);
   assert.match(lauf(wurzel(), { k04: seite(4, 'k04.md'), k04b: seite(4, 'k04b.md') }).fehler.join('\n'), /steht schon auf k04\.md/u);
   assert.match(lauf(wurzel(), {}).fehler.join('\n'), /steht auf keinem Thema/u);
+});
+
+// R74 (schwer): abb-12 zeigte fünf erfundene, nummerierte Domänen, der Text sagt „10 MVG-Domänen mit 49 Fragen“
+// (k7.1-p2). Bildbereiche mit einer Gliederung, die der Text ausschließt, müssen vollständig überdeckt bleiben –
+// geprüft auf einem Raster von Punkten (10 px), jeder Punkt liegt in mindestens einer Überdeckung.
+const SPERRFLAECHEN: Record<string, { x: number; y: number; b: number; h: number; grund: string }[]> = {
+  'abb-12': [{ x: 26, y: 188, b: 1326, h: 314, grund: 'fünf nummerierte Domänen mit Nachweislisten statt 10 Domänen (k7.1-p2)' }],
+  // R75: der einzige Weg „wird zu“ Frühwarnung → Risiko widerspricht V2.4 HB 1.2 (Risiko, Problem, Aufgabe oder geschlossen)
+  'abb-10': [
+    { x: 132, y: 195, b: 20, h: 105, grund: 'Pfeil Frühwarnung → Risiko (V2.4 HB 1.2: vier Ausgänge)' },
+    { x: 172, y: 195, b: 98, h: 76, grund: 'Etikett „wird zu (bestätigt)“ (V2.4 HB 1.2)' },
+    // R76: Pfeil Schwellenwert → CTC / Prognose zeigte verkehrt herum (k6.4.3-p2: CTC-Verletzungen erzeugen Frühwarnungen)
+    { x: 940, y: 25, b: 310, h: 55, grund: 'rechter Ast des Banners „Schwellenwert löst Frühwarnung aus“ in CTC / Prognose (k6.4.3-p2)' },
+    // R76: Pfeil „erzeugt“ Vorlage → Maßnahme ohne Beschluss (V2.4 HB 3.1, k6.4.3-p2)
+    { x: 832, y: 425, b: 80, h: 80, grund: 'Pfeil „erzeugt“ von der Vorlage zur Maßnahme (V2.4 HB 3.1)' },
+  ],
+  // R76: zwei Rollen „A“ in derselben Spalte – je Prozess eine letztverantwortliche Rolle (k6.4.1-p2)
+  'abb-8': [{ x: 795, y: 172, b: 20, h: 20, grund: 'zweiter Punkt in Spalte A der RACI-Matrix (k6.4.1-p2)' }],
+};
+
+test('Sperrflächen (R74): eine erfundene Gliederung im Bild bleibt ganz überdeckt; Alternativtext ohne fremde Domänenzahl', () => {
+  const nachId = new Map(leseBeschreibungen(WURZEL).map((b) => [b.roh.id as string, b.roh]));
+  for (const [id, flaechen] of Object.entries(SPERRFLAECHEN)) {
+    const ueb = (nachId.get(id)?.angeglichen ?? []) as { x: number; y: number; b: number; h: number }[];
+    for (const f of flaechen) {
+      const offen: string[] = [];
+      for (let px = f.x; px <= f.x + f.b; px += 10) for (let py = f.y; py <= f.y + f.h; py += 10) {
+        if (!ueb.some((u) => px >= u.x && px <= u.x + u.b && py >= u.y && py <= u.y + u.h)) offen.push(`${px},${py}`);
+      }
+      assert.deepEqual(offen.slice(0, 5), [], `${id}: ${f.grund} – nicht überdeckt bei ${offen.length} Punkten`);
+    }
+  }
+  // Alternativtext und Titel: eine Zahl an „Domänen“ ist nur 10 (k7.1-p2), nummerierte Kästen gibt es nicht mehr
+  for (const { datei, roh } of leseBeschreibungen(WURZEL)) {
+    const text = `${roh.titel} ${roh.alt}`;
+    for (const m of text.matchAll(/([\p{L}\p{N}]+)\s+(?:nummerierte[nr]?\s+)?(?:[\p{L}\p{N}]+-)?Domänen/gu)) assert.match(m[1] ?? '', /^(10|zehn|die|der|den)$/iu, `${datei}: „${m[0]}“`);
+    assert.doesNotMatch(text, /nummerierte[nr]? Kästen/u, `${datei}: nummerierte Kästen im Alternativtext`);
+    assert.doesNotMatch(text, /Frühwarnung \([^)]*wird zu/u, `${datei}: Frühwarnung „wird zu“ Risiko im Alternativtext (V2.4 HB 1.2)`);
+    // R76: keine Maßnahme direkt aus der Vorlage, kein Pfeil vom Schwellenwert in CTC; Begriffe wie im Text (O-14)
+    assert.doesNotMatch(text, /\(erzeugt\)/u, `${datei}: Vorlage „erzeugt“ Maßnahme im Alternativtext (V2.4 HB 3.1)`);
+    assert.doesNotMatch(text, /Frühwarnung \([^)]*\), CTC/u, `${datei}: Schwellenwert → CTC im Alternativtext (k6.4.3-p2)`);
+    assert.doesNotMatch(text, /Freigabe-Set|30\/60\/90 Plan|Reifegrad,/u, `${datei}: Bildbegriff statt Begriff des Texts im Alternativtext`);
+  }
 });

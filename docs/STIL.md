@@ -1,6 +1,6 @@
 # Stil-Leitfaden
 
-Stand P16.14 (2026-10-02). Verbindlich für alle Flächen der Seite (ARCHITEKTUR.md → `src/stil/`): Start, Story, Theorie, Explore, Regie und Leinwand. **Farben und Typografie** folgen dem vom Owner gewählten Prototyp **Variante B „Leitstand“** (`prototyp/variante-b-leitstand.html`, O-22); Aufbau und Bedienung folgen der Neuausrichtung O-36 bis O-49 mit ruhigem Einstieg (O-21, L-4). Farben nach O-11, Schriften nach L-2 und O-12, Hintergründe im Stil „Bauplan“ nach O-45.
+Stand P17.9 (2026-10-03). Verbindlich für alle Flächen der Seite (ARCHITEKTUR.md → `src/stil/`): Start, Story, Theorie, Explore, Regie und Leinwand. **Farben und Typografie** folgen dem vom Owner gewählten Prototyp **Variante B „Leitstand“** (`prototyp/variante-b-leitstand.html`, O-22); Aufbau und Bedienung folgen der Neuausrichtung O-36 bis O-49 mit ruhigem Einstieg (O-21, L-4). Farben nach O-11, Schriften nach L-2 und O-12, Hintergründe im Stil „Bauplan“ nach O-45, Akzentpalette nach O-57, isometrischer Campus nach O-53.
 
 **Anschauen statt lesen:** `npm run oberflaeche` legt Bildschirmfotos jeder Fläche bei 1280 × 720, 1024 × 768 und 400 px in `tmp/oberflaeche/` ab (L-197: die alte Stilreferenz ist gelöscht).
 
@@ -12,14 +12,16 @@ Stand P16.14 (2026-10-02). Verbindlich für alle Flächen der Seite (ARCHITEKTUR
 | `src/stil/basis.css` | Grundstellung (Browser-Vorgaben zurückgesetzt), Typografie, Silbentrennung, Fokus, Hochkontrast, Hilfsklassen, Semantik-Attribut `data-status`, gemeinsame Keyframes, reduzierte Bewegung |
 | `src/stil/tafeln.css` | gemeinsame Bausteine (Knöpfe, Status-Symbol, ID-Marke, Merksatz, Hinweis, Glossar-Begriff mit Tooltip, Tabelle) und die Tafeln aus `src/grafik/tafel.ts` |
 | `src/stil/regie.css` | Regie (Steuerpult mit Vorschau, Notiz, Leitfragen, Protokoll), Leinwand, Beamer-Schalter |
-| `src/stil/start.css` | Startseite mit drei Wegen und Campus-Hintergrund |
+| `src/stil/start.css` | Startseite mit drei Wegen (Story breit mit isometrischem Campus und den Figuren, Theorie mit den vier Teilen, Explore mit den Gegenständen der Werkzeuge) und Campus-Hintergrund, Baukörper in den Akzenttönen (P17.7) |
 | `src/stil/theorie.css` | ruhige Lernseiten der Themen; Verzeichnis ab 1100 px klebend und in sich rollend, Glossar, Lernwerkzeuge, Abbildungen, Druckbogen |
 | `src/stil/rahmen.css` | Seitenrahmen (Kopf, Fuß, Sprunglink) und Bauplan-Hintergründe |
-| `src/stil/geschichte.css` | Story (Fluss, Fortschrittslinie, Statusanzeige, Vorlage mit gewichtetem Vergleich, Vertiefungen) |
-| `src/stil/explore.css` | Explore-Werkzeuge |
-| `src/stil/index.css` | Einstieg für esbuild: `../generiert/schriften.css` → tokens → basis → tafeln → regie → start → theorie → rahmen → geschichte → explore |
+| `src/stil/geschichte.css` | Story als Spiel (Auftakt mit Figuren, Kapitel mit Szene, Frage mit drei Antworten, Folge, Balken Geld · Zeit · Vertrauen, „So macht man es gut“, Mini-Aufgaben, Vergleich in Kapitel 7, „Das steckt dahinter“, Bilanz, Story-Druckbogen) |
+| `src/stil/explore.css` | Explore-Werkzeuge; je Werkzeug Akzentton (`data-ton`, `WERKZEUG_BILD` in explore.ts: Rechner Violett, Matrix Blau, Vorgänge Lagune, Takt Sonne, Glossar Grün) und Gegenstand aus figuren.ts; Kopf auf Rasterpapier im Ton des aktiven Werkzeugs (P17.7) |
+| `src/stil/grafik.css` | isometrischer Campus (`src/grafik/campus-iso.ts`): Flächen je Material, Jahreszeit und Licht über `data-jahreszeit`/`data-licht`; Figuren und Gegenstände (`src/grafik/figuren.ts`, `fig-*`, `gm-*`) |
+| `src/stil/index.css` | Einstieg für esbuild: `../generiert/schriften.css` → tokens → basis → tafeln → regie → start → theorie → rahmen → geschichte → explore → grafik |
 | `src/stil/paare.json` | erlaubte Text/Grund-Paare (Quelle der Tabelle unten) |
 | `src/stil/symbole.ts` | Ikonen und Status-Symbole als SVG-Zeichenketten (`symbol()`, `statusSymbol()`, `trendPfeil()`) |
+| `src/stil/akzente.ts` | Namen und Rollen der Akzentpalette (`AKZENTE`, `AKZENT_ROLLEN`, O-57) |
 | `src/stil/farben.ts` | `liesTokens()`, `loese()`, `kontrast()` – für Prüfungen |
 | `src/generiert/schriften.css` | erzeugt von `werkzeuge/schriften.mjs` (`erzeugeSchriften()`), **vor jedem Bau** aufrufen |
 | `quellen/marke/` | `logo-bm.svg`, `logo-bm-bildmarke.svg` (erzeugt von `werkzeuge/logo.mjs`), `logo-original.png` |
@@ -29,8 +31,8 @@ Bau: esbuild bündelt `src/stil/index.css` mit `bundle: true` (die `@import`s we
 ## Grundsätze
 
 1. **Ruhiger Einstieg (O-21).** Die Startseite zeigt drei Wege als Türen – **Story**, **Theorie**, **Explore** – auf hellem Grund mit viel Weißraum; dahinter der Schulcampus als Linienzeichnung mit goldenen Maßlinien (O-45). Darunter leise „Wer steht dahinter“ mit dem Textlink zu bauherr-mentoren.com (O-44) und die Kennzeichnung „Fiktiver Fall“. Keine Instrumente, kein Navy-Rahmen. Impressum, Datenschutz und „Präsentieren“ (Regie) stehen leise im Fuß jeder Fläche.
-2. **Story als ein Fluss (O-40).** Eine durchgehende Geschichte aus Sicht des Bauherrn: „Weiter“ Schritt für Schritt (Auftakt, je Station Lage → Vorlage → Folge, Ende), oben eine schlanke Fortschrittslinie und eine kleine Statusanzeige (Kosten, Termin, offene Entscheidungen). An jeder Entscheidungsstation die **Vorlage der Projektsteuerung** mit Optionen und **gewichtetem Vergleich**: Die Gewichte lassen sich verschieben, die Rangfolge ändert sich sichtbar. Vertiefungen („So läuft es oft“, „Typischer Einwand und Antwort“) klappen im Text auf. Dahinter derselbe Campus im Bau, sehr dezent, er wächst mit der Leistungsphase der Station (O-45).
-3. **Theorie als Themen, ohne Rahmen (O-38).** Lernseiten nutzen Schriften, Farben und Bausteine des Stils, aber keinen Navy-Rahmen und keine Instrumente: eine Lesespalte (≤ 72 Zeichen), Themenverzeichnis links ab 1100 px, heller Grundriss mit Achsraster als Hintergrund. Keine Kapitelnummern, kein Originaltext, keine Zitierangaben.
+2. **Story als Bilderbuch (O-51 bis O-53, P17.4).** Acht Kapitel, „Weiter“ Schritt für Schritt; oben eine Fortschrittslinie der Kapitel („3 von 8“, nie „Kapitel 3“) und die drei Balken Geld (Sonne), Zeit (Blau), Vertrauen (Beere) klein. Je Kapitel: große Nummer im Navy-Feld, isometrischer Campus groß im Rahmen (Seitenverhältnis 2,2 : 1, schmal 4 : 3), Einstieg auf einer Karte, die ins Bild ragt, Dialog mit Porträt und Sprechblase im Ton der Figur; die Frage auf Navy mit der Spielfigur „Sie“, drei Antwortkarten mit farbiger Nummer; nach der Wahl die Folge-Szene mit wachsenden Balken (Pfeil und Wort, ohne Zahlen), das Kärtchen „Wer entscheidet was“ als gelbes Papier, „So macht man es gut“ grün, „Das steckt dahinter“ violett mit Buch. Mini-Aufgaben als Knöpfe (zuordnen als Pillen, Reihenfolge durch Anklicken mit Nummern), der Vergleich als drei Karten in den Tönen Violett, Orange, Lagune, die nach Rang die Plätze tauschen, darunter „Was ist wichtiger?“ in drei Stufen. Schulstart mit Bilanzkarte im Ton des Ergebnisses. Bewegung nur als kurzes Einblenden und Füllen der Balken; bei reduzierter Bewegung keine.
+3. **Theorie als Themen, ohne Rahmen (O-38).** Lernseiten nutzen Schriften, Farben und Bausteine des Stils, aber keinen Navy-Rahmen und keine Instrumente: eine Lesespalte (≤ 72 Zeichen), Themenverzeichnis links ab 1100 px. Bauplan nur im Kopf jedes Themas (Rasterpapier mit Motiv je Teil und Illustration je Thema, O-55), darunter ruhige Fläche ohne Hintergrund. Keine Kapitelnummern, kein Originaltext, keine Zitierangaben.
 4. **Farbsemantik (O-11).** **Koralle** steht für Offenes, Ungeklärtes und Risiken (Warnhinweis, „vorher“), **Türkis/Frischgrün** für Geklärtes, IDs und Ergebnisse („nachher“); Ampelfarben bleiben dem Status vorbehalten (Grundsatz 7). Navy und Gold tragen Marke, Titel und Hauptaktionen. Keine Fläche bekommt eine eigene Farbe außerhalb der Tokens.
 5. **Marke und Grundtöne.** Navy #0C1C33 und Gold (#A8823C, hell #C69D52) für Titel, Hauptknöpfe, Regie und Leinwand. Petrol #146878 ist der Grundton der Theorie; Grün #349068 nur als Grafikfarbe (als Text zu hell).
 6. **Explore aus dem Inneren.** Die Werkzeuge (Rechner für den gewichteten Vergleich, Risikomatrix, Vorgangsarten, Takt, Glossar) sind über Tür und Kopf erreichbar, nie als Hauptweg; Regie und Leinwand (O-46) behalten den Navy-Grund.
@@ -67,10 +69,13 @@ Alle Werte stehen in `src/stil/tokens.css` (Quelle je Wert im Kommentar). Kompon
 | Koralle (offen, Risiko; O-11) | `--koralle` #E4572E · `--koralle-text` #B23E1A · `--koralle-soft` #FDEBE5 · `--koralle-hauch` #FFF4F0 · `--koralle-kante` #F4C3B2 |
 | Türkis (geklärt, mit Regel; O-11) | `--tuerkis` #12A4A0 · `--tuerkis-text` #0B7A77 · `--tuerkis-soft` #E6F5F4 · `--tuerkis-hauch` #F4FBFA · `--frischgruen` #3FB57A · `--frischgruen-text` #237A4E |
 | Akzent Bericht (Story) | `--rolle-ps-text` #146878 |
+| Akzentpalette (O-57) | `--akzent-<ton>`, `--akzent-<ton>-soft`, `--akzent-<ton>-text` für sonne · orange · beere · violett · blau · lagune · gruen (Werte und Rollen: Abschnitt „Akzentpalette (O-57)“) |
+| Isometrischer Campus (O-53) | `--iso-*` (Himmel je Licht, Rasen je Jahreszeit, Schnee, Erde, Holz, Beton, Glas, Laub, Haut, Fahrzeuge); nur Flächen der Illustration, nie Text |
+| Figuren und Gegenstände (O-51) | `--fig-*` (Haut in vier Tönen, Haar, Mund, Erkennungszeichen wie Lesebändchen, Messing, Helm, Papier); Kleidung im Figurenton `--akzent-*`; nur Flächen der Illustration, nie Text |
 | Status (BM-Ampel; nur für Status, O-11) | `--status-rot` #9A3030 · `--status-rot-soft` #F1D8D8 · `--status-gelb-soft` #F3E9C8 · `--status-gelb-text` #7F620F · `--status-gelb-symbol` #A47E1E · `--status-gruen` #3A7A43 · `--status-gruen-soft` #DFEADF · `--status-gruen-text` #2B5C33 · `--status-neutral` #5A6B82 · `--status-neutral-soft` #E8EDF6 · `--status-gelb-kante` #D9C27A · `--status-gruen-kante` #A9C8AD |
 | Gold-Flächen | `--gold-soft` #FFF7E3 · `--gold-soft-kante` #E8CF97 |
 | ID-Marken (Kürzel der Vorgangsarten, O-15) | `--id-ent-grund` #E8EDF6 · `--id-ent-text` #1D3258 · `--id-ris-grund` #E6F5F4 · `--id-ris-text` #0B7A77 · `--id-frw-grund` #FFF3C4 · `--id-frw-text` #6A5208 · `--id-aen-grund` #FFF7E3 · `--id-aen-text` #7A5C22 · `--id-mas-grund` #EAF5EE · `--id-mas-text` #1D5B33 · `--id-nac-grund` #EDEAF4 · `--id-nac-text` #5B3F93 · `--id-prb-grund` #FDEBE5 · `--id-prb-text` #8A2E12 |
-| Transparente Töne | `--gold-hell-a18` rgba(198, 157, 82, .18) · `--gold-hell-a28` rgba(198, 157, 82, .28) · `--gold-hell-a45` rgba(198, 157, 82, .45) · `--gold-hell-a60` rgba(198, 157, 82, .6) · `--navy-a42` rgba(12, 28, 51, .42) · `--weiss-a85` rgba(255, 255, 255, .85) |
+| Transparente Töne | `--gold-hell-a18` rgba(198, 157, 82, .18) · `--gold-hell-a28` rgba(198, 157, 82, .28) · `--gold-hell-a45` rgba(198, 157, 82, .45) · `--gold-hell-a60` rgba(198, 157, 82, .6) · `--weiss-a85` rgba(255, 255, 255, .85) |
 | Fokus | `--fokus` #0C1C33 · `--fokus-hof` rgba(198, 157, 82, .6) |
 
 **Semantik über Attribute** (in `basis.css`), damit Komponenten keine Farben kennen müssen:
@@ -80,6 +85,45 @@ Alle Werte stehen in `src/stil/tokens.css` (Quelle je Wert im Kommentar). Kompon
 | `data-status` | `--status-farbe`, `--status-soft`, `--status-text` | `ok` · `mittel` · `kritisch` · `neutral` |
 
 Gelb als Grafik (Raute, Balken) ist `--status-gelb-symbol` #A47E1E (BM-Warnkante), weil #B08820 auf hellen Flächen nur 2,9:1 erreicht; gelber **Text** ist `--status-gelb-text` #7F620F.
+
+### Akzentpalette (O-57)
+
+Die Markenfarben (Navy, Gold, Petrol, Koralle, Türkis; O-11) bleiben Basis und tragen Marke, Titel und Hauptaktionen. Dazu kommen **sieben kräftige Akzenttöne** für Story und Themen – farbenfroh, aber gedeckt genug, um neben Navy und Gold ruhig zu wirken. Jeder Ton hat drei Stufen:
+
+- **Grundton** `--akzent-<ton>`: Balken, Symbole, Flächen in Illustrationen, Kanten. Als Grafik ≥ 3:1 auf Weiß (außer Sonne) und auf Navy.
+- **Fläche** `--akzent-<ton>-soft`: helle Karte oder Abbildungsgrund; trägt `--tinte` und den Textton.
+- **Textton** `--akzent-<ton>-text`: Kicker, Nummern, Labels; ≥ 4,5:1 auf Weiß, `--grund` und der eigenen Fläche; Weiß darauf ≥ 4,5:1 (Marke).
+
+| Ton | Grundton | Fläche | Textton | Text auf Weiß | Text auf Fläche | Grundton auf Weiß / Navy |
+|---|---|---|---|---|---|---|
+| Sonne | #E0A21B | #FCF0D2 | #7A5410 | 6,8:1 | 6,0:1 | 2,2:1 (nur mit Kante im Textton) / 7,6:1 |
+| Orange | #E2703A | #FCE6D9 | #A2441A | 6,2:1 | 5,2:1 | 3,2:1 / 5,4:1 |
+| Beere | #D6456B | #FBE2E9 | #A3294B | 7,1:1 | 5,8:1 | 4,3:1 / 4,0:1 |
+| Violett | #8061CC | #EEE9FA | #5B3FA8 | 7,7:1 | 6,5:1 | 4,7:1 / 3,7:1 |
+| Blau | #3A82CF | #E2EEFA | #1D5C9C | 6,9:1 | 5,8:1 | 4,0:1 / 4,3:1 |
+| Lagune | #17A096 | #DCF2EF | #0D6F68 | 6,0:1 | 5,2:1 | 3,2:1 / 5,3:1 |
+| Grün | #4E9F44 | #E4F2DF | #2E6B29 | 6,5:1 | 5,6:1 | 3,3:1 / 5,2:1 |
+
+**Feste Rollen** (`AKZENT_ROLLEN` in `src/stil/akzente.ts`, ohne Doppelung): Teile der Themen I Grundlagen = Grün · II Führungsmodell und Arbeitsweise = Lagune · III Anwendung und Einführung = Orange · IV Werkzeuge der Praxis = Violett (O-54, O-55); Balken der Story Geld = Sonne · Zeit = Blau · Vertrauen = Beere (O-52). **Figuren** (O-51) bekommen je einen Ton als Kleidungsfarbe; Vorschlag: Bürgermeisterin Violett, Projektsteuerin Lagune, Architekt Blau, Schulleiterin Orange, Bauleiter Sonne – neben den Balken nie als einzige Unterscheidung (Name und Bild tragen die Bedeutung).
+
+Regeln: Akzenttöne sind keine Statusfarben (Ampel bleibt Status, O-11) und nie die einzige Bedeutungsträgerin. Text in Akzentfarbe nur im Textton. Alle Paare stehen unten in der Tabelle; `tests/stil-akzente.test.ts` prüft Vollständigkeit und Kontrast, `tests/stil-kontrast.test.ts` jeden Wert. Kein Dunkelmodus (siehe `tokens.css`): die Seite bleibt hell mit Navy-Rahmen; „dunkel“ zeigt nur die Illustration im Abendlicht.
+
+### Isometrischer Campus (O-53)
+
+`campusIso(stufe, { jahreszeit, licht, himmel, klasse })` aus `src/grafik/campus-iso.ts` liefert den Schulcampus Lindenhall-Süd als flache isometrische Illustration (SVG-Zeichenkette, `role="img"`, `aria-label` und `<title>` je Stufe, Jahreszeit und Licht, mit „fiktiver Fall“). Stufen: 0 Grundstück mit Bauzaun, Bauschild „Hier baut die Stadt Lindenhall“ und Vermessung · 1 Baugrube mit Bagger, Kipper, Containern · 2 Rohbau Gesamtschule mit Turmdrehkran, Gerüst, Fahrmischer · 3 Holzbau (Kran hebt Holzelemente) · 4 Gesamtschule fertig, Holztragwerk der Sporthalle · 5 Sporthalle fertig, Grundschule im Rohbau · 6 Außenanlagen (Pflaster, junge Bäume, Walze) · 7 fertig ohne Menschen · 8 Schulstart mit Kindern, Fahrrädern und Schulbus. Jahreszeit (`fruehling` · `sommer` · `herbst` · `winter`) färbt Rasen, Gründächer und Laub, bringt Blüten, fallende Blätter oder Schnee; Licht (`morgen` · `tag` · `abend`) wechselt Himmel, Sonne, Schattenrichtung und Seitenlicht, abends leuchten Fenster und Laternen. Deterministisch (feste Streuung statt Zufall), keine Animation, keine fremden Ressourcen; Farben nur über Klassen aus `grafik.css` und `--iso-*`/`--akzent-*`. Ansehen: `node werkzeuge/grafik-vorschau.mjs` (PNG nach `tmp/grafik/`).
+
+### Bilder der Themen (O-55, P17.9)
+
+`src/grafik/themen-bilder.ts` liefert zwei reine SVG-Zeichenketten, beide Schmuck neben einer Überschrift (`aria-hidden`, ohne Schrift, ohne Kennungen, deterministisch):
+
+- `kopfMotiv(teil)` – Bauplan als Kopf-Hintergrund, 800 × 260 Rasterpapier (feine Linien alle 20, kräftigere alle 100 im Grundton des Teils), rechts das Motiv des Teils als feine Linienzeichnung im Textton mit goldenen Maßketten: **I** Grundriss mit Wandstärken, Türen, Treppe, Achsen und Fundamentschnitt · **II** Tragwerk mit Fachwerkdach, Aussteifung, Knoten und Gerüst · **III** Baustelle mit Turmdrehkran, Last und Rohbau · **IV** Planblatt mit Schriftfeld, Geodreieck, Maßstab, Zirkel und Bleistift · **Anhang** Planschrank mit Rücken, Rollen und Registerkarten · `alle` (Inhaltsverzeichnis) die vier Motive klein als Fries, jedes in der Farbe seines Teils. `preserveAspectRatio="xMaxYMid slice"`: das Motiv bleibt rechts sichtbar, links liegt ein Schleier in der Fläche des Teils unter dem Titel.
+- `themaBild(thema)` – Illustration je Thema (160 × 160, weiße Scheibe mit Ring im Grundton, Bodenschatten, drei Funken): Überblick Kompass auf Plan · Ausgangslage Fragezeichen über der Bauakte · Begriffsrahmen zwei Puzzleteile · Verantwortungsfelder Schild mit Haus und Siegel · Führungsmodell Fahne auf gestuftem Sockel · Arbeitsweise Vorgang im Kreislauf · Ergebnisbild Stempel und Siegel · Leistungsarchitektur drei Ebenen · Implementierung Zahnräder mit Schlüssel · Anwendungssituationen Bauherr mit Helm und Plan · Neuinitialisierung Neustart-Pfeil mit Kompassnadel · Was Bauherren gewinnen steigende Säulen · Glossar aufgeschlagenes Buch · Entscheidungsvorlage Waage mit zwei Optionen · Vorgänge Warndreieck vor der Liste · Takt Kalenderblatt mit Säulen und Uhr; `uebersicht` Buch mit vier Registerfahnen in den Farben der Teile.
+
+Farben nur über Klassen (`km-*`, `tb-*` in `theorie.css`): Flächen `--teil` (Grundton), `--teil-text` (dunkel), `--teil-soft` (hell), dazu Weiß, Navy, Gold (`--gold-hell`, `--gold`, `--gold-kante`) und `--fig-haut-1`. `tests/themen-bilder.test.ts` prüft Vollständigkeit (jedes Thema), Determinismus, Wohlgeformtheit, keine Farbwerte/Ressourcen/Kennungen und dass jede Klasse gestaltet ist.
+
+### Figuren und Gegenstände (O-51)
+
+`portraet(figur, { groesse, stimmung, dekorativ, klasse })` aus `src/grafik/figuren.ts` zeichnet die Spielfigur „Sie“ (von schräg hinten, ohne Gesicht, goldener Helm unter dem Arm, Mappe) und die fünf Figuren nach den Porträtbeschreibungen im Drehbuch als flaches Brustbild im Dreiviertelprofil (Blick nach rechts, zur Sprechblase) auf rundem Farbfeld im Figurenton (`FIGUR_AKZENT`: Grundstein Violett, Faden Lagune, Schwung Blau, Klingel Orange, Lot Sonne; „Sie“ Gold der Marke). Größen: `'gross'` 200 px (Steckbrief, Vorgabe), `'klein'` 56 px (Avatar, ohne feine Details) oder eine Zahl; Stimmungen `neutral` · `froh` · `besorgt` für Folge-Szenen. Das Rundbild kommt ohne Clip-Pfad und ohne Kennungen aus (Schultern enden mit einem Bogen auf dem Rand), damit beliebig viele Porträts auf einer Seite stehen können, auch ausgeblendete. `gimmick(name, { groesse })` liefert die Gegenstände der Grafik-Liste (`GIMMICKS`: Bauzaun, Warnschild, Kostenzettel, zwei Zahlenzettel, Lastwagen mit Holz, Holzstapel, Lupe, Waage mit drei Schalen, Mensatablett, Grundriss mit Erweiterung, Gerüst im Sturm, Lüftungsgerät, Handglocke, Schulbus, Kärtchen „Wer entscheidet was“, Pokal, Projektblatt, Notizzettel, Telefon, Kalender, Absperrband, Stempel, Rednerpult, Schlüsselbund, Buch, Übergabemappe, Matrix, Sonne über dem Campus, Wegweiser, Stoppuhr, Brücke mit Riss) auf 120 × 120 Einheiten, Vorgabe 96 px. Beide mit `role="img"`, deutschem `aria-label` und `<title>`, oder mit `dekorativ: true` als `aria-hidden`; Farben nur über `fig-*`/`gm-*`-Klassen in `grafik.css`. Ansehen: `node werkzeuge/grafik-vorschau.mjs --figuren`.
 
 ### Erlaubte Text/Grund-Paare
 
@@ -176,9 +220,57 @@ Nur diese Paare dürfen Text (bzw. bei „Grafik“ Symbole, Ränder, Fokusringe
 | `--gold-kante` #9A7736 | `--weiss` #FFFFFF | 4,1:1 | Grafik | Reiter-Unterstrich, aktuelle LPH |
 | `--koralle` #E4572E | `--weiss` #FFFFFF | 3,7:1 | Grafik | Linien und Kanten Koralle |
 | `--tuerkis` #12A4A0 | `--weiss` #FFFFFF | 3,1:1 | Grafik | Rahmen und Kanten Türkis |
+| `--akzent-sonne-text` #7A5410 | `--weiss` #FFFFFF | 6,8:1 | Text | Akzent Sonne: Kicker, Nummer, Label |
+| `--akzent-sonne-text` #7A5410 | `--grund` #EEF1F5 | 6,0:1 | Text | Akzent Sonne auf Grund |
+| `--akzent-sonne-text` #7A5410 | `--akzent-sonne-soft` #FCF0D2 | 6,0:1 | Text | Akzent Sonne: Marke auf eigener Fläche |
+| `--tinte` #0F1722 | `--akzent-sonne-soft` #FCF0D2 | 15,9:1 | Text | Fließtext auf Fläche Sonne |
+| `--weiss` #FFFFFF | `--akzent-sonne-text` #7A5410 | 6,8:1 | Text | Marke weiß auf Sonne |
+| `--akzent-sonne` #E0A21B | `--navy` #0C1C33 | 7,6:1 | Grafik | Balken und Symbol Sonne auf Navy (Leinwand) |
+| `--akzent-orange-text` #A2441A | `--weiss` #FFFFFF | 6,2:1 | Text | Akzent Orange: Kicker, Nummer, Label |
+| `--akzent-orange-text` #A2441A | `--grund` #EEF1F5 | 5,5:1 | Text | Akzent Orange auf Grund |
+| `--akzent-orange-text` #A2441A | `--akzent-orange-soft` #FCE6D9 | 5,2:1 | Text | Akzent Orange: Marke auf eigener Fläche |
+| `--tinte` #0F1722 | `--akzent-orange-soft` #FCE6D9 | 15,0:1 | Text | Fließtext auf Fläche Orange |
+| `--weiss` #FFFFFF | `--akzent-orange-text` #A2441A | 6,2:1 | Text | Marke weiß auf Orange |
+| `--akzent-orange` #E2703A | `--weiss` #FFFFFF | 3,2:1 | Grafik | Balken, Symbol, Kante Orange auf Weiß |
+| `--akzent-orange` #E2703A | `--navy` #0C1C33 | 5,4:1 | Grafik | Balken und Symbol Orange auf Navy (Leinwand) |
+| `--akzent-beere-text` #A3294B | `--weiss` #FFFFFF | 7,1:1 | Text | Akzent Beere: Kicker, Nummer, Label |
+| `--akzent-beere-text` #A3294B | `--grund` #EEF1F5 | 6,2:1 | Text | Akzent Beere auf Grund |
+| `--akzent-beere-text` #A3294B | `--akzent-beere-soft` #FBE2E9 | 5,8:1 | Text | Akzent Beere: Marke auf eigener Fläche |
+| `--tinte` #0F1722 | `--akzent-beere-soft` #FBE2E9 | 14,7:1 | Text | Fließtext auf Fläche Beere |
+| `--weiss` #FFFFFF | `--akzent-beere-text` #A3294B | 7,1:1 | Text | Marke weiß auf Beere |
+| `--akzent-beere` #D6456B | `--weiss` #FFFFFF | 4,3:1 | Grafik | Balken, Symbol, Kante Beere auf Weiß |
+| `--akzent-beere` #D6456B | `--navy` #0C1C33 | 4,0:1 | Grafik | Balken und Symbol Beere auf Navy (Leinwand) |
+| `--akzent-violett-text` #5B3FA8 | `--weiss` #FFFFFF | 7,7:1 | Text | Akzent Violett: Kicker, Nummer, Label |
+| `--akzent-violett-text` #5B3FA8 | `--grund` #EEF1F5 | 6,8:1 | Text | Akzent Violett auf Grund |
+| `--akzent-violett-text` #5B3FA8 | `--akzent-violett-soft` #EEE9FA | 6,5:1 | Text | Akzent Violett: Marke auf eigener Fläche |
+| `--tinte` #0F1722 | `--akzent-violett-soft` #EEE9FA | 15,2:1 | Text | Fließtext auf Fläche Violett |
+| `--weiss` #FFFFFF | `--akzent-violett-text` #5B3FA8 | 7,7:1 | Text | Marke weiß auf Violett |
+| `--akzent-violett` #8061CC | `--weiss` #FFFFFF | 4,7:1 | Grafik | Balken, Symbol, Kante Violett auf Weiß |
+| `--akzent-violett` #8061CC | `--navy` #0C1C33 | 3,7:1 | Grafik | Balken und Symbol Violett auf Navy (Leinwand) |
+| `--akzent-blau-text` #1D5C9C | `--weiss` #FFFFFF | 6,9:1 | Text | Akzent Blau: Kicker, Nummer, Label |
+| `--akzent-blau-text` #1D5C9C | `--grund` #EEF1F5 | 6,1:1 | Text | Akzent Blau auf Grund |
+| `--akzent-blau-text` #1D5C9C | `--akzent-blau-soft` #E2EEFA | 5,8:1 | Text | Akzent Blau: Marke auf eigener Fläche |
+| `--tinte` #0F1722 | `--akzent-blau-soft` #E2EEFA | 15,3:1 | Text | Fließtext auf Fläche Blau |
+| `--weiss` #FFFFFF | `--akzent-blau-text` #1D5C9C | 6,9:1 | Text | Marke weiß auf Blau |
+| `--akzent-blau` #3A82CF | `--weiss` #FFFFFF | 4,0:1 | Grafik | Balken, Symbol, Kante Blau auf Weiß |
+| `--akzent-blau` #3A82CF | `--navy` #0C1C33 | 4,3:1 | Grafik | Balken und Symbol Blau auf Navy (Leinwand) |
+| `--akzent-lagune-text` #0D6F68 | `--weiss` #FFFFFF | 6,0:1 | Text | Akzent Lagune: Kicker, Nummer, Label |
+| `--akzent-lagune-text` #0D6F68 | `--grund` #EEF1F5 | 5,3:1 | Text | Akzent Lagune auf Grund |
+| `--akzent-lagune-text` #0D6F68 | `--akzent-lagune-soft` #DCF2EF | 5,2:1 | Text | Akzent Lagune: Marke auf eigener Fläche |
+| `--tinte` #0F1722 | `--akzent-lagune-soft` #DCF2EF | 15,4:1 | Text | Fließtext auf Fläche Lagune |
+| `--weiss` #FFFFFF | `--akzent-lagune-text` #0D6F68 | 6,0:1 | Text | Marke weiß auf Lagune |
+| `--akzent-lagune` #17A096 | `--weiss` #FFFFFF | 3,2:1 | Grafik | Balken, Symbol, Kante Lagune auf Weiß |
+| `--akzent-lagune` #17A096 | `--navy` #0C1C33 | 5,3:1 | Grafik | Balken und Symbol Lagune auf Navy (Leinwand) |
+| `--akzent-gruen-text` #2E6B29 | `--weiss` #FFFFFF | 6,5:1 | Text | Akzent Grün: Kicker, Nummer, Label |
+| `--akzent-gruen-text` #2E6B29 | `--grund` #EEF1F5 | 5,7:1 | Text | Akzent Grün auf Grund |
+| `--akzent-gruen-text` #2E6B29 | `--akzent-gruen-soft` #E4F2DF | 5,6:1 | Text | Akzent Grün: Marke auf eigener Fläche |
+| `--tinte` #0F1722 | `--akzent-gruen-soft` #E4F2DF | 15,5:1 | Text | Fließtext auf Fläche Grün |
+| `--weiss` #FFFFFF | `--akzent-gruen-text` #2E6B29 | 6,5:1 | Text | Marke weiß auf Grün |
+| `--akzent-gruen` #4E9F44 | `--weiss` #FFFFFF | 3,3:1 | Grafik | Balken, Symbol, Kante Grün auf Weiß |
+| `--akzent-gruen` #4E9F44 | `--navy` #0C1C33 | 5,2:1 | Grafik | Balken und Symbol Grün auf Navy (Leinwand) |
 <!-- paare:ende -->
 
-Halbtransparente Flächen (`--weiss-a85` im Seitenkopf, `--navy-a42` als Abdunklung hinter Dialogen) zählen als ihr deckender Nachbar (Weiß bzw. Navy); Text liegt dort nur in den Paaren der deckenden Farbe.
+Halbtransparente Flächen (`--weiss-a85` im Seitenkopf) zählen als ihr deckender Nachbar (Weiß); Text liegt dort nur in den Paaren der deckenden Farbe.
 
 ## Abstände, Radien, Schatten
 
@@ -233,7 +325,7 @@ Klassennamen deutsch. Zustände über `ist-…`-Klassen oder ARIA (`aria-current
     <div class="start-einstieg"><p class="start-kicker">…</p><h1 class="start-titel">…</h1><p class="start-these">…</p><p class="start-internetseite">…</p></div>
     <nav class="tueren" aria-label="…">
       <a class="tuer" data-weg="story" href="#story"><h2 class="tuer-titel"><span class="tuer-kicker">…</span>…</h2><p class="tuer-text">…</p>
-        <span class="tuer-meta"><span>8 Stationen</span><span class="tuer-los">Beginnen symbol('pfeilRechts')</span></span></a>
+        <span class="tuer-meta"><span>Acht Entscheidungen · etwa 25 Minuten, kurz etwa 10</span><span class="tuer-los">Beginnen symbol('pfeilRechts')</span></span></a>
       <a class="tuer" data-weg="theorie" …>…</a>
       <a class="tuer" data-weg="explore" …>…</a>
     </nav>
@@ -245,33 +337,22 @@ Klassennamen deutsch. Zustände über `ist-…`-Klassen oder ARIA (`aria-current
 Hintergrund `.start-hintergrund` mit dem Campus (`src/grafik/bauplan.ts`, `campus()`), in `start.css`.
 
 ### Story
-```html
-<header class="gs-leiste"><ol class="gs-punkte">(Fortschrittslinie, je Schritt 24 px Trefferfläche)</ol><div class="gs-status">Kosten · Termin · offene Entscheidungen</div></header>
-<section class="gs-schritt">
-  <header class="gs-kopf"><p class="gs-kicker">…</p><h1 class="gs-titel">…</h1></header>
-  <div class="gs-text">Lage</div>
-  <section class="gs-vorlage">Vorlage der Projektsteuerung: <p class="gs-frage">…</p>
-    <div class="gs-optionen"><button class="gs-option" aria-pressed="false">…</button>…</div>
-    <section class="gs-gewichte"><div class="gs-regler">(Gewichte je Kriterium)</div></section>
-    <section class="gs-mcda"><div class="gs-vergleich">(Rangfolge)</div><div class="gs-kipp">…</div></section>
-    <section class="gs-empfehlung">…</section></section>
-  <section class="gs-entscheidung">Folge · <div class="gs-merksatz">…</div></section>
-  <details class="gs-vertiefung"><summary>So läuft es oft</summary>…</details>
-  <details class="gs-vertiefung"><summary>Typischer Einwand und Antwort</summary>…</details>
-  <nav class="gs-navi">Zurück · Weiter</nav>
-</section>
-```
-Hintergrund `.gs-hintergrund` mit dem Campus im Bau (`stufeAusLph`), sehr dezent. In `geschichte.css`.
+Ein Fluss mit „Weiter“, Schritt für Schritt (L-232): Auftakt (Figuren, Balken, Wahl ganze Geschichte oder Kurzfassung) · je Kapitel Szene (`gs-buehne`, Campus und Dialog in Sprechblasen `gs-blase`), in Kapitel 7 der Vergleich (`gs-gewicht`), Frage mit drei Antworten (`gs-antworten`), nach der Wahl im selben Schritt Folge (`gs-folge`), Balken und „So macht man es gut“, in jedem zweiten Kapitel die Mini-Aufgabe, am Kapitelende der Kasten „Das steckt dahinter“ (`gs-kasten-dahinter`) · Ende mit Bilanz (`gs-bilanz`). Brückensätze der Kurzfassung oben im nächsten Schritt (`gs-bruecke`). Aufbau und Klassen im Einzelnen: `src/ui/flaechen/geschichte.ts`; Campus `src/grafik/campus-iso.ts`. In `geschichte.css`.
 
 ### Theorie-Lernseite
 ```html
 <div class="lern-rahmen">
   <nav class="kapitel-verzeichnis-nav" aria-label="Themen"><details class="kapitel-verzeichnis" open><summary class="t-label">Themen</summary><ol class="kapitel-liste themen-liste"><li><a aria-current="page">…</a></li>…</ol></details></nav>
   <main class="lern-inhalt">
-    <header class="kapitel-kopf"><p class="kapitel-kicker">…</p><h1 class="kapitel-titel">…</h1><p class="kapitel-einstieg">…</p></header>
-    <section class="kernaussage"><span class="t-label">Kernaussage</span><p>…</p></section>
-    <section class="lern-abschnitt"><h2 class="abschnitt-titel">…</h2><div class="lesetext">(Markdown-HTML)</div></section>
-    <div class="lernkarten"><button class="lernkarte" aria-expanded="false">…</button>…</div>
+    <header class="kapitel-kopf thema-kopf" data-teil="2">
+      <div class="kopf-band"><div class="kopf-band-motiv" aria-hidden="true">(kopfMotiv)</div>
+        <div class="kopf-band-text"><p class="kapitel-kicker">Teil II · …</p><h1 class="kapitel-titel">5 · …</h1></div>
+        <div class="kopf-band-bild" aria-hidden="true">(themaBild)</div></div>
+      <div class="kapitel-einstieg">…</div></header>
+    <section class="kernaussage"><span class="kernaussage-symbol">(Symbol)</span><div class="kernaussage-text"><span class="t-label">Kernaussage</span><p>…</p></div></section>
+    <section class="lern-abschnitt"><h2 class="abschnitt-titel"><span class="abschnitt-symbol">(Symbol)</span><span class="abschnitt-text">…</span></h2><div class="lesetext">(Markdown-HTML)</div> … Bausteine und Text in der Reihenfolge der Quelle</section>
+    <details class="aufklapper"><summary class="aufklapper-kopf"><span class="aufklapper-symbol">…</span><span class="aufklapper-titel">…</span><span class="aufklapper-zeichen">↓</span></summary><div class="aufklapper-inhalt lesetext">…</div></details>
+    <div class="lernkarten-gruppe"><h3 class="lernkarten-titel">…</h3><div class="lernkarten-einleitung">…</div><div class="lernkarten"><div class="lernkarte">…</div><div class="lernkarte ist-wendekarte" data-seite="vorne">… <button class="lernkarte-wenden" aria-pressed="false">Umdrehen</button></div></div></div>
     <figure class="lern-grafik">(SVG aus src/grafik) <figcaption>…</figcaption></figure>
     <section class="querverweis-block"><a class="querverweis">In der Story erlebt: …</a></section>
     <nav class="kapitel-nav" aria-label="…"><a rel="prev">…</a><a rel="next">…</a></nav>
@@ -279,23 +360,20 @@ Hintergrund `.gs-hintergrund` mit dem Campus im Bau (`stufeAusLph`), sehr dezent
   </main>
 </div>
 ```
+**Optik der Themen (P17.9, O-55).** Die Farbe des Teils (`data-teil` am Kopf und am Inhalt `.lern-inhalt`, auch im Druckbogen) setzt `--teil`, `--teil-soft`, `--teil-text` (I Grün · II Lagune · III Orange · IV Violett · Anhang Navy). Der **Kopf** ist ein Band auf `--teil-soft` mit Rasterpapier und Motiv des Teils (Kanten­leiste links im Grundton), Kicker im Textton, Titel in Navy (Größe nach dem längsten Wort in der Textspalte, `cqi`), Illustration rechts (156 px; ≤ 700 px über dem Titel, 96 px; das Motiv blasser). Die Einleitung steht unter dem Band. Hinter dem Lesetext liegt **kein** Hintergrund mehr. **Kernaussage**: weiße Karte, Leiste im Grundton, Symbol (64 px, Kreis auf `--teil-soft` mit Ring) – aus `symbol:` der Kernaussage, sonst das Symbol des Themas; Text 22 px halbfett. **Abschnitte**: Symbol in einem 40-px-Feld auf `--teil-soft` vor dem Titel, gewählt nach dem frühesten Stichwort im Titel (`abschnittSymbol`), sonst das Symbol des Themas. **Karten** auf `--teil-soft` mit Kante im Grundton und Titel im Textton; Kartengruppen zeigen Titel (h3 mit Strich im Grundton) und Einleitung. **Karten mit Rückseite** drehen sich mit dem Knopf „Umdrehen“ um die senkrechte Achse (aria-pressed, Ansage „Titel: Rückseite“, die verdeckte Seite ist `inert`); bei `prefers-reduced-motion` ohne Drehung; Leinwand und Druck zeigen beide Seiten untereinander. **Aufklapper** (`::: aufklapper`): Zeile auf `--teil-soft` mit Leiste, Symbol im Ring und Pfeil, Inhalt auf Weiß; auf Leinwand und im Druck offen. Ebenen-Aufklapper (außer Ebene 4), Verständnisfragen und Lernwerkzeuge tragen Leiste bzw. Kante im Grundton. **Abbildungen** liegen auf einer Fläche `--teil-soft` mit Kante oben im Grundton, das Bild auf weißer Karte darin; die Marke „Abbildung N“ ist eine Pille Weiß auf Textton, der Titel in Tinte. Druck: Band entfällt (der Druckkopf trägt Titel), Flächen bleiben hell (`print-color-adjust: exact`), Abbildungsfläche mit 3 mm Innenabstand.
+
 Die Klassennamen `kapitel-…` sind intern geblieben; sichtbar heißt es „Thema“ (O-38). Theorie, Story und Explore zeichnen ihren Inhaltsbereich als `main` (genau eine je Fläche, L-91), das Verzeichnis als `nav` (`display: contents`); Leinwand und Regie-Vorschau betten die Fläche ohne Bedienung ein, die Regie hat ihren eigenen `main` (L-92).
 
 **Abbildung (`.abbildung`, P14, O-32, L-190).** Auf der Lernseite beim Abschnitt:
 ```html
 <figure class="abbildung" data-abbildung="abb-6">
-  <div class="abbildung-rahmen"><img class="abbildung-bild ist-vergroesserbar" alt="…" width="1200" height="886"></div>
+  <div class="abbildung-rahmen"><img class="abbildung-bild" alt="…" width="1200" height="886"></div>
   <figcaption class="abbildung-unterschrift">
     <span class="t-label abbildung-marke">Abbildung 5</span><span class="abbildung-titel">…</span>
-    <span class="abbildung-vorrang">Wo die Abbildung vom Text abweicht, gilt der Text.</span>
-    <span class="abbildung-angeglichen">Im Bild an die Begriffe des Texts angeglichen: „…“</span>
-    <details class="abbildung-abweichungen"><summary>Abweichungen vom Text (n)</summary><ul><li>…</li></ul></details>
-    <button class="knopf knopf-still abbildung-gross">Vergrößern</button>
   </figcaption>
-  <dialog class="abbildung-dialog">Kopf (Titel, Schließen) + Bild in voller Breite, mindestens 900 px (schmale Fenster rollen waagrecht)</dialog>
 </figure>
 ```
-Weiße Karte wie `.lern-grafik`, Bild auf ganzer Spaltenbreite; Klick aufs Bild öffnet ebenfalls den Dialog (Tastatur: der Knopf). Auf der Leinwand und im Druck ohne Knopf und Dialog, mit aufgeklappten Abweichungen. Der Dialog hat keinen Innenabstand, der Kopf klebt bündig. Mausrad, Wischen und Rolltasten über dem offenen Dialog rollen nur ihn, nie die Seite dahinter (`halteRollenImDialog`).
+Seit P17.9 auf der hellen Fläche des Teils, das Bild auf weißer Karte darin, Bild auf ganzer Spaltenbreite; die Bildunterschrift trägt nur Marke und Titel – keine Abweichungen, kein Vorrang-Satz, keine Angleichungsliste (O-56), kein Knopf „Vergrößern“ und kein Dialog: vergrößert wird mit der Lupe des Browsers (O-55).
 
 ### Explore
 `.ex-rahmen > .ex-kopf + nav.ex-werkzeuge (je Werkzeug .ex-werkzeug-link) + Werkzeugfläche`: Rechner für den gewichteten Vergleich, Risikomatrix 5 × 5, Vorgangsarten und Wege, Takt, Glossar (O-46). In `explore.css`.
@@ -307,7 +385,7 @@ Weiße Karte wie `.lern-grafik`, Bild auf ganzer Spaltenbreite; Klick aufs Bild 
 
 - **Kontrast** nur über die erlaubten Paare oben (≥ 4,5:1; Grafik ≥ 3:1), gemessen im Test.
 - **Fokus immer sichtbar:** 3 px Ring (`--fokus`): Navy mit Gold-Hof auf hellen Flächen (Start, Story, Theorie, Explore), Gold-hell auf Navy (Regie). Nie `outline: none` ohne Ersatz; Maus-Klicks zeigen keinen Ring (`:focus-visible`).
-- **Tastatur überall:** alle Bedienelemente sind `button`/`a`/`input`; in der Story ←/→ zum Blättern, in der Regie Buchstabentasten für die Wahl; Dialoge (Abbildungs-Dialog) halten den Fokus – Tab und Umschalt+Tab kreisen im Dialog – und geben ihn beim Schließen zurück.
+- **Tastatur überall:** alle Bedienelemente sind `button`/`a`/`input`; in der Story ←/→ zum Blättern, in der Regie Buchstabentasten für die Wahl.
 - **Nie nur Farbe:** Status = Form + Wort, Auswahl = Fläche + Ring + `aria-pressed`, Rangfolge = Platz + Zahl, Vorher/Nachher = Farbe + Wort.
 - **Sprache und Struktur:** `lang="de"`, Silbentrennung automatisch, eine `h1` je Fläche, Landmarken (`header`, `nav`, `main`, `footer`), Live-Region für Statusänderungen, `.nur-sr` für Werte, die sonst nur grafisch sind; Sprunglink `.sprung-inhalt` zum Inhalt.
 - **Bewegung:** siehe oben; kein Blinken schneller als 3 Hz.
@@ -316,7 +394,7 @@ Weiße Karte wie `.lern-grafik`, Bild auf ganzer Spaltenbreite; Klick aufs Bild 
 
 ## Tabus
 
-- Keine Emojis, keine Clipart, keine Stockfotos, keine Figuren; Illustration nur als feine Linienzeichnung im Stil „Bauplan“ (O-45).
+- Keine Emojis, keine Clipart, keine Stockfotos; Illustrationen nur selbst gezeichnet als Vektorgrafik: Bauplan-Linien (O-45, Theorie-Köpfe) sowie der isometrische Campus und die Figuren der Story (O-53).
 - Keine lila-blauen Verläufe, keine Neon- oder Glaseffekte, keine Schlagschatten auf Text.
 - Keine Farben außerhalb von `tokens.css`; keine Ampelfarbe als Dekoration (O-11).
 - Keine Kursivschrift (nicht eingebettet), keine weiteren Schriftschnitte, keine Systemschrift als Gestaltungsmittel.
@@ -330,6 +408,10 @@ Weiße Karte wie `.lern-grafik`, Bild auf ganzer Spaltenbreite; Klick aufs Bild 
 | Befehl | prüft / erzeugt |
 |---|---|
 | `node --test tests/stil-kontrast.test.ts` | Kontrast aller Paare aus `paare.json` gegen `tokens.css`; diese Tabelle = Liste; O-11-Farben unverändert |
+| `node --test tests/stil-akzente.test.ts` | Akzentpalette: je Ton Grundton, Fläche, Textton; Pflicht-Paare vorhanden und kontraststark; Rollen ohne Doppelung |
+| `node --test tests/campus-iso.test.ts` | isometrischer Campus: deterministisch, wohlgeformt, `role="img"` mit Beschreibung, keine fremden Ressourcen und Farbwerte, jede Klasse in `grafik.css` |
+| `node --test tests/figuren.test.ts` | Porträts und Gegenstände: deterministisch, wohlgeformt, `role="img"` mit deutscher Beschreibung, keine fremden Ressourcen, Farbwerte und Kennungen, jede Klasse in `grafik.css` |
+| `node werkzeuge/grafik-vorschau.mjs [--alle]` | PNG-Vorschau des Campus nach `tmp/grafik/` (Stufen, Jahreszeiten, Licht; außerhalb der Kette) |
 | `node --test tests/stil-tokens.test.ts` | keine Farbwerte außerhalb der Tokens, jede `var()` definiert, Import-Reihenfolge, Schriftgewichte, Ikonen |
 | `node --test tests/stil-werkzeuge.test.ts` | PNG-Decoder, Logo neu gezeichnet = `quellen/marke`, Schriften nur Variante-B-Schnitte, unicode-range aus @fontsource, deterministisch |
 | `node werkzeuge/logo.mjs [--vergleich]` | Logo-SVGs aus dem Original-PNG (potrace, deterministisch); `--vergleich` → `tmp/logo-vergleich.png` |

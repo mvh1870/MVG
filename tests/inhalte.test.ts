@@ -66,6 +66,9 @@ kapitel: 2
 titel: Ausgangslage
 kurztitel: Lage
 thema: ausgangslage
+teil: 1
+kurzsatz: Warum Berichte allein nicht führen.
+symbol: frage
 deckt: [k2-p1]
 ---
 Zwei [[Mandat|Mandate]] und <b>fett?</b>
@@ -143,6 +146,10 @@ test('Beispiel → erwartetes JSON (Auszüge exakt), fehlerfrei, deterministisch
   assert.equal(k02.thema, 'ausgangslage');
   assert.equal(k02.reihe, 2);
   assert.equal(k02.kurztitel, 'Lage');
+  assert.equal(k02.nr, 1);
+  assert.equal(k02.teil, 1);
+  assert.equal(k02.kurzsatz, 'Warum Berichte allein nicht führen.');
+  assert.equal(k02.symbol, 'frage');
   assert.equal(k02.quelle, K02);
   assert.equal(k02.einleitung, '<p>Zwei <span class="mvg-glossar" data-glossar="g-mandat" data-begriff="Mandat">Mandate</span> und &lt;b&gt;fett?&lt;/b&gt;</p>');
   assert.deepEqual(k02.bloecke.map((b) => b.art), ['kernaussage', 'abschnitt', 'ebenen']);
@@ -365,13 +372,13 @@ test('Echte Inhalte: fehlerfrei; Mutanten-Probe am Zitat k2.4-p2 im Thema Ausgan
   const w = mkdtempSync(path.join(TMP, 'test-inhalte-echt-'));
   ORDNER.push(w);
   cpSync(path.join(WURZEL, 'inhalte'), path.join(w, 'inhalte'), { recursive: true });
-  const k02 = path.join(w, 'inhalte', 'theorie', 'k02-ausgangslage.md');
+  const k02 = path.join(w, 'inhalte', 'theorie', 'k16-takt.md'); // P17.11: das Zitat k2.4-p2 steht nur noch in k16
   const text = readFileSync(k02, 'utf8');
   const stelle = 'Ein Ampelbericht ohne Entscheidungsfrage bleibt Beobachtung.\n:::';
   assert.equal(text.split(stelle).length, 2, 'die Stelle steht genau einmal im Thema');
   writeFileSync(k02, text.replace(stelle, stelle.replace('bleibt Beobachtung.', 'bleibt reine Beobachtung.')), 'utf8');
   const { fehler } = await kompiliere({ pruefe: true, wurzel: w, whitepaperPfad: ECHT_WP, ziel: null });
-  assert.ok(fehler.some((f) => /^inhalte\/theorie\/k02-ausgangslage\.md:\d+: Zitat nicht wortgleich mit k2\.4-p2/u.test(f)), fehler.join('\n'));
+  assert.ok(fehler.some((f) => /^inhalte\/theorie\/k16-takt\.md:\d+: Zitat nicht wortgleich mit k2\.4-p2/u.test(f)), fehler.join('\n'));
   writeFileSync(k02, text, 'utf8');
   // R48: eine Bildüberdeckung, deren Text nicht wortgleich im Beleg steht, fällt auf (INHALTSFORMAT 4.6)
   const abb10 = path.join(w, 'inhalte', 'abbildungen', 'abb-10.yaml');
@@ -390,19 +397,12 @@ test('Echte Inhalte: fehlerfrei; Mutanten-Probe am Zitat k2.4-p2 im Thema Ausgan
   assert.ok(anfang.fehler.some((f) => /abb-10\.yaml.*„entscheidung“ steht nicht wortgleich/u.test(f)), anfang.fehler.join('\n'));
 });
 
-test('Bedienhinweis (R48): ein ganzer Satz mit Leerraum davor – sonst bleibt im Druck ein Satzrest', async () => {
+test('Bedienhinweis (O-56): [[bedienung:…]] gibt es nicht mehr – jeder Rest ist ein Fehler', async () => {
   const mit = (satz: string) => veraendere(BEISPIEL, K02, 'v3 oder v4??', satz);
-  const gut = await kompiliere({ pruefe: true, wurzel: neueWurzel(mit('v3 oder v4? [[bedienung:Wählen Sie eine Version.]]')), ziel: null });
+  const gut = await kompiliere({ pruefe: true, wurzel: neueWurzel(mit('v3 oder v4?')), ziel: null });
   assert.deepEqual(gut.fehler, []);
-  assert.equal((gut.inhalte as Inhalte).theorie['k02']?.bloecke[1]?.kinder[0]?.felder['text'], '<p>v3 oder v4? <span class="bedienhinweis">Wählen Sie eine Version.</span></p>');
-  for (const [satz, muster] of [
-    ['[[bedienung:Ordnen Sie zu,]] was gilt.', /kein ganzer Satz/u],
-    ['v3 oder v4?[[bedienung:Wählen Sie eine Version.]]', /ohne Leerraum/u],
-    ['v3 oder v4?[[bedienung: Wählen Sie eine Version.]]', /ohne Leerraum/u],
-  ] as [string, RegExp][]) {
-    const r = await kompiliere({ pruefe: true, wurzel: neueWurzel(mit(satz)), ziel: null });
-    assert.ok(r.fehler.some((f) => muster.test(f)), `${satz}: ${r.fehler.join('\n')}`);
-  }
+  const r = await kompiliere({ pruefe: true, wurzel: neueWurzel(mit('v3 oder v4? [[bedienung:Wählen Sie eine Version.]]')), ziel: null });
+  assert.ok(r.fehler.some((f) => /Bedienhinweise gibt es nicht mehr/u.test(f)), r.fehler.join('\n'));
 });
 
 test('Begriffs-Kompass (P10.5): Begriff muss im Beleg stehen, Glossar-Bezug, alte Wörter nur hier erlaubt', async () => {
@@ -430,6 +430,29 @@ test('Regie auf Themen (P9.5): ohne kapitel und doppelt sind Fehler', async () =
   assert.ok(ohne.fehler.some((f) => /Regie-Block ohne „kapitel:“ im Dateikopf/u.test(f)), ohne.fehler.join('\n'));
   const tief = await kompiliere({ pruefe: true, wurzel: neueWurzel(veraendere(BEISPIEL, K02, '::: merksatz\n', '::: regie\n### Notiz\nX.\n:::\n\n::: merksatz\n')), ziel: null });
   assert.ok(tief.fehler.some((f) => /„regie“ ist hier nicht erlaubt/u.test(f)), tief.fehler.join('\n'));
+});
+
+test('Themen als Buch (P17.8, O-54): teil, kurzsatz und symbol Pflicht und geprüft; Nummern und Teile in Leserichtung', async () => {
+  const k03 = (kopf: string): string => `---\nkapitel: 3\ntitel: Begriffe\nthema: begriffe\nreihe: 3\n${kopf}---\nText.\n`;
+  const gut = 'teil: 2\nkurzsatz: Ein kurzer Satz.\nsymbol: buch\n';
+  // Gegenprobe: gültig → fehlerfrei, Nummern nach reihe (k02 = 1, k03 = 2)
+  const ok = await kompiliere({ pruefe: true, wurzel: neueWurzel({ ...BEISPIEL, 'inhalte/theorie/k03-begriffe.md': k03(gut) }), ziel: null });
+  assert.deepEqual(ok.fehler, []);
+  const th = (ok.inhalte as Inhalte).theorie;
+  assert.deepEqual([th['k02']?.nr, th['k03']?.nr, th['k03']?.teil], [1, 2, 2]);
+  const fehler = async (kopf: string): Promise<string[]> => (await kompiliere({ pruefe: true, wurzel: neueWurzel({ ...BEISPIEL, 'inhalte/theorie/k03-begriffe.md': k03(kopf) }), ziel: null })).fehler;
+  const ohne = await fehler('');
+  for (const k of ['teil', 'kurzsatz', 'symbol']) assert.ok(ohne.some((f) => f.includes(`Pflichtangabe „${k}“ fehlt`)), `${k}: ${ohne.join('\n')}`);
+  assert.ok((await fehler('teil: 5\nkurzsatz: Satz.\nsymbol: buch\n')).some((f) => /„teil“: „5“ ist nicht erlaubt/u.test(f)));
+  assert.ok((await fehler(`teil: 2\nkurzsatz: ${'x'.repeat(91)}\nsymbol: buch\n`)).some((f) => /kurzsatz hat 91 Zeichen \(höchstens 90\)/u.test(f)));
+  assert.equal((await fehler(`teil: 2\nkurzsatz: ${'x'.repeat(90)}\nsymbol: buch\n`)).length, 0, '90 Zeichen gehen');
+  assert.ok((await fehler('teil: 2\nkurzsatz: Satz.\nsymbol: gibtsnicht\n')).some((f) => /symbol „gibtsnicht“ gibt es nicht/u.test(f)));
+  // Leserichtung: ein früherer Teil hinter einem späteren, der Anhang vor einem Teil
+  const zurueck = veraendere(BEISPIEL, K02, 'teil: 1\n', 'teil: 3\n');
+  const rueck = (await kompiliere({ pruefe: true, wurzel: neueWurzel({ ...zurueck, 'inhalte/theorie/k03-begriffe.md': k03(gut) }), ziel: null })).fehler;
+  assert.ok(rueck.some((f) => /k03-begriffe\.md: teil 2 steht in der Reihenfolge hinter einem späteren Teil/u.test(f)), rueck.join('\n'));
+  const anhang = veraendere(BEISPIEL, K02, 'teil: 1\n', 'teil: anhang\n');
+  assert.ok((await kompiliere({ pruefe: true, wurzel: neueWurzel({ ...anhang, 'inhalte/theorie/k03-begriffe.md': k03(gut) }), ziel: null })).fehler.some((f) => /teil 2 steht in der Reihenfolge/u.test(f)));
 });
 
 test('Wissenscheck (P11.6): mindestens zwei Antworten und ein wortgleicher Beleg', async () => {
@@ -475,9 +498,23 @@ Berichterstattung erzeugt Information.
   assert.ok(f2.some((f) => /Wissenscheck berichte: Beleg fehlt/u.test(f)), f2.join('\n'));
   const f3 = (await kompiliere({ pruefe: true, wurzel: neueWurzel(mitBloecken(falscherBeleg)), ziel: null })).fehler;
   assert.ok(f3.some((f) => /Zitat nicht wortgleich/u.test(f)), f3.join('\n'));
+  // R73: Kopffeld stelle – gültig 1 … Zahl der Antworten
+  const mitStelle = (n: string): string => gut.replace('::: wissenscheck berichte\n', `::: wissenscheck berichte\n---\nstelle: ${n}\n---\n`);
+  const s2 = await kompiliere({ pruefe: true, wurzel: neueWurzel(mitBloecken(mitStelle('2'))), ziel: null });
+  assert.deepEqual(s2.fehler, []);
+  assert.deepEqual((s2.inhalte as Inhalte).theorie['k02']?.bloecke.find((b) => b.art === 'wissenscheck')?.kopf, { stelle: 2 });
+  const s3 = (await kompiliere({ pruefe: true, wurzel: neueWurzel(mitBloecken(mitStelle('3'))), ziel: null })).fehler;
+  assert.ok(s3.some((f) => /Wissenscheck berichte: stelle 3, aber nur 2 Antworten/u.test(f)), s3.join('\n'));
+  const s0 = (await kompiliere({ pruefe: true, wurzel: neueWurzel(mitBloecken(mitStelle('0'))), ziel: null })).fehler;
+  assert.ok(s0.some((f) => /„stelle“ = 0 liegt außerhalb/u.test(f)), s0.join('\n'));
+  // R75: das Präfix verrät keine falsche Wertung – „Genau“ nur bei a
+  const p1 = (await kompiliere({ pruefe: true, wurzel: neueWurzel(mitBloecken(gut.replace('praefix: "Nicht ganz:"', 'praefix: "Genau:"'))), ziel: null })).fehler;
+  assert.ok(p1.some((f) => /Wissenscheck berichte: Antwort b ist nicht die richtige/u.test(f)), p1.join('\n'));
+  const p2 = (await kompiliere({ pruefe: true, wurzel: neueWurzel(mitBloecken(gut.replace('praefix: "Genau:"', 'praefix: "Nicht ganz:"'))), ziel: null })).fehler;
+  assert.ok(p2.some((f) => /Wissenscheck berichte: die richtige Antwort a beginnt mit „Genau“/u.test(f)), p2.join('\n'));
 });
 
-test('Eigentext (R49): „EW“ und „Mio. EUR“ nur im wortgleichen Zitat; Schwellen der Mandatsleiter überall 100 TEUR / 5 Mio.', async () => {
+test('Eigentext (R49): „EW“ und „Mio. EUR“ nur im wortgleichen Zitat; Schwellen der Mandatsleiter überall 100 TEUR bzw. 100.000 € / 5 Mio.', async () => {
   const { readdirSync, statSync } = await import('node:fs');
   const dateien: string[] = [];
   const sammle = (d: string): void => {
@@ -496,12 +533,33 @@ test('Eigentext (R49): „EW“ und „Mio. EUR“ nur im wortgleichen Zitat; Sc
     // Zitate: Container „::: zitat …“, eingebettete [[zitat:…|…]] und in Anführung „…“ wiedergegebener Quelltext
     const eigen = roh.replace(/^::: zitat [^\n]*\n[\s\S]*?\n:::$/gmu, ' ').replace(/\[\[zitat:[^|\]]+\|[^\]]*\]\]/gu, ' ').replace(/„[^“]*“/gu, ' ');
     for (const m of eigen.matchAll(/\bEW\b|Mio\. EUR/gu)) funde.push(`${path.relative(WURZEL, p)}: „${m[0]}“`);
-    for (const m of roh.matchAll(/einschließlich ([\d.,]+) (TEUR|Mio\.)/gu)) {
+    // r72: in Eigentext ausgeschrieben („100.000 €“), im wortgleichen Zitat „100 TEUR“
+    for (const m of roh.matchAll(/einschließlich ([\d.,]+) (TEUR|Mio\.|€)/gu)) {
       schwellen += 1;
-      const soll = m[2] === 'TEUR' ? '100' : '5';
+      const soll = m[2] === 'TEUR' ? '100' : m[2] === '€' ? '100.000' : '5';
       if (m[1] !== soll) funde.push(`${path.relative(WURZEL, p)}: Schwelle „einschließlich ${m[1]} ${m[2]}“`);
     }
   }
   assert.deepEqual(funde, []);
-  assert.ok(schwellen >= 10, `nur ${schwellen} Schwellen gefunden`);
+  assert.ok(schwellen >= 3, `nur ${schwellen} Schwellen gefunden`); // P17: fall.md trägt keine Schwellen mehr, die Themen schon
+});
+
+test('Aufklapper und Symbol der Kernaussage (P17.9, O-55): Titel in der Öffnungszeile, Symbole geprüft', async () => {
+  const kern = (kopf: string): Record<string, string> => veraendere(BEISPIEL, K02, '::: kernaussage\n', `::: kernaussage\n---\n${kopf}---\n`);
+  const auf = '::: aufklapper Wer entscheidet am Ende?\n---\nsymbol: person\n---\nDas [[Mandat]] entscheidet.\n:::\n';
+  const ok = await kompiliere({ pruefe: true, wurzel: neueWurzel(mitBloecken(auf, kern('symbol: schild\n'))), ziel: null });
+  assert.deepEqual(ok.fehler, []);
+  const bl = (ok.inhalte as Inhalte).theorie['k02']?.bloecke ?? [];
+  assert.equal(bl.find((b) => b.art === 'kernaussage')?.kopf['symbol'], 'schild');
+  const a = bl.find((b) => b.art === 'aufklapper');
+  assert.deepEqual([a?.kopf['titel'], a?.kopf['symbol'], a?.id, a?.kennungen], ['Wer entscheidet am Ende?', 'person', null, []]);
+  assert.match(a?.felder['text'] ?? '', /data-glossar="g-mandat"/u, 'Inhalt mit den üblichen Inline-Bausteinen');
+  // ohne Symbol gültig (die Seite nimmt dann ein passendes bzw. das Symbol des Themas)
+  assert.deepEqual((await kompiliere({ pruefe: true, wurzel: neueWurzel(mitBloecken('::: aufklapper Kurz\nText.\n:::\n')), ziel: null })).fehler, []);
+  const fehler = async (d: Record<string, string>): Promise<string[]> => (await kompiliere({ pruefe: true, wurzel: neueWurzel(d), ziel: null })).fehler;
+  assert.ok((await fehler(kern('symbol: gibtsnicht\n'))).some((f) => /symbol „gibtsnicht“ gibt es nicht/u.test(f)));
+  assert.ok((await fehler(mitBloecken('::: aufklapper\nText.\n:::\n'))).some((f) => /„aufklapper“ braucht einen Titel in der Öffnungszeile/u.test(f)));
+  assert.ok((await fehler(mitBloecken('::: aufklapper Leer\n:::\n'))).some((f) => /„aufklapper Leer“: Feld „text“ fehlt oder ist leer/u.test(f)));
+  assert.ok((await fehler(mitBloecken('::: aufklapper Der [[Mandat]]\nText.\n:::\n'))).some((f) => /der Titel ist schlichter Text/u.test(f)));
+  assert.ok((await fehler(mitBloecken('::: aufklapper Probe\n---\nsymbol: nix\n---\nText.\n:::\n'))).some((f) => /symbol „nix“ gibt es nicht/u.test(f)));
 });

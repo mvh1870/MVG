@@ -1,5 +1,6 @@
-// Browser-Szenario Regie und Leinwand (O-9, P16.9): die Regie steuert, die Leinwand zeigt denselben Stand – ohne
-// Regie-Notiz. Nur in der breiten Ansicht (die Regie ist ein Pult am Laptop).
+// Browser-Szenario Regie und Leinwand (O-9, P16.9, P17.6): die Regie steuert – Sprung je Schritt, Wahl, Gewichte,
+// Mini-Aufgabe –, die Leinwand zeigt denselben Stand, ohne Regie-Notiz, Leitfragen und Wertung. Nur in der breiten
+// Ansicht (die Regie ist ein Pult am Laptop).
 import { pruefeLayout } from './hilfen.mjs';
 
 export const name = 'regie';
@@ -15,16 +16,50 @@ export async function lauf(seite, h) {
   const leinwand = await h.zweitesFenster('#leinwand');
   await h.erwarte('[data-pruef="leinwand-warten"], .anzeige', leinwand);
   await h.klick('[data-pruef="regie-bereich-story"]');
-  await seite.locator('[data-pruef="regie-sprung"]').selectOption('s8');
+  // P17.6: Sprung je Schritt – direkt in den Vergleich von Kapitel 7; Notiz und Leitfragen nur in der Regie
+  await seite.locator('[data-pruef="regie-sprung"]').selectOption('k7:vergleich');
   await h.erwarte('[data-pruef="regie-notiz"] .regie-notiz-text');
-  await h.klick('[data-pruef="regie-weiter"]');
-  await h.klick('[data-pruef="regie-wahl-B"]');
+  await h.erwarte('[data-pruef="regie-leitfragen"]');
+  await h.erwarte('.anzeige [data-pruef="gs-vgl-karten"]', leinwand);
+  // Gewichte aus der Regie: die Leinwand ordnet die Karten um (C rückt vor B)
+  const reihe = async () => leinwand.evaluate(() => [...document.querySelectorAll('.anzeige .gs-vgl-karte')]
+    .sort((a, b) => a.getBoundingClientRect().left - b.getBoundingClientRect().left).map((k) => k.getAttribute('data-option')).join(''));
+  const vorher = await reihe();
+  await h.klick('[data-pruef="regie-stufe-klima-3"]');
+  await h.erwarte('.anzeige [data-pruef="gs-vgl-vorn"]:has-text("Gleichauf")', leinwand);
+  await h.warte(200);
+  const nachher = await reihe();
+  if (vorher !== 'ABC' || nachher !== 'ACB') h.befund(`Leinwand ordnet die Wege nicht um (vorher ${vorher}, nachher ${nachher})`);
+  await h.klick('[data-pruef="regie-abgestimmt"]');
+  // Frage: Antwort aus der Regie, Wertung nur in der Regie
+  await h.klick('[data-pruef="regie-teil-frage"]');
+  await h.erwarte('[data-pruef="regie-wertung-1"]');
+  await h.klick('[data-pruef="regie-wahl-2"]');
   await h.warte(400);
-  await h.erwarte('.anzeige [data-pruef="gs-titel"]:has-text("Lüftungsgerät")', leinwand);
-  const gewaehlt = await leinwand.locator('.anzeige [data-option="B"][aria-pressed="true"]').count();
-  if (gewaehlt !== 1) h.befund('Leinwand zeigt die Kundenwahl B nicht');
+  await h.erwarte('.anzeige [data-pruef="gs-titel"]:has-text("Die große Entscheidung")', leinwand);
+  const gewaehlt = await leinwand.locator('.anzeige .gs-antwort[data-platz="1"][aria-pressed="true"]').count();
+  if (gewaehlt !== 1) h.befund('Leinwand zeigt die Kundenwahl 2 nicht');
+  if ((await leinwand.locator('.anzeige [data-pruef="gs-folge"]').count()) !== 1) h.befund('Leinwand zeigt die Folge der Wahl nicht');
+  const folgeOben = await leinwand.evaluate(() => document.querySelector('.anzeige [data-pruef="gs-folge"]')?.getBoundingClientRect().top ?? -1);
+  if (folgeOben < 0 || folgeOben > 300) h.befund(`Leinwand rollt nicht zur Folge (oben bei ${Math.round(folgeOben)} px)`);
+  const lwText = await leinwand.locator('body').innerText();
   const notiz = (await seite.locator('[data-pruef="regie-notiz"] .regie-notiz-text').innerText()).slice(0, 40);
-  if ((await leinwand.locator('body').innerText()).includes(notiz)) h.befund('Regie-Notiz auf der Leinwand');
+  if (lwText.includes(notiz)) h.befund('Regie-Notiz auf der Leinwand');
+  for (const frage of await seite.locator('[data-pruef="regie-leitfragen"] li').allInnerTexts()) if (lwText.includes(frage)) h.befund(`Leitfrage auf der Leinwand: ${frage}`);
+  if (/\b(vertretbar|Falle)\b/u.test(lwText) || (await leinwand.locator('[data-wertung], .regie-wertung').count()) > 0) h.befund('Wertung auf der Leinwand');
+  // Mini-Aufgabe aus der Regie: Zuordnung setzen (Leinwand zeigt die Rückmeldung), auflösen, Reihenfolge anklicken
+  await seite.locator('[data-pruef="regie-sprung"]').selectOption('k2:mini');
+  await h.klick('[data-pruef="regie-mini-1-risiko"]');
+  await h.erwarte('.anzeige [data-pruef="posten-1"][data-lage="falsch"]', leinwand);
+  await h.klick('[data-pruef="regie-mini-aufloesen"]');
+  await h.warte(200);
+  const richtig = await leinwand.locator('.anzeige .gs-mini-posten[data-lage="richtig"]').count();
+  const alle = await leinwand.locator('.anzeige .gs-mini-posten').count();
+  if (alle === 0 || richtig !== alle) h.befund(`Mini-Aufgabe aufgelöst: ${richtig} von ${alle} richtig auf der Leinwand`);
+  await seite.locator('[data-pruef="regie-sprung"]').selectOption('k6:mini');
+  await h.klick('[data-pruef="regie-reihe-2"]');
+  await h.erwarte('.anzeige [data-pruef="posten-2"] .gs-reihe-nr:has-text("1")', leinwand);
+  if ((await leinwand.locator('.anzeige button, .anzeige a[href]').count()) > 0) h.befund('Bedienelemente auf der Leinwand');
   await h.erwarte('[data-pruef="leinwand-status"][data-status="ok"]');
   // Theorie und Explore auf der Leinwand
   await seite.locator('[data-pruef="regie-thema"]').selectOption('verantwortung');

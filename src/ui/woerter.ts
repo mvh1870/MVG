@@ -6,6 +6,18 @@
  * Story- oder Fachtext im Code steckt. Mehrsprachig später: diese Datei je Sprache.
  */
 
+/** Kleine Anzahlen als Wort am Satzanfang (Startseite). */
+const ZAHLWORT: Record<number, string> = { 2: 'Zwei', 3: 'Drei', 4: 'Vier', 5: 'Fünf', 6: 'Sechs', 7: 'Sieben', 8: 'Acht', 9: 'Neun', 10: 'Zehn', 11: 'Elf', 12: 'Zwölf' };
+
+/** Die drei Stufen „Was ist wichtiger?“ im Vergleich der Story. */
+const STUFEN_WORT: Record<number, string> = { 5: 'sehr wichtig', 3: 'wichtig', 1: 'weniger wichtig' };
+
+/** Aufzählung mit Komma und „und“ vor dem letzten Glied: „A“, „A und B“, „A, B und C“. */
+export function aufzaehlung(teile: readonly string[]): string {
+  if (teile.length <= 1) return teile[0] ?? '';
+  return `${teile.slice(0, -1).join(', ')} und ${teile.at(-1) ?? ''}`;
+}
+
 export const W = {
   // O-33: Der Name des Programms; Bauherr Mentoren bleibt mit Bildmarke und als Herausgeber genannt –
   // O-34: zurückhaltend, an der Sache orientiert (im Rahmen nur als Herausgeber, nicht im Produktnamen)
@@ -17,21 +29,23 @@ export const W = {
   herausgeber: 'Herausgeber: Bauherr Mentoren',
   fiktiv: 'Fiktiver Fall',
   story: 'Story',
-  version: (fassung: string) => `Fassung ${fassung}`,
   // Start
   start: {
     // Kicker, Leitsatz und These stehen in inhalte/start.md.
     wege: 'Drei Wege',
-    internetseite: 'Der Governance Kompass ist eine Internetseite – zum Lesen und Ausprobieren, ohne Anmeldung, ohne Konto.',
+    // O-42: die Startseite sagt, dass es eine Internetseite ist – als Halbsatz statt als eigener Bedienhinweis (R74)
+    internetseite: 'Spielen Sie es als Geschichte durch, lesen Sie es in Themen nach oder probieren Sie die Werkzeuge aus – alles auf dieser Internetseite, ohne Anmeldung.',
     storyKicker: 'Erlebt',
     storyTitel: 'Als Geschichte',
-    storyText: 'Ein Schulcampus, Sie vertreten den Bauherrn. Die Projektsteuerung bereitet jede erforderliche Entscheidung vor – Sie entscheiden oder empfehlen.',
-    storyMeta: (n: number) => `${n} Stationen · etwa 25 Minuten, kurz 10`,
+    storyText: 'Sie leiten für die Stadt Lindenhall den Bau eines Schulcampus. Unterwegs entscheiden Sie achtmal – und sehen gleich, was jede Wahl für Geld, Zeit und Vertrauen bedeutet.',
+    // Anzahl als Wort; sichtbar nie „Kapitel“ (O-38, L-225)
+    storyMeta: (n: number) => `${ZAHLWORT[n] ?? String(n)} Entscheidungen · etwa 25 Minuten, kurz etwa 10`,
     storyLos: 'Beginnen',
     storyWeiter: 'Weiterlesen',
+    figuren: 'Mit dabei',
     theorieKicker: 'Erklärt',
     theorieTitel: 'In Themen',
-    theorieText: 'Was Minimum Viable Governance ausmacht – Verantwortung, Entscheidungsvorlagen, Vorgänge, Takt –, mit Grafiken zum Anklicken.',
+    theorieText: 'Was Minimum Viable Governance ausmacht – ein Buch in vier Teilen mit Grafiken und kurzen Fragen.',
     theorieMeta: (n: number) => `${n} Themen · einzeln lesbar`,
     theorieLos: 'Öffnen',
     exploreKicker: 'Ausprobiert',
@@ -40,7 +54,7 @@ export const W = {
     exploreMeta: (n: number) => `${n} Werkzeuge`,
     exploreLos: 'Ausprobieren',
     dahinter: 'Wer steht dahinter',
-    dahinterText: 'Der Governance Kompass ist ein Angebot der Bauherr Mentoren GmbH i. G. Fragen, Kontakt und alles Weitere:',
+    dahinterText: 'Der Governance Kompass ist ein Angebot der Bauherr Mentoren GmbH i. G. – bei Fragen und für alles Weitere:',
     fiktiv: 'Der Schulcampus Lindenhall-Süd ist ein fiktiver Fall; Stadt, Projekt und Personen sind erfunden.',
   },
   // Druck (P10.2, E11)
@@ -51,7 +65,9 @@ export const W = {
     ersatzText: 'Diese Ansicht ist für den Bildschirm gedacht. Gedruckt wird über diese Wege:',
     ersatzWege: [
       'Theorie: „Thema drucken“ auf jeder Seite eines Themas.',
-      'Regie: „Protokoll drucken“ – Notizen und Entscheidungen des Gesprächs.',
+      // r72: der Story-Druckbogen (L-232) hat keinen Knopf – ohne diese Zeile kennt den Weg niemand; auf der Leinwand entfällt sie
+      'Story: Der Druckbefehl des Browsers druckt in der Geschichte Ihre Antworten mit „So macht man es gut“, am Ende auch Ihre Bilanz.',
+      // R76 (O-56): kein Hinweis auf die Präsentationsansicht mehr – sie druckt ihr Protokoll über den eigenen Knopf
     ],
   },
   ebene: 'Ebene',
@@ -75,15 +91,9 @@ export const W = {
     wissenscheck: 'Kurz geprüft',
     wissenscheckAntworten: 'Ihre Einschätzung',
   },
-  // Abbildungen der DOCX V1.2 im Fachtext (P14, O-32, L-77)
+  // Abbildungen im Fachtext (P14, O-32, L-77; nur Marke und Titel, O-56)
   abbildung: {
     marke: (nr: number) => `Abbildung ${nr}`,
-    vorrang: 'Wo die Abbildung vom Text abweicht, gilt der Text.',
-    angeglichen: 'Im Bild an die Begriffe des Texts angeglichen:',
-    abweichungen: (n: number) => `Abweichungen vom Text (${n})`,
-    gross: 'Vergrößern',
-    grossName: (titel: string) => `Abbildung vergrößern: ${titel}`,
-    schliessen: 'Schließen',
     fehlt: 'Bild nicht eingebettet',
   },
   // Regie
@@ -110,7 +120,18 @@ export const W = {
     druckEintraege: 'Notizen aus dem Gespräch',
     druckLeer: 'Keine Einträge.',
     druckEntscheidungen: 'Entscheidungen in der Geschichte',
-    sprungWaehlen: 'Station wählen …',
+    // R76: der leere Fall ausgeschrieben wie bei den Notizen (statt eines einzelnen Strichs)
+    druckKeineEntscheidung: 'Noch keine Entscheidung.',
+    sprungWaehlen: 'Schritt wählen …',
+    schritteHier: 'Schritte',
+    wertung: { gut: 'gut', vertretbar: 'vertretbar', falle: 'Falle' } as Record<string, string>,
+    wertungTitel: 'Wertung (nur in der Regie)',
+    antwortNr: (nr: number) => `Antwort ${nr}`,
+    wahlZurueck: 'Wahl zurücknehmen',
+    miniAufloesen: 'Auflösen',
+    miniLeeren: 'Zurücksetzen',
+    miniLoesung: 'richtig',
+    miniReiheHinweis: 'Schritte in der Reihenfolge anklicken, die die Runde ansagt; ein zweiter Klick löst den Schritt und alle danach.',
     keineNotiz: 'Für diesen Schritt gibt es keine Notiz.',
     kundenwahl: 'Kundenwahl und Eingriffe',
     keineEingriffe: 'An diesem Schritt gibt es nichts zu wählen.',
@@ -140,89 +161,123 @@ export const W = {
     praesentieren: 'Präsentieren',
     zumInhalt: 'Zum Inhalt springen',
   },
-  // Story (P16.6, O-40)
+  // Story (P17.4, O-51/O-52): acht Kapitel, drei Antworten, Balken Geld · Zeit · Vertrauen
   geschichte: {
-    fortschritt: 'Fortschritt der Story',
-    station: (nr: number) => `Station ${nr}`,
-    teile: { lage: 'Lage', vorlage: 'Vorlage', folge: 'Folge' } as Record<string, string>,
-    prolog: 'Auftakt',
+    fortschritt: 'Fortschritt der Geschichte',
+    vonN: (nr: number, n: number) => `${nr} von ${n}`,
+    auftakt: 'Auftakt',
     ende: 'Schulstart',
+    // Fortschrittslinie und Ortszeile: eindeutig neben Kapitel 8 „Schulstart“ (R74)
+    endeOrt: 'Ende · Ihre Bilanz',
+    // Regie-Knopf neben 1–8 (R75)
+    endeKurz: 'Ende',
+    // Teile eines Kapitels (Regie: wo die Bühne steht)
+    teile: { szene: 'Szene', vergleich: 'Vergleich', frage: 'Frage', mini: 'Mini-Aufgabe' } as Record<string, string>,
     weiter: 'Weiter',
     zurueck: 'Zurück',
-    beginnen: 'Beginnen',
-    weiterlesen: 'Weiterlesen',
-    vonVorn: 'Von vorn beginnen',
-    langfassung: 'Ganze Geschichte',
-    langMeta: (n: number) => `${n} Stationen · etwa 25 Minuten`,
+    vonVorn: 'Noch einmal von vorn',
+    // Ende mit offenen Entscheidungen (R75): „Zur ersten offenen Entscheidung: 2 · Ein erstes Warnsignal“
+    zurOffenen: (stelle: string, titel: string) => `Zur ersten offenen Entscheidung: ${stelle} · ${titel}`,
+    zuDenThemen: 'Zu den Themen',
     kurzfassung: 'Kurzfassung',
-    kurzMeta: (n: number) => `${n} Stationen · etwa 10 Minuten`,
-    fassung: 'Umfang',
-    status: 'Stand des Projekts',
-    // Lagewort je Kachel der Statusanzeige (R67, STIL Grundsatz 7: Form und Wort, nie nur Farbe)
-    lagen: { ok: 'im Rahmen', mittel: 'knapp', kritisch: 'kritisch' },
     fiktiv: 'Fiktiver Fall',
-    lph: (n: number) => `LPH ${n}`,
-    vorgaenge: 'Aus dem Bestand der Projektsteuerung',
-    arten: { aufgabe: 'Aufgabe', massnahme: 'Maßnahme', fruehwarnung: 'Frühwarnung', risiko: 'Risiko', problem: 'Problem', aenderung: 'Änderung' } as Record<string, string>,
-    verantwortlich: 'Verantwortlich',
-    termin: 'Termin',
-    stand: 'Stand',
-    bewertung: 'Bewertung',
-    matrix: (w: number, a: number) => `Wahrscheinlichkeit ${w} · Auswirkung ${a} · Wert ${w * a}`,
-    vorlage: 'Entscheidungsvorlage der Projektsteuerung',
-    stelle: 'Entscheidet',
-    bis: 'Bis',
-    verzug: 'Wenn nichts geschieht',
-    muss: 'Muss-Kriterium',
-    unvollstaendig: 'Vorlage unvollständig',
-    vergleich: 'Gewichteter Vergleich',
-    vergleichHinweis: 'Punkte 1–5 je Kriterium, mal Gewicht; die Zahlen dahinter stehen daneben.',
+    sie: 'Sie',
+    sieRolle: 'Projektleitung des Bauherrn',
+    undSie: 'Und Sie:',
+    steckbrief: 'Steckbrief',
+    balkenTitel: 'Drei Balken begleiten Sie',
+    balkenLeiste: 'Stand von Geld, Zeit und Vertrauen',
+    // Füllstand in Worten (nie nur Farbe; ohne Zahlen)
+    fuellstand: { hoch: 'gut gefüllt', mittel: 'etwa halb voll', niedrig: 'knapp' } as Record<string, string>,
+    etwas: 'etwas',
+    deutlich: 'deutlich',
+    unveraendert: 'unverändert',
+    bleibtOben: 'bleibt ganz oben',
+    bleibtUnten: 'bleibt ganz unten',
+    szeneTitel: 'Im Gespräch',
+    ihreEntscheidung: 'Ihre Entscheidung',
+    antworten: 'Drei Antworten',
+    gewaehlt: 'Ihre Wahl',
+    nochKeineWahl: 'Bitte wählen Sie eine der drei Antworten.',
+    folgeTitel: 'So geht es weiter',
+    wirkungTitel: 'Was Ihre Antwort bewegt',
+    gutTitel: 'So macht man es gut',
+    dahinterTitel: 'Das steckt dahinter',
+    zumThema: 'Zum Thema',
+    mandatZeigen: 'Wer entscheidet was',
+    brueckeTitel: 'Was inzwischen geschah',
+    miniKicker: 'Mini-Aufgabe',
+    miniRichtig: 'Richtig',
+    miniFalsch: (loesung: string) => `Nicht ganz – richtig ist: ${loesung}.`,
+    miniStelle: (n: number) => `an Stelle ${n}`,
+    miniGehoert: (n: number) => `gehört an Stelle ${n}`,
+    miniErgebnis: (richtig: number, n: number) => `${richtig} von ${n} richtig.`,
+    miniNochmal: 'Noch einmal',
+    miniNoch: (n: number) => `Noch ${n} offen.`,
+    miniGesetzt: (n: number, gesamt: number) => `${n} von ${gesamt} gesetzt.`,
+    miniKarten: (n: number) => n === 1 ? '1 Karte' : `${n} Karten`,
+    vergleichKicker: 'Der Vergleich',
+    vergleichTitel: 'Drei Wege, vier Gesichtspunkte',
+    wasWichtiger: 'Was ist wichtiger?',
+    stufen: STUFEN_WORT,
+    abgestimmt: 'abgestimmt',
+    abgestimmteGewichte: 'Abgestimmte Gewichte',
+    platz: (n: number) => `Platz ${n}`,
+    punkteVon: (n: number) => `${n} von 5 Punkten`,
+    punkte: (n: number) => `${n} Punkte`,
+    vorn: (titel: string, punkte: number) => `Vorn liegt „${titel}“ mit ${punkte} Punkten.`,
+    gleichauf: (titel: readonly string[], punkte: number) => `Gleichauf vorn: ${aufzaehlung(titel.map((t) => `„${t}“`))} mit je ${punkte} Punkten.`,
+    kippTitel: 'Wann kippt die Rangfolge?',
+    kippKeiner: 'Keine einzelne andere Stufe ändert, wer vorn liegt.',
+    // „Wäre der Schulstart nur „wichtig“ statt „sehr wichtig“, …“ – Mehrzahl, wenn der Gesichtspunkt zwei Dinge nennt
+    kipp: (kriterium: string, neu: number, jetzt: number, wer: readonly string[]) => {
+      const stufe = (n: number): string => `„${STUFEN_WORT[n] ?? String(n)}“`;
+      const verb = /\sund\s/u.test(kriterium) ? 'Wären' : 'Wäre';
+      const wenn = `${verb} ${kriterium} ${neu < jetzt ? 'nur ' : ''}${stufe(neu)} statt ${stufe(jetzt)}`;
+      return wer.length > 1 ? `${wenn}, lägen ${aufzaehlung(wer.map((t) => `„${t}“`))} gleichauf.` : `${wenn}, läge „${wer[0] ?? ''}“ vorn.`;
+    },
+    projektsteuerinSagt: 'Die Projektsteuerin',
+    bilanzTitel: 'Ihre Bilanz',
+    offen: (n: number) => n === 1 ? 'Eine Entscheidung haben Sie noch nicht getroffen – sie zählt hier nicht mit.' : `${ZAHLWORT[n] ?? String(n)} Entscheidungen haben Sie noch nicht getroffen – sie zählen hier nicht mit.`,
+    fortschrittLoeschen: 'Fortschritt löschen',
+    druckTitel: 'Ihre Geschichte',
+    druckAntwort: 'Ihre Antwort',
+    druckOffen: 'noch offen',
+    // R76: übersprungene Kapitel der Kurzfassung tragen auf Papier ihren Brückensatz statt „Ihre Antwort: …“
+    druckBruecke: 'In der Kurzfassung nur erzählt',
+    druckBilanzSpaeter: 'Die Bilanz steht am Ende der Geschichte.',
+    // Rechner in Explore (gewichteter Vergleich mit Gewichten 1–5)
     kriterium: 'Kriterium',
     gewicht: 'Gewicht',
     summe: 'Summe',
     rang: (r: number) => `Rang ${r}`,
-    klaerung: 'Klärung statt Entscheidung',
-    gewichteTitel: 'Die Gewichte im Einzelnen',
-    gewichteHinweis: 'Diese Gewichte gelten für alle folgenden Vorlagen. Verschieben Sie sie – die Varianten oben sind nur Vorschläge.',
-    gegenprobe: 'Gegenprobe: andere Gewichte ausprobieren',
-    gegenprobeHinweis: 'Ändert nur die Anzeige hier; entschieden wird mit den festgelegten Gewichten.',
-    gegenprobeVorn: (titel: readonly string[], punkte: number): string => `Mit diesen Gewichten vorn: ${titel.map((t) => `„${t}“`).join(' und ')} (${punkte} Punkte).`,
-    gegenprobeZurueck: 'Auf die festgelegten Gewichte zurücksetzen',
     kipppunkte: 'Wann sich die Spitze dreht',
     keinKipppunkt: 'Kein einzelnes Gewicht zwischen 1 und 5 dreht die Spitze.',
-    kipppunkt: (kriterium: string, gewicht: number, wer: string[]) => wer.length > 1 ? `${kriterium} auf ${gewicht}: Gleichstand – ${wer.join(' und ')}` : `${kriterium} auf ${gewicht}: vorn läge ${wer[0] ?? ''}`,
-    empfehlung: 'Empfehlung der Projektsteuerung',
-    // R71: nicht „die vorgeschlagenen Gewichte“ – alle drei Varianten aus Station 1 sind Vorschläge; die Texte der
-    // Empfehlungen sind mit den Gewichten der empfohlenen Variante begründet (tests/geschichte.test.ts, STANDARD)
-    empfehlungAllgemein: (titel: string, grundlage: string) => `Mit den eingestellten Gewichten liegt „${titel}“ vorn. Die Projektsteuerung hatte ihre Empfehlung mit den Gewichten „${grundlage}“ begründet – für die eingestellten Gewichte würde sie neu begründet. Eine Punktzahl allein ersetzt kein Urteil.`,
-    empfohlen: 'empfohlen',
-    waehlen: 'Diese Option wählen',
-    gewaehlt: 'Ihre Wahl',
-    nochKeineWahl: 'Bitte wählen Sie eine Option.',
-    ihreEntscheidung: 'Beschluss',
-    folgen: 'Wirkung auf den Stand',
-    keineFolgen: 'Keine Wirkung auf Kosten, Termin oder offene Entscheidungen.',
-    naechste: 'Was die Projektsteuerung jetzt tut',
-    soLaeuft: 'So läuft es oft',
-    einwand: 'Typischer Einwand und Antwort',
-    zumThema: 'Mehr dazu im Thema',
-    ihreEntscheidungen: 'Ihre Entscheidungen',
-    wieEmpfohlen: 'wie empfohlen',
-    andersAlsEmpfohlen: 'anders als empfohlen',
-    automatisch: 'mit Empfehlung (Kurzfassung)',
-    fortschrittLoeschen: 'Fortschritt löschen',
-    fortschrittHinweis: 'Ihr Stand liegt nur in diesem Browser.',
-    zurTheorie: 'Zur Theorie',
-    zuExplore: 'Werkzeuge ausprobieren',
+    kipppunkt: (kriterium: string, gewicht: number, wer: string[]) => wer.length > 1 ? `${kriterium} auf ${gewicht}: Gleichstand – ${aufzaehlung(wer)}` : `${kriterium} auf ${gewicht}: vorn läge ${wer[0] ?? ''}`,
   },
   // Theorie als Themen (P16.3, O-38)
   themen: {
     bereich: 'Theorie',
     titel: 'Die Themen',
-    einleitung: 'Minimum Viable Governance in Themen – vom Überblick bis zum Glossar. Jedes Thema ist für sich lesbar.',
+    einleitung: 'Minimum Viable Governance in vier Teilen – vom Überblick bis zu den Werkzeugen der Praxis. Jedes Thema ist für sich lesbar.',
+    // Buch (P17.8, O-54): Teile I–IV und Anhang, Nummer vor dem Titel (nie „Kapitel“, O-38)
+    teil: (n: 1 | 2 | 3 | 4) => `Teil ${['I', 'II', 'III', 'IV'][n - 1] ?? ''}`,
+    teilName: { 1: 'Grundlagen', 2: 'Führungsmodell und Arbeitsweise', 3: 'Anwendung und Einführung', 4: 'Werkzeuge der Praxis' } as Record<1 | 2 | 3 | 4, string>,
+    anhang: 'Anhang',
+    nummer: (nr: number, titel: string) => `${nr} · ${titel}`,
+    inhaltsverzeichnis: 'Inhaltsverzeichnis',
+    fortschritt: 'Ihr Fortschritt',
+    geschafftZahl: (n: number, gesamt: number) => `${n} von ${gesamt} geschafft`,
+    geschafft: 'geschafft',
+    zuruecksetzen: 'Fortschritt zurücksetzen',
     verzeichnis: 'Themen',
     lesen: 'Lesen',
     kernaussage: 'Kernaussage',
+    // Karten mit Rückseite (P17.9, O-55): umdrehen per Knopf; die Ansage nennt die sichtbare Seite
+    karteUmdrehen: 'Umdrehen',
+    karteVorderseite: 'Vorderseite',
+    karteRueckseite: 'Rückseite',
+    karteZeigt: (seite: string, titel: string) => `${titel}: ${seite}`,
     blaettern: 'Themen blättern',
     zurueck: 'Zurück',
     weiter: 'Weiter',
@@ -235,7 +290,7 @@ export const W = {
     glossarLeer: 'Kein Begriff passt zur Suche.',
     kommtVor: 'Mehr dazu in',
     kompass: 'Begriffs-Kompass',
-    kompassText: 'Andere Organisationen sagen oft anders, was hier gemeint ist. Die Tabelle ist eine Lesehilfe: links gängige Bezeichnungen, rechts der Begriff des Governance Kompass. Die Zuordnung ist keine Gleichsetzung im Detail.',
+    kompassText: 'Andere Organisationen sagen oft anders, was hier gemeint ist. Die Zuordnung ist keine Gleichsetzung im Detail.',
     kompassAndere: 'Andernorts oft',
     kompassBegriff: 'Hier',
     tabelle: (titel: string) => `Tabelle: ${titel}`,
@@ -247,9 +302,9 @@ export const W = {
     werkzeuge: 'Werkzeuge',
     keinBeispiel: 'Kein Beispiel vorhanden.',
     beispiel: 'Beispiel aus der Story',
-    zuruecksetzen: 'Auf die Werte der Vorlage zurücksetzen',
+    zuruecksetzen: 'Auf die Werte des Beispiels zurücksetzen',
     mcdaTabelle: 'Gewichteter Vergleich, Punkte und Gewichte einstellbar',
-    punkteHinweis: (min: number, max: number) => `Gewichte und Punkte je ${min} bis ${max}. Die Begründung unter jedem Punkt ist die der Vorlage; wer Punkte ändert, muss sie neu begründen.`,
+    punkteHinweis: (min: number, max: number) => `Gewichte und Punkte je ${min} bis ${max}. Wer Punkte ändert, muss sie neu begründen.`,
     wahrscheinlichkeit: 'Wahrscheinlichkeit',
     auswirkung: 'Auswirkung',
     immerVorrangig: 'Auswirkung 5 ist immer vorrangig',

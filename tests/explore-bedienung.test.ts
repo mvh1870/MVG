@@ -27,27 +27,28 @@ const summeIm = (el: HTMLElement, id: string): number => {
   return Number(td.textContent);
 };
 
+/** Der Vergleich aus der Story – das Beispiel des Rechners. */
+function vergleich() {
+  const v = inhalte.geschichte?.kapitel.find((k) => k.vergleich !== null)?.vergleich;
+  assert.ok(v, 'Vergleich in der Story');
+  return v;
+}
+const abgestimmt = (v: ReturnType<typeof vergleich>): Record<string, number> => Object.fromEntries(v.kriterien.map((k) => [k.id, k.gewicht]));
+
 test('MCDA-Rechner: Punkte ändern rechnet um, „Zurücksetzen“ stellt die Ausgangssumme wieder her', () => {
-  const g = inhalte.geschichte;
-  assert.ok(g);
+  const v = vergleich();
   const el = baueExplore({ inhalte, werkzeug: 'mcda', bedienbar: true });
   document.body.replaceChildren(el);
-  // Beispiel des Rechners: die zuletzt angebotene Vorlage
-  const wahl = el.querySelector<HTMLSelectElement>('[data-pruef="ex-beispiel"]');
-  assert.ok(wahl);
-  const st = g.stationen.find((x) => x.id === wahl.value);
-  assert.ok(st);
-  const opt = st.vorlage.optionen.find((o) => !o.klaerung);
-  assert.ok(opt);
-  const k = g.kriterien[0];
-  assert.ok(k);
-  // Ausgangssumme wie der Vergleich mit den vorgeschlagenen Gewichten (Station 1)
-  const s1 = g.stationen.find((x) => x.vorlage.art === 'gewichte');
-  const gew = s1?.vorlage.optionen.find((o) => o.id === s1.vorlage.empfehlung.option)?.gewichte ?? {};
-  const vorher = rangfolge(st.vorlage.optionen, g.kriterien, gew).find((p) => p.option.id === opt.id)?.summe;
+  const opt = v.optionen[0];
+  const k = v.kriterien[0];
+  assert.ok(opt && k);
+  // Ausgangssumme wie der Vergleich der Story mit den abgestimmten Gewichten (A 49)
+  const gew = abgestimmt(v);
+  const vorher = rangfolge(v.optionen, v.kriterien, gew).find((p) => p.option.id === opt.id)?.summe;
+  assert.equal(vorher, 49);
   assert.equal(summeIm(el, opt.id), vorher);
 
-  const punkt = opt.punkte?.[k.id]?.[0] ?? 3;
+  const punkt = opt.punkte[k.id] ?? 3;
   const neu = punkt === 5 ? 1 : 5;
   const auswahl = el.querySelector<HTMLSelectElement>(`select[aria-label="${opt.titel}: ${k.titel}"]`);
   assert.ok(auswahl, 'Punkte-Auswahl');
@@ -94,11 +95,10 @@ test('Risikomatrix (R67): die Legende nennt bei der höchsten Stufe die Ausnahme
 });
 
 test('MCDA-Rechner (R68): der Fokus bleibt nach einer Änderung auf derselben Auswahl (Gewicht und Punkte)', () => {
-  const g = inhalte.geschichte;
-  assert.ok(g);
+  const v = vergleich();
   const el = baueExplore({ inhalte, werkzeug: 'mcda', bedienbar: true });
   document.body.replaceChildren(el);
-  const k = g.kriterien[1];
+  const k = v.kriterien[1];
   assert.ok(k);
   const gewicht = `${W.geschichte.gewicht} ${k.titel}`;
   const ersteOption = el.querySelector<HTMLSelectElement>('select.ex-punkt-wahl:not([aria-label^="Gewicht"])');
@@ -122,45 +122,106 @@ test('MCDA-Rechner (R68): der Fokus bleibt nach einer Änderung auf derselben Au
   }
 });
 
-test('MCDA-Rechner (R68): Beispiele sind genau die vollständigen Vorlagen mit Optionen – die unvollständige fehlt', () => {
-  const g = inhalte.geschichte;
-  assert.ok(g);
+test('MCDA-Rechner: Beispiel ist der Vergleich der Story – ohne Auswahl anderer Vorlagen', () => {
+  const v = vergleich();
   const el = baueExplore({ inhalte, werkzeug: 'mcda', bedienbar: true });
-  const ids = [...el.querySelectorAll<HTMLOptionElement>('[data-pruef="ex-beispiel"] option')].map((o) => o.value);
-  const unvollstaendig = g.stationen.filter((s) => s.vorlage.unvollstaendigHtml !== null).map((s) => s.id);
-  assert.ok(unvollstaendig.length > 0, 'es gibt eine unvollständige Vorlage');
-  for (const id of unvollstaendig) assert.ok(!ids.includes(id), `${id} ist kein Beispiel`);
-  assert.deepEqual(ids, g.stationen.filter((s) => s.vorlage.art === 'optionen' && s.vorlage.unvollstaendigHtml === null).map((s) => s.id));
+  assert.equal(el.querySelector('[data-pruef="ex-beispiel"]'), null);
+  assert.deepEqual([...el.querySelectorAll('thead th')].slice(2).map((th) => th.textContent), v.optionen.map((o) => `${o.id} · ${o.titel}`));
 });
 
 test('MCDA-Rechner (R69): ein Kipppunkt mit Gleichstand nennt alle an der Spitze („Gleichstand – … und …“)', () => {
-  const g = inhalte.geschichte;
-  assert.ok(g);
+  const v = vergleich();
   const el = baueExplore({ inhalte, werkzeug: 'mcda', bedienbar: true });
   document.body.replaceChildren(el);
-  const wahl = el.querySelector<HTMLSelectElement>('[data-pruef="ex-beispiel"]');
-  assert.ok(wahl);
-  const gewichte = (): Record<string, number> => Object.fromEntries(g.kriterien.map((k) => {
-    const s = el.querySelector<HTMLSelectElement>(`[data-pruef="ex-gewicht-${k.id}"]`);
-    assert.ok(s, k.id);
-    return [k.id, Number(s.value)];
-  }));
-  // das erste Beispiel, dessen Ausgangslage einen Kipppunkt mit Gleichstand hat
-  let fund: { titel: string[]; kriterium: string; gewicht: number } | null = null;
-  for (const id of [...wahl.options].map((o) => o.value)) {
-    wahl.value = id;
-    wahl.dispatchEvent(new Event('change', { bubbles: true }));
-    const st = g.stationen.find((x) => x.id === id);
-    assert.ok(st);
-    const opts = st.vorlage.optionen.filter((o) => !o.klaerung);
-    const k = kipppunkte(opts, g.kriterien, gewichte()).find((x) => x.spitze.length > 1);
-    if (k === undefined) continue;
-    fund = { titel: k.spitze.map((x) => opts.find((o) => o.id === x)?.titel ?? x), kriterium: g.kriterien.find((c) => c.id === k.kriterium)?.titel ?? k.kriterium, gewicht: k.gewicht };
-    break;
-  }
-  assert.ok(fund, 'ein Beispiel mit Gleichstand an einem Kipppunkt');
+  // abgestimmt: Klima und Betrieb auf 3 → Ersatzgerät und Später einziehen gleichauf
+  const k = kipppunkte(v.optionen, v.kriterien, abgestimmt(v)).find((x) => x.spitze.length > 1);
+  assert.ok(k, 'ein Kipppunkt mit Gleichstand');
+  const titel = k.spitze.map((x) => v.optionen.find((o) => o.id === x)?.titel ?? x);
+  const soll = `${v.kriterien.find((c) => c.id === k.kriterium)?.titel ?? ''} auf ${k.gewicht}: Gleichstand – ${titel.join(' und ')}`;
+  assert.equal(soll, 'Klima und Betrieb auf 3: Gleichstand – Ersatzgerät und Später einziehen');
   const zeilen = [...el.querySelectorAll('.gs-kipp li')].map((li) => li.textContent ?? '');
-  const soll = `${fund.kriterium} auf ${fund.gewicht}: Gleichstand – ${fund.titel.join(' und ')}`;
-  assert.ok(fund.titel.length >= 2);
   assert.ok(zeilen.includes(soll), `„${soll}“ fehlt in ${JSON.stringify(zeilen)}`);
+});
+
+test('MCDA (r72): über der Tabelle steht die Lage aus dem Kapitel des Vergleichs – wörtlich die erste Szenenzeile, mit Figur und Monat', () => {
+  const el = baueExplore({ inhalte, werkzeug: 'mcda', bedienbar: true });
+  const k = inhalte.geschichte?.kapitel.find((x) => x.vergleich !== null);
+  assert.ok(k);
+  const lage = el.querySelector('[data-pruef="ex-lage"]');
+  assert.ok(lage, 'Lage fehlt');
+  const satz = vonHtmlText(k.szene[0]?.html ?? '');
+  assert.ok((lage.textContent ?? '').replace(/­/gu, '').includes(satz), lage.textContent ?? '');
+  assert.match(lage.textContent ?? '', new RegExp(`${k.zeit}$`, 'u'));
+  assert.ok(lage.compareDocumentPosition(el.querySelector('[data-pruef="ex-mcda-tabelle"]') as Node) & Node.DOCUMENT_POSITION_FOLLOWING, 'Lage steht über der Tabelle');
+});
+
+function vonHtmlText(html: string): string {
+  const d = document.createElement('div');
+  d.innerHTML = html;
+  return (d.textContent ?? '').replace(/­/gu, '');
+}
+
+/*
+ * R75 (explore-begriffe): Die fachlichen Kernsätze von Explore als feste Erwartung (O-57: der Inhalt bleibt; V2.4
+ * Handbuch 1–4). Die Prüfung liefert die Abweichungen als Liste; die Gegenprobe zeigt, dass sie Mutationen erkennt.
+ */
+type Werkzeuge = NonNullable<typeof inhalte.werkzeuge>;
+function kernAbweichungen(w: Werkzeuge): string[] {
+  const fehler: string[] = [];
+  const wege = (id: string): string[] => w.vorgaenge.arten.find((a) => a.id === id)?.wege ?? [];
+  for (const z of ['risiko', 'problem', 'aufgabe']) if (!wege('fruehwarnung').includes(z)) fehler.push(`Frühwarnung ohne Weg ${z}`);
+  if (!wege('risiko').includes('problem')) fehler.push('Risiko ohne Weg Problem');
+  if (!/Beschluss[^.]*befugten Stelle des Bauherrn/u.test(w.vorgaenge.entscheidung.html)) fehler.push('Beschluss nicht bei der befugten Stelle des Bauherrn');
+  if (!/der Bauherr pflegt keine Liste/u.test(w.vorgaenge.html)) fehler.push('„der Bauherr pflegt keine Liste“ fehlt');
+  const stufe = (id: string) => w.takt.stufen.find((s) => s.id === id);
+  if (!/selben Arbeitstag/u.test(stufe('sofort')?.html ?? '')) fehler.push('Sofort: nicht „am selben Arbeitstag“');
+  if (stufe('sofort')?.wer !== 'Projektsteuerung') fehler.push('Sofort: wer');
+  if (!/höchstens 60 Minuten/u.test(stufe('monat')?.html ?? '')) fehler.push('Monat: nicht „höchstens 60 Minuten“');
+  if (stufe('monat')?.wer !== 'Bauherr und Projektsteuerung') fehler.push('Monat: wer');
+  if (!w.matrix.beispiele.some((b) => b.w === 1 && b.a === 5)) fehler.push('kein Matrix-Beispiel mit W 1 und A 5');
+  // R76 (explore-begriffe): weitere Kernsätze aus V2.4 Handbuch 2–4 und 3.1, die Mutationen bisher überlebten
+  if (!/keine Geldwerte und keine Freigabe/u.test(w.matrix.regel)) fehler.push('Matrix-Regel: nicht „keine Geldwerte und keine Freigabe“');
+  if (!/Sicherheit oder Genehmigung[^.]*unabhängig von der Matrix behandelt/u.test(w.matrix.sonder)) fehler.push('Sonderregel: nicht „unabhängig von der Matrix“');
+  if (!/informiert den Bauherrn/u.test(w.matrix.stufen.find((x) => x.id === 'vorrangig')?.html ?? '')) fehler.push('Vorrangig: „informiert den Bauherrn“ fehlt');
+  const qualitaet = [
+    'Eine geringe Abweichung schränkt die Nutzung nicht ein.',
+    'Nacharbeit ist erforderlich; die vorgesehene Nutzung bleibt möglich.',
+    'Die Nutzung ist vorübergehend eingeschränkt.',
+    'Eine wichtige Teilfunktion bleibt erheblich eingeschränkt.',
+    'Eine wesentliche Funktion oder die vorgesehene Hauptnutzung fällt aus.',
+  ];
+  if (JSON.stringify(w.matrix.qualitaet) !== JSON.stringify(qualitaet)) fehler.push('Qualitätsstufen weichen von der Tabelle ab');
+  if (!/Zusammenfassung von höchstens einer Seite/u.test(stufe('monat')?.html ?? '')) fehler.push('Monat: nicht „höchstens einer Seite“');
+  if (!/binnen fünf Arbeitstagen/u.test(stufe('ruhe')?.html ?? '')) fehler.push('Ruhezeit: nicht „binnen fünf Arbeitstagen“');
+  if (!/Gewichte und Punkte liegen je zwischen 1 und 5/u.test(w.mcda.html)) fehler.push('MCDA: nicht „zwischen 1 und 5“');
+  return fehler;
+}
+
+test('Explore (R75): die fachlichen Kernsätze stehen unverändert – mit Gegenprobe', () => {
+  const w = inhalte.werkzeuge;
+  assert.ok(w);
+  assert.deepEqual(kernAbweichungen(w), []);
+  const mutationen: Array<(k: Werkzeuge) => void> = [
+    (k) => { const a = k.vorgaenge.arten.find((x) => x.id === 'fruehwarnung'); if (a) a.wege = a.wege.filter((x) => x !== 'problem'); },
+    (k) => { const a = k.vorgaenge.arten.find((x) => x.id === 'risiko'); if (a) a.wege = a.wege.filter((x) => x !== 'problem'); },
+    (k) => { k.vorgaenge.entscheidung.html = k.vorgaenge.entscheidung.html.replace('befugten Stelle des Bauherrn', 'Projektsteuerung'); },
+    (k) => { k.vorgaenge.html = k.vorgaenge.html.replace('pflegt keine Liste', 'pflegt die Liste'); },
+    (k) => { const s = k.takt.stufen.find((x) => x.id === 'sofort'); if (s) s.html = s.html.replace('am selben Arbeitstag', 'binnen einer Woche'); },
+    (k) => { const s = k.takt.stufen.find((x) => x.id === 'monat'); if (s) s.html = s.html.replace('60 Minuten', '90 Minuten'); },
+    (k) => { const s = k.takt.stufen.find((x) => x.id === 'monat'); if (s) s.wer = 'Bauherr'; },
+    (k) => { for (const b of k.matrix.beispiele) if (b.a === 5) b.a = 4; },
+    // R76: Gegenproben zu den neuen Kernsätzen (die Mutationen M8, M10–M14 der Prüfrunde)
+    (k) => { k.matrix.regel = k.matrix.regel.replace('keine Geldwerte und keine Freigabe', 'Geldwerte'); },
+    (k) => { k.matrix.sonder = k.matrix.sonder.replace('unabhängig von der Matrix', 'nach der Matrix'); },
+    (k) => { const s = k.matrix.stufen.find((x) => x.id === 'vorrangig'); if (s) s.html = s.html.replace('informiert den Bauherrn und ', ''); },
+    (k) => { k.matrix.qualitaet[2] = 'Die Nutzung ist dauerhaft eingeschränkt.'; },
+    (k) => { const s = k.takt.stufen.find((x) => x.id === 'monat'); if (s) s.html = s.html.replace('höchstens einer Seite', 'höchstens drei Seiten'); },
+    (k) => { const s = k.takt.stufen.find((x) => x.id === 'ruhe'); if (s) s.html = s.html.replace('fünf Arbeitstagen', 'zehn Arbeitstagen'); },
+    (k) => { k.mcda.html = k.mcda.html.replace('zwischen 1 und 5', 'zwischen 1 und 10'); },
+  ];
+  for (const [i, m] of mutationen.entries()) {
+    const kopie = structuredClone(w);
+    m(kopie);
+    assert.notDeepEqual(kernAbweichungen(kopie), [], `Mutation ${i + 1} bleibt unbemerkt`);
+  }
 });

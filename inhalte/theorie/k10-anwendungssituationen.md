@@ -9,16 +9,23 @@
 # Belege k10.2: k10.2-p1
 # Belege k10.3: k10.3-p1
 # Belege k10.4: k10.4-p1, v24:hb-1.6 (umgesetzt und wirksam sind nicht dasselbe)
+# P17.11 (O-55): etwa ein Drittel kürzer; was Umschalter, Regler und Karten zeigen, steht nicht noch einmal im Fließtext.
 # Belege k10.5: k10.5-t1, v24:hb-1.5, v24:hb-3.1 (Änderung gegen den geltenden Stand, Optionen, MCDA, Termin)
 kapitel: 10
 thema: anwendung
 reihe: 10
 titel: Anwendungssituationen und Praxislogik
 kurztitel: Anwendungssituationen
+teil: 3
+kurzsatz: Wo das Modell je nach Bauherr und Projektlage ansetzt.
+symbol: person
 ---
-Nicht jeder Bauherr hat dieselben Schwierigkeiten. Dieses Thema zeigt, wo Minimum Viable Governance (MVG) in der Praxis ansetzt: bei öffentlichen Bauherren, bei privaten und institutionellen Bauherren, bei Energieversorgern und Infrastrukturträgern und bei Projekten, die schleichend an Steuerbarkeit verlieren. Zum Schluss stehen fünf typische Entscheidungsprobleme – jeweils mit dem Grund, warum sie kritisch sind, und mit den Werkzeugen, die MVG dafür vorsieht. So können Sie Ihre eigene Lage wiederfinden.
+Nicht jeder Bauherr hat dieselben Schwierigkeiten. Dieses Thema zeigt, wo Minimum Viable Governance (MVG) in der Praxis ansetzt – je nach Bauherrentyp und Projektlage. Zum Schluss stehen fünf typische Entscheidungsprobleme mit den Werkzeugen, die MVG dafür vorsieht.
 
 ::: kernaussage
+---
+symbol: kompass
+---
 Wo Entscheidungen kritisch werden, hängt von der Lage des Bauherrn ab: bei Nachweis und Gremien, bei Zielkonflikten, bei Freigabereife und Prognose oder bei einem Projekt, das schleichend die Steuerung verliert. MVG setzt jeweils an dieser Stelle an.
 :::
 
@@ -29,7 +36,7 @@ Wo Entscheidungen kritisch werden, hängt von der Lage des Bauherrn ab: bei Nach
 ---
 titel: Drei Bauherrentypen im Überblick
 ---
-Jeder Typ hat seinen eigenen Engpass. Die Abschnitte unten erklären ihn genauer.
+Jeder Typ hat seinen eigenen Engpass.
 
 ::: karte oeffentlich
 ---
@@ -63,11 +70,14 @@ titel: Energieversorger und Infrastrukturträger
 ---
 titel: Öffentliche Bauherren
 ---
-Ein öffentlicher Bauherr steht häufig unter hoher Komplexität bei Nachweis, Gremien und Vergabe. Für ihn reicht es nicht, dass eine Entscheidung sachlich plausibel ist. Sie muss zusätzlich **nachvollziehbar** sein (Wie kam sie zustande?), **prüfbar** (Lässt sich der Weg später kontrollieren?) und **beschlussfähig** (Kann das zuständige Gremium darüber tatsächlich beschließen?).
+Für einen öffentlichen Bauherrn reicht es nicht, dass eine Entscheidung sachlich plausibel ist. Sie muss auch **nachvollziehbar** sein (Wie kam sie zustande?), **prüfbar** (Lässt sich der Weg später kontrollieren?) und **beschlussfähig** (Kann das zuständige Gremium tatsächlich darüber beschließen?).
 
-Ein Beispiel vom Schulcampus Lindenhall-Süd: Reicht die Risikoreserve nicht mehr, muss die Projektbasis neu festgelegt werden. Der Bauherr beschließt sie im Lenkungskreis auf Vorlage der Projektsteuerung; weil die Stadt die Mittel bewilligt, bestätigt der Stadtrat den Beschluss. Dass die Mehrkosten fachlich begründet sind, genügt nicht. Die Vorlage muss zeigen, wer was vorbereitet hat, auf welchem Stand die Zahlen beruhen, worüber genau entschieden wird und zwischen welchen mindestens zwei zulässigen Wegen der Bauherr wählt – und der Stadtrat muss nachvollziehen können, was er bestätigt.
-
-Genau hier liegt der Nutzen des MVG-Ansatzes für öffentliche Bauherren: in klaren [[Mandat|Mandaten]], in [[Entscheidungsvorlage|Entscheidungsvorlagen]], in einer Freigabelogik, in einem Protokollstandard, in der Anbindung an die Vergabe und in Eskalationen, die belastbar dokumentiert sind. [[bedienung:Schalten Sie um: Links sehen Sie die Anforderungen, rechts die Antwort.]]
+::: aufklapper Ein fiktives Beispiel vom Schulcampus
+---
+symbol: lesezeichen
+---
+Angenommen, auf dem Schulcampus Lindenhall-Süd reicht die Risikoreserve nicht mehr: Dann muss die Projektbasis neu festgelegt werden. Der Bauherr beschließt sie im Lenkungskreis auf Vorlage der Projektsteuerung; weil die Stadt die Mittel bewilligt, bestätigt der Stadtrat. Fachlich begründete Mehrkosten genügen nicht. Die Vorlage muss zeigen, wer was vorbereitet hat, auf welchem Stand die Zahlen beruhen, worüber genau entschieden wird und zwischen welchen mindestens zwei zulässigen Wegen der Bauherr wählt – so kann der Stadtrat nachvollziehen, was er bestätigt.
+:::
 
 ::: umschalter
 ---
@@ -76,24 +86,23 @@ links: Die Anforderung
 rechts: Der Nutzen von MVG
 ---
 ::: ansicht links
-Öffentliche Bauherren stehen häufig unter hoher Komplexität in drei Richtungen:
+Öffentliche Bauherren stehen häufig unter hoher Komplexität bei:
 
 - **Nachweis**
 - **Gremien**
 - **Vergabe**
 
-Entscheidungen müssen nicht nur sachlich plausibel, sondern auch nachvollziehbar, prüfbar und beschlussfähig sein.
 :::
 
 ::: ansicht rechts
-Der Nutzen des MVG-Ansatzes liegt hier in sechs Dingen:
+Der Nutzen des MVG-Ansatzes liegt hier in:
 
-- klare Mandate
-- Entscheidungsvorlagen
-- Freigabelogik
-- Protokollstandard
-- Anbindung an die Vergabe
-- belastbar dokumentierte Eskalationen
+- klaren [[Mandat|Mandaten]]
+- [[Entscheidungsvorlage|Entscheidungsvorlagen]]
+- einer Freigabelogik
+- einem Protokollstandard
+- der Anbindung an die Vergabe
+- belastbar dokumentierten Eskalationen
 :::
 :::
 :::
@@ -102,11 +111,14 @@ Der Nutzen des MVG-Ansatzes liegt hier in sechs Dingen:
 ---
 titel: Private und institutionelle Bauherren
 ---
-Private und institutionelle Bauherren stehen oft unter anderem Druck: Das Projekt soll schnell vorankommen, eine Rendite erwirtschaften, die Interessen der Nutzer treffen, finanzierbar bleiben, Anforderungen an [[ESG]] und [[LCC]] (Lebenszykluskosten) erfüllen und technisch beherrschbar sein. Wo all das zusammentrifft, braucht der Bauherr Steuerbarkeit.
+Bei privaten und institutionellen Bauherren treffen Tempo, Rendite, Nutzerinteressen, Finanzierung, [[ESG]], [[LCC]] (Lebenszykluskosten) und Technik aufeinander. Das Problem liegt selten in einem einzelnen Ziel, sondern darin, dass die Ziele sich widersprechen.
 
-Das Problem liegt selten in einem einzelnen Ziel, sondern darin, dass die Ziele sich widersprechen. Ein Beispiel: Ein schnellerer Bauablauf kann die Finanzierung entlasten, aber eine Entscheidung über die Haustechnik vorziehen, bevor ihre Lebenszykluskosten geklärt sind.
-
-Der MVG-Ansatz hilft, solche Zielkonflikte **früh** zu klären – und operative Geschwindigkeit nicht gegen Entscheidungssicherheit auszuspielen. Beides soll nebeneinander bestehen können. [[bedienung:Der Umschalter zeigt beide Seiten.]]
+::: aufklapper Ein Beispiel: Tempo und Haustechnik
+---
+symbol: lesezeichen
+---
+Ein Beispiel: Ein schnellerer Bauablauf kann die Finanzierung entlasten, aber eine Entscheidung über die Haustechnik vorziehen, bevor ihre Lebenszykluskosten geklärt sind.
+:::
 
 ::: umschalter
 ---
@@ -124,7 +136,7 @@ Steuerbarkeit wird dort gebraucht, wo mehrere Anforderungen zusammentreffen:
 - ESG/LCC
 - technische Komplexität
 
-Jede dieser Anforderungen ist berechtigt. Zusammen erzeugen sie Zielkonflikte.
+Zusammen erzeugen sie Zielkonflikte.
 :::
 
 ::: ansicht rechts
@@ -140,29 +152,23 @@ Der Ansatz hilft,
 ---
 titel: Energieversorger und Infrastrukturträger
 ---
-Bei Energieversorgern und Infrastrukturträgern verschieben sich Projektrisiken häufig: in Freigaben, in die Priorisierung, in die Beschaffung, in Entscheidungen über Komponenten mit langer Lieferzeit und in die Disziplin bei der Restkostenprognose ([[CTC]]).
-
-Besonders relevant sind hier:
+Hier verschieben sich Projektrisiken häufig in Freigaben, Priorisierung, Beschaffung, Entscheidungen über Komponenten mit langer Lieferzeit und die Disziplin bei der Restkostenprognose ([[CTC]]). Besonders relevant sind:
 
 - eine **Projektklassenlogik** und Entscheidungen über **Fortführung oder Stopp**,
 - die **Neupriorisierung** im Projektportfolio,
 - **Frühwarnungen**, **Änderungssteuerung**, CTC und Prognose,
-- und die **Freigabereife**, besonders an drei Stellen des Projekts.
-
-Zum Abschluss von LPH 2 geht es um die Wahl der Variante und den [[Business Case]], zum Abschluss von LPH 3 um die [[Finale Investitionsentscheidung (FID)|finale Investitionsentscheidung (FID)]] und zum Abschluss von LPH 7 um die Vergabe oder die Bindung einer Komponente mit langer Lieferzeit.
+- die **Freigabereife** an drei Stellen.
 
 ::: regler
 ---
 titel: Freigabereife an drei Stellen
 ---
-[[bedienung:Schieben Sie den Regler durch die drei Stellen.]]
-
 ::: stufe lph2
 ---
 titel: Abschluss LPH 2
 marke: Variantenwahl und Business Case
 ---
-Zum Abschluss von LPH 2 geht es um die Wahl der Variante und um den Business Case.
+Die Wahl der Variante und der [[Business Case]].
 :::
 
 ::: stufe lph3
@@ -170,7 +176,7 @@ Zum Abschluss von LPH 2 geht es um die Wahl der Variante und um den Business Cas
 titel: Abschluss LPH 3
 marke: FID
 ---
-Nach Entwurfsplanung und Kostenberechnung steht die finale Investitionsentscheidung (FID).
+Nach Entwurfsplanung und Kostenberechnung die [[Finale Investitionsentscheidung (FID)|finale Investitionsentscheidung (FID)]].
 :::
 
 ::: stufe lph7
@@ -178,56 +184,58 @@ Nach Entwurfsplanung und Kostenberechnung steht die finale Investitionsentscheid
 titel: Abschluss LPH 7
 marke: Vergabe oder Komponente mit langer Lieferzeit
 ---
-Hier geht es um die Vergabe oder darum, eine Komponente mit langer Lieferzeit verbindlich zu binden.
+Die Vergabe oder die verbindliche Bindung einer Komponente mit langer Lieferzeit.
 :::
 :::
 
 ::: wissenscheck infrastruktur-fid
+---
+stelle: 3
+---
 ### Frage
-Als Infrastrukturträger bereiten Sie die finale Investitionsentscheidung (FID) vor – mit welcher Freigabe gehört sie zusammen?
+Als Infrastrukturträger haben Sie die Variante gewählt und den Business Case bestätigt. Jetzt liegen Entwurfsplanung und Kostenberechnung vor. Welche Freigabe steht an?
 
 ### Erklärung
-Für Energieversorger und Infrastrukturträger ist die Freigabereife besonders relevant: zum Abschluss von LPH 2 für Variantenwahl und Business Case, von LPH 3 für die FID nach Entwurfsplanung und Kostenberechnung und von LPH 7 für Vergabe oder die Bindung einer Komponente mit langer Lieferzeit.
+Die Freigabereife hat drei Stellen: Variantenwahl und Business Case liegen vor der FID, Vergabe und lange Lieferzeiten danach.
 
 ::: antwort a
 ---
-titel: Abschluss LPH 3, nach Entwurfsplanung und Kostenberechnung
+titel: Die finale Investitionsentscheidung (FID) zum Abschluss von LPH 3
 praefix: "Genau:"
 ---
-Die FID steht bei der Freigabereife zum Abschluss von LPH 3.
+Nach Entwurfsplanung und Kostenberechnung steht die FID an.
 :::
 
 ::: antwort b
 ---
-titel: Abschluss LPH 2
+titel: Variantenwahl und Business Case zum Abschluss von LPH 2
 praefix: "Nicht ganz:"
 ---
-An LPH 2 hängt eine frühere Entscheidung als die FID.
+Diese Freigabe liegt schon hinter Ihnen – Variante und Business Case stehen.
 :::
 
 ::: antwort c
 ---
-titel: Abschluss LPH 7
+titel: Vergabe oder Bindung einer Komponente mit langer Lieferzeit zum Abschluss von LPH 7
 praefix: "Nicht ganz:"
 ---
-LPH 7 liegt deutlich nach der FID.
+LPH 7 liegt deutlich nach der FID – dort geht es um Vergabe und lange Lieferzeiten.
 :::
 
 ::: zitat k10.3-p1
 Besonders relevant sind […] die Freigabereife zum Abschluss von LPH 2 für Variantenwahl und Business Case, von LPH 3 für die FID nach Entwurfsplanung und Kostenberechnung und von LPH 7 für Vergabe oder die Bindung einer Komponente mit langer Lieferzeit.
 :::
 :::
+
 :::
 
 ::: abschnitt k10.4
 ---
 titel: Projekte mit schleichendem Steuerungsverlust und MVG-Neuinitialisierung
 ---
-Manche Projekte verlieren ihre Steuerbarkeit nicht auf einen Schlag, sondern langsam. Erkennbar ist der Steuerungsverlust selten an einem einzelnen Fehler, sondern an einem **Bündel von Anzeichen**: Die Beteiligten arbeiten mit unterschiedlichen Lagebildern, die Prognose weicht Monat für Monat ein Stück weiter ab, Eskalationen laufen über den Flur statt über den festgelegten Eskalationsweg, Änderungen werden ungeordnet bearbeitet, niemand weiß genau, wer was entscheiden darf – und Maßnahmen zeigen keine Wirkung. Dass eine Maßnahme umgesetzt ist, heißt noch nicht, dass sie wirkt; das muss eigens geprüft werden.
+Manche Projekte verlieren ihre Steuerbarkeit nicht auf einen Schlag, sondern langsam. Aussagekräftig ist dann das **Muster**, nicht der einzelne Ausreißer: Die Prognose weicht Monat für Monat ein Stück weiter ab, Eskalationen laufen über den Flur statt über den festgelegten Weg, niemand weiß genau, wer was entscheiden darf. Auch Maßnahmen ohne Wirkung gehören dazu – umgesetzt heißt noch nicht wirksam; das wird eigens geprüft.
 
-Aussagekräftig ist also das Muster, nicht der einzelne Ausreißer. Und wenn das Muster da ist, braucht es oft keine vollständige Neuaufsetzung des Projekts, sondern eine gezielte [[MVG-Neuinitialisierung]]. Sie sichert den Datenstand, ordnet die Entscheidungslandschaft, klärt die Mandate, holt erforderliche Freigaben nach oder wiederholt sie und nutzt den 30/60/90-Orientierungsrahmen für die Neuordnung.
-
-[[bedienung:Schalten Sie zwischen Muster und Antwort um.]] Wie eine MVG-Neuinitialisierung im Einzelnen abläuft, zeigt das Thema „MVG-Neuinitialisierung“.
+Oft braucht es dann keine vollständige Neuaufsetzung, sondern eine gezielte [[MVG-Neuinitialisierung]] (eigenes Thema „MVG-Neuinitialisierung“).
 
 ::: umschalter
 ---
@@ -264,11 +272,7 @@ Eine gezielte MVG-Neuinitialisierung statt einer vollständigen Neuaufsetzung:
 ---
 titel: Typische Entscheidungsprobleme
 ---
-Fünf Entscheidungsprobleme kommen in Bauprojekten immer wieder vor – von der Variantenfreigabe ohne vollständige Abwägung bis zur MVG-Neuinitialisierung ohne eindeutigen Datenstand. Bei der Vergabe unter Preis- und Lieferkettenunsicherheit werden Angebotsgültigkeit, Risiken bei Komponenten mit langer Lieferzeit und Terminfolgen nicht zusammengeführt. Beim Änderungsantrag mit unvollständiger Auswirkungsbewertung werden Kosten, Termin, Qualität, Projektumfang, Risiko und ESG/LCC nicht einheitlich bewertet und entschieden. Fehlt beim Gremienbeschluss die Klarheit über das Mandat, werden Beschlüsse angreifbar oder müssen nachträglich geheilt werden.
-
-Die Folgen sind ernst. Folgekosten werden spät sichtbar, oder das Projekt arbeitet mit mehreren Wahrheiten und verliert seine Wiederanlauffähigkeit.
-
-Für jedes Problem nennt MVG Werkzeuge und Routinen, die dagegen helfen – etwa die Entscheidungsvorlage mit gewichtetem Optionenvergleich, die Änderung, die die Projektsteuerung gegen den geltenden Stand aufbereitet und mit mindestens zwei Optionen zum benötigten Termin der befugten Stelle vorlegt, oder die Festschreibung des Datenstands. Die Karten zeigen alle fünf. [[bedienung:In der Übung darunter ordnen Sie Werkzeuge ihrem Problem zu.]]
+Fünf Entscheidungsprobleme kommen in Bauprojekten immer wieder vor. Für jedes nennt MVG Werkzeuge und Routinen, die dagegen helfen.
 
 ::: karten
 ---
@@ -280,6 +284,7 @@ titel: Variantenfreigabe ohne vollständige Abwägung
 ---
 **Warum es kritisch ist:** Folgekosten, ESG/LCC-Effekte oder Auswirkungen auf die Qualität werden erst spät sichtbar.
 
+### Rückseite
 **Was hilft:** die Entscheidungsvorlage mit gewichtetem Optionenvergleich, Wertoptimierung und eine Checkliste für die Freigabe.
 :::
 
@@ -289,6 +294,7 @@ titel: Vergabe unter Preis- und Lieferkettenunsicherheit
 ---
 **Warum es kritisch ist:** Angebotsgültigkeit, Risiken bei Komponenten mit langer Lieferzeit und Terminfolgen werden nicht zusammengeführt.
 
+### Rückseite
 **Was hilft:** CTC und Prognose, Risikoregister, Frühwarnung und Freigabereife.
 :::
 
@@ -298,6 +304,7 @@ titel: Änderungsantrag mit unvollständiger Auswirkungsbewertung
 ---
 **Warum es kritisch ist:** Kosten, Termin, Qualität, Projektumfang, Risiko und ESG/LCC werden nicht einheitlich bewertet und entschieden.
 
+### Rückseite
 **Was hilft:** das Änderungsregister und eine verbindliche Auswirkungsbewertung. Die Projektsteuerung bereitet die Änderung gegen den geltenden Stand auf und legt sie mit mindestens zwei Optionen und gewichtetem Vergleich zum benötigten Termin der befugten Stelle vor. Bis zur Freigabe gilt die bisherige Grundlage.
 :::
 
@@ -307,6 +314,7 @@ titel: Gremienbeschluss ohne Mandatsklarheit
 ---
 **Warum es kritisch ist:** Beschlüsse werden angreifbar oder müssen nachträglich geheilt werden.
 
+### Rückseite
 **Was hilft:** RACI, Mandatsmatrix und Entscheidungsvorlage.
 :::
 
@@ -316,6 +324,7 @@ titel: MVG-Neuinitialisierung ohne eindeutigen Datenstand
 ---
 **Warum es kritisch ist:** Das Projekt arbeitet mit mehreren Wahrheiten und verliert seine Wiederanlauffähigkeit.
 
+### Rückseite
 **Was hilft:** die Festschreibung des Datenstands, das Entscheidungsregister und das MVG-Grundsatzdokument.
 :::
 :::
@@ -326,8 +335,6 @@ titel: Welches Werkzeug gehört zu welchem Problem?
 links: Änderungsantrag
 rechts: Gremienbeschluss
 ---
-Zwei der fünf Probleme: Änderungsantrag mit unvollständiger Auswirkungsbewertung und Gremienbeschluss ohne Mandatsklarheit. [[bedienung:Ordnen Sie jedes Werkzeug einem der beiden zu.]]
-
 ::: posten 1
 ---
 seite: links
@@ -365,17 +372,17 @@ seite: rechts
 Mandatsmatrix
 
 ### Erklärung
-Sie gehört – mit RACI und Entscheidungsvorlage – zur Antwort auf Gremienbeschlüsse ohne Mandatsklarheit; solche Beschlüsse werden angreifbar oder müssen nachträglich geheilt werden.
+Sie gehört – mit RACI und Entscheidungsvorlage – zur Antwort auf Gremienbeschlüsse ohne Mandatsklarheit.
 :::
 
 ::: posten 5
 ---
 seite: links
 ---
-Entscheidungsvorlage zur Änderung (zwei Optionen, gewichteter Vergleich)
+Änderung gegen den geltenden Stand aufbereiten (mindestens zwei Optionen, gewichteter Vergleich)
 
 ### Erklärung
-Sie gehört – mit Änderungsregister und verbindlicher Auswirkungsbewertung – zur Antwort auf Änderungsanträge mit unvollständiger Auswirkungsbewertung. Die Projektsteuerung legt sie zum benötigten Termin der befugten Stelle vor.
+Das gehört – mit Änderungsregister und verbindlicher Auswirkungsbewertung – zur Antwort auf Änderungsanträge mit unvollständiger Auswirkungsbewertung.
 :::
 :::
 :::

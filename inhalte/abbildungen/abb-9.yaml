@@ -7,19 +7,8 @@ alt: >-
   Datenstand, Nachweis, Betriebshandbuch, Übergabe. Pfeile führen zu „Befähigung“ (Personen, steigende Balken)
   und „Regelbetrieb“ (Bildschirm, Diagramme). Gegenläufige Pfeile „Wiederkehrende Anwendungshilfe“ verbinden
   Regelbetrieb und Companion-Block. Von diesem führen gepunktete Pfeile zu fünf Plaketten: Bauherr entscheidet,
-  Freigabe bleibt, Rollenrechte, Nachweiskette, Prüfung-Takt.
+  Freigabe bleibt, Rollenrechte, Nachweiskette, Prüfrhythmus.
 angeglichen:
   - { x: 308, y: 480, b: 148, h: 28, text: Nachweis, beleg: k6.1-t1, schrift: barlow, gewicht: 500, groesse: 24, ausrichtung: mitte }
   - { x: 895, y: 520, b: 352, h: 34, text: Wiederkehrende Anwendungshilfe, beleg: k6.2-t1, schrift: barlow, gewicht: 700, groesse: 25, ausrichtung: mitte }
-abweichungen:
-  - text: 'Der Companion-Block zeigt sieben Kacheln: Entscheidung, Freigabe, Mandat, Datenstand, Nachweis, Betriebshandbuch und Übergabe; der Text nennt sieben Funktionslogiken: Entscheidungsassistent, Leitfaden für Freigaben, Verantwortungszuordnung, Daten- und Nachweisabfrage, Betriebshandbuch-Assistent, Rolleneinführung und MVG-Übergabeassistent. Die Rolleneinführung fehlt im Bild; Datenstand und Nachweis stehen als zwei Kacheln, der Text fasst sie in der Daten- und Nachweisabfrage zusammen.'
-    beleg: k6.1-t1
-  - text: 'Im Bild folgen auf den Companion-Block die Blöcke „Befähigung“ und „Regelbetrieb“; nach dem Text wird Befähigung mit dem Companion zur wiederholbaren Anwendungskette, in der Schulung, Pilotierung, Übergabe und Regelbetrieb auf dieselbe Logik zurückgreifen; der Regelbetrieb ist selbst ihr vierter Schritt. Schulung und Pilotierung fehlen im Bild; „Übergabe“ erscheint dort nur als Kachel im Companion-Block.'
-    beleg: k6.2-p1 k6.2-t1
-  - text: 'Die Leiste unten zeigt „Bauherr entscheidet“, „Freigabe bleibt“, „Rollenrechte“, „Nachweiskette“ und „Prüfung-Takt“; laut Text bleiben verbindlich: freigegebene Datenstände, definierte Rollenrechte, Datenschutzanforderungen und die bauherrenseitige Legitimation der Entscheidung. Freigegebene Datenstände und Datenschutzanforderungen fehlen in der Leiste.'
-    beleg: k6.3-b1
-  # P16.4 (O-36, V2.4 HB 5): Der Companion ist optional; maßgeblich bleibt die Software des Bauherrn.
-  - text: 'Das Bild zeigt den Companion als zentralen Block zwischen MVG-Logik, Befähigung und Regelbetrieb; nach dem Text ist er ein optionales Arbeitsmittel. Maßgeblich bleibt die Software, die der Bauherr bereitstellt; dort führt die Projektsteuerung alle Vorgänge, und der Companion ersetzt diese Einträge nicht.'
-    beleg: k6.3-p1 k6.3-p2
-  - text: '„Prüfung-Takt“ ist kein Begriff des Texts; er spricht bei der Übergabe vom Prüfrhythmus und beim MVG-Übergabeassistenten von Prüfzyklen.'
-    beleg: k6.2-t1 k6.1-t1
+  - { x: 1198, y: 680, b: 154, h: 34, text: Prüfrhythmus, beleg: k6.2-t1, schrift: barlow, gewicht: 700, groesse: 27, farbe: "#0d1114" }

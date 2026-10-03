@@ -131,6 +131,8 @@ export function erzeugeAnzeige(inhalte: OeffentlicheInhalte, version: string, ei
       // Eine Wahl im selben Schritt lässt die Leinwand stehen; ein neuer Ort beginnt oben
       if (gleicherOrt && eingebettet) element.scrollTop = oben;
       else if (!gleicherOrt) nachOben();
+      // R77: ein Werkzeug rückt mit Schritt und Ergebnis ins Bild (Kopf und Einleitung bleiben oberhalb) – jeder neue Stand, auch Beispiel und Schritt
+      if (b.bereich === 'explore') zeigeUnterLeiste(element.querySelector('.wz-raster') !== null ? '.wz-raster' : '.ex-buehne');
       if (neueWahl) zeigeUnterLeiste('[data-pruef="gs-folge"]');
       else if (neueGewichte) zeigeUnterLeiste('[data-pruef="gs-vgl-karten"]');
       else if (miniPosten !== null) zeigeUnterLeiste(`[data-pruef="posten-${miniPosten + 1}"]`, true);

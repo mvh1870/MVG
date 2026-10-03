@@ -67,6 +67,7 @@ export const W = {
       'Theorie: „Thema drucken“ auf jeder Seite eines Themas.',
       // r72: der Story-Druckbogen (L-232) hat keinen Knopf – ohne diese Zeile kennt den Weg niemand; auf der Leinwand entfällt sie
       'Story: Der Druckbefehl des Browsers druckt in der Geschichte Ihre Antworten mit „So macht man es gut“, am Ende auch Ihre Bilanz.',
+      'Werkzeuge: Der Knopf „Drucken“ unter dem Ergebnis von Vorlagen-Check, Vorgangs-Wegweiser, Risiko-Bewerter und Monatsbericht.',
       // R76 (O-56): kein Hinweis auf die Präsentationsansicht mehr – sie druckt ihr Protokoll über den eigenen Knopf
     ],
   },
@@ -361,13 +362,13 @@ export const W = {
     wegHinzu: 'Weg hinzufügen',
     zulaessigeWege: (n: number, min: number) => `${n} zulässige${n === 1 ? 'r Weg' : ' Wege'} – gebraucht: mindestens ${min}`,
     andererWegVorn: 'Wann liegt ein anderer Weg vorn?',
-    soSchliessenSie: 'So schließen Sie sie',
+    soSchliessenSie: 'So schließen Sie die Lücke',
     soSchliessenSieAlle: 'So schließen Sie die Lücken',
     luecken: (n: number) => (n === 0 ? 'keine Lücke' : n === 1 ? 'eine Lücke' : `${n} Lücken`),
     nochOffen: (n: number) => (n === 1 ? 'eine Frage noch offen' : `${n} Fragen noch offen`),
     erfuellt: (n: number) => `Erfüllt (${n})`,
     punktStand: { ja: 'erfüllt', teilweise: 'teilweise', nein: 'fehlt', offen: 'noch offen' },
-    schwere: { rot: 'Muss-Punkt', gelb: 'zu ergänzen' },
+    schwere: { rot: 'fehlt – Vorlage nicht vollständig', gelb: 'zu ergänzen' },
     sachverhalt: 'Sachverhalt',
     eigenerSachverhalt: 'Eigener Sachverhalt',
     eigenerText: 'Sachverhalt in eigenen Worten',

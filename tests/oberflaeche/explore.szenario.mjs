@@ -27,6 +27,31 @@ function punktUeberZahl() {
   return funde;
 }
 
+/** Läuft im Browser: sichtbare Textfelder, deren Inhalt abgeschnitten wird (R77: vorbelegte Sätze in einzeiligen Feldern). */
+function abgeschnitteneFelder() {
+  const funde = [];
+  for (const f of document.querySelectorAll('input[type="text"], textarea')) {
+    if (!(f instanceof HTMLInputElement || f instanceof HTMLTextAreaElement) || !f.checkVisibility()) continue;
+    const zu = f instanceof HTMLTextAreaElement ? f.scrollHeight > f.clientHeight + 1 : f.scrollWidth > f.clientWidth + 1;
+    if (zu) funde.push(`${f.getAttribute('data-pruef') ?? f.name}: „${f.value.slice(0, 30)}“`);
+  }
+  return funde;
+}
+
+/** Läuft im Browser: ragt etwas aus dem Bericht heraus (lange Wörter, R77)? */
+function ausDemBericht() {
+  const b = document.querySelector('[data-pruef="mb-bericht"]');
+  if (b === null) return ['Bericht fehlt'];
+  const r = b.getBoundingClientRect();
+  const funde = [];
+  if (b.scrollWidth > b.clientWidth + 1) funde.push(`Bericht läuft über (${b.scrollWidth} > ${b.clientWidth})`);
+  for (const el of b.querySelectorAll('*')) {
+    const q = el.getBoundingClientRect();
+    if (q.width > 0 && q.right > r.right + 1) funde.push(`${el.tagName.toLowerCase()}.${[...el.classList].join('.')} ragt ${Math.round(q.right - r.right)} px heraus`);
+  }
+  return funde.slice(0, 5);
+}
+
 /**
  * @param {import('playwright').Page} seite
  * @param {import('../../werkzeuge/oberflaeche.mjs').Helfer} h
@@ -128,8 +153,10 @@ async function neueWerkzeuge(seite, h, pruefe, verboten) {
   await h.warte(100);
   if (!(await seite.locator('[data-pruef="vc-a4-teilweise"]').isChecked())) h.befund('Vorlagen-Check: Pfeiltaste wählt die Nachbarantwort nicht');
   if (!(await seite.evaluate(() => document.activeElement?.getAttribute('data-pruef') === 'vc-a4-teilweise'))) h.befund('Vorlagen-Check: Fokus nach der Antwort verloren');
+  for (const f of await seite.evaluate(abgeschnitteneFelder)) h.befund(`Vorlagen-Check: Feld abgeschnitten ${f}`);
   await h.klick('[data-pruef="vc-weiter"]');
   await h.erwarte('[data-pruef="vc-wege"]');
+  for (const f of await seite.evaluate(abgeschnitteneFelder)) h.befund(`Vorlagen-Check, Wege: Feld abgeschnitten ${f}`);
   await verboten('vorlagen-check');
   await pruefe('vorlagen-check');
   await druckEineSeite(seite, h, 'vorlagen-check', 'Vorlagen-Check rot');
@@ -174,6 +201,7 @@ async function neueWerkzeuge(seite, h, pruefe, verboten) {
   await h.klick('[data-pruef="rg-annahme-w1"]');
   await h.erwarte('[data-pruef="rg-a5"]');
   if (await wert('[data-pruef="rg-prioritaet"]', 'data-stufe') !== 'vorrangig') h.befund('Risiko-Bewerter: 1 × 5 nicht vorrangig');
+  for (const f of await seite.evaluate(abgeschnitteneFelder)) h.befund(`Risiko-Bewerter: Feld abgeschnitten ${f}`);
   await seite.locator('[data-pruef="rg-grenzen"] summary').click();
   await verboten('risiko-grenzen');
   await pruefe('risiko-grenzen');
@@ -185,6 +213,16 @@ async function neueWerkzeuge(seite, h, pruefe, verboten) {
   await h.erwarte('[data-pruef="mb-hinweis-ampelOhneFrage"]');
   if (await wert('[data-pruef="mb-ampel"]', 'data-ampel') !== 'gelb') h.befund('Monatsbericht: Ampel ohne Frage nicht gelb');
   await verboten('monatsbericht');
+  // R77: vorbelegte Sätze stehen vollständig in den Feldern; lange Wörter laufen nicht aus dem Bericht
+  for (const f of await seite.evaluate(abgeschnitteneFelder)) h.befund(`Monatsbericht: Feld abgeschnitten ${f}`);
+  const langesWort = 'Wasserschadensbeseitigungskoordinationsunterlagen';
+  await seite.locator('[data-pruef="mb-lage"]').fill(langesWort);
+  await seite.locator('[data-pruef="mb-satz-kosten"]').fill(langesWort);
+  await seite.locator('[data-pruef="mb-monat"]').fill(langesWort.slice(0, 40));
+  await h.warte(100);
+  for (const f of await seite.evaluate(ausDemBericht)) h.befund(`Monatsbericht, langes Wort: ${f}`);
+  await seite.locator('[data-pruef="mb-beispiel"]').selectOption('oktober').catch(() => undefined);
+  await h.warte(100);
   await pruefe('monatsbericht');
   await druckEineSeite(seite, h, 'monatsbericht', 'Monatsbericht Oktober');
   if ((seite.viewportSize()?.width ?? 0) >= 1280) {

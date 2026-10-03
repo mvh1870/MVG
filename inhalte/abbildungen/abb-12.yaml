@@ -8,7 +8,7 @@ alt: >-
 angeglichen:
   - { x: 580, y: 0, b: 218, h: 171, text: "MVG-\nReifegradanalyse", beleg: k7.1-p1, hintergrund: "#ffffff", farbe: "#14303d", schrift: barlow, gewicht: 700, groesse: 27, ausrichtung: mitte }
   - { x: 622, y: 170, b: 135, h: 18, text: "", beleg: k7.1-p2, hintergrund: "#ffffff" }
-  - { x: 20, y: 188, b: 1340, h: 324, text: "10 MVG-Domänen mit 49 Fragen", beleg: k7.1-p2, hintergrund: "#e9f0f3", farbe: "#14303d", schrift: barlow, gewicht: 700, groesse: 46, ausrichtung: mitte }
+  - { x: 20, y: 188, b: 1340, h: 324, text: "10 MVG-Domänen\nmit 49 Fragen", beleg: k7.1-p2, hintergrund: "#e9f0f3", farbe: "#14303d", schrift: barlow, gewicht: 700, groesse: 84, ausrichtung: mitte }
   - { x: 110, y: 553, b: 222, h: 27, text: Bewertungsmatrix, beleg: k7.1-p1, schrift: barlow, gewicht: 700, groesse: 23, ausrichtung: mitte }
   - { x: 555, y: 553, b: 265, h: 28, text: 30/60/90-Tage-Plan, beleg: k7.1-p1, schrift: barlow, gewicht: 700, groesse: 23, ausrichtung: mitte }
   - { x: 494, y: 730, b: 388, h: 25, text: "", beleg: k7.1-p1 }

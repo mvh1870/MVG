@@ -168,7 +168,7 @@ Regie-Chips: `lueftung-kurz` · `lueftung-voll` · `mensa`; Schritt 1–5 und �
 
 | Nr | Frage (sichtbar, Entwurf) | Antworten | Folge | Beleg |
 |---|---|---|---|---|
-| W0 | Ist es dringlich – etwa weil Sicherheit gefährdet ist oder eine Möglichkeit zu handeln verloren zu gehen droht? | Ja · Nein | Ja → Kasten „Sofort melden“ (B-R1); weiter mit W1 | v24:hb-3 (Abs. 3, Warnanlässe, „Dringliche Meldungen warten nicht“), v24:hb-4 |
+| W0 | Muss es sofort gemeldet werden – etwa bei akuter Gefahr für die Sicherheit? (R77: Warnanlass und Dringlichkeit getrennt; der drohende Verlust einer Handlungsoption bleibt Warnanlass im Risiko-Bewerter) | Ja · Nein | Ja → Kasten „Sofort melden“ (B-R1); weiter mit W1 | v24:hb-3 (Abs. 3, Warnanlässe, „Dringliche Meldungen warten nicht“), v24:hb-4 |
 | W1 | Geht es um eine Handlung, die einen schon erfassten Vorgang klären, mindern oder beheben oder einen Beschluss umsetzen soll? | Ja · Nein | Ja → **Maßnahme** | v24:hb-1 (Tabelle), v24:hb-1.6 |
 | W2 | Ist schon etwas Nachteiliges passiert? | Ja · Nein · Unklar | Ja → **Problem**; Unklar → **Frühwarnung** | v24:hb-1.4, v24:hb-1.2 |
 | W3 | Soll etwas, das bisher gilt, bewusst anders werden – Umfang, Planung, Material, Ausführung oder Termin? | Ja · Nein | Ja → **Änderung** | v24:hb-1.5 |
@@ -391,9 +391,9 @@ Regie-Chips `ris-009` · `ris-014` · `ris-021` und die vier „Was wäre, wenn�
 | D-R1 | **Ampel ohne Entscheidungsfrage:** Ampel gelb oder rot und „gehört zu“ = nichts → **Warnung (gelb)**. Satz: „Diese Ampel zeigt nur einen Zustand, solange keine offene Entscheidung mit ihr verknüpft ist – Frage, wer, bis wann – und keine Reaktion genannt ist, die vom Bauherrn gebraucht wird.“ | k2.4-p2 („Ein Ampelbericht ohne Entscheidungsfrage bleibt Beobachtung“), v24:hb-4 (Abs. 6: offene Entscheidungen und benötigte Reaktion) |
 | D-R2 | Offene Entscheidung ohne befugte Stelle oder ohne Termin → Lücke (rot). Satz: „Zu jeder offenen Entscheidung gehören, wer entscheidet und bis wann.“ | v24:hb-5 (Zeile Entscheidung), v24:hb-3.1 |
 | D-R3 | Eintrag ohne Kennung → Hinweis. Satz: „Jeder Eintrag verweist auf seinen Vorgang in der Software – der Bericht ist keine zweite Liste.“ | v24:hb-4 (Abs. 6), v24:tlb-2 |
-| D-R4 | Abschnitt weder „keine“ noch Einträge (der Vorbelegung „keine“ wurde abgewählt, ohne etwas einzutragen) → Hinweis. Satz: „Gibt es hier nichts, steht da ‚keine‘ – leer und keine sind nicht dasselbe.“ *(Bedienregel: Die Unterscheidung leer/keine ist eine Hilfe des Werkzeugs; belegt sind nur die Abschnitte als Inhalte des Berichts und dass Fehlendes nicht als null gilt.)* | v24:hb-4 (Abs. 6), v24:hb-2 (Abs. 6, Fehlendes ist nicht null) |
+| D-R4 | Abschnitt weder „keine“ noch Einträge (der Vorbelegung „keine“ wurde abgewählt, ohne etwas einzutragen) → Hinweis. Satz (R77, als Hilfe des Werkzeugs formuliert): „Hier ist noch nichts eingetragen. Das Werkzeug bittet um einen Eintrag oder ‚keine‘, damit der Bericht nicht unfertig wirkt.“ *(Bedienregel: Die Unterscheidung leer/keine ist eine Hilfe des Werkzeugs; belegt sind nur die Abschnitte als Inhalte des Berichts und dass Fehlendes nicht als null gilt.)* | v24:hb-4 (Abs. 6), v24:hb-2 (Abs. 6, Fehlendes ist nicht null) |
 | D-R5 | Eintrag als dringlich markiert → Hinweis. Satz: „Dringliches wird sofort gemeldet; der Bericht ersetzt diese Meldung nicht.“ | v24:hb-4 (Abs. 1, 4, 6) |
-| D-R6 | Kritische Maßnahme „umgesetzt“ ohne „Wirkung belegt“ → Hinweis. Satz: „Umgesetzt heißt noch nicht wirksam – genannt wird, wann die Wirkung geprüft wird.“ | v24:hb-1.6 |
+| D-R6 | Kritische Maßnahme „umgesetzt“ ohne „Wirkung belegt“ → Hinweis. Satz (R77, ohne Regel zum Prüftermin): „Umgesetzt heißt noch nicht wirksam. Halten Sie fest, ob die Wirkung schon belegt ist.“ | v24:hb-1.6 |
 | D-R7 | **Seitenmesser:** geschätzter Platzbedarf > eine Seite → Warnung (rot). Satz: „Der Bericht passt nicht mehr auf eine Seite; er wird gekürzt, oder Einträge werden zusammengefasst.“ *(Schätzung = Bedienregel, s. D.6; die Regel „höchstens eine Seite“ ist belegt.)* | v24:hb-4 (Abs. 6, Schaubild), v24:as-2 |
 | D-R8 | Fester Fußsatz im Bericht: „Die vollständigen Einträge stehen in der Software.“ | v24:hb-4 (Abs. 6: ersetzt nicht die vollständigen Einträge) |
 
@@ -428,7 +428,7 @@ Hinweis Abgleich (L-254): „Offene Entscheidungen: keine“ passt zu B `mehrkos
 
 ### D.6 Druckbild (eine Seite)
 
-Der Bogen **ist** der Bericht: Kopf (`bogenKopf`: „Monatsbericht <Monat> · Schulcampus Lindenhall-Süd“ mit Fiktiv-Vermerk, solange ein Beispiel zugrunde liegt; nach „Leer beginnen“ nur „Monatsbericht <Monat>“) · Lage · Ampelzeile · zwei Spalten mit den fünf Abschnitten · Kasten „Offene Entscheidungen“ (Frage · wer · bis wann) · „Benötigte Reaktion“ · Fuß (Datenstand, D-R8). Hinweise des Werkzeugs werden **nicht** mitgedruckt. Seitenmesser-Schätzung (Bedienregel): 92 Zeichen je Zeile bei 10,5 pt, 58 Zeilen Nutzhöhe abzüglich Kopf (8) → 50 Zeilen; die Feldgrenzen in D.2 halten den Höchstfall bei ≤ 50 Zeilen. Abnahme in P18.4: PDF-Probe eine Seite im Höchstfall.
+Der Bogen **ist** der Bericht: Kopf (`bogenKopf`: „Monatsbericht <Monat> · Schulcampus Lindenhall-Süd“ mit Fiktiv-Vermerk, solange ein Beispiel zugrunde liegt; nach „Leer beginnen“ nur „Monatsbericht <Monat>“) · Lage · Ampelzeile · zwei Spalten mit den fünf Abschnitten · Kasten „Offene Entscheidungen“ (Frage · wer · bis wann) · „Benötigte Reaktion“ · Fuß (Datenstand, D-R8). Hinweise des Werkzeugs werden **nicht** mitgedruckt. Seitenmesser-Schätzung (Bedienregel): 58 Zeilen Nutzhöhe abzüglich Kopf (8) → 50 Zeilen; gerechnet wird seit R77 vorsichtig mit 78 statt 92 Zeichen je Zeile (Reserve für Großschrift und lange Wörter); die Feldgrenzen in D.2 halten den Höchstfall bei ≤ 50 Zeilen. Abnahme in P18.4: PDF-Probe eine Seite im Höchstfall.
 
 ### D.7 Verknüpfung
 
@@ -741,7 +741,7 @@ export interface Bericht {
   reaktion: string;
 }
 export interface Umfang { zeilen: number; anteil: number; passt: boolean }   // anteil 1 = eine Seite
-export function schaetzeUmfang(b: Bericht, zeichenJeZeile?: number, zeilenJeSeite?: number): Umfang;   // Vorgabe 92 / 50
+export function schaetzeUmfang(b: Bericht, zeichenJeZeile?: number, zeilenJeSeite?: number): Umfang;   // Vorgabe 78 / 50 (R77)
 export function pruefeBericht(b: Bericht, maxJeAbschnitt: Readonly<Record<string, number>>): { ampel: Ampel; hinweise: readonly Hinweis[]; umfang: Umfang };
 
 // je Werkzeug für die Leinwand (0.3)
@@ -771,3 +771,10 @@ Die Vorschläge unten gelten wie in L-253 festgehalten. **E-2 ist berichtigt:** 
 | E-11 | Kachelreihenfolge und Zahl auf der Startseite. | Geschwister-Reihenfolge (Abschnitt 0); Startseite/Einleitung „neun Werkzeuge“ in P18.5. |
 | E-12 | Druck mit offenen Hinweisen. | erlaubt; Hinweise werden nicht mitgedruckt (D) bzw. als Lückenliste gedruckt (A, C), weil dort die Lücken das Ergebnis sind. |
 | E-13 | Story-Verweise: zwei je Werkzeug (A: 7 + 4, B: 2 + 6, C: 3 + 5, D: 5)? | Ja; braucht ein neues optionales Feld als **Liste** `werkzeuge: [{ id, beispiel }]` in den Kapitel-YAMLs (Übersetzer `werkzeuge/geschichte.mjs`; ein Kapitel kann auf mehrere Werkzeuge verweisen, z. B. Story 5 auf C `ris-014` und D `oktober`) und dasselbe Feld `werkzeuge: [{ id, beispiel }]` in den Kopfdaten der Themen (`beispiel` optional) – Umsetzung in P18.5. |
+
+## Nachzug R77 (Prüfrunde 2026-10-03)
+
+- Risiko-Bewerter: Der Satz `vorrangA5` vergleicht nicht mehr mit einem Produkt („… gilt unabhängig vom Produkt aus Wahrscheinlichkeit und Auswirkung“), weil bei unbekannter Wahrscheinlichkeit kein Produkt existiert; `vorrangWegenA5` im Kern bleibt unverändert. Der Einleitungssatz sagt „bis zu welcher … eine Stufe reicht“ (Grenzwert gehört zur niedrigeren Stufe). Die Qualitätsstufen und der Sondersatz der Matrix stehen in eigenen Worten (O-37).
+- Wegweiser W0 fragt nach der sofortigen Meldung (Gefahr), nicht mehr nach dem drohenden Verlust einer Handlungsoption; die Beispiele `lueftung` und `mensa` bleiben mit „Nein“ stimmig zur Story (Entscheidung mit Frist, keine akute Meldung).
+- Monatsbericht: Die Hinweise `leerStattKeine` und `umgesetztNichtWirksam` sind Bedienhilfen, keine Berichtsregeln. Seitenschätzung rechnet mit 78 Zeichen je Zeile; Kante 50/51 Zeilen, Standlänge 80/81 Zeichen, „selten“ bei Wahrscheinlichkeit 2/3 und die Mindestzahl der Wege sind durch Tests und Mutanten festgehalten.
+- Beispiel „Monatsbericht Oktober 2026“ im Thema „Takt und Bericht“ führt wie Explore und Story keine offene Entscheidung, sondern die benötigte Reaktion „Kenntnis, Zahl für den Stadtrat“.

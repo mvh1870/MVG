@@ -222,7 +222,7 @@ details.wz-gruppe[open] > summary::before { transform: rotate(90deg); }
 .wz-feld { display: grid; gap: var(--a-1); min-width: 0; align-content: end; }
 .wz-feld .t-label { font: var(--typo-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
 .wz-feld :is(input, select, textarea) { width: 100%; max-width: 100%; min-height: 40px; padding: var(--a-1) var(--a-2); border: 1px solid var(--linie-3); border-radius: var(--radius-s); background: var(--weiss); color: var(--tinte); font: inherit; }
-.wz-feld textarea { resize: vertical; }
+.wz-feld textarea { resize: vertical; field-sizing: content; min-height: calc(2 * 1.45em + 2 * var(--a-1) + 2px); line-height: 1.45; }
 .wz-feld :is(input, select, textarea):hover { border-color: var(--ton); }
 .wz-frage { display: grid; gap: var(--a-2); min-width: 0; margin: 0; padding: var(--a-2) 0 var(--a-3); border: 0; border-bottom: 1px solid var(--linie); }
 .wz-frage > .wz-legende { float: left; width: 100%; }
@@ -240,7 +240,7 @@ button.wz-knopf:hover { border-color: var(--ton); }
 .wz-knopf[aria-pressed="true"] { border-color: var(--ton-text); background: var(--ton-text); color: var(--weiss); }
 .wz-navi { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--a-3); }
 .wz-verweis { margin: 0; }
-.wz-verweis a { display: inline-flex; align-items: center; gap: var(--a-1); }
+.wz-verweis a { display: inline-flex; align-items: center; gap: var(--a-1); min-height: 32px; }
 .wz-verweis .symbol { flex: none; width: 16px; height: 16px; }
 .wz-feld-fehler { margin: 0; font: var(--typo-klein); color: var(--status-rot); }
 .wz-feld-fehler:empty { display: none; }
@@ -323,7 +323,8 @@ li[data-fertig="ja"] .wz-schritt-nr { background: var(--status-gruen-soft); colo
 .wz-seitenmesser .wb { flex: none; width: 44px; }
 .wz-seitenmesser[data-passt="nein"] span { font-weight: 700; color: var(--status-rot); }
 .wz-blatt { padding: var(--a-4); border: 1px solid var(--linie-2); border-radius: var(--radius-s); background: var(--weiss); box-shadow: var(--schatten-karte); font-size: var(--gr-s); }
-.wz-bericht { display: grid; gap: var(--a-3); min-width: 0; overflow-wrap: break-word; }
+.wz-bericht { display: grid; gap: var(--a-3); min-width: 0; overflow-wrap: anywhere; }
+.wz-bericht :is(li, p, span, div, dd, dt) { min-width: 0; }
 .wz-bericht p, .wz-bericht h4 { margin: 0; }
 .wz-bericht-kopf { display: grid; gap: var(--a-1); }
 .wz-bericht-titel { font: var(--typo-tafeltitel); font-size: var(--gr-xl); color: var(--navy); }

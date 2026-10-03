@@ -4,7 +4,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
 import {
-  FELDGRENZEN, leseStandBericht, pruefeBericht, schaetzeUmfang, type Bericht, type BerichtEintrag, type OffeneEntscheidung,
+  FELDGRENZEN, leseStandBericht, pruefeBericht, schaetzeUmfang, ZEICHEN_JE_ZEILE, ZEILEN_JE_SEITE, type Bericht, type BerichtEintrag, type OffeneEntscheidung,
 } from '../src/werkzeuge/monatsbericht.ts';
 
 const MAX = { veraenderungen: 4, blockiert: 3, massnahmen: 3, fruehwarnungen: 3, probleme: 4 };
@@ -139,6 +139,25 @@ test('Seitenmesser: Höchstfall aller Felder passt auf eine Seite; deutlich dar�
   assert.equal(lang.ampel, 'rot');
   // eigene Seitengröße
   assert.equal(schaetzeUmfang(oktober(), 92, 10).passt, false);
+});
+
+test('Seitenmesser an der Kante: 50 Zeilen passen, 51 nicht (D-R7); Vorgabe 50 Zeilen je Seite, 78 Zeichen je Zeile', () => {
+  assert.equal(ZEILEN_JE_SEITE, 50);
+  assert.equal(ZEICHEN_JE_ZEILE, 78);
+  const hoechst = schaetzeUmfang(hoechstfall());
+  assert.equal(hoechst.zeilen, 50, 'der Höchstfall füllt die Seite genau');
+  assert.equal(hoechst.passt, true);
+  // eine Zeile mehr: die Reaktion um eine Zeilenbreite verlängern
+  const einsMehr = hoechstfall();
+  einsMehr.reaktion += 'x'.repeat(ZEICHEN_JE_ZEILE);
+  const u = schaetzeUmfang(einsMehr);
+  assert.equal(u.zeilen, 51);
+  assert.equal(u.passt, false);
+  assert.ok(u.anteil > 1);
+  const p = pruefeBericht(einsMehr, MAX);
+  assert.ok(p.hinweise.some((h) => h.id === 'zuLang' && h.schwere === 'rot'));
+  assert.equal(p.ampel, 'rot');
+  assert.ok(!pruefeBericht(hoechstfall(), MAX).hinweise.some((h) => h.id === 'zuLang'));
 });
 
 test('Werkzeugstand für die Leinwand: nur der Schalter „Kosten-Ampel ohne Frage“', () => {

@@ -277,3 +277,19 @@ test('Werkzeugstand für die Leinwand: Annahmen kombinierbar, jede Art höchsten
   assert.deepEqual(leseStandRisiko('b:ris-009;m:belegt;t:70', bsp), { beispiel: 'ris-009', schritt: 'm:belegt;t:70' });
   for (const roh of ['b:ris-009;t:70;t:71', 'b:ris-009;t:72', 'b:ris-009;w:2', 'b:ris-999;w:1']) assert.equal(leseStandRisiko(roh, bsp), null, roh);
 });
+
+test('Hinweis „selten“ (C-R13): Wahrscheinlichkeit Stufe 1 und 2 mit Auswirkung ab 4, nicht ab Stufe 3 und nicht bei Auswirkung 3', () => {
+  const hat = (w: Stufe, a: Stufe): boolean => ids(bewerteRisiko(risiko({ w: stufe(w), qualitaet: stufe(a) }), G)).includes('selten');
+  assert.equal(hat(1, 4), true);
+  assert.equal(hat(2, 4), true, 'Stufe 2 „gering“ gehört dazu');
+  assert.equal(hat(2, 5), true);
+  assert.equal(hat(3, 4), false, 'ab Stufe 3 kein „selten“');
+  assert.equal(hat(5, 5), false);
+  assert.equal(hat(2, 3), false, 'Auswirkung 3 ist keine schwere Folge');
+  assert.equal(hat(1, 3), false);
+});
+
+test('Satz „Vorrang wegen Auswirkung 5“ behauptet keinen Produktvergleich (R77): Inhalt', () => {
+  const y = YAML.parse(readFileSync(join(WURZEL, 'inhalte', 'werkzeuge.yaml'), 'utf8')) as { risikogrenzen: { saetze: { vorrangA5: { text: string } } } };
+  assert.doesNotMatch(y.risikogrenzen.saetze.vorrangA5.text, /weniger|allein/u);
+});

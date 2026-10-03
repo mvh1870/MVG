@@ -457,7 +457,7 @@
 .wb-bereich { fill: none; stroke: var(--navy); stroke-width: 1.6; stroke-dasharray: 4 3; }
 .wb-pfeil { fill: none; stroke: var(--navy); stroke-width: 2.4; stroke-linecap: round; }
 .wb-pfeil-spitze { fill: var(--navy); }
-.wb-achse { fill: var(--tinte-2); font: 700 11px/1 var(--schrift-text); }
+.wb-achse { fill: var(--tinte-2); font: 700 9.5px/1 var(--schrift-text); }
 .wb-frage { fill: var(--navy-soft); font: 800 30px/1 var(--schrift-anzeige); }
 .wb-seite { fill: var(--weiss); stroke: var(--linie-3); stroke-width: 1.6; }
 .wb-fuellung { fill: var(--akzent-sonne-soft); }

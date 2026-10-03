@@ -23,7 +23,7 @@ const WEGZUSTAENDE = ['zulaessig', 'unzulaessig', 'schein', 'offen'];
 const ANTWORTEN = ['ja', 'teilweise', 'nein'];
 const ZUSAETZE = ['sofort', 'unklar', 'keinVorgang', 'nichtSchaetzen', 'bisherGilt', 'entscheidung', 'bewerten', 'verknuepfen'];
 const RISIKO_SAETZE = ['fehler', 'grenze', 'offen', 'vorlaeufig', 'schwereFolge', 'spanne', 'warnanlass', 'wesentlich', 'annahme', 'annahmeBeispiel', 'selten', 'geplant', 'belegt', 'prognose', 'puffer', 'vorrangA5', 'nachObenOffen'];
-const BERICHT_SAETZE = ['ampelOhneFrage', 'entscheidungOhneWerBisWann', 'ohneKennung', 'leerStattKeine', 'zuViele', 'dringlich', 'umgesetztNichtWirksam', 'zuLang'];
+const BERICHT_SAETZE = ['ampelOhneFrage', 'entscheidungOhneWerBisWann', 'ohneKennung', 'leerStattKeine', 'zuViele', 'dringlich', 'umgesetztNichtWirksam', 'zuLang', 'berichtUnvollstaendig'];
 const GRENZFEHLER = ['anzahl', 'nicht-positiv', 'nicht-steigend', 'ueber-100'];
 /** @param {unknown} x */
 const text = (x) => (x === undefined || x === null ? '' : String(x));

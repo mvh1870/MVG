@@ -156,6 +156,15 @@ const SPERRFLAECHEN: Record<string, { x: number; y: number; b: number; h: number
   ],
   // R76: zwei Rollen „A“ in derselben Spalte – je Prozess eine letztverantwortliche Rolle (k6.4.1-p2)
   'abb-8': [{ x: 795, y: 172, b: 20, h: 20, grund: 'zweiter Punkt in Spalte A der RACI-Matrix (k6.4.1-p2)' }],
+  // R77: Bildbegriffe in fremder Schrift bzw. unerklärte Abkürzungen auf Notizen bleiben überdeckt (O-51, L-250)
+  'abb-13': [
+    { x: 510, y: 350, b: 100, h: 40, grund: 'alte Beschriftung „Freigabe-Set“ neben dem Tor (k8.1-t1: Freigabemodell)' },
+    { x: 660, y: 240, b: 100, h: 40, grund: 'Zeilen „echte Entscheidungen“ in Nachbarschrift statt am Kachelrand' },
+  ],
+  'abb-6': [
+    { x: 30, y: 415, b: 100, h: 40, grund: 'Notiz „CDE-Planer“ (unerklärte Abkürzung, O-51)' },
+    { x: 370, y: 595, b: 80, h: 50, grund: 'Notiz „k. A.“ (unerklärte Abkürzung, O-51)' },
+  ],
 };
 
 test('Sperrflächen (R74): eine erfundene Gliederung im Bild bleibt ganz überdeckt; Alternativtext ohne fremde Domänenzahl', () => {

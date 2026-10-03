@@ -18,3 +18,6 @@ angeglichen:
   # „Kompromiss-Regeln“ heißen im Text „Abwägungsregeln“ (k4-t1, k4.1-p2). Größe wie die Nachbarzeilen (L-250).
   - { x: 375, y: 209, b: 162, h: 34, text: Abwägungsregeln, beleg: k4.1-p2, schrift: barlow, groesse: 23, gewicht: 500, farbe: "#1b1b1b" }
   - { x: 1186, y: 512, b: 158, h: 33, text: Entscheidungsreife, beleg: k4-t1, schrift: barlow, gewicht: 500 }
+  # R77 (O-51): keine unerklärten Abkürzungen auf den Haftnotizen; „Planer“ wortgleich k1-p1, „k. A.“ rein abgedeckt (kein wortgleicher Ersatz), Fläche innerhalb der Notiz
+  - { x: 19, y: 400, b: 118, h: 70, text: Planer, beleg: k1-p1, schrift: barlow, gewicht: 600, groesse: 38, ausrichtung: mitte, farbe: "#15191c" }
+  - { x: 360, y: 584, b: 96, h: 76, text: "", beleg: k4-t1 }

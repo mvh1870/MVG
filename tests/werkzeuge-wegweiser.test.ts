@@ -3,6 +3,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
+import { leseWerkzeugStand, STAND_MAX } from '../src/werkzeuge/gemeinsam.ts';
 import { leseStandWegweiser, verwechslungen, wegweiser, zusaetze, type Art, type FrageId, type Wahl } from '../src/werkzeuge/wegweiser.ts';
 
 type Antworten = Partial<Record<FrageId, Wahl>>;
@@ -114,4 +115,16 @@ test('Werkzeugstand für die Leinwand', () => {
   // P18.5: `a:0` = noch keine Antwort gesetzt (die Runde rät zuerst); ein leeres `a:` bleibt ungültig
   assert.deepEqual(leseStandWegweiser('b:messe;a:0', bsp), { beispiel: 'messe', schritt: 'a:0' });
   for (const roh of ['b:messe;a:', 'b:messe;a:x', 'b:messe;a:n,n,n,n,n,n,n,n', 'b:fremd;a:n', 'B:messe']) assert.equal(leseStandWegweiser(roh, bsp), null, roh);
+});
+
+test('Werkzeugstand auf dem Kanal: höchstens 80 Zeichen (81 → null), nur der Zeichenvorrat', () => {
+  assert.equal(STAND_MAX, 80);
+  const muster = /^a+$/u;
+  const stand = (n: number): string => `b:x;${'a'.repeat(n)}`;
+  assert.equal(stand(76).length, 80);
+  assert.deepEqual(leseWerkzeugStand(stand(76), ['x'], muster), { beispiel: 'x', schritt: 'a'.repeat(76) });
+  assert.equal(stand(77).length, 81);
+  assert.equal(leseWerkzeugStand(stand(77), ['x'], muster), null);
+  assert.equal(leseWerkzeugStand(stand(300), ['x'], muster), null);
+  assert.equal(leseWerkzeugStand('b:X', ['x']), null, 'Großbuchstaben sind kein erlaubtes Zeichen');
 });

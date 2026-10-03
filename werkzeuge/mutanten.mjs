@@ -54,6 +54,14 @@ export const MUTANTEN = [
   ['src/werkzeuge/monatsbericht.ts', "    if (!verknuepft) h.push({ id: 'ampelOhneFrage', schwere: 'gelb', bezug: id });\n", '', 'Bericht: Ampel ohne Entscheidungsfrage warnt (D-R1)', TESTS_WERKZEUGE],
   ['src/werkzeuge/monatsbericht.ts', "id: 'ampelOhneFrage', schwere: 'gelb'", "id: 'ampelOhneFrage', schwere: 'rot'", 'Bericht: D-R1 ist gelb, nicht rot', TESTS_WERKZEUGE],
   ['src/werkzeuge/monatsbericht.ts', "    if (inhalt === 'keine') continue;\n", '', 'Bericht: „keine“ ist nicht leer (D-R4)', TESTS_WERKZEUGE],
+  // R77: überlebende Mutanten der Prüfrunde
+  ['src/werkzeuge/risiko-grenzen.ts', 'stufen.w <= 2 && aMin', 'stufen.w <= 3 && aMin', 'Risiko: „selten“ gilt nicht für Wahrscheinlichkeit Stufe 3', TESTS_WERKZEUGE],
+  ['src/werkzeuge/risiko-grenzen.ts', 'stufen.w <= 2 && aMin', 'stufen.w <= 1 && aMin', 'Risiko: „selten“ gilt auch für Wahrscheinlichkeit Stufe 2', TESTS_WERKZEUGE],
+  ['src/werkzeuge/monatsbericht.ts', 'export const ZEILEN_JE_SEITE = 50;', 'export const ZEILEN_JE_SEITE = 60;', 'Bericht: höchstens 50 Zeilen je Seite (nicht mehr)', TESTS_WERKZEUGE],
+  ['src/werkzeuge/monatsbericht.ts', 'export const ZEILEN_JE_SEITE = 50;', 'export const ZEILEN_JE_SEITE = 49;', 'Bericht: höchstens 50 Zeilen je Seite (nicht weniger)', TESTS_WERKZEUGE],
+  ['src/werkzeuge/monatsbericht.ts', 'export const ZEICHEN_JE_ZEILE = 78;', 'export const ZEICHEN_JE_ZEILE = 92;', 'Bericht: vorsichtige Zeilenbreite für die Seitenschätzung', TESTS_WERKZEUGE],
+  ['src/werkzeuge/gemeinsam.ts', 'export const STAND_MAX = 80;', 'export const STAND_MAX = 320;', 'Werkzeugstand: höchstens 80 Zeichen auf dem Kanal', TESTS_WERKZEUGE],
+  ['src/werkzeuge/vorlagen-check.ts', 'export const MINDEST_WEGE = 2;', 'export const MINDEST_WEGE = 1;', 'Vorlage: mindestens zwei zulässige Wege als Vorgabe', TESTS_WERKZEUGE],
 ];
 
 function testsRot(tests = TESTS) {

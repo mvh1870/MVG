@@ -13,6 +13,7 @@ Die Runden vor der Neuausrichtung (bis Runde 66, alter Aufbau mit Welten, Rollen
 | 74 | d0df1b2 | 1 (abb-12 zeigt fünf erfundene Domänen gegen „zehn Domänen“ im Text) | 8 | 41 | eingearbeitet (L-247–L-250) |
 | 75 | c03ddde | 0 | 12 | 40 | eingearbeitet (L-251–L-252); erste Runde ohne schweren Befund |
 | 76 | d27be55 | 0 | 12 | 42 | eingearbeitet (L-255–L-256); zweite Runde ohne schweren Befund – O-35/O-58 erfüllt |
+| 77 | ea42fd9 | 1 (Leinwand zeigt die ganze Explore-Seite, Werkzeug unter der Falz, Schrift zu klein) | 19 | 40 | eingearbeitet (L-260); P18 |
 
 ## Runden der Neuausrichtung (P16.15)
 

@@ -20,14 +20,14 @@ matrix:
     - { id: gezielt, titel: Gezielt bearbeiten, von: 5, bis: 9, text: "Die Projektsteuerung schlägt eine Maßnahme vor, klärt Verantwortung und Termin und verfolgt die Umsetzung." }
     - { id: vorrangig, titel: Vorrangig bearbeiten, von: 10, bis: 25, text: "Die Projektsteuerung holt die fachliche Einschätzung ein, informiert den Bauherrn und bereitet notwendige Handlungen oder Entscheidungen rechtzeitig vor." }
   regel: Auswirkung 5 ist immer vorrangig. Die Punkte sind keine Geldwerte und keine Freigabe.
-  sonder: Fragen zur Sicherheit oder Genehmigung, fehlende Befugnisse und der drohende Verlust einer Handlungsoption werden unabhängig von der Matrix behandelt.
+  sonder: Geht es um Sicherheit, Genehmigung, fehlende Befugnis oder darum, dass eine Handlungsmöglichkeit wegzufallen droht, wird das unabhängig von der Matrix behandelt.
   wahrscheinlichkeit: [sehr gering, gering, mittel, hoch, sehr hoch]
   qualitaet:
-    - Eine geringe Abweichung schränkt die Nutzung nicht ein.
-    - Nacharbeit ist erforderlich; die vorgesehene Nutzung bleibt möglich.
-    - Die Nutzung ist vorübergehend eingeschränkt.
-    - Eine wichtige Teilfunktion bleibt erheblich eingeschränkt.
-    - Eine wesentliche Funktion oder die vorgesehene Hauptnutzung fällt aus.
+    - Die Abweichung ist gering; die Nutzung bleibt unberührt.
+    - Es muss nachgearbeitet werden; genutzt werden kann wie vorgesehen.
+    - Die Nutzung ist für eine Zeit beschränkt.
+    - Eine wichtige Teilfunktion ist erheblich beeinträchtigt.
+    - Eine wesentliche Funktion oder die Hauptnutzung entfällt.
   beispiele:
     - { kennung: RIS-005, titel: Baupreissteigerung Holzbau, w: 3, a: 3 }
     - { kennung: RIS-009, titel: Holzbauelemente kommen zu spät (Auswirkung auf den Schulbetrieb), w: 4, a: 4 }
@@ -163,8 +163,8 @@ vorlagencheck:
   stellen:
     - { id: sie, titel: "Sie (Projektleitung des Bauherrn)" }
     - { id: buergermeisterin, titel: Bürgermeisterin, ohneBeispiel: andere befugte Stelle des Bauherrn }
-    - { id: lenkungskreis, titel: Lenkungskreis, ohneBeispiel: beratendes Gremium (berät nur), satz: "Ein beratendes Gremium berät nur; entscheiden darf die befugte Stelle des Bauherrn.", belege: [v24:hb-1, v24:hb-3.1] }
-    - { id: projektsteuerung, titel: Projektsteuerung, satz: "Die Projektsteuerung bereitet vor und empfiehlt; entscheiden darf sie nicht.", belege: [v24:hb-3, v24:hb-3.1, v24:tlb-2.1, v24:va-4.1] }
+    - { id: lenkungskreis, titel: Lenkungskreis, ohneBeispiel: beratendes Gremium (berät nur), satz: "Lassen Sie richtigstellen: Ein beratendes Gremium berät nur; entscheiden darf die befugte Stelle des Bauherrn.", belege: [v24:hb-1, v24:hb-3.1] }
+    - { id: projektsteuerung, titel: Projektsteuerung, satz: "Lassen Sie richtigstellen: Die Projektsteuerung bereitet vor und empfiehlt; entscheiden darf sie nicht.", belege: [v24:hb-3, v24:hb-3.1, v24:tlb-2.1, v24:va-4.1] }
     - { id: offen, titel: noch offen }
   wegzustaende:
     - { id: zulaessig, titel: zulässig }
@@ -185,9 +185,9 @@ vorlagencheck:
     immer: { risiko: buergermeisterin, freigabe: buergermeisterin, ziele: buergermeisterin }
     beraet: [lenkungskreis]
     saetze:
-      falsch: "Im Beispielprojekt entscheidet darüber die Bürgermeisterin: {grund}."
+      falsch: "Lassen Sie die Bürgermeisterin als Stelle nennen: Im Beispielprojekt entscheidet sie darüber, weil es um {grund} geht."
       gruende: { betrag: mehr als 100.000 Euro, reserve: Geld aus der Reserve, risiko: die Annahme eines großen Risikos, freigabe: die Freigabe am Ende einer Leistungsphase, ziele: die Ziele und ihre Rangfolge }
-      beraet: { buergermeisterin: "Der Lenkungskreis berät nur; im Beispielprojekt entscheidet darüber die Bürgermeisterin.", sie: "Der Lenkungskreis berät nur; im Beispielprojekt entscheiden darüber Sie.", unbestimmt: "Der Lenkungskreis berät nur; wer entscheidet, hängt von Betrag und Herkunft des Geldes ab." }
+      beraet: { buergermeisterin: "Lassen Sie richtigstellen: Der Lenkungskreis berät nur; im Beispielprojekt entscheidet darüber die Bürgermeisterin.", sie: "Lassen Sie richtigstellen: Der Lenkungskreis berät nur; im Beispielprojekt entscheiden darüber Sie.", unbestimmt: "Lassen Sie richtigstellen: Der Lenkungskreis berät nur; wer entscheidet, hängt von Betrag und Herkunft des Geldes ab." }
       unbestimmt: "Lassen Sie Betrag und Herkunft des Geldes klären – davon hängt ab, wer entscheidet."
       selbst: "Im Beispielprojekt dürften Sie das selbst entscheiden: bis 100.000 Euro, ohne Reserve."
   beispiele:
@@ -204,7 +204,7 @@ vorlagencheck:
       erwartet: rot
     - id: lueftung-voll
       titel: "Lüftungsanlage – alle drei Wege"
-      lage: "Mai 2027: Dieselbe Lage. Die Vorlage vergleicht drei zulässige Wege – Ersatzgerät, Leihgeräte, späterer Einzug – nach vorher abgestimmten Gewichten; entscheiden muss die Bürgermeisterin bis Ende Mai."
+      lage: "Mai 2027: Dieselbe Lage. So sieht eine entscheidungsreife Vorlage aus: Sie vergleicht drei zulässige Wege – Ersatzgerät, Leihgeräte, späterer Einzug – nach vorher abgestimmten Gewichten; entscheiden muss die Bürgermeisterin bis Ende Mai."
       quelle: k7
       gegenstand: geld
       stelle: buergermeisterin
@@ -240,7 +240,7 @@ wegweiser:
   text: |
     Wenige Fragen führen von einem Sachverhalt zur passenden Art des Vorgangs – mit dem nächsten Schritt, dem, was festgehalten wird, und der typischen Verwechslung. Erfasst und bearbeitet wird in der Software des Bauherrn durch die Projektsteuerung.
   fragen:
-    - { id: dringlich, frage: "Ist es dringlich – etwa weil Sicherheit gefährdet ist oder eine Möglichkeit zu handeln verloren zu gehen droht?", belege: [v24:hb-3, v24:hb-4] }
+    - { id: dringlich, frage: "Muss es sofort gemeldet werden – etwa bei akuter Gefahr für die Sicherheit?", belege: [v24:hb-3, v24:hb-4] }
     - { id: handlung, frage: "Geht es um eine Handlung, die einen schon erfassten Vorgang klären, mindern oder beheben oder einen Beschluss umsetzen soll?", belege: [v24:hb-1, v24:hb-1.6] }
     - { id: eingetreten, frage: "Ist schon etwas Nachteiliges passiert?", belege: [v24:hb-1.4, v24:hb-1.2] }
     - { id: anpassen, frage: "Soll etwas, das bisher gilt, bewusst anders werden – Umfang, Planung, Material, Ausführung oder Termin?", belege: [v24:hb-1.5] }
@@ -257,7 +257,7 @@ wegweiser:
   zusaetze:
     sofort: { titel: Sofort melden, text: "Es wird sofort über den vereinbarten Meldeweg gemeldet, die unmittelbare Reaktion wird gesichert, und noch am selben Arbeitstag wird der Vorgang festgehalten. Der Monatsbericht ersetzt das nicht.", belege: [v24:hb-4, v24:hb-3] }
     unklar: { titel: Noch nicht geklärt, text: "Was sich nicht einordnen lässt, ist noch nicht ausreichend geklärt – deshalb eine Frühwarnung.", belege: [v24:hb-1.2] }
-    keinVorgang: { titel: Vermutlich kein Vorgang, text: "Ist doch eine Beeinträchtigung denkbar, wird der Hinweis als Frühwarnung festgehalten; sonst wird er mit Begründung geschlossen.", belege: [v24:hb-1, v24:hb-1.2] }
+    keinVorgang: { titel: Vermutlich kein Vorgang, text: "Ist doch eine Beeinträchtigung denkbar, wird der Hinweis als Frühwarnung festgehalten; ein Hinweis ohne Grundlage kann mit nachvollziehbarer Begründung geschlossen werden.", belege: [v24:hb-1, v24:hb-1.2] }
     nichtSchaetzen: { titel: Keine Wahrscheinlichkeit mehr, text: "Eine Wahrscheinlichkeit wird nicht mehr geschätzt.", belege: [v24:hb-1.4] }
     bisherGilt: { titel: Bis zur Freigabe, text: "Bis zur Freigabe gilt die bisherige Grundlage.", belege: [v24:hb-1.5] }
     entscheidung: { titel: Entscheidung vorbereiten, text: "Mindestens zwei zulässige Wege, gewichteter Vergleich, Empfehlung, Termin; den Beschluss trifft die befugte Stelle.", belege: [v24:hb-1, v24:hb-3.1] }
@@ -265,7 +265,7 @@ wegweiser:
     verknuepfen: { titel: Verknüpfen, text: "Zusammengehörige Einträge werden verknüpft; die Herkunft geht nicht verloren.", belege: [v24:hb-1, v24:hb-1.2] }
   verwechslungen:
     - { id: zu-frueh-risiko, art: fruehwarnung, text: "„Gleich als Risiko eintragen“ – erst klären; eine Bewertung ohne Grundlage braucht es nicht.", belege: [v24:hb-1.2, v24:hb-2] }
-    - { id: bis-zum-termin, art: fruehwarnung, text: "„Das hat Zeit bis zum Monatstermin“ – ein neuer Hinweis wird spätestens bei der nächsten Wochendurchsicht festgehalten.", belege: [v24:hb-4] }
+    - { id: bis-zum-termin, art: fruehwarnung, text: "„Das hat Zeit bis zum Monatstermin“ – in aktiven Zeiten wird ein neuer Hinweis spätestens bei der nächsten Wochendurchsicht festgehalten, in vereinbarten Ruhezeiten binnen fünf Arbeitstagen.", belege: [v24:hb-4] }
     - { id: geplant-senkt, art: risiko, text: "„Die Maßnahme ist geplant, also ist das Risiko kleiner“ – die Bewertung sinkt erst, wenn Umsetzung und Wirkung belegt sind.", belege: [v24:hb-3] }
     - { id: selten-also-egal, art: risiko, text: "„Unwahrscheinlich, also egal“ – eine schwere Folge wird trotzdem geklärt.", belege: [v24:hb-3] }
     - { id: wahrscheinlichkeit-problem, art: problem, text: "„Wie wahrscheinlich ist das?“ – es ist schon passiert; jetzt zählen Folgen und Lösung.", belege: [v24:hb-1.4] }
@@ -298,7 +298,7 @@ risikogrenzen:
   kurz: Ein Risiko mit den eigenen Grenzen des Projekts bewerten – auch wenn noch nicht alles bekannt ist.
   belege: [v24:hb-2, v24:hb-3, v24:hb-projektblatt, v24:hb-1.3]
   text: |
-    Der Bauherr legt für das Projekt fest, ab welcher Wahrscheinlichkeit, welchem Betrag und wie vielen Tagen Verzug eine Stufe beginnt. Mit diesen Grenzen wird jedes Risiko gleich eingestuft. Was noch niemand beziffern kann, bleibt unbekannt – es zählt nicht als null.
+    Der Bauherr legt für das Projekt fest, bis zu welcher Wahrscheinlichkeit, welchem Betrag und wie vielen Tagen Verzug eine Stufe reicht. Mit diesen Grenzen wird jedes Risiko gleich eingestuft. Was noch niemand beziffern kann, bleibt unbekannt – es zählt nicht als null. Die Stufen und ihre Texte sind dieselben wie in der Risikomatrix 5×5. Ein Warnanlass ist ein Umstand, bei dem es um Sicherheit, Genehmigung, fehlende Befugnis oder eine wegfallende Handlungsmöglichkeit geht; er wird unabhängig vom Feld der Matrix behandelt.
   grenzen:
     wahrscheinlichkeit: [10, 30, 50, 70]       # Prozent – Beispielwerte, L-253 (E-1)
     kosten: [100000, 500000, 1500000, 3000000]  # Euro – Fall
@@ -333,7 +333,7 @@ risikogrenzen:
     belegt: { text: "Erst wenn die Maßnahme umgesetzt ist und ihre Wirkung nachgewiesen, wird die Bewertung angepasst – begründet.", belege: [v24:hb-3, v24:hb-1.3] }
     prognose: { text: "Was schon in der Prognose steckt, wird dort sichtbar gemacht und hier nicht ein zweites Mal gezählt.", belege: [v24:hb-2, v24:hb-1] }
     puffer: { text: "Maßgeblich ist, um wie viele Tage sich der Zieltermin verschiebt – nicht, wie viel später eine einzelne Arbeit fertig wird.", belege: [v24:hb-2] }
-    vorrangA5: { text: "Vorrangig wegen Auswirkung 5 – nach dem Produkt allein wäre es weniger.", belege: [v24:hb-2, v24:hb-3] }
+    vorrangA5: { text: "Vorrangig wegen Auswirkung 5 – diese Stufe gilt unabhängig vom Produkt aus Wahrscheinlichkeit und Auswirkung.", belege: [v24:hb-2, v24:hb-3] }
     nachObenOffen: { text: "nach oben offen", belege: [v24:hb-2] }
   beispiele:
     - id: ris-009
@@ -384,10 +384,10 @@ risikogrenzen:
 
 monatsbericht:
   titel: Monatsbericht
-  kurz: Wenige Felder, eine Seite – und eine Warnung, wenn eine Ampel keine Frage hat.
+  kurz: Eine Seite für den Bauherrn – und ein Hinweis, wenn bei Gelb oder Rot noch fehlt, was er tun soll.
   belege: [v24:hb-4, v24:as-2, k2.4-p2, v24:hb-5]
   text: |
-    Der Monatsbericht fasst auf höchstens einer Seite zusammen, was sich verändert hat, was blockiert ist und welche Entscheidungen offen sind – und welche Reaktion vom Bauherrn gebraucht wird. Er verweist auf die Einträge in der Software und ersetzt sie nicht.
+    Der Monatsbericht fasst auf höchstens einer Seite zusammen, was sich verändert hat, was blockiert ist und welche Entscheidungen offen sind – und welche Reaktion vom Bauherrn gebraucht wird. Er verweist auf die Einträge in der Software und ersetzt sie nicht. Was jede Woche, jeden Monat und sofort geschieht, zeigt das Werkzeug Takt.
   ampel:
     gruen: Bericht vollständig
     gelb: Bericht mit offenen Hinweisen
@@ -411,10 +411,11 @@ monatsbericht:
     ampelOhneFrage: { text: "Diese Ampel zeigt nur einen Zustand, solange keine offene Entscheidung mit ihr verknüpft ist – Frage, wer, bis wann – und keine Reaktion genannt ist, die vom Bauherrn gebraucht wird.", belege: [k2.4-p2, v24:hb-4] }
     entscheidungOhneWerBisWann: { text: "Zu jeder offenen Entscheidung gehören, wer entscheidet und bis wann.", belege: [v24:hb-5, v24:hb-3.1] }
     ohneKennung: { text: "Jeder Eintrag verweist auf seinen Vorgang in der Software – der Bericht ist keine zweite Liste.", belege: [v24:hb-4, v24:tlb-2] }
-    leerStattKeine: { text: "Gibt es hier nichts, steht da „keine“ – leer und keine sind nicht dasselbe.", belege: [v24:hb-4, v24:hb-2] }
+    leerStattKeine: { text: "Hier ist noch nichts eingetragen. Das Werkzeug bittet um einen Eintrag oder „keine“, damit der Bericht nicht unfertig wirkt.", belege: [v24:hb-4, v24:hb-2] }
     zuViele: { text: "Hier stehen mehr Einträge, als auf die Seite passen; Einträge werden zusammengefasst.", belege: [v24:hb-4] }
     dringlich: { text: "Dringliches wird sofort gemeldet; der Bericht ersetzt diese Meldung nicht.", belege: [v24:hb-4] }
-    umgesetztNichtWirksam: { text: "Umgesetzt heißt noch nicht wirksam – genannt wird, wann die Wirkung geprüft wird.", belege: [v24:hb-1.6] }
+    umgesetztNichtWirksam: { text: "Umgesetzt heißt noch nicht wirksam. Halten Sie fest, ob die Wirkung schon belegt ist.", belege: [v24:hb-1.6] }
+    berichtUnvollstaendig: { text: "Monat, Datenstand und die Lage in einem Satz fehlen noch. Der Bericht ist erst vollständig, wenn sie eingetragen sind.", belege: [v24:hb-4] }
     zuLang: { text: "Der Bericht passt nicht mehr auf eine Seite; er wird gekürzt, oder Einträge werden zusammengefasst.", belege: [v24:hb-4, v24:as-2] }
   beispiele:
     - id: oktober

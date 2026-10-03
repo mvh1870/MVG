@@ -1,7 +1,7 @@
 /*
  * A · Vorlagen-Check (P18.3, O-59; Konzept docs/WERKZEUGE-P18.md A): Der Bauherr prüft eine erhaltene
  * Entscheidungsvorlage in fünf Schritten; rechts (schmal: darunter) läuft die Ampel mit, jede Lücke mit ihrem Satz
- * „So schließen Sie sie“. Rechnung: src/werkzeuge/vorlagen-check.ts. Die Zuordnung des Beispielprojekts (wer was
+ * „So schließen Sie die Lücke“. Rechnung: src/werkzeuge/vorlagen-check.ts. Die Zuordnung des Beispielprojekts (wer was
  * entscheidet) gilt nur, solange ein Beispiel geladen ist und Gegenstand, Betrag und Reserve unverändert sind (O-46).
  */
 import type { VorlagenCheckTeil } from '../../../inhalte/typen.ts';
@@ -109,7 +109,7 @@ export function vorlagenCheck(o: WerkzeugOptionen): HTMLElement {
     : h('fieldset', { class: 'wz-gruppe', 'data-pruef': 'vc-rahmen' },
     h('legend', { class: 'wz-gruppe-titel' }, E.rahmenVorlage),
     h('div', { class: 'wz-felder' },
-      textFeld({ name: 'vc-titel', titel: E.titelVorlage, wert: z.titel, max: 80, beiEingabe: (t) => aendere({ titel: t }) }),
+      textFeld({ name: 'vc-titel', titel: E.titelVorlage, wert: z.titel, max: 80, mehrzeilig: true, beiEingabe: (t) => aendere({ titel: t }) }),
       auswahl({ name: 'vc-gegenstand', titel: E.gegenstand, wahl: v.gegenstaende.map((g) => ({ wert: g.id, titel: g.titel })), gewaehlt: z.gegenstand, beiWahl: (g) => { aendere({ gegenstand: g }); stellenAuffrischen(); } }),
       h('label', { class: 'wz-feld' }, h('span', { class: 't-label' }, E.stelle),
         h('select', { 'data-pruef': 'vc-stelle', onchange: (e: Event) => aendere({ stelle: (e.target as HTMLSelectElement).value as Stelle }) },
@@ -144,7 +144,7 @@ export function vorlagenCheck(o: WerkzeugOptionen): HTMLElement {
         textFeld({ name: `vc-weg-${i}`, titel: E.wegName(i + 1), wert: w.titel, max: 60, versteckt: false, beiEingabe: (t) => { z.wege[i] = { ...w, titel: t }; zeichneErgebnis(); } }),
         auswahl({ name: `vc-weg-zustand-${i}`, titel: E.wegZustand(i + 1), versteckt: true, wahl: v.wegzustaende.map((x) => ({ wert: x.id, titel: x.titel })), gewaehlt: w.zustand,
           beiWahl: (zu) => { z.wege[i] = { ...z.wege[i] ?? w, zustand: zu }; zeichneErgebnis(); zeichneZaehlung(); } }),
-        knopf({ pruef: `vc-weg-weg-${i}`, leise: true, label: E.wegEntfernen(i + 1), text: [sym('kreuz'), h('span', { class: 'nur-sr' }, E.entfernen)], beiKlick: () => {
+        knopf({ pruef: `vc-weg-weg-${i}`, leise: true, label: E.wegEntfernen(i + 1), text: [sym('kreuz'), E.entfernen], beiKlick: () => {
           z = { ...z, wege: z.wege.filter((_, j) => j !== i) };
           mitFokus(formOrt, zeichneSchritt);
           (formOrt.querySelector('[data-pruef="vc-weg-hinzu"]') as HTMLElement | null)?.focus();
@@ -239,7 +239,7 @@ export function vorlagenCheck(o: WerkzeugOptionen): HTMLElement {
     };
     const alle = v.schritte.flatMap((s) => s.punkte);
     return {
-      titel: `${v.titel} · ${z.titel.trim() !== '' ? z.titel.trim() : E.leerBeginnen}`,
+      titel: z.titel.trim() !== '' ? `${v.titel} · ${z.titel.trim()}` : v.titel,
       fiktiv: z.beispiel !== null,
       teile: [
         h('section', { class: 'druck-teil wz-druck-kopf' }, ampelAnzeige(befund.ampel, v.ampel[befund.ampel], 'vc-druck-ampel'),

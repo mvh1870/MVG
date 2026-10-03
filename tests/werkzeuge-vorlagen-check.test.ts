@@ -5,7 +5,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
 import {
-  beispielNochGeladen, befugteStelleImBeispiel, leseStandVorlage, mandatsGrund, pruefeVorlage, type Antwort, type MandatsRegel,
+  beispielNochGeladen, befugteStelleImBeispiel, leseStandVorlage, mandatsGrund, MINDEST_WEGE, pruefeVorlage, type Antwort, type MandatsRegel,
   type Pruefpunkt, type VorlageEingabe,
 } from '../src/werkzeuge/vorlagen-check.ts';
 
@@ -185,4 +185,13 @@ test('Werkzeugstand für die Leinwand: nur Beispiel und Schritt', () => {
   for (const roh of ['b:fremd;s:1', 'b:mensa;s:6', 'b:mensa;Hallo', 'b:mensa;s:1;s:2', 's:1', 42, null, `b:mensa;${'s'.repeat(80)}`]) {
     assert.equal(leseStandVorlage(roh, bsp), null, String(roh));
   }
+});
+
+test('Mindestzahl zulässiger Wege: Vorgabe 2; ohne eigene Angabe am Punkt gilt sie (ein Weg → nein, zwei → ja)', () => {
+  assert.equal(MINDEST_WEGE, 2);
+  const ohneAngabe: Pruefpunkt[] = PUNKTE.map((p) => (p.id === 'b1' ? { id: 'b1', muss: true, art: 'zaehlung' } : p));
+  const ein = pruefeVorlage(ohneAngabe, eingabe({ wege: [ZWEI_WEGE[0] ?? { titel: 'A', zustand: 'zulaessig' }] }), null);
+  assert.equal(ein.ampel, 'rot');
+  assert.ok(ein.luecken.some((l) => l.bezug === 'b1' && l.schwere === 'rot'));
+  assert.equal(pruefeVorlage(ohneAngabe, eingabe(), null).ampel, 'gruen');
 });

@@ -95,25 +95,25 @@ export function monatsbericht(o: WerkzeugOptionen): HTMLElement {
       ersetze(ort,
         h('legend', { class: 'wz-gruppe-titel' }, titelAmpel(id)),
         optionen<Farbe>({ bedienbar: true, name: `mb-farbe-${id}`, legende: E.ampelFarbe(titelAmpel(id)), wahl: FARBEN.map((f) => ({ wert: f, titel: v.farben[f] })), gewaehlt: a.farbe, beiWahl: (f) => setze({ farbe: f }), klasse: 'wz-farben' }),
-        textFeld({ name: `mb-satz-${id}`, titel: E.ampelSatz(titelAmpel(id)), wert: a.satz, max: FELDGRENZEN.ampelSatz, beiEingabe: (t) => setze({ satz: t }) }),
+        textFeld({ name: `mb-satz-${id}`, titel: E.ampelSatz(titelAmpel(id)), wert: a.satz, max: FELDGRENZEN.ampelSatz, mehrzeilig: true, beiEingabe: (t) => setze({ satz: t }) }),
         h('label', { class: 'wz-feld' }, h('span', { class: 't-label' }, E.gehoertZu(titelAmpel(id))),
           h('select', { 'data-pruef': `mb-gehoert-${id}`, onchange: (e: Event) => { setze({ gehoertZu: (e.target as HTMLSelectElement).value }); mitFokus(ort, zeichne); } },
             wahl.map((x) => h('option', { value: x.wert, selected: x.wert === a.gehoertZu }, x.titel)))),
-        a.gehoertZu === REAKTION ? textFeld({ name: `mb-reaktion-${id}`, titel: E.reaktionText(titelAmpel(id)), wert: a.reaktion, max: FELDGRENZEN.ampelReaktion, beiEingabe: (t) => setze({ reaktion: t }) }) : null);
+        a.gehoertZu === REAKTION ? textFeld({ name: `mb-reaktion-${id}`, titel: E.reaktionText(titelAmpel(id)), wert: a.reaktion, max: FELDGRENZEN.ampelReaktion, mehrzeilig: true, beiEingabe: (t) => setze({ reaktion: t }) }) : null);
     };
     zeichne();
     return ort;
   };
 
   const eintragZeile = (id: string, liste: Eintrag[], e: Eintrag, i: number, neu: () => void): HTMLElement => h('li', { class: 'wz-eintrag' },
-    textFeld({ name: `mb-${id}-text-${i}`, titel: E.eintragText(i + 1), wert: e.text, max: FELDGRENZEN.eintrag, beiEingabe: (t) => { liste[i] = { ...liste[i] ?? e, text: t }; geaendert(); } }),
+    textFeld({ name: `mb-${id}-text-${i}`, titel: E.eintragText(i + 1), wert: e.text, max: FELDGRENZEN.eintrag, mehrzeilig: true, beiEingabe: (t) => { liste[i] = { ...liste[i] ?? e, text: t }; geaendert(); } }),
     textFeld({ name: `mb-${id}-kennung-${i}`, titel: E.eintragKennung(i + 1), wert: e.kennung, max: FELDGRENZEN.kennung, beiEingabe: (t) => { liste[i] = { ...liste[i] ?? e, kennung: t }; geaendert(); } }),
     id === 'massnahmen' ? h('label', { class: 'wz-feld' }, h('span', { class: 't-label' }, E.eintragStand(i + 1)),
       h('select', { 'data-pruef': `mb-${id}-stand-${i}`, onchange: (ev: Event) => { const w = (ev.target as HTMLSelectElement).value; liste[i] = { ...liste[i] ?? e, stand: w === '' ? null : w as 'umgesetzt' | 'wirksam' }; geaendert(); } },
         h('option', { value: '', selected: e.stand === null }, '–'),
         (['umgesetzt', 'wirksam'] as const).map((s) => h('option', { value: s, selected: e.stand === s }, E.eintragStandWort[s])))) : null,
     h('label', { class: 'wz-wahl' }, h('input', { type: 'checkbox', 'data-pruef': `mb-${id}-dringlich-${i}`, checked: e.dringlich, onchange: (ev: Event) => { liste[i] = { ...liste[i] ?? e, dringlich: (ev.target as HTMLInputElement).checked }; geaendert(); } }), h('span', null, E.eintragDringlich(i + 1))),
-    knopf({ pruef: `mb-${id}-weg-${i}`, leise: true, label: E.eintragEntfernen(i + 1), text: [sym('kreuz'), h('span', { class: 'nur-sr' }, E.entfernen)], beiKlick: () => { liste.splice(i, 1); neu(); } }));
+    knopf({ pruef: `mb-${id}-weg-${i}`, leise: true, label: E.eintragEntfernen(i + 1), text: [sym('kreuz'), E.entfernen], beiKlick: () => { liste.splice(i, 1); neu(); } }));
 
   const abschnittFeld = (id: string): HTMLElement => {
     const ort = h('div', { class: 'wz-abschnitt-ort' });
@@ -158,7 +158,7 @@ export function monatsbericht(o: WerkzeugOptionen): HTMLElement {
         if (fokus !== undefined) (ort.querySelector(`[data-pruef="${fokus}"]`) as HTMLElement | null)?.focus();
       };
       const feld = (e: Entscheidung, i: number, k: 'frage' | 'stelle' | 'bis' | 'kennung', titel: string, maxL: number): HTMLElement =>
-        textFeld({ name: `mb-e-${k}-${i}`, titel, wert: e[k], max: maxL, beiEingabe: (t) => { liste[i] = { ...liste[i] ?? e, [k]: t }; geaendert(); } });
+        textFeld({ name: `mb-e-${k}-${i}`, titel, wert: e[k], max: maxL, mehrzeilig: k !== 'kennung', beiEingabe: (t) => { liste[i] = { ...liste[i] ?? e, [k]: t }; geaendert(); } });
       const d = h('details', { class: 'wz-gruppe wz-abschnitt', 'data-abschnitt': 'entscheidungen', open: offen.has('entscheidungen') || x !== 'keine' },
         h('summary', { class: 'wz-gruppe-titel', 'data-pruef': 'mb-entscheidungen-summe' }, x === 'keine' ? E.abschnittKeine(v.entscheidungen.titel) : E.abschnittAnzahl(v.entscheidungen.titel, liste.length)),
         h('label', { class: 'wz-wahl' }, h('input', { type: 'checkbox', 'data-pruef': 'mb-entscheidungen-keine', checked: x === 'keine', onchange: (ev: Event) => {
@@ -171,7 +171,7 @@ export function monatsbericht(o: WerkzeugOptionen): HTMLElement {
           feld(e, i, 'stelle', E.wer, FELDGRENZEN.stelle),
           feld(e, i, 'bis', E.bisWann, FELDGRENZEN.bis),
           feld(e, i, 'kennung', E.kennung, FELDGRENZEN.kennung),
-          knopf({ pruef: `mb-e-weg-${i}`, leise: true, label: E.entscheidungEntfernen(i + 1), text: [sym('kreuz'), h('span', { class: 'nur-sr' }, E.entfernen)], beiKlick: () => { liste.splice(i, 1); neuZeichnen('mb-e-hinzu'); } })))) : null,
+          knopf({ pruef: `mb-e-weg-${i}`, leise: true, label: E.entscheidungEntfernen(i + 1), text: [sym('kreuz'), E.entfernen], beiKlick: () => { liste.splice(i, 1); neuZeichnen('mb-e-hinzu'); } })))) : null,
         x !== 'keine' && liste.length < v.entscheidungen.max ? knopf({ pruef: 'mb-e-hinzu', leise: true, text: [sym('pfeilRechts'), E.entscheidungHinzu], beiKlick: () => {
           liste.push({ id: `e${z.naechste++}`, frage: '', stelle: '', bis: '', kennung: '' });
           z.entscheidungen = liste;
@@ -193,7 +193,7 @@ export function monatsbericht(o: WerkzeugOptionen): HTMLElement {
     ersetze(formOrt,
       h('div', { class: 'wz-felder' },
         textFeld({ name: 'mb-monat', titel: E.monat, wert: z.monat, max: FELDGRENZEN.monat, beiEingabe: (t) => { z.monat = t; geaendert(); } }),
-        textFeld({ name: 'mb-datenstand', titel: E.datenstand, wert: z.datenstand, max: FELDGRENZEN.datenstand, beiEingabe: (t) => { z.datenstand = t; geaendert(); } })),
+        textFeld({ name: 'mb-datenstand', titel: E.datenstand, wert: z.datenstand, max: FELDGRENZEN.datenstand, mehrzeilig: true, beiEingabe: (t) => { z.datenstand = t; geaendert(); } })),
       textFeld({ name: 'mb-lage', titel: E.lage, wert: z.lage, max: FELDGRENZEN.lage, mehrzeilig: true, beiEingabe: (t) => { z.lage = t; geaendert(); } }),
       ampelnOrt,
       v.abschnitte.map((a) => abschnittFeld(a.id)),
@@ -236,6 +236,7 @@ export function monatsbericht(o: WerkzeugOptionen): HTMLElement {
 
   const hinweisTitel = (x: Hinweis): string | null => {
     if (x.bezug === undefined) return null;
+    if (x.bezug === 'kopf') return `${E.monat}, ${E.datenstand}, ${E.lage}`;
     if ((AMPELN as readonly string[]).includes(x.bezug)) return titelAmpel(x.bezug as AmpelId);
     const i = entscheidungsListe().findIndex((e) => e.id === x.bezug);
     return i >= 0 ? E.entscheidungNr(i + 1) : titelAbschnitt(x.bezug);

@@ -149,6 +149,23 @@
   .seite-story .seiten-haupt { zoom: 1.55; }
 }
 
+/* R77: ein Werkzeug auf der Leinwand zeigt nur sich selbst – ohne Einleitung, Kopfbild und Kachelreihe (sie sähen aus wie
+   Bedienung und schöben das Werkzeug unter die Falz). Schrift über dieselbe Container-Staffel wie die Story, oben etwas
+   stärker: Fließtext der Werkzeuge ≥ 24 px bei 1920 px (Konzept WERKZEUGE-P18 0.3). */
+.anzeige .seite-explore :is(.ex-werkzeuge, .ex-einleitung, .ex-kopf-bild, .ex-kopf .gs-kicker) { display: none; }
+.anzeige .seite-explore .wz-blatt { font-size: var(--gr-text); }
+/* Staffel für Explore: Schwellen tiefer als bei der Story – mit Beamer-Schalter misst der Container nur 1920 / 1.15 px und
+   würde sonst eine Stufe zurückfallen (kleiner statt größer). */
+@container anzeige (min-width: 1200px) {
+  .seite-explore .seiten-haupt { zoom: 1.1; }
+}
+@container anzeige (min-width: 1400px) {
+  .seite-explore .seiten-haupt { zoom: 1.3; }
+}
+@container anzeige (min-width: 1600px) {
+  .seite-explore .seiten-haupt { zoom: 1.7; }
+}
+
 /* Beamer-Schalter (E10, P9.4): größer (wie Browser-Zoom, das Layout bricht dann um) und kontrastreicher –
    Nebenschrift wird Hauptschrift, Linien kräftiger. Gilt auf der Leinwand und in der Regie-Vorschau. */
 /* R48: erst ab 1280 px – darunter (XGA-Projektor 1024 × 768) brach „Entscheidungsfähigkeit“ und „sehr hoch“ wurde abgeschnitten.

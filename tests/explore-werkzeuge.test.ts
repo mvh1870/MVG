@@ -63,8 +63,8 @@ const pruefeSichtbar = (wo: string, el: Element): void => {
 test('Vorlagen-Check: rot mit dem Startbeispiel, Lücken mit Satz, Beispiele grün und gelb, „Leer beginnen“ ohne Fall-Namen', () => {
   const el = zeige('vorlagen-check');
   assert.equal(ampel(el, 'vc-ampel'), 'rot');
-  assert.match(q(el, 'vc-luecke-b1').textContent ?? '', /So schließen Sie sie: Fordern Sie einen zweiten Weg an/u);
-  assert.match(q(el, 'vc-luecke-a4').textContent ?? '', /Muss-Punkt/u);
+  assert.match(q(el, 'vc-luecke-b1').textContent ?? '', /So schließen Sie die Lücke: Fordern Sie einen zweiten Weg an/u);
+  assert.match(q(el, 'vc-luecke-a4').textContent ?? '', /fehlt – Vorlage nicht vollständig/u);
   pruefeSichtbar('vorlagen-check rot', el);
   // eine Antwort ändert die Ampel sofort nicht, solange Muss-Lücken bleiben – aber die Lücke verschwindet
   const a4 = q<HTMLInputElement>(el, 'vc-a4-ja');
@@ -82,7 +82,7 @@ test('Vorlagen-Check: rot mit dem Startbeispiel, Lücken mit Satz, Beispiele gr�
   assert.match(q(el, 'vc-luecke-a3').textContent ?? '', /bereitet vor und empfiehlt; entscheiden darf sie nicht/u);
   // Zuordnung des Beispielprojekts: genannt „Sie“, befugt die Bürgermeisterin (mehr als 100.000 Euro) → A3 Nein
   waehle(el, 'vc-stelle', 'sie');
-  assert.match(q(el, 'vc-luecke-a3').textContent ?? '', /Im Beispielprojekt entscheidet darüber die Bürgermeisterin: mehr als 100.000 Euro/u);
+  assert.match(q(el, 'vc-luecke-a3').textContent ?? '', /Im Beispielprojekt entscheidet sie darüber, weil es um mehr als 100\.000 Euro geht/u);
   // ein geänderter Betrag beendet „Beispiel geladen“: die Stellen heißen neutral, die Fall-Zuordnung schweigt
   tippe(el, 'vc-betrag', '50000');
   const namen = [...q<HTMLSelectElement>(el, 'vc-stelle').options].map((o) => o.textContent);
@@ -182,6 +182,12 @@ test('Monatsbericht: Oktober grün und passt; Kosten-Ampel ohne Frage warnt gelb
   tippe(e, 'mb-e-frage-0', 'Ersatzgerät bestellen?');
   assert.equal(ampel(e, 'mb-ampel'), 'rot');
   waehle(e, 'mb-beispiel', '');
+  // R77: ein leerer Bericht ist nicht „vollständig“ – gelb mit dem Hinweis auf Monat, Datenstand und Lage; erst mit ihnen grün
+  assert.equal(ampel(e, 'mb-ampel'), 'gelb');
+  assert.ok(e.querySelector('[data-pruef="mb-hinweis-berichtUnvollstaendig"]'), 'Hinweis „Bericht unvollständig“');
+  tippe(e, 'mb-monat', 'November 2026');
+  tippe(e, 'mb-datenstand', '30. November 2026');
+  tippe(e, 'mb-lage', 'Alles im Plan.');
   assert.equal(ampel(e, 'mb-ampel'), 'gruen');
   assert.doesNotMatch(lesbar(q(e, 'mb-bericht')), /Lindenhall/u, 'ohne Beispiel kein Projektname');
   pruefeSichtbar('monatsbericht leer', e);

@@ -140,7 +140,7 @@ So kann eine Seite aussehen – vom Schulcampus Lindenhall-Süd, Oktober 2026:
 > **Monatsbericht · Oktober 2026**
 > - Kostenprognose nach dem geltenden Datenstand: 59,4 Mio. € gegen die Projektbasis von 58,4 Mio. € (+1,7 %); die Risikoreserve von 2,9 Mio. € deckt das; ihren Einsatz gibt der Bauherr frei.
 > - Angekündigte Mehrkosten der Haustechnikfirma, gut eine Million Euro, als Risiko geführt, nicht in der Prognose; die Vergabestelle prüft die Forderung. Träten sie voll ein, bliebe die Prognose innerhalb von Basis plus Reserve (61,3 Mio. €).
-> - Offene Entscheidung: Umgang mit der Prognose – die Projektsteuerung empfiehlt, die Reserve für die bekannten Mehrkosten vorzusehen; entscheiden muss der Bauherr im Lenkungskreis am 19. Oktober.
+> - Offene Entscheidung: keine. Benötigte Reaktion: Kenntnis; die Bürgermeisterin nennt dem Stadtrat diese Zahl mit Begründung, die angekündigten Mehrkosten als Risiko daneben.
 :::
 
 ::: sortieren
@@ -196,7 +196,7 @@ Der Bericht verweist auf die Einträge in der Software. Eine zweite Liste hätte
 stelle: 3
 ---
 ### Frage
-Der Monatsbericht zeigt zwölf grüne und gelbe Ampeln, aber keine offene Entscheidung und keine benötigte Reaktion – obwohl in drei Wochen eine Vergabe ansteht. Wie ist der Bericht zu bewerten?
+Im Monatsbericht hat keine Ampel eine Entscheidungsfrage oder eine benötigte Reaktion – obwohl in drei Wochen eine Vergabe über der Schwelle der Bürgermeisterin ansteht. Wie ist der Bericht zu bewerten?
 
 ### Erklärung
 Der Bericht zeigt, welche Entscheidungen mit welcher Reaktion des Bauherrn offen sind. Ampeln ohne Entscheidungsfrage informieren, führen aber nicht.

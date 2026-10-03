@@ -184,7 +184,7 @@ titel: Mandat
 ---
 Mit dem [[Mandat]] legt der Bauherr fest, wer welche Entscheidung vorbereiten, treffen, freigeben oder eskalieren darf. Eine [[RACI]]-Zuordnung (ausführungs- und letztverantwortlich, konsultiert, informiert) genügt nicht ohne Freigabeschwellen, Stellvertretungen und Eskalationswege.
 
-Wo eine Entscheidung nötig ist, entscheidet die befugte Stelle auf eine Vorlage der Projektsteuerung mit mindestens zwei zulässigen Optionen und gewichtetem Vergleich; fehlt eine zweite zulässige Option, kennzeichnet die Projektsteuerung die Vorlage als unvollständig. Die Vorgänge pflegt auf keiner Stufe die entscheidende Stelle selbst, sondern die Projektsteuerung. Die **Muster-Mandatsleiter** ist ein Muster, keine Vorgabe: Die Freigabeschwellen legt der Bauherr selbst fest.
+Wo eine Handlungsentscheidung erforderlich ist, entscheidet die befugte Stelle auf eine Vorlage der Projektsteuerung mit mindestens zwei zulässigen Optionen und gewichtetem Vergleich; fehlt eine zweite zulässige Option, kennzeichnet die Projektsteuerung die Vorlage als unvollständig. Die Vorgänge pflegt auf keiner Stufe die entscheidende Stelle selbst, sondern die Projektsteuerung. Die **Muster-Mandatsleiter** ist ein Muster, keine Vorgabe: Die Freigabeschwellen legt der Bauherr selbst fest.
 
 ::: karten
 ::: karte
@@ -336,7 +336,7 @@ Die [[Übergabe]] des Vorhabens.
 ---
 titel: Außerhalb der Reihe
 ---
-Eine [[Neufestlegung der Projektbasis]] steht außerhalb der regulären Freigabereihe. Fortführung oder Stopp ist an keine feste Leistungsphase gebunden.
+Eine [[Neufestlegung der Projektbasis]] steht außerhalb der regulären Freigabereihe.
 :::
 :::
 :::

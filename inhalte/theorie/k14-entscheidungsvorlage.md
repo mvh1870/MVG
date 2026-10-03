@@ -163,7 +163,7 @@ Beibehalten ist eine Option, wenn es zulässig ist – wie hier.
 ---
 seite: rechts
 ---
-Ein billigeres Gerät einbauen, das die Hygieneanforderungen nicht erfüllt.
+Ein billigeres Gerät einbauen, das die Brandschutz- oder Schallschutzanforderungen nicht erfüllt.
 
 ### Erklärung
 Unzulässig – eine unzulässige Option kann auch über die Kosten nicht gewinnen.

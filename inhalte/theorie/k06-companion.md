@@ -65,7 +65,7 @@ Vier Regeln tragen die Zusammenarbeit:
 1. Die **Projektsteuerung führt alle Vorgänge** in der Software des Bauherrn. Jeder Eintrag hat einen Verantwortlichen, einen nächsten Schritt und einen Termin.
 2. Die [[RACI]]-Logik klärt je Prozess, wer ausführungsverantwortlich, letztverantwortlich, konsultiert und informiert ist.
 3. Was eine Entscheidung braucht, wird **nicht nur berichtet**, sondern über das Entscheidungsregister und eine [[Entscheidungsvorlage]] entscheidungsreif gemacht: mindestens zwei zulässige Optionen, gewichteter Vergleich, Empfehlung, befugte Stelle, Termin.
-4. **Monatsbericht und Entscheidungsregister** haben getrennte Aufgaben. Der Bericht zeigt auf höchstens einer Seite, aus demselben Stand wie die Software, wesentliche Veränderungen, blockierte Aufgaben, ungeklärte Frühwarnungen und offene Entscheidungen mit der benötigten Reaktion.
+4. **Monatsbericht und Entscheidungsregister** haben getrennte Aufgaben. Der Bericht zeigt auf höchstens einer Seite, aus demselben Stand wie die Software, unter anderem wesentliche Veränderungen, blockierte Aufgaben, kritische Maßnahmen, ungeklärte Frühwarnungen, wesentliche Probleme und Änderungen sowie offene Entscheidungen mit der benötigten Reaktion.
 
 ::: umschalter
 ---
@@ -598,7 +598,7 @@ Darüber folgt die Beschlussfassung durch den Bauherrn im Lenkungskreis.
 :::
 :::
 
-Auf jeder Stufe liegt eine Vorlage der Projektsteuerung. Dringliches wartet nicht auf die nächste Sitzung.
+Wo eine Handlungsentscheidung nötig ist, liegt auf jeder Stufe eine Vorlage der Projektsteuerung vor. Dringliches wartet nicht auf die nächste Sitzung.
 :::
 
 ::: abschnitt k6

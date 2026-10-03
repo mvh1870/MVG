@@ -96,14 +96,16 @@ export interface MatrixDaten {
 
 /** Mini-Matrix 5 × 5 (oben Auswirkung 5, links Wahrscheinlichkeit 1): Feld markiert, Bereich gestrichelt, „nach oben offen“ als Pfeil, offen als Fragezeichen. */
 export function miniMatrixBild(d: MatrixDaten, beschreibung: string, px = 150): string {
-  const x0 = 16;
+  const x0 = 20;
   const y0 = 4;
-  const z = 22;
+  const z = 20;
   const lx = (w: number): number => x0 + (w - 1) * (z + 2);
   const ly = (a: number): number => y0 + (5 - a) * (z + 2);
   let s = '';
   for (let a = 5; a >= 1; a--) for (let w = 1; w <= 5; w++) s += re(`wb-m-${matrixFeldKlasse(w, a)}`, lx(w), ly(a), z, z, 3);
-  s += tx('wb-achse', 6, ly(3) + 15, 'A') + tx('wb-achse', lx(3) + z / 2, 136, 'W');
+  // R77: Achsen ausgeschrieben (vorher nur „A“ und „W“); die senkrechte Beschriftung liegt gedreht links der Matrix
+  s += `<text class="wb-achse" transform="rotate(-90 9 ${r1(ly(3) + z / 2)})" x="9" y="${r1(ly(3) + z / 2 + 3)}" text-anchor="middle">Auswirkung</text>`
+    + tx('wb-achse', lx(3) + z / 2, 134, 'Wahrscheinlichkeit');
   if (d.feld === null) return svg('wb-matrix', 140, 140, px, beschreibung, s + tx('wb-frage', lx(3) + z / 2, ly(3) + 17, '?'));
   if (d.bis !== null) {
     const wl = Math.min(d.feld.w, d.bis.w), wr = Math.max(d.feld.w, d.bis.w), ao = Math.max(d.feld.a, d.bis.a), au = Math.min(d.feld.a, d.bis.a);

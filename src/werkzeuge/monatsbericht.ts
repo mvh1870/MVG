@@ -46,14 +46,16 @@ export interface Umfang {
 
 /**
  * Feldgrenzen der Oberfläche (Bedienregel, Konzept D.2; Einträge, Fragen, Stellen, Termine und Kennungen ergänzt), so
- * gewählt, dass der Höchstfall nach `schaetzeUmfang` genau eine Seite füllt.
+ * gewählt, dass der Höchstfall nach `schaetzeUmfang` höchstens eine Seite füllt – mit der vorsichtigen Zeilenbreite unten,
+ * die Reserve für Großschrift und lange Wörter lässt.
  */
 export const FELDGRENZEN = {
-  monat: 40, datenstand: 40, lage: 280, ampelSatz: 140, ampelReaktion: 140, eintrag: 60, kennung: 10,
+  monat: 40, datenstand: 40, lage: 280, ampelSatz: 136, ampelReaktion: 140, eintrag: 60, kennung: 10,
   frage: 80, stelle: 30, bis: 20, reaktion: 200,
 } as const;
 
-export const ZEICHEN_JE_ZEILE = 92;
+/** vorsichtig gerechnet (R77): Reserve gegenüber den rund 92 Zeichen des Fließtexts; Zeilen aus breiten Großbuchstaben fassen deutlich weniger */
+export const ZEICHEN_JE_ZEILE = 78;
 export const ZEILEN_JE_SEITE = 50;
 /** sichtbares Wort einer Ampelfarbe im Bericht (für die Längenschätzung; der Bericht nennt Farbe mit Wort) */
 const FARBWORT: Record<Farbe, string> = { gruen: 'grün', gelb: 'gelb', rot: 'rot' };
@@ -103,6 +105,9 @@ const leer = (t: string): boolean => t.trim() === '';
 export function pruefeBericht(b: Bericht, maxJeAbschnitt: Readonly<Record<string, number>>): { ampel: Ampel; hinweise: readonly Hinweis[]; umfang: Umfang } {
   const h: Hinweis[] = [];
   const entscheidungen = Array.isArray(b.entscheidungen) ? (b.entscheidungen as readonly OffeneEntscheidung[]) : [];
+
+  // R77: ohne Monat, Datenstand und Lage ist der Bericht noch leer – nicht „vollständig“
+  if (leer(b.monat) || leer(b.datenstand) || leer(b.lage)) h.push({ id: 'berichtUnvollstaendig', schwere: 'gelb', bezug: 'kopf' });
 
   // D-R1: Ampel gelb oder rot ohne offene Entscheidung und ohne benötigte Reaktion
   for (const id of AMPELN) {

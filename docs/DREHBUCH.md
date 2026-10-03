@@ -146,7 +146,7 @@ Sechs Porträts (Sie als Spielfigur plus fünf Figuren), flach, als Vektorgrafik
 
 | Balken | hoch | mittel | niedrig |
 |---|---|---|---|
-| Geld | > Die Reserve wurde dort eingesetzt, wo sie gebraucht wurde – jedes Mal von der Bürgermeisterin freigegeben –, und ein guter Teil ist übrig. | > Ein großer Teil der Reserve ist verbraucht; manches wurde teurer, weil es spät entschieden wurde. | > Die Reserve ist fast aufgebraucht – Eile, Umwege und eine halb eingerechnete Forderung haben sie aufgezehrt. |
+| Geld | > Die Reserve wurde dort eingesetzt, wo sie gebraucht wurde – jedes Mal von der Bürgermeisterin entschieden –, und ein guter Teil ist übrig. | > Ein großer Teil der Reserve ist verbraucht; manches wurde teurer, weil es spät entschieden wurde. | > Die Reserve ist fast aufgebraucht – Eile, Umwege und eine halb eingerechnete Forderung haben sie aufgezehrt. |
 | Zeit | > Der Puffer hat gehalten; das Projekt hatte bis zum Schluss Luft. | > Der Puffer ist dünn geworden, aber er hat gereicht. | > Der Puffer ist aufgebraucht; die Sporthalle öffnet erst nach den Herbstferien. |
 | Vertrauen | > Bürgermeisterin, Schule und Stadtrat haben sich auf Ihre Vorlagen verlassen können. | > Man vertraut Ihnen – fragt aber gern noch einmal nach. | > Die Bürgermeisterin lässt sich inzwischen jede Zahl zweimal zeigen. |
 
@@ -343,7 +343,7 @@ Grafik zur Szene: kleine Matrix aus 5 × 5 Feldern ohne Zahlen, Achsen „wie wa
 > Die Bürgermeisterin weiß Bescheid und wartet auf die Vorlage. Einen Monat später ist die Lage dieselbe, nur die Zeit ist knapper. Sie entscheidet im Lenkungskreis wie empfohlen: früher ausschreiben, das Geld kommt aus der Reserve. Dann fragt sie: „Warum nicht gleich mit Vorlage? Ein Monat ist bei so etwas viel.“ Die Holzelemente werden ausgeschrieben – einen Monat später, als es möglich gewesen wäre.
 
 *C · Falle*
-> Clara Faden schüttelt freundlich den Kopf: „Ich bewerte, wie es ist. Kleiner machen kann ich es nicht.“ Sie führt das Risiko als vorrangig, wie es ist, und setzt es auf die Tagesordnung des Lenkungskreises; die Bürgermeisterin ruft an, bevor Sie es ihr erklären konnten. Sie entscheidet auf Vorlage der Projektsteuerin sofort: früher ausschreiben, aus der Reserve – nur kostet es jetzt mehr, weil die Ausschreibung eilt.
+> Clara Faden schüttelt freundlich den Kopf: „Ich bewerte, wie es ist. Kleiner machen kann ich es nicht.“ Sie führt das Risiko als vorrangig, wie es ist, und setzt es auf die Tagesordnung des Lenkungskreises; die Bürgermeisterin ruft an, bevor Sie es ihr erklären konnten. „Wenn man mir das kleiner verkaufen wollte – was weiß ich sonst noch nicht?“ Sie lässt die Einschätzung erst von einem zweiten Holzbauer bestätigen. Drei Wochen später entscheidet sie auf Vorlage der Projektsteuerin: früher ausschreiben, aus der Reserve – nur kostet es jetzt mehr, weil die Ausschreibung eilt.
 
 **So macht man es gut**
 > Ein Risiko wird danach eingestuft, wie wahrscheinlich es ist und wie schwer die schlimmste belegte Folge wiegt; was vorrangig ist, erfährt der Bauherr umgehend, nicht erst im nächsten Bericht. Ob die Stadt ein großes Risiko trägt oder Geld aus der Reserve dagegen einsetzt, entscheidet die Bürgermeisterin – nicht der Architekt, nicht die Projektsteuerin und auch nicht Sie.
@@ -392,7 +392,7 @@ Grafik zur Szene: kleine Matrix aus 5 × 5 Feldern ohne Zahlen, Achsen „wie wa
 > Clara Faden hat den Antrag aufgenommen und warnt, dass die Fundamente bald gegossen werden – aber entschieden wird erst im Herbst. Dann bestätigen die Anmeldezahlen den Bedarf. Inzwischen ist die Planung weiter, und ein Fundament muss nachträglich verstärkt werden. Die Bürgermeisterin entscheidet auf Vorlage der Projektsteuerin für die Mensa, die später wachsen kann, aus der Reserve. Die Schule hat ein halbes Jahr auf eine Antwort gewartet, und Theo Lot fragt, warum man ihm das nicht vor dem Betonieren gesagt hat.
 
 *C · Falle*
-> Konrad Schwung plant drei Wochen lang die große Mensa. Dann fragt die Bürgermeisterin, wer das beschlossen hat – niemand. Eine Zusage am Rand eines Schulfests ist kein Beschluss. Die Projektsteuerin legt beide Wege nachträglich vor, die Bürgermeisterin entscheidet für die Mensa, die später wachsen kann, und die drei Wochen Planung muss trotzdem jemand bezahlen.
+> Konrad Schwung fängt sofort an, die große Mensa zu planen. Clara Faden nimmt den Wunsch als Änderung auf und meldet der Bürgermeisterin noch in derselben Woche: Hier wird ohne Beschluss umgeplant. Die Bürgermeisterin fragt, wer das beschlossen hat – niemand. Eine Zusage am Rand eines Schulfests ist kein Beschluss. Die Projektsteuerin legt beide Wege vor, die Bürgermeisterin entscheidet für die Mensa, die später wachsen kann, und die Planung, die umsonst war, muss trotzdem jemand bezahlen.
 
 **So macht man es gut**
 > Ein Wunsch, der den geltenden Stand ändert, wird als Änderung aufgenommen: wer ihn stellt, was bisher gilt, was er kostet und wie viel Zeit er braucht – und er wird mit mindestens zwei Wegen der Stelle vorgelegt, die entscheiden darf. Bis entschieden ist, gilt die bisherige Planung; eine Zusage im Flur oder beim Schulfest ersetzt keinen Beschluss.
@@ -415,7 +415,7 @@ Rückmeldung, wenn „Projektsteuerin“ gewählt wird (bei jedem Posten gleich)
 Beleg Mini-Aufgabe: k4.2-p3 (Schwelle 100 TEUR), k3.2-t1 (Reserve, Risikoannahme, wesentliche Freigabe nicht delegierbar), k9.3-p3 (Freigabe selbst, Lenkungskreis berät), v24:hb-1 (Abs. „befugte Stelle“), v24:va-4.1 (keine Entscheidungsbefugnis der Projektsteuerung).
 
 **Das steckt dahinter** → Thema `anwendung`
-> Eine Änderung braucht einen sauberen Weg vom Antrag bis zum Beschluss – sonst entscheiden am Ende Gespräche am Rand über Geld, das niemand freigegeben hat.
+> Eine Änderung braucht einen sauberen Weg vom Antrag bis zum Beschluss – sonst entscheiden am Ende Gespräche am Rand über Geld, über das niemand entschieden hat.
 
 ---
 
@@ -526,7 +526,7 @@ Fachliche Einordnung (intern): Sperren ist Sache der Bauleitung vor Ort mit der 
 | 2 | > Sicherheitskoordination und Projektsteuerin werden informiert; die Projektsteuerin meldet über den vereinbarten Weg. | > Dringliches wird sofort gemeldet, nicht erst in der nächsten Sitzung. |
 | 3 | > Noch am selben Tag entsteht ein Eintrag mit Uhrzeit, Fotos und Zuständigen. | > Festgehalten wird, sobald die erste Reaktion gesichert ist – am selben Arbeitstag. |
 | 4 | > Die Fachleute klären die Ursache. | > Erst verstehen, dann reparieren. |
-| 5 | > Die Lösung wird vorbereitet; braucht sie Geld oder eine Änderung, entscheidet die Stelle, die es darf. | > Auch in Eile gilt: Dringlichkeit ersetzt keine Freigabe. |
+| 5 | > Die Lösung wird vorbereitet; braucht sie Geld oder eine Änderung, entscheidet die Stelle, die es darf. | > Auch in Eile gilt: Dringlichkeit ersetzt keine Entscheidung der Stelle, die es darf. |
 | 6 | > Erst wenn die Reparatur nachweislich wirkt, wird der Eintrag geschlossen. | > Umgesetzt und wirksam sind nicht dasselbe. |
 
 Beleg Mini-Aufgabe: v24:hb-4, v24:hb-1.4, v24:hb-1.6, v24:hb-3, v24:hb-5 (Abschluss).
@@ -608,7 +608,7 @@ Empfehlung der Projektsteuerin (sichtbar, fest, für die abgestimmten Gewichte):
 **Folge-Szenen**
 
 *A · gut*
-> Im Lenkungskreis beraten Kämmerei und Schulamt. Die Bürgermeisterin stellt nur eine Frage: „Wenn mir der Schulstart wichtiger ist als das Geld – bleibt es beim Ersatzgerät?“ Clara Faden: „Ja – solange Klima und Betrieb weniger wichtig bleiben. Sonst wird es knapp.“ Die Bürgermeisterin entscheidet: Ersatzgerät, das Geld kommt aus der Reserve. Clara Faden hält den Beschluss fest, mit Datum und einer Auflage: Das Gerät muss bis zum Herbst eingebaut sein. Hanna Klingel atmet hörbar aus.
+> Im Lenkungskreis beraten Kämmerei und Schulamt. Die Bürgermeisterin stellt nur eine Frage: „Wenn mir der Schulstart wichtiger ist als das Geld – bleibt es beim Ersatzgerät?“ Clara Faden: „Ja – solange Klima und Betrieb weniger wichtig bleiben. Sonst wird es knapp.“ Die Bürgermeisterin entscheidet: Ersatzgerät, das Geld kommt aus der Reserve. Clara Faden hält den Beschluss fest, mit Datum und einer Auflage: Das Gerät muss vor dem Schulstart eingebaut und eingestellt sein. Hanna Klingel atmet hörbar aus.
 
 *B · vertretbar*
 > Die Bürgermeisterin liest beide Empfehlungen und dann den Vergleich. „Sie empfehlen das Günstigste. Aber mein Ziel war der Schulstart.“ Sie vertagt um eine Woche, hört die Schule an und entscheidet dann: Ersatzgerät, aus der Reserve. Ihre Empfehlung war ehrlich begründet – sie passte nur nicht zu dem Ziel, das die Bürgermeisterin gesetzt hatte. Die Woche fehlt dem Einbau am Ende.
@@ -659,7 +659,7 @@ Fachliche Einordnung (intern): Freigabe am Ende der Bauzeit (Abschluss der Objek
 **Folge-Szenen**
 
 *A · gut*
-> Im Lenkungskreis wird kurz beraten, dann erteilt die Bürgermeisterin die Freigabe mit Auflagen. Clara Faden übergibt alles, was noch offen ist, an das Gebäudemanagement – jeden Punkt mit Termin und Namen. Nach den Herbstferien sind die Fugen geschlossen, im Januar ist die Lüftung eingestellt, und beides ist mit Nachweis erledigt. Das Gebäudemanagement findet alles an einer Stelle – niemand muss suchen.
+> Im Lenkungskreis wird kurz beraten, dann erteilt die Bürgermeisterin die Freigabe mit Auflagen. Clara Faden übergibt alles, was noch offen ist, an das Gebäudemanagement – jeden Punkt mit Termin und Namen. Zu den Herbstferien sind die Fugen geschlossen, im Januar ist die Lüftung eingestellt, und beides ist mit Nachweis erledigt. Das Gebäudemanagement findet alles an einer Stelle – niemand muss suchen.
 
 *B · vertretbar*
 > Die Bürgermeisterin erteilt die Freigabe. Clara Faden übergibt die zwei Punkte trotzdem an das Gebäudemanagement – verschwinden lässt sie nichts. Weil die Freigabe sie aber nicht nennt, fühlt sich die Firma für den Hallenboden nicht gedrängt: Die Fugen sind erst im Frühjahr geschlossen.

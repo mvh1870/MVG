@@ -3,13 +3,13 @@
 Kopf ≤ 100 Zeilen. Oben JETZT (überschreiben), darunter FRÜHER (anhängen, knapp).
 
 ## JETZT
-- **Stand 2026-10-03 ~18:45 UTC: P17 abgeschlossen** (O-58): R75 und R76 ohne schweren Befund, R76-Befunde eingearbeitet (e8964e9, Kette voll grün, CI grün), `claude/haus` einmal per Merge nach `main` gepusht, Owner benachrichtigt.
-- **Prüfrunden P17.12:** R72 5/30/51, R73 2/19/42, R74 1/8/41, R75 0/12/40, R76 0/12/42 (schwer/mittel/leicht) – `docs/ABNAHME-MITTEL.md`, Entscheide L-237–L-256.
-- **Lesezeit:** `node werkzeuge/lesezeit.mjs`; Kurzfassung 10,4 Minuten ohne Puffer („etwa 10“, O-51, L-252) – jede Ergänzung in der Kurzfassung ausgleichen.
-- **Jetzt P18** (O-59): vier neue Explore-Werkzeuge A–D. P18.1 Konzept `docs/WERKZEUGE-P18.md` abgenommen (L-253, L-254, L-256); P18.2 Rechenkerne in Arbeit. Am Ende von P18 erneut zwei saubere Runden, Merge nach `main`, Nachricht.
-- Rechner: Node 22.22, Chromium unter `/opt/pw-browsers/chromium`. Kette ≈ 90 s (voll ≈ 120 s). Der Abschluss lief in einem abgekoppelten Worktree, weil im Hauptbaum P18.2 entstand.
+- **Stand 2026-10-03 21:20 UTC: P18.1–P18.5 erledigt** (L-253–L-259), CI 321 (ea42fd9) und 322 grün. Jetzt **P18.6 Prüfrunden**: R77 mit sechs Prüf-Agenten (Fachtreue A+B, Fachtreue C+D, Begriffe/Verknüpfung/Datenschutz, Stil+Druck, Architektur+Mutanten, Erlebnis+Vollständigkeit) über Agent-Werkzeug auf Worktree `tmp/r77`; Auftragsrahmen `tmp/r77/tmp/GEMEINSAM.txt` (nicht committet). Abnahme: zwei Runden ohne schweren Befund (O-35), dann P18.7 Merge nach `main` (O-49/O-59) und Nachricht.
+- **Lesezeit:** `node werkzeuge/lesezeit.mjs`; Kurzfassung 10,4 Minuten („etwa 10“, O-51, L-252) – Ergänzungen in der Kurzfassung ausgleichen.
+- Rechner: Node 22.22, `npm ci` 8 s, Chromium unter `/opt/pw-browsers/chromium`, Kette 111 s grün.
+- Commit 76c5450 (Ampel) trägt versehentlich Autor „Claude“ statt L-6 – gepusht, nicht umgeschrieben; `git config user.*` danach gesetzt.
 
 ## FRÜHER
+- 2026-10-03 (18:45–19:45 UTC): P17 abgeschlossen und nach `main` (O-58); P18.1–P18.5 (L-253–L-259).
 - 2026-10-03 (ab 09:00 UTC): P17 Neugestaltung (O-51–O-58): Drehbuch, Story als Spiel, Themen als Buch, Explore-Kopf; Prüfrunden R72–R76 (L-225–L-252); Owner wählt vier neue Werkzeuge (O-59).
 - 2026-10-02 (13:20–17:26 UTC): P16.15 Prüfrunden R67–R71 (L-205–L-223), Statusbedingungen der Story, Reservegrenze auf allen Wegen.
 - 2026-10-02 (11:03–13:20 UTC): Neuausrichtung P16 (O-36 bis O-50): neuer Plan; Umschalten auf neue Story, Themen, Explore, Regie (L-184 bis L-191); Theorie an V2.4, Impressum, Datenschutz, Webseitenordner (L-192 bis L-195).

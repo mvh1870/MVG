@@ -186,7 +186,7 @@ Grundlage: `ENTSCHEIDE.md` O-36 bis O-49, Quellen `quellen/v2.4/`. Jeder Posten 
 - [x] P18.3 (L-258) · Oberfläche A Vorlagen-Check und B Vorgangs-Wegweiser unter Explore (Tastatur, Rückmeldung, Grafik, Druck) — Abnahme: Browser-Szenario explore grün bei 1280/1024/400, axe ohne ernste Befunde.
 - [x] P18.4 (L-258) · Oberfläche C Risiko-Bewerter und D Monatsbericht-Baukasten (Bericht druckt auf einer Seite) — Abnahme: wie P18.3, PDF-Probe eine Seite.
 - [x] P18.5 (L-259) · Verknüpfung (Story-Kapitel und Themen verlinken die Werkzeuge), Explore-Übersicht und Startseite (Zahl der Werkzeuge), Regie-Sprünge und Leinwand, Datenschutz-Satz geprüft (nichts gespeichert) — Abnahme: Szenarien start, story, theorie, explore, regie grün; Lesezeit-Test grün.
-- [ ] P18.6 · Prüf-Agenten (alle Rollen, Explore-Feld auf die neuen Werkzeuge ausgerichtet) + Korrekturschleife — Abnahme: zwei Runden hintereinander ohne schwere Befunde (O-35), offene mittlere in `docs/ABNAHME-MITTEL.md`.
+- [~] P18.6 (2026-10-03, R77 läuft) · Prüf-Agenten (alle Rollen, Explore-Feld auf die neuen Werkzeuge ausgerichtet) + Korrekturschleife — Abnahme: zwei Runden hintereinander ohne schwere Befunde (O-35), offene mittlere in `docs/ABNAHME-MITTEL.md`.
 - [ ] P18.7 · Abschluss (O-59): Übergabe, ABNAHME ergänzt, CI auf dem letzten Commit grün gelesen, `claude/haus` einmal per Merge nach `main` gepusht, Nachricht an den Owner, Ampel rot „fertig“.
 
 ## Erledigt

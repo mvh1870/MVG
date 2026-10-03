@@ -178,7 +178,16 @@ Grundlage: `ENTSCHEIDE.md` O-36 bis O-49, Quellen `quellen/v2.4/`. Jeder Posten 
 - [x] P17.10 · Interne Bemerkungen entfernt (Abweichungen der Abbildungen, sichtbare Bedienungs- und Regie-Hinweise, Prüfvermerke, Quellenhinweise, Begründungen) und eine Probe in der Kette, die so etwas künftig meldet — Abnahme: Probe mit Gegenprobe rot, Kette grün.
 - [x] P17.11 · Themen-Texte um etwa ein Drittel gekürzt, gegliedert in Karten, Aufklapper und große Kernaussage mit Symbol; Verständnisfragen halbiert (die schwierigeren bleiben) — Abnahme: Fachtreue + Begriffe je Kapitel, keine neue Fachaussage.
 - [ ] P17.12 · Prüf-Agenten (Rollen in `docs/PRUEFAGENTEN.md` und Workflow auf neue Story und Optik) + Korrekturschleife — Abnahme: zwei Runden ohne schwere Befunde, offene mittlere in `docs/ABNAHME-MITTEL.md` (O-35, O-58).
-- [ ] P17.13 · Abschluss (O-58): Übergabe, ABNAHME-Checkliste neu, CI auf dem letzten Commit grün gelesen, `claude/haus` einmal per Merge nach `main` gepusht, Nachricht an den Owner, Ampel rot „fertig“.
+- [ ] P17.13 · Abschluss (O-58, O-59): Übergabe, ABNAHME-Checkliste neu, CI auf dem letzten Commit grün gelesen, `claude/haus` einmal per Merge nach `main` gepusht, Nachricht an den Owner, Ampel rot „fertig“.
+
+### P18 · Vier neue Explore-Werkzeuge (O-59, nach P17)
+- [ ] P18.1 · Konzept je Werkzeug (A–D) in `docs/WERKZEUGE-P18.md`: Ablauf, Felder, Vorbelegung Schulcampus, Regeln mit internem Beleg (V2.4 HB, V1.2), Grafik je Ergebnis, Druckbild, Verknüpfung (Story-Kapitel, Thema), Regie-Bühne; Inhaltsformat in `inhalte/werkzeuge.yaml` und `docs/INHALTSFORMAT.md` — Abnahme: Prüf-Agenten Fachtreue + Begriffe ohne offenen Befund.
+- [ ] P18.2 · Rechenkerne rein und getestet (`src/werkzeuge/`): Vorlagen-Check-Auswertung, Vorgangs-Entscheidungsbaum, Risiko-Stufen mit eigenen Grenzen (Grenzwert zur niedrigeren Stufe, Auswirkung 5 vorrangig, unbekannt ≠ null, vier steigende Grenzen), Monatsbericht-Prüfung — Abnahme: Einheitentests mit Gegenproben, Mutanten-Probe rot.
+- [ ] P18.3 · Oberfläche A Vorlagen-Check und B Vorgangs-Wegweiser unter Explore (Tastatur, Rückmeldung, Grafik, Druck) — Abnahme: Browser-Szenario explore grün bei 1280/1024/400, axe ohne ernste Befunde.
+- [ ] P18.4 · Oberfläche C Risiko-Bewerter und D Monatsbericht-Baukasten (Bericht druckt auf einer Seite) — Abnahme: wie P18.3, PDF-Probe eine Seite.
+- [ ] P18.5 · Verknüpfung (Story-Kapitel und Themen verlinken die Werkzeuge), Explore-Übersicht und Startseite (Zahl der Werkzeuge), Regie-Sprünge und Leinwand, Datenschutz-Satz geprüft (nichts gespeichert) — Abnahme: Szenarien start, story, theorie, explore, regie grün; Lesezeit-Test grün.
+- [ ] P18.6 · Prüf-Agenten (alle Rollen, Explore-Feld auf die neuen Werkzeuge ausgerichtet) + Korrekturschleife — Abnahme: zwei Runden hintereinander ohne schwere Befunde (O-35), offene mittlere in `docs/ABNAHME-MITTEL.md`.
+- [ ] P18.7 · Abschluss (O-59): Übergabe, ABNAHME ergänzt, CI auf dem letzten Commit grün gelesen, `claude/haus` einmal per Merge nach `main` gepusht, Nachricht an den Owner, Ampel rot „fertig“.
 
 ## Erledigt
 (noch nichts)

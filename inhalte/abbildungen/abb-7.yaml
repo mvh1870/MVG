@@ -10,3 +10,4 @@ angeglichen:
   - { x: 261, y: 850, b: 190, h: 31, text: Auswirkungsbewertung, beleg: k5.3-p2, schrift: barlow, gewicht: 700, ausrichtung: mitte }
   - { x: 486, y: 86, b: 164, h: 52, text: Freigabelogik, beleg: k5.2-t1, schrift: barlow, gewicht: 700, groesse: 25, farbe: "#ffffff", ausrichtung: mitte }
   - { x: 745, y: 851, b: 102, h: 28, text: Nachweis, beleg: k3.1-p1, schrift: barlow, gewicht: 700, groesse: 24, ausrichtung: mitte }
+  - { x: 1050, y: 205, b: 70, h: 38, text: "Entschei-\ndung", beleg: k5-l1, schrift: barlow, gewicht: 700, groesse: 18, ausrichtung: mitte }

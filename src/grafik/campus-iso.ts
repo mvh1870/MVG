@@ -950,7 +950,8 @@ function szene(buehne: Buehne, s: number): void {
   }
   if (s === 2) {
     buehne.ding(gs.x1, gs.y1, gs.x2, gs.y2, ersteWaende(gs, 170));
-    kran(buehne, 186, 124, 'y', 30, { a: 62, z: 34, holz: false });
+    // R74: niedriger und mit kürzerem Ausleger, damit der Kran auch im breiten Story-Rahmen (xMidYMid slice) ganz im Bild ist
+    kran(buehne, 186, 124, 'y', 74, { a: 84, z: 34, holz: false }, 96);
     erdhaufen(buehne, 340, 74, 16);
     lkw(buehne, 120, 120, 'mischer');
     stapel(buehne, 300, 120, 'ci-holz');
@@ -962,7 +963,7 @@ function szene(buehne: Buehne, s: number): void {
   if (s === 3) {
     const roh = rohbau(gs, 3);
     buehne.ding(gs.x1, gs.y1, gs.x2 + 4, gs.y2 + 4, roh + holzFassade(gs, 0, 2 * GH) + fenster(gs, 0, 2 * GH) + holzFassade(gs, 2 * GH, gsH, 160) + fenster(gs, 2 * GH, gsH, 160) + geruest(gs, gsH, 168, true));
-    kran(buehne, 186, 124, 'y', 30, { a: 70, z: 62, holz: true });
+    kran(buehne, 186, 124, 'y', 74, { a: 84, z: 62, holz: true }, 96);
     palette(buehne, 306, 112, 'holz');
     palette(buehne, 330, 140, 'holz');
     stapel(buehne, 80, 140, 'ci-beton');

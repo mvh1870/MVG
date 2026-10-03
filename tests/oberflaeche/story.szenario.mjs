@@ -210,7 +210,7 @@ export async function lauf(seite, h) {
   }
   await h.erwarte('[data-pruef="bruecke-k8"]');
   const ort = (await seite.locator('[data-pruef="gs-ort"]').textContent()) ?? '';
-  if (!/Schulstart/u.test(ort)) h.befund(`Kurzfassung: Ort am Ende „${ort}“`);
+  if (!/Ende/u.test(ort)) h.befund(`Kurzfassung: Ort am Ende „${ort}“`);
   await pruefe('kurz-ende');
 
   // Fortschritt löschen → Auftakt, Fokus nicht auf <body>

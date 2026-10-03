@@ -193,30 +193,30 @@ Die Vergabe oder die verbindliche Bindung einer Komponente mit langer Lieferzeit
 stelle: 3
 ---
 ### Frage
-Als Infrastrukturträger stehen Sie vor der finalen Investitionsentscheidung (FID) – mit welcher Freigabe gehört sie zusammen?
+Als Infrastrukturträger haben Sie die Variante gewählt und den Business Case bestätigt. Jetzt liegen Entwurfsplanung und Kostenberechnung vor. Welche Freigabe steht an?
 
 ### Erklärung
-Für Energieversorger und Infrastrukturträger ist die Freigabereife besonders relevant: zum Abschluss von LPH 2 für Variantenwahl und Business Case, von LPH 3 für die FID nach Entwurfsplanung und Kostenberechnung und von LPH 7 für Vergabe oder die Bindung einer Komponente mit langer Lieferzeit.
+Die Freigabereife hat drei Stellen: Variantenwahl und Business Case liegen vor der FID, Vergabe und lange Lieferzeiten danach.
 
 ::: antwort a
 ---
-titel: Abschluss LPH 3 – nach Entwurfsplanung und Kostenberechnung
+titel: Die finale Investitionsentscheidung (FID) zum Abschluss von LPH 3
 praefix: "Genau:"
 ---
-Die FID steht bei der Freigabereife zum Abschluss von LPH 3.
+Nach Entwurfsplanung und Kostenberechnung steht die FID an.
 :::
 
 ::: antwort b
 ---
-titel: Abschluss LPH 2 – nach Vorplanung und Kostenschätzung
+titel: Variantenwahl und Business Case zum Abschluss von LPH 2
 praefix: "Nicht ganz:"
 ---
-An LPH 2 hängt eine frühere Entscheidung: Variantenwahl und Business Case.
+Diese Freigabe liegt schon hinter Ihnen – Variante und Business Case stehen.
 :::
 
 ::: antwort c
 ---
-titel: Abschluss LPH 7 – nach Prüfung des Vergabeergebnisses
+titel: Vergabe oder Bindung einer Komponente mit langer Lieferzeit zum Abschluss von LPH 7
 praefix: "Nicht ganz:"
 ---
 LPH 7 liegt deutlich nach der FID – dort geht es um Vergabe und lange Lieferzeiten.
@@ -379,7 +379,7 @@ Sie gehört – mit RACI und Entscheidungsvorlage – zur Antwort auf Gremienbes
 ---
 seite: links
 ---
-Entscheidungsvorlage zur Änderung (zwei Optionen, gewichteter Vergleich)
+Entscheidungsvorlage zur Änderung (mindestens zwei Optionen, gewichteter Vergleich)
 
 ### Erklärung
 Sie gehört – mit Änderungsregister und verbindlicher Auswirkungsbewertung – zur Antwort auf Änderungsanträge mit unvollständiger Auswirkungsbewertung.

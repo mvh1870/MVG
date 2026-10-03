@@ -358,6 +358,17 @@ a.glossar-ort:hover { text-decoration: underline; }
   /* R48: Aufklappzeichen sind auf Papier Bedienzeichen ohne Funktion */
   .druck-bogen summary { list-style: none; }
   .druck-bogen summary::-webkit-details-marker { display: none; }
+  /* R74: Verständnisfrage und Ergebnis als Block – an den Umbrüchen eines Rasters setzte Chromium die Höhe der Teilstücke
+     falsch, die letzte Zeile der Erklärung stand halb abgeschnitten oben auf der Folgeseite (verantwortung); Abstände per margin */
+  .druck-bogen :is(.wissenscheck, .wc-ergebnis) { display: block; }
+  .druck-bogen :is(.wissenscheck, .wc-ergebnis) > * + * { margin-top: var(--a-3); }
+  /* R74: ein Einleitungssatz bleibt bei seiner Aufzählung oder seinen Karten (takt: „… was er zum Entscheiden braucht:“ allein
+     am Seitenende, die Karten erst auf der Folgeseite) */
+  .druck-bogen .lesetext > p:has(+ :is(ul, ol)), .druck-bogen .lesetext:has(+ .lernkarten-gruppe) > p:last-child { break-after: avoid; }
+  /* R74: der Story-Verweis am Bogenende in einer Zeile und beim vorigen Block – drei Zeilen allein füllten eine letzte Seite zu 11 % */
+  .druck-bogen .querverweis-block { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 1mm 3mm; break-before: avoid; break-inside: avoid; }
+  .druck-bogen .querverweis-text { flex-direction: row; flex-wrap: wrap; gap: 0 2mm; }
+  .druck-bogen .querverweise .querverweis { padding: 0; }
   /* R47: ein Fokus-Hof (Tastaturbedienung vor dem Druck) gehört nicht aufs Papier */
   :focus-visible { box-shadow: none !important; outline: none !important; }
 }
@@ -382,6 +393,9 @@ a.glossar-ort:hover { text-decoration: underline; }
 /* R49: wie das äußere Raster (L-138) – „Schwellenwertverletzungen“ im Zitat machte die Spur bei 320 px 26 px zu breit */
 .wc-ergebnis { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--a-3); padding-top: var(--a-3); border-top: 1px solid var(--linie); }
 .wc-rueckmeldung p, .wc-erklaerung p { margin: 0; }
+/* R74: das Präfix („Genau:“) steht in der Zeile des ersten Absatzes, auf derselben Grundlinie – als Inline vor einem Block
+   rutschte es in eine eigene Zeile darüber */
+.wc-rueckmeldung > b:first-child + p { display: inline; }
 /* Fokus nicht unter der klebenden Kopfleiste der Lernseiten (WCAG 2.4.11, P11.3) */
 html:has(.lernseite) { scroll-padding-top: 72px; }
 

@@ -3,10 +3,10 @@ einleitung: |
   Fünf Werkzeuge zum Ausprobieren – alle am fiktiven Schulcampus Lindenhall-Süd.
 mcda:
   titel: MCDA-Rechner
-  kurz: Optionen gewichtet vergleichen und sehen, wann sich die Spitze dreht.
+  kurz: Ein gewichteter Vergleich nach mehreren Kriterien – und sehen, wann sich die Spitze dreht.
   belege: [v24:hb-3.1, v24:hb-3.2]
   text: |
-    Die Projektsteuerung vergleicht mindestens zwei zulässige Optionen anhand derselben gewichteten Kriterien. Gewichte und Punkte liegen je zwischen 1 und 5; Gewicht mal Punkt ergibt je Kriterium ein Produkt, die Summe die Gesamtpunktzahl. Kriterien und Gewichte werden vor der Bewertung mit dem Bauherrn abgestimmt.
+    MCDA steht für Multikriterien-Entscheidungsanalyse, auf Deutsch: ein gewichteter Vergleich nach mehreren Kriterien. Die Projektsteuerung vergleicht mindestens zwei zulässige Optionen anhand derselben gewichteten Kriterien. Gewichte und Punkte liegen je zwischen 1 und 5; Gewicht mal Punkt ergibt je Kriterium ein Produkt, die Summe die Gesamtpunktzahl. Kriterien und Gewichte werden vor der Bewertung mit dem Bauherrn abgestimmt.
   hinweis: |
     Eine hohe Punktzahl ersetzt kein fachliches Urteil. Zwingende Anforderungen an Sicherheit, Genehmigung und Funktion werden vor dem Vergleich geprüft – eine unzulässige Option gewinnt nicht durch Punkte.
 matrix:

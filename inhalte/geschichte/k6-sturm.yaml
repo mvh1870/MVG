@@ -28,7 +28,7 @@ frage: Draußen pfeift noch der Wind, und der Bauleiter wartet am Telefon. Was s
 
 antworten:
   - wertung: gut
-    text: Sperren Sie sofort, holen Sie die Sicherheitskoordination. Ich rufe die Projektsteuerin an – sie meldet und hält es heute fest.
+    text: Sperren Sie sofort, holen Sie die Sicherheitskoordination. Die Projektsteuerin meldet es und hält es heute fest.
     balken: { geld: 0, zeit: -1, vertrauen: 1 }
     bild: eintrag
     folge: |

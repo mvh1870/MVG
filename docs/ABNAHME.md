@@ -5,7 +5,7 @@ Zum Abhaken beim Durchsehen der Internetseite (lokal: `dist/index.html` im Brows
 ## A. Fachliche Abnahme
 - [ ] Theorie: jedes Thema mit Kernaussage und Abschnitten gelesen; nichts behauptet, was V1.2 oder V2.4 nicht sagt (O-36, O-38). Kein sichtbarer Bezug auf Whitepaper, Kapitel oder Absatz-IDs.
 - [ ] Drei neue Themen: Entscheidungsvorlage mit gewichtetem Vergleich, Vorgangsarten und Risikobewertung (5×5), Takt und Monatsbericht – nach dem Standard V2.4.
-- [ ] Story: alle acht Stationen auf dem empfohlenen Weg und einmal mit anderen Wahlen; Vorlagen (mindestens zwei zulässige Optionen, Gewichte), Statusanzeige, Kästen „So läuft es oft“ und „Typischer Einwand“ fachlich korrekt; die Projektsteuerung pflegt alle Vorgänge, der Bauherr entscheidet (O-40, O-41).
+- [ ] Story: alle acht Kapitel einmal mit den guten Antworten und einmal mit anderen Wahlen; je Kapitel drei Antworten mit Folge-Szene, „So macht man es gut“ und „Das steckt dahinter“, die vier Mini-Aufgaben (Kapitel 2, 4, 6, 8) und der gewichtete Vergleich in Kapitel 7 fachlich korrekt; Bilanz passt zur Wahl, auch „offen“, wenn Entscheidungen fehlen; die Projektsteuerung pflegt alle Vorgänge, der Bauherr entscheidet (O-41, O-51, O-52).
 - [ ] Begriffe: LPH 0–9, nie G0–G5; Entscheidungsvorlage, Freigabe / keine Freigabe / Freigabe mit Auflagen (O-14, O-15). Begriffs-Kompass im Glossar als Lesehilfe in Ordnung.
 - [ ] Explore: gewichteter Vergleich, Risikomatrix, Vorgangsarten, Takt und Glossar stimmen mit dem Standard (O-46).
 - [ ] Fall fiktiv und so gekennzeichnet; einziges Beispielprojekt ist der Schulcampus Lindenhall-Süd (O-3, O-45, O-50).
@@ -15,17 +15,18 @@ Zum Abhaken beim Durchsehen der Internetseite (lokal: `dist/index.html` im Brows
 
 ## B. Erlebnis
 - [ ] Startseite ruhig, drei Wege (Story, Theorie, Explore), „Wer steht dahinter“ mit leisem Link (O-21, O-44).
-- [ ] Story: Hauptweg rund 25 Minuten, Kurzfassung rund 10 Minuten; ein Fluss mit „Weiter“, Fortschrittslinie, ein Ende (O-40).
+- [ ] Story: fünf Figuren mit Steckbrief, Balken Geld · Zeit · Vertrauen ohne Zahlen; ganzer Weg etwa 25 Minuten, Kurzfassung (Kapitel 1, 3, 4, 7 mit Brückensätzen) etwa 11 Minuten; ein Fluss mit „Weiter“, Fortschrittslinie, ein Ende mit Bilanz (O-51 bis O-53, L-246).
+- [ ] Theorie als Buch: vier Teile, Kapitel 1–15 mit Kurzsatz, Glossar als Anhang 16, Karten zum Umdrehen, Verständnisfragen und Fortschritt „n von 15“ (O-54, O-55).
 - [ ] Bauplan-Hintergründe: Start deutlich, Theorie und Story sehr dezent; Text bleibt gut lesbar (O-45).
 - [ ] Farben und Schriften wie Variante B (O-11, O-12, O-22).
 - [ ] Links zu bauherr-mentoren.com sachlich und leise, kein Vertrieb (O-1, O-44).
 
 ## C. Termin mit Regie und Leinwand (O-9)
 - [ ] Zwei Fenster: Regie am Laptop, Leinwand am Beamer; Leinwand zeigt nie Notizen oder Leitfragen.
-- [ ] Sprung je Station, Wahl aus der Regie (Gewichte über die drei Vorschläge in Station 1), Gewichte und Vergleich auf der Leinwand sichtbar; Themen und Werkzeuge zeigen.
+- [ ] Sprung zu jedem Kapitel und Schritt, Kurzfassung ein/aus; aus der Regie die Antwort wählen (Tasten 1–3), die Mini-Aufgabe zuordnen oder auflösen und in Kapitel 7 die Gewichte setzen; die Leinwand zeigt Wahl, Folge und Vergleich, nie die Wertung; Themen und Werkzeuge zeigen.
 
 ## D. Geräte (O-10)
-- [ ] Chrome oder Edge, Safari, Firefox: Start, eine Station, ein Thema, ein Werkzeug.
+- [ ] Chrome oder Edge, Safari, Firefox: Start, ein Story-Kapitel, ein Thema, ein Werkzeug.
 - [ ] Beamer 16:9, iPad quer, Smartphone lesbar.
 
 ## E. Auslieferung (O-42, O-43, O-47)

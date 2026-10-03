@@ -33,7 +33,8 @@ export const W = {
   start: {
     // Kicker, Leitsatz und These stehen in inhalte/start.md.
     wege: 'Drei Wege',
-    internetseite: 'Spielen Sie es als Geschichte durch, lesen Sie es in Themen nach oder probieren Sie die Werkzeuge aus. Der Governance Kompass ist eine Internetseite, ohne Anmeldung, ohne Konto.',
+    // O-42: die Startseite sagt, dass es eine Internetseite ist – als Halbsatz statt als eigener Bedienhinweis (R74)
+    internetseite: 'Spielen Sie es als Geschichte durch, lesen Sie es in Themen nach oder probieren Sie die Werkzeuge aus – alles auf dieser Internetseite, ohne Anmeldung.',
     storyKicker: 'Erlebt',
     storyTitel: 'Als Geschichte',
     storyText: 'Sie leiten für die Stadt Lindenhall den Bau eines Schulcampus. Unterwegs entscheiden Sie achtmal – und sehen gleich, was jede Wahl für Geld, Zeit und Vertrauen bedeutet.',
@@ -44,7 +45,7 @@ export const W = {
     figuren: 'Mit dabei',
     theorieKicker: 'Erklärt',
     theorieTitel: 'In Themen',
-    theorieText: 'Was Minimum Viable Governance ausmacht – wie ein Buch in vier Teilen, mit Grafiken zum Anklicken.',
+    theorieText: 'Was Minimum Viable Governance ausmacht – ein Buch in vier Teilen mit Grafiken und kurzen Fragen.',
     theorieMeta: (n: number) => `${n} Themen · einzeln lesbar`,
     theorieLos: 'Öffnen',
     exploreKicker: 'Ausprobiert',
@@ -65,7 +66,7 @@ export const W = {
     ersatzWege: [
       'Theorie: „Thema drucken“ auf jeder Seite eines Themas.',
       // r72: der Story-Druckbogen (L-232) hat keinen Knopf – ohne diese Zeile kennt den Weg niemand; auf der Leinwand entfällt sie
-      'Story: Strg+P in der Geschichte druckt Ihre Antworten mit „So macht man es gut“, am Ende auch Ihre Bilanz.',
+      'Story: Der Druckbefehl des Browsers druckt in der Geschichte Ihre Antworten mit „So macht man es gut“, am Ende auch Ihre Bilanz.',
       'Präsentieren: „Protokoll drucken“ – Notizen und Entscheidungen des Gesprächs.',
     ],
   },
@@ -164,6 +165,8 @@ export const W = {
     vonN: (nr: number, n: number) => `${nr} von ${n}`,
     auftakt: 'Auftakt',
     ende: 'Schulstart',
+    // Fortschrittslinie und Ortszeile: eindeutig neben Kapitel 8 „Schulstart“ (R74)
+    endeOrt: 'Ende · Ihre Bilanz',
     // Teile eines Kapitels (Regie: wo die Bühne steht)
     teile: { szene: 'Szene', vergleich: 'Vergleich', frage: 'Frage', mini: 'Mini-Aufgabe' } as Record<string, string>,
     weiter: 'Weiter',
@@ -228,7 +231,7 @@ export const W = {
     },
     projektsteuerinSagt: 'Die Projektsteuerin',
     bilanzTitel: 'Ihre Bilanz',
-    offen: (n: number) => n === 1 ? 'Eine Entscheidung haben Sie noch nicht getroffen – sie zählt hier nicht mit.' : `${n} Entscheidungen haben Sie noch nicht getroffen – sie zählen hier nicht mit.`,
+    offen: (n: number) => n === 1 ? 'Eine Entscheidung haben Sie noch nicht getroffen – sie zählt hier nicht mit.' : `${ZAHLWORT[n] ?? String(n)} Entscheidungen haben Sie noch nicht getroffen – sie zählen hier nicht mit.`,
     fortschrittLoeschen: 'Fortschritt löschen',
     fortschrittHinweis: 'Ihr Stand liegt nur in diesem Browser.',
     druckTitel: 'Ihre Geschichte',

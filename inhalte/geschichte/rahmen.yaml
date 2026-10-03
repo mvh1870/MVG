@@ -11,7 +11,7 @@ auftakt:
 
     Es ist kein echtes Projekt, aber es könnte eines sein: Die Fragen, die hier auftauchen, stellen sich auf vielen Baustellen.
 
-    Unterwegs müssen Sie sich achtmal entscheiden. Ihre Antworten bewegen drei Balken: Geld, Zeit und Vertrauen. Am Ende sehen Sie, wie Ihr Projekt ausgegangen ist.
+    Unterwegs müssen Sie sich mehrmals entscheiden – achtmal auf dem ganzen Weg, viermal in der Kurzfassung. Ihre Antworten bewegen drei Balken: Geld, Zeit und Vertrauen. Am Ende sehen Sie, wie Ihr Projekt ausgegangen ist.
   vorstellung: "Diese fünf Menschen begleiten Sie:"
   los: Los geht's
   kurz: Kurzfassung (etwa 11 Minuten)
@@ -24,7 +24,7 @@ figuren:
     name: Gisela Grundstein
     rolle: Bürgermeisterin
     akzent: violett
-    steckbrief: "Sie entscheidet für die Stadt die großen Dinge: was zuerst kommt, jede Freigabe, jeden Griff in die Reserve. Der Lenkungskreis, eine feste Runde mit der Finanzabteilung und dem Schulamt, berät sie – entscheiden tut sie."
+    steckbrief: "Sie entscheidet für die Stadt die großen Dinge: was zuerst kommt, jede große Freigabe, jeden Griff in die Reserve. Der Lenkungskreis, eine feste Runde mit der Finanzabteilung und dem Schulamt, berät sie – entscheiden tut sie."
   - id: faden
     name: Clara Faden
     rolle: Projektsteuerin

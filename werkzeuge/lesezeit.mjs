@@ -62,10 +62,12 @@ export async function messeLesezeit() {
   await sorgeFuerDom();
   const { inhalte } = await import('../src/inhalte/index.ts');
   const { baueSchritt } = await import('../src/ui/flaechen/geschichte.ts');
+  const { themaTitel: titelVon } = await import('../src/ui/flaechen/theorie.ts');
   const { neuerStand, schritte, waehle, wegKapitel } = await import('../src/geschichte/engine.ts');
   const g = inhalte.geschichte;
   if (g === null) throw new Error('keine Story in den Inhalten');
-  const themaTitel = (/** @type {string} */ id) => inhalte.theorie[id]?.titel ?? null;
+  // wie die Seite (main.ts): Titel über die Themen-Kennung, damit „Zum Thema …“ mitzählt (R74)
+  const themaTitel = (/** @type {string} */ id) => titelVon(inhalte, id);
   /** @param {boolean} kurz */
   const weg = (kurz) => {
     let s = neuerStand(kurz);

@@ -37,7 +37,7 @@ antworten:
     folge: |
       Anderthalb Millionen stehen in keiner Rechnung. Als ein Stadtrat fragt, woher die Zahl kommt, bleibt nur die Antwort: aus der Mitte. Clara Faden legt danach beide Rechnungen nebeneinander und zeigt den Unterschied. Die Prüfung endet wie erwartet – die Leistungen gehören schon zum bestehenden Vertrag –, aber die Firma verhandelt jetzt härter, denn halb eingerechnet war ihre Forderung ja schon.
   - wertung: gut
-    text: "Eine Zahl mit Datum und Begründung: eine Million über dem Budget – die angekündigten Mehrkosten als Risiko daneben."
+    text: "Eine Million über dem Budget, mit Datum und Begründung – die angekündigten Mehrkosten als Risiko daneben."
     balken: { geld: 1, zeit: 0, vertrauen: 2 }
     bild: waage
     folge: |

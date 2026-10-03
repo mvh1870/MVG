@@ -21,7 +21,7 @@ after(() => dom.window.close());
 
 const { inhalte } = await import('../src/inhalte/index.ts');
 const { baueSchritt, erzeugeGeschichte, SPEICHER_SCHLUESSEL, storyDruck, aenderungWort } = await import('../src/ui/flaechen/geschichte.ts');
-const { neuerStand, waehle, kapitel, balkenBis } = await import('../src/geschichte/engine.ts');
+const { neuerStand, waehle, kapitel, balkenBis, balken: balkenVon, stufe: stufeVon } = await import('../src/geschichte/engine.ts');
 const { W } = await import('../src/ui/woerter.ts');
 type Stand = ReturnType<typeof neuerStand>;
 
@@ -228,10 +228,18 @@ test('Mini-Aufgaben: Grafik auf dem Schritt, kleine Gegenstände auf den Karten;
 test('Kurzfassung: Brücken vor 3, vor 7 und vor dem Schulstart; übersprungene Kapitel zählen wie die gute Antwort', () => {
   const f3 = flaeche(an('k3', 'szene', neuerStand(true)));
   assert.ok($(f3, '[data-pruef="bruecke-k2"]'));
+  // R74: Überschrift für Screenreader mit derselben Stelle wie die Ortszeile („2 von 4“), nicht der Nummer des langen Wegs
+  const ort3 = $(f3, '[data-pruef="gs-ort"]').textContent ?? '';
+  assert.match(ort3, /^2 von 4 · /u);
+  assert.equal($(f3, '[data-pruef="gs-titel"] .nur-sr').textContent, `${ort3.split(' · ')[0] ?? ''} · `);
   const f7 = flaeche(an('k7', 'szene', neuerStand(true)));
   assert.ok($(f7, '[data-pruef="bruecke-k5"]') && $(f7, '[data-pruef="bruecke-k6"]'));
   const fe = flaeche({ ...weg('gut', true), schritt: { ort: 'ende' } });
   assert.ok($(fe, '[data-pruef="bruecke-k8"]'));
+  // R74: das Ende heißt in Ortszeile und Fortschrittslinie anders als Kapitel 8 „Schulstart“
+  const namen = [...fe.element.querySelectorAll('[data-pruef="gs-fortschritt"] [aria-label]')].map((x) => x.getAttribute('aria-label') ?? '');
+  assert.equal(new Set(namen.map((n) => n.replace(/^\d+ von \d+ · /u, ''))).size, namen.length, 'Feldnamen eindeutig');
+  assert.notEqual($(fe, '[data-pruef="gs-ort"]').textContent, 'Schulstart');
   assert.equal($(fe, '[data-pruef="gs-bilanz-titel"]').textContent, 'Ruhig ins Ziel');
   // ohne Kurzfassung keine Brücken
   const fl = flaeche(an('k3', 'szene'));
@@ -322,7 +330,7 @@ test('Ende: Bilanz je Weg, Varianten bei niedriger Zeit und niedrigem Vertrauen,
   assert.equal($(vertretbar, '[data-pruef="gs-bilanz-titel"]').textContent, 'Auf den letzten Metern');
   // ohne Entscheidungen: Hinweis, dass sie nicht mitzählen
   const leer = flaeche({ ...neuerStand(), schritt: { ort: 'ende' } });
-  assert.match($(leer, '[data-pruef="gs-offen"]').textContent ?? '', /^8 Entscheidungen/u);
+  assert.match($(leer, '[data-pruef="gs-offen"]').textContent ?? '', /^Acht Entscheidungen/u);
   $(leer, '[data-pruef="von-vorn"]').click();
   assert.deepEqual(leer.stand().schritt, { ort: 'auftakt' });
   assert.equal(aktiv(), 'gs-titel');
@@ -371,7 +379,9 @@ test('Druckbogen (Strg+P): je Kapitel Ihre Antwort und „So macht man es gut“
   // am Ende die Bilanz – mit dem Hinweis auf offene Entscheidungen wie am Bildschirm
   const ende = druck({ ...s, schritt: { ort: 'ende' } });
   assert.match(ende, /Ihre Bilanz: /u);
-  assert.match(ende, /7 Entscheidungen haben Sie noch nicht getroffen/u);
+  assert.match(ende, /Sieben Entscheidungen haben Sie noch nicht getroffen/u);
+  // R74: der Druck hat keine Balken – ihr Stand steht dort in Worten
+  for (const x of g.balken) assert.match(ende, new RegExp(`${x.titel}: (gut gefüllt|etwa halb voll|knapp)`, 'u'), x.id);
   assert.match(druck({ ...weg('gut'), schritt: { ort: 'ende' } }), /Ihre Bilanz: Ruhig ins Ziel/u);
   // Kurzfassung: ein übersprungenes Kapitel ist erst „erzählt“, wenn seine Brücke erreicht ist
   const kurzVorn = druck(an('k3', 'szene', neuerStand(true)));
@@ -388,6 +398,12 @@ test('Druckbogen (Strg+P): je Kapitel Ihre Antwort und „So macht man es gut“
   const lueckeEnde = druck({ ...s, schritt: { ort: 'ende' } });
   assert.match(lueckeEnde, new RegExp(`Ihre Bilanz: ${g.bilanz.offen.titel}`, 'u'));
   assert.doesNotMatch(lueckeEnde, /Geschafft – mit Umwegen/u);
+  // R74: keine Sätze je Balken, stattdessen der Stand in Worten
+  const bEnde = balkenVon(g, { ...s, schritt: { ort: 'ende' } });
+  for (const x of g.balken) {
+    for (const satz of Object.values(x.bilanz)) assert.ok(!lueckeEnde.includes(satz.replace(/<[^>]*>/gu, '').slice(0, 30)), `${x.id}: Satz je Balken gedruckt`);
+    assert.ok(lueckeEnde.includes(W.geschichte.fuellstand[stufeVon(bEnde[x.id])] ?? '§'), `${x.id}: Stand in Worten`);
+  }
 });
 
 test('Ende mit offenen Entscheidungen (R73): neutrale Bilanz statt Urteil, keine Sätze je Balken, Schlusszeile „offen“', () => {
@@ -399,8 +415,10 @@ test('Ende mit offenen Entscheidungen (R73): neutrale Bilanz statt Urteil, keine
   assert.equal(ende.dataset['fassung'], 'offen');
   assert.equal($(f, '[data-pruef="gs-bilanz-titel"]').textContent, g.bilanz.offen.titel);
   assert.equal(ende.querySelector('.gs-bilanz-saetze'), null);
-  assert.match($(f, '[data-pruef="gs-offen"]').textContent ?? '', /7 Entscheidungen/u);
+  assert.match($(f, '[data-pruef="gs-offen"]').textContent ?? '', /Sieben Entscheidungen/u);
   const dialogText = ende.querySelector('.gs-dialog')?.textContent ?? '';
+  // R74: nur die Zeilen der Kurzfassung – die übrigen setzen eine gespielte Geschichte voraus
+  assert.deepEqual([...ende.querySelectorAll<HTMLElement>('.gs-dialog > li')].map((z) => z.dataset['figur']), g.ende.szene.filter((z) => z.kurzfassung).map((z) => z.figur));
   assert.doesNotMatch(dialogText, /Ich wusste jedes Mal/u);
   assert.match(dialogText, /was unterwegs offen geblieben ist/u);
 });

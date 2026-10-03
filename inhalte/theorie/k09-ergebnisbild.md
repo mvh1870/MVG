@@ -32,7 +32,7 @@ Was liegt am Ende einer Einführung von Minimum Viable Governance (MVG) tatsäch
 - der Standard für Entscheidungsvorlagen, samt eindeutiger Entscheidungs-ID,
 - das Betriebshandbuch.
 
-Die Entscheidungs-ID ist Teil jeder Entscheidungsvorlage; die Befähigung behandelt das Thema „Leistungsarchitektur“. Für den Bauherrn zählt weniger das einzelne Dokument als der Zusammenhang.
+Bei einer wesentlichen Bauherrenentscheidung trägt die Vorlage ihre Entscheidungs-ID; die Befähigung behandelt das Thema „Leistungsarchitektur“. Für den Bauherrn zählt weniger das einzelne Dokument als der Zusammenhang.
 
 ::: kernaussage
 ---
@@ -147,7 +147,7 @@ titel: RACI-Prozess
 ---
 symbol: person
 ---
-Das Standard-Rollenmodell umfasst 13 Arbeitsrollen: Bauherr/Projektauftraggeber, Bauherren-PL, PMO, Projektsteuerung, Lenkungskreis/Vorstand, Controlling/Finanzen, Einkauf/Vergabe, Planung/Fachplanung, externe Berater, Auftragnehmer/Lieferanten, Administration, Ausführung und Gebäudemanagement (FM)/Betrieb. Dazu kommt die Sonderrolle „BM-Mentor“ nur für die Einführung.
+Das Standard-Rollenmodell umfasst 13 Arbeitsrollen: Bauherr/Projektauftraggeber, Projektleitung des Bauherrn, PMO, Projektsteuerung, Lenkungskreis/Vorstand, Controlling/Finanzen, Einkauf/Vergabe, Planung/Fachplanung, externe Berater, Auftragnehmer/Lieferanten, Administration, Ausführung und Gebäudemanagement/Betrieb. Dazu kommt eine Sonderrolle nur für die Einführung: der Mentor von Bauherr Mentoren.
 :::
 
 ::: umschalter
@@ -175,7 +175,7 @@ rechts: Keine eigene Arbeitsrolle
 ---
 seite: links
 ---
-Bauherren-PL
+Projektleitung des Bauherrn
 
 ### Erklärung
 Eine der 13 Arbeitsrollen.
@@ -185,7 +185,7 @@ Eine der 13 Arbeitsrollen.
 ---
 seite: rechts
 ---
-BM-Mentor
+Mentor von Bauherr Mentoren
 
 ### Erklärung
 Eine Sonderrolle nur für die Einführung: Vollzugriff im MVG Companion, in keinem Prozess-RACI, danach deaktiviert.
@@ -215,7 +215,7 @@ Projektauftraggeber als zusätzliche Rolle neben dem Bauherrn
 ---
 seite: links
 ---
-Gebäudemanagement (FM)/Betrieb
+Gebäudemanagement/Betrieb
 
 ### Erklärung
 Eine der 13 Arbeitsrollen.

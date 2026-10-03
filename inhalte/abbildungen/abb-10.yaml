@@ -19,3 +19,4 @@ angeglichen:
   - { x: 138, y: 143, b: 146, h: 24, text: unbewertetes Signal, beleg: k6.4.3-p2, schrift: barlow, gewicht: 500 }
   # „(bestätigt)“ entfällt: nach V2.4 (HB 1.2) führt eine geklärte Frühwarnung zu Risiko, Problem oder Aufgabe oder wird begründet geschlossen
   - { x: 180, y: 242, b: 82, h: 23, text: "", beleg: k6.4.3-p2 }
+  - { x: 862, y: 322, b: 128, h: 54, text: "Entschei-\ndungsvorlage", beleg: k6.4.4-t1, schrift: barlow, gewicht: 700, groesse: 24 }

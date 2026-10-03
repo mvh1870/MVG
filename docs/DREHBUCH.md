@@ -62,7 +62,7 @@ Sechs Porträts (Sie als Spielfigur plus fünf Figuren), flach, als Vektorgrafik
 | Feld | Inhalt |
 |---|---|
 | Alter, Typ | 58, seit acht Jahren Bürgermeisterin; ruhig, direkt, mag keine Umwege |
-| Steckbrief (sichtbar) | Sie entscheidet für die Stadt die großen Dinge: was zuerst kommt, jede Freigabe, jeden Griff in die Reserve. Der Lenkungskreis, eine feste Runde mit der Finanzabteilung und dem Schulamt, berät sie – entscheiden tut sie. |
+| Steckbrief (sichtbar) | Sie entscheidet für die Stadt die großen Dinge: was zuerst kommt, jede große Freigabe, jeden Griff in die Reserve. Der Lenkungskreis, eine feste Runde mit der Finanzabteilung und dem Schulamt, berät sie – entscheiden tut sie. |
 | Sprechweise | kurze Sätze, fragt zuerst nach der Frage, dann nach den Details; trockener Humor |
 | Beispielsätze | „Was genau soll ich entscheiden – und bis wann?“ · „Ich bin Bürgermeisterin, nicht Bauleiterin.“ |
 | Sorge | im Stadtrat eine Zahl vertreten zu müssen, die sie nicht versteht |
@@ -175,7 +175,7 @@ Campus Stufe 0 · Winter · Morgen (wie Kapitel 1), groß. Marke „Fiktiver Fal
 > **Ein Schulcampus für Lindenhall**
 > Ein fiktiver Fall: Die Stadt Lindenhall baut im Süden der Stadt eine Gesamtschule, eine Grundschule und eine Sporthalle. Sie leiten das Projekt für die Stadt. Im Sommer 2028 sollen die Kinder einziehen.
 > Es ist kein echtes Projekt, aber es könnte eines sein: Die Fragen, die hier auftauchen, stellen sich auf vielen Baustellen.
-> Unterwegs müssen Sie sich achtmal entscheiden. Ihre Antworten bewegen drei Balken: Geld, Zeit und Vertrauen. Am Ende sehen Sie, wie Ihr Projekt ausgegangen ist.
+> Unterwegs müssen Sie sich mehrmals entscheiden – achtmal auf dem ganzen Weg, viermal in der Kurzfassung. Ihre Antworten bewegen drei Balken: Geld, Zeit und Vertrauen. Am Ende sehen Sie, wie Ihr Projekt ausgegangen ist.
 > Diese fünf Menschen begleiten Sie:
 
 Knopf: > Los geht's · daneben leise: > Kurzfassung (etwa 11 Minuten)
@@ -283,7 +283,7 @@ Knopf: > Los geht's · daneben leise: > Kurzfassung (etwa 11 Minuten)
 > Weil der Eintrag schon als Risiko im Bericht steht, fragt die Kämmerei – die Finanzabteilung der Stadt – nach, bevor jemand weiß, ob da überhaupt etwas ist. Immerhin fragt der Architekt bis Ende des Monats bei den Herstellern nach.
 
 *C · Falle*
-> Clara Faden hält den Hinweis trotzdem vollständig fest: Prüffrage, der Architekt fragt bis Ende nächster Woche nach. Aber Konrad Schwung hat Ihren Satz gehört – es hat ja Zeit bis zum Monatstermin. Bei ihrer Wochendurchsicht meldet Clara Faden die Prüffrage als überfällig, und erst drei Wochen später als nötig fragt er bei den Herstellern nach.
+> Clara Faden hält den Hinweis trotzdem vollständig fest: Prüffrage, der Architekt fragt bis Ende des Monats nach. Aber Konrad Schwung hat Ihren Satz gehört – es hat ja Zeit. Der Monat vergeht ohne Nachfrage; bei ihrer Wochendurchsicht meldet Clara Faden die Prüffrage als überfällig, und erst drei Wochen später als nötig fragt er bei den Herstellern nach.
 
 **So macht man es gut**
 > Ein unklarer Hinweis wird gleich festgehalten, spätestens bei der nächsten Wochendurchsicht – mit seiner Herkunft, einer klaren Prüffrage, einem Namen und einem Termin. Bewertet wird erst, wenn die Antwort da ist; bis dahin bleibt er offen und wird jede Woche angeschaut.
@@ -427,7 +427,7 @@ Grafik zur Szene: kleine Matrix aus 5 × 5 Feldern ohne Zahlen, Achsen „wie wa
 |---|---|---|
 | > Eine kleine Planänderung im Lehrerzimmer für 30.000 Euro, die das Budget ohne Reserve trägt | Sie | > Das liegt in Ihrem Rahmen: bis 100.000 Euro, ohne Griff in die Reserve. |
 | > Die größere Mensa für 600.000 Euro | Bürgermeisterin | > Mehr als 100.000 Euro, und das Geld käme aus der Reserve. Der Lenkungskreis berät sie. |
-| > 150.000 Euro aus der Reserve für die früher ausgeschriebenen Holzelemente | Bürgermeisterin | > Über die Reserve entscheidet immer die Bürgermeisterin – egal wie klein der Betrag ist. |
+| > 150.000 Euro aus der Reserve für die früher ausgeschriebenen Holzelemente | Bürgermeisterin | > Mehr als 100.000 Euro, und das Geld kommt aus der Reserve. Über die Reserve entscheidet die Bürgermeisterin immer – auch bei kleinen Beträgen. |
 | > Die Freigabe der fertigen Ausführungspläne – der Pläne, nach denen gebaut wird | Bürgermeisterin | > Jede Freigabe am Ende eines großen Abschnitts erteilt der Bauherr selbst. Der Lenkungskreis berät nur. |
 | > Ob die Stadt längere Lieferzeiten in Kauf nimmt, die den Schulstart gefährden | Bürgermeisterin | > Ein großes Risiko bewusst zu tragen, ist eine Entscheidung des Bauherrn. |
 | > Welche von zwei gleich teuren Farben die Fassadenplatten bekommen | Sie | > Kein Mehrbetrag, kein Risiko, keine Freigabe – das entscheiden Sie. |
@@ -471,7 +471,7 @@ Fachliche Einordnung (intern): Die angekündigten Mehrkosten sind ein Risiko (no
 
 | Platz | Wertung | Antwort (sichtbar) | Geld | Zeit | Vertrauen |
 |---|---|---|---|---|---|
-| 3 | A · gut | > Eine Zahl mit Datum und Begründung: eine Million über dem Budget – die angekündigten Mehrkosten als Risiko daneben. | +1 | 0 | +2 |
+| 3 | A · gut | > Eine Million über dem Budget, mit Datum und Begründung – die angekündigten Mehrkosten als Risiko daneben. | +1 | 0 | +2 |
 | 1 | B · vertretbar | > Die höhere Zahl des Architekten – lieber dem Stadtrat einmal zu viel sagen als später nachlegen. | −1 | −1 | 0 |
 | 2 | C · Falle | > Die Mitte aus beiden, anderthalb Millionen – so bekommt keiner recht, und keiner liegt ganz daneben. | −1 | 0 | −2 |
 
@@ -526,7 +526,7 @@ Fachliche Einordnung (intern): Sperren ist Sache der Bauleitung vor Ort mit der 
 
 | Platz | Wertung | Antwort (sichtbar) | Geld | Zeit | Vertrauen |
 |---|---|---|---|---|---|
-| 1 | A · gut | > Sperren Sie sofort, holen Sie die Sicherheitskoordination. Ich rufe die Projektsteuerin an – sie meldet und hält es heute fest. | 0 | −1 | +1 |
+| 1 | A · gut | > Sperren Sie sofort, holen Sie die Sicherheitskoordination. Die Projektsteuerin meldet es und hält es heute fest. | 0 | −1 | +1 |
 | 2 | B · vertretbar | > Sperren Sie sofort. Ich schreibe der Projektsteuerin kurz, was los ist – den Rest klären wir am Montag. | 0 | −1 | 0 |
 | 3 | C · Falle | > Sperren Sie nur die Seite mit den losen Ankern. An der anderen wird weitergearbeitet, bis der Gerüstbauer kommt. | −1 | −2 | −2 |
 
@@ -676,7 +676,7 @@ Empfehlung der Projektsteuerin (sichtbar, fest, für die abgestimmten Gewichte):
 Fachliche Einordnung (intern): Freigabe am Ende der Bauzeit (Abschluss der Objektüberwachung, Übergabe; intern Freigabe zum Abschluss von LPH 8). Sichtbar heißt sie „die Freigabe am Ende der Bauzeit“ – keine Phasennummer. Die Projektsteuerin übergibt offene Vorgänge an das Gebäudemanagement der Stadt.
 
 **Einstieg**
-> Juli 2028. Der Kran ist fort, auf dem Schulhof wird Rasen gesät und werden junge Bäume gepflanzt, die Fenster glänzen. In drei Wochen beginnt das Schuljahr. Theo Lot geht mit einer langen Liste durch die Räume, Konrad Schwung prüft jede Tür, und Hanna Klingel hat die ersten Stundenpläne schon an die Wand geheftet. Vorher steht die letzte große Freigabe an: die am Ende der Bauzeit. Danach übernimmt das Gebäudemanagement der Stadt den Betrieb des Campus.
+> Juli 2028. Der Kran ist fort, auf dem Schulhof wird Rasen gesät und werden junge Bäume gepflanzt, die Fenster glänzen. In drei Wochen beginnt das Schuljahr. Theo Lot geht mit einer langen Liste durch die Räume, Konrad Schwung prüft jede Tür, und Hanna Klingel hat die ersten Stundenpläne schon an die Wand geheftet. Vorher steht eine große Freigabe an: die am Ende der Bauzeit. Danach kümmert sich das Gebäudemanagement der Stadt um den Campus.
 
 **Szene**
 > **Theo Lot:** Fast alles fertig. Nur der Hallenboden: An zwei Stellen sind Fugen offen. Die Firma bessert bis zu den Herbstferien nach.
@@ -737,7 +737,7 @@ Gezeigt werden **Kapitel 1, 3, 4 und 7** vollständig (Einstieg, Szene, Frage, F
 | 2 · Ein erstes Warnsignal | > Im März erwähnt der Architekt beiläufig, Holz könnte knapp werden. Die Projektsteuerin hält es als Frühwarnung fest: was zu prüfen ist (die Prüffrage), wer nachfragt, bis wann. | Zeit +1, Vertrauen +1 |
 | 5 · Zwei Zahlen, zwei Wahrheiten | > Im Herbst nennt die Bürgermeisterin dem Stadtrat eine begründete Zahl, die angekündigten Mehrkosten der Haustechnik als Risiko daneben – sie erweisen sich als unberechtigt. | Geld +1, Vertrauen +2 |
 | 6 · Ärger auf der Baustelle | > Im Februar lockert ein Sturm das Gerüst. Der Bauleiter sperrt sofort, die Projektsteuerin hält es am selben Tag fest. | Zeit −1, Vertrauen +1 |
-| 8 · Schulstart | > Im Juli 2028 erteilt die Bürgermeisterin die Freigabe mit Auflagen; zwei kleine Restarbeiten gehen mit Termin und Namen an das Gebäudemanagement der Stadt, das den Campus nun betreibt. | Vertrauen +1 |
+| 8 · Schulstart | > Im Juli 2028 erteilt die Bürgermeisterin die Freigabe mit Auflagen; zwei kleine Restarbeiten gehen mit Termin und Namen an das Gebäudemanagement der Stadt, das sich nun um den Campus kümmert. | Vertrauen +1 |
 
 **Kürzungen der Kurzfassung (P17.5, 2026-10-03):** Die gemessene Kurzfassung war mit rund 2.530 Wörtern Lesetext (≈ 12,7 Minuten bei 200 Wörtern je Minute) zu lang. Ohne den ganzen Weg zu ändern, zeigt sie deshalb kürzere Einstiege (`einstieg-kurz` in 1, 3, 4, 7 und am Ende), lässt reine Stimmungszeilen weg (1: „Na gut …“; 3: Theo Lot „Zehn Wochen …“; 4: Hanna Klingel „Später ist immer zu spät …“; Ende: Theo Lot, Konrad Schwung und Clara Faden). Hanna Klingel „Bitte sagen Sie mir nicht …“ (3) und Theo Lot „Vier Monate …“ (7) bleiben bewusst stehen: Sie tragen den Sachbezug (Schulstart in Gefahr, Einbau nach Schulbeginn), klappt „Das steckt dahinter“ und die Kipppunkte des Vergleichs zu und hat knappere Brückensätze (oben). Im Auftakt sind die Steckbriefe auf beiden Wegen zugeklappt (Porträt, Name, Rolle offen). Gemessen danach: Kurzfassung rund 2.030 Wörter ≈ 10 Minuten, ganzer Weg rund 4.240 Wörter ≈ 21 Minuten Lesen, dazu vier Mini-Aufgaben und der Vergleich zum Ausprobieren.
 

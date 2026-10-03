@@ -212,7 +212,7 @@ titel: Muster-Mandatsleiter – wer entscheidet?
 ::: stufe 1
 ---
 titel: bis einschließlich 100.000 €
-marke: Bauherren-PL
+marke: Projektleitung
 ---
 Die Projektleitung des Bauherrn (Bauherren-PL) gibt eigenständig frei.
 :::

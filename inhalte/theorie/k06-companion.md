@@ -545,12 +545,12 @@ titel: Monatlich
 ---
 
 ### Rückseite
-Online-Termin von Bauherr und Projektsteuerung, bis zu 60 Minuten, Fachleute nach Bedarf; dazu der Monatsbericht von höchstens einer Seite.
+In aktiven Zeiten ein Online-Termin von Bauherr und Projektsteuerung, bis zu 60 Minuten, Fachleute nach Bedarf; dazu der Monatsbericht von höchstens einer Seite.
 :::
 
 ::: karte ruhezeiten
 ---
-titel: In Ruhezeiten
+titel: In vereinbarten Ruhezeiten
 ---
 
 ### Rückseite

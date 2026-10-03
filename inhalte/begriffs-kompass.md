@@ -281,7 +281,7 @@ andere: [Client Project Manager]
 beleg: k5.3-l1
 ---
 ### Hinweis
-Die Projektleitung auf Bauherrenseite, auf dieser Seite kurz Bauherren-PL.
+Die Projektleitung auf Bauherrenseite, auf dieser Seite meist „Projektleitung des Bauherrn“.
 :::
 
 ::: kompass leistungsphase

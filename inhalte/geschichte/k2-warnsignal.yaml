@@ -37,7 +37,7 @@ antworten:
     balken: { geld: 0, zeit: -1, vertrauen: -1 }
     bild: stoppuhr
     folge: |
-      Clara Faden hält den Hinweis trotzdem vollständig fest: Prüffrage, der Architekt fragt bis Ende nächster Woche nach. Aber Konrad Schwung hat Ihren Satz gehört – es hat ja Zeit bis zum Monatstermin. Bei ihrer Wochendurchsicht meldet Clara Faden die Prüffrage als überfällig, und erst drei Wochen später als nötig fragt er bei den Herstellern nach.
+      Clara Faden hält den Hinweis trotzdem vollständig fest: Prüffrage, der Architekt fragt bis Ende des Monats nach. Aber Konrad Schwung hat Ihren Satz gehört – es hat ja Zeit. Der Monat vergeht ohne Nachfrage; bei ihrer Wochendurchsicht meldet Clara Faden die Prüffrage als überfällig, und erst drei Wochen später als nötig fragt er bei den Herstellern nach.
   - wertung: vertretbar
     text: Tragen wir es gleich als Risiko ein – lieber zu früh als zu spät.
     balken: { geld: 0, zeit: 1, vertrauen: 0 }

@@ -138,7 +138,7 @@ So kann eine Seite aussehen – vom Schulcampus Lindenhall-Süd, Oktober 2026:
 
 > **Monatsbericht · Oktober 2026**
 > - Kostenprognose nach dem geltenden Datenstand: 59,4 Mio. € gegen die Projektbasis von 58,4 Mio. € (+1,7 %); die Risikoreserve von 2,9 Mio. € deckt das; ihren Einsatz gibt der Bauherr frei.
-> - Angekündigte Mehrkosten der Haustechnikfirma, gut eine Million Euro, als Risiko `RIS-014` geführt, nicht in der Prognose; die Vergabestelle prüft die Forderung. Träten sie voll ein, bliebe die Prognose innerhalb von Basis plus Reserve (61,3 Mio. €).
+> - Angekündigte Mehrkosten der Haustechnikfirma, gut eine Million Euro, als Risiko geführt, nicht in der Prognose; die Vergabestelle prüft die Forderung. Träten sie voll ein, bliebe die Prognose innerhalb von Basis plus Reserve (61,3 Mio. €).
 > - Offene Entscheidung: Umgang mit der Prognose – die Projektsteuerung empfiehlt, die Reserve für die bekannten Mehrkosten vorzusehen; entscheiden muss der Bauherr im Lenkungskreis am 19. Oktober.
 :::
 
@@ -221,7 +221,7 @@ Die Farbe sagt nichts darüber, ob der Bauherr etwas entscheiden muss.
 titel: Ja – die Entscheidung kommt im Monatstermin ohnehin zur Sprache
 praefix: "Nicht ganz:"
 ---
-Der Termin ersetzt den Bericht nicht – der Bericht zeigt offene Entscheidungen jeden Monat, auch in Monaten ohne Termin.
+Der Termin ersetzt den Bericht nicht – eine offene Entscheidung mit der benötigten Reaktion gehört in den Monatsbericht.
 :::
 
 ::: zitat k2.4-p2

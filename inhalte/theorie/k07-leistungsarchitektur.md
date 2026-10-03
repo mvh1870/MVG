@@ -128,7 +128,7 @@ titel: MVG-Konzeption
 ---
 Die Konzeption übersetzt den Befund in ein funktionsfähiges Mindestmodell, das [[Bauherren-Führungsmodell]]. Sie definiert Zielsystem, Mandatsmodell, Leistungsphasen- und Freigabemodell, Entscheidungs-IDs, Datenstandslogik, Eskalation, die Verknüpfung von Risiken, Änderungen und Maßnahmen und die Logik des [[Betriebshandbuch|Betriebshandbuchs]].
 
-**Die Festlegungen trifft der Bauherr.** Ab welchem Betrag etwa die Bauherren-PL eine Änderung nicht mehr entscheiden darf, ist eine Schwelle – und über Schwellen entscheidet der Bauherr.
+**Die Festlegungen trifft der Bauherr.** Ab welchem Betrag etwa die Projektleitung des Bauherrn eine Änderung nicht mehr entscheiden darf, ist eine Schwelle – und über Schwellen entscheidet der Bauherr.
 
 ::: sortieren
 ---
@@ -303,7 +303,7 @@ titel: Leistungsgrenzen
 ---
 Die Grenzen der Leistungen sind ausdrücklich gezogen. Das ist keine Formalie: In MVG geht es gerade um die nichtdelegierbaren Verantwortungen des Bauherrn. Die Begleitung liefert Struktur, Entscheidungsreife und Befähigung – eine Bauherrenentscheidung trifft sie nicht.
 
-Dieselbe Logik gilt für alle Beteiligten: Jede Rolle kann etwas Bestimmtes leisten und darf etwas Bestimmtes nicht ersetzen. Die Bauherren-PL entscheidet innerhalb ihrer Schwelle; darüber legt die Projektsteuerung die Vorlage der befugten Stelle vor.
+Dieselbe Logik gilt für alle Beteiligten: Jede Rolle kann etwas Bestimmtes leisten und darf etwas Bestimmtes nicht ersetzen. Die Projektleitung des Bauherrn entscheidet innerhalb ihrer Schwelle; darüber legt die Projektsteuerung die Vorlage der befugten Stelle vor.
 
 ::: zitat k7.6-p1
 Bauherr Mentoren übernimmt keine operative Dauer-Projektsteuerung und keine Linienfunktion. BM ersetzt keine Bauherrenentscheidung, keine Gremienentscheidung, keine Fachplanung, keine Bauleitung, keine Objektüberwachung und keine Rechtsberatung. BM übernimmt keine Einführung von Drittsoftware und erbringt keine SaaS-Leistungen; die Bereitstellung des MVG Companions ist ein methodisches Arbeitsmittel innerhalb der Beratung. BM liefert Struktur, Entscheidungsreife, Mandatsklarheit, Nachweislogik, Befähigung und Übergang in den Regelbetrieb.
@@ -390,7 +390,7 @@ titel: Bauherr Mentoren
 
 ::: karte pl
 ---
-titel: Bauherren-PL
+titel: Projektleitung des Bauherrn
 ---
 **Kann leisten:** Koordination auf Bauherrenseite, Entscheidung innerhalb der eigenen Schwelle, Eskalation.
 

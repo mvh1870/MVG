@@ -14,6 +14,8 @@ export const ERSETZUNGEN = /** @type {const} */ ([
   ['Wissens-abhängigkeit', 'Wissensabhängigkeit'],
   ['Maßnahmenverknüp-fung', 'Maßnahmenverknüpfung'],
   ['Auftraggeber Logik', 'Auftraggeberlogik'],
+  // R74: in eigenem Tafeltext (kein Zitat) das Kürzel ausschreiben – sonst steht in den Themen „Bauherr Mentoren“ (O-51, L-243)
+  ['ohne Dauerrolle von BM', 'ohne Dauerrolle von Bauherr Mentoren'],
 ]);
 
 /** Glossarbegriffe, die entfallen */

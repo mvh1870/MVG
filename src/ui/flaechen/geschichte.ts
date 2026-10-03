@@ -119,13 +119,20 @@ function figurName(g: Geschichte, id: string): { name: string; rolle: string; ak
   return { name: f?.name ?? id, rolle: f?.rolle ?? '', akzent: f?.akzent ?? 'navy' };
 }
 
+/** Stelle des Kapitels auf dem Weg, wie die Ortszeile sie nennt: lang „3“, in der Kurzfassung „2 von 4“ (R74). */
+function stelleAufWeg(o: SchrittOptionen, k: Kapitel): string {
+  if (!o.stand.kurz) return String(k.nr);
+  const weg = wegKapitel(o.g, true);
+  return w.vonN(weg.findIndex((x) => x.id === k.id) + 1, weg.length);
+}
+
 /** Kopf eines Kapitels: große Nummer, Zeit, Titel (fokussierbar für die Fokusführung). */
-function kopf(k: Kapitel, unter: string): HTMLElement {
+function kopf(o: SchrittOptionen, k: Kapitel, unter: string): HTMLElement {
   return h('header', { class: 'gs-kopf' },
     h('span', { class: 'gs-nummer', 'aria-hidden': 'true' }, String(k.nr)),
     h('div', { class: 'gs-kopf-text' },
       h('p', { class: 'gs-kicker' }, unter),
-      h('h1', { class: 'gs-titel', tabindex: -1, 'data-pruef': 'gs-titel' }, h('span', { class: 'nur-sr' }, `${k.nr} · `), k.titel)));
+      h('h1', { class: 'gs-titel', tabindex: -1, 'data-pruef': 'gs-titel' }, h('span', { class: 'nur-sr' }, `${stelleAufWeg(o, k)} · `), k.titel)));
 }
 
 /** Dialog: je Zeile Porträt und Sprechblase in der Farbe der Figur. */
@@ -242,7 +249,7 @@ function szene(o: SchrittOptionen, k: Kapitel): HTMLElement {
   const einstieg = o.stand.kurz && k.einstiegKurzHtml !== null ? k.einstiegKurzHtml : k.einstiegHtml;
   return h('article', { class: 'gs-schritt gs-szene', 'data-teil': 'szene' },
     o.stand.kurz ? brueckenKarten(o.g, k) : null,
-    kopf(k, k.zeit),
+    kopf(o, k, k.zeit),
     h('div', { class: 'gs-buehnenbild' }, campus(k.campus, 'gs-campus-gross', k.zusatz)),
     h('div', { class: 'gs-einstieg', 'data-pruef': 'gs-einstieg' }, inhalt(einstieg), gegenstand(k.bildSzene, 104, 'gs-gegenstand gs-gegenstand-einstieg')),
     dialog(o.g, zeilenDesWegs(o.stand, k.szene)));
@@ -271,7 +278,7 @@ function frage(o: SchrittOptionen, k: Kapitel): HTMLElement {
   const mitDahinter = k.mini === null || stand.kurz;
   const nachMandat = g.kapitel.some((x) => x.mandatNachFolge && x.nr < k.nr);
   return h('article', { class: 'gs-schritt gs-frage', 'data-teil': 'frage' },
-    kopf(k, k.zeit),
+    kopf(o, k, k.zeit),
     h('section', { class: 'gs-frage-block', 'aria-labelledby': 'gs-frage-text' },
       h('div', { class: 'gs-frage-figur' }, bildnis('sie', 88), gegenstand(k.bildFrage, 64, 'gs-gegenstand gs-gegenstand-frage')),
       h('div', { class: 'gs-frage-inhalt' },
@@ -362,7 +369,7 @@ function miniSchritt(o: SchrittOptionen, k: Kapitel): HTMLElement {
   const stand = zuordnen ? (offen === m.posten.length ? '' : offen > 0 ? `${w.miniErgebnis(aus.richtig, m.posten.length - offen)} ${w.miniNoch(offen)}` : w.miniErgebnis(aus.richtig, m.posten.length))
     : aus.fertig ? w.miniErgebnis(aus.richtig, m.posten.length) : '';
   return h('article', { class: 'gs-schritt gs-mini', 'data-teil': 'mini', 'data-art': m.art },
-    kopf(k, `${w.miniKicker} · ${m.titel}`),
+    kopf(o, k, `${w.miniKicker} · ${m.titel}`),
     h('section', { class: 'gs-mini-aufgabe', 'aria-labelledby': 'gs-mini-aufgabe' },
       h('span', { class: 'gs-mini-symbol', 'aria-hidden': 'true' }, sym('puzzle')),
       h('p', { id: 'gs-mini-aufgabe', class: 'gs-mini-auftrag' }, inhaltInline(m.aufgabeHtml)),
@@ -396,7 +403,7 @@ function vergleichSchritt(o: SchrittOptionen, k: Kapitel): HTMLElement {
   const kippListe = lage.kipp.length === 0 ? h('p', null, w.kippKeiner)
     : h('ul', null, lage.kipp.map((x) => h('li', null, w.kipp(krit(x.kriterium), x.gewicht, gew[x.kriterium] ?? x.gewicht, x.spitze.map(titel)))));
   return h('article', { class: 'gs-schritt gs-vergleich', 'data-teil': 'vergleich' },
-    kopf(k, `${w.vergleichKicker} · ${w.vergleichTitel}`),
+    kopf(o, k, `${w.vergleichKicker} · ${w.vergleichTitel}`),
     h('div', { class: 'gs-vgl-einleitung' }, bildnis('faden', 64), h('div', { class: 'gs-blase', 'data-akzent': 'lagune' }, inhalt(v.einleitungHtml)), gegenstand('waage', 96, 'gs-gegenstand gs-gegenstand-waage')),
     h('div', { class: 'gs-vgl-karten', 'data-pruef': 'gs-vgl-karten' },
       v.optionen.map((opt, i) => {
@@ -450,8 +457,9 @@ function ende(o: SchrittOptionen): HTMLElement {
   const e = g.ende;
   const fassung = endeFassung(g, stand);
   const ersatz = fassung === 'vertrauen-niedrig' ? e.vertrauenNiedrig : fassung === 'nach-falle' ? e.nachFalle : fassung === 'offen' ? e.offen : [];
-  // eine Ersatzzeile steht auf denselben Wegen wie die ersetzte (L-239)
-  const zeilen = zeilenDesWegs(stand, e.szene).map((z) => {
+  // eine Ersatzzeile steht auf denselben Wegen wie die ersetzte (L-239); bei offenen Entscheidungen nur die Zeilen der
+  // Kurzfassung – die übrigen setzen eine gespielte Geschichte voraus (R74)
+  const zeilen = zeilenDesWegs(typ === 'offen' ? { ...stand, kurz: true } : stand, e.szene).map((z) => {
     const neu = ersatz.find((x) => x.figur === z.figur);
     return neu === undefined ? z : { ...neu, kurzfassung: z.kurzfassung };
   });
@@ -503,7 +511,7 @@ export function baueSchritt(o: SchrittOptionen): HTMLElement {
 export function ortText(g: Geschichte, stand: Stand): string {
   const s = stand.schritt;
   if (s.ort === 'auftakt') return w.auftakt;
-  if (s.ort === 'ende') return w.ende;
+  if (s.ort === 'ende') return w.endeOrt;
   const weg = wegKapitel(g, stand.kurz);
   const i = weg.findIndex((k) => k.id === s.kapitel);
   return `${w.vonN(i + 1, weg.length)} · ${weg[i]?.titel ?? ''}`;
@@ -525,7 +533,7 @@ export function fortschritt(g: Geschichte, stand: Stand, bedienbar: boolean, tue
       feld(sym('flagge'), w.auftakt, { ort: 'auftakt' }, s.ort === 'auftakt' ? 'jetzt' : 'erledigt', 'rand'),
       weg.map((k, i) => feld(String(k.nr), `${w.vonN(i + 1, weg.length)} · ${k.titel}`, { ort: 'kapitel', kapitel: k.id, teil: 'szene' },
         i === hier ? 'jetzt' : zaehlendePlatz(stand, k) !== null ? 'erledigt' : 'offen', 'kapitel')),
-      feld(sym('stempel'), w.ende, { ort: 'ende' }, s.ort === 'ende' ? 'jetzt' : 'offen', 'rand')));
+      feld(sym('stempel'), w.endeOrt, { ort: 'ende' }, s.ort === 'ende' ? 'jetzt' : 'offen', 'rand')));
 }
 
 /** Leiste oben: Fortschritt, Ort in Worten, Balken klein. */
@@ -568,7 +576,9 @@ export function storyDruck(g: Geschichte, stand: Stand, version: string): { tite
           ? [
             h('h2', null, `${w.bilanzTitel}: ${g.bilanz[typ].titel}`),
             h('p', null, inhaltInline(g.bilanz[typ].html)),
-            typ === 'offen' ? null : h('ul', null, g.balken.map((x) => h('li', null, h('b', null, `${x.titel}: `), inhaltInline(x.bilanz[stufe(b[x.id])])))),
+            // bei offenen Entscheidungen kein Urteil je Balken, aber ihr Stand in Worten – der Druck zeigt keine Balken (R74)
+            h('ul', null, g.balken.map((x) => h('li', null, h('b', null, `${x.titel}: `),
+              typ === 'offen' ? w.fuellstand[stufe(b[x.id])] ?? '' : inhaltInline(x.bilanz[stufe(b[x.id])])))),
             offen > 0 ? h('p', null, w.offen(offen)) : null]
           : [h('h2', null, w.bilanzTitel), h('p', null, w.druckBilanzSpaeter)]))],
   };

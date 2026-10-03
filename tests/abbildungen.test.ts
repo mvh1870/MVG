@@ -139,3 +139,30 @@ test('Compiler (baueAbbildungen): veraltetes Bild, fremdes WebP, fremdes Kapitel
   assert.match(lauf(wurzel(), { k04: seite(4, 'k04.md'), k04b: seite(4, 'k04b.md') }).fehler.join('\n'), /steht schon auf k04\.md/u);
   assert.match(lauf(wurzel(), {}).fehler.join('\n'), /steht auf keinem Thema/u);
 });
+
+// R74 (schwer): abb-12 zeigte fünf erfundene, nummerierte Domänen, der Text sagt „10 MVG-Domänen mit 49 Fragen“
+// (k7.1-p2). Bildbereiche mit einer Gliederung, die der Text ausschließt, müssen vollständig überdeckt bleiben –
+// geprüft auf einem Raster von Punkten (10 px), jeder Punkt liegt in mindestens einer Überdeckung.
+const SPERRFLAECHEN: Record<string, { x: number; y: number; b: number; h: number; grund: string }[]> = {
+  'abb-12': [{ x: 26, y: 188, b: 1326, h: 314, grund: 'fünf nummerierte Domänen mit Nachweislisten statt 10 Domänen (k7.1-p2)' }],
+};
+
+test('Sperrflächen (R74): eine erfundene Gliederung im Bild bleibt ganz überdeckt; Alternativtext ohne fremde Domänenzahl', () => {
+  const nachId = new Map(leseBeschreibungen(WURZEL).map((b) => [b.roh.id as string, b.roh]));
+  for (const [id, flaechen] of Object.entries(SPERRFLAECHEN)) {
+    const ueb = (nachId.get(id)?.angeglichen ?? []) as { x: number; y: number; b: number; h: number }[];
+    for (const f of flaechen) {
+      const offen: string[] = [];
+      for (let px = f.x; px <= f.x + f.b; px += 10) for (let py = f.y; py <= f.y + f.h; py += 10) {
+        if (!ueb.some((u) => px >= u.x && px <= u.x + u.b && py >= u.y && py <= u.y + u.h)) offen.push(`${px},${py}`);
+      }
+      assert.deepEqual(offen.slice(0, 5), [], `${id}: ${f.grund} – nicht überdeckt bei ${offen.length} Punkten`);
+    }
+  }
+  // Alternativtext und Titel: eine Zahl an „Domänen“ ist nur 10 (k7.1-p2), nummerierte Kästen gibt es nicht mehr
+  for (const { datei, roh } of leseBeschreibungen(WURZEL)) {
+    const text = `${roh.titel} ${roh.alt}`;
+    for (const m of text.matchAll(/([\p{L}\p{N}]+)\s+(?:nummerierte[nr]?\s+)?(?:[\p{L}\p{N}]+-)?Domänen/gu)) assert.match(m[1] ?? '', /^(10|zehn|die|der|den)$/iu, `${datei}: „${m[0]}“`);
+    assert.doesNotMatch(text, /nummerierte[nr]? Kästen/u, `${datei}: nummerierte Kästen im Alternativtext`);
+  }
+});

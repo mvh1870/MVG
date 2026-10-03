@@ -62,10 +62,10 @@ titel: Grundlogik der Zusammenarbeit
 ---
 Vier Regeln tragen die Zusammenarbeit:
 
-1. Die **Projektsteuerung führt alle Vorgänge** in der Software des Bauherrn. Jeder Eintrag hat einen Verantwortlichen, einen nächsten Schritt und einen Termin.
+1. Die **Projektsteuerung pflegt alle Vorgänge** in der Software des Bauherrn; zu jedem Eintrag gehören eine verantwortliche Person, der nächste Schritt und ein Termin.
 2. Die [[RACI]]-Logik klärt je Prozess, wer ausführungsverantwortlich, letztverantwortlich, konsultiert und informiert ist.
 3. Was eine Entscheidung braucht, wird **nicht nur berichtet**, sondern über das Entscheidungsregister und eine [[Entscheidungsvorlage]] entscheidungsreif gemacht: mindestens zwei zulässige Optionen, gewichteter Vergleich, Empfehlung, befugte Stelle, Termin.
-4. **Monatsbericht und Entscheidungsregister** haben getrennte Aufgaben. Der Bericht zeigt auf höchstens einer Seite, aus demselben Stand wie die Software, unter anderem wesentliche Veränderungen, blockierte Aufgaben, kritische Maßnahmen, ungeklärte Frühwarnungen, wesentliche Probleme und Änderungen sowie offene Entscheidungen mit der benötigten Reaktion.
+4. **Monatsbericht und Entscheidungsregister** haben getrennte Aufgaben. Der Bericht umfasst höchstens eine Seite und beruht auf demselben Stand wie die Software. Er nennt unter anderem wesentliche Veränderungen, Aufgaben, die nicht weiterkommen, kritische Maßnahmen, Frühwarnungen ohne Klärung, wesentliche Probleme und Änderungen sowie offene Entscheidungen samt der Reaktion, die sie brauchen.
 
 ::: umschalter
 ---

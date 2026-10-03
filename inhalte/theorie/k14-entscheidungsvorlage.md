@@ -262,7 +262,7 @@ Die Skalen stehen vorab fest: Kosten bis 20.000, 40.000, 60.000 oder 80.000 € 
 | Funktion | 2 | 5 | 5 |
 | **Gewichtete Summe** | | **41** | **35** |
 
-A erreicht 3 × 2 + 5 × 5 + 2 × 5 = 41 Punkte, B 3 × 5 + 5 × 2 + 2 × 5 = 35. Unter dieser Terminpriorität empfiehlt die Projektsteuerung A. Doch was, wenn der Termin weniger zählt – bei gleichen Gewichten für Kosten (3) und Funktion (2)?
+Rechnung für A: 3 × 2 + 5 × 5 + 2 × 5 = 41 Punkte. Rechnung für B: 3 × 5 + 5 × 2 + 2 × 5 = 35 Punkte. Bei diesem Gewicht des Termins empfiehlt die Projektsteuerung A. Doch was, wenn der Termin weniger zählt – bei gleichen Gewichten für Kosten (3) und Funktion (2)?
 
 ::: regler
 ---
@@ -309,7 +309,7 @@ Die abgestimmte Gewichtung: Die Projektsteuerung empfiehlt das Ersatzgerät.
 :::
 :::
 
-Die Empfehlung für A gilt nur unter der vereinbarten Terminpriorität – das muss in der Vorlage stehen.
+Die Empfehlung für A hängt am Gewicht des Termins: ab Gewicht 4 liegt A vorn, bei 3 steht es gleich, darunter liegt B vorn – das muss in der Vorlage stehen.
 
 ::: aufklapper Was außerdem zur Vorlage gehört
 ---
@@ -323,9 +323,9 @@ Zur Vorlage gehören außerdem der Stand von Kosten- und Terminplan, Nachweise f
 ---
 titel: Vorlegen, nachhalten, Beschluss getrennt festhalten
 ---
-- **Vorlegen:** mit Datenstand, Quellen und Verknüpfung zum auslösenden Vorgang, rechtzeitig abgelegt in der Software des Bauherrn oder dort eindeutig verwiesen.
-- **Nichts erfinden:** Fehlt eine zweite zulässige Option oder eine andere wesentliche Grundlage, heißt die Vorlage „unvollständig“ und nennt, was noch zu klären ist.
-- **Beschluss getrennt festhalten:** mit Quelle, Datum und Bedingungen, so wie die befugte Stelle ihn tatsächlich gefasst hat. Die Folgemaßnahmen verfolgt die Projektsteuerung bis zum nachgewiesenen Ergebnis – Umsetzung und Wirkung.
+- **Vorlegen:** Die Vorlage nennt Datenstand und Quellen, ist mit dem auslösenden Vorgang verknüpft und liegt rechtzeitig in der Software des Bauherrn – oder dort ist eindeutig auf sie verwiesen.
+- **Nichts erfinden:** Gibt es keine zweite zulässige Option oder fehlt sonst eine wesentliche Grundlage, heißt die Vorlage „unvollständig“ und nennt, was noch zu klären ist.
+- **Beschluss getrennt festhalten:** Er wird so notiert, wie die befugte Stelle ihn gefasst hat, samt Quelle, Datum und Bedingungen. Die Folgemaßnahmen verfolgt die Projektsteuerung bis zum nachgewiesenen Ergebnis – Umsetzung und Wirkung.
 
 Dringliche Meldungen und notwendige Schutzmaßnahmen warten nicht auf den fertigen Vergleich.
 

@@ -195,3 +195,39 @@ test('Mindestzahl zulässiger Wege: Vorgabe 2; ohne eigene Angabe am Punkt gilt 
   assert.ok(ein.luecken.some((l) => l.bezug === 'b1' && l.schwere === 'rot'));
   assert.equal(pruefeVorlage(ohneAngabe, eingabe(), null).ampel, 'gruen');
 });
+
+// R78: Die Zuständigkeitsaussage des Werkzeugs steht in den Daten (inhalte/werkzeuge.yaml), nicht im Code – diese Probe
+// liest die kompilierten Daten und fasst jede Zahl und jede Zuordnung an (Mutation 100.000 → 99.999, Reserve, Gegenstand).
+const { inhalte } = await import('../src/inhalte/index.ts');
+const werkzeuge = inhalte.werkzeuge;
+assert.ok(werkzeuge !== null, 'Werkzeug-Inhalte fehlen');
+
+test('Daten (R78): „Wer entscheidet was“ im Beispielprojekt – genau 100.000 € ohne Reserve entscheiden Sie, darüber, mit Reserve und bei Risiko, Freigabe, Ziele die Bürgermeisterin', () => {
+  const m = werkzeuge.vorlagencheck.mandat;
+  assert.equal(m.bis, 100_000);
+  assert.equal(befugteStelleImBeispiel('geld', 100_000, false, m), 'sie');
+  assert.equal(befugteStelleImBeispiel('geld', 100_001, false, m), 'buergermeisterin');
+  assert.equal(befugteStelleImBeispiel('geld', 1, true, m), 'buergermeisterin', 'Geld aus der Reserve');
+  assert.equal(befugteStelleImBeispiel('geld', 99_999, false, m), 'sie');
+  for (const g of ['risiko', 'freigabe', 'ziele'] as const) assert.equal(befugteStelleImBeispiel(g, 1, false, m), 'buergermeisterin', g);
+  assert.deepEqual(m.beraet, ['lenkungskreis']);
+  assert.equal(m.darueber, 'buergermeisterin');
+});
+
+test('Daten (R78): der Lenkungskreis berät nur – als genannte Stelle ist er eine Lücke mit dem Satz „berät nur“; die Projektsteuerung entscheidet nie', () => {
+  const m = werkzeuge.vorlagencheck.mandat;
+  const b = pruefeVorlage(PUNKTE, eingabe({ stelle: 'lenkungskreis', betrag: 50_000, reserve: false }), m);
+  assert.ok(b.luecken.some((l) => l.bezug === 'a3'), 'A3 ist eine Lücke');
+  const stellen = werkzeuge.vorlagencheck.stellen;
+  assert.match(stellen.find((s) => s.id === 'lenkungskreis')?.satz ?? '', /berät/u);
+  assert.doesNotMatch(stellen.find((s) => s.id === 'lenkungskreis')?.satz ?? '', /darf entscheiden\./u);
+  assert.match(m.saetze.beraet.sie, /berät nur/u);
+  assert.match(m.saetze.beraet.buergermeisterin, /berät nur/u);
+  assert.match(stellen.find((s) => s.id === 'projektsteuerung')?.satz ?? '', /entscheiden darf sie nicht/u);
+});
+
+test('Daten (R78): die Grenzen des Beispielprojekts im Risiko-Bewerter (Kosten, Termin) bleiben die des Falls', () => {
+  const g = werkzeuge.risikogrenzen.grenzen;
+  assert.deepEqual(g.kosten, [100_000, 500_000, 1_500_000, 3_000_000]);
+  assert.deepEqual(g.termin, [14, 28, 42, 70]);
+});

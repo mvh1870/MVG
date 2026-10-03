@@ -60,6 +60,13 @@ export const MUTANTEN = [
   ['src/werkzeuge/monatsbericht.ts', 'export const ZEILEN_JE_SEITE = 50;', 'export const ZEILEN_JE_SEITE = 60;', 'Bericht: höchstens 50 Zeilen je Seite (nicht mehr)', TESTS_WERKZEUGE],
   ['src/werkzeuge/monatsbericht.ts', 'export const ZEILEN_JE_SEITE = 50;', 'export const ZEILEN_JE_SEITE = 49;', 'Bericht: höchstens 50 Zeilen je Seite (nicht weniger)', TESTS_WERKZEUGE],
   ['src/werkzeuge/monatsbericht.ts', 'export const ZEICHEN_JE_ZEILE = 78;', 'export const ZEICHEN_JE_ZEILE = 92;', 'Bericht: vorsichtige Zeilenbreite für die Seitenschätzung', TESTS_WERKZEUGE],
+  // R78: überlebende Mutanten der Prüfrunde (Monatsbericht, Daten der Vorlagen-Zuständigkeit)
+  ['src/werkzeuge/monatsbericht.ts', ' || leer(b.lage)) h.push', ') h.push', 'Bericht: ohne Lage ist der Bericht unvollständig (R77)', TESTS_WERKZEUGE],
+  ['src/werkzeuge/monatsbericht.ts', 'if (inhalt.length > max)', 'if (inhalt.length >= max)', 'Bericht: genau die Höchstzahl an Einträgen ist erlaubt', TESTS_WERKZEUGE],
+  ['src/werkzeuge/monatsbericht.ts', 'Math.floor(zeichenJeZeile / 2) - 2;', 'Math.floor(zeichenJeZeile / 2) + 20;', 'Bericht: Abschnittsspalte der Seitenschätzung halb so breit wie die Zeile', TESTS_WERKZEUGE],
+  ['src/werkzeuge/monatsbericht.ts', 'const BREIT_FAKTOR = 1.35;', 'const BREIT_FAKTOR = 1;', 'Bericht: breite Buchstaben (M, W) zählen in der Seitenschätzung mehr', TESTS_WERKZEUGE],
+  ['src/werkzeuge/wegweiser.ts', 'const nurEntscheidung = keinVorgang && entscheidung === true;', 'const nurEntscheidung = false;', 'Wegweiser: alles Nein und Entscheidung nötig → „Entscheidung vorbereiten“, nicht „kein Vorgang“ (R78)', TESTS_WERKZEUGE],
+  ['src/werkzeuge/wegweiser.ts', "if (w.art !== null) z.push('verknuepfen');", "if (w.art !== null || w.keinVorgang) z.push('verknuepfen');", 'Wegweiser: verknüpft wird nur, was als Vorgang entsteht (R78)', TESTS_WERKZEUGE],
   ['src/werkzeuge/gemeinsam.ts', 'export const STAND_MAX = 80;', 'export const STAND_MAX = 320;', 'Werkzeugstand: höchstens 80 Zeichen auf dem Kanal', TESTS_WERKZEUGE],
   ['src/werkzeuge/vorlagen-check.ts', 'export const MINDEST_WEGE = 2;', 'export const MINDEST_WEGE = 1;', 'Vorlage: mindestens zwei zulässige Wege als Vorgabe', TESTS_WERKZEUGE],
 ];

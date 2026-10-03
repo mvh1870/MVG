@@ -122,6 +122,19 @@ export async function lauf(seite, h) {
  */
 async function druckEineSeite(seite, h, werkzeug, name) {
   if ((seite.viewportSize()?.width ?? 0) < 1280) return;
+  const pdf = await druckSeiten(seite, h, werkzeug, name);
+  if (pdf.length !== 1) h.befund(`Druck ${name}: ${pdf.length} Seiten statt einer`);
+}
+
+/**
+ * Druckbogen eines Werkzeugs als PDF-Seiten (mit den gemeinsamen Prüfungen: keine Bedienelemente, keine Hinweise, keine
+ * verbotenen Wörter im Text).
+ * @param {import('playwright').Page} seite
+ * @param {import('../../werkzeuge/oberflaeche.mjs').Helfer} h
+ * @param {string} werkzeug
+ * @param {string} name
+ */
+async function druckSeiten(seite, h, werkzeug, name) {
   await seite.evaluate(() => { window.print = () => {}; });
   await h.klick(`[data-pruef="${werkzeug}-drucken"]`);
   await seite.emulateMedia({ media: 'print' });
@@ -129,10 +142,13 @@ async function druckEineSeite(seite, h, werkzeug, name) {
   if (bedien > 0) h.befund(`Druck ${name}: ${bedien} Bedienelemente im Bogen`);
   const hinweise = await seite.evaluate(() => document.querySelectorAll('.druck-bogen [data-pruef="mb-hinweise"], .druck-bogen .wz-schritte').length);
   if (hinweise > 0) h.befund(`Druck ${name}: Hinweise oder Schritte im Bogen`);
+  // R78: nummerierte Listen im Bogen tragen im Druck ihre Ziffern (ol[class] setzt sonst list-style: none)
+  const ohneZiffern = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen ol')].filter((o) => getComputedStyle(o).listStyleType === 'none').map((o) => o.className));
+  if (ohneZiffern.length > 0) h.befund(`Druck ${name}: nummerierte Liste ohne Ziffern ${JSON.stringify(ohneZiffern)}`);
   const pdf = await pdfSeiten(await seite.pdf({ format: 'A4' }));
   await seite.emulateMedia({ media: null });
-  if (pdf.length !== 1) h.befund(`Druck ${name}: ${pdf.length} Seiten statt einer`);
   for (const f of sichtbarVerboten(pdf.flatMap((x) => x.zeilen).join('\n'))) h.befund(`Druck ${name}: ${f}`);
+  return pdf;
 }
 
 /**
@@ -229,15 +245,25 @@ async function neueWerkzeuge(seite, h, pruefe, verboten) {
     await hoechstfall(seite);
     if (await wert('[data-pruef="mb-seitenmesser"]', 'data-passt') !== 'ja') h.befund('Monatsbericht: Höchstfall passt laut Seitenmesser nicht auf eine Seite');
     await druckEineSeite(seite, h, 'monatsbericht', 'Monatsbericht Höchstfall');
+    // R78: Seitenmesser und PDF dürfen sich nicht widersprechen – auch nicht bei Text aus den breitesten Buchstaben (M, W) und aus
+    // Großschrift: sagt der Messer „passt“, hat das PDF eine Seite; sagt er „passt nicht“, darf das PDF auch mehrere haben
+    for (const [art, text] of [['M und W', 'WMWMWMWMWMWMWM'], ['M und W mit Leerzeichen', 'MMMMMMM WWWWWWW '], ['Großschrift', 'KOSTEN STEIGEN WEGEN LANGER LIEFERZEITEN ']]) {
+      await hoechstfall(seite, text);
+      const passt = await wert('[data-pruef="mb-seitenmesser"]', 'data-passt') === 'ja';
+      const seiten = (await druckSeiten(seite, h, 'monatsbericht', `Monatsbericht Höchstfall ${art}`)).length;
+      if (passt && seiten !== 1) h.befund(`Monatsbericht: Höchstfall aus ${art}: Seitenmesser sagt „passt“, das PDF hat ${seiten} Seiten`);
+      if (art === 'Großschrift' && !passt) h.befund('Monatsbericht: Höchstfall aus Großschrift soll laut Seitenmesser noch auf eine Seite passen');
+    }
   }
 }
 
 /**
- * Monatsbericht im Höchstfall: jedes Feld bis zur Feldgrenze, jeder Abschnitt mit der Höchstzahl an Einträgen.
+ * Monatsbericht im Höchstfall: jedes Feld bis zur Feldgrenze, jeder Abschnitt mit der Höchstzahl an Einträgen; `fuellwort` ist
+ * der Text, aus dem die Felder bestehen (Vorgabe: gemischter Text).
  * @param {import('playwright').Page} seite
  */
-async function hoechstfall(seite) {
-  const voll = (n) => 'Langer Eintrag mit vielen Wörtern '.repeat(20).slice(0, n);
+async function hoechstfall(seite, fuellwort = 'Langer Eintrag mit vielen Wörtern ') {
+  const voll = (n) => fuellwort.repeat(Math.ceil(300 / fuellwort.length)).slice(0, n);
   const fuelle = async (pruef, n) => {
     const l = seite.locator(`[data-pruef="${pruef}"]`);
     await l.fill(voll(Number(await l.getAttribute('maxlength') ?? n)));

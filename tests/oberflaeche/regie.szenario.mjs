@@ -115,6 +115,9 @@ export async function lauf(seite, h) {
   await seite.locator('[data-pruef="regie-werkzeug"]').selectOption('monatsbericht');
   await h.klick('[data-pruef="regie-schalter-w-1"]');
   await h.erwarte('.anzeige [data-werkzeug="monatsbericht"]', leinwand);
+  // R78: bei einem Explore-Werkzeug mit Eingriffen sagt die Karte „Kundenwahl und Eingriffe“ nicht, es gebe nichts zu wählen
+  if (/nichts zu wählen/u.test(await seite.locator('[data-pruef="regie-eingriffe"]').innerText())) h.befund('Regie: „nichts zu wählen“ bei einem Werkzeug mit Beispielen und Schaltern');
+  if ((await seite.locator('[data-pruef="regie-eingriffe-werkzeug"]').count()) !== 1) h.befund('Regie: Karte „Kundenwahl und Eingriffe“ verweist nicht auf den Kasten des Werkzeugs');
   await h.erwarte('[data-pruef="regie-notiz"] .regie-notiz-text:has-text("Kosten-Ampel")');
   const lwNeu = await leinwand.locator('body').innerText();
   for (const frage of await seite.locator('[data-pruef="regie-leitfragen"] li').allInnerTexts()) if (lwNeu.includes(frage)) h.befund(`Leitfrage des Monatsberichts auf der Leinwand: ${frage}`);
@@ -154,12 +157,14 @@ export async function lauf(seite, h) {
         const display = (/** @type {string} */ sel) => { const e = document.querySelector(`.anzeige ${sel}`); return e === null ? 'fehlt' : getComputedStyle(e).display; };
         return {
           kachel: display('.ex-werkzeuge'), einleitung: display('.ex-einleitung'),
+          fiktiv: [...(document.querySelector('.anzeige .seite-explore')?.innerText ?? '').matchAll(/fiktiv/giu)].length,
           schritt: sichtbar('[data-pruef="vc-schritt-titel"]'), ampel: sichtbar('.wz-ergebnis .wz-ampel'), ergebnis: sichtbar('.wz-ergebnis'),
           anteilKlein: gesamt === 0 ? 0 : klein / gesamt, breit: document.documentElement.scrollWidth - document.documentElement.clientWidth, hoehe: innerHeight,
         };
       });
       const wo = `Leinwand 1920×1080${beamer ? ' (Beamer)' : ''}, ${wz}`;
       if (m.kachel !== 'none' || m.einleitung !== 'none') h.befund(`${wo}: Kachelreihe oder Einleitung des Explore-Bereichs sichtbar`);
+      if (m.fiktiv !== 1) h.befund(`${wo}: „fiktiv“ steht ${m.fiktiv}-mal in der Ansicht (erwartet: einmal, O-45)`);
       if (m.ergebnis === null) h.befund(`${wo}: Ergebnisfläche fehlt`);
       else if (m.ergebnis.oben < 0 || m.ergebnis.oben > m.hoehe * 0.6) h.befund(`${wo}: Ergebnis beginnt bei ${m.ergebnis.oben} px (Fenster ${m.hoehe} px)`);
       if (m.ampel !== null && (m.ampel.oben < 0 || m.ampel.unten > m.hoehe)) h.befund(`${wo}: Ampel nicht ganz im Fenster (${m.ampel.oben}–${m.ampel.unten} px)`);

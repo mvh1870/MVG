@@ -20,4 +20,3 @@ angeglichen:
   - { x: 506, y: 341, b: 106, h: 60, text: "Freigabe-\nmodell", beleg: k8.1-t1, schrift: barlow, gewicht: 500, groesse: 23, farbe: "#15191c" }
   # R77: „echte Entscheidungen“ saß eng am Kachelrand; gleiche Wörter, etwas kleiner und mittig
   - { x: 650, y: 229, b: 124, h: 58, text: "echte\nEntscheidungen", beleg: k6.4.1-p4, hintergrund: "#eaf6f6", schrift: barlow, gewicht: 500, groesse: 20, ausrichtung: mitte, farbe: "#15191c" }
-  - { x: 535, y: 379, b: 22, h: 6, text: "", beleg: k8.1-t1 }

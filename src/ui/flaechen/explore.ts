@@ -311,7 +311,10 @@ export function baueExplore(o: ExploreOptionen): HTMLElement {
         h('div', { class: 'ex-kopf-text' },
           h('p', { class: 'gs-kicker' }, E.bereich),
           h('h1', { class: 'gs-titel ex-titel', tabindex: -1, 'data-pruef': 'ex-titel' }, titel(aktiv)),
-          w !== null ? h('div', { class: 'gs-leise ex-einleitung' }, inhalt(w.einleitungHtml)) : null),
+          // R78: unter dem Titel steht die Kurzbeschreibung des gewählten Werkzeugs; der Hinweis auf den fiktiven Fall bleibt
+          // einzeln und leise stehen – auch auf der Leinwand, wo die Kurzbeschreibung entfällt (O-45)
+          kurz(aktiv) !== '' ? h('p', { class: 'gs-leise ex-einleitung' }, kurz(aktiv)) : null,
+          w !== null ? h('div', { class: 'gs-leise ex-fall', 'data-pruef': 'ex-fall' }, inhalt(w.einleitungHtml)) : null),
         h('div', { class: 'ex-kopf-bild', 'aria-hidden': 'true' }, vonHtml(gimmick(WERKZEUG_BILD[aktiv].bild, { groesse: 112, dekorativ: true })))),
       h('nav', { class: 'ex-werkzeuge', 'aria-label': E.werkzeuge },
         WERKZEUGE.map((id) => o.bedienbar

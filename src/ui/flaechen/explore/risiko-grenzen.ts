@@ -86,7 +86,11 @@ function grenzWort(reihe: Reihe, n: number): string {
   return n >= 100_000 ? `${zahl(n / 1_000_000)} Mio. €` : `${zahl(n)} €`;
 }
 
+/** zählt die Werkzeuge einer Seite für eindeutige Kennungen (aria-describedby) */
+let zaehler = 0;
+
 export function risikoGrenzen(o: WerkzeugOptionen): HTMLElement {
+  const kennzahl = ++zaehler;
   const v = o.w.risikogrenzen;
   const m = o.w.matrix;
   const stand = o.stand !== null ? leseStandRisiko(`b:${o.stand.beispiel}${o.stand.schritt !== null ? `;${o.stand.schritt}` : ''}`, v.beispiele.map((b) => b.id)) : null;
@@ -118,7 +122,8 @@ export function risikoGrenzen(o: WerkzeugOptionen): HTMLElement {
 
   /* ------------------------------------------------------------ Eingaben -- */
   const grenzenFeld = (): HTMLElement => {
-    const fehlerOrt = (r: Reihe) => h('p', { class: 'wz-feld-fehler', 'data-pruef': `rg-grenzfehler-${r}`, 'aria-live': 'polite' });
+    const fehlerId = (r: Reihe): string => `rg-grenzfehler-${r}-${kennzahl}`;
+    const fehlerOrt = (r: Reihe) => h('p', { class: 'wz-feld-fehler', id: fehlerId(r), 'data-pruef': `rg-grenzfehler-${r}`, 'aria-live': 'polite' });
     const zeichneFehler = (wurzel: HTMLElement): void => {
       let alle = true;
       for (const r of REIHEN) {
@@ -127,6 +132,11 @@ export function risikoGrenzen(o: WerkzeugOptionen): HTMLElement {
         if (f.length > 0) alle = false;
         const ort = wurzel.querySelector(`[data-pruef="rg-grenzfehler-${r}"]`);
         if (ort !== null) ort.textContent = f.map((x) => v.grenzfehler[x]).join(' ');
+        // R78: das Feld meldet den Fehler selbst (nicht nur die Live-Region)
+        for (const feld of wurzel.querySelectorAll(`input[data-pruef^="rg-grenze-${r}-"]`)) {
+          if (f.length > 0) { feld.setAttribute('aria-invalid', 'true'); feld.setAttribute('aria-describedby', fehlerId(r)); }
+          else { feld.removeAttribute('aria-invalid'); feld.removeAttribute('aria-describedby'); }
+        }
       }
       const ok = wurzel.querySelector('[data-pruef="rg-grenzen-ok"]');
       if (ok !== null) { ok.toggleAttribute('hidden', !alle); }
@@ -136,7 +146,7 @@ export function risikoGrenzen(o: WerkzeugOptionen): HTMLElement {
       REIHEN.map((r) => h('div', { class: 'wz-grenzreihe', role: 'group', 'aria-label': E.reihe[r] },
         h('p', { class: 't-label' }, E.reihe[r]),
         h('div', { class: 'wz-grenzwerte' }, [0, 1, 2, 3].map((i) => zahlFeld({
-          name: `rg-grenze-${r}-${i + 1}`, titel: E.grenzeNr(E.reihe[r], i + 1), versteckt: true, wert: z.grenzen[r][i] ?? null, ganz: r === 'termin',
+          name: `rg-grenze-${r}-${i + 1}`, titel: E.grenzeKurz(i + 1), wert: z.grenzen[r][i] ?? null, ganz: r === 'termin',
           beiEingabe: (n) => { z.grenzen[r][i] = n; zeichneFehler(wurzel); zeichneErgebnis(); },
         }))),
         fehlerOrt(r))));

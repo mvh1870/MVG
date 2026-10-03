@@ -188,7 +188,7 @@ Reihenfolge-Begründung (intern): W1 vor W3, weil eine Maßnahme zur Umsetzung e
 | B-R4 | Ergebnis Änderung → Zusatz „Bis zur Freigabe gilt die bisherige Grundlage.“ | v24:hb-1.5 |
 | B-R5 | W6 = Ja → Kasten „Entscheidung vorbereiten: mindestens zwei zulässige Wege, gewichteter Vergleich, Empfehlung, Termin; den Beschluss trifft die befugte Stelle.“ + Verweis „Vorlagen-Check“. | v24:hb-1 (Tabelle), v24:hb-3.1 |
 | B-R6 | W6 = Nein bei Aufgabe → kein Hinweis (nicht jede offene Aufgabe braucht einen Beschluss); bei Risiko → Hinweis „Als Nächstes wird es bewertet – ausprobieren lässt sich das im Risiko-Bewerter.“ | v24:hb-1.1, v24:hb-1.3 |
-| B-R7 | Immer unter dem Ergebnis: „Zusammengehörige Einträge werden verknüpft; die Herkunft geht nicht verloren.“ | v24:hb-1 (Abs. 3), v24:hb-1.2 |
+| B-R7 | Unter dem Ergebnis, wenn eine Art bestimmt ist (R78: nicht bei „Vermutlich kein Vorgang“ und nicht bei reiner Entscheidungsvorbereitung – dort entsteht kein Eintrag): „Zusammengehörige Einträge werden verknüpft; die Herkunft geht nicht verloren.“ | v24:hb-1 (Abs. 3), v24:hb-1.2 |
 
 ### B.4 Ergebnisteile je Art (Kurzfassung der sichtbaren Sätze; Belege)
 
@@ -778,3 +778,13 @@ Die Vorschläge unten gelten wie in L-253 festgehalten. **E-2 ist berichtigt:** 
 - Wegweiser W0 fragt nach der sofortigen Meldung (Gefahr), nicht mehr nach dem drohenden Verlust einer Handlungsoption; die Beispiele `lueftung` und `mensa` bleiben mit „Nein“ stimmig zur Story (Entscheidung mit Frist, keine akute Meldung).
 - Monatsbericht: Die Hinweise `leerStattKeine` und `umgesetztNichtWirksam` sind Bedienhilfen, keine Berichtsregeln. Seitenschätzung rechnet mit 78 Zeichen je Zeile; Kante 50/51 Zeilen, Standlänge 80/81 Zeichen, „selten“ bei Wahrscheinlichkeit 2/3 und die Mindestzahl der Wege sind durch Tests und Mutanten festgehalten.
 - Beispiel „Monatsbericht Oktober 2026“ im Thema „Takt und Bericht“ führt wie Explore und Story keine offene Entscheidung, sondern die benötigte Reaktion „Kenntnis, Zahl für den Stadtrat“.
+
+## Nachzug R78 (Prüfrunde 2026-10-03)
+
+- **Eigene Worte (O-37):** Matrix-Text, Stufentexte, Regel, Takt-Sätze, Vorgangsarten, Risiko-Einleitung, Glossar „Risikomatrix“, „Aufgabe“ und „Dringlicher Sachverhalt“ sind umformuliert; Probe `tests/wortlaut-v24.test.ts` (kein wortgleicher Lauf von zehn oder mehr Wörtern gegen `quellen/v2.4` in `inhalte/werkzeuge.yaml` und `inhalte/glossar.yaml`). Kurze Kernbegriffe („Auswirkung 5 ist immer vorrangig“, „keine Geldwerte und keine Freigabe“) bleiben, weil Tests und Legende sie tragen. Die Themen (`inhalte/theorie`) liegen außerhalb dieser Probe.
+- **Wegweiser:** Alles „Nein“ und Entscheidung „Ja“ ergibt „Entscheidung vorbereiten“ (Kern: `nurEntscheidung`), nie zugleich „Vermutlich kein Vorgang“; der Zusatz „Verknüpfen“ erscheint nur bei einer bestimmten Art (B-R7).
+- **Monatsbericht:** Seitenschätzung rechnet nach Zeichenbreite (`textBreite`: M, W, @, % zählen 1,35-fach); ein Bericht aus M und W im Höchstfall meldet „passt nicht“, statt „passt“ zu sagen und zwei Seiten zu drucken. Das Szenario `explore` prüft den Widerspruch am echten PDF (M/W, M/W mit Leerzeichen, Großschrift). Der Text eines Eintrags steht über der vollen Zeilenbreite. Datenstand des Beispiels „Einträge vom 30. Oktober 2026“; Fuß „… in der Software des Bauherrn“. Die Hinweise `leerStattKeine` („Hier fehlt noch ein Eintrag – oder „keine“.“) und `umgesetztNichtWirksam` (unpersönlich) sind Zustandssätze, keine Bedienerklärung (O-56; Muster `Werkzeug erklärt sein Verhalten` in `SICHTBAR_ARBEITSSTAND`).
+- **Vorlagen-Check:** Die Muss-Einteilung der Punkte bleibt eine Bedienregel (A-R1); a2 fragt nur noch „Ist gesagt, warum der Bauherr entscheiden muss?“. Die Lücken stehen nach Wichtigkeit (rot vor gelb, Lücken des aktuellen Schritts zuerst): drei sofort, der Rest hinter „Weitere … Lücken anzeigen“. Die Zustände eines Wegs und der Gegenstand „Freigabe“ tragen eine Erklärung in Klammern.
+- **Daten gesichert:** Test über die kompilierten Inhalte (`tests/werkzeuge-vorlagen-check.test.ts`): 100.000 € genau, Reserve, Gegenstände Risiko/Freigabe/Ziele, Lenkungskreis berät, Kosten- und Terminstufen des Risiko-Bewerters.
+- **Druck:** nummerierte Listen im Bogen tragen ihre Ziffern (Wegweiser-Pfad, Lücken des Vorlagen-Checks).
+- **Leinwand:** Der Kopf zeigt unter dem Titel die Kurzbeschreibung des Werkzeugs (Bildschirm) und leise „Fiktiver Fall: …“ (Bildschirm und Leinwand, O-45); Regie: „Kundenwahl und Eingriffe“ verweist bei den vier neuen Werkzeugen auf den Kasten „Werkzeug auf der Leinwand“.

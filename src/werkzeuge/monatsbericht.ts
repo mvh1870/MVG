@@ -54,23 +54,32 @@ export const FELDGRENZEN = {
   frage: 80, stelle: 30, bis: 20, reaktion: 200,
 } as const;
 
-/** vorsichtig gerechnet (R77): Reserve gegenüber den rund 92 Zeichen des Fließtexts; Zeilen aus breiten Großbuchstaben fassen deutlich weniger */
+/** vorsichtig gerechnet (R77): Reserve gegenüber den rund 92 Zeichen des Fließtexts; Großschrift passt damit noch in die Zeile */
 export const ZEICHEN_JE_ZEILE = 78;
+/** Zeichen, die selbst über die Reserve hinaus breit sind (R78): zählen 1,35-fach; Zeilen aus M und W fassen deutlich weniger */
+const BREIT = 'MW@%';
+const BREIT_FAKTOR = 1.35;
+/** Breite eines Texts in „Zeichen“ der Schätzung: jedes Zeichen 1, die breiten (M, W, @, %) 1,35 */
+export const textBreite = (t: string): number => {
+  let b = 0;
+  for (const c of t) b += BREIT.includes(c) ? BREIT_FAKTOR : 1;
+  return b;
+};
 export const ZEILEN_JE_SEITE = 50;
 /** sichtbares Wort einer Ampelfarbe im Bericht (für die Längenschätzung; der Bericht nennt Farbe mit Wort) */
 const FARBWORT: Record<Farbe, string> = { gruen: 'grün', gelb: 'gelb', rot: 'rot' };
 const AMPELWORT: Record<AmpelId, string> = { kosten: 'Kosten', termine: 'Termine', qualitaet: 'Qualität' };
 /** Fußsatz D-R8, nur für die Länge */
-const FUSS_LAENGE = 'Die vollständigen Einträge stehen in der Software.'.length;
+const FUSS_LAENGE = textBreite('Die vollständigen Einträge stehen in der Software des Bauherrn.');
 
 const zeilenFuer = (laenge: number, breite: number): number => Math.max(1, Math.ceil(laenge / breite));
 
 /**
- * Geschätzter Platzbedarf (Bedienregel, Konzept D.6): Lage, je Ampel ihr Satz und ggf. die Reaktion, die Abschnitte in
+ * Geschätzter Platzbedarf (Bedienregel, Konzept D.6; R78: nach Zeichenbreite, nicht nur nach Zeichenzahl): Lage, je Ampel ihr Satz und ggf. die Reaktion, die Abschnitte in
  * zwei Spalten (halbe Breite), offene Entscheidungen, benötigte Reaktion, Fuß. Jede Überschrift eine Zeile.
  */
 export function schaetzeUmfang(b: Bericht, zeichenJeZeile: number = ZEICHEN_JE_ZEILE, zeilenJeSeite: number = ZEILEN_JE_SEITE): Umfang {
-  const voll = (t: string): number => zeilenFuer(t.length, zeichenJeZeile);
+  const voll = (t: string): number => zeilenFuer(textBreite(t), zeichenJeZeile);
   const spalte = Math.floor(zeichenJeZeile / 2) - 2;
   let z = 1 + voll(b.lage);
   for (const id of AMPELN) {
@@ -82,7 +91,7 @@ export function schaetzeUmfang(b: Bericht, zeichenJeZeile: number = ZEICHEN_JE_Z
   for (const inhalt of Object.values(b.abschnitte)) {
     spalten += 1;
     if (Array.isArray(inhalt) && inhalt.length > 0) {
-      for (const e of inhalt as readonly BerichtEintrag[]) spalten += zeilenFuer(`${e.text} ${e.kennung}`.length, spalte);
+      for (const e of inhalt as readonly BerichtEintrag[]) spalten += zeilenFuer(textBreite(`${e.text} ${e.kennung}`), spalte);
     } else {
       spalten += 1;
     }
@@ -95,7 +104,7 @@ export function schaetzeUmfang(b: Bericht, zeichenJeZeile: number = ZEICHEN_JE_Z
     z += 1;
   }
   z += 1 + voll(b.reaktion);
-  z += zeilenFuer(`Datenstand: ${b.datenstand}`.length, zeichenJeZeile) + zeilenFuer(FUSS_LAENGE, zeichenJeZeile);
+  z += zeilenFuer(textBreite(`Datenstand: ${b.datenstand}`), zeichenJeZeile) + zeilenFuer(FUSS_LAENGE, zeichenJeZeile);
   return { zeilen: z, anteil: z / zeilenJeSeite, passt: z <= zeilenJeSeite };
 }
 

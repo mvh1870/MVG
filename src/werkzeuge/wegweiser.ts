@@ -16,8 +16,10 @@ export interface Weg {
   art: Art | null;
   /** Frühwarnung wegen „unklar“ (B-R2) */
   ausUnklar: boolean;
-  /** alle Fragen W1–W5 mit Nein beantwortet (B-R2): „Vermutlich kein Vorgang“ */
+  /** alle Fragen W1–W5 mit Nein beantwortet (B-R2): „Vermutlich kein Vorgang“ – nicht, wenn zugleich eine Entscheidung gebraucht wird */
   keinVorgang: boolean;
+  /** alle Fragen W1–W5 mit Nein, aber eine Entscheidung des Bauherrn ist nötig (R78): das Ergebnis ist „Entscheidung vorbereiten“, nicht „kein Vorgang“ */
+  nurEntscheidung: boolean;
   dringlich: boolean | null;
   entscheidung: boolean | null;
   /** tatsächlich gestellte und beantwortete Fragen in der Reihenfolge des Wegs */
@@ -82,9 +84,10 @@ export function wegweiser(a: Readonly<Partial<Record<FrageId, Wahl>>>): Weg {
       pfad.push('entscheidung');
     }
   }
+  const nurEntscheidung = keinVorgang && entscheidung === true;
   const naechste: FrageId | null =
     dringlich === null ? 'dringlich' : offeneBaumfrage !== null ? offeneBaumfrage : entscheidung === null ? 'entscheidung' : null;
-  return { art, ausUnklar, keinVorgang, dringlich, entscheidung, pfad, naechste };
+  return { art, ausUnklar, keinVorgang: keinVorgang && !nurEntscheidung, nurEntscheidung, dringlich, entscheidung, pfad, naechste };
 }
 
 /** Höchstens zwei typische Verwechslungen zur Art, in der Reihenfolge des Inhalts (Konzept B.5). */
@@ -104,7 +107,8 @@ export function zusaetze(w: Weg): readonly Zusatz[] {
   if (w.art === 'aenderung') z.push('bisherGilt');
   if (w.entscheidung === true) z.push('entscheidung');
   if (w.entscheidung === false && w.art === 'risiko') z.push('bewerten');
-  if (w.art !== null || w.keinVorgang) z.push('verknuepfen');
+  // verknüpft wird nur, was als Vorgang entsteht (R78): bei „kein Vorgang“ und bei reiner Entscheidungsvorbereitung entsteht kein Eintrag
+  if (w.art !== null) z.push('verknuepfen');
   return z;
 }
 

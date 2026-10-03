@@ -42,6 +42,8 @@
 .ex-kopf-bild { display: grid; place-items: center; width: 148px; height: 148px; border-radius: var(--radius-rund); background: var(--weiss); box-shadow: inset 0 0 0 3px var(--ton), 0 0 0 8px var(--weiss-a85); }
 .ex-titel:focus { outline: none; box-shadow: none; }
 .ex-einleitung { max-width: 72ch; color: var(--tinte-2); }
+.ex-fall { max-width: 72ch; font: var(--typo-klein); color: var(--tinte-2); }
+.ex-fall p { margin: 0; }
 
 /* Werkzeug-Kacheln mit Gegenstand */
 .ex-werkzeuge { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--a-3); }
@@ -76,7 +78,7 @@ a.ex-werkzeug-link:hover { border-color: var(--ton); color: var(--tinte); text-d
 .ex-buehne { min-width: 0; }
 .ex-leiste { display: flex; flex-wrap: wrap; gap: var(--a-3) var(--a-6); align-items: end; }
 .ex-beispiel { display: grid; gap: var(--a-1); min-width: 0; max-width: 100%; }
-.ex-beispiel select { width: 100%; }
+.ex-beispiel select { width: 100%; text-overflow: ellipsis; } /* R78: ein langer Eintrag endet mit „…“, nicht mitten im Wort */
 .ex-beispiel .t-label { font: var(--typo-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
 .ex-beispiel select, .ex-punkt-wahl {
   min-height: 36px;
@@ -203,6 +205,9 @@ button.ex-art:hover, button.ex-weg:hover { border-color: var(--ton); }
 .wz-karte p { margin: 0; }
 .wz-karte-kopf { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--a-1) var(--a-3); }
 .wz-schwere { font: var(--typo-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
+.wz-luecken { display: grid; gap: var(--a-2); }
+.wz-weitere summary { min-height: 36px; display: flex; align-items: center; cursor: pointer; color: var(--navy); font-weight: 600; }
+.wz-weitere .wz-karten { margin-top: var(--a-2); }
 .wz-erfuellt summary { min-height: 36px; display: flex; align-items: center; cursor: pointer; color: var(--navy); font-weight: 600; }
 .wz-erfuellt ul { display: grid; gap: var(--a-1); margin: var(--a-2) 0 0; padding: 0; list-style: none; }
 .wz-erfuellt li { display: flex; align-items: center; gap: var(--a-2); }
@@ -319,6 +324,8 @@ li[data-fertig="ja"] .wz-schritt-nr { background: var(--status-gruen-soft); colo
 .wz-ampeln { display: grid; gap: var(--a-3); }
 .wz-ampel-feld .wz-frage { border-top: 0; padding-top: 0; }
 .wz-eintrag { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr)); align-items: end; gap: var(--a-2); padding-top: var(--a-2); border-top: 1px dashed var(--linie-2); }
+/* R78: der Text eines Eintrags über die volle Zeilenbreite; Kennung, Stand und Schalter darunter (bei 1024 px brach sonst „Kostenrechnunge|n“) */
+.wz-eintrag > .wz-feld:first-child { grid-column: 1 / -1; }
 .wz-seitenmesser { display: inline-flex; align-items: center; gap: var(--a-2); font: var(--typo-klein); color: var(--tinte-2); }
 .wz-seitenmesser .wb { flex: none; width: 44px; }
 .wz-seitenmesser[data-passt="nein"] span { font-weight: 700; color: var(--status-rot); }
@@ -395,7 +402,7 @@ li[data-fertig="ja"] .wz-schritt-nr { background: var(--status-gruen-soft); colo
   .druck-bogen .wz-druck-punkte li { break-inside: avoid; }
   .druck-bogen .wz-druck-stand { display: inline-block; min-width: 5.6em; font-weight: 700; }
   .druck-bogen .wz-druck-punkte li[data-stand="nein"] .wz-druck-stand { color: var(--status-rot); }
-  .druck-bogen .wz-druck-saetze, .druck-bogen .wz-druck-pfad { margin: 0; padding-left: 5mm; }
+  .druck-bogen .wz-druck-saetze, .druck-bogen .wz-druck-pfad { margin: 0; padding-left: 6mm; list-style: decimal outside; }
   .druck-bogen .wz-druck-saetze li, .druck-bogen .wz-karte, .druck-bogen .wz-kasten { break-inside: avoid; }
   .druck-bogen .wz-karten { gap: 1.5mm; }
   .druck-bogen .wz-karte { padding: 1mm 2.5mm; }

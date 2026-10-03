@@ -7,7 +7,7 @@ alt: >-
   (Mandatsmodell, Schwellen, Eskalation), „Entscheidung“ (Entscheidungs-IDs, Entscheidungsreife, Entscheidungsfrage),
   „Risikoannahme“ (Verknüpfungen, Restrisiko, Risikominderung), „Freigabe“
   (Freigabemodell LPH 0–9, Datenstandsbezug), „Datenstand & Nachweis“ (Beschlusslage,
-  Nachweiskette, Betriebshandbuch, teils verdeckt). Dazu Haftnotizen.
+  Nachweiskette, Betriebshandbuch). Dazu Haftnotizen.
 angeglichen:
   - { x: 375, y: 256, b: 162, h: 34, text: Freigabelogik, beleg: k4-t1, schrift: barlow, groesse: 23, gewicht: 500, farbe: "#1b1b1b" }
   - { x: 361, y: 817, b: 191, h: 37, text: Freigabemodell LPH 0–9, beleg: k4-t1, schrift: barlow, groesse: 22, gewicht: 500, farbe: "#1b1b1b" }
@@ -21,3 +21,7 @@ angeglichen:
   # R77 (O-51): keine unerklärten Abkürzungen auf den Haftnotizen; „Planer“ wortgleich k1-p1, „k. A.“ rein abgedeckt (kein wortgleicher Ersatz), Fläche innerhalb der Notiz
   - { x: 19, y: 400, b: 118, h: 70, text: Planer, beleg: k1-p1, schrift: barlow, gewicht: 600, groesse: 38, ausrichtung: mitte, farbe: "#15191c" }
   - { x: 360, y: 584, b: 96, h: 76, text: "", beleg: k4-t1 }
+  # R78: Die Haftnotiz schnitt „Nachweiskette“ und „Betriebshandbuch“ ab; beide Zeilen stehen vollständig vor der Notiz (wortgleich k4-t1)
+  - { x: 240, y: 562, b: 146, h: 42, text: Nachweiskette, beleg: k4-t1, hintergrund: "#f1fbff", schrift: barlow, groesse: 23, gewicht: 500, farbe: "#1b1b1b" }
+  - { x: 228, y: 607, b: 158, h: 41, text: Betriebshandbuch, beleg: k4-t1, hintergrund: "#f1fbff", schrift: barlow, groesse: 22, gewicht: 500, farbe: "#1b1b1b" }
+  - { x: 1180, y: 611, b: 168, h: 38, text: Entscheidungsfrage, beleg: k4-t1, hintergrund: "#ecf7f0", schrift: barlow, groesse: 23, gewicht: 500, farbe: "#1b1b1b" }

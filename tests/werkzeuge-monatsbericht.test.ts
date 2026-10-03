@@ -4,7 +4,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
 import {
-  FELDGRENZEN, leseStandBericht, pruefeBericht, schaetzeUmfang, ZEICHEN_JE_ZEILE, ZEILEN_JE_SEITE, type Bericht, type BerichtEintrag, type OffeneEntscheidung,
+  FELDGRENZEN, leseStandBericht, pruefeBericht, schaetzeUmfang, textBreite, ZEICHEN_JE_ZEILE, ZEILEN_JE_SEITE, type Bericht, type BerichtEintrag, type OffeneEntscheidung,
 } from '../src/werkzeuge/monatsbericht.ts';
 
 const MAX = { veraenderungen: 4, blockiert: 3, massnahmen: 3, fruehwarnungen: 3, probleme: 4 };
@@ -13,7 +13,7 @@ const MAX = { veraenderungen: 4, blockiert: 3, massnahmen: 3, fruehwarnungen: 3,
 function oktober(): Bericht {
   return {
     monat: 'Oktober 2026',
-    datenstand: 'Stand der Software zum Monatstermin',
+    datenstand: 'Einträge vom 30. September 2026',
     lage: 'Die Prognose liegt bei rund 59,4 Millionen Euro, rund eine Million über dem Budget und innerhalb der Reserve; die angekündigten Mehrkosten der Haustechnikfirma stehen als Risiko daneben.',
     ampeln: {
       kosten: { farbe: 'gelb', satz: 'Rund eine Million über dem Budget, innerhalb der Reserve.', gehoertZu: { reaktion: 'Die Bürgermeisterin nennt dem Stadtrat diese Zahl mit Begründung, die angekündigten Mehrkosten als Risiko daneben.' } },
@@ -115,9 +115,30 @@ test('Höchstzahl je Abschnitt überschritten → Hinweis', () => {
   assert.deepEqual(ids(pruefeBericht(b, MAX).hinweise), ['zuViele']);
 });
 
+test('Höchstzahl an der Kante (R78): genau so viele Einträge wie erlaubt → kein Hinweis, einer mehr → zuViele (jeder Abschnitt)', () => {
+  for (const [abschnitt, max] of Object.entries(MAX)) {
+    const mit = (n: number): Bericht => {
+      const b = oktober();
+      b.abschnitte[abschnitt] = Array.from({ length: n }, (_, i) => ({ text: 't', kennung: `AUF-00${i}` }));
+      return b;
+    };
+    assert.ok(!ids(pruefeBericht(mit(max), MAX).hinweise).includes('zuViele'), `${abschnitt}: ${max} Einträge sind erlaubt`);
+    assert.deepEqual(pruefeBericht(mit(max + 1), MAX).hinweise.filter((h) => h.id === 'zuViele'), [{ id: 'zuViele', schwere: 'gelb', bezug: abschnitt }], `${abschnitt}: ${max + 1} sind zu viele`);
+  }
+});
+
+test('Kopf (R78): fehlt genau eines von Monat, Datenstand und Lage → berichtUnvollstaendig (gelb, bezug kopf); alle drei da → kein Hinweis', () => {
+  for (const feld of ['monat', 'datenstand', 'lage'] as const) {
+    const b = oktober();
+    b[feld] = '  ';
+    assert.deepEqual(pruefeBericht(b, MAX).hinweise, [{ id: 'berichtUnvollstaendig', schwere: 'gelb', bezug: 'kopf' }], feld);
+  }
+  assert.deepEqual(pruefeBericht(oktober(), MAX).hinweise, []);
+});
+
 /** Höchstfall: jedes Feld bis zur Feldgrenze, jeder Abschnitt bis zur Höchstzahl, jede Ampel mit Reaktion. */
-function hoechstfall(plus = 0): Bericht {
-  const t = (n: number): string => 'x'.repeat(n + plus);
+function hoechstfall(plus = 0, zeichen = 'x'): Bericht {
+  const t = (n: number): string => zeichen.repeat(Math.ceil((n + plus) / zeichen.length)).slice(0, n + plus);
   const eintrag = (): BerichtEintrag => ({ text: t(FELDGRENZEN.eintrag), kennung: t(FELDGRENZEN.kennung) });
   const ampel = { farbe: 'rot' as const, satz: t(FELDGRENZEN.ampelSatz), gehoertZu: { reaktion: t(FELDGRENZEN.ampelReaktion) } };
   return {
@@ -158,6 +179,26 @@ test('Seitenmesser an der Kante: 50 Zeilen passen, 51 nicht (D-R7); Vorgabe 50 Z
   assert.ok(p.hinweise.some((h) => h.id === 'zuLang' && h.schwere === 'rot'));
   assert.equal(p.ampel, 'rot');
   assert.ok(!pruefeBericht(hoechstfall(), MAX).hinweise.some((h) => h.id === 'zuLang'));
+});
+
+test('Seitenmesser (R78): die Spalten der Abschnitte rechnen mit der halben Zeilenbreite, nicht breiter', () => {
+  // fünf Abschnitte mit je einem Eintrag von 199 Zeichen: in der Spalte (36 Zeichen) 6 Zeilen je Eintrag, in der vollen Breite nur 3
+  const leer = oktober();
+  for (const k of Object.keys(MAX)) leer.abschnitte[k] = 'keine';
+  const voll = oktober();
+  for (const k of Object.keys(MAX)) voll.abschnitte[k] = [{ text: 'a'.repeat(197), kennung: 'A' }];
+  // Spaltenzeilen: leer 5 + 5 = 10 → 5 Zeilen; voll 5 + 5 · 6 = 35 → 18 Zeilen
+  assert.equal(schaetzeUmfang(voll).zeilen - schaetzeUmfang(leer).zeilen, 13);
+});
+
+test('Seitenmesser (R78): breite Buchstaben (M, W) zählen mehr – ein Bericht aus M und W im Höchstfall passt nicht, Großschrift ohne M und W schon', () => {
+  assert.equal(textBreite('xxxx'), 4);
+  assert.equal(textBreite('MWMW'), 4 * 1.35);
+  assert.equal(schaetzeUmfang(hoechstfall()).passt, true);
+  assert.equal(schaetzeUmfang(hoechstfall(0, 'KOSTEN STEIGEN ')).passt, true, 'Großschrift ohne M und W bleibt in der Reserve');
+  const breit = schaetzeUmfang(hoechstfall(0, 'WM'));
+  assert.equal(breit.passt, false, `${breit.zeilen} Zeilen`);
+  assert.ok(breit.zeilen > 60);
 });
 
 test('Werkzeugstand für die Leinwand: nur der Schalter „Kosten-Ampel ohne Frage“', () => {

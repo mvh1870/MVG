@@ -1,7 +1,7 @@
 id: abb-7
 quelle: bilder/image7.jpeg
 titel: MVG als Bauherren-Führungsmodell
-alt: 'Fünf Spalten mit Pfeilen: „Zielsystem“ (Zielsystem, Prioritäten, Datenstand, Dokumentierte Optionen), „Rollen & Mandate“ (Rollen, Verantwortung, Mandate, Mandatskarte), „Freigabelogik“ (Freigabe, Entscheidungsvorlagen, Auswirkungsbewertung, Nachverfolgung), „Steuerungslogik“ (KPIs, Managementberichte, Datenstand, Nachverfolgung), „Betriebshandbuch & Aktive Führung“ („Betriebshandbuch“: Input – Entscheidung – Umsetzung, Governance-Routinen; „Aktive Entscheidungsführung“: vier abgehakte Punkte). Leiste unten (Minimum first, Auswirkung, Entscheidungsreife, Nachweis, Auditierbarkeit).'
+alt: 'Fünf Spalten mit Pfeilen: „Zielsystem“ (Zielsystem, Prioritäten, Datenstand, Dokumentierte Optionen), „Rollen & Mandate“ (Rollen, Verantwortung, Mandate, Mandatskarte), „Freigabelogik“ (Freigabe, Entscheidungsvorlagen, Auswirkungsbewertung, Nachverfolgung), „Steuerungslogik“ (KPIs, Managementberichte, Datenstand, Nachverfolgung), „Betriebshandbuch & Aktive Führung“ („Betriebshandbuch“: Input – Entscheidung – Umsetzung, Governance-Routinen; „Aktive Entscheidungsführung“: vier abgehakte Punkte). Leiste unten (Mindeststandard, Auswirkung, Entscheidungsreife, Nachweis, Auditierbarkeit).'
 angeglichen:
   - { x: 944, y: 88, b: 178, h: 26, text: Betriebshandbuch, beleg: k5.2-t1, schrift: barlow, gewicht: 600, groesse: 25, ausrichtung: mitte }
   - { x: 938, y: 166, b: 162, h: 28, text: Betriebshandbuch, beleg: k5.2-t1, schrift: barlow, gewicht: 700, groesse: 22, ausrichtung: mitte }
@@ -12,3 +12,5 @@ angeglichen:
   - { x: 486, y: 86, b: 164, h: 52, text: Freigabelogik, beleg: k5.2-t1, schrift: barlow, gewicht: 700, groesse: 25, farbe: "#ffffff", ausrichtung: mitte }
   - { x: 745, y: 851, b: 102, h: 28, text: Nachweis, beleg: k3.1-p1, schrift: barlow, gewicht: 700, groesse: 24, ausrichtung: mitte }
   - { x: 1050, y: 205, b: 70, h: 38, text: "Entschei-\ndung", beleg: k5-l1, schrift: barlow, gewicht: 700, groesse: 18, ausrichtung: mitte }
+  # R78: „Minimum first“ (Englisch) durch den wortgleichen Begriff des Textes ersetzt (L-250)
+  - { x: 41, y: 850, b: 190, h: 31, text: Mindeststandard, beleg: k8.4-p1, schrift: barlow, gewicht: 700, groesse: 24, ausrichtung: mitte }

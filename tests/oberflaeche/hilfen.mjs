@@ -86,6 +86,48 @@ export function pruefeLayout() {
 }
 
 /**
+ * R78: Wörter in sichtbaren Textfeldern, die mitten im Wort brechen („Kostenrechnunge|n“; Wortungetüme über 24 Buchstaben ausgenommen).
+ * Der Text eines <textarea> liegt im Schattenbaum, `wortbrueche` kommt nicht heran – gemessen wird an einer unsichtbaren
+ * Spiegelzeile mit derselben Schrift, Breite und demselben Umbruch.
+ * Läuft im Browser.
+ * @returns {string[]}
+ */
+export function feldWortbrueche() {
+  /** @type {string[]} */
+  const aus = [];
+  const rg = document.createRange();
+  for (const f of document.querySelectorAll('textarea')) {
+    if (!(f instanceof HTMLTextAreaElement) || !f.checkVisibility() || f.value.trim() === '') continue;
+    const cs = getComputedStyle(f);
+    const breite = f.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    const gemeinsam = { position: 'absolute', visibility: 'hidden', left: '-9999px', top: '0', font: cs.font, letterSpacing: cs.letterSpacing, lineHeight: cs.lineHeight, hyphens: 'manual' };
+    const spiegel = document.createElement('div');
+    Object.assign(spiegel.style, gemeinsam, { width: `${breite}px`, whiteSpace: 'pre-wrap', overflowWrap: 'break-word' });
+    spiegel.textContent = f.value;
+    document.body.append(spiegel);
+    const text = spiegel.firstChild;
+    if (text !== null) {
+      for (const m of f.value.matchAll(/[\p{L}\p{N}]{4,}/gu)) {
+        const wort = m[0];
+        // ein alltägliches Wort (bis 24 Buchstaben) soll in einem Feld ganz bleiben; nur ein Wortungetüm darf brechen
+        if (wort.length > 24) continue;
+        const start = m.index ?? 0;
+        let vorY = /** @type {number | null} */ (null);
+        for (let i = 0; i < wort.length; i++) {
+          rg.setStart(text, start + i); rg.setEnd(text, start + i + 1);
+          const r = [...rg.getClientRects()].find((x) => x.width > 0);
+          if (r === undefined) continue;
+          if (vorY !== null && r.top > vorY + 2) { aus.push(`${f.getAttribute('data-pruef') ?? f.name}: ${wort}`); break; }
+          vorY = r.top;
+        }
+      }
+    }
+    spiegel.remove();
+  }
+  return aus;
+}
+
+/**
  * Prüfung an einem Schritt: ans Seitenende scrollen (dort überdeckt die klebende Fußleiste keinen Knopf halb), Layout, axe, Bild.
  * @param {import('playwright').Page} seite
  * @param {import('../../werkzeuge/oberflaeche.mjs').Helfer} h
@@ -104,6 +146,9 @@ export function pruefer(seite, h) {
     // R47: Bauteile, deren Wörter nie mitten im Wort brechen dürfen (L-132, L-133, L-138) – am Bildschirm, ohne hyphens:auto-Text
     const bruch = await wortbrueche(seite, BAUTEILE_UNGETEILT, { bildschirm: true });
     if (bruch.length > 0) h.befund(`${name}: ${bruch.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(bruch.slice(0, 6))}`);
+    // R78: dasselbe für Textfelder (Eintrag im Monatsbericht)
+    const feldBruch = await seite.evaluate(feldWortbrueche);
+    if (feldBruch.length > 0) h.befund(`${name}: ${feldBruch.length} Wörter in Textfeldern ohne Trennstrich gebrochen ${JSON.stringify(feldBruch.slice(0, 6))}`);
     await h.axe(name);
     await h.bild(name);
     await schmal(seite, h, name);

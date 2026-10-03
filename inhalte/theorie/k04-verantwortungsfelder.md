@@ -239,10 +239,10 @@ Darüber beschließt der Bauherr im Lenkungskreis.
 stelle: 3
 ---
 ### Frage
-Nach der Muster-Mandatsleiter oben, nicht nach den Schwellen aus der Story: Wer entscheidet über eine Änderung im Wert von 250.000 €?
+Nach der Muster-Mandatsleiter: Wer entscheidet über eine Änderung im Wert von 250.000 €?
 
 ### Erklärung
-250.000 € liegen über 100.000 € und unter 5 Mio. € – nach der Muster-Mandatsleiter entscheidet das Änderungsgremium. Gehen die Mehrkosten zulasten der Risikoreserve, gibt deren Einsatz trotzdem der Bauherr frei – auch wenn in der Sache das Änderungsgremium entscheidet. In der Story hat die Bürgermeisterin die Schwellen anders festgelegt – genau das darf der Bauherr: Die Mandatsleiter ist ein Muster, keine Vorgabe.
+250.000 € liegen über 100.000 € und unter 5 Mio. € – nach der Muster-Mandatsleiter entscheidet das Änderungsgremium. In der Story hat die Bürgermeisterin die Schwellen anders festgelegt – genau das darf der Bauherr: Die Mandatsleiter ist ein Muster, keine Vorgabe.
 
 ::: antwort a
 ---

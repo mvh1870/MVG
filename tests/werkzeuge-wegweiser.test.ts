@@ -43,18 +43,27 @@ test('Alles Nein (W1–W5) → kein Vorgang, W6 wird gestellt; mit Antwort ferti
   assert.equal(w.keinVorgang, true);
   assert.equal(w.ausUnklar, false);
   assert.equal(w.naechste, 'entscheidung');
-  assert.deepEqual(zusaetze(w), ['keinVorgang', 'verknuepfen']);
+  assert.equal(w.nurEntscheidung, false);
+  // R78: bei „kein Vorgang“ entsteht kein Eintrag – also auch nichts zu verknüpfen
+  assert.deepEqual(zusaetze(w), ['keinVorgang']);
   const fertig = wegweiser({ ...alleNein, entscheidung: N });
   assert.equal(fertig.naechste, null);
+  assert.equal(fertig.keinVorgang, true);
+  assert.deepEqual(zusaetze(fertig), ['keinVorgang']);
+  // R78: alles Nein, aber eine Entscheidung nötig → das Ergebnis ist „Entscheidung vorbereiten“, nie zugleich „kein Vorgang“
   const mitE = wegweiser({ ...alleNein, entscheidung: J });
-  assert.equal(mitE.keinVorgang, true);
-  assert.deepEqual(zusaetze(mitE), ['keinVorgang', 'entscheidung', 'verknuepfen']);
+  assert.equal(mitE.keinVorgang, false);
+  assert.equal(mitE.nurEntscheidung, true);
+  assert.equal(mitE.art, null);
+  assert.equal(mitE.naechste, null);
+  assert.deepEqual(zusaetze(mitE), ['entscheidung']);
 });
 
 test('Die Fragen kommen einzeln: zuerst dringlich, dann der Baum, zuletzt die Entscheidung', () => {
   assert.equal(wegweiser({}).naechste, 'dringlich');
   assert.equal(wegweiser({}).art, null);
   assert.equal(wegweiser({}).keinVorgang, false);
+  assert.equal(wegweiser({}).nurEntscheidung, false);
   assert.equal(wegweiser({ dringlich: N }).naechste, 'handlung');
   assert.equal(wegweiser({ dringlich: N, handlung: N }).naechste, 'eingetreten');
   assert.equal(wegweiser({ dringlich: N, handlung: N, eingetreten: N, anpassen: N }).naechste, 'moeglich');

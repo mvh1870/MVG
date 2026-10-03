@@ -1,6 +1,6 @@
 # Explore-Werkzeuge (P16.8, O-46; vier neue Werkzeuge P18.3/P18.4, O-59, Konzept docs/WERKZEUGE-P18.md). Belege intern, nie sichtbar (O-38). Beispielprojekt: Schulcampus Lindenhall-Süd (O-50).
 einleitung: |
-  Neun Werkzeuge zum Ausprobieren – alle am fiktiven Schulcampus Lindenhall-Süd.
+  Fiktiver Fall: Alle Werkzeuge arbeiten am Schulcampus Lindenhall-Süd.
 mcda:
   titel: MCDA-Rechner
   kurz: Ein gewichteter Vergleich nach mehreren Kriterien – und sehen, wann sich die Spitze dreht.
@@ -8,18 +8,18 @@ mcda:
   text: |
     MCDA steht für Multikriterien-Entscheidungsanalyse, auf Deutsch: ein gewichteter Vergleich nach mehreren Kriterien. Die Projektsteuerung vergleicht mindestens zwei zulässige Optionen anhand derselben gewichteten Kriterien. Gewichte und Punkte liegen je zwischen 1 und 5; Gewicht mal Punkt ergibt je Kriterium ein Produkt, die Summe die Gesamtpunktzahl. Kriterien und Gewichte werden vor der Bewertung mit dem Bauherrn abgestimmt.
   hinweis: |
-    Eine hohe Punktzahl ersetzt kein fachliches Urteil. Zwingende Anforderungen an Sicherheit, Genehmigung und Funktion werden vor dem Vergleich geprüft – eine unzulässige Option gewinnt nicht durch Punkte.
+    Die Punktzahl ersetzt nicht das fachliche Urteil. Zwingende Anforderungen an Sicherheit, Genehmigung und Funktion werden vor dem Vergleich geprüft – eine unzulässige Option gewinnt nicht durch Punkte.
 matrix:
   titel: Risikomatrix 5×5
   kurz: Wahrscheinlichkeit mal Auswirkung – und was daraus für die Bearbeitung folgt.
   belege: [v24:hb-2, v24:hb-3]
   text: |
-    Die Matrix gilt nur für Risiken. Wahrscheinlichkeit 1 bis 5 mal die höchste belegte Auswirkung 1 bis 5 ergibt die Bearbeitungspriorität. Die Einzelbewertungen für Kosten, Termine und Qualität bleiben daneben sichtbar.
+    Die Matrix ordnet nur Risiken ein: Wahrscheinlichkeit (Stufe 1 bis 5) multipliziert mit der höchsten belegten Auswirkung (Stufe 1 bis 5) ergibt die Bearbeitungspriorität. Kosten, Termine und Qualität behalten daneben ihre eigene Bewertung.
   stufen:
-    - { id: beobachten, titel: Beobachten, von: 1, bis: 4, text: "Verantwortliche Person, nächster Prüftermin und die Veränderungen, die eine neue Bewertung auslösen, werden benannt." }
-    - { id: gezielt, titel: Gezielt bearbeiten, von: 5, bis: 9, text: "Die Projektsteuerung schlägt eine Maßnahme vor, klärt Verantwortung und Termin und verfolgt die Umsetzung." }
-    - { id: vorrangig, titel: Vorrangig bearbeiten, von: 10, bis: 25, text: "Die Projektsteuerung holt die fachliche Einschätzung ein, informiert den Bauherrn und bereitet notwendige Handlungen oder Entscheidungen rechtzeitig vor." }
-  regel: Auswirkung 5 ist immer vorrangig. Die Punkte sind keine Geldwerte und keine Freigabe.
+    - { id: beobachten, titel: Beobachten, von: 1, bis: 4, text: "Es werden eine verantwortliche Person, der nächste Prüftermin und die Anlässe für eine neue Bewertung festgehalten." }
+    - { id: gezielt, titel: Gezielt bearbeiten, von: 5, bis: 9, text: "Die Projektsteuerung unterbreitet einen Maßnahmenvorschlag, klärt, wer verantwortlich ist und bis wann, und begleitet die Umsetzung." }
+    - { id: vorrangig, titel: Vorrangig bearbeiten, von: 10, bis: 25, text: "Die Projektsteuerung holt fachlichen Rat ein, unterrichtet den Bauherrn und bereitet erforderliche Handlungen oder Entscheidungen früh genug vor." }
+  regel: Auswirkung 5 ist immer vorrangig, auch bei kleinem Produkt. Punkte ordnen nur die Bearbeitung – sie sind keine Geldwerte und keine Freigabe.
   sonder: Geht es um Sicherheit, Genehmigung, fehlende Befugnis oder darum, dass eine Handlungsmöglichkeit wegzufallen droht, wird das unabhängig von der Matrix behandelt.
   wahrscheinlichkeit: [sehr gering, gering, mittel, hoch, sehr hoch]
   qualitaet:
@@ -39,7 +39,7 @@ vorgaenge:
   kurz: Sechs Arten von Vorgängen – und wohin ein Vorgang als Nächstes führt.
   belege: [v24:hb-1, v24:hb-1.1, v24:hb-1.2, v24:hb-1.3, v24:hb-1.4, v24:hb-1.5, v24:hb-1.6, v24:hb-5]
   text: |
-    Die Projektsteuerung erfasst und bearbeitet alle Vorgänge; der Bauherr pflegt keine Liste. Nicht jeder Hinweis wird zum Risiko, und nicht jeder Vorgang durchläuft alle Arten. Zusammengehörige Einträge werden verknüpft – die Herkunft geht nicht verloren.
+    Die Projektsteuerung erfasst und bearbeitet die Vorgänge ihres Auftrags in der Software des Bauherrn; der Bauherr pflegt keine eigene Liste. Nicht jeder Hinweis wird zum Risiko, und nicht jeder Vorgang durchläuft alle Arten. Zusammengehörige Einträge werden verknüpft – die Herkunft geht nicht verloren.
   arten:
     - id: aufgabe
       titel: Aufgabe
@@ -49,43 +49,43 @@ vorgaenge:
       wege: [risiko, problem, entscheidung]
     - id: fruehwarnung
       titel: Frühwarnung
-      text: Ein Hinweis ist noch nicht ausreichend geklärt. Quelle sichern, Prüffrage und Wiedervorlage festlegen.
+      text: "Ein Hinweis, der sich noch nicht ausreichend einordnen lässt. Die Quelle wird gesichert, eine Prüffrage und ein Wiedervorlagetermin werden festgelegt."
       beispiel: FRW-002 – ein Holzbauer erwähnt gegenüber der Generalplanung, dass die Lieferzeiten für Holzelemente länger werden; Prüffrage an die Hersteller.
       abschluss: Ein Klärungsergebnis liegt vor – oder der Hinweis wird mit Begründung geschlossen.
       wege: [risiko, problem, aufgabe]
     - id: risiko
       titel: Risiko
-      text: Ein mögliches nachteiliges Ereignis oder eine unsichere Größe kann Projektziele beeinträchtigen. Bewerten, Gegenmaßnahmen verfolgen, verbleibende Unsicherheit sichtbar halten.
+      text: "Ein nachteiliges Ereignis ist möglich, oder eine Größe ist unsicher, und Projektziele könnten darunter leiden. Die Auswirkungen werden bewertet, Gegenmaßnahmen verfolgt, verbleibende Unsicherheit bleibt sichtbar."
       beispiel: RIS-009 – die Lieferzeit der Holzbauelemente gefährdet Montagebeginn und Inbetriebnahme.
-      abschluss: Das Ereignis ist eingetreten (weiter als Problem), die Eintrittsmöglichkeit ist entfallen oder die Wirkung ist nachweisbar beseitigt.
+      abschluss: Das Ereignis ist eingetreten (dann weiter als Problem), kann nicht mehr eintreten oder seine Wirkung ist nachweislich beseitigt.
       wege: [massnahme, problem, entscheidung]
     - id: problem
       titel: Problem
-      text: Ein nachteiliger Zustand ist bereits eingetreten. Folgen klären, Lösung organisieren, Ergebnis nachweisen – eine Wahrscheinlichkeit gibt es nicht mehr.
+      text: "Etwas Nachteiliges ist schon eingetreten. Die Folgen werden geklärt, eine Lösung wird organisiert und ihr Ergebnis nachgewiesen; eine Wahrscheinlichkeit gibt es nicht mehr."
       beispiel: PRB-002 – Brandschutzauflagen zum Holzbau aus der Baugenehmigung.
       abschluss: Die vereinbarte Lösung ist umgesetzt und fachlich bestätigt, oder die weitere Bearbeitung ist ausdrücklich übernommen; offene Folgen bleiben sichtbar.
       wege: [massnahme, aenderung, risiko, entscheidung]
     - id: aenderung
       titel: Änderung
-      text: Eine geltende Vorgabe soll bewusst angepasst werden. Ausgangsstand und Auswirkungen vergleichen; bis zur Freigabe gilt die bisherige Grundlage.
+      text: "Eine bestehende Vorgabe soll gewollt geändert werden. Verglichen werden der bisherige Stand und die Auswirkungen; bis zur Freigabe gilt die bisherige Grundlage."
       beispiel: AEN-012 – die Schulleitung wünscht eine größere Mensa.
       abschluss: Der beschlossene neue Stand ist umgesetzt; abgelehnte Anträge bleiben mit Begründung nachvollziehbar.
       wege: [entscheidung, massnahme, risiko, problem]
     - id: massnahme
       titel: Maßnahme
-      text: Gezielte Handlung, um einen Zustand zu klären, zu verbessern oder einen Beschluss umzusetzen. Umgesetzt und wirksam sind nicht dasselbe.
+      text: "Eine Handlung mit Ziel: Sie soll einen Zustand klären oder verbessern oder einen Beschluss in die Tat umsetzen. Umgesetzt und wirksam sind nicht dasselbe."
       beispiel: MAS-007 – vorgezogene Vergabe der Holzbauelemente.
       abschluss: Umsetzungs- und Wirkungsstand sind belegt; wirkt sie nicht, folgt eine Anpassung.
       wege: [aufgabe, entscheidung]
   entscheidung:
     titel: Entscheidung vorbereiten
-    text: Mindestens zwei zulässige Optionen, gewichteter Vergleich, Empfehlung und Entscheidungstermin. Der Beschluss bleibt davon getrennt – er liegt bei der befugten Stelle des Bauherrn.
+    text: Mindestens zwei zulässige Optionen, ein gewichteter Vergleich, eine Empfehlung und ein Termin für die Entscheidung. Beschlossen wird getrennt davon, und zwar von der befugten Stelle des Bauherrn.
 takt:
   titel: Takt
   kurz: Was jede Woche, jeden Monat und sofort geschieht.
   belege: [v24:hb-4]
   text: |
-    In aktiven Zeiten von Planung und Ausführung gilt der Wochentakt; für ausdrücklich vereinbarte Ruhezeiten gilt ein eigener Rhythmus. Die regelmäßige Prüfung ersetzt keine dringliche Meldung.
+    Solange aktiv geplant und gebaut wird, gilt der Wochentakt; für ausdrücklich vereinbarte Ruhezeiten gibt es einen eigenen Rhythmus. Die regelmäßige Durchsicht ersetzt eine dringliche Meldung nicht.
   stufen:
     - id: sofort
       titel: Sofort
@@ -100,12 +100,12 @@ takt:
     - id: monat
       titel: Jeden Monat
       wer: Bauherr und Projektsteuerung
-      text: Ein Online-Termin von höchstens 60 Minuten und eine Zusammenfassung von höchstens einer Seite – wesentliche Veränderungen, blockierte Aufgaben, kritische Maßnahmen, ungeklärte Frühwarnungen, wesentliche Probleme und Änderungen, offene Entscheidungen und die benötigte Reaktion.
+      text: "Ein Online-Termin bis 60 Minuten und eine Zusammenfassung auf höchstens einer Seite: was sich wesentlich verändert hat, welche Aufgaben blockiert und welche Maßnahmen kritisch sind, welche Frühwarnungen noch offen sind, welche Probleme und Änderungen ins Gewicht fallen, welche Entscheidungen anstehen und welche Reaktion gebraucht wird."
       beispiel: Monatstermin mit der Stadt – zwei offene Entscheidungen und die benötigte Reaktion besprochen; der Bericht verweist auf die Einträge in der Software.
     - id: ruhe
       titel: In Ruhezeiten
       wer: Projektsteuerung
-      text: Wenn ausdrücklich vereinbart – monatliche Gesamtprüfung, neue nicht dringliche Hinweise binnen fünf Arbeitstagen, Termin nur bei Bedarf; der Kurzbericht bleibt.
+      text: "Wenn ausdrücklich vereinbart: Der gesamte offene Bestand wird einmal im Monat geprüft, neue Hinweise ohne Dringlichkeit werden innerhalb von fünf Arbeitstagen erfasst, ein Termin findet nur bei Bedarf statt; der Kurzbericht bleibt."
       beispiel: In der vereinbarten Nachlaufzeit nach der Übergabe wird monatlich geprüft; der Monatsbericht kommt trotzdem.
 glossar:
   titel: Glossar
@@ -131,7 +131,7 @@ vorlagencheck:
       titel: Frage und Rahmen
       punkte:
         - { id: a1, muss: true, kurz: Frage als Wahl zwischen Wegen, frage: "Steht die Frage so da, dass sie mit der Wahl eines Wegs beantwortet wird?", schliessen: "Lassen Sie die Frage so fassen, dass die Antwort die Wahl eines Wegs ist.", belege: [v24:hb-3.1, k9.4-l1, k5.1-p2] }
-        - { id: a2, muss: false, kurz: Warum der Bauherr entscheidet, frage: "Ist gesagt, warum der Bauherr entscheiden muss – und dass es keine Routinearbeit und kein reiner Prüfauftrag ist?", schliessen: "Lassen Sie in einem Satz ergänzen, warum das eine Entscheidung des Bauherrn ist, etwa weil Geld aus der Reserve gebraucht oder ein großes Risiko getragen würde.", belege: [v24:hb-3.1, v24:hb-1, v24:hb-1.1] }
+        - { id: a2, muss: false, kurz: Warum der Bauherr entscheidet, frage: "Ist gesagt, warum der Bauherr entscheiden muss?", schliessen: "Lassen Sie in einem Satz ergänzen, warum das eine Entscheidung des Bauherrn ist, etwa weil Geld aus der Reserve gebraucht oder ein großes Risiko getragen würde.", belege: [v24:hb-3.1, v24:hb-1, v24:hb-1.1] }
         - { id: a3, muss: true, kurz: Befugte Stelle mit ihrem Rahmen, frage: "Ist die Stelle genannt, die entscheiden darf, mit ihrem Rahmen?", schliessen: "Lassen Sie die Stelle nennen, die nach dem Rahmen des Projekts entscheiden darf.", belege: [v24:hb-3.1, k9.4-l1] }
         - { id: a4, muss: true, kurz: Entscheidungstermin, frage: "Ist ein Entscheidungstermin genannt?", schliessen: "Lassen Sie das Datum nennen, bis zu dem entschieden sein muss – rechtzeitig, etwa vor dem Auftrag, der davon abhängt.", belege: [v24:hb-3.1, v24:hb-3.2, v24:va-3.5, v24:hb-5] }
         - { id: a5, muss: false, kurz: Folge einer späteren Entscheidung, frage: "Steht da, was passiert, wenn später entschieden wird?", schliessen: "Lassen Sie ergänzen, was eine spätere Entscheidung kostet oder verschiebt.", belege: [v24:hb-3.1] }
@@ -140,7 +140,7 @@ vorlagencheck:
       punkte:
         - { id: b1, muss: true, art: zaehlung, mindestens: 2, kurz: Mindestens zwei zulässige Wege, frage: "Gibt es mindestens zwei ernsthafte, zulässige Wege?", schliessen: "Fordern Sie einen zweiten Weg an, der wirklich zulässig ist – auch das bisherige Vorgehen zählt, wenn es zulässig ist. Bis dahin trägt die Vorlage den Vermerk „nicht vollständig“ und nennt, was noch geklärt wird.", belege: [v24:hb-3.1, v24:hb-1.5, v24:tlb-2.1] }
         - { id: b2, muss: false, kurz: Jeder Weg beschrieben, frage: "Sind für jeden Weg Vorgehen, Kosten, Zeit, Qualität und Nutzung, verbleibende Risiken, Annahmen und nötige Freigaben beschrieben?", schliessen: "Lassen Sie je Weg ergänzen, was er kostet, wie viel Zeit er braucht, was er für die Nutzung bedeutet, welches Risiko bleibt und welche Freigabe er braucht.", belege: [v24:hb-3.1, k9.4-l1, v24:va-3.2] }
-        - { id: b3, muss: false, kurz: Zwingende Anforderungen vorab geprüft, frage: "Wurden Sicherheit, Genehmigung und Funktion vor dem Punktevergleich geprüft?", schliessen: "Lassen Sie die zwingenden Anforderungen vorab prüfen; ein Weg, der sie nicht erfüllt, kommt nicht in den Vergleich.", belege: [v24:hb-3.1] }
+        - { id: b3, muss: false, kurz: Zwingende Anforderungen vorab geprüft, frage: "Wurden Sicherheit, Genehmigung und Funktion vor dem Vergleich mit Punkten geprüft?", schliessen: "Lassen Sie die zwingenden Anforderungen vorab prüfen; ein Weg, der sie nicht erfüllt, kommt nicht in den Vergleich.", belege: [v24:hb-3.1] }
     - id: vergleich
       titel: Gewichteter Vergleich
       punkte:
@@ -163,19 +163,19 @@ vorlagencheck:
   stellen:
     - { id: sie, titel: "Sie (Projektleitung des Bauherrn)" }
     - { id: buergermeisterin, titel: Bürgermeisterin, ohneBeispiel: andere befugte Stelle des Bauherrn }
-    - { id: lenkungskreis, titel: Lenkungskreis, ohneBeispiel: beratendes Gremium (berät nur), satz: "Lassen Sie richtigstellen: Ein beratendes Gremium berät nur; entscheiden darf die befugte Stelle des Bauherrn.", belege: [v24:hb-1, v24:hb-3.1] }
+    - { id: lenkungskreis, titel: Lenkungskreis, ohneBeispiel: beratendes Gremium (berät nur), satz: "Lassen Sie richtigstellen: Ein beratendes Gremium berät; entscheiden darf die befugte Stelle des Bauherrn, auch wenn sie im Lenkungskreis beschließt.", belege: [v24:hb-1, v24:hb-3.1] }
     - { id: projektsteuerung, titel: Projektsteuerung, satz: "Lassen Sie richtigstellen: Die Projektsteuerung bereitet vor und empfiehlt; entscheiden darf sie nicht.", belege: [v24:hb-3, v24:hb-3.1, v24:tlb-2.1, v24:va-4.1] }
     - { id: offen, titel: noch offen }
   wegzustaende:
     - { id: zulaessig, titel: zulässig }
     - { id: unzulaessig, titel: unzulässig, satz: "Ein unzulässiger Weg kann auch mit vielen Punkten nicht gewinnen.", belege: [v24:hb-3.1] }
-    - { id: schein, titel: nur zum Schein, satz: "Ein Weg nur zum Schein zählt nicht als zweiter Weg.", belege: [v24:hb-3.1, v24:hb-1.5] }
-    - { id: offen, titel: Zulässigkeit offen, satz: "Lassen Sie die Zulässigkeit fachlich bestätigen, bevor verglichen wird.", belege: [v24:hb-3.1] }
+    - { id: schein, titel: nur zum Schein (soll einen anderen Weg besser aussehen lassen), satz: "Ein Weg nur zum Schein zählt nicht als zweiter Weg.", belege: [v24:hb-3.1, v24:hb-1.5] }
+    - { id: offen, titel: Zulässigkeit noch ungeklärt, satz: "Lassen Sie die Zulässigkeit fachlich bestätigen, bevor verglichen wird.", belege: [v24:hb-3.1] }
   dringlich: { frage: "Ist die Sache dringlich?", satz: "Dringliches wird gemeldet und gesichert, bevor die Vorlage fertig ist.", belege: [v24:hb-3.1, v24:hb-3, v24:hb-4] }
   gegenstaende:
     - { id: geld, titel: Geld }
     - { id: risiko, titel: Annahme eines großen Risikos }
-    - { id: freigabe, titel: Freigabe am Ende einer Leistungsphase }
+    - { id: freigabe, titel: Freigabe am Ende einer Leistungsphase (Planungs- oder Bauabschnitt) }
     - { id: ziele, titel: Ziele oder ihre Rangfolge }
   mandat:                     # nur bei geladenem Beispiel (O-46: nicht einstellbar), A-R5; Fall „Wer entscheidet was“
     belege: [fall, k4.2-p3, k9.3-p3, v24:hb-1, v24:hb-3, v24:hb-projektblatt]
@@ -298,7 +298,9 @@ risikogrenzen:
   kurz: Ein Risiko mit den eigenen Grenzen des Projekts bewerten – auch wenn noch nicht alles bekannt ist.
   belege: [v24:hb-2, v24:hb-3, v24:hb-projektblatt, v24:hb-1.3]
   text: |
-    Der Bauherr legt für das Projekt fest, bis zu welcher Wahrscheinlichkeit, welchem Betrag und wie vielen Tagen Verzug eine Stufe reicht. Mit diesen Grenzen wird jedes Risiko gleich eingestuft. Was noch niemand beziffern kann, bleibt unbekannt – es zählt nicht als null. Die Stufen und ihre Texte sind dieselben wie in der Risikomatrix 5×5. Ein Warnanlass ist ein Umstand, bei dem es um Sicherheit, Genehmigung, fehlende Befugnis oder eine wegfallende Handlungsmöglichkeit geht; er wird unabhängig vom Feld der Matrix behandelt.
+    Der Bauherr legt fest, bis zu welcher Wahrscheinlichkeit, welchem Betrag und wie vielen Tagen Verzug eine Stufe reicht. Mit diesen Grenzen wird jedes Risiko gleich eingestuft. Was noch niemand beziffern kann, bleibt „unbekannt“ – es zählt nicht als null.
+
+    Die Stufen und ihre Texte sind dieselben wie in der Risikomatrix 5×5. Zu den Warnanlässen zählen etwa Sicherheit, Genehmigung, eine fehlende Befugnis oder die Gefahr, eine Handlungsmöglichkeit zu verlieren; sie werden unabhängig vom Matrixfeld behandelt.
   grenzen:
     wahrscheinlichkeit: [10, 30, 50, 70]       # Prozent – Beispielwerte, L-253 (E-1)
     kosten: [100000, 500000, 1500000, 3000000]  # Euro – Fall
@@ -331,7 +333,7 @@ risikogrenzen:
     selten: { text: "Selten heißt nicht harmlos: Die schwere Folge bleibt im Blick und wird geklärt.", belege: [v24:hb-3] }
     geplant: { text: "Solange die Maßnahme nur geplant ist, bleibt das Feld, wo es ist.", belege: [v24:hb-3] }
     belegt: { text: "Erst wenn die Maßnahme umgesetzt ist und ihre Wirkung nachgewiesen, wird die Bewertung angepasst – begründet.", belege: [v24:hb-3, v24:hb-1.3] }
-    prognose: { text: "Was schon in der Prognose steckt, wird dort sichtbar gemacht und hier nicht ein zweites Mal gezählt.", belege: [v24:hb-2, v24:hb-1] }
+    prognose: { text: "Was die Kostenprognose schon enthält, wird im Eintrag kenntlich gemacht und hier nicht ein zweites Mal gezählt.", belege: [v24:hb-2, v24:hb-1] }
     puffer: { text: "Maßgeblich ist, um wie viele Tage sich der Zieltermin verschiebt – nicht, wie viel später eine einzelne Arbeit fertig wird.", belege: [v24:hb-2] }
     vorrangA5: { text: "Vorrangig wegen Auswirkung 5 – diese Stufe gilt unabhängig vom Produkt aus Wahrscheinlichkeit und Auswirkung.", belege: [v24:hb-2, v24:hb-3] }
     nachObenOffen: { text: "nach oben offen", belege: [v24:hb-2] }
@@ -406,15 +408,15 @@ monatsbericht:
   entscheidungen: { titel: Offene Entscheidungen, max: 3 }
   reaktion: Benötigte Reaktion des Bauherrn
   projekt: Schulcampus Lindenhall-Süd   # Kopf des Berichts, solange ein Beispiel zugrunde liegt (Konzept D.6)
-  fuss: { text: "Die vollständigen Einträge stehen in der Software.", belege: [v24:hb-4] }
+  fuss: { text: "Die vollständigen Einträge stehen in der Software des Bauherrn.", belege: [v24:hb-4] }
   saetze:
-    ampelOhneFrage: { text: "Diese Ampel zeigt nur einen Zustand, solange keine offene Entscheidung mit ihr verknüpft ist – Frage, wer, bis wann – und keine Reaktion genannt ist, die vom Bauherrn gebraucht wird.", belege: [k2.4-p2, v24:hb-4] }
+    ampelOhneFrage: { text: "Gelb oder Rot allein sagt dem Bauherrn nicht, was zu tun ist: Es fehlt die anstehende Entscheidung (mit Stelle und Termin) oder die Reaktion, die gebraucht wird.", belege: [k2.4-p2, v24:hb-4] }
     entscheidungOhneWerBisWann: { text: "Zu jeder offenen Entscheidung gehören, wer entscheidet und bis wann.", belege: [v24:hb-5, v24:hb-3.1] }
     ohneKennung: { text: "Jeder Eintrag verweist auf seinen Vorgang in der Software – der Bericht ist keine zweite Liste.", belege: [v24:hb-4, v24:tlb-2] }
-    leerStattKeine: { text: "Hier ist noch nichts eingetragen. Das Werkzeug bittet um einen Eintrag oder „keine“, damit der Bericht nicht unfertig wirkt.", belege: [v24:hb-4, v24:hb-2] }
+    leerStattKeine: { text: "Hier fehlt noch ein Eintrag – oder „keine“.", belege: [v24:hb-4, v24:hb-2] }
     zuViele: { text: "Hier stehen mehr Einträge, als auf die Seite passen; Einträge werden zusammengefasst.", belege: [v24:hb-4] }
     dringlich: { text: "Dringliches wird sofort gemeldet; der Bericht ersetzt diese Meldung nicht.", belege: [v24:hb-4] }
-    umgesetztNichtWirksam: { text: "Umgesetzt heißt noch nicht wirksam. Halten Sie fest, ob die Wirkung schon belegt ist.", belege: [v24:hb-1.6] }
+    umgesetztNichtWirksam: { text: "Umgesetzt heißt noch nicht wirksam: Im Bericht steht, ob die Wirkung schon belegt ist.", belege: [v24:hb-1.6] }
     berichtUnvollstaendig: { text: "Monat, Datenstand und die Lage in einem Satz fehlen noch. Der Bericht ist erst vollständig, wenn sie eingetragen sind.", belege: [v24:hb-4] }
     zuLang: { text: "Der Bericht passt nicht mehr auf eine Seite; er wird gekürzt, oder Einträge werden zusammengefasst.", belege: [v24:hb-4, v24:as-2] }
   beispiele:
@@ -422,7 +424,7 @@ monatsbericht:
       quelle: k5
       titel: Monatsbericht Oktober 2026
       monat: Oktober 2026
-      datenstand: Stand der Software zum Monatstermin
+      datenstand: Einträge vom 30. Oktober 2026
       lage: "Die Prognose liegt bei rund 59,4 Millionen Euro, rund eine Million über dem Budget und innerhalb der Reserve; die angekündigten Mehrkosten der Haustechnikfirma stehen als Risiko daneben."
       ampeln:
         kosten: { farbe: gelb, satz: "Rund eine Million über dem Budget, innerhalb der Reserve.", reaktion: "Die Bürgermeisterin nennt dem Stadtrat diese Zahl mit Begründung, die angekündigten Mehrkosten als Risiko daneben." }

@@ -1,6 +1,6 @@
 # Architektur
 
-Stand P17 (2026-10-03, Neugestaltung O-50 bis O-58 auf der Neuausrichtung O-36 bis O-49; Prüfrunden bis R75). Verbindlich für alle Posten; Abweichungen nur mit L-Eintrag.
+Stand P18 (2026-10-03, Neugestaltung O-50 bis O-58 auf der Neuausrichtung O-36 bis O-49; vier neue Werkzeuge P18.1 bis P18.5, O-59; Prüfrunden bis R78). Verbindlich für alle Posten; Abweichungen nur mit L-Eintrag.
 
 ## Fluss
 ```
@@ -56,7 +56,7 @@ quellen/ + inhalte/  ──werkzeuge (Node)──►  src/generiert/ (ignoriert)
 | `entwurf.mjs` | Entwürfe aus `entwurf/` gegen den Stand prüfen |
 | `haupt.mjs` | Hilfe: Skript oder Modul |
 | `pruefrunde-auftraege.mjs` | Hilfe für Prüfrunden der Prüf-Agenten |
-| `mutanten.mjs` | außerhalb der Kette: Mutanten-Probe der Story-Engine – verfälscht je eine Stelle in `src/geschichte/engine.ts`, lässt `tests/geschichte.test.ts` laufen und erwartet Rot |
+| `mutanten.mjs` | außerhalb der Kette: Mutanten-Probe der Story-Engine und der Rechenkerne der Werkzeuge – verfälscht je eine Stelle in `src/geschichte/engine.ts` (Tests `tests/geschichte*.test.ts`) oder in `src/werkzeuge/*` (Tests `tests/werkzeuge-*.test.ts`), lässt die zugehörigen Tests laufen und erwartet Rot; die Daten der Werkzeuge in `inhalte/werkzeuge.yaml` sichern eigene Tests über die kompilierten Inhalte (`werkzeuge-vorlagen-check.test.ts`, `explore-bedienung.test.ts`, `wortlaut-v24.test.ts`) |
 
 ## Stand und Ablauf der Story
 - **Ein** serialisierbarer Stand (`Stand` in `src/geschichte/engine.ts`, Feld `v: 2`): Schritt, Wahl je Kapitel (Platz 0–2 auf der Seite), Antworten der Mini-Aufgaben, eigene Gewichte im Vergleich (null = abgestimmt), Kurzfassung. Alles andere – Balken, Bilanz, Rangfolge, Kipppunkte – wird daraus berechnet. Ein gespeicherter Stand mit anderer Fassung (die Stationen der Fassung P16) wird verworfen.

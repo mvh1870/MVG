@@ -33,6 +33,8 @@ interface Zustand {
 }
 
 const MAX_WEGE = 5;
+/** so viele Lücken stehen sofort da, der Rest hinter „Weitere … Lücken anzeigen“ (R78: keine Wand aus 14 Karten im ersten Schritt) */
+const ZUERST = 3;
 const ANTWORTEN: readonly Antwort[] = ['ja', 'teilweise', 'nein'];
 
 const BEISPIELE_VORLAGE = (v: VorlagenCheckTeil): string[] => v.beispiele.map((b) => b.id);
@@ -205,13 +207,30 @@ export function vorlagenCheck(o: WerkzeugOptionen): HTMLElement {
   };
 
   /* ------------------------------------------------------------ Ergebnis -- */
-  const lueckenListe = (befund: VorlagenBefund): HTMLElement => h('ul', { class: 'wz-karten', 'data-pruef': 'vc-luecken' }, befund.luecken.map((l) => karte({
+  /** Karten einer Lücke (R78: nach Wichtigkeit gereiht – rote vor gelben, die des aktuellen Schritts zuerst) */
+  const lueckenKarte = (l: VorlagenBefund['luecken'][number]): HTMLElement => karte({
     titel: punkt(v, l.bezug)?.kurz ?? null,
     satz: `${E.soSchliessenSie}: ${satz(v, l)}`,
     schwere: l.schwere,
     wort: E.schwere[l.schwere === 'rot' ? 'rot' : 'gelb'],
     pruef: `vc-luecke-${l.bezug ?? ''}`,
-  })));
+  });
+  /** Ob die Zusatzlücken ausgeklappt sind – bleibt über das Neuzeichnen hinweg erhalten */
+  let weitereOffen = false;
+  const lueckenListe = (befund: VorlagenBefund): HTMLElement => {
+    const imSchritt = new Set((v.schritte[z.schritt]?.punkte ?? []).map((p) => p.id));
+    const rang = (l: VorlagenBefund['luecken'][number]): number => (imSchritt.has(l.bezug ?? '') ? 0 : 2) + (l.schwere === 'rot' ? 0 : 1);
+    const gereiht = befund.luecken.map((l, i) => ({ l, i })).sort((a, b) => rang(a.l) - rang(b.l) || a.i - b.i).map((x) => x.l);
+    const sofort = gereiht.length > ZUERST + 1 ? gereiht.slice(0, ZUERST) : gereiht;
+    const weitere = gereiht.slice(sofort.length);
+    const d = weitere.length > 0
+      ? h('details', { class: 'wz-weitere', 'data-pruef': 'vc-weitere', open: weitereOffen },
+        h('summary', null, E.weitereLuecken(weitere.length)),
+        h('ul', { class: 'wz-karten' }, weitere.map(lueckenKarte)))
+      : null;
+    d?.addEventListener('toggle', () => { weitereOffen = (d as HTMLDetailsElement).open; });
+    return h('div', { class: 'wz-luecken', 'data-pruef': 'vc-luecken' }, h('ul', { class: 'wz-karten' }, sofort.map(lueckenKarte)), d);
+  };
   const zeichneErgebnis = (): void => {
     const befund = befundVorlage(v, z);
     const wort = v.ampel[befund.ampel];

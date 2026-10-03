@@ -90,12 +90,12 @@ export function wegweiserWerkzeug(o: WerkzeugOptionen): HTMLElement {
   };
 
   const ergebnisTeile = (weg: Weg, links = o.bedienbar): { kopf: HTMLElement; teile: HTMLElement[] } | null => {
-    if (weg.art === null && !weg.keinVorgang) return null;
+    if (weg.art === null && !weg.keinVorgang && !weg.nurEntscheidung) return null;
     const z = zusaetze(weg);
     const satz = (k: Zusatz): string => v.zusaetze[k].text;
     const kopf = weg.art !== null
       ? h('p', { class: 'wz-art' }, h('span', { class: 'id-marke ex-id', 'data-art': weg.art, 'data-pruef': 'ww-art' }, artTitel(weg.art)))
-      : h('p', { class: 'wz-art' }, h('b', { 'data-pruef': 'ww-art' }, v.zusaetze.keinVorgang.titel));
+      : h('p', { class: 'wz-art' }, h('b', { 'data-pruef': 'ww-art' }, weg.nurEntscheidung ? v.zusaetze.entscheidung.titel : v.zusaetze.keinVorgang.titel));
     const teile: HTMLElement[] = [];
     if (weg.art !== null) {
       const e = v.ergebnisse.find((x) => x.art === weg.art);
@@ -125,13 +125,13 @@ export function wegweiserWerkzeug(o: WerkzeugOptionen): HTMLElement {
   const zeichneErgebnis = (): void => {
     const weg = wegweiser(a);
     const e = ergebnisTeile(weg);
-    status.textContent = e !== null ? `${E.ergebnis}: ${weg.art !== null ? artTitel(weg.art) : v.zusaetze.keinVorgang.titel}` : weg.naechste !== null ? `${E.naechsteFrage}: ${frageText(weg.naechste)}` : '';
+    status.textContent = e !== null ? `${E.ergebnis}: ${weg.art !== null ? artTitel(weg.art) : weg.nurEntscheidung ? v.zusaetze.entscheidung.titel : v.zusaetze.keinVorgang.titel}` : weg.naechste !== null ? `${E.naechsteFrage}: ${frageText(weg.naechste)}` : '';
     if (e === null) {
       ersetze(ergebnisOrt, h('div', { class: 'wz-ergebnis-kopf' }, ergebnisBild('gabelung'), h('p', { class: 'wz-leise' }, weg.naechste !== null ? `${E.naechsteFrage}: ${frageText(weg.naechste)}` : '')));
       return;
     }
     ersetze(ergebnisOrt,
-      h('div', { class: 'wz-ergebnis-kopf' }, e.kopf, ergebnisBild(BILD[weg.art ?? 'kein'])),
+      h('div', { class: 'wz-ergebnis-kopf' }, e.kopf, ergebnisBild(weg.nurEntscheidung ? 'waage' : BILD[weg.art ?? 'kein'])),
       e.teile,
       weg.art !== null && o.bedienbar ? h('p', { class: 'wz-verweis' }, h('a', { href: '#explore/vorgaenge', 'data-pruef': 'ww-zur-art' }, sym('pfeilRechts'), E.mehrZurArt)) : null,
       o.bedienbar && weg.naechste === null ? druckKnopf('wegweiser', () => druck(weg)) : null);

@@ -418,6 +418,11 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
   const zeichneEingriffe = (): void => {
     const s = buehne.story.schritt;
     const k = g !== null && buehne.bereich === 'story' && s.ort === 'kapitel' ? kapitel(g, s.kapitel) : null;
+    // R78: bei den vier neuen Werkzeugen stehen Beispiel, Schritt und Schalter im Kasten „Werkzeug auf der Leinwand“ – hier nicht „nichts zu wählen“
+    if (buehne.bereich === 'explore' && istNeuesWerkzeug(werkzeugAus(buehne.werkzeug))) {
+      ersetze(eingriffListe, h('p', { class: 'regie-leise', 'data-pruef': 'regie-eingriffe-werkzeug' }, w.eingriffeImWerkzeug));
+      return;
+    }
     if (g === null || k === null || s.ort !== 'kapitel') {
       ersetze(eingriffListe, h('p', { class: 'regie-leise' }, w.keineEingriffe));
       return;

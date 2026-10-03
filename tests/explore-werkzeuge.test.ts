@@ -128,6 +128,26 @@ test('Wegweiser: Startbeispiel führt zur Frühwarnung; eine geänderte Antwort 
   assert.ok(q(el, 'ww-eigener-text'));
 });
 
+test('Wegweiser (R78): alles „Nein“ und Entscheidung „Ja“ zeigt „Entscheidung vorbereiten“ – nicht zugleich „Vermutlich kein Vorgang“; mit „Nein“ bleibt es „kein Vorgang“', () => {
+  const el = zeige('wegweiser');
+  waehle(el, 'ww-beispiel', '');
+  const wahl = (frage: string, antwort: string): void => {
+    const r = q<HTMLInputElement>(el, `ww-${frage}-${antwort}`);
+    r.checked = true;
+    r.dispatchEvent(new Event('change'));
+  };
+  for (const f of ['dringlich', 'handlung', 'eingetreten', 'anpassen', 'moeglich', 'arbeit']) wahl(f, 'nein');
+  wahl('entscheidung', 'ja');
+  assert.equal(q(el, 'ww-art').textContent, 'Entscheidung vorbereiten');
+  assert.ok(q(el, 'ww-kasten-entscheidung'));
+  assert.ok(q(el, 'ww-zum-vorlagen-check'));
+  assert.doesNotMatch(q(el, 'ww-ergebnis').textContent ?? '', /kein Vorgang|verknüpft/u);
+  wahl('entscheidung', 'nein');
+  assert.equal(q(el, 'ww-art').textContent, 'Vermutlich kein Vorgang');
+  assert.equal(el.querySelector('[data-pruef="ww-kasten-entscheidung"]'), null);
+  assert.doesNotMatch(q(el, 'ww-ergebnis').textContent ?? '', /verknüpft/u);
+});
+
 test('Risiko-Bewerter: RIS-009 vorläufig 16 nach oben offen; 71 Tage und „sehr gering“: vorrangig wegen Auswirkung 5; 70 Tage auf der Grenze', () => {
   const el = zeige('risiko-grenzen');
   assert.equal(q(el, 'rg-zustand').getAttribute('data-zustand'), 'vorlaeufig');

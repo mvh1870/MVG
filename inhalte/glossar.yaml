@@ -99,8 +99,8 @@ neu:
   - id: g-aufgabe
     begriff: Aufgabe
     definition: >-
-      Geplante Arbeit mit vereinbartem Ergebnis, Verantwortlichem und Termin. Sie gilt erst als erledigt, wenn das
-      vereinbarte Ergebnis vorliegt und im eigenen Prüfumfang verwendbar ist.
+      Geplante Arbeit mit vereinbartem Ergebnis, Verantwortlichem und Termin. Sie gilt erst als erledigt, sobald das
+      Ergebnis da ist und die Projektsteuerung es im Rahmen ihrer eigenen Prüfung verwenden kann.
     belege: [v24:hb-1, v24:hb-1.1]
   - id: g-massnahme
     begriff: Maßnahme
@@ -130,9 +130,9 @@ neu:
   - id: g-risikomatrix
     begriff: Risikomatrix (5×5)
     definition: >-
-      Ordnet Risiken nach Wahrscheinlichkeit mal höchster belegter Auswirkung, jeweils in fünf Stufen. 1 bis 4 heißt
-      beobachten, 5 bis 9 gezielt bearbeiten, 10 bis 25 vorrangig bearbeiten; Auswirkung 5 ist immer vorrangig. Die
-      Punkte sind keine Geldwerte und keine Freigabe.
+      Ordnet Risiken nach Wahrscheinlichkeit mal höchster belegter Auswirkung, jeweils in fünf Stufen. Ein Produkt von
+      1 bis 4 heißt beobachten, von 5 bis 9 gezielt bearbeiten, ab 10 vorrangig bearbeiten; hat die Auswirkung die
+      Stufe 5, ist das Risiko immer vorrangig. Die Punkte stehen weder für Geld noch für eine Freigabe.
     belege: [v24:hb-2]
   - id: g-wesentliches-risiko
     begriff: Wesentliches Risiko
@@ -181,6 +181,6 @@ neu:
     begriff: Dringlicher Sachverhalt
     definition: >-
       Ein Sachverhalt, der nicht auf die nächste Prüfung oder Sitzung warten kann. Die Projektsteuerung meldet ihn
-      sofort über den vereinbarten Meldeweg; sobald die unmittelbare Reaktion gesichert ist, dokumentiert sie ihn noch am
-      selben Arbeitstag.
+      sofort auf dem vereinbarten Weg und hält ihn noch am selben Arbeitstag fest, sobald die erste Reaktion gesichert
+      ist.
     belege: [v24:hb-4]

@@ -78,6 +78,13 @@ export async function lauf(seite, h) {
   await h.erwarte('[data-pruef="glossar-suche"]');
   await pruefe('glossar');
   await neueWerkzeuge(seite, h, pruefe, verboten);
+  // P18.5 (E-13): die Adresse #explore/<werkzeug>/<beispiel> öffnet das Werkzeug mit dem Beispiel (so verlinken Story und Themen)
+  for (const [werkzeug, beispiel, auswahl] of [['vorlagen-check', 'lueftung-voll', 'vc-beispiel'], ['wegweiser', 'geruest', 'ww-beispiel'], ['risiko-grenzen', 'ris-014', 'rg-beispiel']]) {
+    await seite.goto(h.url.replace(/#.*$/u, '') + `#explore/${werkzeug}/${beispiel}`);
+    await h.erwarte(`[data-werkzeug="${werkzeug}"]`);
+    const gewaehlt = await seite.locator(`[data-pruef="${auswahl}"]`).inputValue();
+    if (gewaehlt !== beispiel) h.befund(`#explore/${werkzeug}/${beispiel}: geöffnet mit „${gewaehlt}“`);
+  }
 }
 
 /**

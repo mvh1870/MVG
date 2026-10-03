@@ -1,6 +1,6 @@
 /*
  * Explore-Übersetzer (P16.8, O-46; P18.3/P18.4, O-59): liest inhalte/werkzeuge.yaml (Texte der neun Werkzeuge), prüft
- * sie und liefert `werkzeuge` für src/generiert/inhalte.json (Typen: src/inhalte/typen.ts, `Werkzeuge`). Markdown
+ * sie und liefert `werkzeuge` (dazu `regie`, das Regie-Material der vier neuen Werkzeuge) für src/generiert/inhalte.json (Typen: src/inhalte/typen.ts, `Werkzeuge`). Markdown
  * läuft durch den Kompilierer; `belege` bleiben intern (O-38). Die vier neuen Werkzeuge (Konzept docs/WERKZEUGE-P18.md
  * Abschnitt 5) rechnet der Übersetzer zur Selbstprobe mit den Kernen aus src/werkzeuge/ nach: jedes Beispiel muss sein
  * `erwartet` treffen, damit Beispiel, Kern und Konzept nie auseinanderlaufen.
@@ -27,6 +27,55 @@ const BERICHT_SAETZE = ['ampelOhneFrage', 'entscheidungOhneWerBisWann', 'ohneKen
 const GRENZFEHLER = ['anzahl', 'nicht-positiv', 'nicht-steigend', 'ueber-100'];
 /** @param {unknown} x */
 const text = (x) => (x === undefined || x === null ? '' : String(x));
+
+/** Adress-Kennung (#explore/<werkzeug>) → Teil in inhalte/werkzeuge.yaml; muss zu WERKZEUGE und TEIL in src/ui/flaechen/explore.ts passen (tests/explore-werkzeuge.test.ts). */
+export const WERKZEUG_TEIL = {
+  mcda: 'mcda', 'vorlagen-check': 'vorlagencheck', matrix: 'matrix', 'risiko-grenzen': 'risikogrenzen', vorgaenge: 'vorgaenge', wegweiser: 'wegweiser', takt: 'takt', monatsbericht: 'monatsbericht', glossar: 'glossar',
+};
+/** Die vier Werkzeuge mit Beispielen und Regie-Material (P18, O-59). */
+const NEUE_WERKZEUGE = ['vorlagen-check', 'wegweiser', 'risiko-grenzen', 'monatsbericht'];
+
+/**
+ * Katalog für die Verweise aus Story und Themen (E-13): je Werkzeug (Adress-Kennung) die Kennungen seiner Beispiele
+ * (leer bei den Werkzeugen ohne Beispiele). null, wenn es keine Werkzeuge gibt (dann wird nicht geprüft).
+ * @param {any} werkzeuge Ergebnis von baueWerkzeuge
+ * @returns {Record<string, string[]> | null}
+ */
+export function werkzeugKatalog(werkzeuge) {
+  if (werkzeuge === null || werkzeuge === undefined) return null;
+  return Object.fromEntries(Object.entries(WERKZEUG_TEIL).map(([adresse, teil]) => [adresse, (werkzeuge[teil]?.beispiele ?? []).filter((/** @type {any} */ b) => typeof b.id === 'string').map((/** @type {any} */ b) => b.id)]));
+}
+
+/**
+ * Verweisfeld `werkzeuge: [{ id, beispiel }]` (E-13) von Story-Kapiteln und Themen: Werkzeug und Beispiel müssen existieren,
+ * `beispiel` ist optional und nur bei Werkzeugen mit Beispielen erlaubt; ein Werkzeug höchstens einmal je Verweisliste.
+ * Ohne Katalog (null) wird nur die Form geprüft.
+ * @param {unknown} roh
+ * @param {string} ort
+ * @param {Record<string, string[]> | null} katalog
+ * @param {(ort: string, f: string) => void} fehler
+ * @returns {{ id: string, beispiel: string | null }[]}
+ */
+export function pruefeWerkzeugVerweise(roh, ort, katalog, fehler) {
+  if (roh === undefined) return [];
+  if (!Array.isArray(roh)) { fehler(ort, '„werkzeuge“ erwartet eine Liste { id, beispiel }'); return []; }
+  /** @type {{ id: string, beispiel: string | null }[]} */
+  const aus = [];
+  roh.forEach((x, i) => {
+    const o = `${ort} werkzeuge[${i + 1}]`;
+    if (typeof x !== 'object' || x === null || Array.isArray(x)) { fehler(o, 'erwartet { id, beispiel }'); return; }
+    for (const k of Object.keys(x)) if (k !== 'id' && k !== 'beispiel') fehler(o, `unbekanntes Feld „${k}“ (erlaubt: id, beispiel)`);
+    const id = text(/** @type {any} */ (x).id);
+    const beispiel = /** @type {any} */ (x).beispiel === undefined ? null : text(/** @type {any} */ (x).beispiel);
+    if (!Object.hasOwn(WERKZEUG_TEIL, id)) { fehler(o, `Werkzeug „${id}“ gibt es nicht (erlaubt: ${Object.keys(WERKZEUG_TEIL).join(', ')})`); return; }
+    if (aus.some((v) => v.id === id)) fehler(o, `Werkzeug „${id}“ doppelt – ein Eintrag je Werkzeug`);
+    if (beispiel !== null && katalog !== null && !(katalog[id] ?? []).includes(beispiel)) {
+      fehler(o, (katalog[id] ?? []).length === 0 ? `„${id}“ hat keine Beispiele` : `Beispiel „${beispiel}“ gibt es bei „${id}“ nicht (erlaubt: ${(katalog[id] ?? []).join(', ')})`);
+    }
+    aus.push({ id, beispiel });
+  });
+  return aus;
+}
 
 /**
  * @param {any} c Kompilierer
@@ -102,11 +151,24 @@ export function baueWerkzeuge(c, rel, roh) {
     }
   };
   for (const k of ['vorlagencheck', 'wegweiser', 'risikogrenzen', 'monatsbericht']) leereSchluessel(y[k], k);
+  /** Regie-Material je neues Werkzeug (Notiz und Leitfragen) – nur für die Regie, nie öffentlich (L-7, Konzept 0.3) */
+  /** @type {Record<string, { notizHtml: string, leitfragen: string[] }>} */
+  const regie = {};
+  for (const id of NEUE_WERKZEUGE) {
+    const teilId = /** @type {Record<string, string>} */ (WERKZEUG_TEIL)[id] ?? id;
+    const r = y[teilId]?.regie;
+    const ort = `${teilId} regie`;
+    if (r === undefined || r === null || typeof r !== 'object' || Array.isArray(r)) { c.fehler(rel, `${ort}: erwartet { notiz, leitfragen }`); continue; }
+    for (const k of Object.keys(r)) if (k !== 'notiz' && k !== 'leitfragen') c.fehler(rel, `${ort}: unbekanntes Feld „${k}“ (erlaubt: notiz, leitfragen)`);
+    if (text(r.notiz).trim() === '') c.fehler(rel, `${ort}: Notiz fehlt`);
+    if (!Array.isArray(r.leitfragen) || r.leitfragen.length === 0) c.fehler(rel, `${ort}: mindestens eine Leitfrage`);
+    regie[id] = { notizHtml: c.html(text(r.notiz), rel), leitfragen: (Array.isArray(r.leitfragen) ? r.leitfragen : []).map(text) };
+  }
   const vorlagencheck = baueVorlagenCheck(y.vorlagencheck ?? {}, neuerTeil, sichtbar, belege, (/** @type {string} */ f) => c.fehler(rel, f));
   const wegweiserTeil = baueWegweiser(y.wegweiser ?? {}, neuerTeil, sichtbar, satz, belege, (/** @type {string} */ f) => c.fehler(rel, f));
   const risikogrenzen = baueRisikoGrenzen(y.risikogrenzen ?? {}, neuerTeil, sichtbar, satz, (/** @type {string} */ f) => c.fehler(rel, f));
   const monatsbericht = baueMonatsbericht(y.monatsbericht ?? {}, neuerTeil, sichtbar, satz, (/** @type {string} */ f) => c.fehler(rel, f));
-  return {
+  const werkzeuge = {
     einleitungHtml: c.html(text(y.einleitung), rel),
     mcda: { ...teil('mcda'), hinweisHtml: c.html(text(y.mcda?.hinweis), rel) },
     matrix: { ...teil('matrix'), stufen, regel: text(m.regel), sonder: text(m.sonder), wahrscheinlichkeit: (m.wahrscheinlichkeit ?? []).map(text), qualitaet: (m.qualitaet ?? []).map(text), beispiele },
@@ -118,6 +180,7 @@ export function baueWerkzeuge(c, rel, roh) {
     risikogrenzen,
     monatsbericht,
   };
+  return { werkzeuge, regie };
 }
 
 /** @typedef {(ort: string, x: unknown) => string} Sichtbar */

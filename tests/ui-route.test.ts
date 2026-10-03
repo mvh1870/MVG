@@ -8,8 +8,10 @@ test('die Anker der Bereiche', () => {
   assert.deepEqual(leseRoute('#story'), { flaeche: 'story', kapitel: null });
   assert.deepEqual(leseRoute('#theorie'), { flaeche: 'theorie', thema: null, abschnitt: null });
   assert.deepEqual(leseRoute('#theorie/verantwortung'), { flaeche: 'theorie', thema: 'verantwortung', abschnitt: null });
-  assert.deepEqual(leseRoute('#explore'), { flaeche: 'explore', werkzeug: null });
-  assert.deepEqual(leseRoute('#explore/matrix'), { flaeche: 'explore', werkzeug: 'matrix' });
+  assert.deepEqual(leseRoute('#explore'), { flaeche: 'explore', werkzeug: null, beispiel: null });
+  assert.deepEqual(leseRoute('#explore/matrix'), { flaeche: 'explore', werkzeug: 'matrix', beispiel: null });
+  // E-13 (P18.5): ein Werkzeug öffnet mit einem Beispiel
+  assert.deepEqual(leseRoute('#explore/vorlagen-check/lueftung-voll'), { flaeche: 'explore', werkzeug: 'vorlagen-check', beispiel: 'lueftung-voll' });
   assert.deepEqual(leseRoute('#regie'), { flaeche: 'regie' });
   assert.deepEqual(leseRoute('#leinwand'), { flaeche: 'leinwand' });
 });
@@ -21,13 +23,13 @@ test('Kapitel, Thema und Abbildung; Großschreibung zählt nicht', () => {
 });
 
 test('Unbekanntes, Leeres und Kaputtes führen zur Startseite', () => {
-  for (const hash of ['', '#', '#irgendwas', '#story/k3/x', '#story/-a', '#story/ä3', '#regie/x', '#leinwand/x', '#explore/a/b', '#theorie/a/b/c', '#%E0%A4%A']) {
+  for (const hash of ['', '#', '#irgendwas', '#story/k3/x', '#story/-a', '#story/ä3', '#regie/x', '#leinwand/x', '#explore/a/b/c', '#explore/a/-b', '#explore/a/ä', '#theorie/a/b/c', '#%E0%A4%A']) {
     assert.deepEqual(leseRoute(hash), START, hash);
   }
 });
 
 test('routeHash ist die Umkehrung von leseRoute', () => {
-  for (const hash of ['#start', '#story', '#story/k3', '#theorie', '#theorie/takt', '#theorie/verantwortung/abb-6', '#explore', '#explore/glossar', '#regie', '#leinwand']) {
+  for (const hash of ['#start', '#story', '#story/k3', '#theorie', '#theorie/takt', '#theorie/verantwortung/abb-6', '#explore', '#explore/glossar', '#explore/wegweiser/messe', '#regie', '#leinwand']) {
     assert.equal(routeHash(leseRoute(hash)), hash);
   }
   assert.ok(gleicheRoute({ flaeche: 'story', kapitel: 'K3' }, leseRoute('#story/k3')));

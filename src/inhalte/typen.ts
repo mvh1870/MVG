@@ -7,13 +7,13 @@
  * Zitate: `<blockquote|q class="mvg-zitat" data-absatz="k2.4-p2">`.
  */
 
-import type { Geschichte, GeschichteRegie } from '../geschichte/typen.ts';
+import type { Geschichte, GeschichteRegie, WerkzeugVerweis } from '../geschichte/typen.ts';
 import type { Ampel } from '../werkzeuge/gemeinsam.ts';
 import type { Antwort, Gegenstand, MandatsGrund, MandatsRegel, Stelle, WegZustand } from '../werkzeuge/vorlagen-check.ts';
 import type { Art, FrageId, Wahl, Zusatz } from '../werkzeuge/wegweiser.ts';
 import type { GrenzFehler, Wert } from '../werkzeuge/risiko-grenzen.ts';
 import type { AmpelId, Farbe } from '../werkzeuge/monatsbericht.ts';
-export type { Geschichte, GeschichteRegie };
+export type { Geschichte, GeschichteRegie, WerkzeugVerweis };
 
 /** Kopfdaten nach Umwandlung (Zahlen, Listen, ja/nein, verschachtelte Karten). Schlüssel in camelCase. */
 export type KopfWert = string | number | boolean | null | KopfWert[] | { [schluessel: string]: KopfWert };
@@ -83,6 +83,8 @@ export interface TheorieSeite {
   /** Name eines Symbols aus src/stil/symbole.ts */
   symbol: string;
   deckt: string[];
+  /** Explore-Werkzeuge zum Thema (E-13, P18.5), am Seitenende leise verlinkt; leer = keine */
+  werkzeuge: WerkzeugVerweis[];
   einleitung: string;
   bloecke: Block[];
   quelle: string;
@@ -164,6 +166,8 @@ export interface Inhalte {
   geschichteRegie: Record<string, GeschichteRegie>;
   /** Texte der Explore-Werkzeuge (P16.8) */
   werkzeuge: Werkzeuge | null;
+  /** Regie-Notizen der vier neuen Werkzeuge je Adress-Kennung (`vorlagen-check` …, P18.5) */
+  werkzeugeRegie: Record<string, GeschichteRegie>;
 }
 
 interface WerkzeugTeil { titel: string; kurz: string; html: string }
@@ -292,4 +296,4 @@ export interface MonatsberichtTeil extends WerkzeugTeil {
  * Was jede Fläche (auch die Leinwand) sehen darf. `regie?: never` macht den Typ streng: Ein volles
  * `Inhalte` (mit Regie-Material) ist NICHT zuweisbar, strukturell wie als Objektliteral.
  */
-export type OeffentlicheInhalte = Omit<Inhalte, 'regie' | 'geschichteRegie'> & { regie?: never; geschichteRegie?: never };
+export type OeffentlicheInhalte = Omit<Inhalte, 'regie' | 'geschichteRegie' | 'werkzeugeRegie'> & { regie?: never; geschichteRegie?: never; werkzeugeRegie?: never };

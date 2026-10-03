@@ -19,6 +19,7 @@ kurztitel: Entscheidungsvorlage
 teil: 4
 kurzsatz: Zwei zulässige Wege, ein gewichteter Vergleich und eine Empfehlung.
 symbol: dokument
+werkzeuge: [{ id: vorlagen-check }]
 ---
 Viele Projektthemen enden in einer Frage an den Bauherrn: so oder anders? Gut beantworten kann er sie mit einer [[Entscheidungsvorlage]].
 

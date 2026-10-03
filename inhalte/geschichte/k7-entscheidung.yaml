@@ -9,6 +9,7 @@ zeit: Mai 2027
 campus: { stufe: 5, jahreszeit: fruehling, licht: morgen }
 kurzfassung: true
 thema: entscheidungsvorlage
+werkzeuge: [{ id: vorlagen-check, beispiel: lueftung-voll }]
 belege: [v24:hb-3.1, v24:hb-3.2, v24:tlb-2.1, v24:va-3.1, v24:va-3.2, v24:va-3.3, v24:va-3.4, v24:va-3.5, v24:va-4.1, v24:va-4.2, k3.2-t1, k4.1-p1, k9.3-p3]
 bild-szene: lueftung
 bild-frage: waage

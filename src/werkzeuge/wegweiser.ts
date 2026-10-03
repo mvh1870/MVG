@@ -108,8 +108,11 @@ export function zusaetze(w: Weg): readonly Zusatz[] {
   return z;
 }
 
-/** Schritt auf dem Kanal Regie → Leinwand: die gesetzten Antworten in Reihenfolge, j/n/u (Konzept 0.3, B.10). */
-export const SCHRITT_WEGWEISER = /^a:[jnu](?:,[jnu]){0,6}$/u;
+/**
+ * Schritt auf dem Kanal Regie → Leinwand: die gesetzten Antworten in Reihenfolge, j/n/u (Konzept 0.3, B.10); `a:0` = noch
+ * keine Antwort gesetzt (P18.5: die Runde rät, bevor die Regie die erste Antwort setzt). Ein leeres `a:` bleibt ungültig.
+ */
+export const SCHRITT_WEGWEISER = /^a:(?:0|[jnu](?:,[jnu]){0,6})$/u;
 
 /** Werkzeugstand des Wegweisers für die Leinwand. */
 export function leseStandWegweiser(roh: unknown, beispiele: readonly string[]): { beispiel: string; schritt: string | null } | null {

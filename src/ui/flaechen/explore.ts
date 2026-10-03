@@ -22,24 +22,13 @@ import { sym } from '../bausteine/bloecke.ts';
 import { seitenRahmen } from '../bausteine/seite.ts';
 import { glossarListe } from './theorie.ts';
 import { W } from '../woerter.ts';
+import { TEIL, WERKZEUGE, werkzeugAus, werkzeugTitel, type Werkzeug } from '../werkzeug-kennungen.ts';
 import { vorlagenCheck } from './explore/vorlagen-check.ts';
 import { wegweiserWerkzeug } from './explore/wegweiser.ts';
 import { risikoGrenzen } from './explore/risiko-grenzen.ts';
 import { monatsbericht } from './explore/monatsbericht.ts';
 
-/** Reihenfolge der Kacheln (O-59, Konzept 0): jedes neue Werkzeug neben seinem Geschwister. */
-export const WERKZEUGE = ['mcda', 'vorlagen-check', 'matrix', 'risiko-grenzen', 'vorgaenge', 'wegweiser', 'takt', 'monatsbericht', 'glossar'] as const;
-export type Werkzeug = (typeof WERKZEUGE)[number];
-
-/** Adress-Kennung → Teil in inhalte/werkzeuge.yaml (feste Tabelle, Konzept Abschnitt 5). */
-const TEIL: Record<Werkzeug, Exclude<keyof Werkzeuge, 'einleitungHtml'>> = {
-  mcda: 'mcda', 'vorlagen-check': 'vorlagencheck', matrix: 'matrix', 'risiko-grenzen': 'risikogrenzen', vorgaenge: 'vorgaenge', wegweiser: 'wegweiser', takt: 'takt', monatsbericht: 'monatsbericht', glossar: 'glossar',
-};
-
-/** Titel eines Werkzeugs aus den Inhalten (Seitentitel, Regie). */
-export function werkzeugTitel(w: Werkzeuge | null, id: Werkzeug): string {
-  return w?.[TEIL[id]].titel ?? id;
-}
+export { WERKZEUGE, werkzeugAus, werkzeugTitel, type Werkzeug };
 
 /**
  * Gegenstand und Akzentton je Werkzeug (O-57): Kachel, Kopf und Bühne tragen den Ton; der Name trägt die Bedeutung. Die Matrix bekommt bewusst keinen Rot- oder Gelbton (die Ampel bleibt Status, O-11).
@@ -57,19 +46,17 @@ export const WERKZEUG_BILD: Record<Werkzeug, { bild: GimmickName; ton: Akzent }>
   glossar: { bild: 'buch', ton: 'gruen' },
 };
 
-export function werkzeugAus(id: string | null): Werkzeug {
-  return (WERKZEUGE as readonly string[]).includes(id ?? '') ? id as Werkzeug : 'mcda';
-}
-
 export interface ExploreOptionen {
   inhalte: OeffentlicheInhalte;
   werkzeug: string | null;
   bedienbar: boolean;
   /**
-   * Werkzeugstand für die Leinwand (Konzept 0.3, vorbereitet für P18.5): `b:<beispiel>[;<schritt>]`, nur Beispiel und
-   * Schritt, nie Freitext; gelesen von den Kernen (leseStand…). Unpassendes ergibt den Beispielanfang.
+   * Werkzeugstand für die Leinwand (Konzept 0.3, P18.5): `b:<beispiel>[;<schritt>]`, nur Beispiel und Schritt, nie
+   * Freitext; gelesen von den Kernen (leseStand…). Unpassendes ergibt den Beispielanfang.
    */
   werkzeugStand?: string | null;
+  /** Beispiel, mit dem sich das Werkzeug öffnet (Adresse `#explore/<werkzeug>/<beispiel>`, E-13); Unbekanntes ergibt das erste Beispiel. */
+  beispiel?: string | null;
 }
 
 /** Werkzeugstand → Beispiel und Schritt (die Kerne prüfen Beispiel und Schrittmuster beim Zeichnen nach). */
@@ -300,7 +287,7 @@ export function baueExplore(o: ExploreOptionen): HTMLElement {
   const aktiv = werkzeugAus(o.werkzeug);
   const titel = (id: Werkzeug): string => werkzeugTitel(w, id);
   const kurz = (id: Werkzeug): string => w?.[TEIL[id]].kurz ?? '';
-  const neu = w === null ? null : { inhalte: o.inhalte, w, bedienbar: o.bedienbar, stand: standAus(o.werkzeugStand) };
+  const neu = w === null ? null : { inhalte: o.inhalte, w, bedienbar: o.bedienbar, stand: standAus(o.werkzeugStand) ?? (typeof o.beispiel === 'string' ? { beispiel: o.beispiel, schritt: null } : null) };
   const werkzeugEl = w === null || neu === null ? null
     : aktiv === 'mcda' ? mcda(o, w)
     : aktiv === 'vorlagen-check' ? vorlagenCheck(neu)

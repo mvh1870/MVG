@@ -65,12 +65,12 @@ test('Regie-Material erreicht nur die Regie (Konstruktion, O-9): kein Modul auß
     assert.ok(!ziele.includes('src/inhalte/index.ts'), `${rel(p)} importiert die Inhalte direkt`);
     assert.ok(!ziele.includes('src/generiert/inhalte.json'), `${rel(p)} importiert die Inhalte-Datei`);
     assert.ok(!ziele.includes('src/generiert/abbildungen.json'), `${rel(p)} importiert die Bilddaten der Abbildungen`);
-    assert.doesNotMatch(text, /regieInhalte|geschichteRegie/, `${rel(p)} nennt das Regie-Material`);
-    // Die Regie bekommt regieGeschichte/regieKapitel als Parameter von main.ts – nur dort und in der Regie steht der Name.
-    if (rel(p) !== 'src/regie/regie.ts') assert.doesNotMatch(text, /regieFuer|regieKapitel|regieGeschichte/, `${rel(p)} nennt Regie-Zugriffe`);
+    assert.doesNotMatch(text, /regieInhalte|geschichteRegie|werkzeugeRegie/, `${rel(p)} nennt das Regie-Material`);
+    // Die Regie bekommt regieGeschichte/regieKapitel als Parameter von main.ts – nur dort und in der Regie steht der Name (P18.5: auch regieWerkzeug).
+    if (rel(p) !== 'src/regie/regie.ts') assert.doesNotMatch(text, /regieFuer|regieKapitel|regieGeschichte|regieWerkzeug/, `${rel(p)} nennt Regie-Zugriffe`);
   }
   const main = readFileSync(join(WURZEL, 'src/main.ts'), 'utf8');
-  assert.match(main, /import \{ inhalte, regieGeschichte, regieKapitel \} from '\.\/inhalte\/index\.ts'/);
+  assert.match(main, /import \{ inhalte, regieGeschichte, regieKapitel, regieWerkzeug \} from '\.\/inhalte\/index\.ts'/);
 });
 
 test('Leinwand: der ganze Importgraph (transitiv, auch dynamisch) enthält weder Inhalte-Datei noch Regie', () => {

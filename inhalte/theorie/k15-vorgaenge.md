@@ -22,6 +22,7 @@ kurztitel: Vorgänge und Risiken
 teil: 4
 kurzsatz: Welche Vorgangsart ein Hinweis ist und wie ein Risiko bewertet wird.
 symbol: warnung
+werkzeuge: [{ id: wegweiser }, { id: risiko-grenzen }]
 ---
 Im Projektalltag kommt vieles gleichzeitig an: ein Anruf, eine Auflage, ein Wunsch, eine Verzögerung. Nicht jeder Hinweis ist ein Risiko – manches ist schon eingetreten, manches eine gewollte [[Änderung]], manches einfach Arbeit.
 

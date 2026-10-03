@@ -27,6 +27,8 @@ import { inhalt, inhaltInline } from '../ui/bausteine/inhalt.ts';
 import { erzeugeAnzeige } from './leinwand.ts';
 import { themen, themaSeite } from '../ui/flaechen/theorie.ts';
 import { WERKZEUGE, werkzeugAus, werkzeugTitel } from '../ui/flaechen/explore.ts';
+import { beispielKennungen, istNeuesWerkzeug } from '../ui/werkzeug-kennungen.ts';
+import { beispielStart, eintrittsStand, schalteUm, schalterVon, schrittImWerkzeug, schrittStelle, standTeile } from './werkzeug-stand.ts';
 import { bogenFuerStrgP, bogenKopf, druckeBogen } from '../ui/druck.ts';
 import { W } from '../ui/woerter.ts';
 import { bmLink, DATENSCHUTZ_SEITE, IMPRESSUM_SEITE } from '../ui/bausteine/seite.ts';
@@ -46,6 +48,8 @@ export interface RegieOptionen {
   regieGeschichte: (kapitel: string) => GeschichteRegie | null;
   /** Regie-Material eines Themas (über seine interne Nummer) */
   regieKapitel: (kapitel: number) => RegieEintrag | null;
+  /** Regie-Material eines der vier neuen Werkzeuge (Adress-Kennung, P18.5); fehlt es, gibt es dort keine Notiz */
+  regieWerkzeug?: (werkzeug: string) => GeschichteRegie | null;
   /** öffnet das Leinwand-Fenster */
   oeffneLeinwand: () => void;
   /** Takt der Verbindungsprüfung in ms */
@@ -70,7 +74,7 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
   const lade = (): { buehne: Buehne; protokoll: Protokoll[] } => {
     try {
       const roh = JSON.parse(o.speicher?.getItem(REGIE_SCHLUESSEL) ?? 'null') as { buehne?: unknown; protokoll?: unknown } | null;
-      const b = pruefeBuehne(roh?.buehne, g);
+      const b = pruefeBuehne(roh?.buehne, g, (id) => beispielKennungen(inhalte.werkzeuge, id));
       const p = Array.isArray(roh?.protokoll) ? (roh.protokoll as Protokoll[]).filter((x) => typeof x?.text === 'string' && typeof x?.zeit === 'number') : [];
       return { buehne: b ?? neueBuehne(), protokoll: p };
     } catch {
@@ -133,7 +137,9 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
   themaWahl.addEventListener('change', () => setze({ ...buehne, bereich: 'theorie', thema: themaWahl.value === '' ? null : themaWahl.value }));
   const werkzeugWahl = h('select', { class: 'regie-auswahl', id: 'regie-werkzeug', 'data-pruef': 'regie-werkzeug' },
     WERKZEUGE.map((id) => h('option', { value: id }, werkzeugTitel(inhalte.werkzeuge, id)))) as HTMLSelectElement;
-  werkzeugWahl.addEventListener('change', () => setze({ ...buehne, bereich: 'explore', werkzeug: werkzeugWahl.value }));
+  werkzeugWahl.addEventListener('change', () => setze({ ...buehne, bereich: 'explore', werkzeug: werkzeugWahl.value, werkzeugStand: eintrittsStand(inhalte.werkzeuge, werkzeugWahl.value, 1) }));
+  // Stand der vier neuen Werkzeuge (P18.5): Beispiele, Schritte, „Was wäre, wenn“ – nur sichtbar, solange eines davon auf der Leinwand steht
+  const werkzeugStandEl = h('div', { class: 'regie-werkzeug-stand', role: 'group', 'aria-label': w.werkzeugStand, 'data-pruef': 'regie-werkzeug-stand' });
   // Sprung je Schritt (P17.6): Auftakt, je Kapitel Szene · Vergleich · Frage · Mini-Aufgabe, Ende (eindeutig neben Kapitel 8 „Schulstart“, R75)
   const teilName = (s: Schritt): string => s.ort === 'kapitel' ? W.geschichte.teile[s.teil] ?? s.teil : s.ort === 'auftakt' ? W.geschichte.auftakt : W.geschichte.endeOrt;
   const sprung = h('select', { class: 'regie-auswahl regie-sprung', id: 'regie-sprung', 'data-pruef': 'regie-sprung' },
@@ -181,7 +187,8 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     teilKnoepfe,
     h('div', { class: 'regie-zeile' },
       h('label', { for: 'regie-thema', class: 't-label' }, W.rahmen.theorie), themaWahl,
-      h('label', { for: 'regie-werkzeug', class: 't-label' }, W.rahmen.explore), werkzeugWahl));
+      h('label', { for: 'regie-werkzeug', class: 't-label' }, W.rahmen.explore), werkzeugWahl),
+    werkzeugStandEl);
 
   const eingriffListe = h('div', { class: 'regie-eingriffe', role: 'group', 'aria-label': w.kundenwahl, 'data-pruef': 'regie-eingriffe' });
   const eingriffKarte = h('section', { class: 'regie-karte regie-eingriff-karte' }, h('h2', { class: 'regie-h2' }, w.kundenwahl), eingriffListe);
@@ -265,9 +272,12 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
       return { ...b, thema: ziel === -1 ? null : themenListe[ziel] ?? null };
     }
     if (b.bereich === 'explore') {
-      const i = WERKZEUGE.indexOf(werkzeugAus(b.werkzeug));
-      const ziel = WERKZEUGE[i + richtung];
-      return ziel === undefined ? null : { ...b, werkzeug: ziel };
+      const jetzt = werkzeugAus(b.werkzeug);
+      // E-9: erst durch die Schritte des Werkzeugs, dann zum nächsten
+      const imWerkzeug = schrittImWerkzeug(inhalte.werkzeuge, jetzt, b.werkzeugStand, richtung);
+      if (imWerkzeug !== null) return { ...b, werkzeug: jetzt, werkzeugStand: imWerkzeug };
+      const ziel = WERKZEUGE[WERKZEUGE.indexOf(jetzt) + richtung];
+      return ziel === undefined ? null : { ...b, werkzeug: ziel, werkzeugStand: eintrittsStand(inhalte.werkzeuge, ziel, richtung) };
     }
     return richtung === 1 ? { ...b, bereich: 'story' } : null;
   }
@@ -291,6 +301,14 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
       const e = seite !== null ? o.regieKapitel(seite.kapitel) : null;
       const teile: Node[] = [];
       if (e?.notiz) teile.push(h('div', { class: 'regie-notiz-text' }, inhalt(e.notiz)));
+      if (e !== null) teile.push(...leitfragen(e.leitfragen));
+      ersetze(notizInhalt, teile.length > 0 ? teile : leer);
+      return;
+    }
+    if (buehne.bereich === 'explore' && istNeuesWerkzeug(werkzeugAus(buehne.werkzeug))) {
+      const e = o.regieWerkzeug?.(werkzeugAus(buehne.werkzeug)) ?? null;
+      const teile: Node[] = [];
+      if (e?.notizHtml) teile.push(h('div', { class: 'regie-notiz-text' }, inhalt(e.notizHtml)));
       if (e !== null) teile.push(...leitfragen(e.leitfragen));
       ersetze(notizInhalt, teile.length > 0 ? teile : leer);
       return;
@@ -351,6 +369,49 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
           'data-pruef': `regie-teil-${teil}`, onclick: () => springeZu(ziel),
         }, W.geschichte.teile[teil] ?? teil);
       }));
+  };
+
+  /** Beispiele, Schritte und Schalter des Werkzeugs auf der Leinwand (P18.5); nur für die vier neuen Werkzeuge, sonst ausgeblendet. */
+  const zeichneWerkzeugStand = (): void => {
+    const id = werkzeugAus(buehne.werkzeug);
+    const t = buehne.bereich === 'explore' && istNeuesWerkzeug(id) ? standTeile(inhalte.werkzeuge, id, buehne.werkzeugStand) : null;
+    if (t === null || !istNeuesWerkzeug(id)) {
+      ersetze(werkzeugStandEl);
+      werkzeugStandEl.hidden = true;
+      return;
+    }
+    werkzeugStandEl.hidden = false;
+    const setzeStand = (stand: string): void => setze({ ...buehne, bereich: 'explore', werkzeug: id, werkzeugStand: stand });
+    const beispiele = beispielKennungen(inhalte.werkzeuge, id);
+    const titelVon = (b: string): string => {
+      const x = inhalte.werkzeuge;
+      if (x === null) return b;
+      if (id === 'risiko-grenzen') return x.risikogrenzen.beispiele.find((y) => y.id === b)?.kennung ?? b;
+      const liste: readonly { id: string; titel: string }[] = id === 'vorlagen-check' ? x.vorlagencheck.beispiele : id === 'wegweiser' ? x.wegweiser.beispiele : x.monatsbericht.beispiele;
+      return liste.find((y) => y.id === b)?.titel ?? b;
+    };
+    const stelle = schrittStelle(inhalte.werkzeuge, id, buehne.werkzeugStand);
+    const schalter = schalterVon(inhalte.werkzeuge, id, t.beispiel, w.ampelOhneFrage);
+    const aktiv = new Set(t.schritt === null ? [] : t.schritt.split(';'));
+    ersetze(werkzeugStandEl,
+      h('div', { class: 'regie-zeile', 'data-pruef': 'regie-beispiele' }, h('span', { class: 't-label' }, w.beispiel),
+        beispiele.map((b) => h('button', {
+          type: 'button', class: 'regie-chip regie-chip-klein', 'aria-pressed': b === t.beispiel ? 'true' : 'false', title: titelVon(b), 'data-pruef': `regie-beispiel-${b}`,
+          onclick: () => setzeStand(beispielStart(inhalte.werkzeuge, id, b)),
+        }, titelVon(b)))),
+      stelle !== null ? h('div', { class: 'regie-zeile', 'data-pruef': 'regie-schritte' },
+        h('button', { type: 'button', class: 'regie-chip regie-chip-klein', 'data-pruef': 'regie-schritt-zurueck', disabled: schrittImWerkzeug(inhalte.werkzeuge, id, buehne.werkzeugStand, -1) === null,
+          onclick: () => { const n = schrittImWerkzeug(inhalte.werkzeuge, id, buehne.werkzeugStand, -1); if (n !== null) setzeStand(n); } }, sym('pfeilLinks'), w.schrittZurueck),
+        h('span', { class: 'regie-leise', role: 'status', 'data-pruef': 'regie-schritt-stelle' }, stelle.ergebnis ? w.schrittErgebnis : w.schrittVon(stelle.nr, stelle.von)),
+        h('button', { type: 'button', class: 'regie-chip regie-chip-klein', 'data-pruef': 'regie-schritt-weiter', disabled: schrittImWerkzeug(inhalte.werkzeuge, id, buehne.werkzeugStand, 1) === null,
+          onclick: () => { const n = schrittImWerkzeug(inhalte.werkzeuge, id, buehne.werkzeugStand, 1); if (n !== null) setzeStand(n); } }, w.schrittWeiter, sym('pfeilRechts'))) : null,
+      schalter.length > 0 ? h('div', { class: 'regie-zeile', role: 'group', 'aria-label': id === 'risiko-grenzen' ? w.wasWaere : w.ampelOhneFrage, 'data-pruef': 'regie-schalter' },
+        id === 'risiko-grenzen' ? h('span', { class: 't-label' }, w.wasWaere) : null,
+        schalter.map((x) => h('button', {
+          type: 'button', class: 'regie-chip regie-chip-klein', 'aria-pressed': aktiv.has(x.wert) ? 'true' : 'false', 'data-pruef': `regie-schalter-${x.wert.replace(':', '-')}`,
+          onclick: () => setzeStand(schalteUm(id, t.beispiel, t.schritt, x.wert)),
+        }, x.titel.replace(/^Angenommen: /u, '')))) : null,
+      h('p', { class: 'regie-leise' }, w.werkzeugHinweis));
   };
 
   /** Kundenwahl und Eingriffe je Schritt: Antworten (mit Wertung, nur hier), Gewichte im Vergleich, Mini-Aufgabe. */
@@ -451,6 +512,7 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     werkzeugWahl.value = werkzeugAus(buehne.werkzeug);
     sprung.value = buehne.bereich === 'story' && g !== null ? schrittWert(buehne.story.schritt) : '';
     zeichneSprung();
+    zeichneWerkzeugStand();
     zeichneEingriffe();
     zeichneNotiz();
   };

@@ -34,6 +34,11 @@ export function regieGeschichte(id: string): GeschichteRegie | null {
   return alle.geschichteRegie?.[id] ?? null;
 }
 
+/** Nur für die Regie: Notiz und Leitfragen eines der vier neuen Werkzeuge (Adress-Kennung, z. B. `vorlagen-check`). */
+export function regieWerkzeug(id: string): GeschichteRegie | null {
+  return alle.werkzeugeRegie?.[id] ?? null;
+}
+
 /** Nur für die Regie: das ganze Regie-Material der Themen. */
 export function regieInhalte(): Readonly<Record<string, RegieEintrag>> {
   return alle.regie;

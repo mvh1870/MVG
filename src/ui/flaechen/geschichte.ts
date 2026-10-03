@@ -119,6 +119,8 @@ export interface SchrittOptionen {
   bedienbar: boolean;
   /** Titel eines Themas (null = gibt es nicht, kein Link) */
   themaTitel: (id: string) => string | null;
+  /** Titel eines Explore-Werkzeugs (null oder fehlt = kein Verweis); Verweise stehen nur bedienbar, nie auf der Leinwand (P18.5) */
+  werkzeugTitel?: (id: string) => string | null;
   tue: (neu: Stand) => void;
 }
 
@@ -164,19 +166,32 @@ function kasten(art: 'gut' | 'dahinter', titel: string, symbol: Kind, ...inhaltK
     h('div', { class: 'gs-kasten-text' }, h('h2', { class: 'gs-kasten-titel' }, titel), inhaltKinder));
 }
 
+/** Leise Verweise auf die Werkzeuge, die zum Kapitel passen (E-13, P18.5): „Vorlagen-Check ausprobieren“, öffnet mit dem Beispiel des Kapitels. */
+function werkzeugVerweise(o: SchrittOptionen, k: Kapitel): HTMLElement | null {
+  if (!o.bedienbar || o.werkzeugTitel === undefined) return null;
+  const links = k.werkzeuge.flatMap((v) => {
+    const titel = o.werkzeugTitel?.(v.id) ?? null;
+    if (titel === null) return [];
+    return [h('a', { href: `#explore/${v.id}${v.beispiel !== null ? `/${v.beispiel}` : ''}`, 'data-pruef': `gs-werkzeug-${v.id}` }, w.werkzeugProbieren(titel), sym('pfeilRechts'))];
+  });
+  return links.length === 0 ? null : h('p', { class: 'gs-thema gs-werkzeug', 'data-pruef': 'gs-werkzeuge' }, links);
+}
+
 /**
  * „Das steckt dahinter“: auf dem ganzen Weg offen; in der bedienbaren Kurzfassung steht der Satz in einem Aufklapper
- * (P17.5 – die Regel steht vollständig in „So macht man es gut“), der Link zum Thema bleibt sichtbar.
+ * (P17.5 – die Regel steht vollständig in „So macht man es gut“), der Link zum Thema bleibt sichtbar. Die Werkzeug-Verweise
+ * stehen dort im Aufklapper (zugeklappt zählen sie nicht zur Lesezeit; die Kurzfassung hat keinen Puffer, P18.5).
  */
 function dahinter(o: SchrittOptionen, k: Kapitel): HTMLElement {
   const thema = o.themaTitel(k.thema);
   const satz = h('p', null, inhaltInline(k.dahinterHtml));
+  const proben = werkzeugVerweise(o, k);
   const link = thema !== null && o.bedienbar ? h('p', { class: 'gs-thema' }, h('a', { href: `#theorie/${k.thema}`, 'data-pruef': 'gs-thema' }, `${w.zumThema}: ${thema}`, sym('pfeilRechts'))) : null;
-  if (!(o.stand.kurz && o.bedienbar)) return kasten('dahinter', w.dahinterTitel, gegenstand('buch', 56), satz, link);
+  if (!(o.stand.kurz && o.bedienbar)) return kasten('dahinter', w.dahinterTitel, gegenstand('buch', 56), satz, link, proben);
   return h('section', { class: 'gs-kasten gs-kasten-dahinter gs-kasten-auf', 'aria-label': w.dahinterTitel, 'data-pruef': 'gs-dahinter' },
     h('span', { class: 'gs-kasten-symbol', 'aria-hidden': 'true' }, gegenstand('buch', 56)),
     h('div', { class: 'gs-kasten-text' },
-      h('details', { class: 'gs-dahinter-auf', 'data-pruef': 'gs-dahinter-auf' }, h('summary', { class: 'gs-kasten-titel' }, w.dahinterTitel), satz),
+      h('details', { class: 'gs-dahinter-auf', 'data-pruef': 'gs-dahinter-auf' }, h('summary', { class: 'gs-kasten-titel' }, w.dahinterTitel), satz, proben),
       link));
 }
 
@@ -673,7 +688,7 @@ function haltFokusFrei(element: HTMLElement, leiste: HTMLElement, unten: HTMLEle
   });
 }
 
-export function erzeugeGeschichte(o: { g: Geschichte; speicher: SpeicherGriff | null; themaTitel: (id: string) => string | null }): GeschichteFlaeche {
+export function erzeugeGeschichte(o: { g: Geschichte; speicher: SpeicherGriff | null; themaTitel: (id: string) => string | null; werkzeugTitel?: (id: string) => string | null }): GeschichteFlaeche {
   const { g } = o;
   let stand: Stand = ladeStand(g, o.speicher) ?? neuerStand();
   let zuhoerer: ((s: Stand) => void) | null = null;
@@ -707,7 +722,7 @@ export function erzeugeGeschichte(o: { g: Geschichte; speicher: SpeicherGriff | 
 
   const zeichne = (fokus: Fokus): void => {
     ersetze(leiste, ...leisteOben(g, stand, true, (n) => setze(n)));
-    ersetze(buehne, baueSchritt({ g, stand, bedienbar: true, themaTitel: o.themaTitel, tue: (n) => setze(n) }));
+    ersetze(buehne, baueSchritt({ g, stand, bedienbar: true, themaTitel: o.themaTitel, ...(o.werkzeugTitel !== undefined ? { werkzeugTitel: o.werkzeugTitel } : {}), tue: (n) => setze(n) }));
     if (fokus.art === 'titel') buehne.firstElementChild?.classList.add('ist-neu');
     const i = schrittIndex(g, stand);
     const amEnde = stand.schritt.ort === 'ende';

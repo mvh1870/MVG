@@ -225,6 +225,14 @@ vorlagencheck:
       antworten: { a1: ja, a2: ja, a3: ja, a4: teilweise, a5: ja, b2: ja, b3: ja, c1: ja, c2: ja, c3: ja, c4: ja, d1: ja, d2: ja, d3: ja, e1: ja, e2: ja, e3: ja }
       erwartet: gelb
 
+  # Regie-Material (nur im Regie-Teil, nie auf der Leinwand; E-9, Konzept A.9)
+  regie:
+    notiz: |
+      Erst die kurze Fassung zeigen und raten lassen, was fehlt; dann zur vollen Fassung wechseln. Die Pfeiltasten gehen erst durch die fünf Prüfschritte, danach zum Ergebnis und erst dann zum nächsten Werkzeug.
+    leitfragen:
+      - Welche dieser Fragen beantworten Ihre Vorlagen heute?
+      - Wer entscheidet bei Ihnen, ob eine Vorlage vollständig ist?
+
 wegweiser:
   titel: Vorgangs-Wegweiser
   kurz: Vom Sachverhalt zur Vorgangsart – mit wenigen Fragen.
@@ -276,6 +284,14 @@ wegweiser:
     - { id: geruest, quelle: k6, titel: Lose Gerüstanker nach dem Sturm, text: "Februar 2027: Nach dem Sturm sind zwei Gerüstanker an der Sporthalle lose.", antworten: { dringlich: ja, handlung: nein, eingetreten: ja, entscheidung: nein }, erwartet: { art: problem, dringlich: true } }
     - { id: lueftung, quelle: k7, titel: Lüftungsanlage kommt später, text: "Mai 2027: Der Hersteller der Lüftungsanlage für die Gesamtschule liefert vier Monate später.", antworten: { dringlich: nein, handlung: nein, eingetreten: ja, entscheidung: ja }, erwartet: { art: problem, entscheidung: true } }
     - { id: haushalt, quelle: fall, titel: Kostenübersicht für den Haushalt, text: "Die Kostenübersicht für den Haushaltsansatz 2027 geht bis Freitag an die Kämmerei.", antworten: { dringlich: nein, handlung: nein, eingetreten: nein, anpassen: nein, moeglich: nein, arbeit: ja, entscheidung: nein }, erwartet: { art: aufgabe } }
+
+  # Regie-Material (nur im Regie-Teil, nie auf der Leinwand; Konzept B.10)
+  regie:
+    notiz: |
+      Erst raten lassen, dann die Antwort setzen: „Schritt weiter“ beantwortet die nächste Frage mit der Antwort des Beispiels. Bei „Unklar“ zeigen, warum daraus eine Frühwarnung wird und noch keine Bewertung.
+    leitfragen:
+      - Welche Art landet bei Ihnen am häufigsten in der falschen Liste?
+      - Wer bei Ihnen hält fest, woher ein Hinweis stammt?
 
 risikogrenzen:
   titel: Risiko-Bewerter
@@ -358,6 +374,14 @@ risikogrenzen:
       warn: [sicherheit]
       erwartet: { feld: 5, zustand: vorlaeufig, nachObenOffen: false, prioritaet: vorrangig, vorrangWegenA5: true }
 
+  # Regie-Material (nur im Regie-Teil, nie auf der Leinwand; Konzept C.8)
+  regie:
+    notiz: |
+      Mit 70 und 71 Tagen zeigen, dass ein einziger Tag die Stufe kippt; dann „Wahrscheinlichkeit sehr gering“ dazunehmen – selten, aber trotzdem vorrangig. Und zeigen, warum „unbekannt“ nicht „null“ ist.
+    leitfragen:
+      - Wer legt bei Ihnen die Grenzen fest – und stehen sie irgendwo?
+      - Was tun Sie mit einer Auswirkung, die noch niemand beziffern kann?
+
 monatsbericht:
   titel: Monatsbericht
   kurz: Wenige Felder, eine Seite – und eine Warnung, wenn eine Ampel keine Frage hat.
@@ -412,3 +436,10 @@ monatsbericht:
       entscheidungen: keine
       reaktion: "Kenntnis; Zahl für den Stadtrat wie oben. Die Vergabestelle prüft die Mehrkosten, Ergebnis in rund vier Wochen."
       erwartet: gruen
+  # Regie-Material (nur im Regie-Teil, nie auf der Leinwand; Konzept D.8)
+  regie:
+    notiz: |
+      Erst den sauberen Bericht zeigen, dann die Verknüpfung der Kosten-Ampel lösen („Kosten-Ampel ohne Frage“) – die Warnung erscheint.
+    leitfragen:
+      - Wie viele Seiten hat Ihr Monatsbericht heute?
+      - Welche Ampel in Ihrem letzten Bericht hatte eine Entscheidungsfrage?

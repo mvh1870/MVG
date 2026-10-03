@@ -7,6 +7,7 @@ zeit: April 2026
 campus: { stufe: 1, jahreszeit: fruehling, licht: tag }
 kurzfassung: true
 thema: vorgaenge
+werkzeuge: [{ id: risiko-grenzen, beispiel: ris-009 }]
 belege: [v24:hb-1.2, v24:hb-1.3, v24:hb-2, v24:hb-3, v24:hb-3.1, k4.4-p1, k3.2-t1, v24:va-4.1]
 bild-szene: matrix
 bild-frage: warnschild

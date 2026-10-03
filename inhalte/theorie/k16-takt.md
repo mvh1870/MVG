@@ -20,6 +20,7 @@ kurztitel: Takt und Bericht
 teil: 4
 kurzsatz: Was sofort gemeldet wird und was der Bauherr jeden Monat bekommt.
 symbol: bericht
+werkzeuge: [{ id: monatsbericht }]
 ---
 Ein Register nützt nur, wenn es regelmäßig angesehen wird – und wenn Dringendes nicht darauf wartet.
 

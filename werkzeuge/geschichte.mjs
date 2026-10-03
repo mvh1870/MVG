@@ -10,6 +10,7 @@ import YAML from 'yaml';
 import { sichtbarVerboten } from './sichtbar.mjs';
 import { AKZENTE } from '../src/stil/akzente.ts';
 import { GIMMICKS } from '../src/grafik/figuren.ts';
+import { pruefeWerkzeugVerweise } from './explore.mjs';
 
 const FIGUREN = ['grundstein', 'faden', 'schwung', 'klingel', 'lot'];
 const BALKEN = ['geld', 'zeit', 'vertrauen'];
@@ -32,8 +33,9 @@ const text = (x) => (x === undefined || x === null ? '' : String(x));
  * @param {any} c Kompilierer (werkzeuge/inhalte.mjs)
  * @param {{ rel: string, text: string }[]} dateien alle Dateien aus inhalte/geschichte/
  * @param {string[] | null} [themen] Kennungen der Themen (null = nicht prüfen)
+ * @param {Record<string, string[]> | null} [werkzeuge] Katalog der Explore-Werkzeuge und ihrer Beispiele (werkzeugKatalog; null = nur die Form prüfen)
  */
-export function baueGeschichte(c, dateien, themen = null) {
+export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
   for (const d of dateien) {
     if (!d.rel.endsWith('/rahmen.yaml') && !KAPITEL_DATEI.test(d.rel)) {
       c.fehler(d.rel, 'unbekannte Datei im Ordner der Story – erwartet rahmen.yaml oder k<n>-<name>.yaml');
@@ -207,7 +209,7 @@ export function baueGeschichte(c, dateien, themen = null) {
   const kapitel = roh.map(({ d, y, dateiNr }, i) => {
     const ort = d.rel;
     const o = form(y, ['nr', 'titel', 'zeit', 'campus', 'thema', 'belege', 'einstieg', 'szene', 'frage', 'antworten', 'gut', 'dahinter'],
-      ['kurzfassung', 'bruecke', 'einstieg-kurz', 'campus-nachher', 'zusatz', 'bild-szene', 'bild-frage', 'mandat-nach-folge', 'mini', 'vergleich', 'regie'], ort);
+      ['kurzfassung', 'bruecke', 'einstieg-kurz', 'campus-nachher', 'zusatz', 'bild-szene', 'bild-frage', 'mandat-nach-folge', 'mini', 'vergleich', 'regie', 'werkzeuge'], ort);
     const nr = Number(o.nr);
     if (nr !== i + 1) c.fehler(ort, `Nummer ${text(o.nr)} – erwartet ${i + 1} (lückenlos ab 1)`);
     if (nr !== dateiNr) c.fehler(ort, `Nummer ${text(o.nr)} passt nicht zum Dateinamen (k${dateiNr}-…)`);
@@ -263,6 +265,8 @@ export function baueGeschichte(c, dateien, themen = null) {
       kurzfassung: kurz,
       brueckeHtml: kurz ? null : html(o.bruecke, `${ort} bruecke`),
       thema,
+      // E-13 (P18.5): Verweise auf Explore-Werkzeuge, leise im Kasten „Das steckt dahinter“; Werkzeug und Beispiel müssen es geben
+      werkzeuge: pruefeWerkzeugVerweise(o.werkzeuge, ort, werkzeuge, (/** @type {string} */ wo, /** @type {string} */ f) => c.fehler(wo, f)),
       einstiegHtml: html(o.einstieg, `${ort} einstieg`),
       einstiegKurzHtml,
       szene: kapSzene,

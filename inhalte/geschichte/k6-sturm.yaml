@@ -8,6 +8,7 @@ zeit: Februar 2027
 campus: { stufe: 4, jahreszeit: winter, licht: tag, wetter: sturm }
 bruecke: Im Februar lockert ein Sturm das Gerüst; der Bauleiter sperrt sofort, und die Projektsteuerin hält es am selben Tag fest.
 thema: takt
+werkzeuge: [{ id: wegweiser, beispiel: geruest }]
 belege: [v24:hb-4, v24:hb-3, v24:hb-1.4, v24:hb-3.1, v24:hb-1.6, v24:tlb-5, v24:va-5.2, v24:hb-5]
 bild-szene: telefon
 bild-frage: absperrband

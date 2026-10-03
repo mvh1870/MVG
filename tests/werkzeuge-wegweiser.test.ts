@@ -111,5 +111,7 @@ test('Werkzeugstand für die Leinwand', () => {
   const bsp = ['messe', 'geruest'];
   assert.deepEqual(leseStandWegweiser('b:messe;a:n,n,u', bsp), { beispiel: 'messe', schritt: 'a:n,n,u' });
   assert.deepEqual(leseStandWegweiser('b:geruest', bsp), { beispiel: 'geruest', schritt: null });
+  // P18.5: `a:0` = noch keine Antwort gesetzt (die Runde rät zuerst); ein leeres `a:` bleibt ungültig
+  assert.deepEqual(leseStandWegweiser('b:messe;a:0', bsp), { beispiel: 'messe', schritt: 'a:0' });
   for (const roh of ['b:messe;a:', 'b:messe;a:x', 'b:messe;a:n,n,n,n,n,n,n,n', 'b:fremd;a:n', 'B:messe']) assert.equal(leseStandWegweiser(roh, bsp), null, roh);
 });

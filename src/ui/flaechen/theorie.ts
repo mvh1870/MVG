@@ -28,6 +28,7 @@ import { abbildung } from '../bausteine/abbildung.ts';
 import { bmLink, seitenRahmen } from '../bausteine/seite.ts';
 import { kopfText, kopfZahl } from '../anzeige.ts';
 import { W } from '../woerter.ts';
+import { TEIL, werkzeugAus, werkzeugTitel } from '../werkzeug-kennungen.ts';
 import { bogenFuerStrgP, bogenKopf, druckeBogen } from '../druck.ts';
 
 const T = W.themen;
@@ -455,6 +456,20 @@ function inDerStory(o: TheorieOptionen, thema: string, mitMarke: boolean): HTMLE
       h('span', { class: 'querverweis-text' }, T.nummer(s.nr, s.titel), h('small', null, s.zeit))))));
 }
 
+/**
+ * „Zum Ausprobieren“ (E-13, P18.5): die Werkzeuge in Explore, die zum Thema passen. Nur auf der Seite, nie auf Leinwand und
+ * Druck (dort wäre der Verweis ein Bedienelement ohne Wirkung); öffnet mit dem Beispiel, falls das Thema eines nennt.
+ */
+function ausprobieren(o: TheorieOptionen, seite: TheorieSeite): HTMLElement | null {
+  const w = o.inhalte.werkzeuge;
+  if (!o.bedienbar || w === null || seite.werkzeuge.length === 0) return null;
+  return h('section', { class: 'querverweis-block', 'aria-label': T.ausprobieren, 'data-pruef': 'thema-werkzeuge' },
+    h('span', { class: 't-label' }, T.ausprobieren),
+    h('div', { class: 'querverweise' }, seite.werkzeuge.map((v) => verweis(o, `#explore/${v.id}${v.beispiel !== null ? `/${v.beispiel}` : ''}`, { class: 'querverweis', 'data-pruef': `werkzeug-${v.id}` },
+      h('span', { class: 'querverweis-symbol' }, sym('pfeilRechts')),
+      h('span', { class: 'querverweis-text' }, werkzeugTitel(w, werkzeugAus(v.id)), h('small', null, w[TEIL[werkzeugAus(v.id)]].kurz))))));
+}
+
 /** Glossar: alle Begriffe alphabetisch, mit Suchfeld, „Mehr dazu in“ und Begriffs-Kompass. */
 export function glossarListe(o: { inhalte: OeffentlicheInhalte; bedienbar: boolean }): HTMLElement {
   const eintraege = Object.values(o.inhalte.glossar).sort((a, b) => a.begriff.localeCompare(b.begriff, 'de'));
@@ -569,6 +584,8 @@ function themaInhalt(o: TheorieOptionen, seite: TheorieSeite): Node[] {
   }
   const qv = inDerStory(o, seite.thema, !teile.some((t) => /fiktiv/iu.test(t.textContent ?? '')));
   if (qv !== null) teile.push(qv);
+  const probieren = ausprobieren(o, seite);
+  if (probieren !== null) teile.push(probieren);
   return teile;
 }
 

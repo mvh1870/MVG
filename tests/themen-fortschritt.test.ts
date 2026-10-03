@@ -15,7 +15,7 @@ import {
 
 const block = (art: string, id: string | null, kinder: Block[] = []): Block => ({ art, kennungen: id === null ? [] : [id], id, kopf: {}, felder: {}, liste: null, kinder });
 const seite = (thema: string, teil: TheorieTeil, bloecke: Block[]): TheorieSeite => ({
-  id: thema, kapitel: 1, thema, reihe: 1, titel: thema, kurztitel: thema, nr: 1, teil, kurzsatz: '', symbol: 'buch', deckt: [], einleitung: '', bloecke, quelle: '',
+  id: thema, kapitel: 1, thema, reihe: 1, titel: thema, kurztitel: thema, nr: 1, teil, kurzsatz: '', symbol: 'buch', deckt: [], werkzeuge: [], einleitung: '', bloecke, quelle: '',
 });
 const ZWEI = seite('zwei', 1, [block('kernaussage', null), block('abschnitt', 'k1.1', [block('wissenscheck', 'a')]), block('wissenscheck', 'b')]);
 const OHNE = seite('ohne', 1, [block('kernaussage', null)]);

@@ -6,6 +6,7 @@ zeit: März 2026
 campus: { stufe: 0, jahreszeit: fruehling, licht: tag }
 bruecke: "Im März erwähnt der Architekt beiläufig, Holz könnte knapp werden, und die Projektsteuerin hält es als Frühwarnung fest: was zu prüfen ist (die Prüffrage), wer nachfragt, bis wann."
 thema: arbeitsweise
+werkzeuge: [{ id: wegweiser, beispiel: messe }]
 belege: [v24:hb-1, v24:hb-1.1, v24:hb-1.2, v24:hb-1.3, v24:hb-1.4, v24:hb-1.5, v24:hb-1.6, v24:hb-2, v24:hb-4, v24:tlb-2, v24:tlb-3]
 bild-szene: holzstapel
 bild-frage: notizzettel

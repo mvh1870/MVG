@@ -293,6 +293,10 @@ button.gs-antwort:active { transform: translateY(2px); box-shadow: var(--schatte
 .gs-kasten-text > * + * { margin-top: var(--a-2); }
 .gs-thema a { display: inline-flex; align-items: center; gap: var(--a-1); font-weight: 600; color: var(--akzent-violett-text); }
 .gs-thema .symbol { width: 16px; height: 16px; }
+/* P18.5: leise Werkzeug-Verweise (eine oder zwei Zeilen) unter dem Thema-Link bzw. im Aufklapper der Kurzfassung */
+.gs-werkzeug { display: flex; flex-wrap: wrap; gap: var(--a-1) var(--a-4); }
+.gs-werkzeug a { font-weight: 500; }
+.gs-dahinter-auf .gs-werkzeug { margin-top: var(--a-2); }
 
 /* ------------------------------------------------------------ Auftakt */
 .gs-auftakt-kopf { display: grid; gap: var(--a-4); max-width: 780px; }

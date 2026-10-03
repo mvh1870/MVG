@@ -3,11 +3,11 @@
 Kopf ≤ 100 Zeilen. Oben JETZT (überschreiben), darunter FRÜHER (anhängen, knapp).
 
 ## JETZT
-- **Stand 2026-10-03 ~18:30 UTC: P17.12 erledigt, P17.13 läuft.** R75 (c03ddde) und R76 (d27be55) ohne schweren Befund (O-35/O-58 erfüllt); R76-Befunde (12 mittel, 42 leicht) werden eingearbeitet, danach Merge `claude/haus` → `main` und Nachricht an den Owner.
-- **Prüfrunden P17.12:** R72 5/30/51, R73 2/19/42, R74 1/8/41, R75 0/12/40, R76 0/12/42 (schwer/mittel/leicht) – Tabelle in `docs/ABNAHME-MITTEL.md`, Entscheide L-237–L-252.
-- **Lesezeit:** `node werkzeuge/lesezeit.mjs` (L-246, L-249); Kurzfassung 10,4 Minuten ohne Puffer („etwa 10“, O-51, L-252) – jede Ergänzung in der Kurzfassung ausgleichen.
-- **Als Nächstes:** P18 (O-59, Owner-Auswahl A–D, Rahmen 1c 2a 3a 4a 5b 6a): vier neue Explore-Werkzeuge; Konzept `docs/WERKZEUGE-P18.md` (L-253) in Fachtreue-Prüfung, dann P18.2 Rechenkerne.
-- CI auf `claude/haus` bis ddb5b42 grün. Rechner: Node 22.22, Chromium unter `/opt/pw-browsers/chromium`. Kette ≈ 90 s.
+- **Stand 2026-10-03 ~18:45 UTC: P17 abgeschlossen** (O-58): R75 und R76 ohne schweren Befund, R76-Befunde eingearbeitet (e8964e9, Kette voll grün, CI grün), `claude/haus` einmal per Merge nach `main` gepusht, Owner benachrichtigt.
+- **Prüfrunden P17.12:** R72 5/30/51, R73 2/19/42, R74 1/8/41, R75 0/12/40, R76 0/12/42 (schwer/mittel/leicht) – `docs/ABNAHME-MITTEL.md`, Entscheide L-237–L-256.
+- **Lesezeit:** `node werkzeuge/lesezeit.mjs`; Kurzfassung 10,4 Minuten ohne Puffer („etwa 10“, O-51, L-252) – jede Ergänzung in der Kurzfassung ausgleichen.
+- **Jetzt P18** (O-59): vier neue Explore-Werkzeuge A–D. P18.1 Konzept `docs/WERKZEUGE-P18.md` abgenommen (L-253, L-254, L-256); P18.2 Rechenkerne in Arbeit. Am Ende von P18 erneut zwei saubere Runden, Merge nach `main`, Nachricht.
+- Rechner: Node 22.22, Chromium unter `/opt/pw-browsers/chromium`. Kette ≈ 90 s (voll ≈ 120 s). Der Abschluss lief in einem abgekoppelten Worktree, weil im Hauptbaum P18.2 entstand.
 
 ## FRÜHER
 - 2026-10-03 (ab 09:00 UTC): P17 Neugestaltung (O-51–O-58): Drehbuch, Story als Spiel, Themen als Buch, Explore-Kopf; Prüfrunden R72–R76 (L-225–L-252); Owner wählt vier neue Werkzeuge (O-59).

@@ -11,13 +11,17 @@
  */
 
 import type { GeschichteRegie, OeffentlicheInhalte, RegieEintrag } from '../inhalte/typen.ts';
-import { empfohlen, geheZu, neuerStand, schritte, schrittIndex, setzeKurz, station, waehle, weiter, zurueck } from '../geschichte/engine.ts';
+import {
+  abgestimmteGewichte, geheZu, gewichte, kapitel, neuerStand, schritte, schrittIndex, setzeAbgestimmt, setzeGewicht, setzeKurz, STUFEN_GEWICHT,
+  waehle, weiter, zurueck,
+} from '../geschichte/engine.ts';
+import { ortText as storyOrt } from '../ui/flaechen/geschichte.ts';
 import { kanalSchluessel, type Kanal } from './kanal.ts';
 import { neueBuehne, pruefeBuehne, BUEHNEN_BEREICHE, type Buehne, type BuehnenBereich } from './buehne.ts';
 import { h, attr, text, ersetze } from '../ui/h.ts';
 import { bildmarke } from '../ui/marke.ts';
 import { sym } from '../ui/bausteine/bloecke.ts';
-import { inhalt } from '../ui/bausteine/inhalt.ts';
+import { inhalt, inhaltInline } from '../ui/bausteine/inhalt.ts';
 import { erzeugeAnzeige } from './leinwand.ts';
 import { themen, themaSeite } from '../ui/flaechen/theorie.ts';
 import { WERKZEUGE, werkzeugAus } from '../ui/flaechen/explore.ts';
@@ -36,8 +40,8 @@ export interface RegieOptionen {
   kanal: Kanal | null;
   version: string;
   speicher: SpeicherGriff | null;
-  /** Regie-Material je Story-Station */
-  regieGeschichte: (station: string) => GeschichteRegie | null;
+  /** Regie-Material je Kapitel der Story */
+  regieGeschichte: (kapitel: string) => GeschichteRegie | null;
   /** Regie-Material eines Themas (über seine interne Nummer) */
   regieKapitel: (kapitel: number) => RegieEintrag | null;
   /** öffnet das Leinwand-Fenster */
@@ -130,13 +134,13 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
   werkzeugWahl.addEventListener('change', () => setze({ ...buehne, bereich: 'explore', werkzeug: werkzeugWahl.value }));
   const sprung = h('select', { class: 'regie-auswahl', id: 'regie-sprung', 'data-pruef': 'regie-sprung' },
     h('option', { value: '' }, w.sprungWaehlen),
-    (g?.stationen ?? []).map((st) => h('option', { value: st.id }, `${st.nr} · ${st.kurztitel}`))) as HTMLSelectElement;
+    (g?.kapitel ?? []).map((k) => h('option', { value: k.id }, `${k.nr} · ${k.titel}`))) as HTMLSelectElement;
   sprung.addEventListener('change', () => {
     if (g !== null && sprung.value !== '') {
-      const st = station(g, sprung.value);
+      const k = kapitel(g, sprung.value);
       let s = buehne.story;
-      if (st !== null && s.kurz && !st.kurzfassung) s = setzeKurz(g, s, false);
-      setze({ ...buehne, bereich: 'story', story: geheZu(g, s, { ort: 'station', station: sprung.value, teil: 'lage' }) });
+      if (k !== null && s.kurz && !k.kurzfassung) s = setzeKurz(g, s, false);
+      setze({ ...buehne, bereich: 'story', story: geheZu(g, s, { ort: 'kapitel', kapitel: sprung.value, teil: 'szene' }) });
     }
     sprung.value = '';
   });
@@ -170,9 +174,8 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
 
   /* ----------------------------------------------------------------- Notiz -- */
   const notizInhalt = h('div', { class: 'regie-notiz-inhalt' });
-  const einwandInhalt = h('div', { class: 'regie-einwand-teil' });
   const notiz = h('section', { class: 'regie-karte regie-notiz', 'data-pruef': 'regie-notiz', 'aria-label': w.notiz },
-    h('h2', { class: 'regie-h2' }, sym('lesezeichen'), w.notiz), notizInhalt, h('p', { class: 'regie-leise' }, w.nurRegie), einwandInhalt);
+    h('h2', { class: 'regie-h2' }, sym('lesezeichen'), w.notiz), notizInhalt, h('p', { class: 'regie-leise' }, w.nurRegie));
 
   /* ------------------------------------------------------------- Protokoll -- */
   const feld = h('textarea', { class: 'regie-feld', rows: 2, 'aria-label': w.protokollFeld, placeholder: w.protokollFeld, 'data-pruef': 'regie-protokoll-feld' });
@@ -203,9 +206,9 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
   };
   const druckBogen = (): { titel: string; teile: Node[] } => {
     const teil = (...kinder: (Node | null)[]): HTMLElement => h('section', { class: 'druck-teil' }, kinder);
-    const entscheidungen = g === null ? [] : g.stationen.filter((st) => buehne.story.wahlen[st.id] !== undefined).map((st) => {
-      const opt = st.vorlage.optionen.find((x) => x.id === buehne.story.wahlen[st.id]);
-      return h('li', null, `${st.nr} · ${st.kurztitel}: ${opt?.titel ?? ''}`);
+    const entscheidungen = g === null ? [] : g.kapitel.filter((k) => buehne.story.wahlen[k.id] !== undefined).map((k) => {
+      const a = k.antworten[buehne.story.wahlen[k.id] ?? 0];
+      return h('li', null, `${k.nr} · ${k.titel}: `, inhaltInline(a?.html ?? ''));
     });
     return {
       titel: w.druckTitel,
@@ -268,7 +271,6 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
   const leitfragen = (fragen: readonly string[]): Node[] => fragen.length === 0 ? [] : [h('h3', { class: 'regie-h3' }, w.leitfragen), h('ol', { class: 'regie-leitfragen', 'data-pruef': 'regie-leitfragen' }, fragen.map((f) => h('li', null, f)))];
   const zeichneNotiz = (): void => {
     const leer = h('p', { class: 'regie-leise' }, w.keineNotiz);
-    ersetze(einwandInhalt);
     if (buehne.bereich === 'theorie' && buehne.thema !== null) {
       const seite = themaSeite(inhalte, buehne.thema);
       const e = seite !== null ? o.regieKapitel(seite.kapitel) : null;
@@ -279,17 +281,15 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
       return;
     }
     const s = buehne.story.schritt;
-    if (buehne.bereich !== 'story' || s.ort !== 'station' || g === null) {
+    if (buehne.bereich !== 'story' || s.ort !== 'kapitel' || g === null) {
       ersetze(notizInhalt, leer);
       return;
     }
-    const r = o.regieGeschichte(s.station);
-    const st = station(g, s.station);
-    ersetze(notizInhalt, r !== null ? [h('div', { class: 'regie-notiz-text' }, inhalt(r.notizHtml)), ...leitfragen(r.leitfragen)] : leer);
-    if (st !== null) {
-      ersetze(einwandInhalt, h('h3', { class: 'regie-h3' }, W.geschichte.einwand),
-        h('details', { class: 'regie-einwand', 'data-pruef': 'regie-einwand' }, h('summary', null, st.einwand.frage), h('div', { class: 'regie-einwand-antwort' }, inhalt(st.einwand.antwortHtml))));
-    }
+    const r = o.regieGeschichte(s.kapitel);
+    const teile: Node[] = [];
+    if (r?.notizHtml) teile.push(h('div', { class: 'regie-notiz-text' }, inhalt(r.notizHtml)));
+    if (r !== null) teile.push(...leitfragen(r.leitfragen));
+    ersetze(notizInhalt, teile.length > 0 ? teile : leer);
   };
 
   const ortText = (): string => {
@@ -297,11 +297,8 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
       const s = buehne.story.schritt;
       const i = schrittIndex(g, buehne.story) + 1;
       const n = schritte(g, buehne.story.kurz).length;
-      if (s.ort === 'station') {
-        const st = station(g, s.station);
-        return `${W.story} · ${st?.nr ?? ''} ${st?.kurztitel ?? ''} · ${W.geschichte.teile[s.teil] ?? ''} · ${i}/${n}`;
-      }
-      return `${W.story} · ${s.ort === 'prolog' ? W.geschichte.prolog : W.geschichte.ende} · ${i}/${n}`;
+      const teil = s.ort === 'kapitel' ? ` · ${W.geschichte.teile[s.teil] ?? ''}` : '';
+      return `${W.story} · ${storyOrt(g, buehne.story)}${teil} · ${i}/${n}`;
     }
     if (buehne.bereich === 'theorie') return `${W.rahmen.theorie} · ${buehne.thema !== null ? themaSeite(inhalte, buehne.thema)?.kurztitel ?? '' : w.themenUebersicht}`;
     if (buehne.bereich === 'explore') return `${W.rahmen.explore} · ${inhalte.werkzeuge?.[werkzeugAus(buehne.werkzeug)].titel ?? ''}`;
@@ -318,15 +315,26 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     attr(kurzKnopf, 'aria-pressed', buehne.story.kurz ? 'true' : 'false');
     themaWahl.value = buehne.thema ?? '';
     werkzeugWahl.value = werkzeugAus(buehne.werkzeug);
-    // Kundenwahl: die Optionen der Vorlage am Schritt „Vorlage“
+    // Kundenwahl: an der Frage die drei Antworten (Tasten 1–3), im Vergleich die Stufen „Was ist wichtiger?“
     const s = buehne.story.schritt;
-    const st = g !== null && buehne.bereich === 'story' && s.ort === 'station' && s.teil === 'vorlage' ? station(g, s.station) : null;
-    ersetze(eingriffListe, st !== null && g !== null
-      ? st.vorlage.optionen.map((x) => h('button', {
-        type: 'button', class: 'regie-chip', 'aria-pressed': buehne.story.wahlen[st.id] === x.id ? 'true' : 'false', 'data-pruef': `regie-wahl-${x.id}`,
-        onclick: () => setze({ ...buehne, story: waehle(g, buehne.story, st.id, x.id) }),
-      }, `${x.id} · ${x.titel}${x.id === empfohlen(g, buehne.story, st) ? ` (${W.geschichte.empfohlen})` : ''}`))
-      : h('p', { class: 'regie-leise' }, w.keineEingriffe));
+    const k = g !== null && buehne.bereich === 'story' && s.ort === 'kapitel' ? kapitel(g, s.kapitel) : null;
+    if (g !== null && k !== null && s.ort === 'kapitel' && s.teil === 'frage') {
+      ersetze(eingriffListe, k.antworten.map((a, i) => h('button', {
+        type: 'button', class: 'regie-chip regie-antwort', 'aria-pressed': buehne.story.wahlen[k.id] === i ? 'true' : 'false', 'data-pruef': `regie-wahl-${i + 1}`,
+        onclick: () => setze({ ...buehne, story: waehle(g, buehne.story, k.id, i) }),
+      }, h('b', null, `${i + 1} · `), inhaltInline(a.html))));
+    } else if (g !== null && k !== null && k.vergleich !== null && s.ort === 'kapitel' && s.teil === 'vergleich') {
+      const v = k.vergleich;
+      const gew = gewichte(g, buehne.story);
+      const ab = abgestimmteGewichte(v);
+      ersetze(eingriffListe,
+        v.kriterien.map((c) => h('div', { class: 'regie-zeile', role: 'group', 'aria-label': c.titel }, h('span', { class: 't-label' }, c.titel),
+          STUFEN_GEWICHT.map((st) => h('button', {
+            type: 'button', class: 'regie-chip', 'aria-pressed': gew[c.id] === st ? 'true' : 'false', 'data-pruef': `regie-stufe-${c.id}-${st}`,
+            onclick: () => setze({ ...buehne, story: setzeGewicht(g, buehne.story, c.id, st) }),
+          }, `${W.geschichte.stufen[st] ?? st}${ab[c.id] === st ? ` (${W.geschichte.abgestimmt})` : ''}`)))),
+        h('button', { type: 'button', class: 'regie-chip', 'data-pruef': 'regie-abgestimmt', onclick: () => setze({ ...buehne, story: setzeAbgestimmt(buehne.story) }) }, W.geschichte.abgestimmteGewichte));
+    } else ersetze(eingriffListe, h('p', { class: 'regie-leise' }, w.keineEingriffe));
     zeichneNotiz();
   };
 
@@ -377,13 +385,9 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
         return true;
       }
       const s = buehne.story.schritt;
-      if (g !== null && buehne.bereich === 'story' && s.ort === 'station' && s.teil === 'vorlage' && /^[a-zA-Z]$/.test(e.key) && !e.shiftKey) {
-        const st = station(g, s.station);
-        const opt = st?.vorlage.optionen.find((x) => x.id === e.key.toUpperCase());
-        if (st !== null && opt !== undefined) {
-          setze({ ...buehne, story: waehle(g, buehne.story, st.id, opt.id) });
-          return true;
-        }
+      if (g !== null && buehne.bereich === 'story' && s.ort === 'kapitel' && s.teil === 'frage' && /^[1-3]$/.test(e.key)) {
+        setze({ ...buehne, story: waehle(g, buehne.story, s.kapitel, Number(e.key) - 1) });
+        return true;
       }
       return false;
     },

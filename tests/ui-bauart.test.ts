@@ -96,10 +96,10 @@ test('Datenebene: `inhalte` enthält kein Regie-Material', async () => {
   assert.equal('regie' in inhalte, false);
   assert.equal('geschichteRegie' in inhalte, false);
   const oeffentlichText = JSON.stringify(inhalte);
-  const s8 = regieGeschichte('s8');
-  assert.ok(s8?.notizHtml);
-  assert.ok(!oeffentlichText.includes(s8.notizHtml.slice(3, 60)));
-  for (const f of s8.leitfragen) assert.ok(!oeffentlichText.includes(f), f);
+  const k7 = regieGeschichte('k7');
+  assert.ok(k7?.notizHtml);
+  assert.ok(!oeffentlichText.includes(k7.notizHtml.slice(3, 60)));
+  for (const k of ['k1', 'k2', 'k7']) for (const f of regieGeschichte(k)?.leitfragen ?? []) assert.ok(!oeffentlichText.includes(f), f);
   for (let nr = 1; nr <= 13; nr++) {
     const e = regieKapitel(nr);
     if (e?.notiz) assert.ok(!oeffentlichText.includes(e.notiz.slice(3, 60)), `Notiz ${nr}`);
@@ -154,11 +154,11 @@ test('Startseite: drei Wege, leise Links zu bauherr-mentoren.com, Impressum und 
   assert.equal(leinwand.querySelectorAll('a, button').length, 0, 'auf der Leinwand nichts Bedienbares');
 });
 
-test('Theorie (O-38): Themen ohne Nummern, kein Originaltext, keine Zitierangaben; Kontakt am Ende', () => {
+test('Theorie (O-38, O-54): eigene Nummern statt Vorlagennummern, kein Originaltext, keine Zitierangaben; Kontakt am Ende', () => {
   const liste = baueTheorie({ inhalte, thema: null, version: VERSION, bedienbar: true });
   const karten = [...liste.querySelectorAll('[data-pruef^="thema-"]')];
   assert.equal(karten.length, themen(inhalte).length);
-  assert.doesNotMatch(liste.textContent ?? '', /Kapitel|\bKap\.|\b1\d?\b·/u);
+  assert.doesNotMatch(liste.textContent ?? '', /Kapitel|\bKap\./u);
   for (const t of themen(inhalte)) {
     const seite = baueTheorie({ inhalte, thema: t.thema, version: VERSION, bedienbar: true });
     assert.ok(seite.querySelector(`[data-thema="${t.thema}"]`), t.thema);
@@ -171,78 +171,54 @@ test('Theorie (O-38): Themen ohne Nummern, kein Originaltext, keine Zitierangabe
   // Unbekanntes Thema → Übersicht mit Hinweis
   assert.match(baueTheorie({ inhalte, thema: 'gibt-es-nicht', version: VERSION, bedienbar: true }).textContent ?? '', new RegExp(W.themen.unbekannt.slice(0, 20), 'u'));
   // „In der Story erlebt“ verlinkt Stationen, deren Thema dieses ist
-  const mitStory = G.stationen.find((s) => s.theorie !== null && themaTitel(inhalte, s.theorie) !== null);
+  const mitStory = G.kapitel.find((s) => themaTitel(inhalte, s.thema) !== null);
   if (mitStory) {
-    const seite = baueTheorie({ inhalte, thema: mitStory.theorie ?? '', version: VERSION, bedienbar: true });
+    const seite = baueTheorie({ inhalte, thema: mitStory.thema, version: VERSION, bedienbar: true });
     assert.ok(seite.querySelector(`[data-pruef="querverweis-${mitStory.id}"][href="#story/${mitStory.id}"]`));
   }
 });
 
-test('Story: Auftakt → Station → Vorlage (ohne Wahl kein Weiter) → Folge; Status, Speicher, Fortschritt löschen', () => {
+test('Story: Auftakt → Szene → Frage (ohne Wahl kein Weiter) → Folge; Speicher, Pfeiltasten, Permalink, Fortschritt löschen', () => {
   const sp = speicher();
   const f = erzeugeGeschichte({ g: G, speicher: sp, themaTitel: (id) => themaTitel(inhalte, id) });
   document.body.replaceChildren(f.element);
   const titel = (): string => f.element.querySelector('[data-pruef="gs-titel"]')?.textContent ?? '';
   const weiter = (): void => (f.element.querySelector('[data-pruef="weiter"]') as HTMLElement).click();
-  assert.equal(titel(), G.prolog.titel);
+  assert.equal(titel(), G.titel);
   (f.element.querySelector('[data-pruef="fassung-kurz"]') as HTMLElement).click();
   assert.equal(f.stand().kurz, true);
+  assert.match(titel(), new RegExp(G.kapitel[0]?.titel.replace('?', '\\?') ?? '', 'u'));
   weiter();
-  assert.equal(titel(), G.stationen[0]?.titel);
-  assert.ok(f.element.querySelector('[data-pruef="gs-bericht"]'));
   weiter();
-  // Vorlage S1 (Gewichte): ohne Wahl kein Weiter
-  assert.ok(f.element.querySelector('[data-pruef="gs-vorlage"]'));
-  weiter();
-  const sch = f.stand().schritt;
-  assert.equal(sch.ort === 'station' ? sch.teil : sch.ort, 'vorlage');
   assert.match(f.element.querySelector('.gs-navi-hinweis')?.textContent ?? '', /wählen/u);
-  (f.element.querySelector('[data-pruef="option-A"]') as HTMLElement).click();
-  assert.equal(f.element.querySelector('[data-pruef="option-A"]')?.getAttribute('aria-pressed'), 'true');
-  weiter();
-  assert.ok(f.element.querySelector('[data-pruef="gs-entscheidung"]'));
-  assert.ok(f.element.querySelector('[data-pruef="gs-so-laeuft"]') && f.element.querySelector('[data-pruef="gs-einwand"]'));
-  // weiter zu S3 (Kurzfassung), Vorlage mit Vergleich und Gegenprobe
-  weiter(); weiter();
-  assert.equal(titel(), G.stationen.find((s) => s.id === 's3')?.titel);
-  assert.match(f.element.querySelector('[data-pruef="summe-A"]')?.textContent ?? '', /^54/u);
-  const regler = f.element.querySelector<HTMLInputElement>('[data-pruef="gegenprobe"] input[data-kriterium="termin"]');
-  assert.ok(regler);
-  regler.value = '1';
-  regler.dispatchEvent(new Event('input'));
-  assert.match(f.element.querySelector('.ist-vorn')?.getAttribute('data-pruef') ?? '', /summe-B/u, 'mit Termin 1 liegt Abwarten vorn');
-  (f.element.querySelector('[data-pruef="option-B"]') as HTMLElement).click();
-  weiter();
-  assert.match(f.element.querySelector('[data-pruef="gs-status"] [data-status="puffer"]')?.textContent ?? '', /7\sTage/u);
-  // gespeichert
-  assert.ok(sp.daten.get(SPEICHER_SCHLUESSEL)?.includes('"s3":"B"'));
-  // Pfeiltaste blättert
+  (f.element.querySelector('[data-pruef="antwort-2"]') as HTMLElement).click();
+  assert.ok(f.element.querySelector('[data-pruef="gs-folge"]'));
+  assert.ok(sp.daten.get(SPEICHER_SCHLUESSEL)?.includes('"k1":1'));
+  // Pfeiltaste blättert: in der Kurzfassung folgt 3
   f.taste(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
-  assert.equal(titel(), G.stationen.find((s) => s.id === 's5')?.titel);
-  // Permalink auf eine Station außerhalb der Kurzfassung schaltet die ganze Geschichte ein
-  f.zuStation('s6');
+  assert.match(titel(), /Wie gefährlich ist das\?/u);
+  // Permalink auf ein Kapitel außerhalb der Kurzfassung schaltet die ganze Geschichte ein
+  f.zuKapitel('k6');
   assert.equal(f.stand().kurz, false);
-  assert.equal(titel(), G.stationen.find((s) => s.id === 's6')?.titel);
-  assert.ok(f.element.querySelector('[data-pruef="gs-thema"]') || true);
-  // Fortschritt löschen
+  assert.match(titel(), /Ärger auf der Baustelle/u);
   (f.element.querySelector('[data-pruef="fortschritt-loeschen"]') as HTMLElement).click();
-  assert.equal(titel(), G.prolog.titel);
-  // R68: gelöscht bleibt gelöscht, bis der nächste Schritt wieder speichert
+  assert.equal(titel(), G.titel);
+  // R68: gelöscht bleibt gelöscht, bis die nächste Änderung wieder speichert
   assert.equal(sp.daten.get(SPEICHER_SCHLUESSEL), undefined);
-  assert.deepEqual(f.stand().wahlen, {});
   f.taste(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
   assert.equal(sp.daten.get(SPEICHER_SCHLUESSEL), JSON.stringify(f.stand()));
 });
 
-test('Story: Schulstart zeigt Bilanz, Urteil und die Wege weiter', () => {
+test('Story: Schulstart zeigt Bilanz, Balken, die Wege weiter und den leisen Link', () => {
   const sp = speicher();
-  const stand = { v: 1, schritt: { ort: 'ende' }, wahlen: Object.fromEntries(G.stationen.map((s) => [s.id, s.vorlage.empfehlung.option])), gewichte: null, kurz: false };
-  sp.setItem(SPEICHER_SCHLUESSEL, JSON.stringify(stand));
+  const wahlen = Object.fromEntries(G.kapitel.map((k) => [k.id, k.antworten.findIndex((a) => a.wertung === 'gut')]));
+  sp.setItem(SPEICHER_SCHLUESSEL, JSON.stringify({ v: 2, schritt: { ort: 'ende' }, wahlen, mini: {}, gewichte: null, kurz: false }));
   const f = erzeugeGeschichte({ g: G, speicher: sp, themaTitel: () => null });
-  assert.equal(f.element.querySelectorAll('[data-pruef="gs-bilanz"] li').length, G.stationen.length);
-  assert.equal(f.element.querySelector('[data-pruef="gs-urteil"]')?.getAttribute('data-urteil'), 'gut');
-  assert.ok(f.element.querySelector('.gs-ende-wege a[href="https://www.bauherr-mentoren.com/"]'));
+  assert.equal(f.element.querySelector('[data-pruef="gs-bilanz-titel"]')?.textContent, G.bilanz.ruhig.titel);
+  assert.equal(f.element.querySelectorAll('[data-pruef="gs-stand-ende"] .gs-stand-zeile').length, 3);
+  assert.ok(f.element.querySelector('.gs-abbinder a[href="https://www.bauherr-mentoren.com/"]'));
   assert.ok(f.element.querySelector('[data-pruef="von-vorn"]'));
+  assert.ok(f.element.querySelector('[data-pruef="ende-themen"][href="#theorie"]'));
 });
 
 test('Explore: fünf Werkzeuge; Rechner rechnet um, Matrix ordnet ein, Vorgänge führen weiter, Glossar sucht', () => {
@@ -253,14 +229,14 @@ test('Explore: fünf Werkzeuge; Rechner rechnet um, Matrix ordnet ein, Vorgänge
   }
   const mcda = baueExplore({ inhalte, werkzeug: 'mcda', bedienbar: true });
   document.body.replaceChildren(mcda);
-  assert.match(mcda.querySelector('[data-pruef="ex-summe-A"]')?.textContent ?? '', /^57/u);
-  for (const [kriterium, wert] of [['Kosten', '5'], ['Termin', '3']] as const) {
+  assert.match(mcda.querySelector('[data-pruef="ex-summe-A"]')?.textContent ?? '', /^49/u);
+  for (const [kriterium, wert] of [['Geld', '5'], ['Schulstart', '3']] as const) {
     const wahl = mcda.querySelector<HTMLSelectElement>(`select[aria-label="Gewicht ${kriterium}"]`);
     assert.ok(wahl, kriterium);
     wahl.value = wert;
     wahl.dispatchEvent(new Event('change'));
   }
-  assert.ok(mcda.querySelector('[data-pruef="ex-summe-B"]')?.classList.contains('ist-vorn'), 'Kosten vor Termin dreht die Rangfolge');
+  assert.ok(mcda.querySelector('[data-pruef="ex-summe-C"]')?.classList.contains('ist-vorn'), 'Geld vor Schulstart dreht die Rangfolge');
   const matrix = baueExplore({ inhalte, werkzeug: 'matrix', bedienbar: true });
   (matrix.querySelector('.ex-zelle[data-w="1"][data-a="5"]') as HTMLElement).click();
   assert.match(matrix.querySelector('[data-pruef="ex-matrix-detail"]')?.textContent ?? '', /Vorrangig/u);
@@ -290,12 +266,12 @@ test('Explore: fünf Werkzeuge; Rechner rechnet um, Matrix ordnet ein, Vorgänge
 
 test('Leinwand-Anzeige: nicht bedienbar, derselbe Stand, keine Regie-Notiz', () => {
   const a = erzeugeAnzeige(inhalte, VERSION, true);
-  const b = { ...neueBuehne(), bereich: 'story' as const, story: { ...neueBuehne().story, schritt: { ort: 'station' as const, station: 's8', teil: 'vorlage' as const } } };
+  const b = { ...neueBuehne(), bereich: 'story' as const, story: { ...neueBuehne().story, schritt: { ort: 'kapitel' as const, kapitel: 'k7', teil: 'vergleich' as const } } };
   a.setze(b);
   assert.equal(a.element.getAttribute('inert'), '');
   assert.equal(a.element.querySelectorAll('button, a, input, select').length, 0);
   assert.match(a.element.textContent ?? '', /Ersatzgerät/u);
-  const notiz = regieGeschichte('s8');
+  const notiz = regieGeschichte('k7');
   assert.ok(notiz && !(a.element.innerHTML.includes(notiz.notizHtml.slice(3, 50))));
   a.setze({ ...b, bereich: 'theorie', thema: themaVon(4) });
   assert.ok(a.element.querySelector(`[data-thema="${themaVon(4)}"]`));
@@ -314,17 +290,29 @@ test('Regie: Notiz und Leitfragen, Kundenwahl, „weiter“ sendet den öffentli
     (r.element.querySelector('[data-pruef="regie-bereich-story"]') as HTMLElement).click();
     const sprung = r.element.querySelector<HTMLSelectElement>('[data-pruef="regie-sprung"]');
     assert.ok(sprung);
-    sprung.value = 's8';
+    sprung.value = 'k7';
     sprung.dispatchEvent(new Event('change'));
-    assert.match(r.element.querySelector('[data-pruef="regie-notiz"]')?.textContent ?? '', /Kosten vor Termin/u);
+    assert.match(r.element.querySelector('[data-pruef="regie-notiz"]')?.textContent ?? '', /Gewichte gemeinsam/u);
     assert.ok(r.element.querySelector('[data-pruef="regie-leitfragen"]'));
+    // Vergleich: die Regie stellt die Stufen
     (r.element.querySelector('[data-pruef="regie-weiter"]') as HTMLElement).click();
-    (r.element.querySelector('[data-pruef="regie-wahl-B"]') as HTMLElement).click();
+    (r.element.querySelector('[data-pruef="regie-stufe-klima-3"]') as HTMLElement).click();
+    const mitStufe = gesendet.filter((n) => n.art === 'zustand').at(-1);
+    assert.ok(mitStufe && mitStufe.art === 'zustand');
+    assert.equal(mitStufe.zustand.story.gewichte?.['klima'], 3);
+    // Frage: die Regie wählt die Antwort (Platz 2)
+    (r.element.querySelector('[data-pruef="regie-weiter"]') as HTMLElement).click();
+    (r.element.querySelector('[data-pruef="regie-wahl-2"]') as HTMLElement).click();
     const letzte = gesendet.filter((n) => n.art === 'zustand').at(-1);
     assert.ok(letzte && letzte.art === 'zustand');
-    assert.equal(letzte.zustand.story.wahlen['s8'], 'B');
+    assert.equal(letzte.zustand.story.wahlen['k7'], 1);
+    // Taste 3 wählt Platz 3
+    r.taste(new KeyboardEvent('keydown', { key: '3' }));
+    const nachTaste = gesendet.filter((n) => n.art === 'zustand').at(-1);
+    assert.ok(nachTaste && nachTaste.art === 'zustand');
+    assert.equal(nachTaste.zustand.story.wahlen['k7'], 2);
     const text = JSON.stringify(gesendet);
-    assert.ok(!text.includes(regieGeschichte('s8')?.notizHtml.slice(3, 40) ?? 'x'), 'keine Notiz im Kanal');
+    assert.ok(!text.includes(regieGeschichte('k7')?.notizHtml.slice(3, 40) ?? 'x'), 'keine Notiz im Kanal');
     // Protokoll bleibt in der Regie
     const feld = r.element.querySelector<HTMLTextAreaElement>('[data-pruef="regie-protokoll-feld"]');
     assert.ok(feld);
@@ -525,13 +513,13 @@ test('Wissenscheck: die passende Antwort steht nicht in jedem Check an derselben
       stellen.push(knoepfe.indexOf('wc-antwort-a'));
     }
   }
-  assert.ok(stellen.length >= 10, `${stellen.length} Wissenschecks`);
+  assert.ok(stellen.length >= 7, `${stellen.length} Wissenschecks`); // P17.11: halbiert (O-55)
   assert.ok(!stellen.includes(-1));
   assert.ok(new Set(stellen).size >= 2, `alle an Stelle ${stellen[0]}`);
 });
 
-test('Wissenschecks (P11.6): je Lernseite 2–12 einer; Wahl zeigt Rückmeldung, Erklärung und Beleg – ohne Punkte', () => {
-  for (let nr = 2; nr <= 12; nr++) {
+test('Wissenschecks (P11.6, P17.11): genau die verbliebenen Themen haben einen; Wahl zeigt Rückmeldung, Erklärung und Beleg – ohne Punkte', () => {
+  for (const nr of [4, 5, 6, 9, 14, 15, 16]) {
     const seite = baueTheorie({ inhalte, thema: themaVon(nr), version: VERSION, bedienbar: true });
     assert.equal(seite.querySelectorAll('[data-pruef="wissenscheck"]').length, 1, `Kap. ${nr}`);
   }

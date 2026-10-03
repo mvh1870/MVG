@@ -25,6 +25,12 @@ import { formatiereFund, pruefeText } from './begriffe.mjs';
 import { ORDNER as ABB_ORDNER, STAND as ABB_STAND, WERKZEUG_VERSION as ABB_VERSION, eingabeSumme, leseBeschreibungen, pruefeBeschreibung } from './abbildungen.mjs';
 import { createHash } from 'node:crypto';
 
+/** Teile des Themen-Buchs (P17.8, O-54): I–IV und der Anhang. */
+export const THEORIE_TEILE = ['1', '2', '3', '4', 'anhang'];
+/** Höchstlänge des Kurzsatzes im Inhaltsverzeichnis (Zeichen). */
+export const KURZSATZ_MAX = 90;
+
+
 export const WURZEL = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 export const STANDARD_ZIEL = path.join('src', 'generiert', 'inhalte.json');
 export const STANDARD_WHITEPAPER = path.join('quellen', 'whitepaper', 'v1.2', 'whitepaper.json');
@@ -54,7 +60,7 @@ const TAFEL_FORMEN = ['ketten', 'schwelle', 'pyramide', 'felder', 'bausteine', '
  * Kopfdaten-Typen: text, zahl (ganz), dezimal, bool, liste, karte (Text → Text), farbe, kennung,
  * wahl (werte), versionen, ids.
  * @typedef {{ typ: string, pflicht?: boolean, werte?: string[], min?: number, max?: number }} KopfDef
- * @typedef {{ in: string[], kennung: 'pflicht' | 'optional' | 'keine' | 'mehrere', muster?: RegExp,
+ * @typedef {{ in: string[], kennung: 'pflicht' | 'optional' | 'keine' | 'mehrere' | 'titel', muster?: RegExp,
  *   kopf?: Record<string, KopfDef>, felder?: string[], pflichtFelder?: string[] }} ArtDef
  */
 
@@ -78,7 +84,10 @@ const ARTEN = {
   wissenscheck: { in: ['@theorie', 'abschnitt'], kennung: 'pflicht', felder: ['frage', 'erklaerung'], pflichtFelder: ['frage', 'erklaerung'] },
   antwort: { in: ['wissenscheck'], kennung: 'pflicht', kopf: { titel: { typ: 'text', pflicht: true }, praefix: { typ: 'text' }, symbol: { typ: 'text' } }, felder: ['text'] },
   // Theorie
-  kernaussage: { in: ['@theorie'], kennung: 'keine', felder: ['text'], pflichtFelder: ['text'] },
+  // P17.9 (O-55): optional `symbol:` (Name aus src/stil/symbole.ts), sonst das Symbol des Themas
+  kernaussage: { in: ['@theorie'], kennung: 'keine', kopf: { symbol: { typ: 'text' } }, felder: ['text'], pflichtFelder: ['text'] },
+  // P17.9 (O-55): Aufklapper – Titel steht in der Öffnungszeile (`::: aufklapper Wer entscheidet?`), Inhalt als Text
+  aufklapper: { in: ['@theorie', 'abschnitt'], kennung: 'titel', kopf: { symbol: { typ: 'text' } }, felder: ['text'], pflichtFelder: ['text'] },
   abschnitt: { in: ['@theorie'], kennung: 'pflicht', muster: ABSCHNITT_ID, kopf: { titel: { typ: 'text' } }, felder: ['text'] },
   karten: { in: ['@theorie', 'abschnitt'], kennung: 'keine', kopf: { titel: { typ: 'text' } }, felder: ['text'] },
   karte: { in: ['karten'], kennung: 'optional', kopf: { titel: { typ: 'text', pflicht: true }, symbol: { typ: 'text' } }, felder: ['text', 'rueckseite'] },
@@ -104,6 +113,8 @@ const DATEI_ARTEN = {
       kapitel: { typ: 'zahl', pflicht: true, min: 1, max: 16 }, titel: { typ: 'text', pflicht: true }, kurztitel: { typ: 'text' },
       // P16.3 (O-38): Kennung des Themas in der Adresse (#theorie/<thema>) und Reihenfolge der Themen
       thema: { typ: 'kennung' }, reihe: { typ: 'zahl', min: 1, max: 30 },
+      // P17.8 (O-54): Teil des Buchs (1–4 oder anhang), Kurzsatz im Inhaltsverzeichnis, Symbol aus src/stil/symbole.ts
+      teil: { typ: 'wahl', werte: THEORIE_TEILE, pflicht: true }, kurzsatz: { typ: 'text', pflicht: true }, symbol: { typ: 'text', pflicht: true },
       deckt: { typ: 'liste' },
     },
     felder: ['text'],
@@ -115,6 +126,35 @@ const DATEI_ARTEN = {
     pflichtFelder: ['text'],
   },
 };
+
+/** @type {Set<string> | null} */
+let symbolNamenCache = null;
+/** Namen der Symbole aus src/stil/symbole.ts (Schlüssel von SYMBOLE). */
+export function symbolNamen() {
+  if (symbolNamenCache === null) {
+    const quelle = readFileSync(fileURLToPath(new URL('../src/stil/symbole.ts', import.meta.url)), 'utf8');
+    const block = /export const SYMBOLE = \{([\s\S]*?)\n\}/u.exec(quelle)?.[1] ?? '';
+    symbolNamenCache = new Set([...block.matchAll(/^\s+([A-Za-z]\w*):/gmu)].map((m) => m[1] ?? ''));
+  }
+  return symbolNamenCache;
+}
+
+/**
+ * Themen als Buch (P17.8, O-54): Nummern 1 … in Leserichtung (nach `reihe`), Teile in Leserichtung nie rückwärts,
+ * der Anhang nur am Ende (ein leerer Teil erscheint im Inhaltsverzeichnis nicht).
+ * @param {Kompilierer} c
+ * @param {Record<string, any>} theorie
+ */
+export function pruefeBuch(c, theorie) {
+  const folge = Object.values(theorie).sort((a, b) => a.reihe - b.reihe);
+  let vorher = 1;
+  for (const [i, t] of folge.entries()) {
+    t.nr = i + 1;
+    const rang = t.teil === 'anhang' ? 5 : Number(t.teil);
+    if (rang < vorher) c.fehler(t.quelle, `teil ${t.teil} steht in der Reihenfolge hinter einem späteren Teil (Leserichtung)`);
+    vorher = Math.max(vorher, rang);
+  }
+}
 
 /* ========================================================== Hilfen == */
 
@@ -168,7 +208,8 @@ class Befunde {
 /* ============================================================ Parser == */
 
 /**
- * @typedef {{ art: string, kennungen: string[], zeile: number, zeilen: { nr: number, text: string }[], kinder: Knoten[] }} Knoten
+ * @typedef {{ art: string, kennungen: string[], zeile: number, zeilen: { nr: number, text: string }[], kinder: Knoten[], nachZeile?: number }} Knoten
+ * `nachZeile`: so viele Textzeilen des Eltern-Knotens stehen vor diesem Container (Reihenfolge der Quelle, P17.9)
  */
 
 /**
@@ -214,7 +255,7 @@ export function zerlege(text, rel, b) {
       const m = /^\s*:{3,}\s*([A-Za-z][A-Za-z-]*)\s*(.*?)\s*$/u.exec(z);
       if (m) {
         /** @type {Knoten} */
-        const k = { art: m[1] ?? '', kennungen: (m[2] ?? '').split(/\s+/u).filter((x) => x !== ''), zeile: nr, zeilen: [], kinder: [] };
+        const k = { art: m[1] ?? '', kennungen: (m[2] ?? '').split(/\s+/u).filter((x) => x !== ''), zeile: nr, zeilen: [], kinder: [], nachZeile: oben.zeilen.length };
         oben.kinder.push(k);
         stapel.push(k);
         continue;
@@ -745,12 +786,20 @@ class Kompilierer {
     if (def.kennung === 'pflicht' && k.kennungen.length !== 1) this.fehler(ort, `„${k.art}“ braucht genau eine Kennung`);
     if (def.kennung === 'optional' && k.kennungen.length > 1) this.fehler(ort, `„${k.art}“ hat höchstens eine Kennung`);
     if (def.kennung === 'mehrere' && k.kennungen.length === 0) this.fehler(ort, `„${k.art}“ braucht mindestens eine Absatz-ID`);
-    for (const id of k.kennungen) {
+    if (def.kennung === 'titel' && k.kennungen.length === 0) this.fehler(ort, `„${k.art}“ braucht einen Titel in der Öffnungszeile`);
+    for (const id of def.kennung === 'titel' ? [] : k.kennungen) {
       if (def.muster !== undefined && !def.muster.test(id)) this.fehler(ort, `„${k.art}“: Kennung „${id}“ ist nicht erlaubt`);
       else if (def.muster === undefined && def.kennung !== 'mehrere' && !KENNUNG.test(id)) this.fehler(ort, `„${k.art}“: „${id}“ ist keine Kennung (Buchstaben, Ziffern, Bindestrich)`);
     }
     const { kopf: rohKopf, felder: rohFelder } = teileKnoten(k, rel, this.b);
     const kopf = this.kopf(rohKopf, def.kopf ?? {}, ort);
+    // P17.9: Symbole an Kernaussage und Aufklapper nur aus src/stil/symbole.ts; der Titel eines Aufklappers ist die Öffnungszeile
+    if (typeof kopf['symbol'] === 'string' && !symbolNamen().has(kopf['symbol'])) this.fehler(ort, `symbol „${kopf['symbol']}“ gibt es nicht (src/stil/symbole.ts)`);
+    if (def.kennung === 'titel') {
+      kopf['titel'] = k.kennungen.join(' ');
+      // Der Titel ist schlichter Text in der Aufklappzeile: kein Glossarbegriff (bedienbar in summary, R58), kein Markdown
+      if (/\[\[|[*_`<>]/u.test(String(kopf['titel']))) this.fehler(ort, `„${k.art}“: der Titel ist schlichter Text (keine [[Begriffe]], kein Markdown)`);
+    }
     const erlaubt = def.felder ?? ['text'];
     for (const [name, f] of Object.entries(rohFelder)) {
       if (!erlaubt.includes(name)) {
@@ -760,9 +809,22 @@ class Kompilierer {
       }
     }
     for (const p of def.pflichtFelder ?? []) {
-      if ((rohFelder[p]?.text ?? '') === '') this.fehler(ort, `„${k.art}${k.kennungen[0] ? ` ${k.kennungen[0]}` : ''}“: Feld „${p}“ fehlt oder ist leer`);
+      if ((rohFelder[p]?.text ?? '') === '') this.fehler(ort, `„${k.art}${k.kennungen.length > 0 ? ` ${k.kennungen.join(' ')}` : ''}“: Feld „${p}“ fehlt oder ist leer`);
     }
-    return { art: k.art, kennungen: k.kennungen, id: k.kennungen[0] ?? null, kopf, rohFelder, ort, knoten: k };
+    const kennungen = def.kennung === 'titel' ? [] : k.kennungen;
+    return { art: k.art, kennungen, id: kennungen[0] ?? null, kopf, rohFelder, ort, knoten: k };
+  }
+
+  /**
+   * Freier Text zwischen zwei Bausteinen eines Abschnitts als Baustein „lesetext“ (leer: keiner).
+   * @param {{ nr: number, text: string }[]} zeilen
+   * @param {string} rel
+   * @returns {any[]}
+   */
+  lesetextZwischen(zeilen, rel) {
+    const text = zeilen.map((z) => z.text).join('\n').trim();
+    if (text === '') return [];
+    return [{ art: 'lesetext', kennungen: [], id: null, kopf: {}, felder: { text: this.html(text, `${rel}:${zeilen[0]?.nr ?? 0}`) }, liste: null, kinder: [] }];
   }
 
   /**
@@ -780,7 +842,10 @@ class Kompilierer {
     /** @type {any[] | null} */
     let liste = null;
     const kopf = { ...r.kopf };
+    // P17.9: Abschnitt mit Bausteinen – sein Text wird unten nach der Reihenfolge der Quelle geteilt
+    const teilen = r.art === 'abschnitt' && k.kinder.length > 0 && Object.keys(r.rohFelder).every((n) => n === 'text');
     for (const [name, f] of Object.entries(r.rohFelder)) {
+      if (teilen) continue;
       const ortF = `${rel}:${f.zeile}`;
       felder[name] = this.html(f.text, ortF);
     }
@@ -827,7 +892,23 @@ class Kompilierer {
       if (kopf['form'] === 'ketten' && (t?.kopf?.length ?? 0) < 4) this.fehler(r.ort, `Tafel ${r.id}: Form „ketten“ braucht vier Spalten`);
       this.merkeDeckung(eltern, [r.id], rel);
     }
-    const kinder = k.kinder.map((kind) => this.block(kind, r.art, rel)).filter((x) => x !== null);
+    const roh = k.kinder.map((kind) => this.block(kind, r.art, rel));
+    const kinder = roh.filter((x) => x !== null);
+    // P17.9: freier Text eines Abschnitts zwischen seinen Bausteinen bleibt an seiner Stelle – das Feld `text` trägt nur den
+    // Text vor dem ersten Baustein, jeder spätere Teil wird ein Baustein „lesetext“ zwischen den anderen (Reihenfolge der Quelle)
+    if (teilen) {
+      const stellen = k.kinder.map((kind) => kind.nachZeile ?? k.zeilen.length);
+      const vorn = teileKnoten({ ...k, zeilen: k.zeilen.slice(0, stellen[0]) }, rel, new Befunde()).felder['text']?.text ?? '';
+      if (vorn !== '') felder['text'] = this.html(vorn, `${rel}:${r.rohFelder['text']?.zeile ?? k.zeile}`);
+      /** @type {any[]} */
+      const geordnet = [];
+      k.kinder.forEach((kind, i) => {
+        if (i > 0) geordnet.push(...this.lesetextZwischen(k.zeilen.slice(stellen[i - 1], stellen[i]), rel));
+        if (roh[i] !== null) geordnet.push(roh[i]);
+      });
+      geordnet.push(...this.lesetextZwischen(k.zeilen.slice(stellen[stellen.length - 1]), rel));
+      return { art: r.art, kennungen: r.kennungen, id: r.id, kopf, felder, liste, kinder: geordnet };
+    }
     return { art: r.art, kennungen: r.kennungen, id: r.id, kopf, felder, liste, kinder };
   }
 
@@ -1028,6 +1109,8 @@ function baueTheorie(c, rel, id, text, regie) {
     c.merkeDeckung('@theorie', ids, rel);
   }
   if (kopf.kapitel === undefined) c.fehler(ort, 'kapitel fehlt (Lernseite wäre unerreichbar)');
+  if (kopf.kurzsatz !== undefined && [...kopf.kurzsatz].length > KURZSATZ_MAX) c.fehler(ort, `kurzsatz hat ${[...kopf.kurzsatz].length} Zeichen (höchstens ${KURZSATZ_MAX})`);
+  if (kopf.symbol !== undefined && !symbolNamen().has(kopf.symbol)) c.fehler(ort, `symbol „${kopf.symbol}“ gibt es nicht (src/stil/symbole.ts)`);
   return {
     id,
     kapitel: kopf.kapitel ?? 0,
@@ -1035,6 +1118,11 @@ function baueTheorie(c, rel, id, text, regie) {
     reihe: kopf.reihe ?? kopf.kapitel ?? 0,
     titel: kopf.titel ?? '',
     kurztitel: kopf.kurztitel ?? kopf.titel ?? '',
+    // Nummer in Leserichtung (1 …), gesetzt nach dem Einlesen aller Themen (pruefeBuch)
+    nr: 0,
+    teil: kopf.teil === undefined ? 'anhang' : kopf.teil === 'anhang' ? 'anhang' : Number(kopf.teil),
+    kurzsatz: kopf.kurzsatz ?? '',
+    symbol: kopf.symbol ?? '',
     deckt,
     einleitung: c.html(rohFelder['text']?.text ?? '', ort),
     bloecke,
@@ -1168,6 +1256,7 @@ export async function kompiliere(optionen = {}) {
       if (a.reihe === b.reihe) c.fehler(b.quelle, `Reihe ${b.reihe} doppelt (auch ${a.quelle})`);
     }
   }
+  pruefeBuch(c, theorie);
 
   // Glossar (alle Einträge, für Mouseover)
   /** @type {Record<string, any>} */
@@ -1181,7 +1270,7 @@ export async function kompiliere(optionen = {}) {
 
   const abdeckung = baueAbdeckung(c, quelle, abdeckungRoh, theorie, pruefe);
   const abb = baueAbbildungen(c, quelle, wurzel, theorie, pruefe);
-  const gesch = baueGeschichte(c, geschichteDateien);
+  const gesch = baueGeschichte(c, geschichteDateien, Object.values(theorie).map((/** @type {any} */ t) => t.thema));
   const inhalte = {
     version: 1,
     // von der Quelle nur die Abbildungen; Titel, Fassung und Gliederung bleiben intern (O-38)
@@ -1440,7 +1529,7 @@ if (istHaupt) {
   const th = Object.keys(inhalte.theorie).length;
   for (const w of warnungen) console.log(`Warnung  ${w}`);
   for (const f of fehler) console.log(`FEHLER   ${f}`);
-  console.log(`inhalte: ${th} Themen, ${inhalte.geschichte?.stationen.length ?? 0} Story-Stationen, ${inhalte.kompass.length} Kompass-Einträge → ${STANDARD_ZIEL.replace(/\\/gu, '/')}`);
+  console.log(`inhalte: ${th} Themen, ${inhalte.geschichte?.kapitel.length ?? 0} Story-Kapitel, ${inhalte.kompass.length} Kompass-Einträge → ${STANDARD_ZIEL.replace(/\\/gu, '/')}`);
   console.log(`${pruefe ? 'Prüfung' : 'Kompilieren'}: ${fehler.length} Fehler, ${warnungen.length} Warnungen`);
   process.exitCode = fehler.length > 0 ? 1 : 0;
 }

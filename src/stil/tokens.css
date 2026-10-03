@@ -115,6 +115,26 @@
   --iso-blau-o: #7DB0E4;          --iso-blau-r: #2B66A6;
   --iso-geruest: #7B8799;         --iso-zaun: #C7D1DC;            --iso-zaun-rahmen: #8A97A9;
 
+  /* ------------------------------------------------------------------ Figuren und Gegenstände (O-51, src/grafik/figuren.ts) */
+  /* Nur Flächen der Illustration, nie Text. Kleidung trägt den Figurenton (--akzent-*), hier stehen Haut, Haar
+     und die Erkennungszeichen aus dem Drehbuch. -s ist der Schattenton derselben Fläche. */
+  --fig-haut-1: #F6D5BC;          --fig-haut-1-s: #E5B595;
+  --fig-haut-2: #E2AE86;          --fig-haut-2-s: #C98D63;
+  --fig-haut-3: #B97A52;          --fig-haut-3-s: #9A5F3B;
+  --fig-haut-4: #7B4B31;          --fig-haut-4-s: #603623;
+  --fig-wange: #E9806E;           --fig-mund: #8A3A36;            --fig-mund-hell: #E39A8C;
+  --fig-auge: #23202A;
+  --fig-haar-silber: #D3D7DE;     --fig-haar-silber-s: #AEB5C1;
+  --fig-haar-dunkel: #2B2224;     --fig-haar-dunkel-s: #463A3C;
+  --fig-haar-grau: #B9BCC2;       --fig-haar-grau-s: #8F949C;
+  --fig-haar-rot: #A64B2A;        --fig-haar-rot-s: #7F3519;
+  --fig-haar-braun: #5B3E2B;      --fig-haar-braun-s: #432C1E;
+  --fig-creme: #F7EEDF;           --fig-band: #C8452F;            --fig-rolli: #262A33;
+  --fig-hemd: #4F78A6;            --fig-hemd-linie: #9DB9D8;      --fig-reflex: #E9EDF2;
+  --fig-helm: #FFFFFF;            --fig-helm-s: #D5DCE5;
+  --fig-messing: #D3A445;         --fig-messing-s: #A27A26;       --fig-holz: #9C6B43;
+  --fig-papier: #FFFFFF;          --fig-papier-s: #E3E8EF;        --fig-stahl: #8D99AA;
+
   /* ------------------------------------------------------------------ Status (BM-Ampel; nur für Status, O-11) */
   --status-rot: #9A3030;      --status-rot-soft: #F1D8D8;
   --status-gelb-soft: #F3E9C8; --status-gelb-text: #7F620F;  /* BM --c-warn-ink */

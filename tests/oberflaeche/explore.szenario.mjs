@@ -33,10 +33,11 @@ export async function lauf(seite, h) {
   const pruefe = pruefer(seite, h);
   const verboten = async (wo) => { for (const f of sichtbarVerboten(await seite.locator('body').innerText())) h.befund(`${wo}: ${f}`); };
   await h.erwarte('[data-werkzeug="mcda"]');
-  await seite.locator('select[aria-label="Gewicht Kosten"]').selectOption('5');
-  await seite.locator('select[aria-label="Gewicht Termin"]').selectOption('3');
+  // Beispiel ist der Vergleich der Story (Lüftung): mit Geld 5 und Schulstart 3 liegt „Später einziehen“ vorn (C 51)
+  await seite.locator('select[aria-label="Gewicht Geld"]').selectOption('5');
+  await seite.locator('select[aria-label="Gewicht Schulstart"]').selectOption('3');
   await h.warte(100);
-  if (!(await seite.locator('[data-pruef="ex-summe-B"]').evaluate((e) => e.classList.contains('ist-vorn')))) h.befund('Rechner: mit Kosten 5, Termin 3 liegt Abwarten nicht vorn');
+  if (!(await seite.locator('[data-pruef="ex-summe-C"]').evaluate((e) => e.classList.contains('ist-vorn')))) h.befund('Rechner: mit Geld 5, Schulstart 3 liegt „Später einziehen“ nicht vorn');
   await verboten('mcda');
   await pruefe('mcda');
   await h.klick('[data-pruef="ex-matrix"]');

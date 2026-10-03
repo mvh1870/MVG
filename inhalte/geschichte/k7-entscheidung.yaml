@@ -1,0 +1,91 @@
+# 7 · Die große Entscheidung (Drehbuch Abschnitt 4, Kapitel 7) – der einzige gewichtete Vergleich der Story (O-52)
+# Problem → Entscheidungsvorlage; mehr als 100.000 Euro aus der Reserve → Bürgermeisterin, Lenkungskreis berät.
+# Gewichte vorab abgestimmt, abgeleitet aus der Zielpriorität aus 1; alle drei Wege zulässig (Fachplanung bestätigt Leihgeräte).
+# Rechnung abgestimmt: A 49 · B 45 · C 45; Klima „wichtig“ → A 55, B 49, C 55; Schulstart „wichtig“ → C vorn;
+# Geld „sehr wichtig“ → C vorn; Gute Luft „weniger wichtig“ → B vorn (tests/geschichte-regeln.test.ts).
+nr: 7
+titel: Die große Entscheidung
+zeit: Mai 2027
+campus: { stufe: 5, jahreszeit: fruehling, licht: morgen }
+kurzfassung: true
+thema: entscheidungsvorlage
+belege: [v24:hb-3.1, v24:hb-3.2, v24:tlb-2.1, v24:va-3.1, v24:va-3.2, v24:va-3.3, v24:va-3.4, v24:va-3.5, v24:va-4.1, v24:va-4.2, k3.2-t1, k4.1-p1, k9.3-p3]
+bild-szene: lueftung
+bild-frage: waage
+
+einstieg: |
+  Mai 2027. Gesamtschule und Sporthalle sind geschlossen, daneben wächst die Grundschule. Morgens fällt das Licht schräg über den künftigen Schulhof. Bis zum Schulstart sind es noch fünfzehn Monate, und zum ersten Mal fühlt sich das gar nicht mehr so lang an. Dann kommt eine Nachricht, die niemand hören will.
+
+szene:
+  - { figur: schwung, text: "Ich sag's lieber gleich und nicht erst, wenn's brennt: Der Hersteller der Lüftungsanlage für die Gesamtschule liefert vier Monate später." }
+  - { figur: lot, text: "Vier Monate. Dann bauen wir die Anlage ein, wenn die Kinder schon da sein sollen." }
+  - { figur: faden, text: "Ich habe drei Wege ausgearbeitet, und alle drei sind zulässig: ein Ersatzgerät eines anderen Herstellers, Leihgeräte in den Klassenräumen bis zur Lieferung – oder die Gesamtschule zieht erst nach den Herbstferien ein; ein Teil der vier Monate steckt im Puffer." }
+  - { figur: klingel, text: "Leihgeräte in jedem Klassenraum? Die brummen. Und nach den Herbstferien … das erkläre ich den Eltern nicht gern." }
+  - { figur: grundstein, text: "Zeigen Sie mir alle drei Wege. Und was Sie empfehlen. Entscheiden tue ich." }
+
+vergleich:
+  einleitung: |
+    Die Projektsteuerin vergleicht die drei Wege nach vier Gesichtspunkten. Wie wichtig jeder ist, hat sie vorher mit Ihnen abgestimmt – abgeleitet aus dem Ziel der Bürgermeisterin: zuerst der Schulstart, dann das Geld.
+  # Gewicht: 5 sehr wichtig · 3 wichtig · 1 weniger wichtig (abgestimmte Ausgangsstellung)
+  kriterien:
+    - { id: geld, titel: Geld, gewicht: 3 }
+    - { id: schulstart, titel: Schulstart, gewicht: 5 }
+    - { id: luft, titel: Gute Luft im Unterricht, gewicht: 3 }
+    - { id: klima, titel: Klima und Betrieb, gewicht: 1 }
+  optionen:
+    - id: A
+      titel: Ersatzgerät
+      punkte: { geld: 2, schulstart: 5, luft: 5, klima: 3 }
+      worte: { geld: rund 400.000 Euro mehr, schulstart: alle Kinder ziehen pünktlich ein, luft: volle Lüftung ab dem ersten Tag, klima: braucht etwas mehr Strom als das bestellte Gerät }
+      begruendung: Geld-Skala bis 50.000 / 150.000 / 300.000 / 500.000 Euro → 5 / 4 / 3 / 2, darüber 1; Schulstart pünktlich 5, bis 2 / 4 / 8 Wochen später 4 / 3 / 2
+    - id: B
+      titel: Leihgeräte
+      punkte: { geld: 4, schulstart: 5, luft: 2, klima: 2 }
+      worte: { geld: rund 150.000 Euro Miete, schulstart: alle pünktlich, luft: "laut, oft Fenster auf, bis die Anlage läuft", klima: "viel Strom, später zweimal umbauen" }
+      begruendung: 150.000 → 4; pünktlich; Unterricht übergangsweise eingeschränkt → 2; Strom und zweimal Umbau → 2
+    - id: C
+      titel: Später einziehen
+      punkte: { geld: 5, schulstart: 2, luft: 5, klima: 5 }
+      worte: { geld: rund 50.000 Euro für längere Container, schulstart: "Grundschule pünktlich, Gesamtschule erst nach den Herbstferien", luft: "volle Lüftung, sobald die Kinder kommen", klima: "das bestellte, sparsamste Gerät" }
+      begruendung: 50.000 → 5; Gesamtschule rund acht Wochen später → 2; volle Funktion ab Einzug → 5; bestelltes, sparsamstes Gerät → 5
+  saetze:
+    A: "Das Ersatzgerät liegt vorn: Hier zählt vor allem, dass alle Kinder pünktlich in Räume mit guter Luft einziehen."
+    B: Die Leihgeräte liegen vorn – aber nur, weil gute Luft im Unterricht hier kaum zählt. Passt das zu Ihrer Schule?
+    C: "Der spätere Einzug liegt vorn: Wenn Geld oder Klima so viel zählen wie der Schulstart, lohnt sich das Warten."
+    gleichauf: Gleichauf – jetzt entscheidet das fachliche Urteil, nicht die Punktzahl.
+  empfehlung: |
+    **Empfehlung:** das Ersatzgerät. Es kostet am meisten, aber nur damit ziehen alle Kinder pünktlich in Räume mit guter Luft – und das ist das Ziel, das die Bürgermeisterin gesetzt hat. Wichtig für die Entscheidung: Schon wenn Klima und Betrieb „wichtig“ wären, lägen Ersatzgerät und späterer Einzug gleichauf. Wäre der Schulstart nur so wichtig wie das Geld oder wären Klima und Betrieb sehr wichtig, läge der spätere Einzug vorn. Die Leihgeräte liegen nur vorn, wenn gute Luft kaum zählt.
+  wer: |
+    **Wer entscheidet:** die Bürgermeisterin – mehr als 100.000 Euro, und das Geld käme aus der Reserve. Der Lenkungskreis berät. Entscheiden muss sie bis Ende Mai, sonst ist auch das Ersatzgerät nicht mehr rechtzeitig da.
+
+frage: Die Vorlage geht an die Bürgermeisterin. Was legen Sie ihr vor?
+
+antworten:
+  - wertung: falle
+    text: Es eilt. Sie entscheiden selbst für das Ersatzgerät und holen die Zustimmung der Bürgermeisterin danach ein.
+    balken: { geld: -2, zeit: 1, vertrauen: -2 }
+    bild: rednerpult
+    folge: |
+      Die Haustechnikfirma bestellt sofort – zu ihrem Preis, denn verhandelt hat niemand. Clara Faden sieht die Bestellung noch am selben Tag und ruft die Bürgermeisterin an: Hier wurde ohne Befugnis entschieden. Die Bürgermeisterin: „Mehr als 100.000 Euro und Geld aus der Reserve – das ist meine Entscheidung. So steht es auf der Seite, die wir vereinbart haben.“ Sie stimmt nachträglich zu, weil es in der Sache richtig ist. Aber der Stadtrat fragt nach.
+  - wertung: gut
+    text: Alle drei Wege mit dem Vergleich und der Empfehlung für das Ersatzgerät – samt dem Hinweis, wann der spätere Einzug vorn läge.
+    balken: { geld: -1, zeit: 1, vertrauen: 1 }
+    bild: stempel
+    folge: |
+      Im Lenkungskreis beraten Kämmerei und Schulamt. Die Bürgermeisterin stellt nur eine Frage: „Wenn mir der Schulstart wichtiger ist als das Geld – bleibt es beim Ersatzgerät?“ Clara Faden: „Ja – solange Klima und Betrieb weniger wichtig bleiben. Sonst wird es knapp.“ Die Bürgermeisterin entscheidet: Ersatzgerät, das Geld kommt aus der Reserve. Clara Faden hält den Beschluss fest, mit Datum und einer Auflage: Das Gerät muss vor dem Schulstart eingebaut und eingestellt sein. Hanna Klingel atmet hörbar aus.
+  - wertung: vertretbar
+    text: Alle drei Wege mit dem Vergleich und der Empfehlung der Projektsteuerin – und dazu Ihre eigene Empfehlung für den späteren Einzug, weil er am wenigsten kostet.
+    balken: { geld: -1, zeit: 0, vertrauen: 0 }
+    bild: stoppuhr
+    folge: |
+      Die Bürgermeisterin liest beide Empfehlungen und dann den Vergleich. „Sie empfehlen das Günstigste. Aber mein Ziel war der Schulstart.“ Sie vertagt um eine Woche, hört die Schule an und entscheidet dann: Ersatzgerät, aus der Reserve. Ihre Empfehlung war ehrlich begründet – sie passte nur nicht zu dem Ziel, das die Bürgermeisterin gesetzt hatte. Die Woche fehlt dem Einbau am Ende.
+
+gut: |
+  Eine Entscheidung des Bauherrn kommt als Vorlage mit mindestens zwei zulässigen Wegen, einem gewichteten Vergleich nach vorher abgestimmten Gewichten und einer begründeten Empfehlung – samt dem Hinweis, bei welchen anderen Gewichten die Rangfolge kippt. Entschieden wird von der Stelle, die es darf, und der Beschluss wird getrennt festgehalten: Empfehlung und Punktzahl sind noch keine Entscheidung.
+
+dahinter: Der gewichtete Vergleich nimmt niemandem die Entscheidung ab; er zeigt, welcher Weg zu den gesetzten Zielen passt und wie sehr das Ergebnis an den Gewichten hängt.
+
+regie:
+  notiz: Die Gewichte gemeinsam mit der Runde einstellen; danach mit „Abgestimmte Gewichte“ zurück, bevor gewählt wird.
+  leitfragen:
+    - Was ist Ihnen wichtiger – Schulstart oder Geld?

@@ -58,25 +58,25 @@ test('Theorie: Übersicht, jedes Thema am Bildschirm und im Druck', () => {
   assert.deepEqual(funde.slice(0, 40), [], `${funde.length} Funde`);
 });
 
-test('Story: jeder Schritt, jede Option', () => {
+test('Story: jeder Schritt auf beiden Wegen, jede Antwort mit ihrer Folge, Mini-Aufgaben ausgewertet, jede Bilanz', () => {
   const geschichte = inhalte.geschichte;
   assert.ok(geschichte);
   const funde: string[] = [];
   const themaVon = (id: string): string | null => themaTitel(inhalte, id);
   const zeichne = (stand: ReturnType<typeof neuerStand>, wo: string): void => {
     const el = document.createElement('div');
-    el.append(...leisteOben(geschichte, stand, true, () => undefined), baueSchritt({ g: geschichte, stand, bedienbar: true, themaTitel: themaVon, gegenprobe: null, tue: () => undefined, setzeGegenprobe: () => undefined }));
+    el.append(...leisteOben(geschichte, stand, true, () => undefined), baueSchritt({ g: geschichte, stand, bedienbar: true, themaTitel: themaVon, tue: () => undefined }));
     pruefe(funde, wo, el);
   };
-  let stand = neuerStand();
-  for (const s of geschichte.stationen) stand = waehle(geschichte, stand, s.id, s.vorlage.empfehlung.option);
-  for (const schritt of schritte(geschichte, false)) zeichne({ ...stand, schritt }, JSON.stringify(schritt));
-  // jede Option einmal in der Folge, dazu die Lage danach (Bedingungen)
-  for (const s of geschichte.stationen) {
-    for (const o of s.vorlage.optionen) {
-      const mit = waehle(geschichte, stand, s.id, o.id);
-      zeichne({ ...mit, schritt: { ort: 'station', station: s.id, teil: 'folge' } }, `${s.id} Option ${o.id}`);
-      for (const spaeter of geschichte.stationen.filter((x) => x.nr > s.nr)) zeichne({ ...mit, schritt: { ort: 'station', station: spaeter.id, teil: 'lage' } }, `${spaeter.id} nach ${s.id}=${o.id}`);
+  for (const wertung of ['gut', 'vertretbar', 'falle']) {
+    for (const kurz of [false, true]) {
+      let stand = neuerStand(kurz);
+      for (const k of geschichte.kapitel) stand = waehle(geschichte, stand, k.id, k.antworten.findIndex((a) => a.wertung === wertung));
+      // Mini-Aufgaben vollständig beantwortet (zuordnen: immer die erste Wahl; Reihenfolge: in der gezeigten Folge)
+      const mini: Record<string, number[]> = {};
+      for (const k of geschichte.kapitel) if (k.mini !== null) mini[k.id] = k.mini.art === 'zuordnen' ? k.mini.posten.map(() => 0) : k.mini.posten.map((_, i) => i).reverse();
+      stand = { ...stand, mini };
+      for (const schritt of schritte(geschichte, kurz)) zeichne({ ...stand, schritt }, `${wertung}${kurz ? ' kurz' : ''} ${JSON.stringify(schritt)}`);
     }
   }
   assert.deepEqual([...new Set(funde)].slice(0, 40), [], `${funde.length} Funde`);

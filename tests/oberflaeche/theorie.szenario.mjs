@@ -13,7 +13,33 @@ export const hash = '#theorie';
 export async function lauf(seite, h) {
   const pruefe = pruefer(seite, h);
   await h.erwarte('[data-pruef="themen-liste"]');
+  // P17.8 (O-54): Buch mit vier Teilen und Anhang, Nummern 1 … in Leserichtung, Fortschritt 0
+  await seite.evaluate(() => { try { localStorage.removeItem('gk.theorie'); } catch { /* ohne Speicher */ } });
+  await seite.reload();
+  await h.erwarte('[data-pruef="themen-liste"]');
+  const teile = await seite.locator('.buch-teil').evaluateAll((els) => els.map((e) => e.getAttribute('data-teil')));
+  if (teile.join(',') !== '1,2,3,4,anhang') h.befund(`uebersicht: Teile ${teile.join(',')}`);
+  const nummern = await seite.locator('.buch-zeile .buch-nr').allTextContents();
+  if (nummern.some((n, i) => n !== String(i + 1))) h.befund(`uebersicht: Nummern ${nummern.join(',')}`);
+  if (await seite.locator('.buch-zeile [data-haken]:visible').count() !== 0) h.befund('uebersicht: Häkchen ohne Fortschritt');
   await pruefe('uebersicht');
+  // Antwort auf jede Verständnisfrage eines Themas → Häkchen im Verzeichnis und in der Übersicht, Balken zählt 1
+  const mitFrage = await seite.locator('.buch-teil[data-teil="2"] .buch-zeile').first().getAttribute('href') ?? '';
+  await seite.goto(h.url.replace(/#.*$/u, '') + mitFrage);
+  await h.erwarte('[data-pruef="lernseite"]');
+  const thema = mitFrage.replace('#theorie/', '');
+  for (const wc of await seite.locator('.wissenscheck').all()) await wc.locator('.wc-antwort').first().click();
+  if (await seite.locator('.wissenscheck').count() === 0) h.befund(`${thema}: keine Verständnisfrage für die Fortschrittsprobe`);
+  // das Verzeichnis ist unter 1100 px zugeklappt: gezählt wird das gesetzte Häkchen, nicht seine Sichtbarkeit
+  if (await seite.locator(`.kapitel-verzeichnis [data-haken="${thema}"]`).evaluate((e) => e.hidden)) h.befund(`${thema}: kein Häkchen im Verzeichnis nach dem Beantworten`);
+  await seite.goto(h.url.replace(/#.*$/u, '') + '#theorie');
+  await h.erwarte('[data-pruef="themen-liste"]');
+  if (!(await seite.locator(`.buch-zeile [data-haken="${thema}"]`).isVisible())) h.befund('uebersicht: kein Häkchen nach dem Beantworten');
+  const zahl = await seite.locator('[data-balken="gesamt"] .fortschritt-zahl').textContent();
+  if (!/^1 von \d+ geschafft$/u.test(zahl ?? '')) h.befund(`uebersicht: Fortschritt „${zahl}“`);
+  await pruefe('uebersicht-fortschritt');
+  await seite.locator('[data-pruef="fortschritt-zuruecksetzen"]').click();
+  if (await seite.locator('.buch-zeile [data-haken]:visible').count() !== 0) h.befund('uebersicht: Häkchen nach dem Zurücksetzen');
   const themen = await seite.locator('[data-pruef^="thema-"]').evaluateAll((els) => els.map((e) => (e.getAttribute('href') ?? '').replace('#theorie/', '')));
   const auswahl = h.voll ? themen : themen.filter((t) => ['verantwortung', 'fuehrungsmodell', 'glossar', 'einfuehrung'].includes(t));
   for (const t of auswahl) {

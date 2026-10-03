@@ -8,7 +8,8 @@
  * Die Texte stehen in inhalte/werkzeuge.yaml; die Beispiele des Rechners sind die Vorlagen der Story.
  */
 
-import type { Option, Station } from '../../geschichte/typen.ts';
+import type { Vergleich, VergleichOption } from '../../geschichte/typen.ts';
+import { abgestimmteGewichte } from '../../geschichte/engine.ts';
 import { GEWICHT_MAX, GEWICHT_MIN, kipppunkte, rangfolge, type Gewichte } from '../../geschichte/mcda.ts';
 import { grundriss } from '../../grafik/bauplan.ts';
 import type { OeffentlicheInhalte, Werkzeuge } from '../../inhalte/typen.ts';
@@ -36,47 +37,36 @@ const E = W.werkzeuge;
 
 /* ---------------------------------------------------------------- MCDA -- */
 
-interface Rechner { station: string; gewichte: Gewichte; punkte: Record<string, Record<string, number>> }
+interface Rechner { gewichte: Gewichte; punkte: Record<string, Record<string, number>> }
 
-function beispiele(o: ExploreOptionen): Station[] {
-  return (o.inhalte.geschichte?.stationen ?? []).filter((s) => s.vorlage.art === 'optionen' && s.vorlage.unvollstaendigHtml === null);
+/** Beispiel des Rechners: der Vergleich aus der Story (drei Wege, vier Gesichtspunkte). */
+function beispiel(o: ExploreOptionen): Vergleich | null {
+  return o.inhalte.geschichte?.kapitel.find((k) => k.vergleich !== null)?.vergleich ?? null;
 }
 
-function startRechner(o: ExploreOptionen, st: Station): Rechner {
-  const g = o.inhalte.geschichte;
-  const s1 = g?.stationen.find((x) => x.vorlage.art === 'gewichte');
-  const vorschlag = s1?.vorlage.optionen.find((x) => x.id === s1.vorlage.empfehlung.option)?.gewichte ?? {};
-  const gewichte: Gewichte = {};
-  for (const k of g?.kriterien ?? []) gewichte[k.id] = vorschlag[k.id] ?? 3;
+function startRechner(v: Vergleich): Rechner {
   const punkte: Record<string, Record<string, number>> = {};
-  for (const opt of st.vorlage.optionen) {
-    punkte[opt.id] = {};
-    for (const k of g?.kriterien ?? []) (punkte[opt.id] ?? {})[k.id] = opt.punkte?.[k.id]?.[0] ?? 3;
-  }
-  return { station: st.id, gewichte, punkte };
+  for (const opt of v.optionen) punkte[opt.id] = { ...opt.punkte };
+  return { gewichte: abgestimmteGewichte(v), punkte };
 }
 
-/** Optionen mit den eingestellten Punkten (Begründung bleibt die der Vorlage). */
-function optionenMit(st: Station, r: Rechner): Option[] {
-  return st.vorlage.optionen.filter((x) => !x.klaerung).map((x) => ({
-    ...x,
-    punkte: Object.fromEntries(Object.entries(x.punkte ?? {}).map(([k, p]) => [k, [r.punkte[x.id]?.[k] ?? p[0], p[1]] as [number, string]])),
-  }));
+/** Optionen mit den eingestellten Punkten. */
+function optionenMit(v: Vergleich, r: Rechner): VergleichOption[] {
+  return v.optionen.map((x) => ({ ...x, punkte: { ...x.punkte, ...r.punkte[x.id] } }));
 }
 
 function mcda(o: ExploreOptionen, w: Werkzeuge): HTMLElement {
-  const g = o.inhalte.geschichte;
-  const liste = beispiele(o);
+  const v = beispiel(o);
   const ort = h('div', { class: 'ex-mcda-ort' });
-  if (g === null || liste.length === 0) return h('section', null, h('p', null, E.keinBeispiel));
-  let r = startRechner(o, liste[liste.length - 1] ?? liste[0] as Station);
+  if (v === null) return h('section', null, h('p', null, E.keinBeispiel));
+  const kriterien = v.kriterien;
+  let r = startRechner(v);
 
   const zeichne = (): void => {
-    const st = liste.find((x) => x.id === r.station) ?? liste[0] as Station;
-    const opts = optionenMit(st, r);
-    const plaetze = rangfolge(opts, g.kriterien, r.gewichte);
+    const opts = optionenMit(v, r);
+    const plaetze = rangfolge(opts, kriterien, r.gewichte);
     const max = Math.max(1, ...plaetze.map((p) => p.summe));
-    const kipp = kipppunkte(opts, g.kriterien, r.gewichte);
+    const kipp = kipppunkte(opts, kriterien, r.gewichte);
     const titel = (id: string): string => opts.find((x) => x.id === id)?.titel ?? id;
     const auswahl = (wert: number, beimAendern: (n: number) => void, name: string, pruef: string): HTMLElement => o.bedienbar
       ? h('select', { class: 'ex-punkt-wahl', 'aria-label': name, 'data-pruef': pruef, onchange: (e: Event) => beimAendern(Number((e.target as HTMLSelectElement).value)) },
@@ -86,17 +76,16 @@ function mcda(o: ExploreOptionen, w: Werkzeuge): HTMLElement {
     const aktiv = typeof document !== 'undefined' ? document.activeElement : null;
     const fokus = aktiv instanceof HTMLElement && ort.contains(aktiv) ? aktiv.dataset['pruef'] ?? null : null;
     ersetze(ort,
-      h('p', { class: 'ex-frage' }, h('b', null, st.vorlage.frage), ' ', h('small', null, `${st.datum} · ${st.kurztitel}`)),
       h('div', { class: 'ex-tabelle-rahmen', tabindex: 0, role: 'region', 'aria-label': E.mcdaTabelle },
         h('table', { class: 'gs-tabelle ex-tabelle', 'data-pruef': 'ex-mcda-tabelle' },
           h('thead', null, h('tr', null, h('th', { scope: 'col' }, W.geschichte.kriterium), h('th', { scope: 'col' }, W.geschichte.gewicht),
             opts.map((x) => h('th', { scope: 'col' }, `${x.id} · ${x.titel}`)))),
-          h('tbody', null, g.kriterien.map((k) => h('tr', null,
+          h('tbody', null, kriterien.map((k) => h('tr', null,
             h('th', { scope: 'row' }, k.titel),
             h('td', null, auswahl(r.gewichte[k.id] ?? 3, (n) => { r = { ...r, gewichte: { ...r.gewichte, [k.id]: n } }; zeichne(); }, `${W.geschichte.gewicht} ${k.titel}`, `ex-gewicht-${k.id}`)),
             opts.map((x) => h('td', null,
               auswahl(r.punkte[x.id]?.[k.id] ?? 3, (n) => { r = { ...r, punkte: { ...r.punkte, [x.id]: { ...r.punkte[x.id], [k.id]: n } } }; zeichne(); }, `${x.titel}: ${k.titel}`, `ex-punkt-${x.id}-${k.id}`),
-              h('small', null, x.punkte?.[k.id]?.[1] ?? '')))))),
+              h('small', null, x.worte[k.id] ?? '')))))),
           h('tfoot', null, h('tr', null, h('th', { scope: 'row', colspan: 2 }, W.geschichte.summe),
             opts.map((x) => {
               const p = plaetze.find((y) => y.option.id === x.id);
@@ -107,23 +96,18 @@ function mcda(o: ExploreOptionen, w: Werkzeuge): HTMLElement {
       h('div', { class: 'gs-kipp', 'aria-live': 'polite' },
         h('h3', null, W.geschichte.kipppunkte),
         kipp.length === 0 ? h('p', null, W.geschichte.keinKipppunkt)
-          : h('ul', null, kipp.map((x) => h('li', null, W.geschichte.kipppunkt(g.kriterien.find((c) => c.id === x.kriterium)?.titel ?? x.kriterium, x.gewicht, x.spitze.map(titel)))))));
+          : h('ul', null, kipp.map((x) => h('li', null, W.geschichte.kipppunkt(kriterien.find((c) => c.id === x.kriterium)?.titel ?? x.kriterium, x.gewicht, x.spitze.map(titel)))))));
     if (fokus !== null) (ort.querySelector(`[data-pruef="${fokus}"]`) as HTMLElement | null)?.focus({ preventScroll: true });
   };
 
-  const wahl = o.bedienbar ? h('label', { class: 'ex-beispiel' }, h('span', { class: 't-label' }, E.beispiel),
-    h('select', { 'data-pruef': 'ex-beispiel', onchange: (e: Event) => {
-      const st = liste.find((x) => x.id === (e.target as HTMLSelectElement).value);
-      if (st !== undefined) { r = startRechner(o, st); zeichne(); }
-    } }, liste.map((st) => h('option', { value: st.id, selected: st.id === r.station }, `${st.kurztitel} – ${st.vorlage.frage}`)))) : null;
   const zuruecksetzen = o.bedienbar ? h('button', { type: 'button', class: 'gs-leiser-knopf', 'data-pruef': 'ex-zuruecksetzen', onclick: () => {
-    const st = liste.find((x) => x.id === r.station);
-    if (st !== undefined) { r = startRechner(o, st); zeichne(); }
+    r = startRechner(v);
+    zeichne();
   } }, E.zuruecksetzen) : null;
   zeichne();
   return h('div', { class: 'ex-werkzeug', 'data-werkzeug': 'mcda' },
     h('div', { class: 'gs-text' }, inhalt(w.mcda.html)),
-    h('div', { class: 'ex-leiste' }, wahl, zuruecksetzen),
+    h('div', { class: 'ex-leiste' }, zuruecksetzen),
     ort,
     h('div', { class: 'ex-hinweis' }, sym('info'), h('div', null, inhalt(w.mcda.hinweisHtml))),
     h('p', { class: 'gs-leise' }, E.punkteHinweis(GEWICHT_MIN, GEWICHT_MAX)));

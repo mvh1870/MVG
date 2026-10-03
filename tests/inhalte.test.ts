@@ -66,6 +66,9 @@ kapitel: 2
 titel: Ausgangslage
 kurztitel: Lage
 thema: ausgangslage
+teil: 1
+kurzsatz: Warum Berichte allein nicht führen.
+symbol: frage
 deckt: [k2-p1]
 ---
 Zwei [[Mandat|Mandate]] und <b>fett?</b>
@@ -143,6 +146,10 @@ test('Beispiel → erwartetes JSON (Auszüge exakt), fehlerfrei, deterministisch
   assert.equal(k02.thema, 'ausgangslage');
   assert.equal(k02.reihe, 2);
   assert.equal(k02.kurztitel, 'Lage');
+  assert.equal(k02.nr, 1);
+  assert.equal(k02.teil, 1);
+  assert.equal(k02.kurzsatz, 'Warum Berichte allein nicht führen.');
+  assert.equal(k02.symbol, 'frage');
   assert.equal(k02.quelle, K02);
   assert.equal(k02.einleitung, '<p>Zwei <span class="mvg-glossar" data-glossar="g-mandat" data-begriff="Mandat">Mandate</span> und &lt;b&gt;fett?&lt;/b&gt;</p>');
   assert.deepEqual(k02.bloecke.map((b) => b.art), ['kernaussage', 'abschnitt', 'ebenen']);
@@ -365,13 +372,13 @@ test('Echte Inhalte: fehlerfrei; Mutanten-Probe am Zitat k2.4-p2 im Thema Ausgan
   const w = mkdtempSync(path.join(TMP, 'test-inhalte-echt-'));
   ORDNER.push(w);
   cpSync(path.join(WURZEL, 'inhalte'), path.join(w, 'inhalte'), { recursive: true });
-  const k02 = path.join(w, 'inhalte', 'theorie', 'k02-ausgangslage.md');
+  const k02 = path.join(w, 'inhalte', 'theorie', 'k16-takt.md'); // P17.11: das Zitat k2.4-p2 steht nur noch in k16
   const text = readFileSync(k02, 'utf8');
   const stelle = 'Ein Ampelbericht ohne Entscheidungsfrage bleibt Beobachtung.\n:::';
   assert.equal(text.split(stelle).length, 2, 'die Stelle steht genau einmal im Thema');
   writeFileSync(k02, text.replace(stelle, stelle.replace('bleibt Beobachtung.', 'bleibt reine Beobachtung.')), 'utf8');
   const { fehler } = await kompiliere({ pruefe: true, wurzel: w, whitepaperPfad: ECHT_WP, ziel: null });
-  assert.ok(fehler.some((f) => /^inhalte\/theorie\/k02-ausgangslage\.md:\d+: Zitat nicht wortgleich mit k2\.4-p2/u.test(f)), fehler.join('\n'));
+  assert.ok(fehler.some((f) => /^inhalte\/theorie\/k16-takt\.md:\d+: Zitat nicht wortgleich mit k2\.4-p2/u.test(f)), fehler.join('\n'));
   writeFileSync(k02, text, 'utf8');
   // R48: eine Bildüberdeckung, deren Text nicht wortgleich im Beleg steht, fällt auf (INHALTSFORMAT 4.6)
   const abb10 = path.join(w, 'inhalte', 'abbildungen', 'abb-10.yaml');
@@ -423,6 +430,29 @@ test('Regie auf Themen (P9.5): ohne kapitel und doppelt sind Fehler', async () =
   assert.ok(ohne.fehler.some((f) => /Regie-Block ohne „kapitel:“ im Dateikopf/u.test(f)), ohne.fehler.join('\n'));
   const tief = await kompiliere({ pruefe: true, wurzel: neueWurzel(veraendere(BEISPIEL, K02, '::: merksatz\n', '::: regie\n### Notiz\nX.\n:::\n\n::: merksatz\n')), ziel: null });
   assert.ok(tief.fehler.some((f) => /„regie“ ist hier nicht erlaubt/u.test(f)), tief.fehler.join('\n'));
+});
+
+test('Themen als Buch (P17.8, O-54): teil, kurzsatz und symbol Pflicht und geprüft; Nummern und Teile in Leserichtung', async () => {
+  const k03 = (kopf: string): string => `---\nkapitel: 3\ntitel: Begriffe\nthema: begriffe\nreihe: 3\n${kopf}---\nText.\n`;
+  const gut = 'teil: 2\nkurzsatz: Ein kurzer Satz.\nsymbol: buch\n';
+  // Gegenprobe: gültig → fehlerfrei, Nummern nach reihe (k02 = 1, k03 = 2)
+  const ok = await kompiliere({ pruefe: true, wurzel: neueWurzel({ ...BEISPIEL, 'inhalte/theorie/k03-begriffe.md': k03(gut) }), ziel: null });
+  assert.deepEqual(ok.fehler, []);
+  const th = (ok.inhalte as Inhalte).theorie;
+  assert.deepEqual([th['k02']?.nr, th['k03']?.nr, th['k03']?.teil], [1, 2, 2]);
+  const fehler = async (kopf: string): Promise<string[]> => (await kompiliere({ pruefe: true, wurzel: neueWurzel({ ...BEISPIEL, 'inhalte/theorie/k03-begriffe.md': k03(kopf) }), ziel: null })).fehler;
+  const ohne = await fehler('');
+  for (const k of ['teil', 'kurzsatz', 'symbol']) assert.ok(ohne.some((f) => f.includes(`Pflichtangabe „${k}“ fehlt`)), `${k}: ${ohne.join('\n')}`);
+  assert.ok((await fehler('teil: 5\nkurzsatz: Satz.\nsymbol: buch\n')).some((f) => /„teil“: „5“ ist nicht erlaubt/u.test(f)));
+  assert.ok((await fehler(`teil: 2\nkurzsatz: ${'x'.repeat(91)}\nsymbol: buch\n`)).some((f) => /kurzsatz hat 91 Zeichen \(höchstens 90\)/u.test(f)));
+  assert.equal((await fehler(`teil: 2\nkurzsatz: ${'x'.repeat(90)}\nsymbol: buch\n`)).length, 0, '90 Zeichen gehen');
+  assert.ok((await fehler('teil: 2\nkurzsatz: Satz.\nsymbol: gibtsnicht\n')).some((f) => /symbol „gibtsnicht“ gibt es nicht/u.test(f)));
+  // Leserichtung: ein früherer Teil hinter einem späteren, der Anhang vor einem Teil
+  const zurueck = veraendere(BEISPIEL, K02, 'teil: 1\n', 'teil: 3\n');
+  const rueck = (await kompiliere({ pruefe: true, wurzel: neueWurzel({ ...zurueck, 'inhalte/theorie/k03-begriffe.md': k03(gut) }), ziel: null })).fehler;
+  assert.ok(rueck.some((f) => /k03-begriffe\.md: teil 2 steht in der Reihenfolge hinter einem späteren Teil/u.test(f)), rueck.join('\n'));
+  const anhang = veraendere(BEISPIEL, K02, 'teil: 1\n', 'teil: anhang\n');
+  assert.ok((await kompiliere({ pruefe: true, wurzel: neueWurzel({ ...anhang, 'inhalte/theorie/k03-begriffe.md': k03(gut) }), ziel: null })).fehler.some((f) => /teil 2 steht in der Reihenfolge/u.test(f)));
 });
 
 test('Wissenscheck (P11.6): mindestens zwei Antworten und ein wortgleicher Beleg', async () => {
@@ -497,4 +527,24 @@ test('Eigentext (R49): „EW“ und „Mio. EUR“ nur im wortgleichen Zitat; Sc
   }
   assert.deepEqual(funde, []);
   assert.ok(schwellen >= 3, `nur ${schwellen} Schwellen gefunden`); // P17: fall.md trägt keine Schwellen mehr, die Themen schon
+});
+
+test('Aufklapper und Symbol der Kernaussage (P17.9, O-55): Titel in der Öffnungszeile, Symbole geprüft', async () => {
+  const kern = (kopf: string): Record<string, string> => veraendere(BEISPIEL, K02, '::: kernaussage\n', `::: kernaussage\n---\n${kopf}---\n`);
+  const auf = '::: aufklapper Wer entscheidet am Ende?\n---\nsymbol: person\n---\nDas [[Mandat]] entscheidet.\n:::\n';
+  const ok = await kompiliere({ pruefe: true, wurzel: neueWurzel(mitBloecken(auf, kern('symbol: schild\n'))), ziel: null });
+  assert.deepEqual(ok.fehler, []);
+  const bl = (ok.inhalte as Inhalte).theorie['k02']?.bloecke ?? [];
+  assert.equal(bl.find((b) => b.art === 'kernaussage')?.kopf['symbol'], 'schild');
+  const a = bl.find((b) => b.art === 'aufklapper');
+  assert.deepEqual([a?.kopf['titel'], a?.kopf['symbol'], a?.id, a?.kennungen], ['Wer entscheidet am Ende?', 'person', null, []]);
+  assert.match(a?.felder['text'] ?? '', /data-glossar="g-mandat"/u, 'Inhalt mit den üblichen Inline-Bausteinen');
+  // ohne Symbol gültig (die Seite nimmt dann ein passendes bzw. das Symbol des Themas)
+  assert.deepEqual((await kompiliere({ pruefe: true, wurzel: neueWurzel(mitBloecken('::: aufklapper Kurz\nText.\n:::\n')), ziel: null })).fehler, []);
+  const fehler = async (d: Record<string, string>): Promise<string[]> => (await kompiliere({ pruefe: true, wurzel: neueWurzel(d), ziel: null })).fehler;
+  assert.ok((await fehler(kern('symbol: gibtsnicht\n'))).some((f) => /symbol „gibtsnicht“ gibt es nicht/u.test(f)));
+  assert.ok((await fehler(mitBloecken('::: aufklapper\nText.\n:::\n'))).some((f) => /„aufklapper“ braucht einen Titel in der Öffnungszeile/u.test(f)));
+  assert.ok((await fehler(mitBloecken('::: aufklapper Leer\n:::\n'))).some((f) => /„aufklapper Leer“: Feld „text“ fehlt oder ist leer/u.test(f)));
+  assert.ok((await fehler(mitBloecken('::: aufklapper Der [[Mandat]]\nText.\n:::\n'))).some((f) => /der Titel ist schlichter Text/u.test(f)));
+  assert.ok((await fehler(mitBloecken('::: aufklapper Probe\n---\nsymbol: nix\n---\nText.\n:::\n'))).some((f) => /symbol „nix“ gibt es nicht/u.test(f)));
 });

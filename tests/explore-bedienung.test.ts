@@ -27,27 +27,28 @@ const summeIm = (el: HTMLElement, id: string): number => {
   return Number(td.textContent);
 };
 
+/** Der Vergleich aus der Story – das Beispiel des Rechners. */
+function vergleich() {
+  const v = inhalte.geschichte?.kapitel.find((k) => k.vergleich !== null)?.vergleich;
+  assert.ok(v, 'Vergleich in der Story');
+  return v;
+}
+const abgestimmt = (v: ReturnType<typeof vergleich>): Record<string, number> => Object.fromEntries(v.kriterien.map((k) => [k.id, k.gewicht]));
+
 test('MCDA-Rechner: Punkte ändern rechnet um, „Zurücksetzen“ stellt die Ausgangssumme wieder her', () => {
-  const g = inhalte.geschichte;
-  assert.ok(g);
+  const v = vergleich();
   const el = baueExplore({ inhalte, werkzeug: 'mcda', bedienbar: true });
   document.body.replaceChildren(el);
-  // Beispiel des Rechners: die zuletzt angebotene Vorlage
-  const wahl = el.querySelector<HTMLSelectElement>('[data-pruef="ex-beispiel"]');
-  assert.ok(wahl);
-  const st = g.stationen.find((x) => x.id === wahl.value);
-  assert.ok(st);
-  const opt = st.vorlage.optionen.find((o) => !o.klaerung);
-  assert.ok(opt);
-  const k = g.kriterien[0];
-  assert.ok(k);
-  // Ausgangssumme wie der Vergleich mit den vorgeschlagenen Gewichten (Station 1)
-  const s1 = g.stationen.find((x) => x.vorlage.art === 'gewichte');
-  const gew = s1?.vorlage.optionen.find((o) => o.id === s1.vorlage.empfehlung.option)?.gewichte ?? {};
-  const vorher = rangfolge(st.vorlage.optionen, g.kriterien, gew).find((p) => p.option.id === opt.id)?.summe;
+  const opt = v.optionen[0];
+  const k = v.kriterien[0];
+  assert.ok(opt && k);
+  // Ausgangssumme wie der Vergleich der Story mit den abgestimmten Gewichten (A 49)
+  const gew = abgestimmt(v);
+  const vorher = rangfolge(v.optionen, v.kriterien, gew).find((p) => p.option.id === opt.id)?.summe;
+  assert.equal(vorher, 49);
   assert.equal(summeIm(el, opt.id), vorher);
 
-  const punkt = opt.punkte?.[k.id]?.[0] ?? 3;
+  const punkt = opt.punkte[k.id] ?? 3;
   const neu = punkt === 5 ? 1 : 5;
   const auswahl = el.querySelector<HTMLSelectElement>(`select[aria-label="${opt.titel}: ${k.titel}"]`);
   assert.ok(auswahl, 'Punkte-Auswahl');
@@ -94,11 +95,10 @@ test('Risikomatrix (R67): die Legende nennt bei der höchsten Stufe die Ausnahme
 });
 
 test('MCDA-Rechner (R68): der Fokus bleibt nach einer Änderung auf derselben Auswahl (Gewicht und Punkte)', () => {
-  const g = inhalte.geschichte;
-  assert.ok(g);
+  const v = vergleich();
   const el = baueExplore({ inhalte, werkzeug: 'mcda', bedienbar: true });
   document.body.replaceChildren(el);
-  const k = g.kriterien[1];
+  const k = v.kriterien[1];
   assert.ok(k);
   const gewicht = `${W.geschichte.gewicht} ${k.titel}`;
   const ersteOption = el.querySelector<HTMLSelectElement>('select.ex-punkt-wahl:not([aria-label^="Gewicht"])');
@@ -122,45 +122,23 @@ test('MCDA-Rechner (R68): der Fokus bleibt nach einer Änderung auf derselben Au
   }
 });
 
-test('MCDA-Rechner (R68): Beispiele sind genau die vollständigen Vorlagen mit Optionen – die unvollständige fehlt', () => {
-  const g = inhalte.geschichte;
-  assert.ok(g);
+test('MCDA-Rechner: Beispiel ist der Vergleich der Story – ohne Auswahl anderer Vorlagen', () => {
+  const v = vergleich();
   const el = baueExplore({ inhalte, werkzeug: 'mcda', bedienbar: true });
-  const ids = [...el.querySelectorAll<HTMLOptionElement>('[data-pruef="ex-beispiel"] option')].map((o) => o.value);
-  const unvollstaendig = g.stationen.filter((s) => s.vorlage.unvollstaendigHtml !== null).map((s) => s.id);
-  assert.ok(unvollstaendig.length > 0, 'es gibt eine unvollständige Vorlage');
-  for (const id of unvollstaendig) assert.ok(!ids.includes(id), `${id} ist kein Beispiel`);
-  assert.deepEqual(ids, g.stationen.filter((s) => s.vorlage.art === 'optionen' && s.vorlage.unvollstaendigHtml === null).map((s) => s.id));
+  assert.equal(el.querySelector('[data-pruef="ex-beispiel"]'), null);
+  assert.deepEqual([...el.querySelectorAll('thead th')].slice(2).map((th) => th.textContent), v.optionen.map((o) => `${o.id} · ${o.titel}`));
 });
 
 test('MCDA-Rechner (R69): ein Kipppunkt mit Gleichstand nennt alle an der Spitze („Gleichstand – … und …“)', () => {
-  const g = inhalte.geschichte;
-  assert.ok(g);
+  const v = vergleich();
   const el = baueExplore({ inhalte, werkzeug: 'mcda', bedienbar: true });
   document.body.replaceChildren(el);
-  const wahl = el.querySelector<HTMLSelectElement>('[data-pruef="ex-beispiel"]');
-  assert.ok(wahl);
-  const gewichte = (): Record<string, number> => Object.fromEntries(g.kriterien.map((k) => {
-    const s = el.querySelector<HTMLSelectElement>(`[data-pruef="ex-gewicht-${k.id}"]`);
-    assert.ok(s, k.id);
-    return [k.id, Number(s.value)];
-  }));
-  // das erste Beispiel, dessen Ausgangslage einen Kipppunkt mit Gleichstand hat
-  let fund: { titel: string[]; kriterium: string; gewicht: number } | null = null;
-  for (const id of [...wahl.options].map((o) => o.value)) {
-    wahl.value = id;
-    wahl.dispatchEvent(new Event('change', { bubbles: true }));
-    const st = g.stationen.find((x) => x.id === id);
-    assert.ok(st);
-    const opts = st.vorlage.optionen.filter((o) => !o.klaerung);
-    const k = kipppunkte(opts, g.kriterien, gewichte()).find((x) => x.spitze.length > 1);
-    if (k === undefined) continue;
-    fund = { titel: k.spitze.map((x) => opts.find((o) => o.id === x)?.titel ?? x), kriterium: g.kriterien.find((c) => c.id === k.kriterium)?.titel ?? k.kriterium, gewicht: k.gewicht };
-    break;
-  }
-  assert.ok(fund, 'ein Beispiel mit Gleichstand an einem Kipppunkt');
+  // abgestimmt: Klima und Betrieb auf 3 → Ersatzgerät und Später einziehen gleichauf
+  const k = kipppunkte(v.optionen, v.kriterien, abgestimmt(v)).find((x) => x.spitze.length > 1);
+  assert.ok(k, 'ein Kipppunkt mit Gleichstand');
+  const titel = k.spitze.map((x) => v.optionen.find((o) => o.id === x)?.titel ?? x);
+  const soll = `${v.kriterien.find((c) => c.id === k.kriterium)?.titel ?? ''} auf ${k.gewicht}: Gleichstand – ${titel.join(' und ')}`;
+  assert.equal(soll, 'Klima und Betrieb auf 3: Gleichstand – Ersatzgerät und Später einziehen');
   const zeilen = [...el.querySelectorAll('.gs-kipp li')].map((li) => li.textContent ?? '');
-  const soll = `${fund.kriterium} auf ${fund.gewicht}: Gleichstand – ${fund.titel.join(' und ')}`;
-  assert.ok(fund.titel.length >= 2);
   assert.ok(zeilen.includes(soll), `„${soll}“ fehlt in ${JSON.stringify(zeilen)}`);
 });

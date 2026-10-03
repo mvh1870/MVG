@@ -7,15 +7,13 @@
 import type { OeffentlicheInhalte } from '../inhalte/typen.ts';
 import type { Kanal } from './kanal.ts';
 import { pruefeBuehne, type Buehne } from './buehne.ts';
-import { h, ersetze, vonHtml } from '../ui/h.ts';
+import { h, ersetze } from '../ui/h.ts';
 import { bildmarke } from '../ui/marke.ts';
 import { baueStart } from '../ui/flaechen/start.ts';
 import { baueTheorie, themaTitel, themen, zeigeAktuellenEintrag } from '../ui/flaechen/theorie.ts';
 import { baueExplore, WERKZEUGE } from '../ui/flaechen/explore.ts';
-import { baueSchritt, leisteOben, lphAm } from '../ui/flaechen/geschichte.ts';
+import { baueSchritt, leisteOben } from '../ui/flaechen/geschichte.ts';
 import { seitenRahmen } from '../ui/bausteine/seite.ts';
-import { campus, stufeAusLph } from '../grafik/bauplan.ts';
-import { wegStationen } from '../geschichte/engine.ts';
 import { W } from '../ui/woerter.ts';
 
 export interface Anzeige {
@@ -35,10 +33,9 @@ export function storyAnzeige(inhalte: OeffentlicheInhalte, b: Buehne): HTMLEleme
     bereich: 'story',
     klasse: 'seite-story',
     bedienbar: false,
-    hintergrund: h('div', { class: 'gs-hintergrund', 'aria-hidden': 'true' }, vonHtml(campus(stufeAusLph(lphAm(g, stand.schritt)), 'bauplan bauplan-story'))),
     inhalt: [
-      h('div', { class: 'gs-leiste' }, leisteOben(g, stand, false, () => undefined)),
-      h('div', { class: 'gs-buehne' }, baueSchritt({ g, stand, bedienbar: false, themaTitel: (id) => themaTitel(inhalte, id), gegenprobe: null, tue: () => undefined, setzeGegenprobe: () => undefined })),
+      h('div', { class: 'gs-leiste' }, ...leisteOben(g, stand, false, () => undefined)),
+      h('div', { class: 'gs-buehne' }, baueSchritt({ g, stand, bedienbar: false, themaTitel: (id) => themaTitel(inhalte, id), tue: () => undefined })),
     ],
   });
 }
@@ -81,7 +78,7 @@ export function erzeugeAnzeige(inhalte: OeffentlicheInhalte, version: string, ei
         seite = baueStart({
           startseite: inhalte.startseite,
           themenAnzahl: themen(inhalte).length,
-          stationenAnzahl: inhalte.geschichte !== null ? wegStationen(inhalte.geschichte, false).length : 0,
+          stationenAnzahl: inhalte.geschichte?.kapitel.length ?? 0,
           werkzeugAnzahl: WERKZEUGE.length,
           weiterlesen: false,
           bedienbar: false,

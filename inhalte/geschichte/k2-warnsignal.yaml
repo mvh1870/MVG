@@ -1,0 +1,72 @@
+# 2 · Ein erstes Warnsignal (Drehbuch Abschnitt 4, Kapitel 2)
+# Mini-Aufgabe: v24:hb-1 (Tabelle der Sachverhalte), v24:hb-1.1 bis v24:hb-1.6
+nr: 2
+titel: Ein erstes Warnsignal
+zeit: März 2026
+campus: { stufe: 0, jahreszeit: fruehling, licht: tag }
+bruecke: Im März erwähnt der Architekt beiläufig, dass Holzelemente knapp werden könnten, und die Projektsteuerin hält den Hinweis als Frühwarnung mit Prüffrage, Namen und Termin fest.
+thema: arbeitsweise
+belege: [v24:hb-1, v24:hb-1.1, v24:hb-1.2, v24:hb-1.3, v24:hb-1.4, v24:hb-1.5, v24:hb-1.6, v24:hb-2, v24:hb-4, v24:tlb-2, v24:tlb-3]
+bild-szene: holzstapel
+bild-frage: notizzettel
+
+einstieg: |
+  März 2026. Der Schnee ist weg, der Bauzaun steht, und an der Baustraße blühen die ersten Krokusse. Im Büro des Architekten wird jetzt die Ausführung geplant – Wand für Wand, Holzbauteil für Holzbauteil. Clara Faden geht jede Woche alle offenen Vorgänge durch: Aufgaben, Termine, Fragen ohne Antwort. Heute sitzt sie mit dem Architekten und dem Bauleiter im Container, um die nächsten Wochen abzustimmen.
+
+szene:
+  - { figur: schwung, text: "Übrigens, nur am Rande: Ein Holzbauer hat erzählt, dass die Lieferzeiten für Holzelemente gerade länger werden." }
+  - { figur: faden, text: "Wie viel länger? Und bei welchen Herstellern?" }
+  - { figur: schwung, text: "Weiß ich nicht genau. Das war nur ein Gespräch auf einer Messe. Das pendelt sich ein, glauben Sie mir." }
+  - { figur: lot, text: "Holz kommt, wenn es kommt. Ich hab noch keinen Bau erlebt, wo's nicht irgendwann kam." }
+  - { figur: lot, text: "Und überhaupt: Ich bau, ich schreib nicht. Listen sind Ihr Job." }
+  - { figur: faden, text: "Kann sein. Aber wenn nicht, sollten wir es früh wissen." }
+
+frage: Noch ist nichts passiert, und niemand weiß, ob überhaupt etwas passieren wird. Alle schauen Sie an. Was sagen Sie?
+
+antworten:
+  - wertung: gut
+    text: "Halten wir das als Frühwarnung fest: woher der Hinweis kommt, was zu prüfen ist und wer bis wann bei den Herstellern nachfragt."
+    balken: { geld: 0, zeit: 1, vertrauen: 1 }
+    bild: kalender
+    folge: |
+      Clara Faden schreibt drei Zeilen: Hinweis des Architekten aus einem Gespräch auf einer Messe. Prüffrage: Wie lang sind die Lieferzeiten bei den Herstellern, die für uns infrage kommen? Konrad Schwung fragt bis Ende des Monats nach. Mehr braucht es noch nicht – in zwei Wochen gibt es eine Antwort. Theo Lot zuckt mit den Schultern: „Papierkram.“ Clara Faden lächelt nur.
+  - wertung: falle
+    text: Das hat Zeit bis zum Monatstermin. Bis dahin weiß der Architekt sicher Genaueres.
+    balken: { geld: 0, zeit: -1, vertrauen: -1 }
+    bild: stoppuhr
+    folge: |
+      Clara Faden hält den Hinweis trotzdem vollständig fest: Prüffrage, der Architekt fragt nach, bis Ende des Monats. Aber Konrad Schwung hat Ihren Satz gehört – es hat ja Zeit bis zum Monatstermin. Bei ihrer Wochendurchsicht meldet Clara Faden die Prüffrage als überfällig, und erst drei Wochen später als nötig fragt er bei den Herstellern nach.
+  - wertung: vertretbar
+    text: Tragen wir es gleich als Risiko ein – lieber zu früh als zu spät.
+    balken: { geld: 0, zeit: 1, vertrauen: 0 }
+    bild: lupe
+    folge: |
+      Clara Faden trägt ein Risiko ein – aber ohne Zahl: „Eine Zahl ohne Grundlage schreibe ich nicht hin.“ Daneben steht: Bewertung vorläufig, Antwort der Hersteller abwarten. Weil der Eintrag schon als Risiko im Bericht steht, fragt die Kämmerei nach, bevor jemand weiß, ob da überhaupt etwas ist. Immerhin fragt der Architekt bis Ende des Monats bei den Herstellern nach.
+
+gut: |
+  Ein unklarer Hinweis wird gleich festgehalten, spätestens bei der nächsten Wochendurchsicht – mit seiner Herkunft, einer klaren Prüffrage, einem Namen und einem Termin. Bewertet wird erst, wenn die Antwort da ist; bis dahin bleibt er offen und wird jede Woche angeschaut.
+
+mini:
+  art: zuordnen
+  titel: Was ist was?
+  aufgabe: "Auf einer Baustelle passiert vieles gleichzeitig. Ordnen Sie jedem Satz zu, was er ist: Frühwarnung, Risiko, Problem, Änderung, Maßnahme oder Aufgabe."
+  wahlen:
+    - { id: fruehwarnung, titel: Frühwarnung }
+    - { id: risiko, titel: Risiko }
+    - { id: problem, titel: Problem }
+    - { id: aenderung, titel: Änderung }
+    - { id: massnahme, titel: Maßnahme }
+    - { id: aufgabe, titel: Aufgabe }
+  posten:
+    - { text: "Ein Hersteller erwähnt am Telefon, dass Holz knapp werden könnte.", loesung: fruehwarnung, erklaerung: "Ein Hinweis, der noch nicht geklärt ist. Erst einmal wird geprüft, was dran ist." }
+    - { text: "Drei Hersteller bestätigen ein halbes Jahr Lieferzeit. Ob der Holzbau deshalb später beginnt, ist noch offen.", loesung: risiko, erklaerung: "Etwas Nachteiliges kann eintreten, ist aber noch nicht passiert. Das wird bewertet." }
+    - { text: "Nach dem Starkregen steht die Baugrube unter Wasser.", loesung: problem, erklaerung: "Das ist schon passiert. Jetzt geht es um die Folgen und die Lösung, nicht mehr um die Wahrscheinlichkeit." }
+    - { text: "Die Schule wünscht sich eine größere Mensa.", loesung: aenderung, erklaerung: "Etwas, das bisher gilt, soll bewusst anders werden. Das braucht eine Entscheidung." }
+    - { text: "Eine Pumpe wird aufgestellt, damit die Baugrube wieder trocken wird.", loesung: massnahme, erklaerung: "Eine gezielte Handlung, die einen Zustand verbessert. Ob sie wirkt, wird nachgeprüft." }
+    - { text: "Der Architekt schätzt bis Freitag die Kosten für den Fahrradkeller.", loesung: aufgabe, erklaerung: "Eine geplante Arbeit mit Ergebnis, Namen und Termin." }
+
+dahinter: Nicht jeder Hinweis wird zum Risiko – aber jeder wird geklärt, bis feststeht, ob daraus ein Risiko, ein Problem oder eine Aufgabe wird oder ob er begründet geschlossen werden kann.
+
+regie:
+  leitfragen:
+    - Wo landen bei Ihnen Hinweise, die „nur am Rande“ fallen?

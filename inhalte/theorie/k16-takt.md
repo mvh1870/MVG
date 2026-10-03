@@ -1,5 +1,5 @@
 ---
-# Thema „Takt und Bericht“ (P16.4, O-36, O-38): neues Thema nach docs/V24-ABGLEICH.md Abschnitt 9, Thema C.
+# Thema „Takt und Bericht“ (P16.4, O-36, O-38; P17.11, O-55): neues Thema nach docs/V24-ABGLEICH.md Abschnitt 9, Thema C.
 # Inhalt aus dem Standard „Aufgaben- und Risikomanagement V2.4“ (Handbuch, Ausschreibung), in eigenen Sätzen (O-37).
 # Beispiele aus dem fiktiven Schulcampus Lindenhall-Süd (O-50): inhalte/geschichte/rahmen.yaml (Takt), s5-datenstand.yaml
 # (Monatsbericht Mai 2026), s8-lueftung.yaml (Gerüstmeldung, Bericht Januar 2028).
@@ -15,18 +15,24 @@ thema: takt
 reihe: 15
 titel: Takt und Monatsbericht
 kurztitel: Takt und Bericht
+teil: 4
+kurzsatz: Was sofort gemeldet wird und was der Bauherr jeden Monat bekommt.
+symbol: bericht
 ---
-Ein gutes Register nützt nur, wenn es regelmäßig angesehen wird – und wenn Dringendes nicht darauf wartet. Dieses Thema zeigt den Takt, in dem die Projektsteuerung die offenen Vorgänge prüft, was sofort gemeldet wird und was der Bauherr jeden Monat bekommt: in aktiven Zeiten einen Termin von höchstens 60 Minuten und immer einen Bericht von höchstens einer Seite.
+Ein Register nützt nur, wenn es regelmäßig angesehen wird – und wenn Dringendes nicht darauf wartet.
 
 ::: kernaussage
-Dringliches meldet die Projektsteuerung sofort. In aktiven Zeiten prüft sie jede Woche alle offenen Vorgänge, und einmal im Monat gibt es einen [[Monatstermin|Online-Termin]] von höchstens 60 Minuten. Den Bericht von höchstens einer Seite gibt es jeden Monat. Die regelmäßige Prüfung ersetzt nie die dringliche Meldung.
+---
+symbol: blitz
+---
+Dringliches meldet die Projektsteuerung sofort. In aktiven Zeiten prüft sie jede Woche alle offenen Vorgänge, einmal im Monat gibt es einen [[Monatstermin|Online-Termin]] von höchstens 60 Minuten. Der Bericht von höchstens einer Seite kommt jeden Monat. Die regelmäßige Prüfung ersetzt nie die dringliche Meldung.
 :::
 
 ::: abschnitt k16.1
 ---
 titel: Der Takt im Überblick
 ---
-Es gibt vier Taktungen – je nachdem, wie dringend ein Sachverhalt ist und ob das Projekt gerade aktiv läuft.
+Vier Taktungen – je nach Dringlichkeit und danach, ob das Projekt gerade aktiv läuft.
 
 ::: regler
 ---
@@ -37,7 +43,7 @@ titel: Wann wird geprüft und gemeldet?
 titel: Sofort
 marke: Dringlich
 ---
-Die Projektsteuerung meldet den Sachverhalt sofort über den vereinbarten Meldeweg. Sobald die unmittelbare Reaktion gesichert ist, dokumentiert sie ihn noch am selben Arbeitstag. Eine zusätzliche Rufbereitschaft ist damit nicht verbunden – eine erkannte akute Gefahr bleibt aber nicht liegen.
+Meldung über den vereinbarten Meldeweg, dokumentiert am selben Arbeitstag, sobald die unmittelbare Reaktion gesichert ist. Keine zusätzliche Rufbereitschaft – aber eine erkannte akute Gefahr bleibt nicht liegen.
 :::
 
 ::: stufe 2
@@ -45,7 +51,7 @@ Die Projektsteuerung meldet den Sachverhalt sofort über den vereinbarten Meldew
 titel: Wöchentlich
 marke: In aktiven Zeiten
 ---
-Jede Woche geht die Projektsteuerung alle offenen Einträge kurz durch: Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Probleme, Änderungen und offene Entscheidungen. Neue, nicht dringliche Hinweise trägt sie spätestens bei dieser Prüfung ein.
+Alle offenen Einträge kurz durchgehen, offene Entscheidungen eingeschlossen. Neue, nicht dringliche Hinweise kommen spätestens jetzt hinein.
 :::
 
 ::: stufe 3
@@ -53,7 +59,7 @@ Jede Woche geht die Projektsteuerung alle offenen Einträge kurz durch: Aufgaben
 titel: Monatlich
 marke: In aktiven Zeiten
 ---
-Einmal im Monat ein Online-Termin von höchstens 60 Minuten mit dem Bauherrn und ein Bericht von höchstens einer Seite.
+Online-Termin von höchstens 60 Minuten mit dem Bauherrn und ein Bericht von höchstens einer Seite.
 :::
 
 ::: stufe 4
@@ -61,15 +67,11 @@ Einmal im Monat ein Online-Termin von höchstens 60 Minuten mit dem Bauherrn und
 titel: Ruhezeit
 marke: In ausdrücklich vereinbarten Ruhe- oder Nachlaufzeiten
 ---
-Der gesamte offene Bestand wird monatlich geprüft. Neue, nicht dringliche Hinweise kommen binnen fünf Arbeitstagen hinein. Einen Termin gibt es nur bei konkretem Abstimmungs- oder Entscheidungsbedarf – der Bericht bleibt.
+Monatliche Prüfung des ganzen offenen Bestands; neue, nicht dringliche Hinweise binnen fünf Arbeitstagen. Ein Termin nur bei konkretem Abstimmungs- oder Entscheidungsbedarf – der Bericht bleibt.
 :::
 :::
 
-::: merksatz
-Die regelmäßige Prüfung ersetzt keine dringliche Meldung.
-:::
-
-Was dringlich ist, wartet weder auf die nächste Sitzung noch auf eine fertige Bewertung. Das gilt besonders für Fragen der Sicherheit und der Genehmigung.
+Was dringlich ist, wartet weder auf die nächste Sitzung noch auf eine fertige Bewertung – besonders bei Fragen der Sicherheit und der Genehmigung.
 
 ::: umschalter
 ---
@@ -78,11 +80,11 @@ links: Auf den Takt warten
 rechts: Sofort melden
 ---
 ::: ansicht links
-Der Hinweis wird notiert und soll in der nächsten Wochenprüfung besprochen werden. Bis dahin bleibt das Gerüstfeld, wie es ist. Im Bautagebuch steht es drei Wochen später.
+Der Hinweis wird für die nächste Wochenprüfung notiert. Bis dahin bleibt das Gerüstfeld, wie es ist.
 :::
 
 ::: ansicht rechts
-Die Projektsteuerung meldet es sofort an Bauleitung und Sicherheitskoordination. Das Feld ist in einer Stunde gesperrt, der Vorgang noch am selben Arbeitstag dokumentiert. Eine Vorlage braucht es dafür nicht.
+Die Projektsteuerung meldet es sofort an Bauleitung und Sicherheitskoordination. Das Feld ist in einer Stunde gesperrt, der Vorgang am selben Arbeitstag dokumentiert.
 :::
 :::
 :::
@@ -91,37 +93,52 @@ Die Projektsteuerung meldet es sofort an Bauleitung und Sicherheitskoordination.
 ---
 titel: Die wöchentliche Prüfung
 ---
-In aktiven Zeiten der Planung und Ausführung prüft die Projektsteuerung jede Woche den ganzen offenen Bestand. Sie achtet auf neue Informationen, fehlende Rückmeldungen, überfällige Ergebnisse, die Wirkung von Maßnahmen und ausstehende Freigaben und Auflagen.
+In aktiven Zeiten der Planung und Ausführung achtet die Projektsteuerung jede Woche auf:
 
-Kurz heißt dabei wirklich kurz: Vertieft wird nur, was sich verändert hat oder besonders geklärt werden muss. Unveränderte Texte schreibt niemand neu. Ein gemeinsamer Prüfvermerk mit Datum und Bearbeiter hält fest, dass der Durchgang stattgefunden hat.
+- neue Informationen und fehlende Rückmeldungen,
+- überfällige Ergebnisse,
+- die Wirkung von Maßnahmen,
+- ausstehende Freigaben und Auflagen.
 
-In Ruhe- oder Nachlaufzeiten gilt ein anderer Takt – aber nur, wenn er ausdrücklich vereinbart ist: monatliche Gesamtprüfung, neue, nicht dringliche Hinweise binnen fünf Arbeitstagen, ein Termin nur bei konkretem Bedarf. Der [[Monatsbericht]] bleibt auch dann.
+::: aufklapper Wie kurz ist kurz?
+---
+symbol: haken
+---
+Kurz heißt kurz: Vertieft wird nur, was sich verändert hat oder besonders geklärt werden muss; unveränderte Texte schreibt niemand neu. Ein gemeinsamer Prüfvermerk mit Datum und Bearbeiter hält den Durchgang fest.
+:::
 :::
 
 ::: abschnitt k16.3
 ---
 titel: Der Monatstermin
 ---
-In aktiven Zeiten organisiert die Projektsteuerung jeden Monat einen eigenen Online-Termin von höchstens 60 Minuten. Bauherr und Projektsteuerung besprechen die relevanten Vorgänge; Fachleute kommen dazu, wenn es nötig ist. Ergebnisse und nächste Schritte werden kurz festgehalten.
-
-Vor- und Nachbereitung gehören zur Leistung der Projektsteuerung – die Zeitgrenze gilt für den Termin selbst. Zusätzliche Workshopreihen gehören nicht dazu.
+In aktiven Zeiten organisiert die Projektsteuerung jeden Monat einen eigenen Online-Termin mit dem Bauherrn; Vor- und Nachbereitung gehören zu ihrer Leistung, die 60 Minuten gelten für den Termin selbst. Besprochen werden die relevanten Vorgänge, Fachleute kommen bei Bedarf dazu; Ergebnisse und nächste Schritte werden kurz festgehalten. Zusätzliche Workshopreihen gehören nicht dazu.
 :::
 
 ::: abschnitt k16.4
 ---
 titel: Der Monatsbericht – eine Seite
 ---
-Jeden Monat bekommt der Bauherr eine Zusammenfassung von höchstens einer Seite. Sie zeigt die wesentlichen Veränderungen über alle Vorgangsarten: blockierte Aufgaben, kritische Maßnahmen, ungeklärte Frühwarnungen, wesentliche Probleme und Änderungen sowie offene Entscheidungen mit der Reaktion, die vom Bauherrn gebraucht wird.
+Der [[Monatsbericht]] zeigt auf höchstens einer Seite die wesentlichen Veränderungen über alle Vorgangsarten:
 
-Der Bericht nutzt denselben Informationsstand wie die Software und verweist auf die Einträge dort. Eine zweite Liste braucht es nicht. Er ersetzt weder die vollständigen Einträge noch die sofortige Meldung.
+- blockierte Aufgaben und kritische Maßnahmen,
+- ungeklärte Frühwarnungen,
+- wesentliche Probleme und Änderungen,
+- offene Entscheidungen mit der Reaktion, die vom Bauherrn gebraucht wird.
 
+Er nutzt denselben Informationsstand wie die Software und verweist auf deren Einträge – eine zweite Liste braucht es nicht. Er ersetzt weder die vollständigen Einträge noch die sofortige Meldung.
+
+::: aufklapper Ein fiktives Beispiel: Monatsbericht Mai 2026
+---
+symbol: bericht
+---
 So kann eine Seite aussehen – ein fiktives Beispiel vom Schulcampus Lindenhall-Süd, Mai 2026:
 
 > **Monatsbericht · Mai 2026**
 > - Kostenprognose nach dem geltenden Datenstand: 60,4 Mio. € gegen die Projektbasis von 58,4 Mio. € (+3,4 %); die Risikoreserve von 2,9 Mio. € deckt das; ihren Einsatz gibt der Bauherr frei.
-> - Differenz der beiden Rechnungen (Kostenplanung und Controlling) geklärt: angekündigter Nachtrag der Haustechnikplanung, bis 1,2 Mio. €, als Risiko `RIS-014` geführt, nicht in der Prognose; tritt er voll ein, läge die Prognose über Basis plus Reserve (61,3 Mio. €).
-> - Die Marktabfrage aus der Auflage zur Freigabe LPH 4 ist in die Prognose eingerechnet.
-> - Offene Entscheidung: Umgang mit der Prognose – die Projektsteuerung empfiehlt, die Reserve für die bekannten Mehrkosten vorzusehen; entscheiden muss der Bauherr im Lenkungskreis am 19. Mai; der Bauausschuss tagt am 21. Mai.
+> - Angekündigter Nachtrag der Haustechnikplanung bis 1,2 Mio. € als Risiko `RIS-014` geführt, nicht in der Prognose; tritt er voll ein, läge die Prognose über Basis plus Reserve (61,3 Mio. €).
+> - Offene Entscheidung: Umgang mit der Prognose – die Projektsteuerung empfiehlt, die Reserve für die bekannten Mehrkosten vorzusehen; entscheiden muss der Bauherr im Lenkungskreis am 19. Mai.
+:::
 
 ::: sortieren
 ---
@@ -136,7 +153,7 @@ seite: links
 Eine Aufgabe ist blockiert, weil ein Fachbeitrag der Planung fehlt.
 
 ### Erklärung
-Blockierte Aufgaben gehören ausdrücklich in den Bericht.
+Blockierte Aufgaben gehören ausdrücklich hinein.
 :::
 
 ::: posten 2
@@ -146,7 +163,7 @@ seite: rechts
 Der unveränderte Text eines Risikos, das nur beobachtet wird.
 
 ### Erklärung
-Unverändertes muss weder neu geschrieben noch berichtet werden. Der Bericht zeigt wesentliche Veränderungen.
+Der Bericht zeigt wesentliche Veränderungen, nicht Unverändertes.
 :::
 
 ::: posten 3
@@ -156,38 +173,19 @@ seite: links
 Eine offene Entscheidung mit Termin und der Reaktion, die vom Bauherrn gebraucht wird.
 
 ### Erklärung
-Genau dafür ist der Bericht da: Der Bauherr sieht, was er wann entscheiden muss.
+Genau dafür ist der Bericht da.
 :::
 
 ::: posten 4
----
-seite: links
----
-Eine Frühwarnung, deren Prüffrage noch nicht beantwortet ist.
-
-### Erklärung
-Ungeklärte Frühwarnungen gehören hinein.
-:::
-
-::: posten 5
 ---
 seite: rechts
 ---
 Die vollständige Liste aller offenen Einträge, als zweite Fassung neben der Software.
 
 ### Erklärung
-Der Bericht verweist auf die Einträge in der Software. Eine zweite Liste ist nicht nötig – und sie hätte bald einen anderen Stand.
+Der Bericht verweist auf die Einträge in der Software. Eine zweite Liste hätte bald einen anderen Stand.
 :::
 
-::: posten 6
----
-seite: rechts
----
-Ein ungesichertes Gerüstfeld, das bis zum Monatsbericht warten soll.
-
-### Erklärung
-Dringliches wird sofort gemeldet. Der Bericht kann es nachträglich erwähnen, ersetzt die Meldung aber nie.
-:::
 :::
 
 ::: wissenscheck ampelbericht
@@ -195,14 +193,14 @@ Dringliches wird sofort gemeldet. Der Bericht kann es nachträglich erwähnen, e
 Der Monatsbericht zeigt zwölf grüne und gelbe Ampeln, aber keine offene Entscheidung und keine benötigte Reaktion – obwohl in drei Wochen eine Vergabe ansteht. Erfüllt er seinen Zweck?
 
 ### Erklärung
-Der Bericht soll zeigen, was sich wesentlich verändert hat und welche Entscheidungen mit welcher Reaktion des Bauherrn offen sind. Ampeln ohne Entscheidungsfrage informieren, führen aber nicht.
+Der Bericht zeigt, welche Entscheidungen mit welcher Reaktion des Bauherrn offen sind. Ampeln ohne Entscheidungsfrage informieren, führen aber nicht.
 
 ::: antwort a
 ---
 titel: Nein – die offene Entscheidung und die benötigte Reaktion fehlen
 praefix: "Genau:"
 ---
-Eine anstehende Entscheidung gehört mit Termin und benötigter Reaktion in den Bericht. Ohne sie bleibt er Beobachtung.
+Eine anstehende Entscheidung gehört mit Termin und benötigter Reaktion hinein.
 :::
 
 ::: antwort b
@@ -210,7 +208,7 @@ Eine anstehende Entscheidung gehört mit Termin und benötigter Reaktion in den 
 titel: Ja – solange keine Ampel rot ist
 praefix: "Nicht ganz:"
 ---
-Die Farbe sagt nichts darüber, ob der Bauherr etwas entscheiden muss. Offene Entscheidungen gehören immer hinein.
+Die Farbe sagt nichts darüber, ob der Bauherr etwas entscheiden muss.
 :::
 
 ::: antwort c
@@ -218,7 +216,7 @@ Die Farbe sagt nichts darüber, ob der Bauherr etwas entscheiden muss. Offene En
 titel: Ja – die Entscheidung kommt im Monatstermin ohnehin zur Sprache
 praefix: "Nicht ganz:"
 ---
-Der Termin ersetzt den Bericht nicht: Der Bericht zeigt jeden Monat, welche Entscheidungen offen sind und welche Reaktion gebraucht wird – auch in Monaten ohne Termin.
+Der Termin ersetzt den Bericht nicht – der Bericht zeigt offene Entscheidungen jeden Monat, auch in Monaten ohne Termin.
 :::
 
 ::: zitat k2.4-p2
@@ -231,16 +229,24 @@ Berichterstattung erzeugt Information. Führung entsteht erst, wenn Information 
 ---
 titel: Ein Informationsstand – von Anfang bis Ende
 ---
-Maßgeblich ist die Software, die der Bauherr bereitstellt. Die Projektsteuerung darf eigene Arbeitsmittel nutzen, überträgt die vereinbarten Inhalte aber rechtzeitig dorthin und hält zusammengehörige Vorgänge verknüpft. Fällt die Software aus, sichert sie die Angaben vorübergehend in strukturierter Form und überträgt sie danach. Dringliches wird auch ohne Software gemeldet.
+Maßgeblich ist die Software des Bauherrn. Die Projektsteuerung darf eigene Arbeitsmittel nutzen, überträgt die vereinbarten Inhalte aber rechtzeitig dorthin und hält zusammengehörige Vorgänge verknüpft.
 
-Hinweise werden ab Leistungsbeginn bearbeitet. Der erste abgestimmte Bestand liegt zum vereinbarten Termin vor. Am Ende übergibt die Projektsteuerung alle offenen Vorgänge mit ihren Grundlagen, Fristen und benannten Nachfolgern. Ein Vorgang verschwindet nicht dadurch, dass er übergeben wird.
+::: aufklapper Wenn die Software ausfällt
+---
+symbol: warnung
+---
+Fällt die Software aus, sichert sie die Angaben vorübergehend strukturiert und überträgt sie danach; Dringliches wird trotzdem gemeldet.
+:::
+
+- **Anfang:** Hinweise werden ab Leistungsbeginn bearbeitet; der erste abgestimmte Bestand liegt zum vereinbarten Termin vor.
+- **Ende:** Alle offenen Vorgänge gehen mit Grundlagen, Fristen und benannten Nachfolgern über. Ein Vorgang verschwindet nicht dadurch, dass er übergeben wird.
 :::
 
 ::: abschnitt k16.6
 ---
 titel: Was der Bauherr davon hat
 ---
-Der Bauherr pflegt nichts. Bei ihm kommt an, was er zum Entscheiden braucht – und nicht mehr.
+Der Bauherr pflegt nichts. Bei ihm kommt an, was er zum Entscheiden braucht:
 
 ::: karten
 ---
@@ -250,28 +256,36 @@ titel: Was den Bauherrn erreicht
 ---
 titel: Ein Termin im Monat
 ---
-Online, höchstens 60 Minuten, mit den relevanten Vorgängen – in aktiven Zeiten; in Ruhezeiten nur bei Bedarf.
+
+### Rückseite
+Online, höchstens 60 Minuten – in aktiven Zeiten; in Ruhezeiten nur bei Bedarf.
 :::
 
 ::: karte bericht
 ---
 titel: Eine Seite Bericht
 ---
-Wesentliche Veränderungen und offene Entscheidungen mit der benötigten Reaktion.
+
+### Rückseite
+Wesentliche Veränderungen und offene Entscheidungen.
 :::
 
 ::: karte meldung
 ---
 titel: Sofortmeldungen
 ---
-Nur bei Dringlichem – dann aber sofort, über den vereinbarten Meldeweg.
+
+### Rückseite
+Nur bei Dringlichem – dann sofort.
 :::
 
 ::: karte vorlage
 ---
 titel: Entscheidungsvorlagen
 ---
-Wenn eine Entscheidung ansteht: mindestens zwei zulässige Optionen, gewichteter Vergleich, Empfehlung und Termin (Thema „Entscheidungsvorlage“).
+
+### Rückseite
+Mit mindestens zwei zulässigen Optionen, gewichtetem Vergleich, Empfehlung und Termin.
 :::
 :::
 :::

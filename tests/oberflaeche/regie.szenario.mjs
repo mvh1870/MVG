@@ -15,14 +15,20 @@ export async function lauf(seite, h) {
   const leinwand = await h.zweitesFenster('#leinwand');
   await h.erwarte('[data-pruef="leinwand-warten"], .anzeige', leinwand);
   await h.klick('[data-pruef="regie-bereich-story"]');
-  await seite.locator('[data-pruef="regie-sprung"]').selectOption('s8');
+  // Sprung zu Kapitel 7: Notiz nur in der Regie; im Vergleich stellt die Regie eine Stufe, an der Frage wählt sie
+  await seite.locator('[data-pruef="regie-sprung"]').selectOption('k7');
   await h.erwarte('[data-pruef="regie-notiz"] .regie-notiz-text');
   await h.klick('[data-pruef="regie-weiter"]');
-  await h.klick('[data-pruef="regie-wahl-B"]');
+  await h.klick('[data-pruef="regie-stufe-klima-3"]');
+  await h.warte(300);
+  await h.erwarte('.anzeige [data-pruef="gs-vgl-vorn"]:has-text("Gleichauf")', leinwand);
+  await h.klick('[data-pruef="regie-weiter"]');
+  await h.klick('[data-pruef="regie-wahl-2"]');
   await h.warte(400);
-  await h.erwarte('.anzeige [data-pruef="gs-titel"]:has-text("Lüftungsgerät")', leinwand);
-  const gewaehlt = await leinwand.locator('.anzeige [data-option="B"][aria-pressed="true"]').count();
-  if (gewaehlt !== 1) h.befund('Leinwand zeigt die Kundenwahl B nicht');
+  await h.erwarte('.anzeige [data-pruef="gs-titel"]:has-text("Die große Entscheidung")', leinwand);
+  const gewaehlt = await leinwand.locator('.anzeige .gs-antwort[data-platz="1"][aria-pressed="true"]').count();
+  if (gewaehlt !== 1) h.befund('Leinwand zeigt die Kundenwahl 2 nicht');
+  if ((await leinwand.locator('.anzeige [data-pruef="gs-folge"]').count()) !== 1) h.befund('Leinwand zeigt die Folge der Wahl nicht');
   const notiz = (await seite.locator('[data-pruef="regie-notiz"] .regie-notiz-text').innerText()).slice(0, 40);
   if ((await leinwand.locator('body').innerText()).includes(notiz)) h.befund('Regie-Notiz auf der Leinwand');
   await h.erwarte('[data-pruef="leinwand-status"][data-status="ok"]');

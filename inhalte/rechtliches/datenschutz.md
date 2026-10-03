@@ -24,7 +24,7 @@ E-Mail: kontakt@bauherr-mentoren.com
 
 Der Governance Kompass ist eine Internetseite zum Lesen und Ausprobieren. Es gibt keine Registrierung, kein Konto, kein Formular und keine Eingabe, die an uns gesendet wird. Wir setzen keine Cookies, keine Analyse- oder Reichweitenmessung und keine Dienste Dritter ein. Schriften und Bilder sind in die Seite eingebettet und werden nicht von anderen Servern nachgeladen.
 
-Verarbeitet werden nur die technisch erforderlichen Zugriffsdaten beim Aufruf der Seite (Abschnitt 3). Was Sie in der Geschichte entscheiden, bleibt in Ihrem Browser (Abschnitt 5); was Sie in den Werkzeugen einstellen, wird weder gespeichert noch gesendet.
+Verarbeitet werden nur die technisch erforderlichen Zugriffsdaten beim Aufruf der Seite (Abschnitt 3). Was Sie in der Geschichte entscheiden und wie weit Sie in den Themen gelesen haben, bleibt in Ihrem Browser (Abschnitt 5); was Sie in den Werkzeugen einstellen, wird weder gespeichert noch gesendet.
 
 ## 3. Zugriffsdaten und Server-Logfiles
 
@@ -47,9 +47,9 @@ Diese Internetseite wird bei der IONOS SE gehostet. Der Hosting-Anbieter verarbe
 
 ## 5. Speicherung in Ihrem Browser
 
-Damit Sie in der Geschichte dort weiterlesen können, wo Sie aufgehört haben, speichert die Seite Ihren Stand im lokalen Speicher Ihres Browsers (Local Storage): den Schritt der Geschichte, Ihre Entscheidungen, Ihre Gewichte und ob Sie die Kurzfassung lesen. Wer die Seite zum Präsentieren nutzt, speichert dort zusätzlich den Stand der Präsentation und die selbst eingetragenen Notizen zum Gespräch.
+Damit Sie in der Geschichte dort weiterlesen können, wo Sie aufgehört haben, speichert die Seite Ihren Stand im lokalen Speicher Ihres Browsers (Local Storage): den Schritt der Geschichte, Ihre Entscheidungen, Ihre Gewichte und ob Sie die Kurzfassung lesen. In den Themen speichert die Seite dort Ihren Lesefortschritt: welche Verständnisfragen Sie beantwortet haben (nicht, welche Antwort Sie gewählt haben) und welche Themen ohne Verständnisfragen Sie bis zum Ende gelesen haben. Wer die Seite zum Präsentieren nutzt, speichert dort zusätzlich den Stand der Präsentation und die selbst eingetragenen Notizen zum Gespräch.
 
-Diese Angaben verlassen Ihr Gerät nicht und werden nicht an uns oder Dritte übertragen. Der Zugriff auf den Speicher ist für die von Ihnen gewünschte Funktion unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG). Den Stand der Geschichte entfernen Sie jederzeit mit „Fortschritt löschen“ am Fuß der Geschichte, die Notizen und den gespeicherten Stand der Präsentation mit „Protokoll löschen“ in der Präsentationsansicht (für die Leinwand hält der Browser außerdem die zuletzt gezeigte Anzeige, ohne Notizen; auch sie entfernt „Protokoll löschen“); alles zusammen auch über die Einstellungen Ihres Browsers.
+Diese Angaben verlassen Ihr Gerät nicht und werden nicht an uns oder Dritte übertragen. Der Zugriff auf den Speicher ist für die von Ihnen gewünschte Funktion unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG). Den Stand der Geschichte entfernen Sie jederzeit mit „Fortschritt löschen“ am Fuß der Geschichte, den Lesefortschritt der Themen mit „Fortschritt zurücksetzen“ in der Übersicht der Themen, die Notizen und den gespeicherten Stand der Präsentation mit „Protokoll löschen“ in der Präsentationsansicht (für die Leinwand hält der Browser außerdem die zuletzt gezeigte Anzeige, ohne Notizen; auch sie entfernt „Protokoll löschen“); alles zusammen auch über die Einstellungen Ihres Browsers.
 
 ## 6. Links zu bauherr-mentoren.com
 

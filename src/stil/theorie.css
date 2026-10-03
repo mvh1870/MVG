@@ -64,17 +64,23 @@
 .kapitel-titel[style*="--zeichen"] { font-size: min(clamp(30px, 3.6vw, 44px), calc((100vw - 40px) * 2 / var(--zeichen, 1))); }
 .kapitel-einstieg { grid-column: 1 / -1; max-width: 60ch; margin-top: var(--a-3); font-size: var(--gr-xl); line-height: 1.5; color: var(--tinte-2); }
 
-/* Kernaussage (entspricht Ebene 1) */
+/* Kernaussage (entspricht Ebene 1; P17.9: groß, mit dem Symbol des Themas in der Farbe des Teils) */
 .kernaussage {
   position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: var(--a-5);
   padding: var(--a-6) var(--a-6) var(--a-6) var(--a-8);
   border-radius: var(--radius-xl);
   background: var(--weiss);
   box-shadow: var(--schatten-karte-hoch);
 }
-.kernaussage::before { content: ""; position: absolute; left: 0; top: var(--a-4); bottom: var(--a-4); width: 4px; border-radius: 0 2px 2px 0; background: var(--gold-hell); }
-.kernaussage .t-label { display: block; margin-bottom: var(--a-2); color: var(--gold-text); }
-.kernaussage p { font-size: 22px; line-height: 1.4; font-weight: 600; letter-spacing: -.005em; }
+.kernaussage::before { content: ""; position: absolute; left: 0; top: var(--a-4); bottom: var(--a-4); width: 5px; border-radius: 0 3px 3px 0; background: var(--teil, var(--gold-hell)); }
+.kernaussage-symbol { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: var(--teil-soft, var(--flaeche-2)); color: var(--teil-text, var(--navy)); box-shadow: inset 0 0 0 2px var(--teil, var(--gold-hell)); }
+.kernaussage-symbol .symbol { width: 32px; height: 32px; stroke-width: 1.9; }
+.kernaussage .t-label { display: block; margin-bottom: var(--a-2); color: var(--teil-text, var(--gold-text)); }
+.kernaussage p { font-size: 22px; line-height: 1.42; font-weight: 600; letter-spacing: -.005em; }
 .kernaussage em { background: linear-gradient(transparent 62%, var(--gold-hell-a45) 62%); }
 
 /* Lesetext (aus Markdown: Listen behalten Aufzählungszeichen, siehe basis.css) */
@@ -100,9 +106,9 @@
   background: var(--weiss);
   box-shadow: var(--schatten-karte);
 }
-.lernkarte::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--welt-farbe, var(--rollen-farbe, var(--petrol))); }
-.lernkarte-titel { display: flex; align-items: center; gap: var(--a-2); margin-bottom: var(--a-2); font: 700 var(--gr-text)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy); }
-.lernkarte-titel .symbol { font-size: 18px; color: var(--petrol); }
+.lernkarte::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: var(--teil, var(--welt-farbe, var(--rollen-farbe, var(--petrol)))); }
+.lernkarte-titel { display: flex; align-items: center; gap: var(--a-2); margin-bottom: var(--a-2); font: 700 var(--gr-text)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--teil-text, var(--navy)); }
+.lernkarte-titel .symbol { font-size: 18px; color: var(--teil-text, var(--petrol)); }
 .lernkarte p { font-size: var(--gr-text); line-height: 1.5; color: var(--tinte); }
 button.lernkarte { border: 0; font: inherit; text-align: left; cursor: pointer; transition: transform var(--dauer-sofort), box-shadow var(--dauer-sofort); }
 button.lernkarte:hover { transform: translateY(-2px); box-shadow: var(--schatten-karte-hoch); }
@@ -151,8 +157,10 @@ button.lernkarte[aria-expanded="true"] { box-shadow: 0 0 0 2px var(--gold-hell),
 @media (max-width: 700px) {
   .lern-rahmen { padding-top: var(--a-6); gap: var(--a-6); }
   .kapitel-kopf { grid-template-columns: minmax(0, 1fr); }
-  .kernaussage { padding: var(--a-5) var(--a-4) var(--a-5) var(--a-6); }
-  .kernaussage p { font-size: 19px; }
+  .kernaussage { grid-template-columns: minmax(0, 1fr); gap: var(--a-3); padding: var(--a-5) var(--a-4) var(--a-5) var(--a-6); }
+  .kernaussage-symbol { width: 48px; height: 48px; }
+  .kernaussage-symbol .symbol { width: 26px; height: 26px; }
+  .kernaussage p { font-size: 20px; }
   .kapitel-nav { grid-template-columns: minmax(0, 1fr); }
   /* R61: auf der Leinwand sind die Blätterkarten span[rel] (keine Links) */
   .kapitel-nav > :is(a, span)[rel="next"] { grid-column: auto; }
@@ -165,36 +173,19 @@ button.lernkarte[aria-expanded="true"] { box-shadow: 0 0 0 2px var(--gold-hell),
 .lern-inhalt > .lernkarten + *, .lern-abschnitt > * + * { margin-top: var(--a-4); }
 .kapitel-titel:focus { outline: none; }
 
-/* Kapitelliste (#theorie) */
-.kapitel-karten { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--a-3); }
-.kapitel-karte {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  grid-template-rows: 1fr auto;
-  align-items: start;
-  gap: var(--a-1) var(--a-3);
-  height: 100%;
-  min-height: 108px;
-  padding: var(--a-4) var(--a-5);
-  border-radius: var(--radius-l);
-  background: var(--weiss);
-  box-shadow: var(--schatten-karte);
-  color: var(--tinte);
-  text-decoration: none;
-}
-a.kapitel-karte { box-shadow: inset 0 3px 0 var(--petrol), var(--schatten-karte); transition: transform var(--dauer-sofort), box-shadow var(--dauer-sofort); }
-a.kapitel-karte:hover { color: var(--tinte); transform: translateY(-2px); box-shadow: inset 0 3px 0 var(--petrol), var(--schatten-karte-hoch); }
-.kapitel-karte-titel { font-size: var(--gr-l); font-weight: 600; line-height: 1.3; }
-.kapitel-karte-los { display: inline-flex; align-items: center; gap: var(--a-1); font: 700 var(--gr-s)/1.2 var(--schrift-label); letter-spacing: .08em; text-transform: uppercase; color: var(--navy); }
-
 /* Abschnitte, Zitate, Karten */
 .lern-abschnitt { display: flex; flex-direction: column; gap: var(--a-4); }
 .abschnitt-titel { display: flex; align-items: baseline; gap: var(--a-3); font: 700 var(--gr-3xl)/1.25 var(--schrift-text); color: var(--navy); }
+/* P17.9 (O-55): Symbol in der Farbe des Teils vor dem Titel; der Text bleibt ein eigenes Kind (Silbentrennung, Messungen) */
+.abschnitt-titel:has(> .abschnitt-symbol) { align-items: flex-start; }
+.abschnitt-symbol { display: inline-grid; flex: none; place-items: center; width: 40px; height: 40px; margin-top: -3px; border-radius: var(--radius-m, 8px); background: var(--teil-soft, var(--flaeche-2)); color: var(--teil-text, var(--navy)); vertical-align: middle; }
+.abschnitt-symbol .symbol { width: 22px; height: 22px; stroke-width: 2; }
+.abschnitt-text { min-width: 0; }
 .lern-zitat-rahmen { padding: var(--a-5) var(--a-6); border-radius: var(--radius-l); background: var(--weiss); box-shadow: var(--schatten-karte); }
 .lern-zitat { position: relative; padding-left: 30px; font: var(--typo-lese); }
 .lern-zitat::before { content: "„"; position: absolute; left: -2px; top: -14px; font: 800 var(--gr-7xl)/1 var(--schrift-anzeige); color: var(--gold-hell); }
 .lern-zitat-rahmen figcaption { margin-top: var(--a-3); padding-top: var(--a-2); border-top: 1px solid var(--linie); font-size: var(--gr-s); color: var(--tinte-2); }
-.lernkarte-zahl { display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding: 0 5px; border-radius: 50%; background: var(--petrol); color: var(--weiss); font: 800 var(--gr-m)/1 var(--schrift-anzeige); }
+.lernkarte-zahl { display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding: 0 5px; border-radius: 50%; background: var(--teil-text, var(--petrol)); color: var(--weiss); font: 800 var(--gr-m)/1 var(--schrift-anzeige); }
 .lernkarte-text { font-size: var(--gr-text); line-height: 1.5; }
 .lernkarte-text p + p { margin-top: var(--a-2); }
 q.mvg-zitat { font-weight: 500; }
@@ -210,9 +201,10 @@ q.mvg-zitat { font-weight: 500; }
 .querverweise .querverweis { align-items: flex-start; padding: var(--a-2) var(--a-4) var(--a-2) var(--a-2); border-radius: var(--radius-l); }
 
 @media (max-width: 700px) {
-  .abschnitt-titel { font-size: var(--gr-2xl); }
+  .abschnitt-titel { font-size: var(--gr-2xl); gap: var(--a-2); }
+  .abschnitt-symbol { width: 32px; height: 32px; margin-top: -2px; }
+  .abschnitt-symbol .symbol { width: 18px; height: 18px; }
   .lern-zitat-rahmen { padding: var(--a-4); }
-  .kapitel-karten { grid-template-columns: minmax(0, 1fr); }
 }
 
 /* Ebenen 1–4 auf Lernseiten (P6.1) */
@@ -495,16 +487,17 @@ html:has(.lernseite) { scroll-padding-top: 72px; }
 .lw-nebeneinander .lw-posten-rueck { flex-basis: auto; }
 @media (max-width: 700px) { .lw-nebeneinander { grid-template-columns: minmax(0, 1fr); } }
 
-/* Abbildungen der DOCX V1.2 im Fachtext (P14, O-32, L-77): Bild auf weißer Karte mit Bildunterschrift
-   (Abweichungen und Vergrößern entfallen seit P17.10) */
-.abbildung { display: grid; gap: var(--a-3); margin: var(--a-6) 0; }
+/* Abbildungen im Fachtext (P14, O-32, L-77): seit P17.9 (O-55) auf einer Fläche in der Farbe des Teils, das Bild auf
+   weißer Karte darin, die Bildunterschrift auf derselben Fläche (Marke im Textton des Teils). Vergrößern entfällt (P17.10). */
+.abbildung { display: grid; gap: var(--a-3); margin: var(--a-6) 0; padding: var(--a-4) var(--a-4) var(--a-4); border-radius: var(--radius-xl); background: var(--teil-soft, var(--flaeche-2)); box-shadow: inset 0 0 0 1px var(--linie), inset 0 4px 0 var(--teil, var(--linie-2)); }
 .abbildung-rahmen { padding: var(--a-3); border-radius: var(--radius-l); background: var(--weiss); box-shadow: var(--schatten-karte); }
 .abbildung-bild { display: block; width: 100%; height: auto; border-radius: var(--radius-s); }
 .abbildung-fehlt { display: grid; place-items: center; min-height: 120px; color: var(--tinte-2); font-size: var(--gr-s); }
-.abbildung-unterschrift { display: grid; justify-items: start; gap: var(--a-1); font-size: var(--gr-m); line-height: 1.45; color: var(--tinte-2); }
-.abbildung-marke { color: var(--navy-soft); }
-.abbildung-titel { font: 700 var(--gr-text)/1.3 var(--schrift-text); color: var(--navy); }
+.abbildung-unterschrift { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--a-1) var(--a-3); padding-inline: var(--a-1); font-size: var(--gr-m); line-height: 1.45; color: var(--tinte); }
+.abbildung-marke { flex: none; padding: 2px var(--a-2); border-radius: var(--radius-rund); background: var(--teil-text, var(--navy-soft)); color: var(--weiss); }
+.abbildung-titel { min-width: 0; font: 700 var(--gr-text)/1.3 var(--schrift-text); color: var(--tinte); }
 @media (max-width: 700px) {
+  .abbildung { padding: var(--a-3); }
   .abbildung-rahmen { padding: var(--a-2); }
 }
 @media print {
@@ -529,8 +522,269 @@ html:has(.lernseite) { scroll-padding-top: 72px; }
 .lern-hintergrund { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .12; }
 .lern-hintergrund .bauplan { width: 100%; height: 100%; }
 .seite-theorie .kapitel-verzeichnis { top: var(--a-4); max-height: calc(100vh - var(--a-8)); }
-.seite-theorie .kapitel-karte { grid-template-columns: minmax(0, 1fr); grid-template-rows: 1fr auto; }
 .lern-kontakt { padding-top: var(--a-4); border-top: 1px solid var(--linie); color: var(--tinte-2); font: var(--typo-klein); }
-.seite-theorie .kapitel-liste > li > :is(a, span) { grid-template-columns: minmax(0, 1fr); }
 .seite-theorie .kapitel-kopf { display: flex; flex-direction: column; align-items: flex-start; }
 .seite-theorie .kapitel-titel:focus { box-shadow: none; }
+
+/* ------------------------------------------------------------------ Themen als Buch (P17.8, O-54) */
+/* Teile in ihrer Akzentfarbe (L-226, AKZENT_ROLLEN: I Grün, II Lagune, III Orange, IV Violett; Anhang Navy), nummerierte
+   Zeilen mit Symbol, Kurzsatz und Häkchen; Fortschritt als Balken mit Zahl. Text in Akzentfarbe nur im Textton
+   (--teil-text ist ein Kontext-Alias wie --welt-text: er löst je Teil auf einen Textton aus paare.json auf). */
+.seite-theorie, .druck-bogen { --teil: var(--petrol); --teil-soft: var(--flaeche-2); --teil-text: var(--navy); }
+:is(.seite-theorie, .druck-bogen) [data-teil="1"] { --teil: var(--akzent-gruen); --teil-soft: var(--akzent-gruen-soft); --teil-text: var(--akzent-gruen-text); }
+:is(.seite-theorie, .druck-bogen) [data-teil="2"] { --teil: var(--akzent-lagune); --teil-soft: var(--akzent-lagune-soft); --teil-text: var(--akzent-lagune-text); }
+:is(.seite-theorie, .druck-bogen) [data-teil="3"] { --teil: var(--akzent-orange); --teil-soft: var(--akzent-orange-soft); --teil-text: var(--akzent-orange-text); }
+:is(.seite-theorie, .druck-bogen) [data-teil="4"] { --teil: var(--akzent-violett); --teil-soft: var(--akzent-violett-soft); --teil-text: var(--akzent-violett-text); }
+:is(.seite-theorie, .druck-bogen) [data-teil="anhang"] { --teil: var(--navy-soft); --teil-soft: var(--flaeche-4); --teil-text: var(--navy); }
+.buch { gap: var(--a-6); }
+.buch-verzeichnis { display: flex; flex-direction: column; gap: var(--a-5); }
+
+/* Fortschritt gesamt */
+.buch-fortschritt { display: flex; flex-wrap: wrap; align-items: center; gap: var(--a-2) var(--a-4); padding: var(--a-3) var(--a-4); border-radius: var(--radius-l); background: var(--weiss); box-shadow: var(--schatten-karte); }
+.buch-fortschritt > .t-label { color: var(--tinte-2); }
+.buch-fortschritt > .fortschritt-balken { flex: 1 1 220px; }
+.buch-zuruecksetzen { margin-left: auto; }
+.fortschritt-balken { display: flex; align-items: center; gap: var(--a-3); min-width: 0; }
+.fortschritt-spur { position: relative; flex: 1 1 auto; height: 8px; min-width: 48px; overflow: hidden; border-radius: var(--radius-rund); background: var(--flaeche-4); box-shadow: inset 0 0 0 1px var(--linie-2); }
+.fortschritt-fuellung { position: absolute; inset: 0 auto 0 0; width: calc(var(--anteil, 0) * 100%); border-radius: inherit; background: var(--teil, var(--petrol)); }
+.fortschritt-zahl { flex: none; font: 600 var(--gr-m)/1.2 var(--schrift-text); color: var(--tinte); white-space: nowrap; }
+.fortschritt-balken.ist-klein .fortschritt-spur { flex: 0 1 72px; height: 6px; }
+.fortschritt-balken.ist-klein .fortschritt-zahl { font-size: var(--gr-s); color: var(--teil-text, var(--tinte-2)); }
+
+/* Ein Teil */
+.buch-teil { overflow: hidden; border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 3px 0 var(--teil), var(--schatten-karte); }
+.buch-teil-kopf { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: var(--a-1) var(--a-4); padding: var(--a-3) var(--a-4) var(--a-3); background: var(--teil-soft); }
+.buch-teil-marke { min-width: 1.6em; font: 800 var(--gr-4xl)/1 var(--schrift-anzeige); color: var(--teil-text); text-align: center; }
+.buch-teil-titel { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.buch-teil-kicker { font: var(--typo-kicker); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--teil-text); }
+.buch-teil-name { font: 700 var(--gr-xl)/1.2 var(--schrift-text); color: var(--tinte); }
+.buch-zeilen > li + li { border-top: 1px solid var(--linie); }
+.buch-zeile { display: grid; grid-template-columns: 2.2em 24px minmax(0, 1fr) 24px; align-items: center; gap: var(--a-3); min-height: 48px; padding: var(--a-2) var(--a-4); color: var(--tinte); text-decoration: none; }
+a.buch-zeile:hover { background: var(--teil-soft); color: var(--tinte); }
+a.buch-zeile:hover .buch-titel { text-decoration: underline; text-underline-offset: 3px; }
+.buch-nr { font: 800 var(--gr-2xl)/1 var(--schrift-anzeige); color: var(--teil-text); text-align: right; font-variant-numeric: tabular-nums; }
+.buch-symbol { display: grid; place-items: center; color: var(--teil-text); }
+.buch-symbol .symbol { width: 22px; height: 22px; }
+.buch-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.buch-titel { font: 600 var(--gr-l)/1.3 var(--schrift-text); }
+.buch-satz { font-size: var(--gr-m); line-height: 1.35; color: var(--tinte-2); }
+.buch-marke { display: grid; place-items: center; width: 24px; height: 24px; }
+
+/* Häkchen (Übersicht und Verzeichnis): Kreis im Textton des Teils, Wort „geschafft“ für Screenreader */
+.thema-haken { display: inline-grid; flex: none; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--teil-text, var(--petrol)); color: var(--weiss); }
+.thema-haken[hidden] { display: none; }
+.thema-haken .symbol { width: 14px; height: 14px; stroke-width: 2.6; }
+
+/* Verzeichnis der Themenseite: nach Teilen, Nummer, Kurztitel, Häkchen */
+.verzeichnis-teil + .verzeichnis-teil { margin-top: var(--a-3); }
+.verzeichnis-teil-name { margin: 0 0 var(--a-1) var(--a-2); font: var(--typo-kicker); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--teil-text); }
+.seite-theorie .kapitel-liste > li > :is(a, span) { grid-template-columns: 1.6em minmax(0, 1fr) auto; align-items: center; }
+.verzeichnis-nr { font: 800 var(--gr-l)/1 var(--schrift-anzeige); color: var(--teil-text); text-align: right; }
+.seite-theorie .kapitel-liste :is(a, span)[aria-current="page"] { box-shadow: inset 3px 0 0 var(--teil); }
+
+/* Kopf der Themenseite: Teil und Nummer in der Farbe des Teils */
+.thema-kicker { color: var(--teil-text, var(--tinte-2)); }
+.thema-nr { color: var(--teil-text, var(--navy)); }
+
+@media (max-width: 520px) {
+  .buch-teil-kopf { grid-template-columns: auto minmax(0, 1fr); }
+  .buch-teil-kopf > .fortschritt-balken { grid-column: 1 / -1; }
+  .buch-zeile { grid-template-columns: 1.8em 20px minmax(0, 1fr) 22px; gap: var(--a-2); padding-inline: var(--a-3); }
+  .buch-zuruecksetzen { margin-left: 0; }
+}
+@media print {
+  .buch-fortschritt, .thema-haken { display: none; }
+}
+
+/* ------------------------------------------------------------------ Optik der Themen (P17.9, O-55) */
+/* Bauplan nur im Kopf: Rasterpapier mit dem Motiv des Teils (src/grafik/themen-bilder.ts) auf der hellen Fläche des Teils,
+   links Kicker und Titel, rechts die Illustration des Themas. Darunter ruhige Fläche – kein Hintergrund hinter dem Lesetext. */
+.seite-theorie .thema-kopf { display: flex; flex-direction: column; align-items: stretch; gap: var(--a-5); padding-bottom: 0; border-bottom: 0; }
+.kopf-band {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--a-4) var(--a-6);
+  min-height: 216px;
+  padding: var(--a-6) var(--a-6) var(--a-6) var(--a-8);
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: var(--teil-soft);
+  box-shadow: inset 0 0 0 1px var(--linie), var(--schatten-karte);
+  isolation: isolate;
+}
+.kopf-band::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--teil); }
+.kopf-band-motiv { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+/* Schleier links: der Titel steht auf ruhigem Rasterpapier, das Motiv zeichnet sich rechts */
+.kopf-band-motiv::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--teil-soft) 18%, transparent 62%); }
+.kopf-motiv { display: block; width: 100%; height: 100%; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.kopf-motiv path, .kopf-motiv circle { vector-effect: non-scaling-stroke; }
+.kopf-band-text { display: flex; flex-direction: column; gap: var(--a-2); min-width: 0; container-type: inline-size; }
+.kopf-band-bild { display: grid; place-items: center; }
+.themen-bild { display: block; width: 156px; height: 156px; }
+.seite-theorie .kopf-band .kapitel-kicker { color: var(--teil-text); }
+.seite-theorie .kopf-band .kapitel-titel { color: var(--navy); }
+/* R47 im Band: das längste Wort passt in die Textspalte (Containerbreite statt Fensterbreite) */
+.kopf-band .kapitel-titel[style*="--zeichen"] { font-size: min(clamp(30px, 3.6vw, 44px), calc(100cqi * 2 / var(--zeichen, 1))); }
+.seite-theorie .thema-kopf > .kapitel-einstieg { max-width: 62ch; margin-top: 0; padding-inline: var(--a-2); }
+/* Inhaltsverzeichnis: Titel oben, darunter die vier Motive als Fries (Grundriss · Tragwerk · Kran · Werkzeuge) */
+.buch-kopf .kopf-band { align-items: start; min-height: 240px; padding-top: var(--a-8); }
+.buch-kopf .kopf-band-bild { align-self: center; }
+.buch-kopf .kopf-band-motiv::after { background: linear-gradient(90deg, var(--teil-soft) 6%, transparent 30%); }
+.buch-kopf .kapitel-titel { font-size: clamp(36px, 4.4vw, 54px); }
+
+/* Linien des Bauplans: Raster in der Farbe des Teils, Zeichnung im Textton, Maße in Gold */
+.km-raster { stroke: var(--teil); stroke-width: .6; opacity: .2; }
+.km-raster-grob { stroke: var(--teil); stroke-width: .9; opacity: .32; }
+.km-motiv { color: var(--teil-text); }
+.km-linie { stroke: var(--teil-text); stroke-width: 1.3; opacity: .62; }
+.km-fein { stroke: var(--teil-text); stroke-width: .8; opacity: .5; }
+.km-gestrichelt { stroke-dasharray: 4 4; }
+.km-achse { stroke: var(--teil-text); stroke-width: .7; stroke-dasharray: 10 4 2 4; opacity: .4; }
+.km-schraffur { stroke: var(--teil-text); stroke-width: .6; opacity: .45; }
+.km-mass { stroke: var(--gold); stroke-width: 1; opacity: .9; }
+.km-knoten { fill: var(--teil-text); stroke: none; opacity: .6; }
+.km-knoten-gross { fill: var(--teil-soft); stroke: var(--teil-text); stroke-width: 1.3; opacity: .7; }
+.km-papier { fill: var(--weiss); stroke: none; opacity: .55; }
+/* Inhaltsverzeichnis: die vier Motive in den Farben ihrer Teile */
+.km-t1 { --teil-text: var(--akzent-gruen-text); }
+.km-t2 { --teil-text: var(--akzent-lagune-text); }
+.km-t3 { --teil-text: var(--akzent-orange-text); }
+.km-t4 { --teil-text: var(--akzent-violett-text); }
+.km-t1 .km-linie, .km-t2 .km-linie, .km-t3 .km-linie, .km-t4 .km-linie { opacity: .8; }
+
+/* Illustration (160 × 160): weiße Scheibe, Flächen im Grundton, Textton und Hell des Teils, Gold als Licht */
+.themen-bild * { stroke-linecap: round; stroke-linejoin: round; }
+.tb-scheibe { fill: var(--weiss); }
+.tb-ring { fill: none; stroke: var(--teil); stroke-width: 2.5; }
+.tb-ring-fein { fill: none; stroke: var(--teil); stroke-width: .8; stroke-dasharray: 2 4; opacity: .7; }
+.tb-schatten { fill: var(--teil-text); opacity: .14; }
+.tb-f1 { fill: var(--teil); }
+.tb-f2 { fill: var(--teil-text); }
+.tb-f3 { fill: var(--teil-soft); }
+.tb-w { fill: var(--weiss); }
+.tb-n { fill: var(--navy); }
+.tb-n2 { fill: var(--navy-soft); }
+.tb-haut { fill: var(--fig-haut-1); }
+.tb-gold { fill: var(--gold-hell); }
+.tb-gold-d { fill: var(--gold); }
+.tb-gold-dd { fill: var(--gold-kante); }
+.tb-a-gruen { fill: var(--akzent-gruen); }
+.tb-a-lagune { fill: var(--akzent-lagune); }
+.tb-a-orange { fill: var(--akzent-orange); }
+.tb-a-violett { fill: var(--akzent-violett); }
+.tb-kante { stroke: var(--teil); stroke-width: 1.6; }
+.tb-zeile { fill: none; stroke: var(--teil); stroke-width: 2.4; opacity: .55; }
+.tb-planlinie { fill: none; stroke: var(--teil); stroke-width: 1; opacity: .5; }
+.tb-strich { fill: none; stroke: var(--teil-text); stroke-width: 2.4; }
+.tb-funke { fill: none; stroke: var(--teil); stroke-width: 2; }
+.tb-lw { fill: var(--weiss); opacity: .85; }
+.tb-lw-flaeche { fill: var(--weiss); opacity: .45; }
+.tb-ring-w { fill: none; stroke: var(--weiss); stroke-width: 2; stroke-dasharray: 3 3; opacity: .8; }
+.tb-haken { fill: none; stroke: var(--weiss); stroke-width: 3.6; }
+.tb-haken-n { fill: none; stroke: var(--navy); stroke-width: 2.6; }
+.tb-frage { fill: none; stroke: var(--navy); stroke-width: 4.2; }
+.tb-mast { fill: none; stroke: var(--navy); stroke-width: 3; }
+.tb-bogen1 { fill: none; stroke: var(--teil); stroke-width: 7; }
+.tb-bogen2 { fill: none; stroke: var(--teil-text); stroke-width: 7; }
+.tb-bewegung { fill: none; stroke: var(--teil); stroke-width: 2.2; opacity: .7; }
+.tb-basis { fill: none; stroke: var(--navy); stroke-width: 3; }
+.tb-basis-fein { fill: none; stroke: var(--teil-text); stroke-width: 1.4; opacity: .6; }
+.tb-trend { fill: none; stroke: var(--gold-hell); stroke-width: 4; }
+.tb-balken { fill: none; stroke: var(--teil-text); stroke-width: 4.5; }
+.tb-faden { fill: none; stroke: var(--teil-text); stroke-width: 1.2; opacity: .8; }
+.tb-rund { stroke: var(--teil); stroke-width: 10; }
+.tb-rund-fein { stroke: var(--teil-text); stroke-width: 10; }
+.tb-zeiger { fill: none; stroke: var(--navy); stroke-width: 2.4; }
+
+@media (max-width: 700px) {
+  .kopf-band { grid-template-columns: minmax(0, 1fr); align-items: start; min-height: 0; padding: var(--a-4) var(--a-4) var(--a-5) var(--a-6); gap: var(--a-3); }
+  .kopf-band-bild { order: -1; justify-items: start; }
+  .themen-bild { width: 96px; height: 96px; }
+  .kopf-band-motiv::after { background: linear-gradient(180deg, transparent 0, var(--teil-soft) 70%); }
+  .km-motiv { opacity: .6; }
+  .buch-kopf .kopf-band { min-height: 0; padding-top: var(--a-4); }
+  /* schmal: der Fries liefe hinter den Titel – das Inhaltsverzeichnis zeigt dort nur Rasterpapier und das Buch */
+  .buch-kopf .km-motiv { display: none; }
+  .buch-kopf .kapitel-titel { font-size: clamp(32px, 9vw, 44px); }
+}
+
+/* Karten, Aufklapper, Verständnisfragen, Lernwerkzeuge, Listenpunkte in der Farbe des Teils */
+.seite-theorie .lernkarte { background: var(--teil-soft); box-shadow: inset 0 0 0 1px var(--linie); }
+.seite-theorie .lernwerkzeug { box-shadow: inset 0 4px 0 var(--teil), var(--schatten-karte); }
+.seite-theorie .lern-ebene:not([data-ebene="4"]) { box-shadow: inset 0 0 0 1px var(--linie), inset 4px 0 0 var(--teil); }
+.seite-theorie .lern-ebene:not([data-ebene="4"]) > summary { border-radius: var(--radius-l); background: var(--teil-soft); }
+.seite-theorie .lern-ebene:not([data-ebene="4"])[open] > summary { margin-bottom: var(--a-3); border-radius: var(--radius-l) var(--radius-l) 0 0; }
+.seite-theorie .lern-ebene:not([data-ebene="4"]) .lern-ebene-nr { background: var(--teil-text); color: var(--weiss); }
+.seite-theorie .lern-ebene:not([data-ebene="4"]) > summary small { color: var(--teil-text); }
+.seite-theorie .wissenscheck { box-shadow: inset 5px 0 0 var(--teil), inset 0 0 0 1px var(--linie); }
+.seite-theorie .wissenscheck > .t-label { color: var(--teil-text); }
+.seite-theorie .lesetext li::marker { color: var(--teil-text); }
+
+/* Kartengruppe mit Titel und Einleitung (P17.9) */
+.lernkarten-gruppe { display: grid; gap: var(--a-3); min-width: 0; }
+.lernkarten-titel { display: flex; align-items: center; gap: var(--a-2); font: 700 var(--gr-xl)/1.3 var(--schrift-text); color: var(--navy); }
+.lernkarten-titel::before { content: ""; flex: none; width: 18px; height: 4px; border-radius: 2px; background: var(--teil, var(--petrol)); }
+.lernkarten-einleitung { font-size: var(--gr-text); color: var(--tinte-2); }
+.lernkarten-gruppe > .lernkarten { margin-top: var(--a-1); }
+
+/* Karten mit Rückseite (P17.9, O-55): Knopf „Umdrehen“, Drehung um die senkrechte Achse; ohne Bewegung ein Wechsel */
+.lernkarte.ist-wendekarte { display: grid; grid-template-rows: 1fr auto; gap: var(--a-3); perspective: 1200px; }
+.lernkarte-innen { display: grid; min-width: 0; transition: transform var(--dauer-mittel) cubic-bezier(.2, .7, .2, 1); transform-style: preserve-3d; }
+.lernkarte-flaeche { grid-area: 1 / 1; min-width: 0; backface-visibility: hidden; }
+.lernkarte-flaeche.ist-hinten { transform: rotateY(180deg); }
+.ist-wendekarte[data-seite="hinten"] .lernkarte-innen { transform: rotateY(180deg); }
+.lernkarte-seite { display: block; margin-bottom: var(--a-2); color: var(--teil-text, var(--tinte-2)); }
+.lernkarte-fuss { display: flex; justify-content: flex-end; }
+.lernkarte-wenden { min-height: 40px; gap: var(--a-2); }
+.lernkarte-wenden[aria-pressed="true"] { box-shadow: inset 0 0 0 2px var(--teil-text, var(--navy)); }
+/* aufgelöst (Leinwand, Druck): Vorder- und Rückseite untereinander, durch eine Linie getrennt */
+.lernkarte.ist-aufgeloest { grid-template-rows: none; perspective: none; }
+.lernkarte.ist-aufgeloest .lernkarte-flaeche { grid-area: auto; transform: none; }
+.lernkarte.ist-aufgeloest .ist-hinten { padding-top: var(--a-3); border-top: 1px dashed var(--linie-3); }
+@media (prefers-reduced-motion: reduce) {
+  .lernkarte-innen { transition: none; transform-style: flat; }
+  .lernkarte-flaeche.ist-hinten, .ist-wendekarte[data-seite="hinten"] .lernkarte-innen { transform: none; }
+  .ist-wendekarte[data-seite="vorne"] .ist-hinten, .ist-wendekarte[data-seite="hinten"] .ist-vorne { visibility: hidden; }
+}
+@media print {
+  /* wie R67: Kopf der Kartengruppe nie allein am Seitenende – als Block (an Rasterkindern hält Chromium break-after nicht) */
+  .druck-bogen .lernkarten-gruppe { display: block; }
+  .druck-bogen .lernkarten-gruppe > * + * { margin-top: var(--a-3); }
+  .druck-bogen .lernkarten-titel { display: block; break-after: avoid; break-inside: avoid; }
+  .druck-bogen .lernkarten-titel::before { display: inline-block; margin-right: 2mm; vertical-align: middle; }
+  .druck-bogen .lernkarten-einleitung { break-after: avoid; }
+  .druck-bogen .lernkarte-innen { transform: none !important; }
+  .druck-bogen .lernkarte-flaeche { grid-area: auto; transform: none; visibility: visible; }
+}
+
+/* Aufklapper (::: aufklapper, P17.9): Zeile mit Symbol und Pfeil in der Farbe des Teils, Inhalt auf Weiß darunter */
+.aufklapper { min-width: 0; border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie), var(--schatten-karte); }
+.aufklapper-kopf { display: flex; align-items: center; gap: var(--a-3); min-height: 52px; padding: var(--a-2) var(--a-4) var(--a-2) var(--a-3); border-radius: var(--radius-l); background: var(--teil-soft, var(--flaeche-2)); box-shadow: inset 4px 0 0 var(--teil, var(--petrol)); color: var(--tinte); font: 600 var(--gr-l)/1.3 var(--schrift-text); list-style: none; cursor: pointer; }
+.aufklapper-kopf::-webkit-details-marker { display: none; }
+.aufklapper-kopf:hover .aufklapper-titel { text-decoration: underline; text-underline-offset: 3px; }
+.aufklapper[open] > .aufklapper-kopf { border-radius: var(--radius-l) var(--radius-l) 0 0; }
+.aufklapper-symbol { display: grid; flex: none; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--weiss); color: var(--teil-text, var(--navy)); box-shadow: inset 0 0 0 1.5px var(--teil, var(--petrol)); }
+.aufklapper-symbol .symbol { width: 19px; height: 19px; stroke-width: 2; }
+.aufklapper-titel { flex: 1 1 auto; min-width: 0; }
+.aufklapper-zeichen { display: grid; flex: none; place-items: center; color: var(--teil-text, var(--navy)); transition: transform var(--dauer-kurz); }
+.aufklapper-zeichen .symbol { width: 20px; height: 20px; stroke-width: 2.2; }
+.aufklapper[open] .aufklapper-zeichen { transform: rotate(180deg); }
+.aufklapper-inhalt { padding: var(--a-4) var(--a-5) var(--a-5); }
+@media (prefers-reduced-motion: reduce) { .aufklapper-zeichen { transition: none; } }
+
+@media print {
+  .druck-bogen .aufklapper { break-inside: avoid; }
+  .druck-bogen .aufklapper-zeichen { display: none; }
+  .druck-bogen .aufklapper-kopf { min-height: 0; break-after: avoid; }
+  /* Der Druckkopf trägt Titel und Teil: Bauplan und Illustration bleiben am Bildschirm, die Flächen bleiben hell */
+  .druck-bogen .kopf-band { display: none; }
+  .druck-bogen .thema-kopf > .kapitel-einstieg { padding-inline: 0; }
+  .druck-bogen figure.abbildung { padding: 3mm; border-radius: 3mm; box-shadow: none; }
+  .druck-bogen .kernaussage-symbol { width: 11mm; height: 11mm; }
+  .druck-bogen .kernaussage-symbol .symbol { width: 6mm; height: 6mm; }
+  .druck-bogen .kernaussage p { font-size: 13pt; }
+  .druck-bogen .abschnitt-symbol { width: 7.5mm; height: 7.5mm; margin: 0 2mm 0 0; }
+  .druck-bogen .abschnitt-symbol .symbol { width: 4.5mm; height: 4.5mm; }
+}

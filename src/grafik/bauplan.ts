@@ -3,14 +3,9 @@
  * Szenen. Der Schulcampus Lindenhall-Süd (fiktiv): Gesamtschule (langer Riegel), Grundschule (Winkel),
  * Dreifeldsporthalle. Rein (Zeichenketten), damit Seite, Leinwand und Tests dieselbe Zeichnung nutzen.
  *
- *   campus(stufe)  – Axonometrie; Stufe 0 (Lageplan) bis 6 (fertig) – die Story wächst mit der LPH
+ *   campus(stufe)  – Axonometrie; Stufe 0 (Lageplan) bis 6 (fertig) – Startseite und Vorschaubild
  *   grundriss()    – heller Grundriss mit Achsraster (Theorie, sehr dezent)
- *
- * Brücke bis P17.4: Der farbige isometrische Campus (O-53) steht in campus-iso.ts und wird hier weitergereicht,
- * damit er von src/main.ts aus erreichbar ist (tests/aufgeraeumt.test.ts), bis die neue Story-Fläche ihn
- * direkt einbindet. esbuild lässt ihn bis dahin aus dem Bündel (nicht benutzt).
  */
-export { campusIso } from './campus-iso.ts';
 
 /** Isometrische Projektion: Grundriss (x, y) und Höhe z → Zeichenebene. */
 function p(x: number, y: number, z = 0): [number, number] {
@@ -106,20 +101,6 @@ function masslinie(): string {
 
 /** Höchste Stufe der Campus-Zeichnung. */
 export const STUFE_MAX = 6;
-
-/**
- * Stufe der Zeichnung aus der Leistungsphase (O-45): Planung zeichnet sich dichter (LPH 4–5), ab der
- * Vergabe wächst der Bau (LPH 7–8), am Ende steht er fertig (9).
- */
-export function stufeAusLph(lph: number | null): number {
-  if (lph === null) return 0;
-  if (lph <= 3) return 0;
-  if (lph === 4) return 1;
-  if (lph <= 6) return 2;
-  if (lph === 7) return 3;
-  if (lph === 8) return 5;
-  return STUFE_MAX;
-}
 
 /**
  * Campus als Axonometrie. 0 Lageplan (Baufeld) · 1 Umrisse und Achsen · 2 Ausführungsplanung (dichtere

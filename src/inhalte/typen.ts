@@ -57,6 +57,9 @@ export interface GlossarEintrag {
   vorkommen: { kapitel: number[] };
 }
 
+/** Teile der Themen (O-54): 1 Grundlagen · 2 Führungsmodell und Arbeitsweise · 3 Anwendung und Einführung · 4 Werkzeuge der Praxis. */
+export type TheorieTeil = 1 | 2 | 3 | 4 | 'anhang';
+
 export interface TheorieSeite {
   id: string;
   kapitel: number;
@@ -66,6 +69,14 @@ export interface TheorieSeite {
   reihe: number;
   titel: string;
   kurztitel: string;
+  /** Nummer in Leserichtung (1 …, P17.8, O-54); vom Compiler aus `reihe` gesetzt */
+  nr: number;
+  /** Teil des Buchs: I–IV oder Anhang (O-54) */
+  teil: TheorieTeil;
+  /** ein Satz fürs Inhaltsverzeichnis (≤ 90 Zeichen) */
+  kurzsatz: string;
+  /** Name eines Symbols aus src/stil/symbole.ts */
+  symbol: string;
   deckt: string[];
   einleitung: string;
   bloecke: Block[];

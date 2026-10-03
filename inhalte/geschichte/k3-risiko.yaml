@@ -1,0 +1,55 @@
+# 3 · Wie gefährlich ist das? (Drehbuch Abschnitt 4, Kapitel 3)
+# Die Frühwarnung aus 2 ist geklärt und wird Risiko; Wahrscheinlichkeit hoch, höchste belegte Auswirkung Stufe 4 → vorrangig.
+# Gegenmaßnahme über 100.000 Euro aus der Reserve und „Abwarten“ (Annahme eines wesentlichen Risikos) → Bürgermeisterin.
+nr: 3
+titel: Wie gefährlich ist das?
+zeit: April 2026
+campus: { stufe: 1, jahreszeit: fruehling, licht: tag }
+kurzfassung: true
+thema: vorgaenge
+belege: [v24:hb-1.2, v24:hb-1.3, v24:hb-2, v24:hb-3, v24:hb-3.1, k4.4-p1, k3.2-t1, v24:va-4.1]
+bild-szene: matrix
+bild-frage: warnschild
+
+einstieg: |
+  April 2026. Die Bagger sind da, die Baugrube wird jeden Tag tiefer, und die Linden am Rand treiben aus. Die Antwort der Hersteller liegt auf dem Tisch: eine Mappe mit drei Schreiben, daneben ein Kalender, auf dem jemand den Sommer 2028 dick eingekreist hat.
+
+szene:
+  - { figur: schwung, text: "Drei von vier Herstellern brauchen jetzt ein halbes Jahr statt vier Monate. Vielleicht wird es ja wieder besser." }
+  - { figur: faden, text: "Ich habe es als Risiko bewertet. Wie wahrscheinlich ist es? Hoch. Wie schlimm, wenn es so kommt? Dann fangen die Holzbauer bis zu zehn Wochen später an, und der Schulstart wackelt." }
+  - { figur: lot, text: "Zehn Wochen. Die holt keiner rein, ich auch nicht." }
+  - { figur: schwung, text: "Wir könnten auch einfach hoffen. Hat schon oft geklappt." }
+  - { figur: faden, text: "Hoffen ist kein Weg. Abwarten schon – aber dann muss die Bürgermeisterin entscheiden, dass die Stadt das Risiko trägt." }
+  - { figur: faden, text: "Hoch und schwer zusammen heißt: vorrangig bearbeiten. Es gibt einen Ausweg – die Holzelemente in einem eigenen Paket früher ausschreiben. Das kostet rund 150.000 Euro." }
+  - { figur: klingel, text: "Bitte sagen Sie mir nicht, dass meine Schule im Sommer 2028 noch in Containern sitzt." }
+
+frage: "Die Projektsteuerin hat bewertet, was sich bewerten lässt. Was jetzt geschieht, liegt bei Ihnen: Was machen Sie mit dieser Einschätzung?"
+
+antworten:
+  - wertung: vertretbar
+    text: Sie sagen der Bürgermeisterin sofort in zwei Sätzen Bescheid. Die Vorlage kommt in einem Monat in den regulären Lenkungskreis.
+    balken: { geld: -1, zeit: -1, vertrauen: -1 }
+    bild: kalender
+    folge: |
+      Die Bürgermeisterin weiß Bescheid und wartet auf die Vorlage. Einen Monat später ist die Lage dieselbe, nur die Zeit ist knapper. Sie entscheidet im Lenkungskreis wie empfohlen: früher ausschreiben, das Geld kommt aus der Reserve. Dann fragt sie: „Warum nicht gleich mit Vorlage? Ein Monat ist bei so etwas viel.“ Die Holzelemente werden ausgeschrieben – einen Monat später, als es möglich gewesen wäre.
+  - wertung: falle
+    text: Sie bitten die Projektsteuerin, das Risiko vorerst kleiner darzustellen. Die Bürgermeisterin soll sich nicht unnötig sorgen.
+    balken: { geld: -2, zeit: -2, vertrauen: -2 }
+    bild: telefon
+    folge: |
+      Clara Faden schüttelt freundlich den Kopf: „Ich bewerte, wie es ist. Kleiner machen kann ich es nicht.“ Sie führt das Risiko als vorrangig, wie es ist, und setzt es auf die Tagesordnung des Lenkungskreises; die Bürgermeisterin ruft an, bevor Sie es ihr erklären konnten. „Wenn man mir das kleiner verkaufen wollte – was weiß ich sonst noch nicht?“ Sie lässt die Einschätzung erst von einem zweiten Holzbauer bestätigen. Drei Wochen später entscheidet sie auf Vorlage der Projektsteuerin: früher ausschreiben, aus der Reserve – nur kostet es jetzt mehr, weil die Ausschreibung eilt.
+  - wertung: gut
+    text: "Sie informieren die Bürgermeisterin noch diese Woche. Die Projektsteuerin legt ihr eine Vorlage vor: früher ausschreiben oder abwarten."
+    balken: { geld: -1, zeit: 2, vertrauen: 1 }
+    bild: stempel
+    folge: |
+      Die Bürgermeisterin liest die Vorlage am Abend: zwei Wege, nach den abgestimmten Gesichtspunkten verglichen, jeweils mit Kosten, Zeit und dem, was an Risiko übrig bleibt, dazu die Empfehlung, früher auszuschreiben. Im Lenkungskreis wird kurz beraten, dann entscheidet sie: früher ausschreiben, das Geld kommt aus der Reserve. „Abwarten hieße, ich trage das Risiko. Das will ich nicht.“ Zwei Wochen später sind die Holzelemente ausgeschrieben, und Theo Lot streicht im Kalender ein dickes Fragezeichen durch.
+
+gut: |
+  Ein Risiko wird danach eingestuft, wie wahrscheinlich es ist und wie schwer die schlimmste belegte Folge wiegt; was vorrangig ist, erfährt der Bauherr umgehend, nicht erst im nächsten Bericht. Ob die Stadt ein großes Risiko trägt oder Geld aus der Reserve dagegen einsetzt, entscheidet die Bürgermeisterin – nicht der Architekt, nicht die Projektsteuerin und auch nicht Sie.
+
+dahinter: "Die Bewertung macht aus einer Sorge eine Rangfolge: Was vorrangig ist, wird zuerst bearbeitet – und wer ein Risiko tragen will, muss das ausdrücklich entscheiden."
+
+regie:
+  leitfragen:
+    - Wann erfährt bei Ihnen der Bauherr von einem vorrangigen Risiko – sofort oder im nächsten Bericht?

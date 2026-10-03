@@ -85,7 +85,8 @@ test('CSS setzt Text nur in Farben, die als Textfarbe eines erlaubten Paars gef√
   const { readdirSync } = await import('node:fs');
   const erlaubt = new Set(paare.map((p) => p.text));
   // Kontext-Aliase: l√∂sen je Ort auf eine Farbe aus der Paarliste auf (Querverweis, Status, ID-Marke).
-  const aliase = new Set(['--welt-text', '--welt-farbe', '--status-text', '--id-text']);
+  // --teil-text: Textton des Teils der Themen (theorie.css, je data-teil ein --akzent-<ton>-text, P17.8)
+  const aliase = new Set(['--welt-text', '--welt-farbe', '--status-text', '--id-text', '--teil-text']);
   const funde: string[] = [];
   for (const datei of readdirSync(resolve(WURZEL, 'src/stil')).filter((n) => n.endsWith('.css'))) {
     const zeilen = readFileSync(resolve(WURZEL, 'src/stil', datei), 'utf8').split('\n');

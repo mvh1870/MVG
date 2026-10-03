@@ -277,7 +277,7 @@ Knopf: > Los geht's · daneben leise: > Kurzfassung (etwa 10 Minuten)
 > Clara Faden hält den Hinweis trotzdem vollständig fest: Prüffrage, der Architekt fragt nach, bis Ende des Monats. Aber Konrad Schwung hat Ihren Satz gehört – es hat ja Zeit bis zum Monatstermin. Bei ihrer Wochendurchsicht meldet Clara Faden die Prüffrage als überfällig, und erst drei Wochen später als nötig fragt er bei den Herstellern nach.
 
 **So macht man es gut**
-> Ein unklarer Hinweis wird sofort festgehalten – mit seiner Herkunft, einer klaren Prüffrage, einem Namen und einem Termin. Bewertet wird erst, wenn die Antwort da ist; bis dahin bleibt er offen und wird jede Woche angeschaut.
+> Ein unklarer Hinweis wird gleich festgehalten, spätestens bei der nächsten Wochendurchsicht – mit seiner Herkunft, einer klaren Prüffrage, einem Namen und einem Termin. Bewertet wird erst, wenn die Antwort da ist; bis dahin bleibt er offen und wird jede Woche angeschaut.
 
 **Mini-Aufgabe 1 · Was ist was?** (zuordnen)
 > Auf einer Baustelle passiert vieles gleichzeitig. Ordnen Sie jedem Satz zu, was er ist: Frühwarnung, Risiko, Problem, Änderung, Maßnahme oder Aufgabe.
@@ -320,7 +320,7 @@ Fachliche Einordnung (intern): Die Frühwarnung aus Kapitel 2 ist geklärt und w
 > **Theo Lot:** Zehn Wochen. Die holt keiner rein, ich auch nicht.
 > **Konrad Schwung:** Wir könnten auch einfach hoffen. Hat schon oft geklappt.
 > **Clara Faden:** Hoffen ist kein Weg. Abwarten schon – aber dann muss die Bürgermeisterin entscheiden, dass die Stadt das Risiko trägt.
-> **Clara Faden:** Beides zusammen heißt: vorrangig bearbeiten. Es gibt einen Ausweg – die Holzelemente in einem eigenen Paket früher ausschreiben. Das kostet rund 150.000 Euro.
+> **Clara Faden:** Hoch und schwer zusammen heißt: vorrangig bearbeiten. Es gibt einen Ausweg – die Holzelemente in einem eigenen Paket früher ausschreiben. Das kostet rund 150.000 Euro.
 > **Hanna Klingel:** Bitte sagen Sie mir nicht, dass meine Schule im Sommer 2028 noch in Containern sitzt.
 
 Grafik zur Szene: kleine Matrix aus 5 × 5 Feldern ohne Zahlen, Achsen „wie wahrscheinlich“ und „wie schlimm“, markiert ist das Feld in der zweiten Reihe von oben, zweite Spalte von rechts (hoch × schwer), im vorrangigen Bereich; Beschriftung > vorrangig.
@@ -343,7 +343,7 @@ Grafik zur Szene: kleine Matrix aus 5 × 5 Feldern ohne Zahlen, Achsen „wie wa
 > Die Bürgermeisterin weiß Bescheid und wartet auf die Vorlage. Einen Monat später ist die Lage dieselbe, nur die Zeit ist knapper. Sie entscheidet im Lenkungskreis wie empfohlen: früher ausschreiben, das Geld kommt aus der Reserve. Dann fragt sie: „Warum nicht gleich mit Vorlage? Ein Monat ist bei so etwas viel.“ Die Holzelemente werden ausgeschrieben – einen Monat später, als es möglich gewesen wäre.
 
 *C · Falle*
-> Clara Faden schüttelt freundlich den Kopf: „Ich bewerte, wie es ist. Kleiner machen kann ich es nicht.“ Sie führt das Risiko als vorrangig, wie es ist, und setzt es auf die Tagesordnung des Lenkungskreises; die Bürgermeisterin ruft an, bevor Sie es ihr erklären konnten. Sie entscheidet sofort: früher ausschreiben, aus der Reserve – nur kostet es jetzt mehr, weil die Ausschreibung eilt.
+> Clara Faden schüttelt freundlich den Kopf: „Ich bewerte, wie es ist. Kleiner machen kann ich es nicht.“ Sie führt das Risiko als vorrangig, wie es ist, und setzt es auf die Tagesordnung des Lenkungskreises; die Bürgermeisterin ruft an, bevor Sie es ihr erklären konnten. Sie entscheidet auf Vorlage der Projektsteuerin sofort: früher ausschreiben, aus der Reserve – nur kostet es jetzt mehr, weil die Ausschreibung eilt.
 
 **So macht man es gut**
 > Ein Risiko wird danach eingestuft, wie wahrscheinlich es ist und wie schwer die schlimmste belegte Folge wiegt; was vorrangig ist, erfährt der Bauherr umgehend, nicht erst im nächsten Bericht. Ob die Stadt ein großes Risiko trägt oder Geld aus der Reserve dagegen einsetzt, entscheidet die Bürgermeisterin – nicht der Architekt, nicht die Projektsteuerin und auch nicht Sie.
@@ -389,7 +389,7 @@ Grafik zur Szene: kleine Matrix aus 5 × 5 Feldern ohne Zahlen, Achsen „wie wa
 > Clara Faden schreibt den Antrag auf: wer was will, was bisher gilt, was sich ändern würde – und vergleicht beide Wege nach den abgestimmten Gesichtspunkten. Im Lenkungskreis hört die Bürgermeisterin die Schule und die Kämmerei und entscheidet: Die Mensa wird so gebaut, dass sie später wachsen kann; das Geld kommt aus der Reserve. Hanna Klingel ist nicht ganz zufrieden, aber sie weiß, woran sie ist – und Theo Lot gießt die Fundamente gleich richtig.
 
 *B · vertretbar*
-> Im Herbst bestätigen die Anmeldezahlen den Bedarf. Inzwischen ist die Planung weiter, und ein Fundament muss nachträglich verstärkt werden. Die Bürgermeisterin entscheidet auf Vorlage der Projektsteuerin für die Mensa, die später wachsen kann, aus der Reserve. Die Schule hat ein halbes Jahr auf eine Antwort gewartet, und Theo Lot fragt, warum man ihm das nicht vor dem Betonieren gesagt hat.
+> Clara Faden hat den Antrag aufgenommen und warnt, dass die Fundamente bald gegossen werden – aber entschieden wird erst im Herbst. Dann bestätigen die Anmeldezahlen den Bedarf. Inzwischen ist die Planung weiter, und ein Fundament muss nachträglich verstärkt werden. Die Bürgermeisterin entscheidet auf Vorlage der Projektsteuerin für die Mensa, die später wachsen kann, aus der Reserve. Die Schule hat ein halbes Jahr auf eine Antwort gewartet, und Theo Lot fragt, warum man ihm das nicht vor dem Betonieren gesagt hat.
 
 *C · Falle*
 > Konrad Schwung plant drei Wochen lang die große Mensa. Dann fragt die Bürgermeisterin, wer das beschlossen hat – niemand. Eine Zusage am Rand eines Schulfests ist kein Beschluss. Die Projektsteuerin legt beide Wege nachträglich vor, die Bürgermeisterin entscheidet für die Mensa, die später wachsen kann, und die drei Wochen Planung muss trotzdem jemand bezahlen.
@@ -500,7 +500,7 @@ Fachliche Einordnung (intern): Sperren ist Sache der Bauleitung vor Ort mit der 
 | Platz | Wertung | Antwort (sichtbar) | Geld | Zeit | Vertrauen |
 |---|---|---|---|---|---|
 | 1 | A · gut | > Sperren Sie sofort und holen Sie die Sicherheitskoordination. Ich sage gleich der Projektsteuerin Bescheid – sie meldet es und hält es noch heute fest. | 0 | −1 | +1 |
-| 2 | B · vertretbar | > Sperren Sie sofort. Alles Weitere besprechen wir am Montag mit der Projektsteuerin. | 0 | −1 | 0 |
+| 2 | B · vertretbar | > Sperren Sie sofort. Ich schreibe der Projektsteuerin kurz, was los ist – den Rest klären wir am Montag. | 0 | −1 | 0 |
 | 3 | C · Falle | > Arbeiten Sie an der anderen Seite weiter, bis der Gerüstbauer am Montag kommt. | −1 | −2 | −2 |
 
 **Folge-Szenen**
@@ -509,7 +509,7 @@ Fachliche Einordnung (intern): Sperren ist Sache der Bauleitung vor Ort mit der 
 > Um halb vier ist der Bereich abgesperrt, die Sicherheitskoordination ist vor Ort. Clara Faden meldet den Schaden über den vereinbarten Weg, sagt der Bürgermeisterin in zwei Sätzen Bescheid und legt noch am Abend einen Eintrag an: was passiert ist, wann, wer gesperrt hat, mit Fotos. Am Dienstag sind die Anker erneuert, und weil der Eintrag genau zeigt, was war, übernimmt die Gerüstfirma die Kosten. Theo Lot brummt: „Ganz schön praktisch, so ein Eintrag.“
 
 *B · vertretbar*
-> Gesperrt wird sofort, niemand kommt zu Schaden. Aber am Montag weiß keiner mehr genau, wann was war, und die Gerüstfirma bestreitet, dass der Sturm schuld ist. Clara Faden setzt den Freitag aus Fotos und Anrufen zusammen; nach einer Woche ist geklärt, wer zahlt. Theo Lot murmelt: „Hätten wir's mal gleich aufgeschrieben.“
+> Gesperrt wird sofort, niemand kommt zu Schaden. Clara Faden liest Ihre Nachricht am Abend, meldet den Schaden und legt noch am selben Tag den Eintrag an. Aber vor Ort hat niemand Uhrzeit und Fotos festgehalten, und die Sicherheitskoordination war nicht da – so bestreitet die Gerüstfirma, dass der Sturm schuld ist. Nach einer Woche ist geklärt, wer zahlt. Theo Lot murmelt: „Hätten wir's mal gleich aufgeschrieben.“
 
 *C · Falle*
 > Am Samstag kommt die Sicherheitskoordination vorbei und stoppt die ganze Baustelle, bis das Gerüst geprüft ist. Verletzt wurde niemand – zum Glück. Clara Faden erfährt erst jetzt davon, meldet den Vorfall sofort und hält ihn noch am selben Tag fest. Die Prüfung dauert eine Woche, und die Bürgermeisterin fragt, warum am Freitag weitergearbeitet wurde.
@@ -555,7 +555,7 @@ Fachliche Einordnung (intern): Problem (Liefertermin ausgefallen) → Entscheidu
 **Szene**
 > **Konrad Schwung:** Ich sag's lieber gleich und nicht erst, wenn's brennt: Der Hersteller der Lüftungsanlage für die Gesamtschule liefert vier Monate später.
 > **Theo Lot:** Vier Monate. Dann bauen wir die Anlage ein, wenn die Kinder schon da sein sollen.
-> **Clara Faden:** Ich habe drei Wege ausgearbeitet, und alle drei sind zulässig: ein Ersatzgerät eines anderen Herstellers, Leihgeräte in den Klassenräumen bis zur Lieferung – oder die Gesamtschule zieht erst nach den Herbstferien ein.
+> **Clara Faden:** Ich habe drei Wege ausgearbeitet, und alle drei sind zulässig: ein Ersatzgerät eines anderen Herstellers, Leihgeräte in den Klassenräumen bis zur Lieferung – oder die Gesamtschule zieht erst nach den Herbstferien ein; ein Teil der vier Monate steckt im Puffer.
 > **Hanna Klingel:** Leihgeräte in jedem Klassenraum? Die brummen. Und nach den Herbstferien … das erkläre ich den Eltern nicht gern.
 > **Gisela Grundstein:** Zeigen Sie mir alle drei Wege. Und was Sie empfehlen. Entscheiden tue ich.
 
@@ -603,18 +603,18 @@ Empfehlung der Projektsteuerin (sichtbar, fest, für die abgestimmten Gewichte):
 |---|---|---|---|---|---|
 | 2 | A · gut | > Alle drei Wege mit dem Vergleich und der Empfehlung für das Ersatzgerät – samt dem Hinweis, wann der spätere Einzug vorn läge. | −1 | +1 | +1 |
 | 3 | B · vertretbar | > Alle drei Wege mit dem Vergleich und der Empfehlung der Projektsteuerin – und dazu Ihre eigene Empfehlung für den späteren Einzug, weil er am wenigsten kostet. | −1 | 0 | 0 |
-| 1 | C · Falle | > Es eilt. Sie geben das Ersatzgerät selbst frei und holen die Zustimmung der Bürgermeisterin danach ein. | −2 | +1 | −2 |
+| 1 | C · Falle | > Es eilt. Sie entscheiden selbst für das Ersatzgerät und holen die Zustimmung der Bürgermeisterin danach ein. | −2 | +1 | −2 |
 
 **Folge-Szenen**
 
 *A · gut*
-> Im Lenkungskreis beraten Kämmerei und Schulamt. Die Bürgermeisterin stellt nur eine Frage: „Wenn mir der Schulstart wichtiger ist als das Geld – bleibt es beim Ersatzgerät?“ Clara Faden nickt. Die Bürgermeisterin entscheidet: Ersatzgerät, das Geld kommt aus der Reserve. Clara Faden hält den Beschluss fest, mit Datum und einer Auflage: Das Gerät muss bis zum Herbst eingebaut sein. Hanna Klingel atmet hörbar aus.
+> Im Lenkungskreis beraten Kämmerei und Schulamt. Die Bürgermeisterin stellt nur eine Frage: „Wenn mir der Schulstart wichtiger ist als das Geld – bleibt es beim Ersatzgerät?“ Clara Faden: „Ja – solange Klima und Betrieb weniger wichtig bleiben. Sonst wird es knapp.“ Die Bürgermeisterin entscheidet: Ersatzgerät, das Geld kommt aus der Reserve. Clara Faden hält den Beschluss fest, mit Datum und einer Auflage: Das Gerät muss bis zum Herbst eingebaut sein. Hanna Klingel atmet hörbar aus.
 
 *B · vertretbar*
 > Die Bürgermeisterin liest beide Empfehlungen und dann den Vergleich. „Sie empfehlen das Günstigste. Aber mein Ziel war der Schulstart.“ Sie vertagt um eine Woche, hört die Schule an und entscheidet dann: Ersatzgerät, aus der Reserve. Ihre Empfehlung war ehrlich begründet – sie passte nur nicht zu dem Ziel, das die Bürgermeisterin gesetzt hatte. Die Woche fehlt dem Einbau am Ende.
 
 *C · Falle*
-> Die Haustechnikfirma bestellt sofort – zu ihrem Preis, denn verhandelt hat niemand. Die Bürgermeisterin erfährt es aus dem Monatsbericht: „Mehr als 100.000 Euro und Geld aus der Reserve – das ist meine Entscheidung. So steht es auf der Seite, die wir vereinbart haben.“ Sie stimmt nachträglich zu, weil es in der Sache richtig ist. Aber der Stadtrat fragt nach.
+> Die Haustechnikfirma bestellt sofort – zu ihrem Preis, denn verhandelt hat niemand. Clara Faden sieht die Bestellung noch am selben Tag und ruft die Bürgermeisterin an: Hier wurde ohne Befugnis entschieden. Die Bürgermeisterin: „Mehr als 100.000 Euro und Geld aus der Reserve – das ist meine Entscheidung. So steht es auf der Seite, die wir vereinbart haben.“ Sie stimmt nachträglich zu, weil es in der Sache richtig ist. Aber der Stadtrat fragt nach.
 
 **So macht man es gut**
 > Eine Entscheidung des Bauherrn kommt als Vorlage mit mindestens zwei zulässigen Wegen, einem gewichteten Vergleich nach vorher abgestimmten Gewichten und einer begründeten Empfehlung – samt dem Hinweis, bei welchen anderen Gewichten die Rangfolge kippt. Entschieden wird von der Stelle, die es darf, und der Beschluss wird getrennt festgehalten: Empfehlung und Punktzahl sind noch keine Entscheidung.
@@ -644,8 +644,8 @@ Fachliche Einordnung (intern): Freigabe am Ende der Bauzeit (Abschluss der Objek
 > **Theo Lot:** Fast alles fertig. Nur der Hallenboden: An zwei Stellen sind Fugen offen. Die Firma bessert bis zu den Herbstferien nach.
 > **Konrad Schwung:** Und die Lüftung braucht im ersten Winter noch eine Feineinstellung. Das ist normal.
 > **Hanna Klingel:** Ich will nur eins hören: Können die Kinder kommen?
-> **Clara Faden:** Ich habe die Freigabe vorbereitet. Zwei Punkte sind offen, beide mit Termin und Zuständigen. Als erledigt melde ich sie nicht – sie sind es nicht.
-> **Gisela Grundstein:** Dann sagen Sie mir, was Sie empfehlen.
+> **Clara Faden:** Ich habe die Freigabe vorbereitet. Zwei Punkte sind offen, beide mit Termin und Zuständigen. Als erledigt melde ich sie nicht – sie sind es nicht. Meine Empfehlung steht in der Vorlage.
+> **Gisela Grundstein:** Und Sie – was legen Sie mir ans Herz?
 
 **Frage**
 > Die Schule will einziehen, und auf der Liste stehen noch zwei Zeilen. Was empfehlen Sie der Bürgermeisterin?
@@ -748,13 +748,13 @@ Bildstil (O-53): isometrischer Campus, flach, farbenfroh, selbst gezeichnete Vek
 | 1 | Campus Stufe 0 (Winter, Morgen, Bauschild) | Grundstein, Faden, Schwung; Gegenstand: Fassadenplatten-Muster in Schwungs Hand | Spielfigur „Sie“ mit Mappe; Gegenstand: leeres Blatt mit Stift | Projektblatt mit Unterschrift (A), Stapel aus elf Zetteln (B), Stadtrat-Mikrofon mit Fragezeichen (C); danach Kärtchen „Wer entscheidet was“ |
 | 2 | Campus Stufe 0 (Frühling, Tag, Krokusse) | Schwung, Faden, Lot; Gegenstand: Messe-Visitenkarte, Sprechblase mit Holzstapel | Notizzettel mit Fragezeichen | Zettel mit drei Zeilen und Kalenderblatt (A), Risikozettel mit Vermerk „vorläufig“ statt Zahl (B), Kalenderblatt mit rotem Vermerk „überfällig“ (C) |
 | 2 · Mini | sechs Karten (Telefon, Holzstapel, Pfütze in Baugrube, Mensatablett, Pumpe, Fahrrad) | – | – | Häkchen bzw. Hinweis je Karte |
-| 3 | Campus Stufe 1 (Frühling, Tag, Baugrube) | Schwung, Faden, Lot, Klingel; kleine Matrix 5 × 5 ohne Zahlen mit markiertem Feld „vorrangig“; Lkw mit Holzelementen | Warnschild (Dreieck mit Ausrufezeichen) | Vorlage mit zwei Spalten und Stempel „beschlossen“ (A), Kalender mit umgeblättertem Monat (B), Monatsbericht mit rot markierter Zeile und klingelndem Telefon (C) |
+| 3 | Campus Stufe 1 (Frühling, Tag, Baugrube) | Schwung, Faden, Lot, Klingel; kleine Matrix 5 × 5 ohne Zahlen mit markiertem Feld „vorrangig“; Lkw mit Holzelementen | Warnschild (Dreieck mit Ausrufezeichen) | Vorlage mit zwei Spalten und Stempel „beschlossen“ (A), Kalender mit umgeblättertem Monat (B), Tagesordnung des Lenkungskreises mit rot markierter Zeile und klingelndem Telefon (C) |
 | 4 | Campus Stufe 2 (Sommer, Abend, Kran, Wimpel) | Klingel, Schwung, Faden, Lot; Gegenstand: Mensatablett mit Teller, Wimpelkette | zwei Mensa-Grundrisse nebeneinander (klein / mit gestrichelter Erweiterung) | Grundriss mit gestrichelter Erweiterung und Stempel (A), Anmeldeformulare und verstärktes Fundament (B), zerknüllte Planrolle (C) |
 | 4 · Mini | sechs Fragekarten mit je drei Porträt-Knöpfen (Sie, Grundstein, Faden) | – | – | Porträt der richtigen Stelle hervorgehoben |
 | 5 | Campus Stufe 3 (Herbst, Abend, Holzelemente) | Grundstein, Schwung, Faden; zwei Kostenzettel mit verschieden langen Balken (ohne Zahlen) | Rednerpult des Stadtrats | ein Zettel mit Balken und daneben gestrichelte Spanne (A), langer Balken mit Sparliste (B), Balken genau in der Mitte mit Fragezeichen (C) |
-| 6 | Campus Stufe 4 (Winter, Tag, Sturm, Gerüst) | Lot, Schwung, beide mit Telefon; Sturmwolke, loser Gerüstanker | Absperrband | Absperrband + Eintrag mit Uhr und Kamera (A), Absperrband + Wochenkalender (B), Stoppschild an der Baustelle (C) |
+| 6 | Campus Stufe 4 (Winter, Tag, Sturm, Gerüst) | Lot, Schwung, beide mit Telefon; Sturmwolke, loser Gerüstanker | Absperrband | Absperrband + Eintrag mit Uhr und Kamera (A), Absperrband + Eintrag mit leerem Fotofeld und Fragezeichen (B), Stoppschild an der Baustelle (C) |
 | 6 · Mini | sechs Schrittkarten mit kleinen Symbolen (Absperrband, Telefon, Eintrag, Lupe, Vorlage, Häkchen) | – | – | richtige Reihenfolge als Pfad |
-| 7 | Campus Stufe 5 (Frühling, Morgen, Grundschule wächst) | alle fünf; Gegenstand: Lüftungsgerät mit Kalender „+4 Monate“ als Symbol (Pfeil, keine Zahl) | Waage mit drei Schalen (A, B, C) | Beschluss mit Stempel und Datum (A), Uhr mit einer Woche (B), Stadtrat-Mikrofon und Monatsbericht (C) |
+| 7 | Campus Stufe 5 (Frühling, Morgen, Grundschule wächst) | alle fünf; Gegenstand: Lüftungsgerät mit Kalender „+4 Monate“ als Symbol (Pfeil, keine Zahl) | Waage mit drei Schalen (A, B, C) | Beschluss mit Stempel und Datum (A), Uhr mit einer Woche (B), Stadtrat-Mikrofon und klingelndes Telefon (C) |
 | 7 · Vergleich | – | Tabelle mit Punkten als Kreise, Gewichte als drei Stufenknöpfe je Gesichtspunkt, Rangbalken in den Farben A/B/C; Porträt der Projektsteuerin neben dem Empfehlungssatz | – | – |
 | 8 | Campus Stufe 6, nach der Folge Stufe 7 (Sommer, Tag) | Lot, Schwung, Klingel, Faden, Grundstein; Gegenstand: Hallenboden mit zwei markierten Fugen, Thermometer an der Lüftung | Schlüsselbund mit Anhänger | Übergabemappe mit zwei Karteikarten (A), zwei Karteikarten in der Mappe des Architekten (B), Bericht mit zwei hervorgehobenen Zeilen (C) |
 | 8 · Mini | fünf Karteikarten, zwei Ablagen („zu Recht geschlossen“, „übergeben“) | – | – | Karten in der richtigen Ablage |

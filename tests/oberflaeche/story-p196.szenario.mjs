@@ -88,4 +88,31 @@ export async function lauf(seite, h) {
   await verboten('Buch');
   await pruefe('buch-real');
   await h.taste('Escape');
+
+  // P19.7 (Zweitprüfung Barrierefreiheit): bei reduzierter Bewegung läuft nichts länger als ein Wimpernschlag – Auftakt mit Wegkarten,
+  // Akt-Kopf, Pause und Buch; kein weiches Rollen (das Skript kennt keines)
+  await seite.emulateMedia({ reducedMotion: 'reduce' });
+  const langsam = () => seite.evaluate(() => document.getAnimations()
+    .filter((a) => a.playState === 'running' && Number(a.effect?.getComputedTiming().duration ?? 0) > 20).map((a) => a.effect?.target instanceof Element ? a.effect.target.className : '?'));
+  const ohneBewegung = async (wo) => { await h.warte(120); const l = await langsam(); if (l.length > 0) h.befund(`${wo}: bei reduzierter Bewegung laufen Animationen ${JSON.stringify(l.slice(0, 3))}`); };
+  await seite.evaluate(() => { try { localStorage.clear(); } catch { /* ohne Speicher */ } });
+  await seite.goto(`${h.url.replace(/#.*$/u, '')}#story`);
+  await seite.reload();
+  await h.erwarte('[data-pruef="weg-karte-lang"]');
+  await ohneBewegung('Auftakt');
+  await zu('s6', 'Der Elternabend');
+  await ohneBewegung('Akt-Kopf (Station 6)');
+  await zu('s5', 'Die Schule will mehr');
+  for (let i = 0; i < 4 && (await teil()) !== 'pause'; i++) {
+    if ((await teil()) === 'frage') await h.klick('[data-pruef="antwort-1"]');
+    await weiter();
+  }
+  await ohneBewegung('Pause');
+  await h.erwarte('[data-pruef="buch-symbol"]');
+  await seite.locator('[data-pruef="buch-symbol"]').focus();
+  await h.taste('Enter');
+  await h.erwarte('[data-pruef="gs-buch"]');
+  await ohneBewegung('Buch');
+  await h.taste('Escape');
+  await seite.emulateMedia({ reducedMotion: 'no-preference' });
 }

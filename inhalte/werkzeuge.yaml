@@ -248,6 +248,15 @@ vorlagencheck:
       wege: [{ titel: Größere Mensa, zustand: zulaessig }, { titel: "Mensa, die später wachsen kann", zustand: zulaessig }]
       antworten: { a1: ja, a2: ja, a3: ja, a4: teilweise, a5: ja, b2: ja, b3: ja, c1: ja, c2: ja, c3: ja, c4: ja, d1: ja, d2: ja, d3: ja, e1: ja, e2: ja, e3: ja }
       erwartet: gelb
+    - id: zuschlag
+      titel: Zuschlag fürs Holz der Grundschule – nur ein Weg
+      lage: "September 2026: Die Mappe für den Zuschlag fürs Holz der Grundschule nennt Frage, Termin und die Frist des Angebots, aber nur einen Weg: den Zuschlag zum Angebotspreis. Die Bürgermeisterin müsste bis Donnerstag freigeben."
+      quelle: s7
+      gegenstand: geld
+      stelle: buergermeisterin
+      wege: [{ titel: Zuschlag zum Angebotspreis, zustand: zulaessig }]
+      antworten: { a1: ja, a2: ja, a3: ja, a4: ja, a5: ja, b2: teilweise, b3: ja, c1: ja, c2: ja, c3: ja, c4: ja, d1: ja, d2: ja, d3: ja, e1: ja, e2: ja, e3: ja }
+      erwartet: rot
 
   # Regie-Material (nur im Regie-Teil, nie auf der Leinwand; E-9, Konzept A.9)
   regie:
@@ -307,9 +316,11 @@ wegweiser:
     - { id: messe, quelle: s2, titel: "Hinweis von der Messe: Holz wird knapp", text: "März 2026: Der Architekt hat auf einer Messe gehört, dass die Lieferzeiten für Holzelemente länger werden.", antworten: { dringlich: nein, handlung: nein, eingetreten: nein, anpassen: nein, moeglich: unklar, entscheidung: nein }, erwartet: { art: fruehwarnung } }
     - { id: hersteller, quelle: s3, titel: Drei Hersteller brauchen länger, text: "April 2026: Drei von vier Herstellern brauchen ein halbes Jahr statt vier Monate; ob der Holzbau später beginnt, ist offen.", antworten: { dringlich: nein, handlung: nein, eingetreten: nein, anpassen: nein, moeglich: ja, entscheidung: ja }, erwartet: { art: risiko, entscheidung: true } }
     - { id: ausschreiben, quelle: s3, titel: Holzelemente früher ausschreiben, text: "April 2026: Die Holzelemente werden auf Beschluss der Bürgermeisterin früher ausgeschrieben.", antworten: { dringlich: nein, handlung: ja, entscheidung: nein }, erwartet: { art: massnahme } }
+    - { id: auflage, quelle: s4, titel: Auflage zum Brandschutz, text: "Mai 2026: Die Genehmigung für den Holzbau kommt mit einer Auflage: Die Holzbauteile in den Fluren der Gesamtschule müssen gekapselt werden, das kostet rund 400.000 Euro mehr.", antworten: { dringlich: nein, handlung: nein, eingetreten: ja, entscheidung: ja }, erwartet: { art: problem, entscheidung: true } }
     - { id: mensa, quelle: s5, titel: Größere Mensa gewünscht, text: "Juni 2026: Die Schulleitung wünscht eine Mensa für 450 statt 300 Essen.", antworten: { dringlich: nein, handlung: nein, eingetreten: nein, anpassen: ja, entscheidung: ja }, erwartet: { art: aenderung, entscheidung: true } }
     - { id: mehrkosten, quelle: s8, titel: Angekündigte Mehrkosten, text: "Oktober 2026: Die Haustechnikfirma kündigt Mehrkosten von gut einer Million an; die Stelle, die Aufträge vergibt (Vergabestelle), prüft zuerst, ob die Mehrkosten berechtigt sind.", antworten: { dringlich: nein, handlung: nein, eingetreten: nein, anpassen: nein, moeglich: ja, entscheidung: nein }, erwartet: { art: risiko, entscheidung: false } }
     - { id: geruest, quelle: s10, titel: Lose Gerüstanker nach dem Sturm, text: "Februar 2027: Nach dem Sturm sind zwei Gerüstanker an der Sporthalle lose.", antworten: { dringlich: ja, handlung: nein, eingetreten: ja, entscheidung: nein }, erwartet: { art: problem, dringlich: true } }
+    - { id: verzug, quelle: s11, titel: Hersteller deutet Verzug an, text: "April 2027: Der Hersteller der Lüftungsanlage deutet Verzug an, nennt aber keinen Termin.", antworten: { dringlich: nein, handlung: nein, eingetreten: nein, anpassen: nein, moeglich: unklar, entscheidung: nein }, erwartet: { art: fruehwarnung } }
     - { id: lueftung, quelle: s12, titel: Lüftungsanlage kommt später, text: "Mai 2027: Der Hersteller der Lüftungsanlage für die Gesamtschule liefert vier Monate später.", antworten: { dringlich: nein, handlung: nein, eingetreten: ja, entscheidung: ja }, erwartet: { art: problem, entscheidung: true } }
     - { id: haushalt, quelle: fall, titel: Kostenübersicht für den Haushalt, text: "Die Kostenübersicht für den Haushalt 2027 geht bis Freitag an die Finanzabteilung der Stadt (Kämmerei).", antworten: { dringlich: nein, handlung: nein, eingetreten: nein, anpassen: nein, moeglich: nein, arbeit: ja, entscheidung: nein }, erwartet: { art: aufgabe } }
 
@@ -474,6 +485,25 @@ monatsbericht:
         probleme: [{ text: "Mensa, die wachsen kann: beschlossen, Umsetzung läuft", kennung: AEN-012 }]
       entscheidungen: keine
       reaktion: "Zur Kenntnis nehmen; Zahl für den Stadtrat wie oben. Die Vergabestelle prüft die Mehrkosten, Ergebnis in rund vier Wochen."
+      erwartet: gruen
+    - id: dezember
+      quelle: s9
+      titel: Monatsbericht Dezember 2026
+      monat: Dezember 2026
+      datenstand: Stand der Wochendurchsicht im Dezember
+      lage: "Die Kostenprognose liegt unverändert bei rund 59,4 Millionen Euro, rund eine Million über dem Budget, aber innerhalb der Reserve. Der Planstand der Fassade ist überfällig; der Netzanschluss kommt erst im März statt im Januar."
+      ampeln:
+        kosten: { farbe: gelb, satz: "Unverändert rund eine Million über dem Budget, innerhalb der Reserve.", reaktion: "Zur Kenntnis nehmen; die Zahl ist gegenüber dem letzten Bericht unverändert." }
+        termine: { farbe: gelb, satz: "Planstand der Fassade überfällig: Der Fensterbauer änderte die Maße zweimal; die Anschlüsse werden mit dem Statiker abgestimmt.", reaktion: "Der Architekt nennt mit Grund, bis wann die Fassadenpläne vorliegen." }
+        qualitaet: { farbe: gruen, satz: "Keine Einschränkung bekannt." }
+      eintraege:
+        veraenderungen: [{ text: "Haustechnik-Mehrkosten: Risiko seit November geschlossen", kennung: RIS-014 }]
+        blockiert: [{ text: "Fassadenpläne fehlen: Planstand überfällig", kennung: AUF-031 }]
+        massnahmen: keine
+        fruehwarnungen: keine
+        probleme: [{ text: "Netzanschluss erst im März, bis dahin Baustrom", kennung: PRO-013 }]
+      entscheidungen: keine
+      reaktion: "Zur Kenntnis nehmen; keine Entscheidung offen. Der Architekt nennt bis zum nächsten Termin, wann die Fassadenpläne vorliegen."
       erwartet: gruen
   # Regie-Material (nur im Regie-Teil, nie auf der Leinwand; Konzept D.8)
   regie:

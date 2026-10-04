@@ -37,3 +37,26 @@ test('Wegskizze: ohne Kennungen, ohne url(#…), Beschreibung maskiert, wächst 
   // deterministisch
   assert.equal(svg, wegSkizze(Array.from({ length: 15 }, () => true), 'a "b" <c> & d', false));
 });
+
+test('Wegskizze mit Akten (P19.7): Lücke an den Aktgrenzen, I · II · III unter dem Weg, Nummern bleiben, ohne passende Summe gleiche Abstände', () => {
+  const alle = Array.from({ length: 14 }, () => true);
+  const x = (svg: string): number[] => [...svg.matchAll(/<circle class="ws-station" cx="([\d.]+)"/gu)].map((m) => Number(m[1]));
+  const ohne = x(wegSkizze(alle, 'B', false));
+  const mit = wegSkizze(alle, 'B', false, [5, 5, 4]);
+  const xs = x(mit);
+  assert.equal(xs.length, 14);
+  assert.deepEqual([...mit.matchAll(/class="ws-akt"[^>]*>([IV]+)</gu)].map((m) => m[1]), ['I', 'II', 'III']);
+  // Abstand zwischen 5 und 6 (Aktgrenze) größer als innerhalb eines Akts
+  const abstand = (a: number, b: number): number => (xs[b] ?? 0) - (xs[a] ?? 0);
+  assert.ok(abstand(4, 5) > abstand(3, 4) * 1.3, 'Lücke an der Grenze');
+  assert.ok(abstand(9, 10) > abstand(10, 11) * 1.3, 'Lücke an der zweiten Grenze');
+  // Gegenprobe: ohne Akte gleiche Abstände und keine Zahlen; mit falscher Summe ebenso
+  assert.ok(Math.abs((ohne[5] ?? 0) - (ohne[4] ?? 0) - ((ohne[4] ?? 0) - (ohne[3] ?? 0))) < 0.2);
+  assert.equal(wegSkizze(alle, 'B', false, [5, 5, 3]), wegSkizze(alle, 'B', false));
+  assert.equal(zaehle(wegSkizze(alle, 'B', false), 'ws-akt'), 0);
+  // Weg, Ziel und alle Stationen bleiben im Bild (viewBox −8 … 288)
+  assert.ok(xs.every((v) => v >= 14 && v <= 266));
+  assert.deepEqual([...mit.matchAll(/class="ws-nr"[^>]*>(\d+)</gu)].map((m) => Number(m[1])), Array.from({ length: 14 }, (_, i) => i + 1));
+  // die Kurzfassung trägt dieselben Akte
+  assert.equal([...wegSkizze(alle.map((_, i) => [0, 2, 4, 11].includes(i)), 'B', true, [5, 5, 4]).matchAll(/class="ws-akt"/gu)].length, 3);
+});

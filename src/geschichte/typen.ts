@@ -1,8 +1,8 @@
 /*
- * Typen der Story (P17.2, O-51/O-52): eine lineare Geschichte in acht Kapiteln aus Sicht der Projektleitung des
+ * Typen der Story (P17.2, O-51/O-52): eine lineare Geschichte (seit P19: 14 Stationen in drei Akten) aus Sicht der Projektleitung des
  * Bauherrn – je Kapitel eine Szene mit Dialog, eine Frage mit drei Antworten (gut · vertretbar · Falle), Folge-Szene,
- * drei Balken Geld · Zeit · Vertrauen (intern 0–10), „So macht man es gut“, „Das steckt dahinter“; in Kapitel 2, 4, 6
- * und 8 eine Mini-Aufgabe, in Kapitel 7 der gewichtete Vergleich. Erzeugt von werkzeuge/geschichte.mjs aus
+ * drei Balken Geld · Zeit · Vertrauen (intern 0–10), „So macht man es gut“, „Das steckt dahinter“; in elf Stationen
+ * eine Mini-Aufgabe, in Station 12 der gewichtete Vergleich. Erzeugt von werkzeuge/geschichte.mjs aus
  * inhalte/geschichte/*.yaml (docs/INHALTSFORMAT.md, Abschnitt 3). Alle *Html-Felder sind geprüftes HTML.
  */
 

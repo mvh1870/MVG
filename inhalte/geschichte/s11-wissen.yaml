@@ -19,6 +19,7 @@ zeit: April 2027
 campus: { stufe: 4.5, jahreszeit: fruehling, licht: tag, wetter: regen }
 bruecke: "Clara Faden fällt aus; der Lüftungshersteller deutet Verzug an, ihre Vertretung übernimmt die Einträge."
 thema: vorgaenge
+werkzeuge: [{ id: wegweiser, beispiel: verzug }]
 belege: [v24:hb-2, v24:hb-5, v24:tlb-4, v24:hb-1.1, v24:hb-1.2, v24:hb-1.4, v24:tlb-3, v24:hb-projektblatt, k2.3-p1, k2.5-t1, k4.2-p1]
 # neu: haftzettel (Eintrag mit Haftzettel „frag Theo“), gespraechskarten (vier Karten mit Porträts und Fristkalender)
 bild-szene: haftzettel

@@ -124,6 +124,11 @@ export const W = {
     // R76: der leere Fall ausgeschrieben wie bei den Notizen (statt eines einzelnen Strichs)
     druckKeineEntscheidung: 'Noch keine Entscheidung.',
     sprungWaehlen: 'Schritt wählen …',
+    // P19.7: Sprung je Akt und zur Pause nach dem Akt (Knöpfe der Regie)
+    akteSprung: 'Akte',
+    aktSprungName: (r: string, titel: string, nummern: string) => `Akt ${r} · ${titel} · Stationen ${nummern}`,
+    pauseSprungName: (r: string) => `Pause nach Akt ${r}`,
+    pauseNotiz: (r: string, zeitraum: string) => `Die Leinwand zeigt die Pause nach Akt ${r} (${zeitraum}): die Zwischenbilanz und „Das können Sie jetzt“. Die Stationen dieses Akts:`,
     schritteHier: 'Schritte dieses Teils',
     wertung: { gut: 'gut', vertretbar: 'vertretbar', falle: 'Falle' } as Record<string, string>,
     wertungTitel: 'Wertung (nur für Sie sichtbar)',
@@ -177,7 +182,7 @@ export const W = {
     praesentieren: 'Präsentieren',
     zumInhalt: 'Zum Inhalt springen',
   },
-  // Story (P17.4, O-51/O-52): acht Kapitel, drei Antworten, Balken Geld · Zeit · Vertrauen
+  // Story (P17.4, O-51/O-52, seit P19 14 Stationen in drei Akten): drei Antworten, Balken Geld · Zeit · Vertrauen
   geschichte: {
     fortschritt: 'Fortschritt der Geschichte',
     vonN: (nr: number, n: number) => `${nr} von ${n}`,

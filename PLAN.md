@@ -197,7 +197,7 @@ Vorgabe (bis die Antworten des Owners aus der Klickseite „Story erweitern“ v
 - [x] P19.4 (7d56867, L-283–L-285) · Technik III: Gedächtnis (Echo-Zeilen), Entscheidungsbuch, Verlauf — Abnahme: Tests über alle Zustände, Leinwand ohne Wertung, Druck.
 - [x] P19.5 (7d56867, L-286–L-289) · Neue Mini-Arten: Matrix-Probe, Mappe nachfordern, Bericht gegenlesen, Pinnwand, Rückfragen im Entscheidungsfenster — Abnahme: Tastatur, axe, Regie/Leinwand, Tests.
 - [x] P19.6 (2026-10-04, L-330, L-340–L-356) · Inhalte: sechs neue Stationen, Vertiefung der acht bestehenden (mehr Erzähltiefe), Vertiefungen, Nebenfiguren (Porträts) — 14 Stationen eingesetzt, ganzer Weg 7.787 Wörter ≈ 39 Minuten, Kurzfassung 1.960 Wörter ≈ 10 Minuten, obere Schranke 8.949; Abnahme „Prüf-Agenten je Akt“ folgt als Prüflauf in P19.8 (O-24), Kette grün.
-- [ ] P19.7 · Verknüpfung (Themen und Werkzeuge ↔ neue Stationen), Regie-Sprünge je Akt, Startseite und Wegkarten, Datenschutz, Doku — Abnahme: Szenarien grün.
+- [x] P19.7 (2026-10-04, L-360–L-365) · Verknüpfung (Themen und Werkzeuge ↔ neue Stationen), Regie-Sprünge je Akt, Startseite und Wegkarten, Datenschutz, Doku — Abnahme: Szenarien grün; Kette grün, Mutanten-Probe am Ende.
 - [ ] P19.8 · Prüf-Agenten (alle Rollen auf die erweiterte Story) + Korrekturschleife — Abnahme: zwei Runden hintereinander ohne schwere Befunde (O-35).
 - [ ] P19.9 · Abschluss: Übergabe, ABNAHME ergänzt, CI grün, Merge nach `main`, neues Paket für die Internetseite, Nachricht an den Owner.
 

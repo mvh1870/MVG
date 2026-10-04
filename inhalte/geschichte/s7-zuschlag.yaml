@@ -11,7 +11,7 @@ zeit: September 2026
 campus: { stufe: 2.5, jahreszeit: herbst, licht: tag }
 bruecke: "September: Auftrag fürs Holz der Grundschule; die Bürgermeisterin gibt frei, die städtische Vergabestelle bestellt."
 thema: verantwortung
-werkzeuge: [{ id: vorlagen-check, beispiel: lueftung-kurz }]
+werkzeuge: [{ id: vorlagen-check, beispiel: zuschlag }]
 belege: [v24:hb-3.1, v24:tlb-3, v24:hb-3, v24:va-4.2, v24:tlb-5, v24:va-4.1, v24:hb-1, k4.5-p1, k9.3-t1, k10.5-t1, k5.5-p1]
 bild-szene: glocke-haken
 bild-frage: angebotskalender

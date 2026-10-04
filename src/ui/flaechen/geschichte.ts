@@ -1,9 +1,9 @@
 /*
- * Fläche „Story“ (P17.4, O-51 bis O-53): eine lineare Geschichte in acht Kapiteln aus Sicht der Projektleitung des
+ * Fläche „Story“ (P17.4, O-51 bis O-53): eine lineare Geschichte in 14 Stationen (P19: drei Akte mit Pausen) aus Sicht der Projektleitung des
  * Bauherrn. Ein Fluss mit „Weiter“ Schritt für Schritt: Auftakt (Figuren, Balken, Wahl ganze Geschichte oder
- * Kurzfassung) → je Kapitel Szene (Campus, Dialog), in Kapitel 7 der Vergleich, Frage mit drei Antworten (nach der Wahl
- * Folge-Szene, Balken, „So macht man es gut“), in Kapitel 2, 4, 6, 8 die Mini-Aufgabe → Schulstart mit Bilanz.
- * Oben eine Fortschrittslinie der Kapitel und die drei Balken klein; die Seite sagt „3 von 8“, nie „Kapitel“ (L-225).
+ * Kurzfassung) → je Station Szene (Campus, Dialog), in Station 12 der Vergleich, Frage mit drei Antworten (nach der Wahl
+ * Folge-Szene, Balken, „So macht man es gut“), in elf Stationen eine Mini-Aufgabe, nach Akt I und II eine Pause → Schulstart
+ * mit Bilanz. Oben die Akt-Leiste und die drei Balken klein; die Seite sagt „Station 3 von 14“, nie „Kapitel“ (L-225).
  *
  * `baueSchritt` zeichnet einen Schritt rein aus Geschichte und Stand (auch für Leinwand und Regie-Vorschau, ohne
  * Bedienung); `erzeugeGeschichte` ist die bedienbare Fläche mit Speicher, Fokusführung und Tastatur.
@@ -374,7 +374,7 @@ function auftakt(o: SchrittOptionen): HTMLElement {
     const t = kurz ? g.auftakt.wegwahl?.kurz : g.auftakt.wegwahl?.lang;
     return h('div', { class: `gs-wegkarte ${kurz ? 'gs-wegkarte-kurz' : 'gs-wegkarte-lang'}`, 'data-pruef': kurz ? 'weg-karte-kurz' : 'weg-karte-lang' },
       h('div', { class: 'gs-weg-bild', 'aria-hidden': 'true' },
-        vonHtml(wegSkizze(kurz ? inKurz : inKurz.map(() => true), t?.bild ?? (kurz ? w.wegBildKurz(n, gespielt) : w.wegBildLang(n)), kurz))),
+        vonHtml(wegSkizze(kurz ? inKurz : inKurz.map(() => true), t?.bild ?? (kurz ? w.wegBildKurz(n, gespielt) : w.wegBildLang(n)), kurz, akteVon(g).map((a) => a.stationen.length)))),
       h('h3', { class: 'gs-weg-titel' }, t?.titel ?? (kurz ? w.wegKurzTitel : w.wegLangTitel)),
       h('p', { class: 'gs-weg-meta' }, `${w.wegEntscheidungen(gespielt)} · ${minuten(kurz ? g.auftakt.kurz : W.start.storyMeta(n))}`),
       h('p', { class: 'gs-weg-text' }, t?.text ?? (kurz ? w.wegKurzText : w.wegLangText)),
@@ -894,6 +894,9 @@ export function erzeugeGeschichte(o: { g: Geschichte; speicher: SpeicherGriff | 
   const loeschen = h('button', { type: 'button', class: 'gs-leiser-knopf', 'data-pruef': 'fortschritt-loeschen', onclick: () => {
     try { o.speicher?.removeItem(SPEICHER_SCHLUESSEL); } catch { /* Speicher gesperrt: nichts zu löschen */ }
     // R68: gelöscht bleibt gelöscht – der frische Stand wird erst mit der nächsten Änderung wieder gespeichert
+    // P19.7: auch das, was die Seite nur im Speicher hält (welche Buch-Einträge schon gezeigt wurden), und die Zeile „gespeichert“ beginnen von vorn
+    buchGesehen.clear();
+    gespeichertOk = false;
     setze(neuerStand(), false);
   } }, w.fortschrittLoeschen);
   const element = seitenRahmen({

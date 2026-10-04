@@ -6,7 +6,7 @@ Der Governance Kompass ist eine Internetseite. Ausgeliefert wird der fertige Ord
 
 | Datei | Zweck |
 |---|---|
-| `index.html` | die Seite selbst (Start, Story, Theorie, Explore mit neun Werkzeugen, Präsentieren); Schriften, Bilder und Skript sind eingebettet |
+| `index.html` | die Seite selbst (Start, Story mit 14 Stationen in drei Akten, Theorie mit 16 Themen, Explore mit neun Werkzeugen, Präsentieren); Schriften, Bilder und Skript sind eingebettet |
 | `impressum.html` | Impressum (Bauherr Mentoren GmbH i. G., vertreten durch Martin Mohr) |
 | `datenschutz.html` | Datenschutzerklärung für eine Seite zum Lesen (keine Cookies, kein Tracking, keine Dritten) |
 | `robots.txt` | erlaubt Suchmaschinen alles und nennt die Sitemap |
@@ -14,6 +14,8 @@ Der Governance Kompass ist eine Internetseite. Ausgeliefert wird der fertige Ord
 | `vorschau.png` | Vorschaubild (1200 × 630) für geteilte Links |
 | `favicon.svg`, `favicon.ico`, `apple-touch-icon.png` | Symbol für Browser-Tab, Lesezeichen und Startbildschirm (weiße Bildmarke auf Navy) |
 | `.htaccess` | Regeln für den IONOS-Webserver: immer `https://www.governancekompass.de`, Sicherheitsköpfe, keine Verzeichnisliste |
+
+**Umfang (Stand P19.7):** Story: ganzer Weg etwa 40 Minuten (gemessen 7.834 Wörter ≈ 39 Minuten), Kurzfassung etwa 10 Minuten (1.960 Wörter), 14 Stationen in drei Akten mit zwei Pausen, elf Mini-Aufgaben, Entscheidungsbuch und Verlauf; Theorie: 16 Themen in vier Teilen; Explore: neun Werkzeuge. `index.html` wiegt rund 2,4 MB (Budget 4 MB). Im Browser des Besuchers liegt nur der Fortschritt (Datenschutz, Abschnitt 5), auf dem Server nichts außer diesen Dateien.
 
 Der Ordner entsteht mit `npm run bau` und wird mit jedem Commit eingecheckt; `npm run pruefe` prüft, dass er aktuell und deterministisch ist.
 
@@ -34,6 +36,7 @@ Der Ordner entsteht mit `npm run bau` und wird mit jedem Commit eingecheckt; `np
 
 - [ ] `http://governancekompass.de` leitet auf `https://www.governancekompass.de/` weiter.
 - [ ] Startseite lädt, die drei Wege öffnen Story, Theorie und Explore.
+- [ ] Story: der Auftakt zeigt zwei Wegkarten („Vierzehn Entscheidungen · etwa 40 Minuten“ und „Vier Entscheidungen · etwa 10 Minuten“), nach Station 5 und nach Station 10 kommt eine Pause, ab Station 1 gibt es das Symbol für das Entscheidungsbuch, und „Gespeicherten Fortschritt löschen“ am Fuß setzt alles zurück.
 - [ ] Impressum und Datenschutz sind im Fuß jeder Seite erreichbar.
 - [ ] `https://www.governancekompass.de/robots.txt` und `/sitemap.xml` sind abrufbar.
 - [ ] Ein geteilter Link (z. B. in einer E-Mail- oder Chat-Vorschau) zeigt Titel, Beschreibung und Vorschaubild.

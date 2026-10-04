@@ -9,6 +9,7 @@ campus: { stufe: 1.5, jahreszeit: fruehling, licht: abend, wetter: regen }
 # Brückenzeile wortgleich zu docs/drehbuch-v2/04-rahmen.md 6.1 (Karte 2), mit fetter Nummer
 bruecke: "**4** · Mai: Eine Bedingung zum Brandschutz kommt. Sie wird als Problem aufgenommen, die Lösung beschließt die Bürgermeisterin."
 thema: vorgaenge
+werkzeuge: [{ id: wegweiser, beispiel: auflage }]
 belege: [v24:hb-1, v24:hb-1.4, v24:hb-1.6, v24:hb-2, v24:hb-3, v24:hb-3.1, v24:hb-5, v24:tlb-1, k3.2-t1, k4.2-p3, v24:va-4.1]
 # Bild neu: Genehmigung mit rotem Stempel „Auflage“ (noch nicht in GIMMICKS)
 bild-szene: genehmigung-auflage

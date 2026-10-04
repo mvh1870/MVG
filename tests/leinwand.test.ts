@@ -24,6 +24,7 @@ const { inhalte } = await import('../src/inhalte/index.ts');
 const { starteLeinwand } = await import('../src/regie/leinwand.ts');
 const { neuerStand, waehle } = await import('../src/geschichte/engine.ts');
 import type { EingehendeNachricht, Kanal, KanalNachricht } from '../src/regie/kanal.ts';
+import type { Schritt } from '../src/geschichte/engine.ts';
 
 /** Testkanal: `bringe` stellt eine Nachricht zu (ein Wurf des Empfängers bleibt sichtbar), `gesendet` hält, was die Leinwand sendet. */
 function testkanal(): Kanal & { bringe(n: EingehendeNachricht): void; gesendet: KanalNachricht[] } {
@@ -185,6 +186,49 @@ test('Anzeige (R68): kein Bedienelement und kein Link – Start, Story (Szene, V
   } finally {
     anzeige.entferne();
   }
+});
+
+test('Anzeige (P19.7): jeder Schritt der 14 Stationen – alle Mini-Arten, Pausen, Ende, Buch, Verlauf – ohne Bedienelement, ohne „neu“, auf beiden Wegen', async () => {
+  const { erzeugeAnzeige } = await import('../src/regie/leinwand.ts');
+  const { pruefeBuehne } = await import('../src/regie/buehne.ts');
+  const { schritte } = await import('../src/geschichte/engine.ts');
+  const { loeseMini } = await import('../src/regie/eingriffe.ts');
+  const anzeige = erzeugeAnzeige(inhalte, 'Test', true);
+  document.body.replaceChildren(anzeige.element);
+  const bedienbar = '.anzeige button, .anzeige select, .anzeige input, .anzeige textarea, .anzeige a[href], .anzeige [contenteditable], .anzeige [tabindex]:not([tabindex="-1"])';
+  const arten = new Set<string>();
+  try {
+    for (const kurz of [false, true]) {
+      for (const geloest of [false, true]) {
+        let stand: ReturnType<typeof neuerStand> = neuerStand(kurz);
+        for (const k of g.kapitel) {
+          stand = waehle(g, stand, k.id, 1);
+          if (geloest) stand = loeseMini(g, stand, k.id);
+        }
+        const alleSchritte: Schritt[] = schritte(g, kurz);
+        for (const schritt of alleSchritte) {
+          for (const buch of [false, true]) {
+            const roh = buehne({ bereich: 'story', story: { ...stand, schritt }, ...(buch ? { buch: true } : {}) });
+            const b = pruefeBuehne(roh, g);
+            assert.ok(b, `${JSON.stringify(schritt)}: gültiger Bühnenstand`);
+            anzeige.setze(b);
+            const wo = `${kurz ? 'kurz' : 'lang'} ${geloest ? 'gelöst' : 'offen'} ${JSON.stringify(schritt)}${buch ? ' mit Buch' : ''}`;
+            assert.deepEqual([...anzeige.element.querySelectorAll(bedienbar)].map((e) => `${e.tagName.toLowerCase()}[${e.getAttribute('data-pruef') ?? ''}]`), [], `${wo}: Bedienelemente`);
+            assert.equal(anzeige.element.querySelectorAll('.gs-buch-neu').length, 0, `${wo}: Markierung „neu“`);
+            assert.equal(anzeige.element.getAttribute('inert'), '', `${wo}: die Leinwand ist inert (Aufklapper nicht bedienbar)`);
+            if (schritt.ort === 'kapitel' && schritt.teil === 'mini') {
+              const kennung: string = schritt.kapitel;
+              arten.add(g.kapitel.find((k) => k.id === kennung)?.mini?.art ?? '');
+            }
+          }
+        }
+      }
+    }
+  } finally {
+    anzeige.entferne();
+  }
+  // die echte Story führt alle fünf neuen Arten und die beiden alten
+  for (const neu of ['matrix', 'mappe', 'bericht', 'pinnwand', 'rueckfragen']) assert.ok(arten.has(neu), `Mini-Art ${neu} in der Story`);
 });
 
 test('Anzeige (R71): der Vergleich rechnet mit den Gewichten aus der Regie – ohne Bedienelemente', async () => {

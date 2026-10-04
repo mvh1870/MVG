@@ -429,6 +429,54 @@ test('Regie: Notiz und Leitfragen, Kundenwahl, „weiter“ sendet den öffentli
   }
 });
 
+test('Regie (P19.7): Sprung je Akt und zur Pause, Überblick des Akts als Notiz, der Kanal trägt nur den Stand', () => {
+  const gesendet: KanalNachricht[] = [];
+  const kanal = { senden: (n: KanalNachricht) => { gesendet.push(n); }, abonnieren: () => () => undefined, schliessen: () => undefined };
+  const r = erzeugeRegie({ inhalte, kanal, version: VERSION, speicher: speicher(), regieGeschichte, regieKapitel, oeffneLeinwand: () => undefined, takt: 100000 });
+  document.body.replaceChildren(r.element);
+  try {
+    (r.element.querySelector('[data-pruef="regie-bereich-story"]') as HTMLElement).click();
+    const g = inhalte.geschichte;
+    assert.ok(g?.akte);
+    const akte: { id: string; stationen: string[] }[] = g.akte;
+    const letzter = () => { const n = gesendet.filter((x) => x.art === 'zustand').at(-1); assert.ok(n && n.art === 'zustand'); return n.zustand.story; };
+    const akteGruppe = r.element.querySelector<HTMLElement>('[data-pruef="regie-akte"]');
+    assert.ok(akteGruppe && !akteGruppe.hidden, 'Akt-Reihe sichtbar');
+    // je Akt ein Knopf, je Akt außer dem letzten ein Pausen-Knopf; zugängliche Namen mit Titel und Stationen
+    assert.deepEqual([...akteGruppe.querySelectorAll('button')].map((b) => b.getAttribute('data-pruef')), ['regie-akt-a1', 'regie-pause-a1', 'regie-akt-a2', 'regie-pause-a2', 'regie-akt-a3']);
+    assert.match(akteGruppe.querySelector('[data-pruef="regie-akt-a2"]')?.getAttribute('aria-label') ?? '', /^Akt II · .+ · Stationen 6–10$/u);
+    for (const a of akte) {
+      (akteGruppe.querySelector(`[data-pruef="regie-akt-${a.id}"]`) as HTMLElement).click();
+      assert.deepEqual(letzter().schritt, { ort: 'kapitel', kapitel: a.stationen[0], teil: 'szene' }, `${a.id}: erste Station`);
+      assert.equal(akteGruppe.querySelector(`[data-pruef="regie-akt-${a.id}"]`)?.getAttribute('aria-pressed'), 'true');
+      for (const b of akte) if (b.id !== a.id) assert.equal(akteGruppe.querySelector(`[data-pruef="regie-akt-${b.id}"]`)?.getAttribute('aria-pressed'), 'false', `${b.id} nicht gedrückt bei ${a.id}`);
+    }
+    // Pause nach Akt I: Schritt, gedrückter Knopf (und der Akt bleibt gedrückt), Notiz mit Überblick der Stationen
+    (akteGruppe.querySelector('[data-pruef="regie-pause-a1"]') as HTMLElement).click();
+    assert.deepEqual(letzter().schritt, { ort: 'pause', akt: 'a1' });
+    assert.equal(akteGruppe.querySelector('[data-pruef="regie-pause-a1"]')?.getAttribute('aria-pressed'), 'true');
+    assert.equal(akteGruppe.querySelector('[data-pruef="regie-akt-a1"]')?.getAttribute('aria-pressed'), 'true');
+    assert.equal(r.element.querySelector('[data-pruef="regie-sprung"]') instanceof HTMLSelectElement && (r.element.querySelector('[data-pruef="regie-sprung"]') as HTMLSelectElement).value, 'pause:a1');
+    const liste = [...r.element.querySelectorAll('[data-pruef="regie-pause-liste"] li')].map((x) => x.textContent ?? '');
+    assert.equal(liste.length, 5);
+    assert.match(liste[0] ?? '', /^1 · /u);
+    assert.doesNotMatch(r.element.querySelector('[data-pruef="regie-notiz"]')?.textContent ?? '', /Für diesen Schritt gibt es keine Notiz/u);
+    // Gegenprobe: an einer Station steht wieder die Notiz der Station, nicht der Überblick
+    (r.element.querySelector('[data-pruef="regie-kapitel-s3"]') as HTMLElement).click();
+    assert.equal(r.element.querySelector('[data-pruef="regie-pause-liste"]'), null);
+    // Aus der Pause über die Kurzfassung: die Pause gibt es dort nicht, der Sprung schaltet auf die ganze Geschichte
+    (r.element.querySelector('[data-pruef="regie-kurz"]') as HTMLElement).click();
+    assert.equal(letzter().kurz, true);
+    (akteGruppe.querySelector('[data-pruef="regie-pause-a2"]') as HTMLElement).click();
+    assert.equal(letzter().kurz, false, 'Pause nur auf dem ganzen Weg');
+    assert.deepEqual(letzter().schritt, { ort: 'pause', akt: 'a2' });
+    // der Kanal trägt nur den Stand: weder Überblick noch Notiz
+    assert.ok(!JSON.stringify(gesendet).includes('Stationen dieses Akts'));
+  } finally {
+    r.entferne();
+  }
+});
+
 test('Tafeln (P4, L-32): Schwellen-Spiel prüft gegen die Spalte der Tabelle', async () => {
   const { tafel } = await import('../src/grafik/tafel.ts');
   const wp = JSON.parse(readFileSync(join(WURZEL, 'quellen/whitepaper/v1.2/whitepaper.json'), 'utf8')) as unknown;

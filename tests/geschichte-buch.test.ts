@@ -516,3 +516,71 @@ test('Speicher: gespeichert wird sichtbar, sobald der Stand im Speicher liegt �
   f2.zuKapitel('s5');
   assert.equal(finde(f2, 'gs-gespeichert'), null);
 });
+
+test('Speicher (P19.7): „neu“ im Buch liegt nur im Speicher der Seite; „Gespeicherten Fortschritt löschen“ setzt es mit zurück', () => {
+  const sp = speicher();
+  const f = flaeche(an('s1', 'frage'), sp);
+  (finde(f, 'antwort-1') as HTMLElement).click();
+  (finde(f, 'buch-symbol') as HTMLElement).click();
+  (finde(f, 'buch-schliessen') as HTMLElement).click();
+  assert.equal(finde(f, 'buch-symbol')?.dataset['neu'], undefined, 'gesehen');
+  // gespeichert wird der Stand der Geschichte, nichts vom Buch („gesehen“, „neu“)
+  const roh = sp.daten.get(SPEICHER_SCHLUESSEL) ?? '';
+  assert.deepEqual(Object.keys(JSON.parse(roh) as object).sort(), ['gewichte', 'kurz', 'mini', 'schritt', 'v', 'wahlen']);
+  assert.ok(!/gesehen|neu|buch/iu.test(roh), roh);
+  assert.deepEqual([...sp.daten.keys()], [SPEICHER_SCHLUESSEL], 'nur ein Schlüssel');
+  // ein neuer Besuch (frische Fläche, derselbe Speicher) zeigt den Eintrag wieder als neu
+  const neuer = flaeche(null, sp);
+  assert.equal(finde(neuer, 'buch-symbol')?.dataset['neu'], 'true', 'neuer Besuch: Eintrag ist wieder neu');
+  // löschen: der Speicher ist leer, und nach einer neuen Antwort ist der Eintrag wieder neu (nichts bleibt „gesehen“)
+  (finde(neuer, 'buch-symbol') as HTMLElement).click();
+  (finde(neuer, 'buch-schliessen') as HTMLElement).click();
+  assert.equal(finde(neuer, 'buch-symbol')?.dataset['neu'], undefined, 'in diesem Besuch gesehen');
+  (finde(neuer, 'fortschritt-loeschen') as HTMLElement).click();
+  assert.equal(sp.daten.get(SPEICHER_SCHLUESSEL), undefined);
+  neuer.zuKapitel('s1');
+  (finde(neuer, 'weiter') as HTMLElement).click();
+  (finde(neuer, 'antwort-1') as HTMLElement).click();
+  assert.equal(finde(neuer, 'buch-symbol')?.dataset['neu'], 'true');
+});
+
+test('Datenschutz (P19.7): Abschnitt 5 nennt Pausen, Buch, Weg im Überblick und „neu“ wie die Seite sie hält; die Löschknöpfe stehen wortgleich dort', async () => {
+  const { readFileSync } = await import('node:fs');
+  const md = readFileSync('inhalte/rechtliches/datenschutz.md', 'utf8');
+  const abschnitt = /## 5\. Speicherung in Ihrem Browser([\s\S]*?)\n## 6\./u.exec(md)?.[1] ?? '';
+  assert.ok(abschnitt.length > 500);
+  assert.match(abschnitt, /auch eine der Pausen zwischen den drei Teilen/u);
+  assert.match(abschnitt, /das Entscheidungsbuch stellt die Seite bei jedem Aufruf aus diesen Angaben neu zusammen/u);
+  assert.match(abschnitt, new RegExp(`„${W.geschichte.verlaufBilanz}“`, 'u'));
+  assert.match(abschnitt, /„neu“ gekennzeichnet sind, merkt sich die Seite nur, solange Sie sie geöffnet haben, nicht im Browser-Speicher/u);
+  // die Knopfwörter der Seite
+  for (const knopf of [W.geschichte.fortschrittLoeschen, W.themen.zuruecksetzen, W.regie.protokollLoeschen]) assert.ok(abschnitt.includes(`„${knopf}“`), knopf);
+  // Wörter, die die Seite benutzt (Buch, Pause), stehen auch dort so
+  assert.ok(W.geschichte.buchTitel.length > 0 && /Entscheidungsbuch/u.test(`${W.regie.buchZeigen} ${W.geschichte.buchTitel}`));
+  // Gegenprobe: ohne die Zusätze fällt der Test auf
+  assert.doesNotMatch(abschnitt.replace(/auch eine der Pausen zwischen den drei Teilen/u, ''), /Pausen zwischen den drei Teilen/u);
+});
+
+test('Papier (P19.7, L-364): keine Mini-Art hat eine Papierfassung – der Druckbogen trägt weder Aufgabe noch Posten noch Stand der Mini-Aufgaben', async () => {
+  const E0 = await import('../src/geschichte/engine.ts');
+  const { loeseMini } = await import('../src/regie/eingriffe.ts');
+  const { MINI_BAUSTEINE } = await import('../src/ui/flaechen/geschichte-mini.ts');
+  const { storyDruck } = await import('../src/ui/flaechen/geschichte.ts');
+  for (const art of ['zuordnen', 'reihenfolge', 'matrix', 'mappe', 'pinnwand', 'bericht', 'rueckfragen'] as const) assert.equal(MINI_BAUSTEINE[art].druck, undefined, `${art}: Papierfassung – dann INHALTSFORMAT und diesen Test anpassen`);
+  // alles gelöst, ganzer Weg bis zum Ende: der Druck nennt keinen Aufgabentext (eine Zeile `aufgabe`, ein Posten)
+  assert.ok(ECHT);
+  let stand: Stand = { ...E0.neuerStand(), schritt: { ort: 'ende' as const } };
+  for (const k of ECHT.kapitel) stand = loeseMini(ECHT, stand, k.id);
+  const wurzel = document.createElement('div');
+  wurzel.append(...storyDruck(ECHT, stand, 'Test').teile.map((t) => t.cloneNode(true)));
+  const text = (wurzel.textContent ?? '').replace(/\s+/gu, ' ');
+  assert.ok(text.length > 2000, 'Druckbogen gezeichnet');
+  for (const k of ECHT.kapitel.filter((k) => k.mini !== null)) {
+    const m = k.mini;
+    assert.ok(m);
+    const aufgabe = m.aufgabeHtml.replace(/<[^>]*>/gu, '').replace(/\s+/gu, ' ').trim();
+    if (aufgabe.length > 20) assert.ok(!text.includes(aufgabe), `${k.id}: Aufgabentext im Druck`);
+  }
+  // Gegenprobe: die Frage der Station steht im Druck (der Test prüft also etwas)
+  assert.ok(ECHT.kapitel.some((k) => text.includes(k.frageHtml.replace(/<[^>]*>/gu, '').replace(/\s+/gu, ' ').trim().slice(0, 30))));
+});

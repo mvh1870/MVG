@@ -12,7 +12,7 @@ zeit: Dezember 2026
 campus: { stufe: 3.5, jahreszeit: winter, licht: abend, wetter: schnee }
 bruecke: "Dezember: Sie lesen den Monatsbericht mit Blick auf offene Entscheidungen."
 thema: takt
-werkzeuge: [{ id: monatsbericht, beispiel: oktober }]
+werkzeuge: [{ id: monatsbericht, beispiel: dezember }]
 belege: [v24:hb-4, v24:hb-1.1, v24:hb-1.4, v24:hb-1.6, v24:hb-3.1, v24:va-5.1, v24:va-5.2, v24:va-5.3, v24:tlb-3, v24:tlb-4, k2.4-p2]
 bild-szene: berichtsblatt
 bild-frage: stoppuhr

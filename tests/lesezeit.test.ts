@@ -47,6 +47,23 @@ test('Startseite: dieselbe Angabe für die Kurzfassung; der ganze Weg liegt zwis
     `ganzer Weg: Angabe ${lang}, gemessen ${m.lang.woerter} Wörter ≈ ${m.lang.minuten.toFixed(1)} Minuten`);
 });
 
+test('Startseite (P19.7): Zahl der Entscheidungen im Text und in der Zeile = Zahl der Stationen; die Wegkarten nennen dieselben Zahlen', () => {
+  const g = inhalte.geschichte;
+  assert.ok(g);
+  const n = g.kapitel.length;
+  assert.equal(n, 14);
+  const wort = W.start.storyMeta(n).split(' ')[0]?.toLowerCase() ?? '';
+  assert.equal(wort, 'vierzehn');
+  assert.ok(W.start.storyText.includes(`${wort}mal`), `Text der Startkarte nennt nicht „${wort}mal“: ${W.start.storyText}`);
+  // Wegkarten: ganze Geschichte = alle Stationen, Kurzfassung = die gespielten (vier); die Minuten kommen aus der Messung
+  const spiele = g.kapitel.filter((k) => k.kurzfassung).length;
+  assert.equal(spiele, 4);
+  assert.match(W.geschichte.wegEntscheidungen(n), /^Vierzehn Entscheidungen$/u);
+  assert.match(W.geschichte.wegEntscheidungen(spiele), /^Vier Entscheidungen$/u);
+  // Gegenprobe: eine andere Zahl fällt auf
+  assert.ok(!W.start.storyText.includes('achtmal'));
+});
+
 test('Dokumente nennen dieselbe Dauer der Kurzfassung wie die Messung (Drehbuch, Inhaltsformat, Stil)', async () => {
   const { readFileSync } = await import('node:fs');
   const soll = Math.round(m.kurz.minuten);

@@ -1,5 +1,5 @@
 /* =============================================================================================
-   MVG · Story (P17.4, O-51 bis O-53, O-57): acht Kapitel als Bilderbuch – isometrischer Campus groß,
+   MVG · Story (P17.4, O-51 bis O-53, O-57): 14 Stationen in drei Akten als Bilderbuch – isometrischer Campus groß,
    Dialog mit Porträts und Sprechblasen in der Farbe der Figur, drei Antwortkarten, Balken Geld · Zeit ·
    Vertrauen, Mini-Aufgaben und der Vergleich als Spiel. Nur Tokens aus tokens.css, keine Farbwerte.
    Die Klassen gs-text, gs-leise, gs-leiser-knopf, gs-kicker, gs-titel, gs-tabelle, gs-balken und gs-kipp
@@ -343,6 +343,7 @@ button.gs-antwort:active { transform: translateY(2px); box-shadow: var(--schatte
 .ws-lang .ws-station { fill: var(--gold-hell); stroke: var(--gold-kante); }
 .ws-nr { fill: var(--weiss); stroke: none; font: 700 9px var(--schrift-label); }
 .ws-lang .ws-nr { fill: var(--navy); }
+.ws-akt { fill: var(--navy); stroke: none; font: 700 9px var(--schrift-label); letter-spacing: .06em; }
 .ws-uebersprungen { fill: var(--weiss); stroke: var(--wk); stroke-width: 1.6; }
 .ws-fahne, .ws-haus { stroke: var(--navy); stroke-width: 2; }
 .ws-fahne { fill: var(--wk-soft); }

@@ -7,6 +7,7 @@ import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
+import { parse } from 'yaml';
 
 type Fenster = Window & typeof globalThis;
 const { JSDOM } = (await import(String('jsdom'))) as { JSDOM: new (html: string, o?: object) => { window: Fenster } };
@@ -68,10 +69,10 @@ test('Verweisfeld (E-13): Werkzeug und Beispiel müssen existieren, ein Eintrag 
   assert.deepEqual(pruefeWerkzeugVerweise([{ id: 'wegweiser', beispiel: 'egal' }], 'x', null, () => assert.fail()), [{ id: 'wegweiser', beispiel: 'egal' }]);
 });
 
-test('Verweise aus Story und Themen nach Konzept E-13 (seit P19.6 mit den neuen Stationen: A ← 5, 7, 12 · B ← 2, 10 · C ← 3, 8 · D ← 8, 9)', () => {
+test('Verweise aus Story und Themen nach Konzept E-13 (seit P19.7 mit allen neuen Stationen: A ← 5, 7, 12 · B ← 2, 4, 10, 11 · C ← 3, 8 · D ← 8, 9)', () => {
   const je = (id: string): string[] => g.kapitel.filter((k) => k.werkzeuge.some((v) => v.id === id)).map((k) => k.id);
   assert.deepEqual(je('vorlagen-check'), ['s5', 's7', 's12']);
-  assert.deepEqual(je('wegweiser'), ['s2', 's10']);
+  assert.deepEqual(je('wegweiser'), ['s2', 's4', 's10', 's11']);
   assert.deepEqual(je('risiko-grenzen'), ['s3', 's8']);
   assert.deepEqual(je('monatsbericht'), ['s8', 's9']);
   const k5 = g.kapitel.find((k) => k.id === 's8');
@@ -84,6 +85,41 @@ test('Verweise aus Story und Themen nach Konzept E-13 (seit P19.6 mit den neuen 
   assert.deepEqual(themaJe('wegweiser'), ['vorgaenge']);
   assert.deepEqual(themaJe('risiko-grenzen'), ['vorgaenge']);
   assert.deepEqual(themaJe('monatsbericht'), ['takt']);
+});
+
+test('Verknüpfung (P19.7): jedes Beispiel nennt seine Quelle (Station, Fall oder Matrix); der Verweis einer Station führt zu einem Beispiel dieser Station', () => {
+  const beispiele = (id: string): { id: string; quelle: string }[] => {
+    const roh = parse(readFileSync('inhalte/werkzeuge.yaml', 'utf8')) as Record<string, { beispiele?: { id?: string; kennung?: string; quelle?: string }[] }>;
+    const teil = roh[TEIL[id as keyof typeof TEIL]];
+    return (teil?.beispiele ?? []).map((b) => ({ id: b.id ?? '', quelle: b.quelle ?? '' }));
+  };
+  const stationen = new Set(g.kapitel.map((k) => k.id));
+  for (const id of NEUE_WERKZEUGE) {
+    for (const b of beispiele(id)) {
+      assert.ok(b.id !== '' && (stationen.has(b.quelle) || ['fall', 'matrix'].includes(b.quelle)), `${id}/${b.id}: Quelle „${b.quelle}“`);
+    }
+  }
+  for (const k of g.kapitel) for (const v of k.werkzeuge) {
+    const b = beispiele(v.id).find((x) => x.id === v.beispiel);
+    assert.ok(b, `${k.id}: Beispiel ${String(v.beispiel)} bei ${v.id}`);
+    assert.equal(b.quelle, k.id, `${k.id} verweist auf ein Beispiel einer anderen Station (${b.id}, Quelle ${b.quelle})`);
+  }
+  // Gegenprobe: ein Verweis mit fremder Quelle würde auffallen
+  assert.notEqual(beispiele('wegweiser').find((x) => x.id === 'lueftung')?.quelle, 's11');
+});
+
+test('Verknüpfung (P19.7): jede Station nennt ein vorhandenes Thema, und jedes Thema der Story ist ein Thema der Seite', () => {
+  const themaIds = new Set<string>(Object.values(inhalte.theorie).map((t) => t.thema));
+  for (const k of g.kapitel) assert.ok(themaIds.has(k.thema), `${k.id}: Thema ${k.thema}`);
+  // Gegenrichtung: der Block „In der Geschichte erlebt“ eines Themas listet genau die Stationen, die es nennen
+  for (const t of themaIds) {
+    const erwartet: string[] = g.kapitel.filter((k) => k.thema === t).map((k) => `#story/${k.id}`);
+    const seite = baueTheorie({ inhalte, thema: t, version: 'Test', bedienbar: true });
+    const links = [...seite.querySelectorAll<HTMLAnchorElement>('[aria-label="In der Geschichte erlebt"] a')].map((a) => a.getAttribute('href'));
+    assert.deepEqual(links, erwartet, t);
+  }
+  // alle 14 Stationen sind über ihr Thema erreichbar
+  assert.equal(g.kapitel.length, 14);
 });
 
 const weg = (kurz: boolean) => {
@@ -118,7 +154,7 @@ test('Story: leiser Verweis „… ausprobieren“ im Kasten „Das steckt dahin
   assert.ok(innen, 'in der Kurzfassung im Aufklapper');
   assert.equal(kurz.querySelector<HTMLDetailsElement>('[data-pruef="gs-dahinter-auf"]')?.open, false);
   // Leinwand und Vorschau (nicht bedienbar): kein Verweis
-  for (const k of ['s2', 's3', 's5', 's8', 's10', 's12']) assert.equal(dahinter(k, false, false).querySelector('[data-pruef^="gs-werkzeug"], a[href]'), null, k);
+  for (const k of ['s2', 's3', 's4', 's5', 's7', 's8', 's9', 's10', 's11', 's12']) assert.equal(dahinter(k, false, false).querySelector('[data-pruef^="gs-werkzeug"], a[href]'), null, k);
   // ohne Titel-Funktion (Test, Druck): kein Verweis
   const ohne = baueSchritt({ g, stand: { ...weg(false), schritt: { ort: 'kapitel', kapitel: 's12', teil: 'frage' } }, bedienbar: true, themaTitel: () => 'Thema', tue: () => undefined });
   assert.equal(ohne.querySelector('[data-pruef="gs-werkzeuge"]'), null);

@@ -4,7 +4,7 @@ Kopf ≤ 100 Zeilen. Oben JETZT (überschreiben), darunter FRÜHER (anhängen, k
 
 ## JETZT
 
-- **Stand 2026-10-04 ~03:12 UTC: Planblatt leer, Kette grün (118,4 s, Oberfläche 14 Läufe, Node 22.22); `claude/haus` mit den R79-Korrekturen (L-262–L-266) per Merge nach `main` geführt (O-49, L-267), Push-Nachricht an den Owner.** Nächster Schritt liegt beim Owner: Ordner `dist/` hochladen, `docs/ABNAHME.md` und `docs/ABNAHME-MITTEL.md` abnehmen, ggf. neue Posten.
+- **Block 2026-10-04 06:08 UTC: angelaufen, Planblatt leer, keine Frage offen, hingelegt. Davor – Stand 2026-10-04 ~03:12 UTC: Planblatt leer, Kette grün (118,4 s, Oberfläche 14 Läufe, Node 22.22); `claude/haus` mit den R79-Korrekturen (L-262–L-266) per Merge nach `main` geführt (O-49, L-267), Push-Nachricht an den Owner.** Nächster Schritt liegt beim Owner: Ordner `dist/` hochladen, `docs/ABNAHME.md` und `docs/ABNAHME-MITTEL.md` abnehmen, ggf. neue Posten.
 - **Offen zur Abnahme des Owners:** `docs/ABNAHME.md` und mittlere Befunde in `docs/ABNAHME-MITTEL.md`.
 - **Lesezeit:** `node werkzeuge/lesezeit.mjs`; Kurzfassung 10,4 Minuten ohne Puffer („etwa 10“, O-51, L-252). Mutanten: `node werkzeuge/mutanten.mjs` (68/68), läuft nicht in der Kette – nach Kern-/Explore-Änderungen von Hand.
 - Rechner: Node 22.22, Chromium unter `/opt/pw-browsers/chromium`, `npm ci` ≈ 50 s, Kette ≈ 120 s.

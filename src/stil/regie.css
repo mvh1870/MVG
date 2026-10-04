@@ -133,7 +133,7 @@
    das Fenster: so zeigt die Regie-Vorschau (Bühne 1280 px) dieselbe Stufe wie eine Leinwand von 1280 px. Keine
    Kopfnavigation (sie sähe aus wie Bedienung), große Schrift über `zoom`, Campus breit, Balken kräftiger. */
 .anzeige { container: anzeige / inline-size; }
-.anzeige .seite-story :is(.kopf-bereiche, .gs-start-knoepfe) { display: none; }
+.anzeige .seite-story .kopf-bereiche { display: none; }
 .anzeige .seite-story .gs-stand-klein .gs-stand-zeile { grid-template-columns: auto 88px; }
 .anzeige .seite-story .gs-stand-klein .gs-stand-spur { height: 12px; }
 .anzeige .seite-story .gs-stand-gross .gs-stand-spur { height: 22px; }

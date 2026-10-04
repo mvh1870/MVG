@@ -560,3 +560,24 @@ test('R75: Druckbogen nennt vor „Ihre Antwort“ die Frage – nicht bei Kapit
   assert.equal(kurz.querySelector('[data-pruef="druck-k2"] .druck-frage'), null);
   assert.ok(kurz.querySelector('[data-pruef="druck-k1"] .druck-frage'));
 });
+
+test('O-61: Wahl am Anfang als zwei Wegkarten – ganze Geschichte (alle Stationen) und Kurzfassung (nur die gespielten)', () => {
+  const f = flaeche();
+  const lang = $(f, '[data-pruef="weg-karte-lang"]');
+  const kurz = $(f, '[data-pruef="weg-karte-kurz"]');
+  const alle = g.kapitel.length;
+  const nKurz = g.kapitel.filter((k) => k.kurzfassung).length;
+  assert.equal(lang.querySelectorAll('.ws-station').length, alle);
+  assert.equal(kurz.querySelectorAll('.ws-station').length, nKurz);
+  assert.equal(kurz.querySelectorAll('.ws-uebersprungen').length, alle - nKurz);
+  // Dauer wie auf dem Knopf bzw. der Startseite, Zahl der Entscheidungen in Worten
+  assert.match(lang.textContent ?? '', new RegExp(`${W.geschichte.wegEntscheidungen(alle)} · etwa \\d+ Minuten`, 'u'));
+  assert.match(kurz.textContent ?? '', new RegExp(`${W.geschichte.wegEntscheidungen(nKurz)} · ${/etwa \d+ Minuten/u.exec(g.auftakt.kurz)?.[0]}`, 'u'));
+  // jede Karte trägt ihren Knopf; beide Wege starten (die Kurzfassung setzt das Kennzeichen kurz)
+  assert.ok(lang.querySelector('[data-pruef="fassung-lang"]') && kurz.querySelector('[data-pruef="fassung-kurz"]'));
+  assert.equal($(f, '[data-pruef="fassung-kurz"]').textContent, W.geschichte.wegKurzKnopf);
+  // auf der Leinwand stehen beide Karten ohne Knöpfe
+  const el = baueSchritt({ g, stand: neuerStand(), bedienbar: false, themaTitel: () => 'Thema', tue: () => undefined });
+  assert.ok(el.querySelector('[data-pruef="weg-karte-lang"]') && el.querySelector('[data-pruef="weg-karte-kurz"]'));
+  assert.equal(el.querySelectorAll('.gs-wegkarte button').length, 0);
+});

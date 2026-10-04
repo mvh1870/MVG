@@ -18,6 +18,7 @@ import {
   wegKapitel, werteMiniAus, weiter, zurueck, zaehlendePlatz, type Balkenstand, type Schritt, type Stand,
 } from '../../geschichte/engine.ts';
 import { campusIso } from '../../grafik/campus-iso.ts';
+import { wegSkizze } from '../../grafik/weg-skizze.ts';
 import { gimmick, portraet, type Figur, type GimmickName } from '../../grafik/figuren.ts';
 import { ersetze, h, vonHtml, type Kind } from '../h.ts';
 import { inhalt, inhaltInline } from '../bausteine/inhalt.ts';
@@ -229,8 +230,23 @@ function steckbriefText(o: SchrittOptionen, name: string, html: string): HTMLEle
 function auftakt(o: SchrittOptionen): HTMLElement {
   const { g } = o;
   const knopf = (kurz: boolean, text: string, klasse: string): HTMLElement => o.bedienbar
-    ? h('button', { type: 'button', class: klasse, 'data-pruef': kurz ? 'fassung-kurz' : 'fassung-lang', onclick: () => o.tue(beginne(g, o.stand, kurz)) }, text, kurz ? null : sym('pfeilRechts'))
+    ? h('button', { type: 'button', class: klasse, 'data-pruef': kurz ? 'fassung-kurz' : 'fassung-lang', onclick: () => o.tue(beginne(g, o.stand, kurz)) }, text, sym('pfeilRechts'))
     : h('span', { class: klasse }, text);
+  const alle = wegKapitel(g, false);
+  const kurzWeg = wegKapitel(g, true);
+  const inKurz = alle.map((k) => kurzWeg.includes(k));
+  const minuten = (t: string): string => /etwa \d+ Minuten/u.exec(t)?.[0] ?? '';
+  const wegKarte = (kurz: boolean): HTMLElement => {
+    const n = alle.length;
+    const gespielt = kurz ? kurzWeg.length : n;
+    return h('div', { class: `gs-wegkarte ${kurz ? 'gs-wegkarte-kurz' : 'gs-wegkarte-lang'}`, 'data-pruef': kurz ? 'weg-karte-kurz' : 'weg-karte-lang' },
+      h('div', { class: 'gs-weg-bild', 'aria-hidden': 'true' },
+        vonHtml(wegSkizze(kurz ? inKurz : inKurz.map(() => true), kurz ? w.wegBildKurz(n, gespielt) : w.wegBildLang(n), kurz))),
+      h('h3', { class: 'gs-weg-titel' }, kurz ? w.wegKurzTitel : w.wegLangTitel),
+      h('p', { class: 'gs-weg-meta' }, `${w.wegEntscheidungen(gespielt)} · ${minuten(kurz ? g.auftakt.kurz : W.start.storyMeta(n))}`),
+      h('p', { class: 'gs-weg-text' }, kurz ? w.wegKurzText : w.wegLangText),
+      knopf(kurz, kurz ? w.wegKurzKnopf : g.auftakt.los, kurz ? 'gs-knopf gs-knopf-kurz' : 'gs-knopf gs-knopf-gross'));
+  };
   const start = balken(g, o.stand, { ort: 'auftakt' });
   return h('article', { class: 'gs-schritt gs-auftakt', 'data-teil': 'auftakt' },
     // „fiktiv“ einmal je Ansicht (L-227): der Auftakt sagt es im ersten Satz, das Ende im Abbinder
@@ -238,9 +254,10 @@ function auftakt(o: SchrittOptionen): HTMLElement {
     h('header', { class: 'gs-auftakt-kopf' },
       h('h1', { class: 'gs-titel gs-titel-gross', tabindex: -1, 'data-pruef': 'gs-titel' }, g.titel),
       h('div', { class: 'gs-lead' }, inhalt(g.auftakt.textHtml))),
-    h('div', { class: 'gs-start-knoepfe' },
-      knopf(false, g.auftakt.los, 'gs-knopf gs-knopf-gross'),
-      knopf(true, g.auftakt.kurz, 'gs-leiser-knopf')),
+    // O-61: zwei gleichwertige Wegkarten – derselbe Weg einmal ganz, einmal gekürzt (Skizze mit besetzten und übersprungenen Stationen)
+    h('section', { class: 'gs-wege', 'aria-labelledby': 'gs-wege-titel' },
+      h('h2', { id: 'gs-wege-titel', class: 'gs-h2' }, w.wegWahl),
+      h('div', { class: 'gs-wege-karten' }, wegKarte(false), wegKarte(true))),
     h('section', { class: 'gs-figuren', 'aria-labelledby': 'gs-figuren-titel' },
       h('h2', { id: 'gs-figuren-titel', class: 'gs-h2' }, g.auftakt.vorstellung),
       h('ul', { class: 'gs-figuren-liste' },

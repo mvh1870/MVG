@@ -303,7 +303,37 @@ button.gs-antwort:active { transform: translateY(2px); box-shadow: var(--schatte
 .gs-titel-gross { font-size: 56px; line-height: .95; }
 .gs-lead { font: var(--typo-lese); font-size: var(--gr-xl); }
 .gs-lead > * + * { margin-top: var(--a-3); }
-.gs-start-knoepfe { display: flex; flex-wrap: wrap; align-items: center; gap: var(--a-3) var(--a-6); }
+.gs-wege { display: grid; gap: var(--a-4); }
+.gs-wege-karten { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--a-5); }
+/* O-61: lange Geschichte in Gold, Kurzfassung in Petrol – derselbe Weg, einmal ganz, einmal mit Brücken */
+.gs-wegkarte {
+  --wk: var(--gold); --ton-text: var(--gold-text); --wk-soft: var(--gold-soft);
+  display: grid; align-content: start; justify-items: start; gap: var(--a-2);
+  padding: var(--a-5); border-radius: 20px; background: var(--weiss);
+  border: 1px solid var(--linie); border-top: 6px solid var(--wk); box-shadow: var(--schatten-karte);
+}
+.gs-wegkarte-kurz { --wk: var(--petrol); --ton-text: var(--petrol); --wk-soft: var(--akzent-lagune-soft); }
+.gs-weg-bild { width: 100%; padding: var(--a-3) var(--a-2); border-radius: var(--radius-l); background: var(--wk-soft); }
+.gs-weg-bild svg { display: block; width: 100%; height: auto; max-height: 96px; }
+.gs-weg-titel { font: 700 var(--gr-xl)/1.2 var(--schrift-anzeige); color: var(--navy); margin-top: var(--a-2); }
+.gs-weg-meta { font: 600 var(--gr-m)/1.3 var(--schrift-label); letter-spacing: .06em; text-transform: uppercase; color: var(--ton-text); }
+.gs-weg-text { font-size: var(--gr-text); line-height: 1.5; color: var(--tinte-2); max-width: 40ch; }
+.gs-wegkarte .gs-knopf { margin-top: var(--a-3); }
+.gs-wegkarte-kurz .gs-knopf { background: var(--petrol); color: var(--weiss); box-shadow: 0 3px 0 var(--navy-soft); }
+.gs-wegkarte-kurz .gs-knopf:hover { background: var(--navy-soft); color: var(--weiss); }
+.gs-knopf-kurz { min-height: 54px; padding: var(--a-3) var(--a-6); }
+/* Wegskizze (src/grafik/weg-skizze.ts) */
+.ws { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.ws-weg { stroke: var(--wk); stroke-width: 3; }
+.ws-bruecke { stroke-dasharray: 2 6; stroke-width: 2.4; opacity: .8; }
+.ws-station { fill: var(--wk); stroke: var(--weiss); stroke-width: 2; }
+.ws-lang .ws-station { fill: var(--gold-hell); stroke: var(--gold-kante); }
+.ws-nr { fill: var(--weiss); stroke: none; font: 700 9px var(--schrift-label); }
+.ws-lang .ws-nr { fill: var(--navy); }
+.ws-uebersprungen { fill: var(--weiss); stroke: var(--wk); stroke-width: 1.6; }
+.ws-fahne, .ws-haus { stroke: var(--navy); stroke-width: 2; }
+.ws-fahne { fill: var(--wk-soft); }
+.ws-haus { fill: var(--weiss); }
 .gs-figuren, .gs-stand-erklaert { display: grid; gap: var(--a-4); }
 .gs-figuren-liste { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--a-4); }
 .gs-figuren-sie-titel { margin-top: var(--a-5); }
@@ -570,6 +600,7 @@ button.gs-stufe:hover:not([aria-pressed="true"]) { background: var(--weiss); }
 
 /* ------------------------------------------------------------ mittelbreit und schmal */
 @media (max-width: 900px) {
+  .gs-wege-karten { grid-template-columns: minmax(0, 1fr); }
   .gs-figuren-liste { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .gs-antworten, .gs-vgl-karten { grid-template-columns: minmax(0, 1fr); }
   .gs-stand-texte, .gs-gewichte-liste { grid-template-columns: minmax(0, 1fr); }

@@ -105,7 +105,7 @@ Eine lineare Geschichte in acht Kapiteln aus Sicht der Projektleitung des Bauher
 | Feld | Inhalt |
 |---|---|
 | `titel` | Titel der Geschichte (Auftakt) |
-| `auftakt` | `campus` (s. u.), `text` (Markdown, nennt den Fall einmal fiktiv), `vorstellung` (Zeile über den Figuren), `los` (Knopf ganze Geschichte), `kurz` (leiser Knopf Kurzfassung) |
+| `auftakt` | `campus` (s. u.), `text` (Markdown, nennt den Fall einmal fiktiv), `vorstellung` (Zeile über den Figuren), `los` (Knopf der Karte „Die ganze Geschichte“), `kurz` (Beschriftung der Kurzfassung „Kurzfassung (etwa n Minuten)“; die Minutenangabe steht auch auf der Karte „Die Kurzfassung“ und ist an die Messung gekoppelt, O-61) |
 | `sie` | `steckbrief` der Spielfigur „Sie“ |
 | `figuren` | genau fünf, in dieser Reihenfolge: `grundstein`, `faden`, `schwung`, `klingel`, `lot` – je `id`, `name`, `rolle`, `akzent` (Ton aus `src/stil/akzente.ts`), `steckbrief` |
 | `balken` | `geld`, `zeit`, `vertrauen` – je `titel`, `text` (Kurztext beim ersten Auftritt), `start` (0–10), `mehr`/`weniger` (Wort der Änderung: „mehr Luft“, „gesunken“), `bilanz` (`hoch`, `mittel`, `niedrig`: je ein Satz) |

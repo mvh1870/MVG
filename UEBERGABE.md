@@ -4,6 +4,7 @@ Kopf ≤ 100 Zeilen. Oben JETZT (überschreiben), darunter FRÜHER (anhängen, k
 
 ## JETZT
 
+- **Block 2026-10-04 12:09 UTC: nichts für die Routine frei – offen sind nur P19.4–P19.9, laut Planblatt der Chat-Sitzung vorbehalten (letzter Commit dort 11:23 UTC). Kette auf 28e7f19 grün (145 s), CI 357 grün. Hingelegt ohne Änderung; kein Merge nach main (Plan nicht leer).**
 - **Block 2026-10-04 09:08 UTC: Owner arbeitete parallel in eigener Sitzung (O-60, O-61 auf `claude/haus`, nicht auf `main`). Kette war auf seinem Stand rot („Beginnen“ bei 1280×720 unter der Falz, 754 px); behoben mit L-271 (Startkopf 1,8 : 1), Kette grün. Merge nach `main` bewusst NICHT gemacht, solange der Owner auf dem Zweig arbeitet – der nächste Block mit leerem Plan und grüner Kette führt zusammen (O-49).** P19 (O-62) ist der Chat-Sitzung vorbehalten – Routine fasst ihn nicht an, solange er dort „in Arbeit“ steht. Nächster Schritt beim Owner: `dist/` hochladen (`docs/LAUNCH.md`), `docs/ABNAHME.md`/`docs/ABNAHME-MITTEL.md` abnehmen, ggf. neue Posten.
 - **Offen zur Abnahme des Owners:** `docs/ABNAHME.md` und mittlere Befunde in `docs/ABNAHME-MITTEL.md`.
 - **Lesezeit:** `node werkzeuge/lesezeit.mjs`; Kurzfassung 10,4 Minuten ohne Puffer („etwa 10“, O-51, L-252). Mutanten: `node werkzeuge/mutanten.mjs` (68/68), läuft nicht in der Kette – nach Kern-/Explore-Änderungen von Hand.

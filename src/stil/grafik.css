@@ -49,6 +49,15 @@
 .campus-iso .ci-wolke.ci-wolke-sturm { fill: var(--iso-wolke-sturm); opacity: .78; }
 .ci-boe { fill: none; stroke: var(--weiss); stroke-width: .9; stroke-linecap: round; opacity: .75; }
 .ci-plane { fill: var(--iso-plane); opacity: .9; }
+/* Wetter und Zwischenbilder (P19.3): Regen, Nebel, Schnee; Bewehrung, Planen, Pfütze, Lichterkette */
+.campus-iso .ci-wolke.ci-wolke-regen { fill: var(--iso-wolke-sturm); opacity: .6; }
+.ci-regen { fill: none; stroke: var(--weiss); stroke-width: .7; stroke-linecap: round; opacity: .6; }
+.ci-nebel { fill: var(--weiss); }
+.ci-bewehrung { fill: none; stroke: var(--navy-soft); stroke-width: .5; opacity: .85; }
+.ci-planenfalte { fill: none; stroke: var(--weiss); stroke-width: .5; opacity: .4; }
+.ci-pfuetze { fill: var(--iso-glas-licht); opacity: .6; }
+.ci-lichterkette { fill: none; stroke: var(--navy-soft); stroke-width: .6; }
+.ci-lichterpunkt { fill: var(--akzent-sonne); }
 .campus-iso[data-wetter="sturm"] .ci-szene { filter: brightness(.92) saturate(.82); }
 .ci-blatt { fill: var(--iso-laub-herbst-1); opacity: .85; }
 /* Morgens wärmer, abends gedämpft; der Himmel bleibt unberührt (Filter nur auf der Szene). */

@@ -12,10 +12,16 @@
 
 import type { GeschichteRegie, OeffentlicheInhalte, RegieEintrag } from '../inhalte/typen.ts';
 import {
-  abgestimmteGewichte, gewichte, kapitel, miniVonVorn, neuerStand, schritte, schrittIndex, setzeAbgestimmt,
+  abgestimmteGewichte, akt as aktVonId, gewichte, kapitel, letzteStation, miniVonVorn, neuerStand, schritte, schrittIndex, setzeAbgestimmt,
   setzeGewicht, setzeKurz, STUFEN_GEWICHT, teileVon, vergleichLage, waehle, werteMiniAus, weiter, zurueck, type Schritt, type Stand,
 } from '../geschichte/engine.ts';
-import type { Kapitel, Mini } from '../geschichte/typen.ts';
+import type { Geschichte, Kapitel, Mini } from '../geschichte/typen.ts';
+
+/** Kennung der Station, hinter der die Pause eines Akts steht (die letzte Station des Akts). */
+function pauseNach(g: Geschichte, aktId: string): string | null {
+  const a = aktVonId(g, aktId);
+  return a === null ? null : letzteStation(g, a)?.id ?? null;
+}
 import { ersteWorte, loeseMini, nurText, ohneWahl, schrittAus, schrittWert, springe, sprungZiele } from './eingriffe.ts';
 import { ortText as storyOrt } from '../ui/flaechen/geschichte.ts';
 import { miniBaustein } from '../ui/flaechen/geschichte-mini.ts';
@@ -142,14 +148,14 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
   // Stand der vier neuen Werkzeuge (P18.5): Beispiele, Schritte, „Was wäre, wenn“ – nur sichtbar, solange eines davon auf der Leinwand steht
   const werkzeugStandEl = h('div', { class: 'regie-werkzeug-stand', role: 'group', 'aria-label': w.werkzeugStand, 'data-pruef': 'regie-werkzeug-stand' });
   // Sprung je Schritt (P17.6): Auftakt, je Kapitel Szene · Vergleich · Frage · Mini-Aufgabe, Ende (eindeutig neben Kapitel 8 „Schulstart“, R75)
-  const teilName = (s: Schritt): string => s.ort === 'kapitel' ? W.geschichte.teile[s.teil] ?? s.teil : s.ort === 'auftakt' ? W.geschichte.auftakt : W.geschichte.endeOrt;
+  const teilName = (s: Schritt): string => s.ort === 'kapitel' ? W.geschichte.teile[s.teil] ?? s.teil : s.ort === 'auftakt' ? W.geschichte.auftakt : s.ort === 'pause' ? W.geschichte.pauseKicker : W.geschichte.endeOrt;
   const sprung = h('select', { class: 'regie-auswahl regie-sprung', id: 'regie-sprung', 'data-pruef': 'regie-sprung' },
     h('option', { value: '' }, w.sprungWaehlen),
     g === null ? null : [
       h('option', { value: 'auftakt' }, W.geschichte.auftakt),
       g.kapitel.map((k) => h('optgroup', { label: `${k.nr} · ${k.titel}` },
-        sprungZiele(g).filter((z) => z.schritt.ort === 'kapitel' && z.schritt.kapitel === k.id)
-          .map((z) => h('option', { value: z.wert }, `${k.nr} · ${teilName(z.schritt)}`)))),
+        sprungZiele(g).filter((z) => (z.schritt.ort === 'kapitel' && z.schritt.kapitel === k.id) || (z.schritt.ort === 'pause' && pauseNach(g, z.schritt.akt) === k.id))
+          .map((z) => h('option', { value: z.wert }, z.schritt.ort === 'pause' ? `${W.geschichte.pauseKicker} · ${aktVonId(g, z.schritt.akt)?.titel ?? ''}` : `${k.nr} · ${teilName(z.schritt)}`)))),
       h('option', { value: 'ende' }, W.geschichte.endeOrt),
     ]) as HTMLSelectElement;
   const springeZu = (ziel: Schritt): void => {

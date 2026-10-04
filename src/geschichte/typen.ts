@@ -24,12 +24,16 @@ export const FIGUREN: readonly FigurId[] = ['grundstein', 'faden', 'schwung', 'k
 export type Jahreszeit = 'fruehling' | 'sommer' | 'herbst' | 'winter';
 export type Licht = 'morgen' | 'tag' | 'abend';
 
+/** Besonderes Wetter (R72, P19.3): sturm · regen · schnee · nebel – ohne Angabe gilt die Jahreszeit */
+export type Wetter = 'sturm' | 'regen' | 'schnee' | 'nebel';
+
 export interface CampusBild {
+  /** 0–8 und die Zwischenstufen 1,5 · 2,5 · 3,5 · 4,5 · 5,5 (P19.3) */
   stufe: number;
   jahreszeit: Jahreszeit;
   licht: Licht;
-  /** Besonderes Wetter (R72): „sturm“ – grauer Himmel, Böen, abgerissene Planen */
-  wetter?: 'sturm';
+  /** Besonderes Wetter (R72, P19.3): „sturm“ – grauer Himmel, Böen, abgerissene Planen; „regen“, „schnee“, „nebel“ */
+  wetter?: Wetter;
 }
 
 export interface Figur {
@@ -149,7 +153,7 @@ export interface WerkzeugVerweis {
 }
 
 export interface Kapitel {
-  /** „k1“ … „k8“ (Adresse #story/k3) */
+  /** Kennung der Station („k1“ … „k8“, später „s1“ … „s14“; Adresse #story/k3) */
   id: string;
   nr: number;
   titel: string;
@@ -202,6 +206,27 @@ export interface Ende {
   offen: Zeile[];
 }
 
+/** Pause am Ende eines Akts (P19.3): eine Zeile einer Figur und „Das können Sie jetzt“ in drei Sätzen */
+export interface AktPause {
+  zeile: Zeile | null;
+  koennenHtml: string[];
+}
+
+/**
+ * Akt (P19.3, optional – `Geschichte.akte` darf leer sein): eine Gruppe aufeinanderfolgender Stationen mit Kopfkarte (Text über
+ * der ersten Station) und Pause am Ende (der letzte Akt zeigt „Das können Sie jetzt“ im Ende, vor der Bilanz).
+ */
+export interface Akt {
+  id: string;
+  titel: string;
+  /** „Januar bis Juni 2026“ */
+  zeitraum: string;
+  /** Kennungen der Stationen in Reihenfolge */
+  stationen: string[];
+  kopfHtml: string;
+  pause: AktPause;
+}
+
 export interface Geschichte {
   titel: string;
   auftakt: { campus: CampusBild; textHtml: string; vorstellung: string; los: string; kurz: string };
@@ -211,7 +236,10 @@ export interface Geschichte {
   balken: BalkenDef[];
   bilanz: Record<BilanzSicht, { titel: string; html: string }>;
   mandat: { titel: string; zeilen: { wer: string; html: string }[] };
+  /** die Stationen in der Reihenfolge der Geschichte (Kennung beliebig: k1 … k8 heute, s1 … s14 später) */
   kapitel: Kapitel[];
+  /** Akte; leer = die Story hat keine Akte und verhält sich wie bisher */
+  akte: Akt[];
   ende: Ende;
 }
 

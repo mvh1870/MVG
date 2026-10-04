@@ -4,7 +4,8 @@
  * keine Uhr), ohne externe Ressourcen. Farben nur über Klassen; die Werte stehen in tokens.css (`--iso-*`,
  * `--akzent-*`), Jahreszeit und Licht schaltet src/stil/grafik.css über `data-jahreszeit` und `data-licht`.
  *
- *   campusIso(stufe, optionen) – Stufe 0 (Grundstück mit Bauzaun) bis 8 (fertig, mit Kindern und Schulbus)
+ *   campusIso(stufe, optionen) – Stufe 0 (Grundstück mit Bauzaun) bis 8 (fertig, mit Kindern und Schulbus); dazwischen die
+ *   Zwischenstufen 1,5 · 2,5 · 3,5 · 4,5 · 5,5 (P19.3, Drehbuch-Gerüst Abschnitt 9)
  *
  * Geometrie: Grundriss (x nach rechts vorn, y nach links vorn) und Höhe z in Planeinheiten (ein Geschoss = 16),
  * isometrisch projiziert wie in bauplan.ts. Gezeichnet wird nach dem Malerprinzip: erst der Boden, dann die
@@ -14,8 +15,11 @@ import { AKZENTE, type Akzent } from '../stil/akzente.ts';
 
 export type Jahreszeit = 'fruehling' | 'sommer' | 'herbst' | 'winter';
 export type Licht = 'morgen' | 'tag' | 'abend';
-/** Besonderes Wetter (R72): „sturm“ – grauer Himmel ohne Sonne, Böen, abgerissene Planen, ein umgekipptes Zaunfeld. */
-export type Wetter = 'sturm';
+/**
+ * Besonderes Wetter: „sturm“ (R72) – grauer Himmel ohne Sonne, Böen, abgerissene Planen, ein umgekipptes Zaunfeld; „regen“,
+ * „schnee“, „nebel“ (P19.3) – Regenstriche, dichter Schneefall, Nebelbänder über dem Gelände.
+ */
+export type Wetter = 'sturm' | 'regen' | 'schnee' | 'nebel';
 
 export interface CampusIsoOptionen {
   jahreszeit?: Jahreszeit;
@@ -47,6 +51,15 @@ export const CAMPUS_VB: Readonly<Record<'grund' | 'breit', readonly [number, num
 /** Höchste Stufe: der fertige Campus mit Kindern. */
 export const CAMPUS_STUFE_MAX = 8;
 
+/** Zwischenstufen (P19.3): 1,5 Bodenplatte in Schalung · 2,5 Erdgeschoss steht · 3,5 Holzbau unter Dach · 4,5 Grundschule beginnt · 5,5 alles außen fertig. */
+export const CAMPUS_ZWISCHENSTUFEN: readonly number[] = [1.5, 2.5, 3.5, 4.5, 5.5];
+
+/** Stufe, wie gezeichnet wird: auf 0–8 begrenzt; eine Zwischenstufe bleibt, alles andere wird auf eine ganze Stufe gerundet. */
+export function campusStufe(stufe: number): number {
+  const z = Math.max(0, Math.min(CAMPUS_STUFE_MAX, stufe));
+  return CAMPUS_ZWISCHENSTUFEN.includes(z) ? z : Math.round(z);
+}
+
 const STUFEN_TEXT: readonly string[] = [
   'Das leere Grundstück, eingefasst von einem Bauzaun; am Zaun die Tafel „Hier baut die Stadt Lindenhall“, am Rand ein kleiner Baucontainer.',
   'Die Baugrube für die Gesamtschule ist ausgehoben; ein Bagger arbeitet, daneben stehen die Baucontainer.',
@@ -58,9 +71,22 @@ const STUFEN_TEXT: readonly string[] = [
   'Der Campus ist fertig: Schulhof, Sportfeld, Bäume, Fahrradständer und Bushaltestelle, noch ohne Kinder.',
   'Schulstart: Kinder kommen zu Fuß, mit dem Rad und mit dem Schulbus auf den fertigen Campus; am Haupteingang hängen Luftballons.',
 ];
+/** Beschreibung der Zwischenstufen (P19.3), Schlüssel = Stufe */
+const ZWISCHEN_TEXT: Readonly<Record<number, string>> = {
+  1.5: 'Die Bodenplatte der Gesamtschule steht in Schalung und Bewehrung, nasse Planen liegen darüber; Holzstapel gibt es noch keine.',
+  2.5: 'Das Erdgeschoss der Gesamtschule steht; vorn stehen die Container der Schule mit erleuchteten Fenstern und Fahrrädern.',
+  3.5: 'Der Holzbau der Gesamtschule ist unter Dach; auf der Sporthalle liegt erst die Bodenplatte, am Baucontainer hängt eine Lichterkette.',
+  4.5: 'Die Gesamtschule ist außen fertig, das Dach der Sporthalle ist geschlossen, und für die Grundschule beginnt der Bau.',
+  5.5: 'Alle drei Gebäude sind außen fertig, in den Fenstern brennt Licht; Handwerkercontainer stehen auf dem Gelände, die Außenanlagen sind ausgesteckt.',
+};
 const JAHRESZEIT_TEXT: Record<Jahreszeit, string> = { fruehling: 'Frühling', sommer: 'Sommer', herbst: 'Herbst', winter: 'Winter mit Schnee' };
 const LICHT_TEXT: Record<Licht, string> = { morgen: 'Morgenlicht', tag: 'Tageslicht', abend: 'Abendlicht' };
-const WETTER_TEXT: Record<Wetter, string> = { sturm: 'Sturm unter grauem Himmel: Planen am Gerüst sind abgerissen, ein Bauzaunfeld ist umgekippt.' };
+const WETTER_TEXT: Record<Wetter, string> = {
+  sturm: 'Sturm unter grauem Himmel: Planen am Gerüst sind abgerissen, ein Bauzaunfeld ist umgekippt.',
+  regen: 'Es regnet.',
+  schnee: 'Es schneit.',
+  nebel: 'Nebel liegt über dem Gelände.',
+};
 
 // ------------------------------------------------------------------------------------------- Projektion
 type V3 = readonly [number, number, number];
@@ -170,10 +196,12 @@ class Buehne {
   readonly licht: Licht;
   readonly jahreszeit: Jahreszeit;
   readonly sturm: boolean;
-  constructor(licht: Licht, jahreszeit: Jahreszeit, sturm = false) {
+  readonly wetter: Wetter | null;
+  constructor(licht: Licht, jahreszeit: Jahreszeit, wetter: Wetter | null = null) {
     this.licht = licht;
     this.jahreszeit = jahreszeit;
-    this.sturm = sturm;
+    this.wetter = wetter;
+    this.sturm = wetter === 'sturm';
   }
 
   ding(x1: number, y1: number, x2: number, y2: number, svg: string): void {
@@ -635,11 +663,12 @@ function stapel(buehne: Buehne, x: number, y: number, m: 'ci-holz' | 'ci-beton')
   buehne.ding(x, y, x + 18, y + 9, s);
 }
 
-function container(buehne: Buehne, x: number, y: number, z = 0): void {
+/** Baucontainer; `erleuchtet` (P19.3, Schulcontainer): das Fenster leuchtet abends. */
+function container(buehne: Buehne, x: number, y: number, z = 0, erleuchtet = false): void {
   let s = quader(x, y, x + 30, y + 12, z, z + 12, 'ci-blau');
   let rippen = '';
   for (let u = x + 3; u < x + 30; u += 3) rippen += strich([u, y + 12, z + 1], [u, y + 12, z + 11]);
-  s += pfad('ci-rippe', rippen) + pfad('ci-tuer', wandL(y + 12, x + 4, x + 9, z + 1, z + 10)) + pfad('ci-glas', wandL(y + 12, x + 14, x + 26, z + 5, z + 10));
+  s += pfad('ci-rippe', rippen) + pfad('ci-tuer', wandL(y + 12, x + 4, x + 9, z + 1, z + 10)) + pfad(erleuchtet ? 'ci-glas ci-an' : 'ci-glas', wandL(y + 12, x + 14, x + 26, z + 5, z + 10));
   if (z === 0) buehne.schattenQuader(x, y, x + 30, y + 12, 24);
   buehne.ding(x, y, x + 30, y + 12, s);
 }
@@ -749,6 +778,67 @@ function tor(buehne: Buehne, x: number, y: number): void {
   buehne.ding(x - 1, y, x + 1, y + 14, s);
 }
 
+
+// ------------------------------------------------------------------------------------------- Zwischenbilder (P19.3)
+/** Bewehrung auf der Bodenplatte: ein Netz aus Stahlstäben. */
+function bewehrung(b: Bau, z: number): string {
+  let d = '';
+  for (let x = b.x1 + 6; x < b.x2 - 2; x += 8) d += strich([x, b.y1 + 2, z], [x, b.y2 - 2, z]);
+  for (let y = b.y1 + 6; y < b.y2 - 2; y += 8) d += strich([b.x1 + 2, y, z], [b.x2 - 2, y, z]);
+  return pfad('ci-bewehrung', d);
+}
+
+/** Schalung an den sichtbaren Rändern der Bodenplatte: Bretter, von außen abgestützt. */
+function schalung(b: Bau): string {
+  let s = quader(b.x1 - 1.5, b.y2, b.x2 + 1.5, b.y2 + 1.5, 0, 4.5, 'ci-holz') + quader(b.x2, b.y1 - 1.5, b.x2 + 1.5, b.y2 + 1.5, 0, 4.5, 'ci-holz');
+  let stuetzen = '';
+  for (let x = b.x1 + 10; x < b.x2; x += 30) stuetzen += strich([x, b.y2 + 1.5, 4], [x - 4, b.y2 + 7, 0]);
+  s += pfad('ci-pfosten', stuetzen);
+  return s;
+}
+
+/** Nasse Planen über einem Teil der Bodenplatte, davor eine Pfütze. */
+function nassePlanen(b: Bau): string {
+  const z = 2.4;
+  const planen = flaeche('ci-plane', [[b.x1 + 150, b.y1 + 8, z], [b.x1 + 232, b.y1 + 8, z + 0.6], [b.x1 + 232, b.y2 - 8, z], [b.x1 + 150, b.y2 - 8, z + 0.8]]);
+  const falten = pfad('ci-planenfalte', strich([b.x1 + 170, b.y1 + 8, z], [b.x1 + 176, b.y2 - 8, z]) + strich([b.x1 + 196, b.y1 + 8, z], [b.x1 + 200, b.y2 - 8, z]) + strich([b.x1 + 216, b.y1 + 8, z], [b.x1 + 218, b.y2 - 8, z]));
+  const pfuetze = `<ellipse class="ci-pfuetze" cx="${px(b.x1 + 190, b.y2 + 12)}" cy="${py(b.x1 + 190, b.y2 + 12, 0)}" rx="18" ry="5"/>`;
+  return planen + falten + pfuetze;
+}
+
+/** Lieferwagen (P19.3): weißer Kastenwagen mit blauem Fahrerhaus. */
+function lieferwagen(buehne: Buehne, x: number, y: number): void {
+  let s = quader(x, y, x + 20, y + 10, 3, 5, 'ci-dunkel') + quader(x, y, x + 20, y + 10, 5, 15, 'ci-beton');
+  s += quader(x + 20, y, x + 29, y + 10, 5, 12, 'ci-blau') + pfad('ci-glas', wandR(x + 29, y + 8.5, y + 1.5, 8, 11.5) + wandL(y + 10, x + 22, x + 27, 8, 11.5));
+  for (const u of [x + 5, x + 23]) s += `<ellipse class="ci-rad" cx="${px(u, y + 10)}" cy="${py(u, y + 10, 2.8)}" rx="3" ry="3.5"/>`;
+  buehne.schattenQuader(x, y, x + 29, y + 10, 12);
+  buehne.ding(x, y, x + 29, y + 10, s);
+}
+
+/** Lichterkette (P19.3): ein durchhängendes Kabel mit kleinen Lichtern zwischen zwei Punkten in Höhe z, oben auf dem Bild. */
+function lichterkette(buehne: Buehne, x1: number, y: number, x2: number, z: number): void {
+  const n = 9;
+  let kabel = `M${P(x1, y, z)}`;
+  let punkte = '';
+  for (let i = 1; i <= n; i++) {
+    const t = i / n;
+    const x = x1 + (x2 - x1) * t;
+    const h = z - Math.sin(t * Math.PI) * 4;
+    kabel += `L${P(x, y, h)}`;
+    if (i < n) punkte += `<circle class="ci-lichterpunkt" cx="${px(x, y)}" cy="${py(x, y, h)}" r="1.1"/>`;
+  }
+  buehne.oben.push(`<path class="ci-lichterkette" d="${kabel}"/>${punkte}`);
+}
+
+/** Ausgesteckte Außenanlagen (P19.3): Pflöcke an den Ecken und Mitten des Schulhofs, dazwischen eine gespannte Schnur am Boden. */
+function absteckung(buehne: Buehne): void {
+  const ecken: readonly (readonly [number, number])[] = [[100, 112], [258, 112], [258, 270], [100, 270]];
+  buehne.boden.push(pfad('ci-schnur', zug(ecken.map(([x, y]): V3 => [x, y, 0.3]))));
+  for (const [x, y, h] of [[100, 112, 7], [258, 112, 7], [258, 270, 7], [100, 270, 7], [100, 190, 5], [258, 190, 5], [179, 112, 5], [179, 270, 5]] as const) {
+    buehne.ding(x, y, x + 1, y + 1, pfad('ci-messlatte', strich([x, y, 0], [x, y, h])));
+  }
+}
+
 // ------------------------------------------------------------------------------------------- Boden
 /** Grasbüschel als kleine Striche, deterministisch verteilt; auf dem Baufeld nur am Rand. */
 function grasTupfer(s: number): string {
@@ -847,8 +937,8 @@ function verlauf(ton: string, vb: [number, number, number, number]): string {
   return `<g class="ci-himmel">${s}</g>`;
 }
 
-function himmel(licht: Licht, jahreszeit: Jahreszeit, vb: [number, number, number, number], sturm: boolean): string {
-  if (sturm) {
+function himmel(licht: Licht, jahreszeit: Jahreszeit, vb: [number, number, number, number], wetter: Wetter | null): string {
+  if (wetter === 'sturm') {
     // grau, ohne Sonne, Vögel und Sterne; schwere Wolken ziehen tief
     let s = verlauf('sturm', vb);
     // tief genug, dass sie auch im beschnittenen Story-Rahmen (xMidYMid slice) zu sehen sind
@@ -873,11 +963,13 @@ function himmel(licht: Licht, jahreszeit: Jahreszeit, vb: [number, number, numbe
     for (const [a, b, k] of [[-120, 20, 1], [-104, 12, 0.8], [-92, 24, 0.7]] as const) v += `M${a - 4 * k},${b - 2 * k}q${2 * k},${-2 * k} ${4 * k},0q${2 * k},${-2 * k} ${4 * k},0`;
     s += pfad('ci-vogel', v);
   }
+  // P19.3: bei Regen und Schnee schieben sich dunkle Wolken ins Bild (die Sonne bleibt, wo sie steht: „Regen mit Sonne“)
+  if (wetter === 'regen' || wetter === 'schnee') for (const [x, y, k] of [[-20, -8, 0.9], [210, -14, 1], [-190, 20, 0.75], [330, 40, 0.65]] as const) s += wolke(x, y, k, 'ci-wolke ci-wolke-regen');
   return s;
 }
 
-function wetter(jahreszeit: Jahreszeit, vb: [number, number, number, number], sturm: boolean): string {
-  if (sturm) {
+function wetterZeichen(jahreszeit: Jahreszeit, vb: [number, number, number, number], w: Wetter | null): string {
+  if (w === 'sturm') {
     // Böen: schräge Striche (Schneeregen im Wind), deterministisch gestreut
     let d = '';
     for (let i = 0; i < 46; i++) {
@@ -888,6 +980,34 @@ function wetter(jahreszeit: Jahreszeit, vb: [number, number, number, number], st
     }
     return pfad('ci-boe', d);
   }
+  let dazu = '';
+  if (w === 'regen') {
+    // P19.3: Regenstriche, steil und kurz, deterministisch gestreut
+    let d = '';
+    for (let i = 0; i < 110; i++) {
+      const x = vb[0] + ((i * 89) % 1000) / 1000 * vb[2];
+      const y = vb[1] + ((i * 53 + 7) % 1000) / 1000 * vb[3] * 0.92;
+      d += `M${r1(x)},${r1(y)}l-2.2,6.5`;
+    }
+    dazu += pfad('ci-regen', d);
+  }
+  if (w === 'nebel') {
+    // P19.3: Nebelbänder über dem Gelände, unten dichter
+    for (const [y, h, o] of [[0.4, 0.12, 0.12], [0.52, 0.14, 0.18], [0.66, 0.16, 0.24], [0.82, 0.2, 0.3]] as const) {
+      dazu += `<rect class="ci-nebel" x="${vb[0]}" y="${r1(vb[1] + vb[3] * y)}" width="${vb[2]}" height="${r1(vb[3] * h)}" rx="${r1(vb[3] * h / 2)}" opacity="${o}"/>`;
+    }
+  }
+  if (w === 'schnee') {
+    let d = '';
+    for (let i = 0; i < 120; i++) {
+      const x = vb[0] + ((i * 83) % 1000) / 1000 * vb[2];
+      const y = vb[1] + ((i * 47 + 11) % 1000) / 1000 * vb[3] * 0.92;
+      const r = 0.8 + (i % 3) * 0.45;
+      d += `M${r1(x)},${r1(y)}m-${r},0a${r},${r} 0 1 0 ${2 * r},0a${r},${r} 0 1 0 -${2 * r},0`;
+    }
+    return pfad('ci-flocke', d);
+  }
+  if (jahreszeit === 'winter' && w === 'regen') return dazu;
   if (jahreszeit === 'winter') {
     let d = '';
     for (let i = 0; i < 70; i++) {
@@ -896,7 +1016,7 @@ function wetter(jahreszeit: Jahreszeit, vb: [number, number, number, number], st
       const r = 0.8 + (i % 3) * 0.45;
       d += `M${r1(x)},${r1(y)}m-${r},0a${r},${r} 0 1 0 ${2 * r},0a${r},${r} 0 1 0 -${2 * r},0`;
     }
-    return pfad('ci-flocke', d);
+    return pfad('ci-flocke', d) + dazu;
   }
   if (jahreszeit === 'herbst') {
     let d = '';
@@ -905,9 +1025,9 @@ function wetter(jahreszeit: Jahreszeit, vb: [number, number, number, number], st
       const y = 40 + ((i * 53) % 190);
       d += `M${x},${y}q2,-2.4 4.4,0q-2.2,2.4 -4.4,0Z`;
     }
-    return pfad('ci-blatt', d);
+    return pfad('ci-blatt', d) + dazu;
   }
-  return '';
+  return dazu;
 }
 
 // ------------------------------------------------------------------------------------------- Stufen
@@ -944,7 +1064,7 @@ function szene(buehne: Buehne, s: number, halleOffen = false): void {
 
   const gs = GESAMTSCHULE;
   const gsH = hoehe(gs);
-  if (s >= 2) buehne.schattenQuader(gs.x1, gs.y1, gs.x2, gs.y2, s === 2 ? GH : gsH);
+  if (s >= 2) buehne.schattenQuader(gs.x1, gs.y1, gs.x2, gs.y2, s < 3 ? GH : gsH);
   if (s >= 4) buehne.schattenQuader(SPORTHALLE.x1, SPORTHALLE.y1, SPORTHALLE.x2, SPORTHALLE.y2, SH_HOEHE);
   if (s >= 5) { buehne.schattenQuader(GRUNDSCHULE_A.x1, GRUNDSCHULE_A.y1, GRUNDSCHULE_A.x2, GRUNDSCHULE_A.y2, 32); buehne.schattenQuader(GRUNDSCHULE_B.x1, GRUNDSCHULE_B.y1, GRUNDSCHULE_B.x2, GRUNDSCHULE_B.y2, 32); }
 
@@ -987,6 +1107,57 @@ function szene(buehne: Buehne, s: number, halleOffen = false): void {
     stapel(buehne, 80, 140, 'ci-beton');
     figur(buehne, 150, 118, 'arbeiter', 'orange', 0);
     figur(buehne, 262, 132, 'arbeiter', 'orange', 1);
+  }
+  // ---- Zwischenbilder (P19.3)
+  if (s === 1.5) {
+    // Bodenplatte in Schalung und Bewehrung unter nassen Planen; ein Kran, noch keine Holzstapel
+    buehne.ding(gs.x1, gs.y1, gs.x2 + 2, gs.y2 + 2, quader(gs.x1, gs.y1, gs.x2, gs.y2, 0, 1.5, 'ci-beton') + bewehrung(gs, 1.7) + schalung(gs) + nassePlanen(gs));
+    kran(buehne, 186, 124, 'y', 74, { a: 84, z: 30, holz: false }, 96);
+    stapel(buehne, 320, 160, 'ci-beton');
+    lkw(buehne, 120, 120, 'mischer');
+    figur(buehne, 120, 112, 'arbeiter', 'orange', 1);
+    figur(buehne, 236, 128, 'arbeiter', 'orange', 0);
+  }
+  if (s === 2.5) {
+    // Erdgeschoss steht (mit Decke); vorn die Container der Schule mit erleuchteten Fenstern und Fahrrädern
+    buehne.ding(gs.x1, gs.y1, gs.x2, gs.y2, rohbau(gs, 1, 120));
+    kran(buehne, 186, 124, 'y', 74, { a: 84, z: 40, holz: false }, 96);
+    container(buehne, 44, 208, 0, true);
+    container(buehne, 80, 208, 0, true);
+    fahrradstaender(buehne, 50, 226, 4);
+    figur(buehne, 124, 232, 'kind', 'beere', 1);
+    figur(buehne, 130, 238, 'kind', 'lagune', 2);
+    figur(buehne, 150, 116, 'arbeiter', 'orange', 0);
+    // tagsüber liefert ein Wagen am Tor (Einfahrt im Zaun)
+    if (buehne.licht !== 'abend') lieferwagen(buehne, 216, 258);
+  }
+  if (s === 3.5) {
+    // Holzbau unter Dach, die Sporthalle erst als Bodenplatte, Lichterkette am Baucontainer
+    buehne.ding(gs.x1, gs.y1, gs.x2 + 4, gs.y2 + 4, fertigerBau(gs) + geruest(gs, gsH, 200, true));
+    buehne.ding(SPORTHALLE.x1, SPORTHALLE.y1, SPORTHALLE.x2, SPORTHALLE.y2, quader(SPORTHALLE.x1, SPORTHALLE.y1, SPORTHALLE.x2, SPORTHALLE.y2, 0, 1.5, 'ci-beton'));
+    lichterkette(buehne, 330, 270, 366, 16);
+    palette(buehne, 232, 236, 'holz');
+    figur(buehne, 300, 258, 'arbeiter', 'orange', 1);
+  }
+  if (s === 4.5) {
+    // Gesamtschule außen fertig, Dach der Sporthalle geschlossen (noch Gerüst), Grundschule beginnt
+    buehne.ding(SPORTHALLE.x1, SPORTHALLE.y1, SPORTHALLE.x2 + 4, SPORTHALLE.y2 + 4, sporthalleFertig() + geruest(SPORTHALLE, SH_HOEHE, SPORTHALLE.x1, true));
+    buehne.ding(GRUNDSCHULE_A.x1, GRUNDSCHULE_A.y1, GRUNDSCHULE_A.x2, GRUNDSCHULE_A.y2, ersteWaende(GRUNDSCHULE_A, 90));
+    buehne.ding(GRUNDSCHULE_B.x1, GRUNDSCHULE_B.y1, GRUNDSCHULE_B.x2, GRUNDSCHULE_B.y2, quader(GRUNDSCHULE_B.x1, GRUNDSCHULE_B.y1, GRUNDSCHULE_B.x2, GRUNDSCHULE_B.y2, 0, 1.5, 'ci-beton'));
+    kran(buehne, 122, 222, 'y', 130, { a: 168, z: 30, holz: false }, 146);
+    figur(buehne, 170, 214, 'arbeiter', 'orange', 0);
+    figur(buehne, 100, 258, 'arbeiter', 'orange', 2);
+  }
+  if (s === 5.5) {
+    // alle drei Gebäude außen fertig, Handwerkercontainer, Außenanlagen ausgesteckt
+    const bunt: readonly Akzent[] = ['sonne', 'beere', 'lagune', 'blau', 'gruen'];
+    buehne.ding(GRUNDSCHULE_A.x1, GRUNDSCHULE_A.y1, GRUNDSCHULE_A.x2, GRUNDSCHULE_A.y2, fertigerBau(GRUNDSCHULE_A, bunt));
+    buehne.ding(GRUNDSCHULE_B.x1, GRUNDSCHULE_B.y1, GRUNDSCHULE_B.x2, GRUNDSCHULE_B.y2, fertigerBau(GRUNDSCHULE_B, bunt));
+    container(buehne, 334, 252);
+    container(buehne, 334, 252, 12);
+    container(buehne, 370, 252);
+    absteckung(buehne);
+    figur(buehne, 196, 196, 'arbeiter', 'orange', 0);
   }
   if (s >= 4) buehne.ding(gs.x1, gs.y1, gs.x2, gs.y2 + 10, fertigerBau(gs) + eingangGesamtschule() + solar(gs, gsH));
   if (s === 4) {
@@ -1049,27 +1220,29 @@ function szene(buehne: Buehne, s: number, halleOffen = false): void {
 
 /** Beschreibung je Stufe, Jahreszeit und Licht (deutsch, für `aria-label` und `<title>`). */
 export function campusIsoText(stufe: number, jahreszeit: Jahreszeit = 'sommer', licht: Licht = 'tag', wetter?: Wetter, halleOffen = false): string {
-  const s = Math.max(0, Math.min(CAMPUS_STUFE_MAX, Math.round(stufe)));
+  const s = campusStufe(stufe);
   const halle = halleOffen && s >= 5 ? ' Nur die Sporthalle ist noch nicht fertig und steht eingerüstet.' : '';
-  return `Schulcampus Lindenhall-Süd (fiktiver Fall): ${STUFEN_TEXT[s] ?? ''}${halle} ${JAHRESZEIT_TEXT[jahreszeit]}, ${LICHT_TEXT[licht]}.${wetter ? ` ${WETTER_TEXT[wetter]}` : ''}`;
+  const stufenText = s % 1 === 0 ? STUFEN_TEXT[s] ?? '' : `${ZWISCHEN_TEXT[s] ?? ''}${s === 2.5 && licht !== 'abend' ? ' Ein Lieferwagen steht am Tor.' : ''}`;
+  return `Schulcampus Lindenhall-Süd (fiktiver Fall): ${stufenText}${halle} ${JAHRESZEIT_TEXT[jahreszeit]}, ${LICHT_TEXT[licht]}.${wetter ? ` ${WETTER_TEXT[wetter]}` : ''}`;
 }
 
 /**
  * Der Campus als isometrische Illustration. Stufe 0 Grundstück mit Bauzaun · 1 Baugrube · 2 Bodenplatte und erste Wände ·
- * 3 Holzbau · 4 Sporthalle im Bau · 5 Grundschule im Bau · 6 Außenanlagen · 7 fertig · 8 fertig mit Kindern.
+ * 3 Holzbau · 4 Sporthalle im Bau · 5 Grundschule im Bau · 6 Außenanlagen · 7 fertig · 8 fertig mit Kindern; dazu die
+ * Zwischenstufen 1,5 · 2,5 · 3,5 · 4,5 · 5,5 (P19.3) und das Wetter (`sturm`, `regen`, `schnee`, `nebel`).
  */
 export function campusIso(stufe: number, optionen: CampusIsoOptionen = {}): string {
-  const s = Math.max(0, Math.min(CAMPUS_STUFE_MAX, Math.round(stufe)));
+  const s = campusStufe(stufe);
   const jahreszeit = optionen.jahreszeit ?? 'sommer';
   const licht = optionen.licht ?? 'tag';
-  const sturm = optionen.wetter === 'sturm';
-  const buehne = new Buehne(licht, jahreszeit, sturm);
+  const wetter = optionen.wetter ?? null;
+  const buehne = new Buehne(licht, jahreszeit, wetter);
   const halleOffen = optionen.halleOffen === true && s >= 5;
   szene(buehne, s, halleOffen);
   const vb: [number, number, number, number] = [...CAMPUS_VB[optionen.ausschnitt ?? 'grund']];
   const text = campusIsoText(s, jahreszeit, licht, optionen.wetter, halleOffen);
   const teile: string[] = [];
-  if (optionen.himmel !== false) teile.push(himmel(licht, jahreszeit, vb, sturm));
+  if (optionen.himmel !== false) teile.push(himmel(licht, jahreszeit, vb, wetter));
   teile.push('<g class="ci-szene">', ...buehne.boden);
   // Schatten nur auf der Insel (sonst schwebten sie am Rand im Himmel) – beschnitten im Grundriss, ohne clipPath
   let schatten = '';
@@ -1079,8 +1252,8 @@ export function campusIso(stufe: number, optionen: CampusIsoOptionen = {}): stri
   }
   teile.push(pfad('ci-schatten', schatten));
   for (const d of sortiere(buehne.dinge)) teile.push(d.svg);
-  teile.push(...buehne.oben, '</g>', wetter(jahreszeit, vb, sturm));
+  teile.push(...buehne.oben, '</g>', wetterZeichen(jahreszeit, vb, wetter));
   const klasse = ['campus-iso', optionen.klasse].filter(Boolean).join(' ');
-  const wetterAttr = sturm ? ' data-wetter="sturm"' : '';
+  const wetterAttr = wetter !== null ? ` data-wetter="${wetter}"` : '';
   return `<svg class="${klasse}" viewBox="${vb.join(' ')}" role="img" aria-label="${text}" data-stufe="${s}" data-jahreszeit="${jahreszeit}" data-licht="${licht}"${wetterAttr}${halleOffen ? ' data-halle="offen"' : ''} xmlns="http://www.w3.org/2000/svg"><title>${text}</title>${teile.join('')}</svg>`;
 }

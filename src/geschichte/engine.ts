@@ -7,16 +7,24 @@
 import { kipppunkte, rangfolge, spitze, type Gewichte, type Kipppunkt, type Platz } from './mcda.ts';
 import { miniArt, type PostenLage } from './mini-arten.ts';
 import {
-  BALKEN, type Antwort, type BalkenId, type BalkenStufe, type BilanzSicht, type BilanzTyp, type Geschichte, type Kapitel, type Mini,
+  BALKEN, type Akt, type Antwort, type BalkenId, type BalkenStufe, type BilanzSicht, type BilanzTyp, type Geschichte, type Kapitel, type Mini,
   type Vergleich, type VergleichOption,
 } from './typen.ts';
 
 export type Teil = 'szene' | 'vergleich' | 'frage' | 'mini';
 export const TEILE: readonly Teil[] = ['szene', 'vergleich', 'frage', 'mini'];
 
-export type Schritt = { ort: 'auftakt' } | { ort: 'kapitel'; kapitel: string; teil: Teil } | { ort: 'ende' };
+/**
+ * Ein Schritt der Story. `pause` (P19.3) gibt es nur, wenn die Geschichte Akte hat: am Ende jedes Akts außer dem letzten, nur
+ * auf dem ganzen Weg (die Kurzfassung hat keine Pause).
+ */
+export type Schritt = { ort: 'auftakt' } | { ort: 'kapitel'; kapitel: string; teil: Teil } | { ort: 'pause'; akt: string } | { ort: 'ende' };
 
-/** Fassung des gespeicherten Stands; ein älterer Stand (Stationen, v 1) wird verworfen. */
+/**
+ * Fassung des gespeicherten Stands; ein älterer Stand (Stationen, v 1) wird verworfen. P19.3: bleibt 2 – der Schritt `pause`
+ * ist eine zusätzliche, optionale Form; Kennungen, die es in der Geschichte nicht gibt (ein alter Stand mit k1 … k8 in einer
+ * Geschichte mit s1 … s14), machen den ganzen Stand ungültig (`leseStand`: Ergebnis null, die Story beginnt von vorn).
+ */
 export const STAND_VERSION = 2;
 
 export interface Stand {
@@ -62,10 +70,48 @@ export function teileVon(k: Kapitel, kurz: boolean): Teil[] {
   return aus;
 }
 
-/** Alle Schritte des Wegs in Reihenfolge. */
+/* ------------------------------------------------------------------- Akte -- */
+
+/** Die Akte der Geschichte (leer = ohne Akte, die Story verhält sich wie bisher). */
+export function akteVon(g: Geschichte): readonly Akt[] {
+  return g.akte ?? [];
+}
+
+export function akt(g: Geschichte, id: string): Akt | null {
+  return akteVon(g).find((a) => a.id === id) ?? null;
+}
+
+/** Der Akt, zu dem eine Station gehört. */
+export function aktVon(g: Geschichte, kapitelId: string): Akt | null {
+  return akteVon(g).find((a) => a.stationen.includes(kapitelId)) ?? null;
+}
+
+/** Stelle des Akts (1 = erster) – sichtbar römisch („Akt II“). */
+export function aktNummer(g: Geschichte, a: Akt): number {
+  return akteVon(g).indexOf(a) + 1;
+}
+
+const ROEMISCH: readonly string[] = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
+export const roemisch = (n: number): string => ROEMISCH[n - 1] ?? String(n);
+
+/** Letzte Station eines Akts. */
+export function letzteStation(g: Geschichte, a: Akt): Kapitel | null {
+  return kapitel(g, a.stationen.at(-1) ?? '');
+}
+
+/** Ob nach diesem Akt eine Pause kommt: jeder Akt außer dem letzten (dessen „Das können Sie jetzt“ steht im Ende). */
+export function hatPause(g: Geschichte, a: Akt): boolean {
+  return akteVon(g).at(-1) !== a;
+}
+
+/** Alle Schritte des Wegs in Reihenfolge. Mit Akten steht am Ende jedes Akts außer dem letzten eine Pause – nur auf dem ganzen Weg. */
 export function schritte(g: Geschichte, kurz: boolean): Schritt[] {
   const aus: Schritt[] = [{ ort: 'auftakt' }];
-  for (const k of wegKapitel(g, kurz)) for (const teil of teileVon(k, kurz)) aus.push({ ort: 'kapitel', kapitel: k.id, teil });
+  for (const k of wegKapitel(g, kurz)) {
+    for (const teil of teileVon(k, kurz)) aus.push({ ort: 'kapitel', kapitel: k.id, teil });
+    const a = kurz ? null : aktVon(g, k.id);
+    if (a !== null && a.stationen.at(-1) === k.id && hatPause(g, a)) aus.push({ ort: 'pause', akt: a.id });
+  }
   aus.push({ ort: 'ende' });
   return aus;
 }
@@ -73,7 +119,13 @@ export function schritte(g: Geschichte, kurz: boolean): Schritt[] {
 export function gleicherSchritt(a: Schritt, b: Schritt): boolean {
   if (a.ort !== b.ort) return false;
   if (a.ort === 'kapitel' && b.ort === 'kapitel') return a.kapitel === b.kapitel && a.teil === b.teil;
+  if (a.ort === 'pause' && b.ort === 'pause') return a.akt === b.akt;
   return true;
+}
+
+/** Kennung eines Schritts („auftakt“, „s3:frage“, „pause:a1“, „ende“) – Schlüssel der Lesezeit-Messung und der Regie-Sprungliste. */
+export function schrittKennung(s: Schritt): string {
+  return s.ort === 'kapitel' ? `${s.kapitel}:${s.teil}` : s.ort === 'pause' ? `pause:${s.akt}` : s.ort;
 }
 
 export function schrittIndex(g: Geschichte, stand: Stand): number {
@@ -107,9 +159,26 @@ export function setzeKurz(g: Geschichte, stand: Stand, kurz: boolean): Stand {
   const neu = { ...stand, kurz };
   if (schritte(g, kurz).some((s) => gleicherSchritt(s, stand.schritt))) return neu;
   // nur der Weg in die Kurzfassung kann einen Schritt verlieren (ein übersprungenes Kapitel oder eine Mini-Aufgabe)
-  const hier = stand.schritt.ort === 'kapitel' ? (kapitel(g, stand.schritt.kapitel)?.nr ?? 0) : 0;
+  const hier = nrAmSchritt(g, stand.schritt);
   const k = wegKapitel(g, kurz).find((x) => x.nr > hier);
   return { ...neu, schritt: k ? { ort: 'kapitel', kapitel: k.id, teil: 'szene' } : { ort: 'ende' } };
+}
+
+/** Nummer der Station, bei der der Schritt steht (Pause: die letzte Station des Akts; Auftakt: 0; Ende: unendlich). */
+function nrAmSchritt(g: Geschichte, s: Schritt): number {
+  if (s.ort === 'kapitel') return kapitel(g, s.kapitel)?.nr ?? 0;
+  if (s.ort === 'pause') { const a = akt(g, s.akt); return (a === null ? null : letzteStation(g, a))?.nr ?? 0; }
+  return s.ort === 'ende' ? Number.POSITIVE_INFINITY : 0;
+}
+
+/**
+ * Vom Ende der Kurzfassung in die ganze Geschichte: Sie setzt an der ersten Station ein, die die Kurzfassung nicht gespielt hat
+ * (Szene); gibt es keine, bleibt der Schritt stehen. Antworten bleiben erhalten.
+ */
+export function weiterMitGanzer(g: Geschichte, stand: Stand): Stand {
+  const erste = g.kapitel.find((k) => !k.kurzfassung);
+  const neu = { ...stand, kurz: false };
+  return erste === undefined ? neu : { ...neu, schritt: { ort: 'kapitel', kapitel: erste.id, teil: 'szene' } };
 }
 
 /** Kapitel, die die Kurzfassung vor diesem Kapitel (bzw. vor dem Ende: `null`) überspringt – sie erscheinen als Brücke. */
@@ -117,6 +186,21 @@ export function bruecken(g: Geschichte, vor: Kapitel | null): Kapitel[] {
   const bis = vor?.nr ?? Number.POSITIVE_INFINITY;
   const vorher = wegKapitel(g, true).filter((k) => k.nr < bis).at(-1)?.nr ?? 0;
   return g.kapitel.filter((k) => !k.kurzfassung && k.nr > vorher && k.nr < bis);
+}
+
+/** Höchstzahl übersprungener Stationen auf einer gebündelten Brückenkarte (Gerüst Abschnitt 2d: „zwei Karten“ für sechs Stationen). */
+export const BRUECKE_MAX = 3;
+
+/**
+ * Die Brücken vor einer Station, gebündelt (P19.3): mehrere übersprungene Stationen in Folge teilen sich eine Karte (höchstens
+ * `BRUECKE_MAX`). Ohne Akte bleibt jede Station eine eigene Karte – wie bisher.
+ */
+export function brueckenKarten(g: Geschichte, vor: Kapitel | null): Kapitel[][] {
+  const liste = bruecken(g, vor);
+  if (akteVon(g).length === 0) return liste.map((k) => [k]);
+  const gruppen: Kapitel[][] = [];
+  for (let i = 0; i < liste.length; i += BRUECKE_MAX) gruppen.push(liste.slice(i, i + BRUECKE_MAX));
+  return gruppen;
 }
 
 /* -------------------------------------------------------------- Antworten -- */
@@ -174,7 +258,69 @@ export function balkenBis(g: Geschichte, stand: Stand, bisNr: number): Balkensta
 export function balken(g: Geschichte, stand: Stand, schritt: Schritt = stand.schritt): Balkenstand {
   if (schritt.ort === 'auftakt') return startBalken(g);
   if (schritt.ort === 'ende') return balkenBis(g, stand, Number.POSITIVE_INFINITY);
-  return balkenBis(g, stand, kapitel(g, schritt.kapitel)?.nr ?? 0);
+  return balkenBis(g, stand, nrAmSchritt(g, schritt));
+}
+
+/** Ein Punkt des Verlaufs: die Balken nach einer Station (`nr` 0 = Start). */
+export interface VerlaufPunkt {
+  nr: number;
+  /** Kennung der Station; null am Start */
+  id: string | null;
+  balken: Balkenstand;
+}
+
+/**
+ * Verlauf der drei Balken (P19.3, Pause): Start und die Stände nach jeder Station bis einschließlich `bisNr`, genau wie
+ * `balkenBis` sie liefert – die Zeichnung (src/grafik/verlauf.ts) erfindet nichts dazu.
+ */
+export function verlaufBis(g: Geschichte, stand: Stand, bisNr: number): VerlaufPunkt[] {
+  const aus: VerlaufPunkt[] = [{ nr: 0, id: null, balken: startBalken(g) }];
+  for (const k of g.kapitel) if (k.nr <= bisNr) aus.push({ nr: k.nr, id: k.id, balken: balkenBis(g, stand, k.nr) });
+  return aus;
+}
+
+/* --------------------------------------------------------------- Lesezeit -- */
+
+/**
+ * Gemessene Lesezeit je Schritt (P19.3, werkzeuge/lesezeit.mjs, Datei src/geschichte/lesezeit-daten.json): Wörter je Schritt auf
+ * dem guten Weg, getrennt für den ganzen Weg und die Kurzfassung; Schlüssel = `schrittKennung`. Daraus rechnet die Seite die
+ * Restzeit – rein und ohne Uhr.
+ */
+export interface Lesezeit {
+  woerterJeMinute: number;
+  lang: Record<string, number>;
+  kurz: Record<string, number>;
+}
+
+/** Minuten aus Wörtern, auf ganze Minuten gerundet, mindestens 1. */
+export function minutenAus(woerter: number, jeMinute: number): number {
+  return Math.max(1, Math.round(woerter / jeMinute));
+}
+
+/** Wörter von diesem Schritt bis zum Ende des Wegs (der aktuelle Schritt zählt voll); null, wenn für einen Schritt keine Messung vorliegt. */
+export function restWoerter(g: Geschichte, stand: Stand, lz: Lesezeit): number | null {
+  const alle = schritte(g, stand.kurz);
+  const tabelle = stand.kurz ? lz.kurz : lz.lang;
+  let summe = 0;
+  for (const sch of alle.slice(schrittIndex(g, stand))) {
+    const n = tabelle[schrittKennung(sch)];
+    if (n === undefined) return null;
+    summe += n;
+  }
+  return summe;
+}
+
+/** Wörter eines Akts auf dem ganzen Weg: seine Stationen, bei Pause auch die Pause; null, wenn eine Messung fehlt. */
+export function aktWoerter(g: Geschichte, a: Akt, lz: Lesezeit): number | null {
+  let summe = 0;
+  for (const sch of schritte(g, false)) {
+    const gehoert = sch.ort === 'kapitel' ? a.stationen.includes(sch.kapitel) : sch.ort === 'pause' && sch.akt === a.id;
+    if (!gehoert) continue;
+    const n = lz.lang[schrittKennung(sch)];
+    if (n === undefined) return null;
+    summe += n;
+  }
+  return summe;
 }
 
 /** Stufe eines Balkenwerts: niedrig 0–3, mittel 4–6, hoch 7–10. */
@@ -346,6 +492,15 @@ export function leseStand(g: Geschichte, roh: unknown): Stand | null {
   if (typeof roh !== 'object' || roh === null) return null;
   const r = roh as Record<string, unknown>;
   if (r['v'] !== STAND_VERSION) return null;
+  // P19.3: ein Stand mit Kennungen, die es in dieser Geschichte nicht gibt (alt: k1 … k8, neu: s1 … s14), ist ungültig – als Ganzes
+  const genannt: string[] = [];
+  for (const feld of ['wahlen', 'mini'] as const) {
+    const t = r[feld];
+    if (typeof t === 'object' && t !== null) genannt.push(...Object.keys(t));
+  }
+  const schr = r['schritt'] as Record<string, unknown> | undefined;
+  if (schr && schr['ort'] === 'kapitel' && typeof schr['kapitel'] === 'string') genannt.push(schr['kapitel']);
+  if (genannt.length > 0 && !genannt.some((id) => kapitel(g, id) !== null)) return null;
   const stand = neuerStand(r['kurz'] === true);
   if (typeof r['wahlen'] === 'object' && r['wahlen'] !== null) {
     for (const [id, p] of Object.entries(r['wahlen'] as Record<string, unknown>)) {
@@ -365,8 +520,9 @@ export function leseStand(g: Geschichte, roh: unknown): Stand | null {
     for (const [k, w] of Object.entries(r['gewichte'] as Record<string, unknown>)) if (typeof w === 'number') s = setzeGewicht(g, s, k, w);
     stand.gewichte = s.gewichte;
   }
-  const sch = r['schritt'] as Record<string, unknown> | undefined;
+  const sch = schr;
   if (sch && sch['ort'] === 'ende') return geheZu(g, stand, { ort: 'ende' });
+  if (sch && sch['ort'] === 'pause' && typeof sch['akt'] === 'string') return geheZu(g, stand, { ort: 'pause', akt: sch['akt'] });
   if (sch && sch['ort'] === 'kapitel' && typeof sch['kapitel'] === 'string' && TEILE.includes(sch['teil'] as Teil)) {
     return geheZu(g, stand, { ort: 'kapitel', kapitel: sch['kapitel'], teil: sch['teil'] as Teil });
   }

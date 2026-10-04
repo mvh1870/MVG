@@ -111,7 +111,7 @@ test('Grundlage: fehlerfrei; Belege und Begründungen bleiben intern, die Regie 
 test('Unbekanntes Feld – im Kapitel, in einer Antwort, im Rahmen: Fehler', () => {
   assert.deepEqual(lauf(({ k1 }) => { k1.lph = 3; }).fehler, [`${K1}: unbekanntes Feld „lph“ (erlaubt: nr, titel, zeit, campus, thema, belege, einstieg, szene, frage, antworten, gut, dahinter, kurzfassung, bruecke, einstieg-kurz, campus-nachher, zusatz, bild-szene, bild-frage, mandat-nach-folge, mini, vergleich, regie, werkzeuge)`]);
   assert.deepEqual(lauf(({ k1 }) => { k1.antworten[0].punkte = 3; }).fehler, [`${K1} Antwort 1: unbekanntes Feld „punkte“ (erlaubt: wertung, text, balken, folge, bild)`]);
-  assert.deepEqual(lauf(({ r }) => { r.prolog = {}; }).fehler, [`${R}: unbekanntes Feld „prolog“ (erlaubt: titel, auftakt, sie, figuren, balken, bilanz, mandat, ende)`]);
+  assert.deepEqual(lauf(({ r }) => { r.prolog = {}; }).fehler, [`${R}: unbekanntes Feld „prolog“ (erlaubt: titel, auftakt, sie, figuren, balken, bilanz, mandat, ende, reihenfolge, akte)`]);
 });
 
 test('Unbekannte Datei im Ordner (etwa eine alte Station): Fehler statt stillem Übergehen', () => {
@@ -209,17 +209,28 @@ test('Kurze sichtbare Felder (Titel, Kriterien, Namen) laufen durch die Sichtbar
   assert.deepEqual(lauf(({ k1 }) => { k1.titel = 'Der erste Schritt'; }).fehler, []);
 });
 
-test('Campus: Wetter optional und nur „sturm“', () => {
-  assert.deepEqual(lauf(({ k2 }) => { k2.campus.wetter = 'regen'; }).fehler, [`${K2} campus: Wetter „regen“ – erwartet sturm`]);
-  // Gegenprobe: „sturm“ ist erlaubt und kommt im Ergebnis an
-  const ok = lauf(({ k2 }) => { k2.campus.wetter = 'sturm'; });
-  assert.deepEqual(ok.fehler, []);
-  assert.equal(ok.erg.geschichte.kapitel[1].campus.wetter, 'sturm');
+test('Campus: Wetter optional – sturm, regen, schnee, nebel (P19.3)', () => {
+  assert.deepEqual(lauf(({ k2 }) => { k2.campus.wetter = 'hagel'; }).fehler, [`${K2} campus: Wetter „hagel“ – erwartet sturm, regen, schnee, nebel`]);
+  // Gegenprobe: jedes bekannte Wetter ist erlaubt und kommt im Ergebnis an
+  for (const w of ['sturm', 'regen', 'schnee', 'nebel']) {
+    const ok = lauf(({ k2 }) => { k2.campus.wetter = w; });
+    assert.deepEqual(ok.fehler, [], w);
+    assert.equal(ok.erg.geschichte.kapitel[1].campus.wetter, w);
+  }
 });
 
-test('Campus: Stufe 0–8, bekannte Jahreszeit und bekanntes Licht', () => {
+test('Campus: Zwischenstufen 1,5 bis 5,5 sind erlaubt, andere halbe Stufen nicht (P19.3)', () => {
+  for (const st of [1.5, 2.5, 3.5, 4.5, 5.5]) {
+    const ok = lauf(({ k2 }) => { k2.campus.stufe = st; });
+    assert.deepEqual(ok.fehler, [], String(st));
+    assert.equal(ok.erg.geschichte.kapitel[1].campus.stufe, st);
+  }
+  for (const st of [0.5, 6.5, 8.5, 2.25]) assert.equal(lauf(({ k2 }) => { k2.campus.stufe = st; }).fehler.length, 1, String(st));
+});
+
+test('Campus: Stufe 0–8 oder Zwischenstufe, bekannte Jahreszeit und bekanntes Licht', () => {
   assert.deepEqual(lauf(({ k2 }) => { k2.campus = { stufe: 9, jahreszeit: 'regen', licht: 'nacht' }; }).fehler, [
-    `${K2} campus: Campus-Stufe „9“ – erwartet 0–8`,
+    `${K2} campus: Campus-Stufe „9“ – erwartet 0–8 oder eine Zwischenstufe (1.5, 2.5, 3.5, 4.5, 5.5)`,
     `${K2} campus: Jahreszeit „regen“ – erwartet fruehling, sommer, herbst, winter`,
     `${K2} campus: Licht „nacht“ – erwartet morgen, tag, abend`,
   ]);
@@ -253,4 +264,110 @@ test('Kurzfassung kürzer (P17.5): „einstieg-kurz“ nur in Kapiteln der Kurzf
   assert.deepEqual(lauf(({ k1 }) => { k1.szene[0].kurzfassung = 'nein bitte'; }).fehler, [`${K1} szene Zeile 1: „kurzfassung“ muss ja oder nein sein`]);
   // eine Ersatzzeile übernimmt den Weg der ersetzten Zeile und kennt das Feld deshalb nicht
   assert.deepEqual(lauf(({ r }) => { r.ende['vertrauen-niedrig'][0].kurzfassung = false; }).fehler, [`${R} ende.vertrauen-niedrig 1: unbekanntes Feld „kurzfassung“ (erlaubt: text, figur, zusatz)`]);
+});
+
+/* --------------------------------------------- P19.3: Kennungen, Reihenfolge und Akte -- */
+
+const S1 = 'inhalte/geschichte/s1-erstes.yaml';
+const S2 = 'inhalte/geschichte/s2-zweites.yaml';
+
+const akt = (id: string, stationen: string[]): Roh => ({
+  id, titel: `Akt ${id}`, zeitraum: 'Januar bis Juni 2026', stationen, kopf: 'Kopfkarte.',
+  pause: { zeile: { figur: 'grundstein', text: 'Weiter so.' }, koennen: ['Sie können eins.', 'Sie können zwei.', 'Sie können drei.'] },
+});
+
+/** Zwei Stationen mit den neuen Kennungen s1, s2 und einer Reihenfolge-Angabe, optional mit Akten. */
+function laufS(aendere: (d: { r: Roh; k1: Roh; k2: Roh; dateien: { rel: string; text: string }[] }) => void = () => undefined, mitAkten = true): { fehler: string[]; erg: any } {
+  const d = { r: rahmen(), k1: kapitel1(), k2: kapitel2(), dateien: [] as { rel: string; text: string }[] };
+  d.r.reihenfolge = ['s1', 's2'];
+  if (mitAkten) d.r.akte = [akt('a1', ['s1']), akt('a2', ['s2'])];
+  aendere(d);
+  const { c, fehler } = stub();
+  const erg = baueGeschichte(c, [
+    { rel: 'inhalte/geschichte/rahmen.yaml', text: YAML.stringify(d.r) },
+    { rel: S1, text: YAML.stringify(d.k1) },
+    { rel: S2, text: YAML.stringify(d.k2) },
+    ...d.dateien,
+  ], THEMEN);
+  return { fehler, erg };
+}
+
+test('Kennungen und Reihenfolge: s1, s2 aus einer Reihenfolge-Angabe, Nummer = Stelle, ohne Angabe wie bisher k<n>', () => {
+  const { fehler, erg } = laufS();
+  assert.deepEqual(fehler, []);
+  assert.deepEqual(erg.geschichte.kapitel.map((k: Roh) => [k.id, k.nr]), [['s1', 1], ['s2', 2]]);
+  // ohne Akte bleibt die Liste leer, und die Story ohne Reihenfolge-Angabe liefert weiter k1, k2
+  assert.deepEqual(lauf().erg.geschichte.akte, []);
+  assert.deepEqual(laufS(() => undefined, false).erg.geschichte?.akte, []);
+  // Regie-Material läuft über die neue Kennung
+  assert.deepEqual(Object.keys(laufS().erg.regie), ['s1']);
+});
+
+test('Reihenfolge: beliebige Kennungen und Folge (s7 vor s3), jede Datei genau einmal', () => {
+  const ok = laufS(({ r, dateien }) => {
+    r.reihenfolge = ['s7', 's3'];
+    delete r.akte;
+    dateien.length = 0;
+  }, false);
+  // die Dateien heißen s1/s2 – unter der neuen Reihenfolge sind sie unbekannt und die beiden Stationen fehlen
+  assert.ok(ok.fehler.length >= 4);
+  assert.ok(ok.fehler.some((f) => f.includes('s1-erstes.yaml: unbekannte Datei im Ordner der Story – erwartet rahmen.yaml oder <kennung>-<name>.yaml mit einer Kennung aus der Reihenfolge')));
+  assert.ok(ok.fehler.some((f) => f.includes('Station „s7“ hat keine Datei (s7-<name>.yaml)')));
+  // dieselben Stationen unter anderen Dateinamen
+  const { c, fehler } = stub();
+  const r = rahmen();
+  r.reihenfolge = ['s7', 's3'];
+  const erg = baueGeschichte(c, [
+    { rel: 'inhalte/geschichte/rahmen.yaml', text: YAML.stringify(r) },
+    { rel: 'inhalte/geschichte/s3-zweites.yaml', text: YAML.stringify(kapitel2()) },
+    { rel: 'inhalte/geschichte/s7-erstes.yaml', text: YAML.stringify(kapitel1()) },
+  ], THEMEN);
+  assert.deepEqual(fehler, []);
+  assert.deepEqual(erg.geschichte?.kapitel.map((k: Roh) => [k.id, k.nr]), [['s7', 1], ['s3', 2]], 'die Reihenfolge-Angabe bestimmt die Folge, nicht die Zahl im Namen');
+});
+
+test('Reihenfolge: Form, Doppelte, falsche Nummer und Station ohne Eintrag sind Fehler', () => {
+  assert.deepEqual(laufS(({ r }) => { r.reihenfolge = []; }, false).fehler.slice(0, 1), [`${R} reihenfolge: Liste von Stationskennungen erwartet (s1, s2, …)`]);
+  assert.ok(laufS(({ r }) => { r.reihenfolge = ['s1', 'S2']; }, false).fehler.includes(`${R} reihenfolge: Kennung „S2“ – erwartet Kleinbuchstaben und Ziffern (s1, k3)`));
+  assert.ok(laufS(({ r }) => { r.reihenfolge = ['s1', 's1']; }, false).fehler.includes(`${R} reihenfolge: Kennung doppelt`));
+  assert.deepEqual(laufS(({ k2 }) => { k2.nr = 3; }).fehler, [`${S2}: Nummer 3 – erwartet 2 (Stelle in der Reihenfolge)`]);
+  assert.deepEqual(laufS(({ dateien }) => { dateien.push({ rel: 'inhalte/geschichte/s3-extra.yaml', text: 'x: 1' }); }).fehler,
+    ['inhalte/geschichte/s3-extra.yaml: unbekannte Datei im Ordner der Story – erwartet rahmen.yaml oder <kennung>-<name>.yaml mit einer Kennung aus der Reihenfolge']);
+  // ohne Angabe sind s-Kennungen nicht erlaubt (die Fehlermeldung bleibt die bisherige)
+  assert.ok(lauf(() => undefined, [{ rel: 'inhalte/geschichte/s3-neu.yaml', text: 'x: 1' }]).fehler[0]?.endsWith('erwartet rahmen.yaml oder k<n>-<name>.yaml'));
+});
+
+test('Akte: Grundlage fehlerfrei, Felder im Ergebnis, Belege und Sichtbar-Probe gelten auch hier', () => {
+  const { fehler, erg } = laufS();
+  assert.deepEqual(fehler, []);
+  const a = erg.geschichte.akte;
+  assert.deepEqual(a.map((x: Roh) => [x.id, x.stationen]), [['a1', ['s1']], ['a2', ['s2']]]);
+  assert.equal(a[0].kopfHtml, 'Kopfkarte.');
+  assert.equal(a[0].zeitraum, 'Januar bis Juni 2026');
+  assert.deepEqual(a[0].pause.koennenHtml, ['Sie können eins.', 'Sie können zwei.', 'Sie können drei.']);
+  assert.deepEqual(a[0].pause.zeile, { figur: 'grundstein', zusatz: null, html: 'Weiter so.', kurzfassung: true });
+  // die Zeile der Pause ist optional (der letzte Akt hat keine)
+  assert.equal(laufS(({ r }) => { delete r.akte[1].pause.zeile; }).erg.geschichte?.akte[1].pause.zeile, null);
+  // sichtbarer Text läuft durch die Sichtbar-Probe
+  const f = laufS(({ r }) => { r.akte[0].kopf = 'Siehe das Whitepaper.'; }).fehler;
+  assert.ok(f.length > 0 && f.every((x) => x.startsWith(`${R} akte 1`)), f.join('\n'));
+});
+
+test('Akte: jede Station genau in einem Akt, in der Reihenfolge der Stationen', () => {
+  assert.deepEqual(laufS(({ r }) => { r.akte[1].stationen = ['s1', 's2']; }).fehler, [`${R} akte 2: Station „s1“ steht schon in einem anderen Akt – jede Station genau in einem Akt`]);
+  assert.deepEqual(laufS(({ r }) => { r.akte[1].stationen = []; }).fehler, [`${R} akte 2: Liste von Stationen erwartet`, `${R} akte: Station „s2“ steht in keinem Akt – jede Station genau in einem Akt`]);
+  assert.deepEqual(laufS(({ r }) => { r.akte[1].stationen = ['s2', 's9']; }).fehler, [`${R} akte 2: Station „s9“ gibt es nicht`]);
+  assert.deepEqual(laufS(({ r }) => { r.akte = [akt('a1', ['s2']), akt('a2', ['s1'])]; }).fehler, [`${R} akte: die Akte müssen den Stationen in ihrer Reihenfolge folgen (s1, s2)`]);
+  assert.deepEqual(laufS(({ r }) => { r.akte = [akt('a1', ['s1', 's2'])]; }).fehler, [], 'ein einziger Akt ist erlaubt');
+  assert.deepEqual(laufS(({ r }) => { r.akte = []; }).fehler, [`${R} akte: Liste von Akten erwartet`]);
+});
+
+test('Akte: genau drei Sätze „Das können Sie jetzt“, Kennung, Pflichtfelder, unbekannte Felder', () => {
+  assert.deepEqual(laufS(({ r }) => { r.akte[0].pause.koennen.pop(); }).fehler, [`${R} akte 1 pause: „Das können Sie jetzt“: genau drei Sätze erwartet, nicht 2`]);
+  assert.deepEqual(laufS(({ r }) => { r.akte[0].pause.koennen.push('Vier.'); }).fehler, [`${R} akte 1 pause: „Das können Sie jetzt“: genau drei Sätze erwartet, nicht 4`]);
+  assert.deepEqual(laufS(({ r }) => { r.akte[1].id = 'a1'; }).fehler, [`${R} akte: Akt-Kennung doppelt`]);
+  assert.deepEqual(laufS(({ r }) => { r.akte[0].id = 'Akt Eins'; }).fehler, [`${R} akte 1: Akt „Akt Eins“ ist keine Kennung (Kleinbuchstaben, Ziffern, Bindestrich)`]);
+  assert.equal(laufS(({ r }) => { delete r.akte[0].kopf; }).fehler[0], `${R} akte 1: Feld „kopf“ fehlt`);
+  assert.deepEqual(laufS(({ r }) => { r.akte[0].lph = 3; }).fehler, [`${R} akte 1: unbekanntes Feld „lph“ (erlaubt: id, titel, zeitraum, stationen, kopf, pause)`]);
+  assert.ok(laufS(({ r }) => { r.akte[0].pause.zeile = { figur: 'unbekannt', text: 'x' }; }).fehler[0]?.includes('Figur „unbekannt“ unbekannt'));
 });

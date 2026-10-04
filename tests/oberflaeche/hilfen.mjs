@@ -216,6 +216,11 @@ export async function schmal(seite, h, name) {
   if (sw > 321) h.befund(`${name}: rollt bei 320 px waagerecht (${sw} px)`);
   // R35: was bei 320 px waagerecht rollt, ist per Tastatur erreichbar (axe scrollable-region-focusable läuft hier nicht)
   for (const fund of await seite.evaluate(rollbarOhneTastatur)) h.befund(`${name} @320: ${fund}`);
+  // P19.3 (WCAG 2.5.8): Felder der Fortschrittslinie (Akt-Leiste) und der Knopf des Sprungmenüs sind auch bei 320 px mindestens 24 × 24 px groß
+  const klein = await seite.evaluate(() => [...document.querySelectorAll('.gs-fortschritt .gs-feld, .gs-fortschritt .gs-sprung-knopf')]
+    .map((e) => { const r = e.getBoundingClientRect(); return { w: Math.round(r.width), h: Math.round(r.height), n: (e.getAttribute('aria-label') ?? e.textContent ?? '').slice(0, 30) }; })
+    .filter((x) => x.w < 24 || x.h < 24));
+  if (klein.length > 0) h.befund(`${name} @320: Felder der Fortschrittslinie unter 24 px ${JSON.stringify(klein.slice(0, 4))}`);
   // R47: Wortbrüche in den Bauteilen auch bei 320 px
   const bruch = await wortbrueche(seite, BAUTEILE_UNGETEILT, { bildschirm: true });
   if (bruch.length > 0) h.befund(`${name} @320: ${bruch.length} Wörter ohne Trennstrich gebrochen ${JSON.stringify(bruch.slice(0, 6))}`);

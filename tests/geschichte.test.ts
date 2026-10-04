@@ -324,6 +324,8 @@ test('Gewichte setzen: nur 5, 3 oder 1; zurück auf die abgestimmte Stellung hei
 
 test('Laden: ein älterer Stand (v 1, Stationen) wird verworfen; Unpassendes fällt einzeln weg', () => {
   assert.equal(leseStand(G, { v: 1, schritt: { ort: 'station', station: 's3', teil: 'lage' }, wahlen: { s1: 'A' } }), null);
+  // eine andere Fassung wird auch dann verworfen, wenn die Kennungen passen (P19.3: gk.story bleibt Fassung 2)
+  for (const v of [1, 3]) assert.equal(leseStand(G, { v, kurz: false, schritt: { ort: 'auftakt' }, wahlen: { k1: 1 }, mini: {}, gewichte: null }), null, `Fassung ${v}`);
   assert.equal(leseStand(G, null), null);
   assert.equal(leseStand(G, 'text'), null);
   const s = leseStand(G, {

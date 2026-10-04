@@ -19,6 +19,11 @@ const TESTS = ['tests/geschichte.test.ts', 'tests/geschichte-wege.test.ts'];
 /** P19.1: der Zustandsautomat der Wegtests (tests/hilfen) und sein Differentialtest gegen die Wegaufzählung */
 const HILFE_AUTOMAT = 'tests/hilfen/geschichte-zustaende.ts';
 const TESTS_AUTOMAT = ['tests/geschichte-zustaende.test.ts', 'tests/geschichte-wege.test.ts'];
+/** P19.3: Akte, Akt-Leiste, Pause, Brücken, Speicher (synthetische Story mit 14 Stationen); Übersetzer, Campus, Lesezeit */
+const TESTS_AKTE = ['tests/geschichte-akte.test.ts'];
+const TESTS_UEBERSETZER = ['tests/geschichte-uebersetzer.test.ts'];
+const TESTS_CAMPUS = ['tests/campus-iso.test.ts'];
+const TESTS_LESEZEIT = ['tests/lesezeit.test.ts'];
 const TESTS_WERKZEUGE = [
   'tests/werkzeuge-vorlagen-check.test.ts', 'tests/werkzeuge-wegweiser.test.ts', 'tests/werkzeuge-risiko-grenzen.test.ts',
   'tests/werkzeuge-monatsbericht.test.ts', 'tests/werkzeuge-wachter.test.ts',
@@ -107,6 +112,37 @@ export const MUTANTEN = [
   [HILFE_AUTOMAT, "  if (!gespielt) return [['-', gute(k)]];\n", '', 'Automat: von der Kurzfassung übersprungenes Kapitel zählt nicht wie die gute Antwort', TESTS_AUTOMAT],
   [HILFE_AUTOMAT, 'const s = schluessel(b, m);', 'const s = schluessel(b, []);', 'Automat: Zustände nur nach Balken zusammengelegt (Merkmale vergessen)', TESTS_AUTOMAT],
   [HILFE_AUTOMAT, "Math.min(2, x + (a !== null && a.wertung !== 'gut' ? 1 : 0))", "Math.min(1, x + (a !== null && a.wertung !== 'gut' ? 1 : 0))", 'Automat: Zähler „nicht gute Antworten“ zu früh gedeckelt', TESTS_AUTOMAT],
+  // P19.3 (O-62): Akte, Pause, gebündelte Brücken, Ende der Kurzfassung, Restzeit, Speicher, Übersetzer, Campus, Lesezeit je Akt
+  ['src/geschichte/engine.ts', "a.stationen.at(-1) === k.id && hatPause(g, a)) aus.push", "a.stationen.at(-1) === k.id && false) aus.push", 'Akte: keine Pause am Aktende', TESTS_AKTE],
+  ['src/geschichte/engine.ts', "const a = kurz ? null : aktVon(g, k.id);", "const a = aktVon(g, k.id);", 'Akte: die Kurzfassung hat keine Pause', TESTS_AKTE],
+  ['src/geschichte/engine.ts', "return akteVon(g).at(-1) !== a;", "return true;", 'Akte: nach dem letzten Akt keine Pause (das Ende zeigt „Das können Sie jetzt“)', TESTS_AKTE],
+  ['src/geschichte/engine.ts', "export const BRUECKE_MAX = 3;", "export const BRUECKE_MAX = 4;", 'Brücken: höchstens drei Stationen je Karte', TESTS_AKTE],
+  ['src/geschichte/engine.ts', "  if (akteVon(g).length === 0) return liste.map((k) => [k]);\n", "", 'Brücken: ohne Akte je Station eine Karte wie bisher', TESTS_AKTE],
+  ['src/geschichte/engine.ts', "if (genannt.length > 0 && !genannt.some((id) => kapitel(g, id) !== null)) return null;", "", 'Speicher: ein Stand mit fremden Kennungen (k1 … k8 → s1 … s14) ist ungültig', TESTS_AKTE],
+  ['src/geschichte/engine.ts', "if (sch && sch['ort'] === 'pause' && typeof sch['akt'] === 'string') return geheZu(g, stand, { ort: 'pause', akt: sch['akt'] });\n", "", 'Speicher: die Pause wird wiedergefunden', TESTS_AKTE],
+  ['src/geschichte/engine.ts', "const erste = g.kapitel.find((k) => !k.kurzfassung);", "const erste = g.kapitel.find((k) => k.kurzfassung);", 'Kurzfassung: „Weiter mit der ganzen Geschichte“ an der ersten nicht gespielten Station', TESTS_AKTE],
+  ['src/geschichte/engine.ts', "const hier = nrAmSchritt(g, stand.schritt);", "const hier = 0;", 'Kurzfassung: Wechsel aus der Pause weiter mit der nächsten gespielten Station', TESTS_AKTE],
+  ['src/geschichte/engine.ts', "slice(schrittIndex(g, stand))) {", "slice(schrittIndex(g, stand) + 1)) {", 'Restzeit: der aktuelle Schritt zählt voll', TESTS_AKTE],
+  ['src/geschichte/engine.ts', "return Math.max(1, Math.round(woerter / jeMinute));", "return Math.max(1, Math.floor(woerter / jeMinute));", 'Restzeit: Minuten gerundet', TESTS_AKTE],
+  ['src/geschichte/engine.ts', "if (k.nr <= bisNr) aus.push({ nr: k.nr", "if (k.nr < bisNr) aus.push({ nr: k.nr", 'Verlauf: bis einschließlich der gefragten Station', TESTS_AKTE],
+  ['src/ui/flaechen/geschichte.ts', "if (a === aktHier) return stationen.map(", "if (false) return stationen.map(", 'Akt-Leiste: der Akt der gezeigten Station ist aufgeklappt', TESTS_AKTE],
+  ['src/ui/flaechen/geschichte.ts', "|| a.stationen[0] !== k.id) return null;", "|| false) return null;", 'Kopfkarte nur über der ersten Station eines Akts', TESTS_AKTE],
+  ['src/ui/flaechen/geschichte.ts', "stand.kurz && g.kapitel.some((k) => !k.kurzfassung) ? h('button'", "false ? h('button'", 'Ende der Kurzfassung: Knopf „Weiter mit der ganzen Geschichte“', TESTS_AKTE],
+  ['src/grafik/verlauf.ts', "{ klasse: 'vb-band-mittel', von: 3.5, bis: 6.5 },", "{ klasse: 'vb-band-mittel', von: 3.5, bis: 6 },", 'Verlaufsband: die Bänder reichen lückenlos von niedrig bis hoch', TESTS_AKTE],
+  ['src/stil/geschichte.css', ".druck-story .druck-akt + .druck-akt { break-before: page; }", ".druck-story .druck-akt + .druck-akt { break-before: auto; }", 'Druck: Seitenumbruch zwischen den Akten', TESTS_AKTE],
+  ['src/stil/geschichte.css', ".gs-fortschritt-akte .gs-felder li { min-width: 24px; }", ".gs-fortschritt-akte .gs-felder li { min-width: 12px; }", 'Akt-Leiste: Zielgröße mindestens 24 px', TESTS_AKTE],
+  ['werkzeuge/geschichte.mjs', "else if (gesehen.includes(k)) c.fehler(ort,", "else if (false) c.fehler(ort,", 'Übersetzer: jede Station höchstens in einem Akt', TESTS_UEBERSETZER],
+  ['werkzeuge/geschichte.mjs', "for (const id of ids) if (!gesehen.includes(id)) c.fehler(", "for (const id of []) if (!gesehen.includes(id)) c.fehler(", 'Übersetzer: jede Station in einem Akt', TESTS_UEBERSETZER],
+  ['werkzeuge/geschichte.mjs', "bekannt.join() !== ids.join()", "false", 'Übersetzer: die Akte folgen der Reihenfolge der Stationen', TESTS_UEBERSETZER],
+  ['werkzeuge/geschichte.mjs', "if (koennen.length !== 3)", "if (koennen.length < 3)", 'Übersetzer: „Das können Sie jetzt“ in genau drei Sätzen', TESTS_UEBERSETZER],
+  ['werkzeuge/geschichte.mjs', "if (nr !== i + 1) c.fehler(", "if (false) c.fehler(", 'Übersetzer: Nummer = Stelle in der Reihenfolge', TESTS_UEBERSETZER],
+  ['werkzeuge/geschichte.mjs', "if (new Set(reihenfolge).size !== reihenfolge.length)", "if (false)", 'Übersetzer: Kennung in der Reihenfolge nur einmal', TESTS_UEBERSETZER],
+  ['werkzeuge/geschichte.mjs', "const ZWISCHENSTUFEN = [1.5, 2.5, 3.5, 4.5, 5.5];", "const ZWISCHENSTUFEN = [1.5, 2.5, 3.5, 4.5, 5.5, 6.5];", 'Übersetzer: nur die fünf Zwischenstufen', TESTS_UEBERSETZER],
+  ['src/grafik/campus-iso.ts', "export const CAMPUS_ZWISCHENSTUFEN: readonly number[] = [1.5, 2.5, 3.5, 4.5, 5.5];", "export const CAMPUS_ZWISCHENSTUFEN: readonly number[] = [1.5, 2.5, 3.5, 4.5];", 'Campus: fünf Zwischenstufen', TESTS_CAMPUS],
+  ['src/grafik/campus-iso.ts', "if (buehne.licht !== 'abend') lieferwagen(buehne, 216, 258);", "lieferwagen(buehne, 216, 258);", 'Campus 2,5: Lieferwagen nur tagsüber', TESTS_CAMPUS],
+  ['src/grafik/campus-iso.ts', "if (jahreszeit === 'winter' && w === 'regen') return dazu;", "", 'Campus: Regen im Winter ohne Flocken', TESTS_CAMPUS],
+  ['werkzeuge/lesezeit.mjs', "export const AKT_MAX_MINUTEN = 15;", "export const AKT_MAX_MINUTEN = 14;", 'Lesezeit: obere Schranke je Akt 15 Minuten', TESTS_LESEZEIT],
+  ['werkzeuge/lesezeit.mjs', "(i === 0 && kennung === 'auftakt')", "(false)", 'Lesezeit: Auftakt zählt zur Schranke des ersten Akts', TESTS_LESEZEIT],
 ];
 
 function testsRot(tests = TESTS) {
@@ -135,7 +171,7 @@ export function probe() {
 }
 
 if (istHauptmodul(import.meta.url)) {
-  const vorher = spawnSync(process.execPath, ['--test', '--test-reporter=dot', ...TESTS, ...TESTS_AUTOMAT, ...TESTS_WERKZEUGE], { cwd: WURZEL, encoding: 'utf8' });
+  const vorher = spawnSync(process.execPath, ['--test', '--test-reporter=dot', ...TESTS, ...TESTS_AUTOMAT, ...TESTS_WERKZEUGE, ...TESTS_AKTE, ...TESTS_UEBERSETZER, ...TESTS_CAMPUS, ...TESTS_LESEZEIT], { cwd: WURZEL, encoding: 'utf8' });
   if (vorher.status !== 0) {
     console.log('mutanten: Die Engine- oder Werkzeug-Tests sind schon ohne Mutation rot – erst reparieren.');
     process.exitCode = 1;

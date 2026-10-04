@@ -22,7 +22,12 @@ const JAHRESZEITEN = ['fruehling', 'sommer', 'herbst', 'winter'];
 const LICHTER = ['morgen', 'tag', 'abend'];
 const GEWICHTE = [5, 3, 1];
 const KENNUNG = /^[a-z0-9][a-z0-9-]*$/u;
-const KAPITEL_DATEI = /\/k(\d+)-[a-z0-9-]+\.yaml$/u;
+/** Datei einer Station: <Kennung>-<name>.yaml (Kennung = Buchstaben und Ziffer(n): k1 … k8 heute, s1 … s14 mit Reihenfolge-Angabe, P19.3) */
+const KAPITEL_DATEI = /\/([a-z]+\d+)-[a-z0-9-]+\.yaml$/u;
+const STATIONS_KENNUNG = /^[a-z]+\d+$/u;
+/** Zwischenstufen des Campus (P19.3): halbe Stufen laut Drehbuch-Gerüst Abschnitt 9 */
+const ZWISCHENSTUFEN = [1.5, 2.5, 3.5, 4.5, 5.5];
+const WETTER = ['sturm', 'regen', 'schnee', 'nebel'];
 /** interner Beleg: Absatz-ID aus V1.2 (k4.2-p3, k3.2-t1) oder Stelle aus V2.4 (v24:hb-3.1, v24:tlb-2, v24:va-4.1, v24:hb-projektblatt) */
 const BELEG_V12 = /^k\d+(?:\.\d+)*-[pltb]\d+$/u;
 const BELEG_V24 = /^v24:(?:hb|tlb|va)(?:-[a-z0-9]+(?:\.[0-9]+)*)?$/u;
@@ -37,14 +42,7 @@ const text = (x) => (x === undefined || x === null ? '' : String(x));
  * @param {Record<string, string[]> | null} [werkzeuge] Katalog der Explore-Werkzeuge und ihrer Beispiele (werkzeugKatalog; null = nur die Form prüfen)
  */
 export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
-  for (const d of dateien) {
-    if (!d.rel.endsWith('/rahmen.yaml') && !KAPITEL_DATEI.test(d.rel)) {
-      c.fehler(d.rel, 'unbekannte Datei im Ordner der Story – erwartet rahmen.yaml oder k<n>-<name>.yaml');
-    }
-  }
   const rahmenDatei = dateien.find((d) => d.rel.endsWith('/rahmen.yaml'));
-  if (rahmenDatei === undefined) return { geschichte: null, regie: {} };
-
   const lies = (/** @type {{ rel: string, text: string }} */ d) => {
     try {
       const y = YAML.parse(d.text) ?? {};
@@ -55,6 +53,29 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
       return {};
     }
   };
+  const rahmenRoh = rahmenDatei === undefined ? {} : lies(rahmenDatei);
+  // P19.3: optionale Reihenfolge der Stationen (Kennungen s1 … s14 in beliebiger Folge); ohne sie gilt k<n> in Zahlenfolge wie bisher
+  /** @type {string[] | null} */
+  let reihenfolge = null;
+  if (rahmenRoh.reihenfolge !== undefined) {
+    const ro = `${rahmenDatei?.rel ?? 'rahmen.yaml'} reihenfolge`;
+    if (!Array.isArray(rahmenRoh.reihenfolge) || rahmenRoh.reihenfolge.length === 0) c.fehler(ro, 'Liste von Stationskennungen erwartet (s1, s2, …)');
+    else {
+      reihenfolge = rahmenRoh.reihenfolge.map(text);
+      for (const k of reihenfolge) if (!STATIONS_KENNUNG.test(k)) c.fehler(ro, `Kennung „${k}“ – erwartet Kleinbuchstaben und Ziffern (s1, k3)`);
+      if (new Set(reihenfolge).size !== reihenfolge.length) c.fehler(ro, 'Kennung doppelt');
+    }
+  }
+  for (const d of dateien) {
+    const m = KAPITEL_DATEI.exec(d.rel);
+    if (d.rel.endsWith('/rahmen.yaml')) continue;
+    if (m === null || (reihenfolge === null ? !/^k\d+$/u.test(m[1] ?? '') : !reihenfolge.includes(m[1] ?? ''))) {
+      c.fehler(d.rel, reihenfolge === null
+        ? 'unbekannte Datei im Ordner der Story – erwartet rahmen.yaml oder k<n>-<name>.yaml'
+        : 'unbekannte Datei im Ordner der Story – erwartet rahmen.yaml oder <kennung>-<name>.yaml mit einer Kennung aus der Reihenfolge');
+    }
+  }
+  if (rahmenDatei === undefined) return { geschichte: null, regie: {} };
 
   /* -------------------------------------------------------------- Helfer -- */
   /** Unbekannte Felder melden; Pflichtfelder prüfen. */
@@ -80,12 +101,14 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
   const campus = (/** @type {any} */ x, /** @type {string} */ ort) => {
     const o = form(x, ['stufe', 'jahreszeit', 'licht'], ['wetter'], ort);
     const stufe = Number(o.stufe);
-    if (!Number.isInteger(stufe) || stufe < 0 || stufe > 8) c.fehler(ort, `Campus-Stufe „${text(o.stufe)}“ – erwartet 0–8`);
+    // P19.3: ganze Stufen 0–8 und die fünf Zwischenstufen 1,5 · 2,5 · 3,5 · 4,5 · 5,5 (Gerüst Abschnitt 9)
+    if (!(Number.isInteger(stufe) && stufe >= 0 && stufe <= 8) && !ZWISCHENSTUFEN.includes(stufe)) c.fehler(ort, `Campus-Stufe „${text(o.stufe)}“ – erwartet 0–8 oder eine Zwischenstufe (${ZWISCHENSTUFEN.join(', ')})`);
     if (!JAHRESZEITEN.includes(o.jahreszeit)) c.fehler(ort, `Jahreszeit „${text(o.jahreszeit)}“ – erwartet ${JAHRESZEITEN.join(', ')}`);
     if (!LICHTER.includes(o.licht)) c.fehler(ort, `Licht „${text(o.licht)}“ – erwartet ${LICHTER.join(', ')}`);
-    // R72: besonderes Wetter (heute nur „sturm“: grauer Himmel, Böen, Planen) – ohne Angabe gilt die Jahreszeit
-    if (o.wetter !== undefined && o.wetter !== 'sturm') c.fehler(ort, `Wetter „${text(o.wetter)}“ – erwartet sturm`);
-    return { stufe: Number.isInteger(stufe) ? stufe : 0, jahreszeit: text(o.jahreszeit), licht: text(o.licht), ...(o.wetter === 'sturm' ? { wetter: 'sturm' } : {}) };
+    // R72/P19.3: besonderes Wetter – sturm, regen, schnee, nebel; ohne Angabe gilt die Jahreszeit
+    if (o.wetter !== undefined && !WETTER.includes(o.wetter)) c.fehler(ort, `Wetter „${text(o.wetter)}“ – erwartet ${WETTER.join(', ')}`);
+    const gueltig = (Number.isInteger(stufe) && stufe >= 0 && stufe <= 8) || ZWISCHENSTUFEN.includes(stufe);
+    return { stufe: gueltig ? stufe : 0, jahreszeit: text(o.jahreszeit), licht: text(o.licht), ...(WETTER.includes(o.wetter) ? { wetter: o.wetter } : {}) };
   };
   const kennung = (/** @type {unknown} */ x, /** @type {string} */ ort, /** @type {string} */ was) => {
     if (x === undefined || x === null) return null;
@@ -139,7 +162,7 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
 
   /* -------------------------------------------------------------- Rahmen -- */
   const rel = rahmenDatei.rel;
-  const r = form(lies(rahmenDatei), ['titel', 'auftakt', 'sie', 'figuren', 'balken', 'bilanz', 'mandat', 'ende'], [], rel);
+  const r = form(rahmenRoh, ['titel', 'auftakt', 'sie', 'figuren', 'balken', 'bilanz', 'mandat', 'ende'], ['reihenfolge', 'akte'], rel);
   const au = form(r.auftakt ?? {}, ['campus', 'text', 'vorstellung', 'los', 'kurz'], [], `${rel} auftakt`);
   const sie = form(r.sie ?? {}, ['steckbrief'], [], `${rel} sie`);
   const figuren = (Array.isArray(r.figuren) ? r.figuren : []).map((/** @type {any} */ f, /** @type {number} */ i) => {
@@ -203,18 +226,24 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
   }
 
   /* ------------------------------------------------------------- Kapitel -- */
-  const roh = dateien.filter((d) => KAPITEL_DATEI.test(d.rel)).map((d) => ({ d, y: lies(d), dateiNr: Number(KAPITEL_DATEI.exec(d.rel)?.[1]) }))
-    .sort((a, b) => a.dateiNr - b.dateiNr);
+  const kapitelId = (/** @type {{ rel: string }} */ d) => KAPITEL_DATEI.exec(d.rel)?.[1] ?? '';
+  const roh = dateien.filter((d) => KAPITEL_DATEI.test(d.rel) && !d.rel.endsWith('/rahmen.yaml')).map((d) => ({ d, y: lies(d), dateiId: kapitelId(d), dateiNr: Number(/\d+$/u.exec(kapitelId(d))?.[0]) }))
+    .filter((x) => (reihenfolge === null ? /^k\d+$/u.test(x.dateiId) : reihenfolge.includes(x.dateiId)))
+    .sort((a, b) => (reihenfolge === null ? a.dateiNr - b.dateiNr : reihenfolge.indexOf(a.dateiId) - reihenfolge.indexOf(b.dateiId)));
+  if (reihenfolge !== null) {
+    for (const k of reihenfolge) if (!roh.some((x) => x.dateiId === k)) c.fehler(`${rel} reihenfolge`, `Station „${k}“ hat keine Datei (${k}-<name>.yaml)`);
+  }
   /** @type {Record<string, { notizHtml: string, leitfragen: string[] }>} */
   const regie = {};
-  const kapitel = roh.map(({ d, y, dateiNr }, i) => {
+  const kapitel = roh.map(({ d, y, dateiNr, dateiId }, i) => {
     const ort = d.rel;
     const o = form(y, ['nr', 'titel', 'zeit', 'campus', 'thema', 'belege', 'einstieg', 'szene', 'frage', 'antworten', 'gut', 'dahinter'],
       ['kurzfassung', 'bruecke', 'einstieg-kurz', 'campus-nachher', 'zusatz', 'bild-szene', 'bild-frage', 'mandat-nach-folge', 'mini', 'vergleich', 'regie', 'werkzeuge'], ort);
     const nr = Number(o.nr);
-    if (nr !== i + 1) c.fehler(ort, `Nummer ${text(o.nr)} – erwartet ${i + 1} (lückenlos ab 1)`);
-    if (nr !== dateiNr) c.fehler(ort, `Nummer ${text(o.nr)} passt nicht zum Dateinamen (k${dateiNr}-…)`);
-    const id = `k${nr}`;
+    if (nr !== i + 1) c.fehler(ort, `Nummer ${text(o.nr)} – erwartet ${i + 1} (${reihenfolge === null ? 'lückenlos ab 1' : 'Stelle in der Reihenfolge'})`);
+    // ohne Reihenfolge-Angabe trägt der Dateiname die Nummer (k3-…); mit ihr zählt die Stelle in der Reihenfolge
+    if (reihenfolge === null && nr !== dateiNr) c.fehler(ort, `Nummer ${text(o.nr)} passt nicht zum Dateinamen (k${dateiNr}-…)`);
+    const id = dateiId;
     belege(o.belege, ort);
     const thema = text(o.thema);
     if (!KENNUNG.test(thema)) c.fehler(ort, `Thema „${thema}“ ist keine Kennung`);
@@ -288,6 +317,56 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
   const vergleiche = kapitel.filter((/** @type {any} */ k) => k.vergleich !== null).length;
   if (kapitel.length > 0 && vergleiche !== 1) c.fehler(rel, `genau ein Kapitel mit Vergleich erwartet, nicht ${vergleiche}`);
   if (kapitel.length > 0 && !kapitel.some((/** @type {any} */ k) => k.mandatNachFolge)) c.fehler(rel, 'kein Kapitel zeigt das Kärtchen „Wer entscheidet was“ (mandat-nach-folge)');
+
+  /* ---------------------------------------------------------------- Akte -- */
+  /**
+   * Akte (P19.3, optional): `akte:` im Rahmen gliedert die Stationen in aufeinanderfolgende Gruppen. Jede Station steht in genau
+   * einem Akt, die Akte folgen der Reihenfolge der Stationen ohne Lücke und ohne Sprung. Je Akt eine Kopfkarte (Text über der ersten
+   * Station) und die Pause am Ende („Das können Sie jetzt“: genau drei Sätze, dazu optional eine Zeile einer Figur).
+   * Ohne `akte:` verhält sich die Story wie bisher.
+   * @returns {any[]}
+   */
+  function akteBauen() {
+    if (r.akte === undefined) return [];
+    const ao = `${rel} akte`;
+    if (!Array.isArray(r.akte) || r.akte.length === 0) { c.fehler(ao, 'Liste von Akten erwartet'); return []; }
+    const ids = kapitel.map((/** @type {any} */ k) => k.id);
+    /** @type {string[]} */
+    const gesehen = [];
+    const liste = r.akte.map((/** @type {any} */ a, /** @type {number} */ i) => {
+      const ort = `${rel} akte ${i + 1}`;
+      const o = form(a, ['id', 'titel', 'zeitraum', 'stationen', 'kopf', 'pause'], [], ort);
+      const stationen = Array.isArray(o.stationen) ? o.stationen.map(text) : [];
+      if (!Array.isArray(o.stationen) || stationen.length === 0) c.fehler(ort, 'Liste von Stationen erwartet');
+      for (const k of stationen) {
+        if (!ids.includes(k)) c.fehler(ort, `Station „${k}“ gibt es nicht`);
+        else if (gesehen.includes(k)) c.fehler(ort, `Station „${k}“ steht schon in einem anderen Akt – jede Station genau in einem Akt`);
+        gesehen.push(k);
+      }
+      const p = form(o.pause ?? {}, ['koennen'], ['zeile'], `${ort} pause`);
+      const koennen = Array.isArray(p.koennen) ? p.koennen : [];
+      if (koennen.length !== 3) c.fehler(`${ort} pause`, `„Das können Sie jetzt“: genau drei Sätze erwartet, nicht ${koennen.length}`);
+      return {
+        id: kennung(o.id, ort, 'Akt') ?? '',
+        titel: klar(o.titel, ort),
+        zeitraum: klar(o.zeitraum, ort),
+        stationen,
+        kopfHtml: inline(o.kopf, `${ort} kopf`),
+        pause: {
+          zeile: p.zeile === undefined ? null : zeile(p.zeile, `${ort} pause zeile`),
+          koennenHtml: koennen.map((/** @type {unknown} */ x, /** @type {number} */ j) => inline(x, `${ort} pause koennen ${j + 1}`)),
+        },
+      };
+    });
+    if (new Set(liste.map((/** @type {any} */ a) => a.id)).size !== liste.length) c.fehler(ao, 'Akt-Kennung doppelt');
+    for (const id of ids) if (!gesehen.includes(id)) c.fehler(ao, `Station „${id}“ steht in keinem Akt – jede Station genau in einem Akt`);
+    // Reihenfolge: die Akte nacheinander ergeben genau die Folge der Stationen (kein Sprung, kein Vertauschen)
+    const flach = liste.flatMap((/** @type {any} */ a) => a.stationen);
+    const bekannt = flach.filter((/** @type {string} */ k, /** @type {number} */ j) => ids.includes(k) && flach.indexOf(k) === j);
+    if (bekannt.length === ids.length && bekannt.join() !== ids.join()) c.fehler(ao, `die Akte müssen den Stationen in ihrer Reihenfolge folgen (${ids.join(', ')})`);
+    return liste;
+  }
+  const akte = akteBauen();
 
   /** Mini-Aufgabe: gemeinsames Gerüst; was je Art gilt, steht in der Mini-Registry (src/geschichte/mini-arten.ts, `uebersetzung`) */
   function mini(/** @type {any} */ m, /** @type {string} */ ort) {
@@ -369,6 +448,7 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
     bilanz,
     mandat,
     kapitel,
+    akte,
     ende,
   };
   return { geschichte, regie };

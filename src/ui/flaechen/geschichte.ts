@@ -9,15 +9,17 @@
  * Bedienung); `erzeugeGeschichte` ist die bedienbare Fläche mit Speicher, Fokusführung und Tastatur.
  */
 
-import type { Antwort, BalkenId, CampusBild, Geschichte, Kapitel, Mini, Vergleich, Zeile } from '../../geschichte/typen.ts';
+import type { Akt, Antwort, BalkenId, CampusBild, Geschichte, Kapitel, Mini, Vergleich, Zeile } from '../../geschichte/typen.ts';
 import { BALKEN } from '../../geschichte/typen.ts';
 import {
-  abgestimmteGewichte, balken, balkenBis, beginne, bilanzAmEnde, bruecken, endeFassung, gewaehlteAntwort, geheZu, gewichte,
-  gleicherSchritt, kapitel as kapitelVon, leseStand, miniVonVorn, neuerStand, offeneKapitel,
-  schrittIndex, setzeAbgestimmt, setzeGewicht, stufe, STUFEN_GEWICHT, vergleichLage, waehle,
-  wegKapitel, werteMiniAus, weiter, zurueck, zaehlendePlatz, type Balkenstand, type Schritt, type Stand,
+  abgestimmteGewichte, akt as aktVonId, akteVon, aktNummer, aktVon, aktWoerter, balken, balkenBis, beginne, bilanzAmEnde, brueckenKarten as brueckenGruppen,
+  endeFassung, gewaehlteAntwort, geheZu, gewichte, gleicherSchritt, kapitel as kapitelVon, letzteStation, leseStand, minutenAus, miniVonVorn,
+  neuerStand, offeneKapitel, restWoerter, roemisch, schrittIndex, setzeAbgestimmt, setzeGewicht, stufe, STUFEN_GEWICHT, vergleichLage, verlaufBis,
+  waehle, wegKapitel, weiterMitGanzer, werteMiniAus, weiter, zurueck, zaehlendePlatz, type Balkenstand, type Lesezeit, type Schritt, type Stand,
 } from '../../geschichte/engine.ts';
+import lesezeitDaten from '../../geschichte/lesezeit-daten.json' with { type: 'json' };
 import { campusIso } from '../../grafik/campus-iso.ts';
+import { verlaufBand } from '../../grafik/verlauf.ts';
 import { wegSkizze } from '../../grafik/weg-skizze.ts';
 import type { Figur } from '../../grafik/figuren.ts';
 import { ersetze, h, vonHtml, type Kind } from '../h.ts';
@@ -30,6 +32,9 @@ import { bildnis, gegenstand } from './geschichte-teile.ts';
 import { miniBaustein } from './geschichte-mini.ts';
 
 const w = W.geschichte;
+
+/** Gemessene Lesezeit je Schritt der echten Story (werkzeuge/lesezeit.mjs --schreibe); eine andere Geschichte (Test) bringt ihre eigene mit. */
+export const LESEZEIT: Lesezeit = lesezeitDaten as Lesezeit;
 
 /** Campus der Stufe mit Jahreszeit und Licht, groß; dekorativ (Drehbuch Abschnitt 7), Zusatz der Szene darüber. */
 function campus(c: CampusBild, klasse: string, zusatz: string | null = null, halleOffen = false): HTMLElement {
@@ -109,6 +114,8 @@ export interface SchrittOptionen {
   /** Titel eines Explore-Werkzeugs (null oder fehlt = kein Verweis); Verweise stehen nur bedienbar, nie auf der Leinwand (P18.5) */
   werkzeugTitel?: (id: string) => string | null;
   tue: (neu: Stand) => void;
+  /** gemessene Lesezeit (Akt-Dauer in der Kopfkarte); fehlt sie, gilt `LESEZEIT` */
+  lesezeit?: Lesezeit;
 }
 
 function figurName(g: Geschichte, id: string): { name: string; rolle: string; akzent: string } {
@@ -190,15 +197,104 @@ function mandatKarte(g: Geschichte): HTMLElement {
       h('dl', null, g.mandat.zeilen.map((z) => h('div', null, h('dt', null, z.wer), h('dd', null, inhaltInline(z.html)))))));
 }
 
-/** Brückenkarten der Kurzfassung für übersprungene Kapitel. */
+/**
+ * Brückenkarten der Kurzfassung für übersprungene Stationen. Mit Akten (P19.3) teilen sich mehrere Stationen in Folge eine
+ * Karte („Stationen 6 bis 8“); ohne Akte steht je Station eine Karte wie bisher.
+ */
 function brueckenKarten(g: Geschichte, vor: Kapitel | null): HTMLElement | null {
-  const liste = bruecken(g, vor);
-  if (liste.length === 0) return null;
+  const gruppen = brueckenGruppen(g, vor);
+  if (gruppen.length === 0) return null;
+  const kopfZeile = (k: Kapitel): HTMLElement => h('p', { class: 'gs-bruecke-kopf' }, h('b', null, `${k.nr} · ${k.titel}`), ` · ${k.zeit}`);
   return h('section', { class: 'gs-bruecken', 'aria-label': w.brueckeTitel },
     h('p', { class: 'gs-bruecken-titel' }, w.brueckeTitel),
-    h('ul', null, liste.map((k) => h('li', { class: 'gs-bruecke', 'data-pruef': `bruecke-${k.id}` },
-      campus(k.campus, 'gs-campus-mini'),
-      h('div', null, h('p', { class: 'gs-bruecke-kopf' }, h('b', null, `${k.nr} · ${k.titel}`), ` · ${k.zeit}`), inhalt(k.brueckeHtml ?? ''))))));
+    h('ul', null, gruppen.map((gruppe) => {
+      const erste = gruppe[0] as Kapitel;
+      if (gruppe.length === 1) {
+        return h('li', { class: 'gs-bruecke', 'data-pruef': `bruecke-${erste.id}` },
+          campus(erste.campus, 'gs-campus-mini'),
+          h('div', null, kopfZeile(erste), inhalt(erste.brueckeHtml ?? '')));
+      }
+      const letzte = gruppe[gruppe.length - 1] as Kapitel;
+      return h('li', { class: 'gs-bruecke gs-bruecke-gruppe', 'data-pruef': `bruecke-${erste.id}`, 'data-stationen': gruppe.map((k) => k.id).join(' ') },
+        campus(letzte.campus, 'gs-campus-mini'),
+        h('div', null,
+          h('p', { class: 'gs-bruecke-spanne' }, w.brueckeStationen(erste.nr, letzte.nr)),
+          gruppe.map((k) => h('div', { class: 'gs-bruecke-station' }, kopfZeile(k), inhalt(k.brueckeHtml ?? '')))));
+    })));
+}
+
+/* -------------------------------------------------------------------- Akte -- */
+
+/** Dauer eines Akts in ganzen Minuten aus der gemessenen Lesezeit (null = keine Messung). */
+function aktMinuten(o: SchrittOptionen, a: Akt): number | null {
+  const lz = o.lesezeit ?? LESEZEIT;
+  const wo = aktWoerter(o.g, a, lz);
+  return wo === null ? null : minutenAus(wo, lz.woerterJeMinute);
+}
+
+/**
+ * Kopfkarte (P19.3): über der ersten Station eines Akts, nur auf dem ganzen Weg – Akt, Titel, Zeitraum, Dauer und ein kurzer Text.
+ * Die Zeile mit Akt und Dauer ist ein Kicker und zählt nicht zur Lesezeit (sonst hinge die Messung an der Zahl, die sie selbst liefert).
+ */
+function aktKopf(o: SchrittOptionen, k: Kapitel): HTMLElement | null {
+  const a = aktVon(o.g, k.id);
+  if (a === null || o.stand.kurz || a.stationen[0] !== k.id) return null;
+  const min = aktMinuten(o, a);
+  return h('section', { class: 'gs-aktkopf', 'aria-label': w.aktTitel(roemisch(aktNummer(o.g, a)), a.titel), 'data-pruef': `akt-kopf-${a.id}` },
+    h('p', { class: 'gs-kicker gs-aktkopf-kicker' }, `${w.aktTitel(roemisch(aktNummer(o.g, a)), a.titel)} · ${a.zeitraum}${min !== null ? ` · ${w.aktDauer(min)}` : ''}`),
+    h('p', { class: 'gs-aktkopf-text' }, inhaltInline(a.kopfHtml)));
+}
+
+/** „Das können Sie jetzt“: drei Sätze, auf jedem Weg gleich. */
+function koennen(a: Akt, pruef: string): HTMLElement {
+  return h('section', { class: 'gs-koennen', 'aria-labelledby': `gs-koennen-${a.id}`, 'data-pruef': pruef },
+    h('h2', { id: `gs-koennen-${a.id}`, class: 'gs-h2' }, w.koennenTitel),
+    h('ul', null, a.pause.koennenHtml.map((t) => h('li', null, inhaltInline(t)))));
+}
+
+/** Verlaufsband bis zur Station `bisNr` samt Wertetabelle als Text (zugeklappt). */
+function verlauf(o: SchrittOptionen, bisNr: number): HTMLElement {
+  const { g, stand } = o;
+  const punkte = verlaufBis(g, stand, bisNr);
+  const reihe = (id: BalkenId, klasse: string) => ({ klasse, name: balkenTitel(g, id), werte: punkte.map((p) => p.balken[id]) });
+  const svg = verlaufBand([reihe('geld', 'vb-geld'), reihe('zeit', 'vb-zeit'), reihe('vertrauen', 'vb-vertrauen')], w.verlaufBeschreibung);
+  const wort = (n: number): string => w.verlaufBand[stufe(n)] ?? '';
+  return h('div', { class: 'gs-verlauf', 'data-pruef': 'gs-verlauf' },
+    h('h3', { class: 'gs-h3' }, w.verlaufTitel),
+    h('div', { class: 'gs-verlauf-bild' }, vonHtml(svg)),
+    h('details', { class: 'gs-verlauf-worte', 'data-pruef': 'gs-verlauf-worte' },
+      h('summary', null, w.verlaufWorte),
+      h('table', null,
+        h('thead', null, h('tr', null, h('th', { scope: 'col' }, w.stationWaehlenListe), BALKEN.map((id) => h('th', { scope: 'col' }, balkenTitel(g, id))))),
+        h('tbody', null, punkte.map((p) => h('tr', null,
+          h('th', { scope: 'row' }, p.id === null ? w.verlaufStart : `${p.nr} · ${kapitelVon(g, p.id)?.titel ?? ''}`),
+          BALKEN.map((id) => h('td', null, wort(p.balken[id])))))))));
+}
+
+/** Pause am Ende eines Akts (P19.3): Zwischenbilanz mit Balken und Verlauf, „Das können Sie jetzt“, Weiter; nur auf dem ganzen Weg. */
+function pauseSchritt(o: SchrittOptionen, a: Akt): HTMLElement {
+  const { g, stand } = o;
+  const nr = aktNummer(g, a);
+  const letzte = letzteStation(g, a);
+  const bis = letzte?.nr ?? 0;
+  const naechster = akteVon(g)[nr];
+  const weiterTitel = naechster !== undefined ? w.weiterMitAkt(roemisch(nr + 1)) : w.weiter;
+  return h('article', { class: 'gs-schritt gs-pause', 'data-teil': 'pause', 'data-akt': a.id },
+    h('header', { class: 'gs-kopf' },
+      h('span', { class: 'gs-nummer', 'aria-hidden': 'true' }, roemisch(nr)),
+      h('div', { class: 'gs-kopf-text' },
+        h('p', { class: 'gs-kicker' }, `${w.pauseKicker} · ${a.zeitraum}`),
+        h('h1', { class: 'gs-titel', tabindex: -1, 'data-pruef': 'gs-titel' }, h('span', { class: 'nur-sr' }, `${w.pauseKicker} · `), w.aktTitel(roemisch(nr), a.titel)))),
+    letzte !== null ? h('div', { class: 'gs-buehnenbild' }, campus(letzte.campus, 'gs-campus-gross')) : null,
+    a.pause.zeile !== null ? dialog(g, [a.pause.zeile]) : null,
+    h('section', { class: 'gs-zwischenbilanz', 'aria-labelledby': `gs-zwischenbilanz-${a.id}`, 'data-pruef': 'gs-zwischenbilanz' },
+      h('h2', { id: `gs-zwischenbilanz-${a.id}`, class: 'gs-h2' }, w.zwischenbilanz),
+      balkenTafel(g, balken(g, stand, { ort: 'pause', akt: a.id }), { gross: true, pruef: 'gs-stand-pause' }),
+      verlauf(o, bis)),
+    koennen(a, `gs-koennen-${a.id}`),
+    o.bedienbar && naechster !== undefined
+      ? h('p', { class: 'gs-pause-weiter' }, h('button', { type: 'button', class: 'gs-knopf gs-knopf-gross', 'data-pruef': 'pause-weiter', onclick: () => o.tue(weiter(g, stand)) }, weiterTitel, sym('pfeilRechts')))
+      : null);
 }
 
 /* ---------------------------------------------------------------- Schritte -- */
@@ -275,6 +371,7 @@ function szene(o: SchrittOptionen, k: Kapitel): HTMLElement {
   const einstieg = o.stand.kurz && k.einstiegKurzHtml !== null ? k.einstiegKurzHtml : k.einstiegHtml;
   return h('article', { class: 'gs-schritt gs-szene', 'data-teil': 'szene' },
     o.stand.kurz ? brueckenKarten(o.g, k) : null,
+    aktKopf(o, k),
     kopf(o, k, k.zeit),
     h('div', { class: 'gs-buehnenbild' }, campus(k.campus, 'gs-campus-gross', k.zusatz)),
     h('div', { class: 'gs-einstieg', 'data-pruef': 'gs-einstieg' }, inhalt(einstieg), gegenstand(k.bildSzene, 104, 'gs-gegenstand gs-gegenstand-einstieg')),
@@ -442,6 +539,8 @@ function ende(o: SchrittOptionen): HTMLElement {
       // wie die Sätze je Balken ein Urteil über den ganzen Weg – bei offenen Entscheidungen nicht (R75)
       typ !== 'offen' && stufe(b.zeit) === 'niedrig' ? h('div', { 'data-pruef': 'gs-zeit-niedrig' }, inhalt(e.zeitNiedrigHtml)) : null, gegenstand('schulbus', 104, 'gs-gegenstand gs-gegenstand-einstieg')),
     dialog(g, zeilen),
+    // P19.3: nach dem letzten Akt steht „Das können Sie jetzt“ vor der Bilanz (nur auf dem ganzen Weg; die Kurzfassung hat keine Pause)
+    (() => { const letzterAkt = akteVon(g).at(-1); return letzterAkt !== undefined && !stand.kurz ? koennen(letzterAkt, 'gs-koennen-ende') : null; })(),
     h('section', { class: 'gs-bilanz', 'aria-labelledby': 'gs-bilanz-titel', 'data-pruef': 'gs-bilanz' },
       h('div', { class: 'gs-bilanz-kopf' },
         gegenstand(BILANZ_BILD[typ] ?? null, 112, 'gs-gegenstand gs-bilanz-bild'),
@@ -454,6 +553,8 @@ function ende(o: SchrittOptionen): HTMLElement {
       typ === 'offen' ? null : h('ul', { class: 'gs-bilanz-saetze' }, g.balken.map((x) => h('li', { 'data-balken': x.id }, h('b', null, `${x.titel}: `), inhaltInline(x.bilanz[stufe(b[x.id])])))),
       offen > 0 ? h('p', { class: 'gs-leise', 'data-pruef': 'gs-offen' }, w.offen(offen)) : null),
     o.bedienbar ? h('nav', { class: 'gs-ende-wege', 'aria-label': w.ende },
+      // P19.3: vom Ende der Kurzfassung in die ganze Geschichte, an der ersten nicht gespielten Station
+      stand.kurz && g.kapitel.some((k) => !k.kurzfassung) ? h('button', { type: 'button', class: 'gs-knopf', 'data-pruef': 'weiter-ganz', onclick: () => o.tue(weiterMitGanzer(g, stand)) }, w.weiterGanz, sym('pfeilRechts')) : null,
       // R75: von der Bilanz mit offenen Entscheidungen direkt zur ersten offenen Frage
       erstesOffen !== null ? h('button', { type: 'button', class: 'gs-knopf', 'data-pruef': 'zur-offenen', onclick: () => o.tue(geheZu(g, stand, { ort: 'kapitel', kapitel: erstesOffen.id, teil: 'frage' })) }, w.zurOffenen(stelleAufWeg(o, erstesOffen), erstesOffen.titel), sym('pfeilRechts')) : null,
       h('button', { type: 'button', class: 'gs-knopf', 'data-pruef': 'von-vorn', onclick: () => o.tue(neuerStand()) }, sym('zurueckspulen'), w.vonVorn),
@@ -466,6 +567,10 @@ export function baueSchritt(o: SchrittOptionen): HTMLElement {
   const s = o.stand.schritt;
   if (s.ort === 'auftakt') return auftakt(o);
   if (s.ort === 'ende') return ende(o);
+  if (s.ort === 'pause') {
+    const a = aktVonId(o.g, s.akt);
+    return a === null ? auftakt(o) : pauseSchritt(o, a);
+  }
   const k = kapitelVon(o.g, s.kapitel);
   if (k === null) return auftakt(o);
   if (s.teil === 'szene') return szene(o, k);
@@ -476,45 +581,111 @@ export function baueSchritt(o: SchrittOptionen): HTMLElement {
 
 /* ------------------------------------------------------------- Leiste oben -- */
 
-/** Kurzer Name des Orts: „3 von 8 · Wie gefährlich ist das?“ */
-export function ortText(g: Geschichte, stand: Stand): string {
+/** Station und Akt, bei denen der Schritt steht (Pause: die letzte Station des Akts); null am Auftakt und am Ende. */
+function stationAmSchritt(g: Geschichte, s: Schritt): { k: Kapitel; a: Akt | null } | null {
+  if (s.ort === 'kapitel') { const k = kapitelVon(g, s.kapitel); return k === null ? null : { k, a: aktVon(g, k.id) }; }
+  if (s.ort === 'pause') { const a = aktVonId(g, s.akt); const k = a === null ? null : letzteStation(g, a); return a === null || k === null ? null : { k, a }; }
+  return null;
+}
+
+/**
+ * Kurzer Name des Orts. Ohne Akte: „3 von 8 · Wie gefährlich ist das?“. Mit Akten (P19.3): „Station 7 von 14 · Akt II · noch etwa
+ * 9 Minuten“ (Restzeit aus der gemessenen Lesezeit je Schritt, deterministisch; fehlt die Messung, steht sie nicht da); in der Pause
+ * „Pause · Akt I geschafft“.
+ */
+export function ortText(g: Geschichte, stand: Stand, lz: Lesezeit = LESEZEIT): string {
   const s = stand.schritt;
   if (s.ort === 'auftakt') return w.auftakt;
   if (s.ort === 'ende') return w.endeOrt;
   const weg = wegKapitel(g, stand.kurz);
-  const i = weg.findIndex((k) => k.id === s.kapitel);
-  return `${w.vonN(i + 1, weg.length)} · ${weg[i]?.titel ?? ''}`;
+  const hier = stationAmSchritt(g, s);
+  const i = weg.findIndex((k) => k.id === hier?.k.id);
+  if (akteVon(g).length === 0) return `${w.vonN(i + 1, weg.length)} · ${weg[i]?.titel ?? ''}`;
+  const rest = restWoerter(g, stand, lz);
+  const teile = [
+    s.ort === 'pause' && hier?.a ? w.pauseOrt(roemisch(aktNummer(g, hier.a))) : w.stationVonN(i + 1, weg.length),
+    s.ort === 'pause' || hier?.a == null ? null : w.aktNr(roemisch(aktNummer(g, hier.a))),
+    rest === null ? null : w.restMinuten(minutenAus(rest, lz.woerterJeMinute)),
+  ];
+  return teile.filter((t): t is string => t !== null).join(' · ');
 }
 
-/** Fortschrittslinie: ein Feld je Kapitel des Wegs (bedienbar = Sprung zur Szene), dazu Auftakt und Schulstart. */
+/** Fortschrittslinie: ein Feld je Kapitel des Wegs (bedienbar = Sprung zur Szene), dazu Auftakt und Schulstart. Mit Akten: Akt-Leiste. */
 export function fortschritt(g: Geschichte, stand: Stand, bedienbar: boolean, tue: (neu: Stand) => void): HTMLElement {
   const weg = wegKapitel(g, stand.kurz);
   const s = stand.schritt;
-  const hier = s.ort === 'kapitel' ? weg.findIndex((k) => k.id === s.kapitel) : s.ort === 'ende' ? weg.length : -1;
+  const hier = s.ort === 'kapitel' ? weg.findIndex((k) => k.id === s.kapitel) : s.ort === 'ende' ? weg.length : s.ort === 'pause' ? weg.findIndex((k) => k.id === stationAmSchritt(g, s)?.k.id) : -1;
   const feld = (inhaltText: Kind, name: string, ziel: Schritt, zustand: string, art: string): HTMLElement => {
     const attrs = { class: 'gs-feld', 'data-zustand': zustand, 'data-art': art, 'aria-current': zustand === 'jetzt' ? 'step' : null, title: name };
     return h('li', null, bedienbar
       ? h('button', { ...attrs, type: 'button', 'aria-label': name, onclick: () => tue(geheZu(g, stand, ziel)) }, inhaltText)
       : h('span', { ...attrs, 'aria-label': name }, inhaltText));
   };
-  return h('nav', { class: 'gs-fortschritt', 'aria-label': w.fortschritt, 'data-pruef': 'gs-fortschritt' },
-    h('ol', { class: 'gs-felder' },
-      feld(sym('flagge'), w.auftakt, { ort: 'auftakt' }, s.ort === 'auftakt' ? 'jetzt' : 'erledigt', 'rand'),
-      weg.map((k, i) => feld(String(k.nr), `${w.vonN(i + 1, weg.length)} · ${k.titel}`, { ort: 'kapitel', kapitel: k.id, teil: 'szene' },
-        i === hier ? 'jetzt' : zaehlendePlatz(stand, k) !== null ? 'erledigt' : 'offen', 'kapitel')),
-      feld(sym('stempel'), w.endeOrt, { ort: 'ende' }, s.ort === 'ende' ? 'jetzt' : 'offen', 'rand')));
+  const kapitelFeld = (k: Kapitel, i: number): HTMLElement => feld(String(k.nr), `${w.vonN(i + 1, weg.length)} · ${k.titel}`, { ort: 'kapitel', kapitel: k.id, teil: 'szene' },
+    i === hier ? 'jetzt' : zaehlendePlatz(stand, k) !== null ? 'erledigt' : 'offen', 'kapitel');
+  const anfang = feld(sym('flagge'), w.auftakt, { ort: 'auftakt' }, s.ort === 'auftakt' ? 'jetzt' : 'erledigt', 'rand');
+  const schluss = feld(sym('stempel'), w.endeOrt, { ort: 'ende' }, s.ort === 'ende' ? 'jetzt' : 'offen', 'rand');
+  const akte = akteVon(g);
+  if (akte.length === 0) {
+    return h('nav', { class: 'gs-fortschritt', 'aria-label': w.fortschritt, 'data-pruef': 'gs-fortschritt' },
+      h('ol', { class: 'gs-felder' }, anfang, weg.map(kapitelFeld), schluss));
+  }
+  // Akt-Leiste (P19.3): nur der Akt der gezeigten Station ist aufgeklappt (ein Feld je Station), die übrigen sind je ein Feld
+  // mit der römischen Zahl; dazu ein Sprungmenü mit allen Stationen. Der Weg (Kurzfassung) zählt nur die Stationen, die er zeigt.
+  const aktHier = stationAmSchritt(g, s)?.a ?? null;
+  const gruppen = akte.map((a, j) => {
+    const stationen = weg.map((k, i) => ({ k, i })).filter(({ k }) => a.stationen.includes(k.id));
+    return { a, j, stationen };
+  }).filter((x) => x.stationen.length > 0);
+  const aktName = (a: Akt): string => w.aktTitel(roemisch(aktNummer(g, a)), a.titel);
+  const felder = gruppen.map(({ a, stationen }) => {
+    if (a === aktHier) return stationen.map(({ k, i }) => kapitelFeld(k, i));
+    const erste = stationen[0]?.k as Kapitel;
+    const vorbei = hier >= 0 && (stationen[stationen.length - 1]?.i ?? 0) < hier;
+    return [feld(roemisch(aktNummer(g, a)), aktName(a), { ort: 'kapitel', kapitel: erste.id, teil: 'szene' }, vorbei ? 'erledigt' : 'offen', 'akt')];
+  });
+  const menue = bedienbar ? h('details', { class: 'gs-sprung', 'data-pruef': 'gs-sprung' },
+    h('summary', { class: 'gs-sprung-knopf' }, w.stationWaehlen),
+    h('div', { class: 'gs-sprung-liste', role: 'group', 'aria-label': w.stationWaehlenListe },
+      gruppen.map(({ a, stationen }) => h('div', { class: 'gs-sprung-akt' },
+        h('p', { class: 'gs-sprung-akt-titel' }, aktName(a)),
+        h('ul', null, stationen.map(({ k, i }) => h('li', null,
+          h('button', { type: 'button', class: 'gs-sprung-station', 'aria-current': i === hier ? 'step' : null, 'data-pruef': `sprung-${k.id}`,
+            onclick: () => tue(geheZu(g, stand, { ort: 'kapitel', kapitel: k.id, teil: 'szene' })) }, `${k.nr} · ${k.titel}`)))))))) : null;
+  return h('nav', { class: 'gs-fortschritt gs-fortschritt-akte', 'aria-label': w.aktLeiste, 'data-pruef': 'gs-fortschritt' },
+    h('ol', { class: 'gs-felder' }, anfang, felder, schluss),
+    menue);
 }
 
 /** Leiste oben: Fortschritt, Ort in Worten, Balken klein. */
-export function leisteOben(g: Geschichte, stand: Stand, bedienbar: boolean, tue: (neu: Stand) => void): Node[] {
+export function leisteOben(g: Geschichte, stand: Stand, bedienbar: boolean, tue: (neu: Stand) => void, lz: Lesezeit = LESEZEIT): Node[] {
   return [
     fortschritt(g, stand, bedienbar, tue),
-    h('p', { class: 'gs-ort', 'data-pruef': 'gs-ort' }, ortText(g, stand)),
+    h('p', { class: 'gs-ort', 'data-pruef': 'gs-ort' }, ortText(g, stand, lz)),
     balkenTafel(g, balken(g, stand), { gross: false, pruef: 'gs-stand-leiste' }),
   ];
 }
 
 /* ------------------------------------------------------------------- Druck -- */
+
+/** Eine Station im Druckbogen: Frage, Ihre Antwort (oder Brückensatz) und „So macht man es gut“; `ueberschrift` ist h2 (ohne Akte) bzw. h3 (unter der Akt-Überschrift). */
+function druckStation(g: Geschichte, stand: Stand, k: Kapitel, hier: number, ueberschrift: 'h2' | 'h3'): HTMLElement {
+  const a = gewaehlteAntwort(stand, k);
+  const erzaehlt = stand.kurz && !k.kurzfassung;
+  // „So macht man es gut“ wie am Bildschirm erst nach der eigenen Wahl – sonst stünde die Lösung vor der Frage (R73)
+  const gewaehlt = !erzaehlt && a !== null;
+  return h('section', { class: 'druck-teil', 'data-pruef': `druck-${k.id}` },
+    h(ueberschrift, null, `${k.nr} · ${k.titel}`, h('small', null, ` · ${k.zeit}`)),
+    // die Frage gibt der Antwort auf Papier ihren Bezug (R75); sie ist keine Wertung
+    erzaehlt ? null : h('p', { class: 'druck-frage' }, inhaltInline(k.frageHtml)),
+    // R76: ein erzähltes Kapitel trägt seinen Brückensatz – eine Antwort gab es dort nicht
+    erzaehlt && hier > k.nr
+      ? h('p', { class: 'druck-bruecke' }, h('b', null, `${w.druckBruecke}: `), inhaltInline(k.brueckeHtml ?? ''))
+      : h('p', null, h('b', null, `${w.druckAntwort}: `), !erzaehlt && a !== null ? inhaltInline(a.html) : w.druckOffen),
+    gewaehlt ? h('div', { class: 'druck-gut' }, h(ueberschrift === 'h2' ? 'h3' : 'h4', null, w.gutTitel), inhalt(k.gutHtml)) : null,
+    // Mini-Registry: eine Art mit Papierfassung (`druck`) druckt ihren Zustand hier; die bisherigen Arten drucken nichts
+    k.mini !== null && !stand.kurz ? miniBaustein(k.mini.art).druck?.(g, k, k.mini, stand.mini[k.id]) ?? null : null);
+}
 
 /** Druckbogen der Story (Strg+P): je Kapitel des Wegs Ihre Antwort und „So macht man es gut“, dazu die Bilanz. */
 export function storyDruck(g: Geschichte, stand: Stand, version: string): { titel: string; teile: Node[] } {
@@ -523,30 +694,17 @@ export function storyDruck(g: Geschichte, stand: Stand, version: string): { tite
   const s = stand.schritt;
   const amEnde = s.ort === 'ende';
   // bis wohin der Weg reicht: ein übersprungenes Kapitel ist „erzählt“, sobald seine Brücke (im nächsten Kapitel) erreicht ist
-  const hier = amEnde ? Number.POSITIVE_INFINITY : s.ort === 'kapitel' ? (kapitelVon(g, s.kapitel)?.nr ?? 0) : 0;
+  const hier = amEnde ? Number.POSITIVE_INFINITY : stationAmSchritt(g, s)?.k.nr ?? 0;
   const offen = offeneKapitel(g, stand).length;
   return {
     titel: w.druckTitel,
     teile: [
       bogenKopf(`${w.druckTitel} · ${g.titel}`, version, true),
       h('div', { class: 'druck-story', 'data-pruef': 'story-druck' },
-        g.kapitel.map((k) => {
-          const a = gewaehlteAntwort(stand, k);
-          const erzaehlt = stand.kurz && !k.kurzfassung;
-          // „So macht man es gut“ wie am Bildschirm erst nach der eigenen Wahl – sonst stünde die Lösung vor der Frage (R73)
-          const gewaehlt = !erzaehlt && a !== null;
-          return h('section', { class: 'druck-teil', 'data-pruef': `druck-${k.id}` },
-            h('h2', null, `${k.nr} · ${k.titel}`, h('small', null, ` · ${k.zeit}`)),
-            // die Frage gibt der Antwort auf Papier ihren Bezug (R75); sie ist keine Wertung
-            erzaehlt ? null : h('p', { class: 'druck-frage' }, inhaltInline(k.frageHtml)),
-            // R76: ein erzähltes Kapitel trägt seinen Brückensatz – eine Antwort gab es dort nicht
-            erzaehlt && hier > k.nr
-              ? h('p', { class: 'druck-bruecke' }, h('b', null, `${w.druckBruecke}: `), inhaltInline(k.brueckeHtml ?? ''))
-              : h('p', null, h('b', null, `${w.druckAntwort}: `), !erzaehlt && a !== null ? inhaltInline(a.html) : w.druckOffen),
-            gewaehlt ? h('div', { class: 'druck-gut' }, h('h3', null, w.gutTitel), inhalt(k.gutHtml)) : null,
-            // Mini-Registry: eine Art mit Papierfassung (`druck`) druckt ihren Zustand hier; die bisherigen Arten drucken nichts
-            k.mini !== null && !stand.kurz ? miniBaustein(k.mini.art).druck?.(g, k, k.mini, stand.mini[k.id]) ?? null : null);
-        }),
+        // mit Akten (P19.3): je Akt ein Abschnitt mit Überschrift, zwischen den Akten ein Seitenumbruch; ohne Akte wie bisher
+        akteVon(g).length === 0 ? g.kapitel.map((k) => druckStation(g, stand, k, hier, 'h2')) : akteVon(g).map((a) => h('section', { class: 'druck-akt', 'data-pruef': `druck-akt-${a.id}` },
+          h('h2', { class: 'druck-akt-titel' }, w.aktTitel(roemisch(aktNummer(g, a)), a.titel), h('small', null, ` · ${a.zeitraum}`)),
+          g.kapitel.filter((k) => a.stationen.includes(k.id)).map((k) => druckStation(g, stand, k, hier, 'h3')))),
         // die Bilanz nur, wenn das Ende erreicht ist – wie am Bildschirm, samt Hinweis auf offene Entscheidungen
         h('section', { class: 'druck-teil', 'data-pruef': 'druck-bilanz' }, amEnde
           ? [
@@ -624,8 +782,9 @@ function haltFokusFrei(element: HTMLElement, leiste: HTMLElement, unten: HTMLEle
   });
 }
 
-export function erzeugeGeschichte(o: { g: Geschichte; speicher: SpeicherGriff | null; themaTitel: (id: string) => string | null; werkzeugTitel?: (id: string) => string | null }): GeschichteFlaeche {
+export function erzeugeGeschichte(o: { g: Geschichte; speicher: SpeicherGriff | null; themaTitel: (id: string) => string | null; werkzeugTitel?: (id: string) => string | null; lesezeit?: Lesezeit }): GeschichteFlaeche {
   const { g } = o;
+  const lz = o.lesezeit ?? LESEZEIT;
   let stand: Stand = ladeStand(g, o.speicher) ?? neuerStand();
   let zuhoerer: ((s: Stand) => void) | null = null;
   const leiste = h('div', { class: 'gs-leiste' });
@@ -657,15 +816,15 @@ export function erzeugeGeschichte(o: { g: Geschichte; speicher: SpeicherGriff | 
   type Fokus = { art: 'titel' } | { art: 'folge' } | { art: 'gleich'; pruef: string | null };
 
   const zeichne = (fokus: Fokus): void => {
-    ersetze(leiste, ...leisteOben(g, stand, true, (n) => setze(n)));
-    ersetze(buehne, baueSchritt({ g, stand, bedienbar: true, themaTitel: o.themaTitel, ...(o.werkzeugTitel !== undefined ? { werkzeugTitel: o.werkzeugTitel } : {}), tue: (n) => setze(n) }));
+    ersetze(leiste, ...leisteOben(g, stand, true, (n) => setze(n), lz));
+    ersetze(buehne, baueSchritt({ g, stand, bedienbar: true, themaTitel: o.themaTitel, ...(o.werkzeugTitel !== undefined ? { werkzeugTitel: o.werkzeugTitel } : {}), lesezeit: lz, tue: (n) => setze(n) }));
     if (fokus.art === 'titel') buehne.firstElementChild?.classList.add('ist-neu');
     const i = schrittIndex(g, stand);
     const amEnde = stand.schritt.ort === 'ende';
     const amAnfang = stand.schritt.ort === 'auftakt';
     ersetze(navi,
       i > 0 ? h('button', { type: 'button', class: 'gs-knopf gs-knopf-zurueck', 'data-pruef': 'zurueck', onclick: () => setze(zurueck(g, stand)) }, sym('pfeilLinks'), w.zurueck) : h('span'),
-      h('span', { class: 'gs-navi-ort', 'aria-hidden': 'true' }, ortText(g, stand)),
+      h('span', { class: 'gs-navi-ort', 'aria-hidden': 'true' }, ortText(g, stand, lz)),
       amEnde ? h('span')
         : h('button', { type: 'button', class: 'gs-knopf gs-knopf-weiter', 'data-pruef': 'weiter', onclick: weiterKlick },
           amAnfang ? g.auftakt.los : w.weiter, sym('pfeilRechts')));

@@ -1,7 +1,7 @@
 /*
  * D · Monatsbericht-Baukasten (P18.4, O-59; Konzept docs/WERKZEUGE-P18.md D): wenige Felder links, rechts die Vorschau
  * der Seite mit Seitenmesser; jede Eingabe prüft sofort (Ampel ohne Entscheidungsfrage, offene Entscheidung ohne wer und
- * bis wann, „keine“ statt leer …). Gedruckt wird nur der Bericht, nie die Hinweise (E-12). Unpersönlich (L-254).
+ * bis wann, „keine“ statt leer …). Gedruckt wird nur der Bericht, nie die Hinweise (E-12). Spricht Sie an, wo etwas zu tun ist, und sachlich, wo etwas gilt (L-321, ändert L-254).
  * Rechnung: src/werkzeuge/monatsbericht.ts (Feldgrenzen dort, damit der Höchstfall auf eine Seite passt).
  */
 import type { MonatsberichtTeil } from '../../../inhalte/typen.ts';

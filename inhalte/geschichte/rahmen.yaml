@@ -7,9 +7,9 @@ titel: Ein Schulcampus für Lindenhall
 auftakt:
   campus: { stufe: 0, jahreszeit: winter, licht: morgen }
   text: |
-    Ein fiktiver Fall: Die Stadt Lindenhall baut im Süden der Stadt eine Gesamtschule, eine Grundschule und eine Sporthalle. Sie leiten das Projekt für die Stadt. Im Sommer 2028 sollen die Kinder einziehen.
+    Ein fiktiver Fall: Die Stadt Lindenhall baut im Süden eine Gesamtschule, eine Grundschule und eine Sporthalle. Sie leiten das Projekt für die Stadt. Im Sommer 2028 sollen die Kinder einziehen.
 
-    Es ist kein echtes Projekt, aber es könnte eines sein: Die Fragen, die hier auftauchen, stellen sich auf vielen Baustellen.
+    Der Fall ist erfunden, aber die Fragen darin stellen sich auf vielen Baustellen.
 
     Ihre Antworten bewegen drei Balken: Geld, Zeit und Vertrauen. Am Ende sehen Sie, wie Ihr Projekt ausgegangen ist.
   vorstellung: "Diese fünf Menschen begleiten Sie:"
@@ -17,24 +17,24 @@ auftakt:
   kurz: Kurzfassung (etwa 10 Minuten)
 
 sie:
-  steckbrief: Sie leiten das Projekt für die Stadt als Bauherrn. Sie pflegen keine Listen – Sie entscheiden, was in Ihrem Rahmen liegt, und bringen alles andere rechtzeitig zur Bürgermeisterin.
+  steckbrief: Sie leiten das Projekt im Auftrag der Stadt, des Bauherrn. Listen führen Sie nicht – das macht die Projektsteuerin. Sie entscheiden, was in Ihren Entscheidungsspielraum fällt, und bringen alles andere rechtzeitig zur Bürgermeisterin.
 
 figuren:
   - id: grundstein
     name: Gisela Grundstein
     rolle: Bürgermeisterin
     akzent: violett
-    steckbrief: "Sie entscheidet für die Stadt die großen Dinge: was zuerst kommt, jede große Freigabe, jeden Griff in die Reserve. Der Lenkungskreis, eine feste Runde mit der Finanzabteilung und dem Schulamt, berät sie – entscheiden tut sie."
+    steckbrief: "Sie entscheidet für die Stadt die großen Dinge: was zuerst kommt, jede Freigabe (das förmliche Ja am Ende eines großen Abschnitts) und jeden Einsatz der Reserve, des Geldpuffers. Der Lenkungskreis, eine feste Beratungsrunde mit Finanzabteilung und Schulamt, berät sie – entscheiden tut sie selbst."
   - id: faden
     name: Clara Faden
     rolle: Projektsteuerin
     akzent: lagune
-    steckbrief: "Sie hält alle Fäden zusammen: Sie erfasst und pflegt jeden Vorgang, prüft jede Woche alles Offene und bereitet jede Entscheidung vor – mit mindestens zwei Wegen und einer Empfehlung. Entscheiden darf sie nicht."
+    steckbrief: "Sie hält alle Fäden zusammen: Sie führt jeden Vorgang (zum Beispiel eine Aufgabe, ein Risiko oder eine Änderung) schriftlich, prüft jede Woche alles Offene und bereitet jede Entscheidung vor – mit mindestens zwei möglichen Wegen und einer Empfehlung. Entscheiden darf sie nicht."
   - id: schwung
     name: Konrad Schwung
     rolle: Architekt
     akzent: blau
-    steckbrief: Er plant den Campus von der ersten Linie bis zur letzten Fuge. Er findet für alles eine Lösung – manchmal schneller, als ihm lieb sein sollte.
+    steckbrief: Er plant den Campus von der ersten Linie bis zur letzten Fuge. Er findet für alles eine Lösung – und verspricht sie manchmal schneller, als sie geprüft ist.
   - id: klingel
     name: Hanna Klingel
     rolle: Schulleiterin
@@ -44,30 +44,30 @@ figuren:
     name: Theo Lot
     rolle: Bauleiter
     akzent: sonne
-    steckbrief: Er ist jeden Tag auf der Baustelle und kennt jede Schraube. Schreiben findet er lästig – bauen nicht.
+    steckbrief: Er ist jeden Tag auf der Baustelle und kennt jede Schraube. Aufschreiben findet er lästig, das Bauen nicht.
 
 # Start intern: Geld 9, Zeit 6, Vertrauen 4 (L-225); Wirkung je Antwort −2 … +2, begrenzt auf 0–10
 balken:
   geld:
     titel: Geld
-    text: Wie viel vom Budget und von der Reserve noch für Unvorhergesehenes übrig ist.
+    text: Wie viel Geld im Budget und in der Reserve, dem Geldpuffer für Unvorhergesehenes, noch übrig ist.
     start: 9
     mehr: mehr übrig
     weniger: weniger übrig
     bilanz:
-      hoch: Die Reserve wurde dort eingesetzt, wo sie gebraucht wurde – jedes Mal von der Bürgermeisterin entschieden –, und ein guter Teil ist übrig.
+      hoch: Die Reserve wurde dort eingesetzt, wo sie gebraucht wurde. Jedes Mal hat die Bürgermeisterin das entschieden, und ein guter Teil ist noch übrig.
       mittel: Ein großer Teil der Reserve ist verbraucht; manches wurde teurer als nötig.
-      niedrig: Die Reserve ist fast aufgebraucht; jeder Umweg hat sie ein Stück kleiner gemacht.
+      niedrig: Die Reserve ist fast aufgebraucht; jede Antwort, die nicht der beste Weg war, hat sie ein Stück kleiner gemacht.
   zeit:
     titel: Zeit
-    text: Wie viel Luft bis zum Schulstart im Sommer 2028 bleibt.
+    text: Wie viel Zeitpuffer bis zum Schulstart im Sommer 2028 noch bleibt.
     start: 6
     mehr: mehr Luft
     weniger: weniger Luft
     bilanz:
-      hoch: Der Puffer hat gehalten; das Projekt hatte bis zum Schluss Luft.
-      mittel: Der Puffer war am Ende dünn, aber er hat gereicht.
-      niedrig: Der Puffer ist aufgebraucht; die Sporthalle öffnet erst nach den Herbstferien.
+      hoch: Der Zeitpuffer hat gehalten; bis zum Schluss blieb genug Zeit.
+      mittel: Der Zeitpuffer war am Ende dünn, hat aber gereicht.
+      niedrig: "Der Zeitpuffer ist aufgebraucht: Die Sporthalle öffnet erst nach den Herbstferien."
   vertrauen:
     titel: Vertrauen
     # R76: der Start unter der Hälfte braucht einen Grund
@@ -77,37 +77,37 @@ balken:
     weniger: gesunken
     bilanz:
       hoch: Bürgermeisterin, Schule und Stadtrat verlassen sich inzwischen auf das, was Sie vorlegen.
-      mittel: Man vertraut Ihnen – fragt aber gern noch einmal nach.
-      niedrig: Die Bürgermeisterin lässt sich inzwischen jede Zahl zweimal zeigen.
+      mittel: Die Bürgermeisterin vertraut Ihnen, fragt aber gern noch einmal nach.
+      niedrig: Die Bürgermeisterin lässt sich inzwischen jede Zahl zweimal zeigen – ihr Vertrauen in Sie ist gesunken.
 
 # Prüfreihenfolge fest in src/geschichte/engine.ts (bilanzTyp): Vertrauen niedrig · Zeit niedrig · ruhig (nur ohne Falle, L-239) · alle anderen;
 # sind auf dem Weg Entscheidungen offen, gilt immer „offen“ (bilanzAmEnde, R73)
 # Jeder Text hier muss auf jedem Weg stimmen, auf dem er erscheint – tests/geschichte-wege.test.ts rechnet alle Wege durch.
 bilanz:
   nicht-getragen:
-    titel: Gebaut, aber nicht getragen
-    text: "Die Gebäude stehen, doch das Vertrauen hat gelitten: Zu oft lief es anders, als die Bürgermeisterin es von Ihnen erwarten durfte. Die Bürgermeisterin nickt Ihnen zu – knapp. Beim nächsten Mal, sagt ihr Blick, will sie früher gefragt werden."
+    titel: Gebaut, aber ohne Rückhalt
+    text: "Die Gebäude stehen, doch das Vertrauen hat gelitten: Zu oft hat die Bürgermeisterin Dinge zu spät oder anders erfahren, als sie es von Ihnen erwarten durfte. Sie nickt Ihnen zu – knapp. Beim nächsten Mal, sagt ihr Blick, will sie früher einbezogen werden."
   letzte-meter:
     titel: Auf den letzten Metern
-    text: Die Schule hat geöffnet, aber der Puffer war am Ende aufgebraucht. Wer eine Frage liegen lässt oder auf Umwegen löst, bezahlt auf der Baustelle fast immer mit Zeit.
+    text: Die Schule hat geöffnet, aber der Zeitpuffer war am Ende aufgebraucht. Wer eine Entscheidung aufschiebt oder auf Umwegen löst, bezahlt auf der Baustelle fast immer mit Zeit.
   ruhig:
     titel: Ruhig ins Ziel
     text: Die Kinder sind pünktlich eingezogen, und jede große Entscheidung hat die Bürgermeisterin selbst getroffen – mit allem, was sie dafür wissen musste. So bleibt ein Projekt steuerbar, auch wenn es stürmt.
   umwege:
     titel: Geschafft – mit Umwegen
-    text: Der Campus steht, die Kinder sind da – aber nicht jede Ihrer Antworten war der gerade Weg, und jeder Umweg hat etwas gekostet, ob Zeit, Geld oder Vertrauen.
+    text: "Der Campus steht, die Kinder sind da. Aber nicht jede Ihrer Antworten war der gerade Weg, und jeder Umweg hat etwas gekostet: Zeit, Geld oder Vertrauen."
   # R73: solange auf dem Weg Entscheidungen offen sind (Sprung ans Ende über die Fortschrittslinie), kein Urteil über den Weg
   offen:
     titel: Noch nicht alle Entscheidungen getroffen
-    text: Der Campus steht, die Kinder sind da. Ein Urteil über Ihren Weg gibt es erst, wenn Sie alle Entscheidungen getroffen haben; darunter steht der Stand nach den Antworten, die Sie schon gegeben haben.
+    text: Der Campus steht, die Kinder sind da. Ein Urteil über Ihren Weg gibt es erst, wenn Sie alle Entscheidungen getroffen haben. Darunter sehen Sie die drei Balken nach den Antworten, die Sie schon gegeben haben.
 
 mandat:
   titel: Wer entscheidet was
   zeilen:
-    - { wer: Sie, text: "Entscheidungen bis 100.000 Euro, wenn das Budget sie ohne Reserve trägt." }
-    - { wer: Bürgermeisterin, text: "alles darüber · jeder Griff in die Reserve · ob die Stadt ein großes Risiko trägt · jede Freigabe am Ende eines großen Planungs- oder Bauabschnitts (Fachleute sagen: Leistungsphase) · was zuerst kommt: der Schulstart, dann das Geld." }
-    - { wer: Lenkungskreis, text: "feste Runde aus Bürgermeisterin, Finanzabteilung und Schulamt · berät die Bürgermeisterin." }
-    - { wer: Projektsteuerin, text: "bereitet alles vor, pflegt alle Vorgänge, empfiehlt – entscheidet nie." }
+    - { wer: Sie, text: "Entscheidungen bis 100.000 Euro, wenn das Geld im Budget steht und keine Reserve nötig ist." }
+    - { wer: Bürgermeisterin, text: "alles über 100.000 Euro · jeden Einsatz der Reserve, auch kleine Beträge · ob die Stadt ein großes Risiko bewusst trägt · jede Freigabe am Ende eines großen Planungs- oder Bauabschnitts · die Rangfolge der Ziele: erst der Schulstart, dann das Geld." }
+    - { wer: Lenkungskreis, text: "feste Beratungsrunde aus Bürgermeisterin, Finanzabteilung und Schulamt – die Runde berät, die Bürgermeisterin entscheidet." }
+    - { wer: Projektsteuerin, text: "bereitet Entscheidungen vor, führt alle Vorgänge schriftlich, empfiehlt – entscheidet nie." }
 
 ende:
   zeit: Ende August 2028
@@ -120,17 +120,17 @@ ende:
     Ende August 2028, der erste Schultag. Am Haupteingang stehen die fünf – und Sie.
   szene:
     - { figur: klingel, zusatz: läutet ihre Glocke, text: "Guten Morgen! Willkommen in eurer Schule!" }
-    - { figur: lot, kurzfassung: false, text: "Steht alles drin, was wir hier gemacht haben. Hätte ich vor zwei Jahren nicht gedacht, dass ich das mal gut finde." }
-    - { figur: schwung, kurzfassung: false, text: "Seit dem Holz sag ich's gleich, wenn was klemmt. Hat sich gelohnt." }
-    - { figur: faden, kurzfassung: false, text: "Alles Offene ist übergeben, mit Namen und Termin. Verschwunden ist nichts." }
+    - { figur: lot, kurzfassung: false, text: "In den Unterlagen steht alles drin, was wir hier gemacht haben. Hätte ich vor zwei Jahren nicht gedacht, dass ich das mal gut finde." }
+    - { figur: schwung, kurzfassung: false, text: "Seit der Sache mit dem Holz sage ich gleich Bescheid, wenn etwas nicht klappt. Das hat sich gelohnt." }
+    - { figur: faden, kurzfassung: false, text: "Alles, was noch offen war, ist übergeben – mit Namen und Termin. Nichts ist verloren gegangen." }
     - { figur: grundstein, text: "Wissen Sie, was das Beste war? Ich wusste jedes Mal, worüber ich entscheide." }
-  zeit-niedrig: Nur die Sporthalle bleibt noch zu – sie wird erst nach den Herbstferien fertig. Bis dahin turnen die Kinder in der alten Halle.
+  zeit-niedrig: Nur die Sporthalle bleibt noch geschlossen – sie wird erst nach den Herbstferien fertig. Bis dahin turnen die Kinder in der alten Halle.
   # Ersatzzeilen (L-239): Vertrauen niedrig geht vor; „nach-falle“ gilt, sobald auf dem Weg eine Falle gewählt ist
   vertrauen-niedrig:
-    - { figur: lot, text: "Steht inzwischen alles drin. Hätten wir mal früher damit angefangen." }
+    - { figur: lot, text: "Inzwischen ist alles schriftlich festgehalten. Hätten wir damit mal früher angefangen." }
     - { figur: grundstein, text: "Beim nächsten Projekt reden wir früher miteinander. Versprochen?" }
   nach-falle:
-    - { figur: grundstein, text: "Geschafft haben wir es. Aber nicht jedes Mal lief es so, wie es hätte laufen sollen – das machen wir beim nächsten Projekt besser." }
+    - { figur: grundstein, text: "Geschafft haben wir es. Aber nicht jede Entscheidung ist so sauber vorbereitet worden, wie sie hätte sein sollen – das machen wir beim nächsten Projekt besser." }
   # R73: Entscheidungen offen, keine Falle, Vertrauen nicht niedrig – die Schlusszeile „Ich wusste jedes Mal …“ stimmte dann nicht
   offen:
-    - { figur: grundstein, text: "Geschafft haben wir es – und was unterwegs offen geblieben ist, schauen wir uns noch einmal gemeinsam an." }
+    - { figur: grundstein, text: "Geschafft haben wir es. Was Sie unterwegs noch nicht entschieden haben, schauen wir uns noch einmal gemeinsam an." }

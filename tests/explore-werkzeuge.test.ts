@@ -184,7 +184,7 @@ test('Risiko-Bewerter: RIS-009 vorläufig 16 nach oben offen; 71 Tage und „seh
   assert.ok(q(el, 'rg-a5'));
   // Grenzen, die nicht steigen, melden sich am Feld
   tippe(el, 'rg-grenze-termin-2', '10');
-  assert.match(q(el, 'rg-grenzfehler-termin').textContent ?? '', /steigen von links nach rechts/u);
+  assert.match(q(el, 'rg-grenzfehler-termin').textContent ?? '', /von links nach rechts größer werden/u);
   waehle(el, 'rg-beispiel', '');
   assert.equal(q(el, 'rg-zustand').getAttribute('data-zustand'), 'offen');
   pruefeSichtbar('risiko-grenzen leer', el);
@@ -349,4 +349,27 @@ test('Ansage (R79): Risiko-Bewerter nennt die Zahl der Hinweise, Vorlagen-Check 
   ja.checked = true;
   ja.dispatchEvent(new Event('change'));
   assert.match(q(vc, 'vc-status').textContent ?? '', /· Dringliches wird gemeldet/u);
+});
+
+test('Vorspann (L-322): jedes der neun Werkzeuge nennt Wozu · Was Sie eintragen · Was das Ergebnis heißt – ohne Bedienanleitung', async () => {
+  const { WERKZEUGE } = await import('../src/ui/flaechen/explore.ts');
+  const { W } = await import('../src/ui/woerter.ts');
+  assert.equal(WERKZEUGE.length, 9);
+  for (const id of WERKZEUGE) {
+    const el = zeige(id);
+    const teile = [...el.querySelectorAll('[data-pruef="ex-vorspann"] > div')];
+    assert.deepEqual(teile.map((t) => t.querySelector('dt')?.textContent), [W.werkzeuge.vorspannWozu, W.werkzeuge.vorspannEingabe, W.werkzeuge.vorspannErgebnis], `${id}: drei Teile`);
+    for (const t of teile) {
+      const text = t.querySelector('dd')?.textContent ?? '';
+      assert.ok(text.length >= 40, `${id}: Teil zu kurz („${text}“)`);
+      assert.deepEqual(sichtbarVerboten(text), [], `${id}: Vorspann sichtbar verboten`);
+    }
+  }
+  // Wegweiser: der freie Text wird nicht ausgewertet und erscheint nur im Ausdruck – im Vorspann und am Feld
+  assert.match(zeige('wegweiser').querySelector('[data-vorspann="eingabe"]')?.textContent ?? '', /nur im Ausdruck/u);
+  const ww = zeige('wegweiser');
+  waehle(ww, 'ww-beispiel', '');
+  assert.match(q(ww, 'ww-eigener-text').closest('label, div')?.textContent ?? '', /nur im Ausdruck/u);
+  // Gegenprobe: eine Bedienanleitung im Vorspann würde erkannt
+  assert.ok(sichtbarVerboten('Klicken Sie auf die Zeile und ziehen Sie den Regler.').length > 0);
 });

@@ -7,4 +7,4 @@ kicker: Minimum Viable Governance
 titel: Arbeit kann man abgeben – die großen Entscheidungen nicht.
 ---
 
-Der kleinste Standard, mit dem Bauherren führen: was sie abgeben können – und was sie **selbst entscheiden** müssen.
+Der kleinste Satz Regeln, mit dem Bauherren führen: was sie abgeben können – und was sie **selbst entscheiden** müssen.

@@ -75,6 +75,7 @@
 .tuer-kicker { display: block; margin-bottom: var(--a-2); font: 700 var(--gr-s)/1.2 var(--schrift-label); letter-spacing: .16em; text-transform: uppercase; color: var(--ton-text); }
 .tuer-text { max-width: 56ch; font-size: var(--gr-text); line-height: 1.5; color: var(--tinte-2); }
 .tuer-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--a-2) var(--a-3); padding-top: var(--a-3); border-top: 1px solid var(--linie); font-size: var(--gr-s); color: var(--tinte-2); }
+.tuer-meta > span:first-child { flex: 1 1 14rem; min-width: 0; }
 .tuer-los { display: inline-flex; align-items: center; gap: var(--a-2); padding: var(--a-2) var(--a-3); border-radius: var(--radius-rund); background: var(--ton-soft); font: 700 var(--gr-m)/1 var(--schrift-label); letter-spacing: .08em; text-transform: uppercase; color: var(--navy); }
 .tuer-los .symbol { width: 18px; height: 18px; transition: transform var(--dauer-sofort) ease; }
 .tuer:hover .tuer-los .symbol { transform: translateX(4px); }

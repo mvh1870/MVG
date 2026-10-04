@@ -276,7 +276,7 @@ test('Vergleich: Satz der Projektsteuerin über alle 81 Gewichtsstellungen – A
   // Wortlaut der Sätze, die diese Bedingungen tragen: wer ihn ändert, rechnet die Stellungen neu nach
   assert.ok(V.saetze['A']?.startsWith('Das Ersatzgerät liegt vorn – mit diesen Gewichten zählt, dass alle Kinder pünktlich einziehen'));
   assert.ok(V.saetze['B']?.startsWith('Die Leihgeräte liegen vorn – aber nur, weil gute Luft im Unterricht hier kaum zählt'));
-  assert.ok(V.saetze['C']?.startsWith('Der spätere Einzug liegt vorn: Wenn Geld oder Klima so viel zählen wie der Schulstart'));
+  assert.ok(V.saetze['C']?.startsWith('Der spätere Einzug liegt vorn: Wenn Geld oder Strombedarf so viel zählen wie der Schulstart'));
   assert.ok(V.saetze['gleichauf']?.startsWith('Gleichauf – jetzt entscheidet das fachliche Urteil'));
 });
 
@@ -354,11 +354,11 @@ test('R75: Lösungen der Mini-Aufgaben stehen fest (Wer eine Lösung ändert, pr
   assert.deepEqual(loesung('k4'), ['sie', 'buergermeisterin', 'buergermeisterin', 'buergermeisterin', 'buergermeisterin', 'sie']);
   assert.deepEqual(loesung('k8'), ['uebergeben', 'geschlossen', 'uebergeben', 'geschlossen', 'geschlossen']);
   // Reihenfolge: die Liste ist die Lösung – Schutz, Meldung, Eintrag, Ursache, Lösung, Abschluss
-  assert.deepEqual((kapitel(G, 'k6')?.mini?.posten ?? []).map((p) => p.html.split(' ').slice(0, 2).join(' ')), ['Der Bauleiter', 'Sicherheitskoordination und', 'Noch am', 'Die Fachleute', 'Die Lösung', 'Erst wenn']);
+  assert.deepEqual((kapitel(G, 'k6')?.mini?.posten ?? []).map((p) => p.html.split(' ').slice(0, 2).join(' ')), ['Der Bauleiter', 'Die Sicherheitskoordination', 'Die Projektsteuerin', 'Die Fachleute', 'Die Lösung', 'Erst wenn']);
 });
 
 /**
- * Prüft einen Satz, der einen Kipppunkt nennt („Wären Klima und Betrieb ‚wichtig‘, läge der spätere Einzug gleichauf“):
+ * Prüft einen Satz, der einen Kipppunkt nennt („Wären Strombedarf und Betrieb ‚wichtig‘, läge der spätere Einzug gleichauf“):
  * Stufe und Wort (gleichauf/vorn) müssen zum gerechneten Kipppunkt passen. Leer = in Ordnung.
  */
 function kippSatzFunde(text: string, v: NonNullable<ReturnType<typeof vergleichKapitel>>['vergleich'] & object, kriterium: string, option: string): string[] {
@@ -380,7 +380,7 @@ test('R75: Empfehlung und gute Folge in Kapitel 7 nennen den Kipppunkt so, wie e
   assert.ok(k?.vergleich);
   const v = k.vergleich;
   const empfehlung = v.empfehlungHtml.replace(/<[^>]*>/gu, '');
-  const knapp = empfehlung.slice(empfehlung.indexOf('Knapp'));
+  const knapp = empfehlung.slice(empfehlung.indexOf('Der Vorsprung'));
   assert.deepEqual(kippSatzFunde(knapp, v, 'klima', 'C'), []);
   const gut = k.antworten.find((a) => a.wertung === 'gut');
   assert.ok(gut);

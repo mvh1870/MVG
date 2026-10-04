@@ -198,7 +198,7 @@ export interface Vertiefung {
 export interface VergleichKriterium {
   id: string;
   titel: string;
-  /** wie der Gesichtspunkt mitten im Satz heißt, mit Artikel („der Schulstart“, „Klima und Betrieb“) */
+  /** wie der Gesichtspunkt mitten im Satz heißt, mit Artikel („der Schulstart“, „Strombedarf und Betrieb“) */
   imSatz: string;
   /** abgestimmte Stufe: 5 sehr wichtig · 3 wichtig · 1 weniger wichtig */
   gewicht: number;

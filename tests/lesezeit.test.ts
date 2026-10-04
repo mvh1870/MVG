@@ -41,7 +41,7 @@ test('Kurzfassung: die Angabe im Auftakt ist die gemessene Lesezeit, gerundet', 
 
 test('Startseite: dieselbe Angabe für die Kurzfassung; der ganze Weg liegt zwischen Lesezeit und Lesezeit plus Ausprobieren', () => {
   const meta = W.start.storyMeta(8);
-  assert.equal(zahl(meta, /kurz etwa (\d+)/u), Math.round(m.kurz.minuten));
+  assert.equal(zahl(meta, /Kurzfassung: etwa (\d+) Minuten/u), Math.round(m.kurz.minuten));
   const lang = zahl(meta, /etwa (\d+) Minuten/u);
   assert.ok(lang >= Math.round(m.lang.minuten) && lang <= Math.round(m.lang.minuten) + 6,
     `ganzer Weg: Angabe ${lang}, gemessen ${m.lang.woerter} Wörter ≈ ${m.lang.minuten.toFixed(1)} Minuten`);
@@ -53,7 +53,7 @@ test('Dokumente nennen dieselbe Dauer der Kurzfassung wie die Messung (Drehbuch,
   const stellen: [string, RegExp][] = [
     ['docs/DREHBUCH.md', /Kurzfassung \(etwa (\d+) Minuten\)/gu],
     ['docs/INHALTSFORMAT.md', /\*\*Kurzfassung \(P17\.5, etwa (\d+) Minuten/gu],
-    ['docs/STIL.md', /kurz etwa (\d+)/gu],
+    ['docs/STIL.md', /Kurzfassung: etwa (\d+) Minuten/gu],
   ];
   for (const [datei, muster] of stellen) {
     const treffer = [...readFileSync(new URL(`../${datei}`, import.meta.url), 'utf8').matchAll(muster)].map((x) => Number(x[1]));

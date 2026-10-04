@@ -240,7 +240,7 @@ test('Regie: Pfeiltasten gehen erst durch die Schritte, dann zum nächsten Werkz
     pfeil(r, 'ArrowRight');
     assert.deepEqual([zustand().werkzeug, zustand().werkzeugStand], ['vorlagen-check', 'b:lueftung-kurz;s:1']);
     assert.equal(r.element.querySelector<HTMLElement>('[data-pruef="regie-werkzeug-stand"]')?.hidden, false);
-    assert.match(r.element.querySelector('[data-pruef="regie-notiz"]')?.textContent ?? '', /kurze Fassung zeigen/u);
+    assert.match(r.element.querySelector('[data-pruef="regie-notiz"]')?.textContent ?? '', /nur das Ersatzgerät“ zeigen/u);
     assert.ok(r.element.querySelector('[data-pruef="regie-leitfragen"]'));
     for (let i = 2; i <= 5; i++) { pfeil(r, 'ArrowRight'); assert.equal(zustand().werkzeugStand, `b:lueftung-kurz;s:${i}`); }
     pfeil(r, 'ArrowRight');

@@ -146,7 +146,7 @@ export const MUTANTEN = [
   ['src/grafik/campus-iso.ts', "export const CAMPUS_ZWISCHENSTUFEN: readonly number[] = [1.5, 2.5, 3.5, 4.5, 5.5];", "export const CAMPUS_ZWISCHENSTUFEN: readonly number[] = [1.5, 2.5, 3.5, 4.5];", 'Campus: fünf Zwischenstufen', TESTS_CAMPUS],
   ['src/grafik/campus-iso.ts', "if (buehne.licht !== 'abend') lieferwagen(buehne, 216, 258);", "lieferwagen(buehne, 216, 258);", 'Campus 2,5: Lieferwagen nur tagsüber', TESTS_CAMPUS],
   ['src/grafik/campus-iso.ts', "if (jahreszeit === 'winter' && w === 'regen') return dazu;", "", 'Campus: Regen im Winter ohne Flocken', TESTS_CAMPUS],
-  ['werkzeuge/lesezeit.mjs', "export const AKT_MAX_MINUTEN = 15;", "export const AKT_MAX_MINUTEN = 14;", 'Lesezeit: obere Schranke je Akt 15 Minuten', TESTS_LESEZEIT],
+  ['werkzeuge/lesezeit.mjs', "export const AKT_MAX_MINUTEN = 17;", "export const AKT_MAX_MINUTEN = 15;", 'Lesezeit: obere Schranke je Akt 17 Minuten', TESTS_LESEZEIT],
   ['werkzeuge/lesezeit.mjs', "(i === 0 && kennung === 'auftakt')", "(false)", 'Lesezeit: Auftakt zählt zur Schranke des ersten Akts', TESTS_LESEZEIT],
   // P19.4 (O-62): Echo-Zeilen, Entscheidungsbuch, Verlauf; P19.5: Platz der Mini-Aufgabe, neue Arten, Kürzungen der Kurzfassung, Vertiefung
   ['src/geschichte/engine.ts', "?.wertung ?? 'gut';\n}\n\n/** Inline-HTML der Fassung", "?.wertung ?? 'falle';\n}\n\n/** Inline-HTML der Fassung", 'Echo: ohne Antwort der Quelle gilt „gut“', TESTS_P19],

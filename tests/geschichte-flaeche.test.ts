@@ -165,7 +165,7 @@ test('Vergleich: Stufe ändern ordnet die Karten neu, meldet die Spitze und beh�
   assert.equal(aktiv(), 'stufe-klima-3');
   assert.equal($(f, '[data-pruef="gs-vgl-vorn"]').textContent, 'Gleichauf vorn: „Ersatzgerät“ und „Später einziehen“ mit je 55 Punkten.');
   assert.equal($(f, '[data-pruef="platz-C"]').textContent, 'Platz 1');
-  assert.equal($(f, '[data-pruef="gs-vgl-satz"]').textContent, 'Gleichauf – jetzt entscheidet das fachliche Urteil, nicht die Punktzahl.');
+  assert.equal($(f, '[data-pruef="gs-vgl-satz"]').textContent, 'Gleichauf – jetzt entscheidet das fachliche Urteil der Bürgermeisterin, nicht die Punktzahl.');
   assert.match($(f, '[data-pruef="vgl-C"]').getAttribute('style') ?? '', /order:12/u);
   $(f, '[data-pruef="stufe-luft-1"]').click();
   assert.equal($(f, '[data-pruef="summe-B"]').textContent, '45 Punkte');
@@ -173,9 +173,9 @@ test('Vergleich: Stufe ändern ordnet die Karten neu, meldet die Spitze und beh�
   assert.equal(f.stand().gewichte, null);
   assert.equal($(f, '[data-pruef="summe-A"]').textContent, '49 Punkte');
   assert.notEqual(aktiv(), 'BODY');
-  // Kipppunkte mit Artikel, klein, Herabstufung als „nur … statt …“, Mehrzahl bei „Klima und Betrieb“ (R72)
+  // Kipppunkte mit Artikel, klein, Herabstufung als „nur … statt …“, Mehrzahl bei „Strombedarf und Betrieb“ (R72)
   const kipp = $(f, '[data-pruef="gs-kipp"]').textContent ?? '';
-  assert.match(kipp, /Wären Klima und Betrieb „wichtig“ statt „weniger wichtig“, lägen „Ersatzgerät“ und „Später einziehen“ gleichauf\./u);
+  assert.match(kipp, /Wären Strombedarf und Betrieb „wichtig“ statt „weniger wichtig“, lägen „Ersatzgerät“ und „Später einziehen“ gleichauf\./u);
   assert.match(kipp, /Wäre der Schulstart nur „wichtig“ statt „sehr wichtig“, läge „Später einziehen“ vorn\./u);
   assert.match(kipp, /Wäre gute Luft im Unterricht nur „weniger wichtig“ statt „wichtig“, läge „Leihgeräte“ vorn\./u);
 });
@@ -184,7 +184,7 @@ test('Aufzählung: drei im Gleichstand mit Komma und „und“ vor dem letzten (
   assert.equal(W.geschichte.gleichauf(['A', 'B', 'C'], 9), 'Gleichauf vorn: „A“, „B“ und „C“ mit je 9 Punkten.');
   assert.equal(W.geschichte.gleichauf(['A', 'B'], 9), 'Gleichauf vorn: „A“ und „B“ mit je 9 Punkten.');
   assert.equal(W.geschichte.kipp('das Geld', 5, 3, ['A', 'B', 'C']), 'Wäre das Geld „sehr wichtig“ statt „wichtig“, lägen „A“, „B“ und „C“ gleichauf.');
-  assert.equal(W.geschichte.kipppunkt('Geld', 2, ['A', 'B', 'C']), 'Geld auf 2: Gleichstand – A, B und C');
+  assert.equal(W.geschichte.kipppunkt('Geld', 2, ['A', 'B', 'C']), 'Gewicht von Geld auf 2: Dann lägen A, B und C gleichauf');
   // Gegenprobe: kein „A und B und C“
   assert.doesNotMatch(W.geschichte.kipppunkt('Geld', 2, ['A', 'B', 'C']), / und .* und /u);
 });
@@ -316,15 +316,15 @@ test('Ende: Bilanz je Weg, Varianten bei niedriger Zeit und niedrigem Vertrauen,
   const einmal = flaeche({ ...waehle(g, weg('gut'), 'k8', k8.antworten.findIndex((a) => a.wertung === 'falle')), schritt: { ort: 'ende' } });
   assert.equal($(einmal, '[data-pruef="gs-bilanz-titel"]').textContent, 'Geschafft – mit Umwegen');
   assert.doesNotMatch(einmal.element.textContent ?? '', /Ich wusste jedes Mal/u);
-  assert.match(einmal.element.textContent ?? '', /nicht jedes Mal lief es so, wie es hätte laufen sollen/u);
+  assert.match(einmal.element.textContent ?? '', /nicht jede Entscheidung ist so sauber vorbereitet worden, wie sie hätte sein sollen/u);
   assert.ok(gut.element.querySelector('.gs-abbinder a[href="https://www.bauherr-mentoren.com/"]'));
   const falle = flaeche({ ...weg('falle'), schritt: { ort: 'ende' } });
-  assert.equal($(falle, '[data-pruef="gs-bilanz-titel"]').textContent, 'Gebaut, aber nicht getragen');
+  assert.equal($(falle, '[data-pruef="gs-bilanz-titel"]').textContent, 'Gebaut, aber ohne Rückhalt');
   assert.ok($(falle, '[data-pruef="gs-zeit-niedrig"]'));
   assert.match(falle.element.textContent ?? '', /Beim nächsten Projekt reden wir früher miteinander\./u);
   assert.doesNotMatch(falle.element.textContent ?? '', /Ich wusste jedes Mal/u);
   // Vertrauen niedrig: auch der Bauleiter spricht anders
-  assert.match(falle.element.textContent ?? '', /Hätten wir mal früher damit angefangen\./u);
+  assert.match(falle.element.textContent ?? '', /Hätten wir damit mal früher angefangen\./u);
   assert.doesNotMatch(falle.element.textContent ?? '', /dass ich das mal gut finde/u);
   const vertretbar = flaeche({ ...weg('vertretbar'), schritt: { ort: 'ende' } });
   assert.equal($(vertretbar, '[data-pruef="gs-bilanz-titel"]').textContent, 'Auf den letzten Metern');
@@ -422,7 +422,7 @@ test('Ende mit offenen Entscheidungen (R73): neutrale Bilanz statt Urteil, keine
   // R74: nur die Zeilen der Kurzfassung – die übrigen setzen eine gespielte Geschichte voraus
   assert.deepEqual([...ende.querySelectorAll<HTMLElement>('.gs-dialog > li')].map((z) => z.dataset['figur']), g.ende.szene.filter((z) => z.kurzfassung).map((z) => z.figur));
   assert.doesNotMatch(dialogText, /Ich wusste jedes Mal/u);
-  assert.match(dialogText, /was unterwegs offen geblieben ist/u);
+  assert.match(dialogText, /Was Sie unterwegs noch nicht entschieden haben/u);
 });
 
 test('r73: „Nur die Sporthalle bleibt noch zu“ genau bei Zeit „niedrig“ am Ende, mit Gegenprobe „mittel“', async () => {

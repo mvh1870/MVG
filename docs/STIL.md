@@ -39,6 +39,21 @@ Bau: esbuild bündelt `src/stil/index.css` mit `bundle: true` (die `@import`s we
 7. **Status nie ohne Symbol oder Text.** Ampelfarben sind für Status reserviert (O-11). Jeder Status hat eine Form (ok = Kreis mit Haken, mittel = Raute mit Strich, kritisch = Dreieck mit Ausrufezeichen, neutral = Punkt) **und** ein Wort; für Screenreader steht der Wert als Text (`.nur-sr`).
 8. **Marke (Bauherr Mentoren).** Logo nur als SVG aus `quellen/marke/` mit `fill="currentColor"`: Navy auf hellen Flächen, weiß oder Gold-hell auf Navy, nie verzerrt. Unter 96 px Höhe die **Bildmarke** (Wortmarke wäre unlesbar) und daneben der Name als Text; das Gesamtlogo ab 96 px. Kennzeichnung „Fiktiver Fall“ (O-3, O-45) klein und sachlich; Links zu bauherr-mentoren.com sachlich und leise (O-44).
 
+## Sprache der Oberfläche (L-320 bis L-324)
+
+Maßstab ist der Laie ohne Fachwissen; lieber ein, zwei Wörter mehr als ein Satz, den man nicht einordnen kann. Fachaussagen bleiben, wie sie sind.
+
+1. **Erst sagen, wofür; dann, was man einträgt; dann, was das Ergebnis heißt.** Jedes Werkzeug beginnt so (Vorspann), vor jeder Bedienung. Zweck, Eingabe und Deutung sind Inhalt; Bedienmechanik („Klicken Sie …“) bleibt verboten (O-56).
+2. **Ein Wort für eine Sache, überall.** Weg (Option) · Gesichtspunkt (Kriterium) · Platz · Schritt; „Ampel“ nur für Ampeln (Berichtsampel heißt „Zustand des Berichts“); „Weg“ nicht zugleich für Übergänge und Türen („Daraus kann werden“, „Möglichkeiten“).
+3. **Fachwort nur mit Erklärung beim ersten Mal,** in Klammer oder im Folgesatz: Governance, Vorgang, Entscheidungsvorlage, befugte Stelle, Datenstand, MCDA, Kostenprognose, Projektsoftware. Abkürzungen werden ausgeschrieben.
+4. **Handelnde nennen, Verben statt Hauptwörter.** „Die Projektsteuerung schlägt Maßnahmen vor“ statt „unterbreitet einen Maßnahmenvorschlag“. Wo der Leser etwas tun soll, steht „Sie“ (L-321); wo etwas nur gilt, bleibt der Satz sachlich.
+5. **Ein Gedanke pro Satz,** höchstens etwa 25 Wörter; Aufzählungen mit Doppelpunkt, Semikolon oder als Liste, nie als Kette ohne Verb.
+6. **Knöpfe nennen das Ziel:** „Nächster Schritt“, „Geschichte beginnen“, „Lösung zeigen“ statt „Weiter“, „Öffnen“, „Auflösen“; was ein Knopf löscht, steht am Knopf („Protokoll und gespeicherten Stand löschen“).
+7. **Fehler- und Hinweistexte sagen, was zu tun ist:** „Jede Grenze muss größer als null sein.“ statt „Jede Grenze ist größer als null.“
+8. **Keine Metaphern in Bedientexten** („Spitze dreht sich“, „Faden hält“, „Messlatte“, „rollen“); Bilder bleiben der Grafik.
+9. **Knopftexte bleiben kurz, Erklärungen stehen darunter;** Auswahlknöpfe höchstens etwa 60 Zeichen, damit sie bei 320 px nicht zu hohen Streifen werden.
+10. **Für Auge und Ohr schreiben:** „100.000 Euro“, „Tage“, Beispiele benennen („im Beispielprojekt“), Texte so, dass ein Screenreader sie ohne Bild versteht.
+
 ## Typorollen
 
 Fünf Familien, eingebettet als woff2 (latin + latin-ext), nur diese Schnitte (L-2; gemessen im Prototyp):
@@ -325,7 +340,7 @@ Klassennamen deutsch. Zustände über `ist-…`-Klassen oder ARIA (`aria-current
     <div class="start-einstieg"><p class="start-kicker">…</p><h1 class="start-titel">…</h1><p class="start-these">…</p><p class="start-internetseite">…</p></div>
     <nav class="tueren" aria-label="…">
       <a class="tuer" data-weg="story" href="#story"><h2 class="tuer-titel"><span class="tuer-kicker">…</span>…</h2><p class="tuer-text">…</p>
-        <span class="tuer-meta"><span>Acht Entscheidungen · etwa 25 Minuten, kurz etwa 10</span><span class="tuer-los">Beginnen symbol('pfeilRechts')</span></span></a>
+        <span class="tuer-meta"><span>Acht Entscheidungen · etwa 25 Minuten (Kurzfassung: etwa 10 Minuten)</span><span class="tuer-los">Geschichte beginnen symbol('pfeilRechts')</span></span></a>
       <a class="tuer" data-weg="theorie" …>…</a>
       <a class="tuer" data-weg="explore" …>…</a>
     </nav>
@@ -378,7 +393,7 @@ Die Klassennamen `kapitel-…` sind intern geblieben; sichtbar heißt es „Them
 Seit P17.9 auf der hellen Fläche des Teils, das Bild auf weißer Karte darin, Bild auf ganzer Spaltenbreite; die Bildunterschrift trägt nur Marke und Titel – keine Abweichungen, kein Vorrang-Satz, keine Angleichungsliste (O-56), kein Knopf „Vergrößern“ und kein Dialog: vergrößert wird mit der Lupe des Browsers (O-55).
 
 ### Explore
-`.ex-rahmen > .ex-kopf + nav.ex-werkzeuge (je Werkzeug .ex-werkzeug-link) + Werkzeugfläche`: Rechner für den gewichteten Vergleich, Risikomatrix 5 × 5, Vorgangsarten und Wege, Takt, Glossar (O-46). In `explore.css`.
+`.ex-rahmen > .ex-kopf + nav.ex-werkzeuge (je Werkzeug .ex-werkzeug-link) + Werkzeugfläche`: Vergleichsrechner (MCDA), Risikomatrix, Vorgangsarten, Takt, Glossar und die vier weiteren Werkzeuge (O-46, O-59). Im Kopf steht unter dem Titel der **Vorspann** `dl.ex-vorspann` mit drei Teilen – Wozu das Werkzeug dient · Was Sie eintragen · Was das Ergebnis heißt (L-322); auf der Leinwand ausgeblendet. In `explore.css`.
 
 ### Regie und Leinwand (O-9, O-46)
 `.regie > .regie-kopf + .regie-raster (.regie-links: .regie-vorschau > .vorschau-rahmen > .vorschau-buehne (1280 × 720) · .regie-rechts: .regie-karte, .regie-notiz, .regie-leitfragen, .regie-protokoll-…) + .regie-fuss`; Leinwand `.leinwand` (bzw. `.leinwand-warten`) mit `.anzeige`; `.ist-beamer` vergrößert und verstärkt (siehe „Beamer-Modus“). Navy-Grund mit Gold-Fokus. In `regie.css`.

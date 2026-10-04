@@ -1,7 +1,7 @@
 /*
  * B · Vorgangs-Wegweiser (P18.3, O-59; Konzept docs/WERKZEUGE-P18.md B): wenige Ja/Nein-Fragen vom Sachverhalt zur
  * Vorgangsart, mit nächstem Schritt, dem, was festgehalten wird, „Fertig, wenn“ (wortgleich aus „Vorgangsarten und
- * Wege“) und der typischen Verwechslung. Unpersönlich (L-254). Rechnung: src/werkzeuge/wegweiser.ts.
+ * Wege“) und der typischen Verwechslung. Spricht Sie an, wo etwas zu tun ist, und sachlich, wo etwas gilt (L-321, ändert L-254). Rechnung: src/werkzeuge/wegweiser.ts.
  */
 import type { WegweiserTeil } from '../../../inhalte/typen.ts';
 import { leseStandWegweiser, MIT_UNKLAR, verwechslungen, wegweiser, zusaetze, type Art, type FrageId, type Wahl, type Weg, type Zusatz } from '../../../werkzeuge/wegweiser.ts';

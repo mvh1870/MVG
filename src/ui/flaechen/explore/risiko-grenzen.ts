@@ -1,7 +1,7 @@
 /*
  * C · Risiko-Bewerter mit eigenen Grenzen (P18.4, O-59; Konzept docs/WERKZEUGE-P18.md C): vier Grenzen je Reihe
  * (Wahrscheinlichkeit, Kosten, Termin), wie der Bauherr sie für das Projekt festlegt; daraus Stufen, Matrixfeld und
- * Bearbeitungspriorität – auch, wenn noch nicht alles bekannt ist (unbekannt ist nicht null). Unpersönlich (L-254).
+ * Bearbeitungspriorität – auch, wenn noch nicht alles bekannt ist (unbekannt ist nicht null). Spricht Sie an, wo etwas zu tun ist, und sachlich, wo etwas gilt (L-321, ändert L-254).
  * Rechnung: src/werkzeuge/risiko-grenzen.ts; Stufentexte und Qualitätsstufen aus der Risikomatrix (keine zweite Quelle).
  */
 import type { RisikoGrenzenTeil } from '../../../inhalte/typen.ts';

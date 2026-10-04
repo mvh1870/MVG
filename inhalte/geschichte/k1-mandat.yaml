@@ -23,10 +23,10 @@ einstieg-kurz: |
 
 szene:
   - { figur: grundstein, text: "Schön, dass Sie da sind. Eins vorweg: Im Sommer 2028 ziehen hier die Kinder ein. Das ist mir das Wichtigste – danach kommt das Geld." }
-  - { figur: faden, text: "Dann schreibe ich das genau so auf, als Ihre Festlegung. Was noch fehlt: Wer darf hier was entscheiden?" }
-  - { figur: grundstein, text: "Ach, das regeln Sie beide. Ich will nicht mit jeder Kleinigkeit behelligt werden." }
+  - { figur: faden, text: "Dann halte ich das genau so als Ihre Vorgabe fest. Was noch fehlt: Wer darf hier was entscheiden?" }
+  - { figur: grundstein, text: "Ach, das regeln Sie beide. Ich will nicht mit jeder Kleinigkeit belästigt werden." }
   - { figur: schwung, text: "Ich bräuchte übrigens bis Freitag ein Ja zu den Fassadenplatten. Wer gibt mir das?" }
-  - { figur: faden, text: "Genau darum geht es. Ich bereite alles vor, was entschieden werden muss. Entscheiden darf ich nichts – das muss vorher feststehen." }
+  - { figur: faden, text: "Genau darum geht es. Ich bereite alles vor, was entschieden werden muss. Entscheiden darf ich nichts – wer was entscheiden darf, muss vorher feststehen." }
   - { figur: grundstein, kurzfassung: false, text: "Na gut. Aber bitte so, dass ich nicht jede Woche einen Anruf bekomme." }
 
 frage: Die Projektsteuerin wartet auf Ihren Auftrag, die Bürgermeisterin schaut auf die Uhr. Wie regeln Sie, wer was entscheidet?
@@ -38,26 +38,37 @@ antworten:
     balken: { geld: 0, zeit: -1, vertrauen: 1 }
     bild: notizzettel
     folge: |
-      In den ersten zwei Wochen landen elf Fragen bei der Bürgermeisterin, darunter die Farbe der Fassadenplatten. Beim zwölften Mal ruft sie an, halb verärgert, halb beruhigt: „Ich weiß jetzt wenigstens, was hier läuft. Aber ich bin Bürgermeisterin, nicht Bauleiterin.“ Clara Faden schreibt eine Seite mit klaren Grenzen, die Bürgermeisterin unterschreibt – und der Architekt hat eine Woche verloren.
+      In den ersten zwei Wochen landen elf Fragen bei der Bürgermeisterin, darunter die Farbe der Fassadenplatten. Beim zwölften Mal ruft sie an, halb verärgert, halb beruhigt: „Ich weiß jetzt wenigstens, was hier läuft. Aber ich bin Bürgermeisterin, nicht Bauleiterin.“
+
+      Clara Faden schreibt eine Seite auf, wer was entscheiden darf, die Bürgermeisterin unterschreibt – und der Architekt hat eine Woche verloren, weil sein Ja zu den Fassadenplatten so lange wartete.
   - wertung: gut
-    text: "Die Projektsteuerin entwirft eine Seite, wer was entscheidet – festlegen muss es die Bürgermeisterin selbst."
+    text: "Die Projektsteuerin entwirft eine Seite, wer was entscheidet – festlegen muss das die Bürgermeisterin selbst."
     balken: { geld: 0, zeit: 0, vertrauen: 2 }
     bild: projektblatt
     folge: |
       Eine Woche später liegt eine Seite auf dem Tisch der Bürgermeisterin. Sie liest sie zweimal, streicht ein Wort und unterschreibt: „Gut. Dann weiß ich, wann Sie zu mir kommen – und wann nicht.“
 
       Konrad Schwung bekommt sein Ja zu den Fassadenplatten am Freitag von Ihnen, denn sie kosten nicht mehr als geplant. Clara Faden legt die Seite dort ab, wo alle Beteiligten sie finden.
+    folge-kurz: |
+      Eine Woche später liegt eine Seite auf dem Tisch der Bürgermeisterin. Sie liest sie zweimal, streicht ein Wort und unterschreibt: „Gut. Dann weiß ich, wann Sie zu mir kommen – und wann nicht.“
+
+      Konrad Schwung bekommt sein Ja zu den Fassadenplatten am Freitag von Ihnen, denn sie kosten nicht mehr als geplant.
   - wertung: falle
-    text: Die Bürgermeisterin will nicht behelligt werden. Also entscheiden Sie alles und halten sie auf dem Laufenden.
+    text: Die Bürgermeisterin will nicht gestört werden. Also entscheiden Sie alles und halten sie auf dem Laufenden.
     balken: { geld: 0, zeit: 1, vertrauen: -2 }
     bild: rednerpult
     folge: |
-      Zwei Wochen geht das gut. Dann sagen Sie dem Architekten eine teurere Dämmung zu, und im Stadtrat fragt jemand, wer das beschlossen hat. Die Bürgermeisterin weiß von nichts. Am nächsten Morgen unterschreibt sie die Seite, die von Anfang an gefehlt hat, lässt die Dämmung prüfen – und schaut Sie dabei länger an als nötig.
+      Zwei Wochen geht das gut. Dann sagen Sie dem Architekten eine teurere Dämmung zu – eine Entscheidung, die niemand Ihnen übertragen hat –, und im Stadtrat fragt jemand, wer das beschlossen hat. Die Bürgermeisterin weiß von nichts.
+
+      Am nächsten Morgen unterschreibt sie die Regelung, wer was entscheiden darf, die von Anfang an gefehlt hat, lässt die Dämmung prüfen – und schaut Sie dabei länger an als nötig.
 
 gut: |
-  Wer was entscheiden darf, steht fest, bevor die erste Entscheidung ansteht – schriftlich und mit klaren Grenzen. Was der Bauherr nicht abgeben kann, bleibt bei ihm: welches Ziel zuerst kommt, die Freigaben, der Griff in die Reserve und die großen Risiken.
+  Wer was entscheiden darf, steht fest, bevor die erste Entscheidung ansteht – schriftlich und mit klaren Grenzen. Was die Stadt als Bauherr nicht abgeben kann, bleibt bei der Bürgermeisterin: welches Ziel zuerst kommt, die Freigaben, der Einsatz der Reserve und die großen Risiken.
 
-dahinter: Arbeit kann man abgeben, die Verantwortung für die großen Entscheidungen nicht – deshalb braucht jedes Projekt ein Mandat, das vor dem ersten Streit feststeht.
+gut-kurz: |
+  Wer was entscheiden darf, steht vorab schriftlich fest. Was die Stadt als Bauherr nicht abgeben kann, bleibt bei der Bürgermeisterin: das Ziel, die Freigaben, der Einsatz der Reserve und die großen Risiken.
+
+dahinter: Arbeit kann man abgeben, die Verantwortung für die großen Entscheidungen nicht. Deshalb braucht jedes Projekt ein Mandat, eine schriftliche Regel, wer was entscheiden darf – festgelegt vor dem ersten Streit.
 
 regie:
   notiz: "Erst die Leitfragen an die Runde, dann wählen lassen. Kern: Wer was entscheiden darf, steht vorab schriftlich fest, mit klaren Grenzen; welches Ziel zuerst kommt, legt der Bauherr selbst fest. Das Kärtchen „Wer entscheidet was“ nach der Folge kurz vorlesen – es bleibt danach an jeder Frage aufrufbar."

@@ -551,7 +551,7 @@ test('Kurzfassung: Folge, „So macht man es gut“ und „Das steckt dahinter�
   assert.ok(a);
   assert.equal(E.folgeHtmlFuer(E.neuerStand(false), a), a.folgeHtml);
   assert.equal(E.folgeHtmlFuer(E.neuerStand(true), a), a.folgeKurzHtml);
-  const k1 = E.kapitel(BASIS, 's1');
+  const k1 = E.kapitel(BASIS, 's2');
   assert.ok(k1);
   assert.equal(E.gutHtmlFuer(E.neuerStand(true), k1), k1.gutHtml, 'ohne gutKurzHtml gilt der lange Text');
   assert.equal(E.dahinterHtmlFuer(E.neuerStand(true), k1), k1.dahinterHtml);

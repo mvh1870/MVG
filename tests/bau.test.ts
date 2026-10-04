@@ -6,6 +6,7 @@ import { createHash } from 'node:crypto';
 import { mkdtemp, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import vm from 'node:vm';
+import { W } from '../src/ui/woerter.ts';
 import {
   ANKER,
   BUDGET,
@@ -305,7 +306,9 @@ test('Webseitenordner (P16.13, O-42, O-43, O-47): Hauptseite, Impressum, Datensc
     for (const m of html.matchAll(/(IBM Plex Sans|IBM Plex Mono|Big Shoulders Display|Barlow Condensed|Caveat)/gu)) assert.ok(index.includes(`font-family: '${m[1]}'`) || index.includes(`font-family:'${m[1]}'`) || index.includes(`"${m[1]}"`), `${name}: Schrift ${m[1]} nicht eingebettet`);
   }
   const datenschutz = await readFile(path.join(dist, 'datenschutz.html'), 'utf8');
-  for (const w of ['keine Cookies', 'IONOS', 'Fortschritt löschen', 'BayLDA', 'Local Storage', 'Lesefortschritt', 'Fortschritt zurücksetzen']) assert.ok(datenschutz.includes(w), `Datenschutz nennt ${w}`);
+  for (const w of ['keine Cookies', 'IONOS', 'Gespeicherten Fortschritt löschen', 'BayLDA', 'Local Storage', 'Lesefortschritt', 'Lesefortschritt löschen']) assert.ok(datenschutz.includes(w), `Datenschutz nennt ${w}`);
+  // L-323: die Knopfwörter der Seite stehen im Datenschutz wortgleich (wer sucht, findet den Knopf)
+  for (const w of [W.geschichte.fortschrittLoeschen, W.themen.zuruecksetzen, W.regie.protokollLoeschen]) assert.ok(datenschutz.includes(`„${w}“`), `Datenschutz nennt „${w}“`);
   assert.equal(await readFile(path.join(dist, 'robots.txt'), 'utf8'), `User-agent: *\nAllow: /\n\nSitemap: ${ADRESSE}sitemap.xml\n`);
   const sitemap = await readFile(path.join(dist, 'sitemap.xml'), 'utf8');
   assert.deepEqual([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/gu)].map((m) => m[1]), [ADRESSE, `${ADRESSE}impressum.html`, `${ADRESSE}datenschutz.html`]);

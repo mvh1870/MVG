@@ -4,7 +4,7 @@ nr: 5
 titel: Zwei Zahlen, zwei Wahrheiten
 zeit: Oktober 2026
 campus: { stufe: 3, jahreszeit: herbst, licht: abend }
-bruecke: "Im Herbst nennt die Bürgermeisterin dem Stadtrat eine begründete Zahl, die angekündigten Mehrkosten der Haustechnik als Risiko daneben – sie erweisen sich als unberechtigt."
+bruecke: "Im Herbst nennt die Bürgermeisterin dem Stadtrat eine begründete Kostenzahl; die angekündigten Mehrkosten der Haustechnik führt sie getrennt als Risiko auf. Später erweist sich die Forderung als unberechtigt."
 thema: verantwortung
 werkzeuge: [{ id: risiko-grenzen, beispiel: ris-014 }, { id: monatsbericht, beispiel: oktober }]
 belege: [v24:hb-2, v24:hb-3, v24:hb-5, v24:tlb-3, v24:hb-1.5, k4.6-p1, k4.6-p2, k2.4-p2]
@@ -12,44 +12,46 @@ bild-szene: zahlenzettel
 bild-frage: rednerpult
 
 einstieg: |
-  Oktober 2026. Der Kran hebt die ersten Holzelemente an die Gesamtschule, die Linden leuchten gelb. Nächste Woche will die Bürgermeisterin dem Stadtrat sagen, wo das Projekt beim Geld steht. Auf ihrem Schreibtisch liegen zwei Papiere, beide mit einer Zahl unten rechts – und die Zahlen sind nicht dieselben.
+  Oktober 2026. Der Kran hebt die ersten Holzelemente an die Gesamtschule, die Linden leuchten gelb. Nächste Woche will die Bürgermeisterin dem Stadtrat sagen, wo das Projekt beim Geld steht. Auf ihrem Schreibtisch liegen zwei Papiere, beide mit einer Gesamtsumme unten rechts – und die Summen sind nicht dieselben.
 
 szene:
-  - { figur: grundstein, text: "Die Kämmerei, unsere Finanzabteilung, sagt, wir liegen eine Million über dem Budget. Der Architekt sagt zwei. Was stimmt denn nun?" }
-  - { figur: schwung, text: "Meine Zahl. Die Haustechnikfirma hat Mehrkosten angekündigt, gut eine Million. Die habe ich schon drin. Ich rechne lieber zu viel als zu wenig." }
-  - { figur: grundstein, text: "Und warum steht davon nichts in der Rechnung der Kämmerei?" }
-  - { figur: faden, text: "Erstens: Ich habe beide Rechnungen angefordert und Zeile für Zeile verglichen. Zweitens: Der Unterschied ist genau diese Ankündigung. Und drittens: Angekündigt heißt nicht berechtigt – die Vergabestelle der Stadt prüft gerade, ob die Firma das überhaupt extra berechnen darf." }
+  - { figur: grundstein, text: "Die Finanzabteilung rechnet damit, dass wir am Ende eine Million über dem Budget landen. Der Architekt rechnet mit zwei Millionen. Was stimmt denn nun?" }
+  - { figur: schwung, text: "Meine Zahl. Die Haustechnikfirma – zuständig für Heizung, Lüftung und Elektro – hat Mehrkosten angekündigt, gut eine Million. Die habe ich schon eingerechnet. Ich rechne lieber zu viel als zu wenig." }
+  - { figur: grundstein, text: "Und warum steht davon nichts in der Berechnung der Finanzabteilung?" }
+  - { figur: faden, text: "Erstens: Ich habe beide Berechnungen angefordert und Zeile für Zeile verglichen. Zweitens: Der Unterschied ist genau diese Ankündigung. Und drittens: Angekündigt heißt nicht berechtigt – die Vergabestelle, die bei der Stadt die Aufträge und Verträge betreut, prüft gerade, ob die Firma das überhaupt extra berechnen darf." }
   - { figur: grundstein, text: "Ich brauche eine Zahl, die ich im Stadtrat vertreten kann. Nicht zwei." }
-  - { figur: faden, text: "Beide Zahlen liegen innerhalb der Reserve. Aber welche Sie nennen, sollten Sie wissen – nicht raten." }
+  - { figur: faden, text: "Beide Zahlen würde die Reserve noch abdecken. Aber welche Sie der Bürgermeisterin geben, sollten Sie begründen können – nicht raten." }
 
 frage: Beide Zahlen haben einen Grund. Nur eine kann in den Stadtrat. Welche Zahl geben Sie der Bürgermeisterin?
 
 antworten:
   - wertung: vertretbar
-    text: Die höhere Zahl des Architekten – lieber dem Stadtrat einmal zu viel sagen als später nachlegen.
+    text: Die höhere Zahl des Architekten – lieber dem Stadtrat eine zu hohe Zahl nennen als später nachlegen.
     balken: { geld: -1, zeit: -1, vertrauen: 0 }
     bild: kostenzettel
     folge: |
-      Der Stadtrat erschrickt über zwei Millionen und verlangt eine Liste, wo man sparen könnte; die Planung wartet vier Wochen auf die Antwort. Dann ist die Prüfung fertig: Die Leistungen gehören schon zum bestehenden Vertrag, die Zahl sinkt wieder. Nur hat die Firma gemerkt, dass die Stadt ihre Forderung als berechtigt eingerechnet hatte – und sie verhandelt jetzt bei jeder Kleinigkeit härter.
+      Der Stadtrat erschrickt über zwei Millionen und verlangt eine Liste, wo man sparen könnte; die Planung wartet vier Wochen auf die Antwort.
+
+      Dann ist die Prüfung fertig: Die Leistungen gehören schon zum bestehenden Vertrag, die Zahl sinkt wieder. Aber die Firma hat erfahren, dass die Stadt ihre Forderung schon in die Kosten eingerechnet hatte, als wäre sie berechtigt – und verhandelt jetzt bei jeder Kleinigkeit härter.
   - wertung: falle
-    text: "Die Mitte aus beiden, anderthalb Millionen – damit nehmen Sie Kämmerei und Architekt gleichermaßen ernst."
+    text: "Die Mitte aus beiden, anderthalb Millionen – damit nehmen Sie Finanzabteilung und Architekt gleichermaßen ernst."
     balken: { geld: -1, zeit: 0, vertrauen: -2 }
     bild: lupe
     folge: |
-      Anderthalb Millionen stehen in keiner Rechnung. Als ein Stadtrat fragt, woher die Zahl kommt, bleibt nur die Antwort: aus der Mitte. Clara Faden legt danach beide Rechnungen nebeneinander und zeigt den Unterschied. Die Prüfung endet wie erwartet – die Leistungen gehören schon zum bestehenden Vertrag –, aber die Firma verhandelt jetzt härter, denn die Stadt hatte ihre Forderung halb als berechtigt eingerechnet.
+      Anderthalb Millionen stehen in keiner Berechnung. Als ein Stadtrat fragt, woher die Zahl kommt, bleibt nur die Antwort: aus der Mitte. Clara Faden legt danach beide Berechnungen nebeneinander und zeigt den Unterschied. Die Prüfung ergibt: Die Leistungen gehören schon zum bestehenden Vertrag. Aber die Firma verhandelt jetzt härter, denn die Stadt hatte ihre Forderung zur Hälfte als berechtigt eingerechnet.
   - wertung: gut
-    text: "Eine Million über dem Budget, mit Datum und Begründung – die angekündigten Mehrkosten als Risiko daneben."
+    text: "Eine Million über dem Budget, mit Datum und Begründung – die angekündigten Mehrkosten führen Sie getrennt als Risiko auf."
     balken: { geld: 1, zeit: 0, vertrauen: 2 }
     bild: waage
     folge: |
-      Die Bürgermeisterin nennt im Stadtrat eine Zahl und einen Satz dazu: was drin ist, was nicht und was gerade geprüft wird. Zum ersten Mal fragt niemand nach einer zweiten Zahl.
+      Die Bürgermeisterin nennt im Stadtrat eine Zahl und einen Satz dazu: was in der Zahl enthalten ist, was nicht und was gerade geprüft wird. Zum ersten Mal fragt niemand nach einer zweiten Zahl.
 
       Vier Wochen später ist die Prüfung fertig: Die Leistungen gehören schon zum Vertrag der Haustechnikfirma, extra berechnen darf sie nichts. Clara Faden schließt das Risiko – mit Begründung –, und das Geld, das in der Reserve dafür zurückgehalten war, ist wieder frei. Die Bürgermeisterin sagt nach der Sitzung nur: „So möchte ich das jedes Mal.“
 
 gut: |
-  Es gibt einen maßgeblichen Stand der Zahlen, und jede Zahl darin hat ein Datum und eine Begründung. Unterschiedliche Einschätzungen werden nebeneinander erklärt, nicht gemittelt; was noch unsicher ist, steht als Risiko mit seiner Spanne daneben und wird nicht doppelt gezählt.
+  Es gibt eine verbindliche Zahlengrundlage, auf die sich alle beziehen, und jede Zahl darin hat ein Datum und eine Begründung. Unterschiedliche Einschätzungen werden nebeneinander erklärt, nicht zu einem Mittelwert verrechnet. Was noch unsicher ist, steht als Risiko daneben, mit der Spanne, in der es liegen kann – und fließt nicht zusätzlich in die Hauptzahl ein, damit nichts doppelt zählt.
 
-dahinter: Eine Entscheidung ist nur so gut wie die Zahlen, auf denen sie steht – deshalb sorgt der Bauherr dafür, dass es einen belastbaren Stand gibt, auch wenn er ihn nicht selbst pflegt.
+dahinter: Eine Entscheidung ist nur so gut wie die Zahlen, auf denen sie steht – deshalb sorgt der Bauherr dafür, dass es eine verlässliche Zahlengrundlage gibt, auch wenn er sie nicht selbst erstellt.
 
 regie:
   notiz: "Kern: Es gibt einen maßgeblichen Stand der Zahlen, jede Zahl mit Datum und Begründung; unterschiedliche Einschätzungen werden erklärt, nicht gemittelt, Unsicheres steht als Risiko mit Spanne daneben."

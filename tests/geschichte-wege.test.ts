@@ -66,27 +66,27 @@ function proben(): Probe[] {
   const e = G.ende;
   return [
     { was: 'Bilanz „Ruhig ins Ziel“', text: G.bilanz.ruhig.html, anfang: 'Die Kinder sind pünktlich eingezogen, und jede große Entscheidung hat die Bürgermeisterin selbst getroffen', erscheint: (_w, t) => t === 'ruhig', setztVoraus: (w) => !w.falle },
-    { was: 'Bilanz „mit Umwegen“', text: G.bilanz.umwege.html, anfang: 'Der Campus steht, die Kinder sind da – aber nicht jede Ihrer Antworten war der gerade Weg', erscheint: (_w, t) => t === 'umwege', setztVoraus: (w) => w.nichtGut >= 1 },
-    { was: 'Bilanz „Auf den letzten Metern“', text: G.bilanz['letzte-meter'].html, anfang: 'Die Schule hat geöffnet, aber der Puffer war am Ende aufgebraucht. Wer eine Frage liegen lässt', erscheint: (_w, t) => t === 'letzte-meter', setztVoraus: (w) => w.teurer.zeit },
-    { was: 'Bilanz „nicht getragen“', text: G.bilanz['nicht-getragen'].html, anfang: 'Die Gebäude stehen, doch das Vertrauen hat gelitten: Zu oft lief es anders, als die Bürgermeisterin es von Ihnen erwarten durfte.', erscheint: (_w, t) => t === 'nicht-getragen', setztVoraus: (w) => w.nichtGut >= 2 },
+    { was: 'Bilanz „mit Umwegen“', text: G.bilanz.umwege.html, anfang: 'Der Campus steht, die Kinder sind da. Aber nicht jede Ihrer Antworten war der gerade Weg', erscheint: (_w, t) => t === 'umwege', setztVoraus: (w) => w.nichtGut >= 1 },
+    { was: 'Bilanz „Auf den letzten Metern“', text: G.bilanz['letzte-meter'].html, anfang: 'Die Schule hat geöffnet, aber der Zeitpuffer war am Ende aufgebraucht. Wer eine Entscheidung aufschiebt', erscheint: (_w, t) => t === 'letzte-meter', setztVoraus: (w) => w.teurer.zeit },
+    { was: 'Bilanz „ohne Rückhalt“', text: G.bilanz['nicht-getragen'].html, anfang: 'Die Gebäude stehen, doch das Vertrauen hat gelitten: Zu oft hat die Bürgermeisterin Dinge zu spät oder anders erfahren, als sie es von Ihnen erwarten durfte.', erscheint: (_w, t) => t === 'nicht-getragen', setztVoraus: (w) => w.nichtGut >= 2 },
     // Geld hoch: „jedes Mal von der Bürgermeisterin entschieden“, „dort eingesetzt, wo sie gebraucht wurde“ – nicht nach umsonst geplanter Mensa (4) oder unverglichenem Preis (7)
     { was: 'Geld hoch', text: bl('geld').bilanz.hoch, anfang: 'Die Reserve wurde dort eingesetzt, wo sie gebraucht wurde', erscheint: (w) => stufe(w.b.geld) === 'hoch', setztVoraus: (w) => !w.falleK4K7 },
     { was: 'Geld mittel', text: bl('geld').bilanz.mittel, anfang: 'Ein großer Teil der Reserve ist verbraucht; manches wurde teurer als nötig.', erscheint: (w) => stufe(w.b.geld) === 'mittel', setztVoraus: (w) => w.teurer.geld },
-    { was: 'Geld niedrig', text: bl('geld').bilanz.niedrig, anfang: 'Die Reserve ist fast aufgebraucht; jeder Umweg hat sie ein Stück kleiner gemacht.', erscheint: (w) => stufe(w.b.geld) === 'niedrig', setztVoraus: (w) => w.teurer.geld },
+    { was: 'Geld niedrig', text: bl('geld').bilanz.niedrig, anfang: 'Die Reserve ist fast aufgebraucht; jede Antwort, die nicht der beste Weg war, hat sie ein Stück kleiner gemacht.', erscheint: (w) => stufe(w.b.geld) === 'niedrig', setztVoraus: (w) => w.teurer.geld },
     // Zeit und Vertrauen beschreiben nur den Stand des Balkens – keine Voraussetzung über eine Wahl
-    { was: 'Zeit hoch', text: bl('zeit').bilanz.hoch, anfang: 'Der Puffer hat gehalten', erscheint: (w) => stufe(w.b.zeit) === 'hoch', setztVoraus: () => true },
-    { was: 'Zeit mittel', text: bl('zeit').bilanz.mittel, anfang: 'Der Puffer war am Ende dünn, aber er hat gereicht.', erscheint: (w) => stufe(w.b.zeit) === 'mittel', setztVoraus: (w) => w.teurer.zeit },
-    { was: 'Zeit niedrig', text: bl('zeit').bilanz.niedrig, anfang: 'Der Puffer ist aufgebraucht; die Sporthalle öffnet erst nach den Herbstferien.', erscheint: (w) => stufe(w.b.zeit) === 'niedrig', setztVoraus: () => true },
+    { was: 'Zeit hoch', text: bl('zeit').bilanz.hoch, anfang: 'Der Zeitpuffer hat gehalten', erscheint: (w) => stufe(w.b.zeit) === 'hoch', setztVoraus: () => true },
+    { was: 'Zeit mittel', text: bl('zeit').bilanz.mittel, anfang: 'Der Zeitpuffer war am Ende dünn, hat aber gereicht.', erscheint: (w) => stufe(w.b.zeit) === 'mittel', setztVoraus: (w) => w.teurer.zeit },
+    { was: 'Zeit niedrig', text: bl('zeit').bilanz.niedrig, anfang: 'Der Zeitpuffer ist aufgebraucht: Die Sporthalle öffnet erst nach den Herbstferien.', erscheint: (w) => stufe(w.b.zeit) === 'niedrig', setztVoraus: () => true },
     { was: 'Vertrauen hoch', text: bl('vertrauen').bilanz.hoch, anfang: 'Bürgermeisterin, Schule und Stadtrat verlassen sich inzwischen auf das, was Sie vorlegen.', erscheint: (w) => stufe(w.b.vertrauen) === 'hoch', setztVoraus: () => true },
-    { was: 'Vertrauen mittel', text: bl('vertrauen').bilanz.mittel, anfang: 'Man vertraut Ihnen – fragt aber gern noch einmal nach.', erscheint: (w) => stufe(w.b.vertrauen) === 'mittel', setztVoraus: () => true },
-    { was: 'Vertrauen niedrig', text: bl('vertrauen').bilanz.niedrig, anfang: 'Die Bürgermeisterin lässt sich inzwischen jede Zahl zweimal zeigen.', erscheint: (w) => stufe(w.b.vertrauen) === 'niedrig', setztVoraus: () => true },
+    { was: 'Vertrauen mittel', text: bl('vertrauen').bilanz.mittel, anfang: 'Die Bürgermeisterin vertraut Ihnen, fragt aber gern noch einmal nach.', erscheint: (w) => stufe(w.b.vertrauen) === 'mittel', setztVoraus: () => true },
+    { was: 'Vertrauen niedrig', text: bl('vertrauen').bilanz.niedrig, anfang: 'Die Bürgermeisterin lässt sich inzwischen jede Zahl zweimal zeigen', erscheint: (w) => stufe(w.b.vertrauen) === 'niedrig', setztVoraus: () => true },
     // Schlusszeilen
     { was: 'Bürgermeisterin, Grundzeile', text: zeileVon(e.szene, 'grundstein'), anfang: 'Wissen Sie, was das Beste war? Ich wusste jedes Mal, worüber ich entscheide.', erscheint: (_w, _t, f) => f === 'grund', setztVoraus: (w) => !w.falle },
-    { was: 'Bürgermeisterin nach einer Falle', text: zeileVon(e.nachFalle, 'grundstein'), anfang: 'Geschafft haben wir es. Aber nicht jedes Mal lief es so, wie es hätte laufen sollen', erscheint: (_w, _t, f) => f === 'nach-falle', setztVoraus: (w) => w.falle },
+    { was: 'Bürgermeisterin nach einer Falle', text: zeileVon(e.nachFalle, 'grundstein'), anfang: 'Geschafft haben wir es. Aber nicht jede Entscheidung ist so sauber vorbereitet worden, wie sie hätte sein sollen', erscheint: (_w, _t, f) => f === 'nach-falle', setztVoraus: (w) => w.falle },
     { was: 'Bürgermeisterin, Vertrauen niedrig', text: zeileVon(e.vertrauenNiedrig, 'grundstein'), anfang: 'Beim nächsten Projekt reden wir früher miteinander.', erscheint: (_w, _t, f) => f === 'vertrauen-niedrig', setztVoraus: (w) => w.spaet },
-    { was: 'Bauleiter, Grundzeile', text: zeileVon(e.szene, 'lot'), anfang: 'Steht alles drin, was wir hier gemacht haben.', erscheint: (w, _t, f) => f !== 'vertrauen-niedrig' && !w.kurz, setztVoraus: () => true },
-    { was: 'Bauleiter, Vertrauen niedrig', text: zeileVon(e.vertrauenNiedrig, 'lot'), anfang: 'Steht inzwischen alles drin. Hätten wir mal früher damit angefangen.', erscheint: (w, _t, f) => f === 'vertrauen-niedrig' && !w.kurz, setztVoraus: (w) => w.falle },
-    { was: 'Projektsteuerin am Ende', text: zeileVon(e.szene, 'faden'), anfang: 'Alles Offene ist übergeben, mit Namen und Termin.', erscheint: () => true, setztVoraus: () => true },
+    { was: 'Bauleiter, Grundzeile', text: zeileVon(e.szene, 'lot'), anfang: 'In den Unterlagen steht alles drin, was wir hier gemacht haben.', erscheint: (w, _t, f) => f !== 'vertrauen-niedrig' && !w.kurz, setztVoraus: () => true },
+    { was: 'Bauleiter, Vertrauen niedrig', text: zeileVon(e.vertrauenNiedrig, 'lot'), anfang: 'Inzwischen ist alles schriftlich festgehalten. Hätten wir damit mal früher angefangen.', erscheint: (w, _t, f) => f === 'vertrauen-niedrig' && !w.kurz, setztVoraus: (w) => w.falle },
+    { was: 'Projektsteuerin am Ende', text: zeileVon(e.szene, 'faden'), anfang: 'Alles, was noch offen war, ist übergeben – mit Namen und Termin.', erscheint: () => true, setztVoraus: () => true },
   ];
 }
 
@@ -203,7 +203,7 @@ test('Endzustände mit offenen Kapiteln: Bilanz „offen“, nie ein Urteil übe
   }
   // der neutrale Text urteilt nicht und ist festgehalten
   assert.ok(G.bilanz.offen.html.startsWith('Der Campus steht, die Kinder sind da. Ein Urteil über Ihren Weg gibt es erst'));
-  assert.ok((G.ende.offen.find((z) => z.figur === 'grundstein')?.html ?? '').startsWith('Geschafft haben wir es – und was unterwegs offen geblieben ist'));
+  assert.ok((G.ende.offen.find((z) => z.figur === 'grundstein')?.html ?? '').startsWith('Geschafft haben wir es. Was Sie unterwegs noch nicht entschieden haben'));
 });
 
 test('Gegenprobe offene Kapitel: ohne die Regel zeigte „nur Kapitel 1 gut“ ein Urteil („mit Umwegen“)', () => {

@@ -3,7 +3,7 @@
      die Übernahme vor dem Launch (docs/LAUNCH.md). Nur Martin Mohr, nur kontakt@bauherr-mentoren.com, keine Telefonnummer. -->
 # Impressum
 
-Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG).
+Diese Angaben sind gesetzlich vorgeschrieben (§ 5 Digitale-Dienste-Gesetz, DDG).
 
 ## Anbieter dieser Internetseite
 
@@ -22,11 +22,11 @@ E-Mail: kontakt@bauherr-mentoren.com
 
 Bitte übermitteln Sie keine vertraulichen Betriebs-, Sicherheits-, Infrastruktur- oder Projektinformationen per unverschlüsselter E-Mail.
 
-## Hosting
+## Hosting (wer die Seite betreibt)
 
 Diese Internetseite wird auf Servern der IONOS SE betrieben (www.ionos.de).
 
-## Verantwortlich für den Inhalt gemäß § 18 Abs. 2 MStV
+## Verantwortlich für den Inhalt (§ 18 Abs. 2 Medienstaatsvertrag, MStV)
 
 Martin Mohr  
 Kranzhornstr. 12  
@@ -40,11 +40,13 @@ Die Gesellschaft befindet sich in Gründung (GmbH i. G.). Registergericht und Ha
 
 Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz: wird nach Erteilung ergänzt.
 
-## Verbraucherstreitbeilegung
+## Verbraucherstreitbeilegung (Streitschlichtung mit Verbrauchern)
 
 Die Bauherr Mentoren GmbH i. G. ist weder verpflichtet noch bereit, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
 
 ## Haftung für eigene Inhalte
+
+Kurz gesagt: Diese Seite informiert allgemein und ersetzt keine Beratung. Für Ihr Projekt gilt nur, was im Einzelfall vereinbart wurde.
 
 Die Inhalte dieser Internetseite werden mit Sorgfalt erstellt und gepflegt. Sie dienen der allgemeinen Information über Minimum Viable Governance und die Zusammenarbeit von Bauherr und Projektsteuerung. Die Geschichte und alle Beispiele beruhen auf einem fiktiven Fall; Stadt, Projekt und Personen sind erfunden.
 
@@ -52,10 +54,14 @@ Die bereitgestellten Informationen sind keine Rechtsberatung und keine verbindli
 
 ## Haftung für externe Links
 
+Kurz gesagt: Für fremde Seiten, auf die wir verlinken, sind deren Betreiber verantwortlich.
+
 Diese Internetseite enthält Links zur Internetseite der Bauherr Mentoren GmbH i. G. und kann Links zu Internetseiten Dritter enthalten. Für die Inhalte verlinkter Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich. Verlinkte Seiten wurden zum Zeitpunkt der Verlinkung auf erkennbare Rechtsverstöße geprüft. Bei Bekanntwerden entsprechender Rechtsverletzungen werden betroffene Links entfernt.
 
 ## Urheberrecht und Schutzrechte
 
+Kurz gesagt: Texte und Bilder dieser Seite dürfen ohne schriftliche Zustimmung der Rechteinhaber nicht kopiert oder weiterverwendet werden, soweit das Gesetz nichts anderes erlaubt.
+
 Die auf dieser Internetseite veröffentlichten Inhalte, Texte, Grafiken, Abbildungen, Visualisierungen und sonstigen Darstellungen unterliegen dem Urheberrecht und gegebenenfalls weiteren Schutzrechten. Jede Vervielfältigung, Bearbeitung, Verbreitung, öffentliche Zugänglichmachung oder sonstige Verwertung außerhalb der gesetzlich zulässigen Grenzen bedarf der vorherigen schriftlichen Zustimmung der jeweiligen Rechteinhaber.
 
-Die eingebetteten Schriften IBM Plex Sans, IBM Plex Mono, Big Shoulders Display und Barlow Condensed stehen unter der SIL Open Font License 1.1.
+Die in diese Seite eingebauten Schriften IBM Plex Sans, IBM Plex Mono, Big Shoulders Display und Barlow Condensed stehen unter der SIL Open Font License 1.1 (einer freien Lizenz).

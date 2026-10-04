@@ -65,7 +65,7 @@ const STUFEN_TEXT: readonly string[] = [
   'Die Baugrube für die Gesamtschule ist ausgehoben; ein Bagger arbeitet, daneben stehen die Baucontainer.',
   'Die Bodenplatte der Gesamtschule ist gegossen, die ersten Wände des Erdgeschosses stehen; ein Turmdrehkran dreht sich, am Bauzaun hängt eine bunte Wimpelkette.',
   'Holzbau: Der Kran hebt Holzelemente an die Gesamtschule, die unteren Geschosse sind schon verkleidet.',
-  'Die Gesamtschule steht fertig; daneben richten Zimmerleute das Holztragwerk der Dreifeldsporthalle auf, rundum steht ein Gerüst.',
+  'Die Gesamtschule steht fertig; daneben richten Zimmerleute die tragende Holzkonstruktion der Sporthalle (mit drei Spielfeldern) auf, rundum steht ein Gerüst.',
   'Die Sporthalle ist geschlossen; jetzt wächst die Grundschule im Winkel, eingerüstet und mit dem Kran.',
   'Alle drei Gebäude stehen; Wege, Schulhof, Rasen und junge Bäume werden angelegt.',
   'Der Campus ist fertig: Schulhof, Sportfeld, Bäume, Fahrradständer und Bushaltestelle, noch ohne Kinder.',
@@ -73,11 +73,11 @@ const STUFEN_TEXT: readonly string[] = [
 ];
 /** Beschreibung der Zwischenstufen (P19.3), Schlüssel = Stufe */
 const ZWISCHEN_TEXT: Readonly<Record<number, string>> = {
-  1.5: 'Die Bodenplatte der Gesamtschule steht in Schalung und Bewehrung, nasse Planen liegen darüber; Holzstapel gibt es noch keine.',
+  1.5: 'Die Bodenplatte der Gesamtschule ist vorbereitet: Holzform (Schalung) und Stahlgitter (Bewehrung) sind eingebaut, nasse Planen liegen darüber; Holzstapel gibt es noch keine.',
   2.5: 'Das Erdgeschoss der Gesamtschule steht; vorn stehen die Container der Schule mit erleuchteten Fenstern und Fahrrädern.',
   3.5: 'Der Holzbau der Gesamtschule ist unter Dach; auf der Sporthalle liegt erst die Bodenplatte, am Baucontainer hängt eine Lichterkette.',
   4.5: 'Die Gesamtschule ist außen fertig, das Dach der Sporthalle ist geschlossen, und für die Grundschule beginnt der Bau.',
-  5.5: 'Alle drei Gebäude sind außen fertig, in den Fenstern brennt Licht; Handwerkercontainer stehen auf dem Gelände, die Außenanlagen sind ausgesteckt.',
+  5.5: 'Alle drei Gebäude sind außen fertig, in den Fenstern brennt Licht; Handwerkercontainer stehen auf dem Gelände, die Flächen für die Außenanlagen sind abgesteckt.',
 };
 const JAHRESZEIT_TEXT: Record<Jahreszeit, string> = { fruehling: 'Frühling', sommer: 'Sommer', herbst: 'Herbst', winter: 'Winter mit Schnee' };
 const LICHT_TEXT: Record<Licht, string> = { morgen: 'Morgenlicht', tag: 'Tageslicht', abend: 'Abendlicht' };
@@ -1149,7 +1149,7 @@ function szene(buehne: Buehne, s: number, halleOffen = false): void {
     figur(buehne, 100, 258, 'arbeiter', 'orange', 2);
   }
   if (s === 5.5) {
-    // alle drei Gebäude außen fertig, Handwerkercontainer, Außenanlagen ausgesteckt
+    // alle drei Gebäude außen fertig, Handwerkercontainer, Außenanlagen abgesteckt
     const bunt: readonly Akzent[] = ['sonne', 'beere', 'lagune', 'blau', 'gruen'];
     buehne.ding(GRUNDSCHULE_A.x1, GRUNDSCHULE_A.y1, GRUNDSCHULE_A.x2, GRUNDSCHULE_A.y2, fertigerBau(GRUNDSCHULE_A, bunt));
     buehne.ding(GRUNDSCHULE_B.x1, GRUNDSCHULE_B.y1, GRUNDSCHULE_B.x2, GRUNDSCHULE_B.y2, fertigerBau(GRUNDSCHULE_B, bunt));

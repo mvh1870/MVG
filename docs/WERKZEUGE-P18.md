@@ -154,7 +154,7 @@ Regie-Chips: `lueftung-kurz` · `lueftung-voll` · `mensa`; Schritt 1–5 und �
 
 **Zweck:** Führt mit wenigen Ja/Nein-Fragen von einem Sachverhalt zur passenden Vorgangsart und zeigt den nächsten Schritt, was festzuhalten ist und welche Verwechslung typisch ist.
 
-**Leser:** unpersönlich. Die Sätze beschreiben, was mit dem Sachverhalt geschieht („wird als Frühwarnung festgehalten“), nicht, wer ihn einträgt; erfasst und bearbeitet wird in der Software des Bauherrn durch die Projektsteuerung (v24:hb-1, v24:tlb-2, O-36).
+**Leser:** seit L-321 „Sie“, wo etwas zu tun ist, und sachlich, wo etwas gilt (vorher unpersönlich, L-254). Die Sätze beschreiben, was mit dem Sachverhalt geschieht („wird als Frühwarnung festgehalten“), nicht, wer ihn einträgt; erfasst und bearbeitet wird in der Software des Bauherrn durch die Projektsteuerung (v24:hb-1, v24:tlb-2, O-36).
 
 ### B.1 Ablauf
 
@@ -261,7 +261,7 @@ Regie-Chips je Sachverhalt; „weiter“ beantwortet die nächste Frage mit der 
 
 **Zweck:** Bewertet ein Risiko mit den vier eigenen Grenzen des Projekts für Wahrscheinlichkeit, Kosten und Termin und zeigt Stufen, Matrixfeld und Bearbeitungspriorität – auch dann, wenn noch nicht alles bekannt ist.
 
-**Leser:** unpersönlich. Das Werkzeug zeigt, wie eine Bewertung nach den Grenzen ausfällt; bewertet und gepflegt wird das Risiko in der Software des Bauherrn durch die Projektsteuerung, die Annahme eines wesentlichen Risikos entscheidet die befugte Stelle (v24:hb-1, v24:hb-1.3, v24:tlb-2, O-36).
+**Leser:** seit L-321 „Sie“, wo etwas zu tun ist, und sachlich, wo etwas gilt (vorher unpersönlich, L-254). Das Werkzeug zeigt, wie eine Bewertung nach den Grenzen ausfällt; bewertet und gepflegt wird das Risiko in der Software des Bauherrn durch die Projektsteuerung, die Annahme eines wesentlichen Risikos entscheidet die befugte Stelle (v24:hb-1, v24:hb-1.3, v24:tlb-2, O-36).
 
 ### C.1 Ablauf
 
@@ -358,7 +358,7 @@ Regie-Chips `ris-009` · `ris-014` · `ris-021` und die vier „Was wäre, wenn�
 
 **Zweck:** Macht aus wenigen Feldern einen Monatsbericht auf einer Seite und warnt, wenn eine Ampel ohne Entscheidungsfrage oder benötigte Reaktion dasteht.
 
-**Leser:** unpersönlich. Den Bericht erstellt die Projektsteuerung für den Bauherrn; die Sätze sagen, was im Bericht fehlt („die Reaktion, die vom Bauherrn gebraucht wird“), nicht, wer schreibt (v24:hb-4, v24:tlb-2, O-36).
+**Leser:** seit L-321 „Sie“, wo etwas zu tun ist, und sachlich, wo etwas gilt (vorher unpersönlich, L-254). Den Bericht erstellt die Projektsteuerung für den Bauherrn; die Sätze sagen, was im Bericht fehlt („die Reaktion, die vom Bauherrn gebraucht wird“), nicht, wer schreibt (v24:hb-4, v24:tlb-2, O-36).
 
 ### D.1 Ablauf
 

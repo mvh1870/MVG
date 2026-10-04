@@ -223,7 +223,7 @@ test('campusIso (P19.3): Inhalt der Zwischenbilder laut Gerüst', () => {
   assert.match(a, /ci-bewehrung/);
   assert.match(a, /ci-plane/);
   assert.match(a, /ci-pfuetze/);
-  assert.match(campusIsoText(1.5), /Schalung und Bewehrung/);
+  assert.match(campusIsoText(1.5), /Schalung\W.*Bewehrung/);
   assert.match(campusIsoText(1.5), /Planen/);
   assert.match(campusIsoText(1.5), /Holzstapel gibt es noch keine/);
   assert.doesNotMatch(campusIso(1.5), /ci-roh/);
@@ -244,9 +244,9 @@ test('campusIso (P19.3): Inhalt der Zwischenbilder laut Gerüst', () => {
   assert.match(campusIsoText(4.5), /Grundschule beginnt|für die Grundschule beginnt der Bau/);
   assert.match(campusIsoText(4.5), /Dach der Sporthalle ist geschlossen/);
   assert.match(campusIso(4.5), /ci-oberlicht/);
-  // 5,5: alle drei Gebäude fertig, Handwerkercontainer, ausgesteckte Außenanlagen
+  // 5,5: alle drei Gebäude fertig, Handwerkercontainer, abgesteckte Außenanlagen
   assert.match(campusIsoText(5.5), /Alle drei Gebäude/);
-  assert.match(campusIsoText(5.5), /ausgesteckt/);
+  assert.match(campusIsoText(5.5), /abgesteckt/);
   assert.match(campusIso(5.5), /ci-messlatte/);
   assert.match(campusIso(5.5), /ci-schnur/);
   assert.doesNotMatch(campusIso(6), /ci-messlatte/);

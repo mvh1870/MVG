@@ -4,7 +4,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
 import {
-  FELDGRENZEN, leseStandBericht, pruefeBericht, schaetzeUmfang, textBreite, ZEICHEN_JE_ZEILE, ZEILEN_JE_SEITE, type Bericht, type BerichtEintrag, type OffeneEntscheidung,
+  FELDGRENZEN, leseStandBericht, pruefeBericht, schaetzeUmfang, textBreite, zeilenFuer, ZEICHEN_JE_ZEILE, ZEILEN_JE_SEITE, type Bericht, type BerichtEintrag, type OffeneEntscheidung,
 } from '../src/werkzeuge/monatsbericht.ts';
 
 const MAX = { veraenderungen: 4, blockiert: 3, massnahmen: 3, fruehwarnungen: 3, probleme: 4 };
@@ -137,7 +137,7 @@ test('Kopf (R78): fehlt genau eines von Monat, Datenstand und Lage → berichtUn
 });
 
 /** Höchstfall: jedes Feld bis zur Feldgrenze, jeder Abschnitt bis zur Höchstzahl, jede Ampel mit Reaktion. */
-function hoechstfall(plus = 0, zeichen = 'x'): Bericht {
+function hoechstfall(plus = 0, zeichen = 'Langer Eintrag mit vielen Wörtern '): Bericht {
   const t = (n: number): string => zeichen.repeat(Math.ceil((n + plus) / zeichen.length)).slice(0, n + plus);
   const eintrag = (): BerichtEintrag => ({ text: t(FELDGRENZEN.eintrag), kennung: t(FELDGRENZEN.kennung) });
   const ampel = { farbe: 'rot' as const, satz: t(FELDGRENZEN.ampelSatz), gehoertZu: { reaktion: t(FELDGRENZEN.ampelReaktion) } };
@@ -162,15 +162,15 @@ test('Seitenmesser: Höchstfall aller Felder passt auf eine Seite; deutlich dar�
   assert.equal(schaetzeUmfang(oktober(), 92, 10).passt, false);
 });
 
-test('Seitenmesser an der Kante: 50 Zeilen passen, 51 nicht (D-R7); Vorgabe 50 Zeilen je Seite, 78 Zeichen je Zeile', () => {
+test('Seitenmesser an der Kante: 50 Zeilen passen, 51 nicht (D-R7); Vorgabe 50 Zeilen je Seite, 86 Zeichen je Zeile', () => {
   assert.equal(ZEILEN_JE_SEITE, 50);
-  assert.equal(ZEICHEN_JE_ZEILE, 78);
+  assert.equal(ZEICHEN_JE_ZEILE, 86);
   const hoechst = schaetzeUmfang(hoechstfall());
   assert.equal(hoechst.zeilen, 50, 'der Höchstfall füllt die Seite genau');
   assert.equal(hoechst.passt, true);
   // eine Zeile mehr: die Reaktion um eine Zeilenbreite verlängern
   const einsMehr = hoechstfall();
-  einsMehr.reaktion += 'x'.repeat(ZEICHEN_JE_ZEILE);
+  einsMehr.reaktion += ' ' + 'x'.repeat(ZEICHEN_JE_ZEILE - 1);
   const u = schaetzeUmfang(einsMehr);
   assert.equal(u.zeilen, 51);
   assert.equal(u.passt, false);
@@ -182,13 +182,13 @@ test('Seitenmesser an der Kante: 50 Zeilen passen, 51 nicht (D-R7); Vorgabe 50 Z
 });
 
 test('Seitenmesser (R78): die Spalten der Abschnitte rechnen mit der halben Zeilenbreite, nicht breiter', () => {
-  // fünf Abschnitte mit je einem Eintrag von 199 Zeichen: in der Spalte (36 Zeichen) 6 Zeilen je Eintrag, in der vollen Breite nur 3
+  // fünf Abschnitte mit je einem Eintrag von 199 Zeichen: in der Spalte (41 Zeichen) 5 Zeilen je Eintrag, in der vollen Breite nur 3
   const leer = oktober();
   for (const k of Object.keys(MAX)) leer.abschnitte[k] = 'keine';
   const voll = oktober();
   for (const k of Object.keys(MAX)) voll.abschnitte[k] = [{ text: 'a'.repeat(197), kennung: 'A' }];
-  // Spaltenzeilen: leer 5 + 5 = 10 → 5 Zeilen; voll 5 + 5 · 6 = 35 → 18 Zeilen
-  assert.equal(schaetzeUmfang(voll).zeilen - schaetzeUmfang(leer).zeilen, 13);
+  // Spaltenzeilen: leer 5 + 5 = 10 → 5 Zeilen; voll 5 + 5 · 5 = 30 → 15 Zeilen
+  assert.equal(schaetzeUmfang(voll).zeilen - schaetzeUmfang(leer).zeilen, 10);
 });
 
 test('Seitenmesser (R78): breite Buchstaben (M, W) zählen mehr – ein Bericht aus M und W im Höchstfall passt nicht, Großschrift ohne M und W schon', () => {
@@ -199,6 +199,47 @@ test('Seitenmesser (R78): breite Buchstaben (M, W) zählen mehr – ein Bericht 
   const breit = schaetzeUmfang(hoechstfall(0, 'WM'));
   assert.equal(breit.passt, false, `${breit.zeilen} Zeilen`);
   assert.ok(breit.zeilen > 60);
+});
+
+test('Seitenmesser (R79): Kleinbuchstaben m und w, Blockzeichen und ein langes Wort ohne Leerzeichen passen im Höchstfall nicht – wie im PDF', () => {
+  assert.equal(textBreite('mw'), 2 * 1.35);
+  assert.equal(textBreite('██'), 2 * 1.6, 'fremde Schriftzeichen sind breiter');
+  for (const [art, text] of [['m und w', 'mm ww mm ww '], ['m und w mit Leerzeichen', 'mmmmmmm wwwwwww '], ['Blockzeichen', '████████ '], ['langes Wort', 'Wasserschadensbeseitigungskoordinationsunterlagen']] as const) {
+    const u = schaetzeUmfang(hoechstfall(0, text));
+    assert.equal(u.passt, false, `${art}: ${u.zeilen} Zeilen`);
+  }
+  assert.equal(schaetzeUmfang(hoechstfall(0, 'Haustechnikfirma Mehrkostenanmeldung ')).passt, true, 'gewöhnlicher Text bleibt auf einer Seite');
+});
+
+test('Seitenmesser (R79): ein Wort länger als die Zeile beginnt eine neue Zeile und bricht dann nach der Breite um', () => {
+  assert.equal(zeilenFuer('', 10), 1);
+  assert.equal(zeilenFuer('aaaa bbbb', 10), 1);
+  assert.equal(zeilenFuer('aaaaa bbbbb', 10), 2, 'Wortumbruch statt Zeichenzahl');
+  assert.equal(zeilenFuer('ab ' + 'c'.repeat(25), 10), 4, 'langes Wort: neue Zeile, dann 25 Zeichen in drei Zeilen');
+  assert.equal(zeilenFuer('c'.repeat(10), 10), 1);
+  assert.equal(zeilenFuer('c'.repeat(11), 10), 2);
+});
+
+test('Seitenmesser (R79): Projektzeile (nur bei gewähltem Beispiel) und Datenstand-Zeile werden mitgezählt', () => {
+  const ohne = oktober();
+  assert.equal(schaetzeUmfang({ ...ohne, projekt: 'Schulcampus Lindenhall-Süd' }).zeilen - schaetzeUmfang({ ...ohne, projekt: null }).zeilen, 1, 'Projektzeile');
+  assert.equal(schaetzeUmfang({ ...ohne, projekt: null }).zeilen, schaetzeUmfang(ohne).zeilen, 'ohne Projekt wie fehlend');
+  const hoechst = schaetzeUmfang(hoechstfall());
+  const mitProjekt = schaetzeUmfang({ ...hoechstfall(), projekt: 'Schulcampus Lindenhall-Süd' });
+  assert.equal(hoechst.passt, true);
+  assert.equal(mitProjekt.zeilen, hoechst.zeilen + 1);
+  assert.equal(mitProjekt.passt, false, 'der Höchstfall mit gewähltem Beispiel passt nicht mehr (PDF: 2 Seiten)');
+  const kurz = oktober();
+  kurz.datenstand = 'x';
+  const lang = oktober();
+  lang.datenstand = ('Wort ').repeat(40);
+  assert.ok(schaetzeUmfang(lang).zeilen > schaetzeUmfang(kurz).zeilen, 'Datenstand-Zeile zählt nach ihrer Länge');
+  // die Datenstand-Zeile selbst: 2 Zeilen, wenn „Datenstand: “ plus Text die Zeile übersteigt
+  const gerade = oktober();
+  gerade.datenstand = 'x'.repeat(ZEICHEN_JE_ZEILE - 'Datenstand: '.length);
+  const eins = oktober();
+  eins.datenstand = 'x'.repeat(ZEICHEN_JE_ZEILE - 'Datenstand: '.length + 1);
+  assert.equal(schaetzeUmfang(eins).zeilen - schaetzeUmfang(gerade).zeilen, 1);
 });
 
 test('Werkzeugstand für die Leinwand: nur der Schalter „Kosten-Ampel ohne Frage“', () => {

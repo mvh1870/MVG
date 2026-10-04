@@ -73,7 +73,7 @@ mini:
     - { text: "150.000 Euro aus der Reserve für die früher ausgeschriebenen Holzelemente", bild: holzstapel, loesung: buergermeisterin, erklaerung: "Mehr als 100.000 Euro, und das Geld kommt aus der Reserve. Über die Reserve entscheidet die Bürgermeisterin immer – auch bei kleinen Beträgen." }
     - { text: "Die Freigabe der fertigen Ausführungspläne – der Pläne, nach denen gebaut wird", bild: stempel, loesung: buergermeisterin, erklaerung: "Jede Freigabe am Ende eines großen Abschnitts erteilt der Bauherr selbst. Der Lenkungskreis berät nur." }
     - { text: "Ob die Stadt längere Lieferzeiten in Kauf nimmt, die den Schulstart gefährden", bild: lieferwagen, loesung: buergermeisterin, erklaerung: "Ein großes Risiko bewusst zu tragen, ist eine Entscheidung des Bauherrn." }
-    - { text: "Welche von zwei gleich teuren Farben die Fassadenplatten bekommen", loesung: sie, erklaerung: "Kein Mehrbetrag, kein Risiko, keine Freigabe – das entscheiden Sie." }
+    - { text: "Welche von zwei gleich teuren Farben die Fassadenplatten bekommen", bild: kostenzettel, loesung: sie, erklaerung: "Kein Mehrbetrag, kein Risiko, keine Freigabe – das entscheiden Sie." }
 
 dahinter: Eine Änderung braucht einen sauberen Weg vom Antrag bis zum Beschluss – sonst entscheiden am Ende Gespräche am Rand über Geld, über das niemand entschieden hat.
 

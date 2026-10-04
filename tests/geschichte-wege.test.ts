@@ -140,6 +140,40 @@ test('Musterwege behalten ihre Bilanz: gut → ruhig, vertretbar → letzte Mete
   assert.deepEqual([...typen].sort(), ['letzte-meter', 'nicht-getragen', 'ruhig', 'umwege']);
 });
 
+/* --------------------------------------------- Kurzfassung: Bilanz und Antwortlage -- */
+
+/**
+ * R79: In der Kurzfassung zählen nur die vier gespielten Kapitel (übersprungene wie die gute Antwort). Der Bilanztext darf auf
+ * allen 81 Kurzwegen nie der Antwortlage widersprechen: nur gute Antworten ⇒ nie „mit Umwegen“, immer „ruhig“;
+ * eine gewählte Falle ⇒ nie „ruhig“; „mit Umwegen“ nur mit mindestens einer nicht guten Antwort. Alte Wahlen in
+ * übersprungenen Kapiteln (z. B. nach einem langen Weg) ändern nichts.
+ */
+test('Kurzfassung, alle 81 Wege: Bilanz widerspricht nie den gespielten Antworten (auch mit alten Wahlen in übersprungenen Kapiteln)', () => {
+  const kurzKap = wegKapitel(G, true);
+  const uebersprungen = G.kapitel.filter((k) => !kurzKap.includes(k));
+  assert.equal(kurzKap.length, 4);
+  assert.ok(uebersprungen.length > 0);
+  const kurzeWege = WEGE.filter((w) => w.stand.kurz);
+  assert.equal(kurzeWege.length, 81);
+  let nurGute = 0;
+  for (const w of kurzeWege) {
+    const gespielt = kurzKap.map((k) => w.wahl.get(k.id) as Antwort);
+    const alleGut = gespielt.every((a) => a.wertung === 'gut');
+    const hatFalle = gespielt.some((a) => a.wertung === 'falle');
+    // dieselben Wege, aber mit Fallen-Wahlen aus einem früheren langen Weg in den übersprungenen Kapiteln
+    let alt = w.stand;
+    for (const k of uebersprungen) alt = waehle(G, alt, k.id, k.antworten.findIndex((a) => a.wertung === 'falle'));
+    for (const stand of [w.stand, alt]) {
+      const typ = bilanzAmEnde(G, stand);
+      assert.deepEqual(balken(G, stand, { ort: 'ende' }), w.b, `${w.name}: alte Wahlen verändern die Balken`);
+      if (alleGut) { nurGute += 1; assert.equal(typ, 'ruhig', `${w.name}: nur gute Antworten, Bilanz ${typ}`); }
+      if (typ === 'umwege') assert.ok(gespielt.some((a) => a.wertung !== 'gut'), `${w.name}: „mit Umwegen“ ohne nicht gute Antwort`);
+      if (hatFalle) assert.notEqual(typ, 'ruhig', `${w.name}: „ruhig“ trotz Falle`);
+    }
+  }
+  assert.equal(nurGute, 2, 'genau ein Weg mit nur guten Antworten (zweimal geprüft)');
+});
+
 /* ------------------------------------------------- Wege mit offenen Kapiteln -- */
 
 /**

@@ -404,6 +404,11 @@ li[data-fertig="ja"] .wz-schritt-nr { background: var(--status-gruen-soft); colo
   .druck-bogen .wz-druck-punkte li[data-stand="nein"] .wz-druck-stand { color: var(--status-rot); }
   .druck-bogen .wz-druck-saetze, .druck-bogen .wz-druck-pfad { margin: 0; padding-left: 6mm; list-style: decimal outside; }
   .druck-bogen .wz-druck-saetze li, .druck-bogen .wz-karte, .druck-bogen .wz-kasten { break-inside: avoid; }
+  /* Wegweiser (R79): alle Blöcke des Ergebnisses mit gleichem Abstand, auch die Schlusssätze und die typische Verwechslung */
+  .druck-bogen .wz-druck[data-werkzeug="wegweiser"] .wz-art-daten, .druck-bogen .wz-druck[data-werkzeug="wegweiser"] .wz-verwechslung,
+  .druck-bogen .wz-druck[data-werkzeug="wegweiser"] .wz-zusaetze, .druck-bogen .wz-druck[data-werkzeug="wegweiser"] .wz-verweis,
+  .druck-bogen .wz-druck[data-werkzeug="wegweiser"] .wz-kasten { margin: 3mm 0 0; }
+  .druck-bogen .wz-druck[data-werkzeug="wegweiser"] .wz-zusaetze { padding-left: 6mm; }
   .druck-bogen .wz-karten { gap: 1.5mm; }
   .druck-bogen .wz-karte { padding: 1mm 2.5mm; }
   .druck-bogen .wz-druck-tabelle th { text-align: left; padding-right: 4mm; }

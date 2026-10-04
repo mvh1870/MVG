@@ -45,10 +45,10 @@ function gegenstand(name: string | null, groesse = 96, klasse = 'gs-gegenstand')
 }
 
 /** Campus der Stufe mit Jahreszeit und Licht, groß; dekorativ (Drehbuch Abschnitt 7), Zusatz der Szene darüber. */
-function campus(c: CampusBild, klasse: string, zusatz: string | null = null): HTMLElement {
+function campus(c: CampusBild, klasse: string, zusatz: string | null = null, halleOffen = false): HTMLElement {
   // der große Rahmen (2,2 : 1) bekommt den breiten Ausschnitt – sonst schnitte er Kran und Dächer oben ab (R75)
   const breit = klasse.includes('gs-campus-gross');
-  const bild = vonHtml(campusIso(c.stufe, { jahreszeit: c.jahreszeit, licht: c.licht, ...(c.wetter ? { wetter: c.wetter } : {}), ...(breit ? { ausschnitt: 'breit' as const } : {}) }));
+  const bild = vonHtml(campusIso(c.stufe, { jahreszeit: c.jahreszeit, licht: c.licht, ...(c.wetter ? { wetter: c.wetter } : {}), ...(breit ? { ausschnitt: 'breit' as const } : {}), ...(halleOffen ? { halleOffen: true } : {}) }));
   // füllt den Rahmen (Seitenverhältnis aus dem CSS); was übersteht, wird knapp beschnitten (breit: nur Himmel an den Seiten)
   bild.firstElementChild?.setAttribute('preserveAspectRatio', 'xMidYMid slice');
   return h('div', { class: `gs-campus ${klasse}`, 'aria-hidden': 'true', 'data-stufe': c.stufe },
@@ -503,7 +503,7 @@ function ende(o: SchrittOptionen): HTMLElement {
       h('div', { class: 'gs-kopf-text' },
         h('p', { class: 'gs-kicker' }, e.zeit),
         h('h1', { class: 'gs-titel', tabindex: -1, 'data-pruef': 'gs-titel' }, w.ende))),
-    h('div', { class: 'gs-buehnenbild' }, campus(e.campus, 'gs-campus-gross gs-campus-ende')),
+    h('div', { class: 'gs-buehnenbild' }, campus(e.campus, 'gs-campus-gross gs-campus-ende', null, typ !== 'offen' && stufe(b.zeit) === 'niedrig')),
     h('div', { class: 'gs-einstieg', 'data-pruef': 'gs-einstieg' }, inhalt(einstieg),
       // wie die Sätze je Balken ein Urteil über den ganzen Weg – bei offenen Entscheidungen nicht (R75)
       typ !== 'offen' && stufe(b.zeit) === 'niedrig' ? h('div', { 'data-pruef': 'gs-zeit-niedrig' }, inhalt(e.zeitNiedrigHtml)) : null, gegenstand('schulbus', 104, 'gs-gegenstand gs-gegenstand-einstieg')),

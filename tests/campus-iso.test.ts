@@ -166,3 +166,16 @@ test('campusIso (R75): der breite Ausschnitt (2,2 : 1) zeigt jede Stufe oben gan
   const sichtbarAb = gy + (gh - gb / 2.2) / 2;
   assert.ok(szeneOben(campusIso(5)) < sichtbarAb, 'Gegenprobe: im alten Rahmen ist der Kran oben abgeschnitten');
 });
+
+test('campusIso: halleOffen zeigt ab Stufe 5 die Sporthalle unfertig (Tragwerk, Gerüst), sonst nichts anderes; Beschreibung nennt es', () => {
+  for (const s of STUFEN) {
+    const fertig = campusIso(s, {});
+    const offen = campusIso(s, { halleOffen: true });
+    if (s < 5) { assert.equal(offen, fertig, `Stufe ${s} unverändert`); continue; }
+    assert.notEqual(offen, fertig, `Stufe ${s}`);
+    assert.match(offen, /data-halle="offen"/u);
+    assert.doesNotMatch(fertig, /data-halle/u);
+    assert.match(campusIsoText(s, 'sommer', 'tag', undefined, true), /Sporthalle ist noch nicht fertig/u);
+    assert.doesNotMatch(campusIsoText(s), /noch nicht fertig/u);
+  }
+});

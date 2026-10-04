@@ -54,10 +54,10 @@ function ausBeispiel(v: MonatsberichtTeil, id: string | null): Zustand {
   };
 }
 
-function bericht(z: Zustand): Bericht {
+function bericht(z: Zustand, projekt: string): Bericht {
   const eintrag = (e: Eintrag): BerichtEintrag => ({ text: e.text, kennung: e.kennung, ...(e.dringlich ? { dringlich: true } : {}), ...(e.stand !== null ? { stand: e.stand } : {}) });
   return {
-    monat: z.monat, datenstand: z.datenstand, lage: z.lage, reaktion: z.reaktion,
+    monat: z.monat, datenstand: z.datenstand, lage: z.lage, reaktion: z.reaktion, projekt: z.beispiel !== null ? projekt : null,
     ampeln: Object.fromEntries(AMPELN.map((id) => {
       const a = z.ampeln[id];
       const gehoertZu = a.gehoertZu === NICHTS ? null : a.gehoertZu === REAKTION ? { reaktion: a.reaktion } : { entscheidung: a.gehoertZu };
@@ -243,7 +243,7 @@ export function monatsbericht(o: WerkzeugOptionen): HTMLElement {
   };
 
   const zeichneVorschau = (): void => {
-    const p = pruefeBericht(bericht(z), max);
+    const p = pruefeBericht(bericht(z, v.projekt), max);
     const wort = v.ampel[p.ampel];
     status.textContent = `${wort}${p.hinweise.length > 0 ? ` – ${E.hinweiseOffen(p.hinweise.length)}` : ''}`;
     ersetze(vorschauOrt,

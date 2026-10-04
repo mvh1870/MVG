@@ -44,7 +44,7 @@ function pruefe(funde: string[], wo: string, el: Element): void {
 
 test('Start und Rahmen', () => {
   const funde: string[] = [];
-  pruefe(funde, 'start', baueStart({ startseite: inhalte.startseite, themenAnzahl: 16, kapitelAnzahl: 8, werkzeugAnzahl: 5, weiterlesen: false, bedienbar: true }));
+  pruefe(funde, 'start', baueStart({ startseite: inhalte.startseite, themenAnzahl: 16, kapitelAnzahl: 8, werkzeugAnzahl: WERKZEUGE.length, weiterlesen: false, bedienbar: true }));
   assert.deepEqual(funde, []);
 });
 

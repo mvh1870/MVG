@@ -137,7 +137,7 @@ Sechs Porträts (Sie als Spielfigur plus fünf Figuren), flach, als Vektorgrafik
 
 | Regel | Titel (sichtbar) | Text (sichtbar) |
 |---|---|---|
-| Vertrauen niedrig | **Gebaut, aber nicht getragen** | > Die Gebäude stehen, doch das Vertrauen hat gelitten: Zu oft lief es anders, als die Bürgermeisterin es von Ihnen erwarten durfte. Ein Projekt braucht nicht nur Holz und Beton, sondern Entscheidungen, auf die sich alle verlassen können. |
+| Vertrauen niedrig | **Gebaut, aber nicht getragen** | > Die Gebäude stehen, doch das Vertrauen hat gelitten: Zu oft lief es anders, als die Bürgermeisterin es von Ihnen erwarten durfte. Die Bürgermeisterin nickt Ihnen zu – knapp. Beim nächsten Mal, sagt ihr Blick, will sie früher gefragt werden. |
 | Zeit niedrig | **Auf den letzten Metern** | > Die Schule hat geöffnet, aber der Puffer war am Ende aufgebraucht. Wer eine Frage liegen lässt oder auf Umwegen löst, bezahlt auf der Baustelle fast immer mit Zeit. |
 | Zeit hoch, Vertrauen hoch, Geld mindestens mittel, **keine Falle gewählt** | **Ruhig ins Ziel** | > Die Kinder sind pünktlich eingezogen, und jede große Entscheidung hat die Bürgermeisterin selbst getroffen – mit allem, was sie dafür wissen musste. So bleibt ein Projekt steuerbar, auch wenn es stürmt. |
 | alle anderen | **Geschafft – mit Umwegen** | > Der Campus steht, die Kinder sind da – aber nicht jede Ihrer Antworten war der gerade Weg, und jeder Umweg hat etwas gekostet, ob Zeit, Geld oder Vertrauen. |
@@ -287,7 +287,7 @@ Knopf: > Los geht's · daneben leise: > Kurzfassung (etwa 10 Minuten)
 > Weil der Eintrag schon als Risiko im Bericht steht, fragt die Kämmerei – die Finanzabteilung der Stadt – nach, bevor jemand weiß, ob da überhaupt etwas ist. Immerhin fragt der Architekt bis Ende des Monats bei den Herstellern nach.
 
 *C · Falle*
-> Clara Faden hält den Hinweis trotzdem vollständig fest: Prüffrage, der Architekt fragt bis Ende des Monats nach. Aber Konrad Schwung hat Ihren Satz gehört – es hat ja Zeit. Der Monat vergeht ohne Nachfrage; bei ihrer Wochendurchsicht meldet Clara Faden die Prüffrage als überfällig, und erst drei Wochen später als nötig fragt er bei den Herstellern nach.
+> Clara Faden hält den Hinweis trotzdem vollständig fest: Prüffrage, der Architekt fragt bis Ende des Monats nach. Aber Konrad Schwung hat Ihren Satz gehört – es hat ja Zeit. Der Monat vergeht ohne Nachfrage; bei ihrer Wochendurchsicht meldet Clara Faden die Prüffrage als überfällig, und erst nach dieser Meldung fragt er bei den Herstellern nach.
 
 **So macht man es gut**
 > Ein unklarer Hinweis wird gleich als Frühwarnung festgehalten, spätestens bei der nächsten Wochendurchsicht – mit seiner Herkunft, einer klaren Prüffrage, einem Namen und einem Termin. Bewertet wird erst, wenn die Antwort da ist; bis dahin bleibt er offen und wird jede Woche angeschaut.
@@ -349,7 +349,7 @@ Grafik zur Szene: kleine Matrix aus 5 × 5 Feldern ohne Zahlen, Achsen „wie wa
 |---|---|---|---|---|---|
 | 3 | A · gut | > Sie sagen der Bürgermeisterin sofort Bescheid; die Vorlage – früher ausschreiben oder abwarten – liegt ihr diese Woche vor. | −1 | +2 | +1 |
 | 1 | B · vertretbar | > Sie sagen der Bürgermeisterin sofort in zwei Sätzen Bescheid. Die Vorlage kommt in einem Monat in den regulären Lenkungskreis. | −1 | −1 | −1 |
-| 2 | C · Falle | > Sie warten mit der Meldung, bis ein zweiter Holzbauer die Einschätzung bestätigt – mit einer bestätigten Zahl überzeugen Sie die Bürgermeisterin eher. | −2 | −2 | −2 |
+| 2 | C · Falle | > Sie warten mit der Meldung, bis der vierte Hersteller geantwortet hat und die Zahl bestätigt ist – mit einer bestätigten Zahl überzeugen Sie die Bürgermeisterin eher. | −2 | −2 | −2 |
 
 **Folge-Szenen**
 
@@ -489,10 +489,10 @@ Fachliche Einordnung (intern): Die angekündigten Mehrkosten sind ein Risiko (no
 > Vier Wochen später ist die Prüfung fertig: Die Leistungen gehören schon zum Vertrag der Haustechnikfirma, extra berechnen darf sie nichts. Clara Faden schließt das Risiko – mit Begründung –, und das Geld, das in der Reserve dafür zurückgehalten war, ist wieder frei. Die Bürgermeisterin sagt nach der Sitzung nur: „So möchte ich das jedes Mal.“
 
 *B · vertretbar*
-> Der Stadtrat erschrickt über zwei Millionen und verlangt eine Liste, wo man sparen könnte; die Planung wartet vier Wochen auf die Antwort. Dann ist die Prüfung fertig: Die Leistungen gehören schon zum bestehenden Vertrag, die Zahl sinkt wieder. Nur hat die Firma gemerkt, dass ihre Forderung schon eingerechnet war – und sie verhandelt jetzt bei jeder Kleinigkeit härter.
+> Der Stadtrat erschrickt über zwei Millionen und verlangt eine Liste, wo man sparen könnte; die Planung wartet vier Wochen auf die Antwort. Dann ist die Prüfung fertig: Die Leistungen gehören schon zum bestehenden Vertrag, die Zahl sinkt wieder. Nur hat die Firma gemerkt, dass die Stadt ihre Forderung als berechtigt eingerechnet hatte – und sie verhandelt jetzt bei jeder Kleinigkeit härter.
 
 *C · Falle*
-> Anderthalb Millionen stehen in keiner Rechnung. Als ein Stadtrat fragt, woher die Zahl kommt, bleibt nur die Antwort: aus der Mitte. Clara Faden legt danach beide Rechnungen nebeneinander und zeigt den Unterschied. Die Prüfung endet wie erwartet – die Leistungen gehören schon zum bestehenden Vertrag –, aber die Firma verhandelt jetzt härter, denn halb eingerechnet war ihre Forderung ja schon.
+> Anderthalb Millionen stehen in keiner Rechnung. Als ein Stadtrat fragt, woher die Zahl kommt, bleibt nur die Antwort: aus der Mitte. Clara Faden legt danach beide Rechnungen nebeneinander und zeigt den Unterschied. Die Prüfung endet wie erwartet – die Leistungen gehören schon zum bestehenden Vertrag –, aber die Firma verhandelt jetzt härter, denn die Stadt hatte ihre Forderung halb als berechtigt eingerechnet.
 
 **So macht man es gut**
 > Es gibt einen maßgeblichen Stand der Zahlen, und jede Zahl darin hat ein Datum und eine Begründung. Unterschiedliche Einschätzungen werden nebeneinander erklärt, nicht gemittelt; was noch unsicher ist, steht als Risiko mit seiner Spanne daneben und wird nicht doppelt gezählt.
@@ -646,7 +646,7 @@ Empfehlung der Projektsteuerin (sichtbar, fest, für die abgestimmten Gewichte):
 **Folge-Szenen**
 
 *A · gut*
-> Im Lenkungskreis beraten Kämmerei und Schulamt. Die Bürgermeisterin stellt nur eine Frage: „Wenn mir Klima und Betrieb wichtiger würden – bliebe es beim Ersatzgerät?“ Clara Faden: „Schon bei ‚wichtig‘ läge der spätere Einzug gleichauf; dann zählt Ihr Urteil.“
+> Im Lenkungskreis beraten die Finanzabteilung und das Schulamt. Die Bürgermeisterin stellt nur eine Frage: „Wenn mir Klima und Betrieb wichtiger würden – bliebe es beim Ersatzgerät?“ Clara Faden: „Schon bei ‚wichtig‘ läge der spätere Einzug gleichauf; dann zählt Ihr Urteil.“
 >
 > Die Bürgermeisterin entscheidet: Ersatzgerät, das Geld kommt aus der Reserve. Clara Faden hält den Beschluss fest, mit Datum und einer Auflage: Das Gerät muss vor dem Schulstart eingebaut und eingestellt sein. Hanna Klingel atmet hörbar aus.
 

@@ -35,6 +35,8 @@ export interface Bericht {
   abschnitte: Record<string, readonly BerichtEintrag[] | 'keine' | null>;
   entscheidungen: readonly OffeneEntscheidung[] | 'keine' | null;
   reaktion: string;
+  /** Projektzeile im Bericht (steht nur, solange ein Beispiel gewählt ist); null oder fehlend = keine */
+  projekt?: string | null;
 }
 
 /** anteil 1 = eine Seite */
@@ -54,15 +56,21 @@ export const FELDGRENZEN = {
   frage: 80, stelle: 30, bis: 20, reaktion: 200,
 } as const;
 
-/** vorsichtig gerechnet (R77): Reserve gegenüber den rund 92 Zeichen des Fließtexts; Großschrift passt damit noch in die Zeile */
-export const ZEICHEN_JE_ZEILE = 78;
-/** Zeichen, die selbst über die Reserve hinaus breit sind (R78): zählen 1,35-fach; Zeilen aus M und W fassen deutlich weniger */
-const BREIT = 'MW@%';
+/** vorsichtig gerechnet (R77, R79): Reserve gegenüber den rund 92 Zeichen des Fließtexts, weil nach Wörtern umbrochen wird (Zeilenende bleibt oft leer); Großschrift passt damit noch in die Zeile */
+export const ZEICHEN_JE_ZEILE = 86;
+/** Zeichen, die selbst über die Reserve hinaus breit sind (R78, R79): M, W, m, w, @, % zählen 1,35-fach; Zeilen daraus fassen deutlich weniger */
+const BREIT = 'MWmw@%';
 const BREIT_FAKTOR = 1.35;
-/** Breite eines Texts in „Zeichen“ der Schätzung: jedes Zeichen 1, die breiten (M, W, @, %) 1,35 */
+/** fremde Schriftzeichen (Blockzeichen, Symbole, Emoji, CJK) sind breiter als Lateinschrift: 1,6-fach */
+const FREMD_FAKTOR = 1.6;
+const zeichenBreite = (c: string): number => {
+  if (BREIT.includes(c)) return BREIT_FAKTOR;
+  return (c.codePointAt(0) ?? 0) > 0x24f ? FREMD_FAKTOR : 1;
+};
+/** Breite eines Texts in „Zeichen“ der Schätzung: jedes Zeichen 1, die breiten (M, W, m, w, @, %) 1,35, fremde Schriftzeichen 1,6 */
 export const textBreite = (t: string): number => {
   let b = 0;
-  for (const c of t) b += BREIT.includes(c) ? BREIT_FAKTOR : 1;
+  for (const c of t) b += zeichenBreite(c);
   return b;
 };
 export const ZEILEN_JE_SEITE = 50;
@@ -70,18 +78,43 @@ export const ZEILEN_JE_SEITE = 50;
 const FARBWORT: Record<Farbe, string> = { gruen: 'grün', gelb: 'gelb', rot: 'rot' };
 const AMPELWORT: Record<AmpelId, string> = { kosten: 'Kosten', termine: 'Termine', qualitaet: 'Qualität' };
 /** Fußsatz D-R8, nur für die Länge */
-const FUSS_LAENGE = textBreite('Die vollständigen Einträge stehen in der Software des Bauherrn.');
+const FUSS = 'Die vollständigen Einträge stehen in der Software des Bauherrn.';
 
-const zeilenFuer = (laenge: number, breite: number): number => Math.max(1, Math.ceil(laenge / breite));
+/**
+ * Zeilen eines Texts in einer Zeile von `breite` „Zeichen“ (R79): Wortumbruch wie im Druck. Ein Wort, das nicht in eine Zeile
+ * passt, beginnt eine neue Zeile und bricht dann nach der Breite um.
+ */
+export const zeilenFuer = (text: string, breite: number): number => {
+  let zeilen = 1;
+  let rest = 0;
+  for (const wort of text.split(' ')) {
+    if (wort === '') { rest += 1; continue; }
+    const w = textBreite(wort);
+    if (w > breite) {
+      if (rest > 0) zeilen += 1;
+      const n = Math.ceil(w / breite);
+      zeilen += n - 1;
+      rest = w - (n - 1) * breite;
+    } else if (rest === 0) {
+      rest = w;
+    } else if (rest + 1 + w <= breite) {
+      rest += 1 + w;
+    } else {
+      zeilen += 1;
+      rest = w;
+    }
+  }
+  return zeilen;
+};
 
 /**
  * Geschätzter Platzbedarf (Bedienregel, Konzept D.6; R78: nach Zeichenbreite, nicht nur nach Zeichenzahl): Lage, je Ampel ihr Satz und ggf. die Reaktion, die Abschnitte in
  * zwei Spalten (halbe Breite), offene Entscheidungen, benötigte Reaktion, Fuß. Jede Überschrift eine Zeile.
  */
 export function schaetzeUmfang(b: Bericht, zeichenJeZeile: number = ZEICHEN_JE_ZEILE, zeilenJeSeite: number = ZEILEN_JE_SEITE): Umfang {
-  const voll = (t: string): number => zeilenFuer(textBreite(t), zeichenJeZeile);
+  const voll = (t: string): number => zeilenFuer(t, zeichenJeZeile);
   const spalte = Math.floor(zeichenJeZeile / 2) - 2;
-  let z = 1 + voll(b.lage);
+  let z = 1 + voll(b.lage) + (b.projekt != null ? voll(b.projekt) : 0);
   for (const id of AMPELN) {
     const a = b.ampeln[id];
     z += voll(`${AMPELWORT[id]}: ${FARBWORT[a.farbe]} – ${a.satz}`);
@@ -91,7 +124,7 @@ export function schaetzeUmfang(b: Bericht, zeichenJeZeile: number = ZEICHEN_JE_Z
   for (const inhalt of Object.values(b.abschnitte)) {
     spalten += 1;
     if (Array.isArray(inhalt) && inhalt.length > 0) {
-      for (const e of inhalt as readonly BerichtEintrag[]) spalten += zeilenFuer(textBreite(`${e.text} ${e.kennung}`), spalte);
+      for (const e of inhalt as readonly BerichtEintrag[]) spalten += zeilenFuer(`${e.text} ${e.kennung}`, spalte);
     } else {
       spalten += 1;
     }
@@ -104,7 +137,7 @@ export function schaetzeUmfang(b: Bericht, zeichenJeZeile: number = ZEICHEN_JE_Z
     z += 1;
   }
   z += 1 + voll(b.reaktion);
-  z += zeilenFuer(textBreite(`Datenstand: ${b.datenstand}`), zeichenJeZeile) + zeilenFuer(FUSS_LAENGE, zeichenJeZeile);
+  z += zeilenFuer(`Datenstand: ${b.datenstand}`, zeichenJeZeile) + zeilenFuer(FUSS, zeichenJeZeile);
   return { zeilen: z, anteil: z / zeilenJeSeite, passt: z <= zeilenJeSeite };
 }
 

@@ -30,13 +30,13 @@ antworten:
     balken: { geld: -1, zeit: -1, vertrauen: 0 }
     bild: kostenzettel
     folge: |
-      Der Stadtrat erschrickt über zwei Millionen und verlangt eine Liste, wo man sparen könnte; die Planung wartet vier Wochen auf die Antwort. Dann ist die Prüfung fertig: Die Leistungen gehören schon zum bestehenden Vertrag, die Zahl sinkt wieder. Nur hat die Firma gemerkt, dass ihre Forderung schon eingerechnet war – und sie verhandelt jetzt bei jeder Kleinigkeit härter.
+      Der Stadtrat erschrickt über zwei Millionen und verlangt eine Liste, wo man sparen könnte; die Planung wartet vier Wochen auf die Antwort. Dann ist die Prüfung fertig: Die Leistungen gehören schon zum bestehenden Vertrag, die Zahl sinkt wieder. Nur hat die Firma gemerkt, dass die Stadt ihre Forderung als berechtigt eingerechnet hatte – und sie verhandelt jetzt bei jeder Kleinigkeit härter.
   - wertung: falle
     text: "Die Mitte aus beiden, anderthalb Millionen – damit nehmen Sie Kämmerei und Architekt gleichermaßen ernst."
     balken: { geld: -1, zeit: 0, vertrauen: -2 }
     bild: lupe
     folge: |
-      Anderthalb Millionen stehen in keiner Rechnung. Als ein Stadtrat fragt, woher die Zahl kommt, bleibt nur die Antwort: aus der Mitte. Clara Faden legt danach beide Rechnungen nebeneinander und zeigt den Unterschied. Die Prüfung endet wie erwartet – die Leistungen gehören schon zum bestehenden Vertrag –, aber die Firma verhandelt jetzt härter, denn halb eingerechnet war ihre Forderung ja schon.
+      Anderthalb Millionen stehen in keiner Rechnung. Als ein Stadtrat fragt, woher die Zahl kommt, bleibt nur die Antwort: aus der Mitte. Clara Faden legt danach beide Rechnungen nebeneinander und zeigt den Unterschied. Die Prüfung endet wie erwartet – die Leistungen gehören schon zum bestehenden Vertrag –, aber die Firma verhandelt jetzt härter, denn die Stadt hatte ihre Forderung halb als berechtigt eingerechnet.
   - wertung: gut
     text: "Eine Million über dem Budget, mit Datum und Begründung – die angekündigten Mehrkosten als Risiko daneben."
     balken: { geld: 1, zeit: 0, vertrauen: 2 }

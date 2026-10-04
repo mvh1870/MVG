@@ -31,6 +31,11 @@ export interface CampusIsoOptionen {
    * reicht oben über Kran und Dächer aller Stufen und unten bis zu den Containern, seitlich steht mehr Himmel.
    */
   ausschnitt?: 'breit';
+  /**
+   * Sporthalle noch nicht fertig (ab Stufe 5): Holztragwerk mit Gerüst statt der fertigen Halle – für den Ende-Campus
+   * auf Wegen, auf denen die Halle erst nach den Herbstferien öffnet.
+   */
+  halleOffen?: boolean;
 }
 
 /** Ausschnitte (viewBox): ganzer Grund und breit (Seitenverhältnis 2,2 : 1, R75). */
@@ -928,7 +933,7 @@ const NEUE_BAEUME: readonly [number, number][] = [
   [110, 122], [200, 122], [246, 168], [176, 254], [296, 262], [404, 150], [404, 250],
 ];
 
-function szene(buehne: Buehne, s: number): void {
+function szene(buehne: Buehne, s: number, halleOffen = false): void {
   boden(buehne, s);
   BESTAND.forEach(([x, y, art], i) => baum(buehne, x, y, art, i, art === 'nadel' ? 1 : 1.05));
   if (s <= 6) bauzaun(buehne, s === 2);
@@ -991,7 +996,8 @@ function szene(buehne: Buehne, s: number): void {
     figur(buehne, 262, 160, 'arbeiter', 'orange', 2);
     palette(buehne, 232, 236, 'holz');
   }
-  if (s >= 5) buehne.ding(SPORTHALLE.x1, SPORTHALLE.y1, SPORTHALLE.x2, SPORTHALLE.y2, sporthalleFertig());
+  if (s >= 5 && halleOffen) buehne.ding(SPORTHALLE.x1, SPORTHALLE.y1, SPORTHALLE.x2 + 4, SPORTHALLE.y2 + 4, sporthalleTragwerk() + geruest(SPORTHALLE, SH_HOEHE, SPORTHALLE.x1, true));
+  else if (s >= 5) buehne.ding(SPORTHALLE.x1, SPORTHALLE.y1, SPORTHALLE.x2, SPORTHALLE.y2, sporthalleFertig());
   if (s === 5) {
     buehne.ding(GRUNDSCHULE_A.x1, GRUNDSCHULE_A.y1, GRUNDSCHULE_A.x2 + 4, GRUNDSCHULE_A.y2, rohbau(GRUNDSCHULE_A, 2) + geruest(GRUNDSCHULE_A, 32, 80, true));
     buehne.ding(GRUNDSCHULE_B.x1, GRUNDSCHULE_B.y1, GRUNDSCHULE_B.x2 + 4, GRUNDSCHULE_B.y2 + 4, rohbau(GRUNDSCHULE_B, 1, 80) + geruest(GRUNDSCHULE_B, 16, 30, true));
@@ -1042,9 +1048,10 @@ function szene(buehne: Buehne, s: number): void {
 }
 
 /** Beschreibung je Stufe, Jahreszeit und Licht (deutsch, für `aria-label` und `<title>`). */
-export function campusIsoText(stufe: number, jahreszeit: Jahreszeit = 'sommer', licht: Licht = 'tag', wetter?: Wetter): string {
+export function campusIsoText(stufe: number, jahreszeit: Jahreszeit = 'sommer', licht: Licht = 'tag', wetter?: Wetter, halleOffen = false): string {
   const s = Math.max(0, Math.min(CAMPUS_STUFE_MAX, Math.round(stufe)));
-  return `Schulcampus Lindenhall-Süd (fiktiver Fall): ${STUFEN_TEXT[s] ?? ''} ${JAHRESZEIT_TEXT[jahreszeit]}, ${LICHT_TEXT[licht]}.${wetter ? ` ${WETTER_TEXT[wetter]}` : ''}`;
+  const halle = halleOffen && s >= 5 ? ' Nur die Sporthalle ist noch nicht fertig und steht eingerüstet.' : '';
+  return `Schulcampus Lindenhall-Süd (fiktiver Fall): ${STUFEN_TEXT[s] ?? ''}${halle} ${JAHRESZEIT_TEXT[jahreszeit]}, ${LICHT_TEXT[licht]}.${wetter ? ` ${WETTER_TEXT[wetter]}` : ''}`;
 }
 
 /**
@@ -1057,9 +1064,10 @@ export function campusIso(stufe: number, optionen: CampusIsoOptionen = {}): stri
   const licht = optionen.licht ?? 'tag';
   const sturm = optionen.wetter === 'sturm';
   const buehne = new Buehne(licht, jahreszeit, sturm);
-  szene(buehne, s);
+  const halleOffen = optionen.halleOffen === true && s >= 5;
+  szene(buehne, s, halleOffen);
   const vb: [number, number, number, number] = [...CAMPUS_VB[optionen.ausschnitt ?? 'grund']];
-  const text = campusIsoText(s, jahreszeit, licht, optionen.wetter);
+  const text = campusIsoText(s, jahreszeit, licht, optionen.wetter, halleOffen);
   const teile: string[] = [];
   if (optionen.himmel !== false) teile.push(himmel(licht, jahreszeit, vb, sturm));
   teile.push('<g class="ci-szene">', ...buehne.boden);
@@ -1074,5 +1082,5 @@ export function campusIso(stufe: number, optionen: CampusIsoOptionen = {}): stri
   teile.push(...buehne.oben, '</g>', wetter(jahreszeit, vb, sturm));
   const klasse = ['campus-iso', optionen.klasse].filter(Boolean).join(' ');
   const wetterAttr = sturm ? ' data-wetter="sturm"' : '';
-  return `<svg class="${klasse}" viewBox="${vb.join(' ')}" role="img" aria-label="${text}" data-stufe="${s}" data-jahreszeit="${jahreszeit}" data-licht="${licht}"${wetterAttr} xmlns="http://www.w3.org/2000/svg"><title>${text}</title>${teile.join('')}</svg>`;
+  return `<svg class="${klasse}" viewBox="${vb.join(' ')}" role="img" aria-label="${text}" data-stufe="${s}" data-jahreszeit="${jahreszeit}" data-licht="${licht}"${wetterAttr}${halleOffen ? ' data-halle="offen"' : ''} xmlns="http://www.w3.org/2000/svg"><title>${text}</title>${teile.join('')}</svg>`;
 }

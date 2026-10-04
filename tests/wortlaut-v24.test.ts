@@ -1,5 +1,5 @@
 // Eigene Worte (O-37, R78): Die Texte der Werkzeuge und des Glossars geben den Standard V2.4 inhaltlich wieder, nicht im
-// Wortlaut. Probe: kein wortgleicher Lauf von zehn oder mehr Wörtern aus quellen/v2.4 (Groß-/Kleinschreibung und
+// Wortlaut. Probe: kein wortgleicher Lauf von neun oder mehr Wörtern aus quellen/v2.4 (Groß-/Kleinschreibung und
 // Satzzeichen unbeachtet). Die Themen (inhalte/theorie) zitieren den Standard nicht, tragen aber eigene Zitat-Pflichten und
 // liegen außerhalb dieser Probe.
 import { test } from 'node:test';
@@ -8,7 +8,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 const WURZEL = resolve(import.meta.dirname, '..');
-const N = 10;
+const N = 9;
 const woerter = (t: string): string[] => t.toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, ' ').split(/\s+/u).filter((w) => w !== '');
 
 const quelle = new Set<string>();
@@ -43,7 +43,7 @@ test('die Probe erkennt einen übernommenen Satz und lässt eigene Worte durch',
   assert.equal(laengsterLauf('Die Projektsteuerung holt fachlichen Rat ein, unterrichtet den Bauherrn und bereitet erforderliche Handlungen oder Entscheidungen früh genug vor.'), 0);
 });
 
-test('Werkzeuge und Glossar: kein Satz des Standards wortgleich (zehn Wörter und mehr)', async () => {
+test('Werkzeuge und Glossar: kein Satz des Standards wortgleich (neun Wörter und mehr)', async () => {
   const { parse } = (await import(String('yaml'))) as { parse: (t: string) => unknown };
   const funde: string[] = [];
   for (const datei of ['inhalte/werkzeuge.yaml', 'inhalte/glossar.yaml']) {
@@ -98,7 +98,7 @@ test('Gegenprobe: Zitate und Tafeln sind ausgenommen, übernommener Text im Them
   assert.ok(laengsterLauf(themenText(`${kopf}::: abschnitt a\n::: zitat k1-p1\nx\n:::\n${satz}\n:::\n`)) >= N);
 });
 
-test('Themen: kein Satz des Standards wortgleich (zehn Wörter und mehr), Zitate und Tafeln ausgenommen', () => {
+test('Themen: kein Satz des Standards wortgleich (neun Wörter und mehr), Zitate und Tafeln ausgenommen', () => {
   const funde: string[] = [];
   const dir = resolve(WURZEL, 'inhalte/theorie');
   for (const f of readdirSync(dir).filter((d) => d.endsWith('.md') && !/^[_.]/u.test(d))) {

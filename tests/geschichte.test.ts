@@ -245,6 +245,41 @@ test('Vergleich: Gegenproben des Drehbuchs – je eine Stufe anders', () => {
   assert.equal(vergleichLage(V, mit('schulstart', 3)).satz, 'C');
 });
 
+test('Wirkung je Antwort ist festgehalten (Drehbuch Abschnitt 4: Geld, Zeit, Vertrauen je −2 … +2) – auch dort, wo die Begrenzung auf 0–10 eine Änderung auf den Wegen verschluckt (R79)', () => {
+  const soll: Record<string, string[]> = {
+    k1: ['v0,-1,1', 'g0,0,2', 'f0,1,-2'], k2: ['g0,1,1', 'f0,-1,-1', 'v0,1,0'], k3: ['v-1,-1,-1', 'f-2,-2,-2', 'g-1,2,1'],
+    k4: ['f-2,-1,-2', 'g-1,0,2', 'v-1,-1,0'], k5: ['v-1,-1,0', 'f-1,0,-2', 'g1,0,2'], k6: ['g0,-1,1', 'v0,-1,0', 'f-1,-2,-2'],
+    k7: ['f-2,1,-2', 'g-1,1,1', 'v-1,-1,0'], k8: ['f0,0,-2', 'v0,0,0', 'g0,0,1'],
+  };
+  for (const k of G.kapitel) {
+    assert.deepEqual(k.antworten.map((a) => `${a.wertung[0]}${a.wirkung.geld},${a.wirkung.zeit},${a.wirkung.vertrauen}`), soll[k.id], k.id);
+  }
+});
+
+test('Vergleich: Satz der Projektsteuerin über alle 81 Gewichtsstellungen – A nie ohne Schulstart ≥ „wichtig“, B nur bei Luft „weniger wichtig“, C nur wenn Geld oder Klima mindestens so viel zählen wie der Schulstart (R79)', () => {
+  const stufen = [1, 3, 5];
+  const gesehen = new Set<string>();
+  let n = 0;
+  for (const geld of stufen) for (const schulstart of stufen) for (const luft of stufen) for (const klima of stufen) {
+    n += 1;
+    const gew = { geld, schulstart, luft, klima };
+    const lage = vergleichLage(V, gew);
+    gesehen.add(lage.satz);
+    const wo = JSON.stringify(gew);
+    if (lage.satz === 'A') { assert.ok(schulstart >= 3, `A ohne Schulstart ≥ wichtig bei ${wo}`); assert.deepEqual(lage.vorn, ['A']); }
+    else if (lage.satz === 'B') { assert.equal(luft, 1, `B bei ${wo}`); assert.deepEqual(lage.vorn, ['B']); }
+    else if (lage.satz === 'C') { assert.ok(Math.max(geld, klima) >= schulstart, `C bei ${wo}`); assert.deepEqual(lage.vorn, ['C']); }
+    else { assert.equal(lage.satz, 'gleichauf'); assert.ok(lage.vorn.length > 1, `gleichauf bei ${wo}`); }
+  }
+  assert.equal(n, 81);
+  assert.deepEqual([...gesehen].sort(), ['A', 'B', 'C', 'gleichauf'], 'jeder Satz kommt auf mindestens einer Stellung vor');
+  // Wortlaut der Sätze, die diese Bedingungen tragen: wer ihn ändert, rechnet die Stellungen neu nach
+  assert.ok(V.saetze['A']?.startsWith('Das Ersatzgerät liegt vorn – mit diesen Gewichten trägt es alle Kinder pünktlich in Räume mit guter Luft'));
+  assert.ok(V.saetze['B']?.startsWith('Die Leihgeräte liegen vorn – aber nur, weil gute Luft im Unterricht hier kaum zählt'));
+  assert.ok(V.saetze['C']?.startsWith('Der spätere Einzug liegt vorn: Wenn Geld oder Klima so viel zählen wie der Schulstart'));
+  assert.ok(V.saetze['gleichauf']?.startsWith('Gleichauf – jetzt entscheidet das fachliche Urteil'));
+});
+
 test('Vergleich: B liegt nie vorn, solange Gute Luft mindestens „wichtig“ ist (alle 3^4 Stellungen)', () => {
   const stufen = [1, 3, 5];
   for (const geld of stufen) for (const schulstart of stufen) for (const luft of [3, 5]) for (const klima of stufen) {

@@ -107,7 +107,7 @@ test('Neuer Ort beginnt oben, eine Wahl im selben Schritt nicht', () => {
     kanal.bringe({ art: 'zustand', nr: 2, zustand: buehne({ bereich: 'story', story: waehle(g, frage, k1.id, 1) }) });
     assert.deepEqual(nachOben, [[0, 0]]);
     // nächster Schritt: wieder oben
-    kanal.bringe({ art: 'zustand', nr: 3, zustand: buehne({ bereich: 'story', story: { ...waehle(g, frage, k1.id, 1), schritt: { ort: 'kapitel', kapitel: 'k2', teil: 'szene' } } }) });
+    kanal.bringe({ art: 'zustand', nr: 3, zustand: buehne({ bereich: 'story', story: { ...waehle(g, frage, k1.id, 1), schritt: { ort: 'kapitel', kapitel: 's2', teil: 'szene' } } }) });
     assert.deepEqual(nachOben, [[0, 0], [0, 0]]);
     // anderer Bereich: wieder oben
     kanal.bringe({ art: 'zustand', nr: 4, zustand: buehne({ bereich: 'theorie' }) });
@@ -159,11 +159,11 @@ test('Anzeige (R68): kein Bedienelement und kein Link – Start, Story (Szene, V
   const faelle: Array<[string, ReturnType<typeof buehne>]> = [
     ['start', buehne({})],
     ['story Auftakt', buehne({ bereich: 'story' })],
-    ['story k1 Szene', an('k1', 'szene')],
-    ['story k1 Frage mit Folge', an('k1', 'frage')],
-    ['story k2 Mini', an('k2', 'mini')],
-    ['story k6 Mini', an('k6', 'mini')],
-    ['story k7 Vergleich', an('k7', 'vergleich')],
+    ['story k1 Szene', an('s1', 'szene')],
+    ['story k1 Frage mit Folge', an('s1', 'frage')],
+    ['story k2 Mini', an('s2', 'mini')],
+    ['story k6 Mini', an('s10', 'mini')],
+    ['story k7 Vergleich', an('s12', 'vergleich')],
     ['story Ende', buehne({ bereich: 'story', story: { ...gewaehlt, schritt: { ort: 'ende' } } })],
     ['theorie', buehne({ bereich: 'theorie' })],
     ...themen(inhalte).map((t): [string, ReturnType<typeof buehne>] => [`theorie ${t.id}`, buehne({ bereich: 'theorie', thema: t.id })]),
@@ -192,7 +192,7 @@ test('Anzeige (R71): der Vergleich rechnet mit den Gewichten aus der Regie – o
   const { pruefeBuehne } = await import('../src/regie/buehne.ts');
   const { setzeGewicht } = await import('../src/geschichte/engine.ts');
   for (const [wo, stand0, a, c] of [['abgestimmt', neuerStand(), '49', '45'], ['Klima wichtig', setzeGewicht(g, neuerStand(), 'klima', 3), '55', '55']] as const) {
-    const b = pruefeBuehne(buehne({ bereich: 'story', story: { ...stand0, schritt: { ort: 'kapitel', kapitel: 'k7', teil: 'vergleich' } } }), g);
+    const b = pruefeBuehne(buehne({ bereich: 'story', story: { ...stand0, schritt: { ort: 'kapitel', kapitel: 's12', teil: 'vergleich' } } }), g);
     assert.ok(b, `${wo}: gültiger Bühnenstand`);
     const el = storyAnzeige(inhalte, b);
     assert.equal(el.querySelector('[data-pruef="summe-A"]')?.textContent, `${a} Punkte`, wo);
@@ -280,7 +280,7 @@ test('P17.6: die Leinwand rollt zur Folge einer neuen Wahl und zu den Karten bei
     // Gegenprobe: dieselbe Wahl erneut gesendet – kein zweites Rollen
     kanal.bringe({ art: 'zustand', nr: 4, zustand: buehne({ bereich: 'story', story: { ...waehle(g, frage, k1.id, 1), kurz: false } }) });
     assert.equal(gerollt.length, 1);
-    const vgl = { ...neuerStand(), schritt: { ort: 'kapitel' as const, kapitel: 'k7', teil: 'vergleich' as const } };
+    const vgl = { ...neuerStand(), schritt: { ort: 'kapitel' as const, kapitel: 's12', teil: 'vergleich' as const } };
     kanal.bringe({ art: 'zustand', nr: 5, zustand: buehne({ bereich: 'story', story: vgl }) });
     assert.equal(gerollt.length, 1, 'neuer Ort: oben, kein Rollen zum Ziel');
     kanal.bringe({ art: 'zustand', nr: 6, zustand: buehne({ bereich: 'story', story: setzeGewicht(g, vgl, 'klima', 3) }) });

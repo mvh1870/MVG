@@ -17,7 +17,7 @@ export async function lauf(seite, h) {
   await h.erwarte('[data-pruef="leinwand-warten"], .anzeige', leinwand);
   await h.klick('[data-pruef="regie-bereich-story"]');
   // P17.6: Sprung je Schritt – direkt in den Vergleich von Kapitel 7; Notiz und Leitfragen nur in der Regie
-  await seite.locator('[data-pruef="regie-sprung"]').selectOption('k7:vergleich');
+  await seite.locator('[data-pruef="regie-sprung"]').selectOption('s12:vergleich');
   await h.erwarte('[data-pruef="regie-notiz"] .regie-notiz-text');
   await h.erwarte('[data-pruef="regie-leitfragen"]');
   await h.erwarte('.anzeige [data-pruef="gs-vgl-karten"]', leinwand);
@@ -48,7 +48,7 @@ export async function lauf(seite, h) {
   for (const frage of await seite.locator('[data-pruef="regie-leitfragen"] li').allInnerTexts()) if (lwText.includes(frage)) h.befund(`Leitfrage auf der Leinwand: ${frage}`);
   if (/\b(vertretbar|Falle)\b/u.test(lwText) || (await leinwand.locator('[data-wertung], .regie-wertung').count()) > 0) h.befund('Wertung auf der Leinwand');
   // Mini-Aufgabe aus der Regie: Zuordnung setzen (Leinwand zeigt die Rückmeldung), auflösen, Reihenfolge anklicken
-  await seite.locator('[data-pruef="regie-sprung"]').selectOption('k2:mini');
+  await seite.locator('[data-pruef="regie-sprung"]').selectOption('s2:mini');
   await h.klick('[data-pruef="regie-mini-1-risiko"]');
   await h.erwarte('.anzeige [data-pruef="posten-1"][data-lage="falsch"]', leinwand);
   await h.klick('[data-pruef="regie-mini-aufloesen"]');
@@ -56,7 +56,7 @@ export async function lauf(seite, h) {
   const richtig = await leinwand.locator('.anzeige .gs-mini-posten[data-lage="richtig"]').count();
   const alle = await leinwand.locator('.anzeige .gs-mini-posten').count();
   if (alle === 0 || richtig !== alle) h.befund(`Mini-Aufgabe aufgelöst: ${richtig} von ${alle} richtig auf der Leinwand`);
-  await seite.locator('[data-pruef="regie-sprung"]').selectOption('k6:mini');
+  await seite.locator('[data-pruef="regie-sprung"]').selectOption('s10:mini');
   await h.klick('[data-pruef="regie-reihe-2"]');
   await h.erwarte('.anzeige [data-pruef="posten-2"] .gs-reihe-nr:has-text("1")', leinwand);
   if ((await leinwand.locator('.anzeige button, .anzeige a[href]').count()) > 0) h.befund('Bedienelemente auf der Leinwand');

@@ -70,11 +70,11 @@ test('Verweisfeld (E-13): Werkzeug und Beispiel müssen existieren, ein Eintrag 
 
 test('Verweise aus Story und Themen nach Konzept E-13 (A ← 7, 4 · B ← 2, 6 · C ← 3, 5 · D ← 5)', () => {
   const je = (id: string): string[] => g.kapitel.filter((k) => k.werkzeuge.some((v) => v.id === id)).map((k) => k.id);
-  assert.deepEqual(je('vorlagen-check'), ['k4', 'k7']);
-  assert.deepEqual(je('wegweiser'), ['k2', 'k6']);
-  assert.deepEqual(je('risiko-grenzen'), ['k3', 'k5']);
-  assert.deepEqual(je('monatsbericht'), ['k5']);
-  const k5 = g.kapitel.find((k) => k.id === 'k5');
+  assert.deepEqual(je('vorlagen-check'), ['s5', 's12']);
+  assert.deepEqual(je('wegweiser'), ['s2', 's10']);
+  assert.deepEqual(je('risiko-grenzen'), ['s3', 's8']);
+  assert.deepEqual(je('monatsbericht'), ['s8']);
+  const k5 = g.kapitel.find((k) => k.id === 's8');
   assert.deepEqual(k5?.werkzeuge, [{ id: 'risiko-grenzen', beispiel: 'ris-014' }, { id: 'monatsbericht', beispiel: 'oktober' }]);
   for (const k of g.kapitel) for (const v of k.werkzeuge) {
     assert.ok(beispielKennungen(w, v.id).includes(v.beispiel ?? ''), `${k.id}: Beispiel ${String(v.beispiel)}`);
@@ -102,24 +102,24 @@ const dahinter = (kapitel: string, kurz: boolean, bedienbar: boolean): HTMLEleme
 };
 
 test('Story: leiser Verweis „… ausprobieren“ im Kasten „Das steckt dahinter“, öffnet mit dem Beispiel; nie auf der Leinwand', () => {
-  const lang = dahinter('k7', false, true);
+  const lang = dahinter('s12', false, true);
   const a = lang.querySelector<HTMLAnchorElement>('[data-pruef="gs-werkzeug-vorlagen-check"]');
   assert.ok(a);
   assert.equal(a.getAttribute('href'), '#explore/vorlagen-check/lueftung-voll');
   assert.equal(a.textContent, 'Vorlagen-Check ausprobieren');
   assert.ok(a.closest('[data-pruef="gs-dahinter"]'), 'im Kasten');
   // Kapitel 5 verweist auf zwei Werkzeuge
-  const k5 = dahinter('k5', false, true);
+  const k5 = dahinter('s8', false, true);
   assert.deepEqual([...k5.querySelectorAll('[data-pruef^="gs-werkzeug-"]')].map((x) => x.getAttribute('href')), ['#explore/risiko-grenzen/ris-014', '#explore/monatsbericht/oktober']);
   // Kurzfassung: im Aufklapper, zugeklappt zählt er nicht zur Lesezeit (die Kurzfassung hat keinen Puffer)
-  const kurz = dahinter('k7', true, true);
+  const kurz = dahinter('s12', true, true);
   const innen = kurz.querySelector('[data-pruef="gs-dahinter-auf"] [data-pruef="gs-werkzeug-vorlagen-check"]');
   assert.ok(innen, 'in der Kurzfassung im Aufklapper');
   assert.equal(kurz.querySelector<HTMLDetailsElement>('[data-pruef="gs-dahinter-auf"]')?.open, false);
   // Leinwand und Vorschau (nicht bedienbar): kein Verweis
-  for (const k of ['k2', 'k3', 'k4', 'k5', 'k6', 'k7']) assert.equal(dahinter(k, false, false).querySelector('[data-pruef^="gs-werkzeug"], a[href]'), null, k);
+  for (const k of ['s2', 's3', 's5', 's8', 's10', 's12']) assert.equal(dahinter(k, false, false).querySelector('[data-pruef^="gs-werkzeug"], a[href]'), null, k);
   // ohne Titel-Funktion (Test, Druck): kein Verweis
-  const ohne = baueSchritt({ g, stand: { ...weg(false), schritt: { ort: 'kapitel', kapitel: 'k7', teil: 'frage' } }, bedienbar: true, themaTitel: () => 'Thema', tue: () => undefined });
+  const ohne = baueSchritt({ g, stand: { ...weg(false), schritt: { ort: 'kapitel', kapitel: 's12', teil: 'frage' } }, bedienbar: true, themaTitel: () => 'Thema', tue: () => undefined });
   assert.equal(ohne.querySelector('[data-pruef="gs-werkzeuge"]'), null);
 });
 

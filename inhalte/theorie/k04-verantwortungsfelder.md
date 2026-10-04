@@ -11,7 +11,7 @@
 # Belege k4.3: k4.3-p1, k4.3-p2, k4-t1 (Zeile Wesentliche Entscheidung), k13-t1 (FID am Abschluss von LPH 3, Neufestlegung der Projektbasis), k2.5-t1 (Neufestlegung außerhalb der regulären Freigabereihe); Vorbereitung durch die Projektsteuerung: v24:hb-3, v24:hb-3.1, v24:tlb-2.1
 # Belege k4.4: k4.4-p1, k4.4-p2, k4-t1 (Zeile Risikoannahme); Matrix und Prioritäten, Warnanlässe, Restrisiko als Entscheidung: v24:hb-1.3, v24:hb-2, v24:hb-3
 # Belege k4.5: k4.5-p1, k4.5-p2, k4-t1 (Zeile Freigabe), k9.3-p3 (Freigabe zum Abschluss der LPH durch den Bauherrn selbst), k4.2-p3; Vorbereitung durch die Projektsteuerung, befugte Stelle: v24:hb-1, v24:tlb-3
-# Belege k4.6: k4.6-p1, k4.6-p2, k4-t1 (Zeile Datenstand und Nachweis); Pflege in der bereitgestellten Software, Monatsbericht: v24:hb-4, v24:hb-5, v24:tlb-2; Beispiel an Story-Kapitel 5 angeglichen (inhalte/geschichte/k5-zahlen.yaml: Oktober 2026, Kämmerei und Architekt, eine gegen zwei Millionen)
+# Belege k4.6: k4.6-p1, k4.6-p2, k4-t1 (Zeile Datenstand und Nachweis); Pflege in der bereitgestellten Software, Monatsbericht: v24:hb-4, v24:hb-5, v24:tlb-2; Beispiel an Story-Kapitel 5 angeglichen (inhalte/geschichte/s8-zahlen.yaml: Oktober 2026, Kämmerei und Architekt, eine gegen zwei Millionen)
 kapitel: 4
 thema: verantwortung
 reihe: 4

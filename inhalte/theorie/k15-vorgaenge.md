@@ -3,9 +3,9 @@
 # Inhalt aus dem Standard „Aufgaben- und Risikomanagement V2.4“ (Handbuch), in eigenen Sätzen (O-37).
 # Beispiele aus dem fiktiven Schulcampus Lindenhall-Süd (O-50): Fundus-Tabelle in inhalte/fall.md (Lieferzeit FRW-002 → RIS-009, W 4 · A 4;
 # Mensa AEN-012; Brandschutzauflage PRB-002, MAS-011; Kennungen der früheren Story) und die Story-Kapitel
-# inhalte/geschichte/k2-warnsignal.yaml und k3-risiko.yaml (Frühwarnung März, Risiko einen Monat später), k4-mensa.yaml,
-# k5-zahlen.yaml (Mehrkosten der Haustechnikfirma, gut eine Million, als Risiko), k7-entscheidung.yaml (Lüftungsanlage vier Monate später);
-# die Wendekarte „Entscheidung vorbereiten“ nimmt die Lüftungsanlage aus k7-entscheidung.yaml (R76, gleich wie die Story).
+# inhalte/geschichte/s2-warnsignal.yaml und s3-risiko.yaml (Frühwarnung März, Risiko einen Monat später), s5-mensa.yaml,
+# s8-zahlen.yaml (Mehrkosten der Haustechnikfirma, gut eine Million, als Risiko), s12-entscheidung.yaml (Lüftungsanlage vier Monate später);
+# die Wendekarte „Entscheidung vorbereiten“ nimmt die Lüftungsanlage aus s12-entscheidung.yaml (R76, gleich wie die Story).
 # Sprachdurchgang L-290 (Owner-Auftrag: natürliche, verständliche Sprache): Beispielfall eingeführt, „Kapselung“, „Gewerk“, „Kostenansatz“, „Wertung“ erklärt, vier Gesichtspunkte in fünf Stufen, „höchste belegte Auswirkung“ = höchster Einzelwert (v24:hb-2); die 70 Tage = 26 statt 16 Wochen (inhalte/fall.md).
 # Belege Einleitung/Kernaussage: v24:hb-1 (Tabelle, „Nicht jeder Hinweis wird zum Risiko“), v24:hb-2, v24:hb-3
 # Belege k15.1 (sieben Sachverhalte): v24:hb-1 (Tabelle), v24:hb-1.1 bis v24:hb-1.6

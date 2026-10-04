@@ -4,6 +4,10 @@
 
 titel: Ein Schulcampus für Lindenhall
 
+# Gerüst der 14 Stationen (P19.6, L-330): vorhanden sind s1, s2, s3, s5, s8, s10, s12, s14; s4, s6, s7, s9, s11, s13 kommen mit ihren Dateien
+# und stehen dann hier an ihrer Stelle (siehe docs/INHALTSFORMAT.md, Abschnitt „Stationen einsetzen“)
+reihenfolge: [s1, s2, s3, s5, s8, s10, s12, s14]
+
 auftakt:
   campus: { stufe: 0, jahreszeit: winter, licht: morgen }
   text: |

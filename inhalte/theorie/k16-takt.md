@@ -2,8 +2,8 @@
 # Thema „Takt und Bericht“ (P16.4, O-36, O-38; P17.11, O-55): neues Thema nach docs/V24-ABGLEICH.md Abschnitt 9, Thema C.
 # Inhalt aus dem Standard „Aufgaben- und Risikomanagement V2.4“ (Handbuch, Ausschreibung), in eigenen Sätzen (O-37).
 # Beispiele aus dem fiktiven Schulcampus Lindenhall-Süd (O-50): inhalte/fall.md (Budget, Reserve, Fundus RIS-014),
-# inhalte/geschichte/k5-zahlen.yaml (Monatsbericht Oktober 2026: rund eine Million über dem Budget, Mehrkosten der
-# Haustechnikfirma gut eine Million als Risiko, Prüfung der Vergabestelle), k6-sturm.yaml (Gerüstmeldung).
+# inhalte/geschichte/s8-zahlen.yaml (Monatsbericht Oktober 2026: rund eine Million über dem Budget, Mehrkosten der
+# Haustechnikfirma gut eine Million als Risiko, Prüfung der Vergabestelle), s10-sturm.yaml (Gerüstmeldung).
 # Rechnung Monatsbericht: 58,4 + 1,0 = 59,4 Mio. € (+1,7 %); mit den angekündigten Mehrkosten rund 60,5 Mio. €, unter 61,3 Mio. €.
 # Sprachdurchgang L-290 (Owner-Auftrag: natürliche, verständliche Sprache): „Register“, „aktive Zeiten“, „Ampel“, „Bürgermeisterin“, „Projektbasis“, „Leistungsbeginn“ beim ersten Auftreten erklärt; Aussagen und Belege unverändert.
 # Belege Einleitung/Kernaussage: v24:hb-4 (Schaubild, Abs. 1–6), v24:as-2, O-36

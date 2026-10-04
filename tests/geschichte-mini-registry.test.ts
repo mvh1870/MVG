@@ -30,8 +30,8 @@ test('Registry: Kennung = Schlüssel, die zwei bisherigen und die fünf neuen Ar
 test('alter Stand (gk.story v2, Wortlaut vor dem Umbau) lädt unverändert; das Format bleibt v 2', () => {
   assert.equal(STAND_VERSION, 2);
   const alt = {
-    v: 2, schritt: { ort: 'kapitel', kapitel: 'k6', teil: 'mini' }, wahlen: { k1: 0, k2: 2 },
-    mini: { k2: [0, -1, 1, -1, -1, -1], k6: [1, 0, 2] }, gewichte: null, kurz: false,
+    v: 2, schritt: { ort: 'kapitel', kapitel: 's10', teil: 'mini' }, wahlen: { s1: 0, s2: 2 },
+    mini: { s2: [0, -1, 1, -1, -1, -1], s10: [1, 0, 2] }, gewichte: null, kurz: false,
   };
   const s = leseStand(G, JSON.parse(JSON.stringify(alt)));
   assert.deepEqual(s, alt);
@@ -41,13 +41,13 @@ test('alter Stand (gk.story v2, Wortlaut vor dem Umbau) lädt unverändert; das 
 
 test('Laden: die Prüfung der Zahlenliste kommt aus der Registry (zuordnen: Länge und Plätze; reihenfolge: Plätze ohne Doppel)', () => {
   const lade = (kapitel: string, liste: unknown): unknown => leseStand(G, { v: 2, kurz: false, schritt: { ort: 'auftakt' }, mini: { [kapitel]: liste } })?.mini[kapitel];
-  assert.deepEqual(lade('k4', [0, 1, -1, -1, -1, -1]), [0, 1, -1, -1, -1, -1]);
-  assert.equal(lade('k4', [0, 1]), undefined);
-  assert.equal(lade('k4', [0, 1, -1, -1, -1, 9]), undefined);
-  assert.deepEqual(lade('k6', [2, 0]), [2, 0]);
-  assert.equal(lade('k6', [2, 2]), undefined);
-  assert.equal(lade('k6', [9]), undefined);
-  assert.equal(lade('k6', 'x'), undefined);
+  assert.deepEqual(lade('s5', [0, 1, -1, -1, -1, -1]), [0, 1, -1, -1, -1, -1]);
+  assert.equal(lade('s5', [0, 1]), undefined);
+  assert.equal(lade('s5', [0, 1, -1, -1, -1, 9]), undefined);
+  assert.deepEqual(lade('s10', [2, 0]), [2, 0]);
+  assert.equal(lade('s10', [2, 2]), undefined);
+  assert.equal(lade('s10', [9]), undefined);
+  assert.equal(lade('s10', 'x'), undefined);
 });
 
 test('Zug, Auswertung, Lösung und Änderung je Art; ordneZu/klickeReihe sind nur der Zug der jeweiligen Art', () => {

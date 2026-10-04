@@ -5,7 +5,7 @@
  *
  * Baut unter tmp/entwurf-<pid>/ eine Wurzel aus `inhalte/` plus allen Dateien unter `entwurf/`
  * (gleicher Pfad = ersetzt, z. B. `entwurf/theorie/k03-begriffsrahmen.md` → `inhalte/theorie/k03-begriffsrahmen.md`
- * oder `entwurf/geschichte/k3-risiko.yaml` → `inhalte/geschichte/k3-risiko.yaml`), wendet die ANPASSUNGEN an
+ * oder `entwurf/geschichte/s3-risiko.yaml` → `inhalte/geschichte/s3-risiko.yaml`), wendet die ANPASSUNGEN an
  * (derzeit keine) und kompiliert mit `--pruefe` (Story-Kapitel, Themen, Zitate, Begriffe, Abdeckung …).
  *
  *   node werkzeuge/entwurf.mjs         Exitcode 1 bei Fehlern

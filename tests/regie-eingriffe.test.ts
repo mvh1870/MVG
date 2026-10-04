@@ -25,7 +25,7 @@ test('Sprungziele: jeder Schritt der ganzen Geschichte, Werte eindeutig und lesb
   }
   for (const z of ziele) assert.deepEqual(schrittAus(g, schrittWert(z.schritt)), z.schritt);
   // Gegenprobe: Unbekanntes ergibt null
-  for (const falsch of ['', 'k9:szene', 'k1:mini', 'k1', 'k1:frage:2']) assert.equal(schrittAus(g, falsch), null, falsch);
+  for (const falsch of ['', 'k9:szene', 's1:mini', 's1', 's1:frage:2']) assert.equal(schrittAus(g, falsch), null, falsch);
 });
 
 test('Springen: auf dem Weg bleibt die Fassung, ein Schritt außerhalb der Kurzfassung schaltet auf die ganze Geschichte', () => {
@@ -50,14 +50,14 @@ test('Springen: auf dem Weg bleibt die Fassung, ein Schritt außerhalb der Kurzf
 });
 
 test('Wahl zurücknehmen: nur dieses Kapitel, ohne Wahl unverändert', () => {
-  let s = waehle(g, neuerStand(), 'k1', 1);
-  s = waehle(g, s, 'k2', 0);
-  const ohne = ohneWahl(s, 'k1');
-  assert.equal(ohne.wahlen['k1'], undefined);
-  assert.equal(ohne.wahlen['k2'], 0);
-  assert.equal(s.wahlen['k1'], 1, 'der alte Stand bleibt unberührt');
+  let s = waehle(g, neuerStand(), 's1', 1);
+  s = waehle(g, s, 's2', 0);
+  const ohne = ohneWahl(s, 's1');
+  assert.equal(ohne.wahlen['s1'], undefined);
+  assert.equal(ohne.wahlen['s2'], 0);
+  assert.equal(s.wahlen['s1'], 1, 'der alte Stand bleibt unberührt');
   // Gegenprobe: ohne Wahl kommt derselbe Stand zurück
-  assert.equal(ohneWahl(ohne, 'k1'), ohne);
+  assert.equal(ohneWahl(ohne, 's1'), ohne);
 });
 
 test('Mini-Aufgabe auflösen: jede Aufgabe danach ganz richtig, vorher nicht', () => {

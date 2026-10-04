@@ -218,7 +218,7 @@ vorlagencheck:
     - id: lueftung-kurz
       titel: "Lüftungsanlage – nur das Ersatzgerät"
       lage: "Mai 2027: Der Hersteller der Lüftungsanlage für die Gesamtschule liefert vier Monate später. Die Vorlage nennt nur das Ersatzgerät, mit Preis und Liefertermin."
-      quelle: k7
+      quelle: s12
       gegenstand: geld
       stelle: buergermeisterin
       betrag: 400000
@@ -229,7 +229,7 @@ vorlagencheck:
     - id: lueftung-voll
       titel: "Lüftungsanlage – alle drei Wege"
       lage: "Mai 2027: Dieselbe Lage. So sieht eine entscheidungsreife Vorlage aus: Sie vergleicht drei zulässige Wege – Ersatzgerät, Leihgeräte, späterer Einzug – nach vorher abgestimmten Gewichten; entscheiden muss die Bürgermeisterin bis Ende Mai."
-      quelle: k7
+      quelle: s12
       gegenstand: geld
       stelle: buergermeisterin
       betrag: 400000
@@ -240,7 +240,7 @@ vorlagencheck:
     - id: mensa
       titel: Mensa für 450 statt 300 Essen
       lage: "Juni 2026: Die Schulleitung wünscht eine größere Mensa. Die Vorlage vergleicht die größere Mensa mit einer Mensa, die später wachsen kann; als Termin steht nur „bevor die Fundamente gegossen werden“."
-      quelle: k4
+      quelle: s5
       gegenstand: geld
       stelle: buergermeisterin
       betrag: 150000
@@ -304,13 +304,13 @@ wegweiser:
     - { id: termin-statt-grund, art: aufgabe, text: "„Neuer Termin, Thema erledigt“ – wer verschiebt, sagt auch, warum es später wird.", belege: [v24:hb-1.1] }
     - { id: jede-aufgabe-beschluss, art: aufgabe, text: "„Dafür braucht es einen Beschluss“ – eine offene Aufgabe zieht nicht von selbst eine Bewertung oder einen Beschluss nach sich.", belege: [v24:hb-1.1] }
   beispiele:
-    - { id: messe, quelle: k2, titel: "Hinweis von der Messe: Holz wird knapp", text: "März 2026: Der Architekt hat auf einer Messe gehört, dass die Lieferzeiten für Holzelemente länger werden.", antworten: { dringlich: nein, handlung: nein, eingetreten: nein, anpassen: nein, moeglich: unklar, entscheidung: nein }, erwartet: { art: fruehwarnung } }
-    - { id: hersteller, quelle: k3, titel: Drei Hersteller brauchen länger, text: "April 2026: Drei von vier Herstellern brauchen ein halbes Jahr statt vier Monate; ob der Holzbau später beginnt, ist offen.", antworten: { dringlich: nein, handlung: nein, eingetreten: nein, anpassen: nein, moeglich: ja, entscheidung: ja }, erwartet: { art: risiko, entscheidung: true } }
-    - { id: ausschreiben, quelle: k3, titel: Holzelemente früher ausschreiben, text: "April 2026: Die Holzelemente werden auf Beschluss der Bürgermeisterin früher ausgeschrieben.", antworten: { dringlich: nein, handlung: ja, entscheidung: nein }, erwartet: { art: massnahme } }
-    - { id: mensa, quelle: k4, titel: Größere Mensa gewünscht, text: "Juni 2026: Die Schulleitung wünscht eine Mensa für 450 statt 300 Essen.", antworten: { dringlich: nein, handlung: nein, eingetreten: nein, anpassen: ja, entscheidung: ja }, erwartet: { art: aenderung, entscheidung: true } }
-    - { id: mehrkosten, quelle: k5, titel: Angekündigte Mehrkosten, text: "Oktober 2026: Die Haustechnikfirma kündigt Mehrkosten von gut einer Million an; die Stelle, die Aufträge vergibt (Vergabestelle), prüft zuerst, ob die Mehrkosten berechtigt sind.", antworten: { dringlich: nein, handlung: nein, eingetreten: nein, anpassen: nein, moeglich: ja, entscheidung: nein }, erwartet: { art: risiko, entscheidung: false } }
-    - { id: geruest, quelle: k6, titel: Lose Gerüstanker nach dem Sturm, text: "Februar 2027: Nach dem Sturm sind zwei Gerüstanker an der Sporthalle lose.", antworten: { dringlich: ja, handlung: nein, eingetreten: ja, entscheidung: nein }, erwartet: { art: problem, dringlich: true } }
-    - { id: lueftung, quelle: k7, titel: Lüftungsanlage kommt später, text: "Mai 2027: Der Hersteller der Lüftungsanlage für die Gesamtschule liefert vier Monate später.", antworten: { dringlich: nein, handlung: nein, eingetreten: ja, entscheidung: ja }, erwartet: { art: problem, entscheidung: true } }
+    - { id: messe, quelle: s2, titel: "Hinweis von der Messe: Holz wird knapp", text: "März 2026: Der Architekt hat auf einer Messe gehört, dass die Lieferzeiten für Holzelemente länger werden.", antworten: { dringlich: nein, handlung: nein, eingetreten: nein, anpassen: nein, moeglich: unklar, entscheidung: nein }, erwartet: { art: fruehwarnung } }
+    - { id: hersteller, quelle: s3, titel: Drei Hersteller brauchen länger, text: "April 2026: Drei von vier Herstellern brauchen ein halbes Jahr statt vier Monate; ob der Holzbau später beginnt, ist offen.", antworten: { dringlich: nein, handlung: nein, eingetreten: nein, anpassen: nein, moeglich: ja, entscheidung: ja }, erwartet: { art: risiko, entscheidung: true } }
+    - { id: ausschreiben, quelle: s3, titel: Holzelemente früher ausschreiben, text: "April 2026: Die Holzelemente werden auf Beschluss der Bürgermeisterin früher ausgeschrieben.", antworten: { dringlich: nein, handlung: ja, entscheidung: nein }, erwartet: { art: massnahme } }
+    - { id: mensa, quelle: s5, titel: Größere Mensa gewünscht, text: "Juni 2026: Die Schulleitung wünscht eine Mensa für 450 statt 300 Essen.", antworten: { dringlich: nein, handlung: nein, eingetreten: nein, anpassen: ja, entscheidung: ja }, erwartet: { art: aenderung, entscheidung: true } }
+    - { id: mehrkosten, quelle: s8, titel: Angekündigte Mehrkosten, text: "Oktober 2026: Die Haustechnikfirma kündigt Mehrkosten von gut einer Million an; die Stelle, die Aufträge vergibt (Vergabestelle), prüft zuerst, ob die Mehrkosten berechtigt sind.", antworten: { dringlich: nein, handlung: nein, eingetreten: nein, anpassen: nein, moeglich: ja, entscheidung: nein }, erwartet: { art: risiko, entscheidung: false } }
+    - { id: geruest, quelle: s10, titel: Lose Gerüstanker nach dem Sturm, text: "Februar 2027: Nach dem Sturm sind zwei Gerüstanker an der Sporthalle lose.", antworten: { dringlich: ja, handlung: nein, eingetreten: ja, entscheidung: nein }, erwartet: { art: problem, dringlich: true } }
+    - { id: lueftung, quelle: s12, titel: Lüftungsanlage kommt später, text: "Mai 2027: Der Hersteller der Lüftungsanlage für die Gesamtschule liefert vier Monate später.", antworten: { dringlich: nein, handlung: nein, eingetreten: ja, entscheidung: ja }, erwartet: { art: problem, entscheidung: true } }
     - { id: haushalt, quelle: fall, titel: Kostenübersicht für den Haushalt, text: "Die Kostenübersicht für den Haushalt 2027 geht bis Freitag an die Finanzabteilung der Stadt (Kämmerei).", antworten: { dringlich: nein, handlung: nein, eingetreten: nein, anpassen: nein, moeglich: nein, arbeit: ja, entscheidung: nein }, erwartet: { art: aufgabe } }
 
   # Regie-Material (nur im Regie-Teil, nie auf der Leinwand; Konzept B.10)
@@ -373,7 +373,7 @@ risikogrenzen:
     - id: ris-009
       kennung: RIS-009
       titel: Holzbauelemente kommen zu spät
-      quelle: k3
+      quelle: s3
       w: { stufe: 4 }
       kosten: unbekannt
       termin: { von: 0, bis: 70 }   # „bis zu zehn Wochen“ (Story 3)
@@ -389,7 +389,7 @@ risikogrenzen:
     - id: ris-014
       kennung: RIS-014
       titel: Angekündigte Mehrkosten der Haustechnikfirma
-      quelle: k5
+      quelle: s8
       w: { stufe: 3 }
       kosten: { von: 1000000, bis: 1200000 }
       termin: entfaellt
@@ -457,7 +457,7 @@ monatsbericht:
     zuLang: { text: "Der Bericht passt nicht mehr auf eine Seite. Kürzen Sie ihn oder fassen Sie Einträge zusammen.", belege: [v24:hb-4, v24:as-2] }
   beispiele:
     - id: oktober
-      quelle: k5
+      quelle: s8
       titel: Monatsbericht Oktober 2026
       monat: Oktober 2026
       datenstand: Einträge vom 30. Oktober 2026

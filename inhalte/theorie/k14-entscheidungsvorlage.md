@@ -10,7 +10,7 @@
 # Belege k14.3 (Frage und Rahmen, Optionen): v24:hb-3.1 (Entscheidungsbedarf klären, Mindestens zwei Optionen ausarbeiten), v24:hb-1.5 (zwei ernsthafte, zulässige Optionen)
 # Belege k14.4 (MCDA): v24:hb-3.1 (MCDA anwenden, Punkte nachvollziehbar begründen, Grenzen und Empfehlung offenlegen)
 # Belege k14.5 (Beispiel Wärmepumpe): v24:hb-3.2, v24:as-2 (dort „verspätete Anlagenlieferung“ ohne Gerätenamen); Fall: inhalte/fall.md, Abschnitt „Wer entscheidet was“ (Sie bis 100.000 € ohne Reserve)
-# Bewusst ein anderes Gerät als die Lüftungsanlage aus Story-Kapitel 7 (inhalte/geschichte/k7-entscheidung.yaml), damit Thema und Story sich nicht widersprechen (r72).
+# Bewusst ein anderes Gerät als die Lüftungsanlage aus Story-Kapitel 7 (inhalte/geschichte/s12-entscheidung.yaml), damit Thema und Story sich nicht widersprechen (r72).
 # Belege k14.6 (Vorlegen, nachhalten, Beschluss): v24:hb-3.1 (Vorlegen und nachhalten, Beschluss getrennt dokumentieren), v24:hb-5 (Tabelle, Zeile Entscheidung), v24:hb-3 (Dringliches wartet nicht)
 kapitel: 14
 thema: entscheidungsvorlage

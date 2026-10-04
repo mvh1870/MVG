@@ -156,7 +156,7 @@ export async function lauf(seite, h) {
   await pruefe('k2-mini');
 
   // Kapitel 6: Reihenfolge
-  await seite.goto(h.url.replace(/#.*$/u, '') + '#story/k6');
+  await seite.goto(h.url.replace(/#.*$/u, '') + '#story/s10');
   await h.erwarte('[data-pruef="gs-titel"]:has-text("Ärger auf der Baustelle")');
   await campusGanz('6 Szene');
   await weiter();
@@ -173,7 +173,7 @@ export async function lauf(seite, h) {
   await pruefe('k6-mini');
 
   // Kapitel 7: Vergleich
-  await seite.goto(h.url.replace(/#.*$/u, '') + '#story/k7');
+  await seite.goto(h.url.replace(/#.*$/u, '') + '#story/s12');
   await h.erwarte('[data-pruef="gs-titel"]:has-text("Die große Entscheidung")');
   await campusGanz('7 Szene');
   await weiter();
@@ -250,7 +250,7 @@ export async function lauf(seite, h) {
     }
     await weiter();
   }
-  await h.erwarte('[data-pruef="bruecke-k8"]');
+  await h.erwarte('[data-pruef="bruecke-s14"]');
   const ort = (await seite.locator('[data-pruef="gs-ort"]').textContent()) ?? '';
   if (!/Ende/u.test(ort)) h.befund(`Kurzfassung: Ort am Ende „${ort}“`);
   await pruefe('kurz-ende');

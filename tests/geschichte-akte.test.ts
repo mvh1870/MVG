@@ -261,7 +261,7 @@ test('Ortszeile: „Station 7 von 14 · Akt II · noch etwa 9 Minuten“ (Restze
   assert.equal(ortText(g, E.neuerStand(), lz), W.geschichte.auftakt);
   assert.equal(ortText(g, { ...E.neuerStand(), schritt: { ort: 'ende' } }, lz), W.geschichte.endeOrt);
   // ohne Akte: wie bisher „3 von 8 · Titel“
-  assert.match(ortText(ECHT, an('k3', 'szene')), /^3 von 8 · /u);
+  assert.match(ortText(ECHT, an('s3', 'szene')), /^3 von 8 · /u);
   // deterministisch: dieselbe Zeile, so oft man fragt
   assert.equal(ortText(g, an('s7', 'szene'), lz), ortText(g, an('s7', 'szene'), lz));
   const leiste = leisteOben(g, an('s7', 'szene'), true, () => undefined, lz);

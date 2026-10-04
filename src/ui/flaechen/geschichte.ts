@@ -506,7 +506,7 @@ function miniSchritt(o: SchrittOptionen, k: Kapitel): HTMLElement {
     kopf(o, k, `${w.miniKicker} · ${m.titel}`),
     h('section', { class: 'gs-mini-aufgabe', 'aria-labelledby': 'gs-mini-aufgabe' },
       h('span', { class: 'gs-mini-symbol', 'aria-hidden': 'true' }, sym('puzzle')),
-      h('p', { id: 'gs-mini-aufgabe', class: 'gs-mini-auftrag' }, inhaltInline(m.aufgabeHtml)),
+      h('p', { id: 'gs-mini-aufgabe', class: 'gs-mini-auftrag' }, inhaltInline(m.aufgabeHtml), m.legendeHtml !== undefined ? h('span', { class: 'gs-mini-begriffe' }, inhaltInline(m.legendeHtml)) : null),
       gegenstand(m.bild, 96, 'gs-gegenstand gs-mini-bild')),
     baustein.zeichne(o, k, m),
     h('div', { class: 'gs-mini-fuss' },

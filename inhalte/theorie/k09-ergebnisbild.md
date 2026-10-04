@@ -19,7 +19,7 @@ deckt: [k9.2-p3]
 kapitel: 9
 thema: ergebnisbild
 reihe: 7
-titel: "Was am Ende vorliegt: die Ergebnisse einer MVG-Einführung"
+titel: "Was am Ende vorliegt: die Ergebnisse der Einführung von Minimum Viable Governance"
 kurztitel: Ergebnisse
 teil: 2
 kurzsatz: Was am Ende einer Einführung vorliegt – vom Mandat bis zur Beschlusslage.

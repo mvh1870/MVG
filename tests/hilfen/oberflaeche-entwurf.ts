@@ -19,7 +19,7 @@ export const OBERFLAECHE_ENTWURF: Record<string, unknown> = {
   'bruecken-kicker': "Inzwischen",
   buch: "Entscheidungsbuch",
   'buch-titel': "Das Entscheidungsbuch",
-  'buch-intro': "Hier hält die Projektsteuerin fest, was die Stadt beschlossen hat, auf welcher Grundlage und wer entschieden hat. Sie lesen mit.",
+  'buch-intro': "Hier hält die Projektsteuerin fest, was beschlossen wurde und was nicht, auf welcher Grundlage und wer entschieden hat. Sie lesen mit.",
   'buch-leer': "Noch steht nichts im Buch. Mit der ersten Station beginnt es sich zu füllen.",
   'buch-legende': "Beschluss: Die zuständige Stelle hat entschieden. Vermerk: Es wurde etwas festgehalten, aber nichts beschlossen. Übergabe: Offenes geht mit Termin und Namen an einen Nachfolger.",
   'buch-spalten': ["Anlass", "Entschieden von", "Grundlage", "Ergebnis"],

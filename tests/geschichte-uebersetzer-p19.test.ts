@@ -306,6 +306,15 @@ test('bericht: Zeilen ok oder nachfordern, Schlusssatz Pflicht, beide Lösungen 
   assert.match(lauf(mitMini({ ...m, wahlen: [] })).fehler.join('\n'), /die Wahlen dieser Art sind fest/u);
 });
 
+test('legende (Prüfrunde 3): optionales Feld jeder Mini-Aufgabe, der Text kommt unverändert durch den Inline-Übersetzer, ohne Feld keine legendeHtml; Leerabsatz ist ein Fehler', () => {
+  const m = mini('bericht', { posten: kartenPosten(['ok', 'nachfordern', 'ok']), schluss: 'Eine Zeile wurde nachgefordert.' });
+  const mit = lauf(mitMini({ ...m, legende: '**rot:** dringend · **gelb:** bald' }));
+  assert.deepEqual(mit.fehler, []);
+  assert.equal(mit.erg.geschichte.kapitel[1].mini.legendeHtml, '**rot:** dringend · **gelb:** bald');
+  assert.equal(lauf(mitMini(m)).erg.geschichte.kapitel[1].mini.legendeHtml, undefined);
+  assert.match(lauf(mitMini({ ...m, legende: 'Eins.\n\nZwei.' })).fehler.join('\n'), /ein Absatz erwartet/u);
+});
+
 const gespraeche = (n = 4): Roh[] => Array.from({ length: n }, (_, i) => ({
   text: `Gespräch ${i + 1}`, erklaerung: `Die Vertretung hält Punkt ${i + 1} fest.`, gespraech: [{ wer: 'Lot', text: `Frage ${i + 1}` }, { wer: `Partner ${i + 1}`, text: `Antwort ${i + 1}` }],
 }));

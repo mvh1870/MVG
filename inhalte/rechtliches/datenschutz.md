@@ -49,7 +49,7 @@ Diese Internetseite wird bei der IONOS SE gehostet. Der Hosting-Anbieter verarbe
 
 Damit Sie in der Geschichte dort weitermachen können, wo Sie aufgehört haben, speichert die Seite Angaben im lokalen Speicher Ihres Browsers (englisch Local Storage). Das ist ein kleiner Speicher, der nur auf Ihrem Gerät liegt. Gespeichert werden:
 
-- In der Geschichte: der Schritt, an dem Sie sind (auch eine der Pausen zwischen den drei Teilen), Ihre Entscheidungen, Ihre Antworten in den Mini-Aufgaben, Ihre Gewichte und ob Sie die Kurzfassung lesen. „Ihr Weg im Überblick“ und das Entscheidungsbuch stellt die Seite bei jedem Aufruf aus diesen Angaben neu zusammen; sie werden nicht eigens gespeichert. Welche Einträge des Buchs als „neu“ gekennzeichnet sind, merkt sich die Seite nur, solange Sie sie geöffnet haben, nicht im Browser-Speicher.
+- In der Geschichte: der Schritt, an dem Sie sind (auch eine der Pausen zwischen den drei Akten), Ihre Entscheidungen, Ihre Antworten in den Mini-Aufgaben, Ihre Gewichte und ob Sie die Kurzfassung lesen. „Ihr Weg im Überblick“ und das Entscheidungsbuch stellt die Seite bei jedem Aufruf aus diesen Angaben neu zusammen; sie werden nicht eigens gespeichert. Welche Einträge des Buchs als „neu“ gekennzeichnet sind, merkt sich die Seite nur, solange Sie sie geöffnet haben, nicht im Browser-Speicher.
 - In den Themen: Ihr Lesefortschritt, also welche Verständnisfragen Sie beantwortet haben (nicht, welche Antwort Sie gewählt haben) und welche Themen ohne Verständnisfragen Sie bis zum Ende gelesen haben.
 - Beim Präsentieren: der Stand der Präsentation (auch das gezeigte Werkzeug mit Beispiel und Schritt, nie Ihre Eingaben in den Werkzeugen) und die Notizen, die Sie selbst zum Gespräch eintragen.
 

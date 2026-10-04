@@ -26,7 +26,7 @@ szene:
   # Zeile 2: lange Fassung nennt das Entscheidungsbuch, die Kurzfassung die alte Zeile (text-kurz)
   - figur: faden
     text: "Dann schreibe ich das als Ihre Festlegung ins Entscheidungsbuch: wer entschieden hat, wann, auf welcher Grundlage. Was noch fehlt: Wer darf hier was entscheiden?"
-    text-kurz: "Dann schreibe ich das genau so auf, als Ihre Festlegung. Was noch fehlt: Wer darf hier was entscheiden?"
+    text-kurz: "Dann schreibe ich das als Ihre Festlegung ins Entscheidungsbuch. Was noch fehlt: Wer darf hier was entscheiden?"
   - { figur: grundstein, text: "Ach, das regeln Sie beide. Ich will nicht mit jeder Kleinigkeit gestört werden." }
   - { figur: schwung, text: "Ich bräuchte übrigens bis Freitag ein Ja zu den Fassadenplatten. Wer gibt mir das?" }
   - { figur: faden, text: "Genau darum geht es. Ich bereite alles vor, was entschieden werden muss. Entscheiden darf ich nichts. Wer was entscheiden darf, muss vorher feststehen." }

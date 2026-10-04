@@ -59,7 +59,7 @@ gut: |
 mini:
   art: pinnwand
   titel: Stimmen die Verknüpfungen?
-  aufgabe: "Clara Faden hat die Zettel mit rotem Faden verbunden. Stimmt das, soll sie nachbessern, weil eine Verbindung fehlt, oder würde etwas doppelt gezählt?"
+  aufgabe: "Clara Faden hat die Zettel mit rotem Faden verbunden. Was sagen Sie zu jeder Verbindung?"
   bild: pinnwand
   schluss: "Zwei Verbindungen hätten doppelt gezählt."
   zettel:
@@ -76,7 +76,7 @@ mini:
   posten:
     - { text: "Risiko „angekündigte Mehrkosten“, verbunden mit der Prüfung der Vergabestelle.", von: z1, nach: [z2], loesung: stimmt, erklaerung: "Zusammengehörige Einträge werden verbunden, damit man den Weg vom Hinweis bis zur Klärung sieht." }
     - { text: "Dieselben Mehrkosten stehen als Risiko mit Spanne und noch einmal in der Prognose, der Vorhersage der Gesamtkosten.", von: z1, nach: [z3], loesung: doppelt, erklaerung: "Was schon in der Prognose steht, wird kenntlich gemacht und nicht noch einmal dazugerechnet." }
-    - { text: "Frühwarnung „Holz“, verbunden mit dem Risiko „Lieferzeit“ und dem Beschluss, das Holz früher auszuschreiben.", von: z4, nach: [z5, z6], loesung: stimmt, erklaerung: "Beim Übergang verweist der Folgeeintrag auf den ersten; die Herkunft geht nicht verloren." }
+    - { text: "Frühwarnung „Holz“, verbunden mit dem Risiko „Lieferzeit“ und dem Beschluss, das Holz früher auszuschreiben.", von: z4, nach: [z5, z6], loesung: stimmt, erklaerung: "Wird aus einem Hinweis ein Risiko, verweist der neue Eintrag auf den alten. So bleibt sichtbar, woher er kam." }
     - { text: "Änderung „Mensa erweiterbar“: Kosten und Termin bewertet, erkannte Risiken der Änderung nicht verbunden.", von: z7, nach: [], loesung: nachfordern, erklaerung: "Risiken, die eine Änderung selbst mit sich bringt, werden für sich bewertet und mit ihr verbunden." }
     - { text: "Kapselung: als Problem geführt und mit derselben Summe noch einmal als Risiko.", von: z9, nach: [z10], loesung: doppelt, erklaerung: "Ein eingetretener Zustand ist ein Problem; seine Kosten stehen nicht zusätzlich als Risiko in der Rechnung." }
 
@@ -94,7 +94,7 @@ vertiefung:
     - "Zwei Zahlen sind unbequem, aber ehrlich. Eine Mitte ist bequem, doch niemand kann sie verteidigen, wenn der Rechnungsprüfer nachfragt."
 
 regie:
-  notiz: "Kern: Es gibt einen gültigen Stand der Zahlen, jede Zahl mit Datum und Begründung; unterschiedliche Einschätzungen werden erklärt, nicht gemittelt, Unsicheres steht als Risiko mit Spanne daneben."
+  notiz: "Kern: Es gibt einen gültigen Stand der Zahlen, jede Zahl mit Datum und Begründung; unterschiedliche Einschätzungen werden erklärt, ohne Mittelwert, Unsicheres steht als Risiko mit Spanne daneben."
   leitfragen:
     - Welche Zahl würde Ihre Bürgermeisterin, Ihr Vorstand oder Ihre Geschäftsführung heute nennen – und woher käme sie?
     - Wie gehen Sie mit zwei Zahlen um, die nicht zusammenpassen?

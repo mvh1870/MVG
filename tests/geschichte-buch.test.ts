@@ -621,7 +621,7 @@ test('Datenschutz (P19.7): Abschnitt 5 nennt Pausen, Buch, Weg im Überblick und
   const md = readFileSync('inhalte/rechtliches/datenschutz.md', 'utf8');
   const abschnitt = /## 5\. Speicherung in Ihrem Browser([\s\S]*?)\n## 6\./u.exec(md)?.[1] ?? '';
   assert.ok(abschnitt.length > 500);
-  assert.match(abschnitt, /auch eine der Pausen zwischen den drei Teilen/u);
+  assert.match(abschnitt, /auch eine der Pausen zwischen den drei Akten/u);
   assert.match(abschnitt, /das Entscheidungsbuch stellt die Seite bei jedem Aufruf aus diesen Angaben neu zusammen/u);
   assert.match(abschnitt, new RegExp(`„${W.geschichte.verlaufBilanz}“`, 'u'));
   assert.match(abschnitt, /„neu“ gekennzeichnet sind, merkt sich die Seite nur, solange Sie sie geöffnet haben, nicht im Browser-Speicher/u);
@@ -630,7 +630,7 @@ test('Datenschutz (P19.7): Abschnitt 5 nennt Pausen, Buch, Weg im Überblick und
   // Wörter, die die Seite benutzt (Buch, Pause), stehen auch dort so
   assert.ok(W.geschichte.buchTitel.length > 0 && /Entscheidungsbuch/u.test(`${W.regie.buchZeigen} ${W.geschichte.buchTitel}`));
   // Gegenprobe: ohne die Zusätze fällt der Test auf
-  assert.doesNotMatch(abschnitt.replace(/auch eine der Pausen zwischen den drei Teilen/u, ''), /Pausen zwischen den drei Teilen/u);
+  assert.doesNotMatch(abschnitt.replace(/auch eine der Pausen zwischen den drei Akten/u, ''), /Pausen zwischen den drei Akten/u);
 });
 
 test('Papier (P19.7, L-364): keine Mini-Art hat eine Papierfassung – der Druckbogen trägt weder Aufgabe noch Posten noch Stand der Mini-Aufgaben', async () => {

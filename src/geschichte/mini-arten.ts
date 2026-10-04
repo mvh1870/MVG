@@ -204,7 +204,7 @@ const keineWahlenAngeben = (_w: readonly MiniWahl[], gegeben: boolean, ort: stri
 
 const WAHLEN_MATRIX: readonly MiniWahl[] = [festWahl('stimmt', 'Stimmt'), festWahl('nachfordern', 'Nachbessern lassen')];
 const WAHLEN_MAPPE: readonly MiniWahl[] = [festWahl('annehmen', 'So annehmen'), festWahl('nachfordern', 'Nachbessern lassen')];
-const WAHLEN_PINNWAND: readonly MiniWahl[] = [festWahl('stimmt', 'Stimmt'), festWahl('doppelt', 'Zählt doppelt'), festWahl('nachfordern', 'Nachbessern lassen')];
+const WAHLEN_PINNWAND: readonly MiniWahl[] = [festWahl('stimmt', 'Stimmt'), festWahl('doppelt', 'Zählt doppelt'), festWahl('nachfordern', 'Es fehlt eine Verbindung')];
 
 const MATRIX: MiniArtDef = {
   art: 'matrix',

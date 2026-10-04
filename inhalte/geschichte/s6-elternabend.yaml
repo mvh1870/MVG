@@ -22,10 +22,10 @@ szene:
   # E6 (im Einstieg, keine eigene Sprecherin): je nach Antwort in Station 5 (gut: erweiterbare Mensa beschlossen; vertretbar: Schule wartete; Falle: Zusage beim Schulfest)
   - { text: "Die Vorsitzende des Elternbeirats steht mit dem Klemmbrett auf und fragt: „Und kommen unsere Kinder 2028 wirklich in die neuen Räume? Ja oder nein – ich schreibe es auf die Einladung.“" }
   - { figur: klingel, zusatz: hält die Messingglocke im Arm, text: "Ich würde den Eltern so gern etwas Festes sagen." }
-  - { text: "Die Vorsitzende des Elternbeirats fragt weiter: „Und was heißt das für meinen Jüngsten? Er soll nicht der Letzte im Container sein.“ Hinten fragt der Reporter: „Und wer entscheidet über die Mensa?“" }
+  - { text: "Die Vorsitzende fragt weiter: „Und was heißt das für meinen Jüngsten? Er soll nicht der Letzte im Container sein.“ Hinten fragt der Reporter: „Und wer entscheidet über die Mensa?“" }
   - { figur: faden, text: "Ich habe gestern bis spät aufgeschrieben, was feststeht und was nicht. Sprechen müssen Sie." }
 
-frage: Die Vorsitzende des Elternbeirats schaut Sie an, hinten ist der Notizblock gezückt. Was sagen Sie den Eltern?
+frage: Die Vorsitzende schaut Sie an, hinten ist der Notizblock gezückt. Was sagen Sie den Eltern?
 
 antworten:
   - wertung: gut
@@ -33,7 +33,7 @@ antworten:
     balken: { geld: 0, zeit: 0, vertrauen: 1 }
     bild: klemmbrett
     folge: |
-      Es wird still im Saal, dann nickt die Vorsitzende des Elternbeirats und schreibt auf ihrem Klemmbrett mit: „Beschlossen, offen, und wer entscheidet. Das kann ich weitergeben.“ Hinten blättert der Reporter eine Seite um: „Das schreibe ich so auf.“
+      Es wird still im Saal, dann nickt die Vorsitzende und schreibt auf ihrem Klemmbrett mit: „Beschlossen, offen, und wer entscheidet. Das kann ich weitergeben.“ Hinten blättert der Reporter eine Seite um: „Das schreibe ich so auf.“
 
       Hanna Klingel drückt die Glocke an sich. „Dann läutet sie eben erst im neuen Haus.“
   - wertung: falle
@@ -50,7 +50,7 @@ antworten:
     balken: { geld: 0, zeit: 0, vertrauen: 0 }
     bild: stuhlreihen
     folge: |
-      Die Vorsitzende des Elternbeirats senkt das Klemmbrett. „Und wann erfahren wir es dann?“ Auf dem Heimweg sagen viele Eltern, man habe sie vertröstet. Im „Lindenbote“ steht am nächsten Morgen: „Viele Fragen, wenig Antworten.“
+      Die Vorsitzende senkt das Klemmbrett. „Und wann erfahren wir es dann?“ Auf dem Heimweg sagen viele Eltern, man habe sie vertröstet. Im „Lindenbote“ steht am nächsten Morgen: „Viele Fragen, wenig Antworten.“
 
       Clara Faden schreibt den Stand auf ein Blatt, das die Schule eine Woche später an alle Eltern verteilt.
 

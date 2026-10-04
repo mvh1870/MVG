@@ -290,15 +290,29 @@ test('mappe: Haftzettel je Abschnitt, Rückmeldung je Abschnitt, der Schlusssatz
   assert.deepEqual(knoepfe.map((b) => b.getAttribute('aria-pressed')), ['false', 'true']);
 });
 
+test('legende: eine eigene Zeile unter dem Auftrag, nur wo der Inhalt sie angibt (Prüfrunde 3, Gegenprobe ohne)', () => {
+  const ohne = mit(matrixMini()).seite(mit(matrixMini()).stand());
+  assert.equal(ohne.querySelector('.gs-mini-begriffe'), null);
+  assert.equal(ohne.querySelector('.gs-mini-wand-kopf'), null, 'ohne Pinnwand keine Wand-Überschrift');
+  const m = { ...matrixMini(), legendeHtml: '<b>vorrangig:</b> zuerst' };
+  const k = mit(m);
+  const el = k.seite(k.stand());
+  const zeile = el.querySelector('.gs-mini-auftrag .gs-mini-begriffe') as Element;
+  assert.equal(text(zeile), 'vorrangig: zuerst');
+  assert.ok(zeile.querySelector('b'), 'Auszeichnung bleibt');
+});
+
 test('pinnwand: die Zettel der Wand, je Karte der Faden von Zettel zu Zettel; nach der Wahl zeigt der Faden die Lösung – als Wort und als Linienart', () => {
   const { g, stand, seite } = mit(pinnwandMini());
   let s = stand();
   const el = seite(s);
   assert.deepEqual([...el.querySelectorAll('[data-pruef="zettel-wand"] li')].map(text), ['Risiko A', 'Prüfung B', 'Prognose C', 'Änderung D']);
+  assert.equal(text(el.querySelector('.gs-mini-wand-kopf') as Element), 'Das hängt an der Pinnwand:', 'die Wand trägt eine sichtbare Überschrift (Prüfrunde 3)');
+  assert.equal(text(seite(stand(undefined)).querySelector('.gs-mini-wand-kopf') as Element), 'Das hängt an der Pinnwand:');
   assert.equal((el.querySelector('[data-pruef="faden-1"]') as HTMLElement).dataset['faden'], 'offen', 'vor der Wahl neutral');
   assert.match(text(el.querySelector('[data-pruef="faden-1"]') as Element), /Risiko A.*Prüfung B/u);
   assert.match(text(el.querySelector('[data-pruef="faden-3"]') as Element), /Änderung D.*kein Zettel am Ende/u, 'loses Ende in Worten');
-  assert.deepEqual([...el.querySelectorAll('[data-pruef="posten-1"] button')].map(text), ['Stimmt', 'Zählt doppelt', 'Nachbessern lassen']);
+  assert.deepEqual([...el.querySelectorAll('[data-pruef="posten-1"] button')].map(text), ['Stimmt', 'Zählt doppelt', 'Es fehlt eine Verbindung']);
   s = zug(g, s, 0, 2);
   s = zug(g, s, 1, 1);
   s = zug(g, s, 2, 2);

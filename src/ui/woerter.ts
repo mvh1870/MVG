@@ -270,7 +270,7 @@ export const W = {
     // Entscheidungsbuch (P19.4): Symbol, Seite, Einträge – für alle Wege gleich, nie die Antwort der Leserin oder des Lesers
     buch: 'Entscheidungsbuch',
     buchTitel: 'Das Entscheidungsbuch',
-    buchIntro: 'Hier hält die Projektsteuerin fest, was die Stadt beschlossen hat, auf welcher Grundlage und wer entschieden hat. Sie lesen mit.',
+    buchIntro: 'Hier hält die Projektsteuerin fest, was beschlossen wurde und was nicht, auf welcher Grundlage und wer entschieden hat. Sie lesen mit.',
     buchLeer: 'Noch steht nichts im Buch. Mit der ersten Station beginnt es sich zu füllen.',
     buchLegende: [
       { art: 'beschluss', wort: 'Beschluss', text: 'Die zuständige Stelle hat entschieden.' },
@@ -295,6 +295,7 @@ export const W = {
     miniNachfordern: 'Nachbessern lassen',
     miniInOrdnung: 'in Ordnung',
     miniZettel: 'Zettel',
+    miniZettelKopf: 'Das hängt an der Pinnwand:',
     miniFaden: { verbunden: 'verbunden mit', keinZiel: 'kein Zettel am Ende', stimmt: 'Die Verbindung stimmt.', doppelt: 'Hier würde doppelt gezählt.', nachfordern: 'Hier fehlt eine Verbindung.' } as Record<string, string>,
     // Eintrag-Kärtchen der Rückfragen (P19.6): Name des Kärtchens und eine leere Zeile
     miniEintrag: 'Der Eintrag',

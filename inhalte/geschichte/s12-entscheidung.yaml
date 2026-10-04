@@ -105,7 +105,7 @@ frage: Die Vorlage geht an die Bürgermeisterin. Was legen Sie ihr vor?
 
 antworten:
   - wertung: falle
-    text: Nur das Ersatzgerät, mit Preis und Termin – je kürzer die Vorlage, desto schneller entschieden.
+    text: Nur das Ersatzgerät, mit Preis und Termin – die Bürgermeisterin hat im Mai wenig Zeit.
     balken: { geld: -2, zeit: 1, vertrauen: -2 }
     bild: rednerpult
     folge: |
@@ -113,7 +113,7 @@ antworten:
 
       „Ich habe entschieden, ohne zu wissen, dass ich eine Wahl hatte“, sagt sie. „Das darf nicht noch einmal passieren.“ Clara Faden legt den Vergleich nachträglich vor und hält den Beschluss samt Auflage fest: vor dem Schulstart eingebaut und in Betrieb. Es bleibt beim Ersatzgerät.
   - wertung: gut
-    text: Alle drei Wege, Vergleich und Empfehlung fürs Ersatzgerät – mit dem Hinweis, wann der spätere Einzug vorn läge.
+    text: Alle drei Wege, Vergleich und Empfehlung fürs Ersatzgerät – mit dem Hinweis, wann sich die Rangfolge ändert.
     balken: { geld: -1, zeit: 1, vertrauen: 1 }
     bild: stempel
     folge: |
@@ -130,7 +130,7 @@ antworten:
       Die Bürgermeisterin vertagt die Entscheidung um eine Woche und hört im Lenkungskreis die Schule an. Dann entscheidet sie: Ersatzgerät, das Geld kommt aus der Reserve, mit der Auflage, dass es vor dem Schulstart eingebaut und in Betrieb ist. Ihre Empfehlung war ehrlich begründet, passte aber nicht zum Ziel, das die Bürgermeisterin gesetzt hatte. Die Woche fehlt dem Einbau am Ende.
 
 gut: |
-  Zuerst wird geprüft, was ein Vorschlag erfüllen muss. Wer das nachweislich nicht erfüllt, scheidet aus; fehlt nur der Nachweis, sagt die Projektsteuerin offen, was noch zu klären ist. Dann werden mindestens zwei Wege verglichen, die alles Zwingende erfüllen, mit vorab vereinbarten Gewichten und einer begründeten Empfehlung, die zeigt, wann sich die Rangfolge ändert. Beschlossen wird davon getrennt.
+  Zuerst wird geprüft, was ein Vorschlag erfüllen muss. Wer das nachweislich nicht erfüllt, scheidet aus; fehlt nur der Nachweis, sagt die Projektsteuerin offen, was noch zu klären ist. Dann werden mindestens zwei Wege verglichen, die das erfüllen, mit vorab vereinbarten Gewichten und einer begründeten Empfehlung, die zeigt, wann sich die Rangfolge ändert. Beschlossen wird davon getrennt.
 
 dahinter: "Der Vergleich nimmt niemandem die Entscheidung ab: Er zeigt, welcher Weg zu den Zielen passt und wie sehr das an den Gewichten hängt."
 
@@ -146,7 +146,7 @@ vertiefung:
     - "Und: Eine hohe Punktzahl ersetzt kein fachliches Urteil. Eurobeträge, Tage und offene Fragen bleiben neben den Punkten sichtbar, damit die zuständige Stelle sieht, wofür die Zahl steht."
 
 regie:
-  notiz: "Der Muss-Filter kommt vor den Punkten: Was erfüllt sein muss, wird zuerst geprüft; fehlt nur der Nachweis, legt die Projektsteuerin offen, was zu klären ist. Danach die Gewichte gemeinsam einstellen – die Leinwand ordnet die drei Wege sofort um; vor der Wahl mit „Abgestimmte Gewichte“ zurück. Kern: Der Vergleich nimmt niemandem die Entscheidung ab; er zeigt, welcher Weg zu den gesetzten Zielen passt und wie sehr das Ergebnis an den Gewichten hängt."
+  notiz: "Zuerst wird geprüft, was erfüllt sein muss, dann kommen die Punkte; fehlt nur der Nachweis, legt die Projektsteuerin offen, was zu klären ist. Danach die Gewichte gemeinsam einstellen – die Leinwand ordnet die drei Wege sofort um; vor der Wahl mit „Abgestimmte Gewichte“ zurück. Kern: Der Vergleich nimmt niemandem die Entscheidung ab; er zeigt, welcher Weg zu den gesetzten Zielen passt und wie sehr das Ergebnis an den Gewichten hängt."
   leitfragen:
     - Was ist Ihnen wichtiger – Schulstart oder Geld?
     - Ändert sich Ihre Wahl, wenn Sie die Gewichte anders setzen?

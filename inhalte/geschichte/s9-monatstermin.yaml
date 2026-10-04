@@ -4,7 +4,7 @@
 # Der Netzanschluss (März statt Januar, bis dahin Baustrom) ist eine erfundene Tatsache des Falls, keine Fachregel; er steht auf jedem
 # Weg im Bericht. Der Planstand der Fassade ist auf jedem Weg im Prüfvermerk der Wochendurchsicht als überfällig vermerkt.
 # Station 9 erzeugt das Echo E9 (Station 9 → 11, Szene der Vertretung); ankommend kein Echo.
-# Mini-Aufgabe (bericht) steht VOR der Frage (nach der Szene), Mehrfachauswahl; Belege je Zeile: 1 v24:hb-4 · 2 v24:hb-4, v24:hb-1.1, k2.4-p2 ·
+# Mini-Aufgabe (bericht) steht nach der Folge (P19.8: vorher vor der Frage, die Rückmeldung löste die Entscheidung vorweg auf), Mehrfachauswahl; Belege je Zeile: 1 v24:hb-4 · 2 v24:hb-4, v24:hb-1.1, k2.4-p2 ·
 # 3 v24:hb-1.4 · 4 v24:hb-4, v24:hb-3.1, k2.4-p2 · 5 v24:hb-1.6, v24:hb-1.4 · 6 v24:hb-4
 nr: 9
 titel: Der Monatstermin
@@ -60,15 +60,14 @@ gut: |
 
 mini:
   art: bericht
-  stelle: vor-frage
   titel: Was fehlt im Bericht?
-  aufgabe: "Hier der Entwurf, nach dem Anruf des Netzbetreibers ergänzt: sechs Zeilen. Bei welchen lassen Sie nachbessern, weil Wichtiges fehlt?"
+  aufgabe: "Noch einmal der Entwurf, nach dem Anruf des Netzbetreibers ergänzt: sechs Zeilen. Bei welchen hätten Sie nachbessern lassen, weil Wichtiges fehlt?"
   bild: berichtsblatt
   schluss: "Drei Zeilen mussten nachgebessert werden."
   posten:
-    - { text: "Kosten: unverändert rund eine Million über dem Budget; die Mehrkosten der Haustechnik sind seit November als Risiko geschlossen.", loesung: ok, erklaerung: "Ein Stand in einer Zeile; eine zweite Liste ist nicht nötig." }
+    - { text: "Kosten: unverändert rund eine Million über dem Budget; die Mehrkosten der Haustechnik sind seit November als Risiko geschlossen.", loesung: ok, erklaerung: "Die Zeile ist in Ordnung: Der Kostenstand steht einmal da, eine zweite Liste daneben braucht niemand." }
     - { text: "Termine: alle Punkte grün.", loesung: nachfordern, erklaerung: "Die Fassade fehlt: Der Termin für den Planstand ist verstrichen, und Grün erklärt das nicht." }
-    - { text: "Netzanschluss: erst im März statt im Januar, bis dahin Baustrom. Für den Schulstart ändert sich nichts.", loesung: ok, erklaerung: "Ein eingetretenes Problem mit Zwischenlösung und Folge für das Ziel – mehr braucht eine Seite nicht." }
+    - { text: "Netzanschluss: erst im März statt im Januar, bis dahin Baustrom. Für den Schulstart ändert sich nichts.", loesung: ok, erklaerung: "Die Zeile ist in Ordnung: Sie nennt das Problem, die Zwischenlösung und die Folge für den Schulstart. Mehr braucht eine Seite nicht." }
     - { text: "Blockierte Aufgaben: –", loesung: nachfordern, erklaerung: "Der Bericht nennt blockierte Aufgaben. Der überfällige Planstand fehlt dort noch: Was ist die Ursache, und was ist der nächste Schritt?" }
     - { text: "Kapselung der Flure: eingebaut, damit erledigt.", loesung: nachfordern, erklaerung: "Eingebaut ist nicht wirksam. Geschlossen wird, wenn die Behörde die Wirkung bestätigt hat." }
     - { text: "Dringliches: seit dem letzten Bericht keine Meldung.", loesung: ok, erklaerung: "Dringliches wartet nicht auf den Bericht; kam nichts, darf das so dastehen." }

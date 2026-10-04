@@ -24,7 +24,7 @@ const keineGenitivkette = (t: string) => !/mit beiden Wegen der Bürgermeisterin
 test('V-01: „zulässig“ heißt, was erfüllt sein muss – nicht „alle Anforderungen“ (Gegenprobe: alte Fassung)', () => {
   assert.ok(keineAlleAnforderungen(ALLE));
   assert.ok(!keineAlleAnforderungen('Dann werden mindestens zwei Wege verglichen, die alle Anforderungen erfüllen'));
-  assert.match(sichtbar('s12-entscheidung.yaml'), /die alles Zwingende erfüllen/);
+  assert.match(sichtbar('s12-entscheidung.yaml'), /die das erfüllen, mit vorab vereinbarten Gewichten/);
 });
 
 test('V-07: Risiko ist eine belegte Möglichkeit, keine Gewissheit; Legende und Erklärung wortgleich (Gegenprobe)', () => {

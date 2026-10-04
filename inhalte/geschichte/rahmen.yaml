@@ -46,7 +46,7 @@ figuren:
     name: Gisela Grundstein
     rolle: Bürgermeisterin
     akzent: violett
-    steckbrief: "Sie entscheidet für die Stadt die großen Dinge: was zuerst kommt, jede Freigabe (das förmliche Ja, etwa am Ende eines großen Abschnitts oder vor einem Zuschlag, also der Auftragsvergabe) und jeden Einsatz der Reserve, des Geldpuffers. Der Lenkungskreis, eine feste Beratungsrunde mit Finanzabteilung und Schulamt, berät sie – entscheiden tut sie selbst. Ihre erste Frage lautet immer: Was genau soll ich entscheiden – und bis wann?"
+    steckbrief: "Sie entscheidet für die Stadt die großen Dinge: was zuerst kommt, jede Freigabe (das förmliche Ja, etwa am Ende eines Abschnitts oder vor einem Zuschlag, also der Auftragsvergabe) und jeden Einsatz der Reserve (Geldpuffer). Der Lenkungskreis, eine Beratungsrunde mit Finanzabteilung und Schulamt, berät sie, entscheiden tut sie selbst. Ihre erste Frage: Was genau soll ich entscheiden – und bis wann?"
   - id: faden
     name: Clara Faden
     rolle: Projektsteuerin
@@ -94,7 +94,7 @@ balken:
   vertrauen:
     titel: Vertrauen
     # R76: der Start unter der Hälfte braucht einen Grund
-    text: Wie sehr sich Bürgermeisterin, Schule und Stadtrat auf Sie verlassen. Sie sind neu, deshalb beginnt es niedrig.
+    text: Wie sehr sich Bürgermeisterin, Schule und Stadtrat auf Sie verlassen. Sie sind neu, deshalb beginnt es unter der Hälfte.
     start: 4
     mehr: gestiegen
     weniger: gesunken
@@ -281,7 +281,7 @@ buch:
     art: beschluss
     entschieden: die Bürgermeisterin (Freigabe); bestellt wird über die Vergabestelle
     grundlage: Zuschlagsvorschlag der Vergabestelle zum Holz der Grundschule
-    ergebnis: Der Zuschlag für das Holz der Grundschule ist freigegeben; das Holz für Gesamtschule und Sporthalle war schon im Juni vergeben. Ein Preisnachlass-Angebot für spätere Holzarbeiten liegt vor; es zählt als Chance und wird nicht in die erwarteten Gesamtkosten eingerechnet.
+    ergebnis: Der Zuschlag für das Holz der Grundschule ist freigegeben; das Holz für Gesamtschule und Sporthalle war schon im Juni vergeben. Ein Preisnachlass-Angebot für spätere Holzarbeiten liegt vor; es steht als Chance für sich und wird nicht mit Risiken verrechnet.
   - station: s8
     art: vermerk
     entschieden: niemand – eine Prognose ist kein Beschluss

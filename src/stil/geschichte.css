@@ -422,6 +422,8 @@ button.gs-antwort:active { transform: translateY(2px); box-shadow: var(--schatte
 .gs-mini-symbol { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 16px; background: var(--weiss); color: var(--akzent-orange-text); }
 .gs-mini-symbol .symbol { width: 30px; height: 30px; }
 .gs-mini-auftrag { font: 600 var(--gr-xl)/1.4 var(--schrift-text); color: var(--tinte); }
+.gs-mini-wand-kopf { margin: 0 0 var(--a-2); font-weight: 700; color: var(--navy); }
+.gs-mini-begriffe { display: block; margin-top: var(--a-2); font: 400 var(--gr-l)/1.5 var(--schrift-text); }
 .gs-mini-aufgabe:has(.gs-mini-bild) { grid-template-columns: auto minmax(0, 1fr) auto; }
 .gs-mini-karte { display: flex; gap: var(--a-3); align-items: center; }
 .gs-mini-posten-bild { flex: none; }

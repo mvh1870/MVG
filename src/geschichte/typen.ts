@@ -198,6 +198,8 @@ export interface Mini {
   art: MiniArt;
   titel: string;
   aufgabeHtml: string;
+  /** optional: kurze Erklärung der Begriffe der Aufgabe, steht als eigene Zeile unter dem Auftrag (P19.8, Prüfrunde 3) */
+  legendeHtml?: string;
   /** Grafik des Schritts (Name für `gimmick`, O-53) */
   bild: string;
   /** nur zuordnen: die Möglichkeiten je Posten */

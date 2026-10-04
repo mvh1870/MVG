@@ -695,7 +695,7 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
 
   /** Mini-Aufgabe: gemeinsames Gerüst; was je Art gilt, steht in der Mini-Registry (src/geschichte/mini-arten.ts, `uebersetzung`) */
   function mini(/** @type {any} */ m, /** @type {string} */ ort, /** @type {boolean} */ hatVergleich = false) {
-    const o = form(m, ['art', 'titel', 'aufgabe', 'bild', 'posten'], ['wahlen', 'stelle', 'schluss', 'zettel', 'kontingent', 'eintrag'], ort);
+    const o = form(m, ['art', 'titel', 'aufgabe', 'bild', 'posten'], ['wahlen', 'stelle', 'schluss', 'zettel', 'kontingent', 'eintrag', 'legende'], ort);
     const art = text(o.art);
     const def = miniArt(art);
     if (def === null) c.fehler(ort, `Art „${art}“ – erwartet ${MINI_ART_KENNUNGEN.join(', ')}`);
@@ -733,6 +733,7 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
     // O-53: auch der Schritt der Mini-Aufgabe zeigt eine Grafik – „bild“ ist Pflichtfeld (form meldet, wenn es fehlt)
     return {
       art, titel: klar(o.titel, ort), aufgabeHtml: inline(o.aufgabe, ort), bild: bild(o.bild, ort) ?? '', wahlen, posten,
+      ...(o.legende !== undefined ? { legendeHtml: inline(o.legende, `${ort} legende`) } : {}),
       ...(stelle !== 'nach-folge' && MINI_STELLEN.includes(/** @type {any} */ (stelle)) ? { stelle } : {}),
       ...(schluss === 'pflicht' && o.schluss !== undefined ? { schlussHtml: inline(o.schluss, `${ort} schluss`) } : {}),
       ...zusatz,

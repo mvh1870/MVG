@@ -409,7 +409,7 @@ Kennungen (ASCII): `ranzen`, `spitzfeder`, `pfennig`. In `figuren.ts` als eigene
 **Seitenaufbau.**
 
 > **Das Entscheidungsbuch**
-> Hier hält die Projektsteuerin fest, was die Stadt beschlossen hat, auf welcher Grundlage und wer entschieden hat. Sie lesen mit.
+> Hier hält die Projektsteuerin fest, was beschlossen wurde und was nicht, auf welcher Grundlage und wer entschieden hat. Sie lesen mit.
 > **Beschluss:** Die zuständige Stelle hat entschieden. **Vermerk:** Es wurde etwas festgehalten, aber nichts beschlossen. **Übergabe:** Offenes geht mit Termin und Namen an einen Nachfolger.
 
 Darunter die Einträge in der Reihenfolge der Stationen (von oben nach unten, wie in einem Buch); der jüngste Eintrag ist beim Öffnen sichtbar und trägt „neu“.
@@ -579,7 +579,7 @@ Alle Wörter in natürlicher Sprache; sichtbar nie „Kapitel“, „Whitepaper�
 |---|---|
 | `buch` | „Entscheidungsbuch“ |
 | `buchTitel` | „Das Entscheidungsbuch“ |
-| `buchIntro` | „Hier hält die Projektsteuerin fest, was die Stadt beschlossen hat, auf welcher Grundlage und wer entschieden hat. Sie lesen mit.“ |
+| `buchIntro` | „Hier hält die Projektsteuerin fest, was beschlossen wurde und was nicht, auf welcher Grundlage und wer entschieden hat. Sie lesen mit.“ |
 | `buchLeer` | „Noch steht nichts im Buch. Mit der ersten Station beginnt es sich zu füllen.“ |
 | `buchLegende` | „Beschluss: Die zuständige Stelle hat entschieden. Vermerk: Es wurde etwas festgehalten, aber nichts beschlossen. Übergabe: Offenes geht mit Termin und Namen an einen Nachfolger.“ |
 | `buchSpalten` | „Anlass“, „Entschieden von“, „Grundlage“, „Ergebnis“ |

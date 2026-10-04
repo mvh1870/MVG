@@ -482,7 +482,7 @@ monatsbericht:
         blockiert: keine
         massnahmen: keine
         fruehwarnungen: keine
-        probleme: [{ text: "Mensa, die wachsen kann: beschlossen, Umsetzung läuft", kennung: AEN-012 }]
+        probleme: [{ text: "Kapselung (Auflage): Wirkung noch nicht bestätigt", kennung: PRB-002 }, { text: "Mensa, die wachsen kann: beschlossen, Umsetzung läuft", kennung: AEN-012 }]
       entscheidungen: keine
       reaktion: "Zur Kenntnis nehmen; Zahl für den Stadtrat wie oben. Die Vergabestelle prüft die Mehrkosten, Ergebnis in rund vier Wochen."
       erwartet: gruen
@@ -501,7 +501,7 @@ monatsbericht:
         blockiert: [{ text: "Fassadenpläne fehlen: Planstand überfällig", kennung: AUF-031 }]
         massnahmen: keine
         fruehwarnungen: keine
-        probleme: [{ text: "Netzanschluss erst im März, bis dahin Baustrom", kennung: PRO-013 }]
+        probleme: [{ text: "Netzanschluss erst im März, bis dahin Baustrom", kennung: PRB-013 }, { text: "Kapselung (Auflage): eingebaut, Wirkung nicht bestätigt", kennung: PRB-002 }]
       entscheidungen: keine
       reaktion: "Zur Kenntnis nehmen; keine Entscheidung offen. Der Architekt nennt bis zum nächsten Termin, wann die Fassadenpläne vorliegen."
       erwartet: gruen

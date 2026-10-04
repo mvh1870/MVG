@@ -235,6 +235,7 @@ function zeichneKartenwahl(o: SchrittOptionen, k: Kapitel, m: Mini): HTMLElement
   const wand = m.art === 'pinnwand' && m.zettel !== undefined
     ? h('ul', { class: 'gs-zettel-wand', 'aria-label': w.miniZettel, 'data-pruef': 'zettel-wand' }, m.zettel.map((z) => h('li', { class: 'gs-zettel', 'data-zettel': z.id }, inhaltInline(z.html))))
     : null;
+  const wandKopf = wand !== null ? h('p', { class: 'gs-mini-wand-kopf' }, w.miniZettelKopf) : null;
   const liste = h('ol', { class: `gs-mini-liste gs-mini-karten gs-mini-${m.art}`, 'data-wahlen': m.wahlen.length, 'data-pruef': `mini-${m.art}` },
     m.posten.map((p, i) => {
       const gewaehlt = antworten?.[i] ?? -1;
@@ -245,7 +246,7 @@ function zeichneKartenwahl(o: SchrittOptionen, k: Kapitel, m: Mini): HTMLElement
           m.wahlen.map((x, j) => wahlKnopf(o, x.titel, gewaehlt === j, `wahl-${i + 1}-${x.id}`, () => o.tue(miniZug(o.g, o.stand, k.id, i, j))))),
         lage === 'richtig' || lage === 'falsch' ? rueckmeldung(lage, p.erklaerungHtml, i) : null);
     }));
-  return h('div', { class: 'gs-mini-karten-mit-schluss' }, wand, liste, schlussSatz(m, aus));
+  return h('div', { class: 'gs-mini-karten-mit-schluss' }, wandKopf, wand, liste, schlussSatz(m, aus));
 }
 
 /**

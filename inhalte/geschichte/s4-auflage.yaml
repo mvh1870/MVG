@@ -61,22 +61,23 @@ gut:
 mini:
   art: matrix
   titel: Stimmt die Einstufung?
-  # Die Legende der drei Stufen steht im Aufgabentext (ein Feld `legende` kennt das Format nicht; siehe Bericht)
-  aufgabe: "Clara Faden hat vier Risiken eingestuft. Stimmt jede Einstufung, oder lassen Sie sie nachbessern? Die Kapselung ist ein Problem und steht nicht dabei: Die Matrix gilt nur für Risiken. **vorrangig:** Bürgermeisterin wird informiert, Entscheidung rechtzeitig vorbereitet · **gezielt:** Maßnahme mit Verantwortlichem und Termin · **beobachten:** Prüftermin und Auslöser für eine neue Bewertung"
+  # Die Legende der drei Stufen steht als eigene Zeile unter dem Auftrag (Feld `legende`, P19.8)
+  aufgabe: "Clara Faden hat vier Risiken eingestuft. Stimmt jede Einstufung, oder lassen Sie sie nachbessern? Die Kapselung ist ein Problem und steht nicht dabei. Die Matrix ordnet Risiken nach Wahrscheinlichkeit und Auswirkung; sie gilt nur für Risiken."
+  legende: "**vorrangig:** Bürgermeisterin wird informiert, Entscheidung rechtzeitig vorbereitet · **gezielt:** Maßnahme mit Verantwortlichem und Termin · **beobachten:** Prüftermin und Auslöser für eine neue Bewertung"
   bild: matrix
   # feld: [Wahrscheinlichkeit, Auswirkung] je 1–5, nur für die Zeichnung der Matrix, nie als Zahl sichtbar
   posten:
     - text: "Die Fassadenplatten könnten sich um drei Wochen verspäten. Wahrscheinlichkeit mittel, Folge für den Termin klein. Eingestuft: gezielt."
       loesung: stimmt
-      erklaerung: "Mittel mal klein ergibt ein mittleres Ergebnis: gezielt bearbeiten, mit Maßnahme, Verantwortlichem und Termin."
+      erklaerung: "Mittlere Wahrscheinlichkeit, kleine Auswirkung: Das ergibt „gezielt“, also bearbeiten mit Maßnahme, Verantwortlichem und Termin."
       feld: [3, 2]
     - text: "Ein Jahrhunderthochwasser des Bachs könnte den Technikraum fluten, die Schule könnte nicht öffnen. Wahrscheinlichkeit sehr gering. Eingestuft: beobachten."
       loesung: nachfordern
       erklaerung: "Kann die Schule nicht öffnen, ist ein Risiko immer vorrangig – auch wenn es sehr unwahrscheinlich ist."
       feld: [1, 5]
-    - text: "Die Zufahrt der Lieferwagen könnte gesperrt werden; die Folge für den Termin ist noch ungeklärt. Eingestuft: Folge null, beobachten."
+    - text: "Die Zufahrt der Lieferwagen könnte gesperrt werden; die Folge für den Termin ist noch ungeklärt. Eingestuft: keine Folge, beobachten."
       loesung: nachfordern
-      erklaerung: "Eine fehlende Angabe gilt nicht als keine Folge; die Einstufung bleibt vorläufig, bis sie geklärt ist."
+      erklaerung: "Die Folge ist noch gar nicht geklärt, also ist „keine Folge“ nicht belegt: Eine fehlende Angabe gilt nicht als null. Die Einstufung bleibt vorläufig, bis sie geklärt ist."
       feld: [3, 1]
     - text: "Der Kran schwenkt morgens über den Fußweg, auf dem Kinder zur Nachbarschule gehen. Wahrscheinlichkeit gering, Folge nach der Matrix klein. Eingestuft: beobachten."
       loesung: nachfordern

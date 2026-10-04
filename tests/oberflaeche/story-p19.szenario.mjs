@@ -1,16 +1,17 @@
 // Browser-Szenario Story, Gedächtnis und neue Aufgaben (P19.4/P19.5, O-62): die fünf neuen Mini-Arten (Matrix, Mappe, Pinnwand, Bericht, Rückfragen) mit
 // Tastatur, Fokus und axe bei 1280/1024/400 px (320 px über `pruefer`), das Entscheidungsbuch (Symbol, Seite, Escape, Fokus), der Verlauf in der Pause,
 // Vertiefung und Echo-Zeile. Die echte Story hat seit P19.6 diese Stationen (Szenario `story-p196`); dieses Szenario baut weiter eine Probe-Seite aus
-// der synthetischen Story der Tests (tests/hilfen/geschichte-p19.ts) nach tmp/ – nie nach dist/.
+// der synthetischen Story der Tests (tests/hilfen/geschichte-p19.ts) nach tmp/p19/ – nie nach dist/ –, samt den Beigaben (Symbole), erst in `vorbereite`
+// (nach dem Browserstart), nie beim Import.
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
-import { baue, WURZEL } from '../../werkzeuge/bau.mjs';
+import { baue, baueBeigaben, WURZEL } from '../../werkzeuge/bau.mjs';
 import { p19Story, berichtMini, mappeMini, matrixMini, mitMini, pinnwandMini, rueckfragenMini } from '../hilfen/geschichte-p19.ts';
 import { pruefer, sichtbarVerboten } from './hilfen.mjs';
 
 export const name = 'story-p19';
 export const hash = '#story';
-export const seite = 'tmp/mvg-p19.html';
+export const seite = 'tmp/p19/mvg-p19.html';
 export const viewports = [
   { breite: 1280, hoehe: 720 },
   { breite: 1024, hoehe: 768 },
@@ -18,7 +19,7 @@ export const viewports = [
 ];
 
 // Probe-Seite: die kompilierten Inhalte mit der synthetischen Story (14 Stationen, Akte, Echos, Buch, Vertiefungen, neue Aufgaben)
-{
+export async function vorbereite() {
   const roh = JSON.parse(readFileSync(path.join(WURZEL, 'src', 'generiert', 'inhalte.json'), 'utf8'));
   let g = p19Story(roh.geschichte);
   g = mitMini(g, 4, matrixMini());
@@ -28,9 +29,11 @@ export const viewports = [
   g = mitMini(g, 11, rueckfragenMini(), 'vor-frage');
   g.kapitel[8].vertiefung = { form: 'nachdenken', titel: 'Was fehlt im Bericht?', absaetzeHtml: ['Die Frage zur Vertiefung.'], antwortHtml: ['Die Antwort zur Vertiefung.'] };
   roh.geschichte = g;
-  mkdirSync(path.join(WURZEL, 'tmp'), { recursive: true });
-  writeFileSync(path.join(WURZEL, 'tmp', 'p19-inhalte.json'), JSON.stringify(roh));
-  await baue({ ziel: path.join(WURZEL, seite), inhalte: path.join(WURZEL, 'tmp', 'p19-inhalte.json'), mitVorstufen: false });
+  const ordner = path.join(WURZEL, 'tmp', 'p19');
+  mkdirSync(ordner, { recursive: true });
+  writeFileSync(path.join(ordner, 'p19-inhalte.json'), JSON.stringify(roh));
+  await baue({ ziel: path.join(WURZEL, seite), inhalte: path.join(ordner, 'p19-inhalte.json'), mitVorstufen: false });
+  for (const [name, inhalt] of await baueBeigaben(WURZEL)) writeFileSync(path.join(ordner, name), inhalt);
 }
 
 /**

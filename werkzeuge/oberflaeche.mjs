@@ -8,7 +8,8 @@
  * tests/oberflaeche/*.szenario.mjs aus. Ein Szenario-Modul exportiert
  *   name: string, viewports?: Array<{ breite, hoehe }>, hash?: string (z. B. '#regie'), seite?: string (andere
  *   HTML-Datei), testHerkunft?: 'http://<name>.test/' (nur .test nach RFC 6761; das Szenario beantwortet sie
- *   selbst per seite.route, L-86),
+ *   selbst per seite.route, L-86), async vorbereite() (optional: einmal nach dem Browserstart, vor dem ersten Lauf –
+ *   etwa eine Probe-Seite bauen; nie beim Import, damit „kein Browser“ nichts baut),
  *   async lauf(seite, h)
  * (benannte Exporte oder ein Default-Objekt). `seite` ist eine Playwright-Page, `h` der Helfer unten.
  *
@@ -137,7 +138,7 @@ export async function starteBrowser(optionen = {}) {
 
 /**
  * @typedef {{ breite: number, hoehe: number }} Viewport
- * @typedef {{ name: string, datei: string, viewports: Viewport[], hash: string, seite?: string, testHerkunft?: string, lauf: (seite: import('playwright').Page, h: Helfer) => Promise<void> }} Szenario  seite: andere HTML-Datei (relativ zur Wurzel), z. B. die Entwurfs-Vorschau
+ * @typedef {{ name: string, datei: string, viewports: Viewport[], hash: string, seite?: string, testHerkunft?: string, vorbereite?: () => Promise<void>, lauf: (seite: import('playwright').Page, h: Helfer) => Promise<void> }} Szenario  seite: andere HTML-Datei (relativ zur Wurzel), z. B. die Entwurfs-Vorschau
  * @typedef {object} Helfer
  * @property {import('playwright').Page} seite
  * @property {string} url
@@ -174,6 +175,7 @@ export async function ladeSzenarien(verzeichnis) {
     const modul = await import(pathToFileURL(path.join(verzeichnis, datei)).href);
     const s = modul.default && typeof modul.default === 'object' ? modul.default : modul;
     if (typeof s.lauf !== 'function') throw new Error(`${datei}: exportiert keine Funktion lauf(seite, h)`);
+    if (s.vorbereite !== undefined && typeof s.vorbereite !== 'function') throw new Error(`${datei}: vorbereite muss eine Funktion sein`);
     const viewports = Array.isArray(s.viewports) && s.viewports.length > 0 ? s.viewports : [...STANDARD_VIEWPORTS];
     for (const v of viewports) {
       if (!Number.isInteger(v?.breite) || !Number.isInteger(v?.hoehe)) throw new Error(`${datei}: viewports braucht { breite, hoehe } als ganze Zahlen`);
@@ -185,6 +187,7 @@ export async function ladeSzenarien(verzeichnis) {
       hash: typeof s.hash === 'string' ? s.hash : '',
       ...(typeof s.seite === 'string' ? { seite: s.seite } : {}),
       ...(s.testHerkunft !== undefined ? { testHerkunft: pruefeTestHerkunft(s.testHerkunft, datei) } : {}),
+      ...(typeof s.vorbereite === 'function' ? { vorbereite: s.vorbereite } : {}),
       lauf: s.lauf,
     });
   }
@@ -473,6 +476,7 @@ async function hauptprogramm() {
     const { baueVorschau } = await import('./entwurf.mjs');
     await baueVorschau();
   }
+  for (const s of szenarien) if (s.vorbereite) await s.vorbereite();
   console.log(`oberflaeche: ${start.name} ${browser.version()} · ${anzeige} · ${szenarien.length} Szenario${szenarien.length === 1 ? '' : 's'} · ${process.env['MVG_VOLL'] === '1' ? 'voll' : 'schnell (voll: MVG_VOLL=1)'}${process.env['MVG_BEWEGUNG'] === 'reduziert' ? ' · reduzierte Bewegung' : ''}`);
 
   let laeufe = 0;

@@ -4,12 +4,13 @@ Kopf ≤ 100 Zeilen. Oben JETZT (überschreiben), darunter FRÜHER (anhängen, k
 
 ## JETZT
 
-- **Block 2026-10-04 06:08 UTC: angelaufen, Planblatt leer, keine Frage offen, hingelegt. Davor – Stand 2026-10-04 ~03:12 UTC: Planblatt leer, Kette grün (118,4 s, Oberfläche 14 Läufe, Node 22.22); `claude/haus` mit den R79-Korrekturen (L-262–L-266) per Merge nach `main` geführt (O-49, L-267), Push-Nachricht an den Owner.** Nächster Schritt liegt beim Owner: Ordner `dist/` hochladen, `docs/ABNAHME.md` und `docs/ABNAHME-MITTEL.md` abnehmen, ggf. neue Posten.
+- **Block 2026-10-04 09:08 UTC: Owner arbeitete parallel in eigener Sitzung (O-60, O-61 auf `claude/haus`, nicht auf `main`). Kette war auf seinem Stand rot („Beginnen“ bei 1280×720 unter der Falz, 754 px); behoben mit L-271 (Startkopf 1,8 : 1), Kette grün. Merge nach `main` bewusst NICHT gemacht, solange der Owner auf dem Zweig arbeitet – der nächste Block mit leerem Plan und grüner Kette führt zusammen (O-49).** P19 (O-62) ist der Chat-Sitzung vorbehalten – Routine fasst ihn nicht an, solange er dort „in Arbeit“ steht. Nächster Schritt beim Owner: `dist/` hochladen (`docs/LAUNCH.md`), `docs/ABNAHME.md`/`docs/ABNAHME-MITTEL.md` abnehmen, ggf. neue Posten.
 - **Offen zur Abnahme des Owners:** `docs/ABNAHME.md` und mittlere Befunde in `docs/ABNAHME-MITTEL.md`.
 - **Lesezeit:** `node werkzeuge/lesezeit.mjs`; Kurzfassung 10,4 Minuten ohne Puffer („etwa 10“, O-51, L-252). Mutanten: `node werkzeuge/mutanten.mjs` (68/68), läuft nicht in der Kette – nach Kern-/Explore-Änderungen von Hand.
 - Rechner: Node 22.22, Chromium unter `/opt/pw-browsers/chromium`, `npm ci` ≈ 50 s, Kette ≈ 120 s.
 
 ## FRÜHER
+- 2026-10-04 (03:00–06:10 UTC): Planblatt leer, R79-Korrekturen (L-262–L-266) nach `main` (L-267), Block hingelegt.
 - 2026-10-04 (bis ~02:30 UTC): zwei Sitzungen, P18 abgeschlossen, `main` = 6c273f1; R79-Korrekturen (L-262–L-266) nur auf `claude/haus`.
 - 2026-10-03 (18:45–19:45 UTC): P17 abgeschlossen und nach `main` (O-58); P18.1–P18.5 (L-253–L-259).
 - 2026-10-03 (ab 09:00 UTC): P17 Neugestaltung (O-51–O-58): Drehbuch, Story als Spiel, Themen als Buch, Explore-Kopf; Prüfrunden R72–R76 (L-225–L-252); Owner wählt vier neue Werkzeuge (O-59).

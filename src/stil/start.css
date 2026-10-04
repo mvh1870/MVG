@@ -13,7 +13,7 @@
 .start-zeichnung .bauplan { display: block; width: 100%; height: auto; max-height: 215px; }
 @media (min-width: 961px) {
   /* O-60: Überschrift links, die Zeichnung der Schule rechts daneben – nichts liegt darüber oder dahinter */
-  .start-einstieg { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
+  .start-einstieg { grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr); }
   .start-zeichnung { display: block; }
 }
 /* Baukörper in den Akzenttönen: Gesamtschule Blau, Grundschule Orange, Sporthalle Grün; Bäume Grün */

@@ -35,7 +35,7 @@ antworten:
     balken: { geld: -1, zeit: -1, vertrauen: -2 }
     bild: warnschild
     folge: |
-      Die Punkte bleiben grün, der Bericht geht mit dem Netzanschluss als Problem an die Bürgermeisterin. Der neue Termin für den Planstand verstreicht, die Fassadenfirma wartet eine Woche.
+      Die Punkte bleiben grün, der Bericht geht mit dem Netzanschluss als Problem an die Bürgermeisterin. Der neue Termin für den Planstand verstreicht, die Fassadenfirma wartet eine Woche und berechnet die Wartezeit.
 
       Clara Fadens Prüfvermerk ist längst im Haus: „Der Planstand ist überfällig.“ Die Bürgermeisterin legt ihn neben den grünen Bericht. „Warum stand das nicht drin?“ Der Bericht wird mit dem Planstand neu verteilt, doch die grüne Fassung haben da schon alle gelesen.
   - wertung: vertretbar
@@ -67,9 +67,9 @@ mini:
   schluss: "Drei Zeilen mussten nachgebessert werden."
   posten:
     - { text: "Kosten: unverändert rund eine Million über dem Budget; die Mehrkosten der Haustechnik sind seit November als Risiko geschlossen.", loesung: ok, erklaerung: "Ein Stand in einer Zeile; eine zweite Liste ist nicht nötig." }
-    - { text: "Termine: alle Punkte grün.", loesung: nachfordern, erklaerung: "Die Fassade fehlt. Eine überfällige Aufgabe gehört mit Grund und nächstem Schritt in den Bericht; Grün ist keine Erklärung." }
+    - { text: "Termine: alle Punkte grün.", loesung: nachfordern, erklaerung: "Die Fassade fehlt: Der Termin für den Planstand ist verstrichen, und Grün erklärt das nicht." }
     - { text: "Netzanschluss: erst im März statt im Januar, bis dahin Baustrom. Für den Schulstart ändert sich nichts.", loesung: ok, erklaerung: "Ein eingetretenes Problem mit Zwischenlösung und Folge für das Ziel – mehr braucht eine Seite nicht." }
-    - { text: "Offene Entscheidungen: –", loesung: nachfordern, erklaerung: "Der Bericht nennt offene Entscheidungen und die benötigte Reaktion. Zum überfälligen Planstand steht keine: Wer reagiert, bis wann?" }
+    - { text: "Blockierte Aufgaben: –", loesung: nachfordern, erklaerung: "Der Bericht nennt blockierte Aufgaben. Der überfällige Planstand fehlt dort noch: Was ist die Ursache, und was ist der nächste Schritt?" }
     - { text: "Kapselung der Flure: eingebaut, damit erledigt.", loesung: nachfordern, erklaerung: "Eingebaut ist nicht wirksam. Geschlossen wird, wenn die Behörde die Wirkung bestätigt hat." }
     - { text: "Dringliches: seit dem letzten Bericht keine Meldung.", loesung: ok, erklaerung: "Dringliches wartet nicht auf den Bericht; kam nichts, darf das so dastehen." }
 

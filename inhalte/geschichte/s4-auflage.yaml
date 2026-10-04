@@ -62,7 +62,7 @@ mini:
   art: matrix
   titel: Stimmt die Einstufung?
   # Die Legende der drei Stufen steht im Aufgabentext (ein Feld `legende` kennt das Format nicht; siehe Bericht)
-  aufgabe: "Clara Faden hat vier Risiken eingestuft. Stimmt jede Einstufung, oder lassen Sie sie nachbessern? Die Kapselung ist ein Problem und steht nicht dabei: Die Matrix gilt nur für Risiken. **vorrangig:** Bürgermeisterin wird informiert, Entscheidung rechtzeitig vorbereitet · **gezielt:** Maßnahme mit Verantwortlichem und Termin · **beobachten:** Prüftermin und Auslöser"
+  aufgabe: "Clara Faden hat vier Risiken eingestuft. Stimmt jede Einstufung, oder lassen Sie sie nachbessern? Die Kapselung ist ein Problem und steht nicht dabei: Die Matrix gilt nur für Risiken. **vorrangig:** Bürgermeisterin wird informiert, Entscheidung rechtzeitig vorbereitet · **gezielt:** Maßnahme mit Verantwortlichem und Termin · **beobachten:** Prüftermin und Auslöser für eine neue Bewertung"
   bild: matrix
   # feld: [Wahrscheinlichkeit, Auswirkung] je 1–5, nur für die Zeichnung der Matrix, nie als Zahl sichtbar
   posten:
@@ -80,7 +80,7 @@ mini:
       feld: [3, 1]
     - text: "Der Kran schwenkt morgens über den Fußweg, auf dem Kinder zur Nachbarschule gehen. Wahrscheinlichkeit gering, Folge nach der Matrix klein. Eingestuft: beobachten."
       loesung: nachfordern
-      erklaerung: "Fragen der Sicherheit werden unabhängig von der Matrix behandelt. Bei der Sicherheit zählt nicht das Feld der Matrix."
+      erklaerung: "Fragen der Sicherheit werden unabhängig von der Matrix behandelt."
       feld: [2, 2]
 
 dahinter: "Ein Problem wird wie ein Problem behandelt, weil sich ein eingetretener Zustand nicht mehr wegschätzen lässt. Wer es als Risiko beobachtet, sieht zu, wie Planung und Ausschreibung an der Auflage vorbeilaufen; wer erst die fertige Lösung abwartet, lässt die Planung stehen."
@@ -97,7 +97,7 @@ vertiefung:
     - "Und wenn die Wirkung ausbleibt? Dann ist die Maßnahme unwirksam oder verspätet. Clara Faden bereitet dann eine Anpassung vor oder legt der Bürgermeisterin eine neue Frage zur Entscheidung vor. Deshalb ist es klug, vorher zu fragen, woran man die Wirkung erkennen wird."
 
 regie:
-  notiz: "Kern: Ein eingetretener Zustand ist ein Problem, kein Risiko – keine Wahrscheinlichkeit mehr, sondern Folgen und Lösung; eine Zwischenlösung hält die Arbeit am Laufen, aber Eile ersetzt keine Freigabe. Die Mini-Aufgabe „Stimmt die Einstufung?“ prüft vier Einstufungen der Projektsteuerin gemeinsam."
+  notiz: "Kern: Ein eingetretener Zustand ist ein Problem, kein Risiko – keine Wahrscheinlichkeit mehr, sondern Folgen und Lösung; eine Zwischenlösung hält die Arbeit am Laufen, aber Eile ersetzt keine Entscheidung. Die Mini-Aufgabe „Stimmt die Einstufung?“ prüft vier Einstufungen der Projektsteuerin gemeinsam."
   leitfragen:
     - Wie unterscheiden Sie bei sich ein Risiko von einem Problem?
     - Woran erkennen Sie bei einer Maßnahme, dass sie wirkt – und wer bestätigt es?

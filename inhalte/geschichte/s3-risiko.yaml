@@ -17,7 +17,7 @@ einstieg: |
   April 2026. Die Bagger sind da, die Baugrube wird jeden Tag tiefer. Die Antwort der Hersteller liegt auf dem Tisch: ein Umschlag mit drei Schreiben, daneben ein Kalender, auf dem jemand den Sommer 2028 dick eingekreist hat.
 
 einstieg-kurz: |
-  April 2026. Die Hersteller haben geantwortet.
+  April 2026. Die Schreiben der Hersteller liegen auf dem Tisch.
 
 szene:
   - { figur: schwung, text: "Drei Hersteller haben geantwortet, alle brauchen jetzt ein halbes Jahr statt vier Monate. Der vierte meldet sich noch. Vielleicht wird es ja wieder besser." }
@@ -30,7 +30,7 @@ szene:
   - { figur: schwung, kurzfassung: false, text: "Wir könnten auch einfach hoffen. Bei meinen letzten drei Projekten hat sich das jedes Mal eingerenkt." }
   - { figur: faden, kurzfassung: false, text: "Hoffen ist kein Weg." }
   # Regie: bei dieser Zeile schreibt Fadens Hand das Wort „vorrangig“ neben das markierte Feld der Matrix (Bildvariante, kein neuer Text)
-  - { figur: faden, text: "Hoch und schwer zusammen heißt: vorrangig bearbeiten. Ein Ausweg: Wir schreiben die Holzelemente in einem eigenen Paket früher aus, holen also früher Angebote ein. Das kostet rund 150.000 Euro mehr. Oder wir warten ab – dann trägt die Stadt das Risiko." }
+  - { figur: faden, text: "Hoch und schwer zusammen heißt: vorrangig bearbeiten. Ein Ausweg: Wir schreiben die Holzelemente in einem eigenen Paket früher aus, holen also früher Angebote ein. Das kostet rund 150.000 Euro mehr. Oder wir warten ab – dann trägt die Stadt das Risiko, und der Spielraum schrumpft." }
   - { figur: klingel, kurzfassung: false, zusatz: stellt eine Messingglocke ins Regal, text: "Die habe ich aus der alten Schule mitgebracht. Bitte sagen Sie mir nicht, dass meine Schule 2028 noch in Containern sitzt." }
 
 frage: "Die Projektsteuerin hat bewertet. Was machen Sie damit?"
@@ -49,7 +49,7 @@ antworten:
     balken: { geld: -2, zeit: -2, vertrauen: -2 }
     bild: telefon
     folge: |
-      Clara Faden schüttelt freundlich den Kopf: „Das Risiko ist vorrangig, deshalb muss es jetzt zur Bürgermeisterin – ich warte nicht auf die bestätigte Zahl.“ Clara Faden setzt das Risiko auf die Tagesordnung des Lenkungskreises, und die Bürgermeisterin ruft an, bevor Sie es ihr erklären konnten: „Sie wollten damit warten? Was weiß ich sonst noch nicht?“
+      Clara Faden schüttelt freundlich den Kopf: „Das Risiko ist vorrangig, deshalb muss es jetzt zur Bürgermeisterin – ich warte nicht auf die bestätigte Zahl.“ Clara Faden setzt das Risiko auf die Tagesordnung des Lenkungskreises. Die Bürgermeisterin ruft an, bevor Sie es ihr erklären konnten: „Sie wollten damit warten? Was weiß ich sonst noch nicht?“
 
       Die Vorlage liegt erst am Ende des Monats vor, der Lenkungskreis berät, und die Bürgermeisterin entscheidet noch im April: früher ausschreiben, das Geld kommt aus der Reserve. Die Ausschreibung geht aber erst Mitte Mai hinaus, weil davor alle Schritte später begannen; die Hersteller kalkulieren neu.
   - wertung: gut

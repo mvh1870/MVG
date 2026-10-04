@@ -77,7 +77,7 @@ function proben(): Probe[] {
     // Geld hoch: „jedes Mal von der Bürgermeisterin entschieden“, „dort eingesetzt, wo sie gebraucht wurde“ – keine Falle in den Stationen 3 bis 13 (04-rahmen 3.4); eine Falle in 1, 2 oder 14 ändert am Geld nichts
     { was: 'Geld hoch', text: bl('geld').bilanz.hoch, anfang: 'Die Reserve wurde dort eingesetzt, wo sie gebraucht wurde', erscheint: (w) => stufe(w.b.geld) === 'hoch', setztVoraus: (w) => !w.falleStat3bis13 },
     { was: 'Geld mittel', text: bl('geld').bilanz.mittel, anfang: 'Ein Teil der Reserve ist verbraucht; manches wurde teurer als nötig.', erscheint: (w) => stufe(w.b.geld) === 'mittel', setztVoraus: (w) => w.teurer.geld },
-    { was: 'Geld niedrig', text: bl('geld').bilanz.niedrig, anfang: 'Das Geld ist knapp geworden; Antworten, die nicht der beste Weg waren, haben zusätzlich gekostet.', erscheint: (w) => stufe(w.b.geld) === 'niedrig', setztVoraus: (w) => w.teurer.geld },
+    { was: 'Geld niedrig', text: bl('geld').bilanz.niedrig, anfang: 'Die Reserve ist stärker geschrumpft als nötig; Antworten, die nicht der beste Weg waren, haben zusätzlich gekostet.', erscheint: (w) => stufe(w.b.geld) === 'niedrig', setztVoraus: (w) => w.teurer.geld },
     // Zeit und Vertrauen beschreiben nur den Stand des Balkens – keine Voraussetzung über eine Wahl
     { was: 'Zeit hoch', text: bl('zeit').bilanz.hoch, anfang: 'Der Zeitpuffer hat gehalten', erscheint: (w) => stufe(w.b.zeit) === 'hoch', setztVoraus: () => true },
     { was: 'Zeit mittel', text: bl('zeit').bilanz.mittel, anfang: 'Der Zeitpuffer war am Ende dünn, hat aber gereicht.', erscheint: (w) => stufe(w.b.zeit) === 'mittel', setztVoraus: (w) => w.teurer.zeit },

@@ -27,13 +27,13 @@ bild-frage: buch
 einstieg: |
   November 2027. Nebel liegt über dem Campus. Clara Faden ist zurück, die Wochendurchsicht läuft, und Entscheidungen kommen nur dann zur Bürgermeisterin, wenn sie über die vereinbarten Grenzen hinausgehen. Heute berät der Stadtrat über den Haushalt.
 
-  Im Saal meldet sich ein Mitglied des Finanzausschusses: „{echo: E8}“
+  Im Saal meldet sich ein Ratsmitglied aus dem Finanzausschuss: „{echo: E8}“
 
   Aus der Zuschauerreihe sagt die Vorsitzende des Elternbeirats: „{echo: E8b}“
 
 szene:
   # neu: hallenboden (Hallenboden mit zwei markierten Fugen)
-  - { figur: lot, zusatz: "noch in Gummistiefeln, vor der Sitzung", text: "Zwei Fugen im Hallenboden gehen auf. Hab's dem Schwung gesagt: Schreib's auf. Die Firma bessert bis zu den Herbstferien im nächsten Jahr nach." }
+  - { figur: lot, zusatz: "noch in Gummistiefeln, hinten im Saal", text: "Zwei Fugen im Hallenboden gehen auf. Hab's dem Schwung gesagt: Schreib's auf. Die Firma bessert bis zu den Herbstferien im nächsten Jahr nach." }
   # Echo E8 und E8b (Quelle Station 6) stehen im Einstieg: ein Ratsmitglied und die Vorsitzende des Elternbeirats, keine eigenen Sprecher (O-62, Antwort 4c)
   - { text: "Das Ratsmitglied fragt: „Wer hat die Kapselung beschlossen, wer das Ersatzgerät, wer die Mensa? Wann und auf welcher Grundlage? Wo steht das?“" }
   # Echo E5 (Quelle Station 4)
@@ -49,7 +49,7 @@ antworten:
     balken: { geld: -1, zeit: 0, vertrauen: -2 }
     bild: lupe
     folge: |
-      Das Ratsmitglied hebt die Augenbrauen. „Schweigen ist kein Beschluss“, sagt das Ratsmitglied trocken. „Wo steht, wer es beschlossen hat?“ Niemand antwortet gleich. Der Finanzausschuss lässt die Finanzabteilung jeden Beschluss einzeln nachprüfen; das bindet Stunden.
+      Das Ratsmitglied hebt die Augenbrauen: „Schweigen ist kein Beschluss. Wo steht, wer es beschlossen hat?“ Niemand antwortet gleich. Der Finanzausschuss lässt die Finanzabteilung jeden Beschluss einzeln nachprüfen; das bindet Stunden.
 
       Dabei steht alles im Buch – nur hat vorher niemand hineingesehen. Die Bürgermeisterin schaut Sie an: „Ich dachte, das steht irgendwo.“ Dann klappt Clara Faden das Buch auf, und das Ratsmitglied liest, Zeile für Zeile, was ihm gleich hätte gesagt werden können. Am Nachmittag trifft die Bestätigung der Brandschutzbehörde ein.
   - wertung: gut
@@ -75,9 +75,9 @@ gut: |
 mini:
   art: bericht
   titel: Was ist kein Beschluss?
-  aufgabe: Fünf Zeilen sollen als Beschluss ins Buch. Bei welchen lassen Sie nachbessern, weil kein Beschluss vorliegt?
+  aufgabe: Fünf Zeilen sollen als Beschluss ins Buch. Welche dürfen so nicht stehen bleiben, weil kein Beschluss vorliegt? Dort lassen Sie nachbessern.
   bild: buch
-  schluss: "Drei Zeilen mussten nachgebessert werden."
+  schluss: "Bei drei Zeilen fehlte der Beschluss."
   # Reihenfolge wie hier: nachbessern, in Ordnung, nachbessern, in Ordnung, nachbessern.
   posten:
     - { text: "Beschluss: „Das kriegen wir hin.“ Gesagt hat es der Architekt auf dem Flur.", loesung: nachfordern, erklaerung: "Eine beiläufige Zusage ist kein Beschluss. Bei einer Änderung gilt bis zur Entscheidung die bisherige Planung." }

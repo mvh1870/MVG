@@ -14,7 +14,7 @@ auftakt:
   text: |
     Ein fiktiver Fall: Die Stadt Lindenhall baut eine Gesamtschule, eine Grundschule und eine Sporthalle. Sie leiten das Projekt für die Stadt. Im Sommer 2028 sollen die Kinder einziehen.
 
-    Die Fragen kennt jede Baustelle.
+    Die Fragen, die dabei aufkommen, kennt jede Baustelle.
 
     Unterwegs entscheiden Sie; am Ende steht Ihre Bilanz.
   vorstellung: "Diese fünf Menschen begleiten Sie:"
@@ -39,19 +39,19 @@ auftakt:
       bild: Derselbe Weg, aber nur vier von vierzehn Stationen werden gespielt, die übrigen sind kurz überbrückt
 
 sie:
-  steckbrief: "Sie leiten das Projekt für die Stadt – Sie sind die Projektleitung. Die Stadt ist als Bauherr der Auftraggeber, der den Campus bauen lässt. Listen führen andere: Sie prüfen, was Ihnen vorgelegt wird, fordern nach, was fehlt, und entscheiden, was in Ihrem Rahmen liegt. Alles andere bringen Sie rechtzeitig zur Bürgermeisterin."
+  steckbrief: "Sie leiten das Projekt für die Stadt – Sie sind die Projektleitung. Die Stadt ist als Bauherr der Auftraggeber, der den Campus bauen lässt. Listen führen andere: Sie prüfen, was Ihnen vorgelegt wird, lassen nachbessern, was fehlt, und entscheiden, was in Ihrem Rahmen liegt. Alles andere bringen Sie rechtzeitig zur Bürgermeisterin."
 
 figuren:
   - id: grundstein
     name: Gisela Grundstein
     rolle: Bürgermeisterin
     akzent: violett
-    steckbrief: "Sie entscheidet für die Stadt die großen Dinge: was zuerst kommt, jede Freigabe (das förmliche Ja, etwa am Ende eines großen Abschnitts oder vor einem Zuschlag) und jeden Einsatz der Reserve, des Geldpuffers. Der Lenkungskreis, eine feste Beratungsrunde mit Finanzabteilung und Schulamt, berät sie – entscheiden tut sie selbst. Ihre erste Frage lautet immer: Was genau soll ich entscheiden – und bis wann?"
+    steckbrief: "Sie entscheidet für die Stadt die großen Dinge: was zuerst kommt, jede Freigabe (das förmliche Ja, etwa am Ende eines großen Abschnitts oder vor einem Zuschlag, also der Auftragsvergabe) und jeden Einsatz der Reserve, des Geldpuffers. Der Lenkungskreis, eine feste Beratungsrunde mit Finanzabteilung und Schulamt, berät sie – entscheiden tut sie selbst. Ihre erste Frage lautet immer: Was genau soll ich entscheiden – und bis wann?"
   - id: faden
     name: Clara Faden
     rolle: Projektsteuerin
     akzent: lagune
-    steckbrief: "Sie hält alle Fäden zusammen: Sie führt alle Aufgaben, Hinweise, Risiken und Änderungen, prüft jede Woche alles Offene und bereitet jede Entscheidung vor, bei der etwas getan werden muss – mit mindestens zwei zulässigen Wegen (Wegen, die alle Anforderungen erfüllen) und einer Empfehlung. Was beschlossen wird, hält sie im Entscheidungsbuch fest. Entscheiden darf sie nicht."
+    steckbrief: "Sie hält alle Fäden zusammen: Sie führt alle Aufgaben, Hinweise, Risiken und Änderungen und prüft jede Woche alles Offene. Sie bereitet jede Entscheidung vor, bei der etwas getan werden muss – mit mindestens zwei zulässigen Wegen (Wegen, die erfüllen, was erfüllt sein muss) und einer Empfehlung. Was beschlossen wird, hält sie im Entscheidungsbuch fest. Entscheiden darf sie nicht."
   - id: schwung
     name: Konrad Schwung
     rolle: Architekt
@@ -80,7 +80,7 @@ balken:
     bilanz:
       hoch: Die Reserve wurde dort eingesetzt, wo sie gebraucht wurde. Jedes Mal hat die Bürgermeisterin das entschieden, und ein guter Teil ist noch übrig.
       mittel: Ein Teil der Reserve ist verbraucht; manches wurde teurer als nötig.
-      niedrig: Das Geld ist knapp geworden; Antworten, die nicht der beste Weg waren, haben zusätzlich gekostet.
+      niedrig: Die Reserve ist stärker geschrumpft als nötig; Antworten, die nicht der beste Weg waren, haben zusätzlich gekostet.
   zeit:
     titel: Zeit
     text: Wie viel Zeitpuffer bis zum Schulstart bleibt.
@@ -211,7 +211,7 @@ echos:
     quelle: s5
     fassungen:
       gut: Ich habe gehört, die Mensa wird so gebaut, dass sie später wachsen kann. Stimmt das?
-      vertretbar: Die Schule hat lange auf eine Antwort gewartet. Wird die Mensa nun größer – ja oder nein?
+      vertretbar: Die Schule hat lange auf eine Antwort gewartet. Wird die Mensa nun größer?
       falle: Herr Schwung hat beim Schulfest gesagt, die große Mensa kommt. Stimmt das?
   - id: E7
     quelle: s5

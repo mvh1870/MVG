@@ -21,7 +21,7 @@ einstieg: |
 szene:
   - { figur: grundstein, text: "Unsere Finanzabteilung sagt: eine Million über dem Budget. Der Architekt sagt: zwei. Was stimmt?" }
   - { figur: schwung, text: "Meine Zahl. Die Haustechnikfirma für Heizung, Lüftung und Strom hat Mehrkosten angekündigt, gut eine Million. Die habe ich schon eingerechnet. Ich rechne lieber zu viel als zu wenig." }
-  - { figur: faden, text: "Ich habe beide Rechnungen verglichen. Die eine Million besteht vor allem aus Baupreisen, Kapselung, früherem Holz und der erweiterbaren Mensa. Der Unterschied sind die angekündigten Mehrkosten – angekündigt heißt aber nicht berechtigt. Die Vergabestelle prüft, ob die Firma das extra berechnen darf." }
+  - { figur: faden, text: "Ich habe beide Rechnungen verglichen. Die eine Million besteht vor allem aus Baupreisen, Kapselung, dem früher ausgeschriebenen Holz und der erweiterbaren Mensa. Der Unterschied sind die angekündigten Mehrkosten – angekündigt heißt aber nicht berechtigt. Die Vergabestelle prüft, ob die Firma das extra berechnen darf." }
   - { figur: grundstein, text: "Ich brauche eine Zahl, die ich im Stadtrat vertreten kann. Nicht zwei." }
   - { figur: faden, text: "Beide Beträge würde die Reserve noch decken." }
 
@@ -33,7 +33,7 @@ antworten:
     balken: { geld: -1, zeit: -1, vertrauen: 0 }
     bild: kostenzettel
     folge: |
-      Der Stadtrat erschrickt über zwei Millionen. Ein Mitglied des Finanzausschusses klopft mit der Uhr auf den Ordner: „Wo steht das?“ Das Mitglied verlangt eine Liste, wo man sparen könnte; die Planung wartet vier Wochen auf die Antwort.
+      Der Stadtrat erschrickt über zwei Millionen. Ein Ratsmitglied aus dem Finanzausschuss klopft mit der Uhr auf den Ordner: „Wo steht das?“ Das Ratsmitglied verlangt eine Liste, wo man sparen könnte; die Planung wartet vier Wochen auf die Antwort.
 
       Dann ist die Prüfung fertig: Was die Haustechnikfirma extra berechnen wollte, gehört schon zum bestehenden Vertrag, die Zahl sinkt wieder. Die Firma hat aber bemerkt, dass die Stadt ihre Forderung schon als berechtigt eingerechnet hatte, und verhandelt jetzt bei jeder Kleinigkeit härter.
   - wertung: falle
@@ -41,7 +41,7 @@ antworten:
     balken: { geld: -1, zeit: 0, vertrauen: -2 }
     bild: lupe
     folge: |
-      Anderthalb Millionen stehen in keiner Rechnung. Ein Mitglied des Finanzausschusses fragt: „Wo steht das?“ Die Bürgermeisterin kann nur antworten: Es ist die Mitte zwischen zwei Zahlen. Das Ausschussmitglied schreibt die Antwort auf und sagt: „Ich habe nichts gegen Geld, nur gegen Geld ohne Nachweis.“ Clara Faden legt beide Rechnungen nebeneinander und zeigt den Unterschied.
+      Anderthalb Millionen stehen in keiner Rechnung. Ein Ratsmitglied aus dem Finanzausschuss fragt: „Wo steht das?“ Die Bürgermeisterin kann nur antworten: Es ist die Mitte zwischen zwei Zahlen. Das Ratsmitglied schreibt die Antwort auf und sagt: „Ich habe nichts gegen Geld, nur gegen Geld ohne Nachweis.“ Clara Faden legt beide Rechnungen nebeneinander und zeigt den Unterschied.
 
       Die Prüfung endet wie erwartet: Was die Haustechnikfirma extra berechnen wollte, gehört schon zum Vertrag. Aber die Firma verhandelt jetzt härter, denn die Stadt hatte ihre Forderung halb als berechtigt eingerechnet.
   - wertung: gut
@@ -49,7 +49,7 @@ antworten:
     balken: { geld: 2, zeit: 0, vertrauen: 2 }
     bild: waage
     folge: |
-      Die Bürgermeisterin nennt im Stadtrat eine Zahl und einen Satz dazu: was drin ist und was nicht. Ein Mitglied des Finanzausschusses öffnet den Mund, schaut auf das Blatt – und nickt. Niemand fragt nach einer zweiten Zahl.
+      Die Bürgermeisterin nennt im Stadtrat eine Zahl und einen Satz dazu: was drin ist und was nicht. Ein Ratsmitglied aus dem Finanzausschuss öffnet den Mund, schaut auf das Blatt – und nickt. Niemand fragt nach einer zweiten Zahl.
 
       Vier Wochen später ist die Prüfung fertig: Die Leistungen gehören zum Vertrag, extra berechnen darf die Firma nichts. Clara Faden schließt das Risiko; damit entfällt die Spanne der möglichen Mehrkosten, und für die Reserve bleibt deutlich mehr Spielraum. „So möchte ich das jedes Mal“, sagt die Bürgermeisterin.
 
@@ -59,7 +59,7 @@ gut: |
 mini:
   art: pinnwand
   titel: Stimmen die Verknüpfungen?
-  aufgabe: "Clara Faden hat die Zettel mit rotem Faden verbunden. Stimmt das, fehlt eine Verbindung, oder würde etwas doppelt gezählt?"
+  aufgabe: "Clara Faden hat die Zettel mit rotem Faden verbunden. Stimmt das, soll sie nachbessern, weil eine Verbindung fehlt, oder würde etwas doppelt gezählt?"
   bild: pinnwand
   schluss: "Zwei Verbindungen hätten doppelt gezählt."
   zettel:

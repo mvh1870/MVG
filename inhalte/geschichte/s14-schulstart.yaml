@@ -15,7 +15,7 @@ zeit: Juli 2028
 campus: { stufe: 6, jahreszeit: sommer, licht: tag }
 campus-nachher: { stufe: 7, jahreszeit: sommer, licht: tag }
 # Die Kurzfassung spielt die Station nicht; die Brücke steht als zweite Zeile der Brückenkarte 5 vor dem Ende (Kopf zeigt Titel und Zeit).
-bruecke: "Die Bürgermeisterin gibt mit Auflagen, also Bedingungen, frei. Offenes geht mit Termin und Namen ans Gebäudemanagement, das das fertige Haus betreibt."
+bruecke: "Die Bürgermeisterin gibt mit Auflagen, also Bedingungen, frei. Zwei offene Punkte gehen mit Termin und Namen ans Gebäudemanagement, die Stelle, die das fertige Haus betreibt."
 thema: ergebnisbild
 belege: [k9.3-p3, k9.3-t1, k6.4.4-p1, k4.5-p1, k4.2-p2, v24:hb-1, v24:hb-1.4, v24:hb-1.6, v24:hb-4, v24:hb-5, v24:hb-projektblatt, v24:tlb-2, v24:va-4.1, v24:va-10.1, v24:va-10.2]
 bild-szene: lupe
@@ -26,11 +26,11 @@ einstieg: |
 
   Theo Lot geht mit seiner Liste durch die Räume, Konrad Schwung prüft jede Tür, Hanna Klingel hat die Stundenpläne an die Wand geheftet.
 
-  Clara Fadens Wochendurchsicht läuft wie immer, und Entscheidungen kommen nur dann zur Bürgermeisterin, wenn sie über die vereinbarten Grenzen hinausgehen. Heute steht die Freigabe am Ende der Bauzeit an; danach übernimmt das Gebäudemanagement der Stadt, also die Stelle, die das fertige Haus betreibt.
+  Clara Fadens Wochendurchsicht läuft wie immer. Heute steht die Freigabe am Ende der Bauzeit an; danach übernimmt das Gebäudemanagement der Stadt, also die Stelle, die das fertige Haus betreibt.
 
 szene:
   - { figur: lot, text: "Fast alles fertig. Nur im Hallenboden sind zwei Fugen offen, die ich im November gemeldet habe. Die Firma bessert sie bis zu den Herbstferien nach, das ist ihr Auftrag." }
-  - { figur: schwung, text: "Und die Lüftung läuft, wie es die Auflage verlangte. Die Feineinstellung kommt im ersten Winter." }
+  - { figur: schwung, text: "Und die Lüftung läuft, wie im Beschluss vom Mai verlangt. Die Feineinstellung kommt im ersten Winter." }
   - { figur: klingel, text: "Ich will nur eins hören: Können die Kinder kommen?" }
   - { figur: faden, text: "Ich habe die Freigabe vorbereitet. Zwei Punkte sind noch offen." }
 
@@ -58,9 +58,9 @@ antworten:
     balken: { geld: 0, zeit: 0, vertrauen: 1 }
     bild: mappe
     folge: |
-      Der Lenkungskreis berät kurz, dann erteilt die Bürgermeisterin die Freigabe mit Auflagen.
+      Der Lenkungskreis berät kurz, dann erteilt die Bürgermeisterin die Freigabe mit der Auflage, alles Offene mit Termin und Namen zu übergeben.
 
-      Clara Faden übergibt alles, was noch offen ist, an das Gebäudemanagement – jeden Punkt mit Termin und Namen. Die Fugen und die Feineinstellung der Lüftung stehen jetzt auf der Liste des Gebäudemanagements.
+      Clara Faden übergibt es dem Gebäudemanagement: Die Fugen und die Feineinstellung der Lüftung stehen jetzt auf dessen Liste.
 
 gut: |
   Die Freigabe erteilt die Stadt selbst, also die Bürgermeisterin: Die Bürgermeisterin kann freigeben, nicht freigeben oder mit Auflagen (Bedingungen) freigeben; der Lenkungskreis berät. Was noch offen ist, wird mit Termin und Namen übergeben und nie als erledigt ausgegeben: Ein Punkt verschwindet nicht durch die Übergabe.

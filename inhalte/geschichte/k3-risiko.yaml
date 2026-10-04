@@ -41,7 +41,7 @@ antworten:
 
       Dann fragt sie: „Warum nicht gleich mit Vorlage? Ein Monat ist bei so etwas viel.“ Die Holzelemente werden ausgeschrieben – einen Monat später, als es möglich gewesen wäre.
   - wertung: falle
-    text: Sie warten mit der Meldung, bis ein zweiter Holzbauer die Einschätzung bestätigt – mit einer bestätigten Zahl überzeugen Sie die Bürgermeisterin eher.
+    text: Sie warten mit der Meldung, bis der vierte Hersteller geantwortet hat und die Zahl bestätigt ist – mit einer bestätigten Zahl überzeugen Sie die Bürgermeisterin eher.
     balken: { geld: -2, zeit: -2, vertrauen: -2 }
     bild: telefon
     folge: |

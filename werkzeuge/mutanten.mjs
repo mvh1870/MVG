@@ -18,7 +18,7 @@ const WURZEL = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const TESTS = ['tests/geschichte.test.ts', 'tests/geschichte-wege.test.ts'];
 const TESTS_WERKZEUGE = [
   'tests/werkzeuge-vorlagen-check.test.ts', 'tests/werkzeuge-wegweiser.test.ts', 'tests/werkzeuge-risiko-grenzen.test.ts',
-  'tests/werkzeuge-monatsbericht.test.ts',
+  'tests/werkzeuge-monatsbericht.test.ts', 'tests/werkzeuge-wachter.test.ts',
 ];
 
 /** [Datei, alt, neu, was, Tests?] – `alt` muss genau einmal vorkommen; ohne Tests gelten die Story-Tests. */
@@ -36,6 +36,12 @@ export const MUTANTEN = [
   ['src/geschichte/engine.ts', 'kipppunkte(v.optionen, v.kriterien, gew, STUFEN_GEWICHT)', 'kipppunkte(v.optionen, v.kriterien, gew)', 'Kipppunkte nur über die drei Stufen'],
   ['src/geschichte/engine.ts', '  if (r[\'v\'] !== STAND_VERSION) return null;\n', '', 'Älterer Stand wird verworfen'],
   ['src/geschichte/engine.ts', ' || !STUFEN_GEWICHT.includes(wert)) return stand;', ') return stand;', 'Gewichte nur 5, 3 oder 1'],
+  // R79: Bilanz der Kurzfassung, Vergleichssätze, Ende-Campus
+  ['src/geschichte/engine.ts', "stufe(b.zeit) === 'hoch' && stufe(b.vertrauen) === 'hoch'", "stufe(b.zeit) === 'mittel' && stufe(b.vertrauen) === 'hoch'", 'Bilanz: vier gute Antworten der Kurzfassung enden „ruhig“, nie „mit Umwegen“ (R79)'],
+  ['src/geschichte/engine.ts', "satz: vorn.length === 1 ? (vorn[0] ?? 'gleichauf') : 'gleichauf'", "satz: vorn.length >= 1 ? (vorn[0] ?? 'gleichauf') : 'gleichauf'", 'Vergleich: bei Gleichstand gilt der Satz „gleichauf“ (R79)'],
+  ['src/generiert/inhalte.json', 'Das Ersatzgerät liegt vorn – mit diesen Gewichten zählt, dass alle Kinder pünktlich einziehen.', 'x', 'Vergleich: Wortlaut des Satzes A ist festgehalten (R79)'],
+  ['src/ui/flaechen/geschichte.ts', "'gs-campus-gross gs-campus-ende', null, typ !== 'offen' && stufe(b.zeit) === 'niedrig')", "'gs-campus-gross gs-campus-ende', null, false)", 'Ende-Campus: bei Zeit „niedrig“ ist die Sporthalle unfertig (R79)', ['tests/geschichte-flaeche.test.ts']],
+  ['src/generiert/inhalte.json', '"geld": -1,\n              "vertrauen": -2,\n              "zeit": 0', '"geld": -1,\n              "vertrauen": 0,\n              "zeit": 0', 'Antwort: Wirkung der Falle in Kapitel 5 (Vertrauen −2) ist festgehalten (R79)'],
   // P18.2, Testplan in docs/WERKZEUGE-P18.md Abschnitt 7
   ['src/werkzeuge/risiko-grenzen.ts', '  if (wert <= g[3]) return 4;', '  if (wert < g[3]) return 4;', 'Risiko: Grenzwert gehört zur niedrigeren Stufe (Termin 70)', TESTS_WERKZEUGE],
   ['src/werkzeuge/risiko-grenzen.ts', '  if (wert <= g[2]) return 3;', '  if (wert < g[2]) return 3;', 'Risiko: Grenzwert gehört zur niedrigeren Stufe (Kosten 1,5 Mio.)', TESTS_WERKZEUGE],
@@ -59,7 +65,7 @@ export const MUTANTEN = [
   ['src/werkzeuge/risiko-grenzen.ts', 'stufen.w <= 2 && aMin', 'stufen.w <= 1 && aMin', 'Risiko: „selten“ gilt auch für Wahrscheinlichkeit Stufe 2', TESTS_WERKZEUGE],
   ['src/werkzeuge/monatsbericht.ts', 'export const ZEILEN_JE_SEITE = 50;', 'export const ZEILEN_JE_SEITE = 60;', 'Bericht: höchstens 50 Zeilen je Seite (nicht mehr)', TESTS_WERKZEUGE],
   ['src/werkzeuge/monatsbericht.ts', 'export const ZEILEN_JE_SEITE = 50;', 'export const ZEILEN_JE_SEITE = 49;', 'Bericht: höchstens 50 Zeilen je Seite (nicht weniger)', TESTS_WERKZEUGE],
-  ['src/werkzeuge/monatsbericht.ts', 'export const ZEICHEN_JE_ZEILE = 78;', 'export const ZEICHEN_JE_ZEILE = 92;', 'Bericht: vorsichtige Zeilenbreite für die Seitenschätzung', TESTS_WERKZEUGE],
+  ['src/werkzeuge/monatsbericht.ts', 'export const ZEICHEN_JE_ZEILE = 86;', 'export const ZEICHEN_JE_ZEILE = 100;', 'Bericht: vorsichtige Zeilenbreite für die Seitenschätzung', TESTS_WERKZEUGE],
   // R78: überlebende Mutanten der Prüfrunde (Monatsbericht, Daten der Vorlagen-Zuständigkeit)
   ['src/werkzeuge/monatsbericht.ts', ' || leer(b.lage) ||', ' ||', 'Bericht: ohne Lage ist der Bericht unvollständig (R77)', TESTS_WERKZEUGE],
   ['src/ui/flaechen/explore/vorlagen-check.ts', "(imSchritt.has(l.bezug ?? '') ? 0 : 2) + (l.schwere === 'rot' ? 0 : 1)", "(imSchritt.has(l.bezug ?? '') ? 0 : 1) + (l.schwere === 'rot' ? 0 : 2)", 'Vorlagen-Check: Lücken des Schritts vor der Schwere (R79)', ['tests/explore-werkzeuge.test.ts']],
@@ -69,7 +75,7 @@ export const MUTANTEN = [
   ['src/ui/flaechen/explore/gemeinsam.ts', "bogenKopf(b.titel, '', b.fiktiv)", "bogenKopf(b.titel, '', false)", 'Werkzeug-Druck: „Fiktiver Fall“ mit Beispiel (R79)', ['tests/explore-werkzeuge.test.ts']],
   ['src/ui/flaechen/explore/monatsbericht.ts', 'fiktiv: z.beispiel !== null', 'fiktiv: true', 'Werkzeug-Druck: ohne Beispiel kein „Fiktiver Fall“ (R79)', ['tests/explore-werkzeuge.test.ts']],
   ['src/werkzeuge/monatsbericht.ts', "const BREIT = 'MWmw@%';", "const BREIT = 'MW';", 'Bericht: auch @ und % zählen breit (R79)', TESTS_WERKZEUGE],
-  ['src/werkzeuge/monatsbericht.ts', 'spalten += zeilenFuer(textBreite(`${e.text} ${e.kennung}`), spalte);', 'spalten += zeilenFuer(`${e.text} ${e.kennung}`.length, spalte);', 'Bericht: Einträge nach Zeichenbreite (R79)', TESTS_WERKZEUGE],
+  ['src/werkzeuge/monatsbericht.ts', 'spalten += zeilenFuer(`${e.text} ${e.kennung}`, spalte);', 'spalten += Math.ceil(`${e.text} ${e.kennung}`.length / spalte);', 'Bericht: Einträge nach Zeichenbreite (R79)', TESTS_WERKZEUGE],
   ['src/werkzeuge/monatsbericht.ts', 'z += voll(`${e.frage} · ${e.stelle} · bis ${e.bis} · ${e.kennung}`);', 'z += zeilenFuer(`${e.frage} · ${e.stelle} · bis ${e.bis} · ${e.kennung}`.length, zeichenJeZeile);', 'Bericht: offene Entscheidungen nach Zeichenbreite (R79)', TESTS_WERKZEUGE],
   ['src/werkzeuge/risiko-grenzen.ts', 'return { von: stufeAus(v.von, g), bis: stufeAus(v.bis, g), grenze: false };', 'return { von: stufeAus(v.von, g), bis: stufeAus(v.bis, g), grenze: aufGrenze(v.von, g) !== null };', 'Risiko: Spanne zeigt keinen Grenzwert-Treffer (R79)', TESTS_WERKZEUGE],
   ['src/werkzeuge/risiko-grenzen.ts', 'if (!nachObenOffen && (obenFeld.w', 'if ((obenFeld.w', 'Risiko: nach oben offen → keine obere Ecke (R79)', TESTS_WERKZEUGE],
@@ -77,6 +83,12 @@ export const MUTANTEN = [
   ['src/werkzeuge/monatsbericht.ts', "if (leer(e.frage) || leer(e.stelle)", "if (leer(e.stelle)", 'Bericht: offene Entscheidung ohne Frage → rot (R79)', TESTS_WERKZEUGE],
   ['src/werkzeuge/monatsbericht.ts', 'if (inhalt.length > max)', 'if (inhalt.length >= max)', 'Bericht: genau die Höchstzahl an Einträgen ist erlaubt', TESTS_WERKZEUGE],
   ['src/werkzeuge/monatsbericht.ts', 'Math.floor(zeichenJeZeile / 2) - 2;', 'Math.floor(zeichenJeZeile / 2) + 20;', 'Bericht: Abschnittsspalte der Seitenschätzung halb so breit wie die Zeile', TESTS_WERKZEUGE],
+  ['src/regie/buehne.ts', '  if (!Object.hasOwn(LESER, werkzeug)) return null;', '  if (false) return null;', 'Regie: Werkzeugname „constructor“ umgeht die Kennungsprüfung nicht (R79)', TESTS_WERKZEUGE],
+  ['src/geschichte/mcda.ts', ' || a.option.id.localeCompare(b.option.id)', '', 'Vergleich: Gleichstand nach Kennung (R79)', TESTS_WERKZEUGE],
+  ['src/werkzeuge/monatsbericht.ts', "zeilenFuer(`Datenstand: ${b.datenstand}`, zeichenJeZeile) + zeilenFuer(FUSS, zeichenJeZeile)", 'zeilenFuer(FUSS, zeichenJeZeile)', 'Bericht: Datenstand-Zeile zählt in der Seitenschätzung (R79)', TESTS_WERKZEUGE],
+  ['src/werkzeuge/monatsbericht.ts', '(b.projekt != null ? voll(b.projekt) : 0)', '0', 'Bericht: Projektzeile zählt in der Seitenschätzung (R79)', TESTS_WERKZEUGE],
+  ['src/werkzeuge/monatsbericht.ts', "const BREIT = 'MWmw@%';", "const BREIT = 'MW@%';", 'Bericht: m und w zählen in der Seitenschätzung als breit (R79)', TESTS_WERKZEUGE],
+  ['src/werkzeuge/monatsbericht.ts', 'if (w > breite) {\n      if (rest > 0) zeilen += 1;', 'if (w > breite) {', 'Bericht: ein langes Wort beginnt eine neue Zeile (R79)', TESTS_WERKZEUGE],
   ['src/werkzeuge/monatsbericht.ts', 'const BREIT_FAKTOR = 1.35;', 'const BREIT_FAKTOR = 1;', 'Bericht: breite Buchstaben (M, W) zählen in der Seitenschätzung mehr', TESTS_WERKZEUGE],
   ['src/werkzeuge/wegweiser.ts', 'const nurEntscheidung = keinVorgang && entscheidung === true;', 'const nurEntscheidung = false;', 'Wegweiser: alles Nein und Entscheidung nötig → „Entscheidung vorbereiten“, nicht „kein Vorgang“ (R78)', TESTS_WERKZEUGE],
   ['src/werkzeuge/wegweiser.ts', "if (w.art !== null) z.push('verknuepfen');", "if (w.art !== null || w.keinVorgang) z.push('verknuepfen');", 'Wegweiser: verknüpft wird nur, was als Vorgang entsteht (R78)', TESTS_WERKZEUGE],

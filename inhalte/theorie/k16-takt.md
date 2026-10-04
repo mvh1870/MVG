@@ -129,7 +129,7 @@ Der [[Monatsbericht]] zeigt auf höchstens einer Seite die wesentlichen Verände
 - wesentliche Probleme und Änderungen,
 - offene Entscheidungen mit der Reaktion, die vom Bauherrn gebraucht wird.
 
-Er nutzt denselben Informationsstand wie die Software und verweist auf deren Einträge – eine zweite Liste braucht es nicht. Er ersetzt weder die vollständigen Einträge noch die sofortige Meldung.
+Inhaltlich deckt er sich mit dem Stand der Software und zeigt auf deren Einträge; daneben führt niemand eine zweite Liste. Weder die vollständigen Einträge noch eine sofortige Meldung kann er ersetzen.
 
 ::: aufklapper Ein fiktives Beispiel: Monatsbericht Oktober 2026
 ---

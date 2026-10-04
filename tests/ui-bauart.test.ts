@@ -179,7 +179,7 @@ test('Startseite (O-57, P17.7): Story-Karte mit Campus und den Figuren der Story
   // Explore: ein Gegenstand je Werkzeug, als Schmuck
   assert.equal(el.querySelectorAll('[data-pruef="weg-explore"] .tuer-werkzeuge[aria-hidden="true"] svg.fig-gimmick').length, WERKZEUGE.length);
   // Leinwand: keine doppelten Kennungen aus den Karten
-  const leinwand = baueStart({ startseite: inhalte.startseite, themenAnzahl: 16, kapitelAnzahl: 8, werkzeugAnzahl: 5, weiterlesen: false, bedienbar: false });
+  const leinwand = baueStart({ startseite: inhalte.startseite, themenAnzahl: 16, kapitelAnzahl: 8, werkzeugAnzahl: WERKZEUGE.length, weiterlesen: false, bedienbar: false });
   assert.equal(leinwand.querySelector('[id^="tuer-"]'), null);
 });
 

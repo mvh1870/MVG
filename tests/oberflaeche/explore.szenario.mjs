@@ -247,7 +247,15 @@ async function neueWerkzeuge(seite, h, pruefe, verboten) {
     await druckEineSeite(seite, h, 'monatsbericht', 'Monatsbericht Höchstfall');
     // R78: Seitenmesser und PDF dürfen sich nicht widersprechen – auch nicht bei Text aus den breitesten Buchstaben (M, W) und aus
     // Großschrift: sagt der Messer „passt“, hat das PDF eine Seite; sagt er „passt nicht“, darf das PDF auch mehrere haben
-    for (const [art, text] of [['M und W', 'WMWMWMWMWMWMWM'], ['M und W mit Leerzeichen', 'MMMMMMM WWWWWWW '], ['Großschrift', 'KOSTEN STEIGEN WEGEN LANGER LIEFERZEITEN ']]) {
+    // R79: auch mit gewähltem Beispiel (die Projektzeile steht dann im Druck) darf der Messer nicht „passt“ sagen, wenn das PDF zwei Seiten hat
+    await hoechstfall(seite, 'Langer Eintrag mit vielen Wörtern ', true);
+    {
+      const passt = await wert('[data-pruef="mb-seitenmesser"]', 'data-passt') === 'ja';
+      const seiten = (await druckSeiten(seite, h, 'monatsbericht', 'Monatsbericht Höchstfall mit Beispiel')).length;
+      if (passt && seiten !== 1) h.befund(`Monatsbericht: Höchstfall mit gewähltem Beispiel: Seitenmesser sagt „passt“, das PDF hat ${seiten} Seiten`);
+    }
+    for (const [art, text] of [['M und W', 'WMWMWMWMWMWMWM'], ['M und W mit Leerzeichen', 'MMMMMMM WWWWWWW '], ['Großschrift', 'KOSTEN STEIGEN WEGEN LANGER LIEFERZEITEN '],
+      ['m und w klein', 'mm ww mm ww '], ['mmmmmmm wwwwwww', 'mmmmmmm wwwwwww '], ['langem Wort ohne Leerzeichen', 'Wasserschadensbeseitigungskoordinationsunterlagen'], ['Blockzeichen', '████████ ']]) {
       await hoechstfall(seite, text);
       const passt = await wert('[data-pruef="mb-seitenmesser"]', 'data-passt') === 'ja';
       const seiten = (await druckSeiten(seite, h, 'monatsbericht', `Monatsbericht Höchstfall ${art}`)).length;
@@ -259,16 +267,16 @@ async function neueWerkzeuge(seite, h, pruefe, verboten) {
 
 /**
  * Monatsbericht im Höchstfall: jedes Feld bis zur Feldgrenze, jeder Abschnitt mit der Höchstzahl an Einträgen; `fuellwort` ist
- * der Text, aus dem die Felder bestehen (Vorgabe: gemischter Text).
+ * der Text, aus dem die Felder bestehen (Vorgabe: gemischter Text); `mitBeispiel` wählt das Beispiel „Oktober“ und füllt nur Kopf, Lage, Ampeln und Reaktion.
  * @param {import('playwright').Page} seite
  */
-async function hoechstfall(seite, fuellwort = 'Langer Eintrag mit vielen Wörtern ') {
+async function hoechstfall(seite, fuellwort = 'Langer Eintrag mit vielen Wörtern ', mitBeispiel = false) {
   const voll = (n) => fuellwort.repeat(Math.ceil(300 / fuellwort.length)).slice(0, n);
   const fuelle = async (pruef, n) => {
     const l = seite.locator(`[data-pruef="${pruef}"]`);
     await l.fill(voll(Number(await l.getAttribute('maxlength') ?? n)));
   };
-  await seite.locator('[data-pruef="mb-beispiel"]').selectOption('');
+  await seite.locator('[data-pruef="mb-beispiel"]').selectOption(mitBeispiel ? 'oktober' : '');
   for (const p of ['mb-monat', 'mb-datenstand', 'mb-lage', 'mb-reaktion']) await fuelle(p, 0);
   for (const a of ['kosten', 'termine', 'qualitaet']) {
     await seite.locator(`[data-pruef="mb-farbe-${a}-gelb"]`).check();
@@ -276,6 +284,7 @@ async function hoechstfall(seite, fuellwort = 'Langer Eintrag mit vielen Wörter
     await seite.locator(`[data-pruef="mb-gehoert-${a}"]`).selectOption('reaktion');
     await fuelle(`mb-reaktion-${a}`, 0);
   }
+  if (mitBeispiel) return; // mit Beispiel bleiben dessen Einträge stehen; es zählt die Projektzeile im Druck (R79)
   for (const [id, n] of [['veraenderungen', 4], ['blockiert', 3], ['massnahmen', 3], ['fruehwarnungen', 3], ['probleme', 4]]) {
     await seite.locator(`[data-abschnitt="${id}"] > summary`).click();
     await seite.locator(`[data-pruef="mb-${id}-keine"]`).uncheck();

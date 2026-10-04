@@ -47,6 +47,7 @@ const LESER: Readonly<Record<string, (roh: unknown, beispiele: readonly string[]
  */
 export function pruefeWerkzeugStand(roh: unknown, werkzeug: string | null, beispiele?: (werkzeug: string) => readonly string[]): string | null {
   if (typeof roh !== 'string' || werkzeug === null) return null;
+  if (!Object.hasOwn(LESER, werkzeug)) return null; // „constructor“, „toString“ u. ä. sind keine Werkzeuge (R79)
   const lese = LESER[werkzeug];
   if (lese === undefined) return null;
   const kennung = /^b:([a-z0-9][a-z0-9-]{0,40})(?:;|$)/u.exec(roh)?.[1];

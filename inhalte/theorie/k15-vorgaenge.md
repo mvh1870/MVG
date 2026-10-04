@@ -121,7 +121,7 @@ titel: Wege zwischen den Arten
 ---
 Vorgänge wechseln ihre Art, wenn sich der Sachverhalt klärt oder ändert:
 
-- Eine **[[Frühwarnung]]** wird geklärt: Ein mögliches Ereignis wird als [[Risiko]] bewertet, ein eingetretener Zustand als [[Problem]] bearbeitet, eine konkrete Arbeit als [[Aufgabe]] weitergeführt; ein unbegründeter Hinweis wird mit Begründung geschlossen. Die Herkunft bleibt verknüpft.
+- Eine **[[Frühwarnung]]** wird geklärt: Wer ein mögliches Ereignis erkennt, bewertet es als [[Risiko]]; ist der Zustand schon eingetreten, wird er als [[Problem]] bearbeitet; eine konkrete Arbeit läuft als [[Aufgabe]] weiter; ein unbegründeter Hinweis wird mit Begründung geschlossen. Die Herkunft bleibt verknüpft.
 - Tritt ein **Risiko** ein, beginnt die Problembearbeitung. Noch unsichere Folgen bleiben getrennt sichtbar.
 - **Aufgaben, Probleme und Änderungen** brauchen keinen vorherigen Risikoeintrag.
 
@@ -140,7 +140,7 @@ titel: Vorgänge auf dem Schulcampus Lindenhall-Süd
 ---
 titel: März 2026 – Frühwarnung
 ---
-Der Architekt hört beiläufig, dass die Lieferzeiten für Holzelemente länger werden – wie viel und bei wem, ist offen. Der Hinweis steht am selben Tag mit Quelle, Eingangsdatum und Prüffrage im Register.
+Der Architekt hört beiläufig, dass die Lieferzeiten für Holzelemente länger werden – wie viel und bei wem, ist offen. Der Hinweis wird mit Quelle, Eingangsdatum und Prüffrage im Register festgehalten.
 :::
 
 ::: etappe 2
@@ -229,7 +229,7 @@ rechts: Mit Grund abgeschlossen
 ::: ansicht rechts
 - **Aufgabe:** Sie endet, sobald das vereinbarte Ergebnis vorliegt und sich im eigenen Prüfumfang weiterverwenden lässt. Verschiebt sich der Termin, bleibt die Verzögerung trotzdem zu erklären.
 - **Maßnahme:** schließt mit belegtem Umsetzungs- und Wirkungsstand; wirkt sie nicht, folgt eine Anpassung.
-- **Änderung:** gilt erst mit der Freigabe, bis dahin bleibt die bisherige Grundlage maßgeblich. Eine fachliche Freigabe ist noch keine Vertragsänderung oder Bestellung.
+- **Änderung:** gilt erst mit dem Beschluss der befugten Stelle, bis dahin bleibt die bisherige Grundlage maßgeblich. Eine fachliche Freigabe ist noch keine Vertragsänderung oder Bestellung.
 - **Problem:** schließt mit dem Nachweis der Lösung; offene Folgen bleiben sichtbar.
 :::
 :::
@@ -291,7 +291,7 @@ Die Projektsteuerung holt eine fachliche Einschätzung ein, informiert den Bauhe
 :::
 :::
 
-Als **wesentlich** gilt ein Risiko, das vorrangig ist, eine Entscheidungsschwelle des Bauherrn erreicht oder einen besonderen Warnanlass berührt. Dann nennt die Projektsteuerung belastbare Bandbreiten für Kosten und Termin, soweit sich diese abschätzen lassen; andernfalls hält sie fest, wer welche offene Frage klärt.
+Als **wesentlich** gilt ein Risiko, das vorrangig ist, eine Entscheidungsschwelle des Bauherrn erreicht oder einen besonderen Warnanlass berührt. Dann nennt die Projektsteuerung Bandbreiten für Kosten und Termin, soweit sich diese abschätzen lassen; andernfalls hält sie fest, wer welche offene Frage klärt.
 
 ::: hinweis
 **Unabhängig von den Punkten** behandelt die Projektsteuerung Fragen der Sicherheit und der Genehmigung, fehlende Befugnisse und den drohenden Verlust einer Handlungsoption. Dringliches wird sofort gemeldet – ohne auf die nächste Sitzung oder eine vollständige Bewertung zu warten.

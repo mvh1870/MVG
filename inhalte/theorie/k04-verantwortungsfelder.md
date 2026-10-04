@@ -182,7 +182,7 @@ Ein **Zielsystem** liegt vor: Muss-Kriterien, verhandelbare Kriterien, Abwägung
 ---
 titel: Mandat
 ---
-Mit dem [[Mandat]] legt der Bauherr fest, wer welche Entscheidung vorbereiten, treffen, freigeben oder eskalieren darf. Eine [[RACI]]-Zuordnung (ausführungs- und letztverantwortlich, konsultiert, informiert) genügt nicht ohne Freigabeschwellen, Stellvertretungen und Eskalationswege.
+Mit dem [[Mandat]] legt der Bauherr fest, wer welche Entscheidung vorbereiten, treffen, freigeben oder eskalieren darf. Eine [[RACI]]-Zuordnung (ausführungsverantwortlich, letztverantwortlich, konsultiert, informiert) genügt nicht ohne Freigabeschwellen, Stellvertretungen und Eskalationswege.
 
 Wo eine Handlungsentscheidung erforderlich ist, entscheidet die befugte Stelle auf eine Vorlage der Projektsteuerung mit mindestens zwei zulässigen Optionen und gewichtetem Vergleich; fehlt eine zweite zulässige Option, kennzeichnet die Projektsteuerung die Vorlage als unvollständig. Die Vorgänge pflegt auf keiner Stufe die entscheidende Stelle selbst, sondern die Projektsteuerung. Die **Muster-Mandatsleiter** ist ein Muster, keine Vorgabe: Die Freigabeschwellen legt der Bauherr selbst fest.
 
@@ -254,10 +254,10 @@ praefix: "Genau:"
 
 ::: antwort b
 ---
-titel: Die Bauherren-PL eigenständig
+titel: Die Projektleitung des Bauherrn eigenständig
 praefix: "Nicht ganz:"
 ---
-Die Bauherren-PL gibt nur bis einschließlich 100.000 € eigenständig frei.
+Die Projektleitung des Bauherrn gibt nur bis einschließlich 100.000 € eigenständig frei.
 :::
 
 ::: antwort c

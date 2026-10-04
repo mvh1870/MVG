@@ -320,7 +320,7 @@ export const W = {
     beispiel: 'Beispiel aus der Story',
     zuruecksetzen: 'Auf die Werte des Beispiels zurücksetzen',
     mcdaTabelle: 'Gewichteter Vergleich, Punkte und Gewichte einstellbar',
-    punkteHinweis: (min: number, max: number) => `Gewichte und Punkte je ${min} bis ${max}. Wer Punkte ändert, muss sie neu begründen.`,
+    punkteHinweis: (min: number, max: number) => `Gewichte und Punkte je ${min} bis ${max}. Jeder Punktwert braucht einen Grund.`,
     wahrscheinlichkeit: 'Wahrscheinlichkeit',
     auswirkung: 'Auswirkung',
     immerVorrangig: 'Auswirkung 5 ist immer vorrangig',

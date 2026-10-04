@@ -18,7 +18,7 @@ teil: 1
 kurzsatz: Warum mehr Berichte das Kernproblem nicht lösen.
 symbol: frage
 ---
-Kosten, Termine, Qualität, Risiken, [[ESG|Nachhaltigkeit (ESG)]], [[LCC|Lebenszykluskosten (LCC)]], Nutzerbedarfe und Gremienfähigkeit wirken nicht isoliert – sie treffen in konkreten Entscheidungen zusammen. Für den [[Bauherr|Bauherrn]] zählt deshalb nicht die Menge an Information, sondern ob klar ist, wer auf welcher Grundlage entscheiden darf und muss.
+Kosten, Termine, Qualität, Risiken, [[ESG|Umwelt-, Sozial- und Governance-Aspekte (ESG)]], [[LCC|Lebenszykluskosten (LCC)]], Nutzerbedarfe und Gremienfähigkeit wirken nicht isoliert – sie treffen in konkreten Entscheidungen zusammen. Für den [[Bauherr|Bauherrn]] zählt deshalb nicht die Menge an Information, sondern ob klar ist, wer auf welcher Grundlage entscheiden darf und muss.
 
 ::: kernaussage
 ---

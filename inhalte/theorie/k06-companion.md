@@ -63,8 +63,8 @@ titel: Grundlogik der Zusammenarbeit
 Vier Regeln tragen die Zusammenarbeit:
 
 1. Die **Projektsteuerung pflegt alle Vorgänge** in der Software des Bauherrn; zu jedem Eintrag gehören eine verantwortliche Person, der nächste Schritt und ein Termin.
-2. Die [[RACI]]-Logik klärt je Prozess, wer ausführungsverantwortlich, letztverantwortlich, konsultiert und informiert ist.
-3. Was eine Entscheidung braucht, wird **nicht nur berichtet**, sondern über das Entscheidungsregister und eine [[Entscheidungsvorlage]] entscheidungsreif gemacht: mindestens zwei zulässige Optionen, gewichteter Vergleich, Empfehlung, befugte Stelle, Termin.
+2. Die [[RACI]]-Logik klärt für jeden Prozess vier Dinge: wer ihn ausführt, wer am Ende dafür verantwortlich ist, wer gefragt wird und wer nur informiert wird.
+3. Was eine Entscheidung braucht, wird **nicht nur berichtet**, sondern über das Entscheidungsregister (die Liste der offenen Entscheidungen) und eine [[Entscheidungsvorlage]] entscheidungsreif gemacht: mindestens zwei zulässige Optionen, gewichteter Vergleich, Empfehlung, befugte Stelle, Termin.
 4. **Monatsbericht und Entscheidungsregister** haben getrennte Aufgaben. Der Bericht umfasst höchstens eine Seite und beruht auf demselben Stand wie die Software. Er nennt unter anderem wesentliche Veränderungen, Aufgaben, die nicht weiterkommen, kritische Maßnahmen, Frühwarnungen ohne Klärung, wesentliche Probleme und Änderungen sowie offene Entscheidungen samt der Reaktion, die sie brauchen.
 
 ::: umschalter
@@ -118,7 +118,7 @@ Die Projektleitung des Bauherrn und das Änderungsgremium entscheiden im Rahmen 
 ---
 titel: Bauherr
 ---
-Stellt Ziele, Bewertungsgrenzen, Befugnisse, Zugänge und die Software bereit und sichert die Zuarbeit. Er entscheidet über Ziele, wesentliche Abweichungen, Mittel, Risikoannahmen und Freigaben – und pflegt nichts.
+Gibt Ziele, Bewertungsgrenzen, Befugnisse und Zugänge vor, stellt die Software bereit und sorgt für die Zuarbeit. Bei ihm liegt die Entscheidung über Ziele, wesentliche Abweichungen, Mittel, Risikoannahmen und Freigaben – und er pflegt nichts.
 :::
 :::
 
@@ -559,7 +559,7 @@ titel: In vereinbarten Ruhezeiten
 ---
 
 ### Rückseite
-Monatliche Gesamtprüfung; neue, nicht dringliche Hinweise binnen fünf Arbeitstagen. Der Termin nur bei Bedarf, der Bericht bleibt.
+Neue, nicht dringliche Hinweise werden in dieser Zeit binnen fünf Arbeitstagen erfasst; den gesamten Bestand prüft die Projektsteuerung monatlich. Der Termin findet nur bei Bedarf statt, der Bericht bleibt.
 :::
 :::
 
@@ -605,7 +605,7 @@ Wo eine Handlungsentscheidung nötig ist, liegt auf jeder Stufe eine Vorlage der
 ---
 titel: Der MVG Companion – ein optionales Arbeitsmittel
 ---
-Der MVG Companion ist eine anwendungsnahe Arbeitsumgebung. Er soll den Schritt vom Konzept in die Anwendung erleichtern.
+Der MVG Companion ist ein Hilfsmittel, das den Schritt vom Konzept in den Alltag erleichtern soll. Nötig ist er nicht.
 
 ::: abbildung abb-9
 :::
@@ -617,7 +617,7 @@ links: Was er ist
 rechts: Was er nicht ist
 ---
 ::: ansicht links
-Ein optionales Arbeitsmittel. Es hilft bei Entscheidungsvorbereitung, Freigabesteuerung, Nachweisführung, Befähigung und Übergang in den Regelbetrieb – damit MVG schneller verstanden, einheitlicher angewendet und dauerhafter verankert wird.
+Ein optionales Arbeitsmittel. Es hilft, Entscheidungen vorzubereiten, Freigaben zu steuern, Nachweise zu führen, das Team zu befähigen und in den Regelbetrieb überzugehen.
 :::
 
 ::: ansicht rechts
@@ -628,9 +628,9 @@ Kein zweites Dachkonzept neben MVG, kein Ersatz für Entscheidung oder Führung 
 
 ::: abschnitt k6.1
 ---
-titel: Funktionslogiken des MVG Companion
+titel: Die sieben Bausteine des MVG Companion
 ---
-Der Companion bündelt sieben Funktionslogiken. Sie spiegeln die Bausteine des Führungsmodells; jede übersetzt einen Teil der vereinbarten Governance in eine Arbeitshilfe. Der **Entscheidungsassistent** etwa führt durch Entscheidungsfrage, Mandat, Freigabe, Datenstand und Nachweis; in der Vorlage gehören dazu mindestens zwei zulässige Optionen und ihr gewichteter Vergleich.
+Der Companion bündelt sieben Funktionen. Sie spiegeln die Bausteine des Führungsmodells; jede übersetzt einen Teil der vereinbarten Governance in eine Arbeitshilfe. Der **Entscheidungsassistent** etwa führt Schritt für Schritt durch Entscheidungsfrage, Mandat, Freigabe, Datenstand und Nachweis; in der Vorlage gehören dazu mindestens zwei zulässige Optionen und ihr gewichteter Vergleich.
 
 ::: tafel k6.1-t1
 ---
@@ -643,7 +643,7 @@ form: karten
 ---
 titel: Befähigung mit Unterstützung des MVG Companion
 ---
-[[Befähigung]] heißt: Die Bauherrenorganisation kann das Modell selbst anwenden. Mit dem Companion wird aus der einmaligen Schulung eine **wiederholbare Anwendungskette**: Die Rollen arbeiten mit [[Entscheidungs-ID|Entscheidungs-IDs]], Freigabefragen, Mandatslogik, Datenstandsprüfung und Routinen des Betriebshandbuchs – in echten Entscheidungssituationen des eigenen Projekts.
+[[Befähigung]] heißt: Die Bauherrenorganisation kann das Modell selbst anwenden. Mit dem Companion wird aus der einmaligen Schulung eine **wiederholbare Anwendungskette**: Die Rollen arbeiten mit [[Entscheidungs-ID|Entscheidungs-IDs]] (eine Kennung je Entscheidung), Freigabefragen, Mandatslogik, der Prüfung, ob der Datenstand aktuell ist, und den Routinen des Betriebshandbuchs – in echten Entscheidungssituationen des eigenen Projekts.
 
 ::: etappen
 ---
@@ -683,7 +683,7 @@ Wiederkehrende Anwendungshilfe für Entscheidungen, Freigaben und Prüfungen. **
 ---
 titel: Rahmenbedingungen und Datenstand
 ---
-Technisch ist der Companion ein lokal lauffähiges, browserbasiertes Governance-Arbeitsbuch. Er ist **optional**: Das Führungsmodell funktioniert auch mit den Büro- und Projektwerkzeugen, die ein Bauherr ohnehin nutzt.
+Technisch ist der Companion ein Arbeitsbuch, das im Browser auf dem eigenen Rechner läuft. Er ist **optional**: Das Führungsmodell funktioniert auch mit den Büro- und Projektwerkzeugen, die ein Bauherr ohnehin nutzt.
 
 ::: aufklapper Wie der Companion mit den Inhalten umgeht
 ---

@@ -438,6 +438,8 @@ test('r73: „Nur die Sporthalle bleibt noch zu“ genau bei Zeit „niedrig“ 
     gesehen.add(z);
     const el = baueSchritt({ g, stand: st, bedienbar: true, themaTitel: () => 'Thema', tue: () => undefined });
     assert.equal(el.querySelector('[data-pruef="gs-zeit-niedrig"]') !== null, z === 'niedrig', `Zeit ${z}`);
+    // Bild und Text stimmen überein: „Die Sporthalle bleibt noch zu“ ⇒ der Ende-Campus zeigt die Halle unfertig (R79)
+    assert.equal(el.querySelector('.gs-campus-ende svg')?.getAttribute('data-halle') === 'offen', z === 'niedrig', `Campus am Ende, Zeit ${z}`);
   }
   assert.ok(gesehen.has('mittel') && gesehen.has('niedrig') && gesehen.has('hoch'), [...gesehen].join(','));
 });

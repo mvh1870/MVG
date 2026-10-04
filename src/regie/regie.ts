@@ -394,6 +394,7 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     const schalter = schalterVon(inhalte.werkzeuge, id, t.beispiel, w.ampelOhneFrage);
     const aktiv = new Set(t.schritt === null ? [] : t.schritt.split(';'));
     ersetze(werkzeugStandEl,
+      h('p', { class: 't-label', 'data-pruef': 'regie-werkzeug-stand-titel' }, w.werkzeugStand), // sichtbare Überschrift des Kastens, auf die die Regie-Karte verweist (R79)
       h('div', { class: 'regie-zeile', 'data-pruef': 'regie-beispiele' }, h('span', { class: 't-label' }, w.beispiel),
         beispiele.map((b) => h('button', {
           type: 'button', class: 'regie-chip regie-chip-klein', 'aria-pressed': b === t.beispiel ? 'true' : 'false', title: titelVon(b), 'data-pruef': `regie-beispiel-${b}`,

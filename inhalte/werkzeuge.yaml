@@ -11,7 +11,7 @@ mcda:
     Die Punktzahl ersetzt nicht das fachliche Urteil. Zwingende Anforderungen an Sicherheit, Genehmigung und Funktion werden vor dem Vergleich geprüft – eine unzulässige Option gewinnt nicht durch Punkte.
 matrix:
   titel: Risikomatrix 5×5
-  kurz: Wahrscheinlichkeit mal Auswirkung – und was daraus für die Bearbeitung folgt.
+  kurz: Nachschlagen – Wahrscheinlichkeit mal Auswirkung, und was daraus für die Bearbeitung folgt.
   belege: [v24:hb-2, v24:hb-3]
   text: |
     Die Matrix ordnet nur Risiken ein: Wahrscheinlichkeit (Stufe 1 bis 5) multipliziert mit der höchsten belegten Auswirkung (Stufe 1 bis 5) ergibt die Bearbeitungspriorität. Kosten, Termine und Qualität behalten daneben ihre eigene Bewertung.
@@ -36,7 +36,7 @@ matrix:
     - { kennung: RIS-022, titel: Verzögerte Möbellieferung Mensa, w: 2, a: 2 }
 vorgaenge:
   titel: Vorgangsarten und Wege
-  kurz: Sechs Arten von Vorgängen – und wohin ein Vorgang als Nächstes führt.
+  kurz: Nachschlagen – sechs Arten von Vorgängen, und wohin ein Vorgang als Nächstes führt.
   belege: [v24:hb-1, v24:hb-1.1, v24:hb-1.2, v24:hb-1.3, v24:hb-1.4, v24:hb-1.5, v24:hb-1.6, v24:hb-5]
   text: |
     Die Projektsteuerung erfasst und bearbeitet die Vorgänge ihres Auftrags in der Software des Bauherrn; der Bauherr pflegt keine eigene Liste. Nicht jeder Hinweis wird zum Risiko, und nicht jeder Vorgang durchläuft alle Arten. Zusammengehörige Einträge werden verknüpft – die Herkunft geht nicht verloren.
@@ -50,7 +50,7 @@ vorgaenge:
     - id: fruehwarnung
       titel: Frühwarnung
       text: "Ein Hinweis auf eine mögliche Beeinträchtigung, der noch nicht ausreichend geklärt ist. Die Quelle wird gesichert, eine Prüffrage und ein Wiedervorlagetermin werden festgelegt."
-      beispiel: FRW-002 – ein Holzbauer erwähnt gegenüber der Generalplanung, dass die Lieferzeiten für Holzelemente länger werden; Prüffrage an die Hersteller.
+      beispiel: FRW-002 – der Architekt hat auf einer Messe gehört, dass die Lieferzeiten für Holzelemente länger werden; Prüffrage an die Hersteller.
       abschluss: Ein Klärungsergebnis liegt vor – oder der Hinweis wird mit Begründung geschlossen.
       wege: [risiko, problem, aufgabe]
     - id: risiko
@@ -235,7 +235,7 @@ vorlagencheck:
 
 wegweiser:
   titel: Vorgangs-Wegweiser
-  kurz: Vom Sachverhalt zur Vorgangsart – mit wenigen Fragen.
+  kurz: Ausprobieren – vom Sachverhalt zur Vorgangsart, mit wenigen Fragen.
   belege: [v24:hb-1, v24:hb-1.1, v24:hb-1.2, v24:hb-1.3, v24:hb-1.4, v24:hb-1.5, v24:hb-1.6, v24:hb-5]
   text: |
     Wenige Fragen führen von einem Sachverhalt zur passenden Art des Vorgangs – mit dem nächsten Schritt, dem, was festgehalten wird, und der typischen Verwechslung. Erfasst und bearbeitet wird in der Software des Bauherrn durch die Projektsteuerung.
@@ -295,7 +295,7 @@ wegweiser:
 
 risikogrenzen:
   titel: Risiko-Bewerter
-  kurz: Ein Risiko mit den eigenen Grenzen des Projekts bewerten – auch wenn noch nicht alles bekannt ist.
+  kurz: Ausprobieren – ein Risiko mit den eigenen Grenzen des Projekts bewerten, auch wenn noch nicht alles bekannt ist.
   belege: [v24:hb-2, v24:hb-3, v24:hb-projektblatt, v24:hb-1.3]
   text: |
     Der Bauherr legt fest, bis zu welcher Wahrscheinlichkeit, welchem Betrag und wie vielen Tagen Verzug eine Stufe reicht. Mit diesen Grenzen wird jedes Risiko gleich eingestuft. Was noch niemand beziffern kann, bleibt „unbekannt“ – es zählt nicht als null.

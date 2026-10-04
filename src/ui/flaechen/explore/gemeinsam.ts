@@ -97,16 +97,23 @@ export function textFeld(o: { name: string; titel: string; wert: string; max: nu
   return h('label', { class: 'wz-feld' }, h('span', { class: o.versteckt === true ? 'nur-sr' : 't-label' }, o.titel), feld);
 }
 
-/** Zahlenfeld; leer = null (unbekannt). */
-export function zahlFeld(o: { name: string; titel: string; wert: number | null; beiEingabe: (n: number | null) => void; platzhalter?: string; versteckt?: boolean; min?: number; ganz?: boolean }): HTMLElement {
+/** Obergrenze der Zahlenfelder (R79): darüber rechnen Gleitkommazahlen nicht mehr genau; reicht für jeden Betrag im Bauvorhaben */
+export const ZAHL_MAX = 100_000_000_000;
+
+/** Zahlenfeld; leer = null (unbekannt); über der Obergrenze wird auf diese gesetzt. */
+export function zahlFeld(o: { name: string; titel: string; wert: number | null; beiEingabe: (n: number | null) => void; platzhalter?: string; versteckt?: boolean; min?: number; max?: number; ganz?: boolean }): HTMLElement {
   return h('label', { class: 'wz-feld wz-zahl' },
     h('span', { class: o.versteckt === true ? 'nur-sr' : 't-label' }, o.titel),
     h('input', {
-      type: 'number', inputmode: o.ganz === true ? 'numeric' : 'decimal', step: o.ganz === true ? 1 : 'any', min: o.min ?? 0, 'data-pruef': o.name,
+      type: 'number', inputmode: o.ganz === true ? 'numeric' : 'decimal', step: o.ganz === true ? 1 : 'any', min: o.min ?? 0, max: o.max ?? ZAHL_MAX, 'data-pruef': o.name,
       value: o.wert === null ? '' : String(o.wert), placeholder: o.platzhalter ?? null,
       oninput: (e: Event) => {
         const t = (e.target as HTMLInputElement).value.trim();
-        const n = t === '' ? null : Number(t);
+        const roh = t === '' ? null : Number(t);
+        // R79: über der Obergrenze wird nicht gerundet gerechnet, sondern auf die Obergrenze gesetzt (und so angezeigt)
+        const grenze = o.max ?? ZAHL_MAX;
+        const n = roh !== null && Number.isFinite(roh) && roh > grenze ? grenze : roh;
+        if (n !== roh) (e.target as HTMLInputElement).value = String(n);
         o.beiEingabe(n === null || Number.isFinite(n) ? n : null);
       },
     }));

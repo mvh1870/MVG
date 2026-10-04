@@ -50,13 +50,11 @@ aendern:
       zu einer durchgängigen Steuerungsarchitektur – das Führungsmodell, mit dem ein Bauherr ein komplexes Vorhaben
       steuerbar hält.
     belege: [k13-t1, v24:hb-1]
-  # k13-E4 (HB 4: Takt)
+  # k13-E4
   g-betriebshandbuch:
     definition: >-
       Betriebslogik für den Regelbetrieb von MVG mit Rollen, Routinen, Taktung, Eskalation und Prüfmechanismen.
-      Dazu gehören in aktiven Zeiten die wöchentliche Prüfung aller offenen Vorgänge und ein monatlicher
-      Termin von bis zu 60 Minuten, dazu jeden Monat ein Monatsbericht von höchstens einer Seite.
-    belege: [k13-t1, v24:hb-4]
+    belege: [k13-t1]
   # k13-E5 (HB 1, HB 3: die Projektsteuerung bereitet vor, der Bauherr entscheidet)
   g-freigabe:
     definition: >-

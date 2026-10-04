@@ -196,7 +196,7 @@ Ein wichtiger früher Hebel. Maßgeblich ist aber die Entscheidungs- und Nachwei
 ---
 titel: Die Kette der Entscheidungssicherheit
 ---
-Sechs Glieder – eine Aufzählung, kein Ablauf. Fehlt eines, fehlt der Zusammenhang.
+Sechs Glieder, die zusammengehören. Fehlt eines, fehlt der Zusammenhang.
 
 ::: etappe 1
 ---

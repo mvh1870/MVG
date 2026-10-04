@@ -75,7 +75,7 @@ titel: Die befugte Stelle entscheidet
 ---
 
 ### Rückseite
-Entscheiden darf, wer nach dem Mandat dafür zuständig ist: die Projektleitung des Bauherrn, ein Gremium wie das Änderungsgremium oder der Bauherr selbst.
+Entscheiden darf, wer nach dem Mandat dafür zuständig ist: die Projektleitung des Bauherrn, ein Gremium, das der Bauherr dafür bestimmt hat, oder der Bauherr selbst.
 :::
 :::
 
@@ -185,7 +185,7 @@ Fehlt eine echte zweite Option, wird die Vorlage als unvollständig gekennzeichn
 ---
 titel: Der gewichtete Vergleich (MCDA)
 ---
-[[MCDA (Multikriterien-Entscheidungsanalyse)|MCDA]] steht für Multi-Criteria Decision Analysis: Alle Optionen werden an denselben gewichteten Kriterien gemessen. So bleibt nachvollziehbar, warum so entschieden wurde.
+[[MCDA (Multikriterien-Entscheidungsanalyse)|MCDA]] steht für Multikriterien-Entscheidungsanalyse, auf Deutsch: ein gewichteter Vergleich. Alle Optionen werden an denselben gewichteten Kriterien gemessen. So bleibt nachvollziehbar, warum so entschieden wurde.
 
 ::: etappen
 ---

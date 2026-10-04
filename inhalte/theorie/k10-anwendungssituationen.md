@@ -113,7 +113,7 @@ titel: Private und institutionelle Bauherren
 ---
 Bei privaten und institutionellen Bauherren treffen Tempo, Rendite, Nutzerinteressen, Finanzierung, [[ESG]], [[LCC]] (Lebenszykluskosten) und Technik aufeinander. Das Problem liegt selten in einem einzelnen Ziel, sondern darin, dass die Ziele sich widersprechen.
 
-::: aufklapper Ein Beispiel: Tempo und Haustechnik
+::: aufklapper Tempo und Haustechnik
 ---
 symbol: lesezeichen
 ---
@@ -379,7 +379,7 @@ Sie gehört – mit RACI und Entscheidungsvorlage – zur Antwort auf Gremienbes
 ---
 seite: links
 ---
-Änderung gegen den geltenden Stand aufbereiten (mindestens zwei Optionen, gewichteter Vergleich)
+Änderung gegen den geltenden Stand aufbereiten
 
 ### Erklärung
 Das gehört – mit Änderungsregister und verbindlicher Auswirkungsbewertung – zur Antwort auf Änderungsanträge mit unvollständiger Auswirkungsbewertung.

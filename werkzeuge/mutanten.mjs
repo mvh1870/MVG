@@ -61,7 +61,7 @@ export const MUTANTEN = [
   ['src/werkzeuge/monatsbericht.ts', 'export const ZEILEN_JE_SEITE = 50;', 'export const ZEILEN_JE_SEITE = 49;', 'Bericht: höchstens 50 Zeilen je Seite (nicht weniger)', TESTS_WERKZEUGE],
   ['src/werkzeuge/monatsbericht.ts', 'export const ZEICHEN_JE_ZEILE = 78;', 'export const ZEICHEN_JE_ZEILE = 92;', 'Bericht: vorsichtige Zeilenbreite für die Seitenschätzung', TESTS_WERKZEUGE],
   // R78: überlebende Mutanten der Prüfrunde (Monatsbericht, Daten der Vorlagen-Zuständigkeit)
-  ['src/werkzeuge/monatsbericht.ts', ' || leer(b.lage)) h.push', ') h.push', 'Bericht: ohne Lage ist der Bericht unvollständig (R77)', TESTS_WERKZEUGE],
+  ['src/werkzeuge/monatsbericht.ts', ' || leer(b.lage) ||', ' ||', 'Bericht: ohne Lage ist der Bericht unvollständig (R77)', TESTS_WERKZEUGE],
   ['src/werkzeuge/monatsbericht.ts', ' || leer(b.reaktion) ||', ' ||', 'Bericht: ohne benötigte Reaktion ist der Bericht unvollständig (R79)', TESTS_WERKZEUGE],
   ['src/werkzeuge/monatsbericht.ts', "if (leer(e.frage) || leer(e.stelle)", "if (leer(e.stelle)", 'Bericht: offene Entscheidung ohne Frage → rot (R79)', TESTS_WERKZEUGE],
   ['src/werkzeuge/monatsbericht.ts', 'if (inhalt.length > max)', 'if (inhalt.length >= max)', 'Bericht: genau die Höchstzahl an Einträgen ist erlaubt', TESTS_WERKZEUGE],

@@ -10,6 +10,7 @@ import YAML from 'yaml';
 import { sichtbarVerboten } from './sichtbar.mjs';
 import { AKZENTE } from '../src/stil/akzente.ts';
 import { GIMMICKS } from '../src/grafik/figuren.ts';
+import { MINI_ART_KENNUNGEN, miniArt } from '../src/geschichte/mini-arten.ts';
 import { pruefeWerkzeugVerweise } from './explore.mjs';
 
 const FIGUREN = ['grundstein', 'faden', 'schwung', 'klingel', 'lot'];
@@ -288,28 +289,28 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
   if (kapitel.length > 0 && vergleiche !== 1) c.fehler(rel, `genau ein Kapitel mit Vergleich erwartet, nicht ${vergleiche}`);
   if (kapitel.length > 0 && !kapitel.some((/** @type {any} */ k) => k.mandatNachFolge)) c.fehler(rel, 'kein Kapitel zeigt das Kärtchen „Wer entscheidet was“ (mandat-nach-folge)');
 
-  /** Mini-Aufgabe */
+  /** Mini-Aufgabe: gemeinsames Gerüst; was je Art gilt, steht in der Mini-Registry (src/geschichte/mini-arten.ts, `uebersetzung`) */
   function mini(/** @type {any} */ m, /** @type {string} */ ort) {
     const o = form(m, ['art', 'titel', 'aufgabe', 'bild', 'posten'], ['wahlen'], ort);
     const art = text(o.art);
-    if (art !== 'zuordnen' && art !== 'reihenfolge') c.fehler(ort, `Art „${art}“ – erwartet zuordnen oder reihenfolge`);
+    const def = miniArt(art);
+    if (def === null) c.fehler(ort, `Art „${art}“ – erwartet ${MINI_ART_KENNUNGEN.join(' oder ')}`);
     const wahlen = (Array.isArray(o.wahlen) ? o.wahlen : []).map((/** @type {any} */ w, /** @type {number} */ i) => {
       const wo = `${ort} wahlen ${i + 1}`;
       const x = form(w, ['id', 'titel'], ['figur', 'falsch', 'heisst', 'bild'], wo);
       if (x.figur !== undefined && x.figur !== 'sie' && !FIGUREN.includes(x.figur)) c.fehler(wo, `Figur „${text(x.figur)}“ unbekannt`);
       return { id: kennung(x.id, wo, 'Wahl') ?? '', titel: klar(x.titel, wo), figur: x.figur === undefined ? null : text(x.figur), falschHtml: x.falsch === undefined ? null : inline(x.falsch, wo), heisstHtml: x.heisst === undefined ? null : inline(x.heisst, wo), bild: bild(x.bild, wo) };
     });
-    if (art === 'zuordnen' && wahlen.length < 2) c.fehler(ort, 'zuordnen braucht mindestens zwei Wahlen');
-    if (art === 'reihenfolge' && o.wahlen !== undefined) c.fehler(ort, 'eine Reihenfolge hat keine Wahlen');
+    def?.uebersetzung.pruefeWahlen(wahlen, o.wahlen !== undefined, ort, (/** @type {string} */ o2, /** @type {string} */ t) => c.fehler(o2, t));
     if (new Set(wahlen.map((/** @type {any} */ w) => w.id)).size !== wahlen.length) c.fehler(ort, 'Wahl doppelt');
     const posten = (Array.isArray(o.posten) ? o.posten : []).map((/** @type {any} */ p, /** @type {number} */ i) => {
       const po = `${ort} posten ${i + 1}`;
-      const x = form(p, art === 'zuordnen' ? ['text', 'loesung', 'erklaerung'] : ['text', 'erklaerung'], ['bild'], po);
-      if (art === 'zuordnen' && !wahlen.some((/** @type {any} */ w) => w.id === text(x.loesung))) c.fehler(po, `Lösung „${text(x.loesung)}“ ist keine der Wahlen`);
-      return { html: inline(x.text, po), loesung: art === 'zuordnen' ? text(x.loesung) : '', erklaerungHtml: inline(x.erklaerung, po), bild: bild(x.bild, po) };
+      const x = form(p, def?.uebersetzung.postenFelder ?? ['text', 'erklaerung'], ['bild'], po);
+      const loesung = def?.uebersetzung.loesung(x.loesung, wahlen, po, (/** @type {string} */ o2, /** @type {string} */ t) => c.fehler(o2, t)) ?? '';
+      return { html: inline(x.text, po), loesung, erklaerungHtml: inline(x.erklaerung, po), bild: bild(x.bild, po) };
     });
     if (posten.length < 3) c.fehler(ort, 'mindestens drei Posten');
-    if (art === 'zuordnen') for (const w of wahlen) if (w.falschHtml !== null && posten.some((/** @type {any} */ p) => p.loesung === w.id)) c.fehler(ort, `Wahl „${w.id}“ hat eine feste Rückmeldung „falsch“, ist aber bei einem Posten richtig`);
+    def?.uebersetzung.pruefeGesamt(wahlen, posten, ort, (/** @type {string} */ o2, /** @type {string} */ t) => c.fehler(o2, t));
     // O-53: auch der Schritt der Mini-Aufgabe zeigt eine Grafik – „bild“ ist Pflichtfeld (form meldet, wenn es fehlt)
     return { art, titel: klar(o.titel, ort), aufgabeHtml: inline(o.aufgabe, ort), bild: bild(o.bild, ort) ?? '', wahlen, posten };
   }

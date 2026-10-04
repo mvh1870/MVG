@@ -12,12 +12,13 @@
 
 import type { GeschichteRegie, OeffentlicheInhalte, RegieEintrag } from '../inhalte/typen.ts';
 import {
-  abgestimmteGewichte, gemischt, gewichte, kapitel, klickeReihe, miniVonVorn, neuerStand, ordneZu, schritte, schrittIndex, setzeAbgestimmt,
+  abgestimmteGewichte, gewichte, kapitel, miniVonVorn, neuerStand, schritte, schrittIndex, setzeAbgestimmt,
   setzeGewicht, setzeKurz, STUFEN_GEWICHT, teileVon, vergleichLage, waehle, werteMiniAus, weiter, zurueck, type Schritt, type Stand,
 } from '../geschichte/engine.ts';
 import type { Kapitel, Mini } from '../geschichte/typen.ts';
 import { ersteWorte, loeseMini, nurText, ohneWahl, schrittAus, schrittWert, springe, sprungZiele } from './eingriffe.ts';
 import { ortText as storyOrt } from '../ui/flaechen/geschichte.ts';
+import { miniBaustein } from '../ui/flaechen/geschichte-mini.ts';
 import { kanalSchluessel, type Kanal } from './kanal.ts';
 import { neueBuehne, pruefeBuehne, BUEHNEN_BEREICHE, type Buehne, type BuehnenBereich } from './buehne.ts';
 import { h, attr, text, ersetze } from '../ui/h.ts';
@@ -481,29 +482,8 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     const fuss = h('div', { class: 'regie-zeile' },
       h('button', { type: 'button', class: 'regie-chip regie-chip-klein', 'data-pruef': 'regie-mini-aufloesen', onclick: () => neueStory(loeseMini(g!, buehne.story, k.id)) }, sym('haken'), w.miniAufloesen),
       h('button', { type: 'button', class: 'regie-chip regie-chip-klein', 'data-pruef': 'regie-mini-leeren', disabled: antworten === undefined, onclick: () => neueStory(miniVonVorn(buehne.story, k.id)) }, sym('zurueckspulen'), w.miniLeeren));
-    if (m.art === 'zuordnen') {
-      return [kopfzeile, h('ol', { class: 'regie-mini' }, m.posten.map((p, i) => {
-        const gewaehlt = antworten?.[i] ?? -1;
-        return h('li', { class: 'regie-mini-posten', 'data-lage': aus.je[i] ?? 'offen' },
-          h('span', { class: 'regie-mini-text', id: `regie-posten-${i}`, title: nurText(p.html) }, `${i + 1} · ${ersteWorte(p.html, 8)}`),
-          h('span', { class: 'regie-stufen', role: 'group', 'aria-labelledby': `regie-posten-${i}` }, m.wahlen.map((x, j) => h('button', {
-            type: 'button', class: `regie-chip regie-chip-klein${x.id === p.loesung ? ' ist-loesung' : ''}`, 'aria-pressed': gewaehlt === j ? 'true' : 'false',
-            'data-pruef': `regie-mini-${i + 1}-${x.id}`, onclick: () => neueStory(ordneZu(g!, buehne.story, k.id, i, j)),
-          }, x.titel, x.id === p.loesung ? h('span', { class: 'regie-loesung', 'aria-hidden': 'true' }, ' ✓') : null, x.id === p.loesung ? h('span', { class: 'nur-sr' }, ` (${w.miniLoesung})`) : null))));
-      })), fuss];
-    }
-    const folge = antworten ?? [];
-    return [kopfzeile, h('p', { class: 'regie-leise' }, w.miniReiheHinweis),
-      h('ol', { class: 'regie-mini regie-mini-reihe' }, gemischt(m.posten.length).map((i) => {
-        const p = m.posten[i];
-        const stelle = folge.indexOf(i);
-        return h('li', { class: 'regie-mini-posten', 'data-lage': aus.fertig ? aus.je[i] ?? 'offen' : 'offen' }, h('button', {
-          type: 'button', class: 'regie-chip regie-chip-klein regie-reihe', 'aria-pressed': stelle >= 0 ? 'true' : 'false', 'data-pruef': `regie-reihe-${i + 1}`,
-          title: nurText(p?.html ?? ''), onclick: () => neueStory(klickeReihe(g!, buehne.story, k.id, i)),
-        }, h('span', { class: 'regie-reihe-nr', 'aria-hidden': stelle < 0 ? 'true' : null }, stelle < 0 ? '·' : String(stelle + 1)),
-        h('span', null, ersteWorte(p?.html ?? '', 8)),
-        h('span', { class: 'regie-loesung' }, ` (${w.miniLoesung}: ${i + 1})`)));
-      })), fuss];
+    // der Körper je Art kommt aus der Mini-Registry (Baustein der Art)
+    return [kopfzeile, ...miniBaustein(m.art).regie({ g: g!, k, m, get stand() { return buehne.story; }, aus, setze: neueStory }), fuss];
   };
 
   const zeichne = (): void => {

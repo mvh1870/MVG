@@ -5,6 +5,7 @@
  */
 
 import type { Geschichte } from '../geschichte/typen.ts';
+import { miniArt } from '../geschichte/mini-arten.ts';
 import { geheZu, gleicherSchritt, kapitel, schritte, type Schritt, type Stand } from '../geschichte/engine.ts';
 
 /** Ein Sprungziel der Regie: Wert für die Auswahl und der Schritt dazu. */
@@ -47,13 +48,12 @@ export function ohneWahl(stand: Stand, kapitelId: string): Stand {
   return { ...stand, wahlen };
 }
 
-/** Löst eine Mini-Aufgabe auf: jede Zuordnung richtig bzw. die Reihenfolge der Liste. */
+/** Löst eine Mini-Aufgabe auf: je Art ihre richtige Lösung (Mini-Registry, `loese`). */
 export function loeseMini(g: Geschichte, stand: Stand, kapitelId: string): Stand {
   const m = kapitel(g, kapitelId)?.mini ?? null;
-  if (m === null) return stand;
-  const loesung = m.art === 'zuordnen'
-    ? m.posten.map((p) => m.wahlen.findIndex((w) => w.id === p.loesung))
-    : m.posten.map((_, i) => i);
+  const def = m === null ? null : miniArt(m.art);
+  if (m === null || def === null) return stand;
+  const loesung = def.loese(m);
   return { ...stand, mini: { ...stand.mini, [kapitelId]: loesung } };
 }
 

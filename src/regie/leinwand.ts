@@ -5,6 +5,8 @@
  */
 
 import type { OeffentlicheInhalte } from '../inhalte/typen.ts';
+import type { MiniArt } from '../geschichte/typen.ts';
+import { miniArt } from '../geschichte/mini-arten.ts';
 import type { Kanal } from './kanal.ts';
 import { pruefeBuehne, type Buehne } from './buehne.ts';
 import { h, ersetze } from '../ui/h.ts';
@@ -45,15 +47,8 @@ export function storyAnzeige(inhalte: OeffentlicheInhalte, b: Buehne): HTMLEleme
  * Welcher Posten einer Mini-Aufgabe sich geändert hat (Platz in der Liste der Aufgabe): bei der Zuordnung der erste
  * Posten mit anderer Wahl, bei der Reihenfolge der zuletzt angeklickte bzw. gelöste Posten; null = nichts geändert.
  */
-export function geaenderterPosten(art: 'zuordnen' | 'reihenfolge', alt: readonly number[], neu: readonly number[]): number | null {
-  if (art === 'reihenfolge') {
-    if (neu.length > alt.length) return neu.at(-1) ?? null;
-    if (neu.length < alt.length) return alt[neu.length] ?? null;
-    return null;
-  }
-  const n = Math.max(alt.length, neu.length);
-  for (let i = 0; i < n; i += 1) if ((alt[i] ?? -1) !== (neu[i] ?? -1)) return i;
-  return null;
+export function geaenderterPosten(art: MiniArt, alt: readonly number[], neu: readonly number[]): number | null {
+  return miniArt(art)?.aenderung(alt, neu) ?? null;
 }
 
 /** Nicht bedienbare Zeichnung eines Bühnenstands (Leinwand, Regie-Vorschau). */

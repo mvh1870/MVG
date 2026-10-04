@@ -5,6 +5,7 @@
  * Kein Sperren: Jeder Schritt ist jederzeit erreichbar (L-184).
  */
 import { kipppunkte, rangfolge, spitze, type Gewichte, type Kipppunkt, type Platz } from './mcda.ts';
+import { miniArt, type PostenLage } from './mini-arten.ts';
 import {
   BALKEN, type Antwort, type BalkenId, type BalkenStufe, type BilanzSicht, type BilanzTyp, type Geschichte, type Kapitel, type Mini,
   type Vergleich, type VergleichOption,
@@ -227,7 +228,7 @@ export function offeneKapitel(g: Geschichte, stand: Stand): Kapitel[] {
 
 /* ----------------------------------------------------------- Mini-Aufgaben -- */
 
-export type PostenLage = 'richtig' | 'falsch' | 'offen';
+export type { PostenLage };
 
 export interface MiniAuswertung {
   /** je Posten (in der Reihenfolge der Liste) */
@@ -248,23 +249,26 @@ function miniVon(g: Geschichte, kapitelId: string): Mini | null {
   return kapitel(g, kapitelId)?.mini ?? null;
 }
 
+/**
+ * Ein Zug in einer Mini-Aufgabe, für jede Art gleich (Mini-Registry, `mini-arten.ts`, `zug`): `posten` ist der Platz in
+ * der Liste der Aufgabe, `wahl` der Platz der Wahl, wo die Art eine braucht. Ungültiges lässt den Stand unverändert.
+ */
+export function miniZug(g: Geschichte, stand: Stand, kapitelId: string, posten: number, wahl?: number): Stand {
+  const m = miniVon(g, kapitelId);
+  const def = m === null ? null : miniArt(m.art);
+  if (m === null || def === null) return stand;
+  const neu = def.zug(m, stand.mini[kapitelId] ?? [], posten, wahl);
+  return neu === null ? stand : { ...stand, mini: { ...stand.mini, [kapitelId]: neu } };
+}
+
 /** Zuordnen: Posten `posten` bekommt die Wahl `wahl` (Platz in `mini.wahlen`). */
 export function ordneZu(g: Geschichte, stand: Stand, kapitelId: string, posten: number, wahl: number): Stand {
-  const m = miniVon(g, kapitelId);
-  if (m === null || m.art !== 'zuordnen' || posten < 0 || posten >= m.posten.length || wahl < 0 || wahl >= m.wahlen.length) return stand;
-  const alt = stand.mini[kapitelId] ?? [];
-  const neu = m.posten.map((_, i) => (i === posten ? wahl : (alt[i] ?? -1)));
-  return { ...stand, mini: { ...stand.mini, [kapitelId]: neu } };
+  return miniVon(g, kapitelId)?.art === 'zuordnen' ? miniZug(g, stand, kapitelId, posten, wahl) : stand;
 }
 
 /** Reihenfolge: einen Posten als nächsten anklicken – oder, ist er schon dran, ihn und alles danach wieder lösen. */
 export function klickeReihe(g: Geschichte, stand: Stand, kapitelId: string, posten: number): Stand {
-  const m = miniVon(g, kapitelId);
-  if (m === null || m.art !== 'reihenfolge' || posten < 0 || posten >= m.posten.length) return stand;
-  const alt = stand.mini[kapitelId] ?? [];
-  const da = alt.indexOf(posten);
-  const neu = da >= 0 ? alt.slice(0, da) : [...alt, posten];
-  return { ...stand, mini: { ...stand.mini, [kapitelId]: neu } };
+  return miniVon(g, kapitelId)?.art === 'reihenfolge' ? miniZug(g, stand, kapitelId, posten) : stand;
 }
 
 /** Mini-Aufgabe zurücksetzen. */
@@ -275,22 +279,7 @@ export function miniVonVorn(stand: Stand, kapitelId: string): Stand {
 }
 
 export function werteMiniAus(m: Mini, antworten: readonly number[] | undefined): MiniAuswertung {
-  const a = antworten ?? [];
-  let je: PostenLage[];
-  if (m.art === 'zuordnen') {
-    je = m.posten.map((p, i) => {
-      const w = a[i] ?? -1;
-      if (w < 0) return 'offen';
-      return m.wahlen[w]?.id === p.loesung ? 'richtig' : 'falsch';
-    });
-  } else {
-    // Reihenfolge: der Posten an Stelle i der Liste gehört an Stelle i; offen, solange er nicht angeklickt ist
-    je = m.posten.map((_, i) => {
-      const stelle = a.indexOf(i);
-      if (stelle < 0) return 'offen';
-      return stelle === i ? 'richtig' : 'falsch';
-    });
-  }
+  const je = miniArt(m.art)?.werte(m, antworten ?? []) ?? m.posten.map((): PostenLage => 'offen');
   return { je, richtig: je.filter((x) => x === 'richtig').length, fertig: je.every((x) => x !== 'offen') };
 }
 
@@ -368,8 +357,7 @@ export function leseStand(g: Geschichte, roh: unknown): Stand | null {
     for (const [id, liste] of Object.entries(r['mini'] as Record<string, unknown>)) {
       const m = kapitel(g, id)?.mini ?? null;
       if (m === null || !Array.isArray(liste)) continue;
-      if (m.art === 'zuordnen' && liste.length === m.posten.length && liste.every((x) => x === -1 || istPlatz(x, m.wahlen.length))) stand.mini[id] = liste as number[];
-      if (m.art === 'reihenfolge' && liste.every((x) => istPlatz(x, m.posten.length)) && new Set(liste).size === liste.length) stand.mini[id] = liste as number[];
+      if (miniArt(m.art)?.gueltig(m, liste) === true) stand.mini[id] = liste as number[];
     }
   }
   if (typeof r['gewichte'] === 'object' && r['gewichte'] !== null) {

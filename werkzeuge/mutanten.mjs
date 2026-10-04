@@ -16,6 +16,9 @@ import { istHauptmodul } from './haupt.mjs';
 
 const WURZEL = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const TESTS = ['tests/geschichte.test.ts', 'tests/geschichte-wege.test.ts'];
+/** P19.1: der Zustandsautomat der Wegtests (tests/hilfen) und sein Differentialtest gegen die Wegaufzählung */
+const HILFE_AUTOMAT = 'tests/hilfen/geschichte-zustaende.ts';
+const TESTS_AUTOMAT = ['tests/geschichte-zustaende.test.ts', 'tests/geschichte-wege.test.ts'];
 const TESTS_WERKZEUGE = [
   'tests/werkzeuge-vorlagen-check.test.ts', 'tests/werkzeuge-wegweiser.test.ts', 'tests/werkzeuge-risiko-grenzen.test.ts',
   'tests/werkzeuge-monatsbericht.test.ts', 'tests/werkzeuge-wachter.test.ts',
@@ -32,7 +35,7 @@ export const MUTANTEN = [
   ['src/geschichte/engine.ts', "  if (falleGewaehlt(g, stand)) return 'nach-falle';\n", '', 'Schlusszeilen nach einer Falle (L-239)'],
   ['src/geschichte/engine.ts', "  if (offeneKapitel(g, stand).length > 0) return 'offen';\n", '', 'Bilanz „offen“ bei offenen Entscheidungen (R73)'],
   ['src/geschichte/engine.ts', "return offeneKapitel(g, stand).length > 0 ? 'offen' : 'grund';", "return 'grund';", 'Schlusszeilen bei offenen Entscheidungen (R73)'],
-  ['src/geschichte/engine.ts', "return stelle === i ? 'richtig' : 'falsch';", "return 'richtig';", 'Reihenfolge: falsche Stelle ist falsch'],
+  ['src/geschichte/mini-arten.ts', "return stelle === i ? 'richtig' : 'falsch';", "return 'richtig';", 'Reihenfolge: falsche Stelle ist falsch'],
   ['src/geschichte/engine.ts', 'kipppunkte(v.optionen, v.kriterien, gew, STUFEN_GEWICHT)', 'kipppunkte(v.optionen, v.kriterien, gew)', 'Kipppunkte nur über die drei Stufen'],
   ['src/geschichte/engine.ts', '  if (r[\'v\'] !== STAND_VERSION) return null;\n', '', 'Älterer Stand wird verworfen'],
   ['src/geschichte/engine.ts', ' || !STUFEN_GEWICHT.includes(wert)) return stand;', ') return stand;', 'Gewichte nur 5, 3 oder 1'],
@@ -95,6 +98,15 @@ export const MUTANTEN = [
   ['src/werkzeuge/wegweiser.ts', "    if (dringlich === true) art = 'fruehwarnung';\n    else keinVorgang = true;\n", '    keinVorgang = true;\n', 'Wegweiser: dringlich und alles Nein → Frühwarnung, nie „kein Vorgang“ (R79)', TESTS_WERKZEUGE],
   ['src/werkzeuge/gemeinsam.ts', 'export const STAND_MAX = 80;', 'export const STAND_MAX = 320;', 'Werkzeugstand: höchstens 80 Zeichen auf dem Kanal', TESTS_WERKZEUGE],
   ['src/werkzeuge/vorlagen-check.ts', 'export const MINDEST_WEGE = 2;', 'export const MINDEST_WEGE = 1;', 'Vorlage: mindestens zwei zulässige Wege als Vorgabe', TESTS_WERKZEUGE],
+  // P19.1 (O-62, L-270): Zustandsautomat der Wegtests – jede Verfälschung muss am Differentialtest oder an den Proben scheitern
+  [HILFE_AUTOMAT, 'for (const w of WERTUNGEN_REIHE) aus.push(', 'for (const w of WERTUNGEN_REIHE.slice(0, 2)) aus.push(', 'Automat: Übergang „Falle“ vergessen', TESTS_AUTOMAT],
+  [HILFE_AUTOMAT, "if (mitOffen) aus.push(['o', null]);", "if (false) aus.push(['o', null]);", 'Automat: Übergang „offen“ vergessen', TESTS_AUTOMAT],
+  [HILFE_AUTOMAT, 'export const MAX_ZUSTAENDE = 3_000_000;', 'export const MAX_ZUSTAENDE = 50;', 'Automat: Zustandsmenge zu klein', TESTS_AUTOMAT],
+  [HILFE_AUTOMAT, "{ name: 'falle', init: 0, schritt: (x, _k, a) => (x === 1 || a?.wertung === 'falle' ? 1 : 0) }", "{ name: 'falle', init: 0, schritt: (x) => x }", 'Automat: Falle-Merkmal ignoriert', TESTS_AUTOMAT],
+  [HILFE_AUTOMAT, 'b[x] = begrenze(b[x] + a.wirkung[x])', 'b[x] = b[x] + a.wirkung[x]', 'Automat: Balken nicht auf 0–10 begrenzt', TESTS_AUTOMAT],
+  [HILFE_AUTOMAT, "  if (!gespielt) return [['-', gute(k)]];\n", '', 'Automat: von der Kurzfassung übersprungenes Kapitel zählt nicht wie die gute Antwort', TESTS_AUTOMAT],
+  [HILFE_AUTOMAT, 'const s = schluessel(b, m);', 'const s = schluessel(b, []);', 'Automat: Zustände nur nach Balken zusammengelegt (Merkmale vergessen)', TESTS_AUTOMAT],
+  [HILFE_AUTOMAT, "Math.min(2, x + (a !== null && a.wertung !== 'gut' ? 1 : 0))", "Math.min(1, x + (a !== null && a.wertung !== 'gut' ? 1 : 0))", 'Automat: Zähler „nicht gute Antworten“ zu früh gedeckelt', TESTS_AUTOMAT],
 ];
 
 function testsRot(tests = TESTS) {
@@ -123,7 +135,7 @@ export function probe() {
 }
 
 if (istHauptmodul(import.meta.url)) {
-  const vorher = spawnSync(process.execPath, ['--test', '--test-reporter=dot', ...TESTS, ...TESTS_WERKZEUGE], { cwd: WURZEL, encoding: 'utf8' });
+  const vorher = spawnSync(process.execPath, ['--test', '--test-reporter=dot', ...TESTS, ...TESTS_AUTOMAT, ...TESTS_WERKZEUGE], { cwd: WURZEL, encoding: 'utf8' });
   if (vorher.status !== 0) {
     console.log('mutanten: Die Engine- oder Werkzeug-Tests sind schon ohne Mutation rot – erst reparieren.');
     process.exitCode = 1;

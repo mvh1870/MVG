@@ -21,6 +21,8 @@
  * Antwort, Titel und Text verschmolzen jeweils zu einem Wort.
  */
 
+import { miniArt } from '../src/geschichte/mini-arten.ts';
+
 export const WOERTER_JE_MINUTE = 200;
 
 /** Elemente im Satz: Sie trennen keine Wörter (alle anderen Elemente gelten als Blockgrenze). */
@@ -30,6 +32,9 @@ const IM_SATZ = new Set(['a', 'abbr', 'b', 'em', 'i', 'mark', 'q', 'small', 'spa
 export function zaehleWoerter(artikel) {
   const a = /** @type {Element} */ (artikel.cloneNode(true));
   for (const x of a.querySelectorAll('.nur-sr, svg, [aria-hidden="true"], .gs-stand, .gs-kicker')) x.remove();
+  // Mini-Registry: eine Mini-Art kann weitere Elemente von der Zählung ausnehmen (`lesezeitOhne`); die bisherigen Arten keine
+  const miniAuswahl = miniArt(a.getAttribute('data-art') ?? '')?.lesezeitOhne ?? [];
+  if (miniAuswahl.length > 0) for (const x of a.querySelectorAll(miniAuswahl.join(','))) x.remove();
   for (const d of a.querySelectorAll('details:not([open])')) {
     const s = d.querySelector(':scope > summary');
     d.replaceChildren(...(s ? [s] : []));

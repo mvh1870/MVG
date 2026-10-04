@@ -12,38 +12,24 @@
 import type { Antwort, BalkenId, CampusBild, Geschichte, Kapitel, Mini, Vergleich, Zeile } from '../../geschichte/typen.ts';
 import { BALKEN } from '../../geschichte/typen.ts';
 import {
-  abgestimmteGewichte, balken, balkenBis, beginne, bilanzAmEnde, bruecken, endeFassung, gemischt, gewaehlteAntwort, geheZu, gewichte,
-  gleicherSchritt, kapitel as kapitelVon, klickeReihe, leseStand, miniVonVorn, neuerStand, offeneKapitel, ordneZu,
+  abgestimmteGewichte, balken, balkenBis, beginne, bilanzAmEnde, bruecken, endeFassung, gewaehlteAntwort, geheZu, gewichte,
+  gleicherSchritt, kapitel as kapitelVon, leseStand, miniVonVorn, neuerStand, offeneKapitel,
   schrittIndex, setzeAbgestimmt, setzeGewicht, stufe, STUFEN_GEWICHT, vergleichLage, waehle,
   wegKapitel, werteMiniAus, weiter, zurueck, zaehlendePlatz, type Balkenstand, type Schritt, type Stand,
 } from '../../geschichte/engine.ts';
 import { campusIso } from '../../grafik/campus-iso.ts';
 import { wegSkizze } from '../../grafik/weg-skizze.ts';
-import { gimmick, portraet, type Figur, type GimmickName } from '../../grafik/figuren.ts';
+import type { Figur } from '../../grafik/figuren.ts';
 import { ersetze, h, vonHtml, type Kind } from '../h.ts';
 import { inhalt, inhaltInline } from '../bausteine/inhalt.ts';
 import { sym } from '../bausteine/bloecke.ts';
 import { bmLink, seitenRahmen } from '../bausteine/seite.ts';
 import { bogenKopf } from '../druck.ts';
 import { W } from '../woerter.ts';
+import { bildnis, gegenstand } from './geschichte-teile.ts';
+import { miniBaustein } from './geschichte-mini.ts';
 
 const w = W.geschichte;
-
-/* -------------------------------------------------------------- Bilder -- */
-
-function bildAus(svg: string, klasse: string): HTMLElement {
-  return h('span', { class: klasse, 'aria-hidden': 'true' }, vonHtml(svg));
-}
-
-/** Porträt (dekorativ: Name und Rolle stehen daneben als Text). */
-function bildnis(figur: Figur, groesse: 'klein' | 'gross' | number = 'klein'): HTMLElement {
-  return bildAus(portraet(figur, { groesse, dekorativ: true }), `gs-bildnis gs-bildnis-${typeof groesse === 'number' ? 'mass' : groesse}`);
-}
-
-function gegenstand(name: string | null, groesse = 96, klasse = 'gs-gegenstand'): HTMLElement | null {
-  if (name === null) return null;
-  return bildAus(gimmick(name as GimmickName, { groesse, dekorativ: true }), klasse);
-}
 
 /** Campus der Stufe mit Jahreszeit und Licht, groß; dekorativ (Drehbuch Abschnitt 7), Zusatz der Szene darüber. */
 function campus(c: CampusBild, klasse: string, zusatz: string | null = null, halleOffen = false): HTMLElement {
@@ -340,89 +326,20 @@ function frage(o: SchrittOptionen, k: Kapitel): HTMLElement {
 
 /* ---------------------------------------------------------- Mini-Aufgaben -- */
 
-function miniZuordnen(o: SchrittOptionen, k: Kapitel, m: Mini): HTMLElement {
-  const antworten = o.stand.mini[k.id];
-  const aus = werteMiniAus(m, antworten);
-  // Ablagen (z. B. „zu Recht geschlossen“ · „übergeben“): wo die Wahlen ein Bild haben, oben je Ablage Bild und Zahl der Karten
-  const ablagen = m.wahlen.some((x) => x.bild !== null)
-    ? h('ul', { class: 'gs-mini-ablagen', 'data-pruef': 'mini-ablagen' }, m.wahlen.map((x, j) => {
-      const n = m.posten.filter((_, i) => (antworten?.[i] ?? -1) === j).length;
-      return h('li', { class: 'gs-mini-ablage', 'data-pruef': `ablage-${x.id}` }, gegenstand(x.bild, 56, 'gs-gegenstand gs-mini-ablage-bild'),
-        h('span', null, h('b', null, x.titel), h('span', { class: 'gs-mini-ablage-zahl' }, w.miniKarten(n))));
-    }))
-    : null;
-  const liste = h('ol', { class: 'gs-mini-liste gs-mini-zuordnen', 'data-wahlen': m.wahlen.length },
-    m.posten.map((p, i) => {
-      const gewaehlt = antworten?.[i] ?? -1;
-      const lage = aus.je[i] ?? 'offen';
-      const loesung = m.wahlen.find((x) => x.id === p.loesung);
-      const falsch = gewaehlt >= 0 ? m.wahlen[gewaehlt] ?? null : null;
-      return h('li', { class: 'gs-mini-posten', 'data-lage': lage, 'data-pruef': `posten-${i + 1}` },
-        h('div', { class: 'gs-mini-karte' }, gegenstand(p.bild, 48, 'gs-gegenstand gs-mini-posten-bild'), h('p', { class: 'gs-mini-text', id: `gs-posten-${k.id}-${i}` }, inhaltInline(p.html))),
-        h('div', { class: 'gs-mini-wahlen', role: 'group', 'aria-labelledby': `gs-posten-${k.id}-${i}` },
-          m.wahlen.map((x, j) => {
-            const an = gewaehlt === j;
-            const kinder: Kind[] = [x.figur !== null ? bildnis(x.figur as Figur, 32) : null, h('span', null, x.titel)];
-            return o.bedienbar
-              ? h('button', { type: 'button', class: 'gs-mini-wahl', 'aria-pressed': an ? 'true' : 'false', 'data-pruef': `wahl-${i + 1}-${x.id}`, onclick: () => o.tue(ordneZu(o.g, o.stand, k.id, i, j)) }, kinder)
-              : h('span', { class: 'gs-mini-wahl', 'aria-pressed': an ? 'true' : 'false' }, kinder);
-          })),
-        lage === 'offen' ? null : h('p', { class: 'gs-mini-rueck', 'data-pruef': `rueck-${i + 1}` },
-          h('b', null, lage === 'richtig' ? [sym('haken'), w.miniRichtig] : w.miniFalsch(loesung?.titel ?? '')), ' ',
-          lage === 'falsch' && falsch?.falschHtml ? [inhaltInline(falsch.falschHtml), ' '] : null,
-          inhaltInline(p.erklaerungHtml)));
-    }));
-  // R75: kurze Bedeutung je Wahl als Legende über den Karten – lösbar ohne Fachwissen
-  const legende = m.wahlen.some((x) => x.heisstHtml !== null)
-    ? h('dl', { class: 'gs-mini-legende', 'data-pruef': 'mini-legende' }, m.wahlen.filter((x) => x.heisstHtml !== null).map((x) => h('div', null, h('dt', null, x.titel), h('dd', null, inhaltInline(x.heisstHtml ?? '')))))
-    : null;
-  if (ablagen === null) return legende === null ? liste : h('div', { class: 'gs-mini-zuordnen-mit-legende' }, legende, liste);
-  return h('div', { class: 'gs-mini-zuordnen-mit-ablagen' }, legende, ablagen, liste);
-}
-
-function miniReihe(o: SchrittOptionen, k: Kapitel, m: Mini): HTMLElement {
-  const folge = o.stand.mini[k.id] ?? [];
-  const aus = werteMiniAus(m, folge);
-  // fertig: die Karten stehen in der richtigen Reihenfolge, verbunden zu einem Pfad (Drehbuch Abschnitt 7)
-  const ordnung = aus.fertig ? m.posten.map((_, i) => i) : gemischt(m.posten.length);
-  return h('ol', { class: `gs-mini-liste gs-mini-reihe${aus.fertig ? ' ist-pfad' : ''}`, 'data-pruef': 'mini-reihe' },
-    ordnung.map((i) => {
-      const p = m.posten[i];
-      const stelle = folge.indexOf(i);
-      const lage = aus.fertig ? aus.je[i] ?? 'offen' : 'offen';
-      const kinder: Kind[] = [
-        h('span', { class: 'gs-reihe-nr', 'aria-hidden': stelle < 0 ? 'true' : null }, stelle < 0 ? '' : String(stelle + 1)),
-        gegenstand(p?.bild ?? null, 44, 'gs-gegenstand gs-mini-posten-bild'),
-        h('span', { class: 'gs-reihe-text' }, inhaltInline(p?.html ?? '')),
-        stelle >= 0 ? h('span', { class: 'nur-sr' }, `, ${w.miniStelle(stelle + 1)}`) : null,
-      ];
-      return h('li', { class: 'gs-mini-posten', 'data-lage': lage, 'data-pruef': `posten-${i + 1}` },
-        o.bedienbar
-          ? h('button', { type: 'button', class: 'gs-reihe-knopf', 'aria-pressed': stelle >= 0 ? 'true' : 'false', 'data-pruef': `reihe-${i + 1}`, onclick: () => o.tue(klickeReihe(o.g, o.stand, k.id, i)) }, kinder)
-          : h('span', { class: 'gs-reihe-knopf', 'aria-pressed': stelle >= 0 ? 'true' : 'false' }, kinder),
-        aus.fertig ? h('p', { class: 'gs-mini-rueck', 'data-pruef': `rueck-${i + 1}` },
-          h('b', null, lage === 'richtig' ? [sym('haken'), w.miniRichtig] : w.miniGehoert(i + 1)), ' ', inhaltInline(p?.erklaerungHtml ?? '')) : null);
-    }));
-}
-
+/** Rahmen eines Mini-Schritts, gleich für jede Art; Aufgabenkörper und Stand-Zeile liefert der Baustein der Art (`geschichte-mini.ts`). */
 function miniSchritt(o: SchrittOptionen, k: Kapitel): HTMLElement {
   const m = k.mini as Mini;
+  const baustein = miniBaustein(m.art);
   const aus = werteMiniAus(m, o.stand.mini[k.id]);
-  const offen = aus.je.filter((x) => x === 'offen').length;
-  const zuordnen = m.art === 'zuordnen';
-  // Zuordnen gibt je Posten sofort Rückmeldung; die Reihenfolge erst, wenn alle Schritte angeklickt sind
-  const stand = zuordnen ? (offen === m.posten.length ? '' : offen > 0 ? `${w.miniErgebnis(aus.richtig, m.posten.length - offen)} ${w.miniNoch(offen)}` : w.miniErgebnis(aus.richtig, m.posten.length))
-    : aus.fertig ? w.miniErgebnis(aus.richtig, m.posten.length)
-      : (o.stand.mini[k.id]?.length ?? 0) > 0 ? w.miniGesetzt(o.stand.mini[k.id]?.length ?? 0, m.posten.length) : '';
   return h('article', { class: 'gs-schritt gs-mini', 'data-teil': 'mini', 'data-art': m.art },
     kopf(o, k, `${w.miniKicker} · ${m.titel}`),
     h('section', { class: 'gs-mini-aufgabe', 'aria-labelledby': 'gs-mini-aufgabe' },
       h('span', { class: 'gs-mini-symbol', 'aria-hidden': 'true' }, sym('puzzle')),
       h('p', { id: 'gs-mini-aufgabe', class: 'gs-mini-auftrag' }, inhaltInline(m.aufgabeHtml)),
       gegenstand(m.bild, 96, 'gs-gegenstand gs-mini-bild')),
-    zuordnen ? miniZuordnen(o, k, m) : miniReihe(o, k, m),
+    baustein.zeichne(o, k, m),
     h('div', { class: 'gs-mini-fuss' },
-      h('p', { class: 'gs-mini-stand', role: 'status', 'data-pruef': 'mini-stand' }, stand),
+      h('p', { class: 'gs-mini-stand', role: 'status', 'data-pruef': 'mini-stand' }, baustein.standZeile(o.stand.mini[k.id], m, aus)),
       o.bedienbar && (o.stand.mini[k.id]?.some((x) => x >= 0) ?? false)
         ? h('button', { type: 'button', class: 'gs-leiser-knopf', 'data-pruef': 'mini-nochmal', onclick: () => o.tue(miniVonVorn(o.stand, k.id)) }, sym('zurueckspulen'), w.miniNochmal) : null),
     dahinter(o, k));
@@ -626,7 +543,9 @@ export function storyDruck(g: Geschichte, stand: Stand, version: string): { tite
             erzaehlt && hier > k.nr
               ? h('p', { class: 'druck-bruecke' }, h('b', null, `${w.druckBruecke}: `), inhaltInline(k.brueckeHtml ?? ''))
               : h('p', null, h('b', null, `${w.druckAntwort}: `), !erzaehlt && a !== null ? inhaltInline(a.html) : w.druckOffen),
-            gewaehlt ? h('div', { class: 'druck-gut' }, h('h3', null, w.gutTitel), inhalt(k.gutHtml)) : null);
+            gewaehlt ? h('div', { class: 'druck-gut' }, h('h3', null, w.gutTitel), inhalt(k.gutHtml)) : null,
+            // Mini-Registry: eine Art mit Papierfassung (`druck`) druckt ihren Zustand hier; die bisherigen Arten drucken nichts
+            k.mini !== null && !stand.kurz ? miniBaustein(k.mini.art).druck?.(g, k, k.mini, stand.mini[k.id]) ?? null : null);
         }),
         // die Bilanz nur, wenn das Ende erreicht ist – wie am Bildschirm, samt Hinweis auf offene Entscheidungen
         h('section', { class: 'druck-teil', 'data-pruef': 'druck-bilanz' }, amEnde

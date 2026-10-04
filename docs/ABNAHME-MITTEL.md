@@ -31,3 +31,4 @@ Die Runden vor der Neuausrichtung (bis Runde 66, alter Aufbau mit Welten, Rollen
 | Runde | Ort | Befund | Vorschlag | Stand |
 |---|---|---|---|---|
 | – | – | Keine: alle mittleren Befunde aus R67–R71 sind eingearbeitet (L-223). Leicht und bewusst gelassen: die Tafel „Gewichtete Summe“ in k14 ist bei 320 px mit erweiterten Textabständen nach WCAG 1.4.12 um 3 % zu breit (L-219). | – | – |
+| 79 | Explore · Vorlagen-Check, alle drei Beispiele | Die geprüfte Vorlage selbst ist nicht zu sehen; die vorbelegten Antworten (z. B. „Teilweise“ bei Datenstand) lassen sich ohne sie nicht nachvollziehen (Feld erlebnis). | Unter der Lage ein aufklappbarer Kasten „So sieht die Vorlage aus“ mit vier bis sechs Zeilen nur aus Story und Konzept A.5 (Wege, Beträge, Termin, Datenstand) – eine Erweiterung des Inhalts, darum zur Entscheidung des Owners. | offen |

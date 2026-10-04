@@ -23,6 +23,8 @@ test('Sprungziele: jeder Schritt der ganzen Geschichte, Werte eindeutig und lesb
     assert.equal(ziele.some((z) => z.wert === `${k.id}:mini`), k.mini !== null, `${k.id}: Mini-Aufgabe genau dann, wenn es eine gibt`);
     assert.equal(ziele.some((z) => z.wert === `${k.id}:vergleich`), k.vergleich !== null, `${k.id}: Vergleich genau dann, wenn es einen gibt`);
   }
+  // P19.6: die Pausen nach Akt I und II sind eigene Ziele (`pause:a1`, `pause:a2`), nach dem letzten Akt gibt es keine
+  assert.deepEqual(ziele.filter((z) => z.schritt.ort === 'pause').map((z) => z.wert), ['pause:a1', 'pause:a2']);
   for (const z of ziele) assert.deepEqual(schrittAus(g, schrittWert(z.schritt)), z.schritt);
   // Gegenprobe: Unbekanntes ergibt null
   for (const falsch of ['', 'k9:szene', 's1:mini', 's1', 's1:frage:2']) assert.equal(schrittAus(g, falsch), null, falsch);
@@ -67,7 +69,8 @@ test('Mini-Aufgabe auflösen: jede Aufgabe danach ganz richtig, vorher nicht', (
     const m = k.mini!;
     const geloest = loeseMini(g, neuerStand(), k.id);
     const aus = werteMiniAus(m, geloest.mini[k.id]);
-    assert.equal(aus.richtig, m.posten.length, `${k.id}: alles richtig`);
+    // Rückfragen (s11) kennen kein „richtig“: nach dem Auflösen sind alle Gespräche geführt und die Aufgabe ist fertig
+    assert.equal(aus.richtig, m.art === 'rueckfragen' ? 0 : m.posten.length, `${k.id}: alles richtig`);
     assert.equal(aus.fertig, true);
     // Gegenprobe: ohne Auflösen nichts richtig, eine falsche Zuordnung wird überschrieben
     assert.equal(werteMiniAus(m, neuerStand().mini[k.id]).richtig, 0, `${k.id}: vorher nichts richtig`);

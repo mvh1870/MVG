@@ -6,7 +6,7 @@
 
 import type { Geschichte } from '../geschichte/typen.ts';
 import { miniArt } from '../geschichte/mini-arten.ts';
-import { geheZu, gleicherSchritt, kapitel, schritte, type Schritt, type Stand } from '../geschichte/engine.ts';
+import { geheZu, gleicherSchritt, kapitel, schritte, schrittKennung, type Schritt, type Stand } from '../geschichte/engine.ts';
 
 /** Ein Sprungziel der Regie: Wert für die Auswahl und der Schritt dazu. */
 export interface SprungZiel {
@@ -14,9 +14,9 @@ export interface SprungZiel {
   schritt: Schritt;
 }
 
-/** Wert eines Schritts in der Auswahl: „auftakt“, „ende“ oder „k3:frage“. */
+/** Wert eines Schritts in der Auswahl: „auftakt“, „ende“, „s3:frage“ oder „pause:a1“ (P19.6: die Pausen der Akte sind eigene Ziele). */
 export function schrittWert(s: Schritt): string {
-  return s.ort === 'kapitel' ? `${s.kapitel}:${s.teil}` : s.ort;
+  return schrittKennung(s);
 }
 
 /** Alle Schritte der ganzen Geschichte (mit Mini-Aufgaben) in Reihenfolge – auch die, die die Kurzfassung überspringt. */

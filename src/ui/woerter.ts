@@ -37,9 +37,9 @@ export const W = {
     internetseite: 'Spielen Sie es als Geschichte durch, lesen Sie es in Themen nach oder probieren Sie die Werkzeuge aus – alles auf dieser Internetseite, ohne Anmeldung.',
     storyKicker: 'Erlebt',
     storyTitel: 'Als Geschichte',
-    storyText: 'Sie leiten für die Stadt Lindenhall den Bau eines Schulcampus. Unterwegs entscheiden Sie achtmal – und sehen gleich, was jede Wahl für Geld, Zeit und Vertrauen bedeutet.',
+    storyText: 'Sie leiten für die Stadt Lindenhall den Bau eines Schulcampus. Unterwegs entscheiden Sie vierzehnmal – und sehen gleich, was jede Wahl für Geld, Zeit und Vertrauen bedeutet.',
     // Anzahl als Wort; sichtbar nie „Kapitel“ (O-38, L-225)
-    storyMeta: (n: number) => `${ZAHLWORT[n] ?? String(n)} Entscheidungen · etwa 25 Minuten (Kurzfassung: etwa 10 Minuten)`,
+    storyMeta: (n: number) => `${ZAHLWORT[n] ?? String(n)} Entscheidungen · etwa 40 Minuten (Kurzfassung: etwa 10 Minuten)`,
     storyLos: 'Geschichte beginnen',
     storyWeiter: 'Weitermachen, wo Sie aufgehört haben',
     figuren: 'Mit dabei',

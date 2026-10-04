@@ -85,7 +85,7 @@ test('Zeile: eine Echo-Zeile bekommt Fassung plus Fortsetzung (Kurzfassung: ihre
   // ohne Fortsetzung für die Kurzfassung gilt die lange (E10 hat nur `fortsetzungHtml`)
   const z10 = zeileMit('E10');
   assert.ok(z10);
-  assert.equal(E.loeseZeile(g, stand('gut', 'gut', 'falle', true), z10).html, `${echoText('E10', 'gut')} Und inzwischen steht alles drin.`, 'Kurzfassung ohne Station 10: gut');
+  assert.equal(E.loeseZeile(g, stand('gut', 'gut', 'falle', true), z10).html, `${echoText('E10', 'gut')} Und inzwischen steht alles im Buch – hätte ich nie gedacht, dass ich das mal gut finde.`, 'Kurzfassung ohne Station 10: gut');
   // ohne Fortsetzung nur die Fassung
   const z4 = zeileMit('E4');
   assert.ok(z4);
@@ -154,7 +154,7 @@ test('Seite, Kurzfassung: die Fortsetzung der Kurzfassung; Zeilen mit „kurzfas
   // ganzer Weg: E10 mit der Fassung nach Station 10
   const lang = stand('gut', 'gut', 'vertretbar');
   const ende2 = seite({ ...lang, schritt: { ort: 'ende' } });
-  assert.match(text(ende2), new RegExp(`${echoText('E10', 'vertretbar')} Und inzwischen steht alles drin\\.`, 'u'));
+  assert.match(text(ende2), new RegExp(`${echoText('E10', 'vertretbar')} Und inzwischen steht alles im Buch – hätte ich nie gedacht, dass ich das mal gut finde\\.`, 'u'));
 });
 
 test('Seite, Ende: bei niedrigem Vertrauen ersetzt die Zeile der Figur die Echo-Zeile (E10 entfällt)', () => {

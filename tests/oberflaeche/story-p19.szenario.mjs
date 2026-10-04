@@ -1,6 +1,6 @@
 // Browser-Szenario Story, Gedächtnis und neue Aufgaben (P19.4/P19.5, O-62): die fünf neuen Mini-Arten (Matrix, Mappe, Pinnwand, Bericht, Rückfragen) mit
 // Tastatur, Fokus und axe bei 1280/1024/400 px (320 px über `pruefer`), das Entscheidungsbuch (Symbol, Seite, Escape, Fokus), der Verlauf in der Pause,
-// Vertiefung und Echo-Zeile. Die echte Story hat noch keine dieser Stationen (sie kommen mit P19.6); das Szenario baut deshalb eine Probe-Seite aus
+// Vertiefung und Echo-Zeile. Die echte Story hat seit P19.6 diese Stationen (Szenario `story-p196`); dieses Szenario baut weiter eine Probe-Seite aus
 // der synthetischen Story der Tests (tests/hilfen/geschichte-p19.ts) nach tmp/ – nie nach dist/.
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';

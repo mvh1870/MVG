@@ -85,18 +85,22 @@ export async function lauf(seite, h) {
     if (breit && r.text !== null && r.text > hoehe - 60) h.befund(`${wo}: Text der Szene beginnt erst bei ${Math.round(r.text)} px`);
   };
   const druckProbe = async (wo) => {
-    const titel = await seite.evaluate(() => [...document.querySelectorAll('[data-pruef="gs-fortschritt"] [data-art="kapitel"]')].map((x) => (x.getAttribute('title') ?? '').replace(/^\d+ von \d+ · /u, '')));
+    // P19.6: die Akt-Leiste zeigt nur die Felder des laufenden Akts; alle Stationen stehen im Sprungmenü („7 · Titel“)
+    const titel = await seite.evaluate(() => [...document.querySelectorAll('[data-pruef^="sprung-"]')].map((x) => (x.textContent ?? '').replace(/^\d+ · /u, '')));
     await seite.emulateMedia({ media: 'print', reducedMotion: 'reduce' });
     const pdf = await pdfSeiten(await seite.pdf({ format: 'A4' }));
     await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
     const amEnde = seitenMitUeberschriftAmEnde(pdf, ['So macht man es gut', 'Ihre Bilanz', ...titel]);
     if (amEnde.length > 0) h.befund(`${wo}: Überschrift am Seitenende ${JSON.stringify(amEnde.slice(0, 4))}`);
-    const fastLeer = pdf.slice(0, -1).map((x, i) => ({ s: i + 1, f: x.fuellung ?? 1 })).filter((x) => x.f < 0.25);
+    // P19.6: Je Akt, vor dem Entscheidungsbuch und vor der Bilanz beginnt eine neue Seite (Seitenumbruch per CSS): die Seite davor darf kurz sein
+    const absichtlich = /^(akt[ivx]+·|entscheidungsbuch·|ihrwegimüberblick|ihrebilanz)/u;
+    const beginntAbschnitt = (x) => absichtlich.test(flach(x?.zeilen[0] ?? '').toLowerCase().replace(/\s+/gu, ''));
+    const fastLeer = pdf.slice(0, -1).map((x, i) => ({ s: i + 1, f: x.fuellung ?? 1 })).filter((x) => x.f < 0.25 && !beginntAbschnitt(pdf[x.s]));
     if (fastLeer.length > 0) h.befund(`${wo}: fast leere Seite ${JSON.stringify(fastLeer)}`);
     const gut = flach('So macht man es gut');
     pdf.forEach((x, i) => { if (i > 0 && flach(x.zeilen[0] ?? '') === gut) h.befund(`${wo}: „So macht man es gut“ oben auf Seite ${i + 1}, getrennt von der Antwort`); });
     // ein Kapitel bleibt beisammen: jede weitere Seite beginnt mit einem Kapitelkopf („7 · …“) oder der Bilanz
-    pdf.forEach((x, i) => { if (i > 0 && !/^(\d+ · |Ihre Bilanz)/u.test(x.zeilen[0] ?? '')) h.befund(`${wo}: Seite ${i + 1} beginnt mitten in einem Kapitel („${(x.zeilen[0] ?? '').slice(0, 40)}“)`); });
+    pdf.forEach((x, i) => { if (i > 0 && !beginntAbschnitt(x) && !/^(\d+ · |Ihre Bilanz|Nr Anlass)/u.test(x.zeilen[0] ?? '')) h.befund(`${wo}: Seite ${i + 1} beginnt mitten in einem Kapitel („${(x.zeilen[0] ?? '').slice(0, 40)}“)`); });
     const text = pdf.flatMap((x) => x.zeilen).join(' ');
     if (!/Ihre Bilanz/u.test(text)) h.befund(`${wo}: am Ende ohne Bilanz`);
     return titel.length;
@@ -177,6 +181,9 @@ export async function lauf(seite, h) {
   await h.erwarte('[data-pruef="gs-titel"]:has-text("Die große Entscheidung")');
   await campusGanz('7 Szene');
   await weiter();
+  // P19.6: Station 12 trägt die Mini-Aufgabe „Muss oder nicht?“ vor dem Vergleich
+  if ((await teil()) !== 'mini') h.befund(`Station 12: Schritt „${await teil()}“, erwartet die Mini-Aufgabe vor dem Vergleich`);
+  await weiter();
   if ((await teil()) !== 'vergleich') h.befund(`Kapitel 7: Schritt „${await teil()}“, erwartet der Vergleich`);
   const vorn = async () => (await seite.locator('[data-pruef="gs-vgl-vorn"]').innerText()).trim();
   if (!/„Ersatzgerät“ mit 49 Punkten/u.test(await vorn())) h.befund(`Vergleich abgestimmt: ${await vorn()}`);
@@ -207,7 +214,8 @@ export async function lauf(seite, h) {
   }
 
   // per Tastatur bis zum Schulstart
-  for (let i = 0; i < 6; i++) {
+  // P19.6: vierzehn Stationen mit Mini-Aufgaben und zwei Pausen – höchstens 60 Schritte bis zum Ende
+  for (let i = 0; i < 60; i++) {
     if ((await teil()) === 'ende') break;
     if ((await teil()) === 'frage' && !(await seite.locator('.gs-antwort[aria-pressed="true"]').count())) await h.klick('[data-pruef="antwort-1"]');
     await seite.locator('.gs-titel').focus();
@@ -221,7 +229,7 @@ export async function lauf(seite, h) {
   // keine fast leere Seite; „So macht man es gut“ steht nur bei Kapiteln mit Wahl
   if (breit) {
     const koepfe = await druckProbe('Story-Druck lang');
-    if (koepfe < 8) h.befund(`Story-Druck: nur ${koepfe} Kapiteltitel gelesen`);
+    if (koepfe < 14) h.befund(`Story-Druck: nur ${koepfe} Kapiteltitel gelesen`);
   }
 
   // Kurzfassung: Brücken und Bilanz
@@ -250,7 +258,7 @@ export async function lauf(seite, h) {
     }
     await weiter();
   }
-  await h.erwarte('[data-pruef="bruecke-s14"]');
+  await h.erwarte('[data-pruef="bruecke-s13"]'); // vor dem Ende eine gebündelte Karte mit den Stationen 13 und 14
   const ort = (await seite.locator('[data-pruef="gs-ort"]').textContent()) ?? '';
   if (!/Ende/u.test(ort)) h.befund(`Kurzfassung: Ort am Ende „${ort}“`);
   await pruefe('kurz-ende');

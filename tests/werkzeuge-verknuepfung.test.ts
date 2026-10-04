@@ -28,7 +28,7 @@ const { erzeugeAnzeige } = await import('../src/regie/leinwand.ts');
 const { erzeugeRegie } = await import('../src/regie/regie.ts');
 const { neueBuehne, pruefeBuehne } = await import('../src/regie/buehne.ts');
 const stand = await import('../src/regie/werkzeug-stand.ts');
-const { neuerStand, waehle } = await import('../src/geschichte/engine.ts');
+const { neuerStand, waehle, teileVon } = await import('../src/geschichte/engine.ts');
 const { leseRoute } = await import('../src/ui/route.ts');
 const { WERKZEUG_TEIL, werkzeugKatalog, pruefeWerkzeugVerweise } = (await import(String('../werkzeuge/explore.mjs'))) as {
   WERKZEUG_TEIL: Record<string, string>;
@@ -68,12 +68,12 @@ test('Verweisfeld (E-13): Werkzeug und Beispiel müssen existieren, ein Eintrag 
   assert.deepEqual(pruefeWerkzeugVerweise([{ id: 'wegweiser', beispiel: 'egal' }], 'x', null, () => assert.fail()), [{ id: 'wegweiser', beispiel: 'egal' }]);
 });
 
-test('Verweise aus Story und Themen nach Konzept E-13 (A ← 7, 4 · B ← 2, 6 · C ← 3, 5 · D ← 5)', () => {
+test('Verweise aus Story und Themen nach Konzept E-13 (seit P19.6 mit den neuen Stationen: A ← 5, 7, 12 · B ← 2, 10 · C ← 3, 8 · D ← 8, 9)', () => {
   const je = (id: string): string[] => g.kapitel.filter((k) => k.werkzeuge.some((v) => v.id === id)).map((k) => k.id);
-  assert.deepEqual(je('vorlagen-check'), ['s5', 's12']);
+  assert.deepEqual(je('vorlagen-check'), ['s5', 's7', 's12']);
   assert.deepEqual(je('wegweiser'), ['s2', 's10']);
   assert.deepEqual(je('risiko-grenzen'), ['s3', 's8']);
-  assert.deepEqual(je('monatsbericht'), ['s8']);
+  assert.deepEqual(je('monatsbericht'), ['s8', 's9']);
   const k5 = g.kapitel.find((k) => k.id === 's8');
   assert.deepEqual(k5?.werkzeuge, [{ id: 'risiko-grenzen', beispiel: 'ris-014' }, { id: 'monatsbericht', beispiel: 'oktober' }]);
   for (const k of g.kapitel) for (const v of k.werkzeuge) {
@@ -94,7 +94,8 @@ const weg = (kurz: boolean) => {
 const dahinter = (kapitel: string, kurz: boolean, bedienbar: boolean): HTMLElement => {
   const s = weg(kurz);
   const el = baueSchritt({
-    g, stand: { ...s, schritt: { ort: 'kapitel', kapitel, teil: 'frage' } }, bedienbar, themaTitel: (id) => themaTitel(inhalte, id),
+    // der Kasten „Das steckt dahinter“ steht am letzten Schritt der Station (seit P19.6 oft die Mini-Aufgabe nach der Frage)
+    g, stand: { ...s, schritt: { ort: 'kapitel', kapitel, teil: teileVon(g.kapitel.find((k) => k.id === kapitel) as never, kurz).at(-1) as 'frage' } }, bedienbar, themaTitel: (id) => themaTitel(inhalte, id),
     werkzeugTitel: (id) => (id === 'vorlagen-check' ? 'Vorlagen-Check' : id === 'risiko-grenzen' ? 'Risiko-Bewerter' : id === 'monatsbericht' ? 'Monatsbericht' : 'Wegweiser'), tue: () => undefined,
   });
   document.body.replaceChildren(el);

@@ -41,7 +41,10 @@ export function p19Story(echt: Geschichte): Geschichte {
       ergebnisHtml: `Ergebnis der Station ${kap.nr}.`,
     };
   });
-  // Vertiefungen in drei Formen
+  // Vertiefungen in drei Formen; die Stationen 5 und 7 tragen sie am Ende der Frage, also ohne die Mini-Aufgabe der echten Stationen (seit P19.6 haben beide eine)
+  for (const kap of g.kapitel) delete kap.vertiefung; // die Proben legen ihre eigenen an; die echten Vertiefungen (seit P19.6 in jeder Station) stören sie nicht
+  k(5).mini = null;
+  k(7).mini = null;
   k(2).vertiefung = { form: 'nachdenken', titel: 'Wann wird aus einem Hinweis ein Risiko?', absaetzeHtml: ['Die Frage der Vertiefung.'], antwortHtml: ['Die Antwort der Vertiefung.'] };
   k(5).vertiefung = { form: 'zweiter-fall', titel: 'Ein zweiter Wunsch', absaetzeHtml: ['Der zweite Fall.'], antwortHtml: ['Die Antwort zum Fall.'] };
   k(7).vertiefung = { form: 'warum-so', titel: 'Warum so?', absaetzeHtml: ['Erster Absatz.', 'Zweiter Absatz.'] };

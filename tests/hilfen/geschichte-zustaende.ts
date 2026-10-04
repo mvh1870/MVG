@@ -19,10 +19,8 @@ export const WERTUNGEN_REIHE: readonly Wertung[] = ['gut', 'vertretbar', 'falle'
 /** Obergrenze für die Zahl der Zustände je Schicht: Überlauf ist ein Befund (der Automat wäre dann nicht mehr „klein“). */
 export const MAX_ZUSTAENDE = 3_000_000;
 
-/** Antworten, nach denen die Bürgermeisterin etwas zu spät oder auf Umwegen erfährt (laut ihrer Folge), je Grundkapitel k1–k8 */
-const SPAET = new Set(['k1 falle', 'k3 falle', 'k3 vertretbar', 'k4 falle', 'k4 vertretbar', 'k5 falle', 'k6 falle', 'k7 falle', 'k8 falle']);
-/** Grundkapitel einer (ggf. synthetisch fortgeschriebenen) Folge: k1–k8 wiederholen sich */
-export const grundId = (k: Kapitel): string => `k${((k.nr - 1) % 8) + 1}`;
+/** Stelle (1–14) der Grundstation einer (ggf. synthetisch fortgeschriebenen) Folge: die 14 Stationen der echten Story wiederholen sich (P19.6) */
+export const grundNr = (k: Kapitel): number => ((k.nr - 1) % 14) + 1;
 
 /** Ein Merkmal: Anfangswert und Fortschreibung je Kapitel; `a === null` heißt „offen“ (nur auf gespielten Kapiteln). */
 export interface Merkmal { name: string; init: number; schritt: (acc: number, k: Kapitel, a: Antwort | null) => number }
@@ -36,8 +34,9 @@ export const MERKMALE: readonly Merkmal[] = [
   { name: 'offen', init: 0, schritt: (x, _k, a) => (x === 1 || a === null ? 1 : 0) },
   { name: 'nichtGut', init: 0, schritt: (x, _k, a) => Math.min(2, x + (a !== null && a.wertung !== 'gut' ? 1 : 0)) },
   teurer('geld'), teurer('zeit'), teurer('vertrauen'),
-  { name: 'spaet', init: 0, schritt: (x, k, a) => (x === 1 || (a !== null && SPAET.has(`${grundId(k)} ${a.wertung}`)) ? 1 : 0) },
-  { name: 'falleK4K7', init: 0, schritt: (x, k, a) => (x === 1 || (['k4', 'k7'].includes(grundId(k)) && a?.wertung === 'falle') ? 1 : 0) },
+  // P19.6 (04-rahmen 3.4): ersetzt `falleK4K7`; „Geld hoch“ setzt keine Falle in den Stationen 3 bis 13 voraus (Falle in 1, 2 oder 14 ändert am Geld nichts).
+  // `spaet` entfällt: die Zeilen „Beim nächsten Projekt …“ setzen nur eine Falle voraus.
+  { name: 'falleStat3bis13', init: 0, schritt: (x, k, a) => (x === 1 || (grundNr(k) >= 3 && grundNr(k) <= 13 && a?.wertung === 'falle') ? 1 : 0) },
 ];
 
 /** Zustand: Balken, Merkmalswerte (in der Reihenfolge von `MERKMALE`) und ein Beispielweg (ein Zeichen je Kapitel: g v f o, „-“ = übersprungen). */
@@ -103,9 +102,8 @@ export interface Ende {
   /** Zahl der nicht guten Antworten, höchstens 2 */
   nichtGut: number;
   teurer: Record<BalkenId, boolean>;
-  /** mindestens eine „späte“ Antwort */
-  spaet: boolean;
-  falleK4K7: boolean;
+  /** Falle in einer der Stationen 3 bis 13 */
+  falleStat3bis13: boolean;
   /** Bilanz-Sicht und Schlusszeilen-Fassung laut Engine */
   sicht: BilanzSicht;
   fassung: EndeFassung;
@@ -116,7 +114,7 @@ function endeVon(g: Geschichte, kurz: boolean, s: Stand, weg: string, m: readonl
   return {
     weg, kurz, b: balken(g, s, { ort: 'ende' }), falle: wert('falle') === 1, offen: wert('offen') === 1, nichtGut: wert('nichtGut'),
     teurer: { geld: wert('teurer-geld') === 1, zeit: wert('teurer-zeit') === 1, vertrauen: wert('teurer-vertrauen') === 1 },
-    spaet: wert('spaet') === 1, falleK4K7: wert('falleK4K7') === 1, sicht: bilanzAmEnde(g, s), fassung: endeFassung(g, s),
+    falleStat3bis13: wert('falleStat3bis13') === 1, sicht: bilanzAmEnde(g, s), fassung: endeFassung(g, s),
   };
 }
 
@@ -154,12 +152,12 @@ export function endZustaendeBruteForce(g: Geschichte, kurz: boolean, mitOffen: b
   return aus;
 }
 
-export const endeSchluessel = (e: Ende): string => schluessel(e.b, [e.falle, e.offen, e.nichtGut, e.teurer.geld, e.teurer.zeit, e.teurer.vertrauen, e.spaet, e.falleK4K7].map(Number));
+export const endeSchluessel = (e: Ende): string => schluessel(e.b, [e.falle, e.offen, e.nichtGut, e.teurer.geld, e.teurer.zeit, e.teurer.vertrauen, e.falleStat3bis13].map(Number));
 
 /* ------------------------------------------------------------ synthetische Stories -- */
 
 export interface Synthese {
-  /** Zahl der Kapitel; die Grundkapitel k1–k8 der echten Story wiederholen sich zyklisch (Wirkungen und Wertungen) */
+  /** Zahl der Kapitel; die 14 Stationen der echten Story wiederholen sich zyklisch (Wirkungen und Wertungen) */
   n: number;
   /** welche Kapitel zur Kurzfassung gehören (Standard: jedes zweite, beginnend mit dem ersten) */
   kurzfassung?: (nr: number) => boolean;

@@ -1,91 +1,111 @@
-# 4 · Die Schule will mehr (Drehbuch Abschnitt 4, Kapitel 4)
+# 5 · Die Schule will mehr (Drehbuch v2 Akt I, Station 5; Vorlage docs/drehbuch-v2/01-akt-1.md)
 # Mini-Aufgabe: k4.2-p3 (Schwelle), k3.2-t1 (Reserve, Risikoannahme, Freigabe nicht delegierbar), k9.3-p3, v24:hb-1, v24:va-4.1
-nr: 4
+# Echo: E1 kommt hier an (Folge, eigener Absatz); E6 (→ 6) und E7 (→ 12) entstehen hier. Buch-Zeile 5 und die Pause Akt I stehen in rahmen.yaml.
+# Regie: Zuschlag fürs erste Holzlos (Los 1) fällt im Juni; nicht gespielt, nur Hintergrund. Wimpel vom Schulfest nur im Campus-Bild.
+nr: 5
 titel: Die Schule will mehr
 zeit: Juni 2026
 campus: { stufe: 2, jahreszeit: sommer, licht: abend }
 kurzfassung: true
 thema: vorgaenge
 werkzeuge: [{ id: vorlagen-check, beispiel: mensa }]
-belege: [v24:hb-1.5, v24:hb-1, v24:hb-3.1, v24:va-4.2, k4.3-p2, k3.2-t1, k10.5-t1, k4.2-p3, k9.3-p3, v24:va-4.1]
+belege: [v24:hb-1.5, v24:hb-1, v24:hb-3.1, v24:va-4.1, v24:va-4.2, k4.3-p2, k3.2-t1, k10.5-t1, k4.2-p3, k4.4-p1, k9.3-p3]
 bild-szene: mensateller
 bild-frage: grundriss
 
 einstieg: |
-  Juni 2026. Die Bodenplatte der Gesamtschule ist gegossen, die ersten Wände stehen, ein gelber Kran dreht sich über der Baustelle. Am Bauzaun hängen noch die Wimpel vom Schulfest, bei dem die künftigen Schülerinnen und Schüler ihre Baustelle besucht haben.
-
-  Jetzt kommt Hanna Klingel mit roten Wangen in den Container, in der Hand einen Stapel Zettel mit den neuen Zahlen für den Ganztag.
+  Juni 2026, früher Abend. Die Bodenplatte der Gesamtschule ist gegossen, ein gelber Kran dreht sich über den ersten Wänden. Hanna Klingel kommt mit roten Wangen in den Container, in der Hand neue Zahlen für den Ganztag.
 
 einstieg-kurz: |
   Juni 2026. Nach dem Schulfest bringt Hanna Klingel neue Zahlen für den Ganztag.
 
 szene:
   - { figur: klingel, text: "Ich habe wunderbare Nachrichten: Der Ganztag wächst! Wir brauchen eine größere Mensa – für 450 Essen statt 300." }
-  - { figur: schwung, text: "Hab ich ihr beim Schulfest schon gesagt: Das kriegen wir hin." }
-  - { figur: faden, text: "Eine größere Mensa kostet rund 600.000 Euro mehr und vier Wochen Umplanung. Es gibt einen zweiten Weg: die Mensa jetzt so bauen, dass sie später wachsen kann – für etwa 150.000 Euro mehr." }
-  - { figur: klingel, kurzfassung: false, text: "Später ist immer zu spät. Die Kinder essen jetzt." }
-  # R76: bleibt in der Kurzfassung – die gute und die vertretbare Folge greifen den Beton auf (L-234)
-  - { figur: lot, text: "Wenn umgeplant wird, dann bevor ich Beton gieße – nicht danach." }
+  # Zeile 2: lange Fassung „vor allen Eltern“ (stützt Echo E6), Kurzfassung die alte Zeile (text-kurz)
+  - figur: schwung
+    text: "Hab ich ihr beim Schulfest schon gesagt, vor allen Eltern: Das kriegen wir hin."
+    text-kurz: "Hab ich ihr beim Schulfest schon gesagt: Das kriegen wir hin."
+  - { figur: faden, text: "Eine größere Mensa kostet rund 600.000 Euro mehr und vier Wochen Umplanung. Es gibt einen zweiten Weg: die Mensa jetzt so bauen, dass sie später wachsen kann. Das kostet etwa 150.000 Euro mehr." }
+  - { figur: klingel, kurzfassung: false, text: "Ich weiß: Die Glocke läutet erst im neuen Haus. Aber meine Kinder essen im Stehen auf dem Flur – später ist immer zu spät." }
+  # R76: bleibt in der Kurzfassung – die gute und die vertretbare Folge greifen die Fundamente auf (L-234)
+  - { figur: lot, text: "Wenn umgeplant wird, dann bevor ich die Fundamente der Mensa gieße – nicht danach." }
 
 frage: Die Schule hat gute Gründe, das Budget hat Grenzen, und der Architekt hat schon „Das kriegen wir hin“ gesagt. Was tun Sie?
 
 antworten:
   - wertung: falle
-    text: Die Zusage vom Schulfest gilt – die Kinder brauchen die Mensa. Der Architekt soll gleich umplanen, das spart Zeit.
+    text: "Die Zusage vom Schulfest gilt – die Kinder brauchen die Mensa. Der Architekt soll gleich umplanen, das spart Zeit."
     balken: { geld: -2, zeit: -1, vertrauen: -2 }
     bild: wegweiser
     folge: |
-      Konrad Schwung fängt sofort an, die große Mensa zu planen. Clara Faden nimmt den Wunsch als Änderung auf und meldet der Bürgermeisterin noch in derselben Woche: Hier wird geplant, ohne dass jemand entschieden hat. Die Bürgermeisterin fragt, wer das beschlossen hat – niemand. Eine Zusage am Rand eines Schulfests ist kein Beschluss, also keine förmliche Entscheidung.
+      Konrad Schwung fängt sofort an, die große Mensa zu planen. Clara Faden nimmt den Wunsch als Änderung auf und meldet der Bürgermeisterin noch in derselben Woche: Hier wird ohne Beschluss umgeplant. Die Bürgermeisterin fragt, wer das beschlossen hat – niemand. Eine Zusage am Rand eines Schulfests ist kein Beschluss.
 
-      Die Projektsteuerin legt beide Wege vor, die Bürgermeisterin entscheidet für die Mensa, die später wachsen kann – und für die umsonst geplante große Mensa fallen trotzdem Kosten an.
+      Die Projektsteuerin legt beide Wege vor, der Lenkungskreis berät, und die Bürgermeisterin entscheidet für die Mensa, die später wachsen kann. Die Planung, die umsonst war, hat Wochen an Arbeit gekostet.
+
+      Gisela Grundstein sagt: „{echo: E1}“
   - wertung: gut
-    text: Die Projektsteuerin legt den Wunsch der Schule als Änderung mit beiden Wegen der Bürgermeisterin vor. Bis dahin gilt die bisherige Planung.
+    text: "Die Projektsteuerin legt den Wunsch als Änderung mit beiden Wegen der Bürgermeisterin vor. Bis dahin gilt die bisherige Planung."
     balken: { geld: -1, zeit: 0, vertrauen: 2 }
     bild: stempel
-    folge: |
-      Clara Faden schreibt den Antrag auf: wer was will, was bisher gilt, was sich ändern würde – und vergleicht beide Wege nach den vorher vereinbarten Gesichtspunkten.
-
-      Im Lenkungskreis hört die Bürgermeisterin die Schule und die Finanzabteilung und entscheidet: Die Mensa wird so gebaut, dass sie später wachsen kann; das Geld kommt aus der Reserve. Hanna Klingel ist nicht ganz zufrieden, aber sie weiß, woran sie ist – und Theo Lot gießt die Fundamente gleich so, dass die Mensa später wachsen kann.
-    folge-kurz: |
-      Clara Faden schreibt den Antrag auf: wer was will, was bisher gilt, was sich ändern würde – und vergleicht beide Wege nach den vorher vereinbarten Gesichtspunkten.
-
-      Im Lenkungskreis hört die Bürgermeisterin die Schule und die Finanzabteilung und entscheidet: Die Mensa wird so gebaut, dass sie später wachsen kann; das Geld kommt aus der Reserve. Theo Lot gießt die Fundamente gleich so, dass die Mensa später wachsen kann.
+    # Die Zeilen über Antrag, Lenkungskreis und „Ich weiß, woran ich bin“ stehen nur auf dem ganzen Weg; die Echo-Zeile steht auf beiden
+    folge:
+      - { text: "Clara Faden schreibt den Antrag auf und vergleicht beide Wege nach den abgestimmten Gesichtspunkten. Im Lenkungskreis hört die Bürgermeisterin die Schule und die Finanzabteilung der Stadt.", kurzfassung: false }
+      - "Die Bürgermeisterin entscheidet: Die Mensa wird so gebaut, dass sie später wachsen kann; das Geld kommt aus der Reserve."
+      - "Gisela Grundstein sagt: „{echo: E1}“"
+      - { text: "Und: „Zwei Wege, klare Zahlen – ich weiß, woran ich bin.“", kurzfassung: false }
+      - "Hanna Klingel ist nicht ganz zufrieden – und Theo Lot gießt die Fundamente so, dass die Mensa später wachsen kann."
   - wertung: vertretbar
-    text: Erst die Anmeldezahlen im Herbst abwarten – dann weiß man, wie groß der Bedarf wirklich ist.
+    text: "Erst die Anmeldezahlen für den Ganztag abwarten – dann weiß man, wie groß der Bedarf wirklich ist."
     balken: { geld: -1, zeit: -1, vertrauen: 0 }
     bild: kalender
     folge: |
-      Clara Faden hat den Antrag aufgenommen und warnt, dass die Fundamente bald gegossen werden – aber entschieden wird erst im Herbst. Dann bestätigen die Anmeldezahlen den Bedarf. Inzwischen ist die Planung ohne die spätere Erweiterung weitergegangen, und die Pläne für die Fundamente müssen noch einmal überarbeitet werden – das kostet Wochen.
+      Clara Faden hat den Antrag aufgenommen und warnt: Die Fundamente der Mensa werden bald gegossen. Aber die Anmeldezahlen kommen erst Ende Juni. Bis dahin ruht die Planung der Mensa, und Theo Lot muss mit dem Beton warten.
 
-      Die Bürgermeisterin entscheidet nach der Vorlage der Projektsteuerin für die Mensa, die später wachsen kann, aus der Reserve. Die Schule hat einen ganzen Sommer lang auf eine Antwort gewartet, und Theo Lot muss mit dem Betonieren warten, bis die neuen Pläne da sind.
+      Dann bestätigen die Zahlen den Bedarf. Die Bürgermeisterin entscheidet noch im Juni, nachdem der Lenkungskreis beraten hat: Die Mensa wird so gebaut, dass sie später wachsen kann, das Geld kommt aus der Reserve. Die Schule hat bis zuletzt auf diese Antwort gewartet.
+
+      Gisela Grundstein sagt: „{echo: E1}“
 
 gut: |
-  Ein Wunsch, der etwas Beschlossenes ändern würde, wird als Änderung aufgenommen: wer ihn stellt, was bisher gilt, was er kostet und wie viel Zeit er braucht. Er wird mit mindestens zwei Wegen der zuständigen Person vorgelegt – hier der Bürgermeisterin. Bis entschieden ist, gilt die bisherige Planung; eine Zusage im Flur oder beim Schulfest ersetzt keinen Beschluss, also keine förmliche Entscheidung.
+  Ein Wunsch, der den geltenden Stand ändert, wird als Änderung aufgenommen – mit Anlass, bisheriger Planung, Kosten und Zeit.
 
-gut-kurz: |
-  Ein Wunsch, der etwas Beschlossenes ändern würde, wird als Änderung aufgenommen und mit mindestens zwei Wegen der Bürgermeisterin vorgelegt. Bis entschieden ist, gilt die bisherige Planung; eine Zusage im Flur oder beim Schulfest ersetzt keinen Beschluss, also keine förmliche Entscheidung.
+  Er wird mit mindestens zwei Wegen der Stelle vorgelegt, die entscheiden darf. Bis dahin gilt die bisherige Planung; eine beiläufige Zusage ersetzt keinen Beschluss.
 
 mini:
   art: zuordnen
   titel: Wer entscheidet das?
-  aufgabe: "Sechs Entscheidungen stehen an. Ordnen Sie jede der Person zu, die sie trifft: Sie, die Bürgermeisterin oder die Projektsteuerin. Das Kärtchen „Wer entscheidet was“ hilft dabei."
+  aufgabe: "Sechs Fragen, drei Möglichkeiten. Wer entscheidet?"
   bild: kaertchen
   wahlen:
     - { id: sie, titel: Sie, figur: sie }
     - { id: buergermeisterin, titel: Bürgermeisterin, figur: grundstein }
     - { id: projektsteuerin, titel: Projektsteuerin, figur: faden, falsch: "Die Projektsteuerin bereitet das vor und empfiehlt – entscheiden darf sie es nicht." }
   posten:
-    - { text: "Eine kleine Planänderung im Lehrerzimmer für 30.000 Euro, bezahlt aus dem Budget, ohne Reserve", bild: grundriss, loesung: sie, erklaerung: "Das liegt in Ihrem Entscheidungsspielraum: bis 100.000 Euro, ohne die Reserve anzutasten." }
-    - { text: "Die größere Mensa für 600.000 Euro", bild: mensateller, loesung: buergermeisterin, erklaerung: "Mehr als 100.000 Euro, und das Geld käme aus der Reserve. Dabei berät der Lenkungskreis die Bürgermeisterin." }
+    - { text: "Eine kleine Planänderung im Lehrerzimmer für 30.000 Euro, die das Budget ohne Reserve trägt", bild: grundriss, loesung: sie, erklaerung: "Das liegt in Ihrem Rahmen: bis 100.000 Euro, ohne Einsatz der Reserve." }
+    - { text: "Die größere Mensa für 600.000 Euro", bild: mensateller, loesung: buergermeisterin, erklaerung: "Mehr als 100.000 Euro, und das Geld käme aus der Reserve. Der Lenkungskreis berät sie." }
     - { text: "150.000 Euro aus der Reserve für die früher ausgeschriebenen Holzelemente", bild: holzstapel, loesung: buergermeisterin, erklaerung: "Mehr als 100.000 Euro, und das Geld kommt aus der Reserve. Über die Reserve entscheidet die Bürgermeisterin immer – auch bei kleinen Beträgen." }
-    - { text: "Die Freigabe der fertigen Ausführungspläne – der Pläne, nach denen gebaut wird", bild: stempel, loesung: buergermeisterin, erklaerung: "Jede Freigabe am Ende eines großen Abschnitts erteilt die Bürgermeisterin selbst – für die Stadt als Bauherrn. Der Lenkungskreis berät nur." }
-    - { text: "Ob die Stadt längere Lieferzeiten in Kauf nimmt, die den Schulstart gefährden", bild: lieferwagen, loesung: buergermeisterin, erklaerung: "Ein großes Risiko bewusst zu tragen, entscheidet die Bürgermeisterin für die Stadt als Bauherrn." }
-    - { text: "Welche von zwei gleich teuren Farben die Fassadenplatten bekommen", bild: kostenzettel, loesung: sie, erklaerung: "Es kostet nicht mehr, birgt kein Risiko und braucht keine Freigabe – das entscheiden Sie." }
+    - { text: "Die Freigabe der fertigen Baupläne", bild: stempel, loesung: buergermeisterin, erklaerung: "Jede Freigabe am Ende eines großen Abschnitts erteilt die Stadt selbst, also die Bürgermeisterin. Der Lenkungskreis berät nur." }
+    - { text: "Ob die Stadt längere Lieferzeiten in Kauf nimmt, die den Schulstart gefährden", bild: lieferwagen, loesung: buergermeisterin, erklaerung: "Ein großes Risiko bewusst zu tragen, ist eine Entscheidung der Bürgermeisterin." }
+    - { text: "Welche von zwei gleich teuren Farben die Fassadenplatten bekommen", bild: kostenzettel, loesung: sie, erklaerung: "Kein Mehrbetrag, kein Risiko, keine Freigabe – das entscheiden Sie." }
 
-dahinter: Eine Änderung braucht einen klaren Weg vom Antrag bis zur Entscheidung. Sonst entscheiden am Ende Gespräche am Rand über Geld, über das nie jemand offiziell entschieden hat.
+dahinter:
+  - "Eine Änderung braucht einen sauberen Weg vom Antrag bis zum Beschluss – sonst entscheiden Gespräche am Rand über Geld, über das niemand entschieden hat."
+  - { text: "Wer nur abwartet, lässt den Wunsch liegen, bis die Fundamente stehen.", kurzfassung: false }
+
+vertiefung:
+  form: zweiter-fall
+  titel: Ein zweiter Wunsch der Schule
+  # Kein Ereignis der Geschichte, wirkt weder auf Balken noch auf das Entscheidungsbuch; ein zweiter Fall in anderer Lage (andere Stadt)
+  text:
+    - "In einer anderen Stadt, deren Projektleitung dieselben Entscheidungsgrenzen hat, bittet eine Schulleiterin zwei Wochen nach einer großen Entscheidung um einen überdachten Fahrradstand, etwa 25.000 Euro. Er ist nicht geplant, liegt aber in diesen Grenzen: bis 100.000 Euro, ohne Reserve. Ist das trotzdem eine Änderung, und wer entscheidet?"
+  antwort:
+    - "Ja, es ist eine Änderung, denn etwas, das bisher gilt, soll bewusst anders werden. Clara Faden hält fest, wer den Wunsch stellt, was bisher gilt und was sich ändern würde. Bis zur Entscheidung gilt die bisherige Planung."
+    - "Entscheiden dürfen Sie selbst, weil der Betrag in Ihrem Rahmen liegt und keine Reserve gebraucht wird. Trotzdem gibt es einen Antrag, eine Entscheidung mit Datum und ein Ergebnis, das jede und jeder nachlesen kann. Der Weg ist kurz, aber er ist derselbe."
+    - "Anders wäre es, wenn der Fahrradstand 150.000 Euro kostete: Dann entscheidet die Bürgermeisterin."
+    - "Zwei Wege heißt nicht: ja oder nein. Der zweite Weg kann auch sein, bei der bisherigen Planung zu bleiben – wenn das zulässig ist. Wer nur einen Weg vorlegt, lässt keine Wahl; wer einen zweiten Weg nur zum Schein dazuerfindet, lässt nur scheinbar wählen."
+    - "Ist der Wunsch eilig, ändert das nur den Termin, nicht den Weg: Auch eine eilige Änderung wird entschieden, bevor sie gilt."
 
 regie:
-  notiz: "Kern: Ein Wunsch, der etwas Beschlossenes ändern würde, ist eine Änderung – mit mindestens zwei Wegen bei der zuständigen Person; bis dahin gilt die bisherige Planung. Die Mini-Aufgabe „Wer entscheidet das?“ greift das Kärtchen „Wer entscheidet was“ auf."
+  notiz: "Kern: Ein Wunsch, der den geltenden Stand ändert, ist eine Änderung – mit mindestens zwei Wegen bei der Stelle, die entscheiden darf; bis dahin gilt die bisherige Planung. Die Mini-Aufgabe „Wer entscheidet das?“ greift das Kärtchen „Wer entscheidet was“ auf."
   leitfragen:
     - Was gilt bei Ihnen eine Zusage, die am Rand eines Termins fällt?
     - Was gilt bei Ihnen, solange über eine Änderung nicht entschieden ist?

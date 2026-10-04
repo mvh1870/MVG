@@ -1,8 +1,7 @@
 /*
- * Synthetische Story mit 14 Stationen (s1 … s14) in drei Akten (P19.3, O-62) – nur für Tests, keine Auslieferung. Die acht
- * Stationen der echten Story wiederholen sich zyklisch (Texte, Antworten, Mini-Aufgaben), Kennungen und Reihenfolge sind die
- * künftigen: Akt I = s1–s5, Akt II = s6–s10, Akt III = s11–s14; die Kurzfassung spielt s1, s3, s5, s12 (Gerüst Abschnitt 2d).
- * Der Vergleich bleibt bei genau einer Station (s7).
+ * Synthetische Story mit 14 Stationen (s1 … s14) in drei Akten (P19.3, O-62) – nur für Tests, keine Auslieferung. Seit P19.6 hat die
+ * echte Story selbst 14 Stationen; die Synthese nimmt ihre Stationen (Texte, Antworten, Mini-Aufgaben, Vergleich in s12) und setzt
+ * eigene Brücken, Kopfkarten und Pausen: Akt I = s1–s5, Akt II = s6–s10, Akt III = s11–s14; die Kurzfassung spielt s1, s3, s5, s12.
  */
 import type { Akt, Geschichte, Kapitel, Zeile } from '../../src/geschichte/typen.ts';
 
@@ -27,8 +26,6 @@ export function synthetischeAkteStory(g: Geschichte, o: { akte?: boolean } = {})
     if (!k.kurzfassung) for (const z of k.szene) z.kurzfassung = true;
     k.titel = `Station ${i + 1}`;
     k.campus = { ...k.campus, stufe: stufen[i] as number, ...(wetter[i] !== undefined ? { wetter: wetter[i] } : {}) };
-    if (i >= 8) k.vergleich = null;
-    if (i >= 8) k.mandatNachFolge = false;
     return k;
   });
   if (o.akte !== false) {

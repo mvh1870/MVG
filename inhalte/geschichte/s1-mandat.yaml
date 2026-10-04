@@ -1,12 +1,13 @@
-# 1 · Wer darf was entscheiden? (Drehbuch Abschnitt 4, Kapitel 1)
+# 1 · Wer darf was entscheiden? (Drehbuch v2 Akt I, Station 1; Vorlage docs/drehbuch-v2/01-akt-1.md)
 # Mandat projektbezogen zweistufig (L-225): Sie bis 100.000 Euro ohne Reserve, darüber die Bürgermeisterin; der Lenkungskreis berät.
+# Echo: E1 entsteht hier (Ziel Station 5). Buch-Zeile 1 und Kärtchen stehen in rahmen.yaml.
 nr: 1
 titel: Wer darf was entscheiden?
 zeit: Januar 2026
 campus: { stufe: 0, jahreszeit: winter, licht: morgen }
 kurzfassung: true
 thema: begriffe
-belege: [k3.2-t1, k3.2-p1, k4.1-p1, k4.2-p1, k4.2-p2, k4.2-p3, k9.3-p3, v24:hb-1, v24:hb-projektblatt, v24:tlb-3, v24:va-4.1]
+belege: [k3.2-t1, k3.2-p1, k4.1-p1, k4.2-p1, k4.2-p2, k4.2-p3, k2.3-p1, k9.3-p3, v24:hb-1, v24:hb-3.1, v24:hb-projektblatt, v24:tlb-3, v24:va-3.5, v24:va-4.1]
 bild-szene: kalender
 # R76: auch der Frage-Schritt hat einen Gegenstand neben dem Porträt (O-53)
 bild-frage: notizzettel
@@ -15,20 +16,23 @@ mandat-nach-folge: true
 einstieg: |
   Januar 2026. Auf dem Grundstück im Süden von Lindenhall liegt Schnee, am Zaun lehnt ein Bauschild.
 
-  Seit heute leiten Sie das Projekt für die Stadt. Der Stadtrat hat das Geld bewilligt: ein Budget von rund 58 Millionen Euro und dazu eine Reserve von 3 Millionen für Unvorhergesehenes. Ihr erster Termin findet im kleinen Baucontainer am Rand des Grundstücks statt – die Heizung brummt, auf dem Tisch stehen vier Tassen Kaffee.
+  Seit heute leiten Sie das Projekt für die Stadt. Der Stadtrat hat das Geld bewilligt: ein Budget von rund 58 Millionen Euro und dazu eine Reserve von 3 Millionen für Unvorhergesehenes. Ihr erster Termin findet im Baucontainer statt – auf dem Tisch stehen vier Tassen Kaffee.
 
-# Kurzfassung (P17.5): derselbe Sachstand in kürzer – Budget und Reserve bleiben, weil das Mandat darauf aufbaut
 einstieg-kurz: |
-  Januar 2026, Ihr erster Tag im Projekt. Bewilligt sind rund 58 Millionen Euro und eine Reserve von 3 Millionen für Unvorhergesehenes.
+  Januar 2026, Ihr erster Tag. Bewilligt sind rund 58 Millionen Euro und 3 Millionen Reserve.
 
 szene:
   - { figur: grundstein, text: "Schön, dass Sie da sind. Eins vorweg: Im Sommer 2028 ziehen hier die Kinder ein. Das ist mir das Wichtigste – danach kommt das Geld." }
-  - { figur: faden, text: "Dann halte ich das genau so als Ihre Vorgabe fest. Was noch fehlt: Wer darf hier was entscheiden?" }
-  - { figur: grundstein, text: "Ach, das regeln Sie beide. Ich will nicht mit jeder Kleinigkeit belästigt werden." }
+  # Zeile 2: lange Fassung nennt das Entscheidungsbuch, die Kurzfassung die alte Zeile (text-kurz)
+  - figur: faden
+    text: "Dann schreibe ich das als Ihre Festlegung ins Entscheidungsbuch: wer entschieden hat, wann, auf welcher Grundlage. Was noch fehlt: Wer darf hier was entscheiden?"
+    text-kurz: "Dann schreibe ich das genau so auf, als Ihre Festlegung. Was noch fehlt: Wer darf hier was entscheiden?"
+  - { figur: grundstein, text: "Ach, das regeln Sie beide. Ich will nicht mit jeder Kleinigkeit behelligt werden." }
   - { figur: schwung, text: "Ich bräuchte übrigens bis Freitag ein Ja zu den Fassadenplatten. Wer gibt mir das?" }
-  - { figur: faden, text: "Genau darum geht es. Ich bereite alles vor, was entschieden werden muss. Entscheiden darf ich nichts – wer was entscheiden darf, muss vorher feststehen." }
-  - { figur: grundstein, kurzfassung: false, text: "Na gut. Aber bitte so, dass ich nicht jede Woche einen Anruf bekomme." }
+  - { figur: faden, text: "Genau darum geht es. Ich bereite alles vor, was entschieden werden muss. Entscheiden darf ich nichts. Wer was entscheiden darf, muss vorher feststehen." }
+  - { figur: grundstein, kurzfassung: false, text: "Na gut. Aber ich will abends auch mal zu Hause essen." }
 
+# Frage und Antworten gelten auf beiden Wegen (L-276): die erste Frage-Zeile steht deshalb auch in der Kurzfassung
 frage: Die Projektsteuerin wartet auf Ihren Auftrag, die Bürgermeisterin schaut auf die Uhr. Wie regeln Sie, wer was entscheidet?
 
 # Reihenfolge der Seite (Platz 1–3); die Wertung erscheint nie
@@ -37,38 +41,46 @@ antworten:
     text: "Sicher ist sicher: Sie legen der Bürgermeisterin alles vor, was Geld oder Zeit kostet."
     balken: { geld: 0, zeit: -1, vertrauen: 1 }
     bild: notizzettel
-    folge: |
-      In den ersten zwei Wochen landen elf Fragen bei der Bürgermeisterin, darunter die Farbe der Fassadenplatten. Beim zwölften Mal ruft sie an, halb verärgert, halb beruhigt: „Ich weiß jetzt wenigstens, was hier läuft. Aber ich bin Bürgermeisterin, nicht Bauleiterin.“
-
-      Clara Faden schreibt eine Seite auf, wer was entscheiden darf, die Bürgermeisterin unterschreibt – und der Architekt hat eine Woche verloren, weil sein Ja zu den Fassadenplatten so lange wartete.
+    folge:
+      - "In den ersten zwei Wochen landen elf Fragen bei der Bürgermeisterin, darunter die Farbe der Fassadenplatten. Beim zwölften Mal ruft sie an, halb verärgert, halb beruhigt: „Ich weiß jetzt wenigstens, was hier läuft. Aber ich bin Bürgermeisterin, nicht Bauleiterin.“"
+      - "Clara Faden schreibt eine Seite mit klaren Grenzen, die Bürgermeisterin unterschreibt – und der Architekt hat eine Woche verloren, weil er auf Antworten wartete."
+      - { text: "Clara Faden schreibt die erste Zeile ins Entscheidungsbuch.", kurzfassung: false }
   - wertung: gut
-    text: "Die Projektsteuerin entwirft eine Seite, wer was entscheidet – festlegen muss das die Bürgermeisterin selbst."
+    text: "Die Projektsteuerin entwirft eine Seite, wer was entscheidet – festlegen muss es die Bürgermeisterin selbst."
     balken: { geld: 0, zeit: 0, vertrauen: 2 }
     bild: projektblatt
     folge: |
       Eine Woche später liegt eine Seite auf dem Tisch der Bürgermeisterin. Sie liest sie zweimal, streicht ein Wort und unterschreibt: „Gut. Dann weiß ich, wann Sie zu mir kommen – und wann nicht.“
 
-      Konrad Schwung bekommt sein Ja zu den Fassadenplatten am Freitag von Ihnen, denn sie kosten nicht mehr als geplant. Clara Faden legt die Seite dort ab, wo alle Beteiligten sie finden.
+      Das Ja zu den Fassadenplatten hat Konrad Schwung schon am Freitag von Ihnen bekommen: Sie kosten nicht mehr als geplant, das liegt in Ihrem Rahmen. Dann schreibt Clara Faden die erste Zeile ins Entscheidungsbuch.
     folge-kurz: |
       Eine Woche später liegt eine Seite auf dem Tisch der Bürgermeisterin. Sie liest sie zweimal, streicht ein Wort und unterschreibt: „Gut. Dann weiß ich, wann Sie zu mir kommen – und wann nicht.“
 
-      Konrad Schwung bekommt sein Ja zu den Fassadenplatten am Freitag von Ihnen, denn sie kosten nicht mehr als geplant.
+      Das Ja zu den Fassadenplatten hat Konrad Schwung schon am Freitag von Ihnen bekommen: Sie kosten nicht mehr als geplant, das liegt in Ihrem Rahmen.
   - wertung: falle
-    text: Die Bürgermeisterin will nicht gestört werden. Also entscheiden Sie alles und halten sie auf dem Laufenden.
+    text: "Die Bürgermeisterin will nicht behelligt werden. Also entscheiden Sie alles und halten sie auf dem Laufenden."
     balken: { geld: 0, zeit: 1, vertrauen: -2 }
     bild: rednerpult
-    folge: |
-      Zwei Wochen geht das gut. Dann sagen Sie dem Architekten eine teurere Dämmung zu – eine Entscheidung, die niemand Ihnen übertragen hat –, und im Stadtrat fragt jemand, wer das beschlossen hat. Die Bürgermeisterin weiß von nichts.
-
-      Am nächsten Morgen unterschreibt sie die Regelung, wer was entscheiden darf, die von Anfang an gefehlt hat, lässt die Dämmung prüfen – und schaut Sie dabei länger an als nötig.
+    folge:
+      - "Zwei Wochen geht das gut. Dann sagen Sie dem Architekten eine teurere Dämmung zu, und im Stadtrat fragt jemand, wer das beschlossen hat. Die Bürgermeisterin weiß von nichts. Am nächsten Morgen unterschreibt sie die Seite, die von Anfang an gefehlt hat, lässt die Dämmung prüfen – und schaut Sie dabei länger an als nötig."
+      - { text: "Clara Faden schreibt die erste Zeile ins Entscheidungsbuch.", kurzfassung: false }
 
 gut: |
-  Wer was entscheiden darf, steht fest, bevor die erste Entscheidung ansteht – schriftlich und mit klaren Grenzen. Was die Stadt als Bauherr nicht abgeben kann, bleibt bei der Bürgermeisterin: welches Ziel zuerst kommt, die Freigaben, der Einsatz der Reserve und die großen Risiken.
+  Wer was entscheiden darf, steht fest, bevor die erste Entscheidung ansteht – schriftlich und mit klaren Grenzen. Was die Stadt als Auftraggeberin nicht abgeben kann, bleibt bei der Bürgermeisterin: welches Ziel zuerst kommt, die Freigaben, der Einsatz der Reserve und die großen Risiken.
 
-gut-kurz: |
-  Wer was entscheiden darf, steht vorab schriftlich fest. Was die Stadt als Bauherr nicht abgeben kann, bleibt bei der Bürgermeisterin: das Ziel, die Freigaben, der Einsatz der Reserve und die großen Risiken.
+dahinter:
+  - "Arbeit kann man abgeben, die Verantwortung für die großen Entscheidungen nicht – deshalb steht vor dem ersten Streit fest, wer was entscheiden darf."
+  - { text: "Ohne Grenzen fragt entweder jeder bei jeder Kleinigkeit nach, oder jemand entscheidet, was ihm nicht zusteht.", kurzfassung: false }
 
-dahinter: Arbeit kann man abgeben, die Verantwortung für die großen Entscheidungen nicht. Deshalb braucht jedes Projekt ein Mandat, eine schriftliche Regel, wer was entscheiden darf – festgelegt vor dem ersten Streit.
+vertiefung:
+  form: warum-so
+  titel: Warum steht das schriftlich?
+  text:
+    - "Stellen Sie sich vor, die Bürgermeisterin ist eine Woche im Urlaub, und der Architekt braucht bis Freitag ein Ja. Was geschieht, wenn nur in den Köpfen steht, wer was entscheiden darf?"
+    - "Es gibt drei Möglichkeiten, und keine ist gut. Jemand entscheidet, was ihm nicht zusteht, und im Stadtrat fragt später jemand, wer das beschlossen hat. Oder alle warten, und die Zeit läuft davon. Oder die Bürgermeisterin wird im Urlaub angerufen, weil niemand weiß, ob der Betrag für sie reicht."
+    - "Eine Seite löst das nur, wenn sie mehr enthält als Namen. Sie sagt, wer was vorbereiten und wer entscheiden darf, ab welchem Betrag die Bürgermeisterin gefragt wird, wer sie vertritt und an wen man sich wendet, wenn vor Ort niemand zuständig ist. Mit Grenzen, Vertretung und Weg hält sie auch dann, wenn es drückt."
+    - "Die Seite ist nicht für den Streitfall geschrieben, sondern für den ruhigen Tag davor. Kommt der erste Streit, wird sie nicht mehr verhandelt, sondern nur noch gelesen. Das spart die Wochen, die man sonst mit der Frage verbringt, wer eigentlich zuständig war."
+    - "Wer mag, schaut auf das eigene Projekt: Wer entscheidet dort über 100.000 Euro, und steht das irgendwo, wo es jeder findet?"
 
 regie:
   notiz: "Erst die Leitfragen an die Runde, dann wählen lassen. Kern: Wer was entscheiden darf, steht vorab schriftlich fest, mit klaren Grenzen; welches Ziel zuerst kommt, legt der Bauherr selbst fest. Das Kärtchen „Wer entscheidet was“ nach der Folge kurz vorlesen – es bleibt danach an jeder Frage aufrufbar."

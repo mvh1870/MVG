@@ -148,6 +148,8 @@ button.gs-feld:hover { border-color: var(--gold); }
 .gs-campus { position: relative; overflow: hidden; border-radius: 24px; box-shadow: 0 2px 0 var(--linie), var(--schatten-tuer); background: var(--flaeche-4); }
 .gs-campus > svg { width: 100%; height: 100%; }
 .gs-campus-gross { aspect-ratio: 2.2 / 1; }
+/* P19.6: Über der ersten Station eines Akts steht die Kopfkarte; der Campus gibt ihr den Platz ab, damit der Text der Szene weiter über der Falz beginnt */
+.gs-schritt:has(.gs-aktkopf) .gs-buehnenbild:has(> .gs-campus-gross) { max-width: calc(40vh * 2.2); }
 .gs-campus-zusatz { position: absolute; right: 4%; top: 6%; width: 18%; max-width: 140px; }
 .gs-campus-zusatz svg { width: 100%; height: auto; }
 /* Einstieg: erzählender Absatz auf einer Karte, die ins Bild ragt */
@@ -195,6 +197,8 @@ button.gs-feld:hover { border-color: var(--gold); }
 .gs-zusatz { text-transform: none; letter-spacing: 0; font-weight: 600; }
 .gs-gesagt { margin-top: var(--a-1); font: var(--typo-lese); color: var(--tinte); }
 .gs-zeile-erzaehlt p { font: var(--typo-lese); color: var(--tinte-2); }
+/* P19.6: Erzählzeilen ohne Figur (Elternbeirat, Reporter, Ratsmitglied) nehmen die ganze Breite, nicht die Spalte des Porträts */
+.gs-zeile.gs-zeile-erzaehlt { grid-template-columns: minmax(0, 1fr); }
 
 /* ------------------------------------------------------------ Frage und Antworten */
 .gs-frage-block {
@@ -648,6 +652,7 @@ button.gs-stufe:hover:not([aria-pressed="true"]) { background: var(--weiss); }
   /* 16 : 9 schneidet vom breiten Ausschnitt nur Himmel an den Seiten ab (R75) */
   .gs-campus-gross { aspect-ratio: 16 / 9; border-radius: 18px; }
   .gs-buehnenbild:has(> .gs-campus-gross) { max-width: calc(50vh * 16 / 9); }
+  .gs-schritt:has(.gs-aktkopf) .gs-buehnenbild:has(> .gs-campus-gross) { max-width: calc(40vh * 16 / 9); }
   .gs-einstieg { grid-template-columns: minmax(0, 1fr); margin: calc(-1 * var(--a-6)) var(--a-2) 0; padding: var(--a-4); }
   .gs-gegenstand-einstieg { display: none; }
   .gs-zeile { grid-template-columns: 44px minmax(0, 1fr); gap: var(--a-3); }

@@ -1,7 +1,8 @@
 /*
  * Der Zustandsautomat der Wegtests ist selbst geprüft (P19.1, O-62, L-270): Differentialtest gegen die Wegaufzählung
- * (echte Story mit 8 Kapiteln, lang und Kurzfassung, mit und ohne „offen“; synthetische Stories mit 3 bis 6 Kapiteln, auch mit
- * extremen Wirkungen, die die Balken an beide Grenzen stoßen) und Skalierungsprobe mit 16 synthetischen Kapiteln.
+ * (echte Story: die Kurzfassung ganz, der lange Weg mit den ersten 8 der 14 Stationen – die Aufzählung aller 3^14 bzw. 4^14 Wege
+ * wäre keine Probe mehr; synthetische Stories mit 3 bis 6 Kapiteln, auch mit extremen Wirkungen, die die Balken an beide Grenzen
+ * stoßen) und Skalierungsprobe mit 16 synthetischen Kapiteln. Den langen Weg der ganzen Story rechnet allein der Automat (tests/geschichte-wege.test.ts).
  */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -34,10 +35,15 @@ function vergleiche(g: Geschichte, kurz: boolean, mitOffen: boolean, wo: string)
   return automat.length;
 }
 
-test('Differentialtest: echte Story (8 Kapitel), lang und Kurzfassung, ohne und mit offenen Kapiteln', () => {
-  for (const kurz of [false, true]) for (const mitOffen of [false, true]) {
-    const n = vergleiche(G, kurz, mitOffen, `echt ${kurz ? 'kurz' : 'lang'}${mitOffen ? ' mit offen' : ''}`);
-    assert.ok(n > 10);
+/** Die ersten n Stationen der echten Story (nur für die Wegaufzählung; Kennungen und Wirkungen unverändert). */
+const ersteStationen = (g: Geschichte, n: number): Geschichte => ({ ...structuredClone(g), kapitel: structuredClone(g.kapitel.slice(0, n)) });
+
+test('Differentialtest: echte Story – Kurzfassung ganz, langer Weg mit den ersten 8 von 14 Stationen, ohne und mit offenen Stationen', () => {
+  const vorn = ersteStationen(G, 8);
+  assert.equal(vorn.kapitel.length, 8);
+  for (const mitOffen of [false, true]) {
+    assert.ok(vergleiche(G, true, mitOffen, `echt kurz${mitOffen ? ' mit offen' : ''}`) > 10);
+    assert.ok(vergleiche(vorn, false, mitOffen, `echt lang (erste 8)${mitOffen ? ' mit offen' : ''}`) > 10);
   }
 });
 

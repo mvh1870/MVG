@@ -1,60 +1,79 @@
-# Rahmen der Story (P17.5, Drehbuch docs/DREHBUCH.md Abschnitte 1–3, 6): Auftakt, Figuren, Balken, Bilanz,
-# Kärtchen „Wer entscheidet was“ und Ende. Format: docs/INHALTSFORMAT.md Abschnitt 3.
-# Belege des Mandats (intern): k3.2-t1, k4.2-p1, k4.2-p3, k9.3-p3, v24:hb-1, v24:hb-projektblatt, v24:va-4.1
+# Rahmen der Story (P19.6, Drehbuch docs/drehbuch-v2/04-rahmen.md und 00-geruest.md, dritte Fassung): Auftakt, Figuren, Balken, Bilanz,
+# Kärtchen „Wer entscheidet was“, Akte mit Pausen, Echos, Entscheidungsbuch und Ende. Format: docs/INHALTSFORMAT.md Abschnitt 3.
+# Entwurfsfelder des Rahmens sind eingesetzt (P19.6); die Wörter der Bedienung stehen in src/ui/woerter.ts.
+# Belege des Mandats (intern): k3.2-t1, k4.2-p1, k4.2-p3, k9.3-p3, v24:hb-1, v24:hb-projektblatt, v24:hb-3.1, v24:va-4.1
 
 titel: Ein Schulcampus für Lindenhall
 
-# Gerüst der 14 Stationen (P19.6, L-330): vorhanden sind s1, s2, s3, s5, s8, s10, s12, s14; s4, s6, s7, s9, s11, s13 kommen mit ihren Dateien
-# und stehen dann hier an ihrer Stelle (siehe docs/INHALTSFORMAT.md, Abschnitt „Stationen einsetzen“)
-reihenfolge: [s1, s2, s3, s5, s8, s10, s12, s14]
+# Gerüst der 14 Stationen (alle Dateien s1 … s14; nr = Stelle in dieser Liste)
+reihenfolge: [s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14]
 
 auftakt:
   campus: { stufe: 0, jahreszeit: winter, licht: morgen }
+  # 04 1.2: 45 Wörter; „mehrmals“ und die Zahl der Entscheidungen stehen nur auf den Wegkarten
   text: |
-    Ein fiktiver Fall: Die Stadt Lindenhall baut im Süden eine Gesamtschule, eine Grundschule und eine Sporthalle. Sie leiten das Projekt für die Stadt. Im Sommer 2028 sollen die Kinder einziehen.
+    Ein fiktiver Fall: Die Stadt Lindenhall baut eine Gesamtschule, eine Grundschule und eine Sporthalle. Sie leiten das Projekt für die Stadt. Im Sommer 2028 sollen die Kinder einziehen.
 
-    Der Fall ist erfunden, aber die Fragen darin stellen sich auf vielen Baustellen.
+    Das Projekt ist erfunden, die Fragen kennt jede Baustelle.
 
-    Ihre Antworten bewegen drei Balken: Geld, Zeit und Vertrauen. Am Ende sehen Sie, wie Ihr Projekt ausgegangen ist.
+    Unterwegs entscheiden Sie; am Ende steht Ihre Bilanz.
   vorstellung: "Diese fünf Menschen begleiten Sie:"
   los: Los geht's
   kurz: Kurzfassung (etwa 10 Minuten)
+  # Überschrift über den drei Balken im Auftakt (04 1.5; heute „Drei Balken begleiten Sie“)
+  balken-titel: Drei Balken
+  # Wegwahl-Karten (04 1.3). Nur Texte; die Zeile mit Zahlwort und Minuten rechnet die Seite aus der Messung
+  # (lesezeit-daten.json) und `ZAHLWORT`: lang „Vierzehn Entscheidungen · etwa 40 Minuten“, kurz „Vier Entscheidungen · etwa 10 Minuten“.
+  # Wortlaut der Bildbeschreibungen mit Zahlwort: wegBildLang(n) / wegBildKurz(n, k) in src/ui/woerter.ts.
+  wegwahl:
+    ueberschrift: "So erleben Sie es:"
+    lang:
+      titel: Die ganze Geschichte
+      text: Alle Stationen, alle Aufgaben.
+      knopf: Los geht's
+      bild: Der Weg mit allen vierzehn Stationen, keine ausgelassen
+    kurz:
+      titel: Die Kurzfassung
+      text: Die wichtigsten Stationen, der Rest kurz erzählt.
+      knopf: Kurzfassung starten
+      bild: Derselbe Weg, aber nur vier von vierzehn Stationen werden gespielt, die übrigen sind kurz überbrückt
 
 sie:
-  steckbrief: Sie leiten das Projekt im Auftrag der Stadt, des Bauherrn. Listen führen Sie nicht – das macht die Projektsteuerin. Sie entscheiden, was in Ihren Entscheidungsspielraum fällt, und bringen alles andere rechtzeitig zur Bürgermeisterin.
+  steckbrief: "Sie leiten das Projekt für die Stadt, die als Bauherr den Campus bauen lässt. Listen führen andere: Sie prüfen, was Ihnen vorgelegt wird, fordern nach, was fehlt, und entscheiden, was in Ihrem Rahmen liegt. Alles andere bringen Sie rechtzeitig zur Bürgermeisterin."
 
 figuren:
   - id: grundstein
     name: Gisela Grundstein
     rolle: Bürgermeisterin
     akzent: violett
-    steckbrief: "Sie entscheidet für die Stadt die großen Dinge: was zuerst kommt, jede Freigabe (das förmliche Ja am Ende eines großen Abschnitts) und jeden Einsatz der Reserve, des Geldpuffers. Der Lenkungskreis, eine feste Beratungsrunde mit Finanzabteilung und Schulamt, berät sie – entscheiden tut sie selbst."
+    steckbrief: "Sie entscheidet für die Stadt die großen Dinge: was zuerst kommt, jede Freigabe (das förmliche Ja am Ende eines großen Abschnitts) und jeden Einsatz der Reserve, des Geldpuffers. Der Lenkungskreis, eine feste Beratungsrunde mit Finanzabteilung und Schulamt, berät sie – entscheiden tut sie selbst. Ihre erste Frage lautet immer: Was genau soll ich entscheiden – und bis wann?"
   - id: faden
     name: Clara Faden
     rolle: Projektsteuerin
     akzent: lagune
-    steckbrief: "Sie hält alle Fäden zusammen: Sie führt jeden Vorgang (zum Beispiel eine Aufgabe, ein Risiko oder eine Änderung) schriftlich, prüft jede Woche alles Offene und bereitet jede Entscheidung vor – mit mindestens zwei möglichen Wegen und einer Empfehlung. Entscheiden darf sie nicht."
+    steckbrief: "Sie hält alle Fäden zusammen: Sie führt alle Aufgaben, Hinweise, Risiken und Änderungen, prüft jede Woche alles Offene und bereitet jede Entscheidung vor, bei der etwas getan werden muss – mit mindestens zwei zulässigen Wegen und einer Empfehlung. Was beschlossen wird, hält sie im Entscheidungsbuch fest. Entscheiden darf sie nicht."
   - id: schwung
     name: Konrad Schwung
     rolle: Architekt
     akzent: blau
-    steckbrief: Er plant den Campus von der ersten Linie bis zur letzten Fuge. Er findet für alles eine Lösung – und verspricht sie manchmal schneller, als sie geprüft ist.
+    steckbrief: Er plant den Campus von der ersten Linie bis zur letzten Fuge. Er findet für alles eine Lösung – und verspricht sie manchmal schneller, als sie geprüft ist. Schlechte Nachrichten erwähnt er gern beiläufig.
   - id: klingel
     name: Hanna Klingel
     rolle: Schulleiterin
     akzent: orange
-    steckbrief: Sie weiß, was die Kinder brauchen – und sie will viel davon. Jeder Wunsch hat einen guten Grund; nicht jeder passt ins Budget.
+    steckbrief: Sie weiß, was die Kinder brauchen – und sie will viel davon. Jeder Wunsch hat einen guten Grund; nicht jeder passt ins Budget. Die Messingglocke ihrer alten Schule soll im neuen Haus läuten.
   - id: lot
     name: Theo Lot
     rolle: Bauleiter
     akzent: sonne
-    steckbrief: Er ist jeden Tag auf der Baustelle und kennt jede Schraube. Aufschreiben findet er lästig, das Bauen nicht.
+    steckbrief: Er ist jeden Tag auf der Baustelle und kennt jede Schraube. Aufschreiben findet er lästig, das Bauen nicht. Vieles, was er weiß, steckt nur in seinem Kopf.
 
 # Start intern: Geld 9, Zeit 6, Vertrauen 4 (L-225); Wirkung je Antwort −2 … +2, begrenzt auf 0–10
+# Die kurzen `text`-Sätze stehen im Auftakt und an der Balkentafel (04 1.5: alle Stellen nehmen dieselben Kurzsätze)
 balken:
   geld:
     titel: Geld
-    text: Wie viel Geld im Budget und in der Reserve, dem Geldpuffer für Unvorhergesehenes, noch übrig ist.
+    text: Wie viel Budget und Reserve noch übrig sind.
     start: 9
     mehr: mehr übrig
     weniger: weniger übrig
@@ -64,7 +83,7 @@ balken:
       niedrig: Die Reserve ist fast aufgebraucht; Antworten, die nicht der beste Weg waren, haben sie ein Stück kleiner gemacht.
   zeit:
     titel: Zeit
-    text: Wie viel Zeitpuffer bis zum Schulstart im Sommer 2028 noch bleibt.
+    text: Wie viel Zeitpuffer bis zum Schulstart bleibt.
     start: 6
     mehr: mehr Luft
     weniger: weniger Luft
@@ -75,7 +94,7 @@ balken:
   vertrauen:
     titel: Vertrauen
     # R76: der Start unter der Hälfte braucht einen Grund
-    text: Wie sehr sich Bürgermeisterin, Schule und Stadtrat auf Sie verlassen. Sie sind neu – das muss erst wachsen.
+    text: Wie sehr sich Bürgermeisterin, Schule und Stadtrat auf Sie verlassen. Sie sind neu, deshalb beginnt es niedrig.
     start: 4
     mehr: gestiegen
     weniger: gesunken
@@ -86,7 +105,7 @@ balken:
 
 # Prüfreihenfolge fest in src/geschichte/engine.ts (bilanzTyp): Vertrauen niedrig · Zeit niedrig · ruhig (nur ohne Falle, L-239) · alle anderen;
 # sind auf dem Weg Entscheidungen offen, gilt immer „offen“ (bilanzAmEnde, R73)
-# Jeder Text hier muss auf jedem Weg stimmen, auf dem er erscheint – tests/geschichte-wege.test.ts rechnet alle Wege durch.
+# Jeder Text hier muss auf jedem Weg stimmen, auf dem er erscheint – tests/geschichte-wege.test.ts rechnet alle Wege durch (Voraussetzungen: 04 3.4).
 bilanz:
   nicht-getragen:
     titel: Gebaut, aber ohne Rückhalt
@@ -105,35 +124,230 @@ bilanz:
     titel: Noch nicht alle Entscheidungen getroffen
     text: Der Campus steht, die Kinder sind da. Ein Urteil über Ihren Weg gibt es erst, wenn Sie alle Entscheidungen getroffen haben. Darunter sehen Sie die drei Balken nach den Antworten, die Sie schon gegeben haben.
 
+# Kärtchen „Wer entscheidet was“ (04 4.2, 01 1.6). Zeile „Sie“ und „Lenkungskreis“ wie 01.
+# `text` darf eine Liste sein (wie `folge`): der zweite Absatz der Bürgermeisterin (Vertretung) entfällt in der Kurzfassung.
 mandat:
   titel: Wer entscheidet was
   zeilen:
-    - { wer: Sie, text: "Entscheidungen bis 100.000 Euro, wenn das Geld im Budget steht und keine Reserve nötig ist." }
-    - { wer: Bürgermeisterin, text: "alles über 100.000 Euro · jeden Einsatz der Reserve, auch kleine Beträge · ob die Stadt ein großes Risiko bewusst trägt · jede Freigabe am Ende eines großen Planungs- oder Bauabschnitts · die Rangfolge der Ziele: erst der Schulstart, dann das Geld." }
-    - { wer: Lenkungskreis, text: "feste Beratungsrunde aus Bürgermeisterin, Finanzabteilung und Schulamt – die Runde berät, die Bürgermeisterin entscheidet." }
-    - { wer: Projektsteuerin, text: "bereitet Entscheidungen vor, führt alle Vorgänge schriftlich, empfiehlt – entscheidet nie." }
+    - { wer: Sie, text: "Entscheidungen bis 100.000 Euro, wenn das Budget sie ohne Reserve trägt." }
+    - wer: Bürgermeisterin
+      text:
+        - "alles darüber · jeder Einsatz der Reserve · ob die Stadt ein großes Risiko trägt · jede Freigabe am Ende eines großen Planungs- oder Bauabschnitts (Fachleute sagen: Leistungsphase) · was zuerst kommt: der Schulstart, dann das Geld."
+        - { text: "Wenn sie nicht da ist, vertritt sie die Leiterin der Finanzabteilung.", kurzfassung: false }
+    - { wer: Lenkungskreis, text: "feste Runde aus Bürgermeisterin, Finanzabteilung und Schulamt · berät die Bürgermeisterin." }
+    - { wer: Projektsteuerin, text: "bereitet alles vor, pflegt alle Listen mit Aufgaben, Risiken und Änderungen, hält jeden Beschluss im Entscheidungsbuch fest, empfiehlt – entscheidet nie." }
 
+# Akte (04 2.2, 2.3, 3.5). `titel` ohne „Akt I ·“ (die Seite setzt die römische Zahl); `kopf` = Satz der Kopfkarte (nur ganzer Weg).
+# Pause nach a1 und a2; die drei Sätze von a3 stehen im Ende vor der Bilanz (seine `zeile` entfällt).
+akte:
+  - id: a1
+    titel: Ordnung schaffen
+    zeitraum: Januar bis Juni 2026
+    stationen: [s1, s2, s3, s4, s5]
+    kopf: Zuerst klären Sie, wen Sie fragen.
+    pause:
+      zeile: { figur: grundstein, text: "Jetzt wissen Sie, wen Sie fragen. Mal sehen, ob das auch hält, wenn es draußen drückt." }
+      koennen:
+        - "Sie wissen, wer was entscheiden darf – und wann etwas zur Bürgermeisterin muss."
+        - "Sie erkennen, was vorliegt – Hinweis, Risiko, Problem oder Änderungswunsch – und was die Projektsteuerin daraus macht."
+        - "Sie lassen bei einer Änderung bis zur Entscheidung die bisherige Planung gelten; eine beiläufige Zusage ersetzt keinen Beschluss."
+  - id: a2
+    titel: Takt und Zahlen
+    zeitraum: August 2026 bis Februar 2027
+    stationen: [s6, s7, s8, s9, s10]
+    kopf: Jetzt kommt der Druck von außen.
+    pause:
+      zeile: { figur: grundstein, text: "Jetzt wissen wir, was Druck ist. Als Nächstes kommt es auf die Menschen an." }
+      koennen:
+        - "Sie lassen eine Zahl mit Datum und Begründung vorlegen; abweichende Einschätzungen stehen erklärt daneben, ohne Mittelwert."
+        - "Sie lesen einen Monatsbericht mit einer Frage: Was soll entschieden werden, von wem, bis wann?"
+        - "Eine Freigabe erlaubt den nächsten Schritt, bestellt wird aber über die Vergabestelle; Dringliches wird sofort gemeldet, Eile ersetzt keine Freigabe."
+  - id: a3
+    titel: Entscheiden und Übergeben
+    zeitraum: April 2027 bis August 2028
+    stationen: [s11, s12, s13, s14]
+    kopf: Jetzt wird es persönlich.
+    pause:
+      koennen:
+        - "Sie verlangen, dass auch ein Fremder einen Eintrag versteht."
+        - "Sie bekommen große Entscheidungen mit mindestens zwei zulässigen Wegen vorgelegt; was erfüllt sein muss, wird zuerst geprüft."
+        - "Sie lassen jeden Beschluss mit Quelle, Datum und Bedingungen festhalten und Offenes mit Termin und Namen übergeben."
+
+# Echos (04 6.2, 3.3; 00 Abschnitt 4; Wortlaut wie in 01 bis 03). Je Echo eine Zeile in drei Fassungen, nur Ton, nie eine Tatsache.
+# Die Texte stehen ohne äußere Anführungszeichen: in einer Szenenzeile spricht die Figur ohnehin, in einem Folge-Absatz setzt die Station sie.
+# Fehlt die Quelle (Sprung, Kurzfassung ohne die Station), gilt „gut“. Kurzfassung zeigt nur E1, E4, E7 (alle Quellen dort gespielt).
+echos:
+  - id: E1
+    quelle: s1
+    fassungen:
+      gut: Genau für solche Fälle haben wir im Januar die Seite geschrieben.
+      vertretbar: Gut, dass es diesmal nur einmal zu mir kommt.
+      falle: Schon einmal wurde zugesagt, bevor ich entschieden hatte. Das darf nicht zur Gewohnheit werden.
+  - id: E2
+    quelle: s2
+    fassungen:
+      gut: Die Prüffrage ist beantwortet – deshalb kann ich heute bewerten.
+      vertretbar: Jetzt, wo die Zahlen da sind, bewerte ich es richtig.
+      falle: Die Antworten sind da – später als gedacht, aber jetzt bewerte ich.
+  - id: E3
+    quelle: s3
+    fassungen:
+      gut: Beim Holz kam alles rechtzeitig. Ich lese die Mappe zuerst.
+      vertretbar: Beim Holz kam die Vorlage später als die Meldung. Diesmal bitte beides zusammen.
+      falle: Beim Holz habe ich mich gefragt, was ich sonst noch nicht weiß. Zeigen Sie mir die ganze Mappe.
+  - id: E4
+    quelle: s3
+    fassungen:
+      gut: "Seit dem Holz weiß ich: Schlechte Nachrichten wollen Sie früh hören – deshalb liegt die Vorlage schon bei."
+      vertretbar: Beim Holz lag die Vorlage erst später vor. Diesmal liegt sie gleich bei.
+      falle: Beim Holz kam die Meldung erst spät. Diesmal melde ich die Lage sofort.
+  - id: E5
+    quelle: s4
+    fassungen:
+      gut: "Zur Kapselung: Die Zwischenlösung stand sofort, der Beschluss vom Mai 2026 steht im Buch."
+      vertretbar: "Zur Kapselung: Der Beschluss vom Mai 2026 steht im Buch; die Planung ruhte eine Woche."
+      falle: Bei der Kapselung musste neu geplant werden – das ist im Eintrag festgehalten, der Beschluss steht im Buch.
+  - id: E6
+    quelle: s5
+    fassungen:
+      gut: Ich habe gehört, die Mensa wird so gebaut, dass sie später wachsen kann. Stimmt das?
+      vertretbar: Die Schule hat lange auf eine Antwort gewartet. Wird die Mensa nun größer – ja oder nein?
+      falle: Herr Schwung hat beim Schulfest gesagt, die große Mensa kommt. Stimmt das?
+  - id: E7
+    quelle: s5
+    fassungen:
+      gut: Bei der Mensa wusste ich immer, woran ich bin. Sagen Sie mir auch jetzt, was feststeht und was nicht.
+      vertretbar: Bei der Mensa habe ich lange auf Bescheid gewartet. Bitte nicht noch einmal so lange.
+      falle: Bei der Mensa hat man umgeplant, bevor jemand entschieden hat. Diesmal bitte erst entscheiden.
+  # E8: zwei Zeilen in Station 13 (Pfennig, danach Ranzen) – zwei Echo-Einträge mit derselben Quelle (Format-Frage 1: ECHOS_MAX 10 → 11)
+  - id: E8
+    quelle: s6
+    fassungen:
+      gut: "Ich habe den Elternabend im „Lindenbote“ verfolgt: Da wurde der Stand genannt. So mag ich das."
+      vertretbar: "Im „Lindenbote“ stand zum Elternabend wenig Konkretes. Deshalb frage ich hier genau nach."
+      falle: "Im „Lindenbote“ stand nach dem Elternabend, 2028 sei alles fertig. Wer hat das beschlossen?"
+  - id: E8b
+    quelle: s6
+    fassungen:
+      gut: Seit dem Elternabend weiß ich, wo ich nachlesen kann, was feststeht.
+      vertretbar: Nach dem Elternabend kam der Stand erst eine Woche später auf einem Blatt.
+      falle: Nach dem Elternabend traute mancher dem Brief der Schule weniger als der Zeitung.
+  - id: E9
+    quelle: s9
+    fassungen:
+      gut: Der Dezemberbericht war eine Seite mit offenen Punkten und Verweisen – da finde ich mich zurecht.
+      vertretbar: Der Dezemberbericht war eine Seite, aber der Planstand der Fassade fehlte darin.
+      falle: Der Dezemberbericht zeigte lauter grüne Ampeln; bei jedem Punkt frage ich nach, was dahintersteckt.
+  - id: E10
+    quelle: s10
+    fassungen:
+      gut: Seit dem Sturm schreibe ich selbst auf, was ich sehe – Uhrzeit, Foto, fertig.
+      vertretbar: "Nach dem Sturm weiß ich: Wer es gleich aufschreibt, streitet später weniger."
+      falle: Der Sturm hat uns eine Woche gekostet. Seitdem rufe ich an, bevor ich weitermache.
+
+# Entscheidungsbuch (04 5.2): alleiniger Wortlaut, für alle Wege gleich. Anlass = Monat der Station (`zeit`), nicht das Beschlussdatum.
+buch:
+  - station: s1
+    art: beschluss
+    entschieden: die Bürgermeisterin
+    grundlage: die Seite „Wer entscheidet was“ der Projektsteuerin
+    ergebnis: Die Entscheidungsgrenzen sind festgelegt. Zuerst kommt der Schulstart, dann das Geld.
+  - station: s2
+    art: vermerk
+    entschieden: niemand – es wurde nichts beschlossen
+    grundlage: Hinweis des Architekten zu den Lieferzeiten der Holzelemente
+    ergebnis: Offen ist, wie lange die Holzelemente zur Lieferung brauchen.
+  - station: s3
+    art: beschluss
+    entschieden: die Bürgermeisterin; der Lenkungskreis hat beraten
+    grundlage: Vorlage der Projektsteuerin; Auskünfte der Hersteller
+    ergebnis: Die Holzelemente werden früher ausgeschrieben, rund 150.000 Euro kommen aus der Reserve.
+  - station: s4
+    art: beschluss
+    entschieden: die Bürgermeisterin
+    grundlage: Vorlage der Projektsteuerin zur Brandschutzauflage
+    ergebnis: Die Holzbauteile in den Fluren werden gekapselt, rund 400.000 Euro kommen aus der Reserve. Die Wirkung gilt erst, wenn die Brandschutzbehörde sie bestätigt hat.
+  - station: s5
+    art: beschluss
+    entschieden: die Bürgermeisterin; der Lenkungskreis hat beraten
+    grundlage: Änderungswunsch der Schule
+    ergebnis: Die Mensa wird erweiterbar gebaut, rund 150.000 Euro kommen aus der Reserve. Eine große Mensa ist nicht beschlossen; ein späterer Ausbau wäre ein neuer Antrag.
+  - station: s6
+    art: vermerk
+    entschieden: niemand – es wurde nichts beschlossen
+    grundlage: Elternabend in der Containerschule
+    ergebnis: Die Eltern fragten nach der Mensa und nach dem Schulstart 2028.
+  - station: s7
+    art: beschluss
+    entschieden: die Bürgermeisterin (Freigabe); bestellt wird über die Vergabestelle
+    grundlage: Zuschlagsvorschlag der Vergabestelle zum Holz der Grundschule
+    ergebnis: Der Zuschlag für das Holz der Grundschule ist freigegeben. Ein Preisnachlass-Angebot für spätere Holzarbeiten liegt vor; es zählt als Chance und steht nicht in der Prognose.
+  - station: s8
+    art: vermerk
+    entschieden: niemand – eine Prognose ist kein Beschluss
+    grundlage: Kostenstand der Projektsteuerin mit Datum
+    ergebnis: Die Prognose liegt rund eine Million Euro über dem Budget. Die angekündigten Mehrkosten der Haustechnik stehen als Risiko daneben, nicht in der Prognose.
+  - station: s9
+    art: vermerk
+    entschieden: niemand – es wurde nichts beschlossen
+    grundlage: Monatsbericht und Prüfvermerk Dezember 2026
+    ergebnis: "Offen sind der Planstand der Fassade und der Netzanschluss: Er kommt im März statt im Januar, bis dahin läuft Baustrom."
+  - station: s10
+    art: vermerk
+    entschieden: niemand – der Bauleiter hat gesperrt
+    grundlage: Meldung des Bauleiters
+    ergebnis: Die losen Anker am Gerüst der Sporthalle sind erneuert, und es ist geklärt, wer die Kosten trägt.
+  - station: s11
+    art: uebergabe
+    entschieden: die Projektsteuerin an ihre Vertretung
+    grundlage: Einträge der Projektsteuerin
+    ergebnis: Die Vertretung übernimmt die offenen Einträge, darunter den Hinweis des Lüftungsherstellers.
+  - station: s12
+    art: beschluss
+    entschieden: die Bürgermeisterin; der Lenkungskreis hat beraten
+    grundlage: Vorlage der Projektsteuerin zur Lüftungsanlage
+    ergebnis: "Die Lüftungsanlage der Gesamtschule bekommt ein Ersatzgerät, rund 400.000 Euro kommen aus der Reserve. Auflage: Es ist vor dem Schulstart eingebaut und in Betrieb."
+  - station: s13
+    art: vermerk
+    entschieden: niemand – kein neuer Beschluss
+    grundlage: Haushaltsberatung des Stadtrats; das Entscheidungsbuch
+    ergebnis: Die Beschlüsse stehen mit Quelle und Datum im Buch. Die Brandschutzbehörde hat die Wirkung der Kapselung bestätigt. Offen sind zwei Fugen im Hallenboden; die Firma hat Nachbesserung bis zu den Herbstferien 2028 zugesagt.
+  - station: s14
+    art: beschluss-uebergabe
+    entschieden: die Bürgermeisterin; der Lenkungskreis hat beraten
+    grundlage: Vorlage der Projektleitung, von der Projektsteuerin vorbereitet
+    ergebnis: Die Bürgermeisterin gibt mit Auflagen frei. Die Fugen im Hallenboden und die Feineinstellung der Lüftung gehen mit Termin und Namen an das Gebäudemanagement.
+
+# Ende (04 3.1 bis 3.8). Der Block „Das können Sie jetzt“ (Akt III) steht in akte[a3].pause.koennen, nur ganzer Weg, nur wenn s11 bis s14 beantwortet sind.
+# Die Knopf-Zeile „Weiter mit der ganzen Geschichte“ samt Kicker steht in src/ui/woerter.ts.
 ende:
   zeit: Ende August 2028
   campus: { stufe: 8, jahreszeit: sommer, licht: morgen }
   einstieg: |
     Ende August 2028, halb acht am Morgen. Der erste Schulbus hält an der neuen Haltestelle, die Sonne steht noch tief über den Linden. Kinder mit Schultüten und viel zu großen Ranzen laufen über den Schulhof, die Eltern hinterher.
 
-    Am gemeinsamen Haupteingang des Campus hängen Luftballons, und neben der Tür stehen die fünf, die diesen Campus zweieinhalb Jahre lang begleitet haben – und Sie.
+    Am gemeinsamen Haupteingang des Campus hängen Luftballons. Neben der Tür stehen die fünf, die diesen Campus knapp drei Jahre lang begleitet haben – und Sie. Etwas abseits warten die Vorsitzende des Elternbeirats, der Reporter vom „Lindenbote“ und das Ratsmitglied aus dem Finanzausschuss.
   einstieg-kurz: |
-    Ende August 2028, der erste Schultag. Am Haupteingang stehen die fünf – und Sie.
+    Ende August 2028, der erste Schultag. Am Haupteingang stehen Ihre fünf Begleiter – und Sie.
+  # Reihenfolge der Szene: Klingel, Lot (Echo E10), Schwung, Faden, Elternvertreterin, Reporter, Ratsmitglied (Erzählzeilen), Grundstein. Die Kurzfassung zeigt nur Klingel und Grundstein.
+  # Elternvertreterin, Reporter und Ratsmitglied sprechen als Erzählzeilen (ohne `figur`), keine eigenen Sprecher (O-62, Antwort 4c)
   szene:
-    - { figur: klingel, zusatz: läutet ihre Glocke, text: "Guten Morgen! Willkommen in eurer Schule!" }
-    - { figur: lot, kurzfassung: false, text: "In den Unterlagen steht alles drin, was wir hier gemacht haben. Hätte ich vor zwei Jahren nicht gedacht, dass ich das mal gut finde." }
-    - { figur: schwung, kurzfassung: false, text: "Seit der Sache mit dem Holz sage ich gleich Bescheid, wenn etwas nicht klappt. Das hat sich gelohnt." }
-    - { figur: faden, kurzfassung: false, text: "Alles, was noch offen war, ist übergeben – mit Namen und Termin. Nichts ist verloren gegangen." }
+    - { figur: klingel, zusatz: läutet die Glocke ihrer alten Schule, text: "Guten Morgen! Willkommen in eurer Schule!" }
+    - { figur: lot, kurzfassung: false, echo: E10, fortsetzung: "Und inzwischen steht alles im Buch – hätte ich nie gedacht, dass ich das mal gut finde." }
+    - { figur: schwung, kurzfassung: false, text: "Seit dem Holz sag ich's gleich, wenn was klemmt. Hat sich gelohnt." }
+    - { figur: faden, kurzfassung: false, text: "Alles Offene ist übergeben, mit Namen und Termin. Verschwunden ist nichts. Das Ratsmitglied hat im Buch nachgesehen: Es stand alles drin." }
+    - { kurzfassung: false, text: "Die Vorsitzende des Elternbeirats lächelt: „Und mein Jüngster? Der sitzt heute im neuen Raum, nicht mehr im Container.“" }
+    - { kurzfassung: false, text: "Der Reporter hebt den Fotoapparat: „Die Glocke läutet. Das schreibe ich genau so auf.“" }
     - { figur: grundstein, text: "Wissen Sie, was das Beste war? Ich wusste jedes Mal, worüber ich entscheide." }
   zeit-niedrig: Nur die Sporthalle bleibt noch geschlossen – sie wird erst nach den Herbstferien fertig. Bis dahin turnen die Kinder in der alten Halle.
-  # Ersatzzeilen (L-239): Vertrauen niedrig geht vor; „nach-falle“ gilt, sobald auf dem Weg eine Falle gewählt ist
+  # Ersatzzeilen (L-239): Vertrauen niedrig geht vor; „nach-falle“ gilt, sobald auf dem Weg eine Falle gewählt ist.
+  # Lot bei niedrigem Vertrauen ohne Echo E10 (die Zeile ersetzt die Echo-Zeile).
   vertrauen-niedrig:
     - { figur: lot, text: "Inzwischen ist alles schriftlich festgehalten. Hätten wir damit mal früher angefangen." }
+    - { figur: faden, text: "Alles Offene ist übergeben, mit Namen und Termin. Das Ratsmitglied liest das Buch gern; wo etwas fehlt, fragt es weiter nach." }
     - { figur: grundstein, text: "Beim nächsten Projekt reden wir früher miteinander. Versprochen?" }
   nach-falle:
+    - { figur: faden, text: "Alles Offene ist übergeben, mit Namen und Termin. Das Ratsmitglied liest das Buch gern; wo etwas fehlt, fragt es weiter nach." }
     - { figur: grundstein, text: "Geschafft haben wir es. Aber nicht jede Entscheidung ist so sauber vorbereitet worden, wie sie hätte sein sollen – das machen wir beim nächsten Projekt besser." }
   # R73: Entscheidungen offen, keine Falle, Vertrauen nicht niedrig – die Schlusszeile „Ich wusste jedes Mal …“ stimmte dann nicht
   offen:

@@ -59,21 +59,24 @@ test('Zug, Auswertung, Lösung und Änderung je Art; ordneZu/klickeReihe sind nu
     const liste = geloest.mini[k.id] ?? [];
     assert.ok(def.gueltig(m, liste), k.id);
     const aus = werteMiniAus(m, liste);
-    assert.ok(aus.fertig && aus.richtig === m.posten.length, k.id);
+    assert.ok(aus.fertig && (m.art === 'rueckfragen' || aus.richtig === m.posten.length), k.id); // Rückfragen kennen kein „richtig“, nur gewählte Gespräche
     // leer: alles offen, nichts fertig (Gegenprobe)
     assert.ok(werteMiniAus(m, undefined).je.every((x) => x === 'offen'), k.id);
     // erster Zug: der Posten 0 ändert sich, sonst nichts
-    const s1 = m.art === 'zuordnen' ? ordneZu(G, neuerStand(), k.id, 0, 0) : klickeReihe(G, neuerStand(), k.id, 0);
+    // (seit P19.6 tragen die echten Stationen auch Matrix, Mappe, Pinnwand, Bericht und Rückfragen: dort gilt nur der allgemeine Zug)
+    const s1 = m.art === 'zuordnen' ? ordneZu(G, neuerStand(), k.id, 0, 0) : m.art === 'reihenfolge' ? klickeReihe(G, neuerStand(), k.id, 0) : miniZug(G, neuerStand(), k.id, 0, m.wahlen.length > 0 ? 0 : undefined);
     assert.notEqual(s1, neuerStand(), k.id);
     assert.equal(geaenderterPosten(m.art, [], s1.mini[k.id] ?? []), 0, k.id);
     assert.equal(geaenderterPosten(m.art, s1.mini[k.id] ?? [], s1.mini[k.id] ?? []), null, k.id);
     // der allgemeine Zug liefert dasselbe wie der Zug der Art
-    const allgemein = miniZug(G, neuerStand(), k.id, 0, m.art === 'zuordnen' ? 0 : undefined);
+    const allgemein = miniZug(G, neuerStand(), k.id, 0, m.wahlen.length > 0 ? 0 : undefined);
     assert.deepEqual(allgemein.mini, s1.mini, k.id);
     // ungültiger Posten: der Stand bleibt dasselbe Objekt
     const leer = neuerStand();
     assert.equal(miniZug(G, leer, k.id, -1, 0), leer, k.id);
-    assert.equal(miniZug(G, leer, k.id, m.posten.length, 0), leer, k.id);
+    assert.equal(miniZug(G, leer, k.id, m.posten.length + 1, 0), leer, k.id);
+    // (bei Bericht und den neuen Arten ist `posten` = Zahl der Posten die Prüfung, daher erst n + 1 ungültig)
+    if (m.art === 'zuordnen' || m.art === 'reihenfolge') assert.equal(miniZug(G, leer, k.id, m.posten.length, 0), leer, k.id);
   }
   // die Funktion der anderen Art greift nicht
   const zu = mitMini.find((k) => k.mini?.art === 'zuordnen')!;

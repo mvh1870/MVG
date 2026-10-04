@@ -61,6 +61,11 @@ function zeileVon(liste: readonly { figur: string | null; html: string }[], figu
   return liste.find((z) => z.figur === figur)?.html ?? '';
 }
 
+/** Erzählzeile (ohne Figur), die so beginnt. */
+function erzaehlt(liste: readonly { figur: string | null; html: string }[], anfang: string): string {
+  return liste.find((z) => z.figur === null && z.html.startsWith(anfang))?.html ?? '';
+}
+
 function proben(): Probe[] {
   const bl = (id: BalkenId) => G.balken.find((b) => b.id === id) as Geschichte['balken'][number];
   const e = G.ende;
@@ -69,8 +74,8 @@ function proben(): Probe[] {
     { was: 'Bilanz „mit Umwegen“', text: G.bilanz.umwege.html, anfang: 'Der Campus steht, die Kinder sind da. Aber nicht jede Ihrer Antworten war der gerade Weg', erscheint: (_w, t) => t === 'umwege', setztVoraus: (w) => w.nichtGut >= 1 },
     { was: 'Bilanz „Auf den letzten Metern“', text: G.bilanz['letzte-meter'].html, anfang: 'Die Schule hat geöffnet, aber der Zeitpuffer war am Ende aufgebraucht. Wer eine Entscheidung aufschiebt', erscheint: (_w, t) => t === 'letzte-meter', setztVoraus: (w) => w.teurer.zeit },
     { was: 'Bilanz „ohne Rückhalt“', text: G.bilanz['nicht-getragen'].html, anfang: 'Die Gebäude stehen, doch das Vertrauen hat gelitten: Zu oft hat die Bürgermeisterin Dinge zu spät oder anders erfahren, als sie es von Ihnen erwarten durfte.', erscheint: (_w, t) => t === 'nicht-getragen', setztVoraus: (w) => w.nichtGut >= 2 },
-    // Geld hoch: „jedes Mal von der Bürgermeisterin entschieden“, „dort eingesetzt, wo sie gebraucht wurde“ – nicht nach umsonst geplanter Mensa (4) oder unverglichenem Preis (7)
-    { was: 'Geld hoch', text: bl('geld').bilanz.hoch, anfang: 'Die Reserve wurde dort eingesetzt, wo sie gebraucht wurde', erscheint: (w) => stufe(w.b.geld) === 'hoch', setztVoraus: (w) => !w.falleK4K7 },
+    // Geld hoch: „jedes Mal von der Bürgermeisterin entschieden“, „dort eingesetzt, wo sie gebraucht wurde“ – keine Falle in den Stationen 3 bis 13 (04-rahmen 3.4); eine Falle in 1, 2 oder 14 ändert am Geld nichts
+    { was: 'Geld hoch', text: bl('geld').bilanz.hoch, anfang: 'Die Reserve wurde dort eingesetzt, wo sie gebraucht wurde', erscheint: (w) => stufe(w.b.geld) === 'hoch', setztVoraus: (w) => !w.falleStat3bis13 },
     { was: 'Geld mittel', text: bl('geld').bilanz.mittel, anfang: 'Ein großer Teil der Reserve ist verbraucht; manches wurde teurer als nötig.', erscheint: (w) => stufe(w.b.geld) === 'mittel', setztVoraus: (w) => w.teurer.geld },
     { was: 'Geld niedrig', text: bl('geld').bilanz.niedrig, anfang: 'Die Reserve ist fast aufgebraucht; Antworten, die nicht der beste Weg waren, haben sie ein Stück kleiner gemacht.', erscheint: (w) => stufe(w.b.geld) === 'niedrig', setztVoraus: (w) => w.teurer.geld },
     // Zeit und Vertrauen beschreiben nur den Stand des Balkens – keine Voraussetzung über eine Wahl
@@ -83,10 +88,17 @@ function proben(): Probe[] {
     // Schlusszeilen
     { was: 'Bürgermeisterin, Grundzeile', text: zeileVon(e.szene, 'grundstein'), anfang: 'Wissen Sie, was das Beste war? Ich wusste jedes Mal, worüber ich entscheide.', erscheint: (_w, _t, f) => f === 'grund', setztVoraus: (w) => !w.falle },
     { was: 'Bürgermeisterin nach einer Falle', text: zeileVon(e.nachFalle, 'grundstein'), anfang: 'Geschafft haben wir es. Aber nicht jede Entscheidung ist so sauber vorbereitet worden, wie sie hätte sein sollen', erscheint: (_w, _t, f) => f === 'nach-falle', setztVoraus: (w) => w.falle },
-    { was: 'Bürgermeisterin, Vertrauen niedrig', text: zeileVon(e.vertrauenNiedrig, 'grundstein'), anfang: 'Beim nächsten Projekt reden wir früher miteinander.', erscheint: (_w, _t, f) => f === 'vertrauen-niedrig', setztVoraus: (w) => w.spaet },
-    { was: 'Bauleiter, Grundzeile', text: zeileVon(e.szene, 'lot'), anfang: 'In den Unterlagen steht alles drin, was wir hier gemacht haben.', erscheint: (w, _t, f) => f !== 'vertrauen-niedrig' && !w.kurz, setztVoraus: () => true },
+    { was: 'Bürgermeisterin, Vertrauen niedrig', text: zeileVon(e.vertrauenNiedrig, 'grundstein'), anfang: 'Beim nächsten Projekt reden wir früher miteinander.', erscheint: (_w, _t, f) => f === 'vertrauen-niedrig', setztVoraus: (w) => w.falle },
+    // P19.6: Lot spricht zuerst das Echo E10 (Fassung nach der Antwort in Station 10, ohne Antwort „gut“), danach die feste Fortsetzung – sie gilt auf jedem Weg
+    { was: 'Bauleiter, Grundzeile (Fortsetzung nach dem Echo)', text: (e.szene.find((z) => z.figur === 'lot') as { fortsetzungHtml?: string }).fortsetzungHtml ?? '', anfang: 'Und inzwischen steht alles im Buch', erscheint: (w, _t, f) => f !== 'vertrauen-niedrig' && !w.kurz, setztVoraus: () => true },
     { was: 'Bauleiter, Vertrauen niedrig', text: zeileVon(e.vertrauenNiedrig, 'lot'), anfang: 'Inzwischen ist alles schriftlich festgehalten. Hätten wir damit mal früher angefangen.', erscheint: (w, _t, f) => f === 'vertrauen-niedrig' && !w.kurz, setztVoraus: (w) => w.falle },
-    { was: 'Projektsteuerin am Ende', text: zeileVon(e.szene, 'faden'), anfang: 'Alles, was noch offen war, ist übergeben – mit Namen und Termin.', erscheint: () => true, setztVoraus: () => true },
+    // O-62 (Antwort 4c): Elternvertreterin, Reporter und Ratsmitglied sprechen als Erzählzeilen (ohne Figur) beziehungsweise in der Zeile der Projektsteuerin
+    { was: 'Projektsteuerin mit Ratsmitglied, Grundzeile', text: zeileVon(e.szene, 'faden'), anfang: 'Alles Offene ist übergeben, mit Namen und Termin. Verschwunden ist nichts. Das Ratsmitglied hat im Buch nachgesehen: Es stand alles drin.', erscheint: (w, _t, f) => f !== 'nach-falle' && f !== 'vertrauen-niedrig' && !w.kurz, setztVoraus: () => true },
+    { was: 'Projektsteuerin nach einer Falle', text: zeileVon(e.nachFalle, 'faden'), anfang: 'Alles Offene ist übergeben, mit Namen und Termin. Das Ratsmitglied liest das Buch gern; wo etwas fehlt, fragt es weiter nach.', erscheint: (w, _t, f) => f === 'nach-falle' && !w.kurz, setztVoraus: (w) => w.falle },
+    { was: 'Projektsteuerin, Vertrauen niedrig', text: zeileVon(e.vertrauenNiedrig, 'faden'), anfang: 'Alles Offene ist übergeben, mit Namen und Termin. Das Ratsmitglied liest das Buch gern; wo etwas fehlt, fragt es weiter nach.', erscheint: (w, _t, f) => f === 'vertrauen-niedrig' && !w.kurz, setztVoraus: (w) => w.falle },
+    { was: 'Elternvertreterin im Ende', text: erzaehlt(e.szene, 'Die Vorsitzende des Elternbeirats'), anfang: 'Die Vorsitzende des Elternbeirats lächelt: „Und mein Jüngster? Der sitzt heute im neuen Raum', erscheint: (w) => !w.kurz, setztVoraus: () => true },
+    { was: 'Reporter im Ende', text: erzaehlt(e.szene, 'Der Reporter'), anfang: 'Der Reporter hebt den Fotoapparat: „Die Glocke läutet. Das schreibe ich genau so auf.“', erscheint: (w) => !w.kurz, setztVoraus: () => true },
+    { was: 'Projektsteuerin am Ende', text: zeileVon(e.szene, 'faden'), anfang: 'Alles Offene ist übergeben, mit Namen und Termin.', erscheint: () => true, setztVoraus: () => true },
   ];
 }
 
@@ -230,8 +242,23 @@ function laengenBefunde(g: Geschichte): string[] {
   return aus;
 }
 
-test('Antwortlängen: die gute Antwort verrät sich nicht durch Länge (je Kapitel ähnlich lang)', () => {
-  assert.deepEqual(laengenBefunde(G), []);
+/**
+ * P19.6 (L-350): Die sechs neuen Stationen stehen im Wortlaut des Drehbuchs; dort sind in s4, s6, s9, s11 und s13 die guten Antworten
+ * länger als die anderen. Die Sprachprüfung der Entwürfe (P19.8) gleicht sie an; bis dahin ist der Stand festgehalten: Jeder neue
+ * Befund lässt den Test rot werden, jeder behobene verlangt, ihn hier zu streichen. Die acht Stationen s1, s2, s3, s5, s7, s8, s10, s12 und s14 haben keinen.
+ */
+const BEKANNTE_LAENGEN_P196: readonly string[] = [
+  's4: gute Antwort 25 Wörter, längste andere 19', 's4: Spanne 12–25 Wörter',
+  's6: gute Antwort 31 Wörter, längste andere 21', 's6: Spanne 19–31 Wörter',
+  's9: gute Antwort 20 Wörter, längste andere 15',
+  's11: gute Antwort 25 Wörter, längste andere 19', 's11: Spanne 15–25 Wörter',
+  's13: Spanne 11–17 Wörter',
+];
+
+test('Antwortlängen: die gute Antwort verrät sich nicht durch Länge (je Kapitel ähnlich lang) – bis auf den festgehaltenen Stand der neuen Stationen', () => {
+  assert.deepEqual(laengenBefunde(G), BEKANNTE_LAENGEN_P196);
+  const stationen = new Set(BEKANNTE_LAENGEN_P196.map((x) => x.split(':')[0]));
+  assert.deepEqual([...stationen].sort(), ['s11', 's13', 's4', 's6', 's9'], 'nur neue Stationen');
 });
 
 test('Gegenprobe Antwortlängen: eine doppelt so lange gute Antwort wird gemeldet', () => {

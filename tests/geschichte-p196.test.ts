@@ -197,7 +197,12 @@ test('Kärtchen „Wer entscheidet was“: ein Text in Absätzen; die Kurzfassun
 /* ------------------------------------------------------------------ Auftakt -- */
 
 test('Auftakt: Texte der Wegkarten und Überschrift der Balken kommen aus dem Rahmen, ohne sie gelten die Wörter der Seite', () => {
-  const standard = baueSchritt(opt(BASIS, E.neuerStand()));
+  // seit P19.6 nennt der echte Rahmen beides; die Gegenprobe „ohne die Felder gelten die Wörter der Seite“ nimmt eine Kopie ohne sie
+  assert.ok(BASIS.auftakt.balkenTitel !== undefined && BASIS.auftakt.wegwahl !== undefined, 'der echte Rahmen setzt Überschrift und Wegkarten');
+  const ohneFelder = structuredClone(BASIS);
+  delete ohneFelder.auftakt.balkenTitel;
+  delete ohneFelder.auftakt.wegwahl;
+  const standard = baueSchritt(opt(ohneFelder, E.neuerStand()));
   assert.equal(text(standard.querySelector('#gs-wege-titel') as Element), W.geschichte.wegWahl);
   assert.equal(text(standard.querySelector('#gs-stand-titel') as Element), W.geschichte.balkenTitel);
   const g = structuredClone(BASIS);

@@ -34,10 +34,17 @@ test('Balken: Start Geld 9, Zeit 6, Vertrauen 4 (Auftakt)', () => {
   assert.deepEqual(balken(G, neuerStand()), { geld: 9, zeit: 6, vertrauen: 4 });
 });
 
-test('Nachgerechnete Wege (Drehbuch Abschnitt 3): gut 7/9/10 · vertretbar 5/1/4 · Falle 1/2/0 · Kurzfassung gut 7/9/10', () => {
+/** Stand am Ende: Wertung je Station (Kennung s1 … s14) nach dieser Regel; `null` = übersprungen (Kurzfassung). */
+function wegNach(wertungVon: (nr: number) => Wertung, kurz = false): Stand {
+  let s = neuerStand(kurz);
+  for (const k of G.kapitel) s = waehle(G, s, k.id, k.antworten.findIndex((a) => a.wertung === wertungVon(k.nr)));
+  return { ...s, schritt: { ort: 'ende' } };
+}
+
+test('Nachgerechnete Wege (Drehbuch, 14 Stationen): gut 7/9/10 · vertretbar 4/0/4 · Falle 0/1/0 · Kurzfassung gut 7/9/10', () => {
   assert.deepEqual(balken(G, weg('gut')), { geld: 7, zeit: 9, vertrauen: 10 });
-  assert.deepEqual(balken(G, weg('vertretbar')), { geld: 5, zeit: 1, vertrauen: 4 });
-  assert.deepEqual(balken(G, weg('falle')), { geld: 1, zeit: 2, vertrauen: 0 });
+  assert.deepEqual(balken(G, weg('vertretbar')), { geld: 4, zeit: 0, vertrauen: 4 });
+  assert.deepEqual(balken(G, weg('falle')), { geld: 0, zeit: 1, vertrauen: 0 });
   assert.deepEqual(balken(G, weg('gut', true)), { geld: 7, zeit: 9, vertrauen: 10 });
   assert.equal(bilanzAmEnde(G, weg('gut')), 'ruhig');
   assert.equal(bilanzAmEnde(G, weg('vertretbar')), 'letzte-meter');
@@ -45,9 +52,35 @@ test('Nachgerechnete Wege (Drehbuch Abschnitt 3): gut 7/9/10 · vertretbar 5/1/4
   assert.equal(bilanzAmEnde(G, weg('gut', true)), 'ruhig');
 });
 
+test('Nachgerechnete Mischwege (Drehbuch, Tabelle „Nachrechnung“): jede Zeile mit Balken und Bilanz', () => {
+  const in_ = (...nr: number[]) => (n: number): boolean => nr.includes(n);
+  const zeilen: [string, (n: number) => Wertung, [number, number, number], string][] = [
+    ['abwechselnd gut, vertretbar', (n) => (n % 2 === 1 ? 'gut' : 'vertretbar'), [4, 6, 10], 'umwege'],
+    ['abwechselnd vertretbar, gut', (n) => (n % 2 === 1 ? 'vertretbar' : 'gut'), [7, 0, 10], 'letzte-meter'],
+    ['Muster gut, vertretbar, Falle', (n) => (['gut', 'vertretbar', 'falle'] as const)[(n - 1) % 3] as Wertung, [0, 1, 2], 'nicht-getragen'],
+    ['lauter gut, zwei Fallen (4 und 13)', (n) => (in_(4, 13)(n) ? 'falle' : 'gut'), [5, 8, 9], 'umwege'],
+    ['lauter gut, drei Fallen (3, 8, 12)', (n) => (in_(3, 8, 12)(n) ? 'falle' : 'gut'), [2, 5, 10], 'umwege'],
+    ['lauter gut, drei vertretbar (3, 7, 11)', (n) => (in_(3, 7, 11)(n) ? 'vertretbar' : 'gut'), [7, 3, 10], 'letzte-meter'],
+    ['gut bis 9, ab 10 lauter Fallen', (n) => (n >= 10 ? 'falle' : 'gut'), [3, 7, 0], 'nicht-getragen'],
+    ['lauter vertretbar, nur 14 Falle', (n) => (n === 14 ? 'falle' : 'vertretbar'), [4, 0, 2], 'nicht-getragen'],
+  ];
+  for (const [name, regel, [geld, zeit, vertrauen], bilanz] of zeilen) {
+    const s = wegNach(regel);
+    assert.deepEqual(balken(G, s), { geld, zeit, vertrauen }, name);
+    assert.equal(bilanzAmEnde(G, s), bilanz, name);
+  }
+  // Kurzfassung (Stationen 1, 3, 5, 12; übrige zählen wie die gute Antwort)
+  for (const [w, erwartet, bilanz] of [['gut', [7, 9, 10], 'ruhig'], ['vertretbar', [7, 2, 10], 'letzte-meter'], ['falle', [4, 5, 7], 'umwege']] as const) {
+    const s = wegNach(() => w, true);
+    assert.deepEqual(balken(G, s), { geld: erwartet[0], zeit: erwartet[1], vertrauen: erwartet[2] }, `Kurzfassung ${w}`);
+    assert.equal(bilanzAmEnde(G, s), bilanz, `Kurzfassung ${w}`);
+  }
+});
+
 test('Begrenzung nach JEDER Antwort: voll bleibt voll, und die nächste Senkung wirkt sofort (Gegenprobe: erst am Ende begrenzt wäre anders)', () => {
-  // gut: Vertrauen 4 → 6 → 7 → 8 → 10 → 10 … (ohne Begrenzung 15)
-  assert.equal(balkenBis(G, weg('gut'), 4).vertrauen, 10);
+  // gut: Vertrauen 4 → 6 → 7 → 8 → 9 → 10 (Station 5), danach bleibt es bei 10 (ohne Begrenzung 21)
+  assert.equal(balkenBis(G, weg('gut'), 5).vertrauen, 10);
+  assert.equal(balkenBis(G, weg('gut'), 14).vertrauen, 10);
   // eigens gebaut: Vertrauen 4, dann −2, −2, −2 (begrenzt 0), dann +2, +2 → 4; erst am Ende begrenzt ergäbe es 2
   const g = structuredClone(G);
   const wirkung = [-2, -2, -2, 2, 2];
@@ -118,25 +151,34 @@ test('Kurzfassung: übersprungene Kapitel zählen wie die gute Antwort – auch 
   assert.deepEqual(offeneKapitel(G, neuerStand(true)).map((k) => k.id), ['s1', 's3', 's5', 's12']);
 });
 
-test('Schritte: ganze Geschichte 23, Kurzfassung 11; Vergleich nur in 7, Mini-Aufgaben nur auf dem langen Weg', () => {
+test('Schritte: ganze Geschichte 44, Kurzfassung 11; Vergleich nur in 12, Mini-Aufgaben nur auf dem langen Weg', () => {
   const lang = schritte(G, false);
   const kurz = schritte(G, true);
-  assert.equal(lang.length, 1 + 8 * 2 + 1 + 4 + 1);
+  const minis = G.kapitel.filter((k) => k.mini !== null).map((k) => k.id);
+  assert.deepEqual(minis, ['s2', 's4', 's5', 's7', 's8', 's9', 's10', 's11', 's12', 's13', 's14'], 'elf Mini-Aufgaben');
+  // Auftakt, je Station Szene und Frage, 11 Mini-Aufgaben, der Vergleich in 12, zwei Pausen (nach Akt I und II), Ende
+  assert.equal(lang.length, 1 + 14 * 2 + 11 + 1 + 2 + 1);
+  assert.equal(lang.filter((x) => x.ort === 'pause').length, 2);
   assert.equal(kurz.length, 1 + 4 * 2 + 1 + 1);
+  assert.ok(kurz.every((x) => x.ort !== 'pause'), 'die Kurzfassung hat keine Pause');
   const teile = (k: string, ss = lang): string[] => ss.flatMap((s) => (s.ort === 'kapitel' && s.kapitel === k ? [s.teil] : []));
-  assert.deepEqual(teile('s12'), ['szene', 'vergleich', 'frage']);
+  assert.deepEqual(G.kapitel.filter((k) => k.vergleich !== null).map((k) => k.id), ['s12'], 'Vergleich nur in Station 12');
+  assert.deepEqual(teile('s12'), ['szene', 'mini', 'vergleich', 'frage'], 'Mini vor dem Vergleich');
   assert.deepEqual(teile('s2'), ['szene', 'frage', 'mini']);
+  assert.deepEqual(teile('s11'), ['szene', 'mini', 'frage']);
+  assert.deepEqual(teile('s6'), ['szene', 'frage'], 'Station ohne Mini-Aufgabe');
   assert.deepEqual(teile('s5', kurz), ['szene', 'frage']);
-  assert.deepEqual(wegKapitel(G, true).map((k) => k.nr), [1, 3, 4, 7]);
+  assert.deepEqual(teile('s12', kurz), ['szene', 'vergleich', 'frage'], 'Kurzfassung: ohne Mini');
+  assert.deepEqual(wegKapitel(G, true).map((k) => k.nr), [1, 3, 5, 12]);
 });
 
-test('Brücken der Kurzfassung: vor 3 die 2, vor 7 die 5 und 6, vor dem Ende die 8', () => {
+test('Brücken der Kurzfassung: vor 3 die 2, vor 5 die 4, vor 12 die 6 bis 11, vor dem Ende die 13 und 14', () => {
   const k = (id: string) => kapitel(G, id);
   assert.deepEqual(bruecken(G, k('s1')).map((x) => x.id), []);
   assert.deepEqual(bruecken(G, k('s3')).map((x) => x.id), ['s2']);
-  assert.deepEqual(bruecken(G, k('s5')).map((x) => x.id), []);
-  assert.deepEqual(bruecken(G, k('s12')).map((x) => x.id), ['s8', 's10']);
-  assert.deepEqual(bruecken(G, null).map((x) => x.id), ['s14']);
+  assert.deepEqual(bruecken(G, k('s5')).map((x) => x.id), ['s4']);
+  assert.deepEqual(bruecken(G, k('s12')).map((x) => x.id), ['s6', 's7', 's8', 's9', 's10', 's11']);
+  assert.deepEqual(bruecken(G, null).map((x) => x.id), ['s13', 's14']);
 });
 
 test('Ablauf: weiter und zurück bleiben an den Rändern stehen; beginne springt in die erste Szene', () => {
@@ -246,13 +288,18 @@ test('Vergleich: Gegenproben des Drehbuchs – je eine Stufe anders', () => {
 });
 
 test('Wirkung je Antwort ist festgehalten (Drehbuch Abschnitt 4: Geld, Zeit, Vertrauen je −2 … +2) – auch dort, wo die Begrenzung auf 0–10 eine Änderung auf den Wegen verschluckt (R79)', () => {
-  const soll: Record<string, string[]> = {
-    s1: ['v0,-1,1', 'g0,0,2', 'f0,1,-2'], s2: ['g0,1,1', 'f0,-1,-1', 'v0,1,0'], s3: ['v-1,-1,-1', 'f-2,-2,-2', 'g-1,2,1'],
-    s5: ['f-2,-1,-2', 'g-1,0,2', 'v-1,-1,0'], s8: ['v-1,-1,0', 'f-1,0,-2', 'g1,0,2'], s10: ['g0,-1,1', 'v0,-1,0', 'f-1,-2,-2'],
-    s12: ['f-2,1,-2', 'g-1,1,1', 'v-1,-1,0'], s14: ['f0,0,-2', 'v0,0,0', 'g0,0,1'],
+  // Tabelle des Drehbuchs (Geld,Zeit,Vertrauen) je Station: gut · vertretbar · Falle – seit P19.6 alle 14 Stationen
+  const soll: Record<string, [string, string, string]> = {
+    s1: ['0,0,2', '0,-1,1', '0,1,-2'], s2: ['0,1,1', '0,1,0', '0,-1,-1'], s3: ['-1,2,1', '-1,-1,-1', '-2,-2,-2'],
+    s4: ['-1,-1,1', '-1,-1,0', '-2,-2,-1'], s5: ['-1,0,2', '-1,-1,0', '-2,-1,-2'], s6: ['0,0,1', '0,0,0', '-1,0,-2'],
+    s7: ['0,1,1', '0,-1,0', '-1,-2,-1'], s8: ['2,0,2', '-1,-1,0', '-1,0,-2'], s9: ['0,1,1', '0,0,0', '-1,-1,-2'],
+    s10: ['0,-1,1', '0,-1,0', '-1,-2,-2'], s11: ['0,-1,1', '0,-2,0', '-1,-2,-2'], s12: ['-1,1,1', '-1,-1,0', '-2,1,-2'],
+    s13: ['0,0,1', '0,-1,0', '-1,0,-2'], s14: ['0,0,1', '0,0,0', '0,0,-2'],
   };
+  assert.deepEqual(G.kapitel.map((k) => k.id), Object.keys(soll));
   for (const k of G.kapitel) {
-    assert.deepEqual(k.antworten.map((a) => `${a.wertung[0]}${a.wirkung.geld},${a.wirkung.zeit},${a.wirkung.vertrauen}`), soll[k.id], k.id);
+    const ist = (w: Wertung): string => { const a = k.antworten.find((x) => x.wertung === w); return `${a?.wirkung.geld},${a?.wirkung.zeit},${a?.wirkung.vertrauen}`; };
+    assert.deepEqual([ist('gut'), ist('vertretbar'), ist('falle')], soll[k.id], k.id);
   }
 });
 
@@ -353,8 +400,17 @@ test('R75: Lösungen der Mini-Aufgaben stehen fest (Wer eine Lösung ändert, pr
   assert.deepEqual(loesung('s2'), ['massnahme', 'aenderung', 'fruehwarnung', 'aufgabe', 'problem', 'risiko']);
   assert.deepEqual(loesung('s5'), ['sie', 'buergermeisterin', 'buergermeisterin', 'buergermeisterin', 'buergermeisterin', 'sie']);
   assert.deepEqual(loesung('s14'), ['uebergeben', 'geschlossen', 'uebergeben', 'geschlossen', 'geschlossen']);
+  // P19.6: die Lösungen der neuen Mini-Aufgaben (Drehbuch; Fachprüfung P19.8)
+  assert.deepEqual(loesung('s4'), ['stimmt', 'nachfordern', 'nachfordern', 'nachfordern'], 'Matrix-Probe');
+  assert.deepEqual(loesung('s7'), ['annehmen', 'nachfordern', 'annehmen', 'nachfordern', 'nachfordern'], 'Mappe nachfordern');
+  assert.deepEqual(loesung('s8'), ['stimmt', 'doppelt', 'stimmt', 'nachfordern', 'doppelt'], 'Pinnwand');
+  assert.deepEqual(loesung('s9'), ['ok', 'nachfordern', 'ok', 'nachfordern', 'nachfordern', 'ok'], 'Bericht gegenlesen');
+  assert.deepEqual(loesung('s12'), ['vergleich', 'aus', 'vergleich', 'vergleich'], 'Muss oder nicht?');
+  assert.deepEqual(loesung('s13'), ['nicht', 'beschlossen', 'nicht', 'beschlossen', 'nicht']);
+  assert.equal(kapitel(G, 's11')?.mini?.art, 'rueckfragen', 'Rückfragen haben keine Lösung, nur ein Kontingent');
+  assert.equal(kapitel(G, 's11')?.mini?.kontingent, 2);
   // Reihenfolge: die Liste ist die Lösung – Schutz, Meldung, Eintrag, Ursache, Lösung, Abschluss
-  assert.deepEqual((kapitel(G, 's10')?.mini?.posten ?? []).map((p) => p.html.split(' ').slice(0, 2).join(' ')), ['Der Bauleiter', 'Die Sicherheitskoordination', 'Die Projektsteuerin', 'Die Fachleute', 'Die Lösung', 'Erst wenn']);
+  assert.deepEqual((kapitel(G, 's10')?.mini?.posten ?? []).map((p) => p.html.split(' ').slice(0, 2).join(' ')), ['Der Bauleiter', 'Sicherheitskoordination und', 'Noch am', 'Die Fachleute', 'Die Lösung', 'Erst wenn']);
 });
 
 /**
@@ -375,19 +431,29 @@ function kippSatzFunde(text: string, v: NonNullable<ReturnType<typeof vergleichK
   return aus;
 }
 
-test('R75: Empfehlung und gute Folge in Kapitel 7 nennen den Kipppunkt so, wie er gerechnet ist (Klima „wichtig“ → gleichauf)', () => {
+test('R75: Empfehlung und gute Folge in Station 12 nennen den Kipppunkt so, wie er gerechnet ist (Klima „wichtig“ → gleichauf)', () => {
   const k = kapitel(G, 's12');
   assert.ok(k?.vergleich);
   const v = k.vergleich;
+  // gerechnet: Klima von „weniger wichtig“ (1) auf „wichtig“ (3) – dann liegen A und C gleichauf an der Spitze (A 55 · B 49 · C 55)
+  const kipp = vergleichLage(v, abgestimmteGewichte(v)).kipp.find((x) => x.kriterium === 'klima');
+  assert.ok(kipp);
+  assert.equal(kipp.gewicht, 3);
+  assert.deepEqual([...kipp.spitze].sort(), ['A', 'C']);
+  // P19.6: Die Sätze der Station nennen keine Stufe mehr in Anführungszeichen, sondern „wichtiger“ und „mehr“. Die Empfehlung sagt nur,
+  // dass sich die Rangfolge ändert; die gute Folge nennt „gleichauf“ für den späteren Einzug (C) – beides stimmt für den ersten Schritt
   const empfehlung = v.empfehlungHtml.replace(/<[^>]*>/gu, '');
-  const knapp = empfehlung.slice(empfehlung.indexOf('Der Vorsprung'));
-  assert.deepEqual(kippSatzFunde(knapp, v, 'klima', 'C'), []);
+  assert.match(empfehlung, /Zählen Strombedarf und Betrieb mehr, ändert sich die Rangfolge\./u);
   const gut = k.antworten.find((a) => a.wertung === 'gut');
   assert.ok(gut);
-  const satz = gut.folgeHtml.replace(/<[^>]*>/gu, '').match(/Schon bei[^.“]*/u)?.[0] ?? '';
-  assert.deepEqual(kippSatzFunde(satz, v, 'klima', 'C'), []);
-  // Gegenproben (Mutationen M7/M12 aus R75): „vorn“ statt „gleichauf“ und eine falsche Stufe werden gefunden
-  assert.ok(kippSatzFunde(knapp.replace('gleichauf', 'vorn'), v, 'klima', 'C').length > 0);
-  assert.ok(kippSatzFunde(satz.replace('gleichauf', 'vorn'), v, 'klima', 'C').length > 0);
-  assert.ok(kippSatzFunde(knapp.replace('„wichtig“', '„sehr wichtig“'), v, 'klima', 'C').length > 0);
+  const folge = gut.folgeHtml.replace(/<[^>]*>/gu, '');
+  assert.match(folge, /Klima und Betrieb mir wichtiger wären\?.*Dann läge der spätere Einzug gleichauf/u);
+  assert.doesNotMatch(folge, /\bvorn\b/u, 'nicht „vorn“ statt „gleichauf“');
+  // der Satz der Seite für diese Stellung ist „gleichauf“ (nicht vorn)
+  assert.equal(vergleichLage(v, { ...abgestimmteGewichte(v), klima: 3 }).satz, 'gleichauf');
+  // Gegenproben für den Prüfer (Mutationen M7/M12 aus R75): „vorn“ statt „gleichauf“ und eine falsche Stufe werden gefunden
+  const bsp = 'Wären Strombedarf und Betrieb „wichtig“, läge der spätere Einzug gleichauf.';
+  assert.deepEqual(kippSatzFunde(bsp, v, 'klima', 'C'), []);
+  assert.ok(kippSatzFunde(bsp.replace('gleichauf', 'vorn'), v, 'klima', 'C').length > 0);
+  assert.ok(kippSatzFunde(bsp.replace('„wichtig“', '„sehr wichtig“'), v, 'klima', 'C').length > 0);
 });

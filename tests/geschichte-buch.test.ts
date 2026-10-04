@@ -330,7 +330,8 @@ test('Regie: der Knopf „Entscheidungsbuch zeigen“ schaltet die Leinwand um u
     r.entferne();
   }
   // Story ohne Buch: kein Knopf
-  const r2 = erzeugeRegie({ inhalte, kanal, version: 'Test', speicher: speicher(), regieGeschichte, regieKapitel, regieWerkzeug, oeffneLeinwand: () => undefined, takt: 100000 });
+  // (seit P19.6 trägt die echte Story ein Buch, deshalb eine Story ohne Buch aus der echten)
+  const r2 = erzeugeRegie({ inhalte: { ...inhalte, geschichte: Object.assign(structuredClone(g), { buch: undefined }) }, kanal, version: 'Test', speicher: speicher(), regieGeschichte, regieKapitel, regieWerkzeug, oeffneLeinwand: () => undefined, takt: 100000 });
   assert.equal(r2.element.querySelector('[data-pruef="regie-buch"]'), null);
   r2.entferne();
 });

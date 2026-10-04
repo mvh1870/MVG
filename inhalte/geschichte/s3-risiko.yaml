@@ -1,6 +1,7 @@
-# 3 · Wie gefährlich ist das? (Drehbuch Abschnitt 4, Kapitel 3)
+# 3 · Wie gefährlich ist das? (Drehbuch v2 Akt I, Station 3; Vorlage docs/drehbuch-v2/01-akt-1.md)
 # Die Frühwarnung aus 2 ist geklärt und wird Risiko; Wahrscheinlichkeit hoch, höchste belegte Auswirkung Stufe 4 → vorrangig.
 # Gegenmaßnahme über 100.000 Euro aus der Reserve und „Abwarten“ (Annahme eines wesentlichen Risikos) → Bürgermeisterin.
+# Echo: E2 kommt hier an (Szene, Zeile 2); E3 (→ 7) und E4 (→ 12) entstehen hier. Buch-Zeile 3 steht in rahmen.yaml.
 nr: 3
 titel: Wie gefährlich ist das?
 zeit: April 2026
@@ -8,71 +9,85 @@ campus: { stufe: 1, jahreszeit: fruehling, licht: tag }
 kurzfassung: true
 thema: vorgaenge
 werkzeuge: [{ id: risiko-grenzen, beispiel: ris-009 }]
-belege: [v24:hb-1.2, v24:hb-1.3, v24:hb-2, v24:hb-3, v24:hb-3.1, k4.4-p1, k3.2-t1, v24:va-4.1]
+belege: [v24:hb-1.2, v24:hb-1.3, v24:hb-2, v24:hb-3, v24:hb-3.1, k4.4-p1, k3.2-t1, k4.2-p3, v24:va-4.1]
 bild-szene: matrix
 bild-frage: warnschild
 
 einstieg: |
-  April 2026. Die Bagger sind da, die Baugrube wird jeden Tag tiefer, und die Linden am Rand treiben aus. Die Antwort der Hersteller liegt auf dem Tisch: eine Mappe mit drei Schreiben, daneben ein Kalender, auf dem jemand den Sommer 2028 dick eingekreist hat.
+  April 2026. Die Bagger sind da, die Baugrube wird jeden Tag tiefer. Die Antwort der Hersteller liegt auf dem Tisch: eine Mappe mit drei Schreiben, daneben ein Kalender, auf dem jemand den Sommer 2028 dick eingekreist hat.
 
 einstieg-kurz: |
   April 2026. Die Hersteller haben geantwortet.
 
 szene:
-  - { figur: schwung, text: "Drei von vier Herstellern liefern jetzt erst nach einem halben Jahr statt nach vier Monaten. Vielleicht wird es ja wieder besser." }
-  - { figur: faden, text: "Ich habe die Verzögerung als Risiko bewertet. Wie wahrscheinlich ist sie? Hoch. Wie schlimm, wenn sie eintritt? Dann fangen die Holzbauer bis zu zehn Wochen später an, und der Schulstart wackelt." }
-  - { figur: lot, kurzfassung: false, text: "Zehn Wochen. Die holt keiner wieder auf, ich auch nicht." }
-  - { figur: schwung, kurzfassung: false, text: "Wir könnten auch einfach hoffen. Das hat schon oft geklappt." }
-  - { figur: faden, kurzfassung: false, text: "Hoffen ist keine Entscheidung. Abwarten kann eine sein – aber dann muss die Bürgermeisterin ausdrücklich entscheiden, dass die Stadt das Risiko trägt." }
-  # R76: „abwarten“ steht auch in der Kurzfassung vor der Frage (die Zeile darüber fällt dort weg)
-  - { figur: faden, text: "Hohe Wahrscheinlichkeit und schwere Folgen heißen: vorrangig bearbeiten. Ein Ausweg: die Holzelemente getrennt früher ausschreiben, also früher Angebote einholen – das kostet rund 150.000 Euro zusätzlich. Oder abwarten – dann trägt die Stadt das Risiko." }
-  - { figur: klingel, kurzfassung: false, text: "Bitte sagen Sie mir nicht, dass meine Schule im Sommer 2028 noch in Containern sitzt." }
+  - { figur: schwung, text: "Drei von vier Herstellern brauchen jetzt ein halbes Jahr statt vier Monate. Vielleicht wird es ja wieder besser." }
+  # Zeile 2: lange Fassung mit Echo E2 (ersetzt „Ich habe es als Risiko bewertet.“); Kurzfassung: die alte Zeile (text-kurz), weil Station 2 dort nur Brücke ist
+  - figur: faden
+    echo: E2
+    fortsetzung: "Wie wahrscheinlich ist es? Hoch. Wie schlimm, wenn es so kommt? Dann fangen die Holzbauer bis zu zehn Wochen später an, und der Schulstart wackelt."
+    text-kurz: "Ich habe es als Risiko bewertet. Wie wahrscheinlich ist es? Hoch. Wie schlimm, wenn es so kommt? Dann fangen die Holzbauer bis zu zehn Wochen später an, und der Schulstart wackelt."
+  - { figur: lot, kurzfassung: false, text: "Zehn Wochen. Die holt keiner rein, ich auch nicht." }
+  - { figur: schwung, kurzfassung: false, text: "Wir könnten auch einfach hoffen. Bei meinen letzten drei Projekten hat sich das jedes Mal eingerenkt." }
+  - { figur: faden, kurzfassung: false, text: "Hoffen ist kein Weg." }
+  # Regie: bei dieser Zeile schreibt Fadens Hand das Wort „vorrangig“ neben das markierte Feld der Matrix (Bildvariante, kein neuer Text)
+  - { figur: faden, text: "Hoch und schwer zusammen heißt: vorrangig bearbeiten. Ein Ausweg: Wir schreiben die Holzelemente in einem eigenen Paket früher aus, holen also früher Angebote ein. Das kostet rund 150.000 Euro mehr. Je länger wir warten, desto kleiner wird dieser Spielraum. Oder wir warten ab – dann trägt die Stadt das Risiko." }
+  - { figur: klingel, kurzfassung: false, zusatz: stellt eine Messingglocke ins Regal, text: "Die habe ich aus der alten Schule mitgebracht. Bitte sagen Sie mir nicht, dass meine Schule 2028 noch in Containern sitzt." }
 
-# R76: gekürzt, um die Ergänzung „oder abwarten“ in der Kurzfassung auszugleichen (Lesezeit ≤ 10,4 Minuten)
 frage: "Die Projektsteuerin hat bewertet. Was machen Sie damit?"
 
 antworten:
   - wertung: vertretbar
-    text: Sie sagen der Bürgermeisterin sofort in zwei Sätzen Bescheid. Die Vorlage mit allen Wegen kommt erst in einem Monat in den regulären Lenkungskreis.
+    text: "Sie lassen der Bürgermeisterin sofort Bescheid geben. Die Vorlage, die schriftliche Entscheidungsgrundlage, geht Ende April in den regulären Lenkungskreis."
     balken: { geld: -1, zeit: -1, vertrauen: -1 }
     bild: kalender
     folge: |
-      Die Bürgermeisterin weiß Bescheid und wartet auf die Vorlage. Einen Monat später ist die Lage dieselbe, nur die Zeit ist knapper. Sie entscheidet im Lenkungskreis wie empfohlen: früher ausschreiben, das Geld kommt aus der Reserve.
+      Die Bürgermeisterin weiß Bescheid und wartet auf die Vorlage. Die Vorlage kommt Ende April in den regulären Lenkungskreis; die Lage ist dieselbe, nur die Zeit ist knapper. Die Bürgermeisterin entscheidet wie empfohlen: früher ausschreiben, das Geld kommt aus der Reserve.
 
-      Dann fragt sie: „Warum nicht gleich mit der Entscheidungsvorlage? Ein Monat ist bei so etwas viel.“ Die Holzelemente werden ausgeschrieben – einen Monat später, als es möglich gewesen wäre.
+      Dann fragt sie: „Warum nicht gleich mit Vorlage? Drei Wochen sind bei so etwas viel.“ Die Holzelemente werden Mitte Mai ausgeschrieben, gut drei Wochen später, als es möglich gewesen wäre.
   - wertung: falle
-    text: Sie warten mit der Meldung, bis der vierte Hersteller geantwortet hat – mit einer bestätigten Lieferzeit überzeugen Sie die Bürgermeisterin eher.
+    text: "Sie warten mit der Meldung, bis der vierte Hersteller geantwortet hat und die Zahl bestätigt ist."
     balken: { geld: -2, zeit: -2, vertrauen: -2 }
     bild: telefon
     folge: |
-      Clara Faden schüttelt freundlich den Kopf: „Ein vorrangiges Risiko melde ich sofort – nicht erst, wenn alles bestätigt ist.“ Sie setzt das Risiko auf die Tagesordnung des Lenkungskreises, und die Bürgermeisterin ruft an, bevor Sie es ihr erklären konnten: „Sie wollten damit warten? Was weiß ich sonst noch nicht?“
+      Clara Faden schüttelt freundlich den Kopf: „Das Risiko ist vorrangig, deshalb gehört es jetzt zur Bürgermeisterin – ich muss nicht auf die bestätigte Zahl warten.“ Sie setzt das Risiko auf die Tagesordnung des Lenkungskreises, und die Bürgermeisterin ruft an, bevor Sie es ihr erklären konnten: „Sie wollten damit warten? Was weiß ich sonst noch nicht?“
 
-      Die Vorlage aber fehlt noch, weil Sie die Bestätigung abwarten wollten. Sie liegt erst sechs Wochen später auf dem Tisch. Dann entscheidet die Bürgermeisterin: früher ausschreiben, aus der Reserve – nur kostet es jetzt mehr, weil die Ausschreibung eilt.
+      Die Vorlage liegt erst am Ende des Monats vor, der Lenkungskreis berät, und die Bürgermeisterin entscheidet noch im April: früher ausschreiben, das Geld kommt aus der Reserve. Die Ausschreibung geht aber erst Mitte Mai hinaus, weil davor alle Schritte später begannen; die Hersteller kalkulieren neu.
   - wertung: gut
-    text: "Sie sagen der Bürgermeisterin sofort Bescheid; die Vorlage – früher ausschreiben oder abwarten – liegt ihr diese Woche vor."
+    text: "Sie lassen der Bürgermeisterin sofort Bescheid geben; die Vorlage – früher ausschreiben oder abwarten – liegt ihr diese Woche vor."
     balken: { geld: -1, zeit: 2, vertrauen: 1 }
     bild: stempel
     folge: |
-      Die Bürgermeisterin liest die Vorlage am Abend: zwei Wege, nach vorher vereinbarten Gesichtspunkten verglichen, jeweils mit Kosten, Zeit und dem Risiko, das trotzdem bleibt, dazu die Empfehlung, früher auszuschreiben.
+      Die Bürgermeisterin liest die Vorlage am Abend: zwei Wege, dazu die Empfehlung, früher auszuschreiben.
 
-      Im Lenkungskreis wird kurz beraten, dann entscheidet sie: früher ausschreiben, das Geld kommt aus der Reserve. „Abwarten hieße, ich trage das Risiko. Das will ich nicht.“ Zwei Wochen später sind die Holzelemente ausgeschrieben, und Theo Lot streicht im Kalender ein dickes Fragezeichen durch.
+      Der Lenkungskreis berät kurz, dann entscheidet die Bürgermeisterin: früher ausschreiben, das Geld kommt aus der Reserve. „Abwarten hieße, ich trage das Risiko. Das will ich nicht.“
+
+      Eine Woche später sind die Holzelemente ausgeschrieben, und Theo Lot nickt, den Blick auf den eingekreisten Sommer 2028 im Kalender.
     folge-kurz: |
-      Die Bürgermeisterin liest die Vorlage am Abend: zwei Wege, nach vorher vereinbarten Gesichtspunkten verglichen, jeweils mit Kosten, Zeit und dem Risiko, das trotzdem bleibt, dazu die Empfehlung, früher auszuschreiben.
+      Der Lenkungskreis berät kurz, dann entscheidet die Bürgermeisterin: früher ausschreiben, das Geld kommt aus der Reserve.
 
-      Im Lenkungskreis wird kurz beraten, dann entscheidet sie: früher ausschreiben, das Geld kommt aus der Reserve. „Abwarten hieße, ich trage das Risiko. Das will ich nicht.“ Zwei Wochen später sind die Holzelemente ausgeschrieben.
+      Eine Woche später sind die Holzelemente ausgeschrieben, und Theo Lot nickt, den Blick auf den eingekreisten Sommer 2028 im Kalender.
 
-gut: |
-  Ein Risiko wird danach eingestuft, wie wahrscheinlich es ist und wie schwer seine schlimmste nachweisbare Folge wäre. Ist beides hoch, ist das Risiko vorrangig: Es wird zuerst bearbeitet, und die Bürgermeisterin erfährt es sofort, nicht erst im nächsten Bericht.
+gut:
+  - { text: "Ein Risiko wird nach Wahrscheinlichkeit und schlimmster belegbarer Folge eingestuft.", kurzfassung: false }
+  - "Bei „vorrangig“ erfährt die Bürgermeisterin davon, und die Entscheidung wird rechtzeitig vorbereitet. Droht eine Möglichkeit verloren zu gehen, wird das auch ohne diese Einstufung so behandelt."
+  - { text: "Ob die Stadt ein großes Risiko trägt oder Reserve einsetzt, entscheidet die Bürgermeisterin – nicht Architekt, Projektsteuerin oder Sie.", kurzfassung: false }
 
-  Ob die Stadt ein großes Risiko trägt oder Geld aus der Reserve dagegen einsetzt, entscheidet die Bürgermeisterin – nicht der Architekt, nicht die Projektsteuerin und auch nicht Sie.
+dahinter:
+  - "Die Bewertung macht aus einer Sorge eine Rangfolge: Was vorrangig ist, wird zuerst bearbeitet, und wer ein Risiko tragen will, muss das ausdrücklich entscheiden."
+  - { text: "Wer auf die sichere Zahl wartet, verliert die Möglichkeit, früher auszuschreiben.", kurzfassung: false }
 
-gut-kurz: |
-  Ein Risiko wird nach Wahrscheinlichkeit und Schwere der schlimmsten nachweisbaren Folge eingestuft. Ist beides hoch, ist es vorrangig, wird zuerst bearbeitet und der Bürgermeisterin sofort gemeldet. Ob die Stadt ein großes Risiko trägt oder Geld aus der Reserve dagegen einsetzt, entscheidet die Bürgermeisterin – nicht der Architekt, nicht die Projektsteuerin und auch nicht Sie.
-
-dahinter: "Die Bewertung macht aus einer Sorge eine Rangfolge: Was vorrangig ist, wird zuerst bearbeitet – und wer ein Risiko in Kauf nimmt, muss das ausdrücklich entscheiden."
+vertiefung:
+  form: warum-so
+  titel: Was heißt „vorrangig“?
+  text:
+    - "Die Risikomatrix, ein Raster aus fünf mal fünf Feldern, zeigt nur, womit die Projektsteuerin zuerst anfängt. Sie ist keine Entscheidung und kein Geldwert. Wahrscheinlichkeit und schwerste Folge, die sich belegen lässt, werden je in fünf Stufen gemessen und miteinander multipliziert. Beim Holz sind beide Werte hoch, also vier mal vier."
+    - "Kleine Ergebnisse heißen beobachten: Es gibt einen Prüftermin und einen Auslöser für eine neue Bewertung. Mittlere heißen gezielt bearbeiten: Eine Maßnahme bekommt eine Verantwortliche und einen Termin. Große heißen vorrangig: Die Fachleute schätzen ein, die Bürgermeisterin wird informiert, die Entscheidung wird rechtzeitig vorbereitet."
+    - "Zwei Besonderheiten: Hat die Folge die höchste Stufe (5), ist ein Risiko immer vorrangig, auch wenn es sehr unwahrscheinlich ist. Und wo eine Möglichkeit verloren zu gehen droht, wie hier das frühere Ausschreiben, wird das unabhängig von dieser Einstufung behandelt."
+    - "Fehlt noch eine Angabe, gilt sie nicht als null; die Einstufung bleibt vorläufig, bis sie geklärt ist."
+    - "Zum Vergleich: Wäre die Antwort der Hersteller nur ein mittleres Risiko gewesen, hätte Clara Faden keine Vorlage geschrieben, sondern eine Maßnahme angestoßen: Konrad Schwung fragt nach, bis zum Monatsende, mit einem Namen und einem Termin. Auch das ist Arbeit, aber ohne Eile."
 
 regie:
-  notiz: "Kern: Was vorrangig ist, erfährt der Bauherr umgehend, nicht erst im nächsten Bericht; ob die Stadt ein großes Risiko trägt oder Reserve einsetzt, entscheidet die Bürgermeisterin selbst."
+  notiz: "Kern: Bei „vorrangig“ erfährt der Bauherr davon, und die Entscheidung wird rechtzeitig vorbereitet; ob die Stadt ein großes Risiko trägt oder Reserve einsetzt, entscheidet die Bürgermeisterin selbst."
   leitfragen:
     - Wann erfährt bei Ihnen der Bauherr von einem vorrangigen Risiko – sofort oder im nächsten Bericht?
     - Wer entscheidet bei Ihnen, ob ein großes Risiko getragen wird?

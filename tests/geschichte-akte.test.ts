@@ -27,8 +27,10 @@ const { wegSkizze } = await import('../src/grafik/weg-skizze.ts');
 const { W } = await import('../src/ui/woerter.ts');
 type Stand = ReturnType<typeof E.neuerStand>;
 
-const ECHT = inhalte.geschichte;
-assert.ok(ECHT);
+const ECHT_MIT_AKTEN = inhalte.geschichte;
+assert.ok(ECHT_MIT_AKTEN);
+// seit P19.6 trägt die echte Story drei Akte; die Gegenprobe „ohne Akte wie bisher“ nimmt eine Kopie ohne sie
+const ECHT = Object.assign(structuredClone(ECHT_MIT_AKTEN), { akte: [] });
 const g = synthetischeAkteStory(ECHT);
 const ohne = synthetischeAkteStory(ECHT, { akte: false });
 /** Lesezeit der synthetischen Story: 100 Wörter je Schritt (die Messung prüft tests/lesezeit.test.ts) */
@@ -73,7 +75,9 @@ test('Schritte: Pause am Ende von Akt I und II (nicht III), nur auf dem ganzen W
   assert.equal(E.schritte(ohne, false).length, lang.length - 2);
 });
 
-test('Ohne Akte wie bisher: die echte Story hat keine Akte und keine Pause', () => {
+test('Ohne Akte wie bisher: die echte Story ohne ihre Akte hat keine Pause und je Station eine Brückenkarte; mit Akten hat sie drei und zwei Pausen', () => {
+  assert.equal(ECHT_MIT_AKTEN.akte.length, 3);
+  assert.equal(E.schritte(ECHT_MIT_AKTEN, false).filter((x) => x.ort === 'pause').length, 2);
   assert.deepEqual(ECHT.akte, []);
   assert.ok(E.schritte(ECHT, false).every((s) => s.ort !== 'pause'));
   for (const vor of [...ECHT.kapitel, null]) assert.ok(E.brueckenKarten(ECHT, vor).every((x) => x.length === 1), 'je Station eine Karte');
@@ -261,7 +265,7 @@ test('Ortszeile: „Station 7 von 14 · Akt II · noch etwa 9 Minuten“ (Restze
   assert.equal(ortText(g, E.neuerStand(), lz), W.geschichte.auftakt);
   assert.equal(ortText(g, { ...E.neuerStand(), schritt: { ort: 'ende' } }, lz), W.geschichte.endeOrt);
   // ohne Akte: wie bisher „3 von 8 · Titel“
-  assert.match(ortText(ECHT, an('s3', 'szene')), /^3 von 8 · /u);
+  assert.match(ortText(ECHT, an('s3', 'szene')), /^3 von 14 · /u);
   // deterministisch: dieselbe Zeile, so oft man fragt
   assert.equal(ortText(g, an('s7', 'szene'), lz), ortText(g, an('s7', 'szene'), lz));
   const leiste = leisteOben(g, an('s7', 'szene'), true, () => undefined, lz);
@@ -378,7 +382,9 @@ test('Fläche: durch die Pause mit Weiter und mit dem Knopf der Pause, Fokus auf
   const f = erzeugeGeschichte({ g, speicher: sp, themaTitel: () => null, lesezeit: lz });
   document.body.replaceChildren(f.element);
   const klick = (pruef: string): void => { (f.element.querySelector(`[data-pruef="${pruef}"]`) as HTMLElement).click(); };
-  klick('weiter'); // s5 (wie k5) hat keine Mini-Aufgabe: nach der Frage kommt die Pause
+  klick('weiter'); // s5 trägt seit P19.6 eine Mini-Aufgabe (nach der Folge): erst sie, dann die Pause
+  assert.deepEqual(f.stand().schritt, { ort: 'kapitel', kapitel: 's5', teil: 'mini' });
+  klick('weiter');
   assert.equal(f.stand().schritt.ort, 'pause');
   assert.equal((document.activeElement as HTMLElement).dataset['pruef'], 'gs-titel');
   assert.match(text(f.element.querySelector('[data-pruef="gs-ort"]') as Element), /^Pause nach Akt I/u);
@@ -409,6 +415,9 @@ test('Fläche: Tastatur (Pfeil rechts und links) läuft durch die Pause', () => 
   const jetzt = f.stand().schritt;
   assert.equal(jetzt.ort === 'kapitel' ? jetzt.teil : '', 'frage');
   (f.element.querySelector('[data-pruef="antwort-1"]') as HTMLElement).click();
+  taste('ArrowRight');
+  // s5 trägt seit P19.6 eine Mini-Aufgabe (nach der Folge): erst sie, dann die Pause
+  assert.deepEqual(f.stand().schritt, { ort: 'kapitel', kapitel: 's5', teil: 'mini' });
   taste('ArrowRight');
   assert.equal(f.stand().schritt.ort, 'pause');
   taste('ArrowRight');

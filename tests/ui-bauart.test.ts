@@ -172,7 +172,7 @@ test('Startseite (O-57, P17.7): Story-Karte mit Campus und den Figuren der Story
   const ids = (story.getAttribute('aria-labelledby') ?? '').split(' ');
   assert.deepEqual(ids.map((id) => el.querySelector(`#${id}`)?.textContent), [`${W.start.storyKicker}${W.start.storyTitel}`, W.start.storyLos]);
   for (const id of (story.getAttribute('aria-describedby') ?? '').split(' ')) assert.ok(el.querySelector(`#${id}`), id);
-  assert.match(story.textContent ?? '', /Acht Entscheidungen · etwa 25 Minuten \(Kurzfassung: etwa 10 Minuten\)/u);
+  assert.match(story.textContent ?? '', /Vierzehn Entscheidungen · etwa 40 Minuten \(Kurzfassung: etwa 10 Minuten\)/u);
   assert.doesNotMatch(el.textContent ?? '', /Kapitel|Station/u);
   // Theorie: vier Teile in Lesereihenfolge
   assert.deepEqual([...el.querySelectorAll('[data-pruef="weg-theorie"] .tuer-teile li')].map((li) => li.getAttribute('data-teil')), ['1', '2', '3', '4']);
@@ -343,7 +343,8 @@ test('Regie: Notiz und Leitfragen, Kundenwahl, „weiter“ sendet den öffentli
     sprung.dispatchEvent(new Event('change'));
     assert.match(r.element.querySelector('[data-pruef="regie-notiz"]')?.textContent ?? '', /Gewichte gemeinsam/u);
     assert.ok(r.element.querySelector('[data-pruef="regie-leitfragen"]'));
-    // Vergleich: die Regie stellt die Stufen
+    // Vergleich: die Regie stellt die Stufen (seit P19.6 steht in Station 12 die Mini-Aufgabe „Muss oder nicht?“ vor dem Vergleich)
+    (r.element.querySelector('[data-pruef="regie-weiter"]') as HTMLElement).click();
     (r.element.querySelector('[data-pruef="regie-weiter"]') as HTMLElement).click();
     (r.element.querySelector('[data-pruef="regie-stufe-klima-3"]') as HTMLElement).click();
     const mitStufe = gesendet.filter((n) => n.art === 'zustand').at(-1);

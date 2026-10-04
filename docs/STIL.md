@@ -334,7 +334,7 @@ Klassennamen deutsch. Zustände über `ist-…`-Klassen oder ARIA (`aria-current
   <p class="start-fiktiv">…</p>
 </div>
 ```
-Hintergrund `.start-hintergrund` mit dem Campus (`src/grafik/bauplan.ts`, `campus()`), in `start.css`.
+Kopfbereich `.start-einstieg`: links Überschrift und Leittext, rechts `.start-zeichnung` mit dem Campus als Linienzeichnung (`src/grafik/bauplan.ts`, `campus()`), in `start.css`; die Zeichnung liegt nie hinter Karten oder Text (O-60), unter 961 px entfällt sie.
 
 ### Story
 Ein Fluss mit „Weiter“, Schritt für Schritt (L-232): Auftakt (Figuren, Balken, Wahl ganze Geschichte oder Kurzfassung) · je Kapitel Szene (`gs-buehne`, Campus und Dialog in Sprechblasen `gs-blase`), in Kapitel 7 der Vergleich (`gs-gewicht`), Frage mit drei Antworten (`gs-antworten`), nach der Wahl im selben Schritt Folge (`gs-folge`), Balken und „So macht man es gut“, in jedem zweiten Kapitel die Mini-Aufgabe, am Kapitelende der Kasten „Das steckt dahinter“ (`gs-kasten-dahinter`) · Ende mit Bilanz (`gs-bilanz`). Brückensätze der Kurzfassung oben im nächsten Schritt (`gs-bruecke`). Aufbau und Klassen im Einzelnen: `src/ui/flaechen/geschichte.ts`; Campus `src/grafik/campus-iso.ts`. In `geschichte.css`.

@@ -19,7 +19,7 @@ Zum Abhaken beim Durchsehen der Internetseite (lokal: `dist/index.html` im Brows
 - [ ] Story: fünf Figuren mit Steckbrief, Balken Geld · Zeit · Vertrauen ohne Zahlen; ganzer Weg etwa 25 Minuten, Kurzfassung (Kapitel 1, 3, 4, 7 mit Brückensätzen) etwa 10 Minuten; ein Fluss mit „Weiter“, Fortschrittslinie, ein Ende mit Bilanz (O-51 bis O-53, L-246, R75).
 - [ ] Explore: neun Werkzeuge, die Kacheln unterscheiden Nachschlagen und Ausprobieren; Ampel und Grafik je Werkzeug verständlich; der Monatsbericht und die anderen Werkzeuge drucken auf eine Seite A4 (Knopf „Drucken“, auch im Höchstfall); der Seitenmesser des Monatsberichts sagt nie „passt“, wo das Blatt zwei Seiten braucht; Verknüpfung aus Story und Themen führt zum passenden Werkzeug und Beispiel; nichts wird gespeichert (O-59).
 - [ ] Theorie als Buch: vier Teile, Kapitel 1–15 mit Kurzsatz, Glossar als Anhang 16, Karten zum Umdrehen, Verständnisfragen und Fortschritt „n von 15“ (O-54, O-55).
-- [ ] Bauplan nur als Hintergrund der Startseite und im Kopf jedes Themas (eigenes Motiv je Teil), darunter ruhige Fläche; die Story hat keinen; Text bleibt gut lesbar (O-45, O-55).
+- [ ] Bauplan nur im Kopfbereich der Startseite (Schulcampus als Linienzeichnung rechts neben der Überschrift, von nichts verdeckt) und im Kopf jedes Themas (eigenes Motiv je Teil), darunter ruhige Fläche; die Story hat keinen; Text bleibt gut lesbar (O-45, O-55, O-60).
 - [ ] Story-Optik: auf jedem Schritt eine Grafik; der isometrische Campus wächst vom leeren Grundstück bis zum Schulstart mit Kindern (O-53).
 - [ ] Farben und Schriften wie Variante B (O-11, O-12, O-22).
 - [ ] Links zu bauherr-mentoren.com sachlich und leise, kein Vertrieb (O-1, O-44).

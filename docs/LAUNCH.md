@@ -6,7 +6,7 @@ Der Governance Kompass ist eine Internetseite. Ausgeliefert wird der fertige Ord
 
 | Datei | Zweck |
 |---|---|
-| `index.html` | die Seite selbst (Start, Story, Theorie, Explore, Präsentieren); Schriften, Bilder und Skript sind eingebettet |
+| `index.html` | die Seite selbst (Start, Story, Theorie, Explore mit neun Werkzeugen, Präsentieren); Schriften, Bilder und Skript sind eingebettet |
 | `impressum.html` | Impressum (Bauherr Mentoren GmbH i. G., vertreten durch Martin Mohr) |
 | `datenschutz.html` | Datenschutzerklärung für eine Seite zum Lesen (keine Cookies, kein Tracking, keine Dritten) |
 | `robots.txt` | erlaubt Suchmaschinen alles und nennt die Sitemap |

@@ -1,26 +1,21 @@
 /* =============================================================================================
    MVG · Startseite (O-21, O-57, P17.7): ruhiger Einstieg mit drei Wegen, leise „Wer steht dahinter“,
-   dahinter der Schulcampus als Linienzeichnung mit goldenen Maßlinien (O-45, deutlich sichtbar), die
-   Baukörper in den Akzenttönen. Die Story-Karte steht breit oben (Campus und Figuren), darunter Theorie
+   daneben der Schulcampus als Linienzeichnung mit goldenen Maßlinien (O-45, O-60: neben der Überschrift,
+   nie von Karten verdeckt), die Baukörper in den Akzenttönen. Die Story-Karte steht breit oben (Campus und Figuren), darunter Theorie
    (vier Teile in ihren Farben) und Explore (Gegenstände der Werkzeuge). Nur Tokens aus tokens.css.
    ============================================================================================= */
 
 .seite-start { --fokus: var(--navy); }
 .seite-start :focus-visible { box-shadow: 0 0 0 6px var(--fokus-hof); }
 
-.start-hintergrund {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
-  padding: 72px 2vw 0 38vw;
-  opacity: .6;
-  overflow: hidden;
+.start-einstieg { display: grid; grid-template-columns: minmax(0, 1fr); align-items: center; gap: var(--a-5); }
+.start-zeichnung { display: none; pointer-events: none; }
+.start-zeichnung .bauplan { display: block; width: 100%; height: auto; max-height: 215px; }
+@media (min-width: 961px) {
+  /* O-60: Überschrift links, die Zeichnung der Schule rechts daneben – nichts liegt darüber oder dahinter */
+  .start-einstieg { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
+  .start-zeichnung { display: block; }
 }
-.start-hintergrund .bauplan { width: 100%; max-height: 58vh; }
 /* Baukörper in den Akzenttönen: Gesamtschule Blau, Grundschule Orange, Sporthalle Grün; Bäume Grün */
 .bauplan-start .bp-b0, .bauplan-start .bp-b0.fenster { stroke: var(--akzent-blau-text); fill: var(--akzent-blau-soft); }
 .bauplan-start :is(.bp-b1, .bp-b2), .bauplan-start :is(.bp-b1, .bp-b2).fenster { stroke: var(--akzent-orange-text); fill: var(--akzent-orange-soft); }
@@ -122,7 +117,6 @@
   .tuer[data-weg="story"] { grid-template-columns: minmax(0, 1fr); }
   .tuer-bild { order: 0; min-height: 0; aspect-ratio: 16 / 9; }
   /* R67: schmal läuft die Zeichnung durch den Leittext – so leise wie in der Story, Kontrast ≥ 4,5 : 1 */
-  .start-hintergrund { padding: 60px 0 0 20vw; opacity: .16; }
 }
 @media (max-width: 760px) {
   .tueren { grid-template-columns: minmax(0, 1fr); }

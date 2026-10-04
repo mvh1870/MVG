@@ -129,7 +129,7 @@ Vorgänge wechseln ihre Art, wenn sich der Sachverhalt klärt oder ändert:
 ---
 symbol: puzzle
 ---
-Was zusammengehört, wird miteinander verknüpft, damit keine Wirkung zweimal in die Rechnung eingeht. Einträge dürfen zusammengefasst werden, wenn weiterhin erkennbar ist, wer verantwortlich ist, welche [[Maßnahme|Maßnahmen]] laufen und auf welchem Weg entschieden wird. Eine Höchstzahl an Risiken gibt es nicht; ein Auslöser kann mehrere Risiken nach sich ziehen.
+Was zusammengehört, wird miteinander verknüpft, ohne dass dieselbe Wirkung zweimal gezählt wird. Einträge dürfen zusammengefasst werden, wenn weiterhin erkennbar ist, wer verantwortlich ist, welche [[Maßnahme|Maßnahmen]] laufen und auf welchem Weg entschieden wird. Eine Höchstzahl an Risiken gibt es nicht; ein Auslöser kann mehrere Risiken nach sich ziehen.
 :::
 
 ::: etappen
@@ -260,7 +260,7 @@ Ein Wert genau auf einer Grenze gehört zur niedrigeren Stufe. Fehlende Angaben 
 ---
 titel: Die 5×5-Matrix und was sie auslöst
 ---
-Bewertet werden nur Risiken: Die Wahrscheinlichkeit (1 bis 5), multipliziert mit der höchsten belegten Auswirkung (1 bis 5), ergibt die Priorität der Bearbeitung. Kosten, Termin und Qualität behalten ihre eigenen Einzelwerte. Die Punkte sind weder Geldbeträge noch eine Freigabe.
+In die Matrix kommen nur Risiken: Die Wahrscheinlichkeit (1 bis 5), multipliziert mit der höchsten belegten Auswirkung (1 bis 5), ergibt die Priorität der Bearbeitung. Kosten, Termin und Qualität behalten ihre eigenen Einzelwerte. Die Punkte sind weder Geldbeträge noch eine Freigabe.
 
 ::: regler
 ---
@@ -279,7 +279,7 @@ Mit Verantwortlichem, nächstem Prüftermin und benannten Anlässen für eine Ne
 titel: Produkt 5 bis 9
 marke: Gezielt bearbeiten
 ---
-Die Projektsteuerung macht den Vorschlag für die Maßnahme, legt fest, wer sie bis wann umsetzt, und verfolgt den Fortgang.
+Die Projektsteuerung macht den Vorschlag für die Maßnahme, klärt, wer sie bis wann umsetzt, und verfolgt den Fortgang.
 :::
 
 ::: stufe 3
@@ -294,7 +294,7 @@ Die Projektsteuerung holt eine fachliche Einschätzung ein, informiert den Bauhe
 Als **wesentlich** gilt ein Risiko, das vorrangig ist, eine Entscheidungsschwelle des Bauherrn erreicht oder einen besonderen Warnanlass berührt. Dann nennt die Projektsteuerung Bandbreiten für Kosten und Termin, soweit sich diese abschätzen lassen; andernfalls hält sie fest, wer welche offene Frage klärt.
 
 ::: hinweis
-**Unabhängig von den Punkten** behandelt die Projektsteuerung Fragen der Sicherheit und der Genehmigung, fehlende Befugnisse und den drohenden Verlust einer Handlungsoption. Was eilt, geschieht sofort – ohne auf die nächste Sitzung oder eine vollständige Bewertung zu warten.
+**Unabhängig von den Punkten** behandelt die Projektsteuerung Fragen der Sicherheit und der Genehmigung, fehlende Befugnisse und den drohenden Verlust einer Handlungsoption. Dringliches wird sofort gemeldet – ohne auf die nächste Sitzung oder eine vollständige Bewertung zu warten.
 :::
 
 ::: sortieren

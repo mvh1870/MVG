@@ -49,7 +49,7 @@ vorgaenge:
       wege: [risiko, problem, entscheidung]
     - id: fruehwarnung
       titel: Frühwarnung
-      text: "Ein Hinweis, der sich noch nicht ausreichend einordnen lässt. Die Quelle wird gesichert, eine Prüffrage und ein Wiedervorlagetermin werden festgelegt."
+      text: "Ein Hinweis auf eine mögliche Beeinträchtigung, der noch nicht ausreichend geklärt ist. Die Quelle wird gesichert, eine Prüffrage und ein Wiedervorlagetermin werden festgelegt."
       beispiel: FRW-002 – der Architekt hat auf einer Messe gehört, dass die Lieferzeiten für Holzelemente länger werden; Prüffrage an die Hersteller.
       abschluss: Ein Klärungsergebnis liegt vor – oder der Hinweis wird mit Begründung geschlossen.
       wege: [risiko, problem, aufgabe]
@@ -138,7 +138,7 @@ vorlagencheck:
     - id: wege
       titel: Wege
       punkte:
-        - { id: b1, muss: true, art: zaehlung, mindestens: 2, kurz: Mindestens zwei zulässige Wege, frage: "Gibt es mindestens zwei ernsthafte, zulässige Wege?", schliessen: "Fordern Sie einen zweiten Weg an, der wirklich zulässig ist – auch das bisherige Vorgehen zählt, wenn es zulässig ist. Bis dahin trägt die Vorlage den Vermerk „nicht vollständig“ und nennt, was noch geklärt wird.", belege: [v24:hb-3.1, v24:hb-1.5, v24:tlb-2.1] }
+        - { id: b1, muss: true, art: zaehlung, mindestens: 2, kurz: Mindestens zwei zulässige Wege, frage: "Gibt es mindestens zwei ernsthafte, zulässige Wege?", schliessen: "Fordern Sie weitere Wege an, bis mindestens zwei wirklich zulässig sind – auch das bisherige Vorgehen zählt, wenn es zulässig ist. Bis dahin trägt die Vorlage den Vermerk „nicht vollständig“ und nennt, was noch geklärt wird.", belege: [v24:hb-3.1, v24:hb-1.5, v24:tlb-2.1] }
         - { id: b2, muss: false, kurz: Jeder Weg beschrieben, frage: "Sind für jeden Weg Vorgehen, Kosten, Zeit, Qualität und Nutzung, verbleibende Risiken, Annahmen und nötige Freigaben beschrieben?", schliessen: "Lassen Sie je Weg ergänzen, was er kostet, wie viel Zeit er braucht, was er für die Nutzung bedeutet, welches Risiko bleibt und welche Freigabe er braucht.", belege: [v24:hb-3.1, k9.4-l1, v24:va-3.2] }
         - { id: b3, muss: false, kurz: Zwingende Anforderungen vorab geprüft, frage: "Wurden Sicherheit, Genehmigung und Funktion vor dem Vergleich mit Punkten geprüft?", schliessen: "Lassen Sie die zwingenden Anforderungen vorab prüfen; ein Weg, der sie nicht erfüllt, kommt nicht in den Vergleich.", belege: [v24:hb-3.1] }
     - id: vergleich
@@ -153,29 +153,29 @@ vorlagencheck:
       punkte:
         - { id: d1, muss: true, kurz: Empfehlung begründet, frage: "Ist die Empfehlung begründet, mit Nachteilen, Unsicherheiten und Voraussetzungen?", schliessen: "Lassen Sie die Empfehlung begründen und auch ihre Nachteile und Voraussetzungen nennen.", belege: [v24:hb-3.1] }
         - { id: d2, muss: false, kurz: Empfehlung trägt fachlich, frage: "Trägt die Empfehlung auch fachlich – nicht nur über die Punktzahl?", schliessen: "Lassen Sie ergänzen, warum der Weg fachlich trägt; eine hohe Punktzahl allein ist noch kein Urteil.", belege: [v24:hb-3.1] }
-        - { id: d3, muss: true, kurz: Beschluss bleibt offen, frage: "Bleibt der Beschluss offen – ohne dass Empfehlung, Schweigen oder ein Status in der Software als Beschluss gelten?", schliessen: "Achten Sie darauf, dass der Beschluss offen bleibt; er wird erst nach der Entscheidung der befugten Stelle mit Datum und Bedingungen festgehalten.", belege: [v24:hb-3.1, v24:va-4.2, k9.4-l1] }
+        - { id: d3, muss: true, kurz: Beschluss bleibt offen, frage: "Bleibt der Beschluss offen – ohne dass Empfehlung, Schweigen oder ein Status in der Software als Beschluss gelten?", schliessen: "Achten Sie darauf, dass der Beschluss offen bleibt; er wird erst nach der Entscheidung der befugten Stelle mit Quelle, Datum und Bedingungen festgehalten.", belege: [v24:hb-3.1, v24:va-4.2, k9.4-l1] }
     - id: grundlagen
       titel: Grundlagen
       punkte:
         - { id: e1, muss: true, kurz: Datenstand und Herkunft der Zahlen, frage: "Sind Datenstand und Quellen genannt?", schliessen: "Lassen Sie nennen, auf welchem Stand von Zahlen und Plänen die Vorlage beruht.", belege: [v24:hb-3.1, k9.4-l1, k4.6-p2, k5.1-p2] }
         - { id: e2, muss: false, kurz: Verweis auf den Vorgang, frage: "Verweist die Vorlage auf den Vorgang, aus dem sie entsteht?", schliessen: "Lassen Sie auf den Eintrag verweisen, aus dem die Entscheidung entsteht – etwa das Risiko, das Problem oder die Änderung.", belege: [v24:hb-3.1, v24:hb-5] }
-        - { id: e3, muss: false, kurz: Ablage bei allen Vorgängen, frage: "Liegt die Vorlage dort, wo alle Vorgänge stehen, oder ist eindeutig darauf verwiesen?", schliessen: "Fordern Sie an, dass die Vorlage in der Software des Bauherrn abgelegt oder dort eindeutig auf sie verwiesen wird.", belege: [v24:hb-3.1, v24:hb-5] }
+        - { id: e3, muss: false, kurz: Ablage bei allen Vorgängen, frage: "Liegt die Vorlage dort, wo alle Vorgänge stehen, oder ist eindeutig darauf verwiesen?", schliessen: "Fordern Sie an, dass die Vorlage fristgerecht in der Software des Bauherrn abgelegt oder dort eindeutig auf sie verwiesen wird.", belege: [v24:hb-3.1, v24:hb-5] }
   stellen:
     - { id: sie, titel: "Sie (Projektleitung des Bauherrn)" }
     - { id: buergermeisterin, titel: Bürgermeisterin, ohneBeispiel: andere befugte Stelle des Bauherrn }
-    - { id: lenkungskreis, titel: Lenkungskreis, ohneBeispiel: beratendes Gremium (berät nur), satz: "Lassen Sie richtigstellen: Ein beratendes Gremium berät; entscheiden darf die befugte Stelle des Bauherrn, auch wenn sie im Lenkungskreis beschließt.", belege: [v24:hb-1, v24:hb-3.1] }
+    - { id: lenkungskreis, titel: Lenkungskreis, ohneBeispiel: beratendes Gremium (berät nur), satz: "Lassen Sie richtigstellen: Ein beratendes Gremium berät; entscheiden darf die befugte Stelle des Bauherrn, auch wenn sie in einem Gremium beschließt.", belege: [v24:hb-1, v24:hb-3.1] }
     - { id: projektsteuerung, titel: Projektsteuerung, satz: "Lassen Sie richtigstellen: Die Projektsteuerung bereitet vor und empfiehlt; entscheiden darf sie nicht.", belege: [v24:hb-3, v24:hb-3.1, v24:tlb-2.1, v24:va-4.1] }
     - { id: offen, titel: noch offen }
   wegzustaende:
     - { id: zulaessig, titel: zulässig }
     - { id: unzulaessig, titel: unzulässig, satz: "Ein unzulässiger Weg kann auch mit vielen Punkten nicht gewinnen.", belege: [v24:hb-3.1] }
-    - { id: schein, titel: nur zum Schein (soll einen anderen Weg besser aussehen lassen), satz: "Ein Weg nur zum Schein zählt nicht als zweiter Weg.", belege: [v24:hb-3.1, v24:hb-1.5] }
+    - { id: schein, titel: "nur zum Schein (offensichtlich untauglich, nur als Gegenstück)", satz: "Ein Weg nur zum Schein zählt nicht als zweiter Weg.", belege: [v24:hb-3.1, v24:hb-1.5] }
     - { id: offen, titel: Zulässigkeit noch ungeklärt, satz: "Lassen Sie die Zulässigkeit fachlich bestätigen, bevor verglichen wird.", belege: [v24:hb-3.1] }
   dringlich: { frage: "Ist die Sache dringlich?", satz: "Dringliches wird gemeldet und gesichert, bevor die Vorlage fertig ist.", belege: [v24:hb-3.1, v24:hb-3, v24:hb-4] }
   gegenstaende:
     - { id: geld, titel: Geld }
     - { id: risiko, titel: Annahme eines großen Risikos }
-    - { id: freigabe, titel: Freigabe am Ende einer Leistungsphase (Planungs- oder Bauabschnitt) }
+    - { id: freigabe, titel: Freigabe am Ende einer Leistungsphase (Abschnitt des Projekts von der Vorbereitung bis zur Betreuung) }
     - { id: ziele, titel: Ziele oder ihre Rangfolge }
   mandat:                     # nur bei geladenem Beispiel (O-46: nicht einstellbar), A-R5; Fall „Wer entscheidet was“
     belege: [fall, k4.2-p3, k9.3-p3, v24:hb-1, v24:hb-3, v24:hb-projektblatt]
@@ -411,13 +411,13 @@ monatsbericht:
   fuss: { text: "Die vollständigen Einträge stehen in der Software des Bauherrn.", belege: [v24:hb-4] }
   saetze:
     ampelOhneFrage: { text: "Gelb oder Rot allein sagt dem Bauherrn nicht, was zu tun ist: Es fehlt die anstehende Entscheidung (mit Stelle und Termin) oder die Reaktion, die gebraucht wird.", belege: [k2.4-p2, v24:hb-4] }
-    entscheidungOhneWerBisWann: { text: "Zu jeder offenen Entscheidung gehören, wer entscheidet und bis wann.", belege: [v24:hb-5, v24:hb-3.1] }
+    entscheidungOhneWerBisWann: { text: "Zu jeder offenen Entscheidung gehören die Frage, wer entscheidet und bis wann.", belege: [v24:hb-5, v24:hb-3.1] }
     ohneKennung: { text: "Jeder Eintrag verweist auf seinen Vorgang in der Software – der Bericht ist keine zweite Liste.", belege: [v24:hb-4, v24:tlb-2] }
     leerStattKeine: { text: "Hier fehlt noch ein Eintrag – oder „keine“.", belege: [v24:hb-4, v24:hb-2] }
     zuViele: { text: "Hier stehen mehr Einträge, als auf die Seite passen; Einträge werden zusammengefasst.", belege: [v24:hb-4] }
     dringlich: { text: "Dringliches wird sofort gemeldet; der Bericht ersetzt diese Meldung nicht.", belege: [v24:hb-4] }
-    umgesetztNichtWirksam: { text: "Umgesetzt heißt noch nicht wirksam: Im Bericht steht, ob die Wirkung schon belegt ist.", belege: [v24:hb-1.6] }
-    berichtUnvollstaendig: { text: "Monat, Datenstand und die Lage in einem Satz fehlen noch. Der Bericht ist erst vollständig, wenn sie eingetragen sind.", belege: [v24:hb-4] }
+    umgesetztNichtWirksam: { text: "Umgesetzt heißt noch nicht wirksam – ist die Wirkung schon belegt?", belege: [v24:hb-1.6] }
+    berichtUnvollstaendig: { text: "Monat, Datenstand, die Lage in einem Satz, die Sätze zu den drei Ampeln oder die benötigte Reaktion des Bauherrn fehlen noch. Der Bericht ist erst vollständig, wenn alles eingetragen ist – auch „keine“ ist eine Angabe.", belege: [v24:hb-4] }
     zuLang: { text: "Der Bericht passt nicht mehr auf eine Seite; er wird gekürzt, oder Einträge werden zusammengefasst.", belege: [v24:hb-4, v24:as-2] }
   beispiele:
     - id: oktober

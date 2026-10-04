@@ -1,7 +1,7 @@
 // Eigene Worte (O-37, R78): Die Texte der Werkzeuge und des Glossars geben den Standard V2.4 inhaltlich wieder, nicht im
 // Wortlaut. Probe: kein wortgleicher Lauf von neun oder mehr Wörtern aus quellen/v2.4 (Groß-/Kleinschreibung und
-// Satzzeichen unbeachtet). Die Themen (inhalte/theorie) zitieren den Standard nicht, tragen aber eigene Zitat-Pflichten und
-// liegen außerhalb dieser Probe.
+// Satzzeichen unbeachtet). Die Themen (inhalte/theorie) prüft der letzte Test ohne Zitate,
+// Tafeln und Tabellenzeilen (L-261).
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readdirSync, readFileSync } from 'node:fs';
@@ -43,10 +43,12 @@ test('die Probe erkennt einen übernommenen Satz und lässt eigene Worte durch',
   assert.equal(laengsterLauf('Die Projektsteuerung holt fachlichen Rat ein, unterrichtet den Bauherrn und bereitet erforderliche Handlungen oder Entscheidungen früh genug vor.'), 0);
 });
 
-test('Werkzeuge und Glossar: kein Satz des Standards wortgleich (neun Wörter und mehr)', async () => {
+test('Werkzeuge, Glossar und Story: kein Satz des Standards wortgleich (neun Wörter und mehr)', async () => {
   const { parse } = (await import(String('yaml'))) as { parse: (t: string) => unknown };
   const funde: string[] = [];
-  for (const datei of ['inhalte/werkzeuge.yaml', 'inhalte/glossar.yaml']) {
+  // R79: auch die Story (rahmen und Kapitel)
+  const story = readdirSync(resolve(WURZEL, 'inhalte/geschichte')).filter((f) => f.endsWith('.yaml')).map((f) => `inhalte/geschichte/${f}`);
+  for (const datei of ['inhalte/werkzeuge.yaml', 'inhalte/glossar.yaml', ...story]) {
     for (const [pfad, text] of strings(parse(readFileSync(resolve(WURZEL, datei), 'utf8')), datei.split('/').pop() ?? datei)) {
       if (/^v24:|^k\d/u.test(text)) continue; // Belege
       const n = laengsterLauf(text);

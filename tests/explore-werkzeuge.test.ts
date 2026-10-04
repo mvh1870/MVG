@@ -63,7 +63,7 @@ const pruefeSichtbar = (wo: string, el: Element): void => {
 test('Vorlagen-Check: rot mit dem Startbeispiel, Lücken mit Satz, Beispiele grün und gelb, „Leer beginnen“ ohne Fall-Namen', () => {
   const el = zeige('vorlagen-check');
   assert.equal(ampel(el, 'vc-ampel'), 'rot');
-  assert.match(q(el, 'vc-luecke-b1').textContent ?? '', /So schließen Sie die Lücke: Fordern Sie einen zweiten Weg an/u);
+  assert.match(q(el, 'vc-luecke-b1').textContent ?? '', /So schließen Sie die Lücke: Fordern Sie weitere Wege an/u);
   assert.match(q(el, 'vc-luecke-a4').textContent ?? '', /fehlt – Vorlage nicht vollständig/u);
   pruefeSichtbar('vorlagen-check rot', el);
   // eine Antwort ändert die Ampel sofort nicht, solange Muss-Lücken bleiben – aber die Lücke verschwindet
@@ -73,6 +73,12 @@ test('Vorlagen-Check: rot mit dem Startbeispiel, Lücken mit Satz, Beispiele gr�
   assert.equal(el.querySelector('[data-pruef="vc-luecke-a4"]'), null);
   waehle(el, 'vc-beispiel', 'lueftung-voll');
   assert.equal(ampel(el, 'vc-ampel'), 'gruen');
+  // R79: die Schrittleiste folgt jeder Eingabe – die Projektsteuerung als Stelle nimmt Schritt 1 sofort den Haken
+  const fertig1 = (): string | null => el.querySelector('.wz-schritte li, [data-fertig]')?.getAttribute('data-fertig') ?? null;
+  assert.equal(fertig1(), 'ja');
+  waehle(el, 'vc-stelle', 'projektsteuerung');
+  assert.equal(fertig1(), 'nein');
+  waehle(el, 'vc-beispiel', 'lueftung-voll');
   pruefeSichtbar('vorlagen-check grün', el);
   waehle(el, 'vc-beispiel', 'mensa');
   assert.equal(ampel(el, 'vc-ampel'), 'gelb');
@@ -141,6 +147,13 @@ test('Wegweiser (R78): alles „Nein“ und Entscheidung „Ja“ zeigt „Entsc
   assert.equal(q(el, 'ww-art').textContent, 'Entscheidung vorbereiten');
   assert.ok(q(el, 'ww-kasten-entscheidung'));
   assert.ok(q(el, 'ww-zum-vorlagen-check'));
+  assert.doesNotMatch(q(el, 'ww-status').textContent ?? '', /·/u, 'kein Kasten neben „Entscheidung vorbereiten“');
+  wahl('dringlich', 'ja');
+  // R79: die Ansage nennt den dazukommenden Kasten „Sofort melden“
+  assert.match(q(el, 'ww-status').textContent ?? '', /· Sofort melden/u);
+  wahl('dringlich', 'nein');
+  // R79: der Titel steht nur einmal
+  assert.equal((q(el, 'ww-ergebnis').textContent ?? '').split('Entscheidung vorbereiten').length - 1, 1);
   assert.doesNotMatch(q(el, 'ww-ergebnis').textContent ?? '', /kein Vorgang|verknüpft/u);
   wahl('entscheidung', 'nein');
   assert.equal(q(el, 'ww-art').textContent, 'Vermutlich kein Vorgang');
@@ -208,6 +221,11 @@ test('Monatsbericht: Oktober grün und passt; Kosten-Ampel ohne Frage warnt gelb
   tippe(e, 'mb-monat', 'November 2026');
   tippe(e, 'mb-datenstand', '30. November 2026');
   tippe(e, 'mb-lage', 'Alles im Plan.');
+  // R79: ebenso die Sätze der drei Ampeln und die benötigte Reaktion
+  assert.equal(ampel(e, 'mb-ampel'), 'gelb');
+  for (const id of ['kosten', 'termine', 'qualitaet']) tippe(e, `mb-satz-${id}`, 'Im Plan.');
+  assert.equal(ampel(e, 'mb-ampel'), 'gelb');
+  tippe(e, 'mb-reaktion', 'Kenntnis.');
   assert.equal(ampel(e, 'mb-ampel'), 'gruen');
   assert.doesNotMatch(lesbar(q(e, 'mb-bericht')), /Lindenhall/u, 'ohne Beispiel kein Projektname');
   pruefeSichtbar('monatsbericht leer', e);
@@ -219,6 +237,11 @@ test('Leinwand (bedienbar: false): keine Bedienelemente; der Werkzeugstand wähl
     assert.deepEqual([...el.querySelectorAll('a, button, select, input, textarea')].map((x) => x.outerHTML.slice(0, 60)), [], `${w} ${stand}`);
     pruefeSichtbar(`leinwand ${w} ${stand}`, el);
   }
+  // R79: im Schritt „Ergebnis“ zeigt die Leinwand nur das Ergebnis, keinen Prüfschritt daneben
+  const vcErg = baueExplore({ inhalte, werkzeug: 'vorlagen-check', bedienbar: false, werkzeugStand: 'b:lueftung-kurz;s:ergebnis' });
+  assert.equal(vcErg.querySelector('[data-pruef="vc-form"]')?.childElementCount, 0);
+  const vc3 = baueExplore({ inhalte, werkzeug: 'vorlagen-check', bedienbar: false, werkzeugStand: 'b:lueftung-kurz;s:3' });
+  assert.ok((vc3.querySelector('[data-pruef="vc-form"]')?.childElementCount ?? 0) > 0);
   const wv = baueExplore({ inhalte, werkzeug: 'wegweiser', bedienbar: false, werkzeugStand: 'b:messe;a:n,n,n' });
   assert.equal(wv.querySelectorAll('[data-pruef="ww-fragen"] .wz-frage').length, 4, 'drei Antworten, vierte Frage offen');
   const rg = baueExplore({ inhalte, werkzeug: 'risiko-grenzen', bedienbar: false, werkzeugStand: 'b:ris-009;t:71;w:1' });
@@ -256,4 +279,74 @@ test('Kleingrafiken: role="img" mit Beschreibung, ohne Kennungen und url(), ohne
   // die Ampel zeigt die Bedeutung zusätzlich als Zeichen (Farbe nie allein)
   assert.match(ampelBild('rot', 'x'), /wb-zeichen/u);
   assert.doesNotMatch(ampelBild(null, 'x'), /wb-zeichen/u);
+});
+
+test('Druckbogen (R79): „Fiktiver Fall“ genau einmal mit Beispiel, keinmal nach „Leer beginnen“', () => {
+  const bogenText = (w: string): string => {
+    window.dispatchEvent(new Event('beforeprint'));
+    const b = document.querySelector('[data-pruef="druck-bogen"]');
+    assert.ok(b, `${w}: Bogen fehlt`);
+    const t = b.textContent ?? '';
+    window.dispatchEvent(new Event('afterprint'));
+    return t;
+  };
+  const wahl: Record<(typeof NEU)[number], string> = { 'vorlagen-check': 'vc-beispiel', wegweiser: 'ww-beispiel', 'risiko-grenzen': 'rg-beispiel', monatsbericht: 'mb-beispiel' };
+  for (const w of NEU) {
+    const el = zeige(w);
+    assert.equal(bogenText(w).split('Fiktiver Fall').length - 1, 1, `${w} mit Beispiel`);
+    waehle(el, wahl[w], '');
+    // der Wegweiser druckt erst mit einem Ergebnis
+    if (w === 'wegweiser') for (const f of ['dringlich', 'handlung', 'eingetreten', 'anpassen', 'moeglich', 'arbeit', 'entscheidung']) {
+      const r = q<HTMLInputElement>(el, `ww-${f}-nein`);
+      r.checked = true;
+      r.dispatchEvent(new Event('change'));
+    }
+    assert.equal(bogenText(`${w} leer`).split('Fiktiver Fall').length - 1, 0, `${w} leer`);
+  }
+});
+
+test('Vorlagen-Check (R79): Lücken des aktuellen Schritts und rote zuerst, drei sofort, der Rest eingeklappt und offen bleibend', () => {
+  const el = zeige('vorlagen-check', 'b:lueftung-kurz;s:1');
+  const sofort = [...el.querySelectorAll('[data-pruef="vc-luecken"] > ul > li')];
+  const weitere = el.querySelectorAll('[data-pruef="vc-weitere"] li').length;
+  const alle = sofort.length + weitere;
+  assert.ok(alle > 4, `genug Lücken für die Probe: ${alle}`);
+  assert.equal(sofort.length, 3);
+  assert.match(q(el, 'vc-weitere').querySelector('summary')?.textContent ?? '', new RegExp(String(weitere), 'u'));
+  // Reihenfolge: zuerst die des aktuellen Schritts, darin rot vor gelb
+  const schwere = sofort.map((x) => x.getAttribute('data-schwere'));
+  assert.deepEqual([...schwere].sort((a, b) => (a === 'rot' ? 0 : 1) - (b === 'rot' ? 0 : 1)), schwere);
+  // im Schritt 4 stehen dessen gelbe Lücken vor einer roten aus Schritt 1
+  const s4 = zeige('vorlagen-check', 'b:lueftung-kurz;s:4');
+  assert.deepEqual([...s4.querySelectorAll('[data-pruef="vc-luecken"] > ul > li')].map((x) => x.getAttribute('data-pruef')), ['vc-luecke-d1', 'vc-luecke-d2', 'vc-luecke-a4']);
+  // genau vier Lücken: alle sofort, kein Aufklapper für eine einzelne
+  const vier = zeige('vorlagen-check', 'b:lueftung-voll;s:1');
+  const neinen = [...vier.querySelectorAll<HTMLInputElement>('[data-pruef="vc-form"] input[type="radio"][value="nein"]')];
+  assert.ok(neinen.length >= 4, `Nein-Felder in Schritt 1: ${neinen.length}`);
+  for (const n of neinen.slice(0, 4)) {
+    n.checked = true;
+    n.dispatchEvent(new Event('change'));
+  }
+  assert.equal(vier.querySelectorAll('[data-pruef="vc-luecken"] > ul > li').length, 4);
+  assert.equal(vier.querySelector('[data-pruef="vc-weitere"]'), null);
+  // aufgeklappt bleibt aufgeklappt, auch wenn eine Antwort neu zeichnet
+  const d = q<HTMLDetailsElement>(el, 'vc-weitere');
+  d.open = true;
+  d.dispatchEvent(new Event('toggle'));
+  const r = el.querySelector<HTMLInputElement>('[data-pruef="vc-form"] input[type="radio"]:not(:checked)');
+  assert.ok(r);
+  r.checked = true;
+  r.dispatchEvent(new Event('change'));
+  assert.equal(q<HTMLDetailsElement>(el, 'vc-weitere').open, true);
+});
+
+test('Ansage (R79): Risiko-Bewerter nennt die Zahl der Hinweise, Vorlagen-Check den Hinweis „dringlich“', () => {
+  const rg = zeige('risiko-grenzen', 'b:ris-021');
+  assert.match(q(rg, 'rg-status').textContent ?? '', /· Hinweise: \d+/u);
+  const vc = zeige('vorlagen-check', 'b:mensa;s:1');
+  assert.doesNotMatch(q(vc, 'vc-status').textContent ?? '', /·/u);
+  const ja = q<HTMLInputElement>(vc, 'vc-dringlich-ja');
+  ja.checked = true;
+  ja.dispatchEvent(new Event('change'));
+  assert.match(q(vc, 'vc-status').textContent ?? '', /· Dringliches wird gemeldet/u);
 });

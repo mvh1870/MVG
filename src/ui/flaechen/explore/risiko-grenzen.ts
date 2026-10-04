@@ -250,8 +250,8 @@ export function risikoGrenzen(o: WerkzeugOptionen): HTMLElement {
       grenzenFeld(),
       h('fieldset', { class: 'wz-gruppe' }, h('legend', { class: 'wz-gruppe-titel' }, E.risikoTitel),
         h('div', { class: 'wz-felder' },
-          textFeld({ name: 'rg-titel', titel: E.titel, wert: z.titel, max: 80, mehrzeilig: true, beiEingabe: (t) => { z = { ...z, titel: t }; } }),
-          textFeld({ name: 'rg-kennung', titel: E.kennung, wert: z.kennung, max: 10, beiEingabe: (t) => { z = { ...z, kennung: t }; } })),
+          textFeld({ name: 'rg-titel', titel: E.titel, wert: z.titel, max: 80, mehrzeilig: true, beiEingabe: (t) => { z = { ...z, titel: t }; zeichneErgebnis(); } }),
+          textFeld({ name: 'rg-kennung', titel: E.kennung, wert: z.kennung, max: 10, beiEingabe: (t) => { z = { ...z, kennung: t }; zeichneErgebnis(); } })),
         wFeld(), zeileFeld('kosten'), zeileFeld('termin'), qFeld()),
       zusaetzeFeld());
   };
@@ -308,7 +308,9 @@ export function risikoGrenzen(o: WerkzeugOptionen): HTMLElement {
   const zeichneErgebnis = (): void => {
     const b = befund();
     const stufe = m.stufen.find((s) => s.id === b.prioritaet);
-    status.textContent = `${v.zustaende[b.zustand]}${b.feld !== null ? `, ${E.feld(b.feld.w, b.feld.a)}` : ''}${stufe !== undefined ? `, ${stufe.titel}` : ''}`;
+    // R79: die Ansage nennt auch, wie viele Hinweise unter dem Ergebnis stehen – ein neuer Hinweis wird so gehört
+    const zahl = b.hinweise.filter((x) => x.id !== 'grenze' && x.id !== 'fehler').length;
+    status.textContent = `${v.zustaende[b.zustand]}${b.feld !== null ? `, ${E.feld(b.feld.w, b.feld.a)}` : ''}${stufe !== undefined ? `, ${stufe.titel}` : ''}${zahl > 0 ? ` · ${E.hinweise}: ${zahl}` : ''}`;
     const fehlerZeilen = new Set(b.hinweise.filter((x) => x.id === 'fehler').map((x) => x.bezug));
     ersetze(ergebnisOrt,
       h('div', { class: 'wz-ergebnis-kopf' }, h('p', { class: 'wz-ergebnis-titel' }, z.kennung !== '' ? h('span', { class: 'id-marke ex-id', 'data-art': 'risiko' }, z.kennung) : null, ' ', z.titel), ergebnisBild(BILD[b.prioritaet ?? 'offen'])),

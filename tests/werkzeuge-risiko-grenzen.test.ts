@@ -293,3 +293,18 @@ test('Satz „Vorrang wegen Auswirkung 5“ behauptet keinen Produktvergleich (R
   const y = YAML.parse(readFileSync(join(WURZEL, 'inhalte', 'werkzeuge.yaml'), 'utf8')) as { risikogrenzen: { saetze: { vorrangA5: { text: string } } } };
   assert.doesNotMatch(y.risikogrenzen.saetze.vorrangA5.text, /weniger|allein/u);
 });
+
+test('Spanne (R79): beginnt sie genau auf einer Grenze, gibt es keinen Grenzwert-Treffer; nur der Einzelwert zeigt ihn', () => {
+  const spanne = bewerteRisiko(risiko({ kosten: { art: 'spanne', von: 1_500_000, bis: 2_000_000 } }), G);
+  assert.deepEqual(spanne.aufGrenze, []);
+  const wert = bewerteRisiko(risiko({ kosten: { art: 'wert', wert: 1_500_000 } }), G);
+  assert.deepEqual(wert.aufGrenze, ['kosten']);
+});
+
+test('Spanne und unbekannte Auswirkung (R79): nach oben offen, darum keine obere Ecke „bis“', () => {
+  const r = bewerteRisiko(risiko({ kosten: { art: 'spanne', von: 200_000, bis: 2_000_000 }, termin: { art: 'unbekannt' } }), G);
+  assert.equal(r.nachObenOffen, true);
+  assert.equal(r.bis, null);
+  assert.equal(r.prioritaetBis, null);
+  assert.notEqual(r.feld, null);
+});

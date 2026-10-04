@@ -59,6 +59,18 @@ test('Alles Nein (W1–W5) → kein Vorgang, W6 wird gestellt; mit Antwort ferti
   assert.deepEqual(zusaetze(mitE), ['entscheidung']);
 });
 
+test('Dringlich und alles Nein → Frühwarnung mit „Sofort melden“, nie „kein Vorgang“ (R79)', () => {
+  const dringlichNein: Antworten = { dringlich: J, handlung: N, eingetreten: N, anpassen: N, moeglich: N, arbeit: N };
+  for (const e of [N, J]) {
+    const w = wegweiser({ ...dringlichNein, entscheidung: e });
+    assert.equal(w.art, 'fruehwarnung');
+    assert.equal(w.keinVorgang, false);
+    assert.equal(w.nurEntscheidung, false);
+    assert.ok(zusaetze(w).includes('sofort'));
+    assert.ok(!zusaetze(w).includes('keinVorgang'));
+  }
+});
+
 test('Die Fragen kommen einzeln: zuerst dringlich, dann der Baum, zuletzt die Entscheidung', () => {
   assert.equal(wegweiser({}).naechste, 'dringlich');
   assert.equal(wegweiser({}).art, null);

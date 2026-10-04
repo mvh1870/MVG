@@ -15,6 +15,7 @@ Die Runden vor der Neuausrichtung (bis Runde 66, alter Aufbau mit Welten, Rollen
 | 76 | d27be55 | 0 | 12 | 42 | eingearbeitet (L-255–L-256); zweite Runde ohne schweren Befund – O-35/O-58 erfüllt |
 | 77 | ea42fd9 | 1 (Leinwand zeigt die ganze Explore-Seite, Werkzeug unter der Falz, Schrift zu klein) | 19 | 40 | eingearbeitet (L-260); P18 |
 | 78 | 6eee87a | 0 | 19 | 45 | eingearbeitet (L-261); erste Runde von P18 ohne schweren Befund |
+| 79 | b72b054 | 0 | 19 (k15-Umformulierungen, k10-Frage; Wegweiser dringlich + alles Nein; leerer Monatsbericht „vollständig“; Schrittleiste; Vorlage nicht sichtbar; sieben Testlücken der Mutationsprobe; Ansagen; langer Titel; Seitenmesser m/w) | 36 | eingearbeitet bis auf „Vorlage sichtbar“ (unten offen; L-262–L-264); zweite Runde von P18 ohne schweren Befund – O-35 erfüllt |
 
 ## Runden der Neuausrichtung (P16.15)
 
@@ -31,3 +32,4 @@ Die Runden vor der Neuausrichtung (bis Runde 66, alter Aufbau mit Welten, Rollen
 | Runde | Ort | Befund | Vorschlag | Stand |
 |---|---|---|---|---|
 | – | – | Keine: alle mittleren Befunde aus R67–R71 sind eingearbeitet (L-223). Leicht und bewusst gelassen: die Tafel „Gewichtete Summe“ in k14 ist bei 320 px mit erweiterten Textabständen nach WCAG 1.4.12 um 3 % zu breit (L-219). | – | – |
+| 79 | Explore · Vorlagen-Check, alle drei Beispiele | Die geprüfte Vorlage selbst ist nicht zu sehen; die vorbelegten Antworten (z. B. „Teilweise“ bei Datenstand) lassen sich ohne sie nicht nachvollziehen (Feld erlebnis). | Unter der Lage ein aufklappbarer Kasten „So sieht die Vorlage aus“ mit vier bis sechs Zeilen nur aus Story und Konzept A.5 (Wege, Beträge, Termin, Datenstand) – eine Erweiterung des Inhalts, darum zur Entscheidung des Owners. | offen |

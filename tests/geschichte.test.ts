@@ -274,7 +274,7 @@ test('Vergleich: Satz der Projektsteuerin über alle 81 Gewichtsstellungen – A
   assert.equal(n, 81);
   assert.deepEqual([...gesehen].sort(), ['A', 'B', 'C', 'gleichauf'], 'jeder Satz kommt auf mindestens einer Stellung vor');
   // Wortlaut der Sätze, die diese Bedingungen tragen: wer ihn ändert, rechnet die Stellungen neu nach
-  assert.ok(V.saetze['A']?.startsWith('Das Ersatzgerät liegt vorn – mit diesen Gewichten trägt es alle Kinder pünktlich in Räume mit guter Luft'));
+  assert.ok(V.saetze['A']?.startsWith('Das Ersatzgerät liegt vorn – mit diesen Gewichten zählt, dass alle Kinder pünktlich einziehen'));
   assert.ok(V.saetze['B']?.startsWith('Die Leihgeräte liegen vorn – aber nur, weil gute Luft im Unterricht hier kaum zählt'));
   assert.ok(V.saetze['C']?.startsWith('Der spätere Einzug liegt vorn: Wenn Geld oder Klima so viel zählen wie der Schulstart'));
   assert.ok(V.saetze['gleichauf']?.startsWith('Gleichauf – jetzt entscheidet das fachliche Urteil'));

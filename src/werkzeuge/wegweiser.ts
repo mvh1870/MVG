@@ -74,7 +74,12 @@ export function wegweiser(a: Readonly<Partial<Record<FrageId, Wahl>>>): Weg {
       break;
     }
   }
-  if (art === null && offeneBaumfrage === null) keinVorgang = true;
+  if (art === null && offeneBaumfrage === null) {
+    // R79: Dringliches wird gemeldet und noch am selben Tag als Vorgang festgehalten – nie „kein Vorgang“; ohne passende Art
+    // bleibt es ein Hinweis, der geklärt wird (Frühwarnung)
+    if (dringlich === true) art = 'fruehwarnung';
+    else keinVorgang = true;
+  }
 
   let entscheidung: boolean | null = null;
   if (art !== null || keinVorgang) {

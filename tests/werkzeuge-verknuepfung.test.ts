@@ -388,3 +388,23 @@ test('Datenschutz: die Werkzeuge speichern und senden nichts (Quelltext) – der
   assert.match(datenschutz, /was Sie in den Werkzeugen einstellen, wird weder gespeichert noch gesendet/u);
   assert.match(datenschutz, /gezeigte Werkzeug mit Beispiel und Schritt/u, 'der Stand der Präsentation nennt das Werkzeug');
 });
+
+test('Übersetzer (R79): Beispiele der vier Werkzeuge mit unbekanntem Feld, schiefer oder doppelter Kennung werden abgewiesen', async () => {
+  const { baueWerkzeuge } = (await import(String('../werkzeuge/explore.mjs'))) as { baueWerkzeuge: (c: unknown, rel: string, roh: string) => unknown };
+  const YAML = (await import(String('yaml'))) as { parse: (t: string) => Record<string, { beispiele: Record<string, unknown>[] }>; stringify: (x: unknown) => string };
+  const { readFileSync } = await import('node:fs');
+  const roh = readFileSync(new URL('../inhalte/werkzeuge.yaml', import.meta.url), 'utf8');
+  const lauf = (aendere: (y: Record<string, { beispiele: Record<string, unknown>[] }>) => void): string[] => {
+    const fehler: string[] = [];
+    const y = YAML.parse(roh);
+    aendere(y);
+    baueWerkzeuge({ fehler: (_r: string, f: string) => fehler.push(f), html: () => '', inline: () => '' }, 'w.yaml', YAML.stringify(y));
+    return fehler;
+  };
+  assert.deepEqual(lauf(() => {}), []);
+  for (const t of ['vorlagencheck', 'wegweiser', 'risikogrenzen', 'monatsbericht']) {
+    assert.ok(lauf((y) => { (y[t]?.beispiele[0] ?? {}).reserv = true; }).some((f) => f.includes('unbekanntes Feld „reserv“')), `${t}: Tippfehler`);
+    assert.ok(lauf((y) => { (y[t]?.beispiele[0] ?? {}).id = 'Gross'; }).some((f) => f.includes('Kleinschrift')), `${t}: Kennung`);
+  }
+  assert.ok(lauf((y) => { const b = y.wegweiser?.beispiele; if (b?.[1] && b[0]) b[1].id = b[0].id; }).some((f) => f.includes('doppelt')));
+});

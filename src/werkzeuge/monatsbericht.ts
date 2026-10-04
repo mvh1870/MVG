@@ -57,7 +57,7 @@ export const FELDGRENZEN = {
 /** vorsichtig gerechnet (R77): Reserve gegenüber den rund 92 Zeichen des Fließtexts; Großschrift passt damit noch in die Zeile */
 export const ZEICHEN_JE_ZEILE = 78;
 /** Zeichen, die selbst über die Reserve hinaus breit sind (R78): zählen 1,35-fach; Zeilen aus M und W fassen deutlich weniger */
-const BREIT = 'MW@%';
+const BREIT = 'MWmw@%';
 const BREIT_FAKTOR = 1.35;
 /** Breite eines Texts in „Zeichen“ der Schätzung: jedes Zeichen 1, die breiten (M, W, @, %) 1,35 */
 export const textBreite = (t: string): number => {

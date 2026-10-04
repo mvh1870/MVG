@@ -147,6 +147,11 @@ test('Wegweiser (R78): alles „Nein“ und Entscheidung „Ja“ zeigt „Entsc
   assert.equal(q(el, 'ww-art').textContent, 'Entscheidung vorbereiten');
   assert.ok(q(el, 'ww-kasten-entscheidung'));
   assert.ok(q(el, 'ww-zum-vorlagen-check'));
+  assert.doesNotMatch(q(el, 'ww-status').textContent ?? '', /·/u, 'kein Kasten neben „Entscheidung vorbereiten“');
+  wahl('dringlich', 'ja');
+  // R79: die Ansage nennt den dazukommenden Kasten „Sofort melden“
+  assert.match(q(el, 'ww-status').textContent ?? '', /· Sofort melden/u);
+  wahl('dringlich', 'nein');
   // R79: der Titel steht nur einmal
   assert.equal((q(el, 'ww-ergebnis').textContent ?? '').split('Entscheidung vorbereiten').length - 1, 1);
   assert.doesNotMatch(q(el, 'ww-ergebnis').textContent ?? '', /kein Vorgang|verknüpft/u);
@@ -269,4 +274,28 @@ test('Kleingrafiken: role="img" mit Beschreibung, ohne Kennungen und url(), ohne
   // die Ampel zeigt die Bedeutung zusätzlich als Zeichen (Farbe nie allein)
   assert.match(ampelBild('rot', 'x'), /wb-zeichen/u);
   assert.doesNotMatch(ampelBild(null, 'x'), /wb-zeichen/u);
+});
+
+test('Druckbogen (R79): „Fiktiver Fall“ genau einmal mit Beispiel, keinmal nach „Leer beginnen“', () => {
+  const bogenText = (w: string): string => {
+    window.dispatchEvent(new Event('beforeprint'));
+    const b = document.querySelector('[data-pruef="druck-bogen"]');
+    assert.ok(b, `${w}: Bogen fehlt`);
+    const t = b.textContent ?? '';
+    window.dispatchEvent(new Event('afterprint'));
+    return t;
+  };
+  const wahl: Record<(typeof NEU)[number], string> = { 'vorlagen-check': 'vc-beispiel', wegweiser: 'ww-beispiel', 'risiko-grenzen': 'rg-beispiel', monatsbericht: 'mb-beispiel' };
+  for (const w of NEU) {
+    const el = zeige(w);
+    assert.equal(bogenText(w).split('Fiktiver Fall').length - 1, 1, `${w} mit Beispiel`);
+    waehle(el, wahl[w], '');
+    // der Wegweiser druckt erst mit einem Ergebnis
+    if (w === 'wegweiser') for (const f of ['dringlich', 'handlung', 'eingetreten', 'anpassen', 'moeglich', 'arbeit', 'entscheidung']) {
+      const r = q<HTMLInputElement>(el, `ww-${f}-nein`);
+      r.checked = true;
+      r.dispatchEvent(new Event('change'));
+    }
+    assert.equal(bogenText(`${w} leer`).split('Fiktiver Fall').length - 1, 0, `${w} leer`);
+  }
 });

@@ -62,6 +62,13 @@ export const MUTANTEN = [
   ['src/werkzeuge/monatsbericht.ts', 'export const ZEICHEN_JE_ZEILE = 78;', 'export const ZEICHEN_JE_ZEILE = 92;', 'Bericht: vorsichtige Zeilenbreite für die Seitenschätzung', TESTS_WERKZEUGE],
   // R78: überlebende Mutanten der Prüfrunde (Monatsbericht, Daten der Vorlagen-Zuständigkeit)
   ['src/werkzeuge/monatsbericht.ts', ' || leer(b.lage) ||', ' ||', 'Bericht: ohne Lage ist der Bericht unvollständig (R77)', TESTS_WERKZEUGE],
+  ['src/ui/flaechen/explore/gemeinsam.ts', "bogenKopf(b.titel, '', b.fiktiv)", "bogenKopf(b.titel, '', false)", 'Werkzeug-Druck: „Fiktiver Fall“ mit Beispiel (R79)', ['tests/explore-werkzeuge.test.ts']],
+  ['src/ui/flaechen/explore/monatsbericht.ts', 'fiktiv: z.beispiel !== null', 'fiktiv: true', 'Werkzeug-Druck: ohne Beispiel kein „Fiktiver Fall“ (R79)', ['tests/explore-werkzeuge.test.ts']],
+  ['src/werkzeuge/monatsbericht.ts', "const BREIT = 'MWmw@%';", "const BREIT = 'MW';", 'Bericht: auch @ und % zählen breit (R79)', TESTS_WERKZEUGE],
+  ['src/werkzeuge/monatsbericht.ts', 'spalten += zeilenFuer(textBreite(`${e.text} ${e.kennung}`), spalte);', 'spalten += zeilenFuer(`${e.text} ${e.kennung}`.length, spalte);', 'Bericht: Einträge nach Zeichenbreite (R79)', TESTS_WERKZEUGE],
+  ['src/werkzeuge/monatsbericht.ts', 'z += voll(`${e.frage} · ${e.stelle} · bis ${e.bis} · ${e.kennung}`);', 'z += zeilenFuer(`${e.frage} · ${e.stelle} · bis ${e.bis} · ${e.kennung}`.length, zeichenJeZeile);', 'Bericht: offene Entscheidungen nach Zeichenbreite (R79)', TESTS_WERKZEUGE],
+  ['src/werkzeuge/risiko-grenzen.ts', 'return { von: stufeAus(v.von, g), bis: stufeAus(v.bis, g), grenze: false };', 'return { von: stufeAus(v.von, g), bis: stufeAus(v.bis, g), grenze: aufGrenze(v.von, g) !== null };', 'Risiko: Spanne zeigt keinen Grenzwert-Treffer (R79)', TESTS_WERKZEUGE],
+  ['src/werkzeuge/risiko-grenzen.ts', 'if (!nachObenOffen && (obenFeld.w', 'if ((obenFeld.w', 'Risiko: nach oben offen → keine obere Ecke (R79)', TESTS_WERKZEUGE],
   ['src/werkzeuge/monatsbericht.ts', ' || leer(b.reaktion) ||', ' ||', 'Bericht: ohne benötigte Reaktion ist der Bericht unvollständig (R79)', TESTS_WERKZEUGE],
   ['src/werkzeuge/monatsbericht.ts', "if (leer(e.frage) || leer(e.stelle)", "if (leer(e.stelle)", 'Bericht: offene Entscheidung ohne Frage → rot (R79)', TESTS_WERKZEUGE],
   ['src/werkzeuge/monatsbericht.ts', 'if (inhalt.length > max)', 'if (inhalt.length >= max)', 'Bericht: genau die Höchstzahl an Einträgen ist erlaubt', TESTS_WERKZEUGE],

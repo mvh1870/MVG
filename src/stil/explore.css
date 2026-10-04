@@ -304,7 +304,7 @@ li[data-fertig="ja"] .wz-schritt-nr { background: var(--status-gruen-soft); colo
 .wz-ok .symbol { width: 16px; height: 16px; }
 .wz-zeile { display: grid; gap: var(--a-2); }
 .wz-annahmen { display: grid; gap: var(--a-2); }
-.wz-ergebnis-titel { margin: 0; font-weight: 700; color: var(--navy); }
+.wz-ergebnis-titel { margin: 0; font-weight: 700; color: var(--navy); overflow-wrap: anywhere; }
 .wz-stufen { display: grid; gap: var(--a-3); margin: 0; padding: 0; list-style: none; }
 .wz-stufen li { display: grid; gap: var(--a-1); }
 .wz-stufen p { margin: 0; }

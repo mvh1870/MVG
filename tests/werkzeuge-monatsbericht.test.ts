@@ -218,3 +218,17 @@ test('Werkzeugstand für die Leinwand: nur der Schalter „Kosten-Ampel ohne Fra
   assert.deepEqual(leseStandBericht('b:oktober', ['oktober']), { beispiel: 'oktober', schritt: null });
   assert.equal(leseStandBericht('b:oktober;w:2', ['oktober']), null);
 });
+
+test('Seitenmesser (R79): Einträge und offene Entscheidungen zählen nach Zeichenbreite, auch @ und %', () => {
+  assert.equal(textBreite('@%'), 2.7);
+  assert.equal(textBreite('mw'), 2.7);
+  assert.equal(textBreite('MWxy'), 4.7);
+  const mit = (zeichen: string, teil: 'eintraege' | 'entscheidungen'): number => {
+    const b = hoechstfall();
+    const breit = hoechstfall(0, zeichen);
+    if (teil === 'eintraege') b.abschnitte = breit.abschnitte;
+    else b.entscheidungen = breit.entscheidungen;
+    return schaetzeUmfang(b).zeilen;
+  };
+  for (const teil of ['eintraege', 'entscheidungen'] as const) assert.ok(mit('WM', teil) > mit('xy', teil), `${teil}: breite Buchstaben brauchen mehr Zeilen`);
+});

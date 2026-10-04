@@ -250,8 +250,8 @@ export function risikoGrenzen(o: WerkzeugOptionen): HTMLElement {
       grenzenFeld(),
       h('fieldset', { class: 'wz-gruppe' }, h('legend', { class: 'wz-gruppe-titel' }, E.risikoTitel),
         h('div', { class: 'wz-felder' },
-          textFeld({ name: 'rg-titel', titel: E.titel, wert: z.titel, max: 80, mehrzeilig: true, beiEingabe: (t) => { z = { ...z, titel: t }; } }),
-          textFeld({ name: 'rg-kennung', titel: E.kennung, wert: z.kennung, max: 10, beiEingabe: (t) => { z = { ...z, kennung: t }; } })),
+          textFeld({ name: 'rg-titel', titel: E.titel, wert: z.titel, max: 80, mehrzeilig: true, beiEingabe: (t) => { z = { ...z, titel: t }; zeichneErgebnis(); } }),
+          textFeld({ name: 'rg-kennung', titel: E.kennung, wert: z.kennung, max: 10, beiEingabe: (t) => { z = { ...z, kennung: t }; zeichneErgebnis(); } })),
         wFeld(), zeileFeld('kosten'), zeileFeld('termin'), qFeld()),
       zusaetzeFeld());
   };

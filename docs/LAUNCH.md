@@ -12,6 +12,7 @@ Der Governance Kompass ist eine Internetseite. Ausgeliefert wird der fertige Ord
 | `robots.txt` | erlaubt Suchmaschinen alles und nennt die Sitemap |
 | `sitemap.xml` | die drei Adressen der Seite |
 | `vorschau.png` | Vorschaubild (1200 × 630) für geteilte Links |
+| `favicon.svg`, `favicon.ico`, `apple-touch-icon.png` | Symbol für Browser-Tab, Lesezeichen und Startbildschirm (weiße Bildmarke auf Navy) |
 | `.htaccess` | Regeln für den IONOS-Webserver: immer `https://www.governancekompass.de`, Sicherheitsköpfe, keine Verzeichnisliste |
 
 Der Ordner entsteht mit `npm run bau` und wird mit jedem Commit eingecheckt; `npm run pruefe` prüft, dass er aktuell und deterministisch ist.

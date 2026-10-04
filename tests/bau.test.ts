@@ -49,7 +49,7 @@ function skriptInhalt(html: string): string {
  * cspZeile() abgeleitet: Jede Lockerung (zusätzliche Quelle, neue Direktive) muss hier auffallen.
  */
 function erwarteteCsp(hash: string): string {
-  return `default-src 'none'; script-src '${hash}'; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'`;
+  return `default-src 'none'; script-src '${hash}'; style-src 'unsafe-inline'; img-src 'self' data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'`;
 }
 
 function zaehle(text: string, nadel: RegExp): number {
@@ -312,5 +312,16 @@ test('Webseitenordner (P16.13, O-42, O-43, O-47): Hauptseite, Impressum, Datensc
   const png = await readFile(path.join(dist, 'vorschau.png'));
   assert.equal(png.readUInt32BE(16), 1200);
   assert.equal(png.readUInt32BE(20), 630);
+  const ico = await readFile(path.join(dist, 'favicon.ico'));
+  assert.equal(ico.readUInt16LE(2), 1, 'ICO-Kopf');
+  assert.equal(ico.readUInt16LE(4), 2, 'zwei Größen');
+  const apple = await readFile(path.join(dist, 'apple-touch-icon.png'));
+  assert.equal(apple.readUInt32BE(16), 180);
+  assert.equal(apple.readUInt32BE(20), 180);
+  assert.match(await readFile(path.join(dist, 'favicon.svg'), 'utf8'), /^<svg [^>]*viewBox="0 0 64 64"/u);
+  for (const seite of ['index.html', 'impressum.html', 'datenschutz.html']) {
+    const h = await readFile(path.join(dist, seite), 'utf8');
+    for (const m of ['href="favicon.svg"', 'href="favicon.ico"', 'rel="apple-touch-icon" href="apple-touch-icon.png"']) assert.ok(h.includes(m), `${seite}: ${m}`);
+  }
   assert.match(await readFile(path.join(dist, '.htaccess'), 'utf8'), /frame-ancestors 'none'/u);
 });

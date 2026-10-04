@@ -84,7 +84,7 @@ quellen/ + inhalte/  ──werkzeuge (Node)──►  src/generiert/ (ignoriert)
 
 ## Webseitenordner und Sicherheit
 - esbuild: `format: 'iife'`, Ziel `es2020` (Safari ≥ 15.4), minifiziert, keine Quelltextkarten in `dist/`.
-- CSP als `<meta>`: `default-src 'none'; script-src 'sha256-…'; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'`. `frame-ancestors` und weitere Sicherheitsköpfe setzt `.htaccess`.
+- CSP als `<meta>`: `default-src 'none'; script-src 'sha256-…'; style-src 'unsafe-inline'; img-src 'self' data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'`. `frame-ancestors` und weitere Sicherheitsköpfe setzt `.htaccess`.
 - Schriften als woff2-data-URIs in `src/generiert/schriften.css`, Bilder als data-URIs.
 - Budget < 4 MB für `index.html`; `npm run bau:pruefe` baut zweimal und verlangt Byte-Gleichheit, auch mit `dist/`.
 

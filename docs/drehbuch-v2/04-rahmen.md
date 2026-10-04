@@ -1,6 +1,6 @@
 # Drehbuch v2 · Rahmen der erweiterten Story (P19.2, O-62, L-270, L-273)
 
-Ausführliches Drehbuch für alles, was um die 14 Stationen herum steht: Auftakt, Akt-Kopfkarten und Pausen, Ende und Bilanz, Steckbriefe, Entscheidungsbuch und Verlauf, Brücken und Ende der Kurzfassung, Wörter der Oberfläche und die Änderungsliste gegenüber `inhalte/geschichte/rahmen.yaml`. Verbindlich ist das Gerüst `docs/drehbuch-v2/00-geruest.md` (zweite Fassung); gelesen sind außerdem die Prüfberichte `tmp/story-analyse/P-fachtreue-geruest.md` und `P-dramaturgie-geruest.md`, `docs/DREHBUCH.md`, `inhalte/geschichte/rahmen.yaml` und `inhalte/fall.md`. Dieses Dokument ersetzt noch nichts; die Stationen selbst stehen in den Dateien 01 bis 03.
+Ausführliches Drehbuch für alles, was um die 14 Stationen herum steht: Auftakt, Akt-Kopfkarten und Pausen, Ende und Bilanz, Steckbriefe, Entscheidungsbuch und Verlauf, Brücken und Ende der Kurzfassung, Wörter der Oberfläche und die Änderungsliste gegenüber `inhalte/geschichte/rahmen.yaml`. Verbindlich ist das Gerüst `docs/drehbuch-v2/00-geruest.md` (dritte Fassung); **für den Wortlaut der Entscheidungsbuch-Zeilen (5.2), der Pausen (2.3), der Brücken (6.1), des Mandat-Kärtchens (4.2), der Echo-Zeilen der Kurzfassung (6.2) und der Vertiefungs-Formen (7.4) gilt diese Datei; die Dateien 00 bis 03 gleichen sich daran an (L-276)**; gelesen sind außerdem die Prüfberichte `tmp/story-analyse/P-fachtreue-geruest.md` und `P-dramaturgie-geruest.md`, `docs/DREHBUCH.md`, `inhalte/geschichte/rahmen.yaml` und `inhalte/fall.md`. Dieses Dokument ersetzt noch nichts; die Stationen selbst stehen in den Dateien 01 bis 03.
 
 **Lesart.** Zitatblöcke (`>`) sind sichtbarer Text und folgen den festen Grenzen: Anrede Sie, „Sie“ spricht nie, wenige Zahlen, keine Abkürzungen, höchstens 60 Wörter je Absatz, die Seite sagt „Station“ und „Akt“, nie „Kapitel“ oder „Whitepaper“, LPH nur intern. Alles andere ist Regie. **Beleg-IDs** (`v24:hb-…` Handbuch, `v24:tlb-…` Teilleistungsbild, `v24:va-…` Vertragsanlage, `k…` Absatz aus V1.2) stehen nur hier und nie sichtbar; bei Widerspruch gilt V2.4 (O-36). Keine Wertung der Antworten, kein Test, keine Selbsteinschätzung (O-46, O-8); der Fall ist fiktiv (O-3); keine neue Fachaussage ohne Beleg (O-38).
 
@@ -42,7 +42,7 @@ Regie. „Mehrmals“ statt einer Zahl (Gerüst, Abschnitt 7: „Auftakt“): Di
 | Knopf | > Los geht's | > Kurzfassung starten |
 | Bildbeschreibung (Skizze, nur Vorlesetext) | > Der Weg mit allen vierzehn Stationen, keine ausgelassen | > Derselbe Weg, aber nur vier von vierzehn Stationen werden gespielt, die übrigen sind kurz überbrückt |
 
-Regie. (a) Das Zahlwort kommt aus `ZAHLWORT` in `src/ui/woerter.ts`; die Tabelle endet heute bei „Zwölf“, braucht also „Dreizehn“ und „Vierzehn“ (Abschnitt 7), sonst erscheint „14 Entscheidungen“. (b) „etwa 40 Minuten“ und „etwa 10 Minuten“ sind gerundete Messwerte (`tests/lesezeit.test.ts`): „etwa 40“ stimmt nur, solange der ganze Weg **unter 8.100 Wörtern** bleibt (8.100 geteilt durch 200 gibt 40,5, gerundet 41), „etwa 10“ nur unter 2.100 Wörtern der Kurzfassung. Meine Teile ergeben 8.083 und 2.017 Wörter (Abschnitt 9). Wird in P19.6 mehr gemessen, ändert sich die Zahl auf der Seite, nicht der Text. (c) „Mit Ausprobieren eher 45 Minuten“ (Gerüst, Abschnitt 10) steht **nicht** auf der Karte, um die Zahlen zu schonen; es bleibt eine Offene Frage (Abschnitt 10, Nr. 3).
+Regie. (a) Das Zahlwort kommt aus `ZAHLWORT` in `src/ui/woerter.ts`; die Tabelle endet heute bei „Zwölf“, braucht also „Dreizehn“ und „Vierzehn“ (Abschnitt 7), sonst erscheint „14 Entscheidungen“. (b) „etwa 40 Minuten“ und „etwa 10 Minuten“ sind gerundete Messwerte (`tests/lesezeit.test.ts`): „etwa 40“ stimmt nur, solange der ganze Weg **unter 8.100 Wörtern** bleibt (8.100 geteilt durch 200 gibt 40,5, gerundet 41), „etwa 10“ nur unter 2.100 Wörtern der Kurzfassung (die gerechneten Entwürfe liegen bei rund 7.820 und rund 2.020 Wörtern, Abschnitt 9; die **obere Schranke** der Tests ist davon getrennt: 9.000 Wörter gesamt, 3.300 je Akt, Abschnitt 8). Die Teile ergeben die Wörter in Abschnitt 9. Wird in P19.6 mehr gemessen, ändert sich die Zahl auf der Seite, nicht der Text. (c) „Mit Ausprobieren eher 45 Minuten“ (Gerüst, Abschnitt 10) steht **nicht** auf der Karte, um die Zahlen zu schonen; es bleibt eine Offene Frage (Abschnitt 10, Nr. 3).
 
 ### 1.4 Die fünf Begleiter und Sie
 
@@ -194,14 +194,16 @@ Zeit niedrig (beide Wege, nach dem ersten Absatz, unverändert):
 
 ### 3.3 Schlusszeilen in vier Fassungen (Engine: `endeFassung`)
 
-Reihenfolge der Prüfung: Vertrauen niedrig vor „nach einer Falle“ vor „offen“ vor Grundfassung (L-239). Zeilen mit **K** sind in der Kurzfassung sichtbar, die übrigen nur auf dem ganzen Weg. Die Zeilen von Klingel, Schwung und Faden sind unverändert; neu sind die Zeile von Lot (Echo E10) und die Zeile von Pfennig.
+Reihenfolge der Prüfung: Vertrauen niedrig vor „nach einer Falle“ vor „offen“ vor Grundfassung (L-239). Zeilen mit **K** sind in der Kurzfassung sichtbar, die übrigen (`kurzfassung: false`) nur auf dem ganzen Weg; Ranzen und Spitzfeder stehen in jeder Fassung außer der Fassung „offen“, aus der nur der Satz der Bürgermeisterin wechselt. Die Zeilen von Schwung und Faden sind unverändert, bei Klingel nennt die Bühnenzeile die Glocke der alten Schule (die Kurzfassung hat die Glocke vorher nicht gesehen); neu sind die Zeile von Lot (Echo E10) und die Zeilen von Ranzen, Spitzfeder und Pfennig.
 
 **Grundfassung** (keine Falle, Vertrauen nicht niedrig, keine Entscheidung offen):
 
-> **Hanna Klingel** *(läutet ihre Glocke)*: Guten Morgen! Willkommen in eurer Schule! **K**
+> **Hanna Klingel** *(läutet die Glocke ihrer alten Schule)*: Guten Morgen! Willkommen in eurer Schule! **K**
 > **Theo Lot:** *{Echo E10, Fassung nach Station 10}* Und inzwischen steht alles drin – hätte ich nie gedacht, dass ich das mal gut finde.
 > **Konrad Schwung:** Seit dem Holz sag ich's gleich, wenn was klemmt. Hat sich gelohnt.
 > **Clara Faden:** Alles Offene ist übergeben, mit Namen und Termin. Verschwunden ist nichts.
+> **Marlene Ranzen:** Und mein Jüngster? Der sitzt morgen im neuen Raum, nicht mehr im Container.
+> **Bernd Spitzfeder:** Die Glocke läutet. Das schreibe ich genau so auf.
 > **Ewald Pfennig:** Ich habe nichts gegen Geld, nur gegen Geld ohne Nachweis. Hier stand alles im Buch.
 > **Gisela Grundstein:** Wissen Sie, was das Beste war? Ich wusste jedes Mal, worüber ich entscheide. **K**
 
@@ -226,7 +228,7 @@ Echo E10 (Zeile vor dem Satz von Lot; **eine** der drei Fassungen, nach der Antw
 
 > **Gisela Grundstein:** Geschafft haben wir es – und was unterwegs offen geblieben ist, schauen wir uns noch einmal gemeinsam an. **K**
 
-Regie. Klingel steht in allen Fassungen; sie läutet in jedem Fall (Zielzeile des Motivs „Glocke“, Gerüst Abschnitt 7). In den Fassungen mit „offen“ ersetzt der neue Ersatzsatz nur die Zeile der Bürgermeisterin (wie heute). Ranzen und Spitzfeder sprechen im Ende nicht: Schlussbild stumm, ihre Zeichen sprechen (Ranzen hält Klingel die Tür auf und reicht ihr die Glocke, Spitzfeder fotografiert sie, beide im Hintergrund); so bleibt das Ende innerhalb der Wortziele (Abschnitt 9).
+Regie. Klingel steht in allen Fassungen; sie läutet in jedem Fall (Zielzeile des Motivs „Glocke“, Gerüst Abschnitt 7). In den Fassungen mit „offen“ ersetzt der neue Ersatzsatz nur die Zeile der Bürgermeisterin (wie heute). Ranzen und Spitzfeder haben im Ende je **eine** Zeile (L-276): Ranzens Sorge („die Letzten im Container“) und Spitzfeders Chronistenrolle finden dort ihren Abschluss; beide Zeilen nennen nur Tatsachen, die auf jedem Weg gelten (die Kinder ziehen in die neuen Räume, Klingel läutet), und tragen `kurzfassung: false`. Im Schlussbild reicht Ranzen Klingel zusätzlich die Tür und Spitzfeder fotografiert die Glocke (Bild).
 
 ### 3.4 Voraussetzungen jedes Bilanz- und Balkensatzes (für `tests/geschichte-wege.test.ts`)
 
@@ -256,6 +258,7 @@ Die Spalte „setzt voraus“ ist die **Bedingung, die auf jedem Endzustand gelt
 | Pfennig, Grundfassung („Ich habe nichts gegen Geld, nur gegen Geld ohne Nachweis. Hier stand alles im Buch.“) | Fassung grund, nicht Kurz | keine Falle (`!falle`); „im Buch stand alles“ gilt auf jedem Weg, das Buch ist neutral (Abschnitt 5.2) |
 | Pfennig nach einer Falle und bei niedrigem Vertrauen („Das Buch lese ich gern. Wo etwas fehlt, frage ich weiter nach.“) | Fassung nach-falle oder vertrauen-niedrig, nicht Kurz | `falle` |
 | Schwung, Faden, Klingel (unveränderte Zeilen) | Fassung grund oder nach-falle (Klingel immer) | keine |
+| Ranzen („Und mein Jüngster? Der sitzt morgen im neuen Raum …“), Spitzfeder („Die Glocke läutet. Das schreibe ich genau so auf.“) | jede Fassung außer „offen“, nicht Kurz | keine; beide Sätze gelten auf jedem Weg (die Kinder ziehen ein, Klingel läutet immer) |
 | Block „Das können Sie jetzt“ vor der Bilanz (Akt III) | alle Stationen 11 bis 14 beantwortet, nicht Kurz | keine Wahl; reine Lernaussagen |
 | Knopf „Weiter mit der ganzen Geschichte“ mit Kicker „Was dazwischen geschah“ | Kurzfassung | keine; sagt nichts über den Weg |
 
@@ -301,7 +304,7 @@ Je Balken ein Satz unter dem Bilanz-Titel; Texte wie in `rahmen.yaml` (Geld hoch
 
 ### 3.8 Campus am Ende
 
-Stufe 8 · Sommer · Morgen, Ausschnitt breit. Zusätze wie heute: Schulbus, Kinder mit Schultüten und Ranzen, Luftballons, Handglocke in der Hand von Hanna Klingel; bei reduzierter Bewegung stehen die Kinder still. **Zeit niedrig** (Endstand 0 bis 3, Bilanz nicht „offen“): Sporthalle eingerüstet, Beschreibungstext „Nur die Sporthalle ist noch nicht fertig und steht eingerüstet.“ (Bestand `halleOffen`). Im Schlussbild des ganzen Wegs stehen die drei Nebenfiguren etwas abseits: Ranzen mit Klemmbrett (hilft Klingel mit der Tür), Spitzfeder mit Notizblock (fotografiert die Glocke), Pfennig mit Taschenuhr (schaut aufs Buch). In der Kurzfassung fehlen sie.
+Stufe 8 · Sommer · Morgen, Ausschnitt breit. Zusätze wie heute: Schulbus, Kinder mit Schultüten und Ranzen, Luftballons, Handglocke in der Hand von Hanna Klingel; bei reduzierter Bewegung stehen die Kinder still. **Zeit niedrig** (Endstand 0 bis 3, Bilanz nicht „offen“): Sporthalle eingerüstet, Beschreibungstext „Nur die Sporthalle ist noch nicht fertig und steht eingerüstet.“ (Bestand `halleOffen`). Im Schlussbild des ganzen Wegs stehen die drei Nebenfiguren etwas abseits und sprechen je eine Zeile (3.3): Ranzen mit Klemmbrett (hilft Klingel mit der Tür), Spitzfeder mit Notizblock (fotografiert die Glocke), Pfennig mit Taschenuhr (schaut aufs Buch). In der Kurzfassung fehlen sie.
 
 ---
 
@@ -321,19 +324,20 @@ Nur die **Steckbriefe** ändern sich (sichtbar, zugeklappt); Rolle, Akzent, Port
 |---|---|---|
 | Sie | > Sie leiten das Projekt für die Stadt als Bauherrn. Listen führen andere: Sie prüfen, was Ihnen vorgelegt wird, fordern nach, was fehlt, und entscheiden, was in Ihrem Rahmen liegt. Alles andere bringen Sie rechtzeitig zur Bürgermeisterin. | Rolle O-36: prüfen, nachfordern, entscheiden, melden lassen; nichts selbst pflegen (`v24:hb-1`, `v24:tlb-1`, `v24:tlb-2`) |
 | Gisela Grundstein | > Sie entscheidet für die Stadt die großen Dinge: was zuerst kommt, jede große Freigabe, jeden Griff in die Reserve. Der Lenkungskreis, eine feste Runde mit der Finanzabteilung und dem Schulamt, berät sie – entscheiden tut sie. Ihre erste Frage lautet immer: Was genau soll ich entscheiden – und bis wann? | Refrain des Bogens (Station 1 bis 12, Gerüst 7) |
-| Clara Faden | > Sie hält alle Fäden zusammen: Sie erfasst und pflegt jeden Vorgang, prüft jede Woche alles Offene und bereitet jede Entscheidung vor – mit mindestens zwei Wegen und einer Empfehlung. Was beschlossen wird, hält sie im Entscheidungsbuch fest. Entscheiden darf sie nicht. | Entscheidungsbuch (`v24:hb-3.1`, `v24:va-3.5`); Projektsteuerin führt es |
+| Clara Faden | > Sie hält alle Fäden zusammen: Sie erfasst und pflegt jeden Vorgang, prüft jede Woche alles Offene und bereitet jede erforderliche Handlungsentscheidung vor – mit mindestens zwei zulässigen Wegen und einer Empfehlung. Was beschlossen wird, hält sie im Entscheidungsbuch fest. Entscheiden darf sie nicht. | Entscheidungsbuch (`v24:hb-3.1`, `v24:va-3.5`); Projektsteuerin führt es; „erforderliche Handlungsentscheidung“ statt „jede Entscheidung“ (`v24:hb-3.1`, `v24:va-3.1`: Routine und reiner Prüfauftrag sind keine Handlungsentscheidung) |
 | Konrad Schwung | > Er plant den Campus von der ersten Linie bis zur letzten Fuge. Er findet für alles eine Lösung – manchmal schneller, als ihm lieb sein sollte. Schlechte Nachrichten erwähnt er gern beiläufig. | Bogen: Beiläufiges in 2, Wendepunkt in 12 |
 | Hanna Klingel | > Sie weiß, was die Kinder brauchen – und sie will viel davon. Jeder Wunsch hat einen guten Grund; nicht jeder passt ins Budget. Die Messingglocke ihrer alten Schule soll im neuen Haus läuten. | Motiv „Glocke“ (3, 5, 6, 7, 12, 14) |
 | Theo Lot | > Er ist jeden Tag auf der Baustelle und kennt jede Schraube. Schreiben findet er lästig – bauen nicht. Vieles, was er weiß, steckt nur in seinem Kopf. | bereitet Station 11 („frag Theo“) vor |
 
-**Bögen (nur Regie, Nachtrag zu Gerüst Abschnitt 7).** Konrad Schwungs Wendepunkt liegt in **12**, nicht in 7 (das alte Drehbuch sagte 7); seine Zielzeile bleibt. Giselas Anerkennung vor dem Stadtrat steht in 13. Hanna Klingels Zielzeile bleibt „Willkommen in eurer Schule!“. Clara Fadens Zielzeile bleibt. Theo Lots Zielzeile bekommt das Echo E10 voran (3.3).
+**Bögen (nur Regie, Nachtrag zu Gerüst Abschnitt 7).** Konrad Schwungs Wendepunkt liegt in **12**, nicht in 7 (das alte Drehbuch sagte 7); seine Zielzeile bleibt. Giselas Anerkennung vor dem Stadtrat steht in 13. Ranzens Bogen („besorgt → Mitgestalterin“) endet mit ihrer Zeile im Ende, ihr Echo in 13 trägt die Zeile nach E8 (L-276); Spitzfeders Bogen („Zitierender → Chronist“) endet mit seiner Zeile im Ende. Hanna Klingels Zielzeile bleibt „Willkommen in eurer Schule!“. Clara Fadens Zielzeile bleibt. Theo Lots Zielzeile bekommt das Echo E10 voran (3.3).
 
 **Mandat-Kärtchen („Wer entscheidet was“).** Zeile der Projektsteuerin nennt künftig das Buch; die Vertretung der Bürgermeisterin ist eine Zeile (Gerüst Offene Frage 5, Vorschlag):
 
 > **Projektsteuerin:** bereitet alles vor, pflegt alle Vorgänge, hält jeden Beschluss im Entscheidungsbuch fest, empfiehlt – entscheidet nie.
-> **Bürgermeisterin:** alles darüber · jeder Griff in die Reserve · ob die Stadt ein großes Risiko trägt · jede Freigabe am Ende eines großen Planungs- oder Bauabschnitts (Fachleute sagen: Leistungsphase) · was zuerst kommt: der Schulstart, dann das Geld · wenn sie nicht da ist, vertritt sie die Kämmerin.
+> **Bürgermeisterin:** alles darüber · jeder Griff in die Reserve · ob die Stadt ein großes Risiko trägt · jede Freigabe am Ende eines großen Planungs- oder Bauabschnitts (Fachleute sagen: Leistungsphase) · was zuerst kommt: der Schulstart, dann das Geld.
+> Wenn sie nicht da ist, vertritt sie die Kämmerin. ⟦-K⟧
 
-Beleg (intern): `v24:hb-projektblatt` („Entscheidungszuständigkeit und Vertretung“), `v24:hb-3.1`. „Kämmerin“ ist eine freie Festlegung des Falls; die Reichweite der Vertretung wird nicht geregelt (keine Fachregel).
+Die Zeile mit der Vertretung ist ein eigener Absatz und entfällt in der Kurzfassung (wie in 01, Station 1). Der Kärtchen-Wortlaut oben ist verbindlich; die Zeilen für „Sie“ und „Lenkungskreis“ stehen in 01 (Station 1). Beleg (intern): `v24:hb-projektblatt` („Entscheidungszuständigkeit und Vertretung“), `v24:hb-3.1`. „Kämmerin“ ist eine freie Festlegung des Falls; die Reichweite der Vertretung wird nicht geregelt (keine Fachregel).
 
 ### 4.3 Die drei Nebenfiguren (Porträt für `src/grafik/figuren.ts`)
 
@@ -350,7 +354,7 @@ Kennungen (ASCII): `ranzen`, `spitzfeder`, `pfennig`. In `figuren.ts` als eigene
 | Sprechweise | kurze Fragen, die mit „Und“ beginnen |
 | Beispielsätze | „Und was heißt das für meinen Jüngsten?“ · „Ja oder nein – ich schreibe es auf die Einladung.“ |
 | Sorge | dass ihre Kinder die letzten im Container sind |
-| Auftritte | 6 (Hauptauftritt, Chor der Eltern); 13 (nur als Stimme im Echo); Ende (Schlussbild, hilft Klingel mit der Tür) |
+| Auftritte | 6 (Hauptauftritt, Chor der Eltern); 13 (Stimme im Echo E8, eine Zeile); Ende (Schlussbild, eine Zeile, hilft Klingel mit der Tür) |
 | Bogen (nur Ton) | von der besorgten Frage zur Mitgestalterin |
 | Akzent der Sprechblase | `gruen` |
 | Bildbeschreibung (`BILD_TEXT`) | Marlene Ranzen, Elternvertreterin: dunkle Locken im Dutt, grasgrüne Regenjacke, Schlüsselband mit bunten Anhängern und ein Klemmbrett mit Fragenliste. |
@@ -367,7 +371,7 @@ Kennungen (ASCII): `ranzen`, `spitzfeder`, `pfennig`. In `figuren.ts` als eigene
 | Sprechweise | knappe Fragen, die wie Feststellungen klingen |
 | Beispielsätze | „Und wer entscheidet das?“ · „Das schreibe ich so auf.“ |
 | Sorge | dass die Wahrheit nicht in eine Überschrift passt |
-| Auftritte | 6 (hinten im Saal, schreibt mit); 13 (nur Schlagzeile im Echo E8); Ende (Schlussbild, fotografiert die Glocke) |
+| Auftritte | 6 (hinten im Saal, schreibt mit); 13 (nur Schlagzeile im Echo E8); Ende (Schlussbild, eine Zeile, fotografiert die Glocke) |
 | Bogen (nur Ton) | vom Zitierenden zum Chronisten |
 | Akzent der Sprechblase | keiner; die Zeitung spricht in der Bildkarte „Lindenbote“ (Schlagzeile in drei Fassungen in Station 6, Papierton) |
 | Bildbeschreibung (`BILD_TEXT`) | Bernd Spitzfeder, Lokalreporter: sandfarbener Trenchcoat, graublaue Schiebermütze mit Bleistift im Mützenband und ein Notizblock mit Gummiband. |
@@ -432,18 +436,18 @@ Die Spalte heißt „Anlass“, nicht „Wann“: Der Eintrag nennt den Anlassmo
 | 2 · Ein erstes Warnsignal | März 2026 | Vermerk | niemand – es wurde nichts beschlossen | Hinweis des Architekten zu den Lieferzeiten der Holzelemente | Offen ist, wie lange die Holzelemente zur Lieferung brauchen. |
 | 3 · Wie gefährlich ist das? | April 2026 | Beschluss | die Bürgermeisterin; der Lenkungskreis hat beraten | Vorlage der Projektsteuerin; Auskünfte der Hersteller | Die Holzelemente werden früher ausgeschrieben, rund 150.000 Euro kommen aus der Reserve. |
 | 4 · Die Auflage | Mai 2026 | Beschluss | die Bürgermeisterin | Vorlage der Projektsteuerin zur Brandschutzauflage | Die Holzbauteile in den Fluren werden gekapselt, rund 400.000 Euro kommen aus der Reserve. Die Wirkung gilt erst, wenn die Brandschutzbehörde sie bestätigt hat. |
-| 5 · Die Schule will mehr | Juni 2026 | Beschluss | die Bürgermeisterin; der Lenkungskreis hat beraten | Änderungswunsch der Schule | Die Mensa wird erweiterbar gebaut, rund 150.000 Euro kommen aus der Reserve. Eine große Mensa ist nicht beschlossen. |
+| 5 · Die Schule will mehr | Juni 2026 | Beschluss | die Bürgermeisterin; der Lenkungskreis hat beraten | Änderungswunsch der Schule | Die Mensa wird erweiterbar gebaut, rund 150.000 Euro kommen aus der Reserve. Eine große Mensa ist nicht beschlossen; ein späterer Ausbau wäre ein neuer Antrag. |
 | 6 · Der Elternabend | August 2026 | Vermerk | niemand – es wurde nichts beschlossen | Elternabend in der Containerschule | Die Eltern fragten nach der Mensa und nach dem Schulstart 2028. |
-| 7 · Der Zuschlag | September 2026 | Beschluss | die Bürgermeisterin (Freigabe); bestellt wird über die Vergabestelle | Zuschlagsvorschlag der Vergabestelle zum zweiten Holzlos | Der Zuschlag fürs zweite Holzlos ist freigegeben. Ein Preisnachlass-Angebot für spätere Holzarbeiten liegt vor; es zählt als Chance und steht nicht in der Prognose. |
+| 7 · Der Zuschlag | September 2026 | Beschluss | die Bürgermeisterin (Freigabe); bestellt wird über die Vergabestelle | Zuschlagsvorschlag der Vergabestelle zum Holz der Grundschule | Der Zuschlag für das Holz der Grundschule ist freigegeben. Ein Preisnachlass-Angebot für spätere Holzarbeiten liegt vor; es zählt als Chance und steht nicht in der Prognose. |
 | 8 · Zwei Zahlen, zwei Wahrheiten | Oktober 2026 | Vermerk | niemand – eine Prognose ist kein Beschluss | Kostenstand der Projektsteuerin mit Datum | Die Prognose liegt rund eine Million Euro über dem Budget. Die angekündigten Mehrkosten der Haustechnik stehen als Risiko daneben, nicht in der Prognose. |
 | 9 · Der Monatstermin | Dezember 2026 | Vermerk | niemand – es wurde nichts beschlossen | Monatsbericht Dezember 2026 | Offen sind der Planstand der Fassade und der Netzanschluss: Er kommt im März statt im Januar, bis dahin läuft Baustrom. |
 | 10 · Ärger auf der Baustelle | Februar 2027 | Vermerk | niemand – der Bauleiter hat gesperrt | Meldung des Bauleiters | Die losen Anker am Gerüst der Sporthalle sind erneuert, der Kostenträger ist geklärt. |
 | 11 · Wenn Wissen im Kopf steckt | April 2027 | Übergabe | die Projektsteuerin an ihre Vertretung | Einträge der Projektsteuerin | Die Vertretung übernimmt die offenen Einträge, darunter den Hinweis des Lüftungsherstellers. |
-| 12 · Die große Entscheidung | Mai 2027 | Beschluss | die Bürgermeisterin; der Lenkungskreis hat beraten | Vorlage der Projektsteuerin zur Lüftungsanlage | Die Lüftungsanlage der Gesamtschule bekommt ein Ersatzgerät, rund 400.000 Euro kommen aus der Reserve. Auflage: Es ist vor dem Schulstart eingebaut und eingestellt. |
+| 12 · Die große Entscheidung | Mai 2027 | Beschluss | die Bürgermeisterin; der Lenkungskreis hat beraten | Vorlage der Projektsteuerin zur Lüftungsanlage | Die Lüftungsanlage der Gesamtschule bekommt ein Ersatzgerät, rund 400.000 Euro kommen aus der Reserve. Auflage: Es ist vor dem Schulstart eingebaut und in Betrieb. |
 | 13 · Beschluss und Nachweis | November 2027 | Vermerk | niemand – kein neuer Beschluss | Haushaltsberatung des Stadtrats; das Entscheidungsbuch | Die Beschlüsse stehen mit Quelle und Datum im Buch. Die Brandschutzbehörde hat die Wirkung der Kapselung bestätigt. Offen sind zwei Fugen im Hallenboden; die Firma hat Nachbesserung bis zu den Herbstferien 2028 zugesagt. |
 | 14 · Schulstart | Juli 2028 | Beschluss und Übergabe | die Bürgermeisterin; der Lenkungskreis hat beraten | Vorlage der Projektleitung, von der Projektsteuerin vorbereitet | Die Freigabe erfolgt mit Auflagen. Die Fugen im Hallenboden und die Feineinstellung der Lüftung gehen mit Termin und Namen an das Gebäudemanagement. |
 
-**Änderungen gegenüber dem Gerüst (Abschnitt 5)**, alle zur Wahrung der Neutralität: Zeile 3 und 4 „Vorlage mit zwei Wegen“ → „Vorlage der Projektsteuerin“ (die Falle-Folgen erzählen nicht überall zwei Wege); Zeile 5 „Änderungsantrag … mit zwei Wegen“ → „Änderungswunsch der Schule“; Zeile 7 „Vergabemappe“ → „Zuschlagsvorschlag der Vergabestelle“ und „gesondert als Chance geführt“ → „zählt als Chance und steht nicht in der Prognose“ (so steht es im Fall, `inhalte/fall.md`); Zeile 8 „eine Zahl“ → „Die Prognose liegt …“ (nach der Prüfung, Fall: 59,4 Millionen, +1,7 Prozent; die Falle-Antworten haben dem Stadtrat eine andere Zahl genannt); Zeile 9 „Monatsbericht, eine Seite“ → „Monatsbericht Dezember 2026“ (die Falle lässt den Bericht grün); Zeile 10 „Bereich gesperrt“ → „der Bauleiter hat gesperrt“ (die Falle sperrt nur eine Seite); **Zeile 12 „Vorlage mit drei zulässigen Wegen, Gewichte abgestimmt“ → „Vorlage der Projektsteuerin zur Lüftungsanlage“** (die Falle „nur ein Gerät mit Preis“ legt keine drei Wege vor); Zeile 13 ergänzt um die Tatsachen des Falls (Behörde, Fugen, Herbstferien). Die Tatsachen der Spalte „Ergebnis“ stehen alle in `inhalte/fall.md`.
+**Änderungen gegenüber dem Gerüst (Abschnitt 5)**, alle zur Wahrung der Neutralität: Zeile 3 und 4 „Vorlage mit zwei Wegen“ → „Vorlage der Projektsteuerin“ (die Falle-Folgen erzählen nicht überall zwei Wege); Zeile 5 „Änderungsantrag … mit zwei Wegen“ → „Änderungswunsch der Schule“, dazu „ein späterer Ausbau wäre ein neuer Antrag“ (löst den früheren Widerspruch „Anmeldezahlen im Herbst“ auf, L-276); Zeile 7 „Vergabemappe“ → „Zuschlagsvorschlag der Vergabestelle“, „zweites Holzlos“ → „Holz der Grundschule“ (die Kurzfassung kennt das erste Los nicht) und „gesondert als Chance geführt“ → „zählt als Chance und steht nicht in der Prognose“ (so steht es im Fall, `inhalte/fall.md`); Zeile 8 „eine Zahl“ → „Die Prognose liegt …“ (nach der Prüfung, Fall: 59,4 Millionen, +1,7 Prozent; die Falle-Antworten haben dem Stadtrat eine andere Zahl genannt); Zeile 9 „Monatsbericht, eine Seite“ → „Monatsbericht Dezember 2026“ (die Falle lässt den Bericht grün); Zeile 10 „Bereich gesperrt“ → „der Bauleiter hat gesperrt“ (die Falle sperrt nur eine Seite); **Zeile 12 „Vorlage mit drei zulässigen Wegen, Gewichte abgestimmt“ → „Vorlage der Projektsteuerin zur Lüftungsanlage“** (die Falle „nur ein Gerät mit Preis“ legt keine drei Wege vor); Auflage „eingebaut und in Betrieb“ statt „eingestellt“ (die Feineinstellung im ersten Winter ist ein Übergabeposten in 14, sonst wäre die Auflage nicht erfüllt); Zeile 13 ergänzt um die Tatsachen des Falls (Behörde, Fugen, Herbstferien). Die Tatsachen der Spalte „Ergebnis“ stehen alle in `inhalte/fall.md` (soweit P19.6 sie dort nachträgt, Gerüst Abschnitt 8). **Diese Tabelle ist der alleinige Wortlaut:** die Zeilen in 00, 01, 02 und 03 geben sie wörtlich wieder oder verweisen auf sie (L-276).
 
 **Kurzfassung.** Das Buch zeigt die Einträge der gespielten Stationen (1, 3, 5, 12) voll; für jede übersprungene Station steht **eine Zeile** (nur Art und Ergebnis, ohne Kopf), sobald die Brückenkarte der Station gezeigt wurde. Das Buch ist dort nur über das Symbol zu öffnen, es steht nicht im Fluss der Stationen (Wörter, Abschnitt 2.4). Die Brückenzeilen und die Zeilen des Buchs sagen dasselbe in anderen Wörtern.
 
@@ -488,35 +492,35 @@ Die Leinwand zeigt das Buch als **Seite ohne Bedienung**: dieselben Einträge bi
 
 ### 6.1 Brückenkarten (gebündelt, fünf Karten, zehn Zeilen)
 
-Je Lücke eine Karte; der erste Teil der Zeile ist die **Nummer der Station** (fett), dann der Monat, dann ein Satz. Die Karte trägt als Kopf das Wort „Inzwischen“ **als Kicker** (zählt nicht; statt „Was inzwischen geschah“ und statt Nummer, Titel und Zeit je Zeile); der Titel der Station steht nur als Hilfetext. Die Zeilen zählen einschließlich der Nummer (jede Ziffer ist ein Wort) **147 Wörter**, also unter 150. Es erzählt der gute Weg; die Balken zählen wie „gut“.
+Je Lücke eine Karte; der erste Teil der Zeile ist die **Nummer der Station** (fett), dann der Monat, dann ein Satz. Die Karte trägt als Kopf das Wort „Inzwischen“ **als Kicker** (zählt nicht; statt „Was inzwischen geschah“ und statt Nummer, Titel und Zeit je Zeile); der Titel der Station steht nur als Hilfetext. Die Zeilen zählen einschließlich der Nummer (jede Ziffer ist ein Wort) **147 Wörter**, also unter 150 (nach der dritten Fassung unverändert: B7 +1, B8 +1, B10 −2). Es erzählt der gute Weg; die Balken zählen wie „gut“.
 
 | Karte (vor Station) | Zeilen | Balken wie gut (Geld/Zeit/Vertrauen) |
 |---|---|---|
 | 1 (vor 3) | > **2** · März: Der Architekt erwähnt, Holz könnte knapp werden; die Projektsteuerin hält es als Frühwarnung fest. | 0/+1/+1 |
 | 2 (vor 5) | > **4** · Mai: Eine Brandschutzauflage kommt. Sie wird als Problem aufgenommen, die Lösung beschließt die Bürgermeisterin. | −1/−1/+1 |
-| 3 (vor 12, erste Karte) | > **6** · August: Auf dem Elternabend nennen Sie, was beschlossen und was offen ist.<br>> **7** · September: Die Bürgermeisterin gibt den Zuschlag fürs zweite Holzlos frei; bestellt wird über die Vergabestelle.<br>> **8** · Oktober: Dem Stadtrat wird eine Zahl mit Datum genannt, die Mehrkosten stehen als Risiko daneben. | 6: 0/0/+1 · 7: 0/+1/+1 · 8: +2/0/+2 |
-| 4 (vor 12, zweite Karte) | > **9** · Dezember: Sie lesen den Monatsbericht mit Blick auf offene Entscheidungen.<br>> **10** · Februar: Ein Sturm lockert das Gerüst; der Bauleiter sperrt sofort und meldet es am selben Tag.<br>> **11** · April: Clara Faden fällt aus; der Lüftungshersteller deutet Verzug an, ihre Vertretung übernimmt die Einträge. | 9: 0/+1/+1 · 10: 0/−1/+1 · 11: 0/−1/+1 |
+| 3 (vor 12, erste Karte) | > **6** · August: Auf dem Elternabend nennen Sie, was beschlossen und was offen ist.<br>> **7** · September: Zuschlag für das Holz der Grundschule; die Bürgermeisterin gibt frei, bestellt wird über die Vergabestelle.<br>> **8** · Oktober: Dem Stadtrat wird eine datierte Zahl genannt; angekündigte Mehrkosten der Haustechnik stehen als Risiko daneben. | 6: 0/0/+1 · 7: 0/+1/+1 · 8: +2/0/+2 |
+| 4 (vor 12, zweite Karte) | > **9** · Dezember: Sie lesen den Monatsbericht mit Blick auf offene Entscheidungen.<br>> **10** · Februar: Ein Sturm lockert das Gerüst; der Bauleiter sperrt sofort, die Projektsteuerin meldet es.<br>> **11** · April: Clara Faden fällt aus; der Lüftungshersteller deutet Verzug an, ihre Vertretung übernimmt die Einträge. | 9: 0/+1/+1 · 10: 0/−1/+1 · 11: 0/−1/+1 |
 | 5 (vor dem Ende) | > **13** · November: Die Projektsteuerin weist dem Stadtrat jeden Beschluss nach.<br>> **14** · Juli: Die Bürgermeisterin erteilt die Freigabe mit Auflagen; Offenes geht mit Termin und Namen ans Gebäudemanagement. | 13: 0/0/+1 · 14: 0/0/+1 |
 
 **Kopf der fünf Karten (Kicker, zählt nicht):** Inzwischen
 
-**Regie.** (a) Brücke 14 ist **neu gegenüber dem Gerüst** (dort: „Station 14 wird als Ende gezeigt“, ohne Zeile): Ohne sie kennt die Kurzfassung im Ende weder die Freigabe mit Auflagen noch die Übergabe, die Faden im Ende nur auf dem ganzen Weg sagt (`kurzfassung: false`). Mit 17 Wörtern hält sie die Grenze (jede Zeile höchstens 17 Wörter einschließlich der Nummer). (b) Brücke 8 sagt „Dem Stadtrat wird eine Zahl genannt“ (Passiv), nicht „Sie nennen“: Die Zahl legt die Projektsteuerin vor, die Bürgermeisterin vertritt sie; so steht keine Rolle falsch. (c) Brücke 7 sagt „gibt frei“ und „bestellt wird über die Vergabestelle“ (Beleg `v24:va-4.2`, `v24:tlb-5`). (d) Brücke 11 enthält die Vorgeschichte der Lüftung für Station 12 (Gerüst 2d). (e) Es steht in keiner Zeile eine Wertung oder ein Beleg; Wörter wie „Station“ stehen nicht in den Zeilen, die Nummer ist die der Geschichte (die Fortschrittslinie der Kurzfassung zählt „1 von 4“ bis „4 von 4“, wie heute, R74). (f) Karten 1 bis 5 stehen am Anfang des jeweils nächsten gespielten Schritts (Szene von 3, 5, 12 und Ende), wie heute.
+**Regie.** (a) Brücke 14 ist **neu gegenüber dem Gerüst** (dort: „Station 14 wird als Ende gezeigt“, ohne Zeile): Ohne sie kennt die Kurzfassung im Ende weder die Freigabe mit Auflagen noch die Übergabe, die Faden im Ende nur auf dem ganzen Weg sagt (`kurzfassung: false`). Mit 17 Wörtern hält sie die Grenze (jede Zeile höchstens 17 Wörter einschließlich der Nummer). (b) Brücke 8 sagt „Dem Stadtrat wird eine datierte Zahl genannt“ (Passiv), nicht „Sie nennen“: Die Zahl legt die Projektsteuerin vor, die Bürgermeisterin vertritt sie; so steht keine Rolle falsch; „angekündigte Mehrkosten der Haustechnik“ erklärt den Begriff für die Kurzfassung, die Szene dazu nicht gesehen hat. Brücke 7 sagt „Holz der Grundschule“ statt „zweites Holzlos“ aus demselben Grund. Brücke 10: Sperren ist Sache des Bauleiters, melden Sache der Projektsteuerin (`v24:hb-4`, `v24:tlb-5`). (c) Brücke 7 sagt „gibt frei“ und „bestellt wird über die Vergabestelle“ (Beleg `v24:va-4.2`, `v24:tlb-5`). Die Zeilen 2, 4, 6, 9, 11, 13 und 14 sind der verbindliche Wortlaut; die Akt-Dateien führen sie gleich (L-276). (d) Brücke 11 enthält die Vorgeschichte der Lüftung für Station 12 (Gerüst 2d). (e) Es steht in keiner Zeile eine Wertung oder ein Beleg; Wörter wie „Station“ stehen nicht in den Zeilen, die Nummer ist die der Geschichte (die Fortschrittslinie der Kurzfassung zählt „1 von 4“ bis „4 von 4“, wie heute, R74). (f) Karten 1 bis 5 stehen am Anfang des jeweils nächsten gespielten Schritts (Szene von 3, 5, 12 und Ende), wie heute.
 
 ### 6.2 Die drei sichtbaren Echos der Kurzfassung (E1, E4, E7)
 
-Je Echo eine Zeile in drei Fassungen; die Fassung nach der **gespielten** Antwort der Quelle (alle drei Quellen sind in der Kurzfassung gespielt, also nie die Ersatzfassung „gut“). Die Wertung wird nie genannt. Nur Ton, nie eine Tatsache (Gerüst Abschnitt 4). Die Prüfzeile nennt, was in der Folge der Quelle auf diesem Weg steht.
+Je Echo eine Zeile in drei Fassungen; die Fassung nach der **gespielten** Antwort der Quelle (alle drei Quellen sind in der Kurzfassung gespielt, also nie die Ersatzfassung „gut“). Die Wertung wird nie genannt. Nur Ton, nie eine Tatsache (Gerüst Abschnitt 4). Die Prüfzeile nennt, was in der Folge der Quelle auf diesem Weg steht. Die Fassungen von E1, E4 und E7 sind der Wortlaut aus 01; E1 (Falle) ist neutral genug für jede Folge von Station 5, auch für den Weg, auf dem Schwung dort selbst ohne Beschluss plant (L-276). „Schlechte Nachrichten“ statt „Vorrangiges“: Der Verzug in 12 ist ein Problem, kein Risiko mit Matrixfeld.
 
 | Echo | Ort · Figur | gut | vertretbar | Falle | Prüfzeile (muss in der Folge der Quelle stehen) |
 |---|---|---|---|---|---|
-| E1 | in Station 5, Folge · Gisela Grundstein | > „Genau für solche Fälle haben wir im Januar die Seite geschrieben.“ | > „Gut, dass es diesmal nur einmal zu mir kommt.“ | > „Diesmal sagt keiner dem Architekten etwas zu, bevor ich entschieden habe.“ | g: Seite unterschrieben · v: viele Fragen bei der Bürgermeisterin · f: Dämmung ohne Beschluss zugesagt |
-| E4 | in Station 12, Szene · Clara Faden | > „Seit dem Holz weiß ich: Vorrangiges wollen Sie früh hören – deshalb liegt die Vorlage schon bei.“ | > „Beim Holz kam die Vorlage später als die Meldung. Diesmal liegt sie gleich bei.“ | > „Beim Holz kam die Meldung erst spät. Diesmal melde ich die Lage sofort.“ | g: sofort gemeldet · v: Vorlage später · f: Meldung erst nach Bestätigung der Zahl |
+| E1 | in Station 5, Folge · Gisela Grundstein | > „Genau für solche Fälle haben wir im Januar die Seite geschrieben.“ | > „Gut, dass es diesmal nur einmal zu mir kommt.“ | > „Schon einmal wurde zugesagt, bevor ich entschieden hatte. Das darf nicht zur Gewohnheit werden.“ | g: Seite unterschrieben · v: viele Fragen bei der Bürgermeisterin · f: Dämmung ohne Beschluss zugesagt |
+| E4 | in Station 12, Szene · Clara Faden | > „Seit dem Holz weiß ich: Schlechte Nachrichten wollen Sie früh hören – deshalb liegt die Vorlage schon bei.“ | > „Beim Holz lag die Vorlage erst später vor. Diesmal liegt sie gleich bei.“ | > „Beim Holz kam die Meldung erst spät. Diesmal melde ich die Lage sofort.“ | g: gemeldet, Vorlage in der Woche · v: Vorlage gut drei Wochen später, Ende April · f: Meldung erst nach Bestätigung der Zahl (Faden meldete selbst; „spät“ meint die Meldung des Lesers) |
 | E7 | in Station 12, Szene · Hanna Klingel | > „Bei der Mensa wusste ich immer, woran ich bin. Sagen Sie mir auch jetzt, was feststeht und was nicht.“ | > „Bei der Mensa habe ich lange auf Bescheid gewartet. Bitte nicht noch einmal so lange.“ | > „Bei der Mensa hat man umgeplant, bevor jemand entschieden hat. Diesmal bitte erst entscheiden.“ | g: Antrag mit beiden Wegen · v: Schule wartete · f: Schwung plante ohne Beschluss um |
 
-Auf dem Weg der Kurzfassung steht je Echo **eine** Zeile (zusammen 11 + 16 + 19 = 46 Wörter in der guten Fassung, 38 in den beiden anderen; der Kürzungsplan des Gerüsts rechnete mit 43, Abschnitt 9). Wird die Messung in P19.6 zu lang, fällt zuerst E7 (Gerüst 2d). Alle übrigen Echos (E2, E3, E5, E6, E8, E9, E10) tragen `kurzfassung: false`; E10 steht im Ende des ganzen Weges (3.3).
+Auf dem Weg der Kurzfassung steht je Echo **eine** Zeile (zusammen 11 + 17 + 19 = 47 Wörter in der guten Fassung, 38 bis 41 in den beiden anderen; der Kürzungsplan des Gerüsts rechnete mit 43, Abschnitt 9). Wird die Messung in P19.6 zu lang, fällt zuerst E7 (Gerüst 2d). Alle übrigen Echos (E2, E3, E5, E6, E8, E9, E10) tragen `kurzfassung: false`; E10 steht im Ende des ganzen Weges (3.3).
 
 ### 6.3 Ende der Kurzfassung und Weiterführung
 
-Das Ende der Kurzfassung ist das Ende des ganzen Weges ohne die Zeilen mit `kurzfassung: false` (Lot, Schwung, Faden, Pfennig), ohne Block „Das können Sie jetzt“, mit dem Knopf der Weiterführung unter einem Kicker. Aufbau:
+Das Ende der Kurzfassung ist das Ende des ganzen Weges ohne die Zeilen mit `kurzfassung: false` (Lot, Schwung, Faden, Ranzen, Spitzfeder, Pfennig), ohne Block „Das können Sie jetzt“, mit dem Knopf der Weiterführung unter einem Kicker. Aufbau:
 
 1. Brückenkarte 5 (13 und 14, 6.1), Kicker „Ende August 2028“, Überschrift „Schulstart“, Campus (bei Zeit niedrig die Sporthalle offen).
 2. Einstieg (kurz): > Ende August 2028, der erste Schultag. Am Haupteingang stehen die fünf – und Sie.
@@ -599,11 +603,11 @@ Aufklapper am Ende jeder Station, zugeklappt, nur auf dem ganzen Weg, nicht im D
 | Schlüssel | Wert |
 |---|---|
 | `vertiefung` | „Vertiefung“ |
-| Form „Zum Nachdenken“ | Kicker „Zum Nachdenken“; Aufklapper „Antwort“ innerhalb des Texts (Frage, Antwort zum Aufklappen) |
-| Form „Fallbeispiel“ | Kicker „Ein zweiter Fall“ |
-| Form „Warum so?“ | Kicker „Warum so?“ |
+| Form „Zum Nachdenken“ | Kicker „Zum Nachdenken“; Aufklapper „Antwort“ innerhalb des Texts (Frage, dann der Aufklapper mit der Überschrift „Antwort“; nie „zum Aufklappen“, das wäre ein Bedienhinweis, O-56) |
+| Form „Ein zweiter Fall“ | Kicker „Ein zweiter Fall“ (ein Beispiel in anderer Lage, nie ein Lindenhall-Ereignis mit anderen Zahlen); Aufklapper „Antwort“ wie oben |
+| Form „Warum so?“ | Kicker „Warum so?“ (kein Aufklapper, Erklärung in Absätzen, jeder Absatz höchstens 60 Wörter) |
 
-Formen je Station (Titel nach Gerüst 2c; die Form-Zuordnung entscheide ich hier, Gerüst nennt sie nicht): 1 Warum so? · 2 Zum Nachdenken · 3 Zum Nachdenken · 4 Warum so? · 5 Ein zweiter Fall · 6 Zum Nachdenken (nur Erzählung) · 7 Warum so? · 8 Warum so? · 9 Zum Nachdenken · 10 Zum Nachdenken · 11 Zum Nachdenken · 12 Warum so? · 13 Zum Nachdenken · 14 Warum so?
+Formen je Station (Titel nach Gerüst 2c; **verbindlich ist diese Liste, sie entspricht den Akt-Dateien 01 bis 03**, L-276): 1 Warum so? · 2 Zum Nachdenken · 3 Warum so? · 4 Zum Nachdenken · 5 Ein zweiter Fall · 6 Zum Nachdenken (nur Erzählung) · 7 Zum Nachdenken · 8 Zum Nachdenken · 9 Zum Nachdenken · 10 Zum Nachdenken · 11 Zum Nachdenken · 12 Ein zweiter Fall · 13 Zum Nachdenken · 14 Warum so?. Die Titel von 5 und 12 stehen als Frage oder Name, ohne das Wort „Fallbeispiel“ (der Kicker sagt „Ein zweiter Fall“).
 
 ### 7.5 Wegwahl und Start
 
@@ -637,11 +641,52 @@ Neu in den Stationen 4, 7, 8, 9, 11, 12, 13; bestehend 2, 5, 10, 14. Die Arbeits
 | 13 | Beschluss oder nicht? |
 | 14 | Zu Recht geschlossen oder übergeben? |
 
-`miniKicker` bleibt „Mini-Aufgabe“; die Zählwörter („Richtig“, „Nicht ganz – richtig ist: …“, „n von m richtig.“) bleiben.
+`miniKicker` bleibt „Mini-Aufgabe“. Die Zählwörter („Richtig“, „Nicht ganz – richtig ist: …“, „n von m richtig.“) bleiben **nur** bei den Arten `zuordnen` und `reihenfolge` (Stationen 2, 5, 10, 12, 13, 14). Die fünf neuen Arten (Station 4, 7, 8, 9, 11) zeigen sie nicht; ihre Rückmeldung steht in 7.8 (L-276, löst L-10 der Fachtreue-Prüfung).
 
 ### 7.7 Begriffe für `docs/BEGRIFFE.md` (Folgeposten, Gerüst 8)
 
 Aufzunehmen als Story-Wörter, kein Fachbegriff: **Entscheidungsbuch** (von der Projektsteuerin geführt, `v24:hb-3.1`, `v24:va-3.5`; V1.2 sagt „Entscheidungsregister“, V2.4 gilt), **Station** und **Akt** (statt „Kapitel“), **Verlauf**, **Vertiefung**, **Vergabemappe**, **Muss-Filter** (sichtbar „Muss oder nicht?“; prüfen, ob „Muss-Kriterien“ wie in V1.2 besser liest), **Frühwarnung** bleibt (Vorgangsart). „Pause“ ist ein Wort der Bedienfläche und kein Fachbegriff.
+
+### 7.8 Die fünf neuen Mini-Arten: Namen, Rückmeldung, Auswertung, Kurzfassungsmarken (L-276)
+
+**Namen** (Kennungen der Mini-Registry, ASCII): Station 4 `matrix` (früher Vorschlag „einstufung“; der Arbeitstitel „Matrix-Probe“ passt zum Namen), Station 7 `mappe`, Station 8 `pinnwand`, Station 9 `bericht`, Station 11 `rueckfragen`. Muss-Filter (12) und „Beschluss oder nicht?“ (13) sind Spielarten von `zuordnen`.
+
+| Art | Station · Rhythmus | Bedienform (nicht sichtbar) | Rückmeldung nach der Wahl | Schlusssatz (verschieden je Art, aus den Lösungen, nie aus der Wahl) |
+|---|---|---|---|---|
+| `matrix` | 4 · nach der Folge | je Zettel zwei Wahlen („stimmt“, „nachfordern“), Stempel auf dem Zettel | sofort je Zettel | keiner (der Aufgabentext sagt schon, dass das Problem nicht in der Matrix steht) |
+| `mappe` | 7 · nach der Folge | je Abschnitt zwei Wahlen („so annehmen“, „nachfordern“), Haftzettel an der Mappe | sofort je Abschnitt | „Drei Abschnitte wurden nachgefordert.“ |
+| `pinnwand` | 8 · nach der Folge | je Paar drei Wahlen; der Faden färbt sich nach der Wahl | sofort je Paar, der Faden zeigt die Lösung | „Zwei Verbindungen hätten doppelt gezählt.“ |
+| `bericht` | 9 · **vor der Frage**, nach der Szene | Mehrfachauswahl: nur „nachfordern“ wird gesetzt, ungesetzt gilt „in Ordnung“; eine Prüfung für alle sechs Zeilen | gemeinsam, je Zeile ein Satz | „Drei Zeilen wurden nachgefordert.“ |
+| `rueckfragen` | 11 · **vor der Frage** | zwei von vier Gesprächen (Kontingent) | das Gespräch erscheint nach der Wahl; kein „Stimmt“ | „Die übrigen fragt die Vertretung nach.“ |
+
+**Rückmeldung (Wertung, Entscheid).** Je Karte, Zettel, Abschnitt oder Zeile erscheint nach der Wahl ein kurzes Wort mit Erklärung: bei richtiger Wahl „**Stimmt.**“, sonst „**Nicht ganz.**“, danach die Erklärung der Karte (sie nennt bei „Nicht ganz“ die Lösung in ihrem Satz, zum Beispiel „Hier hätte die Projektsteuerin nachgefordert.“). **Keine Punkte, kein „n von m“, kein „Richtig“, keine Ampel der Leserin oder des Lesers** (O-8, O-46); der Schlusssatz oben (außer bei `matrix`, die keinen hat) ist kurz (4 bis 6 Wörter, damit die obere Schranke unter 9.000 Wörtern bleibt) und nennt eine Tatsache der Lösung, nicht der Wahl. Die Rückmeldungen unterscheiden sich damit nach Bedienform und Schlusssatz je Art (nicht dreimal dasselbe in den Stationen 7, 8, 9: Haftzettel an der Mappe, Faden an der Pinnwand, gemeinsame Prüfung am Berichtsblatt). `rueckfragen` kennt kein „Stimmt“ und kein „Nicht ganz“, weil es kein Richtig oder Falsch gibt.
+
+**Pinnwand: Zettel und Endpunkte** (Station 8; die Karte in 02 ist der sichtbare Satz und zugleich die Textfassung „verbunden mit …“ bei schmalem Fenster):
+
+| Zettel | Name (sichtbar auf dem Zettel) |
+|---|---|
+| Z1 | Risiko: angekündigte Mehrkosten |
+| Z2 | Prüfung der Vergabestelle |
+| Z3 | Prognose |
+| Z4 | Frühwarnung: Holz |
+| Z5 | Risiko: Lieferzeit |
+| Z6 | früheres Holz (Beschluss) |
+| Z7 | Änderung: Mensa erweiterbar |
+| Z8 | mögliche Risiken der Änderung |
+| Z9 | Problem: Kapselung |
+| Z10 | Risiko: Kapselung |
+
+| Karte | `von` | `nach` | Lösung |
+|---|---|---|---|
+| 1 | Z1 | Z2 | stimmt |
+| 2 | Z1 | Z3 | würde doppelt gezählt |
+| 3 | Z4 | Z5 und Z6 | stimmt |
+| 4 | Z7 | – (loses Ende, Z8 hängt daneben) | nachfordern |
+| 5 | Z9 | Z10 | würde doppelt gezählt |
+
+**`rueckfragen`: Zustand, Auflösen, Auswertung.** Zustand je Station: `mini[kapitel]: number[]` mit den Kennungen der gewählten Gespräche (0 bis 3, höchstens zwei, bekannte Kennungen, Reihenfolge der Wahl). Beim Wiederöffnen erscheinen genau diese Gespräche; die übrigen zwei bleiben gesperrt. Die Regie-Taste „Auflösen“ zeigt alle vier Gespräche mit ihren Zeilen und dem Satz, was die Vertretung daraus festhalten würde (nicht nur die zwei nicht gewählten). Auswertung: keine, nur der Schlusssatz oben. `lesezeitOhne`: Die Zeilen der Gespräche und ihre Erklärungen zählen in der Lesezeit nicht; die Lesezeit zählt Titel, Aufgabe und die vier Etiketten mit Namen; die obere Schranke (`messeSchranke`) setzt die beiden längsten Gespräche an.
+
+**Kurzfassungsmarken** (Entscheid): Das Feld `kurzfassung: false` gilt je Absatz oder Zeile. Es steht an der **Vertiefung** (ganz: nie in der Kurzfassung) und an Teilen von **Folge**, **„So macht man es gut“** und **„Das steckt dahinter“**, die nur in der langen Fassung stehen (zum Beispiel der zweite Satz von „Dahinter“, die Zeilen über das Entscheidungsbuch in der Folge). **Frage, Szene und Antworten** gelten in beiden Fassungen; einzelne Szenenzeilen tragen die Marke wie schon heute. Ersatzzeilen für die Kurzfassung stehen als Feld `…-kurz` (in den Akt-Dateien `⟦+K⟧`). **Echo mit fester Fortsetzung** (zum Beispiel Klingel in Station 12): `echo: E7` und `fortsetzung` (lang) beziehungsweise `fortsetzung-kurz`; die Engine setzt die Fassung des Echos und hängt die Fortsetzung an.
 
 ---
 
@@ -674,18 +719,20 @@ Zeilen der heutigen Datei (Kopfkommentar, Zeile 1 bis 3): Der Kopfkommentar nenn
 | `balken.*.bilanz.*` | Sätze je Balken | unverändert | gelten auf jedem Weg (3.4) |
 | `bilanz.*` (alle fünf Typen) | Titel und Texte | unverändert | gelten auf jedem Weg (3.4, 3.6) |
 | `mandat.titel`, Zeilen „Sie“, „Lenkungskreis“ | wie heute | unverändert | – |
-| `mandat.zeilen[Bürgermeisterin]` | „… was zuerst kommt: der Schulstart, dann das Geld.“ | + „· wenn sie nicht da ist, vertritt sie die Kämmerin.“ | Gerüst Offene Frage 5; keine Fachregel |
+| `mandat.zeilen[Bürgermeisterin]` | „… was zuerst kommt: der Schulstart, dann das Geld.“ | + eigener Absatz „Wenn sie nicht da ist, vertritt sie die Kämmerin.“ (`kurzfassung: false`) | Gerüst Offene Frage 5; keine Fachregel; Kurzfassung ohne den Absatz |
 | `mandat.zeilen[Projektsteuerin]` | „bereitet alles vor, pflegt alle Vorgänge, empfiehlt – entscheidet nie.“ | „bereitet alles vor, pflegt alle Vorgänge, hält jeden Beschluss im Entscheidungsbuch fest, empfiehlt – entscheidet nie.“ | `v24:hb-3.1` |
 | `ende.zeit` | Ende August 2028 | unverändert | – |
 | `ende.campus` | `{ stufe: 8, jahreszeit: sommer, licht: morgen }` | unverändert | – |
 | `ende.einstieg` Absatz 1 | wie heute | unverändert | – |
 | `ende.einstieg` Absatz 2 | „Am gemeinsamen Haupteingang des Campus hängen Luftballons, und neben der Tür stehen die fünf, die diesen Campus zweieinhalb Jahre lang begleitet haben – und Sie.“ | „Am gemeinsamen Haupteingang des Campus hängen Luftballons. Neben der Tür stehen die fünf, die diesen Campus knapp drei Jahre lang begleitet haben – und Sie. Etwas abseits warten Marlene Ranzen, Bernd Spitzfeder und Ewald Pfennig.“ | 32 Monate; drei Nebenfiguren im Schlussbild |
 | `ende.einstieg-kurz` | „Ende August 2028, der erste Schultag. Am Haupteingang stehen die fünf – und Sie.“ | unverändert | in der Kurzfassung gibt es keine Nebenfiguren |
-| `ende.szene[klingel]` | „Guten Morgen! Willkommen in eurer Schule!“ (zusatz: läutet ihre Glocke) | unverändert | – |
+| `ende.szene[klingel]` | „Guten Morgen! Willkommen in eurer Schule!“ (zusatz: läutet ihre Glocke) | Text unverändert; zusatz „läutet die Glocke ihrer alten Schule“ | die Kurzfassung kennt die Glocke vorher nicht |
 | `ende.szene[lot]` | „Steht alles drin, was wir hier gemacht haben. Hätte ich vor zwei Jahren nicht gedacht, dass ich das mal gut finde.“ (`kurzfassung: false`) | Echo E10 (drei Fassungen, 3.3) + „Und inzwischen steht alles drin – hätte ich nie gedacht, dass ich das mal gut finde.“ | Gerüst: sein Satz wächst durch 10; „vor zwei Jahren“ stimmt nicht |
 | `ende.szene[schwung]` | „Seit dem Holz sag ich's gleich, wenn was klemmt. Hat sich gelohnt.“ (`kurzfassung: false`) | unverändert | – |
 | `ende.szene[faden]` | „Alles Offene ist übergeben, mit Namen und Termin. Verschwunden ist nichts.“ (`kurzfassung: false`) | unverändert | – |
-| `ende.szene[pfennig]` | (fehlt) | neu, `kurzfassung: false`: „Ich habe nichts gegen Geld, nur gegen Geld ohne Nachweis. Hier stand alles im Buch.“ (zwischen Faden und Bürgermeisterin) | Bogen des Stadtrats |
+| `ende.szene[ranzen]` | (fehlt) | neu, `kurzfassung: false`: „Und mein Jüngster? Der sitzt morgen im neuen Raum, nicht mehr im Container.“ (nach Faden) | Bogen der Elternvertreterin |
+| `ende.szene[spitzfeder]` | (fehlt) | neu, `kurzfassung: false`: „Die Glocke läutet. Das schreibe ich genau so auf.“ (nach Ranzen) | Bogen des Reporters |
+| `ende.szene[pfennig]` | (fehlt) | neu, `kurzfassung: false`: „Ich habe nichts gegen Geld, nur gegen Geld ohne Nachweis. Hier stand alles im Buch.“ (nach Spitzfeder, vor der Bürgermeisterin) | Bogen des Stadtrats |
 | `ende.szene[grundstein]` | „Wissen Sie, was das Beste war? Ich wusste jedes Mal, worüber ich entscheide.“ | unverändert | Voraussetzung `!falle` bleibt |
 | `ende.zeit-niedrig` | „Nur die Sporthalle bleibt noch zu – … in der alten Halle.“ | unverändert | Konsistenz mit 13 und 14 siehe 3.2 |
 | `ende.vertrauen-niedrig[lot]`, `[grundstein]` | wie heute | unverändert | – |
@@ -703,7 +750,7 @@ Zeilen der heutigen Datei (Kopfkommentar, Zeile 1 bis 3): Der Kopfkommentar nenn
 **Folge für Tests und Werkzeuge (P19.6):**
 
 1. `tests/geschichte-wege.test.ts`: die Voraussetzungen aus 3.4 eintragen (Merkmal `falleStat3bis13` statt `falleK4K7`, Merkmal `spaet` entfällt, Vertrauen niedrig setzt `falle` voraus); die neuen Zeilen mit ihrem Anfang festhalten (Pfennig, Lot nach Echo, Block „Das können Sie jetzt“).
-2. `tests/lesezeit.test.ts`: „etwa 40“ und „etwa 10“ aus der Messung; Obergrenze für den langen Weg 8.099 Wörter, für die Kurzfassung 2.099.
+2. `tests/lesezeit.test.ts`: „etwa 40“ und „etwa 10“ aus der Messung; Obergrenze für den langen Weg (guter Weg, ungelöst) 8.099 Wörter, für die Kurzfassung 2.099. **Obere Schranke** (P19.3, größte Folge je Station, Mini gelöst mit Erklärungen): `WEG_MAX_WOERTER` von 8.300 auf **9.000** und die Grenze je Akt von 15 Minuten (3.000 Wörter) auf **3.300 Wörter** anheben (Vorgabe für P19.6, L-276); die Schranke der Entwürfe liegt bei rund 8.900 Wörtern, Akt I bei rund 3.130; „angekündigt + 6 Minuten“ (46) hält.
 3. `werkzeuge/lesezeit.mjs`: je Schritt die Wörter ausgeben, damit die Restzeit der Ortszeile aus der Messung entsteht (nicht von Hand).
 4. `werkzeuge/sichtbar.mjs` und `npm run begriffe` über die neuen Inhalte; „Pause“ und „Akt“ sind erlaubt.
 
@@ -717,17 +764,19 @@ Zeilen der heutigen Datei (Kopfkommentar, Zeile 1 bis 3): Der Kopfkommentar nenn
 | 2 Akt-Kopfkarten (3 Sätze) | 16 | in den Stationen 1, 6, 11 enthalten | zählen zu den Wortzielen dieser Stationen |
 | 2 Pause I | 89 | 90 | 86 Zitatzeilen plus Titelzeile „Verlauf als Text“ (3) |
 | 2 Pause II | 96 | 90 | 93 Zitatzeilen plus 3; +6 gegenüber dem Gerüst |
-| 3 Ende ganzer Weg (Einstieg, Szene, Block, Bilanz, Wege, Abbinder, Verlauf-Titelzeile) | 319 | 280 | heute 236; dazu Block „Das können Sie jetzt“ 46, Pfennig 17, Einstieg +10, Lot mit Echo E10 +7, Verlauf-Titelzeile 3; +39 gegenüber dem Gerüst |
-| 3 Ende Kurzfassung (ohne Brücken, mit Knopf der Weiterführung) | 145 | 150 | heute 137 ohne Brücken; Knopf 5, Verlauf 3 |
+| 3 Ende ganzer Weg (Einstieg, Szene mit Ranzen, Spitzfeder und Pfennig, Block, Bilanz, Wege, Abbinder, Verlauf-Titelzeile) | 348 | 280 | heute 236; dazu Block „Das können Sie jetzt“ 46, Pfennig 17, Ranzen 15, Spitzfeder 11, Einstieg +10, Lot mit Echo E10 +7, Klingel-Zusatz +3, Verlauf-Titelzeile 3; +68 gegenüber dem Gerüst (L-276) |
+| 3 Ende Kurzfassung (ohne Brücken, mit Knopf der Weiterführung) | 148 | 150 | heute 137 ohne Brücken; Knopf 5, Verlauf 3, Klingel-Zusatz +3 |
 | 3 Block „Das können Sie jetzt“ (Akt III) | 46 | in 280 enthalten | Überschrift 4, Sätze 9 + 16 + 17 |
-| 6 Brückenkarten (zehn Zeilen, Köpfe als Kicker) | 147 | ≤ 150 | jede Zeile höchstens 17 Wörter einschließlich der Nummer |
-| 6 Echos E1, E4, E7 (Kurzfassung, gute Fassung) | 46 | 43 | eine Zeile je Echo; 38 in den anderen Fassungen |
+| 6 Brückenkarten (zehn Zeilen, Köpfe als Kicker) | 147 | ≤ 150 | jede Zeile höchstens 17 Wörter einschließlich der Nummer; B7 +1, B8 +1, B10 −2 gegenüber der zweiten Fassung |
+| 6 Echos E1, E4, E7 (Kurzfassung, gute Fassung) | 47 | 43 | eine Zeile je Echo; E4 gut 17 Wörter (statt 16), 38 bis 41 in den anderen Fassungen |
 
-**Absätze über 60 Wörter:** keine (längster Zitatabsatz 52 Wörter, Einstieg Ende).
+**Absätze über 60 Wörter:** keine (längster Zitatabsatz 52 Wörter, Einstieg Ende; die zwei Vertiefungsabsätze von Station 11 und 12 sind geteilt).
 
-**Summe ganzer Weg** nach den Obergrenzen des Gerüsts (Stationen 7.430) mit meinen Teilen: 7.430 + Auftakt 149 + Pausen 185 + Ende 319 = **8.083 Wörter** (40,4 Minuten, unter 8.100, also „etwa 40“; Gerüst: 8.090). Die Station-Obergrenzen werden in der Praxis meist unterschritten; die Reserve bis 8.100 beträgt 17 Wörter und reicht nur, solange keine Station an ihre Obergrenze stößt.
+**Summe ganzer Weg (dritte Fassung, L-276).** Die gerechneten Entwürfe der Akt-Dateien ergeben für die Stationen 7.006 Wörter (Akt I 2.605 · Akt II 2.322 · Akt III 2.079; die Stations-Obergrenzen des Gerüsts summieren sich auf 7.430, die Entwürfe liegen darunter). Dazu Auftakt 149, Pausen 185, Ende 348 = **7.688 Wörter**; mit den Titelzeilen der 14 zugeklappten Vertiefungen (rund 60), den Akt-Kopfkarten (16) und den Wahlknöpfen der Karten-Minis (rund 58) **rund 7.820 Wörter ≈ 39 Minuten**. „Etwa 40“ hält: Die Grenze liegt bei 8.100 Wörtern, die Reserve beträgt rund 280. (Die zweite Fassung addierte die Stations-Obergrenzen und kam auf 8.083; mit den neuen Zeilen im Ende wären es 8.112 gewesen, über der Grenze, obwohl die Entwürfe weit darunter liegen. Maßgeblich ist die Entwurfsrechnung, danach die Messung in P19.6.)
 
-**Summe Kurzfassung.** Das Gerüst (Abschnitt 2d) rechnet die Brückenkarten und Echos **zusätzlich** zu den Stationszahlen von heute (Auftakt 187, 390, 358, 327, 663, 174 = 2.099). Diese Zahlen enthalten aber bereits die vier alten Brückenkarten (gemessen 134 Wörter: 37 vor Station 3, 60 vor Station 12, 37 im Ende). Ohne sie sind die reinen Stationszahlen heute 390, 318, 327, 587 und Ende 137. Mit meinen Zielen für die Kurzfassung (Auftakt 149, Station 1 360, Station 3 300, Station 5 300, Station 12 570, Ende 145, Brücken 147, Echos 46) ergibt sich 149 + 360 + 300 + 300 + 570 + 145 + 147 + 46 = **2.017 Wörter** (10,1 Minuten, „etwa 10“), also **rund 80 Wörter Reserve** statt der 16 des Gerüsts. Der Sturm als fünfte Station (+260) passt trotzdem nicht (2.277 Wörter, 11,4 Minuten); die Aussage des Gerüsts bleibt richtig, nur die Reserve ist größer als dort gerechnet. Die Schnitte, die das Gerüst fordert (Station 1 −30, 3 −28, 5 −27, 12 −63), sind für 3 (−18) und 12 (−17) kleiner nötig. Gemessen habe ich mit `lesezeit.mjs` und dem DOM der Seite; P19.6 misst neu.
+**Obere Schranke** (P19.3, `messeSchranke`: größte Folge je Station, Mini gelöst mit Erklärungen und Rückmeldungen, längste Echo-Fassung): Die Konsistenz-Prüfung rechnete rund 8.900 Wörter (Akt I rund 3.130, Akt II rund 2.900, Akt III rund 2.830) gegen die bisherigen Testgrenzen 8.300 und 3.000 je Akt; die Entwürfe der dritten Fassung liegen bei **rund 8.950 Wörtern** (Schätzung, Genauigkeit etwa ±100; Akt I rund 3.150, Akt II rund 2.870, Akt III rund 2.900). **Vorgabe für P19.6 (L-276):** Testgrenzen auf **9.000 Wörter gesamt und 3.300 je Akt** anheben (`tests/lesezeit.test.ts`: `WEG_MAX_WOERTER` und Akt-Grenze); die angekündigten „etwa 40 Minuten“ plus 6 Minuten (46) halten. Weil die Schranke nur etwa 50 Wörter unter der Grenze liegt, gilt für die Messung in P19.6 die Reihenfolge der Schnitte: zuerst die Schlusssätze der Mini-Aufgaben (zusammen 26 Wörter), dann die Erklärungen von Karte 2 in Station 7 und 12.
+
+**Summe Kurzfassung (Entwurfsrechnung der dritten Fassung).** Die erste Rechnung des Gerüsts (2.083) und die zweite Fassung dieser Datei (2.017, mit Zielwerten statt Entwürfen) werden durch die Rechnung aus den Entwürfen ersetzt: Auftakt 149 + Station 1 etwa 365 + Station 3 etwa 311 + Station 5 etwa 287 + Station 12 etwa 617 (mit den Echos E4 und E7) + Brücken 147 + Ende 148 = **rund 2.024 Wörter** (10,1 Minuten, „etwa 10“). Das Fenster für „etwa 10“ liegt bei 1.900 bis 2.099 Wörtern; die Untergrenze hat rund 120, die Obergrenze rund 75 Wörter Luft. Die Zahlen enthalten die alten Brückenkarten nicht doppelt (die reinen Stationszahlen heute: 390, 318, 327, 587, Ende 137). Der Sturm als fünfte Station (+260) passt nicht (rund 2.280 Wörter, 11,4 Minuten); die Aussage des Gerüsts bleibt richtig. Gemessen habe ich mit demselben Zählverfahren wie `lesezeit.mjs` (Wegwerfskript); P19.6 misst neu.
 
 ---
 
@@ -742,15 +791,16 @@ Zeilen der heutigen Datei (Kopfkommentar, Zeile 1 bis 3): Der Kopfkommentar nenn
 5. **Kürzungsplan der Kurzfassung:** Das Gerüst zählt die alten Brückenkarten doppelt; die echte Reserve beträgt rund 80 Wörter (2.017 statt 2.083 bis 2.099). Die Schnitte in Station 3 (−18) und 12 (−17) sind kleiner als im Gerüst (−28, −63); der Muss-Filter fällt in der Kurzfassung ohnehin weg.
 6. **Restzeit in der Ortszeile** aus der Messung; das Beispiel „Station 7 … noch etwa 9 Minuten“ der Aufgabenstellung trifft Station 12; bei Station 7 stehen etwa 24 Minuten.
 7. **Pausentext Satz 3 Akt I** als Aussage statt Handlung (Wortzahl); Akt III Satz 2 ohne „Punkte kommen danach“.
-8. **Ranzen und Spitzfeder sprechen im Ende nicht** (Schlussbild stumm), nur Pfennig hat eine Zeile; das hält das Ende im Rahmen.
+8. **Ranzen, Spitzfeder und Pfennig haben im Ende je eine Zeile** (Gerüst: nur Pfennig); die Bögen von Ranzen und Spitzfeder brauchen einen Abschluss (Prüfbericht Konsistenz, M11). Die Zeilen tragen `kurzfassung: false`; das Ende liegt damit bei rund 348 Wörtern (Gerüst-Ziel 280, Abschnitt 9).
 9. **Pfennigs Satz „Geld ohne Beleg“ heißt „Geld ohne Nachweis“** (sichtbar sperrt `werkzeuge/sichtbar.mjs` das Wort „Beleg“; „Nachweis“ ist ein Wort des Standards).
 10. **Akt-Kopfkarte** (je ein Satz, 2.2) und **Pause bei offenen Stationen** (2.3) sind im Gerüst nicht vorgesehen; ohne sie wäre „Das können Sie jetzt“ auf einem Sprungweg falsch.
+11. **Dritte Fassung (L-276):** Entscheidungsbuch, Pausen, Brücken, Kärtchen und Echo-Wortlaut sind hier verbindlich; neue Mini-Arten mit Namen, Rückmeldung, Pinnwand-Endpunkten, `rueckfragen`-Zustand und Kurzfassungsmarken (7.8); Vertiefungs-Formen wie in den Akt-Dateien (7.4); obere Schranke der Tests 9.000 Wörter gesamt und 3.300 je Akt (Abschnitt 8, Test 2); Brücken 7, 8 und 10 geändert (6.1); Ende mit Zeilen von Ranzen und Spitzfeder.
 
 **Offene Fragen** (jeweils mit Vorschlag, O-26):
 
 1. **Pausen im Sprungweg:** Der Block „Das können Sie jetzt“ gilt nur, wenn alle Stationen des Akts beantwortet sind. Vorschlag: so lassen; einfacher wäre „immer anzeigen“, aber dann steht eine Lernaussage ohne gespielte Station.
 2. **Zeit niedrig und Fugen im Hallenboden:** Die Halle ist auf allen Wegen außer „Zeit niedrig“ nutzbar, die Fugen werden in den Herbstferien nachgebessert (3.2). Vorschlag: im Text von 13 und 14 so festschreiben; sonst widerspricht die Zeile „Nur die Sporthalle bleibt noch zu“ der guten Linie.
-3. **„Mit Ausprobieren eher 45 Minuten“** auf der Seite? Vorschlag: nein (Zahlen schonen), nur „etwa 40 Minuten“.
+3. **„Mit Ausprobieren eher 45 Minuten“** auf der Seite? Entschieden (L-275): nein, nur „etwa 40 Minuten“.
 4. **Weiterführung aus der Kurzfassung:** Wechsel mit den vier Antworten (Vorschlag) oder neuer Weg „Von vorn mit der ganzen Geschichte“; der Wechsel kann die Balken beim Übergang sichtbar bewegen (übersprungene Stationen zählen dann nicht mehr als gut).
 5. **Akzent der Nebenfiguren:** Ranzen `gruen`, Pfennig `beere`, Spitzfeder ohne Akzent (Papierton der Zeitung); sieben Akzente tragen schon Balken und Hauptfiguren. Vorschlag: so lassen.
 6. **Mandat-Kärtchen:** Zeile „vertritt sie die Kämmerin“ ist eine freie Festlegung (Gerüst Offene Frage 5). Vorschlag: aufnehmen; es gibt keine Regel zur Reichweite der Vertretung.

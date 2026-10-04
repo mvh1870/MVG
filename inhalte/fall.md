@@ -37,7 +37,7 @@ Das Änderungsgremium des Muster-Mandatsleiters kommt in der Story nicht vor (pr
 | 4 | Jun 2026 | LPH 5 | Mensa für 450 statt 300 Essen (rund 600.000 €, vier Wochen Umplanung) oder erweiterbar (rund 150.000 €) → erweiterbar, aus der Reserve | Stufe 2, Sommer |
 | 5 | Okt 2026 | LPH 5 | Kämmerei: eine Million über dem Budget; Architekt: zwei Millionen (angekündigte Mehrkosten der Haustechnik, gut eine Million, eingerechnet) → eine Zahl plus Risiko mit Spanne; Prüfung der Vergabestelle: gehört zum bestehenden Vertrag, Risiko geschlossen | Stufe 3, Herbst |
 | 6 | Feb 2027 | LPH 8 | Sturm, zwei lose Gerüstanker an der Sporthalle → sofort gesperrt, gemeldet, am selben Tag festgehalten; Gerüstfirma zahlt | Stufe 4, Winter (Sturm) |
-| 7 | Mai 2027 | LPH 8 | Lüftungsanlage der Gesamtschule vier Monate später → Vorlage mit drei Wegen (Ersatzgerät rund 400.000 €, Leihgeräte rund 150.000 €, später einziehen rund 50.000 €), gewichteter Vergleich 49 : 45 : 45 → Ersatzgerät, aus der Reserve | Stufe 5, Frühling |
+| 7 | Mai 2027 | LPH 8 | Lüftungsanlage der Gesamtschule vier Monate später → Vorlage mit drei Wegen (Ersatzgerät rund 400.000 €, Leihgeräte rund 150.000 €, später einziehen rund 50.000 €), gewichteter Vergleich 49 : 45 : 45 → Ersatzgerät, aus der Reserve; Auflage des Beschlusses: vor dem Schulstart eingebaut und in Betrieb | Stufe 5, Frühling |
 | 8 | Jul 2028 | LPH 8 | Freigabe am Ende der Bauzeit mit Auflagen; Hallenboden-Fugen und Feineinstellung der Lüftung an das Gebäudemanagement übergeben | Stufe 6 → 7, Sommer |
 | Ende | Aug 2028 | Beginn LPH 9 | Schulstart | Stufe 8, Sommer |
 

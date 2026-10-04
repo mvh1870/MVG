@@ -163,7 +163,7 @@ vorlagencheck:
   stellen:
     - { id: sie, titel: "Sie (Projektleitung des Bauherrn)" }
     - { id: buergermeisterin, titel: Bürgermeisterin, ohneBeispiel: andere befugte Stelle des Bauherrn }
-    - { id: lenkungskreis, titel: Lenkungskreis, ohneBeispiel: beratendes Gremium (berät nur), satz: "Lassen Sie richtigstellen: Ein beratendes Gremium berät; entscheiden darf die befugte Stelle des Bauherrn, auch wenn sie im Lenkungskreis beschließt.", belege: [v24:hb-1, v24:hb-3.1] }
+    - { id: lenkungskreis, titel: Lenkungskreis, ohneBeispiel: beratendes Gremium (berät nur), satz: "Lassen Sie richtigstellen: Ein beratendes Gremium berät; entscheiden darf die befugte Stelle des Bauherrn, auch wenn sie in einem Gremium beschließt.", belege: [v24:hb-1, v24:hb-3.1] }
     - { id: projektsteuerung, titel: Projektsteuerung, satz: "Lassen Sie richtigstellen: Die Projektsteuerung bereitet vor und empfiehlt; entscheiden darf sie nicht.", belege: [v24:hb-3, v24:hb-3.1, v24:tlb-2.1, v24:va-4.1] }
     - { id: offen, titel: noch offen }
   wegzustaende:

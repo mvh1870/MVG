@@ -232,6 +232,8 @@ export function vorlagenCheck(o: WerkzeugOptionen): HTMLElement {
     return h('div', { class: 'wz-luecken', 'data-pruef': 'vc-luecken' }, h('ul', { class: 'wz-karten' }, sofort.map(lueckenKarte)), d);
   };
   const zeichneErgebnis = (): void => {
+    // R79: die Haken der Schrittleiste folgen jeder Eingabe, nicht erst dem Schrittwechsel
+    zeichneLeiste();
     const befund = befundVorlage(v, z);
     const wort = v.ampel[befund.ampel];
     status.textContent = `${wort} – ${E.luecken(befund.luecken.length)}${befund.offen.length > 0 ? `, ${E.nochOffen(befund.offen.length)}` : ''}`;

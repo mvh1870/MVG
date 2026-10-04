@@ -73,6 +73,12 @@ test('Vorlagen-Check: rot mit dem Startbeispiel, Lücken mit Satz, Beispiele gr�
   assert.equal(el.querySelector('[data-pruef="vc-luecke-a4"]'), null);
   waehle(el, 'vc-beispiel', 'lueftung-voll');
   assert.equal(ampel(el, 'vc-ampel'), 'gruen');
+  // R79: die Schrittleiste folgt jeder Eingabe – die Projektsteuerung als Stelle nimmt Schritt 1 sofort den Haken
+  const fertig1 = (): string | null => el.querySelector('.wz-schritte li, [data-fertig]')?.getAttribute('data-fertig') ?? null;
+  assert.equal(fertig1(), 'ja');
+  waehle(el, 'vc-stelle', 'projektsteuerung');
+  assert.equal(fertig1(), 'nein');
+  waehle(el, 'vc-beispiel', 'lueftung-voll');
   pruefeSichtbar('vorlagen-check grün', el);
   waehle(el, 'vc-beispiel', 'mensa');
   assert.equal(ampel(el, 'vc-ampel'), 'gelb');

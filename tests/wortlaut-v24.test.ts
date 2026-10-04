@@ -43,10 +43,12 @@ test('die Probe erkennt einen übernommenen Satz und lässt eigene Worte durch',
   assert.equal(laengsterLauf('Die Projektsteuerung holt fachlichen Rat ein, unterrichtet den Bauherrn und bereitet erforderliche Handlungen oder Entscheidungen früh genug vor.'), 0);
 });
 
-test('Werkzeuge und Glossar: kein Satz des Standards wortgleich (zehn Wörter und mehr)', async () => {
+test('Werkzeuge, Glossar und Story: kein Satz des Standards wortgleich (zehn Wörter und mehr)', async () => {
   const { parse } = (await import(String('yaml'))) as { parse: (t: string) => unknown };
   const funde: string[] = [];
-  for (const datei of ['inhalte/werkzeuge.yaml', 'inhalte/glossar.yaml']) {
+  // R79: auch die Story (rahmen und Kapitel)
+  const story = readdirSync(resolve(WURZEL, 'inhalte/geschichte')).filter((f) => f.endsWith('.yaml')).map((f) => `inhalte/geschichte/${f}`);
+  for (const datei of ['inhalte/werkzeuge.yaml', 'inhalte/glossar.yaml', ...story]) {
     for (const [pfad, text] of strings(parse(readFileSync(resolve(WURZEL, datei), 'utf8')), datei.split('/').pop() ?? datei)) {
       if (/^v24:|^k\d/u.test(text)) continue; // Belege
       const n = laengsterLauf(text);

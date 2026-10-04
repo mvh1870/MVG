@@ -29,47 +29,51 @@
 # Belege k6 (Companion): k6-p1, k6-p2, k6.1-p1, k6.3-p1; v24:hb-5 (Fallhelfer ersetzt die Dokumentation nicht)
 # Belege k6.1: k6.1-p1, k6.1-t1; Ergänzung Vorlage: v24:hb-3.1, v24:tlb-2.1
 # Belege k6.2: k6.2-p1, k6.2-t1
+# Sprachdurchgang L-290 (Owner-Auftrag: natürliche, verständliche Sprache): „Vorgang“, „Takt“, „Projektsteuerung“, „Entscheidungsregister“, „Frühwarnung“, „Pilotierung“ beim ersten Auftreten erklärt; das wortgleiche Blockzitat k6.3-b1 steht nur noch als Beleg in `deckt`, sein Inhalt im Lesetext in eigenen Worten.
 # Belege k6.3: k6.3-b1, k6.3-p1, k6.3-p2, k6.3-p3 (nur: optional, Führungsmodell auch mit vorhandenen Werkzeugen), k6.3-p4;
 #   v24:hb-5, v24:as-4, v24:va-6.1, v24:va-6.4 (maßgebliche Software, eigene Arbeitsmittel, keine zweite Liste)
+deckt: [k6.3-b1]
 kapitel: 6
 thema: arbeitsweise
 reihe: 6
-titel: "Arbeitsweise: ein Informationsstand und klare Zuständigkeiten"
+titel: "Arbeitsweise: eine Stelle führt alles, die Zuständigkeiten sind klar"
 kurztitel: Arbeitsweise
 teil: 2
-kurzsatz: Ein Informationsstand, klare Zuständigkeiten, ein fester Takt – der Bauherr entscheidet.
+kurzsatz: Eine Stelle führt alle Einträge, Zuständigkeiten sind klar, der Bauherr entscheidet.
 symbol: wechsel
 ---
-Ein Führungsmodell nützt nur, wenn es im Alltag ankommt. Dieses Thema zeigt, wie Vorgänge, Zuständigkeiten und Takt zusammenarbeiten – vom ersten Hinweis bis zum Monatsbericht. Danach folgt der [[MVG Companion]], ein optionales Arbeitsmittel für Minimum Viable Governance (MVG).
+Ein Führungsmodell nützt nur, wenn es im Alltag ankommt. Dieses Thema zeigt, wie die Einträge im Projekt (Vorgänge), die Zuständigkeiten und die festen Prüftermine (Takt) zusammenspielen – vom ersten Hinweis bis zum Monatsbericht. Danach folgt der [[MVG Companion]], ein optionales Arbeitsmittel für Minimum Viable Governance (MVG).
+
+Die Projektsteuerung ist das Büro oder Team, das im Auftrag des Bauherrn das Projekt steuert. Mit „Vorgang“ ist hier jeder Eintrag gemeint, den sie führt: eine Aufgabe, eine Maßnahme, eine Frühwarnung (ein erster, noch ungeklärter Hinweis), ein Risiko, ein Problem oder eine Änderung. Was sie genau bedeuten, zeigt das Thema „Vorgänge und Risiken“.
 
 ::: kernaussage
 ---
 symbol: dokument
 ---
-Alle Vorgänge liegen in einer Hand: Die Projektsteuerung pflegt sie in der Software, die der Bauherr bereitstellt, und prüft sie in festem Takt. Das ist der eine Informationsstand des Projekts. Der Bauherr pflegt nichts – er entscheidet auf Vorlage. Ein Arbeitsmittel wie der Companion kann helfen, ersetzt aber weder eine Entscheidung noch die Einträge in dieser Software.
+Alles, was im Projekt zu tun oder zu klären ist, führt eine einzige Stelle: Die Projektsteuerung trägt es in die Software ein, die der Bauherr bereitstellt, und geht es in festen Abständen durch (Takt). Diese Software ist der eine verbindliche Stand der Informationen. Der Bauherr trägt nichts ein – er entscheidet, wenn ihm die Projektsteuerung eine Entscheidungsvorlage vorlegt. Ein Hilfsmittel wie der MVG Companion kann unterstützen. Es ersetzt aber weder eine Entscheidung noch die Einträge in dieser Software.
 :::
 
 ::: abschnitt k6.4
 ---
 titel: Zusammenarbeit – Vorgänge, Zuständigkeiten, Takt
 ---
-Governance wirkt nur, wenn **Vorgänge, Zuständigkeiten und Takte** eindeutig zusammenarbeiten – nicht als zusätzliche Bürokratie, sondern als gemeinsamer Arbeitsstandard: Die Projektsteuerung bearbeitet alle Vorgänge, die Fachleute liefern zu, die befugte Stelle des Bauherrn entscheidet.
+Regeln für Führung und Entscheidung wirken nur, wenn drei Dinge zusammenpassen: die **Einträge im Projekt (Vorgänge)**, **klare Zuständigkeiten** und **feste Prüftermine (Takt)**. Das soll keine zusätzliche Bürokratie sein, sondern eine gemeinsame Arbeitsweise: Die Projektsteuerung bearbeitet alle Vorgänge, die Fachleute arbeiten zu, und die zuständige Stelle des Bauherrn (die [[Befugte Stelle|befugte Stelle]]) entscheidet.
 :::
 
 ::: abschnitt k6.4.1
 ---
-titel: Grundlogik der Zusammenarbeit
+titel: Vier Regeln der Zusammenarbeit
 ---
 Vier Regeln tragen die Zusammenarbeit:
 
 1. Die **Projektsteuerung pflegt alle Vorgänge** in der Software des Bauherrn; zu jedem Eintrag gehören eine verantwortliche Person, der nächste Schritt und ein Termin.
-2. Die [[RACI]]-Logik klärt für jeden Prozess vier Dinge: wer ihn ausführt, wer am Ende dafür verantwortlich ist, wer gefragt wird und wer nur informiert wird.
-3. Was eine Entscheidung braucht, wird **nicht nur berichtet**, sondern über das Entscheidungsregister (die Liste der offenen Entscheidungen) und eine [[Entscheidungsvorlage]] entscheidungsreif gemacht: mindestens zwei zulässige Optionen, gewichteter Vergleich, Empfehlung, befugte Stelle, Termin.
-4. **Monatsbericht und Entscheidungsregister** haben getrennte Aufgaben. Der Bericht umfasst höchstens eine Seite und beruht auf demselben Stand wie die Software. Er nennt unter anderem wesentliche Veränderungen, Aufgaben, die nicht weiterkommen, kritische Maßnahmen, Frühwarnungen ohne Klärung, wesentliche Probleme und Änderungen sowie offene Entscheidungen samt der Reaktion, die sie brauchen.
+2. Die [[RACI]]-Tabelle klärt für jeden Ablauf vier Dinge: wer ihn ausführt, wer am Ende dafür verantwortlich ist, wer gefragt wird und wer nur informiert wird.
+3. Was eine Entscheidung braucht, wird **nicht nur berichtet**. Es kommt in das Entscheidungsregister (die Liste der offenen Entscheidungen) und wird mit einer [[Entscheidungsvorlage]] bis zur Entscheidung vorbereitet: mindestens zwei zulässige Möglichkeiten, gewichteter Vergleich, Empfehlung, zuständige Stelle, Termin.
+4. **Monatsbericht und Entscheidungsregister** haben getrennte Aufgaben. Der Bericht umfasst höchstens eine Seite und beruht auf demselben Stand wie die Software. Er nennt unter anderem wesentliche Veränderungen, Aufgaben, die nicht weiterkommen, kritische Maßnahmen, Frühwarnungen, die noch nicht geklärt sind (erste Warnhinweise), wesentliche Probleme und Änderungen sowie offene Entscheidungen samt der Reaktion, die sie brauchen.
 
 ::: umschalter
 ---
-titel: Zwei Instrumente, zwei Aufgaben
+titel: "Zwei Dinge mit verschiedenen Aufgaben: Monatsbericht und Entscheidungsregister"
 links: Monatsbericht
 rechts: Entscheidungsregister
 ---
@@ -78,7 +82,7 @@ Eine Seite für den Überblick: was sich verändert hat und welche Reaktion gebr
 :::
 
 ::: ansicht rechts
-Die Warteschlange für echte Entscheidungen – nicht mehr. Entscheidungsreif macht ein Thema erst die Entscheidungsvorlage der Projektsteuerung.
+Die Warteschlange für echte Entscheidungen, mehr nicht. Entscheidungsreif macht ein Thema erst die Entscheidungsvorlage der Projektsteuerung.
 :::
 :::
 :::
@@ -87,7 +91,7 @@ Die Warteschlange für echte Entscheidungen – nicht mehr. Entscheidungsreif ma
 ---
 titel: Vorgangsarten und Zuständigkeiten
 ---
-Alle Vorgangsarten – Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Probleme, Änderungen und Entscheidungsvorbereitungen – bearbeitet die **Projektsteuerung**, bis hin zu Umsetzung, Wirkung und Abschluss nach dem Beschluss.
+Alle Arten von Vorgängen – Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Probleme, Änderungen und Entscheidungsvorbereitungen – bearbeitet die **Projektsteuerung**, und zwar bis zur Umsetzung, zur Wirkung und zum Abschluss nach dem Beschluss.
 
 ::: karten
 ---
@@ -97,28 +101,28 @@ titel: Wer tut was?
 ---
 titel: Projektsteuerung
 ---
-Pflegt alle Vorgangsarten in der Software des Bauherrn, klärt die Sachverhalte, holt die Fachbeiträge ein, prüft im festen Takt, bereitet jede erforderliche Entscheidung als Vorlage vor und hält den Beschluss getrennt davon fest.
+Trägt alle Vorgänge in die Software des Bauherrn ein, klärt die Sachverhalte, holt die Fachbeiträge ein, prüft in festen Abständen, bereitet jede nötige Entscheidung als Vorlage vor und hält den Beschluss gesondert fest, nicht in der Vorlage.
 :::
 
 ::: karte fachleute
 ---
 titel: Fachleute und Controlling
 ---
-Liefern die vereinbarten Beiträge zu – etwa Kostenprognose und Restkosten ([[CTC]]), Einschätzungen und Nachweise. Fachplanung und Ausführung bleiben bei ihnen.
+Liefern die vereinbarten Beiträge zu – etwa Kostenprognose und Restkosten ([[CTC]]; das Controlling überwacht und berechnet die Kosten voraus), Einschätzungen und Nachweise. Fachplanung und Ausführung bleiben bei ihnen.
 :::
 
 ::: karte gremien
 ---
 titel: Projektleitung des Bauherrn und Gremien
 ---
-Die Projektleitung des Bauherrn und das Änderungsgremium entscheiden im Rahmen ihres Mandats auf Vorlage; der Lenkungskreis berät. Eigene Listen neben der Software brauchen sie nicht.
+Die Projektleitung des Bauherrn und das Änderungsgremium entscheiden im Rahmen ihrer Befugnis, wenn ihnen die Projektsteuerung eine Vorlage vorlegt; der Lenkungskreis berät nur. Eigene Listen neben der Software brauchen sie nicht.
 :::
 
 ::: karte bauherr
 ---
 titel: Bauherr
 ---
-Gibt Ziele, Bewertungsgrenzen, Befugnisse und Zugänge vor, stellt die Software bereit und sorgt für die Zuarbeit. Bei ihm liegt die Entscheidung über Ziele, wesentliche Abweichungen, Mittel, Risikoannahmen und Freigaben – und er pflegt nichts.
+Der Bauherr gibt vor: die Ziele, die Grenzwerte für die Bewertung von Risiken (zum Beispiel ab welchem Geldbetrag eine Folge als schwer gilt), wer wie weit entscheiden darf (Befugnisse) und wer Zugang zu Unterlagen und Software bekommt. Er stellt die Software bereit und sorgt dafür, dass ihm zugearbeitet wird. Er entscheidet über die Ziele, große Abweichungen vom Plan, den Einsatz von Geld, Risiken, die das Projekt trägt, und Freigaben. Gepflegt wird von ihm nichts.
 :::
 :::
 
@@ -132,14 +136,14 @@ rechts: Bauherr entscheidet
 ---
 seite: links
 ---
-Eine Entscheidungsvorlage mit zwei zulässigen Optionen erstellen
+Eine Entscheidungsvorlage mit mindestens zwei zulässigen Möglichkeiten erstellen
 :::
 
 ::: posten 2
 ---
 seite: rechts
 ---
-Eine der Optionen wählen
+Eine der Möglichkeiten wählen
 
 ### Erklärung
 Die Projektsteuerung empfiehlt; gewählt wird bei der befugten Stelle des Bauherrn.
@@ -159,14 +163,14 @@ seite: rechts
 Ein wesentliches Restrisiko tragen
 
 ### Erklärung
-Die Projektsteuerung legt es zur Entscheidung vor – sie nimmt es nicht selbst an.
+Die Projektsteuerung legt es zur Entscheidung vor – sie entscheidet nicht selbst, dass das Projekt es trägt.
 :::
 
 ::: posten 5
 ---
 seite: links
 ---
-Eine Änderung gegen den geltenden Stand aufbereiten
+Eine Änderung mit dem aktuell gültigen Plan vergleichen und aufbereiten
 :::
 
 ::: posten 6
@@ -186,7 +190,7 @@ seite: links
 Den Beschluss mit Quelle und Datum dokumentieren
 
 ### Erklärung
-Dokumentiert wird der tatsächliche Beschluss, getrennt von der Vorlage. Eine Empfehlung oder ein Status in der Software ist kein Beschluss.
+Festgehalten wird der tatsächliche Beschluss, gesondert von der Vorlage. Eine Empfehlung oder ein Status in der Software ist kein Beschluss.
 :::
 :::
 :::
@@ -195,7 +199,7 @@ Dokumentiert wird der tatsächliche Beschluss, getrennt von der Vorlage. Eine Em
 ---
 titel: Wege der Vorgänge
 ---
-Ein Vorgang kann als Aufgabe, Frühwarnung, Risiko, Problem oder Änderung beginnen – nicht jeder Hinweis wird zum Risiko. Eine [[Frühwarnung]] ist ein noch ungeklärter Hinweis. Tritt ein Risiko ein, wird daraus ein Problem. Die Herkunft bleibt verknüpft, nichts wird doppelt gezählt.
+Ein Vorgang kann als Aufgabe, Frühwarnung, Risiko, Problem oder Änderung beginnen – nicht jeder Hinweis wird zum Risiko. Eine [[Frühwarnung]] ist ein noch ungeklärter Hinweis. Tritt ein Risiko ein, wird daraus ein Problem. Es bleibt erkennbar, woraus ein Eintrag entstanden ist, und nichts wird doppelt gezählt.
 
 ::: abbildung abb-10
 :::
@@ -233,11 +237,11 @@ Der Hinweis war unbegründet. Die Begründung bleibt nachvollziehbar.
 :::
 :::
 
-::: aufklapper Wenn eine Schwelle überschritten wird
+::: aufklapper Wenn ein Grenzwert überschritten wird
 ---
 symbol: warnung
 ---
-Eine überschrittene Schwelle, etwa bei CTC oder Prognose, ist ein **neuer** Hinweis und wird als neue Frühwarnung geklärt. Ein bestehendes Risiko wird dadurch nicht zur Frühwarnung zurückgestuft; ändern sich seine Grundlagen, wird seine Bewertung begründet fortgeschrieben.
+Wird ein Grenzwert überschritten – zum Beispiel bei der Prognose der Restkosten ([[CTC]]) –, ist das ein **neuer** Hinweis. Er wird als neue Frühwarnung geklärt. Ein Risiko, das es schon gibt, wird dadurch nicht wieder zur Frühwarnung. Ändern sich seine Grundlagen, wird seine Bewertung angepasst und die Änderung begründet.
 :::
 
 ::: etappen
@@ -248,42 +252,42 @@ titel: Ein Vorgang auf seinem Weg
 ---
 titel: Hinweis
 ---
-Die Projektsteuerung sichert Quelle und Eingangsdatum und legt Prüffrage, Verantwortlichen und Wiedervorlage fest.
+Die Projektsteuerung sichert Quelle und Eingangsdatum und legt fest, welche Frage geprüft wird, wer sie prüft und wann der Hinweis wieder angesehen wird (Wiedervorlage).
 :::
 
 ::: etappe 2
 ---
-titel: Geklärt
+titel: Klärung
 ---
 Ergebnis: Risiko, Problem, Aufgabe – oder begründete Schließung.
 :::
 
 ::: etappe 3
 ---
-titel: Bearbeitet
+titel: Bearbeitung
 ---
-Risiken werden bewertet, Probleme gelöst, Änderungen gegen den geltenden Stand aufbereitet. Daraus kann Entscheidungsbedarf entstehen – ebenso aus Aufgaben.
+Risiken werden bewertet, Probleme gelöst, Änderungen mit dem aktuell gültigen Plan verglichen und aufbereitet. Daraus kann Entscheidungsbedarf entstehen – ebenso aus Aufgaben.
 :::
 
 ::: etappe 4
 ---
-titel: Vorlage
+titel: Entscheidungsvorlage
 ---
-Sie bündelt Frage, Datenstand, mindestens zwei zulässige Optionen, den gewichteten Vergleich und die Empfehlung.
+Sie bündelt die Frage, den Stand der Unterlagen (Datenstand), mindestens zwei zulässige Möglichkeiten, den gewichteten Vergleich und die Empfehlung.
 :::
 
 ::: etappe 5
 ---
 titel: Beschluss oder Freigabe
 ---
-Die befugte Stelle des Bauherrn entscheidet; die Projektsteuerung hält den Beschluss getrennt fest. Die Freigabe am Abschluss einer Leistungsphase erteilt der Bauherr selbst.
+Die befugte Stelle des Bauherrn entscheidet; die Projektsteuerung hält den Beschluss gesondert fest, nicht in der Vorlage. Die Freigabe am Ende einer Leistungsphase erteilt der Bauherr selbst.
 :::
 
 ::: etappe 6
 ---
 titel: Maßnahme
 ---
-Der Beschluss wird als Maßnahme mit Verantwortlichem und Frist verfolgt, bis die Wirkung belegt ist. Umgesetzt ist noch nicht wirksam.
+Der Beschluss wird als Maßnahme mit Verantwortlichem und Frist verfolgt, bis die Wirkung belegt ist. Dass etwas umgesetzt ist, heißt noch nicht, dass es wirkt.
 :::
 
 ::: etappe 7
@@ -309,7 +313,7 @@ Aufgaben, Probleme und Änderungen werden auch ohne Risikoeintrag bearbeitet. En
 titel: Sie wird direkt als Änderung bearbeitet
 praefix: "Genau:"
 ---
-Die Projektsteuerung lässt die Auswirkungen gegen den geltenden Stand ermitteln und bereitet die Entscheidung mit mindestens zwei zulässigen Optionen vor. Bis zur Freigabe gilt die bisherige Grundlage.
+Die Projektsteuerung lässt prüfen, was die Änderung gegenüber dem aktuell gültigen Plan bedeutet, und bereitet die Entscheidung mit mindestens zwei zulässigen Möglichkeiten vor. Bis zur Freigabe gilt die bisherige Grundlage.
 :::
 
 ::: antwort b
@@ -338,13 +342,13 @@ titel: Möglich oder eingetreten?
 links: Risiko
 rechts: Problem
 ---
-Beispiele vom fiktiven Schulcampus Lindenhall-Süd.
+Erfundene Beispiele von einem Schulcampus der Stadt Lindenhall.
 
 ::: posten 1
 ---
 seite: links
 ---
-Die Klärung der Frühwarnung zu den Holzelementen ergibt: Drei von vier Anbietern nennen 24 bis 26 Wochen Lieferzeit – der Montagebeginn könnte sich deutlich verschieben.
+Die Klärung eines ersten Hinweises (Frühwarnung) zu den Holzelementen ergibt: Drei von vier Anbietern nennen 24 bis 26 Wochen Lieferzeit – der Montagebeginn könnte sich deutlich verschieben.
 
 ### Erklärung
 Ein mögliches Ereignis wird als Risiko bewertet.
@@ -367,17 +371,17 @@ seite: rechts
 Nach dem Sturm hat das Gerüst an der Sporthalle zwei lose Anker.
 
 ### Erklärung
-Eingetreten und dringlich: Die Bauleitung sperrt sofort; die Projektsteuerung meldet über den vereinbarten Meldeweg und dokumentiert es noch am selben Arbeitstag.
+Eingetreten und dringlich: Die Bauleitung sperrt sofort; die Projektsteuerung meldet über den vereinbarten Meldeweg und hält es noch am selben Arbeitstag schriftlich fest.
 :::
 
 ::: posten 4
 ---
 seite: links
 ---
-Die Haustechnikfirma kündigt Mehrkosten an – gut eine Million Euro könnten als Nachtrag kommen.
+Die Haustechnikfirma kündigt Mehrkosten an – als Nachtrag (zusätzliche Forderung der Firma) könnten gut eine Million Euro auf das Projekt zukommen.
 
 ### Erklärung
-Angekündigt, aber nicht eingetreten – ein Risiko mit Bandbreite.
+Angekündigt, aber nicht eingetreten – ein Risiko mit einer Spanne möglicher Beträge.
 :::
 :::
 
@@ -389,72 +393,72 @@ titel: Jede Vorgangsart und ihr nächster Schritt
 ---
 titel: Aufgabe
 ---
-Geplante Arbeit mit Ergebnis, Verantwortlichem und Termin. **Weiter:** Fortschritt verfolgen, mit verwendbarem Ergebnis schließen.
+Geplante Arbeit mit Ergebnis, Verantwortlichem und Termin. **Als Nächstes:** Fortschritt verfolgen und schließen, sobald ein verwendbares Ergebnis vorliegt.
 :::
 
 ::: karte massnahme
 ---
 titel: Maßnahme
 ---
-Soll einen Zustand verändern – etwa ein Risiko mindern oder einen Beschluss umsetzen. **Weiter:** Umsetzung und Wirkung prüfen.
+Soll einen Zustand verändern – etwa ein Risiko mindern oder einen Beschluss umsetzen. **Als Nächstes:** Umsetzung und Wirkung prüfen.
 :::
 
 ::: karte fruehwarnung
 ---
 titel: Frühwarnung
 ---
-Ein noch ungeklärter Hinweis. **Weiter:** Quelle sichern, Prüffrage, Verantwortlichen und Wiedervorlage festlegen.
+Ein noch ungeklärter Hinweis. **Als Nächstes:** Quelle sichern, die Prüffrage festlegen, einen Verantwortlichen bestimmen und festlegen, wann der Hinweis wieder angesehen wird (Wiedervorlage).
 :::
 
 ::: karte risiko
 ---
 titel: Risiko
 ---
-Ein *mögliches* nachteiliges Ereignis. **Weiter:** nach Wahrscheinlichkeit und Auswirkung bewerten, dann beobachten, gezielt oder vorrangig bearbeiten.
+Ein *mögliches* nachteiliges Ereignis. **Als Nächstes:** nach Wahrscheinlichkeit und Auswirkung bewerten, dann beobachten, gezielt oder vorrangig bearbeiten.
 :::
 
 ::: karte problem
 ---
 titel: Problem
 ---
-Ein nachteiliger Zustand ist *eingetreten*. **Weiter:** Folgen klären, Lösung organisieren und nachweisen, gegebenenfalls eine Entscheidung vorbereiten.
+Ein nachteiliger Zustand ist *eingetreten*. **Als Nächstes:** Folgen klären, Lösung organisieren und nachweisen, gegebenenfalls eine Entscheidung vorbereiten.
 :::
 
 ::: karte aenderung
 ---
 titel: Änderung
 ---
-Eine geltende Vorgabe soll *bewusst* angepasst werden. **Weiter:** Auswirkungen gegen den geltenden Stand, Vorlage mit mindestens zwei zulässigen Optionen; bis zur Freigabe gilt die bisherige Grundlage.
+Eine geltende Vorgabe soll *bewusst* angepasst werden. **Als Nächstes:** die Auswirkungen im Vergleich zum aktuell gültigen Plan ermitteln, Vorlage mit mindestens zwei zulässigen Möglichkeiten; bis zur Freigabe gilt die bisherige Grundlage.
 :::
 
 ::: karte entscheidung
 ---
 titel: Entscheidung vorbereiten
 ---
-Offener Entscheidungsbedarf im Entscheidungsregister. **Weiter:** die Entscheidungsvorlage; der Beschluss bleibt davon getrennt.
+Offener Entscheidungsbedarf im Entscheidungsregister (der Liste der offenen Entscheidungen). **Als Nächstes:** die Entscheidungsvorlage; der Beschluss wird getrennt von ihr festgehalten.
 :::
 :::
 
 ::: karten
 ---
-titel: Dazu gehören, sind aber keine Vorgangsarten
+titel: Zwei weitere Dinge, die keine Vorgangsarten sind
 ---
 ::: karte freigabe
 ---
 titel: Freigabe
 ---
-Die Entscheidung des Bauherrn am Abschluss der Leistungsphase. **Weiter:** Status und Freigabeentscheidung dokumentieren.
+Die Entscheidung des Bauherrn am Ende der Leistungsphase. **Als Nächstes:** festhalten, wie weit die Freigabe ist und wie entschieden wurde.
 :::
 
 ::: karte monatsbericht
 ---
 titel: Monatsbericht
 ---
-Höchstens eine Seite aus demselben Informationsstand; verweist auf die Einträge.
+Höchstens eine Seite, aus demselben Stand der Informationen wie die Software; sie verweist auf die Einträge.
 :::
 :::
 
-Entscheidungen, Risiken, Änderungen und Freigaben haben eigene Statusbegriffe. Sie bleiben vom Freigabeprozess der Entscheidungsvorlage getrennt.
+Für Entscheidungen, Risiken, Änderungen und Freigaben gibt es jeweils eigene Stufen, an denen man erkennt, wie weit sie sind (Status). Sie sind nicht dasselbe wie die Stufen, die die Entscheidungsvorlage selbst durchläuft (offen, in Prüfung, vorbereitet, freigegeben, beschlossen oder abgelehnt).
 
 ::: etappen
 ---
@@ -464,7 +468,7 @@ titel: Status einer Freigabe
 ---
 titel: offen
 ---
-Der erste Status einer Freigabe.
+Die Freigabe steht an, aber noch ist nichts vorbereitet.
 :::
 
 ::: etappe 2
@@ -478,33 +482,33 @@ Die Projektsteuerung bereitet die Freigabe vor, der Lenkungskreis berät. Erteil
 ---
 titel: abgeschlossen
 ---
-Dazu kommt das Ergebnis: **Freigabe**, **keine Freigabe** oder **Freigabe mit Auflagen**.
+Dazu kommt das Ergebnis: **Freigabe**, **keine Freigabe** oder **Freigabe mit Auflagen** (die Freigabe gilt, aber unter Bedingungen).
 :::
 :::
 
 ::: karten
 ---
-titel: Statusbegriffe für Entscheidungen, Risiken und Änderungen
+titel: Die Stufen für Entscheidungen, Risiken und Änderungen (Status)
 ---
 ::: karte entscheidungen
 ---
 titel: Entscheidungen
 ---
-Offen · In Bearbeitung · Entscheidungsreif · Entschieden · Verworfen
+Diese Stufen kennt eine Entscheidung: Offen · In Bearbeitung · Entscheidungsreif · Entschieden · Verworfen
 :::
 
 ::: karte risiken
 ---
 titel: Risiken
 ---
-aktiv · beobachtet · gemindert · geschlossen
+Diese Stufen kennt ein Risiko: aktiv · beobachtet · gemindert · geschlossen
 :::
 
 ::: karte aenderungen
 ---
 titel: Änderungen
 ---
-Beantragt · In Prüfung · Beschlossen · Abgelehnt · Umgesetzt
+Diese Stufen kennt eine Änderung: Beantragt · In Prüfung · Beschlossen · Abgelehnt · Umgesetzt
 :::
 :::
 
@@ -512,7 +516,7 @@ Beantragt · In Prüfung · Beschlossen · Abgelehnt · Umgesetzt
 ---
 symbol: diagramm
 ---
-Die Priorität eines Risikos ergibt sich aus seiner Bewertung, nicht aus seinem Status. Gemindert ist es erst, wenn die Wirkung der Maßnahme belegt ist; geschlossen wird es nur mit nachgewiesenem Grund.
+Wie dringend ein Risiko ist, ergibt sich aus seiner Bewertung, nicht aus seinem Status. Gemindert ist es erst, wenn die Wirkung der Maßnahme belegt ist; geschlossen wird es nur mit nachgewiesenem Grund.
 :::
 :::
 
@@ -520,7 +524,7 @@ Die Priorität eines Risikos ergibt sich aus seiner Bewertung, nicht aus seinem 
 ---
 titel: Takt und Eskalation
 ---
-Zur Zusammenarbeit gehört ein fester Takt. Die Einzelheiten stehen im Thema „Takt und Bericht“.
+Zur Zusammenarbeit gehört ein fester Takt, also feste Prüftermine. Die Einzelheiten stehen im Thema „Takt und Bericht“.
 
 ::: karten
 ---
@@ -532,7 +536,7 @@ titel: Sofort
 ---
 
 ### Rückseite
-Dringliches meldet die Projektsteuerung über den vereinbarten Meldeweg und dokumentiert es noch am selben Arbeitstag, sobald die unmittelbare Reaktion gesichert ist. Die regelmäßige Prüfung ersetzt keine dringliche Meldung.
+Dringliches meldet die Projektsteuerung über den vereinbarten Meldeweg und hält es noch am selben Arbeitstag schriftlich fest, sobald die unmittelbar nötige Reaktion gesichert ist. Die regelmäßige Prüfung ersetzt keine dringliche Meldung.
 :::
 
 ::: karte woechentlich
@@ -541,7 +545,7 @@ titel: Wöchentlich
 ---
 
 ### Rückseite
-In aktiven Zeiten prüft die Projektsteuerung alle offenen Vorgänge und Entscheidungen, mit Datum und Bearbeiter. Vertieft wird, was sich verändert hat oder klärungsbedürftig ist.
+Solange aktiv geplant oder gebaut wird, prüft die Projektsteuerung alle offenen Vorgänge und Entscheidungen, mit Datum und Bearbeiter. Vertieft wird, was sich verändert hat oder besonders geklärt werden muss.
 :::
 
 ::: karte monatlich
@@ -550,7 +554,7 @@ titel: Monatlich
 ---
 
 ### Rückseite
-In aktiven Zeiten ein Online-Termin von Bauherr und Projektsteuerung, bis zu 60 Minuten, Fachleute nach Bedarf; dazu der Monatsbericht von höchstens einer Seite.
+Solange aktiv geplant oder gebaut wird: ein Online-Termin von Bauherr und Projektsteuerung, bis zu 60 Minuten, Fachleute nach Bedarf; dazu der Monatsbericht von höchstens einer Seite.
 :::
 
 ::: karte ruhezeiten
@@ -559,46 +563,46 @@ titel: In vereinbarten Ruhezeiten
 ---
 
 ### Rückseite
-Neue, nicht dringliche Hinweise werden in dieser Zeit binnen fünf Arbeitstagen erfasst; den gesamten Bestand prüft die Projektsteuerung monatlich. Der Termin findet nur bei Bedarf statt, der Bericht bleibt.
+Das sind ruhigere Phasen, die ausdrücklich so vereinbart sind. Neue Hinweise, die nicht dringend sind, werden in dieser Zeit innerhalb von fünf Arbeitstagen erfasst; die Projektsteuerung prüft alle offenen Einträge einmal im Monat. Der Termin findet nur bei Bedarf statt, der Monatsbericht bleibt.
 :::
 :::
 
-Ist eine Wert-, Risiko-, Frist- oder Mandatsschwelle **überschritten**, geht das Thema die Mandatsleiter hinauf (Muster im Thema „Verantwortungsfelder“). Das ist kein Zeichen, dass etwas schiefgelaufen ist, sondern Steuerungslogik: Das Thema kommt dorthin, wo das Mandat liegt.
+Wird eine Grenze **überschritten** – beim Geldwert, beim Risiko, bei einer Frist oder bei dem, was jemand entscheiden darf –, geht das Thema Stufe für Stufe nach oben (Eskalation). Das Beispiel dafür steht im Thema „Verantwortungsfelder“. Das ist kein Zeichen, dass etwas schiefgelaufen ist, sondern gehört zum Ablauf: Das Thema landet bei der Stelle, die dafür zuständig ist.
 
 ::: etappen
 ---
-titel: Eskalation entlang der Mandatsleiter
+titel: Stufe für Stufe nach oben
 ---
 ::: etappe 1
 ---
-titel: Im Mandat
+titel: Innerhalb der Befugnis
 ---
-Innerhalb des Mandats entscheiden die verantwortliche Rolle und die Projektleitung des Bauherrn im festgelegten Rahmen; die Projektsteuerung hat vorbereitet und hält den Beschluss getrennt fest.
+Solange das Thema innerhalb der Befugnis der zuständigen Rolle oder der Projektleitung des Bauherrn liegt, entscheiden sie im festgelegten Rahmen. Die Projektsteuerung hat vorbereitet und hält den Beschluss gesondert fest.
 :::
 
 ::: etappe 2
 ---
 titel: Projektleitung des Bauherrn
 ---
-Eine Schwelle ist überschritten. Liegt das Thema im Mandat der Projektleitung des Bauherrn, geht es an sie.
+Wird die Grenze der zuständigen Rolle überschritten und liegt das Thema in der Befugnis der Projektleitung des Bauherrn, geht es an sie.
 :::
 
 ::: etappe 3
 ---
 titel: Änderungsgremium
 ---
-Das Änderungsgremium entscheidet, wenn das Thema in seinem Mandat liegt.
+Das Änderungsgremium entscheidet, wenn das Thema in seiner Befugnis liegt.
 :::
 
 ::: etappe 4
 ---
 titel: Bauherr im Lenkungskreis
 ---
-Darüber folgt die Beschlussfassung durch den Bauherrn im Lenkungskreis.
+Darüber beschließt der Bauherr selbst im Lenkungskreis.
 :::
 :::
 
-Wo eine Handlungsentscheidung nötig ist, liegt auf jeder Stufe eine Vorlage der Projektsteuerung vor. Dringliches wartet nicht auf die nächste Sitzung.
+Wo etwas entschieden werden muss, liegt auf jeder Stufe eine Vorlage der Projektsteuerung vor. Dringliches wartet nicht auf die nächste Sitzung.
 :::
 
 ::: abschnitt k6
@@ -617,20 +621,20 @@ links: Was er ist
 rechts: Was er nicht ist
 ---
 ::: ansicht links
-Ein optionales Arbeitsmittel. Es hilft, Entscheidungen vorzubereiten, Freigaben zu steuern, Nachweise zu führen, das Team zu befähigen und in den Regelbetrieb überzugehen.
+Ein optionales Arbeitsmittel. Es hilft, Entscheidungen vorzubereiten, Freigaben zu steuern, Nachweise zu führen, das Team zu schulen und den Übergang in den Regelbetrieb zu gestalten.
 :::
 
 ::: ansicht rechts
-Kein zweites Dachkonzept neben MVG, kein Ersatz für Entscheidung oder Führung und keine zweite Dokumentation: Maßgeblich bleibt die Software des Bauherrn. Er erfindet keine neue Governance, sondern macht die vereinbarte im Alltag anwendbar.
+Er ist kein zweites Konzept neben MVG, ersetzt weder Entscheidung noch Führung und ist keine zweite Dokumentation: Maßgeblich bleibt die Software des Bauherrn. Er erfindet keine neuen Regeln, sondern hilft, die vereinbarten im Alltag anzuwenden.
 :::
 :::
 :::
 
 ::: abschnitt k6.1
 ---
-titel: Die sieben Bausteine des MVG Companion
+titel: Die sieben Funktionen des MVG Companion
 ---
-Der Companion bündelt sieben Funktionen. Sie spiegeln die Bausteine des Führungsmodells; jede übersetzt einen Teil der vereinbarten Governance in eine Arbeitshilfe. Der **Entscheidungsassistent** etwa führt Schritt für Schritt durch Entscheidungsfrage, Mandat, Freigabe, Datenstand und Nachweis; in der Vorlage gehören dazu mindestens zwei zulässige Optionen und ihr gewichteter Vergleich.
+Der Companion hat sieben Funktionen. Sie entsprechen den Bausteinen des Führungsmodells; jede macht einen Teil der vereinbarten Regeln zu einer Arbeitshilfe. Der **Entscheidungsassistent** zum Beispiel führt Schritt für Schritt durch Entscheidungsfrage, Mandat, Freigabe, Stand der Unterlagen und Nachweis; zur Vorlage gehören mindestens zwei zulässige Möglichkeiten und ihr gewichteter Vergleich.
 
 ::: tafel k6.1-t1
 ---
@@ -643,7 +647,7 @@ form: karten
 ---
 titel: Befähigung mit Unterstützung des MVG Companion
 ---
-[[Befähigung]] heißt: Die Bauherrenorganisation kann das Modell selbst anwenden. Mit dem Companion wird aus der einmaligen Schulung eine **wiederholbare Anwendungskette**: Die Rollen arbeiten mit [[Entscheidungs-ID|Entscheidungs-IDs]] (eine Kennung je Entscheidung), Freigabefragen, Mandatslogik, der Prüfung, ob der Datenstand aktuell ist, und den Routinen des Betriebshandbuchs – in echten Entscheidungssituationen des eigenen Projekts.
+[[Befähigung]] heißt: Die Organisation des Bauherrn kann das Modell selbst anwenden. Mit dem Companion bleibt es nicht bei einer einmaligen Schulung: Die Beteiligten üben das Modell immer wieder an echten Entscheidungen des eigenen Projekts. Sie arbeiten dabei mit den Kennungen für Entscheidungen ([[Entscheidungs-ID|Entscheidungs-IDs]]), mit den Fragen vor Freigaben, mit den Regeln zu Befugnissen (Mandaten), mit der Kontrolle, ob der Stand der Unterlagen aktuell ist, und mit den Abläufen des Betriebshandbuchs.
 
 ::: etappen
 ---
@@ -653,35 +657,35 @@ titel: Vier Schritte der Befähigung
 ---
 titel: Schulung
 ---
-Rollenführung, Beispiele und Anwendungspfade. **Ergebnis:** ein gemeinsames Verständnis der MVG-Logik.
+Was jede Rolle tut, dazu Beispiele und Übungen. **Ergebnis:** ein gemeinsames Verständnis davon, wie MVG funktioniert.
 :::
 
 ::: etappe 2
 ---
 titel: Pilotierung
 ---
-Reale Entscheidungen und Freigabevorbereitungen werden begleitet. **Ergebnis:** kalibrierte Schwellen und praxistaugliche Routinen.
+Pilotierung heißt: im Ernstfall erproben. Echte Entscheidungen und Freigaben werden begleitet. **Ergebnis:** Grenzwerte, die sich bewährt haben, und Abläufe, die im Alltag funktionieren.
 :::
 
 ::: etappe 3
 ---
 titel: Übergabe
 ---
-Betriebshandbuch-Assistent, offene Punkte und Prüfrhythmus kommen zusammen. **Ergebnis:** eine geordnete Übergabe in die Bauherrenorganisation.
+Der Assistent für das Betriebshandbuch, die offenen Punkte und der Rhythmus der Prüfungen werden zusammengeführt. **Ergebnis:** eine geordnete Übergabe an die Organisation des Bauherrn.
 :::
 
 ::: etappe 4
 ---
 titel: Regelbetrieb
 ---
-Wiederkehrende Anwendungshilfe für Entscheidungen, Freigaben und Prüfungen. **Ergebnis:** eine dauerhaft verfügbare Anwendungslogik.
+Dauerhafte Hilfe bei Entscheidungen, Freigaben und Prüfungen im Alltagsbetrieb. **Ergebnis:** eine Arbeitshilfe, die dauerhaft zur Verfügung steht.
 :::
 :::
 :::
 
 ::: abschnitt k6.3
 ---
-titel: Rahmenbedingungen und Datenstand
+titel: Wie der Companion eingesetzt wird
 ---
 Technisch ist der Companion ein Arbeitsbuch, das im Browser auf dem eigenen Rechner läuft. Er ist **optional**: Das Führungsmodell funktioniert auch mit den Büro- und Projektwerkzeugen, die ein Bauherr ohnehin nutzt.
 
@@ -689,14 +693,12 @@ Technisch ist der Companion ein Arbeitsbuch, das im Browser auf dem eigenen Rech
 ---
 symbol: schloss
 ---
-- Er kann vorhandene Strukturen abbilden oder auf sie verweisen, von Entscheidungsvorlagen und Vorgängen bis zu [[RACI]], Mandaten und Betriebshandbuch.
+- Er kann Bestehendes nachbilden oder darauf verweisen: Entscheidungsvorlagen, Vorgänge, die [[RACI]]-Tabelle, Mandate und das Betriebshandbuch.
 - **Maßgeblich bleibt** die Software des Bauherrn. Wer mit dem Companion arbeitet, überträgt die Inhalte fristgerecht dorthin; eine zweite Liste entsteht nicht.
-- Er arbeitet mit benannten, versionierten und zugriffsberechtigten Informationen. Was er liefert, ist Entscheidungsunterstützung: Bevor es in eine Freigabe oder ein Gremium geht, prüfen es die zuständigen Rollen.
+- Er arbeitet mit Informationen, die einen Namen und eine Version haben und nur Berechtigten zugänglich sind. Was er liefert, ist Entscheidungsunterstützung: Bevor es in eine Freigabe oder ein Gremium geht, prüfen es die zuständigen Rollen.
 :::
 
-::: zitat k6.3-b1
-Der MVG Companion ersetzt keine Bauherrenentscheidung, keine Gremienfreigabe, keine Rechtsberatung, keine Fachplanung und keine Projektsteuerung. Seine Funktion liegt in Strukturierung, Orientierung, Anwendungshilfe und Befähigung. Verbindlich bleiben freigegebene Datenstände, definierte Rollenrechte, Datenschutzanforderungen und die bauherrenseitige Legitimation der Entscheidung.
-:::
+Der Companion ersetzt keine Entscheidung des Bauherrn, keine Freigabe durch ein Gremium, keine Rechtsberatung, keine Fachplanung und keine Projektsteuerung. Er hilft beim Ordnen, Orientieren, Anwenden und Schulen. Verbindlich bleiben die freigegebenen Stände der Unterlagen, die festgelegten Zugriffsrechte der Rollen, die Anforderungen des Datenschutzes und die Entscheidung des Bauherrn, für die er einsteht.
 
 ::: sortieren
 ---
@@ -718,7 +720,7 @@ seite: rechts
 Die Bauherrenentscheidung
 
 ### Erklärung
-Die bauherrenseitige Legitimation der Entscheidung bleibt verbindlich.
+Die Entscheidung bleibt beim Bauherrn, der dafür einsteht.
 :::
 
 ::: posten 3
@@ -732,7 +734,7 @@ Anwendungshilfe und Befähigung
 ---
 seite: rechts
 ---
-Die Gremienfreigabe
+Die Freigabe durch ein Gremium
 :::
 
 ::: posten 5
@@ -773,7 +775,7 @@ Ein zusätzliches Arbeitsmittel ersetzt die Dokumentation dort nicht.
 Dieses Thema trägt im Termin vor allem mit seinem ersten Teil: Die Projektsteuerung bearbeitet alle Vorgänge in der Software des Bauherrn und prüft sie wöchentlich; der Bauherr pflegt nichts, er entscheidet auf Vorlage (Sortierübung „Bearbeitet die Projektsteuerung – oder entscheidet der Bauherr?“, Karten „Vier Ausgänge einer Frühwarnung“, Takt in Kürze). Den MVG Companion beschreiben, nicht vorführen oder anbieten: Er ist ein optionales Arbeitsmittel und ersetzt keine Bauherrenentscheidung, keine Gremienfreigabe, keine Projektsteuerung und nicht die Einträge in der Software des Bauherrn. Nutzungsbedingungen nicht von sich aus ansprechen.
 
 ### Leitfragen
-- Wer bearbeitet bei Ihnen alle offenen Vorgänge – und wer entscheidet nur?
-- Wo landet bei Ihnen ein Hinweis, bevor jemand ihn geklärt hat?
+- Wer bearbeitet bei Ihnen alle offenen Punkte (Vorgänge) – und wer entscheidet nur?
+- Wo wird bei Ihnen ein erster Hinweis festgehalten, bevor jemand geklärt hat, was dahintersteckt?
 - Wann wird bei Ihnen aus einem Vorgang ein Entscheidungsbedarf – und wer legt die Vorlage vor?
 :::

@@ -7,6 +7,7 @@
 # Belege k2.2: k2.2-p1, k2.2-p2, k2-p1 (Kosten, Termine, Qualität als weitere Ziele)
 # Belege k2.3: k2.3-p1, k2.3-p2; Beispiel Vertretung (V2.4): Eintrag zeigt auch bei Bearbeiterwechsel, was bekannt und was offen ist v24:hb-2; ein maßgeblicher Stand v24:hb-5
 # Belege k2.4: k2.4-p1, k2.4-p2, k2.4-p3; Monatsbericht höchstens eine Seite mit offenen Entscheidungen und benötigter Reaktion (V2.4): v24:hb-4, v24:as-2
+# Sprachdurchgang L-290 (Owner-Auftrag: natürliche, verständliche Sprache): Fachwörter und Beispielfall beim ersten Auftreten erklärt; Aussagen und Belege unverändert.
 # Gekürzt und gegliedert P17.11 (O-55): Beispiele als Karten, Lesetext ohne Doppelungen zu den Umschaltern.
 # Belege k2.5: k2.5-t1, k2.5-p1 (Karte Eskalation ohne Entscheidung: Zeile der Tafel); Vorlage der Projektsteuerung mit Frage, zwei zulässigen Optionen, MCDA, Empfehlung (V2.4): v24:hb-3, v24:hb-3.1, v24:tlb-2.1
 kapitel: 2
@@ -15,16 +16,16 @@ reihe: 2
 titel: Ausgangslage und Kernproblem
 kurztitel: Ausgangslage
 teil: 1
-kurzsatz: Warum mehr Berichte das Kernproblem nicht lösen.
+kurzsatz: Warum mehr Berichte allein nicht helfen, wenn unklar ist, wer entscheidet.
 symbol: frage
 ---
-Kosten, Termine, Qualität, Risiken, [[ESG|Umwelt-, Sozial- und Governance-Aspekte (ESG)]], [[LCC|Lebenszykluskosten (LCC)]], Nutzerbedarfe und Gremienfähigkeit wirken nicht isoliert – sie treffen in konkreten Entscheidungen zusammen. Für den [[Bauherr|Bauherrn]] zählt deshalb nicht die Menge an Information, sondern ob klar ist, wer auf welcher Grundlage entscheiden darf und muss.
+Kosten, Termine, Qualität, Risiken, Umwelt-, Sozial- und Führungsfragen ([[ESG]]), die Kosten über die ganze Lebensdauer eines Gebäudes ([[LCC|Lebenszykluskosten, LCC]]), die Wünsche der Nutzer und die Frage, ob Gremien überhaupt beschließen können, hängen zusammen: Sie treffen in einzelnen Entscheidungen aufeinander. Für den [[Bauherr|Bauherrn]] kommt es deshalb nicht auf die Menge der Berichte an, sondern darauf, dass klar ist, wer auf welcher Grundlage entscheiden darf und entscheiden muss.
 
 ::: kernaussage
 ---
 symbol: bericht
 ---
-Mehr Berichte lösen das Kernproblem nicht. Entscheidend ist eine klare Führungs- und Entscheidungsarchitektur – sonst bleibt die Verantwortung formal beim Bauherrn, wird praktisch aber diffus.
+Mehr Berichte lösen das Problem nicht. Es braucht klare Regeln dafür, wer führt und wer entscheidet. Sonst liegt die Verantwortung zwar auf dem Papier beim Bauherrn, aber in der Praxis weiß niemand genau, wer wofür zuständig ist.
 :::
 
 ::: abbildung abb-3
@@ -32,70 +33,72 @@ Mehr Berichte lösen das Kernproblem nicht. Entscheidend ist eine klare Führung
 
 ::: umschalter
 ---
-titel: Wie Verantwortung diffus wird
+titel: Wie Verantwortung unklar wird
 links: Auf dem Papier
 rechts: In der Praxis
 ---
-Ohne Führungs- und Entscheidungsarchitektur entstehen Grauzonen.
+Ohne klare Regeln für Führung und Entscheidung entstehen Bereiche, für die niemand zuständig ist.
 
 ::: ansicht links
-- Rollen sind beschrieben.
-- Risiken sind bekannt.
+- Alle Rollen sind beschrieben.
+- Die Risiken sind bekannt.
 - Änderungen werden bearbeitet.
-- Daten liegen vor.
-- Gremien erhalten Statusinformationen.
+- Die Zahlen liegen vor.
+- Die Gremien bekommen Berichte über den Stand.
 :::
 
 ::: ansicht rechts
-- Die Rollen haben kein [[Mandat]].
-- Die Risiken stehen in einer Liste; niemand hat bewertet, welche vorrangig sind und welche Entscheidung sie brauchen.
-- Die Änderungen hängen an keiner Freigabeschwelle.
-- Mehrere [[Datenstand|Datenstände]] existieren parallel.
-- Die Gremien bekommen keine klare Entscheidungsfrage.
+- Die Rollen sind beschrieben, aber niemand hat festgelegt, was sie entscheiden dürfen (kein [[Mandat]]).
+- Die Risiken stehen in einer Liste; niemand hat bewertet, welche am wichtigsten sind und welche eine Entscheidung brauchen.
+- Für Änderungen ist nicht festgelegt, ab welcher Größe wer zustimmen muss.
+- Es gibt mehrere Fassungen der Zahlen und Pläne nebeneinander (mehrere [[Datenstand|Datenstände]]).
+- Die Gremien bekommen keine klare Frage, über die sie entscheiden sollen.
 :::
 :::
 
 ::: abschnitt k2.1
 ---
-titel: Volatile Märkte und Infrastrukturprogramme
+titel: Schwankende Märkte und große Infrastrukturprogramme
 ---
-Schwankende Märkte treffen ein Projekt über viele Kanäle. Besonders verwundbar sind die Zeit vor der [[Finale Investitionsentscheidung (FID)|finalen Investitionsentscheidung (FID)]] und die Zeit von Ausschreibung, Vergabe und Beschaffung der Komponenten mit langer Lieferzeit. Dort kippen Annahmen schnell, während die Entscheidungsprozesse oft auf stabilere Umfelder ausgelegt sind.
+Schwankende Märkte treffen ein Projekt auf vielen Wegen. Besonders anfällig sind zwei Phasen: die Zeit bis zur endgültigen Entscheidung, ob investiert wird ([[Finale Investitionsentscheidung (FID)|finale Investitionsentscheidung, FID]]), und die Zeit, in der ausgeschrieben, vergeben und bestellt wird – vor allem Bauteile mit langer Lieferzeit. Dort stimmen Annahmen schnell nicht mehr, während die Abläufe für Entscheidungen oft für ruhigere Zeiten gebaut sind.
 
-Für Energieversorger, Netzbetreiber, Stadtwerkegruppen und andere Infrastrukturträger entsteht daraus ein eigener Governance-Bedarf. Seine Elemente gehören zum Kern des Modells.
+Wer Energie, Netze oder andere Infrastruktur baut und betreibt (Energieversorger, Netzbetreiber, Stadtwerke), braucht deshalb besonders klare Regeln für Führung und Entscheidung. Die Bausteine dafür gehören zum Kern von MVG.
 
 ::: umschalter
 ---
 titel: Druck von außen – Antwort von innen
 links: Was der Markt bewegt
-rechts: Was die Governance braucht
+rechts: Was ein Projekt dagegen braucht
 ---
+Links steht, was sich am Markt ändern kann. Rechts steht, was ein Projekt dagegen braucht.
+
 ::: ansicht links
-- Preisannahmen
+- Preise, mit denen gerechnet wurde
 - Lieferzeiten
-- Angebotsgültigkeiten
-- Komponenten mit langer Lieferzeit
-- Finanzierungspuffer
-- Vergabestrategie
-- Priorisierung im Projektportfolio
+- Wie lange Angebote gültig bleiben
+- Bauteile mit langer Lieferzeit
+- Der Geldpuffer des Projekts
+- Die Strategie für die Vergabe
+- Die Reihenfolge der Projekte im Gesamtprogramm (Portfolio)
 :::
 
 ::: ansicht rechts
-- Freigabereife
-- Priorisierungsregeln
-- eine Logik für Fortführung oder Stopp
-- [[Frühwarnung|Frühwarnungen]]
-- eine konsequente Restkostenprognose ([[CTC]])
-- Nachtrags- und Änderungssteuerung
-- klare Eskalationsroutinen
+- Klarheit, wann ein Projektabschnitt reif für die Freigabe ist
+- Regeln, was Vorrang hat
+- eine feste Regel, wann das Projekt weitergeführt oder gestoppt wird
+- [[Frühwarnung|Frühwarnungen]] (erste Hinweise, die noch geklärt werden müssen)
+- eine konsequent geführte Schätzung der noch anfallenden Kosten (Restkostenprognose, [[CTC]])
+- ein geordneter Umgang mit Nachträgen und Änderungen
+- klare Wege, wann ein Thema nach oben gegeben wird
 :::
 :::
 :::
 
 ::: abschnitt k2.2
 ---
-titel: Steigende Komplexität durch ESG, LCC und Nachweislogik
+titel: "Mehr Anforderungen: Nachhaltigkeit, Lebenszykluskosten und Nachweise"
 ---
-Nachhaltigkeits-, Energie- und Klimaziele werden zu Entscheidungsparametern. Lebenszykluskosten, Zertifizierungen und EU-Vorgaben zu Nachhaltigkeit und Energie verschärfen die Anforderungen an Zieldefinition, Variantenvergleich und Nachweise.
+Ziele zu Nachhaltigkeit, Energie und Klima müssen bei Entscheidungen mitbedacht werden. Wer die Kosten über die ganze Lebensdauer betrachten, Zertifikate nachweisen und EU-Vorgaben zu Nachhaltigkeit und Energie einhalten muss, muss Ziele genauer festlegen, Varianten sorgfältiger vergleichen und mehr belegen.
 
 ::: umschalter
 ---
@@ -108,12 +111,12 @@ ESG und LCC werden erst geprüft, wenn es um Nachweise geht. Zielkonflikte zeige
 :::
 
 ::: ansicht rechts
-ESG und LCC stehen früh in den verbindlichen Entscheidungspunkten des Projekts:
+ESG und LCC fließen früh in die Punkte ein, an denen verbindlich entschieden wird:
 
-1. Zielsystem,
-2. Abwägungsregeln,
-3. Variantenentscheidungen,
-4. Freigaben.
+1. in das Zielsystem (die festgehaltenen Projektziele mit ihrer Rangfolge),
+2. in die Abwägungsregeln (was gilt, wenn Ziele sich widersprechen),
+3. in die Wahl zwischen Varianten,
+4. in die Freigaben.
 
 So zeigen sich Zielkonflikte, bevor die Planung weit fortgeschritten ist.
 :::
@@ -123,7 +126,7 @@ So zeigen sich Zielkonflikte, bevor die Planung weit fortgeschritten ist.
 ---
 symbol: lesezeichen
 ---
-Der Stadtrat hat für den Schulcampus Lindenhall-Süd den Holzhybridbau als Klimaziel beschlossen. Stünde dieses Ziel nicht von Anfang an in den Abwägungsregeln, fiele womöglich erst spät auf, dass eine Sporthalle in Stahlbeton – gewählt wegen der langen Lieferzeit der Holzbauelemente – das Ziel verfehlt.
+Die Beispiele in diesen Themen spielen auf einem erfundenen Schulcampus der Stadt Lindenhall: Gesamtschule, Grundschule und Sporthalle. Der Stadtrat hat beschlossen, dass der Campus als Holzhybridbau entstehen soll – einer Mischbauweise aus Holz und anderen Baustoffen –, um ein Klimaziel zu erreichen. Steht dieses Ziel nicht von Anfang an in den Abwägungsregeln, kann erst spät auffallen, dass eine Sporthalle aus Stahlbeton – gewählt, weil die Holzbauteile so lange auf sich warten lassen – das Klimaziel verfehlt.
 :::
 :::
 
@@ -131,20 +134,20 @@ Der Stadtrat hat für den Schulcampus Lindenhall-Süd den Holzhybridbau als Klim
 ---
 titel: Wissensverlust und Schlüsselrollen
 ---
-In kritischen Momenten hängt oft viel an wenigen erfahrenen Personen. Fallen sie aus, wird die Organisation verletzlich: Entscheidungen sind nicht wiederholbar. Ein belastbares [[Bauherren-Führungsmodell]] verringert diese Abhängigkeit. Es macht nicht jede Organisation automatisch leistungsfähig, schafft aber einen gemeinsamen Standard.
+In schwierigen Momenten hängt oft viel an wenigen erfahrenen Personen. Fallen sie aus, gerät die Organisation ins Wanken: Niemand kann nachvollziehen, wie bisher entschieden wurde. Ein belastbares Führungsmodell für Bauherren ([[Bauherren-Führungsmodell]]: das Zusammenspiel von Zielen, Rollen, Freigaben und Nachweisen) macht das Projekt weniger abhängig von einzelnen Personen. Es macht nicht automatisch jede Organisation leistungsfähig, gibt aber allen denselben Standard.
 
 ::: umschalter
 ---
-titel: Wissen in Köpfen – oder in der Führungslogik?
+titel: Wissen in Köpfen – oder in festen Abläufen?
 links: Abhängig von Personen
 rechts: Gemeinsamer Standard
 ---
 ::: ansicht links
 - Kritisches Wissen liegt bei wenigen erfahrenen Personen.
-- Rollen sind nicht sauber delegiert.
-- Wissen ist nicht in Unterlagen und Routinen übersetzt.
+- Rollen sind nicht sauber übertragen.
+- Wissen ist nicht aufgeschrieben und nicht in feste Abläufe gebracht.
 
-Fällt jemand aus, fehlt die Wiederholbarkeit der Entscheidungen.
+Fällt jemand aus, kann niemand nachvollziehen, wie bisher entschieden wurde.
 :::
 
 ::: ansicht rechts
@@ -153,18 +156,18 @@ Der gemeinsame Standard beantwortet:
 1. Wer entscheidet?
 2. Welche Unterlagen sind erforderlich?
 3. Welche Annahmen gelten?
-4. Welche Schwellen lösen eine Eskalation aus?
+4. Ab welcher Grenze, zum Beispiel einem Betrag, muss ein Thema an die nächsthöhere Stelle?
 5. Welche Entscheidungen müssen dokumentiert werden?
 
-Erfahrung wird nicht ersetzt, aber in wiederholbare Führungslogik überführt.
+Erfahrung wird nicht ersetzt. Sie wird aber aufgeschrieben und zu einem festen Vorgehen, das andere wiederholen können.
 :::
 :::
 
-::: aufklapper Beispiel aus dem Schulcampus
+::: aufklapper Ein erfundenes Beispiel: Der Kostenplaner fällt aus
 ---
 symbol: person
 ---
-Kurz vor der Entscheidung über die Reserve fällt der Kostenplaner des Architekturbüros für Wochen aus. Dank des gemeinsamen Standards findet seine Kollegin vor, auf welchem Datenstand Register und Vorlagen beruhen, welche Unterlagen erforderlich sind und welche Annahmen gelten – in den Einträgen der Projektsteuerung in der Software der Stadt, nicht in persönlichen Arbeitsständen.
+Kurz bevor entschieden wird, ob Geld aus der Reserve (dem Puffer für Unvorhergesehenes) eingesetzt wird, fällt der Kostenplaner des Architekturbüros für Wochen aus. Seine Kollegin kann trotzdem weiterarbeiten: In den Einträgen der Projektsteuerung in der Software der Stadt sieht sie, auf welchem Stand ([[Datenstand]]) die Zahlen beruhen, welche Unterlagen nötig sind und welche Annahmen gelten. Sie muss nicht in privaten Arbeitsständen suchen.
 :::
 :::
 
@@ -172,9 +175,9 @@ Kurz vor der Entscheidung über die Reserve fällt der Kostenplaner des Architek
 ---
 titel: Warum Berichterstattung das Kernproblem nicht löst
 ---
-Kommt ein Projekt ins Rutschen, liegen mehr Berichte, Abstimmungen, Gremienvorlagen und Eskalationsrunden nahe. Das kann im Einzelfall helfen, klärt aber nicht automatisch, wer was auf welcher Grundlage entscheiden darf und muss.
+Kommt ein Projekt ins Rutschen, liegt es nahe, mehr Berichte, Abstimmungen, Gremienvorlagen und Runden zur Weitergabe nach oben einzuführen. Das kann im Einzelfall helfen, klärt aber nicht automatisch, wer was auf welcher Grundlage entscheiden darf und entscheiden muss.
 
-Berichte erzeugen Information. Führung entsteht erst, wenn Information mit Mandat, Entscheidung, Schwelle, Risikoannahme, [[Datenstand]], Freigabe und Nachweis verbunden wird.
+Berichte liefern Information. Führung entsteht erst, wenn diese Information mit klaren Zuständigkeiten verbunden ist: Wer darf entscheiden ([[Mandat]])? Ab welcher Grenze (Schwelle) entscheidet jemand anderes? Welche Risiken trägt das Projekt bewusst? Auf welchem Stand der Unterlagen ([[Datenstand]]) wird entschieden? Wer gibt frei? Und wie lässt sich das später belegen (Nachweis)?
 
 ::: karten
 ---
@@ -186,40 +189,40 @@ titel: Ampelbericht ohne Entscheidungsfrage
 ---
 
 ### Rückseite
-bleibt Beobachtung.
+Ein Ampelbericht, der keine Entscheidung verlangt, zeigt nur, wie es steht. Er bleibt reine Beobachtung.
 :::
 
 ::: karte 2
 ---
-titel: Änderungsregister ohne Schwellenlogik
+titel: Änderungsliste ohne Zustimmungsgrenzen
 ---
 
 ### Rückseite
-bleibt Verwaltung.
+Eine Liste der Änderungen ohne Regel, ab welchem Betrag wer zustimmen muss, ist nur Verwaltung.
 :::
 
 ::: karte 3
 ---
-titel: Risikoübersicht ohne Risikoannahme
+titel: Risikoübersicht ohne Entscheidung über das Risiko
 ---
 
 ### Rückseite
-bleibt Warnsignal.
+Eine Risikoübersicht, bei der niemand entscheidet, ob das Projekt das Risiko trägt, bleibt ein Warnsignal ohne Folgen.
 :::
 
 ::: karte 4
 ---
-titel: Gremienvorlage ohne klare Entscheidungssituation
+titel: Gremienvorlage ohne klare Entscheidungsfrage
 ---
 
 ### Rückseite
-bleibt Beschlussformalismus.
+Eine Gremienvorlage, die nicht sagt, worüber genau entschieden werden soll, wird zum bloßen Formalismus.
 :::
 :::
 
 ::: umschalter
 ---
-titel: Minimum Viable Governance (MVG) setzt eine Stufe früher an
+titel: MVG fragt etwas anderes
 links: Die Berichtsfrage
 rechts: Die MVG-Frage
 ---
@@ -230,18 +233,18 @@ Mehr Berichte und Runden erzeugen Information – aber noch keine Führung.
 :::
 
 ::: ansicht rechts
-**Welche nichtdelegierbaren Bauherrenentscheidungen müssen getroffen werden?**
+**Welche Entscheidungen kann nur der Bauherr selbst treffen – und was muss dafür bereitliegen?**
 
 Daraus folgen:
 
-1. Wer ist dafür letztverantwortlich?
-2. Welche Vorbereitung kann delegiert werden?
-3. Welche Mindestgrundlagen sind erforderlich?
-4. Welche Schwellen lösen Eskalation aus?
-5. Welcher Datenstand gilt?
-6. Wie wird der Beschluss später nachvollzogen?
+1. Wer trägt am Ende die Verantwortung?
+2. Was dürfen andere vorbereiten?
+3. Welche Unterlagen müssen mindestens vorliegen?
+4. Ab welcher Grenze muss ein Thema nach oben gegeben werden?
+5. Welcher Stand der Unterlagen gilt?
+6. Wie lässt sich später nachvollziehen, was beschlossen wurde?
 
-Der Bauherr erhält monatlich einen Bericht von höchstens einer Seite. Er zeigt wesentliche Veränderungen und die offenen Entscheidungen mit der benötigten Reaktion.
+Der Bauherr bekommt jeden Monat einen Bericht von höchstens einer Seite. Er zeigt, was sich wesentlich verändert hat, und nennt bei jeder offenen Entscheidung, welche Reaktion vom Bauherrn gebraucht wird, zum Beispiel eine Entscheidung bis zu einem bestimmten Termin.
 :::
 :::
 
@@ -249,11 +252,11 @@ Der Bauherr erhält monatlich einen Bericht von höchstens einer Seite. Er zeigt
 
 ::: abschnitt k2.5
 ---
-titel: Symptome fehlender Ausübungsfähigkeit
+titel: "Acht Warnzeichen: Der Bauherr kann nicht mehr wirksam führen"
 ---
-Acht Symptome zeigen, dass ein Bauherr seine Verantwortung nicht mehr wirksam ausüben kann. Jedes hat ein Muster im Projekt, eine Konsequenz für den Bauherrn und eine Antwort im MVG-Modell.
+Acht Warnzeichen zeigen, dass ein Bauherr seine Verantwortung nicht mehr wirksam wahrnehmen kann. Jedes zeigt sich im Projekt in einem typischen Bild, hat eine Folge für den Bauherrn und eine Antwort von MVG.
 
-Die MVG-Reifegradanalyse (Thema „Leistungsarchitektur“) erhebt, bewertet und priorisiert diese Symptome. Bevor daraus ein [[Bauherren-Führungsmodell]] werden kann, braucht es begriffliche Klarheit, was delegierbar ist und was nicht – sie folgt im Thema „Begriffsrahmen“.
+Eine Reifegradanalyse – eine kurze Bestandsaufnahme, ob der Bauherr seine Verantwortung tatsächlich wahrnehmen kann; mehr dazu im Thema „Wie Bauherr Mentoren arbeitet“ – erfasst und bewertet diese Warnzeichen und legt eine Reihenfolge fest. Damit daraus ein [[Bauherren-Führungsmodell]] werden kann, muss erst klar sein, was der Bauherr abgeben darf und was nicht. Das klärt das Thema „Begriffsrahmen“.
 
 ::: tafel k2.5-t1
 ---
@@ -261,20 +264,20 @@ form: ketten
 ---
 :::
 
-::: aufklapper Eskalation ohne Entscheidung
+::: aufklapper Nach oben gegeben, aber nichts entschieden
 ---
 symbol: eskalieren
 ---
-Themen gehen ohne klare Optionen, Empfehlung oder Konsequenzen nach oben – die Folge ist Verzögerung statt Führung. Die Antwort ist ein verbindlicher Standard für [[Entscheidungsvorlage|Entscheidungsvorlagen]]. Für jede Eskalation, die eine Bauherrenentscheidung erfordert, legt die Projektsteuerung eine Vorlage mit Entscheidungsfrage, mindestens zwei zulässigen Optionen, gewichtetem Vergleich und Empfehlung vor. Dringliches meldet sie vorab sofort.
+Themen werden an die nächsthöhere Stelle weitergegeben (Eskalation), aber ohne klare Möglichkeiten zur Auswahl, ohne Empfehlung und ohne Folgen. Das führt zu Verzögerung statt zu Führung. MVG verlangt deshalb einen festen Aufbau für [[Entscheidungsvorlage|Entscheidungsvorlagen]]: Wenn der Bauherr etwas entscheiden muss, legt die Projektsteuerung eine Vorlage vor – mit der Frage, mindestens zwei Möglichkeiten, die erlaubt sind (zulässige Optionen), einem Vergleich, bei dem die Kriterien unterschiedlich stark zählen, und einer Empfehlung. Was dringend ist, meldet sie sofort, schon bevor die Vorlage fertig ist.
 :::
 :::
 
 ::: regie
 ### Notiz
-Die Ausgangslage holt den Kunden bei seinen eigenen Erfahrungen ab. Einstieg über den Umschalter „Auf dem Papier / In der Praxis“ (Grauzonen). Tragend ist die Tafel der acht Symptome: den Kunden selbst wählen lassen, was er kennt – ohne Punktzahl und ohne Urteil über seine Organisation. Der Kern: Berichterstattung erzeugt Information, Führung entsteht erst, wenn Information unter anderem mit Mandat, Entscheidung, Schwelle, Datenstand, Freigabe und Nachweis verbunden wird. Nicht behaupten, mehr Berichte schadeten – sie können in einzelnen Situationen helfen. In MVG erhält der Bauherr monatlich einen Bericht von höchstens einer Seite, der offene Entscheidungen und die benötigte Reaktion zeigt.
+Die Ausgangslage holt den Kunden bei seinen eigenen Erfahrungen ab. Einstieg über den Umschalter „Auf dem Papier / In der Praxis“ (Bereiche, für die niemand zuständig ist). Tragend ist die Tafel der acht Warnzeichen: den Kunden selbst wählen lassen, was er kennt – ohne Punktzahl und ohne Urteil über seine Organisation. Der Kern: Berichterstattung erzeugt Information, Führung entsteht erst, wenn Information unter anderem mit Mandat, Entscheidung, Schwelle, Datenstand, Freigabe und Nachweis verbunden wird. Nicht behaupten, mehr Berichte schadeten – sie können in einzelnen Situationen helfen. In MVG erhält der Bauherr monatlich einen Bericht von höchstens einer Seite, der offene Entscheidungen und die benötigte Reaktion zeigt.
 
 ### Leitfragen
-- Welche der acht Symptome erkennen Sie in einem Ihrer laufenden Projekte wieder?
+- Welche der acht Warnzeichen erkennen Sie in einem Ihrer laufenden Projekte wieder?
 - Was passiert bei Ihnen als Erstes, wenn ein Projekt ins Rutschen kommt?
 - Von welchen Personen hängt bei Ihnen eine kritische Entscheidung ab?
 :::

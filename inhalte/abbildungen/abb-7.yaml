@@ -1,7 +1,11 @@
 id: abb-7
 quelle: bilder/image7.jpeg
 titel: MVG als Bauherren-Führungsmodell
-alt: 'Fünf Spalten mit Pfeilen: „Zielsystem“ (Zielsystem, Prioritäten, Datenstand, Dokumentierte Optionen), „Rollen & Mandate“ (Rollen, Verantwortung, Mandate, Mandatskarte), „Freigabelogik“ (Freigabe, Entscheidungsvorlagen, Auswirkungsbewertung, Nachverfolgung), „Steuerungslogik“ (KPIs, Managementberichte, Datenstand, Nachverfolgung), „Betriebshandbuch & Aktive Führung“ („Betriebshandbuch“: Input – Entscheidung – Umsetzung, Governance-Routinen; „Aktive Entscheidungsführung“: vier abgehakte Punkte). Leiste unten (Mindeststandard, Auswirkung, Entscheidungsreife, Nachweis, Auditierbarkeit).'
+alt: >-
+  Die Abbildung zeigt die fünf Bausteine des Führungsmodells von links nach rechts: Zielsystem, Rollen und Mandate,
+  Freigabelogik, Steuerung (im Bild mit Kennzahlen, Managementberichten, Datenstand und Nachverfolgung) sowie
+  Betriebshandbuch mit aktiver Entscheidungsführung. Eine Leiste unten nennt: Mindeststandard, Auswirkung,
+  Entscheidungsreife, Nachweis und Prüfbarkeit.
 angeglichen:
   - { x: 944, y: 88, b: 178, h: 26, text: Betriebshandbuch, beleg: k5.2-t1, schrift: barlow, gewicht: 600, groesse: 25, ausrichtung: mitte }
   - { x: 938, y: 166, b: 162, h: 28, text: Betriebshandbuch, beleg: k5.2-t1, schrift: barlow, gewicht: 700, groesse: 22, ausrichtung: mitte }

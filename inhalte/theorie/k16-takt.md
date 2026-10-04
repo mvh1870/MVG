@@ -5,6 +5,7 @@
 # inhalte/geschichte/k5-zahlen.yaml (Monatsbericht Oktober 2026: rund eine Million über dem Budget, Mehrkosten der
 # Haustechnikfirma gut eine Million als Risiko, Prüfung der Vergabestelle), k6-sturm.yaml (Gerüstmeldung).
 # Rechnung Monatsbericht: 58,4 + 1,0 = 59,4 Mio. € (+1,7 %); mit den angekündigten Mehrkosten rund 60,5 Mio. €, unter 61,3 Mio. €.
+# Sprachdurchgang L-290 (Owner-Auftrag: natürliche, verständliche Sprache): „Register“, „aktive Zeiten“, „Ampel“, „Bürgermeisterin“, „Projektbasis“, „Leistungsbeginn“ beim ersten Auftreten erklärt; Aussagen und Belege unverändert.
 # Belege Einleitung/Kernaussage: v24:hb-4 (Schaubild, Abs. 1–6), v24:as-2, O-36
 # Belege k16.1 (Grundsatz, sofort): v24:hb-4 (Abs. 1, 4), v24:hb-3 (Warnanlässe, Dringliches wartet nicht)
 # Belege k16.2 (wöchentlich, Ruhezeiten): v24:hb-4 (Schaubild, Abs. 2–3)
@@ -22,20 +23,20 @@ kurzsatz: Was sofort gemeldet wird und was der Bauherr jeden Monat bekommt.
 symbol: bericht
 werkzeuge: [{ id: monatsbericht }]
 ---
-Ein Register nützt nur, wenn es regelmäßig angesehen wird – und wenn Dringendes nicht darauf wartet.
+Eine Liste aller offenen Punkte (ein Register) nützt nur, wenn jemand regelmäßig hineinschaut. Und Dringendes darf nicht erst auf den nächsten Blick in die Liste warten.
 
 ::: kernaussage
 ---
 symbol: blitz
 ---
-[[Dringlicher Sachverhalt|Dringliches]] meldet die Projektsteuerung sofort. In aktiven Zeiten prüft sie jede Woche alle offenen Vorgänge, einmal im Monat gibt es einen [[Monatstermin|Online-Termin]] von höchstens 60 Minuten. Der Bericht von höchstens einer Seite kommt jeden Monat. Die regelmäßige Prüfung ersetzt nie die dringliche Meldung.
+[[Dringlicher Sachverhalt|Dringliches]] meldet die Projektsteuerung sofort. Solange aktiv geplant oder gebaut wird (aktive Zeiten), prüft sie jede Woche alle offenen Vorgänge; einmal im Monat gibt es einen [[Monatstermin|Online-Termin]] von höchstens 60 Minuten. Der Monatsbericht von höchstens einer Seite kommt jeden Monat. Die regelmäßige Prüfung ersetzt nie die dringliche Meldung.
 :::
 
 ::: abschnitt k16.1
 ---
 titel: Der Takt im Überblick
 ---
-Vier Taktungen – je nach Dringlichkeit und danach, ob das Projekt gerade aktiv läuft.
+Vier Rhythmen – je nach Dringlichkeit und danach, ob gerade aktiv geplant oder gebaut wird.
 
 ::: regler
 ---
@@ -46,23 +47,23 @@ titel: Wann wird geprüft und gemeldet?
 titel: Sofort
 marke: Dringlich
 ---
-Meldung über den vereinbarten Meldeweg, dokumentiert am selben Arbeitstag, sobald die unmittelbare Reaktion gesichert ist. Keine zusätzliche Rufbereitschaft – aber eine erkannte akute Gefahr bleibt nicht liegen.
+Meldung über den vereinbarten Meldeweg, schriftlich festgehalten am selben Arbeitstag, sobald die unmittelbar nötige Reaktion gesichert ist. Keine zusätzliche Rufbereitschaft – aber eine erkannte akute Gefahr bleibt nicht liegen.
 :::
 
 ::: stufe 2
 ---
 titel: Wöchentlich
-marke: In aktiven Zeiten
+marke: Solange aktiv geplant oder gebaut wird
 ---
-Alle offenen Einträge kurz durchgehen, offene Entscheidungen eingeschlossen. Neue, nicht dringliche Hinweise kommen spätestens jetzt hinein.
+Alle offenen Einträge kurz durchgehen, offene Entscheidungen eingeschlossen. Neue Hinweise, die nicht dringend sind, werden spätestens jetzt in die Liste aufgenommen.
 :::
 
 ::: stufe 3
 ---
 titel: Monatlich
-marke: In aktiven Zeiten
+marke: Solange aktiv geplant oder gebaut wird
 ---
-Online-Termin von höchstens 60 Minuten mit dem Bauherrn und ein Bericht von höchstens einer Seite.
+Online-Termin von höchstens 60 Minuten mit dem Bauherrn und ein Monatsbericht von höchstens einer Seite.
 :::
 
 ::: stufe 4
@@ -70,7 +71,7 @@ Online-Termin von höchstens 60 Minuten mit dem Bauherrn und ein Bericht von hö
 titel: Ruhezeit
 marke: In ausdrücklich vereinbarten Ruhe- oder Nachlaufzeiten
 ---
-Monatliche Prüfung des ganzen offenen Bestands; neue, nicht dringliche Hinweise binnen fünf Arbeitstagen. Ein Termin nur bei konkretem Abstimmungs- oder Entscheidungsbedarf – der Bericht bleibt.
+Einmal im Monat wird alles Offene geprüft; neue Hinweise, die nicht dringend sind, werden innerhalb von fünf Arbeitstagen erfasst. Ein Termin nur bei konkretem Abstimmungs- oder Entscheidungsbedarf – der Monatsbericht bleibt.
 :::
 :::
 
@@ -79,15 +80,17 @@ Was dringlich ist, wartet weder auf die nächste Sitzung noch auf eine fertige B
 ::: umschalter
 ---
 titel: Zwei lose Gerüstanker an der Sporthalle
-links: Auf den Takt warten
-rechts: Sofort melden
+links: So nicht – auf den Takt warten
+rechts: So ja – sofort melden
 ---
+Ein fiktives Beispiel von einer Schulbaustelle.
+
 ::: ansicht links
 Nach dem Sturm hat das Gerüst zwei lose Anker. Der Hinweis wird für die nächste Wochenprüfung notiert; bis dahin bleibt das Gerüst, wie es ist.
 :::
 
 ::: ansicht rechts
-Die Bauleitung sperrt sofort und holt die Sicherheitskoordination. Die Projektsteuerung meldet den Schaden über den vereinbarten Meldeweg und dokumentiert den Vorgang noch am selben Arbeitstag.
+Die Bauleitung sperrt sofort und holt die Sicherheitskoordination (die Stelle für Arbeitssicherheit auf der Baustelle). Die Projektsteuerung meldet den Schaden über den vereinbarten Meldeweg und hält den Vorgang noch am selben Arbeitstag schriftlich fest.
 :::
 :::
 :::
@@ -96,18 +99,18 @@ Die Bauleitung sperrt sofort und holt die Sicherheitskoordination. Die Projektst
 ---
 titel: Die wöchentliche Prüfung
 ---
-In aktiven Zeiten der Planung und Ausführung achtet die Projektsteuerung jede Woche auf:
+Solange aktiv geplant oder gebaut wird, achtet die Projektsteuerung jede Woche auf:
 
 - neue Informationen und fehlende Rückmeldungen,
 - überfällige Ergebnisse,
 - die Wirkung von Maßnahmen,
-- ausstehende Freigaben und Auflagen.
+- ausstehende Freigaben und Auflagen (Bedingungen).
 
 ::: aufklapper Wie kurz ist kurz?
 ---
 symbol: haken
 ---
-Kurz heißt kurz: Vertieft wird nur, was sich verändert hat oder besonders geklärt werden muss; unveränderte Texte schreibt niemand neu. Ein gemeinsamer Prüfvermerk mit Datum und Bearbeiter hält den Durchgang fest.
+Die Prüfung bleibt wirklich kurz: Vertieft wird nur, was sich verändert hat oder besonders geklärt werden muss; unveränderte Texte schreibt niemand neu. Ein gemeinsamer Prüfvermerk mit Datum und Bearbeiter hält den Durchgang fest.
 :::
 :::
 
@@ -115,7 +118,7 @@ Kurz heißt kurz: Vertieft wird nur, was sich verändert hat oder besonders gekl
 ---
 titel: Der Monatstermin
 ---
-In aktiven Zeiten organisiert die Projektsteuerung jeden Monat einen eigenen Online-Termin mit dem Bauherrn; Vor- und Nachbereitung gehören zu ihrer Leistung, die 60 Minuten gelten für den Termin selbst. Besprochen werden die relevanten Vorgänge, Fachleute kommen bei Bedarf dazu; Ergebnisse und nächste Schritte werden kurz festgehalten. Zusätzliche Workshopreihen gehören nicht dazu.
+Solange aktiv geplant oder gebaut wird, organisiert die Projektsteuerung jeden Monat einen eigenen Online-Termin mit dem Bauherrn; Vor- und Nachbereitung gehören zu ihren Aufgaben und zählen nicht zu den 60 Minuten; diese gelten nur für den Termin selbst. Besprochen werden die relevanten Vorgänge, Fachleute kommen bei Bedarf dazu; Ergebnisse und nächste Schritte werden kurz festgehalten. Zusätzliche Workshopreihen gehören nicht dazu.
 :::
 
 ::: abschnitt k16.4
@@ -125,22 +128,22 @@ titel: Der Monatsbericht – eine Seite
 Der [[Monatsbericht]] zeigt auf höchstens einer Seite die wesentlichen Veränderungen über alle Vorgangsarten:
 
 - blockierte Aufgaben und kritische Maßnahmen,
-- ungeklärte Frühwarnungen,
+- ungeklärte Frühwarnungen (erste Hinweise),
 - wesentliche Probleme und Änderungen,
 - offene Entscheidungen mit der Reaktion, die vom Bauherrn gebraucht wird.
 
-Inhaltlich deckt er sich mit dem Stand der Software und zeigt auf deren Einträge; daneben führt niemand eine zweite Liste. Weder die vollständigen Einträge noch eine sofortige Meldung kann er ersetzen.
+Er beruht auf demselben Stand wie die Software und verweist auf deren Einträge; daneben führt niemand eine zweite Liste. Weder die vollständigen Einträge noch eine sofortige Meldung kann er ersetzen. Ein reiner Ampelbericht zeigt Farben, sagt aber nicht, was der Bauherr tun muss.
 
-::: aufklapper Ein fiktives Beispiel: Monatsbericht Oktober 2026
+::: aufklapper Ein Beispiel: Monatsbericht Oktober 2026
 ---
 symbol: bericht
 ---
-So kann eine Seite aussehen – vom Schulcampus Lindenhall-Süd, Oktober 2026:
+So kann eine Seite aussehen – vom Schulcampus Lindenhall-Süd der Stadt Lindenhall, Oktober 2026 (die Bürgermeisterin entscheidet dort für die Stadt als Bauherr):
 
 > **Monatsbericht · Oktober 2026**
-> - Kostenprognose nach dem geltenden Datenstand: 59,4 Mio. € gegen die Projektbasis von 58,4 Mio. € (+1,7 %); die Risikoreserve von 2,9 Mio. € deckt das; über einen Einsatz der Reserve entscheidet der Bauherr, wenn es so weit ist.
-> - Angekündigte Mehrkosten der Haustechnikfirma, gut eine Million Euro, als Risiko geführt, nicht in der Prognose; die Vergabestelle prüft die Forderung. Träten sie voll ein, bliebe die Prognose innerhalb von Basis plus Reserve (61,3 Mio. €).
-> - Offene Entscheidung: keine. Benötigte Reaktion: Kenntnis; die Bürgermeisterin nennt dem Stadtrat diese Zahl mit Begründung, die angekündigten Mehrkosten als Risiko daneben.
+> - Kostenprognose nach dem aktuell gültigen Stand der Unterlagen: 59,4 Mio. € im Vergleich zur beschlossenen Projektbasis (dem festgelegten Budget) von 58,4 Mio. € (+1,7 %); die Risikoreserve (der Geldpuffer für Risiken) von 2,9 Mio. € deckt das; über einen Einsatz der Reserve entscheidet der Bauherr, wenn es so weit ist.
+> - Angekündigte Mehrkosten der Haustechnikfirma, gut eine Million Euro, als Risiko geführt, nicht in der Prognose; die Vergabestelle der Stadt prüft die Forderung. Träten sie voll ein, bliebe die Prognose innerhalb von Budget plus Reserve (61,3 Mio. €).
+> - Offene Entscheidung: keine. Benötigte Reaktion: Kenntnisnahme, nichts zu entscheiden; die Bürgermeisterin nennt dem Stadtrat diese Zahl mit Begründung, die angekündigten Mehrkosten als Risiko daneben.
 :::
 
 ::: sortieren
@@ -196,7 +199,7 @@ Der Bericht verweist auf die Einträge in der Software. Eine zweite Liste hätte
 stelle: 3
 ---
 ### Frage
-Im Monatsbericht hat keine Ampel eine Entscheidungsfrage oder eine benötigte Reaktion – obwohl in drei Wochen eine Vergabe über der Schwelle der Bürgermeisterin ansteht. Wie ist der Bericht zu bewerten?
+Im Monatsbericht stehen nur Ampeln (Farbsignale), aber keine offene Entscheidung und keine benötigte Reaktion – obwohl in drei Wochen eine Vergabe ansteht, die über der Betragsgrenze der Bürgermeisterin liegt (sie entscheidet für die Stadt als Bauherr). Wie ist der Bericht zu bewerten?
 
 ### Erklärung
 Der Bericht zeigt, welche Entscheidungen mit welcher Reaktion des Bauherrn offen sind. Ampeln ohne Entscheidungsfrage informieren, führen aber nicht.
@@ -233,7 +236,7 @@ Berichterstattung erzeugt Information. Führung entsteht erst, wenn Information 
 
 ::: abschnitt k16.5
 ---
-titel: Ein Informationsstand – von Anfang bis Ende
+titel: Ein verbindlicher Stand der Informationen – von Anfang bis Ende
 ---
 Maßgeblich ist die Software des Bauherrn. Die Projektsteuerung darf eigene Arbeitsmittel nutzen, überträgt die vereinbarten Inhalte aber rechtzeitig dorthin und hält zusammengehörige Vorgänge verknüpft.
 
@@ -244,15 +247,15 @@ symbol: warnung
 Fällt die Software aus, sichert sie die Angaben vorübergehend strukturiert und überträgt sie danach; Dringliches wird trotzdem gemeldet.
 :::
 
-- **Anfang:** Hinweise werden ab Leistungsbeginn bearbeitet; der erste abgestimmte Bestand liegt zum vereinbarten Termin vor.
-- **Ende:** Alle offenen Vorgänge gehen mit Grundlagen, Fristen und benannten Nachfolgern über. Ein Vorgang verschwindet nicht dadurch, dass er übergeben wird.
+- **Anfang:** Sobald die Projektsteuerung ihre Arbeit aufnimmt, bearbeitet sie eingehende Hinweise. Zu einem vereinbarten Termin liegt der erste abgestimmte Gesamtstand aller offenen Punkte vor.
+- **Ende:** Alle offenen Punkte gehen mit ihren Grundlagen, Fristen und benannten Nachfolgern an die nächste Stelle über. Ein Vorgang verschwindet nicht dadurch, dass er übergeben wird.
 :::
 
 ::: abschnitt k16.6
 ---
 titel: Was der Bauherr davon hat
 ---
-Der Bauherr pflegt nichts. Bei ihm kommt an, was er zum Entscheiden braucht:
+Der Bauherr muss selbst nichts eintragen oder pflegen. Bei ihm kommt an, was er zum Entscheiden braucht:
 
 ::: karten
 ---
@@ -264,7 +267,7 @@ titel: Ein Termin im Monat
 ---
 
 ### Rückseite
-Online, höchstens 60 Minuten – in aktiven Zeiten; in [[Ruhezeit|Ruhezeiten]] nur bei Bedarf.
+Online, höchstens 60 Minuten – solange aktiv geplant oder gebaut wird; in [[Ruhezeit|Ruhezeiten]] nur bei Bedarf.
 :::
 
 ::: karte bericht
@@ -303,5 +306,5 @@ Das Thema zeigt den Takt aus Sicht des Bauherrn: Er pflegt nichts, er bekommt ei
 ### Leitfragen
 - Wie viele Seiten hat Ihr letzter Monatsbericht – und welche Entscheidung stand darin?
 - Über welchen Weg erreicht Sie eine dringliche Meldung, und wer vertritt Sie?
-- Wo steht in Ihrem Projekt der maßgebliche Informationsstand?
+- Wo steht in Ihrem Projekt der maßgebliche Stand der Informationen?
 :::

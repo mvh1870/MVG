@@ -34,8 +34,9 @@ function fehlerK14(md: string): string[] {
   if (!beispiel) return ['Abschnitt k14.5 fehlt'];
 
   // Skalen und Gewichte aus dem Aufklapper
-  const skala = /Kosten bis ([\d.]+), ([\d.]+), ([\d.]+) oder ([\d.]+) € geben 5, 4, 3 oder 2 Punkte, mehr gibt 1\. Terminfolgen bis (\d+), (\d+), (\d+) oder (\d+) Kalendertage ebenso\. Volle Funktion gibt 5 Punkte\./u.exec(beispiel);
-  const gew = /Die Gewichte: Kosten (\d), Zieltermin (\d), Funktion (\d)\./u.exec(beispiel);
+  // L-290: die Skalen stehen als Liste („Kosten (Zusatzkosten): bis 20.000 € = 5 Punkte, bis 40.000 € = 4, …“)
+  const skala = /\*\*Kosten \(Zusatzkosten\):\*\* bis ([\d.]+) € = 5 Punkte, bis ([\d.]+) € = 4, bis ([\d.]+) € = 3, bis ([\d.]+) € = 2, darüber 1\.\n- \*\*Termin \(Verschiebung\):\*\* bis (\d+) Kalendertage = 5, bis (\d+) = 4, bis (\d+) = 3, bis (\d+) = 2, darüber 1\.\n- \*\*Funktion:\*\* volle Funktion = 5 Punkte\./u.exec(beispiel);
+  const gew = /\*\*Gewichte:\*\* Kosten (\d), Zieltermin (\d), Funktion (\d)\./u.exec(beispiel);
   if (!skala || !gew) return ['Skalen oder Gewichte im Aufklapper nicht lesbar'];
   const kostenGrenzen = skala.slice(1, 5).map(zahl);
   const terminGrenzen = skala.slice(5, 9).map(Number);
@@ -48,7 +49,7 @@ function fehlerK14(md: string): string[] {
   // Optionen und ihre Punkte
   const optionen: Record<'A' | 'B', Record<Kriterium, number>> = { A: { Kosten: 0, Zieltermin: 0, Funktion: 0 }, B: { Kosten: 0, Zieltermin: 0, Funktion: 0 } };
   for (const o of ['A', 'B'] as const) {
-    const m = new RegExp(`\\*\\*${o} · [^:*]+:\\*\\* ([\\d.]+) € Zusatzkosten, Zieltermin (\\d+) Kalendertage später, volle Funktion\\.`, 'u').exec(beispiel);
+    const m = new RegExp(`\\*\\*${o} · [^:*]+:\\*\\* ([\\d.]+) € Zusatzkosten, der Zieltermin des Projekts verschiebt sich um (\\d+) Kalendertage, volle Funktion\\.`, 'u').exec(beispiel);
     if (!m) { f.push(`Option ${o} nicht lesbar`); continue; }
     optionen[o] = { Kosten: punkte(zahl(m[1] ?? ''), kostenGrenzen), Zieltermin: punkte(Number(m[2]), terminGrenzen), Funktion: 5 };
   }
@@ -161,7 +162,7 @@ test('k14.5: Gegenproben – jede Rechen- oder Textmutation fällt auf', () => {
     ['| Kosten | 3 | 2 | 5 |', '| Kosten | 3 | 3 | 5 |'],
     ['= 41 Punkte', '= 43 Punkte'],
     ['A liegt vorn: Sieben', 'B liegt vorn: Sieben'],
-    ['Die Gewichte: Kosten 3, Zieltermin 5, Funktion 2.', 'Die Gewichte: Kosten 2, Zieltermin 5, Funktion 3.'],
+    ['**Gewichte:** Kosten 3, Zieltermin 5, Funktion 2.', '**Gewichte:** Kosten 2, Zieltermin 5, Funktion 3.'],
     ['marke: "A 31 : B 31"', 'marke: "A 31 : B 32"'],
     ['| **Gewichtete Summe** | | **41** | **35** |', '| **Gewichtete Summe** | | **41** | **36** |'],
     ['80.000 € Zusatzkosten', '60.000 € Zusatzkosten'],

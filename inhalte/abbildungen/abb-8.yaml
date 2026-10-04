@@ -2,12 +2,10 @@ id: abb-8
 quelle: bilder/image8.jpeg
 titel: LPH 0 als früher Wirkungsraum
 alt: >-
-  In der Mitte ein Kreis mit „LPH 0“, ringsum sechs Karten, durch Pfeile mit ihm verbunden. Oben links „Zielsystem“:
-  Capex, Termin, Qualität, ESG, LCC, Schieberegler, „Kompromisse“. Oben rechts „RACI“: Matrix R, A, C, I für drei
-  Rollen, dazu „Mandate“ und „Freigaben“. Links „Governance“: Pyramide mit Lenkungsebene, Projektebene, Fachebene,
-  darunter Rhythmus und Standardagenda. Rechts „Freigabe“: Tor, „Entscheidungsreife“, Prüfliste. Unten links
-  „Risikoregister“: Liste, „Änderungssteuerung“ und „Frühwarnung“ mit Rundumlicht. Unten rechts „KPI-System“:
-  Diagramme und „Nachweisführung“.
+  Die Abbildung zeigt, was in LPH 0, der Bedarfsplanung, schon angelegt werden kann: Ziele, Rollen und Befugnisse,
+  Freigaben, Risiken, Änderungen und Kennzahlen. In der Mitte steht LPH 0, ringsum sechs Karten: Zielsystem, RACI mit
+  Mandaten und Freigaben, Governance, Freigabe, Risikoliste mit Änderungssteuerung und Frühwarnung sowie ein
+  Kennzahlen-System.
 angeglichen:
   - { x: 466, y: 438, b: 224, h: 84, text: LPH 0, beleg: k1.2-l1, schrift: plex, gewicht: 700, groesse: 68, ausrichtung: mitte }
   # R76: Die Mini-Matrix gab zwei Rollen zugleich „A“ (letztverantwortlich). Je Prozess gibt es eine letztverantwortliche

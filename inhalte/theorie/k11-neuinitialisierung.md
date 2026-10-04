@@ -1,6 +1,7 @@
 ---
 # Thema „MVG-Neuinitialisierung“ (P6, O-20; P12.3, O-30; P16.4, O-36, O-38; P17.11, O-55). Lesetext in eigenen Worten, ohne
 # neue Fachaussagen; Belege nur intern. Kein Bezug zur Vorlage auf der Seite (O-38).
+# Sprachdurchgang L-290 (Owner-Auftrag: natürliche, verständliche Sprache): „Vertiefungsformat“, „führbar“, „Entscheidungsarchitektur“, „Moratorium“, „legitimieren“ ersetzt oder erklärt; Aussagen und Belege unverändert.
 # V24-ABGLEICH: k11-E1 (k11.1), k11-E2 (k11.2), k11-H1 (Querverweise entfallen).
 # Belege Einleitung/Kernaussage: k11-p1, k11.2-p1, k11.2-p2
 # Belege k11 (Sonderformat): k11-p1
@@ -10,37 +11,37 @@
 kapitel: 11
 thema: neuausrichtung
 reihe: 11
-titel: MVG-Neuinitialisierung als Vertiefungsformat
+titel: MVG-Neuinitialisierung – wenn ein laufendes Projekt wieder steuerbar werden muss
 kurztitel: MVG-Neuinitialisierung
 teil: 3
-kurzsatz: Wie ein laufendes Projekt wieder führbar wird.
+kurzsatz: Wie ein laufendes Projekt wieder steuerbar wird.
 symbol: aktualisieren
 ---
-Für laufende Projekte, deren Steuerungs- und Entscheidungslogik nicht mehr ausreichend trägt, sieht Minimum Viable Governance (MVG) ein eigenes Format vor: die MVG-Neuinitialisierung.
+Für laufende Projekte, in denen Steuerung und Entscheidungen nicht mehr richtig funktionieren, sieht Minimum Viable Governance (MVG) ein eigenes Vorgehen vor: die MVG-Neuinitialisierung.
 
 ::: kernaussage
 ---
 symbol: aktualisieren
 ---
-Die MVG-Neuinitialisierung soll ein laufendes Projekt wieder führbar machen. Sie ordnet nicht das ganze Projekt fachlich neu, sondern die Führungs- und Entscheidungslogik – vom Lagebild bis zu einer stabilisierten Entscheidungsarchitektur.
+Die MVG-Neuinitialisierung soll ein laufendes Projekt wieder steuerbar machen. Sie ordnet nicht das ganze Projekt fachlich neu, sondern nur, wie geführt und entschieden wird – von der Bestandsaufnahme bis zu Regeln für Entscheidungen, die wieder verlässlich funktionieren.
 :::
 
 ::: abschnitt k11
 ---
-titel: Ein Sonderformat – keine Freigabe
+titel: Eine Sonderform – keine Freigabe
 ---
-Im regulären Verlauf folgen die Freigaben der Abfolge LPH 0–9. Die [[MVG-Neuinitialisierung]] steht außerhalb dieser Reihe: Sie ist ein **Sonderformat** innerhalb der MVG-Leistungsarchitektur und selbst **keine** [[Freigabe]].
+Im regulären Verlauf folgen die Freigaben der Abfolge LPH 0–9, den zehn Leistungsphasen eines Bauprojekts. Die [[MVG-Neuinitialisierung]] steht außerhalb dieser Reihe: Sie ist ein **Sonderfall** innerhalb des MVG-Vorgehens und selbst **keine** [[Freigabe]].
 
 ::: aufklapper Und frühere Freigaben?
 ---
 symbol: zurueckspulen
 ---
-Sie kann aber dazu führen, dass einzelne Freigaben nachgeholt oder wiederholt werden. Beruhte etwa eine frühere Freigabe auf einem überholten Datenstand, kann ihre Wiederholung ein Ergebnis sein. Die Leistungsphasen werden dabei nicht neu sortiert.
+Sie kann aber dazu führen, dass einzelne Freigaben nachgeholt oder wiederholt werden. Beruhte etwa eine frühere Freigabe auf einem überholten Stand der Unterlagen (Datenstand), kann ihre Wiederholung ein Ergebnis sein. Die Leistungsphasen werden dabei nicht neu sortiert.
 :::
 
 ::: umschalter
 ---
-titel: Freigabereihe und Sonderformat
+titel: Reguläre Freigaben und Sonderform
 links: Reguläre Freigabereihe
 rechts: MVG-Neuinitialisierung
 ---
@@ -49,7 +50,7 @@ rechts: MVG-Neuinitialisierung
 :::
 
 ::: ansicht rechts
-- **Sonderformat außerhalb** der Freigabereihe
+- **Sonderform außerhalb** der Freigabereihe
 - **keine** Freigabe
 - kann dazu führen, dass einzelne Freigaben **nachgeholt oder wiederholt** werden
 - die Abfolge LPH 0–9 **bleibt unverändert**
@@ -61,7 +62,7 @@ rechts: MVG-Neuinitialisierung
 ---
 titel: Wann eine MVG-Neuinitialisierung erforderlich wird
 ---
-Sie wird erforderlich, wenn ein Projekt im bisherigen Modus nicht mehr ausreichend führbar ist. Acht Signale kündigen das an.
+Sie wird erforderlich, wenn sich ein Projekt mit den bisherigen Regeln nicht mehr ausreichend steuern lässt. Acht Signale kündigen das an.
 
 Fünf davon haben dieselbe Form: **Es passiert etwas, aber das Entscheidende fehlt.** Das Projekt wirkt geschäftig; erst auf den zweiten Blick zeigt sich die Lücke.
 
@@ -72,23 +73,23 @@ links: Was man sieht
 rechts: Was fehlt
 ---
 ::: ansicht links
-- Änderungen werden **operativ bearbeitet**.
+- Änderungen werden **im Tagesgeschäft bearbeitet**.
 - Risiken sind **bekannt**.
-- Gremien erhalten **Statusberichte**.
-- Neufestlegung der Projektbasis, Fortführung oder Stopp, Moratorium oder Beschleunigung **stehen im Raum**.
+- Gremien bekommen **Berichte über den Stand**.
+- Es **steht im Raum**, die Projektbasis neu festzulegen, das Projekt weiterzuführen oder zu stoppen, eine Pause einzulegen (Moratorium) oder das Projekt zu beschleunigen.
 - Die Projektsteuerung liefert **mehr Information**.
 :::
 
 ::: ansicht rechts
-- Die Änderungen werden **nicht strategisch freigegeben**.
-- Die Risiken sind **nicht** mit Risikoannahme, Risikominderung und Entscheidung **verbunden**.
-- Die Gremien erhalten **keine entscheidungsfähigen Optionen**.
-- Für diese Grundsatzfragen gibt es **keine klare Entscheidungslogik**.
-- Der Bauherr gewinnt **keine zusätzliche Führungsfähigkeit**.
+- Niemand entscheidet bewusst, ob die Änderungen zum Ziel des Projekts passen.
+- Bei den Risiken ist **nicht** verknüpft, ob sie bewusst getragen werden, was dagegen getan wird und wer entscheidet.
+- Die Gremien bekommen **keine Möglichkeiten zur Auswahl**, über die sie entscheiden könnten.
+- Für diese Grundsatzfragen gibt es **keine klare Regel**, wie entschieden wird.
+- Der Bauherr kann das Projekt dadurch **nicht besser führen** als vorher.
 :::
 :::
 
-In MVG liefert die Projektsteuerung stattdessen Entscheidungsvorlagen mit mindestens zwei zulässigen Optionen und einen Monatsbericht von höchstens einer Seite.
+In MVG liefert die Projektsteuerung stattdessen Entscheidungsvorlagen mit mindestens zwei zulässigen Möglichkeiten und einen Monatsbericht von höchstens einer Seite.
 
 Die übrigen drei Signale betreffen die **Grundlagen**:
 
@@ -107,20 +108,20 @@ Die drei Größen entwickeln sich auseinander.
 
 ::: karte 2
 ---
-titel: Lagebilder
+titel: Jeder sieht die Lage anders
 ---
 
 ### Rückseite
-Bauherr, Projektleitung, Projektsteuerung, Planung und Gremien arbeiten mit unterschiedlichen Lagebildern.
+Bauherr, Projektleitung, Projektsteuerung, Planung und Gremien arbeiten mit unterschiedlichen Bildern von der Lage.
 :::
 
 ::: karte 3
 ---
-titel: Datenstände und Beschlusslagen
+titel: Stände der Unterlagen und Beschlüsse
 ---
 
 ### Rückseite
-Datenstände, Annahmen und Beschlusslagen passen nicht mehr zusammen.
+Die Stände der Unterlagen (Datenstände), die Annahmen und das, was beschlossen ist (Beschlusslagen), passen nicht mehr zusammen.
 :::
 :::
 
@@ -133,7 +134,7 @@ Viel Aktivität ist noch kein Zeichen von Führung.
 ---
 titel: Was neu geordnet wird
 ---
-Trotz des Namens ist das kein Neustart: Das Projekt wird **nicht fachlich von vorn aufgerollt**. Neu geordnet wird die **Führungs- und Entscheidungslogik** – wie im Projekt geführt und entschieden wird.
+Trotz des Namens ist das kein Neustart: Das Projekt wird **nicht fachlich von vorn aufgerollt**. Neu geordnet wird, **wie im Projekt geführt und entschieden wird**.
 
 ::: aufklapper Die zehn Felder im Mittelpunkt
 ---
@@ -142,15 +143,15 @@ symbol: ebenen
 Im Mittelpunkt stehen zehn Felder:
 
 - **Zielbild** und aktuelle Zielkonflikte
-- **Mandate und Schwellen**
+- **Mandate und Schwellen** (wer was bis zu welcher Grenze entscheiden darf)
 - offene wesentliche Entscheidungen
 - **Status der Freigaben**, einschließlich nötiger Nachholungen oder Wiederholungen
 - **Datenstand und Annahmen**
 - die Lage aller offenen Vorgänge: Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Probleme und Änderungen
 - Auswirkungen auf Budget, Termin und Projektumfang
-- **Logik zur Neufestlegung der Projektbasis**
-- Eskalations- und Gremienlogik
-- ein [[Betriebshandbuch]] für einen stabilisierten Regelbetrieb
+- **Regeln, nach denen die Projektbasis neu festgelegt wird** ([[Neufestlegung der Projektbasis]])
+- Wege nach oben und Zuständigkeiten der Gremien
+- ein [[Betriebshandbuch]] für einen Regelbetrieb, der wieder verlässlich läuft
 :::
 
 ::: etappen
@@ -159,23 +160,23 @@ titel: Der Bogen einer MVG-Neuinitialisierung
 ---
 ::: etappe 1
 ---
-titel: Lagebild
+titel: Überblick über die Lage
 ---
-Am Anfang steht ein Lagebild. Das Governance-Lagebild zeigt, wo die Steuerbarkeit verloren gegangen ist.
+Am Anfang steht ein Überblick über die Lage. Das Governance-Lagebild zeigt, wo die Steuerbarkeit verloren gegangen ist.
 :::
 
 ::: etappe 2
 ---
-titel: Die zentrale Bauherrenfrage
+titel: Die zentrale Frage an den Bauherrn
 ---
-Welche Entscheidungen müssen jetzt neu legitimiert werden, damit das Projekt wieder führbar wird?
+Welche Entscheidungen müssen jetzt neu getroffen und bestätigt werden, damit das Projekt wieder steuerbar wird?
 :::
 
 ::: etappe 3
 ---
-titel: Stabilisierte Entscheidungsarchitektur
+titel: Verlässliche Regeln für Entscheidungen
 ---
-Am Ende steht eine stabilisierte Entscheidungsarchitektur.
+Am Ende stehen Regeln für Entscheidungen, die wieder verlässlich funktionieren.
 :::
 :::
 
@@ -202,7 +203,7 @@ seite: rechts
 Das gesamte Projekt, fachlich
 
 ### Erklärung
-Neu geordnet wird die Führungs- und Entscheidungslogik, nicht das Projekt fachlich.
+Neu geordnet wird, wie geführt und entschieden wird, nicht das Projekt fachlich.
 :::
 
 ::: posten 3
@@ -229,10 +230,10 @@ Einzelne Freigaben können nachgeholt oder wiederholt werden; die Abfolge bleibt
 ---
 seite: links
 ---
-Eskalations- und Gremienlogik
+Wege nach oben und Zuständigkeiten der Gremien
 
 ### Erklärung
-Sie gehört zu den zehn Feldern – ebenso wie die Logik zur Neufestlegung der Projektbasis.
+Sie gehören zu den zehn Feldern – ebenso wie die Regeln zur Neufestlegung der Projektbasis.
 :::
 :::
 
@@ -240,9 +241,9 @@ Sie gehört zu den zehn Feldern – ebenso wie die Logik zur Neufestlegung der P
 
 ::: abschnitt k11.3
 ---
-titel: Ergebnisbild einer MVG-Neuinitialisierung
+titel: Was am Ende vorliegt
 ---
-Eine wirksame MVG-Neuinitialisierung liefert einen **geordneten Führungszustand**: sieben Ergebnisse, jedes mit einem klaren Zweck – vom Governance-Lagebild bis zum stabilisierten Betriebshandbuch.
+Eine wirksame MVG-Neuinitialisierung führt dazu, dass das Projekt wieder **geordnet geführt** wird: Sie liefert sieben Ergebnisse, jedes mit einem klaren Zweck – vom Überblick über die Lage der Steuerung (Governance-Lagebild) bis zum überarbeiteten Betriebshandbuch.
 
 ::: tafel k11.3-t1
 ---
@@ -251,16 +252,16 @@ form: karten
 :::
 
 ::: merksatz
-Ob früher Einstieg über die MVG-Reifegradanalyse oder MVG-Neuinitialisierung im laufenden Projekt: Am Ende zählt, was der Bauherr an Führungsfähigkeit gewinnt.
+Ob man früh mit der Reifegradanalyse einsteigt oder im laufenden Projekt mit einer Neuinitialisierung: Am Ende zählt, wie viel besser der Bauherr danach führen kann.
 :::
 :::
 
 ::: regie
 ### Notiz
-Dieses Thema vertieft die MVG-Neuinitialisierung: kein vollständiger Projektneustart und keine Freigabe; die Abfolge LPH 0–9 bleibt unverändert. Es tragen der Umschalter „Viel Betrieb, wenig Führung“ und die zentrale Bauherrenfrage in den Etappen: Welche Entscheidungen müssen jetzt neu legitimiert werden? Nicht behaupten, ein Projekt des Kunden brauche eine Neuinitialisierung – der Kunde gleicht die Signale selbst ab.
+Dieses Thema vertieft die MVG-Neuinitialisierung: kein vollständiger Projektneustart und keine Freigabe; die Abfolge LPH 0–9 bleibt unverändert. Es tragen der Umschalter „Viel Betrieb, wenig Führung“ und die zentrale Bauherrenfrage in den Etappen: Welche Entscheidungen müssen jetzt neu getroffen und bestätigt werden? Nicht behaupten, ein Projekt des Kunden brauche eine Neuinitialisierung – der Kunde gleicht die Signale selbst ab.
 
 ### Leitfragen
 - Welche der acht Signale sehen Sie in einem Ihrer laufenden Projekte?
-- Welche Entscheidung in diesem Projekt müsste heute neu legitimiert werden?
-- Welcher Datenstand gilt dort für die nächste Entscheidung – und wer hat ihn festgelegt?
+- Welche Entscheidung in diesem Projekt müsste heute neu getroffen und bestätigt werden?
+- Welcher Stand der Unterlagen gilt dort für die nächste Entscheidung – und wer hat ihn festgelegt?
 :::

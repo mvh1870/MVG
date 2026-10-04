@@ -4,35 +4,108 @@
 # Belege Einleitung/Kernaussage: k1-p1, k1-p2, k1.1-p1
 # Belege k1.1: k1-p1, k1.1-p1 (Karten Abgeben/Selbst tragen: k1-p1, k1.1-p1; Sortierübung: Analyse, Koordination, Dokumentation delegierbar; Zielpriorisierung, Mandat, Freigabe, Risikoannahme, Nachweisfähigkeit nicht)
 # Belege k1.1 (V2.4): Posten 1 Optionenvergleich mit MCDA und Empfehlung v24:hb-3, v24:hb-3.1, v24:tlb-2.1; Posten 3 Projektsteuerung bearbeitet alle Vorgänge v24:hb-1, v24:tlb-1; Posten 4 Bewertung und vorbereitete Risikoannahme v24:hb-1.3, v24:hb-2; Posten 5 Beschluss getrennt mit Quelle, Datum, Bedingungen v24:hb-3.1
+# Sprachdurchgang L-290 (Owner-Auftrag: natürliche, verständliche Sprache): Fachwörter beim ersten Auftreten erklärt, Karten „Sieben Wörter, die gleich vorkommen“ (Projektsteuerung v24:hb-1, hb-3; Vorgang v24:hb-1; Mandat k3.2-p1; Datenstand k13-t1; Freigabe k9.3-p3; LPH k9.3-p1; Entscheidungsvorlage v24:hb-3.1); das wortgleiche Blockzitat k1.1-p1 steht nur noch als Beleg in `deckt`.
 # Gekürzt und gegliedert P17.11 (O-55): Leitthese mit Karten „Abgeben kann er / Selbst tragen muss er“, Ergebnisbild als Liste.
 # Belege k1.2: k1.2-l1 (fünf Aussagen, Kette Zielsystem–Mandat–Datenstand–Risiko–Freigabe–Nachweis), k1-p2, k1.3-p1, k1.3-t1 (Datenstand, Freigabeweg je Entscheidungs-ID); Karte 1 (V2.4): v24:hb-1, v24:hb-3, v24:tlb-1, v24:tlb-2.1
 # Belege k1.3: k1.3-p1, k1.3-t1, k1-p2, k1-p3, k1.2-l1 (Befähigung nach Übergabe), k9.3-p2 (Übergabe des Modells ist Befähigungsschritt, keine Freigabe); Hinweis unter der Tafel (V2.4): v24:hb-3.1, v24:hb-5, v24:tlb-2.1
+deckt: [k1.1-p1]
 kapitel: 1
 thema: ueberblick
 reihe: 1
-titel: Überblick – Arbeit abgeben, Legitimation behalten
+titel: Überblick – Arbeit abgeben, die Entscheidung selbst tragen
 kurztitel: Überblick
 teil: 1
 kurzsatz: Was der Bauherr abgeben kann – und was er selbst tragen muss.
 symbol: kompass
 ---
-Was kann ein [[Bauherr]] abgeben, was nicht? [[Minimum Viable Governance (MVG)]] bildet dafür den kleinsten funktionsfähigen Governance-Standard. Sein Nutzen liegt nicht in mehr Bürokratie, sondern in weniger Entscheidungsstau, klareren Eskalationswegen, belastbarer Gremienfähigkeit und einer nachvollziehbaren [[Nachweiskette]].
+Was kann ein [[Bauherr]] abgeben – und was nicht? [[Minimum Viable Governance (MVG)]], kurz MVG, ist dafür der kleinste Standard, der noch funktioniert: ein knappes Regelwerk dafür, wer in einem Bauprojekt führt, wer entscheidet und wie man später belegen kann, warum so entschieden wurde. MVG bringt nicht mehr Papier. Es soll dafür sorgen, dass Entscheidungen nicht liegen bleiben, dass klar ist, wann ein Thema nach oben gegeben wird (Eskalation), dass Gremien wirklich beschließen können und dass sich jede Entscheidung später an einer lückenlosen Spur von Nachweisen nachvollziehen lässt ([[Nachweiskette]]).
+
+Ist der Bauherr eine Organisation, etwa eine Stadt, dann ist mit „der Bauherr entscheidet“ die Person oder das Gremium gemeint, die oder das dazu befugt ist.
 
 ::: kernaussage
 ---
 symbol: schild
 ---
-Arbeit kann der Bauherr weitgehend abgeben. Die Legitimation bleibt bei ihm: Ziel, Mandat, wesentliche Entscheidung, Risikoannahme, Freigabe und Nachweis trägt er selbst. MVG macht das im Alltag handhabbar.
+Arbeit kann der Bauherr weitgehend abgeben. Sechs Dinge muss er selbst tragen, weil nur er dafür einstehen kann: welches Ziel gilt, wer bis zu welcher Grenze für ihn entscheiden darf (das [[Mandat]]), welche wichtigen Entscheidungen fallen, welche Risiken das Projekt bewusst in Kauf nimmt, wann ein Projektabschnitt freigegeben wird und dass sich das alles später belegen lässt. MVG hilft, das im Alltag zu schaffen.
 :::
 
 ::: abbildung abb-2
+:::
+
+::: karten
+---
+titel: Acht Wörter, die gleich vorkommen
+---
+::: karte
+---
+titel: Bauherr
+symbol: schild
+---
+Wer das Vorhaben in Auftrag gibt und dafür einsteht: eine Organisation oder eine Person. Entschieden wird dort von der Stelle, die dazu befugt ist.
+:::
+
+::: karte
+---
+titel: Projektsteuerung
+symbol: kompass
+---
+Das Büro oder Team, das im Auftrag des Bauherrn das Projekt steuert: Es führt alle offenen Punkte, bereitet Entscheidungen vor und hält Beschlüsse fest. Entscheiden tut es nicht.
+:::
+
+::: karte
+---
+titel: Vorgang
+symbol: dokument
+---
+Jeder Eintrag, den die Projektsteuerung führt: eine Aufgabe, eine Maßnahme, ein erster Hinweis (Frühwarnung), ein Risiko, ein Problem oder eine Änderung.
+:::
+
+::: karte
+---
+titel: Mandat
+symbol: person
+---
+Die Befugnis, bestimmte Entscheidungen zu treffen – bis zu einer festgelegten Grenze. Was darüber liegt, entscheidet jemand anderes.
+:::
+
+::: karte
+---
+titel: Datenstand
+symbol: lesezeichen
+---
+Der benannte Stand der Zahlen, Pläne und Annahmen, auf dem eine Entscheidung beruht.
+:::
+
+::: karte
+---
+titel: Leistungsphase (LPH)
+symbol: flagge
+---
+Ein Bauprojekt läuft in zehn Leistungsphasen, von LPH 0 (Bedarfsplanung) bis LPH 9 (Übergabe).
+:::
+
+::: karte
+---
+titel: Freigabe
+symbol: schild
+---
+Die Entscheidung des Bauherrn am Ende einer Leistungsphase, ob die nächste beginnen darf.
+:::
+
+::: karte
+---
+titel: Entscheidungsvorlage
+symbol: dokument
+---
+Die Unterlage, mit der die Projektsteuerung eine Entscheidung des Bauherrn vorbereitet: mit der Frage, mindestens zwei zulässigen Möglichkeiten, einem Vergleich und einer Empfehlung.
+:::
 :::
 
 ::: abschnitt k1.1
 ---
 titel: Leitthese
 ---
-Facharbeit darf und soll abgegeben werden. Wenn aber ein Ziel Vorrang bekommt, ein Risiko bewusst in Kauf genommen oder eine wesentliche Freigabe erteilt wird, muss jemand dafür einstehen – diese Legitimation bleibt beim Bauherrn. Die beste Vorlage bereitet die Entscheidung vor, sie ersetzt sie nicht.
+Fachliche Arbeit darf und soll der Bauherr abgeben. Wenn aber ein Ziel Vorrang bekommt, ein Risiko bewusst in Kauf genommen oder eine wichtige Freigabe erteilt wird, muss jemand dafür geradestehen – und das bleibt der Bauherr. Die beste Entscheidungsvorlage (eine Unterlage, die eine Entscheidung vorbereitet) bereitet die Entscheidung nur vor. Sie ersetzt sie nicht.
 
 ::: karten
 ---
@@ -45,7 +118,7 @@ symbol: wechsel
 ---
 
 ### Rückseite
-Analyse, Vorbereitung, Koordination und Dokumentation – an Planer, Projektsteuerung, [[PMO]], Gutachter oder Berater.
+Untersuchen, vorbereiten, abstimmen und aufschreiben – an Planer, an die Projektsteuerung (sie führt im Auftrag des Bauherrn alle offenen Punkte des Projekts und bereitet Entscheidungen vor), an ein Projektmanagementbüro ([[PMO]]), an Gutachter oder Berater.
 :::
 
 ::: karte
@@ -55,17 +128,13 @@ symbol: schild
 ---
 
 ### Rückseite
-Ziel, Mandat, wesentliche Entscheidung, Risikoannahme, Freigabe und Nachweis. Das Protokoll darf ein Dritter schreiben; dass die Beschlusslage nachweisbar bleibt, verantwortet der Bauherr.
+Dieselben sechs Dinge wie oben: Ziel, Mandat, wichtige Entscheidungen, Risiken, die das Projekt trägt, Freigaben und Nachweis. Das Protokoll darf ein anderer schreiben. Dafür zu sorgen, dass man später belegen kann, was beschlossen wurde, bleibt Sache des Bauherrn.
 :::
-:::
-
-::: zitat k1.1-p1
-Bauherren können Arbeit, Analyse, Koordination und Dokumentation delegieren. Nicht delegierbar bleibt die Legitimation von Ziel, Mandat, wesentlicher Entscheidung, Risikoannahme, Freigabe und Nachweis. MVG macht diese Verantwortung praktisch handhabbar.
 :::
 
 ::: sortieren
 ---
-titel: Arbeit oder Legitimation?
+titel: Abgeben oder selbst entscheiden?
 links: Kann abgegeben werden
 rechts: Bleibt beim Bauherrn
 ---
@@ -76,7 +145,7 @@ seite: links
 Kosten- und Terminfolgen zweier Varianten durchrechnen
 
 ### Erklärung
-Analyse ist Arbeit. Die Projektsteuerung vergleicht mindestens zwei zulässige Optionen nach gewichteten Kriterien und empfiehlt eine – gewählt wird beim Bauherrn.
+Rechnen und Vergleichen ist Arbeit, die andere übernehmen können. Die Projektsteuerung vergleicht mindestens zwei zulässige Möglichkeiten nach Kriterien, die unterschiedlich stark zählen (gewichtet), und empfiehlt eine. Gewählt wird beim Bauherrn.
 :::
 
 ::: posten 2
@@ -86,17 +155,17 @@ seite: rechts
 Festlegen, welches Ziel Vorrang hat, wenn Kosten und Qualität kollidieren
 
 ### Erklärung
-Die Zielpriorisierung bleibt beim Bauherrn, die Analyse dazu nicht.
+Welches Ziel Vorrang hat, entscheidet der Bauherr. Die Analyse dazu kann ein anderer übernehmen.
 :::
 
 ::: posten 3
 ---
 seite: links
 ---
-Termine, Unterlagen und Sitzungen koordinieren
+Termine, Unterlagen und Sitzungen abstimmen
 
 ### Erklärung
-Koordination ist Zuarbeit. Die Projektsteuerung führt dazu alle offenen Vorgänge an einer Stelle.
+Abstimmen ist Zuarbeit. Die Projektsteuerung führt alle offenen Punkte – Aufgaben, Risiken, Änderungen und so weiter, zusammen Vorgänge genannt – an einer einzigen Stelle.
 :::
 
 ::: posten 4
@@ -106,7 +175,7 @@ seite: rechts
 Ein bekanntes Risiko bewusst in Kauf nehmen
 
 ### Erklärung
-Die Projektsteuerung bewertet das Risiko und legt die Annahme zur Entscheidung vor. Annehmen muss es der Bauherr.
+Die Projektsteuerung bewertet das Risiko und legt dem Bauherrn zur Entscheidung vor, ob das Projekt es tragen soll. Ob das Projekt das Risiko trägt, entscheidet der Bauherr.
 :::
 
 ::: posten 5
@@ -116,7 +185,7 @@ seite: links
 Besprechungen und Beschlüsse protokollieren
 
 ### Erklärung
-Dokumentation ist delegierbar. Die Projektsteuerung hält den Beschluss getrennt von der Vorlage fest – mit Quelle, Datum und Bedingungen. Dass die Beschlusslage nachweisbar bleibt, verantwortet der Bauherr.
+Aufschreiben können andere übernehmen. Die Projektsteuerung hält den Beschluss gesondert fest, nicht in der Entscheidungsvorlage, sondern als eigenen Eintrag mit Quelle, Datum und Bedingungen. Dass man später belegen kann, was beschlossen wurde, bleibt Sache des Bauherrn.
 :::
 
 ::: posten 6
@@ -126,26 +195,26 @@ seite: rechts
 Festlegen, wer im Projekt bis zu welcher Grenze entscheiden darf
 
 ### Erklärung
-Das Mandat legt der Bauherr selbst fest.
+Das Mandat, also die Befugnis zu entscheiden, legt der Bauherr selbst fest.
 :::
 
 ::: posten 7
 ---
 seite: rechts
 ---
-Die wesentliche Freigabe erteilen
+Einen Projektabschnitt (eine Leistungsphase) freigeben
 
 ### Erklärung
-Sie bleibt beim Bauherrn, auch wenn die Unterlagen von Dritten stammen.
+Das bleibt beim Bauherrn, auch wenn die Unterlagen von anderen stammen.
 :::
 :::
 :::
 
 ::: abschnitt k1.2
 ---
-titel: Managementaussagen
+titel: Fünf Kernaussagen für die Leitung
 ---
-Für die Leitungsebene lässt sich MVG in fünf Aussagen verdichten.
+Wer ein Projekt leitet, kann MVG in fünf Sätzen zusammenfassen.
 
 ::: karten
 ---
@@ -156,15 +225,15 @@ titel: Fünf Aussagen in Kürze
 titel: Projektsteuerung
 symbol: kompass
 ---
-Sie bearbeitet alle Vorgänge – Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Probleme, Änderungen – und bereitet jede erforderliche Entscheidung mit mindestens zwei zulässigen Optionen vor; Dringliches meldet sie vorab sofort. Sie ersetzt die Entscheidung des Bauherrn nicht.
+Sie führt alle offenen Punkte des Projekts: Aufgaben, Maßnahmen, erste Warnhinweise (Frühwarnungen), Risiken, eingetretene Probleme und Änderungswünsche. Für jede Entscheidung, die der Bauherr treffen muss, legt sie mindestens zwei Möglichkeiten vor, die das Projekt wählen darf (zulässige Optionen: Möglichkeiten, die alle zwingenden Anforderungen erfüllen). Was dringend ist, meldet sie sofort und wartet nicht auf die nächste Sitzung. Die Entscheidung selbst trifft sie nicht.
 :::
 
 ::: karte 2
 ---
-titel: Übersetzung
+titel: Aus Verantwortung werden feste Regeln
 symbol: wechsel
 ---
-MVG übersetzt Bauherrenverantwortung in Rollen, Mandate, Freigaben, [[Entscheidungs-ID|Entscheidungs-IDs]], Datenstandslogik, Risiko- und Änderungssteuerung, Eskalation, [[Betriebshandbuch]] und [[Befähigung]].
+MVG macht aus der Verantwortung des Bauherrn konkrete Regeln: wer welche Rolle hat, wer bis zu welcher Grenze entscheiden darf (Mandate), wann freigegeben wird, wie jede wichtige Entscheidung eine eigene Kennung bekommt ([[Entscheidungs-ID]]), auf welchem Stand der Unterlagen entschieden wird (Datenstand), wie Risiken und Änderungen behandelt werden, wann ein Thema nach oben geht (Eskalation), wie das Ganze im Alltag weiterläuft ([[Betriebshandbuch]]) und wie die Beteiligten lernen, damit zu arbeiten ([[Befähigung]]).
 :::
 
 ::: karte 3
@@ -172,7 +241,7 @@ MVG übersetzt Bauherrenverantwortung in Rollen, Mandate, Freigaben, [[Entscheid
 titel: Entscheidungssicherheit
 symbol: schild
 ---
-Sie entsteht nicht aus einem guten Einzeldokument, sondern aus dem verbindlichen Zusammenhang von Zielsystem, Mandat, Datenstand, Risiko, Freigabe und Nachweis.
+Eine Entscheidung ist gut abgesichert (Entscheidungssicherheit), wenn alles zusammenpasst: das Ziel, wer entscheiden darf, auf welchem Stand der Unterlagen entschieden wird, welche Risiken bekannt sind, wer freigibt und wie sich das später belegen lässt. Ein einzelnes gutes Dokument genügt dafür nicht.
 :::
 
 ::: karte 4
@@ -180,15 +249,15 @@ Sie entsteht nicht aus einem guten Einzeldokument, sondern aus dem verbindlichen
 titel: Befähigung
 symbol: person
 ---
-Sie ist Pflicht, weil der Bauherr das Modell nach der Übergabe selbst anwenden können muss.
+Befähigung heißt: Die wichtigsten Rollen werden geschult. Das ist Pflicht, weil der Bauherr das Modell nach der Übergabe selbst anwenden können muss.
 :::
 
 ::: karte 5
 ---
-titel: LPH 0
+titel: Der Projektstart (LPH 0)
 symbol: flagge
 ---
-Ein wichtiger früher Hebel. Maßgeblich ist aber die Entscheidungs- und Nachweisfähigkeit über den ganzen kritischen Projektverlauf.
+LPH steht für Leistungsphase; LPH 0 ist die allererste, die Bedarfsplanung. Hier lässt sich früh vorsorgen. Entscheidend ist aber, dass der Bauherr im ganzen Projekt entscheiden und belegen kann, besonders in den kritischen Phasen.
 :::
 :::
 
@@ -202,58 +271,58 @@ Sechs Glieder, die zusammengehören. Fehlt eines, fehlt der Zusammenhang.
 ---
 titel: Zielsystem
 ---
-Was soll erreicht werden, und welches Ziel hat Vorrang?
+Was soll erreicht werden, und welches Ziel hat Vorrang? Das hält das Zielsystem fest, die festgehaltene Rangfolge der Projektziele.
 :::
 
 ::: etappe 2
 ---
 titel: Mandat
 ---
-Wer darf entscheiden, und welche Schwellen gelten? Das regelt das [[Mandat]].
+Wer darf entscheiden, und ab welcher Grenze (Schwelle) ist jemand anderes zuständig? Das regelt das [[Mandat]].
 :::
 
 ::: etappe 3
 ---
 titel: Datenstand
 ---
-Auf welcher Grundlage wird entschieden? Jede wesentliche Bauherrenentscheidung erhält mit ihrer [[Entscheidungs-ID]] einen [[Datenstand]].
+Auf welcher Grundlage wird entschieden? Jede wichtige Entscheidung bekommt eine eigene Kennung ([[Entscheidungs-ID]]) und hält fest, auf welchem benannten Stand der Unterlagen sie beruht ([[Datenstand]]).
 :::
 
 ::: etappe 4
 ---
 titel: Risiko
 ---
-Welche Risiken sind bekannt, und welches nimmt der Bauherr bewusst an?
+Welche Risiken sind bekannt, und welches trägt der Bauherr bewusst mit?
 :::
 
 ::: etappe 5
 ---
 titel: Freigabe
 ---
-Auf welchem Weg wird freigegeben? Auch der Freigabeweg gehört zu jeder wesentlichen Bauherrenentscheidung.
+Wer muss auf welchem Weg zustimmen? Der Weg der Freigabe gehört zu jeder wichtigen Entscheidung des Bauherrn.
 :::
 
 ::: etappe 6
 ---
 titel: Nachweis
 ---
-Lässt sich die Entscheidung später nachvollziehen? Dafür steht sie in der [[Nachweiskette]].
+Lässt sich die Entscheidung später nachvollziehen? Dafür wird sie in der [[Nachweiskette]] festgehalten, einer lückenlosen Spur aus Unterlagen und Beschlüssen.
 :::
 :::
 :::
 
 ::: abschnitt k1.3
 ---
-titel: Ergebnisbild
+titel: Ergebnisbild – was am Ende vorliegt
 ---
-Nach der Einführung hat die Bauherrenorganisation keine lose Methodensammlung, sondern ein zusammenhängendes Führungs- und Entscheidungsmodell. Es zeigt:
+Wenn MVG im Projekt eingeführt ist, hat die Organisation des Bauherrn keine lose Sammlung von Methoden, sondern ein zusammenhängendes Modell, mit dem sie führt und entscheidet. Daran lässt sich ablesen:
 
-- welche Entscheidungen beim Bauherrn bleiben und welche Vorbereitung delegierbar ist,
-- welche Mandate und Schwellen gelten,
-- welche Unterlagen entscheidungsreif sein müssen,
-- wie Entscheidungen in der [[Nachweiskette]] verankert werden.
+- welche Entscheidungen beim Bauherrn bleiben und was andere vorbereiten dürfen,
+- welche Entscheidungsrechte (Mandate) und Grenzen (Schwellen) gelten,
+- welche Unterlagen so weit fertig sein müssen, dass entschieden werden kann (entscheidungsreif),
+- wie jede Entscheidung in der [[Nachweiskette]] festgehalten wird.
 
-Seine sechs Elemente und ihre Ergebnisse:
+Das Modell besteht aus sechs Teilen; jeder bringt ein Ergebnis:
 
 ::: tafel k1.3-t1
 ---
@@ -265,7 +334,7 @@ form: karten
 ---
 symbol: dokument
 ---
-Zum Standard für Entscheidungsvorlagen gehören mindestens zwei zulässige Optionen und ein gewichteter Kriterienvergleich (MCDA) mit begründeter Empfehlung. Die Vorlage bereitet die Projektsteuerung vor; der Beschluss wird getrennt von ihr festgehalten.
+Zu einer Entscheidungsvorlage gehören mindestens zwei zulässige Möglichkeiten und ein Vergleich, bei dem die Kriterien unterschiedlich stark zählen (gewichteter Vergleich, MCDA), mit einer begründeten Empfehlung. Die Vorlage bereitet die Projektsteuerung vor. Der Beschluss wird gesondert festgehalten, nicht in der Vorlage.
 :::
 
 ::: umschalter
@@ -275,13 +344,13 @@ links: Während der Einführung
 rechts: Nach der Übergabe des Modells
 ---
 ::: ansicht links
-- Wer die Einführung begleitet, schafft Struktur, [[Entscheidungsreife]], Mandatsklarheit und Befähigung, damit die Bauherrenorganisation ihre Verantwortung selbst wirksam ausüben kann.
-- Die Bauherrenrolle übernimmt die Begleitung nicht – sie bleibt auch während der Einführung bei der Bauherrenorganisation.
+- Wer die Einführung begleitet, sorgt für Ordnung, für entscheidungsreife Unterlagen ([[Entscheidungsreife]]), für klare Befugnisse und für Schulung, damit die Organisation des Bauherrn ihre Verantwortung selbst wirksam wahrnehmen kann.
+- Die Rolle des Bauherrn übernimmt die Begleitung nicht – sie bleibt auch während der Einführung bei der Organisation des Bauherrn.
 :::
 
 ::: ansicht rechts
-- Das [[Betriebshandbuch]] hat Routinen, Rollen, Taktung, Fristen, Eskalationswege und Betriebslogik in den Regelbetrieb übergeben.
-- Projektleitung des Bauherrn, Auftraggeberlogik, PMO, Gremienrollen und Fachrollen wenden das Modell selbst an.
+- Das [[Betriebshandbuch]] ist übergeben: Es regelt Abläufe, Rollen, Termine, Fristen und Wege nach oben für den Regelbetrieb, den Alltagsbetrieb von MVG.
+- Die Projektleitung des Bauherrn, die Auftraggeberseite (die Stellen, die für den Bauherrn handeln), das PMO, die Mitglieder der Gremien und die Fachleute wenden das Modell selbst an.
 - Die Übergabe des Modells ist ein Befähigungsschritt – nicht die Übergabe des Vorhabens in LPH 9.
 :::
 :::
@@ -289,7 +358,7 @@ rechts: Nach der Übergabe des Modells
 
 ::: regie
 ### Notiz
-Der Überblick ist der Einstieg: die Leitthese mit der Sortierübung „Arbeit oder Legitimation?“ – den Kunden selbst zuordnen lassen –, dann die fünf Managementaussagen als Karten und die Kette der Entscheidungssicherheit. Im Termin tragen die Leitthese und die Karte „Projektsteuerung“: Sie bearbeitet alle Vorgänge und bereitet jede erforderliche Entscheidung vor; die Entscheidung des Bauherrn trifft sie nicht; das ist keine Kritik an der Projektsteuerung des Kunden. Das Ergebnisbild nur anreißen, die Objekte kommen im Thema „Ergebnisbild“.
+Der Überblick ist der Einstieg: die acht Wörter, die gleich vorkommen, dann die Leitthese mit der Sortierübung „Abgeben oder selbst entscheiden?“ – den Kunden selbst zuordnen lassen –, dann die fünf Kernaussagen als Karten und die Kette der Entscheidungssicherheit. Im Termin tragen die Leitthese und die Karte „Projektsteuerung“: Sie bearbeitet alle Vorgänge und bereitet jede erforderliche Entscheidung vor; die Entscheidung des Bauherrn trifft sie nicht; das ist keine Kritik an der Projektsteuerung des Kunden. Das Ergebnisbild nur anreißen, die Ergebnisse im Einzelnen kommen im Thema „Ergebnisse“.
 
 ### Leitfragen
 - Welche Entscheidungen in Ihrem Projekt können Sie nicht abgeben – und wo ist das festgehalten?

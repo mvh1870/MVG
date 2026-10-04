@@ -1,6 +1,11 @@
 id: abb-2
 quelle: bilder/image2.jpeg
-titel: Delegierbare Arbeit, MVG und Legitimation beim Bauherrn
-alt: 'Drei Spalten, verbunden durch zwei Pfeile nach rechts. Links „Delegierbare Arbeit“ mit dem Block „Rollen“ (Planer, Projektsteuerer, PMO, Gutachter, Berater) und dem Block „Funktionen“ (Analyse, Vorbereitung, Koordination, Dokumentation). In der Mitte unter einem Brückensymbol „MVG“ mit zehn Kacheln: Zielsystem, Rollen, Mandate, Freigaben, Entscheidungs-IDs, Datenstand, Risiko- und Änderungssteuerung, Nachweis, Betriebshandbuch, Befähigung. Rechts in Grün „Bauherr“ mit sieben Kacheln untereinander: Ziel, Mandat, Entscheidung, Freigabe, Risikoannahme, Datenstand, Nachweis.'
+titel: Was andere übernehmen können, was MVG hilft zu ordnen und was beim Bauherrn bleibt
+alt: >-
+  Die Abbildung zeigt, dass Arbeit an andere geht, MVG sie ordnet und die Entscheidungen beim Bauherrn bleiben. Drei
+  Spalten mit zwei Pfeilen nach rechts: Links die Arbeit, die andere übernehmen können (Planer, Projektsteuerer, PMO,
+  Gutachter, Berater; Analyse, Vorbereitung, Koordination, Dokumentation). In der Mitte MVG mit zehn Kacheln, von
+  Zielsystem bis Befähigung. Rechts in Grün der Bauherr mit sieben Kacheln: Ziel, Mandat, Entscheidung, Freigabe,
+  Risikoannahme, Datenstand, Nachweis.
 angeglichen:
   - { x: 565, y: 516, b: 115, h: 88, text: "Risiko- und\nÄnderungs-\nsteuerung", beleg: k1-p2, schrift: barlow, gewicht: 500 }

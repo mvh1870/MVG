@@ -1,13 +1,11 @@
 id: abb-14
 quelle: bilder/image14.jpeg
-titel: Anwendungssituationen nach Bauherrentyp und Projektstand
+titel: Wo MVG je nach Bauherr und Projektlage ansetzt
 alt: >-
-  Vier Felder um einen Kreis, aus jedem führt ein Pfeil zum Kreis; dazwischen zwei Brückenmotive. Oben links
-  „Öffentliche Bauherren“: Nachweisfestigkeit, Gremienlogik, Vergabeanbindung. Oben rechts „Private /
-  Institutionelle“: Geschwindigkeit, Zielkonflikte, Entscheidungssicherheit. Unten links „Energie /
-  Infrastruktur“: Priorisierung, Komponenten mit langer Lieferzeit, Freigabereife. Unten rechts „Driftende
-  Projekte“ als Pfeilkette: Lagebild ordnen, Mandate klären, MVG-Neuinitialisierung. Im Kreis
-  „Governance-Kern“: Entscheidungsvorlage, darunter Freigabelogik und Eskalationspfad.
+  Die Abbildung zeigt, wo MVG je nach Bauherr ansetzt: bei öffentlichen Bauherren, bei privaten und institutionellen
+  Bauherren, bei Energie- und Infrastrukturträgern und bei Projekten, die langsam die Kontrolle verlieren. Vier Felder
+  mit Pfeilen führen zu einem Kreis, in dessen Mitte die Entscheidungsvorlage steht, dazu Freigabelogik und der Weg nach
+  oben.
 angeglichen:
   - { x: 522, y: 450, b: 156, h: 25, text: Entscheidungsvorlage, beleg: k10.5-t1, schrift: barlow, gewicht: 500, groesse: 19, ausrichtung: mitte }
   # R76: in der Größe der Nachbarzeile „Freigabereife“ (L-250)

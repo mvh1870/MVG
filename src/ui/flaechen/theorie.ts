@@ -243,12 +243,6 @@ function uebersicht(o: TheorieOptionen, unbekannt: boolean): HTMLElement {
 
 /* ---------------------------------------------------------------- Thema -- */
 
-function zitatBlock(b: Block): HTMLElement {
-  const f = inhalt(b.felder['text'] ?? '');
-  for (const bq of f.querySelectorAll('blockquote')) bq.classList.add('lern-zitat');
-  return h('figure', { class: 'lern-zitat-rahmen', 'data-pruef': 'zitat' }, f);
-}
-
 /** Kartengruppe: Titel und Einleitung des Containers (wenn vorhanden) über den Karten. */
 function karten(b: Block): HTMLElement {
   const titel = kopfText(b.kopf, 'titel');
@@ -322,7 +316,6 @@ export function wcVerschiebung(id: string, n: number, stelle: number | null = nu
 function wissenscheck(b: Block): HTMLElement {
   const beantwortet = beiAntwort;
   const antworten = b.kinder.filter((k) => k.art === 'antwort');
-  const belege = b.kinder.filter((k) => k.art === 'zitat' || k.art === 'original');
   const ergebnis = h('div', { class: 'wc-ergebnis', 'aria-live': 'polite', 'data-pruef': 'wc-ergebnis' });
   const knoepfe = antworten.map((a) => h('button', {
     type: 'button', class: 'knopf knopf-still wc-antwort', 'aria-pressed': 'false', 'data-pruef': `wc-antwort-${a.id ?? ''}`,
@@ -332,8 +325,7 @@ function wissenscheck(b: Block): HTMLElement {
       const praefix = kopfText(a.kopf, 'praefix');
       ersetze(ergebnis,
         h('div', { class: 'wc-rueckmeldung' }, praefix !== null ? h('b', null, `${praefix} `) : null, inhalt(a.felder['text'] ?? '')),
-        h('div', { class: 'wc-erklaerung' }, inhalt(b.felder['erklaerung'] ?? '')),
-        belege.map((z) => zitatBlock(z)));
+        h('div', { class: 'wc-erklaerung' }, inhalt(b.felder['erklaerung'] ?? '')));
     },
   }, kopfText(a.kopf, 'titel') ?? a.id ?? ''));
   const knopf = (a: Block): HTMLElement | undefined => knoepfe[antworten.indexOf(a)];
@@ -386,9 +378,7 @@ function bloeckeIn(bloecke: readonly Block[], inhalte: OeffentlicheInhalte, stuf
   const aus: Node[] = [];
   for (const b of bloecke) {
     switch (b.art) {
-      case 'zitat':
-        aus.push(zitatBlock(b));
-        break;
+      case 'zitat': // L-290 (O-38): wortgleiche Zitate sind interne Belege und stehen nie sichtbar auf der Seite
       case 'original':
       case 'querverweis':
         break;

@@ -1,12 +1,12 @@
 id: abb-13
 quelle: bilder/image13.jpeg
-titel: Sequenziertes Vorgehen von der Einrichtung bis zum Regelbetrieb
+titel: Die sechs Schritte der Einführung von der Einrichtung bis zum Regelbetrieb
 alt: >-
-  Sechs Spalten mit Pfeilen: „Einrichtung“ (verantwortliche Rolle, Umfang klären, Datenzugang, Beteiligte),
-  „Diagnose“ (Governance-Lücken, Bewertungsmatrix, Entscheidungsliste), „Konzeption“ (Zielsystem, Mandatsmodell,
-  Freigabemodell, Entscheidungs-IDs, Datenstandslogik), „Pilotierung“ (echte Entscheidungen, Kalibrierung,
-  Prüfung), „Befähigung“ (Rollen, Training, Routinen), „Übergabe“ (Betriebshandbuch, Prüfrhythmus,
-  Betriebsstart). Pfeil und gestrichelte Linie führen zu „Regelbetrieb“ (Abnahmefähig, Betriebsstart).
+  Die Abbildung zeigt die sechs Schritte der Einführung – Einrichtung, Diagnose, Konzeption, Pilotierung, Befähigung,
+  Übergabe – und wie sie in den Regelbetrieb münden. Jeder Schritt nennt seine Ergebnisse, zum Beispiel bei der Diagnose
+  Lücken, Bewertungsmatrix und Entscheidungsliste, bei der Konzeption Zielsystem, Mandatsmodell, Freigabemodell,
+  Entscheidungs-IDs und Regeln für den Stand der Unterlagen. Pfeil und gestrichelte Linie führen zum Regelbetrieb
+  (abnahmefähig, Betriebsstart).
 angeglichen:
   - { x: 38, y: 42, b: 166, h: 38, text: Einrichtung, beleg: k8.1-t1, schrift: barlow, gewicht: 700, groesse: 29, ausrichtung: mitte, farbe: "#f2fbfa" }
   - { x: 425, y: 42, b: 190, h: 38, text: Konzeption, beleg: k8.1-t1, schrift: barlow, gewicht: 700, groesse: 29, ausrichtung: mitte, farbe: "#f2fbfa" }

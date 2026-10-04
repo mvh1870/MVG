@@ -2,12 +2,9 @@ id: abb-6
 quelle: bilder/image6.png
 titel: Sechs Verantwortungsfelder des Bauherrn
 alt: >-
-  Mittig steht der „MVG-Kern“ mit „ausübbar“, „prüfbar“, „gestaltbar“, „nachweisfähig“. Ringsum im Uhrzeigersinn ab oben
-  links sechs Karten mit je vier Zeilen, etwa: „Ziel“ (Zielsystem, Abwägungsregeln, Freigabelogik), „Mandat“
-  (Mandatsmodell, Schwellen, Eskalation), „Entscheidung“ (Entscheidungs-IDs, Entscheidungsreife, Entscheidungsfrage),
-  „Risikoannahme“ (Verknüpfungen, Restrisiko, Risikominderung), „Freigabe“
-  (Freigabemodell LPH 0–9, Datenstandsbezug), „Datenstand & Nachweis“ (Beschlusslage,
-  Nachweiskette, Betriebshandbuch). Dazu Haftnotizen.
+  Die Abbildung zeigt die sechs Verantwortungsfelder des Bauherrn rund um den Kern von MVG. Jedes Feld nennt vier
+  Stichworte, zum Beispiel beim Feld Ziel: Zielsystem, Abwägungsregeln, Freigabelogik. Die Felder: Ziel, Mandat,
+  Entscheidung, Risikoannahme, Freigabe sowie Datenstand und Nachweis. Dazu kommen Haftnotizen.
 angeglichen:
   - { x: 375, y: 256, b: 162, h: 34, text: Freigabelogik, beleg: k4-t1, schrift: barlow, groesse: 23, gewicht: 500, farbe: "#1b1b1b" }
   - { x: 361, y: 817, b: 191, h: 37, text: Freigabemodell LPH 0–9, beleg: k4-t1, schrift: barlow, groesse: 22, gewicht: 500, farbe: "#1b1b1b" }

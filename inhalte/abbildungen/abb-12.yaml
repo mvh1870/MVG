@@ -2,9 +2,9 @@ id: abb-12
 quelle: bilder/image12.jpeg
 titel: MVG-Reifegradanalyse mit Bewertungsmatrix und 30/60/90-Tage-Plan
 alt: >-
-  Oben „MVG-Reifegradanalyse“; Pfeile führen zu einem breiten Feld „10 MVG-Domänen mit 49 Fragen“. Darunter
-  führt die „Bewertungsmatrix“ (Farbraster) mit einem Pfeil zum „30/60/90-Tage-Plan“, einer steigenden Linie
-  über die Stufen 30, 60 und 90 Tage.
+  Die Abbildung zeigt, wie die Reifegradanalyse arbeitet: 49 Fragen in zehn Themenbereichen (im Bild „Domänen“) führen
+  zu einer Bewertungsmatrix (einer farbigen Übersicht) und zum 30/60/90-Tage-Plan, einer steigenden Linie über 30, 60
+  und 90 Tage.
 angeglichen:
   - { x: 580, y: 0, b: 218, h: 171, text: "MVG-\nReifegradanalyse", beleg: k7.1-p1, hintergrund: "#ffffff", farbe: "#14303d", schrift: barlow, gewicht: 700, groesse: 27, ausrichtung: mitte }
   - { x: 622, y: 170, b: 135, h: 18, text: "", beleg: k7.1-p2, hintergrund: "#ffffff" }

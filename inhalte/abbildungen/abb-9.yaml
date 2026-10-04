@@ -1,13 +1,12 @@
 id: abb-9
 quelle: bilder/image9.jpeg
-titel: Der MVG Companion zwischen MVG-Logik und Anwendung
+titel: "Der MVG Companion: von den Regeln von MVG zur täglichen Anwendung"
 alt: >-
-  Links der Block „MVG-Logik“ (Gebäude, Organigramm); ein Pfeil führt in einen breiten Block mit Rundzeichen
-  „Companion“ (Brücke) und dem Balken „Anwendung“, darunter sieben Kacheln: Entscheidung, Freigabe, Mandat,
-  Datenstand, Nachweis, Betriebshandbuch, Übergabe. Pfeile führen zu „Befähigung“ (Personen, steigende Balken)
-  und „Regelbetrieb“ (Bildschirm, Diagramme). Gegenläufige Pfeile „Wiederkehrende Anwendungshilfe“ verbinden
-  Regelbetrieb und Companion-Block. Von diesem führen gepunktete Pfeile zu fünf Plaketten: Bauherr entscheidet,
-  Freigabe bleibt, Rollenrechte, Nachweiskette, Prüfrhythmus.
+  Die Abbildung zeigt, wie der MVG Companion die Regeln von MVG in die tägliche Anwendung bringt – für Entscheidungen,
+  Freigaben, Mandate, Datenstand, Nachweis, Betriebshandbuch und Übergabe – und dabei die Entscheidung beim Bauherrn
+  lässt. Links stehen die Regeln von MVG, in der Mitte der Companion als Brücke zur Anwendung; Pfeile führen zu
+  Befähigung und Regelbetrieb. Fünf Plaketten nennen, was bleibt: Bauherr entscheidet, Freigabe bleibt, Rollenrechte,
+  Nachweiskette, Prüfrhythmus.
 angeglichen:
   - { x: 308, y: 480, b: 148, h: 28, text: Nachweis, beleg: k6.1-t1, schrift: barlow, gewicht: 500, groesse: 24, ausrichtung: mitte }
   - { x: 895, y: 520, b: 352, h: 34, text: Wiederkehrende Anwendungshilfe, beleg: k6.2-t1, schrift: barlow, gewicht: 700, groesse: 25, ausrichtung: mitte }

@@ -172,7 +172,7 @@ test('Startseite (O-57, P17.7): Story-Karte mit Campus und den Figuren der Story
   const ids = (story.getAttribute('aria-labelledby') ?? '').split(' ');
   assert.deepEqual(ids.map((id) => el.querySelector(`#${id}`)?.textContent), [`${W.start.storyKicker}${W.start.storyTitel}`, W.start.storyLos]);
   for (const id of (story.getAttribute('aria-describedby') ?? '').split(' ')) assert.ok(el.querySelector(`#${id}`), id);
-  assert.match(story.textContent ?? '', /Acht Entscheidungen · etwa 25 Minuten, kurz etwa 10/u);
+  assert.match(story.textContent ?? '', /Acht Entscheidungen · etwa 25 Minuten \(Kurzfassung: etwa 10 Minuten\)/u);
   assert.doesNotMatch(el.textContent ?? '', /Kapitel|Station/u);
   // Theorie: vier Teile in Lesereihenfolge
   assert.deepEqual([...el.querySelectorAll('[data-pruef="weg-theorie"] .tuer-teile li')].map((li) => li.getAttribute('data-teil')), ['1', '2', '3', '4']);
@@ -472,7 +472,7 @@ test('Tafeln (T9): Phasen-Wahl wandert, Screenreader-Hinweis am hervorgehobenen 
   const kopf = ['LPH', 'Leistungsphase', 'Freigabefrage'];
   const zeilen = [['LPH 4', 'Genehmigungsplanung', 'Frage 4?'], ['LPH 5', 'Ausführungsplanung', 'Frage 5?']];
   const ph = tafel({ form: 'phasen', absatz: 'k9.3-t1', quelle: 'Q', kopf, zeilen, hervor: [2] });
-  assert.match(ph.querySelector('[data-pruef="phase-2"] .nur-sr')?.textContent ?? '', /hier steht der Fall/u);
+  assert.match(ph.querySelector('[data-pruef="phase-2"] .nur-sr')?.textContent ?? '', /hier steht unser Beispielfall/u);
   assert.equal(ph.querySelector('[data-pruef="phase-1"] .nur-sr'), null);
   ph.querySelector<HTMLElement>('[data-pruef="phase-1"]')?.click();
   assert.equal(ph.querySelector('[aria-pressed="true"]')?.getAttribute('data-pruef'), 'phase-1');
@@ -500,12 +500,12 @@ interface ProbeBlock { art: string, kennungen: string[], id: string | null, kopf
 const blk = (art: string, id: string | null, kopf: Record<string, string>, felder: Record<string, string>, kinder: ProbeBlock[] = []): ProbeBlock =>
   ({ art, kennungen: id === null ? [] : [id], id, kopf, felder, liste: null, kinder });
 
-test('Lernwerkzeuge (P12.3): Etappen blättern per Klick und Pfeiltaste, Anfang ohne Ansage', () => {
+test('Lernwerkzeuge (P12.3): Schritte blättern per Klick und Pfeiltaste, Anfang ohne Ansage', () => {
   const b = blk('etappen', null, { titel: 'Weg' }, {}, [1, 2, 3].map((i) => blk('etappe', String(i), { titel: `T${i}` }, { text: `<p>Text ${i}</p>` })));
   const el = lw.etappen(b as never);
   document.body.replaceChildren(el);
   const detail = el.querySelector('[data-pruef="etappe-detail"]');
-  assert.match(detail?.textContent ?? '', /Etappe 1 von 3.*T1.*Text 1/su);
+  assert.match(detail?.textContent ?? '', /Schritt 1 von 3.*T1.*Text 1/su);
   assert.equal(el.querySelector('.nur-sr')?.textContent, '');
   assert.ok(el.querySelector<HTMLButtonElement>('[data-pruef="etappe-zurueck"]')?.disabled);
   el.querySelector<HTMLButtonElement>('[data-pruef="etappe-weiter"]')?.click();
@@ -516,7 +516,7 @@ test('Lernwerkzeuge (P12.3): Etappen blättern per Klick und Pfeiltaste, Anfang 
   assert.equal(el.querySelector('[data-pruef="etappe-3"]')?.getAttribute('aria-pressed'), 'true');
   assert.equal(el.querySelectorAll('.lw-etappe.ist-erreicht').length, 3);
   assert.ok(el.querySelector<HTMLButtonElement>('[data-pruef="etappe-weiter"]')?.disabled);
-  assert.match(el.querySelector('.nur-sr')?.textContent ?? '', /Etappe 3 von 3: T3/u);
+  assert.match(el.querySelector('.nur-sr')?.textContent ?? '', /Schritt 3 von 3: T3/u);
 });
 
 test('Lernwerkzeuge (R71): Weiter bis zum Ende und Zurück bis zum Anfang – der Fokus fällt nie auf body', () => {
@@ -661,7 +661,9 @@ test('Wissenschecks (P11.6, P17.11): genau die verbliebenen Themen haben einen; 
   assert.equal(knoepfe[0]?.getAttribute('aria-pressed'), 'true');
   const ergebnis = wc.querySelector('[data-pruef="wc-ergebnis"]');
   assert.match(ergebnis?.textContent ?? '', /^(Genau:|Nicht ganz:)/u);
-  assert.ok(ergebnis?.querySelector('[data-pruef="zitat"]'), 'Beleg sichtbar');
+  // L-290 (O-38): der wortgleiche Beleg im Wissenscheck bleibt Prüfgrundlage der Quelldatei, wird aber nie angezeigt
+  assert.equal(ergebnis?.querySelector('[data-pruef="zitat"]'), null, 'kein Zitat sichtbar');
+  assert.equal(seite.querySelector('blockquote.mvg-zitat'), null, 'kein Blockzitat auf der Themenseite');
   assert.doesNotMatch(wc.textContent ?? '', /Punkt(e|zahl)|\d+\s*\/\s*\d+ richtig/u, 'keine Punkte');
   knoepfe[1]?.click();
   assert.equal(knoepfe[0]?.getAttribute('aria-pressed'), 'false');
@@ -708,7 +710,17 @@ test('Tafeltitel (P12.5 R12/R13): nach „/“ darf umgebrochen werden (<wbr>), 
       assert.ok(!/\u200b/u.test(text), 'kein unsichtbares Zeichen im Text');
     }
   }
-  assert.ok(gefunden > 0, 'mindestens ein Tafeltitel mit „/“ (Kap. 8: Risiko-/Änderungs-/Maßnahmenverknüpfung)');
+  // L-290: die Seite spricht nicht mehr von „Risiko-/Änderungs-/Maßnahmenverknüpfung“ (jetzt „Verknüpfung von Risiken, Änderungen und Maßnahmen“);
+  // der Umbruch nach „/“ bleibt darum an einer Probe-Tafel mit Schrägstrichen im Titel geprüft (Gegenprobe zum Zählen oben)
+  const eintrag = Object.entries(inhalte.theorie).find(([, s]) => s.kapitel === 1);
+  assert.ok(eintrag);
+  const tafel = { art: 'tafel', kennungen: ['k2.5-t1'], id: 'k2.5-t1', kopf: { form: 'karten', tabelle: { kopf: ['Gruppe', 'Rolle'], zeilen: [['Risiko-/Änderungs-/Maßnahmen', 'r']] }, hervor: [] }, felder: {}, liste: null, kinder: [] };
+  const probe = { ...inhalte, theorie: { ...inhalte.theorie, [eintrag[0]]: { ...eintrag[1], bloecke: [tafel] } } } as unknown as typeof inhalte;
+  const el = baueTheorie({ inhalte: probe, thema: themaVon(1), version: VERSION, bedienbar: false });
+  const titel = [...el.querySelectorAll('.tafel-titel')].find((t) => (t.textContent ?? '').includes('/'));
+  assert.ok(titel, 'Probe-Tafel mit „/“ im Titel');
+  assert.equal(titel.querySelectorAll('wbr').length, 2, 'ein <wbr> je „/“');
+  assert.ok(gefunden >= 0);
 });
 
 test('Lernseite (P6.1): Tafel, Merksatz und Ebenen 1–4 werden auf Seiten- und Abschnittsebene gezeichnet', () => {

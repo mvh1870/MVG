@@ -34,6 +34,8 @@ Maßgeblich sind der Text des Whitepapers V1.2 (O-15) und der Standard „Aufgab
 | 30/60/90-Tage-Logik | Orientierungsrahmen nach Reifegradanalyse und bei Neuinitialisierung, **kein** allgemeiner Einführungsrhythmus | Kap. 8.2 |
 | Rollen (Standardmodell) | 13 Arbeitsrollen + Sonderrolle BM-Mentor (Kap. 9.2); in der Story heißt die Rolle „Projektleitung des Bauherrn“ oder „Sie“ (O-51, wenige Abkürzungen); in den Themen führt k04 „Bauherren-PL“ einmal ein, sonst steht „Projektleitung des Bauherrn“ (L-243); nie „Projektleitung der GML“ | Kap. 9.2 |
 | ID-Kürzel (nur Explore und Regie; in Story und Themen sichtbar umschrieben, L-243) | ENT- (Entscheidung), RIS- (Risiko), FRW- (Frühwarnung), AEN- (Änderung), MAS- (Maßnahme), AUF- (Aufgabe), NAC- (Nachweis), PRB- (Problem, L-18); Freigaben ohne Kürzel („Freigabe LPH 5“); Form in der Story kurz: `ENT-017` | Companion §3 (Whitepaper schweigt) |
+| Entscheidungsbuch | Das Buch, in dem die Story jede getroffene Entscheidung mit Grund und Folge festhält; ersetzt „Register“ und „Entscheidungsregister“ im Story-Text | Drehbuch v2, 04 §7.7 (L-303) |
+| Station (Story) | Ein Abschnitt der Geschichte mit einer Entscheidung; 14 Stationen in drei Akten. Im Text „Station“, nicht „Kapitel“ oder „Folge“ | Drehbuch v2 (L-303) |
 
 ## Sichtbar verbotene Wörter (P16.1, geprüft von `tests/sichtbar.test.ts` und den Browser-Szenarien, Liste in `werkzeuge/sichtbar.mjs`)
 Auf der Seite nie: „Whitepaper“, „Kapitel“, „Kap. <Nr>“, Absatz-IDs (`k4.2-p3`), „MVG V1.2“ / „V1.2“, „Originaltext“, „ungeprüft“ (O-38, O-39); die Seite heißt nie „Datei“, „Einzeldatei“, „App“, „Programm“, „HTML“, „Kundenfassung“ (O-42); nie „G0–G5“ (O-14). Ausnahmen: keine. Interne Kommentare, Belege und Dokumente sind nicht betroffen.
@@ -68,3 +70,6 @@ Ausnahmen: der Begriffs-Kompass (E7) und die Korrekturliste V1.3 (E13) nennen al
 
 ## Schreibweisen
 Bauherren-PL · Leistungsphase (LPH 0 … LPH 9) · Entscheidungs-ID · Datenstand · Mio. € · TEUR · ESG/LCC · CTC (Restkostenprognose) · „Minimum Viable Governance“ ausgeschrieben beim ersten Vorkommen je Fläche.
+
+## Story-Schreibweisen (Drehbuch v2, L-303)
+In der Story steht das Alltagswort, der Standard-Begriff bleibt in Theorie und Quellen. Standard → Story: Bindung → „das Angebot gilt bis“ · befugte Stelle → zuständige Stelle · legitimiert → erlaubt · gemittelt → „ohne Mittelwert“ · maßgeblich → gültig · zwingend → „was erfüllt sein muss“ · Handlungsentscheidung → „Entscheidung, bei der etwas getan werden muss“ · Vorgang → Aufgaben, Hinweise, Risiken, Änderungen oder „Eintrag“ · Mandat, Schwellen → Entscheidungsgrenzen, Rahmen · „Zusage im Flur“ → beiläufige Zusage · „Griff in die Reserve“ → Einsatz der Reserve · Register → Liste · Kämmerei → Finanzabteilung · Luft, Puffer → Zeitpuffer · Auflage → „Bedingung“ (beim ersten Mal erklärt).

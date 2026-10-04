@@ -13,10 +13,11 @@
 //
 // Aufruf:  node werkzeuge/schriften.mjs [--ziel <pfad>]
 
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { istHauptmodul } from './haupt.mjs';
+import { schreibeAtomar } from './atomar.mjs';
 
 const WURZEL = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -127,8 +128,7 @@ export async function schriftenCss() {
 export async function erzeugeSchriften({ ziel = 'src/generiert/schriften.css' } = {}) {
   const pfad = resolve(WURZEL, ziel);
   const { css, eintraege } = await schriftenCss();
-  await mkdir(dirname(pfad), { recursive: true });
-  await writeFile(pfad, css, 'utf8');
+  await schreibeAtomar(pfad, css); // atomar (L-390)
   return { ziel: pfad, bytes: Buffer.byteLength(css), eintraege };
 }
 

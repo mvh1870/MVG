@@ -26,7 +26,7 @@ const { inhalte, regieGeschichte, regieKapitel, regieWerkzeug } = await import('
 const E = await import('../src/geschichte/engine.ts');
 const { baueSchritt, erzeugeGeschichte, SPEICHER_SCHLUESSEL, storyDruck, leisteOben, verlauf } = await import('../src/ui/flaechen/geschichte.ts');
 const { buchSeite, buchSymbol, buchDruck } = await import('../src/ui/flaechen/geschichte-buch.ts');
-const { verlaufBand } = await import('../src/grafik/verlauf.ts');
+const { verlaufBand, legeNamen } = await import('../src/grafik/verlauf.ts');
 const { erzeugeAnzeige } = await import('../src/regie/leinwand.ts');
 const { erzeugeRegie } = await import('../src/regie/regie.ts');
 const { neueBuehne, pruefeBuehne } = await import('../src/regie/buehne.ts');
@@ -430,10 +430,82 @@ test('Verlauf, Kurzfassung: übersprungene Stationen als hohle Punkte, Legende �
   assert.equal(svg.querySelectorAll('circle.vb-geld.vb-punkt-hohl').length, 10, 'zehn übersprungene Stationen');
   assert.equal(text(v.querySelector('[data-pruef="gs-verlauf-hohl"]') as Element), 'Hohle Punkte: Diese Stationen wurden nur erzählt.');
   assert.equal(v.querySelectorAll('li[data-erzaehlt="true"]').length, 10);
+  // die Textfassung nennt erzählte Stationen sichtbar „nur erzählt“ (nicht nur über ein Attribut), gespielte nicht (L-390, M1)
+  for (const li of v.querySelectorAll('li.gs-verlauf-zeile')) {
+    const erzaehlt = li.getAttribute('data-erzaehlt') === 'true';
+    assert.equal(/\(nur erzählt\)/u.test(text(li)), erzaehlt, text(li));
+  }
   // Gegenprobe: ganzer Weg ohne hohle Punkte und ohne Legende
   const lang = verlauf(g, { ...bisStation(14), schritt: { ort: 'ende' } }, 14, 'Kopf', true);
   assert.equal(lang.querySelectorAll('.vb-punkt-hohl').length, 0);
   assert.equal(lang.querySelector('[data-pruef="gs-verlauf-hohl"]'), null);
+  assert.doesNotMatch(text(lang), /nur erzählt/u);
+});
+
+test('Buch offen: die Pfeiltasten verlassen es nicht (L-390); Escape schließt Buch und Stationsliste; Gegenprobe: ohne Buch gehen die Pfeile weiter', () => {
+  const f = flaeche(an('s1', 'frage'));
+  (finde(f, 'antwort-2') as HTMLElement).click();
+  const vorher = JSON.stringify(f.stand());
+  (finde(f, 'buch-symbol') as HTMLElement).click();
+  assert.ok(finde(f, 'gs-buch'));
+  assert.equal(f.taste(new KeyboardEvent('keydown', { key: 'ArrowRight' })), false);
+  assert.equal(f.taste(new KeyboardEvent('keydown', { key: 'ArrowLeft' })), false);
+  assert.ok(finde(f, 'gs-buch'), 'das Buch bleibt offen');
+  assert.equal(JSON.stringify(f.stand()), vorher, 'der Stand bleibt');
+  assert.equal(f.taste(new KeyboardEvent('keydown', { key: 'Escape' })), true);
+  assert.equal(finde(f, 'gs-buch'), null);
+  // Gegenprobe
+  assert.equal(f.taste(new KeyboardEvent('keydown', { key: 'ArrowRight' })), true);
+  assert.notEqual(JSON.stringify(f.stand()), vorher, 'ohne Buch geht der Pfeil einen Schritt weiter');
+  // Stationsliste: Escape schließt sie und gibt dem Auslöser den Fokus
+  const liste = f.element.querySelector<HTMLDetailsElement>('details.gs-sprung');
+  assert.ok(liste, 'Stationsliste');
+  liste.open = true;
+  assert.equal(f.taste(new KeyboardEvent('keydown', { key: 'Escape' })), true);
+  assert.equal(liste.open, false);
+  assert.equal(document.activeElement, liste.querySelector('summary'));
+  assert.equal(f.taste(new KeyboardEvent('keydown', { key: 'Escape' })), false, 'nichts mehr zu schließen');
+});
+
+test('Hohle Punkte sind hohl: die Regel `.vb-punkt.vb-punkt-hohl` füllt weiß, steht nach den Farbregeln und ist mindestens so spezifisch (L-390, M1)', async () => {
+  const { readFileSync } = await import('node:fs');
+  const css = readFileSync(new URL('../src/stil/geschichte.css', import.meta.url), 'utf8').replace(/\/\*[\s\S]*?\*\//gu, '');
+  const regeln = [...css.matchAll(/(^|\n)([^{}\n@][^{}]*)\{([^}]*)\}/gu)].map((m, i) => ({ i, wahl: (m[2] ?? '').trim(), körper: m[3] ?? '' }));
+  const fuell = (w: string) => regeln.filter((r) => r.wahl.split(',').map((x) => x.trim()).includes(w) && /(^|;|\s)fill:/u.test(r.körper));
+  const hohl = fuell('.vb-punkt.vb-punkt-hohl');
+  assert.equal(hohl.length, 1, 'genau eine Füllregel für hohle Punkte');
+  assert.match(hohl[0]?.körper ?? '', /fill:\s*var\(--weiss\)/u);
+  for (const farbe of ['.vb-punkt.vb-geld', '.vb-punkt.vb-zeit', '.vb-punkt.vb-vertrauen']) {
+    const f = fuell(farbe);
+    assert.equal(f.length, 1, farbe);
+    assert.ok((f[0]?.i ?? 0) < (hohl[0]?.i ?? -1), `${farbe} muss vor der Regel der hohlen Punkte stehen`);
+  }
+  // Gegenprobe: die alte Regel `.vb-punkt-hohl { fill }` allein (Spezifität 0,1,0) hätte verloren
+  assert.equal(fuell('.vb-punkt-hohl').length, 0, 'keine Füllregel mit zu geringer Spezifität');
+});
+
+test('Beschriftungen am Linienende überdecken sich nicht (L-390, M3): legeNamen hält 12 px Abstand, bleibt im Bild, lässt Fernes unverändert', () => {
+  // Gegenprobe zuerst: weit auseinander – nichts wird verschoben
+  assert.deepEqual(legeNamen([{ x: 200, y: 20 }, { x: 200, y: 60 }, { x: 200, y: 100 }], 10, 140), [20, 60, 100]);
+  // gleiche Höhe: Abstand ≥ 12, Reihenfolge bleibt
+  const gleich = legeNamen([{ x: 200, y: 50 }, { x: 200, y: 50 }, { x: 200, y: 50 }], 10, 140);
+  for (let i = 1; i < gleich.length; i++) assert.ok((gleich[i] as number) - (gleich[i - 1] as number) >= 12 - 1e-9, String(gleich));
+  assert.ok(Math.abs(((gleich[0] as number) + (gleich[2] as number)) / 2 - 50) < 0.2, 'um die Mitte gelegt');
+  // am Rand: im Bild halten
+  const rand = legeNamen([{ x: 200, y: 10 }, { x: 200, y: 10 }], 10, 140);
+  assert.ok(Math.min(...rand) >= 10 && rand[1] as number - (rand[0] as number) >= 12);
+  const unten = legeNamen([{ x: 200, y: 140 }, { x: 200, y: 140 }], 10, 140);
+  assert.ok(Math.max(...unten) <= 140);
+  // andere Spalte (weit links): keine gegenseitige Verschiebung
+  assert.deepEqual(legeNamen([{ x: 40, y: 50 }, { x: 200, y: 50 }], 10, 140), [50, 50]);
+  // in der Zeichnung: drei gleich endende Linien – drei Beschriftungen mit je ≥ 12 px Abstand und Leitlinien
+  const svg = verlaufBand(['vb-geld', 'vb-zeit', 'vb-vertrauen'].map((klasse) => ({ klasse, name: klasse, werte: [5, 6, 6] })), 'x');
+  const ys = [...svg.matchAll(/<text class="vb-name[^>]*y="([\d.]+)"/gu)].map((m) => Number(m[1])).sort((a, b) => a - b);
+  assert.equal(ys.length, 3);
+  assert.ok(ys[1]! - ys[0]! >= 12 - 1e-9 && ys[2]! - ys[1]! >= 12 - 1e-9, ys.join(','));
+  assert.ok((svg.match(/<line class="vb-leit/gu) ?? []).length >= 2, 'versetzte Beschriftungen mit Leitlinie');
+  // Gegenprobe: eine einzelne Linie braucht keine
+  assert.doesNotMatch(verlaufBand([{ klasse: 'vb-geld', name: 'Geld', werte: [5, 6] }], 'x'), /vb-leit/u);
 });
 
 test('Verlaufsband: Wert null reißt die Linie ab, hohle Punkte, Gegenprobe ohne beides unverändert', () => {

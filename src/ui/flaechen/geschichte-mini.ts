@@ -8,6 +8,7 @@
 
 import type { Mini, MiniArt, MiniPosten, Kapitel, Geschichte } from '../../geschichte/typen.ts';
 import { gemischt, klickeReihe, miniZug, ordneZu, werteMiniAus, type MiniAuswertung, type Stand } from '../../geschichte/engine.ts';
+import { miniArt } from '../../geschichte/mini-arten.ts';
 import type { Figur } from '../../grafik/figuren.ts';
 import { miniMatrixBild } from '../../grafik/werkzeug-bilder.ts';
 import { ersteWorte, nurText } from '../../regie/eingriffe.ts';
@@ -20,6 +21,40 @@ import type { SchrittOptionen } from './geschichte.ts';
 
 const w = W.geschichte;
 const wr = W.regie;
+
+/** Die neuen Arten, deren Rückmeldung nach einem Zug hinter dem gedrückten Knopf steht und deshalb angesagt wird (P19.8, L-390) */
+const ANGESAGT: readonly MiniArt[] = ['matrix', 'mappe', 'pinnwand', 'rueckfragen'];
+
+/**
+ * Ansage für Screenreader nach einem Zug in einer Mini-Aufgabe (P19.8, L-390, M2): Der Fokus bleibt auf dem gedrückten Knopf, die
+ * Rückmeldung („Stimmt.“ / „Nicht ganz.“ samt Erklärung, das Gespräch der Rückfrage) erscheint dahinter und würde sonst nicht gehört.
+ * Matrix, Mappe und Pinnwand: Wort und Erklärung der Karte, deren Wahl sich geändert hat; Rückfragen: das neue Gespräch; ist die
+ * Aufgabe damit abgeschlossen, folgt der Schlusssatz. Der Bericht gehört nicht dazu (nach „Prüfen“ geht der Fokus auf den Schlusssatz).
+ * Keine Zählwörter. null = nichts anzusagen (andere Art, nichts geändert, keine Lage).
+ */
+export function miniAnsage(g: Geschichte, alt: Stand, neu: Stand, kapitelId: string): string | null {
+  const k = g.kapitel.find((x) => x.id === kapitelId);
+  const m = k?.mini;
+  if (m === undefined || m === null || !ANGESAGT.includes(m.art)) return null;
+  const def = miniArt(m.art);
+  const i = def?.aenderung(alt.mini[kapitelId] ?? [], neu.mini[kapitelId] ?? []) ?? null;
+  const p = i === null ? undefined : m.posten[i];
+  if (i === null || p === undefined) return null;
+  const aus = werteMiniAus(m, neu.mini[kapitelId]);
+  const teile: string[] = [];
+  if (m.art === 'rueckfragen') {
+    // beim Zurücknehmen (Regie) ist das Gespräch fort: nichts ansagen
+    if (!(neu.mini[kapitelId] ?? []).includes(i)) return null;
+    for (const z of p.gespraech ?? []) teile.push(`${z.wer}: ${nurText(z.html)}`);
+    teile.push(nurText(p.erklaerungHtml));
+  } else {
+    const lage = aus.je[i];
+    if (lage !== 'richtig' && lage !== 'falsch') return null;
+    teile.push(`${lage === 'richtig' ? w.miniStimmt : w.miniNichtGanz} ${nurText(p.erklaerungHtml)}`);
+  }
+  if (aus.fertig && m.schlussHtml !== undefined) teile.push(nurText(m.schlussHtml));
+  return teile.join(' ');
+}
 
 /** Was die Regie einem Baustein mitgibt: die Aufgabe, ihren Zustand und wie ein neuer Stand gesetzt wird. */
 export interface MiniRegieKontext {
@@ -67,7 +102,7 @@ function zeichneZuordnen(o: SchrittOptionen, k: Kapitel, m: Mini): HTMLElement {
             const kinder: Kind[] = [x.figur !== null ? bildnis(x.figur as Figur, 32) : null, h('span', null, x.titel)];
             return o.bedienbar
               ? h('button', { type: 'button', class: 'gs-mini-wahl', 'aria-pressed': an ? 'true' : 'false', 'data-pruef': `wahl-${i + 1}-${x.id}`, onclick: () => o.tue(ordneZu(o.g, o.stand, k.id, i, j)) }, kinder)
-              : h('span', { class: 'gs-mini-wahl', 'aria-pressed': an ? 'true' : 'false' }, kinder);
+              : h('span', { class: 'gs-mini-wahl', 'data-gedrueckt': an ? 'true' : 'false' }, kinder);
           })),
         lage === 'offen' ? null : h('p', { class: 'gs-mini-rueck', 'data-pruef': `rueck-${i + 1}` },
           h('b', null, lage === 'richtig' ? [sym('haken'), w.miniRichtig] : w.miniFalsch(loesung?.titel ?? '')), ' ',
@@ -101,7 +136,7 @@ function zeichneReihe(o: SchrittOptionen, k: Kapitel, m: Mini): HTMLElement {
       return h('li', { class: 'gs-mini-posten', 'data-lage': lage, 'data-pruef': `posten-${i + 1}` },
         o.bedienbar
           ? h('button', { type: 'button', class: 'gs-reihe-knopf', 'aria-pressed': stelle >= 0 ? 'true' : 'false', 'data-pruef': `reihe-${i + 1}`, onclick: () => o.tue(klickeReihe(o.g, o.stand, k.id, i)) }, kinder)
-          : h('span', { class: 'gs-reihe-knopf', 'aria-pressed': stelle >= 0 ? 'true' : 'false' }, kinder),
+          : h('span', { class: 'gs-reihe-knopf', 'data-gedrueckt': stelle >= 0 ? 'true' : 'false' }, kinder),
         aus.fertig ? h('p', { class: 'gs-mini-rueck', 'data-pruef': `rueck-${i + 1}` },
           h('b', null, lage === 'richtig' ? [sym('haken'), w.miniRichtig] : w.miniGehoert(i + 1)), ' ', inhaltInline(p?.erklaerungHtml ?? '')) : null);
     }));
@@ -156,21 +191,19 @@ function schlussSatz(m: Mini, aus: MiniAuswertung): HTMLElement | null {
   return aus.fertig && m.schlussHtml !== undefined ? h('p', { class: 'gs-mini-schluss', tabindex: -1, 'data-pruef': 'mini-schluss' }, inhaltInline(m.schlussHtml)) : null;
 }
 
-/** Eine Wahl als Knopf (bedienbar) oder als stummes Feld (Leinwand): gedrückt = gewählt. */
+/** Eine Wahl als Knopf (bedienbar, `aria-pressed`) oder als stummes Feld (Leinwand, `data-gedrueckt`: `aria-pressed` ist auf einem `span` kein erlaubtes ARIA): gedrückt = gewählt. */
 function wahlKnopf(o: SchrittOptionen, text: Kind, an: boolean, pruef: string, tue: () => void, aus = false): HTMLElement {
   return o.bedienbar
     ? h('button', { type: 'button', class: 'gs-mini-wahl', 'aria-pressed': an ? 'true' : 'false', disabled: aus, 'data-pruef': pruef, onclick: tue }, h('span', null, text))
-    : h('span', { class: 'gs-mini-wahl', 'aria-pressed': an ? 'true' : 'false' }, h('span', null, text));
+    : h('span', { class: 'gs-mini-wahl', 'data-gedrueckt': an ? 'true' : 'false' }, h('span', null, text));
 }
-
-const STUFE_WORT = ['sehr gering', 'gering', 'mittel', 'hoch', 'sehr hoch'];
 
 /** Kopf der Karte je Art: Matrix mit markiertem Feld, Haftzettel der Mappe oder Faden der Pinnwand. */
 function kartenKopf(art: MiniArt, m: Mini, p: MiniPosten, k: Kapitel, i: number, lage: string, gewaehlt: number): HTMLElement {
   const text = h('p', { class: 'gs-mini-text', id: `gs-posten-${k.id}-${i}` }, inhaltInline(p.html));
   if (art === 'matrix' && p.feld !== undefined) {
     const [wa, au] = p.feld;
-    const beschreibung = `${W.geschichte.miniMatrixFeld(STUFE_WORT[wa - 1] ?? '', STUFE_WORT[au - 1] ?? '')}`;
+    const beschreibung = `${W.geschichte.miniMatrixFeld(w.stufenWort[wa - 1] ?? '', w.stufenWort[au - 1] ?? '')}`;
     return h('div', { class: 'gs-mini-karte gs-mini-zettel', 'data-pruef': `matrix-feld-${i + 1}` },
       h('span', { class: 'gs-mini-matrix', 'aria-hidden': 'true' }, bildAus(miniMatrixBild({ feld: { w: wa, a: au }, bis: null, nachObenOffen: false }, beschreibung, 88), 'gs-mini-matrix-bild')),
       h('span', { class: 'nur-sr' }, `${beschreibung}. `), text);

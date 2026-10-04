@@ -60,14 +60,17 @@ test('Differentialtest: synthetische Stories mit 3 bis 6 Kapiteln (gewöhnliche 
   assert.equal(verglichen, 4 * 2 * 3 * 4);
 });
 
-test('Skalierungsprobe: 16 synthetische Kapitel (4^16 ≈ 4,3 Milliarden Wege) in unter 2 Sekunden', () => {
+test('Skalierungsprobe: 16 synthetische Kapitel (4^16 ≈ 4,3 Milliarden Wege) – die Zahl der Zustände bleibt klein (keine Uhr, L-390)', () => {
   const g = synthetischeStory(G, { n: 16, kurzfassung: (nr) => nr % 4 === 0 });
-  const t0 = performance.now();
   const lang = zustandsautomat(g, false, true);
   const kurz = zustandsautomat(g, true, true);
   const ohne = zustandsautomat(g, false, false);
-  const ms = performance.now() - t0;
-  assert.ok(ms < 2000, `${Math.round(ms)} ms`);
+  // Verhalten statt Uhr: gemessen höchstens 7.971 Zustände je Schicht (lang), 1.150 (ohne offen), 159 (kurz); in der Summe 59.372.
+  // Die Schranken lassen Luft, liegen aber um Größenordnungen unter 4^16 – ein Automat, der Wege statt Zustände zählt, risse sie sofort.
+  const summe = (a: { schichten: number[] }): number => a.schichten.reduce((x, y) => x + y, 0);
+  for (const a of [lang, kurz, ohne]) assert.ok(Math.max(...a.schichten) <= 20_000, `Zustände je Schicht: ${Math.max(...a.schichten)}`);
+  assert.ok(summe(lang) + summe(kurz) + summe(ohne) <= 150_000, `Zustände insgesamt: ${summe(lang) + summe(kurz) + summe(ohne)}`);
+  assert.ok(4 ** 16 > 1000 * 20_000, 'Gegenprobe: die Wegzahl läge weit über der Schranke');
   assert.equal(lang.schichten.length, 16);
   assert.ok(lang.ende.length > 100 && kurz.ende.length > 10 && ohne.ende.length > 100);
   // Balken allein: höchstens 11^3 Stände

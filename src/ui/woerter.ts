@@ -262,6 +262,7 @@ export const W = {
     verlaufText: 'Verlauf als Text',
     verlaufLegende: 'Die Linien zeigen, wie sich Geld, Zeit und Vertrauen von Station zu Station verändert haben. Die Streifen dahinter heißen „gut gefüllt“, „etwa halb voll“ und „knapp“.',
     verlaufHohl: 'Hohle Punkte: Diese Stationen wurden nur erzählt.',
+    verlaufNurErzaehlt: 'nur erzählt', // Wort schon aus verlaufHohl; in der Textfassung je erzählte Station (L-390)
     verlaufOffen: 'noch offen',
     verlaufStreifen: { hoch: 'gut gefüllt', mittel: 'etwa halb voll', niedrig: 'knapp' } as Record<string, string>,
     // Zeile „gespeichert“ in der Pause: nur, wenn der Stand tatsächlich im Browser liegt (P19.3, Drehbuch 2.3)
@@ -300,6 +301,7 @@ export const W = {
     miniEintragLeer: 'noch leer',
     miniGespraeche: (kontingent: number) => `${ZAHLWORT[kontingent] ?? String(kontingent)} Gespräche sind möglich.`,
     miniGespraecheRest: (n: number) => n <= 0 ? 'Mehr Gespräche gibt es nicht.' : n === 1 ? 'Ein Gespräch ist noch möglich.' : `${ZAHLWORT[n] ?? String(n)} Gespräche sind noch möglich.`,
+    stufenWort: ['sehr gering', 'gering', 'mittel', 'hoch', 'sehr hoch'], // fünf Stufen der Matrix (vorher Literal in der Fläche, L-390)
     miniMatrixFeld: (wahrscheinlichkeit: string, auswirkung: string) => `Feld der Matrix: Wahrscheinlichkeit ${wahrscheinlichkeit}, Auswirkung ${auswirkung}`,
     weiterGanz: 'Weiter mit der ganzen Geschichte',
     // Kicker über dem Knopf am Ende der Kurzfassung (P19.6; zählt nicht zur Lesezeit)

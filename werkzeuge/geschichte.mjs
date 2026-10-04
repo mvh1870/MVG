@@ -54,7 +54,7 @@ const BELEG_V24 = /^v24:(?:hb|tlb|va)(?:-[a-z0-9]+(?:\.[0-9]+)*)?$/u;
 const text = (x) => (x === undefined || x === null ? '' : String(x));
 /** Wörter eines Textes (Folgen aus Buchstaben), für die Längenvergleiche der Kurzfassung und der Vertiefung. @param {unknown} t */
 const woerter = (t) => text(t).split(/\s+/u).filter((x) => /\p{L}/u.test(x)).length;
-/** Echo-Kennung: Buchstabe, dann Buchstaben, Ziffern, Bindestrich (E1 … E10) */
+/** Echo-Kennung: Buchstabe, dann Buchstaben, Ziffern, Bindestrich (E1 … E11; ECHOS_MAX, L-340) */
 const ECHO_KENNUNG = /^[A-Za-z][A-Za-z0-9-]*$/u;
 /** Absatz der Vertiefung höchstens so viele Wörter (docs/drehbuch-v2/04-rahmen.md 7.4) */
 export const VERTIEFUNG_ABSATZ_MAX = 60;

@@ -14,6 +14,46 @@ const LINKS = 8;
 const RECHTS = 74;
 const OBEN = 10;
 const UNTEN = 10;
+/** Mindestabstand der Beschriftungen am Linienende (Schrift 11 px) */
+const NAMEN_ABSTAND = 12;
+/** Breite, ab der zwei Beschriftungen nebeneinander statt übereinander stehen (Hälfte der längsten Beschriftung ist mehr als nötig) */
+const NAMEN_BREITE = 56;
+
+/**
+ * Legt die Beschriftungen am Linienende so, dass keine die andere überdeckt (P19.8, L-390): enden zwei Linien auf gleicher Höhe, stehen
+ * „Geld“ und „Zeit“ sonst übereinander. Rein: sortiert nach Höhe, schiebt jede, die der vorigen zu nahe kommt, nach unten, zentriert
+ * die Gruppe wieder um ihren Schwerpunkt und hält sie im Bild. Der Reihenfolge nach oben und unten bleibt es bei der Höhe der Linien.
+ * @param ziele Ende der Linien: x und y des letzten Punkts
+ * @returns Höhe der Beschriftung je Eintrag (gleiche Reihenfolge)
+ */
+export function legeNamen(ziele: readonly { x: number; y: number }[], oben: number, unten: number): number[] {
+  const ordnung = ziele.map((z, i) => ({ i, ...z })).sort((a, b) => a.y - b.y || a.i - b.i);
+  const ergebnis = ziele.map((z) => z.y);
+  // Gruppen: nach Höhe benachbarte Beschriftungen, die sich waagrecht überschneiden und weniger als den Mindestabstand trennt
+  let gruppe: typeof ordnung = [];
+  const schliesse = (): void => {
+    if (gruppe.length === 0) return;
+    const ys = gruppe.map((g) => g.y);
+    for (let k = 1; k < ys.length; k++) ys[k] = Math.max(ys[k] as number, (ys[k - 1] as number) + NAMEN_ABSTAND);
+    const mitte = gruppe.reduce((sum, g) => sum + g.y, 0) / gruppe.length;
+    const neueMitte = ys.reduce((sum, v) => sum + v, 0) / ys.length;
+    let schub = mitte - neueMitte;
+    const ersteY = (ys[0] as number) + schub;
+    const letzteY = (ys[ys.length - 1] as number) + schub;
+    if (ersteY < oben) schub += oben - ersteY;
+    else if (letzteY > unten) schub -= letzteY - unten;
+    gruppe.forEach((g, k) => { ergebnis[g.i] = r1((ys[k] as number) + schub); });
+    gruppe = [];
+  };
+  for (const z of ordnung) {
+    const letzte = gruppe[gruppe.length - 1];
+    const stosst = letzte !== undefined && Math.abs(letzte.x - z.x) < NAMEN_BREITE && z.y - letzte.y < NAMEN_ABSTAND;
+    if (letzte !== undefined && !stosst) schliesse();
+    gruppe.push(z);
+  }
+  schliesse();
+  return ergebnis;
+}
 
 /**
  * Eine Linie: Kennung der Klasse, Beschriftung am Ende, Werte 0–10 je Punkt. P19.4: `null` = kein Wert (Station ohne Antwort) – die
@@ -44,6 +84,13 @@ export function verlaufBand(reihen: readonly VerlaufReihe[], beschreibung: strin
   const baender = BAENDER.map((b) => `<rect class="${b.klasse}" x="${LINKS}" y="${y(Math.min(10.5, b.bis))}" width="${BREITE - LINKS - RECHTS}" height="${r1(y(Math.max(-0.5, b.von)) - y(Math.min(10.5, b.bis)))}"/>`).join('');
   // die Linien liegen bei gleichen Werten nebeneinander statt übereinander: je Reihe ein kleiner fester Versatz
   const versatz = (k: number): number => (k - (reihen.length - 1) / 2) * 1.6;
+  // Enden der Linien: die Beschriftungen werden gemeinsam gelegt (L-390), damit sie sich nicht überdecken
+  const enden = reihen.map((r, k) => {
+    const letzte = r.werte.reduce<number>((l, w, i) => (w === null ? l : i), -1);
+    return letzte >= 0 ? { x: x(letzte), y: r1(y(r.werte[letzte] as number) + versatz(k)) } : null;
+  });
+  const gelegt = legeNamen(enden.filter((e): e is { x: number; y: number } => e !== null), OBEN, HOEHE - UNTEN);
+  let naechste = 0;
   const linien = reihen.map((r, k) => {
     const py = (w: number): number => r1(y(w) + versatz(k));
     // zusammenhängende Strecken: bei einem fehlenden Wert reißt die Linie ab (keine gestrichelte Verbindung, die einen Weg andeutet)
@@ -54,8 +101,14 @@ export function verlaufBand(reihen: readonly VerlaufReihe[], beschreibung: strin
       if (aktuell === null) { aktuell = []; strecken.push(aktuell); }
       aktuell.push(`${x(i)},${py(w)}`);
     });
-    const letzte = r.werte.reduce<number>((l, w, i) => (w === null ? l : i), -1);
-    const ende = letzte >= 0 ? `<text class="vb-name ${r.klasse}" x="${r1(x(letzte) + 6)}" y="${r1(py(r.werte[letzte] as number) + 3.5)}">${maske(r.name)}</text>` : '';
+    const endpunkt = enden[k];
+    let ende = '';
+    if (endpunkt !== null && endpunkt !== undefined) {
+      const ly = gelegt[naechste++] as number;
+      // eine kurze Leitlinie vom Punkt zur Beschriftung, wenn diese versetzt steht
+      const leit = Math.abs(ly - endpunkt.y) > 1 ? `<line class="vb-leit ${r.klasse}" x1="${r1(endpunkt.x + 2.6)}" y1="${endpunkt.y}" x2="${r1(endpunkt.x + 5)}" y2="${ly}"/>` : '';
+      ende = `${leit}<text class="vb-name ${r.klasse}" x="${r1(endpunkt.x + 6)}" y="${r1(ly + 3.5)}">${maske(r.name)}</text>`;
+    }
     const punkte = r.werte.map((w, i) => (w === null ? '' : `<circle class="vb-punkt ${r.klasse}${r.hohl?.[i] === true ? ' vb-punkt-hohl' : ''}" cx="${x(i)}" cy="${py(w)}" r="2.2"/>`)).join('');
     const strich = strecken.map((st) => `<polyline class="vb-linie ${r.klasse}" points="${st.join(' ')}"/>`).join('');
     return `${strich}${punkte}${ende}`;

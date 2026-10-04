@@ -30,7 +30,7 @@ import { bmLink, seitenRahmen } from '../bausteine/seite.ts';
 import { bogenKopf } from '../druck.ts';
 import { W } from '../woerter.ts';
 import { bildnis, gegenstand } from './geschichte-teile.ts';
-import { miniBaustein } from './geschichte-mini.ts';
+import { miniAnsage, miniBaustein } from './geschichte-mini.ts';
 import { buchDruck, buchSeite, buchSymbol } from './geschichte-buch.ts';
 
 const w = W.geschichte;
@@ -302,7 +302,7 @@ export function verlauf(g: Geschichte, stand: Stand, bisNr: number, kopf: string
     const wirkung = k !== null ? gewaehlteAntwort(stand, k)?.wirkung : undefined;
     const aender = BALKEN.map((id) => aenderungWort(g, id, vor[id], p.balken[id], wirkung?.[id] ?? 0).replace(': ', ' ')).join(', ');
     return h('li', { class: 'gs-verlauf-zeile', ...(p.erzaehlt === true ? { 'data-erzaehlt': 'true' } : {}) },
-      h('b', null, titel), `: ${aender}.`, ' ',
+      h('b', null, titel), p.erzaehlt === true ? ` (${w.verlaufNurErzaehlt})` : '', `: ${aender}.`, ' ',
       h('span', { class: 'gs-verlauf-stand' }, BALKEN.map((id) => `${balkenTitel(g, id)} ${w.verlaufStreifen[stufe(p.balken[id])] ?? ''}`).join(' · ')));
   });
   return h('div', { class: 'gs-verlauf', 'data-pruef': 'gs-verlauf' },
@@ -709,7 +709,10 @@ export function fortschritt(g: Geschichte, stand: Stand, bedienbar: boolean, tue
   }
   // Akt-Leiste (P19.3): nur der Akt der gezeigten Station ist aufgeklappt (ein Feld je Station), die übrigen sind je ein Feld
   // mit der römischen Zahl; dazu ein Sprungmenü mit allen Stationen. Der Weg (Kurzfassung) zählt nur die Stationen, die er zeigt.
-  const aktHier = stationAmSchritt(g, s)?.a ?? null;
+  // In der Pause gehört das Feld dem Akt, den sie abschließt (L-390): er steht als Feld mit der römischen Zahl und ist „jetzt“ – die letzte
+  // Station darin war schon vorbei und soll nicht als der Ort gelten
+  const aktPause = s.ort === 'pause' ? akte.find((a) => a.id === s.akt) ?? null : null;
+  const aktHier = aktPause !== null ? null : stationAmSchritt(g, s)?.a ?? null;
   const gruppen = akte.map((a, j) => {
     const stationen = weg.map((k, i) => ({ k, i })).filter(({ k }) => a.stationen.includes(k.id));
     return { a, j, stationen };
@@ -719,7 +722,7 @@ export function fortschritt(g: Geschichte, stand: Stand, bedienbar: boolean, tue
     if (a === aktHier) return stationen.map(({ k, i }) => kapitelFeld(k, i));
     const erste = stationen[0]?.k as Kapitel;
     const vorbei = hier >= 0 && (stationen[stationen.length - 1]?.i ?? 0) < hier;
-    return [feld(roemisch(aktNummer(g, a)), aktName(a), { ort: 'kapitel', kapitel: erste.id, teil: 'szene' }, vorbei ? 'erledigt' : 'offen', 'akt')];
+    return [feld(roemisch(aktNummer(g, a)), aktName(a), { ort: 'kapitel', kapitel: erste.id, teil: 'szene' }, a === aktPause ? 'jetzt' : vorbei ? 'erledigt' : 'offen', 'akt')];
   });
   const menue = bedienbar ? h('details', { class: 'gs-sprung', 'data-pruef': 'gs-sprung' },
     h('summary', { class: 'gs-sprung-knopf' }, w.stationWaehlen),
@@ -928,8 +931,7 @@ export function erzeugeGeschichte(o: { g: Geschichte; speicher: SpeicherGriff | 
     ersetze(leiste, ...leisteOben(g, stand, true, (n) => setze(n), lz, { offen: buchOffen, neu: buchNeu(), umschalten: schalteBuch }));
     if (buchOffen) {
       ersetze(buehne, buchSeite(g, stand, { gesehen: new Set(buchGesehen), schliessen: schalteBuch }));
-      // der jüngste Eintrag ist beim Öffnen sichtbar; danach gelten alle gezeigten Einträge als gesehen
-      buehne.querySelector<HTMLElement>('.gs-buch-liste > li:last-child')?.scrollIntoView({ block: 'nearest' });
+      // Die Seite beginnt oben mit ihrem Titel (Fokus und `scrollTo(0, 0)` unten); die Einträge darunter gelten danach als gesehen
       for (const e of buchEintraege(g, stand)) buchGesehen.add(e.k.id);
     } else ersetze(buehne, baueSchritt({ g, stand, bedienbar: true, themaTitel: o.themaTitel, ...(o.werkzeugTitel !== undefined ? { werkzeugTitel: o.werkzeugTitel } : {}), lesezeit: lz, gespeichert: gespeichertOk, tue: (n) => setze(n) }));
     if (fokus.art === 'titel') buehne.firstElementChild?.classList.add('ist-neu');
@@ -986,6 +988,10 @@ export function erzeugeGeschichte(o: { g: Geschichte; speicher: SpeicherGriff | 
     if (fokus.art === 'folge' && s.ort === 'kapitel') {
       const k = kapitelVon(g, s.kapitel);
       if (k !== null) sageWahl(k);
+    } else if (s.ort === 'kapitel' && s.teil === 'mini' && fokus.art === 'gleich') {
+      // Rückmeldung der Mini-Aufgabe liegt hinter dem gedrückten Knopf: ansagen (L-390)
+      const text = miniAnsage(g, alt, stand, s.kapitel);
+      if (text !== null) ansage.textContent = text;
     }
     zuhoerer?.(stand);
   }
@@ -1017,6 +1023,11 @@ export function erzeugeGeschichte(o: { g: Geschichte; speicher: SpeicherGriff | 
       const ziel = e.target as HTMLElement | null;
       if (ziel?.closest('input, textarea, select, summary, [contenteditable]') || e.altKey || e.ctrlKey || e.metaKey) return false;
       if (e.key === 'Escape' && buchOffen) { schalteBuch(); return true; }
+      // Escape schließt auch die geöffnete Stationsliste (sie liegt über dem Inhalt) und gibt dem Auslöser den Fokus zurück
+      const sprung = element.querySelector<HTMLDetailsElement>('details.gs-sprung[open]');
+      if (e.key === 'Escape' && sprung !== null) { sprung.open = false; sprung.querySelector<HTMLElement>('summary')?.focus(); return true; }
+      // Bei offenem Buch gehören die Pfeiltasten nicht der Geschichte: ein Schritt vor oder zurück verließe das Buch unbemerkt
+      if (buchOffen) return false;
       if (e.key === 'ArrowRight') { weiterKlick(); return true; }
       if (e.key === 'ArrowLeft') { setze(zurueck(g, stand)); return true; }
       return false;

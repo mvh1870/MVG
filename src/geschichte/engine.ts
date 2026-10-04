@@ -5,7 +5,7 @@
  * Kein Sperren: Jeder Schritt ist jederzeit erreichbar (L-184).
  */
 import { kipppunkte, rangfolge, spitze, type Gewichte, type Kipppunkt, type Platz } from './mcda.ts';
-import { miniArt, type PostenLage } from './mini-arten.ts';
+import { istPlatz, miniArt, type PostenLage } from './mini-arten.ts';
 import {
   BALKEN, type Akt, type Antwort, type BalkenId, type BalkenStufe, type BilanzSicht, type BilanzTyp, type BuchEintrag, type EchoDef, type Geschichte,
   type Kapitel, type Mini, type MiniStelle, type Vergleich, type VergleichOption, type Wertung, type Zeile,
@@ -639,7 +639,6 @@ export function buchZugang(g: Geschichte, stand: Stand): boolean {
 
 /* -------------------------------------------------------------- Speichern -- */
 
-const istPlatz = (x: unknown, n: number): x is number => typeof x === 'number' && Number.isInteger(x) && x >= 0 && x < n;
 
 /** Liest einen gespeicherten Stand; Unpassendes fällt weg, Unlesbares oder ein älterer Stand ergibt null. */
 export function leseStand(g: Geschichte, roh: unknown): Stand | null {

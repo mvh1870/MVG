@@ -1,26 +1,36 @@
 // Browser-Szenario Story, Gedächtnis und neue Aufgaben (P19.4/P19.5, O-62): die fünf neuen Mini-Arten (Matrix, Mappe, Pinnwand, Bericht, Rückfragen) mit
 // Tastatur, Fokus und axe bei 1280/1024/400 px (320 px über `pruefer`), das Entscheidungsbuch (Symbol, Seite, Escape, Fokus), der Verlauf in der Pause,
 // Vertiefung und Echo-Zeile. Die echte Story hat seit P19.6 diese Stationen (Szenario `story-p196`); dieses Szenario baut weiter eine Probe-Seite aus
-// der synthetischen Story der Tests (tests/hilfen/geschichte-p19.ts) nach tmp/p19/ – nie nach dist/ –, samt den Beigaben (Symbole), erst in `vorbereite`
-// (nach dem Browserstart), nie beim Import.
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+// der synthetischen Story der Tests (tests/hilfen/geschichte-p19.ts) nach tmp/p19-*/ (je Lauf ein eigener Ordner) – nie nach dist/ –, samt den Beigaben
+// (Symbole), erst in `vorbereite` (nach dem Browserstart), nie beim Import.
+import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { baue, baueBeigaben, WURZEL } from '../../werkzeuge/bau.mjs';
-import { p19Story, berichtMini, mappeMini, matrixMini, mitMini, pinnwandMini, rueckfragenMini } from '../hilfen/geschichte-p19.ts';
 import { pruefer, sichtbarVerboten } from './hilfen.mjs';
 
 export const name = 'story-p19';
 export const hash = '#story';
-export const seite = 'tmp/p19/mvg-p19.html';
 export const viewports = [
   { breite: 1280, hoehe: 720 },
   { breite: 1024, hoehe: 768 },
   { breite: 400, hoehe: 800 },
 ];
 
-// Probe-Seite: die kompilierten Inhalte mit der synthetischen Story (14 Stationen, Akte, Echos, Buch, Vertiefungen, neue Aufgaben)
+/**
+ * Probe-Seite: die kompilierten Inhalte mit der synthetischen Story (14 Stationen, Akte, Echos, Buch, Vertiefungen, neue Aufgaben).
+ * Läuft nie beim Import (L-383, L-390): `werkzeuge/oberflaeche.mjs` ruft sie nur, wenn das Szenario gewählt ist, und erst nach dem
+ * Browserstart. Sie erzeugt die Vorstufen (Inhalte, Schriften) selbst – auf einem frischen Klon gibt es `src/generiert/` noch nicht –
+ * und schreibt Seite und Beigaben (Symbole) in einen eigenen Ordner unter tmp/ (`mkdtemp`), damit zwei gleichzeitige Läufe sich nicht in
+ * die Quere kommen; nie nach dist/.
+ * @returns {Promise<{ seite: string, aufraeumen: () => Promise<void> }>} `seite` absolut
+ */
 export async function vorbereite() {
-  const roh = JSON.parse(readFileSync(path.join(WURZEL, 'src', 'generiert', 'inhalte.json'), 'utf8'));
+  const { baue, baueBeigaben, WURZEL } = await import('../../werkzeuge/bau.mjs');
+  const { kompiliere } = await import('../../werkzeuge/inhalte.mjs');
+  const { erzeugeSchriften } = await import('../../werkzeuge/schriften.mjs');
+  const { p19Story, berichtMini, mappeMini, matrixMini, mitMini, pinnwandMini, rueckfragenMini } = await import('../hilfen/geschichte-p19.ts');
+  const { fehler, inhalte: roh } = await kompiliere({ pruefe: false });
+  if (fehler.length > 0) throw new Error(`inhalte meldet ${fehler.length} Fehler: ${fehler.join('; ')}`);
+  await erzeugeSchriften({});
   let g = p19Story(roh.geschichte);
   g = mitMini(g, 4, matrixMini());
   g = mitMini(g, 6, mappeMini());
@@ -28,12 +38,21 @@ export async function vorbereite() {
   g = mitMini(g, 9, berichtMini(), 'vor-frage');
   g = mitMini(g, 11, rueckfragenMini(), 'vor-frage');
   g.kapitel[8].vertiefung = { form: 'nachdenken', titel: 'Was fehlt im Bericht?', absaetzeHtml: ['Die Frage zur Vertiefung.'], antwortHtml: ['Die Antwort zur Vertiefung.'] };
-  roh.geschichte = g;
-  const ordner = path.join(WURZEL, 'tmp', 'p19');
-  mkdirSync(ordner, { recursive: true });
-  writeFileSync(path.join(ordner, 'p19-inhalte.json'), JSON.stringify(roh));
-  await baue({ ziel: path.join(WURZEL, seite), inhalte: path.join(ordner, 'p19-inhalte.json'), mitVorstufen: false });
-  for (const [name, inhalt] of await baueBeigaben(WURZEL)) writeFileSync(path.join(ordner, name), inhalt);
+  const kopie = { ...roh, geschichte: g };
+  await mkdir(path.join(WURZEL, 'tmp'), { recursive: true });
+  const ordner = await mkdtemp(path.join(WURZEL, 'tmp', 'p19-'));
+  const aufraeumen = () => rm(ordner, { recursive: true, force: true });
+  try {
+    const inhalteDatei = path.join(ordner, 'p19-inhalte.json');
+    const ziel = path.join(ordner, 'mvg-p19.html');
+    await writeFile(inhalteDatei, JSON.stringify(kopie));
+    await baue({ ziel, inhalte: inhalteDatei, mitVorstufen: false });
+    for (const [n, inhalt] of await baueBeigaben(WURZEL)) await writeFile(path.join(ordner, n), inhalt);
+    return { seite: ziel, aufraeumen };
+  } catch (fehlerBau) {
+    await aufraeumen();
+    throw fehlerBau;
+  }
 }
 
 /**

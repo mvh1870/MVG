@@ -25,7 +25,7 @@ after(() => dom.window.close());
 const { inhalte, regieGeschichte, regieKapitel, regieWerkzeug } = await import('../src/inhalte/index.ts');
 const E = await import('../src/geschichte/engine.ts');
 const { MINI_ARTEN } = await import('../src/geschichte/mini-arten.ts');
-const { MINI_BAUSTEINE } = await import('../src/ui/flaechen/geschichte-mini.ts');
+const { MINI_BAUSTEINE, miniAnsage } = await import('../src/ui/flaechen/geschichte-mini.ts');
 const { baueSchritt, erzeugeGeschichte, SPEICHER_SCHLUESSEL } = await import('../src/ui/flaechen/geschichte.ts');
 const { loeseMini } = await import('../src/regie/eingriffe.ts');
 const { geaenderterPosten, erzeugeAnzeige } = await import('../src/regie/leinwand.ts');
@@ -417,12 +417,73 @@ test('Fläche: jede neue Art ist mit der Tastatur bedienbar (Knöpfe), der Fokus
   }
 });
 
+test('Ansage (M2, L-390): nach einem Zug in Matrix, Mappe, Pinnwand und Rückfragen steht die Rückmeldung in der Live-Region; Gegenproben', () => {
+  const live = (el: Element) => text(el.querySelector('[data-pruef="gs-ansage"]') as Element);
+  for (const [name, m, knopf, erwartet] of [
+    ['matrix', matrixMini(), 'wahl-1-stimmt', /^Stimmt\. /u], ['matrix falsch', matrixMini(), 'wahl-2-stimmt', /^Nicht ganz\. /u],
+    ['mappe', mappeMini(), 'wahl-1-annehmen', /^Stimmt\. /u], ['pinnwand', pinnwandMini(), 'wahl-1-stimmt', /^Stimmt\. /u],
+    ['rueckfragen', rueckfragenMini(), 'wahl-3', /\S+: \S/u],
+  ] as const) {
+    const g = mitMini(BASIS, STATION, m);
+    const start: Stand = { ...E.neuerStand(), wahlen: { s1: 0, [KAP]: 0 }, schritt: { ort: 'kapitel', kapitel: KAP, teil: 'mini' } };
+    const sp = speicher();
+    sp.setItem(SPEICHER_SCHLUESSEL, JSON.stringify(start));
+    const flaeche = erzeugeGeschichte({ g, speicher: sp, themaTitel: () => null });
+    document.body.replaceChildren(flaeche.element);
+    assert.equal(live(flaeche.element), '', `${name}: vor dem Zug nichts angesagt`);
+    const region = flaeche.element.querySelector('[data-pruef="gs-ansage"]') as HTMLElement;
+    assert.equal(region.getAttribute('aria-live'), 'polite', name);
+    flaeche.element.querySelector<HTMLButtonElement>(`[data-pruef="${knopf}"]`)?.click();
+    assert.match(live(flaeche.element), erwartet, `${name}: Ansage nach dem Zug`);
+    assert.doesNotMatch(live(flaeche.element), /\bRichtig\b|\d+ von \d+|Punkte/u, `${name}: keine Zählwörter`);
+    // dieselbe Ansage steht nicht doppelt im Stand: die Ansage ist außerhalb der neu gezeichneten Fläche
+    assert.ok(region.isConnected && !flaeche.element.querySelector('[data-pruef="gs-buehne"], .gs-buehne')?.contains(region), `${name}: Region bleibt bestehen`);
+  }
+  // Gegenprobe: Schritt wechseln leert die Ansage; der Bericht sagt vor der Prüfung nichts an
+  const g = mitMini(BASIS, STATION, berichtMini());
+  const start: Stand = { ...E.neuerStand(), wahlen: { s1: 0, [KAP]: 0 }, schritt: { ort: 'kapitel', kapitel: KAP, teil: 'mini' } };
+  const sp = speicher();
+  sp.setItem(SPEICHER_SCHLUESSEL, JSON.stringify(start));
+  const f = erzeugeGeschichte({ g, speicher: sp, themaTitel: () => null });
+  document.body.replaceChildren(f.element);
+  f.element.querySelector<HTMLButtonElement>('[data-pruef="wahl-2-nachfordern"]')?.click();
+  assert.equal(live(f.element), '', 'Bericht: vor der Prüfung keine Ansage');
+  // reine Funktion: nur die vier Arten, nur bei Änderung
+  const alt = start;
+  assert.equal(miniAnsage(g, alt, alt, KAP), null, 'nichts geändert');
+  assert.equal(miniAnsage(g, alt, { ...alt, mini: { [KAP]: [0, 1] } }, KAP), null, 'Bericht: keine Ansage');
+  const gm = mitMini(BASIS, STATION, matrixMini());
+  assert.match(miniAnsage(gm, alt, { ...alt, mini: { [KAP]: [0] } }, KAP) ?? '', /^(Stimmt|Nicht ganz)\./u);
+  assert.equal(miniAnsage(gm, alt, alt, 'gibt-es-nicht'), null);
+  // Rückfragen: ein zurückgenommenes Gespräch (Regie) sagt nichts an; ein neues sagt Gespräch und Erklärung an
+  const gr = mitMini(BASIS, STATION, rueckfragenMini());
+  assert.equal(miniAnsage(gr, { ...alt, mini: { [KAP]: [0, 2] } }, { ...alt, mini: { [KAP]: [0] } }, KAP), null, 'Rückfragen: zurückgenommen');
+  const neuesGespraech = miniAnsage(gr, { ...alt, mini: { [KAP]: [0] } }, { ...alt, mini: { [KAP]: [0, 2] } }, KAP) ?? '';
+  assert.match(neuesGespraech, /Lot: Frage 3 Partner 3: Antwort 3 Die Vertretung hält Punkt 3 fest\./u);
+  assert.match(neuesGespraech, /übrigen fragt die Vertretung nach\.$/u, 'Rückfragen: mit dem zweiten Gespräch ist das Kontingent erschöpft, der Schlusssatz folgt');
+  assert.doesNotMatch(miniAnsage(gr, alt, { ...alt, mini: { [KAP]: [2] } }, KAP) ?? '', /übrigen fragt/u, 'Rückfragen: nach dem ersten Gespräch noch kein Schlusssatz');
+  // Matrix: eine Karte, deren Wahl zurückgesetzt wurde, hat keine Wertung und sagt nichts an
+  assert.equal(miniAnsage(gm, { ...alt, mini: { [KAP]: [0, 0, 0] } }, { ...alt, mini: { [KAP]: [-1, 0, 0] } }, KAP), null, 'Matrix: Karte ohne Wahl');
+  // Bericht: auch die Prüfung sagt nichts an (der Fokus geht zum Schlusssatz)
+  assert.equal(miniAnsage(g, { ...alt, mini: { [KAP]: [0, 0, 0, 0, 0, 0] } }, { ...alt, mini: { [KAP]: [0, 0, 0, 0, 0, 0, 1] } }, KAP), null, 'Bericht: Prüfung');
+  // Schlusssatz: erst mit der letzten Karte (Mappe: vier Abschnitte)
+  const gmp = mitMini(BASIS, STATION, mappeMini());
+  const loesung = MINI_ARTEN.mappe.loese(mappeMini());
+  const fast = loesung.map((x, i) => (i === 3 ? -1 : x));
+  const fertig = miniAnsage(gmp, { ...alt, mini: { [KAP]: fast } }, { ...alt, mini: { [KAP]: loesung } }, KAP) ?? '';
+  assert.match(fertig, /^Stimmt\. Erklärung 4\. Zwei Abschnitte wurden nachgefordert\.$/u);
+  const nochNicht = miniAnsage(gmp, { ...alt, mini: { [KAP]: [-1, -1, -1, -1] } }, { ...alt, mini: { [KAP]: [loesung[0] as number, -1, -1, -1] } }, KAP) ?? '';
+  assert.doesNotMatch(nochNicht, /nachgefordert/u, 'Mappe: vor dem Abschluss kein Schlusssatz');
+});
+
 test('Leinwand: jede neue Art ohne Bedienelemente, ohne Wertung der Antworten der Runde; der Zustand ist derselbe wie auf der Seite', () => {
   for (const [name, m, liste] of [['matrix', matrixMini(), [0, 0, 0]], ['mappe', mappeMini(), [0, 1, 0, 0]], ['pinnwand', pinnwandMini(), [0, 1, 2]], ['bericht', berichtMini(), [0, 1, 0, 1, 1, 0, 1]], ['rueckfragen', rueckfragenMini(), [1, 3]]] as const) {
     const { g, stand } = mit(m);
     const el = baueSchritt({ g, stand: stand([...liste]), bedienbar: false, themaTitel: () => null, tue: () => undefined });
     assert.equal(el.querySelectorAll('button').length, 0, `${name}: Leinwand ohne Knöpfe`);
-    assert.ok(el.querySelectorAll('[aria-pressed]').length > 0, `${name}: der Zustand steht trotzdem da`);
+    // der Zustand steht trotzdem da – aber nicht als `aria-pressed` auf einem `span` (kein erlaubtes ARIA, L-390)
+    assert.ok(el.querySelectorAll('[data-gedrueckt="true"]').length > 0, `${name}: der Zustand steht trotzdem da`);
+    assert.equal(el.querySelectorAll('span[aria-pressed], div[aria-pressed]').length, 0, `${name}: kein aria-pressed auf Nicht-Knöpfen`);
     assert.doesNotMatch(text(el), /Wertung|\bFalle\b|vertretbar|Punkte|\d+ von \d+/u, name);
   }
 });

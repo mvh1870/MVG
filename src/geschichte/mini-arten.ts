@@ -18,12 +18,12 @@ export type PostenLage = 'richtig' | 'falsch' | 'offen' | 'gewaehlt';
 /** Meldet einen Fehler des Inhalts (Übersetzer: `c.fehler(ort, text)`). */
 export type MeldeFehler = (ort: string, text: string) => void;
 
-/** Was der Übersetzer je Art prüft (Haken des gemeinsamen Gerüsts in `werkzeuge/geschichte.mjs`, Funktion `mini`). */
 /** Hilfe des Übersetzers für Hooks, die sichtbaren Text brauchen: prüft ihn (Sichtbar-Probe) und macht Inline-HTML daraus. */
 export interface MiniUebersetzerHilfe {
   inline(t: unknown, ort: string): string;
 }
 
+/** Was der Übersetzer je Art prüft (Haken des gemeinsamen Gerüsts in `werkzeuge/geschichte.mjs`, Funktion `mini`). */
 export interface MiniUebersetzung {
   /** Pflichtfelder eines Postens in der YAML (frei ist immer `bild`) */
   postenFelder: readonly string[];
@@ -77,7 +77,8 @@ export interface MiniArtDef {
   lesezeitOhne: readonly string[];
 }
 
-const istPlatz = (x: unknown, n: number): x is number => typeof x === 'number' && Number.isInteger(x) && x >= 0 && x < n;
+/** Ob `x` ein Platz in einer Liste der Länge `n` ist (ganze Zahl, 0 ≤ x < n); auch von `leseStand` in der Engine benutzt. */
+export const istPlatz = (x: unknown, n: number): x is number => typeof x === 'number' && Number.isInteger(x) && x >= 0 && x < n;
 
 /* ----------------------------------------------------------------- zuordnen -- */
 
@@ -345,17 +346,17 @@ const BERICHT: MiniArtDef = {
 /* ----------------------------------------------------------------- rueckfragen -- */
 
 /**
- * Rückfragen im Entscheidungsfenster (P19.5, „Wer weiß was?“): zwei von vier Gesprächen (Kontingent) – das Gespräch erscheint nach der
- * Wahl; es gibt weder „Stimmt“ noch „Nicht ganz“, weil es kein Richtig oder Falsch gibt. Zustand `mini[kapitel]`: die Plätze der
- * gewählten Gespräche in der Reihenfolge der Wahl (höchstens das Kontingent; die Regie-Auflösung nennt alle).
- */
-/**
  * Eintrag-Kärtchen (P19.6): Beginnt die Erklärung eines Gesprächs mit `Zeile „Quelle“: Die Vertretung würde festhalten: „…“`, ist das die Zeile des
  * Kärtchens, die dieses Gespräch füllt, und der Satz, den die Vertretung dort festhält. Der Übersetzer entnimmt beides der Erklärung (sie bleibt
  * unverändert stehen); beginnen alle Erklärungen so, zeichnet die Seite das Kärtchen mit den Zeilen in der Reihenfolge der Gespräche.
  */
 export const EINTRAG_ZEILE = /^Zeile „([^“]+)“: Die Vertretung würde festhalten: „([^“]+)“/u;
 
+/**
+ * Rückfragen im Entscheidungsfenster (P19.5, „Wer weiß was?“): zwei von vier Gesprächen (Kontingent) – das Gespräch erscheint nach der
+ * Wahl; es gibt weder „Stimmt“ noch „Nicht ganz“, weil es kein Richtig oder Falsch gibt. Zustand `mini[kapitel]`: die Plätze der
+ * gewählten Gespräche in der Reihenfolge der Wahl (höchstens das Kontingent; die Regie-Auflösung nennt alle).
+ */
 const RUECKFRAGEN: MiniArtDef = {
   art: 'rueckfragen',
   uebersetzung: {

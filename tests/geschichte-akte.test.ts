@@ -222,6 +222,17 @@ test('Akt-Leiste: nur der Akt der gezeigten Station ist aufgeklappt, die anderen
   assert.deepEqual(felder(fortschritt(g, { ...E.neuerStand(), schritt: { ort: 'ende' } }, true, () => undefined)).filter((x) => x.dataset['art'] !== 'rand').map(text), ['I', 'II', 'III']);
 });
 
+test('Akt-Leiste in der Pause: der abgeschlossene Akt ist „jetzt“ (als Feld mit der römischen Zahl), nicht die letzte Station darin (L-390); Gegenprobe: in der letzten Station zeigt sie diese', () => {
+  for (const [akt, erwartet, rest] of [['a1', 'I', ['II', 'III']], ['a2', 'II', ['I', 'III']]] as const) {
+    const f = felder(fortschritt(g, pause(akt), true, () => undefined)).filter((x) => x.dataset['art'] !== 'rand');
+    const jetzt = f.filter((x) => x.getAttribute('aria-current') === 'step');
+    assert.deepEqual(jetzt.map(text), [erwartet], `Pause ${akt}`);
+    assert.deepEqual(f.filter((x) => x.getAttribute('aria-current') !== 'step').map(text), rest, `Pause ${akt}: die anderen Akte als Felder`);
+  }
+  const letzte = felder(fortschritt(g, an('s5', 'szene'), true, () => undefined)).filter((x) => x.getAttribute('aria-current') === 'step');
+  assert.deepEqual(letzte.map(text), ['5'], 'Gegenprobe: in Station 5 steht die Station selbst da');
+});
+
 test('Akt-Leiste: Sprung per Feld und per Sprungmenü, Beschriftungen nennen Akt und Station; Zustände erledigt · jetzt · offen', () => {
   let stand = an('s7', 'szene', gutWeg());
   const tue = (n: Stand): void => { stand = n; };

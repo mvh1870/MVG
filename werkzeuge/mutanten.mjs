@@ -237,6 +237,21 @@ export const MUTANTEN = [
   ['src/grafik/figuren.ts', "ranzen: 'gruen', spitzfeder: 'keiner', pfennig: 'beere' };", "ranzen: 'orange', spitzfeder: 'keiner', pfennig: 'beere' };", 'Grafik: Ton der Nebenfigur Ranzen ist Grün', TESTS_P196],
   ['src/grafik/figuren.ts', "const ton = figur === 'sie' ? 'marke' : figur === 'vergabestelle' || figur === 'vertretung' ? 'keiner'", "const ton = figur === 'sie' ? 'marke' : figur === 'vergabestelle' ? 'beere'", 'Grafik: die Stimmen tragen keinen Akzent', TESTS_P196],
   ['src/ui/woerter.ts', "m <= 1 ? 'gleich geschafft'", "m <= 0 ? 'gleich geschafft'", 'Wörter: unter zwei Minuten „gleich geschafft“', TESTS_P196],
+  // P19.8 Technik und Layout nach Prüfrunde 3 (L-390)
+  ['src/grafik/verlauf.ts', "const NAMEN_ABSTAND = 12;", "const NAMEN_ABSTAND = 0;", 'Verlauf: Endbeschriftungen mindestens 12 px auseinander', TESTS_P19],
+  ['src/grafik/verlauf.ts', "if (ersteY < oben) schub += oben - ersteY;", "if (false) schub += oben - ersteY;", 'Verlauf: die Beschriftungen bleiben oben im Bild', TESTS_P19],
+  ['src/grafik/verlauf.ts', "else if (letzteY > unten) schub -= letzteY - unten;", "else if (false) schub -= letzteY - unten;", 'Verlauf: die Beschriftungen bleiben unten im Bild', TESTS_P19],
+  ['src/grafik/verlauf.ts', "Math.abs(letzte.x - z.x) < NAMEN_BREITE && ", "", 'Verlauf: nur Beschriftungen in derselben Spalte stoßen aneinander', TESTS_P19],
+  ['src/stil/geschichte.css', ".vb-punkt.vb-punkt-hohl { fill: var(--weiss); }", ".vb-punkt-hohl { fill: var(--weiss); }", 'Verlauf: hohle Punkte sind hohl (Spezifität der Füllregel)', TESTS_P19],
+  ['src/ui/flaechen/geschichte.ts', "p.erzaehlt === true ? ` (${w.verlaufNurErzaehlt})` : ''", "''", 'Verlauf: die Textfassung nennt erzählte Stationen', TESTS_P19],
+  ['src/ui/flaechen/geschichte.ts', "      if (buchOffen) return false;\n", "", 'Buch offen: die Pfeiltasten verlassen es nicht', TESTS_P19],
+  ['src/ui/flaechen/geschichte.ts', "if (e.key === 'Escape' && sprung !== null) {", "if (false) {", 'Escape schließt die Stationsliste', TESTS_P19],
+  ['src/ui/flaechen/geschichte.ts', "const aktHier = aktPause !== null ? null :", "const aktHier =", 'Akt-Leiste: in der Pause gilt der abgeschlossene Akt', TESTS_AKTE],
+  ['src/ui/flaechen/geschichte.ts', "else if (s.ort === 'kapitel' && s.teil === 'mini' && fokus.art === 'gleich') {", "else if (false) {", 'Mini: die Rückmeldung wird angesagt', TESTS_P19],
+  ['src/ui/flaechen/geschichte-mini.ts', "if (!(neu.mini[kapitelId] ?? []).includes(i)) return null;", "", 'Ansage: ein zurückgenommenes Gespräch wird nicht angesagt', TESTS_P19],
+  ['src/ui/flaechen/geschichte-mini.ts', "if (lage !== 'richtig' && lage !== 'falsch') return null;", "", 'Ansage: nur gewertete Karten', TESTS_P19],
+  ['src/ui/flaechen/geschichte-mini.ts', "const ANGESAGT: readonly MiniArt[] = ['matrix', 'mappe', 'pinnwand', 'rueckfragen'];", "const ANGESAGT: readonly MiniArt[] = ['matrix', 'mappe', 'pinnwand', 'rueckfragen', 'bericht'];", 'Ansage: der Bericht sagt vor der Prüfung nichts an', TESTS_P19],
+  ['src/ui/flaechen/geschichte-mini.ts', "if (aus.fertig && m.schlussHtml !== undefined) teile.push(nurText(m.schlussHtml));", "", 'Ansage: nach Abschluss folgt der Schlusssatz', TESTS_P19],
   ['src/ui/woerter.ts', "13: 'Dreizehn', 14: 'Vierzehn' };", " };", 'Wörter: das Zahlwort reicht bis Vierzehn', TESTS_P196],
 ];
 

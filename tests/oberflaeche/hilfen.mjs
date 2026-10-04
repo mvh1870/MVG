@@ -181,7 +181,7 @@ export async function mittelbreit(seite, h, name) {
 }
 
 /** R47: Bauteile, deren Wörter am Bildschirm nie mitten im Wort brechen dürfen */
-export const BAUTEILE_UNGETEILT = '.lw-korb, .kapitel-titel, .lw-etappe-name, .lw-schalter-seite, .baustein-karte b, .buch-titel, .verzeichnis-titel, .gs-ort';
+export const BAUTEILE_UNGETEILT = '.lw-korb, .kapitel-titel, .lw-etappe-name, .lw-schalter-seite, .baustein-karte b, .buch-titel, .verzeichnis-titel, .gs-ort, .gs-titel';
 
 /** Sichtbare, waagerecht rollende Bereiche ohne Tabulatorstopp (weder selbst noch ein Kind fokussierbar). */
 export function rollbarOhneTastatur() {

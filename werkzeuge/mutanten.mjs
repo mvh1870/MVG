@@ -24,6 +24,11 @@ const TESTS_AKTE = ['tests/geschichte-akte.test.ts'];
 const TESTS_UEBERSETZER = ['tests/geschichte-uebersetzer.test.ts'];
 const TESTS_CAMPUS = ['tests/campus-iso.test.ts'];
 const TESTS_LESEZEIT = ['tests/lesezeit.test.ts'];
+/** P19.4/P19.5: Echos, Entscheidungsbuch, Verlauf, Vertiefung, neue Mini-Arten, Kürzungen der Kurzfassung (Übersetzer und Seite) */
+const TESTS_P19 = [
+  'tests/geschichte-echo.test.ts', 'tests/geschichte-buch.test.ts', 'tests/geschichte-mini-neu.test.ts', 'tests/geschichte-uebersetzer-p19.test.ts',
+  'tests/geschichte-mini-registry.test.ts',
+];
 const TESTS_WERKZEUGE = [
   'tests/werkzeuge-vorlagen-check.test.ts', 'tests/werkzeuge-wegweiser.test.ts', 'tests/werkzeuge-risiko-grenzen.test.ts',
   'tests/werkzeuge-monatsbericht.test.ts', 'tests/werkzeuge-wachter.test.ts',
@@ -124,7 +129,7 @@ export const MUTANTEN = [
   ['src/geschichte/engine.ts', "const hier = nrAmSchritt(g, stand.schritt);", "const hier = 0;", 'Kurzfassung: Wechsel aus der Pause weiter mit der nächsten gespielten Station', TESTS_AKTE],
   ['src/geschichte/engine.ts', "slice(schrittIndex(g, stand))) {", "slice(schrittIndex(g, stand) + 1)) {", 'Restzeit: der aktuelle Schritt zählt voll', TESTS_AKTE],
   ['src/geschichte/engine.ts', "return Math.max(1, Math.round(woerter / jeMinute));", "return Math.max(1, Math.floor(woerter / jeMinute));", 'Restzeit: Minuten gerundet', TESTS_AKTE],
-  ['src/geschichte/engine.ts', "if (k.nr <= bisNr) aus.push({ nr: k.nr", "if (k.nr < bisNr) aus.push({ nr: k.nr", 'Verlauf: bis einschließlich der gefragten Station', TESTS_AKTE],
+  ['src/geschichte/engine.ts', "if (k.nr > bisNr) continue;\n    const erzaehlt", "if (k.nr >= bisNr) continue;\n    const erzaehlt", 'Verlauf: bis einschließlich der gefragten Station', TESTS_AKTE],
   ['src/ui/flaechen/geschichte.ts', "if (a === aktHier) return stationen.map(", "if (false) return stationen.map(", 'Akt-Leiste: der Akt der gezeigten Station ist aufgeklappt', TESTS_AKTE],
   ['src/ui/flaechen/geschichte.ts', "|| a.stationen[0] !== k.id) return null;", "|| false) return null;", 'Kopfkarte nur über der ersten Station eines Akts', TESTS_AKTE],
   ['src/ui/flaechen/geschichte.ts', "stand.kurz && g.kapitel.some((k) => !k.kurzfassung) ? h('button'", "false ? h('button'", 'Ende der Kurzfassung: Knopf „Weiter mit der ganzen Geschichte“', TESTS_AKTE],
@@ -143,6 +148,59 @@ export const MUTANTEN = [
   ['src/grafik/campus-iso.ts', "if (jahreszeit === 'winter' && w === 'regen') return dazu;", "", 'Campus: Regen im Winter ohne Flocken', TESTS_CAMPUS],
   ['werkzeuge/lesezeit.mjs', "export const AKT_MAX_MINUTEN = 15;", "export const AKT_MAX_MINUTEN = 14;", 'Lesezeit: obere Schranke je Akt 15 Minuten', TESTS_LESEZEIT],
   ['werkzeuge/lesezeit.mjs', "(i === 0 && kennung === 'auftakt')", "(false)", 'Lesezeit: Auftakt zählt zur Schranke des ersten Akts', TESTS_LESEZEIT],
+  // P19.4 (O-62): Echo-Zeilen, Entscheidungsbuch, Verlauf; P19.5: Platz der Mini-Aufgabe, neue Arten, Kürzungen der Kurzfassung, Vertiefung
+  ['src/geschichte/engine.ts', "?.wertung ?? 'gut';\n}\n\n/** Inline-HTML der Fassung", "?.wertung ?? 'falle';\n}\n\n/** Inline-HTML der Fassung", 'Echo: ohne Antwort der Quelle gilt „gut“', TESTS_P19],
+  ['src/geschichte/engine.ts', "const rest = stand.kurz ? z.fortsetzungKurzHtml ?? z.fortsetzungHtml : z.fortsetzungHtml;", "const rest = z.fortsetzungHtml;", 'Echo: die Kurzfassung nimmt ihre eigene Fortsetzung', TESTS_P19],
+  ['src/geschichte/engine.ts', "(_ganz, id: string) => echoHtml(g, stand, id) ?? '')", "(_ganz, id: string) => echoHtml(g, stand, id) ?? 'x')", 'Echo-Platzhalter: ein unbekanntes Echo fällt weg', TESTS_P19],
+  ['src/geschichte/engine.ts', "if (eintrag === undefined || k.nr > bisNr) continue;", "if (eintrag === undefined) continue;", 'Buch: nur Einträge bis zur gezeigten Station', TESTS_P19],
+  ['src/geschichte/engine.ts', "} else if (stand.wahlen[k.id] !== undefined) aus.push({ eintrag, k, voll: true });", "} else aus.push({ eintrag, k, voll: true });", 'Buch: ein Eintrag erst nach der Antwort in seiner Station', TESTS_P19],
+  ['src/geschichte/engine.ts', "return iZiel >= 0 && iHier >= iZiel;", "return iZiel >= 0;", 'Buch, Kurzfassung: die Zeile einer übersprungenen Station erst nach ihrer Brückenkarte', TESTS_P19],
+  ['src/geschichte/engine.ts', "return stelle > erste.nr || (stelle === erste.nr && stand.wahlen[erste.id] !== undefined);", "return stelle >= erste.nr;", 'Buch: Zugang erst, wenn Station 1 abgeschlossen ist', TESTS_P19],
+  ['src/geschichte/engine.ts', "else if (stand.wahlen[k.id] === undefined) p.offen = true;", "else if (false) p.offen = true;", 'Verlauf: Station ohne Antwort ist „offen“', TESTS_P19],
+  ['src/geschichte/engine.ts', "const erzaehlt = stand.kurz && !k.kurzfassung;\n    const p: VerlaufPunkt", "const erzaehlt = false;\n    const p: VerlaufPunkt", 'Verlauf: übersprungene Stationen der Kurzfassung sind „nur erzählt“', TESTS_P19],
+  ['src/geschichte/engine.ts', "if (mini === 'vor-frage') aus.push('mini');", "if (false) aus.push('mini');", 'Schritte: Mini-Aufgabe vor der Frage', TESTS_P19],
+  ['src/geschichte/engine.ts', "if (mini === 'vor-vergleich') aus.push('mini');", "if (false) aus.push('mini');", 'Schritte: Mini-Aufgabe vor dem Vergleich', TESTS_P19],
+  ['src/geschichte/engine.ts', "return teileVon(k, kurz).at(-1) === teil;", "return teil === 'mini';", 'Ende der Station: dort stehen „Dahinter“ und Vertiefung', TESTS_P19],
+  ['src/geschichte/engine.ts', "(stand.kurz ? a.folgeKurzHtml ?? a.folgeHtml : a.folgeHtml);", "a.folgeHtml;", 'Kurzfassung: gekürzte Folge', TESTS_P19],
+  ['src/geschichte/engine.ts', "(stand.kurz ? k.gutKurzHtml ?? k.gutHtml : k.gutHtml);", "k.gutHtml;", 'Kurzfassung: gekürztes „So macht man es gut“', TESTS_P19],
+  ['src/geschichte/engine.ts', "fertig: def?.fertig !== undefined ? def.fertig(m, antworten ?? []) : je.every", "fertig: je.every", 'Mini: eine Art legt „fertig“ selbst fest (Rückfragen)', TESTS_P19],
+  ['src/geschichte/mini-arten.ts', "    if (basis[n] === 1) return null;\n", "", 'Bericht: nach der Prüfung gesperrt', TESTS_P19],
+  ['src/geschichte/mini-arten.ts', "if (a.length !== n + 1 || a[n] !== 1) return 'offen';", "if (a.length !== n + 1) return 'offen';", 'Bericht: Rückmeldung erst nach der Prüfung', TESTS_P19],
+  ['src/geschichte/mini-arten.ts', "return liste.length === 0 || (liste.length === n + 1 &&", "return (liste.length === n + 1 &&", 'Bericht: ein leerer Zustand ist gültig', TESTS_P19],
+  ['src/geschichte/mini-arten.ts', " || alt.length >= (m.kontingent ?? 0)) return null;", ") return null;", 'Rückfragen: höchstens das Kontingent', TESTS_P19],
+  ['src/geschichte/mini-arten.ts', "alt.includes(posten) ||", "", 'Rückfragen: dasselbe Gespräch nicht noch einmal', TESTS_P19],
+  ['src/geschichte/mini-arten.ts', "return ok && (liste.length <= (m.kontingent ?? 0) || liste.length === m.posten.length);", "return ok;", 'Rückfragen: gespeicherter Stand höchstens Kontingent oder alle', TESTS_P19],
+  ['src/geschichte/mini-arten.ts', "return a.length >= (m.kontingent ?? m.posten.length);", "return a.length >= 1;", 'Rückfragen: fertig mit dem genutzten Kontingent', TESTS_P19],
+  ['src/geschichte/mini-arten.ts', "n >= 1 && n <= 5);\n      if (!ok) fehler(ort, 'Feld:", "n >= 0 && n <= 5);\n      if (!ok) fehler(ort, 'Feld:", 'Matrix: Feld ab 1', TESTS_P19],
+  ['src/geschichte/mini-arten.ts', "n >= 1 && n <= 5);\n      if (!ok) fehler(ort, 'Feld:", "n >= 1 && n <= 6);\n      if (!ok) fehler(ort, 'Feld:", 'Matrix: Feld bis 5', TESTS_P19],
+  ['src/geschichte/mini-arten.ts', "if ((p.nach ?? []).length === 0 && p.loesung !== 'nachfordern') fehler(", "if (false) fehler(", 'Pinnwand: ein loses Ende wird nachgefordert', TESTS_P19],
+  ['src/geschichte/mini-arten.ts', "if ((p.nach ?? []).includes(p.von ?? '')) fehler(", "if (false) fehler(", 'Pinnwand: kein Faden zum selben Zettel', TESTS_P19],
+  ['werkzeuge/geschichte.mjs', "if (q >= v.nr) c.fehler(", "if (false) c.fehler(", 'Übersetzer: ein Echo klingt erst nach der Antwort der Quelle', TESTS_P19],
+  ['werkzeuge/geschichte.mjs', "if (v.zeile !== undefined && v.zeile.kurzfassung &&", "if (false && v.zeile.kurzfassung &&", 'Übersetzer: Echo-Zeile in der Kurzfassung nur mit gespielter Quelle', TESTS_P19],
+  ['werkzeuge/geschichte.mjs', "/mitgeteilt|vollständig|", "/vollständig|", 'Übersetzer: im Buch steht „mitgeteilt“ nicht', TESTS_P19],
+  ['werkzeuge/geschichte.mjs', "if (o.art === 'vermerk' && !niemand) c.fehler(", "if (false) c.fehler(", 'Übersetzer: ein Vermerk entscheidet niemand', TESTS_P19],
+  ['werkzeuge/geschichte.mjs', "if (weg > 0 && !inKurz) c.fehler(fo,", "if (false) c.fehler(fo,", 'Übersetzer: „kurzfassung: nein“ nur in Stationen der Kurzfassung', TESTS_P19],
+  ['werkzeuge/geschichte.mjs', "else if (woerter(ersatz) >= woerter(langRoh))", "else if (false)", 'Übersetzer: …-kurz kürzer als der lange Text', TESTS_P19],
+  ['werkzeuge/geschichte.mjs', "if (woerter(t) > VERTIEFUNG_ABSATZ_MAX)", "if (woerter(t) >= VERTIEFUNG_ABSATZ_MAX)", 'Übersetzer: Vertiefung, 60 Wörter je Absatz sind erlaubt', TESTS_P19],
+  ['werkzeuge/geschichte.mjs', "if (woerter(t) > VERTIEFUNG_ABSATZ_MAX)", "if (woerter(t) > VERTIEFUNG_ABSATZ_MAX + 5)", 'Übersetzer: Vertiefung, höchstens 60 Wörter je Absatz', TESTS_P19],
+  ['werkzeuge/geschichte.mjs', "if (r.echos.length > ECHOS_MAX)", "if (r.echos.length >= ECHOS_MAX)", 'Übersetzer: zehn Echos sind erlaubt', TESTS_P19],
+  ['werkzeuge/geschichte.mjs', "else if (stelle === 'vor-vergleich' && !hatVergleich)", "else if (false)", 'Übersetzer: Mini vor dem Vergleich nur mit Vergleich', TESTS_P19],
+  ['werkzeuge/lesezeit.mjs', "if (s !== gut) varianten.push(zaehle(s, sch));", "if (false) varianten.push(zaehle(s, sch));", 'Lesezeit: die obere Schranke zählt die längste Echo-Fassung', TESTS_P19],
+  ['src/ui/flaechen/geschichte-buch.ts', "o.gesehen !== undefined && !o.gesehen.has(s.k.id);", "o.gesehen !== undefined;", 'Buch: „neu“ nur für Einträge, die beim letzten Öffnen fehlten', TESTS_P19],
+  ['src/ui/flaechen/geschichte.ts', "const buchNeu = (): boolean => !buchOffen && buchEintraege", "const buchNeu = (): boolean => buchEintraege", 'Buch: geöffnet trägt das Symbol keinen Punkt', TESTS_P19],
+  ['src/ui/flaechen/geschichte.ts', "const mitDahinter = endetStation(k, stand.kurz, 'frage');", "const mitDahinter = k.mini === null || stand.kurz;", 'Station: „Dahinter“ am Ende der Station, auch bei Mini vor der Frage', TESTS_P19],
+  ['src/ui/flaechen/geschichte.ts', "if (k.vertiefung === undefined || o.stand.kurz || !o.bedienbar) return null;", "if (k.vertiefung === undefined || !o.bedienbar) return null;", 'Vertiefung: nie in der Kurzfassung', TESTS_P19],
+  ['src/ui/flaechen/geschichte.ts', "if (k.vertiefung === undefined || o.stand.kurz || !o.bedienbar) return null;", "if (k.vertiefung === undefined || o.stand.kurz) return null;", 'Vertiefung: nicht auf der Leinwand', TESTS_P19],
+  ['src/ui/flaechen/geschichte.ts', "aktiv === 'mini-pruefen' ? 'mini-schluss' : aktiv", "aktiv", 'Bericht: nach der Prüfung geht der Fokus zum Schlusssatz', TESTS_P19],
+  ['src/ui/flaechen/geschichte-mini.ts', "h('b', null, lage === 'richtig' ? [sym('haken'), w.miniStimmt] : w.miniNichtGanz)", "h('b', null, lage === 'richtig' ? [sym('haken'), w.miniStimmt] : w.miniStimmt)", 'Mini: „Nicht ganz.“ bei falscher Wahl', TESTS_P19],
+  ['src/ui/flaechen/geschichte-mini.ts', "return aus.fertig && m.schlussHtml !== undefined ?", "return m.schlussHtml !== undefined ?", 'Mini: Schlusssatz erst nach Abschluss der Aufgabe', TESTS_P19],
+  ['src/ui/flaechen/geschichte-mini.ts', "const faden = gewaehlt >= 0 ? p.loesung : 'offen';", "const faden = gewaehlt >= 0 ? m.wahlen[gewaehlt]?.id ?? 'offen' : 'offen';", 'Pinnwand: der Faden zeigt die Lösung, nicht die Wahl', TESTS_P19],
+  ['src/ui/flaechen/geschichte-mini.ts', "const gesperrt = antworten.length >= kontingent;", "const gesperrt = false;", 'Rückfragen: die übrigen Gespräche sind gesperrt', TESTS_P19],
+  ['src/grafik/verlauf.ts', "if (w === null) { aktuell = null; return; }", "if (w === null) { return; }", 'Verlaufsband: bei „offen“ reißt die Linie ab', TESTS_P19],
+  ['src/grafik/verlauf.ts', "r.hohl?.[i] === true ? ' vb-punkt-hohl' : ''", "''", 'Verlaufsband: hohle Punkte für nur Erzähltes', TESTS_P19],
+  ['src/regie/regie.ts', "if (neu.buch === true && (neu.bereich !== 'story' || !gleicherSchritt(", "if (false && (neu.bereich !== 'story' || !gleicherSchritt(", 'Regie: das Buch auf der Leinwand gilt nur für den Schritt', TESTS_P19],
+  ['src/regie/buehne.ts', "r['buch'] === true && r['bereich'] === 'story'", "r['buch'] === true", 'Bühnenstand: das Buch nur im Bereich Story', TESTS_P19],
+  ['src/regie/leinwand.ts', "const buch = b.buch === true && (g.buch?.length ?? 0) > 0;", "const buch = b.buch === true;", 'Leinwand: ohne Buch in der Story kein Buch', TESTS_P19],
 ];
 
 function testsRot(tests = TESTS) {
@@ -171,7 +229,7 @@ export function probe() {
 }
 
 if (istHauptmodul(import.meta.url)) {
-  const vorher = spawnSync(process.execPath, ['--test', '--test-reporter=dot', ...TESTS, ...TESTS_AUTOMAT, ...TESTS_WERKZEUGE, ...TESTS_AKTE, ...TESTS_UEBERSETZER, ...TESTS_CAMPUS, ...TESTS_LESEZEIT], { cwd: WURZEL, encoding: 'utf8' });
+  const vorher = spawnSync(process.execPath, ['--test', '--test-reporter=dot', ...TESTS, ...TESTS_AUTOMAT, ...TESTS_WERKZEUGE, ...TESTS_AKTE, ...TESTS_UEBERSETZER, ...TESTS_CAMPUS, ...TESTS_LESEZEIT, ...TESTS_P19], { cwd: WURZEL, encoding: 'utf8' });
   if (vorher.status !== 0) {
     console.log('mutanten: Die Engine- oder Werkzeug-Tests sind schon ohne Mutation rot – erst reparieren.');
     process.exitCode = 1;

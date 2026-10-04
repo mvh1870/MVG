@@ -12,7 +12,7 @@
 
 import type { GeschichteRegie, OeffentlicheInhalte, RegieEintrag } from '../inhalte/typen.ts';
 import {
-  abgestimmteGewichte, akt as aktVonId, gewichte, kapitel, letzteStation, miniVonVorn, neuerStand, schritte, schrittIndex, setzeAbgestimmt,
+  abgestimmteGewichte, akt as aktVonId, gewichte, gleicherSchritt, kapitel, letzteStation, miniVonVorn, neuerStand, schritte, schrittIndex, setzeAbgestimmt,
   setzeGewicht, setzeKurz, STUFEN_GEWICHT, teileVon, vergleichLage, waehle, werteMiniAus, weiter, zurueck, type Schritt, type Stand,
 } from '../geschichte/engine.ts';
 import type { Geschichte, Kapitel, Mini } from '../geschichte/typen.ts';
@@ -172,6 +172,12 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
   const kurzKnopf = h('button', { type: 'button', class: 'regie-chip', 'aria-pressed': 'false', 'data-pruef': 'regie-kurz', onclick: () => {
     if (g !== null) setze({ ...buehne, story: setzeKurz(g, buehne.story, !buehne.story.kurz) });
   } }, W.geschichte.kurzfassung);
+  // P19.4: das Entscheidungsbuch auf der Leinwand zeigen (nur ein Schalter; das Buch zeichnet die Leinwand aus dem Stand, ohne Antwort und ohne Wertung)
+  const buchKnopf = h('button', { type: 'button', class: 'regie-chip', 'aria-pressed': 'false', 'data-pruef': 'regie-buch', onclick: () => {
+    if (g === null) return;
+    const { buch: _alt, ...rest } = buehne;
+    setze(buehne.buch === true ? { ...rest, bereich: 'story' } : { ...rest, bereich: 'story', buch: true });
+  } }, sym('buch'), w.buchZeigen);
   const neuKnopf = h('button', { type: 'button', class: 'regie-chip', 'data-pruef': 'regie-neustart', onclick: () => setze({ ...buehne, bereich: 'story', story: neuerStand(buehne.story.kurz) }) }, sym('zurueckspulen'), W.geschichte.vonVorn);
   let rollNr = 0;
   const rolleTafel = (s: -1 | 1): void => {
@@ -189,7 +195,7 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     tafelZeile,
     h('div', { class: 'regie-zeile' }, h('span', { class: 't-label' }, w.bereich), bereiche),
     h('div', { class: 'regie-zeile' },
-      h('label', { for: 'regie-sprung', class: 't-label' }, w.sprung), sprung, kurzKnopf, neuKnopf),
+      h('label', { for: 'regie-sprung', class: 't-label' }, w.sprung), sprung, kurzKnopf, neuKnopf, g !== null && (g.buch?.length ?? 0) > 0 ? buchKnopf : null),
     kapitelKnoepfe,
     teilKnoepfe,
     h('div', { class: 'regie-zeile' },
@@ -500,6 +506,7 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     attr(zurueckKnopf, 'disabled', naechste(buehne, -1) === null);
     for (const b of bereiche) attr(b, 'aria-pressed', b.dataset['bereich'] === buehne.bereich ? 'true' : 'false');
     attr(kurzKnopf, 'aria-pressed', buehne.story.kurz ? 'true' : 'false');
+    attr(buchKnopf, 'aria-pressed', buehne.buch === true ? 'true' : 'false');
     themaWahl.value = buehne.thema ?? '';
     werkzeugWahl.value = werkzeugAus(buehne.werkzeug);
     sprung.value = buehne.bereich === 'story' && g !== null ? schrittWert(buehne.story.schritt) : '';
@@ -510,6 +517,11 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
   };
 
   function setze(neu: Buehne): void {
+    // das Buch auf der Leinwand gilt für den Schritt, an dem die Regie es gezeigt hat (P19.4)
+    if (neu.buch === true && (neu.bereich !== 'story' || !gleicherSchritt(neu.story.schritt, buehne.story.schritt))) {
+      const { buch: _weg, ...ohne } = neu;
+      neu = ohne;
+    }
     buehne = neu;
     speichere();
     zeichne();

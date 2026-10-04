@@ -7,8 +7,8 @@
 import { kipppunkte, rangfolge, spitze, type Gewichte, type Kipppunkt, type Platz } from './mcda.ts';
 import { miniArt, type PostenLage } from './mini-arten.ts';
 import {
-  BALKEN, type Akt, type Antwort, type BalkenId, type BalkenStufe, type BilanzSicht, type BilanzTyp, type Geschichte, type Kapitel, type Mini,
-  type Vergleich, type VergleichOption,
+  BALKEN, type Akt, type Antwort, type BalkenId, type BalkenStufe, type BilanzSicht, type BilanzTyp, type BuchEintrag, type EchoDef, type Geschichte,
+  type Kapitel, type Mini, type MiniStelle, type Vergleich, type VergleichOption, type Wertung, type Zeile,
 } from './typen.ts';
 
 export type Teil = 'szene' | 'vergleich' | 'frage' | 'mini';
@@ -61,14 +61,39 @@ export function kapitel(g: Geschichte, id: string): Kapitel | null {
   return g.kapitel.find((k) => k.id === id) ?? null;
 }
 
-/** Teile eines Kapitels: Szene, (Vergleich), Frage, (Mini-Aufgabe – nicht in der Kurzfassung). */
+/** Platz der Mini-Aufgabe im Ablauf der Station (P19.5); ohne Angabe nach der Folge, wie bisher. */
+export function miniStelle(m: Mini): MiniStelle {
+  return m.stelle ?? 'nach-folge';
+}
+
+/**
+ * Teile eines Kapitels: Szene, (Mini-Aufgabe vor dem Vergleich), (Vergleich), (Mini-Aufgabe vor der Frage), Frage, (Mini-Aufgabe nach
+ * der Folge – Vorgabe). Die Kurzfassung hat keine Mini-Aufgabe. P19.5: der Platz der Mini-Aufgabe steht in `Mini.stelle`.
+ */
 export function teileVon(k: Kapitel, kurz: boolean): Teil[] {
   const aus: Teil[] = ['szene'];
+  const mini = k.mini !== null && !kurz ? miniStelle(k.mini) : null;
+  if (mini === 'vor-vergleich') aus.push('mini');
   if (k.vergleich !== null) aus.push('vergleich');
+  if (mini === 'vor-frage') aus.push('mini');
   aus.push('frage');
-  if (k.mini !== null && !kurz) aus.push('mini');
+  if (mini === 'nach-folge') aus.push('mini');
   return aus;
 }
+
+/** Ob dieser Teil das Ende der Station ist (dort stehen „Das steckt dahinter“ und die Vertiefung). */
+export function endetStation(k: Kapitel, kurz: boolean, teil: Teil): boolean {
+  return teileVon(k, kurz).at(-1) === teil;
+}
+
+/* ------------------------------------------------- Texte der Kurzfassung (P19.5) -- */
+
+/** Folge der Antwort auf diesem Weg: die Kurzfassung nimmt `folgeKurzHtml`, wo es sie gibt. */
+export const folgeHtmlFuer = (stand: Stand, a: Antwort): string => (stand.kurz ? a.folgeKurzHtml ?? a.folgeHtml : a.folgeHtml);
+/** „So macht man es gut“ auf diesem Weg. */
+export const gutHtmlFuer = (stand: Stand, k: Kapitel): string => (stand.kurz ? k.gutKurzHtml ?? k.gutHtml : k.gutHtml);
+/** „Das steckt dahinter“ auf diesem Weg. */
+export const dahinterHtmlFuer = (stand: Stand, k: Kapitel): string => (stand.kurz ? k.dahinterKurzHtml ?? k.dahinterHtml : k.dahinterHtml);
 
 /* ------------------------------------------------------------------- Akte -- */
 
@@ -267,6 +292,10 @@ export interface VerlaufPunkt {
   /** Kennung der Station; null am Start */
   id: string | null;
   balken: Balkenstand;
+  /** P19.4: auf dem Weg ohne Antwort (der Stand ist der der Station davor) */
+  offen?: boolean;
+  /** P19.4: in der Kurzfassung nur erzählt (zählt wie die gute Antwort; die Zeichnung setzt einen hohlen Punkt) */
+  erzaehlt?: boolean;
 }
 
 /**
@@ -275,7 +304,14 @@ export interface VerlaufPunkt {
  */
 export function verlaufBis(g: Geschichte, stand: Stand, bisNr: number): VerlaufPunkt[] {
   const aus: VerlaufPunkt[] = [{ nr: 0, id: null, balken: startBalken(g) }];
-  for (const k of g.kapitel) if (k.nr <= bisNr) aus.push({ nr: k.nr, id: k.id, balken: balkenBis(g, stand, k.nr) });
+  for (const k of g.kapitel) {
+    if (k.nr > bisNr) continue;
+    const erzaehlt = stand.kurz && !k.kurzfassung;
+    const p: VerlaufPunkt = { nr: k.nr, id: k.id, balken: balkenBis(g, stand, k.nr) };
+    if (erzaehlt) p.erzaehlt = true;
+    else if (stand.wahlen[k.id] === undefined) p.offen = true;
+    aus.push(p);
+  }
   return aus;
 }
 
@@ -425,8 +461,10 @@ export function miniVonVorn(stand: Stand, kapitelId: string): Stand {
 }
 
 export function werteMiniAus(m: Mini, antworten: readonly number[] | undefined): MiniAuswertung {
-  const je = miniArt(m.art)?.werte(m, antworten ?? []) ?? m.posten.map((): PostenLage => 'offen');
-  return { je, richtig: je.filter((x) => x === 'richtig').length, fertig: je.every((x) => x !== 'offen') };
+  const def = miniArt(m.art);
+  const je = def?.werte(m, antworten ?? []) ?? m.posten.map((): PostenLage => 'offen');
+  // P19.5: eine Art kann „fertig“ selbst festlegen (Rückfragen: das Kontingent ist genutzt); sonst hat jeder Posten eine Lage
+  return { je, richtig: je.filter((x) => x === 'richtig').length, fertig: def?.fertig !== undefined ? def.fertig(m, antworten ?? []) : je.every((x) => x !== 'offen') };
 }
 
 /* --------------------------------------------------------------- Vergleich -- */
@@ -481,6 +519,102 @@ export function vergleichLage(v: Vergleich, gew: Gewichte): VergleichLage {
   const plaetze = rangfolge(v.optionen, v.kriterien, gew);
   const vorn = spitze(v.optionen, v.kriterien, gew);
   return { plaetze, vorn, satz: vorn.length === 1 ? (vorn[0] ?? 'gleichauf') : 'gleichauf', kipp: kipppunkte(v.optionen, v.kriterien, gew, STUFEN_GEWICHT) };
+}
+
+
+/* ---------------------------------------------------------- Gedächtnis: Echos (P19.4) -- */
+
+/** Höchstzahl der Echos einer Geschichte (Gerüst Abschnitt 4: jeder Weg zeigt höchstens zehn Zeilen). */
+export const ECHOS_MAX = 10;
+
+export function echoDef(g: Geschichte, id: string): EchoDef | null {
+  return (g.echos ?? []).find((e) => e.id === id) ?? null;
+}
+
+/**
+ * Fassung eines Echos auf diesem Weg: die Wertung der gespielten Antwort in der Quelle. Fehlt die Antwort – Sprung, Kurzfassung
+ * ohne die Station, Brücke –, gilt „gut“ (in der Kurzfassung zählt eine übersprungene Station ohnehin wie die gute Antwort). Das Echo
+ * liest nur den Stand; es ändert keinen Balken und keine Bilanz.
+ */
+export function echoWertung(g: Geschichte, stand: Stand, e: EchoDef): Wertung {
+  const k = kapitel(g, e.quelle);
+  return (k === null ? null : gewaehlteAntwort(stand, k))?.wertung ?? 'gut';
+}
+
+/** Inline-HTML der Fassung dieses Echos auf diesem Weg; null = unbekanntes Echo. */
+export function echoHtml(g: Geschichte, stand: Stand, id: string): string | null {
+  const e = echoDef(g, id);
+  return e === null ? null : e.fassungen[echoWertung(g, stand, e)];
+}
+
+/** Platzhalter eines Echos im Fließtext einer Folge oder eines Einstiegs: `{echo: E1}`. */
+export const ECHO_PLATZHALTER = /\{echo:\s*([A-Za-z][A-Za-z0-9-]*)\s*\}/gu;
+
+/** Setzt die Echos eines Textes ein; ein unbekanntes Echo fällt weg (der Übersetzer lässt es nicht zu). */
+export function loeseEchos(g: Geschichte, stand: Stand, html: string): string {
+  return html.replace(ECHO_PLATZHALTER, (_ganz, id: string) => echoHtml(g, stand, id) ?? '');
+}
+
+/**
+ * Eine Zeile der Szene auf diesem Weg: eine Echo-Zeile bekommt die Fassung nach der Antwort der Quelle plus ihre feste Fortsetzung
+ * (Kurzfassung: `fortsetzungKurzHtml`, sonst `fortsetzungHtml`); jede andere Zeile bleibt, wie sie ist (dasselbe Objekt).
+ */
+export function loeseZeile(g: Geschichte, stand: Stand, z: Zeile): Zeile {
+  if (z.echo === undefined) return z;
+  const fassung = echoHtml(g, stand, z.echo);
+  if (fassung === null) return z;
+  const rest = stand.kurz ? z.fortsetzungKurzHtml ?? z.fortsetzungHtml : z.fortsetzungHtml;
+  return { ...z, html: rest !== undefined && rest !== '' ? `${fassung} ${rest}` : fassung };
+}
+
+/* --------------------------------------------------- Entscheidungsbuch (P19.4) -- */
+
+/** Ein sichtbarer Eintrag des Buchs: `voll` = Kopf und vier Zeilen; sonst (Kurzfassung, übersprungene Station) nur Art und Ergebnis. */
+export interface BuchSicht {
+  eintrag: BuchEintrag;
+  k: Kapitel;
+  voll: boolean;
+}
+
+/**
+ * Die Einträge, die das Buch jetzt zeigt, in der Reihenfolge der Stationen. Das Buch wächst nach jeder Folge: Ein Eintrag steht da,
+ * sobald die Station auf dem Weg gespielt ist (Antwort gewählt) und die Leserin oder der Leser nicht vor ihr steht; er ist für
+ * alle Wege gleich und nennt nie die Antwort. Die Kurzfassung zeigt gespielte Stationen voll und für jede übersprungene Station
+ * eine Zeile, sobald deren Brückenkarte gezeigt wurde (am nächsten gespielten Schritt: Szene der nächsten gespielten Station oder
+ * Ende).
+ */
+export function buchEintraege(g: Geschichte, stand: Stand): BuchSicht[] {
+  const buch = g.buch ?? [];
+  if (buch.length === 0) return [];
+  const bisNr = nrAmSchritt(g, stand.schritt);
+  const aus: BuchSicht[] = [];
+  for (const k of g.kapitel) {
+    const eintrag = buch.find((e) => e.station === k.id);
+    if (eintrag === undefined || k.nr > bisNr) continue;
+    if (stand.kurz && !k.kurzfassung) {
+      if (brueckeGezeigt(g, stand, k)) aus.push({ eintrag, k, voll: false });
+    } else if (stand.wahlen[k.id] !== undefined) aus.push({ eintrag, k, voll: true });
+  }
+  return aus;
+}
+
+/** Ob die Brückenkarte einer übersprungenen Station in der Kurzfassung schon gezeigt wurde. */
+function brueckeGezeigt(g: Geschichte, stand: Stand, k: Kapitel): boolean {
+  const weg = schritte(g, true);
+  const naechste = wegKapitel(g, true).find((x) => x.nr > k.nr);
+  const ziel: Schritt = naechste === undefined ? { ort: 'ende' } : { ort: 'kapitel', kapitel: naechste.id, teil: 'szene' };
+  const iZiel = weg.findIndex((sch) => gleicherSchritt(sch, ziel));
+  const iHier = weg.findIndex((sch) => gleicherSchritt(sch, stand.schritt));
+  return iZiel >= 0 && iHier >= iZiel;
+}
+
+/** Ob das Symbol des Buchs erreichbar ist: es gibt ein Buch und Station 1 ist abgeschlossen (eine Antwort oder weiter darüber hinaus). */
+export function buchZugang(g: Geschichte, stand: Stand): boolean {
+  if ((g.buch ?? []).length === 0) return false;
+  const erste = g.kapitel[0];
+  if (erste === undefined) return false;
+  const stelle = nrAmSchritt(g, stand.schritt);
+  return stelle > erste.nr || (stelle === erste.nr && stand.wahlen[erste.id] !== undefined);
 }
 
 /* -------------------------------------------------------------- Speichern -- */

@@ -123,8 +123,8 @@ async function umgebung(o) {
 /**
  * Obere Schranke der Lesezeit (P19.3): je Schritt der längste Text, den irgendeine Antwort ergibt – an jeder Station je Antwort
  * (die anderen gut), bei Mini-Aufgaben gelöst und ungelöst, am Ende der längste der drei einheitlichen Wege (alles gut ·
- * vertretbar · Falle). Der Weg ist der ganze Weg; Auftakt zählt zum ersten, Ende zum letzten Akt. Spätere Gedächtnis-Echos
- * (P19.4) hängen an früheren Antworten – dann kommt der Zustandsautomat der Tests für die längste Variante dazu.
+ * vertretbar · Falle). Der Weg ist der ganze Weg; Auftakt zählt zum ersten, Ende zum letzten Akt. P19.4: Gedächtnis-Echos hängen an
+ * früheren Antworten – je Schritt zählt zusätzlich die längste Fassung (alle Quellen mit derselben Wertung, drei Läufe).
  * @param {{ g?: any, themaTitel?: (id: string) => string | null, werkzeugTitel?: (id: string) => string | null, lesezeit?: any }} [o]
  * @returns {Promise<{ woerter: number, minuten: number, akte: { id: string, woerter: number, minuten: number }[] }>}
  */
@@ -161,6 +161,18 @@ export async function messeSchranke(o = {}) {
     } else if (sch.ort === 'ende') {
       for (const w of ['gut', 'vertretbar', 'falle']) varianten.push(zaehle(stand((k) => platzVon(k, w)), sch));
     } else varianten.push(zaehle(gut, sch));
+    // P19.4: Echos hängen an früheren Antworten – jede Fassung nach der Wertung ALLER Quellen (alle drei gleich, die übrigen Stationen gut)
+    // ergibt für diesen Schritt eine Variante; die längste zählt
+    if (sch.ort === 'kapitel' || sch.ort === 'ende') {
+      for (const w of ['gut', 'vertretbar', 'falle']) {
+        let s = gut;
+        for (const e of g.echos ?? []) {
+          const q = engine.kapitel(g, e.quelle);
+          if (q !== null) s = engine.waehle(g, s, q.id, platzVon(q, w));
+        }
+        if (s !== gut) varianten.push(zaehle(s, sch));
+      }
+    }
     je.set(kennung, Math.max(...varianten));
   }
   const alle = engine.akteVon(g);

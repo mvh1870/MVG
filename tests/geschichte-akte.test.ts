@@ -285,13 +285,14 @@ test('Pause: Zwischenbilanz mit Balken und Verlaufsband, „Das können Sie jetz
   assert.ok(svg);
   assert.equal(svg.querySelectorAll('polyline').length, 3);
   assert.equal(svg.querySelectorAll('circle.vb-geld').length, 6, 'Start und fünf Stationen');
+  assert.equal(text(el.querySelector('[data-pruef="gs-verlauf"] .gs-verlauf-kopf') as Element), 'Ihr Weg bis hier');
   assert.deepEqual([...el.querySelectorAll('[data-pruef="gs-koennen-a1"] li')].map(text), ['Sie können Eins von Akt 1.', 'Sie können Zwei von Akt 1.', 'Sie können Drei von Akt 1.']);
   assert.equal(text(el.querySelector('[data-pruef="gs-koennen-a1"] h2') as Element), 'Das können Sie jetzt');
   assert.match(text(el), /Pause nach Akt 1\./u, 'Zeile der Bürgermeisterin');
-  // Textfassung des Verlaufs: eine Zeile je Punkt, in Worten
-  const zeilen = el.querySelectorAll('[data-pruef="gs-verlauf-worte"] tbody tr');
-  assert.equal(zeilen.length, 6);
-  assert.match(text(zeilen[0] as Element), /Start.*gut gefüllt|Start.*hoch/u);
+  // Textfassung des Verlaufs (P19.4): je Station eine Zeile in den Wörtern der Folge, mit dem Stand in Streifen-Wörtern
+  const zeilen = el.querySelectorAll('[data-pruef="gs-verlauf-worte"] .gs-verlauf-liste > li');
+  assert.equal(zeilen.length, 5, 'je Station eine Zeile');
+  assert.match(text(zeilen[0] as Element), /^1 · Station 1: Geld .*Zeit .*Vertrauen .*\. Geld (gut gefüllt|etwa halb voll|knapp) · Zeit /u);
   assert.doesNotMatch(text(el.querySelector('[data-pruef="gs-verlauf"]') as Element), /(Geld|Zeit|Vertrauen):? \d/u, 'Verlauf ohne Zahlen');
   const weiter = el.querySelector<HTMLElement>('[data-pruef="pause-weiter"]');
   assert.ok(weiter);

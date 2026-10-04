@@ -72,6 +72,39 @@ export interface Zeile {
   html: string;
   /** false = die Kurzfassung lässt die Zeile weg (P17.5); auf dem ganzen Weg steht sie immer */
   kurzfassung: boolean;
+  /**
+   * Echo-Zeile (P19.4, O-62): Kennung eines Echos aus `Geschichte.echos`. Die Engine setzt die Fassung nach der gespielten
+   * Antwort der Quelle ein (`loeseZeile`); `html` hält die Fassung „gut“ samt Fortsetzung als Vorgabe für alles, was keinen Stand kennt.
+   */
+  echo?: string;
+  /** feste Fortsetzung hinter dem Echo (ganzer Weg) und – wo sie abweicht – in der Kurzfassung */
+  fortsetzungHtml?: string;
+  fortsetzungKurzHtml?: string;
+}
+
+/** Echo (P19.4): eine Zeile in drei Fassungen, je nach Antwort in der Quelle; ändert nur Ton und Wortlaut, nie eine Tatsache oder einen Balken. */
+export interface EchoDef {
+  id: string;
+  /** Station, deren gespielte Antwort die Fassung wählt; fehlt die Antwort (Sprung, Kurzfassung ohne die Station), gilt „gut“ */
+  quelle: string;
+  /** Inline-HTML je Fassung; die Wertung wird nie genannt */
+  fassungen: Record<Wertung, string>;
+}
+
+/** Art eines Eintrags im Entscheidungsbuch (P19.4): Beschluss · Vermerk (kein Beschluss) · Übergabe · beides am Ende */
+export type BuchArt = 'beschluss' | 'vermerk' | 'uebergabe' | 'beschluss-uebergabe';
+export const BUCH_ARTEN: readonly BuchArt[] = ['beschluss', 'vermerk', 'uebergabe', 'beschluss-uebergabe'];
+
+/**
+ * Eintrag im Entscheidungsbuch (P19.4): für alle Wege gleich – er nennt den Beschluss der Stadt, nie die Antwort der Leserin oder
+ * des Lesers. Der Anlass ist der Monat der Station (`Kapitel.zeit`), kein Beschlussdatum.
+ */
+export interface BuchEintrag {
+  station: string;
+  art: BuchArt;
+  entschiedenHtml: string;
+  grundlageHtml: string;
+  ergebnisHtml: string;
 }
 
 export interface Antwort {
@@ -79,11 +112,28 @@ export interface Antwort {
   html: string;
   wirkung: Wirkung;
   folgeHtml: string;
+  /** Folge der Kurzfassung (P19.5): ohne die Absätze mit `kurzfassung: nein` bzw. der Ersatz `folge-kurz`; fehlt = überall `folgeHtml` */
+  folgeKurzHtml?: string;
   /** Name einer kleinen Szenen-Grafik (src/grafik/figuren.ts, `gimmick`) */
   bild: string | null;
 }
 
-export type MiniArt = 'zuordnen' | 'reihenfolge';
+/**
+ * Arten der Mini-Aufgaben (Mini-Registry, `mini-arten.ts`). P19.5: `matrix` (Stimmt die Einstufung?), `mappe` (Fehlt etwas in der
+ * Mappe?), `pinnwand` (Stimmen die Verknüpfungen?), `bericht` (Was fehlt im Bericht?), `rueckfragen` (Wer weiß was?). Der Muss-Filter
+ * und „Beschluss oder nicht?“ sind Spielarten von `zuordnen`.
+ */
+export type MiniArt = 'zuordnen' | 'reihenfolge' | 'matrix' | 'mappe' | 'pinnwand' | 'bericht' | 'rueckfragen';
+
+/** Wo die Mini-Aufgabe im Ablauf einer Station steht (P19.5): nach der Folge (Vorgabe), vor der Frage oder vor dem Vergleich */
+export type MiniStelle = 'nach-folge' | 'vor-frage' | 'vor-vergleich';
+export const MINI_STELLEN: readonly MiniStelle[] = ['nach-folge', 'vor-frage', 'vor-vergleich'];
+
+/** Eine Zeile eines Gesprächs (`rueckfragen`): wer spricht (Name oder Rolle, frei) und was */
+export interface GespraechsZeile {
+  wer: string;
+  html: string;
+}
 
 export interface MiniPosten {
   html: string;
@@ -92,6 +142,13 @@ export interface MiniPosten {
   erklaerungHtml: string;
   /** kleine Grafik auf der Karte (Name für `gimmick`) */
   bild: string | null;
+  /** matrix: Feld der Matrix – Wahrscheinlichkeit und Auswirkung je 1–5; nur für die Zeichnung, nie als Zahl sichtbar */
+  feld?: [number, number];
+  /** pinnwand: Zettel, von dem der Faden ausgeht, und Zettel, zu denen er führt (leer = loses Ende) */
+  von?: string;
+  nach?: string[];
+  /** rueckfragen: das Gespräch, das nach der Wahl erscheint */
+  gespraech?: GespraechsZeile[];
 }
 
 export interface MiniWahl {
@@ -116,6 +173,26 @@ export interface Mini {
   /** nur zuordnen: die Möglichkeiten je Posten */
   wahlen: MiniWahl[];
   posten: MiniPosten[];
+  /** Platz im Ablauf der Station (P19.5); fehlt = nach der Folge, wie bisher */
+  stelle?: MiniStelle;
+  /** Schlusssatz nach der Aufgabe (P19.5), aus den Lösungen, nie aus den Wahlen; fehlt = keiner */
+  schlussHtml?: string;
+  /** pinnwand: die Zettel der Wand */
+  zettel?: { id: string; html: string }[];
+  /** rueckfragen: wie viele Gespräche die Leserin oder der Leser führen darf */
+  kontingent?: number;
+}
+
+/** Vertiefung am Ende einer Station (P19.5): zugeklappt, nur auf dem ganzen Weg, nicht im Druck, nicht auf der Leinwand */
+export type VertiefungForm = 'nachdenken' | 'zweiter-fall' | 'warum-so';
+export const VERTIEFUNG_FORMEN: readonly VertiefungForm[] = ['nachdenken', 'zweiter-fall', 'warum-so'];
+export interface Vertiefung {
+  form: VertiefungForm;
+  titel: string;
+  /** Absätze (Inline-HTML); bei „Zum Nachdenken“ und „Ein zweiter Fall“ stehen hier die Frage bzw. der Fall */
+  absaetzeHtml: string[];
+  /** nur „Zum Nachdenken“ und „Ein zweiter Fall“: Absätze hinter dem Aufklapper „Antwort“ */
+  antwortHtml?: string[];
 }
 
 export interface VergleichKriterium {
@@ -183,6 +260,11 @@ export interface Kapitel {
   antworten: Antwort[];
   gutHtml: string;
   dahinterHtml: string;
+  /** „So macht man es gut“ bzw. „Das steckt dahinter“ in der Kurzfassung (P19.5): ohne Absätze mit `kurzfassung: nein` bzw. der Ersatz `…-kurz` */
+  gutKurzHtml?: string;
+  dahinterKurzHtml?: string;
+  /** Vertiefung am Ende der Station (P19.5), nur auf dem ganzen Weg */
+  vertiefung?: Vertiefung;
   /** nach der Folge das Kärtchen „Wer entscheidet was“ zeigen (Kapitel 1) */
   mandatNachFolge: boolean;
   mini: Mini | null;
@@ -240,6 +322,10 @@ export interface Geschichte {
   kapitel: Kapitel[];
   /** Akte; leer = die Story hat keine Akte und verhält sich wie bisher */
   akte: Akt[];
+  /** Echos (P19.4); fehlt = keine Zeile der Story hängt an einer früheren Antwort */
+  echos?: EchoDef[];
+  /** Entscheidungsbuch (P19.4): ein Eintrag je Station; fehlt = die Story hat kein Buch */
+  buch?: BuchEintrag[];
   ende: Ende;
 }
 

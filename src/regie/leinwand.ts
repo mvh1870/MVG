@@ -16,6 +16,7 @@ import { baueTheorie, themaTitel, themen, zeigeAktuellenEintrag } from '../ui/fl
 import { baueExplore, WERKZEUGE } from '../ui/flaechen/explore.ts';
 import { beispielKennungen } from '../ui/werkzeug-kennungen.ts';
 import { baueSchritt, leisteOben } from '../ui/flaechen/geschichte.ts';
+import { buchSeite } from '../ui/flaechen/geschichte-buch.ts';
 import { seitenRahmen } from '../ui/bausteine/seite.ts';
 import { W } from '../ui/woerter.ts';
 
@@ -32,13 +33,15 @@ export function storyAnzeige(inhalte: OeffentlicheInhalte, b: Buehne): HTMLEleme
   const g = inhalte.geschichte;
   if (g === null) return h('div');
   const stand = b.story;
+  // P19.4: auf Wunsch der Regie das Entscheidungsbuch statt des Schritts – dieselbe Seite ohne Bedienung, ohne „neu“, ohne Antwort
+  const buch = b.buch === true && (g.buch?.length ?? 0) > 0;
   return seitenRahmen({
     bereich: 'story',
     klasse: 'seite-story',
     bedienbar: false,
     inhalt: [
       h('div', { class: 'gs-leiste' }, ...leisteOben(g, stand, false, () => undefined)),
-      h('div', { class: 'gs-buehne' }, baueSchritt({ g, stand, bedienbar: false, themaTitel: (id) => themaTitel(inhalte, id), tue: () => undefined })),
+      h('div', { class: 'gs-buehne' }, buch ? buchSeite(g, stand) : baueSchritt({ g, stand, bedienbar: false, themaTitel: (id) => themaTitel(inhalte, id), tue: () => undefined })),
     ],
   });
 }
@@ -94,7 +97,8 @@ export function erzeugeAnzeige(inhalte: OeffentlicheInhalte, version: string, ei
       const neu = JSON.stringify(b);
       if (neu === schluessel) return;
       const alt = schluessel !== '' ? JSON.parse(schluessel) as Buehne : null;
-      const gleicherOrt = alt !== null && alt.bereich === b.bereich && alt.thema === b.thema && alt.werkzeug === b.werkzeug && JSON.stringify(alt.story.schritt) === JSON.stringify(b.story.schritt);
+      const gleicherOrt = alt !== null && alt.bereich === b.bereich && alt.thema === b.thema && alt.werkzeug === b.werkzeug && JSON.stringify(alt.story.schritt) === JSON.stringify(b.story.schritt)
+        && (alt.buch === true) === (b.buch === true);
       // P17.6: eine neue Wahl an der Frage – die Leinwand rollt zur Folge (wie die Fläche), damit die Runde sie sieht
       const s = b.story.schritt;
       const neueWahl = gleicherOrt && b.bereich === 'story' && s.ort === 'kapitel' && s.teil === 'frage'

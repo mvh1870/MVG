@@ -11,6 +11,8 @@ import { sichtbarVerboten } from './sichtbar.mjs';
 import { AKZENTE } from '../src/stil/akzente.ts';
 import { GIMMICKS } from '../src/grafik/figuren.ts';
 import { MINI_ART_KENNUNGEN, miniArt } from '../src/geschichte/mini-arten.ts';
+import { BUCH_ARTEN, MINI_STELLEN, VERTIEFUNG_FORMEN } from '../src/geschichte/typen.ts';
+import { ECHO_PLATZHALTER, ECHOS_MAX } from '../src/geschichte/engine.ts';
 import { pruefeWerkzeugVerweise } from './explore.mjs';
 
 const FIGUREN = ['grundstein', 'faden', 'schwung', 'klingel', 'lot'];
@@ -34,6 +36,14 @@ const BELEG_V24 = /^v24:(?:hb|tlb|va)(?:-[a-z0-9]+(?:\.[0-9]+)*)?$/u;
 
 /** @param {unknown} x */
 const text = (x) => (x === undefined || x === null ? '' : String(x));
+/** Wörter eines Textes (Folgen aus Buchstaben), für die Längenvergleiche der Kurzfassung und der Vertiefung. @param {unknown} t */
+const woerter = (t) => text(t).split(/\s+/u).filter((x) => /\p{L}/u.test(x)).length;
+/** Echo-Kennung: Buchstabe, dann Buchstaben, Ziffern, Bindestrich (E1 … E10) */
+const ECHO_KENNUNG = /^[A-Za-z][A-Za-z0-9-]*$/u;
+/** Absatz der Vertiefung höchstens so viele Wörter (docs/drehbuch-v2/04-rahmen.md 7.4) */
+export const VERTIEFUNG_ABSATZ_MAX = 60;
+/** Wörter, die im Entscheidungsbuch nicht stehen dürfen: Jede Zeile muss auf jedem Weg wahr sein (docs/drehbuch-v2/04-rahmen.md 5.1) */
+const BUCH_VERBOTEN = /mitgeteilt|vollständig|am selben Tag|mit zwei Wegen|mit drei Wegen|Wertung|Punkte|Ihre Antwort|Ihre Wahl/iu;
 
 /**
  * @param {any} c Kompilierer (werkzeuge/inhalte.mjs)
@@ -77,6 +87,14 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
   }
   if (rahmenDatei === undefined) return { geschichte: null, regie: {} };
 
+  /** Kennungen der Echos (P19.4) und ihre Verwendungen (Echo-Zeile, Platzhalter) – geprüft, sobald die Stationen feststehen */
+  /** @type {Set<string>} */
+  const echoIds = new Set();
+  /** @type {Map<string, Record<string, string>>} */
+  const echoFassungen = new Map();
+  /** @type {{ id: string, nr: number, ort: string, zeile?: { kurzfassung: boolean, mitKurz: boolean } }[]} */
+  const echoVerwendungen = [];
+
   /* -------------------------------------------------------------- Helfer -- */
   /** Unbekannte Felder melden; Pflichtfelder prüfen. */
   const form = (/** @type {any} */ o, /** @type {string[]} */ pflicht, /** @type {string[]} */ frei, /** @type {string} */ ort) => {
@@ -85,15 +103,24 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
     for (const k of pflicht) if (o[k] === undefined || o[k] === null || o[k] === '') c.fehler(ort, `Feld „${k}“ fehlt`);
     return o;
   };
-  /** Sichtbarer Text: Sichtbar-Probe, dann Markdown. */
-  const sicht = (/** @type {unknown} */ t, /** @type {string} */ ort) => {
+  /**
+   * Sichtbarer Text: Sichtbar-Probe, dann Markdown. Echo-Platzhalter `{echo: E1}` (P19.4) gibt es nur dort, wo `echoNr` gesetzt ist
+   * (Folge, Einstieg einer Station mit dieser Nummer); jeder nennt ein bekanntes Echo, dessen Quelle früher liegt (Prüfung nach den Stationen).
+   */
+  const sicht = (/** @type {unknown} */ t, /** @type {string} */ ort, /** @type {number | null} */ echoNr = null) => {
     const s = text(t);
     for (const f of sichtbarVerboten(s)) c.fehler(ort, f);
+    for (const m of s.matchAll(ECHO_PLATZHALTER)) {
+      if (echoNr === null) c.fehler(ort, `Echo-Platzhalter „${m[0]}“ nur in „folge“ und „einstieg“ einer Station`);
+      else if (!echoIds.has(m[1] ?? '')) c.fehler(ort, `Echo „${m[1]}“ gibt es nicht (rahmen.yaml, echos)`);
+      else echoVerwendungen.push({ id: m[1] ?? '', nr: echoNr, ort });
+    }
+    if (/\{echo:/u.test(s.replace(ECHO_PLATZHALTER, ''))) c.fehler(ort, 'Echo-Platzhalter unlesbar – erwartet {echo: E1}');
     return s;
   };
-  const html = (/** @type {unknown} */ t, /** @type {string} */ ort) => c.html(sicht(t, ort), ort);
-  const inline = (/** @type {unknown} */ t, /** @type {string} */ ort) => {
-    const s = sicht(t, ort);
+  const html = (/** @type {unknown} */ t, /** @type {string} */ ort, /** @type {number | null} */ echoNr = null) => c.html(sicht(t, ort, echoNr), ort);
+  const inline = (/** @type {unknown} */ t, /** @type {string} */ ort, /** @type {number | null} */ echoNr = null) => {
+    const s = sicht(t, ort, echoNr);
     if (/\n\s*\n/u.test(s.trim())) c.fehler(ort, 'ein Absatz erwartet (keine Leerzeile)');
     return c.inline(s, ort);
   };
@@ -122,15 +149,35 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
     return text(x);
   };
   /** Zeile einer Szene; `kurzfassung: false` (nur in Szenen, `mitKurz`) = die Kurzfassung lässt die Zeile weg (P17.5). */
-  const zeile = (/** @type {any} */ z, /** @type {string} */ ort, mitKurz = false) => {
-    const o = form(z, ['text'], mitKurz ? ['figur', 'zusatz', 'kurzfassung'] : ['figur', 'zusatz'], ort);
+  /**
+   * Zeile einer Szene; `kurzfassung: false` (nur in Szenen, `mitKurz`) = die Kurzfassung lässt die Zeile weg (P17.5). P19.4: statt `text`
+   * eine Echo-Zeile `echo: E7` mit fester `fortsetzung` (und `fortsetzung-kurz`) – nur in Szenen (`echoNr` = Nummer der Station, Ende:
+   * unendlich); `html` hält dann die Fassung „gut“ samt Fortsetzung als Vorgabe.
+   */
+  const zeile = (/** @type {any} */ z, /** @type {string} */ ort, mitKurz = false, /** @type {number | null} */ echoNr = null) => {
+    const hatEcho = typeof z === 'object' && z !== null && z.echo !== undefined;
+    const o = form(z, hatEcho ? [] : ['text'], [...(mitKurz ? ['figur', 'zusatz', 'kurzfassung'] : ['figur', 'zusatz']), ...(hatEcho ? ['echo', 'fortsetzung', 'fortsetzung-kurz'] : [])], ort);
     if (o.figur !== undefined && !FIGUREN.includes(o.figur)) c.fehler(ort, `Figur „${text(o.figur)}“ unbekannt (${FIGUREN.join(', ')})`);
     if (o.kurzfassung !== undefined && typeof o.kurzfassung !== 'boolean') c.fehler(ort, '„kurzfassung“ muss ja oder nein sein');
-    return { figur: o.figur === undefined ? null : text(o.figur), zusatz: o.zusatz === undefined ? null : klar(o.zusatz, ort), html: inline(o.text, ort), kurzfassung: o.kurzfassung !== false };
+    const basis = { figur: o.figur === undefined ? null : text(o.figur), zusatz: o.zusatz === undefined ? null : klar(o.zusatz, ort), kurzfassung: o.kurzfassung !== false };
+    if (!hatEcho) return { figur: basis.figur, zusatz: basis.zusatz, html: inline(o.text, ort), kurzfassung: basis.kurzfassung };
+    const id = text(o.echo);
+    if (echoNr === null) c.fehler(ort, 'Echo-Zeile nur in der Szene einer Station oder des Endes');
+    else if (!echoIds.has(id)) c.fehler(ort, `Echo „${id}“ gibt es nicht (rahmen.yaml, echos)`);
+    else echoVerwendungen.push({ id, nr: echoNr, ort, zeile: { kurzfassung: basis.kurzfassung, mitKurz } });
+    const fort = o.fortsetzung === undefined ? undefined : inline(o.fortsetzung, `${ort} fortsetzung`);
+    const fortKurz = o['fortsetzung-kurz'] === undefined ? undefined : inline(o['fortsetzung-kurz'], `${ort} fortsetzung-kurz`);
+    if (fortKurz !== undefined && fort === undefined) c.fehler(ort, '„fortsetzung-kurz“ ohne „fortsetzung“');
+    const gut = echoFassungen.get(id)?.gut ?? '';
+    return {
+      ...basis, html: fort !== undefined ? `${gut} ${fort}` : gut, echo: id,
+      ...(fort !== undefined ? { fortsetzungHtml: fort } : {}), ...(fortKurz !== undefined ? { fortsetzungKurzHtml: fortKurz } : {}),
+    };
   };
-  const szene = (/** @type {unknown} */ s, /** @type {string} */ ort) => {
+  /** @param {unknown} s @param {string} ort @param {number | null} [echoNr] Nummer der Station, wenn die Szene Echo-Zeilen tragen darf */
+  const szene = (s, ort, echoNr = null) => {
     if (!Array.isArray(s) || s.length === 0) { c.fehler(ort, 'Szene: Liste von Zeilen { figur, text } erwartet'); return []; }
-    return s.map((z, i) => zeile(z, `${ort} Zeile ${i + 1}`, true));
+    return s.map((z, i) => zeile(z, `${ort} Zeile ${i + 1}`, true, echoNr));
   };
   /**
    * Kürzungen der Kurzfassung (P17.5): `einstieg-kurz` nur dort, wo die Kurzfassung den Schritt zeigt, und kürzer als
@@ -146,9 +193,52 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
     }
     if (weg > 0 && zeilen.length - weg < 2) c.fehler(`${ort} szene`, `in der Kurzfassung blieben ${zeilen.length - weg} Zeilen – mindestens zwei`);
     if (roh === undefined || roh === null) return null;
-    const woerter = (/** @type {unknown} */ t) => text(t).split(/\s+/u).filter((x) => /\p{L}/u.test(x)).length;
     if (woerter(roh) >= woerter(o.einstieg)) c.fehler(ort, `„einstieg-kurz“ hat ${woerter(roh)} Wörter, „einstieg“ ${woerter(o.einstieg)} – die Kurzfassung muss kürzer sein`);
     return html(roh, `${ort} einstieg-kurz`);
+  };
+  /**
+   * Text, den die Kurzfassung kürzen darf (P19.5, docs/drehbuch-v2/04-rahmen.md 7.8): ein Text wie bisher – oder eine Liste von Absätzen
+   * (`html`) bzw. Sätzen (`inline`), jeder Eintrag ein Text oder `{ text, kurzfassung: nein }` (nur in der langen Fassung). Dazu der
+   * Ersatz `<feld>-kurz`: ein kürzerer Text für die Kurzfassung (wie `einstieg-kurz`). Beides zugleich gibt es nicht.
+   * @param {any} o Objekt mit dem Feld @param {string} feld @param {string} ort @param {'html' | 'inline'} art @param {boolean} inKurz Station gehört zur Kurzfassung
+   * @param {number | null} echoNr Station, in der Echo-Platzhalter stehen dürfen (null = keine)
+   * @returns {{ lang: string, kurz: string | null }}
+   */
+  const kuerzbar = (o, feld, ort, art, inKurz, echoNr) => {
+    const roh = o[feld];
+    const fo = `${ort} ${feld}`;
+    const eins = (/** @type {unknown} */ t, /** @type {string} */ wo) => (art === 'html' ? html(t, wo, echoNr) : inline(t, wo, echoNr));
+    const fuege = (/** @type {{ text: unknown, kurz: boolean, wo: string }[]} */ liste) => liste.map((e) => eins(e.text, e.wo)).join(art === 'html' ? '' : ' ');
+    /** @type {string} */
+    let lang;
+    /** @type {string | null} */
+    let kurz = null;
+    /** @type {unknown} */
+    let langRoh = roh;
+    if (Array.isArray(roh)) {
+      if (roh.length === 0) c.fehler(fo, 'leere Liste');
+      const eintraege = roh.map((/** @type {any} */ x, /** @type {number} */ i) => {
+        const wo = `${fo} ${i + 1}`;
+        if (typeof x === 'string') return { text: x, kurz: true, wo };
+        const e = form(x, ['text'], ['kurzfassung'], wo);
+        if (e.kurzfassung !== undefined && typeof e.kurzfassung !== 'boolean') c.fehler(wo, '„kurzfassung“ muss ja oder nein sein');
+        return { text: e.text, kurz: e.kurzfassung !== false, wo };
+      });
+      const weg = eintraege.filter((e) => !e.kurz).length;
+      if (weg > 0 && !inKurz) c.fehler(fo, '„kurzfassung: nein“ nur in Kapiteln der Kurzfassung');
+      if (weg > 0 && weg === eintraege.length) c.fehler(fo, 'in der Kurzfassung bliebe nichts stehen – mindestens ein Eintrag ohne „kurzfassung: nein“');
+      lang = fuege(eintraege);
+      if (weg > 0 && inKurz) kurz = fuege(eintraege.filter((e) => e.kurz));
+      langRoh = eintraege.map((e) => text(e.text)).join(' ');
+    } else lang = eins(roh, fo);
+    const ersatz = o[`${feld}-kurz`];
+    if (ersatz !== undefined && ersatz !== null) {
+      if (kurz !== null) c.fehler(ort, `„${feld}“ mit „kurzfassung: nein“ und „${feld}-kurz“ zugleich – entweder oder`);
+      else if (!inKurz) c.fehler(ort, `„${feld}-kurz“ nur in Kapiteln der Kurzfassung`);
+      else if (woerter(ersatz) >= woerter(langRoh)) c.fehler(ort, `„${feld}-kurz“ hat ${woerter(ersatz)} Wörter, „${feld}“ ${woerter(langRoh)} – die Kurzfassung muss kürzer sein`);
+      else kurz = eins(ersatz, `${fo}-kurz`);
+    }
+    return { lang, kurz };
   };
   const belege = (/** @type {unknown} */ b, /** @type {string} */ ort) => {
     if (!Array.isArray(b) || b.length === 0) { c.fehler(ort, 'interne Belege fehlen (Feld „belege“)'); return; }
@@ -162,7 +252,7 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
 
   /* -------------------------------------------------------------- Rahmen -- */
   const rel = rahmenDatei.rel;
-  const r = form(rahmenRoh, ['titel', 'auftakt', 'sie', 'figuren', 'balken', 'bilanz', 'mandat', 'ende'], ['reihenfolge', 'akte'], rel);
+  const r = form(rahmenRoh, ['titel', 'auftakt', 'sie', 'figuren', 'balken', 'bilanz', 'mandat', 'ende'], ['reihenfolge', 'akte', 'echos', 'buch'], rel);
   const au = form(r.auftakt ?? {}, ['campus', 'text', 'vorstellung', 'los', 'kurz'], [], `${rel} auftakt`);
   const sie = form(r.sie ?? {}, ['steckbrief'], [], `${rel} sie`);
   const figuren = (Array.isArray(r.figuren) ? r.figuren : []).map((/** @type {any} */ f, /** @type {number} */ i) => {
@@ -198,8 +288,32 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
     }),
   };
   if (mandat.zeilen.length === 0) c.fehler(`${rel} mandat`, 'keine Zeilen');
+  /** Echos (P19.4): eine Zeile in drei Fassungen je Quelle; ändert nur Ton und Wortlaut */
+  const echos = (() => {
+    if (r.echos === undefined) return [];
+    const eo = `${rel} echos`;
+    if (!Array.isArray(r.echos) || r.echos.length === 0) { c.fehler(eo, 'Liste von Echos { id, quelle, fassungen } erwartet'); return []; }
+    if (r.echos.length > ECHOS_MAX) c.fehler(eo, `höchstens ${ECHOS_MAX} Echos, nicht ${r.echos.length}`);
+    return r.echos.map((/** @type {any} */ e, /** @type {number} */ i) => {
+      const ort = `${eo} ${i + 1}`;
+      const o = form(e, ['id', 'quelle', 'fassungen'], [], ort);
+      const id = text(o.id);
+      if (!ECHO_KENNUNG.test(id)) c.fehler(ort, `Echo-Kennung „${id}“ – erwartet Buchstabe, dann Buchstaben, Ziffern, Bindestrich (E1)`);
+      else if (echoIds.has(id)) c.fehler(ort, `Echo „${id}“ doppelt`);
+      echoIds.add(id);
+      const f = form(o.fassungen ?? {}, WERTUNGEN, [], `${ort} fassungen`);
+      // die Wertung wird nie genannt: weder „Falle“ noch „vertretbar“ noch „Wertung“ (das gewöhnliche Wort „gut“ bleibt erlaubt)
+      for (const w of WERTUNGEN) {
+        const treffer = /\b(?:Falle|vertretbar|Wertung)\b/u.exec(text(f[w]));
+        if (treffer !== null) c.fehler(`${ort} fassungen.${w}`, `„${treffer[0]}“ nennt die Wertung – ein Echo gibt Ton, nie das Urteil`);
+      }
+      const fassungen = Object.fromEntries(WERTUNGEN.map((w) => [w, inline(f[w], `${ort} fassungen.${w}`)]));
+      echoFassungen.set(id, fassungen);
+      return { id, quelle: text(o.quelle), fassungen };
+    });
+  })();
   const en = form(r.ende ?? {}, ['zeit', 'campus', 'einstieg', 'szene', 'zeit-niedrig', 'vertrauen-niedrig', 'nach-falle', 'offen'], ['einstieg-kurz'], `${rel} ende`);
-  const endeSzene = szene(en.szene, `${rel} ende.szene`);
+  const endeSzene = szene(en.szene, `${rel} ende.szene`, Number.POSITIVE_INFINITY);
   const ende = {
     zeit: klar(en.zeit, `${rel} ende`),
     campus: campus(en.campus, `${rel} ende.campus`),
@@ -238,7 +352,7 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
   const kapitel = roh.map(({ d, y, dateiNr, dateiId }, i) => {
     const ort = d.rel;
     const o = form(y, ['nr', 'titel', 'zeit', 'campus', 'thema', 'belege', 'einstieg', 'szene', 'frage', 'antworten', 'gut', 'dahinter'],
-      ['kurzfassung', 'bruecke', 'einstieg-kurz', 'campus-nachher', 'zusatz', 'bild-szene', 'bild-frage', 'mandat-nach-folge', 'mini', 'vergleich', 'regie', 'werkzeuge'], ort);
+      ['kurzfassung', 'bruecke', 'einstieg-kurz', 'campus-nachher', 'zusatz', 'bild-szene', 'bild-frage', 'mandat-nach-folge', 'mini', 'vergleich', 'regie', 'werkzeuge', 'vertiefung', 'gut-kurz', 'dahinter-kurz'], ort);
     const nr = Number(o.nr);
     if (nr !== i + 1) c.fehler(ort, `Nummer ${text(o.nr)} – erwartet ${i + 1} (${reihenfolge === null ? 'lückenlos ab 1' : 'Stelle in der Reihenfolge'})`);
     // ohne Reihenfolge-Angabe trägt der Dateiname die Nummer (k3-…); mit ihr zählt die Stelle in der Reihenfolge
@@ -259,7 +373,7 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
     if (antwortenRoh.length !== 3) c.fehler(ort, `genau drei Antworten erwartet, nicht ${antwortenRoh.length}`);
     const antworten = antwortenRoh.map((/** @type {any} */ a, /** @type {number} */ j) => {
       const ao = `${ort} Antwort ${j + 1}`;
-      const x = form(a, ['wertung', 'text', 'balken', 'folge'], ['bild'], ao);
+      const x = form(a, ['wertung', 'text', 'balken', 'folge'], ['bild', 'folge-kurz'], ao);
       if (!WERTUNGEN.includes(x.wertung)) c.fehler(ao, `Wertung „${text(x.wertung)}“ – erwartet ${WERTUNGEN.join(', ')}`);
       const b = form(x.balken ?? {}, BALKEN, [], `${ao} balken`);
       /** @type {Record<string, number>} */
@@ -269,7 +383,9 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
         if (!Number.isInteger(v) || v < -2 || v > 2) c.fehler(`${ao} balken`, `${k} = ${text(v)} – erwartet eine ganze Zahl von −2 bis +2`);
         wirkung[k] = Number.isInteger(v) ? Math.max(-2, Math.min(2, v)) : 0;
       }
-      return { wertung: text(x.wertung), html: inline(x.text, ao), wirkung, folgeHtml: html(x.folge, `${ao} folge`), bild: bild(x.bild, ao) };
+      // P19.5: die Folge darf für die Kurzfassung gekürzt sein (Absätze mit `kurzfassung: nein` oder `folge-kurz`); P19.4: Echo-Platzhalter
+      const folge = kuerzbar(x, 'folge', ao, 'html', kurz, i + 1);
+      return { wertung: text(x.wertung), html: inline(x.text, ao), wirkung, folgeHtml: folge.lang, ...(folge.kurz !== null ? { folgeKurzHtml: folge.kurz } : {}), bild: bild(x.bild, ao) };
     });
     for (const w of WERTUNGEN) {
       const n = antworten.filter((/** @type {any} */ a) => a.wertung === w).length;
@@ -281,7 +397,9 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
       regie[id] = { notizHtml: c.html(text(rg.notiz), ort), leitfragen: (Array.isArray(rg.leitfragen) ? rg.leitfragen : []).map(text) };
     }
 
-    const kapSzene = szene(o.szene, `${ort} szene`);
+    const gut = kuerzbar(o, 'gut', ort, 'html', kurz, null);
+    const dahinter = kuerzbar(o, 'dahinter', ort, 'inline', kurz, null);
+    const kapSzene = szene(o.szene, `${ort} szene`, i + 1);
     const einstiegKurzHtml = kuerzung(o, kapSzene, kurz, ort);
 
     return {
@@ -297,17 +415,20 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
       thema,
       // E-13 (P18.5): Verweise auf Explore-Werkzeuge, leise im Kasten „Das steckt dahinter“; Werkzeug und Beispiel müssen es geben
       werkzeuge: pruefeWerkzeugVerweise(o.werkzeuge, ort, werkzeuge, (/** @type {string} */ wo, /** @type {string} */ f) => c.fehler(wo, f)),
-      einstiegHtml: html(o.einstieg, `${ort} einstieg`),
+      einstiegHtml: html(o.einstieg, `${ort} einstieg`, i + 1),
       einstiegKurzHtml,
       szene: kapSzene,
       bildSzene: bild(o['bild-szene'], ort),
       bildFrage: bild(o['bild-frage'], ort),
       frageHtml: inline(o.frage, `${ort} frage`),
       antworten,
-      gutHtml: html(o.gut, `${ort} gut`),
-      dahinterHtml: inline(o.dahinter, `${ort} dahinter`),
+      gutHtml: gut.lang,
+      dahinterHtml: dahinter.lang,
+      ...(gut.kurz !== null ? { gutKurzHtml: gut.kurz } : {}),
+      ...(dahinter.kurz !== null ? { dahinterKurzHtml: dahinter.kurz } : {}),
+      ...(o.vertiefung !== undefined ? { vertiefung: vertiefung(o.vertiefung, `${ort} vertiefung`) } : {}),
       mandatNachFolge: o['mandat-nach-folge'] === true,
-      mini: o.mini === undefined ? null : mini(o.mini, `${ort} mini`),
+      mini: o.mini === undefined ? null : mini(o.mini, `${ort} mini`, o.vergleich !== undefined),
       vergleich: o.vergleich === undefined ? null : vergleich(o.vergleich, `${ort} vergleich`),
     };
   });
@@ -317,6 +438,67 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
   const vergleiche = kapitel.filter((/** @type {any} */ k) => k.vergleich !== null).length;
   if (kapitel.length > 0 && vergleiche !== 1) c.fehler(rel, `genau ein Kapitel mit Vergleich erwartet, nicht ${vergleiche}`);
   if (kapitel.length > 0 && !kapitel.some((/** @type {any} */ k) => k.mandatNachFolge)) c.fehler(rel, 'kein Kapitel zeigt das Kärtchen „Wer entscheidet was“ (mandat-nach-folge)');
+
+  /* --------------------------------------------------------------- Echos -- */
+  // P19.4: die Quelle ist eine Station; ein Echo wird gesetzt, und zwar nach seiner Quelle; in der Kurzfassung nur, wo die Quelle gespielt wird
+  {
+    const nrVon = (/** @type {string} */ id) => kapitel.find((/** @type {any} */ k) => k.id === id)?.nr ?? null;
+    const kurzNr = new Set(kapitel.filter((/** @type {any} */ k) => k.kurzfassung).map((/** @type {any} */ k) => k.nr));
+    for (const e of echos) {
+      const eo = `${rel} echos ${e.id}`;
+      if (nrVon(e.quelle) === null) c.fehler(eo, `Quelle „${e.quelle}“ ist keine Station`);
+      if (!echoVerwendungen.some((v) => v.id === e.id)) c.fehler(eo, 'wird nirgends gesetzt (Echo-Zeile oder Platzhalter)');
+    }
+    for (const v of echoVerwendungen) {
+      const e = echos.find((/** @type {any} */ x) => x.id === v.id);
+      const q = e === undefined ? null : nrVon(e.quelle);
+      if (q === null) continue;
+      if (q >= v.nr) c.fehler(v.ort, `Echo „${v.id}“: die Quelle (Station ${q}) liegt nicht vor dieser Stelle – ein Echo klingt erst nach der Antwort`);
+      // die Kurzfassung zeigt nur Echos, deren Quelle sie spielt; die übrigen Zeilen tragen „kurzfassung: nein“
+      if (v.zeile !== undefined && v.zeile.kurzfassung && (v.nr === Number.POSITIVE_INFINITY || kurzNr.has(v.nr)) && !kurzNr.has(q)) {
+        c.fehler(v.ort, `Echo „${v.id}“: seine Quelle (Station ${q}) fehlt in der Kurzfassung – die Zeile braucht „kurzfassung: nein“`);
+      }
+    }
+  }
+
+  /* ------------------------------------------------- Entscheidungsbuch -- */
+  /**
+   * Entscheidungsbuch (P19.4, docs/drehbuch-v2/04-rahmen.md 5): ein Eintrag je Station – `station`, `art` (beschluss · vermerk · uebergabe ·
+   * beschluss-uebergabe), `entschieden`, `grundlage`, `ergebnis`. Der Anlass ist der Monat der Station. Jede Zeile muss auf jedem Weg wahr
+   * sein: ein Vermerk entscheidet „niemand“, ein Beschluss nie; Wörter wie „vollständig“, „mitgeteilt“, „mit zwei Wegen“ stehen nicht im Buch.
+   * @returns {any[]}
+   */
+  function buchBauen() {
+    if (r.buch === undefined) return [];
+    const bo = `${rel} buch`;
+    if (!Array.isArray(r.buch) || r.buch.length === 0) { c.fehler(bo, 'Liste von Einträgen erwartet'); return []; }
+    const ids = kapitel.map((/** @type {any} */ k) => k.id);
+    /** @type {string[]} */
+    const gesehen = [];
+    const liste = r.buch.map((/** @type {any} */ e, /** @type {number} */ i) => {
+      const ort = `${bo} ${i + 1}`;
+      const o = form(e, ['station', 'art', 'entschieden', 'grundlage', 'ergebnis'], [], ort);
+      const station = text(o.station);
+      if (!ids.includes(station)) c.fehler(ort, `Station „${station}“ gibt es nicht`);
+      else if (gesehen.includes(station)) c.fehler(ort, `Station „${station}“ hat zwei Einträge`);
+      gesehen.push(station);
+      if (!BUCH_ARTEN.includes(o.art)) c.fehler(ort, `Art „${text(o.art)}“ – erwartet ${BUCH_ARTEN.join(', ')}`);
+      for (const f of ['entschieden', 'grundlage', 'ergebnis']) {
+        const treffer = BUCH_VERBOTEN.exec(text(o[f]));
+        if (treffer !== null) c.fehler(`${ort} ${f}`, `„${treffer[0]}“ steht nicht im Buch – jede Zeile muss auf jedem Weg wahr sein`);
+      }
+      const niemand = /^niemand\b/iu.test(text(o.entschieden).trim());
+      if (o.art === 'vermerk' && !niemand) c.fehler(ort, 'ein Vermerk ist kein Beschluss – „entschieden“ beginnt mit „niemand“');
+      if ((o.art === 'beschluss' || o.art === 'beschluss-uebergabe') && niemand) c.fehler(ort, 'ein Beschluss hat eine entscheidende Stelle – „entschieden“ beginnt nicht mit „niemand“');
+      return { station, art: text(o.art), entschiedenHtml: inline(o.entschieden, `${ort} entschieden`), grundlageHtml: inline(o.grundlage, `${ort} grundlage`), ergebnisHtml: inline(o.ergebnis, `${ort} ergebnis`) };
+    });
+    for (const id of ids.filter((x) => !gesehen.includes(x))) c.fehler(bo, `Station „${id}“ hat keinen Eintrag – ein Eintrag je Station`);
+    // in der Reihenfolge der Stationen
+    const reihe = liste.map((/** @type {any} */ x) => ids.indexOf(x.station)).filter((/** @type {number} */ n) => n >= 0);
+    if (reihe.some((n, j) => j > 0 && n < (reihe[j - 1] ?? 0))) c.fehler(bo, 'die Einträge folgen der Reihenfolge der Stationen');
+    return liste;
+  }
+  const buch = buchBauen();
 
   /* ---------------------------------------------------------------- Akte -- */
   /**
@@ -368,30 +550,75 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
   }
   const akte = akteBauen();
 
+  /**
+   * Vertiefung (P19.5, docs/drehbuch-v2/04-rahmen.md 7.4): `form` (nachdenken · zweiter-fall · warum-so), `titel`, `text` (Absätze, bei den
+   * ersten beiden Formen Frage bzw. Fall) und – nur dort – `antwort` (Absätze hinter dem Aufklapper „Antwort“). Jeder Absatz höchstens
+   * 60 Wörter. Die Vertiefung steht nie in der Kurzfassung (`kurzfassung: nein` ist erlaubt, `ja` ein Fehler).
+   */
+  function vertiefung(/** @type {any} */ v, /** @type {string} */ ort) {
+    const o = form(v, ['form', 'titel', 'text'], ['antwort', 'kurzfassung'], ort);
+    if (!VERTIEFUNG_FORMEN.includes(o.form)) c.fehler(ort, `Form „${text(o.form)}“ – erwartet ${VERTIEFUNG_FORMEN.join(', ')}`);
+    if (o.kurzfassung !== undefined && o.kurzfassung !== false) c.fehler(ort, 'die Vertiefung steht nie in der Kurzfassung („kurzfassung: nein“ oder weglassen)');
+    const absaetze = (/** @type {unknown} */ liste, /** @type {string} */ feld, /** @type {boolean} */ pflicht) => {
+      if (liste === undefined) return [];
+      if (!Array.isArray(liste) || (pflicht && liste.length === 0)) { c.fehler(`${ort} ${feld}`, 'Liste von Absätzen erwartet'); return []; }
+      return liste.map((/** @type {unknown} */ t, /** @type {number} */ i) => {
+        if (woerter(t) > VERTIEFUNG_ABSATZ_MAX) c.fehler(`${ort} ${feld} ${i + 1}`, `Absatz mit ${woerter(t)} Wörtern – höchstens ${VERTIEFUNG_ABSATZ_MAX}`);
+        return inline(t, `${ort} ${feld} ${i + 1}`);
+      });
+    };
+    const text1 = absaetze(o.text, 'text', true);
+    const mitAntwort = o.form === 'nachdenken' || o.form === 'zweiter-fall';
+    if (mitAntwort && (o.antwort === undefined || !Array.isArray(o.antwort) || o.antwort.length === 0)) c.fehler(ort, `Form „${text(o.form)}“ braucht eine „antwort“ (Absätze hinter dem Aufklapper)`);
+    if (!mitAntwort && o.antwort !== undefined) c.fehler(ort, 'Form „warum-so“ hat keine „antwort“ – die Erklärung steht in „text“');
+    const antwort = mitAntwort ? absaetze(o.antwort, 'antwort', true) : [];
+    return { form: text(o.form), titel: klar(o.titel, ort), absaetzeHtml: text1, ...(mitAntwort ? { antwortHtml: antwort } : {}) };
+  }
+
   /** Mini-Aufgabe: gemeinsames Gerüst; was je Art gilt, steht in der Mini-Registry (src/geschichte/mini-arten.ts, `uebersetzung`) */
-  function mini(/** @type {any} */ m, /** @type {string} */ ort) {
-    const o = form(m, ['art', 'titel', 'aufgabe', 'bild', 'posten'], ['wahlen'], ort);
+  function mini(/** @type {any} */ m, /** @type {string} */ ort, /** @type {boolean} */ hatVergleich = false) {
+    const o = form(m, ['art', 'titel', 'aufgabe', 'bild', 'posten'], ['wahlen', 'stelle', 'schluss', 'zettel', 'kontingent'], ort);
     const art = text(o.art);
     const def = miniArt(art);
-    if (def === null) c.fehler(ort, `Art „${art}“ – erwartet ${MINI_ART_KENNUNGEN.join(' oder ')}`);
-    const wahlen = (Array.isArray(o.wahlen) ? o.wahlen : []).map((/** @type {any} */ w, /** @type {number} */ i) => {
+    if (def === null) c.fehler(ort, `Art „${art}“ – erwartet ${MINI_ART_KENNUNGEN.join(', ')}`);
+    // P19.5: Platz im Ablauf der Station; ohne Angabe nach der Folge (wie bisher)
+    const stelle = o.stelle === undefined ? 'nach-folge' : text(o.stelle);
+    if (!MINI_STELLEN.includes(/** @type {any} */ (stelle))) c.fehler(ort, `Stelle „${stelle}“ – erwartet ${MINI_STELLEN.join(', ')}`);
+    else if (stelle === 'vor-vergleich' && !hatVergleich) c.fehler(ort, 'Stelle „vor-vergleich“ nur in der Station mit dem Vergleich');
+    const feste = def?.uebersetzung.festeWahlen;
+    const wahlen = feste !== undefined ? feste.map((w) => ({ ...w })) : (Array.isArray(o.wahlen) ? o.wahlen : []).map((/** @type {any} */ w, /** @type {number} */ i) => {
       const wo = `${ort} wahlen ${i + 1}`;
       const x = form(w, ['id', 'titel'], ['figur', 'falsch', 'heisst', 'bild'], wo);
       if (x.figur !== undefined && x.figur !== 'sie' && !FIGUREN.includes(x.figur)) c.fehler(wo, `Figur „${text(x.figur)}“ unbekannt`);
       return { id: kennung(x.id, wo, 'Wahl') ?? '', titel: klar(x.titel, wo), figur: x.figur === undefined ? null : text(x.figur), falschHtml: x.falsch === undefined ? null : inline(x.falsch, wo), heisstHtml: x.heisst === undefined ? null : inline(x.heisst, wo), bild: bild(x.bild, wo) };
     });
-    def?.uebersetzung.pruefeWahlen(wahlen, o.wahlen !== undefined, ort, (/** @type {string} */ o2, /** @type {string} */ t) => c.fehler(o2, t));
+    /** @param {string} o2 @param {string} t */
+    const meldung = (o2, t) => c.fehler(o2, t);
+    def?.uebersetzung.pruefeWahlen(wahlen, o.wahlen !== undefined, ort, meldung);
     if (new Set(wahlen.map((/** @type {any} */ w) => w.id)).size !== wahlen.length) c.fehler(ort, 'Wahl doppelt');
     const posten = (Array.isArray(o.posten) ? o.posten : []).map((/** @type {any} */ p, /** @type {number} */ i) => {
       const po = `${ort} posten ${i + 1}`;
-      const x = form(p, def?.uebersetzung.postenFelder ?? ['text', 'erklaerung'], ['bild'], po);
+      const x = form(p, def?.uebersetzung.postenFelder ?? ['text', 'erklaerung'], ['bild', ...(def?.uebersetzung.postenFrei ?? [])], po);
       const loesung = def?.uebersetzung.loesung(x.loesung, wahlen, po, (/** @type {string} */ o2, /** @type {string} */ t) => c.fehler(o2, t)) ?? '';
-      return { html: inline(x.text, po), loesung, erklaerungHtml: inline(x.erklaerung, po), bild: bild(x.bild, po) };
+      const zus = def?.uebersetzung.postenZusatz?.(x, po, meldung, { inline: (t, wo) => inline(t, wo) }) ?? {};
+      return { html: inline(x.text, po), loesung, erklaerungHtml: inline(x.erklaerung, po), bild: bild(x.bild, po), ...zus };
     });
     if (posten.length < 3) c.fehler(ort, 'mindestens drei Posten');
-    def?.uebersetzung.pruefeGesamt(wahlen, posten, ort, (/** @type {string} */ o2, /** @type {string} */ t) => c.fehler(o2, t));
+    def?.uebersetzung.pruefeGesamt(wahlen, posten, ort, meldung);
+    // P19.5: Schlusssatz (nur Arten ohne Zählwörter) und art-eigene Felder der Aufgabe (Zettel, Kontingent)
+    const schluss = def?.uebersetzung.schluss;
+    if (schluss === 'nie' && o.schluss !== undefined) c.fehler(ort, `Art „${art}“ hat keinen Schlusssatz („schluss“) – sie meldet mit Zählwörtern bzw. gar nicht`);
+    if (schluss === 'pflicht' && (o.schluss === undefined || text(o.schluss).trim() === '')) c.fehler(ort, 'Schlusssatz fehlt (Feld „schluss“, aus den Lösungen, nie aus den Wahlen)');
+    const erlaubt = def?.uebersetzung.zusatzFelder ?? [];
+    for (const k of ['zettel', 'kontingent']) if (o[k] !== undefined && !erlaubt.includes(k)) c.fehler(ort, `Feld „${k}“ gibt es bei der Art „${art}“ nicht`);
+    const zusatz = def?.uebersetzung.zusatz?.(o, posten, ort, meldung, { inline: (t, wo) => inline(t, wo) }) ?? {};
     // O-53: auch der Schritt der Mini-Aufgabe zeigt eine Grafik – „bild“ ist Pflichtfeld (form meldet, wenn es fehlt)
-    return { art, titel: klar(o.titel, ort), aufgabeHtml: inline(o.aufgabe, ort), bild: bild(o.bild, ort) ?? '', wahlen, posten };
+    return {
+      art, titel: klar(o.titel, ort), aufgabeHtml: inline(o.aufgabe, ort), bild: bild(o.bild, ort) ?? '', wahlen, posten,
+      ...(stelle !== 'nach-folge' && MINI_STELLEN.includes(/** @type {any} */ (stelle)) ? { stelle } : {}),
+      ...(schluss === 'pflicht' && o.schluss !== undefined ? { schlussHtml: inline(o.schluss, `${ort} schluss`) } : {}),
+      ...zusatz,
+    };
   }
 
   /** Gewichteter Vergleich (nur ein Kapitel) */
@@ -449,6 +676,8 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
     mandat,
     kapitel,
     akte,
+    ...(echos.length > 0 ? { echos } : {}),
+    ...(buch.length > 0 ? { buch } : {}),
     ende,
   };
   return { geschichte, regie };

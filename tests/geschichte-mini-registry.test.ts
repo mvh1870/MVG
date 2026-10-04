@@ -18,8 +18,8 @@ assert.ok(G0, 'Story fehlt in den Inhalten');
 const G: Geschichte = G0;
 const mitMini = G.kapitel.filter((k) => k.mini !== null);
 
-test('Registry: Kennung = Schlüssel, bisherige zwei Arten, unbekannte Kennung ergibt null', () => {
-  assert.deepEqual([...MINI_ART_KENNUNGEN], ['zuordnen', 'reihenfolge']);
+test('Registry: Kennung = Schlüssel, die zwei bisherigen und die fünf neuen Arten (P19.5), unbekannte Kennung ergibt null', () => {
+  assert.deepEqual([...MINI_ART_KENNUNGEN], ['zuordnen', 'reihenfolge', 'matrix', 'mappe', 'pinnwand', 'bericht', 'rueckfragen']);
   for (const [schluessel, def] of Object.entries(MINI_ARTEN)) assert.equal(def.art, schluessel);
   assert.equal(miniArt('blatt'), null);
   assert.equal(miniArt('toString'), null);
@@ -84,6 +84,6 @@ test('Zug, Auswertung, Lösung und Änderung je Art; ordneZu/klickeReihe sind nu
   assert.equal(ordneZu(G, leer, 'k99', 0, 0), leer);
 });
 
-test('Lesezeit und Druck: die bisherigen Arten nehmen nichts aus der Zählung aus', () => {
-  for (const def of Object.values(MINI_ARTEN)) assert.deepEqual([...def.lesezeitOhne], []);
+test('Lesezeit und Druck: die bisherigen Arten nehmen nichts aus der Zählung aus; von den neuen nur die Gespräche der Rückfragen', () => {
+  for (const [art, def] of Object.entries(MINI_ARTEN)) assert.deepEqual([...def.lesezeitOhne], art === 'rueckfragen' ? ['.gs-gespraech'] : [], art);
 });

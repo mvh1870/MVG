@@ -15,11 +15,15 @@ const RECHTS = 74;
 const OBEN = 10;
 const UNTEN = 10;
 
-/** Eine Linie: Kennung der Klasse, Beschriftung am Ende, Werte 0–10 je Punkt */
+/**
+ * Eine Linie: Kennung der Klasse, Beschriftung am Ende, Werte 0–10 je Punkt. P19.4: `null` = kein Wert (Station ohne Antwort) – die
+ * Linie reißt dort ab, es wird nichts dazwischen gezeichnet; `hohl` markiert Punkte, die nur erzählt sind (Kurzfassung).
+ */
 export interface VerlaufReihe {
   klasse: string;
   name: string;
-  werte: readonly number[];
+  werte: readonly (number | null)[];
+  hohl?: readonly boolean[];
 }
 
 /** Bänder der Balkenstufen (src/geschichte/engine.ts, `stufe`): niedrig 0–3, mittel 4–6, hoch 7–10. */
@@ -30,7 +34,7 @@ const BAENDER: readonly { klasse: string; von: number; bis: number }[] = [
 ];
 
 /**
- * @param reihen die Linien (jede mit gleich vielen Punkten, mindestens einem)
+ * @param reihen die Linien (jede mit gleich vielen Punkten, mindestens einem; `null` = kein Wert)
  * @param beschreibung Text für Screenreader
  */
 export function verlaufBand(reihen: readonly VerlaufReihe[], beschreibung: string): string {
@@ -41,11 +45,20 @@ export function verlaufBand(reihen: readonly VerlaufReihe[], beschreibung: strin
   // die Linien liegen bei gleichen Werten nebeneinander statt übereinander: je Reihe ein kleiner fester Versatz
   const versatz = (k: number): number => (k - (reihen.length - 1) / 2) * 1.6;
   const linien = reihen.map((r, k) => {
-    const pkt = r.werte.map((w, i) => `${x(i)},${r1(y(w) + versatz(k))}`);
-    const letzte = r.werte.length - 1;
-    const ende = letzte >= 0 ? `<text class="vb-name ${r.klasse}" x="${r1(x(letzte) + 6)}" y="${r1(y(r.werte[letzte] as number) + versatz(k) + 3.5)}">${maske(r.name)}</text>` : '';
-    const punkte = r.werte.map((w, i) => `<circle class="vb-punkt ${r.klasse}" cx="${x(i)}" cy="${r1(y(w) + versatz(k))}" r="2.2"/>`).join('');
-    return `<polyline class="vb-linie ${r.klasse}" points="${pkt.join(' ')}"/>${punkte}${ende}`;
+    const py = (w: number): number => r1(y(w) + versatz(k));
+    // zusammenhängende Strecken: bei einem fehlenden Wert reißt die Linie ab (keine gestrichelte Verbindung, die einen Weg andeutet)
+    const strecken: string[][] = [];
+    let aktuell: string[] | null = null;
+    r.werte.forEach((w, i) => {
+      if (w === null) { aktuell = null; return; }
+      if (aktuell === null) { aktuell = []; strecken.push(aktuell); }
+      aktuell.push(`${x(i)},${py(w)}`);
+    });
+    const letzte = r.werte.reduce<number>((l, w, i) => (w === null ? l : i), -1);
+    const ende = letzte >= 0 ? `<text class="vb-name ${r.klasse}" x="${r1(x(letzte) + 6)}" y="${r1(py(r.werte[letzte] as number) + 3.5)}">${maske(r.name)}</text>` : '';
+    const punkte = r.werte.map((w, i) => (w === null ? '' : `<circle class="vb-punkt ${r.klasse}${r.hohl?.[i] === true ? ' vb-punkt-hohl' : ''}" cx="${x(i)}" cy="${py(w)}" r="2.2"/>`)).join('');
+    const strich = strecken.map((st) => `<polyline class="vb-linie ${r.klasse}" points="${st.join(' ')}"/>`).join('');
+    return `${strich}${punkte}${ende}`;
   }).join('');
   return `<svg class="vb" viewBox="0 0 ${BREITE} ${HOEHE}" role="img" aria-label="${maske(beschreibung)}" focusable="false" xmlns="http://www.w3.org/2000/svg">${baender}${linien}</svg>`;
 }

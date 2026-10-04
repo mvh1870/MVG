@@ -147,6 +147,8 @@ test('Wegweiser (R78): alles „Nein“ und Entscheidung „Ja“ zeigt „Entsc
   assert.equal(q(el, 'ww-art').textContent, 'Entscheidung vorbereiten');
   assert.ok(q(el, 'ww-kasten-entscheidung'));
   assert.ok(q(el, 'ww-zum-vorlagen-check'));
+  // R79: der Titel steht nur einmal
+  assert.equal((q(el, 'ww-ergebnis').textContent ?? '').split('Entscheidung vorbereiten').length - 1, 1);
   assert.doesNotMatch(q(el, 'ww-ergebnis').textContent ?? '', /kein Vorgang|verknüpft/u);
   wahl('entscheidung', 'nein');
   assert.equal(q(el, 'ww-art').textContent, 'Vermutlich kein Vorgang');

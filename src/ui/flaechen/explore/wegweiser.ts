@@ -115,8 +115,10 @@ export function wegweiserWerkzeug(o: WerkzeugOptionen): HTMLElement {
     for (const k of z) {
       const bild = KASTEN[k];
       if (bild === undefined) continue;
-      teile.push(h('div', { class: 'wz-kasten', 'data-zusatz': k, 'data-pruef': `ww-kasten-${k}` }, ergebnisBild(bild, 48),
-        h('div', null, h('p', null, h('b', null, v.zusaetze[k].titel)), h('p', null, satz(k)),
+      // R79: ist „Entscheidung vorbereiten“ schon das Ergebnis, trägt der Kasten Titel und Bild nicht ein zweites Mal
+      const doppelt = k === 'entscheidung' && weg.nurEntscheidung;
+      teile.push(h('div', { class: 'wz-kasten', 'data-zusatz': k, 'data-pruef': `ww-kasten-${k}` }, doppelt ? null : ergebnisBild(bild, 48),
+        h('div', null, doppelt ? null : h('p', null, h('b', null, v.zusaetze[k].titel)), h('p', null, satz(k)),
           k === 'entscheidung' && links ? h('p', null, h('a', { href: '#explore/vorlagen-check', 'data-pruef': 'ww-zum-vorlagen-check' }, sym('pfeilRechts'), o.w.vorlagencheck.titel)) : null)));
     }
     return { kopf, teile };

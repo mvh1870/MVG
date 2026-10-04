@@ -44,7 +44,7 @@ antworten:
 
       Gisela Grundstein sagt: „{echo: E1}“
   - wertung: gut
-    text: "Sie lassen die Projektsteuerin den Wunsch als Änderung mit beiden Wegen der Bürgermeisterin vorlegen. Bis dahin gilt die bisherige Planung."
+    text: "Sie lassen die Projektsteuerin der Bürgermeisterin den Wunsch als Änderung vorlegen, mit beiden Wegen. Bis dahin gilt die bisherige Planung."
     balken: { geld: -1, zeit: 0, vertrauen: 2 }
     bild: stempel
     # Die Zeilen über Antrag, Lenkungskreis und „Ich weiß, woran ich bin“ stehen nur auf dem ganzen Weg; die Echo-Zeile steht auf beiden
@@ -52,7 +52,7 @@ antworten:
       - { text: "Clara Faden schreibt den Antrag auf und vergleicht beide Wege nach vorher vereinbarten Gesichtspunkten wie Kosten und Zeit. Im Lenkungskreis hört die Bürgermeisterin die Schule und die Finanzabteilung der Stadt.", kurzfassung: false }
       - "Die Bürgermeisterin entscheidet: Die Mensa wird so gebaut, dass sie später wachsen kann; das Geld kommt aus der Reserve."
       - "Gisela Grundstein sagt: „{echo: E1}“"
-      - { text: "Und: „Zwei Wege, klare Zahlen – ich weiß, woran ich bin.“", kurzfassung: false }
+      - { text: "Gisela Grundstein fügt hinzu: „Zwei Wege, klare Zahlen – ich weiß, woran ich bin.“", kurzfassung: false }
       - "Hanna Klingel ist nicht ganz zufrieden – und Theo Lot gießt die Fundamente so, dass die Mensa später wachsen kann."
   - wertung: vertretbar
     text: "Erst die Anmeldezahlen für den Ganztag abwarten – dann weiß man, wie groß der Bedarf wirklich ist."
@@ -68,7 +68,7 @@ antworten:
 gut: |
   Ein Wunsch, der den geltenden Stand ändert, wird als Änderung aufgenommen – mit Anlass, bisheriger Planung, Kosten und Zeit.
 
-  Er wird mit mindestens zwei Wegen der Person vorgelegt, die entscheiden darf – hier der Bürgermeisterin. Bis dahin gilt die bisherige Planung; eine beiläufige Zusage ersetzt keinen Beschluss.
+  Er wird der Person vorgelegt, die entscheiden darf – hier der Bürgermeisterin –, mit mindestens zwei Wegen. Bis dahin gilt die bisherige Planung; eine beiläufige Zusage ersetzt keinen Beschluss.
 
 mini:
   art: zuordnen

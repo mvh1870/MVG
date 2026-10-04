@@ -7,7 +7,7 @@ nr: 6
 titel: Der Elternabend
 zeit: August 2026
 campus: { stufe: 2.5, jahreszeit: sommer, licht: abend }
-bruecke: "August: Auf dem Elternabend nennen Sie, was beschlossen und was offen ist."
+bruecke: "August: Auf dem Elternabend nennen Sie den Eltern, was beschlossen und was noch offen ist, statt etwas zu versprechen."
 thema: verantwortung
 belege: [v24:hb-1, v24:va-4.1, v24:hb-1.5, v24:hb-3.1]
 bild-szene: stuhlreihen
@@ -22,14 +22,14 @@ szene:
   # E6 (im Einstieg, keine eigene Sprecherin): je nach Antwort in Station 5 (gut: erweiterbare Mensa beschlossen; vertretbar: Schule wartete; Falle: Zusage beim Schulfest)
   - { text: "Die Vorsitzende des Elternbeirats steht mit dem Klemmbrett auf und fragt: „Und kommen unsere Kinder 2028 wirklich in die neuen Räume? Ja oder nein – ich schreibe es auf die Einladung.“" }
   - { figur: klingel, zusatz: hält die Messingglocke im Arm, text: "Ich würde den Eltern so gern etwas Festes sagen." }
-  - { text: "Die Vorsitzende des Elternbeirats fragt weiter: „Und was heißt das für meinen Jüngsten? Er soll nicht der Letzte im Container sein.“ Hinten fragt der Reporter: „Und wer entscheidet das?“" }
+  - { text: "Die Vorsitzende des Elternbeirats fragt weiter: „Und was heißt das für meinen Jüngsten? Er soll nicht der Letzte im Container sein.“ Hinten fragt der Reporter: „Und wer entscheidet über die Mensa?“" }
   - { figur: faden, text: "Ich habe gestern bis spät aufgeschrieben, was feststeht und was nicht. Sprechen müssen Sie." }
 
 frage: Die Vorsitzende des Elternbeirats schaut Sie an, hinten ist der Notizblock gezückt. Was sagen Sie den Eltern?
 
 antworten:
   - wertung: gut
-    text: "Sie nennen den Stand: Die Mensa wird erweiterbar gebaut, der Schulstart 2028 ist das Ziel. Eine größere Mensa ist nicht beschlossen; darüber entscheidet die Bürgermeisterin."
+    text: "Sie sagen: Die Mensa wird erweiterbar gebaut, Schulstart 2028 bleibt das Ziel. Eine größere ist nicht beschlossen; die Bürgermeisterin entschiede erst bei einem neuen Antrag."
     balken: { geld: 0, zeit: 0, vertrauen: 1 }
     bild: klemmbrett
     folge: |
@@ -55,7 +55,7 @@ antworten:
       Clara Faden schreibt den Stand auf ein Blatt, das die Schule eine Woche später an alle Eltern verteilt.
 
 gut: |
-  Beschlossen ist nur, was die zuständige Stelle entschieden hat, hier die Bürgermeisterin. Wird etwas geändert, gilt bis zur Entscheidung die bisherige Planung. Auch bei einer offenen Entscheidung steht fest, wer sie trifft und bis wann.
+  Beschlossen ist nur, was die zuständige Stelle entschieden hat, hier die Bürgermeisterin. Wird etwas geändert, gilt bis zur Entscheidung die bisherige Planung. Auch bei einer offenen Entscheidung steht fest, wer sie trifft.
 
 dahinter: "Wer etwas zusagt, das nicht beschlossen ist, schafft neben dem Beschluss eine zweite Wahrheit. Wer den Stand nennt, zeigt: Hier wird entschieden, und man weiß, von wem."
 

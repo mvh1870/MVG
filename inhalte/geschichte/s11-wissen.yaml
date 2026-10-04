@@ -28,7 +28,7 @@ bild-frage: kalender
 einstieg: |
   April 2027. Ein Aprilschauer trommelt aufs Containerdach, dann kommt die Sonne durch, und über der Gesamtschule steht ein halber Regenbogen. Nur ein Platz im Container ist leer: Clara Faden liegt drei Wochen mit Grippe im Bett.
 
-  Auf ihrem Bildschirm steht ein Eintrag zur Lüftungsanlage, zwischen zwei Terminen notiert. Er ist kurz. Ihre Vertretung hat ihn gelesen, und ihr fällt der Bericht vom Dezember ein: „{echo: E9}“
+  Auf ihrem Bildschirm steht ein Eintrag zur Lüftungsanlage, zwischen zwei Terminen notiert. Er ist kurz. Claras Vertretung hat ihn gelesen, und ihr fällt der Bericht vom Dezember ein: „{echo: E9}“
 
 szene:
   - { text: "Am leeren Platz im Container meldet sich ihre Vertretung: „Guten Morgen, ich vertrete Frau Faden. Der Hersteller der Lüftungsanlage will bis Freitag eine Antwort. In ihrem Eintrag dazu steht nur: ‚frag Theo‘.“" }

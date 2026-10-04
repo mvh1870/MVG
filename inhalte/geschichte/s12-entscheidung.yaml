@@ -31,7 +31,7 @@ szene:
   # Zeile 3 gilt nur auf dem ganzen Weg: „Vier Vorschläge“, der Muss-Filter folgt (kein Vorgriff auf „zulässig“).
   - { figur: faden, kurzfassung: false, text: "Vier Vorschläge liegen vor: ein Gerät als Ersatz, Leihgeräte, später einziehen und ein günstigerer vierter." }
   # Zeile 3b gilt nur in der Kurzfassung (Ersatz für Zeile 3, kein Muss-Filter dort).
-  - { figur: faden, nur-kurzfassung: true, text: "Drei Wege liegen vor: ein Gerät als Ersatz, Leihgeräte oder später einziehen." }
+  - { figur: faden, nur-kurzfassung: true, text: "Drei Wege liegen vor: ein Gerät als Ersatz, Leihgeräte oder später einziehen. Ein vierter, günstigerer Vorschlag ist schon ausgeschieden: Er schafft die geforderte Luftmenge nicht." }
   # Echo E7 (Quelle Station 5) mit fester Fortsetzung; die Kurzfassung erklärt die Glocke
   - { figur: klingel, echo: E7, fortsetzung: "Übrigens: Die Glocke ist schon eingepackt.", fortsetzung-kurz: "Übrigens: Die Glocke meiner alten Schule ist schon eingepackt." }
   - { figur: grundstein, text: "Zeigen Sie mir alle Wege und was Sie empfehlen. Entscheiden tue ich." }
@@ -119,7 +119,7 @@ antworten:
     folge: |
       Im Lenkungskreis fragt die Bürgermeisterin nur: „Bliebe es beim Ersatzgerät, wenn mir Strombedarf und Betrieb wichtig wären?“ – „Dann läge der spätere Einzug gleichauf“, sagt Clara Faden. „Dann zählt Ihr Urteil.“
 
-      Die Bürgermeisterin entscheidet: Ersatzgerät, das Geld kommt aus der Reserve. Clara Faden hält den Beschluss mit Datum fest, samt Auflage (Bedingung): vor dem Schulstart eingebaut und in Betrieb.
+      Die Bürgermeisterin entscheidet noch im Mai: Ersatzgerät, das Geld kommt aus der Reserve. Clara Faden hält den Beschluss mit Datum fest, samt Auflage (Bedingung): vor dem Schulstart eingebaut und in Betrieb.
   - wertung: vertretbar
     text: Alle drei Wege mit Vergleich – dazu Ihre eigene Empfehlung fürs Günstigste, abweichend von der Projektsteuerin.
     balken: { geld: -1, zeit: -1, vertrauen: 0 }
@@ -127,10 +127,10 @@ antworten:
     folge: |
       Die Bürgermeisterin liest beide Empfehlungen und dann den Vergleich. „Sie empfehlen das Günstigste. Aber mein Ziel war der Schulstart.“
 
-      Die Bürgermeisterin vertagt die Entscheidung um eine Woche und hört im Lenkungskreis die Schule an. Dann entscheidet sie: Ersatzgerät, das Geld kommt aus der Reserve, mit der Auflage, dass es vor dem Schulstart eingebaut und in Betrieb ist. Ihre Empfehlung war ehrlich begründet – sie passte nur nicht zum Ziel, das sie gesetzt hatte. Die Woche fehlt dem Einbau am Ende.
+      Die Bürgermeisterin vertagt die Entscheidung um eine Woche und hört im Lenkungskreis die Schule an. Dann entscheidet sie: Ersatzgerät, das Geld kommt aus der Reserve, mit der Auflage, dass es vor dem Schulstart eingebaut und in Betrieb ist. Ihre Empfehlung war ehrlich begründet, passte aber nicht zum Ziel, das die Bürgermeisterin gesetzt hatte. Die Woche fehlt dem Einbau am Ende.
 
 gut: |
-  Zuerst wird geprüft, was ein Vorschlag erfüllen muss: Ein Vorschlag, der das nachweislich nicht erfüllt, scheidet aus; fehlt nur der Nachweis, sagt die Projektsteuerin offen, was noch zu klären ist. Dann werden mindestens zwei Wege verglichen, die alle Anforderungen erfüllen, mit vorab vereinbarten Gewichten und einer begründeten Empfehlung, die zeigt, wann sich die Rangfolge ändert. Beschlossen wird getrennt.
+  Zuerst wird geprüft, was ein Vorschlag erfüllen muss. Wer das nachweislich nicht erfüllt, scheidet aus; fehlt nur der Nachweis, sagt die Projektsteuerin offen, was noch zu klären ist. Dann werden mindestens zwei Wege verglichen, die alles Zwingende erfüllen, mit vorab vereinbarten Gewichten und einer begründeten Empfehlung, die zeigt, wann sich die Rangfolge ändert. Beschlossen wird davon getrennt.
 
 dahinter: "Der Vergleich nimmt niemandem die Entscheidung ab: Er zeigt, welcher Weg zu den Zielen passt und wie sehr das an den Gewichten hängt."
 

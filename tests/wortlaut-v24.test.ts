@@ -1,7 +1,7 @@
 // Eigene Worte (O-37, R78): Die Texte der Werkzeuge und des Glossars geben den Standard V2.4 inhaltlich wieder, nicht im
 // Wortlaut. Probe: kein wortgleicher Lauf von zehn oder mehr Wörtern aus quellen/v2.4 (Groß-/Kleinschreibung und
-// Satzzeichen unbeachtet). Die Themen (inhalte/theorie) zitieren den Standard nicht, tragen aber eigene Zitat-Pflichten und
-// liegen außerhalb dieser Probe.
+// Satzzeichen unbeachtet). Die Themen (inhalte/theorie) prüft der letzte Test ohne Zitate,
+// Tafeln und Tabellenzeilen (L-261).
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readdirSync, readFileSync } from 'node:fs';

@@ -63,7 +63,7 @@ const pruefeSichtbar = (wo: string, el: Element): void => {
 test('Vorlagen-Check: rot mit dem Startbeispiel, Lücken mit Satz, Beispiele grün und gelb, „Leer beginnen“ ohne Fall-Namen', () => {
   const el = zeige('vorlagen-check');
   assert.equal(ampel(el, 'vc-ampel'), 'rot');
-  assert.match(q(el, 'vc-luecke-b1').textContent ?? '', /So schließen Sie die Lücke: Fordern Sie einen zweiten Weg an/u);
+  assert.match(q(el, 'vc-luecke-b1').textContent ?? '', /So schließen Sie die Lücke: Fordern Sie weitere Wege an/u);
   assert.match(q(el, 'vc-luecke-a4').textContent ?? '', /fehlt – Vorlage nicht vollständig/u);
   pruefeSichtbar('vorlagen-check rot', el);
   // eine Antwort ändert die Ampel sofort nicht, solange Muss-Lücken bleiben – aber die Lücke verschwindet
@@ -208,6 +208,11 @@ test('Monatsbericht: Oktober grün und passt; Kosten-Ampel ohne Frage warnt gelb
   tippe(e, 'mb-monat', 'November 2026');
   tippe(e, 'mb-datenstand', '30. November 2026');
   tippe(e, 'mb-lage', 'Alles im Plan.');
+  // R79: ebenso die Sätze der drei Ampeln und die benötigte Reaktion
+  assert.equal(ampel(e, 'mb-ampel'), 'gelb');
+  for (const id of ['kosten', 'termine', 'qualitaet']) tippe(e, `mb-satz-${id}`, 'Im Plan.');
+  assert.equal(ampel(e, 'mb-ampel'), 'gelb');
+  tippe(e, 'mb-reaktion', 'Kenntnis.');
   assert.equal(ampel(e, 'mb-ampel'), 'gruen');
   assert.doesNotMatch(lesbar(q(e, 'mb-bericht')), /Lindenhall/u, 'ohne Beispiel kein Projektname');
   pruefeSichtbar('monatsbericht leer', e);

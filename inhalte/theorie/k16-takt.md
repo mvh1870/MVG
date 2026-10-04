@@ -138,7 +138,7 @@ symbol: bericht
 So kann eine Seite aussehen – vom Schulcampus Lindenhall-Süd, Oktober 2026:
 
 > **Monatsbericht · Oktober 2026**
-> - Kostenprognose nach dem geltenden Datenstand: 59,4 Mio. € gegen die Projektbasis von 58,4 Mio. € (+1,7 %); die Risikoreserve von 2,9 Mio. € deckt das; ihren Einsatz gibt der Bauherr frei.
+> - Kostenprognose nach dem geltenden Datenstand: 59,4 Mio. € gegen die Projektbasis von 58,4 Mio. € (+1,7 %); die Risikoreserve von 2,9 Mio. € deckt das; über einen Einsatz der Reserve entscheidet der Bauherr, wenn es so weit ist.
 > - Angekündigte Mehrkosten der Haustechnikfirma, gut eine Million Euro, als Risiko geführt, nicht in der Prognose; die Vergabestelle prüft die Forderung. Träten sie voll ein, bliebe die Prognose innerhalb von Basis plus Reserve (61,3 Mio. €).
 > - Offene Entscheidung: keine. Benötigte Reaktion: Kenntnis; die Bürgermeisterin nennt dem Stadtrat diese Zahl mit Begründung, die angekündigten Mehrkosten als Risiko daneben.
 :::

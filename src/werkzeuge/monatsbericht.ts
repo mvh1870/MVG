@@ -116,7 +116,8 @@ export function pruefeBericht(b: Bericht, maxJeAbschnitt: Readonly<Record<string
   const entscheidungen = Array.isArray(b.entscheidungen) ? (b.entscheidungen as readonly OffeneEntscheidung[]) : [];
 
   // R77: ohne Monat, Datenstand und Lage ist der Bericht noch leer – nicht „vollständig“
-  if (leer(b.monat) || leer(b.datenstand) || leer(b.lage)) h.push({ id: 'berichtUnvollstaendig', schwere: 'gelb', bezug: 'kopf' });
+  // R79: ebenso ohne die Sätze zu den drei Ampeln und ohne die benötigte Reaktion des Bauherrn („keine“ ist eine Angabe)
+  if (leer(b.monat) || leer(b.datenstand) || leer(b.lage) || leer(b.reaktion) || AMPELN.some((id) => leer(b.ampeln[id].satz))) h.push({ id: 'berichtUnvollstaendig', schwere: 'gelb', bezug: 'kopf' });
 
   // D-R1: Ampel gelb oder rot ohne offene Entscheidung und ohne benötigte Reaktion
   for (const id of AMPELN) {
@@ -130,7 +131,7 @@ export function pruefeBericht(b: Bericht, maxJeAbschnitt: Readonly<Record<string
 
   // D-R2, D-R3 für offene Entscheidungen
   for (const e of entscheidungen) {
-    if (leer(e.stelle) || leer(e.bis)) h.push({ id: 'entscheidungOhneWerBisWann', schwere: 'rot', bezug: e.id });
+    if (leer(e.frage) || leer(e.stelle) || leer(e.bis)) h.push({ id: 'entscheidungOhneWerBisWann', schwere: 'rot', bezug: e.id });
     if (leer(e.kennung)) h.push({ id: 'ohneKennung', schwere: 'gelb', bezug: e.id });
   }
   if (b.entscheidungen === null || (Array.isArray(b.entscheidungen) && b.entscheidungen.length === 0)) {

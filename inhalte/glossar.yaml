@@ -99,7 +99,7 @@ neu:
   - id: g-aufgabe
     begriff: Aufgabe
     definition: >-
-      Geplante Arbeit mit vereinbartem Ergebnis, Verantwortlichem und Termin. Sie gilt erst als erledigt, sobald das
+      Geplante Arbeit mit vereinbartem Ergebnis, Verantwortlichem und Termin. Sie gilt erst als erledigt, wenn das
       Ergebnis da ist und die Projektsteuerung es im Rahmen ihrer eigenen Prüfung verwenden kann.
     belege: [v24:hb-1, v24:hb-1.1]
   - id: g-massnahme

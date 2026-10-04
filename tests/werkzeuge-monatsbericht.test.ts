@@ -75,6 +75,9 @@ test('D-R2: offene Entscheidung ohne Stelle oder Termin → rot', () => {
   assert.equal(p.ampel, 'rot');
   b.entscheidungen = [{ ...ENTSCHEIDUNG, stelle: ' ' }];
   assert.equal(pruefeBericht(b, MAX).ampel, 'rot');
+  // R79: auch ohne die Frage selbst
+  b.entscheidungen = [{ ...ENTSCHEIDUNG, frage: ' ' }];
+  assert.deepEqual(pruefeBericht(b, MAX).hinweise, [{ id: 'entscheidungOhneWerBisWann', schwere: 'rot', bezug: 'e1' }]);
 });
 
 test('D-R3: Eintrag ohne Kennung → Hinweis gelb', () => {
@@ -132,6 +135,15 @@ test('Kopf (R78): fehlt genau eines von Monat, Datenstand und Lage → berichtUn
     const b = oktober();
     b[feld] = '  ';
     assert.deepEqual(pruefeBericht(b, MAX).hinweise, [{ id: 'berichtUnvollstaendig', schwere: 'gelb', bezug: 'kopf' }], feld);
+  }
+  // R79: ebenso ohne benötigte Reaktion und ohne den Satz einer Ampel
+  const ohneReaktion = oktober();
+  ohneReaktion.reaktion = '';
+  assert.deepEqual(pruefeBericht(ohneReaktion, MAX).hinweise, [{ id: 'berichtUnvollstaendig', schwere: 'gelb', bezug: 'kopf' }], 'reaktion');
+  for (const id of ['kosten', 'termine', 'qualitaet'] as const) {
+    const b = oktober();
+    b.ampeln[id] = { ...b.ampeln[id], satz: ' ' };
+    assert.deepEqual(pruefeBericht(b, MAX).hinweise, [{ id: 'berichtUnvollstaendig', schwere: 'gelb', bezug: 'kopf' }], id);
   }
   assert.deepEqual(pruefeBericht(oktober(), MAX).hinweise, []);
 });

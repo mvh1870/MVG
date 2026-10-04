@@ -241,7 +241,7 @@ Daraus folgen:
 5. Welcher Datenstand gilt?
 6. Wie wird der Beschluss später nachvollzogen?
 
-Der Bauherr erhält monatlich einen Bericht von höchstens einer Seite. Er zeigt, was sich verändert hat, und vor allem die offenen Entscheidungen mit der benötigten Reaktion.
+Der Bauherr erhält monatlich einen Bericht von höchstens einer Seite. Er zeigt wesentliche Veränderungen und die offenen Entscheidungen mit der benötigten Reaktion.
 :::
 :::
 

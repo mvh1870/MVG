@@ -186,6 +186,18 @@ export function baueWerkzeuge(c, rel, roh) {
 /** @typedef {(ort: string, x: unknown) => string} Sichtbar */
 /** @typedef {(f: string) => void} Fehler */
 
+/** R79: ein Beispiel trägt nur bekannte Felder (ein Tippfehler wie `reserv` gälte sonst still als „unbekannt“) und eine Kennung in Kleinschrift. */
+function beispielFelder(/** @type {any} */ b, /** @type {string[]} */ erlaubt, /** @type {string} */ ort, /** @type {Fehler} */ fehler) {
+  if (typeof b?.id !== 'string' || !/^[a-z0-9][a-z0-9-]{0,40}$/u.test(b.id)) fehler(`${ort}: Kennung fehlt oder ist nicht in Kleinschrift (a–z, 0–9, -)`);
+  for (const k of Object.keys(b ?? {})) if (!erlaubt.includes(k)) fehler(`${ort}: unbekanntes Feld „${k}“ (erlaubt: ${erlaubt.join(', ')})`);
+}
+
+/** Beispiel-Kennungen eines Werkzeugs sind eindeutig. */
+function eindeutig(/** @type {any[]} */ beispiele, /** @type {string} */ werkzeug, /** @type {Fehler} */ fehler) {
+  const ids = beispiele.map((x) => x?.id);
+  for (const id of new Set(ids)) if (ids.filter((x) => x === id).length > 1) fehler(`${werkzeug}: Beispiel „${id}“ doppelt`);
+}
+
 /** Liste der Kennungen: eindeutig und nur aus dem erlaubten Vorrat. */
 function kennungen(/** @type {any[]} */ liste, /** @type {string[]} */ erlaubt, /** @type {string} */ ort, /** @type {Fehler} */ fehler, genau = true) {
   const ids = liste.map((/** @type {any} */ x) => text(x.id ?? x.art));
@@ -258,6 +270,7 @@ function baueVorlagenCheck(v, neuerTeil, sichtbar, belege, fehler) {
   if (!mandat.saetze.falsch.includes('{grund}')) fehler('vorlagencheck mandat: Satz „falsch“ ohne {grund}');
   const beispiele = (v.beispiele ?? []).map((/** @type {any} */ b) => {
     const ort = `vorlagencheck Beispiel ${text(b.id)}`;
+    beispielFelder(b, ['id', 'titel', 'lage', 'quelle', 'gegenstand', 'stelle', 'betrag', 'reserve', 'wege', 'antworten', 'erwartet'], ort, fehler);
     if (!GEGENSTAENDE.includes(b.gegenstand)) fehler(`${ort}: Gegenstand unbekannt`);
     if (!STELLEN.includes(b.stelle)) fehler(`${ort}: Stelle unbekannt`);
     const wege = (b.wege ?? []).map((/** @type {any} */ w) => {
@@ -283,6 +296,7 @@ function baueVorlagenCheck(v, neuerTeil, sichtbar, belege, fehler) {
     return aus;
   });
   if (beispiele.length === 0) fehler('vorlagencheck: mindestens ein Beispiel');
+  eindeutig(v.beispiele ?? [], 'vorlagencheck', fehler);
   return { ...kopf, ampel, schritte, stellen, wegzustaende, dringlich, gegenstaende, mandat, beispiele };
 }
 
@@ -312,6 +326,7 @@ function baueWegweiser(v, neuerTeil, sichtbar, satz, belege, fehler) {
   kennungen(verwechslungen, verwechslungen.map((/** @type {any} */ x) => x.id), 'wegweiser verwechslungen', fehler, false);
   const beispiele = (v.beispiele ?? []).map((/** @type {any} */ b) => {
     const ort = `wegweiser Beispiel ${text(b.id)}`;
+    beispielFelder(b, ['id', 'titel', 'text', 'quelle', 'antworten', 'erwartet'], ort, fehler);
     const antworten = Object.fromEntries(Object.entries(b.antworten ?? {}).map(([k, a]) => [k, text(a)]));
     for (const [k, a] of Object.entries(antworten)) {
       if (!FRAGEN.includes(k)) fehler(`${ort}: Frage „${k}“ unbekannt`);
@@ -328,6 +343,7 @@ function baueWegweiser(v, neuerTeil, sichtbar, satz, belege, fehler) {
     return { id: text(b.id), titel: sichtbar(ort, b.titel), text: sichtbar(ort, b.text), antworten };
   });
   if (beispiele.length === 0) fehler('wegweiser: mindestens ein Beispiel');
+  eindeutig(v.beispiele ?? [], 'wegweiser', fehler);
   return { ...kopf, fragen, ergebnisse, zusaetze, verwechslungen, beispiele };
 }
 
@@ -368,6 +384,7 @@ function baueRisikoGrenzen(v, neuerTeil, sichtbar, satz, fehler) {
   const warnIds = warnanlaesse.map((/** @type {any} */ w) => w.id);
   const beispiele = (v.beispiele ?? []).map((/** @type {any} */ b) => {
     const ort = `risikogrenzen Beispiel ${text(b.id)}`;
+    beispielFelder(b, ['id', 'kennung', 'titel', 'quelle', 'w', 'kosten', 'termin', 'qualitaet', 'massnahme', 'schwelle', 'prognose', 'puffer', 'warn', 'waswaere', 'erwartet'], ort, fehler);
     const massnahme = b.massnahme ?? 'keine';
     const prognose = b.prognose ?? 'nein';
     if (!['keine', 'geplant', 'belegt'].includes(massnahme)) fehler(`${ort}: massnahme unbekannt`);
@@ -397,6 +414,7 @@ function baueRisikoGrenzen(v, neuerTeil, sichtbar, satz, fehler) {
     return aus;
   });
   if (beispiele.length === 0) fehler('risikogrenzen: mindestens ein Beispiel');
+  eindeutig(v.beispiele ?? [], 'risikogrenzen', fehler);
   return { ...kopf, grenzen, zustaende, warnanlaesse, grenzfehler, saetze, beispiele };
 }
 
@@ -425,6 +443,7 @@ function baueMonatsbericht(v, neuerTeil, sichtbar, satz, fehler) {
   const lang = (/** @type {string} */ ort, /** @type {string} */ t, /** @type {number} */ max) => { if (t.length > max) fehler(`${ort}: ${t.length} Zeichen, höchstens ${max} (Feldgrenze)`); return t; };
   const beispiele = (v.beispiele ?? []).map((/** @type {any} */ b) => {
     const ort = `monatsbericht Beispiel ${text(b.id)}`;
+    beispielFelder(b, ['id', 'titel', 'quelle', 'monat', 'datenstand', 'lage', 'ampeln', 'eintraege', 'entscheidungen', 'reaktion', 'erwartet'], ort, fehler);
     /** @type {Record<string, any>} */
     const am = {};
     for (const id of AMPELN) {
@@ -462,5 +481,6 @@ function baueMonatsbericht(v, neuerTeil, sichtbar, satz, fehler) {
     return aus;
   });
   if (beispiele.length === 0) fehler('monatsbericht: mindestens ein Beispiel');
+  eindeutig(v.beispiele ?? [], 'monatsbericht', fehler);
   return { ...kopf, ampel, ampeln, farben, abschnitte, entscheidungen, reaktion, projekt, fuss, saetze, beispiele };
 }

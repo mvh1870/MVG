@@ -62,6 +62,10 @@ export const MUTANTEN = [
   ['src/werkzeuge/monatsbericht.ts', 'export const ZEICHEN_JE_ZEILE = 78;', 'export const ZEICHEN_JE_ZEILE = 92;', 'Bericht: vorsichtige Zeilenbreite für die Seitenschätzung', TESTS_WERKZEUGE],
   // R78: überlebende Mutanten der Prüfrunde (Monatsbericht, Daten der Vorlagen-Zuständigkeit)
   ['src/werkzeuge/monatsbericht.ts', ' || leer(b.lage) ||', ' ||', 'Bericht: ohne Lage ist der Bericht unvollständig (R77)', TESTS_WERKZEUGE],
+  ['src/ui/flaechen/explore/vorlagen-check.ts', "(imSchritt.has(l.bezug ?? '') ? 0 : 2) + (l.schwere === 'rot' ? 0 : 1)", "(imSchritt.has(l.bezug ?? '') ? 0 : 1) + (l.schwere === 'rot' ? 0 : 2)", 'Vorlagen-Check: Lücken des Schritts vor der Schwere (R79)', ['tests/explore-werkzeuge.test.ts']],
+  ['src/ui/flaechen/explore/vorlagen-check.ts', 'gereiht.length > ZUERST + 1 ?', 'gereiht.length > ZUERST ?', 'Vorlagen-Check: eine einzelne weitere Lücke wird nicht eingeklappt (R79)', ['tests/explore-werkzeuge.test.ts']],
+  ['src/ui/flaechen/explore/vorlagen-check.ts', "open: weitereOffen }", "open: false }", 'Vorlagen-Check: „Weitere Lücken“ bleibt offen (R79)', ['tests/explore-werkzeuge.test.ts']],
+  ['src/ui/flaechen/explore/vorlagen-check.ts', "const nurErgebnis = !o.bedienbar && schrittAusStand === 'ergebnis';", 'const nurErgebnis = false;', 'Vorlagen-Check: Leinwand im Schritt Ergebnis ohne Prüfschritt (R79)', ['tests/explore-werkzeuge.test.ts']],
   ['src/ui/flaechen/explore/gemeinsam.ts', "bogenKopf(b.titel, '', b.fiktiv)", "bogenKopf(b.titel, '', false)", 'Werkzeug-Druck: „Fiktiver Fall“ mit Beispiel (R79)', ['tests/explore-werkzeuge.test.ts']],
   ['src/ui/flaechen/explore/monatsbericht.ts', 'fiktiv: z.beispiel !== null', 'fiktiv: true', 'Werkzeug-Druck: ohne Beispiel kein „Fiktiver Fall“ (R79)', ['tests/explore-werkzeuge.test.ts']],
   ['src/werkzeuge/monatsbericht.ts', "const BREIT = 'MWmw@%';", "const BREIT = 'MW';", 'Bericht: auch @ und % zählen breit (R79)', TESTS_WERKZEUGE],

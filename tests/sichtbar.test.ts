@@ -120,6 +120,7 @@ test('Arbeitsstand (P17.10, O-56): die Probe schlägt bei Werkstatt-Resten an, n
     ['vom Prüf-Agenten gesehen', 'Prüf-Agent'], ['Belegstelle im Handbuch', 'Beleg'], ['mit zwei Belegen', 'Beleg'], ['Quelle: Handbuch', 'Quelle:'],
     ['nach V2.4', 'Quellenhinweis auf den Standard'], ['HB 3.2', 'Quellenhinweis auf den Standard'], ['nur intern', 'intern'], ['interne Notiz', 'intern'],
     ['TODO', 'TODO'], ['Platzhalter', 'Platzhalter'], ['Hinweis zur Bedienung', 'Bedienhinweis'],
+    ['Das Werkzeug bittet um einen Eintrag.', 'Werkzeug erklärt sein Verhalten'], ['Bitte ausfüllen, damit der Bericht nicht unfertig wirkt.', 'Werkzeug erklärt sein Verhalten'],
     ['Klicken Sie sich durch.', 'Bedienungs-Anleitung'], ['Ziehen Sie den Regler.', 'Bedienungs-Anleitung'], ['Schalten Sie um und sehen Sie, was fehlt.', 'Bedienungs-Anleitung'],
   ];
   const getroffen = (text: string): string[] => [...new Set(sichtbarVerboten(text).map((f) => /^verbotenes Wort sichtbar \((.+?)\): „/u.exec(f)?.[1] ?? f))];
@@ -132,7 +133,7 @@ test('Arbeitsstand (P17.10, O-56): die Probe schlägt bei Werkstatt-Resten an, n
   // Fachtext bleibt unbehelligt
   for (const fach of [
     'von 1 (geringe Abweichung, Nutzung nicht eingeschränkt)', 'getrennt festgehalten, mit Quelle, Datum und Bedingungen', 'Ein gemeinsamer Prüfvermerk mit Datum',
-    'höchste belegte Auswirkung', 'als internetbasierter Dienst', 'RIS-014 und MAS-011', 'LPH 4', 'Wählen Sie eine Option.', 'Abbildung 3',
+    'höchste belegte Auswirkung', 'Was jede Woche, jeden Monat und sofort geschieht, zeigt das Werkzeug Takt.', 'Hier fehlt noch ein Eintrag – oder „keine“.', 'als internetbasierter Dienst', 'RIS-014 und MAS-011', 'LPH 4', 'Wählen Sie eine Option.', 'Abbildung 3',
   ]) assert.deepEqual(sichtbarVerboten(fach), [], fach);
 });
 

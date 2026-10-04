@@ -12,6 +12,7 @@ import { bildmarke } from '../ui/marke.ts';
 import { baueStart } from '../ui/flaechen/start.ts';
 import { baueTheorie, themaTitel, themen, zeigeAktuellenEintrag } from '../ui/flaechen/theorie.ts';
 import { baueExplore, WERKZEUGE } from '../ui/flaechen/explore.ts';
+import { beispielKennungen } from '../ui/werkzeug-kennungen.ts';
 import { baueSchritt, leisteOben } from '../ui/flaechen/geschichte.ts';
 import { seitenRahmen } from '../ui/bausteine/seite.ts';
 import { W } from '../ui/woerter.ts';
@@ -113,7 +114,7 @@ export function erzeugeAnzeige(inhalte: OeffentlicheInhalte, version: string, ei
       let seite: HTMLElement;
       if (b.bereich === 'story') seite = storyAnzeige(inhalte, b);
       else if (b.bereich === 'theorie') seite = baueTheorie({ inhalte, thema: b.thema, version, bedienbar: false });
-      else if (b.bereich === 'explore') seite = baueExplore({ inhalte, werkzeug: b.werkzeug, bedienbar: false });
+      else if (b.bereich === 'explore') seite = baueExplore({ inhalte, werkzeug: b.werkzeug, werkzeugStand: b.werkzeugStand, bedienbar: false });
       else {
         seite = baueStart({
           startseite: inhalte.startseite,
@@ -130,6 +131,8 @@ export function erzeugeAnzeige(inhalte: OeffentlicheInhalte, version: string, ei
       // Eine Wahl im selben Schritt lässt die Leinwand stehen; ein neuer Ort beginnt oben
       if (gleicherOrt && eingebettet) element.scrollTop = oben;
       else if (!gleicherOrt) nachOben();
+      // R77: ein Werkzeug rückt mit Schritt und Ergebnis ins Bild (Kopf und Einleitung bleiben oberhalb) – jeder neue Stand, auch Beispiel und Schritt
+      if (b.bereich === 'explore') zeigeUnterLeiste(element.querySelector('.wz-raster') !== null ? '.wz-raster' : '.ex-buehne');
       if (neueWahl) zeigeUnterLeiste('[data-pruef="gs-folge"]');
       else if (neueGewichte) zeigeUnterLeiste('[data-pruef="gs-vgl-karten"]');
       else if (miniPosten !== null) zeigeUnterLeiste(`[data-pruef="posten-${miniPosten + 1}"]`, true);
@@ -171,7 +174,7 @@ export function starteLeinwand(wurzel: HTMLElement, o: LeinwandOptionen): () => 
       return;
     }
     if (n.art !== 'zustand') return;
-    const b = pruefeBuehne(n.zustand, o.inhalte.geschichte);
+    const b = pruefeBuehne(n.zustand, o.inhalte.geschichte, (id) => beispielKennungen(o.inhalte.werkzeuge, id));
     if (b === null) return;
     if (!empfangen) {
       empfangen = true;

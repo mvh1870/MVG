@@ -18,7 +18,7 @@ teil: 1
 kurzsatz: Warum mehr Berichte das Kernproblem nicht lösen.
 symbol: frage
 ---
-Kosten, Termine, Qualität, Risiken, [[ESG]], [[LCC]], Nutzerbedarfe und Gremienfähigkeit wirken nicht isoliert – sie treffen in konkreten Entscheidungen zusammen. Für den [[Bauherr|Bauherrn]] zählt deshalb nicht die Menge an Information, sondern ob klar ist, wer auf welcher Grundlage entscheiden darf und muss.
+Kosten, Termine, Qualität, Risiken, [[ESG|Nachhaltigkeit (ESG)]], [[LCC|Lebenszykluskosten (LCC)]], Nutzerbedarfe und Gremienfähigkeit wirken nicht isoliert – sie treffen in konkreten Entscheidungen zusammen. Für den [[Bauherr|Bauherrn]] zählt deshalb nicht die Menge an Information, sondern ob klar ist, wer auf welcher Grundlage entscheiden darf und muss.
 
 ::: kernaussage
 ---
@@ -95,7 +95,7 @@ rechts: Was die Governance braucht
 ---
 titel: Steigende Komplexität durch ESG, LCC und Nachweislogik
 ---
-Nachhaltigkeits-, Energie- und Klimaziele werden zu Entscheidungsparametern. Lebenszykluskosten, Zertifizierungen, EU-Taxonomie, CSRD und EPBD verschärfen die Anforderungen an Zieldefinition, Variantenvergleich und Nachweise.
+Nachhaltigkeits-, Energie- und Klimaziele werden zu Entscheidungsparametern. Lebenszykluskosten, Zertifizierungen und EU-Vorgaben zu Nachhaltigkeit und Energie verschärfen die Anforderungen an Zieldefinition, Variantenvergleich und Nachweise.
 
 ::: umschalter
 ---
@@ -241,7 +241,7 @@ Daraus folgen:
 5. Welcher Datenstand gilt?
 6. Wie wird der Beschluss später nachvollzogen?
 
-Der Bauherr erhält monatlich einen Bericht von höchstens einer Seite. Er zeigt die offenen Entscheidungen und die benötigte Reaktion.
+Der Bauherr erhält monatlich einen Bericht von höchstens einer Seite. Er zeigt wesentliche Veränderungen und die offenen Entscheidungen mit der benötigten Reaktion.
 :::
 :::
 

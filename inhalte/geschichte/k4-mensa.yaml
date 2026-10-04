@@ -6,6 +6,7 @@ zeit: Juni 2026
 campus: { stufe: 2, jahreszeit: sommer, licht: abend }
 kurzfassung: true
 thema: vorgaenge
+werkzeuge: [{ id: vorlagen-check, beispiel: mensa }]
 belege: [v24:hb-1.5, v24:hb-1, v24:hb-3.1, v24:va-4.2, k4.3-p2, k3.2-t1, k10.5-t1, k4.2-p3, k9.3-p3, v24:va-4.1]
 bild-szene: mensateller
 bild-frage: grundriss

@@ -195,6 +195,16 @@ export async function lauf(seite, h) {
   if ((await fokus()) === 'BODY') h.befund('Vergleich: Fokus nach „Abgestimmte Gewichte“ auf <body>');
   await weiter();
   await h.klick('[data-pruef="antwort-2"]');
+  // P18.5 (E-13): leiser Verweis „Vorlagen-Check ausprobieren“ im Kasten „Das steckt dahinter“, öffnet mit dem Beispiel des Kapitels
+  {
+    const v = seite.locator('[data-pruef="gs-dahinter"] [data-pruef="gs-werkzeug-vorlagen-check"]');
+    if ((await v.count()) !== 1) h.befund('Kapitel 7: kein Verweis auf den Vorlagen-Check im Kasten „Das steckt dahinter“');
+    else {
+      if ((await v.getAttribute('href')) !== '#explore/vorlagen-check/lueftung-voll') h.befund(`Kapitel 7: Verweis führt nach ${await v.getAttribute('href')}`);
+      if (!/ausprobieren/u.test(await v.innerText())) h.befund('Kapitel 7: der Verweis sagt nicht „… ausprobieren“');
+      if (/jetzt|kostenlos|buchen|testen Sie/iu.test(await v.innerText())) h.befund('Kapitel 7: Verweis im Vertriebston');
+    }
+  }
 
   // per Tastatur bis zum Schulstart
   for (let i = 0; i < 6; i++) {

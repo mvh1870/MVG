@@ -20,7 +20,9 @@ const quellen = dateien(path.join(WURZEL, 'src')).filter((f) => f.endsWith('.ts'
 const lies = (f: string): string => readFileSync(f, 'utf8');
 
 /** Nur von Tests benutzt, mit Absicht (Kontrastrechnung der Stilprüfung). */
-const NUR_TESTS = new Set(['src/stil/farben.ts']);
+const NUR_TESTS = new Set([
+  'src/stil/farben.ts',
+]);
 
 test('Jede Quelldatei unter src/ wird von src/main.ts aus geladen', () => {
   const gesehen = new Set<string>();

@@ -3,13 +3,15 @@
 Kopf ≤ 100 Zeilen. Oben JETZT (überschreiben), darunter FRÜHER (anhängen, knapp).
 
 ## JETZT
-- **Stand 2026-10-03 ~18:45 UTC: P17 abgeschlossen** (O-58): R75 und R76 ohne schweren Befund, R76-Befunde eingearbeitet (e8964e9, Kette voll grün, CI grün), `claude/haus` einmal per Merge nach `main` gepusht, Owner benachrichtigt.
-- **Prüfrunden P17.12:** R72 5/30/51, R73 2/19/42, R74 1/8/41, R75 0/12/40, R76 0/12/42 (schwer/mittel/leicht) – `docs/ABNAHME-MITTEL.md`, Entscheide L-237–L-256.
-- **Lesezeit:** `node werkzeuge/lesezeit.mjs`; Kurzfassung 10,4 Minuten ohne Puffer („etwa 10“, O-51, L-252) – jede Ergänzung in der Kurzfassung ausgleichen.
-- **Jetzt P18** (O-59): vier neue Explore-Werkzeuge A–D. P18.1 Konzept `docs/WERKZEUGE-P18.md` abgenommen (L-253, L-254, L-256); P18.2 Rechenkerne in Arbeit. Am Ende von P18 erneut zwei saubere Runden, Merge nach `main`, Nachricht.
-- Rechner: Node 22.22, Chromium unter `/opt/pw-browsers/chromium`. Kette ≈ 90 s (voll ≈ 120 s). Der Abschluss lief in einem abgekoppelten Worktree, weil im Hauptbaum P18.2 entstand.
+- **Stand 2026-10-04 ~01:15 UTC: P18 abgeschlossen, Planblatt leer.** P18.6 abgenommen (R78 + R79 ohne schweren Befund, L-260–L-264), P18.7: CI 339 auf b86486f grün, `claude/haus` per Merge nach `main` (O-49, O-59), Nachricht an den Owner. Offen zur Abnahme des Owners: `docs/ABNAHME.md` und ein mittlerer Befund in `docs/ABNAHME-MITTEL.md` (Vorlage im Vorlagen-Check sichtbar machen). Ampel rot „fertig“ – die Routine kann der Owner anhalten; kommt ein neuer Block, ist nichts zu tun, bis ein neuer Posten oder eine Antwort da ist.
+- Vorher: Stand 2026-10-04 01:10 UTC: P18.6 erledigt. R79 (b72b054, sechs Prüf-Agenten) ohne schweren Befund, eingearbeitet (L-262–L-264); R78 + R79 zwei Runden ohne schweren Befund. Offen zur Abnahme: „Vorlage im Vorlagen-Check sichtbar machen“ (ABNAHME-MITTEL). Mutanten 57/57 (`node werkzeuge/mutanten.mjs` läuft nicht in der Kette – nach Kern-/Explore-Änderungen von Hand). ABNAHME um die Werkzeuge ergänzt. Als Nächstes P18.7: CI auf dem letzten Commit grün lesen, `claude/haus` per Merge nach `main` (O-49/O-59), Ampel rot „fertig“.
+- Vorher 2026-10-03 ~22:45 UTC: P18.1–P18.5 erledigt, P18.6 läuft. R77 (ea42fd9) eingearbeitet (L-260). **R78 (Werkzeuge, Explore, Druck, Doku) ohne schweren Befund** (mittel: Wortlaut des Standards in Matrix, Takt, Glossar; Mandatsdaten ohne Test; Wegweiser „kein Vorgang“ zugleich „Entscheidung vorbereiten“; Mutanten Monatsbericht; Textfeld bricht Wörter; Seitenmesser gegen PDF) – **Werkzeug-Teil eingearbeitet** (Nachzug R78 in `docs/WERKZEUGE-P18.md`, Vorschläge für L-261 bei der Hauptsitzung); Story, Themen, Abbildungen arbeitet ein anderer Agent ein. Als Nächstes R79; zwei Runden hintereinander ohne schweren Befund, danach P18.7 (Merge nach `main`, Nachricht).
+- **Achtung zwei Sitzungen:** Eine zweite Sitzung (Routine, Ampel 21:13 UTC) hat parallel R77 gestartet (76c5450, ada0e9b). Ihr R77 ist durch die eingearbeiteten Befunde überholt; bitte nicht doppelt einarbeiten – vor jedem Push `git fetch` und mergen (kein Rebase, kein `--force`).
+- **Lesezeit:** `node werkzeuge/lesezeit.mjs`; Kurzfassung 10,4 Minuten ohne Puffer („etwa 10“, O-51, L-252) – Ergänzungen in der Kurzfassung ausgleichen.
+- Rechner: Node 22.22, Chromium unter `/opt/pw-browsers/chromium`, Kette ≈ 100 s (voll ≈ 130 s).
 
 ## FRÜHER
+- 2026-10-03 (18:45–19:45 UTC): P17 abgeschlossen und nach `main` (O-58); P18.1–P18.5 (L-253–L-259).
 - 2026-10-03 (ab 09:00 UTC): P17 Neugestaltung (O-51–O-58): Drehbuch, Story als Spiel, Themen als Buch, Explore-Kopf; Prüfrunden R72–R76 (L-225–L-252); Owner wählt vier neue Werkzeuge (O-59).
 - 2026-10-02 (13:20–17:26 UTC): P16.15 Prüfrunden R67–R71 (L-205–L-223), Statusbedingungen der Story, Reservegrenze auf allen Wegen.
 - 2026-10-02 (11:03–13:20 UTC): Neuausrichtung P16 (O-36 bis O-50): neuer Plan; Umschalten auf neue Story, Themen, Explore, Regie (L-184 bis L-191); Theorie an V2.4, Impressum, Datenschutz, Webseitenordner (L-192 bis L-195).

@@ -49,6 +49,10 @@ export async function lauf(seite, h) {
     // P16.4 macht die Inhalte frei von Kapitel-Bezügen; die Bauart (Nummern, Originaltext, Zitieren) prüft schon jetzt
     for (const sel of ['.originaltext', '[data-pruef="zitieren"]', '.absatz-id', '.kapitel-nr', '.abschnitt-nr', '.tafel-quelle']) await h.erwarteNicht(sel);
     await h.erwarte('[data-pruef="lern-kontakt"] [data-pruef="bm-link"]');
+    // P18.5 (E-13): „Zum Ausprobieren“ nur bei den Themen, zu denen es ein Werkzeug gibt; der Verweis führt nach Explore
+    const probieren = { entscheidungsvorlage: ['vorlagen-check'], vorgaenge: ['wegweiser', 'risiko-grenzen'], takt: ['monatsbericht'] }[t] ?? [];
+    const links = await seite.locator('[data-pruef="thema-werkzeuge"] a').evaluateAll((l) => l.map((a) => a.getAttribute('href')));
+    if (links.join(',') !== probieren.map((x) => `#explore/${x}`).join(',')) h.befund(`${t}: Verweise auf Werkzeuge ${links.join(',') || 'keine'}`);
     for (const f of sichtbarVerboten(await seite.locator('body').innerText())) h.befund(`${t}: ${f}`);
     await pruefe(t);
     // R75: unter 1100 px ist das Themenverzeichnis zugeklappt; geöffnet bleibt jeder Eintrag klickbar (vorher lief die Liste

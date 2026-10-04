@@ -86,6 +86,97 @@ export async function lauf(seite, h) {
   if (verzeichnis !== 'sichtbar') h.befund(`Leinwand: aktueller Eintrag „${spaet}“ im Themenverzeichnis: ${verzeichnis}`);
   await seite.locator('[data-pruef="regie-werkzeug"]').selectOption('matrix');
   await h.erwarte('.anzeige [data-werkzeug="matrix"]', leinwand);
+  // P18.5 (E-9): die vier neuen Werkzeuge – Pfeiltasten gehen erst durch die Schritte, dann zum nächsten Werkzeug; Beispiel und Schritt
+  // erreichen die Leinwand ohne Bedienelemente und ohne Regie-Text
+  await seite.locator('[data-pruef="regie-werkzeug"]').selectOption('vorlagen-check');
+  await h.erwarte('.anzeige [data-werkzeug="vorlagen-check"]', leinwand);
+  await h.erwarte('[data-pruef="regie-werkzeug-stand"]');
+  const schritt = () => seite.locator('[data-pruef="regie-schritt-stelle"]').innerText();
+  if ((await schritt()) !== 'Schritt 1 von 6') h.befund(`Regie: Vorlagen-Check beginnt bei „${await schritt()}“`);
+  const lwVorher = await leinwand.locator('.anzeige [data-werkzeug="vorlagen-check"]').innerText();
+  await seite.locator('body').press('ArrowRight');
+  await seite.locator('body').press('ArrowRight');
+  if ((await schritt()) !== 'Schritt 3 von 6') h.befund(`Regie: Pfeiltaste geht nicht durch die Schritte („${await schritt()}“)`);
+  await h.warte(300);
+  if ((await leinwand.locator('.anzeige [data-werkzeug="vorlagen-check"]').innerText()) === lwVorher) h.befund('Leinwand zeigt den Schritt des Vorlagen-Checks nicht');
+  await h.klick('[data-pruef="regie-beispiel-mensa"]');
+  await h.warte(300);
+  for (let i = 0; i < 5; i += 1) await seite.locator('body').press('ArrowRight');
+  await h.erwarte('[data-pruef="regie-schritt-stelle"]:has-text("Ergebnis")');
+  await seite.locator('body').press('ArrowRight');
+  await h.erwarte('.anzeige [data-werkzeug="matrix"]', leinwand);
+  await seite.locator('[data-pruef="regie-werkzeug"]').selectOption('risiko-grenzen');
+  await h.klick('[data-pruef="regie-schalter-t-71"]');
+  await h.klick('[data-pruef="regie-schalter-w-1"]');
+  await h.erwarte('.anzeige [data-werkzeug="risiko-grenzen"]', leinwand);
+  await seite.locator('[data-pruef="regie-werkzeug"]').selectOption('wegweiser');
+  await h.klick('[data-pruef="regie-schritt-weiter"]');
+  await h.erwarte('.anzeige [data-werkzeug="wegweiser"] .ist-beantwortet', leinwand);
+  await seite.locator('[data-pruef="regie-werkzeug"]').selectOption('monatsbericht');
+  await h.klick('[data-pruef="regie-schalter-w-1"]');
+  await h.erwarte('.anzeige [data-werkzeug="monatsbericht"]', leinwand);
+  // R78: bei einem Explore-Werkzeug mit Eingriffen sagt die Karte „Kundenwahl und Eingriffe“ nicht, es gebe nichts zu wählen
+  if (/nichts zu wählen/u.test(await seite.locator('[data-pruef="regie-eingriffe"]').innerText())) h.befund('Regie: „nichts zu wählen“ bei einem Werkzeug mit Beispielen und Schaltern');
+  if ((await seite.locator('[data-pruef="regie-eingriffe-werkzeug"]').count()) !== 1) h.befund('Regie: Karte „Kundenwahl und Eingriffe“ verweist nicht auf den Kasten des Werkzeugs');
+  await h.erwarte('[data-pruef="regie-notiz"] .regie-notiz-text:has-text("Kosten-Ampel")');
+  const lwNeu = await leinwand.locator('body').innerText();
+  for (const frage of await seite.locator('[data-pruef="regie-leitfragen"] li').allInnerTexts()) if (lwNeu.includes(frage)) h.befund(`Leitfrage des Monatsberichts auf der Leinwand: ${frage}`);
+  if (lwNeu.includes((await seite.locator('[data-pruef="regie-notiz"] .regie-notiz-text').innerText()).slice(0, 40))) h.befund('Regie-Notiz des Monatsberichts auf der Leinwand');
+  if ((await leinwand.locator('.anzeige :is(button, select, input, textarea, a[href])').count()) > 0) h.befund('Leinwand: Eingabefelder oder Bedienelemente in den neuen Werkzeugen');
+  // R77: Leinwand 1920 × 1080 – das Werkzeug zeigt nur sich selbst (ohne Einleitung und Kachelreihe), Fließtext ≥ 24 px, und
+  // Schritt und Ergebnis (Ampel) liegen ohne Rollen im Fenster; mit Beamer-Schalter ebenso, ohne waagerechtes Rollen
+  const lwGroesse = leinwand.viewportSize();
+  await leinwand.setViewportSize({ width: 1920, height: 1080 });
+  for (const beamer of [false, true]) {
+    if (beamer) await h.klick('[data-pruef="regie-beamer"]');
+    for (const wz of ['vorlagen-check', 'risiko-grenzen', 'monatsbericht', 'wegweiser']) {
+      await seite.locator('[data-pruef="regie-werkzeug"]').selectOption(wz);
+      await h.erwarte(`.anzeige [data-werkzeug="${wz}"]`, leinwand);
+      if (wz === 'vorlagen-check') { await seite.locator('body').press('ArrowRight'); await seite.locator('body').press('ArrowRight'); }
+      if (wz === 'wegweiser') await h.klick('[data-pruef="regie-schritt-weiter"]');
+      await h.warte(400);
+      const m = await leinwand.evaluate(() => {
+        const sichtbar = (/** @type {string} */ sel) => {
+          const el = document.querySelector(`.anzeige ${sel}`);
+          if (el === null) return null;
+          const r = el.getBoundingClientRect();
+          return { oben: Math.round(r.top), unten: Math.round(r.bottom) };
+        };
+        const w = document.querySelector('.anzeige [data-werkzeug]');
+        let klein = 0;
+        let gesamt = 0;
+        const tw = document.createTreeWalker(w ?? document.body, NodeFilter.SHOW_TEXT);
+        for (let n = tw.nextNode(); n; n = tw.nextNode()) {
+          const el = n.parentElement;
+          const l = (n.textContent ?? '').trim().length;
+          if (el === null || l === 0 || !el.checkVisibility()) continue;
+          const px = parseFloat(getComputedStyle(el).fontSize) * (el.offsetWidth > 0 ? el.getBoundingClientRect().width / el.offsetWidth : 1);
+          gesamt += l;
+          if (px < 24) klein += l;
+        }
+        const display = (/** @type {string} */ sel) => { const e = document.querySelector(`.anzeige ${sel}`); return e === null ? 'fehlt' : getComputedStyle(e).display; };
+        return {
+          kachel: display('.ex-werkzeuge'), einleitung: display('.ex-einleitung'),
+          fiktiv: [...(document.querySelector('.anzeige .seite-explore')?.innerText ?? '').matchAll(/fiktiv/giu)].length,
+          schritt: sichtbar('[data-pruef="vc-schritt-titel"]'), ampel: sichtbar('.wz-ergebnis .wz-ampel'), ergebnis: sichtbar('.wz-ergebnis'),
+          anteilKlein: gesamt === 0 ? 0 : klein / gesamt, breit: document.documentElement.scrollWidth - document.documentElement.clientWidth, hoehe: innerHeight,
+        };
+      });
+      const wo = `Leinwand 1920×1080${beamer ? ' (Beamer)' : ''}, ${wz}`;
+      if (m.kachel !== 'none' || m.einleitung !== 'none') h.befund(`${wo}: Kachelreihe oder Einleitung des Explore-Bereichs sichtbar`);
+      if (m.fiktiv !== 1) h.befund(`${wo}: „fiktiv“ steht ${m.fiktiv}-mal in der Ansicht (erwartet: einmal, O-45)`);
+      if (m.ergebnis === null) h.befund(`${wo}: Ergebnisfläche fehlt`);
+      else if (m.ergebnis.oben < 0 || m.ergebnis.oben > m.hoehe * 0.6) h.befund(`${wo}: Ergebnis beginnt bei ${m.ergebnis.oben} px (Fenster ${m.hoehe} px)`);
+      if (m.ampel !== null && (m.ampel.oben < 0 || m.ampel.unten > m.hoehe)) h.befund(`${wo}: Ampel nicht ganz im Fenster (${m.ampel.oben}–${m.ampel.unten} px)`);
+      if (wz === 'vorlagen-check' && (m.schritt === null || m.schritt.oben < 0 || m.schritt.unten > m.hoehe)) h.befund(`${wo}: Prüfschritt nicht im Fenster (${JSON.stringify(m.schritt)})`);
+      if (m.anteilKlein > 0.3) h.befund(`${wo}: ${Math.round(m.anteilKlein * 100)} % der Zeichen kleiner als 24 px`);
+      if (m.breit > 0) h.befund(`${wo}: waagerechtes Rollen (${m.breit} px)`);
+    }
+    if (beamer) await h.klick('[data-pruef="regie-beamer"]');
+  }
+  if (lwGroesse !== null) await leinwand.setViewportSize(lwGroesse);
+  await seite.locator('[data-pruef="regie-werkzeug"]').selectOption('monatsbericht');
+  await h.erwarte('.anzeige [data-werkzeug="monatsbericht"]', leinwand);
   // R68: die Vorschau zeigt die Leinwand mit deren Schrift – axe misst sie nicht (aria-hidden); Text gegen Weiß ≥ 4,5:1
   const blass = await seite.evaluate(() => {
     const lum = (/** @type {string} */ c) => { const m = c.match(/[\d.]+/gu)?.map(Number) ?? [0, 0, 0]; const f = (/** @type {number} */ v) => { const x = v / 255; return x <= 0.03928 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; }; return 0.2126 * f(m[0] ?? 0) + 0.7152 * f(m[1] ?? 0) + 0.0722 * f(m[2] ?? 0); };

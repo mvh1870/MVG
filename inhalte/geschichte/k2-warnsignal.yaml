@@ -6,6 +6,7 @@ zeit: März 2026
 campus: { stufe: 0, jahreszeit: fruehling, licht: tag }
 bruecke: "Im März erwähnt der Architekt beiläufig, Holz könnte knapp werden, und die Projektsteuerin hält es als Frühwarnung fest: was zu prüfen ist (die Prüffrage), wer nachfragt, bis wann."
 thema: arbeitsweise
+werkzeuge: [{ id: wegweiser, beispiel: messe }]
 belege: [v24:hb-1, v24:hb-1.1, v24:hb-1.2, v24:hb-1.3, v24:hb-1.4, v24:hb-1.5, v24:hb-1.6, v24:hb-2, v24:hb-4, v24:tlb-2, v24:tlb-3]
 bild-szene: holzstapel
 bild-frage: notizzettel
@@ -74,7 +75,7 @@ mini:
     - { text: "Ein Hersteller erwähnt nebenbei am Telefon, Holz werde vielleicht knapp. Genaues weiß er nicht.", bild: telefon, loesung: fruehwarnung, erklaerung: "Ein Hinweis, bei dem noch nicht geklärt ist, ob etwas dran ist. Erst einmal wird das geprüft." }
     - { text: "Der Architekt schätzt bis Freitag die Kosten für den Fahrradkeller.", bild: kostenzettel, loesung: aufgabe, erklaerung: "Eine geplante Arbeit mit Ergebnis, Namen und Termin." }
     - { text: "Nach dem Starkregen steht die Baugrube unter Wasser.", bild: warnschild, loesung: problem, erklaerung: "Das ist schon passiert. Jetzt geht es um die Folgen und die Lösung, nicht mehr um die Wahrscheinlichkeit." }
-    - { text: "Drei Hersteller bestätigen schriftlich ein halbes Jahr Lieferzeit. Damit kann der Holzbau später beginnen.", bild: lieferwagen, loesung: risiko, erklaerung: "Geklärt: Etwas Nachteiliges kann eintreten, ist aber noch nicht passiert. Das wird bewertet." }
+    - { text: "Drei Hersteller bestätigen schriftlich ein halbes Jahr Lieferzeit für die Holzelemente. Ob der Holzbau dadurch später beginnt, ist noch offen.", bild: lieferwagen, loesung: risiko, erklaerung: "Geklärt: Etwas Nachteiliges kann eintreten, ist aber noch nicht passiert. Das wird bewertet." }
 
 dahinter: Nicht jeder Hinweis wird zum Risiko – aber jeder wird geklärt, bis feststeht, ob daraus ein Risiko, ein Problem oder eine Aufgabe wird oder ob er begründet geschlossen werden kann.
 

@@ -142,6 +142,12 @@ export interface Vergleich {
   werHtml: string;
 }
 
+/** Verweis auf ein Explore-Werkzeug (E-13, P18.5): Adress-Kennung (#explore/<id>) und optional die Kennung eines Beispiels. */
+export interface WerkzeugVerweis {
+  id: string;
+  beispiel: string | null;
+}
+
 export interface Kapitel {
   /** „k1“ … „k8“ (Adresse #story/k3) */
   id: string;
@@ -159,6 +165,8 @@ export interface Kapitel {
   brueckeHtml: string | null;
   /** Kennung des passenden Themas (#theorie/<thema>) */
   thema: string;
+  /** Explore-Werkzeuge, die zum Kapitel passen (leise im Kasten „Das steckt dahinter“); leer = keine */
+  werkzeuge: WerkzeugVerweis[];
   einstiegHtml: string;
   /** kürzerer Einstieg nur für die Kurzfassung (P17.5); null = dort steht `einstiegHtml` */
   einstiegKurzHtml: string | null;

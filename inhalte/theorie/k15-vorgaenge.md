@@ -22,6 +22,7 @@ kurztitel: Vorgänge und Risiken
 teil: 4
 kurzsatz: Welche Vorgangsart ein Hinweis ist und wie ein Risiko bewertet wird.
 symbol: warnung
+werkzeuge: [{ id: wegweiser }, { id: risiko-grenzen }]
 ---
 Im Projektalltag kommt vieles gleichzeitig an: ein Anruf, eine Auflage, ein Wunsch, eine Verzögerung. Nicht jeder Hinweis ist ein Risiko – manches ist schon eingetreten, manches eine gewollte [[Änderung]], manches einfach Arbeit.
 
@@ -128,7 +129,7 @@ Vorgänge wechseln ihre Art, wenn sich der Sachverhalt klärt oder ändert:
 ---
 symbol: puzzle
 ---
-Zusammengehöriges wird verknüpft, ohne dieselbe Wirkung doppelt zu zählen; Zusammenfassen ist erlaubt, solange Verantwortung, [[Maßnahme|Maßnahmen]] und Entscheidungswege erkennbar bleiben. Die Zahl der Risiken ist nicht begrenzt; ein Auslöser kann mehrere haben.
+Was zusammengehört, wird miteinander verknüpft, ohne dass dieselbe Wirkung zweimal gezählt wird. Einträge dürfen zusammengefasst werden, wenn weiterhin erkennbar ist, wer verantwortlich ist, welche [[Maßnahme|Maßnahmen]] laufen und auf welchem Weg entschieden wird. Eine Höchstzahl an Risiken gibt es nicht; ein Auslöser kann mehrere Risiken nach sich ziehen.
 :::
 
 ::: etappen
@@ -226,7 +227,7 @@ rechts: Mit Grund abgeschlossen
 :::
 
 ::: ansicht rechts
-- **Aufgabe:** schließt, wenn das vereinbarte Ergebnis vorliegt und im eigenen Prüfumfang verwendbar ist. Ein neuer Termin ersetzt nicht die Erklärung der Verzögerung.
+- **Aufgabe:** Sie endet, sobald das vereinbarte Ergebnis vorliegt und sich im eigenen Prüfumfang weiterverwenden lässt. Verschiebt sich der Termin, bleibt die Verzögerung trotzdem zu erklären.
 - **Maßnahme:** schließt mit belegtem Umsetzungs- und Wirkungsstand; wirkt sie nicht, folgt eine Anpassung.
 - **Änderung:** gilt erst mit der Freigabe, bis dahin bleibt die bisherige Grundlage maßgeblich. Eine fachliche Freigabe ist noch keine Vertragsänderung oder Bestellung.
 - **Problem:** schließt mit dem Nachweis der Lösung; offene Folgen bleiben sichtbar.
@@ -259,7 +260,7 @@ Ein Wert genau auf einer Grenze gehört zur niedrigeren Stufe. Fehlende Angaben 
 ---
 titel: Die 5×5-Matrix und was sie auslöst
 ---
-Die Matrix gilt nur für Risiken: Wahrscheinlichkeit (1 bis 5) mal höchste belegte Auswirkung (1 bis 5) ergibt die Bearbeitungspriorität. Die Einzelwerte für Kosten, Termin und Qualität bleiben sichtbar. Die Punkte sind keine Geldbeträge und keine Freigabe.
+In die Matrix kommen nur Risiken: Die Wahrscheinlichkeit (1 bis 5), multipliziert mit der höchsten belegten Auswirkung (1 bis 5), ergibt die Priorität der Bearbeitung. Kosten, Termin und Qualität behalten ihre eigenen Einzelwerte. Die Punkte sind weder Geldbeträge noch eine Freigabe.
 
 ::: regler
 ---
@@ -278,7 +279,7 @@ Mit Verantwortlichem, nächstem Prüftermin und benannten Anlässen für eine Ne
 titel: Produkt 5 bis 9
 marke: Gezielt bearbeiten
 ---
-Die Projektsteuerung schlägt eine Maßnahme vor, klärt Verantwortung und Termin und verfolgt die Umsetzung.
+Die Projektsteuerung macht den Vorschlag für die Maßnahme, klärt, wer sie bis wann umsetzt, und verfolgt den Fortgang.
 :::
 
 ::: stufe 3
@@ -290,10 +291,10 @@ Die Projektsteuerung holt eine fachliche Einschätzung ein, informiert den Bauhe
 :::
 :::
 
-Ein Risiko ist **wesentlich**, wenn es vorrangig ist, eine Entscheidungsschwelle des Bauherrn erreicht oder einen besonderen Warnanlass betrifft. Dann ergänzt die Projektsteuerung Bandbreiten für Kosten und Termin, soweit abschätzbar – oder benennt, wer welche Frage klären muss.
+Als **wesentlich** gilt ein Risiko, das vorrangig ist, eine Entscheidungsschwelle des Bauherrn erreicht oder einen besonderen Warnanlass berührt. Dann nennt die Projektsteuerung belastbare Bandbreiten für Kosten und Termin, soweit sich diese abschätzen lassen; andernfalls hält sie fest, wer welche offene Frage klärt.
 
 ::: hinweis
-**Außerhalb der Matrix:** Sicherheit, Genehmigung, fehlende Befugnisse und der drohende Verlust einer Handlungsoption werden unabhängig von den Punkten behandelt. Dringliches wartet weder auf die nächste Sitzung noch auf eine vollständige Bewertung.
+**Unabhängig von den Punkten** behandelt die Projektsteuerung Fragen der Sicherheit und der Genehmigung, fehlende Befugnisse und den drohenden Verlust einer Handlungsoption. Dringliches wird sofort gemeldet – ohne auf die nächste Sitzung oder eine vollständige Bewertung zu warten.
 :::
 
 ::: sortieren

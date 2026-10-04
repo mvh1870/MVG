@@ -184,7 +184,7 @@ titel: Mandat
 ---
 Mit dem [[Mandat]] legt der Bauherr fest, wer welche Entscheidung vorbereiten, treffen, freigeben oder eskalieren darf. Eine [[RACI]]-Zuordnung (ausführungs- und letztverantwortlich, konsultiert, informiert) genügt nicht ohne Freigabeschwellen, Stellvertretungen und Eskalationswege.
 
-Wo eine Entscheidung nötig ist, entscheidet die befugte Stelle auf eine Vorlage der Projektsteuerung mit mindestens zwei zulässigen Optionen und gewichtetem Vergleich; fehlt eine zweite zulässige Option, kennzeichnet die Projektsteuerung die Vorlage als unvollständig. Die Vorgänge pflegt auf keiner Stufe die entscheidende Stelle selbst, sondern die Projektsteuerung. Die **Muster-Mandatsleiter** ist ein Muster, keine Vorgabe: Die Freigabeschwellen legt der Bauherr selbst fest.
+Wo eine Handlungsentscheidung erforderlich ist, entscheidet die befugte Stelle auf eine Vorlage der Projektsteuerung mit mindestens zwei zulässigen Optionen und gewichtetem Vergleich; fehlt eine zweite zulässige Option, kennzeichnet die Projektsteuerung die Vorlage als unvollständig. Die Vorgänge pflegt auf keiner Stufe die entscheidende Stelle selbst, sondern die Projektsteuerung. Die **Muster-Mandatsleiter** ist ein Muster, keine Vorgabe: Die Freigabeschwellen legt der Bauherr selbst fest.
 
 ::: karten
 ::: karte
@@ -239,10 +239,10 @@ Darüber beschließt der Bauherr im Lenkungskreis.
 stelle: 3
 ---
 ### Frage
-Nach der Muster-Mandatsleiter oben, nicht nach den Schwellen aus der Story: Wer entscheidet über eine Änderung im Wert von 250.000 €?
+Nach der Muster-Mandatsleiter: Wer entscheidet über eine Änderung im Wert von 250.000 €?
 
 ### Erklärung
-250.000 € liegen über 100.000 € und unter 5 Mio. € – nach der Muster-Mandatsleiter entscheidet das Änderungsgremium. Gehen die Mehrkosten zulasten der Risikoreserve, gibt deren Einsatz trotzdem der Bauherr frei – auch wenn in der Sache das Änderungsgremium entscheidet. In der Story hat die Bürgermeisterin die Schwellen anders festgelegt – genau das darf der Bauherr: Die Mandatsleiter ist ein Muster, keine Vorgabe.
+250.000 € liegen über 100.000 € und unter 5 Mio. € – nach der Muster-Mandatsleiter entscheidet das Änderungsgremium. In der Story hat die Bürgermeisterin die Schwellen anders festgelegt – genau das darf der Bauherr: Die Mandatsleiter ist ein Muster, keine Vorgabe.
 
 ::: antwort a
 ---
@@ -336,7 +336,7 @@ Die [[Übergabe]] des Vorhabens.
 ---
 titel: Außerhalb der Reihe
 ---
-Eine [[Neufestlegung der Projektbasis]] steht außerhalb der regulären Freigabereihe. Fortführung oder Stopp ist an keine feste Leistungsphase gebunden.
+Eine [[Neufestlegung der Projektbasis]] steht außerhalb der regulären Freigabereihe.
 :::
 :::
 :::

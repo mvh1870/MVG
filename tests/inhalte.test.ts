@@ -135,7 +135,7 @@ test('Beispiel → erwartetes JSON (Auszüge exakt), fehlerfrei, deterministisch
   assert.deepEqual(erg.warnungen, []);
   const i = erg.inhalte as Inhalte;
 
-  assert.deepEqual(Object.keys(i).sort(), ['abbildungen', 'abdeckung', 'geschichte', 'geschichteRegie', 'glossar', 'kompass', 'regie', 'startseite', 'theorie', 'version', 'werkzeuge']);
+  assert.deepEqual(Object.keys(i).sort(), ['abbildungen', 'abdeckung', 'geschichte', 'geschichteRegie', 'glossar', 'kompass', 'regie', 'startseite', 'theorie', 'version', 'werkzeuge', 'werkzeugeRegie']);
   assert.equal(i.startseite, null);
   assert.deepEqual(i.kompass, []);
   assert.deepEqual(i.abbildungen, []);

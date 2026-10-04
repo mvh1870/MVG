@@ -144,7 +144,7 @@ symbol: lesezeichen
 ---
 titel: Die Verantwortungspyramide – Arbeitsebene, Mandatsebene und Letztverantwortung
 ---
-Für die Praxis unterscheidet MVG drei Ebenen. Genau zu trennen ist auf der Mandatsebene: Das Mandat festzulegen bleibt Sache des Bauherrn; es innerhalb klar definierter Schwellen auszuüben, kann er an Rollen übertragen. Befugnisse und Schwellen stehen schriftlich fest, bevor die Projektsteuerung ihre Arbeit aufnimmt – eine zusätzliche Vollmacht erhält sie dadurch nicht.
+Für die Praxis unterscheidet MVG drei Ebenen. Genau zu trennen ist auf der Mandatsebene: Das Mandat festzulegen bleibt Sache des Bauherrn; es innerhalb klar definierter Schwellen auszuüben, kann er an Rollen übertragen. Befugnisse und Schwellen hält der Auftraggeber fest und stellt sie der Projektsteuerung bereit – eine zusätzliche Vollmacht erhält sie dadurch nicht.
 
 ::: tafel k3.3-t1
 ---

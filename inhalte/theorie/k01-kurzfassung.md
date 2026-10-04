@@ -32,7 +32,7 @@ Arbeit kann der Bauherr weitgehend abgeben. Die Legitimation bleibt bei ihm: Zie
 ---
 titel: Leitthese
 ---
-Facharbeit darf und soll abgegeben werden. Wenn aber ein Ziel Vorrang bekommt, ein Risiko bewusst in Kauf genommen oder eine wesentliche Freigabe erteilt wird, muss jemand dafür einstehen – und das kann nur der Bauherr. Die beste Vorlage bereitet die Entscheidung vor, sie ersetzt sie nicht.
+Facharbeit darf und soll abgegeben werden. Wenn aber ein Ziel Vorrang bekommt, ein Risiko bewusst in Kauf genommen oder eine wesentliche Freigabe erteilt wird, muss jemand dafür einstehen – diese Legitimation bleibt beim Bauherrn. Die beste Vorlage bereitet die Entscheidung vor, sie ersetzt sie nicht.
 
 ::: karten
 ---

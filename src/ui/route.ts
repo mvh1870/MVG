@@ -2,7 +2,7 @@
  * Hash-Router (rein, ohne DOM): welcher Bereich ein Adress-Anker meint.
  *
  *   #start · #story · #story/k3 (Kapitel) · #theorie · #theorie/<thema> · #theorie/<thema>/<abschnitt>
- *   · #explore · #explore/<werkzeug> · #regie · #leinwand
+ *   · #explore · #explore/<werkzeug> · #explore/<werkzeug>/<beispiel> · #regie · #leinwand
  *
  * Alles andere – auch ein leerer Anker – führt zur Startseite (ruhiger Einstieg, O-21). Groß- und
  * Kleinschreibung zählt nicht; Thema, Abschnitt und Kapitel kommen klein zurück und werden von der
@@ -13,7 +13,8 @@ export type Route =
   | { flaeche: 'start' }
   | { flaeche: 'story'; kapitel: string | null }
   | { flaeche: 'theorie'; thema: string | null; abschnitt: string | null }
-  | { flaeche: 'explore'; werkzeug: string | null }
+  /** `beispiel` (E-13, P18.5): Kennung eines Beispiels des Werkzeugs, mit dem es sich öffnet; die Oberfläche prüft sie gegen die Inhalte */
+  | { flaeche: 'explore'; werkzeug: string | null; beispiel: string | null }
   | { flaeche: 'regie' }
   | { flaeche: 'leinwand' };
 
@@ -40,7 +41,7 @@ export function leseRoute(hash: string): Route {
     case 'story':
       return drittes === undefined ? { flaeche: 'story', kapitel: zweites ?? null } : START;
     case 'explore':
-      return drittes === undefined ? { flaeche: 'explore', werkzeug: zweites ?? null } : START;
+      return { flaeche: 'explore', werkzeug: zweites ?? null, beispiel: zweites !== undefined ? drittes ?? null : null };
     case 'regie':
     case 'leinwand':
       return zweites === undefined ? { flaeche: kopf } : START;
@@ -56,7 +57,8 @@ export function routeHash(r: Route): string {
     case 'story':
       return r.kapitel === null ? '#story' : `#story/${r.kapitel}`;
     case 'explore':
-      return r.werkzeug === null ? '#explore' : `#explore/${r.werkzeug}`;
+      if (r.werkzeug === null) return '#explore';
+      return r.beispiel === null ? `#explore/${r.werkzeug}` : `#explore/${r.werkzeug}/${r.beispiel}`;
     case 'theorie':
       if (r.thema === null) return '#theorie';
       return r.abschnitt === null ? `#theorie/${r.thema}` : `#theorie/${r.thema}/${r.abschnitt}`;

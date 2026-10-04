@@ -5,7 +5,7 @@
 //    Datenebene kein Regie-Material (Positivliste).
 // 2. DOM: Startseite (drei Wege, Links zu bauherr-mentoren.com, Impressum, Datenschutz), Theorie (Themen ohne
 //    Nummern, Originaltext oder Zitierangaben), Story (Auftakt → Kapitel → Vorlage → Folge → Schulstart, Speicher),
-//    Explore (fünf Werkzeuge), Leinwand-Anzeige (nicht bedienbar, ohne Notiz), Regie (Notiz, Kanal sendet nur Öffentliches).
+//    Explore (neun Werkzeuge), Leinwand-Anzeige (nicht bedienbar, ohne Notiz), Regie (Notiz, Kanal sendet nur Öffentliches).
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { anzeigeFassung } from '../werkzeuge/anzeige-fassung.mjs';
@@ -65,12 +65,12 @@ test('Regie-Material erreicht nur die Regie (Konstruktion, O-9): kein Modul auß
     assert.ok(!ziele.includes('src/inhalte/index.ts'), `${rel(p)} importiert die Inhalte direkt`);
     assert.ok(!ziele.includes('src/generiert/inhalte.json'), `${rel(p)} importiert die Inhalte-Datei`);
     assert.ok(!ziele.includes('src/generiert/abbildungen.json'), `${rel(p)} importiert die Bilddaten der Abbildungen`);
-    assert.doesNotMatch(text, /regieInhalte|geschichteRegie/, `${rel(p)} nennt das Regie-Material`);
-    // Die Regie bekommt regieGeschichte/regieKapitel als Parameter von main.ts – nur dort und in der Regie steht der Name.
-    if (rel(p) !== 'src/regie/regie.ts') assert.doesNotMatch(text, /regieFuer|regieKapitel|regieGeschichte/, `${rel(p)} nennt Regie-Zugriffe`);
+    assert.doesNotMatch(text, /regieInhalte|geschichteRegie|werkzeugeRegie/, `${rel(p)} nennt das Regie-Material`);
+    // Die Regie bekommt regieGeschichte/regieKapitel als Parameter von main.ts – nur dort und in der Regie steht der Name (P18.5: auch regieWerkzeug).
+    if (rel(p) !== 'src/regie/regie.ts') assert.doesNotMatch(text, /regieFuer|regieKapitel|regieGeschichte|regieWerkzeug/, `${rel(p)} nennt Regie-Zugriffe`);
   }
   const main = readFileSync(join(WURZEL, 'src/main.ts'), 'utf8');
-  assert.match(main, /import \{ inhalte, regieGeschichte, regieKapitel \} from '\.\/inhalte\/index\.ts'/);
+  assert.match(main, /import \{ inhalte, regieGeschichte, regieKapitel, regieWerkzeug \} from '\.\/inhalte\/index\.ts'/);
 });
 
 test('Leinwand: der ganze Importgraph (transitiv, auch dynamisch) enthält weder Inhalte-Datei noch Regie', () => {
@@ -121,7 +121,7 @@ after(() => dom.window.close());
 const { inhalte, regieGeschichte, regieKapitel } = await import('../src/inhalte/index.ts');
 const { baueStart } = await import('../src/ui/flaechen/start.ts');
 const { baueTheorie, themen, themaFuerDruck, themaTitel, wcVerschiebung } = await import('../src/ui/flaechen/theorie.ts');
-const { baueExplore, WERKZEUGE } = await import('../src/ui/flaechen/explore.ts');
+const { baueExplore, WERKZEUGE, WERKZEUG_BILD } = await import('../src/ui/flaechen/explore.ts');
 const { erzeugeGeschichte, SPEICHER_SCHLUESSEL } = await import('../src/ui/flaechen/geschichte.ts');
 const { erzeugeAnzeige } = await import('../src/regie/leinwand.ts');
 const { erzeugeRegie } = await import('../src/regie/regie.ts');
@@ -250,7 +250,7 @@ test('Story: Schulstart zeigt Bilanz, Balken, die Wege weiter und den leisen Lin
   assert.ok(f.element.querySelector('[data-pruef="ende-themen"][href="#theorie"]'));
 });
 
-test('Explore: fünf Werkzeuge; Rechner rechnet um, Matrix ordnet ein, Vorgänge führen weiter, Glossar sucht', () => {
+test('Explore: neun Werkzeuge; Rechner rechnet um, Matrix ordnet ein, Vorgänge führen weiter, Glossar sucht', () => {
   for (const id of WERKZEUGE) {
     const el = baueExplore({ inhalte, werkzeug: id, bedienbar: true });
     assert.equal(el.querySelector('.ex-werkzeuge [aria-current="page"]')?.getAttribute('data-pruef'), `ex-${id}`);
@@ -304,7 +304,13 @@ test('Explore (O-57, P17.7): jedes Werkzeug mit eigenem Akzentton und Gegenstand
     assert.equal(el.querySelector('[data-pruef="explore"]')?.getAttribute('data-ton'), ton, `${id}: Ton des Rahmens`);
     assert.ok(el.querySelector('.ex-kopf-bild[aria-hidden="true"] svg.fig-gimmick'), `${id}: Bild im Kopf`);
   }
-  assert.equal(toene.size, WERKZEUGE.length, 'kein Ton doppelt');
+  // O-59 (Konzept WERKZEUGE-P18 Abschnitt 0): jedes neue Werkzeug trägt den Ton seines Geschwisters, unterschieden durch den Gegenstand
+  assert.equal(toene.size, 5, 'fünf Töne – je Geschwisterpaar einer, das Glossar eigen');
+  assert.equal(new Set(WERKZEUGE.map((id) => WERKZEUG_BILD[id].bild)).size, WERKZEUGE.length, 'kein Gegenstand doppelt');
+  for (const [neu, alt] of [['vorlagen-check', 'mcda'], ['risiko-grenzen', 'matrix'], ['wegweiser', 'vorgaenge'], ['monatsbericht', 'takt']] as const) {
+    assert.equal(WERKZEUG_BILD[neu].ton, WERKZEUG_BILD[alt].ton, `${neu}: Ton wie ${alt}`);
+    assert.equal(WERKZEUGE.indexOf(neu), WERKZEUGE.indexOf(alt) + 1, `${neu} steht neben ${alt}`);
+  }
 });
 
 test('Leinwand-Anzeige: nicht bedienbar, derselbe Stand, keine Regie-Notiz', () => {

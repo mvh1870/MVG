@@ -50,7 +50,7 @@ function teileListe(): HTMLElement {
     T.teilName[n])));
 }
 
-/** Gegenstände der fünf Werkzeuge, je auf einer Scheibe im Werkzeugton (Schmuck). */
+/** Gegenstände der Werkzeuge, je auf einer Scheibe im Werkzeugton (Schmuck). */
 function werkzeugBilder(): HTMLElement {
   return h('ul', { class: 'tuer-werkzeuge', 'aria-hidden': 'true' }, WERKZEUGE.map((id) => h('li', { 'data-ton': WERKZEUG_BILD[id].ton },
     vonHtml(gimmick(WERKZEUG_BILD[id].bild, { groesse: 44, dekorativ: true })))));

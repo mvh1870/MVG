@@ -193,7 +193,7 @@ Die Vergabe oder die verbindliche Bindung einer Komponente mit langer Lieferzeit
 stelle: 3
 ---
 ### Frage
-Als Infrastrukturträger haben Sie die Variante gewählt und den Business Case bestätigt. Jetzt liegen Entwurfsplanung und Kostenberechnung vor. Welche Freigabe steht an?
+Als Infrastrukturträger haben Sie sich für eine Lösung entschieden und deren Wirtschaftlichkeit nachgewiesen. Jetzt sind die Entwurfsplanung und die Kostenberechnung fertig. Welche Freigabe steht als Nächstes an?
 
 ### Erklärung
 Die Freigabereife hat drei Stellen: Variantenwahl und Business Case liegen vor der FID, Vergabe und lange Lieferzeiten danach.

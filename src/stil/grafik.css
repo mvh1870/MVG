@@ -424,3 +424,43 @@
 .ci-wimpelschnur { fill: none; stroke: var(--navy-soft); stroke-width: .45; }
 .ci-ballonschnur { fill: none; stroke: var(--navy-soft); stroke-width: .35; opacity: .8; }
 .ci-ballonglanz { fill: var(--weiss); opacity: .7; }
+
+/* ------------------------------------------------------------------ Werkzeug-Grafiken (wb-*, P18.3/P18.4) */
+/* src/grafik/werkzeug-bilder.ts: Ampel, Messlatte, Mini-Matrix, Seitenmesser. Statusfarben nur für Status (O-11). */
+.wb { display: block; max-width: 100%; height: auto; overflow: visible; }
+.wb-ampel { width: 32px; }
+.wb-messlatte { width: 100%; }
+.wb-matrix { width: 140px; }
+.wb-seitenmesser { width: 44px; }
+.wb-gehaeuse { fill: var(--navy-soft); }
+.wb-lampe-aus { fill: var(--weiss); opacity: .22; }
+.wb-lampe-rot { fill: var(--status-rot); }
+.wb-lampe-gelb { fill: var(--status-gelb-symbol); }
+.wb-lampe-gruen { fill: var(--status-gruen); }
+.wb-zeichen { fill: none; stroke: var(--weiss); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.wb-latte { fill: var(--weiss); stroke: var(--linie-3); stroke-width: 1.2; }
+.wb-stufe { fill: var(--akzent-blau-soft); }
+.wb-stufe-an { fill: var(--akzent-blau-text); }
+.wb-ziffer, .wb-ziffer-an { font: 700 11px/1 var(--schrift-text); }
+.wb-ziffer { fill: var(--akzent-blau-text); }
+.wb-ziffer-an { fill: var(--weiss); }
+.wb-kerbe { fill: none; stroke: var(--navy); stroke-width: 2; stroke-linecap: round; }
+.wb-beschriftung { fill: var(--tinte-2); font: 600 10px/1 var(--schrift-text); }
+.wb-marke { fill: var(--navy); }
+.wb-spanne { fill: var(--navy); }
+.wb-grenze { fill: none; stroke: var(--gold-text); stroke-width: 2.2; stroke-linecap: round; }
+.wb-m-beobachten { fill: var(--status-gruen-soft); stroke: var(--status-gruen-kante); stroke-width: 1; }
+.wb-m-gezielt { fill: var(--status-gelb-soft); stroke: var(--status-gelb-kante); stroke-width: 1; }
+.wb-m-vorrangig { fill: var(--status-rot-soft); stroke: var(--status-rot); stroke-width: .6; }
+.wb-feld { fill: none; stroke: var(--navy); stroke-width: 3.2; }
+.wb-punkt { fill: var(--navy); }
+.wb-bereich { fill: none; stroke: var(--navy); stroke-width: 1.6; stroke-dasharray: 4 3; }
+.wb-pfeil { fill: none; stroke: var(--navy); stroke-width: 2.4; stroke-linecap: round; }
+.wb-pfeil-spitze { fill: var(--navy); }
+.wb-achse { fill: var(--tinte-2); font: 700 9.5px/1 var(--schrift-text); }
+.wb-frage { fill: var(--navy-soft); font: 800 30px/1 var(--schrift-anzeige); }
+.wb-seite { fill: var(--weiss); stroke: var(--linie-3); stroke-width: 1.6; }
+.wb-fuellung { fill: var(--akzent-sonne-soft); }
+.wb-fuellung-zu { fill: var(--status-rot-soft); }
+.wb-zeile { fill: var(--linie-2); }
+.wb-ueber { fill: var(--status-rot); }

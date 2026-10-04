@@ -1,6 +1,6 @@
 /* =============================================================================================
-   MVG · Explore (P16.8, O-46, O-57/P17.7): fünf Werkzeuge am Schulcampus – Rechner, Matrix, Vorgänge, Takt,
-   Glossar. Jedes Werkzeug hat einen Akzentton (`data-ton`) und einen Gegenstand aus figuren.ts; Kopf, Kachel und
+   MVG · Explore (P16.8, O-46, O-57/P17.7; P18.3/P18.4, O-59): neun Werkzeuge am Schulcampus – Rechner,
+   Vorlagen-Check, Matrix, Risiko-Bewerter, Vorgänge, Wegweiser, Takt, Monatsbericht, Glossar. Jedes Werkzeug hat einen Akzentton (`data-ton`) und einen Gegenstand aus figuren.ts; Kopf, Kachel und
    Bühne tragen den Ton des aktiven Werkzeugs. Ampelfarben der Matrix bleiben Status (O-11).
    Nur Tokens aus tokens.css, keine Farbwerte.
    ============================================================================================= */
@@ -42,6 +42,8 @@
 .ex-kopf-bild { display: grid; place-items: center; width: 148px; height: 148px; border-radius: var(--radius-rund); background: var(--weiss); box-shadow: inset 0 0 0 3px var(--ton), 0 0 0 8px var(--weiss-a85); }
 .ex-titel:focus { outline: none; box-shadow: none; }
 .ex-einleitung { max-width: 72ch; color: var(--tinte-2); }
+.ex-fall { max-width: 72ch; font: var(--typo-klein); color: var(--tinte-2); }
+.ex-fall p { margin: 0; }
 
 /* Werkzeug-Kacheln mit Gegenstand */
 .ex-werkzeuge { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--a-3); }
@@ -76,7 +78,7 @@ a.ex-werkzeug-link:hover { border-color: var(--ton); color: var(--tinte); text-d
 .ex-buehne { min-width: 0; }
 .ex-leiste { display: flex; flex-wrap: wrap; gap: var(--a-3) var(--a-6); align-items: end; }
 .ex-beispiel { display: grid; gap: var(--a-1); min-width: 0; max-width: 100%; }
-.ex-beispiel select { width: 100%; }
+.ex-beispiel select { width: 100%; text-overflow: ellipsis; } /* R78: ein langer Eintrag endet mit „…“, nicht mitten im Wort */
 .ex-beispiel .t-label { font: var(--typo-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
 .ex-beispiel select, .ex-punkt-wahl {
   min-height: 36px;
@@ -180,6 +182,176 @@ button.ex-art:hover, button.ex-weg:hover { border-color: var(--ton); }
 .ex-takt-karte[data-takt="monat"] { border-top: 3px solid var(--gold); }
 .ex-beispiel-text { font: var(--typo-klein); color: var(--tinte-2); }
 
+/* ---------------------------------------------------------- Vier neue Werkzeuge (wz-*, P18.3/P18.4) */
+.wz-raster { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: var(--a-6); align-items: start; }
+.wz-raster-einzeln { grid-template-columns: minmax(0, 1fr); }
+.wz-form { display: grid; gap: var(--a-4); min-width: 0; align-content: start; }
+.wz-form:empty { display: none; }
+.wz-ergebnis { display: grid; gap: var(--a-3); align-content: start; min-width: 0; padding: var(--a-4) var(--a-5); border: 1px solid var(--linie); border-top: 4px solid var(--ton); border-radius: var(--radius-m); background: var(--weiss); box-shadow: var(--schatten-karte); }
+.wz-ergebnis-kopf { display: flex; flex-wrap: wrap; align-items: center; gap: var(--a-3) var(--a-4); }
+.wz-ampel { display: inline-flex; align-items: center; gap: var(--a-3); }
+.wz-ampel .wb { flex: none; width: 32px; }
+.wz-ampel-wort { font: var(--typo-tafeltitel); font-size: var(--gr-xl); color: var(--navy); }
+.wz-ampel[data-ampel="rot"] .wz-ampel-wort { color: var(--status-rot); }
+.wz-ampel[data-ampel="gelb"] .wz-ampel-wort { color: var(--status-gelb-text); }
+.wz-ampel[data-ampel="gruen"] .wz-ampel-wort { color: var(--status-gruen-text); }
+.wz-bild { flex: none; display: grid; place-items: center; margin-left: auto; }
+.wz-ergebnis-kopf .wz-bild .fig-gimmick { animation: wz-hupf 360ms ease-out; }
+.wz-zahlen, .wz-leise { margin: 0; font: var(--typo-klein); color: var(--tinte-2); }
+.wz-karten { display: grid; gap: var(--a-2); margin: 0; padding: 0; list-style: none; }
+.wz-karte { display: grid; gap: var(--a-1); padding: var(--a-2) var(--a-3); border: 1px solid var(--linie); border-left: 4px solid var(--status-neutral); border-radius: var(--radius-s); background: var(--weiss); }
+.wz-karte[data-schwere="rot"] { border-left-color: var(--status-rot); }
+.wz-karte[data-schwere="gelb"] { border-left-color: var(--status-gelb-symbol); }
+.wz-karte p { margin: 0; }
+.wz-karte-kopf { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--a-1) var(--a-3); }
+.wz-schwere { font: var(--typo-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
+.wz-luecken { display: grid; gap: var(--a-2); }
+.wz-weitere summary { min-height: 36px; display: flex; align-items: center; cursor: pointer; color: var(--navy); font-weight: 600; }
+.wz-weitere .wz-karten { margin-top: var(--a-2); }
+.wz-erfuellt summary { min-height: 36px; display: flex; align-items: center; cursor: pointer; color: var(--navy); font-weight: 600; }
+.wz-erfuellt ul { display: grid; gap: var(--a-1); margin: var(--a-2) 0 0; padding: 0; list-style: none; }
+.wz-erfuellt li { display: flex; align-items: center; gap: var(--a-2); }
+.wz-erfuellt .symbol { flex: none; width: 16px; height: 16px; color: var(--status-gruen-text); }
+.wz-drucken { justify-self: start; }
+
+/* Eingaben */
+.wz-gruppe { display: grid; gap: var(--a-3); margin: 0; padding: var(--a-3) var(--a-4) var(--a-4); min-width: 0; border: 1px solid var(--linie); border-radius: var(--radius-m); background: var(--weiss); }
+.wz-gruppe-titel { margin: 0; font: var(--typo-reiter); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy); }
+legend.wz-gruppe-titel { padding: 0 var(--a-1); }
+details.wz-gruppe > summary { display: flex; flex-wrap: wrap; align-items: center; gap: var(--a-1) var(--a-3); min-height: 36px; cursor: pointer; }
+details.wz-gruppe:not([open]) { padding-bottom: var(--a-3); }
+details.wz-gruppe > summary::-webkit-details-marker { display: none; }
+details.wz-gruppe > summary::before { content: ""; flex: none; width: 0; height: 0; border-left: 7px solid var(--navy); border-top: 5px solid transparent; border-bottom: 5px solid transparent; transition: transform var(--dauer-sofort) ease; }
+details.wz-gruppe[open] > summary::before { transform: rotate(90deg); }
+.wz-felder { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: var(--a-3); }
+.wz-feld { display: grid; gap: var(--a-1); min-width: 0; align-content: end; }
+.wz-feld .t-label { font: var(--typo-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
+.wz-feld :is(input, select, textarea) { width: 100%; max-width: 100%; min-height: 40px; padding: var(--a-1) var(--a-2); border: 1px solid var(--linie-3); border-radius: var(--radius-s); background: var(--weiss); color: var(--tinte); font: inherit; }
+.wz-feld textarea { resize: vertical; field-sizing: content; min-height: calc(2 * 1.45em + 2 * var(--a-1) + 2px); line-height: 1.45; }
+.wz-feld :is(input, select, textarea):hover { border-color: var(--ton); }
+.wz-frage { display: grid; gap: var(--a-2); min-width: 0; margin: 0; padding: var(--a-2) 0 var(--a-3); border: 0; border-bottom: 1px solid var(--linie); }
+.wz-frage > .wz-legende { float: left; width: 100%; }
+.wz-frage > .wz-legende + * { clear: both; }
+.wz-legende { display: flex; align-items: flex-start; gap: var(--a-2); padding: 0; font-weight: 600; color: var(--tinte); }
+.wz-wahlen { display: flex; flex-wrap: wrap; gap: var(--a-2); }
+.wz-wahl { display: inline-flex; align-items: center; gap: var(--a-2); min-height: 40px; padding: var(--a-1) var(--a-3); border: 1px solid var(--linie-2); border-radius: var(--radius-rund); background: var(--weiss); color: var(--tinte); cursor: pointer; }
+.wz-wahl:hover { border-color: var(--ton); }
+.wz-wahl:has(input:checked) { border-color: var(--ton-text); background: var(--ton-soft); box-shadow: inset 0 0 0 1px var(--ton-text); font-weight: 600; }
+.wz-wahl input { flex: none; width: 18px; height: 18px; margin: 0; accent-color: var(--ton-text); }
+.wz-gewaehlt { margin: 0; }
+.wz-knopf { display: inline-flex; align-items: center; gap: var(--a-2); min-height: 40px; padding: var(--a-2) var(--a-4); border: 1px solid var(--linie-2); border-radius: var(--radius-rund); background: var(--weiss); color: var(--navy); font-weight: 600; text-align: left; }
+.wz-knopf .symbol { flex: none; width: 16px; height: 16px; }
+button.wz-knopf:hover { border-color: var(--ton); }
+.wz-knopf[aria-pressed="true"] { border-color: var(--ton-text); background: var(--ton-text); color: var(--weiss); }
+.wz-navi { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--a-3); }
+.wz-verweis { margin: 0; }
+.wz-verweis a { display: inline-flex; align-items: center; gap: var(--a-1); min-height: 32px; }
+.wz-verweis .symbol { flex: none; width: 16px; height: 16px; }
+.wz-feld-fehler { margin: 0; font: var(--typo-klein); color: var(--status-rot); }
+.wz-feld-fehler:empty { display: none; }
+
+/* A · Vorlagen-Check */
+.wz-schritte ol { display: flex; flex-wrap: wrap; gap: var(--a-2); margin: 0; padding: 0; list-style: none; }
+.wz-schritt { display: inline-flex; align-items: center; gap: var(--a-2); min-height: 40px; padding: var(--a-1) var(--a-3) var(--a-1) var(--a-1); border: 1px solid var(--linie-2); border-radius: var(--radius-rund); background: var(--weiss); color: var(--navy); font-weight: 600; font-size: var(--gr-s); }
+button.wz-schritt:hover { border-color: var(--ton); }
+.wz-schritt[aria-current="step"] { border-color: var(--ton-text); background: var(--ton-text); color: var(--weiss); }
+.wz-schritt-nr { flex: none; display: grid; place-items: center; width: 28px; height: 28px; border-radius: var(--radius-rund); background: var(--ton-soft); color: var(--ton-text); font-weight: 700; }
+.wz-schritt[aria-current="step"] .wz-schritt-nr { background: var(--weiss); color: var(--ton-text); }
+li[data-fertig="ja"] .wz-schritt-nr { background: var(--status-gruen-soft); color: var(--status-gruen-text); }
+.wz-schritt-nr .symbol { width: 16px; height: 16px; }
+.wz-schritt-inhalt { display: grid; gap: var(--a-3); }
+.wz-schritt-titel { display: grid; gap: var(--a-1); margin: 0; font: var(--typo-tafeltitel); color: var(--navy); }
+.wz-schritt-titel small { font: var(--typo-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
+.wz-schritt-titel:focus { outline: none; box-shadow: none; }
+.wz-wege, .wz-eintraege { display: grid; gap: var(--a-2); margin: 0; padding: 0; list-style: none; }
+.wz-weg { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--a-2); }
+.wz-weg > .wz-feld { flex: 1 1 12rem; }
+.wz-zaehlung { display: flex; align-items: center; gap: var(--a-2); margin: 0; font-weight: 600; }
+.wz-zaehlung[data-ok="ja"] { color: var(--status-gruen-text); }
+.wz-zaehlung[data-ok="nein"] { color: var(--status-rot); }
+.wz-zaehlung .symbol { flex: none; width: 18px; height: 18px; }
+.wz-druck-rahmen { display: grid; gap: var(--a-1); margin: 0; }
+.wz-druck-rahmen > div { display: flex; flex-wrap: wrap; gap: 0 var(--a-2); }
+.wz-druck-rahmen dt { font-weight: 600; color: var(--tinte-2); }
+.wz-druck-rahmen dt::after { content: ":"; }
+.wz-druck-rahmen dd { margin: 0; }
+
+/* B · Wegweiser */
+.wz-pfad { display: grid; margin: 0; padding: 0; list-style: none; }
+.wz-frage-nr { flex: none; display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: var(--radius-rund); background: var(--ton-soft); color: var(--ton-text); font-weight: 700; font-size: var(--gr-s); }
+.wz-frage.ist-beantwortet .wz-frage-nr { background: var(--status-gruen-soft); color: var(--status-gruen-text); }
+.wz-frage-nr .symbol { width: 14px; height: 14px; }
+.wz-frage.ist-offen { animation: wz-ein 280ms ease-out; }
+.wz-art { margin: 0; }
+.wz-art .ex-id { font: var(--typo-reiter); font-size: var(--gr-xl); padding: var(--a-1) var(--a-3); }
+.wz-art b { font: var(--typo-tafeltitel); color: var(--navy); }
+.wz-art-daten { display: grid; gap: var(--a-2); margin: 0; }
+.wz-art-daten dt { font: var(--typo-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
+.wz-art-daten dd { margin: 0; }
+.wz-verwechslung .t-label { margin: 0 0 var(--a-1); }
+.wz-verwechslung ul, .wz-zusaetze { display: grid; gap: var(--a-1); margin: 0; padding-left: var(--a-5); }
+.wz-kasten { display: flex; align-items: flex-start; gap: var(--a-3); padding: var(--a-3); border: 1px solid var(--linie); border-left: 4px solid var(--ton); border-radius: var(--radius-m); background: var(--weiss); }
+.wz-kasten[data-zusatz="sofort"] { border-left-color: var(--status-rot); }
+.wz-kasten p { margin: 0; }
+.wz-kasten .wz-bild { margin-left: 0; }
+
+/* C · Risiko-Bewerter */
+.wz-grenzreihe { display: grid; gap: var(--a-1); }
+.wz-grenzreihe .t-label { margin: 0; font: var(--typo-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
+.wz-grenzwerte { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--a-2); }
+.wz-ok { display: inline-flex; align-items: center; gap: var(--a-1); font: var(--typo-klein); letter-spacing: 0; text-transform: none; color: var(--status-gruen-text); }
+.wz-ok[hidden] { display: none; }
+.wz-ok .symbol { width: 16px; height: 16px; }
+.wz-zeile { display: grid; gap: var(--a-2); }
+.wz-annahmen { display: grid; gap: var(--a-2); }
+.wz-ergebnis-titel { margin: 0; font-weight: 700; color: var(--navy); overflow-wrap: anywhere; }
+.wz-stufen { display: grid; gap: var(--a-3); margin: 0; padding: 0; list-style: none; }
+.wz-stufen li { display: grid; gap: var(--a-1); }
+.wz-stufen p { margin: 0; }
+.wz-latte .wb { width: 100%; max-width: 380px; }
+.wz-grenze-satz { font-weight: 600; color: var(--gold-text); }
+.wz-matrix-teil { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--a-4); align-items: start; }
+.wz-matrix-bild .wb { width: 140px; }
+.wz-matrix-text { display: grid; gap: var(--a-1); }
+.wz-matrix-text p { margin: 0; }
+.wz-zustand { font: var(--typo-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
+.wz-feldwert { font: 700 var(--gr-l)/1.35 var(--schrift-text); color: var(--navy); }
+.wz-prioritaet b { font-size: var(--gr-l); color: var(--navy); }
+.wz-a5 { font-weight: 600; color: var(--status-rot); }
+.wz-veranlasst .t-label { font: var(--typo-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
+
+/* D · Monatsbericht */
+.wz-ampeln { display: grid; gap: var(--a-3); }
+.wz-ampel-feld .wz-frage { border-top: 0; padding-top: 0; }
+.wz-eintrag { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr)); align-items: end; gap: var(--a-2); padding-top: var(--a-2); border-top: 1px dashed var(--linie-2); }
+/* R78: der Text eines Eintrags über die volle Zeilenbreite; Kennung, Stand und Schalter darunter (bei 1024 px brach sonst „Kostenrechnunge|n“) */
+.wz-eintrag > .wz-feld:first-child { grid-column: 1 / -1; }
+.wz-seitenmesser { display: inline-flex; align-items: center; gap: var(--a-2); font: var(--typo-klein); color: var(--tinte-2); }
+.wz-seitenmesser .wb { flex: none; width: 44px; }
+.wz-seitenmesser[data-passt="nein"] span { font-weight: 700; color: var(--status-rot); }
+.wz-blatt { padding: var(--a-4); border: 1px solid var(--linie-2); border-radius: var(--radius-s); background: var(--weiss); box-shadow: var(--schatten-karte); font-size: var(--gr-s); }
+.wz-bericht { display: grid; gap: var(--a-3); min-width: 0; overflow-wrap: anywhere; }
+.wz-bericht :is(li, p, span, div, dd, dt) { min-width: 0; }
+.wz-bericht p, .wz-bericht h4 { margin: 0; }
+.wz-bericht-kopf { display: grid; gap: var(--a-1); }
+.wz-bericht-titel { font: var(--typo-tafeltitel); font-size: var(--gr-xl); color: var(--navy); }
+.wz-bericht-ort { font: var(--typo-klein); color: var(--tinte-2); }
+.wz-bericht-ampeln { display: grid; gap: var(--a-1); margin: 0; padding: 0; list-style: none; }
+.wz-bericht-ampeln li { display: block; }
+.wz-punkt { display: inline-block; margin-right: var(--a-2); vertical-align: -1px; width: 12px; height: 12px; border-radius: var(--radius-rund); background: var(--status-gruen); }
+.wz-bericht-ampeln li[data-farbe="gelb"] .wz-punkt { background: var(--status-gelb-symbol); }
+.wz-bericht-ampeln li[data-farbe="rot"] .wz-punkt { background: var(--status-rot); }
+.wz-bericht-ziel { display: block; padding-left: 20px; color: var(--tinte-2); }
+.wz-bericht-ziel .symbol { width: 14px; height: 14px; margin-right: var(--a-1); vertical-align: -2px; }
+.wz-bericht-spalten { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--a-2) var(--a-4); }
+.wz-bericht h4 { margin-bottom: var(--a-1); font: var(--typo-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy); }
+.wz-bericht ul { margin: 0; padding-left: var(--a-4); }
+.wz-bericht-fuss { display: grid; gap: var(--a-1); padding-top: var(--a-2); border-top: 1px solid var(--linie); font: var(--typo-klein); color: var(--tinte-2); }
+.wz-druckzeile { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--a-3); }
+
+@keyframes wz-ein { from { opacity: 0; transform: translateY(6px); } }
+@keyframes wz-hupf { from { transform: scale(.85); } }
+
 @media (max-width: 1060px) {
   .ex-werkzeug-link { grid-template-columns: minmax(0, 1fr); }
 }
@@ -189,6 +361,7 @@ button.ex-art:hover, button.ex-weg:hover { border-color: var(--ton); }
   .ex-kopf-bild { width: 112px; height: 112px; }
   .ex-kopf-bild .fig-gimmick { width: 84px; height: 84px; }
   .ex-matrix-rahmen { grid-template-columns: minmax(0, 1fr); }
+  .wz-raster { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 600px) {
   .ex-rahmen { padding: var(--a-6) var(--a-4) var(--a-10); }
@@ -200,6 +373,10 @@ button.ex-art:hover, button.ex-weg:hover { border-color: var(--ton); }
   .ex-monat { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ex-zelle { width: 48px; height: 44px; font-size: var(--gr-l); }
   /* R67: in schmalen Zellen sitzt der Beispiel-Punkt als Marke auf der Ecke – nie über der Zahl */
+  .wz-grenzwerte { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .wz-bericht-spalten { grid-template-columns: minmax(0, 1fr); }
+  .wz-matrix-teil { grid-template-columns: minmax(0, 1fr); }
+  .wz-ergebnis { padding: var(--a-3) var(--a-3); }
   .ex-zelle-punkt { top: -6px; right: -6px; min-width: 16px; height: 16px; font-size: 11.5px; line-height: 16px; box-shadow: 0 0 0 2px var(--weiss); }
 }
 @media (max-width: 380px) {
@@ -210,4 +387,37 @@ button.ex-art:hover, button.ex-weg:hover { border-color: var(--ton); }
 @media (prefers-reduced-motion: reduce) {
   .ex-werkzeug-link { transition: none; }
   a.ex-werkzeug-link:hover { transform: none; }
+  .wz-frage.ist-offen, .wz-ergebnis-kopf .wz-bild .fig-gimmick { animation: none; }
+  details.wz-gruppe > summary::before { transition: none; }
+}
+
+/* Druckbogen der neuen Werkzeuge (Konzept A.7, B.8, C.6, D.6): eine Seite A4 hoch, ohne Bedienelemente */
+@media print {
+  .druck-bogen .wz-druck { font-size: 9.5pt; line-height: 1.4; }
+  .druck-bogen .wz-druck .druck-kopf { margin-bottom: 4mm; padding-bottom: 3mm; }
+  .druck-bogen .wz-druck .druck-teil { margin-bottom: 4mm; }
+  .druck-bogen .wz-druck .druck-teil h2 { font-size: 11pt; }
+  .druck-bogen .wz-druck-kopf { display: flex; flex-wrap: wrap; gap: 3mm 8mm; align-items: center; }
+  .druck-bogen .wz-druck-punkte { columns: 2; column-gap: 8mm; margin: 0; padding: 0; list-style: none; }
+  .druck-bogen .wz-druck-punkte li { break-inside: avoid; }
+  .druck-bogen .wz-druck-stand { display: inline-block; min-width: 5.6em; font-weight: 700; }
+  .druck-bogen .wz-druck-punkte li[data-stand="nein"] .wz-druck-stand { color: var(--status-rot); }
+  .druck-bogen .wz-druck-saetze, .druck-bogen .wz-druck-pfad { margin: 0; padding-left: 6mm; list-style: decimal outside; }
+  .druck-bogen .wz-druck-saetze li, .druck-bogen .wz-karte, .druck-bogen .wz-kasten { break-inside: avoid; }
+  .druck-bogen .wz-karten { gap: 1.5mm; }
+  .druck-bogen .wz-karte { padding: 1mm 2.5mm; }
+  .druck-bogen .wz-druck-tabelle th { text-align: left; padding-right: 4mm; }
+  .druck-bogen .wz-bild { display: none; }
+  .druck-bogen .wz-bericht-spalten { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5mm 6mm; }
+  /* D im Höchstfall genau eine Seite (Feldgrenzen in src/werkzeuge/monatsbericht.ts, PDF-Probe im Szenario explore) */
+  /* A im Höchstfall (18 Lücken, alle Hinweise) genau eine Seite: Sätze zweispaltig */
+  .druck-bogen .wz-druck[data-werkzeug="vorlagen-check"] { font-size: 8.6pt; line-height: 1.24; }
+  .druck-bogen .wz-druck[data-werkzeug="vorlagen-check"] .wz-druck-saetze { columns: 2; column-gap: 7mm; }
+  .druck-bogen .wz-druck-saetze li + li { margin-top: .5mm; }
+  .druck-bogen .wz-druck[data-werkzeug="monatsbericht"] { font-size: 8.8pt; line-height: 1.26; }
+  .druck-bogen .wz-bericht { gap: 2.2mm; }
+  .druck-bogen .wz-bericht h4 { margin-bottom: .6mm; font-size: 7.5pt; }
+  .druck-bogen .wz-bericht-fuss { padding-top: 1.5mm; font-size: 8pt; }
+  .druck-bogen .wz-matrix-teil { grid-template-columns: auto minmax(0, 1fr); }
+  .druck-bogen .wz-matrix-bild .wb { width: 34mm; }
 }

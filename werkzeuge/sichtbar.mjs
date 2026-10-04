@@ -47,6 +47,7 @@ export const SICHTBAR_ARBEITSSTAND = [
   [/\b(?:TODO|FIXME|XXX)\b/u, 'TODO'],
   [/Platzhalter|Lorem ipsum/iu, 'Platzhalter'],
   [/Bedienhinweis|Hinweis zur Bedienung/iu, 'Bedienhinweis'],
+  [/\b(?:[Dd]as|[Dd]ieses) Werkzeug (?:bittet|fordert|verlangt|erwartet|erinnert)\b|\bdamit der Bericht nicht unfertig\b/u, 'Werkzeug erklärt sein Verhalten'],
   [/\bKlicken Sie\b|\b(?:Ziehen|Schieben) Sie den Regler\b|\bSchalten Sie um\b/u, 'Bedienungs-Anleitung'],
 ];
 

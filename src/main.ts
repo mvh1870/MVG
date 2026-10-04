@@ -14,7 +14,7 @@ import logoSvg from '../quellen/marke/logo-bm.svg';
 import bildmarkeSvg from '../quellen/marke/logo-bm-bildmarke.svg';
 // Abbildungen als data:-URL (P14): getrennt von inhalte.json, nur hier geladen
 import abbildungsBilder from './generiert/abbildungen.json' with { type: 'json' };
-import { inhalte, regieGeschichte, regieKapitel } from './inhalte/index.ts';
+import { inhalte, regieGeschichte, regieKapitel, regieWerkzeug } from './inhalte/index.ts';
 import { erzeugeKanal } from './regie/kanal.ts';
 import { setzeMarke } from './ui/marke.ts';
 import { setzeAbbildungsBilder } from './ui/bausteine/abbildung.ts';
@@ -25,7 +25,7 @@ import { installiereTooltips, type Tooltips } from './ui/bausteine/tooltip.ts';
 import { erzeugeGeschichte, ladeStand, storyDruck, type GeschichteFlaeche, type SpeicherGriff } from './ui/flaechen/geschichte.ts';
 import { baueStart } from './ui/flaechen/start.ts';
 import { baueTheorie, themaSeite, themaTitel, themen, zeigeAktuellenEintrag } from './ui/flaechen/theorie.ts';
-import { baueExplore, werkzeugAus, WERKZEUGE } from './ui/flaechen/explore.ts';
+import { baueExplore, werkzeugAus, werkzeugTitel, WERKZEUGE } from './ui/flaechen/explore.ts';
 import { erzeugeRegie } from './regie/regie.ts';
 import { starteLeinwand } from './regie/leinwand.ts';
 import { W } from './ui/woerter.ts';
@@ -82,7 +82,7 @@ function starteSeite(wurzel: HTMLElement): void {
         if (g === null) return;
         raeume();
         if (story === null) {
-          story = erzeugeGeschichte({ g, speicher, themaTitel: (id) => themaTitel(inhalte, id) });
+          story = erzeugeGeschichte({ g, speicher, themaTitel: (id) => themaTitel(inhalte, id), werkzeugTitel: (id) => inhalte.werkzeuge !== null ? werkzeugTitel(inhalte.werkzeuge, werkzeugAus(id)) : null });
           story.beiAenderung((s) => {
             const id = s.schritt.ort === 'kapitel' ? s.schritt.kapitel : null;
             history.replaceState(null, '', routeHash({ flaeche: 'story', kapitel: id }));
@@ -114,7 +114,7 @@ function starteSeite(wurzel: HTMLElement): void {
       case 'explore': {
         raeume();
         const werkzeug = werkzeugAus(r.werkzeug);
-        zeigeSeite(baueExplore({ inhalte, werkzeug, bedienbar: true }), `explore:${werkzeug}`, `${inhalte.werkzeuge?.[werkzeug].titel ?? W.rahmen.explore} · ${W.rahmen.explore} · ${TITEL}`, '.ex-titel');
+        zeigeSeite(baueExplore({ inhalte, werkzeug, beispiel: r.beispiel, bedienbar: true }), `explore:${werkzeug}`, `${inhalte.werkzeuge !== null ? werkzeugTitel(inhalte.werkzeuge, werkzeug) : W.rahmen.explore} · ${W.rahmen.explore} · ${TITEL}`, '.ex-titel');
         break;
       }
       default: {
@@ -159,6 +159,7 @@ function starteRegie(wurzel: HTMLElement): void {
     speicher: standardSpeicher(),
     regieGeschichte,
     regieKapitel,
+    regieWerkzeug,
     oeffneLeinwand: () => {
       window.open(`${location.href.replace(/#.*$/, '')}#leinwand`, 'gk-leinwand');
     },

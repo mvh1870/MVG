@@ -171,28 +171,28 @@ function kernAbweichungen(w: Werkzeuge): string[] {
   const wege = (id: string): string[] => w.vorgaenge.arten.find((a) => a.id === id)?.wege ?? [];
   for (const z of ['risiko', 'problem', 'aufgabe']) if (!wege('fruehwarnung').includes(z)) fehler.push(`Frühwarnung ohne Weg ${z}`);
   if (!wege('risiko').includes('problem')) fehler.push('Risiko ohne Weg Problem');
-  if (!/Beschluss[^.]*befugten Stelle des Bauherrn/u.test(w.vorgaenge.entscheidung.html)) fehler.push('Beschluss nicht bei der befugten Stelle des Bauherrn');
-  if (!/der Bauherr pflegt keine Liste/u.test(w.vorgaenge.html)) fehler.push('„der Bauherr pflegt keine Liste“ fehlt');
+  if (!/[Bb]eschlossen[^.]*befugten Stelle des Bauherrn/u.test(w.vorgaenge.entscheidung.html)) fehler.push('Beschluss nicht bei der befugten Stelle des Bauherrn');
+  if (!/der Bauherr pflegt keine eigene Liste/u.test(w.vorgaenge.html)) fehler.push('„der Bauherr pflegt keine eigene Liste“ fehlt');
   const stufe = (id: string) => w.takt.stufen.find((s) => s.id === id);
   if (!/selben Arbeitstag/u.test(stufe('sofort')?.html ?? '')) fehler.push('Sofort: nicht „am selben Arbeitstag“');
   if (stufe('sofort')?.wer !== 'Projektsteuerung') fehler.push('Sofort: wer');
-  if (!/höchstens 60 Minuten/u.test(stufe('monat')?.html ?? '')) fehler.push('Monat: nicht „höchstens 60 Minuten“');
+  if (!/bis 60 Minuten/u.test(stufe('monat')?.html ?? '')) fehler.push('Monat: nicht „bis 60 Minuten“');
   if (stufe('monat')?.wer !== 'Bauherr und Projektsteuerung') fehler.push('Monat: wer');
   if (!w.matrix.beispiele.some((b) => b.w === 1 && b.a === 5)) fehler.push('kein Matrix-Beispiel mit W 1 und A 5');
   // R76 (explore-begriffe): weitere Kernsätze aus V2.4 Handbuch 2–4 und 3.1, die Mutationen bisher überlebten
   if (!/keine Geldwerte und keine Freigabe/u.test(w.matrix.regel)) fehler.push('Matrix-Regel: nicht „keine Geldwerte und keine Freigabe“');
-  if (!/Sicherheit oder Genehmigung[^.]*unabhängig von der Matrix behandelt/u.test(w.matrix.sonder)) fehler.push('Sonderregel: nicht „unabhängig von der Matrix“');
-  if (!/informiert den Bauherrn/u.test(w.matrix.stufen.find((x) => x.id === 'vorrangig')?.html ?? '')) fehler.push('Vorrangig: „informiert den Bauherrn“ fehlt');
+  if (!/Sicherheit[^.]*Genehmigung[^.]*Befugnis[^.]*unabhängig von der Matrix behandelt/u.test(w.matrix.sonder)) fehler.push('Sonderregel: nicht „unabhängig von der Matrix“');
+  if (!/unterrichtet den Bauherrn/u.test(w.matrix.stufen.find((x) => x.id === 'vorrangig')?.html ?? '')) fehler.push('Vorrangig: „unterrichtet den Bauherrn“ fehlt');
   const qualitaet = [
-    'Eine geringe Abweichung schränkt die Nutzung nicht ein.',
-    'Nacharbeit ist erforderlich; die vorgesehene Nutzung bleibt möglich.',
-    'Die Nutzung ist vorübergehend eingeschränkt.',
-    'Eine wichtige Teilfunktion bleibt erheblich eingeschränkt.',
-    'Eine wesentliche Funktion oder die vorgesehene Hauptnutzung fällt aus.',
+    'Die Abweichung ist gering; die Nutzung bleibt unberührt.',
+    'Es muss nachgearbeitet werden; genutzt werden kann wie vorgesehen.',
+    'Die Nutzung ist für eine Zeit beschränkt.',
+    'Eine wichtige Teilfunktion ist erheblich beeinträchtigt.',
+    'Eine wesentliche Funktion oder die Hauptnutzung entfällt.',
   ];
   if (JSON.stringify(w.matrix.qualitaet) !== JSON.stringify(qualitaet)) fehler.push('Qualitätsstufen weichen von der Tabelle ab');
-  if (!/Zusammenfassung von höchstens einer Seite/u.test(stufe('monat')?.html ?? '')) fehler.push('Monat: nicht „höchstens einer Seite“');
-  if (!/binnen fünf Arbeitstagen/u.test(stufe('ruhe')?.html ?? '')) fehler.push('Ruhezeit: nicht „binnen fünf Arbeitstagen“');
+  if (!/Zusammenfassung auf höchstens einer Seite/u.test(stufe('monat')?.html ?? '')) fehler.push('Monat: nicht „höchstens einer Seite“');
+  if (!/innerhalb von fünf Arbeitstagen/u.test(stufe('ruhe')?.html ?? '')) fehler.push('Ruhezeit: nicht „innerhalb von fünf Arbeitstagen“');
   if (!/Gewichte und Punkte liegen je zwischen 1 und 5/u.test(w.mcda.html)) fehler.push('MCDA: nicht „zwischen 1 und 5“');
   return fehler;
 }
@@ -205,7 +205,7 @@ test('Explore (R75): die fachlichen Kernsätze stehen unverändert – mit Gegen
     (k) => { const a = k.vorgaenge.arten.find((x) => x.id === 'fruehwarnung'); if (a) a.wege = a.wege.filter((x) => x !== 'problem'); },
     (k) => { const a = k.vorgaenge.arten.find((x) => x.id === 'risiko'); if (a) a.wege = a.wege.filter((x) => x !== 'problem'); },
     (k) => { k.vorgaenge.entscheidung.html = k.vorgaenge.entscheidung.html.replace('befugten Stelle des Bauherrn', 'Projektsteuerung'); },
-    (k) => { k.vorgaenge.html = k.vorgaenge.html.replace('pflegt keine Liste', 'pflegt die Liste'); },
+    (k) => { k.vorgaenge.html = k.vorgaenge.html.replace('pflegt keine eigene Liste', 'pflegt die Liste'); },
     (k) => { const s = k.takt.stufen.find((x) => x.id === 'sofort'); if (s) s.html = s.html.replace('am selben Arbeitstag', 'binnen einer Woche'); },
     (k) => { const s = k.takt.stufen.find((x) => x.id === 'monat'); if (s) s.html = s.html.replace('60 Minuten', '90 Minuten'); },
     (k) => { const s = k.takt.stufen.find((x) => x.id === 'monat'); if (s) s.wer = 'Bauherr'; },
@@ -213,8 +213,8 @@ test('Explore (R75): die fachlichen Kernsätze stehen unverändert – mit Gegen
     // R76: Gegenproben zu den neuen Kernsätzen (die Mutationen M8, M10–M14 der Prüfrunde)
     (k) => { k.matrix.regel = k.matrix.regel.replace('keine Geldwerte und keine Freigabe', 'Geldwerte'); },
     (k) => { k.matrix.sonder = k.matrix.sonder.replace('unabhängig von der Matrix', 'nach der Matrix'); },
-    (k) => { const s = k.matrix.stufen.find((x) => x.id === 'vorrangig'); if (s) s.html = s.html.replace('informiert den Bauherrn und ', ''); },
-    (k) => { k.matrix.qualitaet[2] = 'Die Nutzung ist dauerhaft eingeschränkt.'; },
+    (k) => { const s = k.matrix.stufen.find((x) => x.id === 'vorrangig'); if (s) s.html = s.html.replace('unterrichtet den Bauherrn und ', ''); },
+    (k) => { k.matrix.qualitaet[2] = 'Die Nutzung ist dauerhaft beschränkt.'; },
     (k) => { const s = k.takt.stufen.find((x) => x.id === 'monat'); if (s) s.html = s.html.replace('höchstens einer Seite', 'höchstens drei Seiten'); },
     (k) => { const s = k.takt.stufen.find((x) => x.id === 'ruhe'); if (s) s.html = s.html.replace('fünf Arbeitstagen', 'zehn Arbeitstagen'); },
     (k) => { k.mcda.html = k.mcda.html.replace('zwischen 1 und 5', 'zwischen 1 und 10'); },

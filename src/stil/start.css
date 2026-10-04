@@ -105,8 +105,10 @@
 .tuer-teile [data-teil="4"] .tuer-teil-marke { background: var(--akzent-violett-soft); color: var(--akzent-violett-text); }
 
 /* Explore: Gegenstände der Werkzeuge */
-.tuer-werkzeuge { display: flex; flex-wrap: wrap; gap: var(--a-2); align-content: start; }
-.tuer-werkzeuge li { display: grid; place-items: center; width: 56px; height: 56px; border-radius: var(--radius-rund); background: var(--ton-soft); }
+/* P18.5: neun Gegenstände in einer Reihe (sauber, nie 7 + 2); schmal ein Block aus 3 × 3 */
+.tuer-werkzeuge { display: grid; grid-template-columns: repeat(9, minmax(0, 56px)); gap: var(--a-2); justify-content: start; align-content: start; }
+.tuer-werkzeuge li { display: grid; place-items: center; aspect-ratio: 1; border-radius: var(--radius-rund); background: var(--ton-soft); }
+.tuer-werkzeuge .fig-gimmick { width: 72%; height: 72%; }
 
 .start-dahinter { max-width: 72ch; display: grid; gap: var(--a-2); padding: var(--a-4) var(--a-5); border-radius: var(--radius-l); background: var(--weiss-a85); border: 1px solid var(--linie); }
 .start-dahinter .t-label { font: var(--typo-kicker); letter-spacing: var(--sperrung-kicker); text-transform: uppercase; color: var(--tinte-2); }
@@ -131,8 +133,7 @@
   .tuer-teile { grid-template-columns: minmax(0, 1fr); }
   .tuer-figuren ul { gap: var(--a-3) var(--a-2); }
   .tuer-figuren .fig-portraet { width: 36px; height: 36px; }
-  .tuer-werkzeuge li { width: 44px; height: 44px; }
-  .tuer-werkzeuge .fig-gimmick { width: 36px; height: 36px; }
+  .tuer-werkzeuge { grid-template-columns: repeat(3, 44px); }
 }
 
 @media (prefers-reduced-motion: reduce) {

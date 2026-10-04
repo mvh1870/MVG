@@ -68,8 +68,8 @@ function fehlerK14(md: string): string[] {
   if (!sz) f.push('Summenzeile fehlt');
   else if (Number(sz[1]) !== sA || Number(sz[2]) !== sB) f.push(`Summenzeile ${sz[1]} : ${sz[2]} statt ${sA} : ${sB}`);
 
-  // Rechenzeile „A erreicht g × p + … = n Punkte, B … = m“
-  const rz = /A erreicht ((?:\d × \d \+ ){2}\d × \d) = (\d+) Punkte, B ((?:\d × \d \+ ){2}\d × \d) = (\d+)\./u.exec(beispiel);
+  // Rechenzeilen „Rechnung für A: g × p + … = n Punkte. Rechnung für B: … = m Punkte.“
+  const rz = /Rechnung für A: ((?:\d × \d \+ ){2}\d × \d) = (\d+) Punkte\. Rechnung für B: ((?:\d × \d \+ ){2}\d × \d) = (\d+) Punkte\./u.exec(beispiel);
   if (!rz) f.push('Rechenzeile fehlt');
   else {
     for (const [o, ausdruck, ergebnis] of [['A', rz[1], rz[2]], ['B', rz[3], rz[4]]] as const) {
@@ -82,7 +82,7 @@ function fehlerK14(md: string): string[] {
       if (Number(ergebnis) !== soll) f.push(`Rechenzeile ${o}: ${ergebnis} statt ${soll}`);
     }
   }
-  const empf = /Unter dieser Terminpriorität empfiehlt die Projektsteuerung ([AB])\./u.exec(beispiel);
+  const empf = /Bei diesem Gewicht des Termins empfiehlt die Projektsteuerung ([AB])\./u.exec(beispiel);
   if (!empf || empf[1] !== (sA > sB ? 'A' : 'B')) f.push('Empfehlung nennt nicht die Option mit der höheren Summe');
 
   // Reglerstufen: Marke aus Gewichten, Text nennt den Führenden

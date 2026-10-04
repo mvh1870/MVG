@@ -63,18 +63,21 @@ export async function messeLesezeit() {
   const { inhalte } = await import('../src/inhalte/index.ts');
   const { baueSchritt } = await import('../src/ui/flaechen/geschichte.ts');
   const { themaTitel: titelVon } = await import('../src/ui/flaechen/theorie.ts');
+  const { werkzeugTitel: werkzeugVon, werkzeugAus } = await import('../src/ui/flaechen/explore.ts');
   const { neuerStand, schritte, waehle, wegKapitel } = await import('../src/geschichte/engine.ts');
   const g = inhalte.geschichte;
   if (g === null) throw new Error('keine Story in den Inhalten');
   // wie die Seite (main.ts): Titel über die Themen-Kennung, damit „Zum Thema …“ mitzählt (R74)
   const themaTitel = (/** @type {string} */ id) => titelVon(inhalte, id);
+  // und die Werkzeug-Verweise (P18.5): in der Kurzfassung im zugeklappten Aufklapper, auf dem ganzen Weg offen – beides wird mitgemessen
+  const werkzeugTitel = (/** @type {string} */ id) => (inhalte.werkzeuge !== null ? werkzeugVon(inhalte.werkzeuge, werkzeugAus(id)) : null);
   /** @param {boolean} kurz */
   const weg = (kurz) => {
     let s = neuerStand(kurz);
     for (const k of wegKapitel(g, kurz)) s = waehle(g, s, k.id, k.antworten.findIndex((a) => a.wertung === 'gut'));
     /** @type {[string, number][]} */
     const liste = schritte(g, kurz).map((sch) => {
-      const el = baueSchritt({ g, stand: { ...s, schritt: sch }, bedienbar: true, themaTitel, tue: () => {} });
+      const el = baueSchritt({ g, stand: { ...s, schritt: sch }, bedienbar: true, themaTitel, werkzeugTitel, tue: () => {} });
       return [sch.ort === 'kapitel' ? `${sch.kapitel}:${sch.teil}` : sch.ort, zaehleWoerter(el)];
     });
     const woerter = liste.reduce((a, [, n]) => a + n, 0);

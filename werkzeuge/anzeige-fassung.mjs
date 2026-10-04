@@ -20,6 +20,8 @@ export const ERSETZUNGEN = /** @type {const} */ ([
   // wie im Lesetext von k04/k05 („Nachhaltigkeit (ESG) und Lebenszykluskosten (LCC)“) und BEGRIFFE („CTC (Restkostenprognose)“)
   ['Qualität, ESG und LCC.', 'Qualität, Nachhaltigkeit (ESG) und Lebenszykluskosten (LCC).'],
   ['CTC-Berechnung', 'Restkostenprognose (CTC)'],
+  // R78: die Rolle heißt auf der Seite „Projektleitung des Bauherrn“ (Tafel k1.3-t1, Zeile Befähigung)
+  ['dass Bauherren-Projektleitung,', 'dass die Projektleitung des Bauherrn,'],
   ['Projektumfang und ESG/LCC;', 'Projektumfang, Nachhaltigkeit und Lebenszykluskosten (ESG/LCC);'],
 ]);
 

@@ -9,6 +9,7 @@ zeit: Mai 2027
 campus: { stufe: 5, jahreszeit: fruehling, licht: morgen }
 kurzfassung: true
 thema: entscheidungsvorlage
+werkzeuge: [{ id: vorlagen-check, beispiel: lueftung-voll }]
 belege: [v24:hb-3.1, v24:hb-3.2, v24:tlb-2.1, v24:va-3.1, v24:va-3.2, v24:va-3.3, v24:va-3.4, v24:va-3.5, v24:va-4.1, v24:va-4.2, k3.2-t1, k4.1-p1, k9.3-p3]
 bild-szene: lueftung
 bild-frage: waage
@@ -53,7 +54,7 @@ vergleich:
       begruendung: 50.000 → 5; Gesamtschule rund acht Wochen später → 2; volle Funktion ab Einzug → 5; bestelltes, sparsamstes Gerät → 5
   saetze:
     # R76: ohne „gute Luft“ – A liegt auch vorn, wenn Luft „weniger wichtig“ ist, aber nie ohne Schulstart ≥ „wichtig“ (81 Stellungen gerechnet)
-    A: "Das Ersatzgerät liegt vorn: Hier zählt vor allem, dass alle Kinder pünktlich einziehen."
+    A: "Das Ersatzgerät liegt vorn – mit diesen Gewichten zählt, dass alle Kinder pünktlich einziehen."
     B: Die Leihgeräte liegen vorn – aber nur, weil gute Luft im Unterricht hier kaum zählt. Passt das zu Ihrer Schule?
     C: "Der spätere Einzug liegt vorn: Wenn Geld oder Klima so viel zählen wie der Schulstart, lohnt sich das Warten."
     gleichauf: Gleichauf – jetzt entscheidet das fachliche Urteil, nicht die Punktzahl.

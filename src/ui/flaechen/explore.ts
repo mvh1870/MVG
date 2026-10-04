@@ -1,11 +1,13 @@
 /*
- * Bereich „Explore“ (P16.8, O-46): fünf Werkzeuge zum Ausprobieren, alle am fiktiven Schulcampus
- * Lindenhall-Süd (O-50). Nichts wird gesendet; Einstellungen gelten nur für diese Ansicht (Hinweis sichtbar nur im Datenschutz, O-56).
+ * Bereich „Explore“ (P16.8, O-46; P18.3/P18.4, O-59): neun Werkzeuge zum Ausprobieren, alle am fiktiven Schulcampus
+ * Lindenhall-Süd (O-50). Nichts wird gespeichert oder gesendet; Einstellungen gelten nur für diese Ansicht (Hinweis sichtbar nur im Datenschutz, O-56).
  *
  *   #explore            → MCDA-Rechner (erstes Werkzeug), darüber die Werkzeugleiste
- *   #explore/<werkzeug> → mcda · matrix · vorgaenge · takt · glossar
+ *   #explore/<werkzeug> → mcda · vorlagen-check · matrix · risiko-grenzen · vorgaenge · wegweiser · takt · monatsbericht · glossar
  *
- * Die Texte stehen in inhalte/werkzeuge.yaml; die Beispiele des Rechners sind die Vorlagen der Story.
+ * Jedes neue Werkzeug steht neben seinem „Geschwister“ und trägt dessen Ton (Konzept WERKZEUGE-P18 Abschnitt 0); seine
+ * Oberfläche liegt in src/ui/flaechen/explore/, die Rechnung in src/werkzeuge/. Die Texte stehen in inhalte/werkzeuge.yaml;
+ * die Beispiele des Rechners sind die Vorlagen der Story.
  */
 
 import type { Kapitel, Vergleich, VergleichOption } from '../../geschichte/typen.ts';
@@ -20,27 +22,48 @@ import { sym } from '../bausteine/bloecke.ts';
 import { seitenRahmen } from '../bausteine/seite.ts';
 import { glossarListe } from './theorie.ts';
 import { W } from '../woerter.ts';
+import { TEIL, WERKZEUGE, werkzeugAus, werkzeugTitel, type Werkzeug } from '../werkzeug-kennungen.ts';
+import { vorlagenCheck } from './explore/vorlagen-check.ts';
+import { wegweiserWerkzeug } from './explore/wegweiser.ts';
+import { risikoGrenzen } from './explore/risiko-grenzen.ts';
+import { monatsbericht } from './explore/monatsbericht.ts';
 
-export const WERKZEUGE = ['mcda', 'matrix', 'vorgaenge', 'takt', 'glossar'] as const;
-export type Werkzeug = (typeof WERKZEUGE)[number];
+export { WERKZEUGE, werkzeugAus, werkzeugTitel, type Werkzeug };
 
-/** Gegenstand und Akzentton je Werkzeug (O-57): Kachel, Kopf und Bühne tragen den Ton; der Name trägt die Bedeutung. Die Matrix bekommt bewusst keinen Rot- oder Gelbton (die Ampel bleibt Status, O-11). */
+/**
+ * Gegenstand und Akzentton je Werkzeug (O-57): Kachel, Kopf und Bühne tragen den Ton; der Name trägt die Bedeutung. Die Matrix bekommt bewusst keinen Rot- oder Gelbton (die Ampel bleibt Status, O-11).
+ * Die vier neuen Werkzeuge tragen den Ton ihres Geschwisters und unterscheiden sich durch den Gegenstand (Konzept 0).
+ */
 export const WERKZEUG_BILD: Record<Werkzeug, { bild: GimmickName; ton: Akzent }> = {
   mcda: { bild: 'waage', ton: 'violett' },
+  'vorlagen-check': { bild: 'klemmbrett', ton: 'violett' },
   matrix: { bild: 'matrix', ton: 'blau' },
+  'risiko-grenzen': { bild: 'messlatte', ton: 'blau' },
   vorgaenge: { bild: 'wegweiser', ton: 'lagune' },
+  wegweiser: { bild: 'gabelung', ton: 'lagune' },
   takt: { bild: 'kalender', ton: 'sonne' },
+  monatsbericht: { bild: 'berichtsblatt', ton: 'sonne' },
   glossar: { bild: 'buch', ton: 'gruen' },
 };
-
-export function werkzeugAus(id: string | null): Werkzeug {
-  return (WERKZEUGE as readonly string[]).includes(id ?? '') ? id as Werkzeug : 'mcda';
-}
 
 export interface ExploreOptionen {
   inhalte: OeffentlicheInhalte;
   werkzeug: string | null;
   bedienbar: boolean;
+  /**
+   * Werkzeugstand für die Leinwand (Konzept 0.3, P18.5): `b:<beispiel>[;<schritt>]`, nur Beispiel und Schritt, nie
+   * Freitext; gelesen von den Kernen (leseStand…). Unpassendes ergibt den Beispielanfang.
+   */
+  werkzeugStand?: string | null;
+  /** Beispiel, mit dem sich das Werkzeug öffnet (Adresse `#explore/<werkzeug>/<beispiel>`, E-13); Unbekanntes ergibt das erste Beispiel. */
+  beispiel?: string | null;
+}
+
+/** Werkzeugstand → Beispiel und Schritt (die Kerne prüfen Beispiel und Schrittmuster beim Zeichnen nach). */
+function standAus(roh: string | null | undefined): { beispiel: string; schritt: string | null } | null {
+  if (typeof roh !== 'string') return null;
+  const m = /^b:([a-z0-9][a-z0-9-]{0,40})(?:;(.*))?$/u.exec(roh);
+  return m === null ? null : { beispiel: m[1] ?? '', schritt: m[2] ?? null };
 }
 
 const E = W.werkzeuge;
@@ -262,13 +285,18 @@ function takt(_o: ExploreOptionen, w: Werkzeuge): HTMLElement {
 export function baueExplore(o: ExploreOptionen): HTMLElement {
   const w = o.inhalte.werkzeuge;
   const aktiv = werkzeugAus(o.werkzeug);
-  const titel = (id: Werkzeug): string => w?.[id].titel ?? id;
-  const kurz = (id: Werkzeug): string => w?.[id].kurz ?? '';
-  const werkzeugEl = w === null ? null
+  const titel = (id: Werkzeug): string => werkzeugTitel(w, id);
+  const kurz = (id: Werkzeug): string => w?.[TEIL[id]].kurz ?? '';
+  const neu = w === null ? null : { inhalte: o.inhalte, w, bedienbar: o.bedienbar, stand: standAus(o.werkzeugStand) ?? (typeof o.beispiel === 'string' ? { beispiel: o.beispiel, schritt: null } : null) };
+  const werkzeugEl = w === null || neu === null ? null
     : aktiv === 'mcda' ? mcda(o, w)
+    : aktiv === 'vorlagen-check' ? vorlagenCheck(neu)
     : aktiv === 'matrix' ? matrix(o, w)
+    : aktiv === 'risiko-grenzen' ? risikoGrenzen(neu)
     : aktiv === 'vorgaenge' ? vorgaenge(o, w)
+    : aktiv === 'wegweiser' ? wegweiserWerkzeug(neu)
     : aktiv === 'takt' ? takt(o, w)
+    : aktiv === 'monatsbericht' ? monatsbericht(neu)
     : h('div', { class: 'ex-werkzeug', 'data-werkzeug': 'glossar' }, glossarListe(o));
   const kachel = (id: Werkzeug): Node[] => [
     h('span', { class: 'ex-kachel-bild', 'aria-hidden': 'true' }, vonHtml(gimmick(WERKZEUG_BILD[id].bild, { groesse: 40, dekorativ: true }))),
@@ -283,7 +311,10 @@ export function baueExplore(o: ExploreOptionen): HTMLElement {
         h('div', { class: 'ex-kopf-text' },
           h('p', { class: 'gs-kicker' }, E.bereich),
           h('h1', { class: 'gs-titel ex-titel', tabindex: -1, 'data-pruef': 'ex-titel' }, titel(aktiv)),
-          w !== null ? h('div', { class: 'gs-leise ex-einleitung' }, inhalt(w.einleitungHtml)) : null),
+          // R78: unter dem Titel steht die Kurzbeschreibung des gewählten Werkzeugs; der Hinweis auf den fiktiven Fall bleibt
+          // einzeln und leise stehen – auch auf der Leinwand, wo die Kurzbeschreibung entfällt (O-45)
+          kurz(aktiv) !== '' ? h('p', { class: 'gs-leise ex-einleitung' }, kurz(aktiv)) : null,
+          w !== null ? h('div', { class: 'gs-leise ex-fall', 'data-pruef': 'ex-fall' }, inhalt(w.einleitungHtml)) : null),
         h('div', { class: 'ex-kopf-bild', 'aria-hidden': 'true' }, vonHtml(gimmick(WERKZEUG_BILD[aktiv].bild, { groesse: 112, dekorativ: true })))),
       h('nav', { class: 'ex-werkzeuge', 'aria-label': E.werkzeuge },
         WERKZEUGE.map((id) => o.bedienbar

@@ -8,6 +8,7 @@ Zum Abhaken beim Durchsehen der Internetseite (lokal: `dist/index.html` im Brows
 - [ ] Story: alle acht Kapitel einmal mit den guten Antworten und einmal mit anderen Wahlen; je Kapitel drei Antworten mit Folge-Szene, „So macht man es gut“ und „Das steckt dahinter“, die vier Mini-Aufgaben (Kapitel 2, 4, 6, 8) und der gewichtete Vergleich in Kapitel 7 fachlich korrekt; Bilanz passt zur Wahl, auch „offen“, wenn Entscheidungen fehlen; die Projektsteuerung pflegt alle Vorgänge, der Bauherr entscheidet (O-41, O-51, O-52).
 - [ ] Begriffe: LPH 0–9, nie G0–G5; Entscheidungsvorlage, Freigabe / keine Freigabe / Freigabe mit Auflagen (O-14, O-15). Begriffs-Kompass im Glossar als Lesehilfe in Ordnung.
 - [ ] Explore: gewichteter Vergleich, Risikomatrix, Vorgangsarten, Takt und Glossar stimmen mit dem Standard (O-46).
+- [ ] Vier neue Werkzeuge (O-59): Vorlagen-Check, Vorgangs-Wegweiser, Risiko-Bewerter mit eigenen Grenzen, Monatsbericht – je mit Beispiel vom Schulcampus und „Leer beginnen“; Rückmeldung in Worten ohne Punktzahl, Druck auf einer Seite, nichts wird gespeichert; Regeln nach dem Standard V2.4, nichts davon wörtlich übernommen (O-37).
 - [ ] Fall fiktiv und so gekennzeichnet; einziges Beispielprojekt ist der Schulcampus Lindenhall-Süd (O-3, O-45, O-50).
 - [ ] Abbildungen: alle 13 stehen auf ihrem Thema; Beschriftungen im Bild an die Begriffe der Seite angeglichen; darunter nur „Abbildung N“ und Titel – keine Abweichungen, kein Knopf „Vergrößern“ (O-55, O-56).
 - [ ] Nichts klingt nach Arbeitsstand: keine Bedienungs-Anleitungen („Klicken Sie …“), Prüfvermerke, Quellenhinweise, Begründungen oder Kennungen wie L-/O-/R-Nummern; „Fiktiver Fall“ nicht mehrfach auf einer Seite (O-56, O-3).
@@ -25,6 +26,7 @@ Zum Abhaken beim Durchsehen der Internetseite (lokal: `dist/index.html` im Brows
 ## C. Termin mit Regie und Leinwand (O-9)
 - [ ] Zwei Fenster: Regie am Laptop, Leinwand am Beamer; Leinwand zeigt nie Notizen oder Leitfragen.
 - [ ] Sprung zu jedem Kapitel und Schritt, Kurzfassung ein/aus; aus der Regie die Antwort wählen (Tasten 1–3), die Mini-Aufgabe zuordnen oder auflösen und in Kapitel 7 die Gewichte setzen; die Leinwand zeigt Wahl, Folge und Vergleich, nie die Wertung; Themen und Werkzeuge zeigen.
+- [ ] Die vier neuen Werkzeuge aus der Regie auf die Leinwand: Beispiel und Schritt wechseln mit, die Leinwand zeigt nur das Werkzeug mit Titel (L-260).
 
 ## D. Geräte (O-10)
 - [ ] Chrome oder Edge, Safari, Firefox: Start, ein Story-Kapitel, ein Thema, ein Werkzeug.

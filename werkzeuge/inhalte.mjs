@@ -13,7 +13,7 @@
  * Deterministisch: Dateien sortiert, Schlüssel sortiert, keine Zeitstempel.
  */
 import { baueGeschichte } from './geschichte.mjs';
-import { baueWerkzeuge } from './explore.mjs';
+import { baueWerkzeuge, pruefeWerkzeugVerweise, werkzeugKatalog } from './explore.mjs';
 import { anzeigeFassung } from './anzeige-fassung.mjs';
 import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
@@ -117,6 +117,8 @@ const DATEI_ARTEN = {
       // P17.8 (O-54): Teil des Buchs (1–4 oder anhang), Kurzsatz im Inhaltsverzeichnis, Symbol aus src/stil/symbole.ts
       teil: { typ: 'wahl', werte: THEORIE_TEILE, pflicht: true }, kurzsatz: { typ: 'text', pflicht: true }, symbol: { typ: 'text', pflicht: true },
       deckt: { typ: 'liste' },
+      // P18.5 (E-13): Verweise auf Explore-Werkzeuge, Liste von { id, beispiel } (beispiel optional); geprüft nach dem Einlesen aller Dateien
+      werkzeuge: { typ: 'werkzeugverweise' },
     },
     felder: ['text'],
   },
@@ -749,6 +751,12 @@ class Kompilierer {
         }
         return aus;
       }
+      case 'werkzeugverweise': {
+        // Liste von { id, beispiel } – die Existenz von Werkzeug und Beispiel prüft pruefeWerkzeugVerweise später
+        const liste = Array.isArray(wert) ? wert : [wert];
+        if (!liste.every((x) => typeof x === 'object' && x !== null && !Array.isArray(x))) { this.fehler(ort, `„${k}“ muss eine Liste von { id: …, beispiel: … } sein`); return undefined; }
+        return liste;
+      }
       case 'versionen': {
         const liste = Array.isArray(wert) ? wert : [wert];
         const aus = [];
@@ -1136,6 +1144,7 @@ function baueTheorie(c, rel, id, text, regie) {
     kurzsatz: kopf.kurzsatz ?? '',
     symbol: kopf.symbol ?? '',
     deckt,
+    werkzeugeRoh: kopf.werkzeuge,
     einleitung: c.html(rohFelder['text']?.text ?? '', ort),
     bloecke,
     quelle: rel,
@@ -1241,6 +1250,8 @@ export async function kompiliere(optionen = {}) {
   const geschichteDateien = [];
   /** @type {any} */
   let werkzeuge = null;
+  /** @type {Record<string, any>} */
+  let werkzeugeRegie = {};
 
   for (const r of dateien) {
     const rel = `inhalte/${r}`;
@@ -1254,7 +1265,11 @@ export async function kompiliere(optionen = {}) {
     else if (r === 'abdeckung.yaml') abdeckungRoh = leseYaml(lies(r), rel, 1, b);
     else if (/^abbildungen\/abb-\d+\.yaml$/u.test(r)) { /* baueAbbildungen (P14) */ }
     else if (/^geschichte\/[^/]+\.yaml$/u.test(r)) geschichteDateien.push({ rel, text: lies(r) });
-    else if (r === 'werkzeuge.yaml') werkzeuge = baueWerkzeuge(c, rel, lies(r));
+    else if (r === 'werkzeuge.yaml') {
+      const w = baueWerkzeuge(c, rel, lies(r));
+      werkzeuge = w.werkzeuge;
+      werkzeugeRegie = w.regie;
+    }
     else if (r === 'glossar.yaml') { /* vor dem Kompilierer angewandt (wendeGlossarAn) */ }
     else if (r === 'fall.md') { /* Fall-Bibel: Nachschlagewerk der Autoren, nicht auf der Seite (P16.14) */ }
     else if (/^rechtliches\/[^/]+\.md$/u.test(r)) { /* Impressum und Datenschutz: werkzeuge/bau.mjs (baueBeigaben) */ }
@@ -1269,6 +1284,12 @@ export async function kompiliere(optionen = {}) {
     }
   }
   pruefeBuch(c, theorie);
+  // Verweise der Themen auf Werkzeuge (E-13): erst hier, weil werkzeuge.yaml nach den Themen gelesen sein kann
+  const katalog = werkzeugKatalog(werkzeuge);
+  for (const t of Object.values(theorie)) {
+    t.werkzeuge = pruefeWerkzeugVerweise(t.werkzeugeRoh, t.quelle, katalog, (/** @type {string} */ wo, /** @type {string} */ f) => c.fehler(wo, f));
+    delete t.werkzeugeRoh;
+  }
 
   // Glossar (alle Einträge, für Mouseover)
   /** @type {Record<string, any>} */
@@ -1282,7 +1303,7 @@ export async function kompiliere(optionen = {}) {
 
   const abdeckung = baueAbdeckung(c, quelle, abdeckungRoh, theorie, pruefe);
   const abb = baueAbbildungen(c, quelle, wurzel, theorie, pruefe);
-  const gesch = baueGeschichte(c, geschichteDateien, Object.values(theorie).map((/** @type {any} */ t) => t.thema));
+  const gesch = baueGeschichte(c, geschichteDateien, Object.values(theorie).map((/** @type {any} */ t) => t.thema), katalog);
   const inhalte = {
     version: 1,
     // von der Quelle nur die Abbildungen; Titel, Fassung und Gliederung bleiben intern (O-38)
@@ -1296,6 +1317,7 @@ export async function kompiliere(optionen = {}) {
     geschichte: gesch.geschichte,
     geschichteRegie: gesch.regie,
     werkzeuge,
+    werkzeugeRegie,
   };
 
   const json = stabilesJson(inhalte);

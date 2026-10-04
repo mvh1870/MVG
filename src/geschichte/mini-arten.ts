@@ -201,9 +201,9 @@ const keineWahlenAngeben = (_w: readonly MiniWahl[], gegeben: boolean, ort: stri
   if (gegeben) fehler(ort, 'die Wahlen dieser Art sind fest – kein Feld „wahlen“');
 };
 
-const WAHLEN_MATRIX: readonly MiniWahl[] = [festWahl('stimmt', 'Stimmt'), festWahl('nachfordern', 'Nachfordern')];
-const WAHLEN_MAPPE: readonly MiniWahl[] = [festWahl('annehmen', 'So annehmen'), festWahl('nachfordern', 'Nachfordern')];
-const WAHLEN_PINNWAND: readonly MiniWahl[] = [festWahl('stimmt', 'Stimmt'), festWahl('doppelt', 'Zählt doppelt'), festWahl('nachfordern', 'Nachfordern')];
+const WAHLEN_MATRIX: readonly MiniWahl[] = [festWahl('stimmt', 'Stimmt'), festWahl('nachfordern', 'Nachbessern lassen')];
+const WAHLEN_MAPPE: readonly MiniWahl[] = [festWahl('annehmen', 'So annehmen'), festWahl('nachfordern', 'Nachbessern lassen')];
+const WAHLEN_PINNWAND: readonly MiniWahl[] = [festWahl('stimmt', 'Stimmt'), festWahl('doppelt', 'Zählt doppelt'), festWahl('nachfordern', 'Nachbessern lassen')];
 
 const MATRIX: MiniArtDef = {
   art: 'matrix',

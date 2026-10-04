@@ -63,7 +63,7 @@ function balkenTitel(g: Geschichte, id: BalkenId): string {
   return g.balken.find((b) => b.id === id)?.titel ?? id;
 }
 
-/** Änderung eines Balkens in Worten: „Zeit: etwas mehr Luft“, „Vertrauen: deutlich gesunken“, „Geld: unverändert“. */
+/** Änderung eines Balkens in Worten: „Zeit: etwas mehr Zeitpuffer“, „Vertrauen: deutlich gesunken“, „Geld: unverändert“. */
 export function aenderungWort(g: Geschichte, id: BalkenId, vorher: number, nachher: number, wirkung: number): string {
   const b = g.balken.find((x) => x.id === id);
   const titel = b?.titel ?? id;

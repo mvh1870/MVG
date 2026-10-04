@@ -73,7 +73,7 @@ export interface BalkenDef {
   /** Kurztext beim ersten Auftritt */
   html: string;
   start: number;
-  /** Wort für „mehr“ bzw. „weniger“ („mehr Luft“, „gesunken“) */
+  /** Wort für „mehr“ bzw. „weniger“ („mehr Zeitpuffer“, „gesunken“) */
   mehr: string;
   weniger: string;
   /** je Stufe am Ende ein Satz für die Bilanz */

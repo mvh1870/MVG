@@ -246,7 +246,7 @@ test('matrix: je Zettel das Matrixfeld als Bild (Beschreibung in Worten, ohne Za
   assert.match(beschreibung, /Wahrscheinlichkeit gering, Auswirkung mittel/u);
   assert.doesNotMatch(beschreibung, /\d/u, 'das Feld steht in Worten, nie als Zahl');
   assert.equal(el0.querySelectorAll('.gs-mini-rueck').length, 0);
-  assert.deepEqual([...el0.querySelectorAll('[data-pruef="posten-1"] button')].map(text), ['Stimmt', 'Nachfordern']);
+  assert.deepEqual([...el0.querySelectorAll('[data-pruef="posten-1"] button')].map(text), ['Stimmt', 'Nachbessern lassen']);
   // Zettel 1: „Stimmt“ (richtig), Zettel 2: „Stimmt“ (falsch: hier hätte die Projektsteuerin nachgefordert)
   s = zug(g, s, 0, 0);
   s = zug(g, s, 1, 0);
@@ -273,7 +273,7 @@ test('mappe: Haftzettel je Abschnitt, Rückmeldung je Abschnitt, der Schlusssatz
   const { g, stand, seite } = mit(mappeMini());
   let s = stand();
   assert.equal(seite(s).querySelectorAll('.gs-mini-haftzettel').length, 4);
-  assert.deepEqual([...seite(s).querySelectorAll('[data-pruef="posten-1"] button')].map(text), ['So annehmen', 'Nachfordern']);
+  assert.deepEqual([...seite(s).querySelectorAll('[data-pruef="posten-1"] button')].map(text), ['So annehmen', 'Nachbessern lassen']);
   for (let i = 0; i < 3; i += 1) {
     s = zug(g, s, i, 0);
     assert.equal(seite(s).querySelector('[data-pruef="mini-schluss"]'), null, `nach ${i + 1} von 4`);
@@ -298,15 +298,15 @@ test('pinnwand: die Zettel der Wand, je Karte der Faden von Zettel zu Zettel; na
   assert.equal((el.querySelector('[data-pruef="faden-1"]') as HTMLElement).dataset['faden'], 'offen', 'vor der Wahl neutral');
   assert.match(text(el.querySelector('[data-pruef="faden-1"]') as Element), /Risiko A.*Prüfung B/u);
   assert.match(text(el.querySelector('[data-pruef="faden-3"]') as Element), /Änderung D.*kein Zettel am Ende/u, 'loses Ende in Worten');
-  assert.deepEqual([...el.querySelectorAll('[data-pruef="posten-1"] button')].map(text), ['Stimmt', 'Zählt doppelt', 'Nachfordern']);
+  assert.deepEqual([...el.querySelectorAll('[data-pruef="posten-1"] button')].map(text), ['Stimmt', 'Zählt doppelt', 'Nachbessern lassen']);
   s = zug(g, s, 0, 2);
   s = zug(g, s, 1, 1);
   s = zug(g, s, 2, 2);
   const nach = seite(s);
   // der Faden zeigt die Lösung, nicht die Wahl: Faden 1 ist „stimmt“, Faden 2 „doppelt“, Faden 3 „nachfordern“
   assert.deepEqual(['faden-1', 'faden-2', 'faden-3'].map((p) => (nach.querySelector(`[data-pruef="${p}"]`) as HTMLElement).dataset['faden']), ['stimmt', 'doppelt', 'nachfordern']);
-  assert.match(text(nach.querySelector('[data-pruef="faden-2"] .gs-faden-wort') as Element), /Der Faden zählt doppelt\./u);
-  assert.match(text(nach.querySelector('[data-pruef="faden-1"] .gs-faden-wort') as Element), /Der Faden hält\./u);
+  assert.match(text(nach.querySelector('[data-pruef="faden-2"] .gs-faden-wort') as Element), /Hier würde doppelt gezählt\./u);
+  assert.match(text(nach.querySelector('[data-pruef="faden-1"] .gs-faden-wort') as Element), /Die Verbindung stimmt\./u);
   assert.equal(text(nach.querySelector('[data-pruef="mini-schluss"]') as Element), 'Eine Verbindung hätte doppelt gezählt.');
   // Zettel und Fäden stehen auch für Screenreader als Text (die Linie selbst ist stumm)
   assert.equal(nach.querySelector('.gs-faden-linie')?.getAttribute('aria-hidden'), 'true');

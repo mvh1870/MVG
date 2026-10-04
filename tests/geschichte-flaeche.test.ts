@@ -108,7 +108,7 @@ test('Frage: ohne Wahl kein Weiter (Hinweis, Fokus auf die erste Antwort); mit W
   // Umentscheiden: neue Folge, Fokus wieder auf der Folge
   $(f, '[data-pruef="antwort-3"]').click();
   assert.equal($(f, '[data-pruef="wort-vertrauen"]').textContent, '▼deutlich gesunken');
-  assert.equal($(f, '[data-pruef="wort-zeit"]').textContent, '▲etwas mehr Luft');
+  assert.equal($(f, '[data-pruef="wort-zeit"]').textContent, '▲etwas mehr Zeitpuffer');
   assert.equal(aktiv(), 'gs-folge-titel');
   // jetzt geht es weiter (Gegenprobe zu „ohne Wahl kein Weiter“)
   $(f, '[data-pruef="weiter"]').click();
@@ -165,7 +165,7 @@ test('Vergleich: Stufe ändern ordnet die Karten neu, meldet die Spitze und beh�
   assert.equal(aktiv(), 'stufe-klima-3');
   assert.equal($(f, '[data-pruef="gs-vgl-vorn"]').textContent, 'Gleichauf vorn: „Ersatzgerät“ und „Später einziehen“ mit je 55 Punkten.');
   assert.equal($(f, '[data-pruef="platz-C"]').textContent, 'Platz 1');
-  assert.equal($(f, '[data-pruef="gs-vgl-satz"]').textContent, 'Gleichauf – jetzt entscheidet das fachliche Urteil der Bürgermeisterin, nicht die Punktzahl.');
+  assert.equal($(f, '[data-pruef="gs-vgl-satz"]').textContent, 'Gleichauf – jetzt entscheidet das Urteil der Bürgermeisterin, nicht die Punktzahl.');
   assert.match($(f, '[data-pruef="vgl-C"]').getAttribute('style') ?? '', /order:12/u);
   $(f, '[data-pruef="stufe-luft-1"]').click();
   assert.equal($(f, '[data-pruef="summe-B"]').textContent, '45 Punkte');
@@ -287,7 +287,7 @@ test('Kurzfassung kürzer (P17.5): kurzer Einstieg, Zeilen weggelassen, „Das s
   // P19.6: Mit nur vier gespielten Stationen sinkt das Vertrauen nie unter „mittel“ (auf allen 81 Wegen nachgerechnet, 04-rahmen 3.4):
   // die Kurzfassung kennt „nach einer Falle“, „Vertrauen niedrig“ nur der ganze Weg
   const ef = flaeche({ ...weg('falle', true), schritt: { ort: 'ende' } });
-  assert.match(ef.element.textContent ?? '', /Aber nicht jede Entscheidung ist so sauber vorbereitet worden/u);
+  assert.match(ef.element.textContent ?? '', /Aber nicht jede Entscheidung kam so gut vorbereitet zu mir/u);
   assert.doesNotMatch(ef.element.textContent ?? '', /Beim nächsten Projekt reden wir früher miteinander\./u);
   const el = flaeche({ ...weg('falle'), schritt: { ort: 'ende' } });
   assert.match(el.element.textContent ?? '', /Beim nächsten Projekt reden wir früher miteinander\./u);
@@ -324,7 +324,7 @@ test('Ende: Bilanz je Weg, Varianten bei niedriger Zeit und niedrigem Vertrauen,
   const einmal = flaeche({ ...waehle(g, weg('gut'), 's14', k8.antworten.findIndex((a) => a.wertung === 'falle')), schritt: { ort: 'ende' } });
   assert.equal($(einmal, '[data-pruef="gs-bilanz-titel"]').textContent, 'Geschafft – mit Umwegen');
   assert.doesNotMatch(einmal.element.textContent ?? '', /Ich wusste jedes Mal/u);
-  assert.match(einmal.element.textContent ?? '', /nicht jede Entscheidung ist so sauber vorbereitet worden, wie sie hätte sein sollen/u);
+  assert.match(einmal.element.textContent ?? '', /nicht jede Entscheidung kam so gut vorbereitet zu mir, wie sie hätte kommen können/u);
   assert.ok(gut.element.querySelector('.gs-abbinder a[href="https://www.bauherr-mentoren.com/"]'));
   const falle = flaeche({ ...weg('falle'), schritt: { ort: 'ende' } });
   assert.equal($(falle, '[data-pruef="gs-bilanz-titel"]').textContent, 'Gebaut, aber ohne Rückhalt');
@@ -379,7 +379,7 @@ test('Druckbogen (Strg+P): je Kapitel Ihre Antwort und „So macht man es gut“
   const s = waehle(g, neuerStand(), 's1', 1);
   const text = druck(s);
   for (const k of g.kapitel) assert.match(text, new RegExp(`${k.nr} · ${k.titel.replace('?', '\\?')}`, 'u'));
-  assert.match(text, /Ihre Antwort: Die Projektsteuerin entwirft eine Seite/u);
+  assert.match(text, /Ihre Antwort: Sie lassen die Projektsteuerin eine Seite entwerfen/u);
   assert.match(text, /Ihre Antwort: noch offen/u);
   // vor dem Ende keine Bilanz (R72): nur der Hinweis, wo sie steht
   assert.doesNotMatch(text, /Ihre Bilanz: /u);

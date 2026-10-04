@@ -38,7 +38,7 @@ export const W = {
     storyKicker: 'Erlebt',
     storyTitel: 'Als Geschichte',
     storyText: 'Sie leiten für die Stadt Lindenhall den Bau eines Schulcampus. Unterwegs entscheiden Sie vierzehnmal – und sehen gleich, was jede Wahl für Geld, Zeit und Vertrauen bedeutet.',
-    // Anzahl als Wort; sichtbar nie „Kapitel“ (O-38, L-225)
+    // Anzahl als Wort; sichtbar nie „Kapitel“ (O-38, L-225) – der Begriff der Seite ist „Station“
     storyMeta: (n: number) => `${ZAHLWORT[n] ?? String(n)} Entscheidungen · etwa 40 Minuten (Kurzfassung: etwa 10 Minuten)`,
     storyLos: 'Geschichte beginnen',
     storyWeiter: 'Weitermachen, wo Sie aufgehört haben',
@@ -188,11 +188,11 @@ export const W = {
     vonN: (nr: number, n: number) => `${nr} von ${n}`,
     auftakt: 'Auftakt',
     ende: 'Schulstart',
-    // Fortschrittslinie und Ortszeile: eindeutig neben Kapitel 8 „Schulstart“ (R74)
+    // Fortschrittslinie und Ortszeile: eindeutig neben Station 14 „Schulstart“ (R74)
     endeOrt: 'Ende · Ihre Bilanz',
-    // Regie-Knopf neben 1–8 (R75)
+    // Regie-Knopf neben 1–14 (R75)
     endeKurz: 'Ende',
-    // Teile eines Kapitels (Regie: wo die Bühne steht)
+    // Teile einer Station (Regie: wo die Bühne steht)
     teile: { szene: 'Szene', vergleich: 'Vergleich', frage: 'Frage', mini: 'Mini-Aufgabe' } as Record<string, string>,
     weiter: 'Weiter',
     zurueck: 'Zurück',
@@ -235,7 +235,7 @@ export const W = {
     gutTitel: 'So macht man es gut',
     dahinterTitel: 'Das steckt dahinter',
     zumThema: 'Mehr dazu im Thema',
-    // E-13 (P18.5): leiser Verweis auf ein Explore-Werkzeug am Kapitel
+    // E-13 (P18.5): leiser Verweis auf ein Explore-Werkzeug an der Station
     werkzeugProbieren: (titel: string) => `${titel} ausprobieren`,
     mandatZeigen: 'Wer entscheidet was',
     brueckeTitel: 'Inzwischen',
@@ -291,10 +291,10 @@ export const W = {
     miniStimmt: 'Stimmt.',
     miniNichtGanz: 'Nicht ganz.',
     miniPruefen: 'Prüfen',
-    miniNachfordern: 'nachfordern',
+    miniNachfordern: 'Nachbessern lassen',
     miniInOrdnung: 'in Ordnung',
     miniZettel: 'Zettel',
-    miniFaden: { verbunden: 'verbunden mit', keinZiel: 'kein Zettel am Ende', stimmt: 'Der Faden hält.', doppelt: 'Der Faden zählt doppelt.', nachfordern: 'Das Ende hängt lose.' } as Record<string, string>,
+    miniFaden: { verbunden: 'verbunden mit', keinZiel: 'kein Zettel am Ende', stimmt: 'Die Verbindung stimmt.', doppelt: 'Hier würde doppelt gezählt.', nachfordern: 'Hier fehlt eine Verbindung.' } as Record<string, string>,
     // Eintrag-Kärtchen der Rückfragen (P19.6): Name des Kärtchens und eine leere Zeile
     miniEintrag: 'Der Eintrag',
     miniEintragLeer: 'noch leer',
@@ -341,7 +341,7 @@ export const W = {
     druckTitel: 'Ihre Geschichte',
     druckAntwort: 'Ihre Antwort',
     druckOffen: 'noch offen',
-    // R76: übersprungene Kapitel der Kurzfassung tragen auf Papier ihren Brückensatz statt „Ihre Antwort: …“
+    // R76: übersprungene Stationen der Kurzfassung tragen auf Papier ihren Brückensatz statt „Ihre Antwort: …“
     druckBruecke: 'In der Kurzfassung nur erzählt',
     druckBilanzSpaeter: 'Die Bilanz steht am Ende der Geschichte.',
     // Rechner in Explore (gewichteter Vergleich mit Gewichten 1–5)

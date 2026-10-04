@@ -110,7 +110,7 @@ export async function lauf(seite, h) {
   await druecke('wahl-3-nachfordern', 'Enter', 'Pinnwand');
   const faden = await seite.locator('[data-pruef="faden-2"]').getAttribute('data-faden');
   if (faden !== 'doppelt') h.befund(`Pinnwand: Faden 2 zeigt „${faden}“, erwartet doppelt`);
-  if (!/Der Faden zählt doppelt\./u.test(await text('faden-2'))) h.befund('Pinnwand: das Wort zum Faden fehlt (nie nur Farbe oder Linienart)');
+  if (!/Hier würde doppelt gezählt\./u.test(await text('faden-2'))) h.befund('Pinnwand: das Wort zum Faden fehlt (nie nur Farbe oder Linienart)');
   await verboten('Pinnwand');
   await pruefe('s8-pinnwand');
   await h.bild('s8-pinnwand');

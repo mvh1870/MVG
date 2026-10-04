@@ -6,8 +6,8 @@ titel: Die Auflage
 zeit: Mai 2026
 # Zwischenbild neu: Stufe 1,5 · Frühling · Abend · Regen; Bodenplatte in Schalung und Bewehrung, nasse Planen, Pfützen, erleuchtetes Containerfenster, keine Holzstapel
 campus: { stufe: 1.5, jahreszeit: fruehling, licht: abend, wetter: regen }
-# Brückenzeile wortgleich zu docs/drehbuch-v2/04-rahmen.md 6.1 (Karte 2), mit fetter Nummer
-bruecke: "**4** · Mai: Eine Bedingung zum Brandschutz kommt. Sie wird als Problem aufgenommen, die Lösung beschließt die Bürgermeisterin."
+# Brückenzeile nach docs/drehbuch-v2/04-rahmen.md 6.1 (Karte 2), seit P19.8 mit erklärter Auflage (Sprachprüfung); mit fetter Nummer
+bruecke: "**4** · Mai: Die Genehmigung kommt mit einer Auflage, einer Bedingung zum Brandschutz. Sie gilt schon, deshalb führt die Projektsteuerin sie als Problem; die Lösung beschließt die Bürgermeisterin."
 thema: vorgaenge
 werkzeuge: [{ id: wegweiser, beispiel: auflage }]
 belege: [v24:hb-1, v24:hb-1.4, v24:hb-1.6, v24:hb-2, v24:hb-3, v24:hb-3.1, v24:hb-5, v24:tlb-1, k3.2-t1, k4.2-p3, v24:va-4.1]
@@ -36,33 +36,33 @@ antworten:
     folge: |
       Clara Faden hat das Problem aufgenommen, die Bürgermeisterin wartet auf Nachricht. Eine Woche lang ruht die Planung der Flure, niemand weiß, ob gekapselt wird. Dann melden Sie es ihr, jetzt mit einer Lösung. Die Bürgermeisterin entscheidet noch im Mai: Kapselung, aus der Reserve. „Hätten Sie mich nicht gleich anrufen können?“
 
-      Zur Kapselung, der Maßnahme, steht, was sie bewirken soll: Die Behörde soll die Auflage bestätigen, erst dann wird das Problem geschlossen.
+      Clara Faden hält fest, woran man die Wirkung der Kapselung erkennt: Die Brandschutzbehörde soll die Auflage bestätigen, erst dann wird das Problem geschlossen.
   - wertung: falle
-    text: "Sie beobachten es wie ein Risiko. Planung und Ausschreibung laufen unverändert weiter."
+    text: "Sie beobachten es wie ein Risiko und sehen erst einmal zu. Planung und Ausschreibung laufen unverändert weiter."
     balken: { geld: -2, zeit: -2, vertrauen: -1 }
     bild: absperrband
     folge: |
-      Zwei Wochen später fällt es Clara Faden bei der Wochendurchsicht auf: Das Holz ist ausgeschrieben, in den Unterlagen steht die Kapselung nicht, und ein Problem lässt sich nicht beobachten wie ein Risiko. Die Unterlagen müssen ergänzt und die Flure neu geplant werden, und die Firmen, die Angebote abgegeben haben, rechnen noch einmal.
+      Eine Woche später steht es bei der Wochendurchsicht auf Clara Fadens Liste: Das Holz ist ausgeschrieben, in den Unterlagen steht die Kapselung nicht, und ein Problem lässt sich nicht beobachten wie ein Risiko. Die Unterlagen müssen ergänzt und die Flure neu geplant werden, und die Firmen, die Angebote abgegeben haben, rechnen noch einmal.
 
-      Die Bürgermeisterin entscheidet noch im Mai: Kapselung, aus der Reserve – und fragt, wie lange das schon so liegt. Die Behörde soll die Wirkung bestätigen; erst dann wird das Problem geschlossen.
+      Die Bürgermeisterin entscheidet noch im Mai: Kapselung, aus der Reserve – und fragt, wie lange das schon so liegt. Die Brandschutzbehörde soll die Wirkung bestätigen; erst dann wird das Problem geschlossen.
   - wertung: gut
-    text: "Die Projektsteuerin nimmt es als Problem auf. Die Flure werden vorläufig gekapselt geplant, und die Bürgermeisterin bekommt noch diese Woche eine Vorlage mit zwei Wegen."
+    text: "Sie lassen es als Problem aufnehmen, die Flure vorläufig mit Kapselung planen und der Bürgermeisterin noch diese Woche eine Vorlage schreiben."
     balken: { geld: -1, zeit: -1, vertrauen: 1 }
     bild: stempel
     folge: |
-      Als Zwischenlösung werden die Flure vorläufig gekapselt geplant, nichts wird bestellt. Die Vorlage legt zwei Wege nebeneinander: die Flure kapseln, rund 400.000 Euro, oder die Gesamtschule anders aufbauen, deutlich teurer und langsamer.
+      Als Zwischenlösung plant der Architekt die Flure vorläufig mit Kapselung, bestellt wird nichts. Die Vorlage legt zwei Wege nebeneinander: die Flure kapseln, rund 400.000 Euro, oder die Gesamtschule anders aufbauen, deutlich teurer und langsamer.
 
-      Die Bürgermeisterin entscheidet für die Kapselung, aus der Reserve. Zur Kapselung, der Maßnahme, schreibt Faden, was sie bewirken soll: Die Brandschutzbehörde soll bestätigen, dass die Auflage erfüllt ist. Erst dann wird das Problem geschlossen. Die Umplanung der Flure kostet zwei Wochen Zeitpuffer im Plan.
+      Die Bürgermeisterin entscheidet für die Kapselung, aus der Reserve. Für die Kapselung als Maßnahme hält Clara Faden fest, woran man ihre Wirkung erkennt: Die Brandschutzbehörde soll bestätigen, dass die Auflage erfüllt ist. Erst dann wird das Problem geschlossen. Die Umplanung der Flure kostet zwei Wochen Zeitpuffer im Plan.
 
 gut:
-  - "Ein Problem ist schon eingetreten. Dafür wird keine Wahrscheinlichkeit mehr geschätzt, sondern geklärt, welche Folgen feststehen und wie es sich lösen lässt – auch dann, wenn vorher kein Risiko eingetragen war. Eine Zwischenlösung darf die Arbeit am Laufen halten, aber Eile ersetzt keine Freigabe."
+  - "Ein Problem ist schon eingetreten. Dafür wird keine Wahrscheinlichkeit mehr geschätzt, sondern geklärt, welche Folgen feststehen und wie es sich lösen lässt – auch dann, wenn vorher kein Risiko eingetragen war. Eine Zwischenlösung darf die Arbeit am Laufen halten, aber Eile ersetzt keine Entscheidung."
   - "Eine Maßnahme nennt, was sie bewirken soll. Umgesetzt heißt noch nicht wirksam, und geschlossen wird erst, wenn Fachleute die Wirkung bestätigt haben."
 
 mini:
   art: matrix
   titel: Stimmt die Einstufung?
   # Die Legende der drei Stufen steht im Aufgabentext (ein Feld `legende` kennt das Format nicht; siehe Bericht)
-  aufgabe: "Clara Faden hat vier Risiken eingestuft. Stimmt jede Einstufung, oder muss nachgefordert werden? Das Problem steht nicht dabei: Die Risikomatrix gilt nur für Risiken. **vorrangig:** Bürgermeisterin wird informiert, Entscheidung rechtzeitig vorbereitet · **gezielt:** Maßnahme mit Verantwortlichen und Termin · **beobachten:** Prüftermin und Auslöser"
+  aufgabe: "Clara Faden hat vier Risiken eingestuft. Stimmt jede Einstufung, oder lassen Sie sie nachbessern? Die Kapselung ist ein Problem und steht nicht dabei: Die Matrix gilt nur für Risiken. **vorrangig:** Bürgermeisterin wird informiert, Entscheidung rechtzeitig vorbereitet · **gezielt:** Maßnahme mit Verantwortlichem und Termin · **beobachten:** Prüftermin und Auslöser"
   bild: matrix
   # feld: [Wahrscheinlichkeit, Auswirkung] je 1–5, nur für die Zeichnung der Matrix, nie als Zahl sichtbar
   posten:
@@ -80,7 +80,7 @@ mini:
       feld: [3, 1]
     - text: "Der Kran schwenkt morgens über den Fußweg, auf dem Kinder zur Nachbarschule gehen. Wahrscheinlichkeit gering, Folge nach der Matrix klein. Eingestuft: beobachten."
       loesung: nachfordern
-      erklaerung: "Fragen der Sicherheit werden unabhängig von der Matrix behandelt. Sicherheitsfragen warten nicht auf das Feld."
+      erklaerung: "Fragen der Sicherheit werden unabhängig von der Matrix behandelt. Bei der Sicherheit zählt nicht das Feld der Matrix."
       feld: [2, 2]
 
 dahinter: "Ein Problem wird wie ein Problem behandelt, weil sich ein eingetretener Zustand nicht mehr wegschätzen lässt. Wer es als Risiko beobachtet, sieht zu, wie Planung und Ausschreibung an der Auflage vorbeilaufen; wer erst die fertige Lösung abwartet, lässt die Planung stehen."
@@ -93,7 +93,7 @@ vertiefung:
   antwort:
     - "Nicht allein auf diese Angabe. Eine Maßnahme ist erst dann wirksam, wenn die erwartete Wirkung nachvollziehbar belegt ist. „Umgesetzt“ und „wirksam“ sind zwei verschiedene Dinge. Hier sagt die Brandschutzbehörde, ob die Auflage erfüllt ist. Ein Haken auf der Liste ist keine Bestätigung der Fachleute. Das gilt auch für kleine Probleme: Eine Zwischenlösung ist nie das Ende der Bearbeitung."
     - "Beim Problem heißt das: Geschlossen wird, wenn die vereinbarte Lösung umgesetzt und fachlich bestätigt ist oder wenn jemand die weitere Bearbeitung ausdrücklich übernommen hat, etwa ein Nachfolger. Offene Folgen werden nicht als erledigt dargestellt."
-    - "Bei einem Risiko gilt Ähnliches: Eine bloß geplante Maßnahme senkt die Bewertung noch nicht, erst die belegte Wirkung. Ein Problem hat dagegen keine Bewertung, die sinken könnte. Die Frage lautet dort nur: Ist es gelöst, und woran sieht man das?"
+    - "Bei einem Risiko gilt Ähnliches: Eine bloß geplante Maßnahme senkt die Bewertung noch nicht, erst die belegte Wirkung. Ein Problem hat dagegen keine Matrix-Einstufung, die sinken könnte. Die Frage lautet dort nur: Ist es gelöst, und woran sieht man das?"
     - "Und wenn die Wirkung ausbleibt? Dann ist die Maßnahme unwirksam oder verspätet. Clara Faden bereitet dann eine Anpassung vor oder legt der Bürgermeisterin eine neue Frage zur Entscheidung vor. Deshalb ist es klug, vorher zu fragen, woran man die Wirkung erkennen wird."
 
 regie:

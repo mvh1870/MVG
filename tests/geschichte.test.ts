@@ -324,7 +324,7 @@ test('Vergleich: Satz der Projektsteuerin über alle 81 Gewichtsstellungen – A
   assert.ok(V.saetze['A']?.startsWith('Das Ersatzgerät liegt vorn – mit diesen Gewichten zählt, dass alle Kinder pünktlich einziehen'));
   assert.ok(V.saetze['B']?.startsWith('Die Leihgeräte liegen vorn – aber nur, weil gute Luft im Unterricht hier kaum zählt'));
   assert.ok(V.saetze['C']?.startsWith('Der spätere Einzug liegt vorn: Wenn Geld oder Strombedarf so viel zählen wie der Schulstart'));
-  assert.ok(V.saetze['gleichauf']?.startsWith('Gleichauf – jetzt entscheidet das fachliche Urteil'));
+  assert.ok(V.saetze['gleichauf']?.startsWith('Gleichauf – jetzt entscheidet das Urteil'));
 });
 
 test('Vergleich: B liegt nie vorn, solange Gute Luft mindestens „wichtig“ ist (alle 3^4 Stellungen)', () => {
@@ -406,7 +406,7 @@ test('R75: Lösungen der Mini-Aufgaben stehen fest (Wer eine Lösung ändert, pr
   assert.deepEqual(loesung('s8'), ['stimmt', 'doppelt', 'stimmt', 'nachfordern', 'doppelt'], 'Pinnwand');
   assert.deepEqual(loesung('s9'), ['ok', 'nachfordern', 'ok', 'nachfordern', 'nachfordern', 'ok'], 'Bericht gegenlesen');
   assert.deepEqual(loesung('s12'), ['vergleich', 'aus', 'vergleich', 'vergleich'], 'Muss oder nicht?');
-  assert.deepEqual(loesung('s13'), ['nicht', 'beschlossen', 'nicht', 'beschlossen', 'nicht']);
+  assert.deepEqual(loesung('s13'), ['nachfordern', 'ok', 'nachfordern', 'ok', 'nachfordern'], 'Beschluss oder nicht? als Bericht gegenlesen (P19.8, Rhythmus der Mini-Arten)');
   assert.equal(kapitel(G, 's11')?.mini?.art, 'rueckfragen', 'Rückfragen haben keine Lösung, nur ein Kontingent');
   assert.equal(kapitel(G, 's11')?.mini?.kontingent, 2);
   // Reihenfolge: die Liste ist die Lösung – Schutz, Meldung, Eintrag, Ursache, Lösung, Abschluss
@@ -447,7 +447,11 @@ test('R75: Empfehlung und gute Folge in Station 12 nennen den Kipppunkt so, wie 
   const gut = k.antworten.find((a) => a.wertung === 'gut');
   assert.ok(gut);
   const folge = gut.folgeHtml.replace(/<[^>]*>/gu, '');
-  assert.match(folge, /Klima und Betrieb mir wichtiger wären\?.*Dann läge der spätere Einzug gleichauf/u);
+  assert.match(folge, /wenn mir Strombedarf und Betrieb wichtig wären\?.*Dann läge der spätere Einzug gleichauf/u);
+  // P19.8 (U-03): die Frage nennt die Stufe, für die „gleichauf“ gerechnet ist – „wichtig“ (3); bei „sehr wichtig“ (5) läge der spätere Einzug vorn
+  assert.doesNotMatch(folge, /wichtiger|sehr wichtig/u, 'die Frage bindet „gleichauf“ an die Stufe „wichtig“');
+  assert.equal(vergleichLage(V, { ...abgestimmteGewichte(V), klima: 3 }).satz, 'gleichauf');
+  assert.equal(vergleichLage(V, { ...abgestimmteGewichte(V), klima: 5 }).satz, 'C', 'bei „sehr wichtig“ liegt der spätere Einzug vorn');
   assert.doesNotMatch(folge, /\bvorn\b/u, 'nicht „vorn“ statt „gleichauf“');
   // der Satz der Seite für diese Stellung ist „gleichauf“ (nicht vorn)
   assert.equal(vergleichLage(v, { ...abgestimmteGewichte(v), klima: 3 }).satz, 'gleichauf');

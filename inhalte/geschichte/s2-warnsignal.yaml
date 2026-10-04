@@ -5,8 +5,8 @@ nr: 2
 titel: Ein erstes Warnsignal
 zeit: März 2026
 campus: { stufe: 0, jahreszeit: fruehling, licht: tag }
-# Brückenzeile wortgleich zu docs/drehbuch-v2/04-rahmen.md 6.1 (Karte 1), mit fetter Nummer
-bruecke: "**2** · März: Der Architekt erwähnt, Holz könnte knapp werden; die Projektsteuerin lässt es als Frühwarnung prüfen."
+# Brückenzeile nach docs/drehbuch-v2/04-rahmen.md 6.1 (Karte 1), seit P19.8 mit erklärter Frühwarnung (Sprachprüfung); mit fetter Nummer
+bruecke: "**2** · März: Der Architekt erwähnt, Holz könnte knapp werden. Die Projektsteuerin hält es als Frühwarnung fest, einen Hinweis, bei dem noch offen ist, ob etwas dran ist, und der Architekt fragt bei den Herstellern nach."
 thema: arbeitsweise
 werkzeuge: [{ id: wegweiser, beispiel: messe }]
 belege: [v24:hb-1, v24:hb-1.1, v24:hb-1.2, v24:hb-1.3, v24:hb-1.4, v24:hb-1.5, v24:hb-1.6, v24:hb-2, v24:hb-4, v24:tlb-2, v24:tlb-3]
@@ -16,7 +16,7 @@ bild-frage: notizzettel
 einstieg: |
   März 2026. Der Schnee ist weg, an der Baustraße blühen die ersten Krokusse. Im Büro des Architekten wird jetzt die Ausführung geplant – Wand für Wand, Holzbauteil für Holzbauteil.
 
-  Clara Faden geht jede Woche alle offenen Vorgänge durch: Aufgaben, Termine, Fragen ohne Antwort. Heute sitzt sie mit dem Architekten und dem Bauleiter im Container.
+  Clara Faden geht jede Woche alles Offene durch: Aufgaben, Termine, Fragen ohne Antwort. Heute sitzt sie mit dem Architekten und dem Bauleiter im Container.
 
 szene:
   - { figur: schwung, text: "Übrigens, nur am Rande: Ein Holzbauer hat erzählt, dass die Lieferzeiten für Holzelemente gerade länger werden." }
@@ -43,15 +43,15 @@ antworten:
     balken: { geld: 0, zeit: -1, vertrauen: -1 }
     bild: stoppuhr
     folge: |
-      Clara Faden hält den Hinweis trotzdem vollständig fest: Prüffrage, der Architekt fragt bis Ende des Monats nach. Aber Konrad Schwung hat Ihren Satz gehört: Es hat ja Zeit. Der Monat vergeht, niemand fragt nach. Bei der Wochendurchsicht meldet Clara Faden die Prüffrage als überfällig. Erst danach fragt er bei den Herstellern nach.
+      Clara Faden hält den Hinweis trotzdem vollständig fest: Als Prüffrage notiert sie, dass der Architekt bis Ende des Monats nachfragt. Aber Konrad Schwung hat Ihren Satz gehört: Es hat ja Zeit. Der Monat vergeht, niemand fragt nach. Bei der Wochendurchsicht meldet Clara Faden die Prüffrage als überfällig. Erst danach fragt Konrad Schwung bei den Herstellern nach.
   - wertung: vertretbar
     text: "Sie lassen es gleich als Risiko eintragen – lieber zu früh als zu spät."
     balken: { geld: 0, zeit: 1, vertrauen: 0 }
     bild: lupe
     folge: |
-      Clara Faden trägt ein Risiko ein – aber ohne Zahl: „Eine Zahl ohne Grundlage schreibe ich nicht hin.“ Daneben steht: Bewertung vorläufig, Antwort der Hersteller abwarten.
+      Clara Faden trägt ein Risiko ein – aber ohne Zahlen zu Wahrscheinlichkeit und Schaden: „Eine Zahl ohne Grundlage schreibe ich nicht hin.“ Daneben steht: Bewertung vorläufig, Antwort der Hersteller abwarten.
 
-      Weil der Eintrag schon als Risiko im Bericht steht, fragt die Finanzabteilung der Stadt nach, bevor jemand weiß, ob da überhaupt etwas ist. Immerhin fragt der Architekt bis Ende des Monats bei den Herstellern nach.
+      Weil der Eintrag schon als Risiko in der Risikoliste steht, fragt die Finanzabteilung der Stadt nach, bevor jemand weiß, ob da überhaupt etwas ist. Immerhin fragt der Architekt bis Ende des Monats bei den Herstellern nach.
 
 gut: |
   Ein unklarer Hinweis wird gleich als Frühwarnung festgehalten, spätestens bei der nächsten Wochendurchsicht – mit seiner Herkunft, einer klaren Prüffrage, einem Namen und einem Termin. Eine Bewertung gibt es erst, wenn die Antwort da ist; bis dahin bleibt der Hinweis offen und wird jede Woche angeschaut.
@@ -59,12 +59,12 @@ gut: |
 mini:
   art: zuordnen
   titel: Was ist was?
-  aufgabe: "Erkennen Sie bei jedem Satz, was vorliegt."
+  aufgabe: "Ordnen Sie jedem Satz zu, was vorliegt."
   bild: notizzettel
   # heisst: Legende über den Karten, wortgleich aus den Erklärungen unten (R75, L-252; Belege v24:hb-1.1 bis hb-1.6)
   wahlen:
     - { id: fruehwarnung, titel: Frühwarnung, heisst: "ein Hinweis, bei dem noch nicht geklärt ist, ob etwas dran ist" }
-    - { id: risiko, titel: Risiko, heisst: "geklärt: etwas Nachteiliges kann eintreten, ist aber noch nicht passiert" }
+    - { id: risiko, titel: Risiko, heisst: "es steht fest: Etwas Nachteiliges kann eintreten, ist aber noch nicht passiert" }
     - { id: problem, titel: Problem, heisst: "ist schon passiert" }
     - { id: aenderung, titel: Änderung, heisst: "etwas, das bisher gilt, soll bewusst anders werden" }
     - { id: massnahme, titel: Maßnahme, heisst: "eine gezielte Handlung, die einen Zustand verbessert" }
@@ -76,7 +76,7 @@ mini:
     - { text: "Ein Hersteller erwähnt nebenbei am Telefon, Holz werde vielleicht knapp. Genaues weiß er nicht.", bild: telefon, loesung: fruehwarnung, erklaerung: "Ein Hinweis, bei dem noch nicht geklärt ist, ob etwas dran ist. Erst einmal wird das geprüft." }
     - { text: "Der Architekt schätzt bis Freitag die Kosten für den Fahrradkeller.", bild: kostenzettel, loesung: aufgabe, erklaerung: "Eine geplante Arbeit mit Ergebnis, Namen und Termin." }
     - { text: "Nach dem Starkregen steht die Baugrube unter Wasser.", bild: warnschild, loesung: problem, erklaerung: "Das ist schon passiert. Jetzt geht es um die Folgen und die Lösung, nicht mehr um die Wahrscheinlichkeit." }
-    - { text: "Drei Hersteller bestätigen schriftlich ein halbes Jahr Lieferzeit für die Holzelemente. Ob der Holzbau später beginnt, ist noch offen.", bild: lieferwagen, loesung: risiko, erklaerung: "Geklärt: Etwas Nachteiliges kann eintreten, ist aber noch nicht passiert. Das wird bewertet." }
+    - { text: "Drei Hersteller bestätigen schriftlich ein halbes Jahr Lieferzeit für die Holzelemente. Ob der Holzbau später beginnt, ist noch offen.", bild: lieferwagen, loesung: risiko, erklaerung: "Es steht fest: Etwas Nachteiliges kann eintreten, ist aber noch nicht passiert. Das wird bewertet." }
 
 dahinter: "Nicht jeder Hinweis wird zum Risiko – aber jeder wird geklärt, bis feststeht, was daraus wird. Wer ihn liegen lässt, erfährt vom Holz erst, wenn es fehlt; wer jeden Hinweis gleich zum Risiko macht, setzt Zahlen in die Welt, die niemand belegen kann."
 

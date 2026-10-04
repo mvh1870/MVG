@@ -18,62 +18,62 @@ bild-szene: berichtsblatt
 bild-frage: stoppuhr
 
 einstieg: |
-  Dezember 2026. Auf dem Dach liegt leichter Schnee, am Baucontainer hängt eine Lichterkette. Heute ist der Monatstermin, eine Stunde online. Vorher hat Clara Faden bei der Wochendurchsicht alles Offene geprüft; den Entwurf des Berichts hat sie am Wochenende geschrieben: eine Seite, drei grüne Punkte.
+  Dezember 2026. Auf dem Dach liegt leichter Schnee, am Baucontainer hängt eine Lichterkette. Heute ist der Monatstermin, eine Stunde online. Vorher hat Clara Faden bei der Wochendurchsicht alles Offene geprüft; den Entwurf des Berichts hat sie am Wochenende geschrieben: eine Seite, alle Punkte grün.
 
 szene:
-  - { figur: faden, zusatz: legt das Blatt vor, text: "Mein Vermerk von heute früh: Bei der Wochendurchsicht ist der Planstand der Fassade überfällig geworden – die fertigen Fassadenpläne fehlen. Im Entwurf vom Wochenende steht das noch nicht." }
+  - { figur: faden, zusatz: legt das Blatt vor, text: "Mein Prüfvermerk von heute früh: Bei der Wochendurchsicht ist der Planstand der Fassade überfällig geworden – die fertigen Fassadenpläne fehlen. Im Entwurf vom Wochenende steht das noch nicht." }
   - { figur: schwung, text: "Kommt nächste Woche, versprochen." }
   - { figur: lot, zusatz: am Telefon, text: "Der Netzbetreiber hat angerufen: Der Stromanschluss ans Netz kommt erst im März, nicht im Januar. Ohne Strom keine Säge." }
-  - { figur: faden, text: "Das ist ein Problem, kein Risiko: Es ist eingetreten. Als Zwischenlösung gibt es Baustrom, für den Schulstart ändert sich nichts. Es gehört in den Bericht." }
+  - { figur: faden, text: "Das ist ein Problem, kein Risiko: Es ist eingetreten. Als Zwischenlösung gibt es Baustrom, eine vorläufige Stromversorgung der Baustelle; für den Schulstart ändert sich nichts. Es gehört in den Bericht." }
   - { figur: grundstein, text: "Eine Seite, so lese ich das gern. Was genau soll ich entscheiden – und bis wann?" }
 
 frage: Der Entwurf liegt vor Ihnen, alle Punkte sind grün, die Bürgermeisterin wartet auf den Bericht. Was tun Sie?
 
 antworten:
   - wertung: falle
-    text: "Sie nehmen den grünen Bericht an. Konrad Schwung nennt einen neuen Termin – das genügt."
+    text: "Sie nehmen den grünen Bericht an. Konrad Schwung nennt einen neuen Termin für die Fassadenpläne – das genügt Ihnen."
     balken: { geld: -1, zeit: -1, vertrauen: -2 }
     bild: warnschild
     folge: |
-      Die Ampeln bleiben grün, der Bericht geht mit dem Netzanschluss als Problem an die Bürgermeisterin. Der neue Termin für den Planstand verstreicht, die Fassadenfirma wartet eine Woche.
+      Die Punkte bleiben grün, der Bericht geht mit dem Netzanschluss als Problem an die Bürgermeisterin. Der neue Termin für den Planstand verstreicht, die Fassadenfirma wartet eine Woche.
 
-      Clara Fadens Vermerk ist längst im Haus: „Der Planstand ist überfällig.“ Die Bürgermeisterin legt ihn neben den grünen Bericht. „Warum stand das nicht drin?“ Der Bericht wird mit dem Planstand neu verteilt, doch die grüne Fassung haben da schon alle gelesen.
+      Clara Fadens Prüfvermerk ist längst im Haus: „Der Planstand ist überfällig.“ Die Bürgermeisterin legt ihn neben den grünen Bericht. „Warum stand das nicht drin?“ Der Bericht wird mit dem Planstand neu verteilt, doch die grüne Fassung haben da schon alle gelesen.
   - wertung: vertretbar
-    text: "Sie lassen den Bericht, wie er ist, und fragen Konrad Schwung persönlich nach dem Planstand."
+    text: "Sie lassen den Bericht, wie er ist, und fragen Konrad Schwung persönlich am Telefon nach dem Planstand der Fassade."
     balken: { geld: 0, zeit: 0, vertrauen: 0 }
     bild: telefon
     folge: |
       Auf Ihre Nachfrage erklärt Konrad Schwung den Planstand, am Telefon, freundlich und ausführlich. Der Bericht geht grün zur Bürgermeisterin, mit dem Netzanschluss als Problem, aber ohne die Fassade. Die Bürgermeisterin liest ihn und fragt nicht nach.
 
-      Erst bei einem Rundgang mit Theo Lot hört sie vom Planstand. Clara Faden trägt ihn im Prüfvermerk als überfällig ein; im Bericht steht die Erklärung nirgends.
+      Erst bei einem Rundgang mit Theo Lot hört sie vom Planstand. Im Prüfvermerk von Clara Faden steht er schon als überfällig; im Bericht fehlt die Erklärung.
   - wertung: gut
-    text: "Sie lassen den Bericht um den überfälligen Planstand ergänzen und verlangen vom Architekten eine Erklärung, nicht nur einen neuen Termin."
+    text: "Sie lassen den überfälligen Planstand in den Bericht aufnehmen und verlangen vom Architekten eine Erklärung, nicht nur einen Termin."
     balken: { geld: 0, zeit: 1, vertrauen: 1 }
     bild: berichtsblatt
     folge: |
-      Konrad Schwung erklärt es: Der Fensterbauer hat seine Maße zweimal geändert, die Anschlüsse müssen noch mit dem Statiker abgestimmt werden, der die Tragfähigkeit berechnet. Clara Faden nimmt die fehlenden Pläne als überfällige Aufgabe mit Grund und Termin in den Bericht auf, außerdem den Netzanschluss als Problem mit dem Baustrom als Zwischenlösung.
+      Konrad Schwung erklärt es: Der Fensterbauer hat seine Maße zweimal geändert, die Anschlüsse müssen noch mit dem Statiker abgestimmt werden, der die Tragfähigkeit berechnet. Clara Faden nimmt die fehlenden Pläne als überfällige Aufgabe mit Grund und Termin in den Bericht auf. Außerdem steht dort der Netzanschluss als Problem, mit dem Baustrom als Zwischenlösung.
 
-      Die Bürgermeisterin liest die Seite einmal und sagt: „So sehe ich, wo es hakt.“ Weil der Plan früh geklärt ist, bleibt Zeitpuffer im Zeitplan.
+      Die Bürgermeisterin liest die Seite einmal und sagt: „So sehe ich, wo es hakt.“ Weil der Plan früh geklärt ist, gewinnen Sie Zeitpuffer.
 
 gut: |
-  Jede Woche wird alles Offene geprüft. Einmal im Monat gibt es einen Termin von höchstens einer Stunde und einen Bericht von höchstens einer Seite. Sie prüfen den Bericht darauf, ob man ihn nachvollziehen kann, nicht darauf, wie viele Felder er hat: Wer macht was bis wann? Ein neuer Termin ersetzt keine Erklärung.
+  Jede Woche wird alles Offene geprüft. Einmal im Monat gibt es einen Termin von höchstens einer Stunde und einen Bericht von höchstens einer Seite. Sie prüfen den Bericht darauf, ob man ihn nachvollziehen kann, nicht darauf, wie viele Felder er hat: Wer macht was bis wann?
 
 mini:
   art: bericht
   stelle: vor-frage
   titel: Was fehlt im Bericht?
-  aufgabe: "Der Entwurf, nach dem Anruf des Netzbetreibers ergänzt: sechs Zeilen. Bei welchen fordern Sie nach?"
+  aufgabe: "Hier der Entwurf, nach dem Anruf des Netzbetreibers ergänzt: sechs Zeilen. Bei welchen lassen Sie nachbessern, weil Wichtiges fehlt?"
   bild: berichtsblatt
-  schluss: "Drei Zeilen wurden nachgefordert."
+  schluss: "Drei Zeilen mussten nachgebessert werden."
   posten:
-    - { text: "Kosten: unverändert rund eine Million über dem Budget; die Mehrkosten der Haustechnik sind seit November als Risiko geschlossen.", loesung: ok, erklaerung: "Ein Stand, mit Datum und Verweis auf die Einträge; eine zweite Liste ist nicht nötig." }
-    - { text: "Termine: alle Ampeln grün.", loesung: nachfordern, erklaerung: "Die Fassade fehlt. Eine überfällige Aufgabe gehört mit Grund und nächstem Schritt in den Bericht; Grün ist keine Erklärung." }
+    - { text: "Kosten: unverändert rund eine Million über dem Budget; die Mehrkosten der Haustechnik sind seit November als Risiko geschlossen.", loesung: ok, erklaerung: "Ein Stand in einer Zeile; eine zweite Liste ist nicht nötig." }
+    - { text: "Termine: alle Punkte grün.", loesung: nachfordern, erklaerung: "Die Fassade fehlt. Eine überfällige Aufgabe gehört mit Grund und nächstem Schritt in den Bericht; Grün ist keine Erklärung." }
     - { text: "Netzanschluss: erst im März statt im Januar, bis dahin Baustrom. Für den Schulstart ändert sich nichts.", loesung: ok, erklaerung: "Ein eingetretenes Problem mit Zwischenlösung und Folge für das Ziel – mehr braucht eine Seite nicht." }
-    - { text: "Offene Entscheidungen: –", loesung: nachfordern, erklaerung: "Der Bericht zeigt offene Entscheidungen und die benötigte Reaktion. Hier steht nichts dazu, obwohl der Planstand überfällig ist." }
+    - { text: "Offene Entscheidungen: –", loesung: nachfordern, erklaerung: "Der Bericht nennt offene Entscheidungen und die benötigte Reaktion. Zum überfälligen Planstand steht keine: Wer reagiert, bis wann?" }
     - { text: "Kapselung der Flure: eingebaut, damit erledigt.", loesung: nachfordern, erklaerung: "Eingebaut ist nicht wirksam. Geschlossen wird, wenn die Behörde die Wirkung bestätigt hat." }
     - { text: "Dringliches: seit dem letzten Bericht keine Meldung.", loesung: ok, erklaerung: "Dringliches wartet nicht auf den Bericht; kam nichts, darf das so dastehen." }
 
-dahinter: "Der Bericht darf eine Seite sein, weil er auf denselben Stand zeigt wie die Einträge. Eine Seite ohne Entscheidungsfrage ist aber nur Beobachtung, und Grün ohne Erklärung verbirgt, was offen ist. Wo wenig geschieht, genügt wenig: In vereinbarten ruhigen Zeiten findet der Termin nur bei konkretem Bedarf statt, der Bericht bleibt."
+dahinter: "Der Bericht darf eine Seite sein, weil er auf denselben Stand zeigt wie die Einträge. Eine Seite ohne Entscheidungsfrage ist aber nur Beobachtung, und Grün ohne Erklärung verbirgt, was offen ist. Wo wenig geschieht, genügt wenig: In vereinbarten ruhigen Zeiten findet der Termin nur bei konkretem Bedarf statt, den Bericht gibt es weiter."
 
 vertiefung:
   form: nachdenken

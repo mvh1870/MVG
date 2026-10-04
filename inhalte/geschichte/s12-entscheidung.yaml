@@ -33,14 +33,14 @@ szene:
   # Zeile 3b gilt nur in der Kurzfassung (Ersatz für Zeile 3, kein Muss-Filter dort).
   - { figur: faden, nur-kurzfassung: true, text: "Drei Wege liegen vor: ein Gerät als Ersatz, Leihgeräte oder später einziehen." }
   # Echo E7 (Quelle Station 5) mit fester Fortsetzung; die Kurzfassung erklärt die Glocke
-  - { figur: klingel, echo: E7, fortsetzung: "Ich habe die Glocke schon eingepackt.", fortsetzung-kurz: "Ich habe die Glocke meiner alten Schule schon eingepackt." }
+  - { figur: klingel, echo: E7, fortsetzung: "Übrigens: Die Glocke ist schon eingepackt.", fortsetzung-kurz: "Übrigens: Die Glocke meiner alten Schule ist schon eingepackt." }
   - { figur: grundstein, text: "Zeigen Sie mir alle Wege und was Sie empfehlen. Entscheiden tue ich." }
 
 mini:
   art: zuordnen
   stelle: vor-vergleich
   titel: Muss oder nicht?
-  aufgabe: "Zuerst das, was erfüllt sein muss: die geforderte Luftmenge. Wer kommt in den Vergleich?"
+  aufgabe: "Zuerst wird geprüft, was erfüllt sein muss: Die Anlage muss die geforderte Luftmenge schaffen. Welche Vorschläge kommen in den Vergleich, welche scheiden aus?"
   bild: musskarten
   # Keine Wirkung auf die Balken; der Vergleich zeigt immer die drei zulässigen Wege, der Filter erklärt, warum der vierte Vorschlag fehlt.
   # Legende (heisst) bewusst nicht gesetzt (Wortbudget); die Unterscheidung steht in der Erklärung der Karte 2 und im Lernsatz.
@@ -55,7 +55,7 @@ mini:
     - text: "Vierter Vorschlag, günstiger: Laut Datenblatt reicht die Luftmenge nicht."
       loesung: aus
       bild: musskarten
-      erklaerung: "Das Datenblatt zeigt, dass die Anforderung nicht erreicht wird. Hohe Punkte bei Geld oder Klima änderten daran nichts: Eine unzulässige Möglichkeit gewinnt nicht durch Vorteile. Etwas anderes wäre es, wenn nur das Datenblatt fehlte: Das wäre Klärungsbedarf, und die Vorlage wäre nicht vollständig."
+      erklaerung: "Das Datenblatt zeigt, dass die Anforderung nicht erreicht wird. Hohe Punkte bei Geld oder Strombedarf änderten daran nichts: Ein Vorschlag, der nicht reicht, gewinnt nicht durch Vorteile. Etwas anderes wäre es, wenn nur das Datenblatt fehlte: Dann müsste noch etwas geklärt werden, und die Vorlage wäre nicht vollständig."
     - text: "Leihgeräte: Fachplanung bestätigt die Luftmenge."
       loesung: vergleich
       bild: lueftung
@@ -67,7 +67,7 @@ mini:
 
 vergleich:
   einleitung: |
-    Die drei Wege im Vergleich. Zuerst der Schulstart, dann das Geld – so sind die Gewichte abgestimmt. Mehr Punkte heißt: passt besser, beim Geld: günstiger.
+    Die drei Wege im Vergleich. Zuerst der Schulstart, dann das Geld – so sind die Gewichte vorab vereinbart. Mehr Punkte heißt: passt besser, beim Geld: günstiger.
   # Gewicht: 5 sehr wichtig · 3 wichtig · 1 weniger wichtig (abgestimmte Ausgangsstellung)
   kriterien:
     - { id: geld, titel: Geld, im-satz: das Geld, gewicht: 3 }
@@ -88,18 +88,18 @@ vergleich:
     - id: C
       titel: Später einziehen
       punkte: { geld: 5, schulstart: 2, luft: 5, klima: 5 }
-      worte: { geld: rund 50.000 Euro mehr, schulstart: "Gesamtschule erst nach den Herbstferien – der Zeitpuffer fängt Zeit auf", luft: volle Lüftung ab Einzug, klima: "bestelltes, sparsames Gerät" }
+      worte: { geld: rund 50.000 Euro mehr, schulstart: "Gesamtschule erst nach den Herbstferien, rund acht Wochen später", luft: volle Lüftung ab Einzug, klima: "bestelltes, sparsames Gerät" }
       begruendung: 50.000 → 5; Gesamtschule rund acht Wochen später → 2; volle Funktion ab Einzug → 5; bestelltes, sparsamstes Gerät → 5
   saetze:
     # R76: ohne „gute Luft“ – A liegt auch vorn, wenn Luft „weniger wichtig“ ist, aber nie ohne Schulstart ≥ „wichtig“ (81 Stellungen gerechnet)
     A: "Das Ersatzgerät liegt vorn – mit diesen Gewichten zählt, dass alle Kinder pünktlich einziehen."
     B: Die Leihgeräte liegen vorn – aber nur, weil gute Luft im Unterricht hier kaum zählt. Passt das zu Ihrer Schule?
     C: "Der spätere Einzug liegt vorn: Wenn Geld oder Strombedarf so viel zählen wie der Schulstart, lohnt sich das Warten."
-    gleichauf: Gleichauf – jetzt entscheidet das fachliche Urteil der Bürgermeisterin, nicht die Punktzahl.
+    gleichauf: Gleichauf – jetzt entscheidet das Urteil der Bürgermeisterin, nicht die Punktzahl.
   empfehlung: |
     **Empfehlung:** das Ersatzgerät. Es kostet am meisten, aber nur damit ziehen alle Kinder pünktlich in gute Luft. Knapp ist es trotzdem: Zählen Strombedarf und Betrieb mehr, ändert sich die Rangfolge.
   wer: |
-    **Wer entscheidet:** die Bürgermeisterin, aus der Reserve; der Lenkungskreis berät. Bis Ende Mai, danach ist auch das Ersatzgerät zu spät.
+    **Wer entscheidet:** die Bürgermeisterin; das Geld kommt aus der Reserve, der Lenkungskreis berät. Entscheiden muss sie bis Ende Mai, danach ist auch das Ersatzgerät zu spät.
 
 frage: Die Vorlage geht an die Bürgermeisterin. Was legen Sie ihr vor?
 
@@ -109,7 +109,7 @@ antworten:
     balken: { geld: -2, zeit: 1, vertrauen: -2 }
     bild: rednerpult
     folge: |
-      Die Bürgermeisterin unterschreibt noch am selben Tag, der Lenkungskreis berät nur kurz. Die Haustechnikfirma bestellt zu ihrem Preis; verglichen hat ihn niemand. Dann fragt jemand im Stadtrat, ob es keinen günstigeren Weg gab, und die Bürgermeisterin hört zum ersten Mal von den Leihgeräten und vom späteren Einzug.
+      Die Bürgermeisterin unterschreibt noch am selben Tag, der Lenkungskreis berät nur kurz. Die Vergabestelle bestellt zum genannten Preis; verglichen hat ihn niemand. Dann fragt jemand im Stadtrat, ob es keinen günstigeren Weg gab, und die Bürgermeisterin hört zum ersten Mal von den Leihgeräten und vom späteren Einzug.
 
       „Ich habe entschieden, ohne zu wissen, dass ich eine Wahl hatte“, sagt sie. „Das darf nicht noch einmal passieren.“ Clara Faden legt den Vergleich nachträglich vor und hält den Beschluss samt Auflage fest: vor dem Schulstart eingebaut und in Betrieb. Es bleibt beim Ersatzgerät.
   - wertung: gut
@@ -117,7 +117,7 @@ antworten:
     balken: { geld: -1, zeit: 1, vertrauen: 1 }
     bild: stempel
     folge: |
-      Im Lenkungskreis fragt die Bürgermeisterin nur: „Bliebe es beim Ersatzgerät, wenn Klima und Betrieb mir wichtiger wären?“ – „Dann läge der spätere Einzug gleichauf“, sagt Clara Faden. „Dann zählt Ihr Urteil.“
+      Im Lenkungskreis fragt die Bürgermeisterin nur: „Bliebe es beim Ersatzgerät, wenn mir Strombedarf und Betrieb wichtig wären?“ – „Dann läge der spätere Einzug gleichauf“, sagt Clara Faden. „Dann zählt Ihr Urteil.“
 
       Die Bürgermeisterin entscheidet: Ersatzgerät, das Geld kommt aus der Reserve. Clara Faden hält den Beschluss mit Datum fest, samt Auflage (Bedingung): vor dem Schulstart eingebaut und in Betrieb.
   - wertung: vertretbar
@@ -127,10 +127,10 @@ antworten:
     folge: |
       Die Bürgermeisterin liest beide Empfehlungen und dann den Vergleich. „Sie empfehlen das Günstigste. Aber mein Ziel war der Schulstart.“
 
-      Sie vertagt die Entscheidung um eine Woche und hört im Lenkungskreis die Schule an. Dann entscheidet sie: Ersatzgerät, das Geld kommt aus der Reserve, mit der Auflage, dass es vor dem Schulstart eingebaut und in Betrieb ist. Ihre Empfehlung war ehrlich begründet – sie passte nur nicht zum Ziel, das die Bürgermeisterin gesetzt hatte. Die Woche fehlt dem Einbau am Ende.
+      Die Bürgermeisterin vertagt die Entscheidung um eine Woche und hört im Lenkungskreis die Schule an. Dann entscheidet sie: Ersatzgerät, das Geld kommt aus der Reserve, mit der Auflage, dass es vor dem Schulstart eingebaut und in Betrieb ist. Ihre Empfehlung war ehrlich begründet – sie passte nur nicht zum Ziel, das sie gesetzt hatte. Die Woche fehlt dem Einbau am Ende.
 
 gut: |
-  Was erfüllt sein muss, wird vor den Punkten geprüft: Wer es nachweislich nicht erfüllt, scheidet aus; fehlt nur der Nachweis, sagt die Projektsteuerin offen, was noch zu klären ist. Dazu kommen mindestens zwei zulässige Wege, vorab abgestimmte Gewichte und eine begründete Empfehlung, die zeigt, wann sich die Rangfolge ändert. Beschlossen wird getrennt davon.
+  Zuerst wird geprüft, was ein Vorschlag erfüllen muss: Ein Vorschlag, der das nachweislich nicht erfüllt, scheidet aus; fehlt nur der Nachweis, sagt die Projektsteuerin offen, was noch zu klären ist. Dann werden mindestens zwei Wege verglichen, die alle Anforderungen erfüllen, mit vorab vereinbarten Gewichten und einer begründeten Empfehlung, die zeigt, wann sich die Rangfolge ändert. Beschlossen wird getrennt.
 
 dahinter: "Der Vergleich nimmt niemandem die Entscheidung ab: Er zeigt, welcher Weg zu den Zielen passt und wie sehr das an den Gewichten hängt."
 
@@ -142,11 +142,11 @@ vertiefung:
     - "Die Gewichte: Termin 5, Kosten 3, Funktion 2. Mit diesen Gewichten erreicht das Ersatzgerät 41 Punkte, das Abwarten 35. Wie belastbar ist dieses Ergebnis?"
   antwort:
     - "Nur so weit, wie die Gewichte stimmen. Zählt der Termin nur noch 3 statt 5, steht es 31 zu 31: Gleichstand. Dann entscheidet kein Rechenergebnis mehr, sondern ein Urteil – und die Empfehlung muss sagen, dass es so knapp ist. Deshalb prüft die Projektsteuerin vor jeder Empfehlung, ob andere vertretbare Gewichte die Rangfolge ändern."
-    - "Der Gegenfall: Ein dritter Vorschlag, der die geforderte Leistung nachweislich nicht erreicht, hätte bei hohen Punkten für Kosten und Termin sogar vorn liegen können. Er scheidet trotzdem aus, bevor gerechnet wird – eine unzulässige Möglichkeit gewinnt nicht durch Vorteile an anderer Stelle."
+    - "Der Gegenfall: Ein dritter Vorschlag, der die geforderte Leistung nachweislich nicht erreicht, hätte bei hohen Punkten für Kosten und Termin sogar vorn liegen können. Er scheidet trotzdem aus, bevor gerechnet wird – ein Vorschlag, der nicht reicht, gewinnt nicht durch Vorteile an anderer Stelle."
     - "Und: Eine hohe Punktzahl ersetzt kein fachliches Urteil. Eurobeträge, Tage und offene Fragen bleiben neben den Punkten sichtbar, damit die zuständige Stelle sieht, wofür die Zahl steht."
 
 regie:
-  notiz: "Der Muss-Filter kommt vor den Punkten: Was zwingend ist, wird zuerst geprüft; fehlt nur der Nachweis, legt die Projektsteuerin offen, was zu klären ist. Danach die Gewichte gemeinsam einstellen – die Leinwand ordnet die drei Wege sofort um; vor der Wahl mit „Abgestimmte Gewichte“ zurück. Kern: Der Vergleich nimmt niemandem die Entscheidung ab; er zeigt, welcher Weg zu den gesetzten Zielen passt und wie sehr das Ergebnis an den Gewichten hängt."
+  notiz: "Der Muss-Filter kommt vor den Punkten: Was erfüllt sein muss, wird zuerst geprüft; fehlt nur der Nachweis, legt die Projektsteuerin offen, was zu klären ist. Danach die Gewichte gemeinsam einstellen – die Leinwand ordnet die drei Wege sofort um; vor der Wahl mit „Abgestimmte Gewichte“ zurück. Kern: Der Vergleich nimmt niemandem die Entscheidung ab; er zeigt, welcher Weg zu den gesetzten Zielen passt und wie sehr das Ergebnis an den Gewichten hängt."
   leitfragen:
     - Was ist Ihnen wichtiger – Schulstart oder Geld?
     - Ändert sich Ihre Wahl, wenn Sie die Gewichte anders setzen?

@@ -17,7 +17,7 @@ titel: Wenn Wissen im Kopf steckt
 zeit: April 2027
 # Zwischenbild: Gesamtschule außen fertig, Dach der Sporthalle geschlossen, Grundschule beginnt; nasser Hof, halber Regenbogen
 campus: { stufe: 4.5, jahreszeit: fruehling, licht: tag, wetter: regen }
-bruecke: "Clara Faden fällt aus; der Lüftungshersteller deutet Verzug an, ihre Vertretung übernimmt die Einträge."
+bruecke: "Clara Faden fällt aus; der Lüftungshersteller deutet Verzug an, ihre Vertretung übernimmt die Einträge, also die festgehaltenen Hinweise und Aufgaben."
 thema: vorgaenge
 werkzeuge: [{ id: wegweiser, beispiel: verzug }]
 belege: [v24:hb-2, v24:hb-5, v24:tlb-4, v24:hb-1.1, v24:hb-1.2, v24:hb-1.4, v24:tlb-3, v24:hb-projektblatt, k2.3-p1, k2.5-t1, k4.2-p1]
@@ -26,13 +26,15 @@ bild-szene: haftzettel
 bild-frage: kalender
 
 einstieg: |
-  April 2027. Ein Aprilschauer trommelt aufs Containerdach, dann kommt die Sonne durch, und über der Gesamtschule steht ein halber Regenbogen. Nur ein Platz im Container ist leer: Clara Faden liegt drei Wochen mit Grippe im Bett. Auf ihrem Bildschirm steht ein Eintrag zur Lüftungsanlage, zwischen zwei Terminen notiert. Er ist kurz. Ihre Vertretung hat ihn gelesen und sagt: „{echo: E9}“
+  April 2027. Ein Aprilschauer trommelt aufs Containerdach, dann kommt die Sonne durch, und über der Gesamtschule steht ein halber Regenbogen. Nur ein Platz im Container ist leer: Clara Faden liegt drei Wochen mit Grippe im Bett.
+
+  Auf ihrem Bildschirm steht ein Eintrag zur Lüftungsanlage, zwischen zwei Terminen notiert. Er ist kurz. Ihre Vertretung hat ihn gelesen, und ihr fällt der Bericht vom Dezember ein: „{echo: E9}“
 
 szene:
-  - { text: "Aus Clara Fadens Büro meldet sich ihre Vertretung: „Guten Morgen, ich vertrete Frau Faden. Der Hersteller der Lüftungsanlage will bis Freitag eine Antwort. In ihrem Eintrag dazu steht nur: ‚frag Theo‘.“" }
+  - { text: "Am leeren Platz im Container meldet sich ihre Vertretung: „Guten Morgen, ich vertrete Frau Faden. Der Hersteller der Lüftungsanlage will bis Freitag eine Antwort. In ihrem Eintrag dazu steht nur: ‚frag Theo‘.“" }
   - { figur: lot, text: "Clara war noch Sonntagabend hier und hat Pläne sortiert. Ich dachte, die hält das aus." }
   # Echo E9 (Quelle Station 9) steht im Einstieg, gesprochen von der Vertretung (keine eigene Sprecherin); fehlt die Quelle, gilt die Fassung „gut“
-  - { text: "Die Vertretung: „Dieser Eintrag reicht nicht aus. Woher der Hinweis kam, was offen ist, bis wann – das weiß nur Frau Faden.“" }
+  - { text: "Die Vertretung fügt hinzu: „Dieser Eintrag reicht nicht aus. Woher der Hinweis kam, was offen ist, bis wann – das weiß nur Frau Faden.“" }
 
 mini:
   art: rueckfragen
@@ -67,11 +69,11 @@ mini:
         - { wer: Hanna Klingel, text: "Sonst weiß ich nicht, wohin mit den Kindern." }
       erklaerung: "Zeile „Gebraucht für“: Die Vertretung würde festhalten: „Läuft spätestens zum ersten Schultag“. Das wäre der Bedarf: bis wann und wofür. Er sagt, wie eilig die Antwort ist."
 
-frage: Der Hersteller wartet, Clara Faden ist krank, ihr Eintrag reicht nicht aus. Was veranlassen Sie?
+frage: Der Hersteller wartet, Clara Faden ist krank, ihr Eintrag reicht nicht aus. Was lassen Sie tun?
 
 antworten:
   - wertung: gut
-    text: Die Vertretung klärt die Lücken durch Rückfragen und ergänzt den Eintrag. Sie warten den Übergabevermerk der Vertretung ab, dann geht die Antwort an den Hersteller.
+    text: Sie bitten die Vertretung, die Lücken durch Rückfragen zu klären und den Eintrag zu ergänzen, bevor die Antwort an den Hersteller geht.
     balken: { geld: 0, zeit: -1, vertrauen: 1 }
     bild: mappe
     folge: |
@@ -79,21 +81,21 @@ antworten:
 
       Die Antwort geht rechtzeitig hinaus. Ob der Termin hält, weiß der Hersteller selbst noch nicht. Clara Faden schreibt aus dem Bett: „Jetzt versteht den Eintrag auch ein Fremder. Das wollte ich schon lange.“
   - wertung: vertretbar
-    text: Sie rufen Clara Faden zu Hause an. Sie kennt die Antwort, und es geht schnell.
+    text: Sie rufen Clara Faden zu Hause an. Sie kennt die Antwort, und so geht es am schnellsten.
     balken: { geld: 0, zeit: -2, vertrauen: 0 }
     bild: telefon
     folge: |
-      Clara Faden nimmt nach dem fünften Klingeln ab, die Stimme ein Reibeisen. Sie erklärt alles, mit Pausen zum Husten. Die Vertretung schreibt mit, gleicht danach alles noch einmal mit Theo Lot und Konrad Schwung ab, weil nicht jedes Wort sicher ist – und die Antwort geht erst Freitagabend hinaus, gerade noch rechtzeitig.
+      Clara Faden nimmt nach dem fünften Klingeln ab, die Stimme ein Reibeisen. Sie erklärt alles, mit Pausen zum Husten. Die Vertretung schreibt mit und gleicht danach alles noch einmal mit Theo Lot und Konrad Schwung ab, weil nicht jedes Wort sicher ist. Die Antwort geht erst Freitagabend hinaus, gerade noch rechtzeitig.
 
       „Solange es nur in meinem Kopf steckt“, sagt Clara Faden am Ende, „kann ich nie richtig krank sein.“ Der Eintrag steht jetzt, mit allem, was fehlte, als Übergabe an die Vertretung.
   - wertung: falle
-    text: Die Vertretung übernimmt die Einträge, wie sie sind – Theo Lot weiß ja Bescheid, und der Hersteller bekommt seine Antwort.
+    text: Sie lassen die Vertretung die Einträge übernehmen, wie sie sind – Theo Lot weiß ja Bescheid, und der Hersteller bekommt seine Antwort.
     balken: { geld: -1, zeit: -2, vertrauen: -2 }
     bild: haftzettel
     folge: |
       Die Vertretung übernimmt, was dasteht: „frag Theo“. Theo Lot ist zwei Tage mit den Dachfenstern beschäftigt und antwortet nicht. Die Frist am Freitag verstreicht. Am Montag schreibt der Hersteller erneut und ruft dann bei der Bürgermeisterin an: Wer ist bei der Stadt eigentlich zuständig?
 
-      Gisela Grundstein ruft Sie an. „Bei uns steckt Wissen in Köpfen, und der Kopf liegt im Bett?“ Ein Abstimmungstermin vor Ort, den niemand eingeplant hatte, kostet einen Tag. Dann steht der Eintrag, mit Quelle, Frage und Frist, als Übergabe an die Vertretung. Ob der Termin hält, bleibt auch jetzt offen.
+      Gisela Grundstein ruft Sie an. „Bei uns steckt Wissen in Köpfen, und der Kopf liegt im Bett?“ Ein zusätzlicher Termin mit dem Hersteller vor Ort, den niemand eingeplant hatte, kostet einen Tag und zusätzliches Geld. Dann steht der Eintrag, mit Quelle, Frage und Frist, als Übergabe an die Vertretung. Ob der Termin hält, bleibt auch jetzt offen.
 
 gut: |
   Ein Fremder soll einen Eintrag verstehen können: woher der Hinweis kam, was offen ist, wer bis wann antwortet. Wechselt die Bearbeiterin, wird die Übernahme als Übergabe festgehalten – nicht als Erledigung.
@@ -105,7 +107,7 @@ vertiefung:
   titel: Würde ein Fremder das verstehen?
   text:
     - "Sie sehen zwei Einträge zur Lüftungsanlage. Der erste lautet: „Hersteller Lüftung: frag Theo.“"
-    - "Der zweite: „Hinweis aus einem Anruf des Herstellers bei Theo Lot, vorige Woche: Der Termin könne eng werden, eine Zahl fehlt. Offen: Hält der Hersteller seinen Liefertermin, und welcher gilt sonst? Antwort bis Freitag, Zuständiger: Theo Lot. Stand: noch nicht geklärt.“ Welcher reicht aus, wenn die Bearbeiterin ausfällt – und woran erkennen Sie das?"
+    - "Der zweite: „Hinweis aus einem Anruf des Herstellers bei Theo Lot, vorige Woche: Der Termin könne eng werden, eine Zahl fehlt. Offen: Hält der Hersteller seinen Liefertermin, und welcher gilt sonst? Antwort bis Freitag, zuständig für die Antwort: die Vertretung von Clara Faden. Stand: noch nicht geklärt.“ Welcher reicht aus, wenn die Bearbeiterin ausfällt – und woran erkennen Sie das?"
   antwort:
     - Der zweite. Er sagt, woher der Hinweis kommt, was bekannt ist, was noch geklärt werden muss, wer es bis wann klärt und in welchem Zustand die Sache ist. Ein Fremder kann dort weiterarbeiten, ohne jemanden zu fragen. Beim ersten muss er erst Theo Lot finden und hoffen, dass der sich erinnert.
     - "Der Gegenfall gilt aber auch: Ein Eintrag mit zwanzig ausgefüllten Feldern, in dem nichts Offenes steht, reicht ebenfalls nicht aus. Maßstab ist nicht die Menge der Felder, sondern ob man nachvollziehen kann, was eingeschätzt wurde, worauf die Einschätzung beruht und was als Nächstes geschieht. Offen darf eine Bewertung bleiben, wenn dasteht, was fehlt und wie es geklärt wird."

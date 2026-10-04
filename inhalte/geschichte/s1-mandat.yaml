@@ -16,7 +16,7 @@ mandat-nach-folge: true
 einstieg: |
   Januar 2026. Auf dem Grundstück im Süden von Lindenhall liegt Schnee, am Zaun lehnt ein Bauschild.
 
-  Seit heute leiten Sie das Projekt für die Stadt. Der Stadtrat hat das Geld bewilligt: ein Budget von rund 58 Millionen Euro und dazu eine Reserve von 3 Millionen für Unvorhergesehenes. Ihr erster Termin findet im Baucontainer statt – auf dem Tisch stehen vier Tassen Kaffee.
+  Seit heute leiten Sie das Projekt für die Stadt. Der Stadtrat hat das Geld bewilligt: ein Budget von rund 58 Millionen Euro und dazu eine Reserve von 3 Millionen für Unvorhergesehenes.
 
 einstieg-kurz: |
   Januar 2026, Ihr erster Tag. Bewilligt sind rund 58 Millionen Euro und 3 Millionen Reserve.
@@ -27,7 +27,7 @@ szene:
   - figur: faden
     text: "Dann schreibe ich das als Ihre Festlegung ins Entscheidungsbuch: wer entschieden hat, wann, auf welcher Grundlage. Was noch fehlt: Wer darf hier was entscheiden?"
     text-kurz: "Dann schreibe ich das genau so auf, als Ihre Festlegung. Was noch fehlt: Wer darf hier was entscheiden?"
-  - { figur: grundstein, text: "Ach, das regeln Sie beide. Ich will nicht mit jeder Kleinigkeit behelligt werden." }
+  - { figur: grundstein, text: "Ach, das regeln Sie beide. Ich will nicht mit jeder Kleinigkeit gestört werden." }
   - { figur: schwung, text: "Ich bräuchte übrigens bis Freitag ein Ja zu den Fassadenplatten. Wer gibt mir das?" }
   - { figur: faden, text: "Genau darum geht es. Ich bereite alles vor, was entschieden werden muss. Entscheiden darf ich nichts. Wer was entscheiden darf, muss vorher feststehen." }
   - { figur: grundstein, kurzfassung: false, text: "Na gut. Aber ich will abends auch mal zu Hause essen." }
@@ -46,23 +46,23 @@ antworten:
       - "Clara Faden schreibt eine Seite mit klaren Grenzen, die Bürgermeisterin unterschreibt – und der Architekt hat eine Woche verloren, weil er auf Antworten wartete."
       - { text: "Clara Faden schreibt die erste Zeile ins Entscheidungsbuch.", kurzfassung: false }
   - wertung: gut
-    text: "Die Projektsteuerin entwirft eine Seite, wer was entscheidet – festlegen muss es die Bürgermeisterin selbst."
+    text: "Sie lassen die Projektsteuerin eine Seite entwerfen, wer was entscheidet – festlegen muss es die Bürgermeisterin selbst."
     balken: { geld: 0, zeit: 0, vertrauen: 2 }
     bild: projektblatt
     folge: |
-      Eine Woche später liegt eine Seite auf dem Tisch der Bürgermeisterin. Sie liest sie zweimal, streicht ein Wort und unterschreibt: „Gut. Dann weiß ich, wann Sie zu mir kommen – und wann nicht.“
+      Am Donnerstag liegt eine Seite auf dem Tisch der Bürgermeisterin. Sie liest sie zweimal, streicht ein Wort und unterschreibt: „Gut. Dann weiß ich, wann Sie zu mir kommen – und wann nicht.“
 
-      Das Ja zu den Fassadenplatten hat Konrad Schwung schon am Freitag von Ihnen bekommen: Sie kosten nicht mehr als geplant, das liegt in Ihrem Rahmen. Dann schreibt Clara Faden die erste Zeile ins Entscheidungsbuch.
+      Das Ja zu den Fassadenplatten hat Konrad Schwung am Freitag von Ihnen bekommen: Sie kosten nicht mehr als geplant, das liegt in Ihrem Rahmen. Dann schreibt Clara Faden die erste Zeile ins Entscheidungsbuch.
     folge-kurz: |
-      Eine Woche später liegt eine Seite auf dem Tisch der Bürgermeisterin. Sie liest sie zweimal, streicht ein Wort und unterschreibt: „Gut. Dann weiß ich, wann Sie zu mir kommen – und wann nicht.“
+      Am Donnerstag liegt eine Seite auf dem Tisch der Bürgermeisterin. Sie liest sie zweimal, streicht ein Wort und unterschreibt: „Gut. Dann weiß ich, wann Sie zu mir kommen – und wann nicht.“
 
-      Das Ja zu den Fassadenplatten hat Konrad Schwung schon am Freitag von Ihnen bekommen: Sie kosten nicht mehr als geplant, das liegt in Ihrem Rahmen.
+      Das Ja zu den Fassadenplatten hat Konrad Schwung am Freitag von Ihnen bekommen: Sie kosten nicht mehr als geplant, das liegt in Ihrem Rahmen.
   - wertung: falle
-    text: "Die Bürgermeisterin will nicht behelligt werden. Also entscheiden Sie alles und halten sie auf dem Laufenden."
+    text: "Die Bürgermeisterin will nicht gestört werden. Also entscheiden Sie alles und halten sie auf dem Laufenden."
     balken: { geld: 0, zeit: 1, vertrauen: -2 }
     bild: rednerpult
     folge:
-      - "Zwei Wochen geht das gut. Dann sagen Sie dem Architekten eine teurere Dämmung zu, und im Stadtrat fragt jemand, wer das beschlossen hat. Die Bürgermeisterin weiß von nichts. Am nächsten Morgen unterschreibt sie die Seite, die von Anfang an gefehlt hat, lässt die Dämmung prüfen – und schaut Sie dabei länger an als nötig."
+      - "Zwei Wochen geht das gut, der Architekt muss auf nichts warten. Dann sagen Sie ihm eine teurere Dämmung zu, und im Stadtrat fragt jemand, wer das beschlossen hat. Die Bürgermeisterin weiß von nichts. Am nächsten Morgen unterschreibt sie die Seite, die von Anfang an gefehlt hat, lässt die Dämmung prüfen – und schaut Sie dabei länger an als nötig."
       - { text: "Clara Faden schreibt die erste Zeile ins Entscheidungsbuch.", kurzfassung: false }
 
 gut: |
@@ -78,7 +78,7 @@ vertiefung:
   text:
     - "Stellen Sie sich vor, die Bürgermeisterin ist eine Woche im Urlaub, und der Architekt braucht bis Freitag ein Ja. Was geschieht, wenn nur in den Köpfen steht, wer was entscheiden darf?"
     - "Es gibt drei Möglichkeiten, und keine ist gut. Jemand entscheidet, was ihm nicht zusteht, und im Stadtrat fragt später jemand, wer das beschlossen hat. Oder alle warten, und die Zeit läuft davon. Oder die Bürgermeisterin wird im Urlaub angerufen, weil niemand weiß, ob der Betrag für sie reicht."
-    - "Eine Seite löst das nur, wenn sie mehr enthält als Namen. Sie sagt, wer was vorbereiten und wer entscheiden darf, ab welchem Betrag die Bürgermeisterin gefragt wird, wer sie vertritt und an wen man sich wendet, wenn vor Ort niemand zuständig ist. Mit Grenzen, Vertretung und Weg hält sie auch dann, wenn es drückt."
+    - "Eine Seite löst das nur, wenn sie mehr enthält als Namen. Sie sagt, wer was vorbereiten und wer entscheiden darf, ab welchem Betrag die Bürgermeisterin gefragt wird, wer sie vertritt und an wen man sich wendet, wenn vor Ort niemand zuständig ist. Mit Grenzen, Vertretung und Meldeweg hilft sie auch dann, wenn es eilig ist."
     - "Die Seite ist nicht für den Streitfall geschrieben, sondern für den ruhigen Tag davor. Kommt der erste Streit, wird sie nicht mehr verhandelt, sondern nur noch gelesen. Das spart die Wochen, die man sonst mit der Frage verbringt, wer eigentlich zuständig war."
     - "Wer mag, schaut auf das eigene Projekt: Wer entscheidet dort über 100.000 Euro, und steht das irgendwo, wo es jeder findet?"
 

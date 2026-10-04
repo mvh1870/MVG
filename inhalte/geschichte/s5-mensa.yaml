@@ -14,10 +14,10 @@ bild-szene: mensateller
 bild-frage: grundriss
 
 einstieg: |
-  Juni 2026, früher Abend. Die Bodenplatte der Gesamtschule ist gegossen, ein gelber Kran dreht sich über den ersten Wänden. Hanna Klingel kommt mit roten Wangen in den Container, in der Hand neue Zahlen für den Ganztag.
+  Juni 2026, früher Abend. Die Bodenplatte der Gesamtschule ist gegossen, ein gelber Kran dreht sich über der Baustelle. Hanna Klingel kommt mit roten Wangen in den Container, in der Hand neue Zahlen für den Ganztag.
 
 einstieg-kurz: |
-  Juni 2026. Nach dem Schulfest bringt Hanna Klingel neue Zahlen für den Ganztag.
+  Juni 2026. Nach dem Schulfest bringt Hanna Klingel neue Zahlen für den Ganztag und wünscht sich eine größere Mensa. Für die Projektsteuerin ist das eine Änderung: Etwas, das bisher gilt, soll anders werden.
 
 szene:
   - { figur: klingel, text: "Ich habe wunderbare Nachrichten: Der Ganztag wächst! Wir brauchen eine größere Mensa – für 450 Essen statt 300." }
@@ -44,12 +44,12 @@ antworten:
 
       Gisela Grundstein sagt: „{echo: E1}“
   - wertung: gut
-    text: "Die Projektsteuerin legt den Wunsch als Änderung mit beiden Wegen der Bürgermeisterin vor. Bis dahin gilt die bisherige Planung."
+    text: "Sie lassen die Projektsteuerin den Wunsch als Änderung mit beiden Wegen der Bürgermeisterin vorlegen. Bis dahin gilt die bisherige Planung."
     balken: { geld: -1, zeit: 0, vertrauen: 2 }
     bild: stempel
     # Die Zeilen über Antrag, Lenkungskreis und „Ich weiß, woran ich bin“ stehen nur auf dem ganzen Weg; die Echo-Zeile steht auf beiden
     folge:
-      - { text: "Clara Faden schreibt den Antrag auf und vergleicht beide Wege nach den abgestimmten Gesichtspunkten. Im Lenkungskreis hört die Bürgermeisterin die Schule und die Finanzabteilung der Stadt.", kurzfassung: false }
+      - { text: "Clara Faden schreibt den Antrag auf und vergleicht beide Wege nach vorher vereinbarten Gesichtspunkten wie Kosten und Zeit. Im Lenkungskreis hört die Bürgermeisterin die Schule und die Finanzabteilung der Stadt.", kurzfassung: false }
       - "Die Bürgermeisterin entscheidet: Die Mensa wird so gebaut, dass sie später wachsen kann; das Geld kommt aus der Reserve."
       - "Gisela Grundstein sagt: „{echo: E1}“"
       - { text: "Und: „Zwei Wege, klare Zahlen – ich weiß, woran ich bin.“", kurzfassung: false }
@@ -68,21 +68,21 @@ antworten:
 gut: |
   Ein Wunsch, der den geltenden Stand ändert, wird als Änderung aufgenommen – mit Anlass, bisheriger Planung, Kosten und Zeit.
 
-  Er wird mit mindestens zwei Wegen der Stelle vorgelegt, die entscheiden darf. Bis dahin gilt die bisherige Planung; eine beiläufige Zusage ersetzt keinen Beschluss.
+  Er wird mit mindestens zwei Wegen der Person vorgelegt, die entscheiden darf – hier der Bürgermeisterin. Bis dahin gilt die bisherige Planung; eine beiläufige Zusage ersetzt keinen Beschluss.
 
 mini:
   art: zuordnen
   titel: Wer entscheidet das?
-  aufgabe: "Sechs Fragen, drei Möglichkeiten. Wer entscheidet?"
+  aufgabe: "Sechs Entscheidungen stehen an. Wer trifft jede?"
   bild: kaertchen
   wahlen:
     - { id: sie, titel: Sie, figur: sie }
     - { id: buergermeisterin, titel: Bürgermeisterin, figur: grundstein }
     - { id: projektsteuerin, titel: Projektsteuerin, figur: faden, falsch: "Die Projektsteuerin bereitet das vor und empfiehlt – entscheiden darf sie es nicht." }
   posten:
-    - { text: "Eine kleine Planänderung im Lehrerzimmer für 30.000 Euro, die das Budget ohne Reserve trägt", bild: grundriss, loesung: sie, erklaerung: "Das liegt in Ihrem Rahmen: bis 100.000 Euro, ohne Einsatz der Reserve." }
+    - { text: "Eine kleine Planänderung im Lehrerzimmer für 30.000 Euro, die das Budget ohne Reserve abdeckt", bild: grundriss, loesung: sie, erklaerung: "Das liegt in Ihrem Rahmen: bis 100.000 Euro, ohne Einsatz der Reserve." }
     - { text: "Die größere Mensa für 600.000 Euro", bild: mensateller, loesung: buergermeisterin, erklaerung: "Mehr als 100.000 Euro, und das Geld käme aus der Reserve. Der Lenkungskreis berät sie." }
-    - { text: "150.000 Euro aus der Reserve für die früher ausgeschriebenen Holzelemente", bild: holzstapel, loesung: buergermeisterin, erklaerung: "Mehr als 100.000 Euro, und das Geld kommt aus der Reserve. Über die Reserve entscheidet die Bürgermeisterin immer – auch bei kleinen Beträgen." }
+    - { text: "150.000 Euro aus der Reserve für die früher ausgeschriebenen Holzelemente", bild: holzstapel, loesung: buergermeisterin, erklaerung: "Mehr als 100.000 Euro, und das Geld kommt aus der Reserve. Über die Reserve entscheidet die Bürgermeisterin immer." }
     - { text: "Die Freigabe der fertigen Baupläne", bild: stempel, loesung: buergermeisterin, erklaerung: "Jede Freigabe am Ende eines großen Abschnitts erteilt die Stadt selbst, also die Bürgermeisterin. Der Lenkungskreis berät nur." }
     - { text: "Ob die Stadt längere Lieferzeiten in Kauf nimmt, die den Schulstart gefährden", bild: lieferwagen, loesung: buergermeisterin, erklaerung: "Ein großes Risiko bewusst zu tragen, ist eine Entscheidung der Bürgermeisterin." }
     - { text: "Welche von zwei gleich teuren Farben die Fassadenplatten bekommen", bild: kostenzettel, loesung: sie, erklaerung: "Kein Mehrbetrag, kein Risiko, keine Freigabe – das entscheiden Sie." }
@@ -98,7 +98,7 @@ vertiefung:
   text:
     - "In einer anderen Stadt, deren Projektleitung dieselben Entscheidungsgrenzen hat, bittet eine Schulleiterin zwei Wochen nach einer großen Entscheidung um einen überdachten Fahrradstand, etwa 25.000 Euro. Er ist nicht geplant, liegt aber in diesen Grenzen: bis 100.000 Euro, ohne Reserve. Ist das trotzdem eine Änderung, und wer entscheidet?"
   antwort:
-    - "Ja, es ist eine Änderung, denn etwas, das bisher gilt, soll bewusst anders werden. Clara Faden hält fest, wer den Wunsch stellt, was bisher gilt und was sich ändern würde. Bis zur Entscheidung gilt die bisherige Planung."
+    - "Ja, es ist eine Änderung, denn etwas, das bisher gilt, soll bewusst anders werden. Die Projektsteuerin hält fest, wer den Wunsch stellt, was bisher gilt und was sich ändern würde. Bis zur Entscheidung gilt die bisherige Planung."
     - "Entscheiden dürfen Sie selbst, weil der Betrag in Ihrem Rahmen liegt und keine Reserve gebraucht wird. Trotzdem gibt es einen Antrag, eine Entscheidung mit Datum und ein Ergebnis, das jede und jeder nachlesen kann. Der Weg ist kurz, aber er ist derselbe."
     - "Anders wäre es, wenn der Fahrradstand 150.000 Euro kostete: Dann entscheidet die Bürgermeisterin."
     - "Zwei Wege heißt nicht: ja oder nein. Der zweite Weg kann auch sein, bei der bisherigen Planung zu bleiben – wenn das zulässig ist. Wer nur einen Weg vorlegt, lässt keine Wahl; wer einen zweiten Weg nur zum Schein dazuerfindet, lässt nur scheinbar wählen."

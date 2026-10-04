@@ -9,7 +9,7 @@ nr: 7
 titel: Der Zuschlag
 zeit: September 2026
 campus: { stufe: 2.5, jahreszeit: herbst, licht: tag }
-bruecke: "September: Auftrag fürs Holz der Grundschule; die Bürgermeisterin gibt frei, die städtische Vergabestelle bestellt."
+bruecke: "September: Der Auftrag fürs Holz der Grundschule wird vergeben: Die Bürgermeisterin gibt frei, die städtische Vergabestelle bestellt."
 thema: verantwortung
 werkzeuge: [{ id: vorlagen-check, beispiel: zuschlag }]
 belege: [v24:hb-3.1, v24:tlb-3, v24:hb-3, v24:va-4.2, v24:tlb-5, v24:va-4.1, v24:hb-1, k4.5-p1, k9.3-t1, k10.5-t1, k5.5-p1]
@@ -17,10 +17,10 @@ bild-szene: glocke-haken
 bild-frage: angebotskalender
 
 einstieg: |
-  Anfang September 2026. Morgendunst liegt über dem Rohbau, im Erdgeschoss der Gesamtschule stehen die ersten Wände. Hanna Klingel hängt ihre Messingglocke probehalber an einen Haken. „Nicht läuten!“, ruft Theo Lot von der Leiter. Dann bringt Clara Faden die Mappe für den Zuschlag: den Auftrag fürs Holz der Grundschule.
+  Anfang September 2026. Morgendunst liegt über dem Rohbau, im Erdgeschoss der Gesamtschule stehen die ersten Wände. Hanna Klingel hängt ihre Messingglocke probehalber an einen Haken. „Nicht läuten!“, ruft Theo Lot von der Leiter. Dann bringt Clara Faden die Mappe mit den Entscheidungsunterlagen für den Zuschlag: den Auftrag fürs Holz der Grundschule.
 
 szene:
-  - { figur: faden, text: "Die Vergabestelle legt den Zuschlag vor. Das Angebot gilt nur bis Freitag. Danach ist der Preis nicht mehr sicher. Die Bürgermeisterin müsste bis Donnerstag freigeben. Vollständig ist die Mappe noch nicht." }
+  - { figur: faden, text: "Die Vergabestelle, die für die Stadt Aufträge erteilt, legt den Zuschlag vor. Das Angebot gilt nur bis Freitag. Danach ist der Preis nicht mehr sicher. Die Bürgermeisterin müsste bis Donnerstag freigeben. Vollständig ist die Mappe noch nicht." }
   # E3: Fassung je nach Antwort in Station 3 (gut: Meldung und Vorlage in derselben Woche; vertretbar: Vorlage später; Falle: „Was weiß ich sonst noch nicht?“)
   - { figur: grundstein, echo: E3 }
   - { figur: schwung, text: "Der Holzbauer bietet außerdem einen Nachlass für spätere Holzarbeiten an. Den würde ich gleich einrechnen." }
@@ -28,7 +28,7 @@ szene:
   - { figur: lot, text: "Ich plane die Zimmerleute, wenn ich den Lieferschein sehe. Vorher nicht." }
   - { text: "Am Telefon sagt die Vergabestelle: „Wir erteilen den Zuschlag, sobald die Freigabe vorliegt.“" }
 
-frage: Der Freitag rückt näher, und Konrad Schwung drängt. Was veranlassen Sie?
+frage: Der Freitag rückt näher, und Konrad Schwung drängt. Was lassen Sie tun?
 
 antworten:
   - wertung: vertretbar
@@ -38,36 +38,36 @@ antworten:
     folge: |
       Clara Faden ergänzt die Mappe, die Bürgermeisterin gibt am Donnerstag frei. Dann fragt die Vergabestelle: „Und wer bestellt jetzt?“ Konrad Schwung dachte, die Projektsteuerung bestellt; die Vergabestelle dachte, das sei längst erledigt.
 
-      Erst am Freitagmittag ist geklärt, dass die Vergabestelle zuschlägt, und der Zuschlag geht knapp vor Ablauf des Angebots raus. Im Plan ist ein Tag verbraucht. Der Preisnachlass bleibt als Chance daneben.
+      Erst am Freitagmittag ist geklärt, dass die Vergabestelle zuschlägt, und der Zuschlag geht knapp vor Ablauf des Angebots raus. Vom Zeitpuffer ist ein Tag weg. Der Preisnachlass bleibt als Chance daneben.
   - wertung: gut
     text: "Sie lassen die Freigabe vorlegen und klären mit der Vergabestelle, wer bestellt und bis wann."
     balken: { geld: 0, zeit: 1, vertrauen: 1 }
     bild: mappe
     folge: |
-      Die Vergabestelle bestätigt: Sie erteilt den Zuschlag und bestellt, nicht die Projektsteuerung und nicht der Bauleiter. Clara Faden ergänzt die Mappe bis Mittwoch. Die Bürgermeisterin gibt am Donnerstag frei, noch am Abend geht der Zuschlag raus, einen Tag bevor das Angebot abläuft. Der Preisnachlass steht als Chance daneben.
+      Die Vergabestelle bestätigt, dass sie selbst den Zuschlag erteilt und bestellt – nicht die Projektsteuerung und nicht der Bauleiter. Clara Faden ergänzt die Mappe bis Mittwoch. Die Bürgermeisterin gibt am Donnerstag frei, noch am Abend geht der Zuschlag raus, einen Tag bevor das Angebot abläuft. Der Preisnachlass steht als Chance daneben.
 
-      Im Plan bleibt eine Woche Zeitpuffer. Theo Lot nickt: „Dann sehe ich bald einen Lieferschein.“
+      Im Plan gewinnen Sie Zeitpuffer. Theo Lot nickt: „Dann sehe ich bald einen Lieferschein.“
   - wertung: falle
     text: "Sie sagen dem Bauleiter: „Das ist so gut wie bestellt.“ Er kann die Zimmerleute schon einplanen."
     balken: { geld: -1, zeit: -2, vertrauen: -1 }
     bild: lieferwagen
     folge: |
-      Theo Lot zögert – „Ohne Lieferschein?“ –, bucht die Zimmerleute aber für Januar, weil Sie es sagen. Die Mappe geht unvollständig zur Bürgermeisterin, und die schickt sie zurück: „Über eine halbe Mappe entscheide ich nicht.“
+      Theo Lot zögert – „Ohne Lieferschein?“ –, bucht die Zimmerleute aber für Januar, weil Sie es sagen. Weil die Bestellung als sicher gilt, drängt niemand auf die fehlenden Teile. Die Mappe geht unvollständig zur Bürgermeisterin, und die schickt sie zurück: „Über eine halbe Mappe entscheide ich nicht.“
 
       Bis Clara Faden alles ergänzt hat, ist das Angebot abgelaufen. Der Holzbauer nennt eine um zwei Wochen längere Lieferzeit, und die Zimmerleute berechnen die Umbuchung. Zugeschlagen wird trotzdem noch im September, über die Vergabestelle; der Preisnachlass bleibt als Chance daneben.
 
 gut: |
-  Die Freigabe der Bürgermeisterin erlaubt den nächsten Schritt – bestellt wird aber über die Vergabestelle. Die Mappe nennt Frage und Termin, mindestens zwei Wege und die Frist des Angebots. Eine Chance steht für sich, und was fehlt, wird nachgefordert.
+  Die Freigabe der Bürgermeisterin erlaubt den nächsten Schritt – bestellt wird aber über die Vergabestelle. Die Mappe nennt Frage und Termin, mindestens zwei Wege und die Frist des Angebots. Eine Chance steht für sich, und wo etwas fehlt, lassen Sie nachbessern.
 
 mini:
   art: mappe
   titel: Fehlt etwas in der Mappe?
   aufgabe: "Fünf Abschnitte der Mappe. Steht in jedem, was die Bürgermeisterin zum Entscheiden braucht?"
   bild: mappe
-  schluss: "Drei Abschnitte wurden nachgefordert."
+  schluss: "Drei Abschnitte mussten nachgebessert werden."
   posten:
     - { text: "Frage: Soll die Stadt dem Holzbauer den Zuschlag erteilen? Die Bürgermeisterin entscheidet bis Donnerstag, danach läuft das Angebot ab.", loesung: annehmen, erklaerung: "Frage, entscheidende Stelle, Termin und die Folge einer Verzögerung stehen da." }
-    - { text: "Wege: Weg A, Zuschlag an den Holzbauer zum Angebotspreis.", loesung: nachfordern, erklaerung: "Ein Weg ist keine Wahl. Soll etwas getan werden, braucht die Entscheidung mindestens zwei zulässige Wege, etwa den Zuschlag jetzt oder ein verlängertes Angebot; sonst ist die Vorlage nicht vollständig." }
+    - { text: "Wege: Weg A, Zuschlag an den Holzbauer zum Angebotspreis.", loesung: nachfordern, erklaerung: "Ein Weg ist keine Wahl. Soll etwas getan werden, braucht die Entscheidung mindestens zwei zulässige Wege, etwa den Zuschlag jetzt oder ein verlängertes Angebot; sonst ist die Mappe nicht vollständig." }
     - { text: "Angebot: Es gilt bis Freitag. Danach ist der Preis nicht mehr sicher.", loesung: annehmen, erklaerung: "Die Frist des Angebots ist genannt; eine Entscheidung unter Zeitdruck braucht dieses Datum." }
     - { text: "Chance: Preisnachlass und Lieferrisiko stehen als eine gemeinsame Zahl in der Mappe.", loesung: nachfordern, erklaerung: "Der Nachlass ist eine Chance. Er wird für sich beschrieben und nicht gegen das Lieferrisiko aufgerechnet." }
     - { text: "Bestellung: Sobald die Freigabe da ist, bestellt die Projektsteuerung beim Holzbauer.", loesung: nachfordern, erklaerung: "Bestellt wird über die Vergabestelle. Die Projektsteuerung bereitet vor und verfolgt den Weg; sie bestellt nichts." }

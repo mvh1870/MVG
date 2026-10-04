@@ -30,8 +30,8 @@ import { miniArt } from '../src/geschichte/mini-arten.ts';
 export const WOERTER_JE_MINUTE = 200;
 /** P19.3: obere Schranke je Akt in Minuten (Drehbuch v2, L-278: je Akt höchstens 3.300 Wörter, hier 16,5 Minuten, gerundet auf 17) */
 export const AKT_MAX_MINUTEN = 17;
-/** P19.3: obere Schranke für den ganzen Weg in Wörtern (Drehbuch v2, L-278: 9.000 ≈ 45 Minuten) */
-export const WEG_MAX_WOERTER = 9000;
+/** P19.3: obere Schranke für den ganzen Weg in Wörtern (Drehbuch v2, L-278: 9.000; seit P19.8 9.100 ≈ 45,5 Minuten, L-372) */
+export const WEG_MAX_WOERTER = 9100;
 
 /** Elemente im Satz: Sie trennen keine Wörter (alle anderen Elemente gelten als Blockgrenze). */
 const IM_SATZ = new Set(['a', 'abbr', 'b', 'em', 'i', 'mark', 'q', 'small', 'span', 'strong', 'sub', 'sup', 'u']);

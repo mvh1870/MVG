@@ -44,15 +44,15 @@ antworten:
     folge: |
       Gesperrt wird sofort, niemand kommt zu Schaden. Clara Faden, heiser und müde, liest Ihre Nachricht am Abend, meldet den Schaden und legt noch am selben Tag den Eintrag an.
 
-      Aber die Sicherheitskoordination kommt erst am Montag, und vor Ort hat niemand Uhrzeit und Fotos festgehalten – so bestreitet die Gerüstfirma, dass der Sturm schuld ist. Nach einer Woche sind die Anker erneuert und ist geklärt, wer zahlt. Theo Lot murmelt: „Hätten wir's mal gleich aufgeschrieben.“
+      Aber die Sicherheitskoordination kommt erst am Montag, und vor Ort hat niemand Uhrzeit und Fotos festgehalten – so bestreitet die Gerüstfirma, dass der Sturm schuld ist. Am Mittwoch sind die Anker erneuert, und es ist geklärt, wer zahlt. Theo Lot murmelt: „Hätten wir's mal gleich aufgeschrieben.“
   - wertung: falle
-    text: "Sie lassen die Seite mit den losen Ankern sperren. Die andere Seite steht fest – dort arbeiten die Zimmerleute weiter, bis der Gerüstbauer kommt."
+    text: "Sie lassen die Seite mit den losen Ankern sperren. Die andere Seite hält ja noch – dort arbeiten die Zimmerleute weiter, bis der Gerüstbauer kommt."
     balken: { geld: -1, zeit: -2, vertrauen: -2 }
     bild: warnschild
     folge: |
       Am Freitagabend kommt die Sicherheitskoordination vorbei und stoppt die ganze Baustelle, bis das Gerüst geprüft ist. Verletzt wurde niemand – zum Glück. Clara Faden, heiser, erfährt erst jetzt davon, meldet den Vorfall sofort und hält ihn noch am selben Tag fest.
 
-      Die Prüfung dauert eine Woche, danach sind die Anker erneuert und ist geklärt, wer zahlt. Die Bürgermeisterin fragt, warum am Freitag weitergearbeitet wurde.
+      Die Prüfung dauert eine Woche; der Stillstand kostet Geld. Danach sind die Anker erneuert und ist geklärt, wer zahlt. Die Bürgermeisterin fragt, warum am Freitag weitergearbeitet wurde.
 
 gut: |
   Bei Sicherheit wird sofort gehandelt und gemeldet – Schutz wartet auf keine Sitzung und keine Vorlage. Noch am selben Arbeitstag wird festgehalten, was passiert ist; danach klärt man Ursache und Lösung.
@@ -68,10 +68,10 @@ mini:
     - { text: "Sicherheitskoordination und Projektsteuerin werden informiert; die Projektsteuerin meldet über den vereinbarten Weg.", bild: telefon, erklaerung: "Dringliches wird sofort gemeldet, nicht erst in der nächsten Sitzung." }
     - { text: "Noch am selben Tag entsteht ein Eintrag mit Sachverhalt, Zuständigen und nächstem Schritt.", bild: eintrag, erklaerung: "Festgehalten wird, sobald die erste Reaktion gesichert ist – am selben Arbeitstag." }
     - { text: "Die Fachleute klären die Ursache.", bild: lupe, erklaerung: "Erst verstehen, dann reparieren." }
-    - { text: "Die Lösung wird vorbereitet; braucht sie Geld oder eine Änderung, entscheidet die Stelle, die es darf.", bild: kaertchen, erklaerung: "Auch in Eile gilt: Dringlichkeit ersetzt keine Entscheidung der Stelle, die es darf." }
+    - { text: "Die Lösung wird vorbereitet; braucht sie Geld oder eine Änderung, entscheidet, wer dafür zuständig ist – Sie oder die Bürgermeisterin.", bild: kaertchen, erklaerung: "Auch in Eile gilt: Dringlichkeit ersetzt keine Entscheidung der zuständigen Stelle." }
     - { text: "Erst wenn die Reparatur nachweislich wirkt, wird der Eintrag geschlossen.", bild: stempel, erklaerung: "Umgesetzt und wirksam sind nicht dasselbe." }
 
-dahinter: "Neben dem festen Takt gilt immer: Dringliches wird sofort gemeldet und noch am selben Tag festgehalten. Die Eile ersetzt dabei keine Freigabe: Was Geld kostet, entscheidet auch nach einem Sturm die Stelle, die es darf."
+dahinter: "Neben dem festen Takt gilt immer: Dringliches wird sofort gemeldet und noch am selben Tag festgehalten. Die Eile ersetzt dabei keine Freigabe: Was Geld kostet, entscheidet auch nach einem Sturm, wer dafür zuständig ist."
 
 vertiefung:
   form: nachdenken
@@ -80,8 +80,8 @@ vertiefung:
     - "Am Freitagnachmittag findet der Hausmeister einer Schule Wasser im Technikraum. Er sperrt den Raum, ruft den Wasserversorger an und schickt der Verwaltung ein Foto. Dann ist Wochenende, und niemand ist mehr im Haus."
     - "Was gehört noch heute in den Eintrag, und was darf bis Montag warten?"
   antwort:
-    - "Heute gehört hinein, was die erste Reaktion sichert: was gefunden wurde, wann, wer den Raum gesperrt und wen er angerufen hat, dazu die Fotos. Das sind Tatsachen, die am Montag niemand mehr genau erinnert."
-    - "Bis Montag warten darf, was Zeit braucht: die Ursache, die Wahl der Reparatur und die Frage, wer sie bezahlt. Wenn die Reparatur Geld kostet oder den Plan ändert, entscheidet darüber die Stelle, die dazu befugt ist, und nicht der, der gerade vor Ort ist."
+    - "Heute gehört hinein, was die erste Reaktion sichert: was gefunden wurde, wann, wer den Raum gesperrt und wen er angerufen hat, dazu etwa Fotos. Das sind Tatsachen, die am Montag niemand mehr genau erinnert."
+    - "Bis Montag warten kann, was Zeit braucht: die Ursache, die Wahl der Reparatur und die Frage, wer sie bezahlt. Wenn die Reparatur Geld kostet oder den Plan ändert, entscheidet darüber die zuständige Stelle und nicht der, der gerade vor Ort ist."
     - "Und ein Eintrag wird erst geschlossen, wenn die Reparatur nachweislich wirkt, nicht schon, wenn der Handwerker gegangen ist. So wird aus Eile ein Ablauf, den auch ein Fremder am Montag versteht."
     - "Das klingt nach Bürokratie, spart aber Arbeit: Wer heute zwei Minuten aufschreibt, spart sich am Montag zwei Stunden Streit darüber, wer wann was gesehen hat."
 

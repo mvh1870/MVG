@@ -349,12 +349,19 @@ const BERICHT: MiniArtDef = {
  * Wahl; es gibt weder „Stimmt“ noch „Nicht ganz“, weil es kein Richtig oder Falsch gibt. Zustand `mini[kapitel]`: die Plätze der
  * gewählten Gespräche in der Reihenfolge der Wahl (höchstens das Kontingent; die Regie-Auflösung nennt alle).
  */
+/**
+ * Eintrag-Kärtchen (P19.6): Beginnt die Erklärung eines Gesprächs mit `Zeile „Quelle“: Die Vertretung würde festhalten: „…“`, ist das die Zeile des
+ * Kärtchens, die dieses Gespräch füllt, und der Satz, den die Vertretung dort festhält. Der Übersetzer entnimmt beides der Erklärung (sie bleibt
+ * unverändert stehen); beginnen alle Erklärungen so, zeichnet die Seite das Kärtchen mit den Zeilen in der Reihenfolge der Gespräche.
+ */
+export const EINTRAG_ZEILE = /^Zeile „([^“]+)“: Die Vertretung würde festhalten: „([^“]+)“/u;
+
 const RUECKFRAGEN: MiniArtDef = {
   art: 'rueckfragen',
   uebersetzung: {
     schluss: 'pflicht',
     postenFelder: ['text', 'erklaerung', 'gespraech'],
-    zusatzFelder: ['kontingent'],
+    zusatzFelder: ['kontingent', 'eintrag'],
     pruefeWahlen: keineWahlenAngeben,
     loesung() {
       return '';
@@ -365,6 +372,7 @@ const RUECKFRAGEN: MiniArtDef = {
     postenZusatz(roh, ort, fehler, h) {
       const g = roh['gespraech'];
       if (!Array.isArray(g) || g.length === 0) { fehler(ort, 'Gespräch: Liste von Zeilen { wer, text } erwartet'); return { gespraech: [] }; }
+      const eintrag = EINTRAG_ZEILE.exec(typeof roh['erklaerung'] === 'string' ? roh['erklaerung'].trim() : '');
       return {
         gespraech: g.map((z: unknown, i: number) => {
           const o = (typeof z === 'object' && z !== null ? z : {}) as Record<string, unknown>;
@@ -374,15 +382,26 @@ const RUECKFRAGEN: MiniArtDef = {
           if (wer === '') fehler(zo, 'Feld „wer“ fehlt');
           return { wer, html: h.inline(o['text'], zo) };
         }),
+        ...(eintrag !== null ? { eintragZeile: eintrag[1] as string, eintragTextHtml: h.inline(eintrag[2], `${ort} erklaerung`) } : {}),
       };
     },
-    zusatz(roh, posten, ort, fehler) {
+    zusatz(roh, posten, ort, fehler, h) {
       const k = roh['kontingent'];
+      const mit = posten.filter((p) => p.eintragZeile !== undefined);
+      const kopf = roh['eintrag'];
+      // das Kärtchen: alle Erklärungen nennen ihre Zeile (verschieden) – oder keine
+      let eintrag: Partial<Mini> = {};
+      if (mit.length > 0 && mit.length < posten.length) fehler(ort, `Eintrag-Kärtchen: ${mit.length} von ${posten.length} Erklärungen beginnen mit „Zeile „…“: Die Vertretung würde festhalten: „…““ – alle oder keine`);
+      else if (mit.length > 0) {
+        const zeilen = posten.map((p) => p.eintragZeile as string);
+        if (new Set(zeilen).size !== zeilen.length) fehler(ort, 'Eintrag-Kärtchen: zwei Gespräche füllen dieselbe Zeile');
+        eintrag = { eintrag: { titelHtml: kopf === undefined ? null : h.inline(kopf, `${ort} eintrag`), zeilen } };
+      } else if (kopf !== undefined) fehler(ort, 'Feld „eintrag“ ohne Kärtchen – die Erklärungen der Gespräche beginnen nicht mit „Zeile „…“: Die Vertretung würde festhalten: „…““');
       if (typeof k !== 'number' || !Number.isInteger(k) || k < 1 || k >= posten.length) {
         fehler(ort, `Kontingent: ganze Zahl von 1 bis ${Math.max(1, posten.length - 1)} erwartet (weniger als Gespräche)`);
-        return {};
+        return eintrag;
       }
-      return { kontingent: k };
+      return { kontingent: k, ...eintrag };
     },
   },
   // ein Gespräch wählen, solange das Kontingent reicht; ein schon gewähltes oder gesperrtes bleibt
@@ -409,8 +428,8 @@ const RUECKFRAGEN: MiniArtDef = {
     if (neu.length < alt.length) return alt[neu.length] ?? null;
     return null;
   },
-  // die Zeilen der Gespräche (und ihre Erklärungen) zählen nicht zur Lesezeit (04-rahmen 7.8)
-  lesezeitOhne: ['.gs-gespraech'],
+  // die Zeilen der Gespräche (und ihre Erklärungen) und das Eintrag-Kärtchen zählen nicht zur Lesezeit (04-rahmen 7.8)
+  lesezeitOhne: ['.gs-gespraech', '.gs-eintrag'],
 };
 
 /**

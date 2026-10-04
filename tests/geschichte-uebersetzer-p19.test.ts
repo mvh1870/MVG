@@ -62,10 +62,10 @@ test('Echo: die Zeile trägt entweder text oder echo; fortsetzung-kurz braucht f
   assert.equal(lauf((d) => mitEcho(d, {})).erg.geschichte.kapitel[1].szene[2].html, 'Alpha.');
 });
 
-test('Echo: höchstens zehn, Kennung einmal und lesbar, jede Fassung vorhanden; die Wertung wird nie genannt', () => {
+test('Echo: höchstens elf, Kennung einmal und lesbar, jede Fassung vorhanden; die Wertung wird nie genannt', () => {
   const viele = (n: number): Roh[] => Array.from({ length: n }, (_, i) => ({ id: `E${i + 1}`, quelle: 'k1', fassungen: { gut: 'a.', vertretbar: 'b.', falle: 'c.' } }));
-  assert.match(lauf((d) => { d.r.echos = viele(11); }).fehler.join('\n'), /höchstens 10 Echos, nicht 11/u);
-  assert.doesNotMatch(lauf((d) => { d.r.echos = viele(10); d.k2.szene.push(...viele(10).map((e) => echoZeile(e.id))); }).fehler.join('\n'), /höchstens/u, 'genau zehn sind erlaubt');
+  assert.match(lauf((d) => { d.r.echos = viele(12); }).fehler.join('\n'), /höchstens 11 Echos, nicht 12/u);
+  assert.doesNotMatch(lauf((d) => { d.r.echos = viele(11); d.k2.szene.push(...viele(11).map((e) => echoZeile(e.id))); }).fehler.join('\n'), /höchstens/u, 'genau elf sind erlaubt (E8 hat zwei Sprecher, L-340)');
   assert.match(lauf((d) => { d.r.echos = [echos()[0], echos()[0]]; d.k2.szene.push(echoZeile('E1')); }).fehler.join('\n'), /Echo „E1“ doppelt/u);
   assert.match(lauf((d) => { mitEcho(d); d.r.echos[0].id = '1E'; }).fehler.join('\n'), /Echo-Kennung „1E“/u);
   assert.match(lauf((d) => { mitEcho(d); delete d.r.echos[0].fassungen.falle; }).fehler.join('\n'), /fassungen: Feld „falle“ fehlt/u);
@@ -93,11 +93,11 @@ test('Echo-Platzhalter: nur in folge und einstieg einer Station, nur mit bekannt
 
 test('Echo und Kurzfassung: eine Zeile, deren Quelle die Kurzfassung nicht spielt, braucht „kurzfassung: nein“', () => {
   const mitE2 = (d: { r: Roh; k3: Roh }, extra: Roh = {}): void => { d.r.echos = [echos()[1]]; d.k3.szene.push(echoZeile('E2', extra)); };
-  assert.deepEqual(lauf((d) => mitE2(d)).fehler, [`${K3} szene Zeile 3: Echo „E2“: seine Quelle (Station 2) fehlt in der Kurzfassung – die Zeile braucht „kurzfassung: nein“`]);
+  assert.deepEqual(lauf((d) => mitE2(d)).fehler, [`${K3} szene Zeile 3: Echo „E2“: seine Quelle (Station 2) fehlt in der Kurzfassung – die Zeile braucht „kurzfassung: nein“ oder „text-kurz“`]);
   assert.deepEqual(lauf((d) => mitE2(d, { kurzfassung: false })).fehler, []);
   // Quelle in der Kurzfassung (k1): keine Auflage; Echo im Ende: Quelle k2 → braucht die Marke
   assert.deepEqual(lauf((d) => { d.r.echos = [echos()[0]]; d.k3.szene.push(echoZeile('E1')); }).fehler, []);
-  assert.deepEqual(lauf((d) => { d.r.echos = [echos()[1]]; d.r.ende.szene.push(echoZeile('E2')); }).fehler, [`${R} ende.szene Zeile 4: Echo „E2“: seine Quelle (Station 2) fehlt in der Kurzfassung – die Zeile braucht „kurzfassung: nein“`]);
+  assert.deepEqual(lauf((d) => { d.r.echos = [echos()[1]]; d.r.ende.szene.push(echoZeile('E2')); }).fehler, [`${R} ende.szene Zeile 4: Echo „E2“: seine Quelle (Station 2) fehlt in der Kurzfassung – die Zeile braucht „kurzfassung: nein“ oder „text-kurz“`]);
   assert.deepEqual(lauf((d) => { d.r.echos = [echos()[1]]; d.r.ende.szene.push(echoZeile('E2', { kurzfassung: false })); }).fehler, []);
 });
 

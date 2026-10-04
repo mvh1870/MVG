@@ -14,15 +14,15 @@ import { BALKEN } from '../../geschichte/typen.ts';
 import {
   abgestimmteGewichte, akt as aktVonId, akteVon, aktNummer, aktVon, aktWoerter, balken, balkenBis, beginne, bilanzAmEnde, brueckenKarten as brueckenGruppen,
   buchEintraege, dahinterHtmlFuer, endeFassung, endetStation, folgeHtmlFuer, gewaehlteAntwort, geheZu, gewichte, gleicherSchritt,
-  gutHtmlFuer, kapitel as kapitelVon, letzteStation, leseStand, loeseEchos, loeseZeile, minutenAus, miniVonVorn,
+  gutHtmlFuer, kapitel as kapitelVon, letzteStation, leseStand, loeseEchos, minutenAus, miniVonVorn,
   neuerStand, offeneKapitel, restWoerter, roemisch, schrittIndex, setzeAbgestimmt, setzeGewicht, stufe, STUFEN_GEWICHT, vergleichLage, verlaufBis,
-  waehle, wegKapitel, weiterMitGanzer, werteMiniAus, weiter, zurueck, zaehlendePlatz, type Balkenstand, type Lesezeit, type Schritt, type Stand,
+  waehle, wegKapitel, weiterMitGanzer, werteMiniAus, weiter, zeilenAufWeg, zurueck, zaehlendePlatz, type Balkenstand, type Lesezeit, type Schritt, type Stand,
 } from '../../geschichte/engine.ts';
 import lesezeitDaten from '../../geschichte/lesezeit-daten.json' with { type: 'json' };
 import { campusIso } from '../../grafik/campus-iso.ts';
 import { verlaufBand } from '../../grafik/verlauf.ts';
 import { wegSkizze } from '../../grafik/weg-skizze.ts';
-import type { Figur } from '../../grafik/figuren.ts';
+import { SPRECHER_NAME, type Figur, type Nebenfigur, type Stimme } from '../../grafik/figuren.ts';
 import { ersetze, h, vonHtml, type Kind } from '../h.ts';
 import { inhalt, inhaltInline } from '../bausteine/inhalt.ts';
 import { sym } from '../bausteine/bloecke.ts';
@@ -122,9 +122,21 @@ export interface SchrittOptionen {
   gespeichert?: boolean;
 }
 
-function figurName(g: Geschichte, id: string): { name: string; rolle: string; akzent: string } {
+/** Name, Rolle und Akzent eines Sprechers: Hauptfigur und Nebenfigur aus der Geschichte, eine Stimme (Vergabestelle, Vertretung) aus der Liste der Grafik, ohne Akzent. */
+function figurName(g: Geschichte, id: string): { name: string; rolle: string; akzent: string; kurzHtml: string | null } {
   const f = g.figuren.find((x) => x.id === id);
-  return { name: f?.name ?? id, rolle: f?.rolle ?? '', akzent: f?.akzent ?? 'navy' };
+  if (f !== undefined) return { name: f.name, rolle: f.rolle, akzent: f.akzent, kurzHtml: null };
+  const n = g.nebenfiguren?.find((x) => x.id === id);
+  if (n !== undefined) return { name: n.name, rolle: n.rolle, akzent: n.akzent, kurzHtml: n.kurzHtml };
+  const bekannt = (SPRECHER_NAME as Record<string, { name: string; rolle: string } | undefined>)[id];
+  return { name: bekannt?.name ?? id, rolle: bekannt?.rolle ?? '', akzent: bekannt !== undefined ? 'keiner' : 'navy', kurzHtml: null };
+}
+
+/** Station (oder „ende“), in der eine Figur zum ersten Mal in einer Szene spricht – dort trägt sie ihr Namensschild (P19.6). */
+function ersterAuftritt(g: Geschichte, id: string): string | null {
+  const k = g.kapitel.find((x) => x.szene.some((z) => z.figur === id));
+  if (k !== undefined) return k.id;
+  return g.ende.szene.some((z) => z.figur === id) ? 'ende' : null;
 }
 
 /** Stelle des Kapitels auf dem Weg, wie die Ortszeile sie nennt: lang „3“, in der Kurzfassung „2 von 4“ (R74). */
@@ -143,17 +155,22 @@ function kopf(o: SchrittOptionen, k: Kapitel, unter: string): HTMLElement {
       h('h1', { class: 'gs-titel', tabindex: -1, 'data-pruef': 'gs-titel' }, h('span', { class: 'nur-sr' }, `${stelleAufWeg(o, k)} · `), k.titel)));
 }
 
-/** Dialog: je Zeile Porträt und Sprechblase in der Farbe der Figur. */
-function dialog(g: Geschichte, zeilen: readonly Zeile[]): HTMLElement {
+/**
+ * Dialog: je Zeile Porträt und Sprechblase in der Farbe der Figur. P19.6: Nebenfiguren und Stimmen sprechen wie die Hauptfiguren; eine Nebenfigur trägt
+ * bei ihrem ersten Auftritt (`ort` = Station oder „ende“) ihr Namensschild unter dem Namen.
+ */
+function dialog(g: Geschichte, zeilen: readonly Zeile[], ort: string | null = null): HTMLElement {
   return h('ol', { class: 'gs-dialog', 'aria-label': w.szeneTitel },
     zeilen.map((z, i) => {
       if (z.figur === null) return h('li', { class: 'gs-zeile gs-zeile-erzaehlt' }, h('p', null, inhaltInline(z.html)));
       const f = figurName(g, z.figur);
       const gleich = i > 0 && zeilen[i - 1]?.figur === z.figur;
+      const schild = f.kurzHtml !== null && ort !== null && ort === ersterAuftritt(g, z.figur) && !zeilen.slice(0, i).some((x) => x.figur === z.figur);
       return h('li', { class: `gs-zeile${gleich ? ' ist-folgezeile' : ''}`, 'data-figur': z.figur, 'data-akzent': f.akzent },
-        gleich ? h('span', { class: 'gs-bildnis-platz', 'aria-hidden': 'true' }) : bildnis(z.figur as Figur, 64),
+        gleich ? h('span', { class: 'gs-bildnis-platz', 'aria-hidden': 'true' }) : bildnis(z.figur as Figur | Nebenfigur | Stimme, 64),
         h('div', { class: 'gs-blase' },
           h('p', { class: 'gs-sprecher' }, f.name, z.zusatz !== null ? h('span', { class: 'gs-zusatz' }, ` (${z.zusatz})`) : null),
+          schild && f.kurzHtml !== null ? h('p', { class: 'gs-schild', 'data-pruef': `schild-${z.figur}` }, inhaltInline(f.kurzHtml)) : null,
           h('p', { class: 'gs-gesagt' }, inhaltInline(z.html))));
     }));
 }
@@ -193,12 +210,15 @@ function dahinter(o: SchrittOptionen, k: Kapitel): HTMLElement {
       link));
 }
 
-function mandatKarte(g: Geschichte): HTMLElement {
+function mandatKarte(g: Geschichte, kurz: boolean): HTMLElement {
   return h('div', { class: 'gs-mandat', 'data-pruef': 'gs-mandat' },
     gegenstand('kaertchen', 64, 'gs-mandat-bild'),
     h('div', { class: 'gs-mandat-text' },
       h('h3', { class: 'gs-mandat-titel' }, g.mandat.titel),
-      h('dl', null, g.mandat.zeilen.map((z) => h('div', null, h('dt', null, z.wer), h('dd', null, inhaltInline(z.html)))))));
+      // P19.6: ein Text in Absätzen – in der Kurzfassung ohne die Absätze, die nur auf dem ganzen Weg stehen
+      h('dl', null, g.mandat.zeilen.map((z) => h('div', null, h('dt', null, z.wer),
+        z.absaetze === undefined ? h('dd', null, inhaltInline(z.html))
+          : h('dd', null, z.absaetze.filter((a) => a.kurzfassung || !kurz).map((a) => h('p', { class: 'gs-mandat-absatz' }, inhaltInline(a.html)))))))));
 }
 
 /**
@@ -208,22 +228,24 @@ function mandatKarte(g: Geschichte): HTMLElement {
 function brueckenKarten(g: Geschichte, vor: Kapitel | null): HTMLElement | null {
   const gruppen = brueckenGruppen(g, vor);
   if (gruppen.length === 0) return null;
+  const mitAkten = akteVon(g).length > 0;
   const kopfZeile = (k: Kapitel): HTMLElement => h('p', { class: 'gs-bruecke-kopf' }, h('b', null, `${k.nr} · ${k.titel}`), ` · ${k.zeit}`);
+  // P19.6 (L-343): mit Akten ist die Brückenzeile `Nummer · Monat: Satz` – fette Nummer, der Titel nur für Screenreader, kein Jahr
+  const zeile = (k: Kapitel): HTMLElement => h('p', { class: 'gs-bruecke-zeile' }, h('b', null, String(k.nr)), ' · ', h('span', { class: 'nur-sr' }, `${k.titel}. `), inhaltInline(k.brueckeHtml ?? ''));
   return h('section', { class: 'gs-bruecken', 'aria-label': w.brueckeTitel },
-    h('p', { class: 'gs-bruecken-titel' }, w.brueckeTitel),
+    h('p', { class: `gs-bruecken-titel${mitAkten ? ' gs-kicker' : ''}` }, w.brueckeTitel),
     h('ul', null, gruppen.map((gruppe) => {
       const erste = gruppe[0] as Kapitel;
       if (gruppe.length === 1) {
         return h('li', { class: 'gs-bruecke', 'data-pruef': `bruecke-${erste.id}` },
           campus(erste.campus, 'gs-campus-mini'),
-          h('div', null, kopfZeile(erste), inhalt(erste.brueckeHtml ?? '')));
+          mitAkten ? zeile(erste) : h('div', null, kopfZeile(erste), inhalt(erste.brueckeHtml ?? '')));
       }
+      // mehrere Stationen auf einer Karte gibt es nur mit Akten: eine Zeile je Station unter dem Kicker
       const letzte = gruppe[gruppe.length - 1] as Kapitel;
       return h('li', { class: 'gs-bruecke gs-bruecke-gruppe', 'data-pruef': `bruecke-${erste.id}`, 'data-stationen': gruppe.map((k) => k.id).join(' ') },
         campus(letzte.campus, 'gs-campus-mini'),
-        h('div', null,
-          h('p', { class: 'gs-bruecke-spanne' }, w.brueckeStationen(erste.nr, letzte.nr)),
-          gruppe.map((k) => h('div', { class: 'gs-bruecke-station' }, kopfZeile(k), inhalt(k.brueckeHtml ?? '')))));
+        h('div', null, gruppe.map((k) => h('div', { class: 'gs-bruecke-station' }, zeile(k)))));
     })));
 }
 
@@ -348,13 +370,15 @@ function auftakt(o: SchrittOptionen): HTMLElement {
   const wegKarte = (kurz: boolean): HTMLElement => {
     const n = alle.length;
     const gespielt = kurz ? kurzWeg.length : n;
+    // P19.6: die Texte der Karte stehen in rahmen.yaml (`auftakt.wegwahl`); ohne sie gelten die Wörter der Seite
+    const t = kurz ? g.auftakt.wegwahl?.kurz : g.auftakt.wegwahl?.lang;
     return h('div', { class: `gs-wegkarte ${kurz ? 'gs-wegkarte-kurz' : 'gs-wegkarte-lang'}`, 'data-pruef': kurz ? 'weg-karte-kurz' : 'weg-karte-lang' },
       h('div', { class: 'gs-weg-bild', 'aria-hidden': 'true' },
-        vonHtml(wegSkizze(kurz ? inKurz : inKurz.map(() => true), kurz ? w.wegBildKurz(n, gespielt) : w.wegBildLang(n), kurz))),
-      h('h3', { class: 'gs-weg-titel' }, kurz ? w.wegKurzTitel : w.wegLangTitel),
+        vonHtml(wegSkizze(kurz ? inKurz : inKurz.map(() => true), t?.bild ?? (kurz ? w.wegBildKurz(n, gespielt) : w.wegBildLang(n)), kurz))),
+      h('h3', { class: 'gs-weg-titel' }, t?.titel ?? (kurz ? w.wegKurzTitel : w.wegLangTitel)),
       h('p', { class: 'gs-weg-meta' }, `${w.wegEntscheidungen(gespielt)} · ${minuten(kurz ? g.auftakt.kurz : W.start.storyMeta(n))}`),
-      h('p', { class: 'gs-weg-text' }, kurz ? w.wegKurzText : w.wegLangText),
-      knopf(kurz, kurz ? w.wegKurzKnopf : g.auftakt.los, kurz ? 'gs-knopf gs-knopf-kurz' : 'gs-knopf gs-knopf-gross'));
+      h('p', { class: 'gs-weg-text' }, t?.text ?? (kurz ? w.wegKurzText : w.wegLangText)),
+      knopf(kurz, t?.knopf ?? (kurz ? w.wegKurzKnopf : g.auftakt.los), kurz ? 'gs-knopf gs-knopf-kurz' : 'gs-knopf gs-knopf-gross'));
   };
   const start = balken(g, o.stand, { ort: 'auftakt' });
   return h('article', { class: 'gs-schritt gs-auftakt', 'data-teil': 'auftakt' },
@@ -365,7 +389,7 @@ function auftakt(o: SchrittOptionen): HTMLElement {
       h('div', { class: 'gs-lead' }, inhalt(g.auftakt.textHtml))),
     // O-61: zwei gleichwertige Wegkarten – derselbe Weg einmal ganz, einmal gekürzt (Skizze mit besetzten und übersprungenen Stationen)
     h('section', { class: 'gs-wege', 'aria-labelledby': 'gs-wege-titel' },
-      h('h2', { id: 'gs-wege-titel', class: 'gs-h2' }, w.wegWahl),
+      h('h2', { id: 'gs-wege-titel', class: 'gs-h2' }, g.auftakt.wegwahl?.ueberschrift ?? w.wegWahl),
       h('div', { class: 'gs-wege-karten' }, wegKarte(false), wegKarte(true))),
     h('section', { class: 'gs-figuren', 'aria-labelledby': 'gs-figuren-titel' },
       h('h2', { id: 'gs-figuren-titel', class: 'gs-h2' }, g.auftakt.vorstellung),
@@ -384,17 +408,9 @@ function auftakt(o: SchrittOptionen): HTMLElement {
           h('p', { class: 'gs-steckbrief-rolle' }, w.sieRolle),
           steckbriefText(o, w.sie, g.sieHtml)))),
     h('section', { class: 'gs-stand-erklaert', 'aria-labelledby': 'gs-stand-titel' },
-      h('h2', { id: 'gs-stand-titel', class: 'gs-h2' }, w.balkenTitel),
+      h('h2', { id: 'gs-stand-titel', class: 'gs-h2' }, g.auftakt.balkenTitel ?? w.balkenTitel),
       balkenTafel(g, start, { gross: true, pruef: 'gs-stand-start' }),
       h('dl', { class: 'gs-stand-texte' }, g.balken.map((b) => h('div', { 'data-balken': b.id }, h('dt', null, b.titel), h('dd', null, inhaltInline(b.html)))))));
-}
-
-/**
- * Zeilen einer Szene auf diesem Weg: die Kurzfassung lässt Zeilen mit `kurzfassung: false` weg (P17.5); Echo-Zeilen bekommen die
- * Fassung nach der gespielten Antwort ihrer Quelle (P19.4, `loeseZeile`).
- */
-function zeilenDesWegs(g: Geschichte, stand: Stand, zeilen: readonly Zeile[]): Zeile[] {
-  return (stand.kurz ? zeilen.filter((z) => z.kurzfassung) : [...zeilen]).map((z) => loeseZeile(g, stand, z));
 }
 
 function szene(o: SchrittOptionen, k: Kapitel): HTMLElement {
@@ -405,7 +421,7 @@ function szene(o: SchrittOptionen, k: Kapitel): HTMLElement {
     kopf(o, k, k.zeit),
     h('div', { class: 'gs-buehnenbild' }, campus(k.campus, 'gs-campus-gross', k.zusatz)),
     h('div', { class: 'gs-einstieg', 'data-pruef': 'gs-einstieg' }, inhalt(loeseEchos(o.g, o.stand, einstieg)), gegenstand(k.bildSzene, 104, 'gs-gegenstand gs-gegenstand-einstieg')),
-    dialog(o.g, zeilenDesWegs(o.g, o.stand, k.szene)));
+    dialog(o.g, zeilenAufWeg(o.g, o.stand, k.szene), k.id));
 }
 
 function antwortKarte(o: SchrittOptionen, k: Kapitel, a: Antwort, platz: number): HTMLElement {
@@ -438,16 +454,21 @@ function frage(o: SchrittOptionen, k: Kapitel): HTMLElement {
       h('div', { class: 'gs-frage-inhalt' },
         h('p', { class: 'gs-kicker gs-kicker-gold' }, w.ihreEntscheidung),
         h('h2', { id: 'gs-frage-text', class: 'gs-frage-text' }, inhaltInline(k.frageHtml)))),
-    nachMandat ? h('details', { class: 'gs-mandat-auf', 'data-pruef': 'gs-mandat-auf' }, h('summary', null, sym('dokument'), w.mandatZeigen), mandatKarte(g)) : null,
+    nachMandat ? h('details', { class: 'gs-mandat-auf', 'data-pruef': 'gs-mandat-auf' }, h('summary', null, sym('dokument'), w.mandatZeigen), mandatKarte(g, stand.kurz)) : null,
     h('div', { class: 'gs-antworten', role: 'group', 'aria-label': w.antworten }, k.antworten.map((x, i) => antwortKarte(o, k, x, i))),
     a === null ? null : h('section', { class: 'gs-folge', 'aria-labelledby': 'gs-folge-titel', 'data-pruef': 'gs-folge', 'data-wertung-nie-sichtbar': null },
       h('h2', { id: 'gs-folge-titel', class: 'gs-h2 gs-folge-titel', tabindex: -1, 'data-pruef': 'gs-folge-titel' }, w.folgeTitel),
-      h('div', { class: 'gs-folge-szene' }, gegenstand(a.bild, 96, 'gs-gegenstand gs-gegenstand-folge'), h('div', { class: 'gs-folge-text' }, inhalt(loeseEchos(g, stand, folgeHtmlFuer(stand, a))))),
+      h('div', { class: 'gs-folge-szene' },
+        // P19.6: unter dem Bild „schlagzeile“ steht die Schlagzeile des „Lindenbote“ als Unterschrift (je Antwort eine eigene)
+        a.schlagzeileHtml !== undefined
+          ? h('figure', { class: 'gs-schlagzeile', 'data-pruef': 'gs-schlagzeile' }, gegenstand(a.bild, 96, 'gs-gegenstand gs-gegenstand-folge'), h('figcaption', null, inhaltInline(a.schlagzeileHtml)))
+          : gegenstand(a.bild, 96, 'gs-gegenstand gs-gegenstand-folge'),
+        h('div', { class: 'gs-folge-text' }, inhalt(loeseEchos(g, stand, folgeHtmlFuer(stand, a))))),
       k.campusNachher !== null ? h('div', { class: 'gs-buehnenbild gs-buehnenbild-nachher' }, campus(k.campusNachher, 'gs-campus-gross')) : null,
       h('div', { class: 'gs-wirkung' },
         h('h3', { class: 'gs-wirkung-titel' }, w.wirkungTitel),
         balkenTafel(g, nachher, { vorher, wirkung: a.wirkung, gross: true, pruef: 'gs-stand-folge' })),
-      k.mandatNachFolge ? mandatKarte(g) : null,
+      k.mandatNachFolge ? mandatKarte(g, stand.kurz) : null,
       kasten('gut', w.gutTitel, sym('haken'), inhalt(gutHtmlFuer(stand, k))),
       mitDahinter ? dahinter(o, k) : null,
       mitDahinter ? vertiefungKasten(o, k) : null));
@@ -573,7 +594,7 @@ function ende(o: SchrittOptionen): HTMLElement {
   const ersatz = fassung === 'vertrauen-niedrig' ? e.vertrauenNiedrig : fassung === 'nach-falle' ? e.nachFalle : fassung === 'offen' ? e.offen : [];
   // eine Ersatzzeile steht auf denselben Wegen wie die ersetzte (L-239); bei offenen Entscheidungen nur die Zeilen der
   // Kurzfassung – die übrigen setzen eine gespielte Geschichte voraus (R74)
-  const zeilen = zeilenDesWegs(g, typ === 'offen' ? { ...stand, kurz: true } : stand, e.szene).map((z) => {
+  const zeilen = zeilenAufWeg(g, typ === 'offen' ? { ...stand, kurz: true } : stand, e.szene).map((z) => {
     const neu = ersatz.find((x) => x.figur === z.figur);
     return neu === undefined ? z : { ...neu, kurzfassung: z.kurzfassung };
   });
@@ -592,7 +613,7 @@ function ende(o: SchrittOptionen): HTMLElement {
     h('div', { class: 'gs-einstieg', 'data-pruef': 'gs-einstieg' }, inhalt(einstieg),
       // wie die Sätze je Balken ein Urteil über den ganzen Weg – bei offenen Entscheidungen nicht (R75)
       typ !== 'offen' && stufe(b.zeit) === 'niedrig' ? h('div', { 'data-pruef': 'gs-zeit-niedrig' }, inhalt(e.zeitNiedrigHtml)) : null, gegenstand('schulbus', 104, 'gs-gegenstand gs-gegenstand-einstieg')),
-    dialog(g, zeilen),
+    dialog(g, zeilen, 'ende'),
     // P19.3: nach dem letzten Akt steht „Das können Sie jetzt“ vor der Bilanz (nur auf dem ganzen Weg; die Kurzfassung hat keine Pause)
     (() => { const letzterAkt = akteVon(g).at(-1); return letzterAkt !== undefined && !stand.kurz ? koennen(letzterAkt, 'gs-koennen-ende') : null; })(),
     h('section', { class: 'gs-bilanz', 'aria-labelledby': 'gs-bilanz-titel', 'data-pruef': 'gs-bilanz' },
@@ -610,7 +631,7 @@ function ende(o: SchrittOptionen): HTMLElement {
       offen > 0 ? h('p', { class: 'gs-leise', 'data-pruef': 'gs-offen' }, w.offen(offen)) : null),
     o.bedienbar ? h('nav', { class: 'gs-ende-wege', 'aria-label': w.ende },
       // P19.3: vom Ende der Kurzfassung in die ganze Geschichte, an der ersten nicht gespielten Station
-      stand.kurz && g.kapitel.some((k) => !k.kurzfassung) ? h('button', { type: 'button', class: 'gs-knopf', 'data-pruef': 'weiter-ganz', onclick: () => o.tue(weiterMitGanzer(g, stand)) }, w.weiterGanz, sym('pfeilRechts')) : null,
+      stand.kurz && g.kapitel.some((k) => !k.kurzfassung) ? [h('p', { class: 'gs-kicker gs-weiter-kicker' }, w.weiterKicker), h('button', { type: 'button', class: 'gs-knopf', 'data-pruef': 'weiter-ganz', onclick: () => o.tue(weiterMitGanzer(g, stand)) }, w.weiterGanz, sym('pfeilRechts'))] : null,
       // R75: von der Bilanz mit offenen Entscheidungen direkt zur ersten offenen Frage
       erstesOffen !== null ? h('button', { type: 'button', class: 'gs-knopf', 'data-pruef': 'zur-offenen', onclick: () => o.tue(geheZu(g, stand, { ort: 'kapitel', kapitel: erstesOffen.id, teil: 'frage' })) }, w.zurOffenen(stelleAufWeg(o, erstesOffen), erstesOffen.titel), sym('pfeilRechts')) : null,
       h('button', { type: 'button', class: 'gs-knopf', 'data-pruef': 'von-vorn', onclick: () => o.tue(neuerStand()) }, sym('zurueckspulen'), w.vonVorn),

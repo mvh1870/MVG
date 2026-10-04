@@ -42,6 +42,8 @@
 [data-akzent="beere"] { --f: var(--akzent-beere); --f-soft: var(--akzent-beere-soft); --f-text: var(--akzent-beere-text); }
 [data-akzent="gruen"] { --f: var(--akzent-gruen); --f-soft: var(--akzent-gruen-soft); --f-text: var(--akzent-gruen-text); }
 [data-akzent="marke"] { --f: var(--gold); --f-soft: var(--gold-soft); --f-text: var(--gold-text); }
+/* ohne Akzent (P19.6): der Reporter und die Stimmen – Papierton, Text in Navy */
+[data-akzent="keiner"] { --f: var(--linie-3); --f-soft: var(--flaeche-4); --f-text: var(--navy-soft); }
 [data-balken="geld"] { --b: var(--akzent-sonne); --b-soft: var(--akzent-sonne-soft); --b-text: var(--akzent-sonne-text); }
 [data-balken="zeit"] { --b: var(--akzent-blau); --b-soft: var(--akzent-blau-soft); --b-text: var(--akzent-blau-text); }
 [data-balken="vertrauen"] { --b: var(--akzent-beere); --b-soft: var(--akzent-beere-soft); --b-text: var(--akzent-beere-text); }
@@ -183,6 +185,13 @@ button.gs-feld:hover { border-color: var(--gold); }
   border: 9px solid transparent; border-left: 0; border-right-color: var(--f-soft, var(--weiss));
 }
 .gs-sprecher { font: var(--typo-reiter); letter-spacing: var(--sperrung-label); text-transform: uppercase; }
+/* Namensschild einer Nebenfigur beim ersten Auftritt (P19.6) */
+.gs-schild { font: var(--typo-klein); color: var(--tinte-2); margin-bottom: var(--a-1); }
+/* Schlagzeile des „Lindenbote“ unter dem Zeitungsbild (P19.6) */
+.gs-schlagzeile { margin: 0; display: grid; gap: var(--a-2); justify-items: center; text-align: center; }
+.gs-schlagzeile figcaption { font: var(--typo-klein); font-weight: 700; color: var(--navy); max-width: 22ch; }
+.gs-weiter-kicker { flex-basis: 100%; }
+.gs-mandat-absatz + .gs-mandat-absatz { margin-top: var(--a-2); }
 .gs-zusatz { text-transform: none; letter-spacing: 0; font-weight: 600; }
 .gs-gesagt { margin-top: var(--a-1); font: var(--typo-lese); color: var(--tinte); }
 .gs-zeile-erzaehlt p { font: var(--typo-lese); color: var(--tinte-2); }
@@ -390,6 +399,9 @@ button.gs-antwort:active { transform: translateY(2px); box-shadow: var(--schatte
 .gs-campus-mini { aspect-ratio: 3 / 2; border-radius: var(--radius-l); box-shadow: none; }
 .gs-bruecke-kopf { color: var(--tinte-2); font: var(--typo-klein); }
 .gs-bruecke-kopf b { color: var(--navy); font-size: var(--gr-text); }
+/* Brückenzeile mit Akten (P19.6): fette Nummer, Monat und Satz */
+.gs-bruecke-zeile { font: var(--typo-lese); color: var(--tinte); }
+.gs-bruecke-zeile b { color: var(--navy); }
 
 /* ------------------------------------------------------------ Mini-Aufgabe */
 .gs-mini-aufgabe {
@@ -593,6 +605,7 @@ button.gs-stufe:hover:not([aria-pressed="true"]) { background: var(--weiss); }
 [data-akzent="beere"] :is(.gs-sprecher, .gs-steckbrief-rolle) { color: var(--akzent-beere-text); }
 [data-akzent="gruen"] :is(.gs-sprecher, .gs-steckbrief-rolle) { color: var(--akzent-gruen-text); }
 [data-akzent="marke"] :is(.gs-sprecher, .gs-steckbrief-rolle) { color: var(--gold-text); }
+[data-akzent="keiner"] :is(.gs-sprecher, .gs-steckbrief-rolle) { color: var(--navy-soft); }
 .gs-sprecher { color: var(--navy); }
 .gs-kasten-gut :is(.gs-kasten-symbol, .gs-kasten-titel) { color: var(--akzent-gruen-text); }
 .gs-kasten-dahinter :is(.gs-kasten-symbol, .gs-kasten-titel) { color: var(--akzent-violett-text); }
@@ -745,7 +758,6 @@ button.gs-stufe:hover:not([aria-pressed="true"]) { background: var(--weiss); }
 .gs-koennen ul { display: grid; gap: var(--a-2); padding-left: var(--a-5); list-style: disc; font: var(--typo-lese); }
 .gs-pause-weiter { display: flex; justify-content: center; }
 /* gebündelte Brückenkarte der Kurzfassung */
-.gs-bruecke-spanne { font: var(--typo-kicker); letter-spacing: var(--sperrung-kicker); text-transform: uppercase; color: var(--tinte-2); }
 .gs-bruecke-station + .gs-bruecke-station { margin-top: var(--a-2); padding-top: var(--a-2); border-top: 1px solid var(--linie); }
 @media (max-width: 640px) {
   .gs-sprung-liste { padding-left: var(--a-4); padding-right: var(--a-4); }
@@ -855,11 +867,20 @@ button.gs-stufe:hover:not([aria-pressed="true"]) { background: var(--weiss); }
 .gs-gespraech-zeile, .gs-gespraech-fest { margin: 0; }
 .gs-gespraech-fest { font: var(--typo-klein); color: var(--tinte-2); }
 .gs-gespraech-posten .gs-mini-wahl { width: 100%; justify-content: flex-start; text-align: left; }
+/* Eintrag-Kärtchen der Rückfragen (P19.6): vier Zeilen, die sich mit den Gesprächen füllen */
+.gs-eintrag { display: grid; gap: var(--a-2); margin-top: var(--a-4); padding: var(--a-3) var(--a-4); border-radius: var(--radius-l); background: var(--weiss); border: 1px solid var(--linie-2); border-left: 6px solid var(--akzent-sonne); }
+.gs-eintrag-titel { margin: 0; font: var(--typo-reiter); color: var(--navy); }
+.gs-eintrag dl { display: grid; gap: var(--a-2); margin: 0; }
+.gs-eintrag dl > div { display: grid; grid-template-columns: minmax(7rem, 11rem) minmax(0, 1fr); gap: var(--a-3); }
+.gs-eintrag dt { font: var(--typo-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
+.gs-eintrag dd { margin: 0; }
+.gs-eintrag-leer { color: var(--tinte-leise); font-style: italic; }
 @media (max-width: 640px) {
   .gs-buch-felder > div { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .gs-buch-zeile { grid-auto-flow: row; grid-template-columns: minmax(0, 1fr); }
   .gs-mini-zettel { grid-template-columns: minmax(0, 1fr); }
   .gs-mini-karten, .gs-gespraeche { grid-template-columns: minmax(0, 1fr); }
+  .gs-eintrag dl > div { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .gs-vertiefung { padding: var(--a-3) var(--a-4); }
 }
 /* Entscheidungsbuch auf Papier: eine Seite im Querformat, Tabelle in kleiner Schrift */

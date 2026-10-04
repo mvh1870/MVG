@@ -7,7 +7,7 @@
  */
 
 /** Kleine Anzahlen als Wort am Satzanfang (Startseite). */
-const ZAHLWORT: Record<number, string> = { 2: 'Zwei', 3: 'Drei', 4: 'Vier', 5: 'Fünf', 6: 'Sechs', 7: 'Sieben', 8: 'Acht', 9: 'Neun', 10: 'Zehn', 11: 'Elf', 12: 'Zwölf' };
+const ZAHLWORT: Record<number, string> = { 2: 'Zwei', 3: 'Drei', 4: 'Vier', 5: 'Fünf', 6: 'Sechs', 7: 'Sieben', 8: 'Acht', 9: 'Neun', 10: 'Zehn', 11: 'Elf', 12: 'Zwölf', 13: 'Dreizehn', 14: 'Vierzehn' };
 
 /** Die drei Stufen „Was ist wichtiger?“ im Vergleich der Story. */
 const STUFEN_WORT: Record<number, string> = { 5: 'sehr wichtig', 3: 'wichtig', 1: 'weniger wichtig' };
@@ -136,6 +136,8 @@ export const W = {
     miniLoesung: 'richtig',
     miniReiheHinweis: 'Nennen die Gäste eine Reihenfolge, tippen Sie die Schritte in dieser Folge an. Tippen Sie einen Schritt noch einmal an, nimmt das ihn und alle späteren Schritte wieder heraus.',
     keineNotiz: 'Für diesen Schritt gibt es keine Notiz.',
+    // Nebenfiguren der Station mit ihrem Steckbrief – nur in der Ansicht der Regie (P19.6)
+    nebenfiguren: 'Nebenfiguren in dieser Station',
     kundenwahl: 'Was die Gäste wählen und was Sie steuern',
     keineEingriffe: 'An diesem Schritt gibt es nichts zu wählen.',
     eingriffeImWerkzeug: 'Beispiel, Schritt und Schalter dieses Werkzeugs stehen im Kasten „Werkzeug auf der Leinwand“.',
@@ -231,18 +233,19 @@ export const W = {
     // E-13 (P18.5): leiser Verweis auf ein Explore-Werkzeug am Kapitel
     werkzeugProbieren: (titel: string) => `${titel} ausprobieren`,
     mandatZeigen: 'Wer entscheidet was',
-    brueckeTitel: 'Was inzwischen geschah',
+    brueckeTitel: 'Inzwischen',
     // Akte (P19.3): Akt-Leiste, Ortszeile, Kopfkarte, Pause, Verlauf, Ende der Kurzfassung
     stationVonN: (nr: number, n: number) => `Station ${nr} von ${n}`,
     aktNr: (r: string) => `Akt ${r}`,
     aktTitel: (r: string, titel: string) => `Akt ${r} · ${titel}`,
-    aktLeiste: 'Akte der Geschichte',
+    aktLeiste: 'Die drei Akte der Geschichte',
     stationWaehlen: 'Station wählen',
     stationWaehlenListe: 'Alle Stationen',
-    restMinuten: (m: number) => m <= 1 ? 'noch etwa eine Minute' : `noch etwa ${m} Minuten`,
+    // unter zwei Minuten „gleich geschafft“ (Drehbuch 04, 2.1)
+    restMinuten: (m: number) => m <= 1 ? 'gleich geschafft' : `noch etwa ${m} Minuten`,
     aktDauer: (m: number) => m <= 1 ? 'etwa eine Minute' : `etwa ${m} Minuten`,
-    pauseOrt: (r: string) => `Pause · Akt ${r} geschafft`,
-    pauseKicker: 'Pause',
+    pauseOrt: (r: string) => `Pause nach Akt ${r}`,
+    pauseKicker: 'Kurze Pause',
     pauseOffen: 'Einige Stationen dieses Akts haben Sie noch nicht gespielt.',
     zwischenbilanz: 'Zwischenbilanz',
     koennenTitel: 'Das können Sie jetzt',
@@ -253,7 +256,7 @@ export const W = {
     verlaufBeschreibung: 'Verlauf von Geld, Zeit und Vertrauen über die Stationen, ohne Zahlen: drei Linien vor drei Streifen mit den Stufen „gut gefüllt“, „etwa halb voll“ und „knapp“',
     verlaufText: 'Verlauf als Text',
     verlaufLegende: 'Die Linien zeigen, wie sich Geld, Zeit und Vertrauen von Station zu Station verändert haben. Die Streifen dahinter heißen „gut gefüllt“, „etwa halb voll“ und „knapp“.',
-    verlaufHohl: 'Hohle Punkte: Station nur erzählt, nicht gespielt.',
+    verlaufHohl: 'Hohle Punkte: Diese Stationen wurden nur erzählt.',
     verlaufOffen: 'noch offen',
     verlaufStreifen: { hoch: 'gut gefüllt', mittel: 'etwa halb voll', niedrig: 'knapp' } as Record<string, string>,
     // Zeile „gespeichert“ in der Pause: nur, wenn der Stand tatsächlich im Browser liegt (P19.3, Drehbuch 2.3)
@@ -287,11 +290,15 @@ export const W = {
     miniInOrdnung: 'in Ordnung',
     miniZettel: 'Zettel',
     miniFaden: { verbunden: 'verbunden mit', keinZiel: 'kein Zettel am Ende', stimmt: 'Der Faden hält.', doppelt: 'Der Faden zählt doppelt.', nachfordern: 'Das Ende hängt lose.' } as Record<string, string>,
+    // Eintrag-Kärtchen der Rückfragen (P19.6): Name des Kärtchens und eine leere Zeile
+    miniEintrag: 'Der Eintrag',
+    miniEintragLeer: 'noch leer',
     miniGespraeche: (kontingent: number) => `${ZAHLWORT[kontingent] ?? String(kontingent)} Gespräche sind möglich.`,
     miniGespraecheRest: (n: number) => n <= 0 ? 'Mehr Gespräche gibt es nicht.' : n === 1 ? 'Ein Gespräch ist noch möglich.' : `${ZAHLWORT[n] ?? String(n)} Gespräche sind noch möglich.`,
     miniMatrixFeld: (wahrscheinlichkeit: string, auswirkung: string) => `Feld der Matrix: Wahrscheinlichkeit ${wahrscheinlichkeit}, Auswirkung ${auswirkung}`,
     weiterGanz: 'Weiter mit der ganzen Geschichte',
-    brueckeStationen: (von: number, bis: number) => von === bis ? `Station ${von}` : `Stationen ${von} bis ${bis}`,
+    // Kicker über dem Knopf am Ende der Kurzfassung (P19.6; zählt nicht zur Lesezeit)
+    weiterKicker: 'Was dazwischen geschah',
     miniKicker: 'Mini-Aufgabe',
     miniRichtig: 'Richtig',
     miniFalsch: (loesung: string) => `Nicht ganz – richtig ist: ${loesung}.`,

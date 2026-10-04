@@ -15,6 +15,17 @@ import type { Akzent } from '../stil/akzente.ts';
 
 export const FIGUREN = ['sie', 'grundstein', 'faden', 'schwung', 'klingel', 'lot'] as const;
 export type Figur = (typeof FIGUREN)[number];
+/**
+ * Nebenfiguren (P19.6, O-62): eigene Liste, nicht in `FIGUREN` (sonst erscheinen sie in den Schleifen des Auftakts und der Startseite). Sie
+ * haben ein Porträt wie die Hauptfiguren, nur etwas einfacher gezeichnet; die beiden Stimmen (Vergabestelle am Telefon, Vertretung der
+ * Projektsteuerin) haben statt eines Gesichts einen Umriss mit Sprechlinien.
+ */
+export const NEBENFIGUREN = ['ranzen', 'spitzfeder', 'pfennig'] as const;
+export type Nebenfigur = (typeof NEBENFIGUREN)[number];
+export const STIMMEN = ['vergabestelle', 'vertretung'] as const;
+export type Stimme = (typeof STIMMEN)[number];
+/** Alle, die in einer Szene sprechen können (`Zeile.figur`): Hauptfiguren ohne „sie“, Nebenfiguren, Stimmen. */
+export type Sprecher = Exclude<Figur, 'sie'> | Nebenfigur | Stimme;
 export type Stimmung = 'neutral' | 'froh' | 'besorgt';
 
 /** Figurenton (STIL.md, L-226): Kleidung und Farbfeld; „Sie“ trägt die Marke (Navy mit goldenem Helm). */
@@ -26,6 +37,9 @@ export const FIGUR_AKZENT: Record<Exclude<Figur, 'sie'>, Akzent> = {
   lot: 'sonne',
 };
 
+/** Ton der Nebenfiguren: Ranzen grün, Pfennig beere; der Reporter hat keinen Akzent (Papierton, `fig-ton-keiner`), ebenso die Stimmen. */
+export const NEBENFIGUR_AKZENT: Record<Nebenfigur, Akzent | 'keiner'> = { ranzen: 'gruen', spitzfeder: 'keiner', pfennig: 'beere' };
+
 /** Sichtbarer Name und Rolle (Steckbrief, Bildbeschreibung). */
 export const FIGUR_NAME: Record<Figur, { name: string; rolle: string }> = {
   sie: { name: 'Sie', rolle: 'Projektleitung des Bauherrn' },
@@ -36,13 +50,28 @@ export const FIGUR_NAME: Record<Figur, { name: string; rolle: string }> = {
   lot: { name: 'Theo Lot', rolle: 'Bauleiter' },
 };
 
-const BILD_TEXT: Record<Figur, string> = {
+/** Name und Rolle aller Sprecher: die Hauptfiguren, die Nebenfiguren (Namen und Rollen des Drehbuchs) und die beiden Stimmen. */
+export const SPRECHER_NAME: Record<Sprecher, { name: string; rolle: string }> = {
+  grundstein: FIGUR_NAME.grundstein, faden: FIGUR_NAME.faden, schwung: FIGUR_NAME.schwung, klingel: FIGUR_NAME.klingel, lot: FIGUR_NAME.lot,
+  ranzen: { name: 'Marlene Ranzen', rolle: 'Elternvertreterin' },
+  spitzfeder: { name: 'Bernd Spitzfeder', rolle: 'Lokalreporter' },
+  pfennig: { name: 'Ewald Pfennig', rolle: 'Stadtrat im Finanzausschuss' },
+  vergabestelle: { name: 'Vergabestelle', rolle: 'Vergabestelle der Stadt' },
+  vertretung: { name: 'Vertretung', rolle: 'Vertretung der Projektsteuerin' },
+};
+
+const BILD_TEXT: Record<Figur | Nebenfigur | Stimme, string> = {
   sie: 'Sie, die Projektleitung des Bauherrn, von schräg hinten: dunkle Jacke, eine Mappe in der Hand, den goldenen Bauhelm unter dem Arm.',
   grundstein: 'Gisela Grundstein, Bürgermeisterin: silbergrauer Bob, große runde Brille mit goldenem Rand, Blazer mit einem kleinen Lindenblatt am Revers.',
   faden: 'Clara Faden, Projektsteuerin: dunkles Haar zum tiefen Zopf, Pullover, Notizbuch mit rotem Lesebändchen und Tablet im Arm.',
   schwung: 'Konrad Schwung, Architekt: graue Locken, runde schwarze Brille, schwarzer Rollkragen, langer orangefarbener Schal und ein Zeichenstift hinter dem Ohr.',
   klingel: 'Hanna Klingel, Schulleiterin: rotbraunes Haar hochgesteckt, Strickjacke, bunte Kette und eine kleine Handglocke aus Messing.',
   lot: 'Theo Lot, Bauleiter: grauer Schnurrbart, weißer Helm, Warnweste über kariertem Hemd und ein gelber Zollstock in der Brusttasche.',
+  ranzen: 'Marlene Ranzen, Elternvertreterin: dunkle Locken im Dutt, grasgrüne Regenjacke, Schlüsselband mit bunten Anhängern und ein Klemmbrett mit Fragenliste.',
+  spitzfeder: 'Bernd Spitzfeder, Lokalreporter: sandfarbener Trenchcoat, graublaue Schiebermütze mit Bleistift im Mützenband und ein Notizblock mit Gummiband.',
+  pfennig: 'Ewald Pfennig, Stadtrat: schmal, grauer Nadelstreifenanzug, Lesebrille auf der Nase, blauer Ordner unter dem Arm und eine Taschenuhr mit Kette.',
+  vergabestelle: 'Die Vergabestelle der Stadt am Telefon: kein Gesicht, nur ein Umriss mit dem Hörer am Ohr und drei Sprechlinien.',
+  vertretung: 'Die Vertretung der Projektsteuerin: kein Gesicht, nur ein Umriss mit drei Sprechlinien.',
 };
 const STIMMUNG_TEXT: Record<Stimmung, string> = { neutral: '', froh: ' Sie lacht.', besorgt: ' Sie schaut besorgt.' };
 const STIMMUNG_TEXT_ER: Record<Stimmung, string> = { neutral: '', froh: ' Er lacht.', besorgt: ' Er schaut besorgt.' };
@@ -106,7 +135,7 @@ const naehte = (): string => pf('fig-naht', `M58,138C59,146 60,152 60,${r1(yk(60
 interface Kopf {
   /** Hautton 1–4 (hell bis dunkel). */
   haut: 1 | 2 | 3 | 4;
-  haar: 'silber' | 'dunkel' | 'grau' | 'rot' | 'braun';
+  haar: 'silber' | 'dunkel' | 'grau' | 'rot' | 'braun' | 'weiss';
 }
 
 const GESICHT = 'M80,80C80,60 93,49 107,49C122,49 132,61 132,79C132,92 130,103 125,111C120,119 113,124 107,124C97,124 88,118 84,108C81,100 80,90 80,80Z';
@@ -410,12 +439,154 @@ const sie: Zeichner = (_stimmung, fein) => {
   return { kopf, svg: t.join('') };
 };
 
-const ZEICHNER: Record<Figur, Zeichner> = { sie, grundstein, faden, schwung, klingel, lot };
+
+/** Marlene Ranzen: dunkle Locken im Dutt, grasgrüne Regenjacke mit hochgestelltem Kragen, Schlüsselband mit bunten Anhängern, Klemmbrett mit Fragenliste. */
+const ranzen: Zeichner = (stimmung, fein) => {
+  const kopf: Kopf = { haut: 2, haar: 'dunkel' };
+  const t: string[] = [];
+  // Locken um den Oberkopf (hinten dunkler) und der Dutt hinten oben
+  const locken = (k: string, dy: number, dr: number): string => {
+    let l = el(k, 105, 66 + dy, 28, 17);
+    for (let i = 0; i <= 11; i++) {
+      const a = ((10 + i * 15.5) * Math.PI) / 180;
+      l += kr(k, r1(105 + 29 * Math.cos(a)), r1(70 + dy - 24 * Math.sin(a)), r1(6.8 + ((i * 5) % 3) * 0.8 + dr));
+    }
+    return l;
+  };
+  t.push(locken('fig-haar-s', 1.2, 1), locken('fig-haar', 0, 0));
+  t.push(kr('fig-haar-s', 84, 40, 13.5), kr('fig-haar', 83, 39, 12), kr('fig-haar', 74, 44, 6.5), kr('fig-haar', 78, 31, 6.5), kr('fig-haar', 90, 30, 6.5));
+  t.push(hals());
+  // Regenjacke mit Reißverschluss
+  t.push(unten('fig-regen', SCH_X1, SCHULTERN, SCH_X2));
+  t.push(pf('fig-regen-naht', `${bisRand(104, 142)}M58,138C59,146 60,152 60,${r1(yk(60) - 2)}M150,138C149,146 148,152 148,${r1(yk(148) - 2)}`));
+  // hochgestellter Kragen: zwei Flügel links und rechts vom Hals
+  t.push(pf('fig-regen-s', 'M84,120C82,130 86,140 96,144L101,136L95,118Z'), pf('fig-regen', 'M85,119C84,128 88,137 96,141L99,135L94,119Z'));
+  t.push(pf('fig-regen-s', 'M124,120C127,130 124,140 114,144L109,136L114,118Z'), pf('fig-regen', 'M123,119C125,128 121,137 114,141L111,135L115,119Z'));
+  // Schlüsselband mit drei bunten Anhängern (Perlenfarben der Palette)
+  t.push(pf('fig-band-linie', 'M96,136C97,150 101,158 104,162M112,136C111,150 107,158 104,162'));
+  (['sonne', 'violett', 'lagune'] as const).forEach((a, i) => t.push(kr(`fig-perle gm-a-${a}`, [98.5, 104, 109.5][i] as number, [168, 171.5, 168][i] as number, fein ? 3.4 : 3.9)));
+  t.push(gesichtsflaeche());
+  t.push(zuege(stimmung, fein, { brauenDick: false }));
+  if (fein) for (const [x, y] of [[96, 98], [99, 101], [102, 98.5], [125, 97.5]] as const) t.push(kr('fig-sprosse', x, y, 0.7));
+  // Locken vorn an der Stirn, eine lose Locke an der Schläfe
+  for (const [x, y, rr] of [[86, 62, 7], [95, 55, 7.5], [106, 52, 7.5], [117, 54, 7], [127, 60, 6.5], [83, 72, 6]] as const) t.push(kr('fig-haar', x, y, rr));
+  t.push(pf('fig-straehne', 'M130,68C135,76 135,84 132,90'));
+  if (fein) for (const [x, y] of [[95, 52], [107, 49], [118, 51]] as const) t.push(pf('fig-haar-s fig-strich-fein', `M${x - 3},${y + 3}Q${x},${y - 1} ${x + 3},${y + 3}`));
+  // Klemmbrett im rechten Arm: Blatt mit drei Zeilen und Häkchen (Erkennungszeichen)
+  t.push(unten('fig-regen-s', 138, 'C142,150 146,141 150,136C156,137 162,139 165,141.5', 165));
+  t.push(gr(re('fig-holz', 118, 126, 36, 46, 3) + re('fig-papier', 121.5, 132, 29, 37, 1.5) + re('gm-stahl', 129, 122, 14, 9, 2)
+    + pf('gm-haken-gruen', 'M124,141l2.4,2.4l4.6,-5.2M124,152l2.4,2.4l4.6,-5.2')
+    + re('fig-linie', 134, 140, 13, 2.6, 1.3) + re('fig-linie', 134, 151, 11, 2.6, 1.3) + re('fig-linie', 134, 162, 13, 2.6, 1.3)
+    + (fein ? '' : ''), [-5, 136, 150]));
+  t.push(pf('fig-haut', 'M114,160C116,156 122,155 125,158L127,168C124,172 118,172 115,168Z'));
+  return { kopf, svg: t.join('') };
+};
+
+/** Bernd Spitzfeder: kurzer grauer Vollbart, Schiebermütze mit Bleistift im Band, Trenchcoat mit hochgestelltem Kragen, Notizblock mit Gummiband. */
+const spitzfeder: Zeichner = (stimmung, fein) => {
+  const kopf: Kopf = { haut: 1, haar: 'grau' };
+  const t: string[] = [];
+  // graues Haar an Nacken und Schläfe unter der Mütze
+  t.push(pf('fig-haar', 'M78,96C74,80 78,70 86,66L92,70C88,80 88,94 92,106C86,106 80,102 78,96Z'));
+  t.push(hals());
+  // Trenchcoat: Schulterklappe, Knopfleiste, Gürtel; hochgestellter Kragen
+  t.push(unten('fig-trench', SCH_X1, SCHULTERN, SCH_X2));
+  t.push(unten('fig-creme', 92, 'L89,131L119,131', 116));
+  t.push(pf('fig-trench-s', 'M104,138L104,172'), pf('fig-trench-s', 'M101,160L101,172M107,160L107,172'));
+  t.push(unten('fig-trench-s', 76, 'L77,134L90,131L101,158L96,172', 96));
+  t.push(unten('fig-trench-s', 108, 'L109,158L120,131L134,134L136,160', 136));
+  t.push(pf('fig-trench', 'M77,134L90,131L99,152L87,150Z'), pf('fig-trench', 'M120,131L134,134L127,150L110,152Z'));
+  t.push(re('fig-trench-s', 58, 150, 90, 7, 2), re('fig-messing-s', 99, 149, 10, 9, 1.5), re('fig-trench', 101, 151, 6, 5, 1));
+  t.push(kr('fig-knopf-trench', 99, 168, 2.3), kr('fig-knopf-trench', 109, 168, 2.3));
+  t.push(pf('fig-trench-naht', `M58,140C59,146 60,152 60,${r1(yk(60) - 2)}M150,140C149,146 148,152 148,${r1(yk(148) - 2)}`));
+  t.push(gesichtsflaeche());
+  t.push(zuege(stimmung, fein, { mund: false }));
+  // kurzer grauer Vollbart: um Kinn und Wangen, der Mund bleibt sichtbar
+  t.push(pf('fig-haar', 'M84,98C84,112 92,125 107,126C120,126 128,117 131,104C127,108 122,110 118,110C114,106 109,106 105,108C100,106 94,106 90,100Z'));
+  t.push(pf('fig-haar-s fig-strich-fein', 'M92,110C95,118 100,122 106,123M118,114C122,112 126,110 128,106'));
+  t.push(pf(stimmung === 'froh' ? 'fig-mund' : 'fig-mund-linie', stimmung === 'froh' ? 'M106,112Q113,121 121,111Q113,114 106,112Z' : stimmung === 'besorgt' ? 'M107,115Q112,111 120,114' : 'M107,113Q113,116 120,112'));
+  // Schiebermütze: Kappe, flacher Schirm nach rechts, Band mit Bleistift (nicht hinter dem Ohr)
+  t.push(pf('fig-muetze', 'M77,76C77,58 92,48 112,48C130,48 141,58 141,72C128,69 100,70 77,79Z'));
+  t.push(pf('fig-muetze-s', 'M120,50C132,54 141,62 141,72C136,70 130,69 124,69C127,62 125,56 120,50Z'));
+  t.push(pf('fig-muetze-s fig-strich', 'M80,76C100,70 128,69 141,73'));
+  t.push(pf('fig-muetze', 'M118,70C130,68 146,72 154,80C148,83 134,80 118,77Z'));
+  t.push(gr(re('fig-stift', 96, 62, 4.6, 28, 1) + re('fig-stift-kappe', 96, 62, 4.6, 5, 1) + pf('fig-stift-spitze', 'M96,90L100.6,90L98.3,96Z'), [62, 98, 74]));
+  if (fein) t.push(pf('fig-haar-licht', 'M96,52C104,49 114,49 122,52C114,51 104,52 97,55Z'));
+  // Notizblock mit Gummiband in der linken Hand (Erkennungszeichen)
+  t.push(gr(re('fig-papier', 52, 128, 28, 38, 2) + re('fig-block-kopf', 52, 128, 28, 7, 2) + pf('fig-block-linien', 'M57,142H75M57,148H75M57,154H71') + re('fig-gummi', 70, 126, 4.2, 42, 1.5), [-8, 66, 148]));
+  t.push(pf('fig-haut', 'M76,150C79,146 85,146 87,150L88,162C84,166 78,166 75,162Z'));
+  return { kopf, svg: t.join('') };
+};
+
+/** Ewald Pfennig: schmal, weißes Haar mit Geheimratsecken, Lesebrille tief auf der Nase, grauer Nadelstreifenanzug mit Weste, Taschenuhr, blauer Ordner. */
+const pfennig: Zeichner = (stimmung, fein) => {
+  const kopf: Kopf = { haut: 1, haar: 'weiss' };
+  const t: string[] = [];
+  // Haarkranz hinten und an den Schläfen; oben die Geheimratsecken
+  t.push(pf('fig-haar', 'M79,92C76,74 80,60 92,54C88,66 87,78 90,96Z'));
+  t.push(pf('fig-haar-s', 'M80,80C79,70 84,60 92,56C89,66 88,76 90,86Z'));
+  t.push(hals());
+  // Anzug mit Weste und Hemdkragen
+  t.push(unten('fig-anzug', SCH_X1, SCHULTERN, SCH_X2));
+  t.push(unten('fig-weste', 90, 'L88,131L120,131L119,150', 119));
+  t.push(unten('fig-creme', 94, 'L89,131L119,131', 114));
+  t.push(pf('fig-creme-s', 'M89,131L104,146L119,131L116,130L104,141L92,130Z'));
+  // Revers, Krawatte im Ton der Figur
+  t.push(unten('fig-anzug-s', 74, 'L76,135L89,130L99,156L96,172', 96));
+  t.push(unten('fig-anzug-s', 111, 'L109,156L119,130L133,135L135,160', 135));
+  t.push(pf('fig-anzug', 'M76,135L89,130L97,152L85,150Z'), pf('fig-anzug', 'M119,130L133,135L127,150L112,152Z'));
+  t.push(pf('fig-kleid', 'M101,138L107,138L109,166L104,172L99,166Z'));
+  // Nadelstreifen: feine helle Linien auf Jacke und Schulter
+  let nadel = '';
+  for (const x of [46, 54, 62, 70, 78]) nadel += `M${x},${x < 60 ? 146 : 138}L${x},${r1(yk(x) - 3)}`;
+  for (const x of [130, 138, 146, 154, 162]) nadel += `M${x},${x > 150 ? 146 : 138}L${x},${r1(yk(x) - 3)}`;
+  t.push(pf('fig-nadel', nadel));
+  t.push(pf('fig-anzug-naht', `M58,140C59,146 60,152 60,${r1(yk(60) - 2)}M150,140C149,146 148,152 148,${r1(yk(148) - 2)}`));
+  // Taschenuhr mit Kette an der Weste (Erkennungszeichen)
+  t.push(pf('fig-kette', 'M117,141C122,150 120,158 112,160M117,141L113,143'));
+  t.push(kr('fig-messing-s', 111, 164, 7.4), kr('fig-gold-flaeche', 111, 164, 6), kr('fig-papier', 111, 164, 4.4), pf('fig-uhrzeiger', 'M111,164V160.8M111,164L113.4,165.4'), re('fig-messing-s', 109.4, 154.8, 3.2, 3.4, 1));
+  t.push(gesichtsflaeche());
+  t.push(zuege(stimmung === 'besorgt' ? 'neutral' : stimmung, fein, { brauenDick: false }));
+  // besorgt = eine Augenbraue hochgezogen
+  if (stimmung === 'besorgt') t.push(pf('fig-braue', 'M116,72Q121,69 126,73'));
+  // schmales Gesicht: Falten neben dem Mund, hohe Stirn
+  if (fein) t.push(pf('fig-falte', 'M100,106C99,110 100,114 103,116M121,104C122,108 121,112 119,115'));
+  // Haar vorn: ein schmaler Streifen über den Ohren, Geheimratsecken frei
+  t.push(pf('fig-haar', 'M79,84C77,66 86,54 100,50C96,60 92,68 90,80Z'));
+  t.push(pf('fig-haar', 'M118,48C128,52 134,60 134,72C130,64 124,58 116,54Z'));
+  if (fein) t.push(pf('fig-haar-s fig-strich-fein', 'M84,62C87,58 91,55 95,53M122,50C127,53 131,58 132,64'));
+  // halbmondförmige Lesebrille tief auf der Nase
+  t.push(pf('fig-brille-glas', 'M93,94.5H108C108,101 103,104.5 100.5,104.5C97,104.5 93,101 93,94.5Z'), pf('fig-brille-glas', 'M115,93.5H128C128,99.5 124,103 121.5,103C118.5,103 115,99.5 115,93.5Z'));
+  t.push(pf('fig-brille-schwarz fig-brille-fein', 'M93,94.5H108C108,101 103,104.5 100.5,104.5C97,104.5 93,101 93,94.5ZM115,93.5H128C128,99.5 124,103 121.5,103C118.5,103 115,99.5 115,93.5ZM108,94.5Q111.5,92.5 115,93.5M93,94.5L86,92.5'));
+  // blauer Ordner mit Haftzetteln unter dem linken Arm
+  t.push(gr(re('gm-a-blau', 50, 130, 30, 40, 2.5) + re('gm-d-blau', 50, 130, 4.6, 40, 1.5) + re('fig-papier', 56, 136, 20, 3.4, 1.2) + re('gm-a-sonne', 60, 126, 10, 6, 1.2) + re('gm-a-beere', 72, 127, 8, 5, 1.2), [-6, 65, 150]));
+  t.push(pf('fig-haut', 'M76,152C79,148 85,148 87,152L88,164C84,168 78,168 75,164Z'));
+  return { kopf, svg: t.join('') };
+};
+
+/**
+ * Stimme ohne Gesicht (P19.6): Umriss von Kopf und Schultern mit drei Sprechlinien – die Vertretung nur so, die Vergabestelle mit dem Hörer am Ohr.
+ * Es gibt keine Stimmung: Ein Umriss lacht nicht.
+ */
+const stimme = (hoerer: boolean): Zeichner => () => {
+  const kopf: Kopf = { haut: 2, haar: 'braun' };
+  const t: string[] = [];
+  t.push(unten('fig-stimme', 54, 'C58,146 76,134 98,132L110,132C132,134 150,146 156,152', 156));
+  t.push(pf('fig-stimme-s', 'M98,132L110,132L112,120C108,124 100,124 96,120Z'));
+  t.push(kr('fig-stimme', 104, 94, 25));
+  t.push(pf('fig-stimme-s fig-hauch', 'M82,96C82,112 92,122 104,122C96,118 90,108 90,96Z'));
+  if (hoerer) t.push(pf('fig-hoerer', 'M126,84C136,82 140,90 140,100C140,110 136,116 126,114'), re('fig-hoerer-kapsel', 124, 79, 9, 12, 4), re('fig-hoerer-kapsel', 123, 107, 9, 12, 4));
+  t.push(pf('fig-schwingung fig-schwingung-stark', hoerer ? 'M146,76Q154,94 146,112M154,66Q168,94 154,122M162,58Q182,94 162,130' : 'M134,76Q142,94 134,112M144,66Q158,94 144,122M154,58Q174,94 154,130'));
+  return { kopf, svg: t.join('') };
+};
+
+const ZEICHNER: Record<Figur | Nebenfigur | Stimme, Zeichner> = { sie, grundstein, faden, schwung, klingel, lot, ranzen, spitzfeder, pfennig, vergabestelle: stimme(true), vertretung: stimme(false) };
 
 /** Bildbeschreibung eines Porträts (deutsch, für `aria-label` und `<title>`). */
-export function portraetText(figur: Figur, stimmung: Stimmung = 'neutral'): string {
-  const er = figur === 'schwung' || figur === 'lot';
-  return BILD_TEXT[figur] + (figur === 'sie' ? '' : (er ? STIMMUNG_TEXT_ER : STIMMUNG_TEXT)[stimmung]);
+export function portraetText(figur: Figur | Nebenfigur | Stimme, stimmung: Stimmung = 'neutral'): string {
+  const er = figur === 'schwung' || figur === 'lot' || figur === 'spitzfeder' || figur === 'pfennig';
+  const ohneGesicht = figur === 'sie' || figur === 'vergabestelle' || figur === 'vertretung';
+  return BILD_TEXT[figur] + (ohneGesicht ? '' : (er ? STIMMUNG_TEXT_ER : STIMMUNG_TEXT)[stimmung]);
 }
 
 function kantenlaenge(groesse: PortraetOptionen['groesse']): number {
@@ -428,12 +599,12 @@ function kantenlaenge(groesse: PortraetOptionen['groesse']): number {
  * Porträt einer Figur als SVG: Brustbild im Dreiviertelprofil auf rundem Farbfeld im Figurenton. Vorgabe groß
  * (200 px); `groesse: 'klein'` ergibt den Avatar (56 px) ohne feine Details.
  */
-export function portraet(figur: Figur, optionen: PortraetOptionen = {}): string {
+export function portraet(figur: Figur | Nebenfigur | Stimme, optionen: PortraetOptionen = {}): string {
   const px = kantenlaenge(optionen.groesse);
   const fein = px >= 100;
-  const stimmung = figur === 'sie' ? 'neutral' : optionen.stimmung ?? 'neutral';
+  const stimmung = figur === 'sie' || figur === 'vergabestelle' || figur === 'vertretung' ? 'neutral' : optionen.stimmung ?? 'neutral';
   const { kopf, svg } = ZEICHNER[figur](stimmung, fein);
-  const ton = figur === 'sie' ? 'marke' : FIGUR_AKZENT[figur];
+  const ton = figur === 'sie' ? 'marke' : figur === 'vergabestelle' || figur === 'vertretung' ? 'keiner' : figur in NEBENFIGUR_AKZENT ? NEBENFIGUR_AKZENT[figur as Nebenfigur] : FIGUR_AKZENT[figur as Exclude<Figur, 'sie'>];
   const klasse = ['fig-portraet', `fig-ton-${ton}`, `fig-haut-${kopf.haut}`, `fig-haar-${kopf.haar}`, fein ? 'fig-fein' : 'fig-klein', optionen.klasse].filter(Boolean).join(' ');
   const text = portraetText(figur, stimmung);
   const zugang = optionen.dekorativ ? 'aria-hidden="true" focusable="false"' : `role="img" aria-label="${text}"`;
@@ -461,6 +632,9 @@ export const GIMMICKS = [
   'buch', 'mappe', 'matrix', 'sonne', 'wegweiser', 'stoppuhr', 'bruecke', 'eintrag',
   // P18.3/P18.4 (Konzept WERKZEUGE-P18 Abschnitt 6): Kacheln der vier neuen Explore-Werkzeuge und das Ergebnis „Maßnahme“
   'klemmbrett', 'gabelung', 'messlatte', 'berichtsblatt', 'werkzeugkasten',
+  // P19.6 (Drehbuch v2, Akte I bis III): Bilder der neuen Stationen und Mini-Aufgaben
+  'stuhlreihen', 'schlagzeile', 'glocke-haken', 'angebotskalender', 'pinnwand', 'haftzettel', 'gespraechskarten', 'musskarten',
+  'genehmigung-auflage', 'hallenboden', 'tasse',
 ] as const;
 export type GimmickName = (typeof GIMMICKS)[number];
 
@@ -502,6 +676,17 @@ const GIMMICK_TEXT: Record<GimmickName, string> = {
   messlatte: 'Eine Messlatte mit vier Kerben und einer Marke.',
   berichtsblatt: 'Eine Seite mit drei Ampelpunkten und wenigen Zeilen.',
   werkzeugkasten: 'Ein offener Werkzeugkasten mit Hammer und Schraubenschlüssel.',
+  stuhlreihen: 'Zwei Stuhlreihen in einem Raum, in der hinteren Reihe heben zwei Eltern die Hand.',
+  schlagzeile: 'Eine Zeitungsseite „Lindenbote“ mit großer Schlagzeile, einem Bild und mehreren Spalten.',
+  'glocke-haken': 'Eine kleine Messingglocke, die an einem Haken an der Wand hängt.',
+  angebotskalender: 'Ein Kalenderblatt mit markiertem Freitag und daneben ein Preisschild mit Eurozeichen.',
+  pinnwand: 'Eine Pinnwand mit vier Zetteln, drei davon sind mit roten Fäden verbunden, ein Faden endet lose.',
+  haftzettel: 'Ein Eintrag mit wenigen Zeilen, darauf klebt ein gelber Haftzettel mit zwei kurzen Wörtern.',
+  gespraechskarten: 'Vier Gesprächskarten mit je einem Porträt und zwei Zeilen, daneben ein kleiner Fristkalender.',
+  musskarten: 'Ein Trichter und darunter zwei Karten: Eine trägt ein Häkchen und kommt durch, die andere ein Kreuz und scheidet aus.',
+  'genehmigung-auflage': 'Ein Bescheid mit Stempel und ein angehefteter Zettel mit Warnzeichen: die Auflage.',
+  hallenboden: 'Ein Hallenboden aus Holzdielen mit zwei rot markierten Fugen.',
+  tasse: 'Eine Tasse Tee mit Dampf und einer Zitronenscheibe auf der Untertasse.',
 };
 
 export interface GimmickOptionen {
@@ -772,6 +957,106 @@ const GIMMICK_SVG: Record<GimmickName, () => string> = {
     + tr(46, 50, -30, re('gm-holz', -3, -26, 6, 30, 2) + re('gm-tinte', -9, -32, 18, 9, 2))
     + tr(76, 46, 28, re('gm-stahl', -2.5, -22, 5, 28, 2) + kr('gm-stahl', 0, -24, 6) + kr('gm-loch', 0, -26, 3))
     + re('gm-d-orange', 14, 44, 92, 14, 3) + re('gm-a-orange', 14, 56, 92, 46, 4) + re('gm-d-orange', 52, 52, 16, 10, 2),
+  // ------------------------------------------------------------------ P19.6
+  stuhlreihen: () => {
+    let s = boden(60, 52);
+    const stuhl = (x: number, y: number, b: number, h: number, ton: 'blau' | 'lagune' | 'violett' | 'orange'): string =>
+      re(`gm-d-${ton}`, x, y, b, h * 0.5, 3) + re(`gm-a-${ton}`, x + 2, y + 2, b - 4, h * 0.5 - 4, 2)
+      + re(`gm-d-${ton}`, x - 2, y + h * 0.56, b + 4, 7, 3) + re('gm-tinte', x + 2, y + h * 0.56 + 6, 3.4, h * 0.44 - 5, 1) + re('gm-tinte', x + b - 5.4, y + h * 0.56 + 6, 3.4, h * 0.44 - 5, 1);
+    // hintere Reihe mit zwei Menschen, die die Hand heben
+    for (const [x, ton] of [[12, 'lagune'], [46, 'blau'], [80, 'violett']] as const) s += stuhl(x, 46, 28, 36, ton);
+    for (const [cx, drehung] of [[26, -8], [94, 6]] as const) {
+      s += pf('gm-arm', `M${cx},58L${cx + drehung},34`) + kr('gm-s-orange gm-kante', cx + drehung, 29, 5) + kr('gm-s-orange gm-kante', cx, 48, 7.6) + pf('gm-d-orange', `M${cx - 10},60C${cx - 10},52 ${cx - 4},52 ${cx},52C${cx + 4},52 ${cx + 10},52 ${cx + 10},60Z`);
+    }
+    // vordere Reihe, größer
+    for (const [x, ton] of [[4, 'orange'], [44, 'lagune'], [84, 'blau']] as const) s += stuhl(x, 74, 32, 40, ton);
+    return s;
+  },
+  schlagzeile: () => boden(58, 46)
+    + gr(re('gm-papier gm-kante', 14, 12, 92, 96, 3) + re('gm-tinte', 20, 18, 80, 14, 2) + re('gm-papier', 28, 22, 64, 6, 2)
+      + re('gm-linie-flaeche', 20, 38, 80, 6, 2) + re('gm-linie-flaeche', 20, 47, 66, 6, 2)
+      + re('gm-glas-hell gm-kante', 20, 58, 36, 26, 2) + pf('gm-d-blau', 'M20,84L32,70L40,78L48,68L56,84Z')
+      + re('gm-linie-flaeche-hell', 62, 60, 38, 3.4, 1.7) + re('gm-linie-flaeche-hell', 62, 67, 34, 3.4, 1.7) + re('gm-linie-flaeche-hell', 62, 74, 38, 3.4, 1.7) + re('gm-linie-flaeche-hell', 62, 81, 30, 3.4, 1.7)
+      + re('gm-linie-flaeche-hell', 20, 91, 80, 3.4, 1.7) + re('gm-linie-flaeche-hell', 20, 98, 70, 3.4, 1.7), [-3, 60, 60]),
+  'glocke-haken': () => boden(60, 30)
+    + re('gm-holz-r', 30, 8, 60, 12, 3) + re('gm-papier gm-kante', 14, 16, 92, 92, 4)
+    + pf('gm-haken', 'M60,24V34C60,40 70,40 70,34V28')
+    + kr('gm-stahl', 60, 24, 3.4) + pf('gm-schnur', 'M70,28L62,44')
+    + pf('gm-messing', 'M60,44C50,44 46,52 45,62C44,76 41,86 33,94L87,94C79,86 76,76 75,62C74,52 70,44 60,44Z')
+    + pf('gm-messing-s', 'M67,46C72,51 74,58 75,66C76,78 79,87 87,94L75,94C72,80 72,60 67,46Z')
+    + re('gm-messing-s', 31, 92, 58, 6, 3) + kr('gm-messing-s', 60, 104, 5)
+    + pf('gm-glanz', 'M52,54C50,62 50,72 47,82L51,82C52,72 53,62 56,53Z'),
+  angebotskalender: () => {
+    let s = boden(60, 48);
+    s += gr(re('gm-papier gm-kante', 10, 24, 62, 70, 5) + re('gm-a-blau', 10, 24, 62, 16, 5) + pf('gm-a-blau', 'M10,34H72V40H10Z'), [-4, 41, 59]);
+    for (const x of [26, 56]) s += re('gm-tinte', x - 2, 18, 4, 12, 2);
+    for (let r = 0; r < 3; r++) for (let c = 0; c < 4; c++) s += re(c === 3 && r === 1 ? 'gm-a-beere' : 'gm-papier-s', 17 + c * 13.4, 48 + r * 13, 10, 9, 1.6);
+    // Preisschild mit Eurozeichen und Schnur
+    s += pf('gm-schnur', 'M88,34L96,52') + gr(pf('gm-a-sonne gm-kante-sonne', 'M72,60H110L116,74L110,88H72Z') + kr('gm-papier', 80, 74, 3.4) + kr('gm-a-sonne', 100, 74, 9) + pf('gm-euro', 'M104,70C100,67 95,69 94.8,74C95,79 100,81 104,78.5M92.6,72.4H100M92.6,75.6H100'), [6, 92, 74]);
+    return s;
+  },
+  pinnwand: () => {
+    let s = boden(60, 48) + re('gm-holz-r', 8, 14, 104, 88, 5) + re('gm-kork', 13, 19, 94, 78, 3);
+    // vier Zettel
+    const zettel = (x: number, y: number, ton: 'sonne' | 'blau' | 'lagune' | 'orange', dreh: number): string => gr(re(`gm-s-${ton} gm-kante-${ton}`, x, y, 26, 22, 2) + re('gm-linie-flaeche', x + 4, y + 6, 14, 2.6, 1.3) + re('gm-linie-flaeche-hell', x + 4, y + 12, 18, 2.6, 1.3), [dreh, x + 13, y + 11]);
+    s += zettel(18, 26, 'sonne', -4) + zettel(74, 24, 'blau', 5) + zettel(20, 64, 'lagune', 4) + zettel(72, 66, 'orange', -5);
+    // Fäden: drei sind verbunden, einer endet lose
+    s += pf('gm-faden', 'M31,37L87,36M87,36L85,77M31,37L33,75') + pf('gm-faden gm-faden-lose', 'M33,75C48,88 56,90 60,86');
+    for (const [x, y] of [[31, 37], [87, 36], [85, 77], [33, 75]] as const) s += kr('gm-nadel', x, y, 3.2);
+    return s;
+  },
+  haftzettel: () => boden(58, 34)
+    + re('gm-papier gm-kante', 22, 12, 70, 92, 4) + re('gm-linie-flaeche', 32, 22, 38, 4, 2) + re('gm-linie-flaeche-hell', 32, 32, 50, 3, 1.5) + re('gm-linie-flaeche-hell', 32, 40, 44, 3, 1.5) + re('gm-linie-flaeche-hell', 32, 48, 48, 3, 1.5)
+    + re('gm-linie-flaeche-hell', 32, 86, 40, 3, 1.5)
+    + gr(re('gm-a-sonne', 44, 58, 54, 36, 2) + pf('gm-d-sonne', 'M44,64H98V58H46Z') + pf('gm-unterschrift gm-schrift-dunkel', 'M52,74C56,68 60,68 60,74C60,80 64,70 68,72C71,74 70,80 74,78M52,86C58,82 66,84 72,82C80,80 84,84 90,82'), [-4, 70, 76]),
+  gespraechskarten: () => {
+    let s = boden(58, 50);
+    const karte = (x: number, y: number, ton: 'blau' | 'orange' | 'lagune' | 'sonne', dreh: number): string =>
+      gr(re('gm-papier gm-kante', x, y, 40, 34, 3) + kr(`gm-a-${ton}`, x + 11, y + 12, 7) + kr('gm-s-orange', x + 11, y + 10, 3) + pf(`gm-d-${ton}`, `M${x + 5},${y + 22}C${x + 6},${y + 16} ${x + 16},${y + 16} ${x + 17},${y + 22}Z`)
+        + re('gm-linie-flaeche', x + 22, y + 8, 14, 3, 1.5) + re('gm-linie-flaeche-hell', x + 22, y + 15, 14, 3, 1.5) + re('gm-linie-flaeche-hell', x + 5, y + 27, 30, 3, 1.5), [dreh, x + 20, y + 17]);
+    s += karte(8, 10, 'blau', -4) + karte(56, 8, 'orange', 4) + karte(10, 52, 'lagune', 3) + karte(58, 50, 'sonne', -3);
+    // kleiner Fristkalender vorn rechts unten
+    s += re('gm-papier gm-kante', 90, 86, 24, 24, 3) + re('gm-a-beere', 90, 86, 24, 7, 3) + re('gm-papier-s', 94, 97, 6, 5, 1) + re('gm-papier-s', 103, 97, 6, 5, 1) + re('gm-a-beere', 94, 104, 6, 4, 1);
+    return s;
+  },
+  musskarten: () => boden(60, 40)
+    + pf('gm-trichter', 'M18,12H102L72,48V66H48V48Z') + pf('gm-trichter-s', 'M84,12H102L72,48V66H60C70,48 80,30 84,12Z') + re('gm-stahl', 48, 64, 24, 6, 2)
+    + gr(re('gm-papier gm-kante', 12, 76, 44, 32, 4) + kr('gm-s-gruen', 26, 92, 9) + pf('gm-haken-gruen', 'M21,92L25,96L32,86') + re('gm-linie-flaeche', 38, 84, 14, 3, 1.5) + re('gm-linie-flaeche-hell', 38, 91, 14, 3, 1.5) + re('gm-linie-flaeche-hell', 38, 98, 12, 3, 1.5), [-3, 34, 92])
+    + gr(re('gm-papier gm-kante', 64, 78, 44, 32, 4) + kr('gm-s-beere', 78, 94, 9) + pf('gm-kreuz-beere', 'M73,89L83,99M83,89L73,99') + re('gm-linie-flaeche', 90, 86, 14, 3, 1.5) + re('gm-linie-flaeche-hell', 90, 93, 14, 3, 1.5) + re('gm-linie-flaeche-hell', 90, 100, 12, 3, 1.5), [4, 86, 94])
+    + pf('gm-pfeil-lagune', 'M46,70V74M44,72L46,75L48,72') + pf('gm-pfeil-beere', 'M76,70L84,76M80,74L84,76L83,71'),
+  'genehmigung-auflage': () => boden(58, 38)
+    + re('gm-papier gm-kante', 16, 10, 70, 96, 4) + re('gm-a-lagune', 16, 10, 70, 14, 4) + pf('gm-a-lagune', 'M16,18H86V24H16Z') + re('gm-papier', 26, 14, 30, 4, 2)
+    + re('gm-linie-flaeche', 26, 34, 44, 4, 2) + re('gm-linie-flaeche-hell', 26, 44, 52, 3, 1.5) + re('gm-linie-flaeche-hell', 26, 52, 46, 3, 1.5) + re('gm-linie-flaeche-hell', 26, 60, 50, 3, 1.5)
+    + kr('gm-d-beere', 36, 88, 11) + kr('gm-siegel', 36, 88, 7.4) + pf('gm-haken-weiss', 'M31,88L35,92L42,83')
+    + pf('gm-unterschrift', 'M54,92C58,84 62,84 62,92C62,98 68,86 72,88C75,90 74,96 78,94')
+    + gr(re('gm-s-sonne gm-kante-sonne', 62, 56, 46, 40, 3) + pf('gm-d-sonne', 'M85,62L99,86H71Z') + pf('gm-tinte', 'M84,70H86L85.4,80H84.6Z') + kr('gm-tinte', 85, 83, 1.4) + pf('gm-klammer', 'M66,52V62C66,66 72,66 72,62V54'), [5, 85, 76]),
+  hallenboden: () => {
+    let s = boden(60, 52);
+    // Dielen in Reihen mit versetzten Stößen, leicht von oben links nach unten rechts verkürzt
+    s += pf('gm-holz-r', 'M6,40L114,40L120,100L0,100Z');
+    const reihen = [[40, 52], [52, 64], [64, 76], [76, 88], [88, 100]] as const;
+    reihen.forEach(([y1, y2], i) => {
+      const breite = (y: number): [number, number] => [6 - (6 * (y - 40)) / 60, 114 + (6 * (y - 40)) / 60];
+      const [xa] = breite(y1), [, xb] = breite(y1);
+      s += pf(i % 2 === 0 ? 'gm-holz' : 'gm-holz-o', `M${r1(xa)},${y1}L${r1(xb)},${y1}L${r1(breite(y2)[1])},${y2}L${r1(breite(y2)[0])},${y2}Z`);
+      // Stöße
+      const stoss = i % 2 === 0 ? [34, 78] : [20, 56, 92];
+      for (const x of stoss) s += pf('gm-holz-fuge', `M${x + i},${y1}L${x + i + (x - 60) * 0.1},${y2}`);
+    });
+    s += pf('gm-holz-fuge', 'M6,40L114,40M3,52L117,52M2,64L118,64M1,76L119,76M0,88L120,88');
+    // Spielfeldlinie
+    s += pf('gm-feldlinie', 'M10,96L110,96M60,40L60,100');
+    // zwei markierte Fugen: dunkle Spalte mit rotem Klebeband-Kreis und Pfeil
+    s += pf('gm-spalt', 'M30,56L34,64M80,76L84,88') + kr('gm-markierung-beere', 32, 60, 8.4) + kr('gm-markierung-beere', 82, 82, 8.4) + pf('gm-pfeil-beere', 'M58,52L48,56M104,64L92,72');
+    return s;
+  },
+  tasse: () => boden(58, 40)
+    + el('gm-s-lagune gm-kante-lagune', 58, 92, 38, 9) + el('gm-d-lagune', 58, 90, 30, 6)
+    + pf('gm-tasse', 'M30,48H88V70C88,84 78,92 59,92C40,92 30,84 30,70Z') + pf('gm-tasse-s', 'M72,50H88V70C88,82 80,90 66,92C72,84 74,66 72,50Z')
+    + pf('gm-tasse-henkel', 'M88,56C102,54 104,74 86,76') + el('gm-a-orange', 59, 48, 29, 5) + el('gm-a-sonne', 59, 48, 26, 3.6)
+    + pf('gm-teebeutel', 'M44,46L40,34M40,34L36,36') + re('gm-papier gm-kante', 30, 30, 10, 10, 1.5)
+    + pf('gm-dampf', 'M50,38C44,30 54,26 48,16M64,38C58,30 68,26 62,16M78,38C72,30 82,26 76,16')
+    + kr('gm-a-sonne gm-kante-sonne', 96, 88, 9) + kr('gm-s-sonne', 96, 88, 6.4) + pf('gm-zitrone', 'M96,88L96,80M96,88L103,88M96,88L91,94M96,88L90,86'),
   bruecke: () => {
     let boegen = 'M8,58H112V98H8Z';
     for (const x of [26, 60, 94]) boegen += `M${x - 12},98V82A12,12 0 0 1 ${x + 12},82V98Z`;

@@ -13,7 +13,7 @@
 import type { Kapitel, Vergleich, VergleichOption } from '../../geschichte/typen.ts';
 import { abgestimmteGewichte } from '../../geschichte/engine.ts';
 import { GEWICHT_MAX, GEWICHT_MIN, kipppunkte, rangfolge, type Gewichte } from '../../geschichte/mcda.ts';
-import { FIGUR_NAME, gimmick, type GimmickName } from '../../grafik/figuren.ts';
+import { SPRECHER_NAME, gimmick, type GimmickName } from '../../grafik/figuren.ts';
 import type { Akzent } from '../../stil/akzente.ts';
 import type { OeffentlicheInhalte, Werkzeuge } from '../../inhalte/typen.ts';
 import { ersetze, h, vonHtml } from '../h.ts';
@@ -86,7 +86,7 @@ function lage(o: ExploreOptionen): HTMLElement | null {
   const k = vergleichsKapitel(o);
   const z = k?.szene[0];
   if (k === undefined || k === null || z === undefined) return null;
-  const wer = z.figur === null ? '' : `${FIGUR_NAME[z.figur].name}, ${FIGUR_NAME[z.figur].rolle} · `;
+  const wer = z.figur === null ? '' : `${SPRECHER_NAME[z.figur].name}, ${SPRECHER_NAME[z.figur].rolle} · `;
   return h('p', { class: 'ex-frage', 'data-pruef': 'ex-lage' }, h('strong', null, `${k.titel}: `), '„', inhaltInline(z.html), '“ ', h('small', null, `${wer}${k.zeit}`));
 }
 

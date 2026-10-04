@@ -335,6 +335,13 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     const teile: Node[] = [];
     if (r?.notizHtml) teile.push(h('div', { class: 'regie-notiz-text' }, inhalt(r.notizHtml)));
     if (r !== null) teile.push(...leitfragen(r.leitfragen));
+    // P19.6: die Nebenfiguren, die in dieser Station sprechen, mit ihrem Steckbrief – nur hier, nie auf der Leinwand
+    const kap = g.kapitel.find((x) => x.id === s.kapitel);
+    const neben = (g.nebenfiguren ?? []).filter((n) => kap?.szene.some((z) => z.figur === n.id) === true);
+    if (neben.length > 0) {
+      teile.push(h('h3', { class: 'regie-h3' }, w.nebenfiguren), h('ul', { class: 'regie-nebenfiguren', 'data-pruef': 'regie-nebenfiguren' },
+        neben.map((n) => h('li', { 'data-figur': n.id }, h('b', null, `${n.name}, ${n.rolle}: `), inhaltInline(n.steckbriefHtml)))));
+    }
     ersetze(notizInhalt, teile.length > 0 ? teile : leer);
   };
 

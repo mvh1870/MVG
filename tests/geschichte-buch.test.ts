@@ -421,13 +421,13 @@ test('Verlauf, offene Stationen: „noch offen“, die Linie reißt ab, kein Sta
   assert.equal(svg.querySelectorAll('[stroke-dasharray]').length, 0, 'keine Verbindung über die Lücke');
 });
 
-test('Verlauf, Kurzfassung: übersprungene Stationen als hohle Punkte, Legende „Hohle Punkte: Station nur erzählt, nicht gespielt.“, keine gespielte Station hohl', () => {
+test('Verlauf, Kurzfassung: übersprungene Stationen als hohle Punkte, Legende „Hohle Punkte: Diese Stationen wurden nur erzählt.“, keine gespielte Station hohl', () => {
   const s = { ...bisStation(14, 'gut', true), schritt: { ort: 'ende' } as const };
   const v = verlauf(g, s, 14, 'Kopf', true);
   const svg = v.querySelector('svg.vb') as SVGElement;
   assert.equal(svg.querySelectorAll('circle.vb-geld').length, 15);
   assert.equal(svg.querySelectorAll('circle.vb-geld.vb-punkt-hohl').length, 10, 'zehn übersprungene Stationen');
-  assert.equal(text(v.querySelector('[data-pruef="gs-verlauf-hohl"]') as Element), 'Hohle Punkte: Station nur erzählt, nicht gespielt.');
+  assert.equal(text(v.querySelector('[data-pruef="gs-verlauf-hohl"]') as Element), 'Hohle Punkte: Diese Stationen wurden nur erzählt.');
   assert.equal(v.querySelectorAll('li[data-erzaehlt="true"]').length, 10);
   // Gegenprobe: ganzer Weg ohne hohle Punkte und ohne Legende
   const lang = verlauf(g, { ...bisStation(14), schritt: { ort: 'ende' } }, 14, 'Kopf', true);

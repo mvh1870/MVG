@@ -110,8 +110,8 @@ test('Grundlage: fehlerfrei; Belege und Begründungen bleiben intern, die Regie 
 
 test('Unbekanntes Feld – im Kapitel, in einer Antwort, im Rahmen: Fehler', () => {
   assert.deepEqual(lauf(({ k1 }) => { k1.lph = 3; }).fehler, [`${K1}: unbekanntes Feld „lph“ (erlaubt: nr, titel, zeit, campus, thema, belege, einstieg, szene, frage, antworten, gut, dahinter, kurzfassung, bruecke, einstieg-kurz, campus-nachher, zusatz, bild-szene, bild-frage, mandat-nach-folge, mini, vergleich, regie, werkzeuge, vertiefung, gut-kurz, dahinter-kurz)`]);
-  assert.deepEqual(lauf(({ k1 }) => { k1.antworten[0].punkte = 3; }).fehler, [`${K1} Antwort 1: unbekanntes Feld „punkte“ (erlaubt: wertung, text, balken, folge, bild, folge-kurz)`]);
-  assert.deepEqual(lauf(({ r }) => { r.prolog = {}; }).fehler, [`${R}: unbekanntes Feld „prolog“ (erlaubt: titel, auftakt, sie, figuren, balken, bilanz, mandat, ende, reihenfolge, akte, echos, buch)`]);
+  assert.deepEqual(lauf(({ k1 }) => { k1.antworten[0].punkte = 3; }).fehler, [`${K1} Antwort 1: unbekanntes Feld „punkte“ (erlaubt: wertung, text, balken, folge, bild, folge-kurz, schlagzeile)`]);
+  assert.deepEqual(lauf(({ r }) => { r.prolog = {}; }).fehler, [`${R}: unbekanntes Feld „prolog“ (erlaubt: titel, auftakt, sie, figuren, balken, bilanz, mandat, ende, reihenfolge, akte, echos, buch, nebenfiguren, oberflaeche)`]);
 });
 
 test('Unbekannte Datei im Ordner (etwa eine alte Station): Fehler statt stillem Übergehen', () => {
@@ -181,9 +181,9 @@ test('Mini-Aufgabe: Lösung ist eine der Wahlen; eine Reihenfolge hat keine Wahl
   assert.deepEqual(lauf(({ k2 }) => { k2.mini.posten.pop(); }).fehler, [`${K2} mini: mindestens drei Posten`]);
 });
 
-test('Bilder nur aus dem Bestand von src/grafik/figuren.ts; Figuren nur die fünf', () => {
+test('Bilder nur aus dem Bestand von src/grafik/figuren.ts; Sprecher nur die fünf Figuren, die drei Nebenfiguren und die zwei Stimmen', () => {
   assert.deepEqual(lauf(({ k1 }) => { k1['bild-szene'] = 'einhorn'; }).fehler, [`${K1}: Bild „einhorn“ gibt es nicht (src/grafik/figuren.ts, GIMMICKS)`]);
-  assert.deepEqual(lauf(({ k2 }) => { k2.szene[0].figur = 'stadtrat'; }).fehler, [`${K2} szene Zeile 1: Figur „stadtrat“ unbekannt (grundstein, faden, schwung, klingel, lot)`]);
+  assert.deepEqual(lauf(({ k2 }) => { k2.szene[0].figur = 'stadtrat'; }).fehler, [`${K2} szene Zeile 1: Figur „stadtrat“ unbekannt (grundstein, faden, schwung, klingel, lot, ranzen, spitzfeder, pfennig, vergabestelle, vertretung)`]);
 });
 
 test('Ende: die Ersatzzeilen „Vertrauen niedrig“ und „nach einer Falle“ ersetzen Zeilen von Figuren, die dort sprechen (L-239)', () => {

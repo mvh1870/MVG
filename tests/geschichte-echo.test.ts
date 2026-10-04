@@ -72,7 +72,7 @@ test('Echo: ein unbekanntes Echo gibt es nicht; die drei Fassungen unterscheiden
   assert.equal(E.echoHtml(g, s, 'E7'), null);
   assert.equal(E.echoDef(g, 'E7'), null);
   for (const e of g.echos ?? []) assert.equal(new Set(Object.values(e.fassungen)).size, 3, e.id);
-  assert.ok(E.ECHOS_MAX >= (g.echos ?? []).length && E.ECHOS_MAX === 10);
+  assert.ok(E.ECHOS_MAX >= (g.echos ?? []).length && E.ECHOS_MAX === 11, 'elf Einträge: E8 hat zwei Sprecher (L-340)');
 });
 
 test('Zeile: eine Echo-Zeile bekommt Fassung plus Fortsetzung (Kurzfassung: ihre eigene), jede andere Zeile bleibt dasselbe Objekt', () => {

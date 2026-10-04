@@ -165,7 +165,7 @@ test('Kern rueckfragen: zwei von vier Gesprächen, Reihenfolge der Wahl, gesperr
   assert.equal(def.aenderung(a, b), 0);
   assert.equal(def.aenderung(b, [2]), 0, 'zurückgenommen: das gelöste');
   assert.equal(def.aenderung(b, b), null);
-  assert.deepEqual(def.lesezeitOhne, ['.gs-gespraech']);
+  assert.deepEqual(def.lesezeitOhne, ['.gs-gespraech', '.gs-eintrag']);
 });
 
 test('Stand laden: die Prüfung der Zahlenliste kommt aus der Registry jeder neuen Art; Unpassendes fällt weg, der Rest bleibt', () => {

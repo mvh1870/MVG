@@ -261,7 +261,26 @@ function zeichneRueckfragen(o: SchrittOptionen, k: Kapitel, m: Mini): HTMLElemen
           (p.gespraech ?? []).map((z) => h('p', { class: 'gs-gespraech-zeile' }, h('b', null, `${z.wer}: `), inhaltInline(z.html))),
           h('p', { class: 'gs-gespraech-fest' }, inhaltInline(p.erklaerungHtml))) : null);
     }));
-  return h('div', { class: 'gs-mini-karten-mit-schluss' }, liste, schlussSatz(m, aus));
+  return h('div', { class: 'gs-mini-karten-mit-schluss' }, liste, eintragKarte(m, antworten), schlussSatz(m, aus));
+}
+
+/**
+ * Eintrag-Kärtchen (P19.6): die Zeilen („Quelle“, „Offene Frage“ …) sind anfangs leer; jedes gewählte Gespräch füllt die Zeile, die es
+ * betrifft, mit dem, was die Vertretung festhält. Ohne Kärtchen im Inhalt (`Mini.eintrag`) gibt es nichts. Es zählt nicht zur Lesezeit.
+ */
+function eintragKarte(m: Mini, antworten: readonly number[]): HTMLElement | null {
+  const e = m.eintrag;
+  if (e === undefined) return null;
+  const gewaehlt = antworten.map((i) => m.posten[i]);
+  return h('div', { class: 'gs-eintrag', 'data-pruef': 'mini-eintrag' },
+    h('p', { class: 'gs-kicker' }, w.miniEintrag),
+    e.titelHtml !== null ? h('p', { class: 'gs-eintrag-titel' }, inhaltInline(e.titelHtml)) : null,
+    h('dl', null, e.zeilen.map((zeile) => {
+      const p = gewaehlt.find((x) => x?.eintragZeile === zeile);
+      return h('div', { 'data-gefuellt': p !== undefined ? 'true' : 'false', 'data-pruef': `eintrag-zeile` },
+        h('dt', null, zeile),
+        h('dd', null, p?.eintragTextHtml !== undefined ? inhaltInline(p.eintragTextHtml) : h('span', { class: 'gs-eintrag-leer' }, w.miniEintragLeer)));
+    })));
 }
 
 function standRueckfragen(a: readonly number[] | undefined, m: Mini): string {

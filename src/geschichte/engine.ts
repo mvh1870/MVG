@@ -524,8 +524,11 @@ export function vergleichLage(v: Vergleich, gew: Gewichte): VergleichLage {
 
 /* ---------------------------------------------------------- Gedächtnis: Echos (P19.4) -- */
 
-/** Höchstzahl der Echos einer Geschichte (Gerüst Abschnitt 4: jeder Weg zeigt höchstens zehn Zeilen). */
-export const ECHOS_MAX = 10;
+/**
+ * Höchstzahl der Echos einer Geschichte (Gerüst Abschnitt 4: höchstens zehn; P19.6, L-340: elf, weil E8 zwei Sprecher hat – Pfennig und
+ * Ranzen in Station 13 – und ein Echo nur eine Zeile je Fassung trägt: E8 und E8b sind zwei Einträge mit derselben Quelle).
+ */
+export const ECHOS_MAX = 11;
 
 export function echoDef(g: Geschichte, id: string): EchoDef | null {
   return (g.echos ?? []).find((e) => e.id === id) ?? null;
@@ -565,6 +568,23 @@ export function loeseZeile(g: Geschichte, stand: Stand, z: Zeile): Zeile {
   if (fassung === null) return z;
   const rest = stand.kurz ? z.fortsetzungKurzHtml ?? z.fortsetzungHtml : z.fortsetzungHtml;
   return { ...z, html: rest !== undefined && rest !== '' ? `${fassung} ${rest}` : fassung };
+}
+
+/**
+ * Die Zeilen einer Szene auf diesem Weg (P17.5, P19.4, P19.6): die Kurzfassung lässt Zeilen mit `kurzfassung: false` weg und setzt für
+ * Zeilen mit `text-kurz` den Ersatz ein (er ersetzt die ganze Zeile, auch ein Echo samt Fortsetzung); der ganze Weg lässt Zeilen mit
+ * `nur-kurzfassung` weg. Jede übrige Echo-Zeile bekommt ihre Fassung nach der gespielten Antwort der Quelle (`loeseZeile`).
+ */
+export function zeilenAufWeg(g: Geschichte, stand: Stand, zeilen: readonly Zeile[]): Zeile[] {
+  const aus: Zeile[] = [];
+  for (const z of zeilen) {
+    if (stand.kurz) {
+      if (!z.kurzfassung) continue;
+      if (z.kurzHtml !== undefined) { aus.push({ figur: z.figur, zusatz: z.zusatz, html: z.kurzHtml, kurzfassung: true }); continue; }
+    } else if (z.nurKurz === true) continue;
+    aus.push(loeseZeile(g, stand, z));
+  }
+  return aus;
 }
 
 /* --------------------------------------------------- Entscheidungsbuch (P19.4) -- */

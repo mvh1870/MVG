@@ -29,6 +29,8 @@ const TESTS_P19 = [
   'tests/geschichte-echo.test.ts', 'tests/geschichte-buch.test.ts', 'tests/geschichte-mini-neu.test.ts', 'tests/geschichte-uebersetzer-p19.test.ts',
   'tests/geschichte-mini-registry.test.ts',
 ];
+/** P19.6 Technik IV: text-kurz, nur-kurzfassung, Sprecher, Wegkarten, Brückenzeile, Eintrag-Kärtchen, Nebenfiguren (Übersetzer, Engine, Seite, Grafik) */
+const TESTS_P196 = ['tests/geschichte-uebersetzer-p196.test.ts', 'tests/geschichte-p196.test.ts', 'tests/figuren-p196.test.ts', 'tests/geschichte-oberflaeche.test.ts'];
 const TESTS_WERKZEUGE = [
   'tests/werkzeuge-vorlagen-check.test.ts', 'tests/werkzeuge-wegweiser.test.ts', 'tests/werkzeuge-risiko-grenzen.test.ts',
   'tests/werkzeuge-monatsbericht.test.ts', 'tests/werkzeuge-wachter.test.ts',
@@ -132,7 +134,7 @@ export const MUTANTEN = [
   ['src/geschichte/engine.ts', "if (k.nr > bisNr) continue;\n    const erzaehlt", "if (k.nr >= bisNr) continue;\n    const erzaehlt", 'Verlauf: bis einschließlich der gefragten Station', TESTS_AKTE],
   ['src/ui/flaechen/geschichte.ts', "if (a === aktHier) return stationen.map(", "if (false) return stationen.map(", 'Akt-Leiste: der Akt der gezeigten Station ist aufgeklappt', TESTS_AKTE],
   ['src/ui/flaechen/geschichte.ts', "|| a.stationen[0] !== k.id) return null;", "|| false) return null;", 'Kopfkarte nur über der ersten Station eines Akts', TESTS_AKTE],
-  ['src/ui/flaechen/geschichte.ts', "stand.kurz && g.kapitel.some((k) => !k.kurzfassung) ? h('button'", "false ? h('button'", 'Ende der Kurzfassung: Knopf „Weiter mit der ganzen Geschichte“', TESTS_AKTE],
+  ['src/ui/flaechen/geschichte.ts', "stand.kurz && g.kapitel.some((k) => !k.kurzfassung) ? [h('p'", "false ? [h('p'", 'Ende der Kurzfassung: Knopf „Weiter mit der ganzen Geschichte“', TESTS_AKTE],
   ['src/grafik/verlauf.ts', "{ klasse: 'vb-band-mittel', von: 3.5, bis: 6.5 },", "{ klasse: 'vb-band-mittel', von: 3.5, bis: 6 },", 'Verlaufsband: die Bänder reichen lückenlos von niedrig bis hoch', TESTS_AKTE],
   ['src/stil/geschichte.css', ".druck-story .druck-akt + .druck-akt { break-before: page; }", ".druck-story .druck-akt + .druck-akt { break-before: auto; }", 'Druck: Seitenumbruch zwischen den Akten', TESTS_AKTE],
   ['src/stil/geschichte.css', ".gs-fortschritt-akte .gs-felder li { min-width: 24px; }", ".gs-fortschritt-akte .gs-felder li { min-width: 12px; }", 'Akt-Leiste: Zielgröße mindestens 24 px', TESTS_AKTE],
@@ -183,7 +185,7 @@ export const MUTANTEN = [
   ['werkzeuge/geschichte.mjs', "else if (woerter(ersatz) >= woerter(langRoh))", "else if (false)", 'Übersetzer: …-kurz kürzer als der lange Text', TESTS_P19],
   ['werkzeuge/geschichte.mjs', "if (woerter(t) > VERTIEFUNG_ABSATZ_MAX)", "if (woerter(t) >= VERTIEFUNG_ABSATZ_MAX)", 'Übersetzer: Vertiefung, 60 Wörter je Absatz sind erlaubt', TESTS_P19],
   ['werkzeuge/geschichte.mjs', "if (woerter(t) > VERTIEFUNG_ABSATZ_MAX)", "if (woerter(t) > VERTIEFUNG_ABSATZ_MAX + 5)", 'Übersetzer: Vertiefung, höchstens 60 Wörter je Absatz', TESTS_P19],
-  ['werkzeuge/geschichte.mjs', "if (r.echos.length > ECHOS_MAX)", "if (r.echos.length >= ECHOS_MAX)", 'Übersetzer: zehn Echos sind erlaubt', TESTS_P19],
+  ['werkzeuge/geschichte.mjs', "if (r.echos.length > ECHOS_MAX)", "if (r.echos.length >= ECHOS_MAX)", 'Übersetzer: elf Echos sind erlaubt (E8 hat zwei Sprecher, L-340)', TESTS_P19],
   ['werkzeuge/geschichte.mjs', "else if (stelle === 'vor-vergleich' && !hatVergleich)", "else if (false)", 'Übersetzer: Mini vor dem Vergleich nur mit Vergleich', TESTS_P19],
   ['werkzeuge/lesezeit.mjs', "if (s !== gut) varianten.push(zaehle(s, sch));", "if (false) varianten.push(zaehle(s, sch));", 'Lesezeit: die obere Schranke zählt die längste Echo-Fassung', TESTS_P19],
   ['src/ui/flaechen/geschichte-buch.ts', "o.gesehen !== undefined && !o.gesehen.has(s.k.id);", "o.gesehen !== undefined;", 'Buch: „neu“ nur für Einträge, die beim letzten Öffnen fehlten', TESTS_P19],
@@ -201,6 +203,41 @@ export const MUTANTEN = [
   ['src/regie/regie.ts', "if (neu.buch === true && (neu.bereich !== 'story' || !gleicherSchritt(", "if (false && (neu.bereich !== 'story' || !gleicherSchritt(", 'Regie: das Buch auf der Leinwand gilt nur für den Schritt', TESTS_P19],
   ['src/regie/buehne.ts', "r['buch'] === true && r['bereich'] === 'story'", "r['buch'] === true", 'Bühnenstand: das Buch nur im Bereich Story', TESTS_P19],
   ['src/regie/leinwand.ts', "const buch = b.buch === true && (g.buch?.length ?? 0) > 0;", "const buch = b.buch === true;", 'Leinwand: ohne Buch in der Story kein Buch', TESTS_P19],
+  // P19.6 Technik IV (L-340 bis L-349)
+  ['src/geschichte/engine.ts', "export const ECHOS_MAX = 11;", "export const ECHOS_MAX = 10;", 'Echos: elf Einträge sind erlaubt (E8 und E8b)', TESTS_P196],
+  ['src/geschichte/engine.ts', "      if (z.kurzHtml !== undefined) {", "      if (false) {", 'Szene: die Kurzfassung setzt „text-kurz“ ein', TESTS_P196],
+  ['src/geschichte/engine.ts', "    } else if (z.nurKurz === true) continue;", "    } else if (false) continue;", 'Szene: der ganze Weg lässt „nur-kurzfassung“ weg', TESTS_P196],
+  ['src/geschichte/engine.ts', "      if (!z.kurzfassung) continue;\n      if (z.kurzHtml", "      if (z.kurzHtml", 'Szene: die Kurzfassung lässt „kurzfassung: nein“ weg', TESTS_P196],
+  ['src/geschichte/engine.ts', "aus.push({ figur: z.figur, zusatz: z.zusatz, html: z.kurzHtml, kurzfassung: true }); continue;", "aus.push(loeseZeile(g, stand, { ...z, html: z.kurzHtml })); continue;", 'Szene: „text-kurz“ ersetzt auch das Echo der Zeile', TESTS_P196],
+  ['werkzeuge/geschichte.mjs', "&& !v.zeile.kurzText &&", "&&", 'Übersetzer: „text-kurz“ an einer Echo-Zeile braucht keine Marke „kurzfassung: nein“', TESTS_P196],
+  ['werkzeuge/geschichte.mjs', "if (kurzRoh !== undefined && nurKurz) c.fehler(", "if (false) c.fehler(", 'Übersetzer: „text-kurz“ und „nur-kurzfassung“ nicht zugleich', TESTS_P196],
+  ['werkzeuge/geschichte.mjs', "if (kurzRoh !== undefined && woerter(kurzRoh) >= woerter(o.text)) c.fehler(", "if (false) c.fehler(", 'Übersetzer: „text-kurz“ kürzer als der Text', TESTS_P196],
+  ['werkzeuge/geschichte.mjs', "if (nur > 0 && zeilen.length - nur < 2) c.fehler(", "if (false) c.fehler(", 'Übersetzer: auf dem ganzen Weg bleiben mindestens zwei Zeilen', TESTS_P196],
+  ['werkzeuge/geschichte.mjs', "if (ersatzZeilen > 0) c.fehler(", "if (false) c.fehler(", 'Übersetzer: „text-kurz“ nur in Stationen der Kurzfassung', TESTS_P196],
+  ['werkzeuge/geschichte.mjs', "&& !nebenIds.has(o.figur)) c.fehler(", "&& false) c.fehler(", 'Übersetzer: eine Nebenfigur spricht nur, wenn der Rahmen sie führt', TESTS_P196],
+  ['werkzeuge/geschichte.mjs', "if (liste.map((/** @type {any} */ f) => f.id).join() !== NEBENFIGUREN.join()) c.fehler(", "if (false) c.fehler(", 'Übersetzer: die drei Nebenfiguren in fester Reihenfolge', TESTS_P196],
+  ['werkzeuge/geschichte.mjs', "if (o.akzent !== 'keiner' && !AKZENTE.includes(o.akzent)) c.fehler(", "if (false) c.fehler(", 'Übersetzer: Akzent der Nebenfigur aus der Palette oder „keiner“', TESTS_P196],
+  ['werkzeuge/geschichte.mjs', "if (k.bild !== undefined && text(k.bild) !== erwartet) c.fehler(", "if (false) c.fehler(", 'Übersetzer: die Bildbeschreibung der Wegkarte zählt die Stationen nach', TESTS_P196],
+  ['werkzeuge/geschichte.mjs', "if (Number(nummer[1]) !== nr) c.fehler(", "if (false) c.fehler(", 'Übersetzer: die Nummer vor der Brückenzeile ist die der Station', TESTS_P196],
+  ['werkzeuge/geschichte.mjs', "if (r.akte === undefined) return html(o.bruecke, ort);", "if (false) return html(o.bruecke, ort);", 'Übersetzer: ohne Akte bleibt der Brückensatz, wie er war', TESTS_P196],
+  ['werkzeuge/geschichte.mjs', "if (MONATE.includes(monat)) t = `${monat}: ${t}`;", "if (false) t = `${monat}: ${t}`;", 'Übersetzer: fehlt der Monat in der Brückenzeile, kommt er aus der Zeit', TESTS_P196],
+  ['werkzeuge/geschichte.mjs', "if (absaetze.length > 0 && absaetze.every((/** @type {any} */ a) => !a.kurzfassung)) c.fehler(", "if (false) c.fehler(", 'Übersetzer: im Kärtchen bleibt in der Kurzfassung ein Absatz', TESTS_P196],
+  ['werkzeuge/geschichte.mjs', "if (x.schlagzeile !== undefined && x.bild !== 'schlagzeile') c.fehler(", "if (false) c.fehler(", 'Übersetzer: die Schlagzeile braucht das Bild „schlagzeile“', TESTS_P196],
+  ['src/geschichte/mini-arten.ts', "if (mit.length > 0 && mit.length < posten.length) fehler(", "if (false) fehler(", 'Rückfragen: das Eintrag-Kärtchen – alle oder keine Erklärung nennt ihre Zeile', TESTS_P196],
+  ['src/geschichte/mini-arten.ts', "if (new Set(zeilen).size !== zeilen.length) fehler(", "if (false) fehler(", 'Rückfragen: jede Zeile des Eintrag-Kärtchens nur einmal', TESTS_P196],
+  ['src/ui/flaechen/geschichte.ts', "&& !zeilen.slice(0, i).some((x) => x.figur === z.figur);", ";", 'Szene: das Namensschild nur bei der ersten Zeile der Nebenfigur', TESTS_P196],
+  ['src/ui/flaechen/geschichte.ts', "&& ort === ersterAuftritt(g, z.figur) ", "", 'Szene: das Namensschild nur beim ersten Auftritt der Nebenfigur', TESTS_P196],
+  ['src/ui/flaechen/geschichte.ts', "z.absaetze.filter((a) => a.kurzfassung || !kurz)", "z.absaetze.filter(() => true)", 'Kärtchen: die Kurzfassung lässt Absätze mit „kurzfassung: nein“ weg', TESTS_P196],
+  ['src/ui/flaechen/geschichte.ts', "a.schlagzeileHtml !== undefined", "false", 'Folge: die Schlagzeile steht als Unterschrift unter dem Zeitungsbild', TESTS_P196],
+  ['src/ui/flaechen/geschichte.ts', "g.auftakt.wegwahl?.ueberschrift ?? w.wegWahl", "w.wegWahl", 'Auftakt: die Überschrift der Wegkarten kommt aus dem Rahmen', TESTS_P196],
+  ['src/ui/flaechen/geschichte.ts', "const mitAkten = akteVon(g).length > 0;\n  const kopfZeile", "const mitAkten = false;\n  const kopfZeile", 'Brücken: mit Akten eine Zeile je Station unter dem Kicker', TESTS_AKTE],
+  ['src/ui/flaechen/geschichte.ts', "h('p', { class: 'gs-kicker gs-weiter-kicker' }, w.weiterKicker), ", "", 'Ende der Kurzfassung: Kicker über dem Knopf der Weiterführung', TESTS_P196],
+  ['src/ui/flaechen/geschichte-mini.ts', "const p = gewaehlt.find((x) => x?.eintragZeile === zeile);", "const p = undefined;", 'Rückfragen: das gewählte Gespräch füllt seine Zeile im Eintrag-Kärtchen', TESTS_P196],
+  ['src/regie/regie.ts', "kap?.szene.some((z) => z.figur === n.id) === true", "true", 'Regie: nur die Nebenfiguren der Station mit Steckbrief', TESTS_P196],
+  ['src/grafik/figuren.ts', "ranzen: 'gruen', spitzfeder: 'keiner', pfennig: 'beere' };", "ranzen: 'orange', spitzfeder: 'keiner', pfennig: 'beere' };", 'Grafik: Ton der Nebenfigur Ranzen ist Grün', TESTS_P196],
+  ['src/grafik/figuren.ts', "const ton = figur === 'sie' ? 'marke' : figur === 'vergabestelle' || figur === 'vertretung' ? 'keiner'", "const ton = figur === 'sie' ? 'marke' : figur === 'vergabestelle' ? 'beere'", 'Grafik: die Stimmen tragen keinen Akzent', TESTS_P196],
+  ['src/ui/woerter.ts', "m <= 1 ? 'gleich geschafft'", "m <= 0 ? 'gleich geschafft'", 'Wörter: unter zwei Minuten „gleich geschafft“', TESTS_P196],
+  ['src/ui/woerter.ts', "13: 'Dreizehn', 14: 'Vierzehn' };", " };", 'Wörter: das Zahlwort reicht bis Vierzehn', TESTS_P196],
 ];
 
 function testsRot(tests = TESTS) {
@@ -229,7 +266,7 @@ export function probe() {
 }
 
 if (istHauptmodul(import.meta.url)) {
-  const vorher = spawnSync(process.execPath, ['--test', '--test-reporter=dot', ...TESTS, ...TESTS_AUTOMAT, ...TESTS_WERKZEUGE, ...TESTS_AKTE, ...TESTS_UEBERSETZER, ...TESTS_CAMPUS, ...TESTS_LESEZEIT, ...TESTS_P19], { cwd: WURZEL, encoding: 'utf8' });
+  const vorher = spawnSync(process.execPath, ['--test', '--test-reporter=dot', ...TESTS, ...TESTS_AUTOMAT, ...TESTS_WERKZEUGE, ...TESTS_AKTE, ...TESTS_UEBERSETZER, ...TESTS_CAMPUS, ...TESTS_LESEZEIT, ...TESTS_P19, ...TESTS_P196], { cwd: WURZEL, encoding: 'utf8' });
   if (vorher.status !== 0) {
     console.log('mutanten: Die Engine- oder Werkzeug-Tests sind schon ohne Mutation rot – erst reparieren.');
     process.exitCode = 1;

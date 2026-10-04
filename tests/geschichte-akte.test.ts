@@ -256,8 +256,8 @@ test('Ortszeile: „Station 7 von 14 · Akt II · noch etwa 9 Minuten“ (Restze
   const min = Math.max(1, Math.round((bis * 100) / 200));
   assert.equal(ortText(g, an('s7', 'szene'), lz), `Station 7 von 14 · Akt II · noch etwa ${min} Minuten`);
   assert.equal(ortText(g, an('s7', 'szene'), { ...lz, lang: {} }), 'Station 7 von 14 · Akt II');
-  assert.match(ortText(g, { ...an('s12', 'frage'), kurz: true }, lz), /^Station 4 von 4 · Akt III · noch etwa (\d+ Minuten|eine Minute)$/u);
-  assert.match(ortText(g, pause('a1'), lz), /^Pause · Akt I geschafft · noch etwa (\d+ Minuten|eine Minute)$/u);
+  assert.match(ortText(g, { ...an('s12', 'frage'), kurz: true }, lz), /^Station 4 von 4 · Akt III · (noch etwa \d+ Minuten|gleich geschafft)$/u);
+  assert.match(ortText(g, pause('a1'), lz), /^Pause nach Akt I · (noch etwa \d+ Minuten|gleich geschafft)$/u);
   assert.equal(ortText(g, E.neuerStand(), lz), W.geschichte.auftakt);
   assert.equal(ortText(g, { ...E.neuerStand(), schritt: { ort: 'ende' } }, lz), W.geschichte.endeOrt);
   // ohne Akte: wie bisher „3 von 8 · Titel“
@@ -341,8 +341,14 @@ test('Kurzfassung: gebündelte Brückenkarte vor s12 (zwei Karten), Ende mit „
   const karten = el.querySelectorAll('.gs-bruecken > ul > li');
   assert.equal(karten.length, 2);
   assert.deepEqual([...karten].map((li) => li.getAttribute('data-stationen')), ['s6 s7 s8', 's9 s10 s11']);
-  assert.match(text(karten[0] as Element), /Stationen 6 bis 8/u);
-  assert.match(text(karten[0] as Element), /Brücke der Station 6\..*Brücke der Station 7\..*Brücke der Station 8\./u);
+  // P19.6: Kicker „Inzwischen“ (zählt nicht), je Zeile die fette Nummer, dann der Satz – kein „Station“, kein Jahr, der Titel nur für Screenreader
+  assert.equal(text(el.querySelector('.gs-bruecken-titel') as Element), 'Inzwischen');
+  assert.ok(el.querySelector('.gs-bruecken-titel.gs-kicker'));
+  assert.deepEqual([...(karten[0] as Element).querySelectorAll('.gs-bruecke-zeile b')].map((b) => text(b)), ['6', '7', '8']);
+  assert.match(text(karten[0] as Element), /6 · .*Brücke der Station 6\..*7 · .*Brücke der Station 7\..*8 · .*Brücke der Station 8\./u);
+  const sichtbar = [...(karten[0] as Element).querySelectorAll('.gs-bruecke-zeile')].map((z) => { const c = z.cloneNode(true) as Element; c.querySelectorAll('.nur-sr').forEach((x) => x.remove()); return text(c); });
+  assert.deepEqual(sichtbar, ['6 · Brücke der Station 6.', '7 · Brücke der Station 7.', '8 · Brücke der Station 8.'], 'je Zeile Nummer und Satz, kein Titel, kein Jahr');
+  for (const z of karten[0]?.querySelectorAll('.gs-bruecke-zeile') ?? []) assert.ok(z.querySelector('.nur-sr'), 'der Titel der Station steht für Screenreader da');
   // einzelne Brücke ohne Bündel
   assert.equal(baueSchritt(opt({ ...an('s3', 'szene'), kurz: true })).querySelectorAll('.gs-bruecken > ul > li').length, 1);
   assert.equal(baueSchritt(opt({ ...an('s3', 'szene'), kurz: true })).querySelector('.gs-bruecke-gruppe'), null);
@@ -375,7 +381,7 @@ test('Fläche: durch die Pause mit Weiter und mit dem Knopf der Pause, Fokus auf
   klick('weiter'); // s5 (wie k5) hat keine Mini-Aufgabe: nach der Frage kommt die Pause
   assert.equal(f.stand().schritt.ort, 'pause');
   assert.equal((document.activeElement as HTMLElement).dataset['pruef'], 'gs-titel');
-  assert.match(text(f.element.querySelector('[data-pruef="gs-ort"]') as Element), /^Pause · Akt I geschafft/u);
+  assert.match(text(f.element.querySelector('[data-pruef="gs-ort"]') as Element), /^Pause nach Akt I/u);
   assert.equal(JSON.parse(sp.daten.get(SPEICHER_SCHLUESSEL) as string).schritt.ort, 'pause');
   assert.equal(document.body.dataset['teil'], 'pause');
   klick('pause-weiter');

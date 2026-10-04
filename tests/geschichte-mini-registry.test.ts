@@ -85,5 +85,5 @@ test('Zug, Auswertung, Lösung und Änderung je Art; ordneZu/klickeReihe sind nu
 });
 
 test('Lesezeit und Druck: die bisherigen Arten nehmen nichts aus der Zählung aus; von den neuen nur die Gespräche der Rückfragen', () => {
-  for (const [art, def] of Object.entries(MINI_ARTEN)) assert.deepEqual([...def.lesezeitOhne], art === 'rueckfragen' ? ['.gs-gespraech'] : [], art);
+  for (const [art, def] of Object.entries(MINI_ARTEN)) assert.deepEqual([...def.lesezeitOhne], art === 'rueckfragen' ? ['.gs-gespraech', '.gs-eintrag'] : [], art);
 });

@@ -433,7 +433,7 @@ export const W = {
     jaNeinUnbekannt: { ja: 'ja', nein: 'nein', unbekannt: 'unbekannt' },
     wegListe: 'Wege (Möglichkeiten) in der Vorlage',
     wegName: (n: number) => `Weg ${n}`,
-    wegZustand: (n: number) => `Ist Weg ${n} zulässig?`,
+    wegZustand: (n: number) => `Einstufung von Weg ${n}`,
     wegEntfernen: (n: number) => `Weg ${n} entfernen`,
     wegHinzu: 'Weg hinzufügen',
     zulaessigeWege: (n: number, min: number) => `${n} zulässige${n === 1 ? 'r Weg' : ' Wege'} – gebraucht: mindestens ${min}`,

@@ -51,7 +51,7 @@ titel: Aufgabe
 Geplante Arbeit mit vereinbartem Ergebnis, Verantwortlichem und Termin.
 
 ### Rückseite
-Die Projektsteuerung stellt bis Freitag aus dem geltenden Kostenstand die Kostenübersicht für den geplanten Betrag im städtischen Haushalt 2027 (Haushaltsansatz) zusammen, den die Kämmerei, die Finanzverwaltung der Stadt, braucht.
+Die Projektsteuerung stellt bis Freitag aus dem geltenden Kostenstand die Kostenübersicht für den geplanten Betrag im städtischen Haushalt 2027 (Haushaltsansatz) zusammen, den die Finanzabteilung, die Finanzverwaltung der Stadt, braucht.
 :::
 
 ::: karte massnahme

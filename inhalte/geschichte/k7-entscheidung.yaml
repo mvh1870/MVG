@@ -23,7 +23,7 @@ einstieg-kurz: |
 szene:
   - { figur: schwung, text: "Ich sag's lieber gleich: Der Hersteller der Lüftungsanlage für die Gesamtschule liefert vier Monate später als geplant." }
   - { figur: lot, kurzfassung: false, text: "Vier Monate. Dann bauen wir die Anlage ein, wenn die Kinder schon da sein sollen." }
-  - { figur: faden, text: "Ich habe drei Wege ausgearbeitet, alle drei machbar: ein Ersatzgerät eines anderen Herstellers; Leihgeräte in den Klassenräumen, bis die bestellte Anlage kommt; oder die Gesamtschule zieht erst nach den Herbstferien ein – einen Teil der vier Monate fängt der Zeitpuffer auf." }
+  - { figur: faden, text: "Ich habe drei Wege ausgearbeitet, alle drei zulässig, also fachlich möglich: ein Ersatzgerät eines anderen Herstellers; Leihgeräte in den Klassenräumen, bis die bestellte Anlage kommt; oder die Gesamtschule zieht erst nach den Herbstferien ein – einen Teil der vier Monate fängt der Zeitpuffer auf." }
   - { figur: klingel, kurzfassung: false, text: "Leihgeräte in jedem Klassenraum? Die brummen. Und nach den Herbstferien … das erkläre ich den Eltern nicht gern." }
   - { figur: grundstein, text: "Zeigen Sie mir alle drei Wege und was Sie empfehlen. Die Entscheidung treffe ich." }
 
@@ -96,10 +96,10 @@ antworten:
       Sie vertagt um eine Woche, hört die Schule an und entscheidet dann: Ersatzgerät, aus der Reserve. Ihre Empfehlung war ehrlich begründet – sie passte nur nicht zu dem Ziel, das die Bürgermeisterin gesetzt hatte. Die Woche fehlt dem Einbau am Ende.
 
 gut: |
-  Soll der Bauherr entscheiden, bekommt er eine Vorlage mit mindestens zwei machbaren Wegen, einem Punktevergleich mit vorher abgestimmten Gewichten und einer begründeten Empfehlung. Dazu gehört der Hinweis, bei welchen anderen Gewichten sich die Rangfolge umdreht. Entscheiden darf nur die zuständige Person – hier die Bürgermeisterin –, und ihr Beschluss wird getrennt festgehalten: Empfehlung und Punktzahl sind noch keine Entscheidung.
+  Soll der Bauherr entscheiden, bekommt er eine Vorlage mit mindestens zwei zulässigen Wegen, einem Punktevergleich mit vorher abgestimmten Gewichten und einer begründeten Empfehlung. Dazu gehört der Hinweis, bei welchen anderen Gewichten sich die Rangfolge umdreht. Entscheiden darf nur die zuständige Person – hier die Bürgermeisterin –, und ihr Beschluss wird getrennt festgehalten: Empfehlung und Punktzahl sind noch keine Entscheidung.
 
 gut-kurz: |
-  Soll der Bauherr entscheiden, bekommt er eine Vorlage mit mindestens zwei machbaren Wegen, einem Punktevergleich und einer begründeten Empfehlung – samt Hinweis, bei welchen anderen Gewichten sich die Rangfolge umdreht. Entscheiden darf nur die zuständige Person; ihr Beschluss wird getrennt festgehalten: Empfehlung und Punktzahl sind noch keine Entscheidung.
+  Soll der Bauherr entscheiden, bekommt er eine Vorlage mit mindestens zwei zulässigen Wegen, einem Punktevergleich und einer begründeten Empfehlung – samt Hinweis, bei welchen anderen Gewichten sich die Rangfolge umdreht. Entscheiden darf nur die zuständige Person; ihr Beschluss wird getrennt festgehalten: Empfehlung und Punktzahl sind noch keine Entscheidung.
 
 dahinter: Der gewichtete Vergleich nimmt niemandem die Entscheidung ab; er zeigt, welcher Weg zu den festgelegten Zielen passt und wie stark das Ergebnis von den Gewichten abhängt.
 

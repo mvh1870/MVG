@@ -233,7 +233,7 @@ Oberhalb von 100.000 € entscheidet das Änderungsgremium (ein Gremium auf Seit
 titel: über 5 Mio. €
 marke: Bauherr im Lenkungskreis
 ---
-Darüber beschließt der Bauherr selbst im Lenkungskreis (dem Gremium, das den Bauherrn berät und Entscheidungen vorbereitet).
+Darüber beschließt der Bauherr selbst im Lenkungskreis (dem Gremium, das den Bauherrn berät).
 :::
 :::
 
@@ -458,7 +458,7 @@ links: Parallele Datenstände
 rechts: Benannter Datenstand
 ---
 ::: ansicht links
-Ein fiktives Beispiel von einem Schulcampus der Stadt Lindenhall: Im Herbst 2026 nennen die Kämmerei (die Finanzverwaltung der Stadt) und der Architekt zwei Zahlen für die Kosten, die rund eine Million Euro auseinanderliegen. Welche Annahmen noch offen sind und was sich seit der letzten Freigabe geändert hat, ist nicht erkennbar. Würde auf dieser Grundlage beschlossen, ließe sich später kaum sagen, welche Zahl gemeint war.
+Ein fiktives Beispiel von einem Schulcampus der Stadt Lindenhall: Im Herbst 2026 nennen die Finanzabteilung (die Finanzverwaltung der Stadt) und der Architekt zwei Zahlen für die Kosten, die rund eine Million Euro auseinanderliegen. Welche Annahmen noch offen sind und was sich seit der letzten Freigabe geändert hat, ist nicht erkennbar. Würde auf dieser Grundlage beschlossen, ließe sich später kaum sagen, welche Zahl gemeint war.
 :::
 
 ::: ansicht rechts

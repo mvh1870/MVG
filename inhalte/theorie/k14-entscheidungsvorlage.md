@@ -44,7 +44,7 @@ links: Keine Vorlage nötig
 rechts: Vorlage nötig
 ---
 ::: ansicht links
-Die Kämmerei (die Finanzverwaltung der Stadt) braucht bis Freitag die Kostenübersicht für den geplanten Betrag im städtischen Haushalt 2027 (Haushaltsansatz). Das ist eine Aufgabe mit Ergebnis, Verantwortlichem und Termin – die Projektsteuerung stellt sie aus dem geltenden Kostenstand zusammen, ohne dass dafür eine neue Entscheidung nötig ist.
+Die Finanzabteilung (die Finanzverwaltung der Stadt) braucht bis Freitag die Kostenübersicht für den geplanten Betrag im städtischen Haushalt 2027 (Haushaltsansatz). Das ist eine Aufgabe mit Ergebnis, Verantwortlichem und Termin – die Projektsteuerung stellt sie aus dem geltenden Kostenstand zusammen, ohne dass dafür eine neue Entscheidung nötig ist.
 :::
 
 ::: ansicht rechts

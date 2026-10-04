@@ -325,7 +325,7 @@ neu:
   - id: g-lenkungskreis
     begriff: Lenkungskreis
     definition: >-
-      Das Gremium, das den Bauherrn berät und Entscheidungen vorbereitet. Freigaben erteilt nicht der Lenkungskreis,
+      Das Gremium, das den Bauherrn berät. Freigaben erteilt nicht der Lenkungskreis,
       sondern der Bauherr selbst. Bei den größten Entscheidungen (im Beispiel für die Zuständigkeiten über 5 Mio. €)
       beschließt der Bauherr im Lenkungskreis.
     belege: [k4.2-p3, k9.3-p3]
@@ -382,8 +382,7 @@ neu:
   - id: g-managementbericht
     begriff: Managementbericht
     definition: >-
-      Der zusammenfassende Bericht für die Gremien: Er sammelt Informationen und bereitet Beschlüsse vor. Er ist nicht der
-      Monatsbericht, den der Bauherr jeden Monat bekommt (höchstens eine Seite).
+      Der zusammenfassende Bericht für die Gremien: Er sammelt Informationen und bereitet Beschlüsse vor.
     belege: [k6.4.1-p4, k6.4.4-t1, v24:hb-4]
   - id: g-entscheidungsregister
     begriff: Entscheidungsregister

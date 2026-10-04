@@ -78,7 +78,7 @@ export const TAFELZELLEN = /** @type {Record<string, [string, string][]>} */ ({
     ["Festlegung von Mandaten, Freigabeschwellen, Eskalationswegen und verbindlichen Entscheidungsrechten.", "Festlegen, wer was entscheiden darf (Mandate), ab welcher Grenze jemand anderes freigibt (Freigabeschwellen), wie ein Thema nach oben gelangt (Eskalationswege) und wer verbindlich entscheidet."],
     ["Akzeptanz von Risikoexposition sowie Auswirkungen auf Kosten, Termin, Qualität, Projektumfang und ESG/LCC; Freigabe des Einsatzes der Risikoreserve.", "Entscheiden, welche Risiken das Projekt trägt und welche Folgen für Kosten, Termin, Qualität, Projektumfang, Nachhaltigkeit (ESG) und Lebenszykluskosten (LCC) es hinnimmt; Geld aus der Risikoreserve freigeben."],
     ["Sicherstellung, dass die Organisation auf belastbarer Grundlage entscheidet und die Beschlusslage nachweisbar bleibt.", "Dafür sorgen, dass die Organisation auf verlässlicher Grundlage entscheidet und man später belegen kann, was beschlossen wurde."],
-    ["Aufrechterhaltung der eigenen Bauherrenrolle und Steuerungsfähigkeit.", "Die eigene Rolle als Bauherr ausfüllen und das Projekt selbst steuern können."],
+    ["Aufrechterhaltung der eigenen Bauherrenrolle und Steuerungsfähigkeit.", "Die eigene Rolle als Bauherr ausfüllen und die eigene Steuerungsfähigkeit erhalten."],
   ],
   'k3.3-t1': [
     ["Relevanz für MVG", "Was MVG dazu beiträgt"],
@@ -98,7 +98,7 @@ export const TAFELZELLEN = /** @type {Record<string, [string, string][]>} */ ({
     ["System der Entscheidungs-IDs, Entscheidungsreife, Standard für Entscheidungsvorlagen.", "System der Entscheidungs-IDs, Entscheidungsreife, fester Aufbau der Entscheidungsvorlagen."],
     ["Akzeptanz von Risikoexposition, Restrisiko, Einsatz der Risikoreserve sowie Auswirkungen auf Kosten, Termin, Qualität, Projektumfang und ESG/LCC.", "Entscheiden, welche Risiken das Projekt bewusst trägt, das Restrisiko (was nach allen Gegenmaßnahmen übrig bleibt), den Einsatz der Risikoreserve (des Puffers für Risiken) sowie die Folgen für Kosten, Termin, Qualität, Projektumfang, Nachhaltigkeit und Lebenszykluskosten (ESG/LCC)."],
     ["Risikoregister, Bewertung, Vorschläge zur Risikominderung, Szenarien, Sensitivitäten.", "Risikoliste (Risikoregister), Bewertung, Vorschläge zur Risikominderung, Szenarien (mögliche Verläufe) und Rechnungen, wie stark sich das Ergebnis ändert, wenn sich Annahmen ändern (Sensitivitäten)."],
-    ["Risiken werden gelistet, aber nicht bauherrenseitig angenommen oder eskaliert.", "Risiken stehen nur in einer Liste; der Bauherr trägt sie nicht bewusst mit und gibt sie nicht nach oben."],
+    ["Risiken werden gelistet, aber nicht bauherrenseitig angenommen oder eskaliert.", "Risiken stehen nur in einer Liste; sie werden weder bewusst vom Bauherrn angenommen noch zur Entscheidung an ihn weitergegeben."],
     ["Freigaben erfolgen auf unklarem Datenstand oder ohne Mandatsprüfung.", "Es wird freigegeben, obwohl unklar ist, welcher Stand der Unterlagen gilt, oder ohne zu prüfen, ob die freigebende Stelle befugt ist."],
     ["Leistungsphasen- und Freigabemodell LPH 0–9, Freigabeschwellen, Mindestgrundlagen, Datenstandsreferenz.", "Leistungsphasen- und Freigabemodell LPH 0–9, Freigabeschwellen, Mindestunterlagen, Bezug auf den benannten Datenstand."],
     ["Verbindlicher Datenstand, Annahmen, Versionen, Beschlusslage, Protokollstandard, Nachweiskette.", "Der verbindlich geltende Stand der Unterlagen (Datenstand), Annahmen, Versionen, Beschlusslage, einheitlicher Aufbau der Protokolle, Nachweiskette."],

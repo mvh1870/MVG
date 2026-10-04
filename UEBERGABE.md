@@ -3,13 +3,14 @@
 Kopf ≤ 100 Zeilen. Oben JETZT (überschreiben), darunter FRÜHER (anhängen, knapp).
 
 ## JETZT
-- **Stand 2026-10-04 ~02:30 UTC: P18 abgeschlossen, Planblatt leer; `main` = 6c273f1** (zweite Sitzung, 01:15 UTC, O-49/O-59, Nachricht an den Owner). **`claude/haus` liegt vor `main`:** zusätzliche R79-Korrekturen dieser Sitzung (L-262, L-265, L-266: Seitenmesser des Monatsberichts mit Wortumbruch und Zeichenbreiten, Ende-Campus mit offener Sporthalle bei Zeit „niedrig“, Vergleichssätze und Antwortwirkungen per Test gepinnt, Wortlaut-Schwelle 9 Wörter auch für Themen und Story, Glossar/Companion bereinigt, Mutanten 68/68), Kette voll grün. Diese Änderungen gehen erst beim nächsten Planende nach `main` (O-49 erlaubt nur einen Merge je Planende) oder auf Zuruf des Owners.
-- **Zwei Sitzungen:** Eine Routine-Sitzung arbeitet parallel auf `claude/haus` (Ampel, Prüfrunden). Vor jedem Push `git fetch` und mergen (kein Rebase, kein `--force`); gleiche Befunde nicht doppelt einarbeiten. Der schwere R79-Befund „Kurzfassung mit vier guten Antworten ergibt Umwege“ ist widerlegt (L-262, Test über alle 81 Kurzwege).
+
+- **Stand 2026-10-04 ~03:12 UTC: Planblatt leer, Kette grün (118,4 s, Oberfläche 14 Läufe, Node 22.22); `claude/haus` mit den R79-Korrekturen (L-262–L-266) per Merge nach `main` geführt (O-49, L-267), Push-Nachricht an den Owner.** Nächster Schritt liegt beim Owner: Ordner `dist/` hochladen, `docs/ABNAHME.md` und `docs/ABNAHME-MITTEL.md` abnehmen, ggf. neue Posten.
 - **Offen zur Abnahme des Owners:** `docs/ABNAHME.md` und mittlere Befunde in `docs/ABNAHME-MITTEL.md`.
 - **Lesezeit:** `node werkzeuge/lesezeit.mjs`; Kurzfassung 10,4 Minuten ohne Puffer („etwa 10“, O-51, L-252). Mutanten: `node werkzeuge/mutanten.mjs` (68/68), läuft nicht in der Kette – nach Kern-/Explore-Änderungen von Hand.
-- Rechner: Node 22.22, Chromium unter `/opt/pw-browsers/chromium`, Kette ≈ 100 s (voll ≈ 150 s).
+- Rechner: Node 22.22, Chromium unter `/opt/pw-browsers/chromium`, `npm ci` ≈ 50 s, Kette ≈ 120 s.
 
 ## FRÜHER
+- 2026-10-04 (bis ~02:30 UTC): zwei Sitzungen, P18 abgeschlossen, `main` = 6c273f1; R79-Korrekturen (L-262–L-266) nur auf `claude/haus`.
 - 2026-10-03 (18:45–19:45 UTC): P17 abgeschlossen und nach `main` (O-58); P18.1–P18.5 (L-253–L-259).
 - 2026-10-03 (ab 09:00 UTC): P17 Neugestaltung (O-51–O-58): Drehbuch, Story als Spiel, Themen als Buch, Explore-Kopf; Prüfrunden R72–R76 (L-225–L-252); Owner wählt vier neue Werkzeuge (O-59).
 - 2026-10-02 (13:20–17:26 UTC): P16.15 Prüfrunden R67–R71 (L-205–L-223), Statusbedingungen der Story, Reservegrenze auf allen Wegen.

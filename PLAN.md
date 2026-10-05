@@ -201,8 +201,9 @@ Vorgabe (bis die Antworten des Owners aus der Klickseite „Story erweitern“ v
 - [x] P19.8 (2026-10-05, L-380–L-414; Berichte `tmp/story-analyse/` U–Y) · Prüf-Agenten (alle Rollen auf die erweiterte Story) + Korrekturschleife — Runde 4 (X-*.md) und Runde 5 (Y-schlusspruefung.md, fünf leichte Befunde Y-01 bis Y-05, eingearbeitet in 79fe75e) ohne schwere oder mittlere Befunde (O-35).
 - [x] P19.9 (2026-10-05, L-420, L-421) · Abschluss: Übergabe, ABNAHME ergänzt, CI grün, Merge nach `main`, neues Paket für die Internetseite, Nachricht an den Owner.
 
-### P20 · Bereichsnamen (O-63, Owner 2026-10-05)
-- [x] P20.1 (2026-10-05, L-422) · Bereiche sichtbar „Geschichte · Themen · Werkzeuge“ statt Story · Theorie · Explore (Kopf, Fuß, Tab-Titel, Regie, Druckwege), alte Namen sichtbar verboten, Tests und Szenarien mit Gegenproben, Doku nachgezogen; übrige Owner-Punkte als „vom Owner im Chat am 2026-10-05 als erledigt gemeldet“ markiert (nicht vom Lauf geprüft) — Abnahme: Kette `pruefe:voll` grün, Kopfleiste bei 320/400/1024 px ohne Umbruch, Mutanten rot.
+### P20 · Bereichsnamen (FRAGE 2026-10-04-1: Vorgabe in Kraft, dann Owner-Antwort a = O-63)
+- [x] P20.1 (Commit „MVG P20.1“, L-422) · Sichtbare Bereichsnamen „Geschichte · Themen · Werkzeuge“ in Kopf, Tab-Titeln, Regie und Druck-Ersatzbogen; Adressen und interne Namen unverändert — Abnahme: `npm run pruefe:voll` grün, ABNAHME/LAUNCH nachgezogen.
+- [x] P20.2 (2026-10-05, O-63, L-423) · Owner-Antwort a im Chat: Entscheid O-63, alte Bereichsnamen sichtbar verboten (Muster, Test, Szenarien mit Gegenproben), Doku (BEGRIFFE, STIL, INHALTSFORMAT, ARCHITEKTUR, README, CLAUDE.md); übrige Owner-Punkte als „vom Owner im Chat am 2026-10-05 als erledigt gemeldet“ markiert (nicht vom Lauf geprüft) — Abnahme: Kette `pruefe:voll` grün, Kopfleiste bei 320/400/1024 px ohne Umbruch, Mutanten 206/206 rot.
 
 ## Erledigt
 (noch nichts)

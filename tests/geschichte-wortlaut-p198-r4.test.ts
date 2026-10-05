@@ -39,7 +39,7 @@ test('N1, L-C, L-D, L-E: vollständige Sätze, keine Folge, die das Ende vorwegn
   assert.match(n, /Clara Fadens Woche geht für das Zusammensuchen drauf; für andere Arbeit fehlt die Zeit/);
   assert.doesNotMatch(n, /Diese Woche fehlt für andere Arbeit/);
   const r = s('rahmen');
-  assert.match(r, /Es blieb keine Luft für weitere Verzögerungen/);
+  assert.match(r, /Es blieb kein Spielraum für weitere Verzögerungen/);
   assert.doesNotMatch(r, /Die Sporthalle öffnet erst nach den Herbstferien\./);
   assert.match(r, /Jetzt, wo die Zahlen da sind, kann ich es bewerten/);
   assert.doesNotMatch(r, /bewerte ich es richtig/);
@@ -49,7 +49,8 @@ test('N1, L-C, L-D, L-E: vollständige Sätze, keine Folge, die das Ende vorwegn
 
 test('L-F, L-G, L-I: Pinnwand und Matrix begründen auch die falsche Wahl, die Folge der Station 12 nennt den Hinweis (Gegenprobe)', () => {
   assert.match(s('s8-zahlen'), /Hier hängt nur ein Eintrag am anderen; nichts steht zweimal in der Rechnung/);
-  assert.match(s('s4-auflage'), /Darum gehört die Einstufung nachgebessert, sobald die Folge geklärt ist/);
+  assert.match(s('s4-auflage'), /Darum bleibt die Einstufung vorläufig, bis die Folge geklärt ist/);
+  assert.doesNotMatch(s('s4-auflage'), /gehört nachgebessert, sobald/);
   assert.doesNotMatch(s('s4-auflage'), /Die Einstufung bleibt vorläufig, bis sie geklärt ist/);
   assert.match(s('s12-entscheidung'), /Was im April nur ein Hinweis war, ist jetzt ein Problem/);
   const w = readFileSync(new URL('../src/ui/woerter.ts', import.meta.url), 'utf8');

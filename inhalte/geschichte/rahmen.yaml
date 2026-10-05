@@ -90,7 +90,7 @@ balken:
     bilanz:
       hoch: Der Zeitpuffer hat gehalten; bis zum Schluss blieb genug Zeit.
       mittel: Der Zeitpuffer war am Ende dünn, hat aber gereicht.
-      niedrig: "Der Zeitpuffer ist aufgebraucht: Es blieb keine Luft für weitere Verzögerungen."
+      niedrig: "Der Zeitpuffer ist aufgebraucht: Es blieb kein Spielraum für weitere Verzögerungen."
   vertrauen:
     titel: Vertrauen
     # R76: der Start unter der Hälfte braucht einen Grund

@@ -81,7 +81,7 @@ function proben(): Probe[] {
     // Zeit und Vertrauen beschreiben nur den Stand des Balkens – keine Voraussetzung über eine Wahl
     { was: 'Zeit hoch', text: bl('zeit').bilanz.hoch, anfang: 'Der Zeitpuffer hat gehalten', erscheint: (w) => stufe(w.b.zeit) === 'hoch', setztVoraus: () => true },
     { was: 'Zeit mittel', text: bl('zeit').bilanz.mittel, anfang: 'Der Zeitpuffer war am Ende dünn, hat aber gereicht.', erscheint: (w) => stufe(w.b.zeit) === 'mittel', setztVoraus: (w) => w.teurer.zeit },
-    { was: 'Zeit niedrig', text: bl('zeit').bilanz.niedrig, anfang: 'Der Zeitpuffer ist aufgebraucht: Es blieb keine Luft für weitere Verzögerungen.', erscheint: (w) => stufe(w.b.zeit) === 'niedrig', setztVoraus: () => true },
+    { was: 'Zeit niedrig', text: bl('zeit').bilanz.niedrig, anfang: 'Der Zeitpuffer ist aufgebraucht: Es blieb kein Spielraum für weitere Verzögerungen.', erscheint: (w) => stufe(w.b.zeit) === 'niedrig', setztVoraus: () => true },
     { was: 'Vertrauen hoch', text: bl('vertrauen').bilanz.hoch, anfang: 'Bürgermeisterin, Schule und Stadtrat verlassen sich inzwischen auf das, was Sie vorlegen.', erscheint: (w) => stufe(w.b.vertrauen) === 'hoch', setztVoraus: () => true },
     { was: 'Vertrauen mittel', text: bl('vertrauen').bilanz.mittel, anfang: 'Die Bürgermeisterin vertraut Ihnen, fragt aber gern noch einmal nach.', erscheint: (w) => stufe(w.b.vertrauen) === 'mittel', setztVoraus: () => true },
     { was: 'Vertrauen niedrig', text: bl('vertrauen').bilanz.niedrig, anfang: 'Die Bürgermeisterin lässt sich inzwischen jede Zahl zweimal zeigen', erscheint: (w) => stufe(w.b.vertrauen) === 'niedrig', setztVoraus: () => true },

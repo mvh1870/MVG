@@ -66,7 +66,7 @@ mini:
   bild: mappe
   schluss: "Drei Abschnitte mussten nachgebessert werden."
   posten:
-    - { text: "Frage: Soll die Stadt dem Holzbauer den Zuschlag erteilen? Die Bürgermeisterin entscheidet bis Donnerstag, das Angebot gilt bis Freitag.", loesung: annehmen, erklaerung: "Frage, zuständige Stelle, Termin und die Folge einer Verzögerung stehen da." }
+    - { text: "Frage: Soll die Stadt dem Holzbauer den Zuschlag erteilen? Die Bürgermeisterin entscheidet bis Donnerstag, das Angebot gilt bis Freitag.", loesung: annehmen, erklaerung: "Frage, zuständige Stelle, Termin und die Frist des Angebots stehen da." }
     - { text: "Wege: Weg A, Zuschlag an den Holzbauer zum Angebotspreis.", loesung: nachfordern, erklaerung: "Ein Weg ist keine Wahl. Soll etwas getan werden, braucht die Entscheidung mindestens zwei zulässige Wege, etwa den Zuschlag jetzt oder ein verlängertes Angebot; sonst ist die Mappe nicht vollständig." }
     - { text: "Angebot: Es gilt bis Freitag. Danach ist der Preis nicht mehr sicher.", loesung: annehmen, erklaerung: "Die Frist des Angebots ist genannt; eine Entscheidung unter Zeitdruck braucht dieses Datum." }
     - { text: "Chance: Preisnachlass und Lieferrisiko stehen als eine gemeinsame Zahl in der Mappe.", loesung: nachfordern, erklaerung: "Der Nachlass ist eine Chance. Er wird für sich beschrieben und nicht gegen das Lieferrisiko aufgerechnet." }

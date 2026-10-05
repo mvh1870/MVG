@@ -87,7 +87,7 @@ export function buchSymbol(g: Geschichte, stand: Stand, o: { offen: boolean; neu
 }
 
 /**
- * Papierfassung (Querformat, eine Seite): Titel und Tabelle Nr · Anlass · Art · Entschieden von · Grundlage · Ergebnis, nur Zeilen bis zur
+ * Papierfassung (Querformat, ein bis zwei Seiten): Titel und Tabelle Nr · Anlass · Art · Entschieden von · Grundlage · Ergebnis, nur Zeilen bis zur
  * aktuellen Station, ohne „neu“, die Art als Wort. Übersprungene Stationen der Kurzfassung tragen Art und Ergebnis; die Felder „Entschieden von“ und „Grundlage“ sind dort zu einer Zelle „nur erzählt“ verbunden (L-410).
  */
 export function buchDruck(g: Geschichte, stand: Stand): HTMLElement | null {

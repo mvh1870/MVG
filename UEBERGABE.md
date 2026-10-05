@@ -4,6 +4,8 @@ Kopf ≤ 100 Zeilen. Oben JETZT (überschreiben), darunter FRÜHER (anhängen, k
 
 ## JETZT
 
+- **Block 2026-10-05 12:31–12:37 UTC (+00:00), Routine, hingelegt:** Planblatt leer, keine offene Frage. CI 392 auf `claude/haus` (19c44f1) grün. Kette grün (265,3 s, Oberfläche 20 Läufe). `main` schon enthalten. Rechner: Node 22.22, `npm ci` 10 s. Offen beim Owner nur: `dist/` hochladen (`docs/LAUNCH.md`) oder neue Posten.
+
 - **Block 2026-10-05 09:09–09:13 UTC (+00:00), Routine, hingelegt:** Planblatt leer, keine offene Frage. CI 389 auf `main` (3db4fc0, Merge O-49) grün, CI 390 auf `claude/haus` grün. Kette grün (217,4 s, Oberfläche 20 Läufe). `main` per Merge nach `claude/haus` geholt (nur Ampel). Rechner: Node 22.22, `npm ci` 7 s. Offen beim Owner nur: `dist/` hochladen (`docs/LAUNCH.md`) oder neue Posten.
 
 - **Block 2026-10-05 06:27–06:45 UTC (+00:00), Routine, Abschluss O-63 (L-424):** Planblatt leer, Kette grün (237,1 s, Oberfläche 20 Läufe, 158,8 s), CI 386 auf a4b7ee1 grün. Prüf-Agent Begriffe + Stil zur Umbenennung: keine schweren/mittleren Befunde, zwei leichte bleiben (L-424). `claude/haus` per Merge nach `main` gepusht (O-49). Rechner: Node 22.22, `npm ci` 9 s. **Offen beim Owner nur noch:** `dist/` hochladen (`docs/LAUNCH.md`). CI des Merges im nächsten Anlauf lesen.

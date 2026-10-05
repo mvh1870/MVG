@@ -13,3 +13,4 @@ FRAGE 2026-10-04-1 · 2026-10-04 13:00 UTC · Sollen die drei Bereichsnamen im K
   a) Umbenennen in Geschichte · Themen · Werkzeuge (Kopf, Fuß, Tab-Titel, Regie-Sprung gleich) — ändert O-38 und O-42 im Wortlaut, CLAUDE.md nennt „Explore“; Tests und Browser-Szenarien mit „Explore“ ziehen mit
   b) Story · Theorie · Explore beibehalten — „Explore“ und „Story“ bleiben für Laien englische Wörter, die Startseite nennt dieselben Orte anders
   VORGABE: a · FRIST: 2026-10-05 01:00 UTC
+ANTWORT 2026-10-04-1 · 2026-10-05 05:30 UTC · a – Geschichte · Themen · Werkzeuge (Owner im Chat: „Geschichte · Themen · Werkzeuge – alles andere als erledigt markieren“; ANTWORT Owner 2026-10-05: a). Gebaut als O-63; die übrigen Owner-Punkte stehen als „vom Owner im Chat am 2026-10-05 als erledigt gemeldet“ in `docs/ABNAHME.md`, `docs/LAUNCH.md` und `UEBERGABE.md` (L-422), nicht vom Lauf geprüft.

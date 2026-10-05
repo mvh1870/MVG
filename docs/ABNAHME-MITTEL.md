@@ -29,7 +29,9 @@ Die Runden vor der Neuausrichtung (bis Runde 66, alter Aufbau mit Welten, Rollen
 
 ## Offen beim Abschluss
 
+Stand 2026-10-05: Der Owner hat im Chat alle offenen Abnahme-Punkte als erledigt gemeldet (O-63, L-422); die Zeile unten gibt das wieder, ohne dass der Lauf etwas geprüft oder am Inhalt geändert hat.
+
 | Runde | Ort | Befund | Vorschlag | Stand |
 |---|---|---|---|---|
 | – | – | Keine: alle mittleren Befunde aus R67–R71 sind eingearbeitet (L-223). Leicht und bewusst gelassen: die Tafel „Gewichtete Summe“ in k14 ist bei 320 px mit erweiterten Textabständen nach WCAG 1.4.12 um 3 % zu breit (L-219). | – | – |
-| 79 | Explore · Vorlagen-Check, alle Beispiele (seit P19.7 vier) | Die geprüfte Vorlage selbst ist nicht zu sehen; die vorbelegten Antworten (z. B. „Teilweise“ bei Datenstand) lassen sich ohne sie nicht nachvollziehen (Feld erlebnis). | Unter der Lage ein aufklappbarer Kasten „So sieht die Vorlage aus“ mit vier bis sechs Zeilen nur aus Story und Konzept A.5 (Wege, Beträge, Termin, Datenstand) – eine Erweiterung des Inhalts, darum zur Entscheidung des Owners. | offen |
+| 79 | Werkzeuge · Vorlagen-Check, alle Beispiele (seit P19.7 vier) | Die geprüfte Vorlage selbst ist nicht zu sehen; die vorbelegten Antworten (z. B. „Teilweise“ bei Datenstand) lassen sich ohne sie nicht nachvollziehen (Feld erlebnis). | Unter der Lage ein aufklappbarer Kasten „So sieht die Vorlage aus“ mit vier bis sechs Zeilen nur aus Story und Konzept A.5 (Wege, Beträge, Termin, Datenstand) – eine Erweiterung des Inhalts, darum zur Entscheidung des Owners. | offen im Inhalt (unverändert); Entscheidung des Owners im Chat am 2026-10-05 als erledigt gemeldet (ohne Angabe, ob übernehmen, ändern oder so lassen; nicht vom Lauf geprüft) |

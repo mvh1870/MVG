@@ -6,7 +6,7 @@ Der Governance Kompass ist eine Internetseite. Ausgeliefert wird der fertige Ord
 
 | Datei | Zweck |
 |---|---|
-| `index.html` | die Seite selbst (Start, Story mit 14 Stationen in drei Akten, Theorie mit 16 Themen, Explore mit neun Werkzeugen, Präsentieren); Schriften, Bilder und Skript sind eingebettet |
+| `index.html` | die Seite selbst (Start, Geschichte mit 14 Stationen in drei Akten, Themen (16 Stück), Werkzeuge (neun), Präsentieren); Schriften, Bilder und Skript sind eingebettet |
 | `impressum.html` | Impressum (Bauherr Mentoren GmbH i. G., vertreten durch Martin Mohr) |
 | `datenschutz.html` | Datenschutzerklärung für eine Seite zum Lesen (keine Cookies, kein Tracking, keine Dritten) |
 | `robots.txt` | erlaubt Suchmaschinen alles und nennt die Sitemap |
@@ -15,7 +15,7 @@ Der Governance Kompass ist eine Internetseite. Ausgeliefert wird der fertige Ord
 | `favicon.svg`, `favicon.ico`, `apple-touch-icon.png` | Symbol für Browser-Tab, Lesezeichen und Startbildschirm (weiße Bildmarke auf Navy) |
 | `.htaccess` | Regeln für den IONOS-Webserver: immer `https://www.governancekompass.de`, Sicherheitsköpfe, keine Verzeichnisliste |
 
-**Umfang (Stand P19.9):** Story: ganzer Weg etwa 40 Minuten (gemessen 8.002 Wörter ≈ 40,0 Minuten), Kurzfassung etwa 10 Minuten (2.099 Wörter ≈ 10,5 Minuten, an der Grenze), 14 Stationen in drei Akten mit zwei Pausen, elf Mini-Aufgaben, Entscheidungsbuch und Verlauf; Theorie: 16 Themen in vier Teilen; Explore: neun Werkzeuge. `index.html` wiegt rund 2,4 MB (Budget 4 MB).
+**Umfang (Stand P19.9):** Geschichte: ganzer Weg etwa 40 Minuten (gemessen 8.002 Wörter ≈ 40,0 Minuten), Kurzfassung etwa 10 Minuten (2.099 Wörter ≈ 10,5 Minuten, an der Grenze), 14 Stationen in drei Akten mit zwei Pausen, elf Mini-Aufgaben, Entscheidungsbuch und Verlauf; Themen: 16 Themen in vier Teilen; Werkzeuge: neun Werkzeuge. `index.html` wiegt rund 2,4 MB (Budget 4 MB).
 
 **Fertiges Paket:** Der Ordner `webseite/` (Inhalt von `dist/` plus `LIES-MICH.txt` und `ABNAHME-CHECKLISTE.txt`) wird zu `governancekompass-komplettpaket.zip` gepackt (liegt in `tmp/`, wird nicht eingecheckt; Inhalt per sha256 gegen `dist/` geprüft). Das ZIP enthält genau die zehn Dateien der Tabelle oben, auch `.htaccess`. Im Browser des Besuchers liegt nur der Fortschritt (Datenschutz, Abschnitt 5), auf dem Server nichts außer diesen Dateien.
 
@@ -23,9 +23,11 @@ Der Ordner entsteht mit `npm run bau` und wird mit jedem Commit eingecheckt; `np
 
 ## Vor dem Launch prüfen (Owner)
 
-1. **Impressum und Datenschutz lesen** (`dist/impressum.html`, `dist/datenschutz.html`, Quellen in `inhalte/rechtliches/`). Die Angaben stammen von bauherr-mentoren.com (abgerufen am 2026-10-02) und sind auf diese Seite zugeschnitten. Prüfen: Anschrift, vertretungsberechtigte Person, Handelsregister und USt-IdNr. („werden nach Eintragung bzw. Erteilung ergänzt“), Auftragsverarbeitungsvertrag mit IONOS vorhanden.
-2. **Fachliche Abnahme** nach `docs/ABNAHME.md` (Theorie, Story, Werkzeuge, Abbildungen).
-3. **Domain:** www.GovernanceKompass.de ist bei IONOS registriert; ein SSL-Zertifikat für `governancekompass.de` und `www.governancekompass.de` muss im IONOS-Kundenbereich aktiv sein (bei IONOS-Webhosting meist enthalten).
+Stand 2026-10-05: Der Owner hat im Chat alle drei Punkte als erledigt gemeldet; die Häkchen geben seine Meldung wieder, der Lauf hat nichts davon geprüft. Die Platzhalter im Impressum (Handelsregister, USt-IdNr.) sind unverändert im Text.
+
+1. [x] **Impressum und Datenschutz lesen** (`dist/impressum.html`, `dist/datenschutz.html`, Quellen in `inhalte/rechtliches/`). Die Angaben stammen von bauherr-mentoren.com (abgerufen am 2026-10-02) und sind auf diese Seite zugeschnitten. Prüfen: Anschrift, vertretungsberechtigte Person, Handelsregister und USt-IdNr. („werden nach Eintragung bzw. Erteilung ergänzt“), Auftragsverarbeitungsvertrag mit IONOS vorhanden. *(vom Owner im Chat am 2026-10-05 als erledigt gemeldet, nicht vom Lauf geprüft)*
+2. [x] **Fachliche Abnahme** nach `docs/ABNAHME.md` (Themen, Geschichte, Werkzeuge, Abbildungen). *(vom Owner im Chat am 2026-10-05 als erledigt gemeldet, nicht vom Lauf geprüft)*
+3. [x] **Domain:** www.GovernanceKompass.de ist bei IONOS registriert; ein SSL-Zertifikat für `governancekompass.de` und `www.governancekompass.de` muss im IONOS-Kundenbereich aktiv sein (bei IONOS-Webhosting meist enthalten). *(vom Owner im Chat am 2026-10-05 als erledigt gemeldet, nicht vom Lauf geprüft)*
 
 ## Hochladen (IONOS Webspace)
 
@@ -37,8 +39,8 @@ Der Ordner entsteht mit `npm run bau` und wird mit jedem Commit eingecheckt; `np
 ## Nach dem Upload prüfen
 
 - [ ] `http://governancekompass.de` leitet auf `https://www.governancekompass.de/` weiter.
-- [ ] Startseite lädt, die drei Wege öffnen Story, Theorie und Explore.
-- [ ] Story: der Auftakt zeigt zwei Wegkarten („Vierzehn Entscheidungen · etwa 40 Minuten“ und „Vier Entscheidungen · etwa 10 Minuten“), nach Station 5 und nach Station 10 kommt eine Pause, ab Station 1 gibt es das Symbol für das Entscheidungsbuch, und „Gespeicherten Fortschritt löschen“ am Fuß setzt alles zurück.
+- [ ] Startseite lädt, die drei Wege öffnen Geschichte, Themen und Werkzeuge; die Kopfleiste nennt sie ebenso.
+- [ ] Geschichte: der Auftakt zeigt zwei Wegkarten („Vierzehn Entscheidungen · etwa 40 Minuten“ und „Vier Entscheidungen · etwa 10 Minuten“), nach Station 5 und nach Station 10 kommt eine Pause, ab Station 1 gibt es das Symbol für das Entscheidungsbuch, und „Gespeicherten Fortschritt löschen“ am Fuß setzt alles zurück.
 - [ ] Impressum und Datenschutz sind im Fuß jeder Seite erreichbar.
 - [ ] `https://www.governancekompass.de/robots.txt` und `/sitemap.xml` sind abrufbar.
 - [ ] Ein geteilter Link (z. B. in einer E-Mail- oder Chat-Vorschau) zeigt Titel, Beschreibung und Vorschaubild.

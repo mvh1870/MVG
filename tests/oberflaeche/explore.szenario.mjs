@@ -58,6 +58,8 @@ function ausDemBericht() {
  */
 export async function lauf(seite, h) {
   const pruefe = pruefer(seite, h);
+  // O-63: der Tab-Titel nennt den Bereich als „Werkzeuge“, nie den alten Namen
+  { const t = await seite.title(); if (!t.includes('Werkzeuge') || /\b(?:Story|Theorie|Explore)\b/u.test(t)) h.befund(`Tab-Titel „${t}“ statt mit „Werkzeuge“ (O-63)`); }
   const verboten = async (wo) => { for (const f of sichtbarVerboten(await seite.locator('body').innerText())) h.befund(`${wo}: ${f}`); };
   await h.erwarte('[data-werkzeug="mcda"]');
   // Beispiel ist der Vergleich der Story (Lüftung): mit Geld 5 und Schulstart 3 liegt „Später einziehen“ vorn (C 51)

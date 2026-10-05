@@ -2,7 +2,8 @@
  * Sichtbar verbotene Wörter (P16.1, O-38, O-39, O-42, O-14): kein Bezug auf eine Vorlage (Whitepaper, Kapitel,
  * Absatz-IDs, Fassung „MVG V1.2“, Originaltext), kein Vermerk „ungeprüft“, die Seite heißt nie Datei, App, Programm,
  * HTML oder Kundenfassung, und Phasen heißen LPH 0–9, nie G0–G5; dazu nichts, was nach Arbeitsstand klingt (O-56,
- * SICHTBAR_ARBEITSSTAND). Genutzt von tests/sichtbar.test.ts (jede Fläche im
+ * SICHTBAR_ARBEITSSTAND). Seit O-63 heißen die Bereiche sichtbar „Geschichte“, „Themen“, „Werkzeuge“ – die alten Namen
+ * Story, Theorie, Explore sind sichtbar verboten. Genutzt von tests/sichtbar.test.ts (jede Fläche im
  * DOM) und den Browser-Szenarien. Liste und Ausnahmen: docs/BEGRIFFE.md.
  */
 
@@ -22,6 +23,7 @@ export const SICHTBAR_VERBOTEN = [
   [/\bHTML\b/u, 'HTML'],
   [/Kundenfassung/iu, 'Kundenfassung'],
   [/\bG[0-5]\b/u, 'G0–G5'],
+  [/\b(?:Story|Theorie|Explore)\b/u, 'alter Bereichsname (O-63)'],
 ];
 
 /**

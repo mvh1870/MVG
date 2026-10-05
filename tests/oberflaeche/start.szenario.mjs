@@ -75,6 +75,10 @@ export async function lauf(seite, h) {
   if (!text.includes('Minimum Viable Governance')) h.befund('Startseite nennt „Minimum Viable Governance“ nicht ausgeschrieben');
   if (!/Internetseite/u.test(text)) h.befund('Startseite sagt nicht, dass der Governance Kompass eine Internetseite ist (O-42)');
   for (const f of sichtbarVerboten(text)) h.befund(`Startseite: ${f}`);
+  // O-63: Kopf und Türen nennen die Bereiche Geschichte · Themen · Werkzeuge (nie Story, Theorie, Explore)
+  const kopfNamen = await seite.locator('[data-pruef="seiten-kopf"] .kopf-bereich').evaluateAll((l) => l.map((e) => (e.textContent ?? '').trim()));
+  if (kopfNamen.join(' · ') !== 'Geschichte · Themen · Werkzeuge') h.befund(`Kopf: Bereiche „${kopfNamen.join(' · ')}“ statt „Geschichte · Themen · Werkzeuge“ (O-63)`);
+  if (/\b(?:Story|Theorie|Explore)\b/u.test(await seite.locator('body').textContent() ?? '')) h.befund('Startseite: alter Bereichsname im Text (O-63)');
   // O-44: Logo im Kopf, „Wer steht dahinter“ und Fuß führen leise zu bauherr-mentoren.com
   for (const sel of ['[data-pruef="kopf-bm"]', '[data-pruef="start-dahinter"] [data-pruef="bm-link"]', '[data-pruef="fuss"] [data-pruef="bm-link"]']) {
     const href = await (await h.erwarte(sel)).getAttribute('href');

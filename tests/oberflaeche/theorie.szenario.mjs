@@ -12,6 +12,8 @@ export const hash = '#theorie';
  */
 export async function lauf(seite, h) {
   const pruefe = pruefer(seite, h);
+  // O-63: der Tab-Titel nennt den Bereich als „Themen“, nie den alten Namen
+  { const t = await seite.title(); if (!t.includes('Themen') || /\b(?:Story|Theorie|Explore)\b/u.test(t)) h.befund(`Tab-Titel „${t}“ statt mit „Themen“ (O-63)`); }
   await h.erwarte('[data-pruef="themen-liste"]');
   // P17.8 (O-54): Buch mit vier Teilen und Anhang, Nummern 1 … in Leserichtung, Fortschritt 0
   await seite.evaluate(() => { try { localStorage.removeItem('gk.theorie'); } catch { /* ohne Speicher */ } });

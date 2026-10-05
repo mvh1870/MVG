@@ -34,11 +34,21 @@ Maßgeblich sind der Text des Whitepapers V1.2 (O-15) und der Standard „Aufgab
 | 30/60/90-Tage-Logik | Orientierungsrahmen nach Reifegradanalyse und bei Neuinitialisierung, **kein** allgemeiner Einführungsrhythmus | Kap. 8.2 |
 | Rollen (Standardmodell) | 13 Arbeitsrollen + Sonderrolle BM-Mentor (Kap. 9.2); in der Story heißt die Rolle „Projektleitung des Bauherrn“ oder „Sie“ (O-51, wenige Abkürzungen); in den Themen führt k04 „Bauherren-PL“ einmal ein, sonst steht „Projektleitung des Bauherrn“ (L-243); nie „Projektleitung der GML“ | Kap. 9.2 |
 | ID-Kürzel (nur Explore und Regie; in Story und Themen sichtbar umschrieben, L-243) | ENT- (Entscheidung), RIS- (Risiko), FRW- (Frühwarnung), AEN- (Änderung), MAS- (Maßnahme), AUF- (Aufgabe), NAC- (Nachweis), PRB- (Problem, L-18); Freigaben ohne Kürzel („Freigabe LPH 5“); Form in der Story kurz: `ENT-017` | Companion §3 (Whitepaper schweigt) |
-| Entscheidungsbuch | Das Buch, in dem die Story jede getroffene Entscheidung mit Grund und Folge festhält; ersetzt „Register“ und „Entscheidungsregister“ im Story-Text | Drehbuch v2, 04 §7.7 (L-303) |
+| Entscheidungsbuch | Das Buch, in dem die Geschichte jede getroffene Entscheidung mit Grund und Folge festhält; ersetzt „Register“ und „Entscheidungsregister“ im Story-Text | Drehbuch v2, 04 §7.7 (L-303) |
 | Station (Story) | Ein Abschnitt der Geschichte mit einer Entscheidung; 14 Stationen in drei Akten. Im Text „Station“, nicht „Kapitel“ oder „Folge“ | Drehbuch v2 (L-303) |
 
+## Bereichsnamen (O-63, seit 2026-10-05)
+| Sichtbar | Nicht sichtbar | Intern (bleibt) |
+|---|---|---|
+| **Geschichte** | Story | Route `#story`, Bezeichner `story`, `geschichte*`, Schlüssel `gk.story` |
+| **Themen** | Theorie | Route `#theorie`, Bezeichner `theorie`, Schlüssel `gk.theorie` |
+| **Werkzeuge** | Explore | Route `#explore`, Bezeichner `explore`, Dateien `explore*` |
+| Regie (sichtbar „Präsentieren“) · Leinwand | – | Route `#regie`, `#leinwand`, Schlüssel `gk.regie` |
+
+Die drei Bereiche heißen in Kopf- und Fußnavigation, Tab-Titeln, Startseite, Regie, Druckwegen und aria-Labels nur so. „Story“, „Theorie“ und „Explore“ als Bereichsname sind sichtbar verboten (Muster „alter Bereichsname (O-63)“ in `werkzeuge/sichtbar.mjs`, Test `Bereichsnamen` in `tests/sichtbar.test.ts`). Erlaubt bleibt das normale Wort „Geschichte“ im Text. In Entwicklerdokumenten und Code-Kommentaren stehen die alten Namen weiter als interne Bezeichner.
+
 ## Sichtbar verbotene Wörter (P16.1, geprüft von `tests/sichtbar.test.ts` und den Browser-Szenarien, Liste in `werkzeuge/sichtbar.mjs`)
-Auf der Seite nie: „Whitepaper“, „Kapitel“, „Kap. <Nr>“, Absatz-IDs (`k4.2-p3`), „MVG V1.2“ / „V1.2“, „Originaltext“, „ungeprüft“ (O-38, O-39); die Seite heißt nie „Datei“, „Einzeldatei“, „App“, „Programm“, „HTML“, „Kundenfassung“ (O-42); nie „G0–G5“ (O-14). Ausnahmen: keine. Interne Kommentare, Belege und Dokumente sind nicht betroffen.
+Auf der Seite nie: „Whitepaper“, „Kapitel“, „Kap. <Nr>“, Absatz-IDs (`k4.2-p3`), „MVG V1.2“ / „V1.2“, „Originaltext“, „ungeprüft“ (O-38, O-39); die Seite heißt nie „Datei“, „Einzeldatei“, „App“, „Programm“, „HTML“, „Kundenfassung“ (O-42); nie „G0–G5“ (O-14); nie „Story“, „Theorie“, „Explore“ als Bereichsname (O-63). Ausnahmen: keine. Interne Kommentare, Belege und Dokumente sind nicht betroffen.
 
 ## Verbotene Begriffe (geprüft von `npm run begriffe`, Liste in `werkzeuge/begriffe.json`)
 | Nicht | Sondern |

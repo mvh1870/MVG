@@ -1,5 +1,7 @@
 # Inhaltsformat
 
+
+> **Bereichsnamen (O-63):** Sichtbar heißen die Bereiche „Geschichte“ (intern Story, `#story`), „Themen“ (intern Theorie, `#theorie`) und „Werkzeuge“ (intern Explore, `#explore`). Dieses Dokument nennt sie, wo es um Code, Routen, Dateien oder Schlüssel geht, bei den internen Namen; Texte der Seite nutzen nur die sichtbaren Namen (`docs/BEGRIFFE.md`).
 Stand P19.6 Integration (2026-10-04, alle 14 Stationen eingesetzt) und Technik IV (2026-10-04; Story-Format zusätzlich um `text-kurz`, `nur-kurzfassung`, Nebenfiguren und Stimmen, Wegkarten, `oberflaeche`, Absätze im Kärtchen, Schlagzeile und Eintrag-Kärtchen ergänzt – siehe „Format-Ergänzungen P19.6“; davor P19.5: Echos, Entscheidungsbuch, Kürzungen je Absatz, Vertiefung und fünf Mini-Arten, O-62; Neuausrichtung O-36 bis O-49). Verbindlich für alle Dateien unter `inhalte/` (O-18: Inhalte ohne Programmierung änderbar). Das Werkzeug `werkzeuge/inhalte.mjs` liest sie, prüft sie und schreibt `src/generiert/inhalte.json`; die Story übersetzt dabei `werkzeuge/geschichte.mjs`, die Explore-Texte `werkzeuge/explore.mjs`. Die Typen der Ausgabe stehen in `src/inhalte/typen.ts` und `src/geschichte/typen.ts`.
 
 Kurz: Themen der Theorie, Startseite und Begriffs-Kompass sind **normales Markdown** mit **Kopfdaten** (YAML zwischen `---`) und **Containern** mit `:::` für alles, was eine feste Form hat; innerhalb eines Containers gliedern `###`-Überschriften die **Felder**. Story und Explore-Texte sind **YAML**-Dateien, deren Textfelder Markdown enthalten.

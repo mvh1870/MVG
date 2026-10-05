@@ -14,6 +14,8 @@ begriff: Freigabe
 andere: [Gate, Stage-Gate, Go/No-Go]
 beleg: k9.3-p1
 ---
+### Hinweis
+Die Entscheidung des Bauherrn am Ende einer Leistungsphase, ob die nächste beginnen darf.
 :::
 
 ::: kompass aenderungsgremium
@@ -23,7 +25,7 @@ andere: [Change-Board, Change Control Board, CCB, Änderungsausschuss]
 beleg: k4.2-p3
 ---
 ### Hinweis
-Entscheidet als befugte Stelle auf Vorlage der Projektsteuerung.
+Ein Gremium auf Seiten des Bauherrn, das im Beispiel für die Zuständigkeiten nach Betrag über Änderungen oberhalb der Grenze der Projektleitung des Bauherrn entscheidet – auf Vorlage der Projektsteuerung. Es tagt monatlich und bei Bedarf zusätzlich.
 :::
 
 ::: kompass lenkungskreis
@@ -33,7 +35,7 @@ andere: [Steering Committee, Lenkungsausschuss, Steuerungskreis]
 beleg: k4.2-p3
 ---
 ### Hinweis
-Auf der obersten Stufe der Muster-Mandatsleiter (über 5 Mio. €) beschließt der Bauherr im Lenkungskreis. Der Lenkungskreis berät; der Bauherr entscheidet dort als befugte Stelle auf Vorlage der Projektsteuerung.
+Der Lenkungskreis berät den Bauherrn. Bei Entscheidungen über 5 Mio. € (oberste Stufe des Beispiels für die Zuständigkeiten) beschließt der Bauherr dort selbst, auf Grundlage einer Vorlage der Projektsteuerung.
 :::
 
 ::: kompass entscheidungsvorlage
@@ -43,7 +45,7 @@ andere: [Decision File, Entscheidungsakte, Beschlussvorlage]
 beleg: k9.4-p1
 ---
 ### Hinweis
-In MVG erarbeitet sie die Projektsteuerung – mit mindestens zwei zulässigen Optionen und gewichtetem Vergleich.
+In MVG erarbeitet sie die Projektsteuerung – mit mindestens zwei zulässigen Möglichkeiten (Optionen) und gewichtetem Vergleich.
 :::
 
 ::: kompass mcda
@@ -63,7 +65,7 @@ andere: [Entscheider, Decision Owner, Entscheidungsträger]
 beleg: v24:hb-3.1
 ---
 ### Hinweis
-Entscheidet nach den festgelegten Befugnissen und Schwellen; die Projektsteuerung bereitet nur vor.
+Entscheidet nach den festgelegten Befugnissen und Grenzen (Schwellen); die Projektsteuerung bereitet nur vor.
 :::
 
 ::: kompass entscheidungs-id
@@ -72,6 +74,8 @@ begriff: Entscheidungs-ID
 andere: [Entscheidungsnummer, Entscheidungskennung]
 beleg: k4.3-p2
 ---
+### Hinweis
+Eine eindeutige Kennung für jede wichtige Entscheidung des Bauherrn, mit der man sie wiederfindet und verfolgt.
 :::
 
 ::: kompass entscheidungsregister
@@ -81,7 +85,7 @@ andere: [Decision Log, Entscheidungsprotokoll]
 beleg: k6.4.1-p3
 ---
 ### Hinweis
-In MVG führt die Projektsteuerung offene Entscheidungen als Entscheidungsvorbereitung neben den sechs Vorgangsarten, getrennt vom späteren Beschluss.
+In MVG führt die Projektsteuerung die offenen Entscheidungen in einer eigenen Liste, neben den sechs Vorgangsarten. Der spätere Beschluss wird gesondert festgehalten.
 :::
 
 ::: kompass entscheidungsreife
@@ -90,6 +94,8 @@ begriff: Entscheidungsreife
 andere: [Readiness]
 beleg: k2.5-t1
 ---
+### Hinweis
+Eine Entscheidung ist reif, wenn sie so weit vorbereitet ist, dass die zuständige Stelle sie treffen kann – mit mindestens zwei zulässigen Optionen und gewichtetem Vergleich.
 :::
 
 ::: kompass betriebshandbuch
@@ -98,6 +104,8 @@ begriff: Betriebshandbuch
 andere: [Operating Model, Governance-Handbuch]
 beleg: k5.2-t1
 ---
+### Hinweis
+Das Handbuch, das beschreibt, wie MVG nach der Einführung im Alltag weiterläuft: Rollen, feste Abläufe, Termine, Wege nach oben und Kontrollen.
 :::
 
 ::: kompass nachweis
@@ -106,6 +114,8 @@ begriff: Nachweis
 andere: [Evidence]
 beleg: k4.6-p1
 ---
+### Hinweis
+Der Nachweis zeigt, wie und auf welcher Grundlage eine Entscheidung zustande kam.
 :::
 
 ::: kompass nachweiskette
@@ -114,6 +124,8 @@ begriff: Nachweiskette
 andere: [Audit Trail]
 beleg: k4.6-p2
 ---
+### Hinweis
+Die lückenlose Spur von Grundlagen, Annahmen, Freigaben, Beschlüssen und Umsetzung.
 :::
 
 ::: kompass datenstand
@@ -132,6 +144,8 @@ begriff: Projektumfang
 andere: [Scope]
 beleg: k4.3-p1
 ---
+### Hinweis
+Was das Projekt umfasst, also was gebaut oder geleistet werden soll.
 :::
 
 ::: kompass auswirkungsbewertung
@@ -140,6 +154,8 @@ begriff: Auswirkungsbewertung
 andere: [Impact-Analyse, Impact Assessment, Folgenabschätzung]
 beleg: k5.3-p2
 ---
+### Hinweis
+Die Bewertung der Folgen einer Entscheidung oder Änderung für Kosten, Termin, Qualität, Projektumfang, Risiko, Nachhaltigkeit und Lebenszykluskosten.
 :::
 
 ::: kompass risikominderung
@@ -148,6 +164,8 @@ begriff: Risikominderung
 andere: [Mitigation]
 beleg: k4.4-p2
 ---
+### Hinweis
+Alles, was ein Risiko verkleinert; was danach übrig bleibt, heißt Restrisiko.
 :::
 
 ::: kompass vorgangsart
@@ -166,6 +184,8 @@ begriff: Aufgabe
 andere: [Task, To-do, Action Item]
 beleg: v24:hb-1.1
 ---
+### Hinweis
+Geplante Arbeit mit vereinbartem Ergebnis, Verantwortlichem und Termin; eine der sechs Vorgangsarten.
 :::
 
 ::: kompass risikomatrix
@@ -205,7 +225,7 @@ andere: [Change Request, Änderungswunsch]
 beleg: k2-p1
 ---
 ### Hinweis
-Wird gegen den geltenden Stand aufbereitet; bis zur Freigabe gilt die bisherige Grundlage.
+Es wird geprüft, was sie gegenüber dem aktuell gültigen Plan bedeutet; bis zur Freigabe gilt die bisherige Grundlage.
 :::
 
 ::: kompass massnahme
@@ -225,7 +245,7 @@ andere: [Management-Report, Steering-Report, Lenkungskreisbericht]
 beleg: k6.4.3-p1
 ---
 ### Hinweis
-In MVG geht der regelmäßige Bericht als Monatsbericht an den Bauherrn: höchstens eine Seite, aus demselben Informationsstand wie die Einträge. Der Managementbericht zur Freigabe bleibt Teil der Freigabevorbereitung.
+In MVG bekommt der Bauherr jeden Monat den Monatsbericht: höchstens eine Seite, aus denselben Informationen wie die Einträge in der Software. Daneben gibt es den Managementbericht, der eine Freigabe vorbereitet.
 :::
 
 ::: kompass monatsbericht
@@ -235,7 +255,7 @@ andere: [One-Pager, Monatsreport]
 beleg: v24:hb-4
 ---
 ### Hinweis
-Höchstens eine Seite, aus demselben Informationsstand wie die Einträge.
+Höchstens eine Seite, aus denselben Informationen wie die Einträge in der Software.
 :::
 
 ::: kompass monatstermin
@@ -254,6 +274,8 @@ begriff: Restkostenprognose
 andere: [Cost to Complete, CTC]
 beleg: k2.1-p2
 ---
+### Hinweis
+Die erwarteten Kosten, die bis zum Projektabschluss noch anfallen.
 :::
 
 ::: kompass neuinitialisierung
@@ -263,7 +285,7 @@ andere: [Reset, Governance-Reset]
 beleg: k7.5-p1
 ---
 ### Hinweis
-Kein vollständiger Projektneustart, sondern eine gezielte Neuordnung der Steuerungs- und Entscheidungslogik.
+Kein vollständiger Projektneustart, sondern eine gezielte Neuordnung dessen, wie gesteuert und entschieden wird.
 :::
 
 ::: kompass mandat
@@ -272,16 +294,18 @@ begriff: Mandat
 andere: [Kompetenzregelung, Entscheidungsbefugnis eines Gremiums]
 beleg: k1.1-p1
 ---
+### Hinweis
+Die klar zugewiesene Befugnis einer Rolle oder eines Gremiums, bestimmte Entscheidungen zu treffen – bis zu einer festgelegten Grenze.
 :::
 
 ::: kompass bauherren-pl
 ---
-begriff: Bauherren-Projektleitung
-andere: [Client Project Manager]
-beleg: k5.3-l1
+begriff: Projektleitung des Bauherrn
+andere: [Bauherren-PL, Bauherren-Projektleitung, Client Project Manager]
+beleg: k1.3-t1
 ---
 ### Hinweis
-Die Projektleitung auf Bauherrenseite, auf dieser Seite meist „Projektleitung des Bauherrn“.
+Die Rolle auf Seiten des Bauherrn, die das Projekt leitet und koordiniert.
 :::
 
 ::: kompass leistungsphase
@@ -290,4 +314,6 @@ begriff: Leistungsphase
 andere: [Projektphase]
 beleg: k9.3-p1
 ---
+### Hinweis
+Einer der zehn Abschnitte eines Bauprojekts, von LPH 0 (Bedarfsplanung) bis LPH 9 (Übergabe); am Ende gibt der Bauherr frei.
 :::

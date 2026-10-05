@@ -126,7 +126,7 @@ Die Sätze „So schließen Sie sie“ richten sich an den Bauherrn, der die Vor
 | `lueftung-voll` | Dieselbe Lage, Fassung mit allen drei Wegen (gute Antwort in Story 7) | drei Wege zulässig: Ersatzgerät rund 400.000 €, Leihgeräte rund 150.000 € (Fachplanung bestätigt), später einziehen rund 50.000 €; Gegenstand Geld, Stelle Bürgermeisterin, Reserve ja; Termin „Ende Mai 2027“; Folge „sonst ist auch das Ersatzgerät nicht rechtzeitig da“; Gewichte vorher abgestimmt aus „zuerst der Schulstart, dann das Geld“; C4: „Wären Klima und Betrieb wichtig, läge der spätere Einzug gleichauf“; Empfehlung Ersatzgerät mit Nachteil „kostet am meisten“; Vorgang: die spätere Lieferung (Problem); Datenstand „Mai 2027“ | **grün** |
 | `mensa` | Mensa für 450 statt 300 Essen, Juni 2026 (Story 4) | zwei Wege zulässig: größere Mensa rund 600.000 € und vier Wochen Umplanung · Mensa, die später wachsen kann, rund 150.000 €; Gegenstand Geld, Stelle Bürgermeisterin, Reserve ja; Termin nur „bevor die Fundamente gegossen werden“ (A4 Teilweise); bis zum Beschluss gilt die bisherige Planung (D3 Ja); übrige Ja | **gelb** – Termin ohne Datum |
 
-Hinweis Fall-Bibel: Alle Zahlen, Wege, Stelle und Termin stammen aus `k7-entscheidung.yaml`, `k4-mensa.yaml` und `fall.md`. Neu ist nur die Angabe „Datenstand Mai 2027“ im Beispiel `lueftung-voll` (Story nennt keinen Datenstand; der Monat ist der Monat der Story-Szene) – übernommen in L-253 (E-3), im Fundus von `inhalte/fall.md` vermerkt.
+Hinweis Fall-Bibel: Alle Zahlen, Wege, Stelle und Termin stammen aus `s12-entscheidung.yaml`, `s5-mensa.yaml` und `fall.md`. Neu ist nur die Angabe „Datenstand Mai 2027“ im Beispiel `lueftung-voll` (Story nennt keinen Datenstand; der Monat ist der Monat der Story-Szene) – übernommen in L-253 (E-3), im Fundus von `inhalte/fall.md` vermerkt.
 
 ### A.6 Rückmeldung und Grafik
 
@@ -154,7 +154,7 @@ Regie-Chips: `lueftung-kurz` · `lueftung-voll` · `mensa`; Schritt 1–5 und �
 
 **Zweck:** Führt mit wenigen Ja/Nein-Fragen von einem Sachverhalt zur passenden Vorgangsart und zeigt den nächsten Schritt, was festzuhalten ist und welche Verwechslung typisch ist.
 
-**Leser:** unpersönlich. Die Sätze beschreiben, was mit dem Sachverhalt geschieht („wird als Frühwarnung festgehalten“), nicht, wer ihn einträgt; erfasst und bearbeitet wird in der Software des Bauherrn durch die Projektsteuerung (v24:hb-1, v24:tlb-2, O-36).
+**Leser:** seit L-321 „Sie“, wo etwas zu tun ist, und sachlich, wo etwas gilt (vorher unpersönlich, L-254). Die Sätze beschreiben, was mit dem Sachverhalt geschieht („wird als Frühwarnung festgehalten“), nicht, wer ihn einträgt; erfasst und bearbeitet wird in der Software des Bauherrn durch die Projektsteuerung (v24:hb-1, v24:tlb-2, O-36).
 
 ### B.1 Ablauf
 
@@ -261,7 +261,7 @@ Regie-Chips je Sachverhalt; „weiter“ beantwortet die nächste Frage mit der 
 
 **Zweck:** Bewertet ein Risiko mit den vier eigenen Grenzen des Projekts für Wahrscheinlichkeit, Kosten und Termin und zeigt Stufen, Matrixfeld und Bearbeitungspriorität – auch dann, wenn noch nicht alles bekannt ist.
 
-**Leser:** unpersönlich. Das Werkzeug zeigt, wie eine Bewertung nach den Grenzen ausfällt; bewertet und gepflegt wird das Risiko in der Software des Bauherrn durch die Projektsteuerung, die Annahme eines wesentlichen Risikos entscheidet die befugte Stelle (v24:hb-1, v24:hb-1.3, v24:tlb-2, O-36).
+**Leser:** seit L-321 „Sie“, wo etwas zu tun ist, und sachlich, wo etwas gilt (vorher unpersönlich, L-254). Das Werkzeug zeigt, wie eine Bewertung nach den Grenzen ausfällt; bewertet und gepflegt wird das Risiko in der Software des Bauherrn durch die Projektsteuerung, die Annahme eines wesentlichen Risikos entscheidet die befugte Stelle (v24:hb-1, v24:hb-1.3, v24:tlb-2, O-36).
 
 ### C.1 Ablauf
 
@@ -358,7 +358,7 @@ Regie-Chips `ris-009` · `ris-014` · `ris-021` und die vier „Was wäre, wenn�
 
 **Zweck:** Macht aus wenigen Feldern einen Monatsbericht auf einer Seite und warnt, wenn eine Ampel ohne Entscheidungsfrage oder benötigte Reaktion dasteht.
 
-**Leser:** unpersönlich. Den Bericht erstellt die Projektsteuerung für den Bauherrn; die Sätze sagen, was im Bericht fehlt („die Reaktion, die vom Bauherrn gebraucht wird“), nicht, wer schreibt (v24:hb-4, v24:tlb-2, O-36).
+**Leser:** seit L-321 „Sie“, wo etwas zu tun ist, und sachlich, wo etwas gilt (vorher unpersönlich, L-254). Den Bericht erstellt die Projektsteuerung für den Bauherrn; die Sätze sagen, was im Bericht fehlt („die Reaktion, die vom Bauherrn gebraucht wird“), nicht, wer schreibt (v24:hb-4, v24:tlb-2, O-36).
 
 ### D.1 Ablauf
 

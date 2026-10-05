@@ -1,13 +1,12 @@
 id: abb-10
 quelle: bilder/image10.jpeg
-titel: Verknüpfungen zwischen Frühwarnung, Risiko, Entscheidung, Freigabe und Maßnahme
+titel: Wie aus einem Hinweis eine Entscheidung und eine Maßnahme wird
 alt: >-
-  Legende „Lebenszyklus / ‚wird zu‘“: Risiko (bewertet, wesentlich) → Entscheidungsregister (ausarbeiten) →
-  Entscheidungsvorlage (reif) → Freigabe (LPH 0–9); Problem (eskaliert), Änderung (erfordert) → Register;
-  Vorlage (führt zu) → Änderung (beeinflusst) → CTC / Prognose (Restkostenprognose); Freigabe (Auflagen) →
-  Maßnahme. „Überwachung / Indikator“: „Schwellenwert löst Frühwarnung aus“ → Frühwarnung (unbewertetes
-  Signal); Maßnahme (Risikominderung, Regelkreis schließt) → Risiko. „Bericht in den Managementbericht“:
-  Freigabe → Managementbericht.
+  Die Abbildung zeigt, wie aus Hinweisen, Risiken, Problemen und Änderungen Entscheidungen und Maßnahmen werden: Ein
+  wesentliches Risiko, ein Problem oder eine Änderung kommt auf die Liste der offenen Entscheidungen
+  (Entscheidungsregister). Daraus wird eine reife Entscheidungsvorlage, daraus die Freigabe (LPH 0–9); Auflagen der
+  Freigabe führen zu Maßnahmen, Maßnahmen mindern das Risiko. Ein überschrittener Grenzwert löst eine neue Frühwarnung
+  aus. Die Freigabe geht in den Managementbericht.
 angeglichen:
   - { x: 1291, y: 343, b: 62, h: 23, text: "", beleg: k13-t1 }
   - { x: 1219, y: 364, b: 136, h: 28, text: LPH 0–9, beleg: k13-t1, schrift: barlow, gewicht: 600, groesse: 20 }

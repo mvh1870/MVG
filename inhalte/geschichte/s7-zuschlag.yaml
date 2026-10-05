@@ -1,0 +1,92 @@
+# 7 · Der Zuschlag (Drehbuch docs/drehbuch-v2/02-akt-2.md, Station 7)
+# Kern: Die Freigabe der Bürgermeisterin erlaubt den nächsten Schritt; bestellt wird über die Vergabestelle (v24:va-4.2, v24:tlb-5).
+# Eine Mappe zeigt Frage und Termin, mindestens zwei Wege und die Frist des Angebots (v24:hb-3.1); eine Chance steht für sich (v24:hb-3).
+# Szene Zeile 2 ist das Echo E3 (Quelle Station 3). Station 7 erzeugt kein Echo.
+# Auf jedem Weg: Zuschlag im September, Preisnachlass als Chance geführt, bestellt über die Vergabestelle; nirgends ein Hinweis,
+# man könne den Hersteller nachträglich wechseln (k5.5-p1: keine Vergaberechtsprüfung).
+# Mini-Aufgabe (mappe), Belege je Karte: 1 v24:hb-3.1 · 2 v24:hb-3.1, v24:tlb-3 · 3 k10.5-t1 · 4 v24:hb-3 · 5 v24:va-4.2, v24:tlb-5
+nr: 7
+titel: Der Zuschlag
+zeit: September 2026
+campus: { stufe: 2.5, jahreszeit: herbst, licht: tag }
+bruecke: "September: Der Auftrag fürs Holz der Grundschule wird vergeben: Die Bürgermeisterin gibt frei, die städtische Vergabestelle bestellt."
+thema: verantwortung
+werkzeuge: [{ id: vorlagen-check, beispiel: zuschlag }]
+belege: [v24:hb-3.1, v24:tlb-3, v24:hb-3, v24:va-4.2, v24:tlb-5, v24:va-4.1, v24:hb-1, k4.5-p1, k9.3-t1, k10.5-t1, k5.5-p1]
+bild-szene: glocke-haken
+bild-frage: angebotskalender
+
+einstieg: |
+  Anfang September 2026. Morgendunst liegt über dem Rohbau, im Erdgeschoss der Gesamtschule stehen die ersten Wände. Hanna Klingel hängt ihre Messingglocke probehalber an einen Haken. „Nicht läuten!“, ruft Theo Lot von der Leiter. Dann bringt Clara Faden die Mappe mit den Entscheidungsunterlagen für den Zuschlag: den Auftrag fürs Holz der Grundschule.
+
+szene:
+  - { figur: faden, text: "Die Vergabestelle, die für die Stadt Aufträge erteilt, legt den Zuschlag vor. Das Angebot gilt nur bis Freitag. Danach ist der Preis nicht mehr sicher. Die Bürgermeisterin müsste bis Donnerstag freigeben. Vollständig ist die Mappe noch nicht." }
+  # E3: Fassung je nach Antwort in Station 3 (gut: Meldung und Vorlage in derselben Woche; vertretbar: Vorlage später; Falle: „Was weiß ich sonst noch nicht?“)
+  - { figur: grundstein, echo: E3 }
+  - { figur: schwung, text: "Der Holzbauer bietet außerdem einen Nachlass für spätere Holzarbeiten an. Den würde ich gleich einrechnen." }
+  - { figur: faden, text: "Den Nachlass halte ich getrennt fest, als Chance. Mit Risiken verrechnet wird er nicht." }
+  - { figur: lot, text: "Ich plane die Zimmerleute, wenn ich den Lieferschein sehe. Vorher nicht." }
+  - { text: "Am Telefon sagt die Vergabestelle Ihnen: „Wir erteilen den Zuschlag, sobald die Freigabe vorliegt.“" }
+
+frage: Der Freitag rückt näher, und Konrad Schwung drängt. Was lassen Sie tun?
+
+antworten:
+  - wertung: vertretbar
+    text: "Sie lassen der Bürgermeisterin die Freigabe vorlegen. Wer bestellt, wird sich zeigen."
+    balken: { geld: 0, zeit: -1, vertrauen: 0 }
+    bild: kalender
+    folge: |
+      Clara Faden ergänzt die Mappe, die Bürgermeisterin gibt am Donnerstag frei. Dann fragt die Vergabestelle: „Und wer bestellt jetzt?“ Konrad Schwung dachte, die Projektsteuerung bestellt; die Vergabestelle dachte, das sei längst erledigt.
+
+      Erst am Freitagmittag ist geklärt, dass die Vergabestelle zuschlägt, und der Zuschlag geht knapp vor Ablauf des Angebots raus. Vom Zeitpuffer ist ein Tag weg. Der Preisnachlass bleibt als Chance daneben.
+  - wertung: gut
+    text: "Sie lassen die Freigabe vorlegen und klären mit der Vergabestelle, wer bestellt und bis wann."
+    balken: { geld: 0, zeit: 1, vertrauen: 1 }
+    bild: mappe
+    folge: |
+      Die Vergabestelle bestätigt, dass sie selbst den Zuschlag erteilt und bestellt – nicht die Projektsteuerung und nicht der Bauleiter. Clara Faden ergänzt die Mappe bis Mittwoch. Die Bürgermeisterin gibt am Donnerstag frei, noch am Abend geht der Zuschlag raus, einen Tag bevor das Angebot abläuft. Der Preisnachlass steht als Chance daneben.
+
+      Im Plan gewinnen Sie Zeitpuffer. Theo Lot nickt: „Dann sehe ich bald einen Lieferschein.“
+  - wertung: falle
+    text: "Sie sagen dem Bauleiter: „Die Freigabe ist nur noch Formsache.“ Er kann die Zimmerleute schon einplanen."
+    balken: { geld: -1, zeit: -2, vertrauen: -1 }
+    bild: lieferwagen
+    folge: |
+      Theo Lot zögert – „Ohne Lieferschein?“ –, bucht die Zimmerleute aber für Januar, weil Sie es sagen. Weil alles als sicher gilt, drängt niemand auf die fehlenden Teile. Die Mappe geht unvollständig zur Bürgermeisterin, und die schickt sie zurück: „Über eine halbe Mappe entscheide ich nicht.“
+
+      Bis Clara Faden alles ergänzt hat, ist das Angebot abgelaufen. Der Holzbauer nennt eine um zwei Wochen längere Lieferzeit, und die Zimmerleute berechnen die Umbuchung. Zugeschlagen wird trotzdem noch im September, über die Vergabestelle; der Preisnachlass bleibt als Chance daneben.
+
+gut: |
+  Die Freigabe der Bürgermeisterin erlaubt den nächsten Schritt – bestellt wird aber über die Vergabestelle. Die Mappe nennt Frage und Termin, mindestens zwei Wege und die Frist des Angebots. Eine Chance steht für sich, und wo etwas fehlt, lassen Sie nachbessern.
+
+mini:
+  art: mappe
+  titel: Fehlt etwas in der Mappe?
+  aufgabe: "Fünf Abschnitte der Mappe. Steht in jedem, was die Bürgermeisterin zum Entscheiden braucht?"
+  bild: mappe
+  schluss: "Drei Abschnitte mussten nachgebessert werden."
+  posten:
+    - { text: "Frage: Soll die Stadt dem Holzbauer den Zuschlag erteilen? Die Bürgermeisterin entscheidet bis Donnerstag, das Angebot gilt bis Freitag.", loesung: annehmen, erklaerung: "Frage, zuständige Stelle, Termin und die Frist des Angebots stehen da." }
+    - { text: "Wege: Weg A, Zuschlag an den Holzbauer zum Angebotspreis.", loesung: nachfordern, erklaerung: "Ein Weg ist keine Wahl. Soll etwas getan werden, braucht die Entscheidung mindestens zwei zulässige Wege, etwa den Zuschlag jetzt oder ein verlängertes Angebot; sonst ist die Mappe nicht vollständig." }
+    - { text: "Angebot: Es gilt bis Freitag. Danach ist der Preis nicht mehr sicher.", loesung: annehmen, erklaerung: "Die Frist des Angebots ist genannt; eine Entscheidung unter Zeitdruck braucht dieses Datum." }
+    - { text: "Chance: Preisnachlass und Lieferrisiko stehen als eine gemeinsame Zahl in der Mappe.", loesung: nachfordern, erklaerung: "Der Nachlass ist eine Chance. Er wird für sich beschrieben und nicht gegen das Lieferrisiko aufgerechnet." }
+    - { text: "Bestellung: Sobald die Freigabe da ist, bestellt die Projektsteuerung beim Holzbauer.", loesung: nachfordern, erklaerung: "Bestellt wird über die Vergabestelle. Die Projektsteuerung bereitet vor und verfolgt den Weg; sie bestellt nichts." }
+
+dahinter: "Die Freigabe erlaubt den nächsten Schritt, doch bestellt wird über die Vergabestelle: Eine Freigabe im Projekt ist noch keine Bestellung. Darum zeigt eine gute Mappe, wer bestellt und bis wann das Angebot gilt."
+
+vertiefung:
+  form: nachdenken
+  titel: Wer bestellt?
+  text:
+    - "Ein Kirchenvorstand bewilligt das Geld und beschließt, die Orgel zu überholen; alle sind froh, dass es endlich losgeht. Am Tag danach ruft der Küster die Orgelbauerin an: „Es ist beschlossen, fangen Sie an.“ Die Orgelbauerin beginnt. Vier Wochen später schickt sie die erste Rechnung, und die Verwaltung, die Aufträge erteilt, hat nie einen Auftrag unterschrieben."
+    - "Was ist hier schiefgelaufen?"
+  antwort:
+    - "Der Beschluss war echt, und er hat den nächsten Schritt erlaubt. Aber ein Beschluss ist noch kein Auftrag. Beauftragt wird auf dem Weg, der dafür vorgesehen ist, hier über die Verwaltung. Der Küster hat „beschlossen“ wie „bestellt“ gelesen. Auf dem Schulcampus ist dieser Weg die Vergabestelle."
+    - "Gut ist, wer vor dem Anruf fragt: Wer erteilt den Auftrag, und bis wann muss er hinaus? Wer das früh klärt, rettet auch ein Angebot, das nur noch bis Freitag gilt, und muss hinterher nicht streiten, ob die Orgelbauerin bezahlt wird."
+    - "Die Frist eines Angebots ist dabei kein Gegner, sondern ein Datum, das in die Mappe gehört."
+
+regie:
+  notiz: "Kern: Die Freigabe erlaubt den nächsten Schritt; bestellt wird über die Vergabestelle. Eine Mappe zeigt Frage und Termin, mindestens zwei Wege und die Frist des Angebots."
+  leitfragen:
+    - Wer darf bei Ihnen bestellen – und wie sieht man, dass er es durfte?
+    - Bis wann bindet das Angebot, auf dem Sie entscheiden?

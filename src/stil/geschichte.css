@@ -1,5 +1,5 @@
 /* =============================================================================================
-   MVG · Story (P17.4, O-51 bis O-53, O-57): acht Kapitel als Bilderbuch – isometrischer Campus groß,
+   MVG · Story (P17.4, O-51 bis O-53, O-57): 14 Stationen in drei Akten als Bilderbuch – isometrischer Campus groß,
    Dialog mit Porträts und Sprechblasen in der Farbe der Figur, drei Antwortkarten, Balken Geld · Zeit ·
    Vertrauen, Mini-Aufgaben und der Vergleich als Spiel. Nur Tokens aus tokens.css, keine Farbwerte.
    Die Klassen gs-text, gs-leise, gs-leiser-knopf, gs-kicker, gs-titel, gs-tabelle, gs-balken und gs-kipp
@@ -42,6 +42,8 @@
 [data-akzent="beere"] { --f: var(--akzent-beere); --f-soft: var(--akzent-beere-soft); --f-text: var(--akzent-beere-text); }
 [data-akzent="gruen"] { --f: var(--akzent-gruen); --f-soft: var(--akzent-gruen-soft); --f-text: var(--akzent-gruen-text); }
 [data-akzent="marke"] { --f: var(--gold); --f-soft: var(--gold-soft); --f-text: var(--gold-text); }
+/* ohne Akzent (P19.6): der Reporter und die Stimmen – Papierton, Text in Navy */
+[data-akzent="keiner"] { --f: var(--linie-3); --f-soft: var(--flaeche-4); --f-text: var(--navy-soft); }
 [data-balken="geld"] { --b: var(--akzent-sonne); --b-soft: var(--akzent-sonne-soft); --b-text: var(--akzent-sonne-text); }
 [data-balken="zeit"] { --b: var(--akzent-blau); --b-soft: var(--akzent-blau-soft); --b-text: var(--akzent-blau-text); }
 [data-balken="vertrauen"] { --b: var(--akzent-beere); --b-soft: var(--akzent-beere-soft); --b-text: var(--akzent-beere-text); }
@@ -146,6 +148,8 @@ button.gs-feld:hover { border-color: var(--gold); }
 .gs-campus { position: relative; overflow: hidden; border-radius: 24px; box-shadow: 0 2px 0 var(--linie), var(--schatten-tuer); background: var(--flaeche-4); }
 .gs-campus > svg { width: 100%; height: 100%; }
 .gs-campus-gross { aspect-ratio: 2.2 / 1; }
+/* P19.6: Über der ersten Station eines Akts steht die Kopfkarte; der Campus gibt ihr den Platz ab, damit der Text der Szene weiter über der Falz beginnt */
+.gs-schritt:has(.gs-aktkopf) .gs-buehnenbild:has(> .gs-campus-gross) { max-width: calc(40vh * 2.2); }
 .gs-campus-zusatz { position: absolute; right: 4%; top: 6%; width: 18%; max-width: 140px; }
 .gs-campus-zusatz svg { width: 100%; height: auto; }
 /* Einstieg: erzählender Absatz auf einer Karte, die ins Bild ragt */
@@ -183,9 +187,18 @@ button.gs-feld:hover { border-color: var(--gold); }
   border: 9px solid transparent; border-left: 0; border-right-color: var(--f-soft, var(--weiss));
 }
 .gs-sprecher { font: var(--typo-reiter); letter-spacing: var(--sperrung-label); text-transform: uppercase; }
+/* Namensschild einer Nebenfigur beim ersten Auftritt (P19.6) */
+.gs-schild { font: var(--typo-klein); color: var(--tinte-2); margin-bottom: var(--a-1); }
+/* Schlagzeile des „Lindenbote“ unter dem Zeitungsbild (P19.6) */
+.gs-schlagzeile { margin: 0; display: grid; gap: var(--a-2); justify-items: center; text-align: center; }
+.gs-schlagzeile figcaption { font: var(--typo-klein); font-weight: 700; color: var(--navy); max-width: 22ch; }
+.gs-weiter-kicker { flex-basis: 100%; }
+.gs-mandat-absatz + .gs-mandat-absatz { margin-top: var(--a-2); }
 .gs-zusatz { text-transform: none; letter-spacing: 0; font-weight: 600; }
 .gs-gesagt { margin-top: var(--a-1); font: var(--typo-lese); color: var(--tinte); }
 .gs-zeile-erzaehlt p { font: var(--typo-lese); color: var(--tinte-2); }
+/* P19.6: Erzählzeilen ohne Figur (Elternbeirat, Reporter, Ratsmitglied) nehmen die ganze Breite, nicht die Spalte des Porträts */
+.gs-zeile.gs-zeile-erzaehlt { grid-template-columns: minmax(0, 1fr); }
 
 /* ------------------------------------------------------------ Frage und Antworten */
 .gs-frage-block {
@@ -273,6 +286,12 @@ button.gs-antwort:active { transform: translateY(2px); box-shadow: var(--schatte
   display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--a-4); align-items: start;
   padding: var(--a-5) var(--a-6);
   border-radius: var(--radius-l);
+  isolation: isolate;
+}
+/* Nur der Rahmen steht leicht schräg, der Text bleibt gerade und scharf (L-390): Papier und Schatten liegen auf einer eigenen Ebene dahinter */
+.gs-mandat::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  border-radius: var(--radius-l);
   background: var(--akzent-sonne-soft);
   box-shadow: var(--schatten-karte-hoch);
   transform: rotate(-.4deg);
@@ -303,7 +322,38 @@ button.gs-antwort:active { transform: translateY(2px); box-shadow: var(--schatte
 .gs-titel-gross { font-size: 56px; line-height: .95; }
 .gs-lead { font: var(--typo-lese); font-size: var(--gr-xl); }
 .gs-lead > * + * { margin-top: var(--a-3); }
-.gs-start-knoepfe { display: flex; flex-wrap: wrap; align-items: center; gap: var(--a-3) var(--a-6); }
+.gs-wege { display: grid; gap: var(--a-4); }
+.gs-wege-karten { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--a-5); }
+/* O-61: lange Geschichte in Gold, Kurzfassung in Petrol – derselbe Weg, einmal ganz, einmal mit Brücken */
+.gs-wegkarte {
+  --wk: var(--gold); --ton-text: var(--gold-text); --wk-soft: var(--gold-soft);
+  display: grid; align-content: start; justify-items: start; gap: var(--a-2);
+  padding: var(--a-5); border-radius: 20px; background: var(--weiss);
+  border: 1px solid var(--linie); border-top: 6px solid var(--wk); box-shadow: var(--schatten-karte);
+}
+.gs-wegkarte-kurz { --wk: var(--petrol); --ton-text: var(--petrol); --wk-soft: var(--akzent-lagune-soft); }
+.gs-weg-bild { width: 100%; padding: var(--a-3) var(--a-2); border-radius: var(--radius-l); background: var(--wk-soft); }
+.gs-weg-bild svg { display: block; width: 100%; height: auto; max-height: 96px; }
+.gs-weg-titel { font: 700 var(--gr-xl)/1.2 var(--schrift-anzeige); color: var(--navy); margin-top: var(--a-2); }
+.gs-weg-meta { font: 600 var(--gr-m)/1.3 var(--schrift-label); letter-spacing: .06em; text-transform: uppercase; color: var(--ton-text); }
+.gs-weg-text { font-size: var(--gr-text); line-height: 1.5; color: var(--tinte-2); max-width: 40ch; }
+.gs-wegkarte .gs-knopf { margin-top: var(--a-3); }
+.gs-wegkarte-kurz .gs-knopf { background: var(--petrol); color: var(--weiss); box-shadow: 0 3px 0 var(--navy-soft); }
+.gs-wegkarte-kurz .gs-knopf:hover { background: var(--navy-soft); color: var(--weiss); }
+.gs-knopf-kurz { min-height: 54px; padding: var(--a-3) var(--a-6); }
+/* Wegskizze (src/grafik/weg-skizze.ts) */
+.ws { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.ws-weg { stroke: var(--wk); stroke-width: 3; }
+.ws-bruecke { stroke-dasharray: 2 6; stroke-width: 2.4; opacity: .8; }
+.ws-station { fill: var(--wk); stroke: var(--weiss); stroke-width: 2; }
+.ws-lang .ws-station { fill: var(--gold-hell); stroke: var(--gold-kante); }
+.ws-nr { fill: var(--weiss); stroke: none; font: 700 9px var(--schrift-label); }
+.ws-lang .ws-nr { fill: var(--navy); }
+.ws-akt { fill: var(--navy); stroke: none; font: 700 9px var(--schrift-label); letter-spacing: .06em; }
+.ws-uebersprungen { fill: var(--weiss); stroke: var(--wk); stroke-width: 1.6; }
+.ws-fahne, .ws-haus { stroke: var(--navy); stroke-width: 2; }
+.ws-fahne { fill: var(--wk-soft); }
+.ws-haus { fill: var(--weiss); }
 .gs-figuren, .gs-stand-erklaert { display: grid; gap: var(--a-4); }
 .gs-figuren-liste { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--a-4); }
 .gs-figuren-sie-titel { margin-top: var(--a-5); }
@@ -360,6 +410,9 @@ button.gs-antwort:active { transform: translateY(2px); box-shadow: var(--schatte
 .gs-campus-mini { aspect-ratio: 3 / 2; border-radius: var(--radius-l); box-shadow: none; }
 .gs-bruecke-kopf { color: var(--tinte-2); font: var(--typo-klein); }
 .gs-bruecke-kopf b { color: var(--navy); font-size: var(--gr-text); }
+/* Brückenzeile mit Akten (P19.6): fette Nummer, Monat und Satz */
+.gs-bruecke-zeile { font: var(--typo-lese); color: var(--tinte); }
+.gs-bruecke-zeile b { color: var(--navy); }
 
 /* ------------------------------------------------------------ Mini-Aufgabe */
 .gs-mini-aufgabe {
@@ -369,6 +422,8 @@ button.gs-antwort:active { transform: translateY(2px); box-shadow: var(--schatte
 .gs-mini-symbol { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 16px; background: var(--weiss); color: var(--akzent-orange-text); }
 .gs-mini-symbol .symbol { width: 30px; height: 30px; }
 .gs-mini-auftrag { font: 600 var(--gr-xl)/1.4 var(--schrift-text); color: var(--tinte); }
+.gs-mini-wand-kopf { margin: 0 0 var(--a-2); font-weight: 700; color: var(--navy); }
+.gs-mini-begriffe { display: block; margin-top: var(--a-2); font: 400 var(--gr-l)/1.5 var(--schrift-text); }
 .gs-mini-aufgabe:has(.gs-mini-bild) { grid-template-columns: auto minmax(0, 1fr) auto; }
 .gs-mini-karte { display: flex; gap: var(--a-3); align-items: center; }
 .gs-mini-posten-bild { flex: none; }
@@ -416,9 +471,9 @@ button.gs-antwort:active { transform: translateY(2px); box-shadow: var(--schatte
 }
 .gs-mini-wahl .gs-bildnis svg { width: 28px; height: 28px; }
 button.gs-mini-wahl:hover { border-color: var(--navy-soft); }
-.gs-mini-wahl[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: var(--weiss); }
-[data-lage="richtig"] .gs-mini-wahl[aria-pressed="true"] { background: var(--akzent-gruen-text); border-color: var(--akzent-gruen-text); }
-[data-lage="falsch"] .gs-mini-wahl[aria-pressed="true"] { background: var(--koralle-text); border-color: var(--koralle-text); }
+.gs-mini-wahl:is([aria-pressed="true"], [data-gedrueckt="true"]) { background: var(--navy); border-color: var(--navy); color: var(--weiss); }
+[data-lage="richtig"] .gs-mini-wahl:is([aria-pressed="true"], [data-gedrueckt="true"]) { background: var(--akzent-gruen-text); border-color: var(--akzent-gruen-text); }
+[data-lage="falsch"] .gs-mini-wahl:is([aria-pressed="true"], [data-gedrueckt="true"]) { background: var(--koralle-text); border-color: var(--koralle-text); }
 .gs-mini-rueck { font: var(--typo-text); color: var(--tinte); }
 /* R74: Marke an der Grundlinie des Textes daneben; nur das Zeichen mittig */
 .gs-mini-rueck b { display: inline-flex; align-items: baseline; gap: var(--a-1); }
@@ -436,7 +491,7 @@ button.gs-mini-wahl:hover { border-color: var(--navy-soft); }
   border: 2px dashed var(--linie-3); color: var(--navy);
   font: 800 var(--gr-3xl)/1 var(--schrift-anzeige);
 }
-.gs-reihe-knopf[aria-pressed="true"] .gs-reihe-nr { border: 0; background: var(--akzent-orange-text); color: var(--weiss); }
+.gs-reihe-knopf:is([aria-pressed="true"], [data-gedrueckt="true"]) .gs-reihe-nr { border: 0; background: var(--akzent-orange-text); color: var(--weiss); }
 [data-lage="richtig"] .gs-reihe-knopf .gs-reihe-nr { background: var(--akzent-gruen-text); }
 [data-lage="falsch"] .gs-reihe-knopf .gs-reihe-nr { background: var(--koralle-text); }
 .gs-mini-fuss { display: flex; flex-wrap: wrap; align-items: center; gap: var(--a-2) var(--a-5); min-height: 32px; }
@@ -563,6 +618,7 @@ button.gs-stufe:hover:not([aria-pressed="true"]) { background: var(--weiss); }
 [data-akzent="beere"] :is(.gs-sprecher, .gs-steckbrief-rolle) { color: var(--akzent-beere-text); }
 [data-akzent="gruen"] :is(.gs-sprecher, .gs-steckbrief-rolle) { color: var(--akzent-gruen-text); }
 [data-akzent="marke"] :is(.gs-sprecher, .gs-steckbrief-rolle) { color: var(--gold-text); }
+[data-akzent="keiner"] :is(.gs-sprecher, .gs-steckbrief-rolle) { color: var(--navy-soft); }
 .gs-sprecher { color: var(--navy); }
 .gs-kasten-gut :is(.gs-kasten-symbol, .gs-kasten-titel) { color: var(--akzent-gruen-text); }
 .gs-kasten-dahinter :is(.gs-kasten-symbol, .gs-kasten-titel) { color: var(--akzent-violett-text); }
@@ -570,6 +626,7 @@ button.gs-stufe:hover:not([aria-pressed="true"]) { background: var(--weiss); }
 
 /* ------------------------------------------------------------ mittelbreit und schmal */
 @media (max-width: 900px) {
+  .gs-wege-karten { grid-template-columns: minmax(0, 1fr); }
   .gs-figuren-liste { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .gs-antworten, .gs-vgl-karten { grid-template-columns: minmax(0, 1fr); }
   .gs-stand-texte, .gs-gewichte-liste { grid-template-columns: minmax(0, 1fr); }
@@ -604,6 +661,7 @@ button.gs-stufe:hover:not([aria-pressed="true"]) { background: var(--weiss); }
   /* 16 : 9 schneidet vom breiten Ausschnitt nur Himmel an den Seiten ab (R75) */
   .gs-campus-gross { aspect-ratio: 16 / 9; border-radius: 18px; }
   .gs-buehnenbild:has(> .gs-campus-gross) { max-width: calc(50vh * 16 / 9); }
+  .gs-schritt:has(.gs-aktkopf) .gs-buehnenbild:has(> .gs-campus-gross) { max-width: calc(40vh * 16 / 9); }
   .gs-einstieg { grid-template-columns: minmax(0, 1fr); margin: calc(-1 * var(--a-6)) var(--a-2) 0; padding: var(--a-4); }
   .gs-gegenstand-einstieg { display: none; }
   .gs-zeile { grid-template-columns: 44px minmax(0, 1fr); gap: var(--a-3); }
@@ -659,4 +717,248 @@ button.gs-stufe:hover:not([aria-pressed="true"]) { background: var(--weiss); }
   .druck-story .druck-gut { break-inside: avoid; }
   .druck-story .druck-frage { margin: 0 0 1mm; font-style: italic; color: var(--tinte-2); break-after: avoid; }
   .druck-story .druck-gut > h3 { margin: 2mm 0 1mm; font: 700 11pt/1.3 var(--schrift-text); color: var(--navy); }
+}
+
+/* ------------------------------------------------------------ Akte (P19.3): Akt-Leiste, Kopfkarte, Pause, Verlauf */
+/* Akt-Leiste: der Akt der gezeigten Station ist aufgeklappt, die anderen sind je ein Feld mit der römischen Zahl; Zielgröße ≥ 24 px auch bei 320 px */
+.gs-fortschritt-akte { display: grid; gap: var(--a-1); }
+.gs-fortschritt-akte .gs-felder { flex-wrap: wrap; }
+.gs-fortschritt-akte .gs-felder li { min-width: 24px; }
+.gs-feld[data-art="akt"] { width: auto; min-width: 36px; padding: 0 var(--a-2); font-size: var(--gr-m); letter-spacing: .02em; }
+.gs-feld[data-art="akt"][data-zustand="offen"] { border-style: dashed; }
+.gs-fortschritt-akte .gs-felder li:has(> .gs-feld[data-art="akt"]) { flex: 0 0 auto; max-width: none; }
+.gs-sprung { position: static; justify-self: start; }
+.gs-sprung-knopf {
+  display: inline-flex; align-items: center; min-height: 28px; min-width: 24px; padding: 0 var(--a-3); cursor: pointer;
+  border: 2px solid var(--linie-2); border-radius: var(--radius-m); background: var(--weiss); color: var(--navy); font: var(--typo-klein); font-weight: 700;
+}
+.gs-sprung-knopf:hover { border-color: var(--gold); }
+.gs-sprung-liste {
+  position: absolute; left: 0; right: 0; top: 100%; z-index: 4; max-height: min(60vh, 460px); overflow: auto;
+  display: grid; gap: var(--a-3); padding: var(--a-3) var(--a-6) var(--a-4);
+  background: var(--weiss); border-bottom: 1px solid var(--linie); box-shadow: var(--schatten-weich);
+}
+.gs-sprung-akt-titel { font: var(--typo-kicker); letter-spacing: var(--sperrung-kicker); text-transform: uppercase; color: var(--tinte-2); }
+.gs-sprung-akt ul { display: grid; gap: 2px; margin-top: var(--a-1); list-style: none; padding: 0; }
+.gs-sprung-station {
+  display: block; width: 100%; min-height: 28px; padding: var(--a-1) var(--a-2); text-align: left; cursor: pointer;
+  border: 0; border-radius: var(--radius-m); background: transparent; color: var(--navy); font: var(--typo-lese);
+}
+.gs-sprung-station:hover, .gs-sprung-station[aria-current="step"] { background: var(--gold-hell); }
+/* Kopfkarte über der ersten Station eines Akts */
+.gs-aktkopf { display: grid; gap: var(--a-1); padding: var(--a-4) var(--a-5); border-left: 6px solid var(--gold-kante); border-radius: var(--radius-l); background: var(--flaeche-3); }
+.gs-aktkopf-text { font: var(--typo-lese); color: var(--tinte); }
+/* Pause am Aktende */
+.gs-zwischenbilanz { display: grid; gap: var(--a-4); padding: var(--a-5) var(--a-6); border-radius: var(--radius-xl); background: var(--flaeche-3); }
+.gs-verlauf { display: grid; gap: var(--a-2); }
+.gs-verlauf-bild svg { display: block; width: 100%; height: auto; max-width: 560px; }
+.vb-band-hoch { fill: var(--akzent-gruen-soft); }
+.vb-band-mittel { fill: var(--akzent-sonne-soft); }
+.vb-band-niedrig { fill: var(--akzent-beere-soft); }
+.vb-linie { fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.vb-geld.vb-linie { stroke: var(--akzent-gruen-text); }
+.vb-zeit.vb-linie { stroke: var(--akzent-blau-text); stroke-dasharray: 6 3; }
+.vb-vertrauen.vb-linie { stroke: var(--akzent-violett-text); stroke-dasharray: 1 3.5; }
+.vb-punkt.vb-geld { fill: var(--akzent-gruen-text); }
+.vb-punkt.vb-zeit { fill: var(--akzent-blau-text); }
+.vb-punkt.vb-vertrauen { fill: var(--akzent-violett-text); }
+.vb-name { font: 700 11px var(--schrift-label); stroke: none; }
+.vb-leit { fill: none; stroke-width: 1; }
+.vb-leit.vb-geld { stroke: var(--akzent-gruen-text); }
+.vb-leit.vb-zeit { stroke: var(--akzent-blau-text); }
+.vb-leit.vb-vertrauen { stroke: var(--akzent-violett-text); }
+.vb-name.vb-geld { fill: var(--akzent-gruen-text); }
+.vb-name.vb-zeit { fill: var(--akzent-blau-text); }
+.vb-name.vb-vertrauen { fill: var(--akzent-violett-text); }
+.gs-verlauf-worte > summary { cursor: pointer; font: var(--typo-klein); font-weight: 700; color: var(--navy); min-height: 24px; }
+.gs-koennen { display: grid; gap: var(--a-2); padding: var(--a-5) var(--a-6); border-radius: var(--radius-xl); background: var(--akzent-gruen-soft); }
+.gs-koennen .gs-h2 { color: var(--akzent-gruen-text); }
+.gs-koennen ul { display: grid; gap: var(--a-2); padding-left: var(--a-5); list-style: disc; font: var(--typo-lese); }
+.gs-pause-weiter { display: flex; justify-content: center; }
+/* gebündelte Brückenkarte der Kurzfassung */
+.gs-bruecke-station + .gs-bruecke-station { margin-top: var(--a-2); padding-top: var(--a-2); border-top: 1px solid var(--linie); }
+@media (max-width: 640px) {
+  .gs-sprung-liste { padding-left: var(--a-4); padding-right: var(--a-4); }
+  .gs-zwischenbilanz, .gs-koennen { padding: var(--a-4); }
+}
+@media print {
+  /* Druckbogen je Akt (P19.3): Akt-Überschrift, zwischen den Akten ein Seitenumbruch */
+  .druck-story .druck-akt + .druck-akt { break-before: page; }
+  .druck-story .druck-akt-titel { margin: 0 0 2mm; break-after: avoid; }
+  .druck-story .druck-gut > h4 { margin: 2mm 0 1mm; font: 700 11pt/1.3 var(--schrift-text); color: var(--navy); }
+  .druck-story h4 { break-after: avoid; }
+}
+
+/* ------------------------------------------- Gedächtnis und Buch (P19.4), Vertiefung und neue Mini-Arten (P19.5) */
+/* Verlauf: Kopf, Textfassung als Liste, hohle Punkte für nur Erzähltes (Kurzfassung) */
+.gs-verlauf-kopf { margin: 0; }
+.gs-verlauf-legende, .gs-verlauf-hohl { margin: var(--a-2) 0 0; font: var(--typo-klein); color: var(--tinte-2); }
+.gs-verlauf-liste { display: grid; gap: var(--a-1); margin: var(--a-2) 0 0; padding-left: var(--a-5); font: var(--typo-klein); }
+.gs-verlauf-stand { display: block; color: var(--tinte-2); }
+.vb-punkt-hohl { stroke-width: 1.6; }
+/* Nach den Farbregeln `.vb-punkt.vb-geld` (0,2,0) und mit gleicher Spezifität: sonst wären die hohlen Punkte gefüllt (P19.8, L-390) */
+.vb-punkt.vb-punkt-hohl { fill: var(--weiss); }
+.vb-punkt-hohl.vb-geld { stroke: var(--akzent-gruen-text); }
+.vb-punkt-hohl.vb-zeit { stroke: var(--akzent-blau-text); }
+.vb-punkt-hohl.vb-vertrauen { stroke: var(--akzent-violett-text); }
+.gs-gespeichert { margin: 0; }
+
+/* Symbol des Entscheidungsbuchs neben der Ortszeile, Punkt für einen neuen Eintrag */
+.gs-ortzeile { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--a-2) var(--a-4); }
+.gs-ortzeile .gs-ort { flex: 1 1 auto; }
+.gs-buch-symbol {
+  position: relative; display: inline-flex; align-items: center; gap: var(--a-2); min-height: 32px; padding: 2px var(--a-3) 2px var(--a-2);
+  border: 1.5px solid var(--linie-2); border-radius: var(--radius-rund); background: var(--weiss); color: var(--navy); font: var(--typo-reiter); cursor: pointer;
+}
+.gs-buch-symbol:hover { border-color: var(--navy-soft); }
+.gs-buch-symbol[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: var(--weiss); }
+.gs-buch-symbol-bild svg { width: 24px; height: 24px; display: block; }
+.gs-buch-punkt { position: absolute; top: -3px; right: -3px; width: 12px; height: 12px; border-radius: 50%; background: var(--koralle-text); border: 2px solid var(--weiss); }
+/* Seite des Buchs */
+.gs-buch { display: grid; gap: var(--a-4); }
+.gs-buch-intro { font: var(--typo-lese); color: var(--tinte); max-width: 60ch; }
+.gs-buch-legende { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: var(--a-2) var(--a-4); margin: 0; padding: var(--a-4); border-radius: var(--radius-xl); background: var(--flaeche-2); }
+.gs-buch-legende > div { display: grid; gap: 2px; }
+.gs-buch-legende dt { font-weight: 700; color: var(--navy); }
+.gs-buch-legende dd { margin: 0; font: var(--typo-klein); color: var(--tinte-2); }
+.gs-buch-liste { display: grid; gap: var(--a-3); margin: 0; padding: 0; list-style: none; }
+.gs-buch-eintrag, .gs-buch-zeile {
+  display: grid; gap: var(--a-2); padding: var(--a-4) var(--a-5); border-radius: var(--radius-xl); background: var(--weiss); border: 2px solid var(--linie); box-shadow: var(--schatten-karte);
+}
+.gs-buch-eintrag[data-neu="true"], .gs-buch-zeile[data-neu="true"] { border-color: var(--gold-hell); background: var(--gold-soft); }
+.gs-buch-eintrag-kopf { display: flex; flex-wrap: wrap; align-items: center; gap: var(--a-2) var(--a-3); }
+.gs-buch-kopf { margin: 0; font: var(--typo-tafeltitel); color: var(--navy); }
+.gs-buch-stempel {
+  display: inline-flex; align-items: center; gap: var(--a-1); padding: 2px var(--a-3); border: 2px solid var(--navy); border-radius: var(--radius-s);
+  font: var(--typo-reiter); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy);
+}
+.gs-buch-stempel[data-art="vermerk"] { border-style: dashed; }
+.gs-buch-stempel[data-art="uebergabe"], .gs-buch-stempel[data-art="beschluss-uebergabe"] { border-style: double; border-width: 4px; }
+.gs-buch-stempel .symbol { width: 16px; height: 16px; }
+.gs-buch-neu { font: var(--typo-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--koralle-text); }
+.gs-buch-felder { display: grid; gap: var(--a-1); margin: 0; }
+.gs-buch-felder > div { display: grid; grid-template-columns: minmax(8rem, 12rem) minmax(0, 1fr); gap: var(--a-3); }
+.gs-buch-felder dt { font-weight: 700; color: var(--tinte-2); }
+.gs-buch-felder dd { margin: 0; }
+.gs-buch-zeile { grid-auto-flow: column; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; padding: var(--a-3) var(--a-4); }
+.gs-buch-leer { padding: var(--a-5); border-radius: var(--radius-xl); background: var(--flaeche-2); color: var(--tinte-2); }
+.gs-buch-fuss { margin: 0; }
+
+/* Vertiefung: zugeklappt am Ende der Station, Form als Kicker, Frage als Titel */
+.gs-vertiefung { border: 2px dashed var(--linie-3); border-radius: var(--radius-xl); background: var(--weiss); padding: var(--a-3) var(--a-5); }
+.gs-vertiefung[open] { border-style: solid; background: var(--flaeche-2); }
+.gs-vertiefung-kopf { position: relative; display: grid; gap: 2px; padding-right: var(--a-6); list-style: none; cursor: pointer; min-height: 24px; }
+.gs-vertiefung-kopf::-webkit-details-marker { display: none; }
+/* Pfeilmarke wie bei Steckbrief, Dahinter und Kipppunkt (L-390): zu = nach unten, offen = nach oben */
+.gs-vertiefung-kopf::after {
+  content: ""; position: absolute; right: var(--a-2); top: 50%; width: 7px; height: 7px; margin-top: -6px;
+  border-right: 2px solid var(--navy); border-bottom: 2px solid var(--navy); transform: rotate(45deg);
+}
+.gs-vertiefung[open] > .gs-vertiefung-kopf::after { margin-top: -1px; transform: rotate(-135deg); }
+.gs-vertiefung-form { margin: 0; }
+.gs-vertiefung-titel { font: var(--typo-tafeltitel); color: var(--navy); }
+.gs-vertiefung-text { display: grid; gap: var(--a-3); margin-top: var(--a-3); max-width: 62ch; font: var(--typo-lese); }
+.gs-vertiefung-text p { margin: 0; }
+.gs-vertiefung-antwort { padding: var(--a-3) var(--a-4); border-radius: var(--radius-l); background: var(--weiss); border: 1px solid var(--linie-2); }
+.gs-vertiefung-antwort > summary { cursor: pointer; font-weight: 700; color: var(--navy); min-height: 24px; }
+.gs-vertiefung-antwort[open] > summary { margin-bottom: var(--a-2); }
+
+/* Neue Mini-Arten: Rückmeldung je Karte, Schlusssatz, Matrixfeld, Haftzettel, Pinnwand, Gespräche */
+.gs-mini-karten-mit-schluss { display: grid; gap: var(--a-4); }
+.gs-mini-karten { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+.gs-mini-schluss { margin: 0; padding: var(--a-3) var(--a-4); border-radius: var(--radius-l); background: var(--flaeche-2); font-weight: 700; color: var(--navy); }
+.gs-mini-pruefen { margin: 0; }
+.gs-mini-ok { font: var(--typo-klein); color: var(--tinte-2); align-self: center; }
+.gs-mini-zettel { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--a-3); align-items: center; }
+.gs-mini-matrix-bild svg { display: block; width: 88px; height: auto; }
+.gs-mini-haftzettel { padding: var(--a-3) var(--a-4); border-radius: var(--radius-s); background: var(--akzent-sonne-soft); border-left: 6px solid var(--akzent-sonne); }
+[data-lage="richtig"] .gs-mini-haftzettel { border-left-color: var(--akzent-gruen-text); }
+[data-lage="falsch"] .gs-mini-haftzettel { border-left-color: var(--koralle-text); }
+.gs-zettel-wand { display: flex; flex-wrap: wrap; gap: var(--a-2); margin: 0; padding: var(--a-3); list-style: none; border-radius: var(--radius-xl); background: var(--flaeche-2); }
+.gs-zettel { padding: var(--a-1) var(--a-3); border-radius: var(--radius-xs); background: var(--akzent-sonne-soft); border: 1px solid var(--akzent-sonne); color: var(--tinte); font: var(--typo-klein); font-weight: 600; }
+.gs-zettel-klein { display: inline-block; }
+.gs-mini-faden { display: grid; gap: var(--a-2); }
+.gs-faden-zeile { display: flex; flex-wrap: wrap; align-items: center; gap: var(--a-2); margin: 0; }
+.gs-faden-ziele { display: inline-flex; flex-wrap: wrap; gap: var(--a-1); }
+.gs-faden-linie { display: inline-block; width: 40px; height: 0; border-top: 3px dotted var(--linie-3); }
+[data-faden="stimmt"] .gs-faden-linie { border-top: 3px solid var(--akzent-gruen-text); }
+[data-faden="doppelt"] .gs-faden-linie { border-top: 3px dashed var(--koralle-text); }
+[data-faden="nachfordern"] .gs-faden-linie { border-top: 3px solid var(--koralle-text); width: 24px; }
+[data-faden="nachfordern"] .gs-faden-linie::after { content: ""; display: inline-block; width: 10px; height: 10px; margin: -8px 0 0 24px; border: 2px solid var(--koralle-text); border-radius: 50%; background: var(--weiss); vertical-align: top; }
+.gs-faden-ende { font: var(--typo-klein); color: var(--tinte-2); }
+.gs-faden-wort { font: var(--typo-klein); color: var(--navy); }
+.gs-gespraeche { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); align-items: start; }
+.gs-gespraech-posten { gap: var(--a-3); }
+.gs-gespraech-posten[data-gesperrt="true"] { opacity: .75; }
+.gs-gespraech { display: grid; gap: var(--a-2); padding: var(--a-3) var(--a-4); border-radius: var(--radius-l); background: var(--flaeche-2); }
+.gs-gespraech-zeile, .gs-gespraech-fest { margin: 0; }
+.gs-gespraech-fest { font: var(--typo-klein); color: var(--tinte-2); }
+.gs-gespraech-posten .gs-mini-wahl { width: 100%; justify-content: flex-start; text-align: left; }
+/* Eintrag-Kärtchen der Rückfragen (P19.6): vier Zeilen, die sich mit den Gesprächen füllen */
+.gs-eintrag { display: grid; gap: var(--a-2); margin-top: var(--a-4); padding: var(--a-3) var(--a-4); border-radius: var(--radius-l); background: var(--weiss); border: 1px solid var(--linie-2); border-left: 6px solid var(--akzent-sonne); }
+.gs-eintrag-titel { margin: 0; font: var(--typo-reiter); color: var(--navy); }
+.gs-eintrag dl { display: grid; gap: var(--a-2); margin: 0; }
+.gs-eintrag dl > div { display: grid; grid-template-columns: minmax(7rem, 11rem) minmax(0, 1fr); gap: var(--a-3); }
+.gs-eintrag dt { font: var(--typo-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
+.gs-eintrag dd { margin: 0; }
+.gs-eintrag-leer { color: var(--tinte-leise); font-style: italic; }
+@media (max-width: 640px) {
+  .gs-buch-felder > div { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .gs-buch-zeile { grid-auto-flow: row; grid-template-columns: minmax(0, 1fr); }
+  .gs-mini-zettel { grid-template-columns: minmax(0, 1fr); }
+  .gs-mini-karten, .gs-gespraeche { grid-template-columns: minmax(0, 1fr); }
+  .gs-eintrag dl > div { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .gs-vertiefung { padding: var(--a-3) var(--a-4); }
+}
+/* Entscheidungsbuch auf Papier: eine Seite im Querformat, Tabelle in kleiner Schrift */
+@page buch { size: A4 landscape; margin: 12mm; }
+@media print {
+  .druck-story .druck-buch { page: buch; break-before: page; }
+  .druck-buch-tabelle { width: 100%; border-collapse: collapse; font-size: 9pt; line-height: 1.3; }
+  .druck-buch-tabelle :is(th, td) { padding: 1.5mm 2mm; text-align: left; vertical-align: top; border-bottom: .3mm solid var(--linie-3); }
+  .druck-story .gs-verlauf { break-inside: avoid; }
+  .druck-story .gs-verlauf-bild svg { max-width: 120mm; }
+}
+
+/* ------------------------------------------- Layout nach Prüfrunde 3 (P19.8, L-390) */
+/* Szenenbild bei geringer Höhe: höchstens etwa 30 vh, damit der erste Satz der Szene nicht hinter der unteren Leiste liegt */
+@media (max-height: 800px) and (min-width: 641px) {
+  .gs-buehnenbild:has(> .gs-campus-gross) { max-width: calc(30vh * 2.2); }
+  .gs-schritt:has(.gs-aktkopf) .gs-buehnenbild:has(> .gs-campus-gross) { max-width: calc(26vh * 2.2); }
+}
+/* Auftakt: die zwei Wegkarten sind die gleichwertigen Starts (O-61); eine untere Leiste mit nur „Los geht's“ für den ganzen Weg bevorzugte einen */
+body[data-teil="auftakt"] .gs-unten { display: none; }
+
+/* Entscheidungsbuch: Titel werden nie getrennt (basis.css); das lange Wort „Entscheidungsbuch“ passt schmal nur in kleinerer Schrift in die Spalte neben der Nummer,
+   sonst bräche es mitten im Wort */
+@media (max-width: 480px) { .gs-buch .gs-kopf .gs-titel { font-size: clamp(22px, 8vw, 30px); overflow-wrap: break-word; } }
+/* Wegskizze auf kleinen Bildschirmen: Nummern der 14 Stationen wären winzig – der ganze Weg zeigt nur die Aktzahlen, die Kurzfassung die Nummern ihrer Stationen größer */
+@media (max-width: 480px) {
+  .ws-lang .ws-nr { display: none; }
+  .ws-kurz .ws-nr { font-size: 11px; }
+  .ws-akt { font-size: 11px; }
+}
+/* Statusleiste unter 480 px (L-390): oben nur Fortschritt, dann eine Zeile aus Ort (in Satzschrift, ohne Sperrung) und Buch-Symbol (nur das Bild, der Name bleibt für
+   Screenreader), darunter die drei Balken über die volle Breite – statt 5 bis 7 Zeilen Großbuchstaben in einer schmalen Spalte */
+@media (max-width: 480px) {
+  .gs-leiste { grid-template-columns: minmax(0, 1fr) auto; gap: var(--a-1) var(--a-3); padding-block: var(--a-2); }
+  .gs-ortzeile { display: contents; }
+  .gs-leiste .gs-ort { grid-column: 1; align-self: center; font: 700 var(--gr-s)/1.3 var(--schrift-text); letter-spacing: 0; text-transform: none; }
+  .gs-leiste .gs-buch-symbol { grid-column: 2; min-height: 36px; min-width: 36px; padding: 2px var(--a-2); justify-content: center; }
+  .gs-leiste .gs-buch-symbol-text {
+    position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+  }
+  .gs-leiste .gs-stand-klein { grid-column: 1 / -1; justify-content: space-between; gap: var(--a-2); }
+  .gs-leiste .gs-stand-klein .gs-stand-zeile { flex: 1 1 0; min-width: 0; grid-template-columns: auto minmax(0, 1fr); }
+}
+
+/* Prüfrunde 4 (L-410): schmale Spalten. Die Beschriftungen im Verlauf bleiben lesbar groß (das Bild wird auf 320 px verkleinert),
+   die Karten „Was kommt wann?“ geben dem Text die ganze Breite (Bild entfällt), und Namen werden in der Erzählkarte nicht getrennt. */
+@media (max-width: 480px) {
+  .vb-name { font-size: 13px; }
+}
+@media (max-width: 400px) {
+  .gs-reihe-knopf { grid-template-columns: 44px minmax(0, 1fr); }
+  .gs-reihe-knopf .gs-mini-posten-bild { display: none; }
+  .gs-einstieg :is(p, li) { hyphens: manual; -webkit-hyphens: manual; overflow-wrap: break-word; }
 }

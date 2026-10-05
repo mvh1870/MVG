@@ -49,6 +49,15 @@
 .campus-iso .ci-wolke.ci-wolke-sturm { fill: var(--iso-wolke-sturm); opacity: .78; }
 .ci-boe { fill: none; stroke: var(--weiss); stroke-width: .9; stroke-linecap: round; opacity: .75; }
 .ci-plane { fill: var(--iso-plane); opacity: .9; }
+/* Wetter und Zwischenbilder (P19.3): Regen, Nebel, Schnee; Bewehrung, Planen, Pfütze, Lichterkette */
+.campus-iso .ci-wolke.ci-wolke-regen { fill: var(--iso-wolke-sturm); opacity: .6; }
+.ci-regen { fill: none; stroke: var(--weiss); stroke-width: .7; stroke-linecap: round; opacity: .6; }
+.ci-nebel { fill: var(--weiss); }
+.ci-bewehrung { fill: none; stroke: var(--navy-soft); stroke-width: .5; opacity: .85; }
+.ci-planenfalte { fill: none; stroke: var(--weiss); stroke-width: .5; opacity: .4; }
+.ci-pfuetze { fill: var(--iso-glas-licht); opacity: .6; }
+.ci-lichterkette { fill: none; stroke: var(--navy-soft); stroke-width: .6; }
+.ci-lichterpunkt { fill: var(--akzent-sonne); }
 .campus-iso[data-wetter="sturm"] .ci-szene { filter: brightness(.92) saturate(.82); }
 .ci-blatt { fill: var(--iso-laub-herbst-1); opacity: .85; }
 /* Morgens wärmer, abends gedämpft; der Himmel bleibt unberührt (Filter nur auf der Szene). */
@@ -222,6 +231,8 @@
 .fig-ton-lagune { --ft: var(--akzent-lagune); --ft-soft: var(--akzent-lagune-soft); --ft-text: var(--akzent-lagune-text); }
 .fig-ton-gruen { --ft: var(--akzent-gruen); --ft-soft: var(--akzent-gruen-soft); --ft-text: var(--akzent-gruen-text); }
 .fig-ton-marke { --ft: var(--gold-hell); --ft-soft: var(--gold-soft); --ft-text: var(--gold); }
+/* Papierton ohne Akzent (P19.6): der Reporter und die beiden Stimmen */
+.fig-ton-keiner { --ft: var(--linie-3); --ft-soft: var(--flaeche-4); --ft-text: var(--navy-soft); }
 .fig-haut-1 { --fh: var(--fig-haut-1); --fh-s: var(--fig-haut-1-s); }
 .fig-haut-2 { --fh: var(--fig-haut-2); --fh-s: var(--fig-haut-2-s); }
 .fig-haut-3 { --fh: var(--fig-haut-3); --fh-s: var(--fig-haut-3-s); }
@@ -231,6 +242,7 @@
 .fig-haar-grau { --fha: var(--fig-haar-grau); --fha-s: var(--fig-haar-grau-s); --fbr: var(--fig-haar-grau-s); }
 .fig-haar-rot { --fha: var(--fig-haar-rot); --fha-s: var(--fig-haar-rot-s); --fbr: var(--fig-haar-rot-s); }
 .fig-haar-braun { --fha: var(--fig-haar-braun); --fha-s: var(--fig-haar-braun-s); --fbr: var(--fig-haar-braun-s); }
+.fig-haar-weiss { --fha: var(--fig-haar-weiss); --fha-s: var(--fig-haar-weiss-s); --fbr: var(--fig-haar-grau-s); }
 .fig-fein { --fig-strich: 1.6; }
 .fig-klein { --fig-strich: 2.6; }
 
@@ -329,6 +341,36 @@
 .fig-mappe { fill: var(--petrol); }
 .fig-mappe-s { fill: var(--rolle-ps-text); opacity: .6; }
 
+/* ------------------------------------------------------------------ Nebenfiguren und Stimmen (P19.6) */
+.fig-regen { fill: var(--fig-regen); }
+.fig-regen-s { fill: var(--fig-regen-s); }
+.fig-regen-naht { fill: none; stroke: var(--fig-regen-s); stroke-width: 1.6; stroke-linecap: round; opacity: .7; }
+.fig-band-linie { fill: none; stroke: var(--akzent-beere); stroke-width: 2.2; stroke-linecap: round; }
+.fig-linie { fill: var(--navy-linie); }
+.fig-trench { fill: var(--fig-trench); }
+.fig-trench-s { fill: var(--fig-trench-s); }
+.fig-trench-naht { fill: none; stroke: var(--fig-trench-s); stroke-width: 1.4; stroke-linecap: round; opacity: .7; }
+.fig-knopf-trench { fill: var(--fig-trench-s); }
+.fig-muetze { fill: var(--fig-muetze); }
+.fig-muetze-s { fill: var(--fig-muetze-s); }
+.fig-muetze-s.fig-strich { fill: none; stroke: var(--fig-muetze-s); }
+.fig-block-kopf { fill: var(--navy-linie); }
+.fig-block-linien { fill: none; stroke: var(--linie-3); stroke-width: 1.4; stroke-linecap: round; }
+.fig-gummi { fill: var(--akzent-beere); }
+.fig-anzug { fill: var(--fig-anzug); }
+.fig-anzug-s { fill: var(--fig-anzug-s); }
+.fig-anzug-naht { fill: none; stroke: var(--fig-anzug-s); stroke-width: 1.4; stroke-linecap: round; opacity: .8; }
+.fig-weste { fill: var(--fig-weste); }
+.fig-nadel { fill: none; stroke: var(--fig-nadel); stroke-width: .9; stroke-linecap: round; opacity: .75; }
+.fig-kette { fill: none; stroke: var(--fig-messing); stroke-width: 1.6; stroke-linecap: round; }
+.fig-uhrzeiger { fill: none; stroke: var(--navy-soft); stroke-width: 1.4; stroke-linecap: round; }
+.fig-brille-fein { stroke-width: 1.8; stroke: var(--fig-anzug-s); }
+.fig-stimme { fill: var(--navy-soft); }
+.fig-stimme-s { fill: var(--navy-linie); }
+.fig-hoerer { fill: none; stroke: var(--navy); stroke-width: 3.2; stroke-linecap: round; }
+.fig-hoerer-kapsel { fill: var(--navy); }
+.fig-schwingung-stark { stroke: var(--akzent-sonne-text); stroke-width: 3; opacity: 1; }
+
 /* ------------------------------------------------------------------ Gegenstände (gm-*) */
 .gm-a-sonne { fill: var(--akzent-sonne); }
 .gm-a-orange { fill: var(--akzent-orange); }
@@ -357,6 +399,8 @@
 .gm-kante { stroke: var(--linie-3); stroke-width: 1.4; }
 .gm-kante-sonne { stroke: var(--akzent-sonne); stroke-width: 1.4; }
 .gm-kante-lagune { stroke: var(--akzent-lagune); stroke-width: 1.4; }
+.gm-kante-blau { stroke: var(--akzent-blau); stroke-width: 1.4; }
+.gm-kante-orange { stroke: var(--akzent-orange); stroke-width: 1.4; }
 .gm-tinte { fill: var(--navy-soft); }
 .gm-strich, .gm-strich-fein { fill: none; stroke: var(--linie-3); stroke-width: 2.4; stroke-linecap: round; }
 .gm-strich-fein { stroke: var(--linie-2); stroke-width: 2; }
@@ -420,6 +464,28 @@
 .gm-zeiger-fein { fill: none; stroke: var(--navy-soft); stroke-width: 2; stroke-linecap: round; }
 .gm-haken-gruen { fill: none; stroke: var(--akzent-gruen-text); stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; }
 .gm-riss { fill: none; stroke: var(--weiss); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+/* P19.6: stuhlreihen, pinnwand, haftzettel, musskarten, genehmigung-auflage, hallenboden, tasse, glocke-haken */
+.gm-arm { fill: none; stroke: var(--akzent-orange-text); stroke-width: 5; stroke-linecap: round; }
+.gm-kork { fill: var(--iso-erde); }
+.gm-faden { fill: none; stroke: var(--akzent-beere-text); stroke-width: 1.8; stroke-linecap: round; }
+.gm-faden-lose { stroke-dasharray: 3 3; }
+.gm-nadel { fill: var(--akzent-beere); stroke: var(--akzent-beere-text); stroke-width: 1; }
+.gm-schrift-dunkel { stroke: var(--navy-soft); }
+.gm-haken { fill: none; stroke: var(--fig-stahl); stroke-width: 3.4; stroke-linecap: round; }
+.gm-trichter { fill: var(--akzent-lagune-soft); stroke: var(--akzent-lagune-text); stroke-width: 2.2; stroke-linejoin: round; }
+.gm-trichter-s { fill: var(--akzent-lagune); opacity: .5; }
+.gm-kreuz-beere { fill: none; stroke: var(--akzent-beere-text); stroke-width: 3.4; stroke-linecap: round; }
+.gm-pfeil-lagune { fill: none; stroke: var(--akzent-lagune-text); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.gm-haken-weiss { fill: none; stroke: var(--weiss); stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; }
+.gm-feldlinie { fill: none; stroke: var(--iso-markierung); stroke-width: 2.2; stroke-linecap: round; opacity: .85; }
+.gm-spalt { fill: none; stroke: var(--navy); stroke-width: 3.2; stroke-linecap: round; }
+.gm-markierung-beere { fill: none; stroke: var(--akzent-beere); stroke-width: 3; }
+.gm-tasse { fill: var(--akzent-lagune-soft); stroke: var(--akzent-lagune-text); stroke-width: 2; stroke-linejoin: round; }
+.gm-tasse-s { fill: var(--akzent-lagune); opacity: .45; }
+.gm-tasse-henkel { fill: none; stroke: var(--akzent-lagune-text); stroke-width: 4.4; stroke-linecap: round; }
+.gm-teebeutel { fill: none; stroke: var(--linie-3); stroke-width: 1.4; stroke-linecap: round; }
+.gm-dampf { fill: none; stroke: var(--linie-3); stroke-width: 3; stroke-linecap: round; }
+.gm-zitrone { fill: none; stroke: var(--akzent-sonne-text); stroke-width: 1.4; stroke-linecap: round; }
 /* Wimpelkette (Stufe 2) und Luftballons am Haupteingang (Stufe 8) */
 .ci-wimpelschnur { fill: none; stroke: var(--navy-soft); stroke-width: .45; }
 .ci-ballonschnur { fill: none; stroke: var(--navy-soft); stroke-width: .35; opacity: .8; }

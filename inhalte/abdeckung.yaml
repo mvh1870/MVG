@@ -2,7 +2,7 @@
 # Form: docs/INHALTSFORMAT.md 4.5. Theorie-Seite kNN = Lernseite des Kapitels N (O-20); bis sie gebaut ist (P6),
 # gilt sie als geplant. Der Prüfer verlangt 100 % und jeden Absatz auf der Seite seines Kapitels (L-16).
 # Story-Bezüge führt die Karte seit P17.2 nicht mehr: jedes Story-Kapitel trägt seine internen Belege selbst
-# (Feld „belege“ in inhalte/geschichte/k1…k8-*.yaml, L-232).
+# (Feld „belege“ in inhalte/geschichte/s*-*.yaml, L-232).
 
 # ── 1 Kurzfassung
 k1-p1:

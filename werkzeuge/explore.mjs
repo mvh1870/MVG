@@ -90,11 +90,21 @@ export function baueWerkzeuge(c, rel, roh) {
   } catch (e) {
     c.fehler(rel, `YAML unlesbar: ${String(/** @type {Error} */ (e).message ?? e).split('\n')[0]}`);
   }
+  /** Dreiteiliger Vorspann (L-322): Zweck, Eingabe und Deutung sind Inhalt, keine Bedienanleitung (O-56); jeder Teil Pflicht und sichtbar geprüft */
+  const vorspann = (/** @type {string} */ k, /** @type {any} */ roh) => {
+    const teile = ['wozu', 'eingabe', 'ergebnis'].map((f) => {
+      const s = text(roh?.[f]).trim();
+      if (s === '') c.fehler(rel, `${k}: Vorspann „${f}“ fehlt`);
+      for (const b of sichtbarVerboten(s)) c.fehler(rel, `${k} Vorspann ${f}: ${b}`);
+      return s;
+    });
+    return { wozu: teile[0] ?? '', eingabe: teile[1] ?? '', ergebnis: teile[2] ?? '' };
+  };
   const teil = (/** @type {string} */ k) => {
     const t = y[k] ?? {};
     if (t.titel === undefined) c.fehler(rel, `${k}: Titel fehlt`);
     if (k !== 'glossar' && (!Array.isArray(t.belege) || t.belege.length === 0)) c.fehler(rel, `${k}: interne Belege fehlen`);
-    return { titel: text(t.titel), kurz: text(t.kurz), html: c.html(text(t.text), rel) };
+    return { titel: text(t.titel), kurz: text(t.kurz), vorspann: vorspann(k, t.vorspann), html: c.html(text(t.text), rel) };
   };
   const m = y.matrix ?? {};
   const stufen = (m.stufen ?? []).map((/** @type {any} */ s) => ({ id: text(s.id), titel: text(s.titel), von: Number(s.von), bis: Number(s.bis), html: c.inline(text(s.text), rel) }));
@@ -133,7 +143,7 @@ export function baueWerkzeuge(c, rel, roh) {
   const neuerTeil = (/** @type {string} */ k) => {
     const x = teil(k);
     belege(y[k]?.belege, k);
-    return { titel: sichtbar(`${k} titel`, x.titel), kurz: sichtbar(`${k} kurz`, x.kurz), html: (sichtbar(`${k} text`, y[k]?.text), x.html) };
+    return { titel: sichtbar(`${k} titel`, x.titel), kurz: sichtbar(`${k} kurz`, x.kurz), vorspann: x.vorspann, html: (sichtbar(`${k} text`, y[k]?.text), x.html) };
   };
   /** Satz mit Regelgehalt: `{ text, belege }` */
   const satz = (/** @type {any} */ roh, /** @type {string} */ ort) => {

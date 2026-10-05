@@ -8,7 +8,9 @@
  * tests/oberflaeche/*.szenario.mjs aus. Ein Szenario-Modul exportiert
  *   name: string, viewports?: Array<{ breite, hoehe }>, hash?: string (z. B. '#regie'), seite?: string (andere
  *   HTML-Datei), testHerkunft?: 'http://<name>.test/' (nur .test nach RFC 6761; das Szenario beantwortet sie
- *   selbst per seite.route, L-86),
+ *   selbst per seite.route, L-86), async vorbereite() (optional: einmal nach dem Browserstart, vor dem ersten Lauf, nur für
+ *   gewählte Szenarien – baut eine Probe-Seite und liefert { seite (absolut), aufraeumen }; nie beim Import, damit
+ *   „kein Browser“ nichts baut; scheitert sie, endet der Lauf mit Exitcode 1),
  *   async lauf(seite, h)
  * (benannte Exporte oder ein Default-Objekt). `seite` ist eine Playwright-Page, `h` der Helfer unten.
  *
@@ -137,7 +139,7 @@ export async function starteBrowser(optionen = {}) {
 
 /**
  * @typedef {{ breite: number, hoehe: number }} Viewport
- * @typedef {{ name: string, datei: string, viewports: Viewport[], hash: string, seite?: string, testHerkunft?: string, lauf: (seite: import('playwright').Page, h: Helfer) => Promise<void> }} Szenario  seite: andere HTML-Datei (relativ zur Wurzel), z. B. die Entwurfs-Vorschau
+ * @typedef {{ name: string, datei: string, viewports: Viewport[], hash: string, seite?: string, testHerkunft?: string, vorbereite?: () => Promise<{ seite: string, aufraeumen?: () => Promise<void> }>, lauf: (seite: import('playwright').Page, h: Helfer) => Promise<void> }} Szenario  seite: andere HTML-Datei (relativ zur Wurzel), z. B. die Entwurfs-Vorschau
  * @typedef {object} Helfer
  * @property {import('playwright').Page} seite
  * @property {string} url
@@ -174,6 +176,7 @@ export async function ladeSzenarien(verzeichnis) {
     const modul = await import(pathToFileURL(path.join(verzeichnis, datei)).href);
     const s = modul.default && typeof modul.default === 'object' ? modul.default : modul;
     if (typeof s.lauf !== 'function') throw new Error(`${datei}: exportiert keine Funktion lauf(seite, h)`);
+    if (s.vorbereite !== undefined && typeof s.vorbereite !== 'function') throw new Error(`${datei}: vorbereite muss eine Funktion sein`);
     const viewports = Array.isArray(s.viewports) && s.viewports.length > 0 ? s.viewports : [...STANDARD_VIEWPORTS];
     for (const v of viewports) {
       if (!Number.isInteger(v?.breite) || !Number.isInteger(v?.hoehe)) throw new Error(`${datei}: viewports braucht { breite, hoehe } als ganze Zahlen`);
@@ -185,6 +188,7 @@ export async function ladeSzenarien(verzeichnis) {
       hash: typeof s.hash === 'string' ? s.hash : '',
       ...(typeof s.seite === 'string' ? { seite: s.seite } : {}),
       ...(s.testHerkunft !== undefined ? { testHerkunft: pruefeTestHerkunft(s.testHerkunft, datei) } : {}),
+      ...(typeof s.vorbereite === 'function' ? { vorbereite: s.vorbereite } : {}),
       lauf: s.lauf,
     });
   }
@@ -473,6 +477,22 @@ async function hauptprogramm() {
     const { baueVorschau } = await import('./entwurf.mjs');
     await baueVorschau();
   }
+  // Szenarien mit eigener Seite (L-383, L-390): erst jetzt, nur die gewählten, nach dem Browserstart; jede Vorbereitung räumt hinterher auf
+  /** @type {Array<() => Promise<void>>} */
+  const aufraeumer = [];
+  try {
+    for (const s of szenarien) {
+      if (!s.vorbereite) continue;
+      const r = await s.vorbereite();
+      if (r && typeof r.seite === 'string') s.seite = r.seite;
+      if (r && typeof r.aufraeumen === 'function') aufraeumer.push(r.aufraeumen);
+    }
+  } catch (fehler) {
+    await browser.close();
+    for (const f of aufraeumer) await f().catch(() => undefined);
+    console.error(`oberflaeche: Vorbereitung eines Szenarios scheiterte – ${kurz(fehler)}`);
+    return 1;
+  }
   console.log(`oberflaeche: ${start.name} ${browser.version()} · ${anzeige} · ${szenarien.length} Szenario${szenarien.length === 1 ? '' : 's'} · ${process.env['MVG_VOLL'] === '1' ? 'voll' : 'schnell (voll: MVG_VOLL=1)'}${process.env['MVG_BEWEGUNG'] === 'reduziert' ? ' · reduzierte Bewegung' : ''}`);
 
   let laeufe = 0;
@@ -506,7 +526,7 @@ async function hauptprogramm() {
     while (naechster < auftraege.length) {
       const i = naechster++;
       const { s, v } = /** @type {{ s: Szenario, v: Viewport }} */ (auftraege[i]);
-      ergebnisse[i] = await fuehreAus(browser, s, v, s.seite !== undefined ? pathToFileURL(path.join(WURZEL, s.seite)).href : url);
+      ergebnisse[i] = await fuehreAus(browser, s, v, s.seite !== undefined ? pathToFileURL(path.resolve(WURZEL, s.seite)).href : url);
       drucke();
     }
   };
@@ -514,6 +534,7 @@ async function hauptprogramm() {
     await Promise.all(Array.from({ length: Math.max(1, Math.min(a.parallel, auftraege.length)) }, () => arbeiter()));
   } finally {
     await browser.close();
+    for (const f of aufraeumer) await f().catch(() => undefined);
   }
   if (laeufe !== auftraege.length) {
     console.log(`oberflaeche: nur ${laeufe} von ${auftraege.length} Läufen ausgewertet`);

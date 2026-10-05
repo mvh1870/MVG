@@ -1,134 +1,257 @@
-# Glossar der Seite (P16.4, O-36, O-38): Grundlage sind die Einträge aus quellen/whitepaper/v1.2/whitepaper.json
+# Glossar der Seite (P16.4, O-36, O-38; Sprachdurchgang L-290): Grundlage sind die Einträge aus quellen/whitepaper/v1.2/whitepaper.json
 # (Tabelle k13-t1). Diese Datei ändert, entfernt und ergänzt sie nach dem Standard V2.4 (docs/V24-ABGLEICH.md
-# k13-K1 bis k13-E6, k13-H2). Definitionen in eigenen Worten, keine Vertragstexte (O-37), kein Bezug zur Vorlage
-# (O-38). Die Belege bleiben intern und erscheinen nie auf der Seite.
+# k13-K1 bis k13-E6, k13-H2) und in verständlicher Sprache (Owner-Auftrag: natürliche Sprache überall, keine Kreisdefinitionen,
+# jedes Fachwort einfach erklärt; Bericht tmp/story-analyse/S-sprache-themen.md Abschnitt 6). Definitionen in eigenen Worten,
+# keine Vertragstexte (O-37), kein Bezug zur Vorlage (O-38). Die Belege bleiben intern und erscheinen nie auf der Seite.
 
 aendern:
-  # k13-K1 (HB 1.2: Weg nach der Klärung); der letzte Satz bleibt aus V1.2 (k6.4.3-p2)
-  g-fruehwarnung:
+  # ── Einträge aus V1.2, sprachlich überarbeitet (Inhalt unverändert) ──
+  g-bauherr:
     definition: >-
-      Hinweis auf eine mögliche Beeinträchtigung, der noch nicht ausreichend geklärt ist. Die Projektsteuerung
-      erfasst Quelle und Eingang und legt Prüffrage, Verantwortlichen und Wiedervorlage fest. Nach der Klärung
-      wird daraus ein Risiko, ein Problem oder eine Aufgabe, oder die Frühwarnung wird begründet geschlossen.
-      CTC- oder Schwellenwertverletzungen erzeugen neue Frühwarnungen.
-    belege: [v24:hb-1, v24:hb-1.2, v24:hb-5, k6.4.3-p2]
+      Organisation oder Person, die ein Bau- oder Infrastrukturvorhaben in Auftrag gibt, dafür einsteht und die
+      wesentlichen Entscheidungen verantwortet. Ist der Bauherr eine Organisation, entscheidet für sie die Person oder
+      das Gremium, die oder das dazu befugt ist.
+    belege: [k13-t1, v24:hb-1]
+  g-bauherrenorganisation:
+    definition: >-
+      Alle Rollen, Gremien, Entscheidungswege, Befugnisse (Mandate) und Unterstützungsstellen auf Seiten des Bauherrn
+      zusammen.
+    belege: [k13-t1]
+  g-nichtdelegierbare-bauherrenverantwortung:
+    definition: >-
+      Begriff aus der Projektführung für Verantwortung, die der Bauherr nicht abgeben kann: Ziel, Mandat, wesentliche
+      Entscheidung, Risikoannahme, Freigabe, Datenstand und Nachweis muss er selbst bestätigen und dafür einstehen.
+      Das gilt auch dann, wenn andere die Analyse, die Vorbereitung, die Abstimmung und die Dokumentation übernehmen.
+    belege: [k13-t1, k3.1-p1]
+  g-minimum-viable-governance-mvg:
+    definition: >-
+      Der kleinste Standard für Führung und Entscheidung (Governance), der noch funktioniert. Mit ihm kann ein Bauherr
+      seine Verantwortung tatsächlich wahrnehmen: Er kann entscheiden, belegen, was beschlossen wurde, und im Alltag
+      damit arbeiten.
+    belege: [k13-t1]
+  # k13-E3 (HB 1: Vorgangsarten und ihre Verknüpfung); keine Zahl der Bausteine, damit die Seite nicht zwei Zählungen nebeneinanderstellt (F-25)
+  g-bauherren-fuehrungsmodell:
+    definition: >-
+      Das Zusammenspiel der Bausteine, mit denen ein Bauherr ein komplexes Vorhaben steuerbar hält: Zielsystem, Rollen
+      und Mandate, Freigaben, Entscheidungs-IDs, Regeln zu Datenstand und Nachweis, Verknüpfung aller Vorgangsarten
+      (Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Probleme, Änderungen), Restkostenprognose (CTC), Kennzahlen (KPI),
+      Wege nach oben (Eskalation), Betriebshandbuch und Befähigung.
+    belege: [k13-t1, v24:hb-1]
+  g-mandat:
+    definition: >-
+      Die klar zugewiesene Befugnis einer Rolle oder eines Gremiums, bestimmte Entscheidungen zu treffen oder an die
+      nächste Stelle weiterzugeben – mit Grenzen (Schwellen), Vertretung und festgelegtem Weg der Freigabe. „Mandat“
+      meint auf der Seite immer diese Entscheidungsbefugnis.
+    belege: [k13-t1, k4.2-p2]
+  g-entscheidungs-id:
+    definition: >-
+      Eine eindeutige Kennung für jede wesentliche Entscheidung des Bauherrn. Damit lässt sich die Entscheidung
+      wiederfinden und verfolgen, und andere Unterlagen können auf sie verweisen.
+    belege: [k13-t1]
   # k13-K2 (HB 3, 3.1: Vorlage der Projektsteuerung, zwei zulässige Optionen, MCDA, Beschluss getrennt)
   g-entscheidungsvorlage:
     definition: >-
-      Von der Projektsteuerung erarbeitete Grundlage für eine erforderliche Bauherrenentscheidung: Entscheidungsfrage,
-      Bezug zu Freigabe und Mandat, befugte Stelle und Entscheidungstermin, Datenstand, mindestens zwei zulässige
-      Optionen mit Annahmen und Auswirkungen, gewichteter Vergleich (MCDA) mit Prüfung der Gewichtungsabhängigkeit,
-      begründete Empfehlung, Freigabeweg und Nachverfolgung. Der Beschluss wird getrennt dokumentiert.
+      Die Unterlage, mit der die Projektsteuerung eine Entscheidung des Bauherrn vorbereitet. Sie enthält die
+      Entscheidungsfrage, den Bezug zu Freigabe und Mandat, die zuständige (befugte) Stelle und den Entscheidungstermin,
+      den Stand der Unterlagen (Datenstand), mindestens zwei zulässige Optionen mit ihren Annahmen und Auswirkungen,
+      einen gewichteten Vergleich (MCDA) samt Prüfung, ob andere Gewichte das Ergebnis ändern, eine begründete
+      Empfehlung, den Weg der Freigabe und die Nachverfolgung. Der Beschluss wird getrennt von der Vorlage
+      festgehalten.
     belege: [k13-t1, v24:hb-3, v24:hb-3.1, v24:tlb-2.1]
-  # k13-K3 (HB 1, HB 5: Pflege und Nachverfolgung aller Vorgänge bei der Projektsteuerung)
-  g-pmo:
-    definition: >-
-      Projektmanagementbüro; unterstützt unter anderem Koordination, Gremienarbeit und Protokolle. Die Bearbeitung,
-      Pflege und Nachverfolgung aller Vorgänge liegt bei der Projektsteuerung.
-    belege: [k13-t1, k1-p1, v24:hb-1, v24:hb-5]
   # k13-E1 (HB 3.1: zwei zulässige Optionen, MCDA, Kennzeichnung als unvollständig)
   g-entscheidungsreife:
     definition: >-
-      Zustand, in dem eine Entscheidung ausreichend vorbereitet ist, um auf der zuständigen Mandatsebene getroffen
-      zu werden. Dazu gehören mindestens zwei zulässige Optionen und ihr gewichteter Vergleich; fehlt eine Grundlage,
-      ist die Vorlage als unvollständig gekennzeichnet.
+      Eine Entscheidung ist reif, wenn sie so weit vorbereitet ist, dass die zuständige Stelle sie treffen kann. Dazu
+      gehören mindestens zwei zulässige Optionen und ihr gewichteter Vergleich; fehlt eine Grundlage, ist die Vorlage
+      als unvollständig gekennzeichnet.
     belege: [k13-t1, v24:hb-3.1]
-  # k13-E2 (HB 3, 3.1)
-  g-neufestlegung-der-projektbasis:
+  # k13-E5 (HB 1, HB 3: die Projektsteuerung bereitet vor, der Bauherr entscheidet); zwei Stufen: Freigabe am Phasenende und einzelne Zustimmungen (Q-3)
+  g-freigabe:
     definition: >-
-      Sonderformat außerhalb der regulären Freigabereihe zur erneuten Legitimation von Kosten-, Termin-,
-      Projektumfangs- oder Risikogrundlagen. Es wird über eine Entscheidungsvorlage der Projektsteuerung mit
-      mindestens zwei zulässigen Optionen vorbereitet und durch den Bauherrn im Lenkungskreis beschlossen; betroffene Freigaben
-      können anschließend nachgeholt oder wiederholt werden.
-    belege: [k13-t1, v24:hb-3, v24:hb-3.1]
-  # k13-E3 (HB 1: Vorgangsarten und ihre Verknüpfung)
-  g-bauherren-fuehrungsmodell:
+      Am Ende jeder Leistungsphase (LPH 0–9) entscheidet der Bauherr, ob die nächste Phase beginnen darf: Das ist die
+      Freigabe. Sie ist erst möglich, wenn die Entscheidung reif ist und Mandat, Stand der Unterlagen (Datenstand) und
+      Nachweis klar sind. Die Freigabe erteilt der Bauherr selbst – nicht die Projektsteuerung und nicht der
+      Lenkungskreis. Vorbereitet wird sie von der Projektsteuerung. Daneben gibt es einzelne Zustimmungen, zum Beispiel
+      zu einer Änderung oder zu einer Vergabe; sie richten sich nach dem Mandat.
+    belege: [k13-t1, k9.3-p3, k4.5-p1, v24:hb-1, v24:hb-3]
+  g-datenstand:
     definition: >-
-      Das Zusammenspiel aus Zielsystem, Rollen und Mandaten, Freigaben, Entscheidungs-IDs, Datenstands- und
-      Nachweislogik, Verknüpfung aller Vorgangsarten (Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Probleme,
-      Änderungen), Restkostenprognose (CTC), Leistungskennzahlen (KPI), Eskalation, Betriebshandbuch und Befähigung
-      zu einer durchgängigen Steuerungsarchitektur – das Führungsmodell, mit dem ein Bauherr ein komplexes Vorhaben
-      steuerbar hält.
-    belege: [k13-t1, v24:hb-1]
+      Der festgelegte, benannte Stand der Zahlen, Pläne und Annahmen, auf dem eine Entscheidung beruht – mit Version und
+      Datum.
+    belege: [k13-t1]
+  g-nachweiskette:
+    definition: >-
+      Die lückenlose Spur von Grundlagen, Annahmen, Freigaben, Beschlüssen und Umsetzung, an der man eine Entscheidung
+      später nachvollziehen kann.
+    belege: [k13-t1]
   # k13-E4
   g-betriebshandbuch:
     definition: >-
-      Betriebslogik für den Regelbetrieb von MVG mit Rollen, Routinen, Taktung, Eskalation und Prüfmechanismen.
+      Das Handbuch, das beschreibt, wie MVG im Alltag weiterläuft: Rollen, feste Abläufe, Termine im Takt, Wege nach oben
+      und Kontrollen.
     belege: [k13-t1]
-  # k13-E5 (HB 1, HB 3: die Projektsteuerung bereitet vor, der Bauherr entscheidet)
-  g-freigabe:
+  g-befaehigung:
     definition: >-
-      Entscheidung des Bauherrn am Abschluss einer Leistungsphase (LPH 0–9). Die Freigabe gibt die nächste
-      Leistungsphase frei und verbindet Freigabereife, Mandat, Datenstand und Nachweis. Die Freigabe erteilt der
-      Bauherr selbst – nicht Projektsteuerung oder Lenkungskreis. Vorbereitet wird sie von der Projektsteuerung.
-    belege: [k13-t1, v24:hb-1, v24:hb-3]
+      Schulung und Übung der wichtigsten Rollen, damit die Organisation des Bauherrn MVG selbst anwenden kann.
+    belege: [k13-t1]
+  g-mvg-neuinitialisierung:
+    definition: >-
+      Eine Sonderform außerhalb der regulären Freigaben am Ende einer Phase: In einem laufenden Projekt, das sich nur
+      noch eingeschränkt steuern lässt, wird gezielt neu geordnet, wie gesteuert und entschieden wird.
+    belege: [k13-t1]
+  g-esg:
+    definition: >-
+      Umwelt-, Sozial- und Governance-Gesichtspunkte (englisch Environmental, Social, Governance), also Fragen zu Umwelt,
+      Sozialem und guter Führung. Sie können bei Zielen, Varianten und Freigaben berücksichtigt werden.
+    belege: [k13-t1]
+  g-lcc:
+    definition: >-
+      Lebenszykluskosten: alle Kosten eines Gebäudes über seine ganze Lebensdauer – Bau, Betrieb, Instandhaltung und
+      Nutzung.
+    belege: [k13-t1]
+  # k13-K1 (HB 1.2: Weg nach der Klärung); der letzte Satz bleibt aus V1.2 (k6.4.3-p2)
+  g-fruehwarnung:
+    definition: >-
+      Ein erster Hinweis auf eine mögliche Beeinträchtigung, der noch nicht ausreichend geklärt ist. Die Projektsteuerung
+      erfasst Quelle und Eingang und legt fest, welche Frage geprüft wird, wer sie prüft und wann sie wieder angesehen
+      wird (Wiedervorlage). Nach der Klärung wird daraus ein Risiko, ein Problem oder eine Aufgabe, oder die
+      Frühwarnung wird begründet geschlossen. Wird beim CTC oder einem anderen Grenzwert eine Grenze überschritten,
+      entsteht daraus eine neue Frühwarnung.
+    belege: [v24:hb-1, v24:hb-1.2, v24:hb-5, k6.4.3-p2]
+  g-neufestlegung-der-projektbasis:
+    definition: >-
+      Eine Sonderentscheidung außerhalb der normalen Freigaben am Ende einer Phase: Die Grundlagen für Kosten, Termine,
+      Projektumfang oder Risiken werden noch einmal neu festgelegt und bestätigt. Die Projektsteuerung bereitet sie mit
+      einer Entscheidungsvorlage mit mindestens zwei zulässigen Optionen vor; der Bauherr beschließt sie im
+      Lenkungskreis. Danach können betroffene Freigaben nachgeholt oder wiederholt werden.
+    belege: [k13-t1, v24:hb-3, v24:hb-3.1]
+  g-finale-investitionsentscheidung-fid:
+    definition: >-
+      Die endgültige Entscheidung zu investieren, am Abschluss von LPH 3 auf Basis der Kostenberechnung. Sie bestätigt die
+      in LPH 2 getroffene Wahl der Variante samt Business Case und gibt das Projekt damit für den weiteren Weg frei.
+    belege: [k13-t1]
+  g-uebergabe:
+    definition: >-
+      Zwei verschiedene Dinge: Die Übergabe des Vorhabens (das fertige Gebäude geht in Betrieb und in die Verantwortung
+      des Bauherrn über) gehört zu LPH 9. Die Übergabe des Führungsmodells am Ende der MVG-Einführung ist ein Schritt
+      der Schulung (Befähigung) und gehört zu keiner Freigabe; dabei gehen Rollen, Abläufe und Betriebshandbuch an die
+      Organisation des Bauherrn über.
+    belege: [k13-t1]
   # R71: k13-t1 nennt „Zehn HOAI-Leistungsphasen“, k5.4-p1 stellt LPH 0 (Bedarfsplanung nach DIN 18205) vor die
   # HOAI-Leistungsphasen 1–9 – die Seite folgt k5.4-p1 wie das Thema „Führungsmodell“ (Korrekturliste V1.3)
   g-leistungsphasen-und-freigabemodell-lph-0-9:
     definition: >-
-      Zehn Leistungsphasen mit einer Freigabe des Bauherrn am jeweiligen Abschluss: LPH 0 · Bedarfsplanung nach
-      DIN 18205, vor den HOAI-Leistungsphasen 1–9; LPH 1 · Grundlagenermittlung; LPH 2 · Vorplanung; LPH 3 ·
-      Entwurfsplanung; LPH 4 · Genehmigungsplanung; LPH 5 · Ausführungsplanung; LPH 6 · Vorbereitung Vergabe;
-      LPH 7 · Vergabe; LPH 8 · Ausführung; LPH 9 · Übergabe. Der Regelbetrieb folgt nach der Freigabe zum
-      Abschluss von LPH 9.
+      Ein Bauprojekt läuft in zehn Leistungsphasen (LPH), am Ende jeder gibt der Bauherr frei: LPH 0 · Bedarfsplanung
+      (nach DIN 18205), danach die Leistungsphasen 1 bis 9 der Honorarordnung für Architekten und Ingenieure (HOAI):
+      LPH 1 · Grundlagenermittlung; LPH 2 · Vorplanung; LPH 3 · Entwurfsplanung; LPH 4 · Genehmigungsplanung; LPH 5 ·
+      Ausführungsplanung; LPH 6 · Vorbereitung Vergabe; LPH 7 · Vergabe; LPH 8 · Ausführung; LPH 9 · Übergabe. Der
+      Regelbetrieb folgt nach der Freigabe zum Abschluss von LPH 9.
     belege: [k13-t1, k5.4-p1]
+  g-30-60-90-tage-plan:
+    definition: >-
+      Ein Plan, der zeigt, was in den ersten 30, 60 und 90 Tagen im Mittelpunkt steht. Er gilt nach einer
+      MVG-Reifegradanalyse und im Rahmen einer MVG-Neuinitialisierung, nicht als allgemeiner Rhythmus für jede Einführung.
+      Bis Tag 90 ist das Modell in Anwendung und der Entwurf des Betriebshandbuchs liegt vor; die Übergabe schließt an.
+    belege: [k13-t1]
+  g-governance:
+    definition: >-
+      Die Regeln, nach denen ein Projekt geführt wird: wer welche Rolle hat, wer was entscheiden darf, wie Entscheidungen
+      ablaufen, wie freigegeben und wie nachgewiesen wird – alles verbindlich miteinander verbunden.
+    belege: [k13-t1]
+  g-mvg-companion:
+    definition: >-
+      Ein optionales Arbeitsmittel, das im Browser auf dem eigenen Rechner läuft und die Anwendung von MVG unterstützt.
+      Es ersetzt weder Entscheidungen des Bauherrn noch verbindliche Systeme.
+    belege: [k13-t1]
+  g-business-case:
+    definition: >-
+      Die wirtschaftliche und strategische Begründung für ein Vorhaben oder eine Variante: Sie stellt Nutzen, Aufwand,
+      Risiken und Rahmenbedingungen zusammen.
+    belege: [k13-t1]
+  g-raci:
+    definition: >-
+      Eine Tabelle, die für jede Aufgabe festlegt, wer sie ausführt (R), wer am Ende verantwortlich ist (A), wer gefragt
+      wird (C) und wer informiert wird (I).
+    belege: [k13-t1]
+  # k13-K3 (HB 1, HB 5: Pflege und Nachverfolgung aller Vorgänge bei der Projektsteuerung)
+  g-pmo:
+    definition: >-
+      Projektmanagementbüro (englisch Project Management Office); unterstützt unter anderem bei Abstimmung,
+      Gremienarbeit und Protokollen. Die Bearbeitung, Pflege und Nachverfolgung aller Vorgänge liegt bei der
+      Projektsteuerung.
+    belege: [k13-t1, k1-p1, v24:hb-1, v24:hb-5]
+  g-ctc:
+    definition: >-
+      Cost to Complete, auf Deutsch Restkostenprognose: die erwarteten Kosten, die bis zum Projektabschluss noch anfallen.
+    belege: [k13-t1]
+  g-kpi:
+    definition: >-
+      Key Performance Indicator, auf Deutsch Leistungskennzahl: eine Kennzahl, die auf einen Blick zeigt, wie gut etwas
+      läuft und wo gesteuert werden muss.
+    belege: [k13-t1]
 
 # k13-H2 (O-38): Der Begriff „Whitepaper“ fällt schon beim Laden weg (werkzeuge/anzeige-fassung.mjs, OHNE_BEGRIFF),
 # ebenso „im Whitepaper als“ bei CTC und KPI (→ „in MVG als“); hier ist darum nichts zu entfernen.
 entfernen: []
 
-# k13-E6: neue Begriffe aus dem Standard V2.4
+# k13-E6: neue Begriffe aus dem Standard V2.4, dazu (L-290) Wörter, die die Themen voraussetzen, aber nie erklärten
 neu:
   - id: g-mcda
     begriff: MCDA (Multikriterien-Entscheidungsanalyse)
     definition: >-
-      Vergleich von Handlungsoptionen anhand derselben gewichteten Kriterien. Kriterien, Gewichte und Skalen werden
-      vor der Bewertung mit dem Bauherrn abgestimmt; Gewichte und Punkte reichen von 1 bis 5. Gewicht mal Punkte je
-      Kriterium, die Produkte addiert, ergibt die Gesamtpunktzahl. Euro, Termine und offene Fragen bleiben neben den Punkten sichtbar. Eine Punktzahl ersetzt
-      kein Urteil.
+      Auf Deutsch: gewichteter Vergleich. Die Möglichkeiten zur Auswahl werden anhand derselben gewichteten Kriterien
+      verglichen. Kriterien, Gewichte und Skalen werden vor der Bewertung mit dem Bauherrn abgestimmt; Gewichte und
+      Punkte reichen von 1 bis 5. Gewicht mal Punkte je Kriterium, die Produkte addiert, ergibt die Gesamtpunktzahl.
+      Euro, Termine und offene Fragen bleiben neben den Punkten sichtbar. Eine Punktzahl ersetzt kein Urteil.
     belege: [v24:hb-3.1, v24:hb-3.2, v24:tlb-2.1]
   - id: g-vorgangsart
     begriff: Vorgangsart
     definition: >-
-      Art eines Vorgangs, den die Projektsteuerung bearbeitet: Aufgabe, Maßnahme, Frühwarnung, Risiko, Problem oder
-      Änderung; dazu kommt die Vorbereitung von Entscheidungen. Zusammengehörige Vorgänge bleiben verknüpft, ohne
-      dass dieselbe Wirkung doppelt gezählt wird.
+      Die Art eines Vorgangs, den die Projektsteuerung bearbeitet: Aufgabe, Maßnahme, Frühwarnung, Risiko, Problem oder
+      Änderung; dazu kommt die Vorbereitung von Entscheidungen. Zusammengehörige Vorgänge bleiben verknüpft, ohne dass
+      dieselbe Wirkung doppelt gezählt wird.
+    belege: [v24:hb-1]
+  - id: g-vorgang
+    begriff: Vorgang
+    definition: >-
+      Jeder Eintrag, den die Projektsteuerung bearbeitet: eine Aufgabe, eine Maßnahme, eine Frühwarnung, ein Risiko, ein
+      Problem oder eine Änderung. Hinzu kommt die Vorbereitung von Entscheidungen.
     belege: [v24:hb-1]
   - id: g-aufgabe
     begriff: Aufgabe
     definition: >-
       Geplante Arbeit mit vereinbartem Ergebnis, Verantwortlichem und Termin. Sie gilt erst als erledigt, wenn das
-      Ergebnis da ist und die Projektsteuerung es im Rahmen ihrer eigenen Prüfung verwenden kann.
+      Ergebnis da ist und die Projektsteuerung es im Rahmen ihrer eigenen Prüfung weiterverwenden kann.
     belege: [v24:hb-1, v24:hb-1.1]
   - id: g-massnahme
     begriff: Maßnahme
     definition: >-
-      Gezielte Handlung, die einen Zustand klären oder verbessern oder einen Beschluss umsetzen soll. Umgesetzt und
+      Eine gezielte Handlung, die einen Zustand klären oder verbessern oder einen Beschluss umsetzen soll. Umgesetzt und
       wirksam sind nicht dasselbe: Die Wirkung wird eigens geprüft.
     belege: [v24:hb-1, v24:hb-1.6]
   - id: g-risiko
     begriff: Risiko
     definition: >-
-      Mögliches nachteiliges Ereignis oder unsichere Größe, die Projektziele beeinträchtigen kann. Es wird nach
-      Wahrscheinlichkeit und Auswirkung bewertet; tritt das Ereignis ein, wird ein Problem daraus.
+      Etwas, das passieren könnte und dem Projekt schadet – oder eine Größe, bei der noch unsicher ist, wie sie ausfällt.
+      Ein Risiko wird nach Wahrscheinlichkeit und Auswirkung bewertet; tritt das Ereignis ein, wird ein Problem daraus.
     belege: [v24:hb-1, v24:hb-1.3, v24:hb-2]
   - id: g-problem
     begriff: Problem
     definition: >-
-      Ein nachteiliger Zustand, der bereits eingetreten ist. Für ihn wird keine Wahrscheinlichkeit mehr geschätzt;
-      es geht um Folgen, Lösung und den Nachweis, dass die Lösung umgesetzt und fachlich bestätigt ist – oder dass
-      die weitere Bearbeitung ausdrücklich übernommen wurde.
+      Ein nachteiliger Zustand, der bereits eingetreten ist. Für ihn wird keine Wahrscheinlichkeit mehr geschätzt; es
+      geht um Folgen, Lösung und den Nachweis, dass die Lösung umgesetzt und fachlich bestätigt ist – oder dass jemand
+      die weitere Bearbeitung ausdrücklich übernommen hat.
     belege: [v24:hb-1, v24:hb-1.4]
   - id: g-aenderung
     begriff: Änderung
     definition: >-
-      Bewusste Anpassung einer geltenden Vorgabe, etwa bei Umfang, Planung, Ausführung oder Termin. Sie wird gegen den
-      geltenden Stand aufbereitet; bis zur Freigabe gilt die bisherige Grundlage.
+      Eine bewusste Anpassung einer geltenden Vorgabe, etwa bei Umfang, Planung, Ausführung oder Termin. Es wird geprüft,
+      was sie gegenüber dem aktuell gültigen Plan bedeutet; bis zur Freigabe gilt die bisherige Grundlage.
     belege: [v24:hb-1, v24:hb-1.5]
   - id: g-risikomatrix
     begriff: Risikomatrix (5×5)
     definition: >-
-      Ordnet Risiken nach Wahrscheinlichkeit mal höchster belegter Auswirkung, jeweils in fünf Stufen. Ein Produkt von
+      Ordnet Risiken nach Wahrscheinlichkeit mal schwerster belegter Auswirkung (jeweils Stufe 1 bis 5). Ein Produkt von
       1 bis 4 heißt beobachten, von 5 bis 9 gezielt bearbeiten, ab 10 vorrangig bearbeiten; hat die Auswirkung die
       Stufe 5, ist das Risiko immer vorrangig. Die Punkte stehen weder für Geld noch für eine Freigabe.
     belege: [v24:hb-2]
@@ -136,49 +259,181 @@ neu:
     begriff: Wesentliches Risiko
     definition: >-
       Ein Risiko, das in der Risikomatrix vorrangig ist, eine Entscheidungsschwelle des Bauherrn erreicht oder einen
-      besonderen Warnanlass betrifft.
+      besonderen Anlass zur Vorsicht betrifft, etwa Sicherheit oder Genehmigung.
     belege: [v24:hb-3]
   - id: g-befugte-stelle
     begriff: Befugte Stelle
     definition: >-
-      Die Stelle auf Bauherrenseite, die nach den festgelegten Befugnissen und Schwellen über eine Vorlage entscheidet.
-      Die Projektsteuerung bereitet vor, entscheidet aber nicht.
+      Die Stelle auf Seiten des Bauherrn, die nach den festgelegten Befugnissen und Grenzen (Schwellen) über eine Vorlage
+      entscheidet. Die Projektsteuerung bereitet vor, entscheidet aber nicht.
     belege: [v24:hb-1, v24:hb-3.1]
   - id: g-gewichtungsabhaengigkeit
     begriff: Gewichtungsabhängigkeit
     definition: >-
-      Ob andere vertretbare Gewichte die Rangfolge der Optionen ändern. Die Projektsteuerung prüft das und macht es
-      in der Empfehlung sichtbar.
+      Die Frage, ob sich die Rangfolge der Möglichkeiten ändert, wenn man andere, ebenfalls vertretbare Gewichte wählt.
+      Die Projektsteuerung prüft das und macht das Ergebnis in der Empfehlung sichtbar.
     belege: [v24:hb-3.1, v24:hb-3.2]
   - id: g-beschluss
     begriff: Beschluss
     definition: >-
-      Die tatsächliche Entscheidung der befugten Stelle, getrennt von der Vorlage dokumentiert, mit Quelle, Datum und
+      Die tatsächliche Entscheidung der befugten Stelle, getrennt von der Vorlage festgehalten, mit Quelle, Datum und
       Bedingungen. Schweigen, eine Empfehlung oder ein Softwarestatus sind kein Beschluss.
     belege: [v24:hb-3.1]
   - id: g-monatstermin
     begriff: Monatstermin
     definition: >-
-      Termin von Bauherr und Projektsteuerung, online und bis zu 60 Minuten, Fachleute nach Bedarf. In Ruhezeiten
+      Ein Termin von Bauherr und Projektsteuerung, online und bis zu 60 Minuten, Fachleute nach Bedarf. In Ruhezeiten
       findet er nur bei Bedarf statt.
     belege: [v24:hb-4]
   - id: g-monatsbericht
     begriff: Monatsbericht
     definition: >-
-      Zusammenfassung von höchstens einer Seite über alle Vorgangsarten, aus demselben Informationsstand wie die
-      Einträge; eine zweite Liste ist nicht nötig. Er ersetzt keine dringliche Meldung.
+      Eine Zusammenfassung von höchstens einer Seite über alle Vorgangsarten, die der Bauherr jeden Monat bekommt. Sie
+      beruht auf demselben Informationsstand wie die Einträge in der Software; eine zweite Liste ist nicht nötig. Der
+      Monatsbericht ersetzt keine dringliche Meldung.
     belege: [v24:hb-4]
   - id: g-ruhezeit
     begriff: Ruhezeit
     definition: >-
-      Ausdrücklich vereinbarte Ruhe- oder Nachlaufzeit: Der offene Bestand wird monatlich geprüft, neue, nicht
-      dringliche Hinweise werden binnen fünf Arbeitstagen erfasst, der Monatstermin findet nur bei Bedarf statt; der
-      Monatsbericht bleibt.
+      Eine ausdrücklich vereinbarte Ruhe- oder Nachlaufzeit, in der nicht aktiv geplant oder gebaut wird: Alle offenen
+      Einträge werden einmal im Monat geprüft, neue Hinweise, die nicht dringend sind, werden innerhalb von fünf
+      Arbeitstagen erfasst, der Monatstermin findet nur bei Bedarf statt; der Monatsbericht bleibt.
     belege: [v24:hb-4]
   - id: g-dringlicher-sachverhalt
     begriff: Dringlicher Sachverhalt
     definition: >-
-      Ein Sachverhalt, der nicht auf die nächste Prüfung oder Sitzung warten kann. Die Projektsteuerung meldet ihn
-      sofort auf dem vereinbarten Weg und hält ihn noch am selben Arbeitstag fest, sobald die erste Reaktion gesichert
+      Ein Sachverhalt, der nicht auf die nächste Prüfung oder Sitzung warten kann. Die Projektsteuerung meldet ihn sofort
+      auf dem vereinbarten Weg und hält ihn noch am selben Arbeitstag fest, sobald die sofort nötige Reaktion gesichert
       ist.
     belege: [v24:hb-4]
+
+  # ── L-290: Wörter, die die Themen voraussetzen und die bisher nirgends erklärt waren ──
+  - id: g-projektsteuerung
+    begriff: Projektsteuerung
+    definition: >-
+      Das Büro oder Team, das im Auftrag des Bauherrn das Projekt steuert. Es bearbeitet alle offenen Punkte des Projekts
+      (die Vorgänge), bereitet jede nötige Entscheidung des Bauherrn vor und hält die Beschlüsse fest. Entscheiden,
+      genehmigen oder bestätigen tut es nichts selbst.
+    belege: [v24:hb-1, v24:hb-3, v24:hb-3.1]
+  - id: g-projektleitung-des-bauherrn
+    begriff: Projektleitung des Bauherrn
+    definition: >-
+      Die Rolle auf Seiten des Bauherrn, die das Projekt leitet und koordiniert. Im Beispiel für die Zuständigkeiten nach
+      Betrag gibt sie bis zu einer festgelegten Grenze selbst frei; was darüber liegt, gibt sie an die zuständige Stelle
+      weiter.
+    belege: [k4.2-p3, k7.6-t1, k9.2-p4]
+  - id: g-lenkungskreis
+    begriff: Lenkungskreis
+    definition: >-
+      Das Gremium, das den Bauherrn berät. Freigaben erteilt nicht der Lenkungskreis,
+      sondern der Bauherr selbst. Bei den größten Entscheidungen (im Beispiel für die Zuständigkeiten über 5 Mio. €)
+      beschließt der Bauherr im Lenkungskreis.
+    belege: [k4.2-p3, k9.3-p3]
+  - id: g-aenderungsgremium
+    begriff: Änderungsgremium
+    definition: >-
+      Ein Gremium auf Seiten des Bauherrn, das im Beispiel für die Zuständigkeiten nach Betrag über Änderungen oberhalb
+      der Grenze der Projektleitung des Bauherrn entscheidet. Es tagt monatlich und bei Bedarf zusätzlich.
+    belege: [k4.2-p3, k6.4.2-t1]
+  - id: g-zielsystem
+    begriff: Zielsystem
+    definition: >-
+      Die festgehaltenen Ziele eines Projekts: was unbedingt erfüllt sein muss (Muss-Kriterien), was verhandelbar ist,
+      nach welchen Regeln abgewogen wird, wenn Ziele sich widersprechen, und nach welchen Grundsätzen entschieden wird.
+      Es legt fest, was Vorrang hat, wenn zum Beispiel Kosten, Termine und Qualität kollidieren.
+    belege: [k4.1-p2, k5.2-t1]
+  - id: g-schwelle
+    begriff: Schwelle
+    definition: >-
+      Eine festgelegte Grenze – zum Beispiel ein Geldbetrag, eine Risikostufe oder eine Frist –, bei deren Überschreiten
+      eine andere Stelle zuständig ist oder ein Thema weitergegeben werden muss.
+    belege: [k4.2-p2, k6.4.5-p1]
+  - id: g-eskalation
+    begriff: Eskalation
+    definition: >-
+      Die Weitergabe eines Themas an die nächsthöhere zuständige Stelle, weil eine Schwelle überschritten ist oder die
+      eigene Befugnis nicht reicht. Sie gehört zum normalen Ablauf und ist kein Zeichen, dass etwas schiefgelaufen ist.
+    belege: [k6.4.5-p1]
+  - id: g-zulaessige-option
+    begriff: Zulässige Option
+    definition: >-
+      Eine Option ist eine Möglichkeit zur Auswahl. Zulässig ist sie, wenn das Projekt sie tatsächlich wählen dürfte: Sie
+      erfüllt die zwingenden Anforderungen, etwa an Sicherheit, Genehmigung und Funktion. Eine erkennbar untaugliche
+      Scheinoption zählt nicht.
+    belege: [v24:hb-3.1]
+  - id: g-regelbetrieb
+    begriff: Regelbetrieb
+    definition: >-
+      Der Alltagsbetrieb von MVG nach der Einführung, in dem die Organisation des Bauherrn das Modell selbst anwendet.
+    belege: [k13-t1, k7.1-t1]
+  - id: g-mvg-reifegradanalyse
+    begriff: MVG-Reifegradanalyse
+    definition: >-
+      Eine kurze Bestandsaufnahme, ob der Bauherr seine Verantwortung tatsächlich wahrnehmen kann. Sie arbeitet mit zehn
+      Themenbereichen (Domänen) und 49 Fragen und liefert unter anderem eine Bewertungsmatrix und einen
+      30/60/90-Tage-Plan.
+    belege: [k7.1-t1, k7.1-p2]
+  - id: g-pilotierung
+    begriff: Pilotierung und Kalibrierung
+    definition: >-
+      Das Modell wird an echten Entscheidungen im Projekt ausprobiert (Pilotierung) und danach feiner eingestellt
+      (Kalibrierung), zum Beispiel bei Grenzwerten und Abläufen.
+    belege: [k7.3-t1]
+  - id: g-managementbericht
+    begriff: Managementbericht
+    definition: >-
+      Der zusammenfassende Bericht für die Gremien: Er sammelt Informationen und bereitet Beschlüsse vor.
+    belege: [k6.4.1-p4, k6.4.4-t1, v24:hb-4]
+  - id: g-entscheidungsregister
+    begriff: Entscheidungsregister
+    definition: >-
+      Die Liste der offenen Entscheidungen, die die Projektsteuerung neben den sechs Vorgangsarten führt. Sie ist
+      getrennt von der Entscheidungsvorlage und vom späteren Beschluss.
+    belege: [k6.4.1-p4, k6.4.4-t1, v24:hb-3.1]
+  - id: g-controlling
+    begriff: Controlling
+    definition: >-
+      Die Stelle, die Kosten überwacht und vorausberechnet; sie liefert zum Beispiel die Kostenprognose und die
+      Restkostenprognose (CTC).
+    belege: [k6.4.2-t1, k6.4.5-t1, k9.2-p4]
+  - id: g-auftraggeber
+    begriff: Auftraggeber
+    definition: >-
+      Die Seite, die die Projektsteuerung und die Beratung beauftragt – in MVG der Bauherr. Wo „Auftraggeber“ oder
+      „Auftraggeberseite“ steht, ist die Seite des Bauherrn gemeint.
+    belege: [k9.2-p4, v24:hb-1]
+  - id: g-legitimation
+    begriff: Legitimation
+    definition: >-
+      Dass eine Entscheidung durch den Bauherrn selbst gedeckt ist: Er trifft oder bestätigt sie und steht dafür ein.
+      „Legitimieren“ heißt entsprechend, eine Entscheidung selbst zu treffen oder zu bestätigen und dafür geradezustehen.
+    belege: [k1.1-p1, k3.1-p1]
+  - id: g-abnahme
+    begriff: Abnahme
+    definition: >-
+      Die Bestätigung des Bauherrn, dass ein Ergebnis wie vereinbart vorliegt – zum Beispiel am Ende eines Schritts der
+      Einführung von MVG.
+    belege: [k8.1-t1]
+  - id: g-auflage
+    begriff: Auflage
+    definition: >-
+      Eine Bedingung, unter der etwas bestätigt oder freigegeben wird. „Freigabe mit Auflagen“ heißt: Die Freigabe gilt,
+      aber nur unter diesen Bedingungen.
+    belege: [k6.4.4-t1, k8.1-t1]
+  - id: g-projektbasis
+    begriff: Projektbasis
+    definition: >-
+      Die beschlossenen Grundlagen eines Projekts – Kosten, Termine, Projektumfang und Risiken –, an denen sich die
+      Steuerung orientiert.
+    belege: [k13-t1]
+  - id: g-restrisiko
+    begriff: Restrisiko
+    definition: >-
+      Das Risiko, das nach allen Gegenmaßnahmen übrig bleibt. Ob das Projekt ein bedeutendes Restrisiko trägt,
+      entscheidet der Bauherr.
+    belege: [k4.4-p1, v24:hb-1.3]
+  - id: g-risikoreserve
+    begriff: Risikoreserve
+    definition: >-
+      Der Geldpuffer des Projekts für Risiken. Ob Geld aus der Risikoreserve eingesetzt wird, entscheidet der Bauherr.
+    belege: [k4.4-p1, k3.2-t1]

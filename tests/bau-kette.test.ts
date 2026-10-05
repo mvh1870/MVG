@@ -5,7 +5,7 @@ import { after, before, describe, test } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
-import { cp, mkdir, mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises';
+import { cp, mkdir, mkdtemp, readdir, readFile, rm, symlink, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { chromium } from 'playwright';
@@ -121,6 +121,24 @@ describe('kette', () => {
   });
 });
 
+/** oberflaeche.mjs mit einer Attrappe, bei der jeder Browserstart scheitert. */
+function ohneBrowser(mehr: Record<string, string> = {}, wurzel = WURZEL) {
+  const umgebung: NodeJS.ProcessEnv = { ...process.env, ...mehr };
+  // Ohne diese Variablen, sonst wäre die Probe in der GitHub-Aktion (GITHUB_ACTIONS=true) rot.
+  for (const name of ['CLAUDE_CODE_REMOTE', 'MVG_BROWSER_PFLICHT', 'GITHUB_ACTIONS']) if (!(name in mehr)) delete umgebung[name];
+  return spawnSync(
+    process.execPath,
+    [
+      '--import',
+      pathToFileURL(path.join(WURZEL, 'tests', 'fixtures', 'bau', 'kein-browser.mjs')).href,
+      path.join(wurzel, 'werkzeuge', 'oberflaeche.mjs'),
+      '--datei',
+      path.join(wurzel, 'werkzeuge', 'huelle.html'),
+    ],
+    { cwd: wurzel, encoding: 'utf8', env: umgebung, timeout: 180_000, maxBuffer: 64 * 1024 * 1024 },
+  );
+}
+
 describe('oberflaeche: ohne Browser', () => {
   test('alle Versuche scheitern → kein Browser, Grund nennt jeden Versuch', async (t) => {
     const vorher = process.env['CLAUDE_CODE_REMOTE'];
@@ -139,24 +157,6 @@ describe('oberflaeche: ohne Browser', () => {
     assert.ok('grund' in erg);
     assert.match(erg.grund, /Playwright-Chromium: Attrappe: chromium fehlt; Chrome: Attrappe: chrome fehlt; Edge: Attrappe: msedge fehlt/);
   });
-
-  /** oberflaeche.mjs mit einer Attrappe, bei der jeder Browserstart scheitert. */
-  function ohneBrowser(mehr: Record<string, string> = {}) {
-    const umgebung: NodeJS.ProcessEnv = { ...process.env, ...mehr };
-    // Ohne diese Variablen, sonst wäre die Probe in der GitHub-Aktion (GITHUB_ACTIONS=true) rot.
-    for (const name of ['CLAUDE_CODE_REMOTE', 'MVG_BROWSER_PFLICHT', 'GITHUB_ACTIONS']) if (!(name in mehr)) delete umgebung[name];
-    return spawnSync(
-      process.execPath,
-      [
-        '--import',
-        pathToFileURL(path.join(WURZEL, 'tests', 'fixtures', 'bau', 'kein-browser.mjs')).href,
-        path.join(WURZEL, 'werkzeuge', 'oberflaeche.mjs'),
-        '--datei',
-        path.join(WURZEL, 'werkzeuge', 'huelle.html'),
-      ],
-      { cwd: WURZEL, encoding: 'utf8', env: umgebung },
-    );
-  }
 
   test('Kommandozeile meldet „ÜBERSPRUNGEN: kein Browser – …“ mit Exitcode 3', () => {
     const erg = ohneBrowser();
@@ -315,7 +315,12 @@ describe('frischer Checkout (ohne src/generiert)', () => {
     assert.ok(!existsSync(generiert), 'Kopie enthält schon src/generiert');
 
     const kette = (nur: string) =>
-      spawnSync(process.execPath, [path.join(kopie, 'werkzeuge', 'kette.mjs'), '--nur', nur], { cwd: kopie, encoding: 'utf8' });
+      spawnSync(process.execPath, [path.join(kopie, 'werkzeuge', 'kette.mjs'), '--nur', nur], {
+        cwd: kopie,
+        encoding: 'utf8',
+        timeout: 300_000, // ein hängender Lauf soll rot werden, nicht die Suite anhalten
+        maxBuffer: 64 * 1024 * 1024, // die rote `typen`-Ausgabe ist lang; 1 MiB reicht nicht
+      });
     // Gegenprobe: ohne inhalte ist typen auf dem frischen Stand rot – die Reihenfolge ist also nötig.
     const ohne = kette('typen');
     assert.equal(ohne.status, 1, ohne.stdout + ohne.stderr);
@@ -325,6 +330,34 @@ describe('frischer Checkout (ohne src/generiert)', () => {
     assert.equal(mit.status, 0, mit.stdout + mit.stderr);
     assert.match(mit.stdout, /inhalte\s+✓[\s\S]*typen\s+✓/);
     assert.ok(existsSync(generiert));
+  });
+
+  test('oberflaeche.mjs läuft in der Kopie ohne schriften.css und baut beim Import nichts (S1, L-390)', async () => {
+    const kopie = await mkdtemp(path.join(ablage, 'checkout-oberflaeche-'));
+    const generiertOrdner = path.join(WURZEL, 'src', 'generiert');
+    const nichtGeneriert = (quelle: string) => quelle !== generiertOrdner && !quelle.startsWith(generiertOrdner + path.sep);
+    for (const teil of ['src', 'inhalte', 'werkzeuge', 'tests']) {
+      await cp(path.join(WURZEL, teil), path.join(kopie, teil), { recursive: true, filter: nichtGeneriert });
+    }
+    for (const datei of ['tsconfig.json', 'package.json']) await cp(path.join(WURZEL, datei), path.join(kopie, datei));
+    await symlink(path.join(WURZEL, 'node_modules'), path.join(kopie, 'node_modules'), 'junction');
+    assert.ok(!existsSync(path.join(kopie, 'src', 'generiert', 'schriften.css')), 'Kopie enthält schon schriften.css');
+
+    // Alle Szenarien werden geladen; ein Bau beim Import bräuchte schriften.css und inhalte.json und würfe hier.
+    const erg = ohneBrowser({}, kopie);
+    assert.equal(erg.status, UEBERSPRUNGEN, erg.stdout + erg.stderr);
+    assert.match(erg.stdout, /^ÜBERSPRUNGEN: kein Browser/m);
+    assert.ok(!existsSync(path.join(kopie, 'src', 'generiert')), 'der Import hat src/generiert angelegt');
+    assert.ok(!existsSync(path.join(kopie, 'tmp')), 'der Import hat tmp/ angelegt');
+  });
+
+  test('Szenario story-p19: vorbereite() ist eine Funktion, der Import schreibt nichts', async () => {
+    const vorher = existsSync(path.join(WURZEL, 'tmp')) ? await readdir(path.join(WURZEL, 'tmp')) : [];
+    const modul = await import('./oberflaeche/story-p19.szenario.mjs');
+    assert.equal(typeof modul.vorbereite, 'function');
+    assert.equal('seite' in modul, false, 'ein fester Seitenpfad würde Läufe teilen');
+    const nachher = existsSync(path.join(WURZEL, 'tmp')) ? await readdir(path.join(WURZEL, 'tmp')) : [];
+    assert.deepEqual(nachher.filter((n) => n.startsWith('p19-') && !vorher.includes(n)), []);
   });
 });
 

@@ -13,7 +13,7 @@
 import type { Kapitel, Vergleich, VergleichOption } from '../../geschichte/typen.ts';
 import { abgestimmteGewichte } from '../../geschichte/engine.ts';
 import { GEWICHT_MAX, GEWICHT_MIN, kipppunkte, rangfolge, type Gewichte } from '../../geschichte/mcda.ts';
-import { FIGUR_NAME, gimmick, type GimmickName } from '../../grafik/figuren.ts';
+import { SPRECHER_NAME, gimmick, type GimmickName } from '../../grafik/figuren.ts';
 import type { Akzent } from '../../stil/akzente.ts';
 import type { OeffentlicheInhalte, Werkzeuge } from '../../inhalte/typen.ts';
 import { ersetze, h, vonHtml } from '../h.ts';
@@ -86,7 +86,7 @@ function lage(o: ExploreOptionen): HTMLElement | null {
   const k = vergleichsKapitel(o);
   const z = k?.szene[0];
   if (k === undefined || k === null || z === undefined) return null;
-  const wer = z.figur === null ? '' : `${FIGUR_NAME[z.figur].name}, ${FIGUR_NAME[z.figur].rolle} · `;
+  const wer = z.figur === null ? '' : `${SPRECHER_NAME[z.figur].name}, ${SPRECHER_NAME[z.figur].rolle} · `;
   return h('p', { class: 'ex-frage', 'data-pruef': 'ex-lage' }, h('strong', null, `${k.titel}: `), '„', inhaltInline(z.html), '“ ', h('small', null, `${wer}${k.zeit}`));
 }
 
@@ -136,7 +136,7 @@ function mcda(o: ExploreOptionen, w: Werkzeuge): HTMLElement {
             opts.map((x) => {
               const p = plaetze.find((y) => y.option.id === x.id);
               return h('td', { class: p?.rang === 1 ? 'ist-vorn' : null, 'data-pruef': `ex-summe-${x.id}` },
-                h('b', null, String(p?.summe ?? 0)), ' ', h('small', null, W.geschichte.rang(p?.rang ?? 0)),
+                h('b', null, String(p?.summe ?? 0)), ' ', h('small', null, W.geschichte.platz(p?.rang ?? 0)),
                 h('span', { class: 'gs-balken', style: `--anteil:${Math.round(((p?.summe ?? 0) / max) * 100)}%`, 'aria-hidden': 'true' }));
             }))))),
       h('div', { class: 'gs-kipp', 'aria-live': 'polite' },
@@ -287,6 +287,13 @@ export function baueExplore(o: ExploreOptionen): HTMLElement {
   const aktiv = werkzeugAus(o.werkzeug);
   const titel = (id: Werkzeug): string => werkzeugTitel(w, id);
   const kurz = (id: Werkzeug): string => w?.[TEIL[id]].kurz ?? '';
+  const vorspann = (id: Werkzeug): HTMLElement | null => {
+    const v = w?.[TEIL[id]].vorspann;
+    if (v === undefined) return null;
+    return h('dl', { class: 'ex-vorspann ex-einleitung', 'data-pruef': 'ex-vorspann' },
+      ([[E.vorspannWozu, v.wozu, 'wozu'], [E.vorspannEingabe, v.eingabe, 'eingabe'], [E.vorspannErgebnis, v.ergebnis, 'ergebnis']] as const).map(([titel, text, art]) =>
+        h('div', { 'data-vorspann': art }, h('dt', { class: 't-label' }, titel), h('dd', null, text))));
+  };
   const neu = w === null ? null : { inhalte: o.inhalte, w, bedienbar: o.bedienbar, stand: standAus(o.werkzeugStand) ?? (typeof o.beispiel === 'string' ? { beispiel: o.beispiel, schritt: null } : null) };
   const werkzeugEl = w === null || neu === null ? null
     : aktiv === 'mcda' ? mcda(o, w)
@@ -311,9 +318,10 @@ export function baueExplore(o: ExploreOptionen): HTMLElement {
         h('div', { class: 'ex-kopf-text' },
           h('p', { class: 'gs-kicker' }, E.bereich),
           h('h1', { class: 'gs-titel ex-titel', tabindex: -1, 'data-pruef': 'ex-titel' }, titel(aktiv)),
-          // R78: unter dem Titel steht die Kurzbeschreibung des gewählten Werkzeugs; der Hinweis auf den fiktiven Fall bleibt
-          // einzeln und leise stehen – auch auf der Leinwand, wo die Kurzbeschreibung entfällt (O-45)
-          kurz(aktiv) !== '' ? h('p', { class: 'gs-leise ex-einleitung' }, kurz(aktiv)) : null,
+          // R78, L-322: unter dem Titel steht der dreiteilige Vorspann des gewählten Werkzeugs (wozu, was Sie eintragen, was das Ergebnis
+          // heißt – Zweck, Eingabe und Deutung sind Inhalt, keine Bedienanleitung, O-56); der Hinweis auf den fiktiven Fall bleibt
+          // einzeln und leise stehen – auch auf der Leinwand, wo der Vorspann entfällt (O-45)
+          vorspann(aktiv),
           w !== null ? h('div', { class: 'gs-leise ex-fall', 'data-pruef': 'ex-fall' }, inhalt(w.einleitungHtml)) : null),
         h('div', { class: 'ex-kopf-bild', 'aria-hidden': 'true' }, vonHtml(gimmick(WERKZEUG_BILD[aktiv].bild, { groesse: 112, dekorativ: true })))),
       h('nav', { class: 'ex-werkzeuge', 'aria-label': E.werkzeuge },

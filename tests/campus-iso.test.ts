@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { CAMPUS_STUFE_MAX, campusIso, campusIsoText, type Jahreszeit, type Licht } from '../src/grafik/campus-iso.ts';
+import { CAMPUS_STUFE_MAX, CAMPUS_ZWISCHENSTUFEN, campusIso, campusIsoText, campusStufe, type Jahreszeit, type Licht } from '../src/grafik/campus-iso.ts';
 
 const { JSDOM } = (await import(String('jsdom'))) as { JSDOM: new (html: string) => { window: Window & typeof globalThis } };
 const WURZEL = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -155,7 +155,7 @@ test('campusIso (R75): der breite Ausschnitt (2,2 : 1) zeigt jede Stufe oben gan
   const { CAMPUS_VB } = await import('../src/grafik/campus-iso.ts');
   const [, y, b, h] = CAMPUS_VB.breit;
   assert.ok(Math.abs(b / h - 2.2) < 0.01, `Seitenverhältnis ${b / h}`);
-  for (const s of STUFEN) for (const wetter of [undefined, 'sturm'] as const) {
+  for (const s of [...STUFEN, 1.5, 2.5, 3.5, 4.5, 5.5]) for (const wetter of [undefined, 'sturm', 'regen', 'nebel'] as const) {
     const svg = campusIso(s, { ausschnitt: 'breit', ...(wetter ? { wetter } : {}) });
     assert.match(svg, new RegExp(`viewBox="${CAMPUS_VB.breit.join(' ')}"`, 'u'));
     const oben = szeneOben(svg);
@@ -178,4 +178,106 @@ test('campusIso: halleOffen zeigt ab Stufe 5 die Sporthalle unfertig (Tragwerk, 
     assert.match(campusIsoText(s, 'sommer', 'tag', undefined, true), /Sporthalle ist noch nicht fertig/u);
     assert.doesNotMatch(campusIsoText(s), /noch nicht fertig/u);
   }
+});
+
+/* ---------------------------------------------- P19.3: Zwischenstufen und Wetter -- */
+
+const ZWISCHEN = [1.5, 2.5, 3.5, 4.5, 5.5];
+
+test('campusIso (P19.3): fünf Zwischenstufen – deterministisch, je Bild verschieden, andere halbe Stufen runden wie bisher', () => {
+  assert.deepEqual(CAMPUS_ZWISCHENSTUFEN, ZWISCHEN);
+  const bilder = [...STUFEN, ...ZWISCHEN].map((s) => campusIso(s, { jahreszeit: 'herbst', licht: 'abend' }));
+  assert.equal(new Set(bilder).size, bilder.length, 'jede Stufe und Zwischenstufe sieht anders aus');
+  assert.deepEqual(ZWISCHEN.map((s) => campusIso(s)), ZWISCHEN.map((s) => campusIso(s)));
+  assert.equal(campusStufe(2.5), 2.5);
+  assert.equal(campusStufe(2.4), 2);
+  assert.equal(campusStufe(0.5), 1, 'keine Zwischenstufe: gerundet wie bisher');
+  assert.equal(campusStufe(7.5), 8);
+  assert.equal(campusStufe(-1), 0);
+  assert.equal(campusStufe(99), 8);
+  assert.equal(campusIso(2.4), campusIso(2));
+});
+
+test('campusIso (P19.3): Zwischenstufen wohlgeformt, deutsch beschrieben, ohne id, url(), Farbwerte; jede Klasse gestaltet', () => {
+  const { window } = new JSDOM('');
+  const klassen = new Set<string>();
+  for (const s of ZWISCHEN) for (const j of JAHRESZEITEN) for (const l of LICHTER) for (const w of [undefined, 'regen', 'schnee', 'nebel'] as const) {
+    const svg = campusIso(s, { jahreszeit: j, licht: l, ...(w ? { wetter: w } : {}) });
+    const doc = new window.DOMParser().parseFromString(svg, 'image/svg+xml');
+    assert.equal(doc.getElementsByTagName('parsererror').length, 0, `Stufe ${s} ${j} ${l} ${w}`);
+    const text = campusIsoText(s, j, l, w);
+    assert.equal(doc.documentElement.getAttribute('aria-label'), text);
+    assert.equal(doc.documentElement.getAttribute('data-stufe'), String(s));
+    assert.match(text, /fiktiv/);
+    assert.doesNotMatch(svg, /\sid="|url\(#|<clipPath|<linearGradient|<defs|<image|<script|<animate/);
+    assert.doesNotMatch(svg, /#[0-9a-f]{3,8}\b|rgba?\(|\bstyle=/i);
+    for (const m of svg.matchAll(/class="([^"]+)"/g)) for (const k of (m[1] ?? '').split(/\s+/)) klassen.add(k);
+  }
+  const fehlen = [...klassen].filter((k) => !new RegExp(`\\.${k}(?![\\w-])`).test(grafikCss) && !/^k[0-2]$/.test(k));
+  assert.deepEqual(fehlen, []);
+});
+
+test('campusIso (P19.3): Inhalt der Zwischenbilder laut Gerüst', () => {
+  // 1,5: Bodenplatte in Schalung und Bewehrung unter nassen Planen, keine Holzstapel
+  const a = campusIso(1.5, { jahreszeit: 'fruehling', licht: 'abend', wetter: 'regen' });
+  assert.match(a, /ci-bewehrung/);
+  assert.match(a, /ci-plane/);
+  assert.match(a, /ci-pfuetze/);
+  assert.match(campusIsoText(1.5), /Schalung\W.*Bewehrung/);
+  assert.match(campusIsoText(1.5), /Planen/);
+  assert.match(campusIsoText(1.5), /Holzstapel gibt es noch keine/);
+  assert.doesNotMatch(campusIso(1.5), /ci-roh/);
+  // 2,5: Erdgeschoss steht, Schulcontainer mit erleuchteten Fenstern und Fahrrädern; tagsüber ein Lieferwagen am Tor
+  assert.match(campusIso(2.5, { licht: 'abend' }), /ci-rad-fahrrad/);
+  assert.match(campusIso(2.5, { licht: 'abend' }), /class="ci-glas ci-an"/);
+  assert.match(campusIsoText(2.5, 'sommer', 'abend'), /Erdgeschoss/);
+  assert.doesNotMatch(campusIsoText(2.5, 'sommer', 'abend'), /Lieferwagen/);
+  assert.match(campusIsoText(2.5, 'herbst', 'tag', 'nebel'), /Lieferwagen steht am Tor/);
+  assert.notEqual(campusIso(2.5, { licht: 'tag' }).replace(/data-licht="tag"/, ''), campusIso(2.5, { licht: 'abend' }));
+  assert.equal((campusIso(2.5, { licht: 'tag' }).match(/class="ci-rad"/g) ?? []).length - (campusIso(2.5, { licht: 'abend' }).match(/class="ci-rad"/g) ?? []).length, 2, 'der Lieferwagen hat zwei sichtbare Räder');
+  // 3,5: Holzbau unter Dach, Sporthalle als Bodenplatte, Lichterkette
+  assert.match(campusIso(3.5, { jahreszeit: 'winter', licht: 'abend', wetter: 'schnee' }), /ci-lichterkette/);
+  assert.match(campusIso(3.5), /ci-lichterpunkt/);
+  assert.match(campusIsoText(3.5), /Lichterkette/);
+  assert.doesNotMatch(campusIso(3, { jahreszeit: 'winter' }), /ci-lichterkette/);
+  // 4,5: Grundschule beginnt, Dach der Sporthalle geschlossen
+  assert.match(campusIsoText(4.5), /Grundschule beginnt|für die Grundschule beginnt der Bau/);
+  assert.match(campusIsoText(4.5), /Dach der Sporthalle ist geschlossen/);
+  assert.match(campusIso(4.5), /ci-oberlicht/);
+  // 5,5: alle drei Gebäude fertig, Handwerkercontainer, abgesteckte Außenanlagen
+  assert.match(campusIsoText(5.5), /Alle drei Gebäude/);
+  assert.match(campusIsoText(5.5), /abgesteckt/);
+  assert.match(campusIso(5.5), /ci-messlatte/);
+  assert.match(campusIso(5.5), /ci-schnur/);
+  assert.doesNotMatch(campusIso(6), /ci-messlatte/);
+  assert.doesNotMatch(campusIso(5.5), /ci-schulbus|ci-tuer-glas/);
+});
+
+test('campusIso (P19.3): Wetter regen, schnee, nebel – Merkmal am <svg>, Zeichen im Bild, ohne Sturm-Merkmale', () => {
+  const ohne = campusIso(4, { jahreszeit: 'fruehling', licht: 'tag' });
+  assert.doesNotMatch(ohne, /data-wetter|ci-regen|ci-nebel|ci-wolke-regen/);
+  const regen = campusIso(4, { jahreszeit: 'fruehling', licht: 'tag', wetter: 'regen' });
+  assert.match(regen, /data-wetter="regen"/);
+  assert.match(regen, /class="ci-regen"/);
+  assert.match(regen, /ci-wolke-regen/);
+  assert.match(regen, /ci-sonne/, 'Regen mit Sonne: die Sonne bleibt');
+  assert.doesNotMatch(regen, /ci-boe|ci-plane|ci-h-sturm/);
+  assert.match(campusIsoText(4, 'fruehling', 'tag', 'regen'), /Es regnet\./);
+  const nebel = campusIso(4, { jahreszeit: 'herbst', licht: 'abend', wetter: 'nebel' });
+  assert.match(nebel, /data-wetter="nebel"/);
+  assert.equal((nebel.match(/class="ci-nebel"/g) ?? []).length, 4, 'vier Nebelbänder');
+  assert.match(nebel, /class="ci-blatt"/, 'Laub bleibt im Herbst');
+  assert.match(campusIsoText(4, 'herbst', 'abend', 'nebel'), /Nebel liegt über dem Gelände/);
+  const schnee = campusIso(4, { jahreszeit: 'fruehling', licht: 'abend', wetter: 'schnee' });
+  assert.match(schnee, /data-wetter="schnee"/);
+  assert.match(schnee, /ci-flocke/, 'Schnee auch außerhalb des Winters');
+  assert.doesNotMatch(ohne, /ci-flocke/);
+  assert.match(campusIsoText(4, 'winter', 'abend', 'schnee'), /Es schneit\./);
+  // Regen im Winter: keine Flocken daneben
+  assert.doesNotMatch(campusIso(4, { jahreszeit: 'winter', wetter: 'regen' }), /ci-flocke/);
+  // der Sturm bleibt, wie er war
+  const sturm = campusIso(4, { jahreszeit: 'winter', licht: 'tag', wetter: 'sturm' });
+  assert.match(sturm, /data-wetter="sturm"/);
+  assert.match(sturm, /ci-boe/);
+  assert.doesNotMatch(sturm, /ci-regen|ci-nebel/);
 });

@@ -1,7 +1,11 @@
 id: abb-5
 quelle: bilder/image5.jpeg
 titel: Die Verantwortungspyramide – Arbeitsebene, Mandatsebene und Letztverantwortung
-alt: 'Pyramide mit Aufwärtspfeilen, Spitze „Bauherr legitimiert“. Oben „Letztverantwortung“: Ziel, Grundsatzentscheidung, Freigabe, Risikoannahme, Nachweis, Beschlusslage; „bleibt beim Bauherrn“. Mitte „Mandatsebene“: Befugnisse, Freigabegrenzen, Zeichnungsrechte, Eskalation, Gremienbezug; „begrenzt übertragbar“. Unten „Arbeitsebene“: Analyse, Planung, Koordination, Dokumentation, Auswirkungsbewertung, Inputs. Sockel „MVG“: Inputs, Rollen, Freigaben, Entscheidungs-IDs, Datenstände. Seitlich je eine Tafel „Dritte“ mit vier Personen und „Dritte bereiten vor“; Pfeil zur Arbeitsebene, Linie zum Sockel.'
+alt: >-
+  Die Pyramide zeigt drei Ebenen: unten die Arbeit, die andere vorbereiten, in der Mitte die Befugnisse, die der Bauherr
+  nur begrenzt übertragen kann, oben die Verantwortung, die immer beim Bauherrn bleibt (Ziel, Grundsatzentscheidung,
+  Freigabe, Risikoannahme, Nachweis, Beschlusslage). Der Sockel „MVG“ trägt alle Ebenen. Seitlich stehen Tafeln mit
+  „Dritte bereiten vor“.
 angeglichen:
   - { x: 718, y: 665, b: 82, h: 33, text: "Auswirkungs-\nbewertung", beleg: k3.3-t1, schrift: barlow, groesse: 16, farbe: "#1f2021", ausrichtung: mitte }
   - { x: 553, y: 276, b: 95, h: 34, text: "Grundsatz-\nentscheidung", beleg: k3.3-t1, schrift: barlow, gewicht: 500, groesse: 18, farbe: "#1f2021", ausrichtung: mitte }

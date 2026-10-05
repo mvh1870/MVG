@@ -42,6 +42,12 @@
 .ex-kopf-bild { display: grid; place-items: center; width: 148px; height: 148px; border-radius: var(--radius-rund); background: var(--weiss); box-shadow: inset 0 0 0 3px var(--ton), 0 0 0 8px var(--weiss-a85); }
 .ex-titel:focus { outline: none; box-shadow: none; }
 .ex-einleitung { max-width: 72ch; color: var(--tinte-2); }
+/* L-322: Vorspann je Werkzeug – Beschriftung links, Text rechts; schmal untereinander */
+.ex-vorspann { display: grid; gap: var(--a-2); margin: 0; }
+.ex-vorspann > div { display: grid; gap: 2px; min-width: 0; }
+.ex-vorspann dt { color: var(--ton-text); }
+.ex-vorspann dd { margin: 0; overflow-wrap: anywhere; hyphens: auto; }
+@media (min-width: 720px) { .ex-vorspann > div { grid-template-columns: 11rem minmax(0, 1fr); gap: var(--a-3); align-items: baseline; } }
 .ex-fall { max-width: 72ch; font: var(--typo-klein); color: var(--tinte-2); }
 .ex-fall p { margin: 0; }
 
@@ -416,7 +422,8 @@ li[data-fertig="ja"] .wz-schritt-nr { background: var(--status-gruen-soft); colo
   .druck-bogen .wz-bericht-spalten { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5mm 6mm; }
   /* D im Höchstfall genau eine Seite (Feldgrenzen in src/werkzeuge/monatsbericht.ts, PDF-Probe im Szenario explore) */
   /* A im Höchstfall (18 Lücken, alle Hinweise) genau eine Seite: Sätze zweispaltig */
-  .druck-bogen .wz-druck[data-werkzeug="vorlagen-check"] { font-size: 8.6pt; line-height: 1.24; }
+  .druck-bogen .wz-druck[data-werkzeug="vorlagen-check"] { font-size: 8.6pt; line-height: 1.2; }
+  .druck-bogen .wz-druck[data-werkzeug="vorlagen-check"] .druck-kopf, .druck-bogen .wz-druck[data-werkzeug="vorlagen-check"] .druck-teil { margin-bottom: 3mm; }
   .druck-bogen .wz-druck[data-werkzeug="vorlagen-check"] .wz-druck-saetze { columns: 2; column-gap: 7mm; }
   .druck-bogen .wz-druck-saetze li + li { margin-top: .5mm; }
   .druck-bogen .wz-druck[data-werkzeug="monatsbericht"] { font-size: 8.8pt; line-height: 1.26; }

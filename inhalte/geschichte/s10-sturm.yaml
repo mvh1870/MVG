@@ -1,0 +1,92 @@
+# 10 · Ärger auf der Baustelle (Drehbuch docs/drehbuch-v2/02-akt-2.md, Station 10; alt Kapitel 6; Mittelpunkt des Falls)
+# Sperren ist Sache der Bauleitung vor Ort mit der Sicherheitskoordination; die Projektsteuerin meldet und hält am selben
+# Arbeitstag fest (v24:hb-4) – deshalb ist sie in der Szene nicht dabei. Die Reparatur zahlt die Gerüstfirma (nur auf dem guten Weg).
+# Auf jedem Weg: Bereich gesperrt, Anker erneuert, am Ende geklärt, wer zahlt. Station 10 erzeugt das Echo E10 (10 → 14, Szene Lot im Ende).
+# Mini-Aufgabe: v24:hb-4, v24:hb-1.4, v24:hb-1.6, v24:hb-3, v24:hb-5
+nr: 10
+titel: Ärger auf der Baustelle
+zeit: Februar 2027
+campus: { stufe: 4, jahreszeit: winter, licht: tag, wetter: sturm }
+bruecke: "Februar: Ein Sturm lockert das Gerüst; der Bauleiter sperrt sofort, die Projektsteuerin meldet es."
+thema: takt
+werkzeuge: [{ id: wegweiser, beispiel: geruest }]
+belege: [v24:hb-4, v24:hb-3, v24:hb-1.4, v24:hb-3.1, v24:hb-1.6, v24:tlb-5, v24:va-5.2, v24:va-4.1, v24:hb-5]
+bild-szene: telefon
+bild-frage: absperrband
+
+einstieg: |
+  Februar 2027. Die Gesamtschule ist außen fast fertig, an der Sporthalle richten die Zimmerleute das tragende Holzskelett auf, rundum steht ein Baugerüst. In der Nacht ist ein Sturm über Lindenhall gezogen, abgerissene Planen liegen im Matsch.
+
+  Über den Arbeitsschutz wacht eine eigene Stelle, die Sicherheitskoordination. Freitag, kurz nach drei, klingelt Ihr Telefon.
+
+szene:
+  - { figur: lot, text: "Gerüst an der Sporthalle: zwei Anker, die es am Gebäude halten, sind lose. Seit heute Nacht. Sperr ich, muss die Sicherheitskoordination ran. Dann stehen die Zimmerleute bis Dienstag rum." }
+  - { figur: schwung, text: "Zwei Tage Stillstand im Februar – das tut weh." }
+  - { figur: lot, text: "Ich dachte, wir besprechen das am Montag in Ruhe. Die Projektsteuerin ist heute sowieso nicht auf der Baustelle." }
+  - { figur: schwung, text: "Vielleicht reicht es ja, nur die eine Seite abzusperren." }
+  - { figur: lot, text: "Sie sprechen für die Stadt. Was soll ich machen?" }
+
+frage: Draußen pfeift noch der Wind, und der Bauleiter wartet am Telefon. Was sagen Sie ihm?
+
+antworten:
+  - wertung: gut
+    text: "Sie lassen sofort sperren und die Sicherheitskoordination holen. Die Projektsteuerin meldet es und hält es heute fest."
+    balken: { geld: 0, zeit: -1, vertrauen: 1 }
+    bild: eintrag
+    folge: |
+      Um halb vier ist der Bereich abgesperrt, die Sicherheitskoordination ist vor Ort. Clara Faden, schon heiser, meldet den Schaden über den vereinbarten Weg, informiert die Bürgermeisterin und legt noch am Abend einen Eintrag an: was passiert ist, wann, wer gesperrt hat – mit Uhrzeit und Fotos. „Heute noch“, krächzt sie. „Wer weiß, wie ich nächste Woche klinge.“
+
+      Am Dienstag sind die Anker erneuert, und weil der Eintrag zeigt, was war, übernimmt die Gerüstfirma die Kosten. Theo Lot brummt: „Ganz schön praktisch, so ein Eintrag.“
+  - wertung: vertretbar
+    text: "Sie lassen sofort sperren und schreiben der Projektsteuerin kurz, was los ist – den Rest klären Sie am Montag."
+    balken: { geld: 0, zeit: -1, vertrauen: 0 }
+    bild: kalender
+    folge: |
+      Gesperrt wird sofort, niemand kommt zu Schaden. Clara Faden, heiser und müde, liest Ihre Nachricht am Abend, meldet den Schaden und legt noch am selben Tag den Eintrag an.
+
+      Aber die Sicherheitskoordination kommt erst am Montag, und vor Ort hat niemand Uhrzeit und Fotos festgehalten – so bestreitet die Gerüstfirma, dass der Sturm schuld ist. Am Mittwoch sind die Anker erneuert, und es ist geklärt, wer zahlt. Theo Lot murmelt: „Hätten wir's mal gleich aufgeschrieben.“
+  - wertung: falle
+    text: "Sie lassen die Seite mit den losen Ankern sperren. Die andere Seite hält ja noch – dort arbeiten die Zimmerleute weiter, bis der Gerüstbauer kommt."
+    balken: { geld: -1, zeit: -2, vertrauen: -2 }
+    bild: warnschild
+    folge: |
+      Am Freitagabend kommt die Sicherheitskoordination vorbei und stoppt die ganze Baustelle, bis das Gerüst geprüft ist. Verletzt wurde niemand – zum Glück. Clara Faden, heiser, erfährt erst jetzt davon, meldet den Vorfall sofort und hält ihn noch am selben Tag fest.
+
+      Die Prüfung dauert eine Woche; der Stillstand kostet Geld. Danach sind die Anker erneuert und ist geklärt, wer zahlt. Die Bürgermeisterin fragt, warum am Freitag weitergearbeitet wurde.
+
+gut: |
+  Bei Sicherheit wird sofort gehandelt und gemeldet – Schutz wartet auf keine Sitzung und keine Vorlage. Noch am selben Arbeitstag wird festgehalten, was passiert ist; danach klärt man Ursache und Lösung.
+
+mini:
+  art: reihenfolge
+  titel: Was kommt wann?
+  aufgabe: "Bringen Sie die Schritte nach dem Sturm in die richtige Reihenfolge: Wählen Sie den ersten Schritt, dann den nächsten."
+  bild: geruest-sturm
+  # in der richtigen Reihenfolge; die Seite zeigt sie fest gemischt (src/geschichte/engine.ts, gemischt)
+  posten:
+    - { text: "Der Bauleiter sperrt den Bereich ab.", bild: absperrband, erklaerung: "Schutz zuerst – vor jeder Besprechung." }
+    - { text: "Sicherheitskoordination und Projektsteuerin werden informiert; die Projektsteuerin meldet über den vereinbarten Weg.", bild: telefon, erklaerung: "Dringliches wird sofort gemeldet, nicht erst in der nächsten Sitzung." }
+    - { text: "Noch am selben Tag entsteht ein Eintrag mit Sachverhalt, Zuständigen und nächstem Schritt.", bild: eintrag, erklaerung: "Festgehalten wird, sobald die erste Reaktion gesichert ist – am selben Arbeitstag." }
+    - { text: "Die Fachleute klären die Ursache.", bild: lupe, erklaerung: "Erst verstehen, dann reparieren." }
+    - { text: "Die Lösung wird vorbereitet; braucht sie Geld oder eine Änderung, entscheidet die zuständige Stelle – Sie oder die Bürgermeisterin.", bild: kaertchen, erklaerung: "Auch in Eile gilt: Dringlichkeit ersetzt keine Entscheidung der zuständigen Stelle." }
+    - { text: "Erst wenn die Reparatur nachweislich wirkt, wird der Eintrag geschlossen.", bild: stempel, erklaerung: "Umgesetzt und wirksam sind nicht dasselbe." }
+
+dahinter: "Neben dem festen Takt gilt immer: Dringliches wird sofort gemeldet und noch am selben Tag festgehalten. Die Eile ersetzt dabei keine Freigabe: Wer dafür zuständig ist, entscheidet auch nach einem Sturm über alles, was Geld kostet."
+
+vertiefung:
+  form: nachdenken
+  titel: Sofort melden – und dann?
+  text:
+    - "Am Freitagnachmittag findet der Hausmeister einer Schule Wasser im Technikraum. Er sperrt den Raum, ruft den Wasserversorger an und schickt der Verwaltung ein Foto. Dann ist Wochenende, und niemand ist mehr im Haus."
+    - "Was gehört noch heute in den Eintrag, und was darf bis Montag warten?"
+  antwort:
+    - "Heute gehört hinein, was die erste Reaktion sichert: was gefunden wurde, wann, wer den Raum gesperrt und wen er angerufen hat, dazu etwa Fotos. Das sind Tatsachen, die am Montag niemand mehr genau erinnert."
+    - "Bis Montag warten kann, was Zeit braucht: die Ursache, die Wahl der Reparatur und die Frage, wer sie bezahlt. Wenn die Reparatur Geld kostet oder den Plan ändert, entscheidet darüber die zuständige Stelle und nicht der, der gerade vor Ort ist."
+    - "Und ein Eintrag wird erst geschlossen, wenn die Reparatur nachweislich wirkt, nicht schon, wenn der Handwerker gegangen ist. So wird aus Eile ein Ablauf, den auch ein Fremder am Montag versteht."
+    - "Das klingt nach Bürokratie, spart aber Arbeit: Wer heute zwei Minuten aufschreibt, spart sich am Montag zwei Stunden Streit darüber, wer wann was gesehen hat."
+
+regie:
+  notiz: "Kern: Wo es um Sicherheit geht, wird sofort gehandelt und sofort gemeldet; noch am selben Arbeitstag wird festgehalten, was passiert ist. In der Mini-Aufgabe die Runde die Reihenfolge ansagen lassen und Schritt für Schritt anklicken."
+  leitfragen:
+    - Wer erfährt bei Ihnen am selben Tag von einem Schaden – und wer hält ihn fest?
+    - Was darf die Baustelle sofort tun – und was braucht trotzdem eine Entscheidung?

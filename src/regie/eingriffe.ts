@@ -5,7 +5,8 @@
  */
 
 import type { Geschichte } from '../geschichte/typen.ts';
-import { geheZu, gleicherSchritt, kapitel, schritte, type Schritt, type Stand } from '../geschichte/engine.ts';
+import { miniArt } from '../geschichte/mini-arten.ts';
+import { geheZu, gleicherSchritt, kapitel, schritte, schrittKennung, type Schritt, type Stand } from '../geschichte/engine.ts';
 
 /** Ein Sprungziel der Regie: Wert für die Auswahl und der Schritt dazu. */
 export interface SprungZiel {
@@ -13,9 +14,9 @@ export interface SprungZiel {
   schritt: Schritt;
 }
 
-/** Wert eines Schritts in der Auswahl: „auftakt“, „ende“ oder „k3:frage“. */
+/** Wert eines Schritts in der Auswahl: „auftakt“, „ende“, „s3:frage“ oder „pause:a1“ (P19.6: die Pausen der Akte sind eigene Ziele). */
 export function schrittWert(s: Schritt): string {
-  return s.ort === 'kapitel' ? `${s.kapitel}:${s.teil}` : s.ort;
+  return schrittKennung(s);
 }
 
 /** Alle Schritte der ganzen Geschichte (mit Mini-Aufgaben) in Reihenfolge – auch die, die die Kurzfassung überspringt. */
@@ -47,13 +48,12 @@ export function ohneWahl(stand: Stand, kapitelId: string): Stand {
   return { ...stand, wahlen };
 }
 
-/** Löst eine Mini-Aufgabe auf: jede Zuordnung richtig bzw. die Reihenfolge der Liste. */
+/** Löst eine Mini-Aufgabe auf: je Art ihre richtige Lösung (Mini-Registry, `loese`). */
 export function loeseMini(g: Geschichte, stand: Stand, kapitelId: string): Stand {
   const m = kapitel(g, kapitelId)?.mini ?? null;
-  if (m === null) return stand;
-  const loesung = m.art === 'zuordnen'
-    ? m.posten.map((p) => m.wahlen.findIndex((w) => w.id === p.loesung))
-    : m.posten.map((_, i) => i);
+  const def = m === null ? null : miniArt(m.art);
+  if (m === null || def === null) return stand;
+  const loesung = def.loese(m);
   return { ...stand, mini: { ...stand.mini, [kapitelId]: loesung } };
 }
 

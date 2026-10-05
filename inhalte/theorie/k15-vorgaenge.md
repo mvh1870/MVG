@@ -3,9 +3,10 @@
 # Inhalt aus dem Standard „Aufgaben- und Risikomanagement V2.4“ (Handbuch), in eigenen Sätzen (O-37).
 # Beispiele aus dem fiktiven Schulcampus Lindenhall-Süd (O-50): Fundus-Tabelle in inhalte/fall.md (Lieferzeit FRW-002 → RIS-009, W 4 · A 4;
 # Mensa AEN-012; Brandschutzauflage PRB-002, MAS-011; Kennungen der früheren Story) und die Story-Kapitel
-# inhalte/geschichte/k2-warnsignal.yaml und k3-risiko.yaml (Frühwarnung März, Risiko einen Monat später), k4-mensa.yaml,
-# k5-zahlen.yaml (Mehrkosten der Haustechnikfirma, gut eine Million, als Risiko), k7-entscheidung.yaml (Lüftungsanlage vier Monate später);
-# die Wendekarte „Entscheidung vorbereiten“ nimmt die Lüftungsanlage aus k7-entscheidung.yaml (R76, gleich wie die Story).
+# inhalte/geschichte/s2-warnsignal.yaml und s3-risiko.yaml (Frühwarnung März, Risiko einen Monat später), s5-mensa.yaml,
+# s8-zahlen.yaml (Mehrkosten der Haustechnikfirma, gut eine Million, als Risiko), s12-entscheidung.yaml (Lüftungsanlage vier Monate später);
+# die Wendekarte „Entscheidung vorbereiten“ nimmt die Lüftungsanlage aus s12-entscheidung.yaml (R76, gleich wie die Story).
+# Sprachdurchgang L-290 (Owner-Auftrag: natürliche, verständliche Sprache): Beispielfall eingeführt, „Kapselung“, „Gewerk“, „Kostenansatz“, „Wertung“ erklärt, vier Gesichtspunkte in fünf Stufen, „höchste belegte Auswirkung“ = höchster Einzelwert (v24:hb-2); die 70 Tage = 26 statt 16 Wochen (inhalte/fall.md).
 # Belege Einleitung/Kernaussage: v24:hb-1 (Tabelle, „Nicht jeder Hinweis wird zum Risiko“), v24:hb-2, v24:hb-3
 # Belege k15.1 (sieben Sachverhalte): v24:hb-1 (Tabelle), v24:hb-1.1 bis v24:hb-1.6
 # Belege k15.2 (Wege): v24:hb-1.2, v24:hb-1.3, v24:hb-1 (Abs. 3, 5: verknüpfen, nicht doppelt zählen, Zahl der Risiken unbegrenzt; Aufgaben, Probleme, Änderungen ohne Risikoeintrag), v24:tlb-1
@@ -37,7 +38,7 @@ Die Projektsteuerung ordnet jeden Hinweis der passenden [[Vorgangsart]] zu, bewe
 ---
 titel: Nicht jeder Hinweis wird zum Risiko
 ---
-Sechs Vorgangsarten und dazu die Vorbereitung einer Entscheidung – jede mit eigenem nächsten Schritt. Alle bearbeitet und pflegt die Projektsteuerung.
+Sechs Vorgangsarten und dazu die Vorbereitung einer Entscheidung – jede mit eigenem nächsten Schritt. Alle bearbeitet und pflegt die Projektsteuerung, das Büro oder Team, das im Auftrag des Bauherrn das Projekt steuert. Die Beispiele auf den Karten stammen von einem fiktiven Schulcampus der Stadt Lindenhall.
 
 ::: karten
 ---
@@ -50,7 +51,7 @@ titel: Aufgabe
 Geplante Arbeit mit vereinbartem Ergebnis, Verantwortlichem und Termin.
 
 ### Rückseite
-Die Projektsteuerung stellt bis Freitag aus dem geltenden Kostenstand die Kostenübersicht für den Haushaltsansatz 2027 der Kämmerei zusammen.
+Die Projektsteuerung stellt bis Freitag aus dem geltenden Kostenstand die Kostenübersicht für den geplanten Betrag im städtischen Haushalt 2027 (Haushaltsansatz) zusammen, den die Finanzabteilung, die Finanzverwaltung der Stadt, braucht.
 :::
 
 ::: karte massnahme
@@ -60,7 +61,7 @@ titel: Maßnahme
 Gezielte Handlung, die einen Zustand klärt, verbessert oder einen Beschluss umsetzt.
 
 ### Rückseite
-Die Flure werden vorläufig mit Kapselung geplant, damit die Planung weiterläuft.
+Die Holzbauteile in den Fluren werden vorläufig mit einer Brandschutzverkleidung (Kapselung) geplant, damit die Planung weiterlaufen kann.
 :::
 
 ::: karte fruehwarnung
@@ -77,7 +78,7 @@ Der Architekt hört beiläufig, dass die Lieferzeiten für Holzelemente länger 
 ---
 titel: Risiko
 ---
-Ein mögliches nachteiliges Ereignis oder eine unsichere Größe, die Projektziele beeinträchtigen kann.
+Etwas, das passieren könnte und dem Projekt schadet – oder eine Größe, bei der noch unsicher ist, wie sie ausfällt.
 
 ### Rückseite
 Die Haustechnikfirma kündigt Mehrkosten von gut einer Million Euro an – noch nicht eingetreten.
@@ -90,7 +91,7 @@ titel: Problem
 Ein nachteiliger Zustand, der bereits eingetreten ist.
 
 ### Rückseite
-Die Baugenehmigung kommt mit Brandschutzauflagen zum Holzbau.
+Die Baugenehmigung kommt mit Auflagen (Bedingungen) zum Brandschutz beim Holzbau.
 :::
 
 ::: karte aenderung
@@ -110,7 +111,7 @@ titel: Entscheidung vorbereiten
 Eine erforderliche Entscheidung des Bauherrn vorbereiten: mindestens zwei zulässige Optionen, gewichteter Vergleich, Empfehlung und Termin.
 
 ### Rückseite
-Ersatzgerät, Leihgeräte oder späterer Einzug, als die Lüftungsanlage der Gesamtschule vier Monate später kommt.
+Die Lüftungsanlage der Gesamtschule kommt vier Monate später. Drei Wege stehen zur Wahl: ein Ersatzgerät, Leihgeräte oder ein späterer Einzug.
 :::
 :::
 :::
@@ -121,7 +122,7 @@ titel: Wege zwischen den Arten
 ---
 Vorgänge wechseln ihre Art, wenn sich der Sachverhalt klärt oder ändert:
 
-- Eine **[[Frühwarnung]]** wird geklärt: Wer ein mögliches Ereignis erkennt, bewertet es als [[Risiko]]; ist der Zustand schon eingetreten, wird er als [[Problem]] bearbeitet; eine konkrete Arbeit läuft als [[Aufgabe]] weiter; ein unbegründeter Hinweis wird mit Begründung geschlossen. Die Herkunft bleibt verknüpft.
+- Eine **[[Frühwarnung]]** wird geklärt: Ergibt die Klärung ein mögliches Ereignis, wird es als [[Risiko]] bewertet; ist der Zustand schon eingetreten, wird er als [[Problem]] bearbeitet; eine konkrete Arbeit läuft als [[Aufgabe]] weiter; ein unbegründeter Hinweis wird mit Begründung geschlossen. Es bleibt erkennbar, woraus ein Eintrag entstanden ist.
 - Tritt ein **Risiko** ein, beginnt die Problembearbeitung. Noch unsichere Folgen bleiben getrennt sichtbar.
 - **Aufgaben, Probleme und Änderungen** brauchen keinen vorherigen Risikoeintrag.
 
@@ -140,7 +141,7 @@ titel: Vorgänge auf dem Schulcampus Lindenhall-Süd
 ---
 titel: März 2026 – Frühwarnung
 ---
-Der Architekt hört beiläufig, dass die Lieferzeiten für Holzelemente länger werden – wie viel und bei wem, ist offen. Der Hinweis wird mit Quelle, Eingangsdatum und Prüffrage im Register festgehalten.
+Der Architekt hört beiläufig, dass die Lieferzeiten für Holzelemente länger werden – wie viel und bei wem, ist offen. Der Hinweis wird mit Quelle, Eingangsdatum und Prüffrage in der Liste (im Register) festgehalten.
 :::
 
 ::: etappe 2
@@ -154,7 +155,7 @@ Drei von vier Anbietern bestätigen 24 bis 26 Wochen. Daraus wird ein Risiko; di
 ---
 titel: Mai 2026 – ein anderes Risiko tritt ein
 ---
-Die Holzbau-Angebote liegen über dem Kostenansatz. Ein zweites Risiko desselben Gewerks, die Baupreissteigerung, ist eingetreten: Es wird geschlossen und als Problem weitergeführt.
+Die Angebote für den Holzbau liegen über dem Betrag, der dafür eingeplant war (Kostenansatz). Damit ist ein weiteres, schon bekanntes Risiko für dieses Bauteil eingetreten: die Baupreissteigerung. Es wird geschlossen und als Problem weitergeführt.
 :::
 :::
 
@@ -168,7 +169,7 @@ rechts: Problem – schon eingetreten
 ---
 seite: links
 ---
-Die Holzbauelemente könnten so spät kommen, dass sich der Montagebeginn um rund 70 Tage verschiebt.
+Die Holzbauelemente könnten statt nach 16 erst nach 26 Wochen kommen (der ungünstigste der genannten Fälle), sodass sich der Montagebeginn um rund 70 Tage verschiebt.
 
 ### Erklärung
 Ob und wie stark das eintritt, ist offen.
@@ -178,7 +179,7 @@ Ob und wie stark das eintritt, ist offen.
 ---
 seite: rechts
 ---
-Die Baugenehmigung verlangt eine zusätzliche Kapselung der Holzbauteile in den Fluren.
+Die Baugenehmigung verlangt eine zusätzliche Brandschutzverkleidung (Kapselung) der Holzbauteile in den Fluren.
 
 ### Erklärung
 Die Auflage ist da. Für einen eingetretenen Zustand wird keine Wahrscheinlichkeit mehr geschätzt.
@@ -191,7 +192,7 @@ seite: links
 Die Haustechnikfirma kündigt Mehrkosten an, gut eine Million Euro.
 
 ### Erklärung
-Angekündigt, aber nicht eingetreten – ein Risiko mit Bandbreite. Was schon in der Prognose steckt, wird nicht doppelt gezählt.
+Angekündigt, aber nicht eingetreten – ein Risiko mit einer Spanne möglicher Beträge. Was schon in der Prognose steckt, wird nicht doppelt gezählt.
 :::
 
 ::: posten 4
@@ -211,15 +212,17 @@ Ein ausgefallener Liefertermin ist ein Problem. Jetzt geht es um Folgen und Lös
 ---
 titel: Was festgehalten wird und wann ein Vorgang schließt
 ---
-Jeder Vorgang hat Titel, Art, Quelle und Datum, Sachverhalt, Verantwortlichen, nächsten Schritt, Termin und Bearbeitungsstand – und jede Art ihr eigenes Ende.
+Jeder Vorgang hat Titel, Art, Quelle und Datum, Sachverhalt, Verantwortlichen, nächsten Schritt, Termin und Bearbeitungsstand – und jede Art endet auf ihre eigene Weise.
 
 ::: umschalter
 ---
 titel: Erledigt oder abgeschlossen?
-links: Nur abgehakt
-rechts: Mit Grund abgeschlossen
+links: So nicht – nur abgehakt
+rechts: So ja – mit Grund abgeschlossen
 ---
 ::: ansicht links
+Vier typische Fehler:
+
 - Die Maßnahme ist umgesetzt, also abgehakt.
 - Die Aufgabe hat einen neuen Termin – damit ist die Verzögerung erklärt.
 - Die Änderung wurde im Flur zugesagt, also gilt sie.
@@ -227,10 +230,10 @@ rechts: Mit Grund abgeschlossen
 :::
 
 ::: ansicht rechts
-- **Aufgabe:** Sie endet, sobald das vereinbarte Ergebnis vorliegt und sich im eigenen Prüfumfang weiterverwenden lässt. Verschiebt sich der Termin, bleibt die Verzögerung trotzdem zu erklären.
-- **Maßnahme:** schließt mit belegtem Umsetzungs- und Wirkungsstand; wirkt sie nicht, folgt eine Anpassung.
-- **Änderung:** gilt erst mit dem Beschluss der befugten Stelle, bis dahin bleibt die bisherige Grundlage maßgeblich. Eine fachliche Freigabe ist noch keine Vertragsänderung oder Bestellung.
-- **Problem:** schließt mit dem Nachweis der Lösung; offene Folgen bleiben sichtbar.
+- **Aufgabe:** Sie ist erledigt, wenn das vereinbarte Ergebnis vorliegt und die Projektsteuerung es im Rahmen ihrer eigenen Prüfung weiterverwenden kann. Wird der Termin verschoben, muss die Verzögerung trotzdem erklärt werden.
+- **Maßnahme:** Sie ist abgeschlossen, wenn belegt ist, dass sie umgesetzt wurde und wirkt. Wirkt sie nicht, wird sie angepasst.
+- **Änderung:** Sie gilt erst, wenn die zuständige Stelle sie beschlossen hat. Bis dahin gilt weiter die bisherige Grundlage. Auch eine fachliche Zustimmung ist noch keine Vertragsänderung, keine Bestellung und keine Anerkennung eines Nachtrags.
+- **Problem:** Es ist abgeschlossen, wenn die Lösung nachgewiesen ist; offene Folgen bleiben sichtbar.
 :::
 :::
 :::
@@ -239,20 +242,20 @@ rechts: Mit Grund abgeschlossen
 ---
 titel: Ein Risiko nachvollziehbar beschreiben und bewerten
 ---
-Ein Risikoeintrag nennt Ursache, ungewisses Ereignis oder unsichere Größe, mögliche Folgen, betroffenes Projektziel und Zeitraum. Fakten, Schätzungen und offene Fragen stehen getrennt, der Datenstand ist genannt – auch für eine Vertretung nachvollziehbar.
+Ein Risikoeintrag nennt Ursache, ungewisses Ereignis oder unsichere Größe, mögliche Folgen, betroffenes Projektziel und Zeitraum. Fakten, Schätzungen und offene Fragen stehen getrennt, der Stand der Unterlagen (Datenstand) ist genannt – auch für eine Vertretung nachvollziehbar.
 
-Bewertet wird in fünf Stufen:
+Jedes Risiko wird unter vier Gesichtspunkten bewertet – Wahrscheinlichkeit, Kosten, Termin, Qualität und Funktion –, jeweils in fünf Stufen von 1 bis 5:
 
-- **Wahrscheinlichkeit:** sehr gering, gering, mittel, hoch, sehr hoch. Die Grenzen legt der Bauherr fest; eine begründete Zuordnung genügt, eine genaue Prozentzahl ist nicht nötig.
-- **Kosten:** zusätzliche Kosten bei Eintritt. Was schon in der Kostenprognose steckt, zählt nicht noch einmal.
-- **Termin:** Verschiebung des benannten Zieltermins in Kalendertagen, unter Berücksichtigung vorhandener Puffer.
+- **Wahrscheinlichkeit:** sehr gering (1), gering (2), mittel (3), hoch (4), sehr hoch (5). Die Grenzen legt der Bauherr fest; eine begründete Zuordnung genügt, eine genaue Prozentzahl ist nicht nötig.
+- **Kosten:** die zusätzlichen Kosten, wenn das Risiko eintritt. Was schon in der Kostenprognose steckt, zählt nicht noch einmal.
+- **Termin:** um wie viele Kalendertage sich der benannte Zieltermin verschiebt, unter Berücksichtigung vorhandener Puffer.
 - **Qualität und Funktion:** von 1 (geringe Abweichung, Nutzung nicht eingeschränkt) bis 5 (eine wesentliche Funktion oder die Hauptnutzung fällt aus).
 
 ::: aufklapper Grenzwerte und fehlende Angaben
 ---
 symbol: info
 ---
-Ein Wert genau auf einer Grenze gehört zur niedrigeren Stufe. Fehlende Angaben gelten nicht als null: Ist eine wichtige Auswirkung unklar, bleibt die Einstufung vorläufig. Bei unsicheren Mengen oder Preisen werden Bandbreite und Prüfbedarf festgehalten.
+Ein Wert genau auf einer Grenze gehört zur niedrigeren Stufe. Fehlende Angaben gelten nicht als null: Ist eine wichtige Auswirkung unklar, bleibt die Einstufung vorläufig. Bei unsicheren Mengen oder Preisen werden die Spanne und der Prüfbedarf festgehalten.
 :::
 :::
 
@@ -260,7 +263,7 @@ Ein Wert genau auf einer Grenze gehört zur niedrigeren Stufe. Fehlende Angaben 
 ---
 titel: Die 5×5-Matrix und was sie auslöst
 ---
-In die Matrix kommen nur Risiken: Die Wahrscheinlichkeit (1 bis 5), multipliziert mit der höchsten belegten Auswirkung (1 bis 5), ergibt die Priorität der Bearbeitung. Kosten, Termin und Qualität behalten ihre eigenen Einzelwerte. Die Punkte sind weder Geldbeträge noch eine Freigabe.
+In die Matrix kommen nur Risiken. Gerechnet wird: Wahrscheinlichkeit (1 bis 5) mal schwerste belegte Auswirkung (1 bis 5). Die schwerste Auswirkung ist der höchste Einzelwert für Kosten, Termin, Qualität und weitere vereinbarte Ziele; diese Einzelwerte bleiben daneben bestehen. Das Ergebnis zeigt, wie dringend ein Risiko bearbeitet werden muss. Die Punkte sind weder Geldbeträge noch eine Freigabe.
 
 ::: regler
 ---
@@ -271,7 +274,7 @@ titel: Bearbeitungspriorität eines Risikos
 titel: Produkt 1 bis 4
 marke: Beobachten
 ---
-Mit Verantwortlichem, nächstem Prüftermin und benannten Anlässen für eine Neubewertung.
+Es steht fest, wer zuständig ist, wann das Risiko wieder angesehen wird und was eine neue Bewertung auslöst.
 :::
 
 ::: stufe 2
@@ -291,10 +294,10 @@ Die Projektsteuerung holt eine fachliche Einschätzung ein, informiert den Bauhe
 :::
 :::
 
-Als **wesentlich** gilt ein Risiko, das vorrangig ist, eine Entscheidungsschwelle des Bauherrn erreicht oder einen besonderen Warnanlass berührt. Dann nennt die Projektsteuerung Bandbreiten für Kosten und Termin, soweit sich diese abschätzen lassen; andernfalls hält sie fest, wer welche offene Frage klärt.
+Als **wesentlich** gilt ein Risiko, das vorrangig ist, eine Entscheidungsschwelle des Bauherrn erreicht oder einen besonderen Anlass zur Vorsicht berührt. Dann nennt die Projektsteuerung Spannen für Kosten und Termin, soweit sich diese abschätzen lassen; andernfalls hält sie fest, wer welche offene Frage klärt.
 
 ::: hinweis
-**Unabhängig von den Punkten** behandelt die Projektsteuerung Fragen der Sicherheit und der Genehmigung, fehlende Befugnisse und den drohenden Verlust einer Handlungsoption. Dringliches wird sofort gemeldet – ohne auf die nächste Sitzung oder eine vollständige Bewertung zu warten.
+**Unabhängig von den Punkten** behandelt die Projektsteuerung Fragen der Sicherheit und der Genehmigung, fehlende Befugnisse und Fälle, in denen eine Möglichkeit zu handeln verloren zu gehen droht. Dringliches wird sofort gemeldet – ohne auf die nächste Sitzung oder eine vollständige Bewertung zu warten.
 :::
 
 ::: sortieren
@@ -303,13 +306,13 @@ titel: Vorrangig oder nicht?
 links: Vorrangig bearbeiten
 rechts: Noch nicht vorrangig
 ---
-W steht für die Wahrscheinlichkeit, A für die höchste belegte Auswirkung.
+W steht für die Wahrscheinlichkeit, A für die schwerste belegte Auswirkung.
 
 ::: posten 1
 ---
 seite: links
 ---
-W 1 · A 5
+W 1 · A 5 (Wahrscheinlichkeit 1, Auswirkung 5)
 
 ### Erklärung
 Produkt nur 5 – aber Auswirkung 5 ist immer vorrangig. Eine geringe Wahrscheinlichkeit blendet keine schwere Folge aus.
@@ -319,7 +322,7 @@ Produkt nur 5 – aber Auswirkung 5 ist immer vorrangig. Eine geringe Wahrschein
 ---
 seite: links
 ---
-W 4 · A 4 – die Lieferzeit der Holzbauelemente
+W 4 · A 4 (Wahrscheinlichkeit 4, Auswirkung 4) – die Lieferzeit der Holzbauelemente
 
 ### Erklärung
 Produkt 16, also vorrangig.
@@ -329,7 +332,7 @@ Produkt 16, also vorrangig.
 ---
 seite: rechts
 ---
-W 3 · A 3
+W 3 · A 3 (Wahrscheinlichkeit 3, Auswirkung 3)
 
 ### Erklärung
 Produkt 9: gezielt bearbeiten.
@@ -339,7 +342,7 @@ Produkt 9: gezielt bearbeiten.
 ---
 seite: rechts
 ---
-W 1 · A 3
+W 1 · A 3 (Wahrscheinlichkeit 1, Auswirkung 3)
 
 ### Erklärung
 Produkt 3: beobachten.
@@ -351,13 +354,13 @@ Produkt 3: beobachten.
 ---
 titel: Maßnahmen, Wirkung und wer was tut
 ---
-Zu jeder Maßnahme gehören Handlung, Verantwortlicher, Termin und erwartete Wirkung. Die Bewertung sinkt erst, wenn Umsetzung und Wirkung belegt sind – nicht schon durch die Planung. Umgesetzt und wirksam sind nicht dasselbe: Die vorläufige Kapselung der Flure ist umgesetzt; ob sie trägt, zeigt erst die Prüfung durch die Behörde. Chancen werden gesondert beschrieben, nicht mit Risiken verrechnet.
+Zu jeder Maßnahme gehören Handlung, Verantwortlicher, Termin und erwartete Wirkung. Die Bewertung sinkt erst, wenn Umsetzung und Wirkung belegt sind – nicht schon durch die Planung. Umgesetzt und wirksam sind nicht dasselbe: Die vorläufige Brandschutzverkleidung der Flure ist angebracht; ob sie ausreicht, zeigt erst die Prüfung durch die Behörde. Chancen (mögliche Vorteile) werden getrennt beschrieben und nicht mit Risiken verrechnet.
 
 ::: aufklapper Wenn Einschätzungen auseinandergehen
 ---
 symbol: chat
 ---
-Die Projektsteuerung prüft ihre Angaben selbst und zieht bei wesentlichen, strittigen oder schlecht belegten Bewertungen die zuständigen Fachleute hinzu. Gehen die Einschätzungen auseinander, werden beide mit Begründung festgehalten – nicht gemittelt.
+Die Projektsteuerung prüft ihre Angaben selbst und zieht bei wesentlichen, strittigen oder schlecht belegten Bewertungen die zuständigen Fachleute hinzu. Gehen die Einschätzungen auseinander, werden beide mit Begründung festgehalten – nicht zu einem Mittelwert verrechnet.
 :::
 
 ::: wissenscheck restrisiko
@@ -422,7 +425,7 @@ Ein Vorgang verschwindet nicht, weil ihn jemand abhakt – er schließt, wenn de
 Das Thema ordnet die sechs Vorgangsarten und die Entscheidungsvorbereitung. Die Karten mit den Lindenhall-Beispielen eignen sich zum gemeinsamen Umdrehen. In der Matrix den Fall „W 1 · A 5“ ansprechen: Auswirkung 5 ist immer vorrangig. Die Zahlen und Namen sind fiktiv.
 
 ### Leitfragen
-- Welcher Hinweis in Ihrem Projekt steht als Risiko im Register, obwohl er längst eingetreten ist?
+- Welcher Hinweis in Ihrem Projekt steht als Risiko in der Risikoliste (im Register), obwohl er längst eingetreten ist?
 - Wer legt bei Ihnen die Grenzen der Wahrscheinlichkeitsstufen fest?
 - Welche Maßnahme gilt bei Ihnen als erledigt, ohne dass ihre Wirkung belegt ist?
 :::

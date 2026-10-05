@@ -129,7 +129,7 @@ test('MCDA-Rechner: Beispiel ist der Vergleich der Story – ohne Auswahl andere
   assert.deepEqual([...el.querySelectorAll('thead th')].slice(2).map((th) => th.textContent), v.optionen.map((o) => `${o.id} · ${o.titel}`));
 });
 
-test('MCDA-Rechner (R69): ein Kipppunkt mit Gleichstand nennt alle an der Spitze („Gleichstand – … und …“)', () => {
+test('MCDA-Rechner (R69): ein Kipppunkt mit Gleichstand nennt alle an der Spitze („Dann lägen … und … gleichauf“)', () => {
   const v = vergleich();
   const el = baueExplore({ inhalte, werkzeug: 'mcda', bedienbar: true });
   document.body.replaceChildren(el);
@@ -137,8 +137,8 @@ test('MCDA-Rechner (R69): ein Kipppunkt mit Gleichstand nennt alle an der Spitze
   const k = kipppunkte(v.optionen, v.kriterien, abgestimmt(v)).find((x) => x.spitze.length > 1);
   assert.ok(k, 'ein Kipppunkt mit Gleichstand');
   const titel = k.spitze.map((x) => v.optionen.find((o) => o.id === x)?.titel ?? x);
-  const soll = `${v.kriterien.find((c) => c.id === k.kriterium)?.titel ?? ''} auf ${k.gewicht}: Gleichstand – ${titel.join(' und ')}`;
-  assert.equal(soll, 'Klima und Betrieb auf 3: Gleichstand – Ersatzgerät und Später einziehen');
+  const soll = `Gewicht von ${v.kriterien.find((c) => c.id === k.kriterium)?.titel ?? ''} auf ${k.gewicht}: Dann lägen ${titel.join(' und ')} gleichauf`;
+  assert.match(soll, / auf 3: Dann lägen Ersatzgerät und Später einziehen gleichauf$/u);
   const zeilen = [...el.querySelectorAll('.gs-kipp li')].map((li) => li.textContent ?? '');
   assert.ok(zeilen.includes(soll), `„${soll}“ fehlt in ${JSON.stringify(zeilen)}`);
 });

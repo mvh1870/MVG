@@ -23,9 +23,11 @@ test('Sprungziele: jeder Schritt der ganzen Geschichte, Werte eindeutig und lesb
     assert.equal(ziele.some((z) => z.wert === `${k.id}:mini`), k.mini !== null, `${k.id}: Mini-Aufgabe genau dann, wenn es eine gibt`);
     assert.equal(ziele.some((z) => z.wert === `${k.id}:vergleich`), k.vergleich !== null, `${k.id}: Vergleich genau dann, wenn es einen gibt`);
   }
+  // P19.6: die Pausen nach Akt I und II sind eigene Ziele (`pause:a1`, `pause:a2`), nach dem letzten Akt gibt es keine
+  assert.deepEqual(ziele.filter((z) => z.schritt.ort === 'pause').map((z) => z.wert), ['pause:a1', 'pause:a2']);
   for (const z of ziele) assert.deepEqual(schrittAus(g, schrittWert(z.schritt)), z.schritt);
   // Gegenprobe: Unbekanntes ergibt null
-  for (const falsch of ['', 'k9:szene', 'k1:mini', 'k1', 'k1:frage:2']) assert.equal(schrittAus(g, falsch), null, falsch);
+  for (const falsch of ['', 'k9:szene', 's1:mini', 's1', 's1:frage:2']) assert.equal(schrittAus(g, falsch), null, falsch);
 });
 
 test('Springen: auf dem Weg bleibt die Fassung, ein Schritt außerhalb der Kurzfassung schaltet auf die ganze Geschichte', () => {
@@ -50,14 +52,14 @@ test('Springen: auf dem Weg bleibt die Fassung, ein Schritt außerhalb der Kurzf
 });
 
 test('Wahl zurücknehmen: nur dieses Kapitel, ohne Wahl unverändert', () => {
-  let s = waehle(g, neuerStand(), 'k1', 1);
-  s = waehle(g, s, 'k2', 0);
-  const ohne = ohneWahl(s, 'k1');
-  assert.equal(ohne.wahlen['k1'], undefined);
-  assert.equal(ohne.wahlen['k2'], 0);
-  assert.equal(s.wahlen['k1'], 1, 'der alte Stand bleibt unberührt');
+  let s = waehle(g, neuerStand(), 's1', 1);
+  s = waehle(g, s, 's2', 0);
+  const ohne = ohneWahl(s, 's1');
+  assert.equal(ohne.wahlen['s1'], undefined);
+  assert.equal(ohne.wahlen['s2'], 0);
+  assert.equal(s.wahlen['s1'], 1, 'der alte Stand bleibt unberührt');
   // Gegenprobe: ohne Wahl kommt derselbe Stand zurück
-  assert.equal(ohneWahl(ohne, 'k1'), ohne);
+  assert.equal(ohneWahl(ohne, 's1'), ohne);
 });
 
 test('Mini-Aufgabe auflösen: jede Aufgabe danach ganz richtig, vorher nicht', () => {
@@ -67,7 +69,8 @@ test('Mini-Aufgabe auflösen: jede Aufgabe danach ganz richtig, vorher nicht', (
     const m = k.mini!;
     const geloest = loeseMini(g, neuerStand(), k.id);
     const aus = werteMiniAus(m, geloest.mini[k.id]);
-    assert.equal(aus.richtig, m.posten.length, `${k.id}: alles richtig`);
+    // Rückfragen (s11) kennen kein „richtig“: nach dem Auflösen sind alle Gespräche geführt und die Aufgabe ist fertig
+    assert.equal(aus.richtig, m.art === 'rueckfragen' ? 0 : m.posten.length, `${k.id}: alles richtig`);
     assert.equal(aus.fertig, true);
     // Gegenprobe: ohne Auflösen nichts richtig, eine falsche Zuordnung wird überschrieben
     assert.equal(werteMiniAus(m, neuerStand().mini[k.id]).richtig, 0, `${k.id}: vorher nichts richtig`);

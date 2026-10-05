@@ -1,0 +1,120 @@
+# 11 · Wenn Wissen im Kopf steckt (Drehbuch v2, Akt III, Station 11) – neu
+# Rückschlag unabhängig von der Antwort: Clara Faden fällt aus; ein Eintrag zeigt, wie viel an ihr hängt.
+# Lernziel: Ein Eintrag soll auch ein Fremder verstehen; die Übernahme durch eine Vertretung ist eine Übergabe, keine Erledigung.
+# Die Vertretung ist Handlung der Szene (Stimme ohne Porträt), keine Regel über die Projektsteuerung hinaus.
+# Belege (intern):
+#  - Ein Eintrag soll auch ein Fremder verstehen (Quelle, Datum, Sachverhalt, Verantwortlicher, nächster Schritt, Termin, Stand): v24:hb-2 Abs. 1, v24:hb-5 (Tabelle „Alle Vorgänge“), v24:tlb-4
+#  - Frühwarnung: Quelle, Prüffrage, wer bis wann; bleibt die Grundlage offen, bleibt die Frühwarnung offen: v24:hb-1.2, v24:tlb-3
+#  - Übernahme durch einen Nachfolger = Übergabe, keine Erledigung: v24:hb-5 Abs. 5
+#  - Fehlende Ergebnisse rechtzeitig anfordern (Rückfragen statt Annehmen): v24:hb-1.1
+#  - Eine mündliche Auskunft ersetzt den Eintrag nicht (Antwort „vertretbar“): v24:hb-5 Abs. 1
+#  - Hintergrund Wissensabhängigkeit (nur Erzählung, keine Regel): k2.3-p1, k2.5-t1
+#  - Im April nur Frühwarnung („deutet Verzug an, ohne Termin“), im Mai Problem (Station 12): v24:hb-1.2, v24:hb-1.4, inhalte/fall.md
+#  - Vertretung der Bürgermeisterin und Meldeempfänger stehen im Projektblatt (Abgrenzung, keine Aussage): v24:hb-projektblatt, k4.2-p1
+#  - Wirkung Zeit −1 auch auf dem guten Weg (der Ausfall kostet Luft), Geldfolge nur in der Falle: Gerüst Abschnitt 3
+nr: 11
+titel: Wenn Wissen im Kopf steckt
+zeit: April 2027
+# Zwischenbild: Gesamtschule außen fertig, Dach der Sporthalle geschlossen, Grundschule beginnt; nasser Hof, halber Regenbogen
+campus: { stufe: 4.5, jahreszeit: fruehling, licht: tag, wetter: regen }
+bruecke: "Clara Faden fällt aus; der Lüftungshersteller deutet Verzug an, ihre Vertretung übernimmt die Einträge, also die festgehaltenen Hinweise und Aufgaben."
+thema: vorgaenge
+werkzeuge: [{ id: wegweiser, beispiel: verzug }]
+belege: [v24:hb-2, v24:hb-5, v24:tlb-4, v24:hb-1.1, v24:hb-1.2, v24:hb-1.4, v24:tlb-3, v24:hb-projektblatt, k2.3-p1, k2.5-t1, k4.2-p1]
+# neu: haftzettel (Eintrag mit Haftzettel „frag Theo“), gespraechskarten (vier Karten mit Porträts und Fristkalender)
+bild-szene: haftzettel
+bild-frage: kalender
+
+einstieg: |
+  April 2027. Ein Aprilschauer trommelt aufs Containerdach, dann kommt die Sonne durch, und über der Gesamtschule steht ein halber Regenbogen. Nur ein Platz im Container ist leer: Clara Faden liegt drei Wochen mit Grippe im Bett.
+
+  Auf ihrem Bildschirm steht ein Eintrag zur Lüftungsanlage, zwischen zwei Terminen notiert. Er ist kurz. Claras Vertretung hat ihn gelesen, und ihr fällt der Bericht vom Dezember ein: „{echo: E9}“
+
+szene:
+  - { text: "Am leeren Platz im Container meldet sich ihre Vertretung: „Guten Morgen, ich vertrete Frau Faden. Der Hersteller der Lüftungsanlage will bis Freitag eine Antwort. In ihrem Eintrag dazu steht nur: ‚frag Theo‘.“" }
+  - { figur: lot, text: "Clara war noch Sonntagabend hier und hat Pläne sortiert. Ich dachte, die hält das aus." }
+  # Echo E9 (Quelle Station 9) steht im Einstieg, gesprochen von der Vertretung (keine eigene Sprecherin); fehlt die Quelle, gilt die Fassung „gut“
+  - { text: "Die Vertretung fügt hinzu: „Dieser Eintrag reicht nicht aus. Woher der Hinweis kam, was offen ist, bis wann – das weiß nur Frau Faden.“" }
+
+mini:
+  art: rueckfragen
+  stelle: vor-frage
+  titel: Wer weiß was?
+  aufgabe: Bis Freitag bleibt Zeit für zwei Rückfragen. Wen lassen Sie fragen, damit die Vertretung den Eintrag klären kann?
+  bild: gespraechskarten
+  kontingent: 2
+  eintrag: "Lüftung · Hersteller · frag Theo"
+  schluss: Die übrigen fragt die Vertretung nach.
+  # Der Eintrag „Lüftung · Hersteller · frag Theo“ hat vier Zeilen, anfangs leer: Quelle · Offene Frage · Antwort bis · Gebraucht für.
+  # Jedes Gespräch zeigt zwei Zeilen Auskunft; die Erklärung nennt die Zeile des Eintrags und was die Vertretung daraus festhalten würde.
+  posten:
+    - text: "Theo Lot: Was hat der Hersteller gesagt?"
+      gespraech:
+        - { wer: Theo Lot, text: "Er hat mich vorige Woche angerufen: Es könne eng werden mit dem Termin." }
+        - { wer: Theo Lot, text: "Eine Zahl hat er nicht genannt." }
+      erklaerung: "Zeile „Quelle“: Die Vertretung würde festhalten: „Anruf des Herstellers bei Theo Lot, vorige Woche, ohne Termin“. Das wäre die Herkunft des Hinweises – ein Anruf, keine Zahl. Sie gehört mit Datum in den Eintrag."
+    - text: "Konrad Schwung: Was muss geklärt werden?"
+      gespraech:
+        - { wer: Konrad Schwung, text: "Eine Frage ist offen: Hält der Hersteller seinen Liefertermin?" }
+        - { wer: Konrad Schwung, text: "Wenn nicht, welcher Termin gilt dann? Ohne das kann ich den Einbau nicht planen." }
+      erklaerung: "Zeile „Offene Frage“: Die Vertretung würde festhalten: „Hält der Hersteller den Liefertermin – und wenn nicht, welcher gilt dann?“ Das wäre die Prüffrage: eine klare Frage, die der Hersteller beantworten kann."
+    - text: "Vertretung: Bis wann läuft die Frist?"
+      gespraech:
+        - { wer: Vertretung, text: "Im Kalender steht: Freitag." }
+        - { wer: Vertretung, text: "Bis dahin will der Hersteller wissen, ob der Einbautermin so bleibt. Wer antwortet, steht nirgends." }
+      erklaerung: "Zeile „Antwort bis“: Die Vertretung würde festhalten: „Freitag; wer antwortet: noch offen“. Das wäre das Fristende – und die Lücke daneben: Zu einer Frist gehört ein Name."
+    - text: "Hanna Klingel: Wozu brauchen Sie die Lüftung?"
+      gespraech:
+        - { wer: Hanna Klingel, text: "Spätestens am ersten Schultag muss sie laufen." }
+        - { wer: Hanna Klingel, text: "Sonst weiß ich nicht, wohin mit den Kindern." }
+      erklaerung: "Zeile „Gebraucht für“: Die Vertretung würde festhalten: „Läuft spätestens zum ersten Schultag“. Das wäre der Bedarf: bis wann und wofür. Er sagt, wie eilig die Antwort ist."
+
+frage: Der Hersteller wartet, Clara Faden ist krank, ihr Eintrag reicht nicht aus. Was lassen Sie tun?
+
+antworten:
+  - wertung: gut
+    text: Sie bitten die Vertretung, die Lücken durch Rückfragen zu klären und den Eintrag zu ergänzen, bevor die Antwort an den Hersteller geht.
+    balken: { geld: 0, zeit: -1, vertrauen: 1 }
+    bild: mappe
+    folge: |
+      Die Vertretung fragt nach: bei Theo Lot, bei Konrad Schwung, beim Hersteller. Das dauert zwei Tage länger als gedacht. Am Donnerstag steht im Eintrag, woher der Hinweis kam, welche Frage offen ist und wer bis Freitag antwortet. Darunter: „Übernommen von Clara Faden, Stand heute.“
+
+      Die Antwort geht rechtzeitig hinaus. Ob der Termin hält, weiß der Hersteller selbst noch nicht. Clara Faden schreibt aus dem Bett: „Jetzt versteht den Eintrag auch ein Fremder. Das wollte ich schon lange.“
+  - wertung: vertretbar
+    text: Sie rufen Clara Faden zu Hause an. Sie kennt die Antwort, und so geht es am schnellsten.
+    balken: { geld: 0, zeit: -2, vertrauen: 0 }
+    bild: telefon
+    folge: |
+      Clara Faden nimmt nach dem fünften Klingeln ab, die Stimme ein Reibeisen. Sie erklärt alles, mit Pausen zum Husten. Die Vertretung schreibt mit und gleicht danach alles noch einmal mit Theo Lot und Konrad Schwung ab, weil nicht jedes Wort sicher ist. Die Antwort geht erst Freitagabend hinaus, gerade noch rechtzeitig.
+
+      „Solange es nur in meinem Kopf steckt“, sagt Clara Faden am Ende, „kann ich nie richtig krank sein.“ Der Eintrag steht jetzt, mit allem, was fehlte, als Übergabe an die Vertretung.
+  - wertung: falle
+    text: Sie lassen die Vertretung die Einträge übernehmen, wie sie sind – Theo Lot weiß ja Bescheid, und der Hersteller bekommt seine Antwort.
+    balken: { geld: -1, zeit: -2, vertrauen: -2 }
+    bild: haftzettel
+    folge: |
+      Die Vertretung übernimmt, was dasteht: „frag Theo“. Theo Lot ist zwei Tage mit den Dachfenstern beschäftigt und antwortet nicht. Die Frist am Freitag verstreicht. Am Montag schreibt der Hersteller erneut und ruft dann bei der Bürgermeisterin an: Wer ist bei der Stadt eigentlich zuständig?
+
+      Gisela Grundstein ruft Sie an. „Bei uns steckt Wissen in Köpfen, und der Kopf liegt im Bett?“ Ein zusätzlicher Termin mit dem Hersteller vor Ort, den niemand eingeplant hatte, kostet einen Tag und zusätzliches Geld. Dann steht der Eintrag, mit Quelle, Frage und Frist, als Übergabe an die Vertretung. Ob der Termin hält, bleibt auch jetzt offen.
+
+gut: |
+  Ein Fremder soll einen Eintrag verstehen können: woher der Hinweis kam, was offen ist, wer bis wann antwortet. Wechselt die Bearbeiterin, wird die Übernahme als Übergabe festgehalten – nicht als Erledigung.
+
+dahinter: Wenn Wissen nur in einem Kopf steckt, hängt das Projekt an einer Person; fällt sie aus, fehlt nicht nur ihre Arbeit, sondern der Faden. Ein Eintrag mit Quelle, Frage und Frist macht die Arbeit übergebbar. Wer die Übernahme dagegen als erledigt verbucht, verliert, was offen war.
+
+vertiefung:
+  form: nachdenken
+  titel: Würde ein Fremder das verstehen?
+  text:
+    - "Sie sehen zwei Einträge zur Lüftungsanlage. Der erste lautet: „Hersteller Lüftung: frag Theo.“"
+    - "Der zweite: „Hinweis aus einem Anruf des Herstellers bei Theo Lot, vorige Woche: Der Termin könne eng werden, eine Zahl fehlt. Offen: Hält der Hersteller seinen Liefertermin, und welcher gilt sonst? Antwort bis Freitag, zuständig für die Antwort: die Vertretung von Clara Faden. Stand: noch nicht geklärt.“ Welcher reicht aus, wenn die Bearbeiterin ausfällt – und woran erkennen Sie das?"
+  antwort:
+    - Der zweite. Er sagt, woher der Hinweis kommt, was bekannt ist, was noch geklärt werden muss, wer es bis wann klärt und in welchem Zustand die Sache ist. Ein Fremder kann dort weiterarbeiten, ohne jemanden zu fragen. Beim ersten muss er erst Theo Lot finden und hoffen, dass der sich erinnert.
+    - "Der Gegenfall gilt aber auch: Ein Eintrag mit zwanzig ausgefüllten Feldern, in dem nichts Offenes steht, reicht ebenfalls nicht aus. Maßstab ist nicht die Menge der Felder, sondern ob man nachvollziehen kann, was eingeschätzt wurde, worauf die Einschätzung beruht und was als Nächstes geschieht. Offen darf eine Bewertung bleiben, wenn dasteht, was fehlt und wie es geklärt wird."
+    - Und noch etwas: Wenn eine Vertretung übernimmt, wird das als Übergabe festgehalten, mit Datum. Dann sieht jeder später, dass die Sache nicht erledigt, sondern weitergegeben wurde.
+
+regie:
+  notiz: "Kern: Ein Eintrag soll auch ein Fremder verstehen; fällt die Bearbeiterin aus, wird die Übernahme als Übergabe festgehalten. Die Rückfragen gemeinsam durchgehen: erst die Runde raten lassen, welche zwei Gespräche sie führen würde, dann das Eintrag-Kärtchen zeigen und fragen, was fehlt."
+  leitfragen:
+    - Wessen Wissen steckt bei Ihnen in nur einem Kopf?
+    - Würde ein Fremder Ihren letzten Eintrag verstehen?

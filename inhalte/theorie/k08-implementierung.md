@@ -1,5 +1,5 @@
 ---
-# Thema „Implementierung“ (P12.3, O-30; an V2.4 angepasst P16.4, O-36, O-38): erklärender Lesetext mit kleinen
+# Thema „Einführung“ (früher „Implementierung“; Sprachdurchgang L-290; P12.3, O-30; an V2.4 angepasst P16.4, O-36, O-38): erklärender Lesetext mit kleinen
 # interaktiven Grafiken. Kein Bezug zur Vorlage auf der Seite (O-38). P17.11 (O-55): etwa ein Drittel kürzer;
 # was Etappen, Regler, Umschalter und Tafeln zeigen, steht nicht noch einmal im Fließtext.
 # Tafel k8.4-t1 bleibt (Druckprüfung im Theorie-Szenario), Tafel k8.2-t1 bleibt (Galerie-Test).
@@ -14,26 +14,26 @@
 kapitel: 8
 thema: einfuehrung
 reihe: 9
-titel: Implementierung – von Diagnose zu Regelbetrieb
-kurztitel: Implementierung
+titel: Einführung – von der Bestandsaufnahme bis zum Alltagsbetrieb
+kurztitel: Einführung
 teil: 3
-kurzsatz: In welchen Schritten das Modell eingeführt wird und wann es abnahmefähig ist.
+kurzsatz: In welchen Schritten MVG eingeführt wird und wann die Einführung als gelungen gilt.
 symbol: werkzeug
 ---
-Dieses Thema zeigt, in welcher Reihenfolge Minimum Viable Governance (MVG) eingeführt wird und woran man erkennt, dass die Einführung gelungen ist. Für den Bauherrn heißt das: Jeder Schritt verlangt seine Mitwirkung, und die Abnahme misst auch, ob seine Organisation das Modell selbst anwenden kann.
+Dieses Thema zeigt, in welcher Reihenfolge Minimum Viable Governance (MVG) eingeführt wird und woran man erkennt, dass die Einführung gelungen ist. Für den Bauherrn heißt das: Jeder Schritt verlangt seine Mitwirkung, und bei der Abnahme (der Bestätigung durch den Bauherrn, dass die Einführung wie vereinbart gelungen ist) wird auch geprüft, ob seine Organisation das Modell selbst anwenden kann.
 
 ::: kernaussage
 ---
 symbol: werkzeug
 ---
-MVG wird bewusst pragmatisch in Schritten eingeführt: Lagebild, funktionsfähiges Mindestmodell, Test an echten Entscheidungen, Übergabe in den Regelbetrieb. Abnahmefähig ist es, wenn die Bauherrenorganisation diesen Mindeststandard hat und praktisch anwenden kann.
+MVG wird bewusst pragmatisch in Schritten eingeführt: Überblick über die Lage, ein Mindestmodell, das funktioniert, Test an echten Entscheidungen, Übergabe in den Regelbetrieb (den Alltagsbetrieb von MVG). Die Einführung gilt als gelungen (abnahmefähig), wenn die Organisation des Bauherrn diesen Mindeststandard hat und praktisch anwenden kann.
 :::
 
 ::: abschnitt k8.1
 ---
-titel: Sequenziertes Vorgehen
+titel: Die Einführung in sechs Schritten
 ---
-Die Einführung folgt sechs Schritten. Jeder hat einen eigenen Zweck, eigene Ergebnisse und ein Kriterium, an dem er als abgeschlossen gilt. **In keinem Schritt läuft sie ohne die Bauherrenseite.**
+Die Einführung folgt sechs Schritten. Jeder hat einen eigenen Zweck, eigene Ergebnisse und ein Kriterium, an dem er als abgeschlossen gilt. **Kein Schritt läuft ohne den Bauherrn.**
 
 ::: etappen
 ---
@@ -44,7 +44,7 @@ titel: Von der Einrichtung in den Regelbetrieb
 titel: Einrichtung
 ---
 - **Zweck:** Auftrag, Leistungsumfang und Datenzugang klären.
-- **Mitwirkung:** verantwortliche Rolle benennen, Zugang zu den Unterlagen sichern, Gesprächspartner bestätigen.
+- **Mitwirkung:** eine verantwortliche Rolle benennen, Zugang zu den Unterlagen sichern, Gesprächspartner bestätigen.
 - **Abgeschlossen, wenn:** Leistungsumfang und Vorgehen bestätigt sind.
 :::
 
@@ -52,8 +52,8 @@ titel: Einrichtung
 ---
 titel: Diagnose
 ---
-- **Zweck:** prüfen, ob der Bauherr seine Verantwortung ausüben kann.
-- **Mitwirkung:** Gespräche, Managementbericht, Priorisierung.
+- **Zweck:** prüfen, ob der Bauherr seine Verantwortung wahrnehmen kann.
+- **Mitwirkung:** an Gesprächen und am Managementbericht (dem zusammenfassenden Bericht für die Gremien) teilnehmen, Prioritäten setzen.
 - **Abgeschlossen, wenn:** Befund und Prioritäten bestätigt sind.
 :::
 
@@ -62,16 +62,16 @@ titel: Diagnose
 titel: Konzeption
 ---
 - **Zweck:** das Bauherren-Führungsmodell entwerfen.
-- **Mitwirkung:** Entscheidungen zu Mandaten, Schwellen, Freigaben und Rollen.
-- **Abgeschlossen, wenn:** der Entwurf abgenommen oder mit Auflagen bestätigt ist.
+- **Mitwirkung:** über Mandate, Grenzen (Schwellen), Freigaben und Rollen entscheiden.
+- **Abgeschlossen, wenn:** der Entwurf abgenommen oder mit Bedingungen (Auflagen) bestätigt ist.
 :::
 
 ::: etappe 4
 ---
 titel: Pilotierung
 ---
-- **Zweck:** das Modell an echten Entscheidungen testen und kalibrieren.
-- **Mitwirkung:** Anwendung im realen Projekt, Rückmeldung, Freigaben.
+- **Zweck:** das Modell an echten Entscheidungen testen und feiner einstellen (kalibrieren).
+- **Mitwirkung:** das Modell im echten Projekt anwenden, Rückmeldung geben, Freigaben erteilen.
 - **Abgeschlossen, wenn:** die Pilotierung erfolgreich ist oder der Anpassungsbedarf feststeht.
 :::
 
@@ -79,8 +79,8 @@ titel: Pilotierung
 ---
 titel: Befähigung
 ---
-- **Zweck:** die Schlüsselrollen handlungsfähig machen.
-- **Mitwirkung:** Teilnahme der Schlüsselrollen, Übernahme der Routinen.
+- **Zweck:** die wichtigsten Rollen handlungsfähig machen (Schulung).
+- **Mitwirkung:** Teilnahme der wichtigsten Rollen, Übernahme der festen Abläufe.
 - **Abgeschlossen, wenn:** die Rollen das Modell anwenden können.
 :::
 
@@ -89,8 +89,8 @@ titel: Befähigung
 titel: Übergabe
 ---
 - **Zweck:** Übergabe in den Regelbetrieb.
-- **Mitwirkung:** Abnahme erteilen, verantwortliche Rolle für den Regelbetrieb benennen, Prüfzyklus bestätigen.
-- **Abgeschlossen, wenn:** der Regelbetrieb freigegeben ist.
+- **Mitwirkung:** Abnahme erteilen, eine verantwortliche Rolle für den Regelbetrieb benennen, den Rhythmus der Prüfungen bestätigen.
+- **Abgeschlossen, wenn:** der Bauherr den Regelbetrieb bestätigt hat.
 :::
 :::
 
@@ -107,9 +107,9 @@ form: rhythmus
 
 ::: abschnitt k8.2
 ---
-titel: 30/60/90-Tage-Logik
+titel: Der 30/60/90-Tage-Plan
 ---
-Die 30/60/90-Tage-Logik ordnet die ersten Wirkungen – aber nur bei zwei Anlässen: nach einer MVG-Reifegradanalyse und im Rahmen einer [[MVG-Neuinitialisierung]]. Das sequenzierte Vorgehen bleibt verbindlich; sie ersetzt es nicht.
+Der 30/60/90-Tage-Plan sagt, was in den ersten 30, 60 und 90 Tagen im Mittelpunkt steht. Er gilt nur in zwei Fällen: nach einer MVG-Reifegradanalyse und bei einer [[MVG-Neuinitialisierung]]. Die sechs Schritte der Einführung bleiben verbindlich; der Plan ersetzt sie nicht.
 
 ::: regler
 ---
@@ -118,46 +118,46 @@ titel: Was in welchem Zeitraum im Mittelpunkt steht
 ::: stufe 30
 ---
 titel: 0–30 Tage
-marke: Sichtbarkeit
+marke: Überblick gewinnen
 ---
-**Fokus:** Diagnose und Priorisierung. Welche Entscheidungen sind kritisch? Wo fehlen Mandate? Welche Datenstände widersprechen sich? Welche Risiken und Änderungen brauchen eine bauherrenseitige Entscheidung?
+**Schwerpunkt:** Bestandsaufnahme und Prioritäten. Welche Entscheidungen sind kritisch? Wo fehlen Mandate? Welche Stände der Unterlagen widersprechen sich? Welche Risiken und Änderungen brauchen eine Entscheidung des Bauherrn?
 
-**Typische Ergebnisse:** Bewertungsmatrix über die zehn MVG-Domänen, wichtigste Risiken, Entscheidungsliste, Sofortmaßnahmen.
+**Typische Ergebnisse:** Bewertungsmatrix über die zehn Themenbereiche (Domänen), wichtigste Risiken, Entscheidungsliste, Sofortmaßnahmen.
 :::
 
 ::: stufe 60
 ---
 titel: 31–60 Tage
-marke: Mindestmodell
+marke: Mindestmodell aufbauen
 ---
-**Fokus:** Konzeption und Mindeststandard. Zielsystem, Mandatslogik, Leistungsphasen- und Freigabemodell, System der Entscheidungs-IDs, Datenstandslogik und Eskalation werden festgelegt und mit realen Entscheidungspunkten verbunden.
+**Schwerpunkt:** Entwurf und Mindeststandard. Zielsystem, Mandate, das Modell der Leistungsphasen und Freigaben, das System der Entscheidungs-IDs, Regeln für den Stand der Unterlagen und für die Weitergabe nach oben (Eskalation) werden festgelegt und mit echten Entscheidungspunkten verbunden.
 
-**Typische Ergebnisse:** Mandatsmodell, Leistungsphasen- und Freigabemodell, Entscheidungs-IDs, Datenstandslogik.
+**Typische Ergebnisse:** Mandatsmodell, Leistungsphasen- und Freigabemodell, Entscheidungs-IDs, Regeln für den Stand der Unterlagen.
 :::
 
 ::: stufe 90
 ---
 titel: 61–90 Tage
-marke: Anwendung
+marke: Modell anwenden
 ---
-**Fokus:** Modell in Anwendung und Kalibrierung. Erprobt an realen Entscheidungen und, sofern anstehend, an Freigaben zum Abschluss von LPH 0–9; Schwellen sind kalibriert, Rollen befähigt.
+**Schwerpunkt:** Das Modell wird angewendet und feiner eingestellt (Kalibrierung). Es wird an echten Entscheidungen erprobt und, sofern anstehend, an Freigaben zum Abschluss von LPH 0–9; Grenzwerte sind eingestellt, die Rollen sind geschult.
 
-**Typische Ergebnisse:** Bericht zur Pilotierung, kalibrierte Routinen, Befähigung; der Entwurf des Betriebshandbuchs liegt vor. Die Übergabe schließt an.
+**Typische Ergebnisse:** Bericht über den Test an echten Fällen (Pilotierung), eingestellte Abläufe, Schulung; der Entwurf des Betriebshandbuchs liegt vor. Die Übergabe schließt an.
 :::
 :::
 
 ::: umschalter
 ---
 titel: Zwei Dinge, die man nicht verwechseln sollte
-links: Vorgehensmodell
-rechts: 30/60/90-Tage-Logik
+links: Die sechs Schritte der Einführung
+rechts: Der 30/60/90-Tage-Plan
 ---
 ::: ansicht links
 **Der verbindliche Verlauf der Einführung.** Einrichtung → Diagnose → Konzeption → Pilotierung → Befähigung → Übergabe, danach Regelbetrieb. Jeder Schritt bis einschließlich der Übergabe in den Regelbetrieb hat seine eigene Abnahme.
 :::
 
 ::: ansicht rechts
-**Ein Orientierungsrahmen.** Nach der Reifegradanalyse oder bei einer MVG-Neuinitialisierung ordnet er, welche Wirkungen zuerst kommen. Kein allgemeiner Einführungsrhythmus, kein starrer Projektplan.
+**Eine Orientierung.** Nach der Reifegradanalyse oder bei einer MVG-Neuinitialisierung zeigt der Plan, welche Wirkungen zuerst kommen. Kein allgemeiner Rhythmus für jede Einführung, kein starrer Projektplan.
 :::
 :::
 
@@ -173,26 +173,26 @@ form: zeitachse
 ---
 titel: Mitwirkung des Bauherrn
 ---
-MVG lässt sich nicht an der Bauherrenorganisation vorbei einführen, denn die zentrale Verantwortung bleibt beim Bauherrn. Die Mitwirkung ist darum kein Verwaltungsaufwand, sondern Teil der Leistungslogik.
+MVG lässt sich nicht an der Organisation des Bauherrn vorbei einführen, denn die zentrale Verantwortung bleibt beim Bauherrn. Die Mitwirkung ist darum kein Verwaltungsaufwand, sondern gehört zur Beratung dazu.
 
-::: aufklapper Was die Bauherrenseite beiträgt
+::: aufklapper Was der Bauherr beiträgt
 ---
 symbol: person
 ---
 Gebraucht werden vor allem:
 
-- eine verbindliche verantwortliche Rolle auf Bauherrenseite,
+- eine verbindliche verantwortliche Rolle auf Seiten des Bauherrn,
 - Zugang zu den Kernunterlagen – Projektauftrag, Zielsystem, Rollen, Kosten- und Terminstand, Risiko- und Änderungsinformationen; dazu der Bearbeitungsstand aller Vorgänge in der Software des Bauherrn,
-- Gespräche mit der Projektleitung des Bauherrn, Auftraggeberlogik, [[PMO]], Projektsteuerung und Fachrollen,
-- Entscheidungen zu Zielprioritäten, Mandaten, Schwellen und Freigaben,
-- Teilnahme an Managementberichten, Pilotentscheidungen und Befähigungsmaßnahmen,
+- Gespräche mit der Projektleitung des Bauherrn, der Auftraggeberseite (den Stellen, die für den Bauherrn handeln), dem [[PMO]], der Projektsteuerung und den Fachleuten,
+- Entscheidungen darüber, welches Ziel Vorrang hat, wer was entscheiden darf (Mandate und Schwellen) und was freigegeben wird,
+- Teilnahme am Managementbericht, an den Entscheidungen im Test an echten Fällen (Pilotierung) und an der Schulung (Befähigung),
 - die Übernahme des Regelbetriebs nach der Übergabe.
 :::
 
 ::: sortieren
 ---
 titel: Wer trägt was bei?
-links: Bauherrenseite
+links: Bauherr
 rechts: Begleitung
 ---
 ::: posten rolle
@@ -209,7 +209,7 @@ seite: rechts
 Das Mindestmodell entwerfen und erproben
 
 ### Erklärung
-Bauherr Mentoren strukturiert, moderiert, entwirft, erprobt und befähigt.
+Bauherr Mentoren ordnet, leitet Gespräche, entwirft, erprobt und schult.
 :::
 
 ::: posten zugang
@@ -223,14 +223,14 @@ Zugang zu Projektauftrag, Zielsystem, Kosten- und Terminstand verschaffen
 ---
 seite: links
 ---
-Über Zielprioritäten, Mandate, Schwellen und Freigaben entscheiden
+Entscheiden, welches Ziel Vorrang hat, wer was entscheiden darf und was freigegeben wird
 :::
 
 ::: posten moderieren
 ---
 seite: rechts
 ---
-Strukturieren und moderieren
+Ordnung schaffen und Gespräche leiten
 :::
 
 ::: posten regelbetrieb
@@ -244,25 +244,25 @@ Den Regelbetrieb nach der Übergabe übernehmen
 ---
 seite: rechts
 ---
-Schlüsselrollen befähigen
+Die wichtigsten Rollen schulen (befähigen)
 
 ### Erklärung
-Befähigen leistet Bauherr Mentoren; die Teilnahme daran ist Mitwirkung der Bauherrenseite.
+Schulen leistet Bauherr Mentoren; die Teilnahme daran ist Mitwirkung des Bauherrn.
 :::
 :::
 :::
 
 ::: abschnitt k8.4
 ---
-titel: Abnahmelogik
+titel: Wann die Einführung als gelungen gilt (Abnahme)
 ---
-Wann ist die Einführung „fertig“? Wenn die Bauherrenorganisation einen funktionsfähigen Mindeststandard hat und ihn praktisch anwenden kann. Geprüft wird an acht Kriterien, jedes mit einer Prüffrage. Was am Ende konkret vorliegt, zeigt das Thema „Ergebnisbild“.
+Wann ist die Einführung „fertig“? Wenn die Organisation des Bauherrn einen Mindeststandard hat, der funktioniert, und ihn praktisch anwenden kann. Geprüft wird an acht Kriterien, jedes mit einer Prüffrage. Was am Ende konkret vorliegt, zeigt das Thema „Ergebnisse“.
 
-::: aufklapper Was Gegenstand der Leistung ist
+::: aufklapper Was geliefert wird
 ---
 symbol: stempel
 ---
-Gegenstand der Leistung ist die Herstellung und Übergabe eines belastbaren Bauherren-Führungsmodells. Entscheidung, Freigabe und Risikoannahme legitimieren die zuständigen Bauherrenrollen.
+Geliefert wird ein verlässliches Führungsmodell für den Bauherrn: Es wird erstellt und übergeben. Entscheidungen, Freigaben und die Entscheidung, welche Risiken das Projekt trägt, bleiben bei den zuständigen Rollen des Bauherrn.
 :::
 
 ::: umschalter
@@ -276,13 +276,13 @@ rechts: Heißt
 :::
 
 ::: ansicht rechts
-**Die Organisation weiß, wie wesentliche Entscheidungen**
+**Die Organisation weiß, wie wichtige Entscheidungen ablaufen:**
 
-- vorbereitet – durch die Projektsteuerung, mit mindestens zwei zulässigen Optionen und gewichtetem Vergleich,
-- mandatiert,
-- freigegeben,
-- dokumentiert – der Beschluss getrennt von der Vorlage – und
-- nachverfolgt werden.
+- Die Projektsteuerung bereitet sie vor, mit mindestens zwei zulässigen Möglichkeiten und gewichtetem Vergleich.
+- Es steht fest, wer dazu befugt ist.
+- Die zuständige Stelle gibt frei.
+- Der Beschluss wird gesondert von der Vorlage festgehalten.
+- Die Umsetzung wird verfolgt.
 :::
 :::
 
@@ -295,10 +295,10 @@ form: karten
 
 ::: regie
 ### Notiz
-Das Thema zeigt die Reihenfolge der Einführung (Etappen „Von der Einrichtung in den Regelbetrieb“) und die Mitwirkung des Bauherrn (Sortierübung „Wer trägt was bei?“). Den Regler zur 30/60/90-Tage-Logik nur mit dem Umschalter daneben zeigen: Die 30/60/90-Tage-Logik ist ein Orientierungsrahmen nach der Reifegradanalyse und bei einer MVG-Neuinitialisierung – kein allgemeiner Einführungsrhythmus und kein starrer Projektplan; keine Termine für den Kunden in Aussicht stellen. Abnahme bedeutet nicht, dass künftige Entscheidungen risikofrei sind.
+Das Thema zeigt die Reihenfolge der Einführung (Etappen „Von der Einrichtung in den Regelbetrieb“) und die Mitwirkung des Bauherrn (Sortierübung „Wer trägt was bei?“). Den Regler zum 30/60/90-Tage-Plan nur mit dem Umschalter daneben zeigen: Der 30/60/90-Tage-Plan ist ein Orientierungsrahmen nach der Reifegradanalyse und bei einer MVG-Neuinitialisierung – kein allgemeiner Einführungsrhythmus und kein starrer Projektplan; keine Termine für den Kunden in Aussicht stellen. Abnahme bedeutet nicht, dass künftige Entscheidungen risikofrei sind.
 
 ### Leitfragen
-- Welche Rolle ist bei Ihnen heute verbindlich für Zielprioritäten, Mandate und Schwellen zuständig?
-- Bei welcher Entscheidung in Ihrem Projekt waren zuletzt Schwelle und Datenstand unklar?
-- Woran würden Sie erkennen, dass wesentliche Entscheidungen in Ihrer Organisation nachvollziehbar vorbereitet, mandatiert, getrennt beschlossen und nachverfolgt werden?
+- Welche Rolle ist bei Ihnen heute verbindlich dafür zuständig, welches Ziel Vorrang hat, wer was entscheiden darf und ab welcher Grenze?
+- Bei welcher Entscheidung in Ihrem Projekt waren zuletzt die Grenze und der Stand der Unterlagen unklar?
+- Woran würden Sie erkennen, dass wichtige Entscheidungen in Ihrer Organisation gut vorbereitet werden, dass jemand dazu befugt war, dass der Beschluss gesondert festgehalten und die Umsetzung verfolgt wird?
 :::

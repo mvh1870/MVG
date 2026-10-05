@@ -1,0 +1,100 @@
+# 8 · Zwei Zahlen, zwei Wahrheiten (Drehbuch docs/drehbuch-v2/02-akt-2.md, Station 8; alt Kapitel 5)
+# Die angekündigten Mehrkosten sind ein Risiko, keine Kosten in der Prognose; die Vergabestelle prüft die Forderung.
+# Auf jedem Weg endet die Prüfung im November so, dass die Leistungen zum Vertrag gehören; das Risiko wird geschlossen.
+# Station 8 erzeugt und trägt kein Echo; ein Mitglied des Finanzausschusses tritt in den Folgen auf (Echo E8 wird in Station 6 erzeugt).
+# Mini-Aufgabe (pinnwand), Belege je Karte: 1 v24:hb-1 · 2 v24:hb-2 · 3 v24:hb-1.2 · 4 v24:hb-1.5 · 5 v24:hb-1, v24:hb-1.4
+# Zettel und Endpunkte nach 04-rahmen.md 7.8: Karte 1 Z1→Z2 · 2 Z1→Z3 · 3 Z4→Z5, Z6 · 4 Z7→(loses Ende; Z8 hängt daneben) · 5 Z9→Z10
+nr: 8
+titel: Zwei Zahlen, zwei Wahrheiten
+zeit: Oktober 2026
+campus: { stufe: 3, jahreszeit: herbst, licht: abend }
+bruecke: "Oktober: Dem Stadtrat nennt die Bürgermeisterin die erwarteten Gesamtkosten (Prognose) mit Datum; angekündigte Mehrkosten der Haustechnik (Heizung, Lüftung, Strom) stehen als Risiko daneben."
+thema: verantwortung
+werkzeuge: [{ id: risiko-grenzen, beispiel: ris-014 }, { id: monatsbericht, beispiel: oktober }]
+belege: [v24:hb-2, v24:hb-3, v24:hb-5, v24:tlb-3, v24:hb-1.5, v24:hb-1, v24:hb-1.2, v24:hb-1.4, k4.6-p1, k4.6-p2, k2.4-p2]
+bild-szene: zahlenzettel
+bild-frage: rednerpult
+
+einstieg: |
+  Oktober 2026. Der Kran hebt die ersten Holzelemente an die Gesamtschule. Nächste Woche will die Bürgermeisterin dem Stadtrat sagen, wo das Projekt beim Geld steht. Auf ihrem Schreibtisch liegen zwei Papiere mit zwei verschiedenen Zahlen.
+
+szene:
+  - { figur: grundstein, text: "Unsere Finanzabteilung sagt: eine Million über dem Budget. Der Architekt sagt: zwei. Was stimmt?" }
+  - { figur: schwung, text: "Meine Zahl. Die Haustechnikfirma für Heizung, Lüftung und Strom hat Mehrkosten angekündigt, gut eine Million. Die habe ich schon eingerechnet. Ich rechne lieber zu viel als zu wenig." }
+  - { figur: faden, text: "Ich habe beide Rechnungen verglichen. Die eine Million besteht vor allem aus Baupreisen, Kapselung, dem früher ausgeschriebenen Holz und der erweiterbaren Mensa. Der Unterschied sind die angekündigten Mehrkosten – angekündigt heißt aber nicht berechtigt. Die Vergabestelle prüft, ob die Firma das extra berechnen darf." }
+  - { figur: grundstein, text: "Ich brauche eine Zahl, die ich im Stadtrat vertreten kann. Nicht zwei." }
+  - { figur: faden, text: "Beide Beträge würde die Reserve noch decken." }
+
+frage: Nur eine kann in den Stadtrat. Welche Zahl geben Sie der Bürgermeisterin?
+
+antworten:
+  - wertung: vertretbar
+    text: "Die höhere Zahl des Architekten – lieber dem Stadtrat einmal zu viel sagen als später nachlegen."
+    balken: { geld: -1, zeit: -1, vertrauen: 0 }
+    bild: kostenzettel
+    folge: |
+      Der Stadtrat erschrickt über zwei Millionen. Ein Ratsmitglied aus dem Finanzausschuss klopft mit der Uhr auf den Ordner: „Wo steht das?“ Das Ratsmitglied verlangt eine Liste, wo man sparen könnte; die Planung wartet vier Wochen auf die Antwort.
+
+      Dann ist die Prüfung fertig: Was die Haustechnikfirma extra berechnen wollte, gehört schon zum bestehenden Vertrag, die Zahl sinkt wieder. Die Firma hat aber bemerkt, dass die Stadt ihre Forderung schon als berechtigt eingerechnet hatte, und verhandelt jetzt bei jeder Kleinigkeit härter.
+  - wertung: falle
+    text: "Die Mitte aus beiden, anderthalb Millionen – damit nehmen Sie Finanzabteilung und Architekt gleichermaßen ernst."
+    balken: { geld: -1, zeit: 0, vertrauen: -2 }
+    bild: lupe
+    folge: |
+      Anderthalb Millionen stehen in keiner Rechnung. Ein Ratsmitglied aus dem Finanzausschuss fragt: „Wo steht das?“ Die Bürgermeisterin kann nur antworten: Es ist die Mitte zwischen zwei Zahlen. Das Ratsmitglied schreibt die Antwort auf und sagt: „Ich habe nichts gegen Geld, nur gegen Geld ohne Nachweis.“ Clara Faden legt beide Rechnungen nebeneinander und zeigt den Unterschied.
+
+      Die Prüfung endet wie erwartet: Was die Haustechnikfirma extra berechnen wollte, gehört schon zum Vertrag. Aber die Firma verhandelt jetzt härter, denn die Stadt hatte ihre Forderung halb als berechtigt eingerechnet.
+  - wertung: gut
+    text: "Eine Million über dem Budget, mit Datum und Begründung – die angekündigten Mehrkosten als eigenes Risiko."
+    balken: { geld: 2, zeit: 0, vertrauen: 2 }
+    bild: waage
+    folge: |
+      Die Bürgermeisterin nennt im Stadtrat eine Zahl und einen Satz dazu: was drin ist und was nicht. Ein Ratsmitglied aus dem Finanzausschuss öffnet den Mund, schaut auf das Blatt – und nickt. Niemand fragt nach einer zweiten Zahl.
+
+      Vier Wochen später ist die Prüfung fertig: Die Leistungen gehören zum Vertrag, extra berechnen darf die Firma nichts. Clara Faden schließt das Risiko; damit entfällt die Spanne der möglichen Mehrkosten, und für die Reserve bleibt deutlich mehr Spielraum. „So möchte ich das jedes Mal“, sagt die Bürgermeisterin.
+
+gut: |
+  Es gibt einen gültigen Stand der Zahlen, und jede Zahl darin hat ein Datum und eine Begründung. Weichen Einschätzungen voneinander ab, werden beide nebeneinander erklärt und nicht zu einem Mittelwert verrechnet. Was noch unsicher ist, steht als Risiko daneben, mit seiner Spanne, also der Bandbreite der möglichen Kosten, und wird nicht doppelt gezählt.
+
+mini:
+  art: pinnwand
+  titel: Stimmen die Verknüpfungen?
+  aufgabe: "Clara Faden hat die Zettel mit rotem Faden verbunden. Was sagen Sie zu jeder Verbindung?"
+  bild: pinnwand
+  schluss: "Zwei Verbindungen hätten doppelt gezählt."
+  zettel:
+    - { id: z1, text: "Risiko: angekündigte Mehrkosten" }
+    - { id: z2, text: "Prüfung der Vergabestelle" }
+    - { id: z3, text: "Prognose (erwartete Gesamtkosten)" }
+    - { id: z4, text: "Frühwarnung: Holz" }
+    - { id: z5, text: "Risiko: Lieferzeit" }
+    - { id: z6, text: "Beschluss: Holz früher ausschreiben" }
+    - { id: z7, text: "Änderung: Mensa erweiterbar" }
+    - { id: z8, text: "mögliche Risiken der Änderung" }
+    - { id: z9, text: "Problem: Kapselung" }
+    - { id: z10, text: "Risiko: Kapselung" }
+  posten:
+    - { text: "Risiko „angekündigte Mehrkosten“, verbunden mit der Prüfung der Vergabestelle.", von: z1, nach: [z2], loesung: stimmt, erklaerung: "Zusammengehörige Einträge werden verbunden, damit man den Weg vom Hinweis bis zur Klärung sieht. Hier hängt nur ein Eintrag am anderen; nichts steht zweimal in der Rechnung." }
+    - { text: "Dieselben Mehrkosten stehen als Risiko mit Spanne und noch einmal in der Prognose, der Vorhersage der Gesamtkosten.", von: z1, nach: [z3], loesung: doppelt, erklaerung: "Was schon in der Prognose steht, wird kenntlich gemacht und nicht noch einmal dazugerechnet." }
+    - { text: "Frühwarnung „Holz“, verbunden mit dem Risiko „Lieferzeit“ und dem Beschluss, das Holz früher auszuschreiben.", von: z4, nach: [z5, z6], loesung: stimmt, erklaerung: "Wird aus einem Hinweis ein Risiko, verweist der neue Eintrag auf den alten. So bleibt sichtbar, woher er kam." }
+    - { text: "Änderung „Mensa erweiterbar“: Kosten und Termin bewertet, erkannte Risiken der Änderung nicht verbunden.", von: z7, nach: [], loesung: nachfordern, erklaerung: "Risiken, die eine Änderung selbst mit sich bringt, werden für sich bewertet und mit ihr verbunden." }
+    - { text: "Kapselung: als Problem geführt und mit derselben Summe noch einmal als Risiko.", von: z9, nach: [z10], loesung: doppelt, erklaerung: "Ein eingetretener Zustand ist ein Problem; seine Kosten stehen nicht zusätzlich als Risiko in der Rechnung." }
+
+dahinter: "Zwei Einschätzungen sind kein Fehler, solange jede ihren Grund und ihr Datum trägt – die Mitte hat keines von beiden."
+
+vertiefung:
+  form: nachdenken
+  titel: Warum nicht die Mitte?
+  text:
+    - "Zwei Gutachter sollen schätzen, was die Reparatur eines Daches kostet; beide haben die Fläche gemessen und sind sich über die Ziegel einig. Die eine sagt 40.000 Euro, der andere 80.000. Der Bauausschuss tagt am Donnerstag, wünscht sich eine einzige Zahl und rechnet mit 60.000 Euro, der Mitte. Niemand kann erklären, woher sie kommt."
+    - "Warum hilft die Mitte hier nicht, und was wäre besser?"
+  antwort:
+    - "Die Mitte hat keinen Grund und kein Datum. Die erste Schätzung geht vielleicht davon aus, dass nur die Ziegel ersetzt werden; die zweite rechnet den morschen Dachstuhl ein. Das sind zwei verschiedene Fragen, keine zwei Ungenauigkeiten derselben."
+    - "Besser: Beide Schätzungen werden mit ihrer Begründung nebeneinander festgehalten. Dazu kommt ein Datum für den Stand, auf dem der Ausschuss entscheidet. Die unsichere Hälfte steht als Risiko mit Spanne daneben. Dann sieht jeder, was feststeht und was nicht. Wenn sich später zeigt, dass der Dachstuhl gesund ist, fällt das Risiko weg, und es ist klar, warum."
+    - "Zwei Zahlen sind unbequem, aber ehrlich. Eine Mitte ist bequem, doch niemand kann sie verteidigen, wenn der Rechnungsprüfer nachfragt."
+
+regie:
+  notiz: "Kern: Es gibt einen gültigen Stand der Zahlen, jede Zahl mit Datum und Begründung; unterschiedliche Einschätzungen werden erklärt, ohne Mittelwert, Unsicheres steht als Risiko mit Spanne daneben."
+  leitfragen:
+    - Welche Zahl würde Ihre Bürgermeisterin, Ihr Vorstand oder Ihre Geschäftsführung heute nennen – und woher käme sie?
+    - Wie gehen Sie mit zwei Zahlen um, die nicht zusammenpassen?

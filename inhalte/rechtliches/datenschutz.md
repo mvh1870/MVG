@@ -8,9 +8,9 @@ Stand: Oktober 2026
 
 Mit dieser Datenschutzerklärung informieren wir Sie darüber, welche personenbezogenen Daten verarbeitet werden, wenn Sie die Internetseite www.GovernanceKompass.de besuchen.
 
-## 1. Verantwortlicher
+## 1. Wer ist verantwortlich?
 
-Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:
+Verantwortlich für die Datenverarbeitung im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:
 
 Bauherr Mentoren GmbH i. G.  
 vertreten durch Martin Mohr  
@@ -28,16 +28,16 @@ Verarbeitet werden nur die technisch erforderlichen Zugriffsdaten beim Aufruf de
 
 ## 3. Zugriffsdaten und Server-Logfiles
 
-Beim Aufruf dieser Internetseite verarbeitet der Webserver technisch erforderliche Daten. Dazu können insbesondere gehören:
+Beim Aufruf dieser Internetseite verarbeitet der Webserver technisch erforderliche Daten. Er legt dazu automatische Protokolle an (Server-Logfiles). Dazu können insbesondere gehören:
 
-- IP-Adresse des zugreifenden Endgeräts
+- IP-Adresse des zugreifenden Endgeräts (Ihres Geräts)
 - Datum und Uhrzeit des Zugriffs
 - aufgerufene Seite (Adresse)
-- Referrer-URL
+- Referrer-URL (die Seite, von der Sie kamen)
 - verwendeter Browser und verwendetes Betriebssystem
-- übertragene Datenmenge und HTTP-Statuscode
+- übertragene Datenmenge und HTTP-Statuscode (ob der Abruf geklappt hat)
 
-Die Verarbeitung ist technisch erforderlich, um die Seite auszuliefern, die Stabilität und Sicherheit des Betriebs zu gewährleisten und Störungen oder Angriffe nachvollziehen zu können. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO; unser berechtigtes Interesse liegt in der sicheren, stabilen und funktionsfähigen Bereitstellung der Seite.
+Die Verarbeitung ist technisch erforderlich, um die Seite auszuliefern, die Stabilität und Sicherheit des Betriebs zu gewährleisten und Störungen oder Angriffe nachvollziehen zu können. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO; unser berechtigtes Interesse liegt in der sicheren, stabilen und funktionsfähigen Bereitstellung der Seite. Kurz gesagt: Ohne diese Daten könnten wir die Seite nicht anzeigen und Angriffe nicht erkennen.
 
 Server-Logfiles werden nur so lange gespeichert, wie dies für diese Zwecke erforderlich ist. Eine längere Speicherung erfolgt nur, wenn dies zur Aufklärung sicherheitsrelevanter Vorfälle, zur Durchsetzung oder Verteidigung rechtlicher Ansprüche oder aufgrund gesetzlicher Pflichten erforderlich ist.
 
@@ -47,19 +47,30 @@ Diese Internetseite wird bei der IONOS SE gehostet. Der Hosting-Anbieter verarbe
 
 ## 5. Speicherung in Ihrem Browser
 
-Damit Sie in der Geschichte dort weiterlesen können, wo Sie aufgehört haben, speichert die Seite Ihren Stand im lokalen Speicher Ihres Browsers (Local Storage): den Schritt der Geschichte, Ihre Entscheidungen, Ihre Antworten in den Mini-Aufgaben, Ihre Gewichte und ob Sie die Kurzfassung lesen. In den Themen speichert die Seite dort Ihren Lesefortschritt: welche Verständnisfragen Sie beantwortet haben (nicht, welche Antwort Sie gewählt haben) und welche Themen ohne Verständnisfragen Sie bis zum Ende gelesen haben. Wer die Seite zum Präsentieren nutzt, speichert dort zusätzlich den Stand der Präsentation (auch das gezeigte Werkzeug mit Beispiel und Schritt, nie Ihre Eingaben in den Werkzeugen) und die selbst eingetragenen Notizen zum Gespräch.
+Damit Sie in der Geschichte dort weitermachen können, wo Sie aufgehört haben, speichert die Seite Angaben im lokalen Speicher Ihres Browsers (englisch Local Storage). Das ist ein kleiner Speicher, der nur auf Ihrem Gerät liegt. Gespeichert werden:
 
-Diese Angaben verlassen Ihr Gerät nicht und werden nicht an uns oder Dritte übertragen. Der Zugriff auf den Speicher ist für die von Ihnen gewünschte Funktion unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG). Den Stand der Geschichte entfernen Sie jederzeit mit „Fortschritt löschen“ am Fuß der Geschichte, den Lesefortschritt der Themen mit „Fortschritt zurücksetzen“ in der Übersicht der Themen, die Notizen und den gespeicherten Stand der Präsentation mit „Protokoll löschen“ in der Präsentationsansicht (für die Leinwand hält der Browser außerdem die zuletzt gezeigte Anzeige, ohne Notizen; auch sie entfernt „Protokoll löschen“); alles zusammen auch über die Einstellungen Ihres Browsers.
+- In der Geschichte: der Schritt, an dem Sie sind (auch eine der Pausen zwischen den drei Akten), Ihre Entscheidungen, Ihre Antworten in den Mini-Aufgaben, Ihre Gewichte und ob Sie die Kurzfassung lesen. „Ihr Weg im Überblick“ und das Entscheidungsbuch stellt die Seite bei jedem Aufruf aus diesen Angaben neu zusammen; sie werden nicht eigens gespeichert. Welche Einträge des Buchs als „neu“ gekennzeichnet sind, merkt sich die Seite nur, solange Sie sie geöffnet haben, nicht im Browser-Speicher.
+- In den Themen: Ihr Lesefortschritt, also welche Verständnisfragen Sie beantwortet haben (nicht, welche Antwort Sie gewählt haben) und welche Themen ohne Verständnisfragen Sie bis zum Ende gelesen haben.
+- Beim Präsentieren: der Stand der Präsentation (auch das gezeigte Werkzeug mit Beispiel und Schritt, nie Ihre Eingaben in den Werkzeugen) und die Notizen, die Sie selbst zum Gespräch eintragen.
+
+Diese Angaben verlassen Ihr Gerät nicht und werden nicht an uns oder Dritte übertragen. Kurz gesagt: Nichts davon sehen wir. Der Zugriff auf den Speicher ist für die von Ihnen gewünschte Funktion unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG).
+
+So entfernen Sie die Angaben:
+
+- Geschichte: „Gespeicherten Fortschritt löschen“ am Fuß der Geschichte.
+- Themen: „Lesefortschritt löschen“ in der Übersicht der Themen.
+- Präsentation: „Protokoll und gespeicherten Stand löschen“ in der Präsentationsansicht. Das entfernt die Notizen und den gespeicherten Stand der Präsentation. Für die Leinwand hält der Browser außerdem die zuletzt gezeigte Anzeige, ohne Notizen; auch sie entfernt „Protokoll und gespeicherten Stand löschen“.
+- Alles zusammen: über die Einstellungen Ihres Browsers.
 
 ## 6. Links zu bauherr-mentoren.com
 
-Die Seite enthält Links zur Internetseite der Bauherr Mentoren GmbH i. G. (www.bauherr-mentoren.com). Erst wenn Sie einem solchen Link folgen, ruft Ihr Browser diese Seite auf; dort gilt deren Datenschutzerklärung. Beim Aufruf übermittelt diese Seite keine Herkunftsangabe (Referrer).
+Die Seite enthält Links zur Internetseite der Bauherr Mentoren GmbH i. G. (www.bauherr-mentoren.com). Erst wenn Sie einem solchen Link folgen, ruft Ihr Browser diese Seite auf; dort gilt deren Datenschutzerklärung. Beim Aufruf übermittelt diese Seite keine Herkunftsangabe (Referrer, also die Seite, von der Sie kommen).
 
 ## 7. Kontakt per E-Mail
 
 Wenn Sie uns per E-Mail kontaktieren, verarbeiten wir die von Ihnen übermittelten Daten (insbesondere E-Mail-Adresse, Name, soweit angegeben, und den Inhalt Ihrer Nachricht) ausschließlich zur Bearbeitung Ihrer Anfrage. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, soweit Ihre Anfrage auf einen Vertrag oder vorvertragliche Maßnahmen gerichtet ist, im Übrigen Art. 6 Abs. 1 lit. f DSGVO; unser berechtigtes Interesse liegt in der sachgerechten Beantwortung von Anfragen.
 
-## 8. Empfänger und Drittländer
+## 8. Empfänger und Länder außerhalb der EU
 
 Personenbezogene Daten erhalten nur der Hosting-Anbieter (Abschnitt 4) und, soweit eine rechtliche Verpflichtung besteht, Behörden oder Gerichte. Eine Weitergabe zu Werbezwecken erfolgt nicht. Eine Übermittlung in Staaten außerhalb der Europäischen Union oder des Europäischen Wirtschaftsraums findet nicht statt.
 
@@ -82,7 +93,7 @@ Zur Ausübung Ihrer Rechte erreichen Sie uns unter den oben genannten Kontaktdat
 
 ## 11. Widerspruchsrecht
 
-Soweit wir personenbezogene Daten auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO verarbeiten, haben Sie das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit Widerspruch gegen diese Verarbeitung einzulegen. Wir verarbeiten die Daten dann nicht weiter, es sei denn, es bestehen zwingende schutzwürdige Gründe für die Verarbeitung, die Ihre Interessen, Rechte und Freiheiten überwiegen, oder die Verarbeitung dient der Geltendmachung, Ausübung oder Verteidigung rechtlicher Ansprüche.
+Soweit wir personenbezogene Daten auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO verarbeiten, haben Sie das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit Widerspruch gegen diese Verarbeitung einzulegen. Kurz gesagt: Sie können der Verarbeitung aus persönlichen Gründen widersprechen. Wir verarbeiten die Daten dann nicht weiter, es sei denn, es bestehen zwingende schutzwürdige Gründe für die Verarbeitung, die Ihre Interessen, Rechte und Freiheiten überwiegen, oder die Verarbeitung dient der Geltendmachung, Ausübung oder Verteidigung rechtlicher Ansprüche.
 
 ## 12. Beschwerderecht bei einer Aufsichtsbehörde
 
@@ -97,7 +108,7 @@ www.lda.bayern.de
 
 ## 13. Keine automatisierte Entscheidungsfindung
 
-Wir verwenden im Zusammenhang mit dieser Internetseite keine automatisierte Entscheidungsfindung einschließlich Profiling im Sinne von Art. 22 DSGVO.
+Wir verwenden im Zusammenhang mit dieser Internetseite keine automatisierte Entscheidungsfindung einschließlich Profiling (der automatischen Auswertung persönlicher Merkmale) im Sinne von Art. 22 DSGVO.
 
 ## 14. Pflicht zur Bereitstellung personenbezogener Daten
 

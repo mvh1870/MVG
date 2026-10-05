@@ -1,0 +1,101 @@
+# 14 · Schulstart (Drehbuch v2, Akt III, Station 14; alt k8) – danach das Ende im August (rahmen.yaml, `ende`)
+# Freigabe am Ende der Bauzeit (intern Abschluss LPH 8, mit der Freigabe Beginn 9); sichtbar ohne Phasennummer. Offenes geht an das Gebäudemanagement.
+# Regie: Die Freigabe erfolgt mit Auflagen; die zwei Punkte gehen als offene Punkte mit Termin und Namen an das Gebäudemanagement. Schließen ist keine Abnahme.
+# Echo E10 (Quelle Station 10) steht im Ende (Lots Zeile), nicht in dieser Szene; diese Station erzeugt kein Echo.
+# Belege (intern):
+#  - Freigabe erteilt der Bauherr selbst (Freigabe, keine Freigabe, Freigabe mit Auflagen); Lenkungskreis berät; Projektsteuerung bereitet vor: k9.3-p3, k6.4.4-p1, k4.5-p1, v24:hb-1, v24:va-4.1
+#  - Offenes wird mit Frist und Nachfolger übergeben, nie als erledigt ausgegeben; ein Vorgang verschwindet nicht durch die Übergabe: v24:hb-5 (Abs. 5–6), v24:tlb-2, v24:va-10.1, v24:va-10.2
+#  - Risiko nur mit nachgewiesenem Grund schließen; Problem erst, wenn die Lösung umgesetzt und fachlich bestätigt ist: v24:hb-5 (Abs. 4), v24:hb-1.4, v24:hb-1.6
+#  - Schließen ist keine Abnahme und kein Verzicht auf Ansprüche (nur Vertiefung): v24:hb-5 (Abs. 6), k9.3-t1 (LPH 8, 9)
+#  - Wochendurchsicht läuft, die Bürgermeisterin nur bei Überschreitung ihrer Grenzen (Erzählbrücke): v24:hb-4 (Abs. 2), k4.2-p2, v24:hb-projektblatt
+#  - Die Freigabe erlaubt den nächsten Schritt (Übergabe, Regelbetrieb): k4.5-p1, k9.3-t1
+nr: 14
+titel: Schulstart
+zeit: Juli 2028
+campus: { stufe: 6, jahreszeit: sommer, licht: tag }
+campus-nachher: { stufe: 7, jahreszeit: sommer, licht: tag }
+# Die Kurzfassung spielt die Station nicht; die Brücke steht als zweite Zeile der Brückenkarte 5 vor dem Ende (Kopf zeigt Titel und Zeit).
+bruecke: "Die Bürgermeisterin gibt mit Auflagen, also Bedingungen, frei. Zwei offene Punkte gehen mit Termin und Namen ans Gebäudemanagement, die Stelle, die das fertige Haus betreibt."
+thema: ergebnisbild
+belege: [k9.3-p3, k9.3-t1, k6.4.4-p1, k4.5-p1, k4.2-p2, v24:hb-1, v24:hb-1.4, v24:hb-1.6, v24:hb-4, v24:hb-5, v24:hb-projektblatt, v24:tlb-2, v24:va-4.1, v24:va-10.1, v24:va-10.2]
+bild-szene: lupe
+bild-frage: schluessel
+
+einstieg: |
+  Juli 2028. Klarer Himmel, der Kran ist fort, auf dem Schulhof wird Rasen gesät. Acht Monate sind seit November vergangen, in sieben Wochen beginnt das Schuljahr.
+
+  Theo Lot geht mit seiner Liste durch die Räume, Konrad Schwung prüft jede Tür, Hanna Klingel hat die Stundenpläne an die Wand geheftet.
+
+  Clara Fadens Wochendurchsicht läuft wie immer. Heute steht die Freigabe am Ende der Bauzeit an; danach übernimmt das Gebäudemanagement der Stadt, also die Stelle, die das fertige Haus betreibt.
+
+szene:
+  - { figur: lot, text: "Fast alles fertig. Nur im Hallenboden sind zwei Fugen offen, die ich im November gemeldet habe. Die Firma bessert sie bis zu den Herbstferien nach, das ist ihr Auftrag." }
+  - { figur: schwung, text: "Und die Lüftung läuft, wie im Beschluss vom Mai verlangt. Die Feineinstellung kommt im ersten Winter." }
+  - { figur: klingel, text: "Ich will nur eins hören: Können die Kinder kommen?" }
+  - { figur: faden, text: "Ich habe die Freigabe vorbereitet. Zwei Punkte sind noch offen." }
+
+frage: Die Schule will einziehen, und auf der Liste stehen noch zwei Zeilen. Was legen Sie der Bürgermeisterin vor?
+
+antworten:
+  - wertung: falle
+    text: Freigabe ohne Einschränkung. Beide Punkte sind mit den Firmen fest verabredet – damit belasten wir die Vorlage nicht.
+    balken: { geld: 0, zeit: 0, vertrauen: -2 }
+    bild: projektblatt
+    folge: |
+      Clara Faden schüttelt den Kopf: „Offenes zeige ich als offen.“ In ihrer Vorlage stehen die zwei Punkte, und die Bürgermeisterin liest sie, bevor sie unterschreibt. „Warum sollte ich das nicht erfahren?“
+
+      Der Lenkungskreis berät kurz, dann erteilt sie die Freigabe mit Auflagen. Clara Faden gibt beide Punkte mit Termin und Namen ans Gebäudemanagement weiter. Das Gespräch bleibt Ihnen aber im Gedächtnis.
+  - wertung: vertretbar
+    text: Freigabe. Die zwei Punkte klärt der Architekt mit den Firmen – das gehört ohnehin zu seiner Aufgabe.
+    balken: { geld: 0, zeit: 0, vertrauen: 0 }
+    bild: notizzettel
+    folge: |
+      Der Lenkungskreis berät kurz. Die Bürgermeisterin liest Ihren Vorschlag und Clara Fadens Vorlage und erteilt die Freigabe mit Auflagen, wie die Vorlage es vorsieht. Clara Faden übergibt die zwei Punkte mit Termin und Namen ans Gebäudemanagement – verschwinden lässt sie nichts.
+
+      Weil Ihr Vorschlag aber den Architekten als Zuständigen nannte, muss das Gebäudemanagement erst klären, wer die Firma an die Fugen erinnert. Die Firma meldet sich erst kurz vor den Herbstferien.
+  - wertung: gut
+    text: "Freigabe mit Auflagen: Die Schule zieht ein, die zwei offenen Punkte gehen mit Termin und Namen ans Gebäudemanagement."
+    balken: { geld: 0, zeit: 0, vertrauen: 1 }
+    bild: mappe
+    folge: |
+      Der Lenkungskreis berät kurz, dann erteilt die Bürgermeisterin die Freigabe mit der Auflage, alles Offene mit Termin und Namen zu übergeben.
+
+      Clara Faden übergibt es dem Gebäudemanagement: Die Fugen und die Feineinstellung der Lüftung stehen jetzt auf dessen Liste.
+
+gut: |
+  Die Freigabe erteilt die Stadt selbst, also die Bürgermeisterin: Die Bürgermeisterin kann freigeben, nicht freigeben oder mit Auflagen (Bedingungen) freigeben; der Lenkungskreis berät. Was noch offen ist, wird mit Termin und Namen übergeben und nie als erledigt ausgegeben: Ein Punkt verschwindet nicht durch die Übergabe.
+
+mini:
+  art: zuordnen
+  titel: Zu Recht geschlossen oder übergeben?
+  aufgabe: Vor der Übergabe geht die Projektsteuerin alle Einträge durch. Welche sind zu Recht geschlossen, welche übergibt sie dem Gebäudemanagement?
+  bild: schluessel
+  wahlen:
+    - { id: geschlossen, titel: zu Recht geschlossen, heisst: "erledigt oder weggefallen, und das lässt sich belegen", bild: stempel }
+    - { id: uebergeben, titel: übergeben, heisst: "noch offen, geht mit Namen und Termin weiter", bild: mappe }
+  # gemischt, damit die Lösung nicht schon in der Reihenfolge steht: übergeben, geschlossen, übergeben, geschlossen, geschlossen
+  # Karte 4 (Kapselung) ersetzt die Karte „lose Gerüstanker“ aus Station 10
+  posten:
+    - { text: "Die Fugen im Hallenboden – die Firma hat zugesagt, bis zu den Herbstferien nachzubessern.", loesung: uebergeben, bild: kalender, erklaerung: "Zugesagt ist nicht erledigt. Der Punkt geht mit Termin und Zuständigen weiter." }
+    - { text: "Das Risiko langer Lieferzeiten für die Holzelemente – alle Holzelemente sind eingebaut.", loesung: geschlossen, bild: holzstapel, erklaerung: "Die Gefahr ist entfallen – ein nachgewiesener Grund zum Schließen." }
+    - { text: "Die Feineinstellung der Lüftung – vorgesehen für den ersten Winter.", loesung: uebergeben, bild: lueftung, erklaerung: "Das kommt erst noch. Wer sich darum kümmert und bis wann, wird bei der Übergabe festgehalten." }
+    - { text: "Das Problem mit der Brandschutzauflage – die Brandschutzbehörde hat im November 2027 die Wirkung der Kapselung bestätigt.", loesung: geschlossen, bild: stempel, erklaerung: "Ein Problem wird erst geschlossen, wenn die Lösung umgesetzt und fachlich bestätigt ist – hier ist beides nachgewiesen." }
+    - { text: "Die angekündigten Mehrkosten der Haustechnik – die Prüfung ergab: Die Leistungen gehören zum Vertrag.", loesung: geschlossen, bild: kostenzettel, erklaerung: "Ein Risiko wird nur mit nachgewiesenem Grund geschlossen – die Prüfung hat ihn geliefert." }
+
+dahinter: "Am Ende zählt, was sich nachweisen lässt: wer was auf welcher Grundlage entschieden hat und was noch offen ist, mit Namen und Termin."
+
+vertiefung:
+  form: warum-so
+  titel: "„Offen“ heißt offen"
+  text:
+    - Warum übergibt die Projektsteuerin offene Punkte mit Frist und Namen, statt sie mit dem Schulstart zu schließen?
+    - "Weil ein Punkt nicht durch die Übergabe verschwindet. Wer einen offenen Punkt als erledigt ausgibt, entzieht ihn dem Blick der Nächsten: Das Gebäudemanagement sucht dann in Mails und Köpfen nach dem, was in Wahrheit nie geklärt wurde. Geht ein Punkt an einen Nachfolger, steht dort „übergeben“, nicht „erledigt“."
+    - Auch das Schließen hat Grenzen. Ein geschlossener Eintrag heißt nicht, dass die Stadt die Leistung offiziell abgenommen oder auf Rechte gegenüber der Firma verzichtet hat. Bei den Fugen, die noch nachgebessert werden, hält der Eintrag nur fest, wer sich bis wann darum kümmert.
+    - "Der Gegenfall: Wird ein Punkt ohne Zuständigen übergeben, fühlt sich leicht niemand gedrängt, und die Frist rutscht. Wird er mit Termin und Namen übergeben, steht er bei jedem Rundgang auf der Liste."
+    - Ein Beispiel aus dem Fall: Die Feineinstellung der Lüftung kann erst im ersten Winter erfolgen. Sie ist nicht überfällig, sondern noch nicht an der Reihe – und dafür steht im Eintrag, wer sich bis wann darum kümmert.
+
+regie:
+  notiz: "Kern: Die Freigabe erteilt der Bauherr selbst, der Lenkungskreis berät; Offenes wird mit Termin und Zuständigen übergeben und nie als erledigt ausgegeben. Die Freigabe erfolgt mit Auflagen; die zwei Punkte gehen als offene Punkte mit Termin und Namen an das Gebäudemanagement. Schließen ist keine Abnahme. Danach zum Ende: Die Balken zeigen, wie der Weg der Runde gelaufen ist."
+  leitfragen:
+    - Was passiert bei Ihnen mit offenen Punkten, wenn ein Projekt übergeben wird?
+    - Wer erteilt bei Ihnen die Freigabe – und wer berät nur?

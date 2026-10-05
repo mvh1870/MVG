@@ -170,7 +170,10 @@ export interface Inhalte {
   werkzeugeRegie: Record<string, GeschichteRegie>;
 }
 
-interface WerkzeugTeil { titel: string; kurz: string; html: string }
+/** Dreiteiliger Vorspann je Werkzeug: wozu, was Sie eintragen, was das Ergebnis heißt (L-322) */
+export interface WerkzeugVorspann { wozu: string; eingabe: string; ergebnis: string }
+
+interface WerkzeugTeil { titel: string; kurz: string; vorspann: WerkzeugVorspann; html: string }
 
 /** Explore-Werkzeuge (inhalte/werkzeuge.yaml, P16.8, O-46) */
 export interface Werkzeuge {

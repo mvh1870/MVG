@@ -12,12 +12,19 @@
 
 import type { GeschichteRegie, OeffentlicheInhalte, RegieEintrag } from '../inhalte/typen.ts';
 import {
-  abgestimmteGewichte, gemischt, gewichte, kapitel, klickeReihe, miniVonVorn, neuerStand, ordneZu, schritte, schrittIndex, setzeAbgestimmt,
+  abgestimmteGewichte, akt as aktVonId, aktNummer, aktVon, akteVon, gewichte, hatPause, roemisch, gleicherSchritt, kapitel, letzteStation, miniVonVorn, neuerStand, schritte, schrittIndex, setzeAbgestimmt,
   setzeGewicht, setzeKurz, STUFEN_GEWICHT, teileVon, vergleichLage, waehle, werteMiniAus, weiter, zurueck, type Schritt, type Stand,
 } from '../geschichte/engine.ts';
-import type { Kapitel, Mini } from '../geschichte/typen.ts';
+import type { Geschichte, Kapitel, Mini } from '../geschichte/typen.ts';
+
+/** Kennung der Station, hinter der die Pause eines Akts steht (die letzte Station des Akts). */
+function pauseNach(g: Geschichte, aktId: string): string | null {
+  const a = aktVonId(g, aktId);
+  return a === null ? null : letzteStation(g, a)?.id ?? null;
+}
 import { ersteWorte, loeseMini, nurText, ohneWahl, schrittAus, schrittWert, springe, sprungZiele } from './eingriffe.ts';
 import { ortText as storyOrt } from '../ui/flaechen/geschichte.ts';
+import { miniBaustein } from '../ui/flaechen/geschichte-mini.ts';
 import { kanalSchluessel, type Kanal } from './kanal.ts';
 import { neueBuehne, pruefeBuehne, BUEHNEN_BEREICHE, type Buehne, type BuehnenBereich } from './buehne.ts';
 import { h, attr, text, ersetze } from '../ui/h.ts';
@@ -141,14 +148,14 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
   // Stand der vier neuen Werkzeuge (P18.5): Beispiele, Schritte, „Was wäre, wenn“ – nur sichtbar, solange eines davon auf der Leinwand steht
   const werkzeugStandEl = h('div', { class: 'regie-werkzeug-stand', role: 'group', 'aria-label': w.werkzeugStand, 'data-pruef': 'regie-werkzeug-stand' });
   // Sprung je Schritt (P17.6): Auftakt, je Kapitel Szene · Vergleich · Frage · Mini-Aufgabe, Ende (eindeutig neben Kapitel 8 „Schulstart“, R75)
-  const teilName = (s: Schritt): string => s.ort === 'kapitel' ? W.geschichte.teile[s.teil] ?? s.teil : s.ort === 'auftakt' ? W.geschichte.auftakt : W.geschichte.endeOrt;
+  const teilName = (s: Schritt): string => s.ort === 'kapitel' ? W.geschichte.teile[s.teil] ?? s.teil : s.ort === 'auftakt' ? W.geschichte.auftakt : s.ort === 'pause' ? W.geschichte.pauseKicker : W.geschichte.endeOrt;
   const sprung = h('select', { class: 'regie-auswahl regie-sprung', id: 'regie-sprung', 'data-pruef': 'regie-sprung' },
     h('option', { value: '' }, w.sprungWaehlen),
     g === null ? null : [
       h('option', { value: 'auftakt' }, W.geschichte.auftakt),
       g.kapitel.map((k) => h('optgroup', { label: `${k.nr} · ${k.titel}` },
-        sprungZiele(g).filter((z) => z.schritt.ort === 'kapitel' && z.schritt.kapitel === k.id)
-          .map((z) => h('option', { value: z.wert }, `${k.nr} · ${teilName(z.schritt)}`)))),
+        sprungZiele(g).filter((z) => (z.schritt.ort === 'kapitel' && z.schritt.kapitel === k.id) || (z.schritt.ort === 'pause' && pauseNach(g, z.schritt.akt) === k.id))
+          .map((z) => h('option', { value: z.wert }, z.schritt.ort === 'pause' ? `${W.geschichte.pauseKicker} · ${aktVonId(g, z.schritt.akt)?.titel ?? ''}` : `${k.nr} · ${teilName(z.schritt)}`)))),
       h('option', { value: 'ende' }, W.geschichte.endeOrt),
     ]) as HTMLSelectElement;
   const springeZu = (ziel: Schritt): void => {
@@ -161,10 +168,18 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
   });
   // Schnellsprung: Auftakt, 1–8, Schulstart; darunter die Schritte des Kapitels, in dem die Leinwand steht
   const kapitelKnoepfe = h('div', { class: 'regie-kapitel', role: 'group', 'aria-label': w.sprung, 'data-pruef': 'regie-kapitel' });
+  // P19.7: Sprung je Akt (erste Station des Akts, dort steht die Kopfkarte) und zur Pause nach dem Akt
+  const aktKnoepfe = h('div', { class: 'regie-akte', role: 'group', 'aria-label': w.akteSprung, 'data-pruef': 'regie-akte' });
   const teilKnoepfe = h('div', { class: 'regie-teile', role: 'group', 'aria-label': w.schritteHier, 'data-pruef': 'regie-teile' });
   const kurzKnopf = h('button', { type: 'button', class: 'regie-chip', 'aria-pressed': 'false', 'data-pruef': 'regie-kurz', onclick: () => {
     if (g !== null) setze({ ...buehne, story: setzeKurz(g, buehne.story, !buehne.story.kurz) });
   } }, W.geschichte.kurzfassung);
+  // P19.4: das Entscheidungsbuch auf der Leinwand zeigen (nur ein Schalter; das Buch zeichnet die Leinwand aus dem Stand, ohne Antwort und ohne Wertung)
+  const buchKnopf = h('button', { type: 'button', class: 'regie-chip', 'aria-pressed': 'false', 'data-pruef': 'regie-buch', onclick: () => {
+    if (g === null) return;
+    const { buch: _alt, ...rest } = buehne;
+    setze(buehne.buch === true ? { ...rest, bereich: 'story' } : { ...rest, bereich: 'story', buch: true });
+  } }, sym('buch'), w.buchZeigen);
   const neuKnopf = h('button', { type: 'button', class: 'regie-chip', 'data-pruef': 'regie-neustart', onclick: () => setze({ ...buehne, bereich: 'story', story: neuerStand(buehne.story.kurz) }) }, sym('zurueckspulen'), W.geschichte.vonVorn);
   let rollNr = 0;
   const rolleTafel = (s: -1 | 1): void => {
@@ -182,7 +197,8 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     tafelZeile,
     h('div', { class: 'regie-zeile' }, h('span', { class: 't-label' }, w.bereich), bereiche),
     h('div', { class: 'regie-zeile' },
-      h('label', { for: 'regie-sprung', class: 't-label' }, w.sprung), sprung, kurzKnopf, neuKnopf),
+      h('label', { for: 'regie-sprung', class: 't-label' }, w.sprung), sprung, kurzKnopf, neuKnopf, g !== null && (g.buch?.length ?? 0) > 0 ? buchKnopf : null),
+    aktKnoepfe,
     kapitelKnoepfe,
     teilKnoepfe,
     h('div', { class: 'regie-zeile' },
@@ -314,6 +330,16 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
       return;
     }
     const s = buehne.story.schritt;
+    // P19.7: In der Pause steht der Überblick des Akts (Stationen mit Titel und Zeit) – die Pause selbst hat keine Notiz im Material
+    if (buehne.bereich === 'story' && g !== null && s.ort === 'pause') {
+      const a = aktVonId(g, s.akt);
+      const stationen = a === null ? [] : a.stationen.map((id) => kapitel(g, id)).filter((k): k is Kapitel => k !== null);
+      ersetze(notizInhalt, a === null ? leer : [
+        h('p', { class: 'regie-notiz-text' }, w.pauseNotiz(roemisch(aktNummer(g, a)), a.zeitraum)),
+        h('ul', { class: 'regie-pause-liste', 'data-pruef': 'regie-pause-liste' }, stationen.map((k) => h('li', null, `${k.nr} · ${k.titel} (${k.zeit})`))),
+      ]);
+      return;
+    }
     if (buehne.bereich !== 'story' || s.ort !== 'kapitel' || g === null) {
       ersetze(notizInhalt, leer);
       return;
@@ -322,6 +348,13 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     const teile: Node[] = [];
     if (r?.notizHtml) teile.push(h('div', { class: 'regie-notiz-text' }, inhalt(r.notizHtml)));
     if (r !== null) teile.push(...leitfragen(r.leitfragen));
+    // P19.6: die Nebenfiguren, die in dieser Station sprechen, mit ihrem Steckbrief – nur hier, nie auf der Leinwand
+    const kap = g.kapitel.find((x) => x.id === s.kapitel);
+    const neben = (g.nebenfiguren ?? []).filter((n) => kap?.szene.some((z) => z.figur === n.id) === true);
+    if (neben.length > 0) {
+      teile.push(h('h3', { class: 'regie-h3' }, w.nebenfiguren), h('ul', { class: 'regie-nebenfiguren', 'data-pruef': 'regie-nebenfiguren' },
+        neben.map((n) => h('li', { 'data-figur': n.id }, h('b', null, `${n.name}, ${n.rolle}: `), inhaltInline(n.steckbriefHtml)))));
+    }
     ersetze(notizInhalt, teile.length > 0 ? teile : leer);
   };
 
@@ -348,6 +381,28 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
       type: 'button', class: `regie-chip regie-chip-klein${aus ? ' ist-aus' : ''}`, 'aria-pressed': hier(ziel) ? 'true' : 'false', 'aria-label': name, title: name, 'data-pruef': pruef,
       onclick: () => springeZu(ziel),
     }, inhaltText);
+    // Akte: der Knopf des Akts steht an, solange die Leinwand in einer seiner Stationen oder in seiner Pause steht
+    const aktHier = inStory ? (s.ort === 'kapitel' ? aktVon(g, s.kapitel)?.id : s.ort === 'pause' ? s.akt : undefined) : undefined;
+    const aktenKnoepfe = akteVon(g).flatMap((a) => {
+      const erste = kapitel(g, a.stationen[0] ?? '');
+      if (erste === null) return [];
+      const r = roemisch(aktNummer(g, a));
+      const nrn = `${erste.nr}–${letzteStation(g, a)?.nr ?? erste.nr}`;
+      const name = w.aktSprungName(r, a.titel, nrn);
+      const knopfAkt = h('button', {
+        type: 'button', class: 'regie-chip regie-chip-klein', 'aria-pressed': aktHier === a.id ? 'true' : 'false', 'aria-label': name, title: name, 'data-pruef': `regie-akt-${a.id}`,
+        onclick: () => springeZu({ ort: 'kapitel', kapitel: erste.id, teil: 'szene' }),
+      }, W.geschichte.aktNr(r));
+      if (!hatPause(g, a)) return [knopfAkt];
+      const pauseName = w.pauseSprungName(r);
+      const pauseKnopf = h('button', {
+        type: 'button', class: 'regie-chip regie-chip-klein', 'aria-pressed': inStory && s.ort === 'pause' && s.akt === a.id ? 'true' : 'false', 'aria-label': pauseName, title: pauseName,
+        'data-pruef': `regie-pause-${a.id}`, onclick: () => springeZu({ ort: 'pause', akt: a.id }),
+      }, W.geschichte.pauseKicker);
+      return [knopfAkt, pauseKnopf];
+    });
+    ersetze(aktKnoepfe, h('span', { class: 't-label' }, w.akteSprung), aktenKnoepfe);
+    aktKnoepfe.hidden = aktenKnoepfe.length === 0;
     ersetze(kapitelKnoepfe,
       knopf({ ort: 'auftakt' }, W.geschichte.auftakt, W.geschichte.auftakt, 'regie-kapitel-auftakt'),
       g.kapitel.map((k) => knopf({ ort: 'kapitel', kapitel: k.id, teil: 'szene' }, String(k.nr), `${k.nr} · ${k.titel}`, `regie-kapitel-${k.id}`, buehne.story.kurz && !k.kurzfassung)),
@@ -481,29 +536,8 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     const fuss = h('div', { class: 'regie-zeile' },
       h('button', { type: 'button', class: 'regie-chip regie-chip-klein', 'data-pruef': 'regie-mini-aufloesen', onclick: () => neueStory(loeseMini(g!, buehne.story, k.id)) }, sym('haken'), w.miniAufloesen),
       h('button', { type: 'button', class: 'regie-chip regie-chip-klein', 'data-pruef': 'regie-mini-leeren', disabled: antworten === undefined, onclick: () => neueStory(miniVonVorn(buehne.story, k.id)) }, sym('zurueckspulen'), w.miniLeeren));
-    if (m.art === 'zuordnen') {
-      return [kopfzeile, h('ol', { class: 'regie-mini' }, m.posten.map((p, i) => {
-        const gewaehlt = antworten?.[i] ?? -1;
-        return h('li', { class: 'regie-mini-posten', 'data-lage': aus.je[i] ?? 'offen' },
-          h('span', { class: 'regie-mini-text', id: `regie-posten-${i}`, title: nurText(p.html) }, `${i + 1} · ${ersteWorte(p.html, 8)}`),
-          h('span', { class: 'regie-stufen', role: 'group', 'aria-labelledby': `regie-posten-${i}` }, m.wahlen.map((x, j) => h('button', {
-            type: 'button', class: `regie-chip regie-chip-klein${x.id === p.loesung ? ' ist-loesung' : ''}`, 'aria-pressed': gewaehlt === j ? 'true' : 'false',
-            'data-pruef': `regie-mini-${i + 1}-${x.id}`, onclick: () => neueStory(ordneZu(g!, buehne.story, k.id, i, j)),
-          }, x.titel, x.id === p.loesung ? h('span', { class: 'regie-loesung', 'aria-hidden': 'true' }, ' ✓') : null, x.id === p.loesung ? h('span', { class: 'nur-sr' }, ` (${w.miniLoesung})`) : null))));
-      })), fuss];
-    }
-    const folge = antworten ?? [];
-    return [kopfzeile, h('p', { class: 'regie-leise' }, w.miniReiheHinweis),
-      h('ol', { class: 'regie-mini regie-mini-reihe' }, gemischt(m.posten.length).map((i) => {
-        const p = m.posten[i];
-        const stelle = folge.indexOf(i);
-        return h('li', { class: 'regie-mini-posten', 'data-lage': aus.fertig ? aus.je[i] ?? 'offen' : 'offen' }, h('button', {
-          type: 'button', class: 'regie-chip regie-chip-klein regie-reihe', 'aria-pressed': stelle >= 0 ? 'true' : 'false', 'data-pruef': `regie-reihe-${i + 1}`,
-          title: nurText(p?.html ?? ''), onclick: () => neueStory(klickeReihe(g!, buehne.story, k.id, i)),
-        }, h('span', { class: 'regie-reihe-nr', 'aria-hidden': stelle < 0 ? 'true' : null }, stelle < 0 ? '·' : String(stelle + 1)),
-        h('span', null, ersteWorte(p?.html ?? '', 8)),
-        h('span', { class: 'regie-loesung' }, ` (${w.miniLoesung}: ${i + 1})`)));
-      })), fuss];
+    // der Körper je Art kommt aus der Mini-Registry (Baustein der Art)
+    return [kopfzeile, ...miniBaustein(m.art).regie({ g: g!, k, m, get stand() { return buehne.story; }, aus, setze: neueStory }), fuss];
   };
 
   const zeichne = (): void => {
@@ -514,6 +548,7 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     attr(zurueckKnopf, 'disabled', naechste(buehne, -1) === null);
     for (const b of bereiche) attr(b, 'aria-pressed', b.dataset['bereich'] === buehne.bereich ? 'true' : 'false');
     attr(kurzKnopf, 'aria-pressed', buehne.story.kurz ? 'true' : 'false');
+    attr(buchKnopf, 'aria-pressed', buehne.buch === true ? 'true' : 'false');
     themaWahl.value = buehne.thema ?? '';
     werkzeugWahl.value = werkzeugAus(buehne.werkzeug);
     sprung.value = buehne.bereich === 'story' && g !== null ? schrittWert(buehne.story.schritt) : '';
@@ -524,6 +559,11 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
   };
 
   function setze(neu: Buehne): void {
+    // das Buch auf der Leinwand gilt für den Schritt, an dem die Regie es gezeigt hat (P19.4)
+    if (neu.buch === true && (neu.bereich !== 'story' || !gleicherSchritt(neu.story.schritt, buehne.story.schritt))) {
+      const { buch: _weg, ...ohne } = neu;
+      neu = ohne;
+    }
     buehne = neu;
     speichere();
     zeichne();

@@ -27,6 +27,11 @@ export interface Buehne {
    */
   werkzeugStand: string | null;
   story: Stand;
+  /**
+   * Die Leinwand zeigt das Entscheidungsbuch statt des Schritts (P19.4): nur ein Schalter, kein Inhalt – das Buch zeichnet die Leinwand aus
+   * dem Stand der Story, ohne Bedienung, ohne „neu“ und ohne die Antwort. Fehlt das Feld, ist es aus.
+   */
+  buch?: boolean;
 }
 
 export function neueBuehne(): Buehne {
@@ -72,5 +77,5 @@ export function pruefeBuehne(roh: unknown, g: Geschichte | null, beispiele?: (we
   // Nur bekannte Felder gehen weiter (eine fremde Eigenschaft im Umschlag erreicht die Zeichnung nicht)
   // Ein älterer Stand ohne `werkzeugStand` gilt weiter (Beispielanfang); Unpassendes wird still zu null
   const werkzeugStand = pruefeWerkzeugStand(r['werkzeugStand'], werkzeug, beispiele);
-  return { v: 1, bereich: r['bereich'] as BuehnenBereich, thema, werkzeug, werkzeugStand, story };
+  return { v: 1, bereich: r['bereich'] as BuehnenBereich, thema, werkzeug, werkzeugStand, story, ...(r['buch'] === true && r['bereich'] === 'story' ? { buch: true } : {}) };
 }

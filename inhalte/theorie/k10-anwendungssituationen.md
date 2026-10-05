@@ -2,6 +2,7 @@
 # Thema „Anwendungssituationen“ (P6, O-20; P12.3, O-30; P16.4, O-36, O-38). Lesetext in eigenen Worten, ohne
 # neue Fachaussagen; Belege nur intern. Kein Bezug zur Vorlage auf der Seite (O-38).
 # Nur wiedergeben, was MVG und der Standard V2.4 sagen – keine Aufforderung, keine Referenzen, keine Wirkungszahlen (O-1).
+# Sprachdurchgang L-290 (Owner-Auftrag: natürliche, verständliche Sprache): „Projektklassenlogik“, „Neupriorisierung“, „Mandatsmatrix“, „Grundsatzdokument“ nur mit wörtlicher Erklärung (die Quelle nennt sie ohne Erläuterung), „Wertoptimierung“ gestrichen (nicht erklärbar), „geheilt“, „Wiederanlauffähigkeit“ ersetzt.
 # V24-ABGLEICH: k10-E1 (k10.1), k10-E3 (k10.4), k10-E2/K1/K2 (k10.5, Tafel durch Karten ersetzt), k10-H1.
 # Belege Einleitung/Kernaussage: k10.1-p1, k10.2-p1, k10.3-p1, k10.4-p1, k10.5-t1
 # Belege Überblick-Karten: k10.1-p1, k10.2-p1, k10.3-p1
@@ -14,7 +15,7 @@
 kapitel: 10
 thema: anwendung
 reihe: 10
-titel: Anwendungssituationen und Praxislogik
+titel: Anwendungssituationen – wo MVG je nach Bauherr ansetzt
 kurztitel: Anwendungssituationen
 teil: 3
 kurzsatz: Wo das Modell je nach Bauherr und Projektlage ansetzt.
@@ -26,7 +27,7 @@ Nicht jeder Bauherr hat dieselben Schwierigkeiten. Dieses Thema zeigt, wo Minimu
 ---
 symbol: kompass
 ---
-Wo Entscheidungen kritisch werden, hängt von der Lage des Bauherrn ab: bei Nachweis und Gremien, bei Zielkonflikten, bei Freigabereife und Prognose oder bei einem Projekt, das schleichend die Steuerung verliert. MVG setzt jeweils an dieser Stelle an.
+Wo Entscheidungen kritisch werden, hängt von der Lage des Bauherrn ab: beim Nachweis und bei den Gremien, bei Zielkonflikten, bei der Frage, ob ein Projektabschnitt reif für die Freigabe ist (Freigabereife), und bei der Prognose der Kosten – oder bei einem Projekt, das langsam die Steuerung verliert. MVG setzt jeweils an dieser Stelle an.
 :::
 
 ::: abbildung abb-14
@@ -51,18 +52,20 @@ titel: Öffentliche Bauherren
 ---
 titel: Private und institutionelle Bauherren
 ---
-**Engpass:** Tempo, Rendite, Nutzerinteressen, Finanzierung, ESG/LCC und Technik treffen aufeinander.
+Private Bauherren sind Personen oder Unternehmen, die für sich bauen; institutionelle Bauherren sind zum Beispiel Fonds oder Versicherungen, die in Gebäude investieren.
 
-**Worauf es ankommt:** Zielkonflikte früh klären – ohne Tempo gegen Entscheidungssicherheit auszuspielen.
+**Engpass:** Tempo, Rendite, Nutzerinteressen, Finanzierung, Nachhaltigkeit und Lebenszykluskosten (ESG/LCC) und Technik treffen aufeinander.
+
+**Worauf es ankommt:** Zielkonflikte früh klären – ohne das Tempo gegen sichere Entscheidungen auszuspielen.
 :::
 
 ::: karte infrastruktur
 ---
 titel: Energieversorger und Infrastrukturträger
 ---
-**Engpass:** Projektrisiken verschieben sich in Freigaben, Priorisierung, Beschaffung, Entscheidungen zu Komponenten mit langer Lieferzeit und die Disziplin bei der Restkostenprognose.
+**Engpass:** Die Risiken liegen vor allem bei Freigaben, bei der Frage, welches Projekt Vorrang hat, bei der Beschaffung und bei Bestellungen von Bauteilen mit langer Lieferzeit und darin, die Prognose der Restkosten konsequent zu führen.
 
-**Worauf es ankommt:** Projektklassenlogik, Neupriorisierung im Portfolio, Frühwarnung, Prognose und Freigabereife.
+**Worauf es ankommt:** Projekte in Klassen einteilen, für die jeweils eigene Regeln gelten (Projektklassen); die Reihenfolge der Projekte im Gesamtprogramm (Portfolio) neu festlegen können; erste Warnhinweise (Frühwarnungen); Prognosen; und klare Kriterien, wann ein Projektabschnitt reif für die Freigabe ist (Freigabereife).
 :::
 :::
 
@@ -72,11 +75,11 @@ titel: Öffentliche Bauherren
 ---
 Für einen öffentlichen Bauherrn reicht es nicht, dass eine Entscheidung sachlich plausibel ist. Sie muss auch **nachvollziehbar** sein (Wie kam sie zustande?), **prüfbar** (Lässt sich der Weg später kontrollieren?) und **beschlussfähig** (Kann das zuständige Gremium tatsächlich darüber beschließen?).
 
-::: aufklapper Ein fiktives Beispiel vom Schulcampus
+::: aufklapper Ein erfundenes Beispiel vom Schulcampus
 ---
 symbol: lesezeichen
 ---
-Angenommen, auf dem Schulcampus Lindenhall-Süd reicht die Risikoreserve nicht mehr: Dann muss die Projektbasis neu festgelegt werden. Der Bauherr beschließt sie im Lenkungskreis auf Vorlage der Projektsteuerung; weil die Stadt die Mittel bewilligt, bestätigt der Stadtrat. Fachlich begründete Mehrkosten genügen nicht. Die Vorlage muss zeigen, wer was vorbereitet hat, auf welchem Stand die Zahlen beruhen, worüber genau entschieden wird und zwischen welchen mindestens zwei zulässigen Wegen der Bauherr wählt – so kann der Stadtrat nachvollziehen, was er bestätigt.
+Angenommen, auf dem Schulcampus Lindenhall-Süd der Stadt Lindenhall reicht die Risikoreserve (der Geldpuffer für Risiken) nicht mehr aus. Dann müssen Kosten, Termine und Umfang des Projekts neu festgelegt werden ([[Neufestlegung der Projektbasis]]). Der Bauherr, hier die Stadt, beschließt das im Lenkungskreis, auf Grundlage einer Vorlage der Projektsteuerung. Weil die Stadt das Geld bewilligt, muss anschließend der Stadtrat bestätigen. Dass die Mehrkosten fachlich begründet sind, reicht dafür nicht. Die Vorlage muss zeigen: wer was vorbereitet hat, auf welchem Stand die Zahlen beruhen, worüber genau entschieden wird und zwischen welchen mindestens zwei zulässigen Wegen der Bauherr wählt. Nur so kann der Stadtrat nachvollziehen, was er bestätigt.
 :::
 
 ::: umschalter
@@ -95,14 +98,14 @@ rechts: Der Nutzen von MVG
 :::
 
 ::: ansicht rechts
-Der Nutzen des MVG-Ansatzes liegt hier in:
+Der Nutzen von MVG liegt hier in:
 
-- klaren [[Mandat|Mandaten]]
+- klar geregelten Befugnissen ([[Mandat|Mandaten]])
 - [[Entscheidungsvorlage|Entscheidungsvorlagen]]
-- einer Freigabelogik
-- einem Protokollstandard
-- der Anbindung an die Vergabe
-- belastbar dokumentierten Eskalationen
+- festen Regeln für Freigaben
+- einheitlich aufgebauten Protokollen
+- einer Verbindung zur Vergabe
+- gut belegten Weitergaben nach oben (Eskalationen)
 :::
 :::
 :::
@@ -111,7 +114,7 @@ Der Nutzen des MVG-Ansatzes liegt hier in:
 ---
 titel: Private und institutionelle Bauherren
 ---
-Bei privaten und institutionellen Bauherren treffen Tempo, Rendite, Nutzerinteressen, Finanzierung, [[ESG]], [[LCC]] (Lebenszykluskosten) und Technik aufeinander. Das Problem liegt selten in einem einzelnen Ziel, sondern darin, dass die Ziele sich widersprechen.
+Bei privaten und institutionellen Bauherren treffen Tempo, Rendite, Nutzerinteressen, Finanzierung, Nachhaltigkeit ([[ESG]]), Lebenszykluskosten ([[LCC]]) und Technik aufeinander. Das Problem liegt selten in einem einzelnen Ziel, sondern darin, dass die Ziele sich widersprechen.
 
 ::: aufklapper Tempo und Haustechnik
 ---
@@ -143,7 +146,7 @@ Zusammen erzeugen sie Zielkonflikte.
 Der Ansatz hilft,
 
 - Zielkonflikte **früh** zu klären und
-- operative Geschwindigkeit **nicht** gegen Entscheidungssicherheit auszuspielen.
+- das Tempo im Bauablauf **nicht** gegen sichere Entscheidungen auszuspielen.
 :::
 :::
 :::
@@ -152,12 +155,12 @@ Der Ansatz hilft,
 ---
 titel: Energieversorger und Infrastrukturträger
 ---
-Hier verschieben sich Projektrisiken häufig in Freigaben, Priorisierung, Beschaffung, Entscheidungen über Komponenten mit langer Lieferzeit und die Disziplin bei der Restkostenprognose ([[CTC]]). Besonders relevant sind:
+Bei Energieversorgern und Infrastrukturträgern verlagern sich Projektrisiken oft dorthin, wo freigegeben, priorisiert und beschafft wird, wo es um Bauteile mit langer Lieferzeit geht und wo die Prognose der Restkosten ([[CTC]]) konsequent gepflegt werden muss. Besonders wichtig sind:
 
-- eine **Projektklassenlogik** und Entscheidungen über **Fortführung oder Stopp**,
-- die **Neupriorisierung** im Projektportfolio,
+- eine Einteilung der Projekte in **Projektklassen** mit jeweils eigenen Regeln und Entscheidungen, ob ein Projekt **weitergeführt oder gestoppt** wird,
+- die **Neufestlegung der Reihenfolge** im Projektportfolio (dem Gesamtprogramm),
 - **Frühwarnungen**, **Änderungssteuerung**, CTC und Prognose,
-- die **Freigabereife** an drei Stellen.
+- die **Freigabereife** (wann ein Projektabschnitt reif für die Freigabe ist) an drei Stellen.
 
 ::: regler
 ---
@@ -182,9 +185,9 @@ Nach Entwurfsplanung und Kostenberechnung die [[Finale Investitionsentscheidung 
 ::: stufe lph7
 ---
 titel: Abschluss LPH 7
-marke: Vergabe oder Komponente mit langer Lieferzeit
+marke: Vergabe oder Bauteil mit langer Lieferzeit
 ---
-Die Vergabe oder die verbindliche Bindung einer Komponente mit langer Lieferzeit.
+Die Vergabe oder die verbindliche Bestellung eines Bauteils mit langer Lieferzeit.
 :::
 :::
 
@@ -196,7 +199,7 @@ stelle: 3
 Als Infrastrukturträger haben Sie sich für eine Lösung entschieden und deren Wirtschaftlichkeit nachgewiesen. Jetzt sind die Entwurfsplanung und die Kostenberechnung fertig. Welche Freigabe steht als Nächstes an?
 
 ### Erklärung
-Die Freigabereife hat drei Stellen: Variantenwahl und Business Case liegen vor der FID, Vergabe und lange Lieferzeiten danach.
+Die Freigabereife hat drei Stellen: Variantenwahl und Business Case liegen vor der FID, Vergabe und Bauteile mit langer Lieferzeit danach.
 
 ::: antwort a
 ---
@@ -216,10 +219,10 @@ Diese Freigabe liegt schon hinter Ihnen – Variante und Business Case stehen.
 
 ::: antwort c
 ---
-titel: Vergabe oder Bindung einer Komponente mit langer Lieferzeit zum Abschluss von LPH 7
+titel: Vergabe oder verbindliche Bestellung eines Bauteils mit langer Lieferzeit zum Abschluss von LPH 7
 praefix: "Nicht ganz:"
 ---
-LPH 7 liegt deutlich nach der FID – dort geht es um Vergabe und lange Lieferzeiten.
+LPH 7 liegt deutlich nach der FID – dort geht es um Vergabe und Bauteile mit langer Lieferzeit.
 :::
 
 ::: zitat k10.3-p1
@@ -231,26 +234,26 @@ Besonders relevant sind […] die Freigabereife zum Abschluss von LPH 2 für Var
 
 ::: abschnitt k10.4
 ---
-titel: Projekte mit schleichendem Steuerungsverlust und MVG-Neuinitialisierung
+titel: Wenn ein Projekt langsam die Kontrolle verliert
 ---
-Manche Projekte verlieren ihre Steuerbarkeit nicht auf einen Schlag, sondern langsam. Aussagekräftig ist dann das **Muster**, nicht der einzelne Ausreißer: Die Prognose weicht Monat für Monat ein Stück weiter ab, Eskalationen laufen über den Flur statt über den festgelegten Weg, niemand weiß genau, wer was entscheiden darf. Auch Maßnahmen ohne Wirkung gehören dazu – umgesetzt heißt noch nicht wirksam; das wird eigens geprüft.
+Manche Projekte verlieren ihre Steuerbarkeit nicht auf einen Schlag, sondern langsam. Aussagekräftig ist dann das **Muster**, nicht der einzelne Ausreißer: Die Prognose weicht Monat für Monat ein Stück weiter ab, Themen werden auf dem kurzen Dienstweg weitergegeben – gewissermaßen über den Flur – statt auf dem festgelegten Weg, niemand weiß genau, wer was entscheiden darf. Auch Maßnahmen ohne Wirkung gehören dazu – umgesetzt heißt noch nicht wirksam; das wird eigens geprüft.
 
 Oft braucht es dann keine vollständige Neuaufsetzung, sondern eine gezielte [[MVG-Neuinitialisierung]] (eigenes Thema „MVG-Neuinitialisierung“).
 
 ::: umschalter
 ---
-titel: Muster und Antwort
+titel: Woran man es erkennt und was dann hilft
 links: Woran man es erkennt
 rechts: Was die MVG-Neuinitialisierung tut
 ---
 ::: ansicht links
 Typische Anzeichen eines schleichenden Steuerungsverlusts:
 
-- unterschiedliche Lagebilder
-- schleichende Prognoseabweichungen
-- informelle Eskalationen
-- ungeordnete Änderungen
-- unklare Entscheidungsmandate
+- jeder hat ein anderes Bild von der Lage
+- die Prognose weicht schleichend ab
+- Probleme werden auf dem kurzen Dienstweg weitergegeben, nicht auf dem festgelegten Weg
+- Änderungen ohne feste Regeln
+- unklar, wer was entscheiden darf
 - Maßnahmen ohne Wirkung
 
 Selten erkennt man ihn an einem einzelnen Fehler – meist am Bündel.
@@ -259,11 +262,11 @@ Selten erkennt man ihn an einem einzelnen Fehler – meist am Bündel.
 ::: ansicht rechts
 Eine gezielte MVG-Neuinitialisierung statt einer vollständigen Neuaufsetzung:
 
-- Datenstand sichern
-- Entscheidungslandschaft ordnen
-- Mandate klären
+- den Stand der Unterlagen sichern (Datenstand)
+- alle offenen Entscheidungen sichten und ordnen
+- Befugnisse (Mandate) klären
 - erforderliche Freigaben nachholen oder wiederholen
-- den 30/60/90-Orientierungsrahmen für die Neuordnung nutzen
+- den 30/60/90-Tage-Plan als Orientierung für die Neuordnung nutzen
 :::
 :::
 :::
@@ -282,20 +285,20 @@ titel: Fünf typische Entscheidungsprobleme
 ---
 titel: Variantenfreigabe ohne vollständige Abwägung
 ---
-**Warum es kritisch ist:** Folgekosten, ESG/LCC-Effekte oder Auswirkungen auf die Qualität werden erst spät sichtbar.
+**Warum es kritisch ist:** Folgekosten, Auswirkungen auf Nachhaltigkeit und Lebenszykluskosten (ESG/LCC) oder auf die Qualität werden erst spät sichtbar.
 
 ### Rückseite
-**Was hilft:** die Entscheidungsvorlage mit gewichtetem Optionenvergleich, Wertoptimierung und eine Checkliste für die Freigabe.
+**Was hilft:** die Entscheidungsvorlage mit gewichtetem Vergleich der Möglichkeiten und eine Checkliste für die Freigabe.
 :::
 
 ::: karte vergabe
 ---
 titel: Vergabe unter Preis- und Lieferkettenunsicherheit
 ---
-**Warum es kritisch ist:** Angebotsgültigkeit, Risiken bei Komponenten mit langer Lieferzeit und Terminfolgen werden nicht zusammengeführt.
+**Warum es kritisch ist:** Wie lange Angebote gültig sind, Risiken bei Bauteilen mit langer Lieferzeit und die Folgen für die Termine werden nicht zusammengeführt.
 
 ### Rückseite
-**Was hilft:** CTC und Prognose, Risikoregister, Frühwarnung und Freigabereife.
+**Was hilft:** die Prognose der Restkosten (CTC) und der Kosten insgesamt, die Risikoliste (Risikoregister), erste Warnhinweise (Frühwarnungen) und die Frage, ob ein Projektabschnitt reif für die Freigabe ist (Freigabereife).
 :::
 
 ::: karte aenderung
@@ -305,33 +308,33 @@ titel: Änderungsantrag mit unvollständiger Auswirkungsbewertung
 **Warum es kritisch ist:** Kosten, Termin, Qualität, Projektumfang, Risiko und ESG/LCC werden nicht einheitlich bewertet und entschieden.
 
 ### Rückseite
-**Was hilft:** das Änderungsregister und eine verbindliche Auswirkungsbewertung. Die Projektsteuerung bereitet die Änderung gegen den geltenden Stand auf und legt sie mit mindestens zwei Optionen und gewichtetem Vergleich zum benötigten Termin der befugten Stelle vor. Bis zur Freigabe gilt die bisherige Grundlage.
+**Was hilft:** die Liste der Änderungen (Änderungsregister) und eine verbindliche Auswirkungsbewertung. Die Projektsteuerung vergleicht die Änderung mit dem aktuell gültigen Plan, bereitet sie auf und legt sie mit mindestens zwei Möglichkeiten und gewichtetem Vergleich zum benötigten Termin der befugten Stelle vor. Bis zur Freigabe gilt die bisherige Grundlage.
 :::
 
 ::: karte gremium
 ---
-titel: Gremienbeschluss ohne Mandatsklarheit
+titel: Gremienbeschluss ohne klare Befugnisse
 ---
-**Warum es kritisch ist:** Beschlüsse werden angreifbar oder müssen nachträglich geheilt werden.
+**Warum es kritisch ist:** Beschlüsse werden angreifbar oder müssen nachträglich in Ordnung gebracht werden.
 
 ### Rückseite
-**Was hilft:** RACI, Mandatsmatrix und Entscheidungsvorlage.
+**Was hilft:** die RACI-Tabelle, eine Übersicht, wer welche Befugnis hat (Mandatsmatrix), und die Entscheidungsvorlage.
 :::
 
 ::: karte datenstand
 ---
 titel: MVG-Neuinitialisierung ohne eindeutigen Datenstand
 ---
-**Warum es kritisch ist:** Das Projekt arbeitet mit mehreren Wahrheiten und verliert seine Wiederanlauffähigkeit.
+**Warum es kritisch ist:** Das Projekt arbeitet mit mehreren Fassungen der Wahrheit und kann nach der Neuordnung nicht sauber wieder anlaufen.
 
 ### Rückseite
-**Was hilft:** die Festschreibung des Datenstands, das Entscheidungsregister und das MVG-Grundsatzdokument.
+**Was hilft:** den Datenstand festschreiben, die Liste der offenen Entscheidungen (Entscheidungsregister) und das Grundsatzdokument von MVG (die festgehaltenen Grundregeln).
 :::
 :::
 
 ::: sortieren
 ---
-titel: Welches Werkzeug gehört zu welchem Problem?
+titel: Welches Werkzeug gehört zu welchem Problem – Änderungsantrag oder Gremienbeschluss?
 links: Änderungsantrag
 rechts: Gremienbeschluss
 ---
@@ -339,20 +342,20 @@ rechts: Gremienbeschluss
 ---
 seite: links
 ---
-Änderungsregister
+Die Liste der Änderungen (Änderungsregister)
 
 ### Erklärung
-Es gehört zur Antwort auf Änderungsanträge mit unvollständiger Auswirkungsbewertung.
+Sie gehört zur Antwort auf Änderungsanträge mit unvollständiger Auswirkungsbewertung.
 :::
 
 ::: posten 2
 ---
 seite: rechts
 ---
-RACI
+Die RACI-Tabelle
 
 ### Erklärung
-RACI gehört – mit Mandatsmatrix und Entscheidungsvorlage – zur Antwort auf Gremienbeschlüsse ohne Mandatsklarheit.
+Sie gehört – mit der Übersicht der Befugnisse (Mandatsmatrix) und der Entscheidungsvorlage – zur Antwort auf Gremienbeschlüsse ohne klare Befugnisse.
 :::
 
 ::: posten 3
@@ -369,20 +372,20 @@ Sie setzt dort an, wo Kosten, Termin, Qualität, Projektumfang, Risiko und ESG/L
 ---
 seite: rechts
 ---
-Mandatsmatrix
+Eine Übersicht der Befugnisse (Mandatsmatrix)
 
 ### Erklärung
-Sie gehört – mit RACI und Entscheidungsvorlage – zur Antwort auf Gremienbeschlüsse ohne Mandatsklarheit.
+Sie gehört – mit der RACI-Tabelle und der Entscheidungsvorlage – zur Antwort auf Gremienbeschlüsse ohne klare Befugnisse.
 :::
 
 ::: posten 5
 ---
 seite: links
 ---
-Änderung gegen den geltenden Stand aufbereiten
+Eine Änderung mit dem aktuell gültigen Plan vergleichen und aufbereiten
 
 ### Erklärung
-Das gehört – mit Änderungsregister und verbindlicher Auswirkungsbewertung – zur Antwort auf Änderungsanträge mit unvollständiger Auswirkungsbewertung.
+Das gehört – mit der Liste der Änderungen (Änderungsregister) und verbindlicher Auswirkungsbewertung – zur Antwort auf Änderungsanträge mit unvollständiger Auswirkungsbewertung.
 :::
 :::
 :::

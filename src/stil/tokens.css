@@ -136,6 +136,13 @@
   --fig-helm: #FFFFFF;            --fig-helm-s: #D5DCE5;
   --fig-messing: #D3A445;         --fig-messing-s: #A27A26;       --fig-holz: #9C6B43;
   --fig-papier: #FFFFFF;          --fig-papier-s: #E3E8EF;        --fig-stahl: #8D99AA;
+  /* Nebenfiguren (P19.6): Regenjacke, Trenchcoat, Schiebermütze, Nadelstreifenanzug, weißes Haar */
+  --fig-regen: #4C9A5F;           --fig-regen-s: #357548;
+  --fig-trench: #C8A97E;          --fig-trench-s: #A58656;
+  --fig-muetze: #6B7C93;          --fig-muetze-s: #4F5F76;
+  --fig-anzug: #3B4252;           --fig-anzug-s: #2A303D;         --fig-nadel: #7A8398;
+  --fig-weste: #566075;
+  --fig-haar-weiss: #F1F2F5;      --fig-haar-weiss-s: #CDD2DB;
 
   /* ------------------------------------------------------------------ Status (BM-Ampel; nur für Status, O-11) */
   --status-rot: #9A3030;      --status-rot-soft: #F1D8D8;

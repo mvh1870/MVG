@@ -15,12 +15,13 @@
 import { baueGeschichte } from './geschichte.mjs';
 import { baueWerkzeuge, pruefeWerkzeugVerweise, werkzeugKatalog } from './explore.mjs';
 import { anzeigeFassung } from './anzeige-fassung.mjs';
-import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import YAML from 'yaml';
 import { Marked } from 'marked';
 import { istHauptmodul } from './haupt.mjs';
+import { schreibeAtomarSync } from './atomar.mjs';
 import { formatiereFund, pruefeText } from './begriffe.mjs';
 import { ORDNER as ABB_ORDNER, STAND as ABB_STAND, WERKZEUG_VERSION as ABB_VERSION, eingabeSumme, leseBeschreibungen, pruefeBeschreibung } from './abbildungen.mjs';
 import { createHash } from 'node:crypto';
@@ -1331,10 +1332,10 @@ export async function kompiliere(optionen = {}) {
   }
 
   if (ziel !== null) {
-    mkdirSync(path.dirname(ziel), { recursive: true });
-    writeFileSync(ziel, json, 'utf8');
+    // atomar (L-390): ein gleichzeitig lesender Prozess sieht nie eine gekürzte Datei
+    schreibeAtomarSync(ziel, json);
     // Bilddaten getrennt (nur src/main.ts lädt sie; Tests und Werkzeuge bleiben klein)
-    writeFileSync(path.join(path.dirname(ziel), 'abbildungen.json'), stabilesJson(abb.daten), 'utf8');
+    schreibeAtomarSync(path.join(path.dirname(ziel), 'abbildungen.json'), stabilesJson(abb.daten));
   }
 
   const fehler = b.fehlerListe.filter((f) => pruefe || f.hart).map((f) => f.text);

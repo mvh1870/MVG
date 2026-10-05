@@ -196,10 +196,6 @@ button.lernkarte[aria-expanded="true"] { box-shadow: 0 0 0 2px var(--gold-hell),
 .abschnitt-symbol { display: inline-grid; flex: none; place-items: center; width: 40px; height: 40px; margin-top: -3px; border-radius: var(--radius-m, 8px); background: var(--teil-soft, var(--flaeche-2)); color: var(--teil-text, var(--navy)); vertical-align: middle; }
 .abschnitt-symbol .symbol { width: 22px; height: 22px; stroke-width: 2; }
 .abschnitt-text { min-width: 0; }
-.lern-zitat-rahmen { padding: var(--a-5) var(--a-6); border-radius: var(--radius-l); background: var(--weiss); box-shadow: var(--schatten-karte); }
-.lern-zitat { position: relative; padding-left: 30px; font: var(--typo-lese); }
-.lern-zitat::before { content: "„"; position: absolute; left: -2px; top: -14px; font: 800 var(--gr-7xl)/1 var(--schrift-anzeige); color: var(--gold-hell); }
-.lern-zitat-rahmen figcaption { margin-top: var(--a-3); padding-top: var(--a-2); border-top: 1px solid var(--linie); font-size: var(--gr-s); color: var(--tinte-2); }
 .lernkarte-zahl { display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding: 0 5px; border-radius: 50%; background: var(--teil-text, var(--petrol)); color: var(--weiss); font: 800 var(--gr-m)/1 var(--schrift-anzeige); }
 .lernkarte-text { font-size: var(--gr-text); line-height: 1.5; }
 .lernkarte-text p + p { margin-top: var(--a-2); }
@@ -219,7 +215,6 @@ q.mvg-zitat { font-weight: 500; }
   .abschnitt-titel { font-size: var(--gr-2xl); gap: var(--a-2); }
   .abschnitt-symbol { width: 32px; height: 32px; margin-top: -2px; }
   .abschnitt-symbol .symbol { width: 18px; height: 18px; }
-  .lern-zitat-rahmen { padding: var(--a-4); }
 }
 
 /* Ebenen 1–4 auf Lernseiten (P6.1) */
@@ -227,8 +222,6 @@ q.mvg-zitat { font-weight: 500; }
 .lern-ebenen { grid-template-columns: minmax(0, 1fr); }
 .lern-ebene { min-width: 0; }
 .lern-ebene .lesetext { overflow-wrap: anywhere; }
-/* Zitat in Ebene 4 (navy): der Rahmen ist hell, also dunkle Schrift (P6-Phasenend-Befund T1) */
-.lern-zitat-rahmen { color: var(--tinte); }
 .lern-ebene { border-radius: var(--radius-l); background: var(--weiss); box-shadow: inset 0 0 0 1px var(--linie); }
 .lern-ebene[data-ebene="4"] { background: var(--navy); color: var(--weiss); --fokus: var(--gold-hell); }
 .lern-ebene > summary { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 8px 16px; cursor: pointer; font-weight: 600; }

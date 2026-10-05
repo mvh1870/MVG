@@ -1,0 +1,106 @@
+# 13 · Beschluss und Nachweis (Drehbuch v2, Akt III, Station 13) – neu
+# Rückblick in der Haushaltsberatung; das Entscheidungsbuch ist voll: wer wann auf welchem Stand entschieden hat – und was nicht beschlossen wurde.
+# Kleiner Rückschlag unabhängig von der Antwort: Die schriftliche Bestätigung der Brandschutzbehörde fehlt am Morgen noch im Buch und trifft nachmittags ein.
+# Lernziel: Schweigen ist kein Beschluss; ein Beschluss wird getrennt festgehalten, mit Quelle, Datum und Bedingungen. Kein Geld-Plus.
+# Die Presse ist Kulisse: Der „Lindenbote“ kommt nur im Echo vor (ein Ratsmitglied liest ihn); keine Regel zur Außenkommunikation (L-273).
+# Erzählbrücke 12 → 14: der Einstieg sagt, dass die Wochendurchsicht läuft und die Bürgermeisterin nur gefragt wird, wenn ihre Grenzen es verlangen.
+# Belege (intern):
+#  - Beschluss getrennt dokumentiert (Quelle, Datum, Inhalt, Bedingungen); Schweigen, Empfehlung, Softwarestatus sind kein Beschluss: v24:hb-3.1 (letzter Absatz), v24:va-3.5, v24:va-4.2
+#  - Bei ausbleibender Entscheidung: Folgen und neuer Klärungstermin: v24:hb-3.1, v24:va-3.5
+#  - Nachweisfähigkeit und Beschlusslage gehören zur Letztverantwortung des Bauherrn: k3.3-t1, k4.3-p2, k4.6-p1, k4.6-p2, k9.4-l1
+#  - Zusage im Flur ist kein Beschluss; bis zur Freigabe gilt die bisherige Grundlage; abgelehnte Anträge bleiben nachvollziehbar: v24:hb-1.5, k4.3-p2
+#  - Wirkung einer Maßnahme wird belegt, nicht angenommen; Problem mit fachlicher Bestätigung schließen: v24:hb-1.4, v24:hb-1.6, v24:hb-3
+#  - Das Buch führt die Projektsteuerin; die Projektleitung legt vor, die Projektsteuerung bereitet vor: v24:hb-3.1, v24:va-3.5, v24:tlb-2, k9.3-p3 (V2.4 gilt, O-36)
+#  - Wochendurchsicht; die Bürgermeisterin nur bei Überschreitung ihrer Grenzen: v24:hb-4 Abs. 2, k4.2-p2, v24:hb-projektblatt
+#  - Fugen im Hallenboden: offener Punkt, mit Frist und Namen übergeben (Ausblick auf 14): v24:hb-5 Abs. 6
+nr: 13
+titel: Beschluss und Nachweis
+zeit: November 2027
+# Zwischenbild: alle drei Gebäude außen fertig, Lichter in den Fenstern, nasses Laub, Handwerkercontainer, Außenanlagen ausgesteckt; Nebel dämpft das Abendlicht
+campus: { stufe: 5.5, jahreszeit: herbst, licht: abend, wetter: nebel }
+bruecke: "Die Projektsteuerin hat jeden Beschluss im Entscheidungsbuch festgehalten; so kann die Stadt dem Stadtrat zeigen, wer wann was beschlossen hat."
+thema: verantwortung
+belege: [v24:hb-1.4, v24:hb-1.5, v24:hb-1.6, v24:hb-3, v24:hb-3.1, v24:hb-4, v24:hb-5, v24:hb-projektblatt, v24:va-3.5, v24:va-4.2, v24:tlb-2, k3.3-t1, k4.2-p2, k4.3-p2, k4.6-p1, k4.6-p2, k9.3-p3, k9.4-l1]
+bild-szene: rednerpult
+bild-frage: buch
+
+einstieg: |
+  November 2027. Nebel liegt über dem Campus. Clara Faden ist zurück, die Wochendurchsicht läuft, und Entscheidungen kommen nur dann zur Bürgermeisterin, wenn sie über die vereinbarten Grenzen hinausgehen. Heute berät der Stadtrat über den Haushalt.
+
+  Im Saal meldet sich ein Ratsmitglied aus dem Finanzausschuss: „{echo: E8}“
+
+  Aus der Zuschauerreihe sagt die Vorsitzende des Elternbeirats: „{echo: E8b}“
+
+szene:
+  # neu: hallenboden (Hallenboden mit zwei markierten Fugen)
+  - { figur: lot, zusatz: "noch in Gummistiefeln, hinten im Saal", text: "Zwei Fugen im Hallenboden gehen auf. Hab's dem Schwung gesagt: Schreib's auf. Die Firma bessert bis zu den Herbstferien im nächsten Jahr nach." }
+  # Echo E8 und E8b (Quelle Station 6) stehen im Einstieg: ein Ratsmitglied und die Vorsitzende des Elternbeirats, keine eigenen Sprecher (O-62, Antwort 4c)
+  - { text: "Das Ratsmitglied fragt: „Wer hat die Kapselung beschlossen, wer das Ersatzgerät, wer die Mensa? Wann und auf welcher Grundlage? Wo steht das?“" }
+  # Echo E5 (Quelle Station 4)
+  - { figur: faden, zusatz: "leise, das Entscheidungsbuch im Arm", echo: E5 }
+  # der kleine Rückschlag: Die Wirkung der Kapselung gilt erst mit der Bestätigung; sie trifft nachmittags ein (Schlusssatz jeder Folge)
+  - { figur: faden, text: "Nur die Bestätigung der Brandschutzbehörde fehlt noch im Buch. Sie ist angekündigt, aber heute nicht da." }
+
+frage: Der Stadtrat wartet auf Ihre Antwort. Was legen Sie vor?
+
+antworten:
+  - wertung: falle
+    text: Sie verweisen darauf, dass nie jemand widersprochen hat – also gilt es als beschlossen.
+    balken: { geld: -1, zeit: 0, vertrauen: -2 }
+    bild: lupe
+    folge: |
+      Das Ratsmitglied hebt die Augenbrauen: „Schweigen ist kein Beschluss. Wo steht, wer es beschlossen hat?“ Niemand antwortet gleich. Der Finanzausschuss lässt die Finanzabteilung jeden Beschluss einzeln nachprüfen; das bindet Stunden.
+
+      Dabei steht alles im Buch – nur hat vorher niemand hineingesehen. Die Bürgermeisterin schaut Sie an: „Ich dachte, das steht irgendwo.“ Dann klappt Clara Faden das Buch auf, und das Ratsmitglied liest, Zeile für Zeile, was ihm gleich hätte gesagt werden können. Am Nachmittag trifft die Bestätigung der Brandschutzbehörde ein.
+  - wertung: gut
+    text: "Sie legen das Entscheidungsbuch vor: jeder Beschluss mit Quelle und Datum. Was nie beschlossen wurde, sagen Sie dazu."
+    balken: { geld: 0, zeit: 0, vertrauen: 1 }
+    bild: buch
+    folge: |
+      Clara Faden schlägt das Entscheidungsbuch auf. Das Ratsmitglied fährt mit dem Finger die Zeilen entlang: Kapselung, Ersatzgerät, Mensa – jede mit Quelle und Datum. „Und die große Mensa?“ – „Nicht beschlossen“, sagt Clara Faden. „Ein Ausbau wäre ein neuer Antrag. Steht auch drin.“
+
+      Gisela Grundstein sagt in die Runde: „Das hat meine Projektleitung vorgelegt.“ Das Ratsmitglied klappt das Buch zu und nickt. Am Nachmittag trifft die Bestätigung der Brandschutzbehörde ein.
+  - wertung: vertretbar
+    text: Sie berichten aus dem Gedächtnis, wer was beschlossen hat, und reichen die Unterlagen nach der Sitzung nach.
+    balken: { geld: 0, zeit: -1, vertrauen: 0 }
+    bild: notizzettel
+    folge: |
+      Die Bürgermeisterin springt ein: „Die Beschlüsse stehen fest – Sie bekommen die Unterlagen schriftlich.“ Clara Faden sucht noch am Abend alles zusammen, und das Ratsmitglied bekommt die Unterlagen am Freitag.
+
+      Das Ratsmitglied nickt und sagt leise: „Ich hätte es gern gleich gesehen.“ Clara Fadens Woche geht für das Zusammensuchen drauf; für andere Arbeit fehlt die Zeit. Am Nachmittag trifft die Bestätigung der Brandschutzbehörde ein.
+
+gut: |
+  Ein Beschluss wird eigens festgehalten, mit Quelle, Datum und Bedingungen. Schweigen, eine Empfehlung oder ein Haken in der Software sind kein Beschluss. Wer für die Stadt entscheidet, muss auch nachweisen können, wann und auf welcher Grundlage.
+
+mini:
+  art: bericht
+  titel: Was ist kein Beschluss?
+  aufgabe: Fünf Zeilen sollen als Beschluss ins Buch. Welche dürfen so nicht stehen bleiben, weil kein Beschluss vorliegt? Dort lassen Sie nachbessern.
+  bild: buch
+  schluss: "Bei drei Zeilen fehlte der Beschluss."
+  # Reihenfolge wie hier: nachbessern, in Ordnung, nachbessern, in Ordnung, nachbessern.
+  posten:
+    - { text: "Beschluss: „Das kriegen wir hin.“ Gesagt hat es der Architekt auf dem Flur.", loesung: nachfordern, erklaerung: "Eine beiläufige Zusage ist kein Beschluss. Bei einer Änderung gilt bis zur Entscheidung die bisherige Planung." }
+    - { text: "Beschluss: Ersatzgerät, vor dem Schulstart eingebaut und in Betrieb. Unterschrieben hat die Bürgermeisterin.", loesung: ok, erklaerung: "Die zuständige Stelle hat entschieden. Die Auflage gehört zum Beschluss und wird mit festgehalten." }
+    - { text: "Beschluss: Beim Eintrag zur Lüftung steht in der Projektsoftware jetzt „erledigt“.", loesung: nachfordern, erklaerung: "Ein Softwarestatus ist kein Beschluss." }
+    - { text: "Beschluss: Mensa erweiterbar, aus der Reserve. Entschieden hat die Bürgermeisterin.", loesung: ok, erklaerung: "Auch hier hat die zuständige Stelle entschieden. Quelle, Datum und Bedingungen stehen im Buch. Eine Empfehlung der Projektsteuerin hätte nicht gereicht." }
+    - { text: "Beschluss: In der Besprechung widerspricht niemand.", loesung: nachfordern, erklaerung: "Schweigen ist kein Beschluss. Bleibt die Entscheidung aus, nennt die Projektsteuerin die Folgen und einen neuen Klärungstermin." }
+
+dahinter: Wer entscheidet, muss belegen können, wann und auf welcher Grundlage. Darum steht jeder Beschluss mit Quelle und Datum im Buch – und was nicht beschlossen ist, steht auch darin.
+
+vertiefung:
+  form: nachdenken
+  titel: Beschlossen? Wirklich?
+  text:
+    - "Im Protokoll einer Besprechung steht: „Die Runde war mit dem Vorschlag einverstanden.“ Die Projektsteuerin hat den Eintrag daraufhin auf „entschieden“ gesetzt. Die Bürgermeisterin war nicht dabei. Ist das ein Beschluss?"
+  antwort:
+    - "Nein. Ein Beschluss ist die Entscheidung der zuständigen Stelle – hier der Bürgermeisterin. Eine Runde kann beraten, ein Protokoll kann Zustimmung festhalten, eine Software kann einen Status anzeigen: Nichts davon ersetzt die Entscheidung. Das gilt auch für Schweigen und für die Empfehlung der Projektsteuerin."
+    - "Ein Beschluss wird eigens festgehalten: mit Quelle, Datum, Inhalt und Bedingungen. So kann später jeder sehen, wer wann auf welcher Grundlage entschieden hat."
+    - "Der Gegenfall: Die Bürgermeisterin unterschreibt die Vorlage, aber mit einer Bedingung. Dann ist es ein Beschluss, und die Bedingung gehört dazu. Wer sie nicht beachtet, hat nicht gegen eine Meinung verstoßen, sondern gegen eine Entscheidung – und im Buch steht, gegen welche."
+    - "Und wenn der Beschluss ausbleibt? Dann trägt die Projektsteuerin einen neuen Klärungstermin ein; bei einer Änderung gilt bis dahin die bisherige Planung. So wird aus einem offenen Punkt kein stiller Beschluss."
+
+regie:
+  notiz: "Kern: Ein Beschluss steht mit Quelle, Datum und Bedingungen im Buch; Schweigen, Empfehlung und Haken in der Software sind kein Beschluss. Das Buch gemeinsam aufschlagen und jede Zeile fragen: Wer hat das entschieden, wann, auf welchem Stand? Danach die Prüfung auflösen."
+  leitfragen:
+    - Wo steht bei Ihnen, wer was wann beschlossen hat?
+    - Was gilt bei Ihnen, wenn in der Runde niemand widerspricht?

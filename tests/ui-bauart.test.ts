@@ -96,10 +96,10 @@ test('Datenebene: `inhalte` enthält kein Regie-Material', async () => {
   assert.equal('regie' in inhalte, false);
   assert.equal('geschichteRegie' in inhalte, false);
   const oeffentlichText = JSON.stringify(inhalte);
-  const k7 = regieGeschichte('k7');
+  const k7 = regieGeschichte('s12');
   assert.ok(k7?.notizHtml);
   assert.ok(!oeffentlichText.includes(k7.notizHtml.slice(3, 60)));
-  for (const k of ['k1', 'k2', 'k7']) for (const f of regieGeschichte(k)?.leitfragen ?? []) assert.ok(!oeffentlichText.includes(f), f);
+  for (const k of ['s1', 's2', 's12']) for (const f of regieGeschichte(k)?.leitfragen ?? []) assert.ok(!oeffentlichText.includes(f), f);
   for (let nr = 1; nr <= 13; nr++) {
     const e = regieKapitel(nr);
     if (e?.notiz) assert.ok(!oeffentlichText.includes(e.notiz.slice(3, 60)), `Notiz ${nr}`);
@@ -172,7 +172,7 @@ test('Startseite (O-57, P17.7): Story-Karte mit Campus und den Figuren der Story
   const ids = (story.getAttribute('aria-labelledby') ?? '').split(' ');
   assert.deepEqual(ids.map((id) => el.querySelector(`#${id}`)?.textContent), [`${W.start.storyKicker}${W.start.storyTitel}`, W.start.storyLos]);
   for (const id of (story.getAttribute('aria-describedby') ?? '').split(' ')) assert.ok(el.querySelector(`#${id}`), id);
-  assert.match(story.textContent ?? '', /Acht Entscheidungen · etwa 25 Minuten, kurz etwa 10/u);
+  assert.match(story.textContent ?? '', /Vierzehn Entscheidungen · etwa 40 Minuten \(Kurzfassung: etwa 10 Minuten\)/u);
   assert.doesNotMatch(el.textContent ?? '', /Kapitel|Station/u);
   // Theorie: vier Teile in Lesereihenfolge
   assert.deepEqual([...el.querySelectorAll('[data-pruef="weg-theorie"] .tuer-teile li')].map((li) => li.getAttribute('data-teil')), ['1', '2', '3', '4']);
@@ -222,12 +222,12 @@ test('Story: Auftakt → Szene → Frage (ohne Wahl kein Weiter) → Folge; Spei
   assert.match(f.element.querySelector('.gs-navi-hinweis')?.textContent ?? '', /wählen/u);
   (f.element.querySelector('[data-pruef="antwort-2"]') as HTMLElement).click();
   assert.ok(f.element.querySelector('[data-pruef="gs-folge"]'));
-  assert.ok(sp.daten.get(SPEICHER_SCHLUESSEL)?.includes('"k1":1'));
+  assert.ok(sp.daten.get(SPEICHER_SCHLUESSEL)?.includes('"s1":1'));
   // Pfeiltaste blättert: in der Kurzfassung folgt 3
   f.taste(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
   assert.match(titel(), /Wie gefährlich ist das\?/u);
   // Permalink auf ein Kapitel außerhalb der Kurzfassung schaltet die ganze Geschichte ein
-  f.zuKapitel('k6');
+  f.zuKapitel('s10');
   assert.equal(f.stand().kurz, false);
   assert.match(titel(), /Ärger auf der Baustelle/u);
   (f.element.querySelector('[data-pruef="fortschritt-loeschen"]') as HTMLElement).click();
@@ -315,12 +315,12 @@ test('Explore (O-57, P17.7): jedes Werkzeug mit eigenem Akzentton und Gegenstand
 
 test('Leinwand-Anzeige: nicht bedienbar, derselbe Stand, keine Regie-Notiz', () => {
   const a = erzeugeAnzeige(inhalte, VERSION, true);
-  const b = { ...neueBuehne(), bereich: 'story' as const, story: { ...neueBuehne().story, schritt: { ort: 'kapitel' as const, kapitel: 'k7', teil: 'vergleich' as const } } };
+  const b = { ...neueBuehne(), bereich: 'story' as const, story: { ...neueBuehne().story, schritt: { ort: 'kapitel' as const, kapitel: 's12', teil: 'vergleich' as const } } };
   a.setze(b);
   assert.equal(a.element.getAttribute('inert'), '');
   assert.equal(a.element.querySelectorAll('button, a, input, select').length, 0);
   assert.match(a.element.textContent ?? '', /Ersatzgerät/u);
-  const notiz = regieGeschichte('k7');
+  const notiz = regieGeschichte('s12');
   assert.ok(notiz && !(a.element.innerHTML.includes(notiz.notizHtml.slice(3, 50))));
   a.setze({ ...b, bereich: 'theorie', thema: themaVon(4) });
   assert.ok(a.element.querySelector(`[data-thema="${themaVon(4)}"]`));
@@ -339,11 +339,12 @@ test('Regie: Notiz und Leitfragen, Kundenwahl, „weiter“ sendet den öffentli
     (r.element.querySelector('[data-pruef="regie-bereich-story"]') as HTMLElement).click();
     const sprung = r.element.querySelector<HTMLSelectElement>('[data-pruef="regie-sprung"]');
     assert.ok(sprung);
-    sprung.value = 'k7:szene';
+    sprung.value = 's12:szene';
     sprung.dispatchEvent(new Event('change'));
     assert.match(r.element.querySelector('[data-pruef="regie-notiz"]')?.textContent ?? '', /Gewichte gemeinsam/u);
     assert.ok(r.element.querySelector('[data-pruef="regie-leitfragen"]'));
-    // Vergleich: die Regie stellt die Stufen
+    // Vergleich: die Regie stellt die Stufen (seit P19.6 steht in Station 12 die Mini-Aufgabe „Muss oder nicht?“ vor dem Vergleich)
+    (r.element.querySelector('[data-pruef="regie-weiter"]') as HTMLElement).click();
     (r.element.querySelector('[data-pruef="regie-weiter"]') as HTMLElement).click();
     (r.element.querySelector('[data-pruef="regie-stufe-klima-3"]') as HTMLElement).click();
     const mitStufe = gesendet.filter((n) => n.art === 'zustand').at(-1);
@@ -354,14 +355,14 @@ test('Regie: Notiz und Leitfragen, Kundenwahl, „weiter“ sendet den öffentli
     (r.element.querySelector('[data-pruef="regie-wahl-2"]') as HTMLElement).click();
     const letzte = gesendet.filter((n) => n.art === 'zustand').at(-1);
     assert.ok(letzte && letzte.art === 'zustand');
-    assert.equal(letzte.zustand.story.wahlen['k7'], 1);
+    assert.equal(letzte.zustand.story.wahlen['s12'], 1);
     // Taste 3 wählt Platz 3
     r.taste(new KeyboardEvent('keydown', { key: '3' }));
     const nachTaste = gesendet.filter((n) => n.art === 'zustand').at(-1);
     assert.ok(nachTaste && nachTaste.art === 'zustand');
-    assert.equal(nachTaste.zustand.story.wahlen['k7'], 2);
+    assert.equal(nachTaste.zustand.story.wahlen['s12'], 2);
     const text = JSON.stringify(gesendet);
-    assert.ok(!text.includes(regieGeschichte('k7')?.notizHtml.slice(3, 40) ?? 'x'), 'keine Notiz im Kanal');
+    assert.ok(!text.includes(regieGeschichte('s12')?.notizHtml.slice(3, 40) ?? 'x'), 'keine Notiz im Kanal');
     // P17.6: Wertung nur in der Regie – je Antwort eine, kurzer Knopftext; im Kanal steht keine
     const wertungen = [...r.element.querySelectorAll<HTMLElement>('[data-pruef^="regie-wertung-"]')].map((x) => x.dataset['wertung']);
     assert.deepEqual([...wertungen].sort(), ['falle', 'gut', 'vertretbar']);
@@ -370,37 +371,37 @@ test('Regie: Notiz und Leitfragen, Kundenwahl, „weiter“ sendet den öffentli
     // Wahl zurücknehmen
     (r.element.querySelector('[data-pruef="regie-wahl-weg"]') as HTMLElement).click();
     const ohne = gesendet.filter((n) => n.art === 'zustand').at(-1);
-    assert.ok(ohne && ohne.art === 'zustand' && ohne.zustand.story.wahlen['k7'] === undefined);
+    assert.ok(ohne && ohne.art === 'zustand' && ohne.zustand.story.wahlen['s12'] === undefined);
     // Gegenprobe: ohne Wahl ist der Knopf gesperrt
     assert.equal(r.element.querySelector<HTMLButtonElement>('[data-pruef="regie-wahl-weg"]')?.disabled, true);
     // Mini-Aufgabe aus der Regie: Zuordnung setzen, auflösen, zurücksetzen; Reihenfolge anklicken
     const letzterStand = () => { const n = gesendet.filter((x) => x.art === 'zustand').at(-1); assert.ok(n && n.art === 'zustand'); return n.zustand.story; };
-    sprung.value = 'k2:mini';
+    sprung.value = 's2:mini';
     sprung.dispatchEvent(new Event('change'));
-    const m2 = G.kapitel.find((k) => k.id === 'k2')?.mini;
+    const m2 = G.kapitel.find((k) => k.id === 's2')?.mini;
     assert.ok(m2 && m2.art === 'zuordnen');
     const falsch = m2.wahlen.find((x) => x.id !== m2.posten[0]?.loesung);
     assert.ok(falsch);
     (r.element.querySelector(`[data-pruef="regie-mini-1-${falsch.id}"]`) as HTMLElement).click();
-    assert.equal(letzterStand().mini['k2']?.[0], m2.wahlen.indexOf(falsch));
+    assert.equal(letzterStand().mini['s2']?.[0], m2.wahlen.indexOf(falsch));
     // Lösung in der Regie markiert (Gegenprobe: die falsche Wahl nicht)
     assert.ok(r.element.querySelector(`[data-pruef="regie-mini-1-${m2.posten[0]?.loesung}"]`)?.classList.contains('ist-loesung'));
     assert.ok(!r.element.querySelector(`[data-pruef="regie-mini-1-${falsch.id}"]`)?.classList.contains('ist-loesung'));
     (r.element.querySelector('[data-pruef="regie-mini-aufloesen"]') as HTMLElement).click();
-    assert.deepEqual(letzterStand().mini['k2'], m2.posten.map((p) => m2.wahlen.findIndex((x) => x.id === p.loesung)));
+    assert.deepEqual(letzterStand().mini['s2'], m2.posten.map((p) => m2.wahlen.findIndex((x) => x.id === p.loesung)));
     (r.element.querySelector('[data-pruef="regie-mini-leeren"]') as HTMLElement).click();
-    assert.equal(letzterStand().mini['k2'], undefined);
-    sprung.value = 'k6:mini';
+    assert.equal(letzterStand().mini['s2'], undefined);
+    sprung.value = 's10:mini';
     sprung.dispatchEvent(new Event('change'));
     (r.element.querySelector('[data-pruef="regie-reihe-2"]') as HTMLElement).click();
     (r.element.querySelector('[data-pruef="regie-reihe-1"]') as HTMLElement).click();
-    assert.deepEqual(letzterStand().mini['k6'], [1, 0]);
+    assert.deepEqual(letzterStand().mini['s10'], [1, 0]);
     // Sprung je Schritt über die Knöpfe: Kapitel 3, dann dessen Frage
-    (r.element.querySelector('[data-pruef="regie-kapitel-k3"]') as HTMLElement).click();
-    assert.deepEqual(letzterStand().schritt, { ort: 'kapitel', kapitel: 'k3', teil: 'szene' });
+    (r.element.querySelector('[data-pruef="regie-kapitel-s3"]') as HTMLElement).click();
+    assert.deepEqual(letzterStand().schritt, { ort: 'kapitel', kapitel: 's3', teil: 'szene' });
     (r.element.querySelector('[data-pruef="regie-teil-frage"]') as HTMLElement).click();
-    assert.deepEqual(letzterStand().schritt, { ort: 'kapitel', kapitel: 'k3', teil: 'frage' });
-    assert.equal(sprung.value, 'k3:frage', 'die Auswahl zeigt den aktuellen Schritt');
+    assert.deepEqual(letzterStand().schritt, { ort: 'kapitel', kapitel: 's3', teil: 'frage' });
+    assert.equal(sprung.value, 's3:frage', 'die Auswahl zeigt den aktuellen Schritt');
     // Protokoll bleibt in der Regie
     const feld = r.element.querySelector<HTMLTextAreaElement>('[data-pruef="regie-protokoll-feld"]');
     assert.ok(feld);
@@ -423,6 +424,54 @@ test('Regie: Notiz und Leitfragen, Kundenwahl, „weiter“ sendet den öffentli
     thema.value = themaVon(4);
     thema.dispatchEvent(new Event('change'));
     assert.equal(gesendet.filter((n) => n.art === 'zustand').at(-1)?.art === 'zustand' && (gesendet.filter((n) => n.art === 'zustand').at(-1) as { zustand: { thema: string } }).zustand.thema, themaVon(4));
+  } finally {
+    r.entferne();
+  }
+});
+
+test('Regie (P19.7): Sprung je Akt und zur Pause, Überblick des Akts als Notiz, der Kanal trägt nur den Stand', () => {
+  const gesendet: KanalNachricht[] = [];
+  const kanal = { senden: (n: KanalNachricht) => { gesendet.push(n); }, abonnieren: () => () => undefined, schliessen: () => undefined };
+  const r = erzeugeRegie({ inhalte, kanal, version: VERSION, speicher: speicher(), regieGeschichte, regieKapitel, oeffneLeinwand: () => undefined, takt: 100000 });
+  document.body.replaceChildren(r.element);
+  try {
+    (r.element.querySelector('[data-pruef="regie-bereich-story"]') as HTMLElement).click();
+    const g = inhalte.geschichte;
+    assert.ok(g?.akte);
+    const akte: { id: string; stationen: string[] }[] = g.akte;
+    const letzter = () => { const n = gesendet.filter((x) => x.art === 'zustand').at(-1); assert.ok(n && n.art === 'zustand'); return n.zustand.story; };
+    const akteGruppe = r.element.querySelector<HTMLElement>('[data-pruef="regie-akte"]');
+    assert.ok(akteGruppe && !akteGruppe.hidden, 'Akt-Reihe sichtbar');
+    // je Akt ein Knopf, je Akt außer dem letzten ein Pausen-Knopf; zugängliche Namen mit Titel und Stationen
+    assert.deepEqual([...akteGruppe.querySelectorAll('button')].map((b) => b.getAttribute('data-pruef')), ['regie-akt-a1', 'regie-pause-a1', 'regie-akt-a2', 'regie-pause-a2', 'regie-akt-a3']);
+    assert.match(akteGruppe.querySelector('[data-pruef="regie-akt-a2"]')?.getAttribute('aria-label') ?? '', /^Akt II · .+ · Stationen 6–10$/u);
+    for (const a of akte) {
+      (akteGruppe.querySelector(`[data-pruef="regie-akt-${a.id}"]`) as HTMLElement).click();
+      assert.deepEqual(letzter().schritt, { ort: 'kapitel', kapitel: a.stationen[0], teil: 'szene' }, `${a.id}: erste Station`);
+      assert.equal(akteGruppe.querySelector(`[data-pruef="regie-akt-${a.id}"]`)?.getAttribute('aria-pressed'), 'true');
+      for (const b of akte) if (b.id !== a.id) assert.equal(akteGruppe.querySelector(`[data-pruef="regie-akt-${b.id}"]`)?.getAttribute('aria-pressed'), 'false', `${b.id} nicht gedrückt bei ${a.id}`);
+    }
+    // Pause nach Akt I: Schritt, gedrückter Knopf (und der Akt bleibt gedrückt), Notiz mit Überblick der Stationen
+    (akteGruppe.querySelector('[data-pruef="regie-pause-a1"]') as HTMLElement).click();
+    assert.deepEqual(letzter().schritt, { ort: 'pause', akt: 'a1' });
+    assert.equal(akteGruppe.querySelector('[data-pruef="regie-pause-a1"]')?.getAttribute('aria-pressed'), 'true');
+    assert.equal(akteGruppe.querySelector('[data-pruef="regie-akt-a1"]')?.getAttribute('aria-pressed'), 'true');
+    assert.equal(r.element.querySelector('[data-pruef="regie-sprung"]') instanceof HTMLSelectElement && (r.element.querySelector('[data-pruef="regie-sprung"]') as HTMLSelectElement).value, 'pause:a1');
+    const liste = [...r.element.querySelectorAll('[data-pruef="regie-pause-liste"] li')].map((x) => x.textContent ?? '');
+    assert.equal(liste.length, 5);
+    assert.match(liste[0] ?? '', /^1 · /u);
+    assert.doesNotMatch(r.element.querySelector('[data-pruef="regie-notiz"]')?.textContent ?? '', /Für diesen Schritt gibt es keine Notiz/u);
+    // Gegenprobe: an einer Station steht wieder die Notiz der Station, nicht der Überblick
+    (r.element.querySelector('[data-pruef="regie-kapitel-s3"]') as HTMLElement).click();
+    assert.equal(r.element.querySelector('[data-pruef="regie-pause-liste"]'), null);
+    // Aus der Pause über die Kurzfassung: die Pause gibt es dort nicht, der Sprung schaltet auf die ganze Geschichte
+    (r.element.querySelector('[data-pruef="regie-kurz"]') as HTMLElement).click();
+    assert.equal(letzter().kurz, true);
+    (akteGruppe.querySelector('[data-pruef="regie-pause-a2"]') as HTMLElement).click();
+    assert.equal(letzter().kurz, false, 'Pause nur auf dem ganzen Weg');
+    assert.deepEqual(letzter().schritt, { ort: 'pause', akt: 'a2' });
+    // der Kanal trägt nur den Stand: weder Überblick noch Notiz
+    assert.ok(!JSON.stringify(gesendet).includes('Stationen dieses Akts'));
   } finally {
     r.entferne();
   }
@@ -472,7 +521,7 @@ test('Tafeln (T9): Phasen-Wahl wandert, Screenreader-Hinweis am hervorgehobenen 
   const kopf = ['LPH', 'Leistungsphase', 'Freigabefrage'];
   const zeilen = [['LPH 4', 'Genehmigungsplanung', 'Frage 4?'], ['LPH 5', 'Ausführungsplanung', 'Frage 5?']];
   const ph = tafel({ form: 'phasen', absatz: 'k9.3-t1', quelle: 'Q', kopf, zeilen, hervor: [2] });
-  assert.match(ph.querySelector('[data-pruef="phase-2"] .nur-sr')?.textContent ?? '', /hier steht der Fall/u);
+  assert.match(ph.querySelector('[data-pruef="phase-2"] .nur-sr')?.textContent ?? '', /hier steht unser Beispielfall/u);
   assert.equal(ph.querySelector('[data-pruef="phase-1"] .nur-sr'), null);
   ph.querySelector<HTMLElement>('[data-pruef="phase-1"]')?.click();
   assert.equal(ph.querySelector('[aria-pressed="true"]')?.getAttribute('data-pruef'), 'phase-1');
@@ -500,12 +549,12 @@ interface ProbeBlock { art: string, kennungen: string[], id: string | null, kopf
 const blk = (art: string, id: string | null, kopf: Record<string, string>, felder: Record<string, string>, kinder: ProbeBlock[] = []): ProbeBlock =>
   ({ art, kennungen: id === null ? [] : [id], id, kopf, felder, liste: null, kinder });
 
-test('Lernwerkzeuge (P12.3): Etappen blättern per Klick und Pfeiltaste, Anfang ohne Ansage', () => {
+test('Lernwerkzeuge (P12.3): Schritte blättern per Klick und Pfeiltaste, Anfang ohne Ansage', () => {
   const b = blk('etappen', null, { titel: 'Weg' }, {}, [1, 2, 3].map((i) => blk('etappe', String(i), { titel: `T${i}` }, { text: `<p>Text ${i}</p>` })));
   const el = lw.etappen(b as never);
   document.body.replaceChildren(el);
   const detail = el.querySelector('[data-pruef="etappe-detail"]');
-  assert.match(detail?.textContent ?? '', /Etappe 1 von 3.*T1.*Text 1/su);
+  assert.match(detail?.textContent ?? '', /Schritt 1 von 3.*T1.*Text 1/su);
   assert.equal(el.querySelector('.nur-sr')?.textContent, '');
   assert.ok(el.querySelector<HTMLButtonElement>('[data-pruef="etappe-zurueck"]')?.disabled);
   el.querySelector<HTMLButtonElement>('[data-pruef="etappe-weiter"]')?.click();
@@ -516,7 +565,7 @@ test('Lernwerkzeuge (P12.3): Etappen blättern per Klick und Pfeiltaste, Anfang 
   assert.equal(el.querySelector('[data-pruef="etappe-3"]')?.getAttribute('aria-pressed'), 'true');
   assert.equal(el.querySelectorAll('.lw-etappe.ist-erreicht').length, 3);
   assert.ok(el.querySelector<HTMLButtonElement>('[data-pruef="etappe-weiter"]')?.disabled);
-  assert.match(el.querySelector('.nur-sr')?.textContent ?? '', /Etappe 3 von 3: T3/u);
+  assert.match(el.querySelector('.nur-sr')?.textContent ?? '', /Schritt 3 von 3: T3/u);
 });
 
 test('Lernwerkzeuge (R71): Weiter bis zum Ende und Zurück bis zum Anfang – der Fokus fällt nie auf body', () => {
@@ -661,7 +710,9 @@ test('Wissenschecks (P11.6, P17.11): genau die verbliebenen Themen haben einen; 
   assert.equal(knoepfe[0]?.getAttribute('aria-pressed'), 'true');
   const ergebnis = wc.querySelector('[data-pruef="wc-ergebnis"]');
   assert.match(ergebnis?.textContent ?? '', /^(Genau:|Nicht ganz:)/u);
-  assert.ok(ergebnis?.querySelector('[data-pruef="zitat"]'), 'Beleg sichtbar');
+  // L-290 (O-38): der wortgleiche Beleg im Wissenscheck bleibt Prüfgrundlage der Quelldatei, wird aber nie angezeigt
+  assert.equal(ergebnis?.querySelector('[data-pruef="zitat"]'), null, 'kein Zitat sichtbar');
+  assert.equal(seite.querySelector('blockquote.mvg-zitat'), null, 'kein Blockzitat auf der Themenseite');
   assert.doesNotMatch(wc.textContent ?? '', /Punkt(e|zahl)|\d+\s*\/\s*\d+ richtig/u, 'keine Punkte');
   knoepfe[1]?.click();
   assert.equal(knoepfe[0]?.getAttribute('aria-pressed'), 'false');
@@ -708,7 +759,17 @@ test('Tafeltitel (P12.5 R12/R13): nach „/“ darf umgebrochen werden (<wbr>), 
       assert.ok(!/\u200b/u.test(text), 'kein unsichtbares Zeichen im Text');
     }
   }
-  assert.ok(gefunden > 0, 'mindestens ein Tafeltitel mit „/“ (Kap. 8: Risiko-/Änderungs-/Maßnahmenverknüpfung)');
+  // L-290: die Seite spricht nicht mehr von „Risiko-/Änderungs-/Maßnahmenverknüpfung“ (jetzt „Verknüpfung von Risiken, Änderungen und Maßnahmen“);
+  // der Umbruch nach „/“ bleibt darum an einer Probe-Tafel mit Schrägstrichen im Titel geprüft (Gegenprobe zum Zählen oben)
+  const eintrag = Object.entries(inhalte.theorie).find(([, s]) => s.kapitel === 1);
+  assert.ok(eintrag);
+  const tafel = { art: 'tafel', kennungen: ['k2.5-t1'], id: 'k2.5-t1', kopf: { form: 'karten', tabelle: { kopf: ['Gruppe', 'Rolle'], zeilen: [['Risiko-/Änderungs-/Maßnahmen', 'r']] }, hervor: [] }, felder: {}, liste: null, kinder: [] };
+  const probe = { ...inhalte, theorie: { ...inhalte.theorie, [eintrag[0]]: { ...eintrag[1], bloecke: [tafel] } } } as unknown as typeof inhalte;
+  const el = baueTheorie({ inhalte: probe, thema: themaVon(1), version: VERSION, bedienbar: false });
+  const titel = [...el.querySelectorAll('.tafel-titel')].find((t) => (t.textContent ?? '').includes('/'));
+  assert.ok(titel, 'Probe-Tafel mit „/“ im Titel');
+  assert.equal(titel.querySelectorAll('wbr').length, 2, 'ein <wbr> je „/“');
+  assert.ok(gefunden >= 0);
 });
 
 test('Lernseite (P6.1): Tafel, Merksatz und Ebenen 1–4 werden auf Seiten- und Abschnittsebene gezeichnet', () => {

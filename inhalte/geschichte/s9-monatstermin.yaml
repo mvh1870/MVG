@@ -1,0 +1,92 @@
+# 9 · Der Monatstermin (Drehbuch docs/drehbuch-v2/02-akt-2.md, Station 9)
+# Kern: Der Bauherr bekommt jeden Monat eine Seite und prüft sie auf Nachvollziehbarkeit: Wer, was, bis wann? Ein grüner Punkt ersetzt
+# keine Erklärung, ein neuer Termin auch nicht (v24:hb-4, v24:hb-1.1, v24:tlb-4, k2.4-p2).
+# Der Netzanschluss (März statt Januar, bis dahin Baustrom) ist eine erfundene Tatsache des Falls, keine Fachregel; er steht auf jedem
+# Weg im Bericht. Der Planstand der Fassade ist auf jedem Weg im Prüfvermerk der Wochendurchsicht als überfällig vermerkt.
+# Station 9 erzeugt das Echo E9 (Station 9 → 11, Szene der Vertretung); ankommend kein Echo.
+# Mini-Aufgabe (bericht) steht nach der Folge (P19.8: vorher vor der Frage, die Rückmeldung löste die Entscheidung vorweg auf), Mehrfachauswahl; Belege je Zeile: 1 v24:hb-4 · 2 v24:hb-4, v24:hb-1.1, k2.4-p2 ·
+# 3 v24:hb-1.4 · 4 v24:hb-4, v24:hb-3.1, k2.4-p2 · 5 v24:hb-1.6, v24:hb-1.4 · 6 v24:hb-4
+nr: 9
+titel: Der Monatstermin
+zeit: Dezember 2026
+campus: { stufe: 3.5, jahreszeit: winter, licht: abend, wetter: schnee }
+bruecke: "Dezember: Sie lesen den Monatsbericht mit Blick auf offene Entscheidungen."
+thema: takt
+werkzeuge: [{ id: monatsbericht, beispiel: dezember }]
+belege: [v24:hb-4, v24:hb-1.1, v24:hb-1.4, v24:hb-1.6, v24:hb-3.1, v24:va-5.1, v24:va-5.2, v24:va-5.3, v24:tlb-3, v24:tlb-4, k2.4-p2]
+bild-szene: berichtsblatt
+bild-frage: stoppuhr
+
+einstieg: |
+  Dezember 2026. Auf dem Dach liegt leichter Schnee, am Baucontainer hängt eine Lichterkette. Heute ist der Monatstermin, eine Stunde online. Vorher hat Clara Faden bei der Wochendurchsicht alles Offene geprüft; den Entwurf des Berichts hat sie am Wochenende geschrieben: eine Seite, alle Punkte grün.
+
+szene:
+  - { figur: faden, zusatz: legt das Blatt vor, text: "Mein Prüfvermerk von heute früh: Bei der Wochendurchsicht ist der Planstand der Fassade überfällig geworden – die fertigen Fassadenpläne fehlen. Im Entwurf vom Wochenende steht das noch nicht." }
+  - { figur: schwung, text: "Kommt nächste Woche, versprochen." }
+  - { figur: lot, zusatz: am Telefon, text: "Der Netzbetreiber hat angerufen: Der Stromanschluss ans Netz kommt erst im März, nicht im Januar. Ohne Strom keine Säge." }
+  - { figur: faden, text: "Das ist ein Problem, kein Risiko: Es ist eingetreten. Als Zwischenlösung gibt es Baustrom, eine vorläufige Stromversorgung der Baustelle; für den Schulstart ändert sich nichts. Es gehört in den Bericht." }
+  - { figur: grundstein, text: "Eine Seite, so lese ich das gern. Was genau soll ich entscheiden – und bis wann?" }
+
+frage: Der Entwurf liegt vor Ihnen, alle Punkte sind grün, die Bürgermeisterin wartet auf den Bericht. Was tun Sie?
+
+antworten:
+  - wertung: falle
+    text: "Sie nehmen den grünen Bericht an. Konrad Schwung nennt einen neuen Termin für die Fassadenpläne – das genügt Ihnen."
+    balken: { geld: -1, zeit: -1, vertrauen: -2 }
+    bild: warnschild
+    folge: |
+      Die Punkte bleiben grün, der Bericht geht mit dem Netzanschluss als Problem an die Bürgermeisterin. Der neue Termin für den Planstand verstreicht, die Fassadenfirma wartet eine Woche und berechnet die Wartezeit.
+
+      Clara Fadens Prüfvermerk ist längst im Haus: „Der Planstand ist überfällig.“ Die Bürgermeisterin legt ihn neben den grünen Bericht. „Warum stand das nicht drin?“ Der Bericht wird mit dem Planstand neu verteilt, doch die grüne Fassung haben da schon alle gelesen.
+  - wertung: vertretbar
+    text: "Sie lassen den Bericht, wie er ist, und fragen Konrad Schwung persönlich am Telefon nach dem Planstand der Fassade."
+    balken: { geld: 0, zeit: 0, vertrauen: 0 }
+    bild: telefon
+    folge: |
+      Auf Ihre Nachfrage erklärt Konrad Schwung den Planstand, am Telefon, freundlich und ausführlich. Der Bericht geht grün zur Bürgermeisterin, mit dem Netzanschluss als Problem, aber ohne die Fassade. Die Bürgermeisterin liest ihn und fragt nicht nach.
+
+      Erst bei einem Rundgang mit Theo Lot hört sie vom Planstand. Im Prüfvermerk von Clara Faden steht er schon als überfällig; im Bericht fehlt die Erklärung.
+  - wertung: gut
+    text: "Sie lassen den überfälligen Planstand in den Bericht aufnehmen und verlangen vom Architekten eine Erklärung, nicht nur einen Termin."
+    balken: { geld: 0, zeit: 1, vertrauen: 1 }
+    bild: berichtsblatt
+    folge: |
+      Konrad Schwung erklärt es: Der Fensterbauer hat seine Maße zweimal geändert, die Anschlüsse müssen noch mit dem Statiker abgestimmt werden, der die Tragfähigkeit berechnet. Clara Faden nimmt die fehlenden Pläne als überfällige Aufgabe mit Grund und Termin in den Bericht auf. Außerdem steht dort der Netzanschluss als Problem, mit dem Baustrom als Zwischenlösung.
+
+      Die Bürgermeisterin liest die Seite einmal und sagt: „So sehe ich, wo es hakt.“ Weil der Plan früh geklärt ist, gewinnen Sie Zeitpuffer.
+
+gut: |
+  Jede Woche wird alles Offene geprüft. Einmal im Monat gibt es einen Termin von höchstens einer Stunde und einen Bericht von höchstens einer Seite. Sie prüfen den Bericht darauf, ob man ihn nachvollziehen kann, nicht darauf, wie viele Felder er hat: Wer macht was bis wann?
+
+mini:
+  art: bericht
+  titel: Was fehlt im Bericht?
+  aufgabe: "Noch einmal der Entwurf, nach dem Anruf des Netzbetreibers ergänzt: sechs Zeilen. Bei welchen hätten Sie nachbessern lassen, weil Wichtiges fehlt?"
+  bild: berichtsblatt
+  schluss: "Drei Zeilen mussten nachgebessert werden."
+  posten:
+    - { text: "Kosten: unverändert rund eine Million über dem Budget; die Mehrkosten der Haustechnik sind seit November als Risiko geschlossen.", loesung: ok, erklaerung: "Die Zeile ist in Ordnung: Der Kostenstand steht einmal da, eine zweite Liste daneben braucht niemand." }
+    - { text: "Termine: alle Punkte grün.", loesung: nachfordern, erklaerung: "Die Fassade fehlt: Der Termin für den Planstand ist verstrichen, und Grün erklärt das nicht." }
+    - { text: "Netzanschluss: erst im März statt im Januar, bis dahin Baustrom. Für den Schulstart ändert sich nichts.", loesung: ok, erklaerung: "Die Zeile ist in Ordnung: Sie nennt das Problem, die Zwischenlösung und die Folge für den Schulstart. Mehr braucht eine Seite nicht." }
+    - { text: "Blockierte Aufgaben: –", loesung: nachfordern, erklaerung: "Der Bericht nennt blockierte Aufgaben. Der überfällige Planstand fehlt dort noch: Was ist die Ursache, und was ist der nächste Schritt?" }
+    - { text: "Kapselung der Flure: eingebaut, damit erledigt.", loesung: nachfordern, erklaerung: "Eingebaut ist nicht wirksam. Geschlossen wird, wenn die Behörde die Wirkung bestätigt hat." }
+    - { text: "Dringliches: seit dem letzten Bericht keine Meldung.", loesung: ok, erklaerung: "Dringliches wartet nicht auf den Bericht; kam nichts, darf das so dastehen." }
+
+dahinter: "Der Bericht darf eine Seite sein, weil er auf denselben Stand zeigt wie die Einträge. Eine Seite ohne Entscheidungsfrage ist aber nur Beobachtung, und Grün ohne Erklärung verbirgt, was offen ist. Wo wenig geschieht, genügt wenig: In vereinbarten ruhigen Zeiten findet der Termin nur bei konkretem Bedarf statt, den Bericht gibt es weiter."
+
+vertiefung:
+  form: nachdenken
+  titel: Was gehört auf eine Seite?
+  text:
+    - "Der Leiter einer Kita bekommt jeden Monat den Bericht des Hausmeisters, früher hat er ihn aufmerksam gelesen: drei Seiten mit allem, was repariert wurde, seit dem ersten Tag. Gelesen hat ihn zuletzt niemand mehr. Im November fehlte darin ein Satz über den Heizungsausfall im Gruppenraum, der seit zwei Wochen anhält."
+    - "Was gehört auf eine einzige Seite, und was kann draußen bleiben?"
+  antwort:
+    - "Hinein gehört, was sich verändert hat und was jemand entscheiden oder wissen muss: der Heizungsausfall, was dagegen geschieht und bis wann, eine Frage, die der Leiter beantworten muss, und ein Verweis auf den vollständigen Eintrag. Draußen bleibt, was unverändert ist und schon an anderer Stelle steht."
+    - "Dann ist die Seite kurz und trotzdem vollständig, weil sie nicht noch einmal alles erzählt, sondern zeigt, wo man nachsieht. Hinein gehört auch, was auffällt: Fällt die Heizung seit zwei Wochen aus und steht nichts im Bericht, ist das die wichtigste Zeile, die es nicht gibt."
+    - "Und sie bleibt ehrlich: Ein grüner Punkt ohne Satz darüber, was dahintersteckt, sagt dem Leiter nichts, was er nicht schon hoffte."
+
+regie:
+  notiz: "Kern: Der Bauherr bekommt jeden Monat eine Seite und prüft sie auf Nachvollziehbarkeit: Wer, was, bis wann? Ein grüner Punkt ersetzt keine Erklärung, ein neuer Termin auch nicht."
+  leitfragen:
+    - Was steht auf der einen Seite, die Sie jeden Monat bekommen – und was fehlt?
+    - Woran sehen Sie, ob ein grüner Punkt stimmt?

@@ -6,6 +6,7 @@ import { createHash } from 'node:crypto';
 import { mkdtemp, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import vm from 'node:vm';
+import { W } from '../src/ui/woerter.ts';
 import {
   ANKER,
   BUDGET,
@@ -49,7 +50,7 @@ function skriptInhalt(html: string): string {
  * cspZeile() abgeleitet: Jede Lockerung (zusätzliche Quelle, neue Direktive) muss hier auffallen.
  */
 function erwarteteCsp(hash: string): string {
-  return `default-src 'none'; script-src '${hash}'; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'`;
+  return `default-src 'none'; script-src '${hash}'; style-src 'unsafe-inline'; img-src 'self' data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'`;
 }
 
 function zaehle(text: string, nadel: RegExp): number {
@@ -305,12 +306,25 @@ test('Webseitenordner (P16.13, O-42, O-43, O-47): Hauptseite, Impressum, Datensc
     for (const m of html.matchAll(/(IBM Plex Sans|IBM Plex Mono|Big Shoulders Display|Barlow Condensed|Caveat)/gu)) assert.ok(index.includes(`font-family: '${m[1]}'`) || index.includes(`font-family:'${m[1]}'`) || index.includes(`"${m[1]}"`), `${name}: Schrift ${m[1]} nicht eingebettet`);
   }
   const datenschutz = await readFile(path.join(dist, 'datenschutz.html'), 'utf8');
-  for (const w of ['keine Cookies', 'IONOS', 'Fortschritt löschen', 'BayLDA', 'Local Storage', 'Lesefortschritt', 'Fortschritt zurücksetzen']) assert.ok(datenschutz.includes(w), `Datenschutz nennt ${w}`);
+  for (const w of ['keine Cookies', 'IONOS', 'Gespeicherten Fortschritt löschen', 'BayLDA', 'Local Storage', 'Lesefortschritt', 'Lesefortschritt löschen']) assert.ok(datenschutz.includes(w), `Datenschutz nennt ${w}`);
+  // L-323: die Knopfwörter der Seite stehen im Datenschutz wortgleich (wer sucht, findet den Knopf)
+  for (const w of [W.geschichte.fortschrittLoeschen, W.themen.zuruecksetzen, W.regie.protokollLoeschen]) assert.ok(datenschutz.includes(`„${w}“`), `Datenschutz nennt „${w}“`);
   assert.equal(await readFile(path.join(dist, 'robots.txt'), 'utf8'), `User-agent: *\nAllow: /\n\nSitemap: ${ADRESSE}sitemap.xml\n`);
   const sitemap = await readFile(path.join(dist, 'sitemap.xml'), 'utf8');
   assert.deepEqual([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/gu)].map((m) => m[1]), [ADRESSE, `${ADRESSE}impressum.html`, `${ADRESSE}datenschutz.html`]);
   const png = await readFile(path.join(dist, 'vorschau.png'));
   assert.equal(png.readUInt32BE(16), 1200);
   assert.equal(png.readUInt32BE(20), 630);
+  const ico = await readFile(path.join(dist, 'favicon.ico'));
+  assert.equal(ico.readUInt16LE(2), 1, 'ICO-Kopf');
+  assert.equal(ico.readUInt16LE(4), 2, 'zwei Größen');
+  const apple = await readFile(path.join(dist, 'apple-touch-icon.png'));
+  assert.equal(apple.readUInt32BE(16), 180);
+  assert.equal(apple.readUInt32BE(20), 180);
+  assert.match(await readFile(path.join(dist, 'favicon.svg'), 'utf8'), /^<svg [^>]*viewBox="0 0 64 64"/u);
+  for (const seite of ['index.html', 'impressum.html', 'datenschutz.html']) {
+    const h = await readFile(path.join(dist, seite), 'utf8');
+    for (const m of ['href="favicon.svg"', 'href="favicon.ico"', 'rel="apple-touch-icon" href="apple-touch-icon.png"']) assert.ok(h.includes(m), `${seite}: ${m}`);
+  }
   assert.match(await readFile(path.join(dist, '.htaccess'), 'utf8'), /frame-ancestors 'none'/u);
 });

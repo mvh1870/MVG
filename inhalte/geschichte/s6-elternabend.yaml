@@ -1,0 +1,78 @@
+# 6 · Der Elternabend (Drehbuch docs/drehbuch-v2/02-akt-2.md, Station 6)
+# Kern: Beschlossen ist, was die zuständige Stelle entschieden hat; bis zur Entscheidung gilt die bisherige Planung; eine offene
+# Entscheidung hat eine zuständige Stelle. Keine Regel zu Presse oder Außenkommunikation (L-273): die Presse ist Kulisse.
+# Szene Zeile 1 ist das Echo E6 (Quelle Station 5); die Folgen erzeugen das Echo E8 (Station 6 → 13, ausgespielt in Station 13).
+# Keine Mini-Aufgabe (bewusst: die Szene mit dem Chor der Eltern ist die Interaktion).
+nr: 6
+titel: Der Elternabend
+zeit: August 2026
+campus: { stufe: 2.5, jahreszeit: sommer, licht: abend }
+bruecke: "August: Auf dem Elternabend nennen Sie den Eltern, was beschlossen und was noch offen ist, statt etwas zu versprechen."
+thema: verantwortung
+belege: [v24:hb-1, v24:va-4.1, v24:hb-1.5, v24:hb-3.1]
+bild-szene: stuhlreihen
+bild-frage: klemmbrett
+
+einstieg: |
+  Ende August 2026. Der Abend ist warm, im Aufenthaltsraum der Containerschule stehen Stuhlreihen, draußen lehnen Fahrräder am Zaun. Die Eltern der künftigen Gesamtschule sind gekommen, viele mit Kindern an der Hand. In der letzten Reihe sitzt ein Reporter der Zeitung „Lindenbote“ mit Notizblock. Konrad Schwung sitzt daneben und sagt heute lieber nichts.
+
+  Die Vorsitzende des Elternbeirats meldet sich als Erste: „{echo: E6}“
+
+szene:
+  # E6 (im Einstieg, keine eigene Sprecherin): je nach Antwort in Station 5 (gut: erweiterbare Mensa beschlossen; vertretbar: Schule wartete; Falle: Zusage beim Schulfest)
+  - { text: "Die Vorsitzende des Elternbeirats steht mit dem Klemmbrett auf und fragt: „Und kommen unsere Kinder 2028 wirklich in die neuen Räume? Ja oder nein – ich schreibe es auf die Einladung.“" }
+  - { figur: klingel, zusatz: hält die Messingglocke im Arm, text: "Ich würde den Eltern so gern etwas Festes sagen." }
+  - { text: "Die Vorsitzende fragt weiter: „Und was heißt das für meinen Jüngsten? Er soll nicht der Letzte im Container sein.“ Hinten fragt der Reporter: „Und wer entscheidet über die Mensa?“" }
+  - { figur: faden, text: "Ich habe gestern bis spät aufgeschrieben, was feststeht und was nicht. Sprechen müssen Sie." }
+
+frage: Die Vorsitzende schaut Sie an, hinten ist der Notizblock gezückt. Was sagen Sie den Eltern?
+
+antworten:
+  - wertung: gut
+    text: "Sie sagen: Die Mensa wird erweiterbar gebaut, Schulstart 2028 bleibt das Ziel. Eine größere ist nicht beschlossen; die Bürgermeisterin entscheidet erst, wenn ein neuer Antrag vorliegt."
+    balken: { geld: 0, zeit: 0, vertrauen: 1 }
+    bild: klemmbrett
+    folge: |
+      Es wird still im Saal, dann nickt die Vorsitzende und schreibt auf ihrem Klemmbrett mit: „Beschlossen, offen, und wer entscheidet. Das kann ich weitergeben.“ Hinten blättert der Reporter eine Seite um: „Das schreibe ich so auf.“
+
+      Hanna Klingel drückt die Glocke an sich. „Dann läutet sie eben erst im neuen Haus.“
+  - wertung: falle
+    text: "Sie beruhigen die Eltern: „2028 ist alles fertig, und die Mensa wird größer.“ Alle sollen den Abend mit einem guten Gefühl verlassen."
+    balken: { geld: -1, zeit: 0, vertrauen: -2 }
+    bild: schlagzeile
+    schlagzeile: "Stadt verspricht: 2028 ist alles fertig"
+    folge: |
+      Die Eltern klatschen, Hanna Klingel lächelt unsicher. Am nächsten Morgen steht im „Lindenbote“: „Stadt verspricht: 2028 ist alles fertig.“ Dazu zitiert der Reporter das „Das kriegen wir hin“ von Konrad Schwung vom Schulfest.
+
+      Die Bürgermeisterin liest die Zeitung beim Frühstück und ruft an. Clara Faden stellt den Stand richtig, die Schule schreibt einen Elternbrief; das kostet Arbeit, und mancher Elternteil traut dem Brief weniger als der Zeitung.
+  - wertung: vertretbar
+    text: "Sie sagen nur, was sicher ist: Der Bau läuft, die Planung ist weit. Zur Mensa verweisen Sie auf später."
+    balken: { geld: 0, zeit: 0, vertrauen: 0 }
+    bild: stuhlreihen
+    folge: |
+      Die Vorsitzende senkt das Klemmbrett. „Und wann erfahren wir es dann?“ Auf dem Heimweg sagen viele Eltern, man habe sie vertröstet. Im „Lindenbote“ steht am nächsten Morgen: „Viele Fragen, wenig Antworten.“
+
+      Clara Faden schreibt den Stand auf ein Blatt, das die Schule eine Woche später an alle Eltern verteilt.
+
+gut: |
+  Beschlossen ist nur, was die zuständige Stelle entschieden hat, hier die Bürgermeisterin. Wird etwas geändert, gilt bis zur Entscheidung die bisherige Planung. Auch bei einer offenen Entscheidung steht fest, wer sie trifft.
+
+dahinter: "Wer etwas zusagt, das nicht beschlossen ist, schafft neben dem Beschluss eine zweite Wahrheit. Wer den Stand nennt, zeigt: Hier wird entschieden, und man weiß, von wem."
+
+vertiefung:
+  form: nachdenken
+  titel: Wer sagt was nach außen?
+  text:
+    - "Ein Sportverein baut eine Vereinshalle. Die Versammlung ist gut besucht, die Stimmung warm. Jemand aus der letzten Reihe fragt: „Kommt die Kletterwand mit?“ Der Vorsitzende überlegt. Es wäre so einfach, „Ja, natürlich“ zu sagen. Alle würden lächeln."
+    - "Beschlossen hat der Vorstand bisher nur die Halle mit Umkleiden. Für die Kletterwand liegt ein Vorschlag auf dem Tisch, über den der Vorstand im Herbst entscheidet. Sagt der Vorsitzende „Ja“, entsteht ein Versprechen, das niemand beschlossen hat. Sagt er „Nein“, nimmt er die Entscheidung vorweg."
+    - "Sagt er „Dazu sage ich heute nichts“, bleibt die Frage im Raum, und im Flur wird gemutmaßt."
+    - "Wie könnte der Vorsitzende antworten, ohne etwas zuzusagen und ohne auszuweichen?"
+  antwort:
+    - "Er nennt den Stand in drei Teilen. Die Halle mit Umkleiden ist beschlossen. Die Kletterwand ist noch offen. Der Vorstand entscheidet im Herbst, und das Ergebnis erfahren alle auf der nächsten Versammlung. Damit weiß jeder, woran er ist, auch wer enttäuscht ist."
+    - "Das ist weder ein Versprechen noch ein Ausweichen, sondern einfach der Stand. Am nächsten Morgen fragt niemand, wer das versprochen hat, und im Herbst muss der Vorstand nichts zurücknehmen."
+
+regie:
+  notiz: "Kern: Auch vor Eltern und Presse hilft der Stand: Was beschlossen ist, was offen ist und wer wann entscheidet. Eine Zusage, die niemand beschlossen hat, ersetzt keinen Beschluss."
+  leitfragen:
+    - Wer spricht bei Ihnen vor Betroffenen – und worauf stützt er sich?
+    - Was sagen Sie, wenn Sie eine Frage noch nicht beantworten dürfen?

@@ -17,7 +17,7 @@ export async function lauf(seite, h) {
   await h.erwarte('[data-pruef="leinwand-warten"], .anzeige', leinwand);
   await h.klick('[data-pruef="regie-bereich-story"]');
   // P17.6: Sprung je Schritt – direkt in den Vergleich von Kapitel 7; Notiz und Leitfragen nur in der Regie
-  await seite.locator('[data-pruef="regie-sprung"]').selectOption('k7:vergleich');
+  await seite.locator('[data-pruef="regie-sprung"]').selectOption('s12:vergleich');
   await h.erwarte('[data-pruef="regie-notiz"] .regie-notiz-text');
   await h.erwarte('[data-pruef="regie-leitfragen"]');
   await h.erwarte('.anzeige [data-pruef="gs-vgl-karten"]', leinwand);
@@ -48,7 +48,7 @@ export async function lauf(seite, h) {
   for (const frage of await seite.locator('[data-pruef="regie-leitfragen"] li').allInnerTexts()) if (lwText.includes(frage)) h.befund(`Leitfrage auf der Leinwand: ${frage}`);
   if (/\b(vertretbar|Falle)\b/u.test(lwText) || (await leinwand.locator('[data-wertung], .regie-wertung').count()) > 0) h.befund('Wertung auf der Leinwand');
   // Mini-Aufgabe aus der Regie: Zuordnung setzen (Leinwand zeigt die Rückmeldung), auflösen, Reihenfolge anklicken
-  await seite.locator('[data-pruef="regie-sprung"]').selectOption('k2:mini');
+  await seite.locator('[data-pruef="regie-sprung"]').selectOption('s2:mini');
   await h.klick('[data-pruef="regie-mini-1-risiko"]');
   await h.erwarte('.anzeige [data-pruef="posten-1"][data-lage="falsch"]', leinwand);
   await h.klick('[data-pruef="regie-mini-aufloesen"]');
@@ -56,10 +56,30 @@ export async function lauf(seite, h) {
   const richtig = await leinwand.locator('.anzeige .gs-mini-posten[data-lage="richtig"]').count();
   const alle = await leinwand.locator('.anzeige .gs-mini-posten').count();
   if (alle === 0 || richtig !== alle) h.befund(`Mini-Aufgabe aufgelöst: ${richtig} von ${alle} richtig auf der Leinwand`);
-  await seite.locator('[data-pruef="regie-sprung"]').selectOption('k6:mini');
+  await seite.locator('[data-pruef="regie-sprung"]').selectOption('s10:mini');
   await h.klick('[data-pruef="regie-reihe-2"]');
   await h.erwarte('.anzeige [data-pruef="posten-2"] .gs-reihe-nr:has-text("1")', leinwand);
   if ((await leinwand.locator('.anzeige button, .anzeige a[href]').count()) > 0) h.befund('Bedienelemente auf der Leinwand');
+  // P19.7: Sprung je Akt, Pause, neue Mini-Arten, Entscheidungsbuch – die Leinwand folgt, ohne Bedienelement und ohne Regie-Material
+  await h.klick('[data-pruef="regie-akt-a2"]');
+  await h.erwarte('.anzeige [data-pruef="akt-kopf-a2"]', leinwand);
+  if ((await leinwand.locator('.anzeige [data-pruef="gs-titel"]:has-text("Der Elternabend")').count()) !== 1) h.befund('Leinwand: Sprung zu Akt II führt nicht zu Station 6');
+  await h.klick('[data-pruef="regie-pause-a1"]');
+  await h.erwarte('.anzeige [data-pruef="gs-verlauf"]', leinwand);
+  await h.axe('regie-pause');
+  await h.axe('leinwand-pause', leinwand);
+  if ((await seite.locator('[data-pruef="regie-pause-liste"] li').count()) !== 5) h.befund('Regie: Überblick der Pause nennt nicht fünf Stationen');
+  const pauseText = await leinwand.locator('body').innerText();
+  if (pauseText.includes(await seite.locator('[data-pruef="regie-pause-liste"] li').first().innerText())) h.befund('Regie-Überblick der Pause auf der Leinwand');
+  for (const [station, art] of [['s4', 'matrix'], ['s7', 'mappe'], ['s8', 'pinnwand'], ['s9', 'bericht'], ['s11', 'rueckfragen']]) {
+    await seite.locator('[data-pruef="regie-sprung"]').selectOption(`${station}:mini`);
+    await h.erwarte(`.anzeige [data-pruef="mini-${art}"]`, leinwand);
+    if ((await leinwand.locator('.anzeige button, .anzeige a[href], .anzeige input, .anzeige select, .anzeige textarea').count()) > 0) h.befund(`Bedienelemente auf der Leinwand bei der Mini-Aufgabe von ${station} (${art})`);
+  }
+  await h.klick('[data-pruef="regie-buch"]');
+  await h.erwarte('.anzeige [data-pruef="gs-buch"]', leinwand);
+  if ((await leinwand.locator('.anzeige button, .anzeige a[href]').count()) > 0 || (await leinwand.locator('.anzeige .gs-buch-neu').count()) > 0) h.befund('Leinwand: das Buch zeigt Bedienelemente oder die Markierung „neu“');
+  await h.klick('[data-pruef="regie-buch"]');
   await h.erwarte('[data-pruef="leinwand-status"][data-status="ok"]');
   // Theorie und Explore auf der Leinwand
   await seite.locator('[data-pruef="regie-thema"]').selectOption('verantwortung');

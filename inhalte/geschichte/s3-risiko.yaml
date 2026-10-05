@@ -1,0 +1,93 @@
+# 3 · Wie gefährlich ist das? (Drehbuch v2 Akt I, Station 3; Vorlage docs/drehbuch-v2/01-akt-1.md)
+# Die Frühwarnung aus 2 ist geklärt und wird Risiko; Wahrscheinlichkeit hoch, höchste belegte Auswirkung Stufe 4 → vorrangig.
+# Gegenmaßnahme über 100.000 Euro aus der Reserve und „Abwarten“ (Annahme eines wesentlichen Risikos) → Bürgermeisterin.
+# Echo: E2 kommt hier an (Szene, Zeile 2); E3 (→ 7) und E4 (→ 12) entstehen hier. Buch-Zeile 3 steht in rahmen.yaml.
+nr: 3
+titel: Wie gefährlich ist das?
+zeit: April 2026
+campus: { stufe: 1, jahreszeit: fruehling, licht: tag }
+kurzfassung: true
+thema: vorgaenge
+werkzeuge: [{ id: risiko-grenzen, beispiel: ris-009 }]
+belege: [v24:hb-1.2, v24:hb-1.3, v24:hb-2, v24:hb-3, v24:hb-3.1, k4.4-p1, k3.2-t1, k4.2-p3, v24:va-4.1]
+bild-szene: matrix
+bild-frage: warnschild
+
+einstieg: |
+  April 2026. Die Bagger sind da, die Baugrube wird jeden Tag tiefer. Die Antwort der Hersteller liegt auf dem Tisch: ein Umschlag mit drei Schreiben, daneben ein Kalender, auf dem jemand den Sommer 2028 dick eingekreist hat.
+
+einstieg-kurz: |
+  April 2026. Die Schreiben der Hersteller liegen auf dem Tisch.
+
+szene:
+  - { figur: schwung, text: "Drei Hersteller haben geantwortet, alle brauchen jetzt ein halbes Jahr statt vier Monate. Der vierte meldet sich noch. Vielleicht wird es ja wieder besser." }
+  # Zeile 2: lange Fassung mit Echo E2 (ersetzt „Ich habe es als Risiko bewertet.“); Kurzfassung: die alte Zeile (text-kurz), weil Station 2 dort nur Brücke ist
+  - figur: faden
+    echo: E2
+    fortsetzung: "Wie wahrscheinlich ist es? Hoch. Wie schlimm, wenn es so kommt? Dann fangen die Holzbauer bis zu zehn Wochen später an, und der Schulstart ist in Gefahr."
+    text-kurz: "Ich habe es als Risiko bewertet. Wie wahrscheinlich ist es? Hoch. Wie schlimm, wenn es so kommt? Dann fangen die Holzbauer bis zu zehn Wochen später an, und der Schulstart ist in Gefahr."
+  - { figur: lot, kurzfassung: false, text: "Zehn Wochen. Die holt keiner rein, ich auch nicht." }
+  - { figur: schwung, kurzfassung: false, text: "Wir könnten auch einfach hoffen. Bei meinen letzten drei Projekten hat sich das jedes Mal eingerenkt." }
+  - { figur: faden, kurzfassung: false, text: "Hoffen ist kein Weg." }
+  # Regie: bei dieser Zeile schreibt Fadens Hand das Wort „vorrangig“ neben das markierte Feld der Matrix (Bildvariante, kein neuer Text)
+  - { figur: faden, text: "Hoch und schwer zusammen heißt: vorrangig bearbeiten. Ein Ausweg: Wir schreiben die Holzelemente in einem eigenen Paket früher aus, holen also früher Angebote ein. Das kostet rund 150.000 Euro mehr. Oder wir warten ab – dann trägt die Stadt das Risiko, und der Spielraum schrumpft." }
+  - { figur: klingel, kurzfassung: false, zusatz: stellt eine Messingglocke ins Regal, text: "Die habe ich aus der alten Schule mitgebracht. Bitte sagen Sie mir nicht, dass meine Schule 2028 noch in Containern sitzt." }
+
+frage: "Die Projektsteuerin hat bewertet. Was machen Sie damit?"
+
+antworten:
+  - wertung: vertretbar
+    text: "Sie lassen der Bürgermeisterin sofort Bescheid geben. Die Vorlage, die schriftliche Entscheidungsgrundlage, geht Ende April in den regulären Lenkungskreis."
+    balken: { geld: -1, zeit: -1, vertrauen: -1 }
+    bild: kalender
+    folge: |
+      Die Bürgermeisterin weiß Bescheid und wartet auf die Vorlage. Die Vorlage kommt Ende April in den regulären Lenkungskreis; die Lage ist dieselbe, nur die Zeit ist knapper. Die Bürgermeisterin entscheidet wie empfohlen: früher ausschreiben, das Geld kommt aus der Reserve.
+
+      Dann fragt sie: „Warum bekam ich die Vorlage nicht gleich mit der Meldung? Zwei Wochen sind bei so etwas viel.“ Die Holzelemente werden Mitte Mai ausgeschrieben, gut zwei Wochen später, als es möglich gewesen wäre.
+  - wertung: falle
+    text: "Sie warten mit der Meldung, bis der vierte Hersteller geantwortet hat und die Zahl bestätigt ist."
+    balken: { geld: -2, zeit: -2, vertrauen: -2 }
+    bild: telefon
+    folge: |
+      Clara Faden schüttelt freundlich den Kopf: „Das Risiko ist vorrangig, deshalb muss es jetzt zur Bürgermeisterin – ich warte nicht auf die bestätigte Zahl.“ Clara Faden setzt das Risiko auf die Tagesordnung des Lenkungskreises. Die Bürgermeisterin ruft an, bevor Sie es ihr erklären konnten: „Sie wollten damit warten? Was weiß ich sonst noch nicht?“
+
+      Die Vorlage liegt erst am Ende des Monats vor, der Lenkungskreis berät, und die Bürgermeisterin entscheidet noch im April: früher ausschreiben, das Geld kommt aus der Reserve. Die Ausschreibung geht aber erst Mitte Mai hinaus, weil davor alle Schritte später begannen; die Hersteller kalkulieren neu.
+  - wertung: gut
+    text: "Sie lassen der Bürgermeisterin sofort Bescheid geben; die Vorlage – früher ausschreiben oder abwarten – liegt ihr diese Woche vor."
+    balken: { geld: -1, zeit: 2, vertrauen: 1 }
+    bild: stempel
+    folge: |
+      Die Bürgermeisterin liest die Vorlage am Abend. Darin stehen zwei Wege und die Empfehlung, früher auszuschreiben.
+
+      Der Lenkungskreis berät kurz, dann entscheidet die Bürgermeisterin: früher ausschreiben, das Geld kommt aus der Reserve. „Abwarten hieße, ich trage das Risiko. Das will ich nicht.“
+
+      Eine Woche später sind die Holzelemente ausgeschrieben, und Theo Lot nickt, den Blick auf den eingekreisten Sommer 2028 im Kalender.
+    folge-kurz: |
+      Der Lenkungskreis berät kurz, dann entscheidet die Bürgermeisterin: früher ausschreiben, das Geld kommt aus der Reserve.
+
+      Eine Woche später sind die Holzelemente ausgeschrieben, und Theo Lot nickt, den Blick auf den eingekreisten Sommer 2028 im Kalender.
+
+gut:
+  - { text: "Ein Risiko wird nach Wahrscheinlichkeit und schwerster Folge, die sich belegen lässt, eingestuft.", kurzfassung: false }
+  - "Bei „vorrangig“ erfährt die Bürgermeisterin davon, und die Entscheidung wird rechtzeitig vorbereitet. Droht eine Handlungsmöglichkeit verloren zu gehen, hier das frühe Ausschreiben, wird das unabhängig von der Einstufung behandelt."
+  - { text: "Ob die Stadt ein großes Risiko trägt oder Reserve einsetzt, entscheidet die Bürgermeisterin – nicht Architekt, Projektsteuerin oder Sie.", kurzfassung: false }
+
+dahinter:
+  - "Die Bewertung macht aus einer Sorge eine Rangfolge: Was vorrangig ist, wird zuerst bearbeitet, und wer ein Risiko tragen will, muss das ausdrücklich entscheiden."
+  - { text: "Wer auf die sichere Zahl wartet, verliert die Möglichkeit, früher auszuschreiben.", kurzfassung: false }
+
+vertiefung:
+  form: warum-so
+  titel: Was heißt „vorrangig“?
+  text:
+    - "Die Risikomatrix, ein Raster aus fünf mal fünf Feldern, zeigt nur, womit die Projektsteuerin zuerst anfängt. Sie ist keine Entscheidung und kein Geldwert. Wahrscheinlichkeit und schwerste Folge, die sich belegen lässt, werden je in fünf Stufen gemessen und miteinander multipliziert. Beim Holz sind beide Werte hoch, also vier mal vier."
+    - "Kleine Ergebnisse heißen beobachten: Es gibt einen Prüftermin und einen Auslöser für eine neue Bewertung. Mittlere heißen gezielt bearbeiten: Eine Maßnahme bekommt eine Verantwortliche und einen Termin. Große heißen vorrangig: Die Fachleute schätzen ein, die Bürgermeisterin wird informiert, die Entscheidung wird rechtzeitig vorbereitet."
+    - "Zwei Besonderheiten: Hat die Folge die höchste Stufe (5), ist ein Risiko immer vorrangig, auch wenn es sehr unwahrscheinlich ist. Und wo eine Handlungsmöglichkeit verloren zu gehen droht, wie hier das frühere Ausschreiben, wird das unabhängig von dieser Einstufung behandelt."
+    - "Fehlt noch eine Angabe, gilt sie nicht als null; die Einstufung bleibt vorläufig, bis sie geklärt ist."
+    - "Zum Vergleich: Wäre die Antwort der Hersteller nur ein mittleres Risiko gewesen, hätte Clara Faden zuerst eine Maßnahme vorgeschlagen: Konrad Schwung fragt nach, bis zum Monatsende, mit einem Namen und einem Termin. Auch das ist Arbeit, aber ohne Eile."
+
+regie:
+  notiz: "Kern: Bei „vorrangig“ erfährt der Bauherr davon, und die Entscheidung wird rechtzeitig vorbereitet; ob die Stadt ein großes Risiko trägt oder Reserve einsetzt, entscheidet die Bürgermeisterin selbst."
+  leitfragen:
+    - Wann erfährt bei Ihnen der Bauherr von einem vorrangigen Risiko – sofort oder im nächsten Bericht?
+    - Wer entscheidet bei Ihnen, ob ein großes Risiko getragen wird?

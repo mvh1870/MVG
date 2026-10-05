@@ -13,7 +13,7 @@ kurzsatz: Die Begriffe und ihre Bedeutung zum Nachschlagen.
 symbol: buch
 deckt: [k13-t1]
 ---
-Die Begriffe von Minimum Viable Governance (MVG) und ihre Bedeutung.
+Die wichtigsten Begriffe von Minimum Viable Governance (MVG) und was sie bedeuten – zum Nachschlagen.
 
 ::: glossar
 :::
@@ -24,5 +24,5 @@ Das Glossar ist Nachschlagewerk, kein Vortragsteil. Im Termin nur öffnen, wenn 
 
 ### Leitfragen
 - Welche Begriffe werden in Ihrer Organisation unterschiedlich verwendet – etwa Freigabe, Mandat oder Datenstand?
-- Wo steht bei Ihnen, was ein solcher Begriff im Projekt verbindlich bedeutet?
+- Wo ist bei Ihnen festgehalten, was ein solches Wort im Projekt verbindlich bedeutet?
 :::

@@ -119,7 +119,7 @@ export function cspZeile(skriptText) {
     "default-src 'none'",
     `script-src '${skriptHash(skriptText)}'`,
     "style-src 'unsafe-inline'",
-    'img-src data: blob:',
+    "img-src 'self' data: blob:",
     'font-src data:',
     "connect-src 'none'",
     "base-uri 'none'",
@@ -139,7 +139,7 @@ export function cspZeile(skriptText) {
 export function setzeZusammen(huelle, cssRoh, jsRoh, favicon = '') {
   let text = huelle.replace(/\r\n?/g, () => '\n');
   // Favicon (P16.13): freiwilliger Anker, höchstens einmal
-  if (text.includes(FAVICON_ANKER)) text = ersetzeEinmal(text, FAVICON_ANKER, favicon === '' ? '' : `<link rel="icon" href="${favicon}">`);
+  if (text.includes(FAVICON_ANKER)) text = ersetzeEinmal(text, FAVICON_ANKER, favicon === '' ? '' : `<link rel="icon" href="${favicon}">\n<link rel="icon" href="favicon.svg" type="image/svg+xml">\n<link rel="icon" href="favicon.ico" sizes="48x48">\n<link rel="apple-touch-icon" href="apple-touch-icon.png">`);
   if (/<script\b/i.test(text)) {
     throw new BauFehler('Die Hülle enthält ein eigenes <script> – die CSP erlaubt nur das eine eingesetzte Skript');
   }
@@ -338,7 +338,7 @@ export const HAUPTSEITE = 'dist/index.html';
 export const ADRESSE = 'https://www.governancekompass.de/';
 
 /** Die Beigaben des Webseitenordners neben der Hauptseite (O-42, O-47). */
-export const BEIGABEN = Object.freeze(['impressum.html', 'datenschutz.html', 'robots.txt', 'sitemap.xml', '.htaccess', 'vorschau.png']);
+export const BEIGABEN = Object.freeze(['impressum.html', 'datenschutz.html', 'robots.txt', 'sitemap.xml', '.htaccess', 'vorschau.png', 'favicon.svg', 'favicon.ico', 'apple-touch-icon.png']);
 
 /** Bildmarke als data:-URL (Favicon der Rechtsseiten; die Hauptseite trägt dieselbe in der Hülle). */
 export function faviconUrl(svg) {
@@ -384,6 +384,11 @@ export async function baueBeigaben(wurzel) {
   const bild = path.join(wurzel, 'quellen', 'marke', 'vorschau.png');
   if (!existsSync(bild)) throw new BauFehler('quellen/marke/vorschau.png fehlt – node werkzeuge/vorschaubild.mjs');
   aus.set('vorschau.png', await readFile(bild));
+  for (const name of ['favicon.svg', 'favicon.ico', 'apple-touch-icon.png']) {
+    const datei = path.join(wurzel, 'quellen', 'marke', name);
+    if (!existsSync(datei)) throw new BauFehler(`quellen/marke/${name} fehlt – node werkzeuge/favicon.mjs`);
+    aus.set(name, await readFile(datei));
+  }
   return aus;
 }
 

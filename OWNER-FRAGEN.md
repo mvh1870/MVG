@@ -13,3 +13,4 @@ FRAGE 2026-10-04-1 · 2026-10-04 13:00 UTC · Sollen die drei Bereichsnamen im K
   a) Umbenennen in Geschichte · Themen · Werkzeuge (Kopf, Fuß, Tab-Titel, Regie-Sprung gleich) — ändert O-38 und O-42 im Wortlaut, CLAUDE.md nennt „Explore“; Tests und Browser-Szenarien mit „Explore“ ziehen mit
   b) Story · Theorie · Explore beibehalten — „Explore“ und „Story“ bleiben für Laien englische Wörter, die Startseite nennt dieselben Orte anders
   VORGABE: a · FRIST: 2026-10-05 01:00 UTC
+VORGABE IN KRAFT 2026-10-04-1 · 2026-10-05 03:12 UTC (+00:00)

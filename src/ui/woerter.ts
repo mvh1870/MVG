@@ -28,7 +28,8 @@ export const W = {
   absender: 'Bauherr Mentoren GmbH i. G.',
   herausgeber: 'Herausgeber: Bauherr Mentoren GmbH i. G.',
   fiktiv: 'Fiktiver Fall',
-  story: 'Story',
+  // FRAGE 2026-10-04-1, Vorgabe a (L-422): Bereichsnamen für Laien deutsch, gleich wie die Türen der Startseite
+  story: 'Geschichte',
   // Start
   start: {
     // Kicker, Leitsatz und These stehen in inhalte/start.md.
@@ -64,9 +65,9 @@ export const W = {
     ersatzTitel: 'So drucken Sie',
     ersatzText: 'Diese Seite ist für den Bildschirm gedacht. Drucken können Sie so:',
     ersatzWege: [
-      'Theorie: „Thema drucken“ auf jeder Seite eines Themas.',
+      'Themen: „Thema drucken“ auf jeder Seite eines Themas.',
       // r72: der Story-Druckbogen (L-232) hat keinen Knopf – ohne diese Zeile kennt den Weg niemand; auf der Leinwand entfällt sie
-      'Story: Drucken Sie mit dem Druckbefehl Ihres Browsers (meist Strg+P). Gedruckt werden Ihre Antworten mit „So macht man es gut“, am Ende auch Ihre Bilanz.',
+      'Geschichte: Drucken Sie mit dem Druckbefehl Ihres Browsers (meist Strg+P). Gedruckt werden Ihre Antworten mit „So macht man es gut“, am Ende auch Ihre Bilanz.',
       'Werkzeuge: Unter dem Ergebnis von Vorlagen-Check, Vorgangs-Wegweiser, Risiko-Bewerter und Monatsbericht steht der Knopf „Drucken“.',
       // R76 (O-56): kein Hinweis auf die Präsentationsansicht mehr – sie druckt ihr Protokoll über den eigenen Knopf
     ],
@@ -170,8 +171,8 @@ export const W = {
   },
   // Rahmen aller Bereiche (P16.11, O-42, O-44)
   rahmen: {
-    theorie: 'Theorie',
-    explore: 'Explore',
+    theorie: 'Themen',
+    explore: 'Werkzeuge',
     bereiche: 'Bereiche',
     bmMarke: 'Bauherr Mentoren – bauherr-mentoren.com',
     angebot: 'Ein Angebot von',
@@ -358,7 +359,7 @@ export const W = {
   },
   // Theorie als Themen (P16.3, O-38)
   themen: {
-    bereich: 'Theorie',
+    bereich: 'Themen',
     titel: 'Die Themen',
     einleitung: 'Minimum Viable Governance in vier Teilen – vom Überblick bis zu den Werkzeugen für die Praxis. Jedes Thema ist für sich lesbar.',
     // Buch (P17.8, O-54): Teile I–IV und Anhang, Nummer vor dem Titel (nie „Kapitel“, O-38)
@@ -401,7 +402,7 @@ export const W = {
   },
   // Explore-Werkzeuge (P16.8, O-46)
   werkzeuge: {
-    bereich: 'Explore',
+    bereich: 'Werkzeuge',
     werkzeuge: 'Werkzeuge',
     keinBeispiel: 'Kein Beispiel vorhanden.',
     // L-322: dreiteiliger Vorspann je Werkzeug

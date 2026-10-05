@@ -1,6 +1,6 @@
 # MVG – interaktives Whitepaper „Minimum Viable Governance“ (Bauherr Mentoren)
 
-Der **Governance Kompass** ist und bleibt eine **Internetseite** (O-42): **Story** (eine durchgehende Geschichte aus Sicht des Bauherrn, O-40), **Theorie** (die MVG-Inhalte als Themen, O-38) und **Explore** (Werkzeuge), dazu Regie + Leinwand für Kundentermine, Impressum und Datenschutz. Seit 2026-10-02 gilt die Neuausrichtung O-36 bis O-49 (Standard „Aufgaben- und Risikomanagement V2.4“ in `quellen/v2.4/`). Der Bauplan ist freigegeben (`docs/BAUPLAN.md`); die Owner-Entscheide stehen in `ENTSCHEIDE.md` (O-n) und gehen allem anderen vor.
+Der **Governance Kompass** ist und bleibt eine **Internetseite** (O-42): **Story** (eine durchgehende Geschichte aus Sicht des Bauherrn, O-40), **Theorie** (die MVG-Inhalte als Themen, O-38) und **Explore** (Werkzeuge), dazu Regie + Leinwand für Kundentermine, Impressum und Datenschutz. Sichtbar heißen die drei Bereiche seit L-422 „Geschichte · Themen · Werkzeuge“ (intern und in den Adressen bleiben `story`, `theorie`, `explore`). Seit 2026-10-02 gilt die Neuausrichtung O-36 bis O-49 (Standard „Aufgaben- und Risikomanagement V2.4“ in `quellen/v2.4/`). Der Bauplan ist freigegeben (`docs/BAUPLAN.md`); die Owner-Entscheide stehen in `ENTSCHEIDE.md` (O-n) und gehen allem anderen vor.
 
 ## Wo was steht
 - `PLAN.md` – Planblatt; oben der offene Teil. `UEBERGABE.md` – Kopf ≤ 100 Zeilen, dein Gedächtnis zwischen Sitzungen.

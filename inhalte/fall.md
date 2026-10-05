@@ -5,7 +5,7 @@
 stadt: Lindenhall
 bauherr: Stadt Lindenhall (Eigentümerin; Budget und Reserve vom Stadtrat beschlossen)
 befugte-stelle: Bürgermeisterin Gisela Grundstein (entscheidet für die Stadt als Bauherr; der Lenkungskreis berät)
-vertretung: Gebäudemanagement der Stadt Lindenhall (in der Story nur als Betreiberin nach der Übergabe sichtbar)
+uebernahme: Gebäudemanagement der Stadt Lindenhall (in der Story nur als Betreiberin nach der Übergabe sichtbar)
 projekt: Schulcampus Lindenhall-Süd
 bauteile: [Gesamtschule, Grundschule, Dreifeldsporthalle]
 bauweise: Holzhybridbau

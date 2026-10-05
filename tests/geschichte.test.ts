@@ -323,7 +323,7 @@ test('Vergleich: Satz der Projektsteuerin über alle 81 Gewichtsstellungen – A
   // Wortlaut der Sätze, die diese Bedingungen tragen: wer ihn ändert, rechnet die Stellungen neu nach
   assert.ok(V.saetze['A']?.startsWith('Das Ersatzgerät liegt vorn – mit diesen Gewichten zählt, dass alle Kinder pünktlich einziehen'));
   assert.ok(V.saetze['B']?.startsWith('Die Leihgeräte liegen vorn – aber nur, weil gute Luft im Unterricht hier kaum zählt'));
-  assert.ok(V.saetze['C']?.startsWith('Der spätere Einzug liegt vorn: Wenn Geld oder Strombedarf so viel zählen wie der Schulstart'));
+  assert.ok(V.saetze['C']?.startsWith('Der spätere Einzug liegt vorn: Hier zählen Geld oder Strombedarf mindestens so viel wie der Schulstart'));
   assert.ok(V.saetze['gleichauf']?.startsWith('Gleichauf – jetzt entscheidet das Urteil'));
 });
 

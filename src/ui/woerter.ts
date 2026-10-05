@@ -296,7 +296,7 @@ export const W = {
     miniInOrdnung: 'in Ordnung',
     miniZettel: 'Zettel',
     miniZettelKopf: 'Das hängt an der Pinnwand:',
-    miniFaden: { verbunden: 'verbunden mit', keinZiel: 'kein Zettel am Ende', stimmt: 'Die Verbindung stimmt.', doppelt: 'Hier würde doppelt gezählt.', nachfordern: 'Hier fehlt eine Verbindung.' } as Record<string, string>,
+    miniFaden: { verbunden: 'verbunden mit', keinZiel: 'noch keine Verbindung', stimmt: 'Die Verbindung stimmt.', doppelt: 'Hier würde doppelt gezählt.', nachfordern: 'Hier fehlt eine Verbindung.' } as Record<string, string>,
     // Eintrag-Kärtchen der Rückfragen (P19.6): Name des Kärtchens und eine leere Zeile
     miniEintrag: 'Der Eintrag',
     miniEintragLeer: 'noch leer',
@@ -346,6 +346,7 @@ export const W = {
     druckOffen: 'noch offen',
     // R76: übersprungene Stationen der Kurzfassung tragen auf Papier ihren Brückensatz statt „Ihre Antwort: …“
     druckBruecke: 'In der Kurzfassung nur erzählt',
+    buchDruckErzaehlt: 'In der Kurzfassung nur erzählt',
     druckBilanzSpaeter: 'Die Bilanz steht am Ende der Geschichte.',
     // Rechner in Explore (gewichteter Vergleich mit Gewichten 1–5)
     kriterium: 'Gesichtspunkt (Kriterium)',

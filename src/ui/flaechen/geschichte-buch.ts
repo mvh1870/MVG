@@ -88,12 +88,11 @@ export function buchSymbol(g: Geschichte, stand: Stand, o: { offen: boolean; neu
 
 /**
  * Papierfassung (Querformat, eine Seite): Titel und Tabelle Nr · Anlass · Art · Entschieden von · Grundlage · Ergebnis, nur Zeilen bis zur
- * aktuellen Station, ohne „neu“, die Art als Wort. Übersprungene Stationen der Kurzfassung tragen nur Art und Ergebnis (null = nichts zu drucken).
+ * aktuellen Station, ohne „neu“, die Art als Wort. Übersprungene Stationen der Kurzfassung tragen Art und Ergebnis; die Felder „Entschieden von“ und „Grundlage“ sind dort zu einer Zelle „nur erzählt“ verbunden (L-410).
  */
 export function buchDruck(g: Geschichte, stand: Stand): HTMLElement | null {
   const sicht = buchEintraege(g, stand);
   if (sicht.length === 0) return null;
-  const strich = '–';
   return h('section', { class: 'druck-teil druck-buch', 'data-pruef': 'druck-buch' },
     h('h2', null, w.buchDruckTitel),
     h('table', { class: 'druck-buch-tabelle' },
@@ -104,7 +103,8 @@ export function buchDruck(g: Geschichte, stand: Stand): HTMLElement | null {
         h('th', { scope: 'row' }, String(s.k.nr)),
         h('td', null, s.k.zeit),
         h('td', null, w.buchArt[s.eintrag.art] ?? s.eintrag.art),
-        h('td', null, s.voll ? inhaltInline(s.eintrag.entschiedenHtml) : strich),
-        h('td', null, s.voll ? inhaltInline(s.eintrag.grundlageHtml) : strich),
+        ...(s.voll
+          ? [h('td', null, inhaltInline(s.eintrag.entschiedenHtml)), h('td', null, inhaltInline(s.eintrag.grundlageHtml))]
+          : [h('td', { colspan: '2' }, w.buchDruckErzaehlt)]),
         h('td', null, inhaltInline(s.eintrag.ergebnisHtml)))))));
 }

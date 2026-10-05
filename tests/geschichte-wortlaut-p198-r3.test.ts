@@ -50,7 +50,7 @@ test('W-08, W-09, W-10, W-11: Wörter der Balken, Pausen, Stelle und Buchzeile (
 });
 
 test('M4 bis M7: Reihenfolge-Aufgabe nennt den Zug, Pinnwand und Matrix erklären sich, Rückmeldungen sind ausgeschrieben (Gegenprobe)', () => {
-  assert.match(s('s10-sturm'), /Wählen Sie zuerst, was als Erstes geschieht, dann den nächsten Schritt/);
+  assert.match(s('s10-sturm'), /Wählen Sie den ersten Schritt, dann den nächsten/);
   const p = s('s8-zahlen');
   assert.match(p, /Was sagen Sie zu jeder Verbindung\?/);
   assert.match(p, /So bleibt sichtbar, woher er kam/);

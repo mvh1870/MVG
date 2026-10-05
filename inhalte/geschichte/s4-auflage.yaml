@@ -77,7 +77,7 @@ mini:
       feld: [1, 5]
     - text: "Die Zufahrt der Lieferwagen könnte gesperrt werden; die Folge für den Termin ist noch ungeklärt. Eingestuft: keine Folge, beobachten."
       loesung: nachfordern
-      erklaerung: "Die Folge ist noch gar nicht geklärt, also ist „keine Folge“ nicht belegt: Eine fehlende Angabe gilt nicht als null. Die Einstufung bleibt vorläufig, bis sie geklärt ist."
+      erklaerung: "Die Folge ist noch gar nicht geklärt, also ist „keine Folge“ nicht belegt: Eine fehlende Angabe gilt nicht als null. Darum gehört die Einstufung nachgebessert, sobald die Folge geklärt ist."
       feld: [3, 1]
     - text: "Der Kran schwenkt morgens über den Fußweg, auf dem Kinder zur Nachbarschule gehen. Wahrscheinlichkeit gering, Folge nach der Matrix klein. Eingestuft: beobachten."
       loesung: nachfordern

@@ -74,7 +74,7 @@ mini:
     - { id: z9, text: "Problem: Kapselung" }
     - { id: z10, text: "Risiko: Kapselung" }
   posten:
-    - { text: "Risiko „angekündigte Mehrkosten“, verbunden mit der Prüfung der Vergabestelle.", von: z1, nach: [z2], loesung: stimmt, erklaerung: "Zusammengehörige Einträge werden verbunden, damit man den Weg vom Hinweis bis zur Klärung sieht." }
+    - { text: "Risiko „angekündigte Mehrkosten“, verbunden mit der Prüfung der Vergabestelle.", von: z1, nach: [z2], loesung: stimmt, erklaerung: "Zusammengehörige Einträge werden verbunden, damit man den Weg vom Hinweis bis zur Klärung sieht. Hier hängt nur ein Eintrag am anderen; nichts steht zweimal in der Rechnung." }
     - { text: "Dieselben Mehrkosten stehen als Risiko mit Spanne und noch einmal in der Prognose, der Vorhersage der Gesamtkosten.", von: z1, nach: [z3], loesung: doppelt, erklaerung: "Was schon in der Prognose steht, wird kenntlich gemacht und nicht noch einmal dazugerechnet." }
     - { text: "Frühwarnung „Holz“, verbunden mit dem Risiko „Lieferzeit“ und dem Beschluss, das Holz früher auszuschreiben.", von: z4, nach: [z5, z6], loesung: stimmt, erklaerung: "Wird aus einem Hinweis ein Risiko, verweist der neue Eintrag auf den alten. So bleibt sichtbar, woher er kam." }
     - { text: "Änderung „Mensa erweiterbar“: Kosten und Termin bewertet, erkannte Risiken der Änderung nicht verbunden.", von: z7, nach: [], loesung: nachfordern, erklaerung: "Risiken, die eine Änderung selbst mit sich bringt, werden für sich bewertet und mit ihr verbunden." }

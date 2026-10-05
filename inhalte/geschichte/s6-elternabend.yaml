@@ -29,7 +29,7 @@ frage: Die Vorsitzende schaut Sie an, hinten ist der Notizblock gezückt. Was sa
 
 antworten:
   - wertung: gut
-    text: "Sie sagen: Die Mensa wird erweiterbar gebaut, Schulstart 2028 bleibt das Ziel. Eine größere ist nicht beschlossen; die Bürgermeisterin entschiede erst bei einem neuen Antrag."
+    text: "Sie sagen: Die Mensa wird erweiterbar gebaut, Schulstart 2028 bleibt das Ziel. Eine größere ist nicht beschlossen; die Bürgermeisterin entscheidet erst, wenn ein neuer Antrag vorliegt."
     balken: { geld: 0, zeit: 0, vertrauen: 1 }
     bild: klemmbrett
     folge: |

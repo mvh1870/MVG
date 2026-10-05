@@ -90,7 +90,7 @@ balken:
     bilanz:
       hoch: Der Zeitpuffer hat gehalten; bis zum Schluss blieb genug Zeit.
       mittel: Der Zeitpuffer war am Ende dünn, hat aber gereicht.
-      niedrig: "Der Zeitpuffer ist aufgebraucht: Die Sporthalle öffnet erst nach den Herbstferien."
+      niedrig: "Der Zeitpuffer ist aufgebraucht: Es blieb keine Luft für weitere Verzögerungen."
   vertrauen:
     titel: Vertrauen
     # R76: der Start unter der Hälfte braucht einen Grund
@@ -187,7 +187,7 @@ echos:
     quelle: s2
     fassungen:
       gut: Die Prüffrage ist beantwortet – deshalb kann ich heute bewerten.
-      vertretbar: Jetzt, wo die Zahlen da sind, bewerte ich es richtig.
+      vertretbar: Jetzt, wo die Zahlen da sind, kann ich es bewerten.
       falle: Die Antworten sind da – später als gedacht, aber jetzt bewerte ich.
   - id: E3
     quelle: s3
@@ -266,7 +266,7 @@ buch:
     art: beschluss
     entschieden: die Bürgermeisterin
     grundlage: Vorlage der Projektsteuerin zur Brandschutzauflage
-    ergebnis: Die Holzbauteile in den Fluren werden gekapselt, rund 400.000 Euro kommen aus der Reserve. Die Wirkung gilt erst, wenn die Brandschutzbehörde sie bestätigt hat.
+    ergebnis: Die Bürgermeisterin lässt die Holzbauteile in den Fluren kapseln, rund 400.000 Euro kommen aus der Reserve. Die Wirkung gilt erst nach Bestätigung der Brandschutzbehörde.
   - station: s5
     art: beschluss
     entschieden: die Bürgermeisterin; der Lenkungskreis hat beraten
@@ -281,7 +281,7 @@ buch:
     art: beschluss
     entschieden: die Bürgermeisterin (Freigabe); bestellt wird über die Vergabestelle
     grundlage: Zuschlagsvorschlag der Vergabestelle zum Holz der Grundschule
-    ergebnis: Der Zuschlag für das Holz der Grundschule ist freigegeben; das Holz für Gesamtschule und Sporthalle war schon im Juni vergeben. Ein Preisnachlass-Angebot für spätere Holzarbeiten liegt vor; es steht als Chance für sich und wird nicht mit Risiken verrechnet.
+    ergebnis: Die Bürgermeisterin hat den Zuschlag für das Holz der Grundschule freigegeben; das Holz für Gesamtschule und Sporthalle war schon im Juni vergeben. Ein Preisnachlass-Angebot für spätere Holzarbeiten liegt vor; es steht als Chance für sich und wird nicht mit Risiken verrechnet.
   - station: s8
     art: vermerk
     entschieden: niemand – eine Prognose ist kein Beschluss

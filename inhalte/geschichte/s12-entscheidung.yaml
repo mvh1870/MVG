@@ -25,7 +25,7 @@ einstieg-kurz: |
   Mai 2027, noch fünfzehn Monate bis zum Schulstart.
 
 szene:
-  - { figur: schwung, text: "Ich sag's lieber gleich und nicht erst, wenn's brennt: Der Hersteller der Lüftungsanlage liefert vier Monate später. Aus dem Hinweis vom April ist ein Problem geworden." }
+  - { figur: schwung, text: "Ich sag's lieber gleich und nicht erst, wenn's brennt: Der Hersteller der Lüftungsanlage liefert vier Monate später. Was im April nur ein Hinweis war, ist jetzt ein Problem." }
   # Echo E4 (Quelle Station 3); in der Kurzfassung mit der Fassung der tatsächlich gewählten Antwort
   - { figur: faden, echo: E4 }
   # Zeile 3 gilt nur auf dem ganzen Weg: „Vier Vorschläge“, der Muss-Filter folgt (kein Vorgriff auf „zulässig“).
@@ -94,7 +94,7 @@ vergleich:
     # R76: ohne „gute Luft“ – A liegt auch vorn, wenn Luft „weniger wichtig“ ist, aber nie ohne Schulstart ≥ „wichtig“ (81 Stellungen gerechnet)
     A: "Das Ersatzgerät liegt vorn – mit diesen Gewichten zählt, dass alle Kinder pünktlich einziehen."
     B: Die Leihgeräte liegen vorn – aber nur, weil gute Luft im Unterricht hier kaum zählt. Passt das zu Ihrer Schule?
-    C: "Der spätere Einzug liegt vorn: Wenn Geld oder Strombedarf so viel zählen wie der Schulstart, lohnt sich das Warten."
+    C: "Der spätere Einzug liegt vorn: Hier zählen Geld oder Strombedarf mindestens so viel wie der Schulstart."
     gleichauf: Gleichauf – jetzt entscheidet das Urteil der Bürgermeisterin, nicht die Punktzahl.
   empfehlung: |
     **Empfehlung:** das Ersatzgerät. Es kostet am meisten, aber nur damit ziehen alle Kinder pünktlich in gute Luft. Knapp ist es trotzdem: Zählen Strombedarf und Betrieb mehr, ändert sich die Rangfolge.

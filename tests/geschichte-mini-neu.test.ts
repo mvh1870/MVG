@@ -311,7 +311,7 @@ test('pinnwand: die Zettel der Wand, je Karte der Faden von Zettel zu Zettel; na
   assert.equal(text(seite(stand(undefined)).querySelector('.gs-mini-wand-kopf') as Element), 'Das hängt an der Pinnwand:');
   assert.equal((el.querySelector('[data-pruef="faden-1"]') as HTMLElement).dataset['faden'], 'offen', 'vor der Wahl neutral');
   assert.match(text(el.querySelector('[data-pruef="faden-1"]') as Element), /Risiko A.*Prüfung B/u);
-  assert.match(text(el.querySelector('[data-pruef="faden-3"]') as Element), /Änderung D.*kein Zettel am Ende/u, 'loses Ende in Worten');
+  assert.match(text(el.querySelector('[data-pruef="faden-3"]') as Element), /Änderung D.*noch keine Verbindung/u, 'loses Ende in Worten');
   assert.deepEqual([...el.querySelectorAll('[data-pruef="posten-1"] button')].map(text), ['Stimmt', 'Zählt doppelt', 'Es fehlt eine Verbindung']);
   s = zug(g, s, 0, 2);
   s = zug(g, s, 1, 1);

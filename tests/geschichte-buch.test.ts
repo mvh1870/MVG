@@ -357,12 +357,17 @@ test('Druck: das Buch auf einer eigenen Querformat-Seite als Tabelle, nur Zeilen
   const ohne = structuredClone(g);
   delete ohne.buch;
   assert.equal(buchDruck(ohne, s), null);
-  // Kurzfassung: übersprungene Stationen mit Strich in den Spalten ohne Eintrag
+  // Kurzfassung: übersprungene Stationen mit einer verbundenen Zelle statt Strichen
   const kurz = { ...bisStation(2, 'gut', true), schritt: { ort: 'kapitel', kapitel: 's3', teil: 'szene' } as const };
   const k = buchDruck(g, kurz);
   assert.ok(k);
   const zweite = k.querySelectorAll<HTMLElement>('tbody tr')[1];
-  assert.deepEqual([...(zweite as HTMLElement).querySelectorAll('td')].map(text).slice(2, 4), ['–', '–']);
+  const zellen = [...(zweite as HTMLElement).querySelectorAll<HTMLElement>('td')];
+  // erzählte Station: Entschieden von und Grundlage zu einer Zelle verbunden, kein Strich (L-410)
+  assert.equal(zellen.length, 4);
+  assert.equal(zellen[2]?.getAttribute('colspan'), '2');
+  assert.equal(text(zellen[2] as Element), W.geschichte.buchDruckErzaehlt);
+  assert.doesNotMatch(text(zweite as Element), /–/u);
 });
 
 /* ------------------------------------------------------------------ Verlauf -- */

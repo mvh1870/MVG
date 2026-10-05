@@ -76,7 +76,7 @@ mini:
     - { text: "Ein Hersteller erwähnt nebenbei am Telefon, Holz werde vielleicht knapp. Genaues weiß er nicht.", bild: telefon, loesung: fruehwarnung, erklaerung: "Ein Hinweis, bei dem noch nicht geklärt ist, ob etwas dran ist. Erst einmal wird das geprüft." }
     - { text: "Der Architekt schätzt bis Freitag die Kosten für den Fahrradkeller.", bild: kostenzettel, loesung: aufgabe, erklaerung: "Eine geplante Arbeit mit Ergebnis, Namen und Termin." }
     - { text: "Nach dem Starkregen steht die Baugrube unter Wasser.", bild: warnschild, loesung: problem, erklaerung: "Das ist schon passiert. Jetzt geht es um die Folgen und die Lösung, nicht mehr um die Wahrscheinlichkeit." }
-    - { text: "Der Lieferant bestätigt schriftlich, dass die Brüstungen später kommen. Ob die Fassade später fertig wird, ist noch offen.", bild: lieferwagen, loesung: risiko, erklaerung: "Die Möglichkeit ist belegt: Etwas Nachteiliges kann eintreten, ist aber noch nicht passiert. Das wird bewertet." }
+    - { text: "Ein Gutachten belegt: Bei längerem Dauerfrost kann sich das Betonieren der Decken verzögern. Ob es so kommt, ist noch offen.", bild: warnschild, loesung: risiko, erklaerung: "Die Möglichkeit ist belegt: Etwas Nachteiliges kann eintreten, ist aber noch nicht passiert. Das wird bewertet." }
 
 dahinter: "Nicht jeder Hinweis wird zum Risiko – aber jeder wird geklärt, bis feststeht, was daraus wird. Wer ihn liegen lässt, erfährt vom Holz erst, wenn es fehlt; wer jeden Hinweis gleich zum Risiko macht, setzt Zahlen in die Welt, die niemand belegen kann."
 

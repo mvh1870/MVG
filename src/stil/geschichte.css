@@ -951,3 +951,14 @@ body[data-teil="auftakt"] .gs-unten { display: none; }
   .gs-leiste .gs-stand-klein { grid-column: 1 / -1; justify-content: space-between; gap: var(--a-2); }
   .gs-leiste .gs-stand-klein .gs-stand-zeile { flex: 1 1 0; min-width: 0; grid-template-columns: auto minmax(0, 1fr); }
 }
+
+/* Prüfrunde 4 (L-410): schmale Spalten. Die Beschriftungen im Verlauf bleiben lesbar groß (das Bild wird auf 320 px verkleinert),
+   die Karten „Was kommt wann?“ geben dem Text die ganze Breite (Bild entfällt), und Namen werden in der Erzählkarte nicht getrennt. */
+@media (max-width: 480px) {
+  .vb-name { font-size: 13px; }
+}
+@media (max-width: 400px) {
+  .gs-reihe-knopf { grid-template-columns: 44px minmax(0, 1fr); }
+  .gs-reihe-knopf .gs-mini-posten-bild { display: none; }
+  .gs-einstieg :is(p, li) { hyphens: manual; -webkit-hyphens: manual; overflow-wrap: break-word; }
+}

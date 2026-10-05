@@ -60,7 +60,7 @@ gut: |
 mini:
   art: reihenfolge
   titel: Was kommt wann?
-  aufgabe: "Bringen Sie die Schritte nach dem Sturm in die richtige Reihenfolge: Wählen Sie zuerst, was als Erstes geschieht, dann den nächsten Schritt."
+  aufgabe: "Bringen Sie die Schritte nach dem Sturm in die richtige Reihenfolge: Wählen Sie den ersten Schritt, dann den nächsten."
   bild: geruest-sturm
   # in der richtigen Reihenfolge; die Seite zeigt sie fest gemischt (src/geschichte/engine.ts, gemischt)
   posten:

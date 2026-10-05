@@ -201,5 +201,8 @@ Vorgabe (bis die Antworten des Owners aus der Klickseite „Story erweitern“ v
 - [x] P19.8 (2026-10-05, L-380–L-414; Berichte `tmp/story-analyse/` U–Y) · Prüf-Agenten (alle Rollen auf die erweiterte Story) + Korrekturschleife — Runde 4 (X-*.md) und Runde 5 (Y-schlusspruefung.md, fünf leichte Befunde Y-01 bis Y-05, eingearbeitet in 79fe75e) ohne schwere oder mittlere Befunde (O-35).
 - [x] P19.9 (2026-10-05, L-420, L-421) · Abschluss: Übergabe, ABNAHME ergänzt, CI grün, Merge nach `main`, neues Paket für die Internetseite, Nachricht an den Owner.
 
+### P20 · Bereichsnamen (FRAGE 2026-10-04-1, Vorgabe in Kraft)
+- [x] P20.1 (Commit „MVG P20.1“, L-422) · Sichtbare Bereichsnamen „Geschichte · Themen · Werkzeuge“ in Kopf, Tab-Titeln, Regie und Druck-Ersatzbogen; Adressen und interne Namen unverändert — Abnahme: `npm run pruefe:voll` grün, ABNAHME/LAUNCH nachgezogen.
+
 ## Erledigt
 (noch nichts)

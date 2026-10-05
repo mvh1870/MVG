@@ -795,7 +795,7 @@ test('Leinwand (R69): Strg+P druckt den Ersatzbogen nur mit dem Theorie-Weg; nir
   // R76: die Seite nennt die Präsentationsansicht nicht mehr (Gegenprobe gegen den alten Weg „Präsentieren: „Protokoll drucken““)
   assert.doesNotMatch(text(ersatzDruck(VERSION).teile), /Präsentieren|Protokoll|Regie/u, 'Seite: ohne Regie-Weg');
   // r72: der Story-Druckbogen (Strg+P in der Geschichte, L-232) steht unter den Wegen; auf der Leinwand nicht
-  const storyWeg = W.druck.ersatzWege.find((x) => x.startsWith('Story'));
+  const storyWeg = W.druck.ersatzWege.find((x) => x.startsWith('Geschichte'));
   assert.ok(storyWeg !== undefined && text(ersatzDruck(VERSION).teile).includes(storyWeg), 'Seite: mit Story-Weg');
   ersatzBogenFuerLeinwand(VERSION);
   document.body.replaceChildren();

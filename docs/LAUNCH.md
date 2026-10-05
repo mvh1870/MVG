@@ -37,7 +37,7 @@ Der Ordner entsteht mit `npm run bau` und wird mit jedem Commit eingecheckt; `np
 ## Nach dem Upload prüfen
 
 - [ ] `http://governancekompass.de` leitet auf `https://www.governancekompass.de/` weiter.
-- [ ] Startseite lädt, die drei Wege öffnen Story, Theorie und Explore.
+- [ ] Startseite lädt, die drei Wege öffnen Story, Theorie und Explore; der Kopf nennt sie sichtbar „Geschichte · Themen · Werkzeuge“ (L-422).
 - [ ] Story: der Auftakt zeigt zwei Wegkarten („Vierzehn Entscheidungen · etwa 40 Minuten“ und „Vier Entscheidungen · etwa 10 Minuten“), nach Station 5 und nach Station 10 kommt eine Pause, ab Station 1 gibt es das Symbol für das Entscheidungsbuch, und „Gespeicherten Fortschritt löschen“ am Fuß setzt alles zurück.
 - [ ] Impressum und Datenschutz sind im Fuß jeder Seite erreichbar.
 - [ ] `https://www.governancekompass.de/robots.txt` und `/sitemap.xml` sind abrufbar.

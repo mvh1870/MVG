@@ -4,6 +4,8 @@ Kopf ≤ 100 Zeilen. Oben JETZT (überschreiben), darunter FRÜHER (anhängen, k
 
 ## JETZT
 
+- **Block 2026-10-05 18:08–18:12 UTC (+00:00), Routine, hingelegt:** Planblatt leer, keine offene Frage. CI 394 auf `claude/haus` (ff0349c) grün. Kette grün (220,4 s, Oberfläche 20 Läufe, 144,9 s). `main` schon enthalten. Rechner: Node 22.22, `npm ci` 8 s. Offen beim Owner nur: `dist/` hochladen (`docs/LAUNCH.md`) oder neue Posten.
+
 - **Block 2026-10-05 15:18–15:24 UTC (+00:00), Routine, hingelegt:** Planblatt leer, keine offene Frage. CI 393 auf `claude/haus` (35e05e3) grün. Kette grün (319,6 s, Oberfläche 200,3 s). `main` schon enthalten. Rechner: Node 22.22, `npm ci` 9 s. Offen beim Owner nur: `dist/` hochladen (`docs/LAUNCH.md`) oder neue Posten.
 
 - **Block 2026-10-05 12:31–12:37 UTC (+00:00), Routine, hingelegt:** Planblatt leer, keine offene Frage. CI 392 auf `claude/haus` (19c44f1) grün. Kette grün (265,3 s, Oberfläche 20 Läufe). `main` schon enthalten. Rechner: Node 22.22, `npm ci` 10 s. Offen beim Owner nur: `dist/` hochladen (`docs/LAUNCH.md`) oder neue Posten.

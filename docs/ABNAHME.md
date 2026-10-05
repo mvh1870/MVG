@@ -51,5 +51,5 @@ Zum Abhaken beim Durchsehen der Internetseite (lokal: `dist/index.html` im Brows
 - [x] Namen der Nebenfiguren (Marlene Ranzen, Bernd Spitzfeder, Ewald Pfennig) und der Zeitung „Lindenbote“: vor der Veröffentlichung eine Gegenprobe bei Google.de und im Markenregister (L-273). *(vom Owner im Chat am 2026-10-05 als erledigt gemeldet)*
 
 ## F. Übergabe
-- [ ] Zweig `claude/haus` ist nach `main` zusammengeführt (O-49). – **offen:** der Owner hat es im Chat nicht ausdrücklich gemeldet, und dieser Stand (O-63) liegt nur auf `claude/haus`; `main` führt der letzte Block nach O-49 zusammen.
+- [x] Zweig `claude/haus` ist nach `main` zusammengeführt (O-49). – Routine-Block 2026-10-05 ~06:40 UTC, Kette grün, CI 386 grün (L-424).
 - [x] Routine angehalten, wenn das Planblatt leer ist (Ampel rot „fertig“, O-27). *(vom Owner im Chat am 2026-10-05 als erledigt gemeldet)*

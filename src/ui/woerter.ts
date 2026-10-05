@@ -28,8 +28,7 @@ export const W = {
   absender: 'Bauherr Mentoren GmbH i. G.',
   herausgeber: 'Herausgeber: Bauherr Mentoren GmbH i. G.',
   fiktiv: 'Fiktiver Fall',
-  // FRAGE 2026-10-04-1, Vorgabe a (L-422): Bereichsnamen für Laien deutsch, gleich wie die Türen der Startseite
-  story: 'Geschichte',
+  story: 'Geschichte', // O-63: sichtbarer Bereichsname (Route #story und Schlüssel gk.story bleiben)
   // Start
   start: {
     // Kicker, Leitsatz und These stehen in inhalte/start.md.
@@ -171,8 +170,8 @@ export const W = {
   },
   // Rahmen aller Bereiche (P16.11, O-42, O-44)
   rahmen: {
-    theorie: 'Themen',
-    explore: 'Werkzeuge',
+    theorie: 'Themen', // O-63: sichtbarer Bereichsname (Route #theorie bleibt)
+    explore: 'Werkzeuge', // O-63: sichtbarer Bereichsname (Route #explore bleibt)
     bereiche: 'Bereiche',
     bmMarke: 'Bauherr Mentoren – bauherr-mentoren.com',
     angebot: 'Ein Angebot von',

@@ -14,3 +14,4 @@ FRAGE 2026-10-04-1 · 2026-10-04 13:00 UTC · Sollen die drei Bereichsnamen im K
   b) Story · Theorie · Explore beibehalten — „Explore“ und „Story“ bleiben für Laien englische Wörter, die Startseite nennt dieselben Orte anders
   VORGABE: a · FRIST: 2026-10-05 01:00 UTC
 VORGABE IN KRAFT 2026-10-04-1 · 2026-10-05 03:12 UTC (+00:00)
+ANTWORT 2026-10-04-1 · 2026-10-05 05:30 UTC · a – Geschichte · Themen · Werkzeuge (Owner im Chat: „Geschichte · Themen · Werkzeuge – alles andere als erledigt markieren“; ANTWORT Owner 2026-10-05: a). Gebaut als O-63; die übrigen Owner-Punkte stehen als „vom Owner im Chat am 2026-10-05 als erledigt gemeldet“ in `docs/ABNAHME.md`, `docs/LAUNCH.md` und `UEBERGABE.md` (L-423), nicht vom Lauf geprüft.

@@ -804,7 +804,7 @@ test('Leinwand (R69): Strg+P druckt den Ersatzbogen nur mit dem Theorie-Weg; nir
   assert.ok(bogen, 'Ersatzbogen angehängt');
   const inhalt = bogen.textContent ?? '';
   assert.ok(inhalt.includes(W.druck.ersatzTitel), inhalt);
-  assert.ok(inhalt.includes(W.druck.ersatzWege[0] ?? 'x'), 'der Theorie-Weg bleibt');
+  assert.ok(inhalt.includes(W.druck.ersatzWege[0] ?? 'x'), 'der Themen-Weg bleibt');
   assert.doesNotMatch(inhalt, /Regie/u);
   assert.ok(!inhalt.includes(storyWeg), 'Leinwand: ohne Story-Weg');
   window.dispatchEvent(new Event('afterprint'));

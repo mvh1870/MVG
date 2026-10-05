@@ -59,6 +59,8 @@ async function fokusFrei(seite, h, wo) {
  */
 export async function lauf(seite, h) {
   const pruefe = pruefer(seite, h);
+  // O-63: der Tab-Titel nennt den Bereich als „Geschichte“, nie den alten Namen
+  { const t = await seite.title(); if (!t.includes('Geschichte') || /\b(?:Story|Theorie|Explore)\b/u.test(t)) h.befund(`Tab-Titel „${t}“ statt mit „Geschichte“ (O-63)`); }
   const verboten = async (wo) => { for (const f of sichtbarVerboten(await seite.locator('body').innerText())) h.befund(`${wo}: ${f}`); };
   const weiter = async () => { await h.klick('[data-pruef="weiter"]'); await h.warte(80); };
   const fokus = () => seite.evaluate(() => (document.activeElement === document.body ? 'BODY' : document.activeElement?.getAttribute('data-pruef') ?? document.activeElement?.tagName ?? ''));

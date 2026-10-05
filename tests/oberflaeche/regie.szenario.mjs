@@ -15,6 +15,9 @@ export async function lauf(seite, h) {
   await h.erwarte('[data-pruef="regie"]');
   const leinwand = await h.zweitesFenster('#leinwand');
   await h.erwarte('[data-pruef="leinwand-warten"], .anzeige', leinwand);
+  // O-63: die Sprünge der Regie heißen Start · Geschichte · Themen · Werkzeuge
+  const chips = await seite.locator('[data-pruef^="regie-bereich-"]').evaluateAll((l) => l.map((e) => (e.textContent ?? '').trim()));
+  if (chips.join(' · ') !== 'Start · Geschichte · Themen · Werkzeuge') h.befund(`Regie: Bereiche „${chips.join(' · ')}“ statt „Start · Geschichte · Themen · Werkzeuge“ (O-63)`);
   await h.klick('[data-pruef="regie-bereich-story"]');
   // P17.6: Sprung je Schritt – direkt in den Vergleich von Kapitel 7; Notiz und Leitfragen nur in der Regie
   await seite.locator('[data-pruef="regie-sprung"]').selectOption('s12:vergleich');

@@ -6,7 +6,7 @@
  */
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { SICHTBAR_ARBEITSSTAND, sichtbarVerboten } from '../werkzeuge/sichtbar.mjs';
+import { SICHTBAR_ARBEITSSTAND, SICHTBAR_VERBOTEN, sichtbarVerboten } from '../werkzeuge/sichtbar.mjs';
 
 type Fenster = Window & typeof globalThis;
 const { JSDOM } = (await import(String('jsdom'))) as { JSDOM: new (html: string, o?: object) => { window: Fenster } };
@@ -107,6 +107,23 @@ test('Bedienwörter (src/ui/woerter.ts)', () => {
   };
   lauf(W, 'W');
   assert.deepEqual(funde.slice(0, 40), [], `${funde.length} Funde`);
+});
+
+test('Bereichsnamen (O-63): Story, Theorie, Explore sind sichtbar verboten – Geschichte, Themen, Werkzeuge nicht', () => {
+  const getroffen = (text: string): string[] => sichtbarVerboten(text).map((f) => /^verbotenes Wort sichtbar \((.+?)\): „/u.exec(f)?.[1] ?? f);
+  // Gegenprobe rot: jeder alte Name wird einzeln gefunden, in Kopf, Titel und Aufzählung
+  for (const alt of ['Story', 'Theorie', 'Explore']) {
+    assert.deepEqual(getroffen(`Text davor. ${alt} Text danach.`), ['alter Bereichsname (O-63)'], alt);
+    assert.deepEqual(getroffen(`${alt}: Thema drucken`), ['alter Bereichsname (O-63)'], `${alt}:`);
+    assert.deepEqual(getroffen(`Start · ${alt} · Werkzeuge`), ['alter Bereichsname (O-63)'], `${alt} in der Reihe`);
+  }
+  // die neuen Namen und Alltagswörter bleiben erlaubt
+  for (const ok of ['Geschichte · Themen · Werkzeuge', 'Geschichte beginnen', 'Themen lesen', 'Werkzeuge ausprobieren', 'In der Geschichte erlebt']) assert.deepEqual(getroffen(ok), [], ok);
+  assert.ok(SICHTBAR_VERBOTEN.some(([, n]) => n === 'alter Bereichsname (O-63)'));
+  // die sichtbaren Namen der Seite selbst
+  assert.deepEqual([W.story, W.rahmen.theorie, W.rahmen.explore], ['Geschichte', 'Themen', 'Werkzeuge']);
+  assert.equal(W.themen.bereich, 'Themen');
+  assert.equal(W.werkzeuge.bereich, 'Werkzeuge');
 });
 
 test('Arbeitsstand (P17.10, O-56): die Probe schlägt bei Werkstatt-Resten an, nicht bei Fachtext', () => {

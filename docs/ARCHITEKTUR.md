@@ -1,5 +1,7 @@
 # Architektur
 
+
+> **Bereichsnamen (O-63):** Sichtbar heißen die Bereiche „Geschichte“ (intern Story, `#story`), „Themen“ (intern Theorie, `#theorie`) und „Werkzeuge“ (intern Explore, `#explore`). Dieses Dokument nennt sie, wo es um Code, Routen, Dateien oder Schlüssel geht, bei den internen Namen; Texte der Seite nutzen nur die sichtbaren Namen (`docs/BEGRIFFE.md`).
 Stand P19.8 (2026-10-04; Technik und Layout nach Prüfrunde 3, L-390); davor P19.7 (Verknüpfung der 14 Stationen, Regie-Sprung je Akt, Wegskizze mit Akten, Speicherumfang im Datenschutz); davor P19.6 Technik IV (Sprecher mit Nebenfiguren und Stimmen, Zeilen für die Kurzfassung, Brückenzeile mit Akten, Eintrag-Kärtchen, elf neue Bilder – siehe „Stand und Ablauf der Story“); davor P19.5 (Gedächtnis, Entscheidungsbuch, Verlauf und fünf neue Mini-Arten, O-62; davor P18: vier neue Werkzeuge, O-59, Prüfrunden bis R78; Neugestaltung O-50 bis O-58 auf der Neuausrichtung O-36 bis O-49). Verbindlich für alle Posten; Abweichungen nur mit L-Eintrag.
 
 ## Fluss

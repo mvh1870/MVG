@@ -37,6 +37,16 @@ Zum Abhaken beim Durchsehen der Internetseite (lokal: `dist/index.html` im Brows
 - [ ] Impressum und Datenschutz gelesen (Bauherr Mentoren GmbH i. G., Martin Mohr, kontakt@bauherr-mentoren.com, keine Telefonnummer); Abschnitt 5 beschreibt den Browser-Speicher der erweiterten Story (Schritt auch in einer Pause, Entscheidungen, Antworten der Mini-Aufgaben; Buch und Verlauf werden neu zusammengestellt, „neu“ nur für den Besuch).
 - [ ] Webseitenordner `dist/` vollständig, nichts wird von Dritten nachgeladen; Upload nach `docs/LAUNCH.md`.
 
+## G. Die erweiterte Story (P19, O-62) – was Sie gezielt ansehen sollten
+- [ ] Wegwahl: im Auftakt zwei Karten, „Vierzehn Entscheidungen · etwa 40 Minuten“ und „Vier Entscheidungen · etwa 10 Minuten“; beide Wege starten, die Zahlen stimmen mit Startseite und Wegskizze überein.
+- [ ] Kurzfassung: Stationen 1, 3, 5 und 12 mit Brückensätzen lesen sich als eigene Geschichte, ohne dass etwas fehlt (etwa 10 Minuten, an der Grenze: 2.099 Wörter).
+- [ ] Akte: drei Akte mit Kopfkarte und Akt-Leiste; die Station gehört sichtbar zu ihrem Akt, das Sprungmenü führt in jeden Akt.
+- [ ] Pause: nach Station 5 und nach Station 10 eine Pause mit Zwischenbilanz und „Das können Sie jetzt“; Weiterlesen nach Neuladen am selben Punkt.
+- [ ] Buch und Verlauf: Entscheidungsbuch (Symbol ab Station 1, „neu“ nur im laufenden Besuch) und „Ihr Weg im Überblick“ geben nur die eigenen Wahlen wieder; Echo-Zeilen ändern Ton, nie Tatsachen.
+- [ ] Mini-Arten: Matrix-Probe (4), Mappe nachfordern (7), Pinnwand (8), Bericht gegenlesen (9), Rückfragen (11) per Tastatur bedienbar, Rückmeldung verständlich, Lösung fachlich richtig.
+- [ ] Fotos und Layout am Handy (320 bis 400 px): Szenenbild, Statusleiste, Haftzettel, Pinnwand, Verlauf und Akt-Leiste laufen nicht seitwärts über, Schrift bleibt lesbar; auch Hochformat-Tablet.
+- [ ] Namen der Nebenfiguren (Marlene Ranzen, Bernd Spitzfeder, Ewald Pfennig) und der Zeitung „Lindenbote“: vor der Veröffentlichung eine Gegenprobe bei Google.de und im Markenregister (L-273).
+
 ## F. Übergabe
 - [ ] Zweig `claude/haus` ist nach `main` zusammengeführt (O-49).
 - [ ] Routine angehalten, wenn das Planblatt leer ist (Ampel rot „fertig“, O-27).

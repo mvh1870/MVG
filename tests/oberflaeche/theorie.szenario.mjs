@@ -160,7 +160,10 @@ export async function lauf(seite, h) {
     // P17.10: endet der Text der ersten Seite mit dem Kopf einer Abbildung, füllt deren Bild den Rest (die Messung sieht nur
     // Text; früher stand unter dem Bild noch die Bildunterschrift mit den Abweichungen, O-56)
     const bildAmEnde = (pdf[0]?.zeilen ?? []).slice(-2).some((z) => /^abbildung\d+$/u.test(flach(z)));
-    if (pdf.length > 1 && !bildAmEnde && (pdf[0]?.fuellung ?? 1) < 0.7) h.befund(`Druck ${t}: erste Seite nur zu ${Math.round((pdf[0]?.fuellung ?? 0) * 100)} % gefüllt`);
+    // L-420: rückt die ganze Abbildung (ungeteilt, break-inside: avoid) auf die zweite Seite, weil sie unter dem Text nicht
+    // mehr passt, steht ihre Kopfzeile ganz oben auf Seite 2 – dann ist die Lücke unten Folge der Abbildung, kein Layoutfehler
+    const bildRuecktWeiter = (pdf[1]?.zeilen ?? []).slice(0, 2).some((z) => /^abbildung\d+$/u.test(flach(z))) && (pdf[0]?.fuellung ?? 1) >= 0.55;
+    if (pdf.length > 1 && !bildAmEnde && !bildRuecktWeiter && (pdf[0]?.fuellung ?? 1) < 0.7) h.befund(`Druck ${t}: erste Seite nur zu ${Math.round((pdf[0]?.fuellung ?? 0) * 100)} % gefüllt`);
     await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
   }
   // r72: Trennstellen in schmalen Spalten stehen mitten in der Zeile auch im PDF-Text – sieht die Probe keine, ist sie blind

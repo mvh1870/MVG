@@ -15,7 +15,9 @@ Der Governance Kompass ist eine Internetseite. Ausgeliefert wird der fertige Ord
 | `favicon.svg`, `favicon.ico`, `apple-touch-icon.png` | Symbol für Browser-Tab, Lesezeichen und Startbildschirm (weiße Bildmarke auf Navy) |
 | `.htaccess` | Regeln für den IONOS-Webserver: immer `https://www.governancekompass.de`, Sicherheitsköpfe, keine Verzeichnisliste |
 
-**Umfang (Stand P19.7):** Story: ganzer Weg etwa 40 Minuten (gemessen 7.834 Wörter ≈ 39 Minuten), Kurzfassung etwa 10 Minuten (1.960 Wörter), 14 Stationen in drei Akten mit zwei Pausen, elf Mini-Aufgaben, Entscheidungsbuch und Verlauf; Theorie: 16 Themen in vier Teilen; Explore: neun Werkzeuge. `index.html` wiegt rund 2,4 MB (Budget 4 MB). Im Browser des Besuchers liegt nur der Fortschritt (Datenschutz, Abschnitt 5), auf dem Server nichts außer diesen Dateien.
+**Umfang (Stand P19.9):** Story: ganzer Weg etwa 40 Minuten (gemessen 8.002 Wörter ≈ 40,0 Minuten), Kurzfassung etwa 10 Minuten (2.099 Wörter ≈ 10,5 Minuten, an der Grenze), 14 Stationen in drei Akten mit zwei Pausen, elf Mini-Aufgaben, Entscheidungsbuch und Verlauf; Theorie: 16 Themen in vier Teilen; Explore: neun Werkzeuge. `index.html` wiegt rund 2,4 MB (Budget 4 MB).
+
+**Fertiges Paket:** Der Ordner `webseite/` (Inhalt von `dist/` plus `LIES-MICH.txt` und `ABNAHME-CHECKLISTE.txt`) wird zu `governancekompass-komplettpaket.zip` gepackt (liegt in `tmp/`, wird nicht eingecheckt; Inhalt per sha256 gegen `dist/` geprüft). Das ZIP enthält genau die zehn Dateien der Tabelle oben, auch `.htaccess`. Im Browser des Besuchers liegt nur der Fortschritt (Datenschutz, Abschnitt 5), auf dem Server nichts außer diesen Dateien.
 
 Der Ordner entsteht mit `npm run bau` und wird mit jedem Commit eingecheckt; `npm run pruefe` prüft, dass er aktuell und deterministisch ist.
 

@@ -459,6 +459,10 @@ async function hauptprogramm() {
     return 1;
   }
 
+  // L-429: unter Linux feste Systemschrift (DejaVu Sans) für alle Läufe – lokal, in der Cloud und auf dem GitHub-Rechner
+  // dieselben Umbrüche; MVG_SCHRIFT=system lässt die Schrift des Rechners
+  const schriften = path.join(WURZEL, 'werkzeuge', 'schriften-pruefung.conf');
+  if (process.platform === 'linux' && process.env['MVG_SCHRIFT'] !== 'system' && existsSync('/etc/fonts/fonts.conf')) process.env['FONTCONFIG_FILE'] = schriften;
   const start = await starteBrowser();
   if (!start.browser) {
     if (browserPflicht()) {
@@ -493,7 +497,7 @@ async function hauptprogramm() {
     console.error(`oberflaeche: Vorbereitung eines Szenarios scheiterte – ${kurz(fehler)}`);
     return 1;
   }
-  console.log(`oberflaeche: ${start.name} ${browser.version()} · ${anzeige} · ${szenarien.length} Szenario${szenarien.length === 1 ? '' : 's'} · ${process.env['MVG_VOLL'] === '1' ? 'voll' : 'schnell (voll: MVG_VOLL=1)'}${process.env['MVG_BEWEGUNG'] === 'reduziert' ? ' · reduzierte Bewegung' : ''}`);
+  console.log(`oberflaeche: ${start.name} ${browser.version()} · ${anzeige} · ${szenarien.length} Szenario${szenarien.length === 1 ? '' : 's'} · ${process.env['MVG_VOLL'] === '1' ? 'voll' : 'schnell (voll: MVG_VOLL=1)'}${process.env['MVG_BEWEGUNG'] === 'reduziert' ? ' · reduzierte Bewegung' : ''}${process.env['FONTCONFIG_FILE'] === schriften ? ' · Systemschrift DejaVu Sans' : ''}`);
 
   let laeufe = 0;
   let roteLaeufe = 0;

@@ -917,7 +917,9 @@ button.gs-stufe:hover:not([aria-pressed="true"]) { background: var(--weiss); }
   .druck-buch-tabelle { width: 100%; border-collapse: collapse; font-size: 9pt; line-height: 1.3; }
   .druck-buch-tabelle :is(th, td) { padding: 1.5mm 2mm; text-align: left; vertical-align: top; border-bottom: .3mm solid var(--linie-3); }
   .druck-story .gs-verlauf { break-inside: avoid; }
-  .druck-story .gs-verlauf-bild svg { max-width: 120mm; }
+  /* L-429: Verlauf und Einordnung so, dass die Bilanz auch in breiter Systemschrift (DejaVu Sans) eine Seite bleibt */
+  .druck-story .gs-verlauf-bild svg { max-width: 100mm; }
+  .druck-story [data-pruef="druck-einordnung"] { font-size: 8pt; }
 }
 
 /* ------------------------------------------- Layout nach Prüfrunde 3 (P19.8, L-390) */

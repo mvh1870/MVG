@@ -222,6 +222,8 @@ button.ex-art:hover, button.ex-weg:hover { border-color: var(--ton); }
 
 /* Eingaben */
 .wz-gruppe { display: grid; gap: var(--a-3); margin: 0; padding: var(--a-3) var(--a-4) var(--a-4); min-width: 0; border: 1px solid var(--linie); border-radius: var(--radius-m); background: var(--weiss); }
+/* L-429: die Kinder des Feldrahmens nicht breiter als er (ein Feld mit langem Auswahltext schob die Felderzeile bei 320 px über den Rand) */
+.wz-gruppe > * { min-width: 0; }
 .wz-gruppe-titel { margin: 0; font: var(--typo-reiter); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy); }
 legend.wz-gruppe-titel { padding: 0 var(--a-1); }
 details.wz-gruppe > summary { display: flex; flex-wrap: wrap; align-items: center; gap: var(--a-1) var(--a-3); min-height: 36px; cursor: pointer; }
@@ -243,6 +245,9 @@ details.wz-gruppe[open] > summary::before { transform: rotate(90deg); }
 .wz-wahl { display: inline-flex; align-items: center; gap: var(--a-2); min-height: 40px; padding: var(--a-1) var(--a-3); border: 1px solid var(--linie-2); border-radius: var(--radius-rund); background: var(--weiss); color: var(--tinte); cursor: pointer; }
 .wz-wahl:hover { border-color: var(--ton); }
 .wz-wahl:has(input:checked) { border-color: var(--ton-text); background: var(--ton-soft); box-shadow: inset 0 0 0 1px var(--ton-text); font-weight: 600; }
+/* L-429: lange Wörter („Entscheidungsschwelle“) bei 320 px in breiter Systemschrift in der Pille trennen statt hinausragen */
+.wz-wahl { min-width: 0; max-width: 100%; }
+.wz-wahl > :not(input) { min-width: 0; overflow-wrap: break-word; hyphens: auto; }
 .wz-wahl input { flex: none; width: 18px; height: 18px; margin: 0; accent-color: var(--ton-text); }
 .wz-gewaehlt { margin: 0; }
 .wz-knopf { display: inline-flex; align-items: center; gap: var(--a-2); min-height: 40px; padding: var(--a-2) var(--a-4); border: 1px solid var(--linie-2); border-radius: var(--radius-rund); background: var(--weiss); color: var(--navy); font-weight: 600; text-align: left; }
@@ -421,8 +426,8 @@ li[data-fertig="ja"] .wz-schritt-nr { background: var(--status-gruen-soft); colo
   .druck-bogen .wz-bild { display: none; }
   .druck-bogen .wz-bericht-spalten { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5mm 6mm; }
   /* D im Höchstfall genau eine Seite (Feldgrenzen in src/werkzeuge/monatsbericht.ts, PDF-Probe im Szenario explore) */
-  /* A im Höchstfall (18 Lücken, alle Hinweise) genau eine Seite: Sätze zweispaltig */
-  .druck-bogen .wz-druck[data-werkzeug="vorlagen-check"] { font-size: 8.6pt; line-height: 1.2; }
+  /* A im Höchstfall (18 Lücken, alle Hinweise) genau eine Seite: Sätze zweispaltig; 8,2 pt, damit es auch in DejaVu Sans passt (L-429) */
+  .druck-bogen .wz-druck[data-werkzeug="vorlagen-check"] { font-size: 8.2pt; line-height: 1.2; }
   .druck-bogen .wz-druck[data-werkzeug="vorlagen-check"] .druck-kopf, .druck-bogen .wz-druck[data-werkzeug="vorlagen-check"] .druck-teil { margin-bottom: 3mm; }
   .druck-bogen .wz-druck[data-werkzeug="vorlagen-check"] .wz-druck-saetze { columns: 2; column-gap: 7mm; }
   .druck-bogen .wz-druck-saetze li + li { margin-top: .5mm; }

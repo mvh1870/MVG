@@ -208,8 +208,8 @@ export function mitTrennstellen(text: string): string {
   // „Risiko-/Änderungs-/Maßnahmen…“, „Rollen/Freigaben/…“: nach „/“ darf die Zeile umbrechen (sonst ein unteilbarer Block)
   return text.replace(/(?<=[\p{L}-])\/(?=\p{L})/gu, '/\u200b').replace(/\p{L}{12,}/gu, (wort) => wort.replace(/(?<=\p{L}(?:ungs|heits|keits|schafts|tions|täts|stands|ßnahmen|agement|umenten|triebs|utzen|ister|tritts|ketten|lagen|gabe|schutz|ohbau|struktur|upreis|osten))(?!(?<=agement)s)(?!(?<=gabe)n[^aeiouäöü])(?=\p{Ll}{4})/gu, '\u00ad'))
     // R56: „Daten|anforderung“ (Tabelle k8.1-t1 im Druck) – die Fuge liegt vor dem Grundwort, nicht hinter einer Endung der Liste; R61: „Status|bericht“ (Datei-Karte B4)
-    // R64: „Folge|kosten“ (Stationstitel A5 stand bei 1008–1088 px über 93 % seiner Zeile)
-    .replace(/(?<=\p{L}{4})(?=anforderung|bericht|kosten|verknüpfung|bewertung)/gu, '\u00ad')
+    // R64: „Folge|kosten“ (Stationstitel A5 stand bei 1008–1088 px über 93 % seiner Zeile); L-429: „Letzt|verantwortung“ (Lernkarte bei 320 px in DejaVu Sans 95 %)
+    .replace(/(?<=\p{L}{4})(?=anforderung|bericht|kosten|verknüpfung|bewertung|verantwortung)/gu, '\u00ad')
     // R68: Fugen, die die Liste oben nicht kennt (Etappen, Umschalter, Bausteine in schmalen Spalten)
     .replace(/(?<=Mandats|Beschluss)(?=\p{Ll}{4})/gu, '\u00ad')
     .replace(/Entscheidungs-/gu, 'Entschei\u00addungs-');

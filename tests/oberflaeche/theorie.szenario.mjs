@@ -88,6 +88,7 @@ export async function lauf(seite, h) {
     const koepfe = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen :is(h1, h2, h3, h4, dt, .lw-titel, summary, .lw-etappe-titel, .querverweis-text), .druck-bogen .lw-aufgeloest-liste > li > b:first-child, .druck-bogen :is(.querverweis-block, .wissenscheck) > .t-label')]
       .map((x) => ({ text: x.textContent ?? '', pt: Math.max(...[x, ...x.querySelectorAll('*')].filter((e) => [...e.childNodes].some((k) => k.nodeType === 3 && (k.textContent ?? '').trim() !== ''))
         .map((e) => parseFloat(getComputedStyle(e).fontSize))) * 0.75 })));
+    const abschnittTitel = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen .abschnitt-titel')].map((x) => x.textContent ?? ''));
     // R68: genau ein sichtbarer Titel im Bogen
     const titel = await seite.evaluate(() => [...document.querySelectorAll('.druck-bogen h1')].filter((x) => getComputedStyle(x).display !== 'none').length);
     if (titel !== 1) h.befund(`Druck ${t}: ${titel} sichtbare h1 im Bogen`);
@@ -165,7 +166,12 @@ export async function lauf(seite, h) {
     // L-420: rückt die ganze Abbildung (ungeteilt, break-inside: avoid) auf die zweite Seite, weil sie unter dem Text nicht
     // mehr passt, steht ihre Kopfzeile ganz oben auf Seite 2 – dann ist die Lücke unten Folge der Abbildung, kein Layoutfehler
     const bildRuecktWeiter = (pdf[1]?.zeilen ?? []).slice(0, 2).some((z) => /^abbildung\d+$/u.test(flach(z))) && (pdf[0]?.fuellung ?? 1) >= 0.55;
-    if (pdf.length > 1 && !bildAmEnde && !bildRuecktWeiter && (pdf[0]?.fuellung ?? 1) < 0.7) h.befund(`Druck ${t}: erste Seite nur zu ${Math.round((pdf[0]?.fuellung ?? 0) * 100)} % gefüllt`);
+    // L-429: ebenso, wenn Seite 2 mit einem Abschnittskopf beginnt – Kopf, Einleitung und das erste ungeteilte Stück des
+    // Abschnitts (Lernkarte, Tafel) hängen per break-after: avoid zusammen; in breiteren Systemschriften (DejaVu Sans, seit
+    // O-64 ohne eingebettete Textschrift) passt diese Kette nicht mehr unter die Kernaussage und rückt geschlossen weiter
+    const abschnittFlach = abschnittTitel.map(flach);
+    const abschnittRuecktWeiter = (pdf[1]?.zeilen ?? []).slice(0, 1).some((z) => abschnittFlach.includes(flach(z))) && (pdf[0]?.fuellung ?? 1) >= 0.4;
+    if (pdf.length > 1 && !bildAmEnde && !bildRuecktWeiter && !abschnittRuecktWeiter && (pdf[0]?.fuellung ?? 1) < 0.7) h.befund(`Druck ${t}: erste Seite nur zu ${Math.round((pdf[0]?.fuellung ?? 0) * 100)} % gefüllt`);
     await seite.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
   }
   // r72: Trennstellen in schmalen Spalten stehen mitten in der Zeile auch im PDF-Text – sieht die Probe keine, ist sie blind

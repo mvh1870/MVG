@@ -43,7 +43,7 @@
   text-transform: uppercase;
   color: var(--navy);
 }
-.start-these { max-width: 46ch; margin-top: var(--a-4); font-size: clamp(17px, 1.6vw, 20px); line-height: 1.5; color: var(--tinte-2); }
+.start-these { max-width: 54ch; margin-top: var(--a-4); font-size: clamp(17px, 1.6vw, 20px); line-height: 1.5; color: var(--tinte-2); }
 .start-these strong { color: var(--tinte); font-weight: 600; }
 .start-internetseite { max-width: 70ch; margin-top: var(--a-3); font: var(--typo-klein); color: var(--tinte-2); }
 

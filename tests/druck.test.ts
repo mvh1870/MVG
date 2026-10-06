@@ -44,7 +44,7 @@ test('jede Fuge einzeln (R44)', () => {
     ['Freigabeentscheidungen', 'Freigabe|entscheidungen'], ['Brandschutzgutachten', 'Brandschutz|gutachten'], ['Rohbauausschreibung', 'Rohbau|ausschreibung'],
     // R55: die übrigen Fugen je einmal (vorher nur von Browser-Proben am heutigen Inhalt gesichert)
     ['Registerführung', 'Register|führung'], ['Eintrittswahrscheinlichkeit', 'Eintritts|wahrscheinlichkeit'], ['Infrastrukturträger', 'Infrastruktur|träger'],
-    ['Baupreissteigerungen', 'Baupreis|steigerungen'], ['Kostenabweichungen', 'Kosten|abweichungen'], ['Datenanforderung', 'Daten|anforderung'], ['Statusbericht', 'Status|bericht'], ['Folgekosten', 'Folge|kosten'], ['Gesamtkosten', 'Gesamt|kosten'],
+    ['Baupreissteigerungen', 'Baupreis|steigerungen'], ['Kostenabweichungen', 'Kosten|abweichungen'], ['Datenanforderung', 'Daten|anforderung'], ['Statusbericht', 'Status|bericht'], ['Folgekosten', 'Folge|kosten'], ['Gesamtkosten', 'Gesamt|kosten'], ['Letztverantwortung', 'Letzt|verantwortung'],
   ] as [string, string][]) assert.equal(sicht(w), soll, w);
 });
 

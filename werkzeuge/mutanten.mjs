@@ -87,7 +87,7 @@ export const MUTANTEN = [
   ['src/ui/flaechen/explore/vorlagen-check.ts', 'gereiht.length > ZUERST + 1 ?', 'gereiht.length > ZUERST ?', 'Vorlagen-Check: eine einzelne weitere Lücke wird nicht eingeklappt (R79)', ['tests/explore-werkzeuge.test.ts']],
   ['src/ui/flaechen/explore/vorlagen-check.ts', "open: weitereOffen }", "open: false }", 'Vorlagen-Check: „Weitere Lücken“ bleibt offen (R79)', ['tests/explore-werkzeuge.test.ts']],
   ['src/ui/flaechen/explore/vorlagen-check.ts', "const nurErgebnis = !o.bedienbar && schrittAusStand === 'ergebnis';", 'const nurErgebnis = false;', 'Vorlagen-Check: Leinwand im Schritt Ergebnis ohne Prüfschritt (R79)', ['tests/explore-werkzeuge.test.ts']],
-  ['src/ui/flaechen/explore/gemeinsam.ts', "bogenKopf(b.titel, '', b.fiktiv)", "bogenKopf(b.titel, '', false)", 'Werkzeug-Druck: „Fiktiver Fall“ mit Beispiel (R79)', ['tests/explore-werkzeuge.test.ts']],
+  ['src/ui/flaechen/explore/gemeinsam.ts', 'const art = herkunft(b.fiktiv, k);', 'const art = herkunft(false, k);', 'Werkzeug-Druck: Herkunft „Beispiel“ mit Beispiel (R79, seit O-64 Herkunftszeile, L-429)', ['tests/explore-werkzeuge.test.ts']],
   ['src/ui/flaechen/explore/monatsbericht.ts', 'fiktiv: z.beispiel !== null', 'fiktiv: true', 'Werkzeug-Druck: ohne Beispiel kein „Fiktiver Fall“ (R79)', ['tests/explore-werkzeuge.test.ts']],
   ['src/werkzeuge/monatsbericht.ts', "const BREIT = 'MWmw@%';", "const BREIT = 'MW';", 'Bericht: auch @ und % zählen breit (R79)', TESTS_WERKZEUGE],
   ['src/werkzeuge/monatsbericht.ts', 'spalten += zeilenFuer(`${e.text} ${e.kennung}`, spalte);', 'spalten += Math.ceil(`${e.text} ${e.kennung}`.length / spalte);', 'Bericht: Einträge nach Zeichenbreite (R79)', TESTS_WERKZEUGE],

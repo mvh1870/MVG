@@ -1,0 +1,378 @@
+{
+  "erzeugt_von": "werkzeuge/register.mjs",
+  "auslieferung_sha256": [
+    "ef61fa5de605eeb9c17cf84228be14278e3b4518dc9eeed682c2843a0d18e5c9  ../dist/.htaccess",
+    "dc33ecf6ae7cf4db9c219d0251af9d9d7b2f4ac78dad3cb06d11c48e18d93db3  ../dist/apple-touch-icon.png",
+    "21b0dfebbe1f17d67cc8a6ba6702164693c3eb64344138a761f03f8a6c55173a  ../dist/datenschutz.html",
+    "e7bd44eebc9f409af9b4131ef76cf2d46d9844791e808f0342022d69e9b2b225  ../dist/favicon.ico",
+    "c31c18d6ac6754d2fe649bafba8d9244d8a2bf97242f3da2714f1fb209a5eee9  ../dist/favicon.svg",
+    "034eb60944d9a423c8682f44b8637f4e37eb234d99529cbf28ba174b3750b4f4  ../dist/impressum.html",
+    "d21f8da8e70e6722da03db5faa10f118e3b0c5be46102ba8638cc9fa482f79c5  ../dist/index.html",
+    "eac685901e06b12a31cac85e33941d0bce7e055aa488da72bcf18a564d984b1d  ../dist/robots.txt",
+    "4ab251b420c5012b6f6cb7a0e458b0df5019261e62bb6fc6bb7f85b5a201b77a  ../dist/sitemap.xml",
+    "85486995f09a5495997c4cc8c636ad279c6f4e0fe79f4509ec5c1a35a52ff684  ../dist/vorschau.png",
+    "309768e7a99ff054f156c7b17480b1cc260f9469c133d8e9e580bb019be1abb5  ../release/Governance-Kompass.html"
+  ],
+  "assets": [
+    {
+      "id": "abb-2",
+      "typ": "WebP (Abbildung)",
+      "verwendung": "Themen, Abbildung abb-2 („Was andere übernehmen können, was MVG hilft zu ordnen und was beim Bauherrn bleibt“); eingebettet als data:image/webp",
+      "herkunft": "Bild bilder/image2.jpeg der DOCX-Fassung V1.2 von Bauherr Mentoren (quellen/whitepaper/v1.2/), Begriffe überdeckt mit werkzeuge/abbildungen.mjs (Beschriftung in Barlow Condensed, OFL-1.1)",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "inhalte/abbildungen/abb-2.webp",
+      "sha256": "00936e63d6ce0acad5cbcbf1066e8197c35772814737e58d7bdb80e4d0568217"
+    },
+    {
+      "id": "abb-3",
+      "typ": "WebP (Abbildung)",
+      "verwendung": "Themen, Abbildung abb-3 („Wie Druck von außen zu unklarer Verantwortung führt“); eingebettet als data:image/webp",
+      "herkunft": "Bild bilder/image3.png der DOCX-Fassung V1.2 von Bauherr Mentoren (quellen/whitepaper/v1.2/), Begriffe überdeckt mit werkzeuge/abbildungen.mjs (Beschriftung in Barlow Condensed, OFL-1.1)",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "inhalte/abbildungen/abb-3.webp",
+      "sha256": "80b2444ae10267e9a80460efaabe480fc3fac95c7515f367916f49742d1e8817"
+    },
+    {
+      "id": "abb-4",
+      "typ": "WebP (Abbildung)",
+      "verwendung": "Themen, Abbildung abb-4 („Wo Vorbereitung endet und eigene Entscheidung beginnt“); eingebettet als data:image/webp",
+      "herkunft": "Bild bilder/image4.png der DOCX-Fassung V1.2 von Bauherr Mentoren (quellen/whitepaper/v1.2/), Begriffe überdeckt mit werkzeuge/abbildungen.mjs (Beschriftung in Barlow Condensed, OFL-1.1)",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "inhalte/abbildungen/abb-4.webp",
+      "sha256": "40da3bd49f79dde9df19c14d8bec2f4567c50ce23b6102761cfabed5bac73bb7"
+    },
+    {
+      "id": "abb-5",
+      "typ": "WebP (Abbildung)",
+      "verwendung": "Themen, Abbildung abb-5 („Die Verantwortungspyramide – Arbeitsebene, Mandatsebene und Letztverantwortung“); eingebettet als data:image/webp",
+      "herkunft": "Bild bilder/image5.jpeg der DOCX-Fassung V1.2 von Bauherr Mentoren (quellen/whitepaper/v1.2/), Begriffe überdeckt mit werkzeuge/abbildungen.mjs (Beschriftung in Barlow Condensed, OFL-1.1)",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "inhalte/abbildungen/abb-5.webp",
+      "sha256": "26eba5741fef5ba818866f271d8dce0ed391a1a3f49c0fedef66e58f79e5af61"
+    },
+    {
+      "id": "abb-6",
+      "typ": "WebP (Abbildung)",
+      "verwendung": "Themen, Abbildung abb-6 („Sechs Verantwortungsfelder des Bauherrn“); eingebettet als data:image/webp",
+      "herkunft": "Bild bilder/image6.png der DOCX-Fassung V1.2 von Bauherr Mentoren (quellen/whitepaper/v1.2/), Begriffe überdeckt mit werkzeuge/abbildungen.mjs (Beschriftung in Barlow Condensed, OFL-1.1)",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "inhalte/abbildungen/abb-6.webp",
+      "sha256": "c9262ab12ac7a08f8dd2ba2817124ae3ae1f10a263bad9b0b63a2879f2f9872d"
+    },
+    {
+      "id": "abb-7",
+      "typ": "WebP (Abbildung)",
+      "verwendung": "Themen, Abbildung abb-7 („MVG als Bauherren-Führungsmodell“); eingebettet als data:image/webp",
+      "herkunft": "Bild bilder/image7.jpeg der DOCX-Fassung V1.2 von Bauherr Mentoren (quellen/whitepaper/v1.2/), Begriffe überdeckt mit werkzeuge/abbildungen.mjs (Beschriftung in Barlow Condensed, OFL-1.1)",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "inhalte/abbildungen/abb-7.webp",
+      "sha256": "c40af067e4b261abdde6b5fe73b2254f1c06fc7214cf0f21a2cc6929cc9f20c3"
+    },
+    {
+      "id": "abb-8",
+      "typ": "WebP (Abbildung)",
+      "verwendung": "Themen, Abbildung abb-8 („LPH 0 als früher Wirkungsraum“); eingebettet als data:image/webp",
+      "herkunft": "Bild bilder/image8.jpeg der DOCX-Fassung V1.2 von Bauherr Mentoren (quellen/whitepaper/v1.2/), Begriffe überdeckt mit werkzeuge/abbildungen.mjs (Beschriftung in Barlow Condensed, OFL-1.1)",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "inhalte/abbildungen/abb-8.webp",
+      "sha256": "fe0f62f439a72713091c41eac9140161b7f8755894abc993fe0bc4fd7c6d56b2"
+    },
+    {
+      "id": "abb-9",
+      "typ": "WebP (Abbildung)",
+      "verwendung": "Themen, Abbildung abb-9 („Der MVG Companion: von den Regeln von MVG zur täglichen Anwendung“); eingebettet als data:image/webp",
+      "herkunft": "Bild bilder/image9.jpeg der DOCX-Fassung V1.2 von Bauherr Mentoren (quellen/whitepaper/v1.2/), Begriffe überdeckt mit werkzeuge/abbildungen.mjs (Beschriftung in Barlow Condensed, OFL-1.1)",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "inhalte/abbildungen/abb-9.webp",
+      "sha256": "fa20285353d2fc3d6cd7411dfd87060af5b90d36030ca5fa34d29da94a01ced4"
+    },
+    {
+      "id": "abb-10",
+      "typ": "WebP (Abbildung)",
+      "verwendung": "Themen, Abbildung abb-10 („Wie aus einem Hinweis eine Entscheidung und eine Maßnahme wird“); eingebettet als data:image/webp",
+      "herkunft": "Bild bilder/image10.jpeg der DOCX-Fassung V1.2 von Bauherr Mentoren (quellen/whitepaper/v1.2/), Begriffe überdeckt mit werkzeuge/abbildungen.mjs (Beschriftung in Barlow Condensed, OFL-1.1)",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "inhalte/abbildungen/abb-10.webp",
+      "sha256": "7e5792dc2337b208179e76ac50567c2e010f01eb5411d89a2cdf399d7445770d"
+    },
+    {
+      "id": "abb-11",
+      "typ": "WebP (Abbildung)",
+      "verwendung": "Themen, Abbildung abb-11 („Der Weg der Beratung von der Reifegradanalyse bis zum Regelbetrieb“); eingebettet als data:image/webp",
+      "herkunft": "Bild bilder/image11.jpeg der DOCX-Fassung V1.2 von Bauherr Mentoren (quellen/whitepaper/v1.2/), Begriffe überdeckt mit werkzeuge/abbildungen.mjs (Beschriftung in Barlow Condensed, OFL-1.1)",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "inhalte/abbildungen/abb-11.webp",
+      "sha256": "34588ebbd15cc1f2b459977c03d30df3b3c2b856c0cbf0f46f2c4ec996d14a65"
+    },
+    {
+      "id": "abb-12",
+      "typ": "WebP (Abbildung)",
+      "verwendung": "Themen, Abbildung abb-12 („MVG-Reifegradanalyse mit Bewertungsmatrix und 30/60/90-Tage-Plan“); eingebettet als data:image/webp",
+      "herkunft": "Bild bilder/image12.jpeg der DOCX-Fassung V1.2 von Bauherr Mentoren (quellen/whitepaper/v1.2/), Begriffe überdeckt mit werkzeuge/abbildungen.mjs (Beschriftung in Barlow Condensed, OFL-1.1)",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "inhalte/abbildungen/abb-12.webp",
+      "sha256": "3c710615d9d9bb44dd07aafcc52db4490a056b6364fef80c52918bd1bc838119"
+    },
+    {
+      "id": "abb-13",
+      "typ": "WebP (Abbildung)",
+      "verwendung": "Themen, Abbildung abb-13 („Die sechs Schritte der Einführung von der Einrichtung bis zum Regelbetrieb“); eingebettet als data:image/webp",
+      "herkunft": "Bild bilder/image13.jpeg der DOCX-Fassung V1.2 von Bauherr Mentoren (quellen/whitepaper/v1.2/), Begriffe überdeckt mit werkzeuge/abbildungen.mjs (Beschriftung in Barlow Condensed, OFL-1.1)",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "inhalte/abbildungen/abb-13.webp",
+      "sha256": "a972856db22fe8e2f6e21892b60ec32e79282bb3991d20e8a655df0bd89c5fdb"
+    },
+    {
+      "id": "abb-14",
+      "typ": "WebP (Abbildung)",
+      "verwendung": "Themen, Abbildung abb-14 („Wo MVG je nach Bauherr und Projektlage ansetzt“); eingebettet als data:image/webp",
+      "herkunft": "Bild bilder/image14.jpeg der DOCX-Fassung V1.2 von Bauherr Mentoren (quellen/whitepaper/v1.2/), Begriffe überdeckt mit werkzeuge/abbildungen.mjs (Beschriftung in Barlow Condensed, OFL-1.1)",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "inhalte/abbildungen/abb-14.webp",
+      "sha256": "64bef5b389ee117e5d5733b89479230ba228713239460addbe17568c7a53bf34"
+    },
+    {
+      "id": "logo-bm",
+      "typ": "SVG (Logo)",
+      "verwendung": "Kopf der Seite (Bildmarke), Druckköpfe; im Skript als Text eingebettet",
+      "herkunft": "Logo von Bauherr Mentoren (Vorlage quellen/marke/logo-original.png, als Vektor nachgezeichnet)",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "quellen/marke/logo-bm.svg",
+      "sha256": "94191c7e127efdc343a6521e91f7f60b581af031e0e899d9008a3cb16255dc6f"
+    },
+    {
+      "id": "logo-bm-bildmarke",
+      "typ": "SVG (Bildmarke)",
+      "verwendung": "Kopf, Druck, eingebettetes Favicon (data:image/svg+xml in der Hülle und den Rechtsseiten)",
+      "herkunft": "Logo von Bauherr Mentoren (Vorlage quellen/marke/logo-original.png, als Vektor nachgezeichnet)",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "quellen/marke/logo-bm-bildmarke.svg",
+      "sha256": "b656177182e33b845c6ff8c34ae8e0ac2399234c26eac057b8e8b7dd344a2f3f"
+    },
+    {
+      "id": "favicon-svg",
+      "typ": "SVG (Favicon)",
+      "verwendung": "Webseitenordner: <link rel=\"icon\"> (nicht in der Einzeldatei)",
+      "herkunft": "erzeugt mit werkzeuge/favicon.mjs aus der Bildmarke",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "dist/favicon.svg",
+      "sha256": "c31c18d6ac6754d2fe649bafba8d9244d8a2bf97242f3da2714f1fb209a5eee9"
+    },
+    {
+      "id": "favicon-ico",
+      "typ": "ICO (Favicon)",
+      "verwendung": "Webseitenordner: <link rel=\"icon\" sizes=\"48x48\"> (nicht in der Einzeldatei)",
+      "herkunft": "erzeugt mit werkzeuge/favicon.mjs aus der Bildmarke",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "dist/favicon.ico",
+      "sha256": "e7bd44eebc9f409af9b4131ef76cf2d46d9844791e808f0342022d69e9b2b225"
+    },
+    {
+      "id": "apple-touch-icon",
+      "typ": "PNG (Icon)",
+      "verwendung": "Webseitenordner: <link rel=\"apple-touch-icon\"> (nicht in der Einzeldatei)",
+      "herkunft": "erzeugt mit werkzeuge/favicon.mjs aus der Bildmarke",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "dist/apple-touch-icon.png",
+      "sha256": "dc33ecf6ae7cf4db9c219d0251af9d9d7b2f4ac78dad3cb06d11c48e18d93db3"
+    },
+    {
+      "id": "vorschau",
+      "typ": "PNG (Vorschaubild)",
+      "verwendung": "Metadaten og:image/twitter der veröffentlichten Seite (wird von der Seite selbst nicht geladen)",
+      "herkunft": "erzeugt mit werkzeuge/vorschaubild.mjs (Bildmarke, Schriftzug in einer Systemschrift des Bau-Rechners)",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "dist/vorschau.png",
+      "sha256": "85486995f09a5495997c4cc8c636ad279c6f4e0fe79f4509ec5c1a35a52ff684"
+    },
+    {
+      "id": "grafik-symbole",
+      "typ": "SVG (im Code gezeichnet)",
+      "verwendung": "Symbole der Bedienung (Linien-Icons)",
+      "herkunft": "im Projekt für Bauherr Mentoren als Code geschrieben; kein fremdes Icon-Set eingebunden (keine npm-Eingabe im Bündel)",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "src/stil/symbole.ts",
+      "sha256": "084412b6ff1514e1a626748b693f8f4faaa64cc6aaab12cf2cf283ff208be8dc"
+    },
+    {
+      "id": "grafik-bauplan",
+      "typ": "SVG (im Code gezeichnet)",
+      "verwendung": "Grafiken der Geschichte, Themen und Werkzeuge",
+      "herkunft": "im Projekt für Bauherr Mentoren als Code geschrieben; kein fremdes Icon-Set eingebunden (keine npm-Eingabe im Bündel)",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "src/grafik/bauplan.ts",
+      "sha256": "aa83785bba9a3a003f616f179073cda54975eea00e8f979723901792a86b82f9"
+    },
+    {
+      "id": "grafik-campus-iso",
+      "typ": "SVG (im Code gezeichnet)",
+      "verwendung": "Grafiken der Geschichte, Themen und Werkzeuge",
+      "herkunft": "im Projekt für Bauherr Mentoren als Code geschrieben; kein fremdes Icon-Set eingebunden (keine npm-Eingabe im Bündel)",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "src/grafik/campus-iso.ts",
+      "sha256": "2074560188f7f8d6e6fde66a69738e42a073781aebbb6fe514ce0f8801ed6f38"
+    },
+    {
+      "id": "grafik-figuren",
+      "typ": "SVG (im Code gezeichnet)",
+      "verwendung": "Grafiken der Geschichte, Themen und Werkzeuge",
+      "herkunft": "im Projekt für Bauherr Mentoren als Code geschrieben; kein fremdes Icon-Set eingebunden (keine npm-Eingabe im Bündel)",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "src/grafik/figuren.ts",
+      "sha256": "80353c7e7937eafd9947ea11c1467c63e4c7ff849c261f6d19fd0fa0a7f05d14"
+    },
+    {
+      "id": "grafik-tafel",
+      "typ": "SVG (im Code gezeichnet)",
+      "verwendung": "Grafiken der Geschichte, Themen und Werkzeuge",
+      "herkunft": "im Projekt für Bauherr Mentoren als Code geschrieben; kein fremdes Icon-Set eingebunden (keine npm-Eingabe im Bündel)",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "src/grafik/tafel.ts",
+      "sha256": "04b5c600d43e884dfc3cab7773dc0aaa4b131e250f6d0d0bf402c0b7c18554e4"
+    },
+    {
+      "id": "grafik-themen-bilder",
+      "typ": "SVG (im Code gezeichnet)",
+      "verwendung": "Grafiken der Geschichte, Themen und Werkzeuge",
+      "herkunft": "im Projekt für Bauherr Mentoren als Code geschrieben; kein fremdes Icon-Set eingebunden (keine npm-Eingabe im Bündel)",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "src/grafik/themen-bilder.ts",
+      "sha256": "6441245a06fec208a8e2cdcc007cb1f125c37a28be37d9e5841610e8ea9ace50"
+    },
+    {
+      "id": "grafik-verlauf",
+      "typ": "SVG (im Code gezeichnet)",
+      "verwendung": "Grafiken der Geschichte, Themen und Werkzeuge",
+      "herkunft": "im Projekt für Bauherr Mentoren als Code geschrieben; kein fremdes Icon-Set eingebunden (keine npm-Eingabe im Bündel)",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "src/grafik/verlauf.ts",
+      "sha256": "5e5eb20be8001cd636e0199618ce3a3db251e63546d3e1c6f91dbb4603d92350"
+    },
+    {
+      "id": "grafik-weg-skizze",
+      "typ": "SVG (im Code gezeichnet)",
+      "verwendung": "Grafiken der Geschichte, Themen und Werkzeuge",
+      "herkunft": "im Projekt für Bauherr Mentoren als Code geschrieben; kein fremdes Icon-Set eingebunden (keine npm-Eingabe im Bündel)",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "src/grafik/weg-skizze.ts",
+      "sha256": "f7cd4d83b349d62fb60361f16683cf41944425b1f167e428fff5e0e8958d6af9"
+    },
+    {
+      "id": "grafik-werkzeug-bilder",
+      "typ": "SVG (im Code gezeichnet)",
+      "verwendung": "Grafiken der Geschichte, Themen und Werkzeuge",
+      "herkunft": "im Projekt für Bauherr Mentoren als Code geschrieben; kein fremdes Icon-Set eingebunden (keine npm-Eingabe im Bündel)",
+      "rechtebasis": "Owner-Bestätigung im Chat am 2026-10-06 (ENTSCHEIDE.md O-64, Punkt 5): alle Grafiken, Logo und Abbildungen sind BM-eigen",
+      "status": "BM-eigen",
+      "quelle": "src/grafik/werkzeug-bilder.ts",
+      "sha256": "990f288b3115a5be40962e54cf8d9887ea0eeae94d6cf8f776d1c3ed7f46d794"
+    },
+    {
+      "id": "schrift-big-shoulders-display-latin-800-normal",
+      "typ": "woff2 (Schrift)",
+      "verwendung": "Stil der Seite, eingebettet als data:font/woff2",
+      "herkunft": "Big Shoulders Display (https://github.com/xotypeco/big_shoulders), bezogen über npm: @fontsource/big-shoulders-display 5.3.0 (https://github.com/fontsource/font-files)",
+      "rechtebasis": "Copyright 2019 The Big Shoulders Project Authors (https://github.com/xotypeco/big_shoulders); SIL Open Font License 1.1",
+      "status": "belegt lizenziert",
+      "quelle": "node_modules/@fontsource/big-shoulders-display/files/big-shoulders-display-latin-800-normal.woff2",
+      "sha256": "088f423f09136bc96b5a7cc7232d671a1ad06a5ff1cf90cd1e24a8d9809d471c"
+    },
+    {
+      "id": "schrift-big-shoulders-display-latin-ext-800-normal",
+      "typ": "woff2 (Schrift)",
+      "verwendung": "Stil der Seite, eingebettet als data:font/woff2",
+      "herkunft": "Big Shoulders Display (https://github.com/xotypeco/big_shoulders), bezogen über npm: @fontsource/big-shoulders-display 5.3.0 (https://github.com/fontsource/font-files)",
+      "rechtebasis": "Copyright 2019 The Big Shoulders Project Authors (https://github.com/xotypeco/big_shoulders); SIL Open Font License 1.1",
+      "status": "belegt lizenziert",
+      "quelle": "node_modules/@fontsource/big-shoulders-display/files/big-shoulders-display-latin-ext-800-normal.woff2",
+      "sha256": "8b17f670d85945c981898a93860de2a2ed4c1b12d6f036e7fbd0ee6154ca6288"
+    },
+    {
+      "id": "schrift-barlow-condensed-latin-500-normal",
+      "typ": "woff2 (Schrift)",
+      "verwendung": "Stil der Seite, eingebettet als data:font/woff2",
+      "herkunft": "Barlow Condensed (https://github.com/jpt/barlow), bezogen über npm: @fontsource/barlow-condensed 5.3.0 (https://github.com/fontsource/font-files)",
+      "rechtebasis": "Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow); SIL Open Font License 1.1",
+      "status": "belegt lizenziert",
+      "quelle": "node_modules/@fontsource/barlow-condensed/files/barlow-condensed-latin-500-normal.woff2",
+      "sha256": "460f141ec8f6c9a1516bfd2bd9fe71656246d7a9d04a0955faf53158d8970c4c"
+    },
+    {
+      "id": "schrift-barlow-condensed-latin-600-normal",
+      "typ": "woff2 (Schrift)",
+      "verwendung": "Stil der Seite, eingebettet als data:font/woff2",
+      "herkunft": "Barlow Condensed (https://github.com/jpt/barlow), bezogen über npm: @fontsource/barlow-condensed 5.3.0 (https://github.com/fontsource/font-files)",
+      "rechtebasis": "Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow); SIL Open Font License 1.1",
+      "status": "belegt lizenziert",
+      "quelle": "node_modules/@fontsource/barlow-condensed/files/barlow-condensed-latin-600-normal.woff2",
+      "sha256": "215a93c696f442034a46fbb382958f753fda60e30490683aeea6b235fcbb2b66"
+    },
+    {
+      "id": "schrift-barlow-condensed-latin-700-normal",
+      "typ": "woff2 (Schrift)",
+      "verwendung": "Stil der Seite, eingebettet als data:font/woff2",
+      "herkunft": "Barlow Condensed (https://github.com/jpt/barlow), bezogen über npm: @fontsource/barlow-condensed 5.3.0 (https://github.com/fontsource/font-files)",
+      "rechtebasis": "Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow); SIL Open Font License 1.1",
+      "status": "belegt lizenziert",
+      "quelle": "node_modules/@fontsource/barlow-condensed/files/barlow-condensed-latin-700-normal.woff2",
+      "sha256": "3787a5a419171630e6890cfa47c4da067474d005cd0ff8dc11ec090fdc3ee2b8"
+    },
+    {
+      "id": "schrift-barlow-condensed-latin-ext-500-normal",
+      "typ": "woff2 (Schrift)",
+      "verwendung": "Stil der Seite, eingebettet als data:font/woff2",
+      "herkunft": "Barlow Condensed (https://github.com/jpt/barlow), bezogen über npm: @fontsource/barlow-condensed 5.3.0 (https://github.com/fontsource/font-files)",
+      "rechtebasis": "Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow); SIL Open Font License 1.1",
+      "status": "belegt lizenziert",
+      "quelle": "node_modules/@fontsource/barlow-condensed/files/barlow-condensed-latin-ext-500-normal.woff2",
+      "sha256": "a6ff9214bfa7832cb91d246454fd48b10ef921e8af052d479fdf1f0ecb903504"
+    },
+    {
+      "id": "schrift-barlow-condensed-latin-ext-600-normal",
+      "typ": "woff2 (Schrift)",
+      "verwendung": "Stil der Seite, eingebettet als data:font/woff2",
+      "herkunft": "Barlow Condensed (https://github.com/jpt/barlow), bezogen über npm: @fontsource/barlow-condensed 5.3.0 (https://github.com/fontsource/font-files)",
+      "rechtebasis": "Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow); SIL Open Font License 1.1",
+      "status": "belegt lizenziert",
+      "quelle": "node_modules/@fontsource/barlow-condensed/files/barlow-condensed-latin-ext-600-normal.woff2",
+      "sha256": "aef7edf54f79a5329fbca9c065b56dcec3852c680d58cf89a9ef2db6940ca4b3"
+    },
+    {
+      "id": "schrift-barlow-condensed-latin-ext-700-normal",
+      "typ": "woff2 (Schrift)",
+      "verwendung": "Stil der Seite, eingebettet als data:font/woff2",
+      "herkunft": "Barlow Condensed (https://github.com/jpt/barlow), bezogen über npm: @fontsource/barlow-condensed 5.3.0 (https://github.com/fontsource/font-files)",
+      "rechtebasis": "Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow); SIL Open Font License 1.1",
+      "status": "belegt lizenziert",
+      "quelle": "node_modules/@fontsource/barlow-condensed/files/barlow-condensed-latin-ext-700-normal.woff2",
+      "sha256": "9d351bd9222bfab90f943850f8039aa73cdb40e0a6cfe4127308a48bef59d5f5"
+    }
+  ]
+}

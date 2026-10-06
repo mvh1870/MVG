@@ -38,7 +38,7 @@ import { beispielKennungen, istNeuesWerkzeug } from '../ui/werkzeug-kennungen.ts
 import { beispielStart, eintrittsStand, schalteUm, schalterVon, schrittImWerkzeug, schrittStelle, standTeile } from './werkzeug-stand.ts';
 import { bogenFuerStrgP, bogenKopf, druckeBogen } from '../ui/druck.ts';
 import { W } from '../ui/woerter.ts';
-import { bmLink, DATENSCHUTZ_SEITE, IMPRESSUM_SEITE } from '../ui/bausteine/seite.ts';
+import { bmLink, DATENSCHUTZ_SEITE, IMPRESSUM_SEITE, rechtsSeite } from '../ui/bausteine/seite.ts';
 
 export interface SpeicherGriff {
   getItem(k: string): string | null;
@@ -215,11 +215,31 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     h('h2', { class: 'regie-h2' }, sym('lesezeichen'), w.notiz), notizInhalt, h('p', { class: 'regie-leise' }, w.nurRegie));
 
   /* ------------------------------------------------------------- Protokoll -- */
-  const feld = h('textarea', { class: 'regie-feld', rows: 2, 'aria-label': w.protokollFeld, placeholder: w.protokollFeld, 'data-pruef': 'regie-protokoll-feld' });
+  const feld = h('textarea', { class: 'regie-feld', rows: 2, autocomplete: 'off', 'aria-label': w.protokollFeld, placeholder: w.protokollFeld, 'data-pruef': 'regie-protokoll-feld' });
   const protokollListe = h('ol', { class: 'regie-protokoll-liste' });
   const druckKnopf = h('button', { type: 'button', class: 'knopf knopf-still', 'data-pruef': 'regie-drucken', onclick: () => drucke() }, w.protokollDrucken);
+  // Audit 2026-10-06 (O-64): Löschen mit Rückfrage in der Karte (kein Browser-Dialog); erst „Ja, löschen“ entfernt die Einträge
+  const status = h('p', { class: 'regie-leise', role: 'status', 'data-pruef': 'regie-loeschen-status' });
+  const loeschen = (): void => {
+    protokoll = [];
+    try { o.speicher?.removeItem(REGIE_SCHLUESSEL); o.speicher?.removeItem(kanalSchluessel('regie')); } catch { /* Speicher gesperrt */ }
+    zeichneProtokoll();
+    status.textContent = w.geloescht;
+  };
+  const loeschKnopf: HTMLButtonElement = h('button', { type: 'button', class: 'knopf knopf-still', 'data-pruef': 'regie-protokoll-loeschen', onclick: () => {
+    status.textContent = '';
+    loeschKnopf.hidden = true;
+    rueckfrage.hidden = false;
+    (rueckfrage.querySelector('[data-pruef="regie-loeschen-nein"]') as HTMLElement | null)?.focus();
+  } }, w.protokollLoeschen);
+  const schliesseRueckfrage = (): void => { rueckfrage.hidden = true; loeschKnopf.hidden = false; loeschKnopf.focus(); };
+  const rueckfrage: HTMLElement = h('div', { class: 'regie-rueckfrage', role: 'group', 'aria-label': w.loeschenFrage, 'data-pruef': 'regie-loeschen-rueckfrage', hidden: true },
+    h('p', { class: 'regie-leise' }, w.loeschenFrage),
+    h('button', { type: 'button', class: 'knopf knopf-still', 'data-pruef': 'regie-loeschen-ja', onclick: () => { loeschen(); schliesseRueckfrage(); } }, w.loeschenJa),
+    h('button', { type: 'button', class: 'knopf knopf-still', 'data-pruef': 'regie-loeschen-nein', onclick: schliesseRueckfrage }, w.loeschenNein));
   const protokollKarte = h('section', { class: 'regie-karte regie-protokoll', 'aria-label': w.protokoll },
     h('h2', { class: 'regie-h2' }, w.protokoll),
+    h('p', { class: 'regie-leise', 'data-pruef': 'regie-protokoll-hinweis' }, h('b', null, w.protokollHinweisTitel), ' ', w.protokollHinweis),
     h('div', { class: 'regie-protokoll-eingabe' }, feld,
       h('button', { type: 'button', class: 'knopf knopf-still', 'data-pruef': 'regie-protokoll-sichern', onclick: () => {
         const t = feld.value.trim();
@@ -230,13 +250,9 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
         zeichneProtokoll();
       } }, w.protokollSichern)),
     protokollListe,
-    h('div', { class: 'regie-zeile' }, druckKnopf,
-      // R67: Notizen bleiben nicht ungefragt im Browser – löscht Protokoll und gespeicherten Stand der Präsentation
-      h('button', { type: 'button', class: 'knopf knopf-still', 'data-pruef': 'regie-protokoll-loeschen', onclick: () => {
-        protokoll = [];
-        try { o.speicher?.removeItem(REGIE_SCHLUESSEL); o.speicher?.removeItem(kanalSchluessel('regie')); } catch { /* Speicher gesperrt */ }
-        zeichneProtokoll();
-      } }, w.protokollLoeschen)));
+    // R67: Notizen bleiben nicht ungefragt im Browser – löscht Protokoll und gespeicherten Stand der Präsentation
+    h('div', { class: 'regie-zeile' }, druckKnopf, loeschKnopf, rueckfrage),
+    status);
   const uhr = (zeit: number): string => new Date(zeit).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
   const zeichneProtokoll = (): void => {
     ersetze(protokollListe, protokoll.slice(-6).reverse().map((p) => h('li', null, h('span', { class: 'regie-zeit mono' }, uhr(p.zeit)), ' ', p.text)));
@@ -270,8 +286,8 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
       h('div', { class: 'regie-rechts' }, eingriffKarte, notiz, protokollKarte)),
     // R68: Impressum, Datenschutz und der leise Link auch hier (P16.12 „aus jeder Fläche erreichbar“)
     h('footer', { class: 'regie-fuss' }, o.version === '' ? null : h('span', null, o.version),
-      h('a', { href: IMPRESSUM_SEITE, 'data-pruef': 'impressum' }, W.rahmen.impressum),
-      h('a', { href: DATENSCHUTZ_SEITE, 'data-pruef': 'datenschutz' }, W.rahmen.datenschutz),
+      h('a', { href: rechtsSeite(IMPRESSUM_SEITE), 'data-pruef': 'impressum' }, W.rahmen.impressum),
+      h('a', { href: rechtsSeite(DATENSCHUTZ_SEITE), 'data-pruef': 'datenschutz' }, W.rahmen.datenschutz),
       bmLink()));
 
   /* -------------------------------------------------------------- Handeln -- */

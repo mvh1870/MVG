@@ -128,7 +128,9 @@ export const TAFELZELLEN = /** @type {Record<string, [string, string][]>} */ ({
   ],
   'k6.1-t1': [
     ["Funktionslogik", "Funktion"],
-    ["Beitrag zur Umsetzung", "Was sie tut"],
+    ["Beitrag zur Umsetzung", "Was sie tun soll"],
+    // O-64: der Companion ist angekündigt, nicht bereitgestellt – der Nutzen ist ein Ziel, keine zugesagte Eigenschaft
+    ["Nutzen für den Bauherrn", "Angestrebter Nutzen für den Bauherrn"],
     ["Erklärt Zweck der Freigabe, Mindestgrundlagen und typische Entscheidungs-IDs.", "Erklärt, wozu die Freigabe da ist, welche Unterlagen mindestens vorliegen müssen und wie typische Entscheidungs-IDs aussehen."],
     ["Klare Freigabereife ohne zusätzliche Abstimmungsschleifen.", "Klar, wann eine Freigabe reif ist, ohne zusätzliche Abstimmungsrunden."],
     ["Verknüpft Verantwortungsfeld, Rolle, Schwelle und Eskalation.", "Verknüpft Verantwortungsfeld, Rolle, Grenze (Schwelle) und Weitergabe nach oben (Eskalation)."],
@@ -228,6 +230,10 @@ export const TAFELZELLEN = /** @type {Record<string, [string, string][]>} */ ({
     ["Führt das Projekt nach der MVG-Neuinitialisierung in einen handhabbaren Regelbetrieb zurück.", "Bringt das Projekt nach der MVG-Neuinitialisierung zurück in einen Regelbetrieb, der sich bewältigen lässt."],
   ],
   'k12-t1': [
+    // O-64: Gewinne als Ziel, nicht als zugesagte Wirkung
+    ["Gewinn", "Angestrebter Gewinn"],
+    ["Wirkung", "Wie er entstehen soll"],
+    ["Betriebshandbuch, Routinen und Unterstützung durch den MVG Companion erleichtern den Regelbetrieb.", "Betriebshandbuch, Routinen und – sobald verfügbar – der MVG Companion sollen den Regelbetrieb erleichtern."],
     ["Entscheidungsfragen, Mandate, Freigaben und Datenstände werden vor der Freigabe zusammengeführt.", "Vor der Freigabe werden Entscheidungsfrage, Befugnisse, Freigabe und Stand der Unterlagen zusammengeführt."],
     ["Rollen lernen die MVG-Logik nicht nur in einer Arbeitssitzung, sondern in der Anwendung.", "Rollen lernen MVG nicht nur in einer Arbeitssitzung, sondern in der Anwendung."],
     ["Bessere Nachweisfähigkeit", "Besser belegbar"],
@@ -238,7 +244,7 @@ export const TAFELZELLEN = /** @type {Record<string, [string, string][]>} */ ({
   'k12.1-t1': [
     ["Welche Entscheidungen, Mandate, Freigaben und Datenstände sind im 30/60/90-Orientierungsrahmen nach der MVG-Reifegradanalyse relevant?", "Welche Entscheidungen, Befugnisse, Freigaben und Stände der Unterlagen sind nach der MVG-Reifegradanalyse im 30/60/90-Tage-Plan wichtig?"],
     ["Lagebild, Entscheidungsliste und priorisierte Umsetzungsschritte.", "Überblick über die Lage, Entscheidungsliste und Umsetzungsschritte in einer festen Reihenfolge."],
-    ["Companion-Kalibrierung", "Einrichtung des Companion"],
+    ["Companion-Kalibrierung", "Einrichtung des Companion (sobald er verfügbar ist)"],
     ["Anwendungslogik für Schulung, Pilotierung und Übergabe.", "Eine Arbeitsweise für Schulung, Erprobung und Übergabe."],
     ["Welche echte Entscheidung eignet sich zur Kalibrierung des MVG-Modells?", "Welche echte Entscheidung eignet sich zum Feineinstellen (Kalibrieren) des MVG-Modells?"],
     ["Praxistest mit Freigabefrage, Entscheidungs-ID, Datenstand und Nachweislogik.", "Praxistest mit Freigabefrage, Entscheidungs-ID, Datenstand und Regeln für den Nachweis."],

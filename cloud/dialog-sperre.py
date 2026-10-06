@@ -97,6 +97,11 @@ def haupt():
     e = json.loads(roh)
     if not isinstance(e, dict) or e.get("tool_name") != "AskUserQuestion":
         return 0
+    # Chat-Sitzung mit dem Owner vor dem Fenster (Owner-Freigabe 2026-10-06): die Marke
+    # tmp/dialog-frei (ignoriert, nie committet) gibt das Auswahlwerkzeug frei. Routine-Blöcke
+    # legen sie nie an und bleiben gesperrt.
+    if os.path.isfile(os.path.join(wurzel(e), "tmp", "dialog-frei")):
+        return 0
     sys.stderr.write(ablehnung(e))
     return 2          # PreToolUse: 2 hält den Aufruf an, stderr geht an die Sitzung
 

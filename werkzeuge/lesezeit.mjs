@@ -15,6 +15,7 @@
  *  3. Nicht gezählt: Text nur für Screenreader (`.nur-sr`), Grafiken (`svg`, `[aria-hidden="true"]`), die Balkentafel
  *     (`.gs-stand`), die kleinen Kicker (`.gs-kicker`; auch die Zeile „Akt · Zeitraum · Dauer“ der Kopfkarte, P19.3) und der Knopf
  *     „Weiter mit der ganzen Geschichte“ am Ende der Kurzfassung (Bedienung); ein zugeklappter Aufklapper zählt nur mit seiner Titelzeile.
+ *     Seit O-64 auch nicht die Fußnote zur Balkentafel (`.gs-einordnung`: Lernmodell, keine Prognose) – sie gehört zur Tafel, nicht zur Erzählung.
  *  4. Wort: jede durch Leerraum oder eine Blockgrenze (jedes Element außer Auszeichnungen im Satz wie span, a, b, em)
  *     getrennte Folge mit mindestens einem Buchstaben oder einer Ziffer; weiche Trennstellen entfernt. Blockgrenze, weil die
  *     Seite Elemente ohne Leerraum aneinandersetzt – ohne sie klebten etwa Sprechername und Satz zu einem Wort zusammen.
@@ -40,7 +41,7 @@ const IM_SATZ = new Set(['a', 'abbr', 'b', 'em', 'i', 'mark', 'q', 'small', 'spa
 export function zaehleWoerter(artikel) {
   const a = /** @type {Element} */ (artikel.cloneNode(true));
   // P19.3: der Knopf am Ende der Kurzfassung („Weiter mit der ganzen Geschichte“) ist Bedienung, kein Lesetext der Kurzfassung
-  for (const x of a.querySelectorAll('.nur-sr, svg, [aria-hidden="true"], .gs-stand, .gs-kicker, [data-pruef="weiter-ganz"]')) x.remove();
+  for (const x of a.querySelectorAll('.nur-sr, svg, [aria-hidden="true"], .gs-stand, .gs-einordnung, .gs-kicker, [data-pruef="weiter-ganz"]')) x.remove();
   // Mini-Registry: eine Mini-Art kann weitere Elemente von der Zählung ausnehmen (`lesezeitOhne`); die bisherigen Arten keine
   const miniAuswahl = miniArt(a.getAttribute('data-art') ?? '')?.lesezeitOhne ?? [];
   if (miniAuswahl.length > 0) for (const x of a.querySelectorAll(miniAuswahl.join(','))) x.remove();

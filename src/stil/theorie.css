@@ -263,6 +263,7 @@ a.glossar-ort:hover { text-decoration: underline; }
   .druck-kopf { margin-bottom: 8mm; padding-bottom: 4mm; border-bottom: 1px solid var(--linie-2); }
   .druck-kopf h1 { margin: 2mm 0; font: 800 20pt/1.15 var(--schrift-anzeige); color: var(--navy); }
   .druck-absender, .druck-meta { margin: 0; font-size: 9pt; color: var(--tinte-2); }
+  .druck-meta.druck-grenze { font-size: 8pt; }
   .druck-absender { display: flex; align-items: center; gap: 3mm; }
   .druck-absender .marke-logo { height: 8mm; color: var(--navy); }
   /* r72: Teil und Nummer des Themas als kleine Zeile über dem Titel, in der Textfarbe des Teils */

@@ -101,7 +101,7 @@ export function verwechslungen(art: Art, alle: readonly { id: string; art: Art }
 }
 
 /** Zusätze unter dem Ergebnis (B-R1 bis B-R7), in fester Reihenfolge. */
-export type Zusatz = 'sofort' | 'unklar' | 'keinVorgang' | 'nichtSchaetzen' | 'bisherGilt' | 'entscheidung' | 'bewerten' | 'verknuepfen';
+export type Zusatz = 'sofort' | 'unklar' | 'keinVorgang' | 'nichtSchaetzen' | 'bisherGilt' | 'schonEingetreten' | 'entscheidung' | 'bewerten' | 'verknuepfen';
 
 export function zusaetze(w: Weg): readonly Zusatz[] {
   const z: Zusatz[] = [];
@@ -110,6 +110,8 @@ export function zusaetze(w: Weg): readonly Zusatz[] {
   if (w.keinVorgang) z.push('keinVorgang');
   if (w.art === 'problem') z.push('nichtSchaetzen');
   if (w.art === 'aenderung') z.push('bisherGilt');
+  // O-64 (Prüf-Agent Fachtreue): „Handlung“ wird vor „eingetreten“ gefragt – ist der Zustand inzwischen eingetreten, gehört ein Problem dazu
+  if (w.art === 'massnahme') z.push('schonEingetreten');
   if (w.entscheidung === true) z.push('entscheidung');
   if (w.entscheidung === false && w.art === 'risiko') z.push('bewerten');
   // verknüpft wird nur, was als Vorgang entsteht (R78): bei „kein Vorgang“ und bei reiner Entscheidungsvorbereitung entsteht kein Eintrag

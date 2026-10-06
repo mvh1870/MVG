@@ -414,7 +414,20 @@ test('Regie: Notiz und Leitfragen, Kundenwahl, „weiter“ sendet den öffentli
     // R69: der Kanal oben ist ein Stub ohne Speicher – den zuletzt gesendeten Bühnenstand hier selbst ablegen
     sp.setItem('mvg.kanal.regie', '{"x":1}');
     assert.equal(sp.getItem('mvg.kanal.regie'), '{"x":1}');
-    (r.element.querySelector('[data-pruef="regie-protokoll-loeschen"]') as HTMLElement).click();
+    // Audit 2026-10-06 (O-64): Hinweis mit den vier Aussagen; Löschen erst nach Rückfrage, „Abbrechen“ lässt alles stehen
+    const hinweis = r.element.querySelector('[data-pruef="regie-protokoll-hinweis"]')?.textContent ?? '';
+    for (const teil of [/nur in diesem Browserprofil gespeichert/u, /nicht übertragen/u, /nicht verschlüsselt/u, /keine vertraulichen oder personenbezogenen/u]) assert.match(hinweis, teil);
+    const loeschKnopf = r.element.querySelector<HTMLButtonElement>('[data-pruef="regie-protokoll-loeschen"]');
+    const rueckfrage = r.element.querySelector<HTMLElement>('[data-pruef="regie-loeschen-rueckfrage"]');
+    assert.ok(loeschKnopf && rueckfrage && rueckfrage.hidden);
+    loeschKnopf.click();
+    assert.ok(!rueckfrage.hidden && loeschKnopf.hidden);
+    (r.element.querySelector('[data-pruef="regie-loeschen-nein"]') as HTMLElement).click();
+    assert.ok(rueckfrage.hidden && !loeschKnopf.hidden);
+    assert.ok((sp.getItem('gk.regie') ?? '').includes('Frage zur Reserve'), 'Abbrechen löscht nichts');
+    loeschKnopf.click();
+    (r.element.querySelector('[data-pruef="regie-loeschen-ja"]') as HTMLElement).click();
+    assert.equal(r.element.querySelector('[data-pruef="regie-loeschen-status"]')?.textContent, W.regie.geloescht);
     assert.equal(sp.getItem('gk.regie'), null);
     assert.equal(sp.getItem('mvg.kanal.regie'), null);
     assert.doesNotMatch(r.element.querySelector('.regie-protokoll-liste')?.textContent ?? '', /Frage zur Reserve/u);

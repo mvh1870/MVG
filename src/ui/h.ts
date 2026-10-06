@@ -10,6 +10,19 @@
  * HTML als Text gibt es nur über `vonHtml()` – und nur für Inhalte, die zur Bauzeit erzeugt und
  * maskiert wurden (src/generiert/inhalte.json) oder für eigene SVG-Zeichenketten (src/stil/symbole.ts,
  * src/figuren, src/grafik). Nie für Eingaben zur Laufzeit.
+ *
+ * VERTRAUENSGRENZE (Audit 2026-10-06, O-64) – wer `vonHtml()`/`elementAus()` aufruft, gehört zu genau einer Klasse:
+ *   1. Bauzeit-Inhalt: HTML aus src/generiert/inhalte.json (werkzeuge/inhalte.mjs, marked, Begriffsprüfung) –
+ *      src/ui/bausteine/inhalt.ts (inhaltHtml, inhaltInline).
+ *   2. Intern erzeugtes Markup: SVG-Zeichenketten aus src/stil/symbole.ts, src/grafik/*, src/ui/marke.ts (Logo
+ *      aus quellen/marke). Text darin nur über deren Maskierung (`tx`, `maske` in src/grafik/werkzeug-bilder.ts).
+ *   3. Benutzerbeeinflusst, nur als Zahl: Risiko-Bewerter und Monatsbericht geben Zahlen aus Eingabefeldern
+ *      (geparst mit Number, gerundet) an src/grafik/werkzeug-bilder.ts; Beschriftungen kommen aus den Inhalten.
+ *   Benutzertext (Freitext, Titel, Notizen, Protokoll) geht NIE hierher, sondern als Textknoten über h()/text().
+ *   URL-, Import- oder nachgeladene Inhalte gibt es nicht (CSP: connect-src 'none'). Wer eine neue Quelle anschließt,
+ *   muss sie einer Klasse zuordnen; zusätzlich räumt `vonHtml()` jedes Fragment nach einer Positivliste auf
+ *   (`bereinige`): Skript- und Einbettungselemente fliegen raus, ebenso Ereignis-Attribute (on…) und Adressen, die
+ *   nicht mit #, https:, mailto: oder data:image/ beginnen oder relativ sind. Tests: tests/sicherheit-html.test.ts.
  */
 
 export type Kind = Node | string | number | null | undefined | false | readonly Kind[];
@@ -98,10 +111,36 @@ export function s<K extends keyof SVGElementTagNameMap>(tag: K, attr?: Attribute
   return el;
 }
 
-/** Dokumentfragment aus vertrauenswürdigem HTML (siehe Kopfkommentar). */
+/** Elemente, die nie aus einer Zeichenkette entstehen dürfen (auch nicht im SVG-Namensraum). */
+const VERBOTENE_ELEMENTE = new Set(['script', 'iframe', 'frame', 'frameset', 'object', 'embed', 'applet', 'base', 'link', 'meta', 'form', 'foreignobject', 'animate', 'set', 'animatemotion', 'animatetransform', 'handler', 'listener']);
+/** Attribute mit Adressen: erlaubt sind Sprungziele, https, mailto, eingebettete Bilder und relative Adressen ohne Schema. */
+const ADRESS_ATTRIBUTE = new Set(['href', 'src', 'xlink:href', 'action', 'formaction', 'poster', 'srcset', 'background']);
+const SICHERE_ADRESSE = /^(?:#|https:\/\/|mailto:|data:image\/(?:png|jpeg|webp|gif|svg\+xml)[;,]|(?![a-z][a-z0-9+.-]*:)[^\s])/iu;
+
+/**
+ * Räumt ein geparstes Fragment nach der Positivliste auf (Audit 2026-10-06, O-64): Verbotene Elemente werden
+ * entfernt, Ereignis-Attribute (on…) und `style` mit `url(` gestrichen, Adressen außerhalb von SICHERE_ADRESSE
+ * entfernt. Für die heutigen Quellen (Klassen 1–3 im Kopfkommentar) ändert sich nichts; die Prüfung ist das Netz
+ * für eine künftige Quelle, die versehentlich ungeprüft hier landet.
+ */
+export function bereinige(wurzel: DocumentFragment | Element): void {
+  for (const el of [...wurzel.querySelectorAll('*')]) {
+    if (VERBOTENE_ELEMENTE.has(el.localName.toLowerCase())) { el.remove(); continue; }
+    for (const a of [...el.attributes]) {
+      const name = a.name.toLowerCase();
+      const wert = a.value.replace(/[\u0000-\u0020]/gu, '');
+      if (name.startsWith('on') || (name === 'style' && /url\s*\(|expression\s*\(/iu.test(a.value)) || (ADRESS_ATTRIBUTE.has(name) && !SICHERE_ADRESSE.test(wert))) {
+        el.removeAttribute(a.name);
+      }
+    }
+  }
+}
+
+/** Dokumentfragment aus vertrauenswürdigem HTML (siehe Kopfkommentar: Vertrauensgrenze), zusätzlich bereinigt. */
 export function vonHtml(html: string): DocumentFragment {
   const t = document.createElement('template');
-  t.innerHTML = html;
+  t.innerHTML = html; // Vertrauensgrenze: nur Klassen 1–3 (Kopfkommentar); das Template führt nichts aus
+  bereinige(t.content);
   return t.content;
 }
 

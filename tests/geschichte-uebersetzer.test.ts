@@ -49,7 +49,7 @@ function kapitel1(): Roh {
     nr: 1, titel: 'Erstes', zeit: 'Januar', campus: { stufe: 0, jahreszeit: 'winter', licht: 'morgen' }, kurzfassung: true, thema: 'begriffe',
     belege: ['k4.2-p3', 'v24:hb-3.1', 'v24:hb-projektblatt'], einstieg: 'Einstieg', szene: [zeile('faden', 'Hallo')], frage: 'Was tun?',
     antworten: [antwort('vertretbar', 0, -1, 1), antwort('gut', 0, 0, 2), antwort('falle', 0, 1, -2)], gut: 'So gut.', dahinter: 'Dahinter.',
-    'mandat-nach-folge': true, 'bild-szene': 'bauzaun', regie: { leitfragen: ['Frage?'] },
+    'mandat-nach-folge': true, 'bild-szene': 'bauzaun',
     vergleich: {
       einleitung: 'Vergleich', kriterien: [{ id: 'geld', titel: 'Geld', gewicht: 3 }, { id: 'zeit', titel: 'Zeit', gewicht: 5 }],
       optionen: [
@@ -93,7 +93,7 @@ const K1 = 'inhalte/geschichte/k1-erstes.yaml';
 const K2 = 'inhalte/geschichte/k2-zweites.yaml';
 const R = 'inhalte/geschichte/rahmen.yaml';
 
-test('Grundlage: fehlerfrei; Belege und Begründungen bleiben intern, die Regie getrennt', () => {
+test('Grundlage: fehlerfrei; Belege und Begründungen bleiben intern, kein Regie-Material (O-65)', () => {
   const { fehler, erg } = lauf();
   assert.deepEqual(fehler, []);
   const g = erg.geschichte;
@@ -102,14 +102,13 @@ test('Grundlage: fehlerfrei; Belege und Begründungen bleiben intern, die Regie 
   assert.deepEqual(g.kapitel[0].antworten.map((a: Roh) => a.wirkung), [{ geld: 0, zeit: -1, vertrauen: 1 }, { geld: 0, zeit: 0, vertrauen: 2 }, { geld: 0, zeit: 1, vertrauen: -2 }]);
   const json = JSON.stringify(g);
   assert.doesNotMatch(json, /belege|begruendung|geheim|k4\.2-p3|v24:/u);
-  assert.match(JSON.stringify(erg.regie), /Frage\?/u);
-  assert.doesNotMatch(json, /Frage\?/u, 'Regie-Material nicht in der öffentlichen Geschichte');
+  assert.equal('regie' in erg, false, 'O-65: kein Regie-Material');
   assert.equal(g.kapitel[1].brueckeHtml, 'Inzwischen.');
   assert.equal(g.kapitel[0].brueckeHtml, null);
 });
 
 test('Unbekanntes Feld – im Kapitel, in einer Antwort, im Rahmen: Fehler', () => {
-  assert.deepEqual(lauf(({ k1 }) => { k1.lph = 3; }).fehler, [`${K1}: unbekanntes Feld „lph“ (erlaubt: nr, titel, zeit, campus, thema, belege, einstieg, szene, frage, antworten, gut, dahinter, kurzfassung, bruecke, einstieg-kurz, campus-nachher, zusatz, bild-szene, bild-frage, mandat-nach-folge, mini, vergleich, regie, werkzeuge, vertiefung, gut-kurz, dahinter-kurz)`]);
+  assert.deepEqual(lauf(({ k1 }) => { k1.lph = 3; }).fehler, [`${K1}: unbekanntes Feld „lph“ (erlaubt: nr, titel, zeit, campus, thema, belege, einstieg, szene, frage, antworten, gut, dahinter, kurzfassung, bruecke, einstieg-kurz, campus-nachher, zusatz, bild-szene, bild-frage, mandat-nach-folge, mini, vergleich, werkzeuge, vertiefung, gut-kurz, dahinter-kurz)`]);
   assert.deepEqual(lauf(({ k1 }) => { k1.antworten[0].punkte = 3; }).fehler, [`${K1} Antwort 1: unbekanntes Feld „punkte“ (erlaubt: wertung, text, balken, folge, bild, folge-kurz, schlagzeile)`]);
   assert.deepEqual(lauf(({ r }) => { r.prolog = {}; }).fehler, [`${R}: unbekanntes Feld „prolog“ (erlaubt: titel, auftakt, sie, figuren, balken, bilanz, mandat, ende, reihenfolge, akte, echos, buch, nebenfiguren, oberflaeche)`]);
 });
@@ -299,8 +298,6 @@ test('Kennungen und Reihenfolge: s1, s2 aus einer Reihenfolge-Angabe, Nummer = S
   // ohne Akte bleibt die Liste leer, und die Story ohne Reihenfolge-Angabe liefert weiter k1, k2
   assert.deepEqual(lauf().erg.geschichte.akte, []);
   assert.deepEqual(laufS(() => undefined, false).erg.geschichte?.akte, []);
-  // Regie-Material läuft über die neue Kennung
-  assert.deepEqual(Object.keys(laufS().erg.regie), ['s1']);
 });
 
 test('Reihenfolge: beliebige Kennungen und Folge (s7 vor s3), jede Datei genau einmal', () => {

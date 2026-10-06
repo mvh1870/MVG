@@ -770,13 +770,3 @@ Ein zusätzliches Arbeitsmittel ersetzt die Dokumentation dort nicht.
 :::
 :::
 :::
-
-::: regie
-### Notiz
-Dieses Thema trägt im Termin vor allem mit seinem ersten Teil: Die Projektsteuerung bearbeitet alle Vorgänge in der Software des Bauherrn und prüft sie wöchentlich; der Bauherr pflegt nichts, er entscheidet auf Vorlage (Sortierübung „Bearbeitet die Projektsteuerung – oder entscheidet der Bauherr?“, Karten „Vier Ausgänge einer Frühwarnung“, Takt in Kürze). Den MVG Companion als angekündigtes, optionales Arbeitsmittel beschreiben: Er ist noch nicht veröffentlicht, deshalb nichts vorführen oder zusagen. Er ersetzt keine Bauherrenentscheidung, keine Gremienfreigabe, keine Projektsteuerung und nicht die Einträge in der Software des Bauherrn. Fragen nach Bezug, Kosten oder Nutzungsregeln sachlich beantworten: Sie werden mit der Veröffentlichung bekanntgegeben. In einer beauftragten Beratung regelt der Vertrag, wie Arbeitsmittel eingesetzt werden; das Gespräch dort ist Teil der vereinbarten Leistung.
-
-### Leitfragen
-- Wer bearbeitet bei Ihnen alle offenen Punkte (Vorgänge) – und wer entscheidet nur?
-- Wo wird bei Ihnen ein erster Hinweis festgehalten, bevor jemand geklärt hat, was dahintersteckt?
-- Wann wird bei Ihnen aus einem Vorgang ein Entscheidungsbedarf – und wer legt die Vorlage vor?
-:::

@@ -259,12 +259,6 @@ vorlagencheck:
       erwartet: rot
 
   # Regie-Material (nur im Regie-Teil, nie auf der Leinwand; E-9, Konzept A.9)
-  regie:
-    notiz: |
-      Erst das Beispiel „Lüftungsanlage – nur das Ersatzgerät“ zeigen und raten lassen, was fehlt; dann zu „Lüftungsanlage – alle drei Wege“ wechseln. Die Pfeiltasten gehen erst durch die fünf Prüfschritte, danach zum Ergebnis und erst dann zum nächsten Werkzeug.
-    leitfragen:
-      - Welche dieser Fragen beantworten Ihre Vorlagen heute?
-      - Wer entscheidet bei Ihnen, ob eine Vorlage vollständig ist?
 
 wegweiser:
   titel: Vorgangs-Wegweiser
@@ -326,12 +320,6 @@ wegweiser:
     - { id: haushalt, quelle: fall, titel: Kostenübersicht für den Haushalt, text: "Die Kostenübersicht für den Haushalt 2027 geht bis Freitag an die Finanzabteilung der Stadt (Kämmerei).", antworten: { dringlich: nein, handlung: nein, eingetreten: nein, anpassen: nein, moeglich: nein, arbeit: ja, entscheidung: nein }, erwartet: { art: aufgabe } }
 
   # Regie-Material (nur im Regie-Teil, nie auf der Leinwand; Konzept B.10)
-  regie:
-    notiz: |
-      Erst raten lassen, dann die Antwort setzen: „Schritt weiter“ beantwortet die nächste Frage mit der Antwort des Beispiels. Bei „Weiß ich nicht“ zeigen, warum daraus eine Frühwarnung wird und noch keine Bewertung.
-    leitfragen:
-      - Welche Art landet bei Ihnen am häufigsten in der falschen Liste?
-      - Wer bei Ihnen hält fest, woher ein Hinweis stammt?
 
 risikogrenzen:
   titel: Risiko-Bewerter
@@ -421,12 +409,6 @@ risikogrenzen:
       erwartet: { feld: 5, zustand: vorlaeufig, nachObenOffen: false, prioritaet: vorrangig, vorrangWegenA5: true }
 
   # Regie-Material (nur im Regie-Teil, nie auf der Leinwand; Konzept C.8)
-  regie:
-    notiz: |
-      Mit 70 und 71 Tagen zeigen, dass ein einziger Tag die Stufe kippt; dann „Wahrscheinlichkeit sehr gering“ dazunehmen – selten, aber trotzdem vorrangig. Und zeigen, warum „unbekannt“ nicht „null“ ist.
-    leitfragen:
-      - Wer legt bei Ihnen die Grenzen fest – und stehen sie irgendwo?
-      - Was tun Sie mit einer Auswirkung, die noch niemand beziffern kann?
 
 monatsbericht:
   titel: Monatsbericht
@@ -507,9 +489,3 @@ monatsbericht:
       reaktion: "Zur Kenntnis nehmen; keine Entscheidung offen. Der Architekt nennt bis zum nächsten Termin, wann die Fassadenpläne vorliegen."
       erwartet: gruen
   # Regie-Material (nur im Regie-Teil, nie auf der Leinwand; Konzept D.8)
-  regie:
-    notiz: |
-      Erst den sauberen Bericht zeigen, dann beim Schalter „Kosten-Ampel ohne Entscheidungsfrage“ die Verknüpfung lösen – die Warnung erscheint.
-    leitfragen:
-      - Wie viele Seiten hat Ihr Monatsbericht heute?
-      - Welche Ampel in Ihrem letzten Bericht hatte eine Entscheidungsfrage?

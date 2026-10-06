@@ -104,14 +104,6 @@ Berichterstattung erzeugt Information. Führung entsteht erst, wenn Information 
 :::
 :::
 :::
-
-::: regie
-### Notiz
-Nicht bewerten.
-### Leitfragen
-- Welche Zahl gilt?
-- Wer entscheidet?
-:::
 `,
   'inhalte/abdeckung.yaml': 'k2.4-l1:\n  theorie: k02\nk2.4-p1:\n  theorie: k02\nk2.4-p2:\n  theorie: k02\n',
 };
@@ -135,7 +127,7 @@ test('Beispiel → erwartetes JSON (Auszüge exakt), fehlerfrei, deterministisch
   assert.deepEqual(erg.warnungen, []);
   const i = erg.inhalte as Inhalte;
 
-  assert.deepEqual(Object.keys(i).sort(), ['abbildungen', 'abdeckung', 'geschichte', 'geschichteRegie', 'glossar', 'kompass', 'regie', 'startseite', 'theorie', 'version', 'werkzeuge', 'werkzeugeRegie']);
+  assert.deepEqual(Object.keys(i).sort(), ['abbildungen', 'abdeckung', 'geschichte', 'glossar', 'kompass', 'startseite', 'theorie', 'version', 'werkzeuge']);
   assert.equal(i.startseite, null);
   assert.deepEqual(i.kompass, []);
   assert.deepEqual(i.abbildungen, []);
@@ -165,9 +157,6 @@ test('Beispiel → erwartetes JSON (Auszüge exakt), fehlerfrei, deterministisch
   assert.equal(zitat?.felder['text'], `<blockquote class="mvg-zitat" data-absatz="k2.4-p2"><p>${ZITAT_P2}</p></blockquote>`);
   assert.deepEqual(k02.deckt, ['k2-p1']);
 
-  // Regie-Material steht getrennt, nicht im Thema
-  assert.deepEqual(i.regie, { 'theorie/k2': { notiz: '<p>Nicht bewerten.</p>', leitfragen: ['Welche Zahl gilt?', 'Wer entscheidet?'] } });
-  assert.equal(JSON.stringify(i.theorie).includes('Nicht bewerten'), false);
 
   assert.deepEqual(i.abdeckung, {
     gesamt: 4, zugeordnet: 4, anteil: 1,
@@ -421,15 +410,9 @@ test('Begriffs-Kompass (P10.5): Begriff muss im Beleg stehen, Glossar-Bezug, alt
   }
 });
 
-test('Regie auf Themen (P9.5): ohne kapitel und doppelt sind Fehler', async () => {
-  const seite = (kopf: string): string => `---\n${kopf}titel: Ausgangslage\n---\n::: kernaussage\nText.\n:::\n\n::: regie\n### Notiz\nEins.\n:::\n\n::: regie\n### Notiz\nZwei.\n:::\n`;
-  const doppelt = await kompiliere({ pruefe: true, wurzel: neueWurzel({ ...BEISPIEL, [K02]: seite('kapitel: 2\n') }), ziel: null });
-  assert.ok(doppelt.fehler.some((f) => /k02-ausgangslage\.md:\d+: zweiter Regie-Block zu Kapitel 2/u.test(f)), doppelt.fehler.join('\n'));
-  assert.deepEqual((doppelt.inhalte as Inhalte).regie['theorie/k2'], { notiz: '<p>Eins.</p>', leitfragen: [] });
-  const ohne = await kompiliere({ pruefe: true, wurzel: neueWurzel({ ...BEISPIEL, [K02]: seite('') }), ziel: null });
-  assert.ok(ohne.fehler.some((f) => /Regie-Block ohne „kapitel:“ im Dateikopf/u.test(f)), ohne.fehler.join('\n'));
-  const tief = await kompiliere({ pruefe: true, wurzel: neueWurzel(veraendere(BEISPIEL, K02, '::: merksatz\n', '::: regie\n### Notiz\nX.\n:::\n\n::: merksatz\n')), ziel: null });
-  assert.ok(tief.fehler.some((f) => /„regie“ ist hier nicht erlaubt/u.test(f)), tief.fehler.join('\n'));
+test('O-65: Moderationsnotizen gibt es nicht mehr – ein Block „regie“ ist ein Fehler', async () => {
+  const mit = await kompiliere({ pruefe: true, wurzel: neueWurzel(veraendere(BEISPIEL, K02, '::: merksatz\n', '::: regie\n### Notiz\nX.\n:::\n\n::: merksatz\n')), ziel: null });
+  assert.ok(mit.fehler.some((f) => /unbekannter Container „regie“|„regie“ ist hier nicht erlaubt/u.test(f)), mit.fehler.join('\n'));
 });
 
 test('Themen als Buch (P17.8, O-54): teil, kurzsatz und symbol Pflicht und geprüft; Nummern und Teile in Leserichtung', async () => {

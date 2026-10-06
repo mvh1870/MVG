@@ -352,13 +352,3 @@ Die Wärmepumpe braucht eine Entscheidung zwischen zwei zulässigen Wegen – mi
 :::
 :::
 :::
-
-::: regie
-### Notiz
-Das Thema zeigt den Kern der Rollenteilung: Die Projektsteuerung bereitet vor, die befugte Stelle entscheidet. Den Regler im Beispiel gemeinsam auf Termingewicht 3 ziehen – beim Gleichstand wird sichtbar, dass die Empfehlung an der Gewichtung hängt. Die Zahlen sind vereinfacht und fiktiv.
-
-### Leitfragen
-- Welche Ihrer letzten Entscheidungen hatte wirklich zwei zulässige Optionen auf dem Tisch?
-- Wer legt bei Ihnen Kriterien und Gewichte fest – und wann?
-- Woran erkennen Sie in Ihren Unterlagen, ob ein Beschluss gefasst wurde oder nur eine Empfehlung vorliegt?
-:::

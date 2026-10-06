@@ -22,7 +22,7 @@ dom.window.scrollBy = (() => undefined) as typeof dom.window.scrollBy;
 dom.window.HTMLElement.prototype.scrollIntoView = function scrollIntoView() { /* jsdom rollt nicht */ };
 after(() => dom.window.close());
 
-const { inhalte, regieGeschichte, regieKapitel, regieWerkzeug } = await import('../src/inhalte/index.ts');
+const { inhalte } = await import('../src/inhalte/index.ts');
 const E = await import('../src/geschichte/engine.ts');
 const { baueSchritt } = await import('../src/ui/flaechen/geschichte.ts');
 const { erzeugeRegie } = await import('../src/regie/regie.ts');
@@ -305,30 +305,17 @@ test('Wörter der Seite nach dem Drehbuch: Pause, Restzeit, Akt-Leiste, Brücken
 
 /* -------------------------------------------------------------------- Regie -- */
 
-test('Regie: die Nebenfiguren der Station stehen mit Steckbrief in der Notiz – nur dort, nie auf der Leinwand', () => {
+test('O-65: die Regie zeigt keine Notizkarte – auch keine Steckbriefe der Nebenfiguren', () => {
   const g = mitSprechern();
-  const gesendet: { art: string }[] = [];
-  const kanal = { senden: (n: never) => { gesendet.push(n); }, abonnieren: () => () => undefined, schliessen: () => undefined };
+  const kanal = { senden: () => undefined, abonnieren: () => () => undefined, schliessen: () => undefined };
   const sp = new Map<string, string>();
-  const r = erzeugeRegie({ inhalte: { ...inhalte, geschichte: g }, kanal, version: 'Test', speicher: { getItem: (k: string) => sp.get(k) ?? null, setItem: (k: string, v: string) => { sp.set(k, v); }, removeItem: (k: string) => { sp.delete(k); } }, regieGeschichte, regieKapitel, regieWerkzeug, oeffneLeinwand: () => undefined, takt: 100000 });
+  const r = erzeugeRegie({ inhalte: { ...inhalte, geschichte: g }, kanal, version: 'Test', speicher: { getItem: (k: string) => sp.get(k) ?? null, setItem: (k: string, v: string) => { sp.set(k, v); }, removeItem: (k: string) => { sp.delete(k); } }, oeffneLeinwand: () => undefined, takt: 100000 });
   try {
     document.body.replaceChildren(r.element);
-    const springe = (ziel: string): void => {
-      const sprung = r.element.querySelector<HTMLSelectElement>('[data-pruef="regie-sprung"]') as HTMLSelectElement;
-      sprung.value = ziel;
-      sprung.dispatchEvent(new Event('change'));
-    };
-    springe('s6:szene');
-    const liste = r.element.querySelector('[data-pruef="regie-nebenfiguren"]') as Element;
-    assert.ok(liste);
-    assert.deepEqual([...liste.querySelectorAll('li')].map((li) => li.getAttribute('data-figur')), ['ranzen', 'spitzfeder']);
-    assert.match(text(liste), /Marlene Ranzen, Elternvertreterin: Sie fragt für alle, die sich nicht trauen\./u);
-    assert.match(text(r.element.querySelector('.regie-h3') as Element), /./u);
-    // Station ohne Nebenfigur: keine Liste
-    springe('s7:szene');
-    assert.equal(r.element.querySelector('[data-pruef="regie-nebenfiguren"]'), null);
-    springe('s13:szene');
-    assert.deepEqual([...r.element.querySelectorAll('[data-pruef="regie-nebenfiguren"] li')].map((li) => li.getAttribute('data-figur')), ['pfennig']);
+    const sprung = r.element.querySelector<HTMLSelectElement>('[data-pruef="regie-sprung"]') as HTMLSelectElement;
+    sprung.value = 's6:szene';
+    sprung.dispatchEvent(new Event('change'));
+    assert.equal(r.element.querySelector('[data-pruef="regie-notiz"], [data-pruef="regie-nebenfiguren"]'), null);
   } finally {
     r.entferne();
   }

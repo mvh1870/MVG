@@ -19,10 +19,9 @@ export async function lauf(seite, h) {
   const chips = await seite.locator('[data-pruef^="regie-bereich-"]').evaluateAll((l) => l.map((e) => (e.textContent ?? '').trim()));
   if (chips.join(' · ') !== 'Start · Geschichte · Themen · Werkzeuge') h.befund(`Regie: Bereiche „${chips.join(' · ')}“ statt „Start · Geschichte · Themen · Werkzeuge“ (O-63)`);
   await h.klick('[data-pruef="regie-bereich-story"]');
-  // P17.6: Sprung je Schritt – direkt in den Vergleich von Kapitel 7; Notiz und Leitfragen nur in der Regie
+  // P17.6: Sprung je Schritt – direkt in den Vergleich von Kapitel 7; O-65: keine Notizkarte mehr
   await seite.locator('[data-pruef="regie-sprung"]').selectOption('s12:vergleich');
-  await h.erwarte('[data-pruef="regie-notiz"] .regie-notiz-text');
-  await h.erwarte('[data-pruef="regie-leitfragen"]');
+  if ((await seite.locator('[data-pruef="regie-notiz"], [data-pruef="regie-leitfragen"]').count()) > 0) h.befund('Regie: Moderationsnotizen oder Leitfragen sichtbar (O-65)');
   await h.erwarte('.anzeige [data-pruef="gs-vgl-karten"]', leinwand);
   // Gewichte aus der Regie: die Leinwand ordnet die Karten um (C rückt vor B)
   const reihe = async () => leinwand.evaluate(() => [...document.querySelectorAll('.anzeige .gs-vgl-karte')]
@@ -46,9 +45,6 @@ export async function lauf(seite, h) {
   const folgeOben = await leinwand.evaluate(() => document.querySelector('.anzeige [data-pruef="gs-folge"]')?.getBoundingClientRect().top ?? -1);
   if (folgeOben < 0 || folgeOben > 300) h.befund(`Leinwand rollt nicht zur Folge (oben bei ${Math.round(folgeOben)} px)`);
   const lwText = await leinwand.locator('body').innerText();
-  const notiz = (await seite.locator('[data-pruef="regie-notiz"] .regie-notiz-text').innerText()).slice(0, 40);
-  if (lwText.includes(notiz)) h.befund('Regie-Notiz auf der Leinwand');
-  for (const frage of await seite.locator('[data-pruef="regie-leitfragen"] li').allInnerTexts()) if (lwText.includes(frage)) h.befund(`Leitfrage auf der Leinwand: ${frage}`);
   if (/\b(vertretbar|Falle)\b/u.test(lwText) || (await leinwand.locator('[data-wertung], .regie-wertung').count()) > 0) h.befund('Wertung auf der Leinwand');
   // Mini-Aufgabe aus der Regie: Zuordnung setzen (Leinwand zeigt die Rückmeldung), auflösen, Reihenfolge anklicken
   await seite.locator('[data-pruef="regie-sprung"]').selectOption('s2:mini');
@@ -71,9 +67,6 @@ export async function lauf(seite, h) {
   await h.erwarte('.anzeige [data-pruef="gs-verlauf"]', leinwand);
   await h.axe('regie-pause');
   await h.axe('leinwand-pause', leinwand);
-  if ((await seite.locator('[data-pruef="regie-pause-liste"] li').count()) !== 5) h.befund('Regie: Überblick der Pause nennt nicht fünf Stationen');
-  const pauseText = await leinwand.locator('body').innerText();
-  if (pauseText.includes(await seite.locator('[data-pruef="regie-pause-liste"] li').first().innerText())) h.befund('Regie-Überblick der Pause auf der Leinwand');
   for (const [station, art] of [['s4', 'matrix'], ['s7', 'mappe'], ['s8', 'pinnwand'], ['s9', 'bericht'], ['s11', 'rueckfragen']]) {
     await seite.locator('[data-pruef="regie-sprung"]').selectOption(`${station}:mini`);
     await h.erwarte(`.anzeige [data-pruef="mini-${art}"]`, leinwand);
@@ -141,10 +134,6 @@ export async function lauf(seite, h) {
   // R78: bei einem Explore-Werkzeug mit Eingriffen sagt die Karte „Kundenwahl und Eingriffe“ nicht, es gebe nichts zu wählen
   if (/nichts zu wählen/u.test(await seite.locator('[data-pruef="regie-eingriffe"]').innerText())) h.befund('Regie: „nichts zu wählen“ bei einem Werkzeug mit Beispielen und Schaltern');
   if ((await seite.locator('[data-pruef="regie-eingriffe-werkzeug"]').count()) !== 1) h.befund('Regie: Karte „Kundenwahl und Eingriffe“ verweist nicht auf den Kasten des Werkzeugs');
-  await h.erwarte('[data-pruef="regie-notiz"] .regie-notiz-text:has-text("Kosten-Ampel")');
-  const lwNeu = await leinwand.locator('body').innerText();
-  for (const frage of await seite.locator('[data-pruef="regie-leitfragen"] li').allInnerTexts()) if (lwNeu.includes(frage)) h.befund(`Leitfrage des Monatsberichts auf der Leinwand: ${frage}`);
-  if (lwNeu.includes((await seite.locator('[data-pruef="regie-notiz"] .regie-notiz-text').innerText()).slice(0, 40))) h.befund('Regie-Notiz des Monatsberichts auf der Leinwand');
   if ((await leinwand.locator('.anzeige :is(button, select, input, textarea, a[href])').count()) > 0) h.befund('Leinwand: Eingabefelder oder Bedienelemente in den neuen Werkzeugen');
   // R77: Leinwand 1920 × 1080 – das Werkzeug zeigt nur sich selbst (ohne Einleitung und Kachelreihe), Fließtext ≥ 24 px, und
   // Schritt und Ergebnis (Ampel) liegen ohne Rollen im Fenster; mit Beamer-Schalter ebenso, ohne waagerechtes Rollen

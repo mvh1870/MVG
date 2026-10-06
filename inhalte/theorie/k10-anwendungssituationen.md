@@ -389,12 +389,3 @@ Das gehört – mit der Liste der Änderungen (Änderungsregister) und verbindli
 :::
 :::
 :::
-
-::: regie
-### Notiz
-Dieses Thema ordnet MVG nach Bauherrentypen und Situationen. Mit den Überblick-Karten beginnen, dann nur den Abschnitt öffnen, der zum Kunden passt (öffentliche, private und institutionelle Bauherren, Energieversorger und Infrastrukturträger). Es tragen die Karten der typischen Entscheidungsprobleme: Der Kunde wählt ein Problem, das er kennt. Keine Erfahrungen, Referenzen oder Kundenbeispiele von BM behaupten; das Beispiel für öffentliche Bauherren stammt aus dem fiktiven Schulcampus Lindenhall-Süd, die übrigen sind allgemein.
-
-### Leitfragen
-- Welches der typischen Entscheidungsprobleme kennen Sie aus Ihren Projekten?
-- Woran würden Sie einen schleichenden Steuerungsverlust in einem Ihrer Projekte zuerst bemerken?
-:::

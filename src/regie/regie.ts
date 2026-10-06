@@ -2,15 +2,14 @@
  * Regie (O-9, O-46, P16.9): die Moderation steuert, die Leinwand zeigt.
  *
  *   Kopf (Leinwand öffnen, Verbindung, Beamer) · Vorschau der Leinwand · Zurück/Weiter · Bereich,
- *   Thema, Werkzeug, Story-Kapitel · Kundenwahl · Regie-Notiz und Leitfragen · Gesprächsprotokoll
+ *   Thema, Werkzeug, Story-Kapitel · Kundenwahl · Gesprächsprotokoll
  *
  * Die Regie hält den Bühnenstand (eigener Speicher) und schickt nach jeder Änderung den öffentlichen
- * Stand (`Buehne`) über den Kanal. Notizen und Leitfragen kommen aus `regieGeschichte()` bzw.
- * `regieKapitel()` und bleiben in diesem Fenster; die Vorschau zeichnet mit derselben Anzeige wie die
- * Leinwand (erzeugeAnzeige), also ebenfalls ohne Regie-Material.
+ * Stand (`Buehne`) über den Kanal. Moderationsnotizen und Leitfragen gibt es seit O-65 nicht mehr; die Vorschau
+ * zeichnet mit derselben Anzeige wie die Leinwand (erzeugeAnzeige).
  */
 
-import type { GeschichteRegie, OeffentlicheInhalte, RegieEintrag } from '../inhalte/typen.ts';
+import type { OeffentlicheInhalte } from '../inhalte/typen.ts';
 import {
   abgestimmteGewichte, akt as aktVonId, aktNummer, aktVon, akteVon, gewichte, hatPause, roemisch, gleicherSchritt, kapitel, letzteStation, miniVonVorn, neuerStand, schritte, schrittIndex, setzeAbgestimmt,
   setzeGewicht, setzeKurz, STUFEN_GEWICHT, teileVon, vergleichLage, waehle, werteMiniAus, weiter, zurueck, type Schritt, type Stand,
@@ -30,7 +29,7 @@ import { neueBuehne, pruefeBuehne, BUEHNEN_BEREICHE, type Buehne, type BuehnenBe
 import { h, attr, text, ersetze } from '../ui/h.ts';
 import { bildmarke } from '../ui/marke.ts';
 import { sym } from '../ui/bausteine/bloecke.ts';
-import { inhalt, inhaltInline } from '../ui/bausteine/inhalt.ts';
+import { inhaltInline } from '../ui/bausteine/inhalt.ts';
 import { erzeugeAnzeige } from './leinwand.ts';
 import { themen, themaSeite } from '../ui/flaechen/theorie.ts';
 import { WERKZEUGE, werkzeugAus, werkzeugTitel } from '../ui/flaechen/explore.ts';
@@ -51,12 +50,6 @@ export interface RegieOptionen {
   kanal: Kanal | null;
   version: string;
   speicher: SpeicherGriff | null;
-  /** Regie-Material je Kapitel der Story */
-  regieGeschichte: (kapitel: string) => GeschichteRegie | null;
-  /** Regie-Material eines Themas (über seine interne Nummer) */
-  regieKapitel: (kapitel: number) => RegieEintrag | null;
-  /** Regie-Material eines der vier neuen Werkzeuge (Adress-Kennung, P18.5); fehlt es, gibt es dort keine Notiz */
-  regieWerkzeug?: (werkzeug: string) => GeschichteRegie | null;
   /** öffnet das Leinwand-Fenster */
   oeffneLeinwand: () => void;
   /** Takt der Verbindungsprüfung in ms */
@@ -209,11 +202,6 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
   const eingriffListe = h('div', { class: 'regie-eingriffe', role: 'group', 'aria-label': w.kundenwahl, 'data-pruef': 'regie-eingriffe' });
   const eingriffKarte = h('section', { class: 'regie-karte regie-eingriff-karte' }, h('h2', { class: 'regie-h2' }, w.kundenwahl), eingriffListe);
 
-  /* ----------------------------------------------------------------- Notiz -- */
-  const notizInhalt = h('div', { class: 'regie-notiz-inhalt' });
-  const notiz = h('section', { class: 'regie-karte regie-notiz', 'data-pruef': 'regie-notiz', 'aria-label': w.notiz },
-    h('h2', { class: 'regie-h2' }, sym('lesezeichen'), w.notiz), notizInhalt, h('p', { class: 'regie-leise' }, w.nurRegie));
-
   /* ------------------------------------------------------------- Protokoll -- */
   const feld = h('textarea', { class: 'regie-feld', rows: 2, autocomplete: 'off', 'aria-label': w.protokollFeld, placeholder: w.protokollFeld, 'data-pruef': 'regie-protokoll-feld' });
   const protokollListe = h('ol', { class: 'regie-protokoll-liste' });
@@ -283,7 +271,7 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
       h('div', { class: 'regie-links' },
         h('section', { class: 'regie-vorschau', 'aria-label': w.vorschau }, h('span', { class: 't-label' }, w.vorschau), ort, rahmen),
         steuerung),
-      h('div', { class: 'regie-rechts' }, eingriffKarte, notiz, protokollKarte)),
+      h('div', { class: 'regie-rechts' }, eingriffKarte, protokollKarte)),
     // R68: Impressum, Datenschutz und der leise Link auch hier (P16.12 „aus jeder Fläche erreichbar“)
     h('footer', { class: 'regie-fuss' }, o.version === '' ? null : h('span', null, o.version),
       h('a', { href: rechtsSeite(IMPRESSUM_SEITE), 'data-pruef': 'impressum' }, W.rahmen.impressum),
@@ -323,55 +311,6 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
   const sende = (): void => {
     nr += 1;
     o.kanal?.senden({ art: 'zustand', nr, zustand: buehne });
-  };
-
-  const leitfragen = (fragen: readonly string[]): Node[] => fragen.length === 0 ? [] : [h('h3', { class: 'regie-h3' }, w.leitfragen), h('ol', { class: 'regie-leitfragen', 'data-pruef': 'regie-leitfragen' }, fragen.map((f) => h('li', null, f)))];
-  const zeichneNotiz = (): void => {
-    const leer = h('p', { class: 'regie-leise' }, w.keineNotiz);
-    if (buehne.bereich === 'theorie' && buehne.thema !== null) {
-      const seite = themaSeite(inhalte, buehne.thema);
-      const e = seite !== null ? o.regieKapitel(seite.kapitel) : null;
-      const teile: Node[] = [];
-      if (e?.notiz) teile.push(h('div', { class: 'regie-notiz-text' }, inhalt(e.notiz)));
-      if (e !== null) teile.push(...leitfragen(e.leitfragen));
-      ersetze(notizInhalt, teile.length > 0 ? teile : leer);
-      return;
-    }
-    if (buehne.bereich === 'explore' && istNeuesWerkzeug(werkzeugAus(buehne.werkzeug))) {
-      const e = o.regieWerkzeug?.(werkzeugAus(buehne.werkzeug)) ?? null;
-      const teile: Node[] = [];
-      if (e?.notizHtml) teile.push(h('div', { class: 'regie-notiz-text' }, inhalt(e.notizHtml)));
-      if (e !== null) teile.push(...leitfragen(e.leitfragen));
-      ersetze(notizInhalt, teile.length > 0 ? teile : leer);
-      return;
-    }
-    const s = buehne.story.schritt;
-    // P19.7: In der Pause steht der Überblick des Akts (Stationen mit Titel und Zeit) – die Pause selbst hat keine Notiz im Material
-    if (buehne.bereich === 'story' && g !== null && s.ort === 'pause') {
-      const a = aktVonId(g, s.akt);
-      const stationen = a === null ? [] : a.stationen.map((id) => kapitel(g, id)).filter((k): k is Kapitel => k !== null);
-      ersetze(notizInhalt, a === null ? leer : [
-        h('p', { class: 'regie-notiz-text' }, w.pauseNotiz(roemisch(aktNummer(g, a)), a.zeitraum)),
-        h('ul', { class: 'regie-pause-liste', 'data-pruef': 'regie-pause-liste' }, stationen.map((k) => h('li', null, `${k.nr} · ${k.titel} (${k.zeit})`))),
-      ]);
-      return;
-    }
-    if (buehne.bereich !== 'story' || s.ort !== 'kapitel' || g === null) {
-      ersetze(notizInhalt, leer);
-      return;
-    }
-    const r = o.regieGeschichte(s.kapitel);
-    const teile: Node[] = [];
-    if (r?.notizHtml) teile.push(h('div', { class: 'regie-notiz-text' }, inhalt(r.notizHtml)));
-    if (r !== null) teile.push(...leitfragen(r.leitfragen));
-    // P19.6: die Nebenfiguren, die in dieser Station sprechen, mit ihrem Steckbrief – nur hier, nie auf der Leinwand
-    const kap = g.kapitel.find((x) => x.id === s.kapitel);
-    const neben = (g.nebenfiguren ?? []).filter((n) => kap?.szene.some((z) => z.figur === n.id) === true);
-    if (neben.length > 0) {
-      teile.push(h('h3', { class: 'regie-h3' }, w.nebenfiguren), h('ul', { class: 'regie-nebenfiguren', 'data-pruef': 'regie-nebenfiguren' },
-        neben.map((n) => h('li', { 'data-figur': n.id }, h('b', null, `${n.name}, ${n.rolle}: `), inhaltInline(n.steckbriefHtml)))));
-    }
-    ersetze(notizInhalt, teile.length > 0 ? teile : leer);
   };
 
   const ortText = (): string => {
@@ -571,7 +510,6 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     zeichneSprung();
     zeichneWerkzeugStand();
     zeichneEingriffe();
-    zeichneNotiz();
   };
 
   function setze(neu: Buehne): void {

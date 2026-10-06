@@ -397,8 +397,3 @@ export interface Geschichte {
   ende: Ende;
 }
 
-/** Regie-Material je Kapitel (nie auf der Leinwand) */
-export interface GeschichteRegie {
-  notizHtml: string;
-  leitfragen: string[];
-}

@@ -32,7 +32,6 @@
 .regie-karte { min-width: 0; padding: var(--a-3) var(--a-4) 14px; border-radius: var(--radius-l); background: var(--weiss); color: var(--tinte); box-shadow: var(--schatten-karte); --fokus: var(--navy); }
 .regie-h2 { display: flex; align-items: center; gap: var(--a-2); margin-bottom: var(--a-2); font: 700 var(--gr-text)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy); }
 .regie-h2 .symbol { font-size: 18px; color: var(--gold-kante); }
-.regie-h3 { margin: var(--a-3) 0 6px; font: 700 var(--gr-s)/1.2 var(--schrift-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
 .regie-steuerung { display: flex; flex-direction: column; gap: var(--a-3); }
 .regie-blaettern { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: var(--a-3); }
 .regie-blaettern .knopf { justify-content: center; }
@@ -42,12 +41,6 @@
 .regie-chip:hover { background: var(--flaeche-1); }
 .regie-chip[aria-pressed="true"] { background: var(--navy); color: var(--weiss); box-shadow: 0 0 0 2px var(--gold-hell); }
 .regie-eingriffe { display: flex; flex-wrap: wrap; gap: 6px; }
-.regie-notiz { box-shadow: inset 4px 0 0 var(--gold-hell), var(--schatten-karte); }
-.regie-notiz-text { font-size: var(--gr-text); line-height: 1.5; }
-.regie-notiz-text p + p { margin-top: var(--a-2); }
-.regie-leitfragen { display: flex; flex-direction: column; gap: 6px; counter-reset: frage; }
-.regie-leitfragen li { position: relative; padding-left: 28px; font-size: var(--gr-text); line-height: 1.4; counter-increment: frage; }
-.regie-leitfragen li::before { content: counter(frage); position: absolute; left: 0; top: 1px; display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--navy); color: var(--gold-hell); font: 800 12px/1 var(--schrift-anzeige); }
 .regie-leise { margin-top: var(--a-2); font-size: var(--gr-s); color: var(--tinte-2); }
 .regie-protokoll-eingabe { display: flex; flex-wrap: wrap; gap: var(--a-2); align-items: stretch; }
 .regie-feld::placeholder { color: var(--tinte-2); opacity: 1; }
@@ -65,7 +58,6 @@
 .regie-akte, .regie-kapitel, .regie-teile { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
 .regie-teile[hidden], .regie-akte[hidden] { display: none; }
 .regie-akte .t-label { margin-right: var(--a-1); }
-.regie-pause-liste { margin: var(--a-2) 0 0; padding-left: 1.2em; }
 .regie-teile .t-label { margin-right: var(--a-1); }
 .regie-sprung { flex: 1 1 220px; }
 .regie-eingriffe { flex-direction: column; flex-wrap: nowrap; gap: var(--a-2); }

@@ -66,11 +66,11 @@ test('Regie-Material erreicht nur die Regie (Konstruktion, O-9): kein Modul auß
     assert.ok(!ziele.includes('src/generiert/inhalte.json'), `${rel(p)} importiert die Inhalte-Datei`);
     assert.ok(!ziele.includes('src/generiert/abbildungen.json'), `${rel(p)} importiert die Bilddaten der Abbildungen`);
     assert.doesNotMatch(text, /regieInhalte|geschichteRegie|werkzeugeRegie/, `${rel(p)} nennt das Regie-Material`);
-    // Die Regie bekommt regieGeschichte/regieKapitel als Parameter von main.ts – nur dort und in der Regie steht der Name (P18.5: auch regieWerkzeug).
-    if (rel(p) !== 'src/regie/regie.ts') assert.doesNotMatch(text, /regieFuer|regieKapitel|regieGeschichte|regieWerkzeug/, `${rel(p)} nennt Regie-Zugriffe`);
+    // O-65: die Regie-Zugriffe gibt es nicht mehr – nirgends
+    assert.doesNotMatch(text, /regieFuer|regieKapitel|regieGeschichte|regieWerkzeug/, `${rel(p)} nennt Regie-Zugriffe`);
   }
   const main = readFileSync(join(WURZEL, 'src/main.ts'), 'utf8');
-  assert.match(main, /import \{ inhalte, regieGeschichte, regieKapitel, regieWerkzeug \} from '\.\/inhalte\/index\.ts'/);
+  assert.match(main, /import \{ inhalte \} from '\.\/inhalte\/index\.ts'/);
 });
 
 test('Leinwand: der ganze Importgraph (transitiv, auch dynamisch) enthält weder Inhalte-Datei noch Regie', () => {
@@ -91,19 +91,12 @@ test('Leinwand: der ganze Importgraph (transitiv, auch dynamisch) enthält weder
   assert.equal(probe.unaufloesbar, 1);
 });
 
-test('Datenebene: `inhalte` enthält kein Regie-Material', async () => {
-  const { inhalte, regieGeschichte, regieKapitel } = await import('../src/inhalte/index.ts');
-  assert.equal('regie' in inhalte, false);
-  assert.equal('geschichteRegie' in inhalte, false);
-  const oeffentlichText = JSON.stringify(inhalte);
-  const k7 = regieGeschichte('s12');
-  assert.ok(k7?.notizHtml);
-  assert.ok(!oeffentlichText.includes(k7.notizHtml.slice(3, 60)));
-  for (const k of ['s1', 's2', 's12']) for (const f of regieGeschichte(k)?.leitfragen ?? []) assert.ok(!oeffentlichText.includes(f), f);
-  for (let nr = 1; nr <= 13; nr++) {
-    const e = regieKapitel(nr);
-    if (e?.notiz) assert.ok(!oeffentlichText.includes(e.notiz.slice(3, 60)), `Notiz ${nr}`);
-  }
+test('O-65: keine Moderationsnotizen und Leitfragen mehr – weder in den Inhalten noch in der Datendatei', async () => {
+  const { inhalte } = await import('../src/inhalte/index.ts');
+  for (const k of ['regie', 'geschichteRegie', 'werkzeugeRegie']) assert.equal(k in inhalte, false, k);
+  const roh = JSON.parse(readFileSync(join(WURZEL, 'src/generiert/inhalte.json'), 'utf8')) as Record<string, unknown>;
+  for (const k of ['regie', 'geschichteRegie', 'werkzeugeRegie']) assert.equal(k in roh, false, `inhalte.json: ${k}`);
+  assert.doesNotMatch(JSON.stringify(roh), /"leitfragen"|"notizHtml"/u);
 });
 
 /* ------------------------------------------------------------------ jsdom -- */
@@ -118,7 +111,7 @@ for (const k of [
 ]) g[k] = (dom.window as unknown as Record<string, unknown>)[k];
 after(() => dom.window.close());
 
-const { inhalte, regieGeschichte, regieKapitel } = await import('../src/inhalte/index.ts');
+const { inhalte } = await import('../src/inhalte/index.ts');
 const { baueStart } = await import('../src/ui/flaechen/start.ts');
 const { baueTheorie, themen, themaFuerDruck, themaTitel, wcVerschiebung } = await import('../src/ui/flaechen/theorie.ts');
 const { baueExplore, WERKZEUGE, WERKZEUG_BILD } = await import('../src/ui/flaechen/explore.ts');
@@ -320,8 +313,6 @@ test('Leinwand-Anzeige: nicht bedienbar, derselbe Stand, keine Regie-Notiz', () 
   assert.equal(a.element.getAttribute('inert'), '');
   assert.equal(a.element.querySelectorAll('button, a, input, select').length, 0);
   assert.match(a.element.textContent ?? '', /Ersatzgerät/u);
-  const notiz = regieGeschichte('s12');
-  assert.ok(notiz && !(a.element.innerHTML.includes(notiz.notizHtml.slice(3, 50))));
   a.setze({ ...b, bereich: 'theorie', thema: themaVon(4) });
   assert.ok(a.element.querySelector(`[data-thema="${themaVon(4)}"]`));
   a.setze({ ...b, bereich: 'explore', werkzeug: 'takt' });
@@ -332,7 +323,7 @@ test('Regie: Notiz und Leitfragen, Kundenwahl, „weiter“ sendet den öffentli
   const gesendet: KanalNachricht[] = [];
   const kanal = { senden: (n: KanalNachricht) => { gesendet.push(n); }, abonnieren: () => () => undefined, schliessen: () => undefined };
   const sp = speicher();
-  const r = erzeugeRegie({ inhalte, kanal, version: VERSION, speicher: sp, regieGeschichte, regieKapitel, oeffneLeinwand: () => undefined, takt: 100000 });
+  const r = erzeugeRegie({ inhalte, kanal, version: VERSION, speicher: sp, oeffneLeinwand: () => undefined, takt: 100000 });
   document.body.replaceChildren(r.element);
   // R69: auch bei einem Fehlschlag abbauen – sonst hält der Takt der Regie den Testlauf offen
   try {
@@ -341,8 +332,8 @@ test('Regie: Notiz und Leitfragen, Kundenwahl, „weiter“ sendet den öffentli
     assert.ok(sprung);
     sprung.value = 's12:szene';
     sprung.dispatchEvent(new Event('change'));
-    assert.match(r.element.querySelector('[data-pruef="regie-notiz"]')?.textContent ?? '', /Gewichte gemeinsam/u);
-    assert.ok(r.element.querySelector('[data-pruef="regie-leitfragen"]'));
+    // O-65: keine Karte mit Moderationsnotizen oder Leitfragen
+    assert.equal(r.element.querySelector('[data-pruef="regie-notiz"], [data-pruef="regie-leitfragen"]'), null);
     // Vergleich: die Regie stellt die Stufen (seit P19.6 steht in Station 12 die Mini-Aufgabe „Muss oder nicht?“ vor dem Vergleich)
     (r.element.querySelector('[data-pruef="regie-weiter"]') as HTMLElement).click();
     (r.element.querySelector('[data-pruef="regie-weiter"]') as HTMLElement).click();
@@ -361,8 +352,7 @@ test('Regie: Notiz und Leitfragen, Kundenwahl, „weiter“ sendet den öffentli
     const nachTaste = gesendet.filter((n) => n.art === 'zustand').at(-1);
     assert.ok(nachTaste && nachTaste.art === 'zustand');
     assert.equal(nachTaste.zustand.story.wahlen['s12'], 2);
-    const text = JSON.stringify(gesendet);
-    assert.ok(!text.includes(regieGeschichte('s12')?.notizHtml.slice(3, 40) ?? 'x'), 'keine Notiz im Kanal');
+    assert.doesNotMatch(JSON.stringify(gesendet), /"leitfragen"|"notiz"/u, 'O-65: nichts davon im Kanal');
     // P17.6: Wertung nur in der Regie – je Antwort eine, kurzer Knopftext; im Kanal steht keine
     const wertungen = [...r.element.querySelectorAll<HTMLElement>('[data-pruef^="regie-wertung-"]')].map((x) => x.dataset['wertung']);
     assert.deepEqual([...wertungen].sort(), ['falle', 'gut', 'vertretbar']);
@@ -445,7 +435,7 @@ test('Regie: Notiz und Leitfragen, Kundenwahl, „weiter“ sendet den öffentli
 test('Regie (P19.7): Sprung je Akt und zur Pause, Überblick des Akts als Notiz, der Kanal trägt nur den Stand', () => {
   const gesendet: KanalNachricht[] = [];
   const kanal = { senden: (n: KanalNachricht) => { gesendet.push(n); }, abonnieren: () => () => undefined, schliessen: () => undefined };
-  const r = erzeugeRegie({ inhalte, kanal, version: VERSION, speicher: speicher(), regieGeschichte, regieKapitel, oeffneLeinwand: () => undefined, takt: 100000 });
+  const r = erzeugeRegie({ inhalte, kanal, version: VERSION, speicher: speicher(), oeffneLeinwand: () => undefined, takt: 100000 });
   document.body.replaceChildren(r.element);
   try {
     (r.element.querySelector('[data-pruef="regie-bereich-story"]') as HTMLElement).click();
@@ -470,13 +460,7 @@ test('Regie (P19.7): Sprung je Akt und zur Pause, Überblick des Akts als Notiz,
     assert.equal(akteGruppe.querySelector('[data-pruef="regie-pause-a1"]')?.getAttribute('aria-pressed'), 'true');
     assert.equal(akteGruppe.querySelector('[data-pruef="regie-akt-a1"]')?.getAttribute('aria-pressed'), 'true');
     assert.equal(r.element.querySelector('[data-pruef="regie-sprung"]') instanceof HTMLSelectElement && (r.element.querySelector('[data-pruef="regie-sprung"]') as HTMLSelectElement).value, 'pause:a1');
-    const liste = [...r.element.querySelectorAll('[data-pruef="regie-pause-liste"] li')].map((x) => x.textContent ?? '');
-    assert.equal(liste.length, 5);
-    assert.match(liste[0] ?? '', /^1 · /u);
-    assert.doesNotMatch(r.element.querySelector('[data-pruef="regie-notiz"]')?.textContent ?? '', /Für diesen Schritt gibt es keine Notiz/u);
-    // Gegenprobe: an einer Station steht wieder die Notiz der Station, nicht der Überblick
-    (r.element.querySelector('[data-pruef="regie-kapitel-s3"]') as HTMLElement).click();
-    assert.equal(r.element.querySelector('[data-pruef="regie-pause-liste"]'), null);
+    assert.equal(r.element.querySelector('[data-pruef="regie-notiz"]'), null, 'O-65: keine Notizkarte');
     // Aus der Pause über die Kurzfassung: die Pause gibt es dort nicht, der Sprung schaltet auf die ganze Geschichte
     (r.element.querySelector('[data-pruef="regie-kurz"]') as HTMLElement).click();
     assert.equal(letzter().kurz, true);

@@ -17,12 +17,3 @@ Die wichtigsten Begriffe von Minimum Viable Governance (MVG) und was sie bedeute
 
 ::: glossar
 :::
-
-::: regie
-### Notiz
-Das Glossar ist Nachschlagewerk, kein Vortragsteil. Im Termin nur öffnen, wenn ein Begriff strittig ist; auf der Leinwand erscheint die Liste ohne Suchfeld. Begriffe nicht umdeuten – die Definition gilt so, wie sie dasteht, etwa Freigabe als Entscheidung des Bauherrn am Abschluss einer Leistungsphase.
-
-### Leitfragen
-- Welche Begriffe werden in Ihrer Organisation unterschiedlich verwendet – etwa Freigabe, Mandat oder Datenstand?
-- Wo ist bei Ihnen festgehalten, was ein solches Wort im Projekt verbindlich bedeutet?
-:::

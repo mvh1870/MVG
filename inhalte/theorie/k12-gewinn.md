@@ -128,12 +128,3 @@ form: karten
 ---
 :::
 :::
-
-::: regie
-### Notiz
-Dieses Thema zieht Bilanz und beschreibt Ziele von MVG, kein Angebot: nur wiedergeben, was MVG sagt, keine Aufforderung, keine Wirkungszahlen. Es tragen der Umschalter „Woran MVG gemessen wird“ und die fünf angestrebten Gewinne in der Tafel, besonders „Weniger zusätzliche Arbeit“: Der Mindeststandard bleibt auf führungsrelevante Entscheidungen konzentriert – der Bauherr pflegt nichts, er entscheidet. Mit der Leitthese schließen.
-
-### Leitfragen
-- Welche Listen (Register), Vorlagen oder Berichte haben in Ihrem Projekt heute Führungswirkung – und welche nicht?
-- Bei welcher Entscheidung in Ihrem Projekt können Sie heute schon nachlesen, welche Frage gestellt wurde, welche Kennung die Entscheidung hat, auf welchem Stand der Unterlagen sie beruht und wo sie belegt ist?
-:::

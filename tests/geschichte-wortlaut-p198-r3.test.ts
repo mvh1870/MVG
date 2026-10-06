@@ -28,9 +28,9 @@ test('W-03 und W-04: kein „Zwingende“ im Lernsatz, keine Antwort, die „vor
   assert.doesNotMatch(t, /Muss-Filter/);
 });
 
-test('W-05: keine Arbeitswörter in den Regie-Notizen (Gegenprobe)', () => {
+test('W-05: die Regie-Notizen gibt es nicht mehr (O-65), damit auch keine Arbeitswörter darin', () => {
   assert.doesNotMatch(s('s8-zahlen'), /nicht gemittelt/);
-  assert.match(s('s8-zahlen'), /ohne Mittelwert/);
+  assert.doesNotMatch(s('s8-zahlen'), /^regie:/mu);
 });
 
 test('W-06: die Mini-Aufgabe der Station 2 nimmt weder die Holz-Enthüllung noch die Mensa vorweg (Gegenprobe)', () => {

@@ -189,7 +189,7 @@ seite: rechts
 Mentor von Bauherr Mentoren
 
 ### Erklärung
-Eine Sonderrolle nur für die Einführung: Der Mentor hat im MVG Companion unbeschränkten Zugriff, kommt in keiner RACI-Tabelle vor und wird danach abgeschaltet.
+Eine Sonderrolle nur für die Einführung: Der Mentor begleitet die Einführung, kommt in keiner RACI-Tabelle vor und scheidet danach aus.
 :::
 
 ::: posten lenkungskreis

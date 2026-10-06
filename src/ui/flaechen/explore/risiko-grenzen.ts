@@ -330,7 +330,7 @@ export function risikoGrenzen(o: WerkzeugOptionen): HTMLElement {
     titel: `${v.titel} · ${z.titel.trim() !== '' ? z.titel.trim() : E.risikoTitel}`,
     fiktiv: z.beispiel !== null,
     teile: [
-      h('section', { class: 'druck-teil' }, h('h2', null, E.grenzen),
+      h('section', { class: 'druck-teil' }, h('h2', null, REIHEN.every((r) => z.grenzen[r].every((x, i) => x === v.grenzen[r][i])) ? E.grenzenBeispiel : E.grenzenEigen),
         h('dl', { class: 'wz-druck-rahmen' }, REIHEN.map((r) => h('div', null, h('dt', null, E.reihe[r]), h('dd', null, z.grenzen[r].map((x) => (x === null ? '–' : grenzWort(r, x))).join(' · ')))))),
       h('section', { class: 'druck-teil' }, h('h2', null, E.ergebnis),
         h('table', { class: 'wz-druck-tabelle' }, h('tbody', null, zeilen(b).map((x) => h('tr', null, h('th', { scope: 'row' }, x.titel), h('td', null, x.text)))))),

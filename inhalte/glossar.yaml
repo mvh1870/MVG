@@ -160,8 +160,8 @@ aendern:
     belege: [k13-t1]
   g-mvg-companion:
     definition: >-
-      Ein optionales Arbeitsmittel, das im Browser auf dem eigenen Rechner läuft und die Anwendung von MVG unterstützt.
-      Es ersetzt weder Entscheidungen des Bauherrn noch verbindliche Systeme.
+      Ein angekündigtes, optionales Arbeitsmittel von Bauherr Mentoren: Es soll im Browser auf dem eigenen Rechner laufen
+      und die Anwendung von MVG unterstützen. Es ersetzt weder Entscheidungen des Bauherrn noch verbindliche Systeme.
     belege: [k13-t1]
   g-business-case:
     definition: >-

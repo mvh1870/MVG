@@ -215,7 +215,7 @@ export function erzeugeRegie(o: RegieOptionen): RegieFlaeche {
     h('h2', { class: 'regie-h2' }, sym('lesezeichen'), w.notiz), notizInhalt, h('p', { class: 'regie-leise' }, w.nurRegie));
 
   /* ------------------------------------------------------------- Protokoll -- */
-  const feld = h('textarea', { class: 'regie-feld', rows: 2, 'aria-label': w.protokollFeld, placeholder: w.protokollFeld, 'data-pruef': 'regie-protokoll-feld' });
+  const feld = h('textarea', { class: 'regie-feld', rows: 2, autocomplete: 'off', 'aria-label': w.protokollFeld, placeholder: w.protokollFeld, 'data-pruef': 'regie-protokoll-feld' });
   const protokollListe = h('ol', { class: 'regie-protokoll-liste' });
   const druckKnopf = h('button', { type: 'button', class: 'knopf knopf-still', 'data-pruef': 'regie-drucken', onclick: () => drucke() }, w.protokollDrucken);
   // Audit 2026-10-06 (O-64): Löschen mit Rückfrage in der Karte (kein Browser-Dialog); erst „Ja, löschen“ entfernt die Einträge

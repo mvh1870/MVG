@@ -50,12 +50,12 @@ export const W = {
     theorieLos: 'Themen lesen',
     exploreKicker: 'Ausprobiert',
     exploreTitel: 'Werkzeuge',
-    exploreText: 'Wege nach Gewichten vergleichen, Entscheidungsvorlagen prüfen, Risiken einordnen, Vorgänge der richtigen Art zuordnen und einen Monatsbericht schreiben – alles am Beispiel desselben Schulcampus.',
-    exploreMeta: (n: number) => `${ZAHLWORT[n] ?? String(n)} Werkzeuge · Ihre Eingaben werden nicht gespeichert`,
+    exploreText: 'Wege nach Gewichten vergleichen, Entscheidungsvorlagen prüfen, Risiken einordnen, Vorgänge der richtigen Art zuordnen und einen Monatsbericht schreiben – am Beispiel desselben Schulcampus oder mit eigenen Angaben.',
+    exploreMeta: (n: number) => `${ZAHLWORT[n] ?? String(n)} Werkzeuge · Eingaben in den Werkzeugen werden nicht gespeichert`,
     exploreLos: 'Werkzeuge ausprobieren',
     dahinter: 'Wer steht dahinter',
     dahinterText: 'Der Governance Kompass ist ein Angebot der Bauherr Mentoren GmbH i. G. (in Gründung). Bei Fragen erreichen Sie uns hier:',
-    fiktiv: 'Der Schulcampus Lindenhall-Süd ist ein fiktiver Fall; Stadt, Projekt und Personen sind erfunden.',
+    fiktiv: 'Der Schulcampus Lindenhall-Süd ist ein fiktiver Fall; Stadt, Projekt, Personen, Zahlen und Ereignisse sind erfunden.',
   },
   // Druck (P10.2, E11)
   druck: {
@@ -194,10 +194,11 @@ export const W = {
   lizenzen: {
     kicker: 'Informationen',
     titel: 'Drittanbieter & Lizenzen',
-    einleitung: 'Diese Seite enthält zwei Schriften anderer Urheber. Sie stehen unter der SIL Open Font License 1.1; deren vollständiger Text steht unten. Weitere Bestandteile anderer Urheber enthält die Seite nicht. Texte, Abbildungen, Grafiken und die Seite selbst stammen von Bauherr Mentoren.',
+    einleitung: 'Diese Seite enthält zwei Schriften anderer Urheber. Sie stehen unter der SIL Open Font License 1.1; deren vollständiger Text steht unten. Weitere Bestandteile anderer Urheber enthält die Seite nicht. Texte, Abbildungen, Grafiken und die Seite selbst stammen von der Bauherr Mentoren GmbH i. G.',
     komponenten: 'Eingebettete Schriften',
-    felder: { version: 'Version', copyright: 'Copyright', lizenz: 'Lizenz', herkunft: 'Herkunft', bezug: 'Bezogen über' },
-    schriftVersion: (paket: string, paketVersion: string, schrift: string) => `${schrift} (Paket ${paket} ${paketVersion})`,
+    felder: { version: 'Schriftversion', copyright: 'Copyright', lizenz: 'Lizenz', herkunft: 'Herkunft', bezug: 'Bezogen über' },
+    schriftVersion: (schrift: string) => schrift.replace(/^Version\s+/u, ''),
+    bezug: (paket: string, paketVersion: string, quelle: string) => `das Schriftpaket ${paket} ${paketVersion} (${quelle})`,
     nutzungTitel: 'Nutzung der Inhalte',
     nutzung: 'Die Texte und Abbildungen dieser Seite dürfen Sie für die interne Schulung und für Präsentationen in Ihrer eigenen Organisation verwenden. Für jede andere Verwendung gilt der Hinweis zum Urheberrecht im Impressum.',
     oflTitel: 'Lizenztext: SIL Open Font License 1.1',
@@ -275,6 +276,8 @@ export const W = {
     pauseKicker: 'Kurze Pause',
     pauseOffen: 'Einige Stationen dieses Akts haben Sie noch nicht gespielt.',
     zwischenbilanz: 'Zwischenbilanz',
+    // O-64: Balken und Bilanz als Lernmodell einordnen (keine Prognose, keine Einstufung von Person oder Organisation)
+    bilanzEinordnung: 'Die Balken sind ein vereinfachtes Lernmodell, keine Prognose von Kosten oder Terminen. Die Bilanz beschreibt Ihren Weg durch diese Geschichte; sie bewertet weder Sie noch eine Organisation.',
     koennenTitel: 'Das können Sie jetzt',
     weiterMitAkt: (r: string) => `Weiter mit Akt ${r}`,
     // Verlauf (P19.3, P19.4): Kopf in der Pause bzw. in der Bilanz, die Textfassung im Aufklapper (ohne Zahlen, in den Wörtern der Folge)
@@ -382,7 +385,8 @@ export const W = {
   themen: {
     bereich: 'Themen',
     titel: 'Die Themen',
-    einleitung: 'Minimum Viable Governance in vier Teilen – vom Überblick bis zu den Werkzeugen für die Praxis. Jedes Thema ist für sich lesbar.',
+    // O-64: einmal sichtbar einordnen – Methodenstandard, im Projekt vereinbart
+    einleitung: 'Minimum Viable Governance in vier Teilen – vom Überblick bis zu den Werkzeugen für die Praxis. Jedes Thema ist für sich lesbar. Die Regeln beschreiben den Methodenstandard von Bauherr Mentoren; was in einem Projekt gilt – Takt, Grenzen und Zuständigkeiten –, wird dort vereinbart und festgelegt.',
     // Buch (P17.8, O-54): Teile I–IV und Anhang, Nummer vor dem Titel (nie „Kapitel“, O-38)
     teil: (n: 1 | 2 | 3 | 4) => `Teil ${['I', 'II', 'III', 'IV'][n - 1] ?? ''}`,
     teilName: { 1: 'Grundlagen', 2: 'Führungsmodell und Arbeitsweise', 3: 'Anwendung und Einführung', 4: 'Werkzeuge für die Praxis (zum Lesen)' } as Record<1 | 2 | 3 | 4, string>,
@@ -452,6 +456,10 @@ export const W = {
     beispielWahl: 'Beispiel',
     leerBeginnen: 'Ohne Beispiel starten',
     drucken: 'Drucken',
+    // O-64: Herkunft der Angaben und Aussagegrenze im Druckbogen jedes Werkzeugs
+    herkunft: { beispiel: 'Fiktiver Fall', gemischt: 'Fiktiver Fall, verändert', eigen: 'Eigene Angaben' },
+    druckTitelEigen: 'Ausdruck aus den Werkzeugen',
+    aussagegrenze: 'Ergebnis nur aus den eingetragenen Angaben – keine fachliche Prüfung, keine Freigabe, kein Beschluss',
     ergebnis: 'Ergebnis',
     hinweise: 'Hinweise',
     zurueck: 'Zurück',
@@ -496,6 +504,9 @@ export const W = {
     mehrZurArt: 'Mehr zu dieser Art von Vorgang',
     vonVorn: 'Von vorn',
     grenzen: 'Die Grenzen, die der Bauherr für das Projekt festlegt',
+    // O-64: im Druck erkennbar, ob die Grenzen die Beispielwerte des fiktiven Falls oder eigene Werte sind
+    grenzenBeispiel: 'Grenzen: Beispielwerte des fiktiven Falls – kein allgemeiner Maßstab',
+    grenzenEigen: 'Grenzen: eigene Werte – sie gelten nur, wo der Bauherr sie für sein Projekt festgelegt hat',
     grenzenGueltig: 'Die Grenzen sind in Ordnung',
     reihe: { wahrscheinlichkeit: 'Wahrscheinlichkeit in Prozent', kosten: 'Kosten in Euro', termin: 'Verzug in Kalendertagen' },
     grenzeKurz: (n: number) => `Grenze ${n}`,
@@ -552,6 +563,8 @@ export const W = {
     vorschau: 'Vorschau der Seite',
     seitenanteil: (anteil: number) => (anteil > 1 ? `etwa ${Math.round(anteil * 100)} % einer Seite – zu lang` : `etwa ${Math.round(anteil * 100)} % einer Seite`),
     hinweiseOffen: (n: number) => (n === 1 ? 'Noch ein Hinweis offen' : `Noch ${n} Hinweise offen`),
+    // O-64: der Druck nennt den Stand der formalen Prüfung, damit ein unfertiger Bericht nicht wie ein fertiger aussieht
+    berichtStand: (wort: string, n: number) => `${wort}${n > 0 ? ` · ${n === 1 ? 'ein Hinweis offen' : `${n} Hinweise offen`}` : ''} – geprüft wurde nur die Form, nicht die Zahlen`,
     datenstandZeile: (d: string) => `Datenstand: ${d}`,
     berichtTitel: (monat: string) => `Monatsbericht ${monat}`.trim(),
   },

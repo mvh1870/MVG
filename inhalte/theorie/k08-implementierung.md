@@ -262,7 +262,7 @@ Wann ist die Einführung „fertig“? Wenn die Organisation des Bauherrn einen 
 ---
 symbol: stempel
 ---
-Geliefert wird ein verlässliches Führungsmodell für den Bauherrn: Es wird erstellt und übergeben. Entscheidungen, Freigaben und die Entscheidung, welche Risiken das Projekt trägt, bleiben bei den zuständigen Rollen des Bauherrn.
+Ziel ist ein verlässliches Führungsmodell für den Bauherrn: Es wird erstellt und übergeben. Entscheidungen, Freigaben und die Entscheidung, welche Risiken das Projekt trägt, bleiben bei den zuständigen Rollen des Bauherrn.
 :::
 
 ::: umschalter

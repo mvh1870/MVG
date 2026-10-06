@@ -1,6 +1,6 @@
 # Explore-Werkzeuge (P16.8, O-46; vier neue Werkzeuge P18.3/P18.4, O-59, Konzept docs/WERKZEUGE-P18.md). Belege intern, nie sichtbar (O-38). Beispielprojekt: Schulcampus Lindenhall-Süd (O-50).
 einleitung: |
-  Fiktiver Fall: Alle Beispiele in den Werkzeugen stammen vom Schulcampus Lindenhall-Süd. Stadt und Personen sind erfunden.
+  Fiktiver Fall: Alle Beispiele in den Werkzeugen stammen vom Schulcampus Lindenhall-Süd; Stadt, Personen und Zahlen sind erfunden. Sie können auch ohne Beispiel mit eigenen Angaben arbeiten: Das Ergebnis beruht dann nur auf diesen Angaben, niemand prüft sie, und nichts davon wird gespeichert oder gesendet.
 mcda:
   titel: Vergleichsrechner (MCDA)
   kurz: Drei Wege nach mehreren Gesichtspunkten vergleichen – und sehen, ab wann ein anderer Weg vorn liegt.
@@ -142,7 +142,7 @@ vorlagencheck:
   vorspann:
     wozu: "Vor einer größeren Entscheidung bereitet die Projektsteuerung eine Entscheidungsvorlage vor: ein Papier, das die möglichen Wege vergleicht. Hier prüfen Sie, ob die Vorlage vollständig genug ist, damit wirklich gewählt werden kann."
     eingabe: "Wählen Sie ein Beispiel oder starten Sie ohne Beispiel. Beantworten Sie dann in fünf Schritten Fragen zur Vorlage mit Ja, Teilweise oder Nein."
-    ergebnis: "Die Ampel sagt, wie weit die Vorlage ist. Grün: Sie ist entscheidungsreif. Gelb: Es fehlen Ergänzungen, aber keine der wichtigen Angaben. Rot: Eine wichtige Angabe fehlt, es gibt weniger als zwei zulässige Wege, oder als entscheidende Stelle ist die Projektsteuerung genannt. Darunter steht zu jeder Lücke, was Sie nachfordern."
+    ergebnis: "Die Ampel sagt, wie weit die Vorlage nach Ihren Antworten ist. Grün: Nach Ihren Angaben ist sie entscheidungsreif. Gelb: Es fehlen Ergänzungen, aber keine der wichtigen Angaben. Rot: Eine wichtige Angabe fehlt, es gibt weniger als zwei zulässige Wege, oder als entscheidende Stelle ist keine befugte Stelle gewählt – etwa die Projektsteuerung, der nur beratende Lenkungskreis oder noch niemand. Darunter steht zu jeder Lücke, was Sie nachfordern. Unterlagen und Befugnisse selbst prüft das Werkzeug nicht; Grün ersetzt weder diese Prüfung noch die Entscheidung."
   belege: [v24:hb-3, v24:hb-3.1, v24:hb-5, v24:tlb-2.1, k9.4-l1, k6.4.1-p3]
   text: |
     Eine Entscheidungsvorlage ist entscheidungsreif, wenn die befugte Stelle (wer im Projekt für die Entscheidung zuständig ist) mit ihr wirklich zwischen Wegen wählen kann. Die Projektsteuerung bereitet sie vor; Sie prüfen, ob alles darin steht, und lassen ergänzen, was fehlt.
@@ -433,7 +433,7 @@ monatsbericht:
   vorspann:
     wozu: "Der Monatsbericht ist eine Seite, die dem Bauherrn sagt: Was hat sich verändert, was klemmt, was ist zu entscheiden, und welche Reaktion wird von ihm gebraucht?"
     eingabe: "Wählen Sie ein Beispiel oder starten Sie ohne Beispiel. Füllen Sie die Felder aus: Monat, Datenstand (Stand der Zahlen), die Lage in einem Satz, die drei Ampeln für Kosten, Termine und Qualität und die Einträge. Daneben sehen Sie die Seite, wie sie entsteht, und ob alles darauf passt."
-    ergebnis: "Im Ergebnis zeigt eine Ampel den Zustand des Berichts: vollständig, mit offenen Hinweisen oder noch nicht fertig. Steht bei Kosten, Termine oder Qualität Gelb oder Rot, braucht der Bauherr dazu eine Entscheidung oder eine Reaktion; fehlt sie, weist das Werkzeug darauf hin."
+    ergebnis: "Im Ergebnis zeigt eine Ampel den Zustand des Berichts: vollständig, mit offenen Hinweisen oder noch nicht fertig. „Vollständig“ heißt: Die Felder sind ausgefüllt, jede gelbe oder rote Ampel ist mit einer Entscheidung oder Reaktion verknüpft, und alles passt auf eine Seite. Ob Zahlen, Ampeln und Einträge stimmen, prüft das Werkzeug nicht. Steht eine der Ampeln Kosten, Termine oder Qualität auf Gelb oder Rot, braucht der Bauherr dazu eine Entscheidung oder eine Reaktion; fehlt sie, weist das Werkzeug darauf hin."
   belege: [v24:hb-4, v24:as-2, k2.4-p2, v24:hb-5]
   text: |
     Der Monatsbericht fasst auf höchstens einer Seite zusammen, was sich verändert hat, was blockiert ist und welche Entscheidungen offen sind – und welche Reaktion er vom Bauherrn braucht, etwa eine Entscheidung oder eine Auskunft. Er verweist auf die Einträge in der Projektsoftware und ersetzt sie nicht. Was jede Woche, jeden Monat und sofort geschieht, zeigt das Werkzeug Takt der Projektsteuerung.

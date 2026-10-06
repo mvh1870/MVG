@@ -4,8 +4,9 @@
 # erklärender Lesetext mit kleinen interaktiven Grafiken, kaum Zitate. Kein Bezug zum Whitepaper auf der Seite (O-38);
 # kein Originaltext, keine Story-Querverweise mehr (O-41, O-40).
 # Reihenfolge: zuerst die Arbeitsweise nach V2.4 (ein Informationsstand, Projektsteuerung bearbeitet alle Vorgänge,
-# der Bauherr entscheidet), danach der MVG Companion als optionales Arbeitsmittel (k6.3-p1, k6.3-p3; quellen/bm/MARKENREGELN.md:
-# optional, kein Leistungsbestandteil) – beschreiben, nicht bewerben (O-1); Nutzungsbedingungen aus k6.3-p3 nicht aufgreifen.
+# der Bauherr entscheidet), danach der MVG Companion als angekündigtes, optionales Arbeitsmittel (k6.3-p1; O-64: noch nicht
+# bereitgestellt, keine Kosten- oder Terminangabe, vereinbarte Leistungen bleiben Leistungen) – beschreiben, nicht bewerben (O-1).
+# Bei Companion-Aussagen geht der Geschäftsrahmen aus O-64 der Quelle k6.3-p3 vor (Bezug nur für Beratungskunden entfällt).
 # Takt nur in Kürze und V2.4-konform; Einzelheiten im Thema „Takt und Monatsbericht“ (Verweis nur als Text).
 # Der frühere Baustein „::: governancefluss“ (Frühwarnung → bestätigt → Risiko) ist entfernt (kollidiert mit V2.4 R8);
 # an seiner Stelle stehen Karten „Vier Ausgänge einer Frühwarnung“ und die Etappen „Ein Vorgang auf seinem Weg“;
@@ -42,7 +43,7 @@ teil: 2
 kurzsatz: Eine Stelle führt alle Einträge, Zuständigkeiten sind klar, der Bauherr entscheidet.
 symbol: wechsel
 ---
-Ein Führungsmodell nützt nur, wenn es im Alltag ankommt. Dieses Thema zeigt, wie die Einträge im Projekt (Vorgänge), die Zuständigkeiten und die festen Prüftermine (Takt) zusammenspielen – vom ersten Hinweis bis zum Monatsbericht. Danach folgt der [[MVG Companion]], ein optionales Arbeitsmittel für Minimum Viable Governance (MVG).
+Ein Führungsmodell nützt nur, wenn es im Alltag ankommt. Dieses Thema zeigt, wie die Einträge im Projekt (Vorgänge), die Zuständigkeiten und die festen Prüftermine (Takt) zusammenspielen – vom ersten Hinweis bis zum Monatsbericht. Danach folgt der [[MVG Companion]], ein angekündigtes, optionales Arbeitsmittel für Minimum Viable Governance (MVG).
 
 Die Projektsteuerung ist das Büro oder Team, das im Auftrag des Bauherrn das Projekt steuert. Mit „Vorgang“ ist hier jeder Eintrag gemeint, den sie führt: eine Aufgabe, eine Maßnahme, eine Frühwarnung (ein erster, noch ungeklärter Hinweis), ein Risiko, ein Problem oder eine Änderung. Was sie genau bedeuten, zeigt das Thema „Vorgänge und Risiken“.
 
@@ -50,7 +51,7 @@ Die Projektsteuerung ist das Büro oder Team, das im Auftrag des Bauherrn das Pr
 ---
 symbol: dokument
 ---
-Alles, was im Projekt zu tun oder zu klären ist, führt eine einzige Stelle: Die Projektsteuerung trägt es in die Software ein, die der Bauherr bereitstellt, und geht es in festen Abständen durch (Takt). Diese Software ist der eine verbindliche Stand der Informationen. Der Bauherr trägt nichts ein – er entscheidet, wenn ihm die Projektsteuerung eine Entscheidungsvorlage vorlegt. Ein Hilfsmittel wie der MVG Companion kann unterstützen. Es ersetzt aber weder eine Entscheidung noch die Einträge in dieser Software.
+Alles, was im Projekt zu tun oder zu klären ist, führt eine einzige Stelle: Die Projektsteuerung trägt es in die Software ein, die der Bauherr bereitstellt, und geht es in festen Abständen durch (Takt). Diese Software ist der eine verbindliche Stand der Informationen. Der Bauherr trägt nichts ein – er entscheidet, wenn ihm die Projektsteuerung eine Entscheidungsvorlage vorlegt. Ein Hilfsmittel wie der MVG Companion soll unterstützen können. Es ersetzt aber weder eine Entscheidung noch die Einträge in dieser Software.
 :::
 
 ::: abschnitt k6.4
@@ -607,9 +608,9 @@ Wo etwas entschieden werden muss, liegt auf jeder Stufe eine Vorlage der Projekt
 
 ::: abschnitt k6
 ---
-titel: Der MVG Companion – ein optionales Arbeitsmittel
+titel: Der MVG Companion – ein angekündigtes, optionales Arbeitsmittel
 ---
-Der MVG Companion ist ein Hilfsmittel, das den Schritt vom Konzept in den Alltag erleichtern soll. Nötig ist er nicht.
+Der MVG Companion ist ein Hilfsmittel, das Bauherr Mentoren entwickelt. Er soll den Schritt vom Konzept in den Alltag erleichtern. Veröffentlicht ist er noch nicht, und nötig ist er nicht: MVG funktioniert auch ohne ihn.
 
 ::: abbildung abb-9
 :::
@@ -621,20 +622,20 @@ links: Was er ist
 rechts: Was er nicht ist
 ---
 ::: ansicht links
-Ein optionales Arbeitsmittel. Es hilft, Entscheidungen vorzubereiten, Freigaben zu steuern, Nachweise zu führen, das Team zu schulen und den Übergang in den Regelbetrieb zu gestalten.
+Ein optionales Arbeitsmittel. Es soll helfen, Entscheidungen vorzubereiten, Freigaben zu steuern, Nachweise zu führen, das Team zu schulen und den Übergang in den Regelbetrieb zu gestalten.
 :::
 
 ::: ansicht rechts
-Er ist kein zweites Konzept neben MVG, ersetzt weder Entscheidung noch Führung und ist keine zweite Dokumentation: Maßgeblich bleibt die Software des Bauherrn. Er erfindet keine neuen Regeln, sondern hilft, die vereinbarten im Alltag anzuwenden.
+Er ist kein zweites Konzept neben MVG, ersetzt weder Entscheidung noch Führung und ist keine zweite Dokumentation: Maßgeblich bleibt die Software des Bauherrn. Er erfindet keine neuen Regeln, sondern soll helfen, die vereinbarten im Alltag anzuwenden. Er ersetzt auch keine vereinbarte Beratungsleistung.
 :::
 :::
 :::
 
 ::: abschnitt k6.1
 ---
-titel: Die sieben Funktionen des MVG Companion
+titel: Die sieben vorgesehenen Funktionen des MVG Companion
 ---
-Der Companion hat sieben Funktionen. Sie entsprechen den Bausteinen des Führungsmodells; jede macht einen Teil der vereinbarten Regeln zu einer Arbeitshilfe. Der **Entscheidungsassistent** zum Beispiel führt Schritt für Schritt durch Entscheidungsfrage, Mandat, Freigabe, Stand der Unterlagen und Nachweis; zur Vorlage gehören mindestens zwei zulässige Möglichkeiten und ihr gewichteter Vergleich.
+Vorgesehen sind sieben Funktionen. Sie entsprechen den Bausteinen des Führungsmodells; jede soll einen Teil der vereinbarten Regeln zu einer Arbeitshilfe machen. Der **Entscheidungsassistent** zum Beispiel soll Schritt für Schritt durch Entscheidungsfrage, Mandat, Freigabe, Stand der Unterlagen und Nachweis führen; zur Vorlage gehören mindestens zwei zulässige Möglichkeiten und ihr gewichteter Vergleich.
 
 ::: tafel k6.1-t1
 ---
@@ -647,7 +648,7 @@ form: karten
 ---
 titel: Befähigung mit Unterstützung des MVG Companion
 ---
-[[Befähigung]] heißt: Die Organisation des Bauherrn kann das Modell selbst anwenden. Mit dem Companion bleibt es nicht bei einer einmaligen Schulung: Die Beteiligten üben das Modell immer wieder an echten Entscheidungen des eigenen Projekts. Sie arbeiten dabei mit den Kennungen für Entscheidungen ([[Entscheidungs-ID|Entscheidungs-IDs]]), mit den Fragen vor Freigaben, mit den Regeln zu Befugnissen (Mandaten), mit der Kontrolle, ob der Stand der Unterlagen aktuell ist, und mit den Abläufen des Betriebshandbuchs.
+[[Befähigung]] heißt: Die Organisation des Bauherrn kann das Modell selbst anwenden. Schulung, Pilotierung und Übergabe ersetzt der Companion nicht; er soll sie unterstützen. Mit ihm soll es nicht bei einer einmaligen Schulung bleiben: Die Beteiligten üben das Modell immer wieder an echten Entscheidungen des eigenen Projekts. Sie arbeiten dabei mit den Kennungen für Entscheidungen ([[Entscheidungs-ID|Entscheidungs-IDs]]), mit den Fragen vor Freigaben, mit den Regeln zu Befugnissen (Mandaten), mit der Kontrolle, ob der Stand der Unterlagen aktuell ist, und mit den Abläufen des Betriebshandbuchs.
 
 ::: etappen
 ---
@@ -678,7 +679,7 @@ Der Assistent für das Betriebshandbuch, die offenen Punkte und der Rhythmus der
 ---
 titel: Regelbetrieb
 ---
-Dauerhafte Hilfe bei Entscheidungen, Freigaben und Prüfungen im Alltagsbetrieb. **Ergebnis:** eine Arbeitshilfe, die dauerhaft zur Verfügung steht.
+Dauerhafte Hilfe bei Entscheidungen, Freigaben und Prüfungen im Alltagsbetrieb. **Ziel:** eine Arbeitshilfe, die auch im Regelbetrieb nutzbar bleibt.
 :::
 :::
 :::
@@ -687,23 +688,23 @@ Dauerhafte Hilfe bei Entscheidungen, Freigaben und Prüfungen im Alltagsbetrieb.
 ---
 titel: Wie der Companion eingesetzt wird
 ---
-Technisch ist der Companion ein Arbeitsbuch, das im Browser auf dem eigenen Rechner läuft. Er ist **optional**: Das Führungsmodell funktioniert auch mit den Büro- und Projektwerkzeugen, die ein Bauherr ohnehin nutzt.
+Geplant ist der Companion als Arbeitsbuch, das im Browser auf dem eigenen Rechner läuft. Er ist **optional**: Das Führungsmodell funktioniert auch mit den Büro- und Projektwerkzeugen, die ein Bauherr ohnehin nutzt.
 
 ::: aufklapper Wie der Companion mit den Inhalten umgeht
 ---
 symbol: schloss
 ---
-- Er kann Bestehendes nachbilden oder darauf verweisen: Entscheidungsvorlagen, Vorgänge, die [[RACI]]-Tabelle, Mandate und das Betriebshandbuch.
-- **Maßgeblich bleibt** die Software des Bauherrn. Wer mit dem Companion arbeitet, überträgt die Inhalte fristgerecht dorthin; eine zweite Liste entsteht nicht.
-- Er arbeitet mit Informationen, die einen Namen und eine Version haben und nur Berechtigten zugänglich sind. Was er liefert, ist Entscheidungsunterstützung: Bevor es in eine Freigabe oder ein Gremium geht, prüfen es die zuständigen Rollen.
+- Er soll Bestehendes nachbilden oder darauf verweisen können: Entscheidungsvorlagen, Vorgänge, die [[RACI]]-Tabelle, Mandate und das Betriebshandbuch.
+- **Maßgeblich bleibt** die Software des Bauherrn. Wer mit dem Companion arbeitet, soll die Inhalte fristgerecht dorthin übertragen; eine zweite Liste soll nicht entstehen.
+- Er soll mit Informationen arbeiten, die einen Namen und eine Version haben und nur Berechtigten zugänglich sind. Was er liefert, ist Entscheidungsunterstützung: Bevor es in eine Freigabe oder ein Gremium geht, prüfen es die zuständigen Rollen.
 :::
 
-Der Companion ersetzt keine Entscheidung des Bauherrn, keine Freigabe durch ein Gremium, keine Rechtsberatung, keine Fachplanung und keine Projektsteuerung. Er hilft beim Ordnen, Orientieren, Anwenden und Schulen. Verbindlich bleiben die freigegebenen Stände der Unterlagen, die festgelegten Zugriffsrechte der Rollen, die Anforderungen des Datenschutzes und die Entscheidung des Bauherrn, für die er einsteht.
+Der Companion ersetzt keine Entscheidung des Bauherrn, keine Freigabe durch ein Gremium, keine Rechtsberatung, keine Fachplanung und keine Projektsteuerung. Er soll beim Ordnen, Orientieren, Anwenden und Schulen helfen. Verbindlich bleiben die freigegebenen Stände der Unterlagen, die festgelegten Zugriffsrechte der Rollen, die Anforderungen des Datenschutzes und die Entscheidung des Bauherrn, für die er einsteht.
 
 ::: sortieren
 ---
 titel: Leistet der Companion das?
-links: Seine Funktion
+links: Vorgesehene Funktion
 rechts: Ersetzt er nicht
 ---
 ::: posten 1
@@ -772,7 +773,7 @@ Ein zusätzliches Arbeitsmittel ersetzt die Dokumentation dort nicht.
 
 ::: regie
 ### Notiz
-Dieses Thema trägt im Termin vor allem mit seinem ersten Teil: Die Projektsteuerung bearbeitet alle Vorgänge in der Software des Bauherrn und prüft sie wöchentlich; der Bauherr pflegt nichts, er entscheidet auf Vorlage (Sortierübung „Bearbeitet die Projektsteuerung – oder entscheidet der Bauherr?“, Karten „Vier Ausgänge einer Frühwarnung“, Takt in Kürze). Den MVG Companion beschreiben, nicht vorführen oder anbieten: Er ist ein optionales Arbeitsmittel und ersetzt keine Bauherrenentscheidung, keine Gremienfreigabe, keine Projektsteuerung und nicht die Einträge in der Software des Bauherrn. Nutzungsbedingungen nicht von sich aus ansprechen.
+Dieses Thema trägt im Termin vor allem mit seinem ersten Teil: Die Projektsteuerung bearbeitet alle Vorgänge in der Software des Bauherrn und prüft sie wöchentlich; der Bauherr pflegt nichts, er entscheidet auf Vorlage (Sortierübung „Bearbeitet die Projektsteuerung – oder entscheidet der Bauherr?“, Karten „Vier Ausgänge einer Frühwarnung“, Takt in Kürze). Den MVG Companion als angekündigtes, optionales Arbeitsmittel beschreiben: Er ist noch nicht veröffentlicht, deshalb nichts vorführen oder zusagen. Er ersetzt keine Bauherrenentscheidung, keine Gremienfreigabe, keine Projektsteuerung und nicht die Einträge in der Software des Bauherrn. Fragen nach Bezug, Kosten oder Nutzungsregeln sachlich beantworten: Sie werden mit der Veröffentlichung bekanntgegeben. In einer beauftragten Beratung regelt der Vertrag, wie Arbeitsmittel eingesetzt werden; das Gespräch dort ist Teil der vereinbarten Leistung.
 
 ### Leitfragen
 - Wer bearbeitet bei Ihnen alle offenen Punkte (Vorgänge) – und wer entscheidet nur?

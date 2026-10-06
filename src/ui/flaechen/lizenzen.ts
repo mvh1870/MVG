@@ -21,11 +21,11 @@ function lizenzInhalt(): HTMLElement[] {
   const eintrag = (k: Komponente): HTMLElement => h('section', { class: 'lz-komponente', 'data-pruef': 'lz-komponente' },
     h('h3', null, k.name),
     h('dl', { class: 'lz-felder' },
-      h('dt', null, L.felder.version), h('dd', null, L.schriftVersion(k.paket, k.paketVersion, k.schriftVersionen.join(', '))),
+      h('dt', null, L.felder.version), h('dd', null, k.schriftVersionen.map(L.schriftVersion).join(', ')),
       h('dt', null, L.felder.copyright), h('dd', { 'data-pruef': 'lz-copyright' }, k.copyright),
       h('dt', null, L.felder.lizenz), h('dd', null, `${k.lizenz} (${k.spdx})`),
       h('dt', null, L.felder.herkunft), h('dd', null, k.upstream),
-      h('dt', null, L.felder.bezug), h('dd', null, k.quelle)));
+      h('dt', null, L.felder.bezug), h('dd', null, L.bezug(k.paket, k.paketVersion, /\((https:[^)]+)\)/u.exec(k.quelle)?.[1] ?? k.quelle))));
   return [
     h('p', { class: 'lz-einleitung' }, L.einleitung),
     h('h2', null, L.komponenten),

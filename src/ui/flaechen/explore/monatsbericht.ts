@@ -254,7 +254,7 @@ export function monatsbericht(o: WerkzeugOptionen): HTMLElement {
       h('div', { class: 'wz-blatt' }, berichtEl(true)),
       o.bedienbar ? h('div', { class: 'wz-druckzeile' },
         p.hinweise.length > 0 ? h('p', { class: 'wz-leise', 'data-pruef': 'mb-hinweise-offen' }, E.hinweiseOffen(p.hinweise.length)) : null,
-        druckKnopf('monatsbericht', () => ({ titel: `${E.berichtTitel(z.monat)}${z.beispiel !== null ? ` · ${v.projekt}` : ''}`, fiktiv: z.beispiel !== null, teile: [berichtEl(false)] }))) : null);
+        druckKnopf('monatsbericht', () => ({ titel: `${E.berichtTitel(z.monat)}${z.beispiel !== null ? ` · ${v.projekt}` : ''}`, fiktiv: z.beispiel !== null, grenze: E.berichtStand(wort, p.hinweise.length), teile: [berichtEl(false)] }))) : null);
   };
 
   const lade = (id: string | null): void => {

@@ -292,13 +292,3 @@ form: karten
 ---
 :::
 :::
-
-::: regie
-### Notiz
-Das Thema zeigt die Reihenfolge der Einführung (Etappen „Von der Einrichtung in den Regelbetrieb“) und die Mitwirkung des Bauherrn (Sortierübung „Wer trägt was bei?“). Den Regler zum 30/60/90-Tage-Plan nur mit dem Umschalter daneben zeigen: Der 30/60/90-Tage-Plan ist ein Orientierungsrahmen nach der Reifegradanalyse und bei einer MVG-Neuinitialisierung – kein allgemeiner Einführungsrhythmus und kein starrer Projektplan; keine Termine für den Kunden in Aussicht stellen. Abnahme bedeutet nicht, dass künftige Entscheidungen risikofrei sind.
-
-### Leitfragen
-- Welche Rolle ist bei Ihnen heute verbindlich dafür zuständig, welches Ziel Vorrang hat, wer was entscheiden darf und ab welcher Grenze?
-- Bei welcher Entscheidung in Ihrem Projekt waren zuletzt die Grenze und der Stand der Unterlagen unklar?
-- Woran würden Sie erkennen, dass wichtige Entscheidungen in Ihrer Organisation gut vorbereitet werden, dass jemand dazu befugt war, dass der Beschluss gesondert festgehalten und die Umsetzung verfolgt wird?
-:::

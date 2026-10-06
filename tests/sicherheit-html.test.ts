@@ -19,7 +19,7 @@ for (const k of [
 (dom.window as unknown as { print?: unknown }).print = undefined;
 after(() => dom.window.close());
 
-const { inhalte, regieGeschichte, regieKapitel } = await import('../src/inhalte/index.ts');
+const { inhalte } = await import('../src/inhalte/index.ts');
 const { baueExplore, WERKZEUGE } = await import('../src/ui/flaechen/explore.ts');
 const { erzeugeRegie } = await import('../src/regie/regie.ts');
 const { vonHtml, bereinige } = await import('../src/ui/h.ts');
@@ -115,7 +115,7 @@ test('Präsentieren: XSS-Texte im Gesprächsprotokoll bleiben Text – Liste und
   const daten = new Map<string, string>();
   const sp = { getItem: (k: string) => daten.get(k) ?? null, setItem: (k: string, v: string) => { daten.set(k, v); }, removeItem: (k: string) => { daten.delete(k); } };
   const kanal = { senden: () => undefined, abonnieren: () => () => undefined, schliessen: () => undefined };
-  const r = erzeugeRegie({ inhalte, kanal, version: '', speicher: sp, regieGeschichte, regieKapitel, oeffneLeinwand: () => undefined, takt: 100000 });
+  const r = erzeugeRegie({ inhalte, kanal, version: '', speicher: sp, oeffneLeinwand: () => undefined, takt: 100000 });
   try {
     document.body.replaceChildren(r.element);
     const feld = r.element.querySelector<HTMLTextAreaElement>('[data-pruef="regie-protokoll-feld"]');
@@ -129,7 +129,7 @@ test('Präsentieren: XSS-Texte im Gesprächsprotokoll bleiben Text – Liste und
     assert.deepEqual(gefaehrlich(), []);
     // gespeicherter Stand mit Nutzlast wird beim nächsten Öffnen wieder nur als Text gezeigt
     r.entferne();
-    const r2 = erzeugeRegie({ inhalte, kanal, version: '', speicher: sp, regieGeschichte, regieKapitel, oeffneLeinwand: () => undefined, takt: 100000 });
+    const r2 = erzeugeRegie({ inhalte, kanal, version: '', speicher: sp, oeffneLeinwand: () => undefined, takt: 100000 });
     document.body.replaceChildren(r2.element);
     assert.deepEqual(gefaehrlich(), []);
     r2.entferne();

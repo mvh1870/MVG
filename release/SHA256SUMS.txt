@@ -4,8 +4,8 @@ dc33ecf6ae7cf4db9c219d0251af9d9d7b2f4ac78dad3cb06d11c48e18d93db3  ../dist/apple-
 e7bd44eebc9f409af9b4131ef76cf2d46d9844791e808f0342022d69e9b2b225  ../dist/favicon.ico
 c31c18d6ac6754d2fe649bafba8d9244d8a2bf97242f3da2714f1fb209a5eee9  ../dist/favicon.svg
 034eb60944d9a423c8682f44b8637f4e37eb234d99529cbf28ba174b3750b4f4  ../dist/impressum.html
-2998139e46fd66dde2430ba0733cf6fd7d6b73da6633653da34fb2b159022cb2  ../dist/index.html
+d186d4d58463c4ced4c8ffa91b0754742f99cc7174cb9b1bba8cd4101524b26c  ../dist/index.html
 eac685901e06b12a31cac85e33941d0bce7e055aa488da72bcf18a564d984b1d  ../dist/robots.txt
 4ab251b420c5012b6f6cb7a0e458b0df5019261e62bb6fc6bb7f85b5a201b77a  ../dist/sitemap.xml
 85486995f09a5495997c4cc8c636ad279c6f4e0fe79f4509ec5c1a35a52ff684  ../dist/vorschau.png
-c971eaf9b713f9fcd47a5b97b59e9db19fff04ad8ebd6faf41e024f57775f7a6  ../release/Governance-Kompass.html
+573c2be6d15cf290daa944daed11de1a677330b7c84c06b1fb18cf56b781190a  ../release/Governance-Kompass.html

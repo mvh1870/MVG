@@ -355,12 +355,3 @@ rechts: Nach der Übergabe des Modells
 :::
 :::
 :::
-
-::: regie
-### Notiz
-Der Überblick ist der Einstieg: die acht Wörter, die gleich vorkommen, dann die Leitthese mit der Sortierübung „Abgeben oder selbst entscheiden?“ – den Kunden selbst zuordnen lassen –, dann die fünf Kernaussagen als Karten und die Kette der Entscheidungssicherheit. Im Termin tragen die Leitthese und die Karte „Projektsteuerung“: Sie bearbeitet alle Vorgänge und bereitet jede erforderliche Entscheidung vor; die Entscheidung des Bauherrn trifft sie nicht; das ist keine Kritik an der Projektsteuerung des Kunden. Das Ergebnisbild nur anreißen, die Ergebnisse im Einzelnen kommen im Thema „Ergebnisse“.
-
-### Leitfragen
-- Welche Entscheidungen in Ihrem Projekt können Sie nicht abgeben – und wo ist das festgehalten?
-- Was bereitet bei Ihnen die Projektsteuerung vor, und wo beginnt Ihre eigene Entscheidung?
-:::

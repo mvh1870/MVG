@@ -4,19 +4,17 @@
  * Die Datei entsteht mit `node werkzeuge/inhalte.mjs` (auch als Vorstufe von `npm run bau`); ohne
  * sie lassen sich `tsc` und esbuild nicht ausführen.
  *
- * ZWEI AUSGÄNGE, MIT ABSICHT: `inhalte` enthält alles außer dem Regie-Material, `regieInhalte()`
- * nur das Regie-Material. Die Leinwand-Zeichnung importiert ausschließlich `inhalte` – sie kann
- * Notizen und Leitfragen nicht einmal versehentlich anfassen (docs/ARCHITEKTUR.md).
+ * Moderationsnotizen und Leitfragen gibt es seit O-65 nicht mehr; `inhalte` enthält alles, was die Seite zeigt.
  */
 
 import daten from '../generiert/inhalte.json' with { type: 'json' };
-import type { GeschichteRegie, GlossarEintrag, Inhalte, OeffentlicheInhalte, RegieEintrag } from './typen.ts';
+import type { GlossarEintrag, Inhalte, OeffentlicheInhalte } from './typen.ts';
 
 export type * from './typen.ts';
 
 const alle = daten as unknown as Inhalte;
 
-/** Alle Inhalte ohne Regie-Material (Felder aufgezählt, nicht weggelassen). */
+/** Alle Inhalte (Felder aufgezählt). */
 export const inhalte: OeffentlicheInhalte = {
   version: alle.version,
   abbildungen: alle.abbildungen,
@@ -28,26 +26,6 @@ export const inhalte: OeffentlicheInhalte = {
   geschichte: alle.geschichte ?? null,
   werkzeuge: alle.werkzeuge ?? null,
 };
-
-/** Nur für die Regie: Notiz und Leitfragen je Story-Kapitel (`k3`). */
-export function regieGeschichte(id: string): GeschichteRegie | null {
-  return alle.geschichteRegie?.[id] ?? null;
-}
-
-/** Nur für die Regie: Notiz und Leitfragen eines der vier neuen Werkzeuge (Adress-Kennung, z. B. `vorlagen-check`). */
-export function regieWerkzeug(id: string): GeschichteRegie | null {
-  return alle.werkzeugeRegie?.[id] ?? null;
-}
-
-/** Nur für die Regie: das ganze Regie-Material der Themen. */
-export function regieInhalte(): Readonly<Record<string, RegieEintrag>> {
-  return alle.regie;
-}
-
-/** Regie-Material eines Themas (P9.2): Notiz und Leitfragen zu Kapitel `nr`. */
-export function regieKapitel(nr: number): RegieEintrag | null {
-  return alle.regie[`theorie/k${nr}`] ?? null;
-}
 
 export function glossar(id: string): GlossarEintrag | null {
   return inhalte.glossar[id] ?? null;

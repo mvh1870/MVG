@@ -21,7 +21,7 @@ dom.window.scrollTo = (() => undefined) as typeof dom.window.scrollTo;
 dom.window.scrollBy = (() => undefined) as typeof dom.window.scrollBy;
 after(() => dom.window.close());
 
-const { inhalte, regieGeschichte, regieKapitel, regieWerkzeug } = await import('../src/inhalte/index.ts');
+const { inhalte } = await import('../src/inhalte/index.ts');
 const { WERKZEUGE, NEUE_WERKZEUGE, TEIL, beispielKennungen } = await import('../src/ui/werkzeug-kennungen.ts');
 const { baueSchritt } = await import('../src/ui/flaechen/geschichte.ts');
 const { baueTheorie, themaTitel, themen } = await import('../src/ui/flaechen/theorie.ts');
@@ -251,7 +251,7 @@ function starteRegie(): { r: ReturnType<typeof erzeugeRegie>; gesendet: KanalNac
   const kanal = { senden: (n: KanalNachricht) => { gesendet.push(n); }, abonnieren: () => () => undefined, schliessen: () => undefined };
   const daten = new Map<string, string>();
   const speicher = { getItem: (k: string) => daten.get(k) ?? null, setItem: (k: string, v: string) => { daten.set(k, v); }, removeItem: (k: string) => { daten.delete(k); } };
-  const r = erzeugeRegie({ inhalte, kanal, version: 'Test', speicher, regieGeschichte, regieKapitel, regieWerkzeug, oeffneLeinwand: () => undefined, takt: 100000 });
+  const r = erzeugeRegie({ inhalte, kanal, version: 'Test', speicher, oeffneLeinwand: () => undefined, takt: 100000 });
   document.body.replaceChildren(r.element);
   const zustand = () => {
     const z = gesendet.filter((n) => n.art === 'zustand').at(-1);
@@ -277,8 +277,6 @@ test('Regie: Pfeiltasten gehen erst durch die Schritte, dann zum nächsten Werkz
     pfeil(r, 'ArrowRight');
     assert.deepEqual([zustand().werkzeug, zustand().werkzeugStand], ['vorlagen-check', 'b:lueftung-kurz;s:1']);
     assert.equal(r.element.querySelector<HTMLElement>('[data-pruef="regie-werkzeug-stand"]')?.hidden, false);
-    assert.match(r.element.querySelector('[data-pruef="regie-notiz"]')?.textContent ?? '', /nur das Ersatzgerät“ zeigen/u);
-    assert.ok(r.element.querySelector('[data-pruef="regie-leitfragen"]'));
     for (let i = 2; i <= 5; i++) { pfeil(r, 'ArrowRight'); assert.equal(zustand().werkzeugStand, `b:lueftung-kurz;s:${i}`); }
     pfeil(r, 'ArrowRight');
     assert.equal(zustand().werkzeugStand, 'b:lueftung-kurz;s:ergebnis');
@@ -320,7 +318,6 @@ test('Regie: Pfeiltasten gehen erst durch die Schritte, dann zum nächsten Werkz
     sel.dispatchEvent(new Event('change'));
     klick(r, 'regie-schalter-w-1');
     assert.equal(zustand().werkzeugStand, 'b:oktober;w:1');
-    assert.match(r.element.querySelector('[data-pruef="regie-notiz"]')?.textContent ?? '', /Kosten-Ampel/u);
     // Kanal: nur Beispiel und Schritt, nie Regie-Text; jeder gesendete Stand besteht die Prüfung der Leinwand
     const zustaende = gesendet.filter((n) => n.art === 'zustand');
     assert.ok(zustaende.length > 10);
@@ -329,13 +326,6 @@ test('Regie: Pfeiltasten gehen erst durch die Schritte, dann zum nächsten Werkz
       const b = pruefeBuehne(JSON.parse(JSON.stringify(n.zustand)), g, (id) => beispielKennungen(w, id));
       assert.ok(b, 'Bühnenstand gültig');
       assert.equal(b.werkzeugStand, n.zustand.werkzeugStand, `Stand ${String(n.zustand.werkzeugStand)} kommt unverändert an`);
-    }
-    const kanalText = JSON.stringify(gesendet);
-    for (const id of NEUE_WERKZEUGE) {
-      const e = regieWerkzeug(id);
-      assert.ok(e?.notizHtml && e.leitfragen.length > 0, `Regie-Material zu ${id}`);
-      assert.ok(!kanalText.includes(e.notizHtml.slice(3, 40)), `${id}: keine Notiz im Kanal`);
-      for (const f of e.leitfragen) assert.ok(!kanalText.includes(f), f);
     }
   } finally {
     ende();
@@ -346,8 +336,6 @@ test('Leinwand: die vier Werkzeuge in jedem Beispiel und Schritt – keine Bedie
   const anzeige = erzeugeAnzeige(inhalte, 'Test', true);
   document.body.replaceChildren(anzeige.element);
   try {
-    const regieTexte = NEUE_WERKZEUGE.flatMap((id) => { const e = regieWerkzeug(id); return e === null ? [] : [e.notizHtml.replace(/<[^>]*>/gu, '').trim().slice(0, 40), ...e.leitfragen]; });
-    assert.ok(regieTexte.length >= 12);
     let gezeichnet = 0;
     const faelle: [string, string | null][] = [];
     for (const id of NEUE_WERKZEUGE) {
@@ -370,8 +358,6 @@ test('Leinwand: die vier Werkzeuge in jedem Beispiel und Schritt – keine Bedie
           .map((e) => `${e.tagName.toLowerCase()}[${e.getAttribute('data-pruef') ?? e.getAttribute('href') ?? ''}]`);
         // die Kacheln der Werkzeugleiste sind Text (kein Link), alles andere ebenso
         assert.deepEqual(bedienbar, [], `${wo}: Bedienelemente auf der Leinwand`);
-        const text = anzeige.element.textContent ?? '';
-        for (const t of regieTexte) assert.ok(!text.includes(t), `${wo}: Regie-Text „${t.slice(0, 20)}“ auf der Leinwand`);
         gezeichnet += 1;
       }
     }

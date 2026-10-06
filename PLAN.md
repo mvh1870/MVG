@@ -209,5 +209,8 @@ Vorgabe (bis die Antworten des Owners aus der Klickseite „Story erweitern“ v
 - [x] P21.1 (L-425) · IBM Plex entfernt, Drittanbieter & Lizenzen (#lizenzen), Einzeldatei `release/`, Prüfsummen, Regie-Hinweis und Rückfrage, Vertrauensgrenze HTML-Parser mit XSS-Tests, Kanal „keine Sicherheitsfunktion“, CSP ohne `blob:` — Abnahme: Kette grün.
 - [x] P21.2 (L-426) · Inhalte nach O-64: Companion angekündigt, Mentor-Zugriff gestrichen, Markenregel, Moderationsnotizen; Druck mit Herkunft und Aussagegrenze, Vorlagen-Check/Monatsbericht/Risiko-Druck erläutert, Geschichte eingeordnet, Methodenstandard, Wirkungssätze, Speicherhinweise; Register und Änderungsbericht unter `docs/audit/` — Abnahme: Kette grün, Prüf-Agenten Fachtreue und Begriffe.
 
+### P22 · Moderationsnotizen entfernt (O-65, Owner im Chat 2026-10-06)
+- [x] P22.1 (L-430) · Notizen und Leitfragen aus Inhalten, Übersetzern, Typen und „Präsentieren“ entfernt; `regie` in Inhalten ist ein Fehler — Abnahme: Kette grün.
+
 ## Erledigt
 (noch nichts)

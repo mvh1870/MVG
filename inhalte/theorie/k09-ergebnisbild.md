@@ -524,13 +524,3 @@ Die Vorlage nennt den Beschluss; festgehalten wird er gesondert, mit Quelle, Dat
 Das Betriebshandbuch sorgt dafür, dass MVG nach der Einführung nicht endet, sondern als feste, wiederholbare Routine des Bauherrn weiterläuft.
 :::
 :::
-
-::: regie
-### Notiz
-Das Thema zeigt die Ergebnisse; ihr Wert liegt im Zusammenhang – die Etappen „Nachweiskette“ oben führen Mandat, Freigabe, Entscheidungs-ID, Datenstand, Nachweis und Beschlusslage der Reihe nach vor. Im Termin tragen der Weg einer Freigabe und der Regler über LPH 0–9: Der Bauherr erteilt jede Freigabe selbst auf Vorlage der Projektsteuerung, der Lenkungskreis berät. Der Regler zeigt die Freigabefrage je Leistungsphase, die Tafel darunter die zehn Leistungsphasen nebeneinander. RACI nicht als Werkzeug erklären, sondern die Verknüpfung mit Mandaten und Schwellen zeigen (Umschalter). Die Zuordnung der Freigaben zu den Leistungsphasen kann projektspezifisch angepasst werden – nicht als starr darstellen.
-
-### Leitfragen
-- Welche Kernfrage stand bei Ihrer letzten Freigabe zum Abschluss einer Leistungsphase im Raum?
-- Könnte ein Dritter nachvollziehen, auf welchem Stand der Unterlagen Ihre letzte wesentliche Entscheidung getroffen wurde?
-- Was sagt Ihre Rollenübersicht (RACI) heute darüber, ab welcher Grenze wer entscheidet und wer vertritt?
-:::

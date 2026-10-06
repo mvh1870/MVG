@@ -189,13 +189,3 @@ Die Arbeit und das Ausüben des Mandats innerhalb der festgelegten Grenzen kann 
 :::
 
 :::
-
-::: regie
-### Notiz
-Der Begriffsrahmen zieht die Linie, auf der alles andere steht. Tragend ist die Tafel „delegierbar – nicht delegierbar“; die Pyramide und der Regler zeigen die drei Ebenen. Betonen, dass es ein Governance- und Führungsbegriff ist, kein juristischer Pflichtenkatalog (Umschalter „Was der Begriff fragt – und was nicht“) – keine rechtliche Einschätzung abgeben. Die Festlegung des Mandats bleibt beim Bauherrn, die Ausübung innerhalb klar definierter Schwellen kann übertragen werden. Die Vorlage erarbeitet in MVG die Projektsteuerung – mit mindestens zwei zulässigen Optionen und gewichtetem Vergleich; entscheiden muss der Bauherr.
-
-### Leitfragen
-- Bei welcher der Aufgaben, die nur Sie selbst verantworten können, ist in Ihrem Projekt unklar, wer sie tatsächlich wahrnimmt?
-- Wo endet in Ihrem Projekt die Vorbereitung, und wo beginnt Ihre Entscheidung?
-- Wer darf bei Ihnen bis zu welcher Grenze selbst entscheiden?
-:::

@@ -429,13 +429,3 @@ titel: Recht / Vergabe
 :::
 
 :::
-
-::: regie
-### Notiz
-Das Thema beschreibt die Leistungspakete von Bauherr Mentoren – im Termin besonders zurückhaltend: beschreiben, nicht anbieten, keine Aufforderung, nichts über Aufwand oder Dauer über MVG hinaus. Die Reifegradanalyse nur als Methode nennen und keine Punktzahl für den Kunden schätzen. Es tragen der Weg der Beratung (Etappen oben), die Zuordnung „Wer tut was in der Konzeption?“ und die Leistungsgrenzen: BM ersetzt keine Bauherrenentscheidung. Die Sortierübungen gemeinsam lösen, nicht abfragen.
-
-### Leitfragen
-- Welche der Arbeitsfragen aus der Reifegradanalyse könnten Sie für Ihr Projekt heute beantworten?
-- Wer entscheidet bei Ihnen heute faktisch, welches Ziel Vorrang hat, wer entscheiden darf und ab welcher Grenze – externe Berater oder Sie selbst?
-- Welche Entscheidungen, die heute bei Externen liegen, würden Sie nach den Karten „Wer leistet was“ selbst treffen?
-:::

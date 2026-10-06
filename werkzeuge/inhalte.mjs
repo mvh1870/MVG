@@ -74,7 +74,6 @@ const ARTEN = {
   // Ebenen 1–4 (Kurz bis Nachweis)
   ebenen: { in: ['@theorie', 'abschnitt'], kennung: 'keine', felder: [] },
   ebene: { in: ['ebenen'], kennung: 'pflicht', muster: /^[1-4]$/u, kopf: { titel: { typ: 'text' } }, felder: ['text'] },
-  regie: { in: ['@theorie'], kennung: 'keine', felder: ['notiz', 'leitfragen'] },
   // Glossarseite (P6.14): alle Begriffe aus whitepaper.json, durchsuchbar, mit „Kommt vor in“
   glossar: { in: ['@theorie'], kennung: 'keine', felder: ['text'] },
   // Whitepaper-Tabelle als Grafik (P4, L-32): Zellen wörtlich aus whitepaper.json, Form aus src/grafik/tafel.ts
@@ -1058,41 +1057,16 @@ function baueEbenen(c, k, eltern, rel) {
 
 /**
  * @param {Kompilierer} c
- * @param {Record<string, { text: string, zeile: number }>} rohFelder
- * @param {string} rel
- */
-function baueRegie(c, rohFelder, rel) {
-  const n = rohFelder['notiz'];
-  const l = rohFelder['leitfragen'];
-  return {
-    notiz: n ? c.html(n.text, `${rel}:${n.zeile}`) : null,
-    leitfragen: l ? c.punkte(l.text, `${rel}:${l.zeile}`) : [],
-  };
-}
-
-/**
- * @param {Kompilierer} c
  * @param {string} rel
  * @param {string} id
  * @param {string} text
- * @param {Record<string, any>} regie Regie-Material (P9.2): Schlüssel `theorie/k5`
  */
-function baueTheorie(c, rel, id, text, regie) {
+function baueTheorie(c, rel, id, text) {
   const { kopf, wurzel, rohFelder } = leseDateiKopf(c, rel, '@theorie', text);
   const ort = `${rel}:1`;
   if (kopf.kapitel !== undefined && `k${String(kopf.kapitel).padStart(2, '0')}` !== id) c.fehler(ort, `kapitel ${kopf.kapitel} passt nicht zum Dateinamen „${id}“`);
   const bloecke = [];
   for (const k of wurzel.kinder) {
-    if (k.art === 'regie') {
-      const r = c.lies(k, '@theorie', rel);
-      if (r !== null) {
-        const schluessel = `theorie/k${kopf.kapitel}`;
-        if (kopf.kapitel === undefined) c.fehler(`${rel}:${k.zeile}`, 'Regie-Block ohne „kapitel:“ im Dateikopf');
-        else if (regie[schluessel] !== undefined) c.fehler(`${rel}:${k.zeile}`, `zweiter Regie-Block zu Kapitel ${kopf.kapitel}`);
-        else regie[schluessel] = baueRegie(c, r.rohFelder, rel);
-      }
-      continue;
-    }
     if (k.art === 'ebenen') {
       const e = baueEbenen(c, k, '@theorie', rel);
       if (e !== null) bloecke.push({ art: 'ebenen', kennungen: [], id: null, kopf: {}, felder: {}, liste: null, kinder: [], ebenen: e });
@@ -1244,16 +1218,12 @@ export async function kompiliere(optionen = {}) {
   const theorie = {};
   /** @type {any[]} */
   let kompass = [];
-  /** @type {Record<string, any>} */
-  const regie = {};
   /** @type {Record<string, unknown> | null} */
   let abdeckungRoh = null;
   /** @type {{ rel: string, text: string }[]} */
   const geschichteDateien = [];
   /** @type {any} */
   let werkzeuge = null;
-  /** @type {Record<string, any>} */
-  let werkzeugeRegie = {};
 
   for (const r of dateien) {
     const rel = `inhalte/${r}`;
@@ -1262,15 +1232,13 @@ export async function kompiliere(optionen = {}) {
     else if ((m = /^theorie\/(k\d\d)-[^/]+\.md$/u.exec(r))) {
       const id = m[1] ?? '';
       if (theorie[id] !== undefined) c.fehler(rel, `zweite Lernseite für ${id}`);
-      theorie[id] = baueTheorie(c, rel, id, lies(r), regie);
+      theorie[id] = baueTheorie(c, rel, id, lies(r));
     } else if (r === 'begriffs-kompass.md') kompass = baueKompass(c, rel, lies(r));
     else if (r === 'abdeckung.yaml') abdeckungRoh = leseYaml(lies(r), rel, 1, b);
     else if (/^abbildungen\/abb-\d+\.yaml$/u.test(r)) { /* baueAbbildungen (P14) */ }
     else if (/^geschichte\/[^/]+\.yaml$/u.test(r)) geschichteDateien.push({ rel, text: lies(r) });
     else if (r === 'werkzeuge.yaml') {
-      const w = baueWerkzeuge(c, rel, lies(r));
-      werkzeuge = w.werkzeuge;
-      werkzeugeRegie = w.regie;
+      werkzeuge = baueWerkzeuge(c, rel, lies(r)).werkzeuge;
     }
     else if (r === 'glossar.yaml') { /* vor dem Kompilierer angewandt (wendeGlossarAn) */ }
     else if (r === 'fall.md') { /* Fall-Bibel: Nachschlagewerk der Autoren, nicht auf der Seite (P16.14) */ }
@@ -1315,11 +1283,8 @@ export async function kompiliere(optionen = {}) {
     theorie,
     kompass,
     abdeckung,
-    regie,
     geschichte: gesch.geschichte,
-    geschichteRegie: gesch.regie,
     werkzeuge,
-    werkzeugeRegie,
   };
 
   const json = stabilesJson(inhalte);

@@ -4,7 +4,7 @@ Kopf ≤ 100 Zeilen. Oben JETZT (überschreiben), darunter FRÜHER (anhängen, k
 
 ## JETZT
 
-- **Blöcke 2026-10-05 09:09 bis 2026-10-06 06:25 UTC (+00:00), Routine, je hingelegt (acht Blöcke, zusammengefasst):** Planblatt leer, keine offene Frage, `main` schon enthalten. Zuletzt (2026-10-06 06:20–06:25): CI 398 auf `claude/haus` (faf6936) grün; Kette grün (247,2 s, Oberfläche 159,9 s); Rechner Node 22.22, `npm ci` 10 s. Davor CI 390–397 grün, Kette jeweils grün (217–320 s). Offen beim Owner nur: `dist/` hochladen (`docs/LAUNCH.md`) oder neue Posten.
+- **Blöcke 2026-10-05 09:09 bis 2026-10-06 09:13 UTC (+00:00), Routine, je hingelegt (neun Blöcke, zusammengefasst):** Planblatt leer, keine offene Frage, `main` schon enthalten. Zuletzt (2026-10-06 09:13 UTC (+00:00)): CI 399 auf `claude/haus` (beeabdf) grün; Kette grün (212,3 s, Oberfläche 143,1 s); Rechner Node 22.22, `npm ci` 9 s. Davor CI 390–398 grün, Kette jeweils grün (217–320 s). Offen beim Owner nur: `dist/` hochladen (`docs/LAUNCH.md`) oder neue Posten.
 
 - **Block 2026-10-05 06:27–06:45 UTC (+00:00), Routine, Abschluss O-63 (L-424):** Planblatt leer, Kette grün (237,1 s, Oberfläche 20 Läufe, 158,8 s), CI 386 auf a4b7ee1 grün. Prüf-Agent Begriffe + Stil zur Umbenennung: keine schweren/mittleren Befunde, zwei leichte bleiben (L-424). `claude/haus` per Merge nach `main` gepusht (O-49). Rechner: Node 22.22, `npm ci` 9 s. **Offen beim Owner nur noch:** `dist/` hochladen (`docs/LAUNCH.md`). CI des Merges im nächsten Anlauf lesen.
 

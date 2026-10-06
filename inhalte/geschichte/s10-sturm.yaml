@@ -2,6 +2,8 @@
 # Sperren ist Sache der Bauleitung vor Ort mit der Sicherheitskoordination; die Projektsteuerin meldet und hält am selben
 # Arbeitstag fest (v24:hb-4) – deshalb ist sie in der Szene nicht dabei. Die Reparatur zahlt die Gerüstfirma (nur auf dem guten Weg).
 # Auf jedem Weg: Bereich gesperrt, Anker erneuert, am Ende geklärt, wer zahlt. Station 10 erzeugt das Echo E10 (10 → 14, Szene Lot im Ende).
+# O-64 (Prüf-Agent Fachtreue): der Bauleiter sperrt selbst und sagt es; die PL des Bauherrn ordnet nichts an, sie bestärkt
+# oder bremst – die Falle ist, sich in den Umfang der Sperrung einzumischen.
 # Mini-Aufgabe: v24:hb-4, v24:hb-1.4, v24:hb-1.6, v24:hb-3, v24:hb-5
 nr: 10
 titel: Ärger auf der Baustelle
@@ -20,17 +22,17 @@ einstieg: |
   Über den Arbeitsschutz wacht eine eigene Stelle, die Sicherheitskoordination. Freitag, kurz nach drei, klingelt Ihr Telefon.
 
 szene:
-  - { figur: lot, text: "Gerüst an der Sporthalle: zwei Anker, die es am Gebäude halten, sind lose. Seit heute Nacht. Sperr ich, muss die Sicherheitskoordination ran. Dann stehen die Zimmerleute bis Dienstag rum." }
+  - { figur: lot, text: "Gerüst an der Sporthalle: zwei Anker, die es am Gebäude halten, sind lose. Seit heute Nacht. Ich sperre den Bereich ab, dann muss die Sicherheitskoordination ran. Dann stehen die Zimmerleute bis Dienstag rum." }
   - { figur: schwung, text: "Zwei Tage Stillstand im Februar – das tut weh." }
-  - { figur: lot, text: "Ich dachte, wir besprechen das am Montag in Ruhe. Die Projektsteuerin ist heute sowieso nicht auf der Baustelle." }
+  - { figur: lot, text: "Den Rest könnten wir am Montag in Ruhe besprechen. Die Projektsteuerin ist heute sowieso nicht auf der Baustelle." }
   - { figur: schwung, text: "Vielleicht reicht es ja, nur die eine Seite abzusperren." }
-  - { figur: lot, text: "Sie sprechen für die Stadt. Was soll ich machen?" }
+  - { figur: lot, text: "Sie sprechen für die Stadt. Was sagen Sie dazu?" }
 
 frage: Draußen pfeift noch der Wind, und der Bauleiter wartet am Telefon. Was sagen Sie ihm?
 
 antworten:
   - wertung: gut
-    text: "Sie lassen sofort sperren und die Sicherheitskoordination holen. Die Projektsteuerin meldet es und hält es heute fest."
+    text: "Sie bestärken ihn: sofort sperren, die Sicherheitskoordination heute holen. Die Projektsteuerin meldet es und hält es heute fest."
     balken: { geld: 0, zeit: -1, vertrauen: 1 }
     bild: eintrag
     folge: |
@@ -38,7 +40,7 @@ antworten:
 
       Am Dienstag sind die Anker erneuert, und weil der Eintrag zeigt, was war, übernimmt die Gerüstfirma die Kosten. Theo Lot brummt: „Ganz schön praktisch, so ein Eintrag.“
   - wertung: vertretbar
-    text: "Sie lassen sofort sperren und schreiben der Projektsteuerin kurz, was los ist – den Rest klären Sie am Montag."
+    text: "Sie bestärken ihn, sofort zu sperren, und schreiben der Projektsteuerin kurz, was los ist – den Rest klären Sie am Montag."
     balken: { geld: 0, zeit: -1, vertrauen: 0 }
     bild: kalender
     folge: |
@@ -46,11 +48,11 @@ antworten:
 
       Aber die Sicherheitskoordination kommt erst am Montag, und vor Ort hat niemand Uhrzeit und Fotos festgehalten – so bestreitet die Gerüstfirma, dass der Sturm schuld ist. Am Mittwoch sind die Anker erneuert, und es ist geklärt, wer zahlt. Theo Lot murmelt: „Hätten wir's mal gleich aufgeschrieben.“
   - wertung: falle
-    text: "Sie lassen die Seite mit den losen Ankern sperren. Die andere Seite hält ja noch – dort arbeiten die Zimmerleute weiter, bis der Gerüstbauer kommt."
+    text: "Sie meinen, die Seite mit den losen Ankern zu sperren reicht. Die andere Seite hält ja noch – dort arbeiten die Zimmerleute weiter, bis der Gerüstbauer kommt."
     balken: { geld: -1, zeit: -2, vertrauen: -2 }
     bild: warnschild
     folge: |
-      Am Freitagabend kommt die Sicherheitskoordination vorbei und stoppt die ganze Baustelle, bis das Gerüst geprüft ist. Verletzt wurde niemand – zum Glück. Clara Faden, heiser, erfährt erst jetzt davon, meldet den Vorfall sofort und hält ihn noch am selben Tag fest.
+      Am Freitagabend kommt die Sicherheitskoordination vorbei; auf ihren Rat stellt der Bauleiter die Arbeit am ganzen Gerüst ein, bis es geprüft ist. Verletzt wurde niemand – zum Glück. Clara Faden, heiser, erfährt erst jetzt davon, meldet den Vorfall sofort und hält ihn noch am selben Tag fest.
 
       Die Prüfung dauert eine Woche; der Stillstand kostet Geld. Danach sind die Anker erneuert und ist geklärt, wer zahlt. Die Bürgermeisterin fragt, warum am Freitag weitergearbeitet wurde.
 

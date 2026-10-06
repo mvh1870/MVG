@@ -672,7 +672,7 @@ Pilotierung heißt: im Ernstfall erproben. Echte Entscheidungen und Freigaben we
 ---
 titel: Übergabe
 ---
-Der Assistent für das Betriebshandbuch, die offenen Punkte und der Rhythmus der Prüfungen werden zusammengeführt. **Ergebnis:** eine geordnete Übergabe an die Organisation des Bauherrn.
+Der Assistent für das Betriebshandbuch soll die offenen Punkte und den Rhythmus der Prüfungen zusammenführen. **Ergebnis:** eine geordnete Übergabe an die Organisation des Bauherrn.
 :::
 
 ::: etappe 4

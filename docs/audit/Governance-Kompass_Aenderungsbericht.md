@@ -1,6 +1,6 @@
 # Governance Kompass – technischer Änderungsbericht zur Auditbereinigung
 
-Stand: 2026-10-06 · Zweig `claude/fervent-einstein-vwnjpv` · Entscheide: `ENTSCHEIDE.md` O-64, L-425, L-426
+Stand: 2026-10-06 · Zweig `claude/fervent-einstein-vwnjpv` · Entscheide: `ENTSCHEIDE.md` O-64, L-425, L-426, L-427
 Impressum und Datenschutz sind nicht Gegenstand dieses Berichts (Auftrag). Einzige Berührung: der Satz zu den eingebetteten Schriften im Impressum (O-64 Punkt 2, Owner-Freigabe).
 
 ## Auslieferung
@@ -92,10 +92,33 @@ Prüfkette `npm run pruefe` grün: Inhalte, Typen, alle Unit-Tests (darunter neu
 
 Companion als angekündigtes, optionales Arbeitsmittel (ohne Kosten, Termin, Download), vereinbarte Leistungen bleiben Leistungen, Mentor-Zugriff gestrichen, Markenregel angepasst; Druckbögen der Werkzeuge nennen Herkunft (Beispiel / verändertes Beispiel / eigene Angaben) und Aussagegrenze, eigener Freitext nie im Fenstertitel; Vorlagen-Check und Monatsbericht erklären ihre Ampel als formale Prüfung; Risiko-Druck nennt Beispiel- oder eigene Grenzen; Geschichte ordnet Balken und Bilanz als Lernmodell ein; Fiktiv-Vermerk nennt Zahlen und Ereignisse; Methodenstandard einmal eingeordnet; Wirkungssätze als Ziel; Werkzeugfelder ohne Formularverlauf.
 
+## Prüf-Agenten (O-24)
+
+- Begriffe: 9 Befunde, 8 behoben, 1 als Rechtsprüfpunkt vermerkt (Impressum „ohne schriftliche Zustimmung“ neben der Nutzungsfreigabe im Lizenzbereich; Impressum außerhalb des Auftrags).
+- Fachtreue: 10 Befunde. Nach Owner-Auswahl umgesetzt: Mentor-Sonderrolle gestrichen, Station 10 (Bauleiter sperrt selbst, Projektleitung des Bauherrn bestärkt), Wegweiser-Zusatz „Schon eingetreten?“ bei Maßnahme. Geschäftsrahmen des Briefings in O-64 (13) belegt; übrige Befunde behoben. Nachprüfung der Korrekturen: siehe L-427 und Übergabe.
+
+## Prüfsummen (release/SHA256SUMS.txt)
+
+```
+ef61fa5de605eeb9c17cf84228be14278e3b4518dc9eeed682c2843a0d18e5c9  ../dist/.htaccess
+dc33ecf6ae7cf4db9c219d0251af9d9d7b2f4ac78dad3cb06d11c48e18d93db3  ../dist/apple-touch-icon.png
+21b0dfebbe1f17d67cc8a6ba6702164693c3eb64344138a761f03f8a6c55173a  ../dist/datenschutz.html
+e7bd44eebc9f409af9b4131ef76cf2d46d9844791e808f0342022d69e9b2b225  ../dist/favicon.ico
+c31c18d6ac6754d2fe649bafba8d9244d8a2bf97242f3da2714f1fb209a5eee9  ../dist/favicon.svg
+034eb60944d9a423c8682f44b8637f4e37eb234d99529cbf28ba174b3750b4f4  ../dist/impressum.html
+6a0b917e9d4244c75942cad437dd4510e0106d4cd0a2c4920748f8c448fc6066  ../dist/index.html
+eac685901e06b12a31cac85e33941d0bce7e055aa488da72bcf18a564d984b1d  ../dist/robots.txt
+4ab251b420c5012b6f6cb7a0e458b0df5019261e62bb6fc6bb7f85b5a201b77a  ../dist/sitemap.xml
+85486995f09a5495997c4cc8c636ad279c6f4e0fe79f4509ec5c1a35a52ff684  ../dist/vorschau.png
+42cfe479c77b4452c29abfbd6e9b39fb8b513228a8258bba4ce34f28b3adb3bb  ../release/Governance-Kompass.html
+```
+
+Die Werte ändern sich mit jedem Bau; maßgeblich ist die Datei `release/SHA256SUMS.txt` des jeweiligen Commits.
+
 ## Offene Nachweise (Zusammenfassung)
 
 1. Sichtprüfung der Systemschriften auf Windows und macOS.
-2. Rechtliche Prüfung des Wortlauts „Nutzung der Inhalte“.
+2. Rechtliche Prüfung des Wortlauts „Nutzung der Inhalte“ und seines Verhältnisses zum Urheberrechtshinweis im Impressum („ohne schriftliche Zustimmung“).
 3. Rechtekette der Ursprungsbilder (DOCX V1.2) und des Original-Logos, falls über die Owner-Bestätigung hinaus belegt werden soll.
 4. Einordnung des mit `potrace` (GPL-2.0) erzeugten Logo-Vektors; Lizenzangaben für `dom-walk` und `exif-parser` (nur Bauzeit).
 5. HTTP-Kopfzeilen und Logs beim Hoster (nicht aus dem Repo prüfbar).

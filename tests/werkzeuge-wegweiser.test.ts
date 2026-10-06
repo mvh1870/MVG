@@ -114,7 +114,7 @@ test('Vorbelegungen (B.6) ergeben die erwarteten Arten', () => {
   const faelle: [string, Antworten, Art | null, string[]][] = [
     ['messe', { dringlich: N, handlung: N, eingetreten: N, anpassen: N, moeglich: U, entscheidung: N }, 'fruehwarnung', ['unklar', 'verknuepfen']],
     ['hersteller', { dringlich: N, handlung: N, eingetreten: N, anpassen: N, moeglich: J, entscheidung: J }, 'risiko', ['entscheidung', 'verknuepfen']],
-    ['ausschreiben', { dringlich: N, handlung: J, entscheidung: N }, 'massnahme', ['verknuepfen']],
+    ['ausschreiben', { dringlich: N, handlung: J, entscheidung: N }, 'massnahme', ['schonEingetreten', 'verknuepfen']],
     ['mensa', { dringlich: N, handlung: N, eingetreten: N, anpassen: J, entscheidung: J }, 'aenderung', ['bisherGilt', 'entscheidung', 'verknuepfen']],
     ['mehrkosten', { dringlich: N, handlung: N, eingetreten: N, anpassen: N, moeglich: J, entscheidung: N }, 'risiko', ['bewerten', 'verknuepfen']],
     ['geruest', { dringlich: J, handlung: N, eingetreten: J, entscheidung: N }, 'problem', ['sofort', 'nichtSchaetzen', 'verknuepfen']],

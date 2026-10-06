@@ -205,5 +205,9 @@ Vorgabe (bis die Antworten des Owners aus der Klickseite „Story erweitern“ v
 - [x] P20.1 (Commit „MVG P20.1“, L-422) · Sichtbare Bereichsnamen „Geschichte · Themen · Werkzeuge“ in Kopf, Tab-Titeln, Regie und Druck-Ersatzbogen; Adressen und interne Namen unverändert — Abnahme: `npm run pruefe:voll` grün, ABNAHME/LAUNCH nachgezogen.
 - [x] P20.2 (2026-10-05, O-63, L-423) · Owner-Antwort a im Chat: Entscheid O-63, alte Bereichsnamen sichtbar verboten (Muster, Test, Szenarien mit Gegenproben), Doku (BEGRIFFE, STIL, INHALTSFORMAT, ARCHITEKTUR, README, CLAUDE.md); übrige Owner-Punkte als „vom Owner im Chat am 2026-10-05 als erledigt gemeldet“ markiert (nicht vom Lauf geprüft) — Abnahme: Kette `pruefe:voll` grün, Kopfleiste bei 320/400/1024 px ohne Umbruch, Mutanten 206/206 rot.
 
+### P21 · Auditbereinigung und Einordnung des Angebots (O-64, Owner im Chat 2026-10-06)
+- [x] P21.1 (L-425) · IBM Plex entfernt, Drittanbieter & Lizenzen (#lizenzen), Einzeldatei `release/`, Prüfsummen, Regie-Hinweis und Rückfrage, Vertrauensgrenze HTML-Parser mit XSS-Tests, Kanal „keine Sicherheitsfunktion“, CSP ohne `blob:` — Abnahme: Kette grün.
+- [x] P21.2 (L-426) · Inhalte nach O-64: Companion angekündigt, Mentor-Zugriff gestrichen, Markenregel, Moderationsnotizen; Druck mit Herkunft und Aussagegrenze, Vorlagen-Check/Monatsbericht/Risiko-Druck erläutert, Geschichte eingeordnet, Methodenstandard, Wirkungssätze, Speicherhinweise; Register und Änderungsbericht unter `docs/audit/` — Abnahme: Kette grün, Prüf-Agenten Fachtreue und Begriffe.
+
 ## Erledigt
 (noch nichts)

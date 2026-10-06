@@ -7,7 +7,7 @@
 # Belege Einleitung/Kernaussage/Nachweiskette: k9-p1, k9.1-p1, k9.1-l1, k9.3-p1, k9.4-p1, k9.4-l1; (Satz zu Befähigung und Entscheidungs-IDs: k1.3-t1 gegen k9.1–k9.5);
 #   Beschluss getrennt von der Vorlage, mit Quelle, Datum und Bedingungen: v24:hb-3.1, v24:va-3.5
 # Belege k9.1: k9.1-p1, k9.1-p2, k9.1-l1, k9.2-p2; ganze Vorbereitung bei der Projektsteuerung: v24:hb-1, v24:hb-3, v24:tlb-2.1
-# Belege k9.2: k9.2-p1, k9.2-p2, k9.2-p3, k9.2-p4
+# Belege k9.2: k9.2-p1, k9.2-p2, k9.2-p3, k9.2-p4 (Mentor-Sonderrolle seit O-64 nicht mehr sichtbar: sie hing am Vollzugriff im Companion)
 # Belege k9.3 (Wissenscheck-Zitat k9.3-p1): k9.3-p1, k9.3-p2, k9.3-p3, k9.3-t1; Vorlage durch die Projektsteuerung, Freigabe bei der befugten
 #   Stelle des Bauherrn (ändert k9.3-p3 „auf Vorlage der Bauherren-PL“): v24:hb-1, v24:hb-3, v24:hb-3.1, v24:tlb-3
 # Belege k9.4: k9.4-p1, k9.4-p2, k9.4-l1, k9.4-p3; zwei zulässige Optionen, MCDA mit vorab abgestimmten Kriterien und
@@ -148,7 +148,7 @@ titel: "RACI: wer macht was"
 ---
 symbol: person
 ---
-Das Standard-Rollenmodell umfasst 13 Arbeitsrollen: Bauherr/Projektauftraggeber, Projektleitung des Bauherrn, PMO (Projektmanagementbüro), Projektsteuerung, Lenkungskreis/Vorstand (das Gremium, das den Bauherrn berät), Controlling/Finanzen, Einkauf/Vergabe, Planung/Fachplanung, externe Berater, Auftragnehmer/Lieferanten, Administration, Ausführung und Gebäudemanagement/Betrieb. Dazu kommt eine Sonderrolle nur für die Einführung: der Mentor von Bauherr Mentoren.
+Das Standard-Rollenmodell umfasst 13 Arbeitsrollen: Bauherr/Projektauftraggeber, Projektleitung des Bauherrn, PMO (Projektmanagementbüro), Projektsteuerung, Lenkungskreis/Vorstand (das Gremium, das den Bauherrn berät), Controlling/Finanzen, Einkauf/Vergabe, Planung/Fachplanung, externe Berater, Auftragnehmer/Lieferanten, Administration, Ausführung und Gebäudemanagement/Betrieb.
 :::
 
 ::: umschalter
@@ -180,16 +180,6 @@ Projektleitung des Bauherrn
 
 ### Erklärung
 Eine der 13 Arbeitsrollen.
-:::
-
-::: posten mentor
----
-seite: rechts
----
-Mentor von Bauherr Mentoren
-
-### Erklärung
-Eine Sonderrolle nur für die Einführung: Der Mentor hat im MVG Companion unbeschränkten Zugriff, kommt in keiner RACI-Tabelle vor und wird danach abgeschaltet.
 :::
 
 ::: posten lenkungskreis

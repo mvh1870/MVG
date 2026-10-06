@@ -15,9 +15,9 @@
 // (eine Kante, ein Zeitband, eine Skala) – der Beleg nennt dann den Absatz, der ihn ausschließt.
 //
 // Gezeichnet wird in Chromium (Playwright, schon Entwicklungs-Abhängigkeit): Canvas in Originalgröße,
-// Überdeckungen, dann auf höchstens BREITE Pixel verkleinert und als WebP (QUALITAET) kodiert. Schriften
-// kommen aus @fontsource (IBM Plex Sans, Barlow Condensed) – keine Systemschrift, damit das Ergebnis
-// auf jedem Rechner gleich aussieht. Zweimal ausgeführt entstehen byte-gleiche Dateien (gleiche
+// Überdeckungen, dann auf höchstens BREITE Pixel verkleinert und als WebP (QUALITAET) kodiert. Die Schrift
+// kommt aus @fontsource (Barlow Condensed, die auch die Seite einbettet) – keine Systemschrift, damit das
+// Ergebnis auf jedem Rechner gleich aussieht. Zweimal ausgeführt entstehen byte-gleiche Dateien (gleiche
 // Chromium-Version vorausgesetzt; der Bau selbst braucht keinen Browser, er nimmt die WebP-Dateien).
 //
 // Aufruf:  node werkzeuge/abbildungen.mjs                – alle Abbildungen
@@ -47,7 +47,6 @@ const BREITE = 1200;
 /** WebP-Qualität (0–1): Beschriftungen bleiben scharf, 13 Bilder zusammen ≈ 0,67 MB (Budget der Einzeldatei 4 MB; bei doppelter Vergrößerung geprüft) */
 const QUALITAET = 0.62;
 const SCHRIFTEN = {
-  plex: { familie: 'IBM Plex Sans', paket: '@fontsource/ibm-plex-sans', datei: 'ibm-plex-sans-latin-{g}-normal.woff2' },
   barlow: { familie: 'Barlow Condensed', paket: '@fontsource/barlow-condensed', datei: 'barlow-condensed-latin-{g}-normal.woff2' },
 };
 const GEWICHTE = [400, 500, 600, 700];
@@ -63,7 +62,7 @@ const GEWICHTE = [400, 500, 600, 700];
  * @property {string} beleg  Absatz-ID (bei einer Abdeckung der Absatz, der das Entfernte ausschließt)
  * @property {string} [hintergrund]  #rrggbb, sonst Median des Randes
  * @property {string} [farbe]  #rrggbb, sonst die dunkelste/hellste deutliche Farbe im Rechteck
- * @property {'plex'|'barlow'} [schrift]
+ * @property {'barlow'} [schrift]  einzige Schrift der Überdeckungen
  * @property {number} [gewicht]
  * @property {number} [groesse]  Schriftgröße in Pixeln des Originals, sonst passend gerechnet
  * @property {'links'|'mitte'|'rechts'} [ausrichtung]
@@ -234,7 +233,7 @@ async function zeichneImBrowser(a) {
       berichte.push({ hintergrund: hex(hg), farbe: '–', groesse: 0, passt: true });
       continue;
     }
-    const familie = u.schrift === 'barlow' ? 'Barlow Condensed' : 'IBM Plex Sans';
+    const familie = 'Barlow Condensed';
     const gewicht = u.gewicht ?? 500;
     const zeilen = u.text.split('\n');
     const rand = Math.max(2, Math.round(u.h * 0.1));

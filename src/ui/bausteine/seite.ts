@@ -1,7 +1,7 @@
 /*
  * Gemeinsamer Rahmen aller Bereiche (P16.11, O-42, O-44): Kopf mit Bildmarke (führt leise zu
  * bauherr-mentoren.com), Name (zur Startseite) und den drei Bereichen; Fuß mit Absender, Impressum,
- * Datenschutz und „Präsentieren“. Impressum und Datenschutz sind eigene kleine Seiten (O-42).
+ * Datenschutz, „Drittanbieter & Lizenzen“ (#lizenzen) und „Präsentieren“. Impressum und Datenschutz sind eigene kleine Seiten (O-42).
  * Hintergrund im Stil „Bauplan“ (O-45) setzt der Bereich selbst.
  */
 
@@ -14,6 +14,16 @@ export type Bereich = 'start' | 'story' | 'theorie' | 'explore';
 export const BM_ADRESSE = 'https://www.bauherr-mentoren.com/';
 export const IMPRESSUM_SEITE = 'impressum.html';
 export const DATENSCHUTZ_SEITE = 'datenschutz.html';
+
+/**
+ * Adresse einer Rechtsseite. Im Webseitenordner liegt sie neben der Hauptseite; die Einzeldatei (Audit 2026-10-06)
+ * hat keine Nachbarn und trägt dafür `<meta name="mvg-rechtsseiten" content="https://…/">` – dann führt der Link
+ * zur veröffentlichten Seite. Nur https-Adressen gelten; alles andere bleibt beim relativen Verweis.
+ */
+export function rechtsSeite(seite: string): string {
+  const basis = typeof document === 'undefined' ? '' : document.querySelector<HTMLMetaElement>('meta[name="mvg-rechtsseiten"]')?.content ?? '';
+  return /^https:\/\/[a-z0-9.-]+\/$/u.test(basis) ? `${basis}${seite}` : seite;
+}
 
 /** Leiser Textlink zu bauherr-mentoren.com (O-44); öffnet im selben Fenster wie jeder andere Link. */
 export function bmLink(text: string = W.rahmen.kontaktBm, klasse = 'bm-link'): HTMLAnchorElement {
@@ -46,8 +56,9 @@ export function seitenFuss(bedienbar = true, zusatz: Kind = null): HTMLElement {
       bedienbar ? bmLink(W.absender, 'bm-link') : W.absender),
     zusatz,
     bedienbar ? h('nav', { class: 'fuss-links', 'aria-label': w.rechtliches },
-      h('a', { href: IMPRESSUM_SEITE, 'data-pruef': 'impressum' }, w.impressum),
-      h('a', { href: DATENSCHUTZ_SEITE, 'data-pruef': 'datenschutz' }, w.datenschutz),
+      h('a', { href: rechtsSeite(IMPRESSUM_SEITE), 'data-pruef': 'impressum' }, w.impressum),
+      h('a', { href: rechtsSeite(DATENSCHUTZ_SEITE), 'data-pruef': 'datenschutz' }, w.datenschutz),
+      h('a', { href: '#lizenzen', 'data-pruef': 'lizenzen' }, w.lizenzen),
       h('a', { href: '#regie', 'data-pruef': 'praesentieren' }, w.praesentieren)) : null);
 }
 

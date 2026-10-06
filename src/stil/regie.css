@@ -188,3 +188,8 @@
 @media print {
   .regie-druck-inhalt li { break-inside: avoid; }
 }
+
+/* Rückfrage vor dem Löschen der Notizen (Audit 2026-10-06) */
+.regie-rueckfrage { display: flex; flex-wrap: wrap; gap: var(--a-2); align-items: center; }
+.regie-rueckfrage[hidden] { display: none; }
+.regie-rueckfrage .regie-leise { margin: 0; flex-basis: 100%; }

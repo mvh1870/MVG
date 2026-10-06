@@ -119,7 +119,7 @@ export function cspZeile(skriptText) {
     "default-src 'none'",
     `script-src '${skriptHash(skriptText)}'`,
     "style-src 'unsafe-inline'",
-    "img-src 'self' data: blob:",
+    "img-src 'self' data:",
     'font-src data:',
     "connect-src 'none'",
     "base-uri 'none'",
@@ -135,11 +135,15 @@ export function cspZeile(skriptText) {
  * @param {string} cssRoh
  * @param {string} jsRoh
  * @param {string} [favicon]  data:-URL des Favicons (leer: kein Favicon)
+ * @param {boolean} [einzeln]  Einzeldatei (Audit 2026-10-06, O-64): nur das eingebettete Favicon, keine Verweise auf
+ *   Dateien des Ordners; Impressum und Datenschutz verweisen auf die veröffentlichte Seite (Meta `mvg-rechtsseiten`)
  */
-export function setzeZusammen(huelle, cssRoh, jsRoh, favicon = '') {
+export function setzeZusammen(huelle, cssRoh, jsRoh, favicon = '', einzeln = false) {
   let text = huelle.replace(/\r\n?/g, () => '\n');
   // Favicon (P16.13): freiwilliger Anker, höchstens einmal
-  if (text.includes(FAVICON_ANKER)) text = ersetzeEinmal(text, FAVICON_ANKER, favicon === '' ? '' : `<link rel="icon" href="${favicon}">\n<link rel="icon" href="favicon.svg" type="image/svg+xml">\n<link rel="icon" href="favicon.ico" sizes="48x48">\n<link rel="apple-touch-icon" href="apple-touch-icon.png">`);
+  const dateiIcons = einzeln ? '' : '\n<link rel="icon" href="favicon.svg" type="image/svg+xml">\n<link rel="icon" href="favicon.ico" sizes="48x48">\n<link rel="apple-touch-icon" href="apple-touch-icon.png">';
+  const rechtsseiten = einzeln ? `\n<meta name="mvg-rechtsseiten" content="${ADRESSE}">` : '';
+  if (text.includes(FAVICON_ANKER)) text = ersetzeEinmal(text, FAVICON_ANKER, favicon === '' ? rechtsseiten.trimStart() : `<link rel="icon" href="${favicon}">${dateiIcons}${rechtsseiten}`);
   if (/<script\b/i.test(text)) {
     throw new BauFehler('Die Hülle enthält ein eigenes <script> – die CSP erlaubt nur das eine eingesetzte Skript');
   }
@@ -308,6 +312,7 @@ export function formatiereGroesse(bytes) {
  * @property {boolean} [mitVorstufen]  Inhalte und Schriften vorher erzeugen (Vorgabe true)
  * @property {number} [budget]    Größenbudget in Bytes, Vorgabe BUDGET
  * @property {string} [version]   Wert für __MVG_VERSION__, Vorgabe aus package.json
+ * @property {boolean} [einzeln]  Einzeldatei statt Hauptseite des Ordners (setzeZusammen, Audit 2026-10-06)
  * @property {string} [zwischen]  Arbeitsverzeichnis für --pruefe, Vorgabe tmp/bau-pruefe
  * @property {string} [inhalte]   andere inhalte.json statt src/generiert/inhalte.json (Entwurfs-Vorschau)
  */
@@ -406,7 +411,7 @@ export async function baueText(optionen = {}) {
   warnungen.push(...skript.warnungen, ...stil.warnungen);
   const marke = path.join(o.wurzel, 'quellen', 'marke', 'logo-bm-bildmarke.svg');
   const favicon = existsSync(marke) ? faviconUrl(await readFile(marke, 'utf8')) : '';
-  const { html, skript: skriptText } = setzeZusammen(huelle, stil.text, skript.text, favicon);
+  const { html, skript: skriptText } = setzeZusammen(huelle, stil.text, skript.text, favicon, optionen.einzeln === true);
   const bytes = Buffer.byteLength(html, 'utf8');
   // O-29: kein „Whitepaper“ im Text der Datei (Eigenschaftsnamen im Code sind klein geschrieben und unsichtbar)
   const wort = html.match(/.{0,40}(?:Whitepaper|WHITEPAPER|White[ -]Paper).{0,40}/u);
@@ -426,6 +431,26 @@ export async function baueText(optionen = {}) {
   };
 }
 
+/** Einzeldatei (Audit 2026-10-06, O-64): dieselbe Hauptseite ohne Verweise auf Dateien des Ordners */
+export const EINZELDATEI = 'release/Governance-Kompass.html';
+/** Prüfsummen aller Auslieferungsdateien (Ordner dist/ und Einzeldatei), Pfade relativ zu release/ (`sha256sum -c` dort) */
+export const PRUEFSUMMEN = 'release/SHA256SUMS.txt';
+
+/** @param {string} wurzel */
+async function pruefsummen(wurzel) {
+  const dateien = [...['index.html', ...BEIGABEN].sort().map((n) => `dist/${n}`), EINZELDATEI];
+  const zeilen = [];
+  for (const d of dateien) zeilen.push(`${createHash('sha256').update(await readFile(path.join(wurzel, d))).digest('hex')}  ../${d}`);
+  return `${zeilen.join('\n')}\n`;
+}
+
+/** @param {string} wurzel @param {string} html */
+async function schreibeEinzeldatei(wurzel, html) {
+  await mkdir(path.join(wurzel, 'release'), { recursive: true });
+  await writeFile(path.join(wurzel, EINZELDATEI), html, 'utf8');
+  await writeFile(path.join(wurzel, PRUEFSUMMEN), await pruefsummen(wurzel), 'utf8');
+}
+
 /**
  * Baut und schreibt `ziel` – oder prüft mit `pruefe: true` (zweimal bauen, byte-gleich, `ziel` aktuell).
  * Wirft `BauFehler` bei jedem Befund.
@@ -440,7 +465,10 @@ export async function baue(optionen = {}) {
     const erg = await baueText(optionen);
     await mkdir(ordner, { recursive: true });
     await writeFile(o.ziel, erg.html, 'utf8');
-    if (mitBeigaben) for (const [name, inhalt] of await baueBeigaben(o.wurzel)) await writeFile(path.join(ordner, name), inhalt);
+    if (mitBeigaben) {
+      for (const [name, inhalt] of await baueBeigaben(o.wurzel)) await writeFile(path.join(ordner, name), inhalt);
+      await schreibeEinzeldatei(o.wurzel, (await baueText({ ...optionen, einzeln: true, mitVorstufen: false })).html);
+    }
     return { ziel: o.ziel, bytes: erg.bytes, skriptHash: erg.skriptHash, sha256: erg.sha256, warnungen: erg.warnungen, geprueft: false, beigaben: mitBeigaben ? BEIGABEN.length : 0 };
   }
 
@@ -468,6 +496,10 @@ export async function baue(optionen = {}) {
       const datei = path.join(ordner, name);
       if (!existsSync(datei) || !(await readFile(datei)).equals(inhalt)) throw new BauFehler(`dist/${name} fehlt oder ist veraltet – bitte 'npm run bau' ausführen und das Ergebnis committen`);
     }
+    const einzeln = (await baueText({ ...optionen, einzeln: true, mitVorstufen: false })).html;
+    const datei = path.join(o.wurzel, EINZELDATEI);
+    if (!existsSync(datei) || (await readFile(datei, 'utf8')) !== einzeln) throw new BauFehler(`${EINZELDATEI} fehlt oder ist veraltet – bitte 'npm run bau' ausführen und das Ergebnis committen`);
+    if ((await readFile(path.join(o.wurzel, PRUEFSUMMEN), 'utf8').catch(() => '')) !== await pruefsummen(o.wurzel)) throw new BauFehler(`${PRUEFSUMMEN} fehlt oder ist veraltet – bitte 'npm run bau' ausführen und das Ergebnis committen`);
   }
   return { ziel: o.ziel, bytes: erster.bytes, skriptHash: erster.skriptHash, sha256: erster.sha256, warnungen: erster.warnungen, geprueft: true, beigaben: mitBeigaben ? BEIGABEN.length : 0 };
 }

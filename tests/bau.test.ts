@@ -50,7 +50,7 @@ function skriptInhalt(html: string): string {
  * cspZeile() abgeleitet: Jede Lockerung (zusätzliche Quelle, neue Direktive) muss hier auffallen.
  */
 function erwarteteCsp(hash: string): string {
-  return `default-src 'none'; script-src '${hash}'; style-src 'unsafe-inline'; img-src 'self' data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'`;
+  return `default-src 'none'; script-src '${hash}'; style-src 'unsafe-inline'; img-src 'self' data:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'`;
 }
 
 function zaehle(text: string, nadel: RegExp): number {
@@ -285,6 +285,21 @@ test('Webseitenordner (P16.13, O-42, O-43, O-47): Hauptseite, Impressum, Datensc
   for (const verboten of [/Whitepaper/iu, /MVG V1/u, /Kap\. \d/u, /\bKapitel\b/u, /Welt [AB]\b/u, /ungeprüft/u, /Originaltext/u, /"abweichungen"\s*:/u, /Abweichungen vom Text/u, /Vergrößern/u, /bedienung:/u]) {
     assert.doesNotMatch(index, verboten, `dist/index.html enthält ${String(verboten)}`);
   }
+  // Audit 2026-10-06 (O-64): die Einzeldatei ist dieselbe Hauptseite ohne Verweise auf Dateien des Ordners
+  const { EINZELDATEI, PRUEFSUMMEN } = await import('../werkzeuge/bau.mjs');
+  const einzeln = await readFile(path.join(WURZEL, EINZELDATEI), 'utf8');
+  for (const verweis of einzeln.matchAll(/\b(?:src|href)="(?!data:|https:\/\/|#|mailto:)([^"]*)"/gu)) assert.fail(`Einzeldatei verweist auf ${verweis[1]}`);
+  assert.ok(einzeln.includes('<meta name="mvg-rechtsseiten" content="https://www.governancekompass.de/">'));
+  assert.ok(einzeln.includes('<link rel="icon" href="data:image/svg+xml,'));
+  assert.ok(index.includes('href="favicon.ico"') && !einzeln.includes('favicon.ico') && !einzeln.includes('apple-touch-icon'));
+  assert.equal(/<script>([\s\S]*)<\/script>/u.exec(einzeln)?.[1], /<script>([\s\S]*)<\/script>/u.exec(index)?.[1], 'dasselbe Skript, dieselbe CSP');
+  const summen = await readFile(path.join(WURZEL, PRUEFSUMMEN), 'utf8');
+  for (const name of ['index.html', ...BEIGABEN]) assert.ok(summen.includes(`  ../dist/${name}\n`), `Prüfsumme ${name}`);
+  assert.ok(summen.includes('  ../release/Governance-Kompass.html\n'));
+  // Audit 2026-10-06: IBM Plex ist aus der Auslieferung entfernt – kein Name, keine Schriftdaten
+  for (const name of ['index.html', 'impressum.html', 'datenschutz.html', '../release/Governance-Kompass.html']) {
+    assert.doesNotMatch(await readFile(path.join(dist, name), 'utf8'), /\bplex\b|ibm[- ]?plex/iu, `${name}: Rest von IBM Plex`);
+  }
   for (const name of ['impressum.html', 'datenschutz.html']) {
     const html = await readFile(path.join(dist, name), 'utf8');
     assert.match(html, /Bauherr Mentoren GmbH i\. G\./u, name);
@@ -303,7 +318,7 @@ test('Webseitenordner (P16.13, O-42, O-43, O-47): Hauptseite, Impressum, Datensc
     assert.deepEqual(sichtbarVerboten(text), [], `${name}: sichtbar verbotene Wörter`);
     assert.ok(sichtbarVerboten(`${text} Datei`).length > 0, 'Gegenprobe');
     // Jede im Impressum genannte Schrift ist eingebettet
-    for (const m of html.matchAll(/(IBM Plex Sans|IBM Plex Mono|Big Shoulders Display|Barlow Condensed|Caveat)/gu)) assert.ok(index.includes(`font-family: '${m[1]}'`) || index.includes(`font-family:'${m[1]}'`) || index.includes(`"${m[1]}"`), `${name}: Schrift ${m[1]} nicht eingebettet`);
+    for (const m of html.matchAll(/(Big Shoulders Display|Barlow Condensed|Caveat)/gu)) assert.ok(index.includes(`font-family: '${m[1]}'`) || index.includes(`font-family:'${m[1]}'`) || index.includes(`"${m[1]}"`), `${name}: Schrift ${m[1]} nicht eingebettet`);
   }
   const datenschutz = await readFile(path.join(dist, 'datenschutz.html'), 'utf8');
   for (const w of ['keine Cookies', 'IONOS', 'Gespeicherten Fortschritt löschen', 'BayLDA', 'Local Storage', 'Lesefortschritt', 'Lesefortschritt löschen']) assert.ok(datenschutz.includes(w), `Datenschutz nennt ${w}`);

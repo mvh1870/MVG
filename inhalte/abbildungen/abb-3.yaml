@@ -8,5 +8,5 @@ alt: >-
   Gestrichelte Pfeile führen zu fünf Karten mit typischen Folgen, zum Beispiel „Rollen ohne Mandat“ und „Parallele
   Datenstände“; sie münden in ein Band zur unklaren Verantwortung.
 angeglichen:
-  - { x: 1165, y: 885, b: 236, h: 56, text: "Gremien ohne\nEntscheidungsreife", beleg: k2.5-t1, schrift: plex, gewicht: 700, groesse: 23, ausrichtung: mitte }
-  - { x: 592, y: 881, b: 246, h: 58, text: "Änderungsregister\nohne Schwellenlogik", beleg: k2.4-p2, schrift: plex, gewicht: 700, groesse: 22, ausrichtung: mitte }
+  - { x: 1165, y: 885, b: 236, h: 56, text: "Gremien ohne\nEntscheidungsreife", beleg: k2.5-t1, schrift: barlow, gewicht: 700, groesse: 23, ausrichtung: mitte }
+  - { x: 592, y: 881, b: 246, h: 58, text: "Änderungsregister\nohne Schwellenlogik", beleg: k2.4-p2, schrift: barlow, gewicht: 700, groesse: 22, ausrichtung: mitte }

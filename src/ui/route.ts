@@ -2,7 +2,7 @@
  * Hash-Router (rein, ohne DOM): welcher Bereich ein Adress-Anker meint.
  *
  *   #start · #story · #story/k3 (Kapitel) · #theorie · #theorie/<thema> · #theorie/<thema>/<abschnitt>
- *   · #explore · #explore/<werkzeug> · #explore/<werkzeug>/<beispiel> · #regie · #leinwand
+ *   · #explore · #explore/<werkzeug> · #explore/<werkzeug>/<beispiel> · #lizenzen · #regie · #leinwand
  *
  * Alles andere – auch ein leerer Anker – führt zur Startseite (ruhiger Einstieg, O-21). Groß- und
  * Kleinschreibung zählt nicht; Thema, Abschnitt und Kapitel kommen klein zurück und werden von der
@@ -15,6 +15,7 @@ export type Route =
   | { flaeche: 'theorie'; thema: string | null; abschnitt: string | null }
   /** `beispiel` (E-13, P18.5): Kennung eines Beispiels des Werkzeugs, mit dem es sich öffnet; die Oberfläche prüft sie gegen die Inhalte */
   | { flaeche: 'explore'; werkzeug: string | null; beispiel: string | null }
+  | { flaeche: 'lizenzen' }
   | { flaeche: 'regie' }
   | { flaeche: 'leinwand' };
 
@@ -42,6 +43,7 @@ export function leseRoute(hash: string): Route {
       return drittes === undefined ? { flaeche: 'story', kapitel: zweites ?? null } : START;
     case 'explore':
       return { flaeche: 'explore', werkzeug: zweites ?? null, beispiel: zweites !== undefined ? drittes ?? null : null };
+    case 'lizenzen':
     case 'regie':
     case 'leinwand':
       return zweites === undefined ? { flaeche: kopf } : START;

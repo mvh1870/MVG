@@ -91,7 +91,8 @@ export function auswahl<T extends string>(o: { name: string; titel: string; wahl
 
 /** Textfeld mit Beschriftung und Höchstlänge (Feldgrenze, Konzept D.2). */
 export function textFeld(o: { name: string; titel: string; wert: string; max: number; beiEingabe: (t: string) => void; mehrzeilig?: boolean; versteckt?: boolean }): HTMLElement {
-  const attr = { 'data-pruef': o.name, maxlength: o.max, oninput: (e: Event) => o.beiEingabe((e.target as HTMLInputElement | HTMLTextAreaElement).value) };
+  // O-64: kein Formularverlauf des Browsers für eigene Angaben
+  const attr = { 'data-pruef': o.name, maxlength: o.max, autocomplete: 'off', oninput: (e: Event) => o.beiEingabe((e.target as HTMLInputElement | HTMLTextAreaElement).value) };
   const feld = o.mehrzeilig === true ? h('textarea', { ...attr, rows: 2 }) : h('input', { ...attr, type: 'text', value: o.wert });
   if (o.mehrzeilig === true) (feld as HTMLTextAreaElement).value = o.wert;
   return h('label', { class: 'wz-feld' }, h('span', { class: o.versteckt === true ? 'nur-sr' : 't-label' }, o.titel), feld);
@@ -105,7 +106,7 @@ export function zahlFeld(o: { name: string; titel: string; wert: number | null; 
   return h('label', { class: 'wz-feld wz-zahl' },
     h('span', { class: o.versteckt === true ? 'nur-sr' : 't-label' }, o.titel),
     h('input', {
-      type: 'number', inputmode: o.ganz === true ? 'numeric' : 'decimal', step: o.ganz === true ? 1 : 'any', min: o.min ?? 0, max: o.max ?? ZAHL_MAX, 'data-pruef': o.name,
+      type: 'number', autocomplete: 'off', inputmode: o.ganz === true ? 'numeric' : 'decimal', step: o.ganz === true ? 1 : 'any', min: o.min ?? 0, max: o.max ?? ZAHL_MAX, 'data-pruef': o.name,
       value: o.wert === null ? '' : String(o.wert), placeholder: o.platzhalter ?? null,
       oninput: (e: Event) => {
         const t = (e.target as HTMLInputElement).value.trim();
@@ -131,14 +132,46 @@ export function knopf(o: { pruef: string; text: Kind; beiKlick: () => void; leis
  * Druckknopf: öffnet den Druckbefehl des Browsers mit einem eigenen Bogen (A4 hoch, eine Seite, ohne Bedienelemente);
  * derselbe Bogen gilt für Strg+P, solange der Knopf im Dokument steht (R38). `titel` und `teile` werden erst beim Drucken gebaut.
  */
-export function druckKnopf(werkzeug: string, bauer: () => { titel: string; fiktiv: boolean; teile: Node[] }): HTMLElement {
+export function druckKnopf(werkzeug: string, bauer: () => { titel: string; fiktiv: boolean; teile: Node[]; grenze?: string }): HTMLElement {
+  verfolgeEigeneEingaben();
   const bogen = (): { titel: string; teile: Node[] } => {
     const b = bauer();
-    return { titel: b.titel, teile: [h('div', { class: 'wz-druck', 'data-werkzeug': werkzeug }, bogenKopf(b.titel, '', b.fiktiv), b.teile)] };
+    const kopf = bogenKopf(b.titel, '', false);
+    const art = herkunft(b.fiktiv, k);
+    // eine Zeile (der Bogen bleibt eine Seite): Herkunft der Angaben · Aussagegrenze (oder der Stand des Werkzeugs, Monatsbericht)
+    kopf.append(h('p', { class: 'druck-meta druck-grenze', 'data-pruef': 'druck-aussagegrenze' },
+      h('span', { 'data-pruef': 'druck-herkunft' }, E.herkunft[art]), ` · ${b.grenze ?? E.aussagegrenze}`));
+    // O-64: eigene Angaben (Freitext im Titel) nie in den Fenstertitel – er landet in PDF-Metadaten, Dateiname und Verlauf
+    return { titel: art === 'beispiel' ? b.titel : E.druckTitelEigen, teile: [h('div', { class: 'wz-druck', 'data-werkzeug': werkzeug }, kopf, b.teile)] };
   };
   const k = h('button', { type: 'button', class: 'gs-knopf wz-drucken', 'data-pruef': `${werkzeug}-drucken`, onclick: () => { const b = bogen(); druckeBogen(b.titel, b.teile); } }, E.drucken);
   bogenFuerStrgP(k, bogen);
   return k;
+}
+
+/**
+ * Eigene Eingaben (O-64): Jede Eingabe in der Bühne eines Werkzeugs – außer der Wahl des Beispiels – setzt dort
+ * `data-eigene-eingaben="ja"`; die Wahl eines Beispiels (auch „Ohne Beispiel starten“) setzt es zurück. Der Druckbogen
+ * unterscheidet damit Beispiel, verändertes Beispiel und eigene Angaben. Ein Zuhörer am Dokument, einmal angelegt.
+ */
+let verfolgt = false;
+function verfolgeEigeneEingaben(): void {
+  if (verfolgt || typeof document === 'undefined') return;
+  verfolgt = true;
+  const merke = (e: Event): void => {
+    const ziel = e.target instanceof Element ? e.target : null;
+    const buehne = ziel?.closest<HTMLElement>('.ex-buehne');
+    if (!ziel || !buehne) return;
+    buehne.dataset['eigeneEingaben'] = ziel.closest('.ex-beispiel') !== null ? 'nein' : 'ja';
+  };
+  document.addEventListener('input', merke, true);
+  document.addEventListener('change', merke, true);
+}
+
+/** Herkunft der Angaben im Bogen: Beispiel unverändert, Beispiel verändert oder eigene Angaben. */
+function herkunft(fiktiv: boolean, knopf: HTMLElement): 'beispiel' | 'gemischt' | 'eigen' {
+  if (!fiktiv) return 'eigen';
+  return knopf.closest<HTMLElement>('.ex-buehne')?.dataset['eigeneEingaben'] === 'ja' ? 'gemischt' : 'beispiel';
 }
 
 /** Hinweis- oder Lückenkarte: kurzer Titel, Satz, Schwere als Wort. */

@@ -25,6 +25,7 @@ import { schreibeAtomarSync } from './atomar.mjs';
 import { formatiereFund, pruefeText } from './begriffe.mjs';
 import { ORDNER as ABB_ORDNER, STAND as ABB_STAND, WERKZEUG_VERSION as ABB_VERSION, eingabeSumme, leseBeschreibungen, pruefeBeschreibung } from './abbildungen.mjs';
 import { createHash } from 'node:crypto';
+import { drittanbieter, schriftenCss } from './schriften.mjs';
 
 /** Teile des Themen-Buchs (P17.8, O-54): I–IV und der Anhang. */
 export const THEORIE_TEILE = ['1', '2', '3', '4', 'anhang'];
@@ -1336,6 +1337,9 @@ export async function kompiliere(optionen = {}) {
     schreibeAtomarSync(ziel, json);
     // Bilddaten getrennt (nur src/main.ts lädt sie; Tests und Werkzeuge bleiben klein)
     schreibeAtomarSync(path.join(path.dirname(ziel), 'abbildungen.json'), stabilesJson(abb.daten));
+    // Drittanbieter & Lizenzen (Audit 2026-10-06): schon hier, damit typen und test im frischen Checkout sie finden
+    const { komponenten } = await schriftenCss();
+    schreibeAtomarSync(path.join(path.dirname(ziel), 'drittanbieter.json'), `${JSON.stringify(await drittanbieter(komponenten), null, 2)}\n`);
   }
 
   const fehler = b.fehlerListe.filter((f) => pruefe || f.hart).map((f) => f.text);

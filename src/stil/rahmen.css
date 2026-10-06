@@ -109,3 +109,23 @@
 @media print {
   .seiten-kopf, .seiten-fuss, .sprung-inhalt { display: none; }
 }
+
+/* Drittanbieter & Lizenzen (#lizenzen, Audit 2026-10-06): ruhige Lesespalte wie die Rechtsseiten */
+.lz-rahmen { width: 100%; max-width: 820px; margin: 0 auto; padding: var(--a-8) var(--a-6) var(--a-12); display: grid; gap: var(--a-4); }
+.lz-kicker { margin: 0; font: var(--typo-kicker); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); }
+.lz-titel { margin: 0; font: var(--typo-anzeige); font-size: var(--gr-5xl); color: var(--navy); }
+.lz-rahmen h2 { margin: var(--a-4) 0 0; font: var(--typo-tafeltitel); color: var(--navy); }
+.lz-rahmen h3 { margin: 0 0 var(--a-2); font: var(--typo-reiter); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--navy); }
+.lz-rahmen p { margin: 0; font: var(--typo-lese); max-width: 68ch; }
+.lz-komponente { padding: var(--a-4) var(--a-5); border: 1px solid var(--linie); border-radius: var(--radius-m); background: var(--weiss); }
+.lz-felder { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: var(--a-1) var(--a-4); margin: 0; }
+.lz-felder dt { font: var(--typo-label); letter-spacing: var(--sperrung-label); text-transform: uppercase; color: var(--tinte-2); padding-top: 2px; }
+.lz-felder dd { margin: 0; overflow-wrap: anywhere; }
+.lz-rahmen .lz-leise { font: var(--typo-klein); color: var(--tinte-2); }
+.lz-lizenztext { margin: 0; padding: var(--a-4); max-height: 28rem; overflow: auto; border: 1px solid var(--linie); border-radius: var(--radius-m); background: var(--weiss); font: 400 var(--gr-s)/1.45 var(--schrift-mono); white-space: pre-wrap; overflow-wrap: anywhere; }
+.lz-rahmen .druck-knopf { justify-self: start; }
+.lz-druck .lz-lizenztext { max-height: none; overflow: visible; border: 0; padding: 0; }
+@media (max-width: 600px) {
+  .lz-rahmen { padding: var(--a-6) var(--a-4) var(--a-10); }
+  .lz-felder { grid-template-columns: minmax(0, 1fr); }
+}

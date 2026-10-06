@@ -164,7 +164,7 @@ MVG besteht aus acht Bausteinen. Jeder erfüllt eine Aufgabe und bringt dem Bauh
 ---
 symbol: puzzle
 ---
-Die Verknüpfung umfasst alle Vorgangsarten – Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Probleme und Änderungen. Zusammengehöriges wird verknüpft, nichts wird doppelt gezählt (mehr im Thema „Vorgänge und Risiken“). Die Bausteine finden sich im [[MVG Companion]] (einem optionalen Arbeitsmittel, mehr dazu im Thema „Arbeitsweise“) und unter den Ergebnissen einer MVG-Einführung wieder.
+Die Verknüpfung umfasst alle Vorgangsarten – Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Probleme und Änderungen. Zusammengehöriges wird verknüpft, nichts wird doppelt gezählt (mehr im Thema „Vorgänge und Risiken“). Die Bausteine finden sich unter den Ergebnissen einer MVG-Einführung wieder; auch der angekündigte [[MVG Companion]] (ein optionales Arbeitsmittel, mehr dazu im Thema „Arbeitsweise“) soll sie abbilden.
 :::
 
 ::: tafel k5.2-t1

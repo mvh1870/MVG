@@ -335,7 +335,8 @@ function pauseSchritt(o: SchrittOptionen, a: Akt): HTMLElement {
     h('section', { class: 'gs-zwischenbilanz', 'aria-labelledby': `gs-zwischenbilanz-${a.id}`, 'data-pruef': 'gs-zwischenbilanz' },
       h('h2', { id: `gs-zwischenbilanz-${a.id}`, class: 'gs-h2' }, w.zwischenbilanz),
       balkenTafel(g, balken(g, stand, { ort: 'pause', akt: a.id }), { gross: true, pruef: 'gs-stand-pause' }),
-      verlauf(g, stand, bis, w.verlaufPause, !o.bedienbar)),
+      verlauf(g, stand, bis, w.verlaufPause, !o.bedienbar),
+      h('p', { class: 'gs-leise gs-einordnung', 'data-pruef': 'gs-einordnung' }, w.bilanzEinordnung)),
     // „Das können Sie jetzt“ gilt nur, wenn alle Stationen des Akts beantwortet sind – sonst ein Satz ohne Urteil (04-rahmen 2.3)
     offeneImAkt === null ? koennen(a, `gs-koennen-${a.id}`) : h('p', { class: 'gs-leise', 'data-pruef': 'gs-pause-offen' }, w.pauseOffen),
     // die Zeile „gespeichert“ nur, wenn der Stand wirklich im Browser liegt, und nie auf der Leinwand
@@ -628,7 +629,8 @@ function ende(o: SchrittOptionen): HTMLElement {
       typ === 'offen' ? null : h('ul', { class: 'gs-bilanz-saetze' }, g.balken.map((x) => h('li', { 'data-balken': x.id }, h('b', null, `${x.titel}: `), inhaltInline(x.bilanz[stufe(b[x.id])])))),
       // P19.4: der Verlauf der ganzen Geschichte gehört zur Bilanz der erweiterten Story (mit Akten); bei offenen Stationen mit Lücke
       akteVon(g).length > 0 ? verlauf(g, stand, Number.POSITIVE_INFINITY, w.verlaufBilanz, !o.bedienbar) : null,
-      offen > 0 ? h('p', { class: 'gs-leise', 'data-pruef': 'gs-offen' }, w.offen(offen)) : null),
+      offen > 0 ? h('p', { class: 'gs-leise', 'data-pruef': 'gs-offen' }, w.offen(offen)) : null,
+      h('p', { class: 'gs-leise gs-einordnung', 'data-pruef': 'gs-einordnung' }, w.bilanzEinordnung)),
     o.bedienbar ? h('nav', { class: 'gs-ende-wege', 'aria-label': w.ende },
       // P19.3: vom Ende der Kurzfassung in die ganze Geschichte, an der ersten nicht gespielten Station
       stand.kurz && g.kapitel.some((k) => !k.kurzfassung) ? [h('p', { class: 'gs-kicker gs-weiter-kicker' }, w.weiterKicker), h('button', { type: 'button', class: 'gs-knopf', 'data-pruef': 'weiter-ganz', onclick: () => o.tue(weiterMitGanzer(g, stand)) }, w.weiterGanz, sym('pfeilRechts'))] : null,
@@ -805,7 +807,8 @@ export function storyDruck(g: Geschichte, stand: Stand, version: string): { tite
               typ === 'offen' ? w.fuellstand[stufe(b[x.id])] ?? '' : inhaltInline(x.bilanz[stufe(b[x.id])])))),
             // P19.4: der Verlauf auf der Bilanzseite (Vektor, Linienart und Wort an der Linie, die Textfassung offen)
             akteVon(g).length > 0 ? verlauf(g, stand, Number.POSITIVE_INFINITY, w.verlaufBilanz, true) : null,
-            offen > 0 ? h('p', null, w.offen(offen)) : null]
+            offen > 0 ? h('p', null, w.offen(offen)) : null,
+            h('p', { 'data-pruef': 'druck-einordnung' }, w.bilanzEinordnung)]
           : [h('h2', null, w.bilanzTitel), h('p', null, w.druckBilanzSpaeter)]),
         // P19.4: das Entscheidungsbuch auf einer eigenen Seite im Querformat, nur die Einträge bis zur aktuellen Station
         buchDruck(g, stand))],

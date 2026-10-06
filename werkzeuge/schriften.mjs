@@ -6,8 +6,9 @@
 //
 // Nur die Schnitte, die Variante B tatsächlich benutzt (aus prototyp/variante-b-leitstand.html
 // abgelesen; je Schnitt steht unten, wo er vorkommt). Nicht übernommen, obwohl der Prototyp sie über
-// Google Fonts anforderte: Big Shoulders 700, Caveat 600, IBM Plex Sans kursiv 400 – im Prototyp
-// nirgends gesetzt (Kursiv: `em` ist dort aufrecht; das Whitepaper V1.2 enthält keine Kursivstellen).
+// Google Fonts anforderte: Big Shoulders 700, Caveat 600 – im Prototyp nirgends gesetzt.
+// Fließtext und Kennungen laufen in Systemschriften (src/stil/tokens.css, --schrift-text/--schrift-mono);
+// eingebettet werden nur die beiden Auszeichnungsschriften.
 //
 // Deterministisch: feste Reihenfolge (Familie, Gewicht, Untermenge), keine Zeitstempel.
 //
@@ -18,6 +19,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { istHauptmodul } from './haupt.mjs';
 import { schreibeAtomar } from './atomar.mjs';
+import { woff2Namen } from './woff2-name.mjs';
 
 const WURZEL = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -37,22 +39,6 @@ export const SCHRIFTEN = [
       { gewicht: 500, wo: 'schmale Schrift ohne eigenes Gewicht (Achsen, Zeitlineal)' },
       { gewicht: 600, wo: 'Labels, Instrument-Beschriftung, Kicker' },
       { gewicht: 700, wo: 'Badges, Reiter, Feldüberschriften' },
-    ],
-  },
-  {
-    paket: 'ibm-plex-sans', familie: 'IBM Plex Sans', rolle: 'Fließtext',
-    gewichte: [
-      { gewicht: 400, wo: 'Fließtext' },
-      { gewicht: 500, wo: 'Zitate der Rollen-Linse, Tags' },
-      { gewicht: 600, wo: 'Hervorhebungen, Optionen, Karten' },
-      { gewicht: 700, wo: 'Titel der Lagetafel, fette Auszeichnungen' },
-    ],
-  },
-  {
-    paket: 'ibm-plex-mono', familie: 'IBM Plex Mono', rolle: 'IDs, Dateinamen, Zeitstempel',
-    gewichte: [
-      { gewicht: 500, wo: 'ID-Marken, Dateinamen' },
-      { gewicht: 600, wo: 'Versionsstände, Schwellen-Marken, Mail-Kopf' },
     ],
   },
 ];
@@ -84,20 +70,29 @@ async function liesFontsourceCss(paket, untermenge, gewicht) {
 
 /**
  * Baut den Text der Schriften-CSS.
- * @returns {Promise<{ css: string, eintraege: Array<{ familie: string, gewicht: number, untermenge: string, datei: string, bytes: number }> }>}
+ * @typedef {{ name: string, paket: string, paketVersion: string, schriftVersionen: string[], copyright: string, lizenz: string, spdx: string, upstream: string, quelle: string }} Komponente
+ * @returns {Promise<{ css: string, eintraege: Array<{ familie: string, gewicht: number, untermenge: string, datei: string, bytes: number }>, komponenten: Komponente[] }>}
  */
 export async function schriftenCss() {
   const versionen = [];
   const bloecke = [];
   const eintraege = [];
+  /** @type {Komponente[]} */
+  const komponenten = [];
   for (const s of SCHRIFTEN) {
     const pkg = JSON.parse(await readFile(resolve(WURZEL, 'node_modules/@fontsource', s.paket, 'package.json'), 'utf8'));
     versionen.push(`@fontsource/${s.paket} ${pkg.version} (${pkg.license})`);
+    /** @type {Set<string>} */ const copyrights = new Set();
+    /** @type {Set<string>} */ const schriftVersionen = new Set();
     for (const { gewicht } of s.gewichte) {
       for (const untermenge of UNTERMENGEN) {
         const { bereich, familie, datei } = await liesFontsourceCss(s.paket, untermenge, gewicht);
         if (familie !== s.familie) throw new Error(`Familienname weicht ab: ${familie} ≠ ${s.familie}`);
-        const daten = await readFile(resolve(WURZEL, 'node_modules/@fontsource', s.paket, 'files', datei));
+        const pfad = resolve(WURZEL, 'node_modules/@fontsource', s.paket, 'files', datei);
+        const daten = await readFile(pfad);
+        const namen = await woff2Namen(pfad);
+        copyrights.add(namen.copyright);
+        schriftVersionen.add(namen.version);
         eintraege.push({ familie, gewicht, untermenge, datei, bytes: daten.length });
         bloecke.push(
           `/* ${datei} */\n`
@@ -112,12 +107,48 @@ export async function schriftenCss() {
         );
       }
     }
+    // Copyright genau so, wie es in den ausgelieferten Schnitten steht; alle Schnitte einer Familie müssen übereinstimmen
+    if (copyrights.size !== 1 || [...copyrights][0] === '') throw new Error(`${s.familie}: Copyright uneinheitlich oder leer (${[...copyrights].join(' | ')})`);
+    const copyright = [...copyrights][0] ?? '';
+    if (pkg.license !== 'OFL-1.1') throw new Error(`${s.paket}: Lizenz ${pkg.license}, erwartet OFL-1.1`);
+    komponenten.push({
+      name: s.familie,
+      paket: `@fontsource/${s.paket}`,
+      paketVersion: pkg.version,
+      schriftVersionen: [...schriftVersionen].sort(),
+      copyright,
+      lizenz: 'SIL Open Font License 1.1',
+      spdx: pkg.license,
+      upstream: /\((https:\/\/[^)\s]+)\)/u.exec(copyright)?.[1] ?? '',
+      quelle: `npm: @fontsource/${s.paket} ${pkg.version} (${String(pkg.repository?.url ?? '').replace(/^git\+/u, '').replace(/\.git$/u, '')})`,
+    });
   }
   // „/*! … */“ bleibt beim Minifizieren stehen (bau.mjs: legalComments 'inline') – der OFL-Hinweis reist mit.
   const kopf = '/*! Schriften unter SIL Open Font License 1.1 (openfontlicense.org), eingebettet aus:\n'
     + versionen.map((v) => `   · ${v}\n`).join('')
+    + komponenten.map((k) => `   ${k.name}: ${k.copyright}\n`).join('')
     + '   Untermengen latin, latin-ext (L-2). Erzeugt von werkzeuge/schriften.mjs – nicht von Hand ändern. */\n\n';
-  return { css: kopf + bloecke.join('\n'), eintraege };
+  return { css: kopf + bloecke.join('\n'), eintraege, komponenten };
+}
+
+/**
+ * Angaben für den Bereich „Drittanbieter & Lizenzen“ (Audit 2026-10-06): je eingebetteter Schrift Name,
+ * Versionen, Copyright, Lizenz und Herkunft, dazu der Lizenztext der OFL 1.1 unverändert aus der
+ * LICENSE-Datei der Pakete (ab der Überschrift; alle Pakete müssen denselben Text tragen).
+ * @param {Komponente[]} komponenten
+ * @returns {Promise<{ komponenten: Komponente[], oflText: string }>}
+ */
+export async function drittanbieter(komponenten) {
+  /** @type {Set<string>} */
+  const texte = new Set();
+  for (const s of SCHRIFTEN) {
+    const lizenz = (await readFile(resolve(WURZEL, 'node_modules/@fontsource', s.paket, 'LICENSE'), 'utf8')).replace(/\r\n/gu, '\n');
+    const ab = lizenz.indexOf('-----------------------------------------------------------\nSIL OPEN FONT LICENSE Version 1.1');
+    if (ab < 0) throw new Error(`${s.paket}: OFL-1.1-Text nicht gefunden`);
+    texte.add(lizenz.slice(ab).trimEnd());
+  }
+  if (texte.size !== 1) throw new Error('OFL-Text der Pakete weicht voneinander ab');
+  return { komponenten, oflText: [...texte][0] ?? '' };
 }
 
 /**
@@ -127,8 +158,9 @@ export async function schriftenCss() {
  */
 export async function erzeugeSchriften({ ziel = 'src/generiert/schriften.css' } = {}) {
   const pfad = resolve(WURZEL, ziel);
-  const { css, eintraege } = await schriftenCss();
+  const { css, eintraege, komponenten } = await schriftenCss();
   await schreibeAtomar(pfad, css); // atomar (L-390)
+  await schreibeAtomar(resolve(dirname(pfad), 'drittanbieter.json'), `${JSON.stringify(await drittanbieter(komponenten), null, 2)}\n`);
   return { ziel: pfad, bytes: Buffer.byteLength(css), eintraege };
 }
 

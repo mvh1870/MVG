@@ -243,7 +243,7 @@ echos:
     fassungen:
       gut: Seit dem Sturm schreibe ich selbst auf, was ich sehe – Uhrzeit, Foto, fertig.
       vertretbar: "Nach dem Sturm weiß ich: Wer es gleich aufschreibt, streitet später weniger."
-      falle: Der Sturm hat uns eine Woche gekostet. Seitdem rufe ich an, bevor ich weitermache.
+      falle: Der Sturm hat uns eine Woche gekostet. Seitdem sperre ich ganz, bis die Sicherheitskoordination da war.
 
 # Entscheidungsbuch (04 5.2): alleiniger Wortlaut, für alle Wege gleich. Anlass = Monat der Station (`zeit`), nicht das Beschlussdatum.
 buch:
@@ -294,8 +294,8 @@ buch:
     ergebnis: "Offen sind der Planstand der Fassade und der Netzanschluss: Er kommt im März statt im Januar, bis dahin läuft Baustrom."
   - station: s10
     art: vermerk
-    entschieden: niemand – es ging um die Sicherheit
-    grundlage: Meldung des Bauleiters
+    entschieden: niemand – der Bauleiter hat vor Ort gesperrt, ein Beschluss war nicht nötig
+    grundlage: Eintrag der Projektsteuerin vom selben Tag
     ergebnis: Die losen Anker am Gerüst der Sporthalle sind erneuert, und es ist geklärt, wer die Kosten trägt.
   - station: s11
     art: uebergabe

@@ -20,6 +20,13 @@
  * kleinere oder gleiche wird verworfen. Ein „hallo“ (Fenster neu geöffnet oder neu geladen) setzt
  * diese Merker zurück, damit ein neu gestarteter Absender mit kleinen Nummern wieder durchkommt.
  *
+ * KEINE SICHERHEITSFUNKTION (Audit 2026-10-06, O-64). Der Kanalname (`mvg-regie`) und der Speicherschlüssel dienen nur
+ * der technischen Zuordnung von Regie und Leinwand. Sie sind keine kryptografische Authentisierung: Jedes Skript
+ * desselben Ursprungs kann mithören und senden, BroadcastChannel und localStorage sind keine Berechtigungsgrenze.
+ * Deshalb trägt der Kanal nur den öffentlichen Bühnenstand (nie Notizen oder Protokoll), und die Leinwand prüft
+ * alles mit `pruefeBuehne()`. Gehostet gehört die Seite auf einen eigenen, vertrauenswürdigen Ursprung
+ * (www.governancekompass.de), nicht neben fremde Inhalte unter derselben Domain.
+ *
  * EINE NACHRICHT, DIE NICHT ANKOMMT, IST KEIN FEHLER (die Leinwand kann zu sein). `senden` gibt
  * nichts zurück; jeder Wurf der Plattform geht an `warne`, damit ein kaputter Kanal nicht wie ein
  * leerer aussieht.

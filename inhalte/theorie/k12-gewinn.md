@@ -82,7 +82,7 @@ rechts: MVG Companion
 :::
 
 ::: ansicht rechts
-**Ein Hilfsmittel**, das Einführung, Schulung und Übergabe im Alltag erleichtert.
+**Ein angekündigtes Hilfsmittel**, das Einführung, Schulung und Übergabe im Alltag erleichtern soll.
 :::
 :::
 
@@ -131,7 +131,7 @@ form: karten
 
 ::: regie
 ### Notiz
-Dieses Thema zieht Bilanz; hier ist die Nähe zum Vertrieb am größten – nur wiedergeben, was MVG sagt, keine Aufforderung, kein Angebot, keine Wirkungszahlen. Es tragen der Umschalter „Woran MVG gemessen wird“ und die fünf Gewinne in der Tafel, besonders „Geringere Zusatzlast“: Der Mindeststandard bleibt auf führungsrelevante Entscheidungen konzentriert – der Bauherr pflegt nichts, er entscheidet. Mit der Leitthese schließen.
+Dieses Thema zieht Bilanz und beschreibt Ziele von MVG, kein Angebot: nur wiedergeben, was MVG sagt, keine Aufforderung, keine Wirkungszahlen. Es tragen der Umschalter „Woran MVG gemessen wird“ und die fünf angestrebten Gewinne in der Tafel, besonders „Weniger zusätzliche Arbeit“: Der Mindeststandard bleibt auf führungsrelevante Entscheidungen konzentriert – der Bauherr pflegt nichts, er entscheidet. Mit der Leitthese schließen.
 
 ### Leitfragen
 - Welche Listen (Register), Vorlagen oder Berichte haben in Ihrem Projekt heute Führungswirkung – und welche nicht?

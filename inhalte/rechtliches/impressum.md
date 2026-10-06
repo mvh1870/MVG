@@ -64,4 +64,4 @@ Kurz gesagt: Texte und Bilder dieser Seite dürfen ohne schriftliche Zustimmung 
 
 Die auf dieser Internetseite veröffentlichten Inhalte, Texte, Grafiken, Abbildungen, Visualisierungen und sonstigen Darstellungen unterliegen dem Urheberrecht und gegebenenfalls weiteren Schutzrechten. Jede Vervielfältigung, Bearbeitung, Verbreitung, öffentliche Zugänglichmachung oder sonstige Verwertung außerhalb der gesetzlich zulässigen Grenzen bedarf der vorherigen schriftlichen Zustimmung der jeweiligen Rechteinhaber.
 
-Die in diese Seite eingebauten Schriften IBM Plex Sans, IBM Plex Mono, Big Shoulders Display und Barlow Condensed stehen unter der SIL Open Font License 1.1 (einer freien Lizenz).
+Die in diese Seite eingebauten Schriften Big Shoulders Display und Barlow Condensed stehen unter der SIL Open Font License 1.1 (einer freien Lizenz).

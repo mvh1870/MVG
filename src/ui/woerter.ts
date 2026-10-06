@@ -117,6 +117,13 @@ export const W = {
     sprung: 'Springen zu',
     protokollDrucken: 'Protokoll drucken',
     protokollLoeschen: 'Protokoll und gespeicherten Stand löschen',
+    // Audit 2026-10-06 (O-64): vier Aussagen – lokal, keine Übertragung, unverschlüsselt, nichts Vertrauliches
+    protokollHinweisTitel: 'Lokale Notizen:',
+    protokollHinweis: 'Die Notizen werden nur in diesem Browserprofil gespeichert und nicht übertragen. Die Speicherung ist nicht verschlüsselt. Tragen Sie hier keine vertraulichen oder personenbezogenen Informationen ein.',
+    loeschenFrage: 'Protokoll und gespeicherten Stand der Präsentation wirklich löschen?',
+    loeschenJa: 'Ja, löschen',
+    loeschenNein: 'Abbrechen',
+    geloescht: 'Protokoll und gespeicherter Stand gelöscht.',
     druckTitel: 'Gesprächsprotokoll',
     druckEintraege: 'Notizen aus dem Gespräch',
     druckLeer: 'Keine Einträge.',
@@ -180,7 +187,22 @@ export const W = {
     impressum: 'Impressum',
     datenschutz: 'Datenschutz',
     praesentieren: 'Präsentieren',
+    lizenzen: 'Drittanbieter & Lizenzen',
     zumInhalt: 'Zum Inhalt springen',
+  },
+  // Drittanbieter & Lizenzen (Audit 2026-10-06, O-64): Angaben aus src/generiert/drittanbieter.json
+  lizenzen: {
+    kicker: 'Informationen',
+    titel: 'Drittanbieter & Lizenzen',
+    einleitung: 'Diese Seite enthält zwei Schriften anderer Urheber. Sie stehen unter der SIL Open Font License 1.1; deren vollständiger Text steht unten. Weitere Bestandteile anderer Urheber enthält die Seite nicht. Texte, Abbildungen, Grafiken und die Seite selbst stammen von Bauherr Mentoren.',
+    komponenten: 'Eingebettete Schriften',
+    felder: { version: 'Version', copyright: 'Copyright', lizenz: 'Lizenz', herkunft: 'Herkunft', bezug: 'Bezogen über' },
+    schriftVersion: (paket: string, paketVersion: string, schrift: string) => `${schrift} (Paket ${paket} ${paketVersion})`,
+    nutzungTitel: 'Nutzung der Inhalte',
+    nutzung: 'Die Texte und Abbildungen dieser Seite dürfen Sie für die interne Schulung und für Präsentationen in Ihrer eigenen Organisation verwenden. Für jede andere Verwendung gilt der Hinweis zum Urheberrecht im Impressum.',
+    oflTitel: 'Lizenztext: SIL Open Font License 1.1',
+    oflHinweis: 'Der Lizenztext steht unverändert im englischen Original.',
+    drucken: 'Drucken',
   },
   // Story (P17.4, O-51/O-52, seit P19 14 Stationen in drei Akten): drei Antworten, Balken Geld · Zeit · Vertrauen
   geschichte: {

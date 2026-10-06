@@ -26,6 +26,7 @@ import { erzeugeGeschichte, ladeStand, storyDruck, type GeschichteFlaeche, type 
 import { baueStart } from './ui/flaechen/start.ts';
 import { baueTheorie, themaSeite, themaTitel, themen, zeigeAktuellenEintrag } from './ui/flaechen/theorie.ts';
 import { baueExplore, werkzeugAus, werkzeugTitel, WERKZEUGE } from './ui/flaechen/explore.ts';
+import { baueLizenzen } from './ui/flaechen/lizenzen.ts';
 import { erzeugeRegie } from './regie/regie.ts';
 import { starteLeinwand } from './regie/leinwand.ts';
 import { W } from './ui/woerter.ts';
@@ -115,6 +116,11 @@ function starteSeite(wurzel: HTMLElement): void {
         raeume();
         const werkzeug = werkzeugAus(r.werkzeug);
         zeigeSeite(baueExplore({ inhalte, werkzeug, beispiel: r.beispiel, bedienbar: true }), `explore:${werkzeug}`, `${inhalte.werkzeuge !== null ? werkzeugTitel(inhalte.werkzeuge, werkzeug) : W.rahmen.explore} · ${W.rahmen.explore} · ${TITEL}`, '.ex-titel');
+        break;
+      }
+      case 'lizenzen': {
+        raeume();
+        zeigeSeite(baueLizenzen({ version: VERSION, bedienbar: true }), 'lizenzen', `${W.lizenzen.titel} · ${TITEL}`, '.lz-titel');
         break;
       }
       default: {

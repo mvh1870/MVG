@@ -54,9 +54,13 @@ test('tokens.css: Farbtoken sind Hex- oder rgba-Werte bzw. Verweise, Schriftstap
       assert.match(wert, /^(#[0-9A-Fa-f]{6}|var\(--[\w-]+\))$/, `${name}: ${wert}`);
     }
   }
-  for (const [token, familie] of [['--schrift-text', 'IBM Plex Sans'], ['--schrift-anzeige', 'Big Shoulders Display'], ['--schrift-label', 'Barlow Condensed'], ['--schrift-mono', 'IBM Plex Mono']] as const) {
+  for (const [token, familie] of [['--schrift-anzeige', 'Big Shoulders Display'], ['--schrift-label', 'Barlow Condensed']] as const) {
     assert.ok(tokens.get(token)?.startsWith(`"${familie}"`), token);
   }
+  // Fließtext und Kennungen in Systemschriften, nichts davon eingebettet
+  assert.ok(tokens.get('--schrift-text')?.startsWith('system-ui,'), '--schrift-text');
+  assert.ok(tokens.get('--schrift-mono')?.startsWith('ui-monospace,'), '--schrift-mono');
+  for (const token of ['--schrift-text', '--schrift-mono']) assert.doesNotMatch(tokens.get(token) ?? '', /plex/iu, token);
 });
 
 test('Schriftgewichte in den Stildateien sind nur eingebettete Schnitte (400–800)', () => {

@@ -58,20 +58,20 @@ Maßstab ist der Laie ohne Fachwissen; lieber ein, zwei Wörter mehr als ein Sat
 
 ## Typorollen
 
-Fünf Familien, eingebettet als woff2 (latin + latin-ext), nur diese Schnitte (L-2; gemessen im Prototyp):
+Zwei Familien sind eingebettet als woff2 (latin + latin-ext), Fließtext und Kennungen laufen in Systemschriften (Audit 2026-10-06, L-425):
 
 | Rolle | Familie · Schnitt | Token / Klasse | Verwendung |
 |---|---|---|---|
 | Anzeige | Big Shoulders Display 800 | `--typo-anzeige`, `--typo-kennzahl` | Titel der Story-Schritte, Kennzahlen, Statuswerte, Themennummern |
-| Tafeltitel | IBM Plex Sans 700, 21 px | `--typo-tafeltitel` | Entscheidungsfrage, Werkzeug- und Tafeltitel |
-| Fließtext | IBM Plex Sans 400, 15 px/1,45 | `--typo-text` | alles Übrige |
-| Lesetext | IBM Plex Sans 400, 17 px/1,6 | `--typo-lese`, `.lesetext` | Theorie |
-| Klein | IBM Plex Sans 400, 13 px/1,4 | `--typo-klein` | Nebentext |
-| Hervorhebung | IBM Plex Sans 500/600/700 | `em`, `strong` | `em` ist **aufrecht, 600** (kein Kursivschnitt eingebettet) |
+| Tafeltitel | Systemschrift (`--schrift-text`) 700, 21 px | `--typo-tafeltitel` | Entscheidungsfrage, Werkzeug- und Tafeltitel |
+| Fließtext | Systemschrift 400, 15 px/1,45 | `--typo-text` | alles Übrige |
+| Lesetext | Systemschrift 400, 17 px/1,6 | `--typo-lese`, `.lesetext` | Theorie |
+| Klein | Systemschrift 400, 13 px/1,4 | `--typo-klein` | Nebentext |
+| Hervorhebung | Systemschrift 500/600/700 | `em`, `strong` | `em` ist **aufrecht, 600** (aufrecht wie im Prototyp) |
 | Label | Barlow Condensed 600, 12 px, Versalien, +0,1em | `--typo-label`, `.t-label` | Beschriftungen |
 | Kicker | Barlow Condensed 600, 13 px, Versalien, +0,12em | `--typo-kicker` | Zeile über Titeln |
 | Reiter | Barlow Condensed 700, 14 px, Versalien | `--typo-reiter` | Kopf-Bereiche, Feldtitel, Marken |
-| Mono | IBM Plex Mono 500/600 | `--typo-mono`, `.mono`, `.id-marke` | IDs (`ENT-017`), Zeiten, Versionen |
+| Mono | System-Monospace (`--schrift-mono`) 500/600 | `--typo-mono`, `.mono`, `.id-marke` | IDs (`ENT-017`), Zeiten, Versionen |
 
 Barlow Condensed 500 ist eingebettet für schmale Schrift ohne eigenes Gewicht (Achsen, Zeitlineal). Größenskala: `--gr-xs` 12 · `--gr-s` 13 · `--gr-m` 14 · `--gr-text` 15 · `--gr-l` 16 · `--gr-xl` 18 · `--gr-2xl` 21 · `--gr-3xl` 24 · `--gr-4xl` 28 · `--gr-5xl` 34 · `--gr-7xl` 64 (px); `--gr-lese` 17. Kleinste Schrift 11,5 px – nur für Versal-Labels sowie Kennungen in Mono; Nebentext nie unter 12 px; Fließtext nie unter 13 px. Deutsche Silbentrennung (`hyphens: auto`) für Absätze, Listen, Zitate und Tabellenzellen unter `lang="de"`; Titel, Labels, IDs und Tasten werden nie getrennt.
 

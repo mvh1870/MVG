@@ -699,7 +699,7 @@ symbol: schloss
 - Er soll mit Informationen arbeiten, die einen Namen und eine Version haben und nur Berechtigten zugänglich sind. Was er liefert, ist Entscheidungsunterstützung: Bevor es in eine Freigabe oder ein Gremium geht, prüfen es die zuständigen Rollen.
 :::
 
-Der Companion ersetzt keine Entscheidung des Bauherrn, keine Freigabe durch ein Gremium, keine Rechtsberatung, keine Fachplanung und keine Projektsteuerung. Er soll beim Ordnen, Orientieren, Anwenden und Schulen helfen. Verbindlich bleiben die freigegebenen Stände der Unterlagen, die festgelegten Zugriffsrechte der Rollen, die Anforderungen des Datenschutzes und die Entscheidung des Bauherrn, für die er einsteht.
+Der Companion ersetzt keine Entscheidung des Bauherrn, keine Freigabe durch ein Gremium, keine Rechtsberatung, keine Fachplanung und keine Projektsteuerung. Er soll beim Ordnen, Orientieren, Anwenden und Schulen helfen. Verbindlich bleiben die freigegebenen Stände der Unterlagen, die festgelegten Zugriffsrechte der Rollen, die Anforderungen des Datenschutzes und die Entscheidung des Bauherrn, für die der Bauherr einsteht.
 
 ::: sortieren
 ---

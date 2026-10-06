@@ -95,7 +95,7 @@ Companion als angekündigtes, optionales Arbeitsmittel (ohne Kosten, Termin, Dow
 ## Prüf-Agenten (O-24)
 
 - Begriffe: 9 Befunde, 8 behoben, 1 als Rechtsprüfpunkt vermerkt (Impressum „ohne schriftliche Zustimmung“ neben der Nutzungsfreigabe im Lizenzbereich; Impressum außerhalb des Auftrags).
-- Fachtreue: 10 Befunde. Nach Owner-Auswahl umgesetzt: Mentor-Sonderrolle gestrichen, Station 10 (Bauleiter sperrt selbst, Projektleitung des Bauherrn bestärkt), Wegweiser-Zusatz „Schon eingetreten?“ bei Maßnahme. Geschäftsrahmen des Briefings in O-64 (13) belegt; übrige Befunde behoben. Nachprüfung der Korrekturen: siehe L-427 und Übergabe.
+- Fachtreue: 10 Befunde. Nach Owner-Auswahl umgesetzt: Mentor-Sonderrolle gestrichen, Station 10 (Bauleiter sperrt selbst, Projektleitung des Bauherrn bestärkt), Wegweiser-Zusatz „Schon eingetreten?“ bei Maßnahme. Geschäftsrahmen des Briefings in O-64 (13) belegt; übrige Befunde behoben. Nachprüfung der Korrekturen: 5 leichte bis mittlere Befunde (Wortlaut des Wegweiser-Zusatzes nach V2.4 hb-1.6/1.3, Entscheidungsbuch und Echo zu Station 10, ein mehrdeutiges „er“, interne Begriffsliste), alle behoben; kein schwerer Befund.
 
 ## Prüfsummen (release/SHA256SUMS.txt)
 
@@ -106,11 +106,11 @@ dc33ecf6ae7cf4db9c219d0251af9d9d7b2f4ac78dad3cb06d11c48e18d93db3  ../dist/apple-
 e7bd44eebc9f409af9b4131ef76cf2d46d9844791e808f0342022d69e9b2b225  ../dist/favicon.ico
 c31c18d6ac6754d2fe649bafba8d9244d8a2bf97242f3da2714f1fb209a5eee9  ../dist/favicon.svg
 034eb60944d9a423c8682f44b8637f4e37eb234d99529cbf28ba174b3750b4f4  ../dist/impressum.html
-6a0b917e9d4244c75942cad437dd4510e0106d4cd0a2c4920748f8c448fc6066  ../dist/index.html
+d21f8da8e70e6722da03db5faa10f118e3b0c5be46102ba8638cc9fa482f79c5  ../dist/index.html
 eac685901e06b12a31cac85e33941d0bce7e055aa488da72bcf18a564d984b1d  ../dist/robots.txt
 4ab251b420c5012b6f6cb7a0e458b0df5019261e62bb6fc6bb7f85b5a201b77a  ../dist/sitemap.xml
 85486995f09a5495997c4cc8c636ad279c6f4e0fe79f4509ec5c1a35a52ff684  ../dist/vorschau.png
-42cfe479c77b4452c29abfbd6e9b39fb8b513228a8258bba4ce34f28b3adb3bb  ../release/Governance-Kompass.html
+309768e7a99ff054f156c7b17480b1cc260f9469c133d8e9e580bb019be1abb5  ../release/Governance-Kompass.html
 ```
 
 Die Werte ändern sich mit jedem Bau; maßgeblich ist die Datei `release/SHA256SUMS.txt` des jeweiligen Commits.
@@ -122,3 +122,4 @@ Die Werte ändern sich mit jedem Bau; maßgeblich ist die Datei `release/SHA256S
 3. Rechtekette der Ursprungsbilder (DOCX V1.2) und des Original-Logos, falls über die Owner-Bestätigung hinaus belegt werden soll.
 4. Einordnung des mit `potrace` (GPL-2.0) erzeugten Logo-Vektors; Lizenzangaben für `dom-walk` und `exif-parser` (nur Bauzeit).
 5. HTTP-Kopfzeilen und Logs beim Hoster (nicht aus dem Repo prüfbar).
+6. Mutantenprobe (`node werkzeuge/mutanten.mjs`, nicht Teil der Kette): nach 25 Minuten abgebrochen, ohne Ergebnis; nachholen, da der Wegweiser-Kern einen Zusatz bekommen hat (Unit-Tests dazu grün).

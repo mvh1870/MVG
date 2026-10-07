@@ -245,24 +245,14 @@ test('Anzeige (R71): der Vergleich rechnet mit den Gewichten aus der Regie – o
   }
 });
 
-test('P17.6: die Leinwand zeigt nie die Wertung der Antworten und nie Notiz oder Leitfragen – an keinem Schritt, bei keiner Wahl', async () => {
+test('P17.6: die Leinwand zeigt nie die Wertung der Antworten – an keinem Schritt, bei keiner Wahl', async () => {
   const { erzeugeAnzeige } = await import('../src/regie/leinwand.ts');
   const { pruefeBuehne } = await import('../src/regie/buehne.ts');
   const { schritte } = await import('../src/geschichte/engine.ts');
   const { loeseMini } = await import('../src/regie/eingriffe.ts');
-  const { regieGeschichte } = await import('../src/inhalte/index.ts');
   const { W } = await import('../src/ui/woerter.ts');
   const anzeige = erzeugeAnzeige(inhalte, 'Test', true);
   document.body.replaceChildren(anzeige.element);
-  // Regie-Material aller Kapitel: Notizen (als Text) und Leitfragen
-  const geheim: string[] = [];
-  for (const k of g.kapitel) {
-    const r = regieGeschichte(k.id);
-    assert.ok(r, `${k.id}: Regie-Material`);
-    assert.ok(r.leitfragen.length > 0, `${k.id}: Leitfragen`);
-    assert.ok(r.notizHtml.length > 0, `${k.id}: Notiz`);
-    geheim.push(...r.leitfragen, r.notizHtml.replace(/<[^>]*>/gu, '').slice(0, 60));
-  }
   const wertungWorte = Object.values(W.regie.wertung).filter((x) => x !== 'gut');
   // R73: auch Attribute, die man sieht oder hört (Tooltip, Vorlesetext, Bildtext) – „gut“ zählt dort als ganzer Attributwert;
   // data-* bleibt intern (z. B. data-fassung="nach-falle")
@@ -291,7 +281,6 @@ test('P17.6: die Leinwand zeigt nie die Wertung der Antworten und nie Notiz oder
         const textInhalt = anzeige.element.textContent ?? '';
         assert.equal(anzeige.element.querySelectorAll('[data-wertung], .regie-wertung').length, 0, `${wo}: Wertung im DOM`);
         for (const wort of wertungWorte) assert.ok(!new RegExp(`\\b${wort}\\b`, 'u').test(textInhalt), `${wo}: „${wort}“ auf der Leinwand`);
-        for (const x of geheim) assert.ok(!textInhalt.includes(x), `${wo}: Regie-Material „${x.slice(0, 30)}“ auf der Leinwand`);
         assert.deepEqual(attributFunde(anzeige.element, `Leinwand ${wo}`), []);
         // die bedienbare Story-Fläche desselben Schritts: Wertung weder als Text noch in Attributen
         const flaeche = baueSchritt({ g, stand: { ...stand, schritt }, bedienbar: true, themaTitel: () => 'Thema', tue: () => undefined });

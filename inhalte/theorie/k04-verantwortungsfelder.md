@@ -474,14 +474,3 @@ So lässt sich die Entscheidung später nachvollziehen.
 :::
 :::
 :::
-
-::: regie
-### Notiz
-Dieses Thema macht die Linie aus dem Begriffsrahmen greifbar: sechs Felder, je Feld Kern (beim Bauherrn), Vorbereitung (delegierbar) und typische Fehlstelle. Die Sortierübung im Überblick eignet sich zum gemeinsamen Durchgehen. Die sechs Felder sind keine juristische Vollständigkeitsliste. Der Regler zur Staffel der Zuständigkeiten nach Betrag (Muster-Mandatsleiter, Feld Mandat) zeigt ein Beispiel – keine Empfehlung für die Schwellen des Kunden. Datenstand und Nachweis nicht als Verwaltung abtun: MVG führt sie als eigenes Verantwortungsfeld. Entscheidungen bereitet die Projektsteuerung vor; der Bauherr pflegt nichts, er entscheidet.
-
-### Leitfragen
-- In welchem der sechs Felder erkennen Sie bei sich die typische Fehlstelle am ehesten?
-- Welche Grenzen (Schwellen) gelten in Ihrem Projekt – und wo sind sie festgehalten?
-- Auf welchem Stand der Unterlagen beruhte Ihre letzte Freigabe?
-:::
-

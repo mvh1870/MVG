@@ -22,7 +22,7 @@ dom.window.scrollBy = (() => undefined) as typeof dom.window.scrollBy;
 dom.window.HTMLElement.prototype.scrollIntoView = function scrollIntoView() { /* jsdom rollt nicht */ };
 after(() => dom.window.close());
 
-const { inhalte, regieGeschichte, regieKapitel, regieWerkzeug } = await import('../src/inhalte/index.ts');
+const { inhalte } = await import('../src/inhalte/index.ts');
 const E = await import('../src/geschichte/engine.ts');
 const { baueSchritt, erzeugeGeschichte, SPEICHER_SCHLUESSEL, storyDruck, leisteOben, verlauf } = await import('../src/ui/flaechen/geschichte.ts');
 const { buchSeite, buchSymbol, buchDruck } = await import('../src/ui/flaechen/geschichte-buch.ts');
@@ -305,7 +305,7 @@ test('Regie: der Knopf „Entscheidungsbuch zeigen“ schaltet die Leinwand um u
   const gesendet: { art: string; zustand?: { buch?: boolean } }[] = [];
   const kanal = { senden: (n: never) => { gesendet.push(n); }, abonnieren: () => () => undefined, schliessen: () => undefined };
   const sp = speicher();
-  const r = erzeugeRegie({ inhalte: { ...inhalte, geschichte: g }, kanal, version: 'Test', speicher: sp, regieGeschichte, regieKapitel, regieWerkzeug, oeffneLeinwand: () => undefined, takt: 100000 });
+  const r = erzeugeRegie({ inhalte: { ...inhalte, geschichte: g }, kanal, version: 'Test', speicher: sp, oeffneLeinwand: () => undefined, takt: 100000 });
   document.body.replaceChildren(r.element);
   const zustand = (): { buch?: boolean } | undefined => gesendet.filter((n) => n.art === 'zustand').at(-1)?.zustand;
   const knopf = (): HTMLButtonElement => r.element.querySelector<HTMLButtonElement>('[data-pruef="regie-buch"]') as HTMLButtonElement;
@@ -331,7 +331,7 @@ test('Regie: der Knopf „Entscheidungsbuch zeigen“ schaltet die Leinwand um u
   }
   // Story ohne Buch: kein Knopf
   // (seit P19.6 trägt die echte Story ein Buch, deshalb eine Story ohne Buch aus der echten)
-  const r2 = erzeugeRegie({ inhalte: { ...inhalte, geschichte: Object.assign(structuredClone(g), { buch: undefined }) }, kanal, version: 'Test', speicher: speicher(), regieGeschichte, regieKapitel, regieWerkzeug, oeffneLeinwand: () => undefined, takt: 100000 });
+  const r2 = erzeugeRegie({ inhalte: { ...inhalte, geschichte: Object.assign(structuredClone(g), { buch: undefined }) }, kanal, version: 'Test', speicher: speicher(), oeffneLeinwand: () => undefined, takt: 100000 });
   assert.equal(r2.element.querySelector('[data-pruef="regie-buch"]'), null);
   r2.entferne();
 });

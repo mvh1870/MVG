@@ -271,13 +271,3 @@ symbol: eskalieren
 Themen werden an die nächsthöhere Stelle weitergegeben (Eskalation), aber ohne klare Möglichkeiten zur Auswahl, ohne Empfehlung und ohne Folgen. Das führt zu Verzögerung statt zu Führung. MVG verlangt deshalb einen festen Aufbau für [[Entscheidungsvorlage|Entscheidungsvorlagen]]: Wenn der Bauherr etwas entscheiden muss, legt die Projektsteuerung eine Vorlage vor – mit der Frage, mindestens zwei Möglichkeiten, die erlaubt sind (zulässige Optionen), einem Vergleich, bei dem die Kriterien unterschiedlich stark zählen, und einer Empfehlung. Was dringend ist, meldet sie sofort, schon bevor die Vorlage fertig ist.
 :::
 :::
-
-::: regie
-### Notiz
-Die Ausgangslage holt den Kunden bei seinen eigenen Erfahrungen ab. Einstieg über den Umschalter „Auf dem Papier / In der Praxis“ (Bereiche, für die niemand zuständig ist). Tragend ist die Tafel der acht Warnzeichen: den Kunden selbst wählen lassen, was er kennt – ohne Punktzahl und ohne Urteil über seine Organisation. Der Kern: Berichterstattung erzeugt Information, Führung entsteht erst, wenn Information unter anderem mit Mandat, Entscheidung, Schwelle, Datenstand, Freigabe und Nachweis verbunden wird. Nicht behaupten, mehr Berichte schadeten – sie können in einzelnen Situationen helfen. In MVG erhält der Bauherr monatlich einen Bericht von höchstens einer Seite, der offene Entscheidungen und die benötigte Reaktion zeigt.
-
-### Leitfragen
-- Welche der acht Warnzeichen erkennen Sie in einem Ihrer laufenden Projekte wieder?
-- Was passiert bei Ihnen als Erstes, wenn ein Projekt ins Rutschen kommt?
-- Von welchen Personen hängt bei Ihnen eine kritische Entscheidung ab?
-:::

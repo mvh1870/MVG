@@ -14,7 +14,7 @@ import logoSvg from '../quellen/marke/logo-bm.svg';
 import bildmarkeSvg from '../quellen/marke/logo-bm-bildmarke.svg';
 // Abbildungen als data:-URL (P14): getrennt von inhalte.json, nur hier geladen
 import abbildungsBilder from './generiert/abbildungen.json' with { type: 'json' };
-import { inhalte, regieGeschichte, regieKapitel, regieWerkzeug } from './inhalte/index.ts';
+import { inhalte } from './inhalte/index.ts';
 import { erzeugeKanal } from './regie/kanal.ts';
 import { setzeMarke } from './ui/marke.ts';
 import { setzeAbbildungsBilder } from './ui/bausteine/abbildung.ts';
@@ -163,9 +163,6 @@ function starteRegie(wurzel: HTMLElement): void {
     kanal,
     version: VERSION,
     speicher: standardSpeicher(),
-    regieGeschichte,
-    regieKapitel,
-    regieWerkzeug,
     oeffneLeinwand: () => {
       window.open(`${location.href.replace(/#.*$/, '')}#leinwand`, 'gk-leinwand');
     },

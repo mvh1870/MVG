@@ -7,13 +7,13 @@
  * Zitate: `<blockquote|q class="mvg-zitat" data-absatz="k2.4-p2">`.
  */
 
-import type { Geschichte, GeschichteRegie, WerkzeugVerweis } from '../geschichte/typen.ts';
+import type { Geschichte, WerkzeugVerweis } from '../geschichte/typen.ts';
 import type { Ampel } from '../werkzeuge/gemeinsam.ts';
 import type { Antwort, Gegenstand, MandatsGrund, MandatsRegel, Stelle, WegZustand } from '../werkzeuge/vorlagen-check.ts';
 import type { Art, FrageId, Wahl, Zusatz } from '../werkzeuge/wegweiser.ts';
 import type { GrenzFehler, Wert } from '../werkzeuge/risiko-grenzen.ts';
 import type { AmpelId, Farbe } from '../werkzeuge/monatsbericht.ts';
-export type { Geschichte, GeschichteRegie, WerkzeugVerweis };
+export type { Geschichte, WerkzeugVerweis };
 
 /** Kopfdaten nach Umwandlung (Zahlen, Listen, ja/nein, verschachtelte Karten). Schlüssel in camelCase. */
 export type KopfWert = string | number | boolean | null | KopfWert[] | { [schluessel: string]: KopfWert };
@@ -114,12 +114,6 @@ export interface Abdeckung {
   ziele: Record<string, { theorie: string[] }>;
 }
 
-/** Regie-Material: Sprechernotiz (HTML) und Leitfragen (Inline-HTML). Nie auf der Leinwand. */
-export interface RegieEintrag {
-  notiz: string | null;
-  leitfragen: string[];
-}
-
 /** Abbildung der DOCX V1.2 (P8.5; Bild seit P14, O-32, L-77) */
 export interface Abbildung {
   id: string;
@@ -158,16 +152,10 @@ export interface Inhalte {
   theorie: Record<string, TheorieSeite>;
   kompass: KompassEintrag[];
   abdeckung: Abdeckung;
-  /** Regie-Material der Themen, Schlüssel `theorie/k3` bzw. `theorie/k3/k3.2` */
-  regie: Record<string, RegieEintrag>;
   /** Story (P16.6, O-40) */
   geschichte: Geschichte | null;
-  /** Regie-Notizen der Story je Kapitel */
-  geschichteRegie: Record<string, GeschichteRegie>;
   /** Texte der Explore-Werkzeuge (P16.8) */
   werkzeuge: Werkzeuge | null;
-  /** Regie-Notizen der vier neuen Werkzeuge je Adress-Kennung (`vorlagen-check` …, P18.5) */
-  werkzeugeRegie: Record<string, GeschichteRegie>;
 }
 
 /** Dreiteiliger Vorspann je Werkzeug: wozu, was Sie eintragen, was das Ergebnis heißt (L-322) */
@@ -295,8 +283,5 @@ export interface MonatsberichtTeil extends WerkzeugTeil {
   }[];
 }
 
-/**
- * Was jede Fläche (auch die Leinwand) sehen darf. `regie?: never` macht den Typ streng: Ein volles
- * `Inhalte` (mit Regie-Material) ist NICHT zuweisbar, strukturell wie als Objektliteral.
- */
-export type OeffentlicheInhalte = Omit<Inhalte, 'regie' | 'geschichteRegie' | 'werkzeugeRegie'> & { regie?: never; geschichteRegie?: never; werkzeugeRegie?: never };
+/** Was jede Fläche sehen darf. Seit O-65 gibt es kein Regie-Material mehr; der Name bleibt für die Aufrufer. */
+export type OeffentlicheInhalte = Inhalte;

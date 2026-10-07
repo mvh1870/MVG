@@ -1,6 +1,6 @@
 /*
  * Story-Übersetzer (P17.2, O-51/O-52): liest inhalte/geschichte/rahmen.yaml und k<n>-<name>.yaml, prüft sie streng
- * und liefert `geschichte` und `geschichteRegie` (Regie-Material, nur für die Regie) für src/generiert/inhalte.json
+ * und liefert `geschichte` für src/generiert/inhalte.json (Moderationsnotizen gibt es seit O-65 nicht mehr)
  * (Typen: src/geschichte/typen.ts, Format: docs/INHALTSFORMAT.md Abschnitt 3). Markdown läuft durch den Kompilierer
  * von werkzeuge/inhalte.mjs (Glossar-Spannen, geprüftes HTML); jeder sichtbare Text zusätzlich durch die
  * Sichtbar-Probe (werkzeuge/sichtbar.mjs). `belege` und `begruendung` bleiben intern (O-38) und gehen nicht in die
@@ -101,7 +101,7 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
         : 'unbekannte Datei im Ordner der Story – erwartet rahmen.yaml oder <kennung>-<name>.yaml mit einer Kennung aus der Reihenfolge');
     }
   }
-  if (rahmenDatei === undefined) return { geschichte: null, regie: {} };
+  if (rahmenDatei === undefined) return { geschichte: null };
 
   /** Nebenfiguren, die rahmen.yaml führt (P19.6): nur diese dürfen in Szenen sprechen (neben den fünf Figuren und den Stimmen) */
   /** @type {Set<string>} */
@@ -459,12 +459,10 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
   if (reihenfolge !== null) {
     for (const k of reihenfolge) if (!roh.some((x) => x.dateiId === k)) c.fehler(`${rel} reihenfolge`, `Station „${k}“ hat keine Datei (${k}-<name>.yaml)`);
   }
-  /** @type {Record<string, { notizHtml: string, leitfragen: string[] }>} */
-  const regie = {};
   const kapitel = roh.map(({ d, y, dateiNr, dateiId }, i) => {
     const ort = d.rel;
     const o = form(y, ['nr', 'titel', 'zeit', 'campus', 'thema', 'belege', 'einstieg', 'szene', 'frage', 'antworten', 'gut', 'dahinter'],
-      ['kurzfassung', 'bruecke', 'einstieg-kurz', 'campus-nachher', 'zusatz', 'bild-szene', 'bild-frage', 'mandat-nach-folge', 'mini', 'vergleich', 'regie', 'werkzeuge', 'vertiefung', 'gut-kurz', 'dahinter-kurz'], ort);
+      ['kurzfassung', 'bruecke', 'einstieg-kurz', 'campus-nachher', 'zusatz', 'bild-szene', 'bild-frage', 'mandat-nach-folge', 'mini', 'vergleich', 'werkzeuge', 'vertiefung', 'gut-kurz', 'dahinter-kurz'], ort);
     const nr = Number(o.nr);
     if (nr !== i + 1) c.fehler(ort, `Nummer ${text(o.nr)} – erwartet ${i + 1} (${reihenfolge === null ? 'lückenlos ab 1' : 'Stelle in der Reihenfolge'})`);
     // ohne Reihenfolge-Angabe trägt der Dateiname die Nummer (k3-…); mit ihr zählt die Stelle in der Reihenfolge
@@ -507,11 +505,6 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
     for (const w of WERTUNGEN) {
       const n = antworten.filter((/** @type {any} */ a) => a.wertung === w).length;
       if (antwortenRoh.length === 3 && n !== 1) c.fehler(ort, `Wertung „${w}“ ${n}-mal – jede Wertung genau einmal`);
-    }
-
-    if (o.regie !== undefined) {
-      const rg = form(o.regie, [], ['notiz', 'leitfragen'], `${ort} regie`);
-      regie[id] = { notizHtml: c.html(text(rg.notiz), ort), leitfragen: (Array.isArray(rg.leitfragen) ? rg.leitfragen : []).map(text) };
     }
 
     const gut = kuerzbar(o, 'gut', ort, 'html', kurz, null);
@@ -824,5 +817,5 @@ export function baueGeschichte(c, dateien, themen = null, werkzeuge = null) {
     ...(buch.length > 0 ? { buch } : {}),
     ende,
   };
-  return { geschichte, regie };
+  return { geschichte };
 }

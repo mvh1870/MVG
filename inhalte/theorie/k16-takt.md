@@ -298,13 +298,3 @@ Mit mindestens zwei zulässigen Optionen, gewichtetem Vergleich, Empfehlung und 
 :::
 :::
 :::
-
-::: regie
-### Notiz
-Das Thema zeigt den Takt aus Sicht des Bauherrn: Er pflegt nichts, er bekommt einen Termin, eine Seite und – wenn nötig – eine sofortige Meldung. Den Regler gemeinsam durchgehen; bei den losen Gerüstankern betonen, dass Dringliches nie auf den Takt wartet. Das Berichtsbeispiel ist fiktiv.
-
-### Leitfragen
-- Wie viele Seiten hat Ihr letzter Monatsbericht – und welche Entscheidung stand darin?
-- Über welchen Weg erreicht Sie eine dringliche Meldung, und wer vertritt Sie?
-- Wo steht in Ihrem Projekt der maßgebliche Stand der Informationen?
-:::

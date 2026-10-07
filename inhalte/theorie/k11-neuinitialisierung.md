@@ -255,13 +255,3 @@ form: karten
 Ob man früh mit der Reifegradanalyse einsteigt oder im laufenden Projekt mit einer Neuinitialisierung: Am Ende zählt, wie viel besser der Bauherr danach führen kann.
 :::
 :::
-
-::: regie
-### Notiz
-Dieses Thema vertieft die MVG-Neuinitialisierung: kein vollständiger Projektneustart und keine Freigabe; die Abfolge LPH 0–9 bleibt unverändert. Es tragen der Umschalter „Viel Betrieb, wenig Führung“ und die zentrale Bauherrenfrage in den Etappen: Welche Entscheidungen müssen jetzt neu getroffen und bestätigt werden? Nicht behaupten, ein Projekt des Kunden brauche eine Neuinitialisierung – der Kunde gleicht die Signale selbst ab.
-
-### Leitfragen
-- Welche der acht Signale sehen Sie in einem Ihrer laufenden Projekte?
-- Welche Entscheidung in diesem Projekt müsste heute neu getroffen und bestätigt werden?
-- Welcher Stand der Unterlagen gilt dort für die nächste Entscheidung – und wer hat ihn festgelegt?
-:::

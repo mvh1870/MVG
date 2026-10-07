@@ -1,6 +1,6 @@
 /*
  * Explore-Übersetzer (P16.8, O-46; P18.3/P18.4, O-59): liest inhalte/werkzeuge.yaml (Texte der neun Werkzeuge), prüft
- * sie und liefert `werkzeuge` (dazu `regie`, das Regie-Material der vier neuen Werkzeuge) für src/generiert/inhalte.json (Typen: src/inhalte/typen.ts, `Werkzeuge`). Markdown
+ * sie und liefert `werkzeuge` für src/generiert/inhalte.json (Typen: src/inhalte/typen.ts, `Werkzeuge`). Markdown
  * läuft durch den Kompilierer; `belege` bleiben intern (O-38). Die vier neuen Werkzeuge (Konzept docs/WERKZEUGE-P18.md
  * Abschnitt 5) rechnet der Übersetzer zur Selbstprobe mit den Kernen aus src/werkzeuge/ nach: jedes Beispiel muss sein
  * `erwartet` treffen, damit Beispiel, Kern und Konzept nie auseinanderlaufen.
@@ -161,18 +161,10 @@ export function baueWerkzeuge(c, rel, roh) {
     }
   };
   for (const k of ['vorlagencheck', 'wegweiser', 'risikogrenzen', 'monatsbericht']) leereSchluessel(y[k], k);
-  /** Regie-Material je neues Werkzeug (Notiz und Leitfragen) – nur für die Regie, nie öffentlich (L-7, Konzept 0.3) */
-  /** @type {Record<string, { notizHtml: string, leitfragen: string[] }>} */
-  const regie = {};
+  // O-65: Moderationsnotizen und Leitfragen gibt es nicht mehr – ein Feld „regie“ ist ein Fehler
   for (const id of NEUE_WERKZEUGE) {
     const teilId = /** @type {Record<string, string>} */ (WERKZEUG_TEIL)[id] ?? id;
-    const r = y[teilId]?.regie;
-    const ort = `${teilId} regie`;
-    if (r === undefined || r === null || typeof r !== 'object' || Array.isArray(r)) { c.fehler(rel, `${ort}: erwartet { notiz, leitfragen }`); continue; }
-    for (const k of Object.keys(r)) if (k !== 'notiz' && k !== 'leitfragen') c.fehler(rel, `${ort}: unbekanntes Feld „${k}“ (erlaubt: notiz, leitfragen)`);
-    if (text(r.notiz).trim() === '') c.fehler(rel, `${ort}: Notiz fehlt`);
-    if (!Array.isArray(r.leitfragen) || r.leitfragen.length === 0) c.fehler(rel, `${ort}: mindestens eine Leitfrage`);
-    regie[id] = { notizHtml: c.html(text(r.notiz), rel), leitfragen: (Array.isArray(r.leitfragen) ? r.leitfragen : []).map(text) };
+    if (y[teilId]?.regie !== undefined) c.fehler(rel, `${teilId} regie: Moderationsnotizen gibt es nicht mehr (O-65)`);
   }
   const vorlagencheck = baueVorlagenCheck(y.vorlagencheck ?? {}, neuerTeil, sichtbar, belege, (/** @type {string} */ f) => c.fehler(rel, f));
   const wegweiserTeil = baueWegweiser(y.wegweiser ?? {}, neuerTeil, sichtbar, satz, belege, (/** @type {string} */ f) => c.fehler(rel, f));
@@ -190,7 +182,7 @@ export function baueWerkzeuge(c, rel, roh) {
     risikogrenzen,
     monatsbericht,
   };
-  return { werkzeuge, regie };
+  return { werkzeuge };
 }
 
 /** @typedef {(ort: string, x: unknown) => string} Sichtbar */

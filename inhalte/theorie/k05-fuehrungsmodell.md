@@ -352,13 +352,3 @@ Eine Beratung zum technischen Betrieb des Gebäudes (Betreiberberatung)
 :::
 :::
 :::
-
-::: regie
-### Notiz
-Dieses Thema beschreibt MVG als Führungsmodell: sechs Kernfragen, acht Bausteine (Tafel), Wirkung durch Kopplung (Leiste „Was eine wesentliche Änderung steuerbar macht“). Im Termin trägt das Ineinandergreifen der Bausteine: Ein Zielsystem, eine RACI-Tabelle oder eine Entscheidungsvorlage allein reicht nicht. Entscheidungssicherheit heißt nicht Risikofreiheit – die Sortierübung eignet sich zum gemeinsamen Durchgehen. LPH 0 ist ein früher Hebel, aber nicht das Hauptnarrativ. Die Grenzen offen nennen – MVG ist zum Beispiel keine Vergaberechtsprüfung und keine technische Betreiberberatung.
-
-### Leitfragen
-- Welche der sechs Kernfragen könnten Sie für Ihr Projekt heute schriftlich beantworten?
-- Welche der acht Bausteine gibt es bei Ihnen schon – und wo sind sie miteinander verbunden?
-:::
-

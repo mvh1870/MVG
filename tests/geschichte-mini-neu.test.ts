@@ -22,7 +22,7 @@ dom.window.scrollBy = (() => undefined) as typeof dom.window.scrollBy;
 dom.window.HTMLElement.prototype.scrollIntoView = function scrollIntoView() { /* jsdom rollt nicht */ };
 after(() => dom.window.close());
 
-const { inhalte, regieGeschichte, regieKapitel, regieWerkzeug } = await import('../src/inhalte/index.ts');
+const { inhalte } = await import('../src/inhalte/index.ts');
 const E = await import('../src/geschichte/engine.ts');
 const { MINI_ARTEN } = await import('../src/geschichte/mini-arten.ts');
 const { MINI_BAUSTEINE, miniAnsage } = await import('../src/ui/flaechen/geschichte-mini.ts');
@@ -520,7 +520,7 @@ test('Regie: Auflösen löst jede neue Art vollständig, die Leinwand rollt zum 
   const kanal = { senden: (n: never) => { gesendet.push(n); }, abonnieren: () => () => undefined, schliessen: () => undefined };
   for (const [art, m, knopf] of [['matrix', matrixMini(), 'regie-mini-1-stimmt'], ['bericht', berichtMini(), 'regie-mini-2-nachfordern'], ['rueckfragen', rueckfragenMini(), 'regie-mini-1']] as const) {
     const g = mitMini(BASIS, STATION, m);
-    const r = erzeugeRegie({ inhalte: { ...inhalte, geschichte: g }, kanal, version: 'Test', speicher: speicher(), regieGeschichte, regieKapitel, regieWerkzeug, oeffneLeinwand: () => undefined, takt: 100000 });
+    const r = erzeugeRegie({ inhalte: { ...inhalte, geschichte: g }, kanal, version: 'Test', speicher: speicher(), oeffneLeinwand: () => undefined, takt: 100000 });
     try {
       document.body.replaceChildren(r.element);
       const sprung = r.element.querySelector<HTMLSelectElement>('[data-pruef="regie-sprung"]') as HTMLSelectElement;

@@ -419,13 +419,3 @@ Verbleibende Unsicherheit bleibt als verknüpfter Vorgang sichtbar. Eine geplant
 Ein Vorgang verschwindet nicht, weil ihn jemand abhakt – er schließt, wenn der Grund dafür belegt ist.
 :::
 :::
-
-::: regie
-### Notiz
-Das Thema ordnet die sechs Vorgangsarten und die Entscheidungsvorbereitung. Die Karten mit den Lindenhall-Beispielen eignen sich zum gemeinsamen Umdrehen. In der Matrix den Fall „W 1 · A 5“ ansprechen: Auswirkung 5 ist immer vorrangig. Die Zahlen und Namen sind fiktiv.
-
-### Leitfragen
-- Welcher Hinweis in Ihrem Projekt steht als Risiko in der Risikoliste (im Register), obwohl er längst eingetreten ist?
-- Wer legt bei Ihnen die Grenzen der Wahrscheinlichkeitsstufen fest?
-- Welche Maßnahme gilt bei Ihnen als erledigt, ohne dass ihre Wirkung belegt ist?
-:::

@@ -4,6 +4,8 @@ Kopf ≤ 100 Zeilen. Oben JETZT (überschreiben), darunter FRÜHER (anhängen, k
 
 ## JETZT
 
+- **Block 2026-10-07 00:08–00:15 UTC (+00:00), Routine, hingelegt:** `main` (Owner-Commits O-65 Moderationsnotizen entfernt, Textexport `docs/textexport/`) ohne Konflikt in `claude/haus` zusammengeführt. Kette `pruefe` auf dem Merge grün (197,2 s, Oberfläche 20 Läufe 137,5 s, `dist/` unverändert); Node 22.22, `npm ci` 6 s. CI 410 (`main`, 6e34b9b) grün gelesen. Planblatt leer, keine neue Frage oder Antwort; kein Merge nach `main` nötig (dort fehlen nur Merge- und Ampel-Commit). Offen beim Owner unverändert (siehe unten).
+
 - **Block 2026-10-06 21:10–21:10 UTC (+00:00), Routine, hingelegt:** Planblatt leer, keine neue Antwort in OWNER-FRAGEN.md, `main` schon enthalten. CI 407 und 408 (`claude/haus`, 0a98cca) grün gelesen; seit 18:15 UTC kein Code geändert, darum Kette nicht erneut gefahren. Offen beim Owner unverändert (siehe unten).
 
 - **Block 2026-10-06 18:09–18:20 UTC (+00:00), Routine, hingelegt:** Planblatt leer, keine offene Frage. CI 405 (`claude/haus`) und 406 (`main`, 9589a16) grün gelesen. Kette `pruefe` grün (295,8 s, Oberfläche 20 Läufe 185,0 s); Node 22.22, `npm ci` 10 s. Kein Merge nötig (`main` enthält alles bis auf die Ampel). Offen beim Owner unverändert: `dist/` hochladen (`docs/LAUNCH.md`), Sichtprüfung Systemschriften Windows/macOS, Rechtsprüfung „Nutzung der Inhalte“; oder neue Posten.

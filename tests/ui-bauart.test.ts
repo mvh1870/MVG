@@ -57,7 +57,8 @@ function importGraph(start: string): Map<string, string[]> {
 test('Regie-Material erreicht nur die Regie (Konstruktion, O-9): kein Modul außer main.ts greift darauf zu', () => {
   const module = dateien(join(WURZEL, 'src')).filter((p) => p.endsWith('.ts') && !rel(p).startsWith('src/generiert/'));
   assert.ok(module.length > 25);
-  const ausnahmen = new Set(['src/main.ts', 'src/inhalte/index.ts', 'src/inhalte/typen.ts']);
+  // src/werkzeuge-kompass.ts ist der zweite Einstieg (eigenständige Werkzeugseite, L-431) und lädt die Inhalte wie main.ts
+  const ausnahmen = new Set(['src/main.ts', 'src/werkzeuge-kompass.ts', 'src/inhalte/index.ts', 'src/inhalte/typen.ts']);
   for (const p of module) {
     if (ausnahmen.has(rel(p))) continue;
     const text = readFileSync(p, 'utf8');

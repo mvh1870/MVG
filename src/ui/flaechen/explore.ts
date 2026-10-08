@@ -19,7 +19,7 @@ import type { OeffentlicheInhalte, Werkzeuge } from '../../inhalte/typen.ts';
 import { ersetze, h, vonHtml } from '../h.ts';
 import { inhalt, inhaltInline } from '../bausteine/inhalt.ts';
 import { sym } from '../bausteine/bloecke.ts';
-import { seitenRahmen } from '../bausteine/seite.ts';
+import { istEigenstaendig, seitenRahmen } from '../bausteine/seite.ts';
 import { glossarListe } from './theorie.ts';
 import { W } from '../woerter.ts';
 import { TEIL, WERKZEUGE, werkzeugAus, werkzeugTitel, type Werkzeug } from '../werkzeug-kennungen.ts';
@@ -316,7 +316,7 @@ export function baueExplore(o: ExploreOptionen): HTMLElement {
     inhalt: h('div', { class: 'ex-rahmen', 'data-pruef': 'explore', 'data-ton': WERKZEUG_BILD[aktiv].ton },
       h('header', { class: 'ex-kopf' },
         h('div', { class: 'ex-kopf-text' },
-          h('p', { class: 'gs-kicker' }, E.bereich),
+          h('p', { class: 'gs-kicker' }, istEigenstaendig() ? W.werkzeugeKompass.name : E.bereich),
           h('h1', { class: 'gs-titel ex-titel', tabindex: -1, 'data-pruef': 'ex-titel' }, titel(aktiv)),
           // R78, L-322: unter dem Titel steht der dreiteilige Vorspann des gewählten Werkzeugs (wozu, was Sie eintragen, was das Ergebnis
           // heißt – Zweck, Eingabe und Deutung sind Inhalt, keine Bedienanleitung, O-56); der Hinweis auf den fiktiven Fall bleibt
@@ -324,7 +324,7 @@ export function baueExplore(o: ExploreOptionen): HTMLElement {
           vorspann(aktiv),
           w !== null ? h('div', { class: 'gs-leise ex-fall', 'data-pruef': 'ex-fall' }, inhalt(w.einleitungHtml)) : null),
         h('div', { class: 'ex-kopf-bild', 'aria-hidden': 'true' }, vonHtml(gimmick(WERKZEUG_BILD[aktiv].bild, { groesse: 112, dekorativ: true })))),
-      h('nav', { class: 'ex-werkzeuge', 'aria-label': E.werkzeuge },
+      h('nav', { class: 'ex-werkzeuge', 'aria-label': istEigenstaendig() ? W.werkzeugeKompass.name : E.werkzeuge },
         WERKZEUGE.map((id) => o.bedienbar
           ? h('a', { class: 'ex-werkzeug-link', href: `#explore/${id}`, 'aria-current': id === aktiv ? 'page' : null, 'data-pruef': `ex-${id}`, 'data-ton': WERKZEUG_BILD[id].ton }, kachel(id))
           : h('span', { class: 'ex-werkzeug-link', 'aria-current': id === aktiv ? 'page' : null, 'data-ton': WERKZEUG_BILD[id].ton }, kachel(id)))),

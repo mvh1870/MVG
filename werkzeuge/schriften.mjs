@@ -127,7 +127,7 @@ export async function schriftenCss() {
   const kopf = '/*! Schriften unter SIL Open Font License 1.1 (openfontlicense.org), eingebettet aus:\n'
     + versionen.map((v) => `   · ${v}\n`).join('')
     + komponenten.map((k) => `   ${k.name}: ${k.copyright}\n`).join('')
-    + '   Untermengen latin, latin-ext (L-2). Erzeugt von werkzeuge/schriften.mjs – nicht von Hand ändern. */\n\n';
+    + '   Untermengen latin, latin-ext. */\n\n';
   return { css: kopf + bloecke.join('\n'), eintraege, komponenten };
 }
 

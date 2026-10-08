@@ -212,5 +212,8 @@ Vorgabe (bis die Antworten des Owners aus der Klickseite „Story erweitern“ v
 ### P22 · Moderationsnotizen entfernt (O-65, Owner im Chat 2026-10-06)
 - [x] P22.1 (L-430) · Notizen und Leitfragen aus Inhalten, Übersetzern, Typen und „Präsentieren“ entfernt; `regie` in Inhalten ist ein Fehler — Abnahme: Kette grün.
 
+### P23 · Exportpaket „Werkzeuge Kompass“ (Owner im Chat 2026-10-08)
+- [x] P23.1 (L-431) · Eigenständige Seite, Daten + Regeln als JSON, Quellcode-Modul ohne Kommentare; `node werkzeuge/werkzeuge-kompass.mjs` — Abnahme: Kette grün, Browserprobe beider Seiten (9 Werkzeuge, 0 Netzzugriffe, 0 Konsolenfehler), Modul mit `tsc` und eigenem Bau, Prüf-Agent Fachtreue + Begriffe.
+
 ## Erledigt
 (noch nichts)

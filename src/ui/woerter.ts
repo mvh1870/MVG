@@ -184,6 +184,10 @@ export const W = {
     lizenzen: 'Drittanbieter & Lizenzen',
     zumInhalt: 'Zum Inhalt springen',
   },
+  // Eigenständige Werkzeugseite im Exportpaket (L-431)
+  werkzeugeKompass: {
+    name: 'Werkzeuge Kompass',
+  },
   // Drittanbieter & Lizenzen (Audit 2026-10-06, O-64): Angaben aus src/generiert/drittanbieter.json
   lizenzen: {
     kicker: 'Informationen',

@@ -77,7 +77,7 @@ const REGELN = {
     'Pfeile „wird zu“ (Lebenszyklus): Frühwarnung → Risiko, Frühwarnung → Problem, Risiko → Entscheidungsregister, Problem → Entscheidungsregister, Änderung → Entscheidungsregister, Änderung → CTC / Prognose, Entscheidungsregister → Entscheidungsvorlage, Entscheidungsvorlage → Freigabe, Freigabe → Maßnahme.',
     'Pfeile „Überwachung und Rückwirkung“: CTC / Prognose → Schwellenwert, Schwellenwert → Frühwarnung, Maßnahme → Risiko (der Regelkreis). Pfeil „Bericht“: Freigabe → Managementbericht.',
     'Es gibt keinen Pfeil vom Risiko zurück zur Frühwarnung (ein überschrittener Schwellenwert erzeugt eine neue Frühwarnung) und keinen von der Entscheidungsvorlage zur Maßnahme (erst der Beschluss, dann die Auflagen).',
-    'Zuständigkeit: Der Bauherr führt Entscheidungsregister und Freigabe, die Projektsteuerung alle anderen Stationen; der Lenkungskreis berät und führt keine Station.',
+    'Zuständigkeit: Der Bauherr führt die Freigabe, die Projektsteuerung alle anderen Stationen (auch das Entscheidungsregister); der Lenkungskreis berät und führt keine Station.',
     'Ein Fall besteht aus einer Startstation und einer Folge von Pfeilen. Jeder Pfeil kommt höchstens einmal vor, und seine Quelle ist die Startstation oder das Ziel eines früheren Pfeils. Fällt eine Station aus, endet der Fall vor dem ersten Pfeil, der sie berührt.',
     'Durchprobieren: Zu jedem Schritt zuerst die Frage, wohin es weitergeht (richtig ist das Ziel des nächsten Pfeils; andere Pfeile von derselben Station gehören zum Zusammenspiel, kommen im Fall aber später; Stationen ohne Pfeil von dort sind falsch), danach die Frage, wer die Zielstation führt.',
   ],

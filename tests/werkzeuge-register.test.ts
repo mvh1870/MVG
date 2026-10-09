@@ -102,11 +102,11 @@ test('Probefragen: 3 bis 4 verschiedene Antworten, die richtige genau einmal, oh
   assert.ok(plaetze.size > 1, 'Platz der richtigen Antwort wechselt');
 });
 
-test('Zuständigkeit nach Vorgabe des Owners: Entscheidungsregister und Freigabe beim Bauherrn, alles andere bei der Projektsteuerung; der Lenkungskreis führt nichts', () => {
+test('Zuständigkeit nach Vorgabe des Owners: die Freigabe beim Bauherrn, alles andere (auch das Entscheidungsregister) bei der Projektsteuerung; der Lenkungskreis führt nichts', () => {
   assert.ok(w);
   const fuehrt = Object.fromEntries(KNOTEN.map((id) => [id, w.knoten[id].wer.fuehrt])) as Record<string, Rolle>;
-  assert.deepEqual(Object.entries(fuehrt).filter(([, r]) => r === 'bauherr').map(([id]) => id), ['register', 'freigabe']);
-  assert.deepEqual(zaehleFuehrung(fuehrt), { bauherr: 2, lenkungskreis: 0, projektsteuerung: 8 });
+  assert.deepEqual(Object.entries(fuehrt).filter(([, r]) => r === 'bauherr').map(([id]) => id), ['freigabe']);
+  assert.deepEqual(zaehleFuehrung(fuehrt), { bauherr: 1, lenkungskreis: 0, projektsteuerung: 9 });
   assert.equal(w.schwelle.wer.fuehrt, 'bauherr', 'die Schwellen legt der Bauherr fest');
   assert.ok(w.knoten.freigabe.wer.beteiligt.some((b) => b.rolle === 'lenkungskreis'), 'Freigabe: der Lenkungskreis berät');
   assert.deepEqual(w.rollen.map((r) => r.id), [...ROLLEN]);

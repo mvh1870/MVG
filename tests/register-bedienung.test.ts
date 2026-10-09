@@ -56,7 +56,7 @@ test('Aufbau: zehn Stationen, ein Hinweiskasten, dreizehn Pfeile, vier Ansichten
   assert.equal(el.querySelector('[data-pruef="register-ebene-wer"]')?.getAttribute('aria-pressed'), 'true');
   // jede Station nennt in der Grafik, wer sie führt (Wort, nicht nur Farbe)
   for (const id of KNOTEN) assert.equal(streifen(el, id), w.rollen.find((r) => r.id === w.knoten[id].wer.fuehrt)?.titel, id);
-  assert.equal(streifen(el, 'register'), 'Bauherr');
+  assert.equal(streifen(el, 'register'), 'Projektsteuerung');
   assert.equal(streifen(el, 'freigabe'), 'Bauherr');
   assert.equal(streifen(el, 'vorlage'), 'Projektsteuerung');
   assert.equal(el.querySelector('.rz-svg')?.getAttribute('role'), 'group');
@@ -237,7 +237,8 @@ test('Ohne Bedienung (Leinwand): Grafik und Rollen, keine Knöpfe, keine Station
   assert.equal(el.querySelectorAll('button, select, input, [role="button"], [tabindex]').length, 0);
   assert.equal(el.querySelectorAll('.rz-kachel').length, KNOTEN.length + 1);
   assert.equal(el.querySelectorAll('.rz-pfeil').length, KANTEN.length);
-  assert.equal(streifen(el, 'register'), 'Bauherr');
+  assert.equal(streifen(el, 'register'), 'Projektsteuerung');
+  assert.equal(streifen(el, 'freigabe'), 'Bauherr');
 });
 
 test('Sichtbar: in jeder Ansicht und Frage kein verbotenes Wort, keine G0–G5, keine Figuren', () => {

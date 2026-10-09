@@ -1,4 +1,4 @@
-// Browser-Szenario Explore (P16.8, O-46; P18.3/P18.4, O-59): neun Werkzeuge am Schulcampus – Rechner dreht die Rangfolge,
+// Browser-Szenario Explore (P16.8, O-46; P18.3/P18.4, O-59; Register-Zusammenspiel 2026-10-09): zehn Werkzeuge am Schulcampus – Rechner dreht die Rangfolge,
 // Matrix ordnet ein, Vorgänge führen weiter, Takt, Glossar; dazu Vorlagen-Check, Wegweiser, Risiko-Bewerter und
 // Monatsbericht mit Tastatur, Rückmeldung, axe und Druck auf genau einer Seite (PDF-Probe, D im Höchstfall).
 import { pruefer, sichtbarVerboten } from './hilfen.mjs';
@@ -83,7 +83,7 @@ export async function lauf(seite, h) {
   if (vp !== null) { await seite.setViewportSize(vp); await h.warte(100); }
   // O-57, P17.7: Kacheln mit Gegenstand im Ton des Werkzeugs; bei 320 px läuft nichts quer
   const kacheln = await seite.locator('.ex-werkzeug-link .ex-kachel-bild svg').filter({ visible: true }).count();
-  if (kacheln !== 9) h.befund(`Werkzeugleiste: erwartet neun Gegenstände, gefunden ${kacheln}`);
+  if (kacheln !== 10) h.befund(`Werkzeugleiste: erwartet zehn Gegenstände, gefunden ${kacheln}`);
   if (vp !== null && vp.width <= 400) {
     await seite.setViewportSize({ width: 320, height: vp.height });
     await h.warte(150);
@@ -105,6 +105,7 @@ export async function lauf(seite, h) {
   await h.erwarte('[data-pruef="glossar-suche"]');
   await pruefe('glossar');
   await neueWerkzeuge(seite, h, pruefe, verboten);
+  await registerZusammenspiel(seite, h, pruefe, verboten);
   // P18.5 (E-13): die Adresse #explore/<werkzeug>/<beispiel> öffnet das Werkzeug mit dem Beispiel (so verlinken Story und Themen)
   for (const [werkzeug, beispiel, auswahl] of [['vorlagen-check', 'lueftung-voll', 'vc-beispiel'], ['wegweiser', 'geruest', 'ww-beispiel'], ['risiko-grenzen', 'ris-014', 'rg-beispiel']]) {
     await seite.goto(h.url.replace(/#.*$/u, '') + `#explore/${werkzeug}/${beispiel}`);
@@ -302,4 +303,93 @@ async function hoechstfall(seite, fuellwort = 'Langer Eintrag mit vielen Wörter
     await seite.locator('[data-pruef="mb-e-hinzu"]').click();
     for (const k of ['frage', 'stelle', 'bis', 'kennung']) await fuelle(`mb-e-${k}-${i}`, 0);
   }
+}
+
+
+/** Läuft im Browser: ragt eine Beschriftung der Grafik aus ihrer Kachel oder ihrem Streifen, oder überdeckt der Untertitel den Streifen? */
+function registerGrafikMasse() {
+  const funde = [];
+  const rand = 5;
+  for (const k of document.querySelectorAll('.rz-kachel:not(.rz-banner)')) {
+    const ort = k.getAttribute('data-ort') ?? '?';
+    const box = k.querySelector('.rz-box')?.getBBox();
+    const streifen = k.querySelector('.rz-streifen-flaeche')?.getBBox();
+    if (box === undefined || streifen === undefined) { funde.push(`${ort}: Kachel unvollständig`); continue; }
+    for (const t of k.querySelectorAll('.rz-titel, .rz-unter')) {
+      const b = t.getBBox();
+      if (b.x < box.x + rand || b.x + b.width > box.x + box.width - rand) funde.push(`${ort}: „${(t.textContent ?? '').trim().slice(0, 24)}“ ragt seitlich aus der Kachel (${Math.round(b.x + b.width - box.x - box.width)} px)`);
+      if (b.y + b.height > streifen.y - 1) funde.push(`${ort}: „${(t.textContent ?? '').trim().slice(0, 24)}“ überdeckt den Streifen`);
+    }
+    const st = k.querySelector('.rz-streifen-text')?.getBBox();
+    if (st !== undefined && (st.x < streifen.x + 3 || st.x + st.width > streifen.x + streifen.width - 3)) funde.push(`${ort}: Streifentext „${(k.querySelector('.rz-streifen-text')?.textContent ?? '').slice(0, 26)}“ ragt aus dem Streifen (${Math.round(st.x + st.width - streifen.x - streifen.width)} px)`);
+  }
+  for (const p of document.querySelectorAll('.rz-pfeil')) {
+    const pille = p.querySelector('.rz-pille')?.getBBox();
+    const t = p.querySelector('.rz-pille-text')?.getBBox();
+    if (pille !== undefined && t !== undefined && (t.x < pille.x + 3 || t.x + t.width > pille.x + pille.width - 3)) funde.push(`Pfeil ${p.getAttribute('data-kante')}: Text ragt aus der Pille`);
+  }
+  const banner = document.querySelector('.rz-banner');
+  const bb = banner?.querySelector('.rz-box')?.getBBox();
+  const bt = banner?.querySelector('.rz-banner-text')?.getBBox();
+  if (bb !== undefined && bt !== undefined && bt.x + bt.width > bb.x + bb.width - 8) funde.push('Hinweiskasten: Text ragt heraus');
+  return funde;
+}
+
+/**
+ * Register-Zusammenspiel: alle vier Ansichten, alle fünf Fragen, Beschriftungen bleiben in ihren Kacheln, die Seite läuft nicht quer
+ * (nur die Grafik rollt), axe in jeder Ansicht.
+ * @param {import('playwright').Page} seite
+ * @param {import('../../werkzeuge/oberflaeche.mjs').Helfer} h
+ * @param {(wo: string) => Promise<void>} pruefe
+ * @param {(wo: string) => Promise<void>} verboten
+ */
+async function registerZusammenspiel(seite, h, pruefe, verboten) {
+  await h.klick('[data-pruef="ex-register"]');
+  await h.erwarte('[data-werkzeug="register"] [data-pruef="register-grafik"]');
+  await verboten('register');
+  await pruefe('register');
+  // Beschriftungen in jeder Frage (der Streifen wechselt den Text) innerhalb ihrer Kacheln
+  for (const e of ['wer', 'wann', 'schwelle', 'ergebnis', 'stoerung']) {
+    await h.klick(`[data-pruef="register-ebene-${e}"]`);
+    await h.warte(60);
+    for (const fund of await seite.evaluate(registerGrafikMasse)) h.befund(`register ${e}: ${fund}`);
+  }
+  await h.klick('[data-pruef="register-ebene-wer"]');
+  // Zuschauen: ein Schritt, der Pfeil ist markiert; Starten und Anhalten
+  await h.klick('[data-pruef="register-vor"]');
+  await h.erwarte('.rz-pfeil.ist-aktiv');
+  await h.klick('[data-pruef="register-start"]');
+  await h.warte(120);
+  await h.klick('[data-pruef="register-start"]');
+  // Ausfall: Fall bleibt stehen, die Folge wird genannt
+  await h.klick('[data-pruef="register-neu"]');
+  await h.klick('[data-pruef="register-ebene-stoerung"]');
+  await h.klick('[data-pruef="rz-kachel-vorlage"]');
+  await h.klick('[data-pruef="register-vor"]');
+  await h.klick('[data-pruef="register-vor"]');
+  await h.erwarte('[data-pruef="register-blockade"]');
+  await pruefe('register-stoerung');
+  for (const fund of await seite.evaluate(registerGrafikMasse)) h.befund(`register Ausfall: ${fund}`);
+  await h.klick('[data-pruef="register-ebene-wer"]');
+  // Geschichte und Durchprobieren
+  await h.klick('[data-pruef="register-modus-geschichte"]');
+  await h.klick('[data-pruef="register-vor"]');
+  await h.erwarte('[data-pruef="register-schritt"] .rz-schritt-titel');
+  await verboten('register geschichte');
+  await pruefe('register-geschichte');
+  await h.klick('[data-pruef="register-modus-probieren"]');
+  await h.erwarte('[data-pruef="register-probe"] input[type="radio"]');
+  await seite.locator('input[name="register-weiter"]').first().check();
+  await h.erwarte('[data-pruef="register-rueckmeldung"]');
+  await verboten('register probieren');
+  await pruefe('register-probieren');
+  // Erkunden: Station wählen
+  await h.klick('[data-pruef="register-modus-erkunden"]');
+  await seite.locator('[data-pruef="rz-kachel-freigabe"]').click();
+  await h.erwarte('[data-pruef="register-station"]');
+  await verboten('register erkunden');
+  await pruefe('register-erkunden');
+  // die Seite läuft nicht quer: nur die Grafik rollt
+  const quer = await seite.evaluate(() => document.documentElement.scrollWidth - innerWidth);
+  if (quer > 0) h.befund(`register: Seite ${quer} px breiter als das Fenster`);
 }

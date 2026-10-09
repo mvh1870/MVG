@@ -351,10 +351,10 @@ test('Ansage (R79): Risiko-Bewerter nennt die Zahl der Hinweise, Vorlagen-Check 
   assert.match(q(vc, 'vc-status').textContent ?? '', /· Dringliches wird gemeldet/u);
 });
 
-test('Vorspann (L-322): jedes der neun Werkzeuge nennt Wozu · Was Sie eintragen · Was das Ergebnis heißt – ohne Bedienanleitung', async () => {
+test('Vorspann (L-322): jedes der zehn Werkzeuge nennt Wozu · Was Sie eintragen · Was das Ergebnis heißt – ohne Bedienanleitung', async () => {
   const { WERKZEUGE } = await import('../src/ui/flaechen/explore.ts');
   const { W } = await import('../src/ui/woerter.ts');
-  assert.equal(WERKZEUGE.length, 9);
+  assert.equal(WERKZEUGE.length, 10);
   for (const id of WERKZEUGE) {
     const el = zeige(id);
     const teile = [...el.querySelectorAll('[data-pruef="ex-vorspann"] > div')];

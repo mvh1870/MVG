@@ -13,6 +13,7 @@ import type { Antwort, Gegenstand, MandatsGrund, MandatsRegel, Stelle, WegZustan
 import type { Art, FrageId, Wahl, Zusatz } from '../werkzeuge/wegweiser.ts';
 import type { GrenzFehler, Wert } from '../werkzeuge/risiko-grenzen.ts';
 import type { AmpelId, Farbe } from '../werkzeuge/monatsbericht.ts';
+import type { AnlassId, KnotenId, Ort, Rolle } from '../werkzeuge/register.ts';
 export type { Geschichte, WerkzeugVerweis };
 
 /** Kopfdaten nach Umwandlung (Zahlen, Listen, ja/nein, verschachtelte Karten). Schlüssel in camelCase. */
@@ -184,6 +185,8 @@ export interface Werkzeuge {
   /** Vier neue Werkzeuge (P18.3/P18.4, O-59; Konzept docs/WERKZEUGE-P18.md, Rechenkerne src/werkzeuge/) */
   vorlagencheck: VorlagenCheckTeil;
   wegweiser: WegweiserTeil;
+  /** Register-Zusammenspiel (Werkzeug E, Rechenkern src/werkzeuge/register.ts) */
+  register: RegisterTeil;
   risikogrenzen: RisikoGrenzenTeil;
   monatsbericht: MonatsberichtTeil;
 }
@@ -229,6 +232,27 @@ export interface WegweiserTeil extends WerkzeugTeil {
   zusaetze: Record<Zusatz, { titel: string; text: string }>;
   verwechslungen: { id: string; art: Art; text: string }[];
   beispiele: { id: string; titel: string; text: string; antworten: Partial<Record<FrageId, Wahl>> }[];
+}
+
+/** E · Register-Zusammenspiel: Texte je Station und je Pfeil, die Fälle als Folge von Pfeilen (Form des Graphen: src/werkzeuge/register.ts). */
+export interface RegisterWer { fuehrt: Rolle; text: string; beteiligt: { rolle: Rolle; text: string }[] }
+export interface RegisterKurz { kurz: string; text: string }
+export interface RegisterKnoten {
+  titel: string;
+  unter: string;
+  text: string;
+  wer: RegisterWer;
+  wann: RegisterKurz;
+  schwelle: RegisterKurz;
+  ergebnis: RegisterKurz;
+  stoerung: string;
+}
+export interface RegisterTeil extends WerkzeugTeil {
+  rollen: { id: Rolle; titel: string; text: string }[];
+  schwelle: { titel: string; text: string; wer: RegisterWer };
+  knoten: Record<KnotenId, RegisterKnoten>;
+  kanten: Record<string, { text: string; erklaerung: string }>;
+  anlaesse: { id: AnlassId; titel: string; kurz: string; start: Ort; einstieg: string; schritte: { kante: string; text: string }[]; ende: string }[];
 }
 
 /** Eingabe einer Zeile im Beispiel des Risiko-Bewerters (wie `Wert` im Kern). */

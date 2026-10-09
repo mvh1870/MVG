@@ -1,9 +1,9 @@
 /*
- * Bereich „Explore“ (P16.8, O-46; P18.3/P18.4, O-59): neun Werkzeuge zum Ausprobieren, alle am fiktiven Schulcampus
+ * Bereich „Explore“ (P16.8, O-46; P18.3/P18.4, O-59): zehn Werkzeuge zum Ausprobieren, alle am fiktiven Schulcampus
  * Lindenhall-Süd (O-50). Nichts wird gespeichert oder gesendet; Einstellungen gelten nur für diese Ansicht (Hinweis sichtbar nur im Datenschutz, O-56).
  *
  *   #explore            → MCDA-Rechner (erstes Werkzeug), darüber die Werkzeugleiste
- *   #explore/<werkzeug> → mcda · vorlagen-check · matrix · risiko-grenzen · vorgaenge · wegweiser · takt · monatsbericht · glossar
+ *   #explore/<werkzeug> → mcda · vorlagen-check · matrix · risiko-grenzen · vorgaenge · wegweiser · register · takt · monatsbericht · glossar
  *
  * Jedes neue Werkzeug steht neben seinem „Geschwister“ und trägt dessen Ton (Konzept WERKZEUGE-P18 Abschnitt 0); seine
  * Oberfläche liegt in src/ui/flaechen/explore/, die Rechnung in src/werkzeuge/. Die Texte stehen in inhalte/werkzeuge.yaml;
@@ -27,6 +27,7 @@ import { vorlagenCheck } from './explore/vorlagen-check.ts';
 import { wegweiserWerkzeug } from './explore/wegweiser.ts';
 import { risikoGrenzen } from './explore/risiko-grenzen.ts';
 import { monatsbericht } from './explore/monatsbericht.ts';
+import { registerWerkzeug } from './explore/register.ts';
 
 export { WERKZEUGE, werkzeugAus, werkzeugTitel, type Werkzeug };
 
@@ -41,6 +42,7 @@ export const WERKZEUG_BILD: Record<Werkzeug, { bild: GimmickName; ton: Akzent }>
   'risiko-grenzen': { bild: 'messlatte', ton: 'blau' },
   vorgaenge: { bild: 'wegweiser', ton: 'lagune' },
   wegweiser: { bild: 'gabelung', ton: 'lagune' },
+  register: { bild: 'registerkarten', ton: 'lagune' },
   takt: { bild: 'kalender', ton: 'sonne' },
   monatsbericht: { bild: 'berichtsblatt', ton: 'sonne' },
   glossar: { bild: 'buch', ton: 'gruen' },
@@ -302,6 +304,7 @@ export function baueExplore(o: ExploreOptionen): HTMLElement {
     : aktiv === 'risiko-grenzen' ? risikoGrenzen(neu)
     : aktiv === 'vorgaenge' ? vorgaenge(o, w)
     : aktiv === 'wegweiser' ? wegweiserWerkzeug(neu)
+    : aktiv === 'register' ? registerWerkzeug(neu)
     : aktiv === 'takt' ? takt(o, w)
     : aktiv === 'monatsbericht' ? monatsbericht(neu)
     : h('div', { class: 'ex-werkzeug', 'data-werkzeug': 'glossar' }, glossarListe(o));

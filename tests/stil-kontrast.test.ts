@@ -87,7 +87,8 @@ test('CSS setzt Text nur in Farben, die als Textfarbe eines erlaubten Paars gef√
   // Kontext-Aliase: l√∂sen je Ort auf eine Farbe aus der Paarliste auf (Querverweis, Status, ID-Marke).
   // --teil-text: Textton des Teils der Themen (theorie.css, je data-teil ein --akzent-<ton>-text, P17.8)
   // --ton-text: Textton eines Werkzeugs bzw. Wegs (explore.css/start.css, je data-ton ein --akzent-<ton>-text, P17.7)
-  const aliase = new Set(['--welt-text', '--welt-farbe', '--status-text', '--id-text', '--teil-text', '--ton-text']);
+  // --rolle-text: Textton einer Rolle im Register-Zusammenspiel (explore.css, je data-rolle ein --akzent-<ton>-text)
+  const aliase = new Set(['--welt-text', '--welt-farbe', '--status-text', '--id-text', '--teil-text', '--ton-text', '--rolle-text']);
   const funde: string[] = [];
   for (const datei of readdirSync(resolve(WURZEL, 'src/stil')).filter((n) => n.endsWith('.css'))) {
     const zeilen = readFileSync(resolve(WURZEL, 'src/stil', datei), 'utf8').split('\n');

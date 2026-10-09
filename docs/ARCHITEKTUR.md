@@ -8,7 +8,7 @@ Stand P19.8 (2026-10-04; Technik und Layout nach Prüfrunde 3, L-390); davor P19
 ```
 quellen/ + inhalte/  ──werkzeuge (Node)──►  src/generiert/ (ignoriert)  ──esbuild──►  dist/ (Webseitenordner, committet)
 ```
-- `werkzeuge/inhalte.mjs` liest Quellen und Inhalte, prüft sie und schreibt `src/generiert/inhalte.json` und `src/generiert/abbildungen.json`; die Story übersetzt dabei `werkzeuge/geschichte.mjs`, die Explore-Texte `werkzeuge/explore.mjs`.
+- `werkzeuge/inhalte.mjs` liest Quellen und Inhalte, prüft sie und schreibt `src/generiert/inhalte.json` und `src/generiert/abbildungen.json`; die Story übersetzt dabei `werkzeuge/geschichte.mjs`, die Explore-Texte `werkzeuge/explore.mjs`. Das Register-Zusammenspiel (Werkzeug E, Kern `src/werkzeuge/register.ts`, Oberfläche `src/ui/flaechen/explore/register.ts` und `register-grafik.ts`) ist das einzige Werkzeug mit eigener SVG-Grafik, Ablaufsteuerung und Probefragen; sein Export als zehntes Werkzeug entsteht mit `werkzeuge/werkzeuge-kompass.mjs`.
 - `werkzeuge/bau.mjs` bündelt mit esbuild `src/main.ts` (IIFE) und `src/stil/index.css`, setzt beides in die Hülle `werkzeuge/huelle.html` ein und schreibt den Webseitenordner `dist/` (O-42, O-47): `index.html` (Hauptseite, alles eingebettet), `impressum.html` und `datenschutz.html` (aus `inhalte/rechtliches/*.md` mit `werkzeuge/rechtliches.html`), `robots.txt`, `sitemap.xml`, `.htaccess` (aus `werkzeuge/htaccess.txt`: HTTPS, Sicherheitsköpfe) und `vorschau.png` (Kopie von `quellen/marke/vorschau.png`).
 - Zur Laufzeit wird nichts nachgeladen, nichts geparst außer JSON, und es gibt keinen Netzzugriff (O-43).
 

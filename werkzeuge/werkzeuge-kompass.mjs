@@ -29,7 +29,7 @@ const ARBEIT = path.join(WURZEL, 'tmp', 'werkzeuge-kompass');
 /** Reihenfolge und Schlüssel der Werkzeuge (wie src/ui/werkzeug-kennungen.ts). */
 const WERKZEUGE = [
   ['mcda', 'mcda'], ['vorlagen-check', 'vorlagencheck'], ['matrix', 'matrix'], ['risiko-grenzen', 'risikogrenzen'],
-  ['vorgaenge', 'vorgaenge'], ['wegweiser', 'wegweiser'], ['takt', 'takt'], ['monatsbericht', 'monatsbericht'], ['glossar', 'glossar'],
+  ['vorgaenge', 'vorgaenge'], ['wegweiser', 'wegweiser'], ['register', 'register'], ['takt', 'takt'], ['monatsbericht', 'monatsbericht'], ['glossar', 'glossar'],
 ];
 
 /** Der Glossar-Vorspann nennt die Themen der Hauptseite; die eigenständige Seite hat keine. */
@@ -71,6 +71,15 @@ const REGELN = {
     '„unklar“ ist nur bei „schon eingetreten?“ und „möglich?“ möglich und führt zur Frühwarnung.',
     'Alle Fragen mit „nein“: Ist die Sache dringlich, wird sie als Frühwarnung festgehalten. Sonst ist es vermutlich kein Vorgang – es sei denn, eine Entscheidung des Bauherrn wird gebraucht; dann heißt das Ergebnis „Entscheidung vorbereiten“.',
     'Danach immer die Frage, ob eine Entscheidung des Bauherrn nötig ist.',
+  ],
+  register: [
+    'Stationen: Frühwarnung, Problem, Änderung, CTC / Prognose, Risiko, Entscheidungsregister, Entscheidungsvorlage, Freigabe, Maßnahme und Managementbericht; dazu der Hinweiskasten „Schwellenwert löst Frühwarnung aus“.',
+    'Pfeile „wird zu“ (Lebenszyklus): Frühwarnung → Risiko, Frühwarnung → Problem, Risiko → Entscheidungsregister, Problem → Entscheidungsregister, Änderung → Entscheidungsregister, Änderung → CTC / Prognose, Entscheidungsregister → Entscheidungsvorlage, Entscheidungsvorlage → Freigabe, Freigabe → Maßnahme.',
+    'Pfeile „Überwachung und Rückwirkung“: CTC / Prognose → Schwellenwert, Schwellenwert → Frühwarnung, Maßnahme → Risiko (der Regelkreis). Pfeil „Bericht“: Freigabe → Managementbericht.',
+    'Es gibt keinen Pfeil vom Risiko zurück zur Frühwarnung (ein überschrittener Schwellenwert erzeugt eine neue Frühwarnung) und keinen von der Entscheidungsvorlage zur Maßnahme (erst der Beschluss, dann die Auflagen).',
+    'Zuständigkeit: Der Bauherr führt Entscheidungsregister und Freigabe, die Projektsteuerung alle anderen Stationen; der Lenkungskreis berät und führt keine Station.',
+    'Ein Fall besteht aus einer Startstation und einer Folge von Pfeilen. Jeder Pfeil kommt höchstens einmal vor, und seine Quelle ist die Startstation oder das Ziel eines früheren Pfeils. Fällt eine Station aus, endet der Fall vor dem ersten Pfeil, der sie berührt.',
+    'Durchprobieren: Zu jedem Schritt zuerst die Frage, wohin es weitergeht (richtig ist das Ziel des nächsten Pfeils; andere Pfeile von derselben Station gehören zum Zusammenspiel, kommen im Fall aber später; Stationen ohne Pfeil von dort sind falsch), danach die Frage, wer die Zielstation führt.',
   ],
   monatsbericht: [
     'Ohne Monat, Datenstand, Lage, die Sätze zu den drei Ampeln und die benötigte Reaktion ist der Bericht unvollständig (gelb).',

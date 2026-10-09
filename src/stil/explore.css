@@ -438,3 +438,111 @@ li[data-fertig="ja"] .wz-schritt-nr { background: var(--status-gruen-soft); colo
   .druck-bogen .wz-matrix-teil { grid-template-columns: auto minmax(0, 1fr); }
   .druck-bogen .wz-matrix-bild .wb { width: 34mm; }
 }
+
+/* =============================================================================================
+   E · Register-Zusammenspiel (Owner im Chat 2026-10-09): Grundgrafik der Register, vier Ansichten, fünf Fragen.
+   Rollen tragen Farbe UND Wort (Farbe nie allein): Bauherr · Lenkungskreis · Projektsteuerung.
+   ============================================================================================= */
+.rz { display: grid; gap: var(--a-5); min-width: 0; }
+.rz [data-rolle="bauherr"], .rz[data-rolle="bauherr"] { --rolle: var(--akzent-sonne); --rolle-soft: var(--akzent-sonne-soft); --rolle-text: var(--akzent-sonne-text); }
+.rz [data-rolle="lenkungskreis"] { --rolle: var(--akzent-violett); --rolle-soft: var(--akzent-violett-soft); --rolle-text: var(--akzent-violett-text); }
+.rz [data-rolle="projektsteuerung"] { --rolle: var(--akzent-blau); --rolle-soft: var(--akzent-blau-soft); --rolle-text: var(--akzent-blau-text); }
+
+.rz-rolle { display: inline-block; padding: 1px var(--a-3); border-radius: var(--radius-rund); border: 1.5px solid var(--rolle); background: var(--rolle-soft); color: var(--rolle-text); font: 600 var(--gr-s)/1.35 var(--schrift-label); white-space: nowrap; }
+
+.rz-kopf { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--a-4) var(--a-6); }
+.rz-gruppe { display: grid; gap: var(--a-1); min-width: 0; }
+.rz-knoepfe { display: flex; flex-wrap: wrap; gap: var(--a-2); }
+.rz-kopf .wz-feld { min-width: 14rem; }
+.rz-kopf button:disabled { color: var(--gesperrt-text); background: var(--gesperrt); cursor: not-allowed; }
+
+/* Grafik: breit, schmal waagerecht rollend (Mindestbreite, damit die Beschriftungen lesbar bleiben) */
+.rz-grafik-rahmen { overflow-x: auto; border: 1px solid var(--linie); border-radius: var(--radius-l); background: var(--weiss); padding: var(--a-2); }
+.rz-svg { display: block; width: 100%; min-width: 880px; height: auto; }
+.rz-box { fill: var(--weiss); stroke: var(--linie-3); stroke-width: 2; }
+.rz-kachel { cursor: default; }
+[data-bedienbar] .rz-kachel, .rz-kachel[role="button"], .rz-pfeil[role="button"] { cursor: pointer; }
+.rz-kachel[data-rolle] .rz-box { stroke: var(--rolle, var(--linie-3)); }
+.rz-scheibe { fill: var(--rolle-soft, var(--ton-soft)); stroke: var(--rolle, var(--ton)); stroke-width: 2.5; }
+.rz-icon { fill: none; stroke: var(--rolle-text, var(--navy)); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.rz-titel { font: 800 22px/1 var(--schrift-anzeige); fill: var(--navy); }
+.rz-unter { font: 500 16px/1 var(--schrift-label); fill: var(--tinte-2); }
+.rz-banner .rz-box { fill: var(--rolle-soft); stroke: var(--rolle); }
+.rz-banner-text { font: 700 21px/1 var(--schrift-label); fill: var(--navy); }
+.rz-streifen-flaeche { fill: var(--rolle-soft); stroke: var(--rolle); stroke-width: 1.2; }
+.rz-streifen-text { font: 600 16px/1 var(--schrift-label); fill: var(--rolle-text); }
+.rz-grafik-rahmen:not([data-ebene="wer"]) .rz-streifen-flaeche { fill: var(--ton-soft); stroke: var(--ton); }
+.rz-grafik-rahmen:not([data-ebene="wer"]) .rz-streifen-text { fill: var(--ton-text); }
+.rz-marke { font: 800 22px/1 var(--schrift-label); fill: var(--rolle-text, var(--navy)); }
+
+.rz-linie { fill: none; stroke: var(--tinte-2); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.rz-spitze { fill: var(--tinte-2); }
+.rz-treffer { fill: none; stroke: transparent; stroke-width: 18; }
+.rz-pfeil[data-art="ueberwachung"] .rz-linie, .rz-linie[data-art="ueberwachung"] { stroke-dasharray: 9 6; }
+.rz-pfeil[data-art="bericht"] .rz-linie, .rz-linie[data-art="bericht"] { stroke-dasharray: 3 6; stroke: var(--akzent-blau-text); }
+.rz-pfeil[data-art="bericht"] .rz-spitze, .rz-spitze[data-art="bericht"] { fill: var(--akzent-blau-text); }
+.rz-pille { fill: var(--weiss); stroke: var(--linie-3); stroke-width: 1.5; }
+.rz-pille-text { font: 600 17px/1 var(--schrift-label); fill: var(--navy); }
+.rz-legende-rahmen { fill: var(--weiss); stroke: var(--linie-2); stroke-width: 1.5; }
+.rz-legende-text { font: 600 17px/1 var(--schrift-label); fill: var(--tinte-2); }
+.rz-impuls { fill: var(--ton-text); stroke: var(--weiss); stroke-width: 2.5; opacity: 0; }
+.rz-impuls.ist-sichtbar { opacity: 1; }
+
+/* Zustände: aktiv (jetzt), besucht, ausgefallen, gewählt */
+.rz-kachel.ist-aktiv .rz-box { stroke-width: 5; stroke: var(--navy); }
+.rz-kachel.ist-gewaehlt .rz-box { stroke-width: 4; stroke-dasharray: 10 5; }
+.rz-kachel.ist-besucht .rz-box { stroke-width: 3; }
+.rz-kachel.ist-ausgefallen .rz-box { fill: var(--gesperrt); stroke: var(--gesperrt-text); stroke-dasharray: 8 6; }
+.rz-kachel.ist-ausgefallen :is(.rz-titel, .rz-unter, .rz-streifen-text, .rz-marke) { fill: var(--gesperrt-text); }
+.rz-kachel.ist-ausgefallen .rz-streifen-flaeche { fill: var(--weiss); stroke: var(--gesperrt-text); }
+.rz-pfeil.ist-durchlaufen .rz-linie { stroke: var(--navy); stroke-width: 3.8; }
+.rz-pfeil.ist-durchlaufen .rz-spitze { fill: var(--navy); }
+.rz-pfeil.ist-aktiv .rz-linie { stroke: var(--ton-text); stroke-width: 5; }
+.rz-pfeil.ist-aktiv .rz-spitze { fill: var(--ton-text); }
+.rz-pfeil.ist-aktiv .rz-pille { stroke: var(--ton-text); stroke-width: 3; }
+.rz-pfeil.ist-gewaehlt .rz-pille { stroke: var(--navy); stroke-width: 3; }
+.rz-pfeil.ist-gesperrt { opacity: .4; }
+.rz-svg [role="button"]:focus-visible { outline: none; }
+.rz-svg [role="button"]:focus-visible .rz-box, .rz-svg [role="button"]:focus-visible .rz-pille { stroke: var(--navy); stroke-width: 5; }
+
+/* Fläche unter der Grafik */
+.rz-flaeche { display: grid; gap: var(--a-3); min-width: 0; }
+.rz-steuerung { display: flex; flex-wrap: wrap; align-items: center; gap: var(--a-2); }
+.rz-zaehler { margin-left: auto; font: var(--typo-klein); color: var(--tinte-2); }
+.rz-schritt, .rz-probe, .rz-karte, .rz-blockade { display: grid; gap: var(--a-2); padding: var(--a-4) var(--a-5); border: 1px solid var(--linie); border-radius: var(--radius-m); background: var(--ton-soft); min-width: 0; }
+.rz-blockade { background: var(--gesperrt); border-color: var(--gesperrt-text); color: var(--tinte); }
+.rz-blockade p, .rz-schritt p, .rz-probe p, .rz-karte p { margin: 0; }
+.rz-schritt-titel, .rz-karte-titel { margin: 0; font: var(--typo-tafeltitel); color: var(--navy); overflow-wrap: anywhere; }
+.rz-text { max-width: 72ch; }
+.rz-kurz, .rz-hinweis { color: var(--tinte-2); font: var(--typo-klein); }
+.rz-fuehrt { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--a-2); }
+.rz-beteiligt { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: var(--a-1) var(--a-2); color: var(--tinte-2); }
+.rz-ende { padding-top: var(--a-2); border-top: 1px solid var(--linie-2); }
+.rz-rueckmeldung { padding: var(--a-2) var(--a-3); border-left: 5px solid var(--ton-text); background: var(--weiss); border-radius: var(--radius-s); max-width: 72ch; }
+.rz-rueckmeldung[data-ergebnis="richtig"] { border-left-color: var(--status-gruen); }
+.rz-rueckmeldung[data-ergebnis="falsch"], .rz-rueckmeldung[data-ergebnis="kein-pfeil"] { border-left-color: var(--koralle-text); }
+.rz-rueckmeldung[data-ergebnis="anderer-pfeil"] { border-left-color: var(--akzent-sonne-text); }
+.rz-ergebnis { font-weight: 700; color: var(--navy); }
+.rz-frage { margin: 0; padding: 0; border: 0; min-width: 0; }
+.rz-detail:empty { display: none; }
+.rz-karte { background: var(--weiss); }
+.rz-zeilen { display: grid; gap: var(--a-2); margin: 0; }
+.rz-zeile { display: grid; gap: 2px; padding: var(--a-2) var(--a-3); border-radius: var(--radius-s); }
+.rz-zeile[data-aktiv="ja"] { background: var(--ton-soft); box-shadow: inset 4px 0 0 var(--ton-text); }
+.rz-zeile dd { margin: 0; max-width: 72ch; }
+.rz-liste { margin: var(--a-1) 0 0; padding-left: var(--a-5); }
+@media (min-width: 720px) { .rz-zeile { grid-template-columns: 12rem minmax(0, 1fr); gap: var(--a-3); align-items: baseline; } }
+
+/* Rollen unter der Grafik */
+.rz-rollen-titel { margin: 0 0 var(--a-2); }
+.rz-rollen-karten { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--a-3); grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+.rz-rollen-karte { display: grid; align-content: start; gap: var(--a-2); padding: var(--a-3) var(--a-4); border: 1px solid var(--rolle); border-radius: var(--radius-m); background: var(--rolle-soft); }
+.rz-rollen-karte p { margin: 0; }
+.rz-rollen-kopf { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--a-2); }
+.rz-zahl { color: var(--tinte-2); font: var(--typo-klein); }
+/* Rollenfigur an der Station, die gerade bearbeitet wird (Anfangsbuchstabe + Farbe der Rolle; der volle Name steht darunter im Text) */
+.rz-akteur-kreis { fill: var(--rolle-soft); stroke: var(--rolle); stroke-width: 3; }
+.rz-akteur-buchstabe { font: 800 20px/1 var(--schrift-anzeige); fill: var(--rolle-text); }
+.rz-akteur-figur { transform-box: fill-box; transform-origin: center; animation: rz-auftritt var(--dauer-mittel) var(--kurve-pop) both; }
+@keyframes rz-auftritt { from { opacity: 0; scale: .5; } to { opacity: 1; scale: 1; } }
+@media (prefers-reduced-motion: reduce) { .rz-impuls { display: none; } .rz-akteur-figur { animation: none; } }

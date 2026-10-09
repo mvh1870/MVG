@@ -102,7 +102,7 @@
 
 /* Explore: Gegenstände der Werkzeuge */
 /* P18.5: neun Gegenstände in einer Reihe (sauber, nie 7 + 2); schmal ein Block aus 3 × 3 */
-.tuer-werkzeuge { display: grid; grid-template-columns: repeat(9, minmax(0, 56px)); gap: var(--a-2); justify-content: start; align-content: start; }
+.tuer-werkzeuge { display: grid; grid-template-columns: repeat(5, minmax(0, 56px)); gap: var(--a-2); justify-content: start; align-content: start; }
 .tuer-werkzeuge li { display: grid; place-items: center; aspect-ratio: 1; border-radius: var(--radius-rund); background: var(--ton-soft); }
 .tuer-werkzeuge .fig-gimmick { width: 72%; height: 72%; }
 
@@ -128,7 +128,7 @@
   .tuer-teile { grid-template-columns: minmax(0, 1fr); }
   .tuer-figuren ul { gap: var(--a-3) var(--a-2); }
   .tuer-figuren .fig-portraet { width: 36px; height: 36px; }
-  .tuer-werkzeuge { grid-template-columns: repeat(3, 44px); }
+  .tuer-werkzeuge { grid-template-columns: repeat(5, 44px); }
 }
 
 @media (prefers-reduced-motion: reduce) {

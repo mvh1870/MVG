@@ -1,17 +1,17 @@
 /*
- * Kennungen der neun Explore-Werkzeuge (Adresse `#explore/<werkzeug>`), ohne Oberfläche: Story, Themen und Regie kennen so
+ * Kennungen der zehn Explore-Werkzeuge (Adresse `#explore/<werkzeug>`), ohne Oberfläche: Story, Themen und Regie kennen so
  * Reihenfolge, Titel und Kurzsatz eines Werkzeugs, ohne die Fläche „Explore“ (und mit ihr die Themen-Fläche) zu laden.
  * Muss zu `WERKZEUG_TEIL` in werkzeuge/explore.mjs passen (tests/explore-werkzeuge.test.ts).
  */
 import type { Werkzeuge } from '../inhalte/typen.ts';
 
 /** Reihenfolge der Kacheln (O-59, Konzept 0): jedes neue Werkzeug neben seinem Geschwister. */
-export const WERKZEUGE = ['mcda', 'vorlagen-check', 'matrix', 'risiko-grenzen', 'vorgaenge', 'wegweiser', 'takt', 'monatsbericht', 'glossar'] as const;
+export const WERKZEUGE = ['mcda', 'vorlagen-check', 'matrix', 'risiko-grenzen', 'vorgaenge', 'wegweiser', 'register', 'takt', 'monatsbericht', 'glossar'] as const;
 export type Werkzeug = (typeof WERKZEUGE)[number];
 
 /** Adress-Kennung → Teil in inhalte/werkzeuge.yaml (feste Tabelle, Konzept Abschnitt 5). */
 export const TEIL: Record<Werkzeug, Exclude<keyof Werkzeuge, 'einleitungHtml'>> = {
-  mcda: 'mcda', 'vorlagen-check': 'vorlagencheck', matrix: 'matrix', 'risiko-grenzen': 'risikogrenzen', vorgaenge: 'vorgaenge', wegweiser: 'wegweiser', takt: 'takt', monatsbericht: 'monatsbericht', glossar: 'glossar',
+  mcda: 'mcda', 'vorlagen-check': 'vorlagencheck', matrix: 'matrix', 'risiko-grenzen': 'risikogrenzen', vorgaenge: 'vorgaenge', wegweiser: 'wegweiser', register: 'register', takt: 'takt', monatsbericht: 'monatsbericht', glossar: 'glossar',
 };
 
 export function werkzeugAus(id: string | null): Werkzeug {

@@ -25,7 +25,7 @@ import { sym, symbolAusInhalt, tafel as tafelBlock, merksatz, hinweis } from '..
 import { inhalt } from '../bausteine/inhalt.ts';
 import { etappen, regler, sortieren, umschalter } from '../bausteine/lernwerkzeuge.ts';
 import { abbildung } from '../bausteine/abbildung.ts';
-import { bmLink, seitenRahmen } from '../bausteine/seite.ts';
+import { bmLink, istEigenstaendig, seitenRahmen } from '../bausteine/seite.ts';
 import { kopfText, kopfZahl } from '../anzeige.ts';
 import { W } from '../woerter.ts';
 import { TEIL, werkzeugAus, werkzeugTitel } from '../werkzeug-kennungen.ts';
@@ -469,7 +469,8 @@ export function glossarListe(o: { inhalte: OeffentlicheInhalte; bedienbar: boole
   const leer = h('p', { class: 'glossar-leer', hidden: true }, T.glossarLeer);
   const link = (href: string, attrs: Record<string, string>, text: string): HTMLElement => o.bedienbar ? h('a', { ...attrs, href }, text) : h('span', attrs, text);
   const zeilen = eintraege.map((g) => {
-    const orte = g.vorkommen.kapitel.map((k) => nachKapitel.get(k)).filter((t) => t !== undefined && t.thema !== 'glossar')
+    // eigenständige Werkzeugseite (L-431): dort gibt es keine Themen, also auch kein „Mehr dazu in“
+    const orte = (istEigenstaendig() ? [] : g.vorkommen.kapitel).map((k) => nachKapitel.get(k)).filter((t) => t !== undefined && t.thema !== 'glossar')
       .map((t) => link(`#theorie/${t?.thema ?? ''}`, { class: 'glossar-ort' }, t?.kurztitel ?? ''));
     return h('div', { class: 'glossar-eintrag', id: g.id, 'data-pruef': 'glossar-eintrag', 'data-suche': `${g.begriff} ${g.definition}`.toLocaleLowerCase('de') },
       h('dt', null, g.begriff),

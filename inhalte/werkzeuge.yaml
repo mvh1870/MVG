@@ -489,3 +489,260 @@ monatsbericht:
       reaktion: "Zur Kenntnis nehmen; keine Entscheidung offen. Der Architekt nennt bis zum nächsten Termin, wann die Fassadenpläne vorliegen."
       erwartet: gruen
   # Regie-Material (nur im Regie-Teil, nie auf der Leinwand; Konzept D.8)
+
+# ------------------------------------------------------------------------------------------------------------------
+# Register-Zusammenspiel (Werkzeug E, Owner im Chat 2026-10-09; Rechenkern src/werkzeuge/register.ts). Form des Graphen
+# (Stationen, Pfeile, Wege der Fälle) steht im Kern; hier stehen nur die Texte, je Station und je Pfeil über die Kennung des
+# Kerns. Der Titel „Register-Zusammenspiel“ gilt, bis der Owner den Namen vergibt. Belege intern, nie sichtbar (O-38).
+# Rollen überall neutral: Bauherr, Lenkungskreis, Projektsteuerung (Owner-Entscheid im Chat).
+register:
+  titel: Register-Zusammenspiel
+  kurz: Wie die Register zusammenspielen – vom ersten Hinweis bis zur Freigabe und zur Maßnahme – und wer in jedem Schritt zuständig ist.
+  vorspann:
+    wozu: "Hier sehen Sie, wie die Register zusammenspielen. Register sind die Listen, in denen die Projektsteuerung Vorgänge festhält und verfolgt. Aus einem Hinweis kann ein Risiko werden; aus Risiko, Problem oder Änderung kann ein offener Entscheidungsbedarf entstehen, daraus eine Entscheidungsvorlage, ein Beschluss und eine Maßnahme. An jeder Station sehen Sie, wer zuständig ist."
+    eingabe: "Sie wählen einen Beispielfall und eine Ansicht: zuschauen, den Fall erzählt lesen, selbst durchprobieren oder die Grafik erkunden. Über der Grafik wechseln Sie die Frage: Wer macht das? Wann? Ab wann? Was entsteht? Was fehlt, wenn es fehlt?"
+    ergebnis: "Sie sehen, welche Station als Nächstes kommt, was dort entsteht und wer zuständig ist. Die Grafik zeigt das Zusammenspiel der Register und keinen vorgeschriebenen Ablauf: Nicht jeder Vorgang durchläuft alle Stationen. Maßnahmen entstehen auch ohne Beschluss, zum Beispiel um ein Risiko zu mindern oder bei einem Problem vorläufig zu helfen."
+  belege: [v24:hb-1, v24:hb-1.3, v24:hb-1.4, v24:hb-1.6, v24:hb-3.1, v24:hb-4, k6.4.3-p2, k6.4.4-t1]
+  text: |
+    Die Register hängen zusammen. Ein Hinweis wird zuerst als Frühwarnung festgehalten und geklärt: Er wird zum Risiko, zum Problem oder zur Aufgabe, oder er wird mit Begründung geschlossen. Aus Risiken, Problemen und Änderungen kann ein Entscheidungsbedarf entstehen. Dafür arbeitet die Projektsteuerung eine Entscheidungsvorlage aus; beschließen und freigeben darf nur die befugte Stelle des Bauherrn. Aus dem Beschluss folgen Maßnahmen, deren Wirkung geprüft wird. Der Managementbericht fasst das für den Bauherrn zusammen.
+  rollen:
+    - { id: bauherr, titel: Bauherr, text: "Über Ziele, wesentliche Abweichungen, Mittel, die Annahme von Risiken und Freigaben entscheidet der Bauherr. Jede Freigabe am Ende einer Leistungsphase erteilt er selbst. Welche Stelle bei ihm sonst entscheiden darf, legt sein Mandat fest.", belege: [v24:hb-1, k6.4.5-t1, k4.2-p1] }
+    - { id: lenkungskreis, titel: Lenkungskreis, text: "Der Lenkungskreis berät den Bauherrn, vor allem bei Freigaben, und bereitet sie vor. Beschließt der Bauherr im Lenkungskreis, bleibt er der Entscheider.", belege: [k4.2-p2, k6.4.5-t1, k9.3-p1] }
+    - { id: projektsteuerung, titel: Projektsteuerung, text: "Die Projektsteuerung kümmert sich um Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Probleme und Änderungen. Sie klärt die Sachverhalte und bereitet nötige Entscheidungen so vor, dass sie getroffen werden können. Selbst entscheiden, genehmigen oder bestätigen darf sie nicht.", belege: [v24:hb-1, v24:hb-3] }
+  schwelle:
+    titel: Schwellenwert löst Frühwarnung aus
+    text: "Überschreitet die Restkostenprognose oder ein anderer Schwellenwert die festgelegte Grenze, entsteht eine neue Frühwarnung. Sie ist ein neues Signal und entsteht nicht aus einem bestehenden Risiko."
+    wer: { fuehrt: bauherr, text: "Die Entscheidungsschwellen legt der Bauherr im Mandat fest. Die Projektsteuerung wertet die Unterlagen aus und hält eine neue Frühwarnung fest, wenn eine Schwelle erreicht ist.", beteiligt: [{ rolle: projektsteuerung, text: "Sie wertet die Unterlagen aus und erfasst die neue Frühwarnung." }] }
+    belege: [k6.4.3-p2, v24:hb-3, v24:hb-1.2]
+  knoten:
+    fruehwarnung:
+      titel: Frühwarnung
+      unter: schwaches Signal
+      text: "Ein Hinweis, dass etwas das Projekt beeinträchtigen könnte, der aber noch nicht genug geklärt ist. Die Projektsteuerung hält Quelle, Eingangsdatum, mögliche Bedeutung, Prüffrage und Wiedervorlage fest. Nach der Klärung wird daraus ein Risiko, ein Problem oder eine Aufgabe, oder der Hinweis wird mit Begründung geschlossen."
+      wer: { fuehrt: projektsteuerung, text: "Die Projektsteuerung erfasst den Hinweis und klärt ihn mit den zuständigen Fachleuten.", beteiligt: [] }
+      wann: { kurz: "sofort, wenn dringend", text: "Dringliche Hinweise meldet die Projektsteuerung sofort und hält sie noch am selben Arbeitstag fest, sobald die unmittelbare Reaktion gesichert ist. Neue Hinweise, die nicht eilen, trägt sie spätestens bei der nächsten wöchentlichen Durchsicht ein." }
+      schwelle: { kurz: "auch ohne Bewertung", text: "Die erste Meldung braucht keine vollständige Bewertung abzuwarten. Auch ein überschrittener Schwellenwert löst eine neue Frühwarnung aus." }
+      ergebnis: { kurz: "Ergebnis der Klärung", text: "Das Ergebnis der Klärung, der Grund für die Schließung oder der Verweis auf den Folgeeintrag. Beim Übergang bleibt die Herkunft erhalten." }
+      stoerung: "Fehlt die Frühwarnung, hat der Hinweis keine festgehaltene Quelle, keine Prüffrage und keine Wiedervorlage. Ob daraus ein Risiko, ein Problem oder eine Aufgabe wird, bleibt dann offen."
+      belege: [v24:hb-1.2, v24:hb-4, k6.4.3-p2, v24:hb-5]
+    risiko:
+      titel: Risiko
+      unter: bewertet
+      text: "Etwas Nachteiliges könnte eintreten, oder eine wichtige Größe ist noch unsicher. Die Projektsteuerung beschreibt Ursache, mögliche Folgen und Zeitraum, bewertet nach Wahrscheinlichkeit und Auswirkung, entwickelt mit den Fachleuten Gegenmaßnahmen und verfolgt die verbleibende Unsicherheit."
+      wer: { fuehrt: projektsteuerung, text: "Die Projektsteuerung bewertet und verfolgt das Risiko. Ob der Bauherr ein wesentliches verbleibendes Risiko tragen will, bereitet sie als Entscheidung vor; sie nimmt es nicht selbst für ihn an.", beteiligt: [{ rolle: bauherr, text: "Er entscheidet über die Annahme eines wesentlichen Risikos." }] }
+      wann: { kurz: "jede Woche durchgesehen", text: "Die Projektsteuerung geht jede Woche alle offenen Einträge kurz durch. Die Bewertung wird begründet fortgeschrieben, wenn sich Grundlagen oder die Wirkung von Maßnahmen ändern." }
+      schwelle: { kurz: "wesentlich: Entscheidung", text: "Wesentlich ist ein Risiko, wenn die Risikomatrix es als vorrangig einstuft, wenn es eine Entscheidungsschwelle des Bauherrn erreicht oder wenn ein besonderer Warnanlass vorliegt, zum Beispiel bei Sicherheit oder Genehmigung. Bleibt ein wesentliches Risiko bestehen, bringt die Projektsteuerung es der befugten Stelle des Bauherrn zur Entscheidung." }
+      ergebnis: { kurz: "Bewertung mit Datenstand", text: "Eine begründete Bewertung mit Datenstand, die Maßnahmen und das verbleibende Risiko oder der offene Prüfbedarf." }
+      stoerung: "Ohne bewertetes Risiko fehlt die Grundlage, ein wesentliches verbleibendes Risiko der befugten Stelle vorzulegen. Probleme, Änderungen und Aufgaben werden trotzdem bearbeitet: Sie brauchen nicht erst ein Risiko."
+      belege: [v24:hb-1.3, v24:hb-1, v24:hb-3, v24:hb-4, v24:hb-5]
+    problem:
+      titel: Problem
+      unter: eingetreten
+      text: "Etwas Nachteiliges ist schon eingetreten, zum Beispiel ein bestätigter Mangel oder ein ausgefallener Liefertermin. Die Projektsteuerung klärt, was geschehen ist und welche Folgen feststehen, organisiert die Lösung und weist ihr Ergebnis nach. Eine Eintrittswahrscheinlichkeit wird nicht mehr geschätzt."
+      wer: { fuehrt: projektsteuerung, text: "Die Projektsteuerung lässt die Ursache fachlich klären und bereitet die Lösung vor. Sind dafür eine Änderung oder eine Entscheidung nötig, bereitet sie auch diese vor. Dass etwas eilt, ersetzt keinen Beschluss.", beteiligt: [] }
+      wann: { kurz: "sofort, wenn dringend", text: "Dringliche Sachverhalte meldet die Projektsteuerung sofort und dokumentiert sie am selben Arbeitstag, sobald die unmittelbare Reaktion gesichert ist. Offene Probleme sieht sie jede Woche durch." }
+      schwelle: { kurz: "Entscheidung nötig?", text: "Braucht die Lösung eine Änderung oder eine Entscheidung des Bauherrn, entsteht Entscheidungsbedarf. Dringlichkeit allein ersetzt keinen Beschluss." }
+      ergebnis: { kurz: "Lösung mit Nachweis", text: "Der eingetretene Zustand mit bekannten Folgen, die fachliche Klärung, Zwischenmaßnahmen, der Lösungsweg und der Nachweis des Ergebnisses. Unsichere weitere Folgen werden gesondert verknüpft." }
+      stoerung: "Ohne Problemeintrag gibt es für den eingetretenen Zustand keine geklärten Folgen, keine organisierte Lösung und keinen Nachweis, dass die Lösung umgesetzt und fachlich bestätigt ist. Ein Problem wird auch bearbeitet, wenn vorher kein Risiko erfasst war."
+      belege: [v24:hb-1.4, v24:hb-1, v24:hb-4, v24:hb-5, k6.4.3-p2]
+    aenderung:
+      titel: Änderung
+      unter: gewollte Änderung
+      text: "Eine geltende Vorgabe wird bewusst verändert, zum Beispiel beim Umfang, bei Planung, Material, Ausführung oder Termin. Die Projektsteuerung hält fest, was der Anlass ist, wer die Änderung beantragt, was bisher galt und was gewünscht wird. Sie lässt ermitteln, was das für Kosten, Termine, Qualität, Funktion, Genehmigungen und Verträge bedeutet."
+      wer: { fuehrt: projektsteuerung, text: "Die Projektsteuerung bereitet die Änderung vor, führt die Beiträge zu einer Beurteilung zusammen und verfolgt nach dem Beschluss die Umsetzung.", beteiligt: [{ rolle: bauherr, text: "Er beschließt." }] }
+      wann: { kurz: "jede Woche durchgesehen", text: "Offene Änderungen sieht die Projektsteuerung jede Woche durch. Solange der Beschluss nicht wirksam ist, gilt die bisherige Grundlage weiter." }
+      schwelle: { kurz: "Entscheidung nötig?", text: "Ist eine Entscheidung des Bauherrn erforderlich, arbeitet die Projektsteuerung mindestens zwei ernsthafte, zulässige Optionen aus und vergleicht sie mit einem gewichteten Vergleich." }
+      ergebnis: { kurz: "Auswirkungen, Vorlage", text: "Die geprüften Auswirkungen, die Entscheidungsvorlage, ein Verweis auf den Beschluss, Auflagen und der Stand der Umsetzung. Wird ein Antrag abgelehnt oder zurückgezogen, bleibt er samt Begründung nachvollziehbar." }
+      stoerung: "Ohne Änderungseintrag werden die Auswirkungen nicht gegen den geltenden Stand aufbereitet, und es fehlt der Nachweis, was beschlossen und umgesetzt wurde. Bis der Beschluss wirksam ist, gilt ohnehin die bisherige Grundlage."
+      belege: [v24:hb-1.5, v24:hb-4, v24:hb-5, k6.4.4-t1]
+    prognose:
+      titel: CTC / Prognose
+      unter: Restkostenprognose
+      text: "Die Restkostenprognose (CTC) zeigt die Kosten, die bis zum Projektabschluss noch erwartet werden. Was schon in der Prognose steht, wird gekennzeichnet; dieselben Beträge zählen nicht noch einmal."
+      wer: { fuehrt: projektsteuerung, text: "Die Projektsteuerung wertet die Prognose aus und macht Beträge kenntlich, die schon in der Prognose stehen.", beteiligt: [] }
+      wann: { kurz: "monatlich", text: "Die Restkostenprognose wird monatlich fortgeschrieben, zusammen mit dem Managementbericht." }
+      schwelle: { kurz: "Schwelle: Frühwarnung", text: "Verletzt die Restkostenprognose eine festgelegte Grenze, entsteht eine neue Frühwarnung – ein neues Signal, das nicht aus einem bestehenden Risiko entsteht." }
+      ergebnis: { kurz: "erwartete Restkosten", text: "Die erwarteten noch anfallenden Kosten bis zum Projektabschluss." }
+      stoerung: "Ohne Prognose gäbe es keine Verletzung der Restkostenprognose, die eine neue Frühwarnung auslösen könnte. Auch ließe sich nicht kenntlich machen, was schon in der Prognose steht; dieselbe Kostenwirkung könnte mehrfach gezählt werden."
+      belege: [v24:hb-1, v24:hb-2, k6.4.3-p2, k6.4.5-t1, k6.4.2-t1, v24:hb-1.5]
+    register:
+      titel: Entscheidungsregister
+      unter: offener Entscheidungsbedarf
+      text: "Hier steht, wofür der Bauherr noch entscheiden muss. Die Projektsteuerung stellt die konkrete Frage, begründet, warum eine Entscheidung nötig ist, und hält fest, bis wann entschieden sein muss, was eine Verzögerung bewirkt und welche Stelle befugt ist. Eine Routineaufgabe oder ein bloßer Prüfauftrag ist nicht von selbst eine Entscheidung dieser Art."
+      wer: { fuehrt: projektsteuerung, text: "Die Projektsteuerung führt das Entscheidungsregister: Sie formuliert Frage, Termin und befugte Stelle, pflegt die Einträge und bereitet jede Entscheidung vor. Der Bauherr sieht darin, wo er noch entscheiden muss.", beteiligt: [{ rolle: bauherr, text: "Er entscheidet über die offenen Einträge." }] }
+      wann: { kurz: "jede Woche durchgesehen", text: "Die Projektsteuerung sieht die offenen Entscheidungen jede Woche durch und bespricht die relevanten Vorgänge im monatlichen Termin mit dem Bauherrn." }
+      schwelle: { kurz: "Entscheidung über Handlung", text: "Ein Eintrag entsteht, wenn der Bauherr über eine Handlung entscheiden muss: wenn er ein wesentliches verbleibendes Risiko tragen soll, wenn die Lösung eines Problems eine Entscheidung braucht oder wenn eine Änderung sie erfordert. Wer entscheiden darf, richtet sich nach dem Mandat, das der Bauherr festgelegt hat." }
+      ergebnis: { kurz: "Frage, Termin, Stelle", text: "Die konkrete Frage mit Entscheidungstermin, den Folgen einer Verzögerung und der befugten Stelle des Bauherrn. Daraus wird die Entscheidungsvorlage." }
+      stoerung: "Fehlt der Eintrag, ist nicht sichtbar, wo der Bauherr noch entscheiden muss, bis wann, mit welcher Folge einer Verzögerung und durch welche Stelle. Den Entscheidungsbedarf zu klären ist der erste Schritt des Arbeitsablaufs."
+      belege: [v24:hb-3.1, v24:hb-5, k6.4.4-t1, k6.4.3-p2, k6.4.5-t1, k6.4.2-t1, v24:hb-4, k4.2-p1]
+    vorlage:
+      titel: Entscheidungsvorlage
+      unter: entscheidungsreif
+      text: "Die Vorlage bündelt Frage, Datenstand, Optionen, Bewertung und Empfehlung. Mindestens zwei zulässige Optionen werden ausgearbeitet und mit einem gewichteten Vergleich (MCDA) bewertet; die Empfehlung nennt Nachteile, Unsicherheiten und Voraussetzungen."
+      wer: { fuehrt: projektsteuerung, text: "Die Projektsteuerung erarbeitet die Vorlage. Die Entscheidung bereitet sie nur vor; treffen, genehmigen oder bestätigen darf sie nicht.", beteiligt: [] }
+      wann: { kurz: "mit Entscheidungstermin", text: "Die Vorlage wird fristgerecht abgelegt, passend zum Entscheidungstermin. Dringliche Meldungen und notwendige Schutzmaßnahmen warten nicht auf den fertigen Vergleich." }
+      schwelle: { kurz: "mindestens zwei Optionen", text: "Reif ist die Vorlage, wenn mindestens zwei zulässige Optionen und die übrigen wesentlichen Grundlagen vorliegen. Fehlt etwas, wird sie als nicht vollständig gekennzeichnet." }
+      ergebnis: { kurz: "Vorlage mit Empfehlung", text: "Die Vorlage mit Datenstand, Quellen und Verknüpfung zum auslösenden Vorgang, dem Vergleich der Optionen und der begründeten Empfehlung." }
+      stoerung: "Ohne Vorlage hat der Bauherr keine ausgearbeiteten Optionen, keinen Vergleich und keine begründete Empfehlung, auf die er seine Entscheidung stützen kann. Fehlt nur die zweite zulässige Option, ist die Vorlage unvollständig: Die Projektsteuerung sagt das ausdrücklich und füllt die Lücke nicht mit einer Scheinlösung."
+      belege: [v24:hb-3.1, v24:hb-3, k6.4.3-p2, k6.4.5-t1]
+    freigabe:
+      titel: Freigabe
+      unter: Beschluss, LPH 0–9
+      text: "Die Entscheidung des Bauherrn am Abschluss einer Leistungsphase LPH 0–9, ob die nächste beginnen darf. Das Ergebnis lautet Freigabe, keine Freigabe oder Freigabe mit Auflagen. Einen tatsächlich vorliegenden Beschluss dokumentiert die Projektsteuerung getrennt mit Quelle, Datum und Bedingungen. Auch andere Handlungsentscheidungen trifft die befugte Stelle des Bauherrn; die Projektsteuerung dokumentiert sie als Beschluss."
+      wer: { fuehrt: bauherr, text: "Der Bauherr erteilt jede Freigabe selbst, auch wenn er sie in einem Gremium beschließt.", beteiligt: [{ rolle: lenkungskreis, text: "Er berät und bereitet vor." }, { rolle: projektsteuerung, text: "Sie bereitet die Entscheidung vor und dokumentiert den Beschluss; eine Freigabe erteilt sie nicht." }] }
+      wann: { kurz: "je Leistungsphase", text: "Jede Leistungsphase LPH 0–9 schließt mit einer Freigabe ab. Bleibt die Entscheidung aus, benennt die Projektsteuerung einen neuen Klärungstermin." }
+      schwelle: { kurz: "Mandat des Bauherrn", text: "Wer entscheiden darf und in welchem Rahmen, legt der Bauherr im Mandat fest. Die Projektsteuerung erhält keine zusätzlichen Entscheidungs- oder Freigabebefugnisse." }
+      ergebnis: { kurz: "mit oder ohne Auflagen", text: "Das Ergebnis: Freigabe, keine Freigabe oder Freigabe mit Auflagen, dokumentiert mit Quelle, Datum und Bedingungen. Auflagen sind Bedingungen, die mit der Freigabe verbunden sind; aus ihnen werden Maßnahmen." }
+      stoerung: "Ohne Beschluss gibt es nichts, woraus Maßnahmen folgen. Weder Schweigen noch die Empfehlung der Projektsteuerung noch ein Status in der Projektsoftware ersetzen einen Beschluss. Die Projektsteuerung setzt einen neuen Termin zur Klärung an und nennt, was die Verzögerung bedeutet."
+      belege: [k6.4.4-t1, k6.4.4-p1, k6.4.5-t1, k9.3-p1, v24:hb-3.1, v24:hb-1, k4.2-p1]
+    massnahme:
+      titel: Maßnahme
+      unter: mit Frist
+      text: "Eine gezielte Handlung, um einen Zustand zu klären oder zu verbessern, ein Risiko zu mindern, ein Problem zu beheben oder einen Beschluss umzusetzen. Zu jeder Maßnahme gehören Handlung, Verantwortlicher, Termin und erwartete Wirkung."
+      wer: { fuehrt: projektsteuerung, text: "Die Projektsteuerung nennt Bezug, Ziel, Verantwortlichen und Termin, verfolgt die Umsetzung und prüft mit den Fachleuten die Wirkung. Die technische Ausführung übernimmt sie dadurch nicht.", beteiligt: [{ rolle: bauherr, text: "Zusätzliche Mittel, Leistungsänderungen und vorbehaltene Freigaben werden ihm vorher vorgelegt." }] }
+      wann: { kurz: "Termin je Maßnahme", text: "Jede Maßnahme hat einen Termin. In der wöchentlichen Durchsicht schaut die Projektsteuerung darauf, ob Maßnahmen wirken und ob Freigaben oder Auflagen noch ausstehen." }
+      schwelle: { kurz: "im Auftrag und Mandat?", text: "Bevor eine Maßnahme beginnt, prüft die Projektsteuerung, ob sie vom bestehenden Auftrag gedeckt ist und mit den vorhandenen Befugnissen ausgeführt werden darf. Braucht sie zusätzliche Mittel, ändert sie Leistungen oder ist eine Freigabe vorbehalten, geht das vorher zur Vorlage an den Bauherrn." }
+      ergebnis: { kurz: "Umsetzung und Wirkung", text: "Der Nachweis der Umsetzung und das Ergebnis der Wirksamkeitsprüfung. Umgesetzt und wirksam sind nicht dasselbe." }
+      stoerung: "Ohne Maßnahme wird kein Beschluss umgesetzt und keine Wirkung geprüft. Eine Maßnahme, die nur geplant ist, mindert das Risiko in der aktuellen Bewertung noch nicht; erst wenn Umsetzung und Wirkung belegt sind, wird die Bewertung angepasst. Wirkt sie nicht oder kommt sie zu spät, bereitet die Projektsteuerung eine Anpassung oder erneut eine Entscheidung vor."
+      belege: [v24:hb-1.6, v24:hb-1, v24:hb-3, v24:hb-4, v24:hb-5]
+    bericht:
+      titel: Managementbericht
+      unter: als Monatsbericht
+      text: "Der Managementbericht geht jeden Monat als Zusammenfassung auf höchstens einer Seite an den Bauherrn (Monatsbericht). Darin steht, was sich bei Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Problemen und Änderungen wesentlich verändert hat, was blockiert oder kritisch ist, welche Entscheidungen offen sind und welche Reaktion gebraucht wird."
+      wer: { fuehrt: projektsteuerung, text: "Die Projektsteuerung erstellt die Zusammenfassung aus demselben Informationsstand wie die Projektsoftware und verweist auf die betreffenden Einträge.", beteiligt: [{ rolle: bauherr, text: "Er erhält sie jeden Monat und bespricht die Vorgänge im Online-Termin." }] }
+      wann: { kurz: "monatlich, eine Seite", text: "Jeden Monat, zusammen mit einem Online-Termin von bis zu 60 Minuten. Der Bericht bleibt auch in vereinbarten Ruhezeiten vorgesehen." }
+      schwelle: { kurz: "wesentliche Veränderungen", text: "Im Bericht stehen die wesentlichen Veränderungen, die kritischen Maßnahmen und die offenen Entscheidungen mit der benötigten Reaktion." }
+      ergebnis: { kurz: "höchstens eine Seite", text: "Eine Zusammenfassung von höchstens einer Seite, die auf die Einträge verweist. Eine zweite Liste ist nicht nötig." }
+      stoerung: "Ohne den Bericht fehlt dem Bauherrn die monatliche Übersicht über wesentliche Veränderungen, offene Entscheidungen und die benötigte Reaktion. Dringliches wartet nicht auf den Bericht: Es wird sofort gemeldet."
+      belege: [v24:hb-4, k6.4.4-t1, k6.4.5-t1, k6.4.3-p1]
+  kanten:
+    prognose-schwelle: { text: "überschreitet", erklaerung: "Verletzt die Restkostenprognose eine festgelegte Grenze, ist das der Anlass für eine neue Frühwarnung.", belege: [k6.4.3-p2] }
+    schwelle-fruehwarnung: { text: "löst aus", erklaerung: "Ein überschrittener Schwellenwert erzeugt eine neue Frühwarnung – ein neues Signal, das nicht aus einem bestehenden Risiko entsteht.", belege: [k6.4.3-p2, v24:hb-1.2] }
+    fruehwarnung-risiko: { text: "als Risiko bewertet", erklaerung: "Nach der Klärung wird ein mögliches Ereignis als Risiko bewertet.", belege: [v24:hb-1.2, k6.4.4-t1] }
+    fruehwarnung-problem: { text: "eingetreten", erklaerung: "Zeigt die Klärung, dass der Zustand schon eingetreten ist, wird er als Problem bearbeitet.", belege: [v24:hb-1.2] }
+    risiko-register: { text: "wesentlich", erklaerung: "Ob der Bauherr ein wesentliches verbleibendes Risiko tragen will oder ob eine Gegenmaßnahme eine Entscheidung braucht, bereitet die Projektsteuerung als offenen Entscheidungsbedarf vor.", belege: [k6.4.3-p2, v24:hb-3, v24:hb-1.3, v24:hb-1.6] }
+    problem-register: { text: "braucht Entscheidung", erklaerung: "Braucht die Lösung eines Problems eine Entscheidung, entsteht ein offener Entscheidungsbedarf. Die Dringlichkeit allein ersetzt keinen Beschluss.", belege: [k6.4.3-p2, v24:hb-1.4] }
+    aenderung-register: { text: "erfordert", erklaerung: "Erfordert eine Änderung eine Entscheidung des Bauherrn, entsteht ein offener Entscheidungsbedarf.", belege: [k6.4.3-p2, v24:hb-1.5] }
+    aenderung-prognose: { text: "Kosten verknüpfen", erklaerung: "Die ermittelte Kostenwirkung einer Änderung wird mit der Kostenprognose verknüpft; was dort schon steht, wird kenntlich gemacht und nicht noch einmal gezählt.", belege: [v24:hb-1.5, v24:hb-1, v24:hb-2] }
+    register-vorlage: { text: "ausarbeiten", erklaerung: "Aus dem offenen Entscheidungsbedarf arbeitet die Projektsteuerung die Entscheidungsvorlage aus: mindestens zwei zulässige Optionen, gewichteter Vergleich, Empfehlung.", belege: [v24:hb-3.1, k6.4.4-t1] }
+    vorlage-freigabe: { text: "reif", erklaerung: "Ist die Vorlage entscheidungsreif, kann der Bauherr beschließen und freigeben. Das darf nur die befugte Stelle des Bauherrn; die Vorlage ersetzt es nicht.", belege: [v24:hb-3.1, k6.4.5-t1] }
+    freigabe-massnahme: { text: "Auflagen", erklaerung: "Aus dem Beschluss und seinen Auflagen folgen Maßnahmen mit verantwortlicher Rolle und Frist; die Projektsteuerung verfolgt sie.", belege: [k6.4.3-p2, v24:hb-3.1, v24:hb-1.6] }
+    freigabe-bericht: { text: "Bericht", erklaerung: "Wesentliche Veränderungen und offene Entscheidungen stehen im Managementbericht, der jeden Monat an den Bauherrn geht – unabhängig davon, ob gerade eine Freigabe ansteht.", belege: [k6.4.3-p1, v24:hb-4] }
+    massnahme-risiko: { text: "mindert das Risiko", erklaerung: "Eine umgesetzte und wirksame Maßnahme mindert das Risiko; erst dann wird die Bewertung des betroffenen Risikos angepasst. So schließt sich der Kreis aus Maßnahme, Wirkung und neuer Bewertung.", belege: [v24:hb-3, v24:hb-1.6] }
+  anlaesse:
+    - id: hinweis
+      titel: Hinweis zur Lieferzeit
+      kurz: Ein Hinweis wird zum Risiko, zur Entscheidung und zur Maßnahme.
+      start: fruehwarnung
+      einstieg: "Der Architekt hat auf einer Messe gehört, dass die Lieferzeiten für Holzelemente länger werden. Beim Schulcampus Lindenhall-Süd wird die Vergabe der Holzbauelemente gerade vorbereitet."
+      schritte:
+        - { kante: fruehwarnung-risiko, text: "Die Projektsteuerung hält den Hinweis als Frühwarnung fest (FRW-002) und fragt bei den Herstellern nach. Die Antwort: Die Lieferzeit ist tatsächlich länger. Aus der Frühwarnung wird ein Risiko: Die Lieferzeit gefährdet Montagebeginn und Inbetriebnahme (RIS-009)." }
+        - { kante: risiko-register, text: "Die Projektsteuerung bewertet das Risiko nach Wahrscheinlichkeit und Auswirkung. Es ist wesentlich, weil es in der Risikomatrix vorrangig ist. Die Gegenmaßnahme kostet zusätzlich Geld aus der Reserve, und ob das Restrisiko getragen wird, entscheidet der Bauherr. Also kommt es als offener Entscheidungsbedarf ins Entscheidungsregister." }
+        - { kante: register-vorlage, text: "Die Projektsteuerung formuliert die Frage, nennt Entscheidungstermin und befugte Stelle und arbeitet zwei zulässige Wege aus: die Holzbauelemente früher auszuschreiben oder abzuwarten. Sie vergleicht beide mit gewichteten Gesichtspunkten und empfiehlt einen Weg." }
+        - { kante: vorlage-freigabe, text: "Die Vorlage ist entscheidungsreif. Der Lenkungskreis berät, und der Bauherr entscheidet selbst: Er beschließt, die Holzbauelemente früher auszuschreiben, mit der Auflage, die Lieferzeit schriftlich bestätigen zu lassen." }
+        - { kante: freigabe-massnahme, text: "Aus dem Beschluss und der Auflage wird eine Maßnahme mit verantwortlicher Rolle und Frist (MAS-007, vorgezogene Vergabe der Holzbauelemente). Die Projektsteuerung verfolgt die Umsetzung." }
+        - { kante: freigabe-bericht, text: "Der Stand von Beschluss und Maßnahme steht im nächsten Managementbericht, der auf die Einträge verweist." }
+        - { kante: massnahme-risiko, text: "Ist die Vergabe umgesetzt und die Lieferzeit bestätigt, prüft die Projektsteuerung die Wirkung. Erst dann wird die Risikobewertung angepasst: Der Kreis schließt sich." }
+      ende: "Nicht jeder Hinweis durchläuft alle diese Stationen: Viele werden nach der Klärung mit Begründung geschlossen."
+      belege: [v24:hb-1.2, v24:hb-1.3, v24:hb-3.1, v24:hb-1.6, k6.4.3-p1]
+    - id: problem
+      titel: Lüftungsanlage kommt später
+      kurz: Ein Problem ist eingetreten und braucht eine Entscheidung.
+      start: fruehwarnung
+      einstieg: "Im April deutet der Hersteller der Lüftungsanlage für die Gesamtschule einen Verzug an, nennt aber keinen Termin."
+      schritte:
+        - { kante: fruehwarnung-problem, text: "Die Projektsteuerung hält den Hinweis als Frühwarnung fest und fragt nach. Im Mai steht fest: Die Anlage kommt vier Monate später. Der Zustand ist eingetreten, aus der Frühwarnung wird ein Problem." }
+        - { kante: problem-register, text: "Die Projektsteuerung klärt die Folgen und bereitet Lösungen vor. Für eine Lösung braucht der Bauherr eine Entscheidung, also wird ein offener Entscheidungsbedarf eingetragen. Dringlichkeit allein ersetzt keinen Beschluss." }
+        - { kante: register-vorlage, text: "Die Projektsteuerung arbeitet zwei zulässige Wege aus – ein Ersatzgerät einsetzen oder später einziehen – und vergleicht sie mit gewichteten Gesichtspunkten." }
+        - { kante: vorlage-freigabe, text: "Der Lenkungskreis berät. Der Bauherr entscheidet nach seinem Mandat." }
+        - { kante: freigabe-massnahme, text: "Der Beschluss wird als Maßnahme mit Verantwortlichem und Frist umgesetzt. Die Projektsteuerung verfolgt Umsetzung und Wirkung." }
+        - { kante: freigabe-bericht, text: "Beschluss und Stand der Maßnahme stehen im nächsten Managementbericht." }
+      ende: "Das Problem ist schon eingetreten: Eine Wahrscheinlichkeit wird nicht mehr geschätzt."
+      belege: [v24:hb-1.2, v24:hb-1.4, v24:hb-3.1, k6.4.3-p2]
+    - id: aenderung
+      titel: Größere Mensa
+      kurz: Eine gewollte Änderung wirkt auf die Kosten und braucht eine Entscheidung.
+      start: aenderung
+      einstieg: "Die Schulleitung wünscht eine größere Mensa (AEN-012). Die geltende Vorgabe soll bewusst geändert werden."
+      schritte:
+        - { kante: aenderung-prognose, text: "Die Projektsteuerung erfasst Anlass, Antragsteller und bisherige Grundlage und lässt die Auswirkungen auf Kosten, Termine und Genehmigungen ermitteln. Die ermittelte Kostenwirkung wird mit der Kostenprognose verknüpft; was dort schon steht, wird nicht noch einmal gezählt." }
+        - { kante: aenderung-register, text: "Für die Änderung braucht der Bauherr eine Entscheidung. Sie kommt als offener Entscheidungsbedarf ins Entscheidungsregister. Bis der Beschluss wirksam ist, gilt weiter die bisherige Grundlage." }
+        - { kante: register-vorlage, text: "Die Projektsteuerung arbeitet zwei zulässige Wege aus: die größere Mensa oder eine Mensa, die später wachsen kann. Sie vergleicht beide mit gewichteten Gesichtspunkten." }
+        - { kante: vorlage-freigabe, text: "Der Lenkungskreis berät, und der Bauherr entscheidet für die Mensa, die später wachsen kann." }
+        - { kante: freigabe-massnahme, text: "Der Beschluss wird umgesetzt: Die Projektsteuerung informiert die Beteiligten, veranlasst die Anpassung der Unterlagen und verfolgt die Umsetzung." }
+        - { kante: freigabe-bericht, text: "Der Beschluss steht im nächsten Managementbericht." }
+      ende: "Eine Änderung muss nicht aus einem Risiko entstehen: Sie wird auch ohne Risikoeintrag bearbeitet. Wird ein Antrag abgelehnt, bleibt er mit Begründung festgehalten."
+      belege: [v24:hb-1.5, v24:hb-1, v24:hb-3.1, k6.4.3-p2]
+    - id: schwelle
+      titel: Kostenprognose steigt
+      kurz: Ein Schwellenwert wird überschritten und löst eine neue Frühwarnung aus.
+      start: prognose
+      einstieg: "Die Restkostenprognose für den Schulcampus wird fortgeschrieben. Eine festgelegte Grenze wird überschritten."
+      schritte:
+        - { kante: prognose-schwelle, text: "Die Projektsteuerung wertet die Prognose aus und sieht: Die Schwelle ist überschritten." }
+        - { kante: schwelle-fruehwarnung, text: "Der überschrittene Schwellenwert löst eine neue Frühwarnung aus. Sie ist ein neues Signal und entsteht nicht aus einem bestehenden Risiko." }
+        - { kante: fruehwarnung-risiko, text: "Die Projektsteuerung klärt mit den Fachleuten, was hinter der Abweichung steht, und bewertet sie als Risiko." }
+        - { kante: risiko-register, text: "Das Risiko ist wesentlich, weil es eine Entscheidungsschwelle des Bauherrn erreicht. Ob er es tragen will, bereitet die Projektsteuerung als offenen Entscheidungsbedarf vor." }
+        - { kante: register-vorlage, text: "Die Projektsteuerung arbeitet die Entscheidungsvorlage mit mindestens zwei zulässigen Optionen aus." }
+        - { kante: vorlage-freigabe, text: "Der Lenkungskreis berät, und der Bauherr entscheidet." }
+        - { kante: freigabe-massnahme, text: "Aus dem Beschluss folgt eine Maßnahme mit verantwortlicher Rolle und Frist." }
+        - { kante: massnahme-risiko, text: "Wirkt die Maßnahme nachweislich, wird die Risikobewertung angepasst." }
+      ende: "Der Schwellenwert löst nur eine Frühwarnung aus. Entscheiden muss weiterhin der Bauherr."
+      belege: [k6.4.3-p2, v24:hb-3, v24:hb-3.1, v24:hb-1.6]
+    - id: baugrund
+      titel: Grundwasser in der Baugrube
+      kurz: Ein Problem tritt ein, zwei Wege stehen zur Wahl.
+      start: fruehwarnung
+      einstieg: "Bei der Gründung der Sporthalle Eichenfeld meldet die Bauleitung einen ungewöhnlich hohen Wasserstand in der Baugrube."
+      schritte:
+        - { kante: fruehwarnung-problem, text: "Die Projektsteuerung hält die Meldung als Frühwarnung fest. Die Messung bestätigt: Der Wasserstand liegt dauerhaft über der Annahme. Der Zustand ist eingetreten, es ist ein Problem." }
+        - { kante: problem-register, text: "Die Projektsteuerung klärt die Folgen: Die Wasserhaltung reicht nicht aus. Für die Lösung braucht der Bauherr eine Entscheidung, also steht ein offener Entscheidungsbedarf im Entscheidungsregister." }
+        - { kante: register-vorlage, text: "Die Projektsteuerung arbeitet zwei zulässige Wege aus: die Wasserhaltung erweitern oder die Gründung anpassen. Sie vergleicht beide mit gewichteten Gesichtspunkten." }
+        - { kante: vorlage-freigabe, text: "Der Lenkungskreis berät, der Bauherr entscheidet nach seinem Mandat und wählt die erweiterte Wasserhaltung." }
+        - { kante: freigabe-massnahme, text: "Der Beschluss wird zur Maßnahme mit verantwortlicher Rolle und Frist. Die Projektsteuerung verfolgt die Umsetzung." }
+      ende: "Wie bei jedem Problem wird keine Wahrscheinlichkeit geschätzt: Es ist schon eingetreten."
+      belege: [v24:hb-1.2, v24:hb-1.4, v24:hb-3.1, k6.4.3-p2]
+    - id: absage
+      titel: Dachbegrünung abgelehnt
+      kurz: Der Bauherr lehnt eine Änderung ab, es ist nichts umzusetzen.
+      start: aenderung
+      einstieg: "Der Nutzer des Rathausneubaus wünscht eine Dachbegrünung. Die geltende Vorgabe sieht ein Kiesdach vor."
+      schritte:
+        - { kante: aenderung-prognose, text: "Die Projektsteuerung erfasst Anlass und Antragsteller und lässt die Folgen für Kosten und Termine ermitteln. Die Kostenwirkung wird mit der Kostenprognose verknüpft." }
+        - { kante: aenderung-register, text: "Für die Änderung braucht der Bauherr eine Entscheidung. Sie kommt als offener Entscheidungsbedarf ins Entscheidungsregister. Bis zum Beschluss gilt die bisherige Grundlage." }
+        - { kante: register-vorlage, text: "Die Projektsteuerung arbeitet zwei zulässige Wege aus: Begrünung jetzt oder Kiesdach mit Reserve für später. Sie vergleicht beide und empfiehlt einen Weg." }
+        - { kante: vorlage-freigabe, text: "Der Lenkungskreis berät. Der Bauherr beschließt, die Begrünung abzulehnen; es bleibt bei der bisherigen Grundlage." }
+        - { kante: freigabe-bericht, text: "Der Beschluss steht im nächsten Managementbericht; die Begründung bleibt beim Änderungseintrag nachvollziehbar. Aus der Ablehnung ist nichts umzusetzen, daher folgt keine Maßnahme." }
+      ende: "Auch eine abgelehnte Änderung bleibt mit Begründung festgehalten."
+      belege: [v24:hb-1.5, v24:hb-1, v24:hb-3.1, k6.4.3-p2]
+    - id: ausschreibung
+      titel: Angebote über dem Budget
+      kurz: Neue Preise lösen den Schwellenwert aus, daraus wird ein Problem.
+      start: prognose
+      einstieg: "Die Angebote für den Rohbau des Bürgerhauses liegen vor. Die Restkostenprognose wird mit den Angebotspreisen fortgeschrieben."
+      schritte:
+        - { kante: prognose-schwelle, text: "Die Projektsteuerung wertet die Prognose aus: Die festgelegte Grenze ist überschritten." }
+        - { kante: schwelle-fruehwarnung, text: "Der überschrittene Schwellenwert löst eine neue Frühwarnung aus." }
+        - { kante: fruehwarnung-problem, text: "Die Klärung zeigt: Die Angebotspreise liegen fest über dem Budget. Dieser Zustand ist eingetreten, aus der Frühwarnung wird ein Problem." }
+        - { kante: problem-register, text: "Für den Umgang damit braucht der Bauherr eine Entscheidung. Sie steht als offener Entscheidungsbedarf im Entscheidungsregister." }
+        - { kante: register-vorlage, text: "Die Projektsteuerung arbeitet zwei zulässige Wege aus: den Leistungsumfang kürzen oder die Reserve einsetzen. Sie vergleicht beide mit gewichteten Gesichtspunkten." }
+        - { kante: vorlage-freigabe, text: "Der Lenkungskreis berät, und der Bauherr entscheidet." }
+        - { kante: freigabe-massnahme, text: "Aus dem Beschluss wird eine Maßnahme mit verantwortlicher Rolle und Frist." }
+      ende: "Der Schwellenwert löst nur die Frühwarnung aus. Ob ein Risiko oder ein Problem vorliegt, zeigt erst die Klärung."
+      belege: [k6.4.3-p2, v24:hb-3, v24:hb-3.1, v24:hb-1.2, v24:hb-1.4]
+    - id: fassade
+      titel: Fassadenwechsel treibt die Kosten
+      kurz: Eine Änderung hebt die Prognose über die Schwelle und wird zum Risiko.
+      start: aenderung
+      einstieg: "Die Schulleitung will für die Grundschule Am Park eine hochwertigere Fassade. Die Änderung wird beantragt (AEN-014)."
+      schritte:
+        - { kante: aenderung-prognose, text: "Die Projektsteuerung lässt die Kostenwirkung ermitteln und verknüpft sie mit der Kostenprognose, in der sie kenntlich bleibt. Mit ihr liegt die Prognose über der Grenze." }
+        - { kante: prognose-schwelle, text: "Mit der neuen Prognose ist die festgelegte Grenze überschritten." }
+        - { kante: schwelle-fruehwarnung, text: "Der Schwellenwert löst eine Frühwarnung aus." }
+        - { kante: fruehwarnung-risiko, text: "Die Klärung zeigt: Die Mehrkosten sind noch nicht sicher, sie gefährden aber das Budget. Es wird ein Risiko." }
+        - { kante: risiko-register, text: "Das Risiko ist wesentlich, weil es eine Entscheidungsschwelle des Bauherrn erreicht. Es kommt als offener Entscheidungsbedarf ins Entscheidungsregister. Zugleich braucht die Änderung selbst eine Entscheidung; die Vorlage behandelt beides." }
+        - { kante: register-vorlage, text: "Die Projektsteuerung arbeitet zwei zulässige Wege aus: die hochwertige Fassade mit Reserve oder die bisherige Fassade. Sie vergleicht beide." }
+        - { kante: vorlage-freigabe, text: "Der Lenkungskreis berät, der Bauherr entscheidet und beschließt, bei der bisherigen Fassade zu bleiben." }
+        - { kante: freigabe-bericht, text: "Der Beschluss steht im nächsten Managementbericht. Kostenwirkung und Risiko bleiben mit dem Änderungseintrag verknüpft." }
+      ende: "Eine Änderung kann über die Kostenprognose in die Frühwarnung führen, ohne vorher ein Risiko zu sein."
+      belege: [v24:hb-1.2, v24:hb-1.5, v24:hb-1.6, v24:hb-3, v24:hb-3.1, k6.4.3-p2]

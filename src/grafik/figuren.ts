@@ -632,6 +632,8 @@ export const GIMMICKS = [
   'buch', 'mappe', 'matrix', 'sonne', 'wegweiser', 'stoppuhr', 'bruecke', 'eintrag',
   // P18.3/P18.4 (Konzept WERKZEUGE-P18 Abschnitt 6): Kacheln der vier neuen Explore-Werkzeuge und das Ergebnis „Maßnahme“
   'klemmbrett', 'gabelung', 'messlatte', 'berichtsblatt', 'werkzeugkasten',
+  // Register-Zusammenspiel (Owner im Chat 2026-10-09): drei verbundene Registerkarten
+  'registerkarten',
   // P19.6 (Drehbuch v2, Akte I bis III): Bilder der neuen Stationen und Mini-Aufgaben
   'stuhlreihen', 'schlagzeile', 'glocke-haken', 'angebotskalender', 'pinnwand', 'haftzettel', 'gespraechskarten', 'musskarten',
   'genehmigung-auflage', 'hallenboden', 'tasse',
@@ -673,6 +675,7 @@ const GIMMICK_TEXT: Record<GimmickName, string> = {
   eintrag: 'Ein ausgefüllter Eintrag mit Uhr, Kamera, Zeilen und Häkchen.',
   klemmbrett: 'Ein Klemmbrett mit einer Liste, zwei Punkte sind abgehakt.',
   gabelung: 'Ein Weg, der sich in zwei Pfeile teilt.',
+  registerkarten: 'Drei Registerkarten, die durch Pfeile verbunden sind.',
   messlatte: 'Eine Messlatte mit vier Kerben und einer Marke.',
   berichtsblatt: 'Eine Seite mit drei Ampelpunkten und wenigen Zeilen.',
   werkzeugkasten: 'Ein offener Werkzeugkasten mit Hammer und Schraubenschlüssel.',
@@ -941,6 +944,13 @@ const GIMMICK_SVG: Record<GimmickName, () => string> = {
     + pf('gm-a-lagune', 'M50,106V70L30,48L22,56L18,22L52,26L44,34L60,52L76,34L68,26L102,22L98,56L90,48L70,70V106Z')
     + pf('gm-d-lagune', 'M50,94H70V106H50Z')
     + pf('gm-umweg', 'M60,100V62'),
+  registerkarten: () => boden(60, 50)
+    + re('gm-papier gm-kante-lagune', 8, 20, 36, 30, 4) + re('gm-a-lagune', 8, 20, 36, 8, 4) + re('gm-linie-flaeche-hell', 14, 36, 24, 3, 1.5) + re('gm-linie-flaeche-hell', 14, 42, 18, 3, 1.5)
+    + re('gm-papier gm-kante-lagune', 76, 20, 36, 30, 4) + re('gm-a-lagune', 76, 20, 36, 8, 4) + re('gm-linie-flaeche-hell', 82, 36, 24, 3, 1.5) + re('gm-linie-flaeche-hell', 82, 42, 18, 3, 1.5)
+    + re('gm-papier gm-kante-lagune', 42, 66, 36, 30, 4) + re('gm-a-lagune', 42, 66, 36, 8, 4) + re('gm-linie-flaeche-hell', 48, 82, 24, 3, 1.5) + re('gm-linie-flaeche-hell', 48, 88, 18, 3, 1.5)
+    + re('gm-d-lagune', 44, 33.8, 30, 2.4, 1) + pf('gm-d-lagune', 'M74,30L81,35L74,40Z')
+    + re('gm-d-lagune', 24.8, 50, 2.4, 10.6, 1) + re('gm-d-lagune', 24.8, 58.2, 17, 2.4, 1) + pf('gm-d-lagune', 'M40,54.4L47,59.4L40,64.4Z')
+    + re('gm-d-lagune', 92.8, 50, 2.4, 10.6, 1) + re('gm-d-lagune', 78, 58.2, 17, 2.4, 1) + pf('gm-d-lagune', 'M80,54.4L73,59.4L80,64.4Z'),
   messlatte: () => {
     let s = boden(60, 50) + re('gm-papier gm-kante', 8, 50, 104, 26, 4);
     for (const [i, x] of [26, 46, 66, 86].entries()) s += pf('gm-teilung', `M${x},50V${i % 2 === 0 ? 64 : 60}`);

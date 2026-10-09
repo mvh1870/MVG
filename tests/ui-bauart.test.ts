@@ -5,7 +5,7 @@
 //    Datenebene kein Regie-Material (Positivliste).
 // 2. DOM: Startseite (drei Wege, Links zu bauherr-mentoren.com, Impressum, Datenschutz), Theorie (Themen ohne
 //    Nummern, Originaltext oder Zitierangaben), Story (Auftakt → Kapitel → Vorlage → Folge → Schulstart, Speicher),
-//    Explore (neun Werkzeuge), Leinwand-Anzeige (nicht bedienbar, ohne Notiz), Regie (Notiz, Kanal sendet nur Öffentliches).
+//    Explore (zehn Werkzeuge), Leinwand-Anzeige (nicht bedienbar, ohne Notiz), Regie (Notiz, Kanal sendet nur Öffentliches).
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { anzeigeFassung } from '../werkzeuge/anzeige-fassung.mjs';
@@ -57,7 +57,8 @@ function importGraph(start: string): Map<string, string[]> {
 test('Regie-Material erreicht nur die Regie (Konstruktion, O-9): kein Modul außer main.ts greift darauf zu', () => {
   const module = dateien(join(WURZEL, 'src')).filter((p) => p.endsWith('.ts') && !rel(p).startsWith('src/generiert/'));
   assert.ok(module.length > 25);
-  const ausnahmen = new Set(['src/main.ts', 'src/inhalte/index.ts', 'src/inhalte/typen.ts']);
+  // src/werkzeuge-kompass.ts ist der zweite Einstieg (eigenständige Werkzeugseite, L-431) und lädt die Inhalte wie main.ts
+  const ausnahmen = new Set(['src/main.ts', 'src/werkzeuge-kompass.ts', 'src/inhalte/index.ts', 'src/inhalte/typen.ts']);
   for (const p of module) {
     if (ausnahmen.has(rel(p))) continue;
     const text = readFileSync(p, 'utf8');
@@ -243,7 +244,7 @@ test('Story: Schulstart zeigt Bilanz, Balken, die Wege weiter und den leisen Lin
   assert.ok(f.element.querySelector('[data-pruef="ende-themen"][href="#theorie"]'));
 });
 
-test('Explore: neun Werkzeuge; Rechner rechnet um, Matrix ordnet ein, Vorgänge führen weiter, Glossar sucht', () => {
+test('Explore: zehn Werkzeuge; Rechner rechnet um, Matrix ordnet ein, Vorgänge führen weiter, Glossar sucht', () => {
   for (const id of WERKZEUGE) {
     const el = baueExplore({ inhalte, werkzeug: id, bedienbar: true });
     assert.equal(el.querySelector('.ex-werkzeuge [aria-current="page"]')?.getAttribute('data-pruef'), `ex-${id}`);

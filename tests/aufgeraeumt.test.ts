@@ -24,9 +24,9 @@ const NUR_TESTS = new Set([
   'src/stil/farben.ts',
 ]);
 
-test('Jede Quelldatei unter src/ wird von src/main.ts aus geladen', () => {
+test('Jede Quelldatei unter src/ wird von einem Einstieg geladen (src/main.ts, src/werkzeuge-kompass.ts, L-431)', () => {
   const gesehen = new Set<string>();
-  const offen = [path.join(WURZEL, 'src', 'main.ts')];
+  const offen = [path.join(WURZEL, 'src', 'main.ts'), path.join(WURZEL, 'src', 'werkzeuge-kompass.ts')];
   while (offen.length > 0) {
     const f = offen.pop() as string;
     if (gesehen.has(f) || !existsSync(f)) continue;

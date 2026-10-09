@@ -52,7 +52,7 @@
 .seite-story { background: var(--grund); min-height: 100vh; }
 .seite-story .seiten-haupt {
   width: 100%;
-  max-width: 1080px;
+  max-width: var(--breite-story);
   margin: 0 auto;
   padding: 0 var(--a-6) var(--a-8);
 }

@@ -11,6 +11,7 @@ import { pruefeVorlage } from '../src/werkzeuge/vorlagen-check.ts';
 import { MIT_UNKLAR, wegweiser } from '../src/werkzeuge/wegweiser.ts';
 import { bewerteRisiko, pruefeGrenzen } from '../src/werkzeuge/risiko-grenzen.ts';
 import { AMPELN, FELDGRENZEN, pruefeBericht } from '../src/werkzeuge/monatsbericht.ts';
+import { ANLAESSE, KANTEN_IDS, KNOTEN, ORTE, ROLLEN, probefrage, pruefeWeg } from '../src/werkzeuge/register.ts';
 
 const ARTEN = ['aufgabe', 'fruehwarnung', 'risiko', 'problem', 'aenderung', 'massnahme'];
 /** interner Beleg: Absatz-ID aus V1.2, Stelle aus V2.4 (Handbuch, Teilleistungsbild, Vertragsanlage, Ausschreibung) oder `fall` (Eckdatum der Fall-Bibel) */
@@ -30,7 +31,7 @@ const text = (x) => (x === undefined || x === null ? '' : String(x));
 
 /** Adress-Kennung (#explore/<werkzeug>) → Teil in inhalte/werkzeuge.yaml; muss zu WERKZEUGE und TEIL in src/ui/flaechen/explore.ts passen (tests/explore-werkzeuge.test.ts). */
 export const WERKZEUG_TEIL = {
-  mcda: 'mcda', 'vorlagen-check': 'vorlagencheck', matrix: 'matrix', 'risiko-grenzen': 'risikogrenzen', vorgaenge: 'vorgaenge', wegweiser: 'wegweiser', takt: 'takt', monatsbericht: 'monatsbericht', glossar: 'glossar',
+  mcda: 'mcda', 'vorlagen-check': 'vorlagencheck', matrix: 'matrix', 'risiko-grenzen': 'risikogrenzen', vorgaenge: 'vorgaenge', wegweiser: 'wegweiser', register: 'register', takt: 'takt', monatsbericht: 'monatsbericht', glossar: 'glossar',
 };
 /** Die vier Werkzeuge mit Beispielen und Regie-Material (P18, O-59). */
 const NEUE_WERKZEUGE = ['vorlagen-check', 'wegweiser', 'risiko-grenzen', 'monatsbericht'];
@@ -160,7 +161,7 @@ export function baueWerkzeuge(c, rel, roh) {
       else leereSchluessel(w, `${ort}.${k}`);
     }
   };
-  for (const k of ['vorlagencheck', 'wegweiser', 'risikogrenzen', 'monatsbericht']) leereSchluessel(y[k], k);
+  for (const k of ['vorlagencheck', 'wegweiser', 'risikogrenzen', 'monatsbericht', 'register']) leereSchluessel(y[k], k);
   // O-65: Moderationsnotizen und Leitfragen gibt es nicht mehr – ein Feld „regie“ ist ein Fehler
   for (const id of NEUE_WERKZEUGE) {
     const teilId = /** @type {Record<string, string>} */ (WERKZEUG_TEIL)[id] ?? id;
@@ -170,6 +171,7 @@ export function baueWerkzeuge(c, rel, roh) {
   const wegweiserTeil = baueWegweiser(y.wegweiser ?? {}, neuerTeil, sichtbar, satz, belege, (/** @type {string} */ f) => c.fehler(rel, f));
   const risikogrenzen = baueRisikoGrenzen(y.risikogrenzen ?? {}, neuerTeil, sichtbar, satz, (/** @type {string} */ f) => c.fehler(rel, f));
   const monatsbericht = baueMonatsbericht(y.monatsbericht ?? {}, neuerTeil, sichtbar, satz, (/** @type {string} */ f) => c.fehler(rel, f));
+  const register = baueRegister(y.register ?? {}, neuerTeil, sichtbar, belege, (/** @type {string} */ f) => c.fehler(rel, f));
   const werkzeuge = {
     einleitungHtml: c.html(text(y.einleitung), rel),
     mcda: { ...teil('mcda'), hinweisHtml: c.html(text(y.mcda?.hinweis), rel) },
@@ -179,6 +181,7 @@ export function baueWerkzeuge(c, rel, roh) {
     glossar: teil('glossar'),
     vorlagencheck,
     wegweiser: wegweiserTeil,
+    register,
     risikogrenzen,
     monatsbericht,
   };
@@ -485,4 +488,99 @@ function baueMonatsbericht(v, neuerTeil, sichtbar, satz, fehler) {
   if (beispiele.length === 0) fehler('monatsbericht: mindestens ein Beispiel');
   eindeutig(v.beispiele ?? [], 'monatsbericht', fehler);
   return { ...kopf, ampel, ampeln, farben, abschnitte, entscheidungen, reaktion, projekt, fuss, saetze, beispiele };
+}
+
+
+/** Längste Kurzzeile einer Station in der Grafik (Streifen unter dem Titel, 14 px); längere Texte brechen aus der Kachel. */
+export const REGISTER_KURZ_MAX = 28;
+
+/**
+ * E · Register-Zusammenspiel: Texte je Station und je Pfeil über die Kennungen des Kerns (src/werkzeuge/register.ts).
+ * Der Übersetzer prüft, dass genau die Stationen, Pfeile und Anlässe des Kerns vorkommen, jede Rolle bekannt ist und
+ * jeder Fall ein gültiger Weg ist (Pfeile gibt es, jeder einmal, jede Quelle ist erreicht).
+ * @param {any} v @param {(k: string) => any} neuerTeil @param {Sichtbar} sichtbar @param {(b: unknown, ort: string) => void} belege @param {Fehler} fehler
+ */
+function baueRegister(v, neuerTeil, sichtbar, belege, fehler) {
+  const kopf = neuerTeil('register');
+  const nur = (/** @type {string[]} */ ist, /** @type {readonly string[]} */ soll, /** @type {string} */ ort) => {
+    for (const id of ist) if (!soll.includes(id)) fehler(`${ort}: „${id}“ unbekannt (erlaubt: ${soll.join(', ')})`);
+    for (const id of soll) if (!ist.includes(id)) fehler(`${ort}: „${id}“ fehlt`);
+  };
+  const pflicht = (/** @type {unknown} */ x, /** @type {string} */ ort) => {
+    if (text(x).trim() === '') fehler(`${ort}: fehlt`);
+    return sichtbar(ort, x);
+  };
+  const rolle = (/** @type {unknown} */ r, /** @type {string} */ ort) => {
+    if (!ROLLEN.includes(/** @type {any} */ (r))) fehler(`${ort}: Rolle „${text(r)}“ unbekannt (erlaubt: ${ROLLEN.join(', ')})`);
+    return text(r);
+  };
+  const wer = (/** @type {any} */ w, /** @type {string} */ ort) => {
+    const fuehrt = rolle(w?.fuehrt, `${ort} fuehrt`);
+    const beteiligt = (w?.beteiligt ?? []).map((/** @type {any} */ b, /** @type {number} */ i) => ({ rolle: rolle(b?.rolle, `${ort} beteiligt[${i + 1}]`), text: pflicht(b?.text, `${ort} beteiligt[${i + 1}]`) }));
+    const rollen = beteiligt.map((/** @type {any} */ b) => b.rolle);
+    if (new Set(rollen).size !== rollen.length) fehler(`${ort}: eine Rolle höchstens einmal unter „beteiligt“`);
+    if (rollen.includes(fuehrt)) fehler(`${ort}: die führende Rolle steht nicht zugleich unter „beteiligt“`);
+    return { fuehrt, text: pflicht(w?.text, `${ort} wer`), beteiligt };
+  };
+  const kurzText = (/** @type {any} */ x, /** @type {string} */ ort) => {
+    const kurz = pflicht(x?.kurz, `${ort} kurz`);
+    if ([...kurz].length > REGISTER_KURZ_MAX) fehler(`${ort}: „${kurz}“ hat mehr als ${REGISTER_KURZ_MAX} Zeichen (Streifen in der Grafik)`);
+    return { kurz, text: pflicht(x?.text, ort) };
+  };
+
+  const rollen = (v.rollen ?? []).map((/** @type {any} */ r) => {
+    belege(r.belege, `register rollen ${text(r.id)}`);
+    return { id: rolle(r.id, 'register rollen'), titel: pflicht(r.titel, `register rollen ${text(r.id)} titel`), text: pflicht(r.text, `register rollen ${text(r.id)}`) };
+  });
+  if (rollen.map((/** @type {any} */ r) => r.id).join(',') !== ROLLEN.join(',')) fehler(`register rollen: erwartet genau ${ROLLEN.join(', ')} in dieser Reihenfolge`);
+
+  belege(v.schwelle?.belege, 'register schwelle');
+  const schwelle = { titel: pflicht(v.schwelle?.titel, 'register schwelle titel'), text: pflicht(v.schwelle?.text, 'register schwelle'), wer: wer(v.schwelle?.wer, 'register schwelle') };
+
+  nur(Object.keys(v.knoten ?? {}), KNOTEN, 'register knoten');
+  /** @type {Record<string, any>} */
+  const knoten = {};
+  for (const id of KNOTEN) {
+    const k = v.knoten?.[id] ?? {};
+    const ort = `register knoten ${id}`;
+    belege(k.belege, ort);
+    knoten[id] = {
+      titel: pflicht(k.titel, `${ort} titel`),
+      unter: pflicht(k.unter, `${ort} unter`),
+      text: pflicht(k.text, ort),
+      wer: wer(k.wer, ort),
+      wann: kurzText(k.wann, `${ort} wann`),
+      schwelle: kurzText(k.schwelle, `${ort} schwelle`),
+      ergebnis: kurzText(k.ergebnis, `${ort} ergebnis`),
+      stoerung: pflicht(k.stoerung, `${ort} stoerung`),
+    };
+  }
+
+  nur(Object.keys(v.kanten ?? {}), KANTEN_IDS, 'register kanten');
+  /** @type {Record<string, any>} */
+  const kanten = {};
+  for (const id of KANTEN_IDS) {
+    const k = v.kanten?.[id] ?? {};
+    belege(k.belege, `register kanten ${id}`);
+    kanten[id] = { text: pflicht(k.text, `register kanten ${id} text`), erklaerung: pflicht(k.erklaerung, `register kanten ${id}`) };
+  }
+
+  const anlaesse = (v.anlaesse ?? []).map((/** @type {any} */ a) => {
+    const ort = `register anlass ${text(a.id)}`;
+    belege(a.belege, ort);
+    const start = text(a.start);
+    if (!ORTE.includes(/** @type {any} */ (start))) fehler(`${ort}: Start „${start}“ unbekannt`);
+    const schritte = (a.schritte ?? []).map((/** @type {any} */ s, /** @type {number} */ i) => ({ kante: text(s?.kante), text: pflicht(s?.text, `${ort} schritt ${i + 1}`) }));
+    const befund = pruefeWeg({ start: /** @type {any} */ (start), schritte: schritte.map((/** @type {any} */ s) => s.kante) });
+    for (const b of befund) fehler(`${ort}: Weg ungültig (${JSON.stringify(b)})`);
+    schritte.forEach((/** @type {any} */ _s, /** @type {number} */ i) => {
+      const f = probefrage({ start: /** @type {any} */ (start), schritte: schritte.map((/** @type {any} */ s) => s.kante) }, i);
+      if (f === null || f.wahl.length < 3 || new Set(f.wahl).size !== f.wahl.length || f.wahl.filter((/** @type {string} */ o) => o === f.richtig).length !== 1) fehler(`${ort} schritt ${i + 1}: keine brauchbare Probefrage`);
+    });
+    return { id: text(a.id), titel: pflicht(a.titel, `${ort} titel`), kurz: pflicht(a.kurz, `${ort} kurz`), start, einstieg: pflicht(a.einstieg, `${ort} einstieg`), schritte, ende: pflicht(a.ende, `${ort} ende`) };
+  });
+  nur(anlaesse.map((/** @type {any} */ a) => a.id), ANLAESSE, 'register anlaesse');
+  if (anlaesse.map((/** @type {any} */ a) => a.id).join(',') !== ANLAESSE.join(',')) fehler(`register anlaesse: Reihenfolge ${ANLAESSE.join(', ')}`);
+
+  return { ...kopf, rollen, schwelle, knoten, kanten, anlaesse };
 }

@@ -1,9 +1,9 @@
 /*
- * Bereich „Explore“ (P16.8, O-46; P18.3/P18.4, O-59): neun Werkzeuge zum Ausprobieren, alle am fiktiven Schulcampus
+ * Bereich „Explore“ (P16.8, O-46; P18.3/P18.4, O-59): zehn Werkzeuge zum Ausprobieren, alle am fiktiven Schulcampus
  * Lindenhall-Süd (O-50). Nichts wird gespeichert oder gesendet; Einstellungen gelten nur für diese Ansicht (Hinweis sichtbar nur im Datenschutz, O-56).
  *
  *   #explore            → MCDA-Rechner (erstes Werkzeug), darüber die Werkzeugleiste
- *   #explore/<werkzeug> → mcda · vorlagen-check · matrix · risiko-grenzen · vorgaenge · wegweiser · takt · monatsbericht · glossar
+ *   #explore/<werkzeug> → mcda · vorlagen-check · matrix · risiko-grenzen · vorgaenge · wegweiser · register · takt · monatsbericht · glossar
  *
  * Jedes neue Werkzeug steht neben seinem „Geschwister“ und trägt dessen Ton (Konzept WERKZEUGE-P18 Abschnitt 0); seine
  * Oberfläche liegt in src/ui/flaechen/explore/, die Rechnung in src/werkzeuge/. Die Texte stehen in inhalte/werkzeuge.yaml;
@@ -19,7 +19,7 @@ import type { OeffentlicheInhalte, Werkzeuge } from '../../inhalte/typen.ts';
 import { ersetze, h, vonHtml } from '../h.ts';
 import { inhalt, inhaltInline } from '../bausteine/inhalt.ts';
 import { sym } from '../bausteine/bloecke.ts';
-import { seitenRahmen } from '../bausteine/seite.ts';
+import { istEigenstaendig, seitenRahmen } from '../bausteine/seite.ts';
 import { glossarListe } from './theorie.ts';
 import { W } from '../woerter.ts';
 import { TEIL, WERKZEUGE, werkzeugAus, werkzeugTitel, type Werkzeug } from '../werkzeug-kennungen.ts';
@@ -27,6 +27,7 @@ import { vorlagenCheck } from './explore/vorlagen-check.ts';
 import { wegweiserWerkzeug } from './explore/wegweiser.ts';
 import { risikoGrenzen } from './explore/risiko-grenzen.ts';
 import { monatsbericht } from './explore/monatsbericht.ts';
+import { registerWerkzeug } from './explore/register.ts';
 
 export { WERKZEUGE, werkzeugAus, werkzeugTitel, type Werkzeug };
 
@@ -41,6 +42,7 @@ export const WERKZEUG_BILD: Record<Werkzeug, { bild: GimmickName; ton: Akzent }>
   'risiko-grenzen': { bild: 'messlatte', ton: 'blau' },
   vorgaenge: { bild: 'wegweiser', ton: 'lagune' },
   wegweiser: { bild: 'gabelung', ton: 'lagune' },
+  register: { bild: 'registerkarten', ton: 'lagune' },
   takt: { bild: 'kalender', ton: 'sonne' },
   monatsbericht: { bild: 'berichtsblatt', ton: 'sonne' },
   glossar: { bild: 'buch', ton: 'gruen' },
@@ -302,6 +304,7 @@ export function baueExplore(o: ExploreOptionen): HTMLElement {
     : aktiv === 'risiko-grenzen' ? risikoGrenzen(neu)
     : aktiv === 'vorgaenge' ? vorgaenge(o, w)
     : aktiv === 'wegweiser' ? wegweiserWerkzeug(neu)
+    : aktiv === 'register' ? registerWerkzeug(neu)
     : aktiv === 'takt' ? takt(o, w)
     : aktiv === 'monatsbericht' ? monatsbericht(neu)
     : h('div', { class: 'ex-werkzeug', 'data-werkzeug': 'glossar' }, glossarListe(o));
@@ -316,7 +319,7 @@ export function baueExplore(o: ExploreOptionen): HTMLElement {
     inhalt: h('div', { class: 'ex-rahmen', 'data-pruef': 'explore', 'data-ton': WERKZEUG_BILD[aktiv].ton },
       h('header', { class: 'ex-kopf' },
         h('div', { class: 'ex-kopf-text' },
-          h('p', { class: 'gs-kicker' }, E.bereich),
+          h('p', { class: 'gs-kicker' }, istEigenstaendig() ? W.werkzeugeKompass.name : E.bereich),
           h('h1', { class: 'gs-titel ex-titel', tabindex: -1, 'data-pruef': 'ex-titel' }, titel(aktiv)),
           // R78, L-322: unter dem Titel steht der dreiteilige Vorspann des gewählten Werkzeugs (wozu, was Sie eintragen, was das Ergebnis
           // heißt – Zweck, Eingabe und Deutung sind Inhalt, keine Bedienanleitung, O-56); der Hinweis auf den fiktiven Fall bleibt
@@ -324,7 +327,7 @@ export function baueExplore(o: ExploreOptionen): HTMLElement {
           vorspann(aktiv),
           w !== null ? h('div', { class: 'gs-leise ex-fall', 'data-pruef': 'ex-fall' }, inhalt(w.einleitungHtml)) : null),
         h('div', { class: 'ex-kopf-bild', 'aria-hidden': 'true' }, vonHtml(gimmick(WERKZEUG_BILD[aktiv].bild, { groesse: 112, dekorativ: true })))),
-      h('nav', { class: 'ex-werkzeuge', 'aria-label': E.werkzeuge },
+      h('nav', { class: 'ex-werkzeuge', 'aria-label': istEigenstaendig() ? W.werkzeugeKompass.name : E.werkzeuge },
         WERKZEUGE.map((id) => o.bedienbar
           ? h('a', { class: 'ex-werkzeug-link', href: `#explore/${id}`, 'aria-current': id === aktiv ? 'page' : null, 'data-pruef': `ex-${id}`, 'data-ton': WERKZEUG_BILD[id].ton }, kachel(id))
           : h('span', { class: 'ex-werkzeug-link', 'aria-current': id === aktiv ? 'page' : null, 'data-ton': WERKZEUG_BILD[id].ton }, kachel(id)))),

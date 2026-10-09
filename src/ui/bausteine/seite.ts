@@ -20,6 +20,18 @@ export const DATENSCHUTZ_SEITE = 'datenschutz.html';
  * hat keine Nachbarn und trägt dafür `<meta name="mvg-rechtsseiten" content="https://…/">` – dann führt der Link
  * zur veröffentlichten Seite. Nur https-Adressen gelten; alles andere bleibt beim relativen Verweis.
  */
+/**
+ * Eigenständige Werkzeugseite „Werkzeuge Kompass“ (Exportpaket, L-431): Kopf nur mit Bildmarke und Namen, ohne die Bereiche;
+ * Fuß ohne „Präsentieren“. Gesetzt einmal beim Laden von src/werkzeuge-kompass.ts, auf der Hauptseite nie.
+ */
+let eigenstaendig = false;
+export function setzeEigenstaendig(an: boolean): void {
+  eigenstaendig = an;
+}
+export function istEigenstaendig(): boolean {
+  return eigenstaendig;
+}
+
 export function rechtsSeite(seite: string): string {
   const basis = typeof document === 'undefined' ? '' : document.querySelector<HTMLMetaElement>('meta[name="mvg-rechtsseiten"]')?.content ?? '';
   return /^https:\/\/[a-z0-9.-]+\/$/u.test(basis) ? `${basis}${seite}` : seite;
@@ -35,6 +47,15 @@ export function seitenKopf(aktiv: Bereich | null, bedienbar = true): HTMLElement
   const bereich = (b: Exclude<Bereich, 'start'>, text: string): HTMLElement => bedienbar
     ? h('a', { class: 'kopf-bereich', href: `#${b}`, 'data-pruef': `kopf-${b}`, 'aria-current': aktiv === b ? 'page' : null }, text)
     : h('span', { class: 'kopf-bereich', 'aria-current': aktiv === b ? 'page' : null }, text);
+  if (eigenstaendig) {
+    return h('header', { class: 'seiten-kopf', 'data-pruef': 'seiten-kopf' },
+      bedienbar
+        ? h('a', { class: 'kopf-marke', href: BM_ADRESSE, rel: 'noopener', 'aria-label': w.bmMarke, title: w.bmMarke, 'data-pruef': 'kopf-bm' }, bildmarke('marke-logo'))
+        : h('span', { class: 'kopf-marke' }, bildmarke('marke-logo')),
+      bedienbar
+        ? h('a', { class: 'kopf-name', href: '#explore', 'data-pruef': 'kopf-start' }, W.werkzeugeKompass.name)
+        : h('span', { class: 'kopf-name' }, W.werkzeugeKompass.name));
+  }
   return h('header', { class: 'seiten-kopf', 'data-pruef': 'seiten-kopf' },
     bedienbar
       ? h('a', { class: 'kopf-marke', href: BM_ADRESSE, rel: 'noopener', 'aria-label': w.bmMarke, title: w.bmMarke, 'data-pruef': 'kopf-bm' }, bildmarke('marke-logo'))
@@ -52,14 +73,14 @@ export function seitenFuss(bedienbar = true, zusatz: Kind = null): HTMLElement {
   const w = W.rahmen;
   return h('footer', { class: 'seiten-fuss', 'data-pruef': 'fuss' },
     h('p', { class: 'fuss-absender' },
-      h('b', null, W.name), ' · ', W.adresse, ' · ', w.angebot, ' ',
+      h('b', null, eigenstaendig ? W.werkzeugeKompass.name : W.name), ' · ', W.adresse, ' · ', w.angebot, ' ',
       bedienbar ? bmLink(W.absender, 'bm-link') : W.absender),
     zusatz,
     bedienbar ? h('nav', { class: 'fuss-links', 'aria-label': w.rechtliches },
       h('a', { href: rechtsSeite(IMPRESSUM_SEITE), 'data-pruef': 'impressum' }, w.impressum),
       h('a', { href: rechtsSeite(DATENSCHUTZ_SEITE), 'data-pruef': 'datenschutz' }, w.datenschutz),
       h('a', { href: '#lizenzen', 'data-pruef': 'lizenzen' }, w.lizenzen),
-      h('a', { href: '#regie', 'data-pruef': 'praesentieren' }, w.praesentieren)) : null);
+      eigenstaendig ? null : h('a', { href: '#regie', 'data-pruef': 'praesentieren' }, w.praesentieren)) : null);
 }
 
 /** Bereich mit Kopf, Inhalt und Fuß. */

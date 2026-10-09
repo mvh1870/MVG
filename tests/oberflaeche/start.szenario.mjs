@@ -97,14 +97,14 @@ export async function lauf(seite, h) {
   if (los === null) h.befund('Story-Karte ohne „Beginnen“');
   else if (los.breite >= 1024 && los.hoehe >= 720 && los.unten > los.hoehe) h.befund(`„Beginnen“ erst unter dem ersten Bildschirm (unten ${Math.round(los.unten)} px bei ${los.hoehe} px)`);
 
-  // P18.5: neun Gegenstände der Werkzeuge – ab 1024 px in einer Reihe oder sauberen Reihen (nie 7 + 2), im schmalen Lauf 3 × 3
+  // zehn Gegenstände der Werkzeuge – immer in zwei sauberen Reihen zu fünf (nie 7 + 3)
   const reihen = await seite.evaluate(() => {
     const tops = [...document.querySelectorAll('.tuer-werkzeuge li')].filter((e) => e.getBoundingClientRect().width > 0).map((e) => Math.round(e.getBoundingClientRect().top));
     return { n: tops.length, reihen: [...new Set(tops)].length, breite: innerWidth };
   });
-  if (reihen.n !== 9) h.befund(`Werkzeug-Karte: erwartet neun Gegenstände, gefunden ${reihen.n}`);
-  else if (reihen.breite >= 1024 ? reihen.reihen !== 1 : reihen.reihen !== 3) h.befund(`Werkzeug-Karte: ${reihen.reihen} Reihen bei ${reihen.breite} px (erwartet ${reihen.breite >= 1024 ? 1 : 3})`);
-  if (!/Neun Werkzeuge/u.test(text)) h.befund('Werkzeug-Karte nennt „Neun Werkzeuge“ nicht');
+  if (reihen.n !== 10) h.befund(`Werkzeug-Karte: erwartet zehn Gegenstände, gefunden ${reihen.n}`);
+  else if (reihen.reihen !== 2) h.befund(`Werkzeug-Karte: ${reihen.reihen} Reihen bei ${reihen.breite} px (erwartet 2)`);
+  if (!/Zehn Werkzeuge/u.test(text)) h.befund('Werkzeug-Karte nennt „Zehn Werkzeuge“ nicht');
   // Alle drei Wege per Tastatur erreichbar
   const erreicht = new Set();
   for (let i = 0; i < 20 && erreicht.size < 3; i += 1) {

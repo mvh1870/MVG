@@ -230,6 +230,15 @@ export function registerWerkzeug(o: WerkzeugOptionen): HTMLElement {
     return st.modus === 'geschichte' ? sch.text : w.kanten[sch.kante]?.erklaerung ?? sch.text;
   }
 
+  /** Nur der erste Satz (Abkürzungen wie „z. B.“ trennen nicht): die Karte neben dem Bild bleibt kurz, die ganze Station steht beim Erkunden. */
+  function ersterSatz(t: string): string {
+    for (const m of t.matchAll(/[.!?](?=\s)/gu)) {
+      const wort = /[\p{L}\d)]+$/u.exec(t.slice(0, m.index))?.[0] ?? '';
+      if (wort.length >= 4 || /[\d)]$/u.test(wort)) return t.slice(0, m.index + 1);
+    }
+    return t;
+  }
+
   /** Karte neben dem Bild: Zuschauen nennt die Station, die erreicht ist; Erzählt erklärt den Pfeil (der erzählte Text steht im Untertitel). */
   function schrittKarte(erzaehlt: boolean): HTMLElement {
     const a = anlassDaten();
@@ -249,7 +258,7 @@ export function registerWerkzeug(o: WerkzeugOptionen): HTMLElement {
       h('h3', { class: 'rz-schritt-titel' }, R.pfeil(ortTitel(k.von), ortTitel(k.nach))),
       erzaehlt
         ? h('p', { class: 'rz-text' }, h('b', null, `${R.pfeilErklaerung}: `), w.kanten[k.id]?.erklaerung ?? '')
-        : h('p', { class: 'rz-text' }, h('b', null, `${ortTitel(k.nach)}: `), stationText),
+        : h('p', { class: 'rz-text' }, h('b', null, `${ortTitel(k.nach)}: `), ersterSatz(stationText)),
       fuehrtZeile(k.nach));
     if (n === gesamtN) karte.append(h('p', { class: 'rz-ende', 'data-pruef': 'register-ende' }, h('b', null, `${R.ende}. `), a.ende));
     return karte;

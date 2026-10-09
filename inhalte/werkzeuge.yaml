@@ -689,3 +689,60 @@ register:
         - { kante: massnahme-risiko, text: "Wirkt die Maßnahme nachweislich, wird die Risikobewertung angepasst." }
       ende: "Der Schwellenwert löst nur eine Frühwarnung aus. Entscheiden muss weiterhin der Bauherr."
       belege: [k6.4.3-p2, v24:hb-3, v24:hb-3.1, v24:hb-1.6]
+    - id: baugrund
+      titel: Grundwasser in der Baugrube
+      kurz: Ein Problem tritt ein, zwei Wege stehen zur Wahl.
+      start: fruehwarnung
+      einstieg: "Bei der Gründung der Sporthalle Eichenfeld meldet die Bauleitung einen ungewöhnlich hohen Wasserstand in der Baugrube."
+      schritte:
+        - { kante: fruehwarnung-problem, text: "Die Projektsteuerung hält die Meldung als Frühwarnung fest. Die Messung bestätigt: Der Wasserstand liegt dauerhaft über der Annahme. Der Zustand ist eingetreten, es ist ein Problem." }
+        - { kante: problem-register, text: "Die Projektsteuerung klärt die Folgen: Die Wasserhaltung reicht nicht aus. Für die Lösung braucht der Bauherr eine Entscheidung, also steht ein offener Entscheidungsbedarf im Entscheidungsregister." }
+        - { kante: register-vorlage, text: "Die Projektsteuerung arbeitet zwei zulässige Wege aus: die Wasserhaltung erweitern oder die Gründung anpassen. Sie vergleicht beide mit gewichteten Gesichtspunkten." }
+        - { kante: vorlage-freigabe, text: "Der Lenkungskreis berät, der Bauherr entscheidet nach seinem Mandat und wählt die erweiterte Wasserhaltung." }
+        - { kante: freigabe-massnahme, text: "Der Beschluss wird zur Maßnahme mit verantwortlicher Rolle und Frist. Die Projektsteuerung verfolgt die Umsetzung." }
+      ende: "Wie bei jedem Problem wird keine Wahrscheinlichkeit geschätzt: Es ist schon eingetreten."
+      belege: [v24:hb-1.2, v24:hb-1.4, v24:hb-3.1, k6.4.3-p2]
+    - id: absage
+      titel: Dachbegrünung abgelehnt
+      kurz: Der Bauherr lehnt eine Änderung ab, es ist nichts umzusetzen.
+      start: aenderung
+      einstieg: "Der Nutzer des Rathausneubaus wünscht eine Dachbegrünung. Die geltende Vorgabe sieht ein Kiesdach vor."
+      schritte:
+        - { kante: aenderung-prognose, text: "Die Projektsteuerung erfasst Anlass und Antragsteller und lässt die Folgen für Kosten und Termine ermitteln. Die Kostenwirkung wird mit der Kostenprognose verknüpft." }
+        - { kante: aenderung-register, text: "Für die Änderung braucht der Bauherr eine Entscheidung. Sie kommt als offener Entscheidungsbedarf ins Entscheidungsregister. Bis zum Beschluss gilt die bisherige Grundlage." }
+        - { kante: register-vorlage, text: "Die Projektsteuerung arbeitet zwei zulässige Wege aus: Begrünung jetzt oder Kiesdach mit Reserve für später. Sie vergleicht beide und empfiehlt einen Weg." }
+        - { kante: vorlage-freigabe, text: "Der Lenkungskreis berät. Der Bauherr beschließt, die Begrünung abzulehnen; es bleibt bei der bisherigen Grundlage." }
+        - { kante: freigabe-bericht, text: "Der Beschluss steht im nächsten Managementbericht; die Begründung bleibt beim Änderungseintrag nachvollziehbar. Aus der Ablehnung ist nichts umzusetzen, daher folgt keine Maßnahme." }
+      ende: "Auch eine abgelehnte Änderung bleibt mit Begründung festgehalten."
+      belege: [v24:hb-1.5, v24:hb-1, v24:hb-3.1, k6.4.3-p2]
+    - id: ausschreibung
+      titel: Angebote über dem Budget
+      kurz: Neue Preise lösen den Schwellenwert aus, daraus wird ein Problem.
+      start: prognose
+      einstieg: "Die Angebote für den Rohbau des Bürgerhauses liegen vor. Die Restkostenprognose wird mit den Angebotspreisen fortgeschrieben."
+      schritte:
+        - { kante: prognose-schwelle, text: "Die Projektsteuerung wertet die Prognose aus: Die festgelegte Grenze ist überschritten." }
+        - { kante: schwelle-fruehwarnung, text: "Der überschrittene Schwellenwert löst eine neue Frühwarnung aus." }
+        - { kante: fruehwarnung-problem, text: "Die Klärung zeigt: Die Angebotspreise liegen fest über dem Budget. Dieser Zustand ist eingetreten, aus der Frühwarnung wird ein Problem." }
+        - { kante: problem-register, text: "Für den Umgang damit braucht der Bauherr eine Entscheidung. Sie steht als offener Entscheidungsbedarf im Entscheidungsregister." }
+        - { kante: register-vorlage, text: "Die Projektsteuerung arbeitet zwei zulässige Wege aus: den Leistungsumfang kürzen oder die Reserve einsetzen. Sie vergleicht beide mit gewichteten Gesichtspunkten." }
+        - { kante: vorlage-freigabe, text: "Der Lenkungskreis berät, und der Bauherr entscheidet." }
+        - { kante: freigabe-massnahme, text: "Aus dem Beschluss wird eine Maßnahme mit verantwortlicher Rolle und Frist." }
+      ende: "Der Schwellenwert löst nur die Frühwarnung aus. Ob ein Risiko oder ein Problem vorliegt, zeigt erst die Klärung."
+      belege: [k6.4.3-p2, v24:hb-3, v24:hb-3.1, v24:hb-1.2, v24:hb-1.4]
+    - id: fassade
+      titel: Fassadenwechsel treibt die Kosten
+      kurz: Eine Änderung hebt die Prognose über die Schwelle und wird zum Risiko.
+      start: aenderung
+      einstieg: "Die Schulleitung will für die Grundschule Am Park eine hochwertigere Fassade. Die Änderung wird beantragt (AEN-014)."
+      schritte:
+        - { kante: aenderung-prognose, text: "Die Projektsteuerung lässt die Kostenwirkung ermitteln und verknüpft sie mit der Kostenprognose, in der sie kenntlich bleibt. Mit ihr liegt die Prognose über der Grenze." }
+        - { kante: prognose-schwelle, text: "Mit der neuen Prognose ist die festgelegte Grenze überschritten." }
+        - { kante: schwelle-fruehwarnung, text: "Der Schwellenwert löst eine Frühwarnung aus." }
+        - { kante: fruehwarnung-risiko, text: "Die Klärung zeigt: Die Mehrkosten sind noch nicht sicher, sie gefährden aber das Budget. Es wird ein Risiko." }
+        - { kante: risiko-register, text: "Das Risiko ist wesentlich, weil es eine Entscheidungsschwelle des Bauherrn erreicht. Es kommt als offener Entscheidungsbedarf ins Entscheidungsregister. Zugleich braucht die Änderung selbst eine Entscheidung; die Vorlage behandelt beides." }
+        - { kante: register-vorlage, text: "Die Projektsteuerung arbeitet zwei zulässige Wege aus: die hochwertige Fassade mit Reserve oder die bisherige Fassade. Sie vergleicht beide." }
+        - { kante: vorlage-freigabe, text: "Der Lenkungskreis berät, der Bauherr entscheidet und beschließt, bei der bisherigen Fassade zu bleiben." }
+        - { kante: freigabe-bericht, text: "Der Beschluss steht im nächsten Managementbericht. Kostenwirkung und Risiko bleiben mit dem Änderungseintrag verknüpft." }
+      ende: "Eine Änderung kann über die Kostenprognose in die Frühwarnung führen, ohne vorher ein Risiko zu sein."
+      belege: [v24:hb-1.2, v24:hb-1.5, v24:hb-1.6, v24:hb-3, v24:hb-3.1, k6.4.3-p2]

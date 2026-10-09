@@ -1,6 +1,6 @@
 {
  "erzeugt_von": "werkzeuge/textexport.mjs",
- "anzahl": 3624,
+ "anzahl": 3665,
  "texte": [
   {
    "id": "ST-0001",
@@ -42549,6 +42549,671 @@
     "ende"
    ],
    "original": "Der Schwellenwert löst nur eine Frühwarnung aus. Entscheiden muss weiterhin der Bauherr."
+  },
+  {
+   "id": "WZ-0566",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 5. › titel",
+   "art": "yaml",
+   "zeile": 693,
+   "pfad": [
+    "register",
+    "anlaesse",
+    4,
+    "titel"
+   ],
+   "original": "Grundwasser in der Baugrube"
+  },
+  {
+   "id": "WZ-0567",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 5. › kurz",
+   "art": "yaml",
+   "zeile": 694,
+   "pfad": [
+    "register",
+    "anlaesse",
+    4,
+    "kurz"
+   ],
+   "original": "Ein Problem tritt ein, zwei Wege stehen zur Wahl."
+  },
+  {
+   "id": "WZ-0568",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 5. › einstieg",
+   "art": "yaml",
+   "zeile": 696,
+   "pfad": [
+    "register",
+    "anlaesse",
+    4,
+    "einstieg"
+   ],
+   "original": "Bei der Gründung der Sporthalle Eichenfeld meldet die Bauleitung einen ungewöhnlich hohen Wasserstand in der Baugrube."
+  },
+  {
+   "id": "WZ-0569",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 5. › schritte › 1. › text",
+   "art": "yaml",
+   "zeile": 698,
+   "pfad": [
+    "register",
+    "anlaesse",
+    4,
+    "schritte",
+    0,
+    "text"
+   ],
+   "original": "Die Projektsteuerung hält die Meldung als Frühwarnung fest. Die Messung bestätigt: Der Wasserstand liegt dauerhaft über der Annahme. Der Zustand ist eingetreten, es ist ein Problem."
+  },
+  {
+   "id": "WZ-0570",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 5. › schritte › 2. › text",
+   "art": "yaml",
+   "zeile": 699,
+   "pfad": [
+    "register",
+    "anlaesse",
+    4,
+    "schritte",
+    1,
+    "text"
+   ],
+   "original": "Die Projektsteuerung klärt die Folgen: Die Wasserhaltung reicht nicht aus. Für die Lösung braucht der Bauherr eine Entscheidung, also steht ein offener Entscheidungsbedarf im Entscheidungsregister."
+  },
+  {
+   "id": "WZ-0571",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 5. › schritte › 3. › text",
+   "art": "yaml",
+   "zeile": 700,
+   "pfad": [
+    "register",
+    "anlaesse",
+    4,
+    "schritte",
+    2,
+    "text"
+   ],
+   "original": "Die Projektsteuerung arbeitet zwei zulässige Wege aus: die Wasserhaltung erweitern oder die Gründung anpassen. Sie vergleicht beide mit gewichteten Gesichtspunkten."
+  },
+  {
+   "id": "WZ-0572",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 5. › schritte › 4. › text",
+   "art": "yaml",
+   "zeile": 701,
+   "pfad": [
+    "register",
+    "anlaesse",
+    4,
+    "schritte",
+    3,
+    "text"
+   ],
+   "original": "Der Lenkungskreis berät, der Bauherr entscheidet nach seinem Mandat und wählt die erweiterte Wasserhaltung."
+  },
+  {
+   "id": "WZ-0573",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 5. › schritte › 5. › text",
+   "art": "yaml",
+   "zeile": 702,
+   "pfad": [
+    "register",
+    "anlaesse",
+    4,
+    "schritte",
+    4,
+    "text"
+   ],
+   "original": "Der Beschluss wird zur Maßnahme mit verantwortlicher Rolle und Frist. Die Projektsteuerung verfolgt die Umsetzung."
+  },
+  {
+   "id": "WZ-0574",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 5. › ende",
+   "art": "yaml",
+   "zeile": 703,
+   "pfad": [
+    "register",
+    "anlaesse",
+    4,
+    "ende"
+   ],
+   "original": "Wie bei jedem Problem wird keine Wahrscheinlichkeit geschätzt: Es ist schon eingetreten."
+  },
+  {
+   "id": "WZ-0575",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 6. › titel",
+   "art": "yaml",
+   "zeile": 706,
+   "pfad": [
+    "register",
+    "anlaesse",
+    5,
+    "titel"
+   ],
+   "original": "Dachbegrünung abgelehnt"
+  },
+  {
+   "id": "WZ-0576",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 6. › kurz",
+   "art": "yaml",
+   "zeile": 707,
+   "pfad": [
+    "register",
+    "anlaesse",
+    5,
+    "kurz"
+   ],
+   "original": "Der Bauherr lehnt eine Änderung ab, es ist nichts umzusetzen."
+  },
+  {
+   "id": "WZ-0577",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 6. › einstieg",
+   "art": "yaml",
+   "zeile": 709,
+   "pfad": [
+    "register",
+    "anlaesse",
+    5,
+    "einstieg"
+   ],
+   "original": "Der Nutzer des Rathausneubaus wünscht eine Dachbegrünung. Die geltende Vorgabe sieht ein Kiesdach vor."
+  },
+  {
+   "id": "WZ-0578",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 6. › schritte › 1. › text",
+   "art": "yaml",
+   "zeile": 711,
+   "pfad": [
+    "register",
+    "anlaesse",
+    5,
+    "schritte",
+    0,
+    "text"
+   ],
+   "original": "Die Projektsteuerung erfasst Anlass und Antragsteller und lässt die Folgen für Kosten und Termine ermitteln. Die Kostenwirkung wird mit der Kostenprognose verknüpft."
+  },
+  {
+   "id": "WZ-0579",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 6. › schritte › 2. › text",
+   "art": "yaml",
+   "zeile": 712,
+   "pfad": [
+    "register",
+    "anlaesse",
+    5,
+    "schritte",
+    1,
+    "text"
+   ],
+   "original": "Für die Änderung braucht der Bauherr eine Entscheidung. Sie kommt als offener Entscheidungsbedarf ins Entscheidungsregister. Bis zum Beschluss gilt die bisherige Grundlage."
+  },
+  {
+   "id": "WZ-0580",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 6. › schritte › 3. › text",
+   "art": "yaml",
+   "zeile": 713,
+   "pfad": [
+    "register",
+    "anlaesse",
+    5,
+    "schritte",
+    2,
+    "text"
+   ],
+   "original": "Die Projektsteuerung arbeitet zwei zulässige Wege aus: Begrünung jetzt oder Kiesdach mit Reserve für später. Sie vergleicht beide und empfiehlt einen Weg."
+  },
+  {
+   "id": "WZ-0581",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 6. › schritte › 4. › text",
+   "art": "yaml",
+   "zeile": 714,
+   "pfad": [
+    "register",
+    "anlaesse",
+    5,
+    "schritte",
+    3,
+    "text"
+   ],
+   "original": "Der Lenkungskreis berät. Der Bauherr beschließt, die Begrünung abzulehnen; es bleibt bei der bisherigen Grundlage."
+  },
+  {
+   "id": "WZ-0582",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 6. › schritte › 5. › text",
+   "art": "yaml",
+   "zeile": 715,
+   "pfad": [
+    "register",
+    "anlaesse",
+    5,
+    "schritte",
+    4,
+    "text"
+   ],
+   "original": "Der Beschluss steht im nächsten Managementbericht; die Begründung bleibt beim Änderungseintrag nachvollziehbar. Aus der Ablehnung ist nichts umzusetzen, daher folgt keine Maßnahme."
+  },
+  {
+   "id": "WZ-0583",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 6. › ende",
+   "art": "yaml",
+   "zeile": 716,
+   "pfad": [
+    "register",
+    "anlaesse",
+    5,
+    "ende"
+   ],
+   "original": "Auch eine abgelehnte Änderung bleibt mit Begründung festgehalten."
+  },
+  {
+   "id": "WZ-0584",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 7. › titel",
+   "art": "yaml",
+   "zeile": 719,
+   "pfad": [
+    "register",
+    "anlaesse",
+    6,
+    "titel"
+   ],
+   "original": "Angebote über dem Budget"
+  },
+  {
+   "id": "WZ-0585",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 7. › kurz",
+   "art": "yaml",
+   "zeile": 720,
+   "pfad": [
+    "register",
+    "anlaesse",
+    6,
+    "kurz"
+   ],
+   "original": "Neue Preise lösen den Schwellenwert aus, daraus wird ein Problem."
+  },
+  {
+   "id": "WZ-0586",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 7. › einstieg",
+   "art": "yaml",
+   "zeile": 722,
+   "pfad": [
+    "register",
+    "anlaesse",
+    6,
+    "einstieg"
+   ],
+   "original": "Die Angebote für den Rohbau des Bürgerhauses liegen vor. Die Restkostenprognose wird mit den Angebotspreisen fortgeschrieben."
+  },
+  {
+   "id": "WZ-0587",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 7. › schritte › 1. › text",
+   "art": "yaml",
+   "zeile": 724,
+   "pfad": [
+    "register",
+    "anlaesse",
+    6,
+    "schritte",
+    0,
+    "text"
+   ],
+   "original": "Die Projektsteuerung wertet die Prognose aus: Die festgelegte Grenze ist überschritten."
+  },
+  {
+   "id": "WZ-0588",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 7. › schritte › 2. › text",
+   "art": "yaml",
+   "zeile": 725,
+   "pfad": [
+    "register",
+    "anlaesse",
+    6,
+    "schritte",
+    1,
+    "text"
+   ],
+   "original": "Der überschrittene Schwellenwert löst eine neue Frühwarnung aus."
+  },
+  {
+   "id": "WZ-0589",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 7. › schritte › 3. › text",
+   "art": "yaml",
+   "zeile": 726,
+   "pfad": [
+    "register",
+    "anlaesse",
+    6,
+    "schritte",
+    2,
+    "text"
+   ],
+   "original": "Die Klärung zeigt: Die Angebotspreise liegen fest über dem Budget. Dieser Zustand ist eingetreten, aus der Frühwarnung wird ein Problem."
+  },
+  {
+   "id": "WZ-0590",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 7. › schritte › 4. › text",
+   "art": "yaml",
+   "zeile": 727,
+   "pfad": [
+    "register",
+    "anlaesse",
+    6,
+    "schritte",
+    3,
+    "text"
+   ],
+   "original": "Für den Umgang damit braucht der Bauherr eine Entscheidung. Sie steht als offener Entscheidungsbedarf im Entscheidungsregister."
+  },
+  {
+   "id": "WZ-0591",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 7. › schritte › 5. › text",
+   "art": "yaml",
+   "zeile": 728,
+   "pfad": [
+    "register",
+    "anlaesse",
+    6,
+    "schritte",
+    4,
+    "text"
+   ],
+   "original": "Die Projektsteuerung arbeitet zwei zulässige Wege aus: den Leistungsumfang kürzen oder die Reserve einsetzen. Sie vergleicht beide mit gewichteten Gesichtspunkten."
+  },
+  {
+   "id": "WZ-0592",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 7. › schritte › 6. › text",
+   "art": "yaml",
+   "zeile": 729,
+   "pfad": [
+    "register",
+    "anlaesse",
+    6,
+    "schritte",
+    5,
+    "text"
+   ],
+   "original": "Der Lenkungskreis berät, und der Bauherr entscheidet."
+  },
+  {
+   "id": "WZ-0593",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 7. › schritte › 7. › text",
+   "art": "yaml",
+   "zeile": 730,
+   "pfad": [
+    "register",
+    "anlaesse",
+    6,
+    "schritte",
+    6,
+    "text"
+   ],
+   "original": "Aus dem Beschluss wird eine Maßnahme mit verantwortlicher Rolle und Frist."
+  },
+  {
+   "id": "WZ-0594",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 7. › ende",
+   "art": "yaml",
+   "zeile": 731,
+   "pfad": [
+    "register",
+    "anlaesse",
+    6,
+    "ende"
+   ],
+   "original": "Der Schwellenwert löst nur die Frühwarnung aus. Ob ein Risiko oder ein Problem vorliegt, zeigt erst die Klärung."
+  },
+  {
+   "id": "WZ-0595",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 8. › titel",
+   "art": "yaml",
+   "zeile": 734,
+   "pfad": [
+    "register",
+    "anlaesse",
+    7,
+    "titel"
+   ],
+   "original": "Fassadenwechsel treibt die Kosten"
+  },
+  {
+   "id": "WZ-0596",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 8. › kurz",
+   "art": "yaml",
+   "zeile": 735,
+   "pfad": [
+    "register",
+    "anlaesse",
+    7,
+    "kurz"
+   ],
+   "original": "Eine Änderung hebt die Prognose über die Schwelle und wird zum Risiko."
+  },
+  {
+   "id": "WZ-0597",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 8. › einstieg",
+   "art": "yaml",
+   "zeile": 737,
+   "pfad": [
+    "register",
+    "anlaesse",
+    7,
+    "einstieg"
+   ],
+   "original": "Die Schulleitung will für die Grundschule Am Park eine hochwertigere Fassade. Die Änderung wird beantragt (AEN-014)."
+  },
+  {
+   "id": "WZ-0598",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 8. › schritte › 1. › text",
+   "art": "yaml",
+   "zeile": 739,
+   "pfad": [
+    "register",
+    "anlaesse",
+    7,
+    "schritte",
+    0,
+    "text"
+   ],
+   "original": "Die Projektsteuerung lässt die Kostenwirkung ermitteln und verknüpft sie mit der Kostenprognose, in der sie kenntlich bleibt. Mit ihr liegt die Prognose über der Grenze."
+  },
+  {
+   "id": "WZ-0599",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 8. › schritte › 2. › text",
+   "art": "yaml",
+   "zeile": 740,
+   "pfad": [
+    "register",
+    "anlaesse",
+    7,
+    "schritte",
+    1,
+    "text"
+   ],
+   "original": "Mit der neuen Prognose ist die festgelegte Grenze überschritten."
+  },
+  {
+   "id": "WZ-0600",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 8. › schritte › 3. › text",
+   "art": "yaml",
+   "zeile": 741,
+   "pfad": [
+    "register",
+    "anlaesse",
+    7,
+    "schritte",
+    2,
+    "text"
+   ],
+   "original": "Der Schwellenwert löst eine Frühwarnung aus."
+  },
+  {
+   "id": "WZ-0601",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 8. › schritte › 4. › text",
+   "art": "yaml",
+   "zeile": 742,
+   "pfad": [
+    "register",
+    "anlaesse",
+    7,
+    "schritte",
+    3,
+    "text"
+   ],
+   "original": "Die Klärung zeigt: Die Mehrkosten sind noch nicht sicher, sie gefährden aber das Budget. Es wird ein Risiko."
+  },
+  {
+   "id": "WZ-0602",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 8. › schritte › 5. › text",
+   "art": "yaml",
+   "zeile": 743,
+   "pfad": [
+    "register",
+    "anlaesse",
+    7,
+    "schritte",
+    4,
+    "text"
+   ],
+   "original": "Das Risiko ist wesentlich, weil es eine Entscheidungsschwelle des Bauherrn erreicht. Es kommt als offener Entscheidungsbedarf ins Entscheidungsregister. Zugleich braucht die Änderung selbst eine Entscheidung; die Vorlage behandelt beides."
+  },
+  {
+   "id": "WZ-0603",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 8. › schritte › 6. › text",
+   "art": "yaml",
+   "zeile": 744,
+   "pfad": [
+    "register",
+    "anlaesse",
+    7,
+    "schritte",
+    5,
+    "text"
+   ],
+   "original": "Die Projektsteuerung arbeitet zwei zulässige Wege aus: die hochwertige Fassade mit Reserve oder die bisherige Fassade. Sie vergleicht beide."
+  },
+  {
+   "id": "WZ-0604",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 8. › schritte › 7. › text",
+   "art": "yaml",
+   "zeile": 745,
+   "pfad": [
+    "register",
+    "anlaesse",
+    7,
+    "schritte",
+    6,
+    "text"
+   ],
+   "original": "Der Lenkungskreis berät, der Bauherr entscheidet und beschließt, bei der bisherigen Fassade zu bleiben."
+  },
+  {
+   "id": "WZ-0605",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 8. › schritte › 8. › text",
+   "art": "yaml",
+   "zeile": 746,
+   "pfad": [
+    "register",
+    "anlaesse",
+    7,
+    "schritte",
+    7,
+    "text"
+   ],
+   "original": "Der Beschluss steht im nächsten Managementbericht. Kostenwirkung und Risiko bleiben mit dem Änderungseintrag verknüpft."
+  },
+  {
+   "id": "WZ-0606",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 8. › ende",
+   "art": "yaml",
+   "zeile": 747,
+   "pfad": [
+    "register",
+    "anlaesse",
+    7,
+    "ende"
+   ],
+   "original": "Eine Änderung kann über die Kostenprognose in die Frühwarnung führen, ohne vorher ein Risiko zu sein."
   },
   {
    "id": "AB-abb-2-0001",

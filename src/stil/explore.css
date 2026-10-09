@@ -580,3 +580,49 @@ li[data-fertig="ja"] .wz-schritt-nr { background: var(--status-gruen-soft); colo
 
 /* Breite Fenster: Werkzeugseite, Startseite und Geschichte wachsen mit (Fenster ≥ 1280 px; Leinwand und Vorschau behalten ihre feste Breite) */
 .ex-rahmen:has(.rz) { max-width: var(--breite-register); }
+
+/* =============================================================================================
+   Kompakt (Owner im Chat 2026-10-09): Kopf der Werkzeugseite, Werkzeug-Kacheln und die Erklärung neben dem Register
+   brauchen weniger Platz, damit mehr vom Werkzeug selbst zu sehen und zu lesen ist.
+   ============================================================================================= */
+.ex-rahmen { gap: var(--a-4); padding-top: var(--a-5); padding-bottom: var(--a-8); }
+.ex-kopf { gap: var(--a-2) var(--a-4); padding: var(--a-3) var(--a-5) var(--a-3) calc(var(--a-5) + 2px); }
+.ex-kopf-text { gap: var(--a-1); }
+.ex-kopf .ex-titel { font-size: var(--gr-xl); line-height: 1.15; margin: 0; }
+.ex-kopf-bild { width: 64px; height: 64px; box-shadow: inset 0 0 0 2px var(--ton); }
+.ex-kopf-bild .fig-gimmick { width: 48px; height: 48px; }
+.ex-vorspann { gap: var(--a-1); font: var(--typo-klein); }
+@media (min-width: 1000px) {
+  .ex-vorspann.ex-einleitung, .ex-fall { max-width: none; }
+  .ex-vorspann { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--a-6); align-items: start; }
+  .ex-vorspann > div { grid-template-columns: minmax(0, 1fr); gap: 0; align-items: start; }
+}
+.ex-fall { font-size: var(--gr-xs); }
+.ex-werkzeuge { gap: var(--a-2); }
+.ex-werkzeug-link { padding: var(--a-2) var(--a-3) var(--a-3); align-items: center; }
+.ex-kachel-bild { width: 32px; height: 32px; }
+.ex-kachel-bild svg { width: 26px; height: 26px; }
+.ex-kachel-text small { display: none; }
+.ex-buehne { padding: var(--a-5); }
+@media (max-width: 900px) { .ex-kopf-bild { width: 56px; height: 56px; } .ex-kopf-bild .fig-gimmick { width: 42px; height: 42px; } }
+@media (max-width: 600px) { .ex-kopf-bild { width: 48px; height: 48px; } .ex-kopf-bild .fig-gimmick { width: 36px; height: 36px; } .ex-buehne { padding: var(--a-4) var(--a-3); } }
+
+/* Register: Erklärung kompakt */
+.rz { gap: var(--a-3); }
+.rz-spiel { gap: var(--a-3); }
+.rz-seite, .rz-flaeche { gap: var(--a-2); }
+.rz-seite { font: var(--typo-klein); line-height: 1.4; }
+.rz-seite .wz-knopf { min-height: 32px; padding: 2px var(--a-3); font-size: var(--gr-s); }
+.rz-schritt, .rz-probe, .rz-karte, .rz-blockade { gap: var(--a-1); padding: var(--a-2) var(--a-3) var(--a-2) var(--a-4); border-width: 1.5px; box-shadow: inset 5px 0 0 var(--ton, var(--linie)); }
+.rz-seite .rz-schritt-titel, .rz-seite .rz-karte-titel { font-size: var(--gr-m); line-height: 1.25; }
+.rz-seite .rz-text, .rz-seite .rz-zeile dd, .rz-seite p { font-size: var(--gr-s); line-height: 1.4; }
+.rz-seite .t-label { font-size: var(--gr-xs); }
+.rz-seite .rz-zeile { padding: var(--a-1) var(--a-2); }
+.rz-seite .rz-zeilen { gap: var(--a-1); }
+.rz-seite .rz-rolle { font-size: var(--gr-xs); padding: 0 var(--a-2); }
+.rz-rollen-karten { gap: var(--a-2); }
+.rz-rollen-karte { padding: var(--a-3); gap: var(--a-1); font: var(--typo-klein); }
+.rz-rollen-karte p { font-size: var(--gr-s); line-height: 1.4; }
+@media (min-width: 1500px) {
+  .rz-spiel { grid-template-columns: minmax(0, 1fr) clamp(320px, 24vw, 440px); }
+}

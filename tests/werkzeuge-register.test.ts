@@ -37,7 +37,7 @@ test('Graph: die zwei Pfeile, die der Standard ausschließt, gibt es nicht (kein
   assert.deepEqual(ausgehend('massnahme').map((k) => k.nach), ['risiko'], 'Regelkreis');
 });
 
-test('Wege: jeder Anlass ist ein gültiger Weg, vier Anlässe, alle Pfeile kommen in mindestens einem Fall vor', () => {
+test('Wege: jeder Anlass ist ein gültiger Weg, acht Anlässe, alle Pfeile kommen in mindestens einem Fall vor', () => {
   assert.deepEqual(w?.anlaesse.map((a) => a.id), [...ANLAESSE]);
   const benutzt = new Set<string>();
   for (const a of ANLAESSE) {

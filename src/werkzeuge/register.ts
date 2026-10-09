@@ -62,8 +62,8 @@ export function eingehend(nach: Ort): readonly Kante[] {
 export const EBENEN = ['wer', 'wann', 'schwelle', 'ergebnis', 'stoerung'] as const;
 export type Ebene = (typeof EBENEN)[number];
 
-/** Die vier Anlässe (Modi Zuschauen, Geschichte, Durchprobieren laufen über denselben Weg). */
-export const ANLAESSE = ['hinweis', 'problem', 'aenderung', 'schwelle'] as const;
+/** Die acht Anlässe (Modi Zuschauen, Geschichte, Durchprobieren laufen über denselben Weg). */
+export const ANLAESSE = ['hinweis', 'problem', 'aenderung', 'schwelle', 'baugrund', 'absage', 'ausschreibung', 'fassade'] as const;
 export type AnlassId = (typeof ANLAESSE)[number];
 
 export interface Weg {

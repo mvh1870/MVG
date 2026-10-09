@@ -1,6 +1,6 @@
 {
  "erzeugt_von": "werkzeuge/textexport.mjs",
- "anzahl": 3422,
+ "anzahl": 3624,
  "texte": [
   {
    "id": "ST-0001",
@@ -39383,6 +39383,3172 @@
     "reaktion"
    ],
    "original": "Zur Kenntnis nehmen; keine Entscheidung offen. Der Architekt nennt bis zum nächsten Termin, wann die Fassadenpläne vorliegen."
+  },
+  {
+   "id": "WZ-0364",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › titel",
+   "art": "yaml",
+   "zeile": 499,
+   "pfad": [
+    "register",
+    "titel"
+   ],
+   "original": "Register-Zusammenspiel"
+  },
+  {
+   "id": "WZ-0365",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kurz",
+   "art": "yaml",
+   "zeile": 500,
+   "pfad": [
+    "register",
+    "kurz"
+   ],
+   "original": "Wie die Register zusammenspielen – vom ersten Hinweis bis zur Freigabe und zur Maßnahme – und wer in jedem Schritt zuständig ist."
+  },
+  {
+   "id": "WZ-0366",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › vorspann › wozu",
+   "art": "yaml",
+   "zeile": 502,
+   "pfad": [
+    "register",
+    "vorspann",
+    "wozu"
+   ],
+   "original": "Hier sehen Sie, wie die Register zusammenspielen. Register sind die Listen, in denen die Projektsteuerung Vorgänge festhält und verfolgt. Aus einem Hinweis kann ein Risiko werden; aus Risiko, Problem oder Änderung kann ein offener Entscheidungsbedarf entstehen, daraus eine Entscheidungsvorlage, ein Beschluss und eine Maßnahme. An jeder Station sehen Sie, wer zuständig ist."
+  },
+  {
+   "id": "WZ-0367",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › vorspann › eingabe",
+   "art": "yaml",
+   "zeile": 503,
+   "pfad": [
+    "register",
+    "vorspann",
+    "eingabe"
+   ],
+   "original": "Sie wählen einen Beispielfall und eine Ansicht: zuschauen, den Fall erzählt lesen, selbst durchprobieren oder die Grafik erkunden. Über der Grafik wechseln Sie die Frage: Wer macht das? Wann? Ab wann? Was entsteht? Was fehlt, wenn es fehlt?"
+  },
+  {
+   "id": "WZ-0368",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › vorspann › ergebnis",
+   "art": "yaml",
+   "zeile": 504,
+   "pfad": [
+    "register",
+    "vorspann",
+    "ergebnis"
+   ],
+   "original": "Sie sehen, welche Station als Nächstes kommt, was dort entsteht und wer zuständig ist. Die Grafik zeigt das Zusammenspiel der Register und keinen vorgeschriebenen Ablauf: Nicht jeder Vorgang durchläuft alle Stationen. Maßnahmen entstehen auch ohne Beschluss, zum Beispiel um ein Risiko zu mindern oder bei einem Problem vorläufig zu helfen."
+  },
+  {
+   "id": "WZ-0369",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › text",
+   "art": "yaml",
+   "zeile": 506,
+   "pfad": [
+    "register",
+    "text"
+   ],
+   "original": "Die Register hängen zusammen. Ein Hinweis wird zuerst als Frühwarnung festgehalten und geklärt: Er wird zum Risiko, zum Problem oder zur Aufgabe, oder er wird mit Begründung geschlossen. Aus Risiken, Problemen und Änderungen kann ein Entscheidungsbedarf entstehen. Dafür arbeitet die Projektsteuerung eine Entscheidungsvorlage aus; beschließen und freigeben darf nur die befugte Stelle des Bauherrn. Aus dem Beschluss folgen Maßnahmen, deren Wirkung geprüft wird. Der Managementbericht fasst das für den Bauherrn zusammen.\n"
+  },
+  {
+   "id": "WZ-0370",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › rollen › 1. › titel",
+   "art": "yaml",
+   "zeile": 509,
+   "pfad": [
+    "register",
+    "rollen",
+    0,
+    "titel"
+   ],
+   "original": "Bauherr"
+  },
+  {
+   "id": "WZ-0371",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › rollen › 1. › text",
+   "art": "yaml",
+   "zeile": 509,
+   "pfad": [
+    "register",
+    "rollen",
+    0,
+    "text"
+   ],
+   "original": "Über Ziele, wesentliche Abweichungen, Mittel, die Annahme von Risiken und Freigaben entscheidet der Bauherr. Jede Freigabe am Ende einer Leistungsphase erteilt er selbst. Welche Stelle bei ihm sonst entscheiden darf, legt sein Mandat fest."
+  },
+  {
+   "id": "WZ-0372",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › rollen › 2. › titel",
+   "art": "yaml",
+   "zeile": 510,
+   "pfad": [
+    "register",
+    "rollen",
+    1,
+    "titel"
+   ],
+   "original": "Lenkungskreis"
+  },
+  {
+   "id": "WZ-0373",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › rollen › 2. › text",
+   "art": "yaml",
+   "zeile": 510,
+   "pfad": [
+    "register",
+    "rollen",
+    1,
+    "text"
+   ],
+   "original": "Der Lenkungskreis berät den Bauherrn, vor allem bei Freigaben, und bereitet sie vor. Beschließt der Bauherr im Lenkungskreis, bleibt er der Entscheider."
+  },
+  {
+   "id": "WZ-0374",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › rollen › 3. › titel",
+   "art": "yaml",
+   "zeile": 511,
+   "pfad": [
+    "register",
+    "rollen",
+    2,
+    "titel"
+   ],
+   "original": "Projektsteuerung"
+  },
+  {
+   "id": "WZ-0375",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › rollen › 3. › text",
+   "art": "yaml",
+   "zeile": 511,
+   "pfad": [
+    "register",
+    "rollen",
+    2,
+    "text"
+   ],
+   "original": "Die Projektsteuerung kümmert sich um Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Probleme und Änderungen. Sie klärt die Sachverhalte und bereitet nötige Entscheidungen so vor, dass sie getroffen werden können. Selbst entscheiden, genehmigen oder bestätigen darf sie nicht."
+  },
+  {
+   "id": "WZ-0376",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › schwelle › titel",
+   "art": "yaml",
+   "zeile": 513,
+   "pfad": [
+    "register",
+    "schwelle",
+    "titel"
+   ],
+   "original": "Schwellenwert löst Frühwarnung aus"
+  },
+  {
+   "id": "WZ-0377",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › schwelle › text",
+   "art": "yaml",
+   "zeile": 514,
+   "pfad": [
+    "register",
+    "schwelle",
+    "text"
+   ],
+   "original": "Überschreitet die Restkostenprognose oder ein anderer Schwellenwert die festgelegte Grenze, entsteht eine neue Frühwarnung. Sie ist ein neues Signal und entsteht nicht aus einem bestehenden Risiko."
+  },
+  {
+   "id": "WZ-0378",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › schwelle › wer › text",
+   "art": "yaml",
+   "zeile": 515,
+   "pfad": [
+    "register",
+    "schwelle",
+    "wer",
+    "text"
+   ],
+   "original": "Die Entscheidungsschwellen legt der Bauherr im Mandat fest. Die Projektsteuerung wertet die Unterlagen aus und hält eine neue Frühwarnung fest, wenn eine Schwelle erreicht ist."
+  },
+  {
+   "id": "WZ-0379",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › schwelle › wer › beteiligt › 1. › text",
+   "art": "yaml",
+   "zeile": 515,
+   "pfad": [
+    "register",
+    "schwelle",
+    "wer",
+    "beteiligt",
+    0,
+    "text"
+   ],
+   "original": "Sie wertet die Unterlagen aus und erfasst die neue Frühwarnung."
+  },
+  {
+   "id": "WZ-0380",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › fruehwarnung › titel",
+   "art": "yaml",
+   "zeile": 519,
+   "pfad": [
+    "register",
+    "knoten",
+    "fruehwarnung",
+    "titel"
+   ],
+   "original": "Frühwarnung"
+  },
+  {
+   "id": "WZ-0381",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › fruehwarnung › unter",
+   "art": "yaml",
+   "zeile": 520,
+   "pfad": [
+    "register",
+    "knoten",
+    "fruehwarnung",
+    "unter"
+   ],
+   "original": "schwaches Signal"
+  },
+  {
+   "id": "WZ-0382",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › fruehwarnung › text",
+   "art": "yaml",
+   "zeile": 521,
+   "pfad": [
+    "register",
+    "knoten",
+    "fruehwarnung",
+    "text"
+   ],
+   "original": "Ein Hinweis, dass etwas das Projekt beeinträchtigen könnte, der aber noch nicht genug geklärt ist. Die Projektsteuerung hält Quelle, Eingangsdatum, mögliche Bedeutung, Prüffrage und Wiedervorlage fest. Nach der Klärung wird daraus ein Risiko, ein Problem oder eine Aufgabe, oder der Hinweis wird mit Begründung geschlossen."
+  },
+  {
+   "id": "WZ-0383",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › fruehwarnung › wer › text",
+   "art": "yaml",
+   "zeile": 522,
+   "pfad": [
+    "register",
+    "knoten",
+    "fruehwarnung",
+    "wer",
+    "text"
+   ],
+   "original": "Die Projektsteuerung erfasst den Hinweis und klärt ihn mit den zuständigen Fachleuten."
+  },
+  {
+   "id": "WZ-0384",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › fruehwarnung › wann › kurz",
+   "art": "yaml",
+   "zeile": 523,
+   "pfad": [
+    "register",
+    "knoten",
+    "fruehwarnung",
+    "wann",
+    "kurz"
+   ],
+   "original": "sofort, wenn dringend"
+  },
+  {
+   "id": "WZ-0385",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › fruehwarnung › wann › text",
+   "art": "yaml",
+   "zeile": 523,
+   "pfad": [
+    "register",
+    "knoten",
+    "fruehwarnung",
+    "wann",
+    "text"
+   ],
+   "original": "Dringliche Hinweise meldet die Projektsteuerung sofort und hält sie noch am selben Arbeitstag fest, sobald die unmittelbare Reaktion gesichert ist. Neue Hinweise, die nicht eilen, trägt sie spätestens bei der nächsten wöchentlichen Durchsicht ein."
+  },
+  {
+   "id": "WZ-0386",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › fruehwarnung › schwelle › kurz",
+   "art": "yaml",
+   "zeile": 524,
+   "pfad": [
+    "register",
+    "knoten",
+    "fruehwarnung",
+    "schwelle",
+    "kurz"
+   ],
+   "original": "auch ohne Bewertung"
+  },
+  {
+   "id": "WZ-0387",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › fruehwarnung › schwelle › text",
+   "art": "yaml",
+   "zeile": 524,
+   "pfad": [
+    "register",
+    "knoten",
+    "fruehwarnung",
+    "schwelle",
+    "text"
+   ],
+   "original": "Die erste Meldung braucht keine vollständige Bewertung abzuwarten. Auch ein überschrittener Schwellenwert löst eine neue Frühwarnung aus."
+  },
+  {
+   "id": "WZ-0388",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › fruehwarnung › ergebnis › kurz",
+   "art": "yaml",
+   "zeile": 525,
+   "pfad": [
+    "register",
+    "knoten",
+    "fruehwarnung",
+    "ergebnis",
+    "kurz"
+   ],
+   "original": "Ergebnis der Klärung"
+  },
+  {
+   "id": "WZ-0389",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › fruehwarnung › ergebnis › text",
+   "art": "yaml",
+   "zeile": 525,
+   "pfad": [
+    "register",
+    "knoten",
+    "fruehwarnung",
+    "ergebnis",
+    "text"
+   ],
+   "original": "Das Ergebnis der Klärung, der Grund für die Schließung oder der Verweis auf den Folgeeintrag. Beim Übergang bleibt die Herkunft erhalten."
+  },
+  {
+   "id": "WZ-0390",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › fruehwarnung › stoerung",
+   "art": "yaml",
+   "zeile": 526,
+   "pfad": [
+    "register",
+    "knoten",
+    "fruehwarnung",
+    "stoerung"
+   ],
+   "original": "Fehlt die Frühwarnung, hat der Hinweis keine festgehaltene Quelle, keine Prüffrage und keine Wiedervorlage. Ob daraus ein Risiko, ein Problem oder eine Aufgabe wird, bleibt dann offen."
+  },
+  {
+   "id": "WZ-0391",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › risiko › titel",
+   "art": "yaml",
+   "zeile": 529,
+   "pfad": [
+    "register",
+    "knoten",
+    "risiko",
+    "titel"
+   ],
+   "original": "Risiko"
+  },
+  {
+   "id": "WZ-0392",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › risiko › unter",
+   "art": "yaml",
+   "zeile": 530,
+   "pfad": [
+    "register",
+    "knoten",
+    "risiko",
+    "unter"
+   ],
+   "original": "bewertet"
+  },
+  {
+   "id": "WZ-0393",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › risiko › text",
+   "art": "yaml",
+   "zeile": 531,
+   "pfad": [
+    "register",
+    "knoten",
+    "risiko",
+    "text"
+   ],
+   "original": "Etwas Nachteiliges könnte eintreten, oder eine wichtige Größe ist noch unsicher. Die Projektsteuerung beschreibt Ursache, mögliche Folgen und Zeitraum, bewertet nach Wahrscheinlichkeit und Auswirkung, entwickelt mit den Fachleuten Gegenmaßnahmen und verfolgt die verbleibende Unsicherheit."
+  },
+  {
+   "id": "WZ-0394",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › risiko › wer › text",
+   "art": "yaml",
+   "zeile": 532,
+   "pfad": [
+    "register",
+    "knoten",
+    "risiko",
+    "wer",
+    "text"
+   ],
+   "original": "Die Projektsteuerung bewertet und verfolgt das Risiko. Ob der Bauherr ein wesentliches verbleibendes Risiko tragen will, bereitet sie als Entscheidung vor; sie nimmt es nicht selbst für ihn an."
+  },
+  {
+   "id": "WZ-0395",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › risiko › wer › beteiligt › 1. › text",
+   "art": "yaml",
+   "zeile": 532,
+   "pfad": [
+    "register",
+    "knoten",
+    "risiko",
+    "wer",
+    "beteiligt",
+    0,
+    "text"
+   ],
+   "original": "Er entscheidet über die Annahme eines wesentlichen Risikos."
+  },
+  {
+   "id": "WZ-0396",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › risiko › wann › kurz",
+   "art": "yaml",
+   "zeile": 533,
+   "pfad": [
+    "register",
+    "knoten",
+    "risiko",
+    "wann",
+    "kurz"
+   ],
+   "original": "jede Woche durchgesehen"
+  },
+  {
+   "id": "WZ-0397",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › risiko › wann › text",
+   "art": "yaml",
+   "zeile": 533,
+   "pfad": [
+    "register",
+    "knoten",
+    "risiko",
+    "wann",
+    "text"
+   ],
+   "original": "Die Projektsteuerung geht jede Woche alle offenen Einträge kurz durch. Die Bewertung wird begründet fortgeschrieben, wenn sich Grundlagen oder die Wirkung von Maßnahmen ändern."
+  },
+  {
+   "id": "WZ-0398",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › risiko › schwelle › kurz",
+   "art": "yaml",
+   "zeile": 534,
+   "pfad": [
+    "register",
+    "knoten",
+    "risiko",
+    "schwelle",
+    "kurz"
+   ],
+   "original": "wesentlich: Entscheidung"
+  },
+  {
+   "id": "WZ-0399",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › risiko › schwelle › text",
+   "art": "yaml",
+   "zeile": 534,
+   "pfad": [
+    "register",
+    "knoten",
+    "risiko",
+    "schwelle",
+    "text"
+   ],
+   "original": "Wesentlich ist ein Risiko, wenn die Risikomatrix es als vorrangig einstuft, wenn es eine Entscheidungsschwelle des Bauherrn erreicht oder wenn ein besonderer Warnanlass vorliegt, zum Beispiel bei Sicherheit oder Genehmigung. Bleibt ein wesentliches Risiko bestehen, bringt die Projektsteuerung es der befugten Stelle des Bauherrn zur Entscheidung."
+  },
+  {
+   "id": "WZ-0400",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › risiko › ergebnis › kurz",
+   "art": "yaml",
+   "zeile": 535,
+   "pfad": [
+    "register",
+    "knoten",
+    "risiko",
+    "ergebnis",
+    "kurz"
+   ],
+   "original": "Bewertung mit Datenstand"
+  },
+  {
+   "id": "WZ-0401",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › risiko › ergebnis › text",
+   "art": "yaml",
+   "zeile": 535,
+   "pfad": [
+    "register",
+    "knoten",
+    "risiko",
+    "ergebnis",
+    "text"
+   ],
+   "original": "Eine begründete Bewertung mit Datenstand, die Maßnahmen und das verbleibende Risiko oder der offene Prüfbedarf."
+  },
+  {
+   "id": "WZ-0402",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › risiko › stoerung",
+   "art": "yaml",
+   "zeile": 536,
+   "pfad": [
+    "register",
+    "knoten",
+    "risiko",
+    "stoerung"
+   ],
+   "original": "Ohne bewertetes Risiko fehlt die Grundlage, ein wesentliches verbleibendes Risiko der befugten Stelle vorzulegen. Probleme, Änderungen und Aufgaben werden trotzdem bearbeitet: Sie brauchen nicht erst ein Risiko."
+  },
+  {
+   "id": "WZ-0403",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › problem › titel",
+   "art": "yaml",
+   "zeile": 539,
+   "pfad": [
+    "register",
+    "knoten",
+    "problem",
+    "titel"
+   ],
+   "original": "Problem"
+  },
+  {
+   "id": "WZ-0404",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › problem › unter",
+   "art": "yaml",
+   "zeile": 540,
+   "pfad": [
+    "register",
+    "knoten",
+    "problem",
+    "unter"
+   ],
+   "original": "eingetreten"
+  },
+  {
+   "id": "WZ-0405",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › problem › text",
+   "art": "yaml",
+   "zeile": 541,
+   "pfad": [
+    "register",
+    "knoten",
+    "problem",
+    "text"
+   ],
+   "original": "Etwas Nachteiliges ist schon eingetreten, zum Beispiel ein bestätigter Mangel oder ein ausgefallener Liefertermin. Die Projektsteuerung klärt, was geschehen ist und welche Folgen feststehen, organisiert die Lösung und weist ihr Ergebnis nach. Eine Eintrittswahrscheinlichkeit wird nicht mehr geschätzt."
+  },
+  {
+   "id": "WZ-0406",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › problem › wer › text",
+   "art": "yaml",
+   "zeile": 542,
+   "pfad": [
+    "register",
+    "knoten",
+    "problem",
+    "wer",
+    "text"
+   ],
+   "original": "Die Projektsteuerung lässt die Ursache fachlich klären und bereitet die Lösung vor. Sind dafür eine Änderung oder eine Entscheidung nötig, bereitet sie auch diese vor. Dass etwas eilt, ersetzt keinen Beschluss."
+  },
+  {
+   "id": "WZ-0407",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › problem › wann › kurz",
+   "art": "yaml",
+   "zeile": 543,
+   "pfad": [
+    "register",
+    "knoten",
+    "problem",
+    "wann",
+    "kurz"
+   ],
+   "original": "sofort, wenn dringend"
+  },
+  {
+   "id": "WZ-0408",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › problem › wann › text",
+   "art": "yaml",
+   "zeile": 543,
+   "pfad": [
+    "register",
+    "knoten",
+    "problem",
+    "wann",
+    "text"
+   ],
+   "original": "Dringliche Sachverhalte meldet die Projektsteuerung sofort und dokumentiert sie am selben Arbeitstag, sobald die unmittelbare Reaktion gesichert ist. Offene Probleme sieht sie jede Woche durch."
+  },
+  {
+   "id": "WZ-0409",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › problem › schwelle › kurz",
+   "art": "yaml",
+   "zeile": 544,
+   "pfad": [
+    "register",
+    "knoten",
+    "problem",
+    "schwelle",
+    "kurz"
+   ],
+   "original": "Entscheidung nötig?"
+  },
+  {
+   "id": "WZ-0410",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › problem › schwelle › text",
+   "art": "yaml",
+   "zeile": 544,
+   "pfad": [
+    "register",
+    "knoten",
+    "problem",
+    "schwelle",
+    "text"
+   ],
+   "original": "Braucht die Lösung eine Änderung oder eine Entscheidung des Bauherrn, entsteht Entscheidungsbedarf. Dringlichkeit allein ersetzt keinen Beschluss."
+  },
+  {
+   "id": "WZ-0411",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › problem › ergebnis › kurz",
+   "art": "yaml",
+   "zeile": 545,
+   "pfad": [
+    "register",
+    "knoten",
+    "problem",
+    "ergebnis",
+    "kurz"
+   ],
+   "original": "Lösung mit Nachweis"
+  },
+  {
+   "id": "WZ-0412",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › problem › ergebnis › text",
+   "art": "yaml",
+   "zeile": 545,
+   "pfad": [
+    "register",
+    "knoten",
+    "problem",
+    "ergebnis",
+    "text"
+   ],
+   "original": "Der eingetretene Zustand mit bekannten Folgen, die fachliche Klärung, Zwischenmaßnahmen, der Lösungsweg und der Nachweis des Ergebnisses. Unsichere weitere Folgen werden gesondert verknüpft."
+  },
+  {
+   "id": "WZ-0413",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › problem › stoerung",
+   "art": "yaml",
+   "zeile": 546,
+   "pfad": [
+    "register",
+    "knoten",
+    "problem",
+    "stoerung"
+   ],
+   "original": "Ohne Problemeintrag gibt es für den eingetretenen Zustand keine geklärten Folgen, keine organisierte Lösung und keinen Nachweis, dass die Lösung umgesetzt und fachlich bestätigt ist. Ein Problem wird auch bearbeitet, wenn vorher kein Risiko erfasst war."
+  },
+  {
+   "id": "WZ-0414",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › aenderung › titel",
+   "art": "yaml",
+   "zeile": 549,
+   "pfad": [
+    "register",
+    "knoten",
+    "aenderung",
+    "titel"
+   ],
+   "original": "Änderung"
+  },
+  {
+   "id": "WZ-0415",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › aenderung › unter",
+   "art": "yaml",
+   "zeile": 550,
+   "pfad": [
+    "register",
+    "knoten",
+    "aenderung",
+    "unter"
+   ],
+   "original": "gewollte Änderung"
+  },
+  {
+   "id": "WZ-0416",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › aenderung › text",
+   "art": "yaml",
+   "zeile": 551,
+   "pfad": [
+    "register",
+    "knoten",
+    "aenderung",
+    "text"
+   ],
+   "original": "Eine geltende Vorgabe wird bewusst verändert, zum Beispiel beim Umfang, bei Planung, Material, Ausführung oder Termin. Die Projektsteuerung hält fest, was der Anlass ist, wer die Änderung beantragt, was bisher galt und was gewünscht wird. Sie lässt ermitteln, was das für Kosten, Termine, Qualität, Funktion, Genehmigungen und Verträge bedeutet."
+  },
+  {
+   "id": "WZ-0417",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › aenderung › wer › text",
+   "art": "yaml",
+   "zeile": 552,
+   "pfad": [
+    "register",
+    "knoten",
+    "aenderung",
+    "wer",
+    "text"
+   ],
+   "original": "Die Projektsteuerung bereitet die Änderung vor, führt die Beiträge zu einer Beurteilung zusammen und verfolgt nach dem Beschluss die Umsetzung."
+  },
+  {
+   "id": "WZ-0418",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › aenderung › wer › beteiligt › 1. › text",
+   "art": "yaml",
+   "zeile": 552,
+   "pfad": [
+    "register",
+    "knoten",
+    "aenderung",
+    "wer",
+    "beteiligt",
+    0,
+    "text"
+   ],
+   "original": "Er beschließt."
+  },
+  {
+   "id": "WZ-0419",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › aenderung › wann › kurz",
+   "art": "yaml",
+   "zeile": 553,
+   "pfad": [
+    "register",
+    "knoten",
+    "aenderung",
+    "wann",
+    "kurz"
+   ],
+   "original": "jede Woche durchgesehen"
+  },
+  {
+   "id": "WZ-0420",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › aenderung › wann › text",
+   "art": "yaml",
+   "zeile": 553,
+   "pfad": [
+    "register",
+    "knoten",
+    "aenderung",
+    "wann",
+    "text"
+   ],
+   "original": "Offene Änderungen sieht die Projektsteuerung jede Woche durch. Solange der Beschluss nicht wirksam ist, gilt die bisherige Grundlage weiter."
+  },
+  {
+   "id": "WZ-0421",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › aenderung › schwelle › kurz",
+   "art": "yaml",
+   "zeile": 554,
+   "pfad": [
+    "register",
+    "knoten",
+    "aenderung",
+    "schwelle",
+    "kurz"
+   ],
+   "original": "Entscheidung nötig?"
+  },
+  {
+   "id": "WZ-0422",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › aenderung › schwelle › text",
+   "art": "yaml",
+   "zeile": 554,
+   "pfad": [
+    "register",
+    "knoten",
+    "aenderung",
+    "schwelle",
+    "text"
+   ],
+   "original": "Ist eine Entscheidung des Bauherrn erforderlich, arbeitet die Projektsteuerung mindestens zwei ernsthafte, zulässige Optionen aus und vergleicht sie mit einem gewichteten Vergleich."
+  },
+  {
+   "id": "WZ-0423",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › aenderung › ergebnis › kurz",
+   "art": "yaml",
+   "zeile": 555,
+   "pfad": [
+    "register",
+    "knoten",
+    "aenderung",
+    "ergebnis",
+    "kurz"
+   ],
+   "original": "Auswirkungen, Vorlage"
+  },
+  {
+   "id": "WZ-0424",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › aenderung › ergebnis › text",
+   "art": "yaml",
+   "zeile": 555,
+   "pfad": [
+    "register",
+    "knoten",
+    "aenderung",
+    "ergebnis",
+    "text"
+   ],
+   "original": "Die geprüften Auswirkungen, die Entscheidungsvorlage, ein Verweis auf den Beschluss, Auflagen und der Stand der Umsetzung. Wird ein Antrag abgelehnt oder zurückgezogen, bleibt er samt Begründung nachvollziehbar."
+  },
+  {
+   "id": "WZ-0425",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › aenderung › stoerung",
+   "art": "yaml",
+   "zeile": 556,
+   "pfad": [
+    "register",
+    "knoten",
+    "aenderung",
+    "stoerung"
+   ],
+   "original": "Ohne Änderungseintrag werden die Auswirkungen nicht gegen den geltenden Stand aufbereitet, und es fehlt der Nachweis, was beschlossen und umgesetzt wurde. Bis der Beschluss wirksam ist, gilt ohnehin die bisherige Grundlage."
+  },
+  {
+   "id": "WZ-0426",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › prognose › titel",
+   "art": "yaml",
+   "zeile": 559,
+   "pfad": [
+    "register",
+    "knoten",
+    "prognose",
+    "titel"
+   ],
+   "original": "CTC / Prognose"
+  },
+  {
+   "id": "WZ-0427",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › prognose › unter",
+   "art": "yaml",
+   "zeile": 560,
+   "pfad": [
+    "register",
+    "knoten",
+    "prognose",
+    "unter"
+   ],
+   "original": "Restkostenprognose"
+  },
+  {
+   "id": "WZ-0428",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › prognose › text",
+   "art": "yaml",
+   "zeile": 561,
+   "pfad": [
+    "register",
+    "knoten",
+    "prognose",
+    "text"
+   ],
+   "original": "Die Restkostenprognose (CTC) zeigt die Kosten, die bis zum Projektabschluss noch erwartet werden. Was schon in der Prognose steht, wird gekennzeichnet; dieselben Beträge zählen nicht noch einmal."
+  },
+  {
+   "id": "WZ-0429",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › prognose › wer › text",
+   "art": "yaml",
+   "zeile": 562,
+   "pfad": [
+    "register",
+    "knoten",
+    "prognose",
+    "wer",
+    "text"
+   ],
+   "original": "Die Projektsteuerung wertet die Prognose aus und macht Beträge kenntlich, die schon in der Prognose stehen."
+  },
+  {
+   "id": "WZ-0430",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › prognose › wann › kurz",
+   "art": "yaml",
+   "zeile": 563,
+   "pfad": [
+    "register",
+    "knoten",
+    "prognose",
+    "wann",
+    "kurz"
+   ],
+   "original": "monatlich"
+  },
+  {
+   "id": "WZ-0431",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › prognose › wann › text",
+   "art": "yaml",
+   "zeile": 563,
+   "pfad": [
+    "register",
+    "knoten",
+    "prognose",
+    "wann",
+    "text"
+   ],
+   "original": "Die Restkostenprognose wird monatlich fortgeschrieben, zusammen mit dem Managementbericht."
+  },
+  {
+   "id": "WZ-0432",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › prognose › schwelle › kurz",
+   "art": "yaml",
+   "zeile": 564,
+   "pfad": [
+    "register",
+    "knoten",
+    "prognose",
+    "schwelle",
+    "kurz"
+   ],
+   "original": "Schwelle: Frühwarnung"
+  },
+  {
+   "id": "WZ-0433",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › prognose › schwelle › text",
+   "art": "yaml",
+   "zeile": 564,
+   "pfad": [
+    "register",
+    "knoten",
+    "prognose",
+    "schwelle",
+    "text"
+   ],
+   "original": "Verletzt die Restkostenprognose eine festgelegte Grenze, entsteht eine neue Frühwarnung – ein neues Signal, das nicht aus einem bestehenden Risiko entsteht."
+  },
+  {
+   "id": "WZ-0434",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › prognose › ergebnis › kurz",
+   "art": "yaml",
+   "zeile": 565,
+   "pfad": [
+    "register",
+    "knoten",
+    "prognose",
+    "ergebnis",
+    "kurz"
+   ],
+   "original": "erwartete Restkosten"
+  },
+  {
+   "id": "WZ-0435",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › prognose › ergebnis › text",
+   "art": "yaml",
+   "zeile": 565,
+   "pfad": [
+    "register",
+    "knoten",
+    "prognose",
+    "ergebnis",
+    "text"
+   ],
+   "original": "Die erwarteten noch anfallenden Kosten bis zum Projektabschluss."
+  },
+  {
+   "id": "WZ-0436",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › prognose › stoerung",
+   "art": "yaml",
+   "zeile": 566,
+   "pfad": [
+    "register",
+    "knoten",
+    "prognose",
+    "stoerung"
+   ],
+   "original": "Ohne Prognose gäbe es keine Verletzung der Restkostenprognose, die eine neue Frühwarnung auslösen könnte. Auch ließe sich nicht kenntlich machen, was schon in der Prognose steht; dieselbe Kostenwirkung könnte mehrfach gezählt werden."
+  },
+  {
+   "id": "WZ-0437",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › register › titel",
+   "art": "yaml",
+   "zeile": 569,
+   "pfad": [
+    "register",
+    "knoten",
+    "register",
+    "titel"
+   ],
+   "original": "Entscheidungsregister"
+  },
+  {
+   "id": "WZ-0438",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › register › unter",
+   "art": "yaml",
+   "zeile": 570,
+   "pfad": [
+    "register",
+    "knoten",
+    "register",
+    "unter"
+   ],
+   "original": "offener Entscheidungsbedarf"
+  },
+  {
+   "id": "WZ-0439",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › register › text",
+   "art": "yaml",
+   "zeile": 571,
+   "pfad": [
+    "register",
+    "knoten",
+    "register",
+    "text"
+   ],
+   "original": "Hier steht, wofür der Bauherr noch entscheiden muss. Die Projektsteuerung stellt die konkrete Frage, begründet, warum eine Entscheidung nötig ist, und hält fest, bis wann entschieden sein muss, was eine Verzögerung bewirkt und welche Stelle befugt ist. Eine Routineaufgabe oder ein bloßer Prüfauftrag ist nicht von selbst eine Entscheidung dieser Art."
+  },
+  {
+   "id": "WZ-0440",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › register › wer › text",
+   "art": "yaml",
+   "zeile": 572,
+   "pfad": [
+    "register",
+    "knoten",
+    "register",
+    "wer",
+    "text"
+   ],
+   "original": "Die Projektsteuerung führt das Entscheidungsregister: Sie formuliert Frage, Termin und befugte Stelle, pflegt die Einträge und bereitet jede Entscheidung vor. Der Bauherr sieht darin, wo er noch entscheiden muss."
+  },
+  {
+   "id": "WZ-0441",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › register › wer › beteiligt › 1. › text",
+   "art": "yaml",
+   "zeile": 572,
+   "pfad": [
+    "register",
+    "knoten",
+    "register",
+    "wer",
+    "beteiligt",
+    0,
+    "text"
+   ],
+   "original": "Er entscheidet über die offenen Einträge."
+  },
+  {
+   "id": "WZ-0442",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › register › wann › kurz",
+   "art": "yaml",
+   "zeile": 573,
+   "pfad": [
+    "register",
+    "knoten",
+    "register",
+    "wann",
+    "kurz"
+   ],
+   "original": "jede Woche durchgesehen"
+  },
+  {
+   "id": "WZ-0443",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › register › wann › text",
+   "art": "yaml",
+   "zeile": 573,
+   "pfad": [
+    "register",
+    "knoten",
+    "register",
+    "wann",
+    "text"
+   ],
+   "original": "Die Projektsteuerung sieht die offenen Entscheidungen jede Woche durch und bespricht die relevanten Vorgänge im monatlichen Termin mit dem Bauherrn."
+  },
+  {
+   "id": "WZ-0444",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › register › schwelle › kurz",
+   "art": "yaml",
+   "zeile": 574,
+   "pfad": [
+    "register",
+    "knoten",
+    "register",
+    "schwelle",
+    "kurz"
+   ],
+   "original": "Entscheidung über Handlung"
+  },
+  {
+   "id": "WZ-0445",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › register › schwelle › text",
+   "art": "yaml",
+   "zeile": 574,
+   "pfad": [
+    "register",
+    "knoten",
+    "register",
+    "schwelle",
+    "text"
+   ],
+   "original": "Ein Eintrag entsteht, wenn der Bauherr über eine Handlung entscheiden muss: wenn er ein wesentliches verbleibendes Risiko tragen soll, wenn die Lösung eines Problems eine Entscheidung braucht oder wenn eine Änderung sie erfordert. Wer entscheiden darf, richtet sich nach dem Mandat, das der Bauherr festgelegt hat."
+  },
+  {
+   "id": "WZ-0446",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › register › ergebnis › kurz",
+   "art": "yaml",
+   "zeile": 575,
+   "pfad": [
+    "register",
+    "knoten",
+    "register",
+    "ergebnis",
+    "kurz"
+   ],
+   "original": "Frage, Termin, Stelle"
+  },
+  {
+   "id": "WZ-0447",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › register › ergebnis › text",
+   "art": "yaml",
+   "zeile": 575,
+   "pfad": [
+    "register",
+    "knoten",
+    "register",
+    "ergebnis",
+    "text"
+   ],
+   "original": "Die konkrete Frage mit Entscheidungstermin, den Folgen einer Verzögerung und der befugten Stelle des Bauherrn. Daraus wird die Entscheidungsvorlage."
+  },
+  {
+   "id": "WZ-0448",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › register › stoerung",
+   "art": "yaml",
+   "zeile": 576,
+   "pfad": [
+    "register",
+    "knoten",
+    "register",
+    "stoerung"
+   ],
+   "original": "Fehlt der Eintrag, ist nicht sichtbar, wo der Bauherr noch entscheiden muss, bis wann, mit welcher Folge einer Verzögerung und durch welche Stelle. Den Entscheidungsbedarf zu klären ist der erste Schritt des Arbeitsablaufs."
+  },
+  {
+   "id": "WZ-0449",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › vorlage › titel",
+   "art": "yaml",
+   "zeile": 579,
+   "pfad": [
+    "register",
+    "knoten",
+    "vorlage",
+    "titel"
+   ],
+   "original": "Entscheidungsvorlage"
+  },
+  {
+   "id": "WZ-0450",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › vorlage › unter",
+   "art": "yaml",
+   "zeile": 580,
+   "pfad": [
+    "register",
+    "knoten",
+    "vorlage",
+    "unter"
+   ],
+   "original": "entscheidungsreif"
+  },
+  {
+   "id": "WZ-0451",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › vorlage › text",
+   "art": "yaml",
+   "zeile": 581,
+   "pfad": [
+    "register",
+    "knoten",
+    "vorlage",
+    "text"
+   ],
+   "original": "Die Vorlage bündelt Frage, Datenstand, Optionen, Bewertung und Empfehlung. Mindestens zwei zulässige Optionen werden ausgearbeitet und mit einem gewichteten Vergleich (MCDA) bewertet; die Empfehlung nennt Nachteile, Unsicherheiten und Voraussetzungen."
+  },
+  {
+   "id": "WZ-0452",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › vorlage › wer › text",
+   "art": "yaml",
+   "zeile": 582,
+   "pfad": [
+    "register",
+    "knoten",
+    "vorlage",
+    "wer",
+    "text"
+   ],
+   "original": "Die Projektsteuerung erarbeitet die Vorlage. Die Entscheidung bereitet sie nur vor; treffen, genehmigen oder bestätigen darf sie nicht."
+  },
+  {
+   "id": "WZ-0453",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › vorlage › wann › kurz",
+   "art": "yaml",
+   "zeile": 583,
+   "pfad": [
+    "register",
+    "knoten",
+    "vorlage",
+    "wann",
+    "kurz"
+   ],
+   "original": "mit Entscheidungstermin"
+  },
+  {
+   "id": "WZ-0454",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › vorlage › wann › text",
+   "art": "yaml",
+   "zeile": 583,
+   "pfad": [
+    "register",
+    "knoten",
+    "vorlage",
+    "wann",
+    "text"
+   ],
+   "original": "Die Vorlage wird fristgerecht abgelegt, passend zum Entscheidungstermin. Dringliche Meldungen und notwendige Schutzmaßnahmen warten nicht auf den fertigen Vergleich."
+  },
+  {
+   "id": "WZ-0455",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › vorlage › schwelle › kurz",
+   "art": "yaml",
+   "zeile": 584,
+   "pfad": [
+    "register",
+    "knoten",
+    "vorlage",
+    "schwelle",
+    "kurz"
+   ],
+   "original": "mindestens zwei Optionen"
+  },
+  {
+   "id": "WZ-0456",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › vorlage › schwelle › text",
+   "art": "yaml",
+   "zeile": 584,
+   "pfad": [
+    "register",
+    "knoten",
+    "vorlage",
+    "schwelle",
+    "text"
+   ],
+   "original": "Reif ist die Vorlage, wenn mindestens zwei zulässige Optionen und die übrigen wesentlichen Grundlagen vorliegen. Fehlt etwas, wird sie als nicht vollständig gekennzeichnet."
+  },
+  {
+   "id": "WZ-0457",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › vorlage › ergebnis › kurz",
+   "art": "yaml",
+   "zeile": 585,
+   "pfad": [
+    "register",
+    "knoten",
+    "vorlage",
+    "ergebnis",
+    "kurz"
+   ],
+   "original": "Vorlage mit Empfehlung"
+  },
+  {
+   "id": "WZ-0458",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › vorlage › ergebnis › text",
+   "art": "yaml",
+   "zeile": 585,
+   "pfad": [
+    "register",
+    "knoten",
+    "vorlage",
+    "ergebnis",
+    "text"
+   ],
+   "original": "Die Vorlage mit Datenstand, Quellen und Verknüpfung zum auslösenden Vorgang, dem Vergleich der Optionen und der begründeten Empfehlung."
+  },
+  {
+   "id": "WZ-0459",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › vorlage › stoerung",
+   "art": "yaml",
+   "zeile": 586,
+   "pfad": [
+    "register",
+    "knoten",
+    "vorlage",
+    "stoerung"
+   ],
+   "original": "Ohne Vorlage hat der Bauherr keine ausgearbeiteten Optionen, keinen Vergleich und keine begründete Empfehlung, auf die er seine Entscheidung stützen kann. Fehlt nur die zweite zulässige Option, ist die Vorlage unvollständig: Die Projektsteuerung sagt das ausdrücklich und füllt die Lücke nicht mit einer Scheinlösung."
+  },
+  {
+   "id": "WZ-0460",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › freigabe › titel",
+   "art": "yaml",
+   "zeile": 589,
+   "pfad": [
+    "register",
+    "knoten",
+    "freigabe",
+    "titel"
+   ],
+   "original": "Freigabe"
+  },
+  {
+   "id": "WZ-0461",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › freigabe › unter",
+   "art": "yaml",
+   "zeile": 590,
+   "pfad": [
+    "register",
+    "knoten",
+    "freigabe",
+    "unter"
+   ],
+   "original": "Beschluss, LPH 0–9"
+  },
+  {
+   "id": "WZ-0462",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › freigabe › text",
+   "art": "yaml",
+   "zeile": 591,
+   "pfad": [
+    "register",
+    "knoten",
+    "freigabe",
+    "text"
+   ],
+   "original": "Die Entscheidung des Bauherrn am Abschluss einer Leistungsphase LPH 0–9, ob die nächste beginnen darf. Das Ergebnis lautet Freigabe, keine Freigabe oder Freigabe mit Auflagen. Einen tatsächlich vorliegenden Beschluss dokumentiert die Projektsteuerung getrennt mit Quelle, Datum und Bedingungen. Auch andere Handlungsentscheidungen trifft die befugte Stelle des Bauherrn; die Projektsteuerung dokumentiert sie als Beschluss."
+  },
+  {
+   "id": "WZ-0463",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › freigabe › wer › text",
+   "art": "yaml",
+   "zeile": 592,
+   "pfad": [
+    "register",
+    "knoten",
+    "freigabe",
+    "wer",
+    "text"
+   ],
+   "original": "Der Bauherr erteilt jede Freigabe selbst, auch wenn er sie in einem Gremium beschließt."
+  },
+  {
+   "id": "WZ-0464",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › freigabe › wer › beteiligt › 1. › text",
+   "art": "yaml",
+   "zeile": 592,
+   "pfad": [
+    "register",
+    "knoten",
+    "freigabe",
+    "wer",
+    "beteiligt",
+    0,
+    "text"
+   ],
+   "original": "Er berät und bereitet vor."
+  },
+  {
+   "id": "WZ-0465",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › freigabe › wer › beteiligt › 2. › text",
+   "art": "yaml",
+   "zeile": 592,
+   "pfad": [
+    "register",
+    "knoten",
+    "freigabe",
+    "wer",
+    "beteiligt",
+    1,
+    "text"
+   ],
+   "original": "Sie bereitet die Entscheidung vor und dokumentiert den Beschluss; eine Freigabe erteilt sie nicht."
+  },
+  {
+   "id": "WZ-0466",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › freigabe › wann › kurz",
+   "art": "yaml",
+   "zeile": 593,
+   "pfad": [
+    "register",
+    "knoten",
+    "freigabe",
+    "wann",
+    "kurz"
+   ],
+   "original": "je Leistungsphase"
+  },
+  {
+   "id": "WZ-0467",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › freigabe › wann › text",
+   "art": "yaml",
+   "zeile": 593,
+   "pfad": [
+    "register",
+    "knoten",
+    "freigabe",
+    "wann",
+    "text"
+   ],
+   "original": "Jede Leistungsphase LPH 0–9 schließt mit einer Freigabe ab. Bleibt die Entscheidung aus, benennt die Projektsteuerung einen neuen Klärungstermin."
+  },
+  {
+   "id": "WZ-0468",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › freigabe › schwelle › kurz",
+   "art": "yaml",
+   "zeile": 594,
+   "pfad": [
+    "register",
+    "knoten",
+    "freigabe",
+    "schwelle",
+    "kurz"
+   ],
+   "original": "Mandat des Bauherrn"
+  },
+  {
+   "id": "WZ-0469",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › freigabe › schwelle › text",
+   "art": "yaml",
+   "zeile": 594,
+   "pfad": [
+    "register",
+    "knoten",
+    "freigabe",
+    "schwelle",
+    "text"
+   ],
+   "original": "Wer entscheiden darf und in welchem Rahmen, legt der Bauherr im Mandat fest. Die Projektsteuerung erhält keine zusätzlichen Entscheidungs- oder Freigabebefugnisse."
+  },
+  {
+   "id": "WZ-0470",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › freigabe › ergebnis › kurz",
+   "art": "yaml",
+   "zeile": 595,
+   "pfad": [
+    "register",
+    "knoten",
+    "freigabe",
+    "ergebnis",
+    "kurz"
+   ],
+   "original": "mit oder ohne Auflagen"
+  },
+  {
+   "id": "WZ-0471",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › freigabe › ergebnis › text",
+   "art": "yaml",
+   "zeile": 595,
+   "pfad": [
+    "register",
+    "knoten",
+    "freigabe",
+    "ergebnis",
+    "text"
+   ],
+   "original": "Das Ergebnis: Freigabe, keine Freigabe oder Freigabe mit Auflagen, dokumentiert mit Quelle, Datum und Bedingungen. Auflagen sind Bedingungen, die mit der Freigabe verbunden sind; aus ihnen werden Maßnahmen."
+  },
+  {
+   "id": "WZ-0472",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › freigabe › stoerung",
+   "art": "yaml",
+   "zeile": 596,
+   "pfad": [
+    "register",
+    "knoten",
+    "freigabe",
+    "stoerung"
+   ],
+   "original": "Ohne Beschluss gibt es nichts, woraus Maßnahmen folgen. Weder Schweigen noch die Empfehlung der Projektsteuerung noch ein Status in der Projektsoftware ersetzen einen Beschluss. Die Projektsteuerung setzt einen neuen Termin zur Klärung an und nennt, was die Verzögerung bedeutet."
+  },
+  {
+   "id": "WZ-0473",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › massnahme › titel",
+   "art": "yaml",
+   "zeile": 599,
+   "pfad": [
+    "register",
+    "knoten",
+    "massnahme",
+    "titel"
+   ],
+   "original": "Maßnahme"
+  },
+  {
+   "id": "WZ-0474",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › massnahme › unter",
+   "art": "yaml",
+   "zeile": 600,
+   "pfad": [
+    "register",
+    "knoten",
+    "massnahme",
+    "unter"
+   ],
+   "original": "mit Frist"
+  },
+  {
+   "id": "WZ-0475",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › massnahme › text",
+   "art": "yaml",
+   "zeile": 601,
+   "pfad": [
+    "register",
+    "knoten",
+    "massnahme",
+    "text"
+   ],
+   "original": "Eine gezielte Handlung, um einen Zustand zu klären oder zu verbessern, ein Risiko zu mindern, ein Problem zu beheben oder einen Beschluss umzusetzen. Zu jeder Maßnahme gehören Handlung, Verantwortlicher, Termin und erwartete Wirkung."
+  },
+  {
+   "id": "WZ-0476",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › massnahme › wer › text",
+   "art": "yaml",
+   "zeile": 602,
+   "pfad": [
+    "register",
+    "knoten",
+    "massnahme",
+    "wer",
+    "text"
+   ],
+   "original": "Die Projektsteuerung nennt Bezug, Ziel, Verantwortlichen und Termin, verfolgt die Umsetzung und prüft mit den Fachleuten die Wirkung. Die technische Ausführung übernimmt sie dadurch nicht."
+  },
+  {
+   "id": "WZ-0477",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › massnahme › wer › beteiligt › 1. › text",
+   "art": "yaml",
+   "zeile": 602,
+   "pfad": [
+    "register",
+    "knoten",
+    "massnahme",
+    "wer",
+    "beteiligt",
+    0,
+    "text"
+   ],
+   "original": "Zusätzliche Mittel, Leistungsänderungen und vorbehaltene Freigaben werden ihm vorher vorgelegt."
+  },
+  {
+   "id": "WZ-0478",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › massnahme › wann › kurz",
+   "art": "yaml",
+   "zeile": 603,
+   "pfad": [
+    "register",
+    "knoten",
+    "massnahme",
+    "wann",
+    "kurz"
+   ],
+   "original": "Termin je Maßnahme"
+  },
+  {
+   "id": "WZ-0479",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › massnahme › wann › text",
+   "art": "yaml",
+   "zeile": 603,
+   "pfad": [
+    "register",
+    "knoten",
+    "massnahme",
+    "wann",
+    "text"
+   ],
+   "original": "Jede Maßnahme hat einen Termin. In der wöchentlichen Durchsicht schaut die Projektsteuerung darauf, ob Maßnahmen wirken und ob Freigaben oder Auflagen noch ausstehen."
+  },
+  {
+   "id": "WZ-0480",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › massnahme › schwelle › kurz",
+   "art": "yaml",
+   "zeile": 604,
+   "pfad": [
+    "register",
+    "knoten",
+    "massnahme",
+    "schwelle",
+    "kurz"
+   ],
+   "original": "im Auftrag und Mandat?"
+  },
+  {
+   "id": "WZ-0481",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › massnahme › schwelle › text",
+   "art": "yaml",
+   "zeile": 604,
+   "pfad": [
+    "register",
+    "knoten",
+    "massnahme",
+    "schwelle",
+    "text"
+   ],
+   "original": "Bevor eine Maßnahme beginnt, prüft die Projektsteuerung, ob sie vom bestehenden Auftrag gedeckt ist und mit den vorhandenen Befugnissen ausgeführt werden darf. Braucht sie zusätzliche Mittel, ändert sie Leistungen oder ist eine Freigabe vorbehalten, geht das vorher zur Vorlage an den Bauherrn."
+  },
+  {
+   "id": "WZ-0482",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › massnahme › ergebnis › kurz",
+   "art": "yaml",
+   "zeile": 605,
+   "pfad": [
+    "register",
+    "knoten",
+    "massnahme",
+    "ergebnis",
+    "kurz"
+   ],
+   "original": "Umsetzung und Wirkung"
+  },
+  {
+   "id": "WZ-0483",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › massnahme › ergebnis › text",
+   "art": "yaml",
+   "zeile": 605,
+   "pfad": [
+    "register",
+    "knoten",
+    "massnahme",
+    "ergebnis",
+    "text"
+   ],
+   "original": "Der Nachweis der Umsetzung und das Ergebnis der Wirksamkeitsprüfung. Umgesetzt und wirksam sind nicht dasselbe."
+  },
+  {
+   "id": "WZ-0484",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › massnahme › stoerung",
+   "art": "yaml",
+   "zeile": 606,
+   "pfad": [
+    "register",
+    "knoten",
+    "massnahme",
+    "stoerung"
+   ],
+   "original": "Ohne Maßnahme wird kein Beschluss umgesetzt und keine Wirkung geprüft. Eine Maßnahme, die nur geplant ist, mindert das Risiko in der aktuellen Bewertung noch nicht; erst wenn Umsetzung und Wirkung belegt sind, wird die Bewertung angepasst. Wirkt sie nicht oder kommt sie zu spät, bereitet die Projektsteuerung eine Anpassung oder erneut eine Entscheidung vor."
+  },
+  {
+   "id": "WZ-0485",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › bericht › titel",
+   "art": "yaml",
+   "zeile": 609,
+   "pfad": [
+    "register",
+    "knoten",
+    "bericht",
+    "titel"
+   ],
+   "original": "Managementbericht"
+  },
+  {
+   "id": "WZ-0486",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › bericht › unter",
+   "art": "yaml",
+   "zeile": 610,
+   "pfad": [
+    "register",
+    "knoten",
+    "bericht",
+    "unter"
+   ],
+   "original": "als Monatsbericht"
+  },
+  {
+   "id": "WZ-0487",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › bericht › text",
+   "art": "yaml",
+   "zeile": 611,
+   "pfad": [
+    "register",
+    "knoten",
+    "bericht",
+    "text"
+   ],
+   "original": "Der Managementbericht geht jeden Monat als Zusammenfassung auf höchstens einer Seite an den Bauherrn (Monatsbericht). Darin steht, was sich bei Aufgaben, Maßnahmen, Frühwarnungen, Risiken, Problemen und Änderungen wesentlich verändert hat, was blockiert oder kritisch ist, welche Entscheidungen offen sind und welche Reaktion gebraucht wird."
+  },
+  {
+   "id": "WZ-0488",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › bericht › wer › text",
+   "art": "yaml",
+   "zeile": 612,
+   "pfad": [
+    "register",
+    "knoten",
+    "bericht",
+    "wer",
+    "text"
+   ],
+   "original": "Die Projektsteuerung erstellt die Zusammenfassung aus demselben Informationsstand wie die Projektsoftware und verweist auf die betreffenden Einträge."
+  },
+  {
+   "id": "WZ-0489",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › bericht › wer › beteiligt › 1. › text",
+   "art": "yaml",
+   "zeile": 612,
+   "pfad": [
+    "register",
+    "knoten",
+    "bericht",
+    "wer",
+    "beteiligt",
+    0,
+    "text"
+   ],
+   "original": "Er erhält sie jeden Monat und bespricht die Vorgänge im Online-Termin."
+  },
+  {
+   "id": "WZ-0490",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › bericht › wann › kurz",
+   "art": "yaml",
+   "zeile": 613,
+   "pfad": [
+    "register",
+    "knoten",
+    "bericht",
+    "wann",
+    "kurz"
+   ],
+   "original": "monatlich, eine Seite"
+  },
+  {
+   "id": "WZ-0491",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › bericht › wann › text",
+   "art": "yaml",
+   "zeile": 613,
+   "pfad": [
+    "register",
+    "knoten",
+    "bericht",
+    "wann",
+    "text"
+   ],
+   "original": "Jeden Monat, zusammen mit einem Online-Termin von bis zu 60 Minuten. Der Bericht bleibt auch in vereinbarten Ruhezeiten vorgesehen."
+  },
+  {
+   "id": "WZ-0492",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › bericht › schwelle › kurz",
+   "art": "yaml",
+   "zeile": 614,
+   "pfad": [
+    "register",
+    "knoten",
+    "bericht",
+    "schwelle",
+    "kurz"
+   ],
+   "original": "wesentliche Veränderungen"
+  },
+  {
+   "id": "WZ-0493",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › bericht › schwelle › text",
+   "art": "yaml",
+   "zeile": 614,
+   "pfad": [
+    "register",
+    "knoten",
+    "bericht",
+    "schwelle",
+    "text"
+   ],
+   "original": "Im Bericht stehen die wesentlichen Veränderungen, die kritischen Maßnahmen und die offenen Entscheidungen mit der benötigten Reaktion."
+  },
+  {
+   "id": "WZ-0494",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › bericht › ergebnis › kurz",
+   "art": "yaml",
+   "zeile": 615,
+   "pfad": [
+    "register",
+    "knoten",
+    "bericht",
+    "ergebnis",
+    "kurz"
+   ],
+   "original": "höchstens eine Seite"
+  },
+  {
+   "id": "WZ-0495",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › bericht › ergebnis › text",
+   "art": "yaml",
+   "zeile": 615,
+   "pfad": [
+    "register",
+    "knoten",
+    "bericht",
+    "ergebnis",
+    "text"
+   ],
+   "original": "Eine Zusammenfassung von höchstens einer Seite, die auf die Einträge verweist. Eine zweite Liste ist nicht nötig."
+  },
+  {
+   "id": "WZ-0496",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › knoten › bericht › stoerung",
+   "art": "yaml",
+   "zeile": 616,
+   "pfad": [
+    "register",
+    "knoten",
+    "bericht",
+    "stoerung"
+   ],
+   "original": "Ohne den Bericht fehlt dem Bauherrn die monatliche Übersicht über wesentliche Veränderungen, offene Entscheidungen und die benötigte Reaktion. Dringliches wartet nicht auf den Bericht: Es wird sofort gemeldet."
+  },
+  {
+   "id": "WZ-0497",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kanten › prognose-schwelle › text",
+   "art": "yaml",
+   "zeile": 619,
+   "pfad": [
+    "register",
+    "kanten",
+    "prognose-schwelle",
+    "text"
+   ],
+   "original": "überschreitet"
+  },
+  {
+   "id": "WZ-0498",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kanten › prognose-schwelle › erklaerung",
+   "art": "yaml",
+   "zeile": 619,
+   "pfad": [
+    "register",
+    "kanten",
+    "prognose-schwelle",
+    "erklaerung"
+   ],
+   "original": "Verletzt die Restkostenprognose eine festgelegte Grenze, ist das der Anlass für eine neue Frühwarnung."
+  },
+  {
+   "id": "WZ-0499",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kanten › schwelle-fruehwarnung › text",
+   "art": "yaml",
+   "zeile": 620,
+   "pfad": [
+    "register",
+    "kanten",
+    "schwelle-fruehwarnung",
+    "text"
+   ],
+   "original": "löst aus"
+  },
+  {
+   "id": "WZ-0500",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kanten › schwelle-fruehwarnung › erklaerung",
+   "art": "yaml",
+   "zeile": 620,
+   "pfad": [
+    "register",
+    "kanten",
+    "schwelle-fruehwarnung",
+    "erklaerung"
+   ],
+   "original": "Ein überschrittener Schwellenwert erzeugt eine neue Frühwarnung – ein neues Signal, das nicht aus einem bestehenden Risiko entsteht."
+  },
+  {
+   "id": "WZ-0501",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kanten › fruehwarnung-risiko › text",
+   "art": "yaml",
+   "zeile": 621,
+   "pfad": [
+    "register",
+    "kanten",
+    "fruehwarnung-risiko",
+    "text"
+   ],
+   "original": "als Risiko bewertet"
+  },
+  {
+   "id": "WZ-0502",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kanten › fruehwarnung-risiko › erklaerung",
+   "art": "yaml",
+   "zeile": 621,
+   "pfad": [
+    "register",
+    "kanten",
+    "fruehwarnung-risiko",
+    "erklaerung"
+   ],
+   "original": "Nach der Klärung wird ein mögliches Ereignis als Risiko bewertet."
+  },
+  {
+   "id": "WZ-0503",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kanten › fruehwarnung-problem › text",
+   "art": "yaml",
+   "zeile": 622,
+   "pfad": [
+    "register",
+    "kanten",
+    "fruehwarnung-problem",
+    "text"
+   ],
+   "original": "eingetreten"
+  },
+  {
+   "id": "WZ-0504",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kanten › fruehwarnung-problem › erklaerung",
+   "art": "yaml",
+   "zeile": 622,
+   "pfad": [
+    "register",
+    "kanten",
+    "fruehwarnung-problem",
+    "erklaerung"
+   ],
+   "original": "Zeigt die Klärung, dass der Zustand schon eingetreten ist, wird er als Problem bearbeitet."
+  },
+  {
+   "id": "WZ-0505",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kanten › risiko-register › text",
+   "art": "yaml",
+   "zeile": 623,
+   "pfad": [
+    "register",
+    "kanten",
+    "risiko-register",
+    "text"
+   ],
+   "original": "wesentlich"
+  },
+  {
+   "id": "WZ-0506",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kanten › risiko-register › erklaerung",
+   "art": "yaml",
+   "zeile": 623,
+   "pfad": [
+    "register",
+    "kanten",
+    "risiko-register",
+    "erklaerung"
+   ],
+   "original": "Ob der Bauherr ein wesentliches verbleibendes Risiko tragen will oder ob eine Gegenmaßnahme eine Entscheidung braucht, bereitet die Projektsteuerung als offenen Entscheidungsbedarf vor."
+  },
+  {
+   "id": "WZ-0507",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kanten › problem-register › text",
+   "art": "yaml",
+   "zeile": 624,
+   "pfad": [
+    "register",
+    "kanten",
+    "problem-register",
+    "text"
+   ],
+   "original": "braucht Entscheidung"
+  },
+  {
+   "id": "WZ-0508",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kanten › problem-register › erklaerung",
+   "art": "yaml",
+   "zeile": 624,
+   "pfad": [
+    "register",
+    "kanten",
+    "problem-register",
+    "erklaerung"
+   ],
+   "original": "Braucht die Lösung eines Problems eine Entscheidung, entsteht ein offener Entscheidungsbedarf. Die Dringlichkeit allein ersetzt keinen Beschluss."
+  },
+  {
+   "id": "WZ-0509",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kanten › aenderung-register › text",
+   "art": "yaml",
+   "zeile": 625,
+   "pfad": [
+    "register",
+    "kanten",
+    "aenderung-register",
+    "text"
+   ],
+   "original": "erfordert"
+  },
+  {
+   "id": "WZ-0510",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kanten › aenderung-register › erklaerung",
+   "art": "yaml",
+   "zeile": 625,
+   "pfad": [
+    "register",
+    "kanten",
+    "aenderung-register",
+    "erklaerung"
+   ],
+   "original": "Erfordert eine Änderung eine Entscheidung des Bauherrn, entsteht ein offener Entscheidungsbedarf."
+  },
+  {
+   "id": "WZ-0511",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kanten › aenderung-prognose › text",
+   "art": "yaml",
+   "zeile": 626,
+   "pfad": [
+    "register",
+    "kanten",
+    "aenderung-prognose",
+    "text"
+   ],
+   "original": "Kosten verknüpfen"
+  },
+  {
+   "id": "WZ-0512",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kanten › aenderung-prognose › erklaerung",
+   "art": "yaml",
+   "zeile": 626,
+   "pfad": [
+    "register",
+    "kanten",
+    "aenderung-prognose",
+    "erklaerung"
+   ],
+   "original": "Die ermittelte Kostenwirkung einer Änderung wird mit der Kostenprognose verknüpft; was dort schon steht, wird kenntlich gemacht und nicht noch einmal gezählt."
+  },
+  {
+   "id": "WZ-0513",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kanten › register-vorlage › text",
+   "art": "yaml",
+   "zeile": 627,
+   "pfad": [
+    "register",
+    "kanten",
+    "register-vorlage",
+    "text"
+   ],
+   "original": "ausarbeiten"
+  },
+  {
+   "id": "WZ-0514",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kanten › register-vorlage › erklaerung",
+   "art": "yaml",
+   "zeile": 627,
+   "pfad": [
+    "register",
+    "kanten",
+    "register-vorlage",
+    "erklaerung"
+   ],
+   "original": "Aus dem offenen Entscheidungsbedarf arbeitet die Projektsteuerung die Entscheidungsvorlage aus: mindestens zwei zulässige Optionen, gewichteter Vergleich, Empfehlung."
+  },
+  {
+   "id": "WZ-0515",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kanten › vorlage-freigabe › text",
+   "art": "yaml",
+   "zeile": 628,
+   "pfad": [
+    "register",
+    "kanten",
+    "vorlage-freigabe",
+    "text"
+   ],
+   "original": "reif"
+  },
+  {
+   "id": "WZ-0516",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kanten › vorlage-freigabe › erklaerung",
+   "art": "yaml",
+   "zeile": 628,
+   "pfad": [
+    "register",
+    "kanten",
+    "vorlage-freigabe",
+    "erklaerung"
+   ],
+   "original": "Ist die Vorlage entscheidungsreif, kann der Bauherr beschließen und freigeben. Das darf nur die befugte Stelle des Bauherrn; die Vorlage ersetzt es nicht."
+  },
+  {
+   "id": "WZ-0517",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kanten › freigabe-massnahme › text",
+   "art": "yaml",
+   "zeile": 629,
+   "pfad": [
+    "register",
+    "kanten",
+    "freigabe-massnahme",
+    "text"
+   ],
+   "original": "Auflagen"
+  },
+  {
+   "id": "WZ-0518",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kanten › freigabe-massnahme › erklaerung",
+   "art": "yaml",
+   "zeile": 629,
+   "pfad": [
+    "register",
+    "kanten",
+    "freigabe-massnahme",
+    "erklaerung"
+   ],
+   "original": "Aus dem Beschluss und seinen Auflagen folgen Maßnahmen mit verantwortlicher Rolle und Frist; die Projektsteuerung verfolgt sie."
+  },
+  {
+   "id": "WZ-0519",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kanten › freigabe-bericht › text",
+   "art": "yaml",
+   "zeile": 630,
+   "pfad": [
+    "register",
+    "kanten",
+    "freigabe-bericht",
+    "text"
+   ],
+   "original": "Bericht"
+  },
+  {
+   "id": "WZ-0520",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kanten › freigabe-bericht › erklaerung",
+   "art": "yaml",
+   "zeile": 630,
+   "pfad": [
+    "register",
+    "kanten",
+    "freigabe-bericht",
+    "erklaerung"
+   ],
+   "original": "Wesentliche Veränderungen und offene Entscheidungen stehen im Managementbericht, der jeden Monat an den Bauherrn geht – unabhängig davon, ob gerade eine Freigabe ansteht."
+  },
+  {
+   "id": "WZ-0521",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kanten › massnahme-risiko › text",
+   "art": "yaml",
+   "zeile": 631,
+   "pfad": [
+    "register",
+    "kanten",
+    "massnahme-risiko",
+    "text"
+   ],
+   "original": "mindert das Risiko"
+  },
+  {
+   "id": "WZ-0522",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › kanten › massnahme-risiko › erklaerung",
+   "art": "yaml",
+   "zeile": 631,
+   "pfad": [
+    "register",
+    "kanten",
+    "massnahme-risiko",
+    "erklaerung"
+   ],
+   "original": "Eine umgesetzte und wirksame Maßnahme mindert das Risiko; erst dann wird die Bewertung des betroffenen Risikos angepasst. So schließt sich der Kreis aus Maßnahme, Wirkung und neuer Bewertung."
+  },
+  {
+   "id": "WZ-0523",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 1. › titel",
+   "art": "yaml",
+   "zeile": 634,
+   "pfad": [
+    "register",
+    "anlaesse",
+    0,
+    "titel"
+   ],
+   "original": "Hinweis zur Lieferzeit"
+  },
+  {
+   "id": "WZ-0524",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 1. › kurz",
+   "art": "yaml",
+   "zeile": 635,
+   "pfad": [
+    "register",
+    "anlaesse",
+    0,
+    "kurz"
+   ],
+   "original": "Ein Hinweis wird zum Risiko, zur Entscheidung und zur Maßnahme."
+  },
+  {
+   "id": "WZ-0525",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 1. › einstieg",
+   "art": "yaml",
+   "zeile": 637,
+   "pfad": [
+    "register",
+    "anlaesse",
+    0,
+    "einstieg"
+   ],
+   "original": "Der Architekt hat auf einer Messe gehört, dass die Lieferzeiten für Holzelemente länger werden. Beim Schulcampus Lindenhall-Süd wird die Vergabe der Holzbauelemente gerade vorbereitet."
+  },
+  {
+   "id": "WZ-0526",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 1. › schritte › 1. › text",
+   "art": "yaml",
+   "zeile": 639,
+   "pfad": [
+    "register",
+    "anlaesse",
+    0,
+    "schritte",
+    0,
+    "text"
+   ],
+   "original": "Die Projektsteuerung hält den Hinweis als Frühwarnung fest (FRW-002) und fragt bei den Herstellern nach. Die Antwort: Die Lieferzeit ist tatsächlich länger. Aus der Frühwarnung wird ein Risiko: Die Lieferzeit gefährdet Montagebeginn und Inbetriebnahme (RIS-009)."
+  },
+  {
+   "id": "WZ-0527",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 1. › schritte › 2. › text",
+   "art": "yaml",
+   "zeile": 640,
+   "pfad": [
+    "register",
+    "anlaesse",
+    0,
+    "schritte",
+    1,
+    "text"
+   ],
+   "original": "Die Projektsteuerung bewertet das Risiko nach Wahrscheinlichkeit und Auswirkung. Es ist wesentlich, weil es in der Risikomatrix vorrangig ist. Die Gegenmaßnahme kostet zusätzlich Geld aus der Reserve, und ob das Restrisiko getragen wird, entscheidet der Bauherr. Also kommt es als offener Entscheidungsbedarf ins Entscheidungsregister."
+  },
+  {
+   "id": "WZ-0528",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 1. › schritte › 3. › text",
+   "art": "yaml",
+   "zeile": 641,
+   "pfad": [
+    "register",
+    "anlaesse",
+    0,
+    "schritte",
+    2,
+    "text"
+   ],
+   "original": "Die Projektsteuerung formuliert die Frage, nennt Entscheidungstermin und befugte Stelle und arbeitet zwei zulässige Wege aus: die Holzbauelemente früher auszuschreiben oder abzuwarten. Sie vergleicht beide mit gewichteten Gesichtspunkten und empfiehlt einen Weg."
+  },
+  {
+   "id": "WZ-0529",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 1. › schritte › 4. › text",
+   "art": "yaml",
+   "zeile": 642,
+   "pfad": [
+    "register",
+    "anlaesse",
+    0,
+    "schritte",
+    3,
+    "text"
+   ],
+   "original": "Die Vorlage ist entscheidungsreif. Der Lenkungskreis berät, und der Bauherr entscheidet selbst: Er beschließt, die Holzbauelemente früher auszuschreiben, mit der Auflage, die Lieferzeit schriftlich bestätigen zu lassen."
+  },
+  {
+   "id": "WZ-0530",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 1. › schritte › 5. › text",
+   "art": "yaml",
+   "zeile": 643,
+   "pfad": [
+    "register",
+    "anlaesse",
+    0,
+    "schritte",
+    4,
+    "text"
+   ],
+   "original": "Aus dem Beschluss und der Auflage wird eine Maßnahme mit verantwortlicher Rolle und Frist (MAS-007, vorgezogene Vergabe der Holzbauelemente). Die Projektsteuerung verfolgt die Umsetzung."
+  },
+  {
+   "id": "WZ-0531",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 1. › schritte › 6. › text",
+   "art": "yaml",
+   "zeile": 644,
+   "pfad": [
+    "register",
+    "anlaesse",
+    0,
+    "schritte",
+    5,
+    "text"
+   ],
+   "original": "Der Stand von Beschluss und Maßnahme steht im nächsten Managementbericht, der auf die Einträge verweist."
+  },
+  {
+   "id": "WZ-0532",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 1. › schritte › 7. › text",
+   "art": "yaml",
+   "zeile": 645,
+   "pfad": [
+    "register",
+    "anlaesse",
+    0,
+    "schritte",
+    6,
+    "text"
+   ],
+   "original": "Ist die Vergabe umgesetzt und die Lieferzeit bestätigt, prüft die Projektsteuerung die Wirkung. Erst dann wird die Risikobewertung angepasst: Der Kreis schließt sich."
+  },
+  {
+   "id": "WZ-0533",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 1. › ende",
+   "art": "yaml",
+   "zeile": 646,
+   "pfad": [
+    "register",
+    "anlaesse",
+    0,
+    "ende"
+   ],
+   "original": "Nicht jeder Hinweis durchläuft alle diese Stationen: Viele werden nach der Klärung mit Begründung geschlossen."
+  },
+  {
+   "id": "WZ-0534",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 2. › titel",
+   "art": "yaml",
+   "zeile": 649,
+   "pfad": [
+    "register",
+    "anlaesse",
+    1,
+    "titel"
+   ],
+   "original": "Lüftungsanlage kommt später"
+  },
+  {
+   "id": "WZ-0535",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 2. › kurz",
+   "art": "yaml",
+   "zeile": 650,
+   "pfad": [
+    "register",
+    "anlaesse",
+    1,
+    "kurz"
+   ],
+   "original": "Ein Problem ist eingetreten und braucht eine Entscheidung."
+  },
+  {
+   "id": "WZ-0536",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 2. › einstieg",
+   "art": "yaml",
+   "zeile": 652,
+   "pfad": [
+    "register",
+    "anlaesse",
+    1,
+    "einstieg"
+   ],
+   "original": "Im April deutet der Hersteller der Lüftungsanlage für die Gesamtschule einen Verzug an, nennt aber keinen Termin."
+  },
+  {
+   "id": "WZ-0537",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 2. › schritte › 1. › text",
+   "art": "yaml",
+   "zeile": 654,
+   "pfad": [
+    "register",
+    "anlaesse",
+    1,
+    "schritte",
+    0,
+    "text"
+   ],
+   "original": "Die Projektsteuerung hält den Hinweis als Frühwarnung fest und fragt nach. Im Mai steht fest: Die Anlage kommt vier Monate später. Der Zustand ist eingetreten, aus der Frühwarnung wird ein Problem."
+  },
+  {
+   "id": "WZ-0538",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 2. › schritte › 2. › text",
+   "art": "yaml",
+   "zeile": 655,
+   "pfad": [
+    "register",
+    "anlaesse",
+    1,
+    "schritte",
+    1,
+    "text"
+   ],
+   "original": "Die Projektsteuerung klärt die Folgen und bereitet Lösungen vor. Für eine Lösung braucht der Bauherr eine Entscheidung, also wird ein offener Entscheidungsbedarf eingetragen. Dringlichkeit allein ersetzt keinen Beschluss."
+  },
+  {
+   "id": "WZ-0539",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 2. › schritte › 3. › text",
+   "art": "yaml",
+   "zeile": 656,
+   "pfad": [
+    "register",
+    "anlaesse",
+    1,
+    "schritte",
+    2,
+    "text"
+   ],
+   "original": "Die Projektsteuerung arbeitet zwei zulässige Wege aus – ein Ersatzgerät einsetzen oder später einziehen – und vergleicht sie mit gewichteten Gesichtspunkten."
+  },
+  {
+   "id": "WZ-0540",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 2. › schritte › 4. › text",
+   "art": "yaml",
+   "zeile": 657,
+   "pfad": [
+    "register",
+    "anlaesse",
+    1,
+    "schritte",
+    3,
+    "text"
+   ],
+   "original": "Der Lenkungskreis berät. Der Bauherr entscheidet nach seinem Mandat."
+  },
+  {
+   "id": "WZ-0541",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 2. › schritte › 5. › text",
+   "art": "yaml",
+   "zeile": 658,
+   "pfad": [
+    "register",
+    "anlaesse",
+    1,
+    "schritte",
+    4,
+    "text"
+   ],
+   "original": "Der Beschluss wird als Maßnahme mit Verantwortlichem und Frist umgesetzt. Die Projektsteuerung verfolgt Umsetzung und Wirkung."
+  },
+  {
+   "id": "WZ-0542",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 2. › schritte › 6. › text",
+   "art": "yaml",
+   "zeile": 659,
+   "pfad": [
+    "register",
+    "anlaesse",
+    1,
+    "schritte",
+    5,
+    "text"
+   ],
+   "original": "Beschluss und Stand der Maßnahme stehen im nächsten Managementbericht."
+  },
+  {
+   "id": "WZ-0543",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 2. › ende",
+   "art": "yaml",
+   "zeile": 660,
+   "pfad": [
+    "register",
+    "anlaesse",
+    1,
+    "ende"
+   ],
+   "original": "Das Problem ist schon eingetreten: Eine Wahrscheinlichkeit wird nicht mehr geschätzt."
+  },
+  {
+   "id": "WZ-0544",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 3. › titel",
+   "art": "yaml",
+   "zeile": 663,
+   "pfad": [
+    "register",
+    "anlaesse",
+    2,
+    "titel"
+   ],
+   "original": "Größere Mensa"
+  },
+  {
+   "id": "WZ-0545",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 3. › kurz",
+   "art": "yaml",
+   "zeile": 664,
+   "pfad": [
+    "register",
+    "anlaesse",
+    2,
+    "kurz"
+   ],
+   "original": "Eine gewollte Änderung wirkt auf die Kosten und braucht eine Entscheidung."
+  },
+  {
+   "id": "WZ-0546",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 3. › einstieg",
+   "art": "yaml",
+   "zeile": 666,
+   "pfad": [
+    "register",
+    "anlaesse",
+    2,
+    "einstieg"
+   ],
+   "original": "Die Schulleitung wünscht eine größere Mensa (AEN-012). Die geltende Vorgabe soll bewusst geändert werden."
+  },
+  {
+   "id": "WZ-0547",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 3. › schritte › 1. › text",
+   "art": "yaml",
+   "zeile": 668,
+   "pfad": [
+    "register",
+    "anlaesse",
+    2,
+    "schritte",
+    0,
+    "text"
+   ],
+   "original": "Die Projektsteuerung erfasst Anlass, Antragsteller und bisherige Grundlage und lässt die Auswirkungen auf Kosten, Termine und Genehmigungen ermitteln. Die ermittelte Kostenwirkung wird mit der Kostenprognose verknüpft; was dort schon steht, wird nicht noch einmal gezählt."
+  },
+  {
+   "id": "WZ-0548",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 3. › schritte › 2. › text",
+   "art": "yaml",
+   "zeile": 669,
+   "pfad": [
+    "register",
+    "anlaesse",
+    2,
+    "schritte",
+    1,
+    "text"
+   ],
+   "original": "Für die Änderung braucht der Bauherr eine Entscheidung. Sie kommt als offener Entscheidungsbedarf ins Entscheidungsregister. Bis der Beschluss wirksam ist, gilt weiter die bisherige Grundlage."
+  },
+  {
+   "id": "WZ-0549",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 3. › schritte › 3. › text",
+   "art": "yaml",
+   "zeile": 670,
+   "pfad": [
+    "register",
+    "anlaesse",
+    2,
+    "schritte",
+    2,
+    "text"
+   ],
+   "original": "Die Projektsteuerung arbeitet zwei zulässige Wege aus: die größere Mensa oder eine Mensa, die später wachsen kann. Sie vergleicht beide mit gewichteten Gesichtspunkten."
+  },
+  {
+   "id": "WZ-0550",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 3. › schritte › 4. › text",
+   "art": "yaml",
+   "zeile": 671,
+   "pfad": [
+    "register",
+    "anlaesse",
+    2,
+    "schritte",
+    3,
+    "text"
+   ],
+   "original": "Der Lenkungskreis berät, und der Bauherr entscheidet für die Mensa, die später wachsen kann."
+  },
+  {
+   "id": "WZ-0551",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 3. › schritte › 5. › text",
+   "art": "yaml",
+   "zeile": 672,
+   "pfad": [
+    "register",
+    "anlaesse",
+    2,
+    "schritte",
+    4,
+    "text"
+   ],
+   "original": "Der Beschluss wird umgesetzt: Die Projektsteuerung informiert die Beteiligten, veranlasst die Anpassung der Unterlagen und verfolgt die Umsetzung."
+  },
+  {
+   "id": "WZ-0552",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 3. › schritte › 6. › text",
+   "art": "yaml",
+   "zeile": 673,
+   "pfad": [
+    "register",
+    "anlaesse",
+    2,
+    "schritte",
+    5,
+    "text"
+   ],
+   "original": "Der Beschluss steht im nächsten Managementbericht."
+  },
+  {
+   "id": "WZ-0553",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 3. › ende",
+   "art": "yaml",
+   "zeile": 674,
+   "pfad": [
+    "register",
+    "anlaesse",
+    2,
+    "ende"
+   ],
+   "original": "Eine Änderung muss nicht aus einem Risiko entstehen: Sie wird auch ohne Risikoeintrag bearbeitet. Wird ein Antrag abgelehnt, bleibt er mit Begründung festgehalten."
+  },
+  {
+   "id": "WZ-0554",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 4. › titel",
+   "art": "yaml",
+   "zeile": 677,
+   "pfad": [
+    "register",
+    "anlaesse",
+    3,
+    "titel"
+   ],
+   "original": "Kostenprognose steigt"
+  },
+  {
+   "id": "WZ-0555",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 4. › kurz",
+   "art": "yaml",
+   "zeile": 678,
+   "pfad": [
+    "register",
+    "anlaesse",
+    3,
+    "kurz"
+   ],
+   "original": "Ein Schwellenwert wird überschritten und löst eine neue Frühwarnung aus."
+  },
+  {
+   "id": "WZ-0556",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 4. › einstieg",
+   "art": "yaml",
+   "zeile": 680,
+   "pfad": [
+    "register",
+    "anlaesse",
+    3,
+    "einstieg"
+   ],
+   "original": "Die Restkostenprognose für den Schulcampus wird fortgeschrieben. Eine festgelegte Grenze wird überschritten."
+  },
+  {
+   "id": "WZ-0557",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 4. › schritte › 1. › text",
+   "art": "yaml",
+   "zeile": 682,
+   "pfad": [
+    "register",
+    "anlaesse",
+    3,
+    "schritte",
+    0,
+    "text"
+   ],
+   "original": "Die Projektsteuerung wertet die Prognose aus und sieht: Die Schwelle ist überschritten."
+  },
+  {
+   "id": "WZ-0558",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 4. › schritte › 2. › text",
+   "art": "yaml",
+   "zeile": 683,
+   "pfad": [
+    "register",
+    "anlaesse",
+    3,
+    "schritte",
+    1,
+    "text"
+   ],
+   "original": "Der überschrittene Schwellenwert löst eine neue Frühwarnung aus. Sie ist ein neues Signal und entsteht nicht aus einem bestehenden Risiko."
+  },
+  {
+   "id": "WZ-0559",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 4. › schritte › 3. › text",
+   "art": "yaml",
+   "zeile": 684,
+   "pfad": [
+    "register",
+    "anlaesse",
+    3,
+    "schritte",
+    2,
+    "text"
+   ],
+   "original": "Die Projektsteuerung klärt mit den Fachleuten, was hinter der Abweichung steht, und bewertet sie als Risiko."
+  },
+  {
+   "id": "WZ-0560",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 4. › schritte › 4. › text",
+   "art": "yaml",
+   "zeile": 685,
+   "pfad": [
+    "register",
+    "anlaesse",
+    3,
+    "schritte",
+    3,
+    "text"
+   ],
+   "original": "Das Risiko ist wesentlich, weil es eine Entscheidungsschwelle des Bauherrn erreicht. Ob er es tragen will, bereitet die Projektsteuerung als offenen Entscheidungsbedarf vor."
+  },
+  {
+   "id": "WZ-0561",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 4. › schritte › 5. › text",
+   "art": "yaml",
+   "zeile": 686,
+   "pfad": [
+    "register",
+    "anlaesse",
+    3,
+    "schritte",
+    4,
+    "text"
+   ],
+   "original": "Die Projektsteuerung arbeitet die Entscheidungsvorlage mit mindestens zwei zulässigen Optionen aus."
+  },
+  {
+   "id": "WZ-0562",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 4. › schritte › 6. › text",
+   "art": "yaml",
+   "zeile": 687,
+   "pfad": [
+    "register",
+    "anlaesse",
+    3,
+    "schritte",
+    5,
+    "text"
+   ],
+   "original": "Der Lenkungskreis berät, und der Bauherr entscheidet."
+  },
+  {
+   "id": "WZ-0563",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 4. › schritte › 7. › text",
+   "art": "yaml",
+   "zeile": 688,
+   "pfad": [
+    "register",
+    "anlaesse",
+    3,
+    "schritte",
+    6,
+    "text"
+   ],
+   "original": "Aus dem Beschluss folgt eine Maßnahme mit verantwortlicher Rolle und Frist."
+  },
+  {
+   "id": "WZ-0564",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 4. › schritte › 8. › text",
+   "art": "yaml",
+   "zeile": 689,
+   "pfad": [
+    "register",
+    "anlaesse",
+    3,
+    "schritte",
+    7,
+    "text"
+   ],
+   "original": "Wirkt die Maßnahme nachweislich, wird die Risikobewertung angepasst."
+  },
+  {
+   "id": "WZ-0565",
+   "bereich": "Werkzeuge",
+   "datei": "inhalte/werkzeuge.yaml",
+   "stelle": "Werkzeuge › register › anlaesse › 4. › ende",
+   "art": "yaml",
+   "zeile": 690,
+   "pfad": [
+    "register",
+    "anlaesse",
+    3,
+    "ende"
+   ],
+   "original": "Der Schwellenwert löst nur eine Frühwarnung aus. Entscheiden muss weiterhin der Bauherr."
   },
   {
    "id": "AB-abb-2-0001",

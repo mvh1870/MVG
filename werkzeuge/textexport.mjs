@@ -23,7 +23,7 @@ const NICHT_TEXT = new Set(['belege', 'beleg', 'id', 'figur', 'bild-szene', 'bil
   'von', 'nach', 'gegenstand', 'reserve', 'risiko', 'freigabe', 'ziele', 'kosten', 'massnahme', 'termin', 'massnahmen', 'fruehwarnungen',
   'entscheidungen', 'blockiert', 'darueber', 'beraet', 'prognose', 'warn', 'begruendung', 'werkzeuge', 'campus', 'puffer', 'schwelle', 'prozent']);
 /** Kurze Werte ohne Leerzeichen, die trotzdem sichtbar sind. */
-const KURZ_SICHTBAR = new Set(['titel', 'name', 'rolle', 'zeit', 'zeitraum', 'begriff', 'kurz', 'knopf', 'los', 'monat', 'projekt', 'mehr', 'weniger', 'text']);
+const KURZ_SICHTBAR = new Set(['titel', 'name', 'rolle', 'zeit', 'zeitraum', 'begriff', 'kurz', 'knopf', 'los', 'monat', 'projekt', 'mehr', 'weniger', 'text', 'unter']);
 const MD_META_TEXT = new Set(['titel', 'kurztitel', 'kurzsatz', 'kicker', 'links', 'rechts', 'marke', 'praefix', 'begriff', 'andere']);
 
 /**
@@ -96,6 +96,8 @@ function ausYaml(rel, bereich, kurz, hinweisFuer = (/** @type {(string|number)[]
     if (!YAML.isScalar(n) || typeof n.value !== 'string') return;
     const schluessel = [...pfad].reverse().find((x) => typeof x === 'string') ?? '';
     if (NICHT_TEXT.has(String(schluessel))) return;
+    // Register-Zusammenspiel: „rolle“ unter „beteiligt“ ist eine Kennung (bauherr, lenkungskreis, projektsteuerung), kein Text
+    if (schluessel === 'rolle' && pfad.includes('beteiligt')) return;
     const v = n.value;
     if (!/\p{L}/u.test(v)) return;
     if (!/\s/u.test(v.trim()) && !KURZ_SICHTBAR.has(String(schluessel))) return;

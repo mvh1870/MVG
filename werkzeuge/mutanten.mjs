@@ -31,6 +31,8 @@ const TESTS_P19 = [
 ];
 /** P19.6 Technik IV: text-kurz, nur-kurzfassung, Sprecher, Wegkarten, Brückenzeile, Eintrag-Kärtchen, Nebenfiguren (Übersetzer, Engine, Seite, Grafik) */
 const TESTS_P196 = ['tests/geschichte-uebersetzer-p196.test.ts', 'tests/geschichte-p196.test.ts', 'tests/figuren-p196.test.ts', 'tests/geschichte-oberflaeche.test.ts'];
+/** Register-Zusammenspiel (Owner im Chat 2026-10-09): Kern (Graph, Wege, Ausfall, Probefragen) und Oberfläche */
+const TESTS_REGISTER = ['tests/werkzeuge-register.test.ts', 'tests/register-bedienung.test.ts'];
 const TESTS_WERKZEUGE = [
   'tests/werkzeuge-vorlagen-check.test.ts', 'tests/werkzeuge-wegweiser.test.ts', 'tests/werkzeuge-risiko-grenzen.test.ts',
   'tests/werkzeuge-monatsbericht.test.ts', 'tests/werkzeuge-wachter.test.ts',
@@ -253,6 +255,16 @@ export const MUTANTEN = [
   ['src/ui/flaechen/geschichte-mini.ts', "const ANGESAGT: readonly MiniArt[] = ['matrix', 'mappe', 'pinnwand', 'rueckfragen'];", "const ANGESAGT: readonly MiniArt[] = ['matrix', 'mappe', 'pinnwand', 'rueckfragen', 'bericht'];", 'Ansage: der Bericht sagt vor der Prüfung nichts an', TESTS_P19],
   ['src/ui/flaechen/geschichte-mini.ts', "if (aus.fertig && m.schlussHtml !== undefined) teile.push(nurText(m.schlussHtml));", "", 'Ansage: nach Abschluss folgt der Schlusssatz', TESTS_P19],
   ['src/ui/woerter.ts', "13: 'Dreizehn', 14: 'Vierzehn' };", " };", 'Wörter: das Zahlwort reicht bis Vierzehn', TESTS_P196],
+  // Register-Zusammenspiel: Kern und Oberfläche
+  ['src/werkzeuge/register.ts', "if (!erreicht.has(k.von)) f.push", "if (false) f.push", 'Register-Weg: die Quelle eines Pfeils muss erreicht sein', TESTS_REGISTER],
+  ['src/werkzeuge/register.ts', "if (gesehen.has(id)) f.push({ art: 'doppelt', schritt: i, kante: id });", "", 'Register-Weg: jeder Pfeil höchstens einmal', TESTS_REGISTER],
+  ['src/werkzeuge/register.ts', "    if (ausgefallen.has(k.nach)) return { schritt: i, station: k.nach };\n", "", 'Register-Ausfall: auch ein Pfeil an eine ausgefallene Station blockiert', TESTS_REGISTER],
+  ['src/werkzeuge/register.ts', "if (k !== null && !aus.includes(k.nach)) aus.push(k.nach);", "if (k !== null) aus.push(k.nach);", 'Register: eine Station wird nur einmal besucht', TESTS_REGISTER],
+  ['src/werkzeuge/register.ts', "const platz = i % wahl.length;", "const platz = 0;", 'Register-Probefrage: die richtige Antwort wechselt den Platz', TESTS_REGISTER],
+  ['src/werkzeuge/register.ts', "return ausgehend(frage.von).some((k) => k.nach === gewaehlt) ? 'anderer-pfeil' : 'kein-pfeil';", "return 'kein-pfeil';", 'Register-Probefrage: ein anderer Pfeil von derselben Station wird erkannt', TESTS_REGISTER],
+  ['src/ui/flaechen/explore/register.ts', "if (!st.probe.falschBeiSchritt) st.probe.ersteRichtig += 1;", "st.probe.ersteRichtig += 1;", 'Register-Durchprobieren: nur der erste Versuch zählt', TESTS_REGISTER],
+  ['src/ui/flaechen/explore/register.ts', "const grenze = (): number => (st.modus === 'zuschauen' ? bisBlockade(weg(), st.ausgefallen) : gesamt());", "const grenze = (): number => gesamt();", 'Register-Zuschauen: der Fall bleibt vor der ausgefallenen Station stehen', TESTS_REGISTER],
+  ['src/ui/flaechen/explore/register-grafik.ts', "z.ebene === 'wer' ? rollenTitel(k.wer.fuehrt)", "z.ebene === 'xx' ? rollenTitel(k.wer.fuehrt)", 'Register-Grafik: der Streifen nennt die zuständige Rolle', TESTS_REGISTER],
 ];
 
 function testsRot(tests = TESTS) {

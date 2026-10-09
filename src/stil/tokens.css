@@ -255,5 +255,8 @@
 
   /* ------------------------------------------------------------------ Breiten */
   --breite-lesen: 72ch;       /* Theorie */
-  --breite-start: 1120px;     /* Startseite */
+  --breite-start: clamp(1120px, 82vw, 1760px);    /* Startseite: wächst mit breiten Fenstern (ab 1366 px) */
+  --breite-seite: clamp(1080px, 82vw, 1760px);    /* Werkzeuge: wächst mit breiten Fenstern (ab 1317 px) */
+  --breite-story: clamp(1080px, 72vw, 1500px);    /* Geschichte: wächst langsamer, der Text bleibt gut lesbar */
+  --breite-register: clamp(1080px, 94vw, 1900px); /* Register-Zusammenspiel: Bild und Erklärung nebeneinander */
 }

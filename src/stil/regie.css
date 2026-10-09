@@ -126,7 +126,7 @@
 /* P17.6 (O-53): die Story auf der Leinwand – Beamer-Optik 16:9. Gemessen wird die Breite der Anzeige (Container), nicht
    das Fenster: so zeigt die Regie-Vorschau (Bühne 1280 px) dieselbe Stufe wie eine Leinwand von 1280 px. Keine
    Kopfnavigation (sie sähe aus wie Bedienung), große Schrift über `zoom`, Campus breit, Balken kräftiger. */
-.anzeige { container: anzeige / inline-size; }
+.anzeige { container: anzeige / inline-size; --breite-start: 1120px; --breite-seite: 1080px; --breite-story: 1080px; --breite-register: 1080px; } /* Leinwand und Vorschau: feste Breiten, sie wachsen über zoom (L-260) */
 .anzeige .seite-story .kopf-bereiche { display: none; }
 .anzeige .seite-story .gs-stand-klein .gs-stand-zeile { grid-template-columns: auto 88px; }
 .anzeige .seite-story .gs-stand-klein .gs-stand-spur { height: 12px; }

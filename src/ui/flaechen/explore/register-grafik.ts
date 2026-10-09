@@ -5,6 +5,7 @@
  * wird einmal gebaut und über `zeige` umgefärbt, damit der wandernde Impuls nicht abreißt.
  */
 import type { RegisterTeil } from '../../../inhalte/typen.ts';
+import type { Akzent } from '../../../stil/akzente.ts';
 import { KANTEN, KNOTEN, SCHWELLE, type Ebene, type KnotenId, type Ort, type Rolle } from '../../../werkzeuge/register.ts';
 import { h, s } from '../../h.ts';
 import { W } from '../../woerter.ts';
@@ -12,6 +13,16 @@ import { W } from '../../woerter.ts';
 const R = W.werkzeuge.register;
 
 interface Rahmen { x: number; y: number; b: number; h: number }
+
+/**
+ * Farbton je Station (Akzentpalette, O-57): Gruppen des Ablaufs, damit die Grafik nicht einfarbig wirkt – Signale gelb und türkis,
+ * Risiko orange, Problem beere, Änderung und Vorlage violett, Entscheidungsregister blau, Freigabe grün. Die Rolle steht davon
+ * getrennt im Streifen (Wort und Farbe der Rolle).
+ */
+export const TON: Record<Ort, Akzent> = {
+  schwelle: 'sonne', fruehwarnung: 'sonne', problem: 'beere', aenderung: 'violett', prognose: 'lagune',
+  risiko: 'orange', register: 'blau', vorlage: 'violett', freigabe: 'gruen', massnahme: 'lagune', bericht: 'sonne',
+};
 type Punkt = readonly [number, number];
 
 export const ANSICHT = { b: 1300, h: 756 } as const;
@@ -114,6 +125,8 @@ export interface Zustand {
 export interface Grafik {
   wurzel: HTMLElement;
   zeige(z: Zustand): void;
+  /** Untertitel unter dem Bild (null blendet ihn aus) */
+  untertitel(text: string | null): void;
 }
 
 export const OHNE_ZUSTAND: Zustand = { ebene: 'wer', aktiv: null, besucht: new Set(), kanteAktiv: null, kantenDurch: new Set(), ausgefallen: new Set(), gewaehlt: null, gewaehlteKante: null, impuls: false };
@@ -157,7 +170,7 @@ export function baueGrafik(w: RegisterTeil, o: { bedienbar: boolean; beiWahl: (o
     if (ort === null) return;
     const r = ort === SCHWELLE ? BANNER : KACHEL[ort];
     const rolle = rolleVon(ort);
-    const wrap = s('g', { class: 'rz-akteur-figur', 'data-rolle': rolle, transform: `translate(${r.x + r.b - 24} ${r.y + (ort === SCHWELLE ? 0 : -2)})` });
+    const wrap = s('g', { class: 'rz-akteur-figur', 'data-rolle': rolle, 'data-ton': TON[ort], transform: `translate(${r.x + r.b - 24} ${r.y + (ort === SCHWELLE ? 0 : -2)})` });
     wrap.append(s('circle', { class: 'rz-akteur-kreis', r: 16 }), T(0, 6.5, 'rz-akteur-buchstabe', rollenTitel(rolle).slice(0, 1), 'middle'));
     akteur.append(wrap);
   };
@@ -181,9 +194,11 @@ export function baueGrafik(w: RegisterTeil, o: { bedienbar: boolean; beiWahl: (o
   // ----------------------------------------------------------------- Hinweiskasten
   {
     const b = BANNER;
-    const g = s('g', { class: 'rz-kachel rz-banner', 'data-ort': SCHWELLE, 'data-rolle': rolleVon(SCHWELLE) });
+    const g = s('g', { class: 'rz-kachel rz-banner', 'data-ort': SCHWELLE, 'data-rolle': rolleVon(SCHWELLE), 'data-ton': TON.schwelle });
     g.append(
+      s('defs', null, s('clipPath', { id: 'rz-clip-schwelle' }, s('rect', { x: b.x, y: b.y, width: b.b, height: b.h, rx: 14 }))),
       s('rect', { class: 'rz-box', x: b.x, y: b.y, width: b.b, height: b.h, rx: 14 }),
+      s('rect', { class: 'rz-band', x: b.x, y: b.y, width: b.b, height: 8, 'clip-path': 'url(#rz-clip-schwelle)' }),
       s('circle', { class: 'rz-scheibe', cx: b.x + 34, cy: b.y + b.h / 2, r: 18 }),
       s('path', { class: 'rz-icon', d: ICONS.schwelle, transform: `translate(${b.x + 34 - 11} ${b.y + b.h / 2 - 11}) scale(.92)` }),
       T(b.x + 62, b.y + 31, 'rz-banner-text', w.schwelle.titel),
@@ -197,7 +212,7 @@ export function baueGrafik(w: RegisterTeil, o: { bedienbar: boolean; beiWahl: (o
   for (const id of KNOTEN) {
     const k = w.knoten[id];
     const r = KACHEL[id];
-    const g = s('g', { class: 'rz-kachel', 'data-ort': id, 'data-rolle': k.wer.fuehrt, 'data-pruef': `rz-kachel-${id}` });
+    const g = s('g', { class: 'rz-kachel', 'data-ort': id, 'data-rolle': k.wer.fuehrt, 'data-ton': TON[id], 'data-pruef': `rz-kachel-${id}` });
     const cx = r.x + 40;
     const cy = r.y + 44;
     const tz = titelZeilen(k.titel);
@@ -207,7 +222,9 @@ export function baueGrafik(w: RegisterTeil, o: { bedienbar: boolean; beiWahl: (o
     const flaeche = s('rect', { class: 'rz-streifen-flaeche', x: r.x + 10, y: r.y + r.h - 38, width: r.b - 20, height: 30, rx: 9 });
     const text = T(r.x + 22, r.y + r.h - 18, 'rz-streifen-text', '');
     g.append(
+      s('defs', null, s('clipPath', { id: `rz-clip-${id}` }, s('rect', { x: r.x, y: r.y, width: r.b, height: r.h, rx: 16 }))),
       s('rect', { class: 'rz-box', x: r.x, y: r.y, width: r.b, height: r.h, rx: 16 }),
+      s('rect', { class: 'rz-band', x: r.x, y: r.y, width: r.b, height: 11, 'clip-path': `url(#rz-clip-${id})` }),
       s('circle', { class: 'rz-scheibe', cx, cy, r: 27 }),
       s('path', { class: 'rz-icon', d: ICONS[id], transform: `translate(${cx - 16} ${cy - 16}) scale(1.34)` }),
       zeilen(r.x + 80, ty, 'rz-titel', tz, 24),
@@ -228,7 +245,7 @@ export function baueGrafik(w: RegisterTeil, o: { bedienbar: boolean; beiWahl: (o
     if (weg === undefined) throw new Error(`Kein Linienzug für den Pfeil ${k.id}`);
     const text = w.kanten[k.id]?.text ?? k.id;
     const breite = [...text].length * 8.4 + 24;
-    const g = s('g', { class: 'rz-pfeil', 'data-kante': k.id, 'data-art': k.art, 'data-pruef': `rz-pfeil-${k.id}` });
+    const g = s('g', { class: 'rz-pfeil', 'data-kante': k.id, 'data-art': k.art, 'data-ton': TON[k.nach], 'data-pruef': `rz-pfeil-${k.id}` });
     g.append(
       s('path', { class: 'rz-treffer', d: pfad(weg.punkte) }),
       s('path', { class: 'rz-linie', d: pfad(weg.punkte) }),
@@ -261,7 +278,9 @@ export function baueGrafik(w: RegisterTeil, o: { bedienbar: boolean; beiWahl: (o
   svg.append(kanten, kacheln, akteur, legende, impuls);
 
   // schmal rollt die Grafik waagerecht: dann braucht der Rahmen Tastaturzugang (nur in der bedienbaren Ansicht)
-  const rahmen = h('div', { class: 'rz-grafik-rahmen', tabindex: o.bedienbar ? 0 : null, role: o.bedienbar ? 'region' : null, 'aria-label': o.bedienbar ? R.grafikName : null }, svg);
+  const rollflaeche = h('div', { class: 'rz-grafik-rolle', tabindex: o.bedienbar ? 0 : null, role: o.bedienbar ? 'region' : null, 'aria-label': o.bedienbar ? R.grafikName : null }, svg);
+  const untertitelEl = h('p', { class: 'rz-untertitel', 'data-pruef': 'register-untertitel', hidden: true });
+  const rahmen = h('div', { class: 'rz-grafik-rahmen' }, rollflaeche, o.bedienbar ? untertitelEl : null);
 
   function zeige(z: Zustand): void {
     rahmen.dataset['ebene'] = z.ebene;
@@ -295,6 +314,8 @@ export function baueGrafik(w: RegisterTeil, o: { bedienbar: boolean; beiWahl: (o
       g.classList.toggle('ist-gesperrt', z.ausgefallen.has(k.von) || z.ausgefallen.has(k.nach));
     }
     setzeAkteur(z.aktiv);
+    const ziel = z.kanteAktiv === null ? null : KANTEN.find((x) => x.id === z.kanteAktiv)?.nach ?? null;
+    if (ziel === null) impuls.removeAttribute('data-ton'); else impuls.setAttribute('data-ton', TON[ziel]);
     const weg = z.kanteAktiv === null ? undefined : WEGE[z.kanteAktiv];
     const laeuft = z.impuls && weg !== undefined && !reduzierteBewegung();
     impuls.classList.toggle('ist-sichtbar', laeuft);
@@ -304,6 +325,17 @@ export function baueGrafik(w: RegisterTeil, o: { bedienbar: boolean; beiWahl: (o
     }
   }
 
+  function untertitel(text: string | null): void {
+    untertitelEl.hidden = text === null;
+    if (text !== null && untertitelEl.textContent !== text) {
+      untertitelEl.textContent = text;
+      // neu einblenden: die Animation beginnt mit jedem neuen Text von vorn
+      untertitelEl.classList.remove('ist-neu');
+      void untertitelEl.offsetWidth;
+      untertitelEl.classList.add('ist-neu');
+    }
+  }
+
   zeige(OHNE_ZUSTAND);
-  return { wurzel: rahmen, zeige };
+  return { wurzel: rahmen, zeige, untertitel };
 }

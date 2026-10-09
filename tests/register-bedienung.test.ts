@@ -81,7 +81,7 @@ test('Zuschauen: Weiter zeigt Schritt für Schritt Pfeil und Station, Zurück un
   const a = w.anlaesse[0];
   assert.ok(a);
   assert.equal(zaehler(el), R.schritt(0, a.schritte.length));
-  assert.match(text(el, 'register-schritt'), new RegExp(a.einstieg.slice(0, 30)));
+  assert.match(text(el, 'register-untertitel'), new RegExp(a.einstieg.slice(0, 30)));
   a.schritte.forEach((s, i) => {
     klick(q(el, 'register-vor'));
     assert.equal(zaehler(el), R.schritt(i + 1, a.schritte.length));
@@ -89,7 +89,8 @@ test('Zuschauen: Weiter zeigt Schritt für Schritt Pfeil und Station, Zurück un
     assert.ok(k);
     assert.ok(el.querySelector(`.rz-pfeil[data-kante="${s.kante}"]`)?.classList.contains('ist-aktiv'), `Pfeil ${s.kante} aktiv`);
     assert.ok(el.querySelector(`.rz-kachel[data-ort="${k.nach}"]`)?.classList.contains('ist-aktiv'), `Station ${k.nach} aktiv`);
-    assert.match(text(el, 'register-schritt'), new RegExp(w.kanten[s.kante]?.erklaerung.slice(0, 25) ?? '?'));
+    assert.match(text(el, 'register-untertitel'), new RegExp(w.kanten[s.kante]?.erklaerung.slice(0, 25) ?? '?'));
+    assert.equal(q(el, 'register-untertitel')?.hasAttribute('hidden'), false, 'Untertitel unter dem Bild');
     if (i > 0) assert.ok(el.querySelector(`.rz-pfeil[data-kante="${a.schritte[i - 1]?.kante}"]`)?.classList.contains('ist-durchlaufen'));
   });
   assert.equal((q(el, 'register-vor') as HTMLButtonElement).disabled, true, 'am Ende kein weiterer Schritt');
@@ -121,7 +122,7 @@ test('Anlass wechseln stellt den Fall zurück; jeder Anlass beginnt an seiner St
     sel.dispatchEvent(new Event('change', { bubbles: true }));
     assert.equal(zaehler(el), R.schritt(0, a.schritte.length));
     assert.ok(el.querySelector(`.rz-kachel[data-ort="${a.start}"]`)?.classList.contains('ist-aktiv'), `${a.id}: Start ${a.start}`);
-    assert.match(text(el, 'register-schritt'), new RegExp(a.einstieg.slice(0, 25)));
+    assert.match(text(el, 'register-untertitel'), new RegExp(a.einstieg.slice(0, 25)));
   }
 });
 
@@ -140,6 +141,7 @@ test('Ausfall einer Station: der Fall bleibt stehen, die Folge steht darunter, W
   klick(q(el, 'register-vor'));
   assert.equal(zaehler(el), R.schritt(2, a.schritte.length), 'der Schritt zur ausgefallenen Station wird nicht gegangen');
   assert.equal((q(el, 'register-vor') as HTMLButtonElement).disabled, true);
+  assert.match(text(el, 'register-untertitel'), new RegExp(R.blockiert('Entscheidungsvorlage')));
   assert.match(text(el, 'register-blockade'), new RegExp(R.blockiert('Entscheidungsvorlage')));
   assert.ok(text(el, 'register-blockade').includes(w.knoten.vorlage.stoerung));
   klick(q(el, 'rz-kachel-vorlage'));
@@ -157,14 +159,15 @@ test('Geschichte: der erzählte Text je Schritt, ohne Takt; die Frage „Was feh
   assert.ok(a);
   for (const [i, s] of a.schritte.entries()) {
     klick(q(el, 'register-vor'));
-    assert.ok(text(el, 'register-schritt').includes(s.text.slice(0, 40)), `Schritt ${i + 1}: Erzähltext`);
+    assert.ok(text(el, 'register-untertitel').includes(s.text.slice(0, 40)), `Schritt ${i + 1}: Erzähltext im Untertitel`);
   }
-  assert.ok(text(el, 'register-schritt').includes(a.ende.slice(0, 30)));
+  assert.ok(text(el, 'register-ende').includes(a.ende.slice(0, 30)) || text(el, 'register-schritt').includes(a.ende.slice(0, 30)));
 });
 
 test('Selbst durchprobieren: falsche Antworten werden erklärt, richtige führen zur Frage „Wer führt …?“, am Ende steht die Zahl der ersten Treffer', () => {
   const el = zeige();
   klick(q(el, 'register-modus-probieren'));
+  assert.equal(q(el, 'register-untertitel')?.hasAttribute('hidden'), true, 'beim Durchprobieren kein Untertitel');
   const a = w.anlaesse[0];
   assert.ok(a);
   const wg = { start: a.start, schritte: a.schritte.map((s) => s.kante) };

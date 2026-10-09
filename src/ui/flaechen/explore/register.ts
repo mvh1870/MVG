@@ -12,7 +12,7 @@ import {
 } from '../../../werkzeuge/register.ts';
 import { h, ersetze } from '../../h.ts';
 import { auswahl, E, knopf, mitFokus, optionen, type WerkzeugOptionen } from './gemeinsam.ts';
-import { baueGrafik, OHNE_ZUSTAND, type Zustand } from './register-grafik.ts';
+import { baueGrafik, OHNE_ZUSTAND, TON, type Zustand } from './register-grafik.ts';
 
 const R = E.register;
 
@@ -211,24 +211,46 @@ export function registerWerkzeug(o: WerkzeugOptionen): HTMLElement {
   }
 
   /** Bild des Falls: Einstieg, aktueller Schritt, Ende. */
+  /** Station, an der der Fall gerade steht (Start, sonst Ziel des letzten Schritts) – gibt der Karte ihren Farbton. */
+  function aktiveStation(): Ort {
+    const wg = weg();
+    const sicht = sichtbareSchritte();
+    return sicht > 0 ? kante(wg.schritte[sicht - 1] ?? '')?.nach ?? wg.start : wg.start;
+  }
+
+  /** Untertitel unter dem Bild: Zuschauen erklärt den Pfeil, Erzählt erzählt den Schritt; vor dem ersten Schritt steht der Einstieg. */
+  function untertitelText(): string | null {
+    if (st.modus !== 'zuschauen' && st.modus !== 'geschichte') return null;
+    const b = st.modus === 'zuschauen' && st.ausgefallen.size > 0 ? blockiert(weg(), st.ausgefallen) : null;
+    if (b !== null && st.n >= b.schritt) return R.blockiert(ortTitel(b.station));
+    const a = anlassDaten();
+    if (st.n === 0) return a.einstieg;
+    const sch = a.schritte[st.n - 1];
+    if (sch === undefined) return null;
+    return st.modus === 'geschichte' ? sch.text : w.kanten[sch.kante]?.erklaerung ?? sch.text;
+  }
+
+  /** Karte neben dem Bild: Zuschauen nennt die Station, die erreicht ist; Erzählt erklärt den Pfeil (der erzählte Text steht im Untertitel). */
   function schrittKarte(erzaehlt: boolean): HTMLElement {
     const a = anlassDaten();
     const gesamtN = a.schritte.length;
     const n = st.n;
-    const karte = h('div', { class: 'rz-schritt', 'data-pruef': 'register-schritt' });
+    const karte = h('div', { class: 'rz-schritt', 'data-pruef': 'register-schritt', 'data-ton': TON[aktiveStation()] });
     if (n === 0) {
-      karte.append(h('p', { class: 't-label' }, R.beginn), h('p', { class: 'rz-text' }, a.einstieg), h('p', { class: 'rz-kurz' }, a.kurz));
+      karte.append(h('p', { class: 't-label' }, R.beginn), h('h3', { class: 'rz-schritt-titel' }, a.titel), h('p', { class: 'rz-text' }, a.kurz));
       return karte;
     }
     const s = a.schritte[n - 1];
     const k = s === undefined ? null : kante(s.kante);
     if (s === undefined || k === null) return karte;
+    const stationText = k.nach === SCHWELLE ? w.schwelle.text : w.knoten[k.nach].text;
     karte.append(
       h('p', { class: 't-label' }, R.schritt(n, gesamtN)),
       h('h3', { class: 'rz-schritt-titel' }, R.pfeil(ortTitel(k.von), ortTitel(k.nach))),
-      erzaehlt ? h('p', { class: 'rz-text' }, s.text) : h('p', { class: 'rz-text' }, w.kanten[k.id]?.erklaerung ?? ''),
+      erzaehlt
+        ? h('p', { class: 'rz-text' }, h('b', null, `${R.pfeilErklaerung}: `), w.kanten[k.id]?.erklaerung ?? '')
+        : h('p', { class: 'rz-text' }, h('b', null, `${ortTitel(k.nach)}: `), stationText),
       fuehrtZeile(k.nach));
-    if (erzaehlt) karte.append(h('p', { class: 'rz-pfeilwort' }, h('b', null, `${R.pfeilErklaerung}: `), w.kanten[k.id]?.erklaerung ?? ''));
     if (n === gesamtN) karte.append(h('p', { class: 'rz-ende', 'data-pruef': 'register-ende' }, h('b', null, `${R.ende}. `), a.ende));
     return karte;
   }
@@ -263,7 +285,7 @@ export function registerWerkzeug(o: WerkzeugOptionen): HTMLElement {
   function probeKarte(): HTMLElement {
     const a = anlassDaten();
     const n = st.n;
-    const karte = h('div', { class: 'rz-probe', 'data-pruef': 'register-probe' });
+    const karte = h('div', { class: 'rz-probe', 'data-pruef': 'register-probe', 'data-ton': TON[aktiveStation()] });
     if (n >= a.schritte.length) {
       karte.append(
         h('p', { class: 't-label' }, R.ende),
@@ -336,7 +358,7 @@ export function registerWerkzeug(o: WerkzeugOptionen): HTMLElement {
     const zeile = (e: Ebene, titel: string, inhalt: Node | string): HTMLElement =>
       h('div', { class: 'rz-zeile', 'data-ebene': e, 'data-aktiv': st.ebene === e ? 'ja' : null }, h('dt', { class: 't-label' }, titel), h('dd', null, inhalt));
     const wer = ort === SCHWELLE ? w.schwelle.wer : (k as RegisterKnoten).wer;
-    return h('section', { class: 'rz-karte', 'data-ort': ort, 'data-pruef': 'register-station', 'aria-label': ortTitel(ort) },
+    return h('section', { class: 'rz-karte', 'data-ort': ort, 'data-ton': TON[ort], 'data-pruef': 'register-station', 'aria-label': ortTitel(ort) },
       h('p', { class: 't-label' }, R.stationKopf),
       h('h3', { class: 'rz-karte-titel' }, ortTitel(ort), ' ', rolleMarke(wer.fuehrt)),
       h('p', { class: 'rz-text' }, ort === SCHWELLE ? w.schwelle.text : (k as RegisterKnoten).text),
@@ -353,7 +375,7 @@ export function registerWerkzeug(o: WerkzeugOptionen): HTMLElement {
     const kt = kante(id);
     if (kt === null) return null;
     const t = w.kanten[id];
-    return h('section', { class: 'rz-karte', 'data-kante': id, 'data-pruef': 'register-pfeil', 'aria-label': t?.text ?? id },
+    return h('section', { class: 'rz-karte', 'data-kante': id, 'data-ton': TON[kt.nach], 'data-pruef': 'register-pfeil', 'aria-label': t?.text ?? id },
       h('p', { class: 't-label' }, R.pfeilErklaerung),
       h('h3', { class: 'rz-karte-titel' }, R.pfeil(ortTitel(kt.von), ortTitel(kt.nach)), ': ', t?.text ?? ''),
       h('p', { class: 'rz-text' }, t?.erklaerung ?? ''),
@@ -375,6 +397,7 @@ export function registerWerkzeug(o: WerkzeugOptionen): HTMLElement {
     mitFokus(wurzel, () => {
       zeichneKopf();
       grafik.zeige(grafikZustand(mitImpuls));
+      grafik.untertitel(untertitelText());
       zeichneFlaeche();
     });
     planeTakt();
@@ -387,7 +410,9 @@ export function registerWerkzeug(o: WerkzeugOptionen): HTMLElement {
   }
 
   ersetze(rollenLeiste, rollenKarten());
-  ersetze(wurzel, [kopf, grafik.wurzel, flaeche, detail, rollenLeiste]);
+  // Bild und Erklärung nebeneinander (breite Fenster), sonst untereinander – der Untertitel steht immer direkt unter dem Bild
+  const spiel = h('div', { class: 'rz-spiel' }, h('div', { class: 'rz-bild' }, grafik.wurzel), h('div', { class: 'rz-seite' }, flaeche, detail));
+  ersetze(wurzel, [kopf, spiel, rollenLeiste]);
   zeichne();
   return wurzel;
 }

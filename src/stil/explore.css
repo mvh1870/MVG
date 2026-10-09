@@ -17,7 +17,7 @@
 :is(.seite-explore, .seite-start) [data-ton="lagune"] { --ton: var(--akzent-lagune); --ton-soft: var(--akzent-lagune-soft); --ton-text: var(--akzent-lagune-text); }
 :is(.seite-explore, .seite-start) [data-ton="gruen"] { --ton: var(--akzent-gruen); --ton-soft: var(--akzent-gruen-soft); --ton-text: var(--akzent-gruen-text); }
 
-.ex-rahmen { width: 100%; max-width: 1080px; margin: 0 auto; padding: var(--a-8) var(--a-6) var(--a-12); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--a-6); position: relative; }
+.ex-rahmen { width: 100%; max-width: var(--breite-seite); margin: 0 auto; padding: var(--a-8) var(--a-6) var(--a-12); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--a-6); position: relative; }
 
 /* Kopf: Rasterpapier im Ton des Werkzeugs, rechts sein Gegenstand auf einer Scheibe */
 .ex-kopf {
@@ -441,12 +441,14 @@ li[data-fertig="ja"] .wz-schritt-nr { background: var(--status-gruen-soft); colo
 
 /* =============================================================================================
    E · Register-Zusammenspiel (Owner im Chat 2026-10-09): Grundgrafik der Register, vier Ansichten, fünf Fragen.
-   Rollen tragen Farbe UND Wort (Farbe nie allein): Bauherr · Lenkungskreis · Projektsteuerung.
+   Farbe: jede Station trägt einen Ton der Akzentpalette (`data-ton`, Gruppen des Ablaufs); die Rollen tragen davon getrennt
+   Wort und Farbe (Bauherr navy · Lenkungskreis gold · Projektsteuerung türkis) – Farbe nie allein.
+   Bild und Erklärung stehen ab breiten Fenstern nebeneinander; der Untertitel steht immer direkt unter dem Bild.
    ============================================================================================= */
 .rz { display: grid; gap: var(--a-5); min-width: 0; }
-.rz [data-rolle="bauherr"], .rz[data-rolle="bauherr"] { --rolle: var(--akzent-sonne); --rolle-soft: var(--akzent-sonne-soft); --rolle-text: var(--akzent-sonne-text); }
-.rz [data-rolle="lenkungskreis"] { --rolle: var(--akzent-violett); --rolle-soft: var(--akzent-violett-soft); --rolle-text: var(--akzent-violett-text); }
-.rz [data-rolle="projektsteuerung"] { --rolle: var(--akzent-blau); --rolle-soft: var(--akzent-blau-soft); --rolle-text: var(--akzent-blau-text); }
+.rz [data-rolle="bauherr"], .rz[data-rolle="bauherr"] { --rolle: var(--navy); --rolle-soft: var(--flaeche-4); --rolle-text: var(--navy); }
+.rz [data-rolle="lenkungskreis"] { --rolle: var(--gold); --rolle-soft: var(--gold-soft); --rolle-text: var(--gold-text); }
+.rz [data-rolle="projektsteuerung"] { --rolle: var(--tuerkis); --rolle-soft: var(--tuerkis-soft); --rolle-text: var(--tuerkis-text); }
 
 .rz-rolle { display: inline-block; padding: 1px var(--a-3); border-radius: var(--radius-rund); border: 1.5px solid var(--rolle); background: var(--rolle-soft); color: var(--rolle-text); font: 600 var(--gr-s)/1.35 var(--schrift-label); white-space: nowrap; }
 
@@ -455,70 +457,97 @@ li[data-fertig="ja"] .wz-schritt-nr { background: var(--status-gruen-soft); colo
 .rz-knoepfe { display: flex; flex-wrap: wrap; gap: var(--a-2); }
 .rz-kopf .wz-feld { min-width: 14rem; }
 .rz-kopf button:disabled { color: var(--gesperrt-text); background: var(--gesperrt); cursor: not-allowed; }
+.rz-kopf .wz-knopf { border-width: 2px; }
+.rz-kopf [data-pruef="register-modi"] .wz-knopf:not([aria-pressed="true"]) { border-color: var(--ton); }
+.rz-kopf [data-pruef="register-ebenen"] .wz-knopf:not([aria-pressed="true"]) { border-color: var(--akzent-violett); }
+
+/* Bild und Erklärung: untereinander, ab 1500 px nebeneinander (die Erklärung bleibt beim Rollen sichtbar) */
+.rz-spiel { display: grid; gap: var(--a-5); min-width: 0; }
+.rz-bild, .rz-seite { min-width: 0; }
+.rz-seite { display: grid; gap: var(--a-3); align-content: start; }
+@media (min-width: 1500px) {
+  .rz-spiel { grid-template-columns: minmax(0, 1fr) clamp(340px, 26vw, 480px); align-items: start; }
+  .rz-seite { position: sticky; top: var(--a-4); max-height: calc(100vh - var(--a-8)); overflow-y: auto; padding-right: 2px; }
+}
 
 /* Grafik: breit, schmal waagerecht rollend (Mindestbreite, damit die Beschriftungen lesbar bleiben) */
-.rz-grafik-rahmen { overflow-x: auto; border: 1px solid var(--linie); border-radius: var(--radius-l); background: var(--weiss); padding: var(--a-2); }
-.rz-svg { display: block; width: 100%; min-width: 880px; height: auto; }
-.rz-box { fill: var(--weiss); stroke: var(--linie-3); stroke-width: 2; }
+.rz-grafik-rahmen { border: 2px solid var(--linie); border-radius: var(--radius-l); background: linear-gradient(180deg, var(--weiss), var(--flaeche-1)); overflow: hidden; }
+.rz-grafik-rolle { overflow-x: auto; padding: var(--a-2); }
+.rz-svg { display: block; width: 100%; min-width: 820px; height: auto; }
+.rz-box { fill: var(--ton-soft, var(--weiss)); stroke: var(--ton, var(--linie-3)); stroke-width: 2.5; }
+.rz-band { fill: var(--ton, var(--linie-3)); }
 .rz-kachel { cursor: default; }
-[data-bedienbar] .rz-kachel, .rz-kachel[role="button"], .rz-pfeil[role="button"] { cursor: pointer; }
-.rz-kachel[data-rolle] .rz-box { stroke: var(--rolle, var(--linie-3)); }
-.rz-scheibe { fill: var(--rolle-soft, var(--ton-soft)); stroke: var(--rolle, var(--ton)); stroke-width: 2.5; }
-.rz-icon { fill: none; stroke: var(--rolle-text, var(--navy)); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.rz-kachel[role="button"], .rz-pfeil[role="button"] { cursor: pointer; }
+.rz-scheibe { fill: var(--weiss); stroke: var(--ton, var(--navy)); stroke-width: 3; }
+.rz-icon { fill: none; stroke: var(--ton-text, var(--navy)); stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
 .rz-titel { font: 800 22px/1 var(--schrift-anzeige); fill: var(--navy); }
-.rz-unter { font: 500 16px/1 var(--schrift-label); fill: var(--tinte-2); }
-.rz-banner .rz-box { fill: var(--rolle-soft); stroke: var(--rolle); }
+.rz-unter { font: 500 16px/1 var(--schrift-label); fill: var(--tinte); }
+.rz-banner .rz-box { stroke-width: 2.5; }
 .rz-banner-text { font: 700 21px/1 var(--schrift-label); fill: var(--navy); }
-.rz-streifen-flaeche { fill: var(--rolle-soft); stroke: var(--rolle); stroke-width: 1.2; }
-.rz-streifen-text { font: 600 16px/1 var(--schrift-label); fill: var(--rolle-text); }
-.rz-grafik-rahmen:not([data-ebene="wer"]) .rz-streifen-flaeche { fill: var(--ton-soft); stroke: var(--ton); }
-.rz-grafik-rahmen:not([data-ebene="wer"]) .rz-streifen-text { fill: var(--ton-text); }
-.rz-marke { font: 800 22px/1 var(--schrift-label); fill: var(--rolle-text, var(--navy)); }
+.rz-streifen-flaeche { fill: var(--weiss); stroke: var(--ton, var(--navy)); stroke-width: 1.4; }
+.rz-streifen-text { font: 600 16px/1 var(--schrift-label); fill: var(--ton-text, var(--navy)); }
+.rz-grafik-rahmen[data-ebene="wer"] .rz-streifen-flaeche { fill: var(--rolle-soft); stroke: var(--rolle); stroke-width: 2; }
+.rz-grafik-rahmen[data-ebene="wer"] .rz-streifen-text { fill: var(--rolle-text); }
+.rz-marke { font: 800 22px/1 var(--schrift-label); fill: var(--ton-text, var(--navy)); }
 
-.rz-linie { fill: none; stroke: var(--tinte-2); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
-.rz-spitze { fill: var(--tinte-2); }
+/* Pfeile: Farbe nach Art; der aktive Pfeil und seine Spitze nehmen den Ton der Zielstation */
+.rz-linie { fill: none; stroke: var(--navy-2, var(--navy)); stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round; }
+.rz-spitze { fill: var(--navy-2, var(--navy)); }
 .rz-treffer { fill: none; stroke: transparent; stroke-width: 18; }
-.rz-pfeil[data-art="ueberwachung"] .rz-linie, .rz-linie[data-art="ueberwachung"] { stroke-dasharray: 9 6; }
-.rz-pfeil[data-art="bericht"] .rz-linie, .rz-linie[data-art="bericht"] { stroke-dasharray: 3 6; stroke: var(--akzent-blau-text); }
-.rz-pfeil[data-art="bericht"] .rz-spitze, .rz-spitze[data-art="bericht"] { fill: var(--akzent-blau-text); }
-.rz-pille { fill: var(--weiss); stroke: var(--linie-3); stroke-width: 1.5; }
+.rz-pfeil[data-art="ueberwachung"] .rz-linie, .rz-linie[data-art="ueberwachung"] { stroke: var(--akzent-violett-text); stroke-dasharray: 9 6; }
+.rz-pfeil[data-art="ueberwachung"] .rz-spitze, .rz-spitze[data-art="ueberwachung"] { fill: var(--akzent-violett-text); }
+.rz-pfeil[data-art="bericht"] .rz-linie, .rz-linie[data-art="bericht"] { stroke: var(--akzent-orange-text); stroke-dasharray: 3 6; }
+.rz-pfeil[data-art="bericht"] .rz-spitze, .rz-spitze[data-art="bericht"] { fill: var(--akzent-orange-text); }
+.rz-pille { fill: var(--weiss); stroke: var(--navy-2, var(--navy)); stroke-width: 1.6; }
+.rz-pfeil[data-art="ueberwachung"] .rz-pille { stroke: var(--akzent-violett-text); }
+.rz-pfeil[data-art="bericht"] .rz-pille { stroke: var(--akzent-orange-text); }
 .rz-pille-text { font: 600 17px/1 var(--schrift-label); fill: var(--navy); }
 .rz-legende-rahmen { fill: var(--weiss); stroke: var(--linie-2); stroke-width: 1.5; }
-.rz-legende-text { font: 600 17px/1 var(--schrift-label); fill: var(--tinte-2); }
-.rz-impuls { fill: var(--ton-text); stroke: var(--weiss); stroke-width: 2.5; opacity: 0; }
+.rz-legende-text { font: 600 17px/1 var(--schrift-label); fill: var(--tinte); }
+.rz-impuls { fill: var(--ton-text, var(--navy)); stroke: var(--weiss); stroke-width: 3; opacity: 0; }
 .rz-impuls.ist-sichtbar { opacity: 1; }
 
 /* Zustände: aktiv (jetzt), besucht, ausgefallen, gewählt */
-.rz-kachel.ist-aktiv .rz-box { stroke-width: 5; stroke: var(--navy); }
-.rz-kachel.ist-gewaehlt .rz-box { stroke-width: 4; stroke-dasharray: 10 5; }
-.rz-kachel.ist-besucht .rz-box { stroke-width: 3; }
+.rz-kachel.ist-aktiv .rz-box { stroke-width: 6; stroke: var(--ton-text); }
+.rz-kachel.ist-aktiv .rz-scheibe { fill: var(--ton); stroke: var(--weiss); }
+.rz-kachel.ist-aktiv .rz-icon { stroke: var(--weiss); }
+.rz-kachel.ist-gewaehlt .rz-box { stroke-width: 4.5; stroke-dasharray: 10 5; }
+.rz-kachel.ist-besucht .rz-box { stroke-width: 3.5; }
 .rz-kachel.ist-ausgefallen .rz-box { fill: var(--gesperrt); stroke: var(--gesperrt-text); stroke-dasharray: 8 6; }
+.rz-kachel.ist-ausgefallen .rz-band { fill: var(--gesperrt-text); }
 .rz-kachel.ist-ausgefallen :is(.rz-titel, .rz-unter, .rz-streifen-text, .rz-marke) { fill: var(--gesperrt-text); }
 .rz-kachel.ist-ausgefallen .rz-streifen-flaeche { fill: var(--weiss); stroke: var(--gesperrt-text); }
-.rz-pfeil.ist-durchlaufen .rz-linie { stroke: var(--navy); stroke-width: 3.8; }
-.rz-pfeil.ist-durchlaufen .rz-spitze { fill: var(--navy); }
-.rz-pfeil.ist-aktiv .rz-linie { stroke: var(--ton-text); stroke-width: 5; }
+.rz-pfeil.ist-durchlaufen .rz-linie { stroke: var(--ton-text); stroke-width: 4; }
+.rz-pfeil.ist-durchlaufen .rz-spitze { fill: var(--ton-text); }
+.rz-pfeil.ist-aktiv .rz-linie { stroke: var(--ton-text); stroke-width: 6; }
 .rz-pfeil.ist-aktiv .rz-spitze { fill: var(--ton-text); }
-.rz-pfeil.ist-aktiv .rz-pille { stroke: var(--ton-text); stroke-width: 3; }
-.rz-pfeil.ist-gewaehlt .rz-pille { stroke: var(--navy); stroke-width: 3; }
+.rz-pfeil.ist-aktiv .rz-pille, .rz-pfeil.ist-durchlaufen .rz-pille { stroke: var(--ton-text); stroke-width: 3; fill: var(--ton-soft); }
+.rz-pfeil.ist-gewaehlt .rz-pille { stroke: var(--navy); stroke-width: 3.5; }
 .rz-pfeil.ist-gesperrt { opacity: .4; }
 .rz-svg [role="button"]:focus-visible { outline: none; }
-.rz-svg [role="button"]:focus-visible .rz-box, .rz-svg [role="button"]:focus-visible .rz-pille { stroke: var(--navy); stroke-width: 5; }
+.rz-svg [role="button"]:focus-visible .rz-box, .rz-svg [role="button"]:focus-visible .rz-pille { stroke: var(--navy); stroke-width: 6; }
 
-/* Fläche unter der Grafik */
+/* Untertitel: direkt unter dem Bild, wie bei einem Film – erklärt, worum es im aktuellen Schritt geht */
+.rz-untertitel { margin: 0; padding: var(--a-3) var(--a-5); min-height: 4.6em; display: flex; align-items: center; background: var(--navy); color: var(--auf-navy); font: 500 clamp(17px, 1.25vw, 22px)/1.4 var(--schrift-text); }
+.rz-untertitel[hidden] { display: none; }
+.rz-untertitel.ist-neu { animation: rz-untertitel var(--dauer-mittel) var(--kurve-aus) both; }
+@keyframes rz-untertitel { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* Fläche neben/unter dem Bild */
 .rz-flaeche { display: grid; gap: var(--a-3); min-width: 0; }
 .rz-steuerung { display: flex; flex-wrap: wrap; align-items: center; gap: var(--a-2); }
 .rz-zaehler { margin-left: auto; font: var(--typo-klein); color: var(--tinte-2); }
-.rz-schritt, .rz-probe, .rz-karte, .rz-blockade { display: grid; gap: var(--a-2); padding: var(--a-4) var(--a-5); border: 1px solid var(--linie); border-radius: var(--radius-m); background: var(--ton-soft); min-width: 0; }
-.rz-blockade { background: var(--gesperrt); border-color: var(--gesperrt-text); color: var(--tinte); }
+.rz-schritt, .rz-probe, .rz-karte, .rz-blockade { display: grid; gap: var(--a-2); padding: var(--a-4) var(--a-5); border: 2px solid var(--ton, var(--linie)); border-radius: var(--radius-m); background: var(--ton-soft, var(--weiss)); min-width: 0; box-shadow: inset 6px 0 0 var(--ton, var(--linie)); }
+.rz-blockade { background: var(--gesperrt); border-color: var(--gesperrt-text); color: var(--tinte); box-shadow: inset 6px 0 0 var(--gesperrt-text); }
 .rz-blockade p, .rz-schritt p, .rz-probe p, .rz-karte p { margin: 0; }
+.rz-schritt .t-label, .rz-probe .t-label, .rz-karte .t-label { color: var(--ton-text); }
 .rz-schritt-titel, .rz-karte-titel { margin: 0; font: var(--typo-tafeltitel); color: var(--navy); overflow-wrap: anywhere; }
 .rz-text { max-width: 72ch; }
 .rz-kurz, .rz-hinweis { color: var(--tinte-2); font: var(--typo-klein); }
 .rz-fuehrt { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--a-2); }
 .rz-beteiligt { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: var(--a-1) var(--a-2); color: var(--tinte-2); }
 .rz-ende { padding-top: var(--a-2); border-top: 1px solid var(--linie-2); }
-.rz-rueckmeldung { padding: var(--a-2) var(--a-3); border-left: 5px solid var(--ton-text); background: var(--weiss); border-radius: var(--radius-s); max-width: 72ch; }
+.rz-rueckmeldung { padding: var(--a-2) var(--a-3); border-left: 5px solid var(--ton-text, var(--navy)); background: var(--weiss); border-radius: var(--radius-s); max-width: 72ch; }
 .rz-rueckmeldung[data-ergebnis="richtig"] { border-left-color: var(--status-gruen); }
 .rz-rueckmeldung[data-ergebnis="falsch"], .rz-rueckmeldung[data-ergebnis="kein-pfeil"] { border-left-color: var(--koralle-text); }
 .rz-rueckmeldung[data-ergebnis="anderer-pfeil"] { border-left-color: var(--akzent-sonne-text); }
@@ -532,17 +561,22 @@ li[data-fertig="ja"] .wz-schritt-nr { background: var(--status-gruen-soft); colo
 .rz-zeile dd { margin: 0; max-width: 72ch; }
 .rz-liste { margin: var(--a-1) 0 0; padding-left: var(--a-5); }
 @media (min-width: 720px) { .rz-zeile { grid-template-columns: 12rem minmax(0, 1fr); gap: var(--a-3); align-items: baseline; } }
+@media (min-width: 1500px) { .rz-seite .rz-zeile { grid-template-columns: minmax(0, 1fr); } }
 
 /* Rollen unter der Grafik */
 .rz-rollen-titel { margin: 0 0 var(--a-2); }
 .rz-rollen-karten { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--a-3); grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
-.rz-rollen-karte { display: grid; align-content: start; gap: var(--a-2); padding: var(--a-3) var(--a-4); border: 1px solid var(--rolle); border-radius: var(--radius-m); background: var(--rolle-soft); }
+.rz-rollen-karte { display: grid; align-content: start; gap: var(--a-2); padding: var(--a-3) var(--a-4); border: 2px solid var(--rolle); border-radius: var(--radius-m); background: var(--rolle-soft); box-shadow: inset 0 5px 0 var(--rolle); padding-top: var(--a-4); }
 .rz-rollen-karte p { margin: 0; }
 .rz-rollen-kopf { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--a-2); }
 .rz-zahl { color: var(--tinte-2); font: var(--typo-klein); }
-/* Rollenfigur an der Station, die gerade bearbeitet wird (Anfangsbuchstabe + Farbe der Rolle; der volle Name steht darunter im Text) */
-.rz-akteur-kreis { fill: var(--rolle-soft); stroke: var(--rolle); stroke-width: 3; }
+
+/* Rollenfigur an der Station, die gerade bearbeitet wird (Anfangsbuchstabe + Farbe der Rolle; der volle Name steht im Text) */
+.rz-akteur-kreis { fill: var(--rolle-soft); stroke: var(--rolle); stroke-width: 3.5; }
 .rz-akteur-buchstabe { font: 800 20px/1 var(--schrift-anzeige); fill: var(--rolle-text); }
 .rz-akteur-figur { transform-box: fill-box; transform-origin: center; animation: rz-auftritt var(--dauer-mittel) var(--kurve-pop) both; }
 @keyframes rz-auftritt { from { opacity: 0; scale: .5; } to { opacity: 1; scale: 1; } }
-@media (prefers-reduced-motion: reduce) { .rz-impuls { display: none; } .rz-akteur-figur { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .rz-impuls { display: none; } .rz-akteur-figur { animation: none; } .rz-untertitel.ist-neu { animation: none; } }
+
+/* Breite Fenster: Werkzeugseite, Startseite und Geschichte wachsen mit (Fenster ≥ 1280 px; Leinwand und Vorschau behalten ihre feste Breite) */
+.ex-rahmen:has(.rz) { max-width: var(--breite-register); }

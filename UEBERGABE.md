@@ -4,7 +4,7 @@ Kopf ≤ 100 Zeilen. Oben JETZT (überschreiben), darunter FRÜHER (anhängen, k
 
 ## JETZT
 
-- **Blöcke 2026-10-07 03:08, 06:22, 09:09, 12:25, 15:15, 18:10, 21:09 und 2026-10-08 00:10, 03:08, 06:22, 09:09, 12:27, 15:15, 18:08, 21:09 und 2026-10-09 00:09, 03:08, 06:26, 09:09, 12:30, 15:19, 18:09, 21:08 UTC (+00:00), Routine, je hingelegt:** Planblatt leer, keine neue Frage oder Antwort, `main` (6e34b9b) enthalten, nichts geändert, Kette nicht erneut gefahren. Offen beim Owner unverändert (siehe unten).
+- **Blöcke 2026-10-07 03:08, 06:22, 09:09, 12:25, 15:15, 18:10, 21:09 und 2026-10-08 00:10, 03:08, 06:22, 09:09, 12:27, 15:15, 18:08, 21:09 und 2026-10-09 00:09, 03:08, 06:26, 09:09, 12:30, 15:19, 18:09, 21:08 und 2026-10-10 00:10 UTC (+00:00), Routine, je hingelegt:** Planblatt leer, keine neue Frage oder Antwort, `main` (6e34b9b) enthalten, nichts geändert, Kette nicht erneut gefahren. Offen beim Owner unverändert (siehe unten).
 
 - **Block 2026-10-07 00:08–00:15 UTC (+00:00), Routine, hingelegt:** `main` (Owner-Commits O-65 Moderationsnotizen entfernt, Textexport `docs/textexport/`) ohne Konflikt in `claude/haus` zusammengeführt. Kette `pruefe` auf dem Merge grün (197,2 s, Oberfläche 20 Läufe 137,5 s, `dist/` unverändert); Node 22.22, `npm ci` 6 s. CI 410 (`main`, 6e34b9b) grün gelesen. Planblatt leer, keine neue Frage oder Antwort; kein Merge nach `main` nötig (dort fehlen nur Merge- und Ampel-Commit). Offen beim Owner unverändert (siehe unten).
 
